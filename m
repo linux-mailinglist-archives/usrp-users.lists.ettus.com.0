@@ -2,349 +2,306 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7927A355467
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 14:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F76355557
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 15:38:14 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 668F3383CA6
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 08:59:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 80245384097
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 09:38:13 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="PotURgQC";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=campus.tu-berlin.de header.i=@campus.tu-berlin.de header.b="hf7OuaB0";
 	dkim-atps=neutral
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4C651383A72
-	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 08:59:09 -0400 (EDT)
-Received: by mail-oi1-f178.google.com with SMTP id i3so14957883oik.7
-        for <usrp-users@lists.ettus.com>; Tue, 06 Apr 2021 05:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K/yueJ5yx7PXtbBS0wFgea4bN0x1iuhY8JG5OOBsVTc=;
-        b=PotURgQCuaY8VhEbCIgLkevnv692UIPVkCjjfDaZXrXUbPEscOxkij+Mrvcdmeh60D
-         t/zhNjYwPjE0uNAtpSptjmx1doMXPAGYJ7F6+OlPRWjdVtvf7TjSQ4kUi7TDR07qVZmf
-         MMKx5prFJWJcjlBiLlaMFsnYPzJHJlF8t6dRsQCkgzcRZQVTrx6XtmfvqVDMmSugNGEU
-         PuVCEiNclLR7wGR5aW331BKOkZRB6CaVU0HUVpxqVYi20YX2uJGyKqaTGiFcZ4JFos+d
-         dyhSsasVA3MqTkCYhfzG9Ev401b0FnMVpa0is7lxosErb08R6UGU6vbtd108AzLx1FaZ
-         kiOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K/yueJ5yx7PXtbBS0wFgea4bN0x1iuhY8JG5OOBsVTc=;
-        b=XgKHEVLcka3g2hGsNdHWGnufXz7B5kxnsLToeqlWYtSobXfoAlyZlRcQ/CuGiNu0g/
-         0NXeTWUvIPM3ngIC1syOAyb8XHEbDd276p+dUBH8DKBUhwB+fAN/F37Qm4olwA7woHmN
-         yquLVuI10A7hh3dOnbvr2IGLfa+HR8ojHRLVIHW/eAmwuxnEogsx7zwl6upt1TxWR7Qk
-         tNtNS6zG9gmvksWgRHd9I3Q6J0BL/jj9T+4ac52jb1ewn8zYDBtG1C0Edr1U1V9aYwP2
-         cmqERpCYgYENF0eFKOWSfAH76gK5RLTCT2p/Fk7TtfmYCo0PuZe5BJ2P5RmtMuP919xd
-         fosQ==
-X-Gm-Message-State: AOAM533rDFaBsrUsfNwIWZ24svhYXn2xft6nma2e9kcoqI69ijvZzVT4
-	68cKKK4Wt8a0cCjFvj/PqHlYzNHvh2O2NSjm876XRQ==
-X-Google-Smtp-Source: ABdhPJzMoCxZmkcc2e9aA8cZpT9HUV8kvt+EJ66sl5Hnj/+DVU6owXDrHKSJQxj6gB0wpMG4hF1NIIuzFstYgRYrsUY=
-X-Received: by 2002:aca:1814:: with SMTP id h20mr3132314oih.150.1617713948315;
- Tue, 06 Apr 2021 05:59:08 -0700 (PDT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	by mm2.emwd.com (Postfix) with ESMTPS id AA4C9383AE2
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 09:37:19 -0400 (EDT)
+Received: from SPMA-01.tubit.win.tu-berlin.de (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id 03EBD7E0868_6C640EB
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 13:37:18 +0000 (GMT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "exchange.tu-berlin.de", Issuer "DFN-Verein Global Issuing CA" (verified OK))
+	by SPMA-01.tubit.win.tu-berlin.de (Sophos Email Appliance) with ESMTPS id 629DE80574D_6C640DF
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 13:37:17 +0000 (GMT)
+Received: from ex-03.tubit.win.tu-berlin.de (130.149.6.143) by
+ ex-03.tubit.win.tu-berlin.de (130.149.6.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Tue, 6 Apr 2021 15:37:17 +0200
+Received: from ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) by
+ ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) with mapi id 15.02.0858.002;
+ Tue, 6 Apr 2021 15:37:17 +0200
+From: "Chang, Kaixin" <k.chang@campus.tu-berlin.de>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: dpdk, VFIO group is not viable
+Thread-Index: AQHXKun12PQSh2RT4kaEqQ+d+ki8jg==
+Date: Tue, 6 Apr 2021 13:37:16 +0000
+Message-ID: <e642027b70c841ec87fde1edc61dcabb@campus.tu-berlin.de>
+Accept-Language: en-GB, zh-CN, de-DE, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [193.174.67.20]
 MIME-Version: 1.0
-References: <1e8db183-4501-3f1d-57e4-2a13de806012@intecs.it>
-In-Reply-To: <1e8db183-4501-3f1d-57e4-2a13de806012@intecs.it>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 6 Apr 2021 08:58:57 -0400
-Message-ID: <CAB__hTQCKvaawxqqYGuxhrbR11tbLObDQpRCAix4LsGEC2GvjQ@mail.gmail.com>
-To: Luca Oliva <luca.oliva@intecs.it>
-Message-ID-Hash: PY4F6EBVCZPPJA2EVZ2WCFARA7OX3TX2
-X-Message-ID-Hash: PY4F6EBVCZPPJA2EVZ2WCFARA7OX3TX2
-X-MailFrom: rkossler@nd.edu
+X-SASI-RCODE: 200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=campus.tu-berlin.de; h=from:to:subject:date:message-id:content-type:mime-version; s=dkim-tub; bh=FDdGVR8B+c9fZqq5jhzvG5EXGuiO7J8IzZyFqfp29Nk=; b=hf7OuaB0KNiMNUnkPlwJSu/n586M3dPC6/1aj/jdt5VIWSjqbqzXhkmWGA1T4wCKpeoGjGsY2grjfT5JD90sM66fMe/1uaHmStCh7+5gLcoXkOK992NC5GRIPwdGjnvoIj2Mvf4ZwSAR5b77tHe9fwh9hacERCZCuO+hgGppZE8=
+Message-ID-Hash: FEMY4I3ETIYCCLXOIPEROVIJSRMOIAFQ
+X-Message-ID-Hash: FEMY4I3ETIYCCLXOIPEROVIJSRMOIAFQ
+X-MailFrom: k.chang@campus.tu-berlin.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RfNoc SplitStream and FFT
+Subject: [USRP-users] dpdk, VFIO group is not viable
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PY4F6EBVCZPPJA2EVZ2WCFARA7OX3TX2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FEMY4I3ETIYCCLXOIPEROVIJSRMOIAFQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9131453114115226746=="
+Content-Type: multipart/mixed; boundary="===============3342147568821451510=="
 
---===============9131453114115226746==
-Content-Type: multipart/alternative; boundary="0000000000003d0e4b05bf4d6166"
+--===============3342147568821451510==
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_e642027b70c841ec87fde1edc61dcabbcampustuberlinde_"
 
---0000000000003d0e4b05bf4d6166
-Content-Type: text/plain; charset="UTF-8"
+--_000_e642027b70c841ec87fde1edc61dcabbcampustuberlinde_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Luca,
-I don't know the overall solution, but I have some comments about using the
-FFT block.  I have never had success with this block unless I ensure that
-the block never receives a "partial FFT" block of samples.
+Dear Ettus team,
 
-One way to ensure this is to use the DDC block (Radio->DDC->FFT) and you
-set the radio SPP equal to the FFT length.  The only purpose of the DDC in
-this case is that it only processes "full packets" and discards the final
-"partial packet". Thus, it will ensure that the FFT also receives only full
-packets.
 
-Another way to ensure this is to use the NUM_SAMPS_AND_DONE you mentioned.
-As long as this number is a multiple of the FFT size, it should be fine for
-the FFT block.  I'm not sure why you were getting the Late error.
+I followed the instruction of https://kb.ettus.com/Getting_Started_with_DPD=
+K_and_UHD to enable dpdk for my X310, however I have an error when I execut=
+e benchmark_rate as sudo su
 
-When you use CONTINUOUS mode, you are basically ensuring that the FFT will
-work fine the first time but then partially fill with the trailing
-samples.  The next time you start, the FFT block will complete the filling
-process, but your data will be misaligned.  Perhaps you could use the
-"fft_reset" functionality to reset the block every time but this will
-likely mean that you need to re-configure the FFT length, scale, direction,
-etc.
-Rob
 
-On Tue, Apr 6, 2021 at 6:31 AM Luca Oliva <luca.oliva@intecs.it> wrote:
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.0-93-g3b=
+9ced8f
+EAL: Detected 4 lcore(s)
+EAL: Detected 1 NUMA nodes
+EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
+EAL: No free hugepages reported in hugepages-1048576kB
+EAL: Probing VFIO support...
+EAL: VFIO support initialized
+EAL: PCI device 0000:00:1f.6 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:15d7 net_e1000_em
+EAL: PCI device 0000:0e:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL:   0000:0e:00.0 VFIO group is not viable!
+EAL: Requested device 0000:0e:00.0 cannot be used
+EAL: PCI device 0000:0e:00.1 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL:   0000:0e:00.1 VFIO group is not viable!
+EAL: Requested device 0000:0e:00.1 cannot be used
+[ERROR] [DPDK] No available DPDK devices (ports) found!
+[ERROR] [UHD] Device discovery error: RuntimeError: No available DPDK devic=
+es (ports) found!
+EAL: FATAL: already called initialization.
+EAL: already called initialization.
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL in=
+itialization
+[00:00:00.000506] Creating the usrp device with: addr=3D192.168.30.2,second=
+_addr=3D192.168.40.2,use_dpdk=3D1...
+EAL: FATAL: already called initialization.
+EAL: already called initialization.
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL initiali=
+zation
+EAL: FATAL: already called initialization.
+EAL: already called initialization.
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL in=
+itialization
+Error: LookupError: KeyError: No devices found for ----->
+Device Address:
+    addr: 192.168.30.2
+    second_addr: 192.168.40.2
+    use_dpdk: 1
 
-> Hi,
->
-> I've an Ettus E310 with UHD 3.13.1.0
->
->
-> I need to receive some samples both in time domain than frequency
-> domain. I=E2=80=99m trying to do that using this rfnoc graph:
->
-> +---------+        +--------------+
-> |         |        |              |---------------------> RxStreamer Ch 0
-> | Radio   |------->| SplitStream  |       +-------+
-> |         |        |              |------>| FFT   |-----> RxStreamer Ch 1
-> +---------+        +--------------+       +-------+
->
->
-> uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);
-> uhd::rfnoc::block_id_t split_ctrl_id(0, "SplitStream", 0);
-> uhd::rfnoc::block_id_t fft_ctrl_id(0, "FFT", 0);
->
-> uhd::rfnoc::source_block_ctrl_base::sptr fft_blk_ctrl =3D
-> m_Usrp->get_block_ctrl<uhd::rfnoc::source_block_ctrl_base>(fft_ctrl_id);
->
-> m_RadioCtrl =3D m_Usrp->get_block_ctrl< uhd::rfnoc::radio_ctrl
->  >(radio_ctrl_id);
-> m_RadioCtrl->set_rate(16e6);
-> m_RadioCtrl->set_arg<int>("spp", 2048);
-> fft_blk_ctrl->set_arg<int>("spp", 2048);
->
-> m_Usrp->clear();
->
-> m_Graph =3D m_Usrp->create_graph("rfnoc_rx");
-> m_Graph->connect(radio_ctrl_id, 0, split_ctrl_id, 0);
-> m_Graph->connect(split_ctrl_id, 1, fft_ctrl_id, 0);
->
-> uhd::device_addr_t streamer_args("");
-> streamer_args["block_id0"] =3D split_ctrl_id.to_string();
-> streamer_args["block_port0"] =3D str(boost::format("%d") % 0);
-> streamer_args["block_id1"] =3D fft_ctrl_id.to_string();
-> streamer_args["block_port1"] =3D str(boost::format("%d") % 0);
->
-> uhd::stream_args_t stream_args_fc32("sc16", "sc16");
-> stream_args_fc32.channels =3D { 0, 1 };
-> stream_args_fc32.args =3D streamer_args;
-> stream_args_fc32.args["spp"] =3D boost::lexical_cast<std::string>(2048);
-> m_RxStreamerFc32 =3D m_Usrp->get_rx_stream(stream_args_fc32);
->
-> I need to receive a burst in a precise moment, elaborate it and restart
-> on a different frequency (I need also to change radio channel because
-> I've two different antennas).
->
-> I've tried
->
-> uhd::stream_cmd_t
-> stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
-> stream_cmd.num_samps =3D size_t(nBurstLen*MAX_DIM_SAMPLES_FRAME_FOR_RSA);
-> stream_cmd.stream_now =3D false;
-> stream_cmd.time_spec =3D m_RadioCtrl->get_time_now()+1.0;
-> m_RxStreamerFc32->issue_stream_cmd(stream_cmd);
->
-> but the receive fails with ERROR_CODE_LATE_COMMAND.
->
-> I've tried issuing the STREAM_MODE_START_CONTINUOUS command and it seems
-> to work correctly until I don't send a STREAM_MODE_STOP_CONTINUOUS comman=
-d.
->
-> After a STREAM_MODE_STOP_CONTINUOUS command I flush the buffer with a
-> receive loop:
->
-> while(m_RxStreamerFc32->recv(buff, 2048, uselessMd, 0.010, false));
->
-> The problem I'm observing is that since second start the FFT samples
-> lost alignment with the time samples and after some stop and start the
-> receive fails often with Overflow errors and than stops definitely to
-> work with Timeout errors
->
-> Someone else have this problem?
->
->
-> Regards,
->
-> Luca
->
->
-> LEGAL DISCLAIMER:
-> The contents of this email and any transmitted files are confidential and
-> intended solely for the use of the individual or entity to whom they are
-> addressed. We hereby exclude any warranty and any liability as to the
-> quality or accuracy of the contents of this email and any attached
-> transmitted files. If you are not the intended recipient, be advised that
-> you have received this email in error and that any use, dissemination,
-> forwarding, printing or copying of this email is strictly prohibited. If
-> you have received this email in error please contact the sender and delet=
-e
-> the material from any computer.
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Why is 0000:0e:00.1 VFIO group is not viable!? I have checked dpdk-devbind =
+--status-dev net and get
 
---0000000000003d0e4b05bf4d6166
-Content-Type: text/html; charset="UTF-8"
+Network devices using DPDK-compatible driver
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:0e:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dvf=
+io-pci unused=3Dixgbe
+0000:0e:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dvf=
+io-pci unused=3Dixgbe
+
+Network devices using kernel driver
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:00:1f.6 'Ethernet Connection (4) I219-LM 15d7' if=3Denp0s31f6 drv=3De1=
+000e unused=3Dvfio-pci
+0000:02:00.0 'Wireless 8265 / 8275 24fd' if=3Dwlp2s0 drv=3Diwlwifi unused=
+=3Dvfio-pci
+
+
+which seems to be fine.
+
+
+thank you for your help
+
+
+sincerely
+
+
+Kasim
+
+--_000_e642027b70c841ec87fde1edc61dcabbcampustuberlinde_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Luca,<div>I don&#39;t know the overall=
- solution, but I have some comments about using the FFT block.=C2=A0 I have=
- never had success with this block unless I ensure that the block never rec=
-eives a &quot;partial FFT&quot; block of samples.=C2=A0=C2=A0</div><div><br=
-></div><div>One way to ensure this is to use the DDC block (Radio-&gt;DDC-&=
-gt;FFT) and you set the radio SPP equal to the FFT length.=C2=A0 The only p=
-urpose of the DDC in this case is that it only processes &quot;full packets=
-&quot; and discards the final &quot;partial packet&quot;. Thus, it will ens=
-ure that the FFT also receives only full packets.</div><div><br></div><div>=
-Another way to ensure this is to use the NUM_SAMPS_AND_DONE you mentioned.=
-=C2=A0 As long as this number is a multiple of the FFT size, it should be f=
-ine for the FFT block.=C2=A0 I&#39;m not sure why you were getting the Late=
- error.</div><div><br></div><div>When you use CONTINUOUS mode, you are basi=
-cally ensuring that the FFT will work fine the first time but then partiall=
-y fill with the trailing samples.=C2=A0 The next time you start, the FFT bl=
-ock will complete the filling process, but your data will be misaligned.=C2=
-=A0 Perhaps you could use the &quot;fft_reset&quot; functionality to reset =
-the block every time but this will likely mean that you need to re-configur=
-e the FFT length, scale, direction, etc.</div><div>Rob</div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 6, =
-2021 at 6:31 AM Luca Oliva &lt;<a href=3D"mailto:luca.oliva@intecs.it">luca=
-.oliva@intecs.it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex">Hi,<br>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Dear Ettus team,</p>
+<p><br>
+</p>
+<p>I followed the instruction of <a href=3D"https://kb.ettus.com/Getting_St=
+arted_with_DPDK_and_UHD" class=3D"OWAAutoLink" id=3D"LPlnk765227" previewre=
+moved=3D"true">
+https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a> to enable dpdk f=
+or my X310, however I have an error when I execute
+<code>benchmark_rate</code> as sudo su</p>
+<p><br>
+</p>
+<p></p>
+<div>
+<pre class=3D"western" style=3D"text-align: left"><font style=3D"font-size:=
+ 10pt" size=3D"2">[INFO] [UHD] linux; GNU C&#43;&#43; version 9.3.0; Boost_=
+107100; UHD_4.0.0.0-93-g3b9ced8f</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: Detected 4 lcore(s)</font>=
+=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: Detected 1 NUMA nodes</font=
+>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: Multi-process socket /var/r=
+un/dpdk/rte/mp_socket</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: No free hugepages reported =
+in hugepages-1048576kB</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: Probing VFIO support...</fo=
+nt>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: VFIO support initialized</f=
+ont>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: PCI device 0000:00:1f.6 on =
+NUMA socket -1</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   Invalid NUMA socket, defa=
+ult to 0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   probe driver: 8086:15d7 n=
+et_e1000_em</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: PCI device 0000:0e:00.0 on =
+NUMA socket -1</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   Invalid NUMA socket, defa=
+ult to 0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   probe driver: 8086:10fb n=
+et_ixgbe</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   0000:0e:00.0 VFIO group i=
+s not viable!</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: Requested device 0000:0e:00=
+.0 cannot be used</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: PCI device 0000:0e:00.1 on =
+NUMA socket -1</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   Invalid NUMA socket, defa=
+ult to 0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   probe driver: 8086:10fb n=
+et_ixgbe</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL:   0000:0e:00.1 VFIO group i=
+s not viable!</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: Requested device 0000:0e:00=
+.1 cannot be used</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [DPDK] No available DPDK=
+ devices (ports) found!</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [UHD] Device discovery e=
+rror: RuntimeError: No available DPDK devices (ports) found!</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: FATAL: already called initi=
+alization.</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: already called initializati=
+on.</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [DPDK] Error with EAL in=
+itialization</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [X300] X300 Network disc=
+overy error RuntimeError: Error with EAL initialization</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[00:00:00.000506] Creating the u=
+srp device with: addr=3D192.168.30.2,second_addr=3D192.168.40.2,use_dpdk=3D=
+1...</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: FATAL: already called initi=
+alization.</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: already called initializati=
+on.</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [DPDK] Error with EAL in=
+itialization</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [UHD] Device discovery e=
+rror: RuntimeError: Error with EAL initialization</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: FATAL: already called initi=
+alization.</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">EAL: already called initializati=
+on.</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [DPDK] Error with EAL in=
+itialization</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">[ERROR] [X300] X300 Network disc=
+overy error RuntimeError: Error with EAL initialization</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">Error: LookupError: KeyError: No=
+ devices found for -----&gt;</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">Device Address:</font>=0A=
+    <font style=3D"font-size: 10pt" size=3D"2">addr: 192.168.30.2</font>=0A=
+    <font style=3D"font-size: 10pt" size=3D"2">second_addr: 192.168.40.2</f=
+ont>=0A=
+    <font style=3D"font-size: 10pt" size=3D"2">use_dpdk: 1</font></pre>
+</div>
+Why is <font style=3D"font-size: 10pt" size=3D"2">0000:0e:00.1 VFIO group i=
+s not viable!</font>? I have checked dpdk-devbind --status-dev net and get
+<span id=3D"ms-rterangepaste-end"></span><br>
+<div><br>
+Network devices using DPDK-compatible driver<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+0000:0e:00.0 '82599ES 10-Gigabit SFI/SFP&#43; Network Connection 10fb' drv=
+=3Dvfio-pci unused=3Dixgbe<br>
+0000:0e:00.1 '82599ES 10-Gigabit SFI/SFP&#43; Network Connection 10fb' drv=
+=3Dvfio-pci unused=3Dixgbe<br>
 <br>
-I&#39;ve an Ettus E310 with UHD 3.13.1.0<br>
+Network devices using kernel driver<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+0000:00:1f.6 'Ethernet Connection (4) I219-LM 15d7' if=3Denp0s31f6 drv=3De1=
+000e unused=3Dvfio-pci
 <br>
+0000:02:00.0 'Wireless 8265 / 8275 24fd' if=3Dwlp2s0 drv=3Diwlwifi unused=
+=3Dvfio-pci <br>
+</div>
 <br>
-I need to receive some samples both in time domain than frequency <br>
-domain. I=E2=80=99m trying to do that using this rfnoc graph:<br>
-<br>
-+---------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +--------------+<br>
-|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |---------------------&gt; RxStreamer Ch 0<br>
-| Radio=C2=A0=C2=A0 |-------&gt;| SplitStream=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 +-------+<br>
-|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |------&gt;| FFT=C2=A0=C2=A0 |-----&gt; RxStreamer=
- Ch 1<br>
-+---------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +--------------+=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +-------+<br>
-<br>
-<br>
-uhd::rfnoc::block_id_t radio_ctrl_id(0, &quot;Radio&quot;, 0);<br>
-uhd::rfnoc::block_id_t split_ctrl_id(0, &quot;SplitStream&quot;, 0);<br>
-uhd::rfnoc::block_id_t fft_ctrl_id(0, &quot;FFT&quot;, 0);<br>
-<br>
-uhd::rfnoc::source_block_ctrl_base::sptr fft_blk_ctrl =3D <br>
-m_Usrp-&gt;get_block_ctrl&lt;uhd::rfnoc::source_block_ctrl_base&gt;(fft_ctr=
-l_id);<br>
-<br>
-m_RadioCtrl =3D m_Usrp-&gt;get_block_ctrl&lt; uhd::rfnoc::radio_ctrl <br>
-=C2=A0&gt;(radio_ctrl_id);<br>
-m_RadioCtrl-&gt;set_rate(16e6);<br>
-m_RadioCtrl-&gt;set_arg&lt;int&gt;(&quot;spp&quot;, 2048);<br>
-fft_blk_ctrl-&gt;set_arg&lt;int&gt;(&quot;spp&quot;, 2048);<br>
-<br>
-m_Usrp-&gt;clear();<br>
-<br>
-m_Graph =3D m_Usrp-&gt;create_graph(&quot;rfnoc_rx&quot;);<br>
-m_Graph-&gt;connect(radio_ctrl_id, 0, split_ctrl_id, 0);<br>
-m_Graph-&gt;connect(split_ctrl_id, 1, fft_ctrl_id, 0);<br>
-<br>
-uhd::device_addr_t streamer_args(&quot;&quot;);<br>
-streamer_args[&quot;block_id0&quot;] =3D split_ctrl_id.to_string();<br>
-streamer_args[&quot;block_port0&quot;] =3D str(boost::format(&quot;%d&quot;=
-) % 0);<br>
-streamer_args[&quot;block_id1&quot;] =3D fft_ctrl_id.to_string();<br>
-streamer_args[&quot;block_port1&quot;] =3D str(boost::format(&quot;%d&quot;=
-) % 0);<br>
-<br>
-uhd::stream_args_t stream_args_fc32(&quot;sc16&quot;, &quot;sc16&quot;);<br=
->
-stream_args_fc32.channels =3D { 0, 1 };<br>
-stream_args_fc32.args =3D streamer_args;<br>
-stream_args_fc32.args[&quot;spp&quot;] =3D boost::lexical_cast&lt;std::stri=
-ng&gt;(2048);<br>
-m_RxStreamerFc32 =3D m_Usrp-&gt;get_rx_stream(stream_args_fc32);<br>
-<br>
-I need to receive a burst in a precise moment, elaborate it and restart <br=
->
-on a different frequency (I need also to change radio channel because <br>
-I&#39;ve two different antennas).<br>
-<br>
-I&#39;ve tried<br>
-<br>
-uhd::stream_cmd_t <br>
-stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);<br>
-stream_cmd.num_samps =3D size_t(nBurstLen*MAX_DIM_SAMPLES_FRAME_FOR_RSA);<b=
-r>
-stream_cmd.stream_now =3D false;<br>
-stream_cmd.time_spec =3D m_RadioCtrl-&gt;get_time_now()+1.0;<br>
-m_RxStreamerFc32-&gt;issue_stream_cmd(stream_cmd);<br>
-<br>
-but the receive fails with ERROR_CODE_LATE_COMMAND.<br>
-<br>
-I&#39;ve tried issuing the STREAM_MODE_START_CONTINUOUS command and it seem=
-s <br>
-to work correctly until I don&#39;t send a STREAM_MODE_STOP_CONTINUOUS comm=
-and.<br>
-<br>
-After a STREAM_MODE_STOP_CONTINUOUS command I flush the buffer with a <br>
-receive loop:<br>
-<br>
-while(m_RxStreamerFc32-&gt;recv(buff, 2048, uselessMd, 0.010, false));<br>
-<br>
-The problem I&#39;m observing is that since second start the FFT samples <b=
-r>
-lost alignment with the time samples and after some stop and start the <br>
-receive fails often with Overflow errors and than stops definitely to <br>
-work with Timeout errors<br>
-<br>
-Someone else have this problem?<br>
-<br>
-<br>
-Regards,<br>
-<br>
-Luca<br>
-<br>
-<br>
-LEGAL DISCLAIMER:<br>
-The contents of this email and any transmitted files are confidential and i=
-ntended solely for the use of the individual or entity to whom they are add=
-ressed. We hereby exclude any warranty and any liability as to the quality =
-or accuracy of the contents of this email and any attached transmitted file=
-s. If you are not the intended recipient, be advised that you have received=
- this email in error and that any use, dissemination, forwarding, printing =
-or copying of this email is strictly prohibited. If you have received this =
-email in error please contact the sender and delete the material from any c=
-omputer.<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+<p></p>
+<p>which seems to be fine.</p>
+<p><br>
+</p>
+<p>thank you for your help</p>
+<p><br>
+</p>
+<p>sincerely</p>
+<p><br>
+</p>
+<p>Kasim<br>
+</p>
+</div>
+</body>
+</html>
 
---0000000000003d0e4b05bf4d6166--
+--_000_e642027b70c841ec87fde1edc61dcabbcampustuberlinde_--
 
---===============9131453114115226746==
+--===============3342147568821451510==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -354,4 +311,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9131453114115226746==--
+--===============3342147568821451510==--
