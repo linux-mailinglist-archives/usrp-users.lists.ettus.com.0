@@ -2,309 +2,130 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54EA9354323
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Apr 2021 17:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3663550E8
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 12:31:40 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 773FD383A54
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Apr 2021 11:04:22 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=live.com header.i=@live.com header.b="A1mUepLh";
-	dkim-atps=neutral
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-oln040092253021.outbound.protection.outlook.com [40.92.253.21])
-	by mm2.emwd.com (Postfix) with ESMTPS id 826283837C7
-	for <usrp-users@lists.ettus.com>; Mon,  5 Apr 2021 11:03:37 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jN0g6g2GTZONVsfCwciSJjGJ38w3WA0xBaXhgoyrvbgWBkOwMyJGRPRocJ1MG0kXWyKmSwpIievy5aQZ/ByrIY1d0Qxw56TPDw/5mSBgToireTbf8a7lpbc7yMZV7ojY/+J9M1J7QQ43Z6+ePdBjiJjPNCVddq0F4AlWpiwrdglVu9Jj3aBwczZuF3nvUkA36G3Pl1HXYHa9b9iQfskwKk8woEH5r9vC85YxorHqeyrc1W4sPC0UBjdoQl8kb9pSGROCMLZ9RE8nNKtTR+iAGaG3vFZ8+KuZFoSSc0Dp1RVURm7FnXe1zTiP+cLgDDq+0gL8k586jlFkluk0MyvIkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=loBnm9ZTdHBVH1G9chvz9+xGVSBv7HNCPjqHN/ZFxm4=;
- b=FiUUxeBqoLV+ZbFuKiygVWzA9Jij33h1gU5odP1xKRffskzPLpNQ0p5PJep2IIVO4x5VuMPDWdqVQJLxeLBbZ+AQGF2ZEvqFqLzu70dvYy3/+I7Wcbqb9k1eM/HFihhgxbhk6Awwa4FhfpWFBE8wwJuitBh0GpqdstZZKEJ7fU0lHbQ7fgzPWWji4tnCZqkNVTnpc2hhDAQwq9YedVk/BdRqKXezyqcqLyKdaS/4F4tkak1cTym7T8HzwP980K7mVmB4nAAFs7LGSKel/GfRSWA4C3Cx/szh9DjlBKQS3H4b1pQai3cKmQp1LB0DY/OayZBcdoSEvSntnjWg9knZ9g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=loBnm9ZTdHBVH1G9chvz9+xGVSBv7HNCPjqHN/ZFxm4=;
- b=A1mUepLhJL3Tr/mEJnjUAgh34dRpEaB7bz3osdAfhaaEyF3li0hBhWoF8vN+4g8qCAMNx+Yao9LKKGXgGnn9nrHFBoT7KVot0duQb//SJ4HRk1mgrJbNrWenTMjHY3o7n/eZlvedM1G+vo1u4+4xZj0L5ppZrITvkHtoNVFGX+2bTMLtBgSAJ8uxIdcoqySMKsepsBhSuXS7Zwi/jYZQMwHdyLihfTSUXe43+M7R+y1qxh4E6qMLM+oVh5cjroM1rBMf30RUj7daQmx3u+PE59KwsBRhZIvrCwp/fFbKy1ERW8bjS9+Hxb9XiH7qLnb9PATAo1NvjNJib7Q/TMMjgg==
-Received: from HK2APC01FT047.eop-APC01.prod.protection.outlook.com
- (2a01:111:e400:7ebc::4f) by
- HK2APC01HT036.eop-APC01.prod.protection.outlook.com (2a01:111:e400:7ebc::408)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28; Mon, 5 Apr
- 2021 15:03:34 +0000
-Received: from BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM
- (2a01:111:e400:7ebc::42) by HK2APC01FT047.mail.protection.outlook.com
- (2a01:111:e400:7ebc::342) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3999.28 via Frontend
- Transport; Mon, 5 Apr 2021 15:03:34 +0000
-Received: from BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::1de6:5d4d:36ac:2b7a]) by BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::1de6:5d4d:36ac:2b7a%6]) with mapi id 15.20.3999.032; Mon, 5 Apr 2021
- 15:03:33 +0000
-From: Snehasish Kar <snehasish.cse@live.com>
-To: =?iso-8859-1?Q?Marcus_M=FCller?= <marcus.mueller@ettus.com>,
-	"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: troubleshooting pcie link card
-Thread-Index: AQHXKiiya12idR8GwEu7bPeJg1TqvaqmBTGD
-Date: Mon, 5 Apr 2021 15:03:33 +0000
-Message-ID: 
- <BMXPR01MB246926F20B11175442992CBB88779@BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM>
-References: 
- <BMXPR01MB2469029ADD6C27D6096B9D5988779@BMXPR01MB2469.INDPRD01.PROD.OUTLOOK.COM>,<da032485-0b2f-6b69-3485-c414205b5b55@ettus.com>
-In-Reply-To: <da032485-0b2f-6b69-3485-c414205b5b55@ettus.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: 
- OriginalChecksum:B6DB5EFB9CAC234D2A3EAFF0052D94C7A52865F1F9C3BFDA2A019C99010CBF7C;UpperCasedChecksum:B37130AF5E09147F81C30F62BBB16F5C480A1E7D02A4DB8B524759D9BBDFBA5C;SizeAsReceived:6983;Count:44
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [CVBVFpIc+CCo5pAuAiATLpXfoVYlG77j]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 3f2869a7-ae6b-4286-4a28-08d8f843fb3e
-x-ms-traffictypediagnostic: HK2APC01HT036:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- DKnHAHhYhL3IzfMd4PMpUIZXF8kcNlVYjAnBcYRTxmjK+HAuxLs5zOyn53DoiZr23WNzUXwHf6Iai+VlfZpcjVsad/GW0gsDWDxT/MNOSzZg99HG6JwotSuY4GKgV9ISOOMrh1wQ9VnNpQHTJ1fTC3yfz3MR8d/WDCfBnWsGS2btfDZmhwNxYHksk0C7KCpNhGshowSUoCFw7Y0Y0XSeN2dZMRMqUJRlJIg4LXR83MbyJgqYRZjEKIbcZlZ3iw3E9pEFkms54SuZBLbPImefg/lStRdymXcub6P8CCc11o8ez4GeBwXietLPkmduyXN+LDto+enENvWWlLlvmWuh6EkqK9AACpRlU6Vi2AEqZCPljNBaMrjhfReYzL/UhAb1R8es//u7Lh+SiGpYzwa1Hh6kBC5T1CqinFZIakvFfPn7RY4yZDyca4461PenVvUT
-x-ms-exchange-antispam-messagedata: 
- dF6F0b3KVz0exoVqSm3KUdahgIGqCzPIdy7YkOPvyRRJNFqdyt3sJ4TnKNMcqm2Vy5WHHK4Vy23FUuX6FN1mCxuElePfr9rTzJFkL9s3B3U/cI/GUitffQnkaAK7+iVt5CnEIVz164fnYHpSnq+GOQ==
-x-ms-exchange-transport-forked: True
+	by mm2.emwd.com (Postfix) with ESMTP id 316A4383EAE
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 06:31:36 -0400 (EDT)
+Received: from barracuda.navarca.com (barracuda.navarca.com [212.239.60.237])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6C49B38108C
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 06:30:47 -0400 (EDT)
+X-ASG-Debug-ID: 1617705044-053bad134b7a9a0001-5wTQH4
+Received: from dns26.navarca.com (dns26.navarca.com [192.168.0.26]) by barracuda.navarca.com with ESMTP id kcpx3vkOtf94egfp (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO) for <usrp-users@lists.ettus.com>; Tue, 06 Apr 2021 12:30:44 +0200 (CEST)
+X-Barracuda-Envelope-From: luca.oliva@intecs.it
+X-Barracuda-RBL-Trusted-Forwarder: 192.168.0.26
+X-ASG-Whitelist: Client
+Received: from dns26.navarca.com (localhost [127.0.0.1])
+	by dns26.navarca.com (Postfix) with ESMTPS id CA9201D64C9
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 12:30:44 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by dns26.navarca.com (Postfix) with ESMTP id BCA1232CD
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 12:30:44 +0200 (CEST)
+Received: from dns26.navarca.com ([127.0.0.1])
+	by localhost (dns26.navarca.com [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id nXRUM68VI5DO for <usrp-users@lists.ettus.com>;
+	Tue,  6 Apr 2021 12:30:44 +0200 (CEST)
+Received: from [192.168.1.122] (unknown [151.70.160.100])
+	by dns26.navarca.com (Postfix) with ESMTPSA id 9B8B91D64C9
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 12:30:44 +0200 (CEST)
+To: usrp-users@lists.ettus.com
+X-Barracuda-RBL-Trusted-Forwarder: 192.168.1.122
+From: Luca Oliva <luca.oliva@intecs.it>
+Message-ID: <1e8db183-4501-3f1d-57e4-2a13de806012@intecs.it>
+X-ASG-Orig-Subj: RfNoc SplitStream and FFT
+Date: Tue, 6 Apr 2021 12:30:44 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.7.1
 MIME-Version: 1.0
-X-OriginatorOrg: live.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: HK2APC01FT047.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f2869a7-ae6b-4286-4a28-08d8f843fb3e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Apr 2021 15:03:33.3796
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT036
-Message-ID-Hash: GGCQFRXRFD532HO373QKEZTH47KYBQ2Y
-X-Message-ID-Hash: GGCQFRXRFD532HO373QKEZTH47KYBQ2Y
-X-MailFrom: snehasish.cse@live.com
+Content-Language: en-US
+X-Barracuda-Connect: dns26.navarca.com[192.168.0.26]
+X-Barracuda-Start-Time: 1617705044
+X-Barracuda-Encrypted: ECDHE-RSA-AES128-GCM-SHA256
+X-Barracuda-URL: https://212.239.60.237:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at navarca.com
+X-Barracuda-Scan-Msg-Size: 2938
+X-Barracuda-BRTS-Status: 1
+Message-ID-Hash: AAOT6XYG7LFDBVH3GBHJPAATVILUWUJZ
+X-Message-ID-Hash: AAOT6XYG7LFDBVH3GBHJPAATVILUWUJZ
+X-MailFrom: btv1==73075c51f8f==luca.oliva@intecs.it
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: troubleshooting pcie link card
+Subject: [USRP-users] RfNoc SplitStream and FFT
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RZ4WQ4JFNGJCMJDN4IDJH3PHTLNTHCNQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AAOT6XYG7LFDBVH3GBHJPAATVILUWUJZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3413475276736920526=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============3413475276736920526==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BMXPR01MB246926F20B11175442992CBB88779BMXPR01MB2469INDP_"
-
---_000_BMXPR01MB246926F20B11175442992CBB88779BMXPR01MB2469INDP_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Thanks for your prompt response. I will check it tomorrow and get back to y=
-ou.
-
-Regards
-Snehasish
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Marcus M=FCller <marcus.mueller@ettus.com>
-Sent: Monday, April 5, 2021 8:03:32 PM
-To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Re: troubleshooting pcie link card
-
-Hi Snehasish,
-
-
-chances are that if the board doesn't show up in lspci, there's not much yo=
-u can debug;
-your mainboard doesn't seem to play nice.
-
-Try the following:
-
-
-* Check dmesg for anything related to PCIe enumeration
-
-* Check in your BIOS/UEFI setup whether it has some dialog to list connecte=
-d PCIe devices
-
-* Check whether using a different PCIe slot helps
-
-* Check whether your mainboard's PCIe lane assignments can be changed. This=
- is often the
-case for gamer mainboards with 2011 to ca 2019 intel CPUs, but it's also th=
-e case on some
-other platforms.
-
-
-Best regards,
-
-Marcus
-
-DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
-validated as a product, for use in a deployed application or system, or for=
- use in hazardous environments. You assume all risks for use of the Code. U=
-se of the Code is subject to terms of the licenses to the UHD or RFNoC code=
- with which the Code is used. Standard licenses to UHD and RFNoC can be fou=
-nd at https://www.ettus.com/sdr-software/licenses/.
-
-NI will only perform services based on its understanding and condition that=
- the goods or services (i) are not for the use in the production or develop=
-ment of any item produced, purchased, or ordered by any entity with a footn=
-ote 1 designation in the license requirement column of Supplement No. 4 to =
-Part 744, U.S. Export Administration Regulations and (ii) such a company is=
- not a party to the transaction.  If our understanding is incorrect, please=
- notify us immediately because a specific authorization may be required fro=
-m the U.S. Commerce Department before the transaction may proceed further.
-
-On 05.04.21 14:39, Snehasish Kar wrote:
-> Hello
->
-> I need some help in troubleshooting pcie link card. I can see orange LED =
-glowing in the
-> card and even on giving the command lspci, I am not able to see the card =
-in the list.
-> Please help me with the troubleshooting.
->
-> Regards
->
-> Snehasish
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---_000_BMXPR01MB246926F20B11175442992CBB88779BMXPR01MB2469INDP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-</head>
-<body>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div>Thanks for your prompt response. I will check it tomorrow and get back=
- to you.</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">Regards&nbsp;</div>
-<div dir=3D"ltr">Snehasish&nbsp;</div>
-<div><br>
-</div>
-<div id=3D"ms-outlook-mobile-signature">Get <a href=3D"https://aka.ms/o0uke=
-f">Outlook for iOS</a></div>
-</div>
-</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Marcus M=FCller &lt;m=
-arcus.mueller@ettus.com&gt;<br>
-<b>Sent:</b> Monday, April 5, 2021 8:03:32 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> [USRP-users] Re: troubleshooting pcie link card</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
-">
-<div class=3D"PlainText">Hi Snehasish,<br>
-<br>
-<br>
-chances are that if the board doesn't show up in lspci, there's not much yo=
-u can debug;<br>
-your mainboard doesn't seem to play nice.<br>
-<br>
-Try the following:<br>
-<br>
-<br>
-* Check dmesg for anything related to PCIe enumeration<br>
-<br>
-* Check in your BIOS/UEFI setup whether it has some dialog to list connecte=
-d PCIe devices<br>
-<br>
-* Check whether using a different PCIe slot helps<br>
-<br>
-* Check whether your mainboard's PCIe lane assignments can be changed. This=
- is often the<br>
-case for gamer mainboards with 2011 to ca 2019 intel CPUs, but it's also th=
-e case on some<br>
-other platforms.<br>
-<br>
-<br>
-Best regards,<br>
-<br>
-Marcus<br>
-<br>
-DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
-validated as a product, for use in a deployed application or system, or for=
- use in hazardous environments. You assume all risks for use of the Code. U=
-se of the Code is subject to terms
- of the licenses to the UHD or RFNoC code with which the Code is used. Stan=
-dard licenses to UHD and RFNoC can be found at
-<a href=3D"https://www.ettus.com/sdr-software/licenses/">https://www.ettus.=
-com/sdr-software/licenses/</a>.<br>
-<br>
-NI will only perform services based on its understanding and condition that=
- the goods or services (i) are not for the use in the production or develop=
-ment of any item produced, purchased, or ordered by any entity with a footn=
-ote 1 designation in the license
- requirement column of Supplement No. 4 to Part 744, U.S. Export Administra=
-tion Regulations and (ii) such a company is not a party to the transaction.=
-&nbsp; If our understanding is incorrect, please notify us immediately beca=
-use a specific authorization may be required
- from the U.S. Commerce Department before the transaction may proceed furth=
-er.<br>
-<br>
-On 05.04.21 14:39, Snehasish Kar wrote:<br>
-&gt; Hello<br>
-&gt;<br>
-&gt; I need some help in troubleshooting pcie link card. I can see orange L=
-ED glowing in the<br>
-&gt; card and even on giving the command lspci, I am not able to see the ca=
-rd in the list.<br>
-&gt; Please help me with the troubleshooting.<br>
-&gt;<br>
-&gt; Regards<br>
-&gt;<br>
-&gt; Snehasish<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- usrp-users@lists.ettus.com<br>
-&gt; To unsubscribe send an email to usrp-users-leave@lists.ettus.com<br>
-_______________________________________________<br>
-USRP-users mailing list -- usrp-users@lists.ettus.com<br>
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com<br>
-</div>
-</span></font></div>
-</body>
-</html>
-
---_000_BMXPR01MB246926F20B11175442992CBB88779BMXPR01MB2469INDP_--
-
---===============3413475276736920526==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============3413475276736920526==--
+SGksDQoNCkkndmUgYW4gRXR0dXMgRTMxMCB3aXRoIFVIRCAzLjEzLjEuMA0KDQoNCkkgbmVlZCB0
+byByZWNlaXZlIHNvbWUgc2FtcGxlcyBib3RoIGluIHRpbWUgZG9tYWluIHRoYW4gZnJlcXVlbmN5
+IA0KZG9tYWluLiBJ4oCZbSB0cnlpbmcgdG8gZG8gdGhhdCB1c2luZyB0aGlzIHJmbm9jIGdyYXBo
+Og0KDQorLS0tLS0tLS0tK8KgwqDCoMKgwqDCoMKgICstLS0tLS0tLS0tLS0tLSsNCnzCoMKgwqDC
+oMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoCB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfC0t
+LS0tLS0tLS0tLS0tLS0tLS0tLT4gUnhTdHJlYW1lciBDaCAwDQp8IFJhZGlvwqDCoCB8LS0tLS0t
+LT58IFNwbGl0U3RyZWFtwqAgfMKgwqDCoMKgwqDCoCArLS0tLS0tLSsNCnzCoMKgwqDCoMKgwqDC
+oMKgIHzCoMKgwqDCoMKgwqDCoCB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfC0tLS0tLT58
+IEZGVMKgwqAgfC0tLS0tPiBSeFN0cmVhbWVyIENoIDENCistLS0tLS0tLS0rwqDCoMKgwqDCoMKg
+wqAgKy0tLS0tLS0tLS0tLS0tK8KgwqDCoMKgwqDCoCArLS0tLS0tLSsNCg0KDQp1aGQ6OnJmbm9j
+OjpibG9ja19pZF90IHJhZGlvX2N0cmxfaWQoMCwgIlJhZGlvIiwgMCk7DQp1aGQ6OnJmbm9jOjpi
+bG9ja19pZF90IHNwbGl0X2N0cmxfaWQoMCwgIlNwbGl0U3RyZWFtIiwgMCk7DQp1aGQ6OnJmbm9j
+OjpibG9ja19pZF90IGZmdF9jdHJsX2lkKDAsICJGRlQiLCAwKTsNCg0KdWhkOjpyZm5vYzo6c291
+cmNlX2Jsb2NrX2N0cmxfYmFzZTo6c3B0ciBmZnRfYmxrX2N0cmwgPSANCm1fVXNycC0+Z2V0X2Js
+b2NrX2N0cmw8dWhkOjpyZm5vYzo6c291cmNlX2Jsb2NrX2N0cmxfYmFzZT4oZmZ0X2N0cmxfaWQp
+Ow0KDQptX1JhZGlvQ3RybCA9IG1fVXNycC0+Z2V0X2Jsb2NrX2N0cmw8IHVoZDo6cmZub2M6OnJh
+ZGlvX2N0cmwgDQogPihyYWRpb19jdHJsX2lkKTsNCm1fUmFkaW9DdHJsLT5zZXRfcmF0ZSgxNmU2
+KTsNCm1fUmFkaW9DdHJsLT5zZXRfYXJnPGludD4oInNwcCIsIDIwNDgpOw0KZmZ0X2Jsa19jdHJs
+LT5zZXRfYXJnPGludD4oInNwcCIsIDIwNDgpOw0KDQptX1VzcnAtPmNsZWFyKCk7DQoNCm1fR3Jh
+cGggPSBtX1VzcnAtPmNyZWF0ZV9ncmFwaCgicmZub2NfcngiKTsNCm1fR3JhcGgtPmNvbm5lY3Qo
+cmFkaW9fY3RybF9pZCwgMCwgc3BsaXRfY3RybF9pZCwgMCk7DQptX0dyYXBoLT5jb25uZWN0KHNw
+bGl0X2N0cmxfaWQsIDEsIGZmdF9jdHJsX2lkLCAwKTsNCg0KdWhkOjpkZXZpY2VfYWRkcl90IHN0
+cmVhbWVyX2FyZ3MoIiIpOw0Kc3RyZWFtZXJfYXJnc1siYmxvY2tfaWQwIl0gPSBzcGxpdF9jdHJs
+X2lkLnRvX3N0cmluZygpOw0Kc3RyZWFtZXJfYXJnc1siYmxvY2tfcG9ydDAiXSA9IHN0cihib29z
+dDo6Zm9ybWF0KCIlZCIpICUgMCk7DQpzdHJlYW1lcl9hcmdzWyJibG9ja19pZDEiXSA9IGZmdF9j
+dHJsX2lkLnRvX3N0cmluZygpOw0Kc3RyZWFtZXJfYXJnc1siYmxvY2tfcG9ydDEiXSA9IHN0cihi
+b29zdDo6Zm9ybWF0KCIlZCIpICUgMCk7DQoNCnVoZDo6c3RyZWFtX2FyZ3NfdCBzdHJlYW1fYXJn
+c19mYzMyKCJzYzE2IiwgInNjMTYiKTsNCnN0cmVhbV9hcmdzX2ZjMzIuY2hhbm5lbHMgPSB7IDAs
+IDEgfTsNCnN0cmVhbV9hcmdzX2ZjMzIuYXJncyA9IHN0cmVhbWVyX2FyZ3M7DQpzdHJlYW1fYXJn
+c19mYzMyLmFyZ3NbInNwcCJdID0gYm9vc3Q6OmxleGljYWxfY2FzdDxzdGQ6OnN0cmluZz4oMjA0
+OCk7DQptX1J4U3RyZWFtZXJGYzMyID0gbV9Vc3JwLT5nZXRfcnhfc3RyZWFtKHN0cmVhbV9hcmdz
+X2ZjMzIpOw0KDQpJIG5lZWQgdG8gcmVjZWl2ZSBhIGJ1cnN0IGluIGEgcHJlY2lzZSBtb21lbnQs
+IGVsYWJvcmF0ZSBpdCBhbmQgcmVzdGFydCANCm9uIGEgZGlmZmVyZW50IGZyZXF1ZW5jeSAoSSBu
+ZWVkIGFsc28gdG8gY2hhbmdlIHJhZGlvIGNoYW5uZWwgYmVjYXVzZSANCkkndmUgdHdvIGRpZmZl
+cmVudCBhbnRlbm5hcykuDQoNCkkndmUgdHJpZWQNCg0KdWhkOjpzdHJlYW1fY21kX3QgDQpzdHJl
+YW1fY21kKHVoZDo6c3RyZWFtX2NtZF90OjpTVFJFQU1fTU9ERV9OVU1fU0FNUFNfQU5EX0RPTkUp
+Ow0Kc3RyZWFtX2NtZC5udW1fc2FtcHMgPSBzaXplX3QobkJ1cnN0TGVuKk1BWF9ESU1fU0FNUExF
+U19GUkFNRV9GT1JfUlNBKTsNCnN0cmVhbV9jbWQuc3RyZWFtX25vdyA9IGZhbHNlOw0Kc3RyZWFt
+X2NtZC50aW1lX3NwZWMgPSBtX1JhZGlvQ3RybC0+Z2V0X3RpbWVfbm93KCkrMS4wOw0KbV9SeFN0
+cmVhbWVyRmMzMi0+aXNzdWVfc3RyZWFtX2NtZChzdHJlYW1fY21kKTsNCg0KYnV0IHRoZSByZWNl
+aXZlIGZhaWxzIHdpdGggRVJST1JfQ09ERV9MQVRFX0NPTU1BTkQuDQoNCkkndmUgdHJpZWQgaXNz
+dWluZyB0aGUgU1RSRUFNX01PREVfU1RBUlRfQ09OVElOVU9VUyBjb21tYW5kIGFuZCBpdCBzZWVt
+cyANCnRvIHdvcmsgY29ycmVjdGx5IHVudGlsIEkgZG9uJ3Qgc2VuZCBhIFNUUkVBTV9NT0RFX1NU
+T1BfQ09OVElOVU9VUyBjb21tYW5kLg0KDQpBZnRlciBhIFNUUkVBTV9NT0RFX1NUT1BfQ09OVElO
+VU9VUyBjb21tYW5kIEkgZmx1c2ggdGhlIGJ1ZmZlciB3aXRoIGEgDQpyZWNlaXZlIGxvb3A6DQoN
+CndoaWxlKG1fUnhTdHJlYW1lckZjMzItPnJlY3YoYnVmZiwgMjA0OCwgdXNlbGVzc01kLCAwLjAx
+MCwgZmFsc2UpKTsNCg0KVGhlIHByb2JsZW0gSSdtIG9ic2VydmluZyBpcyB0aGF0IHNpbmNlIHNl
+Y29uZCBzdGFydCB0aGUgRkZUIHNhbXBsZXMgDQpsb3N0IGFsaWdubWVudCB3aXRoIHRoZSB0aW1l
+IHNhbXBsZXMgYW5kIGFmdGVyIHNvbWUgc3RvcCBhbmQgc3RhcnQgdGhlIA0KcmVjZWl2ZSBmYWls
+cyBvZnRlbiB3aXRoIE92ZXJmbG93IGVycm9ycyBhbmQgdGhhbiBzdG9wcyBkZWZpbml0ZWx5IHRv
+IA0Kd29yayB3aXRoIFRpbWVvdXQgZXJyb3JzDQoNClNvbWVvbmUgZWxzZSBoYXZlIHRoaXMgcHJv
+YmxlbT8NCg0KDQpSZWdhcmRzLA0KDQpMdWNhDQoNCg0KTEVHQUwgRElTQ0xBSU1FUjoNDQpUaGUg
+Y29udGVudHMgb2YgdGhpcyBlbWFpbCBhbmQgYW55IHRyYW5zbWl0dGVkIGZpbGVzIGFyZSBjb25m
+aWRlbnRpYWwgYW5kIGludGVuZGVkIHNvbGVseSBmb3IgdGhlIHVzZSBvZiB0aGUgaW5kaXZpZHVh
+bCBvciBlbnRpdHkgdG8gd2hvbSB0aGV5IGFyZSBhZGRyZXNzZWQuIFdlIGhlcmVieSBleGNsdWRl
+IGFueSB3YXJyYW50eSBhbmQgYW55IGxpYWJpbGl0eSBhcyB0byB0aGUgcXVhbGl0eSBvciBhY2N1
+cmFjeSBvZiB0aGUgY29udGVudHMgb2YgdGhpcyBlbWFpbCBhbmQgYW55IGF0dGFjaGVkIHRyYW5z
+bWl0dGVkIGZpbGVzLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBiZSBh
+ZHZpc2VkIHRoYXQgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciBhbmQgdGhh
+dCBhbnkgdXNlLCBkaXNzZW1pbmF0aW9uLCBmb3J3YXJkaW5nLCBwcmludGluZyBvciBjb3B5aW5n
+IG9mIHRoaXMgZW1haWwgaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4gSWYgeW91IGhhdmUgcmVjZWl2
+ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciBwbGVhc2UgY29udGFjdCB0aGUgc2VuZGVyIGFuZCBkZWxl
+dGUgdGhlIG1hdGVyaWFsIGZyb20gYW55IGNvbXB1dGVyLgpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVz
+cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
