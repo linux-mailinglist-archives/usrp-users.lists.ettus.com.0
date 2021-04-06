@@ -2,390 +2,247 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA969355A0F
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 19:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDB59355F1C
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Apr 2021 00:54:28 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EA298383E6E
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 13:11:08 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BC007383E8B
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 18:54:27 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=campus.tu-berlin.de header.i=@campus.tu-berlin.de header.b="NMX5bMBp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="hdIMYS0U";
 	dkim-atps=neutral
-Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7EB373832FD
-	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 13:10:22 -0400 (EDT)
-Received: from SPMA-01.tubit.win.tu-berlin.de (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id A12FF7E0749_6C95FCB;
-	Tue,  6 Apr 2021 17:10:20 +0000 (GMT)
-Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "exchange.tu-berlin.de", Issuer "DFN-Verein Global Issuing CA" (verified OK))
-	by SPMA-01.tubit.win.tu-berlin.de (Sophos Email Appliance) with ESMTPS id 7E1137F0BA5_6C95FBF;
-	Tue,  6 Apr 2021 17:10:19 +0000 (GMT)
-Received: from ex-03.tubit.win.tu-berlin.de (172.26.26.143) by
- ex-04.tubit.win.tu-berlin.de (172.26.26.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Tue, 6 Apr 2021 19:10:19 +0200
-Received: from ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) by
- ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) with mapi id 15.02.0858.002;
- Tue, 6 Apr 2021 19:10:19 +0200
-From: "Chang, Kaixin" <k.chang@campus.tu-berlin.de>
-To: Rob Kossler <rkossler@nd.edu>
-Thread-Topic: [USRP-users] dpdk, VFIO group is not viable
-Thread-Index: AQHXKun12PQSh2RT4kaEqQ+d+ki8jqqniuOAgAAuMN8=
-Date: Tue, 6 Apr 2021 17:10:19 +0000
-Message-ID: <f5701d0388b14765abfd4bdb7556fcc3@campus.tu-berlin.de>
-References: <e642027b70c841ec87fde1edc61dcabb@campus.tu-berlin.de>,<CAB__hTTEeTcNJJWQidAU3zRftkyHQGS51i9jBvn1Hxg_Pzs8Ow@mail.gmail.com>
-In-Reply-To: <CAB__hTTEeTcNJJWQidAU3zRftkyHQGS51i9jBvn1Hxg_Pzs8Ow@mail.gmail.com>
-Accept-Language: en-GB, zh-CN, de-DE, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [149.233.61.25]
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 544F6383D40
+	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 18:53:45 -0400 (EDT)
+Received: by mail-ot1-f53.google.com with SMTP id s16-20020a0568301490b02901b83efc84a0so7317435otq.10
+        for <usrp-users@lists.ettus.com>; Tue, 06 Apr 2021 15:53:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=exxihEKR7u4phsWcYYxquHYM+MweBoY0CDGFR8ulmB4=;
+        b=hdIMYS0UggvfZFpHv/aNRckuBGyDvPG7TrjC45iU1OoW/SRw5lolQwF+2WZBc7qfqL
+         rjNvhtJWL9+4a0RxVruT5f/fHUhzyi/Ua4Dq7LlStARU12e1xc/FM6OJ7LmRWFNmxs8y
+         AqmWQ9HmSNn9zEXIP/DFxEkA+9hKVgzqoOBJDY1rKBzot1Us9ootV1oTO2CcLsrQNY20
+         9khZteSi7CJ1SD+PEMWxZl3tA4SmjZd4rnwbpzrosN/iiY5J65toHMUR2aL7Mc+Lr77Y
+         7um8DQkXM4W+QLqFkil8rS4zTL0q/X0KU+GZEIa08egSF0ztZrBZU31dCABqRHzg9ZRl
+         TjoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=exxihEKR7u4phsWcYYxquHYM+MweBoY0CDGFR8ulmB4=;
+        b=EjyrGpfyH5+vIN1TH82oSEzgHgc7dLYpom9kk92GIkuwzkJmikX+2WRZsoVJdSiZzf
+         9Hl/cKG6bF7ss95Floc/n0bJCDq6hlp8jSGVLMP4MhpXa7HlyixH28H9kKdc4ojFyqbv
+         DoKu5eWwTG8vlKrszazdhEG6RRoDIkLzABOKPmm06jvEaE/eOg2ltUklCCsmRQaxGJaB
+         rUGSplHP3vt2a1b8DM0vQiYGjxKP3wJQXSkUYJIw2dL8Je9LL7NUhSZUYnmoRxYNrgjN
+         lyca+iegL+OqPl1ZsnKrVGwdf3II1ZBVJxVExZSw64dwGl9ma0bw8689TRzmGO7gnVDG
+         jvBA==
+X-Gm-Message-State: AOAM533dR9zQsPbupcn1RJGisAT9HCJY/dW0VQCb9/OrVXSxdYEEmW4q
+	XraDt5ePFcLJyCa5SEqWm24pb3X20m4hO0LcUc6jXiGIXjQn6g==
+X-Google-Smtp-Source: ABdhPJxudx7h7555p3csMApEDohLHAi2r7+vqD31QtesLvBUdt6C4H5PKQeoFd9B7kBJyknak2EJQ7RQb5mNqC8I8ZY=
+X-Received: by 2002:a9d:4049:: with SMTP id o9mr362287oti.58.1617749624480;
+ Tue, 06 Apr 2021 15:53:44 -0700 (PDT)
 MIME-Version: 1.0
-X-SASI-RCODE: 200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=campus.tu-berlin.de; h=from:to:cc:subject:date:message-id:references:in-reply-to:content-type:mime-version; s=dkim-tub; bh=AKWkVniXkqu5tdxeuV48QGE9z9RP+Sm+hzeEB3XnNHM=; b=NMX5bMBpcBt8penekPwG25Rgtoj4IAIiBj+MLrM3RT+w9VUAUJ45HJBHyAiGZfePTFxXBG2wctACmQa8KmE5o+xvVUpdLvIN499LyokaPgGkLvrlDEUuKKS2che0A1QWerSXLNZKfrCmmWDZxhBniDCAFKH1UDh3fB93I/wfzPQ=
-Message-ID-Hash: O5AJQ5SCJVDBDKD5ZXNVCPG2KF4SBGWR
-X-Message-ID-Hash: O5AJQ5SCJVDBDKD5ZXNVCPG2KF4SBGWR
-X-MailFrom: k.chang@campus.tu-berlin.de
+References: <20210406164020.jdcuvfofw6s2td4p@barbe>
+In-Reply-To: <20210406164020.jdcuvfofw6s2td4p@barbe>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Tue, 6 Apr 2021 18:53:33 -0400
+Message-ID: <CAB__hTTwPktvP2H=Fn7K-GwJ2QCtFiVEi+QD-ncOHPgqT5VvuA@mail.gmail.com>
+To: =?UTF-8?Q?C=C3=A9dric_Hannotier?= <cedric.hannotier@ulb.be>,
+	usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: I76N44Z2OJLOIKRQWVLS67GFYPA743ZV
+X-Message-ID-Hash: I76N44Z2OJLOIKRQWVLS67GFYPA743ZV
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: dpdk, VFIO group is not viable
+Subject: [USRP-users] Re: UHD4 Replay block on E31x
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/O5AJQ5SCJVDBDKD5ZXNVCPG2KF4SBGWR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/I76N44Z2OJLOIKRQWVLS67GFYPA743ZV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5743133666594399268=="
+Content-Type: multipart/mixed; boundary="===============8852368208332908958=="
 
---===============5743133666594399268==
-Content-Language: en-GB
-Content-Type: multipart/alternative;
-	boundary="_000_f5701d0388b14765abfd4bdb7556fcc3campustuberlinde_"
+--===============8852368208332908958==
+Content-Type: multipart/alternative; boundary="000000000000b41c0205bf55afa1"
 
---_000_f5701d0388b14765abfd4bdb7556fcc3campustuberlinde_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000b41c0205bf55afa1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you Rob for the advice, actually I have made symlink as in the thread=
- introduced, however I still got the error "not viable"...
-
-________________________________
-From: Rob Kossler <rkossler@nd.edu>
-Sent: 06 April 2021 18:23:05
-To: Chang, Kaixin
-Cc: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] dpdk, VFIO group is not viable
-
-Hi Kasim,
-There are some previous posts to the user's list around Feb 2-3, 2021 regar=
-ding some DPDK troubles I was having. In particular, Aaron Rossetto mention=
-ed putting just a few symlinks in a new folder and using the dpdk_driver va=
-riable from uhd.conf to point to this folder.  This may be helpful for your=
- case.
+Hi C=C3=A9dric,
+Perhaps Ettus can answer definitively, but in past emails I have had with
+Wade Fife, he has indicated that there is currently no support for the
+Replay block on the E310 (& thus I assume E312) and that the DRAM itself is
+not presently supported from RFNoC.
 Rob
 
-On Tue, Apr 6, 2021 at 9:37 AM Chang, Kaixin <k.chang@campus.tu-berlin.de<m=
-ailto:k.chang@campus.tu-berlin.de>> wrote:
+On Tue, Apr 6, 2021 at 12:41 PM C=C3=A9dric Hannotier via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-Dear Ettus team,
+> Dear all,
+>
+> I would like to build a FPGA image with a replay block for E312.
+> However, there is no dram_clk on this device.
+> How should I instantiate my replay in my .yml?
+>
+> My modification so far:
+>
+> diff --git a/fpga/usrp3/top/e31x/e310_rfnoc_image_core.yml
+> b/fpga/usrp3/top/e31x/e310_rfnoc_image_core.yml
+> index aa464454e..3e649caa1 100644
+> --- a/fpga/usrp3/top/e31x/e310_rfnoc_image_core.yml
+> +++ b/fpga/usrp3/top/e31x/e310_rfnoc_image_core.yml
+> @@ -20,12 +20,21 @@ stream_endpoints:
+>      ctrl: False                     # Endpoint passes control traffic
+>      data: True                      # Endpoint passes data traffic
+>      buff_size: 16384                # Ingress buffer size for data
+> +  ep4:                       # Stream endpoint name
+> +    ctrl: False                     # Endpoint passes control traffic
+> +    data: True                      # Endpoint passes data traffic
+> +    buff_size: 4096                 # Ingress buffer size for data
+>
+>  # A list of all NoC blocks in design
+>  # ----------------------------------
+>  noc_blocks:
+>    radio0:                            # NoC block name
+>      block_desc: 'radio_2x64.yml'     # Block device descriptor
+> +  replay0:
+> +    block_desc: 'replay.yml'
+> +    parameters:
+> +      NUM_PORTS: 1
+> +      MEM_ADDR_W: 30
+>
+>  # A list of all static connections in design
+>  # ------------------------------------------
+> @@ -42,6 +51,10 @@ connections:
+>    - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
+> ctrlport_radio }
+>    - { srcblk: _device_, srcport: x300_radio, dstblk: radio0, dstport:
+> x300_radio }
+>    - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
+> time_keeper }
+> +  # ep4 & replay0
+> +  - { srcblk: ep4,     srcport: out0,  dstblk: replay0, dstport: in_0 }
+> +  - { srcblk: replay0, srcport: out_0, dstblk: ep4,     dstport: in0  }
+> +  - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram=
+ }
+>
+>  # A list of all clock domain connections in design
+>  # ------------------------------------------------
+> @@ -52,3 +65,4 @@ connections:
+>  #         - dstport =3D Clock domain on the destination block to connect
+>  clk_domains:
+>    - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
+> +  - { srcblk: _device_, srcport: dram,  dstblk: replay0, dstport: mem  }
+>
+> --
+>
+> C=C3=A9dric Hannotier
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-
-I followed the instruction of https://kb.ettus.com/Getting_Started_with_DPD=
-K_and_UHD to enable dpdk for my X310, however I have an error when I execut=
-e benchmark_rate as sudo su
-
-
-[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.0-93-g3b=
-9ced8f
-EAL: Detected 4 lcore(s)
-EAL: Detected 1 NUMA nodes
-EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
-EAL: No free hugepages reported in hugepages-1048576kB
-EAL: Probing VFIO support...
-EAL: VFIO support initialized
-EAL: PCI device 0000:00:1f.6 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 8086:15d7 net_e1000_em
-EAL: PCI device 0000:0e:00.0 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 8086:10fb net_ixgbe
-EAL:   0000:0e:00.0 VFIO group is not viable!
-EAL: Requested device 0000:0e:00.0 cannot be used
-EAL: PCI device 0000:0e:00.1 on NUMA socket -1
-EAL:   Invalid NUMA socket, default to 0
-EAL:   probe driver: 8086:10fb net_ixgbe
-EAL:   0000:0e:00.1 VFIO group is not viable!
-EAL: Requested device 0000:0e:00.1 cannot be used
-[ERROR] [DPDK] No available DPDK devices (ports) found!
-[ERROR] [UHD] Device discovery error: RuntimeError: No available DPDK devic=
-es (ports) found!
-EAL: FATAL: already called initialization.
-EAL: already called initialization.
-[ERROR] [DPDK] Error with EAL initialization
-[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL in=
-itialization
-[00:00:00.000506] Creating the usrp device with: addr=3D192.168.30.2,second=
-_addr=3D192.168.40.2,use_dpdk=3D1...
-EAL: FATAL: already called initialization.
-EAL: already called initialization.
-[ERROR] [DPDK] Error with EAL initialization
-[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL initiali=
-zation
-EAL: FATAL: already called initialization.
-EAL: already called initialization.
-[ERROR] [DPDK] Error with EAL initialization
-[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL in=
-itialization
-Error: LookupError: KeyError: No devices found for ----->
-Device Address:
-    addr: 192.168.30.2
-    second_addr: 192.168.40.2
-    use_dpdk: 1
-
-Why is 0000:0e:00.1 VFIO group is not viable!? I have checked dpdk-devbind =
---status-dev net and get
-
-Network devices using DPDK-compatible driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-0000:0e:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dvf=
-io-pci unused=3Dixgbe
-0000:0e:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dvf=
-io-pci unused=3Dixgbe
-
-Network devices using kernel driver
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-0000:00:1f.6 'Ethernet Connection (4) I219-LM 15d7' if=3Denp0s31f6 drv=3De1=
-000e unused=3Dvfio-pci
-0000:02:00.0 'Wireless 8265 / 8275 24fd' if=3Dwlp2s0 drv=3Diwlwifi unused=
-=3Dvfio-pci
-
-
-which seems to be fine.
-
-
-thank you for your help
-
-
-sincerely
-
-
-Kasim
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com<mailto:usrp-users@lis=
-ts.ettus.com>
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usr=
-p-users-leave@lists.ettus.com>
-
---_000_f5701d0388b14765abfd4bdb7556fcc3campustuberlinde_
-Content-Type: text/html; charset="iso-8859-1"
+--000000000000b41c0205bf55afa1
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
-r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &q=
-uot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &q=
-uot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
-<p>Thank you Rob for the advice, actually I have made symlink as in the thr=
-ead introduced, however I still got the error &quot;not viable&quot;...</p>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Rob Kossler &lt;rkoss=
-ler@nd.edu&gt;<br>
-<b>Sent:</b> 06 April 2021 18:23:05<br>
-<b>To:</b> Chang, Kaixin<br>
-<b>Cc:</b> usrp-users@lists.ettus.com<br>
-<b>Subject:</b> Re: [USRP-users] dpdk, VFIO group is not viable</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">Hi Kasim,
-<div>There are some previous posts to the user's list around Feb 2-3, 2021 =
-regarding some DPDK troubles I was having. In particular, Aaron Rossetto me=
-ntioned putting just a few symlinks in a new folder and using the dpdk_driv=
-er variable from uhd.conf to point
- to this folder.&nbsp; This may be helpful for your case.</div>
-<div>Rob</div>
-</div>
+<div dir=3D"ltr"><div dir=3D"ltr">Hi=C2=A0C=C3=A9dric,</div><div>Perhaps Et=
+tus can answer definitively, but in past emails I have had with Wade Fife, =
+he has indicated that there is currently no support for the Replay block on=
+ the E310 (&amp; thus I assume E312) and that the DRAM itself is not presen=
+tly supported from RFNoC.</div><div>Rob</div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 6, 2021 at 12:41 PM C=C3=
+=A9dric Hannotier via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ett=
+us.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">Dear all,<br>
 <br>
-<div class=3D"gmail_quote">
-<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 6, 2021 at 9:37 AM Chang,=
- Kaixin &lt;<a href=3D"mailto:k.chang@campus.tu-berlin.de" target=3D"_blank=
-">k.chang@campus.tu-berlin.de</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; border=
--left:1px solid rgb(204,204,204); padding-left:1ex">
-<div dir=3D"ltr">
-<div id=3D"gmail-m_-6582435989516123375gmail-m_-5764693402685408802divtagde=
-faultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; color: rgb(0, 0, 0); fo=
-nt-family: Calibri, Helvetica, sans-serif, EmojiFont, &quot;Apple Color Emo=
-ji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol=
-&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
-<p>Dear Ettus team,</p>
-<p><br>
-</p>
-<p>I followed the instruction of <a href=3D"https://kb.ettus.com/Getting_St=
-arted_with_DPDK_and_UHD" id=3D"gmail-m_-6582435989516123375gmail-m_-5764693=
-402685408802LPlnk765227" target=3D"_blank">
-https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a> to enable dpdk f=
-or my X310, however I have an error when I execute
-<code>benchmark_rate</code> as sudo su</p>
-<p><br>
-</p>
-<p></p>
-<div>
-<pre style=3D"text-align:left"><font size=3D"2" style=3D"font-size:10pt">[I=
-NFO] [UHD] linux; GNU C&#43;&#43; version 9.3.0; Boost_107100; UHD_4.0.0.0-=
-93-g3b9ced8f</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: Detected 4 lcore(s)</font>=
-=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: Detected 1 NUMA nodes</font>=
-=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: Multi-process socket /var/ru=
-n/dpdk/rte/mp_socket</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: No free hugepages reported i=
-n hugepages-1048576kB</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: Probing VFIO support...</fon=
-t>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: VFIO support initialized</fo=
-nt>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: PCI device 0000:00:1f.6 on N=
-UMA socket -1</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   Invalid NUMA socket, defau=
-lt to 0</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   probe driver: 8086:15d7 ne=
-t_e1000_em</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: PCI device 0000:0e:00.0 on N=
-UMA socket -1</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   Invalid NUMA socket, defau=
-lt to 0</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   probe driver: 8086:10fb ne=
-t_ixgbe</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   0000:0e:00.0 VFIO group is=
- not viable!</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: Requested device 0000:0e:00.=
-0 cannot be used</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: PCI device 0000:0e:00.1 on N=
-UMA socket -1</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   Invalid NUMA socket, defau=
-lt to 0</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   probe driver: 8086:10fb ne=
-t_ixgbe</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL:   0000:0e:00.1 VFIO group is=
- not viable!</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: Requested device 0000:0e:00.=
-1 cannot be used</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] No available DPDK =
-devices (ports) found!</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [UHD] Device discovery er=
-ror: RuntimeError: No available DPDK devices (ports) found!</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: FATAL: already called initia=
-lization.</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: already called initializatio=
-n.</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] Error with EAL ini=
-tialization</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [X300] X300 Network disco=
-very error RuntimeError: Error with EAL initialization</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[00:00:00.000506] Creating the us=
-rp device with: addr=3D192.168.30.2,second_addr=3D192.168.40.2,use_dpdk=3D1=
-...</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: FATAL: already called initia=
-lization.</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: already called initializatio=
-n.</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] Error with EAL ini=
-tialization</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [UHD] Device discovery er=
-ror: RuntimeError: Error with EAL initialization</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: FATAL: already called initia=
-lization.</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">EAL: already called initializatio=
-n.</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] Error with EAL ini=
-tialization</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">[ERROR] [X300] X300 Network disco=
-very error RuntimeError: Error with EAL initialization</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">Error: LookupError: KeyError: No =
-devices found for -----&gt;</font>=0A=
-<font size=3D"2" style=3D"font-size:10pt">Device Address:</font>=0A=
-    <font size=3D"2" style=3D"font-size:10pt">addr: 192.168.30.2</font>=0A=
-    <font size=3D"2" style=3D"font-size:10pt">second_addr: 192.168.40.2</fo=
-nt>=0A=
-    <font size=3D"2" style=3D"font-size:10pt">use_dpdk: 1</font></pre>
-</div>
-Why is <font size=3D"2" style=3D"font-size:10pt">0000:0e:00.1 VFIO group is=
- not viable!</font>? I have checked dpdk-devbind --status-dev net and get
-<span id=3D"gmail-m_-6582435989516123375gmail-m_-5764693402685408802ms-rter=
-angepaste-end">
-</span><br>
-<div><br>
-Network devices using DPDK-compatible driver<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-0000:0e:00.0 '82599ES 10-Gigabit SFI/SFP&#43; Network Connection 10fb' drv=
-=3Dvfio-pci unused=3Dixgbe<br>
-0000:0e:00.1 '82599ES 10-Gigabit SFI/SFP&#43; Network Connection 10fb' drv=
-=3Dvfio-pci unused=3Dixgbe<br>
+I would like to build a FPGA image with a replay block for E312.<br>
+However, there is no dram_clk on this device.<br>
+How should I instantiate my replay in my .yml?<br>
 <br>
-Network devices using kernel driver<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-0000:00:1f.6 'Ethernet Connection (4) I219-LM 15d7' if=3Denp0s31f6 drv=3De1=
-000e unused=3Dvfio-pci
+My modification so far:<br>
 <br>
-0000:02:00.0 'Wireless 8265 / 8275 24fd' if=3Dwlp2s0 drv=3Diwlwifi unused=
-=3Dvfio-pci <br>
-</div>
+diff --git a/fpga/usrp3/top/e31x/e310_rfnoc_image_core.yml b/fpga/usrp3/top=
+/e31x/e310_rfnoc_image_core.yml<br>
+index aa464454e..3e649caa1 100644<br>
+--- a/fpga/usrp3/top/e31x/e310_rfnoc_image_core.yml<br>
++++ b/fpga/usrp3/top/e31x/e310_rfnoc_image_core.yml<br>
+@@ -20,12 +20,21 @@ stream_endpoints:<br>
+=C2=A0 =C2=A0 =C2=A0ctrl: False=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes control traffic<br>
+=C2=A0 =C2=A0 =C2=A0data: True=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes data traffic<br>
+=C2=A0 =C2=A0 =C2=A0buff_size: 16384=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 # Ingress buffer size for data<br>
++=C2=A0 ep4:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0# Stream endpoint name<br>
++=C2=A0 =C2=A0 ctrl: False=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes control traffic<br>
++=C2=A0 =C2=A0 data: True=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Endpoint passes data traffic<br>
++=C2=A0 =C2=A0 buff_size: 4096=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0# Ingress buffer size for data<br>
 <br>
-<p></p>
-<p>which seems to be fine.</p>
-<p><br>
-</p>
-<p>thank you for your help</p>
-<p><br>
-</p>
-<p>sincerely</p>
-<p><br>
-</p>
-<p>Kasim<br>
-</p>
-</div>
-</div>
+=C2=A0# A list of all NoC blocks in design<br>
+=C2=A0# ----------------------------------<br>
+=C2=A0noc_blocks:<br>
+=C2=A0 =C2=A0radio0:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # NoC block name<br>
+=C2=A0 =C2=A0 =C2=A0block_desc: &#39;radio_2x64.yml&#39;=C2=A0 =C2=A0 =C2=
+=A0# Block device descriptor<br>
++=C2=A0 replay0:<br>
++=C2=A0 =C2=A0 block_desc: &#39;replay.yml&#39;<br>
++=C2=A0 =C2=A0 parameters:<br>
++=C2=A0 =C2=A0 =C2=A0 NUM_PORTS: 1<br>
++=C2=A0 =C2=A0 =C2=A0 MEM_ADDR_W: 30<br>
+<br>
+=C2=A0# A list of all static connections in design<br>
+=C2=A0# ------------------------------------------<br>
+@@ -42,6 +51,10 @@ connections:<br>
+=C2=A0 =C2=A0- { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstp=
+ort: ctrlport_radio }<br>
+=C2=A0 =C2=A0- { srcblk: _device_, srcport: x300_radio, dstblk: radio0, dst=
+port: x300_radio }<br>
+=C2=A0 =C2=A0- { srcblk: _device_, srcport: time_keeper, dstblk: radio0, ds=
+tport: time_keeper }<br>
++=C2=A0 # ep4 &amp; replay0<br>
++=C2=A0 - { srcblk: ep4,=C2=A0 =C2=A0 =C2=A0srcport: out0,=C2=A0 dstblk: re=
+play0, dstport: in_0 }<br>
++=C2=A0 - { srcblk: replay0, srcport: out_0, dstblk: ep4,=C2=A0 =C2=A0 =C2=
+=A0dstport: in0=C2=A0 }<br>
++=C2=A0 - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: d=
+ram }<br>
+<br>
+=C2=A0# A list of all clock domain connections in design<br>
+=C2=A0# ------------------------------------------------<br>
+@@ -52,3 +65,4 @@ connections:<br>
+=C2=A0#=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0- dstport =3D Clock domain on the =
+destination block to connect<br>
+=C2=A0clk_domains:<br>
+=C2=A0 =C2=A0- { srcblk: _device_, srcport: radio, dstblk: radio0, dstport:=
+ radio }<br>
++=C2=A0 - { srcblk: _device_, srcport: dram,=C2=A0 dstblk: replay0, dstport=
+: mem=C2=A0 }<br>
+<br>
+-- <br>
+<br>
+C=C3=A9dric Hannotier<br>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">
-usrp-users@lists.ettus.com</a><br>
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-</blockquote>
-</div>
-</div>
-</div>
-</body>
-</html>
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
 
---_000_f5701d0388b14765abfd4bdb7556fcc3campustuberlinde_--
+--000000000000b41c0205bf55afa1--
 
---===============5743133666594399268==
+--===============8852368208332908958==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -395,4 +252,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5743133666594399268==--
+--===============8852368208332908958==--
