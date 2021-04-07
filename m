@@ -2,376 +2,514 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7C6356171
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Apr 2021 04:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67A18356C0B
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Apr 2021 14:27:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6BE88384192
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Apr 2021 22:40:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 104EB383BB5
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Apr 2021 08:27:55 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=vectalabs-com.20150623.gappssmtp.com header.i=@vectalabs-com.20150623.gappssmtp.com header.b="AyWs4Ofa";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=campus.tu-berlin.de header.i=@campus.tu-berlin.de header.b="EtQP+mZA";
 	dkim-atps=neutral
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id C8634383E70
-	for <usrp-users@lists.ettus.com>; Tue,  6 Apr 2021 22:39:32 -0400 (EDT)
-Received: by mail-vk1-f170.google.com with SMTP id j15so3643063vkc.1
-        for <usrp-users@lists.ettus.com>; Tue, 06 Apr 2021 19:39:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vectalabs-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=84muGZ6HZG0SKH2UKTPvVFBYlR0YUL4lQGxdOMxrUWY=;
-        b=AyWs4OfapHYmxMDQXqQPQtRCGDVktTM6cP5O+LDiEK51hP6r7F2vAYRWFXUY+DnM7C
-         hXFyYOPOkR4+qIh0sY+MqoDKfRGdImrQTbDkIL0T+QN/xoBLn6QQ/175TZCJ4HLE/GY1
-         m2S3SUCd/U7SJEZdMxqdqIkRAYkJVOVkEMsnWFg8U0soTwk42a2PBQfCXmY2YCvAWg7M
-         iwUr0alyanFvb1R5TEurhBFSm4/2Yn4upzOlkZcmrJEq8CJA11uiQNdVPEoPCKkLbM2I
-         mGbHn1mePzWUl36xJVf+hyDMLIyLKyS2LEAXcMxMTTcjhrWgn1PRQrTNJlQ9mcWy2PES
-         TL1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=84muGZ6HZG0SKH2UKTPvVFBYlR0YUL4lQGxdOMxrUWY=;
-        b=Ni1863z5WIYBNrPWh9+9X7J80aNRleyeE/wRrBGNnbrMN10Fy1GtZ244yGFnbQ0tr1
-         1p7ByrMrerCzZG3XaG7blqBoJ0XFURT5ZpuPGqCdlg2j31srqLLD7OwQ8LV4jLEYp2s2
-         pW6cD07Rfs3F/bT6ElJbwghiXYwOmGYuzmAgvXGJENdZDoN8of/YLRDscjCFhFKET8FN
-         kSwS063mlFFbQLzLFY9YWg86xrDQBQkcFm9Pbufrd+mnI+7sCz0OtnN+XzPezAmeM4IR
-         ImJ8dFKGBCuJWaINj1iEf1BFQ8lGwxWL2XsCE/4V1mHtas62+TvIWMTxUFv2SjvwaM4l
-         T+8Q==
-X-Gm-Message-State: AOAM530lQ9a82fMZaX2dWrTd3Q4QBzoFIofaA+aW3/oHsAwFQX7ruzYD
-	Mnd2IY2NZGMz2GIcQtN1tPSM+vJ4R2TVxp5+uLk1XA==
-X-Google-Smtp-Source: ABdhPJyfuTSISG/Pa8LRxa+KQBjhn83nogQYzg6B33Z6R/k1KsRrajcIsvuCtOJK56naCdHFBtygfh4tF97QBCKWuWI=
-X-Received: by 2002:a1f:d382:: with SMTP id k124mr820966vkg.0.1617763172208;
- Tue, 06 Apr 2021 19:39:32 -0700 (PDT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	by mm2.emwd.com (Postfix) with ESMTPS id D5C43383B01
+	for <usrp-users@lists.ettus.com>; Wed,  7 Apr 2021 08:27:09 -0400 (EDT)
+Received: from SPMA-03.tubit.win.tu-berlin.de (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id C421E6E644_6DA51BB;
+	Wed,  7 Apr 2021 12:27:07 +0000 (GMT)
+Received: from exchange.tu-berlin.de (exchange.tu-berlin.de [130.149.7.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "exchange.tu-berlin.de", Issuer "DFN-Verein Global Issuing CA" (verified OK))
+	by SPMA-03.tubit.win.tu-berlin.de (Sophos Email Appliance) with ESMTPS id 9C88611BE76_6DA51AF;
+	Wed,  7 Apr 2021 12:27:06 +0000 (GMT)
+Received: from ex-03.tubit.win.tu-berlin.de (130.149.6.143) by
+ ex-01.tubit.win.tu-berlin.de (130.149.6.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
+ Wed, 7 Apr 2021 14:27:06 +0200
+Received: from ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) by
+ ex-03.tubit.win.tu-berlin.de ([172.26.26.143]) with mapi id 15.02.0858.002;
+ Wed, 7 Apr 2021 14:27:06 +0200
+From: "Chang, Kaixin" <k.chang@campus.tu-berlin.de>
+To: Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] Re: dpdk, VFIO group is not viable
+Thread-Index: AQHXK6lSVvgV1xBTIkGlr3C/Aq4nRg==
+Date: Wed, 7 Apr 2021 12:27:06 +0000
+Message-ID: <8550b35c12694d32abb8c3392b8e5d70@campus.tu-berlin.de>
+References: <e642027b70c841ec87fde1edc61dcabb@campus.tu-berlin.de>,<CAB__hTTEeTcNJJWQidAU3zRftkyHQGS51i9jBvn1Hxg_Pzs8Ow@mail.gmail.com>,<f5701d0388b14765abfd4bdb7556fcc3@campus.tu-berlin.de>
+In-Reply-To: <f5701d0388b14765abfd4bdb7556fcc3@campus.tu-berlin.de>
+Accept-Language: en-GB, zh-CN, de-DE, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [193.174.67.20]
 MIME-Version: 1.0
-References: <88b0297dc16541e896eb4bac4878105c@boeing.com> <CALNMZ8X3u9wXQu-_u-Cz9x6vrwGw7R8Vnj4xfo89FOeRxfX3Sw@mail.gmail.com>
- <c1aea6c3-fec6-654b-0d44-14547ac126a6@comcast.net> <CALNMZ8V7-14DtbQSr_=u172ktfiaca24fsREXfpRBhYW=CzRGA@mail.gmail.com>
- <ea5e16f3-1455-f635-fea8-3538524a9c95@comcast.net>
-In-Reply-To: <ea5e16f3-1455-f635-fea8-3538524a9c95@comcast.net>
-From: Brendan Horsfield <brendan.horsfield@vectalabs.com>
-Date: Wed, 7 Apr 2021 12:39:21 +1000
-Message-ID: <CALNMZ8WXUX-MiVZLv8p7G9qjRcHdjuUE-b1WRwV9wzY1kLwjiA@mail.gmail.com>
-To: Ron Economos <w6rz@comcast.net>, usrp-users@lists.ettus.com
-Message-ID-Hash: UM6JRGNNOHCBTIRTQXB6VXHE7PSQAJ27
-X-Message-ID-Hash: UM6JRGNNOHCBTIRTQXB6VXHE7PSQAJ27
-X-MailFrom: brendan.horsfield@vectalabs.com
+X-SASI-RCODE: 200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=campus.tu-berlin.de; h=from:to:cc:subject:date:message-id:references:in-reply-to:content-type:mime-version; s=dkim-tub; bh=cV14Z+NRADc7sQ4J60uDkis/rce7bxCuWyk7fuyBoOI=; b=EtQP+mZAldXPfrBuoke5uqxHfZHn4U4mNVKFKBXncVu1Qe/RHcFNP1n55gO7OQ8gXAorfSydhXlx+jH1zjfsFJJ9iQlW5r3F+IQ73icvpdY96MTFdT2aSEtDa+SLH22YM3CRCpqDszaC5eOUk2lz1DDW/FjoTxUXfNEvD3uTspc=
+Message-ID-Hash: SY2F6ELREJOZRM6PSCGPFH2IHCR6TCWO
+X-Message-ID-Hash: SY2F6ELREJOZRM6PSCGPFH2IHCR6TCWO
+X-MailFrom: k.chang@campus.tu-berlin.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Python API
+Subject: [USRP-users] Re: dpdk, VFIO group is not viable
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UM6JRGNNOHCBTIRTQXB6VXHE7PSQAJ27/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SY2F6ELREJOZRM6PSCGPFH2IHCR6TCWO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1638166845013993068=="
+Content-Type: multipart/mixed; boundary="===============5828110570664372348=="
 
---===============1638166845013993068==
-Content-Type: multipart/alternative; boundary="00000000000035e1b605bf58d788"
+--===============5828110570664372348==
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_8550b35c12694d32abb8c3392b8e5d70campustuberlinde_"
 
---00000000000035e1b605bf58d788
-Content-Type: text/plain; charset="UTF-8"
+--_000_8550b35c12694d32abb8c3392b8e5d70campustuberlinde_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Ron,
+My problem is
 
-Success! I reinstalled UHD using your NEON optimization flags, and it went
-without a hitch.
 
-I also got to the bottom of my other Python API problem =E2=80=94 it turns =
-out I
-forgot to run the Udev setup for USB. I can now connect to the B210 with my
-Raspberry Pi via either the C++ or Python APIs, without needing to use
-=E2=80=9Csudo=E2=80=9D for everything.
+EAL: PCI device 0000:0e:00.1 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL:   0000:0e:00.1 VFIO group is not viable!
+EAL: Requested device 0000:0e:00.1 cannot be used
 
-Brendan.
 
-On Tue, Apr 6, 2021 at 10:53 PM Ron Economos <w6rz@comcast.net> wrote:
+I did some search and find that all devices within the iommu_group are boun=
+d to their vfio bus driver. So I check the iommu_group by
 
-> Awesome. When you get everything sorted out and you're feeling
-> adventurous, you can add NEON optimization. In the cmake step, replace:
->
-> -DNEON_SIMD_ENABLE=3DOFF
->
-> with:
->
-> -DCMAKE_CXX_FLAGS:STRING=3D"-march=3Darmv7-a -mfloat-abi=3Dhard -mfpu=3Dn=
-eon
-> -mtune=3Dcortex-a72" -DCMAKE_C_FLAGS:STRING=3D"-march=3Darmv7-a -mfloat-a=
-bi=3Dhard
-> -mfpu=3Dneon -mtune=3Dcortex-a72" -DCMAKE_ASM_FLAGS:STRING=3D"-march=3Dar=
-mv7-a
-> -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a72 -g"
->
-> Ron
-> On 4/6/21 05:15, Brendan Horsfield wrote:
->
-> Thanks for the tip Ron!  It got me (almost) all the way home.
->
-> I can now interface with the USRP via the C++ API, which I couldn't do
-> previously.
->
-> Unfortunately there's still a niggling problem with the Python API (a
-> different one than before), but I will start a new thread to cover that
-> issue.
->
-> Cheers,
-> Brendan.
->
->
-> On Sun, Apr 4, 2021 at 11:53 AM Ron Economos <w6rz@comcast.net> wrote:
->
->> This is just a guess, but you could try:
->>
->> -DCMAKE_SHARED_LINKER_FLAGS=3D"-latomic"
->>
->> in addition.
->>
->> Ron
->> On 4/3/21 18:34, Brendan Horsfield wrote:
->>
->> Thanks Ken.  As you suggested, I added
->> -DCMAKE_EXE_LINKER_FLAGS=3D"-latomic" to the CMake call.
->>
->> The good news is that the UHD build & installation process completed
->> successfully.
->>
->> The bad news is that when I try to import the uhd module in Python3, I
->> get the following error:
->>
->> pi@raspberrypi:~ $ python3
->> Python 3.7.3 (default, Jan 22 2021, 20:04:44)
->> [GCC 8.3.0] on linux
->> Type "help", "copyright", "credits" or "license" for more information.
->> >>> import uhd
->> Traceback (most recent call last):
->>   File "<stdin>", line 1, in <module>
->>   File "/usr/local/lib/python3/dist-packages/uhd/__init__.py", line 10,
->> in <module>
->>     from . import types
->>   File "/usr/local/lib/python3/dist-packages/uhd/types.py", line 10, in
->> <module>
->>     from . import libpyuhd as lib
->> ImportError: /usr/local/lib/libuhd.so.4.0.0: undefined symbol:
->> __atomic_fetch_add_8
->> >>>
->>
->> Did you encounter this problem too?
->>
->> I guess the next step is to hack the "CMakeLists.txt" files as per the
->> link you sent me.  Just to clarify one point first:  If I modify the
->> CMakeLists.txt files, do I still need to include
->> -DCMAKE_EXE_LINKER_FLAGS=3D"-latomic" in the CMake call?
->>
->> Thanks,
->> Brendan.
->>
->>
->>
->> On Sat, Apr 3, 2021 at 10:29 PM Clark (US), Kenneth C <
->> kenneth.c.clark2@boeing.com> wrote:
->>
->>>
->>> I had the same problem build UHD on RPi4
->>>
->>> Answer here:
->>> https://gitlab.kitware.com/cmake/cmake/-/issues/21174
->>>
->>> Add to CMake call:
->>> -DCMAKE_EXE_LINKER_FLAGS=3D"-latomic"
->>>
->>> Regards,
->>>
->>> Ken
->>>
->>>
->>> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+find /sys/kernel/iommu_groups/ -type l
 
---00000000000035e1b605bf58d788
-Content-Type: text/html; charset="UTF-8"
+/sys/kernel/iommu_groups/15/devices/0000:0c:00.0
+/sys/kernel/iommu_groups/15/devices/0000:0a:01.0
+/sys/kernel/iommu_groups/15/devices/0000:09:00.0
+/sys/kernel/iommu_groups/15/devices/0000:07:01.0
+/sys/kernel/iommu_groups/15/devices/0000:0a:04.0
+/sys/kernel/iommu_groups/15/devices/0000:0e:00.1
+/sys/kernel/iommu_groups/15/devices/0000:07:04.0
+/sys/kernel/iommu_groups/15/devices/0000:0b:00.0
+/sys/kernel/iommu_groups/15/devices/0000:06:00.0
+/sys/kernel/iommu_groups/15/devices/0000:04:01.0
+/sys/kernel/iommu_groups/15/devices/0000:0d:01.0
+/sys/kernel/iommu_groups/15/devices/0000:0d:04.0
+/sys/kernel/iommu_groups/15/devices/0000:0e:00.0
+
+only the 0000:0e:00.1 and 0000:03:00.0 are my 10G Ethernets and I have boun=
+d them to vfio-pci by dpdk-devbind. The others  cannot be
+bound at all.
+
+Unknown device: ...... Please specify device in "bus:slot.func" format
+
+Does anyone have idea how to handle this?
+
+Sincerely
+
+Kasim
+
+
+________________________________
+From: Chang, Kaixin <k.chang@campus.tu-berlin.de>
+Sent: 06 April 2021 19:10:19
+To: Rob Kossler
+Cc: usrp-users@lists.ettus.com
+Subject: [USRP-users] Re: dpdk, VFIO group is not viable
+
+
+Thank you Rob for the advice, actually I have made symlink as in the thread=
+ introduced, however I still got the error "not viable"...
+
+________________________________
+From: Rob Kossler <rkossler@nd.edu>
+Sent: 06 April 2021 18:23:05
+To: Chang, Kaixin
+Cc: usrp-users@lists.ettus.com
+Subject: Re: [USRP-users] dpdk, VFIO group is not viable
+
+Hi Kasim,
+There are some previous posts to the user's list around Feb 2-3, 2021 regar=
+ding some DPDK troubles I was having. In particular, Aaron Rossetto mention=
+ed putting just a few symlinks in a new folder and using the dpdk_driver va=
+riable from uhd.conf to point to this folder.  This may be helpful for your=
+ case.
+Rob
+
+On Tue, Apr 6, 2021 at 9:37 AM Chang, Kaixin <k.chang@campus.tu-berlin.de<m=
+ailto:k.chang@campus.tu-berlin.de>> wrote:
+
+Dear Ettus team,
+
+
+I followed the instruction of https://kb.ettus.com/Getting_Started_with_DPD=
+K_and_UHD to enable dpdk for my X310, however I have an error when I execut=
+e benchmark_rate as sudo su
+
+
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.0-93-g3b=
+9ced8f
+EAL: Detected 4 lcore(s)
+EAL: Detected 1 NUMA nodes
+EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
+EAL: No free hugepages reported in hugepages-1048576kB
+EAL: Probing VFIO support...
+EAL: VFIO support initialized
+EAL: PCI device 0000:00:1f.6 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:15d7 net_e1000_em
+EAL: PCI device 0000:0e:00.0 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL:   0000:0e:00.0 VFIO group is not viable!
+EAL: Requested device 0000:0e:00.0 cannot be used
+EAL: PCI device 0000:0e:00.1 on NUMA socket -1
+EAL:   Invalid NUMA socket, default to 0
+EAL:   probe driver: 8086:10fb net_ixgbe
+EAL:   0000:0e:00.1 VFIO group is not viable!
+EAL: Requested device 0000:0e:00.1 cannot be used
+[ERROR] [DPDK] No available DPDK devices (ports) found!
+[ERROR] [UHD] Device discovery error: RuntimeError: No available DPDK devic=
+es (ports) found!
+EAL: FATAL: already called initialization.
+EAL: already called initialization.
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL in=
+itialization
+[00:00:00.000506] Creating the usrp device with: addr=3D192.168.30.2,second=
+_addr=3D192.168.40.2,use_dpdk=3D1...
+EAL: FATAL: already called initialization.
+EAL: already called initialization.
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [UHD] Device discovery error: RuntimeError: Error with EAL initiali=
+zation
+EAL: FATAL: already called initialization.
+EAL: already called initialization.
+[ERROR] [DPDK] Error with EAL initialization
+[ERROR] [X300] X300 Network discovery error RuntimeError: Error with EAL in=
+itialization
+Error: LookupError: KeyError: No devices found for ----->
+Device Address:
+    addr: 192.168.30.2
+    second_addr: 192.168.40.2
+    use_dpdk: 1
+
+Why is 0000:0e:00.1 VFIO group is not viable!? I have checked dpdk-devbind =
+--status-dev net and get
+
+Network devices using DPDK-compatible driver
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:0e:00.0 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dvf=
+io-pci unused=3Dixgbe
+0000:0e:00.1 '82599ES 10-Gigabit SFI/SFP+ Network Connection 10fb' drv=3Dvf=
+io-pci unused=3Dixgbe
+
+Network devices using kernel driver
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+0000:00:1f.6 'Ethernet Connection (4) I219-LM 15d7' if=3Denp0s31f6 drv=3De1=
+000e unused=3Dvfio-pci
+0000:02:00.0 'Wireless 8265 / 8275 24fd' if=3Dwlp2s0 drv=3Diwlwifi unused=
+=3Dvfio-pci
+
+
+which seems to be fine.
+
+
+thank you for your help
+
+
+sincerely
+
+
+Kasim
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com<mailto:usrp-users@lis=
+ts.ettus.com>
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usr=
+p-users-leave@lists.ettus.com>
+
+--_000_8550b35c12694d32abb8c3392b8e5d70campustuberlinde_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><p>Hi Ron,</p><p>Success!  I reinstalled UHD using your NE=
-ON optimization flags, and it went without a hitch.</p><p>I also got to the=
- bottom of my other Python API problem =E2=80=94 it turns out I forgot to r=
-un the Udev setup for USB.  I can now connect to the B210 with my Raspberry=
- Pi via either the C++ or Python APIs, without needing to use =E2=80=9Csudo=
-=E2=80=9D for everything.</p><p>Brendan.</p></div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 6, 2021 at 10:53 PM=
- Ron Economos &lt;<a href=3D"mailto:w6rz@comcast.net">w6rz@comcast.net</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    <p>Awesome. When you get everything sorted out and you&#39;re feeling
-      adventurous, you can add NEON optimization. In the cmake step,
-      replace:</p>
-    <p>-DNEON_SIMD_ENABLE=3DOFF</p>
-    <p>with:</p>
-    <p>-DCMAKE_CXX_FLAGS:STRING=3D&quot;-march=3Darmv7-a -mfloat-abi=3Dhard
-      -mfpu=3Dneon -mtune=3Dcortex-a72&quot;
-      -DCMAKE_C_FLAGS:STRING=3D&quot;-march=3Darmv7-a -mfloat-abi=3Dhard -m=
-fpu=3Dneon
-      -mtune=3Dcortex-a72&quot; -DCMAKE_ASM_FLAGS:STRING=3D&quot;-march=3Da=
-rmv7-a
-      -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a72 -g&quot;</p>
-    <p>Ron<br>
-    </p>
-    <div>On 4/6/21 05:15, Brendan Horsfield
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">Thanks for the tip Ron!=C2=A0 It got me (almost) all=
- the
-        way home.=C2=A0=C2=A0
-        <div><br>
-        </div>
-        <div>I can now interface with the USRP via the C++ API, which I
-          couldn&#39;t do previously.</div>
-        <div><br>
-        </div>
-        <div>Unfortunately there&#39;s still a niggling problem with the
-          Python API (a different one than before), but I will start a
-          new thread to cover that issue.</div>
-        <div><br>
-        </div>
-        <div>Cheers,</div>
-        <div>Brendan.</div>
-        <div><br>
-        </div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Sun, Apr 4, 2021 at 11:53
-          AM Ron Economos &lt;<a href=3D"mailto:w6rz@comcast.net" target=3D=
-"_blank">w6rz@comcast.net</a>&gt; wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <p>This is just a guess, but you could try:</p>
-            <p>-DCMAKE_SHARED_LINKER_FLAGS=3D&quot;-latomic&quot;</p>
-            <p>in addition.</p>
-            <p>Ron<br>
-            </p>
-            <div>On 4/3/21 18:34, Brendan Horsfield wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">Thanks Ken.=C2=A0 As you suggested, I added
-                -DCMAKE_EXE_LINKER_FLAGS=3D&quot;-latomic&quot; to the CMak=
-e call.=C2=A0=C2=A0
-                <div><br>
-                </div>
-                <div>The good news is that the UHD build &amp;
-                  installation process completed successfully.
-                  <div>
-                    <div><br>
-                    </div>
-                    <div>The bad news is that when I try to import the
-                      uhd module in Python3, I get=C2=A0the following error=
-:</div>
-                    <div><br>
-                    </div>
-                    <div>pi@raspberrypi:~ $ python3<br>
-                      Python 3.7.3 (default, Jan 22 2021, 20:04:44) <br>
-                      [GCC 8.3.0] on linux<br>
-                      Type &quot;help&quot;, &quot;copyright&quot;, &quot;c=
-redits&quot; or &quot;license&quot;
-                      for more information.<br>
-                      &gt;&gt;&gt; import uhd<br>
-                      Traceback (most recent call last):<br>
-                      =C2=A0 File &quot;&lt;stdin&gt;&quot;, line 1, in &lt=
-;module&gt;<br>
-                      =C2=A0 File
-                      &quot;/usr/local/lib/python3/dist-packages/uhd/__init=
-__.py&quot;,
-                      line 10, in &lt;module&gt;<br>
-                      =C2=A0 =C2=A0 from . import types<br>
-                      =C2=A0 File
-                      &quot;/usr/local/lib/python3/dist-packages/uhd/types.=
-py&quot;,
-                      line 10, in &lt;module&gt;<br>
-                      =C2=A0 =C2=A0 from . import libpyuhd as lib<br>
-                      ImportError: /usr/local/lib/libuhd.so.4.0.0:
-                      undefined symbol: __atomic_fetch_add_8<br>
-                      &gt;&gt;&gt;=C2=A0<br>
-                    </div>
-                    <div><br>
-                    </div>
-                    <div>Did you encounter this problem too?</div>
-                    <div><br>
-                    </div>
-                    <div>I guess the next step is to hack the
-                      &quot;CMakeLists.txt&quot; files as per the link you =
-sent
-                      me.=C2=A0 Just to clarify one point first:=C2=A0 If I=
- modify
-                      the CMakeLists.txt files, do I still need to
-                      include -DCMAKE_EXE_LINKER_FLAGS=3D&quot;-latomic&quo=
-t; in the
-                      CMake call?</div>
-                    <div><br>
-                    </div>
-                    <div>Thanks,</div>
-                    <div>Brendan.</div>
-                    <div>=C2=A0=C2=A0</div>
-                    <div><br>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <div class=3D"gmail_quote">
-                <div dir=3D"ltr" class=3D"gmail_attr">On Sat, Apr 3, 2021 a=
-t
-                  10:29 PM Clark (US), Kenneth C &lt;<a href=3D"mailto:kenn=
-eth.c.clark2@boeing.com" target=3D"_blank">kenneth.c.clark2@boeing.com</a>&=
-gt;
-                  wrote:<br>
-                </div>
-                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-                  I had the same problem build UHD on RPi4<br>
-                  <br>
-                  Answer here:<br>
-                  <a href=3D"https://gitlab.kitware.com/cmake/cmake/-/issue=
-s/21174" rel=3D"noreferrer" target=3D"_blank">https://gitlab.kitware.com/cm=
-ake/cmake/-/issues/21174</a><br>
-                  <br>
-                  Add to CMake call:<br>
-                  -DCMAKE_EXE_LINKER_FLAGS=3D&quot;-latomic&quot;<br>
-                  <br>
-                  Regards,<br>
-                  <br>
-                  Ken<br>
-                  <br>
-                  <br>
-                </blockquote>
-              </div>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-  </div>
-
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>My problem is <br>
+</p>
+<p><br>
+</p>
+<div>EAL: PCI device 0000:0e:00.1 on NUMA socket -1<br>
+EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0<br>
+EAL:&nbsp;&nbsp; probe driver: 8086:10fb net_ixgbe<br>
+EAL:&nbsp;&nbsp; 0000:0e:00.1 VFIO group is not viable!<br>
+EAL: Requested device 0000:0e:00.1 cannot be used</div>
+<p></p>
+<p><br>
+</p>
+<p>I did some search and find that <strong>all devices within the iommu_gro=
+up are bound to their vfio bus driver</strong>. So I check the iommu_group =
+by
+</p>
+<div>
+<pre class=3D"western" style=3D"text-align: left"><font style=3D"font-size:=
+ 10pt" size=3D"2">find /sys/kernel/iommu_groups/ -type l</font></pre>
+</div>
+<div>
+<pre class=3D"western" style=3D"text-align: left"><font style=3D"font-size:=
+ 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devices/0000:0c:00.0</font>=
+=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:0a:01.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:09:00.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:07:01.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:0a:04.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:0e:00.1</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:07:04.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:0b:00.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:06:00.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:04:01.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:0d:01.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:0d:04.0</font>=0A=
+<font style=3D"font-size: 10pt" size=3D"2">/sys/kernel/iommu_groups/15/devi=
+ces/0000:0e:00.0</font></pre>
+</div>
+<pre class=3D"western" style=3D"text-align: left"><font style=3D"font-size:=
+ 10pt" size=3D"2">only the 0000:0e:00.1 and 0000:03:00.0 are my 10G Etherne=
+ts and I have bound them to vfio-pci by dpdk-devbind. The others  cannot be=
+ <br>bound at all.<br><br><span><span>Unknown device</span>: ...... Please =
+specify device in &quot;bus:slot.func&quot; format</span><br><br>Does anyon=
+e have idea how to handle this?<br><br>Sincerely<br><br>Kasim<br><br></font=
+></pre>
+<p></p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Chang, Kaixin &lt;k.c=
+hang@campus.tu-berlin.de&gt;<br>
+<b>Sent:</b> 06 April 2021 19:10:19<br>
+<b>To:</b> Rob Kossler<br>
+<b>Cc:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [USRP-users] Re: dpdk, VFIO group is not viable</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; colo=
+r: rgb(0, 0, 0); font-family: Calibri, Helvetica, sans-serif, EmojiFont, &q=
+uot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &q=
+uot;Segoe UI Symbol&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<p>Thank you Rob for the advice, actually I have made symlink as in the thr=
+ead introduced, however I still got the error &quot;not viable&quot;...</p>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Rob Kossler &lt;rkoss=
+ler@nd.edu&gt;<br>
+<b>Sent:</b> 06 April 2021 18:23:05<br>
+<b>To:</b> Chang, Kaixin<br>
+<b>Cc:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] dpdk, VFIO group is not viable</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">Hi Kasim,
+<div>There are some previous posts to the user's list around Feb 2-3, 2021 =
+regarding some DPDK troubles I was having. In particular, Aaron Rossetto me=
+ntioned putting just a few symlinks in a new folder and using the dpdk_driv=
+er variable from uhd.conf to point
+ to this folder.&nbsp; This may be helpful for your case.</div>
+<div>Rob</div>
+</div>
+<br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 6, 2021 at 9:37 AM Chang,=
+ Kaixin &lt;<a href=3D"mailto:k.chang@campus.tu-berlin.de" target=3D"_blank=
+">k.chang@campus.tu-berlin.de</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; border=
+-left:1px solid rgb(204,204,204); padding-left:1ex">
+<div dir=3D"ltr">
+<div id=3D"gmail-m_-6582435989516123375gmail-m_-5764693402685408802divtagde=
+faultwrapper" dir=3D"ltr" style=3D"font-size: 12pt; color: rgb(0, 0, 0); fo=
+nt-family: Calibri, Helvetica, sans-serif, EmojiFont, &quot;Apple Color Emo=
+ji&quot;, &quot;Segoe UI Emoji&quot;, NotoColorEmoji, &quot;Segoe UI Symbol=
+&quot;, &quot;Android Emoji&quot;, EmojiSymbols;">
+<p>Dear Ettus team,</p>
+<p><br>
+</p>
+<p>I followed the instruction of <a href=3D"https://kb.ettus.com/Getting_St=
+arted_with_DPDK_and_UHD" id=3D"gmail-m_-6582435989516123375gmail-m_-5764693=
+402685408802LPlnk765227" target=3D"_blank">
+https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a> to enable dpdk f=
+or my X310, however I have an error when I execute
+<code>benchmark_rate</code> as sudo su</p>
+<p><br>
+</p>
+<p></p>
+<div>
+<pre style=3D"text-align:left"><font size=3D"2" style=3D"font-size:10pt">[I=
+NFO] [UHD] linux; GNU C&#43;&#43; version 9.3.0; Boost_107100; UHD_4.0.0.0-=
+93-g3b9ced8f</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: Detected 4 lcore(s)</font>=
+=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: Detected 1 NUMA nodes</font>=
+=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: Multi-process socket /var/ru=
+n/dpdk/rte/mp_socket</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: No free hugepages reported i=
+n hugepages-1048576kB</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: Probing VFIO support...</fon=
+t>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: VFIO support initialized</fo=
+nt>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: PCI device 0000:00:1f.6 on N=
+UMA socket -1</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   Invalid NUMA socket, defau=
+lt to 0</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   probe driver: 8086:15d7 ne=
+t_e1000_em</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: PCI device 0000:0e:00.0 on N=
+UMA socket -1</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   Invalid NUMA socket, defau=
+lt to 0</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   probe driver: 8086:10fb ne=
+t_ixgbe</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   0000:0e:00.0 VFIO group is=
+ not viable!</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: Requested device 0000:0e:00.=
+0 cannot be used</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: PCI device 0000:0e:00.1 on N=
+UMA socket -1</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   Invalid NUMA socket, defau=
+lt to 0</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   probe driver: 8086:10fb ne=
+t_ixgbe</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL:   0000:0e:00.1 VFIO group is=
+ not viable!</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: Requested device 0000:0e:00.=
+1 cannot be used</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] No available DPDK =
+devices (ports) found!</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [UHD] Device discovery er=
+ror: RuntimeError: No available DPDK devices (ports) found!</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: FATAL: already called initia=
+lization.</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: already called initializatio=
+n.</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] Error with EAL ini=
+tialization</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [X300] X300 Network disco=
+very error RuntimeError: Error with EAL initialization</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[00:00:00.000506] Creating the us=
+rp device with: addr=3D192.168.30.2,second_addr=3D192.168.40.2,use_dpdk=3D1=
+...</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: FATAL: already called initia=
+lization.</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: already called initializatio=
+n.</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] Error with EAL ini=
+tialization</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [UHD] Device discovery er=
+ror: RuntimeError: Error with EAL initialization</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: FATAL: already called initia=
+lization.</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">EAL: already called initializatio=
+n.</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [DPDK] Error with EAL ini=
+tialization</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">[ERROR] [X300] X300 Network disco=
+very error RuntimeError: Error with EAL initialization</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">Error: LookupError: KeyError: No =
+devices found for -----&gt;</font>=0A=
+<font size=3D"2" style=3D"font-size:10pt">Device Address:</font>=0A=
+    <font size=3D"2" style=3D"font-size:10pt">addr: 192.168.30.2</font>=0A=
+    <font size=3D"2" style=3D"font-size:10pt">second_addr: 192.168.40.2</fo=
+nt>=0A=
+    <font size=3D"2" style=3D"font-size:10pt">use_dpdk: 1</font></pre>
+</div>
+Why is <font size=3D"2" style=3D"font-size:10pt">0000:0e:00.1 VFIO group is=
+ not viable!</font>? I have checked dpdk-devbind --status-dev net and get
+<span id=3D"gmail-m_-6582435989516123375gmail-m_-5764693402685408802ms-rter=
+angepaste-end">
+</span><br>
+<div><br>
+Network devices using DPDK-compatible driver<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+0000:0e:00.0 '82599ES 10-Gigabit SFI/SFP&#43; Network Connection 10fb' drv=
+=3Dvfio-pci unused=3Dixgbe<br>
+0000:0e:00.1 '82599ES 10-Gigabit SFI/SFP&#43; Network Connection 10fb' drv=
+=3Dvfio-pci unused=3Dixgbe<br>
+<br>
+Network devices using kernel driver<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+0000:00:1f.6 'Ethernet Connection (4) I219-LM 15d7' if=3Denp0s31f6 drv=3De1=
+000e unused=3Dvfio-pci
+<br>
+0000:02:00.0 'Wireless 8265 / 8275 24fd' if=3Dwlp2s0 drv=3Diwlwifi unused=
+=3Dvfio-pci <br>
+</div>
+<br>
+<p></p>
+<p>which seems to be fine.</p>
+<p><br>
+</p>
+<p>thank you for your help</p>
+<p><br>
+</p>
+<p>sincerely</p>
+<p><br>
+</p>
+<p>Kasim<br>
+</p>
+</div>
+</div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><br>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
 
---00000000000035e1b605bf58d788--
+--_000_8550b35c12694d32abb8c3392b8e5d70campustuberlinde_--
 
---===============1638166845013993068==
+--===============5828110570664372348==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -381,4 +519,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1638166845013993068==--
+--===============5828110570664372348==--
