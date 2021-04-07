@@ -2,184 +2,280 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1D0357574
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Apr 2021 22:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CC5635789B
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Apr 2021 01:36:04 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CD3BE383C55
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Apr 2021 16:07:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D75FE383E9B
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Apr 2021 19:36:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="paKEWjeq";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=canyonconsulting.onmicrosoft.com header.i=@canyonconsulting.onmicrosoft.com header.b="olBQPto3";
 	dkim-atps=neutral
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6B4B2383A7B
-	for <USRP-users@lists.ettus.com>; Wed,  7 Apr 2021 16:06:52 -0400 (EDT)
-Received: by mail-vs1-f52.google.com with SMTP id k124so4704022vsk.3
-        for <USRP-users@lists.ettus.com>; Wed, 07 Apr 2021 13:06:52 -0700 (PDT)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2071.outbound.protection.outlook.com [40.107.237.71])
+	by mm2.emwd.com (Postfix) with ESMTPS id E3B32383B3E
+	for <USRP-users@lists.ettus.com>; Wed,  7 Apr 2021 19:35:18 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FFzqC0G1myVg50Qb9oAj7fClguauc9P1KXkg5aGMCODzkz1dOkw1kTJjyVmyv7BGPPh/CyJI/KGpzifxtmOdrQnKX20EAI3t+eblb+cjkfdgPmEa5C2hJRhCwlL2Ds6BZTpA1fHv70LMO6M88Y9FZgIgP87J6ghvB1SxLd1a1HLBpyy5Ar+IZ1KyDu8eXi5ftn3FxP2Hbo1dcc7Pf/6T6cxolC8D6OAOJtQY71L32C5Hjs8GGGRI03AH8jQT5TSLqMbeCESb1WdazPS14mJx6SZ2furdWEDxB7xiCVoEZufhDjrPxRvnNbERlA3Dsc1HYkUhvMz7EIg5dbNHcyj0eQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UKvXxcD5az8mPUFXhOXTijJkHzzHsYoxK9QnMHGKHQI=;
+ b=n6UN1oGnJW5R2Yzb/qHp3m6nD2ULvetfD0EULpyR7zlAj0M0N4l/NTjyjHMptZr5QQPvEuF+rif6kC9Eebm4ZINzi+0thjrYeQI1RjvWQyPw8Pim+OL/4pyf61zAFzvrnDWWwHruD1aVZISoxYmsYEXEJG/pa7xheVuJX7mwXyvBALO5CKeFJc5SN3cDBB+yO3hNsHgIyN5dygC0D7HasHW1tVeMYlDbTHb/UgleBZnoPqPRbQZXzv7Mabls0GQLLpvHBu2xJzl/JJW8dp1l7KIA3mdvt5LREbSRpg9EnyJ/5OR5+5kw62zYyiPWMqu+YaaFJNVJtcWaF0nWO20ivw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1JD5vg9I3b1cClpw4Ep8a5f4vFmE1/zqZwsyNPMk25M=;
-        b=paKEWjeq6XzLkgZIgkNfOrjfeUszv6WJM1WsaydYlu6YW9f5+NXUCp3h14i/77n0i+
-         jIwaARXNknDBSN1MXSxRP0xEF5AFQf/ofQZWQsAaZoSGBxFE7cb+S61l4Fy2zEngHevw
-         qLye0JODwn4OvdSbh6gCZZs2lXRoAR5XejztHQ5utwWGlb+PQd6pb+KaJ0i0EVRfp2WL
-         FeTmOz/9XsHhWQwQ9rDZQMOuTU8WfObq+O70P1vVZ3zISLyCxJLZDm2738UPlCK+AfaA
-         aW7Wao5tig+7xTdgv0kFCrW771jFIs5EGJAS2aGewBQFzgpjvHIU+/3JyRqBQnRjGsPi
-         oCVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1JD5vg9I3b1cClpw4Ep8a5f4vFmE1/zqZwsyNPMk25M=;
-        b=IORyA4MKG0kW1ApoAldZ24szNnetlGHCQh60G3wwHmy3LURNHywPOz0b1Ozc+Uk+zA
-         aBL/KgMgEjh47pAMCM8ACEN7HOmG++fsAMyNMKNhK988R6r1r3kq6A5hBJCzkFwwQkZV
-         1r1zyNMbwk+WOU4CwXom4pCl+o2hgRSnUhuFPXCDbDsiwIIlaTU2+T0TidpgouZ+XA9v
-         S5NVNtFFInrZXfOt6c2EE6HpkHYIggNbMdafdYhKLo+pwjHB3rUKHB/LYdsZl6aTgIt6
-         X8uYlV1AUvgrwXDGfWaO3fUPU66RPcuHw6y6DHfoG6YsEcmIS9TXsJn/zjx+Y/ww7461
-         8udA==
-X-Gm-Message-State: AOAM530RYCqrEFiHh9Tb1KFQKWyg5YNrBXCcrkmsAFKH27ftHKbnz0Q2
-	m+mA4RJsyRNabnq8VsxHuDQ1ly/e5IbBSwhpVW2jP3OACIU7HA==
-X-Google-Smtp-Source: ABdhPJzNUASeDZ8FCXKahsjFt7wcTpImujpQxeo1ulVsxfC4lfemAH2WxRKc7FeG+8k6W38v9nSbCf1xTyZawiq5ok0=
-X-Received: by 2002:a67:cf41:: with SMTP id f1mr3479608vsm.42.1617826011660;
- Wed, 07 Apr 2021 13:06:51 -0700 (PDT)
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UKvXxcD5az8mPUFXhOXTijJkHzzHsYoxK9QnMHGKHQI=;
+ b=olBQPto3l6ZODviFyJL1mAcrOu1rc8EBFYIQlhUwH8Uk/TGZZmlv1etVF6UQ5j9rejPJEgX2J0Wt4AKlS4CE37IMfh6LKoirIYTsFjOFsh1zi75+nELRLQ0S7ALO8JLKMEq8hdUGH2jnK2SyBR1z3ju8fyHp2i82PEUBCCbx8CU=
+Received: from CO6PR19MB4801.namprd19.prod.outlook.com (2603:10b6:5:341::23)
+ by MWHPR19MB1056.namprd19.prod.outlook.com (2603:10b6:300:a4::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.18; Wed, 7 Apr
+ 2021 23:35:17 +0000
+Received: from CO6PR19MB4801.namprd19.prod.outlook.com
+ ([fe80::d8d:6dc9:809d:9807]) by CO6PR19MB4801.namprd19.prod.outlook.com
+ ([fe80::d8d:6dc9:809d:9807%7]) with mapi id 15.20.3999.033; Wed, 7 Apr 2021
+ 23:35:17 +0000
+From: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Thread-Topic: [USRP-users] Bug existing in DUC RFNoC block when GRC generates
+ python script
+Thread-Index: Adcr400bCLyWQ7BpTxe5Ft9QbTn7FAABimeAAAcyAGA=
+Date: Wed, 7 Apr 2021 23:35:16 +0000
+Message-ID: 
+ <CO6PR19MB4801AE48CAF04BDB30765EF6C6759@CO6PR19MB4801.namprd19.prod.outlook.com>
+References: 
+ <CO6PR19MB4801DA37884FB719D398AFFEC6759@CO6PR19MB4801.namprd19.prod.outlook.com>
+ <CAL7q81taawRcwF=qqKapCj-thoev2uEzKgEO0k4rn13C0dwH6A@mail.gmail.com>
+In-Reply-To: 
+ <CAL7q81taawRcwF=qqKapCj-thoev2uEzKgEO0k4rn13C0dwH6A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: ettus.com; dkim=none (message not signed)
+ header.d=none;ettus.com; dmarc=none action=none header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d0b6a7b1-3311-447d-876e-08d8fa1dccd4
+x-ms-traffictypediagnostic: MWHPR19MB1056:
+x-microsoft-antispam-prvs: 
+ <MWHPR19MB105672CAF042DD7B305CEA52C6759@MWHPR19MB1056.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ WIp15SkXxbAIGGSv6V3FrlD0VINifxwfIdNC4K5nNxpaA/+gkmLGuOJCi29Dry7Aw7OUPsuFsvBTsOYkwtpDXZ0TOWJVqPDClfZgs+cu6xopxuonVXCgrMJWN1JWMIEOhTtuORuT6Mf+8PMmOTCbzVv41cx5lym92BsRVw/cuF3SdUHcfvjNwKtxrLHOI0nMRxmyj+vr1mmjMbUETNQ2UojcTjyItojhM+TBstAgbvO7fTL/2atqy9HsDlBK9rwWP9YFvjZBeV7JKFVMakcfdu2X2uvD44RA9R9TlFMtPhixIdkoofX4K3DwOWDPmiZTBf+C09yXBYx1HQEYq5x19ptQToaBzLAj8awpGY5l7ht375UkpnFvq5l9Yar+HIso8cFtnh/+MUfIjbOrWC7O80mE5QNFMz7xuuTNpl4AtQjR8kuiE6IpbIlFQIdalwLQR5h8GURKSm9tG/d+rg1F26spr8coakNzGNFvRXrebD5IFfH7Y36IfeAJV7fp9/OGHiv5d+C/0KaFote4pIw9h2N5LtqFIB0flP0i/lEQ6YSq1rPxyUP5H2vdOds1AI9G7iv+ne6QlNglqa9+T83DH5FqNPPLjYNGJsPiTZaKP16kBxr1ldWMvssw38BVyNXikQb1IpuHQ049ywj7bqsslhIYaOXAo1IkoRIqca3JSMw=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR19MB4801.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39830400003)(366004)(396003)(136003)(376002)(346002)(33656002)(76116006)(44832011)(38100700001)(86362001)(186003)(4326008)(316002)(9326002)(6916009)(52536014)(66446008)(64756008)(66476007)(66556008)(66946007)(478600001)(9686003)(26005)(8936002)(55016002)(2906002)(5660300002)(8676002)(6506007)(7696005)(53546011)(83380400001)(71200400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?UDdDY2JJTkpSbnVhTVNBbmR1bEtkdk9WcVZCcFB3alFDQTZ0Lyt4U2ZMbzA4?=
+ =?utf-8?B?dDVzMnBIaHg4MEZmMXRLYmF2ODFWQTFYWHVpb09vWTNVUnM1SFZWeGhURnRY?=
+ =?utf-8?B?RnNVZFVCdHRXRVBLTE5HcSsrUENadkRodG9uemRwMjcvUU9rZVVwOEdnUjM1?=
+ =?utf-8?B?ZExVME9OVDMxOHdOUnhMdHI3SWdmaWxFSGw4emFTTEUwd3pYWTEzY0ZVc2pF?=
+ =?utf-8?B?cGZ2Nk00N012S1Q2ampKem1ET3RScDJqWjVYdDV4dUY5dXBlek1ueGhZOTVo?=
+ =?utf-8?B?TEN0ME0zd2g3UU93L3haQUJneExVWWRLOWVrMkhQbFRrVzg0dVA4dUdFZVFG?=
+ =?utf-8?B?emJuQUpKNjFBaVhhQStyV1dzS3lnNjgrcXMzT282NWZkVk1SdHh0SHZRc2VB?=
+ =?utf-8?B?RmxsVWFQNVFQeHNQc001ZTFPVFNrbTFndlk0bW1La2h2ZHBTd3lFSkNVKytu?=
+ =?utf-8?B?emxxTjZtTGx2UFJJYjBKLy9CMkhhNGJzTlVlYU5iaTV0ZEFOQW5YS2htWW9F?=
+ =?utf-8?B?OHFDTi9GUjJFWEszYzg5MVhqYnFVVkNrQitJREtHb0QvdDdRcmgxR0VMbFRo?=
+ =?utf-8?B?Z00rRE5ZcE4yKy9lVUR1ODFpK3psdThPdnJYSWZCZ3ByM0Flcm5HRksxMXFM?=
+ =?utf-8?B?bkRlWjdvbUJVWEVaQXBHQ2ZHYzlTM21pN2tlbGJ6N21UY0VTR2VtOURCeERv?=
+ =?utf-8?B?bUNjTGV5RUNGWWdsM0Y5UFFULzFBV1ZVTFpzVU85dUxvckZqTWxIck9vVjFx?=
+ =?utf-8?B?Q3E1RWV5SlQwTEd4bmVBdVhkWkMzdkFqWWIxbWI2cWxqREFKdk1wY21PTFp1?=
+ =?utf-8?B?NHpnWmhCdS9wVHhqVlRKbjAvaWUxanMzTGFoWW9MWEM0VGpMQkpia0EzWkND?=
+ =?utf-8?B?RVNiZWVNVjA0dkRaaTFSWFJLeVY0Y0s5RkNFVnppNDNYM1JuRWgzeWpTUWwy?=
+ =?utf-8?B?cnJDMHZCdmRwM0xaT28rQmZ5eVlEWmkwejhIS1RnZXJ3L2hraXBPR0RVenFF?=
+ =?utf-8?B?MVpsQUF5d1JRMVdaaUhLZUNFN24yMkhVYWJBTnh4RzJmakl2TTQza1BYWlNQ?=
+ =?utf-8?B?NHM5Sm1aL20wMGd1L1UxYXYwRUZ5ZHVhVDBaaHV2dE51SmhPNGdGcXo1clcy?=
+ =?utf-8?B?SHdxY3ZhRTE3a1VEV2R1SHJLN2pMdXdqQ1E4MVRjRTlkZ3h1OUdMU0JZYys3?=
+ =?utf-8?B?V3QrcDVEdTRpNWlRUzJoRGZBZWtlNllKcVgrT05vaE9hbFpxK1lDQW1kSzA5?=
+ =?utf-8?B?b2xMZXhCUW5YaFI4MjltUUs4aWd3VXBUdkNnVFpxWGs1dDFJN0tHSlJ1OUg0?=
+ =?utf-8?B?UktYaWhsbmVYWStEVElGaXlpTVVkVytCMEw3K1A1V0lDTE9sd2NaTjJqRFBi?=
+ =?utf-8?B?TEVHSlN2NnE1R2Y0WGtZMG8yK2dhUUhFaG1ZM3Z5blBPK1pleE1yNVBQZnoz?=
+ =?utf-8?B?MG1UdmJMMWdnWU5mdFF6Mm01aWxkRzZGeGRhWWFxQTdpUXVHaiszTlF2YXR3?=
+ =?utf-8?B?QUgwUmFpVkNTei9yMVVZMytnWUJESGlGNU5mRjRwZ0tQWjJBcDFNRldkM1Yw?=
+ =?utf-8?B?cXVzNmxEcFRGeUJ1WU55aFZXeFgrUGllUVNnMVlSYUhjS3gxUzBDSzhYRUJE?=
+ =?utf-8?B?NnRIQy9RckhVU3FXUnpnSWxuZHJrK3pWbzNkWTU0OWQyKzl6WjdyWVRveXdP?=
+ =?utf-8?B?OTVYTEFhWnBma1ZoMlR0bXhyQWJuVzltQUgrai95RTFmdnRPWW9va3BYS1Fj?=
+ =?utf-8?Q?jGhzbtJ+bNbr0mdwACua1VZGD8kNAXBFuLKIpxl?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CO6PR19MB4801DA37884FB719D398AFFEC6759@CO6PR19MB4801.namprd19.prod.outlook.com>
-In-Reply-To: <CO6PR19MB4801DA37884FB719D398AFFEC6759@CO6PR19MB4801.namprd19.prod.outlook.com>
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Date: Wed, 7 Apr 2021 16:06:15 -0400
-Message-ID: <CAL7q81taawRcwF=qqKapCj-thoev2uEzKgEO0k4rn13C0dwH6A@mail.gmail.com>
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-Content-Type: multipart/mixed; boundary="000000000000bc03c805bf677809"
-Message-ID-Hash: GI47A2WIP27PG5NZM6PO5DZ37EUAK5PA
-X-Message-ID-Hash: GI47A2WIP27PG5NZM6PO5DZ37EUAK5PA
-X-MailFrom: jonathon.pendlum@ettus.com
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR19MB4801.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0b6a7b1-3311-447d-876e-08d8fa1dccd4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2021 23:35:16.8399
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4zm6Mvbw2xZPIWYOQnKMBCkYAu9oiEYBL0Uvv2RQDhaYtr8uVFNa86n7/m3R+5ohz7z4Ra6JkV3rmyPMHAh+t6L4K0XZeWD9NTinwLdhThY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR19MB1056
+Message-ID-Hash: AZKQR6NSWASBVJGI3QRGXQBTTVIQX22Z
+X-Message-ID-Hash: AZKQR6NSWASBVJGI3QRGXQBTTVIQX22Z
+X-MailFrom: jerrid.plymale@canyon-us.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Bug existing in DUC RFNoC block when GRC generates python script
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GI47A2WIP27PG5NZM6PO5DZ37EUAK5PA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KVU7BTBHJ77U75Z4EBPFQJ7XPXA7VRRH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7343155768447312938=="
 
---000000000000bc03c805bf677809
-Content-Type: multipart/alternative; boundary="000000000000bc03c605bf677807"
+--===============7343155768447312938==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CO6PR19MB4801AE48CAF04BDB30765EF6C6759CO6PR19MB4801namp_"
 
---000000000000bc03c605bf677807
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Jerrid,
-
-We need to push the fix to gr-ettus, but for now you can use the attached
-patch.
-
-Jonathon
-
-On Wed, Apr 7, 2021 at 3:25 PM Jerrid Plymale <jerrid.plymale@canyon-us.com>
-wrote:
-
-> Hello All,
->
->
->
-> It seems I have come across an problem with the DUC RFNoC block from
-> gr-ettus that was brought up back in November. When I try tunning my
-> flowgraph, I get the following error: *in__init__ self.ettus_rfnoc_duc_0(
-> TypeError: make() takes 4 positional arguments but 5 were given*
->
->
->
-> What do I need to do to fix this?
->
->
->
-> Best Regards,
->
->
->
-> Jerrid
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000bc03c605bf677807
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Jerrid,<div><br></div><div>We need to push the fix to g=
-r-ettus, but for now you can use the attached patch.</div><div><br></div><d=
-iv>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
-s=3D"gmail_attr">On Wed, Apr 7, 2021 at 3:25 PM Jerrid Plymale &lt;<a href=
-=3D"mailto:jerrid.plymale@canyon-us.com">jerrid.plymale@canyon-us.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
-<div class=3D"gmail-m_6346144233070502412WordSection1">
-<p class=3D"MsoNormal">Hello All,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">It seems I have come across an problem with the DUC =
-RFNoC block from gr-ettus that was brought up back in November. When I try =
-tunning my flowgraph, I get the following error:
-<i><span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:black=
-;background:white">in__init__ self.ettus_rfnoc_duc_0( TypeError: make() tak=
-es 4 positional arguments but 5 were given<u></u><u></u></span></i></p>
-<p class=3D"MsoNormal"><i><span style=3D"font-size:10pt;font-family:Verdana=
-,sans-serif;color:black;background:white"><u></u>=C2=A0<u></u></span></i></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif;color:black;background:white">What do I need to do to fix this?<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif;color:black;background:white"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif;color:black;background:white">Best Regards,</span><u></u><u></u></=
-p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Jerrid<u></u><u></u></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000bc03c605bf677807--
-
---000000000000bc03c805bf677809
-Content-Type: text/x-patch; charset="US-ASCII"; name="0001-grc-Fix-DUC-parameters.patch"
-Content-Disposition: attachment;
-	filename="0001-grc-Fix-DUC-parameters.patch"
+--_000_CO6PR19MB4801AE48CAF04BDB30765EF6C6759CO6PR19MB4801namp_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-ID: <f_kn7vt1ec0>
-X-Attachment-Id: f_kn7vt1ec0
 
-RnJvbSAxNzQ2NGM1OTBlMWNkODE5YTJmNjkxODNmODhhYjllNTZkYzhhYWYyIE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBKb25hdGhvbiBQZW5kbHVtIDxqb25hdGhvbi5wZW5kbHVtQGV0
-dHVzLmNvbT4KRGF0ZTogU3VuLCAxOCBPY3QgMjAyMCAyMTo1Njo1MCAtMDQwMApTdWJqZWN0OiBb
-UEFUQ0hdIGdyYzogRml4IERVQyBwYXJhbWV0ZXJzCgotLS0KIGdyYy9ldHR1c19yZm5vY19kdWMu
-YmxvY2sueW1sIHwgMSAtCiAxIGZpbGUgY2hhbmdlZCwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdp
-dCBhL2dyYy9ldHR1c19yZm5vY19kdWMuYmxvY2sueW1sIGIvZ3JjL2V0dHVzX3Jmbm9jX2R1Yy5i
-bG9jay55bWwKaW5kZXggNTM4MzkwMi4uYmY5NmE1YiAxMDA2NDQKLS0tIGEvZ3JjL2V0dHVzX3Jm
-bm9jX2R1Yy5ibG9jay55bWwKKysrIGIvZ3JjL2V0dHVzX3Jmbm9jX2R1Yy5ibG9jay55bWwKQEAg
-LTgsNyArOCw2IEBAIHRlbXBsYXRlczoKICAgbWFrZTogfC0KICAgICBldHR1cy5yZm5vY19kdWMo
-CiAgICAgICAgIHNlbGYucmZub2NfZ3JhcGgsCi0gICAgICAgICR7bnVtX2NoYW5zfSwKICAgICAg
-ICAgdWhkLmRldmljZV9hZGRyKCR7YmxvY2tfYXJnc30pLAogICAgICAgICAke2RldmljZV9zZWxl
-Y3R9LAogICAgICAgICAke2luc3RhbmNlX2luZGV4fSkKLS0gCjIuMjUuMQoK
---000000000000bc03c805bf677809
+SGVsbG8gSm9uYXRob24sDQoNClRoYW5rcyBmb3Igc2VuZGluZyB0aGlzIHBhdGNoIG15IHdheS4g
+U28gSSByYW4gdGhlIHBhdGNoLCBhbmQgaXQgcmFuIGZpbmUgYW5kIGNoYW5nZWQgdGhlIGZpbGVz
+IGFzIGludGVuZGVkLCBob3dldmVyIHRoZSBlcnJvciBpcyBzdGlsbCBvY2N1cnJpbmcuIENvdWxk
+IHlvdSBleHBsYWluIHRoZSBwcm9jZXNzIGZvciBhcHBseWluZyBhIHBhdGNoIHVzaW5nIGEgLnBh
+dGNoIGZpbGU/IEkgd2FudCB0byBtYWtlIHN1cmUgSSBhbSBub3QgbWFraW5nIGEgbWlzdGFrZSBp
+biB0aGUgd2F5IHRoZSBmaWxlIGlzIGJlaW5nIHVzZWQuDQoNCkJlc3QgUmVnYXJkcywNCg0KSmVy
+cmlkDQoNCkZyb206IEpvbmF0aG9uIFBlbmRsdW0gPGpvbmF0aG9uLnBlbmRsdW1AZXR0dXMuY29t
+Pg0KU2VudDogV2VkbmVzZGF5LCBBcHJpbCA3LCAyMDIxIDE6MDYgUE0NClRvOiBKZXJyaWQgUGx5
+bWFsZSA8amVycmlkLnBseW1hbGVAY2FueW9uLXVzLmNvbT4NCkNjOiBVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBCdWcgZXhpc3RpbmcgaW4gRFVD
+IFJGTm9DIGJsb2NrIHdoZW4gR1JDIGdlbmVyYXRlcyBweXRob24gc2NyaXB0DQoNCkhpIEplcnJp
+ZCwNCg0KV2UgbmVlZCB0byBwdXNoIHRoZSBmaXggdG8gZ3ItZXR0dXMsIGJ1dCBmb3Igbm93IHlv
+dSBjYW4gdXNlIHRoZSBhdHRhY2hlZCBwYXRjaC4NCg0KSm9uYXRob24NCg0KT24gV2VkLCBBcHIg
+NywgMjAyMSBhdCAzOjI1IFBNIEplcnJpZCBQbHltYWxlIDxqZXJyaWQucGx5bWFsZUBjYW55b24t
+dXMuY29tPG1haWx0bzpqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tPj4gd3JvdGU6DQpIZWxs
+byBBbGwsDQoNCkl0IHNlZW1zIEkgaGF2ZSBjb21lIGFjcm9zcyBhbiBwcm9ibGVtIHdpdGggdGhl
+IERVQyBSRk5vQyBibG9jayBmcm9tIGdyLWV0dHVzIHRoYXQgd2FzIGJyb3VnaHQgdXAgYmFjayBp
+biBOb3ZlbWJlci4gV2hlbiBJIHRyeSB0dW5uaW5nIG15IGZsb3dncmFwaCwgSSBnZXQgdGhlIGZv
+bGxvd2luZyBlcnJvcjogaW5fX2luaXRfXyBzZWxmLmV0dHVzX3Jmbm9jX2R1Y18wKCBUeXBlRXJy
+b3I6IG1ha2UoKSB0YWtlcyA0IHBvc2l0aW9uYWwgYXJndW1lbnRzIGJ1dCA1IHdlcmUgZ2l2ZW4N
+Cg0KV2hhdCBkbyBJIG5lZWQgdG8gZG8gdG8gZml4IHRoaXM/DQoNCkJlc3QgUmVnYXJkcywNCg0K
+SmVycmlkDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBl
+bWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vy
+cy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo=
+
+--_000_CO6PR19MB4801AE48CAF04BDB30765EF6C6759CO6PR19MB4801namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpWZXJkYW5hOw0KCXBhbm9zZS0xOjIgMTEg
+NiA0IDMgNSA0IDQgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwg
+bGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47DQoJZm9udC1zaXplOjEx
+LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4u
+TXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRl
+eHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgNCgl7bXNvLXN0eWxl
+LXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
+DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
+eHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBX
+b3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEu
+MGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+
+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9
+ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0
+PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0K
+PC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiIHN0
+eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+SGVsbG8gSm9uYXRob24sPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlRoYW5rcyBmb3Igc2VuZGluZyB0aGlzIHBhdGNoIG15IHdheS4gU28gSSByYW4gdGhlIHBh
+dGNoLCBhbmQgaXQgcmFuIGZpbmUgYW5kIGNoYW5nZWQgdGhlIGZpbGVzIGFzIGludGVuZGVkLCBo
+b3dldmVyIHRoZSBlcnJvciBpcyBzdGlsbCBvY2N1cnJpbmcuIENvdWxkIHlvdSBleHBsYWluIHRo
+ZSBwcm9jZXNzIGZvciBhcHBseWluZyBhIHBhdGNoIHVzaW5nIGEgLnBhdGNoIGZpbGU/IEkgd2Fu
+dCB0byBtYWtlIHN1cmUNCiBJIGFtIG5vdCBtYWtpbmcgYSBtaXN0YWtlIGluIHRoZSB3YXkgdGhl
+IGZpbGUgaXMgYmVpbmcgdXNlZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVzdCBSZWdhcmRz
+LDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5KZXJyaWQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
+bmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAw
+aW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IEpvbmF0aG9uIFBlbmRsdW0g
+Jmx0O2pvbmF0aG9uLnBlbmRsdW1AZXR0dXMuY29tJmd0OyA8YnI+DQo8Yj5TZW50OjwvYj4gV2Vk
+bmVzZGF5LCBBcHJpbCA3LCAyMDIxIDE6MDYgUE08YnI+DQo8Yj5Ubzo8L2I+IEplcnJpZCBQbHlt
+YWxlICZsdDtqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4g
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQ
+LXVzZXJzXSBCdWcgZXhpc3RpbmcgaW4gRFVDIFJGTm9DIGJsb2NrIHdoZW4gR1JDIGdlbmVyYXRl
+cyBweXRob24gc2NyaXB0PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhp
+IEplcnJpZCw8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
+PiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldl
+IG5lZWQgdG8gcHVzaCB0aGUgZml4IHRvIGdyLWV0dHVzLCBidXQgZm9yIG5vdyB5b3UgY2FuIHVz
+ZSB0aGUgYXR0YWNoZWQgcGF0Y2guPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPkpvbmF0aG9uPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFdlZCwgQXByIDcsIDIwMjEgYXQgMzoyNSBQTSBK
+ZXJyaWQgUGx5bWFsZSAmbHQ7PGEgaHJlZj0ibWFpbHRvOmplcnJpZC5wbHltYWxlQGNhbnlvbi11
+cy5jb20iPmplcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1s
+ZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4t
+bGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
+LWFsdDphdXRvIj5IZWxsbyBBbGwsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5JdCBzZWVt
+cyBJIGhhdmUgY29tZSBhY3Jvc3MgYW4gcHJvYmxlbSB3aXRoIHRoZSBEVUMgUkZOb0MgYmxvY2sg
+ZnJvbSBnci1ldHR1cyB0aGF0IHdhcyBicm91Z2h0IHVwIGJhY2sgaW4gTm92ZW1iZXIuIFdoZW4g
+SSB0cnkgdHVubmluZyBteSBmbG93Z3JhcGgsIEkgZ2V0IHRoZSBmb2xsb3dpbmcgZXJyb3I6DQo8
+aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5h
+JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2s7YmFja2dyb3VuZDp3aGl0ZSI+aW5fX2luaXRf
+XyBzZWxmLmV0dHVzX3Jmbm9jX2R1Y18wKCBUeXBlRXJyb3I6IG1ha2UoKSB0YWtlcyA0IHBvc2l0
+aW9uYWwgYXJndW1lbnRzIGJ1dCA1IHdlcmUgZ2l2ZW48L3NwYW4+PC9pPjxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21z
+by1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48aT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
+dDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6YmxhY2s7
+YmFja2dyb3VuZDp3aGl0ZSI+Jm5ic3A7PC9zcGFuPjwvaT48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6
+d2hpdGUiPldoYXQgZG8gSSBuZWVkIHRvIGRvIHRvIGZpeCB0aGlzPzwvc3Bhbj48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNr
+O2JhY2tncm91bmQ6d2hpdGUiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6d2hp
+dGUiPkJlc3QgUmVnYXJkcyw8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5KZXJy
+aWQ8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+
+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNy
+cC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNl
+cnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3Rl
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+
+--_000_CO6PR19MB4801AE48CAF04BDB30765EF6C6759CO6PR19MB4801namp_--
+
+--===============7343155768447312938==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -189,4 +285,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---000000000000bc03c805bf677809--
+--===============7343155768447312938==--
