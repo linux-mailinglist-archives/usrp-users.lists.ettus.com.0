@@ -2,2465 +2,904 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CA2135B803
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 03:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D68735BB16
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 09:44:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 59B3F383FAC
-	for <lists+usrp-users@lfdr.de>; Sun, 11 Apr 2021 21:17:26 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=vectalabs-com.20150623.gappssmtp.com header.i=@vectalabs-com.20150623.gappssmtp.com header.b="Ah1xNoDx";
-	dkim-atps=neutral
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id AACDA383F88
-	for <usrp-users@lists.ettus.com>; Sun, 11 Apr 2021 21:16:37 -0400 (EDT)
-Received: by mail-vs1-f51.google.com with SMTP id t17so1299860vsq.12
-        for <usrp-users@lists.ettus.com>; Sun, 11 Apr 2021 18:16:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vectalabs-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kdhuttEx4zuhsK94LMYHEJtMUgturJqUDhjtD3Zyz+w=;
-        b=Ah1xNoDxBse/NGPZTOVqPmFRlK6/IjTn1+EOMmg/tQm7/CcIRA0Y1rUYrZNW8SoW/c
-         0Ek13lfjNz2KiLd7P6wye+nc//rb+7TC+yTsC4N3QrpHKrnoeniuh4+yoW+UWTxTYM5e
-         ftCP5OeeTxZbAdfPhT178P8OYBDOa8PHlPLAIX0a4xBwtqNcHg/cyQTpqEl1FDaMB5MJ
-         E3YrUH/CrMYaxW89x1sCb7EFbaXzCXepKtKE/C+YhyiuvWxE8SFROI/U0b5yfiR8zaOZ
-         Cv5S07kordiNRgQ0NOISEySUr5TJS6GaBQ9aJgcHqaPha8dGD9m/eR44Ub4imzm+a6ql
-         Lugg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kdhuttEx4zuhsK94LMYHEJtMUgturJqUDhjtD3Zyz+w=;
-        b=CnE2T0ruBzKNB7DIVazF1/brhPBUaGIDRyWEj24j5fDPDB+U58IT4Afsv0w9fASEXy
-         UH/4VquqS3dHKJu9a0rRBLYt0Y0JFawkKvXKoPNKFB6PYKavkS7FBMGaLoPMYeR03MwP
-         lP0TQOXHFXPujBPD51SvpwNvRlX51Y+oGRglFWPVlhpIjvd9p0+7RZXhJM5GAe8Ea1Qh
-         FuMfmnNx2Phx7ErohKqODJj63Cr6kGXA107itSqtk6Iq3gozpk951CploqLDtMrXj+Dn
-         0oe0YMNSKqXEf3tlAmlQdQgqI1P09eGdlmkTm1ZTsIzCsu2EikjkYgqiedXnBEWvMKB3
-         cHrg==
-X-Gm-Message-State: AOAM530nFaj/nTbQrEAF2GRS5HprMJInIK43Gr1zwscFRZnVkXzEhNbp
-	Utba6lf8SaOdnEvje+D3cO+7DpjZh+MM7r7BcHnoaw==
-X-Google-Smtp-Source: ABdhPJzKj8nOtR0jM1RPtu8v15VIwP+5mVWbpsIOK2ymA5Ka6mKoxvD6aHUbqRdORyennBxZ/Lh7s7yE5FuuKCas2aY=
-X-Received: by 2002:a05:6102:124a:: with SMTP id p10mr17859423vsg.17.1618190196789;
- Sun, 11 Apr 2021 18:16:36 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5645B3842BB
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 03:43:58 -0400 (EDT)
+Received: from dd22108.kasserver.com (dd22108.kasserver.com [85.13.141.232])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5B779383BC2
+	for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 03:43:12 -0400 (EDT)
+Received: from [192.168.2.23] (pd951e7c0.dip0.t-ipconnect.de [217.81.231.192])
+	by dd22108.kasserver.com (Postfix) with ESMTPSA id AF146442002D;
+	Mon, 12 Apr 2021 09:43:10 +0200 (CEST)
+From: Julian Arnold <julian@elitecoding.org>
+To: =?UTF-8?Q?Maria_Mu=c3=b1oz?= <mamuki92@gmail.com>
+References: <CAG16vQV7J1dnf+-v5pzUf6eTxn7SJYgPtHh03=Pchd5v_Ui54w@mail.gmail.com>
+ <29D4AD3E-11D9-42A0-A6C3-60D03ED19AE5@elitecoding.org>
+Message-ID: <7c1e57a9-6dbb-7473-479f-5fadadcd7d52@elitecoding.org>
+Date: Mon, 12 Apr 2021 09:43:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <22ad92d2d65441459dbe459751afc1de@boeing.com> <CALNMZ8UP0zYFyOmLa9g_r_eOfAjs8hVKSuYUoBuGmeWBZwj7rg@mail.gmail.com>
- <0283780d4734431b8ea74e6b03de304a@boeing.com>
-In-Reply-To: <0283780d4734431b8ea74e6b03de304a@boeing.com>
-From: Brendan Horsfield <brendan.horsfield@vectalabs.com>
-Date: Mon, 12 Apr 2021 11:16:25 +1000
-Message-ID: <CALNMZ8WDGoccHW+nHxbryn3t2=O9Rdp=ZBzMBVm2+ibxdnUd=g@mail.gmail.com>
-To: "Clark (US), Kenneth C" <kenneth.c.clark2@boeing.com>
-Message-ID-Hash: XMQBEQX5YPHJGKKLWXCICCDCDCIJ5V4N
-X-Message-ID-Hash: XMQBEQX5YPHJGKKLWXCICCDCDCIJ5V4N
-X-MailFrom: brendan.horsfield@vectalabs.com
+In-Reply-To: <29D4AD3E-11D9-42A0-A6C3-60D03ED19AE5@elitecoding.org>
+Content-Language: en-US
+Message-ID-Hash: EQHCN4O6KGZR6SLFGR2WXWSN45FNWDSM
+X-Message-ID-Hash: EQHCN4O6KGZR6SLFGR2WXWSN45FNWDSM
+X-MailFrom: julian@elitecoding.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXTERNAL] Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Python API
+Subject: [USRP-users] Re: Enable AGC in USRP E320 with RFNoC using GNURadio
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XMQBEQX5YPHJGKKLWXCICCDCDCIJ5V4N/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EQHCN4O6KGZR6SLFGR2WXWSN45FNWDSM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5885979639408268481=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============5885979639408268481==
-Content-Type: multipart/alternative; boundary="000000000000dbebac05bfbc43ca"
-
---000000000000dbebac05bfbc43ca
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Ken,
-
-Are you using a USRP B210, or something different?  If I try to record one
-second's worth of samples on my Raspberry Pi / B210 combo, I can barely
-achieve 8 Msps on one channel.  Changing the over-the-wire parameter from
-sc16 to sc8 allows me to achieve 15 Msps, but that's about it.
-
-I can think of a few possible explanations:
-
-   - I am using the Python API, while you are using the C++ API (shouldn't
-   make a big difference according to the Ettus Knowledge Base, but still..=
-.)
-   - You are using different transport parameters to me
-   (e.g. recv_frame_size, num_recv_frames)
-   - Your Linux buffer size settings are different to mine
-
-Note that if I reduce my recording time to 1 - 2 milliseconds (approx
-80,000 samples), I can achieve 50 Msps with almost zero dropped samples.
-This is more than enough for my application, but it would still be nice to
-know why I am not seeing the same performance as other users!  :)
-
-Cheers,
-Brendan.
-
-
-On Mon, Apr 12, 2021 at 10:17 AM Clark (US), Kenneth C <
-kenneth.c.clark2@boeing.com> wrote:
-
-> Brendan,
->
->
->
-> Most of my work has been done at 15 Msamp/sec, my observation at higher
-> rates was not based on a lot of testing.  I was just happy it worked at a=
-ll
-> above 20 Msamp/sec (aka it was really using USB-3).
->
->
->
-> Running some quick tests here, for one second long recordings, 40
-> Msamp/sec always drops something.  35 Msamp/sec mostly drops something.  =
-30
-> Msamp/sec mostly works, but does drop something a noticeable number of
-> times.
->
->
->
-> Playing with the recording duration, things are better with shorter
-> durations.  Which I guess if each samples has a 0.00001% of getting
-> dropped, then the longer the recording, the greater the chance for
-> something getting dropped.  And I suppose there is some operating system
-> file flush threshold that also kicks in?
->
->
->
-> I was probably a little optimistic in my performance report.  Again, I wa=
-s
-> just happy it worked at all at USB-3 rates.
->
->
->
-> I think there is also an option to record as 12-bit values, which as you
-> approach the rates of the A-to-D (which I think is in the 12-bit range?)
-> you are not really giving up anything, as there is not much DDC =E2=80=98=
-averaging=E2=80=99
-> to give you more bits of resolution.  I have not looked at that (12 bit
-> wire values), and I might be making that up.  I do see a =E2=80=9Csc8=E2=
-=80=9D wirefmt
-> option for the rx_samples_to_file, which runs at higher rates without
-> overflow.
->
->
->
-> Ken
->
->
->
-> *From:* Brendan Horsfield [mailto:brendan.horsfield@vectalabs.com]
-> *Sent:* Sunday, April 11, 2021 23:16
-> *To:* Clark (US), Kenneth C <kenneth.c.clark2@boeing.com>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* [EXTERNAL] Re: Problem with interfacing Raspberry Pi 4 to USRP
-> B210 with Python API
->
->
->
-> EXT email: be mindful of links/attachments.
->
->
->
->
-> Hi Ken,
->
->
->
-> When you say "I am able to reliably record above 20 Msps with the =E2=80=
-=98wire
-> format=E2=80=99 at 16-bit complex I&Q", do you mean that you can do this
-> indefinitely (or at least, up to the size of your RAM disk)?  Or is there=
- a
-> limit to how much data you can capture before you get an overrun?
->
->
->
-> I find I can reliably capture around 1MB of data at 50 Msps on one
-> channel, or 25 Msps on two channels.  However, if I try to capture more
-> than 1MB of data in one go, I get a stream of error messages.
->
->
->
-> Brendan.
->
->
->
->
->
-> On Tue, Apr 6, 2021 at 12:40 AM Clark (US), Kenneth C <
-> kenneth.c.clark2@boeing.com> wrote:
->
-> Brendan,
->
->
->
-> I am just using the =E2=80=98examples=E2=80=99 C/C++ builds.  I have not =
-used the python
-> modules.
->
->
->
-> I would think editing the CMake file would remove the need for the =E2=80=
-=93D flag.
->
->
->
-> I have had very good luck running a B205 USB-3 on a RPi-4-8GB.  Only a
-> couple of dependencies to install, which were documented on the Ettus UHD
-> website.
->
->
->
-> I did create a RAM-Drive, since the 8 GByte RAM has room for that.  And I
-> am able to reliably record above 20 Msps with the =E2=80=98wire format=E2=
-=80=99 at 16-bit
-> complex I&Q.  (No real reason to do 32-float, since the native samples ar=
-e
-> 16-bit I&Q in the FPGA on the B205, right?)
->
->
->
-> I use the =E2=80=98host examples=E2=80=99 in the latest 4.x version of UH=
-D.  And they are
-> pretty easy to modify.  I have adapted for things like using the 1-PPS, a=
-nd
-> doing times receive and transmit.
->
->
->
-> Ken
->
->
->
-> *From:* Brendan Horsfield [mailto:brendan.horsfield@vectalabs.com]
-> *Sent:* Sunday, April 4, 2021 01:35
-> *To:* Clark (US), Kenneth C <kenneth.c.clark2@boeing.com>
-> *Cc:* usrp-users@lists.ettus.com; patchvonbraun@gmail.com
-> *Subject:* [EXTERNAL] Re: [USRP-users] Re: Problem with interfacing
-> Raspberry Pi 4 to USRP B210 with Python API
->
->
->
-> EXT email: be mindful of links/attachments.
->
->
->
->
-> Thanks Ken.  As you suggested, I added -DCMAKE_EXE_LINKER_FLAGS=3D"-latom=
-ic"
-> to the CMake call.
->
->
->
-> The good news is that the UHD build & installation process completed
-> successfully.
->
->
->
-> The bad news is that when I try to import the uhd module in Python3, I
-> get the following error:
->
->
->
-> pi@raspberrypi:~ $ python3
-> Python 3.7.3 (default, Jan 22 2021, 20:04:44)
-> [GCC 8.3.0] on linux
-> Type "help", "copyright", "credits" or "license" for more information.
-> >>> import uhd
-> Traceback (most recent call last):
->   File "<stdin>", line 1, in <module>
->   File "/usr/local/lib/python3/dist-packages/uhd/__init__.py", line 10, i=
-n
-> <module>
->     from . import types
->   File "/usr/local/lib/python3/dist-packages/uhd/types.py", line 10, in
-> <module>
->     from . import libpyuhd as lib
-> ImportError: /usr/local/lib/libuhd.so.4.0.0: undefined symbol:
-> __atomic_fetch_add_8
-> >>>
->
->
->
-> Did you encounter this problem too?
->
->
->
-> I guess the next step is to hack the "CMakeLists.txt" files as per the
-> link you sent me.  Just to clarify one point first:  If I modify the
-> CMakeLists.txt files, do I still need to include
-> -DCMAKE_EXE_LINKER_FLAGS=3D"-latomic" in the CMake call?
->
->
->
-> Thanks,
->
-> Brendan.
->
->
->
->
->
->
->
-> On Sat, Apr 3, 2021 at 10:29 PM Clark (US), Kenneth C <
-> kenneth.c.clark2@boeing.com> wrote:
->
->
-> I had the same problem build UHD on RPi4
->
-> Answer here:
-> https://gitlab.kitware.com/cmake/cmake/-/issues/21174
->
-> Add to CMake call:
-> -DCMAKE_EXE_LINKER_FLAGS=3D"-latomic"
->
-> Regards,
->
-> Ken
->
->
-> -----Original Message-----
-> From: usrp-users-request@lists.ettus.com [mailto:
-> usrp-users-request@lists.ettus.com]
-> Sent: Saturday, April 3, 2021 11:13
-> To: usrp-users@lists.ettus.com
-> Subject: [EXTERNAL] USRP-users Digest, Vol 128, Issue 7
->
-> EXT email: be mindful of links/attachments.
->
->
->
-> Send USRP-users mailing list submissions to
->         usrp-users@lists.ettus.com
->
-> To subscribe or unsubscribe via email, send a message with subject or bod=
-y
-> 'help' to
->         usrp-users-request@lists.ettus.com
->
-> You can reach the person managing the list at
->         usrp-users-owner@lists.ettus.com
->
-> When replying, please edit your Subject line so it is more specific than
-> "Re: Contents of USRP-users digest..."
->
-> Today's Topics:
->
->    1. Re: Problem with interfacing Raspberry Pi 4 to USRP B210 with Pytho=
-n
-> API
->       (Brendan Horsfield)
->    2. Re: Intermittent problem with GPS synchronization for multiple E310
-> units
->       (Ofer Saferman)
->
->
-> ----------------------------------------------------------------------
->
-> Message: 1
-> Date: Sat, 3 Apr 2021 21:07:59 +1000
-> From: Brendan Horsfield <brendan.horsfield@vectalabs.com>
-> Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to
->         USRP B210 with Python API
-> To: Marcus D Leech <patchvonbraun@gmail.com>
-> Cc: USRP-users@lists.ettus.com
-> Message-ID:
->         <
-> CALNMZ8Wg3gQnkAomrhhCBPAGtTfUbm3fkMzJhCWhUAgHrLuzyA@mail.gmail.com>
-> Content-Type: multipart/alternative;
->         boundary=3D"000000000000dc3aeb05bf0f7ace"
->
-> Hi Marcus,
->
-> I have tried your suggestion, but unfortunately without success:
->
-> Per your advice, I have edited the file "cmake.lwt" in the folder
-> /usr/local/lib/python3.7/dist-packages/pybombs/templates to include the
-> option "-DENABLE_PYTHON_API=3DON" in the calls to cmake.  The modified
-> commands are as follows:
->
-> configure: cmake .. -DENABLE_PYTHON_API=3DON
-> -DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix
-> $config_opt -Wno-dev
-> configure_static: cmake .. -DENABLE_PYTHON_API=3DON
-> -DCMAKE_BUILD_TYPE=3D$cmakebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix
-> -DENABLE_STATIC_LIBS=3DTrue $config_opt
->
-> I removed the previous UHD installation and re-ran "pybombs install uhd",
-> but the end result was much the same:  the installation process completed
-> without errors, but the Python API was not included in the installation.
->
-> QUESTION 1:  Can you tell me if PyBOMBS actually builds the UHD driver
-> from source, or does it simply copy a pre-compiled binary onto my system?
-> The reason I ask is that PyBOMBS is quite quick to install the UHD driver=
-,
-> whereas the non-PyBOMBS approach is VERY slow (i.e. around 60 minutes to
-> get to 53%, at which point it crashes out with an error).
->
-> QUESTION 2:  This whole process feels more difficult than it should be.
-> Why isn't the Python API installed with the UHD driver by default?  Would
-> I be better off using another language (like C++) to control the USRP?
->
-> Thanks,
-> Brendan.
->
->
->
-> On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech <patchvonbraun@gmail.com>
-> wrote:
->
-> > Perhaps look at the PyBombs recipe for your platform=E2=80=94there=E2=
-=80=99s probably
-> > a compiler flag that needs to be set that you=E2=80=99re missing, but I=
- don=E2=80=99t
-> > know what that is.
-> >
-> > Also, in general, you don=E2=80=99t need to become root to compile and =
-build
-> > code=E2=80=94only needed during the =E2=80=9Cmake install=E2=80=9D
-> >
-> >
-> >
-> > Sent from my iPhone
-> >
-> > On Apr 2, 2021, at 7:19 AM, Brendan Horsfield <
-> > brendan.horsfield@vectalabs.com> wrote:
-> >
-> > =EF=BB=BF
-> > Hi Folks,
-> >
-> > I would like to interface my Raspberry Pi 4 to a USRP B210 via the
-> > Python API.  This requires the UHD driver to be built from source.
-> > Unfortunately, whenever I try this I encounter some errors that stop
-> > the build process in its tracks.
-> >
-> > Details of the error are as follows:
-> >
-> > [ 53%] Linking CXX executable test_clock_synch
-> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
-> > `__atomic_compare_exchange_8'
-> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
-> > `__atomic_load_8'
-> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
-> > `__atomic_store_8'
-> > /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
-> > `__atomic_fetch_add_8'
-> > collect2: error: ld returned 1 exit status
-> > make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95:
-> > examples/test_clock_synch] Error 1
-> > make[1]: *** [CMakeFiles/Makefile2:1039:
-> > examples/CMakeFiles/test_clock_synch.dir/all] Error 2
-> > make: *** [Makefile:163: all] Error 2
-> >
-> > The process I have been using is as follows:
-> >
-> > STEP 1:  INSTALL DEPENDENCIES
-> > sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen
-> > python3-docutils python3-mako python3-numpy python3-requests
-> > python3-ruamel.yaml python3-setuptools cmake build-essential
-> >
-> > STEP 2:  BUILD UHD DRIVER FROM SOURCE
-> > cd /home/pi
-> > mkdir workarea-uhd
-> > cd workarea-uhd
-> > git clone https://github.com/EttusResearch/uhd
-> > cd uhd
-> > git checkout v4.0.0.0
-> > cd host
-> > mkdir build
-> > cd build
-> > sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../ sudo m=
-ake
-> > --->  (ERRORS OCCUR DURING "MAKE" PROCESS)
-> >
-> > My system configuration is as follows:
-> > Hardware: Raspberry Pi 4 Model B Rev 1.4
-> > OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l) Ettus USRP B210
-> >
-> > Does anyone know what the problem could be, and how I can resolve it?
-> >
-> > One final note:  Using PyBOMBS, I was able to successfully build &
-> > install the UHD driver and connect to the USRP.  Unfortunately the
-> > PyBOMBS build does not include the Python API, which is what I really
-> > want.  Is there a different version of the PyBOMBS build that includes
-> the Python API?
-> >
-> > Thanks & Regards,
-> > Brendan.
-> >
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe
-> > send an email to usrp-users-leave@lists.ettus.com
-> >
-> >
-> -------------- next part --------------
-> A message part incompatible with plain text digests has been removed ...
-> Name: not available
-> Type: text/html
-> Size: 5624 bytes
-> Desc: not available
->
-> ------------------------------
->
-> Message: 2
-> Date: Sat, 3 Apr 2021 14:12:35 +0300
-> From: Ofer Saferman <ofer@navigicom.com>
-> Subject: [USRP-users] Re: Intermittent problem with GPS
->         synchronization for multiple E310 units
-> To: usrp-users <usrp-users@lists.ettus.com>
-> Message-ID:
->         <CACDReSwXUvJ8_LimfVOn4StHQEGhNntY-nCSv0aYdBsX=3D
-> AtV_w@mail.gmail.com>
-> Content-Type: multipart/alternative;
->         boundary=3D"000000000000566d1705bf0f8b0e"
->
-> Hello Philip,
->
-> Thank you for the explanation.
-> What would you suggest?
-> opkg exists. There must be a way to install ntpd without needing to
-> rebuild the image.
-> Maybe use pybombs or other methods?
-> git also works. Maybe download a different package manager and compile it=
-?
->
-> It seems that Marcus pointed out a great benefit of E310 units running
-> gpsd, but without ntpd system clock can't sync and it seems that this
-> feature can vastly simplify gps synchronization among E310 units.
->
-> I would be very grateful if anybody can suggest a solution to install ntp=
-d
-> on E310 units running UHD 3.15 SD-card image.
->
-> Regards,
-> Ofer Saferman.
->
-> On Sat, Apr 3, 2021 at 10:30 AM <usrp-users-request@lists.ettus.com>
-> wrote:
->
-> > Send USRP-users mailing list submissions to
-> >         usrp-users@lists.ettus.com
-> >
-> > To subscribe or unsubscribe via email, send a message with subject or
-> > body 'help' to
-> >         usrp-users-request@lists.ettus.com
-> >
-> > You can reach the person managing the list at
-> >         usrp-users-owner@lists.ettus.com
-> >
-> > When replying, please edit your Subject line so it is more specific
-> > than "Re: Contents of USRP-users digest..."Today's Topics:
-> >
-> >    1. Re: Intermittent problem with GPS synchronization for multiple
-> > E310 units
-> >       (Philip Balister)
-> >
-> >
-> >
-> > ---------- Forwarded message ----------
-> > From: Philip Balister <philip@balister.org>
-> > To: Ofer Saferman <ofer@navigicom.com>, "Marcus D. Leech" <
-> > patchvonbraun@gmail.com>
-> > Cc: Rob Kossler <rkossler@nd.edu>, usrp-users
-> > <usrp-users@lists.ettus.com>
-> > Bcc:
-> > Date: Fri, 2 Apr 2021 10:09:43 -0400
-> > Subject: [USRP-users] Re: Intermittent problem with GPS
-> > synchronization for multiple E310 units On 4/2/21 7:17 AM, Ofer
-> > Saferman wrote:
-> > > Marcus Hi,
-> > >
-> > > Your suggestion below to install ntpd does not work.
-> > > The image does not include it. Although the old thread says
-> > > otherwise I think it refers to an older UHD release that did include
-> ntpd.
-> > > Any accurate instructions on how to install it anyway?
-> > > Maybe opkg should be configured to access another repository?
-> > > Doing: opkg list | grep ntpd, does not yield anything useful so it
-> > > is not just a question of typing it correctly.
-> >
-> > As far as I know, no image has been setup to use package feeds.
-> >
-> > I know ntpd worked in release4 images, pretty sure the newer image was
-> > redone and things have been left out that used to be there.
-> >
-> > Philip
-> >
-> > >
-> > > Regards,
-> > > Ofer Saferman
-> > >
-> > > On Thu, Apr 1, 2021 at 4:34 PM Marcus D. Leech
-> > > <patchvonbraun@gmail.com>
-> > > wrote:
-> > >
-> > >> On 04/01/2021 06:00 AM, Ofer Saferman wrote:
-> > >>
-> > >> Hello Marcus,
-> > >>
-> > >> I am working on E310 with the latest UHD-3.15 SD card image.
-> > >> It seems not to include ntpd that is required to synchronize system
-> > >> time to GPS time.
-> > >> Any idea how to install it on the E310?
-> > >>
-> > >> Regards,
-> > >> Ofer Saferman
-> > >>
-> > >> sudo opkg install ntpd
-> > >>
-> > >> should work, but it has been a while since I installed any packages
-> > >> on
-> > my
-> > >> E310.
-> > >>
-> > >> The E310 is based on OpenEmbedded Linux, so all the info about
-> > installing
-> > >> and managing packages on OpenEmbedded apply.
-> > >>
-> > >>
-> > >>
-> > >> On Wed, Mar 31, 2021 at 11:40 PM Marcus D Leech <
-> > patchvonbraun@gmail.com>
-> > >> wrote:
-> > >>
-> > >>> Just use gettimeofday() or any of the myriad subtle variants
-> > >>> available
-> > in
-> > >>> boost to get you the Linux system time, and use that in a call to
-> > >>> set_time_next_pps().
-> > >>>
-> > >>> The fact that all your E310s will be running GPSD means they=E2=80=
-=99ll be
-> > >>> adjusting system time appropriately and they=E2=80=99ll all agree o=
-n what
-> > >>> time
-> > it
-> > >>> is, depending on the level of precision you need.
-> > >>>
-> > >>> Sent from my iPhone
-> > >>>
-> > >>> On Mar 31, 2021, at 3:50 PM, Ofer Saferman <ofer@navigicom.com>
-> wrote:
-> > >>>
-> > >>> =EF=BB=BF
-> > >>> Thank you Rob. Your suggestions are always helpful. I will look
-> > >>> into using gps_gpgga.
-> > >>> Thank you Marcus. I am already adding one, per other examples
-> > >>> posted
-> > here
-> > >>> and sync_to_gps example. Can you please comment how I can benefit
-> > >>> from
-> > the
-> > >>> fact that E310 units use gpsd in Linux?
-> > >>>
-> > >>> Regards,
-> > >>> Ofer Saferman
-> > >>>
-> > >>> On Wed, Mar 31, 2021 at 10:13 PM Marcus D Leech <
-> > patchvonbraun@gmail.com>
-> > >>> wrote:
-> > >>>
-> > >>>>
-> > >>>>
-> > >>>> Sent from my iPhone
-> > >>>>
-> > >>>> On Mar 31, 2021, at 2:22 PM, Rob Kossler <rkossler@nd.edu> wrote:
-> > >>>>
-> > >>>> =EF=BB=BF
-> > >>>> Hi Ofer,
-> > >>>> Take a look at the Ettus source code gps_ctrl.cpp.  In
-> > >>>> particular,
-> > look
-> > >>>> at the get_sentence() usage which in the case of "gps_time" waits
-> > >>>> for
-> > the
-> > >>>> next occurrence (wait=3Dtrue),  but for the others does not wait.
-> > >>>> But
-> > this
-> > >>>> doesn't fully explain the behavior you are seeing.  If you do the
-> > following:
-> > >>>> 1) wait for PPS time to change
-> > >>>> 2) read the "gps_time" sensor
-> > >>>> 3) set_time_next_pps (use the value you just read)
-> > >>>>
-> > >>>> Add 1 to the time you just read before calling set_time_next_pps.
-> > >>>>
-> > >>>>
-> > >>>> It should still work because the "gps_time" command should just
-> > >>>> wait until the next PPS.  I guess it depends upon how
-> > >>>> "synchronized" are
-> > the
-> > >>>> received NMEA string with the PPS edge.  Step 1 above waits for
-> > >>>> the
-> > PPS
-> > >>>> edge, but maybe the NMEA string arrives 0.1 secs before or after
-> > that.  I
-> > >>>> don't really know.  Perhaps you need to switch to using "gps_gpgga=
-"
-> > such
-> > >>>> that there is no additional wait added and also perhaps you
-> > >>>> should
-> > add step
-> > >>>> 1B which would be just a fixed delay of perhaps 0.4 secs so that
-> > >>>> you
-> > will
-> > >>>> read the NMEA string in between the PPS edges.
-> > >>>> Rob
-> > >>>>
-> > >>>> On Wed, Mar 31, 2021 at 1:22 PM Rob Kossler <rkossler@nd.edu>
-> wrote:
-> > >>>>
-> > >>>>> Hi Ofer,
-> > >>>>> I don't know why the "gps_time" sensor takes long to read. But,
-> > >>>>> can
-> > you
-> > >>>>> try the other sensors (perhaps there is a "gps_gpgga" sensor?)?
-> > >>>>> The
-> > time
-> > >>>>> is embedded in these as well.
-> > >>>>> Rob
-> > >>>>>
-> > >>>>>
-> > >>>>> On Wed, Mar 31, 2021 at 12:21 PM Ofer Saferman
-> > >>>>> <ofer@navigicom.com>
-> > >>>>> wrote:
-> > >>>>>
-> > >>>>>> Marcus Hi,
-> > >>>>>>
-> > >>>>>> If the gps_time "sensor" returns a value only once per second
-> > >>>>>> how
-> > come
-> > >>>>>> I manage to read it sometimes in less than 1 second?
-> > >>>>>> In my code the situation is worse than the simple example
-> > >>>>>> below. It usually takes more than 1 sec. to read it and
-> > >>>>>> sometimes even 1.7 or
-> > 1.8
-> > >>>>>> seconds. I don't understand how the size or complexity of the
-> > >>>>>> code
-> > affects
-> > >>>>>> the time it takes to read gps_time.
-> > >>>>>>
-> > >>>>>> How to treat your comment about the use of GPSD and good
-> > >>>>>> synchronization as it relates to code?
-> > >>>>>> Should I not change the time source in code and go through the
-> > >>>>>> whole process of synchronization using gps_time?
-> > >>>>>> Can I "assume" the systems are synced just by the effect they
-> > >>>>>> were connected enough time to a GPS antenna? and then just
-> > >>>>>> access their
-> > time -
-> > >>>>>> radio_ctrl->get_time_last_pps()?
-> > >>>>>> How to use this information programmatically?
-> > >>>>>>
-> > >>>>>> Regards,
-> > >>>>>> Ofer Saferman
-> > >>>>>>
-> > >>>>>>
-> > >>>>>> ---------- Forwarded message ----------
-> > >>>>>>> From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-> > >>>>>>> To: usrp-users@lists.ettus.com
-> > >>>>>>> Cc:
-> > >>>>>>> Bcc:
-> > >>>>>>> Date: Wed, 31 Mar 2021 09:19:20 -0400
-> > >>>>>>> Subject: [USRP-users] Re: Intermittent problem with GPS
-> > >>>>>>> synchronization for multiple E310 units On 03/31/2021 06:49
-> > >>>>>>> AM, Ofer Saferman wrote:
-> > >>>>>>>> Hello,
-> > >>>>>>>>
-> > >>>>>>>> I have a system that uses 4 USRP E310 units.
-> > >>>>>>>> Each unit is connected to a GPS antenna.
-> > >>>>>>>> Time source is set to gpsdo.
-> > >>>>>>>>
-> > >>>>>>>> I run the same software remotely on all 4 units from a PC.
-> > Software
-> > >>>>>>>> runs on the units themselves.
-> > >>>>>>>> I print out messages to show if the reference is locked and
-> > >>>>>>>> the
-> > GPS
-> > >>>>>>> is
-> > >>>>>>>> locked and also what is the GPS time that each unit was
-> > >>>>>>> synchronized to.
-> > >>>>>>>> In some cases the units synchronize to the same GPS time and
-> > >>>>>>>> in
-> > >>>>>>> other
-> > >>>>>>>> cases there is 1 second difference between GPS time of
-> > >>>>>>>> different
-> > >>>>>>> units
-> > >>>>>>>> thus causing the units to be unsynchronized.
-> > >>>>>>>>
-> > >>>>>>>> I was wondering how this was possible.
-> > >>>>>>>> The synchronization process (documented by others in the past
-> > >>>>>>>> on
-> > >>>>>>> the
-> > >>>>>>>> mailing list) is:
-> > >>>>>>>> * Wait for ref and GPS lock
-> > >>>>>>>> * Wait for a pps edge (get_time_last_pps)
-> > >>>>>>>> * Read gps_time value
-> > >>>>>>>> * Sync system clock to GPS clock on next PPS edge
-> > >>>>>>> (set_time_next_pps +
-> > >>>>>>>> 1.0 sec)
-> > >>>>>>>>
-> > >>>>>>>> Something similar is also implemented in the sync_to_gps
-> example.
-> > >>>>>>>>
-> > >>>>>>>> In order to debug the problem I decided to time the reading
-> > >>>>>>>> of the gps_time sensor to see if there is a clue why
-> > >>>>>>>> different units miss
-> > >>>>>>> the
-> > >>>>>>>> PPS edge and lock to a time of the next second.
-> > >>>>>>>>
-> > >>>>>>>> I was very surprised to find out that it takes between 0.9 to
-> > >>>>>>>> 1.2 seconds to read the gps_time sensor.
-> > >>>>>>>> This explains exactly why it is difficult to synchronize
-> > >>>>>>>> multiple units to the same time instance because if one unit
-> > >>>>>>>> takes 0.9
-> > >>>>>>> seconds
-> > >>>>>>>> to read the sensor and the other unit takes 1.2 seconds to
-> > >>>>>>>> read
-> > the
-> > >>>>>>>> sensor then each unit will lock on a different GPS time 1
-> > >>>>>>>> second
-> > >>>>>>> apart.
-> > >>>>>>>>
-> > >>>>>>>> Here is a short software I wrote to time the gps_time sensor
-> > >>>>>>> reading:
-> > >>>>>>>> ---------------------------------------------------------
-> > >>>>>>>> #include <uhd/utils/safe_main.hpp> #include <uhd/device3.hpp>
-> > >>>>>>>> //#include <uhd/usrp/multi_usrp.hpp> #include
-> > >>>>>>>> <uhd/types/sensors.hpp> #include <boost/program_options.hpp>
-> > >>>>>>>> #include <boost/format.hpp> #include <chrono> #include
-> > >>>>>>>> <iostream>
-> > >>>>>>>>
-> > >>>>>>>> namespace po =3D boost::program_options;
-> > >>>>>>>>
-> > >>>>>>>> int UHD_SAFE_MAIN(int argc, char *argv[]){
-> > >>>>>>>>
-> > >>>>>>>> std::string args;
-> > >>>>>>>>
-> > >>>>>>>>     po::options_description desc("Allowed options");
-> > >>>>>>>>     desc.add_options()
-> > >>>>>>>>         ("help", "help message") ("args",
-> > >>>>>>>> po::value<std::string>(&args)->default_value(""), "device
-> > >>>>>>>> address args")
-> > >>>>>>>>     ;
-> > >>>>>>>>
-> > >>>>>>>>     po::variables_map vm;
-> > >>>>>>>>     po::store(po::parse_command_line(argc, argv, desc), vm);
-> > >>>>>>>>     po::notify(vm);
-> > >>>>>>>>
-> > >>>>>>>>     //print the help message
-> > >>>>>>>>     if (vm.count("help")){
-> > >>>>>>>>         std::cout << boost::format("Timinig of gps_time: %s")
-> > >>>>>>>> %
-> > >>>>>>> desc
-> > >>>>>>>> << std::endl;
-> > >>>>>>>>         return ~0;
-> > >>>>>>>>     }
-> > >>>>>>>>
-> > >>>>>>>> uhd::device3::sptr usrp =3D uhd::device3::make(args);
-> > >>>>>>>> //uhd::usrp::multi_usrp::sptr usrp =3D
-> > >>>>>>> uhd::usrp::multi_usrp::make(args);
-> > >>>>>>>>
-> > >>>>>>>> uhd::sensor_value_t gps_time =3D
-> > >>>>>>>>
-> > >>>>>>>
-> > usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_
-> > usrp->time").get();
-> > >>>>>>>> //uhd::sensor_value_t gps_time =3D
-> > >>>>>>> usrp->get_mboard_sensor("gps_time", 0);
-> > >>>>>>>>
-> > >>>>>>>> std::chrono::steady_clock::time_point start_time, end_time;
-> > >>>>>>>> std::chrono::duration<double> time_diff; // Default unit for
-> > >>>>>>> duration
-> > >>>>>>>> is seconds.
-> > >>>>>>>>
-> > >>>>>>>> for(int ii=3D0 ; ii<20 ; ii++)
-> > >>>>>>>> {
-> > >>>>>>>> start_time =3D std::chrono::steady_clock::now(); gps_time =3D
-> > >>>>>>>>
-> > >>>>>>>
-> > usrp->get_tree()->access<uhd::sensor_value_t>("/mboards/0/sensors/gps_
-> > usrp->time").get();
-> > >>>>>>>> //gps_time =3D usrp->get_mboard_sensor("gps_time", 0); end_tim=
-e
-> > >>>>>>>> =3D std::chrono::steady_clock::now(); time_diff =3D end_time -
-> > >>>>>>>> start_time;
-> > >>>>>>>>
-> > >>>>>>>> std::cout << "gps_time[" << (boost::format("%02d") % ii) << "]=
-:
-> "
-> > >>>>>>> <<
-> > >>>>>>>> int64_t(gps_time.to_int()) << ". Time to read \"gps_time\": "
-> > >>>>>>>> <<
-> > >>>>>>>> (boost::format("%0.9f") % time_diff.count()) << " seconds" <<
-> > >>>>>>> std::endl;
-> > >>>>>>>> }
-> > >>>>>>>>
-> > >>>>>>>>     return 0;
-> > >>>>>>>> }
-> > >>>>>>>>
-> > >>>>>>>
-> > ----------------------------------------------------------------------
-> > ----------
-> > >>>>>>>> Here are the results of one typical run:
-> > >>>>>>>> gps_time[00]: 1617183840. Time to read "gps_time":
-> > >>>>>>>> 0.884164380
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[01]: 1617183841. Time to read "gps_time":
-> > >>>>>>>> 0.877966469
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[02]: 1617183842. Time to read "gps_time":
-> > >>>>>>>> 1.170869661
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[03]: 1617183843. Time to read "gps_time":
-> > >>>>>>>> 0.882917987
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[04]: 1617183844. Time to read "gps_time":
-> > >>>>>>>> 1.172120154
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[05]: 1617183845. Time to read "gps_time":
-> > >>>>>>>> 0.879271985
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[06]: 1617183846. Time to read "gps_time":
-> > >>>>>>>> 0.878609099
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[07]: 1617183847. Time to read "gps_time":
-> > >>>>>>>> 1.115639282
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[08]: 1617183848. Time to read "gps_time":
-> > >>>>>>>> 1.125365551
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[09]: 1617183849. Time to read "gps_time":
-> > >>>>>>>> 0.843803231
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[10]: 1617183850. Time to read "gps_time":
-> > >>>>>>>> 1.125065740
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[11]: 1617183851. Time to read "gps_time":
-> > >>>>>>>> 0.847519817
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[12]: 1617183852. Time to read "gps_time":
-> > >>>>>>>> 1.121398945
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[13]: 1617183853. Time to read "gps_time":
-> > >>>>>>>> 0.844371533
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[14]: 1617183854. Time to read "gps_time":
-> > >>>>>>>> 1.124722726
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[15]: 1617183855. Time to read "gps_time":
-> > >>>>>>>> 0.845688380
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[16]: 1617183856. Time to read "gps_time":
-> > >>>>>>>> 1.129568096
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[17]: 1617183857. Time to read "gps_time":
-> > >>>>>>>> 0.882436229
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[18]: 1617183858. Time to read "gps_time":
-> > >>>>>>>> 1.168227593
-> > >>>>>>> seconds
-> > >>>>>>>> gps_time[19]: 1617183859. Time to read "gps_time":
-> > >>>>>>>> 0.881948247
-> > >>>>>>> seconds
-> > >>>>>>>>
-> > >>>>>>>
-> > ----------------------------------------------------------------------
-> > -------------
-> > >>>>>>>> In the code you can find commented out the usual way to
-> > >>>>>>>> access the sensor using multi_usrp and get_mboard_sensor. The
-> > >>>>>>>> results are
-> > >>>>>>> quite
-> > >>>>>>>> similar.
-> > >>>>>>>>
-> > >>>>>>>> I wonder if anybody encountered this issue before or
-> > >>>>>>>> addressed it
-> > >>>>>>> in
-> > >>>>>>>> any way.
-> > >>>>>>>> I wonder why it takes so much time to get the value of GPS
-> > >>>>>>>> time
-> > >>>>>>> when
-> > >>>>>>>> it is a simple parsing of an NMEA message coming from the GPS
-> > >>>>>>> receiver.
-> > >>>>>>>>
-> > >>>>>>>> I am trying now various tricks to make the software robust
-> > >>>>>>>> and
-> > >>>>>>> immune
-> > >>>>>>>> to this phenomenon. I can report my findings further if I
-> > >>>>>>>> succeed
-> > >>>>>>> to
-> > >>>>>>>> find a workaround if there is any interest.
-> > >>>>>>>>
-> > >>>>>>>> Can anyone comment on this? Can this be resolved so that the
-> > >>>>>>> reading
-> > >>>>>>>> of gps_time will be much faster?
-> > >>>>>>>> Is there another way to get GPS time faster indirectly? Maybe
-> > >>>>>>>> from parsing NMEA messages ourselves?
-> > >>>>>>>>
-> > >>>>>>>> Regards,
-> > >>>>>>>> Ofer Saferman
-> > >>>>>>>>
-> > >>>>>>> This probably has to do with the way that particular "sensor"
-> > >>>>>>> works--the
-> > >>>>>>> NMEA time value is only emitted once per second, and the
-> > >>>>>>>    code for that sensor has some heuristic for determining
-> > >>>>>>> "freshness"
-> > >>>>>>> of the value.
-> > >>>>>>>
-> > >>>>>>> I'll point out that on E310, the system is configured to use
-> > >>>>>>> GPSD,
-> > so
-> > >>>>>>> that the Linux system time across several systems that have
-> > >>>>>>> all
-> > been
-> > >>>>>>>    "listening" to GPS for a while will all be synchronized
-> > >>>>>>> quite
-> > well.
-> > >>>>>>>
-> > >>>>>>>
-> > >>>>>>>
-> > >>>>>>>
-> > >>>>>> --
-> > >>>>>> This message has been scanned for viruses and dangerous content
-> > >>>>>> by *MailScanner* <http://www.mailscanner.info/>, and is
-> > >>>>>> believed to be clean.
-> > _______________________________________________
-> > >>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com To
-> > >>>>>> unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> > >>>>>>
-> > >>>>> _______________________________________________
-> > >>>> USRP-users mailing list -- usrp-users@lists.ettus.com To
-> > >>>> unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> > >>>>
-> > >>>>
-> > >>> --
-> > >>> This message has been scanned for viruses and dangerous content by
-> > >>> *MailScanner* <http://www.mailscanner.info/>, and is believed to
-> > >>> be clean.
-> > >>>
-> > >>>
-> > >> --
-> > >> This message has been scanned for viruses and dangerous content by
-> > >> *MailScanner* <http://www.mailscanner.info/>, and
-> > is
-> > >> believed to be clean.
-> > >>
-> > >>
-> > >>
-> > >
-> > >
-> > > _______________________________________________
-> > > USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe
-> > > send an email to usrp-users-leave@lists.ettus.com
-> > > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe
-> > send an email to usrp-users-leave@lists.ettus.com
-> >
->
-> --
-> This message has been scanned for viruses and dangerous content by
-> MailScanner, and is believed to be clean.
->
-> -------------- next part --------------
-> A message part incompatible with plain text digests has been removed ...
-> Name: not available
-> Type: text/html
-> Size: 27834 bytes
-> Desc: not available
->
-> ------------------------------
->
-> Subject: Digest Footer
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe send
-> an email to usrp-users-leave@lists.ettus.com
->
->
-> ------------------------------
->
-> End of USRP-users Digest, Vol 128, Issue 7
-> ******************************************
->
->
-
---000000000000dbebac05bfbc43ca
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Ken,=C2=A0<div><br></div><div>Are you using a USRP B210, o=
-r something different?=C2=A0 If I try to record one second&#39;s=C2=A0worth=
- of samples on my Raspberry Pi / B210 combo, I can barely achieve=C2=A08 Ms=
-ps on one channel.=C2=A0 Changing the over-the-wire parameter from sc16 to =
-sc8 allows me to achieve 15 Msps, but that&#39;s about it.<div><br></div><d=
-iv>I can think of a few possible explanations:<br></div><div><ul><li>I am u=
-sing the Python API, while you are using the C++ API (shouldn&#39;t make a =
-big difference according to the Ettus Knowledge Base, but still...)</li><li=
->You are using different transport parameters to me (e.g.=C2=A0recv_frame_s=
-ize,=C2=A0num_recv_frames)</li><li>Your Linux buffer size settings are diff=
-erent to mine</li></ul><div><div>Note that if I reduce my recording time to=
- 1 - 2 milliseconds (approx 80,000 samples), I can achieve 50 Msps with alm=
-ost zero=C2=A0dropped samples.=C2=A0 This is more than enough for my applic=
-ation, but it would still be nice to know why I am not seeing the same perf=
-ormance as other users!=C2=A0 :)</div><div><br></div><div>Cheers,</div><div=
->Brendan.</div><div><br></div><div></div></div></div></div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 12, =
-2021 at 10:17 AM Clark (US), Kenneth C &lt;<a href=3D"mailto:kenneth.c.clar=
-k2@boeing.com" target=3D"_blank">kenneth.c.clark2@boeing.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Brendan,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Most of my work has been done at 15 Msamp/se=
-c, my observation at higher rates was not based on a lot of testing.=C2=A0 =
-I was just happy it worked at all above 20 Msamp/sec
- (aka it was really using USB-3).<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Running some quick tests here, for one secon=
-d long recordings, 40 Msamp/sec always drops something.=C2=A0 35 Msamp/sec =
-mostly drops something.=C2=A0 30 Msamp/sec mostly
- works, but does drop something a noticeable number of times.<u></u><u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Playing with the recording duration, things =
-are better with shorter durations.=C2=A0 Which I guess if each samples has =
-a 0.00001% of getting dropped, then the longer
- the recording, the greater the chance for something getting dropped.=C2=A0=
- And I suppose there is some operating system file flush threshold that als=
-o kicks in?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">I was probably a little optimistic in my per=
-formance report.=C2=A0 Again, I was just happy it worked at all at USB-3 ra=
-tes.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">I think there is also an option to record as=
- 12-bit values, which as you approach the rates of the A-to-D (which I thin=
-k is in the 12-bit range?) you are not
- really giving up anything, as there is not much DDC =E2=80=98averaging=E2=
-=80=99 to give you more bits of resolution.=C2=A0 I have not looked at that=
- (12 bit wire values), and I might be making that up.=C2=A0 I do see a =E2=
-=80=9Csc8=E2=80=9D wirefmt option for the rx_samples_to_file, which runs at
- higher rates without overflow.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Ken<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibri=
-,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cali=
-bri,sans-serif"> Brendan Horsfield [mailto:<a href=3D"mailto:brendan.horsfi=
-eld@vectalabs.com" target=3D"_blank">brendan.horsfield@vectalabs.com</a>]
-<br>
-<b>Sent:</b> Sunday, April 11, 2021 23:16<br>
-<b>To:</b> Clark (US), Kenneth C &lt;<a href=3D"mailto:kenneth.c.clark2@boe=
-ing.com" target=3D"_blank">kenneth.c.clark2@boeing.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Subject:</b> [EXTERNAL] Re: Problem with interfacing Raspberry Pi 4 to U=
-SRP B210 with Python API<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<table border=3D"0" cellpadding=3D"0">
-<tbody>
-<tr>
-<td style=3D"background:white;padding:0.75pt">
-<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" widt=
-h=3D"100%" style=3D"width:100%;margin-left:0.75pt;margin-right:0.75pt">
-<tbody>
-<tr>
-<td style=3D"background:rgb(145,10,25);padding:5.25pt 1.5pt"></td>
-<td width=3D"100%" style=3D"width:100%;background:rgb(253,242,244);padding:=
-5.25pt 3.75pt 5.25pt 11.25pt">
-<div>
-<p class=3D"MsoNormal">
-<span style=3D"font-size:10pt;font-family:Verdana,sans-serif;color:rgb(33,3=
-3,33)">EXT email: be mindful of links/attachments.</span><u></u><u></u></p>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<pre><span style=3D"color:black"><br>=C2=A0<u></u><u></u></span></pre>
-</td>
-</tr>
-</tbody>
-</table>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">Hi Ken,<u></u><u></u></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">When you say &quot;I am able to reliably record above 20 Msps wit=
-h the =E2=80=98wire format=E2=80=99 at 16-bit complex I&amp;Q&quot;, do you=
- mean that you can do this indefinitely (or at least, up to the
- size of your RAM disk)?=C2=A0 Or is there a limit to how much data you can=
- capture before you get an overrun?<u></u><u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">I find I can reliably capture around 1MB of data at 50 Msps on on=
-e channel, or 25 Msps on two channels.=C2=A0 However, if I try to capture m=
-ore than 1MB of data in one go, I get
- a stream of error messages.<u></u><u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">Brendan.<u></u><u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif"><u></u>=C2=A0<u></u></span></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">On Tue, Apr 6, 2021 at 12:40 AM Clark (US), Kenneth C &lt;<a href=
-=3D"mailto:kenneth.c.clark2@boeing.com" target=3D"_blank">kenneth.c.clark2@=
-boeing.com</a>&gt; wrote:<u></u><u></u></span></p>
-</div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
-order-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:4=
-.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Brendan,</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">I am just using the =E2=80=98examples=E2=80=
-=99 C/C++ builds.=C2=A0 I have not used the python modules.</span><u></u><u=
-></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">I would think editing the CMake file would r=
-emove the need for the =E2=80=93D flag.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">I have had very good luck running a B205 USB=
--3 on a RPi-4-8GB.=C2=A0 Only a couple of dependencies to install,
- which were documented on the Ettus UHD website.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">I did create a RAM-Drive, since the 8 GByte =
-RAM has room for that.=C2=A0 And I am able to reliably record
- above 20 Msps with the =E2=80=98wire format=E2=80=99 at 16-bit complex I&a=
-mp;Q.=C2=A0 (No real reason to do 32-float, since the native samples are 16=
--bit I&amp;Q in the FPGA on the B205, right?)</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">I use the =E2=80=98host examples=E2=80=99 in=
- the latest 4.x version of UHD.=C2=A0 And they are pretty easy to modify.=
-=C2=A0 I
- have adapted for things like using the 1-PPS, and doing times receive and =
-transmit.</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">Ken</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Calibri,sa=
-ns-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:Calibri=
-,sans-serif">From:</span></b><span style=3D"font-size:11pt;font-family:Cali=
-bri,sans-serif"> Brendan Horsfield [mailto:<a href=3D"mailto:brendan.horsfi=
-eld@vectalabs.com" target=3D"_blank">brendan.horsfield@vectalabs.com</a>]
-<br>
-<b>Sent:</b> Sunday, April 4, 2021 01:35<br>
-<b>To:</b> Clark (US), Kenneth C &lt;<a href=3D"mailto:kenneth.c.clark2@boe=
-ing.com" target=3D"_blank">kenneth.c.clark2@boeing.com</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a>;
-<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@=
-gmail.com</a><br>
-<b>Subject:</b> [EXTERNAL] Re: [USRP-users] Re: Problem with interfacing Ra=
-spberry Pi 4 to USRP B210 with Python API</span><u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<table border=3D"0" cellpadding=3D"0">
-<tbody>
-<tr>
-<td style=3D"background:white;padding:0.75pt">
-<table border=3D"0" cellspacing=3D"0" cellpadding=3D"0" align=3D"left" widt=
-h=3D"100%" style=3D"width:100%;margin-left:0.75pt;margin-right:0.75pt">
-<tbody>
-<tr>
-<td style=3D"background:rgb(145,10,25);padding:5.25pt 1.5pt"></td>
-<td width=3D"100%" style=3D"width:100%;background:rgb(253,242,244);padding:=
-5.25pt 3.75pt 5.25pt 11.25pt">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
-ns-serif;color:rgb(33,33,33)">EXT email: be mindful of links/attachments.</=
-span><u></u><u></u></p>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-<pre><span style=3D"color:black"><br>=C2=A0</span><u></u><u></u></pre>
-</td>
-</tr>
-</tbody>
-</table>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">Thanks Ken.=C2=A0 As you suggested, I added -DCMAKE_EXE_LINKER_FL=
-AGS=3D&quot;-latomic&quot; to the CMake call.=C2=A0=C2=A0</span><u></u><u><=
-/u></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">The good news is that the UHD build &amp; installation process co=
-mpleted successfully.</span><u></u><u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">The bad news is that when I try to import the uhd module in Pytho=
-n3, I get=C2=A0the following error:</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">pi@raspberrypi:~ $ python3<br>
-Python 3.7.3 (default, Jan 22 2021, 20:04:44) <br>
-[GCC 8.3.0] on linux<br>
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;=
-license&quot; for more information.<br>
-&gt;&gt;&gt; import uhd<br>
-Traceback (most recent call last):<br>
-=C2=A0 File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;<br>
-=C2=A0 File &quot;/usr/local/lib/python3/dist-packages/uhd/__init__.py&quot=
-;, line 10, in &lt;module&gt;<br>
-=C2=A0 =C2=A0 from . import types<br>
-=C2=A0 File &quot;/usr/local/lib/python3/dist-packages/uhd/types.py&quot;, =
-line 10, in &lt;module&gt;<br>
-=C2=A0 =C2=A0 from . import libpyuhd as lib<br>
-ImportError: /usr/local/lib/libuhd.so.4.0.0: undefined symbol: __atomic_fet=
-ch_add_8<br>
-&gt;&gt;&gt;=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">Did you encounter this problem too?</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">I guess the next step is to hack the &quot;CMakeLists.txt&quot; f=
-iles as per the link you sent me.=C2=A0 Just to clarify one point
- first:=C2=A0 If I modify the CMakeLists.txt files, do I still need to incl=
-ude -DCMAKE_EXE_LINKER_FLAGS=3D&quot;-latomic&quot; in the CMake call?</spa=
-n><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">Thanks,</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">Brendan.</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0=C2=A0</span><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-</div>
-</div>
-</div>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">=C2=A0</span><u></u><u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif">On Sat, Apr 3, 2021 at 10:29 PM Clark (US), Kenneth C &lt;<a href=
-=3D"mailto:kenneth.c.clark2@boeing.com" target=3D"_blank">kenneth.c.clark2@=
-boeing.com</a>&gt;
- wrote:</span><u></u><u></u></p>
-</div>
-<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
-order-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin:5pt 0i=
-n 5pt 4.8pt">
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Calibri,sa=
-ns-serif"><br>
-I had the same problem build UHD on RPi4<br>
-<br>
-Answer here:<br>
-<a href=3D"https://gitlab.kitware.com/cmake/cmake/-/issues/21174" target=3D=
-"_blank">https://gitlab.kitware.com/cmake/cmake/-/issues/21174</a><br>
-<br>
-Add to CMake call:<br>
--DCMAKE_EXE_LINKER_FLAGS=3D&quot;-latomic&quot;<br>
-<br>
-Regards,<br>
-<br>
-Ken<br>
-<br>
-<br>
------Original Message-----<br>
-From: <a href=3D"mailto:usrp-users-request@lists.ettus.com" target=3D"_blan=
-k">usrp-users-request@lists.ettus.com</a> [mailto:<a href=3D"mailto:usrp-us=
-ers-request@lists.ettus.com" target=3D"_blank">usrp-users-request@lists.ett=
-us.com</a>]<br>
-Sent: Saturday, April 3, 2021 11:13<br>
-To: <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-us=
-ers@lists.ettus.com</a><br>
-Subject: [EXTERNAL] USRP-users Digest, Vol 128, Issue 7<br>
-<br>
-EXT email: be mindful of links/attachments.<br>
-<br>
-<br>
-<br>
-Send USRP-users mailing list submissions to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-<br>
-To subscribe or unsubscribe via email, send a message with subject or body =
-&#39;help&#39; to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-request@lists.ettu=
-s.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><br>
-<br>
-You can reach the person managing the list at<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-owner@lists.ettus.=
-com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
-<br>
-When replying, please edit your Subject line so it is more specific than &q=
-uot;Re: Contents of USRP-users digest...&quot;<br>
-<br>
-Today&#39;s Topics:<br>
-<br>
-=C2=A0 =C2=A01. Re: Problem with interfacing Raspberry Pi 4 to USRP B210 wi=
-th Python API<br>
-=C2=A0 =C2=A0 =C2=A0 (Brendan Horsfield)<br>
-=C2=A0 =C2=A02. Re: Intermittent problem with GPS synchronization for multi=
-ple E310 units<br>
-=C2=A0 =C2=A0 =C2=A0 (Ofer Saferman)<br>
-<br>
-<br>
-----------------------------------------------------------------------<br>
-<br>
-Message: 1<br>
-Date: Sat, 3 Apr 2021 21:07:59 +1000<br>
-From: Brendan Horsfield &lt;<a href=3D"mailto:brendan.horsfield@vectalabs.c=
-om" target=3D"_blank">brendan.horsfield@vectalabs.com</a>&gt;<br>
-Subject: [USRP-users] Re: Problem with interfacing Raspberry Pi 4 to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 USRP B210 with Python API<br>
-To: Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D=
-"_blank">patchvonbraun@gmail.com</a>&gt;<br>
-Cc: <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">USRP-us=
-ers@lists.ettus.com</a><br>
-Message-ID:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;<a href=3D"mailto:CALNMZ8Wg3gQnkAomrhhCBPAG=
-tTfUbm3fkMzJhCWhUAgHrLuzyA@mail.gmail.com" target=3D"_blank">CALNMZ8Wg3gQnk=
-AomrhhCBPAGtTfUbm3fkMzJhCWhUAgHrLuzyA@mail.gmail.com</a>&gt;<br>
-Content-Type: multipart/alternative;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 boundary=3D&quot;000000000000dc3aeb05bf0f7ace&q=
-uot;<br>
-<br>
-Hi Marcus,<br>
-<br>
-I have tried your suggestion, but unfortunately without success:<br>
-<br>
-Per your advice, I have edited the file &quot;cmake.lwt&quot; in the folder=
- /usr/local/lib/python3.7/dist-packages/pybombs/templates to include the op=
-tion &quot;-DENABLE_PYTHON_API=3DON&quot; in the calls to cmake.=C2=A0 The =
-modified commands are as follows:<br>
-<br>
-configure: cmake .. -DENABLE_PYTHON_API=3DON -DCMAKE_BUILD_TYPE=3D$cmakebui=
-ldtype -DCMAKE_INSTALL_PREFIX=3D$prefix $config_opt -Wno-dev<br>
-configure_static: cmake .. -DENABLE_PYTHON_API=3DON -DCMAKE_BUILD_TYPE=3D$c=
-makebuildtype -DCMAKE_INSTALL_PREFIX=3D$prefix -DENABLE_STATIC_LIBS=3DTrue =
-$config_opt<br>
-<br>
-I removed the previous UHD installation and re-ran &quot;pybombs install uh=
-d&quot;, but the end result was much the same:=C2=A0 the installation proce=
-ss completed without errors, but the Python API was not included in the ins=
-tallation.<br>
-<br>
-QUESTION 1:=C2=A0 Can you tell me if PyBOMBS actually builds the UHD driver=
- from source, or does it simply copy a pre-compiled binary onto my system?=
-=C2=A0 The reason I ask is that PyBOMBS is quite quick to install the UHD d=
-river, whereas the non-PyBOMBS approach is
- VERY slow (i.e. around 60 minutes to get to 53%, at which point it crashes=
- out with an error).<br>
-<br>
-QUESTION 2:=C2=A0 This whole process feels more difficult than it should be=
-.<br>
-Why isn&#39;t the Python API installed with the UHD driver by default?=C2=
-=A0 Would I be better off using another language (like C++) to control the =
-USRP?<br>
-<br>
-Thanks,<br>
-Brendan.<br>
-<br>
-<br>
-<br>
-On Fri, Apr 2, 2021 at 11:25 PM Marcus D Leech &lt;<a href=3D"mailto:patchv=
-onbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;<br>
-wrote:<br>
-<br>
-&gt; Perhaps look at the PyBombs recipe for your platform=E2=80=94there=E2=
-=80=99s probably<br>
-&gt; a compiler flag that needs to be set that you=E2=80=99re missing, but =
-I don=E2=80=99t<br>
-&gt; know what that is.<br>
-&gt;<br>
-&gt; Also, in general, you don=E2=80=99t need to become root to compile and=
- build<br>
-&gt; code=E2=80=94only needed during the =E2=80=9Cmake install=E2=80=9D<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; Sent from my iPhone<br>
-&gt;<br>
-&gt; On Apr 2, 2021, at 7:19 AM, Brendan Horsfield &lt;<br>
-&gt; <a href=3D"mailto:brendan.horsfield@vectalabs.com" target=3D"_blank">b=
-rendan.horsfield@vectalabs.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; =EF=BB=BF<br>
-&gt; Hi Folks,<br>
-&gt;<br>
-&gt; I would like to interface my Raspberry Pi 4 to a USRP B210 via the<br>
-&gt; Python API.=C2=A0 This requires the UHD driver to be built from source=
-.<br>
-&gt; Unfortunately, whenever I try this I encounter some errors that stop<b=
-r>
-&gt; the build process in its tracks.<br>
-&gt;<br>
-&gt; Details of the error are as follows:<br>
-&gt;<br>
-&gt; [ 53%] Linking CXX executable test_clock_synch<br>
-&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
-&gt; `__atomic_compare_exchange_8&#39;<br>
-&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
-&gt; `__atomic_load_8&#39;<br>
-&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
-&gt; `__atomic_store_8&#39;<br>
-&gt; /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to<br>
-&gt; `__atomic_fetch_add_8&#39;<br>
-&gt; collect2: error: ld returned 1 exit status<br>
-&gt; make[2]: *** [examples/CMakeFiles/test_clock_synch.dir/build.make:95:<=
-br>
-&gt; examples/test_clock_synch] Error 1<br>
-&gt; make[1]: *** [CMakeFiles/Makefile2:1039:<br>
-&gt; examples/CMakeFiles/test_clock_synch.dir/all] Error 2<br>
-&gt; make: *** [Makefile:163: all] Error 2<br>
-&gt;<br>
-&gt; The process I have been using is as follows:<br>
-&gt;<br>
-&gt; STEP 1:=C2=A0 INSTALL DEPENDENCIES<br>
-&gt; sudo apt-get install libboost-all-dev libusb-1.0-0-dev doxygen<br>
-&gt; python3-docutils python3-mako python3-numpy python3-requests<br>
-&gt; python3-ruamel.yaml python3-setuptools cmake build-essential<br>
-&gt;<br>
-&gt; STEP 2:=C2=A0 BUILD UHD DRIVER FROM SOURCE<br>
-&gt; cd /home/pi<br>
-&gt; mkdir workarea-uhd<br>
-&gt; cd workarea-uhd<br>
-&gt; git clone <a href=3D"https://github.com/EttusResearch/uhd" target=3D"_=
-blank">https://github.com/EttusResearch/uhd</a><br>
-&gt; cd uhd<br>
-&gt; git checkout v4.0.0.0<br>
-&gt; cd host<br>
-&gt; mkdir build<br>
-&gt; cd build<br>
-&gt; sudo cmake -DNEON_SIMD_ENABLE=3DOFF -DENABLE_PYTHON_API=3DON ../ sudo =
-make<br>
-&gt; ---&gt;=C2=A0 (ERRORS OCCUR DURING &quot;MAKE&quot; PROCESS)<br>
-&gt;<br>
-&gt; My system configuration is as follows:<br>
-&gt; Hardware: Raspberry Pi 4 Model B Rev 1.4<br>
-&gt; OS: Raspbian GNU/Linux 10 (buster) (32-bit, armv7l) Ettus USRP B210<br=
->
-&gt;<br>
-&gt; Does anyone know what the problem could be, and how I can resolve it?<=
-br>
-&gt;<br>
-&gt; One final note:=C2=A0 Using PyBOMBS, I was able to successfully build =
-&amp;<br>
-&gt; install the UHD driver and connect to the USRP.=C2=A0 Unfortunately th=
-e<br>
-&gt; PyBOMBS build does not include the Python API, which is what I really<=
-br>
-&gt; want.=C2=A0 Is there a different version of the PyBOMBS build that inc=
-ludes the Python API?<br>
-&gt;<br>
-&gt; Thanks &amp; Regards,<br>
-&gt; Brendan.<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">
-usrp-users@lists.ettus.com</a> To unsubscribe<br>
-&gt; send an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" t=
-arget=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-&gt;<br>
-&gt;<br>
--------------- next part --------------<br>
-A message part incompatible with plain text digests has been removed ...<br=
->
-Name: not available<br>
-Type: text/html<br>
-Size: 5624 bytes<br>
-Desc: not available<br>
-<br>
-------------------------------<br>
-<br>
-Message: 2<br>
-Date: Sat, 3 Apr 2021 14:12:35 +0300<br>
-From: Ofer Saferman &lt;<a href=3D"mailto:ofer@navigicom.com" target=3D"_bl=
-ank">ofer@navigicom.com</a>&gt;<br>
-Subject: [USRP-users] Re: Intermittent problem with GPS<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 synchronization for multiple E310 units<br>
-To: usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"=
-_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-Message-ID:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;CACDReSwXUvJ8_LimfVOn4StHQEGhNntY-nCSv0aYdB=
-sX=3D<a href=3D"mailto:AtV_w@mail.gmail.com" target=3D"_blank">AtV_w@mail.g=
-mail.com</a>&gt;<br>
-Content-Type: multipart/alternative;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 boundary=3D&quot;000000000000566d1705bf0f8b0e&q=
-uot;<br>
-<br>
-Hello Philip,<br>
-<br>
-Thank you for the explanation.<br>
-What would you suggest?<br>
-opkg exists. There must be a way to install ntpd without needing to rebuild=
- the image.<br>
-Maybe use pybombs or other methods?<br>
-git also works. Maybe download a different package manager and compile it?<=
-br>
-<br>
-It seems that Marcus pointed out a great benefit of E310 units running gpsd=
-, but without ntpd system clock can&#39;t sync and it seems that this featu=
-re can vastly simplify gps synchronization among E310 units.<br>
-<br>
-I would be very grateful if anybody can suggest a solution to install ntpd =
-on E310 units running UHD 3.15 SD-card image.<br>
-<br>
-Regards,<br>
-Ofer Saferman.<br>
-<br>
-On Sat, Apr 3, 2021 at 10:30 AM &lt;<a href=3D"mailto:usrp-users-request@li=
-sts.ettus.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a>&gt;=
- wrote:<br>
-<br>
-&gt; Send USRP-users mailing list submissions to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:usrp-users@lists.et=
-tus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;<br>
-&gt; To subscribe or unsubscribe via email, send a message with subject or<=
-br>
-&gt; body &#39;help&#39; to<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:usrp-users-request@=
-lists.ettus.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><b=
-r>
-&gt;<br>
-&gt; You can reach the person managing the list at<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:usrp-users-owner@li=
-sts.ettus.com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
-&gt;<br>
-&gt; When replying, please edit your Subject line so it is more specific<br=
->
-&gt; than &quot;Re: Contents of USRP-users digest...&quot;Today&#39;s Topic=
-s:<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 1. Re: Intermittent problem with GPS synchronization for =
-multiple<br>
-&gt; E310 units<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0(Philip Balister)<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; ---------- Forwarded message ----------<br>
-&gt; From: Philip Balister &lt;<a href=3D"mailto:philip@balister.org" targe=
-t=3D"_blank">philip@balister.org</a>&gt;<br>
-&gt; To: Ofer Saferman &lt;<a href=3D"mailto:ofer@navigicom.com" target=3D"=
-_blank">ofer@navigicom.com</a>&gt;, &quot;Marcus D. Leech&quot; &lt;<br>
-&gt; <a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
-raun@gmail.com</a>&gt;<br>
-&gt; Cc: Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blan=
-k">rkossler@nd.edu</a>&gt;, usrp-users<br>
-&gt; &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">us=
-rp-users@lists.ettus.com</a>&gt;<br>
-&gt; Bcc:<br>
-&gt; Date: Fri, 2 Apr 2021 10:09:43 -0400<br>
-&gt; Subject: [USRP-users] Re: Intermittent problem with GPS<br>
-&gt; synchronization for multiple E310 units On 4/2/21 7:17 AM, Ofer<br>
-&gt; Saferman wrote:<br>
-&gt; &gt; Marcus Hi,<br>
-&gt; &gt;<br>
-&gt; &gt; Your suggestion below to install ntpd does not work.<br>
-&gt; &gt; The image does not include it. Although the old thread says<br>
-&gt; &gt; otherwise I think it refers to an older UHD release that did incl=
-ude ntpd.<br>
-&gt; &gt; Any accurate instructions on how to install it anyway?<br>
-&gt; &gt; Maybe opkg should be configured to access another repository?<br>
-&gt; &gt; Doing: opkg list | grep ntpd, does not yield anything useful so i=
-t<br>
-&gt; &gt; is not just a question of typing it correctly.<br>
-&gt;<br>
-&gt; As far as I know, no image has been setup to use package feeds.<br>
-&gt;<br>
-&gt; I know ntpd worked in release4 images, pretty sure the newer image was=
-<br>
-&gt; redone and things have been left out that used to be there.<br>
-&gt;<br>
-&gt; Philip<br>
-&gt;<br>
-&gt; &gt;<br>
-&gt; &gt; Regards,<br>
-&gt; &gt; Ofer Saferman<br>
-&gt; &gt;<br>
-&gt; &gt; On Thu, Apr 1, 2021 at 4:34 PM Marcus D. Leech<br>
-&gt; &gt; &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">=
-patchvonbraun@gmail.com</a>&gt;<br>
-&gt; &gt; wrote:<br>
-&gt; &gt;<br>
-&gt; &gt;&gt; On 04/01/2021 06:00 AM, Ofer Saferman wrote:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Hello Marcus,<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; I am working on E310 with the latest UHD-3.15 SD card image.<=
-br>
-&gt; &gt;&gt; It seems not to include ntpd that is required to synchronize =
-system<br>
-&gt; &gt;&gt; time to GPS time.<br>
-&gt; &gt;&gt; Any idea how to install it on the E310?<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; Regards,<br>
-&gt; &gt;&gt; Ofer Saferman<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; sudo opkg install ntpd<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; should work, but it has been a while since I installed any pa=
-ckages<br>
-&gt; &gt;&gt; on<br>
-&gt; my<br>
-&gt; &gt;&gt; E310.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; The E310 is based on OpenEmbedded Linux, so all the info abou=
-t<br>
-&gt; installing<br>
-&gt; &gt;&gt; and managing packages on OpenEmbedded apply.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; On Wed, Mar 31, 2021 at 11:40 PM Marcus D Leech &lt;<br>
-&gt; <a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
-raun@gmail.com</a>&gt;<br>
-&gt; &gt;&gt; wrote:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;&gt; Just use gettimeofday() or any of the myriad subtle varia=
-nts<br>
-&gt; &gt;&gt;&gt; available<br>
-&gt; in<br>
-&gt; &gt;&gt;&gt; boost to get you the Linux system time, and use that in a=
- call to<br>
-&gt; &gt;&gt;&gt; set_time_next_pps().<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; The fact that all your E310s will be running GPSD means t=
-hey=E2=80=99ll be<br>
-&gt; &gt;&gt;&gt; adjusting system time appropriately and they=E2=80=99ll a=
-ll agree on what<br>
-&gt; &gt;&gt;&gt; time<br>
-&gt; it<br>
-&gt; &gt;&gt;&gt; is, depending on the level of precision you need.<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; Sent from my iPhone<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; On Mar 31, 2021, at 3:50 PM, Ofer Saferman &lt;<a href=3D=
-"mailto:ofer@navigicom.com" target=3D"_blank">ofer@navigicom.com</a>&gt; wr=
-ote:<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; =EF=BB=BF<br>
-&gt; &gt;&gt;&gt; Thank you Rob. Your suggestions are always helpful. I wil=
-l look<br>
-&gt; &gt;&gt;&gt; into using gps_gpgga.<br>
-&gt; &gt;&gt;&gt; Thank you Marcus. I am already adding one, per other exam=
-ples<br>
-&gt; &gt;&gt;&gt; posted<br>
-&gt; here<br>
-&gt; &gt;&gt;&gt; and sync_to_gps example. Can you please comment how I can=
- benefit<br>
-&gt; &gt;&gt;&gt; from<br>
-&gt; the<br>
-&gt; &gt;&gt;&gt; fact that E310 units use gpsd in Linux?<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; Regards,<br>
-&gt; &gt;&gt;&gt; Ofer Saferman<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; On Wed, Mar 31, 2021 at 10:13 PM Marcus D Leech &lt;<br>
-&gt; <a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonb=
-raun@gmail.com</a>&gt;<br>
-&gt; &gt;&gt;&gt; wrote:<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt; Sent from my iPhone<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt; On Mar 31, 2021, at 2:22 PM, Rob Kossler &lt;<a href=
-=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote=
-:<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt; =EF=BB=BF<br>
-&gt; &gt;&gt;&gt;&gt; Hi Ofer,<br>
-&gt; &gt;&gt;&gt;&gt; Take a look at the Ettus source code gps_ctrl.cpp.=C2=
-=A0 In<br>
-&gt; &gt;&gt;&gt;&gt; particular,<br>
-&gt; look<br>
-&gt; &gt;&gt;&gt;&gt; at the get_sentence() usage which in the case of &quo=
-t;gps_time&quot; waits<br>
-&gt; &gt;&gt;&gt;&gt; for<br>
-&gt; the<br>
-&gt; &gt;&gt;&gt;&gt; next occurrence (wait=3Dtrue),=C2=A0 but for the othe=
-rs does not wait.<br>
-&gt; &gt;&gt;&gt;&gt; But<br>
-&gt; this<br>
-&gt; &gt;&gt;&gt;&gt; doesn&#39;t fully explain the behavior you are seeing=
-.=C2=A0 If you do the<br>
-&gt; following:<br>
-&gt; &gt;&gt;&gt;&gt; 1) wait for PPS time to change<br>
-&gt; &gt;&gt;&gt;&gt; 2) read the &quot;gps_time&quot; sensor<br>
-&gt; &gt;&gt;&gt;&gt; 3) set_time_next_pps (use the value you just read)<br=
->
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt; Add 1 to the time you just read before calling set_ti=
-me_next_pps.<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt; It should still work because the &quot;gps_time&quot;=
- command should just<br>
-&gt; &gt;&gt;&gt;&gt; wait until the next PPS.=C2=A0 I guess it depends upo=
-n how<br>
-&gt; &gt;&gt;&gt;&gt; &quot;synchronized&quot; are<br>
-&gt; the<br>
-&gt; &gt;&gt;&gt;&gt; received NMEA string with the PPS edge.=C2=A0 Step 1 =
-above waits for<br>
-&gt; &gt;&gt;&gt;&gt; the<br>
-&gt; PPS<br>
-&gt; &gt;&gt;&gt;&gt; edge, but maybe the NMEA string arrives 0.1 secs befo=
-re or after<br>
-&gt; that.=C2=A0 I<br>
-&gt; &gt;&gt;&gt;&gt; don&#39;t really know.=C2=A0 Perhaps you need to swit=
-ch to using &quot;gps_gpgga&quot;<br>
-&gt; such<br>
-&gt; &gt;&gt;&gt;&gt; that there is no additional wait added and also perha=
-ps you<br>
-&gt; &gt;&gt;&gt;&gt; should<br>
-&gt; add step<br>
-&gt; &gt;&gt;&gt;&gt; 1B which would be just a fixed delay of perhaps 0.4 s=
-ecs so that<br>
-&gt; &gt;&gt;&gt;&gt; you<br>
-&gt; will<br>
-&gt; &gt;&gt;&gt;&gt; read the NMEA string in between the PPS edges.<br>
-&gt; &gt;&gt;&gt;&gt; Rob<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt; On Wed, Mar 31, 2021 at 1:22 PM Rob Kossler &lt;<a hr=
-ef=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wro=
-te:<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt; Hi Ofer,<br>
-&gt; &gt;&gt;&gt;&gt;&gt; I don&#39;t know why the &quot;gps_time&quot; sen=
-sor takes long to read. But,<br>
-&gt; &gt;&gt;&gt;&gt;&gt; can<br>
-&gt; you<br>
-&gt; &gt;&gt;&gt;&gt;&gt; try the other sensors (perhaps there is a &quot;g=
-ps_gpgga&quot; sensor?)?<br>
-&gt; &gt;&gt;&gt;&gt;&gt; The<br>
-&gt; time<br>
-&gt; &gt;&gt;&gt;&gt;&gt; is embedded in these as well.<br>
-&gt; &gt;&gt;&gt;&gt;&gt; Rob<br>
-&gt; &gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt; On Wed, Mar 31, 2021 at 12:21 PM Ofer Saferman<br=
->
-&gt; &gt;&gt;&gt;&gt;&gt; &lt;<a href=3D"mailto:ofer@navigicom.com" target=
-=3D"_blank">ofer@navigicom.com</a>&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt; wrote:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; Marcus Hi,<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; If the gps_time &quot;sensor&quot; returns a =
-value only once per second<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; how<br>
-&gt; come<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; I manage to read it sometimes in less than 1 =
-second?<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; In my code the situation is worse than the si=
-mple example<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; below. It usually takes more than 1 sec. to r=
-ead it and<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; sometimes even 1.7 or<br>
-&gt; 1.8<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; seconds. I don&#39;t understand how the size =
-or complexity of the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; code<br>
-&gt; affects<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; the time it takes to read gps_time.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; How to treat your comment about the use of GP=
-SD and good<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; synchronization as it relates to code?<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; Should I not change the time source in code a=
-nd go through the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; whole process of synchronization using gps_ti=
-me?<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; Can I &quot;assume&quot; the systems are sync=
-ed just by the effect they<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; were connected enough time to a GPS antenna? =
-and then just<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; access their<br>
-&gt; time -<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; radio_ctrl-&gt;get_time_last_pps()?<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; How to use this information programmatically?=
-<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; Regards,<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; Ofer Saferman<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; ---------- Forwarded message ----------<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; From: &quot;Marcus D. Leech&quot; &lt;<a =
-href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gma=
-il.com</a>&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; To: <a href=3D"mailto:usrp-users@lists.et=
-tus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Cc:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Bcc:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Date: Wed, 31 Mar 2021 09:19:20 -0400<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; Subject: [USRP-users] Re: Intermittent pr=
-oblem with GPS<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; synchronization for multiple E310 units O=
-n 03/31/2021 06:49<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; AM, Ofer Saferman wrote:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Hello,<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I have a system that uses 4 USRP E310=
- units.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Each unit is connected to a GPS anten=
-na.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Time source is set to gpsdo.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I run the same software remotely on a=
-ll 4 units from a PC.<br>
-&gt; Software<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; runs on the units themselves.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I print out messages to show if the r=
-eference is locked and<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
-&gt; GPS<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; is<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; locked and also what is the GPS time =
-that each unit was<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; synchronized to.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In some cases the units synchronize t=
-o the same GPS time and<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; in<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; other<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; cases there is 1 second difference be=
-tween GPS time of<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; different<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; units<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; thus causing the units to be unsynchr=
-onized.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I was wondering how this was possible=
-.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; The synchronization process (document=
-ed by others in the past<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; on<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; mailing list) is:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Wait for ref and GPS lock<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Wait for a pps edge (get_time_last_=
-pps)<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Read gps_time value<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; * Sync system clock to GPS clock on n=
-ext PPS edge<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; (set_time_next_pps +<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.0 sec)<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Something similar is also implemented=
- in the sync_to_gps example.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In order to debug the problem I decid=
-ed to time the reading<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; of the gps_time sensor to see if ther=
-e is a clue why<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; different units miss<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; PPS edge and lock to a time of the ne=
-xt second.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I was very surprised to find out that=
- it takes between 0.9 to<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.2 seconds to read the gps_time sens=
-or.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; This explains exactly why it is diffi=
-cult to synchronize<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; multiple units to the same time insta=
-nce because if one unit<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; takes 0.9<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; to read the sensor and the other unit=
- takes 1.2 seconds to<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; read<br>
-&gt; the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; sensor then each unit will lock on a =
-different GPS time 1<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; second<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; apart.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Here is a short software I wrote to t=
-ime the gps_time sensor<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; reading:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; -------------------------------------=
---------------------<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;uhd/utils/safe_main.hpp&=
-gt; #include &lt;uhd/device3.hpp&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //#include &lt;uhd/usrp/multi_usrp.hp=
-p&gt; #include<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;uhd/types/sensors.hpp&gt; #includ=
-e &lt;boost/program_options.hpp&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; #include &lt;boost/format.hpp&gt; #in=
-clude &lt;chrono&gt; #include<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;iostream&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; namespace po =3D boost::program_optio=
-ns;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; int UHD_SAFE_MAIN(int argc, char *arg=
-v[]){<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::string args;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::options_descri=
-ption desc(&quot;Allowed options&quot;);<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0desc.add_options()=
-<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(&qu=
-ot;help&quot;, &quot;help message&quot;) (&quot;args&quot;,<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; po::value&lt;std::string&gt;(&amp;arg=
-s)-&gt;default_value(&quot;&quot;), &quot;device<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; address args&quot;)<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::variables_map =
-vm;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::store(po::pars=
-e_command_line(argc, argv, desc), vm);<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0po::notify(vm);<br=
->
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0//print the help m=
-essage<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0if (vm.count(&quot=
-;help&quot;)){<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0std:=
-:cout &lt;&lt; boost::format(&quot;Timinig of gps_time: %s&quot;)<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; %<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; desc<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt; std::endl;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0retu=
-rn ~0;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0}<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::device3::sptr usrp =3D uhd::devi=
-ce3::make(args);<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //uhd::usrp::multi_usrp::sptr usrp =
-=3D<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::usrp::multi_usrp::make(args);<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; uhd::sensor_value_t gps_time =3D<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_value_t&gt;(&quot;/mboar=
-ds/0/sensors/gps_<br>
-&gt; usrp-&gt;time&quot;).get();<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //uhd::sensor_value_t gps_time =3D<br=
->
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; usrp-&gt;get_mboard_sensor(&quot;gps_time=
-&quot;, 0);<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::chrono::steady_clock::time_point=
- start_time, end_time;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::chrono::duration&lt;double&gt; t=
-ime_diff; // Default unit for<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; duration<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; is seconds.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; for(int ii=3D0 ; ii&lt;20 ; ii++)<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; {<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; start_time =3D std::chrono::steady_cl=
-ock::now(); gps_time =3D<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; usrp-&gt;get_tree()-&gt;access&lt;uhd::sensor_value_t&gt;(&quot;/mboar=
-ds/0/sensors/gps_<br>
-&gt; usrp-&gt;time&quot;).get();<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; //gps_time =3D usrp-&gt;get_mboard_se=
-nsor(&quot;gps_time&quot;, 0); end_time<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; =3D std::chrono::steady_clock::now();=
- time_diff =3D end_time -<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; start_time;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; std::cout &lt;&lt; &quot;gps_time[&qu=
-ot; &lt;&lt; (boost::format(&quot;%02d&quot;) % ii) &lt;&lt; &quot;]: &quot=
-;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; int64_t(gps_time.to_int()) &lt;&lt; &=
-quot;. Time to read \&quot;gps_time\&quot;: &quot;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &lt;&lt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; (boost::format(&quot;%0.9f&quot;) % t=
-ime_diff.count()) &lt;&lt; &quot; seconds&quot; &lt;&lt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; std::endl;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; }<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0return 0;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; }<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; ----------------------------------------------------------------------=
-<br>
-&gt; ----------<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Here are the results of one typical r=
-un:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[00]: 1617183840. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.884164380<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[01]: 1617183841. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.877966469<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[02]: 1617183842. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.170869661<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[03]: 1617183843. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.882917987<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[04]: 1617183844. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.172120154<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[05]: 1617183845. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.879271985<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[06]: 1617183846. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.878609099<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[07]: 1617183847. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.115639282<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[08]: 1617183848. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.125365551<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[09]: 1617183849. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.843803231<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[10]: 1617183850. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.125065740<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[11]: 1617183851. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.847519817<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[12]: 1617183852. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.121398945<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[13]: 1617183853. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.844371533<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[14]: 1617183854. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.124722726<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[15]: 1617183855. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.845688380<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[16]: 1617183856. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.129568096<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[17]: 1617183857. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.882436229<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[18]: 1617183858. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1.168227593<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; gps_time[19]: 1617183859. Time to rea=
-d &quot;gps_time&quot;:<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; 0.881948247<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; seconds<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; ----------------------------------------------------------------------=
-<br>
-&gt; -------------<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; In the code you can find commented ou=
-t the usual way to<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; access the sensor using multi_usrp an=
-d get_mboard_sensor. The<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; results are<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; quite<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; similar.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I wonder if anybody encountered this =
-issue before or<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; addressed it<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; in<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; any way.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I wonder why it takes so much time to=
- get the value of GPS<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; time<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; when<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; it is a simple parsing of an NMEA mes=
-sage coming from the GPS<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; receiver.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I am trying now various tricks to mak=
-e the software robust<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; and<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; immune<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; to this phenomenon. I can report my f=
-indings further if I<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; succeed<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; to<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; find a workaround if there is any int=
-erest.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Can anyone comment on this? Can this =
-be resolved so that the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; reading<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; of gps_time will be much faster?<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Is there another way to get GPS time =
-faster indirectly? Maybe<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; from parsing NMEA messages ourselves?=
-<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Regards,<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Ofer Saferman<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; This probably has to do with the way that=
- particular &quot;sensor&quot;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; works--the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; NMEA time value is only emitted once per =
-second, and the<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 code for that sensor has som=
-e heuristic for determining<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; &quot;freshness&quot;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; of the value.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; I&#39;ll point out that on E310, the syst=
-em is configured to use<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; GPSD,<br>
-&gt; so<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; that the Linux system time across several=
- systems that have<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; all<br>
-&gt; been<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;=C2=A0 =C2=A0 &quot;listening&quot; to GPS=
- for a while will all be synchronized<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt; quite<br>
-&gt; well.<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; --<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; This message has been scanned for viruses and=
- dangerous content<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; by *MailScanner* &lt;<a href=3D"http://www.ma=
-ilscanner.info/" target=3D"_blank">http://www.mailscanner.info/</a>&gt;, an=
-d is<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; believed to be clean.<br>
-&gt; _______________________________________________<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:=
-usrp-users@lists.ettus.com" target=3D"_blank">
-usrp-users@lists.ettus.com</a> To<br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt; unsubscribe send an email to <a href=3D"mailt=
-o:usrp-users-leave@lists.ettus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-&gt; &gt;&gt;&gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;&gt; _______________________________________________<b=
-r>
-&gt; &gt;&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-use=
-rs@lists.ettus.com" target=3D"_blank">
-usrp-users@lists.ettus.com</a> To<br>
-&gt; &gt;&gt;&gt;&gt; unsubscribe send an email to <a href=3D"mailto:usrp-u=
-sers-leave@lists.ettus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; --<br>
-&gt; &gt;&gt;&gt; This message has been scanned for viruses and dangerous c=
-ontent by<br>
-&gt; &gt;&gt;&gt; *MailScanner* &lt;<a href=3D"http://www.mailscanner.info/=
-" target=3D"_blank">http://www.mailscanner.info/</a>&gt;, and is believed t=
-o<br>
-&gt; &gt;&gt;&gt; be clean.<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt; --<br>
-&gt; &gt;&gt; This message has been scanned for viruses and dangerous conte=
-nt by<br>
-&gt; &gt;&gt; *MailScanner* &lt;<a href=3D"http://www.mailscanner.info/" ta=
-rget=3D"_blank">http://www.mailscanner.info/</a>&gt;, and<br>
-&gt; is<br>
-&gt; &gt;&gt; believed to be clean.<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; _______________________________________________<br>
-&gt; &gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
-us.com" target=3D"_blank">
-usrp-users@lists.ettus.com</a> To unsubscribe<br>
-&gt; &gt; send an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.c=
-om" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-&gt; &gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">
-usrp-users@lists.ettus.com</a> To unsubscribe<br>
-&gt; send an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" t=
-arget=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-&gt;<br>
-<br>
---<br>
-This message has been scanned for viruses and dangerous content by MailScan=
-ner, and is believed to be clean.<br>
-<br>
--------------- next part --------------<br>
-A message part incompatible with plain text digests has been removed ...<br=
->
-Name: not available<br>
-Type: text/html<br>
-Size: 27834 bytes<br>
-Desc: not available<br>
-<br>
-------------------------------<br>
-<br>
-Subject: Digest Footer<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">
-usrp-users@lists.ettus.com</a> To unsubscribe send an email to <a href=3D"m=
-ailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-<br>
-<br>
-------------------------------<br>
-<br>
-End of USRP-users Digest, Vol 128, Issue 7<br>
-******************************************</span><u></u><u></u></p>
-</blockquote>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-
-</blockquote></div>
-
---000000000000dbebac05bfbc43ca--
-
---===============5885979639408268481==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============5885979639408268481==--
+TWFyaWEsDQoNCml0IGp1c3QgZGF3bmVkIG9uIG1lLCB0aGF0IHlvdSBhcmUgd29ya2luZyB3aXRo
+IGFuIGUzMjAgbm90IGFuIGUzMTAuDQoNCkFsdGhvdWdoIG1vc3Qgb2Ygd2hhdCBJIHNhaWQgc2hv
+dWxkIHN0aWxsIGFwcGx5IChlc3BlY2lhbGx5IGVydmVyeXRoaW5nIA0KcmVsYXRlZCB0byB0aGUg
+KEFEOTM2eCkpIHRoaW5ncyBtaWdodCBiZSBhIGxpdHRsZSBiaXQgZGlmZmVyZW50LiBJJ20gDQpl
+cGVjaWFsbHkgdW5zdXJlIGFib3V0IHRoZSBSUEMgcGFydCwgaGVyZS4NCg0KTWF5YmUgc29tZW9u
+ZSBlbHNlIGNhbiBjaGltZSBpbiByZWdhcmRpbmcgdGhpcyBhc3BlY3QuDQoNCkhvd2V2ZXIsIEkg
+dGhpbmsgdGhhdCBgX3NldHVwX2dhaW5fY29udHJvbChmYWxzZSlgIHNob3VsZCBydW4gcmVnYXJk
+bGVzcyANCmR1cmluZyBkZXZpY2UgaW5pdC4gU28geW91IHNob3VsZCBzZWUgc29tZSBsb2dnaW5n
+IG91dHB1dCB0aGVyZS4NCg0KSWYgX3NldHVwX2FnYygpIGlzIG5vdCBiZWVpbmcgY2FsbGVkIHlv
+dSBjb3VsZCB0cnkgdG8gZm9yY2UgdGhlIEFHQyBvbiwgDQpqdXN0IGZvciB2ZXJpZmljYXRpb24g
+cHVycG9zZXMsIGJ5IGNoYW5naW5nIGBfc2V0dXBfZ2Fpbl9jb250cm9sKGZhbHNlKWAgDQp0byBg
+X3NldHVwX2dhaW5fY29udHJvbCh0cnVlKWAgaW4gYGluaXRpYWxpemUoKWAgYW5kIGBzZXRfY2xv
+Y2tfcmF0ZSgpYC4NCg0KQ2hlZXJzLA0KSnVsaWFuDQoNCk9uIDQvOS8yMSAzOjM0IFBNLCBKdWxp
+YW4gQXJub2xkIHdyb3RlOg0KPiBNYXJpYSwNCj4gDQo+IHRoZSBwcm9wZXJ0aWVzIHlvdSB3YW50
+IHRvIGNoYW5nZSAobWluL21heCB0aHJlc2hvbGRzKSBhcmUgbm90IGV4cG9zZWQgDQo+IHZpYSB0
+aGUgcHJvcGVydHkgdHJlZS4gT25seSB0aGUgbW9kZSBpcyAoc2xvdyBvciBmYXN0KS4NCj4gSG93
+ZXZlciwgdGhlIHNhbWUgY29kZSB0aGF0IGNvbmZpZ3VyZXMgdGhlIEFHQyB0aGF0IHdvcmtlZCBm
+b3IgbWUgb24gdGhlIA0KPiBCMjEwIHNob3VsZCBydW4gb24gdGhlIEUzMTAuIFRoZSBSUEMgY2xp
+ZW50IHNob3VsZCBub3QgYmUgaW52b2x2ZWQgaW4gDQo+IHRoYXQgY2FzZSAoYWx0aG91Z2ggSeKA
+mW0gbm90IHN1cmUgYWJvdXQgdGhhdCkuDQo+IA0KPiBIYXZlIHlvdSB0cmllZCBhcHBseWluZyBt
+eSBwYXRjaCBkaXJlY3RseSAoSSBoYWQgc2xpZ2h0bHkgbW9kaWZpZWQgDQo+IHJlZ2lzdGVyIHZh
+bHVlcykuDQo+IA0KPiBBbHNvLCBjb3VsZCB5b3UgdHJ5IHJ1bm5pbmcgeW91ciBjb2RlIGRpcmVj
+dGx5IG9uIHRoZSBFMzEwIChieXBhc3NpbmcgDQo+IG5ldHdvcmtlZC1tb2RlKSB0byBzZWUgaWYg
+dGhhdCBtYWtlcyBhIGRpZmZlcmVuY2U/DQo+IA0KPiBDaGVlcnMsDQo+IEp1bGlhbg0KPiANCj4g
+DQo+IEp1bGlhbiBBcm5vbGQsIE0uU2MNCj4gDQo+PiBBbSAwOS4wNC4yMDIxIHVtIDA5OjQ4IHNj
+aHJpZWIgTWFyaWEgTXXDsW96IDxtYW11a2k5MkBnbWFpbC5jb20+Og0KPj4NCj4+IO+7vw0KPj4g
+SGkgSnVsaWFuLA0KPj4NCj4+IFNvcnJ5IGZvciB0aGUgbGF0ZSByZXBseSBhbmQgdGhhbmtzIGZv
+ciB0aGUgYW5zd2VyLg0KPj4NCj4+IEkgaGF2ZSBiZWVuIGRlYnVnZ2luZyB0aGUgY29uZmlndXJh
+dGlvbiBwcmludGluZyB0aGUgZW50cmllcyBvZiANCj4+ICJzZXRfYWdjIiB0aGF0IEkgaGF2ZSBm
+b3VuZCBvbiBjcHAvcHkgZmlsZXMgaW4gdGhlIHVoZCBkcml2ZXIgYW5kIA0KPj4gZXR0dXMgcmVw
+b3NpdG9yaWVzLCBhbmQgSSBjYW4gY29uZmlybSB0aGF0IHRoZSBjb2RlIGlzIG5vdCBnZXR0aW5n
+IHRvIA0KPj4gdGhlIGFkOTM2MV9kZXZpY2UuY3BwIGFzIEkgdGhvdWdodCBpbiB0aGUgYmVnaW5u
+aW5nLg0KPj4NCj4+IElmIEkgZ28gdGhyb3VnaCB0aGUgY29kZSBmcm9tIG15IHB5dGhvbiBzY3Jp
+cHQgdG8gdGhlIA0KPj4gYWQ5MzYxX2RldmljZS5jcHAgY29uZmlndXJhdGlvbiBmaWxlIEkgc2Vl
+IHRoZSBmb2xsb3dpbmc6DQo+Pg0KPj4gICAqIFRoZSBweXRob24gc2NyaXB0cyBjYWxscyBmb3Ig
+ZXR0dXMucmZub2NfcnhfcmFkaW8uc2V0X2FnYyBtZXRob2QsDQo+PiAgICAgd2hpY2ggaXMgZm91
+bmQgaW4gZXR0dXMgcmVwb3NpdG9yeSAoZm9yIHVzcnBfc291cmNlIGlzIG9uDQo+PiAgICAgZ251
+cmFkaW8vdWhkIGxpYikNCj4+DQo+PiAgICogVGhlIHJmbm9jX3J4X3JhZGlvIGNsYXNzIGlzIGRl
+ZmluZWQgaW4NCj4+ICAgICBnci1ldHR1cy9saWIvcmZub2NfcnhfcmFkaW9faW1wbC5oLCB3aGVy
+ZSB0aGVyZSBpcyBhbHNvIGEgcG9pbnRlcg0KPj4gICAgIHRvIHRoZSByYWRpb19jb250cm9sIGNs
+YXNzIGRlZmluZWQ6DQo+Pg0KPj4gICAgICAgICAvY2xhc3MgcmZub2NfcnhfcmFkaW9faW1wbCA6
+IHB1YmxpYyByZm5vY19yeF9yYWRpbw0KPj4gICAgICAgICB7DQo+PiAgICAgICAgIHB1YmxpYzoN
+Cj4+ICAgICAgICAgwqAgwqAgcmZub2NfcnhfcmFkaW9faW1wbCg6OnVoZDo6Ly9yZm5vYzo6bm9j
+X2Jsb2NrX2Jhc2U6OnNwdHINCj4+ICAgICAgICAgYmxvY2tfcmVmKTsNCj4+ICAgICAgICAgwqAg
+wqAgfnJmbm9jX3J4X3JhZGlvX2ltcGwoKTsNCj4+DQo+PiAgICAgICAgIMKgIMKgIC8qKiogQVBJ
+DQo+PiAgICAgICAgICoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKi8vKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqLy8qKioqKi8NCj4+ICAgICAgICAgwqAgwqAgZG91YmxlIHNldF9y
+YXRlKGNvbnN0IGRvdWJsZSByYXRlKTsNCj4+ICAgICAgICAgwqAgwqAgdm9pZCBzZXRfYW50ZW5u
+YShjb25zdCBzdGQ6OnN0cmluZyYgYW50ZW5uYSwgY29uc3Qgc2l6ZV90DQo+PiAgICAgICAgIGNo
+YW4pOw0KPj4gICAgICAgICDCoCDCoCBkb3VibGUgc2V0X2ZyZXF1ZW5jeShjb25zdCBkb3VibGUg
+ZnJlcXVlbmN5LCBjb25zdCBzaXplX3QNCj4+ICAgICAgICAgY2hhbik7DQo+PiAgICAgICAgIMKg
+IMKgIHZvaWQgc2V0X3R1bmVfYXJncyhjb25zdCA6OnVoZDo6ZGV2aWNlX2FkZHJfdCYgYXJncywg
+Y29uc3QNCj4+ICAgICAgICAgc2l6ZV90IGNoYW4pOw0KPj4gICAgICAgICDCoCDCoCBkb3VibGUg
+c2V0X2dhaW4oY29uc3QgZG91YmxlIGdhaW4sIGNvbnN0IHNpemVfdCBjaGFuKTsNCj4+ICAgICAg
+ICAgwqAgwqAgZG91YmxlIHNldF9nYWluKGNvbnN0IGRvdWJsZSBnYWluLCBjb25zdCBzdGQ6OnN0
+cmluZyYNCj4+ICAgICAgICAgbmFtZSwgY29uc3Qgc2l6ZV90IGNoYW4pOw0KPj4gICAgICAgICDC
+oCDCoCB2b2lkIHNldF9hZ2MoY29uc3QgYm9vbCBlbmFibGUsIGNvbnN0IHNpemVfdCBjaGFuKTsN
+Cj4+ICAgICAgICAgwqAgwqAgdm9pZCBzZXRfZ2Fpbl9wcm9maWxlKGNvbnN0IHN0ZDo6c3RyaW5n
+JiBwcm9maWxlLCBjb25zdA0KPj4gICAgICAgICBzaXplX3QgY2hhbik7DQo+PiAgICAgICAgIMKg
+IMKgIGRvdWJsZSBzZXRfYmFuZHdpZHRoKGNvbnN0IGRvdWJsZSBiYW5kd2lkdGgsIGNvbnN0IHNp
+emVfdA0KPj4gICAgICAgICBjaGFuKTsNCj4+ICAgICAgICAgwqAgwqAgdm9pZA0KPj4gICAgICAg
+ICDCoCDCoCBzZXRfbG9fc291cmNlKGNvbnN0IHN0ZDo6c3RyaW5nJiBzb3VyY2UsIGNvbnN0DQo+
+PiAgICAgICAgIHN0ZDo6c3RyaW5nJiBuYW1lLCBjb25zdCBzaXplX3QgY2hhbik7DQo+PiAgICAg
+ICAgIMKgIMKgIHZvaWQNCj4+ICAgICAgICAgwqAgwqAgc2V0X2xvX2V4cG9ydF9lbmFibGVkKGNv
+bnN0IGJvb2wgZW5hYmxlZCwgY29uc3QNCj4+ICAgICAgICAgc3RkOjpzdHJpbmcmIG5hbWUsIGNv
+bnN0IHNpemVfdCBjaGFuKTsNCj4+ICAgICAgICAgwqAgwqAgZG91YmxlIHNldF9sb19mcmVxKGNv
+bnN0IGRvdWJsZSBmcmVxLCBjb25zdCBzdGQ6OnN0cmluZyYNCj4+ICAgICAgICAgbmFtZSwgY29u
+c3Qgc2l6ZV90IGNoYW4pOw0KPj4gICAgICAgICDCoCDCoCB2b2lkIHNldF9kY19vZmZzZXQoY29u
+c3QgYm9vbCBlbmFibGUsIGNvbnN0IHNpemVfdCBjaGFuKTsNCj4+ICAgICAgICAgwqAgwqAgdm9p
+ZCBzZXRfZGNfb2Zmc2V0KGNvbnN0IHN0ZDo6Y29tcGxleDxkb3VibGU+JiBvZmZzZXQsDQo+PiAg
+ICAgICAgIGNvbnN0IHNpemVfdCBjaGFuKTsNCj4+ICAgICAgICAgwqAgwqAgdm9pZCBzZXRfaXFf
+YmFsYW5jZShjb25zdCBib29sIGVuYWJsZSwgY29uc3Qgc2l6ZV90IGNoYW4pOw0KPj4gICAgICAg
+ICDCoCDCoCB2b2lkIHNldF9pcV9iYWxhbmNlKGNvbnN0IHN0ZDo6Y29tcGxleDxkb3VibGU+Jg0K
+Pj4gICAgICAgICBjb3JyZWN0aW9uLCBjb25zdCBzaXplX3QgY2hhbik7DQo+Pg0KPj4gICAgICAg
+ICBwcml2YXRlOg0KPj4gICAgICAgICDCoCDCoCA6OnVoZDo6cmZub2M6OnJhZGlvX2NvbnRyb2w6
+Oi8vc3B0ciBkX3JhZGlvX3JlZjsNCj4+ICAgICAgICAgfTsvDQo+Pg0KPj4gICAqIEluIGdyLWV0
+dHVzL2xpYi9yZm5vY19yeF9yYWRpb19pbXBsLmNwcCB3aGVuIHNldF9hZ2MgY29tbWFuZCBpcw0K
+Pj4gICAgIHJlY2VpdmVkLCBpdCByZXR1cm5zIGEgY2FsbCB0byB0aGUgcG9pbnRlciBJIG1lbnRp
+b24gYmVmb3JlLCBhbmQNCj4+ICAgICB0aGVyZWZvcmUsIHRvIHRoZSByYWRpb19jb250cm9sIGNs
+YXNzOg0KPj4NCj4+ICAgICAgICAgL3ZvaWQgcmZub2NfcnhfcmFkaW9faW1wbDo6c2V0X2FnYygv
+L2NvbnN0IGJvb2wgZW5hYmxlLCBjb25zdA0KPj4gICAgICAgICBzaXplX3QgY2hhbikNCj4+ICAg
+ICAgICAgew0KPj4gICAgICAgICDCoCDCoCByZXR1cm4gZF9yYWRpb19yZWYtPnNldF9yeF9hZ2Mo
+Ly9lbmFibGUsIGNoYW4pOw0KPj4gICAgICAgICB9Lw0KPj4NCj4+ICAgKiBUaGUgcmFkaW9fY29u
+dHJvbCBjbGFzcyBpcyBmb3VuZCBpbiB0aGUgVUhEIGRyaXZlciByZXBvc2l0b3J5IGluDQo+PiAg
+ICAgdWhkL2hvc3QvaW5jbHVkZS91aGQvcmZub2MvcmFkaW9fY29udHJvbC5ocHAgd2hpY2ggaXMg
+dmlydHVhbGx5DQo+PiAgICAgaW1wbGVtZW50ZWQgYXMgcmFkaW9fY29udHJvbF9pbXBsIGNsYXNz
+IGluDQo+PiAgICAgZTN4eF9yYWRpb19jb250cm9sX2ltcGwuY3BwIChob3N0L2xpYi91c3JwL2Jv
+YXJkL2UzeHgpDQo+PiAgICogVGhpcyBmaWxlIGNhbGxzIHRvIHRoZSBhZDkzNjFfY3RybCBjbGFz
+cyB3aGljaCBpcyBpbXBsZW1lbnRlZCBpbg0KPj4gICAgIGUzeHhfYWQ5MzYxX2lmYWNlLmNwcCAo
+aG9zdC9saWIvdXNycC9ib2FyZC9lM3h4KQ0KPj4gICAqIEF0IHRoaXMgcG9pbnQsIHRoZXJlIGlz
+IGEgY2FsbCBmb3IgdGhlIHJwY19jbGllbnQgd2hlcmUgSSBnZXQga2luZA0KPj4gICAgIG9mIGxv
+c3QgYWJvdXQgaG93IHRvIGNoYW5nZSB0aGUgcmVnaXN0ZXJzIHRoaXMgd2F5Og0KPj4NCj4+DQo+
+PiAgICAgICAgIC92b2lkIHNldF9hZ2MoY29uc3Qgc3RkOjpzdHJpbmcmIHdoaWNoLCBib29sIGVu
+YWJsZSkNCj4+ICAgICAgICAgew0KPj4gICAgICAgICBfcnBjYy0+cmVxdWVzdF93aXRoX3Rva2Vu
+PHZvaWQ+KHRoaXMtPl9ycGNfcHJlZml4ICsgInNldF9hZ2MiLA0KPj4gICAgICAgICB3aGljaCwg
+ZW5hYmxlKTsNCj4+ICAgICAgICAgfS8NCj4+DQo+Pg0KPj4NCj4+IFRvIGJlIGJyaWVmOg0KPj4N
+Cj4+ICAgKiBXaGVuIGRlYnVnZ2luZyBJIGNhbid0IHNlZSB0aGF0IG15IGNvZGUgZ2V0cyB0byB0
+aGUgb25seQ0KPj4gICAgIGNvbmZpZ3VyYXRpb24gZmlsZSBJIGZvdW5kIHdoaWNoIGlzIHRoZSBh
+ZDkzNjFfZGV2aWNlLmNwcA0KPj4gICAqIFRoZSBzZXRfYWdjIGNvbW1hbmQgc2VlbXMgdG8gYmUg
+bWFuYWdlIHRocm91Z2ggdGhlIHJwY19jbGllbnQgKEkNCj4+ICAgICB0aGluayB0aGlzIGlzIHJl
+bGF0ZWQgdG8gdGhlIG1vZHVsZSBwZXJpcGhlcmFsIG1hbmFnZXIgd2hpY2ggaXMgYQ0KPj4gICAg
+ICJsYXllciBvZiBjb250cm9sIHRoYXQgVUhEIHVzZXMgdG8gYWNjZXNzLCBjb25maWd1cmUgYW5k
+IGNvbnRyb2wNCj4+ICAgICB0aGUgaGFyZHdhcmUiLCBodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9t
+YW51YWwvcGFnZV9tcG0uaHRtbCkNCj4+ICAgKiBJbnNpZGUgdGhlIGNvZGUsIGluIG11bHRpX3Vz
+cnAgZmlsZXMgdGhlcmUgaXMgYSBjb21tZW50IHRoYXQgdGhlDQo+PiAgICAgc3BlY2lmaWMgY29u
+ZmlndXJhdGlvbiBvZiB0aGUgQUdDIGlzIHNldCBpbiB0aGUgcHJvcGVydHlfdHJlZSBidXQNCj4+
+ICAgICBJIGRvbid0IGtub3cgaG93IHRvIHdyaXRlIHRoZSBjb25maWd1cmF0aW9uIHJlZ2lzdGVy
+cyBvZiB0aGUgYWdjDQo+PiAgICAgdGhyb3VnaCB0aGUgcHJvcGVydHlfdHJlZS4NCj4+DQo+Pg0K
+Pj4gU28gbXkgcXVlc3Rpb25zIGhlcmUgYXJlOg0KPj4NCj4+ICAxLiBIb3cgY2FuIEkgc2V0IHRo
+ZSBjb25maWd1cmF0aW9uIHJlZ2lzdGVycyBvZiB0aGUgQUdDLCB0aHJvdWdoIHRoZQ0KPj4gICAg
+IE1QTSBvciB0aGUgcHJvcGVydHkgdHJlZT8NCj4+ICAyLiBBcmUgdGhlcmUgZXhhbXBsZXMgb24g
+aG93IEkgY2FuIHNldCB0aGVzZSByZWdpc3RlcnMgdGhyb3VnaCB0aGUNCj4+ICAgICBNUE0gb3Ig
+dGhlIHByb3BlcnR5X3RyZWU/IA0KPj4NCj4+DQo+PiBLaW5kIFJlZ2FyZHMsDQo+Pg0KPj4gTWFy
+aWENCj4+DQo+PiBFbCBtacOpLCAyNCBtYXIgMjAyMSBhIGxhcyAxMToyMCwgSnVsaWFuIEFybm9s
+ZCANCj4+ICg8anVsaWFuQGVsaXRlY29kaW5nLm9yZyA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGlu
+Zy5vcmc+PikgZXNjcmliacOzOg0KPj4NCj4+ICAgICBNYXJpYSwNCj4+DQo+PiAgICAgdGhhdCBz
+b3VuZHMgYWJvdXQgcmlnaHQhDQo+PiAgICAgSG93ZXZlciwgdG8gbWFrZSBhYnNvbHV0ZWx5IHN1
+cmUgR05VIFJhZGlvIHBpY2tzIHVwIHRoZSBtb2RpZmllZA0KPj4gICAgIGxpYnVoZA0KPj4gICAg
+IHlvdSBjb3VsZCBhZGQgYSBwcmludCBzdGF0ZW1lbnQgc29tZXdoZXJlIGluIHlvdXIgVUhEIGNv
+ZGUuDQo+PiAgICAgWW91IGNvdWxkIGFsc28gY29tcGFyZSB5b3VyIFVIRCBpbnN0YWxsIHByZWZp
+eCB0byB0aGUgcGF0aCBnci11aGQNCj4+ICAgICB1c2VzIGZvciBsaW5raW5nIGxpYnVoZC4NCj4+
+DQo+PiAgICAgQmVsb3cgaXMgdGhlIHBhdGNoIEkgdXNlZCBmb3IgbXkgdGVzdHM6DQo+Pg0KPj4g
+ICAgIGRpZmYgLS1naXQgYS9ob3N0L2xpYi91c3JwL2NvbW1vbi9hZDkzNjFfZHJpdmVyL2FkOTM2
+MV9kZXZpY2UuY3BwDQo+PiAgICAgYi9ob3N0L2xpYi91c3JwL2NvbW1vbi9hZDkzNjFfZHJpdmVy
+L2FkOTM2MV9kZXZpY2UuY3BwDQo+PiAgICAgaW5kZXggOWUwODg4NzFkLi4wZTViYzg2YzUgMTAw
+NjQ0DQo+PiAgICAgLS0tIGEvaG9zdC9saWIvdXNycC9jb21tb24vYWQ5MzYxX2RyaXZlci9hZDkz
+NjFfZGV2aWNlLmNwcA0KPj4gICAgICsrKyBiL2hvc3QvbGliL3VzcnAvY29tbW9uL2FkOTM2MV9k
+cml2ZXIvYWQ5MzYxX2RldmljZS5jcHANCj4+ICAgICBAQCAtMTA4OSw3ICsxMDg5LDcgQEAgdm9p
+ZA0KPj4gICAgIGFkOTM2MV9kZXZpY2VfdDo6X3NldHVwX2dhaW5fY29udHJvbChib29sIGFnYykN
+Cj4+ICAgICDCoCDCoCDCoCDCoCDCoCBfaW9faWZhY2UtPnBva2U4KDB4MEZELCAweDRDKTsgLy8g
+TWF4IEZ1bGwvTE1UIEdhaW4NCj4+ICAgICBUYWJsZSBJbmRleA0KPj4gICAgIMKgIMKgIMKgIMKg
+IMKgIF9pb19pZmFjZS0+cG9rZTgoMHgwRkUsIDB4NDQpOyAvLyBEZWNyIFN0ZXAgU2l6ZSwgUGVh
+aw0KPj4gICAgIE92ZXJsb2FkIFRpbWUNCj4+ICAgICDCoCDCoCDCoCDCoCDCoCBfaW9faWZhY2Ut
+PnBva2U4KDB4MTAwLCAweDZGKTsgLy8gTWF4IERpZ2l0YWwgR2Fpbg0KPj4gICAgIC3CoCDCoCDC
+oCDCoCBfaW9faWZhY2UtPnBva2U4KDB4MTAxLCAweDBBKTsgLy8gTWF4IERpZ2l0YWwgR2Fpbg0K
+Pj4gICAgICvCoCDCoCDCoCDCoCBfaW9faWZhY2UtPnBva2U4KDB4MTAxLCAweDAyKTsgLy8gTWF4
+IERpZ2l0YWwgR2Fpbg0KPj4gICAgIMKgIMKgIMKgIMKgIMKgIF9pb19pZmFjZS0+cG9rZTgoMHgx
+MDMsIDB4MDgpOyAvLyBNYXggRGlnaXRhbCBHYWluDQo+PiAgICAgwqAgwqAgwqAgwqAgwqAgX2lv
+X2lmYWNlLT5wb2tlOCgweDEwNCwgMHgyRik7IC8vIEFEQyBTbWFsbCBPdmVybG9hZA0KPj4gICAg
+IFRocmVzaG9sZA0KPj4gICAgIMKgIMKgIMKgIMKgIMKgIF9pb19pZmFjZS0+cG9rZTgoMHgxMDUs
+IDB4M0EpOyAvLyBBREMgTGFyZ2UgT3ZlcmxvYWQNCj4+ICAgICBUaHJlc2hvbGQNCj4+ICAgICBA
+QCAtMTA5OCwxNCArMTA5OCwxNCBAQCB2b2lkDQo+PiAgICAgYWQ5MzYxX2RldmljZV90Ojpfc2V0
+dXBfZ2Fpbl9jb250cm9sKGJvb2wgYWdjKQ0KPj4gICAgIMKgIMKgIMKgIMKgIMKgIF9pb19pZmFj
+ZS0+cG9rZTgoMHgxMDgsIDB4MzEpOw0KPj4gICAgIMKgIMKgIMKgIMKgIMKgIF9pb19pZmFjZS0+
+cG9rZTgoMHgxMTEsIDB4MEEpOw0KPj4gICAgIMKgIMKgIMKgIMKgIMKgIF9pb19pZmFjZS0+cG9r
+ZTgoMHgxMUEsIDB4MUMpOw0KPj4gICAgIC3CoCDCoCDCoCDCoCBfaW9faWZhY2UtPnBva2U4KDB4
+MTIwLCAweDBDKTsNCj4+ICAgICArwqAgwqAgwqAgwqAgX2lvX2lmYWNlLT5wb2tlOCgweDEyMCwg
+MHgwNCk7DQo+PiAgICAgwqAgwqAgwqAgwqAgwqAgX2lvX2lmYWNlLT5wb2tlOCgweDEyMSwgMHg0
+NCk7DQo+PiAgICAgwqAgwqAgwqAgwqAgwqAgX2lvX2lmYWNlLT5wb2tlOCgweDEyMiwgMHg0NCk7
+DQo+PiAgICAgwqAgwqAgwqAgwqAgwqAgX2lvX2lmYWNlLT5wb2tlOCgweDEyMywgMHgxMSk7DQo+
+PiAgICAgwqAgwqAgwqAgwqAgwqAgX2lvX2lmYWNlLT5wb2tlOCgweDEyNCwgMHhGNSk7DQo+PiAg
+ICAgwqAgwqAgwqAgwqAgwqAgX2lvX2lmYWNlLT5wb2tlOCgweDEyNSwgMHgzQik7DQo+PiAgICAg
+wqAgwqAgwqAgwqAgwqAgX2lvX2lmYWNlLT5wb2tlOCgweDEyOCwgMHgwMyk7DQo+PiAgICAgLcKg
+IMKgIMKgIMKgIF9pb19pZmFjZS0+cG9rZTgoMHgxMjksIDB4NTYpOw0KPj4gICAgICvCoCDCoCDC
+oCDCoCBfaW9faWZhY2UtPnBva2U4KDB4MTI5LCAweDExKTsNCj4+ICAgICDCoCDCoCDCoCDCoCDC
+oCBfaW9faWZhY2UtPnBva2U4KDB4MTJBLCAweDIyKTsNCj4+ICAgICDCoCDCoCDCoCB9IGVsc2Ug
+ew0KPj4gICAgIMKgIMKgIMKgIMKgIMKgIF9pb19pZmFjZS0+cG9rZTgoMHgwRkEsIDB4RTApOyAv
+LyBHYWluIENvbnRyb2wgTW9kZSBTZWxlY3QNCj4+DQo+Pg0KPj4gICAgIENoZWVycywNCj4+ICAg
+ICBKdWxpYW4NCj4+DQo+PiAgICAgT24gMy8yNC8yMSA5OjU5IEFNLCBNYXJpYSBNdcOxb3ogd3Jv
+dGU6DQo+PiAgICAgPiBIaSBKdWxpYW4sDQo+PiAgICAgPg0KPj4gICAgID4gSSBoYXZlIHRoZSBj
+aGFuY2UgdG8gdGVzdCB0aGUgQUdDIHdpdGggYSBCMjEwIGFuZCBwZXJmb3JtIHRoZQ0KPj4gICAg
+IHNhbWUgZ3JhcGgNCj4+ICAgICA+IGFzIHlvdSBzZW5kIG1lIGJ1dCBJIGFtIHVuYWJsZSB0byBz
+ZWUgd2hhdCB5b3Ugc2F3IHNvIEkgdGhpbmsgSSdtDQo+PiAgICAgPiBtaXNzaW5nIHNvbWV0aGlu
+Zy4NCj4+ICAgICA+IEkgYWxzbyBoYXZlIFVIRCA0LjAgYW5kIEdOVVJhZGlvIDMuOCAoaW5zdGFs
+bGVkIGJ5IHNvdXJjZSkuDQo+PiAgICAgPg0KPj4gICAgID4gVGhlIHN0ZXBzIEkgdGFrZSBhcmUg
+dGhlc2U6DQo+PiAgICAgPg0KPj4gICAgID7CoCDCoCogRmlyc3QsIEkgY2hhbmdlIHRoZSBhZDkz
+NjFfZGV2aWNlLmNwcCB0aGF0IGlzIGluIHVoZA0KPj4gICAgIHJlcG9zaXRvcnkgaW4NCj4+ICAg
+ICA+wqAgwqAgwqAvL3VoZC9ob3N0L2xpYi91c3JwL2NvbW1vbi9hZDkzNjFfZHJpdmVyL2FkOTM2
+MV9kZXZpY2UuY3BwLA0KPj4gICAgID7CoCDCoCDCoHJlZ2lzdGVycyAweDEwMSwgMHgxMjAsIDB4
+MTI5LCAweDEyMyBhbmQgMHgxMkEuLw0KPj4gICAgID7CoCDCoCogVGhlbiwgSSBkbyAibWFrZSIg
+YW5kICJtYWtlIGluc3RhbGwiIHRvIGNvbXBpbGUgdGhlIGNoYW5nZXMgaW4NCj4+ICAgICA+wqAg
+wqAgwqBidWlsZC1ob3N0IGZvbGRlci4NCj4+ICAgICA+wqAgwqAqIEFmdGVywqB0aGF0LCBJIGdl
+bmVyYXRlIHRoZSBweXRob24gc2NyaXB0IGZvciB0aGUgR1JDIGZsb3cNCj4+ICAgICBncmFwaCBh
+bmQNCj4+ICAgICA+wqAgwqAgwqBtb3ZlIHRoZSAic2V0X2FnYyIgY29tbWFuZCBhZnRlciB0aGUg
+InNldF9yYXRlIiBvbmUuDQo+PiAgICAgPsKgIMKgKiBGaW5hbGx5LCBJIHJ1biB0aGUgcHl0aG9u
+Lg0KPj4gICAgID4NCj4+ICAgICA+IEkgY2FuJ3Qgc2VlIG15IHdhdmVmb3JtIGJldHdlZW4gdGhl
+IHZhbHVlcyBJIHNldC4gSXMgdGhlcmUNCj4+ICAgICBzb21ldGhpbmcNCj4+ICAgICA+IHdyb25n
+IHdpdGggdGhvc2Ugc3RlcHM/IERpZCB5b3UgZG8gYW55dGhpbmcgZWxzZT8NCj4+ICAgICA+DQo+
+PiAgICAgPiBLaW5nwqBSZWdhcmRzLA0KPj4gICAgID4NCj4+ICAgICA+IE1hcmlhDQo+PiAgICAg
+Pg0KPj4gICAgID4gLw0KPj4gICAgID4gLw0KPj4gICAgID4NCj4+ICAgICA+IEVsIG1hciwgMjMg
+bWFyIDIwMjEgYSBsYXMgOToyMywgTWFyaWEgTXXDsW96ICg8bWFtdWtpOTJAZ21haWwuY29tDQo+
+PiAgICAgPG1haWx0bzptYW11a2k5MkBnbWFpbC5jb20+DQo+PiAgICAgPiA8bWFpbHRvOm1hbXVr
+aTkyQGdtYWlsLmNvbSA8bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbT4+PikgZXNjcmliacOzOg0K
+Pj4gICAgID4NCj4+ICAgICA+wqAgwqAgwqBIaSBKdWxpYW4sDQo+PiAgICAgPg0KPj4gICAgID7C
+oCDCoCDCoFRoYW5rcyBmb3IgdGhlIGNoZWNraW5nIQ0KPj4gICAgID4NCj4+ICAgICA+wqAgwqAg
+wqBJIGhhdmUgYWxzbyBjaGVja2VkIG15IGdyYXBoIGFuZCBzYW1wX3JhdGUgaXMgc2V0dGluZyBm
+aXJzdCwNCj4+ICAgICBzbyBJJ2xsDQo+PiAgICAgPsKgIMKgIMKgdHJ5IHRvIHRlc3QgaXQgd2l0
+aCBhIHNpbmUgd2F2ZWZvcm0gYXMgeW91IHN1Z2dlc3RlZCBhbmQgc2VlDQo+PiAgICAgaWYgdGhh
+dA0KPj4gICAgID7CoCDCoCDCoHdvcmtzLiBJZiBub3QsIG1heWJlIGlzIGFuIFJGTm9DL2dyLWV0
+dHVzIHByb2JsZW0uIEknbGwgcHV0DQo+PiAgICAgYW4gaXNzdWUNCj4+ICAgICA+wqAgwqAgwqBp
+biB0aGUgZ3ItZXR0dXMgcmVwb3NpdG9yeSBpbiB0aGF0IGNhc2UuDQo+PiAgICAgPg0KPj4gICAg
+ID7CoCDCoCDCoFRoYW5rcyBhZ2FpbiBmb3IgeW91ciBoZWxwLg0KPj4gICAgID4NCj4+ICAgICA+
+wqAgwqAgwqBLaW5kIFJlZ2FyZHMsDQo+PiAgICAgPg0KPj4gICAgID7CoCDCoCDCoE1hcmlhLg0K
+Pj4gICAgID4NCj4+ICAgICA+wqAgwqAgwqBFbCBtYXIsIDIzIG1hciAyMDIxIGEgbGFzIDA6MzYs
+IEp1bGlhbiBBcm5vbGQNCj4+ICAgICA+wqAgwqAgwqAoPGp1bGlhbkBlbGl0ZWNvZGluZy5vcmcg
+PG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPg0KPj4gICAgIDxtYWlsdG86anVsaWFuQGVs
+aXRlY29kaW5nLm9yZyA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmc+Pj4pDQo+PiAgICAg
+ZXNjcmliacOzOg0KPj4gICAgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBNYXJpYSwNCj4+ICAg
+ICA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgSSBjb3VsZG4ndCByZXNpc3QgdHJ5aW5nIHRoaXMg
+bXlzZWxmLCBhcyB5b3VyDQo+PiAgICAgbW9kaWZpY2F0aW9ucyBzZWVtZWQNCj4+ICAgICA+wqAg
+wqAgwqAgwqAgwqByZWFzb25hYmxlLg0KPj4gICAgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBT
+byBJIGRpZCBzZXQgdXAgYSBzaW1wbGUgdGVzdCB3aXRoIGEgYjIxMCBjb25uZWN0ZWQgdG8NCj4+
+ICAgICBteSBzaWdnZW4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBmZWVkaW5nDQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgaXQgd2l0aCBhIHRvbmUgb2YgdmFyeWluZyBwb3dlciBhdCAyLjQxMDJHSHou
+DQo+PiAgICAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoEZvciB0aGUgZGVmYXVsdCBVSEQgQUdD
+IHNldHRpbmdzIEkgY291bGQgY29uZmlybSB0aGF0DQo+PiAgICAgdGhlIHNpZ25hbA0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoHdhcw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGtlcHQgYmV0d2VlbiAt
+MTAgZEJGUyBhbmQgLTEyIGRCRlMgKDIwICogbG9nMTAofHh8KSBvdmVyIGENCj4+ICAgICA+wqAg
+wqAgwqAgwqAgwqBwcmV0dHkgd2lkZQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGlucHV0IHBvd2Vy
+IHJhbmdlLg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoFRoaXMgd2FzIHVzaW5nIEdSIDMuOCBhbmQg
+VUhEIDQuMC4NCj4+ICAgICA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgSG93ZXZlciwgSSBoYWQg
+dG8gbW9kaWZ5IHRoZSBnZW5lcmF0ZSBmbG93LWdyYXBoDQo+PiAgICAgc2xpZ2h0bHksIGFzDQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgdGhlIEFHQw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHdhcyBl
+bmFibGVzIGJlZm9yZSB0aGUgc2FtcGxlLXJhdGUgd2FzIHNldCAobWF5YmUgZG91YmxlDQo+PiAg
+ICAgY2hlY2sNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqB0aGF0LCB0b28pLg0KPj4gICAgID4NCj4+
+ICAgICA+wqAgwqAgwqAgwqAgwqBBZnRlcndhcmRzLCBJIHVzZWQgeW91ciBzZXR0aW5ncyAoSSBk
+aWQgY2hhbmdlIHJlZyAweDEyOQ0KPj4gICAgIHRvIDB4MTENCj4+ICAgICA+wqAgwqAgwqAgwqAg
+wqAoMWRCDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgKy0pLCB0aG91Z2gpLg0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoEFsc28gdGhvc2Ugc2V0dGluZ3Mgd29ya2VkIGFzIGV4cGVjdGVkIGFuZCB0aGUg
+c2lnbmFsDQo+PiAgICAgd2FzIG5pY2VseQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGtlcHQNCj4+
+ICAgICA+wqAgwqAgwqAgwqAgwqBiZXR3ZWVuIC0yIGRCRlMgYW5kIC00IGRCRlMuDQo+PiAgICAg
+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoEF0dGFjaGVkIGlzIGEgcGljdHVyZSBvZiB0aGUgZmxv
+dy1ncmFwaCBJIHVzZWQgZm9yIHRlc3RpbmcuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgTWF5YmUg
+eW91DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgY291bGQgYWxzbyBzdGFydCBieSB0ZXN0aW5nIHdp
+dGggYSBzaW5lIHdhdmUgdG8NCj4+ICAgICB2ZXJpZnlpbmcgdGhhdCB5b3VyDQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgdmFsdWVzIGdldCBhcHBsaWVkIHByb3Blcmx5Lg0KPj4gICAgID4NCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqBDaGVlcnMsDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgSnVsaWFuDQo+
+PiAgICAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoE9uIDMvMjIvMjEgNjoyMSBQTSwgTWFyaWEg
+TXXDsW96IHdyb3RlOg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+IEhpIEp1bGlhbiwNCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+IFN1cmUuDQo+PiAg
+ICAgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPiBJIGFtIHJlY2Vp
+dmluZyBhIFFQU0sgdGhyb3VnaCB0aGUgcmFkaW8gYW5kDQo+PiAgICAgcGxvdHRpbmfCoGl0IGlu
+IGENCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBRVCBncmFwaA0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+IChzZWUgZ3JjLnBuZykNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPiBJZiBJIGhhdmUgQUdD
+IGRpc2FibGUsIEkgZ2V0IHdoYXQgaXMgc2hvd24gaW4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAi
+dGVzdF93aXRob3V0X2FnYy5wbmciLA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+IHRoZW4gaWYg
+SSBlbmFibGUgaXQsIEkgc2VlIHdoYXQgaXMgb24NCj4+ICAgICAidGVzdF93aXRoX2FnYy5wbmci
+IHdoZXJlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4gIlF1YWRyYXR1cmUiIGlzIGFsd2F5cyBj
+ZW50ZXIgbW9yZSBvciBsZXNzIGluIDAuMjUgd2hpY2gNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBt
+aWdodCBmaXQgd2l0aA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+IHRoZSB2YWx1ZXMgZ2l2ZW4g
+YnkgZGVmYXVsdCAoaW5uZXIgaGlnaCB0aHJlc2hvbGQgPQ0KPj4gICAgIC0xMmRCRlMsDQo+PiAg
+ICAgPsKgIMKgIMKgIMKgIMKgaW5uZXIgbG93DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4gdGhy
+ZXNob2xkID0gLTEwIGRCRlMpLg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+DQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgID4gSWYgSSBjaGFuZ2UgdGhlIGFkOTM2MV9kZXZpY2UuY3BwIChhdHRhY2hl
+ZCkgZnJvbQ0KPj4gICAgIGxpbmUgMTA4NSwNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBieSBjaGFu
+Z2luZw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+IHJlZ2lzdGVycyAweDEwMSwgMHgxMjAgYW5k
+IDB4MTI5IHdpdGggdmFsdWVzIDB4MDIsDQo+PiAgICAgMHgwNCBhbmQgMHgxNg0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+IHJlc3BlY3RpdmVseSB0byBtb3ZlIGJldHdlZW4gLTJkYkZTIGFuZCAt
+NCBkQkZTLMKgIEkNCj4+ICAgICBzZWUgdGhlIHNhbWUNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAg
+PiB3YXZlZm9ybSB0aGF0IEkgaGF2ZSBpbiAidGVzdF93aXRoX2FnYy5wbmciIChJIGV4cGVjdA0K
+Pj4gICAgIGl0IHRvDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgYmUgYXJvdW5kIDAuNykNCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+IEtpbmQgcmVnYXJk
+cywNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+IE1h
+cmlhDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPiBF
+bCBsdW4sIDIyIG1hciAyMDIxIGEgbGFzIDE3OjQ1LCBKdWxpYW4gQXJub2xkDQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgKDxqdWxpYW5AZWxpdGVjb2Rpbmcub3JnIDxtYWlsdG86anVsaWFuQGVsaXRl
+Y29kaW5nLm9yZz4NCj4+ICAgICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmcgPG1haWx0
+bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPj4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPiA8bWFp
+bHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAgICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNv
+ZGluZy5vcmc+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rp
+bmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPj4+PikgZXNjcmli
+acOzOg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID7C
+oCDCoCDCoE1hcmlhLA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgID7CoCDCoCDCoHdvdWxkIHlvdSBtaW5kIHNoYXJpbmcgeW91ciBwYXRjaD8gT3RoZXJ3
+aXNlLA0KPj4gICAgIGl04oCZcyBoYXJkDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgdG8gdGVsbCB3
+aGF0DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoGV4YWN0bHkgaXMgZ29pbmcgb24u
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPsKgIMKg
+IMKgQ2hlZXJzLA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqBKdWxpYW4NCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgQW0g
+MjIuMDMuMjAyMSB1bSAxNjoyNCBzY2hyaWViIE1hcmlhIE11w7Fveg0KPj4gICAgID7CoCDCoCDC
+oCDCoCDCoDxtYW11a2k5MkBnbWFpbC5jb20gPG1haWx0bzptYW11a2k5MkBnbWFpbC5jb20+DQo+
+PiAgICAgPG1haWx0bzptYW11a2k5MkBnbWFpbC5jb20gPG1haWx0bzptYW11a2k5MkBnbWFpbC5j
+b20+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgPG1haWx0bzptYW11a2k5MkBn
+bWFpbC5jb20NCj4+ICAgICA8bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbT4gPG1haWx0bzptYW11
+a2k5MkBnbWFpbC5jb20NCj4+ICAgICA8bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbT4+Pj46DQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAg
+wqDvu78NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoEhpIEp1bGlhbiwNCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPj4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoEkg
+cmUtb3BlbiB0aGlzIHRvcGljIHRvIGFzayBhIHF1ZXN0aW9uIGFib3V0IHRoZQ0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoGNvbmZpZ3VyYXRpb24gb2YNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7C
+oCDCoCDCoHRoZSBhZDkzNjEgcmVnaXN0ZXJzIGluIEdOVXJhZGlvL1JGTm9DDQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgID4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqBBcyBJIHVu
+ZGVyc3RhbmQsIHdoZW4gQUdDIGlzIGVuYWJsZWTCoGluIHNsb3cNCj4+ICAgICBtb2RlLCB0aGVy
+ZQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGFyZSA0DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqBjb25maWd1cmFibGUgdGhyZXNob2xkcyAoaW5uZXIgbG93LCBpbm5lciBoaWdoLA0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoG91dGVywqBsb3csIGFuZA0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoCA+PsKgIMKgIMKgb3V0ZXLCoGhpZ2gpIGFuZCBhbHNvIDQgY29uZmlndXJhYmxlIHN0ZXBz
+IHRvDQo+PiAgICAgcmVhY2ggdGhlIHpvbmUNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDC
+oCDCoGJldHdlZW7CoHRoZSBpbm5lciB0aHJlc2hvbGRzLg0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgSSBoYXZlIGZvdW5kIHRoZSBj
+b25maWd1cmF0aW9uIG9mIHRoZXNlIHJlZ2lzdGVycw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+
+PiAgIA0KPj4gICAgIMKgaW7CoC91aGQvaG9zdC9saWIvdXNycC9jb21tb24vYWQ5MzYxX2RyaXZl
+ci9hZDkzNjFfZGV2aWNlLmNwcA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgYW5k
+wqBjaGFuZ2VkIHRoZWlyIHZhbHVlcyB0aGVyZS4gVGhlbiwgSSBoYXZlDQo+PiAgICAgcmVjb21w
+aWxlZA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHVoZCAobWFrZQ0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoCA+PsKgIMKgIMKgJiBtYWtlIGluc3RhbGwpIGJ1dCwgd2hlbiBJIHJlLXJ1biBteSBncmFw
+aCBJIHNlZSBubw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGNoYW5nZSBpbiBteQ0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgd2F2ZWZvcm0gKGl0IHNlZW0gdG8gc3RheSBpbiB0aGUg
+c2FtZSBsaW1pdHMgYXMNCj4+ICAgICB0aGUgZGVmYXVsdA0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+PsKgIMKgIMKgY29uZmlndXJhdGlvbikuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+DQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqBBbSBJIG1pc3NpbmfCoGFuecKgb3RoZXLC
+oHN0ZXAgdGhhdCBJIGhhdmUgdG8gZG9uZcKgdG8NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBjb25m
+aWd1cmUgdGhlc2UNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoHBhcmFtZXRlcnM/
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAg
+wqAgwqBLaW5kIFJlZ2FyZHMsDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+DQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgID4+wqAgwqAgwqBNYXJpYQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+Pg0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgRWwgdmllLCAxMiBtYXIgMjAyMSBhIGxh
+cyAxMDowNCwgTWFyaWEgTXXDsW96DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgKDxtYW11a2k5MkBn
+bWFpbC5jb20gPG1haWx0bzptYW11a2k5MkBnbWFpbC5jb20+DQo+PiAgICAgPG1haWx0bzptYW11
+a2k5MkBnbWFpbC5jb20gPG1haWx0bzptYW11a2k5MkBnbWFpbC5jb20+Pg0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgPG1haWx0bzptYW11a2k5MkBnbWFpbC5jb20NCj4+ICAgICA8
+bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbT4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqA8bWFpbHRv
+Om1hbXVraTkyQGdtYWlsLmNvbQ0KPj4gICAgIDxtYWlsdG86bWFtdWtpOTJAZ21haWwuY29tPj4+
+PikgZXNjcmliacOzOg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+Pg0KPj4gICAgID7CoCDCoCDC
+oCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgT2sgSnVsaWFuLCBJIHdpbGwgY2hlY2sgdGhlIHRyZWUg
+bm9kZSBhbmQgdHJ5IHRvDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgbW9kaWZ5IHRoZQ0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgcHJvcGVydGllcy4gVGhhbmtzIGFnYWlu
+IGZvciB0aGUgaGVscCENCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj4NCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoEtpbmQgUmVnYXJkcywNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoE1hcmlhDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+DQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqBFbCBqdWUsIDExIG1hciAyMDIx
+IGEgbGFzIDE4OjI2LCBKdWxpYW4gQXJub2xkDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAg
+wqAgwqAgwqAgwqAoPGp1bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAgICA8bWFpbHRvOmp1bGlh
+bkBlbGl0ZWNvZGluZy5vcmc+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgPG1haWx0bzpqdWxpYW5A
+ZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPj4g
+PG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxp
+dGVjb2Rpbmcub3JnPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86anVsaWFuQGVsaXRl
+Y29kaW5nLm9yZw0KPj4gICAgIDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZz4+Pj4pDQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqBlc2NyaWJpw7M6DQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqBNYXJpYSwNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj4NCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+L3NlbGYuZXR0dXNfcmZub2NfcnhfcmFkaW9fMC5zZXRfcnhfYWdjKEZhbHNlLCAwKS8NCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4+DQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+PiBidXQgSSBoYXZlIHJlY2VpdmVkIHRo
+ZSBmb2xsb3dpbmcNCj4+ICAgICBlcnJvclRoYXQncw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHdo
+eSBJDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBnYXZlIHRo
+ZSByZWZlcmVuY2UgKFsxXSkgc2hvd2luZyB0aGUgY29ycmVjdA0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoHN5bnRheCA7KQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKg
+IMKgQW55d2F5cywgZ2xhZCBpdCB3b3JrZWQgb3V0IGZvciB5b3UhDQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBZb3UgbWlnaHQgY29uc2lkZXIgZmlsaW5nIGEg
+YnVnIGlzc3VlDQo+PiAgICAgYWdhaW5zdA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGdyLWV0dHVz
+IG9uDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBnaXRodWIu
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAg
+wqAgwqAgwqAgwqAgwqAgwqA+PiBCeSB0aGUgd2F5LCBJIGhhdmUgcmVhZCB0aGF0IHRoZXJlIGFy
+ZQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHNldmVyYWwgbW9kZXMNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoGZvciBBR0MNCj4+ICAgICA+wqAgwqAgwqAgwqAg
+wqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4+IChmYXN0LHNsb3csaHlicmlkLi4pIEkgd2FzIHdv
+bmRlcmluZw0KPj4gICAgIHdoaWNoDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgdHlwZSBpcw0KPj4g
+ICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgaW1wbGVtZW50ZWQgYnkN
+Cj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4+IGRlZmF1bHQg
+YW5kIGlmIGl0IGlzIHBvc3NpYmxlIHRvDQo+PiAgICAgY2hhbmdlIEFHQw0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoG1vZGUgaW4gdGhlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqBmbG93Z3JhcGguDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqBUaG9zZSBtb2RlcyB3ZXJlIG1haW5seSBkaWN0YXRlZCBieSB0aGUNCj4+ICAg
+ICBBRDkzNjEuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgRGVmYXVsdA0KPj4gICAgID7CoCDCoCDC
+oCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgc2hvdWxkIGJlDQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqAic2xvdyIuIFRoZSAiaHlicmlkIiBtb2RlIGlz
+IG5vdA0KPj4gICAgIGltcGxlbWVudGVkIGFzDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgZmFyIGFz
+IEkga25vdy4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoFdo
+aWNoIG1vZGUgeW91IHdhbnQgKCJzbG93IiAvICJmYXN0IikNCj4+ICAgICBkZXBlbmRzIG9uIHRo
+ZQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgc2lnbmFsIHlv
+dSB3YW50IHRvDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBy
+ZWNlaXZlLiBGb3IgYnVyc3QtbW9kZSBkaWdpdGFsIHNpZ25hbHMgeW91DQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgbWlnaHQgd2FudCB0bw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKg
+IMKgIMKgIMKgIMKgc3dpdGNoIHRvIHRoZQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKg
+IMKgIMKgIMKgIMKgIMKgImZhc3QiIG1vZGUuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAg
+wqAgwqAgwqAgwqAgwqAgwqBIb3dldmVyLCBJIHRoaW5rIHRoaXMgaXMgb25seSBwb3NzaWJsZSBi
+eQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGRpcmVjdGx5IHdyaXRpbmcNCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoHRvIHRoZSBjb3JyZXNwb25kaW5nIHByb3Bl
+cnR5LXRyZWUgbm9kZS4NCj4+ICAgICBBZ2FpbiwNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBJJ20g
+bm90DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBzdXJlIGFi
+b3V0DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBVSEQtNC4w
+L2dyLWV0dHVzIHRob3VnaC4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj4NCj4+ICAgICA+wqAg
+wqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoENoZWVycywNCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoEp1bGlhbg0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoCA+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgT24gMy8xMS8yMSA1OjI2IFBNLCBNYXJpYSBNdcOxb3og
+d3JvdGU6DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+IEhp
+IEp1bGlhbiwNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4N
+Cj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4gSSBoYXZlIGlu
+aXRpYWxseSBjaGFuZ2VkIHRoZSBweXRob24NCj4+ICAgICBnZW5lcmF0ZWQNCj4+ICAgICA+wqAg
+wqAgwqAgwqAgwqBmb3IgbXkNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDC
+oCDCoCDCoGZsb3dncmFwaCB3aXRoIHRoaXMNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDC
+oCDCoCDCoCDCoCDCoCDCoD4gbGluZToNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDC
+oCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDC
+oCDCoD4NCj4+ICAgICAvc2VsZi5ldHR1c19yZm5vY19yeF9yYWRpb18wLnNldF9yeF9hZ2MoRmFs
+c2UsIDApLw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPg0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPiBidXQgSSBoYXZl
+IHJlY2VpdmVkIHRoZSBmb2xsb3dpbmcgZXJyb3I6DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqAgwqAgwqAgwqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+IFQvcmFjZWJhY2sgKG1vc3QgcmVjZW50IGNhbGwgbGFzdCk6DQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgRmlsZQ0KPj4gICAg
+ICJjb25zdGVsbGF0aW9uX3NvZnRfZGVjb2Rlci5weSIsIGxpbmUNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAzMDEsIGluDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAg
+wqA8bW9kdWxlPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKg
+PsKgIMKgIMKgIG1haW4oKQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKg
+IMKgIMKgPsKgIMKgIEZpbGUNCj4+ICAgICAiY29uc3RlbGxhdGlvbl9zb2Z0X2RlY29kZXIucHki
+LCBsaW5lDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgMjc3LCBpbiBtYWluDQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgdGIgPSB0b3BfYmxvY2tf
+Y2xzKCkNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDC
+oCBGaWxlDQo+PiAgICAgImNvbnN0ZWxsYXRpb25fc29mdF9kZWNvZGVyLnB5IiwgbGluZQ0KPj4g
+ICAgID7CoCDCoCDCoCDCoCDCoDE2NiwgaW4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDC
+oCDCoCDCoCDCoCDCoCDCoF9faW5pdF9fDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAg
+wqAgwqAgwqAgwqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgc2VsZi5ldHR1c19yZm5vY19y
+eF9yYWRpb18wLnNldF9yeF9hZ2MoVHJ1ZSwgMCkNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7C
+oCDCoCDCoCDCoCDCoCDCoCDCoD4gQXR0cmlidXRlRXJyb3I6ICdyZm5vY19yeF9yYWRpb19zcHRy
+Jw0KPj4gICAgIG9iamVjdA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGhhcyBubw0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgYXR0cmlidXRlICdzZXRfcnhfYWdj
+Jy8NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4gQnV0IHJmbm9jX3JhZGlv
+X2ltcGwuY2MgZGVmaW5lcyBpdDoNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDC
+oCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD4gL3ZvaWQNCj4+ICAgICByZm5vY19yeF9yYWRpb19pbXBsOjpzZXRfYWdjKGNvbnN0IGJvb2wN
+Cj4+ICAgICA+wqAgwqAgwqAgwqAgwqBlbmFibGUsDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqAgwqAgwqAgwqAgwqBjb25zdCBzaXplX3QgY2hhbikNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4gew0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+
+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIHJldHVybg0KPj4gICAgIGRfcmFkaW9fcmVm
+LT5zZXRfcnhfYWdjKGVuYWJsZSwgY2hhbik7DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAg
+wqAgwqAgwqAgwqAgwqAgwqA+IH0vDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAg
+wqA+IFNlYXJjaGluZyB0aGUgcmZub2NfcnhfcmFkaW9fc3B0ciB3aXRoDQo+PiAgICAgZ3JlcA0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoHRha2VzIG1lIHRvDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+ID4+wqAgwqAgwqAgwqAgwqAgwqAgwqAic3dpZyIgZmlsZXMuIEkNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4gaGF2ZSBsb29rZWQgYXQgZXR0dXNfc3dpZy5w
+eSBhbmQgc2Vlbg0KPj4gICAgIHRoYXQgdGhlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgY29tbWFu
+ZA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgbmFtZSBpcyBz
+ZXRfYWdjDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+IGlu
+c3RlYWQgb2Ygc2V0X3J4X2FnYzoNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDC
+oCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD4gL2RlZiBzZXRfYWdjKHNlbGYsIGVuYWJsZTogImJvb2wNCj4+ICAgICBjb25zdCIsIGNoYW46
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgInNpemVfdA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+
+PsKgIMKgIMKgIMKgIMKgIMKgIMKgY29uc3QiKSAtPiAidm9pZCI6DQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgciIiIg0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgIHNl
+dF9hZ2MocmZub2NfcnhfcmFkaW8gc2VsZiwgYm9vbA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGNv
+bnN0IGVuYWJsZSwNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oHNpemVfdCBjb25zdCBjaGFuKQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKg
+IMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgIEVuYWJsZS9kaXNhYmxlIHRoZSBBR0MgZm9yDQo+PiAg
+ICAgdGhpcyBSWA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHJhZGlvIChpZg0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgYXZhaWxhYmxlKQ0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgICIiIg0KPj4g
+ICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKg
+IHJldHVybg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoF9ldHR1c19zd2lnLnJmbm9jX3J4X3JhZGlv
+X3NldF9hZ2Moc2VsZiwNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDC
+oCDCoGVuYWJsZSwgY2hhbikvDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqA+IC8NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD4gLw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPiBDaGFu
+Z2luZyB0aGlzIGluIHRoZSBmbG93Z3JhcGgucHkgc2VlbXMgdG8NCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqB3b3JrISEgVGhhbmtzDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqBmb3IgdGhlIGhlbHAgb24NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDC
+oCDCoCDCoCDCoCDCoD4gdGhpcyEgSSBwdXQgdGhpcyBpbmZvcm1hdGlvbiBoZXJlIGp1c3QNCj4+
+ICAgICBpbiBjYXNlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgc29tZW9uZQ0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgaXMgc3R1Y2sgaW4gdGhlDQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+IHNhbWUgcG9pbnQuDQo+PiAg
+ICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+DQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+IEJ5IHRoZSB3YXksIEkgaGF2ZSByZWFk
+IHRoYXQgdGhlcmUgYXJlDQo+PiAgICAgc2V2ZXJhbA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoG1v
+ZGVzIGZvcg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgQUdD
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+IChmYXN0LHNs
+b3csaHlicmlkLi4pIEkgd2FzIHdvbmRlcmluZw0KPj4gICAgIHdoaWNoIHR5cGUgaXMNCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoGltcGxlbWVudGVkIGJ5DQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+IGRlZmF1bHQgYW5k
+IGlmIGl0IGlzIHBvc3NpYmxlIHRvDQo+PiAgICAgY2hhbmdlIEFHQw0KPj4gICAgID7CoCDCoCDC
+oCDCoCDCoG1vZGUgaW4gdGhlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqBmbG93Z3JhcGguDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+
+IEtpbmQgUmVnYXJkcywNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDC
+oCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4gTWFy
+aWENCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4gRWwgbWnDqSwgMTAgbWFyIDIwMjEgYSBs
+YXMgMTI6MDMsIE1hcmlhDQo+PiAgICAgTXXDsW96DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqAgwqAgwqAgwqAgwqAoPG1hbXVraTkyQGdtYWlsLmNvbQ0KPj4gICAgIDxtYWlsdG86
+bWFtdWtpOTJAZ21haWwuY29tPiA8bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbQ0KPj4gICAgIDxt
+YWlsdG86bWFtdWtpOTJAZ21haWwuY29tPj4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqA8bWFpbHRv
+Om1hbXVraTkyQGdtYWlsLmNvbSA8bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbT4NCj4+ICAgICA8
+bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbSA8bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbT4+Pg0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPiA8bWFpbHRvOm1h
+bXVraTkyQGdtYWlsLmNvbQ0KPj4gICAgIDxtYWlsdG86bWFtdWtpOTJAZ21haWwuY29tPg0KPj4g
+ICAgID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86bWFtdWtpOTJAZ21haWwuY29tIDxtYWlsdG86bWFt
+dWtpOTJAZ21haWwuY29tPj4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDC
+oCDCoCDCoDxtYWlsdG86bWFtdWtpOTJAZ21haWwuY29tDQo+PiAgICAgPG1haWx0bzptYW11a2k5
+MkBnbWFpbC5jb20+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgPG1haWx0bzptYW11a2k5MkBnbWFp
+bC5jb20NCj4+ICAgICA8bWFpbHRvOm1hbXVraTkyQGdtYWlsLmNvbT4+Pj4+KSBlc2NyaWJpw7M6
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+DQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqBIaSBKdWxlcywN
+Cj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+
+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoFRoYW5rIHlvdSwg
+SSB3aWxsIHRyeSBpdCBhbmTCoGxldA0KPj4gICAgIHlvdSBrbm93DQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgYXMgc29vbiBhcw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKg
+IMKgIMKgcG9zc2libGUuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAg
+wqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAg
+wqAgwqBCeSB0aGUgd2F5LCBJIGhhdmUgY2hlY2tlZCB0aGUgcHl0aG9uDQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBnZW5lcmF0ZWTCoHVzaW5nIHRoZSBVSEQg
+VVNSUA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKg
+IMKgU09VUkNFIGJsb2NrIChpbnN0ZWFkIG9mIHRoZSBSRk5vQw0KPj4gICAgIHJhZGlvDQo+PiAg
+ICAgPsKgIMKgIMKgIMKgIMKgYmxvY2spIHdpdGgNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7C
+oCDCoCDCoCDCoCDCoCDCoCDCoEFHQyBhY3RpdmUgYW5kDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+ID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqBpdCBnZW5lcmF0ZXMgdGhlIHNldCBvZiBB
+R0MgZmluZS4NCj4+ICAgICBTbywgYXMNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqB5b3Ugc2FpZCwN
+Cj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoGl0IGlzIGZpeGVk
+IGluDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAg
+wqBnci11aGQgYnV0IGl0IG1pZ2h0IHN0aWxsIGJlIGEgYnVnIGluDQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgZ3ItZXR0dXMuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAg
+wqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAg
+wqAgwqBUaGFua3MgYWdhaW4gZm9yIHRoZSBoZWxwIQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+
+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKg
+IMKgIMKgIMKgIMKgPsKgIMKgIMKgS2luZCBSZWdhcmRzLA0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKg
+IMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgTWFyaWENCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7C
+oCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDC
+oCDCoCDCoCDCoD7CoCDCoCDCoEVsIG1pw6ksIDEwIG1hciAyMDIxIGEgbGFzIDExOjI1LA0KPj4g
+ICAgIEp1bGlhbiBBcm5vbGQNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDC
+oCDCoCDCoD7CoCDCoCDCoCg8anVsaWFuQGVsaXRlY29kaW5nLm9yZw0KPj4gICAgIDxtYWlsdG86
+anVsaWFuQGVsaXRlY29kaW5nLm9yZz4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqA8bWFpbHRvOmp1
+bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAgICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5v
+cmc+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPG1haWx0
+bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rp
+bmcub3JnPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5n
+Lm9yZw0KPj4gICAgIDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZz4+Pg0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPG1haWx0bzpqdWxpYW5AZWxpdGVj
+b2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPg0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZw0KPj4gICAgIDxt
+YWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZz4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqAgwqAgwqAgwqAgwqA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAg
+ICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmc+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+PG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxp
+dGVjb2Rpbmcub3JnPj4+Pj4pIGVzY3JpYmnDszoNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7C
+oCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDC
+oCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoE1hcmlhLA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+
+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKg
+IMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4+IFNvLCBpZiBJIHVuZGVyc3RhbmQNCj4+ICAg
+ICBjb3JyZWN0bHksIEkNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBoYXZlIHRvIHB1dA0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgdGhlcmUgYWxzbw0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgc29t
+ZXRoaW5nIGxpa2UNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoCA+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+Pg0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCDCoCJzZWxmLmV0dHVzX3Jmbm9jX3J4X3JhZGlvXzAuc2V0X3J4X2FnYyhl
+bmFibGUsMCkiDQo+PiAgICAgaXNuJ3QgaXQ/DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAg
+wqAgwqAgwqAgwqAgwqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqA+wqAgwqAgwqAgwqAgwqBFeGFjdGx5ISBUYWtlIGEgbG9vayBhdCBbMV0NCj4+ICAg
+ICBmb3IgdGhlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgY29ycmVjdCBzeW50YXguDQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+DQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqBbMV0NCj4+ICAgICA+
+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj4NCj4+ICAgICA+DQo+PiAgICAgaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFy
+Y2gvZ3ItZXR0dXMvYmxvYi8xMDM4YzRjZTUxMzVhMjgwM2I1MzU1NGZjNDk3MWZlM2RlNzQ3ZDlh
+L2luY2x1ZGUvZXR0dXMvcmZub2NfcnhfcmFkaW8uaCNMOTcNCj4+ICAgICA+wqAgwqAgwqAgwqAg
+wqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDC
+oCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoExldCBtZSBrbm93IGlmIHRoYXQgd29ya2Vk
+IG91dA0KPj4gICAgIGZvciB5b3UuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAg
+wqA+wqAgwqAgwqAgwqAgwqBDaGVlcnMsDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAg
+wqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqBKdWxpYW4NCj4+ICAgICA+wqAgwqAgwqAgwqAg
+wqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDC
+oCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDC
+oCDCoCDCoD7CoCDCoCDCoCDCoCDCoE9uIDMvMTAvMjEgOTo1OSBBTSwgTWFyaWENCj4+ICAgICBN
+dcOxb3ogd3JvdGU6DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAg
+wqA+wqAgwqAgwqAgwqAgwqAgPiBIaSBKdWxpYW4sDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4gVGhhbmtzIGZvciB0
+aGUgcXVpY2sgYW5zd2VyLg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKg
+IMKgIMKgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDC
+oCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+IEkgdGhpbmsgeW91IG1pZ2h0IGJlIHJpZ2h0
+DQo+PiAgICAgYWJvdXQNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqB0aGUgcG9zc2libGUNCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoGJ1ZyB0dXJuaW5nIG9uDQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAg
+wqB0aGUgQUdDDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+
+wqAgwqAgwqAgwqAgwqAgPiBmcm9tIEdSQy4gSSBoYXZlIGNoZWNrZWQNCj4+ICAgICB0aGUgZmxv
+dyBncmFwaA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgZ2Vu
+ZXJhdGVkIGFuZCB0aGVyZSdzIG5vDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPiBzZXRfcnhfYWdjIGVuYWJsZSBvcHRpb24gKEkN
+Cj4+ICAgICBjaGVja2VkDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgdGhlIGMrKw0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgZGVmaW5pdGlvbiBibG9jaw0KPj4g
+ICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKg
+d2hlcmUgdGhpcw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKg
+PsKgIMKgIMKgIMKgIMKgID4gb3B0aW9uIGRpZCBhcHBlYXIgYnV0IEkNCj4+ICAgICBoYWRuJ3Qg
+bG9vaw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGF0IHRoZQ0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgcHl0aG9uIGdlbmVyYXRlZCkuDQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4g
+VGhlIGxpbmVzIHJlbGF0ZWQgdG8gdGhlDQo+PiAgICAgcmFkaW8gaW4gbXkNCj4+ICAgICA+wqAg
+wqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoGZsb3dncmFwaCBhcmUgdGhlc2U6DQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAg
+wqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKg
+IMKgIMKgIMKgID4gL3NlbGYuZXR0dXNfcmZub2NfcnhfcmFkaW9fMCA9DQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBldHR1cy5yZm5vY19yeF9yYWRpbygNCj4+
+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDC
+oCA+wqAgwqAgwqAgwqAgwqAgwqAgwqAgc2VsZi5yZm5vY19ncmFwaCwNCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+ICAgICAgICAg
+ICAgIA0KPj4gICAgIHVoZC5kZXZpY2VfYWRkcignJyksDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+ID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgIMKgIMKgIMKg
+IMKgIC0xLA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKg
+IMKgIMKgIMKgIMKgID7CoCDCoCDCoCDCoCDCoCDCoCDCoCAtMSkNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+DQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgID4+ICAgICAgICAgICANCj4+ICAgICDCoHNlbGYuZXR0dXNfcmZub2Nfcnhf
+cmFkaW9fMC5zZXRfcmF0ZShzYW1wX3JhdGUpDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAg
+wqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+PiAgICAgICAgICAgDQo+PiAgICAgwqBzZWxmLmV0dHVzX3Jmbm9jX3J4X3JhZGlvXzAuc2V0
+X2FudGVubmEoJ1JYMicsIDApDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PiAgICAg
+ICAgICAgDQo+PiAgICAgwqBzZWxmLmV0dHVzX3Jmbm9jX3J4X3JhZGlvXzAuc2V0X2ZyZXF1ZW5j
+eShjZiwgMCkNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7C
+oCDCoCDCoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+ICAgICAgICAgICANCj4+
+ICAgICDCoHNlbGYuZXR0dXNfcmZub2NfcnhfcmFkaW9fMC5zZXRfZ2FpbihnYWluLCAwKQ0KPj4g
+ICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKg
+ID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgwqBz
+ZWxmLmV0dHVzX3Jmbm9jX3J4X3JhZGlvXzAuc2V0X2JhbmR3aWR0aChzYW1wX3JhdGUsIDApDQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAg
+wqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PiAgICAgICAgICAgDQo+PiAgICAgwqBzZWxm
+LmV0dHVzX3Jmbm9jX3J4X3JhZGlvXzAuc2V0X2RjX29mZnNldChUcnVlLCAwKQ0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4NCj4+
+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj4gICAgICAgICAgIA0KPj4gICAgIMKgc2VsZi5ldHR1c19y
+Zm5vY19yeF9yYWRpb18wLnNldF9pcV9iYWxhbmNlKFRydWUsIDApLw0KPj4gICAgID7CoCDCoCDC
+oCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA+
+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+IFNv
+LCBpZiBJIHVuZGVyc3RhbmQNCj4+ICAgICBjb3JyZWN0bHksIEkNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqBoYXZlIHRvIHB1dA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKg
+IMKgIMKgdGhlcmUgYWxzbw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKg
+IMKgIMKgPsKgIMKgIMKgIMKgIMKgc29tZXRoaW5nIGxpa2UNCj4+ICAgICA+wqAgwqAgwqAgwqAg
+wqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKg
+IMKgIMKgIMKgID4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgIMKgInNlbGYuZXR0dXNfcmZub2Nf
+cnhfcmFkaW9fMC5zZXRfcnhfYWdjKGVuYWJsZSwwKSINCj4+ICAgICBpc24ndCBpdD8NCj4+ICAg
+ICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAg
+wqAgwqAgPiBLaW5kIFJlZ2FyZHMsDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKg
+IMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4gTWFyaWENCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+DQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPiBF
+bCBtacOpLCAxMCBtYXIgMjAyMSBhIGxhcyA5OjE2LA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoEp1
+bGlhbiBBcm5vbGQNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoCg8anVsaWFuQGVsaXRlY29kaW5nLm9yZw0KPj4gICAgIDxtYWlsdG86
+anVsaWFuQGVsaXRlY29kaW5nLm9yZz4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqA8bWFpbHRvOmp1
+bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAgICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5v
+cmc+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPG1haWx0
+bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rp
+bmcub3JnPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5n
+Lm9yZw0KPj4gICAgIDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZz4+Pg0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPG1haWx0bzpqdWxpYW5AZWxpdGVj
+b2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPg0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZw0KPj4gICAgIDxt
+YWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZz4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqAgwqAgwqAgwqAgwqA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAg
+ICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmc+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+PG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxp
+dGVjb2Rpbmcub3JnPj4+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKg
+IMKgIMKgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGlu
+Zy5vcmcgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3JnPg0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5nLm9yZw0KPj4gICAgIDxtYWlsdG86anVsaWFu
+QGVsaXRlY29kaW5nLm9yZz4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAgICA8bWFpbHRvOmp1
+bGlhbkBlbGl0ZWNvZGluZy5vcmc+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgPG1haWx0bzpqdWxp
+YW5AZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3Jn
+Pj4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAg
+wqAgwqAgwqA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmcNCj4+ICAgICA8bWFpbHRvOmp1
+bGlhbkBlbGl0ZWNvZGluZy5vcmc+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgPG1haWx0bzpqdWxp
+YW5AZWxpdGVjb2Rpbmcub3JnDQo+PiAgICAgPG1haWx0bzpqdWxpYW5AZWxpdGVjb2Rpbmcub3Jn
+Pj4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoDxtYWlsdG86
+anVsaWFuQGVsaXRlY29kaW5nLm9yZw0KPj4gICAgIDxtYWlsdG86anVsaWFuQGVsaXRlY29kaW5n
+Lm9yZz4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5v
+cmcNCj4+ICAgICA8bWFpbHRvOmp1bGlhbkBlbGl0ZWNvZGluZy5vcmc+Pj4+Pj4pIGVzY3JpYmnD
+szoNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDC
+oCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+
+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgTWFyaWEsDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+
+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoEkgbWln
+aHQgbm90IGJlIHRoZQ0KPj4gICAgIHJpZ2h0IHBlcnNvbg0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oHRvIGFuc3dlcg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKg
+dGhpcywgYXMgbXkNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoGV4cGVyaWVuY2Ugd2l0aA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+
+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoFVIRCA0LjAgaXMg
+cmVsYXRpdmVseQ0KPj4gICAgIGxpbWl0ZWQNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBhdCB0aGUg
+bW9tZW50Lg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKg
+IMKgIMKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDC
+oCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqBIb3dldmVyLCBJIGNhbnQgdGVsbA0KPj4gICAg
+IHlvdSB0aGF0DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgdGhlIEFHQyBvbg0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgQjJ4MCBkZXZpY2VzIGlzDQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqBjb250
+cm9sbGVkIHZpYQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKg
+PsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoHNvZnR3YXJlICh1c2luZw0KPj4gICAgIHNldF9yeF9h
+Z2MoKSkuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgVGhlcmUgaXMNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoG5vIG5lZWQgdG8NCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoGRpcmVjdGx5IG1vZGlm
+eSB0aGUNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDC
+oCDCoCDCoCDCoCA+wqAgwqAgwqBzdGF0ZSBvZiBhbnkgcGlucyBvZg0KPj4gICAgIHRoZSBGUEdB
+Lg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKg
+IMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7C
+oCDCoCDCoCDCoCDCoCA+wqAgwqAgwqBJIHZhZ3VlbHkgcmVtZW1iZXIgdGhhdA0KPj4gICAgIHRo
+ZXJlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgd2FzIGEgYnVnDQo+PiAgICAgPsKgIMKgIMKgIMKg
+IMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBpbiBhbiBlYXJsaWVyDQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqB2ZXJzaW9uIG9mIGdy
+LXVoZA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKg
+IMKgIMKgIMKgID7CoCDCoCDCoChzb21ld2hlcmUgaW4gMy43KSB0aGF0DQo+PiAgICAgbWFkZSBp
+dA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoGRpZmZpY3VsdA0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgdG8gdHVybiBvbiB0aGUNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoEFHQyB1c2luZyBHUkMu
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAg
+wqAgwqAgPsKgIMKgIMKgVGhhdCBwYXJ0aWN1bGFyIG9uZSBpcw0KPj4gICAgIGZpeGVkIGluDQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgZ3ItdWhkLg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKg
+IMKgIMKgIMKgIMKgIMKgIMKgTm90IHN1cmUgYWJvdXQNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAg
+Pj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoGdyLWV0dHVzLCB0aG91Z2guDQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAg
+wqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKg
+IMKgIMKgIMKgID7CoCDCoCDCoE1heWJlIHRyeSB1c2luZw0KPj4gICAgIHNldF9yeF9hZ2MoKQ0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoG1hbnVhbGx5IGluDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+ID4+wqAgwqAgwqAgwqAgwqAgwqAgwqB5b3UgZmxvdy1ncmFwaA0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgKCoucHkpIGFuZCBzZWUN
+Cj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDC
+oCDCoCA+wqAgwqAgwqBpZiB0aGF0IGhlbHBzLg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKg
+IMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAg
+wqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqBDaGVlcnMs
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAg
+wqAgwqAgPsKgIMKgIMKgSnVsaWFuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKg
+IMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoE9uIDMvOS8yMSA1OjEx
+IFBNLA0KPj4gICAgIE1hcmlhIE11w7FveiB2aWENCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7C
+oCDCoCDCoCDCoCDCoCDCoCDCoFVTUlAtdXNlcnMgd3JvdGU6DQo+PiAgICAgPsKgIMKgIMKgIMKg
+IMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgID4gSGkg
+YWxsLA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKg
+IMKgIMKgIMKgID7CoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgID4gSSB3YXMgd29uZGVyaW5nIGlm
+IGl0IGlzDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgcG9zc2libGUgdG8NCj4+ICAgICA+wqAgwqAg
+wqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoGVuYWJsZSBBR0MgZnJvbQ0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgdGhlIFJG
+Tm9DIHJhZGlvDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+
+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgID4gYmxvY2sgaW4gR05VUmFkaW8uIEkNCj4+ICAgICB1
+c2UgVUhEIDQuMA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKg
+dmVyc2lvbiBhbmQgR05VUmFkaW8NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDC
+oCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoDMuOCB3aXRoDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKg
+ID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgZ3ItZXR0dXMu
+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAg
+wqAgwqAgPsKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDC
+oCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPiBJIHNlZSB0aGF0IHRoZSBSRk5vQyBS
+eA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHJhZGlvIGJsb2NrIGhhcyBhbg0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgZW5hYmxlL2Rp
+c2FibGUvZGVmYXVsdA0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKg
+IMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoEFHQw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+
+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoCA+IG9wdGlvbiBp
+biB0aGUNCj4+ICAgICBHTlVSYWRpbyBibG9jaw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHdoaWNo
+IEkNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoGFzc3VtZSBj
+YWxscyB0aGUNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7C
+oCDCoCDCoCDCoCDCoFVIRCBmdW5jdGlvbg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKg
+IMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoCA+ICJzZXRfcnhfYWdjIg0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKg
+IMKgID7CoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAg
+wqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKg
+IMKgIMKgIMKgIMKgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+Pg0KPj4gICAgID4gICAgICAg
+ICANCj4+ICAgICDCoMKgKGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9jbGFzc3VoZF8x
+XzF1c3JwXzFfMW11bHRpX191c3JwLmh0bWwjYWJkYWIxZjZjMzc3NWE5MDcxYjE1Yzk4MDVmODY2
+NDg2KQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKg
+IMKgIMKgIMKgID7CoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgID4gSSBoYXZlIGFsc28gY2hlY2tl
+ZA0KPj4gICAgIG9uIHRoZQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoEZQR0Egc2lkZQ0KPj4gICAg
+ID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgdGhhdCB0aGVyZSBpcyBhDQo+
+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAg
+wqBwaW4gZnJvbQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKg
+PsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoEZQR0EgdG8NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAg
+Pj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPiBBRDkzNjEN
+Cj4+ICAgICBjYWxsZWTCoFhDVlJfRU5BX0FHQw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoHdoaWNo
+IGlzDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBzZXQgYWx3
+YXlzIHRvIDEgb24NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoHRoZSB0b3ANCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDC
+oCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqBsZXZlbCBvZg0KPj4gICAgID7C
+oCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDC
+oCDCoCA+IHRoZSBGUEdBIGltYWdlIChzZWUNCj4+ICAgICBhdHRhY2hlZA0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoGZpbGUNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDC
+oCDCoCJlMzIwLnYiLCBsaW5lIDg3MikuDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAg
+wqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqBUaGlzIHBpbiwNCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPiBh
+Y2NvcmRpbmcgdG8NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKg
+IMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAg
+wqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj4NCj4+
+ICAgICA+DQo+PiAgICAgaHR0cHM6Ly93d3cuYW5hbG9nLmNvbS9tZWRpYS9lbi90ZWNobmljYWwt
+ZG9jdW1lbnRhdGlvbi9kYXRhLXNoZWV0cy9BRDkzNjEucGRmDQo+PiAgICAgPsKgIMKgIMKgIMKg
+IMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDC
+oCA+IGlzIHRoZSAiTWFudWFsDQo+PiAgICAgQ29udHJvbCBJbnB1dCBmb3INCj4+ICAgICA+wqAg
+wqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoEF1dG9tYXRpYyBHYWluDQo+PiAgICAg
+PsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqBDb250
+cm9sIChBR0MpIi4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPiBNdXN0IGJlIHRoaXMgcGluIHNldA0KPj4gICAg
+IHRvIDAgdG8NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqBoYXZlIEFHQw0KPj4gICAgID7CoCDCoCDC
+oCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgd29ya2luZz8NCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPiBJ
+ZsKgbm90LCBob3cgY2FuDQo+PiAgICAgScKgZ2V0IEFHQw0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oHdvcmtpbmc/DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBJ
+J3ZlIG1hZGUgc29tZSB0ZXN0cw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKg
+IMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoCA+IGVuYWJsaW5nL2Rpc2FibGluZyB0
+aGlzDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgb3B0aW9uIGJ1dCBJDQo+PiAgICAgPsKgIMKgIMKg
+IMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqBkbyBub3Qgc2VlIGFueQ0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgY2hhbmdlcw0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKg
+IMKgID7CoCDCoCDCoGJldHdlZW4gdGhlDQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAg
+wqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgID4gd2F2ZWZvcm1zIHJlY2Vp
+dmVkLg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKg
+IMKgIMKgIMKgID7CoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgID4gQW55IGhlbHAgd291bGQgYmUN
+Cj4+ICAgICBhcHByZWNpYXRlZC4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDC
+oCDCoCDCoCDCoD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDC
+oCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoCA+IEtp
+bmQgUmVnYXJkcywNCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKg
+IMKgIMKgIMKgIMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoCA+IE1hcmlhDQo+PiAg
+ICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAg
+PsKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDC
+oD7CoCDCoCDCoCDCoCDCoCA+wqAgwqAgwqAgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PiAg
+ICAgICAgICAgDQo+PiAgICAgwqBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKg
+PsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoCA+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0DQo+PiAg
+ICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAg
+PsKgIMKgIMKgID4NCj4+ICAgICBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOlVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+ICAgICA8bWFpbHRvOlVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPj4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDC
+oCDCoDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+ICAgICA8bWFpbHRvOlVT
+UlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAgID7CoCDCoCDCoCDCoCDCoDxtYWlsdG86
+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+ICAgICA8bWFpbHRvOlVTUlAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPj4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAgwqAg
+wqAgwqA+ICAgICAgIA0KPj4gICAgIMKgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bQ0KPj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgIDxt
+YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bQ0KPj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQo+PiAgICAgPsKg
+IMKgIMKgIMKgIMKgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgIDxt
+YWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pj4+DQo+PiAgICAgPsKgIMKgIMKgIMKg
+IMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+ICAgICAgIA0KPj4gICAgIMKgPG1haWx0bzpVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQ0KPj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0K
+Pj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPG1haWx0bzpVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5l
+dHR1cy5jb20+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgPG1haWx0bzpVU1JQLXVzZXJzQGxpc3Rz
+LmV0dHVzLmNvbQ0KPj4gICAgIDxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pj4N
+Cj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4gICAgICAgDQo+
+PiAgICAgwqA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgPG1haWx0
+bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqA8bWFp
+bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgPG1haWx0bzpVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbT4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAgwqAg
+wqAgwqAgwqA8bWFpbHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgPG1haWx0
+bzpVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqA8bWFp
+bHRvOlVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgPG1haWx0bzpVU1JQLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbT4+Pj4+DQo+PiAgICAgPsKgIMKgIMKgIMKgIMKgID4+wqAgwqAgwqAg
+wqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPsKgIMKgIMKgID4NCj4+ICAgICA+wqAgwqAgwqAg
+wqAgwqAgPj7CoCDCoCDCoCDCoCDCoCDCoCDCoD4NCj4+ICAgICA+wqAgwqAgwqAgwqAgwqAgPj4N
+Cj4+ICAgICA+IGh0dHA6Ly9saXN0cy5ldHR1cy5jb20vbWFpbG1hbi9saXN0aW5mby91c3JwLXVz
+ZXJzX2xpc3RzLmV0dHVzLmNvbQ0KPj4gICAgID7CoCDCoCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKg
+IMKgIMKgIMKgPsKgIMKgIMKgIMKgIMKgID7CoCDCoCDCoCA+DQo+PiAgICAgPsKgIMKgIMKgIMKg
+IMKgID4+wqAgwqAgwqAgwqAgwqAgwqAgwqA+wqAgwqAgwqAgwqAgwqAgPg0KPj4gICAgID7CoCDC
+oCDCoCDCoCDCoCA+PsKgIMKgIMKgIMKgIMKgIMKgIMKgPg0KPj4gICAgID7CoCDCoCDCoCDCoCDC
+oCA+Pg0KPj4gICAgID4NCj4+DQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAt
+dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+IApfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAt
+dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
