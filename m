@@ -2,896 +2,504 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C666135BC0C
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 10:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EECED35BC40
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 10:34:57 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CBB823846C8
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 04:24:48 -0400 (EDT)
-Received: from barracuda.navarca.com (barracuda.navarca.com [212.239.60.237])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5D999383EAB
-	for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 04:23:59 -0400 (EDT)
-X-ASG-Debug-ID: 1618215764-053bad45ab29b30001-5wTQH4
-Received: from dns26.navarca.com (dns26.navarca.com [192.168.0.26]) by barracuda.navarca.com with ESMTP id zx7001pmj2BcXRqv (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO); Mon, 12 Apr 2021 10:22:44 +0200 (CEST)
-X-Barracuda-Envelope-From: luca.oliva@intecs.it
-X-Barracuda-RBL-Trusted-Forwarder: 192.168.0.26
-X-ASG-Whitelist: Client
-Received: from dns26.navarca.com (localhost [127.0.0.1])
-	by dns26.navarca.com (Postfix) with ESMTPS id 8A20E1D64CC;
-	Mon, 12 Apr 2021 10:22:44 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by dns26.navarca.com (Postfix) with ESMTP id 7B3041D64C9;
-	Mon, 12 Apr 2021 10:22:44 +0200 (CEST)
-Received: from dns26.navarca.com ([127.0.0.1])
-	by localhost (dns26.navarca.com [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id yKzciecuIHoU; Mon, 12 Apr 2021 10:22:44 +0200 (CEST)
-Received: from [192.168.1.122] (unknown [151.53.111.31])
-	by dns26.navarca.com (Postfix) with ESMTPSA id 3CE081D64CC;
-	Mon, 12 Apr 2021 10:22:44 +0200 (CEST)
-X-Barracuda-RBL-Trusted-Forwarder: 192.168.1.122
-To: Rob Kossler <rkossler@nd.edu>
-X-ASG-Orig-Subj: Re: [USRP-users] RfNoc SplitStream and FFT
-References: <1e8db183-4501-3f1d-57e4-2a13de806012@intecs.it>
- <CAB__hTQCKvaawxqqYGuxhrbR11tbLObDQpRCAix4LsGEC2GvjQ@mail.gmail.com>
- <247eab0c-c124-c044-cc22-3c9d40c5fbe3@intecs.it>
- <CAB__hTTG+WRe-Z=mxafyvasnOo0rV+xMoSTd3PgagPdKo55Oig@mail.gmail.com>
-From: Luca Oliva <luca.oliva@intecs.it>
-Message-ID: <83036548-e95a-6ffa-3c1e-d8159f545fc1@intecs.it>
-Date: Mon, 12 Apr 2021 10:22:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.7.1
+	by mm2.emwd.com (Postfix) with ESMTP id 45020384692
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 04:34:57 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmv.com header.i=@gmv.com header.b="YxKg+ht3";
+	dkim-atps=neutral
+Received: from mx08-002baa02.pphosted.com (mx08-002baa02.pphosted.com [185.183.30.205])
+	by mm2.emwd.com (Postfix) with ESMTPS id 39B05383CCC
+	for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 04:34:00 -0400 (EDT)
+Received: from pps.filterd (m0205082.ppops.net [127.0.0.1])
+	by mx08-002baa02.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 13C8WErp011783
+	for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 10:33:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmv.com; h=from : to : subject :
+ date : message-id : content-type : mime-version; s=gmvcom;
+ bh=nsszRVXrOP5u5LhX5zZ5IQ5LX7cGczjf+CrLrdgyNVY=;
+ b=YxKg+ht3oVuWVHrqIpxzxzdRap0GQdJ1XSyYjPzSodqLPQOicfPaMAn09wyCMbnBUFMI
+ Z5IKytbdz33VczL2uyH7B04Yt0AXKpPTd+9PToN8zztjwUZu/uOTD7HkmzHUUZrfgQiK
+ kZynUtbLtF6JN6FIx27ndZYAkFKa/5E3nm5PZtdv56XT7giLTsW42m4JsZH1+T6pfQpE
+ NpmBaGN0IGn4c5fOCw5bHYQB3Xfd3lmw/JCw+PKi1tnqNBaY1Tr2SyUALH5HhJczAEXG
+ GFcbgUAw5xmTJSSA8OViXjejBq/aRP8NXCno1ttTPhz5ovozAcR0OxsVcsnd9Uc0LA7G KA==
+From: David Scott <david.scott@gmvnsl.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Building gnuradio cross compile for E312, pyton version issue
+Thread-Index: AQHXL3VEZ8aeYlp2FkqgWz3LKjIcNg==
+Date: Mon, 12 Apr 2021 08:33:57 +0000
+Message-ID: <e5ee1dce7db04a5f96edd8939933430f@gmvnsl.com>
+Accept-Language: en-GB, es-ES, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-kse-serverinfo: ptmexch2.gmv.es, 9
+x-kse-attachmentfiltering-interceptor-info: protection disabled
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean, bases: 12/04/2021 1:12:00
 MIME-Version: 1.0
-In-Reply-To: <CAB__hTTG+WRe-Z=mxafyvasnOo0rV+xMoSTd3PgagPdKo55Oig@mail.gmail.com>
-Content-Language: en-US
-X-Barracuda-Connect: dns26.navarca.com[192.168.0.26]
-X-Barracuda-Start-Time: 1618215764
-X-Barracuda-Encrypted: ECDHE-RSA-AES128-GCM-SHA256
-X-Barracuda-URL: https://212.239.60.237:443/cgi-mod/mark.cgi
-X-Barracuda-BRTS-Status: 1
-X-Virus-Scanned: by bsmtpd at navarca.com
-X-Barracuda-Scan-Msg-Size: 25926
-Message-ID-Hash: JMNR7Z4GNNNH2UXMB6G33SJMP7NOUTSF
-X-Message-ID-Hash: JMNR7Z4GNNNH2UXMB6G33SJMP7NOUTSF
-X-MailFrom: btv1==7367b676227==luca.oliva@intecs.it
+X-KSE-ServerInfo: ptmexch1.gmv.es, 9
+X-KSE-AttachmentFiltering-Interceptor-Info: protection disabled
+X-Proofpoint-ORIG-GUID: d6RH3mRY6v6YyGvbcyOH9sXzO9jOO0Fq
+X-Proofpoint-GUID: d6RH3mRY6v6YyGvbcyOH9sXzO9jOO0Fq
+X-Proofpoint-Action: Received-Header-Sanitized
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.391,18.0.761
+ definitions=2021-04-12_07:2021-04-12,2021-04-12 signatures=0
+X-Proofpoint-Spam-Reason: orgsafe
+Message-ID-Hash: Y7B7I6Z2D76DGF7EXRMVJE6KIJAM4KNO
+X-Message-ID-Hash: Y7B7I6Z2D76DGF7EXRMVJE6KIJAM4KNO
+X-MailFrom: david.scott@gmvnsl.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RfNoc SplitStream and FFT
+Subject: [USRP-users] Building gnuradio cross compile for E312, pyton version issue
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JMNR7Z4GNNNH2UXMB6G33SJMP7NOUTSF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y7B7I6Z2D76DGF7EXRMVJE6KIJAM4KNO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6637093855810476158=="
+Content-Type: multipart/mixed; boundary="===============6763507598345735456=="
 
-This is a multi-part message in MIME format.
---===============6637093855810476158==
+--===============6763507598345735456==
+Content-Language: en-GB
 Content-Type: multipart/alternative;
- boundary="------------DA717369DF398CFABF4FE422"
-Content-Language: en-US
+	boundary="_000_e5ee1dce7db04a5f96edd8939933430fgmvnslcom_"
 
-This is a multi-part message in MIME format.
---------------DA717369DF398CFABF4FE422
-Content-Type: text/plain; charset=utf-8; format=flowed
+--_000_e5ee1dce7db04a5f96edd8939933430fgmvnslcom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Unfortunately I haven't enough FPGA resources to insert a DDC block.
+Hi all,
 
-I've tried to issue the STREAM_MODE_NUM_SAMPS_AND_DONE command directly=20
-to the Radio block and It seems to work, after a hundred of command the=20
-FFT is still aligned to time domain capture.
+I am following the instructions from https://files.ettus.com/manual/page_us=
+rp_e3xx.html#e31x_migration . I have installed the SD card file that I foun=
+d using:
 
-The problem now is that I need to capture alternately from the two radio=20
-channels.
+  uhd_images_downloader -t e310 -t sdimg
 
-As first test I've tried to connect statically the second output of the=20
-Radio block to the SplitStream but It doesn't work. Receive fails with=20
-timeout error.
+And Installed the sdk from the file provided with:
 
-Luca
+  uhd_images_downloader -t sdk -t e310
 
-Il 08/04/21 03:25, Rob Kossler ha scritto:
-> Is it possible (enough FPGA resources) for you to insert the DDC block=20
-> after the Radio in your graph and before the SplitStream? And, is your=20
-> FFT size small enough that you can set the Radio SPP equal to the FFT=20
-> length? If both of these are true, I think this will solve your issue.=20
-> The DDC block will then provide output packets that are exactly the=20
-> length of the FFT and there will be no residual samples at the end.
->
-> I think it "should" be possible to get the "reset" to work, but I am=20
-> not certain.=C2=A0 My plan of attack would be to wait until after flush a=
-nd=20
-> then set fft_reset=3D1 and then fft_reset=3D0 and then reconfigure the ff=
-t=20
-> with all needed settings.=C2=A0 But, if this doesn't work, I suppose that=
-=20
-> it is possible that there is a FIFO (at the input of the FFT block or=20
-> at the output of the Radio or SplitStream block where the residual=20
-> samples are "stuck".
->
-> Finally, regarding the "Late" command, perhaps you could try to=20
-> "issue_stream_cmd" directly to the radio rather than to the=20
-> rx_streamer.=C2=A0 When you call this function from the rx_streamer, the=
-=20
-> command propagates upstream on the graph until it gets to the radio.=20
-> But since you have a SplitStream in your graph, maybe there is some=20
-> bug in the propagation. I think you could call this same function=20
-> directly on the Radio controller and it may solve the Late issue.
->
-> Rob
->
-> On Wed, Apr 7, 2021 at 12:39 PM Luca Oliva <luca.oliva@intecs.it=20
-> <mailto:luca.oliva@intecs.it>> wrote:
->
->     Hi Rob,
->
->     Some update:
->
->     1) The ERROR_CODE_LATE_COMMAND error using
->     STREAM_MODE_NUM_SAMPS_AND_DONE happens only if I put
->     stream_now=3Dfalse (I set time_spec with a future value obviously).
->
->     2) I've tried to set fft_reset=3D1 before
->     STREAM_MODE_STOP_CONTINUOUS command, after it or after buffer
->     flush but the problem is still present.
->
->     Luca
->
->     Il 06/04/21 14:58, Rob Kossler ha scritto:
->>     Hi Luca,
->>     I don't know the overall solution, but I have some comments about
->>     using the FFT block.=C2=A0 I have never had success with this block
->>     unless I ensure that the block never receives a "partial FFT"
->>     block of samples.
->>
->>     One way to ensure this is to use the DDC block (Radio->DDC->FFT)
->>     and you set the radio SPP equal to the FFT length.=C2=A0 The only
->>     purpose of the DDC in this case is that it only processes "full
->>     packets" and discards the final "partial packet". Thus, it will
->>     ensure that the FFT also receives only full packets.
->>
->>     Another way to ensure this is to use the NUM_SAMPS_AND_DONE you
->>     mentioned.=C2=A0 As long as this number is a multiple of the FFT siz=
-e,
->>     it should be fine for the FFT block.=C2=A0 I'm not sure why you were
->>     getting the Late error.
->>
->>     When you use CONTINUOUS mode, you are basically ensuring that the
->>     FFT will work fine the first time but then partially fill with
->>     the trailing samples. The next time you start, the FFT block will
->>     complete the filling process, but your data will be misaligned.=C2=
-=A0
->>     Perhaps you could use the "fft_reset" functionality to reset the
->>     block every time but this will likely mean that you need to
->>     re-configure the FFT length, scale, direction, etc.
->>     Rob
->>
->>     On Tue, Apr 6, 2021 at 6:31 AM Luca Oliva <luca.oliva@intecs.it
->>     <mailto:luca.oliva@intecs.it>> wrote:
->>
->>         Hi,
->>
->>         I've an Ettus E310 with UHD 3.13.1.0
->>
->>
->>         I need to receive some samples both in time domain than
->>         frequency
->>         domain. I=E2=80=99m trying to do that using this rfnoc graph:
->>
->>         +---------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +---------=
------+
->>         |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | |---------------------> RxStreamer Ch 0
->>         | Radio=C2=A0=C2=A0 |------->| SplitStream=C2=A0 | +-------+
->>         |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |------>| FFT |----->
->>         RxStreamer Ch 1
->>         +---------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +---------=
------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +-------+
->>
->>
->>         uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);
->>         uhd::rfnoc::block_id_t split_ctrl_id(0, "SplitStream", 0);
->>         uhd::rfnoc::block_id_t fft_ctrl_id(0, "FFT", 0);
->>
->>         uhd::rfnoc::source_block_ctrl_base::sptr fft_blk_ctrl =3D
->>         m_Usrp->get_block_ctrl<uhd::rfnoc::source_block_ctrl_base>(fft_c=
-trl_id);
->>
->>         m_RadioCtrl =3D m_Usrp->get_block_ctrl< uhd::rfnoc::radio_ctrl
->>         =C2=A0>(radio_ctrl_id);
->>         m_RadioCtrl->set_rate(16e6);
->>         m_RadioCtrl->set_arg<int>("spp", 2048);
->>         fft_blk_ctrl->set_arg<int>("spp", 2048);
->>
->>         m_Usrp->clear();
->>
->>         m_Graph =3D m_Usrp->create_graph("rfnoc_rx");
->>         m_Graph->connect(radio_ctrl_id, 0, split_ctrl_id, 0);
->>         m_Graph->connect(split_ctrl_id, 1, fft_ctrl_id, 0);
->>
->>         uhd::device_addr_t streamer_args("");
->>         streamer_args["block_id0"] =3D split_ctrl_id.to_string();
->>         streamer_args["block_port0"] =3D str(boost::format("%d") % 0);
->>         streamer_args["block_id1"] =3D fft_ctrl_id.to_string();
->>         streamer_args["block_port1"] =3D str(boost::format("%d") % 0);
->>
->>         uhd::stream_args_t stream_args_fc32("sc16", "sc16");
->>         stream_args_fc32.channels =3D { 0, 1 };
->>         stream_args_fc32.args =3D streamer_args;
->>         stream_args_fc32.args["spp"] =3D
->>         boost::lexical_cast<std::string>(2048);
->>         m_RxStreamerFc32 =3D m_Usrp->get_rx_stream(stream_args_fc32);
->>
->>         I need to receive a burst in a precise moment, elaborate it
->>         and restart
->>         on a different frequency (I need also to change radio channel
->>         because
->>         I've two different antennas).
->>
->>         I've tried
->>
->>         uhd::stream_cmd_t
->>         stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
->>         stream_cmd.num_samps =3D
->>         size_t(nBurstLen*MAX_DIM_SAMPLES_FRAME_FOR_RSA);
->>         stream_cmd.stream_now =3D false;
->>         stream_cmd.time_spec =3D m_RadioCtrl->get_time_now()+1.0;
->>         m_RxStreamerFc32->issue_stream_cmd(stream_cmd);
->>
->>         but the receive fails with ERROR_CODE_LATE_COMMAND.
->>
->>         I've tried issuing the STREAM_MODE_START_CONTINUOUS command
->>         and it seems
->>         to work correctly until I don't send a
->>         STREAM_MODE_STOP_CONTINUOUS command.
->>
->>         After a STREAM_MODE_STOP_CONTINUOUS command I flush the
->>         buffer with a
->>         receive loop:
->>
->>         while(m_RxStreamerFc32->recv(buff, 2048, uselessMd, 0.010,
->>         false));
->>
->>         The problem I'm observing is that since second start the FFT
->>         samples
->>         lost alignment with the time samples and after some stop and
->>         start the
->>         receive fails often with Overflow errors and than stops
->>         definitely to
->>         work with Timeout errors
->>
->>         Someone else have this problem?
->>
->>
->>         Regards,
->>
->>         Luca
->>
->>
->>         LEGAL DISCLAIMER:
->>         The contents of this email and any transmitted files are
->>         confidential and intended solely for the use of the
->>         individual or entity to whom they are addressed. We hereby
->>         exclude any warranty and any liability as to the quality or
->>         accuracy of the contents of this email and any attached
->>         transmitted files. If you are not the intended recipient, be
->>         advised that you have received this email in error and that
->>         any use, dissemination, forwarding, printing or copying of
->>         this email is strictly prohibited. If you have received this
->>         email in error please contact the sender and delete the
->>         material from any computer.
->>         _______________________________________________
->>         USRP-users mailing list -- usrp-users@lists.ettus.com
->>         <mailto:usrp-users@lists.ettus.com>
->>         To unsubscribe send an email to
->>         usrp-users-leave@lists.ettus.com
->>         <mailto:usrp-users-leave@lists.ettus.com>
->>
->     --=20
->     *ing. Luca Oliva*
->     Senior Developer Engineer
->
->     Intecs Solutions S.p.A.
->
->     *Intecs Solutions S.p.A.*
->     Via Ferrante Imparato 198
->     Isola F - 80146 Napoli - Italy
->     Phone: +39 081 19718400
->     email: luca.oliva@intecs.it <mailto:luca.oliva@intecs.it>
->
->     LEGAL DISCLAIMER: The contents of this email and any transmitted
->     files are confidential and intended solely for the use of the
->     individual or entity to whom they are addressed. We hereby exclude
->     any warranty and any liability as to the quality or accuracy of
->     the contents of this email and any attached transmitted files. If
->     you are not the intended recipient, be advised that you have
->     received this email in error and that any use, dissemination,
->     forwarding, printing or copying of this email is strictly
->     prohibited. If you have received this email in error please
->     contact the sender and delete the material from any computer.=C2=A0=
-=C2=A0=C2=AD=C2=AD
->
---=20
-*ing. Luca Oliva*
-Senior Developer Engineer
+Which provided the file:
 
-Intecs Solutions S.p.A.
+  e310_sg3-oecore-x86_64-cortexa9t2hf-neon-toolchain-nodistro.0.sh
 
-*Intecs Solutions S.p.A.*
-Via Ferrante Imparato 198
-Isola F - 80146 Napoli - Italy
-Phone: +39 081 19718400
-email: luca.oliva@intecs.it <mailto:luca.oliva@intecs.it>
+I installed this and set up the environment with:
 
-LEGAL DISCLAIMER:=0D
-The contents of this email and any transmitted files are confidential and i=
-ntended solely for the use of the individual or entity to whom they are add=
-ressed. We hereby exclude any warranty and any liability as to the quality =
-or accuracy of the contents of this email and any attached transmitted file=
-s. If you are not the intended recipient, be advised that you have received=
- this email in error and that any use, dissemination, forwarding, printing =
-or copying of this email is strictly prohibited. If you have received this =
-email in error please contact the sender and delete the material from any c=
-omputer.=
+  source environment-setup-cortexa9t2hf-neon-oe-linux-musleabi
 
---------------DA717369DF398CFABF4FE422
-Content-Type: multipart/related;
- boundary="------------C98A0003544E8A41DA50D4FC"
+Building UHD worked fine, however when I try to build GnuRadio I get the fo=
+llowing python version mismatch:
 
 
---------------C98A0003544E8A41DA50D4FC
-Content-Type: text/html; charset=utf-8
+dscc@ltdscc-vm:~/gnuradio/build-arm$ cmake -Wno-dev -DCMAKE_TOOLCHAIN_FILE=
+=3D../cmake/Toolchains/oe-sdk_cross.cmake \-DCMAKE_INSTALL_PREFIX=3D/usr -D=
+ENABLE_GR_VOCODER=3DOFF -DENABLE_GR_ATSC=3DOFF \
+> -DENABLE_GR_DTV=3DOFF -DENABLE_DOXYGEN=3DOFF ../
+-- The CXX compiler identification is GNU 8.2.0
+-- The C compiler identification is GNU 8.2.0
+-- Check for working CXX compiler: /usr/local/oecore-x86_64/sysroots/x86_64=
+-oesdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-g++
+-- Check for working CXX compiler: /usr/local/oecore-x86_64/sysroots/x86_64=
+-oesdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-g++ -- wor=
+ks
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Check for working C compiler: /usr/local/oecore-x86_64/sysroots/x86_64-o=
+esdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-gcc
+-- Check for working C compiler: /usr/local/oecore-x86_64/sysroots/x86_64-o=
+esdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Build type not specified: defaulting to release.
+-- Build type set to Release.
+-- Build date set to Mon, 12 Apr 2021 08:23:16Z.
+--
+-- The build system will automatically enable all components.
+-- Use -DENABLE_DEFAULT=3DOFF to disable components by default.
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Looking for pthread_create
+-- Looking for pthread_create - found
+-- Found Threads: TRUE
+-- Boost version: 1.68.0
+-- Found the following Boost libraries:
+--   date_time
+--   program_options
+--   system
+--   regex
+--   thread
+--   unit_test_framework
+--   chrono
+--   atomic
+--
+-- Configuring testing-support support...
+--   Dependency Boost_UNIT_TEST_FRAMEWORK_FOUND =3D ON
+--   Enabling testing-support support.
+--   Override with -DENABLE_TESTING=3DON/OFF
+-- Found Git: /usr/bin/git
+-- Extracting version information from git describe...
+CMake Warning at CMakeLists.txt:93 (MESSAGE):
+
+  The compiler selected to build GNU Radio (GCC version 8.2.0 :
+  /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/arm-oe-linux=
+-musleabi/arm-oe-linux-musleabi-g++)
+  is older than that officially supported (8.3.0 minimum).  This build may =
+or
+  not work.  We highly recommend using a more recent GCC version.
+
+-- Check if the system is big endian
+-- Searching 16 bit integer
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Using unsigned short
+-- Check if the system is big endian - little endian
+-- Performing Test HAVE_VISIBILITY_HIDDEN
+-- Performing Test HAVE_VISIBILITY_HIDDEN - Success
+-- Performing Test HAVE_WARN_SIGN_COMPARE
+-- Performing Test HAVE_WARN_SIGN_COMPARE - Success
+-- Performing Test HAVE_WARN_ALL
+-- Performing Test HAVE_WARN_ALL - Success
+-- Performing Test HAVE_WARN_NO_UNINITIALIZED
+-- Performing Test HAVE_WARN_NO_UNINITIALIZED - Success
+-- Compiler Version: arm-oe-linux-musleabi-gcc (GCC) 8.2.0
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-- Compiler Flags: /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr=
+/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-gcc:::-O3 -DNDEBUG  -O2 -p=
+ipe -g -feliminate-unused-debug-types  -fvisibility=3Dhidden -Wsign-compare=
+ -Wall -Wno-uninitialized
+/usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/arm-oe-linux-m=
+usleabi/arm-oe-linux-musleabi-g++:::-O3 -DNDEBUG  -O2 -pipe -g -feliminate-=
+unused-debug-types  -fvisibility=3Dhidden -Wsign-compare -Wall -Wno-uniniti=
+alized
+-- ADDING PERF COUNTERS
+-- PYTHON_EXECUTABLE not set - using default python3
+CMake Error at /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/sha=
+re/cmake-3.12/Modules/FindPackageHandleStandardArgs.cmake:137 (message):
+  Could NOT find PythonInterp: Found unsuitable version "3.5.6", but requir=
+ed
+  is at least "3.6.5" (found
+  /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/python3)
+Call Stack (most recent call first):
+  /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/share/cmake-3.12=
+/Modules/FindPackageHandleStandardArgs.cmake:376 (_FPHSA_FAILURE_MESSAGE)
+  /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/share/cmake-3.12=
+/Modules/FindPythonInterp.cmake:159 (FIND_PACKAGE_HANDLE_STANDARD_ARGS)
+  cmake/Modules/GrPython.cmake:24 (find_package)
+  CMakeLists.txt:338 (include)
+
+-- Configuring incomplete, errors occurred!
+See also "/home/dscc/gnuradio/build-arm/CMakeFiles/CMakeOutput.log"
+
+Is there a more up to date version of the sdk with python version 3.6.5 min=
+imum?
+Or am I missing some other step?
+
+Thanks,
+David
+
+P Please consider the environment before printing this e-mail.
+
+--_000_e5ee1dce7db04a5f96edd8939933430fgmvnslcom_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8=
-">
-  </head>
-  <body>
-    <p>Unfortunately I haven't enough FPGA resources to insert a DDC
-      block.</p>
-    <p>I've tried to issue the STREAM_MODE_NUM_SAMPS_AND_DONE command
-      directly to the Radio block and It seems to work, after a hundred
-      of command the FFT is still aligned to time domain capture.</p>
-    <p>The problem now is that I need to capture alternately from the
-      two radio channels.</p>
-    <p>As first test I've tried to connect statically the second output
-      of the Radio block to the SplitStream but It doesn't work. Receive
-      fails with timeout error.</p>
-    <p>Luca<br>
-    </p>
-    <div class=3D"moz-cite-prefix">Il 08/04/21 03:25, Rob Kossler ha
-      scritto:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTTG+WRe-Z=3DmxafyvasnOo0rV+xMoSTd3PgagPdKo55Oig@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-      <div dir=3D"ltr">Is it possible (enough FPGA resources) for you to
-        insert the DDC block after the Radio in your graph and before
-        the SplitStream? And, is your FFT size small enough that you can
-        set the Radio SPP equal to the FFT length? If both of these are
-        true, I think this will solve your issue. The DDC block will
-        then provide output packets that are exactly the length of the
-        FFT and there will be no residual samples at the end.
-        <div><br>
-        </div>
-        <div>
-          <div>I think it "should" be possible to get the "reset" to
-            work, but I am not certain.=C2=A0 My plan of attack would be to
-            wait until after flush and then set fft_reset=3D1 and then
-            fft_reset=3D0 and then reconfigure the fft with all needed
-            settings.=C2=A0 But, if this doesn't work, I suppose that it is
-            possible that there is a FIFO (at the input of the FFT block
-            or at the output of the Radio or SplitStream block where the
-            residual samples are "stuck".</div>
-        </div>
-        <div><br>
-        </div>
-        <div>Finally, regarding the "Late" command, perhaps you could
-          try to "issue_stream_cmd" directly to the radio rather than to
-          the rx_streamer.=C2=A0 When you call this function from the
-          rx_streamer, the command propagates upstream on the graph
-          until it gets to the radio. But since you have a SplitStream
-          in your graph, maybe there is some bug in the propagation. I
-          think you could call this same function directly on the Radio
-          controller and it may solve the Late issue.</div>
-        <div><br>
-        </div>
-        <div>Rob</div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 7, 2021 at 12:39
-          PM Luca Oliva &lt;<a href=3D"mailto:luca.oliva@intecs.it"
-            moz-do-not-send=3D"true">luca.oliva@intecs.it</a>&gt; wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <p>Hi Rob,</p>
-            <p>Some update:</p>
-            <p>1) The ERROR_CODE_LATE_COMMAND error using
-              STREAM_MODE_NUM_SAMPS_AND_DONE happens only if I put
-              stream_now=3Dfalse (I set time_spec with a future value
-              obviously).</p>
-            <p>2) I've tried to set fft_reset=3D1 before
-              STREAM_MODE_STOP_CONTINUOUS command, after it or after
-              buffer flush but the problem is still present.<br>
-            </p>
-            <p>Luca<br>
-            </p>
-            <div>Il 06/04/21 14:58, Rob Kossler ha scritto:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div dir=3D"ltr">Hi Luca,
-                  <div>I don't know the overall solution, but I have
-                    some comments about using the FFT block.=C2=A0 I have
-                    never had success with this block unless I ensure
-                    that the block never receives a "partial FFT" block
-                    of samples.=C2=A0=C2=A0</div>
-                  <div><br>
-                  </div>
-                  <div>One way to ensure this is to use the DDC block
-                    (Radio-&gt;DDC-&gt;FFT) and you set the radio SPP
-                    equal to the FFT length.=C2=A0 The only purpose of the
-                    DDC in this case is that it only processes "full
-                    packets" and discards the final "partial packet".
-                    Thus, it will ensure that the FFT also receives only
-                    full packets.</div>
-                  <div><br>
-                  </div>
-                  <div>Another way to ensure this is to use the
-                    NUM_SAMPS_AND_DONE you mentioned.=C2=A0 As long as this
-                    number is a multiple of the FFT size, it should be
-                    fine for the FFT block.=C2=A0 I'm not sure why you were
-                    getting the Late error.</div>
-                  <div><br>
-                  </div>
-                  <div>When you use CONTINUOUS mode, you are basically
-                    ensuring that the FFT will work fine the first time
-                    but then partially fill with the trailing samples.=C2=
-=A0
-                    The next time you start, the FFT block will complete
-                    the filling process, but your data will be
-                    misaligned.=C2=A0 Perhaps you could use the "fft_reset"
-                    functionality to reset the block every time but this
-                    will likely mean that you need to re-configure the
-                    FFT length, scale, direction, etc.</div>
-                  <div>Rob</div>
-                </div>
-                <br>
-                <div class=3D"gmail_quote">
-                  <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 6, 2021
-                    at 6:31 AM Luca Oliva &lt;<a
-                      href=3D"mailto:luca.oliva@intecs.it" target=3D"_blank"
-                      moz-do-not-send=3D"true">luca.oliva@intecs.it</a>&gt;
-                    wrote:<br>
-                  </div>
-                  <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px
-                    0px 0.8ex;border-left:1px solid
-                    rgb(204,204,204);padding-left:1ex">Hi,<br>
-                    <br>
-                    I've an Ettus E310 with UHD 3.13.1.0<br>
-                    <br>
-                    <br>
-                    I need to receive some samples both in time domain
-                    than frequency <br>
-                    domain. I=E2=80=99m trying to do that using this rfnoc
-                    graph:<br>
-                    <br>
-                    +---------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=
---------------+<br>
-                    |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-                    |---------------------&gt; RxStreamer Ch 0<br>
-                    | Radio=C2=A0=C2=A0 |-------&gt;| SplitStream=C2=A0 |=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-                    +-------+<br>
-                    |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |------&gt;| FFT=C2=A0=C2=A0
-                    |-----&gt; RxStreamer Ch 1<br>
-                    +---------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +=
---------------+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +-------+<br>
-                    <br>
-                    <br>
-                    uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);<br>
-                    uhd::rfnoc::block_id_t split_ctrl_id(0,
-                    "SplitStream", 0);<br>
-                    uhd::rfnoc::block_id_t fft_ctrl_id(0, "FFT", 0);<br>
-                    <br>
-                    uhd::rfnoc::source_block_ctrl_base::sptr
-                    fft_blk_ctrl =3D <br>
-m_Usrp-&gt;get_block_ctrl&lt;uhd::rfnoc::source_block_ctrl_base&gt;(fft_ctr=
-l_id);<br>
-                    <br>
-                    m_RadioCtrl =3D m_Usrp-&gt;get_block_ctrl&lt;
-                    uhd::rfnoc::radio_ctrl <br>
-                    =C2=A0&gt;(radio_ctrl_id);<br>
-                    m_RadioCtrl-&gt;set_rate(16e6);<br>
-                    m_RadioCtrl-&gt;set_arg&lt;int&gt;("spp", 2048);<br>
-                    fft_blk_ctrl-&gt;set_arg&lt;int&gt;("spp", 2048);<br>
-                    <br>
-                    m_Usrp-&gt;clear();<br>
-                    <br>
-                    m_Graph =3D m_Usrp-&gt;create_graph("rfnoc_rx");<br>
-                    m_Graph-&gt;connect(radio_ctrl_id, 0, split_ctrl_id,
-                    0);<br>
-                    m_Graph-&gt;connect(split_ctrl_id, 1, fft_ctrl_id,
-                    0);<br>
-                    <br>
-                    uhd::device_addr_t streamer_args("");<br>
-                    streamer_args["block_id0"] =3D
-                    split_ctrl_id.to_string();<br>
-                    streamer_args["block_port0"] =3D
-                    str(boost::format("%d") % 0);<br>
-                    streamer_args["block_id1"] =3D
-                    fft_ctrl_id.to_string();<br>
-                    streamer_args["block_port1"] =3D
-                    str(boost::format("%d") % 0);<br>
-                    <br>
-                    uhd::stream_args_t stream_args_fc32("sc16", "sc16");<br>
-                    stream_args_fc32.channels =3D { 0, 1 };<br>
-                    stream_args_fc32.args =3D streamer_args;<br>
-                    stream_args_fc32.args["spp"] =3D
-                    boost::lexical_cast&lt;std::string&gt;(2048);<br>
-                    m_RxStreamerFc32 =3D
-                    m_Usrp-&gt;get_rx_stream(stream_args_fc32);<br>
-                    <br>
-                    I need to receive a burst in a precise moment,
-                    elaborate it and restart <br>
-                    on a different frequency (I need also to change
-                    radio channel because <br>
-                    I've two different antennas).<br>
-                    <br>
-                    I've tried<br>
-                    <br>
-                    uhd::stream_cmd_t <br>
-stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);<br>
-                    stream_cmd.num_samps =3D
-                    size_t(nBurstLen*MAX_DIM_SAMPLES_FRAME_FOR_RSA);<br>
-                    stream_cmd.stream_now =3D false;<br>
-                    stream_cmd.time_spec =3D
-                    m_RadioCtrl-&gt;get_time_now()+1.0;<br>
-                    m_RxStreamerFc32-&gt;issue_stream_cmd(stream_cmd);<br>
-                    <br>
-                    but the receive fails with ERROR_CODE_LATE_COMMAND.<br>
-                    <br>
-                    I've tried issuing the STREAM_MODE_START_CONTINUOUS
-                    command and it seems <br>
-                    to work correctly until I don't send a
-                    STREAM_MODE_STOP_CONTINUOUS command.<br>
-                    <br>
-                    After a STREAM_MODE_STOP_CONTINUOUS command I flush
-                    the buffer with a <br>
-                    receive loop:<br>
-                    <br>
-                    while(m_RxStreamerFc32-&gt;recv(buff, 2048,
-                    uselessMd, 0.010, false));<br>
-                    <br>
-                    The problem I'm observing is that since second start
-                    the FFT samples <br>
-                    lost alignment with the time samples and after some
-                    stop and start the <br>
-                    receive fails often with Overflow errors and than
-                    stops definitely to <br>
-                    work with Timeout errors<br>
-                    <br>
-                    Someone else have this problem?<br>
-                    <br>
-                    <br>
-                    Regards,<br>
-                    <br>
-                    Luca<br>
-                    <br>
-                    <br>
-                    LEGAL DISCLAIMER:<br>
-                    The contents of this email and any transmitted files
-                    are confidential and intended solely for the use of
-                    the individual or entity to whom they are addressed.
-                    We hereby exclude any warranty and any liability as
-                    to the quality or accuracy of the contents of this
-                    email and any attached transmitted files. If you are
-                    not the intended recipient, be advised that you have
-                    received this email in error and that any use,
-                    dissemination, forwarding, printing or copying of
-                    this email is strictly prohibited. If you have
-                    received this email in error please contact the
-                    sender and delete the material from any computer.<br>
-                    _______________________________________________<br>
-                    USRP-users mailing list -- <a
-                      href=3D"mailto:usrp-users@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true">usrp-users=
-@lists.ettus.com</a><br>
-                    To unsubscribe send an email to <a
-                      href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true">usrp-users=
--leave@lists.ettus.com</a><br>
-                  </blockquote>
-                </div>
-              </div>
-            </blockquote>
-            <div>-- <br>
-              <span style=3D"font-size:10pt;color:navy"> <b>ing. Luca
-                  Oliva</b><br>
-                Senior Developer Engineer<br>
-                <br>
-                <img src=3D"cid:part5.753A3A84.75E24C69@intecs.it"
-                  alt=3D"Intecs Solutions S.p.A." class=3D""><br>
-                <br>
-                <b>Intecs Solutions S.p.A.</b><br>
-                Via Ferrante Imparato 198<br>
-                Isola F - 80146 Napoli - Italy<br>
-                Phone: +39 081 19718400<br>
-                email: <a href=3D"mailto:luca.oliva@intecs.it"
-                  target=3D"_blank" moz-do-not-send=3D"true">luca.oliva@int=
-ecs.it</a>
-              </span></div>
-            <br>
-            LEGAL DISCLAIMER:
-            The contents of this email and any transmitted files are
-            confidential and intended solely for the use of the
-            individual or entity to whom they are addressed. We hereby
-            exclude any warranty and any liability as to the quality or
-            accuracy of the contents of this email and any attached
-            transmitted files. If you are not the intended recipient, be
-            advised that you have received this email in error and that
-            any use, dissemination, forwarding, printing or copying of
-            this email is strictly prohibited. If you have received this
-            email in error please contact the sender and delete the
-            material from any computer.=C2=A0=C2=A0=C2=AD=C2=AD=C2=A0=C2=A0=
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hi all,<br>
+<br>
+I am following the instructions from <a href=3D"https://files.ettus.com/man=
+ual/page_usrp_e3xx.html#e31x_migration" class=3D"OWAAutoLink">
+https://files.ettus.com/manual/page_usrp_e3xx.html#e31x_migration</a> . I h=
+ave installed the SD card file that I found using:<br>
+<br>
+<span>&nbsp; <span style=3D"font-family: &quot;Courier New&quot;, monospace=
+;">uhd_images_downloader -t e310 -t sdimg</span></span>
+<br>
+<br>
+And Installed the sdk from the file provided with: <br>
+<br>
+<span>&nbsp; <span style=3D"font-family: &quot;Courier New&quot;, monospace=
+;">uhd_images_downloader -t sdk -t e310</span><br>
+<br>
+Which provided the file:<br>
+<br>
+<span>&nbsp; <span style=3D"font-family: &quot;Courier New&quot;, monospace=
+;">e310_sg3-oecore-x86_64-cortexa9t2hf-neon-toolchain-nodistro.0.</span></s=
+pan><span style=3D"font-family: &quot;Courier New&quot;, monospace;">sh</sp=
+an><br>
+<br>
+I installed this and set up the environment with: <br>
+<br>
+</span><span><span>&nbsp; <span style=3D"font-family: &quot;Courier New&quo=
+t;, monospace;">source environment-setup-cortexa9t2hf-neon-oe-linux-musleab=
+i</span></span></span><br>
+<br>
+Building UHD worked fine, however when I try to build GnuRadio I get the fo=
+llowing python version mismatch:<br>
+<br>
+</p>
+<div><span style=3D"font-family: &quot;Courier New&quot;, monospace; font-s=
+ize: 9pt;">dscc@ltdscc-vm:~/gnuradio/build-arm$ cmake -Wno-dev -DCMAKE_TOOL=
+CHAIN_FILE=3D../cmake/Toolchains/oe-sdk_cross.cmake \-DCMAKE_INSTALL_PREFIX=
+=3D/usr -DENABLE_GR_VOCODER=3DOFF -DENABLE_GR_ATSC=3DOFF
+ \</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&gt; -DENABLE_GR_DTV=3DOFF -DENABLE_DOXYGEN=3DOFF ../</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- The CXX compiler identification is GNU 8.2.0</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- The C compiler identification is GNU 8.2.0</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check for working CXX compiler: /usr/local/oecore-x86_64/sysroots/=
+x86_64-oesdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-g&#4=
+3;&#43;</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check for working CXX compiler: /usr/local/oecore-x86_64/sysroots/=
+x86_64-oesdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-g&#4=
+3;&#43; -- works</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting CXX compiler ABI info</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting CXX compiler ABI info - done</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting CXX compile features</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting CXX compile features - done</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check for working C compiler: /usr/local/oecore-x86_64/sysroots/x8=
+6_64-oesdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-gcc</s=
+pan><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check for working C compiler: /usr/local/oecore-x86_64/sysroots/x8=
+6_64-oesdk-linux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-gcc --=
+ works</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting C compiler ABI info</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting C compiler ABI info - done</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting C compile features</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Detecting C compile features - done</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Build type not specified: defaulting to release.</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Build type set to Release.</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Build date set to Mon, 12 Apr 2021 08:23:16Z.</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- </span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- The build system will automatically enable all components.</span><=
+br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Use -DENABLE_DEFAULT=3DOFF to disable components by default.</span=
+><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for pthread.h</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for pthread.h - found</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for pthread_create</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for pthread_create - found</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Found Threads: TRUE &nbsp;</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Boost version: 1.68.0</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Found the following Boost libraries:</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; date_time</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; program_options</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; system</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; regex</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; thread</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; unit_test_framework</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; chrono</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; atomic</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- </span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Configuring testing-support support...</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; Dependency Boost_UNIT_TEST_FRAMEWORK_FOUND =3D ON</spa=
+n><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; Enabling testing-support support.</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">--&nbsp;&nbsp; Override with -DENABLE_TESTING=3DON/OFF</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Found Git: /usr/bin/git &nbsp;</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Extracting version information from git describe...</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">CMake Warning at CMakeLists.txt:93 (MESSAGE):</span><br>
+<br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; The compiler selected to build GNU Radio (GCC version 8.2.0 :<=
+/span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/a=
+rm-oe-linux-musleabi/arm-oe-linux-musleabi-g&#43;&#43;)</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; is older than that officially supported (8.3.0 minimum).&nbsp;=
+ This build may or</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; not work.&nbsp; We highly recommend using a more recent GCC ve=
+rsion.</span><br>
+<br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check if the system is big endian</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Searching 16 bit integer</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for sys/types.h</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for sys/types.h - found</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for stdint.h</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for stdint.h - found</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for stddef.h</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Looking for stddef.h - found</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check size of unsigned short</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check size of unsigned short - done</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Using unsigned short</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Check if the system is big endian - little endian</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_VISIBILITY_HIDDEN</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_VISIBILITY_HIDDEN - Success</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_WARN_SIGN_COMPARE</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_WARN_SIGN_COMPARE - Success</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_WARN_ALL</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_WARN_ALL - Success</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_WARN_NO_UNINITIALIZED</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Performing Test HAVE_WARN_NO_UNINITIALIZED - Success</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Compiler Version: arm-oe-linux-musleabi-gcc (GCC) 8.2.0</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">Copyright (C) 2018 Free Software Foundation, Inc.</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">This is free software; see the source for copying conditions.&nbsp; T=
+here is NO</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PU=
+RPOSE.</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Compiler Flags: /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-lin=
+ux/usr/bin/arm-oe-linux-musleabi/arm-oe-linux-musleabi-gcc:::-O3 -DNDEBUG&n=
+bsp; -O2 -pipe -g -feliminate-unused-debug-types&nbsp;
+ -fvisibility=3Dhidden -Wsign-compare -Wall -Wno-uninitialized</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">/usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/arm-oe-l=
+inux-musleabi/arm-oe-linux-musleabi-g&#43;&#43;:::-O3 -DNDEBUG&nbsp; -O2 -p=
+ipe -g -feliminate-unused-debug-types&nbsp; -fvisibility=3Dhidden
+ -Wsign-compare -Wall -Wno-uninitialized</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- ADDING PERF COUNTERS</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- PYTHON_EXECUTABLE not set - using default python3</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">CMake Error at /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/u=
+sr/share/cmake-3.12/Modules/FindPackageHandleStandardArgs.cmake:137 (messag=
+e):</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; Could NOT find PythonInterp: Found unsuitable version &quot;3.=
+5.6&quot;, but required</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; is at least &quot;3.6.5&quot; (found</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/bin/p=
+ython3)</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">Call Stack (most recent call first):</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/share=
+/cmake-3.12/Modules/FindPackageHandleStandardArgs.cmake:376 (_FPHSA_FAILURE=
+_MESSAGE)</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; /usr/local/oecore-x86_64/sysroots/x86_64-oesdk-linux/usr/share=
+/cmake-3.12/Modules/FindPythonInterp.cmake:159 (FIND_PACKAGE_HANDLE_STANDAR=
+D_ARGS)</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; cmake/Modules/GrPython.cmake:24 (find_package)</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">&nbsp; CMakeLists.txt:338 (include)</span><br>
+<br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">-- Configuring incomplete, errors occurred!</span><br>
+<span style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: =
+9pt;">See also &quot;/home/dscc/gnuradio/build-arm/CMakeFiles/CMakeOutput.l=
+og&quot;</span></div>
+<br>
+Is there a more up to date version of the sdk with python version 3.6.5 min=
+imum?<br>
+Or am I missing some other step?<br>
+<br>
+Thanks,<br>
+David<br>
+<p></p>
 </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <div class=3D"moz-signature">-- <br>
-      <span style=3D"font-size:10.0pt;color:navy">
-        <b>ing. Luca Oliva</b><br>
-        Senior Developer Engineer<br>
-        <br>
-        <img src=3D"cid:part5.753A3A84.75E24C69@intecs.it" alt=3D"Intecs
-          Solutions S.p.A." class=3D""><br>
-        <br>
-        <b>Intecs Solutions S.p.A.</b><br>
-        Via Ferrante Imparato 198<br>
-        Isola F - 80146 Napoli - Italy<br>
-        Phone: +39 081 19718400<br>
-        email: <a href=3D"mailto:luca.oliva@intecs.it">luca.oliva@intecs.it=
-</a>
-      </span></div>
-  <br>LEGAL DISCLAIMER:</p>=0D
-The contents of this email and any transmitted files are confidential and i=
-ntended solely for the use of the individual or entity to whom they are add=
-ressed. We hereby exclude any warranty and any liability as to the quality =
-or accuracy of the contents of this email and any attached transmitted file=
-s. If you are not the intended recipient, be advised that you have received=
- this email in error and that any use, dissemination, forwarding, printing =
-or copying of this email is strictly prohibited. If you have received this =
-email in error please contact the sender and delete the material from any c=
-omputer.&nbsp;&nbsp;&shy;&shy;&nbsp;&nbsp;</body>
+<span style=3D""><br>
+</span><span style=3D"font-size:18.0pt; line-height:125%; font-family:Webdi=
+ngs; color:green">P<span style=3D""></span>
+<span style=3D"font-size:7.0pt; line-height:125%; font-family:&quot;Arial&q=
+uot;,&quot;sans-serif&quot;; color:green">
+Please consider the environment before printing this e-mail.</span></span><=
+span style=3D""></span>
+</body>
 </html>
 
---------------C98A0003544E8A41DA50D4FC
-Content-Type: image/png;
- name="akmenibhhffmmnkf.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part5.753A3A84.75E24C69@intecs.it>
-Content-Disposition: inline;
- filename="akmenibhhffmmnkf.png"
+--_000_e5ee1dce7db04a5f96edd8939933430fgmvnslcom_--
 
-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
-fWQEzuwR+D+zB00T+f7kJAAAAABJRU5ErkJgggA=
-
---------------C98A0003544E8A41DA50D4FC--
-
---------------DA717369DF398CFABF4FE422--
-
---===============6637093855810476158==
+--===============6763507598345735456==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -901,4 +509,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6637093855810476158==--
+--===============6763507598345735456==--
