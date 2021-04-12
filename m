@@ -2,59 +2,59 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8700335CA4D
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 17:45:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B856535CA76
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 17:51:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D4D593844CF
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 11:45:41 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9A86B38476F
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 11:51:17 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Au9ERRg+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="KsjutYlM";
 	dkim-atps=neutral
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 03CBE38446D
-	for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 11:44:55 -0400 (EDT)
-Received: by mail-ot1-f53.google.com with SMTP id w31-20020a9d36220000b02901f2cbfc9743so13191975otb.7
-        for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 08:44:55 -0700 (PDT)
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id C9A0F3841CC
+	for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 11:50:24 -0400 (EDT)
+Received: by mail-ot1-f49.google.com with SMTP id w31-20020a9d36220000b02901f2cbfc9743so13208905otb.7
+        for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 08:50:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=nd.edu; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7rQPvLeRuwroRWqTaNCcEHyzeLyMVO+D+ksqWCl9A8Y=;
-        b=Au9ERRg+DL7js9v+CCD/cHvgYjSNjRLb1dZXT/7vd9RF7mCn+Z5ZWTHhgvwmuCHUeQ
-         vzEQHdak122mFobO20i17T2NnOKDennEuSUs2xOgqxR34bnzPC/w0KVrPlsrYKB3zbcO
-         gyVMaLXjzlntK6jx4BNHUqNjzidmlk9Gp5Ok2s3axtmu/haOpS7cWcx/frAYxlXGGMbY
-         buvW8AIH8Oy+ArYhXMRYfGyT73un4vouNzgheUF+i9ig7NvKnqRNhIeRElzbMBSeWZT1
-         HyaCurk24vJDFANw5PZFOdRb6f33qhPEKVPMEsnWxw9jOBMB5e/ukHDl/LmO+CvpTsFu
-         +7yw==
+        bh=Tp/ZwHri5BlxATCe3HS3qrCoh4SSBMx/Tw8a5EHbT2c=;
+        b=KsjutYlM5rovUkKHbgu1OdQzLS/b/3A+XCnPWOmD2YCyvUiKUOQcuOZfuF64SFj67i
+         66I5YOgOG31MGYBzl9+9kPu7kRrMmGWj6n9c4fcXUGVmJqWtI+LH8iCB6E6YiM2inpgU
+         6fMjaRNmB7aP2RtyC6fn1pHzB5tqcCDNzie9XUsdVn+woQa7Dw4snHhUCK5r9uLfz1o+
+         VGxITPvsPtlCUHbDiwaOn7CsrBMjx3u0qc2lJEwSAoc553gDOtLrooPmwJbkju8wdO3n
+         nr6JvLqLs7REOrh0gmhjs53IL16rhJMafibsyke3vGAAcpctS6hdBBV+tDci7v9K6R5Q
+         /YvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7rQPvLeRuwroRWqTaNCcEHyzeLyMVO+D+ksqWCl9A8Y=;
-        b=jnZNgw9iBtw5LZr2IiRmv2oGwcJUyf7Npf+ZnMOa/7Cub/fNAe2NSgQNY5qx+ISSZh
-         dIxM0ENM/K14iCbw4XmixpwWM8z93YFfvgO8phagWYfyyRClb1lnk6QM2SQxMZa3C6Dd
-         WQKIgBHZyJd2TzipBJP4vLOqP3VYxbrlnf9m4rH5eA0gb9Ziq9KwW4vIajQIK3dT3bnG
-         UbfP7s3DvMJkg9g0kIV+DmnnumR6ierfQHHVZc7VOEJUyC9yW64NtxA03sRBBjUWpgFz
-         zqq053Fgajf+uIfOoxdmtKWH9ct9+2uJOCVkzkcyysLc59H/+jmX62szQQx6mSb9Ogrt
-         jcQA==
-X-Gm-Message-State: AOAM530I4QBxb9Pl/ULzimluNKyQiJZeHHgF0sJSh3/CjYl5pHYfXxbZ
-	7hwamsmpkbJhdRAayaxOfBpQWfT2t1aQI+OdUmKfcg==
-X-Google-Smtp-Source: ABdhPJyL1C13iOJfDFCflX2/0EOkzPHY5w01lMYjoI6gbz69IkV0iRrESXgnZ6UGsOMHoctO8cIMsHWT0qLoaEowJlM=
-X-Received: by 2002:a9d:4049:: with SMTP id o9mr24656034oti.58.1618242295096;
- Mon, 12 Apr 2021 08:44:55 -0700 (PDT)
+        bh=Tp/ZwHri5BlxATCe3HS3qrCoh4SSBMx/Tw8a5EHbT2c=;
+        b=Z94jFP8CYLV4aHjcJXdiUUcM38ZEcwtwOgdLD5fuMEcBwwy8QKJclfhhBmdCD6atlI
+         6q8ohWWhVWVgxEOTdn9d38p70TQWlUnvWfkvXLUhy9imNtYMdAnpeY4DZWIShpRs44fI
+         aS8PCy1dW4XK3pjHWAcxStmNUuE84xm07+36DH42hYSlC1+D56jj5rg5yYBzn/nhnQYj
+         4G51FdJ4mVBRw8YTkRZI2psdeGLOxdX1FZLlTE0DjU1UQH9HVscz4JFQD14m3wqRJZc+
+         BnUmmCDBO8DyqYpkw0LSa0T9p2Yo/erAnU3qX7eYrbLuHFLyXWqX+Jm5esh0ExK/Zlyz
+         YFoA==
+X-Gm-Message-State: AOAM533WP89Ldd2F8MXrTvPsQWVqCZ3bbZqjJ8+t3nCAcI22MQOl8Muq
+	y2xvd0ord0caQWn1Cn4uqntnHXRk4qz1/ujKPze/INdwrSo=
+X-Google-Smtp-Source: ABdhPJyzJwACHijvTJ12PwyF6eLXYrw0LWJFbH3TO08I9aJVTzcBAsde2ZuBazTDmuuEenn48vxVBiDIXY14P3wgSqQ=
+X-Received: by 2002:a9d:4049:: with SMTP id o9mr24675184oti.58.1618242623854;
+ Mon, 12 Apr 2021 08:50:23 -0700 (PDT)
 MIME-Version: 1.0
 References: <1e8db183-4501-3f1d-57e4-2a13de806012@intecs.it>
  <CAB__hTQCKvaawxqqYGuxhrbR11tbLObDQpRCAix4LsGEC2GvjQ@mail.gmail.com>
  <247eab0c-c124-c044-cc22-3c9d40c5fbe3@intecs.it> <CAB__hTTG+WRe-Z=mxafyvasnOo0rV+xMoSTd3PgagPdKo55Oig@mail.gmail.com>
  <83036548-e95a-6ffa-3c1e-d8159f545fc1@intecs.it> <CAB__hTSfhOTUfFF4dXpZ_Ss_hySf+FTYQqGO9QrdFWr=v2Wn+A@mail.gmail.com>
- <8726abaa-6398-7785-e219-5c2fc89227f3@intecs.it>
-In-Reply-To: <8726abaa-6398-7785-e219-5c2fc89227f3@intecs.it>
+ <8726abaa-6398-7785-e219-5c2fc89227f3@intecs.it> <CAB__hTS-nO3NnQ1szL6HG76tHFO2uhCoQp5Y4Y5b4DjzBWrvtg@mail.gmail.com>
+In-Reply-To: <CAB__hTS-nO3NnQ1szL6HG76tHFO2uhCoQp5Y4Y5b4DjzBWrvtg@mail.gmail.com>
 From: Rob Kossler <rkossler@nd.edu>
-Date: Mon, 12 Apr 2021 11:44:44 -0400
-Message-ID: <CAB__hTS-nO3NnQ1szL6HG76tHFO2uhCoQp5Y4Y5b4DjzBWrvtg@mail.gmail.com>
+Date: Mon, 12 Apr 2021 11:50:09 -0400
+Message-ID: <CAB__hTQ4f01iHVq+O8h6tXKOsXOfmcgQSRZMSq2BmrVaw=vt9w@mail.gmail.com>
 To: Luca Oliva <luca.oliva@intecs.it>
-Message-ID-Hash: 6ODAHNRCGVFAV2YWA2US5LJT7IA56Y4R
-X-Message-ID-Hash: 6ODAHNRCGVFAV2YWA2US5LJT7IA56Y4R
+Message-ID-Hash: 2SYKGX74CZIEBGDIUCYYCXTEJWYPT5WM
+X-Message-ID-Hash: 2SYKGX74CZIEBGDIUCYYCXTEJWYPT5WM
 X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
@@ -62,264 +62,313 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RfNoc SplitStream and FFT
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6ODAHNRCGVFAV2YWA2US5LJT7IA56Y4R/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2SYKGX74CZIEBGDIUCYYCXTEJWYPT5WM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8022547827648851172=="
+Content-Type: multipart/mixed; boundary="===============6306141891423334321=="
 
---===============8022547827648851172==
-Content-Type: multipart/related; boundary="00000000000029add505bfc86504"
+--===============6306141891423334321==
+Content-Type: multipart/related; boundary="000000000000c1e05d05bfc87850"
 
---00000000000029add505bfc86504
-Content-Type: multipart/alternative; boundary="00000000000029add305bfc86503"
+--000000000000c1e05d05bfc87850
+Content-Type: multipart/alternative; boundary="000000000000c1e05c05bfc8784f"
 
---00000000000029add305bfc86503
+--000000000000c1e05c05bfc8784f
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Luca,
-I don't think that there is a way to change the RF front end associated
-with a given Radio block port - I think this is fixed (maybe someone can
-correct me if I'm wrong on this). So, I think your graph will need to
-include two Radio ports and that you will need an RF multiplexer capability
-between the Radio and the SplitStream.  In UHD 4.0 (RFNoC 4.0), there is
-such a block (SwitchBoard) but I don't think that there is a corresponding
-block for UHD 3.13.  You could develop such a stand-alone RFNoC block
-(perhaps using the SwitchBoard block as an example) or perhaps you could
-modify the SplitStream block to have 2 inputs and a multiplexer capability.
+Or, another option could be to add a null sink block to your build and
+connect one of the two radio ports to it. The problem with this is that you
+would need to dynamically re-link your graph each time you wanted to switch
+radio ports (connecting the unwanted port to the null sink and the desired
+port to the SplitStream).  This may not be practical if you need to switch
+ports frequently / quickly.
 Rob
 
-On Mon, Apr 12, 2021 at 10:47 AM Luca Oliva <luca.oliva@intecs.it> wrote:
+On Mon, Apr 12, 2021 at 11:44 AM Rob Kossler <rkossler@nd.edu> wrote:
 
-> Hi Rob,
->
-> the question is exactly that! Is there a way to change the radio channel
-> between two receive?
-> Il 12/04/21 16:00, Rob Kossler ha scritto:
->
 > Hi Luca,
-> You mentioned that you need to capture alternately from the two radio
-> channels.  Can you share the graph you are implementing (the graph below
-> shows only 1 radio channel)?
+> I don't think that there is a way to change the RF front end associated
+> with a given Radio block port - I think this is fixed (maybe someone can
+> correct me if I'm wrong on this). So, I think your graph will need to
+> include two Radio ports and that you will need an RF multiplexer capabili=
+ty
+> between the Radio and the SplitStream.  In UHD 4.0 (RFNoC 4.0), there is
+> such a block (SwitchBoard) but I don't think that there is a correspondin=
+g
+> block for UHD 3.13.  You could develop such a stand-alone RFNoC block
+> (perhaps using the SwitchBoard block as an example) or perhaps you could
+> modify the SplitStream block to have 2 inputs and a multiplexer capabilit=
+y.
 > Rob
 >
-> On Mon, Apr 12, 2021 at 4:23 AM Luca Oliva <luca.oliva@intecs.it> wrote:
+> On Mon, Apr 12, 2021 at 10:47 AM Luca Oliva <luca.oliva@intecs.it> wrote:
 >
->> Unfortunately I haven't enough FPGA resources to insert a DDC block.
+>> Hi Rob,
 >>
->> I've tried to issue the STREAM_MODE_NUM_SAMPS_AND_DONE command directly
->> to the Radio block and It seems to work, after a hundred of command the =
-FFT
->> is still aligned to time domain capture.
+>> the question is exactly that! Is there a way to change the radio channel
+>> between two receive?
+>> Il 12/04/21 16:00, Rob Kossler ha scritto:
 >>
->> The problem now is that I need to capture alternately from the two radio
->> channels.
->>
->> As first test I've tried to connect statically the second output of the
->> Radio block to the SplitStream but It doesn't work. Receive fails with
->> timeout error.
->>
->> Luca
->> Il 08/04/21 03:25, Rob Kossler ha scritto:
->>
->> Is it possible (enough FPGA resources) for you to insert the DDC block
->> after the Radio in your graph and before the SplitStream? And, is your F=
-FT
->> size small enough that you can set the Radio SPP equal to the FFT length=
-?
->> If both of these are true, I think this will solve your issue. The DDC
->> block will then provide output packets that are exactly the length of th=
-e
->> FFT and there will be no residual samples at the end.
->>
->> I think it "should" be possible to get the "reset" to work, but I am not
->> certain.  My plan of attack would be to wait until after flush and then =
-set
->> fft_reset=3D1 and then fft_reset=3D0 and then reconfigure the fft with a=
-ll
->> needed settings.  But, if this doesn't work, I suppose that it is possib=
-le
->> that there is a FIFO (at the input of the FFT block or at the output of =
-the
->> Radio or SplitStream block where the residual samples are "stuck".
->>
->> Finally, regarding the "Late" command, perhaps you could try to
->> "issue_stream_cmd" directly to the radio rather than to the rx_streamer.
->> When you call this function from the rx_streamer, the command propagates
->> upstream on the graph until it gets to the radio. But since you have a
->> SplitStream in your graph, maybe there is some bug in the propagation. I
->> think you could call this same function directly on the Radio controller
->> and it may solve the Late issue.
->>
+>> Hi Luca,
+>> You mentioned that you need to capture alternately from the two radio
+>> channels.  Can you share the graph you are implementing (the graph below
+>> shows only 1 radio channel)?
 >> Rob
 >>
->> On Wed, Apr 7, 2021 at 12:39 PM Luca Oliva <luca.oliva@intecs.it> wrote:
+>> On Mon, Apr 12, 2021 at 4:23 AM Luca Oliva <luca.oliva@intecs.it> wrote:
 >>
->>> Hi Rob,
+>>> Unfortunately I haven't enough FPGA resources to insert a DDC block.
 >>>
->>> Some update:
+>>> I've tried to issue the STREAM_MODE_NUM_SAMPS_AND_DONE command directly
+>>> to the Radio block and It seems to work, after a hundred of command the=
+ FFT
+>>> is still aligned to time domain capture.
 >>>
->>> 1) The ERROR_CODE_LATE_COMMAND error using
->>> STREAM_MODE_NUM_SAMPS_AND_DONE happens only if I put stream_now=3Dfalse=
- (I
->>> set time_spec with a future value obviously).
+>>> The problem now is that I need to capture alternately from the two radi=
+o
+>>> channels.
 >>>
->>> 2) I've tried to set fft_reset=3D1 before STREAM_MODE_STOP_CONTINUOUS
->>> command, after it or after buffer flush but the problem is still presen=
-t.
+>>> As first test I've tried to connect statically the second output of the
+>>> Radio block to the SplitStream but It doesn't work. Receive fails with
+>>> timeout error.
 >>>
 >>> Luca
->>> Il 06/04/21 14:58, Rob Kossler ha scritto:
+>>> Il 08/04/21 03:25, Rob Kossler ha scritto:
 >>>
->>> Hi Luca,
->>> I don't know the overall solution, but I have some comments about using
->>> the FFT block.  I have never had success with this block unless I ensur=
-e
->>> that the block never receives a "partial FFT" block of samples.
+>>> Is it possible (enough FPGA resources) for you to insert the DDC block
+>>> after the Radio in your graph and before the SplitStream? And, is your =
+FFT
+>>> size small enough that you can set the Radio SPP equal to the FFT lengt=
+h?
+>>> If both of these are true, I think this will solve your issue. The DDC
+>>> block will then provide output packets that are exactly the length of t=
+he
+>>> FFT and there will be no residual samples at the end.
 >>>
->>> One way to ensure this is to use the DDC block (Radio->DDC->FFT) and yo=
-u
->>> set the radio SPP equal to the FFT length.  The only purpose of the DDC=
- in
->>> this case is that it only processes "full packets" and discards the fin=
-al
->>> "partial packet". Thus, it will ensure that the FFT also receives only =
-full
->>> packets.
+>>> I think it "should" be possible to get the "reset" to work, but I am no=
+t
+>>> certain.  My plan of attack would be to wait until after flush and then=
+ set
+>>> fft_reset=3D1 and then fft_reset=3D0 and then reconfigure the fft with =
+all
+>>> needed settings.  But, if this doesn't work, I suppose that it is possi=
+ble
+>>> that there is a FIFO (at the input of the FFT block or at the output of=
+ the
+>>> Radio or SplitStream block where the residual samples are "stuck".
 >>>
->>> Another way to ensure this is to use the NUM_SAMPS_AND_DONE you
->>> mentioned.  As long as this number is a multiple of the FFT size, it sh=
-ould
->>> be fine for the FFT block.  I'm not sure why you were getting the Late
->>> error.
+>>> Finally, regarding the "Late" command, perhaps you could try to
+>>> "issue_stream_cmd" directly to the radio rather than to the rx_streamer=
+.
+>>> When you call this function from the rx_streamer, the command propagate=
+s
+>>> upstream on the graph until it gets to the radio. But since you have a
+>>> SplitStream in your graph, maybe there is some bug in the propagation. =
+I
+>>> think you could call this same function directly on the Radio controlle=
+r
+>>> and it may solve the Late issue.
 >>>
->>> When you use CONTINUOUS mode, you are basically ensuring that the FFT
->>> will work fine the first time but then partially fill with the trailing
->>> samples.  The next time you start, the FFT block will complete the fill=
-ing
->>> process, but your data will be misaligned.  Perhaps you could use the
->>> "fft_reset" functionality to reset the block every time but this will
->>> likely mean that you need to re-configure the FFT length, scale, direct=
-ion,
->>> etc.
 >>> Rob
 >>>
->>> On Tue, Apr 6, 2021 at 6:31 AM Luca Oliva <luca.oliva@intecs.it> wrote:
+>>> On Wed, Apr 7, 2021 at 12:39 PM Luca Oliva <luca.oliva@intecs.it> wrote=
+:
 >>>
->>>> Hi,
+>>>> Hi Rob,
 >>>>
->>>> I've an Ettus E310 with UHD 3.13.1.0
+>>>> Some update:
 >>>>
+>>>> 1) The ERROR_CODE_LATE_COMMAND error using
+>>>> STREAM_MODE_NUM_SAMPS_AND_DONE happens only if I put stream_now=3Dfals=
+e (I
+>>>> set time_spec with a future value obviously).
 >>>>
->>>> I need to receive some samples both in time domain than frequency
->>>> domain. I=E2=80=99m trying to do that using this rfnoc graph:
->>>>
->>>> +---------+        +--------------+
->>>> |         |        |              |---------------------> RxStreamer C=
-h
->>>> 0
->>>> | Radio   |------->| SplitStream  |       +-------+
->>>> |         |        |              |------>| FFT   |-----> RxStreamer C=
-h
->>>> 1
->>>> +---------+        +--------------+       +-------+
->>>>
->>>>
->>>> uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);
->>>> uhd::rfnoc::block_id_t split_ctrl_id(0, "SplitStream", 0);
->>>> uhd::rfnoc::block_id_t fft_ctrl_id(0, "FFT", 0);
->>>>
->>>> uhd::rfnoc::source_block_ctrl_base::sptr fft_blk_ctrl =3D
->>>> m_Usrp->get_block_ctrl<uhd::rfnoc::source_block_ctrl_base>(fft_ctrl_id=
-);
->>>>
->>>> m_RadioCtrl =3D m_Usrp->get_block_ctrl< uhd::rfnoc::radio_ctrl
->>>>  >(radio_ctrl_id);
->>>> m_RadioCtrl->set_rate(16e6);
->>>> m_RadioCtrl->set_arg<int>("spp", 2048);
->>>> fft_blk_ctrl->set_arg<int>("spp", 2048);
->>>>
->>>> m_Usrp->clear();
->>>>
->>>> m_Graph =3D m_Usrp->create_graph("rfnoc_rx");
->>>> m_Graph->connect(radio_ctrl_id, 0, split_ctrl_id, 0);
->>>> m_Graph->connect(split_ctrl_id, 1, fft_ctrl_id, 0);
->>>>
->>>> uhd::device_addr_t streamer_args("");
->>>> streamer_args["block_id0"] =3D split_ctrl_id.to_string();
->>>> streamer_args["block_port0"] =3D str(boost::format("%d") % 0);
->>>> streamer_args["block_id1"] =3D fft_ctrl_id.to_string();
->>>> streamer_args["block_port1"] =3D str(boost::format("%d") % 0);
->>>>
->>>> uhd::stream_args_t stream_args_fc32("sc16", "sc16");
->>>> stream_args_fc32.channels =3D { 0, 1 };
->>>> stream_args_fc32.args =3D streamer_args;
->>>> stream_args_fc32.args["spp"] =3D boost::lexical_cast<std::string>(2048=
-);
->>>> m_RxStreamerFc32 =3D m_Usrp->get_rx_stream(stream_args_fc32);
->>>>
->>>> I need to receive a burst in a precise moment, elaborate it and restar=
-t
->>>> on a different frequency (I need also to change radio channel because
->>>> I've two different antennas).
->>>>
->>>> I've tried
->>>>
->>>> uhd::stream_cmd_t
->>>> stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
->>>> stream_cmd.num_samps =3D size_t(nBurstLen*MAX_DIM_SAMPLES_FRAME_FOR_RS=
-A);
->>>> stream_cmd.stream_now =3D false;
->>>> stream_cmd.time_spec =3D m_RadioCtrl->get_time_now()+1.0;
->>>> m_RxStreamerFc32->issue_stream_cmd(stream_cmd);
->>>>
->>>> but the receive fails with ERROR_CODE_LATE_COMMAND.
->>>>
->>>> I've tried issuing the STREAM_MODE_START_CONTINUOUS command and it
->>>> seems
->>>> to work correctly until I don't send a STREAM_MODE_STOP_CONTINUOUS
->>>> command.
->>>>
->>>> After a STREAM_MODE_STOP_CONTINUOUS command I flush the buffer with a
->>>> receive loop:
->>>>
->>>> while(m_RxStreamerFc32->recv(buff, 2048, uselessMd, 0.010, false));
->>>>
->>>> The problem I'm observing is that since second start the FFT samples
->>>> lost alignment with the time samples and after some stop and start the
->>>> receive fails often with Overflow errors and than stops definitely to
->>>> work with Timeout errors
->>>>
->>>> Someone else have this problem?
->>>>
->>>>
->>>> Regards,
+>>>> 2) I've tried to set fft_reset=3D1 before STREAM_MODE_STOP_CONTINUOUS
+>>>> command, after it or after buffer flush but the problem is still prese=
+nt.
 >>>>
 >>>> Luca
+>>>> Il 06/04/21 14:58, Rob Kossler ha scritto:
 >>>>
+>>>> Hi Luca,
+>>>> I don't know the overall solution, but I have some comments about usin=
+g
+>>>> the FFT block.  I have never had success with this block unless I ensu=
+re
+>>>> that the block never receives a "partial FFT" block of samples.
 >>>>
->>>> LEGAL DISCLAIMER:
->>>> The contents of this email and any transmitted files are confidential
->>>> and intended solely for the use of the individual or entity to whom th=
-ey
->>>> are addressed. We hereby exclude any warranty and any liability as to =
-the
->>>> quality or accuracy of the contents of this email and any attached
->>>> transmitted files. If you are not the intended recipient, be advised t=
-hat
->>>> you have received this email in error and that any use, dissemination,
->>>> forwarding, printing or copying of this email is strictly prohibited. =
-If
->>>> you have received this email in error please contact the sender and de=
-lete
->>>> the material from any computer.
->>>> _______________________________________________
->>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>> One way to ensure this is to use the DDC block (Radio->DDC->FFT) and
+>>>> you set the radio SPP equal to the FFT length.  The only purpose of th=
+e DDC
+>>>> in this case is that it only processes "full packets" and discards the
+>>>> final "partial packet". Thus, it will ensure that the FFT also receive=
+s
+>>>> only full packets.
+>>>>
+>>>> Another way to ensure this is to use the NUM_SAMPS_AND_DONE you
+>>>> mentioned.  As long as this number is a multiple of the FFT size, it s=
+hould
+>>>> be fine for the FFT block.  I'm not sure why you were getting the Late
+>>>> error.
+>>>>
+>>>> When you use CONTINUOUS mode, you are basically ensuring that the FFT
+>>>> will work fine the first time but then partially fill with the trailin=
+g
+>>>> samples.  The next time you start, the FFT block will complete the fil=
+ling
+>>>> process, but your data will be misaligned.  Perhaps you could use the
+>>>> "fft_reset" functionality to reset the block every time but this will
+>>>> likely mean that you need to re-configure the FFT length, scale, direc=
+tion,
+>>>> etc.
+>>>> Rob
+>>>>
+>>>> On Tue, Apr 6, 2021 at 6:31 AM Luca Oliva <luca.oliva@intecs.it> wrote=
+:
+>>>>
+>>>>> Hi,
+>>>>>
+>>>>> I've an Ettus E310 with UHD 3.13.1.0
+>>>>>
+>>>>>
+>>>>> I need to receive some samples both in time domain than frequency
+>>>>> domain. I=E2=80=99m trying to do that using this rfnoc graph:
+>>>>>
+>>>>> +---------+        +--------------+
+>>>>> |         |        |              |---------------------> RxStreamer
+>>>>> Ch 0
+>>>>> | Radio   |------->| SplitStream  |       +-------+
+>>>>> |         |        |              |------>| FFT   |-----> RxStreamer
+>>>>> Ch 1
+>>>>> +---------+        +--------------+       +-------+
+>>>>>
+>>>>>
+>>>>> uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);
+>>>>> uhd::rfnoc::block_id_t split_ctrl_id(0, "SplitStream", 0);
+>>>>> uhd::rfnoc::block_id_t fft_ctrl_id(0, "FFT", 0);
+>>>>>
+>>>>> uhd::rfnoc::source_block_ctrl_base::sptr fft_blk_ctrl =3D
+>>>>>
+>>>>> m_Usrp->get_block_ctrl<uhd::rfnoc::source_block_ctrl_base>(fft_ctrl_i=
+d);
+>>>>>
+>>>>> m_RadioCtrl =3D m_Usrp->get_block_ctrl< uhd::rfnoc::radio_ctrl
+>>>>>  >(radio_ctrl_id);
+>>>>> m_RadioCtrl->set_rate(16e6);
+>>>>> m_RadioCtrl->set_arg<int>("spp", 2048);
+>>>>> fft_blk_ctrl->set_arg<int>("spp", 2048);
+>>>>>
+>>>>> m_Usrp->clear();
+>>>>>
+>>>>> m_Graph =3D m_Usrp->create_graph("rfnoc_rx");
+>>>>> m_Graph->connect(radio_ctrl_id, 0, split_ctrl_id, 0);
+>>>>> m_Graph->connect(split_ctrl_id, 1, fft_ctrl_id, 0);
+>>>>>
+>>>>> uhd::device_addr_t streamer_args("");
+>>>>> streamer_args["block_id0"] =3D split_ctrl_id.to_string();
+>>>>> streamer_args["block_port0"] =3D str(boost::format("%d") % 0);
+>>>>> streamer_args["block_id1"] =3D fft_ctrl_id.to_string();
+>>>>> streamer_args["block_port1"] =3D str(boost::format("%d") % 0);
+>>>>>
+>>>>> uhd::stream_args_t stream_args_fc32("sc16", "sc16");
+>>>>> stream_args_fc32.channels =3D { 0, 1 };
+>>>>> stream_args_fc32.args =3D streamer_args;
+>>>>> stream_args_fc32.args["spp"] =3D boost::lexical_cast<std::string>(204=
+8);
+>>>>> m_RxStreamerFc32 =3D m_Usrp->get_rx_stream(stream_args_fc32);
+>>>>>
+>>>>> I need to receive a burst in a precise moment, elaborate it and
+>>>>> restart
+>>>>> on a different frequency (I need also to change radio channel because
+>>>>> I've two different antennas).
+>>>>>
+>>>>> I've tried
+>>>>>
+>>>>> uhd::stream_cmd_t
+>>>>> stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
+>>>>> stream_cmd.num_samps =3D size_t(nBurstLen*MAX_DIM_SAMPLES_FRAME_FOR_R=
+SA);
+>>>>> stream_cmd.stream_now =3D false;
+>>>>> stream_cmd.time_spec =3D m_RadioCtrl->get_time_now()+1.0;
+>>>>> m_RxStreamerFc32->issue_stream_cmd(stream_cmd);
+>>>>>
+>>>>> but the receive fails with ERROR_CODE_LATE_COMMAND.
+>>>>>
+>>>>> I've tried issuing the STREAM_MODE_START_CONTINUOUS command and it
+>>>>> seems
+>>>>> to work correctly until I don't send a STREAM_MODE_STOP_CONTINUOUS
+>>>>> command.
+>>>>>
+>>>>> After a STREAM_MODE_STOP_CONTINUOUS command I flush the buffer with a
+>>>>> receive loop:
+>>>>>
+>>>>> while(m_RxStreamerFc32->recv(buff, 2048, uselessMd, 0.010, false));
+>>>>>
+>>>>> The problem I'm observing is that since second start the FFT samples
+>>>>> lost alignment with the time samples and after some stop and start th=
+e
+>>>>> receive fails often with Overflow errors and than stops definitely to
+>>>>> work with Timeout errors
+>>>>>
+>>>>> Someone else have this problem?
+>>>>>
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Luca
+>>>>>
+>>>>>
+>>>>> LEGAL DISCLAIMER:
+>>>>> The contents of this email and any transmitted files are confidential
+>>>>> and intended solely for the use of the individual or entity to whom t=
+hey
+>>>>> are addressed. We hereby exclude any warranty and any liability as to=
+ the
+>>>>> quality or accuracy of the contents of this email and any attached
+>>>>> transmitted files. If you are not the intended recipient, be advised =
+that
+>>>>> you have received this email in error and that any use, dissemination=
+,
+>>>>> forwarding, printing or copying of this email is strictly prohibited.=
+ If
+>>>>> you have received this email in error please contact the sender and d=
+elete
+>>>>> the material from any computer.
+>>>>> _______________________________________________
+>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>
+>>>> --
+>>>> *ing. Luca Oliva*
+>>>> Senior Developer Engineer
+>>>>
+>>>> [image: Intecs Solutions S.p.A.]
+>>>>
+>>>> *Intecs Solutions S.p.A.*
+>>>> Via Ferrante Imparato 198
+>>>> Isola F - 80146 Napoli - Italy
+>>>> Phone: +39 081 19718400
+>>>> email: luca.oliva@intecs.it
+>>>>
+>>>> LEGAL DISCLAIMER: The contents of this email and any transmitted files
+>>>> are confidential and intended solely for the use of the individual or
+>>>> entity to whom they are addressed. We hereby exclude any warranty and =
+any
+>>>> liability as to the quality or accuracy of the contents of this email =
+and
+>>>> any attached transmitted files. If you are not the intended recipient,=
+ be
+>>>> advised that you have received this email in error and that any use,
+>>>> dissemination, forwarding, printing or copying of this email is strict=
+ly
+>>>> prohibited. If you have received this email in error please contact th=
+e
+>>>> sender and delete the material from any computer.  =C2=AD=C2=AD
 >>>>
 >>> --
 >>> *ing. Luca Oliva*
@@ -372,50 +421,37 @@ e
 >> prohibited. If you have received this email in error please contact the
 >> sender and delete the material from any computer.  =C2=AD=C2=AD
 >>
-> --
-> *ing. Luca Oliva*
-> Senior Developer Engineer
->
-> [image: Intecs Solutions S.p.A.]
->
-> *Intecs Solutions S.p.A.*
-> Via Ferrante Imparato 198
-> Isola F - 80146 Napoli - Italy
-> Phone: +39 081 19718400
-> email: luca.oliva@intecs.it
->
-> LEGAL DISCLAIMER: The contents of this email and any transmitted files ar=
-e
-> confidential and intended solely for the use of the individual or entity =
-to
-> whom they are addressed. We hereby exclude any warranty and any liability
-> as to the quality or accuracy of the contents of this email and any
-> attached transmitted files. If you are not the intended recipient, be
-> advised that you have received this email in error and that any use,
-> dissemination, forwarding, printing or copying of this email is strictly
-> prohibited. If you have received this email in error please contact the
-> sender and delete the material from any computer.  =C2=AD=C2=AD
 >
 
---00000000000029add305bfc86503
+--000000000000c1e05c05bfc8784f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Luca,</div><div>I don&#39;t think that there is a =
-way to change the RF front end associated with a given Radio block port - I=
- think this is fixed (maybe someone can correct me if I&#39;m wrong on this=
-). So, I think your graph will need to include two Radio ports and that you=
- will need an RF multiplexer capability between the Radio and the SplitStre=
-am.=C2=A0 In UHD 4.0 (RFNoC 4.0), there is such a block (SwitchBoard) but I=
- don&#39;t=C2=A0think that there is a corresponding block for UHD 3.13.=C2=
-=A0 You could develop such a stand-alone RFNoC block (perhaps using the Swi=
-tchBoard block as an example) or perhaps you could modify the SplitStream b=
-lock to have 2 inputs and a multiplexer capability.</div><div>Rob</div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Ap=
-r 12, 2021 at 10:47 AM Luca Oliva &lt;<a href=3D"mailto:luca.oliva@intecs.i=
-t">luca.oliva@intecs.it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">
+<div dir=3D"ltr">Or, another option could be to add a null sink block to yo=
+ur build and connect one of the two radio ports to it. The problem with thi=
+s is that you would need to dynamically re-link your graph each time you wa=
+nted to switch radio ports (connecting the unwanted port to the null sink a=
+nd the desired port to the SplitStream).=C2=A0 This may not be practical if=
+ you need to switch ports frequently / quickly.<div>Rob</div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 12=
+, 2021 at 11:44 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkoss=
+ler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div>Hi Luca,</div><div>I don&#39;t think that =
+there is a way to change the RF front end associated with a given Radio blo=
+ck port - I think this is fixed (maybe someone can correct me if I&#39;m wr=
+ong on this). So, I think your graph will need to include two Radio ports a=
+nd that you will need an RF multiplexer capability between the Radio and th=
+e SplitStream.=C2=A0 In UHD 4.0 (RFNoC 4.0), there is such a block (SwitchB=
+oard) but I don&#39;t=C2=A0think that there is a corresponding block for UH=
+D 3.13.=C2=A0 You could develop such a stand-alone RFNoC block (perhaps usi=
+ng the SwitchBoard block as an example) or perhaps you could modify the Spl=
+itStream block to have 2 inputs and a multiplexer capability.</div><div>Rob=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Mon, Apr 12, 2021 at 10:47 AM Luca Oliva &lt;<a href=3D"mailto:luca.oliv=
+a@intecs.it" target=3D"_blank">luca.oliva@intecs.it</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
@@ -860,10 +896,11 @@ email in error please contact the sender and delete the material from any c=
 omputer.=C2=A0=C2=A0=C2=AD=C2=AD=C2=A0=C2=A0</div>
 
 </blockquote></div></div>
+</blockquote></div>
 
---00000000000029add305bfc86503--
+--000000000000c1e05c05bfc8784f--
 
---00000000000029add505bfc86504
+--000000000000c1e05d05bfc87850
 Content-Type: image/png; name="akmenibhhffmmnkf.png"
 Content-Disposition: inline; filename="akmenibhhffmmnkf.png"
 Content-Transfer-Encoding: base64
@@ -1026,9 +1063,9 @@ UuWG+uOUFDEyKGJx9PxHyJoV4n9enG+yZZSemWX+56UOsVwko78/1Ns9Whs96/Iv63/cs73X/75D
 7dtx2dL5vj5KeelzOHdNEOVVLBz5/v1//gnBTNqSDXOGmihhBnY1d6gf6FRtvzdgn6ivYq4LB+wJ
 9hOVH8zzIwAZzNE9A+oWgJzSjrIzYIxP+0cYAchpP4WD+wAjABnc8R2pfWQEzuwR+D+zB00T+f7k
 JAAAAABJRU5ErkJgggA=
---00000000000029add505bfc86504--
+--000000000000c1e05d05bfc87850--
 
---===============8022547827648851172==
+--===============6306141891423334321==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1038,4 +1075,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8022547827648851172==--
+--===============6306141891423334321==--
