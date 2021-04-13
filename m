@@ -2,203 +2,241 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A49535D4EC
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 03:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 99DB235D520
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 04:09:02 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 506313840DA
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 21:44:45 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 42ED73845F7
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 22:09:01 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OdnoR0Xc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="awrhhNQD";
 	dkim-atps=neutral
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id 55EC0384147
-	for <USRP-users@lists.ettus.com>; Mon, 12 Apr 2021 21:44:01 -0400 (EDT)
-Received: by mail-qk1-f178.google.com with SMTP id d23so4356817qko.12
-        for <USRP-users@lists.ettus.com>; Mon, 12 Apr 2021 18:44:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=7HO+OJPxjimpr1+fcsxAjw9vbfNjYjbL5sRK8x5tY7g=;
-        b=OdnoR0XcRtVppI1yoOMLAIBIP9asAdl00UnshDxPxXEPrWpCQX35vMGolja/Cl3yvy
-         FgMXqyxcxJrsmJDqPc14JAVWVGRTfHGAoTVDIWqXRiYh0jTD20+8q1dcpMocYidkIGik
-         KKBUOKCltg7jFIOg0Tzq+Ms3eG1xu9fB0A7dZbQwJJRT0j1NiSkdR1BgE0PB5ZgV2nex
-         4YR3FWgd7YCqvBp7/bnxKNK6tsLRH3bM/GzWH+JIumkoz3Zm/+ti//VLmcj5xPtqOumP
-         Ck4cYNcP+VkRxSkUaJXXNBB7+Eef/9jC++xY5GO90eLTK1cej2W7iX2eCoiWpnGKadpQ
-         C7bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=7HO+OJPxjimpr1+fcsxAjw9vbfNjYjbL5sRK8x5tY7g=;
-        b=Wi+WGN961EIVr82YzMbAUBbpntryvJcQPN2VK4Twm79acksjHAidQq68qWKOLcoaQ8
-         PzaeXkKnE1r+FLjOP/G38Ct3Rtf7Q3FZgVOzgVx8hxgRwzyab1k6A3qffVeTtECpPkM9
-         74UV+V/P24kfPgIXyxHVLIV7Or3M5WQjKaTu+0tLKyOXSEdDr0au8QgZkMaTSl1nNiI0
-         jn45ONFMaXKw2iWZLJFTQ6T2JiGeZ16qQuQfgWdDs/KmMcqM2SP+fG1/GrY59OW7wt+u
-         vz8UoeoyZy17gShv29IlaFRMyYqkGvWp1S5yA5mwfadnA1YhxP1pOHYj57+vKRRIhkcp
-         AOZg==
-X-Gm-Message-State: AOAM531ubqZaF5f9eeC0g4b+xBufeXjLpmpRmeeEqxjK5j7SpwgHTZ6E
-	viwD86LN5Tsn0IY0KjdDX0WdEf5FKH8=
-X-Google-Smtp-Source: ABdhPJwG8Z+5Wjywi5YODPXefKhGcV/FuZH8UverZ9ObrzNbirT2FNiZeB186h6C4f+A+ISM00R2ZA==
-X-Received: by 2002:a05:620a:15d6:: with SMTP id o22mr30123081qkm.181.1618278240556;
-        Mon, 12 Apr 2021 18:44:00 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id x14sm9147048qkn.98.2021.04.12.18.44.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 12 Apr 2021 18:44:00 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Mon, 12 Apr 2021 21:43:59 -0400
-Message-Id: <D6D9B829-3724-4096-ACE1-34217809C0CE@gmail.com>
-References: <CWLP265MB3396E5E989A405B3605A1A15A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
-In-Reply-To: <CWLP265MB3396E5E989A405B3605A1A15A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
-To: ?? WANG Cui <iucgnaw@msn.com>
-X-Mailer: iPhone Mail (18D70)
-Message-ID-Hash: YTD377JFIGCUFY6NGFQTEIYMYV57BA2I
-X-Message-ID-Hash: YTD377JFIGCUFY6NGFQTEIYMYV57BA2I
-X-MailFrom: patchvonbraun@gmail.com
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com (mail-oln040092067105.outbound.protection.outlook.com [40.92.67.105])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4783A3840CA
+	for <USRP-users@lists.ettus.com>; Mon, 12 Apr 2021 22:08:13 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SiFGzqlSq2Pc1LFu3MyCDg2YIFzxPVntSWQrmAx4rUbx2nQmywcFk+dLim6Xkr9qDHpinO/3u7DZ6q1LRv8wrcAwkU9y8mc7L9OTTtWxGD+R4v3YgbJ0dLqRWf/6c5sldaCuZSjUeZFv1C+44YRVZFXqCmGhLRv0haDalUUV9T57IrZUSyyYpA3RsuZfv3NLXAbH4fLZuqymujas/ZBRMrU4vNV9d194So8SHRaLB2pnjtvGGWnb8ckWCm8UiEAqOf/fsoPfS/uc8po5ad70iFpy6ecI1nOCjwu+jVrkDGYZXZVL+6ZXYXo9fY/18OGSkJg1jQcSNKr0plk1Ch5ScQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a5vMpY9EPiky5adnYIYpJk6E8CC6KJbONF8CKS0I+6I=;
+ b=gwb7UjEeAX6DDugukEx1St7Nly9oNvz6ZBadAuVWbbac5aZu1G6lY9TfZRjA+uaZnIJzAbPUbC1+kLVOd3v0Fkxx/az4UCoGEljxZeiz98TF6t6CfYGbJQx3Bcuu3cLEM28u/P5TPKsFpRa7SDZJ16rdlBI9TK/mGziDKpMb3marH1xUqX4gJPalchbKAtW82fgTzxvxRQK57dezMyYiprizG8ZDm6b13oejOeDOFU12u1aVasygy3Kbmd5lAqBtTNHxmahkYmT7k635zsBQAwrsKvMZWl/iTRbLT21UJ9SGX6FXvSXLP6n8yrDA5avbM/bIZKrLmOJmVExrFvCGbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a5vMpY9EPiky5adnYIYpJk6E8CC6KJbONF8CKS0I+6I=;
+ b=awrhhNQDxudDms1V66PsZbqCVzk8WP/k9NSxPb9n0/jsRvrCAGmxq5NOmcRN+qna8yAg95JyF0I44x+MpKNVIjmXcwlwpE0tffHW0hJN1555kFZS7kzCmbCEN5rk8DeXw7NOMAK89ZDPZ/5zsl/lhfYW20Gt+BPE2zr0gJzYWxaaotWVd0B48ecFykC4WNNP0rlr0JqHFF09yV2WgHj1/hT1Jrh5oSCFmaZpbj2kGDw1AqiwjCfAb4FiddHAM/HKVC8sKTPgf4FTSJI/7EkZqhaSBsCwf+Bo2JH4MCfXtRx8BfUSVcHOd8kzY1DwUu1CS+7fSOPUuYtV3zpuKFLHSw==
+Received: from HE1EUR02FT030.eop-EUR02.prod.protection.outlook.com
+ (2a01:111:e400:7e1d::50) by
+ HE1EUR02HT092.eop-EUR02.prod.protection.outlook.com (2a01:111:e400:7e1d::459)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17; Tue, 13 Apr
+ 2021 02:08:05 +0000
+Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM (2a01:111:e400:7e1d::40)
+ by HE1EUR02FT030.mail.protection.outlook.com (2a01:111:e400:7e1d::165) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17 via Frontend
+ Transport; Tue, 13 Apr 2021 02:08:05 +0000
+Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::8e9:21bd:de95:923d]) by CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::8e9:21bd:de95:923d%5]) with mapi id 15.20.4020.022; Tue, 13 Apr 2021
+ 02:08:05 +0000
+From: =?utf-8?B?546L55KAIFdBTkcgQ3Vp?= <iucgnaw@msn.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] How to tx s16 file with tx_samples_from_file
+Thread-Index: AdcwBLApoHvklcv8TwyD9UhqY/aa/QAAcjqAAACA3eA=
+Date: Tue, 13 Apr 2021 02:08:05 +0000
+Message-ID: 
+ <CWLP265MB33963DA8E51DC9EB47FF72B2A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+References: 
+ <CWLP265MB3396E5E989A405B3605A1A15A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+ <D6D9B829-3724-4096-ACE1-34217809C0CE@gmail.com>
+In-Reply-To: <D6D9B829-3724-4096-ACE1-34217809C0CE@gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: 
+ OriginalChecksum:983A8775CC6AE09786D512524A6C7C4AB7C1BA620ADD47593F3D451C394589A8;UpperCasedChecksum:6D806003B13C2AA6209B24F23AEEF3BFDA3D69FA989424A021EB6F86C460DFF0;SizeAsReceived:6958;Count:44
+x-tmn: [NC9RSiy+W6Spn6z9uKsK5ReF4kATSpLL]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 44
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 962a6e05-92f3-4ffa-d1c7-08d8fe20f98e
+x-ms-traffictypediagnostic: HE1EUR02HT092:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ R+5YlQVP/xXkS+kbuJDd/PwY5Bth4s5v6diPV+RHFgkWmZRvIan3BEtOQmWb4rmSJy8UWbHnD/CV49HZTlzUUVl2M9CqxIXp3t5uKen1dtk7z653YMRTuZKqB79XO0CPP9nNcqgU5WsyBVBqJN08TkqD4azPxMlIy5JGSqov6W48GQRX8rU8sHBdaDpWbIw7h6sab231P2Sdd9dUIypfT9wdMWtZJP6aSlk57m4YU47vWKnIf7s4X7wBCJzGlkDhCekXZWmJCSyQmypJbBGAIVKVfV8159PzVweQoQsD6dKV4EfQH4czPepZtPj1bIvT0zGJJjqv/bGw1ffpBQpwH8dxUaBGjpl+LU+CrKfUeEuUsc5KQG8jDdoeyYlrWmDlh9OJAk2vVI56YJGtpUiphQ==
+x-ms-exchange-antispam-messagedata: 
+ ri++ktDcYNUzHJzhS7fm2jAgWvkj94Vp7wb4BUX9k7uuh8q6xoA023ee2E4lJy3bU7ymIwbSNOLNfCDN3qbip+n0eH1Wcb4Uc5xnAply1gAiZUA2WO8+AWyM6OcCZYmqOUdExFxTnw1ClwM9QZ6glg==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: HE1EUR02FT030.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 962a6e05-92f3-4ffa-d1c7-08d8fe20f98e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2021 02:08:05.1593
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR02HT092
+Message-ID-Hash: PTA7IRYM4BHPZCIYFI72BFJRFBE5DO6V
+X-Message-ID-Hash: PTA7IRYM4BHPZCIYFI72BFJRFBE5DO6V
+X-MailFrom: iucgnaw@msn.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
+CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: How to tx s16 file with tx_samples_from_file
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YTD377JFIGCUFY6NGFQTEIYMYV57BA2I/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/V2ZZMKCASBWBUEJZN64XQTLE5PDBYMYF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3597438006155184508=="
+Content-Type: multipart/mixed; boundary="===============3508941532064902115=="
 
+--===============3508941532064902115==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CWLP265MB33963DA8E51DC9EB47FF72B2A54F9CWLP265MB3396GBRP_"
 
---===============3597438006155184508==
-Content-Type: multipart/alternative; boundary=Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5
-Content-Transfer-Encoding: 7bit
+--_000_CWLP265MB33963DA8E51DC9EB47FF72B2A54F9CWLP265MB3396GBRP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+VGhhbmtzIGZvciByZXBseS4NCkhvd2V2ZXIgZm9yIFJGIHNpZ25hbCwgSVEgQ29tcGxleCBzaWdu
+YWwgZG91YmxlIHRoZSBmaWxlIHNpemUsIHdoaWNoIGlzIHF1aXRlIGluY29udmVuaWVudCwgaXQg
+d2lsbCBiZSBiZXN0IHRoYXQgVVNSUCBjYW4gbmF0aXZlbHkgc3VwcG9ydCBzdWNoIGZvcm1hdC4g
+KEV2ZW4gc29tZXRpbWVzIFJGIHNpZ25hbCBpcyBpbiA0LWJpdCwgMSBiaXQgZm9ybWF0LCBhbmQg
+Y29udmVydCB0byBJL1Egd2lsbCBiZSBtb3JlIHRoYW4gMTAgdGltZXMgbGFyZ2VyLi4uKQ0KDQpG
+cm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBUdWVz
+ZGF5LCBBcHJpbCAxMywgMjAyMSAwOTo0NCBBTQ0KVG86ID8/IFdBTkcgQ3VpIDxpdWNnbmF3QG1z
+bi5jb20+DQpDYzogVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJlOiBbVVNS
+UC11c2Vyc10gSG93IHRvIHR4IHMxNiBmaWxlIHdpdGggdHhfc2FtcGxlc19mcm9tX2ZpbGUNCg0K
+Q29tcGxleCBiYXNlYmFuZCBpcyB0aGUgbmF0dXJhbCBmb3JtYXQgZm9yIHRoaXMgc3R1ZmYuIElm
+IHlvdSBoYXZlIHJlYWwtc2FtcGxlZCBkYXRhIHlvdeKAmWxsIGhhdmUgdG8gY29udmVydCBpdCBp
+bnRvIGNvbXBsZXggYmFzZWJhbmQgZmlyc3QuDQpTZW50IGZyb20gbXkgaVBob25lDQoNCg0KT24g
+QXByIDEyLCAyMDIxLCBhdCA5OjMyIFBNLCA/PyBXQU5HIEN1aSA8aXVjZ25hd0Btc24uY29tPG1h
+aWx0bzppdWNnbmF3QG1zbi5jb20+PiB3cm90ZToNCu+7vw0KSGksDQpXaGVuIEkgdHJ5IHR4X3Nh
+bXBsZXNfZnJvbV9maWxlIGV4YW1wbGUsIGxvb2tzIGxpa2UgaXQgb25seSB0YWtlIENvbXBsZXgg
+ZGF0YSBmb3JtYXQuDQpIb3dldmVyIEkgaGF2ZSBzaWduYWwgZmlsZSBpbiBSRiBkaXJlY3Qgc2Ft
+cGxlIGZvcm1hdCAoZWFjaCBkYXRhIGVsZW1lbnQgcmVwcmVzZW50IGEgc2FtcGxlIHZhbHVlKSwg
+c2F5IGl0IGlzIOKAnHM44oCdIG9yIOKAnHMxNuKAnSBmb3JtYXQgYXMgZGVmaW5lZCBpbiBVSEQg
+dGVybS4NCkkgd29uZGVyIGhvdyBjYW4gSSB0cmFuc21pdCBzdWNoIGZpbGU/IE9yIG11c3QgSSBj
+b252ZXJ0IGl0IGludG8gSW50ZXJsZWF2ZWQgSS9RIChDb21wbGV4KSBmb3JtYXQ/DQpUaGFua3Mg
+aW4gYWR2YW5jZSwNCg0KaXVjZ2Fudw0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5z
+dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
+bTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo=
 
---Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--_000_CWLP265MB33963DA8E51DC9EB47FF72B2A54F9CWLP265MB3396GBRP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Complex baseband is the natural format for this stuff. If you have real-samp=
-led data you=E2=80=99ll have to convert it into complex baseband first.=20
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5Ouetiee6vzsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAx
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
+MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOetiee6vyI7DQoJ
+cGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5
+OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCgl0ZXh0LWFsaWduOmp1c3RpZnk7
+DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseTrnrYnnur87fQ0KYTpsaW5rLCBzcGFu
+Lk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsN
+Cgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxp
+bmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0
+ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwg
+ZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4t
+dG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1p
+bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgNCgl7bXNvLXN0eWxl
+LXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6562J57q/Ow0KCWNvbG9yOndpbmRvd3RleHQ7
+fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJ
+Zm9udC1mYW1pbHk6562J57q/Ow0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQN
+Cgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFn
+ZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMjVp
+biAxLjBpbiAxLjI1aW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9
+DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2
+OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYg
+Z3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAg
+djpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZd
+LS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5
+NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PlRoYW5rcyBmb3IgcmVwbHkuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5I
+b3dldmVyIGZvciBSRiBzaWduYWwsIElRIENvbXBsZXggc2lnbmFsIGRvdWJsZSB0aGUgZmlsZSBz
+aXplLCB3aGljaCBpcyBxdWl0ZSBpbmNvbnZlbmllbnQsIGl0IHdpbGwgYmUgYmVzdCB0aGF0IFVT
+UlAgY2FuIG5hdGl2ZWx5IHN1cHBvcnQgc3VjaCBmb3JtYXQuIChFdmVuIHNvbWV0aW1lcyBSRiBz
+aWduYWwgaXMgaW4gNC1iaXQsIDEgYml0IGZvcm1hdCwgYW5kIGNvbnZlcnQgdG8gSS9RIHdpbGwg
+YmUgbW9yZQ0KIHRoYW4gMTAgdGltZXMgbGFyZ2VyLi4uKTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0i
+Ym9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQg
+MGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0
+ZXh0LWFsaWduOmxlZnQiPjxiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gTWFyY3VzIEQgTGVlY2ggJmx0O3Bh
+dGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+IFR1ZXNkYXksIEFw
+cmlsIDEzLCAyMDIxIDA5OjQ0IEFNPGJyPg0KPGI+VG86PC9iPiA/PyBXQU5HIEN1aSAmbHQ7aXVj
+Z25hd0Btc24uY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gVVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBIb3cgdG8gdHggczE2IGZp
+bGUgd2l0aCB0eF9zYW1wbGVzX2Zyb21fZmlsZTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQt
+YWxpZ246bGVmdCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBh
+bGlnbj0ibGVmdCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0O3RleHQtYWxpZ246bGVmdCI+
+Q29tcGxleCBiYXNlYmFuZCBpcyB0aGUgbmF0dXJhbCBmb3JtYXQgZm9yIHRoaXMgc3R1ZmYuIElm
+IHlvdSBoYXZlIHJlYWwtc2FtcGxlZCBkYXRhIHlvdeKAmWxsIGhhdmUgdG8gY29udmVydCBpdCBp
+bnRvIGNvbXBsZXggYmFzZWJhbmQgZmlyc3QuJm5ic3A7PG86cD48L286cD48L3A+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+U2VudCBmcm9tIG15IGlQaG9uZTxvOnA+PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KPGJyPg0KPG86cD48L286
+cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9t
+OjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBw
+dCI+T24gQXByIDEyLCAyMDIxLCBhdCA5OjMyIFBNLCA/PyBXQU5HIEN1aSAmbHQ7PGEgaHJlZj0i
+bWFpbHRvOml1Y2duYXdAbXNuLmNvbSI+aXVjZ25hd0Btc24uY29tPC9hPiZndDsgd3JvdGU6PG86
+cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJt
+YXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LHNhbnMtc2VyaWYiPu+7vzwvc3Bhbj4N
+CjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYi
+PjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpLDxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2hlbiBJIHRyeSB0eF9zYW1wbGVzX2Zyb21f
+ZmlsZSBleGFtcGxlLCBsb29rcyBsaWtlIGl0IG9ubHkgdGFrZSBDb21wbGV4IGRhdGEgZm9ybWF0
+LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG93ZXZlciBJIGhhdmUgc2ln
+bmFsIGZpbGUgaW4gUkYgZGlyZWN0IHNhbXBsZSBmb3JtYXQgKGVhY2ggZGF0YSBlbGVtZW50IHJl
+cHJlc2VudCBhIHNhbXBsZSB2YWx1ZSksIHNheSBpdCBpcw0KPHNwYW4gbGFuZz0iWkgtQ04iPuKA
+nDwvc3Bhbj5zODxzcGFuIGxhbmc9IlpILUNOIj7igJ08L3NwYW4+IG9yIDxzcGFuIGxhbmc9IlpI
+LUNOIj7igJw8L3NwYW4+czE2PHNwYW4gbGFuZz0iWkgtQ04iPuKAnTwvc3Bhbj4gZm9ybWF0IGFz
+IGRlZmluZWQgaW4gVUhEIHRlcm0uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5JIHdvbmRlciBob3cgY2FuIEkgdHJhbnNtaXQgc3VjaCBmaWxlPyBPciBtdXN0IEkgY29udmVy
+dCBpdCBpbnRvIEludGVybGVhdmVkIEkvUSAoQ29tcGxleCkgZm9ybWF0PzxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzIGluIGFkdmFuY2UsPG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPml1Y2dhbnc8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZu
+YnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0
+eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LHNhbnMtc2VyaWYiPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0
+bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSI+DQp1c3JwLXVzZXJzLWxlYXZlQGxp
+c3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYmxvY2tx
+dW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-Sent from my iPhone
+--_000_CWLP265MB33963DA8E51DC9EB47FF72B2A54F9CWLP265MB3396GBRP_--
 
-> On Apr 12, 2021, at 9:32 PM, ?? WANG Cui <iucgnaw@msn.com> wrote:
->=20
-> =EF=BB=BF
-> Hi,
-> When I try tx_samples_from_file example, looks like it only take Complex d=
-ata format.
-> However I have signal file in RF direct sample format (each data element r=
-epresent a sample value), say it is =E2=80=9Cs8=E2=80=9D or =E2=80=9Cs16=E2=80=
-=9D format as defined in UHD term.
-> I wonder how can I transmit such file? Or must I convert it into Interleav=
-ed I/Q (Complex) format?
-> Thanks in advance,
-> =20
-> iucganw
-> =20
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Complex baseband is the natural format for t=
-his stuff. If you have real-sampled data you=E2=80=99ll have to convert it i=
-nto complex baseband first.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhon=
-e</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 12, 2021, at 9:=
-32 PM, ?? WANG Cui &lt;iucgnaw@msn.com&gt; wrote:<br><br></blockquote></div>=
-<blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
-
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:\7B49\7EBF;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@\7B49\7EBF";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	font-size:11.0pt;
-	font-family:\7B49\7EBF;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:\7B49\7EBF;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:\7B49\7EBF;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-
-
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">When I try tx_samples_from_file example, looks like i=
-t only take Complex data format.<o:p></o:p></p>
-<p class=3D"MsoNormal">However I have signal file in RF direct sample format=
- (each data element represent a sample value), say it is
-<span lang=3D"ZH-CN">=E2=80=9C</span>s8<span lang=3D"ZH-CN">=E2=80=9D</span>=
- or <span lang=3D"ZH-CN">=E2=80=9C</span>s16<span lang=3D"ZH-CN">=E2=80=9D</=
-span> format as defined in UHD term.<o:p></o:p></p>
-<p class=3D"MsoNormal">I wonder how can I transmit such file? Or must I conv=
-ert it into Interleaved I/Q (Complex) format?<o:p></o:p></p>
-<p class=3D"MsoNormal">Thanks in advance,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">iucganw<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></body></html>=
-
---Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5--
-
---===============3597438006155184508==
+--===============3508941532064902115==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -208,4 +246,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3597438006155184508==--
+--===============3508941532064902115==--
