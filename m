@@ -2,175 +2,199 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CF3835DFB3
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 15:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 477EF35E0B4
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 15:56:58 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 47F2E3841BB
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 09:06:34 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 60657384256
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 09:56:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ORUtes1c";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="NWVZ+qsT";
 	dkim-atps=neutral
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 26408384160
-	for <USRP-users@lists.ettus.com>; Tue, 13 Apr 2021 09:05:50 -0400 (EDT)
-Received: by mail-qt1-f177.google.com with SMTP id j7so12604365qtx.5
-        for <USRP-users@lists.ettus.com>; Tue, 13 Apr 2021 06:05:50 -0700 (PDT)
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 00353384290
+	for <usrp-users@lists.ettus.com>; Tue, 13 Apr 2021 09:56:11 -0400 (EDT)
+Received: by mail-ot1-f50.google.com with SMTP id i16-20020a9d68d00000b0290286edfdfe9eso5525152oto.3
+        for <usrp-users@lists.ettus.com>; Tue, 13 Apr 2021 06:56:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=aHFV0a6khdpqFiW98EoNZRguk5RPl+JmLD/5E5s8BCs=;
-        b=ORUtes1c//fnwp7s/1Fi/hB57MhZIC3LP+S1yaTLZ/mmcBKAkFs/SGnF3wKfToYsyJ
-         sZrawffN968F4t4E52PSDLVQDWqfv2OWeAn3XjivJuEPgT8D7f8wn80U1xXLLZ2Ttb6z
-         qfUK7crkfzkOJSFxKt6vFuXUDgUl7CY8WVDaz7bcEF7K41L8eGqEyRBRpTtSg+V/bGCR
-         tkEUOTlykoGq1+L/jrHEO0oMIaP2iA/a6CQTmRgIZh4tkHL5IjSD+mRwk5Tudm7hFVfn
-         OK614TvmM08WhB9DTH9i8f7dskm+A9GLnCWdVwT4UwSmLmNgteBdKnPehEDnRRnJknla
-         sZgQ==
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FdxKnkvTAlTrgBG0+uR34QTRNYKhlAV96Y16NIx8aa4=;
+        b=NWVZ+qsTVR6s/OSmfUu7ko40K9KhRGGTmcaxbvhgJhXDVeXjUYx0rsvtuzlor4sL/p
+         YCrzOhW6DKNguaVGWZ6A0UoznikHKoeaJOiSa5stTSl7ZAi8iaTjBNhIyHjpkW1rz7kX
+         4i7yY8LYj/CdgRjlGHvHcVDzuXM2Ye17cY4kowl2bnP4MlKerxoUOyvPvRH3ptbsp1EN
+         NREMgxyffLzHh8LFUFdJqwdbJTHLqPAUTzINzDg9X2ELHaKcK6GcGECw3SztC09q9CjX
+         5eschvo4oK+CIB13+0q+jcFR5zSkOGbagC/E876PS5n3zTGpKjEI5NdgW6/3tD7z4xPW
+         KOUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=aHFV0a6khdpqFiW98EoNZRguk5RPl+JmLD/5E5s8BCs=;
-        b=FUMCz8c8/TD9vU0YADmRbr3xvf6/ASTVIdMLOuEml2Pl1oR/qvgqwFarGWEp1hMBhb
-         KlZ/1oZfUw7+S7Iem5eq6nmBbpCcFO9isLoVrvVFK//1SDqMsyiRZLJhNrwFRVuVsRAe
-         6k6KjWURnZJOG4BtOpxMCxzIo9xVICgVsZfg9UkKDtamwco4ry7rTXvzoRa2VJ+H8aXA
-         Hk+gla+7qMiMFhh5RuEjVzF6cZIdhWoUFqKzI3S7530QXzaOt1vrBNlrUFG4LNzV0MAf
-         swfswgcr3lvTwwW2IWEyAXJLevkCz97zGDqBkCidaTXvTT9fN4EGsv7PFM0y4ayXSbfx
-         sylA==
-X-Gm-Message-State: AOAM530DBLKgPLuoFxGxs1H1Jxolymm91DkFC+5VRDqV5oIOr2vdmMz+
-	MFG7XbECCUY7RQGFhknUIG72E6/idew=
-X-Google-Smtp-Source: ABdhPJwsjRZaEd8L6gdJCiG05DAWHlonPLjLJ1NBfH9i/4hkgEUSDm1ZjjS6faXk57m6+TuVChkihA==
-X-Received: by 2002:ac8:5847:: with SMTP id h7mr30680480qth.108.1618319150434;
-        Tue, 13 Apr 2021 06:05:50 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id g3sm9697844qth.66.2021.04.13.06.05.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Apr 2021 06:05:50 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Tue, 13 Apr 2021 09:05:49 -0400
-Message-Id: <B1D3B718-A22B-434F-9F8E-A9599EAA0049@gmail.com>
-References: <RtZT7leRyCObeYPJIkfTMN6EQ3TDAuUZHf98J08@lists.ettus.com>
-In-Reply-To: <RtZT7leRyCObeYPJIkfTMN6EQ3TDAuUZHf98J08@lists.ettus.com>
-To: brendan.horsfield@vectalabs.com
-X-Mailer: iPhone Mail (18D70)
-Message-ID-Hash: O3MTEIF3WWFEG6GOQ7AMIRPWL2NKR7HC
-X-Message-ID-Hash: O3MTEIF3WWFEG6GOQ7AMIRPWL2NKR7HC
-X-MailFrom: patchvonbraun@gmail.com
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FdxKnkvTAlTrgBG0+uR34QTRNYKhlAV96Y16NIx8aa4=;
+        b=sXBXH9z4ogUmFRLM3Kx5W84fkToz98AEHNn09HUWxcXbJ7vRXRVy03IAgcGDZtEVZP
+         LLX08bQNkjF9V5NemkhcJphsXIQMXajlzI8atUnVOLtDzNMfr4TsfPdeDrh8YyjfnhLX
+         LDoBxROFRWpcjSAns4Qe/LWXOEBiE9B84ibCoL4Fi6sLzElnZUTeeqpAXNDDQ/UZchn8
+         HWa4Yi5m8JWG0I68dupoHWvOMZKM8XezDGgYflvmPxge/SCQ6V1rjtSDSml0oJo2Abg6
+         QLLy1njf6aPqqxfxHRw1dp1vCzD5AjdYTKU/CTk3ofrz0sxzixq79EqsOwgrjcdP0x5J
+         BVbQ==
+X-Gm-Message-State: AOAM533ixOvQZpzODfCYiQ1fYppOqfF/20sQzdJ9ZLb9upSlybcvTa9l
+	4Hz0eYVikyBG/tclMJAxsMIu5FcTj/Dm5D2g6uHJGw==
+X-Google-Smtp-Source: ABdhPJzSc8Pnh0CdoBdbz8ReIfqdFYIVP6TqCBqI6cMHNtAWz1iCp5jq8AAxk9cwKwBzntqLXGhtfkf+q7tlfPYuHzM=
+X-Received: by 2002:a9d:470f:: with SMTP id a15mr12142332otf.302.1618322171086;
+ Tue, 13 Apr 2021 06:56:11 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAB__hTQ938e=-OtR1JBQF2MpaNZwZbBmpYp4ovt1EhxO7ev9Dw@mail.gmail.com>
+ <CAL7q81vF6Sq65TfNH8z4mkRCpCx9GfCJPt9tcBHBAyxyxgg+3Q@mail.gmail.com>
+In-Reply-To: <CAL7q81vF6Sq65TfNH8z4mkRCpCx9GfCJPt9tcBHBAyxyxgg+3Q@mail.gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Tue, 13 Apr 2021 09:56:01 -0400
+Message-ID: <CAB__hTToiF=54Psmw5FW1CmRqv6bziAC8pTEH9BOLr-dboMS-A@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Message-ID-Hash: ATXO72Q7E75G2AKXZ7E62N4F633X6IO6
+X-Message-ID-Hash: ATXO72Q7E75G2AKXZ7E62N4F633X6IO6
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Contradictory overflow messages when recording rx samples with Python API
+Subject: [USRP-users] Re: I/Q swapping situation with RFNoC block
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/O3MTEIF3WWFEG6GOQ7AMIRPWL2NKR7HC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ATXO72Q7E75G2AKXZ7E62N4F633X6IO6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2834403669699952220=="
+Content-Type: multipart/mixed; boundary="===============2777340404307443324=="
 
+--===============2777340404307443324==
+Content-Type: multipart/alternative; boundary="0000000000002408ed05bfdafe75"
 
---===============2834403669699952220==
-Content-Type: multipart/alternative; boundary=Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5
-Content-Transfer-Encoding: 7bit
+--0000000000002408ed05bfdafe75
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Jonathon,
+I am using register pokes (poke32). My block controller reads the I/Q taps
+out of a file that is the identical format of an I/Q file that I would use
+for streaming to or from the USRP (SC16 such as rx_samples_to_file or
+tx_samples_from_file). If streaming using send() or recv() things work
+fine.  If sending my taps via register pokes, they end up swapped I/Q. In
+both cases, the software is casting a ptr from sc16 to either void or char
+in order to send the data to the USRP.
 
---Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5
-Content-Type: text/plain;
-	charset=utf-8
+Based on what I'm saying above, it seems that maybe the Intel Endian format
+might be the issue.  For send() / recv(), Ettus takes care of the swap, but
+for register pokes, I must do so?  Let me know your comments and if you
+have any advice on the best way to implement this (perhaps my current
+implementation where I manually swap I/Q in the block controller is best?).
+Rob
+
+On Fri, Apr 2, 2021 at 12:02 AM Jonathon Pendlum <jonathon.pendlum@ettus.com>
+wrote:
+
+> Hey Rob,
+>
+> Are you doing register pokes to write to axi_setting_bus or are you using
+> an input port? If using an input port, the I/Q format for SC16 versus
+> complex short are backwards, which might be the cause of your software only
+> issue.
+>
+> Jonathon
+>
+> On Thu, Apr 1, 2021 at 10:04 AM Rob Kossler <rkossler@nd.edu> wrote:
+>
+>> Hi,
+>> I developed a custom RFNoC block that implements an FIR filter
+>> having complex taps (using 2 instances of Xilinx FIR IP with 2 inputs
+>> each).  The taps are reloadable via an AXI bus.  After implementing a
+>> successful testbench, I later discovered an issue when running with UHD and
+>> the actual image.  The reloaded taps had I/Q swapped.  So, I changed my
+>> block controller to perform this swap and now things work.
+>>
+>> I'm trying to understand if this makes sense or if I have fooled myself.
+>> My implementation uses the legacy "axi_settings_reg" to load coefficients
+>> on the IPs reload axi input.  The register width is 32 and I use the upper
+>> 16 bits as the input to the "real" FIR instance and the lower 16 bits as
+>> the input to the "imag" FIR instance.
+>>
+>> When I run the testbench, I get the expected results without needing to
+>> swap real/imag.  When I run with UHD and the built FPGA image, I must swap
+>> the real/imag parts in the block controller in order to get the correct
+>> results.  I wondered why I did not have to do something similar when
+>> streaming I/Q data to my block (or other blocks), but then figured that
+>> maybe UHD takes care of such swapping automatically.  Is this true?  If so,
+>> am I going about this the right way by swapping I/Q in the block
+>> controller?  Why does the testbench work without swapping?
+>> Rob
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+
+--0000000000002408ed05bfdafe75
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi Jonathon,<div>I am using register pokes (poke32). My bl=
+ock controller reads the I/Q taps out of a file that is the identical forma=
+t of an I/Q file that I would use for streaming to or from the USRP (SC16 s=
+uch as rx_samples_to_file or tx_samples_from_file). If streaming using send=
+() or recv() things work fine.=C2=A0 If sending my taps via register pokes,=
+ they end up swapped I/Q. In both cases, the software is casting a ptr from=
+ sc16 to either void or char in order to send the data to the USRP.=C2=A0<d=
+iv><br></div><div>Based on what I&#39;m saying above, it seems that maybe t=
+he Intel Endian format might be the issue.=C2=A0 For send() / recv(), Ettus=
+ takes care of the swap, but for register pokes, I must do so?=C2=A0 Let me=
+ know your comments and if you have any advice on the best way to implement=
+ this (perhaps my current implementation where I manually swap I/Q in the b=
+lock controller is best?).</div></div><div>Rob</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 2, 2021 at =
+12:02 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com"=
+>jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr">Hey Rob,<div><br></div><div>Are=
+ you doing register pokes to write to axi_setting_bus or are you using an i=
+nput port? If using an input port, the I/Q format for SC16 versus complex s=
+hort are backwards, which might be the cause of your software only issue.</=
+div><div><br></div><div>Jonathon=C2=A0</div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 1, 2021 at 10:04 AM=
+ Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkoss=
+ler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr">Hi,<br><div>I developed a custom RFNoC block th=
+at implements an FIR filter having=C2=A0complex taps (using 2 instances of =
+Xilinx FIR IP with 2 inputs each).=C2=A0 The taps are reloadable via=C2=A0a=
+n AXI bus.=C2=A0 After implementing a successful testbench, I later discove=
+red an issue when running with UHD and the actual image.=C2=A0 The reloaded=
+ taps had I/Q swapped.=C2=A0 So, I changed my block controller to perform t=
+his swap and now things work.</div><div><br></div><div>I&#39;m trying to un=
+derstand if this makes sense or if I have fooled myself.=C2=A0 My implement=
+ation uses the legacy &quot;axi_settings_reg&quot; to load coefficients on =
+the IPs reload axi input.=C2=A0 The register width is 32 and I use the uppe=
+r 16 bits as the input to the &quot;real&quot; FIR instance and the lower 1=
+6 bits as the input to the &quot;imag&quot; FIR instance.=C2=A0=C2=A0</div>=
+<div><br></div><div>When I run the testbench, I get the expected results wi=
+thout needing to swap real/imag.=C2=A0 When I run with UHD and the built FP=
+GA image, I must swap the real/imag parts in the block controller in order =
+to get the correct results.=C2=A0 I wondered why I did not have to do somet=
+hing similar when streaming I/Q data to my block (or other blocks), but the=
+n figured that maybe UHD takes care of such swapping automatically.=C2=A0 I=
+s this true?=C2=A0 If so, am I going about this the right way by swapping I=
+/Q in the block controller?=C2=A0 Why does the testbench work without swapp=
+ing?</div><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
 
+--0000000000002408ed05bfdafe75--
 
-Sent from my iPhone
-
-> On Apr 13, 2021, at 3:05 AM, brendan.horsfield@vectalabs.com wrote:
->=20
-> =EF=BB=BF
-> Hi All,
->=20
-> I am using a Python script to capture a short burst of rx samples from my B=
-210. The script is based heavily on the Ettus example =E2=80=9Cbenchmark_rat=
-e.py=E2=80=9D, with a couple of additional tweaks I took from the Ettus GitH=
-ub repo (https://github.com/EttusResearch/uhd/blob/master/host/python/uhd/us=
-rp/multi_usrp.py).
->=20
-> In my script I am calling my rx sampling function repeatedly using a =E2=80=
-=9Cfor" loop. Any errors that occur during sampling are stored in a uhd.type=
-s.RXMetadata() object, just like in the original Ettus script.
->=20
-> Here=E2=80=99s the strange part:
->=20
-> While the script is running, the letter =E2=80=98O=E2=80=99 is printed on t=
-he screen about 50% of the time, which I believe is an overflow warning from=
- the Fastpath logger. However, the number of errors being detected by the RX=
-Metadata() object is almost zero. How can this be?
->=20
-> Some questions:
->=20
-> How seriously should I take the Fastpath =E2=80=98O=E2=80=99 warning? What=
- does it actually mean? Does it mean that this burst of samples will be corr=
-upted/incomplete?
->=20
-It absolutely means that samples were lost.=20
-
-The metadata should include time stamps that will allow you to compute how m=
-uch was lost.=20
-
-> Why is the RXMetadata object not returning an error every single time that=
- the Fastpath logger does?
->=20
-This I=E2=80=99m not certain of.=20
-> Thanks,
->=20
-> Brendan.
->=20
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><br><br><div dir=3D"ltr">Sent from my iPhon=
-e</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 13, 2021, at 3:=
-05 AM, brendan.horsfield@vectalabs.com wrote:<br><br></blockquote></div><blo=
-ckquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<p>Hi All,</p><p>I am using a=
- Python script to capture a short burst of rx samples from my B210.  The scr=
-ipt is based heavily on the Ettus example =E2=80=9Cbenchmark_rate.py=E2=80=9D=
-, with a couple of additional tweaks I took from the Ettus GitHub repo (http=
-s://github.com/EttusResearch/uhd/blob/master/host/python/uhd/usrp/multi_usrp=
-.py).</p><p>In my script I am calling my rx sampling function repeatedly usi=
-ng a =E2=80=9Cfor" loop.  Any errors that occur during sampling are stored i=
-n a uhd.types.RXMetadata() object, just like in the original Ettus script.  =
- </p><p>Here=E2=80=99s the strange part:</p><p>While the script is running, t=
-he letter =E2=80=98O=E2=80=99 is printed on the screen about 50% of the time=
-, which I believe is an overflow warning from the Fastpath logger.  However,=
- the number of errors being detected by the RXMetadata() object is almost ze=
-ro.  How can this be?</p><p>Some questions:</p><ul><li><p>How seriously shou=
-ld I take the Fastpath =E2=80=98O=E2=80=99 warning?  What does it actually m=
-ean?  Does it mean that this burst of samples will be corrupted/incomplete?<=
-/p></li></ul></div></blockquote>It absolutely means that samples were lost.&=
-nbsp;<div><br></div><div>The metadata should include time stamps that will a=
-llow you to compute how much was lost.&nbsp;</div><div><br></div><div><block=
-quote type=3D"cite"><div dir=3D"ltr"><ul><li><p>Why is the RXMetadata object=
- not returning an error every single time that the Fastpath logger does? </p=
-></li></ul></div></blockquote>This I=E2=80=99m not certain of.&nbsp;<br><blo=
-ckquote type=3D"cite"><div dir=3D"ltr"><p>Thanks, </p><p>Brendan.</p>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></div></body></html>=
-
---Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5--
-
---===============2834403669699952220==
+--===============2777340404307443324==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -180,4 +204,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2834403669699952220==--
+--===============2777340404307443324==--
