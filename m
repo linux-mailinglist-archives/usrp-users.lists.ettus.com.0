@@ -2,320 +2,403 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C84135D630
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 06:00:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD37335D639
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 06:08:25 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 98F81383D43
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 00:00:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 171473841E5
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 00:08:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="SYU+rEp8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="m7OQZv2a";
 	dkim-atps=neutral
-Received: from EUR06-VI1-obe.outbound.protection.outlook.com (mail-vi1eur06olkn2078.outbound.protection.outlook.com [40.92.17.78])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4CB04383FDB
-	for <USRP-users@lists.ettus.com>; Mon, 12 Apr 2021 23:59:13 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=imL4N1Qwop5lZPJVFxkj7mYBVh3ZKN6qJk0FR+/BT6LecWIq0rv/YEnAm/w0IFJASZMrssoZXBvA6BJoeyR9WPYeW3R7rmCvMvajfExHXH5AcZsB5mx6tjmxTlRJGEg9DZcQAhA+yUHS4z4AnSum46mOCo4yizVCuBJroqmwqsXjxSktyCtrUkbDej2rZsxVOod7m7knQUWBN5WHYaNsMN0I+47eP7o2dgnH7DDpHkFeN5qXD/B+Tdpd/aVgIrQEy9oz7yvzHF6das7Plm8TTwjA22F2Lwww/fbyRJ7ZOoVEll9/VY75QrSno7kBEJ4sOteisuGanDaUnnJ461JyPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yTn3iMgbh1P1UkccwhUJ11j+1cftY6OaMBD6E6ADnUo=;
- b=FZgSur13hneNV/q9Fj4zvkh627A2ei/2Levq3PTy6R1bWoeRQtXuSgtVC2CrpJMJfVjoZunloeC+mpoLQN7XQMURKz6CyakOZbNdd4CEijeVdTDSMLRbjO2/JmNMhh+JVg8uJgkTzlBz1KXtVVGUyRTZbcmuLEa4em3tx9liP/J1NVM+2qRE8B5RtQifDpPbmd0qrSGgDNlDT/2aAY+WF+ss5pVVsPbggnzubYTffUASYvVrsusgrQDIY3RZrhm9glYbs7jjN+UmpyKX1Vs9O1ZeDUgFJB0gs0EDbRFeSC3y6Ft2dWnoW55z4UNKoLM9m1xr+guYwYeZaejnEguNDQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yTn3iMgbh1P1UkccwhUJ11j+1cftY6OaMBD6E6ADnUo=;
- b=SYU+rEp8mHPA/LoNIXKylMoA3thxGE3N08trJDXdoQLSsbHzRW5GxH3mOXuDwswKEiFR8ehBEjq8MKhFLHIi7av1RQb+PwIrXI0MtUFAD+3sOTQpJSHOtMp2by6wt4JbACTzMBC4eOvAeS7WoUbirFk3vjmr8+zDmyEtWbGxTGYCY07nEDiwbbnfFlI5pWVhaIMoLMgoQ+FVLCVJsIfc2RL61jJAfoF2Bjeuc5GKPsaLITlCoF2NvljcmjjvPZ11UUlgLUSvq535YG4WzyF001jI75nMVbm7VFc1EzGMJosSKcHwSDIoZ5UWMkPg+b0xsKsvCCBJcAgmz57fIGe/QA==
-Received: from DB8EUR06FT014.eop-eur06.prod.protection.outlook.com
- (2a01:111:e400:fc35::53) by
- DB8EUR06HT240.eop-eur06.prod.protection.outlook.com (2a01:111:e400:fc35::115)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17; Tue, 13 Apr
- 2021 03:59:11 +0000
-Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM (2a01:111:e400:fc35::45)
- by DB8EUR06FT014.mail.protection.outlook.com (2a01:111:e400:fc35::116) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17 via Frontend
- Transport; Tue, 13 Apr 2021 03:59:11 +0000
-Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9:21bd:de95:923d]) by CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9:21bd:de95:923d%5]) with mapi id 15.20.4020.022; Tue, 13 Apr 2021
- 03:59:11 +0000
-From: =?utf-8?B?546L55KAIFdBTkcgQ3Vp?= <iucgnaw@msn.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] How to tx s16 file with tx_samples_from_file
-Thread-Index: AdcwBLApoHvklcv8TwyD9UhqY/aa/QAAcjqAAACA3eAAA7xkAAAAUOXg
-Date: Tue, 13 Apr 2021 03:59:11 +0000
-Message-ID: 
- <CWLP265MB33962EF4C7FE6787966B97D4A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
-References: 
- <CWLP265MB33963DA8E51DC9EB47FF72B2A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
- <1DF05A31-2445-4C28-ABB5-6A7BD235DFAD@gmail.com>
-In-Reply-To: <1DF05A31-2445-4C28-ABB5-6A7BD235DFAD@gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: 
- OriginalChecksum:A9C73A5D36EAE87A537CFBA5964D3C572D51F79773EC7415BFDE7795041B0A4A;UpperCasedChecksum:6455117B017551F3B5A37BD5BDB243F0D8DA5B98EE6211E9988FABC037E0DA3C;SizeAsReceived:6986;Count:44
-x-tmn: [Oi3l8FnvaGPSSIeZsGaILPTJVFxLAKWC]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: bd45cba2-2d9e-43bf-08e9-08d8fe307ec9
-x-ms-traffictypediagnostic: DB8EUR06HT240:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- vr+zR02CMc8+teswNflvSLEUowJ7Y1JiRfkZ8L2mrSp7T+zHx2G9FfB6XL6GtMoeq5l9930GS7KcRmdcBh3w0TzBSaTF84ofbnHMMeJBDY7UrFlsITZycQ612/dSH+dL9JdeJhZq0Yy0cSCjjh3H8ROGQxgoYalcFCE0IUEpf35DuOPApNvLCiKrrxP+eJhusHHRo4aMAXW2zdMj/LrzQZIiIfN+N6yo6DCVHAvJZ3S0CNzvmiZOYOSqVjGORyvHXrnM/Iszl+8VqKzrMWAC+kTL5fEDyE9yKg4NG2CnUNkOMWfoO1eFRWQ1pVSGBZb7VKphIZthioBx65RfXTlxefXTQ3F0f9ZZqpjdcxRFK0UKJ1ud8XUgo9zt5FG2JhGpbD59IZYit6Qkv30LZRiKLA==
-x-ms-exchange-antispam-messagedata: 
- 5JjSBF6laqgnu+zUsqzBW0S6SAg1N3Gibi+50EWdXVm+Xl9j5w8sW8KLFKo72J+bxDJRr0GD9luxR8Es/5dLoqCN1ONidyHcVnuLqM3YsO44Jrd4Pjrftm9z5TdlHvYaE/hTQkEwdMuekj5dqgpIgw==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: DB8EUR06FT014.eop-eur06.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd45cba2-2d9e-43bf-08e9-08d8fe307ec9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2021 03:59:11.0540
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8EUR06HT240
-Message-ID-Hash: 4QKF73P27OXYJQDLI2FWU4QOKDB4R6OW
-X-Message-ID-Hash: 4QKF73P27OXYJQDLI2FWU4QOKDB4R6OW
-X-MailFrom: iucgnaw@msn.com
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id CFE473841E0
+	for <USRP-users@lists.ettus.com>; Tue, 13 Apr 2021 00:07:40 -0400 (EDT)
+Received: by mail-qk1-f175.google.com with SMTP id o5so16690482qkb.0
+        for <USRP-users@lists.ettus.com>; Mon, 12 Apr 2021 21:07:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=VVaIeHK7rjh5cyxXamhj0TCyIG5cvoNfcyG8mPH93fQ=;
+        b=m7OQZv2awRuR4u6bjWDFVULmvUsUwDbhT3GgtcsIwgfFlg9k6jVGn1OXxPcefaRSSd
+         0g+aISYgOZotSzcCMNIn5hg/Yc8HHqEk1h4li44xtBypaYoJSZBIs6RMBsT5ZxRak4hf
+         xERumuDVtKmOoKqU9JCG/PXCnHLd9y3aik91rB1ZfYdu8+YFD6iY71WC+eWUuDkTjVO9
+         v4QIA4e0mQ+wiuZww3Z36WsCV3KoM3htUbEY5mpmPRITJ/ogChOhhosoFKXl6yQsCpAu
+         NmUCCKBCfx6smJZk0TYYTJbDFxKpjqyG8JmJ5GRO8wuf55TouluTG+xI7rMP+AiqT5Ic
+         steg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=VVaIeHK7rjh5cyxXamhj0TCyIG5cvoNfcyG8mPH93fQ=;
+        b=g76PzbgJkj6L54dzLn+KdPht+3eYQKg8gp3o26xqdJ8udLVa6kXS+9UBDOOogsx3Jj
+         j0EvcjP/EePUEZTGVF22Hr7MLIQdRh24K4BJR+xEhYgnTvf332lqgSQCh4WmL/0LJUp4
+         qU2VfKBUcxEGQZMLd5/WQY66X8XkpPV5n+acJWjTD0PxDzjbACyGJAoOF92UqIks7tfw
+         +7GE7/gbm2lxivUEQHM4bISSUrHXe0rgHjqsc5epGXriIAaTFysyvPFInH+e4gCG8w+R
+         dMRV2SgKtfjRg0vT/zbsaFZMqjUCJjXzSvWWf2mvy4GPCQdb6SQYIACdFk8zc+DUTvOM
+         Yp+w==
+X-Gm-Message-State: AOAM532G3rYz0dc+p/cuVHtngK9utagMuiDAzG0qQ1qZPE9dFcoEtNTu
+	JB0GstSqv06Ocwx2AU2oIGo=
+X-Google-Smtp-Source: ABdhPJySClfBp4dPikSf8FL1YiMjhAHSb5CrCULIbJql+dXIWcRe4G4oSITPFqPz8P0D380Yj0OqIQ==
+X-Received: by 2002:a37:a7c7:: with SMTP id q190mr8705574qke.146.1618286860253;
+        Mon, 12 Apr 2021 21:07:40 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id e13sm868259qtg.6.2021.04.12.21.07.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Apr 2021 21:07:39 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 13 Apr 2021 00:07:39 -0400
+Message-Id: <155E748D-A0B1-4E4B-8029-859B667B9BD6@gmail.com>
+References: <CWLP265MB33962EF4C7FE6787966B97D4A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+In-Reply-To: <CWLP265MB33962EF4C7FE6787966B97D4A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+To: =?utf-8?Q?=E7=8E=8B=E7=92=80_WANG_Cui?= <iucgnaw@msn.com>
+X-Mailer: iPhone Mail (18D70)
+Message-ID-Hash: 3Z6JZK5D3Z6IWRKVPJI5VYURW7FFCP5Q
+X-Message-ID-Hash: 3Z6JZK5D3Z6IWRKVPJI5VYURW7FFCP5Q
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: How to tx s16 file with tx_samples_from_file
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/32QBZ2MRJP7NKSRWKV664JZOKESY6KP6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3Z6JZK5D3Z6IWRKVPJI5VYURW7FFCP5Q/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6486898236767405278=="
+Content-Type: multipart/mixed; boundary="===============6270392873168518371=="
 
---===============6486898236767405278==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CWLP265MB33962EF4C7FE6787966B97D4A54F9CWLP265MB3396GBRP_"
 
---_000_CWLP265MB33962EF4C7FE6787966B97D4A54F9CWLP265MB3396GBRP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--===============6270392873168518371==
+Content-Type: multipart/alternative; boundary=Apple-Mail-EFA5B9AC-7A17-43B1-8666-26F8E0E85F9A
+Content-Transfer-Encoding: 7bit
 
-VGhhdCBtYWtlIHNlbnNlLCBJIGd1ZXNzIEkgd291bGQgbW9kaWZ5IGl0IHRvIGFjY2VwdCBtb3Jl
-IGZvcm1hdC4NCkhvd2V2ZXIsIGZvciB0aGUgaGFyZHdhcmUgc2lkZSwgaXQgYWNjZXB0IG9ubHkg
-Q29tcGxleCBPVFcgZm9ybWF0LCB3aGljaCBtZWFucyBpdCBuZWVkIGRvdWJsZSBiYW5kd2lkdGgg
-ZnJvbSBob3N0IChJIGFtIHVzaW5nIEIyMTAsIFVTQjMpLiBXaGVuIHRyYW5zbWl0IGhpZ2ggc2Ft
-cGxlIHJhdGUgc2lnbmFsLCBpdCBpcyB2ZXJ5IGVhc3kgdG8gdW5kZXJmbG93LiBJZiB3ZSBjYW4g
-dXBncmFkZSBmaXJtd2FyZSB0byBoYW5kbGUgZm9ybWF0IGNvbnZlcnNpb24gb24gaGFyZHdhcmUg
-bGV2ZWwsIGl0IHdpbGwgZWFzZSBhIGxvdCBvbiBob3N0IGNvbXB1dGluZyByZXNvdXJjZSBhbmQg
-VVNCL05JQyBiYW5kd2lkdGggYW5kIHBlcmZvcm1hbmNlLg0KVGhhbmtzIQ0KDQpGcm9tOiBNYXJj
-dXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBUdWVzZGF5LCBBcHJp
-bCAxMywgMjAyMSAxMTo0NSBBTQ0KVG86IOeOi+eSgCBXQU5HIEN1aSA8aXVjZ25hd0Btc24uY29t
-Pg0KQ2M6IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNl
-cnNdIEhvdyB0byB0eCBzMTYgZmlsZSB3aXRoIHR4X3NhbXBsZXNfZnJvbV9maWxlDQoNClRoZSB0
-eF9zYW1wbGVzX2Zyb21fZmlsZSBhcHBsaWNhdGlvbiBpcyBqdXN0IGFuIGV4YW1wbGUgYXBwbGlj
-YXRpb24uIFlvdSBhcmUgZnJlZSB0byBtb2RpZnkgaXQgdG8gbWVldCB5b3VyIG5lZWRzLCBpbmNs
-dWRpbmcgY29udmVydGluZyByZWFsLXNhbXBsZXMgZGF0YSB0byBjb21wbGV4IGJhc2ViYW5kIGRh
-dGENCg0KVGhlIGhhcmR3YXJlLCBob3dldmVyLCBzdXBwb3J0cyBjb21wbGV4IGJhc2ViYW5kIGRh
-dGEsIEluIGVpdGhlciBzYzE2IG9yIHNjOCBmb3JtYXQg4oCcb3ZlciB0aGUgd2lyZeKAnS4gICBU
-aGUgaG9zdCBzb2Z0d2FyZSAod2hldGhlciB0aGF04oCZcyB0aGUgdHhfc2FtcGxlc19mcm9tX2Zp
-bGUgZXhhbXBsZSBjb2RlIG9yIHlvdXIgb3duKSBpcyBmcmVlIHRvIGFjY2VwdCBhbmQgY29udmVy
-dCBmaWxlcyBpbnRvIHRoZSBiYXNlYmFuZCBmb3JtYXQgYWNjZXB0ZWQgYnkgdGhlIHJhZGlvIGhh
-cmR3YXJlLg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQoNCk9uIEFwciAxMiwgMjAyMSwgYXQgMTA6
-MDggUE0sIOeOi+eSgCBXQU5HIEN1aSA8aXVjZ25hd0Btc24uY29tPG1haWx0bzppdWNnbmF3QG1z
-bi5jb20+PiB3cm90ZToNCu+7vw0KVGhhbmtzIGZvciByZXBseS4NCkhvd2V2ZXIgZm9yIFJGIHNp
-Z25hbCwgSVEgQ29tcGxleCBzaWduYWwgZG91YmxlIHRoZSBmaWxlIHNpemUsIHdoaWNoIGlzIHF1
-aXRlIGluY29udmVuaWVudCwgaXQgd2lsbCBiZSBiZXN0IHRoYXQgVVNSUCBjYW4gbmF0aXZlbHkg
-c3VwcG9ydCBzdWNoIGZvcm1hdC4gKEV2ZW4gc29tZXRpbWVzIFJGIHNpZ25hbCBpcyBpbiA0LWJp
-dCwgMSBiaXQgZm9ybWF0LCBhbmQgY29udmVydCB0byBJL1Egd2lsbCBiZSBtb3JlIHRoYW4gMTAg
-dGltZXMgbGFyZ2VyLi4uKQ0KDQpGcm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBn
-bWFpbC5jb208bWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tPj4NClNlbnQ6IFR1ZXNkYXks
-IEFwcmlsIDEzLCAyMDIxIDA5OjQ0IEFNDQpUbzogPz8gV0FORyBDdWkgPGl1Y2duYXdAbXNuLmNv
-bTxtYWlsdG86aXVjZ25hd0Btc24uY29tPj4NCkNjOiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bTxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAt
-dXNlcnNdIEhvdyB0byB0eCBzMTYgZmlsZSB3aXRoIHR4X3NhbXBsZXNfZnJvbV9maWxlDQoNCkNv
-bXBsZXggYmFzZWJhbmQgaXMgdGhlIG5hdHVyYWwgZm9ybWF0IGZvciB0aGlzIHN0dWZmLiBJZiB5
-b3UgaGF2ZSByZWFsLXNhbXBsZWQgZGF0YSB5b3XigJlsbCBoYXZlIHRvIGNvbnZlcnQgaXQgaW50
-byBjb21wbGV4IGJhc2ViYW5kIGZpcnN0Lg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQoNCg0KT24g
-QXByIDEyLCAyMDIxLCBhdCA5OjMyIFBNLCA/PyBXQU5HIEN1aSA8aXVjZ25hd0Btc24uY29tPG1h
-aWx0bzppdWNnbmF3QG1zbi5jb20+PiB3cm90ZToNCu+7vw0KSGksDQpXaGVuIEkgdHJ5IHR4X3Nh
-bXBsZXNfZnJvbV9maWxlIGV4YW1wbGUsIGxvb2tzIGxpa2UgaXQgb25seSB0YWtlIENvbXBsZXgg
-ZGF0YSBmb3JtYXQuDQpIb3dldmVyIEkgaGF2ZSBzaWduYWwgZmlsZSBpbiBSRiBkaXJlY3Qgc2Ft
-cGxlIGZvcm1hdCAoZWFjaCBkYXRhIGVsZW1lbnQgcmVwcmVzZW50IGEgc2FtcGxlIHZhbHVlKSwg
-c2F5IGl0IGlzIOKAnHM44oCdIG9yIOKAnHMxNuKAnSBmb3JtYXQgYXMgZGVmaW5lZCBpbiBVSEQg
-dGVybS4NCkkgd29uZGVyIGhvdyBjYW4gSSB0cmFuc21pdCBzdWNoIGZpbGU/IE9yIG11c3QgSSBj
-b252ZXJ0IGl0IGludG8gSW50ZXJsZWF2ZWQgSS9RIChDb21wbGV4KSBmb3JtYXQ/DQpUaGFua3Mg
-aW4gYWR2YW5jZSwNCg0KaXVjZ2Fudw0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5z
-dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
-bTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo=
 
---_000_CWLP265MB33962EF4C7FE6787966B97D4A54F9CWLP265MB3396GBRP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail-EFA5B9AC-7A17-43B1-8666-26F8E0E85F9A
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5Ouetiee6vzsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAx
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
-MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OuW+rui9r+mbhem7kTsN
-CglwYW5vc2UtMToyIDExIDUgMyAyIDIgNCAyIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
-aWx5OiJcQOetiee6vyI7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIg
-NDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOW+rui9r+mbhem7kSI7fQ0KLyogU3R5
-bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3Jt
-YWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJdGV4dC1hbGlnbjpq
-dXN0aWZ5Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6562J57q/O30NCmE6bGlu
-aywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMw
-NTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNv
-SHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRG
-NzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25v
-cm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28t
-bWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90
-dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZv
-bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21z
-by1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5Ouetiee6vzsNCgljb2xvcjp3aW5k
-b3d0ZXh0O30NCnNwYW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0K
-CWZvbnQtZmFtaWx5Ouetiee6vzsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uRW1haWxTdHls
-ZTIxDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5Ouetiee6
-vzsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBl
-OmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJ
-e3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjI1aW4gMS4waW4gMS4yNWluO30N
-CmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0t
-W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRt
-YXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
-CjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRh
-PSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJv
-ZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xh
-c3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGF0IG1ha2Ugc2Vuc2Us
-IEkgZ3Vlc3MgSSB3b3VsZCBtb2RpZnkgaXQgdG8gYWNjZXB0IG1vcmUgZm9ybWF0LjxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG93ZXZlciwgZm9yIHRoZSBoYXJkd2FyZSBz
-aWRlLCBpdCBhY2NlcHQgb25seSBDb21wbGV4IE9UVyBmb3JtYXQsIHdoaWNoIG1lYW5zIGl0IG5l
-ZWQgZG91YmxlIGJhbmR3aWR0aCBmcm9tIGhvc3QgKEkgYW0gdXNpbmcgQjIxMCwgVVNCMykuIFdo
-ZW4gdHJhbnNtaXQgaGlnaCBzYW1wbGUgcmF0ZSBzaWduYWwsIGl0IGlzIHZlcnkgZWFzeSB0byB1
-bmRlcmZsb3cuIElmIHdlIGNhbiB1cGdyYWRlIGZpcm13YXJlIHRvDQogaGFuZGxlIGZvcm1hdCBj
-b252ZXJzaW9uIG9uIGhhcmR3YXJlIGxldmVsLCBpdCB3aWxsIGVhc2UgYSBsb3Qgb24gaG9zdCBj
-b21wdXRpbmcgcmVzb3VyY2UgYW5kIFVTQi9OSUMgYmFuZHdpZHRoIGFuZCBwZXJmb3JtYW5jZS48
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyE8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxk
-aXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRk
-aW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0
-IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48Yj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9
-ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IE1hcmN1cyBEIExl
-ZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsNCjxicj4NCjxiPlNlbnQ6PC9iPiBU
-dWVzZGF5LCBBcHJpbCAxMywgMjAyMSAxMTo0NSBBTTxicj4NCjxiPlRvOjwvYj4gPC9zcGFuPjxz
-cGFuIGxhbmc9IlpILUNOIiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q75b6u6L2v6ZuF6buRJnF1
-b3Q7LHNhbnMtc2VyaWYiPueOi+eSgDwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gV0FORyBDdWkgJmx0O2l1Y2duYXdAbXNuLmNv
-bSZndDs8YnI+DQo8Yj5DYzo8L2I+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+
-U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gSG93IHRvIHR4IHMxNiBmaWxlIHdpdGggdHhf
-c2FtcGxlc19mcm9tX2ZpbGU8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQi
-IHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPlRoZSB0eF9zYW1wbGVzX2Zyb21fZmlsZSBhcHBsaWNh
-dGlvbiBpcyBqdXN0IGFuIGV4YW1wbGUgYXBwbGljYXRpb24uIFlvdSBhcmUgZnJlZSB0byBtb2Rp
-ZnkgaXQgdG8gbWVldCB5b3VyIG5lZWRzLCBpbmNsdWRpbmcgY29udmVydGluZyByZWFsLXNhbXBs
-ZXMgZGF0YSB0byBjb21wbGV4IGJhc2ViYW5kIGRhdGEgJm5ic3A7PG86cD48L286cD48L3A+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQi
-PlRoZSBoYXJkd2FyZSwgaG93ZXZlciwgc3VwcG9ydHMgY29tcGxleCBiYXNlYmFuZCBkYXRhLCBJ
-biBlaXRoZXIgc2MxNiBvciBzYzggZm9ybWF0IOKAnG92ZXIgdGhlIHdpcmXigJ0uICZuYnNwOyBU
-aGUgaG9zdCBzb2Z0d2FyZSAod2hldGhlciB0aGF04oCZcyB0aGUgdHhfc2FtcGxlc19mcm9tX2Zp
-bGUgZXhhbXBsZSBjb2RlIG9yIHlvdXIgb3duKSBpcyBmcmVlIHRvIGFjY2VwdCBhbmQNCiBjb252
-ZXJ0IGZpbGVzIGludG8gdGhlIGJhc2ViYW5kIGZvcm1hdCBhY2NlcHRlZCBieSB0aGUgcmFkaW8g
-aGFyZHdhcmUuICZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPlNlbnQgZnJvbSBteSBpUGhvbmU8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVv
-dGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPk9uIEFwciAxMiwgMjAy
-MSwgYXQgMTA6MDggUE0sIOeOi+eSgCBXQU5HIEN1aSAmbHQ7PGEgaHJlZj0ibWFpbHRvOml1Y2du
-YXdAbXNuLmNvbSI+aXVjZ25hd0Btc24uY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+
-DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUu
-MHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFs
-aWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6JnF1b3Q7VGFob21hJnF1b3Q7LHNhbnMtc2VyaWYiPu+7vzwvc3Bhbj4NCjxzcGFuIHN0eWxl
-PSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBmb3IgcmVwbHkuPG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Ib3dldmVyIGZvciBSRiBzaWduYWwsIElR
-IENvbXBsZXggc2lnbmFsIGRvdWJsZSB0aGUgZmlsZSBzaXplLCB3aGljaCBpcyBxdWl0ZSBpbmNv
-bnZlbmllbnQsIGl0IHdpbGwgYmUgYmVzdCB0aGF0IFVTUlAgY2FuIG5hdGl2ZWx5IHN1cHBvcnQg
-c3VjaCBmb3JtYXQuIChFdmVuIHNvbWV0aW1lcyBSRiBzaWduYWwgaXMgaW4gNC1iaXQsIDEgYml0
-IGZvcm1hdCwgYW5kIGNvbnZlcnQgdG8gSS9RIHdpbGwgYmUgbW9yZQ0KIHRoYW4gMTAgdGltZXMg
-bGFyZ2VyLi4uKTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86
-cD48L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpz
-b2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPjxiPjxzcGFu
-IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206
-PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
-YW5zLXNlcmlmIj4gTWFyY3VzIEQgTGVlY2ggJmx0OzxhIGhyZWY9Im1haWx0bzpwYXRjaHZvbmJy
-YXVuQGdtYWlsLmNvbSI+cGF0Y2h2b25icmF1bkBnbWFpbC5jb208L2E+Jmd0Ow0KPGJyPg0KPGI+
-U2VudDo8L2I+IFR1ZXNkYXksIEFwcmlsIDEzLCAyMDIxIDA5OjQ0IEFNPGJyPg0KPGI+VG86PC9i
-PiA/PyBXQU5HIEN1aSAmbHQ7PGEgaHJlZj0ibWFpbHRvOml1Y2duYXdAbXNuLmNvbSI+aXVjZ25h
-d0Btc24uY29tPC9hPiZndDs8YnI+DQo8Yj5DYzo8L2I+IDxhIGhyZWY9Im1haWx0bzpVU1JQLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbSI+VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0K
-PGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gSG93IHRvIHR4IHMxNiBmaWxlIHdpdGgg
-dHhfc2FtcGxlc19mcm9tX2ZpbGU8L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxl
-ZnQiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249Imxl
-ZnQiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdDt0ZXh0LWFsaWduOmxlZnQiPkNvbXBsZXgg
-YmFzZWJhbmQgaXMgdGhlIG5hdHVyYWwgZm9ybWF0IGZvciB0aGlzIHN0dWZmLiBJZiB5b3UgaGF2
-ZSByZWFsLXNhbXBsZWQgZGF0YSB5b3U8c3BhbiBsYW5nPSJaSC1DTiI+4oCZPC9zcGFuPmxsIGhh
-dmUgdG8gY29udmVydCBpdCBpbnRvIGNvbXBsZXggYmFzZWJhbmQgZmlyc3QuJm5ic3A7PG86cD48
-L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U2VudCBmcm9tIG15IGlQaG9u
-ZTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJy
-Pg0KPGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2lu
-LXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
-eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+T24gQXByIDEyLCAyMDIxLCBhdCA5OjMyIFBNLCA/
-PyBXQU5HIEN1aSAmbHQ7PGEgaHJlZj0ibWFpbHRvOml1Y2duYXdAbXNuLmNvbSI+aXVjZ25hd0Bt
-c24uY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rp
-dj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4w
-cHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4
-dC1hbGlnbjpsZWZ0Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7
-LHNhbnMtc2VyaWYiPu+7vzwvc3Bhbj4NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+SGksPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XaGVuIEkgdHJ5
-IHR4X3NhbXBsZXNfZnJvbV9maWxlIGV4YW1wbGUsIGxvb2tzIGxpa2UgaXQgb25seSB0YWtlIENv
-bXBsZXggZGF0YSBmb3JtYXQuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5I
-b3dldmVyIEkgaGF2ZSBzaWduYWwgZmlsZSBpbiBSRiBkaXJlY3Qgc2FtcGxlIGZvcm1hdCAoZWFj
-aCBkYXRhIGVsZW1lbnQgcmVwcmVzZW50IGEgc2FtcGxlIHZhbHVlKSwgc2F5IGl0IGlzDQo8c3Bh
-biBsYW5nPSJaSC1DTiI+4oCcPC9zcGFuPnM4PHNwYW4gbGFuZz0iWkgtQ04iPuKAnTwvc3Bhbj4g
-b3IgPHNwYW4gbGFuZz0iWkgtQ04iPuKAnDwvc3Bhbj5zMTY8c3BhbiBsYW5nPSJaSC1DTiI+4oCd
-PC9zcGFuPiBmb3JtYXQgYXMgZGVmaW5lZCBpbiBVSEQgdGVybS48bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPkkgd29uZGVyIGhvdyBjYW4gSSB0cmFuc21pdCBzdWNoIGZpbGU/
-IE9yIG11c3QgSSBjb252ZXJ0IGl0IGludG8gSW50ZXJsZWF2ZWQgSS9RIChDb21wbGV4KSBmb3Jt
-YXQ/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFua3MgaW4gYWR2YW5j
-ZSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+aXVjZ2FudzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+X19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlz
-dCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwg
-dG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIj4NCnVz
-cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwv
-ZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+No. A real-sampled signal would
+Need to be sampled at twice the notional bandwidth. So the data rate is the s=
+ame.=20
 
---_000_CWLP265MB33962EF4C7FE6787966B97D4A54F9CWLP265MB3396GBRP_--
+Sent from my iPhone
 
---===============6486898236767405278==
+> On Apr 12, 2021, at 11:59 PM, =E7=8E=8B=E7=92=80 WANG Cui <iucgnaw@msn.com=
+> wrote:
+>=20
+> =EF=BB=BF
+> That make sense, I guess I would modify it to accept more format.
+> However, for the hardware side, it accept only Complex OTW format, which m=
+eans it need double bandwidth from host (I am using B210, USB3). When transm=
+it high sample rate signal, it is very easy to underflow. If we can upgrade f=
+irmware to handle format conversion on hardware level, it will ease a lot on=
+ host computing resource and USB/NIC bandwidth and performance.
+> Thanks!
+> =20
+> From: Marcus D Leech <patchvonbraun@gmail.com>=20
+> Sent: Tuesday, April 13, 2021 11:45 AM
+> To: =E7=8E=8B=E7=92=80 WANG Cui <iucgnaw@msn.com>
+> Cc: USRP-users@lists.ettus.com
+> Subject: Re: [USRP-users] How to tx s16 file with tx_samples_from_file
+> =20
+> The tx_samples_from_file application is just an example application. You a=
+re free to modify it to meet your needs, including converting real-samples d=
+ata to complex baseband data =20
+> =20
+> The hardware, however, supports complex baseband data, In either sc16 or s=
+c8 format =E2=80=9Cover the wire=E2=80=9D.   The host software (whether that=
+=E2=80=99s the tx_samples_from_file example code or your own) is free to acc=
+ept and convert files into the baseband format accepted by the radio hardwar=
+e. =20
+>=20
+> Sent from my iPhone
+>=20
+>=20
+> On Apr 12, 2021, at 10:08 PM, =E7=8E=8B=E7=92=80 WANG Cui <iucgnaw@msn.com=
+> wrote:
+>=20
+> =EF=BB=BF
+> Thanks for reply.
+> However for RF signal, IQ Complex signal double the file size, which is qu=
+ite inconvenient, it will be best that USRP can natively support such format=
+. (Even sometimes RF signal is in 4-bit, 1 bit format, and convert to I/Q wi=
+ll be more than 10 times larger...)
+> =20
+> From: Marcus D Leech <patchvonbraun@gmail.com>=20
+> Sent: Tuesday, April 13, 2021 09:44 AM
+> To: ?? WANG Cui <iucgnaw@msn.com>
+> Cc: USRP-users@lists.ettus.com
+> Subject: Re: [USRP-users] How to tx s16 file with tx_samples_from_file
+> =20
+> Complex baseband is the natural format for this stuff. If you have real-sa=
+mpled data you=E2=80=99ll have to convert it into complex baseband first.=20=
+
+>=20
+> Sent from my iPhone
+>=20
+>=20
+>=20
+> On Apr 12, 2021, at 9:32 PM, ?? WANG Cui <iucgnaw@msn.com> wrote:
+>=20
+> =EF=BB=BF
+> Hi,
+> When I try tx_samples_from_file example, looks like it only take Complex d=
+ata format.
+> However I have signal file in RF direct sample format (each data element r=
+epresent a sample value), say it is =E2=80=9Cs8=E2=80=9D or =E2=80=9Cs16=E2=80=
+=9D format as defined in UHD term.
+> I wonder how can I transmit such file? Or must I convert it into Interleav=
+ed I/Q (Complex) format?
+> Thanks in advance,
+> =20
+> iucganw
+> =20
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--Apple-Mail-EFA5B9AC-7A17-43B1-8666-26F8E0E85F9A
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">No. A real-sampled signal would<div>Need to=
+ be sampled at twice the notional bandwidth. So the data rate is the same.&n=
+bsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><=
+blockquote type=3D"cite">On Apr 12, 2021, at 11:59 PM, =E7=8E=8B=E7=92=80 WA=
+NG Cui &lt;iucgnaw@msn.com&gt; wrote:<br><br></blockquote></div><blockquote t=
+ype=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:=E7=AD=89=E7=BA=BF;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:=E5=BE=AE=E8=BD=AF=E9=9B=85=E9=BB=91;
+	panose-1:2 11 5 3 2 2 4 2 2 4;}
+@font-face
+	{font-family:"\@=E7=AD=89=E7=BA=BF";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@=E5=BE=AE=E8=BD=AF=E9=9B=85=E9=BB=91";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	font-size:11.0pt;
+	font-family:=E7=AD=89=E7=BA=BF;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:=E7=AD=89=E7=BA=BF;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:=E7=AD=89=E7=BA=BF;
+	color:windowtext;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:=E7=AD=89=E7=BA=BF;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+
+
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">That make sense, I guess I would modify it to accept m=
+ore format.<o:p></o:p></p>
+<p class=3D"MsoNormal">However, for the hardware side, it accept only Comple=
+x OTW format, which means it need double bandwidth from host (I am using B21=
+0, USB3). When transmit high sample rate signal, it is very easy to underflo=
+w. If we can upgrade firmware to
+ handle format conversion on hardware level, it will ease a lot on host comp=
+uting resource and USB/NIC bandwidth and performance.<o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0=
+in 0in">
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><b><span sty=
+le=3D"font-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span styl=
+e=3D"font-family:&quot;Calibri&quot;,sans-serif"> Marcus D Leech &lt;patchvo=
+nbraun@gmail.com&gt;
+<br>
+<b>Sent:</b> Tuesday, April 13, 2021 11:45 AM<br>
+<b>To:</b> </span><span lang=3D"ZH-CN" style=3D"font-family:&quot;=E5=BE=AE=E8=
+=BD=AF=E9=9B=85=E9=BB=91&quot;,sans-serif">=E7=8E=8B=E7=92=80</span><span st=
+yle=3D"font-family:&quot;Calibri&quot;,sans-serif"> WANG Cui &lt;iucgnaw@msn=
+.com&gt;<br>
+<b>Cc:</b> USRP-users@lists.ettus.com<br>
+<b>Subject:</b> Re: [USRP-users] How to tx s16 file with tx_samples_from_fil=
+e<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><o:p>&nbsp;<=
+/o:p></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left">The tx_sampl=
+es_from_file application is just an example application. You are free to mod=
+ify it to meet your needs, including converting real-samples data to complex=
+ baseband data &nbsp;<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">The hardware, however,=
+ supports complex baseband data, In either sc16 or sc8 format =E2=80=9Cover t=
+he wire=E2=80=9D. &nbsp; The host software (whether that=E2=80=99s the tx_sa=
+mples_from_file example code or your own) is free to accept and
+ convert files into the baseband format accepted by the radio hardware. &nbs=
+p;<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><br>
+<br>
+<o:p></o:p></p>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Apr 12, 2021, at 10=
+:08 PM, =E7=8E=8B=E7=92=80 WANG Cui &lt;<a href=3D"mailto:iucgnaw@msn.com">i=
+ucgnaw@msn.com</a>&gt; wrote:<o:p></o:p></p>
+</blockquote>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span style=3D=
+"font-family:&quot;Tahoma&quot;,sans-serif">=EF=BB=BF</span>
+<span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal">Thanks for reply.<o:p></o:p></p>
+<p class=3D"MsoNormal">However for RF signal, IQ Complex signal double the f=
+ile size, which is quite inconvenient, it will be best that USRP can nativel=
+y support such format. (Even sometimes RF signal is in 4-bit, 1 bit format, a=
+nd convert to I/Q will be more
+ than 10 times larger...)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in 0=
+in 0in">
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><b><span sty=
+le=3D"font-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span styl=
+e=3D"font-family:&quot;Calibri&quot;,sans-serif"> Marcus D Leech &lt;<a href=
+=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;
+<br>
+<b>Sent:</b> Tuesday, April 13, 2021 09:44 AM<br>
+<b>To:</b> ?? WANG Cui &lt;<a href=3D"mailto:iucgnaw@msn.com">iucgnaw@msn.co=
+m</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com">USRP-users@lists.et=
+tus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] How to tx s16 file with tx_samples_from_fil=
+e</span><o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left">&nbsp;<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"margin-bottom:12.0pt;text-ali=
+gn:left">Complex baseband is the natural format for this stuff. If you have r=
+eal-sampled data you<span lang=3D"ZH-CN">=E2=80=99</span>ll have to convert i=
+t into complex baseband first.&nbsp;<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><br>
+<br>
+<br>
+<o:p></o:p></p>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On Apr 12, 2021, at 9:=
+32 PM, ?? WANG Cui &lt;<a href=3D"mailto:iucgnaw@msn.com">iucgnaw@msn.com</a=
+>&gt; wrote:<o:p></o:p></p>
+</blockquote>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span style=3D=
+"font-family:&quot;Tahoma&quot;,sans-serif">=EF=BB=BF</span>
+<o:p></o:p></p>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">When I try tx_samples_from_file example, looks like i=
+t only take Complex data format.<o:p></o:p></p>
+<p class=3D"MsoNormal">However I have signal file in RF direct sample format=
+ (each data element represent a sample value), say it is
+<span lang=3D"ZH-CN">=E2=80=9C</span>s8<span lang=3D"ZH-CN">=E2=80=9D</span>=
+ or <span lang=3D"ZH-CN">=E2=80=9C</span>s16<span lang=3D"ZH-CN">=E2=80=9D</=
+span> format as defined in UHD term.<o:p></o:p></p>
+<p class=3D"MsoNormal">I wonder how can I transmit such file? Or must I conv=
+ert it into Interleaved I/Q (Complex) format?<o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks in advance,<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">iucganw<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span style=3D=
+"font-family:&quot;Calibri&quot;,sans-serif">_______________________________=
+________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com">usr=
+p-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.ett=
+us.com">
+usrp-users-leave@lists.ettus.com</a></span><o:p></o:p></p>
+</div>
+</blockquote>
+</div>
+</blockquote>
+</div>
+</div>
+
+
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-EFA5B9AC-7A17-43B1-8666-26F8E0E85F9A--
+
+--===============6270392873168518371==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -325,4 +408,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6486898236767405278==--
+--===============6270392873168518371==--
