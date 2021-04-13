@@ -2,185 +2,175 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD80C35D875
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 09:05:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CF3835DFB3
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 15:06:35 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C46B538415B
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 03:05:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 47F2E3841BB
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 09:06:34 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=itsystems.it header.i=@itsystems.it header.b="JXarzvcR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ORUtes1c";
 	dkim-atps=neutral
-Received: from www.itsystems.it (www.itsystems.it [62.94.30.103])
-	by mm2.emwd.com (Postfix) with ESMTPS id 711FE383FB9
-	for <usrp-users@lists.ettus.com>; Tue, 13 Apr 2021 03:04:23 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=itsystems.it; s=x; h=Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:
-	From:References:To:Subject:Sender:Reply-To:Cc:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=vWxFl4GoN3ofeuf9agGvxcGEFWBuX19tY2UetuOSA4s=; b=JXarzvcRQIGSOBPMyc3PrnUAze
-	4y1AoNPlRZJ3dOzVqoMUORTHohV4rfemMtALY7Hn3oJBVgxFKOO6rOaaUNjB29+FCFo0fkEcxvMDD
-	0ongSI+mBS0P7vrMUvagq9HK0DoX9sM2Ypyec4dLr5s4EZiRNYTumQtr87ncp+cZXL1g=;
-Received: from [10.10.0.138]
-	by www.itsystems.it with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	(Exim 4.90_1)
-	(envelope-from <p.palana@itsystems.it>)
-	id 1lWD5L-0004bF-Sv
-	for usrp-users@lists.ettus.com; Tue, 13 Apr 2021 07:03:58 +0000
-To: usrp-users@lists.ettus.com
-References: <b4cb345657e64c14b5fc1bfa84d34922@gtri.gatech.edu>
-From: Paolo Palana <p.palana@itsystems.it>
-Message-ID: <804ea930-44e5-aad0-cf5c-77d13b0afbf7@itsystems.it>
-Date: Tue, 13 Apr 2021 09:05:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <b4cb345657e64c14b5fc1bfa84d34922@gtri.gatech.edu>
-Content-Language: en-US
-X-Spam-Score: -2.9 (--)
-X-Spam-Report: Spam detection software, running on the system "v-mx.virt.itsystems.it",
- has NOT identified this incoming email as spam.  The original
- message has been attached to this so you can view it or label
- similar future email.  If you have any questions, see
- the administrator of that system for details.
- Content preview:  Cheers to all the mailing list. I have similar problem too
-    (the device is an X310 with TwinRx, UHD-3.15 on ubuntu 20.04). My NoC Block
-    too has 2 input and 2 output at a different data rate. The start streaming
-    goes smootly and it se [...]
- Content analysis details:   (-2.9 points, 5.0 required)
-  pts rule name              description
- ---- ---------------------- --------------------------------------------------
- -1.0 ALL_TRUSTED            Passed through trusted hosts only via SMTP
- -1.9 BAYES_00               BODY: Bayes spam probability is 0 to 1%
-                             [score: 0.0000]
-  0.0 HTML_MESSAGE           BODY: HTML included in message
- -0.0 NICE_REPLY_A           Looks like a legit reply (A)
-Message-ID-Hash: GTHI2O3HWXDS5GNVUMY2M4IZY7YYW455
-X-Message-ID-Hash: GTHI2O3HWXDS5GNVUMY2M4IZY7YYW455
-X-MailFrom: p.palana@itsystems.it
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 26408384160
+	for <USRP-users@lists.ettus.com>; Tue, 13 Apr 2021 09:05:50 -0400 (EDT)
+Received: by mail-qt1-f177.google.com with SMTP id j7so12604365qtx.5
+        for <USRP-users@lists.ettus.com>; Tue, 13 Apr 2021 06:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=aHFV0a6khdpqFiW98EoNZRguk5RPl+JmLD/5E5s8BCs=;
+        b=ORUtes1c//fnwp7s/1Fi/hB57MhZIC3LP+S1yaTLZ/mmcBKAkFs/SGnF3wKfToYsyJ
+         sZrawffN968F4t4E52PSDLVQDWqfv2OWeAn3XjivJuEPgT8D7f8wn80U1xXLLZ2Ttb6z
+         qfUK7crkfzkOJSFxKt6vFuXUDgUl7CY8WVDaz7bcEF7K41L8eGqEyRBRpTtSg+V/bGCR
+         tkEUOTlykoGq1+L/jrHEO0oMIaP2iA/a6CQTmRgIZh4tkHL5IjSD+mRwk5Tudm7hFVfn
+         OK614TvmM08WhB9DTH9i8f7dskm+A9GLnCWdVwT4UwSmLmNgteBdKnPehEDnRRnJknla
+         sZgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=aHFV0a6khdpqFiW98EoNZRguk5RPl+JmLD/5E5s8BCs=;
+        b=FUMCz8c8/TD9vU0YADmRbr3xvf6/ASTVIdMLOuEml2Pl1oR/qvgqwFarGWEp1hMBhb
+         KlZ/1oZfUw7+S7Iem5eq6nmBbpCcFO9isLoVrvVFK//1SDqMsyiRZLJhNrwFRVuVsRAe
+         6k6KjWURnZJOG4BtOpxMCxzIo9xVICgVsZfg9UkKDtamwco4ry7rTXvzoRa2VJ+H8aXA
+         Hk+gla+7qMiMFhh5RuEjVzF6cZIdhWoUFqKzI3S7530QXzaOt1vrBNlrUFG4LNzV0MAf
+         swfswgcr3lvTwwW2IWEyAXJLevkCz97zGDqBkCidaTXvTT9fN4EGsv7PFM0y4ayXSbfx
+         sylA==
+X-Gm-Message-State: AOAM530DBLKgPLuoFxGxs1H1Jxolymm91DkFC+5VRDqV5oIOr2vdmMz+
+	MFG7XbECCUY7RQGFhknUIG72E6/idew=
+X-Google-Smtp-Source: ABdhPJwsjRZaEd8L6gdJCiG05DAWHlonPLjLJ1NBfH9i/4hkgEUSDm1ZjjS6faXk57m6+TuVChkihA==
+X-Received: by 2002:ac8:5847:: with SMTP id h7mr30680480qth.108.1618319150434;
+        Tue, 13 Apr 2021 06:05:50 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id g3sm9697844qth.66.2021.04.13.06.05.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Apr 2021 06:05:50 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 13 Apr 2021 09:05:49 -0400
+Message-Id: <B1D3B718-A22B-434F-9F8E-A9599EAA0049@gmail.com>
+References: <RtZT7leRyCObeYPJIkfTMN6EQ3TDAuUZHf98J08@lists.ettus.com>
+In-Reply-To: <RtZT7leRyCObeYPJIkfTMN6EQ3TDAuUZHf98J08@lists.ettus.com>
+To: brendan.horsfield@vectalabs.com
+X-Mailer: iPhone Mail (18D70)
+Message-ID-Hash: O3MTEIF3WWFEG6GOQ7AMIRPWL2NKR7HC
+X-Message-ID-Hash: O3MTEIF3WWFEG6GOQ7AMIRPWL2NKR7HC
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: AXI Stream Issue
+Subject: [USRP-users] Re: Contradictory overflow messages when recording rx samples with Python API
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GTHI2O3HWXDS5GNVUMY2M4IZY7YYW455/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/O3MTEIF3WWFEG6GOQ7AMIRPWL2NKR7HC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2136741116856235711=="
+Content-Type: multipart/mixed; boundary="===============2834403669699952220=="
 
-This is a multi-part message in MIME format.
---===============2136741116856235711==
-Content-Type: multipart/alternative;
- boundary="------------6EC15A635402C87039F1CC9A"
-Content-Language: en-US
 
-This is a multi-part message in MIME format.
---------------6EC15A635402C87039F1CC9A
-Content-Type: text/plain; charset=windows-1252
+--===============2834403669699952220==
+Content-Type: multipart/alternative; boundary=Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Cheers to all the mailing list.
-
-I have similar problem too (the device is an X310 with TwinRx, UHD-3.15
-on ubuntu 20.04). My NoC Block too has 2 input and 2 output at a
-different data rate. The start streaming goes smootly and it seems to
-work for a while, but when I stop the streaming (during my tests I
-streamed for a very short time, say 10 secs) I had the following error
-from UHD.
-
-=A0 [ERROR] [UHD] Exception caught in safe-call. in
-ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with uhd::endianness_t
-_endianness =3D uhd::ENDIANNESS_BIG] at ~/host/lib/rfnoc/ctrl_iface.cpp:5=
-0
-this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl
-(CE_03_Port_61) no response packet - AssertionError: bool(buff) in
-uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [with
-uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG; uint64_t =3D long
-unsigned int] at ~/host/lib/rfnoc/ctrl_iface.cpp:151
-
-It seems too me that the internal FPGA bus for some reason is stuck. In
-fact when I see the signals with ILA after the stop streaming I can see
-that the i_tready signal for the second input in my Noc Block is low,
-while the the i_tvalid is high.
-
-In my implementation I'm not using the axi_wrapper, but directly the
-chdr_deframer_2clk and chdr_framer_2clk.
-
-I'm pretty shure that the logic of my NoC Block is (almost) correct
-because I have the same one running with UHD-3.10.3 without any problem.
-
-Up to now I'm unable to pinpoint the problem, What can be the
-problem?Any suggestion
-
-Thank you for your attention
-
-Paolo
 
 
+Sent from my iPhone
 
+> On Apr 13, 2021, at 3:05 AM, brendan.horsfield@vectalabs.com wrote:
+>=20
+> =EF=BB=BF
+> Hi All,
+>=20
+> I am using a Python script to capture a short burst of rx samples from my B=
+210. The script is based heavily on the Ettus example =E2=80=9Cbenchmark_rat=
+e.py=E2=80=9D, with a couple of additional tweaks I took from the Ettus GitH=
+ub repo (https://github.com/EttusResearch/uhd/blob/master/host/python/uhd/us=
+rp/multi_usrp.py).
+>=20
+> In my script I am calling my rx sampling function repeatedly using a =E2=80=
+=9Cfor" loop. Any errors that occur during sampling are stored in a uhd.type=
+s.RXMetadata() object, just like in the original Ettus script.
+>=20
+> Here=E2=80=99s the strange part:
+>=20
+> While the script is running, the letter =E2=80=98O=E2=80=99 is printed on t=
+he screen about 50% of the time, which I believe is an overflow warning from=
+ the Fastpath logger. However, the number of errors being detected by the RX=
+Metadata() object is almost zero. How can this be?
+>=20
+> Some questions:
+>=20
+> How seriously should I take the Fastpath =E2=80=98O=E2=80=99 warning? What=
+ does it actually mean? Does it mean that this burst of samples will be corr=
+upted/incomplete?
+>=20
+It absolutely means that samples were lost.=20
 
---------------6EC15A635402C87039F1CC9A
-Content-Type: text/html; charset=windows-1252
+The metadata should include time stamps that will allow you to compute how m=
+uch was lost.=20
+
+> Why is the RXMetadata object not returning an error every single time that=
+ the Fastpath logger does?
+>=20
+This I=E2=80=99m not certain of.=20
+> Thanks,
+>=20
+> Brendan.
+>=20
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html;
-      charset=3Dwindows-1252">
-  </head>
-  <body>
-    <p>Cheers to all the mailing list.</p>
-    <p>I have similar problem too (the device is an X310 with TwinRx,
-      UHD-3.15 on ubuntu 20.04). My NoC Block too has 2 input and 2
-      output at a different data rate. The start streaming goes smootly
-      and it seems to work for a while, but when I stop the streaming
-      (during my tests I streamed for a very short time, say 10 secs) I
-      had the following error from UHD.</p>
-    <p>=A0 <font size=3D"-1">[ERROR] [UHD] Exception caught in safe-call.
-        in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl() [with
-        uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG] at
-        ~/host/lib/rfnoc/ctrl_iface.cpp:50
-        this-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError:
-        IOError: Block ctrl (CE_03_Port_61) no response packet -
-        AssertionError: bool(buff) in uint64_t
-        ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double)
-        [with uhd::endianness_t _endianness =3D uhd::ENDIANNESS_BIG;
-        uint64_t =3D long unsigned int] at
-        ~/host/lib/rfnoc/ctrl_iface.cpp:151</font></p>
-    <p>It seems too me that the internal FPGA bus for some reason is
-      stuck. In fact when I see the signals with ILA after the stop
-      streaming I can see that the i_tready signal for the second input
-      in my Noc Block is low, while the the i_tvalid is high. <br>
-    </p>
-    <p>In my implementation I'm not using the axi_wrapper, but directly
-      the chdr_deframer_2clk and chdr_framer_2clk.</p>
-    <p>I'm pretty shure that the logic of my NoC Block is (almost)
-      correct because I have the same one running with UHD-3.10.3
-      without any problem.<br>
-      <font size=3D"-1"></font></p>
-    <p>Up to now I'm unable to pinpoint the problem<font size=3D"-1">, </=
-font>What
-      can be the problem?<font size=3D"-1"> </font>Any suggestion<font
-        size=3D"-1"><br>
-      </font></p>
-    <p>Thank you for your attention</p>
-    <p>Paolo<font size=3D"-1"><br>
-      </font></p>
-    <p><font size=3D"-1"><br>
-      </font></p>
-    <p><font size=3D"-1"><br>
-      </font></p>
-  </body>
-</html>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><br><br><div dir=3D"ltr">Sent from my iPhon=
+e</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 13, 2021, at 3:=
+05 AM, brendan.horsfield@vectalabs.com wrote:<br><br></blockquote></div><blo=
+ckquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<p>Hi All,</p><p>I am using a=
+ Python script to capture a short burst of rx samples from my B210.  The scr=
+ipt is based heavily on the Ettus example =E2=80=9Cbenchmark_rate.py=E2=80=9D=
+, with a couple of additional tweaks I took from the Ettus GitHub repo (http=
+s://github.com/EttusResearch/uhd/blob/master/host/python/uhd/usrp/multi_usrp=
+.py).</p><p>In my script I am calling my rx sampling function repeatedly usi=
+ng a =E2=80=9Cfor" loop.  Any errors that occur during sampling are stored i=
+n a uhd.types.RXMetadata() object, just like in the original Ettus script.  =
+ </p><p>Here=E2=80=99s the strange part:</p><p>While the script is running, t=
+he letter =E2=80=98O=E2=80=99 is printed on the screen about 50% of the time=
+, which I believe is an overflow warning from the Fastpath logger.  However,=
+ the number of errors being detected by the RXMetadata() object is almost ze=
+ro.  How can this be?</p><p>Some questions:</p><ul><li><p>How seriously shou=
+ld I take the Fastpath =E2=80=98O=E2=80=99 warning?  What does it actually m=
+ean?  Does it mean that this burst of samples will be corrupted/incomplete?<=
+/p></li></ul></div></blockquote>It absolutely means that samples were lost.&=
+nbsp;<div><br></div><div>The metadata should include time stamps that will a=
+llow you to compute how much was lost.&nbsp;</div><div><br></div><div><block=
+quote type=3D"cite"><div dir=3D"ltr"><ul><li><p>Why is the RXMetadata object=
+ not returning an error every single time that the Fastpath logger does? </p=
+></li></ul></div></blockquote>This I=E2=80=99m not certain of.&nbsp;<br><blo=
+ckquote type=3D"cite"><div dir=3D"ltr"><p>Thanks, </p><p>Brendan.</p>
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
+be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
+quote></div></body></html>=
 
---------------6EC15A635402C87039F1CC9A--
+--Apple-Mail-049B5CFE-D0F2-4B77-B719-C7F51D76BEA5--
 
---===============2136741116856235711==
+--===============2834403669699952220==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -190,4 +180,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2136741116856235711==--
+--===============2834403669699952220==--
