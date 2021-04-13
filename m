@@ -2,133 +2,126 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 879A935D4D9
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 03:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A49535D4EC
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Apr 2021 03:44:46 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 14E153841F7
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 21:32:44 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 506313840DA
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Apr 2021 21:44:45 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="EO7trxOb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OdnoR0Xc";
 	dkim-atps=neutral
-Received: from EUR02-HE1-obe.outbound.protection.outlook.com (mail-oln040092068103.outbound.protection.outlook.com [40.92.68.103])
-	by mm2.emwd.com (Postfix) with ESMTPS id 855D23841E0
-	for <usrp-users@lists.ettus.com>; Mon, 12 Apr 2021 21:31:52 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B9IjeaxOGmWPYaXMVgmVIoQ9DMwH2pF09Sq6rPMfFAXPcZ5Wig4TRsGIIpM7RWmzqD1RR6389K9EqhPTqZW7Ys6Lb1FFJXJZ55LtjXWvzygdcsFhK+U/cJsAlSYrm3709dNCX37XslE+6jvVw39rkqKDZOkg/EcCld81ZJDFXdkU2naEsJ6ML4seJVOlKDbXvC9ODo1BfI+Xpf/PzncJCYQj73XfIA6zcI6VfHeBKNW7OhP/bm0H6/r+jNd7RITzSM9EywcYuEyPTSi8IzKJOe78YfbT4g3yJKpJhqWfCF6Qug+16BXdSes06aP7dxoSz6u29bGt/wNVqeIRVpyIww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zToQ1hxcLupi7dy/w7XMjQyLoMPIz60iAm7LGQ6tUkM=;
- b=hu1rANA+3eEkjxlAMUCtPPHOdLczvk4nrjl6Tyq7PUBN9HYax6pBVoaOpjgUf7d5tl9tJGlQh16SOC0SylvH8Zxb3CFshuY9cfiRhiTvvfHZRvcTpu5yxdhDMwORTQbneSgdqgsD4BjVYZLYvxLFgr1pHapuxlMDmPEsKN4zkrTyMTSEXcw03V/dZOMonYuchxR6M9h56t6m60Mzq7cNAYyWkKSlD7wzj+gBw6AIz3hK0SgSnLcnh8JCwk+CjXEMmNyyIq6U8haB9RC0SWg1rUVHiQtyLz8PHIEGpAY5ABDHNSbVxUe5YtJdbJ9895pUos6RhFA9Dk2xn8J4MyFH8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zToQ1hxcLupi7dy/w7XMjQyLoMPIz60iAm7LGQ6tUkM=;
- b=EO7trxObhA1nz4tbNgpm4G/+YkdTjSkiByTOJxVY5e7KnnO5y3VbXP4BrtOOnhrln7YNnGQNXkQxbUW0xYqMmVDReWRsL3SgjxhuQfNLmOheTfPNHZ+S2BJxH2yCiCR5JuJW8nzB4kHFrNqrpb1SKhJFBgC9kSynoZ5gZ4K9JivELpkG7HjLjSIoFhUwzJHCOfcsXk+FtPZeckPFVyPCnOOStHCglk4JhDOjloVsGSzxQuXUgVFoodw39NL43n30i/oryk7XdWfWr84K3QcJezZ1cOAHauRbIG2UPees8RVNrKVvHSiVHJc37VZtcFUV/8b7UJMJcIHuxlHbdG+Ikw==
-Received: from HE1EUR02FT031.eop-EUR02.prod.protection.outlook.com
- (2a01:111:e400:7e1d::48) by
- HE1EUR02HT019.eop-EUR02.prod.protection.outlook.com (2a01:111:e400:7e1d::452)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17; Tue, 13 Apr
- 2021 01:31:50 +0000
-Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM (2a01:111:e400:7e1d::49)
- by HE1EUR02FT031.mail.protection.outlook.com (2a01:111:e400:7e1d::141) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4020.17 via Frontend
- Transport; Tue, 13 Apr 2021 01:31:50 +0000
-Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9:21bd:de95:923d]) by CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
- ([fe80::8e9:21bd:de95:923d%5]) with mapi id 15.20.4020.022; Tue, 13 Apr 2021
- 01:31:50 +0000
-From: ?? WANG Cui <iucgnaw@msn.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: How to tx s16 file with tx_samples_from_file
-Thread-Index: AdcwBLApoHvklcv8TwyD9UhqY/aa/Q==
-Date: Tue, 13 Apr 2021 01:31:50 +0000
-Message-ID: 
- <CWLP265MB3396E5E989A405B3605A1A15A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: 
- OriginalChecksum:3865820894E1B0982AF7353B58E69BD498E6A380D06D5BF027D7D740F7588F72;UpperCasedChecksum:4BBB8B99E8EBA547DD74E52C819E835F3CFFBCD8CFCE39E3D4844BFAC041CCD2;SizeAsReceived:6702;Count:42
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [nqsKyX7CiE+Mz27L1o7VRx+/cpTn12VT]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 42
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: a52a59c1-1671-4ae9-a6cf-08d8fe1be97f
-x-ms-traffictypediagnostic: HE1EUR02HT019:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- JZrAeiWCLHYTqTDc4oefs/F0bWT3muRcYPdWBxBMC6yXUpm6vrbwdeByStviF8wi6p86jWcr9jpnN1YqHRNkEvsAgUPUBVaVzc2O1oTLLhh5hfE2ql3DLzeM/zdrTonbUk5FYuX+cTToQp8z/gnAWJ5AR1tssX/NXcZMl2eTVPNOLPCewTMnky944001hVRtpA6FYTZN+RbjfGuSHIr2IN3w5ndY/4h1noRJoCGFMnZO4byi6qcWmQDMssejsgHi//RS72wCkgUgbX8NmoqIaFwcqso7HBmoFsS68odd5j6SI9RiVCz4WTFY32x7eTvNQkc3y1+a65g9Y4CAWTlbrBTm961DfJi+k+0fQSpmkS9k1lQUFi8btmFEIMxjx2rgwC0mYsSxDV+vTA+knzfXFQ==
-x-ms-exchange-antispam-messagedata: 
- 90eKQXqz9ujpHQvd0zipfzDFQgAJNHBJ0oFVaO09HhpyB+BMp63sorTKoH6+nFm7FLz9NhwSb+7E5XI/hjVFqzVNVI3hXArHcl+S3fiazHz7xi7vADT8lDfJ21+AyBEeUqFN1FerEXXCLbj92kJrrQ==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: HE1EUR02FT031.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a52a59c1-1671-4ae9-a6cf-08d8fe1be97f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2021 01:31:50.7197
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR02HT019
-Message-ID-Hash: 4VGL7N2YWZGVE5FKDMS3KOHSCWGQECKZ
-X-Message-ID-Hash: 4VGL7N2YWZGVE5FKDMS3KOHSCWGQECKZ
-X-MailFrom: iucgnaw@msn.com
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 55EC0384147
+	for <USRP-users@lists.ettus.com>; Mon, 12 Apr 2021 21:44:01 -0400 (EDT)
+Received: by mail-qk1-f178.google.com with SMTP id d23so4356817qko.12
+        for <USRP-users@lists.ettus.com>; Mon, 12 Apr 2021 18:44:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=7HO+OJPxjimpr1+fcsxAjw9vbfNjYjbL5sRK8x5tY7g=;
+        b=OdnoR0XcRtVppI1yoOMLAIBIP9asAdl00UnshDxPxXEPrWpCQX35vMGolja/Cl3yvy
+         FgMXqyxcxJrsmJDqPc14JAVWVGRTfHGAoTVDIWqXRiYh0jTD20+8q1dcpMocYidkIGik
+         KKBUOKCltg7jFIOg0Tzq+Ms3eG1xu9fB0A7dZbQwJJRT0j1NiSkdR1BgE0PB5ZgV2nex
+         4YR3FWgd7YCqvBp7/bnxKNK6tsLRH3bM/GzWH+JIumkoz3Zm/+ti//VLmcj5xPtqOumP
+         Ck4cYNcP+VkRxSkUaJXXNBB7+Eef/9jC++xY5GO90eLTK1cej2W7iX2eCoiWpnGKadpQ
+         C7bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=7HO+OJPxjimpr1+fcsxAjw9vbfNjYjbL5sRK8x5tY7g=;
+        b=Wi+WGN961EIVr82YzMbAUBbpntryvJcQPN2VK4Twm79acksjHAidQq68qWKOLcoaQ8
+         PzaeXkKnE1r+FLjOP/G38Ct3Rtf7Q3FZgVOzgVx8hxgRwzyab1k6A3qffVeTtECpPkM9
+         74UV+V/P24kfPgIXyxHVLIV7Or3M5WQjKaTu+0tLKyOXSEdDr0au8QgZkMaTSl1nNiI0
+         jn45ONFMaXKw2iWZLJFTQ6T2JiGeZ16qQuQfgWdDs/KmMcqM2SP+fG1/GrY59OW7wt+u
+         vz8UoeoyZy17gShv29IlaFRMyYqkGvWp1S5yA5mwfadnA1YhxP1pOHYj57+vKRRIhkcp
+         AOZg==
+X-Gm-Message-State: AOAM531ubqZaF5f9eeC0g4b+xBufeXjLpmpRmeeEqxjK5j7SpwgHTZ6E
+	viwD86LN5Tsn0IY0KjdDX0WdEf5FKH8=
+X-Google-Smtp-Source: ABdhPJwG8Z+5Wjywi5YODPXefKhGcV/FuZH8UverZ9ObrzNbirT2FNiZeB186h6C4f+A+ISM00R2ZA==
+X-Received: by 2002:a05:620a:15d6:: with SMTP id o22mr30123081qkm.181.1618278240556;
+        Mon, 12 Apr 2021 18:44:00 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id x14sm9147048qkn.98.2021.04.12.18.44.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 12 Apr 2021 18:44:00 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Mon, 12 Apr 2021 21:43:59 -0400
+Message-Id: <D6D9B829-3724-4096-ACE1-34217809C0CE@gmail.com>
+References: <CWLP265MB3396E5E989A405B3605A1A15A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+In-Reply-To: <CWLP265MB3396E5E989A405B3605A1A15A54F9@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+To: ?? WANG Cui <iucgnaw@msn.com>
+X-Mailer: iPhone Mail (18D70)
+Message-ID-Hash: YTD377JFIGCUFY6NGFQTEIYMYV57BA2I
+X-Message-ID-Hash: YTD377JFIGCUFY6NGFQTEIYMYV57BA2I
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] How to tx s16 file with tx_samples_from_file
+Subject: [USRP-users] Re: How to tx s16 file with tx_samples_from_file
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YJXMMNLNWXJ44M6UFMIKC5OFUMPPODR2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YTD377JFIGCUFY6NGFQTEIYMYV57BA2I/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2236305887093568471=="
+Content-Type: multipart/mixed; boundary="===============3597438006155184508=="
 
---===============2236305887093568471==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CWLP265MB3396E5E989A405B3605A1A15A54F9CWLP265MB3396GBRP_"
 
---_000_CWLP265MB3396E5E989A405B3605A1A15A54F9CWLP265MB3396GBRP_
-Content-Type: text/plain; charset="us-ascii"
+--===============3597438006155184508==
+Content-Type: multipart/alternative; boundary=Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-When I try tx_samples_from_file example, looks like it only take Complex da=
-ta format.
-However I have signal file in RF direct sample format (each data element re=
-present a sample value), say it is "s8" or "s16" format as defined in UHD t=
-erm.
-I wonder how can I transmit such file? Or must I convert it into Interleave=
-d I/Q (Complex) format?
-Thanks in advance,
+Complex baseband is the natural format for this stuff. If you have real-samp=
+led data you=E2=80=99ll have to convert it into complex baseband first.=20
 
-iucganw
+Sent from my iPhone
 
+> On Apr 12, 2021, at 9:32 PM, ?? WANG Cui <iucgnaw@msn.com> wrote:
+>=20
+> =EF=BB=BF
+> Hi,
+> When I try tx_samples_from_file example, looks like it only take Complex d=
+ata format.
+> However I have signal file in RF direct sample format (each data element r=
+epresent a sample value), say it is =E2=80=9Cs8=E2=80=9D or =E2=80=9Cs16=E2=80=
+=9D format as defined in UHD term.
+> I wonder how can I transmit such file? Or must I convert it into Interleav=
+ed I/Q (Complex) format?
+> Thanks in advance,
+> =20
+> iucganw
+> =20
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---_000_CWLP265MB3396E5E989A405B3605A1A15A54F9CWLP265MB3396GBRP_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Complex baseband is the natural format for t=
+his stuff. If you have real-sampled data you=E2=80=99ll have to convert it i=
+nto complex baseband first.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhon=
+e</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 12, 2021, at 9:=
+32 PM, ?? WANG Cui &lt;iucgnaw@msn.com&gt; wrote:<br><br></blockquote></div>=
+<blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
+
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -178,30 +171,34 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+
+
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">When I try tx_samples_from_file example, looks like =
-it only take Complex data format.<o:p></o:p></p>
-<p class=3D"MsoNormal">However I have signal file in RF direct sample forma=
-t (each data element represent a sample value), say it is
-<span lang=3D"ZH-CN">&#8220;</span>s8<span lang=3D"ZH-CN">&#8221;</span> or=
- <span lang=3D"ZH-CN">&#8220;</span>s16<span lang=3D"ZH-CN">&#8221;</span> =
-format as defined in UHD term.<o:p></o:p></p>
-<p class=3D"MsoNormal">I wonder how can I transmit such file? Or must I con=
-vert it into Interleaved I/Q (Complex) format?<o:p></o:p></p>
+<p class=3D"MsoNormal">When I try tx_samples_from_file example, looks like i=
+t only take Complex data format.<o:p></o:p></p>
+<p class=3D"MsoNormal">However I have signal file in RF direct sample format=
+ (each data element represent a sample value), say it is
+<span lang=3D"ZH-CN">=E2=80=9C</span>s8<span lang=3D"ZH-CN">=E2=80=9D</span>=
+ or <span lang=3D"ZH-CN">=E2=80=9C</span>s16<span lang=3D"ZH-CN">=E2=80=9D</=
+span> format as defined in UHD term.<o:p></o:p></p>
+<p class=3D"MsoNormal">I wonder how can I transmit such file? Or must I conv=
+ert it into Interleaved I/Q (Complex) format?<o:p></o:p></p>
 <p class=3D"MsoNormal">Thanks in advance,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">iucganw<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-</body>
-</html>
 
---_000_CWLP265MB3396E5E989A405B3605A1A15A54F9CWLP265MB3396GBRP_--
 
---===============2236305887093568471==
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
+be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
+quote></body></html>=
+
+--Apple-Mail-043C96B3-544D-493C-827A-D785E123CCA5--
+
+--===============3597438006155184508==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -211,4 +208,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2236305887093568471==--
+--===============3597438006155184508==--
