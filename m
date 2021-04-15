@@ -2,180 +2,278 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC07D36155C
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Apr 2021 00:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E039636158A
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Apr 2021 00:34:42 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A8AB238444E
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Apr 2021 18:21:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E7278384352
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Apr 2021 18:34:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="LAp6VPKz";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=canyonconsulting.onmicrosoft.com header.i=@canyonconsulting.onmicrosoft.com header.b="QMDKPhQT";
 	dkim-atps=neutral
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4FD32383FB5
-	for <USRP-users@lists.ettus.com>; Thu, 15 Apr 2021 18:20:54 -0400 (EDT)
-Received: by mail-vs1-f53.google.com with SMTP id u22so2003388vsu.6
-        for <USRP-users@lists.ettus.com>; Thu, 15 Apr 2021 15:20:54 -0700 (PDT)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2046.outbound.protection.outlook.com [40.107.94.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id B2A5338425D
+	for <USRP-users@lists.ettus.com>; Thu, 15 Apr 2021 18:33:50 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jhRdS+OAIJhB7vnn7Hysp/1wv3XMeK5zDsfY9Y4LL3r3pP+GSib4wc+Htvwujf0DeqnW8vW93QtVGejfcxMb4ILKKNcDQ7NQkMLklQxQWDX+ZKVanVZX8qr0xuDaxW2qvG5j9AD/kjothQKDt0AqmRBjVyyu+T4Hnk+40/q8yYwUJ7tcmXSd+R01CdxcrFnUPS4ajdNo5gXSog2pkYXAWmb0gfWsjRfwOBkCoRzENgluZfWyt776moiEr6IvchMEqFti8wTEQ9YUkBiDlzkT5r2yjY9n2K3unkQxetLDzxA7gx0Zs4mSX4KY0LqQ3YMtDdr+Zrhd94DP/3vEPXu/6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1XUNJwQNptZW05AwELYqotJKAaFaK0Xb7z9r+HFwWU4=;
+ b=SgmjmKHu2Ft0Y1IWgKcv+yCiEIfuBTdTrvPrTksVETofFBXMGl88bNxUlCi7+UZw8k2uTSkHKBHUlogitEtrC6CAgkNdQTPOmemXKEd0r+U6gCi5wZjLxvL4w61HJE3uqlVpe5U0FGUDhOvgNA3i/GewukSG0lCVclPBHh9G3EwidBbevlJF/HDVfbH9rpi25aG2yKl7XzUXe8EwMOjtuRtqIdWoz0BVUXkOWSXyZGtKqgrlN16d+cVRGFqpV3A8w+FRM5NWHigCRl2BV07V20KbgGtlcxKcoafUx3tGvm2+qryWywq4E5foiRUfKqymLnYsViSvw3xSLJNdysGgrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=canyon-us.com; dmarc=pass action=none
+ header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RfU8d5o2Ur6pxvhg/UJ6xb6GpfS9TiixlSikFQPsoio=;
-        b=LAp6VPKzhhE9vNdks7kqkJPCb8Fkc4L8pijD+fKHhEIJbXBTNG9JZyu55HIixhqASF
-         3SXubeHx2WF3+baUnqjJFS+y7jJI99hSD+9zpoT8QM3+g0dgHDoRdKWBd6sP+eioWbpS
-         KfeT0h3b7Urb45dnPHH9kcihu7uUGIagDAcl9m+eYSbGLbOPMRxJcQYfVbecxqIo7ge4
-         uSBqgYniIPTpCmLIUAmfhU07MSN3hKlHpAdXf849vHgJl6xMXK7FBm2X15TAEQjIXDPH
-         MXu07SZl3bottz/YTM1z04E8o8JUt6Wz9x1gHQSImeC67jCICL7PfU0+405B7FkdNBB2
-         h/Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RfU8d5o2Ur6pxvhg/UJ6xb6GpfS9TiixlSikFQPsoio=;
-        b=TtfH1itLeu4fzEUiPhIEMh8lg6/7xGMXf/z0z4licf2L+1jqEasC7ElXfD9QDq/88H
-         tpcLIVH5hhQuvixx16Jcg/ukcHoU2pQcRwLDbLi4XlpJ39oZDzF3E1eRXxWUwCxX29nd
-         /p3p4lYIjkNgw3Uk6ru+/UYaWA3KUDlb1EII6RKibx0fuIfJW7j0ibqmAWMRz5QoivvW
-         mS12bdwWmgcwITH43c0Qjjt0lh+apHq6NOzlvlK0t1FunBTP1RzQohDj/xlle6ScKLvp
-         dhcrKvtP/hOcHxLwccF+7Ouu4A/Ho2Dcp7YuAx608pCQhDVgjXGLrUx1/mL5iUWk6dlj
-         m86Q==
-X-Gm-Message-State: AOAM532TiTvPHGzZJbtzXUOKwTnzjK3DsBOrgQtsObJDIv7ddLjVDdkI
-	ciW7qY+pLZJpRvBY8kQYMpJsQbLtyFw2BLoKjoRiBhyK
-X-Google-Smtp-Source: ABdhPJx/Zeij8H7oRRSLOzxvq6Q13BOcpLKEnupq6StbZ+LGD6o/1dKb3Xi9fFzzOwvzyfmw41QKxswVF0/mvDCIVro=
-X-Received: by 2002:a67:ce18:: with SMTP id s24mr4260413vsl.7.1618525253712;
- Thu, 15 Apr 2021 15:20:53 -0700 (PDT)
+ d=canyonconsulting.onmicrosoft.com;
+ s=selector2-canyonconsulting-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1XUNJwQNptZW05AwELYqotJKAaFaK0Xb7z9r+HFwWU4=;
+ b=QMDKPhQTsKOs7rKgkgp0TwugvbJu/EvNfrpVYnU5tHA57/yhzgYBPY8M5+/7vYKtI55btZ++UbEIUodGPgUHTXfUkIReszL/oYTYNiMvYn/709cbL1VH2aaKg2AS4m/zCqs1ERKQGOC7xz/EZ4gi7b+lkEddtmjYLO5kFfQwfkU=
+Received: from CO6PR19MB4801.namprd19.prod.outlook.com (2603:10b6:5:341::23)
+ by MW2PR1901MB2217.namprd19.prod.outlook.com (2603:10b6:302:7::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4042.18; Thu, 15 Apr
+ 2021 22:33:48 +0000
+Received: from CO6PR19MB4801.namprd19.prod.outlook.com
+ ([fe80::d8d:6dc9:809d:9807]) by CO6PR19MB4801.namprd19.prod.outlook.com
+ ([fe80::d8d:6dc9:809d:9807%7]) with mapi id 15.20.4042.018; Thu, 15 Apr 2021
+ 22:33:48 +0000
+From: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Thread-Topic: [USRP-users] Using RFNoC RX and TX blocks in one flowgraph that
+ interfaces with an X310
+Thread-Index: AdcyQVe6JoxLLg0dRlWpjMQpHQXTqQABCu2AAABqTpA=
+Date: Thu, 15 Apr 2021 22:33:48 +0000
+Message-ID: 
+ <CO6PR19MB480131B0B50C7ED11CD0E1EBC64D9@CO6PR19MB4801.namprd19.prod.outlook.com>
+References: 
+ <CO6PR19MB48012AD1BB3AF6D17C5DC3FCC64D9@CO6PR19MB4801.namprd19.prod.outlook.com>
+ <CAL7q81umUPsf6KVEHV9iHuswUqBkusvHB5CW2TN4vbXo_YJDhQ@mail.gmail.com>
+In-Reply-To: 
+ <CAL7q81umUPsf6KVEHV9iHuswUqBkusvHB5CW2TN4vbXo_YJDhQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: ettus.com; dkim=none (message not signed)
+ header.d=none;ettus.com; dmarc=none action=none header.from=canyon-us.com;
+x-originating-ip: [98.153.200.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ffb0ff32-1dfa-4b4d-887d-08d9005e8996
+x-ms-traffictypediagnostic: MW2PR1901MB2217:
+x-microsoft-antispam-prvs: 
+ <MW2PR1901MB2217BF9D8430E97BB5822BB6C64D9@MW2PR1901MB2217.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ Cg8WAkpETQCHndFTTXebWWWziLAMtkCg6P9NIOf6uDtk1Y/EEKMH0ro7VEzmpuO+ee7aaUwRNqkBbkV5Yan5L1iFcMtzqBfhfmDJ1UdHCjBIrBFI2mxUhVrpQ/gu8BYks0B/Xe96NIHzs+zNAgaRFsHnYrShynh4ZNsjcuOnk4JmMFqCs9LAdM6/WpKlZWn0Ok0oFI42yekPJqj4we+RsSpsXhHoRosEYot6OKM1jVuIbQbFBZgUApP5m/vWIJpCkD3igsNYKtU0v+SFDwS5nfAXivpTlPEx/p74GPjvQHWTq8WI6Iw0pDf+BRklQEJmptxs2NOQcRtGcf3FFlSA00pWXzbdCzcZst7tBy04VU8HI+gYLAkAqSFopB2ivzXfcdCrF1uoPCb5dvvDTaR50UjorQLQOFdAKqeP/lossdLQ8qEqvIu0ce3dpQs6+FJdAWGLPD5Znw2xY9u4OQ4nNskh5NpfP5PdPcy5fgIvEZcak1xusSTDqvGVAb+DCx2o1sZfazLAXAnDU7AdPmx24SCyBZecq+p3UPA8xq/ec7Cutpjto2uxp2FA/yWQQxWhYRL/csU4Va52vAn/8rcR4AOMEN5albdUzL6a5s49Li8=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR19MB4801.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39830400003)(396003)(136003)(376002)(366004)(346002)(26005)(5660300002)(2906002)(33656002)(52536014)(6506007)(8936002)(44832011)(53546011)(8676002)(478600001)(7696005)(71200400001)(4326008)(86362001)(55016002)(316002)(186003)(9686003)(83380400001)(122000001)(66476007)(66556008)(66446008)(6916009)(76116006)(38100700002)(64756008)(66946007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 
+ =?utf-8?B?V0dzN3UwcVJXSVU4NGt3Tk9BZmZiT21yTUM2cFJiOURhQUFIRFZMdDl3ajZ2?=
+ =?utf-8?B?aERlZ2R2eDJSbUZWNHF2NkJmTzBFdmRENzdVaCs0dUovMzRBNHZWUFNla3l2?=
+ =?utf-8?B?KzFxYXpXWFVvaHFHeHJZSGo3WUpKTnpVemFvR3FsZExoODkzU293RGR2Wlda?=
+ =?utf-8?B?Z0hEQWQrRmNETk1MNmhubDFUd2hwWk5XVkhBMVJOMFdrbmQzNEYvYzdtQ1Zh?=
+ =?utf-8?B?U2ttWnE4S1B5Zm8wcXpmSi93cTlHNkx3cW10N2VhQ3NuRnBIMVh6QUQ5UU1X?=
+ =?utf-8?B?VjFReWdKTlVnSjE4ZXJJNzBMbWJkUHBOTTdUTVJUc2hHQWRrYTltOGpXWHVa?=
+ =?utf-8?B?RDlrc0xjbWF1MTNaZUE5K0N4emRUQURPaVR0UkY1UWlkQ3JKTzVRSWNlemlM?=
+ =?utf-8?B?RzVTVnZ0K0c5Q3pqbkMzYi9RbWp6UzE1OHFWNFFJcHl6dG1ZblBsZkFuOTFV?=
+ =?utf-8?B?aTRObStMVXRaSWlrY1QxcVUycy80UncxNktDL05PVkVpWGFGV2hRZVFiQ2ZR?=
+ =?utf-8?B?anplM0dNWVErWGk3alBLc3FITGlhcEpIMm0rcDhwVmpac2hMbldwaVdIUGtK?=
+ =?utf-8?B?c0pVaFRkQmI1ak16V0xrNFJueXVrb1V2Z2ZPUGdvSUdSUko1VllJSHdFaFA3?=
+ =?utf-8?B?MHh3a3BMSzZBYjN1bkh4UXFmMHFKMCtreFFjSkt4N29rYi9GNzNHZjRiVDJt?=
+ =?utf-8?B?NUpxaGVmT2Qzb1M5bXVBbGx4S2t6Q0cvalNwc0RLNmFuT2hhalllcmxSVUQ0?=
+ =?utf-8?B?ZzBSaWMzeWU5M0xPVE5ldEV5cU9FTGlDVnRtV0svU3Rza0p5bHd6SEl1SnJn?=
+ =?utf-8?B?c2lURkgxeDA2V0NMTGk5T1Bhd3NZVm0veFN2WTN4dVdhL2g2L1pPMU9SNmNL?=
+ =?utf-8?B?Q0JNalFXbmhvYy9RQ2xmM2MrOGdXRjFrMDNLRXdXYmdqa0xJM2ZtN0xUNGVE?=
+ =?utf-8?B?RlB1VWh2bXJCdUtSOGQxb2dBVTExT2ptc081SGNBODdQZUdmNzBhZkR5di9J?=
+ =?utf-8?B?OHViZWhSS1FteVZBenYzZ3hNY3pHNjdQV2c1L21Nc3ArWEl2akFIZituelFl?=
+ =?utf-8?B?QU5ZUEN2dm1TbkpMMTBFYzVyT3RaZ2lHdHhzeGlCVDVFQVdJbC94U2djb2VG?=
+ =?utf-8?B?RkY0QytGWnl4cXRBZjR2MnhhcXZadkRKMDBDY0lhb3k4ZFllalpDUnAxc29C?=
+ =?utf-8?B?OGEyeXN2bzdxVnM1d0pEL3k5RlJrV3E0OXVieVU5MnY5dGxncC9aUmVBSGJs?=
+ =?utf-8?B?MEl5KzBzLy9UcjVjV25tb1pOYmtMUExCeS9RME5uS3k2OE5HTXZZWlczNFVR?=
+ =?utf-8?B?M3hENU5NclB2aHh4MjF6b0xUanZueWZ2L2E5Rm5KRmtGUllUTVpxbk0zK1BH?=
+ =?utf-8?B?eUdlWStpTEc5UWszcFJZblZqWjZvM2VBOElzNUVLaDAvajl5a1Q5K0VqeUNm?=
+ =?utf-8?B?N2IzYjJzZjNyVVVTVTdIWmlENWw5QlFGVFhrOWJNcExrNXNOM3Q1OVNIWVRx?=
+ =?utf-8?B?Z0Ryd1hrQU5aK3N2c2FXdGpFT2hZT2RHeDI1aHM3aUIyc0VGZGtTajVPeVEw?=
+ =?utf-8?B?dU9sNjh3RHdYUWVvMWFLZU1IbmRUakpic1BwRDBnOTZFbmVMdk9kZzhHemhv?=
+ =?utf-8?B?OXpCdzltWm52UHZPREpQQXA0Q2NYd2ZTeTJUYS83aDJLYWNSQWs2TE1FaWJr?=
+ =?utf-8?B?T29oSnVkRU1RVFdpd2VsN0JiTDMvU1NPMjNtSmk0VUxodlJEVi9LbzdQcmh1?=
+ =?utf-8?Q?dzEXsRelOK3/rBB6K/MPcSsbutt2oqRbbWEpNT0?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CO6PR19MB48012AD1BB3AF6D17C5DC3FCC64D9@CO6PR19MB4801.namprd19.prod.outlook.com>
-In-Reply-To: <CO6PR19MB48012AD1BB3AF6D17C5DC3FCC64D9@CO6PR19MB4801.namprd19.prod.outlook.com>
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Date: Thu, 15 Apr 2021 18:20:17 -0400
-Message-ID: <CAL7q81umUPsf6KVEHV9iHuswUqBkusvHB5CW2TN4vbXo_YJDhQ@mail.gmail.com>
-To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-Message-ID-Hash: CCAPDNOBC3EHBWDTWNPBDFMAP5LNTV52
-X-Message-ID-Hash: CCAPDNOBC3EHBWDTWNPBDFMAP5LNTV52
-X-MailFrom: jonathon.pendlum@ettus.com
+X-OriginatorOrg: canyon-us.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR19MB4801.namprd19.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffb0ff32-1dfa-4b4d-887d-08d9005e8996
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Apr 2021 22:33:48.3093
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cqXXIcXF3GpipTaFqtKEao8SSLTXaaHZMYEI3gWbwNVtObqYCppdXYxgN+H2vGSYeYCB/MOiJlpAnFlFJ5TYmkiqH0pxMcdy6OSRHckivXU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR1901MB2217
+Message-ID-Hash: QBVTKUHV2OYTP3MPZLURUG5VCIGXSBD6
+X-Message-ID-Hash: QBVTKUHV2OYTP3MPZLURUG5VCIGXSBD6
+X-MailFrom: jerrid.plymale@canyon-us.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Using RFNoC RX and TX blocks in one flowgraph that interfaces with an X310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CCAPDNOBC3EHBWDTWNPBDFMAP5LNTV52/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QYJQ7FZM5WEZYV456SZRREXTTFRM7HIE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3557206023571924832=="
+Content-Type: multipart/mixed; boundary="===============4203168924146005376=="
 
---===============3557206023571924832==
-Content-Type: multipart/alternative; boundary="000000000000cece0105c00a46e7"
+--===============4203168924146005376==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CO6PR19MB480131B0B50C7ED11CD0E1EBC64D9CO6PR19MB4801namp_"
 
---000000000000cece0105c00a46e7
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_CO6PR19MB480131B0B50C7ED11CD0E1EBC64D9CO6PR19MB4801namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Jerrid,
+Sm9uYXRob24sDQoNClllcywgdGhpcyBlcnJvciBzdGlsbCBvY2N1cnMgaWYgSSBhZGQgYSBjb3B5
+IGJsb2NrIGJldHdlZW4gdGhlIFJYIGFuZCBUWCBzdHJlYW1lciBibG9ja3MuDQoNCkJlc3QgUmVn
+YXJkcywNCg0KSmVycmlkDQoNCkZyb206IEpvbmF0aG9uIFBlbmRsdW0gPGpvbmF0aG9uLnBlbmRs
+dW1AZXR0dXMuY29tPg0KU2VudDogVGh1cnNkYXksIEFwcmlsIDE1LCAyMDIxIDM6MjAgUE0NClRv
+OiBKZXJyaWQgUGx5bWFsZSA8amVycmlkLnBseW1hbGVAY2FueW9uLXVzLmNvbT4NCkNjOiBVU1JQ
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBVc2luZyBS
+Rk5vQyBSWCBhbmQgVFggYmxvY2tzIGluIG9uZSBmbG93Z3JhcGggdGhhdCBpbnRlcmZhY2VzIHdp
+dGggYW4gWDMxMA0KDQpIaSBKZXJyaWQsDQoNCkRvZXMgdGhlIGVycm9yIHN0aWxsIGhhcHBlbiB3
+aGVuIHlvdSBhZGQgdGhlIGNvcHkgYmV0d2VlbiB0aGUgUlggLyBUWCBzdHJlYW1lcnM/DQoNCkpv
+bmF0aG9uDQoNCk9uIFRodSwgQXByIDE1LCAyMDIxIGF0IDY6MDEgUE0gSmVycmlkIFBseW1hbGUg
+PGplcnJpZC5wbHltYWxlQGNhbnlvbi11cy5jb208bWFpbHRvOmplcnJpZC5wbHltYWxlQGNhbnlv
+bi11cy5jb20+PiB3cm90ZToNCkhlbGxvIEFsbCwNCg0KSSBoYXZlIGJlZW4gcnVubmluZyBpbnRv
+IGEgcHJvYmxlbSB0aGlzIHdlZWsgdGhhdCBJIHdhcyBob3BpbmcgdG8gZ2V0IHNvbWUgaGVscCB3
+aXRoLiBJIGFtIHdvcmtpbmcgb24gdHJhbnNpdGlvbmluZyB0byB1c2luZyB0aGUgUkZOb0MgUlgg
+YW5kIFRYIGJsb2NrcyBpbiBhIGZsb3dncmFwaCB0byBjb250cm9sIHBhc3N0aHJvdWdoIG9mIHNp
+Z25hbHMgaW4gdGhlIFVTUlAgWDMxMCBJIGFtIHVzaW5nLiBBdHRhY2hlZCBpcyBhbiBpbWFnZSBv
+ZiB0aGUgZmxvd2dyYXBoIHRoYXQgSSBhbSB0cnlpbmcgdG8gZ2V0IHdvcmtpbmcuIEkgaGF2ZSBi
+ZWVuIGFibGUgdG8gZ2V0IHRoZSBSWCBjaGFpbiBhbmQgdGhlIFRYIGNoYWluIHRvIHdvcmsgaW5k
+aXZpZHVhbGx5LCBidXQgd2hlbiBJIHRyeSB0byBydW4gdGhlIGZsb3dncmFwaCBzaG93biBJIGdl
+dCB0aGUgZm9sbG93aW5nIGVycm9yIGZyb20gZ251cmFkaW8tY29tcGFuaW9uOg0KDQpSdW5UaW1l
+RXJyb3I6IFJGTm9DRXJyb3I6IFJvdXRpbmdFcnJvcjogMC9SYWRpbyMxOjAgaXMgbmVpdGhlciBz
+dGF0aWNhbGx5IGNvbm5lY3RlZCB0byAwL0REQyMwOjAgbm9yIHRvIGFuIFNFUCENCg0KQW55IGlu
+c2lnaHQgdG8gd2hhdOKAmXMgY2F1c2luZyB0aGlzIHByb2JsZW0gYW5kIGhvdyB0byBzb2x2ZSBp
+dCB3b3VsZCBiZSBncmVhdGx5IGFwcHJlY2lhdGVkLg0KDQpCZXN0IFJlZ2FyZHMsDQoNCkplcnJp
+ZA0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwg
+dG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVh
+dmVAbGlzdHMuZXR0dXMuY29tPg0K
 
-Does the error still happen when you add the copy between the RX / TX
-streamers?
+--_000_CO6PR19MB480131B0B50C7ED11CD0E1EBC64D9CO6PR19MB4801namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Jonathon
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
+OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
+bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
+b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
+CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
+ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
+eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
+IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
+eSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3Jh
+cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5Kb25hdGhvbiw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+WWVzLCB0aGlzIGVycm9y
+IHN0aWxsIG9jY3VycyBpZiBJIGFkZCBhIGNvcHkgYmxvY2sgYmV0d2VlbiB0aGUgUlggYW5kIFRY
+IHN0cmVhbWVyIGJsb2Nrcy48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVzdCBSZWdhcmRzLDxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5KZXJyaWQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7
+Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4i
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IEpvbmF0aG9uIFBlbmRsdW0gJmx0
+O2pvbmF0aG9uLnBlbmRsdW1AZXR0dXMuY29tJmd0OyA8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNk
+YXksIEFwcmlsIDE1LCAyMDIxIDM6MjAgUE08YnI+DQo8Yj5Ubzo8L2I+IEplcnJpZCBQbHltYWxl
+ICZsdDtqZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gVVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtVU1JQLXVz
+ZXJzXSBVc2luZyBSRk5vQyBSWCBhbmQgVFggYmxvY2tzIGluIG9uZSBmbG93Z3JhcGggdGhhdCBp
+bnRlcmZhY2VzIHdpdGggYW4gWDMxMDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5IaSBKZXJyaWQsPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5Eb2VzIHRoZSBlcnJvciBzdGlsbCBoYXBwZW4gd2hlbiZuYnNwO3lvdSBhZGQgdGhlIGNv
+cHkgYmV0d2VlbiB0aGUgUlggLyBUWCBzdHJlYW1lcnM/PG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkpvbmF0aG9uPG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFRodSwgQXByIDE1LCAyMDIx
+IGF0IDY6MDEgUE0gSmVycmlkIFBseW1hbGUgJmx0OzxhIGhyZWY9Im1haWx0bzpqZXJyaWQucGx5
+bWFsZUBjYW55b24tdXMuY29tIj5qZXJyaWQucGx5bWFsZUBjYW55b24tdXMuY29tPC9hPiZndDsg
+d3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6
+bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAwaW4g
+Ni4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SGVsbG8gQWxsLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+SSBoYXZlIGJlZW4gcnVubmluZyBpbnRvIGEgcHJvYmxlbSB0aGlzIHdlZWsgdGhhdCBJ
+IHdhcyBob3BpbmcgdG8gZ2V0IHNvbWUgaGVscCB3aXRoLiBJIGFtIHdvcmtpbmcgb24gdHJhbnNp
+dGlvbmluZyB0byB1c2luZyB0aGUgUkZOb0MgUlggYW5kIFRYIGJsb2NrcyBpbiBhIGZsb3dncmFw
+aCB0byBjb250cm9sDQogcGFzc3Rocm91Z2ggb2Ygc2lnbmFscyBpbiB0aGUgVVNSUCBYMzEwIEkg
+YW0gdXNpbmcuIEF0dGFjaGVkIGlzIGFuIGltYWdlIG9mIHRoZSBmbG93Z3JhcGggdGhhdCBJIGFt
+IHRyeWluZyB0byBnZXQgd29ya2luZy4gSSBoYXZlIGJlZW4gYWJsZSB0byBnZXQgdGhlIFJYIGNo
+YWluIGFuZCB0aGUgVFggY2hhaW4gdG8gd29yayBpbmRpdmlkdWFsbHksIGJ1dCB3aGVuIEkgdHJ5
+IHRvIHJ1biB0aGUgZmxvd2dyYXBoIHNob3duIEkgZ2V0IHRoZSBmb2xsb3dpbmcNCiBlcnJvciBm
+cm9tIGdudXJhZGlvLWNvbXBhbmlvbjogPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5SdW5U
+aW1lRXJyb3I6IFJGTm9DRXJyb3I6IFJvdXRpbmdFcnJvcjogMC9SYWRpbyMxOjAgaXMgbmVpdGhl
+ciBzdGF0aWNhbGx5IGNvbm5lY3RlZCB0byAwL0REQyMwOjAgbm9yIHRvIGFuIFNFUCE8bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
+YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG8iPkFueSBpbnNpZ2h0IHRvIHdoYXTigJlzIGNhdXNpbmcgdGhp
+cyBwcm9ibGVtIGFuZCBob3cgdG8gc29sdmUgaXQgd291bGQgYmUgZ3JlYXRseSBhcHByZWNpYXRl
+ZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkJlc3QgUmVnYXJkcyw8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
+b3R0b20tYWx0OmF1dG8iPkplcnJpZDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRv
+IDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0
+PSJfYmxhbmsiPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286
+cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-On Thu, Apr 15, 2021 at 6:01 PM Jerrid Plymale <jerrid.plymale@canyon-us.co=
-m>
-wrote:
+--_000_CO6PR19MB480131B0B50C7ED11CD0E1EBC64D9CO6PR19MB4801namp_--
 
-> Hello All,
->
->
->
-> I have been running into a problem this week that I was hoping to get som=
-e
-> help with. I am working on transitioning to using the RFNoC RX and TX
-> blocks in a flowgraph to control passthrough of signals in the USRP X310 =
-I
-> am using. Attached is an image of the flowgraph that I am trying to get
-> working. I have been able to get the RX chain and the TX chain to work
-> individually, but when I try to run the flowgraph shown I get the followi=
-ng
-> error from gnuradio-companion:
->
->
->
-> RunTimeError: RFNoCError: RoutingError: 0/Radio#1:0 is neither statically
-> connected to 0/DDC#0:0 nor to an SEP!
->
->
->
-> Any insight to what=E2=80=99s causing this problem and how to solve it wo=
-uld be
-> greatly appreciated.
->
->
->
-> Best Regards,
->
->
->
-> Jerrid
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000cece0105c00a46e7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Jerrid,<div><br></div><div>Does the error still happen =
-when=C2=A0you add the copy between the RX / TX streamers?</div><div><br></d=
-iv><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
- class=3D"gmail_attr">On Thu, Apr 15, 2021 at 6:01 PM Jerrid Plymale &lt;<a=
- href=3D"mailto:jerrid.plymale@canyon-us.com">jerrid.plymale@canyon-us.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
-<div class=3D"gmail-m_-8004445159571352756WordSection1">
-<p class=3D"MsoNormal">Hello All,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I have been running into a problem this week that I =
-was hoping to get some help with. I am working on transitioning to using th=
-e RFNoC RX and TX blocks in a flowgraph to control passthrough of signals i=
-n the USRP X310 I am using. Attached
- is an image of the flowgraph that I am trying to get working. I have been =
-able to get the RX chain and the TX chain to work individually, but when I =
-try to run the flowgraph shown I get the following error from gnuradio-comp=
-anion:
-<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">RunTimeError: RFNoCError: RoutingError: 0/Radio#1:0 =
-is neither statically connected to 0/DDC#0:0 nor to an SEP!<u></u><u></u></=
-p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Any insight to what=E2=80=99s causing this problem a=
-nd how to solve it would be greatly appreciated.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Best Regards,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Jerrid<u></u><u></u></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000cece0105c00a46e7--
-
---===============3557206023571924832==
+--===============4203168924146005376==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,4 +283,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3557206023571924832==--
+--===============4203168924146005376==--
