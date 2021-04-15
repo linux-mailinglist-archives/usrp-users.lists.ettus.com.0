@@ -2,84 +2,144 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB81C35FB3D
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Apr 2021 20:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D5F37360549
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Apr 2021 11:09:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C001F384457
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Apr 2021 14:59:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 98B61383E3B
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Apr 2021 05:09:06 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MyuMxfPE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aWkrOu1z";
 	dkim-atps=neutral
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 89770383E2D
-	for <usrp-users@lists.ettus.com>; Wed, 14 Apr 2021 14:58:48 -0400 (EDT)
-Received: by mail-lj1-f171.google.com with SMTP id p23so20734777ljn.0
-        for <usrp-users@lists.ettus.com>; Wed, 14 Apr 2021 11:58:48 -0700 (PDT)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 112BB383FF5
+	for <usrp-users@lists.ettus.com>; Thu, 15 Apr 2021 05:08:11 -0400 (EDT)
+Received: by mail-pj1-f52.google.com with SMTP id x21-20020a17090a5315b029012c4a622e4aso12330677pjh.2
+        for <usrp-users@lists.ettus.com>; Thu, 15 Apr 2021 02:08:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:from:date:message-id:subject:to;
-        bh=ORNE9ObLxUyrPVmQLE126MKdB6lG4Gx3bQKz1VCjQsU=;
-        b=MyuMxfPEMkqEEwXm+4FoRvjdeBzei2iAdVHASl+mTfzHnJwQiEVxJhg8lWWoIj3u/x
-         USseXxDcYc/GmalCuMZxJyKLClxkhOfJ8/7nuSUg/iaLjTSWjRwjipitqK1DKTAaHLmP
-         vTir/xhc18GuYTRtq13lxR8f6dw/0yoXuNhTD8F37f/fCPL1rz2y+Nw7f920Nk09UBpF
-         unsKJ5MHo9xIs3ci19rQAZ4dvlDvevgPvCMQlx3wXz7vV7B/+qcYxicrOxsNtNEQE2LK
-         GRRaPToXZQ7uw4VxKr5UUCLBaZ60jYa4BflyHSONoCSL7NWLTQU04PkrbhrySkMUdn2o
-         5VJQ==
+        bh=XvGGQpjuMTNDFfsvO7Zk/lE06QL8y7FoT74ajgYpinU=;
+        b=aWkrOu1zHdI/eiy6A9h0Av0idQAMKtKjroXAEXuGbJdz4H/bpAqubASjpWQrp6Fkjb
+         qjR2V4e4DTUykDVODsTwOK7LPDhcr4tomr1ZfNhPmpFPsdrPtCSNkbuDKqBI6YEI9hB3
+         3X9T9cw9WtVISaNazUJFvgE+tJbgVgpmdUIYFV2cmzvLTYjSlwJadectXIJCUuLB81b7
+         OctIz+Ea/Te/UvUA61h7HeOm1+US95tfpD4t5EsAQ0IfkxJWLROzDa/ZdQDlWVZnX4Zh
+         dWGXqs2PxL2kbuUN5bx3xLK4wV7yQ9JC5ytwwtdJLxZ4OBVGsMsUneXPoGtgAqqQTQK6
+         gTgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ORNE9ObLxUyrPVmQLE126MKdB6lG4Gx3bQKz1VCjQsU=;
-        b=K/yiDv/2KAWKkpqEimZ9MiCyydixymDDcPcTFDGEB8FBchJNE8+kQT44GZ+vEs/GEI
-         FsG00MFoff5jHMQ2WUGvffC9AttpYS+BVof8hLRXtVGgvy+Q3pbat2CXrSmGzxIPxEYr
-         NjgdnCdiAVJfJpSDPSaltj0XfNQ4e8SYeOJ9UHzQ02ZzybgkUf8YRf4EVIj7Xz5BkyGN
-         zHrnxev9Bw286COpUo3msJUinhQcphRVELGRT38gbziooSiHxxjJvbq0ssTBl7Cpx1Ge
-         pBNTukojSjdxDRiHBLPqzQ1h9ZMocuwVrES1ndSsDn2py3uk9V9iaLDN8pVVPcUVI0vU
-         cJHw==
-X-Gm-Message-State: AOAM5316+ziNlaJN/21+JqxoFp/j+lP9y7QNHgajJII4UoJnhToFJoJG
-	VizaiujKrsnmb4c8ngmHw35Um7JVrycdf/blyMWlayUgq1g=
-X-Google-Smtp-Source: ABdhPJz6v9fzIELgk1EcifcUF4Q12m2bi7+ELwzmkCJVVjZWiyFvzFXFRCN31ajo8I/mNrGUrdUrydpYzyZAOqarwSg=
-X-Received: by 2002:a2e:3603:: with SMTP id d3mr24754159lja.495.1618426727093;
- Wed, 14 Apr 2021 11:58:47 -0700 (PDT)
+        bh=XvGGQpjuMTNDFfsvO7Zk/lE06QL8y7FoT74ajgYpinU=;
+        b=bFHalXPJUgr79mQsnr744FXAoFOp6ffFLXm0dZC7CodTpWn/0f41rbe4EIohbKXFkG
+         MDBLg5wd7ktYbm5lFWPKFReD1eWRZSduXRqhiEI3vQqFj1lYt/+66nXWr+MEnwLOqBIN
+         S4IgqqJ9gCc3Q1tfsARVvO6BU9jUg5x/Bp79Boq0cLiHs7FwFl85yVuqyF7tAHImOHU9
+         zQy+qtfpt7Y2BL2Q8bz71iR5ekzl59QSPldliphZtkKB/n7a6HzRZBZAvvl5we8NGK0y
+         b14KmqWP/Co7G2m7QdjSFXLd9Ln5xgVLT1f7j4WtoYmBMp4+0vDBph6IvJtF3X/sUXs0
+         WnXA==
+X-Gm-Message-State: AOAM533yeiNG6qjmiQRWYLRFv3Qd0wQxx63J5vPEDm4BrXWyIBNmLofw
+	KL70YE0ANpqm7QWHrDXBr3grBhhVbnTJF0To+RQbq4truBo0Dg==
+X-Google-Smtp-Source: ABdhPJycabZO+00jYsPqaEcvKQKQyZj5AFDxIkmjj1qGqgFTgP+JL+zzWuF4TWf2tiTMGI8ZWSG4ONQ88/zz6IKrqSA=
+X-Received: by 2002:a17:90a:13c3:: with SMTP id s3mr2797459pjf.59.1618477690615;
+ Thu, 15 Apr 2021 02:08:10 -0700 (PDT)
 MIME-Version: 1.0
-From: =?UTF-8?Q?Ronny_Bola=C3=B1os?= <ronnysebaz@gmail.com>
-Date: Wed, 14 Apr 2021 13:58:35 -0500
-Message-ID: <CADCSL63n0XtebUBme_Yj-=gGt3q=PyLU8n1--u2Qe0iar3WYaA@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: ATD2V6LT7VRWEKVXGPSQCF2CP2SSEIRP
-X-Message-ID-Hash: ATD2V6LT7VRWEKVXGPSQCF2CP2SSEIRP
-X-MailFrom: ronnysebaz@gmail.com
+From: "Anthony B." <anthonyld508@gmail.com>
+Date: Thu, 15 Apr 2021 11:08:02 +0200
+Message-ID: <CAP+KAYCaFKLxpMQ9vZWcss7M50ug5+W_YdKjpoaeWk=qQqdG0w@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: YSGIZVIHUIIWURY7H6LP7NJE227SVRAF
+X-Message-ID-Hash: YSGIZVIHUIIWURY7H6LP7NJE227SVRAF
+X-MailFrom: anthonyld508@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] NO MORE E-MAILS
+Subject: [USRP-users] Setting network configuration (MTU) on the N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ATD2V6LT7VRWEKVXGPSQCF2CP2SSEIRP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YSGIZVIHUIIWURY7H6LP7NJE227SVRAF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1564566118367228561=="
+Content-Type: multipart/mixed; boundary="===============1095350355650616867=="
 
---===============1564566118367228561==
-Content-Type: multipart/alternative; boundary="00000000000029d75205bff356cf"
+--===============1095350355650616867==
+Content-Type: multipart/alternative; boundary="000000000000d3798605bfff33bb"
 
---00000000000029d75205bff356cf
+--000000000000d3798605bfff33bb
 Content-Type: text/plain; charset="UTF-8"
 
-PLEASE I DONT NEDD MORE E-MAILS ABOUT USRP-users
+Hello all,
 
---00000000000029d75205bff356cf
+I meet some streaming issues with a USRP N310 I'd like to further
+investigate.
+
+Currently I am only using a 1Gb link with the SFP0 port. I set up the
+network config following this :
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Setting_Up_a_Streaming_Connection
+
+It is recommended to set a MTU of 1500 on the SFP0 interface, so I
+configured the Ethernet interface on the host PC accordingly.
+When I check the MTU on the N310, it is set by default to 9000 on the SFP0
+interface.
+If I try to change it using ifconfig, it tells that the resource is busy
+and in any case it's not permanent in the command line.
+
+So I edited the network configuration files as described here :
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updating_the_Network_Configurations
+On the N310, I created a file sfp0.network in /etc/systemd/network with
+this content :
+
+[Match]
+Name=sfp0
+
+[Network]
+Address=192.168.10.2/24
+
+[Link]
+MTUBytes=1500
+
+deleted the ~residual files from vi, and ran : systemctl restart
+systemd-networkd
+
+But it doesn't seem to change the default settings afterwards or whenever
+the USRP N310 is restarted.
+How can I set the MTU for a 1Gb link on the N310 sfp0 interface ?
+
+Thanks for any suggestion!
+
+Anthony
+
+--000000000000d3798605bfff33bb
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">PLEASE I DONT=C2=A0NEDD=C2=A0MORE E-MAILS=C2=A0ABOUT USRP-=
-users</div>
+<div dir=3D"ltr">Hello all,<br><br>I meet some streaming issues with a USRP=
+ N310 I&#39;d like to further investigate.<br><br>Currently I am only using=
+ a 1Gb link with the SFP0 port. I set up the network config following this =
+: <br><a href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Star=
+ted_Guide#Setting_Up_a_Streaming_Connection">https://kb.ettus.com/USRP_N300=
+/N310/N320/N321_Getting_Started_Guide#Setting_Up_a_Streaming_Connection</a>=
+<br><br>It is recommended to set a MTU of 1500 on the SFP0 interface, so I =
+configured the Ethernet interface on the host PC accordingly. <br>When I ch=
+eck the MTU on the N310, it is set by default to 9000 on the SFP0 interface=
+. <br>If I try to change it using ifconfig, it tells that the resource is b=
+usy and in any case it&#39;s not permanent in the command line.<br><br>So I=
+ edited the network configuration files as described here : <br><a href=3D"=
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updatin=
+g_the_Network_Configurations">https://kb.ettus.com/USRP_N300/N310/N320/N321=
+_Getting_Started_Guide#Updating_the_Network_Configurations</a><br>On the N3=
+10, I created a file sfp0.network in /etc/systemd/network with this content=
+ : <br><br>[Match]<br>Name=3Dsfp0<br><br>[Network]<br>Address=3D<a href=3D"=
+http://192.168.10.2/24">192.168.10.2/24</a><br><br>[Link]<br>MTUBytes=3D150=
+0<br><br>deleted the ~residual files from vi, and ran : systemctl restart s=
+ystemd-networkd<br><br>But it doesn&#39;t seem to change the default settin=
+gs afterwards or whenever the USRP N310 is restarted.<br>How can I set the =
+MTU for a 1Gb link on the N310 sfp0 interface ?<br><br>Thanks for any sugge=
+stion!<br><br>Anthony<br></div>
 
---00000000000029d75205bff356cf--
+--000000000000d3798605bfff33bb--
 
---===============1564566118367228561==
+--===============1095350355650616867==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -89,4 +149,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1564566118367228561==--
+--===============1095350355650616867==--
