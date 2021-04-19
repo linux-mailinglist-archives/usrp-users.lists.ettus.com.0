@@ -2,92 +2,201 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E81B362D68
-	for <lists+usrp-users@lfdr.de>; Sat, 17 Apr 2021 06:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64447363C50
+	for <lists+usrp-users@lfdr.de>; Mon, 19 Apr 2021 09:16:51 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 500C3383F3E
-	for <lists+usrp-users@lfdr.de>; Sat, 17 Apr 2021 00:04:36 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=asleep-ai.20150623.gappssmtp.com header.i=@asleep-ai.20150623.gappssmtp.com header.b="gpQviYPK";
-	dkim-atps=neutral
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 330D1383E6E
-	for <usrp-users@lists.ettus.com>; Sat, 17 Apr 2021 00:03:52 -0400 (EDT)
-Received: by mail-pl1-f172.google.com with SMTP id t22so14654494ply.1
-        for <usrp-users@lists.ettus.com>; Fri, 16 Apr 2021 21:03:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=asleep-ai.20150623.gappssmtp.com; s=20150623;
-        h=from:content-transfer-encoding:mime-version:subject:message-id:date
-         :cc:to;
-        bh=8kWJWMvaZEoLc4TI9oNYDErssOufPFUpVFsCvNZ1fzc=;
-        b=gpQviYPKz6IQ1vZhlRaNYMOMQvq4UlF2Q2j8YvXHJLrsq8AS+PBUylprOZP1125HZA
-         GthhO7cSWQleOkxGAu0MGv5wZLxqdqGSSkpxICCZiylSZP/BUl6mLjEch/gljfwLbVAC
-         oj1Txr1kg4TINmT6ejCOuMRN1gPc/HXkBxAtbUhzYr2g4Lk+XpCPGbpP0EI5YxERkR3v
-         Pg/13/hLJXhaNq64xWPq5wGmZt/49AdvqXY0SGpXLiALrpXBf6m/CZZ7zXaknq5CMzGG
-         riTD4hTh7jkHIdR+3w7K2aTPG+8PC6SEPzbW8H3gNywBFqIP4yESVBuBFw7tT5nhh2Zy
-         WaZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:content-transfer-encoding:mime-version
-         :subject:message-id:date:cc:to;
-        bh=8kWJWMvaZEoLc4TI9oNYDErssOufPFUpVFsCvNZ1fzc=;
-        b=RJ79VM0KQKdNq6/ZMh+BYZgv9dd9nP5+qCYdhPT3cE7kPTT0jCfwxebHfeL6RvVcnz
-         qtN5dT9e+5xvdWaCiSLftfdd2fz5/UdPrxFRnDlcxEOD08tZcYHUccbKqkZDoALb4h0v
-         kj8Ouo9LpWfBCpL1OO3IR5T/DGZ3ivsAoNIAFCXUixp9feNgOcqpZNjglSvIrTXxVAH+
-         yQ7KVEdAZgBydcffsDM+2N6iA8RAp+7K5bJ3Gnc5vkLNHCIFeBCk5mX54EYQrkpebXpt
-         K0vowdYuBvPqYuwHMFdEufgkkhhq32DT+LFHLLwast8ogxUu6ud+nwh5ktONv7fBHFgX
-         FSlw==
-X-Gm-Message-State: AOAM532lkoe4H1Nqs6ZpS7oQRvJ2+vHpE74oRqxHmgkj3vjd4dmTzyhk
-	VEaH4R9k+ESjgiGDnWhAZcdzlF9ndYjgmA==
-X-Google-Smtp-Source: ABdhPJxZ+pNcn47xmaVvsXz6GAlu91djOOjdcRbfA1MlUK5+0uFRTlLyYtymcIHsUq23CrUt1ebdUQ==
-X-Received: by 2002:a17:902:8d83:b029:e6:508a:7b8d with SMTP id v3-20020a1709028d83b02900e6508a7b8dmr12861432plo.18.1618632231029;
-        Fri, 16 Apr 2021 21:03:51 -0700 (PDT)
-Received: from [192.168.10.68] ([61.74.181.17])
-        by smtp.gmail.com with ESMTPSA id t23sm6680138pju.15.2021.04.16.21.03.49
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 16 Apr 2021 21:03:50 -0700 (PDT)
-From: Louis Jung <insomnia@asleep.ai>
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.60.0.2.21\))
-Message-Id: <F5A36F4D-8976-4576-BB8D-E400289E8A1E@asleep.ai>
-Date: Sat, 17 Apr 2021 13:03:45 +0900
+	by mm2.emwd.com (Postfix) with ESMTP id 3EFCE3843A3
+	for <lists+usrp-users@lfdr.de>; Mon, 19 Apr 2021 03:16:50 -0400 (EDT)
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 54FB8383F18
+	for <usrp-users@lists.ettus.com>; Mon, 19 Apr 2021 03:15:56 -0400 (EDT)
+Date: Mon, 19 Apr 2021 07:15:56 +0000
 To: usrp-users@lists.ettus.com
-X-Mailer: Apple Mail (2.3654.60.0.2.21)
-Message-ID-Hash: XK3MXM3JOUP47JKKAHJFOAXHMGXNBDGQ
-X-Message-ID-Hash: XK3MXM3JOUP47JKKAHJFOAXHMGXNBDGQ
-X-MailFrom: insomnia@asleep.ai
+From: brendan.horsfield@vectalabs.com
+Message-ID: <quS4PFqCPNngCU28vqPL5sYNFbCdiqHiwVvmF3442s@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: YEHIFBICQD3DHWXMF2FUB4MNXFAIGUKT
+X-Message-ID-Hash: YEHIFBICQD3DHWXMF2FUB4MNXFAIGUKT
+X-MailFrom: brendan.horsfield@vectalabs.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: insomnia@asleep.ai
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E310, RFNoC OFDM Sync block error 
+Subject: [USRP-users] UHD dual-install issue
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XK3MXM3JOUP47JKKAHJFOAXHMGXNBDGQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YEHIFBICQD3DHWXMF2FUB4MNXFAIGUKT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7086609231944752577=="
 
-RGVhciBhbGwsDQoNCknigJltIHRyeWluZyB0byBydW4gV2ktRmkgT0ZETSByZWNlaXZlciBpbiBF
-MzEwLg0KDQpIb3dldmVyLCB3aGVuIEkgdHJpZWQgdG8gYnVpbGQgY3VzdG9tIGZwZ2EgaW1hZ2Ug
-d2l0aCBmZnQsIHdpbmRvdywgYW5kIHNjaG1pZGxfY294IGJsb2NrcywgaXQgYWx3YXlzIGZhaWxz
-IHdpdGggdGhlIGVycm9yOg0KJydFUlJPUjogW1BsYWNlIDMwLTY0MF0gUGxhY2UgQ2hlY2sgOiBU
-aGlzIGRlc2lnbiByZXF1aXJlcyBtb3JlIFNsaWNlIExVVHMgY2VsbHMgdGhhbiBhcmUgYXZhaWxh
-YmxlIGluIHRoZSB0YXJnZXQgZGV2aWNlLiBUaGlzIGRlc2lnbiByZXF1aXJlcyA2MjUwNyBvZiBz
-dWNoIGNlbGwgdHlwZXMgYnV0IG9ubHkgNTMyMDAgY29tcGF0aWJsZSBzaXRlcyBhcmUgYXZhaWxh
-YmxlIGluIHRoZSB0YXJnZXQgZGV2aWNlLiBQbGVhc2UgYW5hbHl6ZSB5b3VyIHN5bnRoZXNpcyBy
-ZXN1bHRzIGFuZCBjb25zdHJhaW50cyB0byBlbnN1cmUgdGhlIGRlc2lnbiBpcyBtYXBwZWQgdG8g
-WGlsaW54IHByaW1pdGl2ZXMgYXMgZXhwZWN0ZWQuIElmIHNvLCBwbGVhc2UgY29uc2lkZXIgdGFy
-Z2V0aW5nIGEgbGFyZ2VyIGRldmljZS4gUGxlYXNlIHNldCB0Y2wgcGFyYW1ldGVyICJkcmMuZGlz
-YWJsZUxVVE92ZXJVdGlsRXJyb3IiIHRvIDEgdG8gY2hhbmdlIHRoaXMgZXJyb3IgdG8gd2Fybmlu
-Zy7igJ0NCg0KSXMgaXQgaW5mZWFzaWJsZSBpbiBFMzEwIG9yIEkgbWlzY29uZmlndXJlZCBzb21l
-dGhpbmc/DQoNCklmIHBvc3NpYmxlLCBjYW4geW91IHN1Z2dlc3QgYW55IG1ldGhvZCB0byBpbmNs
-dWRlIGl0Pw0KDQooSeKAmXZlIHNlbnQgdGhpcyBlbWFpbCB0byB0aGUgZ251cmFkaW8gbWFpbGlu
-ZyBsaXN0LCBidXQgZ3VpZGVkIHRvIHRoaXMgbWFpbGluZyBsaXN0IGJ5IE1hcmN1cywgVGhhbmtz
-ISkNCg0KQmVzdCwNCg0KTG91aXMKX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5l
-dHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbQo=
+This is a multi-part message in MIME format.
+
+--===============7086609231944752577==
+Content-Type: multipart/alternative;
+ boundary="b1_quS4PFqCPNngCU28vqPL5sYNFbCdiqHiwVvmF3442s"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_quS4PFqCPNngCU28vqPL5sYNFbCdiqHiwVvmF3442s
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,
+
+I have just upgraded my laptop to the latest version of GNU Radio Compani=
+on (ver 3.8.2.0 (Python 3.6.9)), and am now trying to use it to monitor a=
+ block of spectrum with my USRP B210.  Unfortunately the flowgraph won=E2=
+=80=99t run (even though it ran in my old GNU Radio setup), and instead p=
+rints the following message to the console:
+
+linux; GNU C++ version 7.3.0; Boost_106501; UHD_003.010.003.000-0-unknown
+
+UHD Warning:
+
+    EnvironmentError: IOError: Could not find path for image: usrp_b200_f=
+w.hex
+
+    Using images directory: <no images directory located>
+
+    Set the environment variable 'UHD_IMAGES_DIR' appropriately or follow=
+ the below instructions to download the images package.
+
+    Please run:
+
+     "/usr/lib/x86_64-linux-gnu/uhd/utils/uhd_images_downloader.py"
+
+Traceback (most recent call last):
+
+  File "/home/anyone/Documents/Brendan/GNU-Radio/top_block.py", line 244,=
+ in <module>
+
+    main()
+
+  File "/home/anyone/Documents/Brendan/GNU-Radio/top_block.py", line 220,=
+ in main
+
+    tb =3D top_block_cls()
+
+  File "/home/anyone/Documents/Brendan/GNU-Radio/top_block.py", line 87, =
+in __init__
+
+    channels=3Dlist(range(0,1)),
+
+  File "/usr/lib/python3/dist-packages/gnuradio/uhd/__init__.py", line 12=
+5, in constructor_interceptor
+
+    return old_constructor(\*args)
+
+  File "/usr/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py", line 32=
+59, in make
+
+    return _uhd_swig.usrp_source_make(device_addr, stream_args, issue_str=
+eam_cmd_on_start)
+
+RuntimeError: LookupError: KeyError: No devices found for ----->
+
+Device Address:
+
+    serial: 318425D
+
+The above message suggests GRC is calling version **003.010.003.000-0** o=
+f the UHD driver.  This is weird, as last week I installed version **3.15=
+.0.0** of the UHD driver on my laptop, after first uninstalling the old d=
+river (or so I thought=E2=80=A6). =20
+
+However, if I run uhd_usrp_probe or uhd_find_devices, I get a message con=
+firming that I am indeed running v3.15.0.0 of the UHD driver:
+
+* linux; GNU C++ version 7.5.0; Boost_106501; **UHD_3.15.0.HEAD-0-gaea0e2=
+de**
+
+If I look in the folder =E2=80=9C/usr/lib/x86_64-linux-gnu/=E2=80=9D, I f=
+ind the files **libuhd.so.003.010.003** and **libuhd.so.3.15.0** are both=
+ present =E2=80=94 but I am pretty sure there should only be one of them =
+present!
+
+This =E2=80=9Cdual-install=E2=80=9D problem seems to be fairly common amo=
+ng USRP/GNU Radio users, but so far I haven=E2=80=99t found any actual so=
+lutions. =20
+
+There is also a second error message in the above console output: **=E2=80=
+=9CEnvironmentError: IOError: Could not find path for image: usrp_b200_fw=
+.hex=E2=80=9D**.  This is baffling, as I have run the script =E2=80=9C/us=
+r/local/lib/uhd/utils/uhd_images_downloader.py=E2=80=9C three times, and =
+am confident that the FPGA images have downloaded successfully (for the r=
+ecord, they are in /usr/local/share/uhd/images).
+
+If anyone can tell me how to resolve these problems, I would be very grat=
+eful!
+
+Regards,
+
+Brendan.
+
+--b1_quS4PFqCPNngCU28vqPL5sYNFbCdiqHiwVvmF3442s
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi All,</p><p>I have just upgraded my laptop to the latest version of GN=
+U Radio Companion (ver 3.8.2.0 (Python 3.6.9)), and am now trying to use it=
+ to monitor a block of spectrum with my USRP B210.  Unfortunately the flowg=
+raph won=E2=80=99t run (even though it ran in my old GNU Radio setup), and =
+instead prints the following message to the console:</p><p>linux; GNU C++ v=
+ersion 7.3.0; Boost_106501; UHD_003.010.003.000-0-unknown</p><p>UHD Warning=
+:</p><p>    EnvironmentError: IOError: Could not find path for image: usrp_=
+b200_fw.hex</p><p>    Using images directory: &lt;no images directory locat=
+ed&gt;</p><p>    Set the environment variable 'UHD_IMAGES_DIR' appropriatel=
+y or follow the below instructions to download the images package.</p><p>  =
+  Please run:</p><p>     "/usr/lib/x86_64-linux-gnu/uhd/utils/uhd_images_do=
+wnloader.py"</p><p>Traceback (most recent call last):</p><p>  File "/home/a=
+nyone/Documents/Brendan/GNU-Radio/top_block.py", line 244, in &lt;module&gt=
+;</p><p>    main()</p><p>  File "/home/anyone/Documents/Brendan/GNU-Radio/t=
+op_block.py", line 220, in main</p><p>    tb =3D top_block_cls()</p><p>  Fi=
+le "/home/anyone/Documents/Brendan/GNU-Radio/top_block.py", line 87, in __i=
+nit__</p><p>    channels=3Dlist(range(0,1)),</p><p>  File "/usr/lib/python3=
+/dist-packages/gnuradio/uhd/__init__.py", line 125, in constructor_intercep=
+tor</p><p>    return old_constructor(*args)</p><p>  File "/usr/lib/python3/=
+dist-packages/gnuradio/uhd/uhd_swig.py", line 3259, in make</p><p>    retur=
+n _uhd_swig.usrp_source_make(device_addr, stream_args, issue_stream_cmd_on_=
+start)</p><p>RuntimeError: LookupError: KeyError: No devices found for ----=
+-&gt;</p><p>Device Address:</p><p>    serial: 318425D</p><p>The above messa=
+ge suggests GRC is calling version <strong>003.010.003.000-0</strong> of th=
+e UHD driver.  This is weird, as last week I installed version <strong>3.15=
+.0.0</strong> of the UHD driver on my laptop, after first uninstalling the =
+old driver (or so I thought=E2=80=A6).  </p><p>However, if I run uhd_usrp_p=
+robe or uhd_find_devices, I get a message confirming that I am indeed runni=
+ng v3.15.0.0 of the UHD driver:</p><ul><li><p>linux; GNU C++ version 7.5.0;=
+ Boost_106501; <strong>UHD_3.15.0.HEAD-0-gaea0e2de</strong></p></li></ul><p=
+>If I look in the folder =E2=80=9C/usr/lib/x86_64-linux-gnu/=E2=80=9D, I fi=
+nd the files <strong>libuhd.so.003.010.003</strong> and <strong>libuhd.so.3=
+.15.0</strong> are both present =E2=80=94 but I am pretty sure there should=
+ only be one of them present!</p><p>This =E2=80=9Cdual-install=E2=80=9D pro=
+blem seems to be fairly common among USRP/GNU Radio users, but so far I hav=
+en=E2=80=99t found any actual solutions.  </p><p>There is also a second err=
+or message in the above console output: <strong>=E2=80=9CEnvironmentError: =
+IOError: Could not find path for image: usrp_b200_fw.hex=E2=80=9D</strong>.=
+  This is baffling, as I have run the script =E2=80=9C/usr/local/lib/uhd/ut=
+ils/uhd_images_downloader.py=E2=80=9C three times, and am confident that th=
+e FPGA images have downloaded successfully (for the record, they are in /us=
+r/local/share/uhd/images).</p><p>If anyone can tell me how to resolve these=
+ problems, I would be very grateful!</p><p>Regards,</p><p>Brendan.  </p><p>=
+<br></p>
+
+--b1_quS4PFqCPNngCU28vqPL5sYNFbCdiqHiwVvmF3442s--
+
+--===============7086609231944752577==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7086609231944752577==--
