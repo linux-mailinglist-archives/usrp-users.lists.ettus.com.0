@@ -2,100 +2,187 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D1F3644DA
-	for <lists+usrp-users@lfdr.de>; Mon, 19 Apr 2021 15:44:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D802936453D
+	for <lists+usrp-users@lfdr.de>; Mon, 19 Apr 2021 15:50:32 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2296A383DDD
-	for <lists+usrp-users@lfdr.de>; Mon, 19 Apr 2021 09:44:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 801633841D4
+	for <lists+usrp-users@lfdr.de>; Mon, 19 Apr 2021 09:50:31 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dp9jwde/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=student-ltu-se.20150623.gappssmtp.com header.i=@student-ltu-se.20150623.gappssmtp.com header.b="fluJZAaz";
 	dkim-atps=neutral
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id C5A9F383A42
-	for <USRP-users@lists.ettus.com>; Mon, 19 Apr 2021 09:43:29 -0400 (EDT)
-Received: by mail-qk1-f181.google.com with SMTP id x11so35679362qkp.11
-        for <USRP-users@lists.ettus.com>; Mon, 19 Apr 2021 06:43:29 -0700 (PDT)
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 46B53383DC6
+	for <USRP-users@lists.ettus.com>; Mon, 19 Apr 2021 09:49:45 -0400 (EDT)
+Received: by mail-pg1-f174.google.com with SMTP id q10so24292258pgj.2
+        for <USRP-users@lists.ettus.com>; Mon, 19 Apr 2021 06:49:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=e7z1whA6fd92JMASmMqajjOYibEbx0ixP3NspKkR9Yk=;
-        b=Dp9jwde/BJYYZBOrKPlZTDKB4nsrZqHLc6qeJSjuV5osVoiB4ef/RVDvaZZqf5emjV
-         NuMhoeZ7gqJL2BVPNMfpMfnUWGV0J80z/vmqLdYDxN9DDL8Uf/62MoCB1G3jLAVzpZwT
-         JIX9WopTjGSg1oxgMyuLsGmGKePy+gV2KRQRFbx29LmTMI/Ka1u97D9jFPDRIH91LEAs
-         j+7UMDgBJcPuaGxWdgpOazdwuTmL/vl7zUfiGPqHrQaTvjZxQBHqCphpXHbglMBCf9qj
-         KocAJog82e+l+Qthh2KD3WY5SfiCkRQTB7BqFzZ8V3sRiKloLrLp4BgK1cUR87N736RR
-         3D1Q==
+        d=student-ltu-se.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5kZfBaxvTiyivIdERchQ0C2wlbg96HlSTnPHjgThYbE=;
+        b=fluJZAaz64xja7MDQoTQ5AoBoaPn8yFdN7vGIc79mhUC5k+Fy2RrJBYLzoGtHKM20a
+         uJpKt8nVFvCQtCYt3ZVH5ZW/PFWHhXGTy5b1y21ii2YgoBmyHh/9bcZ8zrTHe2vcvqFN
+         AUw1OouqZDteRqWKUuAXUz+IuF0uHR1ry/x94lx0qeIaNyWOSIKnr99ev0dUCm39ofCB
+         Ilz71GSJd8p0SwWQrANwHtF1Gig5KfV1bAM/3F/m7X+yBaLkFb2Vp15YQFQGNyH37f1W
+         ZOlrTTROXHgVwaZ33VKEyUrIZbw1ZtPySG7Hbe6AIpDa3EpcXmLHt+fwz0JrQfhjCvZP
+         UK/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=e7z1whA6fd92JMASmMqajjOYibEbx0ixP3NspKkR9Yk=;
-        b=rOF7Kh0bAEtvQgazeC1njJMiWj/3lsfqIb1vjTo9816EO6A+KozOMWjkd+u11Y7a/D
-         YUW+QFRHk1JhpO/E0XVuATuzFwgmbQAv3GZPoBX2bbBxdfjWb6v/sf8tMm+IPVTwrFX6
-         q8DTrGZxMJAjfHy64GqCnHnAZKAK10G7LLYE6/+yixIMf+lgHk+3pSXYqUzVcfNDsMIX
-         PmmEr8c4n9u5c1uhjwpIirXwqmkTJ4MqDaLNKpmFnB1uTVcFhf2Pm6YEfat9wy2gq6s9
-         oOF7WpeMhHhKVUXDSA3HixWs+6pr2vp5m+GzIIF2pqVFpHv9N8a2lSnnxC5N+8yyzkFo
-         yzuQ==
-X-Gm-Message-State: AOAM531NaLIWrYeMAfmFeGRiLH0ZCGEm0HgP6g0DMOnCZi9g8+edQX0/
-	Un1wAsWJbzti4DOkaBBKDzTVt6iqGClWzw==
-X-Google-Smtp-Source: ABdhPJw6U+5HTJ+klbEw7c49aDm21ZATQL5SqHKRJETpkSTAgXiXEEgCoSc71q7xTy7SzEOKzl6FoA==
-X-Received: by 2002:a37:a206:: with SMTP id l6mr12074454qke.5.1618839809019;
-        Mon, 19 Apr 2021 06:43:29 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id f17sm9216079qtp.39.2021.04.19.06.43.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Apr 2021 06:43:28 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Mon, 19 Apr 2021 09:43:27 -0400
-Message-Id: <FE685529-0728-4EC7-B265-2221EF88808B@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5kZfBaxvTiyivIdERchQ0C2wlbg96HlSTnPHjgThYbE=;
+        b=Gyazu7vFNkWQjJT9iuadd6jnMhdIEbdPaafnqbDpQPGa7wzirmzkIne/1o9HzPmL9A
+         CF9Z9OMtVMzu0gtAgipUjsXrkafMmluxMTDbFDE5IX855xEKHmbeApZ+8f/YzXZ/kyx+
+         s9erz1zouGyEqJIdC8atitWGRYLJFVQX5PjcGbLXdzmMAg4wdHi8x4zPa/pFYjAcTVb1
+         qd6mrnd/dLsoRXpZzINfxrsIZwacxG51/+KjOO0L3w0qarvQ8WR8kGI5H7n7zoBkxwEe
+         J0ybN3N7oXkX4B6TpJigDsLiOSpkWW57nPlat0Hbfa/xRXmauTluOVV6lpMWw9lsbiJr
+         uVrA==
+X-Gm-Message-State: AOAM530FSuh7OY9uE7iXNz3I94elJ2DqmmGbWCL5oNurmw/+mgu2kfVa
+	wvsxHNMqUPHmsRlnu61IuEpaGuRAO2+lDpCNAL8BpA==
+X-Google-Smtp-Source: ABdhPJwp7XL1WbJHCX9UN6ZuIcha4YEaod1ZBC6EIN9qrhlFGtFpagQoyq9SLCtiphc3Xn218zq4rFubzL79oWyLj5E=
+X-Received: by 2002:a62:86c5:0:b029:25f:4e63:223b with SMTP id
+ x188-20020a6286c50000b029025f4e63223bmr5876886pfd.19.1618840184145; Mon, 19
+ Apr 2021 06:49:44 -0700 (PDT)
+MIME-Version: 1.0
 References: <CADjF3PwZ4DQ5aQG7KsKV3=ZMG4zB_2GORZgKb0mBBgV_kwpXqQ@mail.gmail.com>
-In-Reply-To: <CADjF3PwZ4DQ5aQG7KsKV3=ZMG4zB_2GORZgKb0mBBgV_kwpXqQ@mail.gmail.com>
-To: Martin Elfvelin <marelf-5@student.ltu.se>
-X-Mailer: iPhone Mail (18D70)
-Message-ID-Hash: W2SICIJN4LTJH37F7MKAKOF7A7S3D5OU
-X-Message-ID-Hash: W2SICIJN4LTJH37F7MKAKOF7A7S3D5OU
-X-MailFrom: patchvonbraun@gmail.com
+ <FE685529-0728-4EC7-B265-2221EF88808B@gmail.com>
+In-Reply-To: <FE685529-0728-4EC7-B265-2221EF88808B@gmail.com>
+Date: Mon, 19 Apr 2021 15:49:33 +0200
+Message-ID: <CADjF3Py=7anwN+VG+ykyiwGosad45ypJdGSzYbcKVtDUWFV8CQ@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Message-ID-Hash: K7WFNATV6MK3RJTHQFOVLJB6VK42HRI7
+X-Message-ID-Hash: K7WFNATV6MK3RJTHQFOVLJB6VK42HRI7
+X-MailFrom: marelf-5@student.ltu.se
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Reflected power on USRP B200
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/W2SICIJN4LTJH37F7MKAKOF7A7S3D5OU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K7WFNATV6MK3RJTHQFOVLJB6VK42HRI7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Martin Elfvelin via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Martin Elfvelin <marelf-5@student.ltu.se>
+Content-Type: multipart/mixed; boundary="===============3561341130889409127=="
 
-QSBjaXJjdWxhdG9yIGNhbiBnaXZlIHlvdSBhbiBhZGRpdGlvbmFsIDIwZEIgaXNvbGF0aW9uLiAN
-Cg0KUHV0dGluZyA1ZCFtIGludG8gdGhlIFJYMiBwb3J0IHdpbGwgbGlrZWx5IGRlc3Ryb3kgdGhl
-IFJYIGFtcGxpZmllciBpbiB0aGUgQUQ5MzYxLiANCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQo+
-IE9uIEFwciAxOSwgMjAyMSwgYXQgOToxMiBBTSwgTWFydGluIEVsZnZlbGluIHZpYSBVU1JQLXVz
-ZXJzIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6DQo+IA0KPiDvu78NCj4gSGVs
-bG8gYWxsLA0KPiANCj4gSSBhbSBwbGFubmluZyBvbiB1c2luZyBhIFVTUlAgQjIwMCBpbiBhIGhh
-bGYtZHVwbGV4IGNvbW11bmljYXRpb24gc3lzdGVtIHRvIGNvbW11bmljYXRlIHdpdGggYSBDdWJl
-U2F0LiBUaGUgVFgvUlggcG9ydCB3aWxsIGJlIHVzZWQgZm9yIHRyYW5zbWl0dGluZyBhbmQgdGhl
-IFJYMiBwb3J0IGZvciByZWNlaXZpbmcuIFRoZSB0cmFuc21pdHRpbmcgcG9ydCB3aWxsIGJlIGNv
-bm5lY3RlZCB0byBhIHBvd2VyIGFtcGxpZmllciB3aXRoIGEgNjBXIG91dHB1dCwgdGhpcyB3aWxs
-IGluIHR1cm4gY29ubmVjdCB0byBhbiBSRiBzd2l0Y2ggd2hpY2ggd2lsbCBzd2l0Y2ggYmV0d2Vl
-biB0aGUgVFgvUlggKHRyYW5zbWl0dGluZykgYW5kIFJYMiAocmVjZWl2aW5nKS4gVGhlIFJGIHN3
-aXRjaCBoYXMgYW4gaXNvbGF0aW9uIG9mIH40MC00MyBkQiB3aGljaCBtZWFucyBmcm9tIHRoZSA0
-Ny43OCBkQm0gdHJhbnNtaXR0ZWQgd2Ugd2lsbCBoYXZlIHJvdWdobHkgNS04IGRCbSByZWZsZWN0
-ZWQgdG8gUlgyLiBTaW5jZSB0aGUgU0RSIGlzIG9ubHkgcmF0ZWQgdG8gcmVjZWl2ZSBtYXhpbXVt
-IDAgZEJtIEknbSB3b25kZXJpbmcgaWYgc29tZW9uZSBoYXMgYW55IGlkZWFzIG9uIGhvdyB0byBo
-YW5kbGUgdGhpcy4gSSdtIHVuc3VyZSBpZiB0aGlzIHBvd2VyIHdpbGwgc2ltcGx5IGZyeSB0aGUg
-Ym9hcmQgYW5kIEkgc2hvdWxkIGltcGxlbWVudCBhIHBvd2VyIGxpbWl0ZXIgb3IgaWYgdGhlcmUg
-YXJlIG90aGVyIHdvcmthcm91bmRzLg0KPiANCj4gQXBwcmVjaWF0ZSBhbnkgaGVscCB5b3UgY2Fu
-IHByb3ZpZGUuDQo+IEJlc3QgcmVnYXJkcywNCj4gTWFydGluIEVsZnZlbGluDQo+IF9fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJl
-IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWls
-aW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2Vu
-ZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============3561341130889409127==
+Content-Type: multipart/alternative; boundary="0000000000001fdde105c0539a71"
+
+--0000000000001fdde105c0539a71
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you for your input. Do you suggest adding a circulator to the system
+or rather replacing the switch with a circulator?
+
+Best regards,
+Martin
+
+On Mon, Apr 19, 2021 at 3:43 PM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
+
+> A circulator can give you an additional 20dB isolation.
+>
+> Putting 5d!m into the RX2 port will likely destroy the RX amplifier in th=
+e
+> AD9361.
+>
+> Sent from my iPhone
+>
+> > On Apr 19, 2021, at 9:12 AM, Martin Elfvelin via USRP-users <
+> usrp-users@lists.ettus.com> wrote:
+> >
+> > =EF=BB=BF
+> > Hello all,
+> >
+> > I am planning on using a USRP B200 in a half-duplex communication syste=
+m
+> to communicate with a CubeSat. The TX/RX port will be used for transmitti=
+ng
+> and the RX2 port for receiving. The transmitting port will be connected t=
+o
+> a power amplifier with a 60W output, this will in turn connect to an RF
+> switch which will switch between the TX/RX (transmitting) and RX2
+> (receiving). The RF switch has an isolation of ~40-43 dB which means from
+> the 47.78 dBm transmitted we will have roughly 5-8 dBm reflected to RX2.
+> Since the SDR is only rated to receive maximum 0 dBm I'm wondering if
+> someone has any ideas on how to handle this. I'm unsure if this power wil=
+l
+> simply fry the board and I should implement a power limiter or if there a=
+re
+> other workarounds.
+> >
+> > Appreciate any help you can provide.
+> > Best regards,
+> > Martin Elfvelin
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000001fdde105c0539a71
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Thank you for your input. Do you suggest adding a cir=
+culator to the system or rather replacing the switch with a circulator?</di=
+v><div><br></div><div>Best regards,</div><div>Martin<br></div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 1=
+9, 2021 at 3:43 PM Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail=
+.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">A circulator can give you an additional 20dB i=
+solation. <br>
+<br>
+Putting 5d!m into the RX2 port will likely destroy the RX amplifier in the =
+AD9361. <br>
+<br>
+Sent from my iPhone<br>
+<br>
+&gt; On Apr 19, 2021, at 9:12 AM, Martin Elfvelin via USRP-users &lt;<a hre=
+f=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.=
+ettus.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt; =EF=BB=BF<br>
+&gt; Hello all,<br>
+&gt; <br>
+&gt; I am planning on using a USRP B200 in a half-duplex communication syst=
+em to communicate with a CubeSat. The TX/RX port will be used for transmitt=
+ing and the RX2 port for receiving. The transmitting port will be connected=
+ to a power amplifier with a 60W output, this will in turn connect to an RF=
+ switch which will switch between the TX/RX (transmitting) and RX2 (receivi=
+ng). The RF switch has an isolation of ~40-43 dB which means from the 47.78=
+ dBm transmitted we will have roughly 5-8 dBm reflected to RX2. Since the S=
+DR is only rated to receive maximum 0 dBm I&#39;m wondering if someone has =
+any ideas on how to handle this. I&#39;m unsure if this power will simply f=
+ry the board and I should implement a power limiter or if there are other w=
+orkarounds.<br>
+&gt; <br>
+&gt; Appreciate any help you can provide.<br>
+&gt; Best regards,<br>
+&gt; Martin Elfvelin<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000001fdde105c0539a71--
+
+--===============3561341130889409127==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============3561341130889409127==--
