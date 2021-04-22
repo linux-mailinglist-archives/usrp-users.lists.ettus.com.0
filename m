@@ -2,141 +2,173 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328303685B4
-	for <lists+usrp-users@lfdr.de>; Thu, 22 Apr 2021 19:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 548C236860C
+	for <lists+usrp-users@lfdr.de>; Thu, 22 Apr 2021 19:35:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C14AF384572
-	for <lists+usrp-users@lfdr.de>; Thu, 22 Apr 2021 13:19:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6BD9E3847EF
+	for <lists+usrp-users@lfdr.de>; Thu, 22 Apr 2021 13:35:32 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Xq+PyL5L";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="o9qqNSQZ";
 	dkim-atps=neutral
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 73C27384335
-	for <USRP-users@lists.ettus.com>; Thu, 22 Apr 2021 13:18:52 -0400 (EDT)
-Received: by mail-yb1-f169.google.com with SMTP id 130so8558925ybd.10
-        for <USRP-users@lists.ettus.com>; Thu, 22 Apr 2021 10:18:52 -0700 (PDT)
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 84DD4384279
+	for <usrp-users@lists.ettus.com>; Thu, 22 Apr 2021 13:34:43 -0400 (EDT)
+Received: by mail-qv1-f50.google.com with SMTP id i11so16905608qvu.10
+        for <usrp-users@lists.ettus.com>; Thu, 22 Apr 2021 10:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2TYHUHIHN+KHUWqIbYDIVW+0xVSsmOuGtOuJ3novbHU=;
-        b=Xq+PyL5LXW96ANcZE16fvmKr/pTGccNQX0hpAFVzdd74kvQlnl7mT7SK9cZACToFN+
-         S7LRYnW648x370NOuZ1P5P8o2Y4iHkwyYu+Dswq0JTi+YGyXJc3uV0DZ2ViFaL70KJW1
-         vMDNaF9oKTIHmFb2H8CUBmqlvDRdiGjrPE9akz3kydOcIhDTDkKmfX13XSofR1NtTrpC
-         BxtBXzXxtAHCRK1bXAca6rSk3LnUdIo3AGzB+HE9hJ53Zj54YnBIciJJCdKX/q2I0mEV
-         a7g2VVOew+o7rpdVfSTUmLsdc0Z9BxuBjUPQ2XvI9QN8Dqn4Sgw2/PJUoZiH2xVc9M/E
-         aPmw==
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=HOHU+L2t2kHjURI4UcLcFuhLI2sKUu8iFoLCTe17nV8=;
+        b=o9qqNSQZMkEK20dlcMVCl+Fr04g3U7uKi5i/xESOut+w9kFHcf/Fa0uNbZCXdpIs+f
+         zAdDG2G9OqwFUHJQbUuzvfBQAolZB7T1hpm+eUulMW3YuvlbhDA26IFH7aFF1v1J9wpj
+         eKWytdwVvTWSvUxs+U+mORCEcQ7kKgUDAbWLyXQmrgPkHwZmtmayftXz+kawWxHvdK09
+         K1yHxS/sOSU6RIpZoe0acWRNtRXFzN3HMLlWlKQGDnt6EPoqvdPmFDeIUPUFTGHFFbnM
+         BlHe3lSF3+pZ62ItuHbba032ZqGcCWWP/lM9fLbWF2u6Jk9enXpNjd2h1MUCmPJIoknL
+         oeFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2TYHUHIHN+KHUWqIbYDIVW+0xVSsmOuGtOuJ3novbHU=;
-        b=LCjrtb9q26ie5pE5IVJHdxxyjgiZFVVzO6D1Zfp+LYebOlEPg6clbreeBgmKx9Z2e4
-         whgkoF+gRzf5UOD93Ke31KJTXOQAGqI/7AF3ooEOCgCOBE/zjOtXjW/f9cl8FE00YF1t
-         CEta5EHfqD71CtprFfMb6UX8iUUlzkXMc5KSmfsDcdLAEyaANkyP3DJjaUgiDgXTHLrL
-         FAfjY5mcu8xuRkBR0Wt+6syNRAXYEZPNwb7M0RiUYlTTJJPnz4VXkBDKgsyH+jwbDGEf
-         G8u640vD7OUQzO4H/YwqKchuzw2L9lQy/o9c5+nUkCuvtQSeIR11FIQWruGCAJxVAaJ7
-         vQcg==
-X-Gm-Message-State: AOAM532ms8o+BgeHU/Hoalpq2aYy337ZLBExCFyXdGzWSF9apsTqy3AJ
-	we/WFJ2/wk8AWL7lulZnUMdOwjbzdWM+/M0H3Q8=
-X-Google-Smtp-Source: ABdhPJwHIZic/zYz6sgPEEkGDVgFUKeWgIZ1oD5x3/FDIcs+cZb/wHhVUqR9DJuEsphoGQuZquOqsNgaw5jYYXQsEmM=
-X-Received: by 2002:a5b:144:: with SMTP id c4mr6176446ybp.136.1619111931840;
- Thu, 22 Apr 2021 10:18:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAOR0_ujqoh33cpKzeTpBVGzzY=v2BYyVL=w9WmX8NSUfjSbKkg@mail.gmail.com>
- <6F4B55B1-6B85-4A30-8CA8-A792D5D8595A@gmail.com>
-In-Reply-To: <6F4B55B1-6B85-4A30-8CA8-A792D5D8595A@gmail.com>
-From: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
-Date: Thu, 22 Apr 2021 13:18:41 -0400
-Message-ID: <CAL0m=Nbbzwuert-QCs0FbgoATvkr4-=EnQGzvkErx5mGEqZVEA@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Message-ID-Hash: LGMOPVG7O736QGLNAUP2R3EZEBIZ7EE7
-X-Message-ID-Hash: LGMOPVG7O736QGLNAUP2R3EZEBIZ7EE7
-X-MailFrom: huacheng.zeng@gmail.com
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=HOHU+L2t2kHjURI4UcLcFuhLI2sKUu8iFoLCTe17nV8=;
+        b=Wq0d7dhe/jXonJueY4x89B6PDwYJD8Kut3yK0ZDVwBpuLHaExDrpkmPrGatUrlnJoR
+         /4l5XvPyKx9f0hsYOYk3O9McoiVj4RtG0P1WoS9FcWSr1ynAR/U3M1qvAoskihegWrQq
+         MqKjjcTi3r4+i6RzTFFrmfycw5osysR813yB0z2I7XQyBAaKwLaFWq46ydjpFphyH0V0
+         ltEwi8FyqcXLtwcJX6+epyvawBCZnM/ku11rvIl4QrOldtkl1knCd/zoiKw08+mUkQ+C
+         tvMZ2rBQgfik0FPMk1C+tTGLy/KcgAGJKZc0E0WbH6Yza/+z4CXQ5xyUnaCR749t2jKN
+         NchA==
+X-Gm-Message-State: AOAM532gkDTZHSqUN2p+DQFaz04ylMegHUfv0a9xyAuZ3LKSsVcGhq4E
+	shslZ047ItmLuUWuY6vFIzXmktJUZEIi4Q==
+X-Google-Smtp-Source: ABdhPJwBhVVNvDPC6M+x+3nq7hpp0a5pwpYCZoROCZsOQicbPtdiqWXoNsFHiRqoCJPzp3JXTr4bJw==
+X-Received: by 2002:ad4:58e9:: with SMTP id di9mr4829754qvb.23.1619112882803;
+        Thu, 22 Apr 2021 10:34:42 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id w196sm2717117qkb.48.2021.04.22.10.34.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Apr 2021 10:34:42 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 22 Apr 2021 13:34:41 -0400
+Message-Id: <A8D19F00-BBC7-4A75-925B-8BA6FCFD9B79@gmail.com>
+References: <CAL0m=Nbbzwuert-QCs0FbgoATvkr4-=EnQGzvkErx5mGEqZVEA@mail.gmail.com>
+In-Reply-To: <CAL0m=Nbbzwuert-QCs0FbgoATvkr4-=EnQGzvkErx5mGEqZVEA@mail.gmail.com>
+To: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
+X-Mailer: iPhone Mail (18D70)
+Message-ID-Hash: DNQN3U7DG2G4GHUCFIKEMBGHA72S63PS
+X-Message-ID-Hash: DNQN3U7DG2G4GHUCFIKEMBGHA72S63PS
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <USRP-users@lists.ettus.com>
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: "LLLLLL" message from USRP X310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LGMOPVG7O736QGLNAUP2R3EZEBIZ7EE7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DNQN3U7DG2G4GHUCFIKEMBGHA72S63PS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8000099435503086691=="
+Content-Type: multipart/mixed; boundary="===============3648532380839182577=="
 
---===============8000099435503086691==
-Content-Type: multipart/alternative; boundary="0000000000008c8be805c092dfc2"
 
---0000000000008c8be805c092dfc2
-Content-Type: text/plain; charset="UTF-8"
+--===============3648532380839182577==
+Content-Type: multipart/alternative; boundary=Apple-Mail-F5DC064E-297D-46B1-A004-00EE52ECB8BC
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-F5DC064E-297D-46B1-A004-00EE52ECB8BC
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Marcus,
+I=E2=80=99m not that familiar with burst mode stuff.=20
 
-Thank you very much for your response. I'm using GNU Radio. Is there a way
-to set bursty traffic in GNU Radio Companion?
+But here=E2=80=99s a start
 
-Huacheng
+https://wiki.gnuradio.org/index.php/Burst_Tagger
+
+Also perhaps take this conversation over to the discuss-gnuradio mailing lis=
+t.=20
 
 
-On Thu, Apr 22, 2021 at 1:07 PM Marcus D Leech <patchvonbraun@gmail.com>
-wrote:
 
-> If you set up the steam to be a continuous stream, the USRP expects
-> continuous samples, and if it doesn=E2=80=99t get them, it produces error=
-s.
->
-> You want to configure your stream for bursts, probably timed bursts.
->
-> Are you using Gnu Radio, or the UHD API directly?
->
-> Sent from my iPhone
->
-> > On Apr 22, 2021, at 1:01 PM, Huacheng Zeng <zenghuacheng@gmail.com>
-> wrote:
-> >
-> > =EF=BB=BF
-> > Hi all,
-> >
-> > I am using USRP X310 as an MIMO transmitter to send two streams from a
-> computer. The sampling rate is set to 2 MSps. When the computer
-> continuously sends data to USRP, it works well. When the computer sends
-> data at a slow rate (e.g., 10 packets per second), USRP prints out
-> "LLLLLLLLLL" message and it seems the USRP does not transmit any signal.
-> >
-> > I expect USRP to transmit signal when it receives data from the compute=
-r
-> and not transmit signal if no data comes in.
-> >
-> > Any advice would be appreciated!
-> >
-> > Best,
-> > Huacheng
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Sent from my iPhone
 
---0000000000008c8be805c092dfc2
-Content-Type: text/html; charset="UTF-8"
+> On Apr 22, 2021, at 1:18 PM, Zeng, Huacheng <huacheng.zeng@gmail.com> wrot=
+e:
+>=20
+> =EF=BB=BF
+> Hi Marcus,
+>=20
+> Thank you very much for your response. I'm using GNU Radio. Is there a way=
+ to set bursty traffic in GNU Radio Companion?=20
+>=20
+> Huacheng=20
+>=20
+>=20
+>> On Thu, Apr 22, 2021 at 1:07 PM Marcus D Leech <patchvonbraun@gmail.com> w=
+rote:
+>> If you set up the steam to be a continuous stream, the USRP expects conti=
+nuous samples, and if it doesn=E2=80=99t get them, it produces errors.=20
+>>=20
+>> You want to configure your stream for bursts, probably timed bursts.=20
+>>=20
+>> Are you using Gnu Radio, or the UHD API directly?
+>>=20
+>> Sent from my iPhone
+>>=20
+>> > On Apr 22, 2021, at 1:01 PM, Huacheng Zeng <zenghuacheng@gmail.com> wro=
+te:
+>> >=20
+>> > =EF=BB=BF
+>> > Hi all,
+>> >=20
+>> > I am using USRP X310 as an MIMO transmitter to send two streams from a c=
+omputer. The sampling rate is set to 2 MSps. When the computer continuously s=
+ends data to USRP, it works well. When the computer sends data at a slow rat=
+e (e.g., 10 packets per second), USRP prints out "LLLLLLLLLL" message and it=
+ seems the USRP does not transmit any signal.=20
+>> >=20
+>> > I expect USRP to transmit signal when it receives data from the compute=
+r and not transmit signal if no data comes in.=20
+>> >=20
+>> > Any advice would be appreciated!
+>> >=20
+>> > Best,
+>> > Huacheng
+>> >=20
+>> >=20
+>> > _______________________________________________
+>> > USRP-users mailing list -- usrp-users@lists.ettus.com
+>> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--Apple-Mail-F5DC064E-297D-46B1-A004-00EE52ECB8BC
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Marcus,<div><br></div><div>Thank you very much for your=
- response. I&#39;m using GNU Radio. Is there a way to set bursty traffic in=
- GNU Radio Companion?=C2=A0</div><div><br></div><div>Huacheng=C2=A0</div><d=
-iv><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Thu, Apr 22, 2021 at 1:07 PM Marcus D Leech &lt;<a href=3D"=
-mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">If you set up the st=
-eam to be a continuous stream, the USRP expects continuous samples, and if =
-it doesn=E2=80=99t get them, it produces errors. <br>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">I=E2=80=99m not that familiar with burst mo=
+de stuff.&nbsp;<div><br></div><div>But here=E2=80=99s a start</div><div><br>=
+</div><div><a href=3D"https://wiki.gnuradio.org/index.php/Burst_Tagger">http=
+s://wiki.gnuradio.org/index.php/Burst_Tagger</a></div><div><br></div><div>Al=
+so perhaps take this conversation over to the discuss-gnuradio mailing list.=
+&nbsp;</div><div><br></div><div><br><br><div dir=3D"ltr">Sent from my iPhone=
+</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Apr 22, 2021, at 1:1=
+8 PM, Zeng, Huacheng &lt;huacheng.zeng@gmail.com&gt; wrote:<br><br></blockqu=
+ote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"lt=
+r">Hi Marcus,<div><br></div><div>Thank you very much for your response. I'm u=
+sing GNU Radio. Is there a way to set bursty traffic in GNU Radio Companion?=
+&nbsp;</div><div><br></div><div>Huacheng&nbsp;</div><div><br></div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Ap=
+r 22, 2021 at 1:07 PM Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gma=
+il.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">If you set up the steam to be a continuous stre=
+am, the USRP expects continuous samples, and if it doesn=E2=80=99t get them,=
+ it produces errors. <br>
 <br>
 You want to configure your stream for bursts, probably timed bursts. <br>
 <br>
@@ -144,21 +176,21 @@ Are you using Gnu Radio, or the UHD API directly?<br>
 <br>
 Sent from my iPhone<br>
 <br>
-&gt; On Apr 22, 2021, at 1:01 PM, Huacheng Zeng &lt;<a href=3D"mailto:zengh=
-uacheng@gmail.com" target=3D"_blank">zenghuacheng@gmail.com</a>&gt; wrote:<=
-br>
+&gt; On Apr 22, 2021, at 1:01 PM, Huacheng Zeng &lt;<a href=3D"mailto:zenghu=
+acheng@gmail.com" target=3D"_blank">zenghuacheng@gmail.com</a>&gt; wrote:<br=
+>
 &gt; <br>
 &gt; =EF=BB=BF<br>
 &gt; Hi all,<br>
 &gt; <br>
-&gt; I am using USRP X310 as an MIMO transmitter to send two streams from a=
- computer. The sampling rate is set to 2 MSps. When the computer continuous=
-ly sends data to USRP, it works well. When the computer sends data at a slo=
-w rate (e.g., 10 packets per second), USRP prints out &quot;LLLLLLLLLL&quot=
-; message and it seems the USRP does not transmit any signal. <br>
+&gt; I am using USRP X310 as an MIMO transmitter to send two streams from a c=
+omputer. The sampling rate is set to 2 MSps. When the computer continuously s=
+ends data to USRP, it works well. When the computer sends data at a slow rat=
+e (e.g., 10 packets per second), USRP prints out "LLLLLLLLLL" message and it=
+ seems the USRP does not transmit any signal. <br>
 &gt; <br>
-&gt; I expect USRP to transmit signal when it receives data from the comput=
-er and not transmit signal if no data comes in. <br>
+&gt; I expect USRP to transmit signal when it receives data from the compute=
+r and not transmit signal if no data comes in. <br>
 &gt; <br>
 &gt; Any advice would be appreciated!<br>
 &gt; <br>
@@ -167,15 +199,16 @@ er and not transmit signal if no data comes in. <br>
 &gt; <br>
 &gt; <br>
 &gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com=
+" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@list=
+s.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</div></blockquote></div></body></html>=
 
---0000000000008c8be805c092dfc2--
+--Apple-Mail-F5DC064E-297D-46B1-A004-00EE52ECB8BC--
 
---===============8000099435503086691==
+--===============3648532380839182577==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,4 +218,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8000099435503086691==--
+--===============3648532380839182577==--
