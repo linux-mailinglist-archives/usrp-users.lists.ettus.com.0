@@ -2,143 +2,126 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B17369B04
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Apr 2021 21:48:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3949C369B32
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Apr 2021 22:18:40 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5E6E3384843
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Apr 2021 15:48:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 10AAF3843D3
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Apr 2021 16:18:39 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="XVXPCKMR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eWGAwohW";
 	dkim-atps=neutral
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4349F384298
-	for <usrp-users@lists.ettus.com>; Fri, 23 Apr 2021 15:47:31 -0400 (EDT)
-Received: by mail-ot1-f42.google.com with SMTP id 35-20020a9d05260000b029029c82502d7bso14861206otw.2
-        for <usrp-users@lists.ettus.com>; Fri, 23 Apr 2021 12:47:31 -0700 (PDT)
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id AC1323843C1
+	for <usrp-users@lists.ettus.com>; Fri, 23 Apr 2021 16:17:44 -0400 (EDT)
+Received: by mail-ot1-f54.google.com with SMTP id i16-20020a9d68d00000b0290286edfdfe9eso35728613oto.3
+        for <usrp-users@lists.ettus.com>; Fri, 23 Apr 2021 13:17:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=grkqXEjp9/z1+ciOxZqvU93DzWJxBqacopW4IaGNFMU=;
-        b=XVXPCKMR2gGEy0QQboNDaAkTRfJCAveSjrbtorPjAbsMgzsu+TLAYrqgujRlB3eaqo
-         VsK5WDon3fPbM+IqIo/Z+AZK/ThlS15MHqROf+7sIhEaZd/Rx+H1trVHnNN/zQl3ufcr
-         zCnv2w67R2gvGHEvW6E7d902zsUYOlCzc1QfqraRXBt4RHGu1lfdRq0JahdCYWnwDsmS
-         sakQ3o2XaEGktElp7ZYo806tV2x2dULSN+9BgXu4IqACM0enrQ5QulcAON1okTcaE+Kt
-         fYg6FrO0jFsxw2y9bdquDPPlJ55KxVWRg6evI9lOLdnE4zcle9dpWLYF4COpCrae+V4X
-         /m8Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=LjWEiXcMXXVfKtUA8RnM/9HwDST6D23E3m9xRBAIj4k=;
+        b=eWGAwohWUuyOq7efyt7DQOu5fxkQQqDWHc35sIVahjLCOczuXy7vgTBe38gMUlFwos
+         Obb1PmEgVxY9e9YzoowCmWEqTo8Lu1sFcJRCQMvBdor5xkiMZlL3DAFRTj+BG6TSmwM4
+         DAcy3LRTt45bF/NsnZpUVPEMwX6io8a148hf4s+SNZji0H6UgrtV3KyOBbrnU3pjni2G
+         SQtAFQZfrZfEi3lLUeAATRQJQFZiC3BlCd16clddESluFatTZcnp05ez8DEkYL084ZcR
+         sTsyFVsQACwUhDxhPKU2mIHQZgCtqF/L3i8ch0GH84qtBQ9I/stLuxYbDj9xpWx6eigd
+         3mRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=grkqXEjp9/z1+ciOxZqvU93DzWJxBqacopW4IaGNFMU=;
-        b=K1lyOlMUn8n/L0+mIy1PYXi0Pi0SBMzUT+2ZhClUO/2aFZDNDbTl5E52u7cPvMzJwy
-         Q74/SQQcP72Gltthjdn/Lybao5Kg3b9H4lbCIxwkOSSV9iGyY3H1PTvUl53b/xFfnHRE
-         e70KXppgFth/Y+zXUHhnUDm5Y+HZ+z+/9RWnf9/JwtdW2cTsmmmuXuoecfy7+p+ZcMk8
-         OYB0D8EJVe+ubNLMV+5wC2vAzT4YanOM/XT8xQhV1jSAXYROVkb56+sjHr0jcaohOjgB
-         xUadMIZ/ZSlqqwMu20napGDkRfPfmcJ5MQNipwWF0HsBAihe7if79beagYSnLj8s+RHO
-         Mnow==
-X-Gm-Message-State: AOAM533t7FiVvTPYReJK3yi8qqB5Jwp3BgFy5WcI0B32dq9qVoagu8vz
-	1ExYFMhUlbVex0LAFLpSc4EHK6+X73eYKVa4txVKzg==
-X-Google-Smtp-Source: ABdhPJx9+s6uPOfwv3SnFdyvj8VB3ytvAHJNMe1s9BMrg0IjRpXOaKNVwdHB4WZ3qWrGy5RTdtR1nqi7fkU4fliAPoc=
-X-Received: by 2002:a9d:70d5:: with SMTP id w21mr4588214otj.301.1619207250405;
- Fri, 23 Apr 2021 12:47:30 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=LjWEiXcMXXVfKtUA8RnM/9HwDST6D23E3m9xRBAIj4k=;
+        b=GzlCxnCwkcEGfXgsdNsAR/+qjvtlT/wdhhFx+d6WFjjWM5pGLrhUKvVHUWf8Uy1H3i
+         ceFTe+U++w0uowtzEJd37tEoMkYL22FNiYvhz60aieHENV0l1IOhEFbpIFNV/AVPs58o
+         jmn7CAyPItYg/hDoZioewqOTnsriBxg8Mhb9hE+zaNAGczNZRiqFFN1jRjI67iDZl5QZ
+         aOq4fZ4uyNjGkdKzQtF5Q16qHJz02MVTqf/dc+Au2vYOdCLhSp99zo1nvt3r5ROx0lWK
+         zZLk2UY/dwhe5wLOtkp27oaNRYnEFMWqlDnns0c6IPPMQvPcSmaHbo1Fho8c8opfnUnM
+         +30w==
+X-Gm-Message-State: AOAM5318i1VY/pukfkynvyecANOxPhFosn3nz2xBj+4pGdMuUbrt124y
+	RKkNQlSouMBm6q2H6T5w0kj/r0tn69++t8A28ox2Cu1k
+X-Google-Smtp-Source: ABdhPJy59nybbPD0qK9LoaHtD4USBLP7EDRPDguBJqyfOnA56KLD7NWUEYenQ7mNShBbcv8JMicvOOGLuXSEf8TxYXE=
+X-Received: by 2002:a9d:7405:: with SMTP id n5mr4881675otk.338.1619209063756;
+ Fri, 23 Apr 2021 13:17:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <sjchtPrrPJYcAr2Z8yuCvd7L2gpkh7QTtYtpuylu1k@lists.ettus.com>
-In-Reply-To: <sjchtPrrPJYcAr2Z8yuCvd7L2gpkh7QTtYtpuylu1k@lists.ettus.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Fri, 23 Apr 2021 15:47:19 -0400
-Message-ID: <CAB__hTTgALJDdRHD_9BsejbJpN5XQ7HAqT5=_a6MQmTPKgS9Eg@mail.gmail.com>
-To: jcasallas2019@gmail.com
-Message-ID-Hash: AEAHR3S44AKKBW4KKEXKDN5VSPDPDLAF
-X-Message-ID-Hash: AEAHR3S44AKKBW4KKEXKDN5VSPDPDLAF
-X-MailFrom: rkossler@nd.edu
+From: Edwin Harmon <edwinh4rmon@gmail.com>
+Date: Fri, 23 Apr 2021 16:17:33 -0400
+Message-ID: <CALA1YLsO1E4vK764sj2VvBmtWMS2_oOkyqK1bbqxekNHCtqd3A@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: OQEUJVVH3DILUUIPOTXMEJSPUB72U2CO
+X-Message-ID-Hash: OQEUJVVH3DILUUIPOTXMEJSPUB72U2CO
+X-MailFrom: edwinh4rmon@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Counting actual samples using RFNoC custom block
+Subject: [USRP-users] Gating function block
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AEAHR3S44AKKBW4KKEXKDN5VSPDPDLAF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OQEUJVVH3DILUUIPOTXMEJSPUB72U2CO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1286500949612003786=="
+Content-Type: multipart/mixed; boundary="===============3957114117379974592=="
 
---===============1286500949612003786==
-Content-Type: multipart/alternative; boundary="000000000000faae6305c0a910df"
+--===============3957114117379974592==
+Content-Type: multipart/alternative; boundary="000000000000100d8505c0a97daf"
 
---000000000000faae6305c0a910df
+--000000000000100d8505c0a97daf
 Content-Type: text/plain; charset="UTF-8"
 
-Julian,
-If you are counting samples, you can only do so when both tvalid and
-tready are simultaneously high at rising clock edge (this will work fine
-even in the future if you "throttle" the input by controlling tready). Once
-implemented, this will give you the accurate sample count you're looking
-for.
-Rob
+I would like to implement a gating function block with RFNoc 4 that passes
+M samples from the input to the output unmodified, "drops" the next N
+samples, and repeats indefinitely.
 
-On Fri, Apr 23, 2021 at 1:50 PM <jcasallas2019@gmail.com> wrote:
+This is obviously a generalization of the keep_one_in_n
+<https://github.com/EttusResearch/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/keep_one_in_n.v>
+block, so I am using this as my starting point with vector_mode always
+false. I've looked over the verilog code and the yaml configuration file
+and have a few questions.
 
-> Jonathon,
->
->
-> Only when tvalid is high. The reason why I did not use pload_tready was
-> because eventually (is not implemented yet) I want to decide when am ready
-> to receive data. My goal here is to count samples for now, please let me
-> know your thoughts.
->
->
-> Also, I would like to mention that I am using the axis_data_clk and
-> axis_data_rst. I can see other clock ce_clk which is also specified in the
-> YAML file as clock domain but I do not see any ce_rst in my block verilog
-> file, wonder if I am using the right clock for the user logic.
->
->
-> Thanks a lot.
->
-> Julian
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+There is clearly a rate change in the block but nothing in the verilog code
+modifies the CHDR context; specifically the timestamp, length, and burst
+delimiters. Does the framework somehow automatically make these
+modifications to the header?
 
---000000000000faae6305c0a910df
+I would like to write host code that can use this block without knowing the
+values of N and M a priori and also having the ability to dynamically set
+their values via register writes. In general M won't be equal to the
+payload size, P. For scenarios where M < P, is there a way to send the CHDR
+packet before it fills to size P to reduce latency? If not or If M >= P,
+would you recommend using context metadata to indicate the starting and
+ending samples of a frame?
+
+Thank you for your time and consideration.
+-Ed
+
+--000000000000100d8505c0a97daf
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Julian,<div>If you are counting samples, you can only do s=
-o when both tvalid and tready=C2=A0are simultaneously high at rising clock =
-edge (this will work fine even in the future if you &quot;throttle&quot; th=
-e input by controlling tready). Once implemented, this will give you the ac=
-curate sample count you&#39;re looking for.</div><div>Rob</div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr =
-23, 2021 at 1:50 PM &lt;<a href=3D"mailto:jcasallas2019@gmail.com">jcasalla=
-s2019@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><p>Jonathon,</p><p><br></p><p>Only when tvalid is high.  The=
- reason why I did not use pload_tready was because eventually (is not imple=
-mented yet) I want to decide when am ready to receive data. My goal here is=
- to count samples for now, please let me know your thoughts.</p><p><br></p>=
-<p>Also, I would like to mention that I am using the axis_data_clk and axis=
-_data_rst. I can see other clock ce_clk which is also specified in the YAML=
- file as clock domain but I do not see any ce_rst in my block verilog file,=
-  wonder if I am using the right clock for the user logic.</p><p><br></p><p=
->Thanks a lot.</p><p>Julian </p>
+<div dir=3D"ltr"><div>I would like to implement a gating function block wit=
+h RFNoc 4 that passes M samples from the input to the output unmodified, &q=
+uot;drops&quot; the next N samples, and repeats indefinitely.</div><div><br=
+></div><div>This is obviously a generalization of the <a href=3D"https://gi=
+thub.com/EttusResearch/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/keep_one_in_n=
+.v">keep_one_in_n</a> block, so I am using this as my starting point with v=
+ector_mode always false. I&#39;ve looked over the verilog code and the yaml=
+ configuration file and have a few questions.</div><div><br></div><div>Ther=
+e is clearly a rate change in the block but nothing in the verilog code mod=
+ifies the CHDR context; specifically the timestamp, length, and burst delim=
+iters. Does the framework somehow automatically make these modifications to=
+ the header?</div><div><br></div><div>I would like to write host code that =
+can use this block without knowing the values of N and M a priori and also =
+having the ability to dynamically set their values via register writes. In =
+general M won&#39;t be equal to the payload size, P. For scenarios where M =
+&lt; P, is there a way to send the CHDR packet before it fills to size P to=
+ reduce latency? If not or If M &gt;=3D P, would you recommend using contex=
+t metadata to indicate the starting and ending samples of a frame?<br></div=
+><div><br></div><div>Thank you for your time and consideration.</div><div>-=
+Ed<br></div><br><div><br></div><div><br></div></div>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+--000000000000100d8505c0a97daf--
 
---000000000000faae6305c0a910df--
-
---===============1286500949612003786==
+--===============3957114117379974592==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -148,4 +131,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1286500949612003786==--
+--===============3957114117379974592==--
