@@ -2,183 +2,335 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF0236B55B
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Apr 2021 17:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B689036CA4D
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Apr 2021 19:24:58 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 04306384278
-	for <lists+usrp-users@lfdr.de>; Mon, 26 Apr 2021 11:01:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 423C7383BE8
+	for <lists+usrp-users@lfdr.de>; Tue, 27 Apr 2021 13:24:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="BMHd4tn/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=boeing.com header.i=@boeing.com header.b="dVVTF2nb";
 	dkim-atps=neutral
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id C773A383DE4
-	for <usrp-users@lists.ettus.com>; Mon, 26 Apr 2021 11:00:53 -0400 (EDT)
-Received: by mail-ot1-f43.google.com with SMTP id 92-20020a9d02e50000b029028fcc3d2c9eso29861642otl.0
-        for <usrp-users@lists.ettus.com>; Mon, 26 Apr 2021 08:00:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xdSBWyeDHPnkMNfwMRKzuxW2xAn29MsmG6IPK06tzcU=;
-        b=BMHd4tn/Vn6kYePO6CEoIaW6NxWQ5SPm2O7sm0dcyNRXs1R6oW9I/Nq7wF/beD5prb
-         35MSNclYDvA7Xl2PFz7C6osFiT3VvGjSddNHXLtBxzqiM2XoJssqNIDGUdS0OMsHK8wO
-         miT8y5q9oYdeDld2XUOcZEvdixljrmb3DFO/NBKcwdc8Ifkq7yK6y3gsk0vpTR2Or5m/
-         fg/2ifrHbhKUFvfj5IEeXY9rtNXAwCr3HKTsyUTv1roSHzOm5xDdShqV1UtyZvEG69aM
-         uFnLuYf5XNqTO4HlMWsNOTA4HsFSXNcg8NBBnliLpSgCFE5YYfeqVwhsEkPqpBptW2hT
-         XNGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xdSBWyeDHPnkMNfwMRKzuxW2xAn29MsmG6IPK06tzcU=;
-        b=rZm0ZinNMD/tFlEKvhrZhOAC+v2ct6VJbtubNpUTO2bYyMuwZmAUy2Zo2sf3LOhgUv
-         20/ijBzPKbKrdqQ3WDM5uBFewTFPzAPjXN1k25C3rPjh6y1FggaBS+BmfliuEi+mtigp
-         LLKb2/UYYMca/zdlKa4uP+WfQEjLqEUWVMrCmSSiQSKS6n4Jm34TtI9Zwm/eOG1/1XMc
-         f2xtCLl9NM0fjJiVnGH4oBiAJftaM/Sw3JfIVKpmM299BU/gy9Qe++yZxUDzzQLhC+E6
-         HG+054LFCQqcmXUGAY4eNDzYsSQt/zJq/y4SBu1oNLs2CbgiVa9fVfxKcVC+RZow/Jaa
-         76WQ==
-X-Gm-Message-State: AOAM530zE0OzvWehao4bGg2ECjVzGNH5+HH/g0ka00JA0JoA2hu5clIz
-	E62aSmxUKLjHw7ogAdx97kzchmAJGsI8WqwXjbU7AGZ8l/o=
-X-Google-Smtp-Source: ABdhPJxPkoaY+ZGePsrRO4KZkIsYVgFCuHlMY4evXHhJeOIiSmDXCnu3K3XR5Sbc2ZHBS3eVX21dVncV3+3/en6UC6A=
-X-Received: by 2002:a9d:7e8e:: with SMTP id m14mr14993122otp.302.1619449252962;
- Mon, 26 Apr 2021 08:00:52 -0700 (PDT)
+Received: from clt-mbsout-01.mbs.boeing.net (clt-mbsout-01.mbs.boeing.net [130.76.144.162])
+	by mm2.emwd.com (Postfix) with ESMTPS id D8B69383AF8
+	for <usrp-users@lists.ettus.com>; Tue, 27 Apr 2021 13:23:59 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by clt-mbsout-01.mbs.boeing.net (8.15.2/8.15.2/DOWNSTREAM_MBSOUT) with SMTP id 13RHNsHA015404;
+	Tue, 27 Apr 2021 13:23:57 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=boeing.com;
+	s=boeing-s1912; t=1619544237;
+	bh=uWPuVWfEkWvx/AYpniPlU2byAnIJjSvXkFuivctJ1EA=;
+	h=From:To:Subject:Date:From;
+	b=dVVTF2nbR+xIX0KlMCLS1CuN3Kmg3p5wRkF43lyFqalyqHM91oKFDw2wtgw/hWuME
+	 W+yq2HE5Vfd+gHNYOFQMdCQsJZr4AWN7gdBVW0Xm8vL5rTwdxEQ/eZyA1x6UG1gMOq
+	 nexeJznqwyQQgWmvAp1dbsde3Vnljp/ldFFhJ5vOajtIAiPqduMK8+/eQcd0IUcPod
+	 wAxj99jqGZynbyU3/aGda3va/UQxlCeYfRHmW6IYtY/WWdlC4gMRYr6d66fNSD3+DD
+	 gSvqFqN2GcRVd6nS6L+DMQJQNfyGrXjJ/B2C4w+F0y2EngQ3cVkr0znbdeP9CSX7g+
+	 czDW7sOcDs0aQ==
+Received: from XCH16-06-12.nos.boeing.com (xch16-06-12.nos.boeing.com [144.115.66.108])
+	by clt-mbsout-01.mbs.boeing.net (8.15.2/8.15.2/8.15.2/UPSTREAM_MBSOUT) with ESMTPS id 13RHNpOe015371
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=OK)
+	for <usrp-users@lists.ettus.com>; Tue, 27 Apr 2021 13:23:51 -0400
+Received: from XCH16-06-10.nos.boeing.com (144.115.66.106) by
+ XCH16-06-12.nos.boeing.com (144.115.66.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.1.2242.4; Tue, 27 Apr 2021 10:23:50 -0700
+Received: from XCH16-06-10.nos.boeing.com ([fe80::da2:a12f:caaa:94ca]) by
+ XCH16-06-10.nos.boeing.com ([fe80::da2:a12f:caaa:94ca%9]) with mapi id
+ 15.01.2242.008; Tue, 27 Apr 2021 10:23:50 -0700
+From: "Hirst (US), Stephen" <stephen.hirst@boeing.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Underflows/Overflows, Filesize and a Complete N00B
+Thread-Index: Adc7h8gi+FI4QxwBS06r1LEsR+igog==
+Date: Tue, 27 Apr 2021 17:23:50 +0000
+Message-ID: <cc4faee36fb84e0d83669253db7e636f@boeing.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [144.115.204.6]
+x-tm-snts-smtp: F5AC1DC13BBB544AC438454B9F737E396A40D2110961DDE6A036C89F10E4DAD62000:8
 MIME-Version: 1.0
-References: <CALA1YLsO1E4vK764sj2VvBmtWMS2_oOkyqK1bbqxekNHCtqd3A@mail.gmail.com>
-In-Reply-To: <CALA1YLsO1E4vK764sj2VvBmtWMS2_oOkyqK1bbqxekNHCtqd3A@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Mon, 26 Apr 2021 11:00:42 -0400
-Message-ID: <CAB__hTSYkW3swnki363MhwV293NkWjq8p9DCyNmukryDWj+c=g@mail.gmail.com>
-To: Edwin Harmon <edwinh4rmon@gmail.com>
-Message-ID-Hash: 35RZPS3ZQYL5ZH6FU5KWGISWAMZBZANZ
-X-Message-ID-Hash: 35RZPS3ZQYL5ZH6FU5KWGISWAMZBZANZ
-X-MailFrom: rkossler@nd.edu
+X-TM-AS-GCONF: 00
+Message-ID-Hash: NPZ2WZNCUQYNDY2HMGMZ62KMMAWRBOSM
+X-Message-ID-Hash: NPZ2WZNCUQYNDY2HMGMZ62KMMAWRBOSM
+X-MailFrom: stephen.hirst@boeing.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Gating function block
+Subject: [USRP-users] Underflows/Overflows, Filesize and a Complete N00B
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/35RZPS3ZQYL5ZH6FU5KWGISWAMZBZANZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NPZ2WZNCUQYNDY2HMGMZ62KMMAWRBOSM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0578535061711442016=="
+Content-Type: multipart/mixed; boundary="===============3755391209140481494=="
 
---===============0578535061711442016==
-Content-Type: multipart/alternative; boundary="00000000000074baff05c0e169c6"
+--===============3755391209140481494==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_cc4faee36fb84e0d83669253db7e636fboeingcom_"
 
---00000000000074baff05c0e169c6
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Edwin,
-I have completed some similar blocks.  Even though your desired block is
-very similar in function to keep_one_in_n, you might consider modeling your
-block instead using the DDC example, which incorporates the axi_rate_change
-module. And, since this module uses the older settings bus and 128-bit
-tuser signal, you might consider using the ctrlport_to_settings_bus module
-and re-building tuser from the sideband signals (as in the DDC example).
-
-The axi_rate_change module will set the output packet size the same as the
-input packet size, regardless of your values for M and N (note that your
-defs of M and N are not quite the same as axi_rate_change defs of M and N).
-
-Regarding your question about how to mark the end of frames, that is a bit
-trickier. You could use either EOB or EOV, or you could do things on the
-UHD side where your block controller knows M and N and can thus know that
-each Mth sample is an end-of-frame.
-Rob
-
-On Fri, Apr 23, 2021 at 4:18 PM Edwin Harmon <edwinh4rmon@gmail.com> wrote:
-
-> I would like to implement a gating function block with RFNoc 4 that passes
-> M samples from the input to the output unmodified, "drops" the next N
-> samples, and repeats indefinitely.
->
-> This is obviously a generalization of the keep_one_in_n
-> <https://github.com/EttusResearch/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/keep_one_in_n.v>
-> block, so I am using this as my starting point with vector_mode always
-> false. I've looked over the verilog code and the yaml configuration file
-> and have a few questions.
->
-> There is clearly a rate change in the block but nothing in the verilog
-> code modifies the CHDR context; specifically the timestamp, length, and
-> burst delimiters. Does the framework somehow automatically make these
-> modifications to the header?
->
-> I would like to write host code that can use this block without knowing
-> the values of N and M a priori and also having the ability to dynamically
-> set their values via register writes. In general M won't be equal to the
-> payload size, P. For scenarios where M < P, is there a way to send the CHDR
-> packet before it fills to size P to reduce latency? If not or If M >= P,
-> would you recommend using context metadata to indicate the starting and
-> ending samples of a frame?
->
-> Thank you for your time and consideration.
-> -Ed
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000074baff05c0e169c6
-Content-Type: text/html; charset="UTF-8"
+--_000_cc4faee36fb84e0d83669253db7e636fboeingcom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Edwin,</div><div>I have completed some similar blo=
-cks.=C2=A0 Even though your desired block is very similar in function to ke=
-ep_one_in_n, you might consider modeling your block instead using the DDC e=
-xample, which incorporates the axi_rate_change module. And, since this modu=
-le uses the older settings bus and 128-bit tuser signal, you might consider=
- using the ctrlport_to_settings_bus module and re-building tuser from the s=
-ideband signals (as in the DDC example).=C2=A0</div><div><br></div><div>The=
- axi_rate_change module will set the output packet size the same as the inp=
-ut packet size, regardless of your values for M and N (note that your defs =
-of M and N are not quite the same as axi_rate_change defs of M and N).=C2=
-=A0</div><div><br></div><div>Regarding your question about how to mark the =
-end of frames, that is a bit trickier. You could use either EOB or EOV, or =
-you could do things on the UHD side where your block controller knows M and=
- N and can thus know that each Mth=C2=A0sample is an end-of-frame.</div><di=
-v>Rob</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Fri, Apr 23, 2021 at 4:18 PM Edwin Harmon &lt;<a href=3D"mailto:edw=
-inh4rmon@gmail.com" target=3D"_blank">edwinh4rmon@gmail.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
-><div>I would like to implement a gating function block with RFNoc 4 that p=
-asses M samples from the input to the output unmodified, &quot;drops&quot; =
-the next N samples, and repeats indefinitely.</div><div><br></div><div>This=
- is obviously a generalization of the <a href=3D"https://github.com/EttusRe=
-search/fpga/blob/UHD-3.15.LTS/usrp3/lib/rfnoc/keep_one_in_n.v" target=3D"_b=
-lank">keep_one_in_n</a> block, so I am using this as my starting point with=
- vector_mode always false. I&#39;ve looked over the verilog code and the ya=
-ml configuration file and have a few questions.</div><div><br></div><div>Th=
-ere is clearly a rate change in the block but nothing in the verilog code m=
-odifies the CHDR context; specifically the timestamp, length, and burst del=
-imiters. Does the framework somehow automatically make these modifications =
-to the header?</div><div><br></div><div>I would like to write host code tha=
-t can use this block without knowing the values of N and M a priori and als=
-o having the ability to dynamically set their values via register writes. I=
-n general M won&#39;t be equal to the payload size, P. For scenarios where =
-M &lt; P, is there a way to send the CHDR packet before it fills to size P =
-to reduce latency? If not or If M &gt;=3D P, would you recommend using cont=
-ext metadata to indicate the starting and ending samples of a frame?<br></d=
-iv><div><br></div><div>Thank you for your time and consideration.</div><div=
->-Ed<br></div><br><div><br></div><div><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+Hi Guys,
 
---00000000000074baff05c0e169c6--
+I appreciate you all and thank you for the great community that is this mai=
+ling list! Continue on!
 
---===============0578535061711442016==
+I, however, am a complete N00B and require assistance on some seemingly min=
+or tasks that I believe you could help me out on. :)
+
+With that being said, I find myself with the Ubuntu 20.04LTS install on a r=
+ather "fast" Dell laptop (specs down below.)
+
+-          8th Gen Intel Core i7-8650U Processor (Quad Core, 8M Cache, 1.9G=
+Hz,15W, vPro)
+
+-          16GB, 2x8GB, 2666MHz DDR4 Non-ECC
+
+-          M.2 1TB PCIe NVMe Class 40 Opal 2.0 Self Encrypting Solid State =
+Drive
+
+I have fiddled around with an online install on the laptop but I haven't go=
+tten the overflows and underflows to cooperate. And to be more specific, I =
+can record a sample rate of 2Mhz and 0.2Mhz bandwidth without issue, but I =
+can't get a SR or BW greater than those to work without Under/Overflows dev=
+eloping. (I have been using UHD 3.15.0.02build5 with GNURadio 3.8.1.0 (Pyth=
+on 3.8.2) (grc and grc-uhd) and installed everything with "apt". The first =
+line in my grc python output labels "Linux GNU C++ version 9.2.1 20200304; =
+Boost_107100; UHD_3.15.0.0-2build5", USB3.0). Any ideas? I tried both the n=
+um_recv_frame size stuff and setting high priority with no joy, but then ag=
+ain, I am a N00b, so I may not have done that correctly as well...
+
+Also if anyone has experience with GRC specifically, I have had success rec=
+ording what I wanted to with a file with the 2MHz Sample Rate with a 0.2 MH=
+z BW, but the files are pretty huge. We're talking 1GB/min... Any idea how =
+to make the GRC record to a less-fine resolution so I can free up some HDD =
+space?
+
+Thanks guys!
+Ya Boi Steve
+
+--_000_cc4faee36fb84e0d83669253db7e636fboeingcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cordia New";
+	panose-1:2 11 3 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Roboto-Regular;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1872723768;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1755407046 -315950238 67698691 67698693 67698689 67=
+698691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-start-at:13;
+	mso-level-number-format:bullet;
+	mso-level-text:-;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Roboto-Regular;
+	mso-fareast-font-family:Calibri;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Guys,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I appreciate you all and thank you for the great com=
+munity that is this mailing list! Continue on!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I, however, am a complete N00B and require assistanc=
+e on some seemingly minor tasks that I believe you could help me out on. :)=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">With that being said, I find myself with the Ubuntu =
+20.04LTS install on a rather &#8220;fast&#8221; Dell laptop (specs down bel=
+ow.)<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Roboto-Regular;colo=
+r:#444444"><span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt &quot=
+;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;
+</span></span></span><![endif]><span style=3D"font-family:Roboto-Regular;co=
+lor:#444444">8th Gen Intel Core i7-8650U Processor (Quad Core, 8M Cache, 1.=
+9GHz,15W, vPro)<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Roboto-Regular;colo=
+r:#444444"><span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt &quot=
+;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;
+</span></span></span><![endif]><span style=3D"color:#444444">16GB, 2x8GB, 2=
+666MHz DDR4 Non-ECC</span><span style=3D"font-family:Roboto-Regular;color:#=
+444444"><o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Roboto-Regular;colo=
+r:#444444"><span style=3D"mso-list:Ignore">-<span style=3D"font:7.0pt &quot=
+;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;
+</span></span></span><![endif]><span style=3D"font-family:Roboto-Regular;co=
+lor:#444444">M.2 1TB PCIe NVMe Class 40 Opal 2.0 Self Encrypting Solid Stat=
+e Drive<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Roboto-Regular;color:#444=
+444"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal">I have fiddled around with an online install on the =
+laptop but I haven&#8217;t gotten the overflows and underflows to cooperate=
+. And to be more specific, I can record a sample rate of 2Mhz and 0.2Mhz ba=
+ndwidth without issue, but I can&#8217;t get a
+ SR or BW greater than those to work without Under/Overflows developing. (I=
+ have been using UHD 3.15.0.02build5 with GNURadio 3.8.1.0 (Python 3.8.2) (=
+grc and grc-uhd) and installed everything with &#8220;apt&#8221;. The first=
+ line in my grc python output labels &#8220;Linux
+ GNU C&#43;&#43; version 9.2.1 20200304; Boost_107100; UHD_3.15.0.0-2build5=
+&#8221;, USB3.0). Any ideas? I tried both the num_recv_frame size stuff and=
+ setting high priority with no joy, but then again, I am a N00b, so I may n=
+ot have done that correctly as well&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Also if anyone has experience with GRC specifically,=
+ I have had success recording what I wanted to with a file with the 2MHz Sa=
+mple Rate with a 0.2 MHz BW, but the files are pretty huge. We&#8217;re tal=
+king 1GB/min&#8230; Any idea how to make the GRC
+ record to a less-fine resolution so I can free up some HDD space?<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks guys!<o:p></o:p></p>
+<p class=3D"MsoNormal">Ya Boi Steve<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_cc4faee36fb84e0d83669253db7e636fboeingcom_--
+
+--===============3755391209140481494==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -188,4 +340,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0578535061711442016==--
+--===============3755391209140481494==--
