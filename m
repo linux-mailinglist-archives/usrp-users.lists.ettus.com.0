@@ -2,186 +2,156 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DBFA36F920
-	for <lists+usrp-users@lfdr.de>; Fri, 30 Apr 2021 13:19:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5541C36FCFE
+	for <lists+usrp-users@lfdr.de>; Fri, 30 Apr 2021 17:04:46 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 15EDE3841FC
-	for <lists+usrp-users@lfdr.de>; Fri, 30 Apr 2021 07:19:54 -0400 (EDT)
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 67100383B83
-	for <usrp-users@lists.ettus.com>; Fri, 30 Apr 2021 07:19:02 -0400 (EDT)
-Date: Fri, 30 Apr 2021 11:19:02 +0000
-To: usrp-users@lists.ettus.com
-From: arjan.feta@unifi.it
-Message-ID: <1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 1D4A23B3-65D3-4EC3-AA24-A8A3EC77176F@gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id 4BCD5383DC0
+	for <lists+usrp-users@lfdr.de>; Fri, 30 Apr 2021 11:04:45 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YjxIZ3LU";
+	dkim-atps=neutral
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id D1745383DBD
+	for <usrp-users@lists.ettus.com>; Fri, 30 Apr 2021 11:03:49 -0400 (EDT)
+Received: by mail-lj1-f173.google.com with SMTP id p12so4244325ljg.1
+        for <usrp-users@lists.ettus.com>; Fri, 30 Apr 2021 08:03:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=XHXT46VoaQ3X3plq/o9ozSk5nOrSxOG0GyytRUi+HQo=;
+        b=YjxIZ3LUE6cwkI1137rrOTwAjPofJXyo4s6iNaFM9dSdzCFiTFGVCWuv7q3xnUwfQF
+         roQK+MgH2azIU4LDBOOsyFwN8/99N7JVh4oGjRDyQ7v+jxFxWYmJBsCyIzYfEKe0w/S/
+         Q5NscKp/9pCZ3Hd8k4RsfmmRf+q/SlNH+vBCZ/KNYWbcehfV0JKaQAD0dGxX/QVVLKBe
+         2FtdL0Q19lobVlpqp1ak2K4j/yGKk3Ox2d5iIT3JXLry3YEU44BIjqFJyyeq7fPX0gLu
+         je2pOnNWygNY+TmctlqyVe88o+L3AAG/e3hzCegg6gh+uvZtQl5uOom6JAy8e4lzwLFp
+         x4BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=XHXT46VoaQ3X3plq/o9ozSk5nOrSxOG0GyytRUi+HQo=;
+        b=T357RojTMy1Qg6e7ZTXuN7e2rDbEoxCaJup4UbLohZy3TcBm11QvAfyzZND1t+wU6y
+         AkuOY1n4AZAUWS0ctketUyS3lz3efe8jQsTNMlaCZWXVRkbCaKL+6TaxhjbtaeXSfCo0
+         XJNKXJEG7SxQhVbtyACW5PTjGEaB1F7bneMbRqbyuCBXedpR6xeyzdqYJ0qypp3vMKIB
+         KRaMuuLYDk3sF8nTod2bNJu0khuiPZa39+4kab3uRtocVYV3D7mxDgT9z1p7EL5zS8zk
+         6j6kcGQvuzutLTKZ+G/xyhYO+jXRN3Mo5XCTzRZIlyZUK35HNcUcLaPKV8AAddPTVbBC
+         Yz9g==
+X-Gm-Message-State: AOAM533JL+Bk7D5GbIMHb9evRXQViIwypejI8oz3O9Bcrp/4JBNCrj3w
+	2UAFpY3GNhqut2XgorhywGaw/+3NB7Ioa4mT4WG2SSkiUWo4qQ==
+X-Google-Smtp-Source: ABdhPJw8MHsecVYNPynLyUH7zl2f4NCJVu1bACwedfDKn5a6ghKblk+7kKpeWkwztuHjJTYyAjmvhiXo9V06sq6szAM=
+X-Received: by 2002:a2e:a60c:: with SMTP id v12mr4259417ljp.310.1619795026822;
+ Fri, 30 Apr 2021 08:03:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs"
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: ZC7JPDJHRD4PRN637BQW57XTBFS4QDL7
-X-Message-ID-Hash: ZC7JPDJHRD4PRN637BQW57XTBFS4QDL7
-X-MailFrom: arjan.feta@unifi.it
+From: Paul Atreides <maud.dib1984@gmail.com>
+Date: Fri, 30 Apr 2021 11:03:36 -0400
+Message-ID: <CACwKM9JGmC2w5Ggrtu5hpWYez0VJQVw1=x=X7fPEf-UeBfHqGQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: 5ZSPBCDO2NUGSEDFEEF6A7EEP7T7LJ46
+X-Message-ID-Hash: 5ZSPBCDO2NUGSEDFEEF6A7EEP7T7LJ46
+X-MailFrom: maud.dib1984@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Unable to receive two signals in parallel with one TwinRX
+Subject: [USRP-users] UHD4.0/RFNoC/gr-ettus/Fosphor locking up and not stable
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZC7JPDJHRD4PRN637BQW57XTBFS4QDL7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5ZSPBCDO2NUGSEDFEEF6A7EEP7T7LJ46/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============2829238315820084097=="
 
-This is a multi-part message in MIME format.
+--===============2829238315820084097==
+Content-Type: multipart/alternative; boundary="0000000000002eca5505c131eb36"
 
---b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
-Content-Type: multipart/alternative;
- boundary="b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs"
+--0000000000002eca5505c131eb36
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
-Content-Type: text/plain; charset=us-ascii
+Hi there.
+Im a long time USRP/UHD/GNURadio user. Very familiar with all 3. Im doing
+my first project with RFNoC using an X310 to showcase its capabilities and
+add a custom block. I=E2=80=99ve built 2 custom images per the tutorials on=
+ the
+knowledge base. 1 has the core blocks with FFT added (from the knowledge
+base example) and the second has the fft and fosphor block added.
+So far the radio->DDC example flowgraph works fine on the base image.
+When I load the FFT/fosphor image and run the fosphor flowgraph:
+Radio->DDC->FFT->Fosphor->Streamer->Fosphor Display
+The display works, but the screen locks up, the size can=E2=80=99t be adjus=
+ted,
+none of the widget controls work (gain, freq) and closing the
+window/pressing stop in GRC also does nothing. I have to force quit the
+application or kill -9 to stop it. At very low sample rates (like 1Msps) it
+can keep up and behave as normal. 5Msps, i'm able to close but have a
+significant delay before it shuts down. Anything above that runs it into
+the ground.
+To me, this behavior feels similar to running a high-rate flowgraph with no
+throttle or clock source and the GUI gets nuked from all the data coming
+through.
 
-Hello again,
+Any idea how to debug this problem or what might be causing these issues?
+Is there a way to offer a more detailed explanation of how to use fosphor
+in the new RFNoC? The only explanation for how to use the newest fosphor
+that I can find is here:
 
-I left gnuradio for the moment and try to concentrate to the python API, since it seems to have
+http://ettus.80997.x6.nabble.com/USRP-users-setting-up-gr-fosphor-on-uhd-4-=
+td16532.html
 
-a finer level of granularity in controlling the RFNoC blocks. In the attached script I can manage to
+My system is the following
+Ubuntu18.04LTS
+GNURadio maint-3.8
+UHD4.0
+gr-ettus master
 
-set up the block properties i.e., the two channels with one antenna and a tuning frequency each.
+Any thoughts or ideas would be really helpful.
 
-The problem now comes when the flow graph is committed.
+Thanks,
+B
 
-```
-RuntimeError: RfnocError: ResolveError: Attempting to overwrite property `mtu@INPUT_EDGE:1' with a new value after it was locked!
-```
+--0000000000002eca5505c131eb36
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Has anybody tried something like this before? 
+<div dir=3D"ltr">Hi there.=C2=A0<div>Im a long time USRP/UHD/GNURadio user.=
+ Very familiar with
+ all 3. Im doing my first project with RFNoC using an X310 to showcase=20
+its capabilities and add a custom block. I=E2=80=99ve built 2 custom images=
+ per=20
+the tutorials on the knowledge base. 1 has the core blocks with FFT=20
+added (from the knowledge base example) and the second has the fft and=20
+fosphor block added.=C2=A0<div>So far the radio-&gt;DDC example flowgraph w=
+orks fine on the base image.=C2=A0<div>When I load the FFT/fosphor image an=
+d run the fosphor flowgraph:</div><div>Radio-&gt;DDC-&gt;FFT-&gt;Fosphor-&g=
+t;Streamer-&gt;Fosphor Display=C2=A0</div><div>The
+ display works, but the screen locks up, the size can=E2=80=99t be adjusted=
+,=20
+none of the widget controls work (gain, freq) and closing the=20
+window/pressing stop in GRC also does nothing. I have to force quit the=20
+application or kill -9 to stop it. At very low sample rates (like 1Msps) it=
+ can keep up and behave as normal. 5Msps, i&#39;m able to close but have a =
+significant delay before it shuts down. Anything above that runs it into th=
+e ground.<br></div><div><span style=3D"color:rgb(0,0,0)">To
+ me, this behavior feels similar to running a high-rate flowgraph with no t=
+hrottle or clock source and the GUI gets nuked from all the data coming thr=
+ough.</span></div><div><span style=3D"color:rgb(0,0,0)"><br></span></div><d=
+iv>Any idea how to debug this problem or what might be causing these issues=
+?</div><div>Is
+ there a way to offer a more detailed explanation of how to use fosphor=20
+in the new RFNoC? The only explanation for how to use the newest fosphor
+ that I can find is here:</div><div>=C2=A0<a href=3D"http://ettus.80997.x6.=
+nabble.com/USRP-users-setting-up-gr-fosphor-on-uhd-4-td16532.html" target=
+=3D"_blank">http://ettus.80997.x6.nabble.com/USRP-users-setting-up-gr-fosph=
+or-on-uhd-4-td16532.html</a></div><div><br></div><div><div>My system is the=
+ following</div><div><div>Ubuntu18.04LTS</div><div>GNURadio maint-3.8</div>=
+<div>UHD4.0</div><div>gr-ettus master<br><div><br></div><div>Any thoughts o=
+r ideas would be really helpful.=C2=A0</div><div><br></div><div>Thanks,</di=
+v><div>B</div></div></div></div></div></div></div>
 
-Regards,
+--0000000000002eca5505c131eb36--
 
-Arjan
-
---b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
-Content-Type: text/html; charset=us-ascii
-
-<p>Hello again,</p><p>I left gnuradio for the moment and try to concentrate to the python API, since it seems to have</p><p>a finer level of granularity in controlling the RFNoC blocks. In the attached script I can manage to</p><p>set up the block properties i.e., the two channels with one antenna and a tuning frequency each.</p><p>The problem now comes when the flow graph is committed.</p><pre><code>RuntimeError: RfnocError: ResolveError: Attempting to overwrite property `mtu@INPUT_EDGE:1' with a new value after it was locked!</code></pre><p><br></p><p>Has anybody tried something like this before? </p><p>Regards,</p><p><br></p><p>Arjan</p>
-
-
---b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs--
-
---b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
-Content-Type: text/x-python; name=temp3.py
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename=temp3.py
-
-IyAtKi0gY29kaW5nOiB1dGYtOCAtKi0KIiIiClNweWRlciBFZGl0b3IKClRoaXMgaXMgYSB0ZW1w
-b3Jhcnkgc2NyaXB0IGZpbGUuCiIiIgoKaW1wb3J0IHVoZAppbXBvcnQgbnVtcHkgYXMgbnAKZnJv
-bSBtYXRwbG90bGliIGltcG9ydCBweXBsb3QgYXMgcGx0CmltcG9ydCB0aW1lCgojIDEpIENyZWF0
-ZSBhIFJGTm9DIGdyYXBoCmdyYXBoID0gdWhkLnJmbm9jLlJmbm9jR3JhcGgoImFkZHI9MTkyLjE2
-OC4xMC4yIikKCiMgMS4xKSBHZXQgdGhlIGxpc3Qgb2YgYXZhaWxhYmxlIFJGTm9DIGJsb2NrcyBs
-b2FkZWQgb24gdGhlIFVTUlAgZGV2aWNlCmRlZiBsaXN0U3RhdGljQ29ubmVjdGlvbnMoKToKICAg
-IGZvciBlZGdlIGluIGdyYXBoLmVudW1lcmF0ZV9zdGF0aWNfY29ubmVjdGlvbnMoKToKICAgICAg
-ICBwcmludChlZGdlLnRvX3N0cmluZygpKQoKbGlzdFN0YXRpY0Nvbm5lY3Rpb25zKCkKIyA9PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PQojIDAvU0VQIzA6MD09PjAvRFVDIzA6MAojIDAvRFVDIzA6MD09PjAv
-UmFkaW8jMDowCiMgMC9SYWRpbyMwOjA9PT4wL0REQyMwOjAKIyAwL0REQyMwOjA9PT4wL1NFUCMw
-OjAKIyAwL1JhZGlvIzA6MT09PjAvRERDIzA6MQojIDAvRERDIzA6MT09PjAvU0VQIzE6MAojIDAv
-U0VQIzI6MD09PjAvRFVDIzE6MAojIDAvRFVDIzE6MD09PjAvUmFkaW8jMTowCiMgMC9SYWRpbyMx
-OjA9PT4wL0REQyMxOjAKIyAwL0REQyMxOjA9PT4wL1NFUCMyOjAKIyAwL1JhZGlvIzE6MT09PjAv
-RERDIzE6MQojIDAvRERDIzE6MT09PjAvU0VQIzM6MAojIDAvU0VQIzQ6MD09PjAvUmVwbGF5IzA6
-MAojIDAvUmVwbGF5IzA6MD09PjAvU0VQIzQ6MAojIDAvU0VQIzU6MD09PjAvUmVwbGF5IzA6MQoj
-IDAvUmVwbGF5IzA6MT09PjAvU0VQIzU6MAojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgojIDIpIENv
-bnN0cnVjdCBhIFJhZGlvIFJGTm9DIGJsb2NrCiMgZ2V0IHJmbm9jIGJsb2NrIG9mIGludGVyZXN0
-IGFzIGEgZ3JhcGggbm9kZSwgdG8gY29ubmVjdCB3aXRoIG90aGVyIGJsb2NrcwpyYWRpb19ub2Nf
-YmxvY2sgPSBncmFwaC5nZXRfYmxvY2soIjAvUmFkaW8jMCIpCiMgY29uc3RydWN0IHJhZGlvIGJs
-b2NrCnJhZGlvX2Jsb2NrID0gdWhkLnJmbm9jLlJhZGlvQ29udHJvbChyYWRpb19ub2NfYmxvY2sp
-CgojIFdlIG5vdyB3YW50IHRvIHBhc3MgdGhlIGRhdGEgYWNxdWlyZWQgZnJvbSB0aGUgcmFkaW8g
-dG8gdGhlIGhvc3Q7CiMgc3RyZWFtIGVuZCBwb2ludCAoU0VQKSBhbmQgZnJvbSB0aGVuIHRvIHRo
-ZSBEREMuCiMgUmFkaW8gLT4gRERDIC0+IFNFUCAtPiBIT1NUIChmaWxlIG9yIGFub3RoZXIgc2lu
-ayB0eXBlKQoKIyBDb25uZWN0IHRoZSByeCBzdHJlYW1lciB0byBhIERpZ2l0YWwgRG93biBDb252
-ZXJ0ZXIgKFJhZGlvIC0+IEREQykKZ3JhcGguY29ubmVjdCgiMC9SYWRpbyMxIiwgMCwgIjAvRERD
-IzEiLCAwLCBGYWxzZSkKZ3JhcGguY29ubmVjdCgiMC9SYWRpbyMxIiwgMSwgIjAvRERDIzEiLCAx
-LCBGYWxzZSkKCiMgQ29uc3RydWN0IGEgcnggc3RyZWFtZXIgYmxvY2sKIyBncmFwaC5jcmVhdGVf
-cnhfc3RyZWFtZXIobnVtT2ZDaGFubmVscywgU3RyZWFtQXR0cmlidXRlcykKIyBmYzMyOiBjcHUg
-MzIgYml0cyBmbG9hdCB0eXBlOwojIHNjMTY6IE9UVyAtIE92ZXIgVGhlIFdpcmUgdHlwZSAocmZu
-b2MgZGVhbHMgaW4gMTYgYml0IGZpeGVkIHBvaW50IGNvbXBsZXggdmFsdWVzKQojICAgICAgIE9U
-VyBpbmRpY2F0ZXMgdGhlIGRhdGEgdHlwZSB0aGF0IHdpbGwgYmUgaW50ZXJjaGFuZ2VkIGZyb20g
-dGhlIFVIRCBkcml2ZXIgb24gdGhlCiMgICAgICAgSE9TVCBhbmQgdGhlIFJGTm9DIGdyYXBoLiBV
-SEQgZG9lcyB0aGUgY29udmVydGlvbiBhdXRvbWF0aWNhbGx5IGJhY2sgYW5kIGZvcnRoCnJ4X3N0
-cmVhbWVyID0gZ3JhcGguY3JlYXRlX3J4X3N0cmVhbWVyKDEsIHVoZC51c3JwLlN0cmVhbUFyZ3Mo
-ImZjMzIiLCAic2MxNiIpKQpyeF9zdHJlYW1lcjEgPSBncmFwaC5jcmVhdGVfcnhfc3RyZWFtZXIo
-MSwgdWhkLnVzcnAuU3RyZWFtQXJncygiZmMzMiIsICJzYzE2IikpCgojIE5vdyBjb25uZWN0IHRo
-ZSBvdXRwdXQgb2YgdGhlIEREQyB0byB0aGUgU0VQCmdyYXBoLmNvbm5lY3QoIjAvRERDIzEiLCAw
-LCByeF9zdHJlYW1lciwgMCkKZ3JhcGguY29ubmVjdCgiMC9EREMjMSIsIDEsIHJ4X3N0cmVhbWVy
-MSwgMCkKZ3JhcGguY29tbWl0KCkKCiMgV0UgU1RJTEwgTkVFRCBUTyBDT05GSUdVUkUgVEhFIERE
-QyBBTkQgVEhFIFJBRElPIEZPUiBPVVIgQVBQTElDQVRJT04sIGkuZS4sIHR1bmUgdGhlCiMgcmFk
-aW8gdG8gYSBwYXJ0IG9mIHRoZSBzcGVjdHJ1bSBvZiBpbnRlcmVzdCBhbmQgcmV0dXJuIHNvbWUg
-YW1vdW50IG9mIGJhbmR3aWR0aCB0bwojIGNhcHR1cmUgYWxsIHRoZSB0cmFyZmZpYyB3aXRoaW4g
-dGhhIHBvcnRpb24gb2YgdGhlIHNwZWN0cnVtLgoKIyBzZXQgdGhlIHJhZGlvIHJ4IGZyZXEgKGUu
-Zy4gdG8gODUzIE1IeikKcmFkaW9fYmxvY2suc2V0X3J4X2ZyZXF1ZW5jeSgxLjVlOSwgMCkKIyBn
-YWluIGluIGRCCnJhZGlvX2Jsb2NrLnNldF9yeF9nYWluKDIwLCAwKQoKIyBTZXQgdGhlIG51bWJl
-ciBvZiBzYW1wbGVzIHBlciBwYWNrZXQgc3BwIGVxdWFsIHRvIHRoZSBmZnR0IGxlbmd0aApyYWRp
-b19ibG9jay5zZXRfcHJvcGVydGllcygnc3BwOjA9NDA5NicpCgojIHJlY2VpdmUgZm9ybSB0aGUg
-cmVjZWl2ZXIgUlgyIGF0IGEgcmF0ZSBvZiAxMjUgTUh6CnJhZGlvX2Jsb2NrLnNldF9yeF9hbnRl
-bm5hKCJSWDEiLCAwKQpyYWRpb19ibG9jay5zZXRfcmF0ZSgyMDBlNikKCiMgQ29uZmlndXJlIHRo
-ZSBEREMgcmFkaW8gYXR0cmlidXRlcwpkZGNfYmxvY2sgPSB1aGQucmZub2MuRGRjQmxvY2tDb250
-cm9sKGdyYXBoLmdldF9ibG9jaygiMC9EREMjMCIpKQoKZGRjX2Jsb2NrLnNldF9pbnB1dF9yYXRl
-KDIwMGU2LCAwKQpkZGNfYmxvY2suc2V0X291dHB1dF9yYXRlKDEwZTMsIDApCgojIGRzcFJhdGUv
-c2FtcFJhdGUgPSAxMjVlNi81ZTYgPSA1CiMgd2FybmluZzogb2RkIGRlY2ltYXRpb24gLT4gcG9z
-c2libGUgcGFzc2JhbmQgQ0lDIHJvbGwtb2ZmCiMgU2VsZWN0IGFuIGV2ZW4gZGVjaW1hdGlvbiB0
-byBlbnN1cmUgdGhhdCBhIGhhbGZiYW5kIGZpbHRlciBpcyBlbmFibGVkIC0+CiMgLT4gY2FuIGJl
-IGRvbmUgdXNpbmcgcHJvcGVydGllCgojIGRkY19ibG9jay5nZXRfcHJvcGVydHlfaWRzKCkKIyBk
-ZGNfYmxvY2suc2V0X3Byb3BlcnRpZXMoImRlY2ltOjA9MjQiKQpwcmludChkZGNfYmxvY2suZ2V0
-X291dHB1dF9yYXRlKDApKQoKIyBBbGxvY2F0ZSBzcGFjZSB0byBzdG9yZSB0aGUgcmVjZWl2ZWQg
-c2FtcGxlcyBmcm9tIHRoZSByYWRpbwpudW1fc2FtcGxlcyA9IGludChkZGNfYmxvY2suZ2V0X291
-dHB1dF9yYXRlKDApICogNSkKIyBudW1fc2FtcGxlcyA9IDQwOTYgIyAyMDQ4CiMgY3JlYXRlIHNv
-bWUgZW1wdHkgc3RvcmFnZSB3aXRoIHRoZSBkYXRhIHR5cGUgd2UgdG9sZCB0aGUgc3RyZWFtZXIg
-dG8gcmV0dXJuCiMgdGhlIHNhbXBsZXMgdG8gdXMsIHdoaWNoIGlzIGNvbXBsZXggZmxvYXQgdmFs
-dWVzCnJhZGlvX2RhdGEgPSBucC56ZXJvcygoMSwgbnVtX3NhbXBsZXMpLCBkdHlwZT0iY29tcGxl
-eDY0IikKCiMgVG8gZ2V0IHRoZSBzbXBsZXMgd2UgbmVlZCB0byBzZW5kIGEgc3RyZWFtIGNvbW1h
-ZCB0byBpbmRpY2F0ZSBob3cgdGhlIGRldmljZQojIHNob3VsZCBzZW5kIHNhbXBsZXMgdG8gdXMu
-CgojIGNyZWF0ZSBhbiBpbnN0YW5jZSBvZiB0aGUgc3RyZWFtIGNvbW1hbmQgb2JqZWN0IGFuZCBw
-YXNzIGl0IHRoZSBtb2RlIHRoYXQgb25lCiMgd2FudHM7IHdoaWNoIGluIHRoaXMgY2FzZSBpcyBg
-bnVtX2RvbmVgIC0+IGdldCBhIGNlcnRhaW4gbnVtYmVyIG9mIHNhbXBsZXMgYW5kCiMgdGhlbiBi
-ZSBkb25lLCBubyBtb3JlIHNhbXBsZXMgYWZ0ZXIgdGhhdCBwb2ludApzdHJlYW1fY21kID0gdWhk
-LnR5cGVzLlN0cmVhbUNNRCh1aGQudHlwZXMuU3RyZWFtTW9kZS5udW1fZG9uZSkKc3RyZWFtX2Nt
-ZC5udW1fc2FtcHMgPSBudW1fc2FtcGxlcwoKIyBJZiB0aGlzIHNjcmlwdCBpcyBleGVjdXRlZCBp
-bnRlcmFjdGl2ZWx5IChyb3cgYnkgcm93KSwgdGhlcmUgaXMgYW4gaXNzdWUuCiMgV2hlbiBvbmUg
-c2VuZHMgdGhlIHN0cmVhbSBjb21tYW5kIHRoZXJlIGlzIG5vdCBlbm91Z2ggdGltZSB0byB0eXBl
-IGluIHRoZQojIHJlY2VpdmUgY29tbWFuZCBpbnRvIHRoZSBpbnRlcnByZXRlci4KIyBzdHJlYW1f
-Y21kLnN0cmVhbV9ub3cgPSBGYWxzZQojIHRoZW4gb25lIHNldHMgYSBmdXR1cmUgdGltZSBldmVu
-dCAgb24gdGhlIHN0cmVhbSBjb21tYW5kIHRvIHRlbGwgaXQgdG8gc3RhcnQKIyB0byBzZW5kIG1l
-IHNhbXBsZXMgMTAgc2Vjb25kcyBmcm9tIG5vdy4gU28gb25lIGdldHMgYSByZWZlcmVuY2UgdG8g
-dGhlCiMgbW90aGVyYm9hcmQgY29udHJvbGxlciBmcm9tIHdoaWNoIG9uZSBjYW4gZ2V0IHRoZSB0
-aW1la2VlcGVyIGFuZCBnZXQgdGhlCiMgY3VycmVudCB0aW1lIG9uIHRoZSByYWRpbyAgYW5kIGFk
-ZCAxMCB0byBpdCAKIyBzdHJlYW1fY21kLnRpbWVfc3BlYyA9IGdyYXBoLmdldF9tYl9jb250cm9s
-bGVyKDApLmdldF90aW1la2VlcGVyKDApLmdldF90aW1lX25vdygpICsxCiMgdGltZS5zbGVlcCgw
-Ljk5OTkpCnJ4X3N0cmVhbWVyLmlzc3VlX3N0cmVhbV9jbWQoc3RyZWFtX2NtZCkKCm51bV9zYW1w
-bGVzX3JlY2VpdmVkID0gcnhfc3RyZWFtZXIucmVjdihyYWRpb19kYXRhLCB1aGQudHlwZXMuUlhN
-ZXRhZGF0YSgpKQoKcHJpbnQobnVtX3NhbXBsZXNfcmVjZWl2ZWQpCgoKIyBwbHQuc2VtaWxvZ3ko
-cmFuZ2UobnAuc2l6ZShyYWRpb19kYXRhWzBdKSksIG5wLnJlYWwocmFkaW9fZGF0YVswXSksICJn
-IiwKIyAgICByYW5nZShucC5zaXplKHJhZGlvX2RhdGFbMF0pKSwgbnAuaW1hZyhyYWRpb19kYXRh
-WzBdKSwgInIiKQojIHBsdC5zaG93KCkKCiMjIEZvciBhbGwgYmxvY2tzIG9mIGZmdF9sZW5ndGgg
-ZmluZCBtYXhpbXVtIGFuZCBpdHMgaW5kZXgKIyBmb3IgaSBpbiByYW5nZSg1KToKIyAgICAgYmIg
-PSByYWRpb19kYXRhWzBdW2k6MjA0OCooaSsxKV0KIyAgICAgZmZ0ID0gbnAuZmZ0LmZmdChyYWRp
-b19kYXRhWzBdWzA6MjA0OF0pCiMgICAgIGZmdCA9IG5wLmZmdC5mZnRzaGlmdChmZnQpCiMgICAg
-IGlkeCA9IG5wLmFyZ21heChmZnQpCiMgICAgIGFtYXggPSBmZnRbaWR4XQojICAgICBwcmludChp
-ZHgsIGFtYXgpCgojIGZmdCA9IG5wLmZmdC5mZnQocmFkaW9fZGF0YVswXSkKIyBmZnQgPSBucC5m
-ZnQuZmZ0c2hpZnQoZmZ0KQojIHBsdC5zZW1pbG9neShucC5hYnMoZmZ0KSkKIyBwbHQuc2NhdHRl
-cihucC5hcmFuZ2UoMCxsZW4oZmZ0KSksIG5wLmFicyhmZnQpLCBzPTMsIGM9J3InKQojIHBsdC55
-c2NhbGUoJ2xvZycpCiMgcGx0LnNob3coKQoKd2hpbGUgVHJ1ZToKICAgcmFkaW9fZGF0YSA9IG5w
-Lnplcm9zKCgxLCBudW1fc2FtcGxlcyksIGR0eXBlPSJjb21wbGV4NjQiKQogICBudW1fc2FtcGxl
-c19yZWNlaXZlZCA9IHJ4X3N0cmVhbWVyLnJlY3YocmFkaW9fZGF0YSwgdWhkLnR5cGVzLlJYTWV0
-YWRhdGEoKSwgMS4wKQogICBtYXhhID0gbnAuYXJnbWF4KHJhZGlvX2RhdGFbMF0pCiAgIHByaW50
-KG1heGEsIG5wLmxvZzEwKG5wLmFicygocmFkaW9fZGF0YVswXVttYXhhXSkpKSkKICAgdGltZS5z
-bGVlcCgxKQoKZ3JhcGgucmVsZWFzZSgp
-
---b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
+--===============2829238315820084097==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -191,4 +161,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs--
+--===============2829238315820084097==--
