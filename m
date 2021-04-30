@@ -2,154 +2,186 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5DCA36F458
-	for <lists+usrp-users@lfdr.de>; Fri, 30 Apr 2021 05:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DBFA36F920
+	for <lists+usrp-users@lfdr.de>; Fri, 30 Apr 2021 13:19:55 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6033C383C37
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Apr 2021 23:17:16 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="QA15oyZu";
-	dkim-atps=neutral
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 338B5383C99
-	for <usrp-users@lists.ettus.com>; Thu, 29 Apr 2021 23:16:23 -0400 (EDT)
-Received: by mail-ot1-f42.google.com with SMTP id g4-20020a9d6b040000b029029debbbb3ecso30323387otp.7
-        for <usrp-users@lists.ettus.com>; Thu, 29 Apr 2021 20:16:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2YynmBrQHPqvyuhbFCYhC0IaWynGD5/f+Lfw7PelBlk=;
-        b=QA15oyZuoV9atqRBt258kPXBnKgRapEu9sn63969WRwWPV6FjYHmzaef/HOxzFy69i
-         v4PsmmblGCBcGfQ/ZJKExFSi+NUIRZrTBDr97ZeXJQaQRmSOFKBY26UFZu+wE5W15ihX
-         EFXmWhn9bVnoRQmsC7DJ1bujFj4Ctl3x6q5GJiOqpKtE796/S9cqqPiylY3RWgId9tc+
-         NxTn8s9lflsf00/zvIVgQuS6QxjBygQXzGSathxcUfVys6c+Me3V6V4hyIpvzfFfNFfd
-         K0L3IHRJZy8FyKfYQZFD5A7FkIpFsb62T/dadB/h0z5oBfzvr2k3OurAY3qNPpUrUJt/
-         B+rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2YynmBrQHPqvyuhbFCYhC0IaWynGD5/f+Lfw7PelBlk=;
-        b=USBW/Vj9M6sRumE9qeFCWbBOcfMkjLhLMO2c9MXQLThTQEdmug02PYwzBKatf7gHnt
-         jDZbHVlNGt2izI9d7oW4k2lWsFAuRAYj59lOgnHoZcZrcZsgr9ZBSCHoUeKDT8kAjD8+
-         +UgykQ49nYexdr8pC+rH66vzuSBBAcYW9XR7F135K937olLd06lXZdzIaq62dhKin6PC
-         wj2dyMeY2p409Nd2cN1vOZyMSrOBDV5AowlUB7y00zJvRKVkFTST7EHjIZTUuYGd0YjD
-         oqsT57V5FkZIc4qKT9actiQINGVWu+HnTPGOfQvvTbK5zb3aAZECdYafo633jL5eMuID
-         6ztQ==
-X-Gm-Message-State: AOAM531/b67pTEzWP4FXxvGU6ETBPtLRDAAHVXnPo8a56UPquW0XBqBj
-	zZhlTyLzeGwh3/EmLZNbhj4emD/RH9F7OdsYkQOTnx4QWXI=
-X-Google-Smtp-Source: ABdhPJzzg/PUZUfsbEi8J54g53x1xVexFcXKl4zUHy9FJOxa6kf4urc/f0bCHA71uU1l6CwDjOLM1sK5oa3+8PE8oi8=
-X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr1948899otc.302.1619752582447;
- Thu, 29 Apr 2021 20:16:22 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 15EDE3841FC
+	for <lists+usrp-users@lfdr.de>; Fri, 30 Apr 2021 07:19:54 -0400 (EDT)
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 67100383B83
+	for <usrp-users@lists.ettus.com>; Fri, 30 Apr 2021 07:19:02 -0400 (EDT)
+Date: Fri, 30 Apr 2021 11:19:02 +0000
+To: usrp-users@lists.ettus.com
+From: arjan.feta@unifi.it
+Message-ID: <1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: 1D4A23B3-65D3-4EC3-AA24-A8A3EC77176F@gmail.com
 MIME-Version: 1.0
-References: <e5825df7934e4dca8d6acc1fe3e18c05@gtri.gatech.edu>
-In-Reply-To: <e5825df7934e4dca8d6acc1fe3e18c05@gtri.gatech.edu>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Thu, 29 Apr 2021 23:16:11 -0400
-Message-ID: <CAB__hTQ5wFf6k+bRC_mqMAk+H+vDPJcP=LhxPLDVi-_du2VLTA@mail.gmail.com>
-To: "Hodges, Jeff" <Jeff.Hodges@gtri.gatech.edu>
-Message-ID-Hash: 6XJ56UOPIIILWCDAMHYENTZ2R2KBKCX3
-X-Message-ID-Hash: 6XJ56UOPIIILWCDAMHYENTZ2R2KBKCX3
-X-MailFrom: rkossler@nd.edu
+Content-Type: multipart/mixed;
+ boundary="b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs"
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: ZC7JPDJHRD4PRN637BQW57XTBFS4QDL7
+X-Message-ID-Hash: ZC7JPDJHRD4PRN637BQW57XTBFS4QDL7
+X-MailFrom: arjan.feta@unifi.it
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: n3xx series questions
+Subject: [USRP-users] Re: Unable to receive two signals in parallel with one TwinRX
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6XJ56UOPIIILWCDAMHYENTZ2R2KBKCX3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZC7JPDJHRD4PRN637BQW57XTBFS4QDL7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5989829455461548606=="
 
---===============5989829455461548606==
-Content-Type: multipart/alternative; boundary="0000000000004d4ea105c12809fc"
+This is a multi-part message in MIME format.
 
---0000000000004d4ea105c12809fc
-Content-Type: text/plain; charset="UTF-8"
+--b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
+Content-Type: multipart/alternative;
+ boundary="b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs"
 
-Regarding the computation engines, this may be a 3.15 limitation that is no
-longer relevant in 4.0.  If you are using 3.15, I *think* that the CE
-limitation for the N310 is the same as for the X310.
+--b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
+Content-Type: text/plain; charset=us-ascii
 
-On Thu, Apr 29, 2021 at 2:34 PM Hodges, Jeff via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+Hello again,
 
-> How many rfnoc Computation Engines (CEs) are available on the N3xx radios
-> FPGAs? For example, i read online that the x3xx has 16 CEs.
->
->
-> How does the tuning speed compare between the N2xx and N3xx radios? I saw
-> a whitepaper a few years back that listed the max sustained hop rate of the
-> N210+WBX of approximately 250 hops per second. I'm wondering if the N3xx
-> radios have comparable tune times or faster/slower?
->
->
-> Thanks,
->
->
-> Jeff
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+I left gnuradio for the moment and try to concentrate to the python API, since it seems to have
 
---0000000000004d4ea105c12809fc
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+a finer level of granularity in controlling the RFNoC blocks. In the attached script I can manage to
 
-<div dir=3D"ltr">Regarding the computation engines, this may be a 3.15 limi=
-tation that is no longer relevant in 4.0.=C2=A0 If you are using 3.15, I *t=
-hink* that the CE limitation for the N310 is the same as for the X310.</div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Th=
-u, Apr 29, 2021 at 2:34 PM Hodges, Jeff via USRP-users &lt;<a href=3D"mailt=
-o:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">
+set up the block properties i.e., the two channels with one antenna and a tuning frequency each.
+
+The problem now comes when the flow graph is committed.
+
+```
+RuntimeError: RfnocError: ResolveError: Attempting to overwrite property `mtu@INPUT_EDGE:1' with a new value after it was locked!
+```
+
+Has anybody tried something like this before? 
+
+Regards,
+
+Arjan
+
+--b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
+Content-Type: text/html; charset=us-ascii
+
+<p>Hello again,</p><p>I left gnuradio for the moment and try to concentrate to the python API, since it seems to have</p><p>a finer level of granularity in controlling the RFNoC blocks. In the attached script I can manage to</p><p>set up the block properties i.e., the two channels with one antenna and a tuning frequency each.</p><p>The problem now comes when the flow graph is committed.</p><pre><code>RuntimeError: RfnocError: ResolveError: Attempting to overwrite property `mtu@INPUT_EDGE:1' with a new value after it was locked!</code></pre><p><br></p><p>Has anybody tried something like this before? </p><p>Regards,</p><p><br></p><p>Arjan</p>
 
 
+--b2_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs--
 
+--b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
+Content-Type: text/x-python; name=temp3.py
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=temp3.py
 
-<div dir=3D"ltr">
-<div id=3D"gmail-m_-4915977250646958479divtagdefaultwrapper" style=3D"font-=
-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif" dir=3D=
-"ltr">
-<p>How many rfnoc Computation Engines (CEs) are available on the N3xx radio=
-s FPGAs? For example, i read online that the x3xx has 16 CEs.<br>
-</p>
-<p><br>
-</p>
-<p>How does the tuning speed compare between the N2xx and N3xx radios? I sa=
-w a whitepaper a few years back that listed the max sustained hop rate of t=
-he N210+WBX of approximately 250 hops per second. I&#39;m wondering if the =
-N3xx radios have comparable tune times
- or faster/slower?</p>
-<p><br>
-</p>
-<p>Thanks,<br>
-</p>
-<p><br>
-</p>
-<p>Jeff<br>
-</p>
-</div>
-</div>
+IyAtKi0gY29kaW5nOiB1dGYtOCAtKi0KIiIiClNweWRlciBFZGl0b3IKClRoaXMgaXMgYSB0ZW1w
+b3Jhcnkgc2NyaXB0IGZpbGUuCiIiIgoKaW1wb3J0IHVoZAppbXBvcnQgbnVtcHkgYXMgbnAKZnJv
+bSBtYXRwbG90bGliIGltcG9ydCBweXBsb3QgYXMgcGx0CmltcG9ydCB0aW1lCgojIDEpIENyZWF0
+ZSBhIFJGTm9DIGdyYXBoCmdyYXBoID0gdWhkLnJmbm9jLlJmbm9jR3JhcGgoImFkZHI9MTkyLjE2
+OC4xMC4yIikKCiMgMS4xKSBHZXQgdGhlIGxpc3Qgb2YgYXZhaWxhYmxlIFJGTm9DIGJsb2NrcyBs
+b2FkZWQgb24gdGhlIFVTUlAgZGV2aWNlCmRlZiBsaXN0U3RhdGljQ29ubmVjdGlvbnMoKToKICAg
+IGZvciBlZGdlIGluIGdyYXBoLmVudW1lcmF0ZV9zdGF0aWNfY29ubmVjdGlvbnMoKToKICAgICAg
+ICBwcmludChlZGdlLnRvX3N0cmluZygpKQoKbGlzdFN0YXRpY0Nvbm5lY3Rpb25zKCkKIyA9PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PQojIDAvU0VQIzA6MD09PjAvRFVDIzA6MAojIDAvRFVDIzA6MD09PjAv
+UmFkaW8jMDowCiMgMC9SYWRpbyMwOjA9PT4wL0REQyMwOjAKIyAwL0REQyMwOjA9PT4wL1NFUCMw
+OjAKIyAwL1JhZGlvIzA6MT09PjAvRERDIzA6MQojIDAvRERDIzA6MT09PjAvU0VQIzE6MAojIDAv
+U0VQIzI6MD09PjAvRFVDIzE6MAojIDAvRFVDIzE6MD09PjAvUmFkaW8jMTowCiMgMC9SYWRpbyMx
+OjA9PT4wL0REQyMxOjAKIyAwL0REQyMxOjA9PT4wL1NFUCMyOjAKIyAwL1JhZGlvIzE6MT09PjAv
+RERDIzE6MQojIDAvRERDIzE6MT09PjAvU0VQIzM6MAojIDAvU0VQIzQ6MD09PjAvUmVwbGF5IzA6
+MAojIDAvUmVwbGF5IzA6MD09PjAvU0VQIzQ6MAojIDAvU0VQIzU6MD09PjAvUmVwbGF5IzA6MQoj
+IDAvUmVwbGF5IzA6MT09PjAvU0VQIzU6MAojID09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CgojIDIpIENv
+bnN0cnVjdCBhIFJhZGlvIFJGTm9DIGJsb2NrCiMgZ2V0IHJmbm9jIGJsb2NrIG9mIGludGVyZXN0
+IGFzIGEgZ3JhcGggbm9kZSwgdG8gY29ubmVjdCB3aXRoIG90aGVyIGJsb2NrcwpyYWRpb19ub2Nf
+YmxvY2sgPSBncmFwaC5nZXRfYmxvY2soIjAvUmFkaW8jMCIpCiMgY29uc3RydWN0IHJhZGlvIGJs
+b2NrCnJhZGlvX2Jsb2NrID0gdWhkLnJmbm9jLlJhZGlvQ29udHJvbChyYWRpb19ub2NfYmxvY2sp
+CgojIFdlIG5vdyB3YW50IHRvIHBhc3MgdGhlIGRhdGEgYWNxdWlyZWQgZnJvbSB0aGUgcmFkaW8g
+dG8gdGhlIGhvc3Q7CiMgc3RyZWFtIGVuZCBwb2ludCAoU0VQKSBhbmQgZnJvbSB0aGVuIHRvIHRo
+ZSBEREMuCiMgUmFkaW8gLT4gRERDIC0+IFNFUCAtPiBIT1NUIChmaWxlIG9yIGFub3RoZXIgc2lu
+ayB0eXBlKQoKIyBDb25uZWN0IHRoZSByeCBzdHJlYW1lciB0byBhIERpZ2l0YWwgRG93biBDb252
+ZXJ0ZXIgKFJhZGlvIC0+IEREQykKZ3JhcGguY29ubmVjdCgiMC9SYWRpbyMxIiwgMCwgIjAvRERD
+IzEiLCAwLCBGYWxzZSkKZ3JhcGguY29ubmVjdCgiMC9SYWRpbyMxIiwgMSwgIjAvRERDIzEiLCAx
+LCBGYWxzZSkKCiMgQ29uc3RydWN0IGEgcnggc3RyZWFtZXIgYmxvY2sKIyBncmFwaC5jcmVhdGVf
+cnhfc3RyZWFtZXIobnVtT2ZDaGFubmVscywgU3RyZWFtQXR0cmlidXRlcykKIyBmYzMyOiBjcHUg
+MzIgYml0cyBmbG9hdCB0eXBlOwojIHNjMTY6IE9UVyAtIE92ZXIgVGhlIFdpcmUgdHlwZSAocmZu
+b2MgZGVhbHMgaW4gMTYgYml0IGZpeGVkIHBvaW50IGNvbXBsZXggdmFsdWVzKQojICAgICAgIE9U
+VyBpbmRpY2F0ZXMgdGhlIGRhdGEgdHlwZSB0aGF0IHdpbGwgYmUgaW50ZXJjaGFuZ2VkIGZyb20g
+dGhlIFVIRCBkcml2ZXIgb24gdGhlCiMgICAgICAgSE9TVCBhbmQgdGhlIFJGTm9DIGdyYXBoLiBV
+SEQgZG9lcyB0aGUgY29udmVydGlvbiBhdXRvbWF0aWNhbGx5IGJhY2sgYW5kIGZvcnRoCnJ4X3N0
+cmVhbWVyID0gZ3JhcGguY3JlYXRlX3J4X3N0cmVhbWVyKDEsIHVoZC51c3JwLlN0cmVhbUFyZ3Mo
+ImZjMzIiLCAic2MxNiIpKQpyeF9zdHJlYW1lcjEgPSBncmFwaC5jcmVhdGVfcnhfc3RyZWFtZXIo
+MSwgdWhkLnVzcnAuU3RyZWFtQXJncygiZmMzMiIsICJzYzE2IikpCgojIE5vdyBjb25uZWN0IHRo
+ZSBvdXRwdXQgb2YgdGhlIEREQyB0byB0aGUgU0VQCmdyYXBoLmNvbm5lY3QoIjAvRERDIzEiLCAw
+LCByeF9zdHJlYW1lciwgMCkKZ3JhcGguY29ubmVjdCgiMC9EREMjMSIsIDEsIHJ4X3N0cmVhbWVy
+MSwgMCkKZ3JhcGguY29tbWl0KCkKCiMgV0UgU1RJTEwgTkVFRCBUTyBDT05GSUdVUkUgVEhFIERE
+QyBBTkQgVEhFIFJBRElPIEZPUiBPVVIgQVBQTElDQVRJT04sIGkuZS4sIHR1bmUgdGhlCiMgcmFk
+aW8gdG8gYSBwYXJ0IG9mIHRoZSBzcGVjdHJ1bSBvZiBpbnRlcmVzdCBhbmQgcmV0dXJuIHNvbWUg
+YW1vdW50IG9mIGJhbmR3aWR0aCB0bwojIGNhcHR1cmUgYWxsIHRoZSB0cmFyZmZpYyB3aXRoaW4g
+dGhhIHBvcnRpb24gb2YgdGhlIHNwZWN0cnVtLgoKIyBzZXQgdGhlIHJhZGlvIHJ4IGZyZXEgKGUu
+Zy4gdG8gODUzIE1IeikKcmFkaW9fYmxvY2suc2V0X3J4X2ZyZXF1ZW5jeSgxLjVlOSwgMCkKIyBn
+YWluIGluIGRCCnJhZGlvX2Jsb2NrLnNldF9yeF9nYWluKDIwLCAwKQoKIyBTZXQgdGhlIG51bWJl
+ciBvZiBzYW1wbGVzIHBlciBwYWNrZXQgc3BwIGVxdWFsIHRvIHRoZSBmZnR0IGxlbmd0aApyYWRp
+b19ibG9jay5zZXRfcHJvcGVydGllcygnc3BwOjA9NDA5NicpCgojIHJlY2VpdmUgZm9ybSB0aGUg
+cmVjZWl2ZXIgUlgyIGF0IGEgcmF0ZSBvZiAxMjUgTUh6CnJhZGlvX2Jsb2NrLnNldF9yeF9hbnRl
+bm5hKCJSWDEiLCAwKQpyYWRpb19ibG9jay5zZXRfcmF0ZSgyMDBlNikKCiMgQ29uZmlndXJlIHRo
+ZSBEREMgcmFkaW8gYXR0cmlidXRlcwpkZGNfYmxvY2sgPSB1aGQucmZub2MuRGRjQmxvY2tDb250
+cm9sKGdyYXBoLmdldF9ibG9jaygiMC9EREMjMCIpKQoKZGRjX2Jsb2NrLnNldF9pbnB1dF9yYXRl
+KDIwMGU2LCAwKQpkZGNfYmxvY2suc2V0X291dHB1dF9yYXRlKDEwZTMsIDApCgojIGRzcFJhdGUv
+c2FtcFJhdGUgPSAxMjVlNi81ZTYgPSA1CiMgd2FybmluZzogb2RkIGRlY2ltYXRpb24gLT4gcG9z
+c2libGUgcGFzc2JhbmQgQ0lDIHJvbGwtb2ZmCiMgU2VsZWN0IGFuIGV2ZW4gZGVjaW1hdGlvbiB0
+byBlbnN1cmUgdGhhdCBhIGhhbGZiYW5kIGZpbHRlciBpcyBlbmFibGVkIC0+CiMgLT4gY2FuIGJl
+IGRvbmUgdXNpbmcgcHJvcGVydGllCgojIGRkY19ibG9jay5nZXRfcHJvcGVydHlfaWRzKCkKIyBk
+ZGNfYmxvY2suc2V0X3Byb3BlcnRpZXMoImRlY2ltOjA9MjQiKQpwcmludChkZGNfYmxvY2suZ2V0
+X291dHB1dF9yYXRlKDApKQoKIyBBbGxvY2F0ZSBzcGFjZSB0byBzdG9yZSB0aGUgcmVjZWl2ZWQg
+c2FtcGxlcyBmcm9tIHRoZSByYWRpbwpudW1fc2FtcGxlcyA9IGludChkZGNfYmxvY2suZ2V0X291
+dHB1dF9yYXRlKDApICogNSkKIyBudW1fc2FtcGxlcyA9IDQwOTYgIyAyMDQ4CiMgY3JlYXRlIHNv
+bWUgZW1wdHkgc3RvcmFnZSB3aXRoIHRoZSBkYXRhIHR5cGUgd2UgdG9sZCB0aGUgc3RyZWFtZXIg
+dG8gcmV0dXJuCiMgdGhlIHNhbXBsZXMgdG8gdXMsIHdoaWNoIGlzIGNvbXBsZXggZmxvYXQgdmFs
+dWVzCnJhZGlvX2RhdGEgPSBucC56ZXJvcygoMSwgbnVtX3NhbXBsZXMpLCBkdHlwZT0iY29tcGxl
+eDY0IikKCiMgVG8gZ2V0IHRoZSBzbXBsZXMgd2UgbmVlZCB0byBzZW5kIGEgc3RyZWFtIGNvbW1h
+ZCB0byBpbmRpY2F0ZSBob3cgdGhlIGRldmljZQojIHNob3VsZCBzZW5kIHNhbXBsZXMgdG8gdXMu
+CgojIGNyZWF0ZSBhbiBpbnN0YW5jZSBvZiB0aGUgc3RyZWFtIGNvbW1hbmQgb2JqZWN0IGFuZCBw
+YXNzIGl0IHRoZSBtb2RlIHRoYXQgb25lCiMgd2FudHM7IHdoaWNoIGluIHRoaXMgY2FzZSBpcyBg
+bnVtX2RvbmVgIC0+IGdldCBhIGNlcnRhaW4gbnVtYmVyIG9mIHNhbXBsZXMgYW5kCiMgdGhlbiBi
+ZSBkb25lLCBubyBtb3JlIHNhbXBsZXMgYWZ0ZXIgdGhhdCBwb2ludApzdHJlYW1fY21kID0gdWhk
+LnR5cGVzLlN0cmVhbUNNRCh1aGQudHlwZXMuU3RyZWFtTW9kZS5udW1fZG9uZSkKc3RyZWFtX2Nt
+ZC5udW1fc2FtcHMgPSBudW1fc2FtcGxlcwoKIyBJZiB0aGlzIHNjcmlwdCBpcyBleGVjdXRlZCBp
+bnRlcmFjdGl2ZWx5IChyb3cgYnkgcm93KSwgdGhlcmUgaXMgYW4gaXNzdWUuCiMgV2hlbiBvbmUg
+c2VuZHMgdGhlIHN0cmVhbSBjb21tYW5kIHRoZXJlIGlzIG5vdCBlbm91Z2ggdGltZSB0byB0eXBl
+IGluIHRoZQojIHJlY2VpdmUgY29tbWFuZCBpbnRvIHRoZSBpbnRlcnByZXRlci4KIyBzdHJlYW1f
+Y21kLnN0cmVhbV9ub3cgPSBGYWxzZQojIHRoZW4gb25lIHNldHMgYSBmdXR1cmUgdGltZSBldmVu
+dCAgb24gdGhlIHN0cmVhbSBjb21tYW5kIHRvIHRlbGwgaXQgdG8gc3RhcnQKIyB0byBzZW5kIG1l
+IHNhbXBsZXMgMTAgc2Vjb25kcyBmcm9tIG5vdy4gU28gb25lIGdldHMgYSByZWZlcmVuY2UgdG8g
+dGhlCiMgbW90aGVyYm9hcmQgY29udHJvbGxlciBmcm9tIHdoaWNoIG9uZSBjYW4gZ2V0IHRoZSB0
+aW1la2VlcGVyIGFuZCBnZXQgdGhlCiMgY3VycmVudCB0aW1lIG9uIHRoZSByYWRpbyAgYW5kIGFk
+ZCAxMCB0byBpdCAKIyBzdHJlYW1fY21kLnRpbWVfc3BlYyA9IGdyYXBoLmdldF9tYl9jb250cm9s
+bGVyKDApLmdldF90aW1la2VlcGVyKDApLmdldF90aW1lX25vdygpICsxCiMgdGltZS5zbGVlcCgw
+Ljk5OTkpCnJ4X3N0cmVhbWVyLmlzc3VlX3N0cmVhbV9jbWQoc3RyZWFtX2NtZCkKCm51bV9zYW1w
+bGVzX3JlY2VpdmVkID0gcnhfc3RyZWFtZXIucmVjdihyYWRpb19kYXRhLCB1aGQudHlwZXMuUlhN
+ZXRhZGF0YSgpKQoKcHJpbnQobnVtX3NhbXBsZXNfcmVjZWl2ZWQpCgoKIyBwbHQuc2VtaWxvZ3ko
+cmFuZ2UobnAuc2l6ZShyYWRpb19kYXRhWzBdKSksIG5wLnJlYWwocmFkaW9fZGF0YVswXSksICJn
+IiwKIyAgICByYW5nZShucC5zaXplKHJhZGlvX2RhdGFbMF0pKSwgbnAuaW1hZyhyYWRpb19kYXRh
+WzBdKSwgInIiKQojIHBsdC5zaG93KCkKCiMjIEZvciBhbGwgYmxvY2tzIG9mIGZmdF9sZW5ndGgg
+ZmluZCBtYXhpbXVtIGFuZCBpdHMgaW5kZXgKIyBmb3IgaSBpbiByYW5nZSg1KToKIyAgICAgYmIg
+PSByYWRpb19kYXRhWzBdW2k6MjA0OCooaSsxKV0KIyAgICAgZmZ0ID0gbnAuZmZ0LmZmdChyYWRp
+b19kYXRhWzBdWzA6MjA0OF0pCiMgICAgIGZmdCA9IG5wLmZmdC5mZnRzaGlmdChmZnQpCiMgICAg
+IGlkeCA9IG5wLmFyZ21heChmZnQpCiMgICAgIGFtYXggPSBmZnRbaWR4XQojICAgICBwcmludChp
+ZHgsIGFtYXgpCgojIGZmdCA9IG5wLmZmdC5mZnQocmFkaW9fZGF0YVswXSkKIyBmZnQgPSBucC5m
+ZnQuZmZ0c2hpZnQoZmZ0KQojIHBsdC5zZW1pbG9neShucC5hYnMoZmZ0KSkKIyBwbHQuc2NhdHRl
+cihucC5hcmFuZ2UoMCxsZW4oZmZ0KSksIG5wLmFicyhmZnQpLCBzPTMsIGM9J3InKQojIHBsdC55
+c2NhbGUoJ2xvZycpCiMgcGx0LnNob3coKQoKd2hpbGUgVHJ1ZToKICAgcmFkaW9fZGF0YSA9IG5w
+Lnplcm9zKCgxLCBudW1fc2FtcGxlcyksIGR0eXBlPSJjb21wbGV4NjQiKQogICBudW1fc2FtcGxl
+c19yZWNlaXZlZCA9IHJ4X3N0cmVhbWVyLnJlY3YocmFkaW9fZGF0YSwgdWhkLnR5cGVzLlJYTWV0
+YWRhdGEoKSwgMS4wKQogICBtYXhhID0gbnAuYXJnbWF4KHJhZGlvX2RhdGFbMF0pCiAgIHByaW50
+KG1heGEsIG5wLmxvZzEwKG5wLmFicygocmFkaW9fZGF0YVswXVttYXhhXSkpKSkKICAgdGltZS5z
+bGVlcCgxKQoKZ3JhcGgucmVsZWFzZSgp
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000004d4ea105c12809fc--
-
---===============5989829455461548606==
+--b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -159,4 +191,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5989829455461548606==--
+--b1_1F7vJcjCw8mNjNd1USPutRe21NXttkLMbw2kgtozZTs--
