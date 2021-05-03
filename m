@@ -2,210 +2,266 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65FA737168C
-	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 16:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF175371697
+	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 16:27:02 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0C5C2383FFF
-	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 10:25:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8E5BB383F1F
+	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 10:27:01 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="cdqFqwuT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=foi.se header.i=@foi.se header.b="N7WoTRnt";
 	dkim-atps=neutral
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id EBA70383D19
-	for <usrp-users@lists.ettus.com>; Mon,  3 May 2021 10:21:25 -0400 (EDT)
-Received: by mail-ed1-f46.google.com with SMTP id u13so3784368edd.3
-        for <usrp-users@lists.ettus.com>; Mon, 03 May 2021 07:21:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JYiBqZMpZ64lB0Had9ghhDSDioJmFb6XafHAAnK030c=;
-        b=cdqFqwuT5IPJv6ZoDDZxLLepEfAQL2TVH9L7155pji1qbs4f4+MIDo1D7d0liFSdwJ
-         oCysE2EB9k7GA0ADuDwHuHXOXBEvauw6xKwGvNMc73DuRgFI34HBwxMA9Wgj8OzDMuSe
-         l+Vmljq2njnKui0JCYzOQF6V/THNqZP8qwPGL/GLJ4iKaquqFGYQ/kdbdAk7DL/1BwLK
-         faJfE1eopZe5NppH52dbZm634Y6bbFvrwOdJtDpqCcVqGIrWAqa4ds80ft3aqUaCe9qg
-         3096UL+IrYDtLMvHtJPwB75AguX/5u0A5FDdGOGnhTenEmSg6zcw2e/gP2s3KWXY2xSg
-         0/GQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JYiBqZMpZ64lB0Had9ghhDSDioJmFb6XafHAAnK030c=;
-        b=RYSnZR0uRNo0e2lR2Tnay04fqX5KR2onimzxvhmAGCYrPjtt7yTaPnVJklv8HZn/Ln
-         O1YJJtq2uuu8KXYLX3U8oyEg8QzuLjjff08iKgpKfvafrkiEbJ9s/UigszB+g54vGfyR
-         ZjzIGGIKsbs7gTq83YhZazb2yBvN49TpbF/O7uGirR8V+HkE2ehi68BB5WpUFgS0JT7V
-         fciUzN+rGI4Wwz3kz8SeWEa5jI4CEPkg8uCrMQZr5dr8TfJlG/xZ9OpSCdh8Bbc125xT
-         9PlObEkZndN8fFI8KIBT5G5OkEsQGHlLnQX0DKmfz0qWZ4UmyyCcMy//ozrEYWT1SGTk
-         Lp4g==
-X-Gm-Message-State: AOAM530CX3PRbP3e3gCmjzuR4HJpb1EwoMw3LWVHQY1GG/UgQHtdZcHJ
-	eXkxxAu880QtJXW8yi5b0ch9bLuVihScJEsx/kdXSy22
-X-Google-Smtp-Source: ABdhPJxP+2LtaG4YA6oIKzKHZwsgoruLpwErxp5xMJ5C76Es//znL78DNeEKkaFXUAbeNQnhWrnxhJc5cYmoPsjXBYA=
-X-Received: by 2002:a50:ec89:: with SMTP id e9mr7575495edr.347.1620051684973;
- Mon, 03 May 2021 07:21:24 -0700 (PDT)
+Received: from fm-1.ptn.foi.se (ip1-m.foi.se [150.227.5.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 06E613840BD
+	for <usrp-users@lists.ettus.com>; Mon,  3 May 2021 10:24:26 -0400 (EDT)
+Received: from butler.foi.se (custos-014-19.foi.se [150.227.13.254])
+	by fm-1.ptn.foi.se  with ESMTP id 143EOPW2000984-143EOPW3000984
+	for <usrp-users@lists.ettus.com>; Mon, 3 May 2021 16:24:25 +0200
+Received: from exch02.win.foi.se (imap.foi.se [150.227.50.202])
+	by butler.foi.se (Postfix) with ESMTP id 95A095E7
+	for <usrp-users@lists.ettus.com>; Mon,  3 May 2021 16:24:25 +0200 (CEST)
+Received: from exch01.win.foi.se (150.227.50.201) by exch02.win.foi.se
+ (150.227.50.202) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Mon, 3 May 2021
+ 16:24:25 +0200
+Received: from exch01.win.foi.se ([150.227.64.25]) by exch01.win.foi.se
+ ([150.227.64.25]) with mapi id 15.01.2242.008; Mon, 3 May 2021 16:24:25 +0200
+From: Stefan D Olsson <stefan.d.olsson@foi.se>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: USB on E310 not working
+Thread-Index: AddAJ78boNIwk0jzTLWy43j+veWllA==
+Date: Mon, 3 May 2021 14:24:25 +0000
+Message-ID: <4c2e4e07eeaf436c93348359dfbccd73@foi.se>
+Accept-Language: sv-SE, en-US
+Content-Language: sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [150.227.195.185]
 MIME-Version: 1.0
-References: <026715b28cc84de89c7f38eb4d82bffa@mail03.iis.fhg.de>
-In-Reply-To: <026715b28cc84de89c7f38eb4d82bffa@mail03.iis.fhg.de>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Mon, 3 May 2021 10:21:14 -0400
-Message-ID: <CAGNhwTOoQOtqa69NyWjJvcLmyG_R1BwY95XHeoJzSJN=Bt4+cA@mail.gmail.com>
-To: "Nieland, Michael" <nielanml@iis.fraunhofer.de>
-Message-ID-Hash: VILPKZTCYTD5CHF4FPWONZQIULHUDXSP
-X-Message-ID-Hash: VILPKZTCYTD5CHF4FPWONZQIULHUDXSP
-X-MailFrom: michael.dickens@ettus.com
+X-FE-Policy-ID: 8:3:5:SYSTEM
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=foi.se; s=dk2048-2020; c=relaxed/relaxed;
+ h=from:to:subject:date:message-id:content-type:mime-version;
+ bh=QDLSqImPKJKeswiw7TNWG9EctTklcjmcMbpb/bBER74=;
+ b=N7WoTRnteE6QbD1hCF03pyLnfJKCQYDXZpMaqp7HFFVdLCCmmPoxHUc2tSPjDePn+EdceCfakJcu
+	9kalKBg0bsZDggiuzrLRhlZEU7aFh/RpDvIf7D5Rew4Fd5NBwl/+gqcEmWu4N/d3y4Hk+j4h4IRS
+	P60IhTlsIXVES4FWKiSKF7PcyENfm3yTlulYXpsjRo0S4B/G1BaJMJPhrYfYJOLbEJLLxJS4NHkx
+	yMhPyfx6hTHh3y988Yiphjy3d7yYnM9t/jhhM0BNH5L1k1lwDJBytFXxbzId56loje708MA8MddN
+	quaPOPQJ05FyQ/vqyvgEceDCUXWy6+YiOCBmPQ==
+Message-ID-Hash: PTSER32SFYXHEL34GFQV2PUC6EEUS2Z7
+X-Message-ID-Hash: PTSER32SFYXHEL34GFQV2PUC6EEUS2Z7
+X-MailFrom: stefan.d.olsson@foi.se
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, =?UTF-8?B?U2Now7x0eiwgS2F0amE=?= <katja.schuetz@iis.fraunhofer.de>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Changing RX frequency (B210) at runtime using the message interface (GnuRadio)
+Subject: [USRP-users] USB on E310 not working
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VILPKZTCYTD5CHF4FPWONZQIULHUDXSP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PTSER32SFYXHEL34GFQV2PUC6EEUS2Z7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3026643376788220693=="
+Content-Type: multipart/mixed; boundary="===============3403604762622615461=="
 
---===============3026643376788220693==
-Content-Type: multipart/alternative; boundary="000000000000336de905c16dadeb"
+--===============3403604762622615461==
+Content-Language: sv-SE
+Content-Type: multipart/alternative;
+	boundary="_000_4c2e4e07eeaf436c93348359dfbccd73foise_"
 
---000000000000336de905c16dadeb
-Content-Type: text/plain; charset="UTF-8"
+--_000_4c2e4e07eeaf436c93348359dfbccd73foise_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Michael - What version of UHD are you using? Can you provide the actual
-printout that happens with different GRC flowgraphs? It sounds like this is
-a bug, but if you're using older GR or UHD then it's a bug that might be
-fixed in a more recent version. - MLD
+We have some problem getting the USB to work in our E310 unit. We are using=
+ our own operating system and our own FPGA. The FPGA is to some extent base=
+d on your reference design. All other HW like, gpio:s, GPS, UARTs and of co=
+urse the transceiver are working fine, but not the USB. There is not even a=
+ny power in the USB connector. So, I have a few questions:
 
-On Mon, May 3, 2021 at 5:48 AM Nieland, Michael <nielanml@iis.fraunhofer.de=
->
-wrote:
 
-> Dear all,
->
-> I am using two B210 USRP=E2=80=99s to generate and receive DQPSK Signals =
-around
-> 1.53 GHz (two TX and two  RX channels). The USRP=E2=80=99s use FW Version=
- 8.0 and
-> FPGA Version 16.0 (Hardware Revision 4). I am having some trouble properl=
-y
-> changing the RX frequency at runtime using the message interface. When th=
-e
-> RX frequency is varied using a QT Gui Range slider I encounter no issues.
-> However, in my application I have to use the message interface. In genera=
-l,
-> I assume that my pmt message structure must be correct, since it works fi=
-ne
-> when the frequency is only changed by a few MHz.  Also other commands (li=
-ke
-> setting tx and rx gains) work as expected. If, however, the frequency is
-> requested to be set to let=E2=80=99s say 2 GHz from 1.53 GHz, an overflow=
- is
-> indicated and the respective USRP Channel completely stops streaming (doe=
-s
-> not restart).
->
-> I tried using the =E2=80=9Cfreq=E2=80=9D command (both with indicating th=
-e channel and
-> without since it should not make a difference on the B210) and the
-> tune_request. I tried several different message structures but for some
-> reason it only works for the TX Usrp (When using the message port of the =
-TX
-> Usrp to change frequency it is indicating some underflows right when the
-> frequency is changed and is then working fine without any underflows or
-> other issues).
->
-> To eliminate the error I am right now testing in an isolated FG with only
-> a USRP source and a Message Edit Box (FG is attached) and the issue occur=
-s
-> here as well.
->
-> Any help would be appreciated and maybe someone was/is facing the same
-> issue?
->
-> Best regards
->
-> Michael
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+1.       As I understand it, the AVR processor should start the USB clock a=
+nd switch on the power to the phy and hub circuits on power-up? Is there an=
+ything I have to do from the application software to "switch on" the USB?
 
---000000000000336de905c16dadeb
-Content-Type: text/html; charset="UTF-8"
+2.       Do I have to send any "commands" from the Zynq processor to the AV=
+R to get it to start USB?
+
+3.       The axi-pmu interface from your reference design has been implemen=
+ted. Is there something else in the FPGA that are required to use the USB?
+
+4.       The linux operating system have been built with devices for USB, i=
+s there something else in the operating system that need to be configured?
+
+
+
+--_000_4c2e4e07eeaf436c93348359dfbccd73foise_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi=C2=A0Michael - What version of UHD are you using? =
-Can you provide the actual printout that happens with different GRC flowgra=
-phs? It sounds like this is a bug, but if you&#39;re using older GR or UHD =
-then it&#39;s a bug that might be fixed in a more recent=C2=A0version. - ML=
-D<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Mon, May 3, 2021 at 5:48 AM Nieland, Michael &lt;<a href=3D"m=
-ailto:nielanml@iis.fraunhofer.de">nielanml@iis.fraunhofer.de</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"DE">
-<div class=3D"gmail-m_2949050972706479771WordSection1">
-<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><span lang=3D"EN-US">De=
-ar all, <u></u>
-<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I am using two B210 USRP=E2=80=
-=99s to generate and receive DQPSK Signals around 1.53 GHz (two TX and two =
-=C2=A0RX channels). The USRP=E2=80=99s use FW Version 8.0 and FPGA Version =
-16.0 (Hardware Revision 4). I am having some trouble properly
- changing the RX frequency at runtime using the message interface. When the=
- RX frequency is varied using a QT Gui Range slider I encounter no issues. =
-However, in my application I have to use the message interface. In general,=
- I assume that my pmt message structure
- must be correct, since it works fine when the frequency is only changed by=
- a few MHz.=C2=A0 Also other commands (like setting tx and rx gains) work a=
-s expected. If, however, the frequency is requested to be set to let=E2=80=
-=99s say 2 GHz from 1.53 GHz, an overflow is indicated
- and the respective USRP Channel completely stops streaming (does not resta=
-rt).=C2=A0 <u></u>
-<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I tried using the =E2=80=9Cfreq=
-=E2=80=9D command (both with indicating the channel and without since it sh=
-ould not make a difference on the B210) and the tune_request. I tried sever=
-al different message structures but for some reason
- it only works for the TX Usrp (When using the message port of the TX Usrp =
-to change frequency it is indicating some underflows right when the frequen=
-cy is changed and is then working fine without any underflows or other issu=
-es).
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">To eliminate the error I am rig=
-ht now testing in an isolated FG with only a USRP source and a Message Edit=
- Box (FG is attached) and the issue occurs here as well.=C2=A0
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Any help would be appreciated a=
-nd maybe someone was/is facing the same issue?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Michael<u></u><u></u></span></p=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.E-postmall17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1187988159;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1148653584 69009423 69009433 69009435 69009423 6900=
+9433 69009435 69009423 69009433 69009435;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"SV" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-GB">We have some problem getting th=
+e USB to work in our E310 unit. We are using our own operating system and o=
+ur own FPGA. The FPGA is to some extent based on your reference design. All=
+ other HW like, gpio:s, GPS, UARTs and
+ of course the transceiver are working fine, but not the USB. There is not =
+even any power in the USB connector. So, I have a few questions:<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-GB"><span style=3D"mso-list:=
+Ignore">1.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-GB">As I understand it, the=
+ AVR processor should start the USB clock and switch on the power to the ph=
+y and hub circuits on power-up? Is there anything I have to do from the app=
+lication software to &#8220;switch on&#8221; the
+ USB?<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-GB"><span style=3D"mso-list:=
+Ignore">2.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-GB">Do I have to send any &=
+#8220;commands&#8221; from the Zynq processor to the AVR to get it to start=
+ USB?<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-GB"><span style=3D"mso-list:=
+Ignore">3.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-GB">The axi-pmu interface f=
+rom your reference design has been implemented. Is there something else in =
+the FPGA that are required to use the USB?<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-GB"><span style=3D"mso-list:=
+Ignore">4.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-GB">The linux operating sys=
+tem have been built with devices for USB, is there something else in the op=
+erating system that need to be configured?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-GB"><o:p>&nbsp;</o:p></span></p>
 </div>
-</div>
+</body>
+</html>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+--_000_4c2e4e07eeaf436c93348359dfbccd73foise_--
 
---000000000000336de905c16dadeb--
-
---===============3026643376788220693==
+--===============3403604762622615461==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -215,4 +271,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3026643376788220693==--
+--===============3403604762622615461==--
