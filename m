@@ -2,297 +2,305 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11D113718FF
-	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 18:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5E76371907
+	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 18:17:03 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 008D3383F40
-	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 12:15:21 -0400 (EDT)
-Received: from mx-relay25-hz1.antispameurope.com (mx-relay25-hz1.antispameurope.com [94.100.133.201])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2C840383E0A
-	for <usrp-users@lists.ettus.com>; Mon,  3 May 2021 12:14:28 -0400 (EDT)
-Received: from mailgw1.iis.fraunhofer.de ([153.96.172.4]) by mx-relay25-hz1.antispameurope.com;
- Mon, 03 May 2021 18:14:27 +0200
-Received: from mail.iis.fraunhofer.de (mail01.iis.fhg.de [153.96.171.211])
+	by mm2.emwd.com (Postfix) with ESMTP id CF267384438
+	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 12:17:02 -0400 (EDT)
+Received: from mx-relay87-hz1.antispameurope.com (mx-relay87-hz1.antispameurope.com [94.100.132.254])
+	by mm2.emwd.com (Postfix) with ESMTPS id 69113383DC1
+	for <usrp-users@lists.ettus.com>; Mon,  3 May 2021 12:16:04 -0400 (EDT)
+Received: from mailgw1.iis.fraunhofer.de ([153.96.172.4]) by mx-relay87-hz1.antispameurope.com;
+ Mon, 03 May 2021 18:16:03 +0200
+Received: from mail.iis.fraunhofer.de (unknown [153.96.212.211])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mailgw1.iis.fraunhofer.de (Postfix) with ESMTPS id 3F6F62400081;
-	Mon,  3 May 2021 18:14:23 +0200 (CEST)
+	by mailgw1.iis.fraunhofer.de (Postfix) with ESMTPS id 8DD9B2400082;
+	Mon,  3 May 2021 18:15:58 +0200 (CEST)
 Received: from mail03.iis.fhg.de (2001:638:a0a:1111:314f:f22c:4a37:b25a) by
- mail01.iis.fhg.de (2001:638:a0a:1111:fd91:8c2a:e4a5:e74e) with Microsoft SMTP
- Server (TLS) id 15.0.1497.2; Mon, 3 May 2021 18:14:23 +0200
+ mailn1.iis.fhg.de (2001:638:a0a:2111:5807:dd5d:920c:76e8) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.2; Mon, 3 May 2021 18:15:58 +0200
 Received: from mail03.iis.fhg.de ([fe80::314f:f22c:4a37:b25a]) by
  mail03.iis.fhg.de ([fe80::314f:f22c:4a37:b25a%12]) with mapi id
- 15.00.1497.015; Mon, 3 May 2021 18:14:22 +0200
+ 15.00.1497.015; Mon, 3 May 2021 18:15:57 +0200
 From: "Nieland, Michael" <nielanml@iis.fraunhofer.de>
-To: Michael Dickens <michael.dickens@ettus.com>
-Thread-Topic: [USRP-users] Changing RX frequency (B210) at runtime using the
- message interface (GnuRadio)
-Thread-Index: AddAAT8Y8CpLcP+CTWi7VF4SeDHhrgAFZAUAAAgbATA=
-Date: Mon, 3 May 2021 16:14:21 +0000
-Message-ID: <25aaa6dff55641b89bd2d6ee593d0326@mail03.iis.fhg.de>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: Changing RX frequency (B210) at runtime using
+ the message interface (GnuRadio)
+Thread-Index: AddAAT8Y8CpLcP+CTWi7VF4SeDHhrgAFqeiAAAfrIJA=
+Date: Mon, 3 May 2021 16:15:56 +0000
+Message-ID: <e87436c5f82941029ffff1010d60632a@mail03.iis.fhg.de>
 References: <026715b28cc84de89c7f38eb4d82bffa@mail03.iis.fhg.de>
- <CAGNhwTOoQOtqa69NyWjJvcLmyG_R1BwY95XHeoJzSJN=Bt4+cA@mail.gmail.com>
-In-Reply-To: <CAGNhwTOoQOtqa69NyWjJvcLmyG_R1BwY95XHeoJzSJN=Bt4+cA@mail.gmail.com>
+ <609008AF.7080803@gmail.com>
+In-Reply-To: <609008AF.7080803@gmail.com>
 Accept-Language: de-DE, en-US
 Content-Language: de-DE
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-ms-exchange-transport-fromentityheader: Hosted
 x-originating-ip: [153.96.171.210]
-Content-Type: multipart/mixed;
-	boundary="_004_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_"
 MIME-Version: 1.0
 X-cloud-security-sender: nielanml@iis.fraunhofer.de
 X-cloud-security-recipient: usrp-users@lists.ettus.com
 X-cloud-security-crypt: load encryption module
 X-cloud-security-Virusscan: CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay25-hz1.antispameurope.com with 560C2DA04C4
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay87-hz1.antispameurope.com with A6638E267A1
 X-cloud-security-connect: mailgw1.iis.fraunhofer.de[153.96.172.4], TLS=1, IP=153.96.172.4
-X-cloud-security-Digest: da3962f32a900d75b0446ff476fca9cf
-X-cloud-security: scantime:1.600
-Message-ID-Hash: 6IGO32QL3IZZW4Z7DPXRKOS6I7CFFUZ3
-X-Message-ID-Hash: 6IGO32QL3IZZW4Z7DPXRKOS6I7CFFUZ3
+X-cloud-security-Digest: 3dfa7f5c0b34ca74235a6994a5e5eafc
+X-cloud-security: scantime:1.786
+Message-ID-Hash: VT2H3OM4VKC7PJNIVUYKIDT6AWASXTDB
+X-Message-ID-Hash: VT2H3OM4VKC7PJNIVUYKIDT6AWASXTDB
 X-MailFrom: prvs=0750a4bd61=nielanml@iis.fraunhofer.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>, =?utf-8?B?U2Now7x0eiwgS2F0amE=?= <katja.schuetz@iis.fraunhofer.de>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Changing RX frequency (B210) at runtime using the message interface (GnuRadio)
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6IGO32QL3IZZW4Z7DPXRKOS6I7CFFUZ3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VT2H3OM4VKC7PJNIVUYKIDT6AWASXTDB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7143092228642489964=="
 
---_004_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_
+--===============7143092228642489964==
+Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_"
+	boundary="_000_e87436c5f82941029ffff1010d60632amail03iisfhgde_"
 
---_000_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_e87436c5f82941029ffff1010d60632amail03iisfhgde_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgTWljaGFlbCwNCg0KSSBhbSB1c2luZyA0LjAuMC4gVGhlIHByaW50b3V0IG9mIHRoZSBtaW5p
-bWFsaXN0IEZsb3dncmFwaCBpcyBhdHRhY2hlZC4NCg0KDQoNCkNoZWVycw0KTWljaGFlbA0KVm9u
-OiBNaWNoYWVsIERpY2tlbnMgPG1pY2hhZWwuZGlja2Vuc0BldHR1cy5jb20+DQpHZXNlbmRldDog
-TW9udGFnLCAzLiBNYWkgMjAyMSAxNjoyMQ0KQW46IE5pZWxhbmQsIE1pY2hhZWwgPG5pZWxhbm1s
-QGlpcy5mcmF1bmhvZmVyLmRlPg0KQ2M6IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tOyBTY2jD
-vHR6LCBLYXRqYSA8a2F0amEuc2NodWV0ekBpaXMuZnJhdW5ob2Zlci5kZT4NCkJldHJlZmY6IFJl
-OiBbVVNSUC11c2Vyc10gQ2hhbmdpbmcgUlggZnJlcXVlbmN5IChCMjEwKSBhdCBydW50aW1lIHVz
-aW5nIHRoZSBtZXNzYWdlIGludGVyZmFjZSAoR251UmFkaW8pDQoNCkhpIE1pY2hhZWwgLSBXaGF0
-IHZlcnNpb24gb2YgVUhEIGFyZSB5b3UgdXNpbmc/IENhbiB5b3UgcHJvdmlkZSB0aGUgYWN0dWFs
-IHByaW50b3V0IHRoYXQgaGFwcGVucyB3aXRoIGRpZmZlcmVudCBHUkMgZmxvd2dyYXBocz8gSXQg
-c291bmRzIGxpa2UgdGhpcyBpcyBhIGJ1ZywgYnV0IGlmIHlvdSdyZSB1c2luZyBvbGRlciBHUiBv
-ciBVSEQgdGhlbiBpdCdzIGEgYnVnIHRoYXQgbWlnaHQgYmUgZml4ZWQgaW4gYSBtb3JlIHJlY2Vu
-dCB2ZXJzaW9uLiAtIE1MRA0KDQpPbiBNb24sIE1heSAzLCAyMDIxIGF0IDU6NDggQU0gTmllbGFu
-ZCwgTWljaGFlbCA8bmllbGFubWxAaWlzLmZyYXVuaG9mZXIuZGU8bWFpbHRvOm5pZWxhbm1sQGlp
-cy5mcmF1bmhvZmVyLmRlPj4gd3JvdGU6DQpEZWFyIGFsbCwNCkkgYW0gdXNpbmcgdHdvIEIyMTAg
-VVNSUOKAmXMgdG8gZ2VuZXJhdGUgYW5kIHJlY2VpdmUgRFFQU0sgU2lnbmFscyBhcm91bmQgMS41
-MyBHSHogKHR3byBUWCBhbmQgdHdvICBSWCBjaGFubmVscykuIFRoZSBVU1JQ4oCZcyB1c2UgRlcg
-VmVyc2lvbiA4LjAgYW5kIEZQR0EgVmVyc2lvbiAxNi4wIChIYXJkd2FyZSBSZXZpc2lvbiA0KS4g
-SSBhbSBoYXZpbmcgc29tZSB0cm91YmxlIHByb3Blcmx5IGNoYW5naW5nIHRoZSBSWCBmcmVxdWVu
-Y3kgYXQgcnVudGltZSB1c2luZyB0aGUgbWVzc2FnZSBpbnRlcmZhY2UuIFdoZW4gdGhlIFJYIGZy
-ZXF1ZW5jeSBpcyB2YXJpZWQgdXNpbmcgYSBRVCBHdWkgUmFuZ2Ugc2xpZGVyIEkgZW5jb3VudGVy
-IG5vIGlzc3Vlcy4gSG93ZXZlciwgaW4gbXkgYXBwbGljYXRpb24gSSBoYXZlIHRvIHVzZSB0aGUg
-bWVzc2FnZSBpbnRlcmZhY2UuIEluIGdlbmVyYWwsIEkgYXNzdW1lIHRoYXQgbXkgcG10IG1lc3Nh
-Z2Ugc3RydWN0dXJlIG11c3QgYmUgY29ycmVjdCwgc2luY2UgaXQgd29ya3MgZmluZSB3aGVuIHRo
-ZSBmcmVxdWVuY3kgaXMgb25seSBjaGFuZ2VkIGJ5IGEgZmV3IE1Iei4gIEFsc28gb3RoZXIgY29t
-bWFuZHMgKGxpa2Ugc2V0dGluZyB0eCBhbmQgcnggZ2FpbnMpIHdvcmsgYXMgZXhwZWN0ZWQuIElm
-LCBob3dldmVyLCB0aGUgZnJlcXVlbmN5IGlzIHJlcXVlc3RlZCB0byBiZSBzZXQgdG8gbGV04oCZ
-cyBzYXkgMiBHSHogZnJvbSAxLjUzIEdIeiwgYW4gb3ZlcmZsb3cgaXMgaW5kaWNhdGVkIGFuZCB0
-aGUgcmVzcGVjdGl2ZSBVU1JQIENoYW5uZWwgY29tcGxldGVseSBzdG9wcyBzdHJlYW1pbmcgKGRv
-ZXMgbm90IHJlc3RhcnQpLg0KSSB0cmllZCB1c2luZyB0aGUg4oCcZnJlceKAnSBjb21tYW5kIChi
-b3RoIHdpdGggaW5kaWNhdGluZyB0aGUgY2hhbm5lbCBhbmQgd2l0aG91dCBzaW5jZSBpdCBzaG91
-bGQgbm90IG1ha2UgYSBkaWZmZXJlbmNlIG9uIHRoZSBCMjEwKSBhbmQgdGhlIHR1bmVfcmVxdWVz
-dC4gSSB0cmllZCBzZXZlcmFsIGRpZmZlcmVudCBtZXNzYWdlIHN0cnVjdHVyZXMgYnV0IGZvciBz
-b21lIHJlYXNvbiBpdCBvbmx5IHdvcmtzIGZvciB0aGUgVFggVXNycCAoV2hlbiB1c2luZyB0aGUg
-bWVzc2FnZSBwb3J0IG9mIHRoZSBUWCBVc3JwIHRvIGNoYW5nZSBmcmVxdWVuY3kgaXQgaXMgaW5k
-aWNhdGluZyBzb21lIHVuZGVyZmxvd3MgcmlnaHQgd2hlbiB0aGUgZnJlcXVlbmN5IGlzIGNoYW5n
-ZWQgYW5kIGlzIHRoZW4gd29ya2luZyBmaW5lIHdpdGhvdXQgYW55IHVuZGVyZmxvd3Mgb3Igb3Ro
-ZXIgaXNzdWVzKS4NClRvIGVsaW1pbmF0ZSB0aGUgZXJyb3IgSSBhbSByaWdodCBub3cgdGVzdGlu
-ZyBpbiBhbiBpc29sYXRlZCBGRyB3aXRoIG9ubHkgYSBVU1JQIHNvdXJjZSBhbmQgYSBNZXNzYWdl
-IEVkaXQgQm94IChGRyBpcyBhdHRhY2hlZCkgYW5kIHRoZSBpc3N1ZSBvY2N1cnMgaGVyZSBhcyB3
-ZWxsLg0KQW55IGhlbHAgd291bGQgYmUgYXBwcmVjaWF0ZWQgYW5kIG1heWJlIHNvbWVvbmUgd2Fz
-L2lzIGZhY2luZyB0aGUgc2FtZSBpc3N1ZT8NCkJlc3QgcmVnYXJkcw0KTWljaGFlbA0KDQpfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBt
-YWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3Jw
-LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0
-cy5ldHR1cy5jb20+DQo=
+Hi Marcus,
 
---_000_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Yep I tried that as well, no issues if I am not using the message interface=
+ (Just a QT Gui Range for instance). So it seems like it has something to d=
+o with the message interface.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
-b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRS1NYWlsRm9ybWF0
-dm9ybGFnZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5
-OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQN
-Cgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
-bnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rp
-b24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4w
-Y20gNzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0t
-Pjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0
-PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUg
-bXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4
-dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4N
-CjwvaGVhZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
-aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
-c2VyaWY7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SGkgTWljaGFl
-bCwNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
-PkkgYW0gdXNpbmcgNC4wLjAuIFRoZSBwcmludG91dCBvZiB0aGUgbWluaW1hbGlzdCBGbG93Z3Jh
-cGggaXMgYXR0YWNoZWQuDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5DaGVlcnMNCjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0ibXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPk1pY2hhZWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRp
-bmc6MGNtIDBjbSAwY20gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2Jv
-cmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+Vm9uOjwvc3Bhbj48L2I+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmIj4gTWljaGFlbCBEaWNrZW5zICZsdDttaWNoYWVsLmRpY2tlbnNAZXR0
-dXMuY29tJmd0Ow0KPGJyPg0KPGI+R2VzZW5kZXQ6PC9iPiBNb250YWcsIDMuIE1haSAyMDIxIDE2
-OjIxPGJyPg0KPGI+QW46PC9iPiBOaWVsYW5kLCBNaWNoYWVsICZsdDtuaWVsYW5tbEBpaXMuZnJh
-dW5ob2Zlci5kZSZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-OyBTY2jDvHR6LCBLYXRqYSAmbHQ7a2F0amEuc2NodWV0ekBpaXMuZnJhdW5ob2Zlci5kZSZndDs8
-YnI+DQo8Yj5CZXRyZWZmOjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBDaGFuZ2luZyBSWCBmcmVxdWVu
-Y3kgKEIyMTApIGF0IHJ1bnRpbWUgdXNpbmcgdGhlIG1lc3NhZ2UgaW50ZXJmYWNlIChHbnVSYWRp
-byk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPkhpJm5ic3A7TWljaGFlbCAtIFdoYXQgdmVyc2lvbiBvZiBVSEQgYXJlIHlvdSB1c2lu
-Zz8gQ2FuIHlvdSBwcm92aWRlIHRoZSBhY3R1YWwgcHJpbnRvdXQgdGhhdCBoYXBwZW5zIHdpdGgg
-ZGlmZmVyZW50IEdSQyBmbG93Z3JhcGhzPyBJdCBzb3VuZHMgbGlrZSB0aGlzIGlzIGEgYnVnLCBi
-dXQgaWYgeW91J3JlIHVzaW5nIG9sZGVyIEdSIG9yIFVIRCB0aGVuIGl0J3MgYSBidWcgdGhhdCBt
-aWdodCBiZSBmaXhlZCBpbiBhIG1vcmUNCiByZWNlbnQmbmJzcDt2ZXJzaW9uLiAtIE1MRDxvOnA+
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBNb24s
-IE1heSAzLCAyMDIxIGF0IDU6NDggQU0gTmllbGFuZCwgTWljaGFlbCAmbHQ7PGEgaHJlZj0ibWFp
-bHRvOm5pZWxhbm1sQGlpcy5mcmF1bmhvZmVyLmRlIj5uaWVsYW5tbEBpaXMuZnJhdW5ob2Zlci5k
-ZTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHls
-ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBj
-bSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPGRp
-dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
-OmF1dG87bWFyZ2luLWJvdHRvbToxMi4wcHQiPjxzcGFuIGxhbmc9IkVOLVVTIj5EZWFyIGFsbCwN
-Cjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
-bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPkkgYW0gdXNpbmcgdHdvIEIyMTAgVVNSUOKAmXMgdG8gZ2VuZXJhdGUgYW5kIHJl
-Y2VpdmUgRFFQU0sgU2lnbmFscyBhcm91bmQgMS41MyBHSHogKHR3byBUWCBhbmQgdHdvICZuYnNw
-O1JYIGNoYW5uZWxzKS4gVGhlIFVTUlDigJlzIHVzZSBGVyBWZXJzaW9uIDguMCBhbmQgRlBHQSBW
-ZXJzaW9uDQogMTYuMCAoSGFyZHdhcmUgUmV2aXNpb24gNCkuIEkgYW0gaGF2aW5nIHNvbWUgdHJv
-dWJsZSBwcm9wZXJseSBjaGFuZ2luZyB0aGUgUlggZnJlcXVlbmN5IGF0IHJ1bnRpbWUgdXNpbmcg
-dGhlIG1lc3NhZ2UgaW50ZXJmYWNlLiBXaGVuIHRoZSBSWCBmcmVxdWVuY3kgaXMgdmFyaWVkIHVz
-aW5nIGEgUVQgR3VpIFJhbmdlIHNsaWRlciBJIGVuY291bnRlciBubyBpc3N1ZXMuIEhvd2V2ZXIs
-IGluIG15IGFwcGxpY2F0aW9uIEkgaGF2ZSB0byB1c2UgdGhlDQogbWVzc2FnZSBpbnRlcmZhY2Uu
-IEluIGdlbmVyYWwsIEkgYXNzdW1lIHRoYXQgbXkgcG10IG1lc3NhZ2Ugc3RydWN0dXJlIG11c3Qg
-YmUgY29ycmVjdCwgc2luY2UgaXQgd29ya3MgZmluZSB3aGVuIHRoZSBmcmVxdWVuY3kgaXMgb25s
-eSBjaGFuZ2VkIGJ5IGEgZmV3IE1Iei4mbmJzcDsgQWxzbyBvdGhlciBjb21tYW5kcyAobGlrZSBz
-ZXR0aW5nIHR4IGFuZCByeCBnYWlucykgd29yayBhcyBleHBlY3RlZC4gSWYsIGhvd2V2ZXIsIHRo
-ZSBmcmVxdWVuY3kgaXMNCiByZXF1ZXN0ZWQgdG8gYmUgc2V0IHRvIGxldOKAmXMgc2F5IDIgR0h6
-IGZyb20gMS41MyBHSHosIGFuIG92ZXJmbG93IGlzIGluZGljYXRlZCBhbmQgdGhlIHJlc3BlY3Rp
-dmUgVVNSUCBDaGFubmVsIGNvbXBsZXRlbHkgc3RvcHMgc3RyZWFtaW5nIChkb2VzIG5vdCByZXN0
-YXJ0KS4mbmJzcDsNCjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
-byI+PHNwYW4gbGFuZz0iRU4tVVMiPkkgdHJpZWQgdXNpbmcgdGhlIOKAnGZyZXHigJ0gY29tbWFu
-ZCAoYm90aCB3aXRoIGluZGljYXRpbmcgdGhlIGNoYW5uZWwgYW5kIHdpdGhvdXQgc2luY2UgaXQg
-c2hvdWxkIG5vdCBtYWtlIGEgZGlmZmVyZW5jZSBvbiB0aGUgQjIxMCkgYW5kIHRoZSB0dW5lX3Jl
-cXVlc3QuIEkgdHJpZWQNCiBzZXZlcmFsIGRpZmZlcmVudCBtZXNzYWdlIHN0cnVjdHVyZXMgYnV0
-IGZvciBzb21lIHJlYXNvbiBpdCBvbmx5IHdvcmtzIGZvciB0aGUgVFggVXNycCAoV2hlbiB1c2lu
-ZyB0aGUgbWVzc2FnZSBwb3J0IG9mIHRoZSBUWCBVc3JwIHRvIGNoYW5nZSBmcmVxdWVuY3kgaXQg
-aXMgaW5kaWNhdGluZyBzb21lIHVuZGVyZmxvd3MgcmlnaHQgd2hlbiB0aGUgZnJlcXVlbmN5IGlz
-IGNoYW5nZWQgYW5kIGlzIHRoZW4gd29ya2luZyBmaW5lIHdpdGhvdXQgYW55DQogdW5kZXJmbG93
-cyBvciBvdGhlciBpc3N1ZXMpLiA8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
-YWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj5UbyBlbGltaW5hdGUgdGhlIGVycm9yIEkgYW0g
-cmlnaHQgbm93IHRlc3RpbmcgaW4gYW4gaXNvbGF0ZWQgRkcgd2l0aCBvbmx5IGEgVVNSUCBzb3Vy
-Y2UgYW5kIGEgTWVzc2FnZSBFZGl0IEJveCAoRkcgaXMgYXR0YWNoZWQpIGFuZCB0aGUgaXNzdWUg
-b2NjdXJzIGhlcmUgYXMgd2VsbC4mbmJzcDsNCjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiPkFueSBoZWxwIHdvdWxkIGJlIGFw
-cHJlY2lhdGVkIGFuZCBtYXliZSBzb21lb25lIHdhcy9pcyBmYWNpbmcgdGhlIHNhbWUgaXNzdWU/
-PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
-YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5n
-PSJFTi1VUyI+QmVzdCByZWdhcmRzPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
-LWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+TWljaGFlbDwvc3Bhbj48bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
-c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+X19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBo
-cmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4N
-CnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2NyaWJlIHNlbmQg
-YW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMu
-Y29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwv
-YT48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
-CjwvYm9keT4NCjwvaHRtbD4NCg==
+BR
+Michael
 
---_000_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_--
 
---_004_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_
-Content-Type: text/plain; name="Console_out.txt"
-Content-Description: Console_out.txt
-Content-Disposition: attachment; filename="Console_out.txt"; size=1195;
-	creation-date="Mon, 03 May 2021 16:12:00 GMT";
-	modification-date="Mon, 03 May 2021 16:12:49 GMT"
-Content-Transfer-Encoding: base64
+Von: Marcus D. Leech <patchvonbraun@gmail.com>
+Gesendet: Montag, 3. Mai 2021 16:29
+An: usrp-users@lists.ettus.com
+Betreff: [USRP-users] Re: Changing RX frequency (B210) at runtime using the=
+ message interface (GnuRadio)
 
-W0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOS4zLjA7IEJvb3N0XzEwNzEwMDsg
-VUhEXzQuMC4wLjAtMC11bmtub3duDQpbSU5GT10gW0IyMDBdIERldGVjdGVkIERldmljZTogQjIx
-MA0KW0lORk9dIFtCMjAwXSBMb2FkaW5nIEZQR0EgaW1hZ2U6IC91c3IvbG9jYWwvc2hhcmUvdWhk
-L2ltYWdlcy91c3JwX2IyMTBfZnBnYS5iaW4uLi4NCltJTkZPXSBbQjIwMF0gT3BlcmF0aW5nIG92
-ZXIgVVNCIDMuDQpbSU5GT10gW0IyMDBdIERldGVjdGluZyBpbnRlcm5hbCBHUFNETy4uLi4gDQpb
-SU5GT10gW0dQU10gTm8gR1BTRE8gZm91bmQNCltJTkZPXSBbQjIwMF0gSW5pdGlhbGl6ZSBDT0RF
-QyBjb250cm9sLi4uDQpbSU5GT10gW0IyMDBdIEluaXRpYWxpemUgUmFkaW8gY29udHJvbC4uLg0K
-W0lORk9dIFtCMjAwXSBQZXJmb3JtaW5nIHJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QuLi4gDQpbSU5G
-T10gW0IyMDBdIFJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QgcGFzc2VkDQpbSU5GT10gW0IyMDBdIFBl
-cmZvcm1pbmcgcmVnaXN0ZXIgbG9vcGJhY2sgdGVzdC4uLiANCltJTkZPXSBbQjIwMF0gUmVnaXN0
-ZXIgbG9vcGJhY2sgdGVzdCBwYXNzZWQNCltJTkZPXSBbQjIwMF0gU2V0dGluZyBtYXN0ZXIgY2xv
-Y2sgcmF0ZSBzZWxlY3Rpb24gdG8gJ2F1dG9tYXRpYycuDQpbSU5GT10gW0IyMDBdIEFza2luZyBm
-b3IgY2xvY2sgcmF0ZSAxNi4wMDAwMDAgTUh6Li4uIA0KW0lORk9dIFtCMjAwXSBBY3R1YWxseSBn
-b3QgY2xvY2sgcmF0ZSAxNi4wMDAwMDAgTUh6Lg0KW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNs
-b2NrIHJhdGUgMzIuMDAwMDAwIE1Iei4uLiANCltJTkZPXSBbQjIwMF0gQWN0dWFsbHkgZ290IGNs
-b2NrIHJhdGUgMzIuMDAwMDAwIE1Iei4NCltJTkZPXSBbTVVMVElfVVNSUF0gICAgIDEpIGNhdGNo
-IHRpbWUgdHJhbnNpdGlvbiBhdCBwcHMgZWRnZQ0KW0lORk9dIFtNVUxUSV9VU1JQXSAgICAgMikg
-c2V0IHRpbWVzIG5leHQgcHBzIChzeW5jaHJvbm91c2x5KQ0KKioqKioqKiBNRVNTQUdFIERFQlVH
-IFBSSU5UICoqKioqKioqDQooZnJlcSAuIDEuNTNlKzA5KQ0KKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqDQoqKioqKioqIE1FU1NBR0UgREVCVUcgUFJJTlQgKioqKioqKioNCihm
-cmVxIC4gMmUrMDkpDQoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioNCk8NCg==
+On 05/03/2021 05:47 AM, Nieland, Michael wrote:
+Dear all,
+I am using two B210 USRP's to generate and receive DQPSK Signals around 1.5=
+3 GHz (two TX and two  RX channels). The USRP's use FW Version 8.0 and FPGA=
+ Version 16.0 (Hardware Revision 4). I am having some trouble properly chan=
+ging the RX frequency at runtime using the message interface. When the RX f=
+requency is varied using a QT Gui Range slider I encounter no issues. Howev=
+er, in my application I have to use the message interface. In general, I as=
+sume that my pmt message structure must be correct, since it works fine whe=
+n the frequency is only changed by a few MHz.  Also other commands (like se=
+tting tx and rx gains) work as expected. If, however, the frequency is requ=
+ested to be set to let's say 2 GHz from 1.53 GHz, an overflow is indicated =
+and the respective USRP Channel completely stops streaming (does not restar=
+t).
+I tried using the "freq" command (both with indicating the channel and with=
+out since it should not make a difference on the B210) and the tune_request=
+. I tried several different message structures but for some reason it only =
+works for the TX Usrp (When using the message port of the TX Usrp to change=
+ frequency it is indicating some underflows right when the frequency is cha=
+nged and is then working fine without any underflows or other issues).
+To eliminate the error I am right now testing in an isolated FG with only a=
+ USRP source and a Message Edit Box (FG is attached) and the issue occurs h=
+ere as well.
+Any help would be appreciated and maybe someone was/is facing the same issu=
+e?
+Best regards
+Michael
 
---_004_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_
+Have you tried using the "direct" interface for tuning--bypassing, for now,=
+ the message infrastructure?  Just use your rx_freq
+  variable directly in the UHD source block frequency input field?  If that=
+ also produces overruns during tuning, then the issue
+  is deeper inside than the message interface.
+
+
+
+
+--_000_e87436c5f82941029ffff1010d60632amail03iisfhgde_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:105%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;
+	color:black;}
+span.E-MailFormatvorlage18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.E-MailFormatvorlage19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body bgcolor=3D"white" lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D">Hi Marc=
+us, <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D"><o:p>&n=
+bsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D">Yep I t=
+ried that as well, no issues if I am not using the message interface (Just =
+a QT Gui Range for instance). So it seems like it has something to do with =
+the message interface.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D"><o:p>&n=
+bsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D">BR<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1F497D">Michael=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt;lin=
+e-height:normal">
+<b><span style=3D"color:windowtext;mso-fareast-language:DE">Von:</span></b>=
+<span style=3D"color:windowtext;mso-fareast-language:DE"> Marcus D. Leech &=
+lt;patchvonbraun@gmail.com&gt;
+<br>
+<b>Gesendet:</b> Montag, 3. Mai 2021 16:29<br>
+<b>An:</b> usrp-users@lists.ettus.com<br>
+<b>Betreff:</b> [USRP-users] Re: Changing RX frequency (B210) at runtime us=
+ing the message interface (GnuRadio)<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 05/03/2021 05:47 AM, Nieland, Michael wrote:<span=
+ style=3D"font-size:12.0pt;line-height:105%;mso-fareast-language:DE"><o:p><=
+/o:p></span></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span lang=3D"EN-US">=
+Dear all, </span>
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am using two B210 USRP&#8217;=
+s to generate and receive DQPSK Signals around 1.53 GHz (two TX and two &nb=
+sp;RX channels). The USRP&#8217;s use FW Version 8.0 and FPGA Version 16.0 =
+(Hardware Revision 4). I am having some trouble properly
+ changing the RX frequency at runtime using the message interface. When the=
+ RX frequency is varied using a QT Gui Range slider I encounter no issues. =
+However, in my application I have to use the message interface. In general,=
+ I assume that my pmt message structure
+ must be correct, since it works fine when the frequency is only changed by=
+ a few MHz.&nbsp; Also other commands (like setting tx and rx gains) work a=
+s expected. If, however, the frequency is requested to be set to let&#8217;=
+s say 2 GHz from 1.53 GHz, an overflow is indicated
+ and the respective USRP Channel completely stops streaming (does not resta=
+rt).&nbsp; </span>
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I tried using the &#8220;freq&#=
+8221; command (both with indicating the channel and without since it should=
+ not make a difference on the B210) and the tune_request. I tried several d=
+ifferent message structures but for some reason
+ it only works for the TX Usrp (When using the message port of the TX Usrp =
+to change frequency it is indicating some underflows right when the frequen=
+cy is changed and is then working fine without any underflows or other issu=
+es).
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">To eliminate the error I am rig=
+ht now testing in an isolated FG with only a USRP source and a Message Edit=
+ Box (FG is attached) and the issue occurs here as well.&nbsp;
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Any help would be appreciated a=
+nd maybe someone was/is facing the same issue?</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards</span><o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Michael</span><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+</blockquote>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt;line-height:normal"><s=
+pan style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;mso-fareast-language:DE">Have you tried using the &quot;direct&quot; inter=
+face for tuning--bypassing, for now, the message infrastructure?&nbsp;
+ Just use your rx_freq<br>
+&nbsp; variable directly in the UHD source block frequency input field?&nbs=
+p; If that also produces overruns during tuning, then the issue<br>
+&nbsp; is deeper inside than the message interface.<br>
+<br>
+<br>
+<br>
+<o:p></o:p></span></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_e87436c5f82941029ffff1010d60632amail03iisfhgde_--
+
+--===============7143092228642489964==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -302,4 +310,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---_004_25aaa6dff55641b89bd2d6ee593d0326mail03iisfhgde_--
+--===============7143092228642489964==--
