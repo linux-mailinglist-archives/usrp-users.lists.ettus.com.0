@@ -2,124 +2,166 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B7B837236E
-	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 01:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4669637279A
+	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 10:54:57 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 06D72383F5A
-	for <lists+usrp-users@lfdr.de>; Mon,  3 May 2021 19:07:48 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AC7DF384168
+	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 04:54:55 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="rykzE/6V";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=external.thalesgroup.com header.i=@external.thalesgroup.com header.b="oO8b9DSf";
 	dkim-atps=neutral
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5AFF4383EE7
-	for <usrp-users@lists.ettus.com>; Mon,  3 May 2021 19:06:50 -0400 (EDT)
-Received: by mail-qv1-f53.google.com with SMTP id q5so3529676qvv.6
-        for <usrp-users@lists.ettus.com>; Mon, 03 May 2021 16:06:50 -0700 (PDT)
+Received: from thsbbfxrt02p.thalesgroup.com (thsbbfxrt02p.thalesgroup.com [192.93.158.29])
+	by mm2.emwd.com (Postfix) with ESMTPS id 94575384168
+	for <usrp-users@lists.ettus.com>; Tue,  4 May 2021 04:53:57 -0400 (EDT)
+Received: from thsbbfxrt02p.thalesgroup.com (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id 4FZDCl6cm4zJpjj
+	for <usrp-users@lists.ettus.com>; Tue,  4 May 2021 10:53:55 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:subject:references
-         :in-reply-to:content-transfer-encoding;
-        bh=pCIafIiCspWh4uAhogPjH6AF0VFvD4flfbp7xyIUR4s=;
-        b=rykzE/6Vlzbee7FB+BbNSzU5N3EP2kj42lL7kyObyVuvyjzMcEMqZZ4sfHjuIgcwxg
-         8wmPfsOWmSpU8FizqrF2cmCdF5lwORSRVYt9Tlbd4x5jOURB/LEhdTmz2ap7vL+OYtUG
-         91MELWJ2u4Jv85w7CnvDdDuW4KyGvxnjhh1sFRp651UfFnBoXaDl/hGH2UFDfly+V8hy
-         1T3GrS+Ix00PWviMbcjRZJZKCgWmpO3Rq3ucxFsdgn9pHj3F61w8sOnJuWxsWduJOgrr
-         Qs38fUbPg/fSH+xgLpNkHZ4ZMkx8O39NSFBI/bCuKG8tukjZWbCOLHL3nNPOd2UcwXaK
-         RtNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :subject:references:in-reply-to:content-transfer-encoding;
-        bh=pCIafIiCspWh4uAhogPjH6AF0VFvD4flfbp7xyIUR4s=;
-        b=nzM57I/QbjFohx7Iznq8mzgklYG55gShwdT4cTLJUuxmcwg5Mv4J+aW1E1Uwa4MyWk
-         KNp1OEp8fcjnCy+IXy0FRRrWJ0hGqg5RmRRTs40OPc78I5yxfnj/gTmE6v+yGcy+R7TT
-         yXJI8CNm69gqzaDty1baKbqM2Ks2AL/UAxJwOsBSQj5kOAgJCNDp7rlmRjyTvYd1u0+9
-         p5iLjz6QO1K9JHGE7sGl67/hhlRwscMhsISLGw8C7zV/79VWheS9B7lHpxqJAyG7Y13y
-         VUeM9xJxmrY9MwlE8AZ8J0pmfQgkUhLX2H01SEuDL49sEe/nQGSaxX5a3F+ukZcSgCIS
-         OfpA==
-X-Gm-Message-State: AOAM533/4cGy/ADWUm0idCgaLCA1Odj6vKW/K48gmRxVvg/rqiLA6jvC
-	HAEU4iIyLfOoAYxf81MXCo1lulKSnNt1zA==
-X-Google-Smtp-Source: ABdhPJztE8L2ETIuoZaQMnBvGJjOD0h1jkx5L6bWuatZ+jSveolzGrCtimvqk6Na/oIeASDY4z8Dew==
-X-Received: by 2002:a05:6214:c85:: with SMTP id r5mr8446031qvr.11.1620083209412;
-        Mon, 03 May 2021 16:06:49 -0700 (PDT)
-Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id k1sm9501253qkh.5.2021.05.03.16.06.48
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 03 May 2021 16:06:48 -0700 (PDT)
-Message-ID: <60908207.1020903@gmail.com>
-Date: Mon, 03 May 2021 19:06:47 -0400
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	d=external.thalesgroup.com; s=xrt20181201; t=1620118435;
+	bh=ocsILr2pTHgaRa3TWtaEErtbi4wBRTp0d8EyfPW9VyM=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:From;
+	b=oO8b9DSfUh3rmPP3SlnpNonJpuMCaix7WgL9zKS7zktE0nbgNEh2viCpycC5l64pG
+	 qfJgb9uf5JJc+myKdnNABKkm45+t/TTf4paVPC/4TkBN62N59gif0sZziSttg8tSCP
+	 pexnonO6GfU30V/we9I7Zm1TEk88Mvl2aTrZhHQ04KKwJDlWZ+79fa3TvTpCMC7+pX
+	 OgSXvAwqMPSJ73nZz1J/0q2UdFqtEncvNXCyCjDcoWzTOU6baNKWqLPQrPmm/a8ikU
+	 S9AZD49pPm8NPMAj52+gBA7dPHUHQcQ9KuDFY6pL1yv31fkDpNZNDOULIPGzXJqMqQ
+	 X/ZvzmA4jAWww==
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Send null signal DUC
+Thread-Index: AddAwj1iptDukzcfRNq2kjo+A+urtw==
+Date: Tue, 4 May 2021 08:53:54 +0000
+Message-ID: <af08e5f9b7df45ec81d8815adde44093@external.thalesgroup.com>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-pmwin-version: 4.0.3, Antivirus-Engine: 3.80.1, Antivirus-Data: 5.83
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <CAL0m=NZ6_qKogN9yeuizj_Sq58266n7k=DMxmyiJo-eW_yiJ6A@mail.gmail.com>
-In-Reply-To: <CAL0m=NZ6_qKogN9yeuizj_Sq58266n7k=DMxmyiJo-eW_yiJ6A@mail.gmail.com>
-Message-ID-Hash: OBDBTJ43DLYE4GNKVHWC3ICT37CFO6YZ
-X-Message-ID-Hash: OBDBTJ43DLYE4GNKVHWC3ICT37CFO6YZ
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: MLFKLMG27MAGRH6UA5BFW3GPUSVWDCVX
+X-Message-ID-Hash: MLFKLMG27MAGRH6UA5BFW3GPUSVWDCVX
+X-MailFrom: frederique.courant@external.thalesgroup.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: GNU Radio cannot find N310
+Subject: [USRP-users] Send null signal DUC
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OBDBTJ43DLYE4GNKVHWC3ICT37CFO6YZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MLFKLMG27MAGRH6UA5BFW3GPUSVWDCVX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
+From: COURANT Frederique - Contractor via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: COURANT Frederique - Contractor <frederique.courant@external.thalesgroup.com>
+Content-Type: multipart/mixed; boundary="===============4079601336930594497=="
+
+--===============4079601336930594497==
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_af08e5f9b7df45ec81d8815adde44093externalthalesgroupcom_"
+
+--_000_af08e5f9b7df45ec81d8815adde44093externalthalesgroupcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Users,
+
+I would like to known if someone could give me an example of how can I send=
+ a null signal to a DUC control block in C++ please ?
+I work with UHD 3.14.
+
+Thanks for your help.
+
+Regards.
+
+Fred
+
+--_000_af08e5f9b7df45ec81d8815adde44093externalthalesgroupcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello Users,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I would like to known if someon=
+e could give me an example of how can I send a null signal to a DUC control=
+ block in C&#43;&#43; please ?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I work with UHD 3.14.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks for your help.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Fred<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_af08e5f9b7df45ec81d8815adde44093externalthalesgroupcom_--
+
+--===============4079601336930594497==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-On 05/03/2021 04:31 PM, Zeng, Huacheng wrote:
-> Hello,
->
-> I was trying to receive the signal from UHD Sink (n310) in GNU Radio 
-> Companion (GRC) but got the following error message (i.e., GRC cannot 
-> find N310). I am using Ubuntu 18.04, GNU RADIO 3.9, and UHD 4.0.0. I 
-> have confirmed that
-> - My GRC can work with N210.
-> - I can ping both eth0 and SPF+ ports of N310 from host.
-> - In terminal "uhd_find_devices" can find N310.
-> - "uhd_usrp_probe" can also find N310. Output message is attached below.
-> - I can log in N310 using SSH.
-> - I have updated N310's FPGA image. The OS in N310 is also UHD 4.0.0 
-> (the same as the host).
->
-> Any suggestions would be appreciated.
-> Thanks,
-> Hua
->
->
-> ================================
-> ERROR MESSAGE FROM GRC
-> ================================
-> Traceback (most recent call last):
->   File "/home/cnss/test2.py", line 150, in <module>
->     main()
->   File "/home/cnss/test2.py", line 126, in main
->     tb = top_block_cls()
->   File "/home/cnss/test2.py", line 84, in __init__
->     channels=list(range(0,1)),
->   File "/usr/lib/python3/dist-packages/gnuradio/uhd/__init__.py", line 
-> 125, in constructor_interceptor
->     return old_constructor(*args)
->   File "/usr/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py", line 
-> 3259, in make
->     return _uhd_swig.usrp_source_make(device_addr, stream_args, 
-> issue_stream_cmd_on_start)
-> RuntimeError: LookupError: KeyError: No devices found for ----->
-> Device Address:
->     addr: 192.168.20.2
->
->
-Could you share the full output from the GR graph run? Including the 
-headers where it says what version of UHD it is using?
-
-Also, what was the device address string you used in GR?  Did you 
-include type=n3xx,product=n310 ??
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4079601336930594497==--
