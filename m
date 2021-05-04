@@ -2,211 +2,271 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F0A372DF2
-	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 18:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA04372E62
+	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 19:02:28 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D6BA6384B09
-	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 12:22:34 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AA7EA384C0F
+	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 13:02:27 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="wZy3IC1U";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cAPrHHpk";
 	dkim-atps=neutral
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id D66E6384201
-	for <usrp-users@lists.ettus.com>; Tue,  4 May 2021 12:21:38 -0400 (EDT)
-Received: by mail-ej1-f47.google.com with SMTP id a4so14089489ejk.1
-        for <usrp-users@lists.ettus.com>; Tue, 04 May 2021 09:21:38 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 321D43840ED
+	for <usrp-users@lists.ettus.com>; Tue,  4 May 2021 13:01:36 -0400 (EDT)
+Received: by mail-yb1-f182.google.com with SMTP id 15so13140734ybc.0
+        for <usrp-users@lists.ettus.com>; Tue, 04 May 2021 10:01:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
-        bh=LOzroC+/eBOLMy5KO5QHkI+K/Db7gXoVxMu+jBrTgHo=;
-        b=wZy3IC1UcBYULtm88wJNv5gHkJm9WZnLLkEKA6rYLV9EYfTyugyfYqeGn4koG2VZSZ
-         vww8ums1kSOHdvHbCq6uBsJS8flunQJyQ9BKD5E6KohDrKRyOSBGCijLKMIX6WJj79pv
-         1Mvdg/3QUaDXIpQw07Hr/7l08HIKXBUHjjNNZi6C43sTQ/yJ1L5SZkN3l9R4lNCq/qpX
-         BYlTl9uQGPZuAZyHSKJhcEIsWmaZidXvcf4mshmVUpjphQs9QpT299s3Nk2CpFTBAFY3
-         n29DNnFxLbG3i10TNh5WdAt8vUN6aD9mDaN1z79UUbgNd1EQ80UmL3SqWnYKhyCR5Kn9
-         Q71g==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t+CCEaX+UnFj3UAvubwhis6d2TW3xDjuqBmHnCeIt14=;
+        b=cAPrHHpkk/TBnf8lld6kiWGEDAcSCIJOxffx0+V270LuHeNJqYlDTpI5i0QBJ79iXk
+         W5j6Aq4g/WZt2sh0ErvtMfiGgfGPqZd1WZJOP1Em97yUQmmDPtNv+dv1yI5Jf6Lu2YoS
+         nCV7d+i0O97zsxsLVn3dj9SWolvKhO6RgM1RiVs3QB60Ox5zk9z/M3/ePeZXU6i7Ei2M
+         B8Cid+DNbVEKbl4Sth5Uy4vclXKoLUgm+WRuLn6KEeZwOcK9s2N4jCLubhL7Af8H5W2+
+         grezaL+kGpV6K+QvKhHjLXoxwiUiA7mv8P5tr218yPYIovpKcXmK1sWlzjWOoerwzpxx
+         Tp6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:cc;
-        bh=LOzroC+/eBOLMy5KO5QHkI+K/Db7gXoVxMu+jBrTgHo=;
-        b=Xr4dWpuccY7KHdb1KRkN3fSZKRwTE/kJIqKRHXiOTvICzyf9J2bQPF5/IWE2fPi9O6
-         XsNFR59zxFIZqAaRmM57FV+PpfLIwKQECUpSzcfSnx8bY6EuUg7rXVsJhVXFpAKAh+Wq
-         /EKWL6LzAVp0kC49pIGef9jPe6Er1PMSCQIk7QW9gsKugZgruf/K5QejlfZRqnSs3q6d
-         HFHT2bsJVKzGjtWC3SRhepB7j+RjS3OHs7WGHjlFRbxSIVV2Mg/muU3Ibd/cKjlTCZ3G
-         AqJA9lAXaXGHNAqgE4FhHGBIdqBjt10gmirzgI1qU7O9OKinAhA7Y12sTEiYXzUW+sSV
-         6UcQ==
-X-Gm-Message-State: AOAM530ubv+rn9WdW4Q5CYOUOSutZVmjXLBC0s9lo9FftcedP/45cAkf
-	6MBN+koNP728t6Rebal6DZduCQvQM28PSRQnyifn4oGOKxE39Q==
-X-Google-Smtp-Source: ABdhPJwxKHQA9S9sbqPYneQZLAN4/+71pV7CEcn2WOwGIRJA1Znmw85dfqE3B7822gOv9gSX+DnN/3SEYupdg9yyaP0=
-X-Received: by 2002:a17:906:7ac9:: with SMTP id k9mr23077244ejo.229.1620145297420;
- Tue, 04 May 2021 09:21:37 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=t+CCEaX+UnFj3UAvubwhis6d2TW3xDjuqBmHnCeIt14=;
+        b=r2jw6MpUFsiVdJqT2tpDhI0+i1oGmxzR0UCWIqSGLOSVgmR0Yv6PnqfG85pvAtxlz5
+         vamrfx9WiQQxzZBv0wKJcWCsExrNgQyIkAqVJF0pPagD6CwZiAR9OGQcsXf0/7tqt0RQ
+         FkjbFo4/YWc1zUsVKLRPinFGDWrGFoDz3V/UVTHeJUTgUdSn4dfWuZszx+Rlb5Tkyhdm
+         qVrIlnyhhqLIno3EtXS6CnqyRr9b7SDvgfw0D+rlRIRgzhihoABl08OdIzlyUVonlEbV
+         d8R8XgpXMoKE0V070fb8t0r4FitIq48fdDZMprWIKDeKVCkKHy7gfa8zeSnJYaYW2luU
+         WO4g==
+X-Gm-Message-State: AOAM530GfMZ5iV26A2CmdwtTSdZrv2ZbmDBsDXDtxYDPJvNjQ4V3hXHB
+	1Dh8woK2Zh/qW4m0ZFV5FT/yaP9tljIqTgH/nvw=
+X-Google-Smtp-Source: ABdhPJy7jllMQhvlNlnaTrf9kqIRF3WpIzbEXb1r8D007fTCZTS0NQEhjMCXy1rDYVWiq098z9WWZ5rmp9yLO9Sviuw=
+X-Received: by 2002:a25:f504:: with SMTP id a4mr33380526ybe.150.1620147695524;
+ Tue, 04 May 2021 10:01:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <BY3PR09MB73167120DD55101EA0FA542EEC409@BY3PR09MB7316.namprd09.prod.outlook.com>
- <CAEXYVK7F=BP2frJdgdbrdOEWqV_WQeJ6vugmJ2bZXPTuVTE=+w@mail.gmail.com>
- <BY3PR09MB7316062E0274087C3ABD493EEC409@BY3PR09MB7316.namprd09.prod.outlook.com>
- <CAEXYVK6pEM48uyu4W=MzEhpakysLHVJ9u+MZEJSDgHqC0nHuGA@mail.gmail.com>
-In-Reply-To: <CAEXYVK6pEM48uyu4W=MzEhpakysLHVJ9u+MZEJSDgHqC0nHuGA@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Tue, 4 May 2021 18:21:26 +0200
-Message-ID: <CAFOi1A7wrsRj2zjp8VCpz-O0fq+MLxnsvuBQTwEdq=EPx=H1eg@mail.gmail.com>
-Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: ZIMAZC5QYZXX7SWBP5247V7YBDZLXM6B
-X-Message-ID-Hash: ZIMAZC5QYZXX7SWBP5247V7YBDZLXM6B
-X-MailFrom: martin.braun@ettus.com
+References: <CAL0m=NbL7UbQNHjNg4vMp1cRAtD4Pv4nh0okCgvmfEV0Ed_xWg@mail.gmail.com>
+ <99A6F1D2-EB9F-4358-BA90-E5371702A1C9@gmail.com>
+In-Reply-To: <99A6F1D2-EB9F-4358-BA90-E5371702A1C9@gmail.com>
+From: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
+Date: Tue, 4 May 2021 13:01:23 -0400
+Message-ID: <CAL0m=NaJnqCuTQuA31R2bpxFq+O1dFzerbh5Ed34NrVtwkYcxQ@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Message-ID-Hash: D4T6K6MKAGFHL26PZ26XVHWGMCCZQLLL
+X-Message-ID-Hash: D4T6K6MKAGFHL26PZ26XVHWGMCCZQLLL
+X-MailFrom: huacheng.zeng@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Bare metal development on X310
+Subject: [USRP-users] Re: GNU Radio cannot find N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZIMAZC5QYZXX7SWBP5247V7YBDZLXM6B/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/D4T6K6MKAGFHL26PZ26XVHWGMCCZQLLL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0864483631999022373=="
+Content-Type: multipart/mixed; boundary="===============5011225912549816154=="
 
---===============0864483631999022373==
-Content-Type: multipart/alternative; boundary="000000000000f00d4405c183789d"
+--===============5011225912549816154==
+Content-Type: multipart/alternative; boundary="000000000000e01e1805c18407c2"
 
---000000000000f00d4405c183789d
+--000000000000e01e1805c18407c2
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-You can remove the DDC/DUC blocks in UHD 4.0. You can also remove the radio
-block if you're not using a multi_usrp object.
+Thanks for your information. I have reinstalled GNU Radio from source. The
+problem was resolved.
 
-If you're not expecting software to touch data, you could throw in a single
-Rasberry Pi to run the UHD sessions and keep RFNoC/UHD for everything else.
-That would set up routing, DACs/ADCs, clocks and avoid having to
-reimplement LMK setup routines or whatever in HDL. Then you can keep the
-FPGA purely for whatever you want to use it for.
 
---M
+On Tue, May 4, 2021 at 11:29 AM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
 
-On Thu, Apr 29, 2021 at 12:23 AM Brian Padalino <bpadalino@gmail.com> wrote:
-
-> On Wed, Apr 28, 2021 at 5:38 PM Eugene Grayver <eugene.grayver@aero.org>
+> That means that the GR you have was built using the older UHD.
+>
+> You=E2=80=99ll very likely need to uninstall GR and do a source based ins=
+tall of
+> GR.
+>
+> Sent from my iPhone
+>
+> On May 4, 2021, at 10:28 AM, Zeng, Huacheng <huacheng.zeng@gmail.com>
 > wrote:
 >
->> That's what I was afraid of.  Note that I do not need any daughter cards
->> (just LFTX/LFRX), which reduces the number of configuration items.
->> My main concern is that I was going to take over the ethernet interface.
->> I guess I can take over one and leave the other one for UHD.  I am also
->> concerned that the UHD will complain loudly once i start taking blocks out
->> of the flowgraph that it expects to be there.
+> =EF=BB=BF
+> Hi Marcus,
+>
+> Thank you for your response. The output of GR graph shows "linux; GNU C++
+> version 7.3.0; Boost_106501; UHD_003.010.003.000-0-unknown." Looks like t=
+he
+> GR graph did not use UHD_4.0.0, which I have installed following the
+> instructions on Ettus website. Is there a way to force GR to use a new
+> version of UHD?
+>
+> Thanks,
+> Hua
+>
+>
+>
+> On Mon, May 3, 2021 at 7:07 PM Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
+>
+>> On 05/03/2021 04:31 PM, Zeng, Huacheng wrote:
+>> > Hello,
+>> >
+>> > I was trying to receive the signal from UHD Sink (n310) in GNU Radio
+>> > Companion (GRC) but got the following error message (i.e., GRC cannot
+>> > find N310). I am using Ubuntu 18.04, GNU RADIO 3.9, and UHD 4.0.0. I
+>> > have confirmed that
+>> > - My GRC can work with N210.
+>> > - I can ping both eth0 and SPF+ ports of N310 from host.
+>> > - In terminal "uhd_find_devices" can find N310.
+>> > - "uhd_usrp_probe" can also find N310. Output message is attached belo=
+w.
+>> > - I can log in N310 using SSH.
+>> > - I have updated N310's FPGA image. The OS in N310 is also UHD 4.0.0
+>> > (the same as the host).
+>> >
+>> > Any suggestions would be appreciated.
+>> > Thanks,
+>> > Hua
+>> >
+>> >
+>> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> > ERROR MESSAGE FROM GRC
+>> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> > Traceback (most recent call last):
+>> >   File "/home/cnss/test2.py", line 150, in <module>
+>> >     main()
+>> >   File "/home/cnss/test2.py", line 126, in main
+>> >     tb =3D top_block_cls()
+>> >   File "/home/cnss/test2.py", line 84, in __init__
+>> >     channels=3Dlist(range(0,1)),
+>> >   File "/usr/lib/python3/dist-packages/gnuradio/uhd/__init__.py", line
+>> > 125, in constructor_interceptor
+>> >     return old_constructor(*args)
+>> >   File "/usr/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py", line
+>> > 3259, in make
+>> >     return _uhd_swig.usrp_source_make(device_addr, stream_args,
+>> > issue_stream_cmd_on_start)
+>> > RuntimeError: LookupError: KeyError: No devices found for ----->
+>> > Device Address:
+>> >     addr: 192.168.20.2
+>> >
+>> >
+>> Could you share the full output from the GR graph run? Including the
+>> headers where it says what version of UHD it is using?
+>>
+>> Also, what was the device address string you used in GR?  Did you
+>> include type=3Dn3xx,product=3Dn310 ??
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
 >
-> Sounds like a good idea about using one ethernet interface for UHD and the
-> other for your application.  Can you explain a bit more about why you want
-> to shun a host computer running UHD and do everything in HDL?
->
-> As for UHD complaining, are you going to be using UHD 3.15 or 4.0?  If
-> 3.15, then I don't think I've had any issues just connecting the blocks I
-> care about in a graph and have it be fine (i.e. CustomBlock -> Radio and
-> Radio -> CustomBlock).  With 4.0, the only blocks I am not sure about are
-> the DUC/DDC blocks - everything else is very much optional and could be
-> setup in a static configuration.
->
-> I know for the X310 FPGA build that you can't remove the PCIe interface
-> stuff, and I feel like UHD needs to see the Radio device there, too.  But
-> otherwise, make everything into a single custom block and you should be
-> good.
->
-> I will say that I've built some custom blocks that did some very minimal
-> communication over UHD for status and control.  I created a converter()
-> class/function for transferring my packed data structure through UHD.  That
-> might be useful if you're doing something that isn't sample based.
->
->   https://files.ettus.com/manual/page_converters.html
->
-> Good luck!
->
-> Brian
->
->> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
 
---000000000000f00d4405c183789d
+--000000000000e01e1805c18407c2
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>You can remove the DDC/DUC blocks in UHD 4.0. You can=
- also remove the radio block if you&#39;re not using a multi_usrp object.<b=
-r></div><div><br></div><div>If you&#39;re not expecting software to touch d=
-ata, you could throw in a single Rasberry Pi to run the UHD sessions and ke=
-ep RFNoC/UHD for everything else. That would set up routing, DACs/ADCs, clo=
-cks and avoid having to reimplement LMK setup routines or whatever in HDL. =
-Then you can keep the FPGA purely for whatever you want to use it for.</div=
-><div><br></div><div>--M<br></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 29, 2021 at 12:23 AM Brian Pa=
-dalino &lt;<a href=3D"mailto:bpadalino@gmail.com">bpadalino@gmail.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr"><div dir=3D"ltr">On Wed, Apr 28, 2021 at 5:38 PM Eugene Grayver =
-&lt;<a href=3D"mailto:eugene.grayver@aero.org" target=3D"_blank">eugene.gra=
-yver@aero.org</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-That&#39;s what I was afraid of.=C2=A0 Note that I do not need any daughter=
- cards (just LFTX/LFRX), which reduces the number of configuration items.</=
-div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-My main concern is that I was going to take over the ethernet interface.=C2=
-=A0 I guess I can take over one and leave the other one for UHD.=C2=A0 I am=
- also concerned that the UHD will complain loudly once i start taking block=
-s out of the flowgraph that it expects to
- be there.</div></div></blockquote><div><br></div><div>Sounds like a good i=
-dea about using one ethernet interface for UHD and the other for your appli=
-cation.=C2=A0 Can you explain a bit more about why you want to shun a host =
-computer running UHD and do everything in HDL?</div><div><br></div><div>As =
-for UHD complaining, are you going to be using UHD 3.15 or 4.0?=C2=A0 If 3.=
-15, then I don&#39;t think I&#39;ve had any issues just connecting the bloc=
-ks I care about in a graph and have it be fine (i.e. CustomBlock -&gt; Radi=
-o and Radio -&gt; CustomBlock).=C2=A0 With 4.0, the only blocks I am not su=
-re about are the DUC/DDC blocks - everything else is very much optional and=
- could be setup in a static configuration.</div><div><br></div><div>I know =
-for the X310 FPGA build that you can&#39;t remove the PCIe interface stuff,=
- and I feel like UHD needs to see the Radio device there, too.=C2=A0 But ot=
-herwise, make everything into a single custom block and you should be good.=
-</div><div><br></div><div>I will say that I&#39;ve built some custom blocks=
- that did some very minimal communication over UHD for status and control.=
-=C2=A0 I created a converter() class/function for transferring my packed da=
-ta structure through UHD.=C2=A0 That might be useful if you&#39;re doing so=
-mething that isn&#39;t sample based.</div><div><br></div><div>=C2=A0=C2=A0<=
-a href=3D"https://files.ettus.com/manual/page_converters.html" target=3D"_b=
-lank">https://files.ettus.com/manual/page_converters.html</a></div><div><br=
-></div><div>Good luck!</div><div><br></div><div>Brian</div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><div dir=3D"ltr"><d=
-iv>
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div></div>
+<div dir=3D"ltr">Thanks for your information. I have reinstalled GNU Radio =
+from source. The problem was resolved.=C2=A0<div><br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 4, 2=
+021 at 11:29 AM Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.co=
+m">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div dir=3D"auto">That means that the GR you have=
+ was built using the older UHD.=C2=A0<div><br></div><div>You=E2=80=99ll ver=
+y likely need to uninstall GR and do a source based install of GR.=C2=A0<br=
+><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockq=
+uote type=3D"cite">On May 4, 2021, at 10:28 AM, Zeng, Huacheng &lt;<a href=
+=3D"mailto:huacheng.zeng@gmail.com" target=3D"_blank">huacheng.zeng@gmail.c=
+om</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div =
+dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Hi Marcus, <br></div><div><br></=
+div><div>Thank you for your response. The output of GR graph shows &quot;li=
+nux; GNU C++ version 7.3.0; Boost_106501; UHD_003.010.003.000-0-unknown.&qu=
+ot; Looks like the GR graph did not use UHD_4.0.0, which I have installed f=
+ollowing the instructions on Ettus website. Is there a way to force GR to u=
+se a new version of UHD?</div><div><br></div><div>Thanks,</div><div>Hua</di=
+v><div><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Mon, May 3, 2021 at 7:07 PM Marcus D. Le=
+ech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchv=
+onbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">On 05/03/2021 04:31 PM, Zeng, Huacheng wrote:<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt; I was trying to receive the signal from UHD Sink (n310) in GNU Radio <=
+br>
+&gt; Companion (GRC) but got the following error message (i.e., GRC cannot =
+<br>
+&gt; find N310). I am using Ubuntu 18.04, GNU RADIO 3.9, and UHD 4.0.0. I <=
+br>
+&gt; have confirmed that<br>
+&gt; - My GRC can work with N210.<br>
+&gt; - I can ping both eth0 and SPF+ ports of N310 from host.<br>
+&gt; - In terminal &quot;uhd_find_devices&quot; can find N310.<br>
+&gt; - &quot;uhd_usrp_probe&quot; can also find N310. Output message is att=
+ached below.<br>
+&gt; - I can log in N310 using SSH.<br>
+&gt; - I have updated N310&#39;s FPGA image. The OS in N310 is also UHD 4.0=
+.0 <br>
+&gt; (the same as the host).<br>
+&gt;<br>
+&gt; Any suggestions would be appreciated.<br>
+&gt; Thanks,<br>
+&gt; Hua<br>
+&gt;<br>
+&gt;<br>
+&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+&gt; ERROR MESSAGE FROM GRC<br>
+&gt; =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
+&gt; Traceback (most recent call last):<br>
+&gt;=C2=A0 =C2=A0File &quot;/home/cnss/test2.py&quot;, line 150, in &lt;mod=
+ule&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0main()<br>
+&gt;=C2=A0 =C2=A0File &quot;/home/cnss/test2.py&quot;, line 126, in main<br=
+>
+&gt;=C2=A0 =C2=A0 =C2=A0tb =3D top_block_cls()<br>
+&gt;=C2=A0 =C2=A0File &quot;/home/cnss/test2.py&quot;, line 84, in __init__=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0channels=3Dlist(range(0,1)),<br>
+&gt;=C2=A0 =C2=A0File &quot;/usr/lib/python3/dist-packages/gnuradio/uhd/__i=
+nit__.py&quot;, line <br>
+&gt; 125, in constructor_interceptor<br>
+&gt;=C2=A0 =C2=A0 =C2=A0return old_constructor(*args)<br>
+&gt;=C2=A0 =C2=A0File &quot;/usr/lib/python3/dist-packages/gnuradio/uhd/uhd=
+_swig.py&quot;, line <br>
+&gt; 3259, in make<br>
+&gt;=C2=A0 =C2=A0 =C2=A0return _uhd_swig.usrp_source_make(device_addr, stre=
+am_args, <br>
+&gt; issue_stream_cmd_on_start)<br>
+&gt; RuntimeError: LookupError: KeyError: No devices found for -----&gt;<br=
+>
+&gt; Device Address:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0addr: 192.168.20.2<br>
+&gt;<br>
+&gt;<br>
+Could you share the full output from the GR graph run? Including the <br>
+headers where it says what version of UHD it is using?<br>
+<br>
+Also, what was the device address string you used in GR?=C2=A0 Did you <br>
+include type=3Dn3xx,product=3Dn310 ??<br>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</div></blockquote></div></div></blockquote></div>
 
---000000000000f00d4405c183789d--
+--000000000000e01e1805c18407c2--
 
---===============0864483631999022373==
+--===============5011225912549816154==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -216,4 +276,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0864483631999022373==--
+--===============5011225912549816154==--
