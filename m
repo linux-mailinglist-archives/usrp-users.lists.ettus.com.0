@@ -2,134 +2,258 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 813D937383A
-	for <lists+usrp-users@lfdr.de>; Wed,  5 May 2021 11:58:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 310BC373BCA
+	for <lists+usrp-users@lfdr.de>; Wed,  5 May 2021 14:55:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0D27D384578
-	for <lists+usrp-users@lfdr.de>; Wed,  5 May 2021 05:58:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 314313841A0
+	for <lists+usrp-users@lfdr.de>; Wed,  5 May 2021 08:55:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="YvkXzDqZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=external.thalesgroup.com header.i=@external.thalesgroup.com header.b="gDszKlma";
 	dkim-atps=neutral
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 849F3384040
-	for <usrp-users@lists.ettus.com>; Wed,  5 May 2021 05:57:08 -0400 (EDT)
-Received: by mail-ej1-f49.google.com with SMTP id w3so1894401ejc.4
-        for <usrp-users@lists.ettus.com>; Wed, 05 May 2021 02:57:08 -0700 (PDT)
+Received: from thsbbfxrt02p.thalesgroup.com (thsbbfxrt02p.thalesgroup.com [192.93.158.29])
+	by mm2.emwd.com (Postfix) with ESMTPS id 965D5384190
+	for <usrp-users@lists.ettus.com>; Wed,  5 May 2021 08:54:54 -0400 (EDT)
+Received: from thsbbfxrt02p.thalesgroup.com (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id 4FZxWK16RZzJpn1
+	for <usrp-users@lists.ettus.com>; Wed,  5 May 2021 14:54:53 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
-        bh=r3yF6FX3C16kMLb3Sqf6uOForj5q+5KMpAoN0OCU6lQ=;
-        b=YvkXzDqZPUZA4bPmeYJ7jHdCW1CIOceUxvHMvUlXaGEBYCngW8jVayFFP8TTTfcaj0
-         H8u1wcegSKOoHZRPycXprqOH99k98uuqIhCGQ4iV0DTCBPJqju1e3cuYfQEuOQJUiM4y
-         QXyR+tSUzP4g3m5jB9g7BuM/1mlXpmm65cxJafceyvyCMLR/2XNKD1xwIR+Tgf8YCmIZ
-         u3J6jVQJayN4toCyQJxd47i481WODy2oNBzpbaMdBOqXTvCIE7TldKE7wdA91/Gvv4pO
-         oGnYV21FtnN2M04YMcO60KqHpTdpCIvxXxgmktXlDG0uwAOiUOQnu+Lpyh9xwrHXh8ea
-         mQbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:cc;
-        bh=r3yF6FX3C16kMLb3Sqf6uOForj5q+5KMpAoN0OCU6lQ=;
-        b=lguL0DDFWFF59yURbRvSJL898BANyf+TKMcZb3Qg4LKy0SuL4XKUHmMqIjfPm7blUa
-         LDnupd3U810BLRy7AQJyd60RndHEZ0hifgek0EFgoRgDsa/63HOQ0F4o4aTHrCNfEqKY
-         GbVWsdxvTfkw8S3IvQBbhEvbc5NTduirf9x3e/YRQgV0Wdy0f+iwgxaraOeSIveUlGCk
-         WC8tCnIbGua96fRMxSCtES2iOJEzhTz8kLGwv8vI9WQdmjWdx/vKC43536278j+FgRe0
-         nQAIrH4PzKbvHIBs3MOEOzvPN6yrOF6gjKXKAdUPddSjziPOOnHLjgn84CMSyGP5y0ri
-         Ym4A==
-X-Gm-Message-State: AOAM530kevlld7iwjY091m4x8cPR75r2lz5x+QoyMdkelGjsJSfKo+9p
-	+bo4fxzVDdPn7HExQdwNhfR8iCLDsY3bXLE8jGqy5Q2tZVvwgQ==
-X-Google-Smtp-Source: ABdhPJyVtoKjWXR3ZDTnPfoP2pTuoyTSdiRgfUkKK5WUL88zRSDniTeqmgUefcLytZ66xJ4DKkZRdveaExM6LWRR+IU=
-X-Received: by 2002:a17:906:2dc6:: with SMTP id h6mr27156049eji.477.1620208627177;
- Wed, 05 May 2021 02:57:07 -0700 (PDT)
+	d=external.thalesgroup.com; s=xrt20181201; t=1620219293;
+	bh=h3y/WoEQZdxOSoaW0d2z7fI4ZMIkUOmRBZXuFzGh+qU=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:From;
+	b=gDszKlmaVhHFG6DM1Jtq+PNBhqPBrC+zMTpzUiYSnszhDuzOdbAVYyWnf1AUmqSci
+	 qKngcQDANggcfUt6oq1tRxKS3kYRh95N/yUp4a46dkG6Y7D5FjNPj3yLGnU2Gz4m6E
+	 wsK/1oFPuekghP1f6ewyJd5niSOWOAXm9EI9QeyoBYyhWOc/Y7cVLQUoNrDQIa+rHq
+	 NunHE+YtRSlFvNhT1H2vD4DSq4WWqHYmDs7OZY+4UrgXIxEBwjLoJ8208MErg9ZsoS
+	 7Y7KPNiCDoe9DsdPXk9Rsv2E7VdyklUun6pjpfgEJjjiVt8Lf4ZX9o6YNRLEMs0hZs
+	 S7zKgvmQCXpGw==
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Read and write register personal RFNOC block
+Thread-Index: AddBrYN7Xi+16m2uRaSuwN49wS/3kg==
+Date: Wed, 5 May 2021 12:54:51 +0000
+Message-ID: <d49767f2c24d46afb9c3546118083d2f@external.thalesgroup.com>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-pmwin-version: 4.0.3, Antivirus-Engine: 3.80.1, Antivirus-Data: 5.83
 MIME-Version: 1.0
-References: <CACjmV_kMF7VY5eDhM5yH2=d9xmyMdH+uS8XP4UM+xeoaNkPhYA@mail.gmail.com>
-In-Reply-To: <CACjmV_kMF7VY5eDhM5yH2=d9xmyMdH+uS8XP4UM+xeoaNkPhYA@mail.gmail.com>
-From: Martin Braun <martin.braun@ettus.com>
-Date: Wed, 5 May 2021 11:56:56 +0200
-Message-ID: <CAFOi1A6E1Yo9bNvN-HNuBig32JnvgibgbpHqfOZ2vQpthD4OmA@mail.gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: OD2WB5OI2S5SRPUKWHLYUKSHA4Y6HJYH
-X-Message-ID-Hash: OD2WB5OI2S5SRPUKWHLYUKSHA4Y6HJYH
-X-MailFrom: martin.braun@ettus.com
+Message-ID-Hash: Z46PYOKE4NRYKXIU6YIAZXZO6FP6Q7UZ
+X-Message-ID-Hash: Z46PYOKE4NRYKXIU6YIAZXZO6FP6Q7UZ
+X-MailFrom: frederique.courant@external.thalesgroup.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: The operating system cannot be started when B200 is plugged into the computer
+Subject: [USRP-users] Read and write register personal RFNOC block
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OD2WB5OI2S5SRPUKWHLYUKSHA4Y6HJYH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z46PYOKE4NRYKXIU6YIAZXZO6FP6Q7UZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7060660950718844953=="
+From: COURANT Frederique - Contractor via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: COURANT Frederique - Contractor <frederique.courant@external.thalesgroup.com>
+Content-Type: multipart/mixed; boundary="===============6824764214269262442=="
 
---===============7060660950718844953==
-Content-Type: multipart/alternative; boundary="000000000000af7eb205c19237ed"
+--===============6824764214269262442==
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_d49767f2c24d46afb9c3546118083d2fexternalthalesgroupcom_"
 
---000000000000af7eb205c19237ed
-Content-Type: text/plain; charset="UTF-8"
-
-Not sure if this resolves the issue, but have you tried running the custom
-bootloader?
-You can run /usr/lib/uhd/utils/b2xx_fx3_utils -Q to see if it's installed
-correctly. b2xx_fx3_utils -B /path/to/images/usrp_b200_bl.img will install
-it. You should run usrp_burn_mb_eeprom --read-all first to dump the EEPROM
-contents, just in case something goes wrong with the bootloader flashing.
-
---M
-
-On Thu, Apr 29, 2021 at 6:12 AM Damon qiu <qiu.guowang007@gmail.com> wrote:
-
-> Hi all,
->
-> In one of our applications, we need to integrate USRP B200 and computer
-> into a mechanical mechanism. So B200 is always connected to the USB port of
-> the computer.
-> In this case, the computer may not start, or it may take a long time to
-> enter the operating system.
->
-> Is there a solution? thank you.
->
-> Best regards,
-> Damon
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000af7eb205c19237ed
-Content-Type: text/html; charset="UTF-8"
+--_000_d49767f2c24d46afb9c3546118083d2fexternalthalesgroupcom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Not sure if this resolves the issue, but have you tri=
-ed running the custom bootloader?</div><div>You can run /usr/lib/uhd/utils/=
-b2xx_fx3_utils -Q to see if it&#39;s installed correctly. b2xx_fx3_utils -B=
- /path/to/images/usrp_b200_bl.img will install it. You should run usrp_burn=
-_mb_eeprom --read-all first to dump the EEPROM contents, just in case somet=
-hing goes wrong with the bootloader flashing.</div><div><br></div><div>--M<=
-br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Thu, Apr 29, 2021 at 6:12 AM Damon qiu &lt;<a href=3D"mailto:qi=
-u.guowang007@gmail.com" target=3D"_blank">qiu.guowang007@gmail.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr">Hi all,<div><br></div><div>In one of our applications, we need to =
-integrate USRP B200 and computer into a mechanical mechanism. So B200 is al=
-ways connected to the USB port of the computer.</div><div>In this case, the=
- computer may not start, or it may take a long time to enter the operating =
-system.</div><div><br></div><div>Is there a solution? thank you.</div><div>=
-<br></div><div>Best regards,</div><div>Damon</div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+Hello Users,
 
---000000000000af7eb205c19237ed--
+I have creating a personnal block but when I read the value of my register =
+it return always the same value.
+When I use set_arg and get_arg the value change like I want but when I try =
+to read the register that is associating with the precedent arg with sr_rea=
+d32 it look likes that the value didn't change.
+For example in my xml file I have :
+<registers>
+              <setreg>
+                            <name>REG_CFG</name>
+                            <address>130</name>
+              </setreg>
+</registers>
 
---===============7060660950718844953==
+<args>
+              <arg>
+                            <name>config</name>
+                            <type>int</type>
+                            <value>0</value>
+                            <action>
+                                          SR_WRITE("REG_CFG", $config)
+                            </action>
+              <arg>
+</args>
+
+If I use sr_read32 for read at the address 130 it always return 10 even if =
+I have try to modify the value with sr_write("REG_CFG", 1000) or sr_write(1=
+30, 1000)
+It is the same problem if I change the value with set_arg("config", 1000), =
+it's okay when I read with get_arg("config") I obtain 1000 but sr_write ret=
+urn always 10.
+
+I'm working with UHD 3.13 in C++.
+
+Thanks for your help.
+
+Regards.
+
+Fred
+
+--_000_d49767f2c24d46afb9c3546118083d2fexternalthalesgroupcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello Users,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have creating a personnal blo=
+ck but when I read the value of my register it return always the same value=
+.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">When I use set_arg and get_arg =
+the value change like I want but when I try to read the register that is as=
+sociating with the precedent arg with sr_read32 it look likes that the valu=
+e didn&#8217;t change.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">For example in my xml file I ha=
+ve :<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&lt;registers&gt;<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;setreg&gt;<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;name&gt;REG_CF=
+G&lt;/name&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;address&gt;130=
+&lt;/name&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/setreg&gt;<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&lt;/registers&gt;<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&lt;args&gt;<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg&gt;<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;name&gt;config=
+&lt;/name&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;type&gt;int&lt=
+;/type&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;value&gt;0&lt;=
+/value&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;action&gt;<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SR_WRITE(=
+&#8220;REG_CFG&#8221;, $config)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/action&gt;<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;arg&gt;<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&lt;/args&gt;<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">If I use sr_read32 for read at =
+the address 130 it always return 10 even if I have try to modify the value =
+with sr_write(&#8220;REG_CFG&#8221;, 1000) or sr_write(130, 1000)<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">It is the same problem if I cha=
+nge the value with set_arg(&#8220;config&#8221;, 1000), it&#8217;s okay whe=
+n I read with get_arg(&#8220;config&#8221;) I obtain 1000 but sr_write retu=
+rn always 10.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;m working with UHD 3.13=
+ in C&#43;&#43;.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks for your help.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Fred<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_d49767f2c24d46afb9c3546118083d2fexternalthalesgroupcom_--
+
+--===============6824764214269262442==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -139,4 +263,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7060660950718844953==--
+--===============6824764214269262442==--
