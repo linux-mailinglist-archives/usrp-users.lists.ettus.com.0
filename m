@@ -2,89 +2,141 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4CD0373289
-	for <lists+usrp-users@lfdr.de>; Wed,  5 May 2021 00:43:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 813D937383A
+	for <lists+usrp-users@lfdr.de>; Wed,  5 May 2021 11:58:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CAD903849F1
-	for <lists+usrp-users@lfdr.de>; Tue,  4 May 2021 18:43:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0D27D384578
+	for <lists+usrp-users@lfdr.de>; Wed,  5 May 2021 05:58:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="ATafZM0I";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="YvkXzDqZ";
 	dkim-atps=neutral
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id E7901384488
-	for <usrp-users@lists.ettus.com>; Tue,  4 May 2021 18:42:51 -0400 (EDT)
-Received: by mail-ot1-f45.google.com with SMTP id f75-20020a9d03d10000b0290280def9ab76so27473otf.12
-        for <usrp-users@lists.ettus.com>; Tue, 04 May 2021 15:42:51 -0700 (PDT)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 849F3384040
+	for <usrp-users@lists.ettus.com>; Wed,  5 May 2021 05:57:08 -0400 (EDT)
+Received: by mail-ej1-f49.google.com with SMTP id w3so1894401ejc.4
+        for <usrp-users@lists.ettus.com>; Wed, 05 May 2021 02:57:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pkUTq0MNV7poRlpjbE5fASkYjnsRS2aJaN0YWV1TaIA=;
-        b=ATafZM0I6cwM/aFnFF1xWOuHEsftLK3zKJppaMXqKIo8/eL7i2NUN54sZ1X32yI8+i
-         0M0DkGeP5McOgulfcKzYA0+pACtsnHakehsIfzEvwZu9oz4qJy98UK3ATeIn6oJ2wEBB
-         xMy3CguRPbJAbWVDHZMyII1P45my/xyIg1rcxRu2baQqpz1TY8eI5o/VhGtce2mEsDC5
-         OQ7X0RCnSeBdLkOCA4WWd/v0WTrVCC/T0nrPdXefG+ewWCX5CHJs7v6yLyzMKp+1QyF9
-         Xnp9uFsPmwQbqSDat4p4RAZxqGG9S3Mh6jYbxYRtc8HFuafIWgTJ2H0x0l90ZnfYnMEI
-         ONGw==
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
+        bh=r3yF6FX3C16kMLb3Sqf6uOForj5q+5KMpAoN0OCU6lQ=;
+        b=YvkXzDqZPUZA4bPmeYJ7jHdCW1CIOceUxvHMvUlXaGEBYCngW8jVayFFP8TTTfcaj0
+         H8u1wcegSKOoHZRPycXprqOH99k98uuqIhCGQ4iV0DTCBPJqju1e3cuYfQEuOQJUiM4y
+         QXyR+tSUzP4g3m5jB9g7BuM/1mlXpmm65cxJafceyvyCMLR/2XNKD1xwIR+Tgf8YCmIZ
+         u3J6jVQJayN4toCyQJxd47i481WODy2oNBzpbaMdBOqXTvCIE7TldKE7wdA91/Gvv4pO
+         oGnYV21FtnN2M04YMcO60KqHpTdpCIvxXxgmktXlDG0uwAOiUOQnu+Lpyh9xwrHXh8ea
+         mQbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pkUTq0MNV7poRlpjbE5fASkYjnsRS2aJaN0YWV1TaIA=;
-        b=i4yvIl4bkUTz6BFrghB2lRaYo22TPlT8zhr8NWL0Dookukv/0NqsJvAR7s+iAND4E0
-         WXxGtIdXnqiAUtT+CwvIpStHOUCuR11fXG3RxO2c9XDRXNn/I0xPP+a2eNMmYvArLcEM
-         VcdxD44BlHOrQpPwgtZdC2MfYNhivDT1XkpZ/rPBrBdAB0cHMCL5ATHEQls5eMp/hlMT
-         v0n+xAoyFSaUXMTAs/+phPulMiCYYvY9Ak34g11ZnQdi1p2a/FACMwYWKdPLwCH8UIEs
-         PuymlwV2TnYVIpsWmEz+n/v7wpermPvGxfkdGnRWFfqv+1F7UPkKKhS8+pfhTceCm+5a
-         Tk+Q==
-X-Gm-Message-State: AOAM532uovPn/Zi2DvxV8kEuDDygS+fRYhEhZl14PLu2rViiduKrBUdx
-	mLkSHSxr3kOotdsNaa9Px/FZuKZYQ1Vn1zuLVco7Gw==
-X-Google-Smtp-Source: ABdhPJwQanr6WK9ZUz5iiioodAR905rBlfWbRiaB6jPeUd9rN2v1A/qEzQ/HyapUVOdWiC14VkvA/SQVokC2iB1h8mA=
-X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr20827259otc.302.1620168170894;
- Tue, 04 May 2021 15:42:50 -0700 (PDT)
+         :message-id:subject:cc;
+        bh=r3yF6FX3C16kMLb3Sqf6uOForj5q+5KMpAoN0OCU6lQ=;
+        b=lguL0DDFWFF59yURbRvSJL898BANyf+TKMcZb3Qg4LKy0SuL4XKUHmMqIjfPm7blUa
+         LDnupd3U810BLRy7AQJyd60RndHEZ0hifgek0EFgoRgDsa/63HOQ0F4o4aTHrCNfEqKY
+         GbVWsdxvTfkw8S3IvQBbhEvbc5NTduirf9x3e/YRQgV0Wdy0f+iwgxaraOeSIveUlGCk
+         WC8tCnIbGua96fRMxSCtES2iOJEzhTz8kLGwv8vI9WQdmjWdx/vKC43536278j+FgRe0
+         nQAIrH4PzKbvHIBs3MOEOzvPN6yrOF6gjKXKAdUPddSjziPOOnHLjgn84CMSyGP5y0ri
+         Ym4A==
+X-Gm-Message-State: AOAM530kevlld7iwjY091m4x8cPR75r2lz5x+QoyMdkelGjsJSfKo+9p
+	+bo4fxzVDdPn7HExQdwNhfR8iCLDsY3bXLE8jGqy5Q2tZVvwgQ==
+X-Google-Smtp-Source: ABdhPJyVtoKjWXR3ZDTnPfoP2pTuoyTSdiRgfUkKK5WUL88zRSDniTeqmgUefcLytZ66xJ4DKkZRdveaExM6LWRR+IU=
+X-Received: by 2002:a17:906:2dc6:: with SMTP id h6mr27156049eji.477.1620208627177;
+ Wed, 05 May 2021 02:57:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <jQ6mREj3qOFnC5tfAfgHPqiGcIe34JDLUQyocIA3I@lists.ettus.com>
-In-Reply-To: <jQ6mREj3qOFnC5tfAfgHPqiGcIe34JDLUQyocIA3I@lists.ettus.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 4 May 2021 18:42:40 -0400
-Message-ID: <CAB__hTRGaXQj9JqCaEAXSQXkvpWVSB1HDZxHdjgE+vNpU2Kz0Q@mail.gmail.com>
-To: jcasallas2019@gmail.com
-Message-ID-Hash: N4SUHWNN7MQZKKFMPT5OW4VBGHVMMWOI
-X-Message-ID-Hash: N4SUHWNN7MQZKKFMPT5OW4VBGHVMMWOI
-X-MailFrom: rkossler@nd.edu
+References: <CACjmV_kMF7VY5eDhM5yH2=d9xmyMdH+uS8XP4UM+xeoaNkPhYA@mail.gmail.com>
+In-Reply-To: <CACjmV_kMF7VY5eDhM5yH2=d9xmyMdH+uS8XP4UM+xeoaNkPhYA@mail.gmail.com>
+From: Martin Braun <martin.braun@ettus.com>
+Date: Wed, 5 May 2021 11:56:56 +0200
+Message-ID: <CAFOi1A6E1Yo9bNvN-HNuBig32JnvgibgbpHqfOZ2vQpthD4OmA@mail.gmail.com>
+Cc: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: OD2WB5OI2S5SRPUKWHLYUKSHA4Y6HJYH
+X-Message-ID-Hash: OD2WB5OI2S5SRPUKWHLYUKSHA4Y6HJYH
+X-MailFrom: martin.braun@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC FFT size > 1024
+Subject: [USRP-users] Re: The operating system cannot be started when B200 is plugged into the computer
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N4SUHWNN7MQZKKFMPT5OW4VBGHVMMWOI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OD2WB5OI2S5SRPUKWHLYUKSHA4Y6HJYH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============7060660950718844953=="
 
-If you write your own RFNoC block using axi_rate_change, you can go as
-large as you want.  I don't know what the FPGA can "fit". The Xilinx
-FFT IP core allows you to trade-off throughput for resources. So, if
-you don't need full throughput, you can choose either radix-2 or
-radix-4 which will reduce resource usage.
+--===============7060660950718844953==
+Content-Type: multipart/alternative; boundary="000000000000af7eb205c19237ed"
 
-Rob
+--000000000000af7eb205c19237ed
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, May 4, 2021 at 5:11 PM <jcasallas2019@gmail.com> wrote:
+Not sure if this resolves the issue, but have you tried running the custom
+bootloader?
+You can run /usr/lib/uhd/utils/b2xx_fx3_utils -Q to see if it's installed
+correctly. b2xx_fx3_utils -B /path/to/images/usrp_b200_bl.img will install
+it. You should run usrp_burn_mb_eeprom --read-all first to dump the EEPROM
+contents, just in case something goes wrong with the bootloader flashing.
+
+--M
+
+On Thu, Apr 29, 2021 at 6:12 AM Damon qiu <qiu.guowang007@gmail.com> wrote:
+
+> Hi all,
 >
-> In this case, what would be the max fft length we can use? the Xilinx FFT can handle up to 2**16 and the localparam in the rfnoc fft block is 2**11.
+> In one of our applications, we need to integrate USRP B200 and computer
+> into a mechanical mechanism. So B200 is always connected to the USB port of
+> the computer.
+> In this case, the computer may not start, or it may take a long time to
+> enter the operating system.
 >
-> Thank you.
+> Is there a solution? thank you.
 >
+> Best regards,
+> Damon
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000af7eb205c19237ed
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Not sure if this resolves the issue, but have you tri=
+ed running the custom bootloader?</div><div>You can run /usr/lib/uhd/utils/=
+b2xx_fx3_utils -Q to see if it&#39;s installed correctly. b2xx_fx3_utils -B=
+ /path/to/images/usrp_b200_bl.img will install it. You should run usrp_burn=
+_mb_eeprom --read-all first to dump the EEPROM contents, just in case somet=
+hing goes wrong with the bootloader flashing.</div><div><br></div><div>--M<=
+br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Thu, Apr 29, 2021 at 6:12 AM Damon qiu &lt;<a href=3D"mailto:qi=
+u.guowang007@gmail.com" target=3D"_blank">qiu.guowang007@gmail.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Hi all,<div><br></div><div>In one of our applications, we need to =
+integrate USRP B200 and computer into a mechanical mechanism. So B200 is al=
+ways connected to the USB port of the computer.</div><div>In this case, the=
+ computer may not start, or it may take a long time to enter the operating =
+system.</div><div><br></div><div>Is there a solution? thank you.</div><div>=
+<br></div><div>Best regards,</div><div>Damon</div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000af7eb205c19237ed--
+
+--===============7060660950718844953==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7060660950718844953==--
