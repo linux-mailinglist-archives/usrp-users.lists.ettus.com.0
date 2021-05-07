@@ -2,140 +2,92 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DFBE375EE8
-	for <lists+usrp-users@lfdr.de>; Fri,  7 May 2021 04:55:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7DFA375EEF
+	for <lists+usrp-users@lfdr.de>; Fri,  7 May 2021 04:58:49 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 279F738489A
-	for <lists+usrp-users@lfdr.de>; Thu,  6 May 2021 22:55:11 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 83025384C20
+	for <lists+usrp-users@lfdr.de>; Thu,  6 May 2021 22:58:48 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="HuS7Noz5";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="vd7FFJHE";
 	dkim-atps=neutral
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 80EB4384231
-	for <usrp-users@lists.ettus.com>; Thu,  6 May 2021 22:54:22 -0400 (EDT)
-Received: by mail-ot1-f54.google.com with SMTP id n32-20020a9d1ea30000b02902a53d6ad4bdso6767020otn.3
-        for <usrp-users@lists.ettus.com>; Thu, 06 May 2021 19:54:22 -0700 (PDT)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id 55DA838420E
+	for <usrp-users@lists.ettus.com>; Thu,  6 May 2021 22:58:03 -0400 (EDT)
+Received: by mail-qt1-f180.google.com with SMTP id o1so5716492qta.1
+        for <usrp-users@lists.ettus.com>; Thu, 06 May 2021 19:58:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MgGRX6YEL62ZH33o6qSmaNWakE85nA6wJh/PDVNJhUE=;
-        b=HuS7Noz50BJ0jute+MzHo3k1NLJqXBzuQcff9csp4dvtPOQVacN4reCy7TDAYuCz3X
-         wMapq1mcFuvYzjydSJ2+1JbX3Uh+fkEaiCuXGv4860P/KyvQRT2Vy19MSPr1dkjpWn98
-         naCSKlV1vzPFTkdqVcQ85Lv6fc1//izO7+bM0q3IwSP3DQyXJcS9zkK9000O8nMB+BLO
-         17+qmbdqt3sNnFMP5tRdRHediltSOgBJHE92SoF3+VoxN9w2zICoEsuRraFN0FqWLV8Z
-         Y/FolGBp38Qzc9US12RNYOHTv703NkOnXOHMthyXiqwsuohGAEH2AYwgs1YkBBziRSNT
-         cKZg==
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=rP2HrTdBelVHFohemuDOWAdXBlwoUKEI66WOexYRToo=;
+        b=vd7FFJHEu0Ll+6DzPTWiC2KMwisfMfQ7+nTwmpR5uO0lcHyyxx4N+ArDG49um07Uvk
+         JZDFT5WF2IZSHvGnLlen7ZCgYYLkiS45z8zzQDzMVMQP32h1EM6t8kQPVxpEl9NnTUU0
+         U6TRQtkCgJQpfsHcgVw4KhxjD2JpNmgnFLqJaJBu2+K9FCewAhnvJO/dhTmBgSkY3YJV
+         wBx/KYZsHfxUFBAlsgBAwAeeSVe/6gRdiaH1r+GsCUY1YOrku3dsmgSPGVH7TcugTnQJ
+         i//X7G9CLTbVRZzI3V+LxAoCT64HV74TvxJBC4BY8a9kOjUvEr6zUDznM0oRS0LXH8Gp
+         g4mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MgGRX6YEL62ZH33o6qSmaNWakE85nA6wJh/PDVNJhUE=;
-        b=j5Hwok4FzcJL8I6KHm/xMlF3Iah6TllSIEj8K9QUJCjzUUsSw8F3Z6ixmGH0GvSLoY
-         vIO8fe9ja/Ee4yhLzlLVNIM2GDHGswFk2AzfLUa1JnzlV2M1jhh7dR58abh9pUQBb3iv
-         ytSpB9BlYUPTJZDilc5SKH/9lDKZv4TEInuKJcvrNYu+uIQtnULEyK+hsUC+WGd+X7qK
-         xeN/ZgwxjePo83iidEip4xyqefpR8OQZqc31JsHM55sVPhCdxeMszUpARrU77Pe3n7/u
-         GY0K5wYC6KLbN6VoWotl1uAbAGdFIUsImXOm5uK1YCZ7HwVahIzRyWP4KXiFZ5ALn72V
-         ptjQ==
-X-Gm-Message-State: AOAM533XLxOhk9jpIKQ8Q0zgwi9pG0qJxQ3iyFQiecasgwSnr+wMWTN4
-	g2q9HChE/bOcYDDNC4TN0OANHU91sol64ujtQFogpA==
-X-Google-Smtp-Source: ABdhPJzIhNnupMNTkZbNqQMzlhITc7qnSaD1OBAMNq7jIA7XklaBG65YNqBG6Z1Qob3g/1EWd9WbUzSjrAxy1lrIfxg=
-X-Received: by 2002:a05:6830:456:: with SMTP id d22mr3008463otc.301.1620356061614;
- Thu, 06 May 2021 19:54:21 -0700 (PDT)
-MIME-Version: 1.0
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=rP2HrTdBelVHFohemuDOWAdXBlwoUKEI66WOexYRToo=;
+        b=dFXUD8xPWkH4HUTMGJVh2Bv92Spm6OEWHkWILrgP2wGRHnQ7DoZdahWF2B0QY3D7MO
+         VYqfnz4IcR1R16bBS0tQDyfbC7a7UVwhueG+gvPT54P+cY079TaqJZSyqIh1O+0ifvKX
+         Jwdcc+N6mc/0rdbWOyeci+7KL3lV0txqtTm360FL7Y7EGWn8kib+am3TA64Qc0Qs+VkC
+         myFKFnnv50s9kkt009BKP+XaOqCZ+a3Ma/c1o65acEbyLuR5jZfvpA4nq40SbBGhIw23
+         isG9/P1yCoRAJr+Bv3uGOVl+lOsrbd8rShxYu1aTV4YiIKtXGBT1CcuM4z6U+P+ay5I6
+         jXVQ==
+X-Gm-Message-State: AOAM530j0B3Vs2n5xUdOBKYocJGVYqBcJXaEF7tonSG/3q6i3UBmj9k/
+	ZvqKSJCi+sSoqAtsn2McByvwJBPxfo3Ieg==
+X-Google-Smtp-Source: ABdhPJxT42r2R8fGP6YOQ+FKn91IuGXURiGk/7fFJp2VoPF1Jlh8x1N9BuNYR0JGUEMRhy7kcoBu7w==
+X-Received: by 2002:ac8:6e87:: with SMTP id c7mr7203309qtv.358.1620356282641;
+        Thu, 06 May 2021 19:58:02 -0700 (PDT)
+Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id s24sm3683942qtx.94.2021.05.06.19.58.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 May 2021 19:58:02 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 6 May 2021 22:58:01 -0400
+Message-Id: <AF007A8C-FBE5-4085-BEA9-B75861E9A6D0@gmail.com>
 References: <CAL0m=NZBNAaqr2co+eqbwmy_nkYLr7ghdhG+ZBL+LiaO1FSC0Q@mail.gmail.com>
 In-Reply-To: <CAL0m=NZBNAaqr2co+eqbwmy_nkYLr7ghdhG+ZBL+LiaO1FSC0Q@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Thu, 6 May 2021 22:54:10 -0400
-Message-ID: <CAB__hTRvurEqBYw_dv=vJeZug3wrpFHM8MDyj3=amqJVy0qk-A@mail.gmail.com>
 To: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
-Message-ID-Hash: HDDSK4VDIIED7ALLBFHAKTU2ZB4SYRRD
-X-Message-ID-Hash: HDDSK4VDIIED7ALLBFHAKTU2ZB4SYRRD
-X-MailFrom: rkossler@nd.edu
+X-Mailer: iPhone Mail (18D70)
+Message-ID-Hash: 6VH74UR4IOGLX47THFWU6Z4F2QAI27NX
+X-Message-ID-Hash: 6VH74UR4IOGLX47THFWU6Z4F2QAI27NX
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N310 External LO source
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HDDSK4VDIIED7ALLBFHAKTU2ZB4SYRRD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6VH74UR4IOGLX47THFWU6Z4F2QAI27NX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2332919357527770090=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---===============2332919357527770090==
-Content-Type: multipart/alternative; boundary="00000000000076954905c1b48b99"
-
---00000000000076954905c1b48b99
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-I use a b200 mini as lo source for the n310. This works well for my
-application but I can=E2=80=99t say how this lo compares to a high fidelity=
- signal
-generator.
-
-On Thu, May 6, 2021 at 10:31 PM Zeng, Huacheng <huacheng.zeng@gmail.com>
-wrote:
-
-> Hello,
->
-> I want to use an external LO for N310. I learned that a common case is to
-> use a signal generator to produce the external LO and feed it to N310.
-> Since I do not have a signal generator at the moment, I was wondering if =
-it
-> is okay to use an N210 to generate the external LO for N310. I will adjus=
-t
-> the Tx gain of N210 so that the output power is in the range of 0 to 6 dB=
-m.
->
-> Regards,
-> Hua
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000076954905c1b48b99
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">I use a b200 mini as lo source for the n310. This works w=
-ell for my application but I can=E2=80=99t say how this lo compares to a hi=
-gh fidelity signal generator.=C2=A0</div><div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 6, 2021 at 10:31 PM Zen=
-g, Huacheng &lt;<a href=3D"mailto:huacheng.zeng@gmail.com">huacheng.zeng@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padd=
-ing-left:1ex;border-left-color:rgb(204,204,204)"><div dir=3D"ltr">Hello,<di=
-v><br></div><div>I want to use an external LO for N310. I learned that a co=
-mmon case is to use a signal generator to produce the external LO and feed =
-it to N310. Since I do not have a signal generator at=C2=A0the moment, I wa=
-s wondering if it is okay to use an N210 to generate the external LO for N3=
-10. I will adjust the Tx gain of N210 so that the output power is in the ra=
-nge of 0 to 6 dBm.=C2=A0</div><div><br></div><div>Regards,</div><div>Hua</d=
-iv></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-
---00000000000076954905c1b48b99--
-
---===============2332919357527770090==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2332919357527770090==--
+VGhpcyBzaG91bGQgd29yay4gS2VlcCBpbiBtaW5kIHRoYXQgdGhlIG1peGVycyBpbiB0aGUgTjMx
+MCBhcmUgMlhMTyBzbyB0aGUgZXh0ZXJuYWwgTE8gaGFzIHRvIGJlIGF0IHR3aWNlIHRoZSBkZXNp
+cmVkIHR1bmVkIGZyZXF1ZW5jeS4gDQoNClNlbnQgZnJvbSBteSBpUGhvbmUNCg0KPiBPbiBNYXkg
+NiwgMjAyMSwgYXQgMTA6MzEgUE0sIFplbmcsIEh1YWNoZW5nIDxodWFjaGVuZy56ZW5nQGdtYWls
+LmNvbT4gd3JvdGU6DQo+IA0KPiDvu78NCj4gSGVsbG8sDQo+IA0KPiBJIHdhbnQgdG8gdXNlIGFu
+IGV4dGVybmFsIExPIGZvciBOMzEwLiBJIGxlYXJuZWQgdGhhdCBhIGNvbW1vbiBjYXNlIGlzIHRv
+IHVzZSBhIHNpZ25hbCBnZW5lcmF0b3IgdG8gcHJvZHVjZSB0aGUgZXh0ZXJuYWwgTE8gYW5kIGZl
+ZWQgaXQgdG8gTjMxMC4gU2luY2UgSSBkbyBub3QgaGF2ZSBhIHNpZ25hbCBnZW5lcmF0b3IgYXQg
+dGhlIG1vbWVudCwgSSB3YXMgd29uZGVyaW5nIGlmIGl0IGlzIG9rYXkgdG8gdXNlIGFuIE4yMTAg
+dG8gZ2VuZXJhdGUgdGhlIGV4dGVybmFsIExPIGZvciBOMzEwLiBJIHdpbGwgYWRqdXN0IHRoZSBU
+eCBnYWluIG9mIE4yMTAgc28gdGhhdCB0aGUgb3V0cHV0IHBvd2VyIGlzIGluIHRoZSByYW5nZSBv
+ZiAwIHRvIDYgZEJtLiANCj4gDQo+IFJlZ2FyZHMsDQo+IEh1YQ0KPiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlz
+dCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
+IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
+aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
