@@ -2,263 +2,267 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC43E3767DD
-	for <lists+usrp-users@lfdr.de>; Fri,  7 May 2021 17:24:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 780BB376835
+	for <lists+usrp-users@lfdr.de>; Fri,  7 May 2021 17:43:21 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 169173840FE
-	for <lists+usrp-users@lfdr.de>; Fri,  7 May 2021 11:24:41 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6900038484E
+	for <lists+usrp-users@lfdr.de>; Fri,  7 May 2021 11:43:20 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FOA4Nz4l";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=umich.edu header.i=@umich.edu header.b="qcdVh4/5";
 	dkim-atps=neutral
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id A45C33840E3
-	for <USRP-users@lists.ettus.com>; Fri,  7 May 2021 11:23:54 -0400 (EDT)
-Received: by mail-qk1-f174.google.com with SMTP id q136so8765679qka.7
-        for <USRP-users@lists.ettus.com>; Fri, 07 May 2021 08:23:54 -0700 (PDT)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id 97BBD384603
+	for <USRP-users@lists.ettus.com>; Fri,  7 May 2021 11:42:32 -0400 (EDT)
+Received: by mail-lf1-f45.google.com with SMTP id t11so13304555lfl.11
+        for <USRP-users@lists.ettus.com>; Fri, 07 May 2021 08:42:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=Dqeqp8s2ZHFUd1IDwa2QSnfAHK5cvTtw87giJZkQEsI=;
-        b=FOA4Nz4lWSH1BUL5f9u0T+pbm6uU3sT+K64L9A0/IKRj2njledUIY6TFa5NmeDwD8C
-         UNegHZ1tmBtmRThUgQWYZac/DwhVmn6n/Z7KaimMEc47GeX24KBV6tskcJyGolfty/sj
-         Gvt4/rU7YV+fbuE6Ya5y0jXs3edMnHCHEGISs7KuewqQ2TzTif5Xd4/tcMFG1AZGqYdD
-         ipRglpoDGF1ElPy6jIup8aBpYCsUYoHSx+OMzmVTTZw7z9T3r9KUdELz86reebce/6BN
-         iiKFj4m0QAXaHfIdqbrjZoY68/u2hhrBIf1uWQ13Gcyb2GFdG94TkxtOloXmfTZpYErN
-         Yh2w==
+        d=umich.edu; s=google-2016-06-03;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WszLA92yTdZQtwqsDeaM78Lo9liJWanpjgjKiz3podQ=;
+        b=qcdVh4/5sRpgpzgPUv0VQhLZIKj8uFvRAtRBfkSgFCNfQDPiBQHK3Rn96qLQFIQ6AI
+         IaGspDVHMgZV+nVTqxK2FIMva7jHwjTTnmLvciOjJwtApbw5f7yC7oj0ZEBwz4dL3wTr
+         k5e7tiRRHREDhEzLUp4PB/7872BuD6KTW79Jp9nSsvWVie/xOFnNLazA9NmHuzZpgLCZ
+         n+LzmmmytHv3dzzpo7vUEcnRN/39YilF6utttUJdHrBgMvSFyywNcR8pEoOpWZrg9x6V
+         9bbnMHEtofs6RfK4FoSNNLBxX+te+mfluZbC6hHLZ7mQRkSV7QyzbN5Y6RlCEj2sr6ZX
+         hxlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=Dqeqp8s2ZHFUd1IDwa2QSnfAHK5cvTtw87giJZkQEsI=;
-        b=i+ZK3xxXfloJebcvZSMpEpdIOtQxvC6m+Gm/VLigGdCJDdssaoESMrTvRW1xBl2FRs
-         0S5DADhYI/XoqdZ1B9hiHourIRZY+WyObV/Syitc5El8j92JrIZvJw/dEfdxZJzm5Vxn
-         SFHto0gbxcgIhIzYpZVGH7QSoHZd7UkKbO7mOjBO7S7fMm9RxCFrCwA1tXYmWoYttB+T
-         KGXHZ6crFsbXqDJpX5AmylizvaqhIeWWf6YxuEEZd+yyXry2byRXJt/Co5jlBymj0eK1
-         dOkJLyZGH+08AWsfsCwQMf1Kb4fZL1J3Ww0HqKXCklk48yLuvBs90zPK6Ja+X+dfkxH+
-         NLvA==
-X-Gm-Message-State: AOAM533oQkWsGGBRohSJvQBuUf8lQmZC6iCIAM1RsN4EsECm3USqgfFl
-	wJz2eBFqKuisz9iruEfm5g8=
-X-Google-Smtp-Source: ABdhPJw2t5HisJ6a2C++6F+PDJyGdfiMcsLjyrIOHuCfEhF804GhIHIthh0a2HfKt4H5ZUrxkmnGHQ==
-X-Received: by 2002:a37:a394:: with SMTP id m142mr1309821qke.243.1620401034180;
-        Fri, 07 May 2021 08:23:54 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id b188sm4928660qkc.11.2021.05.07.08.23.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 May 2021 08:23:53 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Fri, 7 May 2021 11:23:52 -0400
-Message-Id: <8F650886-FFC7-422D-9A03-21324AA8E6AE@gmail.com>
-References: <4FD0B0DF-5E71-45EF-AFFB-6B5787776E17@gmail.com>
-In-Reply-To: <4FD0B0DF-5E71-45EF-AFFB-6B5787776E17@gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-X-Mailer: iPhone Mail (18D70)
-Message-ID-Hash: R54NOXSSOJ2FXUOR6LLIRJ7KOXYOJNXY
-X-Message-ID-Hash: R54NOXSSOJ2FXUOR6LLIRJ7KOXYOJNXY
-X-MailFrom: patchvonbraun@gmail.com
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WszLA92yTdZQtwqsDeaM78Lo9liJWanpjgjKiz3podQ=;
+        b=ldJAW/mW65u2War9KCaaWlqgDVr2pcDymJjvzo0lxtgqlduH3hZaoMNH3nsya4Gvd3
+         7E1p37n1xbS0xj/jwO1pY4/ybGvw0IIFmA9XnPGYWCWGuXF4pSE++saMKd13Nd0feWAr
+         Nnotn9tveNie3nBdqyFznop1P210y6IATWGweHIZZYct5gwbCb6fck6tEOqxNEk9D/aN
+         L3SF5Mv3wNtKCXRC7C/kxjn03iwMarCUF9KJyRN6n9qqF9hDrkhYMx668w7gPS4JmIBt
+         HON6hCsD+umAAGlje4hfhveNB3xdzYcjrn/6gnCWrywZ2vY/+2nqerm/la+XOPM04cNh
+         DzCA==
+X-Gm-Message-State: AOAM533EK63IRhHGTHeBSE8dDfx/3ujsSNlHvxpHfn/hhxiCtq00AVC7
+	VX/P3cDX2d1lksDj1ckOE7JD5Ey06+Fbk8f25sRrRQ==
+X-Google-Smtp-Source: ABdhPJxzAWv4exaGWfsJlLrzxasK67SwpIktq58VVTfzDekcblnF7zm7YYKONBC8W09V9tbUAFdZXJH1X+KlQVyIQgk=
+X-Received: by 2002:a05:6512:3c95:: with SMTP id h21mr6848880lfv.446.1620402151310;
+ Fri, 07 May 2021 08:42:31 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAErymBh8ud_G-UX50t0Xox12TETNMmgjZcZ8dgmzxJWvMjDxrg@mail.gmail.com>
+ <F5105DDC-01C9-4AC1-9341-0B388C37012E@gmail.com>
+In-Reply-To: <F5105DDC-01C9-4AC1-9341-0B388C37012E@gmail.com>
+From: Achilleas Anastasopoulos <anastas@umich.edu>
+Date: Fri, 7 May 2021 11:42:19 -0400
+Message-ID: <CAErymBj5L5e9=aD0mNqN6dmkBTC66uBQiTSca07G221ntJiCWw@mail.gmail.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Message-ID-Hash: D3DVMJBMNV6SI57PYLICXIGYKGNZT2QW
+X-Message-ID-Hash: D3DVMJBMNV6SI57PYLICXIGYKGNZT2QW
+X-MailFrom: anastas@umich.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E310 / E320 high bandwith / high datarate two channel RX capture
+Subject: [USRP-users] Re: usrp sink burst transmission
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R54NOXSSOJ2FXUOR6LLIRJ7KOXYOJNXY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/D3DVMJBMNV6SI57PYLICXIGYKGNZT2QW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0777951593210762671=="
+Content-Type: multipart/mixed; boundary="===============5588156234407514618=="
 
+--===============5588156234407514618==
+Content-Type: multipart/alternative; boundary="0000000000009f5b1c05c1bf46ca"
 
---===============0777951593210762671==
-Content-Type: multipart/alternative; boundary=Apple-Mail-D956BAA2-CD2A-451E-A7C7-7CA95B80774D
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-D956BAA2-CD2A-451E-A7C7-7CA95B80774D
-Content-Type: text/plain;
-	charset=utf-8
+--0000000000009f5b1c05c1bf46ca
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-The E320 uses the same RFFE as the E310 so would have the same bandwidth res=
-trictions.=20
+Hi Marcus,
 
-Sent from my iPhone
+thanks for the reply.
+So if I don't want this function (precisely timed bursts) but i only want
+bursty transmission, I should only use the length tag, right?
 
-> On May 7, 2021, at 10:50 AM, Marcus D Leech <patchvonbraun@gmail.com> wrot=
-e:
->=20
-> =EF=BB=BFIndeed the E310 RFFE chip has clocking restrictions so that two c=
-hannels are limited to less than 32MHz.=20
->=20
-> I=E2=80=99m not certain about the E320.=20
->=20
+My understanding of bursty transmission is that the USRP does not wait for
+the buffers to fill up: when it sees the length tag, it waits for
+appropriate number of samples  (value of length tag) to arrive and
+transmits this burst immediately (sends it to DAC).
+
+Furthermore, this mode of transmission will eliminate long delays (order of
+5-10 seconds depending on the sampling rate) that I see when i change some
+aspect of my tx-ed signal to appear on the RX side. The way I explain these
+long delays is that the USRP TX buffer should fill up before actual
+transmission occurs.
+
+Is my understanding correct?
+
+thanks again,
+Achilleas
+
+
+
+
+
+On Fri, May 7, 2021 at 11:19 AM Marcus D Leech <patchvonbraun@gmail.com>
+wrote:
+
+> I can answer at least one of your questions.
+>
+> The tx_time tag is used for TDMA type applications where the burst
+> *timing* is critical.
+>
+> You send the burst a little in advance with the time tag, and the USRP
+> won=E2=80=99t commence transmission until that time.
+>
 > Sent from my iPhone
->=20
->>> On May 7, 2021, at 10:45 AM, Rob Kossler <rkossler@nd.edu> wrote:
->>>=20
->> =EF=BB=BF
->> Hi Martin,
->> I am concerned that these devices, E3xx, cannot handle 2 channels at 56 M=
-S/s (or 61MS/s).  My understanding (but I am not 100% sure) is that these de=
-vices can handle 1 channel at those rates, but that the max rate for 2 chann=
-els is 30.72 MS/s.
->> Rob
->>=20
->>> On Fri, May 7, 2021 at 9:41 AM Martin <usrp-users-list@olifantasia.com> w=
-rote:
->>> Hi,
->>>=20
->>> Do you have experience with high bandwidth capture on E310 or E320?
->>>=20
->>> We want to use an E310 or E320 for 56 MSPS (or 61.44 MSPS) dual channel=20=
+>
+> On May 7, 2021, at 10:19 AM, Achilleas Anastasopoulos <anastas@umich.edu>
+> wrote:
+>
+> =EF=BB=BF
+> I posted the following on discuss gnuradio list but I am also posting her=
+e
+> in case this is more appropriate.
+> ---------------------------------------------------------
+> Hi all,
+>
+> I am reading from here:
+>
+> https://wiki.gnuradio.org/index.php/USRP_Sink
+>
+> how to do burt transmission with the usrp_sink.
+> My questions have to do with the second option:
+>
+> ----
+> Using tagged streams (See Tagged Stream Blocks
+> <https://wiki.gnuradio.org/index.php/Tagged_Stream_Blocks>). To use this
+> capability, you must specify which string the usrp_sink block should be
+> looking for to denote the length of the next PDU to be transmitted. Set t=
+he
+> "tsb_tag_name" parameter in the usrp_sink to whatever string your radio
+> application uses to denote your PDU length. A commonly used string for th=
+is
+> purpose is simply "tx_pkt_len". If using Tagged Streams for timed bursts,
+> you must include your "tx_pkt_len" tag and a "tx_time" tag on the first
+> sample of a tx burst. If your first "tx_pkt_len" tag has an offset of 0,
+> and your packet length is 1000 items, your next "tx_pkt_len" and "tx_time=
+"
+> tags must appear with an offset of 1000. TX bursts should not overlap, an=
+d
+> there should not be gaps in samples between bursts.
+> ----
+>
+> Q1: why do we need two tags to make this happen? I would think that
+> "tx_pkt_len" tag would be sufficient: when a tag like this is found by th=
+e
+> usrp sink then it waits for that many samples to come in and then it
+> transmits them in burst mode. Then it waits for the next such tag and so =
+on.
+> What is the meaning/use of the second tag  "tx_time"?
+>
+> Q2: Does the "tx_time" tag have to be exactly that name (as opposed to th=
+e
+> "tx_pkt_len" tag which can be user defined?)
+>
+> Q3: The text above is talking about PDU's but my understanding is that a
+> PDU is a special type of a PMT, while the USRP sink input has to be a
+> tagged stream, not a PMT/PDU. Should the input be a PDU (to a message
+> port?) or should it be a tagged stream?
+>
+> thanks
+> Achilleas
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
 
->>> RX captures.
->>> We want to capture into a circular buffer and after a certain signal=20
->>> signal level is observed set a time to stop capturing after 0.3 seconds.=
-=20
->>> So we only use the last 0.3 second of captured data.
->>>=20
->>> We are thinking of using a E320. This has a high speed SFP+ 10 gbit port=
-.
->>> Can it stream 2 channel 56 MSPS data to a host-PC continuously to a=20
->>> host-PC? Or is the ARM processor a bottleneck, like on the E310, which=20=
-
->>> seems to be limited to max 16MSPS due to the limited arm processor speed=
-.
->>> And can it stream that fast with its default FPGA firmware image, so=20
->>> there would be no need for RFNoc work and expensive Vivado license.
->>>=20
->>> And if we do need the Xilinx vivado license. Which version do we need?
->>>=20
->>> Alternatively we could try to use the E310 which has a smaller FPGA that=
-=20
->>> is supported by the free webpack of vivado.
->>> Because it does not have a 10 gbit ethernet we would have to capture to=20=
-
->>> memory.
->>> I have read that the E310 arm processing is not able to keep up with=20
->>> more then 16 MSPS captures. So just streaming to the ARM memory in the=20=
-
->>> E310 would not work.
->>> But if we could someway capture to the 512 MB DDR ram on the FPGA side=20=
-
->>> (use it as a circular buffer) and afterwards slowly move it to the arm=20=
-
->>> and from there to the host-PC then that would be fine.
->>>=20
->>> Alternatively I heard that high datarate (56 MSPS) capture on E310 is=20=
-
->>> possible in some way using RFNoc. Is that true? How would that work.
->>>=20
->>> It would help me a lot if you give me some hints or tell me about your=20=
-
->>> experience of high bandwidth capturing on E3XX devices.. Even if you do=20=
-
->>> not know all the answers.
->>>=20
->>> With best regards,
->>>=20
->>> Martin Dudok van Heel
->>>=20
->>> _______________________________________________
->>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-D956BAA2-CD2A-451E-A7C7-7CA95B80774D
-Content-Type: text/html;
-	charset=utf-8
+--0000000000009f5b1c05c1bf46ca
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">The E320 uses the same RFFE as the E310 so w=
-ould have the same bandwidth restrictions.&nbsp;<br><br><div dir=3D"ltr">Sen=
-t from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On May 7=
-, 2021, at 10:50 AM, Marcus D Leech &lt;patchvonbraun@gmail.com&gt; wrote:<b=
-r><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF=
-<meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8">Ind=
-eed the E310 RFFE chip has clocking restrictions so that two channels are li=
-mited to less than 32MHz.&nbsp;<div><br></div><div>I=E2=80=99m not certain a=
-bout the E320.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><div d=
-ir=3D"ltr"><br><blockquote type=3D"cite">On May 7, 2021, at 10:45 AM, Rob Ko=
-ssler &lt;rkossler@nd.edu&gt; wrote:<br><br></blockquote></div><blockquote t=
-ype=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Hi Martin,</div=
-><div>I am concerned that these devices, E3xx, cannot handle 2 channels at 5=
-6 MS/s (or 61MS/s).&nbsp; My understanding (but I am not 100% sure) is that t=
-hese devices can handle 1 channel at those rates, but that the max rate for 2=
- channels is 30.72 MS/s.</div><div>Rob</div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Fri, May 7, 2021 at 9:41 AM Martin &=
-lt;<a href=3D"mailto:usrp-users-list@olifantasia.com">usrp-users-list@olifan=
-tasia.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">Hi,<br>
-<br>
-Do you have experience with high bandwidth capture on E310 or E320?<br>
-<br>
-We want to use an E310 or E320 for 56 MSPS (or 61.44 MSPS) dual channel <br>=
+<div dir=3D"ltr">Hi=C2=A0Marcus,<div><br></div><div>thanks for the reply.</=
+div><div>So if I don&#39;t want this function (precisely timed bursts) but =
+i only want bursty transmission, I should only use the length tag, right?</=
+div><div><br></div><div>My understanding of bursty transmission is that the=
+ USRP does not wait for the buffers=C2=A0to fill up: when it sees the lengt=
+h tag, it waits for appropriate number of samples=C2=A0
 
-RX captures.<br>
-We want to capture into a circular buffer and after a certain signal <br>
-signal level is observed set a time to stop capturing after 0.3 seconds. <br=
->
-So we only use the last 0.3 second of captured data.<br>
-<br>
-We are thinking of using a E320. This has a high speed SFP+ 10 gbit port.<br=
->
-Can it stream 2 channel 56 MSPS data to a host-PC continuously to a <br>
-host-PC? Or is the ARM processor a bottleneck, like on the E310, which <br>
-seems to be limited to max 16MSPS due to the limited arm processor speed.<br=
->
-And can it stream that fast with its default FPGA firmware image, so <br>
-there would be no need for RFNoc work and expensive Vivado license.<br>
-<br>
-And if we do need the Xilinx vivado license. Which version do we need?<br>
-<br>
-Alternatively we could try to use the E310 which has a smaller FPGA that <br=
->
-is supported by the free webpack of vivado.<br>
-Because it does not have a 10 gbit ethernet we would have to capture to <br>=
+(value of length tag)
 
-memory.<br>
-I have read that the E310 arm processing is not able to keep up with <br>
-more then 16 MSPS captures. So just streaming to the ARM memory in the <br>
-E310 would not work.<br>
-But if we could someway capture to the 512 MB DDR ram on the FPGA side <br>
-(use it as a circular buffer) and afterwards slowly move it to the arm <br>
-and from there to the host-PC then that would be fine.<br>
-<br>
-Alternatively I heard that high datarate (56 MSPS) capture on E310 is <br>
-possible in some way using RFNoc. Is that true? How would that work.<br>
-<br>
-It would help me a lot if you give me some hints or tell me about your <br>
-experience of high bandwidth capturing on E3XX devices.. Even if you do <br>=
+ to arrive  and transmits this burst immediately (sends it to DAC).</div><d=
+iv><br></div><div>Furthermore, this mode of transmission will eliminate lon=
+g delays (order of 5-10 seconds depending on the sampling=C2=A0rate) that I=
+ see when i change some aspect of my tx-ed signal to appear on the RX side.=
+ The way I explain these long delays is that the USRP TX buffer should fill=
+ up before actual transmission occurs.</div><div><br></div><div>Is my under=
+standing correct?</div><div><br></div><div>thanks again,</div><div>Achillea=
+s</div><div><br></div><div><br></div><div><br></div><div><br></div></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, =
+May 7, 2021 at 11:19 AM Marcus D Leech &lt;<a href=3D"mailto:patchvonbraun@=
+gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"auto">I can answer at least o=
+ne of your questions.=C2=A0<div><br></div><div>The tx_time tag is used for =
+TDMA type applications where the burst *timing* is critical.=C2=A0</div><di=
+v><br></div><div>You send the burst a little in advance with the time tag, =
+and the USRP won=E2=80=99t commence transmission until that time.=C2=A0<br>=
+<br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockqu=
+ote type=3D"cite">On May 7, 2021, at 10:19 AM, Achilleas Anastasopoulos &lt=
+;<a href=3D"mailto:anastas@umich.edu" target=3D"_blank">anastas@umich.edu</=
+a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=
+=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>I posted the following on discuss g=
+nuradio list but I am also posting here in case this is more appropriate.</=
+div><div>---------------------------------------------------------</div>Hi =
+all,<div><br></div><div>I am reading from here:</div><div><br></div><div><a=
+ href=3D"https://wiki.gnuradio.org/index.php/USRP_Sink" target=3D"_blank">h=
+ttps://wiki.gnuradio.org/index.php/USRP_Sink</a><br></div><div><br></div><d=
+iv>how to do burt transmission with the usrp_sink.</div><div>My questions h=
+ave to do with the second option:</div><div><span style=3D"color:rgb(37,37,=
+37);font-family:sans-serif;font-size:14px"><br></span></div><div><span styl=
+e=3D"color:rgb(37,37,37);font-family:sans-serif;font-size:14px">----</span>=
+</div><div><span style=3D"color:rgb(37,37,37);font-family:sans-serif;font-s=
+ize:14px">Using tagged streams (See=C2=A0</span><a href=3D"https://wiki.gnu=
+radio.org/index.php/Tagged_Stream_Blocks" title=3D"Tagged Stream Blocks" st=
+yle=3D"color:rgb(6,69,173);font-family:sans-serif;font-size:14px;background=
+:none;text-decoration-line:none" target=3D"_blank">Tagged Stream Blocks</a>=
+<span style=3D"color:rgb(37,37,37);font-family:sans-serif;font-size:14px">)=
+. To use this capability, you must specify which string the usrp_sink block=
+ should be looking for to denote the length of the next PDU to be transmitt=
+ed. Set the &quot;tsb_tag_name&quot; parameter in the usrp_sink to whatever=
+ string your radio application uses to denote your PDU length. A commonly u=
+sed string for this purpose is simply &quot;tx_pkt_len&quot;. If using Tagg=
+ed Streams for timed bursts, you must include your &quot;tx_pkt_len&quot; t=
+ag and a &quot;tx_time&quot; tag on the first sample of a tx burst. If your=
+ first &quot;tx_pkt_len&quot; tag has an offset of 0, and your packet lengt=
+h is 1000 items, your next &quot;tx_pkt_len&quot; and &quot;tx_time&quot; t=
+ags must appear with an offset of 1000. TX bursts should not overlap, and t=
+here should not be gaps in samples between bursts.=C2=A0</span></div><div><=
+span style=3D"color:rgb(37,37,37);font-family:sans-serif;font-size:14px">--=
+--</span></div><div><span style=3D"color:rgb(37,37,37);font-family:sans-ser=
+if;font-size:14px"><br></span></div><div>Q1: why do we need two tags to mak=
+e this happen? I would think that=C2=A0 &quot;tx_pkt_len&quot; tag would be=
+ sufficient: when a tag like this is found by the usrp sink then it waits f=
+or that many samples to come in and then it transmits them in burst mode. T=
+hen it waits for the next such tag and so on.</div><div>What is the meaning=
+/use of the second tag=C2=A0 &quot;tx_time&quot;?</div><div><br></div><div>=
+Q2: Does the &quot;tx_time&quot; tag have to be exactly that name (as oppos=
+ed to the &quot;tx_pkt_len&quot; tag which can be user defined?)</div><div>=
+<br></div><div>Q3: The text above is talking about PDU&#39;s=C2=A0but my un=
+derstanding is that a PDU is a special type of a PMT, while the USRP sink i=
+nput has to be a tagged stream, not a PMT/PDU. Should the input be a PDU (t=
+o a message port?) or should it be a tagged stream?</div><div><br></div><di=
+v>thanks</div><font color=3D"#888888"><div>Achilleas</div><div><br></div></=
+font></div>
+<span>_______________________________________________</span><br><span>USRP-=
+users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" target=
+=3D"_blank">usrp-users@lists.ettus.com</a></span><br><span>To unsubscribe s=
+end an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=
+=3D"_blank">usrp-users-leave@lists.ettus.com</a></span><br></div></blockquo=
+te></div></div></blockquote></div>
 
-not know all the answers.<br>
-<br>
-With best regards,<br>
-<br>
-Martin Dudok van Heel<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" tar=
-get=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.ett=
-us.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></div></div></blockquote></body></html>=
+--0000000000009f5b1c05c1bf46ca--
 
---Apple-Mail-D956BAA2-CD2A-451E-A7C7-7CA95B80774D--
-
---===============0777951593210762671==
+--===============5588156234407514618==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -268,4 +272,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0777951593210762671==--
+--===============5588156234407514618==--
