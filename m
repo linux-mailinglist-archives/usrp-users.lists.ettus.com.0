@@ -2,137 +2,468 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFC76377128
-	for <lists+usrp-users@lfdr.de>; Sat,  8 May 2021 12:14:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 204E63777F2
+	for <lists+usrp-users@lfdr.de>; Sun,  9 May 2021 20:31:57 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4D0FA38433A
-	for <lists+usrp-users@lfdr.de>; Sat,  8 May 2021 06:14:02 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=olifantasia.com header.i=@olifantasia.com header.b="JscXOjtO";
-	dkim-atps=neutral
-Received: from outbound5.mail.transip.nl (outbound5.mail.transip.nl [136.144.136.9])
-	by mm2.emwd.com (Postfix) with ESMTPS id B497D383F4D
-	for <USRP-users@lists.ettus.com>; Sat,  8 May 2021 06:13:13 -0400 (EDT)
-Received: from submission2.mail.transip.nl (unknown [10.100.4.71])
-	by outbound5.mail.transip.nl (Postfix) with ESMTP id 4FcjnN29c3zH9mV;
-	Sat,  8 May 2021 12:13:12 +0200 (CEST)
-Received: from mail.olifantasia.eu (unknown [IPv6:2a01:7c8:aabf:5b9:5054:ff:feac:f25b])
-	by submission2.mail.transip.nl (Postfix) with ESMTPSA id 4FcjnL0rLMz18GrV;
-	Sat,  8 May 2021 12:13:10 +0200 (CEST)
-Received: from [192.168.10.104] (unknown [83.80.231.114])
-	by mail.olifantasia.eu (Postfix) with ESMTPSA id F200A602B5;
-	Sat,  8 May 2021 12:13:09 +0200 (CEST)
-To: Marcus D Leech <patchvonbraun@gmail.com>, Rob Kossler <rkossler@nd.edu>
-References: <4FD0B0DF-5E71-45EF-AFFB-6B5787776E17@gmail.com>
- <8F650886-FFC7-422D-9A03-21324AA8E6AE@gmail.com>
-From: Martin <usrp-users-list@olifantasia.com>
-Message-ID: <49905aa9-8168-b029-2002-81ca32ae732a@olifantasia.com>
-Date: Sat, 8 May 2021 12:13:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+	by mm2.emwd.com (Postfix) with ESMTP id AB835383DC9
+	for <lists+usrp-users@lfdr.de>; Sun,  9 May 2021 14:31:55 -0400 (EDT)
+Received: from postman.dtnt.info (postman.dtnt.info [62.219.91.51])
+	by mm2.emwd.com (Postfix) with ESMTP id ED9E0383DB6
+	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 14:30:59 -0400 (EDT)
+Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
+	by postman.dtnt.info (Postfix) with ESMTPS id EBF0D419C7
+	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 21:30:42 +0300 (IDT)
+Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
+	by o.dtnt.email (Postfix) with ESMTP id 9295B9FDDA
+	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 21:30:42 +0300 (IDT)
+X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
+Received: from o.dtnt.email ([127.0.0.1])
+	by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id aE1PGX0YevMO for <usrp-users@lists.ettus.com>;
+	Sun,  9 May 2021 21:30:40 +0300 (IDT)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+	by o.dtnt.email (Postfix) with ESMTPSA id 62A4E9FC07
+	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 21:30:40 +0300 (IDT)
+Received: by mail-oo1-f41.google.com with SMTP id e7-20020a4ad2470000b02902088d0512ceso195814oos.8
+        for <usrp-users@lists.ettus.com>; Sun, 09 May 2021 11:30:40 -0700 (PDT)
+X-Gm-Message-State: AOAM5317kQ4mqaXxIKKCyipewTPPjUNROrUyDzk082CQ0gGk7tr9TMnz
+	L0Th0JivDYw+syP3DTCPxMByhJwUdxiL5/q+NX4=
+X-Google-Smtp-Source: ABdhPJzBxgVsy/sJhIbFfaZ6olAiK+U3CJvaAXB7X5ARuoSE9pRk/I6sahKIhI4oGI3MVMNURpoaO9bRAHV3mxCg+pg=
+X-Received: by 2002:a4a:e644:: with SMTP id q4mr13540241oot.58.1620585038156;
+ Sun, 09 May 2021 11:30:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <8F650886-FFC7-422D-9A03-21324AA8E6AE@gmail.com>
-Content-Language: en-US
-X-Scanned-By: ClueGetter at submission2.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=olifantasia.com; t=1620468790; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version:content-type;
- bh=heTHdfu6L6DjDhI95PlkEewcEXrVSte1+QFR0nICCW8=;
- b=JscXOjtOcTFN55tBhANXnSPthTcJkBCab++DHPswsLf+pktsSdEsanS7lAbSUcCGp91cxz
- tHd4QaFwUHxbAGFdn6BXOy5BREmqTb2qgsFhIvMp1e3sXBngRpXT24/+aJLJG1Yfrlulxa
- KQtQ7C5N5eKVMt/O0+dwlOEnLU4mnTJe3DyRbI41XeDNZD+Rs1KmuoYLPNpNiB93A1pJLE
- V+jehQ4oY11kEXtzpXTgmQ3WP6TN/2PI69+iQYVBc4sJpf427V7FBV1ESfSWFpPcDScWsD
- v54sb0aYIwngnSmY7J6y3Ydvucjz9AzsiPiIlcJ0sR9/hnua9SelkF9ty1xMEA==
-X-Report-Abuse-To: abuse@transip.nl
-Message-ID-Hash: 2BJPGUEZZ2AVNQMX6PQLDD662DS3G7CH
-X-Message-ID-Hash: 2BJPGUEZZ2AVNQMX6PQLDD662DS3G7CH
-X-MailFrom: usrp-users-list@olifantasia.com
+References: <162054543024.11274.10987340942019938813@mm2.emwd.com>
+In-Reply-To: <162054543024.11274.10987340942019938813@mm2.emwd.com>
+From: Ofer Saferman <ofer@navigicom.com>
+Date: Sun, 9 May 2021 21:30:27 +0300
+X-Gmail-Original-Message-ID: <CACDReSweJ=Fb7p0BSyF16wxP+wS4acABv2aSkodBF7c0_0N4OA@mail.gmail.com>
+Message-ID: <CACDReSweJ=Fb7p0BSyF16wxP+wS4acABv2aSkodBF7c0_0N4OA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+X-DTNT-MailScanner-Information: Please contact the ISP for more information
+X-DTNT-MailScanner-ID: EBF0D419C7.A73DF
+X-DTNT-MailScanner: Found to be clean
+X-DTNT-MailScanner-From: ofer@navigicom.com
+X-Spam-Status: No
+Message-ID-Hash: B2A63MTFKZWZKLIJFJV4OFPGVUIPCEDT
+X-Message-ID-Hash: B2A63MTFKZWZKLIJFJV4OFPGVUIPCEDT
+X-MailFrom: ofer@navigicom.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: E310 / E320 high bandwith / high datarate two channel RX capture
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2BJPGUEZZ2AVNQMX6PQLDD662DS3G7CH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/B2A63MTFKZWZKLIJFJV4OFPGVUIPCEDT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8335706793423144152=="
 
-U28gaXQncyBhIGhhcmR3YXJlIGxpbWl0YXRpb24gb2YgdGhlIEFEOTM2MSBjaGlwPw0KVGhhdCBp
-cyB2ZXJ5IHVuZm9ydHVuYXRlLg0KDQpXZSB3ZXJlIGFsc28gbG9va2luZyBhdCBhbiBvcHRpb24g
-dG8gYnVpbGQgb3VyIG93biBkZXZpY2UgYmFzZWQgb24gYSANCkFEOTM2MSArIHNvbWUgWnluYyBG
-UEdBL0FSTSBwcm9jZXNzb3IuDQpCdXQgaWYgaXQgaXMgYSBoYXJkd2FyZSBsaW1pdGF0aW9uIG9m
-IHRoZSBBRDkzNjEgdGhlbiB0aGF0IHdvdWxkIG5vdCANCndvcmsgZWl0aGVyLg0KDQpUaGFua3Mg
-Zm9yIHRoZSBpbmZvLg0KDQpCZXN0IHJlZ2FyZHMsDQpNYXJ0aW4NCg0KDQpPbiAwNy0wNS0yMDIx
-IDE3OjIzLCBNYXJjdXMgRCBMZWVjaCB3cm90ZToNCj4gVGhlIEUzMjAgdXNlcyB0aGUgc2FtZSBS
-RkZFIGFzIHRoZSBFMzEwIHNvIHdvdWxkIGhhdmUgdGhlIHNhbWUgYmFuZHdpZHRoIA0KPiByZXN0
-cmljdGlvbnMuDQo+IA0KPiBTZW50IGZyb20gbXkgaVBob25lDQo+IA0KPj4gT24gTWF5IDcsIDIw
-MjEsIGF0IDEwOjUwIEFNLCBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+
-IA0KPj4gd3JvdGU6DQo+Pg0KPj4g77u/SW5kZWVkIHRoZSBFMzEwIFJGRkUgY2hpcCBoYXMgY2xv
-Y2tpbmcgcmVzdHJpY3Rpb25zIHNvIHRoYXQgdHdvIA0KPj4gY2hhbm5lbHMgYXJlIGxpbWl0ZWQg
-dG8gbGVzcyB0aGFuIDMyTUh6Lg0KPj4NCj4+IEnigJltIG5vdCBjZXJ0YWluIGFib3V0IHRoZSBF
-MzIwLg0KPj4NCj4+IFNlbnQgZnJvbSBteSBpUGhvbmUNCj4+DQo+Pj4gT24gTWF5IDcsIDIwMjEs
-IGF0IDEwOjQ1IEFNLCBSb2IgS29zc2xlciA8cmtvc3NsZXJAbmQuZWR1PiB3cm90ZToNCj4+Pg0K
-Pj4+IO+7vw0KPj4+IEhpIE1hcnRpbiwNCj4+PiBJIGFtIGNvbmNlcm5lZCB0aGF0IHRoZXNlIGRl
-dmljZXMsIEUzeHgsIGNhbm5vdCBoYW5kbGUgMiBjaGFubmVscyBhdCANCj4+PiA1NiBNUy9zIChv
-ciA2MU1TL3MpLsKgIE15IHVuZGVyc3RhbmRpbmcgKGJ1dCBJIGFtIG5vdCAxMDAlIHN1cmUpIGlz
-IA0KPj4+IHRoYXQgdGhlc2UgZGV2aWNlcyBjYW4gaGFuZGxlIDEgY2hhbm5lbCBhdCB0aG9zZSBy
-YXRlcywgYnV0IHRoYXQgdGhlIA0KPj4+IG1heCByYXRlIGZvciAyIGNoYW5uZWxzIGlzIDMwLjcy
-IE1TL3MuDQo+Pj4gUm9iDQo+Pj4NCj4+PiBPbiBGcmksIE1heSA3LCAyMDIxIGF0IDk6NDEgQU0g
-TWFydGluIA0KPj4+IDx1c3JwLXVzZXJzLWxpc3RAb2xpZmFudGFzaWEuY29tIA0KPj4+IDxtYWls
-dG86dXNycC11c2Vycy1saXN0QG9saWZhbnRhc2lhLmNvbT4+IHdyb3RlOg0KPj4+DQo+Pj4gICAg
-IEhpLA0KPj4+DQo+Pj4gICAgIERvIHlvdSBoYXZlIGV4cGVyaWVuY2Ugd2l0aCBoaWdoIGJhbmR3
-aWR0aCBjYXB0dXJlIG9uIEUzMTAgb3IgRTMyMD8NCj4+Pg0KPj4+ICAgICBXZSB3YW50IHRvIHVz
-ZSBhbiBFMzEwIG9yIEUzMjAgZm9yIDU2IE1TUFMgKG9yIDYxLjQ0IE1TUFMpIGR1YWwNCj4+PiAg
-ICAgY2hhbm5lbA0KPj4+ICAgICBSWCBjYXB0dXJlcy4NCj4+PiAgICAgV2Ugd2FudCB0byBjYXB0
-dXJlIGludG8gYSBjaXJjdWxhciBidWZmZXIgYW5kIGFmdGVyIGEgY2VydGFpbiBzaWduYWwNCj4+
-PiAgICAgc2lnbmFsIGxldmVsIGlzIG9ic2VydmVkIHNldCBhIHRpbWUgdG8gc3RvcCBjYXB0dXJp
-bmcgYWZ0ZXIgMC4zDQo+Pj4gICAgIHNlY29uZHMuDQo+Pj4gICAgIFNvIHdlIG9ubHkgdXNlIHRo
-ZSBsYXN0IDAuMyBzZWNvbmQgb2YgY2FwdHVyZWQgZGF0YS4NCj4+Pg0KPj4+ICAgICBXZSBhcmUg
-dGhpbmtpbmcgb2YgdXNpbmcgYSBFMzIwLiBUaGlzIGhhcyBhIGhpZ2ggc3BlZWQgU0ZQKyAxMA0K
-Pj4+ICAgICBnYml0IHBvcnQuDQo+Pj4gICAgIENhbiBpdCBzdHJlYW0gMiBjaGFubmVsIDU2IE1T
-UFMgZGF0YSB0byBhIGhvc3QtUEMgY29udGludW91c2x5IHRvIGENCj4+PiAgICAgaG9zdC1QQz8g
-T3IgaXMgdGhlIEFSTSBwcm9jZXNzb3IgYSBib3R0bGVuZWNrLCBsaWtlIG9uIHRoZSBFMzEwLA0K
-Pj4+ICAgICB3aGljaA0KPj4+ICAgICBzZWVtcyB0byBiZSBsaW1pdGVkIHRvIG1heCAxNk1TUFMg
-ZHVlIHRvIHRoZSBsaW1pdGVkIGFybQ0KPj4+ICAgICBwcm9jZXNzb3Igc3BlZWQuDQo+Pj4gICAg
-IEFuZCBjYW4gaXQgc3RyZWFtIHRoYXQgZmFzdCB3aXRoIGl0cyBkZWZhdWx0IEZQR0EgZmlybXdh
-cmUgaW1hZ2UsIHNvDQo+Pj4gICAgIHRoZXJlIHdvdWxkIGJlIG5vIG5lZWQgZm9yIFJGTm9jIHdv
-cmsgYW5kIGV4cGVuc2l2ZSBWaXZhZG8gbGljZW5zZS4NCj4+Pg0KPj4+ICAgICBBbmQgaWYgd2Ug
-ZG8gbmVlZCB0aGUgWGlsaW54IHZpdmFkbyBsaWNlbnNlLiBXaGljaCB2ZXJzaW9uIGRvIHdlDQo+
-Pj4gICAgIG5lZWQ/DQo+Pj4NCj4+PiAgICAgQWx0ZXJuYXRpdmVseSB3ZSBjb3VsZCB0cnkgdG8g
-dXNlIHRoZSBFMzEwIHdoaWNoIGhhcyBhIHNtYWxsZXINCj4+PiAgICAgRlBHQSB0aGF0DQo+Pj4g
-ICAgIGlzIHN1cHBvcnRlZCBieSB0aGUgZnJlZSB3ZWJwYWNrIG9mIHZpdmFkby4NCj4+PiAgICAg
-QmVjYXVzZSBpdCBkb2VzIG5vdCBoYXZlIGEgMTAgZ2JpdCBldGhlcm5ldCB3ZSB3b3VsZCBoYXZl
-IHRvDQo+Pj4gICAgIGNhcHR1cmUgdG8NCj4+PiAgICAgbWVtb3J5Lg0KPj4+ICAgICBJIGhhdmUg
-cmVhZCB0aGF0IHRoZSBFMzEwIGFybSBwcm9jZXNzaW5nIGlzIG5vdCBhYmxlIHRvIGtlZXAgdXAg
-d2l0aA0KPj4+ICAgICBtb3JlIHRoZW4gMTYgTVNQUyBjYXB0dXJlcy4gU28ganVzdCBzdHJlYW1p
-bmcgdG8gdGhlIEFSTSBtZW1vcnkNCj4+PiAgICAgaW4gdGhlDQo+Pj4gICAgIEUzMTAgd291bGQg
-bm90IHdvcmsuDQo+Pj4gICAgIEJ1dCBpZiB3ZSBjb3VsZCBzb21ld2F5IGNhcHR1cmUgdG8gdGhl
-IDUxMiBNQiBERFIgcmFtIG9uIHRoZSBGUEdBDQo+Pj4gICAgIHNpZGUNCj4+PiAgICAgKHVzZSBp
-dCBhcyBhIGNpcmN1bGFyIGJ1ZmZlcikgYW5kIGFmdGVyd2FyZHMgc2xvd2x5IG1vdmUgaXQgdG8N
-Cj4+PiAgICAgdGhlIGFybQ0KPj4+ICAgICBhbmQgZnJvbSB0aGVyZSB0byB0aGUgaG9zdC1QQyB0
-aGVuIHRoYXQgd291bGQgYmUgZmluZS4NCj4+Pg0KPj4+ICAgICBBbHRlcm5hdGl2ZWx5IEkgaGVh
-cmQgdGhhdCBoaWdoIGRhdGFyYXRlICg1NiBNU1BTKSBjYXB0dXJlIG9uDQo+Pj4gICAgIEUzMTAg
-aXMNCj4+PiAgICAgcG9zc2libGUgaW4gc29tZSB3YXkgdXNpbmcgUkZOb2MuIElzIHRoYXQgdHJ1
-ZT8gSG93IHdvdWxkIHRoYXQgd29yay4NCj4+Pg0KPj4+ICAgICBJdCB3b3VsZCBoZWxwIG1lIGEg
-bG90IGlmIHlvdSBnaXZlIG1lIHNvbWUgaGludHMgb3IgdGVsbCBtZSBhYm91dA0KPj4+ICAgICB5
-b3VyDQo+Pj4gICAgIGV4cGVyaWVuY2Ugb2YgaGlnaCBiYW5kd2lkdGggY2FwdHVyaW5nIG9uIEUz
-WFggZGV2aWNlcy4uIEV2ZW4gaWYNCj4+PiAgICAgeW91IGRvDQo+Pj4gICAgIG5vdCBrbm93IGFs
-bCB0aGUgYW5zd2Vycy4NCj4+Pg0KPj4+ICAgICBXaXRoIGJlc3QgcmVnYXJkcywNCj4+Pg0KPj4+
-ICAgICBNYXJ0aW4gRHVkb2sgdmFuIEhlZWwNCj4+Pg0KPj4+ICAgICBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+ICAgICBVU1JQLXVzZXJzIG1haWxp
-bmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4+ICAgICA8bWFpbHRvOnVz
-cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4+ICAgICBUbyB1bnN1YnNjcmliZSBzZW5kIGFu
-IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+Pj4gICAgIDxtYWls
-dG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo+Pj4NCj4+PiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+IFVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+Pj4gVG8gdW5zdWJzY3Jp
-YmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBt
-YWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUg
-c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============8335706793423144152==
+Content-Type: multipart/alternative; boundary="00000000000087189a05c1e9dbdc"
+
+--00000000000087189a05c1e9dbdc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+It is not a limitation of the AD9361 chip but rather of its implementation.
+The AD9361 can be implemented using a CMOS data interface which limits the
+data rate as described. It can also be implemented with an LVDS data
+interface that allows full rate of 61.44 Mbps for both Rx channels.
+Since the chosen implementation for the E310 (I guess from the answers,
+that it is the same  for the E320 as well, although curious) is CMOS data
+interface hence the data rate limitation.
+
+I know my answer does not help you because you can't change the hardware
+design but I thought you would like to know.
+
+Regards,
+Ofer Saferman
+
+
+On Sun, May 9, 2021 at 10:30 AM <usrp-users-request@lists.ettus.com> wrote:
+
+> Send USRP-users mailing list submissions to
+>         usrp-users@lists.ettus.com
+>
+> To subscribe or unsubscribe via email, send a message with subject or
+> body 'help' to
+>         usrp-users-request@lists.ettus.com
+>
+> You can reach the person managing the list at
+>         usrp-users-owner@lists.ettus.com
+>
+> When replying, please edit your Subject line so it is more specific
+> than "Re: Contents of USRP-users digest..."Today's Topics:
+>
+>    1. Re: E310 / E320 high bandwith / high datarate two channel RX capture
+>       (Martin)
+>
+>
+>
+> ---------- Forwarded message ----------
+> From: Martin <usrp-users-list@olifantasia.com>
+> To: Marcus D Leech <patchvonbraun@gmail.com>, Rob Kossler <rkossler@nd.edu
+> >
+> Cc: USRP-users@lists.ettus.com
+> Bcc:
+> Date: Sat, 8 May 2021 12:13:04 +0200
+> Subject: [USRP-users] Re: E310 / E320 high bandwith / high datarate two
+> channel RX capture
+> So it's a hardware limitation of the AD9361 chip?
+> That is very unfortunate.
+>
+> We were also looking at an option to build our own device based on a
+> AD9361 + some Zync FPGA/ARM processor.
+> But if it is a hardware limitation of the AD9361 then that would not
+> work either.
+>
+> Thanks for the info.
+>
+> Best regards,
+> Martin
+>
+>
+> On 07-05-2021 17:23, Marcus D Leech wrote:
+> > The E320 uses the same RFFE as the E310 so would have the same bandwidth
+> > restrictions.
+> >
+> > Sent from my iPhone
+> >
+> >> On May 7, 2021, at 10:50 AM, Marcus D Leech <patchvonbraun@gmail.com>
+> >> wrote:
+> >>
+> >> =EF=BB=BFIndeed the E310 RFFE chip has clocking restrictions so that t=
+wo
+> >> channels are limited to less than 32MHz.
+> >>
+> >> I=E2=80=99m not certain about the E320.
+> >>
+> >> Sent from my iPhone
+> >>
+> >>> On May 7, 2021, at 10:45 AM, Rob Kossler <rkossler@nd.edu> wrote:
+> >>>
+> >>> =EF=BB=BF
+> >>> Hi Martin,
+> >>> I am concerned that these devices, E3xx, cannot handle 2 channels at
+> >>> 56 MS/s (or 61MS/s).  My understanding (but I am not 100% sure) is
+> >>> that these devices can handle 1 channel at those rates, but that the
+> >>> max rate for 2 channels is 30.72 MS/s.
+> >>> Rob
+> >>>
+> >>> On Fri, May 7, 2021 at 9:41 AM Martin
+> >>> <usrp-users-list@olifantasia.com
+> >>> <mailto:usrp-users-list@olifantasia.com>> wrote:
+> >>>
+> >>>     Hi,
+> >>>
+> >>>     Do you have experience with high bandwidth capture on E310 or E32=
+0?
+> >>>
+> >>>     We want to use an E310 or E320 for 56 MSPS (or 61.44 MSPS) dual
+> >>>     channel
+> >>>     RX captures.
+> >>>     We want to capture into a circular buffer and after a certain
+> signal
+> >>>     signal level is observed set a time to stop capturing after 0.3
+> >>>     seconds.
+> >>>     So we only use the last 0.3 second of captured data.
+> >>>
+> >>>     We are thinking of using a E320. This has a high speed SFP+ 10
+> >>>     gbit port.
+> >>>     Can it stream 2 channel 56 MSPS data to a host-PC continuously to=
+ a
+> >>>     host-PC? Or is the ARM processor a bottleneck, like on the E310,
+> >>>     which
+> >>>     seems to be limited to max 16MSPS due to the limited arm
+> >>>     processor speed.
+> >>>     And can it stream that fast with its default FPGA firmware image,
+> so
+> >>>     there would be no need for RFNoc work and expensive Vivado licens=
+e.
+> >>>
+> >>>     And if we do need the Xilinx vivado license. Which version do we
+> >>>     need?
+> >>>
+> >>>     Alternatively we could try to use the E310 which has a smaller
+> >>>     FPGA that
+> >>>     is supported by the free webpack of vivado.
+> >>>     Because it does not have a 10 gbit ethernet we would have to
+> >>>     capture to
+> >>>     memory.
+> >>>     I have read that the E310 arm processing is not able to keep up
+> with
+> >>>     more then 16 MSPS captures. So just streaming to the ARM memory
+> >>>     in the
+> >>>     E310 would not work.
+> >>>     But if we could someway capture to the 512 MB DDR ram on the FPGA
+> >>>     side
+> >>>     (use it as a circular buffer) and afterwards slowly move it to
+> >>>     the arm
+> >>>     and from there to the host-PC then that would be fine.
+> >>>
+> >>>     Alternatively I heard that high datarate (56 MSPS) capture on
+> >>>     E310 is
+> >>>     possible in some way using RFNoc. Is that true? How would that
+> work.
+> >>>
+> >>>     It would help me a lot if you give me some hints or tell me about
+> >>>     your
+> >>>     experience of high bandwidth capturing on E3XX devices.. Even if
+> >>>     you do
+> >>>     not know all the answers.
+> >>>
+> >>>     With best regards,
+> >>>
+> >>>     Martin Dudok van Heel
+> >>>
+> >>>     _______________________________________________
+> >>>     USRP-users mailing list -- usrp-users@lists.ettus.com
+> >>>     <mailto:usrp-users@lists.ettus.com>
+> >>>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> >>>     <mailto:usrp-users-leave@lists.ettus.com>
+> >>>
+> >>> _______________________________________________
+> >>> USRP-users mailing list -- usrp-users@lists.ettus.com
+> >>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--=20
+This message has been scanned for viruses and
+dangerous content by MailScanner, and is
+believed to be clean.
+
+
+--00000000000087189a05c1e9dbdc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hello,</div><div dir=3D"ltr"><br></div><d=
+iv>It is not a limitation of the AD9361 chip but rather of its implementati=
+on.</div><div>The AD9361 can be implemented using a CMOS data interface whi=
+ch limits the data rate as described. It can also be implemented with an LV=
+DS data interface that allows full rate of 61.44 Mbps for both Rx channels.=
+</div><div>Since the chosen implementation for the E310 (I guess from the a=
+nswers, that it is the same=C2=A0 for the E320 as well, although curious) i=
+s CMOS data interface hence the data rate limitation.</div><div><br></div><=
+div>I know my answer does not help you because you can&#39;t change the har=
+dware design but I thought you would like to know.</div><div><br></div><div=
+>Regards,</div><div>Ofer Saferman<br></div><div><br></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, May 9, 2021 at =
+10:30 AM &lt;<a href=3D"mailto:usrp-users-request@lists.ettus.com">usrp-use=
+rs-request@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex">Send USRP-users mailing list submissions to<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users@lists.ettus.com" t=
+arget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+<br>
+To subscribe or unsubscribe via email, send a message with subject or<br>
+body &#39;help&#39; to<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-request@lists.ettu=
+s.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><br>
+<br>
+You can reach the person managing the list at<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-owner@lists.ettus.=
+com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
+<br>
+When replying, please edit your Subject line so it is more specific<br>
+than &quot;Re: Contents of USRP-users digest...&quot;Today&#39;s Topics:<br>
+<br>
+=C2=A0 =C2=A01. Re: E310 / E320 high bandwith / high datarate two channel R=
+X capture<br>
+=C2=A0 =C2=A0 =C2=A0 (Martin)<br>
+<br><br><br>---------- Forwarded message ----------<br>From:=C2=A0Martin &l=
+t;<a href=3D"mailto:usrp-users-list@olifantasia.com" target=3D"_blank">usrp=
+-users-list@olifantasia.com</a>&gt;<br>To:=C2=A0Marcus D Leech &lt;<a href=
+=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.c=
+om</a>&gt;, Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_b=
+lank">rkossler@nd.edu</a>&gt;<br>Cc:=C2=A0<a href=3D"mailto:USRP-users@list=
+s.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>Bcc:=C2=A0=
+<br>Date:=C2=A0Sat, 8 May 2021 12:13:04 +0200<br>Subject:=C2=A0[USRP-users]=
+ Re: E310 / E320 high bandwith / high datarate two channel RX capture<br>So=
+ it&#39;s a hardware limitation of the AD9361 chip?<br>
+That is very unfortunate.<br>
+<br>
+We were also looking at an option to build our own device based on a <br>
+AD9361 + some Zync FPGA/ARM processor.<br>
+But if it is a hardware limitation of the AD9361 then that would not <br>
+work either.<br>
+<br>
+Thanks for the info.<br>
+<br>
+Best regards,<br>
+Martin<br>
+<br>
+<br>
+On 07-05-2021 17:23, Marcus D Leech wrote:<br>
+&gt; The E320 uses the same RFFE as the E310 so would have the same bandwid=
+th <br>
+&gt; restrictions.<br>
+&gt; <br>
+&gt; Sent from my iPhone<br>
+&gt; <br>
+&gt;&gt; On May 7, 2021, at 10:50 AM, Marcus D Leech &lt;<a href=3D"mailto:=
+patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; =
+<br>
+&gt;&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; =EF=BB=BFIndeed the E310 RFFE chip has clocking restrictions so th=
+at two <br>
+&gt;&gt; channels are limited to less than 32MHz.<br>
+&gt;&gt;<br>
+&gt;&gt; I=E2=80=99m not certain about the E320.<br>
+&gt;&gt;<br>
+&gt;&gt; Sent from my iPhone<br>
+&gt;&gt;<br>
+&gt;&gt;&gt; On May 7, 2021, at 10:45 AM, Rob Kossler &lt;<a href=3D"mailto=
+:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; =EF=BB=BF<br>
+&gt;&gt;&gt; Hi Martin,<br>
+&gt;&gt;&gt; I am concerned that these devices, E3xx, cannot handle 2 chann=
+els at <br>
+&gt;&gt;&gt; 56 MS/s (or 61MS/s).=C2=A0 My understanding (but I am not 100%=
+ sure) is <br>
+&gt;&gt;&gt; that these devices can handle 1 channel at those rates, but th=
+at the <br>
+&gt;&gt;&gt; max rate for 2 channels is 30.72 MS/s.<br>
+&gt;&gt;&gt; Rob<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; On Fri, May 7, 2021 at 9:41 AM Martin <br>
+&gt;&gt;&gt; &lt;<a href=3D"mailto:usrp-users-list@olifantasia.com" target=
+=3D"_blank">usrp-users-list@olifantasia.com</a> <br>
+&gt;&gt;&gt; &lt;mailto:<a href=3D"mailto:usrp-users-list@olifantasia.com" =
+target=3D"_blank">usrp-users-list@olifantasia.com</a>&gt;&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Hi,<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Do you have experience with high bandwidth =
+capture on E310 or E320?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0We want to use an E310 or E320 for 56 MSPS =
+(or 61.44 MSPS) dual<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0channel<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0RX captures.<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0We want to capture into a circular buffer a=
+nd after a certain signal<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0signal level is observed set a time to stop=
+ capturing after 0.3<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0seconds.<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0So we only use the last 0.3 second of captu=
+red data.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0We are thinking of using a E320. This has a=
+ high speed SFP+ 10<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0gbit port.<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Can it stream 2 channel 56 MSPS data to a h=
+ost-PC continuously to a<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0host-PC? Or is the ARM processor a bottlene=
+ck, like on the E310,<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0which<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0seems to be limited to max 16MSPS due to th=
+e limited arm<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0processor speed.<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0And can it stream that fast with its defaul=
+t FPGA firmware image, so<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0there would be no need for RFNoc work and e=
+xpensive Vivado license.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0And if we do need the Xilinx vivado license=
+. Which version do we<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0need?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Alternatively we could try to use the E310 =
+which has a smaller<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0FPGA that<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0is supported by the free webpack of vivado.=
+<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Because it does not have a 10 gbit ethernet=
+ we would have to<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0capture to<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0memory.<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0I have read that the E310 arm processing is=
+ not able to keep up with<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0more then 16 MSPS captures. So just streami=
+ng to the ARM memory<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0in the<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0E310 would not work.<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0But if we could someway capture to the 512 =
+MB DDR ram on the FPGA<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0side<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0(use it as a circular buffer) and afterward=
+s slowly move it to<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0the arm<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0and from there to the host-PC then that wou=
+ld be fine.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Alternatively I heard that high datarate (5=
+6 MSPS) capture on<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0E310 is<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0possible in some way using RFNoc. Is that t=
+rue? How would that work.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0It would help me a lot if you give me some =
+hints or tell me about<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0your<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0experience of high bandwidth capturing on E=
+3XX devices.. Even if<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0you do<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0not know all the answers.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0With best regards,<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Martin Dudok van Heel<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0___________________________________________=
+____<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing list -- <a href=3D"mailt=
+o:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com<=
+/a><br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users@lis=
+ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0To unsubscribe send an email to <a href=3D"=
+mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave=
+@lists.ettus.com</a><br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users-lea=
+ve@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>&=
+gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; _______________________________________________<br>
+&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.=
+ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-l=
+eave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a=
+><br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
+<br />--=20
+<br />This message has been scanned for viruses and
+<br />dangerous content by
+<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
+<br />believed to be clean.
+
+
+--00000000000087189a05c1e9dbdc--
+
+--===============8335706793423144152==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8335706793423144152==--
