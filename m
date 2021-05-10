@@ -2,461 +2,415 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 204E63777F2
-	for <lists+usrp-users@lfdr.de>; Sun,  9 May 2021 20:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F380A377B73
+	for <lists+usrp-users@lfdr.de>; Mon, 10 May 2021 07:18:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AB835383DC9
-	for <lists+usrp-users@lfdr.de>; Sun,  9 May 2021 14:31:55 -0400 (EDT)
-Received: from postman.dtnt.info (postman.dtnt.info [62.219.91.51])
-	by mm2.emwd.com (Postfix) with ESMTP id ED9E0383DB6
-	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 14:30:59 -0400 (EDT)
-Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
-	by postman.dtnt.info (Postfix) with ESMTPS id EBF0D419C7
-	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 21:30:42 +0300 (IDT)
-Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
-	by o.dtnt.email (Postfix) with ESMTP id 9295B9FDDA
-	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 21:30:42 +0300 (IDT)
-X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
-Received: from o.dtnt.email ([127.0.0.1])
-	by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id aE1PGX0YevMO for <usrp-users@lists.ettus.com>;
-	Sun,  9 May 2021 21:30:40 +0300 (IDT)
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
-	by o.dtnt.email (Postfix) with ESMTPSA id 62A4E9FC07
-	for <usrp-users@lists.ettus.com>; Sun,  9 May 2021 21:30:40 +0300 (IDT)
-Received: by mail-oo1-f41.google.com with SMTP id e7-20020a4ad2470000b02902088d0512ceso195814oos.8
-        for <usrp-users@lists.ettus.com>; Sun, 09 May 2021 11:30:40 -0700 (PDT)
-X-Gm-Message-State: AOAM5317kQ4mqaXxIKKCyipewTPPjUNROrUyDzk082CQ0gGk7tr9TMnz
-	L0Th0JivDYw+syP3DTCPxMByhJwUdxiL5/q+NX4=
-X-Google-Smtp-Source: ABdhPJzBxgVsy/sJhIbFfaZ6olAiK+U3CJvaAXB7X5ARuoSE9pRk/I6sahKIhI4oGI3MVMNURpoaO9bRAHV3mxCg+pg=
-X-Received: by 2002:a4a:e644:: with SMTP id q4mr13540241oot.58.1620585038156;
- Sun, 09 May 2021 11:30:38 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AAE08384149
+	for <lists+usrp-users@lfdr.de>; Mon, 10 May 2021 01:18:06 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="DcKjNc/0";
+	dkim-atps=neutral
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 33566383D93
+	for <usrp-users@lists.ettus.com>; Mon, 10 May 2021 01:17:18 -0400 (EDT)
+Received: by mail-vk1-f170.google.com with SMTP id c17so69669vke.3
+        for <usrp-users@lists.ettus.com>; Sun, 09 May 2021 22:17:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6HxFuLpD7FLHzcll13morkeXsybe0KtIP3wOsEbD5yE=;
+        b=DcKjNc/0e9qtk00P8vubPwycfA+Fzq4jPY1eh8rc2iIb7rZXSYyTduzH+1yH5hvb4g
+         m6ko+2+2cJuJZSBU9Hli0SE7PQSqO/ZmszXZ1qBnsTLKdbRVojWeQsHZI9KByCtsaak0
+         rfXwLy9rOKN16ugNZ2hglDvilgcYB1M4e3/0Qqw4qjmSO9hLoyhTgPuOotkfKwh/7eOJ
+         fW+xOW07k/c8EpCeKElG8fWRVAOcH+V7xAB6owVlnZ8fE/4Ft1u4eIxoDms/9aB3Uj3E
+         9Hy/NwGFA/Herqhw/UAsZfl0GL9xtNRKhisWsPLCzCNVH42VBmSY4X8x8Fml8CPHAC9w
+         Vklg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6HxFuLpD7FLHzcll13morkeXsybe0KtIP3wOsEbD5yE=;
+        b=fwLrAoIFqYmd9qcAEavjvBEbqD+rM3jdm5910X/qOzPzPhvWcvHY/bfhgIMAdoreR1
+         ymYF5D0QQOdODEH0MNdqMrVJGPg5ipq8AG5exfGbRww4FlDVPs5waSXNySKJXDDZHaDK
+         LX5CXXlIPOoc65gaWhzJsvEmsADTWbUqGrFzDHMdaBV1tM6ExsuCoT4/7HFp238G66+i
+         A1DOIq0Fu7arzj3AqTurEhnrTneHXigQE/62YCGBFuhCpvi8wHOXP/OAJUyEYe2bnfFQ
+         z+N5m9LPqiNvHAxA8nsgXoYZrPHzX53iBFTk9JSURAl/cS/pmOmMXeEaMUO4+LQd8ALa
+         Xbxg==
+X-Gm-Message-State: AOAM532fYfHHUcnIb6SUrhgneDwRsEl58/+IhKGRmQWao3szmzER3ecA
+	DGBd8xGnls3CzwyxfPvpcWeuRVzcc1dToNfkA6jWxsig
+X-Google-Smtp-Source: ABdhPJyuU9f3LYoWoH7HBEQnzjt2X7tBfGHMw9e33CpQzVdOx5cyoEhhd3afuRiOHO8KDGepmVkHtCy10Wg+D3dG3Lg=
+X-Received: by 2002:a1f:4d01:: with SMTP id a1mr10063005vkb.22.1620623837443;
+ Sun, 09 May 2021 22:17:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <162054543024.11274.10987340942019938813@mm2.emwd.com>
-In-Reply-To: <162054543024.11274.10987340942019938813@mm2.emwd.com>
-From: Ofer Saferman <ofer@navigicom.com>
-Date: Sun, 9 May 2021 21:30:27 +0300
-X-Gmail-Original-Message-ID: <CACDReSweJ=Fb7p0BSyF16wxP+wS4acABv2aSkodBF7c0_0N4OA@mail.gmail.com>
-Message-ID: <CACDReSweJ=Fb7p0BSyF16wxP+wS4acABv2aSkodBF7c0_0N4OA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-X-DTNT-MailScanner-Information: Please contact the ISP for more information
-X-DTNT-MailScanner-ID: EBF0D419C7.A73DF
-X-DTNT-MailScanner: Found to be clean
-X-DTNT-MailScanner-From: ofer@navigicom.com
-X-Spam-Status: No
-Message-ID-Hash: B2A63MTFKZWZKLIJFJV4OFPGVUIPCEDT
-X-Message-ID-Hash: B2A63MTFKZWZKLIJFJV4OFPGVUIPCEDT
-X-MailFrom: ofer@navigicom.com
+References: <uyQUxIWto2nFgEDbAMLlwxu9uyO082Zhpj19z3aVRc@lists.ettus.com>
+In-Reply-To: <uyQUxIWto2nFgEDbAMLlwxu9uyO082Zhpj19z3aVRc@lists.ettus.com>
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Date: Mon, 10 May 2021 01:16:41 -0400
+Message-ID: <CAL7q81uYP9+okR4snEy+jtqzevMN+Qm2ysAzXpcAxSxrQLn0CA@mail.gmail.com>
+To: Julian Casallas <jcasallas2019@gmail.com>
+Message-ID-Hash: QCLLXCV4KPGIVHK64K4WZTBKYWGRF4KT
+X-Message-ID-Hash: QCLLXCV4KPGIVHK64K4WZTBKYWGRF4KT
+X-MailFrom: jonathon.pendlum@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E310 / E320 high bandwith / high datarate two channel RX capture
+Subject: [USRP-users] Re: RuntimeError: Device reported an error during initialization
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/B2A63MTFKZWZKLIJFJV4OFPGVUIPCEDT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QCLLXCV4KPGIVHK64K4WZTBKYWGRF4KT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8335706793423144152=="
+Content-Type: multipart/mixed; boundary="===============5398532720397677901=="
 
---===============8335706793423144152==
-Content-Type: multipart/alternative; boundary="00000000000087189a05c1e9dbdc"
+--===============5398532720397677901==
+Content-Type: multipart/alternative; boundary="000000000000254fff05c1f2e4a9"
 
---00000000000087189a05c1e9dbdc
+--000000000000254fff05c1f2e4a9
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi Julian,
 
-It is not a limitation of the AD9361 chip but rather of its implementation.
-The AD9361 can be implemented using a CMOS data interface which limits the
-data rate as described. It can also be implemented with an LVDS data
-interface that allows full rate of 61.44 Mbps for both Rx channels.
-Since the chosen implementation for the E310 (I guess from the answers,
-that it is the same  for the E320 as well, although curious) is CMOS data
-interface hence the data rate limitation.
+Did you make any modifications to the PCIe or Chinch interfaces as
+mentioned here: https://kb.ettus.com/X300/X310#FPGA_User_Modifications? If
+you don't know, then you very likely didn't because this is something you
+would have to do manually.
 
-I know my answer does not help you because you can't change the hardware
-design but I thought you would like to know.
+Jonathon
 
-Regards,
-Ofer Saferman
+On Thu, May 6, 2021 at 5:47 PM <jcasallas2019@gmail.com> wrote:
 
-
-On Sun, May 9, 2021 at 10:30 AM <usrp-users-request@lists.ettus.com> wrote:
-
-> Send USRP-users mailing list submissions to
->         usrp-users@lists.ettus.com
+> sure,
 >
-> To subscribe or unsubscribe via email, send a message with subject or
-> body 'help' to
->         usrp-users-request@lists.ettus.com
+>    1.
 >
-> You can reach the person managing the list at
->         usrp-users-owner@lists.ettus.com
+>    I went through the device recovery because of the issue I am currently
+>    having. However, I noticed this issue fro the first time after using vivado
+>    ILA, I was programming the device using the hardware manager, debugging,
+>    making changes to the custom rfnoc block and creating images. When I
+>    finished using vivado for debugging and testing, I wanted to load the image
+>    using the python script uhd_image_loader but I noticed the device
+>    initialization issue, then I went through the device recovery process which
+>    did not work.
+>    2.
 >
-> When replying, please edit your Subject line so it is more specific
-> than "Re: Contents of USRP-users digest..."Today's Topics:
+>    I can load a custom image or the default image via Vivado, connect
+>    rfnoc blocks, get the right information and display data with no issues.
+>    Also, the uhd_usrp_probe is working as shown below. But I can not restart
+>    the device because the image is not written EEPROM. If I do, UHD does not
+>    find any device, I have to use vivado to load images for now.
 >
->    1. Re: E310 / E320 high bandwith / high datarate two channel RX capture
->       (Martin)
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.0-50-ge520e3ff
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+> [INFO] [X300] Radio 1x clock: 200 MHz
+>   _____________________________________________________
+>  /
+> |       Device: X-Series Device
+> |     _____________________________________________________
+> |    /
+> |   |       Mboard: X310
+> |   |   revision: 11
+> |   |   revision_compat: 7
+> |   |   product: 30818
+> |   |   mac-addr0: 00:80:2f:22:ff:b4
+> |   |   mac-addr1: 00:80:2f:22:ff:b5
+> |   |   gateway: 192.168.10.1
+> |   |   ip-addr0: 192.168.10.2
+> |   |   subnet0: 255.255.255.0
+> |   |   ip-addr1: 192.168.20.2
+> |   |   subnet1: 255.255.255.0
+> |   |   ip-addr2: 192.168.30.2
+> |   |   subnet2: 255.255.255.0
+> |   |   ip-addr3: 192.168.40.2
+> |   |   subnet3: 255.255.255.0
+> |   |   serial: 3176C83
+> |   |   FW Version: 6.0
+> |   |   FPGA Version: 38.0
+> |   |   FPGA git hash: e520e3f-dirty
+> |   |
+> |   |   Time sources:  internal, external, gpsdo
+> |   |   Clock sources: internal, external, gpsdo
+> |   |   Sensors: gps_servo, gps_gprmc, gps_time, gps_gpgga, gps_locked, ref_locked
+> |     _____________________________________________________
+> |    /
+> |   |       RFNoC blocks on this device:
+> |   |
+> |   |   * 0/DDC#0
+> |   |   * 0/DDC#1
+> |   |   * 0/DUC#0
+> |   |   * 0/DUC#1
+> |   |   * 0/FFT#0
+> |   |   * 0/FFT#1
+> |   |   * 0/Radio#0
+> |   |   * 0/Radio#1
+> |     _____________________________________________________
+> |    /
+> |   |       Static connections on this device:
+> |   |
+> |   |   * 0/SEP#0:0==>0/DUC#0:0
+> |   |   * 0/DUC#0:0==>0/Radio#0:0
+> |   |   * 0/Radio#0:0==>0/DDC#0:0
+> |   |   * 0/DDC#0:0==>0/SEP#0:0
+> |   |   * 0/Radio#0:1==>0/DDC#0:1
+> |   |   * 0/DDC#0:1==>0/SEP#1:0
+> |   |   * 0/SEP#2:0==>0/DUC#1:0
+> |   |   * 0/DUC#1:0==>0/Radio#1:0
+> |   |   * 0/Radio#1:0==>0/DDC#1:0
+> |   |   * 0/DDC#1:0==>0/SEP#2:0
+> |   |   * 0/Radio#1:1==>0/DDC#1:1
+> |   |   * 0/DDC#1:1==>0/SEP#3:0
+> |   |   * 0/SEP#4:0==>0/FFT#0:0
+> |   |   * 0/FFT#0:0==>0/SEP#4:0
+> |   |   * 0/SEP#5:0==>0/FFT#1:0
+> |   |   * 0/FFT#1:0==>0/SEP#5:0
+> |     _____________________________________________________
+> |    /
+> |   |       TX Dboard: dboard
+> |   |   ID: UBX-160 v2 (0x007d)
+> |   |   Serial: 315EA14
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       TX Frontend: 0
+> |   |   |   Name: UBX TX
+> |   |   |   Antennas: TX/RX, CAL
+> |   |   |   Sensors: lo_locked
+> |   |   |   Freq range: 10.000 to 6000.000 MHz
+> |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+> |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+> |   |   |   Connection Type: QI
+> |   |   |   Uses LO offset: No
+> |     _____________________________________________________
+> |    /
+> |   |       RX Dboard: dboard
+> |   |   ID: UBX-160 v2 (0x007e)
+> |   |   Serial: 315EA14
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       RX Frontend: 0
+> |   |   |   Name: UBX RX
+> |   |   |   Antennas: TX/RX, RX2, CAL
+> |   |   |   Sensors: lo_locked
+> |   |   |   Freq range: 10.000 to 6000.000 MHz
+> |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+> |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+> |   |   |   Connection Type: IQ
+> |   |   |   Uses LO offset: No
+> |     _____________________________________________________
+> |    /
+> |   |       TX Dboard: dboard
+> |   |   ID: UBX-160 v2 (0x007d)
+> |   |   Serial: 3158364
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       TX Frontend: 0
+> |   |   |   Name: UBX TX
+> |   |   |   Antennas: TX/RX, CAL
+> |   |   |   Sensors: lo_locked
+> |   |   |   Freq range: 10.000 to 6000.000 MHz
+> |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+> |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+> |   |   |   Connection Type: QI
+> |   |   |   Uses LO offset: No
+> |     _____________________________________________________
+> |    /
+> |   |       RX Dboard: dboard
+> |   |   ID: UBX-160 v2 (0x007e)
+> |   |   Serial: 3158364
+> |   |     _____________________________________________________
+> |   |    /
+> |   |   |       RX Frontend: 0
+> |   |   |   Name: UBX RX
+> |   |   |   Antennas: TX/RX, RX2, CAL
+> |   |   |   Sensors: lo_locked
+> |   |   |   Freq range: 10.000 to 6000.000 MHz
+> |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+> |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+> |   |   |   Connection Type: IQ
+> |   |   |   Uses LO offset: No
 >
+> THANKS.
 >
->
-> ---------- Forwarded message ----------
-> From: Martin <usrp-users-list@olifantasia.com>
-> To: Marcus D Leech <patchvonbraun@gmail.com>, Rob Kossler <rkossler@nd.edu
-> >
-> Cc: USRP-users@lists.ettus.com
-> Bcc:
-> Date: Sat, 8 May 2021 12:13:04 +0200
-> Subject: [USRP-users] Re: E310 / E320 high bandwith / high datarate two
-> channel RX capture
-> So it's a hardware limitation of the AD9361 chip?
-> That is very unfortunate.
->
-> We were also looking at an option to build our own device based on a
-> AD9361 + some Zync FPGA/ARM processor.
-> But if it is a hardware limitation of the AD9361 then that would not
-> work either.
->
-> Thanks for the info.
->
-> Best regards,
-> Martin
->
->
-> On 07-05-2021 17:23, Marcus D Leech wrote:
-> > The E320 uses the same RFFE as the E310 so would have the same bandwidth
-> > restrictions.
-> >
-> > Sent from my iPhone
-> >
-> >> On May 7, 2021, at 10:50 AM, Marcus D Leech <patchvonbraun@gmail.com>
-> >> wrote:
-> >>
-> >> =EF=BB=BFIndeed the E310 RFFE chip has clocking restrictions so that t=
-wo
-> >> channels are limited to less than 32MHz.
-> >>
-> >> I=E2=80=99m not certain about the E320.
-> >>
-> >> Sent from my iPhone
-> >>
-> >>> On May 7, 2021, at 10:45 AM, Rob Kossler <rkossler@nd.edu> wrote:
-> >>>
-> >>> =EF=BB=BF
-> >>> Hi Martin,
-> >>> I am concerned that these devices, E3xx, cannot handle 2 channels at
-> >>> 56 MS/s (or 61MS/s).  My understanding (but I am not 100% sure) is
-> >>> that these devices can handle 1 channel at those rates, but that the
-> >>> max rate for 2 channels is 30.72 MS/s.
-> >>> Rob
-> >>>
-> >>> On Fri, May 7, 2021 at 9:41 AM Martin
-> >>> <usrp-users-list@olifantasia.com
-> >>> <mailto:usrp-users-list@olifantasia.com>> wrote:
-> >>>
-> >>>     Hi,
-> >>>
-> >>>     Do you have experience with high bandwidth capture on E310 or E32=
-0?
-> >>>
-> >>>     We want to use an E310 or E320 for 56 MSPS (or 61.44 MSPS) dual
-> >>>     channel
-> >>>     RX captures.
-> >>>     We want to capture into a circular buffer and after a certain
-> signal
-> >>>     signal level is observed set a time to stop capturing after 0.3
-> >>>     seconds.
-> >>>     So we only use the last 0.3 second of captured data.
-> >>>
-> >>>     We are thinking of using a E320. This has a high speed SFP+ 10
-> >>>     gbit port.
-> >>>     Can it stream 2 channel 56 MSPS data to a host-PC continuously to=
- a
-> >>>     host-PC? Or is the ARM processor a bottleneck, like on the E310,
-> >>>     which
-> >>>     seems to be limited to max 16MSPS due to the limited arm
-> >>>     processor speed.
-> >>>     And can it stream that fast with its default FPGA firmware image,
-> so
-> >>>     there would be no need for RFNoc work and expensive Vivado licens=
-e.
-> >>>
-> >>>     And if we do need the Xilinx vivado license. Which version do we
-> >>>     need?
-> >>>
-> >>>     Alternatively we could try to use the E310 which has a smaller
-> >>>     FPGA that
-> >>>     is supported by the free webpack of vivado.
-> >>>     Because it does not have a 10 gbit ethernet we would have to
-> >>>     capture to
-> >>>     memory.
-> >>>     I have read that the E310 arm processing is not able to keep up
-> with
-> >>>     more then 16 MSPS captures. So just streaming to the ARM memory
-> >>>     in the
-> >>>     E310 would not work.
-> >>>     But if we could someway capture to the 512 MB DDR ram on the FPGA
-> >>>     side
-> >>>     (use it as a circular buffer) and afterwards slowly move it to
-> >>>     the arm
-> >>>     and from there to the host-PC then that would be fine.
-> >>>
-> >>>     Alternatively I heard that high datarate (56 MSPS) capture on
-> >>>     E310 is
-> >>>     possible in some way using RFNoc. Is that true? How would that
-> work.
-> >>>
-> >>>     It would help me a lot if you give me some hints or tell me about
-> >>>     your
-> >>>     experience of high bandwidth capturing on E3XX devices.. Even if
-> >>>     you do
-> >>>     not know all the answers.
-> >>>
-> >>>     With best regards,
-> >>>
-> >>>     Martin Dudok van Heel
-> >>>
-> >>>     _______________________________________________
-> >>>     USRP-users mailing list -- usrp-users@lists.ettus.com
-> >>>     <mailto:usrp-users@lists.ettus.com>
-> >>>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> >>>     <mailto:usrp-users-leave@lists.ettus.com>
-> >>>
-> >>> _______________________________________________
-> >>> USRP-users mailing list -- usrp-users@lists.ettus.com
-> >>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---=20
-This message has been scanned for viruses and
-dangerous content by MailScanner, and is
-believed to be clean.
-
-
---00000000000087189a05c1e9dbdc
+--000000000000254fff05c1f2e4a9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hello,</div><div dir=3D"ltr"><br></div><d=
-iv>It is not a limitation of the AD9361 chip but rather of its implementati=
-on.</div><div>The AD9361 can be implemented using a CMOS data interface whi=
-ch limits the data rate as described. It can also be implemented with an LV=
-DS data interface that allows full rate of 61.44 Mbps for both Rx channels.=
-</div><div>Since the chosen implementation for the E310 (I guess from the a=
-nswers, that it is the same=C2=A0 for the E320 as well, although curious) i=
-s CMOS data interface hence the data rate limitation.</div><div><br></div><=
-div>I know my answer does not help you because you can&#39;t change the har=
-dware design but I thought you would like to know.</div><div><br></div><div=
->Regards,</div><div>Ofer Saferman<br></div><div><br></div><br><div class=3D=
-"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, May 9, 2021 at =
-10:30 AM &lt;<a href=3D"mailto:usrp-users-request@lists.ettus.com">usrp-use=
-rs-request@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">Send USRP-users mailing list submissions to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users@lists.ettus.com" t=
-arget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-<br>
-To subscribe or unsubscribe via email, send a message with subject or<br>
-body &#39;help&#39; to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-request@lists.ettu=
-s.com" target=3D"_blank">usrp-users-request@lists.ettus.com</a><br>
-<br>
-You can reach the person managing the list at<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"mailto:usrp-users-owner@lists.ettus.=
-com" target=3D"_blank">usrp-users-owner@lists.ettus.com</a><br>
-<br>
-When replying, please edit your Subject line so it is more specific<br>
-than &quot;Re: Contents of USRP-users digest...&quot;Today&#39;s Topics:<br>
-<br>
-=C2=A0 =C2=A01. Re: E310 / E320 high bandwith / high datarate two channel R=
-X capture<br>
-=C2=A0 =C2=A0 =C2=A0 (Martin)<br>
-<br><br><br>---------- Forwarded message ----------<br>From:=C2=A0Martin &l=
-t;<a href=3D"mailto:usrp-users-list@olifantasia.com" target=3D"_blank">usrp=
--users-list@olifantasia.com</a>&gt;<br>To:=C2=A0Marcus D Leech &lt;<a href=
-=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.c=
-om</a>&gt;, Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_b=
-lank">rkossler@nd.edu</a>&gt;<br>Cc:=C2=A0<a href=3D"mailto:USRP-users@list=
-s.ettus.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>Bcc:=C2=A0=
-<br>Date:=C2=A0Sat, 8 May 2021 12:13:04 +0200<br>Subject:=C2=A0[USRP-users]=
- Re: E310 / E320 high bandwith / high datarate two channel RX capture<br>So=
- it&#39;s a hardware limitation of the AD9361 chip?<br>
-That is very unfortunate.<br>
-<br>
-We were also looking at an option to build our own device based on a <br>
-AD9361 + some Zync FPGA/ARM processor.<br>
-But if it is a hardware limitation of the AD9361 then that would not <br>
-work either.<br>
-<br>
-Thanks for the info.<br>
-<br>
-Best regards,<br>
-Martin<br>
-<br>
-<br>
-On 07-05-2021 17:23, Marcus D Leech wrote:<br>
-&gt; The E320 uses the same RFFE as the E310 so would have the same bandwid=
-th <br>
-&gt; restrictions.<br>
-&gt; <br>
-&gt; Sent from my iPhone<br>
-&gt; <br>
-&gt;&gt; On May 7, 2021, at 10:50 AM, Marcus D Leech &lt;<a href=3D"mailto:=
-patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; =
-<br>
-&gt;&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; =EF=BB=BFIndeed the E310 RFFE chip has clocking restrictions so th=
-at two <br>
-&gt;&gt; channels are limited to less than 32MHz.<br>
-&gt;&gt;<br>
-&gt;&gt; I=E2=80=99m not certain about the E320.<br>
-&gt;&gt;<br>
-&gt;&gt; Sent from my iPhone<br>
-&gt;&gt;<br>
-&gt;&gt;&gt; On May 7, 2021, at 10:45 AM, Rob Kossler &lt;<a href=3D"mailto=
-:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; =EF=BB=BF<br>
-&gt;&gt;&gt; Hi Martin,<br>
-&gt;&gt;&gt; I am concerned that these devices, E3xx, cannot handle 2 chann=
-els at <br>
-&gt;&gt;&gt; 56 MS/s (or 61MS/s).=C2=A0 My understanding (but I am not 100%=
- sure) is <br>
-&gt;&gt;&gt; that these devices can handle 1 channel at those rates, but th=
-at the <br>
-&gt;&gt;&gt; max rate for 2 channels is 30.72 MS/s.<br>
-&gt;&gt;&gt; Rob<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; On Fri, May 7, 2021 at 9:41 AM Martin <br>
-&gt;&gt;&gt; &lt;<a href=3D"mailto:usrp-users-list@olifantasia.com" target=
-=3D"_blank">usrp-users-list@olifantasia.com</a> <br>
-&gt;&gt;&gt; &lt;mailto:<a href=3D"mailto:usrp-users-list@olifantasia.com" =
-target=3D"_blank">usrp-users-list@olifantasia.com</a>&gt;&gt; wrote:<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Hi,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Do you have experience with high bandwidth =
-capture on E310 or E320?<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0We want to use an E310 or E320 for 56 MSPS =
-(or 61.44 MSPS) dual<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0channel<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0RX captures.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0We want to capture into a circular buffer a=
-nd after a certain signal<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0signal level is observed set a time to stop=
- capturing after 0.3<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0seconds.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0So we only use the last 0.3 second of captu=
-red data.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0We are thinking of using a E320. This has a=
- high speed SFP+ 10<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0gbit port.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Can it stream 2 channel 56 MSPS data to a h=
-ost-PC continuously to a<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0host-PC? Or is the ARM processor a bottlene=
-ck, like on the E310,<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0which<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0seems to be limited to max 16MSPS due to th=
-e limited arm<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0processor speed.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0And can it stream that fast with its defaul=
-t FPGA firmware image, so<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0there would be no need for RFNoc work and e=
-xpensive Vivado license.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0And if we do need the Xilinx vivado license=
-. Which version do we<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0need?<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Alternatively we could try to use the E310 =
-which has a smaller<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0FPGA that<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0is supported by the free webpack of vivado.=
-<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Because it does not have a 10 gbit ethernet=
- we would have to<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0capture to<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0memory.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0I have read that the E310 arm processing is=
- not able to keep up with<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0more then 16 MSPS captures. So just streami=
-ng to the ARM memory<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0in the<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0E310 would not work.<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0But if we could someway capture to the 512 =
-MB DDR ram on the FPGA<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0side<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0(use it as a circular buffer) and afterward=
-s slowly move it to<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0the arm<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0and from there to the host-PC then that wou=
-ld be fine.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Alternatively I heard that high datarate (5=
-6 MSPS) capture on<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0E310 is<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0possible in some way using RFNoc. Is that t=
-rue? How would that work.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0It would help me a lot if you give me some =
-hints or tell me about<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0your<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0experience of high bandwidth capturing on E=
-3XX devices.. Even if<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0you do<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0not know all the answers.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0With best regards,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0Martin Dudok van Heel<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0___________________________________________=
-____<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing list -- <a href=3D"mailt=
-o:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com<=
-/a><br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users@lis=
-ts.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0To unsubscribe send an email to <a href=3D"=
-mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave=
-@lists.ettus.com</a><br>
-&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users-lea=
-ve@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>&=
-gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; _______________________________________________<br>
-&gt;&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-l=
-eave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a=
-><br>
+<div dir=3D"ltr">Hi Julian,<div><br></div><div>Did you make any modificatio=
+ns to the PCIe or Chinch interfaces as mentioned here: <a href=3D"https://k=
+b.ettus.com/X300/X310#FPGA_User_Modifications">https://kb.ettus.com/X300/X3=
+10#FPGA_User_Modifications</a>? If you don&#39;t know, then you very likely=
+ didn&#39;t because this is=C2=A0something=C2=A0you would have to do manual=
+ly.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 6, 2021 at 5:47 PM &=
+lt;<a href=3D"mailto:jcasallas2019@gmail.com">jcasallas2019@gmail.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>sur=
+e,</p><ol><li><p>I went through the device recovery because of the issue I =
+am currently having. However, I noticed this issue fro the first time after=
+ using vivado ILA, I was programming the device using the hardware manager,=
+ debugging, making changes to the custom rfnoc block and creating images. W=
+hen I finished using vivado for debugging and testing, I wanted to load the=
+ image using the python script uhd_image_loader but I noticed the device in=
+itialization issue, then I went through the device recovery process which d=
+id not work.</p></li><li><p>I can load a custom image or the default image =
+via Vivado, connect rfnoc blocks, get the right information and display dat=
+a with no issues. Also, the uhd_usrp_probe is working as shown below. But I=
+ can not restart the device because the image is not written EEPROM. If I d=
+o, UHD does not find any device, I have to use vivado to load images for no=
+w.</p></li></ol><pre><code>[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost=
+_107100; UHD_4.0.0.0-50-ge520e3ff
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+[INFO] [X300] Radio 1x clock: 200 MHz
+  _____________________________________________________
+ /
+|       Device: X-Series Device
+|     _____________________________________________________
+|    /
+|   |       Mboard: X310
+|   |   revision: 11
+|   |   revision_compat: 7
+|   |   product: 30818
+|   |   mac-addr0: 00:80:2f:22:ff:b4
+|   |   mac-addr1: 00:80:2f:22:ff:b5
+|   |   gateway: 192.168.10.1
+|   |   ip-addr0: 192.168.10.2
+|   |   subnet0: 255.255.255.0
+|   |   ip-addr1: 192.168.20.2
+|   |   subnet1: 255.255.255.0
+|   |   ip-addr2: 192.168.30.2
+|   |   subnet2: 255.255.255.0
+|   |   ip-addr3: 192.168.40.2
+|   |   subnet3: 255.255.255.0
+|   |   serial: 3176C83
+|   |   FW Version: 6.0
+|   |   FPGA Version: 38.0
+|   |   FPGA git hash: e520e3f-dirty
+|   |
+|   |   Time sources:  internal, external, gpsdo
+|   |   Clock sources: internal, external, gpsdo
+|   |   Sensors: gps_servo, gps_gprmc, gps_time, gps_gpgga, gps_locked, ref=
+_locked
+|     _____________________________________________________
+|    /
+|   |       RFNoC blocks on this device:
+|   |
+|   |   * 0/DDC#0
+|   |   * 0/DDC#1
+|   |   * 0/DUC#0
+|   |   * 0/DUC#1
+|   |   * 0/FFT#0
+|   |   * 0/FFT#1
+|   |   * 0/Radio#0
+|   |   * 0/Radio#1
+|     _____________________________________________________
+|    /
+|   |       Static connections on this device:
+|   |
+|   |   * 0/SEP#0:0=3D=3D&gt;0/DUC#0:0
+|   |   * 0/DUC#0:0=3D=3D&gt;0/Radio#0:0
+|   |   * 0/Radio#0:0=3D=3D&gt;0/DDC#0:0
+|   |   * 0/DDC#0:0=3D=3D&gt;0/SEP#0:0
+|   |   * 0/Radio#0:1=3D=3D&gt;0/DDC#0:1
+|   |   * 0/DDC#0:1=3D=3D&gt;0/SEP#1:0
+|   |   * 0/SEP#2:0=3D=3D&gt;0/DUC#1:0
+|   |   * 0/DUC#1:0=3D=3D&gt;0/Radio#1:0
+|   |   * 0/Radio#1:0=3D=3D&gt;0/DDC#1:0
+|   |   * 0/DDC#1:0=3D=3D&gt;0/SEP#2:0
+|   |   * 0/Radio#1:1=3D=3D&gt;0/DDC#1:1
+|   |   * 0/DDC#1:1=3D=3D&gt;0/SEP#3:0
+|   |   * 0/SEP#4:0=3D=3D&gt;0/FFT#0:0
+|   |   * 0/FFT#0:0=3D=3D&gt;0/SEP#4:0
+|   |   * 0/SEP#5:0=3D=3D&gt;0/FFT#1:0
+|   |   * 0/FFT#1:0=3D=3D&gt;0/SEP#5:0
+|     _____________________________________________________
+|    /
+|   |       TX Dboard: dboard
+|   |   ID: UBX-160 v2 (0x007d)
+|   |   Serial: 315EA14
+|   |     _____________________________________________________
+|   |    /
+|   |   |       TX Frontend: 0
+|   |   |   Name: UBX TX
+|   |   |   Antennas: TX/RX, CAL
+|   |   |   Sensors: lo_locked
+|   |   |   Freq range: 10.000 to 6000.000 MHz
+|   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+|   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+|   |   |   Connection Type: QI
+|   |   |   Uses LO offset: No
+|     _____________________________________________________
+|    /
+|   |       RX Dboard: dboard
+|   |   ID: UBX-160 v2 (0x007e)
+|   |   Serial: 315EA14
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX Frontend: 0
+|   |   |   Name: UBX RX
+|   |   |   Antennas: TX/RX, RX2, CAL
+|   |   |   Sensors: lo_locked
+|   |   |   Freq range: 10.000 to 6000.000 MHz
+|   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+|   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+|   |   |   Connection Type: IQ
+|   |   |   Uses LO offset: No
+|     _____________________________________________________
+|    /
+|   |       TX Dboard: dboard
+|   |   ID: UBX-160 v2 (0x007d)
+|   |   Serial: 3158364
+|   |     _____________________________________________________
+|   |    /
+|   |   |       TX Frontend: 0
+|   |   |   Name: UBX TX
+|   |   |   Antennas: TX/RX, CAL
+|   |   |   Sensors: lo_locked
+|   |   |   Freq range: 10.000 to 6000.000 MHz
+|   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+|   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+|   |   |   Connection Type: QI
+|   |   |   Uses LO offset: No
+|     _____________________________________________________
+|    /
+|   |       RX Dboard: dboard
+|   |   ID: UBX-160 v2 (0x007e)
+|   |   Serial: 3158364
+|   |     _____________________________________________________
+|   |    /
+|   |   |       RX Frontend: 0
+|   |   |   Name: UBX RX
+|   |   |   Antennas: TX/RX, RX2, CAL
+|   |   |   Sensors: lo_locked
+|   |   |   Freq range: 10.000 to 6000.000 MHz
+|   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
+|   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
+|   |   |   Connection Type: IQ
+|   |   |   Uses LO offset: No
+
+THANKS.
+<br></code></pre>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-<br />--=20
-<br />This message has been scanned for viruses and
-<br />dangerous content by
-<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
-<br />believed to be clean.
+</blockquote></div>
 
+--000000000000254fff05c1f2e4a9--
 
---00000000000087189a05c1e9dbdc--
-
---===============8335706793423144152==
+--===============5398532720397677901==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -466,4 +420,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8335706793423144152==--
+--===============5398532720397677901==--
