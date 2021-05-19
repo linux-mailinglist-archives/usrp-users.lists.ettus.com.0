@@ -2,175 +2,95 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AC9F388444
-	for <lists+usrp-users@lfdr.de>; Wed, 19 May 2021 03:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D943889B1
+	for <lists+usrp-users@lfdr.de>; Wed, 19 May 2021 10:48:35 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CD48A38569B
-	for <lists+usrp-users@lfdr.de>; Tue, 18 May 2021 21:16:41 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A2738385597
+	for <lists+usrp-users@lfdr.de>; Wed, 19 May 2021 04:48:34 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IEXlJ/mC";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MDdq80Sn";
 	dkim-atps=neutral
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id 99230384066
-	for <usrp-users@lists.ettus.com>; Tue, 18 May 2021 21:15:58 -0400 (EDT)
-Received: by mail-qt1-f175.google.com with SMTP id 1so9049295qtb.0
-        for <usrp-users@lists.ettus.com>; Tue, 18 May 2021 18:15:58 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id AC257385587
+	for <usrp-users@lists.ettus.com>; Wed, 19 May 2021 04:47:41 -0400 (EDT)
+Received: by mail-ed1-f42.google.com with SMTP id di13so14417269edb.2
+        for <usrp-users@lists.ettus.com>; Wed, 19 May 2021 01:47:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=content-transfer-encoding:mime-version:subject:from:in-reply-to:cc
-         :date:message-id:references:to;
-        bh=SXZ0/Pw1snBXC9NOkN/UOp4ce5X36yjWsL2Ux+/hyPc=;
-        b=IEXlJ/mCBNpQ0QFFerPFhnCR2uS1SKEmzq45A8v3TNDSiFFLI/ZcvIG7OcB6mubUuG
-         ejjUsIgXroBYQgoFfzhdOAU27mrJmcCLQ7SJCKUwJNTTbUQSq5v7xpE5PZ8ILns70oNf
-         2pbbRtmttM7za2IwggW1iVWaGqQfowTdCKzzxmANHlGb6rOLwmJ+ZZydnsRsX2+kYnvG
-         WjWJriL0OZea+6K1TRb8FFHfn6lYAXk845FH0d5ReUm8Dl8JNHNFt0YQbq7rmscKTVnx
-         ABDRPBSA+WSFCEz/h7xUVQp1upP3PlVFgr+Me4L6FbyWSH00EAcTy4zsYiG+0dQzMoa3
-         3E9w==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=irnPo0VPZHkcxSK603vQoDi3sOl0rrmTswQyfwawjV0=;
+        b=MDdq80SnZG4pOJO3Inev4V6ubY0OGvbwUsf1DGmILREdiZuJ+8HAqeRREuPlZZF841
+         idYrisluRUFPdRCZ1mx0/PvCiSCHgrOuRbvgLaSctXy0YXKf+4Yz5zNBjcepKAdFbK0h
+         syNX14nnzB3iLTN39KPDWd3fQgnIiy04yWdYTLmKdpBXJR1HgaD/Yk+u+GDIr93QP6rw
+         HxgJ6oKTEEYkJUYFiR3041ebKNQIPYHVfXGTZ59c3CTMVqzblHm5uNrKPshzEwMRfjhg
+         m1vBPBbXnaD8LdIQtorcP4o6LRw3A+0lqCV2YWK94wKCLI6l8abGXzgTjQyjsNjdhRGy
+         kR1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:mime-version:subject
-         :from:in-reply-to:cc:date:message-id:references:to;
-        bh=SXZ0/Pw1snBXC9NOkN/UOp4ce5X36yjWsL2Ux+/hyPc=;
-        b=ODP9ZKRIfUvZXuOPJFui2EnDHWZVxD45ArYhggdYm+7Dw0J41xKUQzBFd0o/ivKL/b
-         jmppmF5KpH0zEOlDYhwF4UlQcVoLUcVLbB/CYQSaeCNN8HAtdNeazFl9QWtM7gSL4wAT
-         iXpLuoc8NW+15szt0P9FMUzPe7lFOE0H8hdErw2tLj6uuD2rCqfS5NRr8RlOZZc1dcKh
-         9FGHlPWm/UO4JzhcH1YV7gJe8Jr+7ua48sf5Qc/WOmvSjYsOKIlQV1MpM4V1gxQYx38q
-         wSom7wpjw8U5pI9dF5RQz0ipSKIJXu5ThDlveLQdPDgcwIfDCBvYruNm3qDfumzChblv
-         0Atw==
-X-Gm-Message-State: AOAM532CBJMQSJfPKWkL0oBDlsYCQ6KwHdzu6ZBGoYCAf5XuOK+wfu10
-	P0OL3C9LzSMO0WckuOsiX20tIZV3wu89YA==
-X-Google-Smtp-Source: ABdhPJxhZ9ledD6IQ71ESvA88V++Dsv0NEYcXv4FwQjZ5fokeRwrpZV16JAzYkJTD/TNRYBm5q/Ldg==
-X-Received: by 2002:a05:622a:40f:: with SMTP id n15mr8442672qtx.10.1621386957799;
-        Tue, 18 May 2021 18:15:57 -0700 (PDT)
-Received: from ?IPv6:2601:151:c000:a810:f508:c9a4:f2bc:f05c? ([2601:151:c000:a810:f508:c9a4:f2bc:f05c])
-        by smtp.gmail.com with ESMTPSA id u11sm552600qtq.93.2021.05.18.18.15.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 18 May 2021 18:15:57 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-From: Paul Atreides <maud.dib1984@gmail.com>
-In-Reply-To: <YwdNQ6wXm2BuEIY6hlFMMfcuO6sPkcx0EwVCNNnzyeQ@lists.ettus.com>
-Date: Tue, 18 May 2021 21:15:56 -0400
-Message-Id: <ED811382-97C0-47BC-A4EC-D096E87EA7AC@gmail.com>
-References: <YwdNQ6wXm2BuEIY6hlFMMfcuO6sPkcx0EwVCNNnzyeQ@lists.ettus.com>
-To: jcasallas2019@gmail.com
-X-Mailer: iPhone Mail (18D70)
-Message-ID-Hash: KZIY4LXF73KUW3IX37UNGK2ANKJ5JSJB
-X-Message-ID-Hash: KZIY4LXF73KUW3IX37UNGK2ANKJ5JSJB
-X-MailFrom: maud.dib1984@gmail.com
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=irnPo0VPZHkcxSK603vQoDi3sOl0rrmTswQyfwawjV0=;
+        b=tAjTAC8ea6jnaooj8wPUKoJYRuHorxpp90/wS1ayPK6ghvpP/ooxNOU0H+JQ8Ex0da
+         ISX7JCwodFJRiLL56mGyd3S3VCLe2sYbtM2ZidCVT2Ga9BQ3jW5EN9yjUF2kEPSFw+Ek
+         bWkgYGYggfgJkgl7Ee+VNTemvk+FkM14ry/D6VeD+sYeG2Z1suSgOPO7VoQxv2SKegBO
+         qsK+8H0bkHz9DAHikHv+ESlpYpW4IL9NbpxCGLvV5+PTc6qXpQLntsmUOUEAs8Yjqblc
+         aSLKlyEd6MUXWC6mE+LvKtdpzVizhif1+14f7Gc0YBM+G99FbtMCnd4svM1s8LnpLx66
+         07eQ==
+X-Gm-Message-State: AOAM530k1/DtioARm6Vue6j6Y1bNTROPEh5WNPBZOgg2KLQWp8PQFneQ
+	sCmdNzx3PM/S2lvXbjZ71kXnNd1g5x0S/8/bAIJSDCMzTYw=
+X-Google-Smtp-Source: ABdhPJyTjvTuxnY8MBN33hRvkBX7vLSHbTM3T2Hdli3yAJPpSVzKH0m646FkeJuVzGd4S+BtdWm1VqraB1Hc1z5aKfY=
+X-Received: by 2002:a05:6402:416:: with SMTP id q22mr13131386edv.204.1621414060312;
+ Wed, 19 May 2021 01:47:40 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Date: Wed, 19 May 2021 10:47:27 +0200
+Message-ID: <CAG16vQUvRavJq1xH09XSLXBiXQvDBLt9U1i9BfjZLmnGDvsHrA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: XANPVNNSGWNQ34TQYKZYFSS633PE3USI
+X-Message-ID-Hash: XANPVNNSGWNQ34TQYKZYFSS633PE3USI
+X-MailFrom: mamuki92@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: setting up gr-fosphor on uhd 4
+Subject: [USRP-users] [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: RfnocError: Specified destination address is unreachable
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KZIY4LXF73KUW3IX37UNGK2ANKJ5JSJB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XANPVNNSGWNQ34TQYKZYFSS633PE3USI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5960938794173156417=="
+Content-Type: multipart/mixed; boundary="===============2632923640582890950=="
 
+--===============2632923640582890950==
+Content-Type: multipart/alternative; boundary="000000000000194b8e05c2aae10c"
 
---===============5960938794173156417==
-Content-Type: multipart/alternative; boundary=Apple-Mail-2C623A47-FAF2-4916-A804-7DEE0BE7BA3B
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-2C623A47-FAF2-4916-A804-7DEE0BE7BA3B
-Content-Type: text/plain;
-	charset=utf-8
+--000000000000194b8e05c2aae10c
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Did you synthesize a custom FPGA image with Fosphor and FFT included?
+Hi all,
 
+I have this warning trying to load an image on the USRP E320. =C2=BFWhat do=
+es it
+mean? =C2=BFHow can I solve it?
 
+Kind Regards,
 
-<end transmission>
+Maria.
 
-> On May 18, 2021, at 10:59, jcasallas2019@gmail.com wrote:
-> =EF=BB=BF
-> Hi,
->=20
->=20
->=20
-> Thanks I did that and I do not have that error anymore, but now the GUI do=
-e not show and the program terminates with (return error -11).
->=20
->=20
->=20
-> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.0-50-ge=
-520e3ff
->=20
-> [INFO] [X300] X300 initialization sequence...
->=20
-> [INFO] [X300] Maximum frame size: 8000 bytes.
->=20
-> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
->=20
-> [INFO] [X300] Radio 1x clock: 200 MHz
->=20
-> [WARNING] [0/Radio#0] Setting RX IQ Balance is not possible on this device=
-.
->=20
-> gr::log :DEBUG: rfnoc_rx_streamer0 - Committing graph...
->=20
-> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
->=20
-> gr::log :DEBUG: rfnoc_rx_streamer1 - Committing graph...
->=20
-> gr::log :DEBUG: rfnoc_rx_streamer1 - Sending start stream command...
->=20
-> gr::log :DEBUG: rfnoc_rx_streamer0 - Sending start stream command...
->=20
-> >>> Done (return code -11)
->=20
->=20
->=20
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-2C623A47-FAF2-4916-A804-7DEE0BE7BA3B
-Content-Type: text/html;
-	charset=utf-8
+--000000000000194b8e05c2aae10c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"><meta http-equiv=3D"conten=
-t-type" content=3D"text/html; charset=3Dutf-8">Did you synthesize a custom FP=
-GA image with Fosphor and FFT included?</div><div dir=3D"ltr"><br></div><div=
- dir=3D"ltr"><br><br><div dir=3D"ltr">&lt;<span class=3D"Apple-style-span" s=
-tyle=3D"-webkit-tap-highlight-color: rgba(26, 26, 26, 0.296875); -webkit-com=
-position-fill-color: rgba(175, 192, 227, 0.230469); -webkit-composition-fram=
-e-color: rgba(77, 128, 180, 0.230469); ">end transmission&gt;</span></div><d=
-iv dir=3D"ltr"><br><blockquote type=3D"cite">On May 18, 2021, at 10:59, jcas=
-allas2019@gmail.com wrote:<br><br></blockquote></div><blockquote type=3D"cit=
-e"><div dir=3D"ltr">=EF=BB=BF<p>Hi, </p><p><br></p><p>Thanks I did that and I=
- do not have that error anymore, but now the GUI doe not show and the progra=
-m terminates with (return error -11).</p><p><br></p><p><code>[INFO] [UHD] li=
-nux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.0-50-ge520e3ff</code></p=
-><p><code>[INFO] [X300] X300 initialization sequence...</code></p><p><code>[=
-INFO] [X300] Maximum frame size: 8000 bytes.</code></p><p><code>[INFO] [GPS]=
- Found an internal GPSDO: LC_XO, Firmware Rev 0.929a</code></p><p><code>[INFO=
-] [X300] Radio 1x clock: 200 MHz</code></p><p><code>[WARNING] [0/Radio#0] Se=
-tting RX IQ Balance is not possible on this device.</code></p><p><code>gr::l=
-og :DEBUG: rfnoc_rx_streamer0 - Committing graph...</code></p><p><code>[WARN=
-ING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.</code></p><p><c=
-ode>gr::log :DEBUG: rfnoc_rx_streamer1 - Committing graph...</code></p><p><c=
-ode>gr::log :DEBUG: rfnoc_rx_streamer1 - Sending start stream command...</co=
-de></p><p><code>gr::log :DEBUG: rfnoc_rx_streamer0 - Sending start stream co=
-mmand...</code></p><p><code>&gt;&gt;&gt; Done (return code -11)</code></p><p=
-><br></p>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></div></body></html>=
+<div dir=3D"ltr">Hi all,<br><div><br></div><div>I have this warning trying =
+to load an image on the USRP E320. =C2=BFWhat does it mean? =C2=BFHow can I=
+ solve it?</div><div><br></div><div>Kind Regards,</div><div><br></div><div>=
+Maria.</div></div>
 
---Apple-Mail-2C623A47-FAF2-4916-A804-7DEE0BE7BA3B--
+--000000000000194b8e05c2aae10c--
 
---===============5960938794173156417==
+--===============2632923640582890950==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -180,4 +100,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5960938794173156417==--
+--===============2632923640582890950==--
