@@ -2,311 +2,172 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E846D38B349
-	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 17:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A65B38B34C
+	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 17:33:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D27FB386354
-	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 11:32:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D2AAB3863FF
+	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 11:33:13 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=olifantasia.com header.i=@olifantasia.com header.b="lmljsAGV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YIcstc+0";
 	dkim-atps=neutral
-Received: from outbound5.mail.transip.nl (outbound5.mail.transip.nl [136.144.136.9])
-	by mm2.emwd.com (Postfix) with ESMTPS id 56B76385C2F
-	for <USRP-users@lists.ettus.com>; Thu, 20 May 2021 11:31:18 -0400 (EDT)
-Received: from submission2.mail.transip.nl (unknown [10.100.4.71])
-	by outbound5.mail.transip.nl (Postfix) with ESMTP id 4FmDGs1FZMzHD5M;
-	Thu, 20 May 2021 17:31:17 +0200 (CEST)
-Received: from mail.olifantasia.eu (server1.olifantasia.eu [37.97.153.37])
-	by submission2.mail.transip.nl (Postfix) with ESMTPSA id 4FmDGn6yS9z18H1L;
-	Thu, 20 May 2021 17:31:13 +0200 (CEST)
-Received: from [192.168.1.101] (unknown [83.80.231.114])
-	by mail.olifantasia.eu (Postfix) with ESMTPSA id D3B8E605D5;
-	Thu, 20 May 2021 17:31:13 +0200 (CEST)
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-References: <4b71e4d6-fca0-0f8a-3640-31b488daccc9@olifantasia.com>
- <EE289C16-0325-4D8B-BF7B-135E4C5EAFD0@gmail.com>
- <aa2c9f6c-db82-eb85-a9e8-a31a6edd77f6@olifantasia.com>
- <60A2DB81.1040105@gmail.com>
- <add576d0-64d8-4b9f-d4f1-81bf138ba42b@olifantasia.com>
- <60A3B40E.60606@gmail.com>
-From: Martin <usrp-users-list@olifantasia.com>
-Message-ID: <a912b684-6878-2023-9576-f36b167f5b99@olifantasia.com>
-Date: Thu, 20 May 2021 17:31:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9443E3861A3
+	for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 11:31:33 -0400 (EDT)
+Received: by mail-vs1-f53.google.com with SMTP id x22so745357vsn.2
+        for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 08:31:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=bXW2X/i2o1xNbXBTp9t9ZmCCMsvpasU0MwjeX35ff+U=;
+        b=YIcstc+0zBr/1cS5au0b9a92Hc6PXdG7EeXcNiPj62ExardM527HOingmWA4wcX7h5
+         t9s0LuoCxPURJUbl9q6RQCPJBK8mNjQD1zZLMzdf8sbtqpAFo9LtLbOMRvFoZlUxYrIo
+         PaUbV8vGLhdhTTbGwHgBl6nxNcyMNq1wshhz9CyO5UEBT2orXrByMHPzbVHolHdErQbv
+         /j/r7Sc5kZMUjir6n6HFkqF69AeTcCkHHDaAzoQlqEtYJNIqwWru39BPfBRiS8MELHuM
+         O9hB9ETUmqtiuB2mygsUWYCyktkhzykXamRZE+U8Ohw46Alpx+BSoQK3UmwTXR5tyQ+Y
+         2Nkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=bXW2X/i2o1xNbXBTp9t9ZmCCMsvpasU0MwjeX35ff+U=;
+        b=swzKVjNzrWBi2EFu8R1eLTNR5PQd+RPXMvDRzUZBY1j9X8r0LvDEk5FR341p3bMA7Q
+         kuIzsuvoSLduIZ+9OzjJs12schcYKQMgzuAKBg4GEt1gfGw91JuLYLx8CYusNCNOoha2
+         A/QCvD98G3iBDebLgrlc+idxYTLZtA0loivy+roNZqWv1Q64Vt+n5LxzqCerOtLO1zS2
+         OGBJlDzr/fLW2kFooPTNUJv5A/xbxKZH1EawjI6Vc/0GOtdursh8QKLBdkbW0GoxlS+W
+         hHdeNQvv3dndLdNP3cPgqhWSvpjYyqr6NYwi679mXEqR4/eWfrsPTemBev0IY78RtOuZ
+         8U+g==
+X-Gm-Message-State: AOAM532tOW+CP3eyGhvAD1iqJNxvMTE29oPIdUJYR8lM+XiAFsdSvxGP
+	/n4mBeRKPudYv5+n4YzC2iIUP9bDSyOpEGuZCvBF/o8l
+X-Google-Smtp-Source: ABdhPJwOrYYWNwCHo9cWbXXwW9YDvspc6cawq3V4i56tg15/KT5ws4gpqKIXyXav2XdTM0YIHSCHM5dWjbvP0CIv7KI=
+X-Received: by 2002:a67:e3a9:: with SMTP id j9mr4894353vsm.41.1621524692878;
+ Thu, 20 May 2021 08:31:32 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <60A3B40E.60606@gmail.com>
-Content-Language: en-US
-X-Scanned-By: ClueGetter at submission2.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=olifantasia.com; t=1621524674; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version:content-type;
- bh=+dw8cWBs9fEHb52nH/aj/sQrvG1psN7li1NTFzCjVH4=;
- b=lmljsAGVyqs1UWvAwQ/whRfOFrY3MKDujngP7SM3UsEN7Zed87hkJMBSX4AujTjufff/ZU
- n4PvmGRq9SwEikxRuw+3EB3GcsWQGTcLqwNwmjVWapHrJxApoUxQNxk0FAT0Qey3rQsHiw
- 3gkhneR1U8TsX8YPXMMrPMddOip6Z7GfXm2haO0UQwjL1XlPlWAaC++FWA9twI8WvLnFo8
- ia2ZoZxbmt2o/gwhjyNeETY91gT2iYGlRm5ac1eSaZ9Tmhr2tTqzqCK97RpTT/fq6Ep5p0
- +lR9R9zRCt0o+skrWrmPOVwy3MvgUD+DFBG9knTE/5c7uXKxt06oMN+zSi3ROQ==
-X-Report-Abuse-To: abuse@transip.nl
-Message-ID-Hash: 722NHHGHG36BTGQDDS7NSB3PDKXI26QP
-X-Message-ID-Hash: 722NHHGHG36BTGQDDS7NSB3PDKXI26QP
-X-MailFrom: usrp-users-list@olifantasia.com
+From: Cino 13 <cinou13011@gmail.com>
+Date: Thu, 20 May 2021 17:31:21 +0200
+Message-ID: <CABeprjwo_rjNRpZ9rXpLzB6gO00-knyP8gdTDaSzZsRj+Ymqag@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: XHKU2KEET2OQOJMBKBM6QWBRCV43JLV6
+X-Message-ID-Hash: XHKU2KEET2OQOJMBKBM6QWBRCV43JLV6
+X-MailFrom: cinou13011@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP E310 sg1 does not find its own UHD RF hardware with uhd_usrp_probe --args "type=e300"
+Subject: [USRP-users] Question about an OOT : NOC ID doesn't match
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/722NHHGHG36BTGQDDS7NSB3PDKXI26QP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XHKU2KEET2OQOJMBKBM6QWBRCV43JLV6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2079578857385207421=="
 
-SSBoYXZlIHN0aWxsIG5vIGlkZWEgd2h5IG15IEUzMTAgc2cxIGRvZXMgbm90IHJlY29nbml6ZSBp
-dHMgb3duIHVoZCANCmhhcmR3YXJlIHdpdGggdWhkX2ZpbmRfZGV2aWNlcy4NCg0KQ2FuIHRoZSBl
-eGFjdCBoYXJkd2FyZSB2YXJpYW50IGJlIG9mIGluZmx1ZW5jZS4NCk1pbmUgaGFzIHBhcnRubzog
-MTU2MzMzQi0wMUwNCg0KVGhlIEIgaW4gdGhlIHBhcnRudW1iZXIgc2VlbXMgdG8gaW5kaWNhdGUg
-dGhlIHByZWNpc2UgaGFyZHdhcmUgcmV2aXNpb24uDQpUaGUgbWFudWFsIHNheXM6DQo+IFRoZSBS
-ZWxlYXNlIDQgaW1hZ2UgY29tZXMgaW4gdHdvIHZhcmlldGllcy4gVGhlIHZhcmlldHkgdGhhdCB5
-b3Ugd2lsbCBuZWVkIGRlcGVuZHMgb24gdGhlIHByb2R1Y3QgbnVtYmVyIG9mIHlvdXIgRTMxMCBv
-ciBFMzEyLCB3aGljaCBpcyBwcmludGVkIG9uIHRoZSBib3R0b20gb2YgdGhlIGRldmljZS4NCj4g
-RTMxMCAoMTU2MzNYLTAxTCkgCVg9IEEsIEIsIEMsIEQgCUV0dHVzLWUzeHgtc2cxDQo+IFg9IEUg
-b3IgbGF0ZXIgCUV0dHVzLWUzeHgtc2czDQo+IEUzMTIgKDE0MDYwNVgtMDFMKSAJWCA9IEFsbCAJ
-RXR0dXMtZTN4eC1zZzMgDQoNClNvIEkgaGF2ZSBhIHJlYWxseSBlYXJseSBlZGl0aW9uLg0KDQpN
-aW5lIGdpdmVzIHRoaXM6DQogPj4+PiByb290QG5pLWUzMXg6fiMgdWhkX2ZpbmRfZGV2aWNlcw0K
-ID4+Pj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOC4yLjA7IEJvb3N0XzEw
-NjgwMDsNCiA+Pj4+IFVIRF8zLjE1LjAuMC0wLWdhZWEwZTJkZQ0KID4+Pj4gLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCiA+Pj4+IC0tIFVIRCBEZXZp
-Y2UgMA0KID4+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0NCiA+Pj4+IERldmljZSBBZGRyZXNzOg0KID4+Pj4gICAgc2VyaWFsOg0KID4+Pj4gICAg
-Y2xhaW1lZDogRmFsc2UNCiA+Pj4+ICAgIG1nbXRfYWRkcjogMTI3LjAuMC4xDQogPj4+PiAgICBw
-cm9kdWN0Og0KID4+Pj4gICAgcmVhY2hhYmxlOiBObw0KID4+Pj4gICAgdHlwZToNCg0KQmVzdCBy
-ZWdhcmRzLA0KDQpNYXJ0aW4NCg0KT24gMTgtMDUtMjAyMSAxNDozMywgTWFyY3VzIEQuIExlZWNo
-IHdyb3RlOg0KPiBPbiAwNS8xOC8yMDIxIDA1OjA2IEFNLCBNYXJ0aW4gd3JvdGU6DQo+PiBXaGF0
-IGRvZXMgdWhkX2ZpbmRfZGV2aWNlcyBzaG93IG9uIHlvdXIgc3lzdGVtPw0KPj4NCj4+IE1hcnRp
-bg0KPj4NCj4gRGV2aWNlIEFkZHJlc3M6DQo+ICDCoMKgwqAgc2VyaWFsOiAzMEIwMTUyDQo+ICDC
-oMKgwqAgY2xhaW1lZDogRmFsc2UNCj4gIMKgwqDCoCBtZ210X2FkZHI6IDEyNy4wLjAuMQ0KPiAg
-wqDCoMKgIHByb2R1Y3Q6IGUzMTBfc2cxDQo+ICDCoMKgwqAgdHlwZTogZTN4eA0KPj4NCj4+IE9u
-IDE3LTA1LTIwMjEgMjM6MDksIE1hcmN1cyBELiBMZWVjaCB3cm90ZToNCj4+PiBPbiAwNS8xNy8y
-MDIxIDA1OjAzIFBNLCBNYXJ0aW4gd3JvdGU6DQo+Pj4+IE9uIDE3LTA1LTIwMjEgMDA6MTAsIE1h
-cmN1cyBEIExlZWNoIHdyb3RlOg0KPj4+Pj4gSeKAmW0gY3VycmVudGx5IHRyeWluZyB0byByZXBy
-b2R1Y2UgYnV0IG9uIGFuIHNnMyBzeXN0ZW0uIEhhdmluZyANCj4+Pj4+IGVudGlyZWx5IGRpZmZl
-cmVudCBwcm9ibGVtcy4NCj4+Pj4gVGhhbmsgeW91IGZvciBsb29raW5nIGludG8gdGhpcy4NCj4+
-Pj4gSSBhbSBsb29raW5nIGZvcndhcmQgdG8geW91ciBmaW5kaW5ncy4NCj4+Pj4gV2hhdCBpc3N1
-ZXMgZG8geW91IGhhdmUgd2l0aCBzZzM/DQo+Pj4+IE1heWJlIEkgY2FuIGhlbHAgeW91IHdpdGgg
-dGhhdCA7LSkNCj4+PiBJIG1pcy1zcG9rZSBhcyBpdCB0dXJucyBvdXQuLi4NCj4+Pg0KPj4+IE15
-IGRldmljZSBpcyBhbiBTRzEsIGFuZCBydW5uaW5nIHVoZF91c3JwX3Byb2JlIHByb2R1Y2VzOg0K
-Pj4+DQo+Pj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOC4yLjA7IEJvb3N0
-XzEwNjgwMDsgDQo+Pj4gVUhEXzMuMTUuMC4wLTAtZ2FlYTBlMmUNCj4+PiBbSU5GT10gW01QTURd
-IEluaXRpYWxpemluZyAxIGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6IA0KPj4+IG1n
-bXRfYWRkcj0xMjcuMC4wZQ0KPj4+IFvCoMKgIDYzLjM5NjkxMV0gZnBnYV9tYW5hZ2VyIGZwZ2Ew
-OiB3cml0aW5nIGUzMTBfc2cxLmJpbiB0byBYaWxpbnggDQo+Pj4gWnlucSBGUEdBIE1hbnINCj4+
-PiBbwqDCoCA2My41OTc0MjZdIE9GOiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxs
-IG9jY3VyIGlmIA0KPj4+IG92ZXJsYXkgcmVtb3ZlZCxlDQo+Pj4gW8KgwqAgNjMuNjA3NjI5XSBP
-Rjogb3ZlcmxheTogV0FSTklORzogbWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVy
-bGF5IHJlbW92ZWQscw0KPj4+IFvCoMKgIDYzLjYxNzg1Nl0gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6
-IG1lbW9yeSBsZWFrIHdpbGwgb2NjdXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLHMNCj4+PiBb
-wqDCoCA2My42MjkwNjZdIE9GOiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxsIG9j
-Y3VyIGlmIA0KPj4+IG92ZXJsYXkgcmVtb3ZlZCwwDQo+Pj4gW8KgwqAgNjMuNjM4ODk0XSBPRjog
-b3ZlcmxheTogV0FSTklORzogbWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVybGF5
-IHJlbW92ZWQsbA0KPj4+IFvCoMKgIDYzLjY0ODY0NF0gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1l
-bW9yeSBsZWFrIHdpbGwgb2NjdXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLHINCj4+PiBbwqDC
-oCA2My42NTg0NDNdIE9GOiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxsIG9jY3Vy
-IGlmIA0KPj4+IG92ZXJsYXkgcmVtb3ZlZCx5DQo+Pj4gW8KgwqAgNjMuNjY4MjA2XSBPRjogb3Zl
-cmxheTogV0FSTklORzogbWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVybGF5IHJl
-bW92ZWQsMA0KPj4+IFvCoMKgIDYzLjY3ODAxMF0gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9y
-eSBsZWFrIHdpbGwgb2NjdXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLDENCj4+PiBbwqDCoCA2
-My42ODc3NjhdIE9GOiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxsIG9jY3VyIGlm
-IA0KPj4+IG92ZXJsYXkgcmVtb3ZlZCwyDQo+Pj4gW8KgwqAgNjMuNjk3NTY4XSBPRjogb3Zlcmxh
-eTogV0FSTklORzogbWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVybGF5IHJlbW92
-ZWQsMw0KPj4+IFvCoMKgIDYzLjcwNzMyNF0gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9yeSBs
-ZWFrIHdpbGwgb2NjdXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLDANCj4+PiBbwqDCoCA2My43
-MTcxMjddIE9GOiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxsIG9jY3VyIGlmIA0K
-Pj4+IG92ZXJsYXkgcmVtb3ZlZCwxDQo+Pj4gW8KgwqAgNjMuNzI2ODk5XSBPRjogb3ZlcmxheTog
-V0FSTklORzogbWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVybGF5IHJlbW92ZWQs
-Mg0KPj4+IFvCoMKgIDYzLjczNjcwNF0gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9yeSBsZWFr
-IHdpbGwgb2NjdXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLDMNCj4+PiBbwqDCoCA2My43NDY0
-NjNdIE9GOiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxsIG9jY3VyIGlmIA0KPj4+
-IG92ZXJsYXkgcmVtb3ZlZCwwDQo+Pj4gW8KgwqAgNjMuNzU2Njk4XSBPRjogb3ZlcmxheTogV0FS
-TklORzogbWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVybGF5IHJlbW92ZWQsMQ0K
-Pj4+IFvCoMKgIDYzLjc2NjkyN10gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9yeSBsZWFrIHdp
-bGwgb2NjdXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLDINCj4+PiBbwqDCoCA2My43NzcxODJd
-IE9GOiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxsIG9jY3VyIGlmIA0KPj4+IG92
-ZXJsYXkgcmVtb3ZlZCwzDQo+Pj4gW8KgwqAgNjMuNzg3NDE2XSBPRjogb3ZlcmxheTogV0FSTklO
-RzogbWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVybGF5IHJlbW92ZWQsMA0KPj4+
-IFvCoMKgIDYzLjc5NzY0OF0gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9yeSBsZWFrIHdpbGwg
-b2NjdXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLDENCj4+PiBbwqDCoCA2My44MDc4ODFdIE9G
-OiBvdmVybGF5OiBXQVJOSU5HOiBtZW1vcnkgbGVhayB3aWxsIG9jY3VyIGlmIA0KPj4+IG92ZXJs
-YXkgcmVtb3ZlZCwyDQo+Pj4gW8KgwqAgNjMuODE4MTE1XSBPRjogb3ZlcmxheTogV0FSTklORzog
-bWVtb3J5IGxlYWsgd2lsbCBvY2N1ciBpZiANCj4+PiBvdmVybGF5IHJlbW92ZWQsMw0KPj4+IFvC
-oMKgIDYzLjgyODM1MF0gT0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9yeSBsZWFrIHdpbGwgb2Nj
-dXIgaWYgDQo+Pj4gb3ZlcmxheSByZW1vdmVkLDANCj4+PiBbwqDCoCA2My44OTU4MjldIHJmbm9j
-X2Nyb3NzYmFyIGNyb3NzYmFyMDogTkkgUGxhdGZvcm0gUkZOb0MgQ3Jvc3NiYXIgDQo+Pj4gcmVn
-aXN0ZXJlZA0KPj4+IFvCoMKgIDY0LjQxOTk3Ml0gZTMxeC1wbXU6IHByb2JlIG9mIGZwZ2EtZnVs
-bDpwbXUgZmFpbGVkIHdpdGggZXJyb3IgLTUyNA0KPj4+IFvCoMKgIDY0LjQ4NTAzMV0gdXNycC1k
-bWEtY29yZTogUmVnaXN0ZXJlZCByeC1kbWEwDQo+Pj4gW8KgwqAgNjQuNTE1MzAxXSB1c3JwLWRt
-YS1jb3JlOiBSZWdpc3RlcmVkIHJ4LWRtYTENCj4+PiBbwqDCoCA2NC41MzE4OTFdIHVzcnAtZG1h
-LWNvcmU6IFJlZ2lzdGVyZWQgcngtZG1hMg0KPj4+IFvCoMKgIDY0LjU0NTI3NV0gdXNycC1kbWEt
-Y29yZTogUmVnaXN0ZXJlZCByeC1kbWEzDQo+Pj4gW8KgwqAgNjQuNTYwMTU3XSB1c3JwLWRtYS1j
-b3JlOiBSZWdpc3RlcmVkIHR4LWRtYTANCj4+PiBbwqDCoCA2NC41NzE3ODVdIHVzcnAtZG1hLWNv
-cmU6IFJlZ2lzdGVyZWQgdHgtZG1hMQ0KPj4+IFvCoMKgIDY0LjU4NTExNV0gdXNycC1kbWEtY29y
-ZTogUmVnaXN0ZXJlZCB0eC1kbWEyDQo+Pj4gW8KgwqAgNjQuNTk1NTg0XSB1c3JwLWRtYS1jb3Jl
-OiBSZWdpc3RlcmVkIHR4LWRtYTMNCj4+PiBbSU5GT10gW01QTS5tYWluXSBMYXVuY2hpbmcgVVNS
-UC9NUE0sIHZlcnNpb246IDMuMTUuMC4wLWdhZWEwZTJkZQ0KPj4+IFtJTkZPXSBbTVBNLm1haW5d
-IFNwYXduaW5nIFJQQyBwcm9jZXNzLi4uDQo+Pj4gW1dBUk5JTkddIFtNUE0uUGVyaXBoTWFuYWdl
-cl0gU2tpcHBpbmcgSFcvU1cgY29tcGF0aWJpbGl0eSBjaGVjayENCj4+PiBbSU5GT10gW01QTS5Q
-ZXJpcGhNYW5hZ2VyXSBEZXZpY2Ugc2VyaWFsIG51bWJlcjogMzBCMDE1Mg0KPj4+IFtXQVJOSU5H
-XSBbTVBNLkdQU0RJZmFjZV0gQ291bGQgbm90IGNvbm5lY3QgdG8gR1BTZCEgTm9uZSBvZiB0aGUg
-R1BTIA0KPj4+IHNlbnNvcnMgd2khDQo+Pj4gW0lORk9dIFtNUE0uUlBDU2VydmVyXSBSUEMgc2Vy
-dmVyIHJlYWR5IQ0KPj4+IFtJTkZPXSBbTVBNLlJQQ1NlcnZlcl0gU3Bhd25pbmcgd2F0Y2hkb2cg
-dGFzay4uLg0KPj4+IFtJTkZPXSBbTVBNLlBlcmlwaE1hbmFnZXJdIEZvdW5kIDEgZGF1Z2h0ZXJi
-b2FyZChzKS4NCj4+PiBbSU5GT10gWzAvUmFkaW9fMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRy
-b2wgKE5PQyBJRDogDQo+Pj4gMHgxMkFEMTAwMDAwMDAzMzEwKQ0KPj4+IFtJTkZPXSBbTVBNLlBl
-cmlwaE1hbmFnZXJdIGluaXQoKSBjYWxsZWQgd2l0aCBkZXZpY2UgYXJncyANCj4+PiBgcHJvZHVj
-dD1lMzEwX3NnMSxtZ20uDQo+Pj4gW0lORk9dIFswL0REQ18wXSBJbml0aWFsaXppbmcgYmxvY2sg
-Y29udHJvbCAoTk9DIElEOiAweEREQzAwMDAwMDAwMDAwMDApDQo+Pj4gW0lORk9dIFswL0RVQ18w
-XSBJbml0aWFsaXppbmcgYmxvY2sgY29udHJvbCAoTk9DIElEOiAweEQwQzAwMDAwMDAwMDAwMDIp
-DQo+Pj4gW0lORk9dIFswL1JhZGlvXzBdIFBlcmZvcm1pbmcgQ09ERUMgbG9vcGJhY2sgdGVzdC4u
-Lg0KPj4+IFtJTkZPXSBbMC9SYWRpb18wXSBDT0RFQyBsb29wYmFjayB0ZXN0IHBhc3NlZA0KPj4+
-IFtJTkZPXSBbMC9SYWRpb18wXSBQZXJmb3JtaW5nIENPREVDIGxvb3BiYWNrIHRlc3QuLi4NCj4+
-PiBbSU5GT10gWzAvUmFkaW9fMF0gQ09ERUMgbG9vcGJhY2sgdGVzdCBwYXNzZWQNCj4+PiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+IMKg
-IC8NCj4+PiB8wqDCoMKgwqDCoMKgIERldmljZTogRTMwMC1TZXJpZXMgRGV2aWNlDQo+Pj4gfCBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+
-IHwgLw0KPj4+IHzCoMKgIHzCoMKgwqDCoMKgwqAgTWJvYXJkOiBuaS1lMzF4DQo+Pj4gfMKgwqAg
-fMKgwqAgbXBtX3ZlcnNpb246IDMuMTUuMC4wLWdhZWEwZTJkZQ0KPj4+IHzCoMKgIHzCoMKgIHBp
-ZDogMzA2NzQNCj4+PiB8wqDCoCB8wqDCoCBwcm9kdWN0OiBlMzEwX3NnMQ0KPj4+IHzCoMKgIHzC
-oMKgIHJldjogNA0KPj4+IHzCoMKgIHzCoMKgIHJwY19jb25uZWN0aW9uOiBsb2NhbA0KPj4+IHzC
-oMKgIHzCoMKgIHNlcmlhbDogMzBCMDE1Mg0KPj4+IHzCoMKgIHzCoMKgIHR5cGU6IGUzeHgNCj4+
-PiB8wqDCoCB8wqDCoCBNUE0gVmVyc2lvbjogMS4yDQo+Pj4gfMKgwqAgfMKgwqAgRlBHQSBWZXJz
-aW9uOiAxLjANCj4+PiB8wqDCoCB8wqDCoCBGUEdBIGdpdCBoYXNoOiBmZGUyYTk0LmNsZWFuDQo+
-Pj4gfMKgwqAgfMKgwqAgUkZOb0MgY2FwYWJsZTogWWVzDQo+Pj4gfCB8DQo+Pj4gfMKgwqAgfMKg
-wqAgVGltZSBzb3VyY2VzOsKgIGludGVybmFsLCBleHRlcm5hbCwgZ3BzZG8NCj4+PiB8wqDCoCB8
-wqDCoCBDbG9jayBzb3VyY2VzOiBpbnRlcm5hbA0KPj4+IHzCoMKgIHzCoMKgIFNlbnNvcnM6IHJl
-Zl9sb2NrZWQsIHRlbXBfZnBnYSwgdGVtcF9tYiwgZ3BzX2xvY2tlZA0KPj4+IHzCoMKgIHwgX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+PiB8
-wqDCoCB8IC8NCj4+PiB8wqDCoCB8wqDCoCB8wqDCoMKgwqDCoMKgIFJYIERib2FyZDogQQ0KPj4+
-IHzCoMKgIHzCoMKgIHwgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18NCj4+PiB8wqDCoCB8wqDCoCB8IC8NCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8
-wqDCoMKgwqDCoMKgIFJYIEZyb250ZW5kOiAwDQo+Pj4gfMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAg
-TmFtZTogRTN4eA0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIEFudGVubmFzOiBSWDIsIFRY
-L1JYDQo+Pj4gfMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAgU2Vuc29yczogbG9fbG9ja2VkLCByc3Np
-LCBsb19sb2NrLCBhZDkzNjFfdGVtcGVyYXR1cmUNCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDC
-oCBGcmVxIHJhbmdlOiA3MC4wMDAgdG8gNjAwMC4wMDAgTUh6DQo+Pj4gfMKgwqAgfMKgwqAgfMKg
-wqAgfMKgwqAgR2FpbiByYW5nZSBQR0E6IDAuMCB0byA3Ni4wIHN0ZXAgMS4wIGRCDQo+Pj4gfMKg
-wqAgfMKgwqAgfMKgwqAgfMKgwqAgQmFuZHdpZHRoIHJhbmdlOiAyMDAwMDAwMC4wIHRvIDQwMDAw
-MDAwLjAgc3RlcCAwLjAgSHoNCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBDb25uZWN0aW9u
-IFR5cGU6IElRDQo+Pj4gfMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAgVXNlcyBMTyBvZmZzZXQ6IE5v
-DQo+Pj4gfMKgwqAgfMKgwqAgfCBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KPj4+IHzCoMKgIHzCoMKgIHwgLw0KPj4+IHzCoMKgIHzCoMKgIHzC
-oMKgIHzCoMKgwqDCoMKgwqAgUlggRnJvbnRlbmQ6IDENCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8
-wqDCoCBOYW1lOiBFM3h4DQo+Pj4gfMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAgQW50ZW5uYXM6IFJY
-MiwgVFgvUlgNCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBTZW5zb3JzOiBsb19sb2NrZWQs
-IHJzc2ksIGxvX2xvY2ssIGFkOTM2MV90ZW1wZXJhdHVyZQ0KPj4+IHzCoMKgIHzCoMKgIHzCoMKg
-IHzCoMKgIEZyZXEgcmFuZ2U6IDcwLjAwMCB0byA2MDAwLjAwMCBNSHoNCj4+PiB8wqDCoCB8wqDC
-oCB8wqDCoCB8wqDCoCBHYWluIHJhbmdlIFBHQTogMC4wIHRvIDc2LjAgc3RlcCAxLjAgZEINCj4+
-PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBCYW5kd2lkdGggcmFuZ2U6IDIwMDAwMDAwLjAgdG8g
-NDAwMDAwMDAuMCBzdGVwIDAuMCBIeg0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIENvbm5l
-Y3Rpb24gVHlwZTogSVENCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBVc2VzIExPIG9mZnNl
-dDogTm8NCj4+PiB8wqDCoCB8wqDCoCB8IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQo+Pj4gfMKgwqAgfMKgwqAgfCAvDQo+Pj4gfMKgwqAgfMKg
-wqAgfMKgwqAgfMKgwqDCoMKgwqDCoCBSWCBDb2RlYzogQQ0KPj4+IHzCoMKgIHzCoMKgIHzCoMKg
-IHzCoMKgIE5hbWU6IEFEOTM2MSBEdWFsIEFEQw0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzCoMKg
-IEdhaW4gRWxlbWVudHM6IE5vbmUNCj4+PiB8wqDCoCB8IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4gfMKgwqAgfCAvDQo+Pj4gfMKgwqAg
-fMKgwqAgfMKgwqDCoMKgwqDCoCBUWCBEYm9hcmQ6IEENCj4+PiB8wqDCoCB8wqDCoCB8IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4gfMKg
-wqAgfMKgwqAgfCAvDQo+Pj4gfMKgwqAgfMKgwqAgfMKgwqAgfMKgwqDCoMKgwqDCoCBUWCBGcm9u
-dGVuZDogMA0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIE5hbWU6IEUzeHgNCj4+PiB8wqDC
-oCB8wqDCoCB8wqDCoCB8wqDCoCBBbnRlbm5hczogVFgvUlgNCj4+PiB8wqDCoCB8wqDCoCB8wqDC
-oCB8wqDCoCBTZW5zb3JzOiBsb19sb2NrZWQsIGFkOTM2MV90ZW1wZXJhdHVyZQ0KPj4+IHzCoMKg
-IHzCoMKgIHzCoMKgIHzCoMKgIEZyZXEgcmFuZ2U6IDQ3LjAwMCB0byA2MDAwLjAwMCBNSHoNCj4+
-PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBHYWluIHJhbmdlIFBHQTogMC4wIHRvIDg5Ljggc3Rl
-cCAwLjIgZEINCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBCYW5kd2lkdGggcmFuZ2U6IDIw
-MDAwMDAwLjAgdG8gNDAwMDAwMDAuMCBzdGVwIDAuMCBIeg0KPj4+IHzCoMKgIHzCoMKgIHzCoMKg
-IHzCoMKgIENvbm5lY3Rpb24gVHlwZTogSVENCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBV
-c2VzIExPIG9mZnNldDogTm8NCj4+PiB8wqDCoCB8wqDCoCB8IF9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4gfMKgwqAgfMKgwqAgfCAvDQo+
-Pj4gfMKgwqAgfMKgwqAgfMKgwqAgfMKgwqDCoMKgwqDCoCBUWCBGcm9udGVuZDogMQ0KPj4+IHzC
-oMKgIHzCoMKgIHzCoMKgIHzCoMKgIE5hbWU6IEUzeHgNCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8
-wqDCoCBBbnRlbm5hczogVFgvUlgNCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBTZW5zb3Jz
-OiBsb19sb2NrZWQsIGFkOTM2MV90ZW1wZXJhdHVyZQ0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzC
-oMKgIEZyZXEgcmFuZ2U6IDQ3LjAwMCB0byA2MDAwLjAwMCBNSHoNCj4+PiB8wqDCoCB8wqDCoCB8
-wqDCoCB8wqDCoCBHYWluIHJhbmdlIFBHQTogMC4wIHRvIDg5Ljggc3RlcCAwLjIgZEINCj4+PiB8
-wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBCYW5kd2lkdGggcmFuZ2U6IDIwMDAwMDAwLjAgdG8gNDAw
-MDAwMDAuMCBzdGVwIDAuMCBIeg0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIENvbm5lY3Rp
-b24gVHlwZTogSVENCj4+PiB8wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBVc2VzIExPIG9mZnNldDog
-Tm8NCj4+PiB8wqDCoCB8wqDCoCB8IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fDQo+Pj4gfMKgwqAgfMKgwqAgfCAvDQo+Pj4gfMKgwqAgfMKgwqAg
-fMKgwqAgfMKgwqDCoMKgwqDCoCBUWCBDb2RlYzogQQ0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzC
-oMKgIE5hbWU6IEFEOTM2MSBEdWFsIERBQw0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIEdh
-aW4gRWxlbWVudHM6IE5vbmUNCj4+PiB8wqDCoCB8IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4gfMKgwqAgfCAvDQo+Pj4gfMKgwqAgfMKg
-wqAgfMKgwqDCoMKgwqDCoCBSRk5vQyBibG9ja3Mgb24gdGhpcyBkZXZpY2U6DQo+Pj4gfMKgwqAg
-fCB8DQo+Pj4gfMKgwqAgfMKgwqAgfMKgwqAgKiBSYWRpb18wDQo+Pj4gfMKgwqAgfMKgwqAgfMKg
-wqAgKiBERENfMA0KPj4+IHzCoMKgIHzCoMKgIHzCoMKgICogRFVDXzANCj4+Pg0KPj4+IFvCoMKg
-IDcyLjI4MDAyNF0gdXNycC1kbWEtY29yZTogRGVyZWdpc3RlcmVkIHR4LWRtYTMNCj4+PiBbwqDC
-oCA3Mi4yOTM5MTddIHVzcnAtZG1hLWNvcmU6IERlcmVnaXN0ZXJlZCB0eC1kbWEyDQo+Pj4gW8Kg
-wqAgNzIuMzA0NDc3XSB1c3JwLWRtYS1jb3JlOiBEZXJlZ2lzdGVyZWQgdHgtZG1hMQ0KPj4+IFvC
-oMKgIDcyLjMxNjM5Nl0gdXNycC1kbWEtY29yZTogRGVyZWdpc3RlcmVkIHR4LWRtYTANCj4+PiBb
-wqDCoCA3Mi4zMjc2MzBdIHVzcnAtZG1hLWNvcmU6IERlcmVnaXN0ZXJlZCByeC1kbWEzDQo+Pj4g
-W8KgwqAgNzIuMzM5MDU5XSB1c3JwLWRtYS1jb3JlOiBEZXJlZ2lzdGVyZWQgcngtZG1hMg0KPj4+
-IFvCoMKgIDcyLjM1MDM1MF0gdXNycC1kbWEtY29yZTogRGVyZWdpc3RlcmVkIHJ4LWRtYTENCj4+
-PiBbwqDCoCA3Mi4zNjA2OThdIHVzcnAtZG1hLWNvcmU6IERlcmVnaXN0ZXJlZCByeC1kbWEwDQo+
-Pj4gW8KgwqAgNzIuNDAxNjM5XSBmcGdhX21hbmFnZXIgZnBnYTA6IHdyaXRpbmcgZTMxMF9zZzFf
-aWRsZS5iaW4gdG8gDQo+Pj4gWGlsaW54IFp5bnEgRlBHcg0KPj4+IFvCoMKgIDcyLjUwMTIzOV0g
-T0Y6IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9yeSBsZWFrIHdpbGwgb2NjdXIgaWYgDQo+Pj4gb3Zl
-cmxheSByZW1vdmVkLGUNCj4+PiBbwqDCoCA3Mi41MTE0ODhdIE9GOiBvdmVybGF5OiBXQVJOSU5H
-OiBtZW1vcnkgbGVhayB3aWxsIG9jY3VyIGlmIA0KPj4+IG92ZXJsYXkgcmVtb3ZlZCxsDQo+Pj4g
-W8KgwqAgNzIuNTIxNjYwXSBPRjogb3ZlcmxheTogV0FSTklORzogbWVtb3J5IGxlYWsgd2lsbCBv
-Y2N1ciBpZiANCj4+PiBvdmVybGF5IHJlbW92ZWQscg0KPj4+IFvCoMKgIDcyLjUzMTY0Ml0gT0Y6
-IG92ZXJsYXk6IFdBUk5JTkc6IG1lbW9yeSBsZWFrIHdpbGwgb2NjdXIgaWYgDQo+Pj4gb3Zlcmxh
-eSByZW1vdmVkLHkNCj4+PiBbwqDCoCA3My4wNjQ5MzVdIGUzMXgtcG11OiBwcm9iZSBvZiBmcGdh
-LWZ1bGw6cG11IGZhaWxlZCB3aXRoIGVycm9yIC01MjQNCj4+PiByb290QG5pLWUzMXg6fiMNCj4+
-Pg0KPj4+DQo+Pj4+DQo+Pj4+IEkgd2lsbCBhbHNvIHRyeW91dCB0aGUgbGF0ZXN0IHVoZCA0LjAg
-c2RpbWcgZm9yIEUzMTAgc2cxIGFzIHNvb24gYXMgDQo+Pj4+IEkgaGF2ZSB0aGUgdGltZS4gTWF5
-YmUgdGhhdCBoYXMgZGlmZmVyZW50IHJlc3VsdHMuDQo+Pj4+DQo+Pj4+IEkgd2FzIHdvbmRlcmlu
-ZyBpZiB0aGUgb3V0cHV0IG9mIHVoZF9maW5kX2RldmljZXMgZ2l2ZXMgYSBjbHVlLg0KPj4+PiBJ
-cyB0aGlzIHRoZSBub3JtYWwgZXhwZWN0ZWQgb3V0cHV0IHdobmUgeW91IHJ1biB1aGRfZmluZF9k
-ZXZpY2VzIG9uIA0KPj4+PiB0aGUgRTMxMC4NCj4+Pj4NCj4+Pj4gcm9vdEBuaS1lMzF4On4jIHVo
-ZF9maW5kX2RldmljZXMNCj4+Pj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24g
-OC4yLjA7IEJvb3N0XzEwNjgwMDsgDQo+Pj4+IFVIRF8zLjE1LjAuMC0wLWdhZWEwZTJkZQ0KPj4+
-PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4+
-PiAtLSBVSEQgRGV2aWNlIDANCj4+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0NCj4+Pj4gRGV2aWNlIEFkZHJlc3M6DQo+Pj4+IMKgwqAgc2VyaWFs
-Og0KPj4+PiDCoMKgIGNsYWltZWQ6IEZhbHNlDQo+Pj4+IMKgwqAgbWdtdF9hZGRyOiAxMjcuMC4w
-LjENCj4+Pj4gwqDCoCBwcm9kdWN0Og0KPj4+PiDCoMKgIHJlYWNoYWJsZTogTm8NCj4+Pj4gwqDC
-oCB0eXBlOg0KPj4+Pg0KPj4+Pg0KPj4+PiBCZXN0IHJlZ2FyZHMsDQo+Pj4+IE1hcnRpbg0KPj4+
-Pg0KPj4+Pg0KPj4+Pg0KPj4+Pj4gU2VudCBmcm9tIG15IGlQaG9uZQ0KPj4+Pj4NCj4+Pj4+PiBP
-biBNYXkgMTYsIDIwMjEsIGF0IDU6MzMgUE0sIE1hcnRpbiANCj4+Pj4+PiA8dXNycC11c2Vycy1s
-aXN0QG9saWZhbnRhc2lhLmNvbT4gd3JvdGU6DQo+Pj4+Pj4NCj4+Pj4+PiDvu79PbiAxNS0wNS0y
-MDIxIDE4OjMzLCBNYXJjdXMgRC4gTGVlY2ggd3JvdGU6DQo+Pj4+Pj4+PiBPbiAwNS8xNS8yMDIx
-IDEwOjE5IEFNLCBNYXJ0aW4gd3JvdGU6DQo+Pj4+Pj4+PiBPbiAxNC0wNS0yMDIxIDIxOjI2LCBN
-YXJjdXMgRCBMZWVjaCB3cm90ZToNCj4+Pj4+Pj4+PiBXaGF0IGhhcHBlbnMgaWYgeW91IGRvbuKA
-mXQgc3BlY2lmeSBhbnkgYXJncyBhdCBhbGw/DQo+Pj4+Pj4+PiBUaGVuIEkgYWxzbyBnZXQgTm8g
-RGV2aWNlIGZvdW5kLg0KPj4+Pj4+Pj4NCj4+Pj4+Pj4+IE1hcnRpbg0KPj4+Pj4+PiBNYXJ0aW46
-DQo+Pj4+Pj4+IFdoZXJlIGRpZCB5b3UgZ2V0IHlvdXIgc2RpbWcgZnJvbT8NCj4+Pj4+Pg0KPj4+
-Pj4+IE9uIGEgaG9zdCBzeXN0ZW0gd2l0aCBVSEQgMy4xNSBpbnN0YWxsZWQgSSBkaWQ6DQo+Pj4+
-Pj4NCj4+Pj4+PiBzdWRvIHVoZF9pbWFnZXNfZG93bmxvYWRlciAtdCBzZGltZyAtdCBlMzEwIC10
-IHNnMQ0KPj4+Pj4+DQo+Pj4+Pj4gW0lORk9dIEltYWdlcyBkZXN0aW5hdGlvbjogL3Vzci9zaGFy
-ZS91aGQvaW1hZ2VzDQo+Pj4+Pj4gVGhlIGZpbGUgc2l6ZSBmb3IgdGhpcyB0YXJnZXQgKDgzMi4z
-IE1pQikgZXhjZWVkcyB0aGUgZG93bmxvYWQgDQo+Pj4+Pj4gbGltaXQgKDEwMC4wIE1pQikuIENv
-bnRpbnVlIGRvd25sb2FkaW5nPyBbeS9OXXkNCj4+Pj4+PiBbSU5GT10gRG93bmxvYWRpbmcgZTN4
-eF9lMzEwX3NnMV9zZGltZ19kZWZhdWx0LXYzLjE1LjAuMC56aXAsIA0KPj4+Pj4+IHRvdGFsIHNp
-emU6IDg3MjcyOS45MyBrQg0KPj4+Pj4+IFtJTkZPXSBJbWFnZXMgZG93bmxvYWQgY29tcGxldGUu
-DQo+Pj4+Pj4NCj4+Pj4+PiBUaGlzIHNlZW1zIHRvIGRvd25sb2FkIHRoaXMgZmlsZSBhbmQgZXh0
-cmFjdHMgaXQ6DQo+Pj4+Pj4gaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vYmluYXJpZXMvY2FjaGUv
-ZTN4eC9tZXRhLWV0dHVzLXYzLjE1LjAuMC9lM3h4X2UzMTBfc2cxX3NkaW1nX2RlZmF1bHQtdjMu
-MTUuMC4wLnppcCANCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4gSSB3cm90ZSB0aGUgZXh0cmFjdGVk
-IGltYWdlIHRvIGEgOCBHQiBzZGNhcmQgd2l0aCBkZC4NCj4+Pj4+Pg0KPj4+Pj4+IEkgYWxzbyB0
-cmllZCBkb3dubG9hZGluZyB0aGUgYWJvdmUgZmlsZSBieSBoYW5kIGFuZCBhbmQgZXh0cmFjaW5n
-IA0KPj4+Pj4+IGl0IHRvIHRoZSBzZGNhcmQuIFRoYXQgaGFzIHRoZSBleGFjdCBzYW1lIHJlc3Vs
-dC4NCj4+Pj4+Pg0KPj4+Pg0KPj4+DQo+Pg0KPiANCl9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
-c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============2079578857385207421==
+Content-Type: multipart/alternative; boundary="00000000000050484805c2c4a30a"
+
+--00000000000050484805c2c4a30a
+Content-Type: text/plain; charset="UTF-8"
+
+Hi everyone,
+
+I work with an USRP N310.
+Some RFNoc blocks are not directly available on gr-ettus branch
+"maint-3.8-uhd-4.0", such as RFNoc FIR Filter or RFNoc Split Stream.
+
+That is why I have decided to create an OOT for each of them.
+For example, for the Split Stream, I have created an OOT named rfnoc-Split,
+and added a block called "Split".
+I have copied in my OOT the block control (.cpp and .hpp) files included in
+uhd/host/lib/rfnoc and uhd/host/include/uhd/rfnoc.
+
+In my OOT, I have modified the end of the Split_block_control_impl.cpp file
+to keep the right Noc ID (randomly generated).
+I have also modified yaml files (one for grc, one for uhd).
+I have copied the verilog files from
+uhd/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_split_stream in the right
+repository of my OOT.
+
+There's no issue for commands make and make install. The block is available
+in GnuRadio.
+I have builded an image with my 'Split' block without errors.
+
+However, my USRP is connected to another computer, so I have copied my
+rfnoc-Split to the second PC in order to install it there. I didn't forgot
+to delete the rfnoc-Split/build and make it again to avoid Cmake errors.
+
+The block is available on GnuRadio on the second computer.
+So, I run uhd_image_loader with my .bit file.
+The issue is here : After loading, running the command uhd_usrp_probe shows
+that my image contains an "SplitStream" block, and not really my "Split".
+So it is not callable by GnuRadio. (GNURadio-Companion says "Can't find
+block")
+
+It is the same problem for the OOT created with the FIR Filter. However,
+the FIR filter is runnable through uhd.FirFilterBlockControl... (despite I
+have builded an OOT block called "FIR2" which should work through an
+interface called FIR2_block_control if I am right).
+
+The most surprising is that the Noc ID of this block matches the genuine
+uhd/host/include/uhd/rfnoc/blocks/fir_filter.yml block id. (and not the Noc
+ID of my rfnoc-FIR2)
+
+What do you think about that?
+
+Thanks for your help
+
+--00000000000050484805c2c4a30a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi everyone,<div dir=3D"auto"><br></div><div dir=3D"auto"=
+>I work with an USRP N310.</div><div dir=3D"auto">Some RFNoc blocks are not=
+ directly available on gr-ettus branch &quot;maint-3.8-uhd-4.0&quot;, such =
+as RFNoc FIR Filter or RFNoc Split Stream.</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">That is why I have decided to create an OOT for each of =
+them.</div><div dir=3D"auto">For example, for the Split Stream, I have crea=
+ted an OOT named rfnoc-Split, and added a block called &quot;Split&quot;.</=
+div><div dir=3D"auto">I have copied in my OOT the block control (.cpp and .=
+hpp) files included in uhd/host/lib/rfnoc and uhd/host/include/uhd/rfnoc.</=
+div><div dir=3D"auto"><br></div><div dir=3D"auto">In my OOT, I have modifie=
+d the end of the Split_block_control_impl.cpp file to keep the right Noc ID=
+ (randomly generated).</div><div dir=3D"auto">I have also modified yaml fil=
+es (one for grc, one for uhd).</div><div dir=3D"auto">I have copied the ver=
+ilog files from uhd/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_split_stream in=
+ the right repository of my OOT.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">There&#39;s no issue for commands make and make install. The bloc=
+k is available in GnuRadio.</div><div dir=3D"auto">I have builded an image =
+with my &#39;Split&#39; block without errors.</div><div dir=3D"auto"><br></=
+div><div dir=3D"auto">However, my USRP is connected to another computer, so=
+ I have copied my rfnoc-Split to the second PC in order to install it there=
+. I didn&#39;t forgot to delete the rfnoc-Split/build and make it again to =
+avoid Cmake errors.</div><div dir=3D"auto"><br></div><div dir=3D"auto">The =
+block is available on GnuRadio on the second computer.=C2=A0</div><div dir=
+=3D"auto">So, I run uhd_image_loader with my .bit file.</div><div dir=3D"au=
+to">The issue is here : After loading, running the command uhd_usrp_probe s=
+hows that my image contains an &quot;SplitStream&quot; block, and not reall=
+y my &quot;Split&quot;. So it is not callable by GnuRadio. (GNURadio-Compan=
+ion says &quot;Can&#39;t find block&quot;)</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">It is the same problem for the OOT created with the FIR =
+Filter. However, the FIR filter is runnable through uhd.FirFilterBlockContr=
+ol... (despite I have builded an OOT block called &quot;FIR2&quot; which sh=
+ould work through an interface called FIR2_block_control if I am right).</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">The most surprising is tha=
+t the Noc ID of this block matches the genuine uhd/host/include/uhd/rfnoc/b=
+locks/fir_filter.yml block id. (and not the Noc ID of my rfnoc-FIR2)</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">What do you think about that?<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks for your help</di=
+v></div>
+
+--00000000000050484805c2c4a30a--
+
+--===============2079578857385207421==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2079578857385207421==--
