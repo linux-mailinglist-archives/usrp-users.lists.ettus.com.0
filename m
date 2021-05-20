@@ -2,110 +2,125 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4805138B1B0
-	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 16:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB14738B253
+	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 16:57:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3EC56385428
-	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 10:26:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B9FB238447D
+	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 10:57:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="aJH5BFDO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="jxeetZBx";
 	dkim-atps=neutral
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id CC4523857D0
-	for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 10:26:05 -0400 (EDT)
-Received: by mail-il1-f169.google.com with SMTP id g11so11406969ilq.3
-        for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 07:26:05 -0700 (PDT)
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 536A83843C0
+	for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 10:56:46 -0400 (EDT)
+Received: by mail-io1-f49.google.com with SMTP id s7so801043iov.2
+        for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 07:56:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ettus-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:from:date:message-id:subject:to;
-        bh=OJQcH+sKiKNiYqlJqXKddprUpZY3weHCX6KxPGOyGvA=;
-        b=aJH5BFDOW16INqbNSkLhdHiuoy1bfc9oyMlMU0VWh7eKrOkxyrtVSIqJ4V3X244WqQ
-         163jjQQoTnh4mDmwpIZ5hOuvfB5d8OP50hqupcM5cOos87DsiSBNkT4Y2W/iH8DfZlTV
-         fEjfaqqKS8yMdFtKVLN1BxS37tb85xROj8v/AlnsD+/lpX0zwWO89+dqFhcJ3B3skOxg
-         ZWVX+6uGmqnCvlmSIWWoM57+mw5Fh5wGiAAy+ezlcKEO63UKdMAV0p8l3UXWUOKzxZhp
-         1Uhah0xKU081FJAjk4CwKexHMiK6fPDEYrygXN0SUfgIjbg42UOFLUUGQZGitDEmolAO
-         pPBw==
+        bh=PdZ4mp7/aH3vprSJBj7ky42737DYVMI90NdfnNJ+Frs=;
+        b=jxeetZBxxl++gD/ee4ZMK1Hf0alChzOHvSy9r7qUbqjvZbf9wySpmUxJ6zMiM6TIDm
+         mVPhJI0qvsz773q8V24VT03bVlLuap535BUtXWJL/VzG8cAZohDW0q/cgPuY+pkgrGll
+         akhsOAO0B8uQTCfVa+acSTdJb6LmF32mxd0pJaLoTWJlGSml5Ob/ZwqiOLY5Wfz6lYD2
+         hpxP5a4aZSYvRDxLCguyF6tA60LsHR6nMR/u0yLGcOq4vO2tpxFofwecc8MNXL87akWh
+         Q4uA5geRg5jv1ryXfzjSbDR0c2MQZXZaWRmx+1YOoWOaBrwmE4chFo2IaqlnHvbp7bne
+         NIPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=OJQcH+sKiKNiYqlJqXKddprUpZY3weHCX6KxPGOyGvA=;
-        b=geA/Sew3kQeRGMQCrLiEHZ1TdRezqr8riTh0x7JQEEgXtfKSt+XeOlMUGryPmVPbZV
-         USqEIerur4aeUwPtRixzZT2otxXKeVBwPZ8VGx3y6AwQE7g5Ef4dVNc1Ku2hlkW3Xbt1
-         dDlV1dS5rMzcJqXr1nzztRpSA62kZXOGNIRNd5QHs4qCs4Iv/B7xVY+R+Ys5JnNNkA5N
-         uHxVM7GBheSm8WDM8wACZVXT/FCtCiUzdMjCZ2iX7jeW36GOnZnhK5wbceU0AsZ5F0Cj
-         SawoHiYBLIKUK7LRpNQB7vbKnYANbSqwtlQhE+3l2QfKRXlsqbZUqs+BFQUkJHj8oj34
-         6GEw==
-X-Gm-Message-State: AOAM532nIK5kuWU3u1fw2wQhfLxscevMtRyXmxAMP/BYV7HLQDU0/Bao
-	kt2isIna1NFfWPK86v5gSk47zggdzzYL9WyoloxgbQCqKSf4SCHp
-X-Google-Smtp-Source: ABdhPJyW4dnqHAtRjyzBlMQvjMLFcZmCyUJT9Ngi96zjgDu4H3EHnhesdZS+rs1zTfGHfirAWwADxQK6ckot/pViggk=
-X-Received: by 2002:a05:6e02:8f2:: with SMTP id n18mr4911890ilt.299.1621520764766;
- Thu, 20 May 2021 07:26:04 -0700 (PDT)
+        bh=PdZ4mp7/aH3vprSJBj7ky42737DYVMI90NdfnNJ+Frs=;
+        b=MpuOB+ytxyKuULAc0N/s1X1lljuTC+hcpbWXEvOkcnZhfHmBymNC1tKDYg+zplZD6t
+         Gmp+wJlh1XjUYAlZPmePi0p6MdRu9i4l6ZJocPoNjb9T+/yjPEA0S0zhNLfa72hc9uGT
+         yglDDOHkpabqTFwIsfIrvBWDZSzoLU1n0pNt3EC/xUxyMLhDtGsO5Qm2R15TAGVkr33x
+         mXDlN8VxHBDbDYa8kv8fPzwMgIi2iOy5Q/wm92dGrtez1484ubav+bJm2gjOF/sbu1LQ
+         KlEJalc/YoVKnrclv61vcLegD21YYCgZgIRnRlOHYRlV4xo3a4fP0pF0VCAKazaaBkUm
+         5QXQ==
+X-Gm-Message-State: AOAM5302240flQ01zEREogKqnfY2jBCKZZ4R43wsBkzeqEYTxij35+3B
+	p8cSE9xQZ5binL7fVEedG/VVS6YsdqbIGJbHajOubt+GUz5RX7/A
+X-Google-Smtp-Source: ABdhPJydYmM7h4tZwZpPsq2ue8s4dQn8UU85mE5ewbtFYMqLbvY9q73FvhONl6C0ZZKGFP+zIn1t0vbGX3ZnMTZg2Gs=
+X-Received: by 2002:a5d:818c:: with SMTP id u12mr5817349ion.81.1621522605415;
+ Thu, 20 May 2021 07:56:45 -0700 (PDT)
 MIME-Version: 1.0
 From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Thu, 20 May 2021 09:25:28 -0500
-Message-ID: <CACaXmv8WAyR_OSYOfGzu-wWE2LJ-yTSroR1CVY5wCJXA-ajGsQ@mail.gmail.com>
+Date: Thu, 20 May 2021 09:56:09 -0500
+Message-ID: <CACaXmv-4sqdEo3San_=AJJOvCxRap5TvQ2s+g9AyOGndgHM3AA@mail.gmail.com>
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: 2VOD2YZBGN2ZRZYPGEGQYXL7LCOAI3JH
-X-Message-ID-Hash: 2VOD2YZBGN2ZRZYPGEGQYXL7LCOAI3JH
+Message-ID-Hash: EJY7KJ3CX7AAPDHFB7ZXUDNHC3C5567F
+X-Message-ID-Hash: EJY7KJ3CX7AAPDHFB7ZXUDNHC3C5567F
 X-MailFrom: neel.pandeya@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Save the Date -- NEWSDR 2021 on Friday August 20
+Subject: [USRP-users] SDR-Boston Panel Event on Wednesday May 26
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2VOD2YZBGN2ZRZYPGEGQYXL7LCOAI3JH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EJY7KJ3CX7AAPDHFB7ZXUDNHC3C5567F/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5588947506130573611=="
+Content-Type: multipart/mixed; boundary="===============1297863187439617535=="
 
---===============5588947506130573611==
-Content-Type: multipart/alternative; boundary="0000000000002e495e05c2c3b902"
+--===============1297863187439617535==
+Content-Type: multipart/alternative; boundary="000000000000e4385105c2c42631"
 
---0000000000002e495e05c2c3b902
+--000000000000e4385105c2c42631
 Content-Type: text/plain; charset="UTF-8"
 
-Save the Date!
+SDR-Boston is launching our first-ever panel event.  This upcoming
+inaugural event will focus on SDR-enabled hands-on education in a classroom
+environment.
 
-* NEWSDR 2021 will be held on Friday August 20 *
+This panel event is scheduled for next week on Wednesday May 26 from 14:00
+to 15:30 EDT (Boston time).
 
-It will be fully virtual, and free to attend.
+The event will be moderated by Professor Alex Wyglinski (WPI), and a panel
+of world-class SDR educators will participate at this interactive event and
+present lessons learned from their own classroom experiences: Dr Fraida
+Fund (New York University), Dr Marc Lichtman (University of Maryland), and
+Dr Cory Prust (Milwaukee School of Engineering).
 
-More details coming soon, and the website has more information.
+To learn more about the event, and to register (registration is limited to
+the first 100 attendees), please go to the website.
 
-https://newsdr.org/workshops/newsdr2021/
+https://newsdr.org/workshops/sdr-classroom-panel/
 
 --Neel Pandeya
 
---0000000000002e495e05c2c3b902
+--000000000000e4385105c2c42631
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Save the Date!</div><div class=3D"gmail_default" style=3D"font-=
-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"=
-font-family:verdana,sans-serif">* NEWSDR 2021 will be held on Friday August=
- 20 *</div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-s=
-erif"><br></div><div class=3D"gmail_default" style=3D"font-family:verdana,s=
-ans-serif">It will be fully virtual, and free to attend.</div><div class=3D=
-"gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><div cla=
-ss=3D"gmail_default" style=3D"font-family:verdana,sans-serif">More details =
-coming soon, and the website has more information.</div><div class=3D"gmail=
-_default" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"=
-gmail_default" style=3D"font-family:verdana,sans-serif"><a href=3D"https://=
-newsdr.org/workshops/newsdr2021/">https://newsdr.org/workshops/newsdr2021/<=
-/a><br clear=3D"all"></div><div class=3D"gmail_default" style=3D"font-famil=
-y:verdana,sans-serif"><br></div><div><div dir=3D"ltr" class=3D"gmail_signat=
-ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"verd=
-ana, sans-serif">--Neel Pandeya</font><div><br></div></div></div></div></di=
-v>
+sans-serif">SDR-Boston is launching our first-ever panel event.=C2=A0 This =
+upcoming inaugural event will focus on SDR-enabled hands-on education in a =
+classroom environment.</div><div class=3D"gmail_default" style=3D"font-fami=
+ly:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font=
+-family:verdana,sans-serif">This panel event is scheduled for next week on =
+Wednesday May 26 from 14:00 to 15:30 EDT (Boston time).</div><div class=3D"=
+gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><div clas=
+s=3D"gmail_default" style=3D"font-family:verdana,sans-serif">The event will=
+ be moderated by Professor Alex Wyglinski (WPI), and a panel of world-class=
+ SDR educators will participate at this interactive event and present lesso=
+ns learned from their own classroom experiences: Dr Fraida Fund (New York U=
+niversity), Dr Marc Lichtman (University of Maryland), and Dr Cory Prust (M=
+ilwaukee School of Engineering).</div><div class=3D"gmail_default" style=3D=
+"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" sty=
+le=3D"font-family:verdana,sans-serif">To learn more about the event, and to=
+ register (registration is limited to the first 100 attendees), please go t=
+o the website.</div><div class=3D"gmail_default" style=3D"font-family:verda=
+na,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:=
+verdana,sans-serif"><a href=3D"https://newsdr.org/workshops/sdr-classroom-p=
+anel/">https://newsdr.org/workshops/sdr-classroom-panel/</a><br clear=3D"al=
+l"></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-ser=
+if"><br></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmai=
+l=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"verdana, sans-serif">-=
+-Neel Pandeya</font><div><br></div></div></div></div></div>
 
---0000000000002e495e05c2c3b902--
+--000000000000e4385105c2c42631--
 
---===============5588947506130573611==
+--===============1297863187439617535==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -115,4 +130,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5588947506130573611==--
+--===============1297863187439617535==--
