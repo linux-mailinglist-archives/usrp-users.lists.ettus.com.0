@@ -2,125 +2,224 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB14738B253
-	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 16:57:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ADF438B256
+	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 16:59:37 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B9FB238447D
-	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 10:57:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 87180385D89
+	for <lists+usrp-users@lfdr.de>; Thu, 20 May 2021 10:59:36 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="jxeetZBx";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=kth.se header.i=@kth.se header.b="emnRvJqT";
 	dkim-atps=neutral
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 536A83843C0
-	for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 10:56:46 -0400 (EDT)
-Received: by mail-io1-f49.google.com with SMTP id s7so801043iov.2
-        for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 07:56:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=PdZ4mp7/aH3vprSJBj7ky42737DYVMI90NdfnNJ+Frs=;
-        b=jxeetZBxxl++gD/ee4ZMK1Hf0alChzOHvSy9r7qUbqjvZbf9wySpmUxJ6zMiM6TIDm
-         mVPhJI0qvsz773q8V24VT03bVlLuap535BUtXWJL/VzG8cAZohDW0q/cgPuY+pkgrGll
-         akhsOAO0B8uQTCfVa+acSTdJb6LmF32mxd0pJaLoTWJlGSml5Ob/ZwqiOLY5Wfz6lYD2
-         hpxP5a4aZSYvRDxLCguyF6tA60LsHR6nMR/u0yLGcOq4vO2tpxFofwecc8MNXL87akWh
-         Q4uA5geRg5jv1ryXfzjSbDR0c2MQZXZaWRmx+1YOoWOaBrwmE4chFo2IaqlnHvbp7bne
-         NIPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=PdZ4mp7/aH3vprSJBj7ky42737DYVMI90NdfnNJ+Frs=;
-        b=MpuOB+ytxyKuULAc0N/s1X1lljuTC+hcpbWXEvOkcnZhfHmBymNC1tKDYg+zplZD6t
-         Gmp+wJlh1XjUYAlZPmePi0p6MdRu9i4l6ZJocPoNjb9T+/yjPEA0S0zhNLfa72hc9uGT
-         yglDDOHkpabqTFwIsfIrvBWDZSzoLU1n0pNt3EC/xUxyMLhDtGsO5Qm2R15TAGVkr33x
-         mXDlN8VxHBDbDYa8kv8fPzwMgIi2iOy5Q/wm92dGrtez1484ubav+bJm2gjOF/sbu1LQ
-         KlEJalc/YoVKnrclv61vcLegD21YYCgZgIRnRlOHYRlV4xo3a4fP0pF0VCAKazaaBkUm
-         5QXQ==
-X-Gm-Message-State: AOAM5302240flQ01zEREogKqnfY2jBCKZZ4R43wsBkzeqEYTxij35+3B
-	p8cSE9xQZ5binL7fVEedG/VVS6YsdqbIGJbHajOubt+GUz5RX7/A
-X-Google-Smtp-Source: ABdhPJydYmM7h4tZwZpPsq2ue8s4dQn8UU85mE5ewbtFYMqLbvY9q73FvhONl6C0ZZKGFP+zIn1t0vbGX3ZnMTZg2Gs=
-X-Received: by 2002:a5d:818c:: with SMTP id u12mr5817349ion.81.1621522605415;
- Thu, 20 May 2021 07:56:45 -0700 (PDT)
+Received: from smtp-3.sys.kth.se (smtp-3.sys.kth.se [130.237.48.192])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5D2CB3843C0
+	for <usrp-users@lists.ettus.com>; Thu, 20 May 2021 10:58:49 -0400 (EDT)
+Received: from smtp-3.sys.kth.se (localhost.localdomain [127.0.0.1])
+	by smtp-3.sys.kth.se (Postfix) with ESMTP id 5F8434D88;
+	Thu, 20 May 2021 16:58:47 +0200 (CEST)
+X-Virus-Scanned: by amavisd-new at kth.se
+Received: from smtp-3.sys.kth.se ([127.0.0.1])
+	by smtp-3.sys.kth.se (smtp-3.sys.kth.se [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id qIgzflAWof6N; Thu, 20 May 2021 16:58:46 +0200 (CEST)
+Received: from exdb6.ug.kth.se (exdb6.ug.kth.se [192.168.32.61])
+	by smtp-3.sys.kth.se (Postfix) with ESMTPS id 2915237D9;
+	Thu, 20 May 2021 16:58:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kth.se; s=default;
+	t=1621522726; bh=1E9SgW/bm64DB+/eAcjJB6gTsKh/OztuEAlP4u2hLJA=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=emnRvJqT0c15kHv2jY2nfE/dnm2qA0wtHcIWgZ9OeGBni947bRlIeYy5kThhaNwVv
+	 DJs9aknnbrvR2oVryG7lJfDdlVkFf3TJUmWKqt2uJ8rg5oubdCz4E3qr5mwDx+rVdK
+	 XYvpiYfpyC9HnPyV7rYqFQEHzzcxhqQsCSFnmksA=
+Received: from exdb4.ug.kth.se (192.168.32.59) by exdb6.ug.kth.se
+ (192.168.32.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.12; Thu, 20 May
+ 2021 16:58:45 +0200
+Received: from exdb4.ug.kth.se ([192.168.32.59]) by exdb4.ug.kth.se
+ ([192.168.32.59]) with mapi id 15.02.0858.012; Thu, 20 May 2021 16:58:45
+ +0200
+From: Seyed Samie Mostafavi <ssmos@kth.se>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] Does E320 in network mode mount the SD card?
+Thread-Index: AQHXTWno2EWW14XsP0ybDYimOR01X6rsSiiAgAArask=
+Date: Thu, 20 May 2021 14:58:45 +0000
+Message-ID: <58eb7d3631e3445e95fa6c84bb4166bd@kth.se>
+References: <d996ed7c371b4d60aed6ac547b48f687@kth.se>,<EA92F6CC-A8E4-4DFF-BDF4-C80728862ECE@gmail.com>
+In-Reply-To: <EA92F6CC-A8E4-4DFF-BDF4-C80728862ECE@gmail.com>
+Accept-Language: en-US, sv-SE
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.32.250]
 MIME-Version: 1.0
-From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Thu, 20 May 2021 09:56:09 -0500
-Message-ID: <CACaXmv-4sqdEo3San_=AJJOvCxRap5TvQ2s+g9AyOGndgHM3AA@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: EJY7KJ3CX7AAPDHFB7ZXUDNHC3C5567F
-X-Message-ID-Hash: EJY7KJ3CX7AAPDHFB7ZXUDNHC3C5567F
-X-MailFrom: neel.pandeya@ettus.com
+Message-ID-Hash: PBR2IMPAOW4DK33GOM3U4RGNOVDQYWMY
+X-Message-ID-Hash: PBR2IMPAOW4DK33GOM3U4RGNOVDQYWMY
+X-MailFrom: ssmos@kth.se
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] SDR-Boston Panel Event on Wednesday May 26
+Subject: [USRP-users] Re: Does E320 in network mode mount the SD card?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EJY7KJ3CX7AAPDHFB7ZXUDNHC3C5567F/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PBR2IMPAOW4DK33GOM3U4RGNOVDQYWMY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1297863187439617535=="
+Content-Type: multipart/mixed; boundary="===============4072998239904332204=="
 
---===============1297863187439617535==
-Content-Type: multipart/alternative; boundary="000000000000e4385105c2c42631"
+--===============4072998239904332204==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_58eb7d3631e3445e95fa6c84bb4166bdkthse_"
 
---000000000000e4385105c2c42631
-Content-Type: text/plain; charset="UTF-8"
+--_000_58eb7d3631e3445e95fa6c84bb4166bdkthse_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-SDR-Boston is launching our first-ever panel event.  This upcoming
-inaugural event will focus on SDR-enabled hands-on education in a classroom
-environment.
+VGhhbmsgeW91IE1hcmN1cyBmb3IgeW91ciBhbnN3ZXIuDQoNCkFjdHVhbGx5IGl0IHNlZW1zIHRo
+YXQgdGhlIHJvb3QgZmlsZSBzeXN0ZW0gaXMgYSBzZXBhcmF0ZSBleHQ0IHBhcnRpdGlvbiBvbiB0
+aGUgY2FyZC4NCg0KU28gdGhlIHF1ZXN0aW9uIGlzIHdoZXRoZXIgdGhlIE5JIExpbnV4IHNldHVw
+IG1vdW50cyB0aGUgU0QgY2FyZCdzIEZBVCBib290IHBhcnRpdGlvbiBieSBkZWZhdWx0IG9yIG5v
+dD8NCg0KDQpCZXN0LA0KDQpTYW1pZQ0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fDQpGcm9tOiBNYXJjdXMgRCBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50
+OiBUaHVyc2RheSwgTWF5IDIwLCAyMDIxIDQ6MjA6MTcgUE0NClRvOiBTZXllZCBTYW1pZSBNb3N0
+YWZhdmkNCkNjOiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQ
+LXVzZXJzXSBEb2VzIEUzMjAgaW4gbmV0d29yayBtb2RlIG1vdW50IHRoZSBTRCBjYXJkPw0KDQpT
+aW5jZSB0aGlzIHN5c3RlbSBydW5zIG9mZiBvZiB0aGUgU0QgY2FyZCwgeWVzLg0KDQpTZW50IGZy
+b20gbXkgaVBob25lDQoNCk9uIE1heSAyMCwgMjAyMSwgYXQgNzoxOSBBTSwgU2V5ZWQgU2FtaWUg
+TW9zdGFmYXZpIDxzc21vc0BrdGguc2U+IHdyb3RlOg0KDQrvu78NCg0KSGksDQoNCg0KRG9lcyBh
+bnlvbmUga25vdyB3aGV0aGVyIHRoZSBkZWZhdWx0IE5JIHBldGFsaW51eCBvbiB0aGUgRTMyMCAo
+aW4gbmV0d29yayBtb2RlKSBtb3VudHMgdGhlIFNEIGNhcmQgb3Igbm90Pw0KDQpJIGFtIGFza2lu
+ZyB0aGlzIGJlY2F1c2UgSSBuZWVkIHRvIGNoYW5nZSB0aGUgQk9PVC5iaW4gYW5kIHN3aXRjaCB0
+byBhbm90aGVyIGRlc2lnbiBmcm9tIHRoZSBob3N0LiBJIGNhbm5vdCByZW1vdmUgdGhlIG9sZCBT
+RCBjYXJkIGFuZCBpbnNlcnQgYSBuZXcgb25lLg0KDQoNCkJlc3QsDQoNClNhbWllDQoNCg0KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCltLdGggTG9nb10NCg0KU2V5ZWQgU2FtaWUg
+TW9zdGFmYXZpDQpEb2N0b3JhbCBTdHVkZW50DQpLVEgNClNjaG9vbCBvZiBlbGVjdHJpY2FsIGVu
+Z2luZWVyaW5nIGFuZCBjb21wdXRlciBzY2llbmNlIChFRUNTKQ0KRGVwYXJ0bWVudCBvZiBpbmZv
+cm1hdGlvbiBzeXN0ZW1zIGFuZCBlbmdpbmVlcmluZyAoSVNFKQ0KTWFsdmluYXMgdsOkZyAxMCwg
+MTAwIDQ0IFN0b2NraG9sbQ0Kc3Ntb3NAa3RoLnNlDQoNCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1
+c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0K
 
-This panel event is scheduled for next week on Wednesday May 26 from 14:00
-to 15:30 EDT (Boston time).
+--_000_58eb7d3631e3445e95fa6c84bb4166bdkthse_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-The event will be moderated by Professor Alex Wyglinski (WPI), and a panel
-of world-class SDR educators will participate at this interactive event and
-present lessons learned from their own classroom experiences: Dr Fraida
-Fund (New York University), Dr Marc Lichtman (University of Maryland), and
-Dr Cory Prust (Milwaukee School of Engineering).
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPjwhLS0gUCB7bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDt9IC0t
+Pjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBkaXI9Imx0ciI+DQo8ZGl2IGlkPSJkaXZ0YWdkZWZh
+dWx0d3JhcHBlciIgZGlyPSJsdHIiIHN0eWxlPSJmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2Io
+MCwgMCwgMCk7IGZvbnQtZmFtaWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYsIEhl
+bHZldGljYSwgRW1vamlGb250LCAmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90OywgJnF1b3Q7
+U2Vnb2UgVUkgRW1vamkmcXVvdDssIE5vdG9Db2xvckVtb2ppLCAmcXVvdDtTZWdvZSBVSSBTeW1i
+b2wmcXVvdDssICZxdW90O0FuZHJvaWQgRW1vamkmcXVvdDssIEVtb2ppU3ltYm9sczsiPg0KPGRp
+diBpZD0iZGl2dGFnZGVmYXVsdHdyYXBwZXIiIGRpcj0ibHRyIiBzdHlsZT0iZm9udC1zaXplOjEy
+cHQ7IGNvbG9yOnJnYigwLDAsMCk7IGZvbnQtZmFtaWx5OkNhbGlicmksSGVsdmV0aWNhLHNhbnMt
+c2VyaWYsSGVsdmV0aWNhLEVtb2ppRm9udCwmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90Oywm
+cXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OyxOb3RvQ29sb3JFbW9qaSwmcXVvdDtTZWdvZSBVSSBT
+eW1ib2wmcXVvdDssJnF1b3Q7QW5kcm9pZCBFbW9qaSZxdW90OyxFbW9qaVN5bWJvbHMiPg0KPHA+
+PHNwYW4+VGhhbmsgeW91IE1hcmN1cyBmb3IgeW91ciBhbnN3ZXIuPC9zcGFuPjwvcD4NCjxwPjxz
+cGFuPkFjdHVhbGx5IGl0IHNlZW1zIHRoYXQgdGhlJm5ic3A7PHNwYW4gc3R5bGU9ImZvbnQtZmFt
+aWx5OiBDYWxpYnJpLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYsIEhlbHZldGljYSwgRW1vamlGb250
+LCAmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgRW1vamkmcXVv
+dDssIE5vdG9Db2xvckVtb2ppLCAmcXVvdDtTZWdvZSBVSSBTeW1ib2wmcXVvdDssICZxdW90O0Fu
+ZHJvaWQgRW1vamkmcXVvdDssIEVtb2ppU3ltYm9sczsgZm9udC1zaXplOiAxNnB4OyI+cm9vdCBm
+aWxlIHN5c3RlbSBpcw0KIGEgc2VwYXJhdGUmbmJzcDtleHQ0IHBhcnRpdGlvbiBvbiB0aGUgY2Fy
+ZC4mbmJzcDs8L3NwYW4+PC9zcGFuPjwvcD4NCjxwPjxzcGFuPjxzcGFuIHN0eWxlPSJmb250LWZh
+bWlseTogQ2FsaWJyaSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmLCBIZWx2ZXRpY2EsIEVtb2ppRm9u
+dCwgJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssICZxdW90O1NlZ29lIFVJIEVtb2ppJnF1
+b3Q7LCBOb3RvQ29sb3JFbW9qaSwgJnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LCAmcXVvdDtB
+bmRyb2lkIEVtb2ppJnF1b3Q7LCBFbW9qaVN5bWJvbHM7IGZvbnQtc2l6ZTogMTZweDsiPlNvJm5i
+c3A7PC9zcGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMnB0OyI+dGhlJm5ic3A7
+cXVlc3Rpb24NCiBpcyB3aGV0aGVyIHRoZSBOSSBMaW51eCBzZXR1cCBtb3VudHMgdGhlIFNEIGNh
+cmQncyBGQVQgYm9vdCBwYXJ0aXRpb24gYnkgZGVmYXVsdCBvciBub3Q/PC9zcGFuPjwvcD4NCjxw
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEycHQ7Ij48YnI+DQo8L3NwYW4+PC9wPg0KPHA+QmVz
+dCw8L3A+DQo8cD5TYW1pZTwvcD4NCjxwPjxicj4NCjwvcD4NCjwvZGl2Pg0KPGhyIHRhYmluZGV4
+PSItMSIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRpdiBpZD0i
+ZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYi
+IGNvbG9yPSIjMDAwMDAwIiBzdHlsZT0iZm9udC1zaXplOjExcHQiPjxiPkZyb206PC9iPiBNYXJj
+dXMgRCBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8
+L2I+IFRodXJzZGF5LCBNYXkgMjAsIDIwMjEgNDoyMDoxNyBQTTxicj4NCjxiPlRvOjwvYj4gU2V5
+ZWQgU2FtaWUgTW9zdGFmYXZpPGJyPg0KPGI+Q2M6PC9iPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbTxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIERvZXMgRTMyMCBpbiBu
+ZXR3b3JrIG1vZGUgbW91bnQgdGhlIFNEIGNhcmQ/PC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4N
+CjwvZGl2Pg0KPGRpdj5TaW5jZSB0aGlzIHN5c3RlbSBydW5zIG9mZiBvZiB0aGUgU0QgY2FyZCwg
+eWVzLiZuYnNwOzxicj4NCjxicj4NCjxkaXYgZGlyPSJsdHIiPlNlbnQgZnJvbSBteSBpUGhvbmU8
+L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPk9uIE1h
+eSAyMCwgMjAyMSwgYXQgNzoxOSBBTSwgU2V5ZWQgU2FtaWUgTW9zdGFmYXZpICZsdDtzc21vc0Br
+dGguc2UmZ3Q7IHdyb3RlOjxicj4NCjxicj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPGJsb2Nr
+cXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2IGRpcj0ibHRyIj7vu78NCjxkaXYgaWQ9ImRpdnRhZ2Rl
+ZmF1bHR3cmFwcGVyIiBkaXI9Imx0ciIgc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2Io
+MCwwLDApOyBmb250LWZhbWlseTpDYWxpYnJpLEhlbHZldGljYSxzYW5zLXNlcmlmLEhlbHZldGlj
+YSxFbW9qaUZvbnQsJnF1b3Q7QXBwbGUgQ29sb3IgRW1vamkmcXVvdDssJnF1b3Q7U2Vnb2UgVUkg
+RW1vamkmcXVvdDssTm90b0NvbG9yRW1vamksJnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LCZx
+dW90O0FuZHJvaWQgRW1vamkmcXVvdDssRW1vamlTeW1ib2xzIj4NCjxwPkhpLDwvcD4NCjxwPjxi
+cj4NCjwvcD4NCjxwPkRvZXMgYW55b25lIGtub3cgd2hldGhlciB0aGUgZGVmYXVsdCBOSSBwZXRh
+bGludXggb24gdGhlIEUzMjAgKGluIG5ldHdvcmsgbW9kZSkgbW91bnRzIHRoZSBTRCBjYXJkIG9y
+IG5vdD88L3A+DQo8cD5JIGFtIGFza2luZyB0aGlzIGJlY2F1c2UgSSBuZWVkIHRvIGNoYW5nZSB0
+aGUgQk9PVC5iaW4gYW5kIHN3aXRjaCB0byBhbm90aGVyIGRlc2lnbiZuYnNwO2Zyb20gdGhlIGhv
+c3QuJm5ic3A7SSBjYW5ub3QmbmJzcDtyZW1vdmUgdGhlIG9sZCBTRCBjYXJkIGFuZCBpbnNlcnQm
+bmJzcDthIG5ldyBvbmUuPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+QmVzdCw8L3A+DQo8cD5TYW1p
+ZTwvcD4NCjxwPjxicj4NCjwvcD4NCjxkaXYgaWQ9IlNpZ25hdHVyZSI+DQo8ZGl2IG5hbWU9ImRp
+dnRhZ2RlZmF1bHR3cmFwcGVyIiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2
+ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjsgbWFyZ2luOjAiPg0KPGhyPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjowY20gMGNtIDAuMDAwMXB0OyBmb250LXNpemU6MTFw
+dDsgZm9udC1mYW1pbHk6Q2FsaWJyaSxzYW5zLXNlcmlmIj4NCjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTJwdDsgZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjsgY29sb3I6cmdiKDkzLDkzLDkz
+KSI+PGltZyBib3JkZXI9IjAiIHdpZHRoPSI3MCIgaGVpZ2h0PSI3MCIgaWQ9Il94MDAwMF9pMTAy
+NSIgYWx0PSJLdGggTG9nbyIgc3R5bGU9IndpZHRoOiAwLjcyOTFpbjsgaGVpZ2h0OiAwLjcyOTFp
+bjsgdXNlci1zZWxlY3Q6IG5vbmU7IiBzcmM9Imh0dHA6Ly93d3cua3RoLnNlL2RlbGFkL2dyYWZp
+ay9rdGhfbG9nby5qcGciPjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7IGZvbnQt
+ZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGNvbG9yOnJnYig5Myw5Myw5MykiPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOjBjbSAwY20gMC4wMDAxcHQ7IGZv
+bnQtc2l6ZToxMXB0OyBmb250LWZhbWlseTpDYWxpYnJpLHNhbnMtc2VyaWYiPg0KPHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMnB0OyBmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBjb2xvcjpy
+Z2IoOTMsOTMsOTMpIj4mbmJzcDs8L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1hcmdpbjowY20gMGNtIDEuNXB0OyBmb250LXNpemU6MTFwdDsgZm9udC1mYW1pbHk6Q2Fs
+aWJyaSxzYW5zLXNlcmlmIj4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7IGZvbnQtZmFt
+aWx5OkFyaWFsLHNhbnMtc2VyaWY7IGNvbG9yOnJnYig5Myw5Myw5MykiPlNleWVkIFNhbWllIE1v
+c3RhZmF2aTwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOjBj
+bSAwY20gNnB0OyBmb250LXNpemU6MTFwdDsgZm9udC1mYW1pbHk6Q2FsaWJyaSxzYW5zLXNlcmlm
+Ij4NCjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7IGZvbnQtZmFtaWx5OkFyaWFsLHNhbnMt
+c2VyaWY7IGNvbG9yOnJnYig5Myw5Myw5MykiPkRvY3RvcmFsIFN0dWRlbnQ8L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbjowY20gMGNtIDEuNXB0OyBmb250LXNp
+emU6MTFwdDsgZm9udC1mYW1pbHk6Q2FsaWJyaSxzYW5zLXNlcmlmIj4NCjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6Ny41cHQ7IGZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGNvbG9yOnJnYig5
+Myw5Myw5MykiPktUSDwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFy
+Z2luOjBjbSAwY20gMS41cHQ7IGZvbnQtc2l6ZToxMXB0OyBmb250LWZhbWlseTpDYWxpYnJpLHNh
+bnMtc2VyaWYiPg0KPGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo3LjVwdDsgZm9udC1mYW1pbHk6
+QXJpYWwsc2Fucy1zZXJpZjsgY29sb3I6cmdiKDkzLDkzLDkzKSI+U2Nob29sIG9mIGVsZWN0cmlj
+YWwgZW5naW5lZXJpbmcgYW5kIGNvbXB1dGVyIHNjaWVuY2UgKEVFQ1MpPC9zcGFuPjwvaT48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjcuNXB0OyBmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBj
+b2xvcjpyZ2IoOTMsOTMsOTMpIj48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1hcmdpbjowY20gMGNtIDEuNXB0OyBmb250LXNpemU6MTFwdDsgZm9udC1mYW1pbHk6Q2Fs
+aWJyaSxzYW5zLXNlcmlmIj4NCjxpPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny41cHQ7IGZvbnQt
+ZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGNvbG9yOnJnYig5Myw5Myw5MykiPkRlcGFydG1lbnQg
+b2YgaW5mb3JtYXRpb24gc3lzdGVtcyBhbmQgZW5naW5lZXJpbmcgKElTRSk8L3NwYW4+PC9pPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46MGNtIDBjbSAxLjVwdDsgZm9u
+dC1zaXplOjExcHQ7IGZvbnQtZmFtaWx5OkNhbGlicmksc2Fucy1zZXJpZiI+DQo8c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjcuNXB0OyBmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBjb2xvcjpy
+Z2IoOTMsOTMsOTMpIj5NYWx2aW5hcyB2w6RnIDEwLCAxMDAgNDQgU3RvY2tob2xtPC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW46MGNtIDBjbSAwLjAwMDFwdDsg
+Zm9udC1zaXplOjExcHQ7IGZvbnQtZmFtaWx5OkNhbGlicmksc2Fucy1zZXJpZiI+DQo8c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjcuNXB0OyBmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBjb2xv
+cjpyZ2IoOTMsOTMsOTMpIj48YSBpZD0iTFBOb0xQIiBzdHlsZT0iY29sb3I6cmdiKDQsNzQsMTQ1
+KTsgdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZSI+c3Ntb3NAa3RoLnNlPC9hPjwvc3Bhbj48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luOjBjbSAwY20gMC4wMDAxcHQ7IGZv
+bnQtc2l6ZToxMXB0OyBmb250LWZhbWlseTpDYWxpYnJpLHNhbnMtc2VyaWYiPg0KJm5ic3A7PC9w
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPHNwYW4+X19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyPg0KPHNwYW4+VVNSUC11c2VycyBtYWls
+aW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L3NwYW4+PGJyPg0KPHNwYW4+
+VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
+dHVzLmNvbTwvc3Bhbj48YnI+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-To learn more about the event, and to register (registration is limited to
-the first 100 attendees), please go to the website.
+--_000_58eb7d3631e3445e95fa6c84bb4166bdkthse_--
 
-https://newsdr.org/workshops/sdr-classroom-panel/
-
---Neel Pandeya
-
---000000000000e4385105c2c42631
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">SDR-Boston is launching our first-ever panel event.=C2=A0 This =
-upcoming inaugural event will focus on SDR-enabled hands-on education in a =
-classroom environment.</div><div class=3D"gmail_default" style=3D"font-fami=
-ly:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font=
--family:verdana,sans-serif">This panel event is scheduled for next week on =
-Wednesday May 26 from 14:00 to 15:30 EDT (Boston time).</div><div class=3D"=
-gmail_default" style=3D"font-family:verdana,sans-serif"><br></div><div clas=
-s=3D"gmail_default" style=3D"font-family:verdana,sans-serif">The event will=
- be moderated by Professor Alex Wyglinski (WPI), and a panel of world-class=
- SDR educators will participate at this interactive event and present lesso=
-ns learned from their own classroom experiences: Dr Fraida Fund (New York U=
-niversity), Dr Marc Lichtman (University of Maryland), and Dr Cory Prust (M=
-ilwaukee School of Engineering).</div><div class=3D"gmail_default" style=3D=
-"font-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" sty=
-le=3D"font-family:verdana,sans-serif">To learn more about the event, and to=
- register (registration is limited to the first 100 attendees), please go t=
-o the website.</div><div class=3D"gmail_default" style=3D"font-family:verda=
-na,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:=
-verdana,sans-serif"><a href=3D"https://newsdr.org/workshops/sdr-classroom-p=
-anel/">https://newsdr.org/workshops/sdr-classroom-panel/</a><br clear=3D"al=
-l"></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-ser=
-if"><br></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmai=
-l=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"verdana, sans-serif">-=
--Neel Pandeya</font><div><br></div></div></div></div></div>
-
---000000000000e4385105c2c42631--
-
---===============1297863187439617535==
+--===============4072998239904332204==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -130,4 +229,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1297863187439617535==--
+--===============4072998239904332204==--
