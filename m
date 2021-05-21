@@ -2,116 +2,94 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CCBF38C71F
-	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 14:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE6CC38C75A
+	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 15:00:43 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A98F03853A1
-	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 08:52:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2136438542C
+	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 09:00:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="M+5qcXOI";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g3HJBpzn";
 	dkim-atps=neutral
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2096.outbound.protection.outlook.com [40.92.20.96])
-	by mm2.emwd.com (Postfix) with ESMTPS id A383E3853B9
-	for <usrp-users@lists.ettus.com>; Fri, 21 May 2021 08:51:13 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YsYd97XghWrAJMwjLkz2jw5ODYHTW5D49MfJntzT8/WEgjNJUbcw3TGTjcSsM3wYvsRaZnmL4XRTwm9cLuRGtI7mhgSXpPirh/jvH8WK36lss2dQMXJSdXVXYVEQSgpnKE/+PPwOiIpX99xBtPZirRjS7eCaXJorXWOnfu0yJXnHClUbrvIi3r8oVxE7hOCa2npJvWDH0miBM5k0zSgnGf1CPphYO0o2XFTDBlkKSFncl5JpYCcEfGNBxK4If+d4+d0uwHQs8vPVknR+L7rDQX3SwGzjNefZdUetcJfWAajSRxBSchHEikdpNej/TL+c6mQpbGNYC4PJ4LUEpzpiSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W35kue1HaD/V0hPryfchMLt71f+FYwxWJeYP0pE6VkI=;
- b=UfvSHpc8/FRjuBfa8HUYQ38Cpo70plCx7kfqu0mYfatlcweXzNDLdQYi5BeUeRpCSL5WZ2FdOjGLoNvXR6JHkbHxyszh0eHhzmp0BkOvw6uDFObE/EAaWQigyNcJaNV6Za9Py4eo7dwgw1oiL8I9jZt5NBZ/EvuCRb6Nbv1bhahrg98P2ZDwUkyNww+J+F5sx1Ey+F3NgFyu13BY0KyOdm5rzgcZlE/82Vn+j7v3HX/D51+FIv86C99fQ/EX8zIaIADD3crA00yunSD42vidKsofJKIJfIJCkRjYXio70/nUGJVYj2itpscYOp9qz6QtbSvvQ5jqN7CYKLXlBoiHTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W35kue1HaD/V0hPryfchMLt71f+FYwxWJeYP0pE6VkI=;
- b=M+5qcXOIvSZ6R6AhwXKDFvfKBdR40WQ7/t+KfBcnxSgdHE3jfj7xMVyDyGAFrqgyks7zebcXTidZ5pfbYEec1ZYK3Uja4b/DiXuN4J5sF5K0qm+riU0TQRHqBZmiqENby2DVYAEu/hrJZUkPTbgnbtFS42rw0KmjExhcRLOZrZ0spiAvbOb17JO6+tLshtYjtDayVo1uW3sxEvhltJ5DwHK8T7DJiHtsiKjOH5clL0NcTrLLyVIdn6rdov+4lfWnKigC7tNudzLrvEE2WNsrEtoNIziuiB/LxozBhHKuURvhMSTYQfMDDmgrC03mitUol5mTDhxko3ot1i9vneFN/A==
-Received: from CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
- (2a01:111:e400:3861::4c) by
- CO1NAM11HT241.eop-nam11.prod.protection.outlook.com (2a01:111:e400:3861::176)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25; Fri, 21 May
- 2021 12:51:12 +0000
-Received: from BN6PR19MB3138.namprd19.prod.outlook.com
- (2a01:111:e400:3861::4a) by CO1NAM11FT034.mail.protection.outlook.com
- (2a01:111:e400:3861::248) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25 via Frontend
- Transport; Fri, 21 May 2021 12:51:12 +0000
-Received: from BN6PR19MB3138.namprd19.prod.outlook.com
- ([fe80::280b:3971:eae4:e18f]) by BN6PR19MB3138.namprd19.prod.outlook.com
- ([fe80::280b:3971:eae4:e18f%3]) with mapi id 15.20.4129.035; Fri, 21 May 2021
- 12:51:12 +0000
-From: Jeff S <e070832@hotmail.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: UHD Exception
-Thread-Index: AQHXTj7L9+Eshi9Yi0m7ZGBrmRb5VQ==
-Date: Fri, 21 May 2021 12:51:12 +0000
-Message-ID: 
- <BN6PR19MB3138AF42C6927FF3CA550BC4A4299@BN6PR19MB3138.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: 
- OriginalChecksum:A2F9F0F4D30C1EB423AFF867DD95CFDC580F7E752D6247287431D6C4D206F1E2;UpperCasedChecksum:8B681BEBA3656E1301EFE64A120B629C94B0BC4A6383811DD2EC0782651420BF;SizeAsReceived:6574;Count:41
-x-tmn: [VWZh5nStorpTqCAEtFafSp1bj1cIx5Ud]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 41
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: aaca27fd-cf96-4cf0-4f02-08d91c571d30
-x-ms-traffictypediagnostic: CO1NAM11HT241:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- sGpe1as0MjWzLDp2r4bkth29TyaVdO/2E4HszNRjIySTggokTaSRuQ3DK5syxq1s7WWxbNTTgBIlJWO3uwfvzBgThLqfimaxOZ5lNxaW6+lGHNS6shuLKOBNhhuqVv71gJG43/oBx4JsrF94ILh9wgxv+jvMtyyVo+aUcB0PAaROq2eHXX2DwpTxgnATI54Q90dgY/qbmVm0S0F6F1v3FFhS4Q9gqnGKGN7xKuqnsY+qmErUjqt82wH0EJlzqMTAGnD+qQMn+RHAGL4KYaA63bPmdOcpN5mC6oAFjvHK2WrllZzqnm3gX9aPRdJ04E50ETeM/x54IIhfpVwiXPX7PPFM6KTEEhWj+NEJrg/8YFu7gjPaqk85uSRQBVMFzRS8RU/7YwzynsvzL80jrQS1vA==
-x-ms-exchange-antispam-messagedata: 
- 7LJIC7XWRIEmu9a/1houUwVrtJzOdmUYO+A5/IIFkDOtn5y6hfuolf8Q7f//2L2Y+d3dO6Y+z/bG+LyBr6f6C5x8s1NXD3kkmYc5cP92sz6sZ5rBFUVL5ounqk4kbWti4fWFd/MYIfEuhvf8Nm0bcQ==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: aaca27fd-cf96-4cf0-4f02-08d91c571d30
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2021 12:51:12.6124
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM11HT241
-Message-ID-Hash: NFWPHXPTJ7J33T3F7QIRXGAOJPC35QKW
-X-Message-ID-Hash: NFWPHXPTJ7J33T3F7QIRXGAOJPC35QKW
-X-MailFrom: e070832@hotmail.com
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 09AEA385335
+	for <USRP-users@lists.ettus.com>; Fri, 21 May 2021 08:59:51 -0400 (EDT)
+Received: by mail-qv1-f46.google.com with SMTP id ee9so10288832qvb.8
+        for <USRP-users@lists.ettus.com>; Fri, 21 May 2021 05:59:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=EE6Kd0rqxbQJ6cLQHuqIVsBCjlYFdj9zg3IA+MW3SRM=;
+        b=g3HJBpznWX3DVFZ4nQ+iQH7dJBms2TyLn/geILwwQ1T+6cDNS+Tp00RBCJVUHGVM+6
+         f7eSKhS8fdTVjFZEcAwTaHmSNEOKK9nI+IwYpv4jJpfRzeNLUravyVc9bpJebbYLQyrb
+         zHsVGQ7dTGKsZikEAylbbKZbETvkili4/69lrMnpHSGVrhA1Fn6FNJvM+MIC8lezM9b5
+         TBda6NbtxG6t3P5aECO9ozYKQAo57QqKI0xwUt88SnMJ+39YgGk0f8WVIEhqRBGL8X5b
+         DEB424lBjslaW22ByO1aCVmh4NlAo3lzIhRTVi1uwTCsq+GUGNYIfOoeyv9/WIZ91NZr
+         YE4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=EE6Kd0rqxbQJ6cLQHuqIVsBCjlYFdj9zg3IA+MW3SRM=;
+        b=Yjeah1V9NBIlZpPdPBSOSGc7IedQQz727V7OLqmoqzMjgwmcBEGxBbeFvodwQz8Lf9
+         cgwGBOv9EZ8vZSvL8I2if+Hh3mrEBTkGq700E62bPCMhfxRhFvxgCaBKfxlWdUCajAho
+         tmDxNisxYeFSevXtgAcnQzHv2bEKE62raO6Muf7LEMrKpCKSZ+OZ2CdCtCu3RrmKp5mA
+         f+piwCkfXKzTc/nY6AUrrHcBQ7NM0ztvfj5QWgtNijHi2XBOWqn/NVjkdxBP9f6wxMrm
+         pGGM5n4WhKEHCScw9dw+AyVUXAaLBEBMiGpk23x6x9lpXkM+smo4itNbA4ChYmWYoXbr
+         qw+Q==
+X-Gm-Message-State: AOAM530xFB2ziiam5xadiAd/4tSQolhEfv7hxpJAQ44baRBSwj0T+ZFf
+	bl4GHavQU38Rwnz5264rqcA=
+X-Google-Smtp-Source: ABdhPJziBTnyyP5kQvn7UzCgK/mGmwNf4s8P8QGHd/kShuyUUpBP12bHtshRL75pZNWAd+bpYisxCg==
+X-Received: by 2002:ad4:4e67:: with SMTP id ec7mr12643523qvb.58.1621601991471;
+        Fri, 21 May 2021 05:59:51 -0700 (PDT)
+Received: from [192.168.2.132] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id l10sm4697192qtn.28.2021.05.21.05.59.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 May 2021 05:59:50 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Fri, 21 May 2021 08:59:50 -0400
+Message-Id: <B1692FB6-D27A-4CEE-A5B4-C99195A6F4C2@gmail.com>
+References: <BN6PR19MB3138AF42C6927FF3CA550BC4A4299@BN6PR19MB3138.namprd19.prod.outlook.com>
+In-Reply-To: <BN6PR19MB3138AF42C6927FF3CA550BC4A4299@BN6PR19MB3138.namprd19.prod.outlook.com>
+To: Jeff S <e070832@hotmail.com>
+X-Mailer: iPhone Mail (18D70)
+Message-ID-Hash: XQJ3HPMG4VODOA7HWBE54B7Y274LKJZV
+X-Message-ID-Hash: XQJ3HPMG4VODOA7HWBE54B7Y274LKJZV
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] UHD Exception
+Subject: [USRP-users] Re: UHD Exception
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FOR2VPZ74T363TBQZ2OSYUOR6TWEBEGY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XQJ3HPMG4VODOA7HWBE54B7Y274LKJZV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I've been running an X310 for quite a while, and recently got the following message:
-
-    "[ERROR] [UHD] An unexpected exception was caught in a task loop.The task loop will now exit, things may not work.send: Network is unreachable"
-
-My current configuration is:
-
-Ubuntu 18.04
-UHD UHD-4.0 (8f27330, 3/16/21)
-GNU Radio v3.8.2.0-112-ge20ffa3c
-QNAP Thunderbolt 3 to 10GbE Adapter
-
-I got the message once yesterday and once today.  I have been using this configuration for weeks.  How would I troubleshoot this exception?
-
-Regards,
-Jeff
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T25jZSB0aGlzIGhhcHBlbnMsIGlzIHRoZSBYMzEwIHBpbmcgYWJsZT8gDQoNCldoYXQgZG9lcyBp
+ZmNvbmZpZyBzYXkgYWJvdXQgdGhlIGludGVyZmFjZT8NCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0K
+DQo+IE9uIE1heSAyMSwgMjAyMSwgYXQgODo1MSBBTSwgSmVmZiBTIDxlMDcwODMyQGhvdG1haWwu
+Y29tPiB3cm90ZToNCj4gDQo+IO+7v0kndmUgYmVlbiBydW5uaW5nIGFuIFgzMTAgZm9yIHF1aXRl
+IGEgd2hpbGUsIGFuZCByZWNlbnRseSBnb3QgdGhlIGZvbGxvd2luZyBtZXNzYWdlOg0KPiANCj4g
+ICAgIltFUlJPUl0gW1VIRF0gQW4gdW5leHBlY3RlZCBleGNlcHRpb24gd2FzIGNhdWdodCBpbiBh
+IHRhc2sgbG9vcC5UaGUgdGFzayBsb29wIHdpbGwgbm93IGV4aXQsIHRoaW5ncyBtYXkgbm90IHdv
+cmsuc2VuZDogTmV0d29yayBpcyB1bnJlYWNoYWJsZSINCj4gDQo+IE15IGN1cnJlbnQgY29uZmln
+dXJhdGlvbiBpczoNCj4gDQo+IFVidW50dSAxOC4wNA0KPiBVSEQgVUhELTQuMCAoOGYyNzMzMCwg
+My8xNi8yMSkNCj4gR05VIFJhZGlvIHYzLjguMi4wLTExMi1nZTIwZmZhM2MNCj4gUU5BUCBUaHVu
+ZGVyYm9sdCAzIHRvIDEwR2JFIEFkYXB0ZXINCj4gDQo+IEkgZ290IHRoZSBtZXNzYWdlIG9uY2Ug
+eWVzdGVyZGF5IGFuZCBvbmNlIHRvZGF5LiAgSSBoYXZlIGJlZW4gdXNpbmcgdGhpcyBjb25maWd1
+cmF0aW9uIGZvciB3ZWVrcy4gIEhvdyB3b3VsZCBJIHRyb3VibGVzaG9vdCB0aGlzIGV4Y2VwdGlv
+bj8NCj4gDQo+IFJlZ2FyZHMsDQo+IEplZmYNCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1
+c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAt
+dXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
