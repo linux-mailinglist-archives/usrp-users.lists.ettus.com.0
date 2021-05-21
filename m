@@ -2,349 +2,116 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 398D038C529
-	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 12:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CCBF38C71F
+	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 14:52:11 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EDE913857D9
-	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 06:43:20 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A98F03853A1
+	for <lists+usrp-users@lfdr.de>; Fri, 21 May 2021 08:52:09 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=student-ltu-se.20150623.gappssmtp.com header.i=@student-ltu-se.20150623.gappssmtp.com header.b="SHE2lga+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="M+5qcXOI";
 	dkim-atps=neutral
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 337EB3842FE
-	for <usrp-users@lists.ettus.com>; Fri, 21 May 2021 06:42:29 -0400 (EDT)
-Received: by mail-pj1-f47.google.com with SMTP id t11so10776480pjm.0
-        for <usrp-users@lists.ettus.com>; Fri, 21 May 2021 03:42:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=student-ltu-se.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QZx4yskY8/VUyRSMVhEb0zjxj3x/7QhHks95kTKj03U=;
-        b=SHE2lga+VXnft0YWY7OotAtNw6ebYsp3ob8GMGoaiWvohZHsemSSv2xQs81GdOIVTT
-         kob2T5cvBIl7+k+CidiIwAK2ahsX76vjd9UkYOA9lJp9bUKI30VEWYW57UDzdyhZdpwv
-         bv0m2eKlgIih+29gEW9B5/K7J2bNLdzApjwlmhn6vLWV1JorOP9orHrbiOMi6h5aC6jo
-         k7mZiS+FL80hkwB08SMF6EfdwnyDSt/GpgI68biJngPD29fyygGXiYqcAPIX5pDQj5Ek
-         ufRTdzM8Y0Uwuhaicwlj8cLm0ZmE6Fcic8OjoxGsrm+td6Nth9KTqelLMAmlvSfAgwbZ
-         ONZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QZx4yskY8/VUyRSMVhEb0zjxj3x/7QhHks95kTKj03U=;
-        b=mCCwHD9Qye1+U+GqXSBOEWI/WPwaJnm5v7HZOyJCRmYtWsWrvnWkA8Ig1uJJv0vMSy
-         4dzNfqls7+2ZTOCbtDrLdYEjhRDZ/Gafp/76gBvcfE2+8f/bzWA8IBOjajzP8iioJjF1
-         jsFsMMs3WsTisUE3bAHTNvkGqZgeSJdDodEBQL0W/+2/XK4HQVIaDI6vvpJ6UDtmazZQ
-         yLKnZ/Yt0uDIEgfb/XQfD1nJQJ/SljAi4uEaw0o2Phy5HPiA88IzpU5whu2uxTU4EDiB
-         AgP0sk4t2EvUiUTKRZmH5qM4/Niww3MVyyYmjVNTemFMaqgfe9IZ0Zckq1aR0C+fYTXE
-         wT/w==
-X-Gm-Message-State: AOAM531Yj4DKBQGiCyFZS6e90hCYpSaHJbe6jUpoZ4ffXy8hgtyG0dPN
-	5GPQ4faTQEhuqq3yCMq9iMPNuaD1aU4TdR2rwWbbhdShvas=
-X-Google-Smtp-Source: ABdhPJyT9CGZWrqcjlFJqjjL2JUOb2Fv/r2pHv1nvs9IbmDb8/01eR5l9JkdCEs9ZWiqondGahD9OZ5RoR5iObnjUgk=
-X-Received: by 2002:a17:90a:4a0e:: with SMTP id e14mr10626969pjh.209.1621593748196;
- Fri, 21 May 2021 03:42:28 -0700 (PDT)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11olkn2096.outbound.protection.outlook.com [40.92.20.96])
+	by mm2.emwd.com (Postfix) with ESMTPS id A383E3853B9
+	for <usrp-users@lists.ettus.com>; Fri, 21 May 2021 08:51:13 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YsYd97XghWrAJMwjLkz2jw5ODYHTW5D49MfJntzT8/WEgjNJUbcw3TGTjcSsM3wYvsRaZnmL4XRTwm9cLuRGtI7mhgSXpPirh/jvH8WK36lss2dQMXJSdXVXYVEQSgpnKE/+PPwOiIpX99xBtPZirRjS7eCaXJorXWOnfu0yJXnHClUbrvIi3r8oVxE7hOCa2npJvWDH0miBM5k0zSgnGf1CPphYO0o2XFTDBlkKSFncl5JpYCcEfGNBxK4If+d4+d0uwHQs8vPVknR+L7rDQX3SwGzjNefZdUetcJfWAajSRxBSchHEikdpNej/TL+c6mQpbGNYC4PJ4LUEpzpiSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W35kue1HaD/V0hPryfchMLt71f+FYwxWJeYP0pE6VkI=;
+ b=UfvSHpc8/FRjuBfa8HUYQ38Cpo70plCx7kfqu0mYfatlcweXzNDLdQYi5BeUeRpCSL5WZ2FdOjGLoNvXR6JHkbHxyszh0eHhzmp0BkOvw6uDFObE/EAaWQigyNcJaNV6Za9Py4eo7dwgw1oiL8I9jZt5NBZ/EvuCRb6Nbv1bhahrg98P2ZDwUkyNww+J+F5sx1Ey+F3NgFyu13BY0KyOdm5rzgcZlE/82Vn+j7v3HX/D51+FIv86C99fQ/EX8zIaIADD3crA00yunSD42vidKsofJKIJfIJCkRjYXio70/nUGJVYj2itpscYOp9qz6QtbSvvQ5jqN7CYKLXlBoiHTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=W35kue1HaD/V0hPryfchMLt71f+FYwxWJeYP0pE6VkI=;
+ b=M+5qcXOIvSZ6R6AhwXKDFvfKBdR40WQ7/t+KfBcnxSgdHE3jfj7xMVyDyGAFrqgyks7zebcXTidZ5pfbYEec1ZYK3Uja4b/DiXuN4J5sF5K0qm+riU0TQRHqBZmiqENby2DVYAEu/hrJZUkPTbgnbtFS42rw0KmjExhcRLOZrZ0spiAvbOb17JO6+tLshtYjtDayVo1uW3sxEvhltJ5DwHK8T7DJiHtsiKjOH5clL0NcTrLLyVIdn6rdov+4lfWnKigC7tNudzLrvEE2WNsrEtoNIziuiB/LxozBhHKuURvhMSTYQfMDDmgrC03mitUol5mTDhxko3ot1i9vneFN/A==
+Received: from CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
+ (2a01:111:e400:3861::4c) by
+ CO1NAM11HT241.eop-nam11.prod.protection.outlook.com (2a01:111:e400:3861::176)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25; Fri, 21 May
+ 2021 12:51:12 +0000
+Received: from BN6PR19MB3138.namprd19.prod.outlook.com
+ (2a01:111:e400:3861::4a) by CO1NAM11FT034.mail.protection.outlook.com
+ (2a01:111:e400:3861::248) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4129.25 via Frontend
+ Transport; Fri, 21 May 2021 12:51:12 +0000
+Received: from BN6PR19MB3138.namprd19.prod.outlook.com
+ ([fe80::280b:3971:eae4:e18f]) by BN6PR19MB3138.namprd19.prod.outlook.com
+ ([fe80::280b:3971:eae4:e18f%3]) with mapi id 15.20.4129.035; Fri, 21 May 2021
+ 12:51:12 +0000
+From: Jeff S <e070832@hotmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: UHD Exception
+Thread-Index: AQHXTj7L9+Eshi9Yi0m7ZGBrmRb5VQ==
+Date: Fri, 21 May 2021 12:51:12 +0000
+Message-ID: 
+ <BN6PR19MB3138AF42C6927FF3CA550BC4A4299@BN6PR19MB3138.namprd19.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: 
+ OriginalChecksum:A2F9F0F4D30C1EB423AFF867DD95CFDC580F7E752D6247287431D6C4D206F1E2;UpperCasedChecksum:8B681BEBA3656E1301EFE64A120B629C94B0BC4A6383811DD2EC0782651420BF;SizeAsReceived:6574;Count:41
+x-tmn: [VWZh5nStorpTqCAEtFafSp1bj1cIx5Ud]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 41
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: aaca27fd-cf96-4cf0-4f02-08d91c571d30
+x-ms-traffictypediagnostic: CO1NAM11HT241:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ sGpe1as0MjWzLDp2r4bkth29TyaVdO/2E4HszNRjIySTggokTaSRuQ3DK5syxq1s7WWxbNTTgBIlJWO3uwfvzBgThLqfimaxOZ5lNxaW6+lGHNS6shuLKOBNhhuqVv71gJG43/oBx4JsrF94ILh9wgxv+jvMtyyVo+aUcB0PAaROq2eHXX2DwpTxgnATI54Q90dgY/qbmVm0S0F6F1v3FFhS4Q9gqnGKGN7xKuqnsY+qmErUjqt82wH0EJlzqMTAGnD+qQMn+RHAGL4KYaA63bPmdOcpN5mC6oAFjvHK2WrllZzqnm3gX9aPRdJ04E50ETeM/x54IIhfpVwiXPX7PPFM6KTEEhWj+NEJrg/8YFu7gjPaqk85uSRQBVMFzRS8RU/7YwzynsvzL80jrQS1vA==
+x-ms-exchange-antispam-messagedata: 
+ 7LJIC7XWRIEmu9a/1houUwVrtJzOdmUYO+A5/IIFkDOtn5y6hfuolf8Q7f//2L2Y+d3dO6Y+z/bG+LyBr6f6C5x8s1NXD3kkmYc5cP92sz6sZ5rBFUVL5ounqk4kbWti4fWFd/MYIfEuhvf8Nm0bcQ==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CADjF3Px5e2rjFJG+CtMwkWFSAPw4eVsvt7sPDcpoDphnmrdjdA@mail.gmail.com>
- <20d26f00-f3ec-7813-e448-51c455d857cd@ettus.com>
-In-Reply-To: <20d26f00-f3ec-7813-e448-51c455d857cd@ettus.com>
-Date: Fri, 21 May 2021 12:42:17 +0200
-Message-ID: <CADjF3PwZ8YtHiZfZzQapznKM=e-FNX49Qjp75bp0vDioKZoHsw@mail.gmail.com>
-To: =?UTF-8?Q?Marcus_M=C3=BCller?= <marcus.mueller@ettus.com>
-Message-ID-Hash: Q5T3OL2E3O4NSNXYCI4J3NVUKOQCSVRF
-X-Message-ID-Hash: Q5T3OL2E3O4NSNXYCI4J3NVUKOQCSVRF
-X-MailFrom: marelf-5@student.ltu.se
+X-OriginatorOrg: hotmail.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT034.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: aaca27fd-cf96-4cf0-4f02-08d91c571d30
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 May 2021 12:51:12.6124
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1NAM11HT241
+Message-ID-Hash: NFWPHXPTJ7J33T3F7QIRXGAOJPC35QKW
+X-Message-ID-Hash: NFWPHXPTJ7J33T3F7QIRXGAOJPC35QKW
+X-MailFrom: e070832@hotmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: GPP requirements for USRP B210 amsat
+Subject: [USRP-users] UHD Exception
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q5T3OL2E3O4NSNXYCI4J3NVUKOQCSVRF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FOR2VPZ74T363TBQZ2OSYUOR6TWEBEGY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Martin Elfvelin via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Martin Elfvelin <marelf-5@student.ltu.se>
-Content-Type: multipart/mixed; boundary="===============5117284504934302968=="
-
---===============5117284504934302968==
-Content-Type: multipart/alternative; boundary="00000000000054ec2e05c2d4b7a0"
-
---00000000000054ec2e05c2d4b7a0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello Marcus,
-
-Many thanks for your reply. The ground station is intended to primarily
-support future educational CubeSat projects so it's difficult to say
-exactly what communications protocols will be used but you are right to
-assume common amsat modes. Currently we are developing a 1U cubesat that
-will use a 9.6 kbps GFSK/ASM+Golay/Reed Solomon configuration. However it
-might be of interest in the future to add support for reception of higher
-frequencies and data rates (say amateur S-band for example) which would
-mean adding another SDR to the same PC and there I'm worried about creating
-a bottleneck in terms of computing power. Thank you for the links I will
-have a look and investigate further.
-
-Best regards,
-Martin
-
-On Fri, May 21, 2021 at 11:16 AM Marcus M=C3=BCller <marcus.mueller@ettus.c=
-om>
-wrote:
-
-> Hi Martin,
->
-> that's a bit of a wide field there :) In essence, there's not a single
-> answer to your
-> question: whether your hardware is sufficiently fast depends on what you
-> do with it!
->
-> For example: 192 kb/s is really not much data to process, if there's a
-> simple (say,
-> Hamming(4,7) ) error-correcting code to be decoded on it. It's going to b=
-e
-> tough to
-> calculate if it's been through a large LDPC code and you want to do 50
-> iterations of a
-> message passing decoder to really get even the last bit out of your
-> channel.
->
-> But, you say "amateur satellite communications", which probably at a firs=
-t
-> approximation
-> means you're using modes that are currently common in that community, or
-> such that are
-> currently constructed with complexity in mind. So, yeah. Most things
-> *should* work on the
-> four 1.5 GHz ARM Cortex-A72 cores of a raspberry pi 4 Model B. Note that
-> there's very
-> different Raspberry Pi models, so make sure you get the latest generation=
-.
-> Also note that
-> your Raspberry Pi doesn't have to do *all* the work, if in doubt: for
-> example, the
-> relatively compute-intense steps could be, on demand, done on a laptop
-> with significantly
-> more computational power.
->
-> So, it should work. However, that's a "should": I've got exactly zero
-> knowledge of people
-> who have done that, and a back-of-envelop calculation saying, hm, yeah,
-> that compute power
-> should suffice assuming the usage of sufficiently optimized software
-> doesn't say
-> sufficiently optimized software is available to you. But honestly, I thin=
-k
-> there's really
-> a treasure trove of online information and working groups on that topic.
-> Maybe pay the GNU
-> Radio Amateur Radio Working Group a virtual visit [1]; I'm sure there's
-> much experience
-> with satellite comms in that channel. If text-chatting isn't very much
-> your thing, maybe
-> also try showing up to one of their monthly video calls[2], and hang
-> around before or
-> after the invited talk and chat a bit.
->
-> Of course, as the largest community of citizen-operated satellite
-> groundstations, I bet
-> satnogs[3] has guidance on hardware. I do know they have raspberry Pi
-> images, but I
-> honestly don't know whether they're doing the digital communications part
-> on that, or
-> whether they are just recording the spectrum and maybe do some simple
-> demodulation (FM
-> demod?). Admittedly, and regrettably, not my prime area of expertise.
-> However, whenever I
-> meet satnogs people, they're a friendly bunch! They have a well-kept
-> online forum[4],
-> that's very active, and also a matrix presence[5].
->
-> Best regards,
->
-> Marcus
->
-> [1] via Matrix chat: #HamRadio:gnuradio.org; easily reachable via
-> https://chat.gnuradio.org/#/room/#HamRadio:gnuradio.org
-> [2] https://wiki.gnuradio.org/index.php/Talk:HamRadio
-> [3] https://wiki.satnogs.org/Main_Page
-> [4] https://community.libre.space/t/new-users-welcome/29
-> [5] #satnogs:matrix.org (I think you really might want to have a Matrix
-> account on some
-> arbitrary homeserver ;) )
->
-> On 21.05.21 10:20, Martin Elfvelin via USRP-users wrote:
-> > Hello all,
-> >
-> > I'm building a ground station for amateur satellite communications on
-> the VHF and UHF
-> > bands using a B210. The SDR will be connected to a mini-pc and I'm
-> trying to figure out
-> > the system requirements. The PC will be controlling the SDR, running th=
-e
-> signal
-> > processing at low data rates (4k8 - 19k2 bps) as well as controlling
-> other hardware.
-> > Basically the PC is the brain of the ground station. I've seen people
-> making ground
-> > stations with Raspberry Pi but I'm wondering if 1.5 GHz quad core is
-> enough processing
-> > power in this case. Any help would be much appreciated.
-> >
-> > Best regards
-> > Martin Elfvelin
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000054ec2e05c2d4b7a0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello Marcus,</div><div><br></div><div>Many thanks fo=
-r your reply. The ground station is intended to primarily support future ed=
-ucational CubeSat projects so it&#39;s difficult to say exactly what commun=
-ications protocols will be used but you are right to assume common amsat mo=
-des. Currently we are developing a 1U cubesat that will use a 9.6 kbps GFSK=
-/ASM+Golay/Reed Solomon configuration. However it might be of interest in t=
-he future to add support for reception of higher frequencies and data rates=
- (say amateur S-band for example) which would mean adding another SDR to th=
-e same PC and there I&#39;m worried about creating a bottleneck in terms of=
- computing power. Thank you for the links I will have a look and investigat=
-e further.</div><div><br></div><div>Best regards,</div><div>Martin<br></div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Fri, May 21, 2021 at 11:16 AM Marcus M=C3=BCller &lt;<a href=3D"mailto:=
-marcus.mueller@ettus.com">marcus.mueller@ettus.com</a>&gt; wrote:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Martin,<br>
-<br>
-that&#39;s a bit of a wide field there :) In essence, there&#39;s not a sin=
-gle answer to your<br>
-question: whether your hardware is sufficiently fast depends on what you do=
- with it!<br>
-<br>
-For example: 192 kb/s is really not much data to process, if there&#39;s a =
-simple (say,<br>
-Hamming(4,7) ) error-correcting code to be decoded on it. It&#39;s going to=
- be tough to<br>
-calculate if it&#39;s been through a large LDPC code and you want to do 50 =
-iterations of a<br>
-message passing decoder to really get even the last bit out of your channel=
-.<br>
-<br>
-But, you say &quot;amateur satellite communications&quot;, which probably a=
-t a first approximation<br>
-means you&#39;re using modes that are currently common in that community, o=
-r such that are<br>
-currently constructed with complexity in mind. So, yeah. Most things *shoul=
-d* work on the<br>
-four 1.5 GHz ARM Cortex-A72 cores of a raspberry pi 4 Model B. Note that th=
-ere&#39;s very<br>
-different Raspberry Pi models, so make sure you get the latest generation. =
-Also note that<br>
-your Raspberry Pi doesn&#39;t have to do *all* the work, if in doubt: for e=
-xample, the<br>
-relatively compute-intense steps could be, on demand, done on a laptop with=
- significantly<br>
-more computational power.<br>
-<br>
-So, it should work. However, that&#39;s a &quot;should&quot;: I&#39;ve got =
-exactly zero knowledge of people<br>
-who have done that, and a back-of-envelop calculation saying, hm, yeah, tha=
-t compute power<br>
-should suffice assuming the usage of sufficiently optimized software doesn&=
-#39;t say<br>
-sufficiently optimized software is available to you. But honestly, I think =
-there&#39;s really<br>
-a treasure trove of online information and working groups on that topic. Ma=
-ybe pay the GNU<br>
-Radio Amateur Radio Working Group a virtual visit [1]; I&#39;m sure there&#=
-39;s much experience<br>
-with satellite comms in that channel. If text-chatting isn&#39;t very much =
-your thing, maybe<br>
-also try showing up to one of their monthly video calls[2], and hang around=
- before or<br>
-after the invited talk and chat a bit.<br>
-<br>
-Of course, as the largest community of citizen-operated satellite groundsta=
-tions, I bet<br>
-satnogs[3] has guidance on hardware. I do know they have raspberry Pi image=
-s, but I<br>
-honestly don&#39;t know whether they&#39;re doing the digital communication=
-s part on that, or<br>
-whether they are just recording the spectrum and maybe do some simple demod=
-ulation (FM<br>
-demod?). Admittedly, and regrettably, not my prime area of expertise. Howev=
-er, whenever I<br>
-meet satnogs people, they&#39;re a friendly bunch! They have a well-kept on=
-line forum[4],<br>
-that&#39;s very active, and also a matrix presence[5].<br>
-<br>
-Best regards,<br>
-<br>
-Marcus<br>
-<br>
-[1] via Matrix chat: #HamRadio:<a href=3D"http://gnuradio.org" rel=3D"noref=
-errer" target=3D"_blank">gnuradio.org</a>; easily reachable via<br>
-<a href=3D"https://chat.gnuradio.org/#/room/%23HamRadio:gnuradio.org" rel=
-=3D"noreferrer" target=3D"_blank">https://chat.gnuradio.org/#/room/#HamRadi=
-o:gnuradio.org</a><br>
-[2] <a href=3D"https://wiki.gnuradio.org/index.php/Talk:HamRadio" rel=3D"no=
-referrer" target=3D"_blank">https://wiki.gnuradio.org/index.php/Talk:HamRad=
-io</a><br>
-[3] <a href=3D"https://wiki.satnogs.org/Main_Page" rel=3D"noreferrer" targe=
-t=3D"_blank">https://wiki.satnogs.org/Main_Page</a><br>
-[4] <a href=3D"https://community.libre.space/t/new-users-welcome/29" rel=3D=
-"noreferrer" target=3D"_blank">https://community.libre.space/t/new-users-we=
-lcome/29</a><br>
-[5] #satnogs:<a href=3D"http://matrix.org" rel=3D"noreferrer" target=3D"_bl=
-ank">matrix.org</a> (I think you really might want to have a Matrix account=
- on some<br>
-arbitrary homeserver ;) )<br>
-<br>
-On 21.05.21 10:20, Martin Elfvelin via USRP-users wrote:<br>
-&gt; Hello all,<br>
-&gt;<br>
-&gt; I&#39;m building a ground station for amateur satellite communications=
- on the VHF and UHF<br>
-&gt; bands using a B210. The SDR will be connected to a mini-pc and I&#39;m=
- trying to figure out<br>
-&gt; the system requirements. The PC will be controlling the SDR, running t=
-he signal<br>
-&gt; processing at low data rates (4k8 - 19k2 bps) as well as controlling o=
-ther hardware.<br>
-&gt; Basically the PC is the brain of the ground station. I&#39;ve seen peo=
-ple making ground<br>
-&gt; stations with Raspberry Pi but I&#39;m wondering if 1.5 GHz quad core =
-is enough processing<br>
-&gt; power in this case. Any help would be much appreciated.<br>
-&gt;<br>
-&gt; Best regards<br>
-&gt; Martin Elfvelin<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000054ec2e05c2d4b7a0--
-
---===============5117284504934302968==
 Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
+I've been running an X310 for quite a while, and recently got the following message:
+
+    "[ERROR] [UHD] An unexpected exception was caught in a task loop.The task loop will now exit, things may not work.send: Network is unreachable"
+
+My current configuration is:
+
+Ubuntu 18.04
+UHD UHD-4.0 (8f27330, 3/16/21)
+GNU Radio v3.8.2.0-112-ge20ffa3c
+QNAP Thunderbolt 3 to 10GbE Adapter
+
+I got the message once yesterday and once today.  I have been using this configuration for weeks.  How would I troubleshoot this exception?
+
+Regards,
+Jeff
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============5117284504934302968==--
