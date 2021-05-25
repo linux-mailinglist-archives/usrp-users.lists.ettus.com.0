@@ -2,117 +2,157 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEA943900B7
-	for <lists+usrp-users@lfdr.de>; Tue, 25 May 2021 14:16:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 849693900E2
+	for <lists+usrp-users@lfdr.de>; Tue, 25 May 2021 14:24:09 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BCC7D384296
-	for <lists+usrp-users@lfdr.de>; Tue, 25 May 2021 08:16:20 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="yeXaQwmk";
-	dkim-atps=neutral
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8F2D438416D
-	for <usrp-users@lists.ettus.com>; Tue, 25 May 2021 08:15:23 -0400 (EDT)
-Received: by mail-wm1-f41.google.com with SMTP id b7so16023805wmh.5
-        for <usrp-users@lists.ettus.com>; Tue, 25 May 2021 05:15:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=fpPtuf/m35ZsNdxGQorw0izSTHh7xkwtUYIYak1nxIk=;
-        b=yeXaQwmkyNFMK36v04zTHERldblQzG++4hVPOoGRwZRYf9yaswZ8866XQiFUDOevlq
-         D2XSLyLDNmPyxedNrQEoCOHPeNg6l1Sv4jqAFRgIS6NvQzZDh2jYdteWG/gT2f75dwPO
-         FfkDUy5r3p98dIkBFr4IeUeCdpdB8rkrQD/FBF1T38tFC/o6RwLH1S4/MGugE3IV0/lT
-         2l3pqTWvWfMyud+i/mF9ny+I4FwXL+EYD8TLYFc73eexUhzggo9odHWA/qoAGSkgcrOS
-         RgfaNlkKb60KXf0pPbxPIo6/zbC/IBWCqKoTSwTbCLA/dv0kF+5RnDc2F9I6IM9bX2jA
-         6LvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=fpPtuf/m35ZsNdxGQorw0izSTHh7xkwtUYIYak1nxIk=;
-        b=bgnsy6dYxNkcyd1Fa65SvaG4T5RHXxzYNY2ilhb0TaalyCKvM2JfqLOhNc9JvuA5hg
-         E+IG2B1Z7uUqvKt+u9vPibaPDZ8n2sjYdEPLIHhm1glNih139ri+DZvFKJvJRu7ai9fD
-         pEylaEvpNF+32eZtjK9HK4md4R3cWKqpQgrCwDXnaS+dkD8hf2RU80Swq2li7AXheovY
-         AfzW4Ka1/b8w+xPCbAi3hMlTyK2tKKd5njN20NIGTqW72/ZA+qRFqVT9R5cyllj5/HNd
-         4VVgf06h+b+F4F3wf1K9kTDvv2OO+VHllEJZub3g7wKiAm9agE6CIar5RfVLNX4giohB
-         V/4Q==
-X-Gm-Message-State: AOAM5306+44cTn48ReM0PotUme8zPzpYx0ldSyVRFbKLa6vPgiH3etzX
-	5Q0a7z5x6YGekkpkW/8CvgPiqhfjGbgRCYq4
-X-Google-Smtp-Source: ABdhPJxaClvKq2yUEpURSq6QecXlxqL42O0t+waYZz3rbNva6oSSiEdTa/jiXu+zS2IDH36bcJduUA==
-X-Received: by 2002:a05:600c:22c5:: with SMTP id 5mr3659441wmg.40.1621944922235;
-        Tue, 25 May 2021 05:15:22 -0700 (PDT)
-Received: from [192.168.128.8] (HSI-KBW-46-223-162-222.hsi.kabel-badenwuerttemberg.de. [46.223.162.222])
-        by smtp.gmail.com with ESMTPSA id f1sm18135338wrr.63.2021.05.25.05.15.21
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 May 2021 05:15:21 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <2a9683d393b9962474a1e25b84853e3a@mail.rambler.ru>
- <0f34e1d2b5e7b77bc818377793c427dd@mail.rambler.ru>
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Message-ID: <aa2c4e08-eca3-17d6-cc65-5fabf20b5396@ettus.com>
-Date: Tue, 25 May 2021 14:15:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
-MIME-Version: 1.0
+	by mm2.emwd.com (Postfix) with ESMTP id 88571384023
+	for <lists+usrp-users@lfdr.de>; Tue, 25 May 2021 08:24:08 -0400 (EDT)
+Received: from mxout2.rambler.ru (mxout2.rambler.ru [81.19.78.101])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1ADAF383FCA
+	for <usrp-users@lists.ettus.com>; Tue, 25 May 2021 08:23:11 -0400 (EDT)
+Received: from localhost (0vm0040.prod.mail.rambler.tech [10.132.200.30])
+	by mxout2.rambler.ru (Postfix) with ESMTP id 9868C8DC0B7
+	for <usrp-users@lists.ettus.com>; Tue, 25 May 2021 15:23:10 +0300 (MSK)
+Date: Tue, 25 May 2021 12:23:10 +0000
+Mime-Version: 1.0
+Message-Id: <830ab06b95e9d2802b0a4a2455f6b301@mail.rambler.ru>
 In-Reply-To: <0f34e1d2b5e7b77bc818377793c427dd@mail.rambler.ru>
-Content-Language: en-US
-Message-ID-Hash: KBSQDUET2MXGZPB55MDAC346LNUEESNC
-X-Message-ID-Hash: KBSQDUET2MXGZPB55MDAC346LNUEESNC
-X-MailFrom: marcus.mueller@ettus.com
+References: <0f34e1d2b5e7b77bc818377793c427dd@mail.rambler.ru>
+	<2a9683d393b9962474a1e25b84853e3a@mail.rambler.ru>
+To: "Usrp Users" <usrp-users@lists.ettus.com>
+X-Mailer: Rambler Compose (1018495), https://mail.rambler.ru
+Message-ID-Hash: 7PIFO7755ZCZNCPCE3SEMNPHOQVNEG4D
+X-Message-ID-Hash: 7PIFO7755ZCZNCPCE3SEMNPHOQVNEG4D
+X-MailFrom: andrew4010@rambler.ru
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: tune speed
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KBSQDUET2MXGZPB55MDAC346LNUEESNC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7PIFO7755ZCZNCPCE3SEMNPHOQVNEG4D/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: =?utf-8?b?0JDQvdC00YDQtdC5INCQIHZpYSBVU1JQLXVzZXJz?= <usrp-users@lists.ettus.com>
+Reply-To: =?UTF-8?b?0JDQvdC00YDQtdC5INCQ?= <andrew4010@rambler.ru>
+Content-Type: multipart/mixed; boundary="===============8845706641674912620=="
 
-SSBkaWRuJ3QgZ2V0IHlvdXIgY29kZSwgc29ycnkuIE1heWJlIHlvdSBjYW4gZGVzY3JpYmUgaG93
-IHlvdSdyZSBtZWFzdXJpbmcgdHVuaW5nIHNwZWVkPw0KRG8geW91IGhhdmUgc29tZSBleHRlcm5h
-bCBtZXRlciwgb3IgZG8geW91IG9ic2VydmUgdGhlIFRYIGZyZXF1ZW5jeSBvbiB5b3VyIFJYIHVz
-aW5nIHRoZQ0Kc2FtZSBVU1JQPw0KDQpCZXN0IHJlZ2FyZHMsDQpNYXJjdXMNCg0KRElTQ0xBSU1F
-UjogQW55IGF0dGFjaGVkIENvZGUgaXMgcHJvdmlkZWQgQXMgSXMuIEl0IGhhcyBub3QgYmVlbiB0
-ZXN0ZWQgb3IgdmFsaWRhdGVkIGFzIGEgcHJvZHVjdCwgZm9yIHVzZSBpbiBhIGRlcGxveWVkIGFw
-cGxpY2F0aW9uIG9yIHN5c3RlbSwgb3IgZm9yIHVzZSBpbiBoYXphcmRvdXMgZW52aXJvbm1lbnRz
-LiBZb3UgYXNzdW1lIGFsbCByaXNrcyBmb3IgdXNlIG9mIHRoZSBDb2RlLiBVc2Ugb2YgdGhlIENv
-ZGUgaXMgc3ViamVjdCB0byB0ZXJtcyBvZiB0aGUgbGljZW5zZXMgdG8gdGhlIFVIRCBvciBSRk5v
-QyBjb2RlIHdpdGggd2hpY2ggdGhlIENvZGUgaXMgdXNlZC4gU3RhbmRhcmQgbGljZW5zZXMgdG8g
-VUhEIGFuZCBSRk5vQyBjYW4gYmUgZm91bmQgYXQgaHR0cHM6Ly93d3cuZXR0dXMuY29tL3Nkci1z
-b2Z0d2FyZS9saWNlbnNlcy8uDQoNCk5JIHdpbGwgb25seSBwZXJmb3JtIHNlcnZpY2VzIGJhc2Vk
-IG9uIGl0cyB1bmRlcnN0YW5kaW5nIGFuZCBjb25kaXRpb24gdGhhdCB0aGUgZ29vZHMgb3Igc2Vy
-dmljZXMgKGkpIGFyZSBub3QgZm9yIHRoZSB1c2UgaW4gdGhlIHByb2R1Y3Rpb24gb3IgZGV2ZWxv
-cG1lbnQgb2YgYW55IGl0ZW0gcHJvZHVjZWQsIHB1cmNoYXNlZCwgb3Igb3JkZXJlZCBieSBhbnkg
-ZW50aXR5IHdpdGggYSBmb290bm90ZSAxIGRlc2lnbmF0aW9uIGluIHRoZSBsaWNlbnNlIHJlcXVp
-cmVtZW50IGNvbHVtbiBvZiBTdXBwbGVtZW50IE5vLiA0IHRvIFBhcnQgNzQ0LCBVLlMuIEV4cG9y
-dCBBZG1pbmlzdHJhdGlvbiBSZWd1bGF0aW9ucyBhbmQgKGlpKSBzdWNoIGEgY29tcGFueSBpcyBu
-b3QgYSBwYXJ0eSB0byB0aGUgdHJhbnNhY3Rpb24uICBJZiBvdXIgdW5kZXJzdGFuZGluZyBpcyBp
-bmNvcnJlY3QsIHBsZWFzZSBub3RpZnkgdXMgaW1tZWRpYXRlbHkgYmVjYXVzZSBhIHNwZWNpZmlj
-IGF1dGhvcml6YXRpb24gbWF5IGJlIHJlcXVpcmVkIGZyb20gdGhlIFUuUy4gQ29tbWVyY2UgRGVw
-YXJ0bWVudCBiZWZvcmUgdGhlIHRyYW5zYWN0aW9uIG1heSBwcm9jZWVkIGZ1cnRoZXIuDQoNCk9u
-IDI1LjA1LjIxIDEzOjM5LCDQkNC90LTRgNC10Lkg0JAgdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQo+
-IE15IGNvZGUgaW7CoGF0dGFjaG1lbnRzLg0KPiBUaGVyZSBpcyBhIHNpbXBsZSB0ZXN0LiBPUyBX
-aW4xMC4NCj4NCj4NCj4gLg0KPg0KPiAgICAgMjUuMDUuMjAyMSwgMTQ6MTcsINCQ0L3QtNGA0LXQ
-uSDQkCA8YW5kcmV3NDAxMEByYW1ibGVyLnJ1IDxtYWlsdG86YW5kcmV3NDAxMEByYW1ibGVyLnJ1
-Pj4NCj4gICAgIEhlbGxvDQo+DQo+ICAgICBJIHdhbnQgdG8gdXNlIHRoZSBYMzAwIHRvIGdldCBh
-IHdpZGUgc3BlY3RyYWwgcGFub3JhbWEgYnV0IGdvdCBhIHNsb3cgc3BlZWQuDQo+ICAgICBUaGFu
-IEnCoGNvbXBhcmVkIHR1bmUgc3BlZWQgWDMwMCB3aXRoIEIyMDBtaW5pIGFuZCBnb3TCoHRoYXQg
-dGhlIGZpcnN0IGxvc2VzIGFsbW9zdCB0d2ljZS4NCj4gICAgIElzIHRoZXJlIGNvcnJlY3Q/IFdo
-aWNoIGJvYXJkIGFsbG93cyBzeW50aGVzaXplciB0dW5lcyBpbiBsZXNzIHRoYW4gMTBtcz8NCj4N
-Cj4gICAgIFNvdXJjZSBjb2RlIGFuZCB0ZXJtaW5hbCBzY3JlZW5zaG90cyBpbiBhdHRhY2htZW50
-cy4NCj4NCj4NCj4gICAgIFRoYW5rIHlvdQ0KPiAgICAgLg0KPg0KPg0KPg0KPg0KPg0KPiBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNj
-cmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJl
-IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============8845706641674912620==
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/alternative;
+	boundary="==bound.0.4fb60ca2f73264b068b523a2bc1f40b4.mail.rambler.ru=="
+
+--==bound.0.4fb60ca2f73264b068b523a2bc1f40b4.mail.rambler.ru==
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8
+
+#include <stdio.h> #include <time.h> #include <uhd.h>
+#define SR 25 #define BW 20 #define MHzToHz 1e+6
+uint64_t get_posix_clock_time () { struct timespec ts;
+if (clock_gettime (CLOCK_MONOTONIC, &ts) =3D=3D 0) return (uint64_t) (ts.tv=
+_sec * 1000000 + ts.tv_nsec / 1000); else return 0; }
+uhd_error createLockedSensor(uhd_usrp_handle hDevice,uhd_sensor_value_handl=
+e *hSensor) { uhd_error r;
+r =3D uhd_sensor_value_make_from_bool(hSensor,"lo_locked",false,"true","fal=
+se"); if (r) return r;
+r =3D uhd_usrp_get_rx_sensor(hDevice,"lo_locked",0,hSensor); if (r) uhd_sen=
+sor_value_free(hSensor); return r; }
+uhd_error setFreq(uhd_usrp_handle hDevice,uhd_sensor_value_handle hSensor,d=
+ouble f) { uhd_tune_request_t tune_request =3D {.target_freq =3D f,.rf_freq=
+_policy =3D UHD_TUNE_REQUEST_POLICY_AUTO,.dsp_freq_policy =3D UHD_TUNE_REQU=
+EST_POLICY_AUTO, }; uhd_tune_result_t tune_result;
+uhd_error r; bool lo_locked;
+r =3D uhd_usrp_set_rx_freq(hDevice,&tune_request,0,&tune_result); if(r=3D=
+=3DUHD_ERROR_NONE && hSensor) do { uhd_sensor_value_to_bool(hSensor,&lo_loc=
+ked); } while (!lo_locked);
+return r; }
+int main() { uhd_error r;
+uhd_usrp_handle hDevice =3D 0; uhd_sensor_value_handle hSensor=3D0;
+r =3D uhd_usrp_make(&hDevice,""); if (r) goto free_device;
+r =3D createLockedSensor(hDevice,&hSensor); if (r) goto free_device;
+if (hDevice) { int f_start,f_count;
+printf ("Enter start freq [MHz]: "); scanf ("%d",&f_start);
+printf ("Enter freq count: "); scanf ("%d",&f_count); if (f_count < 1) goto=
+ free_device;
+uint64_t t0,t;
+bool reverse =3D false;
+for(int k=3D3;k>0;--k) { int f;
+if (reverse) f =3D f_start+BW*(f_count-1); else f =3D f_start;
+t=3Dget_posix_clock_time(); for(int i=3D0;i<f_count;i++) { t0 =3D get_posix=
+_clock_time(); setFreq(hDevice,hSensor,f*MHzToHz); t0 =3D get_posix_clock_t=
+ime() - t0; printf ("f: %d t: %2.1f \n",f,t0*1e-3); f =3D (reverse) ? f-BW:=
+f+BW; } t =3D get_posix_clock_time() - t;
+reverse=3D!reverse;
+printf (">> scan time: %2.1f \n",t*1e-3); } }
+free_device: if (hDevice) uhd_usrp_free(&hDevice); if (hSensor) uhd_sensor_=
+value_free(&hSensor);
+return 0; }
+
+--==bound.0.4fb60ca2f73264b068b523a2bc1f40b4.mail.rambler.ru==
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+Content-Type: text/html; charset=utf-8
+
+<div><div>#include &lt;stdio.h&gt;<br>#include &lt;time.h&gt;<br>#include &=
+lt;uhd.h&gt;</div><div>#define SR 25<br>#define BW 20<br>#define MHzToHz 1e=
++6</div><div>uint64_t get_posix_clock_time ()<br>{<br> struct timespec ts;<=
+/div><div>if (clock_gettime (CLOCK_MONOTONIC, &amp;ts) =3D=3D 0)<br> return=
+ (uint64_t) (ts.tv_sec * 1000000 + ts.tv_nsec / 1000);<br> else<br> return =
+0;<br>}</div><div>uhd_error createLockedSensor(uhd_usrp_handle hDevice,uhd_=
+sensor_value_handle *hSensor)<br>{<br> uhd_error r;</div><div>r =3D uhd_sen=
+sor_value_make_from_bool(hSensor,"lo_locked",false,"true","false");<br> if =
+(r) return r;</div><div>r =3D uhd_usrp_get_rx_sensor(hDevice,"lo_locked",0,=
+hSensor);<br> if (r)<br> uhd_sensor_value_free(hSensor);<br> return r;<br>}=
+</div><div>uhd_error setFreq(uhd_usrp_handle hDevice,uhd_sensor_value_handl=
+e hSensor,double f)<br>{<br> uhd_tune_request_t tune_request =3D<br> {<br> =
+.target_freq =3D f,<br> .rf_freq_policy =3D UHD_TUNE_REQUEST_POLICY_AUTO,<b=
+r> .dsp_freq_policy =3D UHD_TUNE_REQUEST_POLICY_AUTO,<br> };<br> uhd_tune_r=
+esult_t tune_result;</div><div>uhd_error r;<br> bool lo_locked;</div><div>r=
+ =3D uhd_usrp_set_rx_freq(hDevice,&amp;tune_request,0,&amp;tune_result);<br=
+> if(r=3D=3DUHD_ERROR_NONE &amp;&amp; hSensor)<br> do<br> {<br> uhd_sensor_=
+value_to_bool(hSensor,&amp;lo_locked);<br> }<br> while (!lo_locked);</div><=
+div>return r;<br>}</div><div>int main()<br>{<br> uhd_error r;</div><div>uhd=
+_usrp_handle hDevice =3D 0;<br> uhd_sensor_value_handle hSensor=3D0;</div><=
+div>r =3D uhd_usrp_make(&amp;hDevice,"");<br> if (r) goto free_device;</div=
+><div>r =3D createLockedSensor(hDevice,&amp;hSensor);<br> if (r) goto free_=
+device;</div><div>if (hDevice)<br> {<br> int f_start,f_count;</div><div>pri=
+ntf ("Enter start freq [MHz]: ");<br> scanf ("%d",&amp;f_start);</div><div>=
+printf ("Enter freq count: ");<br> scanf ("%d",&amp;f_count);<br> if (f_cou=
+nt &lt; 1) goto free_device;</div><div>uint64_t t0,t;</div><div>bool revers=
+e =3D false;</div><div>for(int k=3D3;k&gt;0;--k)<br> {<br> int f;</div><div=
+>if (reverse)<br> f =3D f_start+BW*(f_count-1);<br> else<br> f =3D f_start;=
+</div><div>t=3Dget_posix_clock_time();<br> for(int i=3D0;i&lt;f_count;i++)<=
+br> {<br> t0 =3D get_posix_clock_time();<br> setFreq(hDevice,hSensor,f*MHzT=
+oHz);<br> t0 =3D get_posix_clock_time() - t0;<br> printf ("f: %d t: %2.1f \=
+n",f,t0*1e-3);<br> f =3D (reverse) ? f-BW:f+BW;<br> }<br> t =3D get_posix_c=
+lock_time() - t;</div><div>reverse=3D!reverse;</div><div>printf ("&gt;&gt; =
+scan time: %2.1f \n",t*1e-3);<br> }<br> }</div><div>free_device:<br> if (hD=
+evice)<br> uhd_usrp_free(&amp;hDevice);<br> if (hSensor)<br> uhd_sensor_val=
+ue_free(&amp;hSensor);</div><div>return 0;<br>}<br></div></div><div><div cl=
+ass=3D"messageBodyContainer" id=3D"part0"><div class=3D"messageBodyContaine=
+r isInnerPart" id=3D"part2"><div class=3D"messageBody isFormattedText"><div=
+ class=3D"RMCRKHDE"><div class=3D"RMCRKHDE messageBodyContainer" id=3D"RMCR=
+KHDEpart0"><div class=3D"RMCRKHDE messageBodyContainer" id=3D"RMCRKHDEpart"=
+><div class=3D"RMCRKHDE messageBodyContainer" id=3D"RMCRKHDEpart"><br></div=
+></div><div class=3D"RMCRKHDE messageBodyContainer isInnerPart" id=3D"RMCRK=
+HDEpart3"><div class=3D"RMCRKHDE messageBodyContainer" id=3D"RMCRKHDEpart3"=
+><br></div></div><div class=3D"RMCRKHDE messageBodyContainer" id=3D"RMCRKHD=
+Epart"><div class=3D"RMCRKHDE messageBodyContainer" id=3D"RMCRKHDEpart"><br=
+></div></div></div></div></div></div></div></div>
+--==bound.0.4fb60ca2f73264b068b523a2bc1f40b4.mail.rambler.ru==--
+
+--===============8845706641674912620==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8845706641674912620==--
