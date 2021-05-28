@@ -2,251 +2,101 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A626394357
-	for <lists+usrp-users@lfdr.de>; Fri, 28 May 2021 15:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FC33394388
+	for <lists+usrp-users@lfdr.de>; Fri, 28 May 2021 15:45:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BAADB384498
-	for <lists+usrp-users@lfdr.de>; Fri, 28 May 2021 09:20:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E70A23841F5
+	for <lists+usrp-users@lfdr.de>; Fri, 28 May 2021 09:45:11 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="g4gQDm+x";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="bXkaJ8sp";
 	dkim-atps=neutral
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 959BD3843E6
-	for <usrp-users@lists.ettus.com>; Fri, 28 May 2021 09:20:04 -0400 (EDT)
-Received: by mail-ot1-f50.google.com with SMTP id 80-20020a9d08560000b0290333e9d2b247so3413840oty.7
-        for <usrp-users@lists.ettus.com>; Fri, 28 May 2021 06:20:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SzLgp+yx9G8CDJEPw88tXUQ0NmMZ1KI5Z/84g3Jk+og=;
-        b=g4gQDm+xlHa1etDLLlrrDV4ECN1B3Gkxm8A4NDpSG2B2QbQ5ENPwSp9UAI7nGNrpJl
-         59VxG82Biu1P+5SredOUzUDbjfZy25P44aAxbsF8ItAW5RGuP+DQbd5ry7AcBkFyanoc
-         BCna/A7pXNRecL52Q+nr/Nwk5h472FavG5cwjT3q+BH/e3iLbay3l4cBrNh0lIOBOWpR
-         kTqu8Xt8OgXDhhyAAI/LYMYIJvN0vxROcvpztwxQn5pP3Tjx9qUNtDIl8Loitpz8yLwO
-         pkz6IjwXHgyBJ5ANM6cBAYoywglCOXcWM5DRZ5dN1zDzJHLvF9NuicLH8A267Q5twBS+
-         0+Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SzLgp+yx9G8CDJEPw88tXUQ0NmMZ1KI5Z/84g3Jk+og=;
-        b=l1G1afWJTZuKI0MZ4AEFHImF1Mr0W/SP1jmXkz4kgCHrJvRWqyfmYtdpldrav2E7Qu
-         t8r8GaHHDOn3/w/xmf1T23kTTqziuvt0oP6I31QTL9VoLf9QZuRdetF5+EUolC7VX03F
-         Mh/aRY5u80Ke+uWMxx9IRHTx1egC/YSXsru+L+8pV5DGx+SPG2c3EvRhCFf9IY7heLhi
-         UMeJPz3i9dSGTz9893pWb2oSC7FVUojrgXM38lcQANJwh1C2ZhC2xlebs7PSZyJb3PnM
-         b2ABf1KP7iqzM0CBC3yapHCvJorEM77RuGm03T1B4NXsy09U21cj9q8Go7XR82/6t+gn
-         dwOQ==
-X-Gm-Message-State: AOAM532jUpVjXmiD1Mic3CQG2Fmx5kVVQz7aK0ew2isuaXs/eLlx6Kq1
-	5KGlTQ80LLgT+Yv92v8AAy/Fn2VLf5WNVy6phtCjTQ==
-X-Google-Smtp-Source: ABdhPJyPLSjbxCiQFSJOdEH4UNqw8JsGdIYpjRrm0+IqAXXwcVh5Jp+m31KLRMMq2UvPuLfAX2uuKGMuR5sMMHwFcIo=
-X-Received: by 2002:a9d:3675:: with SMTP id w108mr6901759otb.58.1622208003529;
- Fri, 28 May 2021 06:20:03 -0700 (PDT)
+Received: from sonic306-2.consmr.mail.bf2.yahoo.com (sonic306-2.consmr.mail.bf2.yahoo.com [74.6.132.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 424913841F5
+	for <usrp-users@lists.ettus.com>; Fri, 28 May 2021 09:44:20 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1622209460; bh=3l4lllZqvHfgFujutWbOAUaYKSOLkStXTQ8U4nUktCk=; h=Date:From:To:Subject:References:From:Subject:Reply-To; b=bXkaJ8spXmsF7ck6s0oGkdivGYy7rijGR3b/hroalC5mCjKaugRpy9TbWEd77VBAuxIZ6CYtf1+zDq/lXBv8+cxMWuRNalNj8cSdC5R0Ko6Vi/oW9ahto/hGBaAhLGKxd7e+5cc76SrzxHO54nG9UmDmh+7T7FXAfu42LVu0838TR3xHpYDuSsgKvCzHeFn2z9LxU16kgPCVD/GY8sp+42wxllIdxTWmJTcj0ylPJF0USXZ8mUuLchdb24CXfXfhGxN7pCWevKIy6XGSc87RtNjEYJ9+N3I5hOEzL9etwYYX0a6Z1Mdo7TvaoTpwgXgFA96CTPrArK83nnPCad9Vww==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1622209460; bh=cw7ogI6buQvj+4pW3rvcOOn60yNA3kJv/Qx7vLDwFTV=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=YUMIp/wd5/NiK4S0PfBqTNjjX4RvfzmzseR30E3hGSiwO8pOrHVvFui5YNBhlGhvOj1M59LftrDmmhD9/PeCSuzDqhTZmnRWSXMKjWFUBlLi3ufkKwKi8GN13HifGwHqLBYTPVhikUtqynicLpITZnJY3Dneb/V5YzOg0sIF5kV577BhPs8BVuIIDkAFRkHOLKHeuPL6meqtT8Ispn7X9crgFwwnACOgNsPouYn5dX/HeTMw485MOA3Rjqhky/MUBms/p0QWuQ08mTnsCJ997/fSkwZrfmku5RZgj5sjxGcrEsC7H/0PxmMbRL/7YTPnk2WSD519sybwj/+P8ZRshw==
+X-YMail-OSG: CYP3dDAVM1nEdjNYfwjbYrqndmTveto6O7h7c8tKdeypPxnH9HSWRPUtbZiymSJ
+ mrqfW.u5oYEGBnl8oQAx2nVBekjCs0qsVoeeh0T85rMpnernrB8p_FaFwcxQbiVdMnDRYtDl.ZbC
+ WCWVNSFvGTm2QkzAVVTsIlbusYDWfqyWSQDW13VaHIOTJNvyhcX6ZuTTWJOxJY0I3CGmhTpJiZFx
+ dmXFB5YBxuhSjuvvWAHirlCxIdclzX0QJlQV1kqhLAjojSI_mvUIvRsSeO3kaN9OIhewfNgb55Bu
+ RS6gRDyaP2iR6anb_g3O2mp45P_WFAqvr1FXQwSCRQeCS9vZcPslSwvN7Hie.JPd1HF1enoxNUzu
+ pmAaOG..WUJ0eT5NiYcp9Peeoi6kOEwCcAgjrZSULORudVKYFilIyJRSQodxyVVNJalv4JaCLFH5
+ WTHr3xSJYOuHLHklM1AH8soLeEqT_I2hUy5GbAUsifga6G6gj3xlV0zdDRIRmdTiqaSaxswknw_k
+ OoxhbZsV8HPo3k7x3EmojbfeB.z0aP_B_pRPSSs4tinVgENkbqcbTLycXlJgwiaAU3FfPzGrGJOt
+ 5D3K3cSiBTimuePku3rPNmoWlHHDD_G3L9Bq.B9SuMrFzSXe1Eq6bYEItEXA_XHT78raP4rG4XgU
+ ZGK.mOZHrrL2lOoJATmJbkIiPNmNALfkNv8s6Iz2pw8TW53wJUse2Coh2OoK02wP.xldMiJWwwMW
+ MCBPxpYfw1.pKUJqg2aOUM8_vIgTp0NafKEMGM582WAKPM1mBKQAabmj8kf1.jbbWaobT8LrSv1R
+ WMRzbE9KGE4APKp.6LLLm91.LO7p4vH.30fUIC7ENNkDiG_rZN86FKTXFK73XszdNuWx9Uo35YOR
+ R.njmiH1HuwlFdoC9InMDRi7KRmmabvTGYVI8gw4ms0kD3UGQTiGZKqPn2eXpQ1w5pHy1vcm8ZCf
+ 96CnPT8Kwhesp7DI4lDhvJGl9TIYPyT8KmhPOArC.366x3LRe.rT7tINjGRM1cUuAPLgzbKDXtIN
+ 86NuwdUIVeaNCoQPpEu9rIKI52VETZ.B_nrbl4MfNEgYnry4hhaNBbhw07QLL.fTu4y.56VwFisE
+ vGLWC6Yj3EnkMVLNVI3lLRU5TV3g9eHRfIl_NSedByA5oLZ6hTluxt_P8tdeOat0WxCzKoHnn.uH
+ qlEnGvmTfslt6zoWyrbMXNdSJ2o5kIsemC4x82JpqEQgRPbckUE2wKUueRFeBnDuYK_W7oR7X3Nq
+ .0JkYZCnlRj9VC5nABabjOnRdgs3cRdmwRfRv9Xq8xgukxmNsc44RMaCBj6pzkAHH6m0McYsiv9E
+ 3JI65tdbw0hGyP5462DLJnOkMX0C1ZWOmPchAfB0KSxRRNr6o2.7z6bwCoZ.BabI_u3yynV3SG1S
+ bbn3BDLFBgumMDvunFDHqfmH3KRV2PIj5eA3mJTzSsUQBWG_CH1DhzrT1djkarUDtjOYZ2b91Y7o
+ 25m76IpeKNISJ5mJmWv0FckNY.ktTI1dhZPwbuCeQqNBHWB1gJt.lPYSyAgvFCGLjHCvcvkh215U
+ NQrhx2LCH8KTJj7vsyFPZr8dPRPrOttm1FFx4bGi2qmXeYU49b2.cbDpqWSDTLWktKF_ZL1LtD3L
+ RvgLMchwjYRIdC2OGY7uN2ULlhKX_sEK64eyHWDIPlq.oULEEWGrdEQKSdhD2xXPWNL3kk4UGgVU
+ kYd8IrhDKMj..Q5CEAnkg0PC2ass4lyEt4QsaIcX7R8yc2ulraVdYVrrmhf7tEksy5ecXOaEqwGt
+ UriTJmn2fUUpREC6M2jK.8nF6Io5iIE5tE1flws.yaHXdPx9PIsDYrIjZi3mEWtORr9AmjVDg6o4
+ alRnqN1tn0_27h2OdaXPNj.PiaRhQ3uc4smpVstwXzZ.laRGyjS8njPbLoMwfMFxPtC3gdlTXu7t
+ lcOvTyO5EvktlWKNUIZ.nTL25KgZbgi6.._N0I_CwULswWGCnUzR4ebP0.lt2bTh.gs6x7aagROe
+ byG5m0BKtBlH3c6VLBLxi2Z.hyQl5magKDmLqPG_QQhbsDrSsylqNk8ir0Ci6.xnbHrNUPzI_Nft
+ SYD1Hkk9pDMwll.06xpgo_KhmhHcQ0HUPQqqcAd5TJiUX2Nvt4ROOalxMoxZILWXmHa.etWmYNT0
+ .RR_3HMElhmKpaBCDpiYKaNqklBWeKj_bektbxzq.6iY_16a.Ts7aS5IQuyCxq.wP.f60xeNO1c7
+ beeCx82MXcz19aZy9lX0jkEwBqijgTDxruRX3rxtxoS96YSW6n6mx5kZfWeM4Ms0Wa8mDZVrGG9.
+ 8vVeW8_0jtSrq2uyoystEdGh9hZnb9OdeXYtmE0ag5L0TCpmJUQQlRGVR5JnQUMj4EqEXQGRaV_E
+ zx3kX4mQL_H8uTPcWlG6RH_7qdtqlaGWRlB0TdOMPv6WNyEM5OMB1peKa_t.nJkiRWPxXgoJERd_
+ HfUrdcD6DSkUfYesGSKD8_xUUHF3UelswPBINifv0bZpJ7oEJViem1UX.ocqx3we7eccxWhs-
+X-Sonic-MF: <jayl0583@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.bf2.yahoo.com with HTTP; Fri, 28 May 2021 13:44:20 +0000
+Date: Fri, 28 May 2021 13:44:15 +0000 (UTC)
+To: 
+	"usrp-users-request@lists.ettus.com" <usrp-users-request@lists.ettus.com>,
+	"usrp-users-owner@lists.ettus.com" <usrp-users-owner@lists.ettus.com>,
+	"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <2052843249.632322.1622209455065@mail.yahoo.com>
 MIME-Version: 1.0
-References: <CAB__hTTVy4-s-eb8n2nOg_=qVzFNt4r8w2hYfGZNYPcCudbP9w@mail.gmail.com>
- <CAFche=gpU9mUMtf-=rdTPq1wY0XK2+hQ07DcFkRR4chzQ9FUAQ@mail.gmail.com>
-In-Reply-To: <CAFche=gpU9mUMtf-=rdTPq1wY0XK2+hQ07DcFkRR4chzQ9FUAQ@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Fri, 28 May 2021 08:19:52 -0500
-Message-ID: <CAB__hTQwjr=5GdDoADXCqmZ2fGDDxcPUUMa3RxNHByRH2JnFdw@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Message-ID-Hash: YCQEHFPFBZIFJ224DXAC5GRSUP3UHQYI
-X-Message-ID-Hash: YCQEHFPFBZIFJ224DXAC5GRSUP3UHQYI
-X-MailFrom: rkossler@nd.edu
+References: <2052843249.632322.1622209455065.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.18368 YMailNorrin
+Message-ID-Hash: XJVEDQODN25GFSWJFUY7EWAGCRTJBFYT
+X-Message-ID-Hash: XJVEDQODN25GFSWJFUY7EWAGCRTJBFYT
+X-MailFrom: jayl0583@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC block and SEP buffer sizes
+Subject: [USRP-users] Leave
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YCQEHFPFBZIFJ224DXAC5GRSUP3UHQYI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XJVEDQODN25GFSWJFUY7EWAGCRTJBFYT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1585652969663156942=="
+From: Jay Labhart via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Jay Labhart <jayl0583@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============4561646868234954751=="
 
---===============1585652969663156942==
-Content-Type: multipart/alternative; boundary="000000000000cd9f7b05c363bbc3"
+--===============4561646868234954751==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_632321_918912764.1622209455064"
 
---000000000000cd9f7b05c363bbc3
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_632321_918912764.1622209455064
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Thanks Wade!
-Perhaps this information could be incorporated into the RFNoC specification.
-Rob
+Please remove me from your mailing list.ThanksJay
 
-On Thu, May 27, 2021 at 9:53 PM Wade Fife <wade.fife@ettus.com> wrote:
+------=_Part_632321_918912764.1622209455064
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> Rob,
->
-> The "buff_size" parameter controls the "INGRESS_BUFF_SIZE" Verilog
-> parameter used in the stream endpoint. It has a significant effect on
-> streaming performance in the TX direction (host to USRP). A practical lower
-> limit is two MTU-sized packets, and the rfnoc_image_builder will coerce it
-> to at least that value. If the port is not actually used for steaming RF
-> data, you can set buff_size to 0 and it will use a very small FIFO
-> (32-deep). You generally want big buffers for the TX data paths that stream
-> RF data at high rates and the default images set these about as large as is
-> practical for the FPGA size.
->
-> The "payload_fifo_depth" parameter sets the "PAYLOAD_FIFO_SIZE" Verilog
-> parameter used in the NoC Shell in both the TX and RX directions. I don't
-> think there's really a lower limit on this one and I agree that it makes
-> sense to make this 2 for most blocks. How big this one should be is block
-> dependent. For example, the Replay block can use this as a buffer that can
-> help to hide some of the latency of the DRAM. The Radio can benefit because
-> it serves as a buffer that can guard against underflow/overflow. But most
-> other blocks can set it to a really small value, like 2, which basically
-> means no FIFO.
->
-> The context/info FIFO depths don't need to be very big, and they should
-> already be small by default. I believe they're usually set to 32-deep.
-> These FIFOs essentially buffer the header information for packets being
-> sent/received. You would only make these bigger if you needed to have
-> several packets in flight simultaneously in a single block (for example, if
-> you had big payload FIFOs and a small packet size such that multiple
-> packets were buffered in the FIFO at the same time). There's not really
-> much benefit to making them smaller than 32 since FIFOs that size are
-> implemented using SRL, which is very efficient. So I don't recommend
-> decreasing this value.
->
-> Wade
->
-> On Thu, May 27, 2021 at 9:55 AM Rob Kossler <rkossler@nd.edu> wrote:
->
->> I am having some trouble building a custom RFNoC 4 FPGA design and so I
->> am looking to reduce the footprint. One easy thing to try is to reduce
->> various buffer sizes such as the ingress buffer size on the streaming
->> endpoint or the incoming RFNoC block fifo depths.  But, I am wondering if
->> there are practical lower limits for how small these should be set to. Any
->> comments on the questions below (or other insights or rules-of-thumb) would
->> be greatly appreciated. Thanks.
->> Rob
->>
->>    - *Stream endpoint ingress buffer size*: "buff_size" parameter for
->>    endpoint in core yml
->>       - Is there a practical lower limit?  For example, should it be at
->>       least MTU size? Does anything bad happen if I set it as low as 256?
->>       - Are large sizes needed only for SEPs that will accept steaming
->>       from host? For example if a DDC was connected to its own SEP would there be
->>       any need for a large buff_size on that SEP given that the incoming data
->>       would likely be coming from another FPGA block (i.e., the Radio)?
->>       - Are large sizes needed only for SEPs that require real-time flow
->>       (e.g. paths that terminate at a Radio)? For example, even though a Replay
->>       block accepts data from the host, it may not need real-time flow if you are
->>       just pre-storing samples that will later be played out in real-time. For
->>       this case, is there a practical lower limit for how small we should set
->>       buff_size?
->>       - Does the buffer size affect both directions? In other words,
->>       are 2 buffers created: one for the incoming packets from the crossbar AND
->>       one for the incoming packets from the static router?
->>    - *RFNoC block payload_fifo_depth*:
->>       - Is there a practical lower limit?
->>       - What is the disadvantage to setting this to one?  My thinking is
->>       that I don't generally insert a buffer between two AXIS components within
->>       an RFNoC block so why do I want buffering between two AXIS components that
->>       span between two RFNoC blocks?
->>    - *RFNoC block <context|info>_fifo_depth*:
->>       - Should this be sized based on the expected packet length and the
->>       specified payload_fifo_depth?  For example, if I expect incoming packets of
->>       1000 samples and set my payload_fifo_depth to 2000 so that I can buffer 2
->>       packets, should I then set the context or info fifo_depth to be 2?
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->
+<html><head></head><body><div class="yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir="ltr" data-setdir="false">Please remove me from your mailing list.</div><div dir="ltr" data-setdir="false">Thanks</div><div dir="ltr" data-setdir="false">Jay<br></div></div></body></html>
+------=_Part_632321_918912764.1622209455064--
 
---000000000000cd9f7b05c363bbc3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Thanks Wade!<div>Perhaps this information could be incorpo=
-rated into the RFNoC specification.</div><div>Rob</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 27, 2021=
- at 9:53 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@=
-ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><div>Rob,</div><div><br></div><div>The &quot;bu=
-ff_size&quot; parameter controls the &quot;INGRESS_BUFF_SIZE&quot; Verilog =
-parameter used in the stream endpoint. It has a significant effect on strea=
-ming performance in the TX direction (host to USRP). A practical lower limi=
-t is two MTU-sized packets, and the rfnoc_image_builder will coerce it to a=
-t least that value. If the port is not actually used for steaming RF data, =
-you can set buff_size to 0 and it will use a very small FIFO (32-deep). You=
- generally want big buffers for the TX data paths that stream RF data at hi=
-gh rates and the default images set these about as large as is practical fo=
-r the FPGA size.</div><div><br></div><div>The &quot;payload_fifo_depth&quot=
-; parameter sets the &quot;<span>PAYLOAD_FIFO_SIZE</span>&quot; Verilog par=
-ameter=C2=A0used in the NoC Shell in both the TX and RX directions.=20
-I don&#39;t think there&#39;s really a lower limit on this one and I agree =
-that it makes sense to make this 2 for most blocks. How big this one should=
- be is block dependent. For example, the Replay block can use this as a buf=
-fer that can help to hide some of the latency of the DRAM. The Radio can be=
-nefit because it serves as a buffer that can guard against underflow/overfl=
-ow. But most other blocks can set it to a really small value, like 2, which=
- basically means no FIFO. </div><div><br></div><div>The context/info FIFO d=
-epths don&#39;t need to be very big, and they should already be small by de=
-fault. I believe they&#39;re usually set to 32-deep. These FIFOs essentiall=
-y buffer the header information for packets being sent/received. You would =
-only make these bigger if you needed to have several packets in flight simu=
-ltaneously in a single block (for example, if you had big payload FIFOs and=
- a small packet size such that multiple packets were buffered in the FIFO a=
-t the same time). There&#39;s not really much benefit to making them smalle=
-r than 32 since FIFOs that size are implemented using SRL, which is very ef=
-ficient. So I don&#39;t recommend decreasing this value.<br></div><div><br>=
-</div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Thu, May 27, 2021 at 9:55 AM Rob Kossler &lt;<a=
- href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div>I am having some trouble building a custom RFNoC 4 FPGA desig=
-n and so I am looking to reduce the footprint. One easy thing to try is to =
-reduce various buffer sizes such as the ingress buffer size on the streamin=
-g endpoint or the incoming RFNoC block fifo depths.=C2=A0 But, I am wonderi=
-ng if there are practical lower limits for how small these should be set to=
-. Any comments on the questions below (or other insights or rules-of-thumb)=
- would be greatly appreciated. Thanks.=C2=A0</div><div>Rob</div><ul><li><b>=
-Stream endpoint ingress buffer size</b>: &quot;buff_size&quot; parameter fo=
-r endpoint in core yml</li><ul><li>Is there a practical lower limit?=C2=A0 =
-For example, should it be at least MTU size? Does anything bad happen if I =
-set it as low as 256?</li><li>Are large sizes needed only for SEPs that wil=
-l accept steaming from host? For example if a DDC was connected to its own =
-SEP would there be any need for a large buff_size on that SEP given that th=
-e incoming data would likely be coming from another FPGA block (i.e., the R=
-adio)?</li><li>Are large sizes needed only for SEPs that require real-time =
-flow (e.g. paths that terminate at a Radio)? For example, even though a Rep=
-lay block accepts data from the host, it may not need real-time flow if you=
- are just pre-storing samples that will later be played out in real-time. F=
-or this case, is there a practical lower limit for how small we should set =
-buff_size?</li><li>Does the buffer size affect both directions? In other wo=
-rds, are=C2=A02 buffers created: one for the incoming packets from the cros=
-sbar AND one for the incoming packets from the static router?</li></ul><li>=
-<b>RFNoC block payload_fifo_depth</b>:=C2=A0</li><ul><li>Is there a practic=
-al lower limit?=C2=A0</li><li>What is the disadvantage to setting this to o=
-ne?=C2=A0 My thinking is that I don&#39;t generally insert a buffer between=
- two AXIS components within an RFNoC block so why do I want buffering betwe=
-en two AXIS components that span between two RFNoC blocks?</li></ul><li><b>=
-RFNoC block &lt;context|info&gt;_fifo_depth</b>:=C2=A0</li><ul><li>Should t=
-his be sized based on the expected packet length and the specified payload_=
-fifo_depth?=C2=A0 For example, if I expect incoming packets of 1000 samples=
- and set my payload_fifo_depth to 2000 so that I can buffer 2 packets, shou=
-ld I then set the context or info fifo_depth to be 2?</li></ul></ul></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-
---000000000000cd9f7b05c363bbc3--
-
---===============1585652969663156942==
+--===============4561646868234954751==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -256,4 +106,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1585652969663156942==--
+--===============4561646868234954751==--
