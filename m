@@ -2,131 +2,142 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6911039496C
-	for <lists+usrp-users@lfdr.de>; Sat, 29 May 2021 02:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED96394C9C
+	for <lists+usrp-users@lfdr.de>; Sat, 29 May 2021 17:08:34 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 28EE1383F76
-	for <lists+usrp-users@lfdr.de>; Fri, 28 May 2021 20:06:18 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=virginia.edu header.i=@virginia.edu header.b="GwK2BUOH";
-	dkim-atps=neutral
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id EDFDB383DD8
-	for <usrp-users@lists.ettus.com>; Fri, 28 May 2021 20:05:28 -0400 (EDT)
-Received: by mail-il1-f176.google.com with SMTP id f16so2891609ilj.10
-        for <usrp-users@lists.ettus.com>; Fri, 28 May 2021 17:05:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=virginia.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JKpasy2QpI7rpslviV4Tt9ebvthZFkP95v5ky/8C0Ng=;
-        b=GwK2BUOHinrTlw254H7D0n/+LM2ZU3C71ukssku+lFOatPxH8UR8d4QawSQ0xtKy7M
-         DVPO14EAmoZMRHDzaCuzlnjPebT2EJMYLJLUeeik5IG1qcWZchUVGO+KjL+ptVxcyTru
-         cRIhvahcNzbSZ+vMIU0+xW2HzweVn1KOiul+EuEqk8b94S7VWqBsTidnbNW/OPTxl2yU
-         7avmhRbRMx0hsB+O4bWVpZvASY5kRd8gZwMgshumeuhKBybGFx3oqiH0w0MEh6O+zTcA
-         +IU4L7uJT7JjPSdbYNdP7OVd91Oni5gGe4lYQ6TuqvsunmNIHCfJLL0da9GOZV2jaVz+
-         4haQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JKpasy2QpI7rpslviV4Tt9ebvthZFkP95v5ky/8C0Ng=;
-        b=HsyQsYpWPsNIGphh2/qK4MPn8Z8rax1BlTidm+0Qos6oIXz7tplpw9Bzo4asbNW4Jx
-         tC5hEG9GPzG2bMttfhdk/qM1bZPYoHZ442/51HRldIOb3asmT46NeM4Yx4E3jAER/hUV
-         HGcRq+GVBN+a1HbLdwHMY42YOav7b2SuNXWCAjxKb4CdI31x1ba0gmWC0IzmZ88H5f3Q
-         ki3P0LyV2zuPyN1zbTVWeRQKh3kJzwbFeaVy7TqqFKS7rx7qhrC4yrb7Zp/L0W+HHpDV
-         R84D7bRlnhJkIWSchJL6mMw3IipPm8a+1PnQFMcZkktQ6AeBvtMVAHw0fO4F7GYTCeO7
-         e3Tw==
-X-Gm-Message-State: AOAM530kUVTBIJj4/Rjmw7CUZRxeELuv3ZvUEPPYOKjfjK6wQpJT0Aa4
-	0VkdXguD/YJgRYIpJq4+lg8E8YKCFQcU7quH6z58yA==
-X-Google-Smtp-Source: ABdhPJygrC0Qf01zmM4+yn36JP/DRgByj4KmI3mzc07rp9DEvu7CLwb47TwU0bKSPOICCgwSKl4EJCrbjtOgbusT2Ps=
-X-Received: by 2002:a92:c04b:: with SMTP id o11mr3478027ilf.147.1622246728421;
- Fri, 28 May 2021 17:05:28 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B005C383FA8
+	for <lists+usrp-users@lfdr.de>; Sat, 29 May 2021 11:08:32 -0400 (EDT)
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 216D5383823
+	for <usrp-users@lists.ettus.com>; Sat, 29 May 2021 11:07:39 -0400 (EDT)
+Date: Sat, 29 May 2021 15:07:39 +0000
+To: usrp-users@lists.ettus.com
+From: arjan.feta@unifi.it
+Message-ID: <dZH3EC5isgEcK3DuTsyplHUs0vVJdtvUB4B2WyJRI@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <DZ837mjLHyTLgau1Sg53TVSzGLDa5QddIlAl3ouY@lists.ettus.com>
-In-Reply-To: <DZ837mjLHyTLgau1Sg53TVSzGLDa5QddIlAl3ouY@lists.ettus.com>
-From: Dustin Widmann <dw2zq@virginia.edu>
-Date: Fri, 28 May 2021 20:05:17 -0400
-Message-ID: <CAAv0A=NsDZj+g+cvivwemRF-i1t_vGJ3+u8SZ86uMqavhTo0Jg@mail.gmail.com>
-To: andrew4010@rambler.ru
-Message-ID-Hash: M7YW6SSH4PFGVEDJL7HONEO6BVKXREHA
-X-Message-ID-Hash: M7YW6SSH4PFGVEDJL7HONEO6BVKXREHA
-X-MailFrom: dw2zq@virginia.edu
+Message-ID-Hash: FULTHNKIOS54DAOTC2RW5M6AC7I5OTZT
+X-Message-ID-Hash: FULTHNKIOS54DAOTC2RW5M6AC7I5OTZT
+X-MailFrom: arjan.feta@unifi.it
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: tune speed
+Subject: [USRP-users] UHD -RFNoC graph construction
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M7YW6SSH4PFGVEDJL7HONEO6BVKXREHA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FULTHNKIOS54DAOTC2RW5M6AC7I5OTZT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8729858771585245710=="
+Content-Type: multipart/mixed; boundary="===============6691323840669435942=="
 
---===============8729858771585245710==
-Content-Type: multipart/alternative; boundary="000000000000fc69ab05c36cbfc1"
+This is a multi-part message in MIME format.
 
---000000000000fc69ab05c36cbfc1
-Content-Type: text/plain; charset="UTF-8"
+--===============6691323840669435942==
+Content-Type: multipart/alternative;
+ boundary="b1_dZH3EC5isgEcK3DuTsyplHUs0vVJdtvUB4B2WyJRI"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_dZH3EC5isgEcK3DuTsyplHUs0vVJdtvUB4B2WyJRI
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi all,
+I'm trying to build an RFNoC graph (x300 with a TwinRX radio module):
 
-If tuning speed is critical, then you could sleep for a fixed amount of
-time instead. How long is up to you and your applications needs.
+```
+import uhd
 
-Dustin
+graph =3D uhd.rfnoc.RfnocGraph("addr=3D192.168.10.2")
 
-On Fri, May 28, 2021, 1:22 PM andrew4010 via USRP-users <
-usrp-users@lists.ettus.com> wrote:
+sa =3D uhd.usrp.StreamArgs("fc32", "sc16")
 
-> Hello
->
->
-> =E2=80=9Cyou cannot use this approach=E2=80=9D.
->
-> OK.
->
-> What approach is suitable if tuning speed is critical?
->
->
-> Thank you
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+rx_streamer0 =3D graph.create_rx_streamer(1, sa)
+rx_streamer1 =3D graph.create_rx_streamer(1, sa)
 
---000000000000fc69ab05c36cbfc1
-Content-Type: text/html; charset="UTF-8"
+graph.connect("0/Radio#0", 0, "0/DDC#0", 0, False)
+graph.connect("0/Radio#0", 1, "0/DDC#0", 1, False)
+
+graph.connect("0/DDC#0", 0, rx_streamer0, 0)
+graph.connect("0/DDC#0", 1,  rx_streamer1, 0)
+
+graph.commit()
+```
+
+ after the =E2=80=9C*graph.commit()*=E2=80=9D instruction, it the code co=
+mplains with the following error message:
+
+```
+   [ERROR] [RFNOC::GRAPH::DETAIL] 0/DDC#0: RfnocError: ResolveError: Atte=
+mpting to overwrite property `mtu@INPUT_EDGE:1' with a new value after it=
+ was locked!
+```
+
+> ```
+> Traceback (most recent call last):
+> ```
+
+> ```
+> =C2=A0 File "script2.py", line 62, in <module>
+> ```
+>
+> ```
+> =C2=A0 =C2=A0 graph.commit()
+> RuntimeError: RfnocError: ResolveError: Attempting to overwrite propert=
+y `mtu@INPUT_EDGE:1' with a new value after it was locked!
+> ```
+
+Does anyone have any experience or any hints in creating an rfnoc graph u=
+sing the UHD python API?
+
+Best regads,
+
+Arjan Feta
+
+--b1_dZH3EC5isgEcK3DuTsyplHUs0vVJdtvUB4B2WyJRI
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto"><div>Hello,=C2=A0</div><div dir=3D"auto"><br></div><div d=
-ir=3D"auto">If tuning speed is critical, then you could sleep for a fixed a=
-mount of time instead. How long is up to you and your applications needs.=
-=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Dustin<br><br><di=
-v class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Fri, May 28, 2021, 1:22 PM andrew4010 via USRP-users &lt;<a href=3D"mail=
-to:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><p>Hello</p><p><br></p><p>=E2=80=9Cyo=
-u cannot use this approach=E2=80=9D. </p><p>OK.</p><p>What approach is suit=
-able if tuning speed is critical?</p><p><br></p><p>Thank you</p>
+<p>Hi all,
+I'm trying to build an RFNoC graph (x300 with a TwinRX radio module):</p>=
+<pre class=3D""><code>import uhd
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
-com</a><br>
-</blockquote></div></div></div>
+graph =3D uhd.rfnoc.RfnocGraph("addr=3D192.168.10.2")
 
---000000000000fc69ab05c36cbfc1--
+sa =3D uhd.usrp.StreamArgs("fc32", "sc16")
 
---===============8729858771585245710==
+rx_streamer0 =3D graph.create_rx_streamer(1, sa)
+rx_streamer1 =3D graph.create_rx_streamer(1, sa)
+
+graph.connect("0/Radio#0", 0, "0/DDC#0", 0, False)
+graph.connect("0/Radio#0", 1, "0/DDC#0", 1, False)
+
+graph.connect("0/DDC#0", 0, rx_streamer0, 0)
+graph.connect("0/DDC#0", 1,  rx_streamer1, 0)
+
+graph.commit()
+<br></code></pre><p> after the =E2=80=9C<em>graph.commit()</em>=E2=80=9D =
+instruction, it the code complains with the following error message:</p><=
+pre><code>   [ERROR] [RFNOC::GRAPH::DETAIL] 0/DDC#0: RfnocError: ResolveE=
+rror: Attempting to overwrite property `mtu@INPUT_EDGE:1' with a new valu=
+e after it was locked!</code></pre><blockquote><pre><code>Traceback (most=
+ recent call last):</code></pre></blockquote><blockquote><pre><code>&nbsp=
+; File "script2.py", line 62, in &lt;module&gt;</code></pre><pre><code>&n=
+bsp; &nbsp; graph.commit()
+RuntimeError: RfnocError: ResolveError: Attempting to overwrite property =
+`mtu@INPUT_EDGE:1' with a new value after it was locked!</code></pre></bl=
+ockquote><p>Does anyone have any experience or any hints in creating an r=
+fnoc graph using the UHD python API?</p><p>Best regads,</p><p>Arjan Feta<=
+/p>
+
+
+--b1_dZH3EC5isgEcK3DuTsyplHUs0vVJdtvUB4B2WyJRI--
+
+--===============6691323840669435942==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -136,4 +147,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8729858771585245710==--
+--===============6691323840669435942==--
