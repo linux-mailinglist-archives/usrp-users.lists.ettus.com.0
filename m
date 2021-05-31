@@ -2,282 +2,308 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF80C396834
-	for <lists+usrp-users@lfdr.de>; Mon, 31 May 2021 20:57:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 056D9396852
+	for <lists+usrp-users@lfdr.de>; Mon, 31 May 2021 21:26:43 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6F6F2384135
-	for <lists+usrp-users@lfdr.de>; Mon, 31 May 2021 14:57:32 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E77BE3841FD
+	for <lists+usrp-users@lfdr.de>; Mon, 31 May 2021 15:26:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QA/ue5Vu";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CCqY9j5G";
 	dkim-atps=neutral
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 74DD73840F7
-	for <usrp-users@lists.ettus.com>; Mon, 31 May 2021 14:56:45 -0400 (EDT)
-Received: by mail-qv1-f48.google.com with SMTP id z1so5962063qvo.4
-        for <usrp-users@lists.ettus.com>; Mon, 31 May 2021 11:56:45 -0700 (PDT)
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id B9A5D383EDA
+	for <usrp-users@lists.ettus.com>; Mon, 31 May 2021 15:25:42 -0400 (EDT)
+Received: by mail-ed1-f48.google.com with SMTP id s6so14527011edu.10
+        for <usrp-users@lists.ettus.com>; Mon, 31 May 2021 12:25:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=nqWb8SIE9O0Y3+NX6UME+cDGJoGB45XufsN1Og8X3ME=;
-        b=QA/ue5VuYCeI9PhnulZD9CjR0CUJS5LfaO2Mq7hbkkZJOLAmrKG/BaHCK1nk7zRvgt
-         Te3lvI2WbKwpXG6CjfXdzeZys1FSM/XT+28RaXSLxWHWY1LCbDM2PaGwcqv0c866Y4xg
-         bHAi8DEs/oXPAE5KZbnQfN1R6XrdK+dm+nQX2bMToob2K668kgP0voHe+Yx8Ntp0cULe
-         29hn0t+Urk8sHDwHcRbk238CtiIVrQxJ/i3E/mZIV94V9O6gLyEz7NQsevyMrUkLwrFR
-         5SITlIEEUyQycmg0XGu3SxOlnVIq1mS4/wCv0eBAQ6HbNc89qNtoXngTPsHuy+1l9xrx
-         9VuQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=y4qcnecrn0jOPY0tjbgm84+mDLQ8S00lkX6HloLiCz0=;
+        b=CCqY9j5GONi6vlIn8Jw5a8kXTFm6clinC96ksb1pDqoIJXSkC0AnFFuKm+dZ6aJ5UO
+         3Aojr7FafJqGzZd8gLZF7vu2vv97QgUXYIB+c5SkVabQZ2HyY4WQtWsCVKWXvJE/8UYO
+         vF3Ms9rdUGO27htddYdEhrkgjs5GFyclAuWOCeG/vu7MCSBiOS3rMefrT4r0PlxwYx5L
+         Jscu4DJtwbv0J6/mfSOFQhtDqXFfvPcXH+Y2CtOELy60GCaYo6bzGdVg6NvnjOVPwELV
+         ue3xCuwmGs0w2CiRjqrQD0VZhqz0sl0Y+R9byFgqc3oAhKX3XWMjAzN5f0XrFmSdkR8t
+         tnFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=nqWb8SIE9O0Y3+NX6UME+cDGJoGB45XufsN1Og8X3ME=;
-        b=SomxLkzU7Bq2LXJE0rTtixhyqq4Ds0EPy1io4UInkzSZtzZtlmoZsk18XiA+spnOyP
-         LnrGIGTbtPI6q4iQOpt3tPFoTweQvprxVZwjN0AMwNIhVp6x6A2wLlfuG4O+/ftqeEN1
-         mx3XKPqzZ75jYhDtK7d0Ayp2IKZ+0lxfw4vi7o5gCPuHqk2Jjm3rs23f7M+gzxZ5yddO
-         Zm5ymS4PFcq33+kDxEzWAQJAn/oZe/3WUeR5M1pP9OS7WAMXk3SoIL6OWoaBwve79SSB
-         JalrCJnpMhvMehMpvTD6QSfAzVCTzLFAvluk1D5Enp46lNpufeIbeBd78jm9aruybpcT
-         CSsg==
-X-Gm-Message-State: AOAM533dv005R4uDlE8QjgnaOflnajsISmxORRab9uXPnq8aFZBnO73N
-	nbwD/3v7BgEexhdqS5SRfZE5XegCjVA=
-X-Google-Smtp-Source: ABdhPJyfNC7m1up8w7Ugw8LtrhIdlySKIpbUfu5MsPIBANSyTLVjfrmi5lPTvmx72vPV0HHGxsxxzQ==
-X-Received: by 2002:a0c:eccf:: with SMTP id o15mr15725918qvq.58.1622487404767;
-        Mon, 31 May 2021 11:56:44 -0700 (PDT)
-Received: from [192.168.2.130] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id j28sm9603935qkl.35.2021.05.31.11.56.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 31 May 2021 11:56:44 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Mon, 31 May 2021 14:56:43 -0400
-Message-Id: <3C39A314-B292-4CEF-BF8E-7212C1687F43@gmail.com>
-References: <1622487334616.15025@isc.tuc.gr>
-In-Reply-To: <1622487334616.15025@isc.tuc.gr>
-To: Skyvalakis Konstantinos <kskyvalakis@isc.tuc.gr>
-X-Mailer: iPhone Mail (18D70)
-Message-ID-Hash: FFRRAAUKOVK4C4AEGX7JWRUJXKWOLKSB
-X-Message-ID-Hash: FFRRAAUKOVK4C4AEGX7JWRUJXKWOLKSB
-X-MailFrom: patchvonbraun@gmail.com
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=y4qcnecrn0jOPY0tjbgm84+mDLQ8S00lkX6HloLiCz0=;
+        b=BBi1mi/u7ux/5F8LuyGphIuy5ClimLh0nw5Y2CY44HFjUM03tsfTpCSPFrsLTOExeq
+         66xk1LaE2pWaoTRv+57gWoR2fIdylZxJRK3w5cfNt9rICD/ipCQDH0kFbOKQww29GRGj
+         QD4AVncz8a7NGQF7j6DmC8A6QEKe6dKQx3uIBmj3igB/OiIoXN8Nm8GgoiLzhyIuY16I
+         0yvEe0I+wtyIlySIHrBbELdBNh8VIcnNvOYnnfJBytnEATDaZwhCtfsQMAWkRyJca996
+         a8YUEau6VXdORnkAoCstPAaR744mTzinMjhhRvpIlcoFIBrG60QW6CR2xvgAbHK8zLDz
+         YPiQ==
+X-Gm-Message-State: AOAM530OVwzDGo8dNUSBZ8frvTfUy73DrzBeSB/Umxr6zpjbldi9PJC+
+	N1ZdPMGie7RgzY1l9H0/f3gpe8yOhsSqBZyvf5FIxmA1
+X-Google-Smtp-Source: ABdhPJwMTFXGB6UxjIaO2s4SRneXZ/p+d+2551kfRrSJx+tpj0Ij4rT9Igap51UbSH04VzXVSZ51KXFDr/aDEWSmzX0=
+X-Received: by 2002:aa7:cdc5:: with SMTP id h5mr6661819edw.217.1622489141414;
+ Mon, 31 May 2021 12:25:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAOjuhWmATZti9f1zibrUXiLv6JOz+FDosWm54df_yP8GHKyG9Q@mail.gmail.com>
+ <60B4DA13.5060601@gmail.com> <CAOjuhWmfmP=bzrJ_CTtHqRCnr-BV080dyPEVaaJvCROsEfxU3g@mail.gmail.com>
+ <60B51E47.1040103@gmail.com>
+In-Reply-To: <60B51E47.1040103@gmail.com>
+From: Alexey Silyuk <mcerror@gmail.com>
+Date: Mon, 31 May 2021 22:25:30 +0300
+Message-ID: <CAOjuhWkVmK_Me3k4x-F4wjLpOyVtNpshA6QF0Q2jRi_qZc9UEQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: R656EWT66VLP3XT575QGTPY3LR6MKTST
+X-Message-ID-Hash: R656EWT66VLP3XT575QGTPY3LR6MKTST
+X-MailFrom: mcerror@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP N200
+Subject: [USRP-users] Re: Samples complex<short> vs complex<float> emulating
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FFRRAAUKOVK4C4AEGX7JWRUJXKWOLKSB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R656EWT66VLP3XT575QGTPY3LR6MKTST/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7169829773033597822=="
+Content-Type: multipart/mixed; boundary="===============7550579642733063168=="
 
+--===============7550579642733063168==
+Content-Type: multipart/alternative; boundary="000000000000ed0f6905c3a53048"
 
---===============7169829773033597822==
-Content-Type: multipart/alternative; boundary=Apple-Mail-CE19D4C4-5826-4D86-9025-950109FD47DE
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-CE19D4C4-5826-4D86-9025-950109FD47DE
-Content-Type: text/plain;
-	charset=utf-8
+--000000000000ed0f6905c3a53048
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Yes.=20
+maybe you can help me to find some example of recorded files with iq
+stream, so I will understand it's values please.
+it may help
 
+=D0=BF=D0=BD, 31 =D0=BC=D0=B0=D1=8F 2021 =D0=B3., 20:35 Marcus D. Leech <pa=
+tchvonbraun@gmail.com>:
 
-Sent from my iPhone
+> On 05/31/2021 09:07 AM, Alexey Silyuk wrote:
+>
+> Thanks for the answer, so what is the order of pushing samples to the moc=
+k
+> buffer? if i want to ensure that i am receiving correct data i pushed aft=
+er
+> calling recv() using float or double type?
+>
+> The ordering on the "wire" is IQIQIQIQ, and similarly on the
+> converted-to-host-format side.
+>
+>
+>
+> =D0=BF=D0=BD, 31 =D0=BC=D0=B0=D1=8F 2021 =D0=B3. =D0=B2 15:44, Marcus D. =
+Leech <patchvonbraun@gmail.com>:
+>
+>> On 05/31/2021 08:30 AM, Alexey Silyuk wrote:
+>> > HI everybody, I am new at mailing list.
+>> > These days I am writing an emulator for emulating tx/rx streams based
+>> > on uhd 3.15LTS
+>> > I am using device usrp2 device from uhd/lib.
+>> > As I saw in examples (rx_samples_to_file), I am creating a mock
+>> > streamer ( taken from uhd tests ).
+>> > and now i want to push samples inside the buffer.
+>> > I see that i can define type of samples, if am using 'short' type of
+>> > samples, I am creating uint32_t variable, 16 MSB i put real part of
+>> > sample, and 16 LSB i put imaginary part of sample (i am using little
+>> > endian)
+>> > After that i am calling usrp->recv() and i get samples as i defined (
+>> > spp is 2000)
+>> > (0,0)
+>> > (2,2)
+>> > ....
+>> > (1999,1999)
+>> > as expected, according to data I push to the mock buffer.
+>> >
+>> > now while i want to use type 'float' i am using for example
+>> > float real =3D 1.5
+>> > float imag =3D 2.5
+>> > and trying to push sample to the mock buffer, i am doing:
+>> > buffer[0] =3D (uint32_t)real;
+>> > buffer[1] =3D (uint32_t)imag;
+>> >
+>> > and expecting to get after calling usrp->recv()
+>> > (1.5, 2.5)
+>> > but i get incorrect result (convertor settings: cpu_format "fc32",
+>> > otw_format "sf16" )
+>> >
+>> > i am printing real and imag parameters as bitset<32> and see in real
+>> > part, in 16 LSB part of result, my 16 MSB bits from sample value 1.5,
+>> > and in imagine part zeros, in next sample i see in 16 LSB part of
+>> > result, 16 MSB bits of sample value 2.5. I mean one sample i push to
+>> > buffer uses whole sample after calling recv()
+>> >
+>> > P.S i set scale factor to 1.0
+>> >
+>> > What am I doing wrong to use the type 'float' and 'double' for mock
+>> > samples?
+>> > I am new at usrp so I don't understand what samples I should use, will
+>> > be glad to get references.
+>> > Thanks
+>> >
+>> >
+>> Your OTW format is still SC16 -- normally only the *HOST* side uses
+>> floating-point and no actual USRP devices that I'm aware of can
+>>    support floating-point *ON THE WIRE* (OTW).
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-> On May 31, 2021, at 2:55 PM, Skyvalakis Konstantinos <kskyvalakis@isc.tuc.=
-gr> wrote:
->=20
-> =EF=BB=BF
-> So after upgrading UHD I should also rebuild gnuradio right?
->=20
-> From: Marcus D Leech <patchvonbraun@gmail.com>
-> Sent: Monday, May 31, 2021 9:39 PM
-> To: Skyvalakis Konstantinos
-> Subject: Re: USRP N200
-> =20
-> If you upgrade UHD and use GnuRadio you=E2=80=99ll have to at least relink=
- GR against the new UHD.=20
->=20
-> But recent vintage distros like Ubuntu allow you to just install as packag=
-es. No build from source required.=20
->=20
-> Sent from my iPhone
->=20
->>> On May 31, 2021, at 2:30 PM, Skyvalakis Konstantinos <kskyvalakis@isc.tu=
-c.gr> wrote:
->>>=20
->> =EF=BB=BF
->> Ok, I just have a simple question for upgrading to a newer version of UHD=
-.
->>=20
->>=20
->>=20
->> Do I just need to "git checkout" a newer version of UHD, build it, etc. e=
-tc. and that's all there's to it.
->>=20
->>=20
->>=20
->> OR do I also have to rebuild my gnuradio install after installing a newer=
- UHD?
->>=20
->>=20
->>=20
->> Excuse me if what I'm saying is stupid but I am really trying to understa=
-nd how to do things correctly.
->>=20
->> From: Marcus D. Leech <patchvonbraun@gmail.com>
->> Sent: Monday, May 31, 2021 9:17 PM
->> To: Skyvalakis Konstantinos; usrp-users@lists.ettus.com
->> Subject: Re: USRP N200
->> =20
->>> On 05/31/2021 02:13 PM, Skyvalakis Konstantinos wrote:
->>> My UHD version is  UHD_003.010.000.HEAD-0-g6e1ac3fc
->>>=20
->>>=20
->>>=20
->>> and my ethernet interface adapter is a Qualcomm Atheros Killer E2400 Gig=
-abit Ethernet Controller (rev 10)=E2=80=8B.
->>>=20
->>>=20
->>>=20
->>> Thank you so much for your effort and time with my issue. I honestly app=
-reciate it.
->>>=20
->>> =20
->> This issue shows up quite some time ago and I found it in the Nabble arch=
-ive for this list:
->>=20
->> http://ettus.80997.x6.nabble.com/Re-USRP-users-Discuss-gnuradio-RuntimeEr=
-ror-fifo-ctrl-timed-out-looking-for-acks-td8198.html
->>=20
->> You might also try upgrading to a much-more-recent UHD.
->>=20
->>=20
-
---Apple-Mail-CE19D4C4-5826-4D86-9025-950109FD47DE
-Content-Type: text/html;
-	charset=utf-8
+--000000000000ed0f6905c3a53048
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Yes.&nbsp;<div><br><br><div dir=3D"ltr">Sen=
-t from my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On May 3=
-1, 2021, at 2:55 PM, Skyvalakis Konstantinos &lt;kskyvalakis@isc.tuc.gr&gt; w=
-rote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=
-=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
-">
-
-
-
-<p>So after upgrading UHD I should also&nbsp;rebuild gnuradio right?<br>
-</p>
-<div dir=3D"auto" style=3D"color: rgb(33, 33, 33);">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" col=
-or=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus D Leech &lt;patc=
-hvonbraun@gmail.com&gt;<br>
-<b>Sent:</b> Monday, May 31, 2021 9:39 PM<br>
-<b>To:</b> Skyvalakis Konstantinos<br>
-<b>Subject:</b> Re: USRP N200</font>
-<div>&nbsp;</div>
-</div>
-<div>If you upgrade UHD and use GnuRadio you=E2=80=99ll have to at least rel=
-ink GR against the new UHD.&nbsp;
-<div><br>
-</div>
-<div>But recent vintage distros like Ubuntu allow you to just install as pac=
-kages. No build from source required.&nbsp;<br>
+<div dir=3D"auto">maybe you can help me to find some example of recorded fi=
+les with iq stream, so I will understand it&#39;s values please.<div dir=3D=
+"auto">it may help=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">=D0=BF=D0=BD, 31 =D0=BC=D0=B0=D1=8F 2021 =D0=
+=B3., 20:35 Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">=
+patchvonbraun@gmail.com</a>&gt;:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div>On 05/31/2021 09:07 AM, Alexey Silyuk
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">Thanks for the answer, so what is the order of
+        pushing samples to the mock buffer? if i want to ensure that i
+        am receiving correct data i pushed after calling recv() using
+        float or double type?</div>
+    </blockquote>
+    The ordering on the &quot;wire&quot; is IQIQIQIQ, and similarly on the
+    converted-to-host-format side.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">=D0=BF=D0=BD, 31 =D0=BC=D0=B0=
+=D1=8F 2021 =D0=B3. =D0=B2 15:44,
+          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" ta=
+rget=3D"_blank" rel=3D"noreferrer">patchvonbraun@gmail.com</a>&gt;:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
+          05/31/2021 08:30 AM, Alexey Silyuk wrote:<br>
+          &gt; HI everybody, I am new at mailing list.<br>
+          &gt; These days I am writing an emulator for emulating tx/rx
+          streams based <br>
+          &gt; on uhd 3.15LTS<br>
+          &gt; I am using device usrp2 device from uhd/lib.<br>
+          &gt; As I saw in examples (rx_samples_to_file), I am creating
+          a mock <br>
+          &gt; streamer ( taken from uhd tests ).<br>
+          &gt; and now i want to push samples inside the buffer.<br>
+          &gt; I see that i can define type of samples, if am using
+          &#39;short&#39; type of <br>
+          &gt; samples, I am creating uint32_t variable, 16 MSB i put
+          real part of <br>
+          &gt; sample, and 16 LSB i put imaginary part of sample (i am
+          using little <br>
+          &gt; endian)<br>
+          &gt; After that i am calling usrp-&gt;recv() and i get samples
+          as i defined ( <br>
+          &gt; spp is 2000)<br>
+          &gt; (0,0)<br>
+          &gt; (2,2)<br>
+          &gt; ....<br>
+          &gt; (1999,1999)<br>
+          &gt; as expected, according to data I push to the mock buffer.<br=
+>
+          &gt;<br>
+          &gt; now while i want to use type &#39;float&#39; i am using for
+          example<br>
+          &gt; float real =3D 1.5<br>
+          &gt; float imag =3D 2.5<br>
+          &gt; and trying to push sample to the mock buffer, i am doing:<br=
+>
+          &gt; buffer[0] =3D (uint32_t)real;<br>
+          &gt; buffer[1] =3D (uint32_t)imag;<br>
+          &gt;<br>
+          &gt; and expecting to get after calling usrp-&gt;recv()<br>
+          &gt; (1.5, 2.5)<br>
+          &gt; but i get incorrect result (convertor settings:
+          cpu_format &quot;fc32&quot;, <br>
+          &gt; otw_format &quot;sf16&quot; )<br>
+          &gt;<br>
+          &gt; i am printing real and imag parameters as
+          bitset&lt;32&gt; and see in real <br>
+          &gt; part, in 16 LSB part of result, my 16 MSB bits from
+          sample value 1.5, <br>
+          &gt; and in imagine part zeros, in next sample i see in 16 LSB
+          part of <br>
+          &gt; result, 16 MSB bits of sample value 2.5. I mean one
+          sample i push to <br>
+          &gt; buffer uses whole sample after calling recv()<br>
+          &gt;<br>
+          &gt; P.S i set scale factor to 1.0<br>
+          &gt;<br>
+          &gt; What am I doing wrong to use the type &#39;float&#39; and
+          &#39;double&#39; for mock <br>
+          &gt; samples?<br>
+          &gt; I am new at usrp so I don&#39;t understand what samples I
+          should use, will <br>
+          &gt; be glad to get references.<br>
+          &gt; Thanks<br>
+          &gt;<br>
+          &gt;<br>
+          Your OTW format is still SC16 -- normally only the *HOST* side
+          uses <br>
+          floating-point and no actual USRP devices that I&#39;m aware of
+          can<br>
+          =C2=A0 =C2=A0support floating-point *ON THE WIRE* (OTW).<br>
+          <br>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a>=
 <br>
-<div dir=3D"ltr">Sent from my iPhone</div>
-<div dir=3D"ltr"><br>
-<blockquote type=3D"cite">On May 31, 2021, at 2:30 PM, Skyvalakis Konstantin=
-os &lt;kskyvalakis@isc.tuc.gr&gt; wrote:<br>
-<br>
-</blockquote>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">=EF=BB=BF
-<p>Ok, I&nbsp;just have&nbsp;a simple question for upgrading to a newer vers=
-ion of UHD.<br>
-</p>
-<p><br>
-</p>
-<p>Do I just need to "git checkout" a newer version of UHD,&nbsp;build it, e=
-tc. etc. and that's all there's to it.<br>
-</p>
-<p><br>
-</p>
-<p>OR do I also have to rebuild my gnuradio install after installing a newer=
- UHD?<br>
-</p>
-<p><br>
-</p>
-<p>Excuse me if what I'm saying is stupid but I am really trying to understa=
-nd how to do things correctly.<br>
-</p>
-<div style=3D"color:rgb(33,33,33)">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" col=
-or=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech &lt;pat=
-chvonbraun@gmail.com&gt;<br>
-<b>Sent:</b> Monday, May 31, 2021 9:17 PM<br>
-<b>To:</b> Skyvalakis Konstantinos; usrp-users@lists.ettus.com<br>
-<b>Subject:</b> Re: USRP N200</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div class=3D"moz-cite-prefix">On 05/31/2021 02:13 PM, Skyvalakis Konstantin=
-os wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<p>My UHD version is&nbsp;&nbsp;UHD_003.010.000.HEAD-0-g6e1ac3fc<br>
-</p>
-<p><br>
-</p>
-<p>and my ethernet interface adapter is a&nbsp;Qualcomm Atheros Killer E2400=
- Gigabit Ethernet Controller (rev 10)=E2=80=8B.<br>
-</p>
-<p><br>
-</p>
-<p>Thank you so much for your effort and time with my issue. I honestly appr=
-eciate it.<br>
-</p>
-<div style=3D"color:rgb(33,33,33)">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<br>
-</div>
-</blockquote>
-This issue shows up quite some time ago and I found it in the Nabble archive=
- for this list:<br>
-<br>
-<a class=3D"moz-txt-link-freetext" href=3D"http://ettus.80997.x6.nabble.com/=
-Re-USRP-users-Discuss-gnuradio-RuntimeError-fifo-ctrl-timed-out-looking-for-=
-acks-td8198.html">http://ettus.80997.x6.nabble.com/Re-USRP-users-Discuss-gnu=
-radio-RuntimeError-fifo-ctrl-timed-out-looking-for-acks-td8198.html</a><br>
-<br>
-You might also try upgrading to a much-more-recent UHD.<br>
-<br>
-<br>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
+          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
+e@lists.ettus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@li=
+sts.ettus.com</a><br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset></fieldset>
+      <br>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
+com</a>
+</pre>
+    </blockquote>
+    <br>
+  </div>
 
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
+com</a><br>
+</blockquote></div>
 
-</div></blockquote></div></body></html>=
+--000000000000ed0f6905c3a53048--
 
---Apple-Mail-CE19D4C4-5826-4D86-9025-950109FD47DE--
-
---===============7169829773033597822==
+--===============7550579642733063168==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -287,4 +313,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7169829773033597822==--
+--===============7550579642733063168==--
