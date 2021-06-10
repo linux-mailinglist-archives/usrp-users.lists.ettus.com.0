@@ -2,127 +2,118 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1613A21AB
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 02:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF5F13A2233
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 04:15:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 81F443847E7
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Jun 2021 20:59:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7C5F03843C8
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Jun 2021 22:15:47 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fumbf5E1";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Uon8PhzK";
 	dkim-atps=neutral
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3A067384655
-	for <usrp-users@lists.ettus.com>; Wed,  9 Jun 2021 20:58:53 -0400 (EDT)
-Received: by mail-qt1-f172.google.com with SMTP id v6so10743943qta.9
-        for <usrp-users@lists.ettus.com>; Wed, 09 Jun 2021 17:58:53 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8360D384153
+	for <usrp-users@lists.ettus.com>; Wed,  9 Jun 2021 22:14:46 -0400 (EDT)
+Received: by mail-yb1-f182.google.com with SMTP id g142so19061536ybf.9
+        for <usrp-users@lists.ettus.com>; Wed, 09 Jun 2021 19:14:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:subject:references
-         :in-reply-to:content-transfer-encoding;
-        bh=t80LheD0MvaoiLQJqLfwVJ9ly8vLnSdPmwILou2M+Fg=;
-        b=Fumbf5E1+THYtP7N7IqkbC6ZJmWmCKP1u9JQC27PW+Fyzv8E5qSVUS+vim38LPYY8o
-         YZc43NDZ3fEYkXt7AXZ5nwMQQn3NdO70lASu9FR13UaXYxfRC+n4rceZziu1BxaQNXvH
-         +tMgMIFXqIhbUkThnPbShHL8D3S49NxtsVvJuov9FhIYJyAgva7AGGCeHznXn0KLgQOy
-         fpmiAmeMnNvtpfEoEHAv7dft9IuNP6UTdLgMKXPn25Na1brdknolx0Xgxqu87xGwzeSY
-         32CnBFjUiQ+ejtcW8TdsBcYALqBTNJMBGl1OciVekHqZIC3zcEvrLdFg4Lpm+LSl1IVE
-         yBNg==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=dl0ROeO1uT9N0sZw3sHtA4GEIiA7EqNteXiSaD4j2qI=;
+        b=Uon8PhzKNHJ7Ap0FT5tckukmTZG8R4KWCGkJOQZLI+QDojUM3eKxKRLFxkJY6rL2bG
+         FKvLoLPKKJ72kSWE4eRJNUrPCqSUq5vF6yV4nlsqJUdPVBbrAseLpwwkUNHyE34NzYBl
+         IanDgBdvwuubWJtDNQvdrclnrUJo2B1o7vybAWzkihooCFatpMuSc5Zx7yGBPAvYjLAZ
+         9/hau20KEaLU5iyoR+6Zh9VK6+ImxIMtj5Q2X79eNgYEqBEgBnfNQhHds9GKGJ6/B46q
+         JA3D/XTfH9I88cr0qSyiRGEYUVKeYLgFyRhRJmW3GdX9BHXtWvovEB2GWzGiJ+a3X+ru
+         S/7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :subject:references:in-reply-to:content-transfer-encoding;
-        bh=t80LheD0MvaoiLQJqLfwVJ9ly8vLnSdPmwILou2M+Fg=;
-        b=qjt0L1pebPwexL0PmvfIW4vr5kVuTtWBqm/iCVON2fCnJ5mM4z8yCneI8i1RmkY9/s
-         T5ovH74KiQPI/ClfVPADuL0h/fYywBydVaVitwYadQ0ON880iKCdBF19xfduAcSFvGzW
-         mPIwWiwGCjBA6tm4OIeYACyd874xP0TicLHTj2EhIBdbOlH3/YVeg/0VdHtNQSdkTOFt
-         q90sIjM5VccZ9KBvQt8SqElOnOA8waSpmqKXssxmR7aU/2FxLp1Uofpp1GkhRRjdn1Zb
-         xH8l6jGtzVM6fnubaL1K3HNrhk7U93z6V0m3aPTlqogVn7BuEh0aPdRYhAHAJvCHuzKe
-         KNew==
-X-Gm-Message-State: AOAM532tJxA8EQ8OmizVLHoD74ecC9zA/062upBjQb5Y11ydU1r5EQSt
-	CqH1p90g2T4m9N5WhcA9bNf6HfF3+eM2sA==
-X-Google-Smtp-Source: ABdhPJxuZuYq8Jybzm7mNne/Dgup8cs/bY9B9VQMT7UPHUWfuTsvwz17Tx8Wh3GCq//SZ5bXayLSuA==
-X-Received: by 2002:a05:622a:348:: with SMTP id r8mr2851679qtw.359.1623286732469;
-        Wed, 09 Jun 2021 17:58:52 -0700 (PDT)
-Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id d21sm1166030qtn.24.2021.06.09.17.58.51
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Jun 2021 17:58:52 -0700 (PDT)
-Message-ID: <60C163CB.7060109@gmail.com>
-Date: Wed, 09 Jun 2021 20:58:51 -0400
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=dl0ROeO1uT9N0sZw3sHtA4GEIiA7EqNteXiSaD4j2qI=;
+        b=InfGBYvHpeLXjwjcEozj/nFXWgBd9Sbpbn+xCWsKTrMj4nAuJ8Bevo8bKaDzbUOJfx
+         Ry45OIbk/zfehL5/18TtstKqkc942yw3hxb8FzY2V+YagpZTC48Gy6EaaXf/xKCdh34q
+         fTUEVP5O4MnhQWdpwY0bExFMX0Kpy6dQYqwC8DP3pZ1ddSC61wbMmfuyb4wlIVk5TCl4
+         nzgyhwMOXYzRucuE1Ne+HyL1FhzMt3jKLF1bLnW2b3GZBsSyOJh631TKprkj1ks/+yIS
+         njxaWuSTpExXEstudRRXochM4tJ5NNKl7qwsjS8+Wwdv+qvhs3xfWWq5KGXtj3gm/W7u
+         wySw==
+X-Gm-Message-State: AOAM530AbGhbD/59n2wa2A+IyFiJP4LMl6SImrewsMqgM5A3QVII9JT9
+	3Q9tjWPsX4spyHIgXkuk2fHHfRjY4y+maU/MYsv3p5ly
+X-Google-Smtp-Source: ABdhPJzvAvJFD34MJ6ens+A9PhsM2yjhw4c19zvJl/3f9fPdhlAXYduiMbT1uo2+0STQCBEJ0dBs1I1halVSlKSR1ws=
+X-Received: by 2002:a25:2e43:: with SMTP id b3mr4263007ybn.152.1623291285687;
+ Wed, 09 Jun 2021 19:14:45 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <d9be7a3f-5597-e0be-dc7f-b72ca4ab00f9@discreteintegration.ca>
-In-Reply-To: <d9be7a3f-5597-e0be-dc7f-b72ca4ab00f9@discreteintegration.ca>
-Message-ID-Hash: MVTVYODKTP2NNHTSQCOL36C2RG57LJBX
-X-Message-ID-Hash: MVTVYODKTP2NNHTSQCOL36C2RG57LJBX
-X-MailFrom: patchvonbraun@gmail.com
+From: Kelvin Lok <kelvin.lok266@gmail.com>
+Date: Thu, 10 Jun 2021 10:14:34 +0800
+Message-ID: <CACSyVY3+ah-VOMt-tmLYV1L=WeD5bqwoqBdGZpukc+u3EDTYYw@mail.gmail.com>
+To: "usrp-users (usrp-users@lists.ettus.com)" <usrp-users@lists.ettus.com>
+Message-ID-Hash: UZZFGYZRLGKC5GF74XMQ24ABPNRUHME4
+X-Message-ID-Hash: UZZFGYZRLGKC5GF74XMQ24ABPNRUHME4
+X-MailFrom: kelvin.lok266@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Phase relationship between front-end mixer and IQ sampling
+Subject: [USRP-users] [KeyError] for X310 on Windows 10, UHD 3.15
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MVTVYODKTP2NNHTSQCOL36C2RG57LJBX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UZZFGYZRLGKC5GF74XMQ24ABPNRUHME4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Type: multipart/mixed; boundary="===============4210818123551168301=="
+
+--===============4210818123551168301==
+Content-Type: multipart/alternative; boundary="00000000000073518805c45ff460"
+
+--00000000000073518805c45ff460
+Content-Type: text/plain; charset="UTF-8"
+
+I am having trouble with this error message. "*Error: LookupError:
+KeyError: Unknown settings register name: DDS_FREQ*", on a X310 usrp.
+I have 2 UHD installations of UHD on 2 different computers. Computer A has
+internet access, Computer B does not have internet access. Both computers
+use UHD 3.15 built from source (Github), running windows 10. On Computer A,
+I am able to run uhd_usrp_probe.exe without any issues. On computer B I get
+the DDS_Freq KeyError.
+
+I initially thought it was an image issue, but the same x310 works on
+Computer A but faces error on Computer B.
+
+Even copying the same uhd binaries and images from A to B, and running on B
+shows the same error. I also ran a cmd prompt session and reset the
+environment variables for uhd_images_dir.
+
+Any advice on what I could be doing wrong?
+
+--00000000000073518805c45ff460
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I am having trouble with this error message. &quot;<b><fon=
+t face=3D"verdana, sans-serif">Error: LookupError: KeyError: Unknown settin=
+gs register name: DDS_FREQ</font></b>&quot;, on a=C2=A0X310 usrp.<div>I hav=
+e 2 UHD installations of UHD on 2 different computers. Computer A has inter=
+net access, Computer B does not have internet access. Both computers use=C2=
+=A0UHD 3.15 built from source (Github), running=C2=A0windows 10. On Compute=
+r A, I am able to run uhd_usrp_probe.exe without any issues. On computer B =
+I get the DDS_Freq KeyError.</div><div><br></div><div>I initially thought i=
+t was an image issue, but the same x310 works on Computer A but faces error=
+ on Computer B.</div><div><br></div><div>Even copying the same uhd binaries=
+ and images from A to B, and running on B shows the same error. I also ran =
+a cmd prompt session and reset the environment variables for uhd_images_dir=
+.</div><div><br></div><div>Any advice on what I could be doing wrong?</div>=
+</div>
+
+--00000000000073518805c45ff460--
+
+--===============4210818123551168301==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-
-On 06/09/2021 08:42 PM, Dominic Schaub via USRP-users wrote:
-> Hi,
->
-> I'm trying to explain an odd (and reproducible) observation for a 
-> dataset I collected. The setup is as follows:
->
-> -A USRP-2974 is externally clocked with a 10MHz sin reference from a 
-> SRS FS725 atomic frequency standard. Power is within recommended bounds.
->
-> -The same 10 MHz signal is introduced at one of the RX ports and is 
-> recorded via the rx_samples_to_file utility ( nsamps = 5,000,000,000; 
-> rate = 50,000,000; freq = 0; channel = 0; ref = external - I added 
-> commas for clarity here).
->
-> -In software I then decimate by a factor of 1,000,000 by keeping only 
-> 1/million samples. The new dataset is then essentially the 10MHz sin 
-> sampled at 50 SPS with the sampling clock being derived from the same 
-> signal.
->
-> Now for my issue:
->
-> I don't expect the recorded IQ samples to be necessarily real, since I 
-> assume that there would need to be some calibration between the RF 
-> frontend upconversion mixer and the downstream IQ mixers. However, 
-> given the presumptive phase and frequency determinism among the 
-> various mixers, I do expect a constant sample-to-sample phase for the 
-> duration of the sample collection window (i.e. there should be no 
-> phase drift among successive samples). Attached is an image of the 50 
-> SPS dataset. The magnitude remains constant (expected), but the phase 
-> varies very slowly, on the order of one cycle per minute. Could 
-> someone explain to me the origin of this phase drift? From the block 
-> diagram of the 2974 it appears that that mixers are driven from two 
-> PLLS that share the same reference frequency input, so I find this 
-> effect puzzling.
->
-> Thanks,
->
-> Dominic
-I'm not that familiar with the USRP 2974, but I think the lowest tunable 
-frequency is 10MHz and I'm not sure what it will do when you
-   ask it to tune to 0Hz.   Likely it will have issued a message 
-indicating that the desired frequency had been "clipped" to the
-   nearest possible value?
-
-I'm not familiar with the PLLs in the 2974, but if they are "sane" then 
-this may be an indication of differential thermal drift between the
-   refclock input and the RF input.  Given the quoted timescales, that's 
-a phase slip of about 1.6PPB?
-
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4210818123551168301==--
