@@ -2,380 +2,610 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5571E3A3290
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 19:57:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF643A352C
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 22:55:06 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 04F42384ADE
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 13:57:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 43FCF38472B
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 16:55:05 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=erdc.dren.mil header.i=@erdc.dren.mil header.b="b66ZaFOR";
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=erdc.dren.mil header.i=@erdc.dren.mil header.b="bmBMCg6+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Blbyd8ki";
 	dkim-atps=neutral
-Received: from mfe.dren.mil (mfe.dren.mil [140.32.59.234])
-	by mm2.emwd.com (Postfix) with ESMTPS id 77BA9384784
-	for <usrp-users@lists.ettus.com>; Thu, 10 Jun 2021 13:56:18 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdc.dren.mil; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- mime-version; s=s1.dkim; bh=nmu0rBvzKyewn7jIaxDpeNge9JhVKPgHhv0o5DznrsU=;
- b=b66ZaFORC4YSH91zD62WyUNNtDIE/r5XTKQeWafjrdIpZkyoV3zxem9xeS3RhwbSPk2I
- eFdplFtVkzjGkHYbwX8uZj8G1hGTjIwzdkzl+tSkxrrvLWaP4vGH6McUhNPQGiWU/viW
- gxUpXtwT72sdxIABIA5ZxIlIxH6jDKuNChE=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdc.dren.mil; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- mime-version; s=s2.dkim; bh=nmu0rBvzKyewn7jIaxDpeNge9JhVKPgHhv0o5DznrsU=;
- b=bmBMCg6+VyRdQj/IEXw95lRp+/kmMgY6IIpS0qigSE+G55XsF3HR5sJAcIHZ6g5IShD+
- I0uEke+hUTpXhC47AZSkFczcLY63qeBg6mmec0Y5q0jwxsEp4coiTzh+P5wn7Pe2xbLa
- fVIm7QyCl/ka+Ov3FQWtiYobmqGoRcy1MnLDwLt1LZuJW1eEz+h7hAbouy86Ak2VPWhU
- RzP90XAQx9OQQzjBKqwPVaqWWIluE1evuOprxih7+gb7qrf42Q3GUKqFAEh83dhhIffs
- AUfNDUa0CRT5hgaJZ78grL4plX72ehU3mqJ/h0MVhv5CYLTTcM/hzIZndlIRFFJa/tfl 9A==
-Received: from rde-gw1.erdc.dren.mil (rde-gw1.erdc.dren.mil [134.164.23.110])
-	by ppae.dren.mil (8.16.1.2/8.16.1.2) with ESMTPS id 15AHuFDQ021512
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Thu, 10 Jun 2021 17:56:15 GMT
-X-IronPort-AV: E=Sophos;i="5.83,264,1616475600";
-   d="scan'208,217";a="60972152"
-Received: from unknown (HELO ERDC-EX2.erdc.dren.mil) ([134.164.254.14])
-  by rde-gw1.erdc.dren.mil with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Jun 2021 12:56:14 -0500
-Received: from ERDC-EX1.erdc.dren.mil (134.164.254.13) by
- ERDC-EX2.erdc.dren.mil (134.164.254.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2176.2; Thu, 10 Jun 2021 12:56:14 -0500
-Received: from ERDC-EX1.erdc.dren.mil ([::1]) by ERDC-EX1.erdc.dren.mil
- ([fe80::e424:b20d:2104:faa8%6]) with mapi id 15.01.2176.012; Thu, 10 Jun 2021
- 12:56:14 -0500
-To: Berkay SAYGILI <zuhasdasn@gmail.com>, Wade Fife <wade.fife@ettus.com>
-Thread-Topic: [USRP-users] Re: DPDK setup with UHD 4.0
-Thread-Index: AQHXUnLzUhAivcQXe0+kkBT+tvGmvqr3XdiAgBZAUCA=
-Date: Thu, 10 Jun 2021 17:56:14 +0000
-Message-ID: <bfe1242e31c1487aaaac63266f1e1027@erdc.dren.mil>
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 525E438425B
+	for <usrp-users@lists.ettus.com>; Thu, 10 Jun 2021 16:54:15 -0400 (EDT)
+Received: by mail-io1-f53.google.com with SMTP id p66so26688902iod.8
+        for <usrp-users@lists.ettus.com>; Thu, 10 Jun 2021 13:54:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9cSEkidpjQHZ0JPI2Tunt8FXrg7HgjaEtccf4BomXI8=;
+        b=Blbyd8ki8zMJi2urmmnE3G6cp5zLWtE6vvZuBJdMIDOxDj/yajMHejuCdsrRSg1B0D
+         h6vjWttU7Qhpe3BXt8jqn5OxyJta0bi4E4fYZbNXH0jiEszGriHIeNc6QM3IyR13OnJX
+         0Rd5mSu8H+ms+w9uJd7V1faWTdFv9u04VOMc8kO/dSvPQDbZ9/uib+6cxhqZd9hI17ZK
+         tsXsd2MK1uPk5GjDvQKirGqzDjJHbMZrxOqaNgwJQPuEPfdl0kI5Vb2HLDGPnRgv80KC
+         oS71KHwcT/hNt2cLMEJq42RrbupPwQ8cOSeXUhSaeNbQ4+YWwBkyIftBAgHWRd8L+v0A
+         2J+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9cSEkidpjQHZ0JPI2Tunt8FXrg7HgjaEtccf4BomXI8=;
+        b=c6Db6WqaueWbq/vds24FWK2g0RnrUFGxGfWDxPmtMPsQuRFLt/mV+FFxLkYBoSiYch
+         zey0sh37+UgBE+gu0G0m86WCY9NRifXZ0tFf42cLL5+dtuPXD0CtPcqxehq36zMN9Fdu
+         ENFdcSczI7HCXLDsR4aMbzdDvlXZnIaAqHqofRjSPLrYgvYwCAuuuiLJR7NKlmq34I1N
+         eYTxYUse05zQGTwLlpcKMADFHI/bvenVLTdtHdB4gq7XPBdvjoHkoNysqpQGehrNsm9/
+         dkMeLcMfDfva7FSnciR6IaSwwE6x+3uPCYs/AAE12CdCDN96IpKL5+5sl/2MpP0qwx+Y
+         WtpA==
+X-Gm-Message-State: AOAM5322TZRjQksy73CIpLiX+WUY5LCBZZ4M487DDDQikgHQ/eTVT4yE
+	v0hMd24dyyO442oM5WwK/Dk2DTOiQQI4JsdT7FU=
+X-Google-Smtp-Source: ABdhPJwU3bzteTcB6wU54PfiP+U0LQtEzo0re6utwjW2YLWPLJ1O3MoiX3IQr3mE08S6NzGH0pEqpTDhWp5OAJC5+Pg=
+X-Received: by 2002:a6b:e50c:: with SMTP id y12mr390652ioc.20.1623358454464;
+ Thu, 10 Jun 2021 13:54:14 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAA7+tqS5VzQQePfvw96igArX=wQNWME_2xg9OPP3ir7yRRVPsw@mail.gmail.com>
  <CAFche=hJ6h7kWWdjAycyOUopqqwQZEJqUiBFBJ93spFKANZOUA@mail.gmail.com>
- <CAA7+tqRsdZ+r=oHhnd_pDonkbnA2vgxskuQYvAR+Qaqh+JNUtw@mail.gmail.com>
-In-Reply-To: <CAA7+tqRsdZ+r=oHhnd_pDonkbnA2vgxskuQYvAR+Qaqh+JNUtw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [134.164.254.60]
-MIME-Version: 1.0
-Message-ID-Hash: 7GWOODBCKUPSDH6IPTU5G4OWXSFF4UEK
-X-Message-ID-Hash: 7GWOODBCKUPSDH6IPTU5G4OWXSFF4UEK
-X-MailFrom: Carl.L.Wolsieffer@erdc.dren.mil
+ <CAA7+tqRsdZ+r=oHhnd_pDonkbnA2vgxskuQYvAR+Qaqh+JNUtw@mail.gmail.com> <bfe1242e31c1487aaaac63266f1e1027@erdc.dren.mil>
+In-Reply-To: <bfe1242e31c1487aaaac63266f1e1027@erdc.dren.mil>
+From: Berkay SAYGILI <zuhasdasn@gmail.com>
+Date: Thu, 10 Jun 2021 23:54:03 +0300
+Message-ID: <CAA7+tqQUHkaDPM3PLAZ_w+Eb88qOb4iMgg-dyeEYSVUOsBrftw@mail.gmail.com>
+To: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV" <Carl.L.Wolsieffer@erdc.dren.mil>
+Message-ID-Hash: EEY5K74ZNVIEHUW4LD7VJYXSQDZN2XYU
+X-Message-ID-Hash: EEY5K74ZNVIEHUW4LD7VJYXSQDZN2XYU
+X-MailFrom: zuhasdasn@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: DPDK setup with UHD 4.0
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7GWOODBCKUPSDH6IPTU5G4OWXSFF4UEK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EEY5K74ZNVIEHUW4LD7VJYXSQDZN2XYU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV" <Carl.L.Wolsieffer@erdc.dren.mil>
-Content-Type: multipart/mixed; boundary="===============5275393076712200305=="
+Content-Type: multipart/mixed; boundary="===============6123101260036739966=="
 
---===============5275393076712200305==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_bfe1242e31c1487aaaac63266f1e1027erdcdrenmil_"
+--===============6123101260036739966==
+Content-Type: multipart/alternative; boundary="00000000000005877005c46f98f6"
 
---_000_bfe1242e31c1487aaaac63266f1e1027erdcdrenmil_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000005877005c46f98f6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQmVya2F5LA0KDQpJ4oCZbSBhY3R1YWxseSBoYXZpbmcgdGhpcyBleGFjdCBzYW1lIGlzc3Vl
-LiBXZSBoYXZlIHByZXR0eSBtdWNoIGFsbCB0aGUgc2FtZSBoYXJkd2FyZS9zb2Z0d2FyZS9VYnVu
-dHUgZXRjIGFuZCBhZnRlciB1c2luZyBtZXNvbiBhbmQgbmluamEgSSB3YXMgYWJsZSB0byBnZXQg
-dG8gdGhpcyBwb2ludCB5b3UgYXJlIGF0IGhlcmUuIERpZCB5b3UgZXZlciBmaWd1cmUgb3V0IGhv
-dyB0byByZXNvbHZlIHRoaXM/IE11Y2ggYXBwcmVjaWF0ZWQhDQoNCkNhc2V5DQoNClBTIEkgdHJp
-ZWQgc2VuZGluZyB0aGlzIHJlcGx5IHZpYSB0aGUgYXJjaGl2ZXMgd2VicGFnZSB3aGljaCBkaWRu
-4oCZdCBzZWVtIHRvIGJlIHdvcmtpbmcsIHNvIGFwb2xvZ2llcyBpZiB0aGlzIGlzIGJlaW5nIHNl
-bnQgMiBvciAzIHRpbWVzDQoNCkZyb206IEJlcmtheSBTQVlHSUxJIDx6dWhhc2Rhc25AZ21haWwu
-Y29tPg0KU2VudDogVGh1cnNkYXksIE1heSAyNywgMjAyMSA1OjA2IEFNDQpUbzogV2FkZSBGaWZl
-IDx3YWRlLmZpZmVAZXR0dXMuY29tPg0KQ2M6IHVzcnAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPg0KU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBEUERLIHNldHVwIHdpdGggVUhE
-IDQuMA0KDQpIZWxsbyBhZ2FpbiwNCg0KVXNpbmcgbWVzb24gYW5kIG5pbmphIG1hZGUgZHBkayBy
-ZWNvZ25pemVkIGJ5IHVoZCBjbWFrZS4gSSBpbml0aWFsbHkgdXNlZCB0aGUgaW5zdHJ1Y3Rpb25z
-IGZyb20gIkJsb2NrZWRodHRwczovL2RvYy5kcGRrLm9yZy9ndWlkZXMtMTguMTEvbGludXhfZ3Nn
-L2J1aWxkX2RwZGsuaHRtbEJsb2NrZWQiLiBIb3dldmVyLCB3aGVuIGkgdHJpZWQgdG8gY29tcGxl
-dGUgdGhlIHVoZCBpbnN0YWxsYXRpb24gd2l0aCBtYWtlIGNvbW1hbmQsIGFub3RoZXIgcHJvYmxl
-bSB3YXMgb2NjdXJyZWQgKGdpdmVuIGJlbG93KS4gSnVzdCB0byBsZXQgeW91IGtub3csIGkgY291
-bGRuJ3QgbWFrZSAiQ09ORklHX1JURV9CVUlMRF9TSEFSRURfTElCPXkiIHdpdGggbWVzb24gYnVp
-bGQgKGkgZG9udCBrbm93IGlmIGl0IGlzIG5lY2Vzc2FyeSkuDQoNClsgNTElXSBMaW5raW5nIENY
-WCBzaGFyZWQgbGlicmFyeSBsaWJ1aGQuc28NClsgNTElXSBCdWlsdCB0YXJnZXQgdWhkDQpTY2Fu
-bmluZyBkZXBlbmRlbmNpZXMgb2YgdGFyZ2V0IHVzcnBfbGlzdF9zZW5zb3JzDQpbIDUxJV0gQnVp
-bGRpbmcgQ1hYIG9iamVjdCBleGFtcGxlcy9DTWFrZUZpbGVzL3VzcnBfbGlzdF9zZW5zb3JzLmRp
-ci91c3JwX2xpc3Rfc2Vuc29ycy5jcHAubw0KWyA1MSVdIExpbmtpbmcgQ1hYIGV4ZWN1dGFibGUg
-dXNycF9saXN0X3NlbnNvcnMNCi91c3IvYmluL2xkOiAuLi9saWIvbGlidWhkLnNvLjQuMC4wOiB1
-bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBsY29yZV9jb25maWcnDQovdXNyL2Jpbi9sZDogLi4vbGli
-L2xpYnVoZC5zby40LjAuMDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgcnRlX2VhbF9nZXRfY29u
-ZmlndXJhdGlvbicNCmNvbGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1cw0K
-bWFrZVsyXTogKioqIFtleGFtcGxlcy9DTWFrZUZpbGVzL3VzcnBfbGlzdF9zZW5zb3JzLmRpci9i
-dWlsZC5tYWtlOjk1OiBleGFtcGxlcy91c3JwX2xpc3Rfc2Vuc29yc10gRXJyb3IgMQ0KbWFrZVsx
-XTogKioqIFtDTWFrZUZpbGVzL01ha2VmaWxlMjoxMDM4OiBleGFtcGxlcy9DTWFrZUZpbGVzL3Vz
-cnBfbGlzdF9zZW5zb3JzLmRpci9hbGxdIEVycm9yIDINCm1ha2U6ICoqKiBbTWFrZWZpbGU6MTYz
-OiBhbGxdIEVycm9yIDINCg0KSSB1c2UgVWJ1bnR1IDIwLjA0LjEsIGFuZCBoYXZlIGFuIFg1MjAt
-REEyIGNhcmQuIEkgYW0gYXQgdGhlICJJbnN0YWxsaW5nIFVIRCIgcGFydCBpbiBCbG9ja2VkaHR0
-cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFydGVkX3dpdGhfRFBES19hbmRfVUhEQmxvY2tl
-ZCwgc28gaSBkb250IGhhdmUgdGhlIHVoZC5jb25mIGZpbGUgaW4gcm9vdC4gSW4gYWRkaXRpb24s
-IGkgZG93bmxvYWRlZCBpeGdiZSBkcml2ZXIgYXQgZmlyc3QsIHRoZW4gc3dpdGNoZWQgaXQgdG8g
-dmZpby1wY2kNCjxCbG9ja2VkaHR0cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFydGVkX3dp
-dGhfRFBES19hbmRfVUhEQmxvY2tlZD4NCg0KDQpCZXN0IFJlZ2FyZHMNCg0KQmVya2F5IFMuDQoN
-Ck9uIFRodSwgMjcgTWF5IDIwMjEgYXQgMDA6MDUsIFdhZGUgRmlmZSA8d2FkZS5maWZlQGV0dHVz
-LmNvbTxtYWlsdG86d2FkZS5maWZlQGV0dHVzLmNvbT4+IHdyb3RlOg0KSGkgQmVya2F5LA0KDQpJ
-IGFsc28gaGFkIGEgbG90IG9mIHRyb3VibGUgZ2V0dGluZyBEUERLIHRvIGJlIHJlY29nbml6ZWQu
-IEl0IGNvdWxkIGJlIGEgbG90IG9mIHRoaW5ncywgc28gSSBjYW4gb25seSBzcGVjdWxhdGUgd2hh
-dCB0aGUgcHJvYmxlbSBpcyBpbiB5b3VyIGNhc2UuIEluIG15IGNhc2UsIEkgaGFkIGh5cGhlbnMg
-aW5zdGVhZCBvZiB1bmRlcnNjb3JlcyBpbiBteSB1aGQuY29uZiBmaWxlLiBJIHRoaW5rIEkgYWxz
-byBoYWQgc29tZSBpc3N1ZXMgd2l0aCBzcGVjaWZ5aW5nIHRoZSBjb3JyZWN0IGxvY2F0aW9uIG9m
-IHRoZSBEUERLIGRyaXZlci4gSG9wZWZ1bGx5IHlvdSd2ZSBhbHJlYWR5IHJlYWQgdGhyb3VnaCB0
-aGUgS0Igb24gaG93IHRvIHNldCBpdCB1cC4NCg0KQmxvY2tlZGh0dHBzOi8va2IuZXR0dXMuY29t
-L0dldHRpbmdfU3RhcnRlZF93aXRoX0RQREtfYW5kX1VIREJsb2NrZWQNCg0KVGhlcmUgYXJlIGFs
-c28gc29tZSBkcml2ZXIgZGVwZW5kZW5jaWVzIGFuZCwgZGVwZW5kaW5nIG9uIHlvdXIgRXRoZXJu
-ZXQgY2FyZCwgc29tZSBmbGFncyBtYXkgYmUgbmVlZGVkIHdoZW4gYnVpbGRpbmcgRFBESy4NCg0K
-TWF5YmUgeW91IGNvdWxkIHNoYXJlIHNvbWUgYWRkaXRpb25hbCBkZXRhaWxzIGFib3V0IHlvdXIg
-c2V0dXAsIHN1Y2ggYXMgd2hpY2ggY2FyZCB5b3UncmUgdXNpbmcsIHdoaWNoIGRyaXZlci92ZXJz
-aW9uLCBob3cgeW91IGJ1aWx0IERQREssIGV0Yy4NCg0KTG9va2luZyBhdCBteSBub3RlcywgSSBi
-dWlsdCBEUERLIHVzaW5nIHRoZSBmb2xsb3dpbmcgc3RlcHMuIEknbSB1c2luZyBhIE1lbGxhbm94
-IENYNTE2QS4NCmNkIGRwZGstc3RhYmxlLTE4LjExLjExLw0KbWVzb24gYnVpbGQNCmNkIGJ1aWxk
-DQpuaW5qYQ0Kc3VkbyBuaW5qYSBpbnN0YWxsDQpzdWRvIGxkY29uZmlnDQoNCk15IC9yb290Ly51
-aGQvdWhkLmNvbmYgcHJldHR5IG11Y2ggbWF0Y2hlcyB0aGUgb25lIGluIHRoZSBLQiB1bmRlciBV
-SEQgNC4wLCBhbHRob3VnaCBJIGNvbW1lbnRlZCBzb21lIHRoaW5ncyBvdXQuDQpbdXNlX2RwZGs9
-MV0NCmRwZGtfbXR1PTkwMDANCmRwZGtfZHJpdmVyPS91c3IvbG9jYWwvbGliLw0KZHBka19jb3Jl
-bGlzdD0yLDMsNA0KO2RwZGtfbnVtX21idWZzPTQwOTUNCjtkcGRrX21idWZfY2FjaGVfc2l6ZT0z
-MTUNCg0KW2RwZGtfbWFjPVhYOlhYOlhYOlhYOlhYOlhYXQ0KZHBka19sY29yZSA9IDMNCmRwZGtf
-aXB2NCA9IDE5Mi4xNjguMTAuMS8yNDxCbG9ja2VkaHR0cDovLzE5Mi4xNjguMTAuMS8yNEJsb2Nr
-ZWQ+DQoNCjtbZHBka19tYWM9WFg6WFg6WFg6WFg6WFg6WFhdDQo7ZHBka19sY29yZSA9IDQNCjtk
-cGRrX2lwdjQgPSAxOTIuMTY4LjIwLjEvMjQ8QmxvY2tlZGh0dHA6Ly8xOTIuMTY4LjIwLjEvMjRC
-bG9ja2VkPg0KDQpXYWRlDQoNCk9uIFdlZCwgTWF5IDI2LCAyMDIxIGF0IDM6NTYgQU0gQmVya2F5
-IFNBWUdJTEkgPHp1aGFzZGFzbkBnbWFpbC5jb208bWFpbHRvOnp1aGFzZGFzbkBnbWFpbC5jb20+
-PiB3cm90ZToNCkhlbGxvLA0KDQpJJ3ZlIGJlZW4gdHJ5aW5nIHRvIHVzZSBkcGRrIHdpdGggVUhE
-IDQuMCBvbiBvdXIgbmV3bHkgcHVyY2hhc2VkIE4zMjAsIGJ1dCBpdCBpcyBzaG93biBhcyBkaXNh
-YmxlZCBjb21wb25lbnQgd2hlbiBpIGNtYWtlIHVoZC4gRmlyc3QsIGkgdXNlZCAiYXB0LWdldCBp
-bnN0YWxsIGRwZGsgZHBkay1kZXYiLCB0aGVuIHJlYWxpemVkIGl0IGluc3RhbGxlZCB3cm9uZyB2
-ZXJzaW9uLCBhZnRlcndvcmRzIGkgZG93bmxvYWRlZCBkcGRrIDE4LjExLiBmcm9tIHRoZSBzb3Vy
-Y2UgYW5kIGNvbXBpbGVkLiBBbm90aGVyIG1pc3Rha2Ugd2FzIG5vdCBlbmFibGluZyBzaGFyZWQg
-bGlicmFyeSBidWlsZCwgc28gaSByZWJ1aWxkZWQgaXQgd2l0aCBzaGFyZSBsaWJyYXJpZXMgZW5h
-YmxlZCAoaSBjYW4gLnNvIGZpbGVzIG5vdyBpbiB0aGUgbGliKS4gQnV0LCBzdGlsbCBjbWFrZSBz
-aG93cyB0aGF0IGRwZGsgaXMgZGlzYWJsZWQuIEkgYWRkZWQgY21ha2VjYWNoZS50eHQgZmlsZSB0
-byB0aGlzIG1haWwsIG1heWJlIGl0IGNhbiBiZSB1c2VmdWwuIEJ0dywgaSBjb21wbGV0ZWQgYWxs
-IG90aGVyIHN0ZXBzIGxpa2UgZW5hYmxpbmcgaHVnZXBhZ2VzLCBhZGRpbmcgZHJpdmVycywgZXRj
-LiBEbyB5b3UgaGF2ZSBhbnkgc29sdXRpb24gdG8gdGhpcyBwcm9ibGVtPw0KDQoNCkJlc3QgcmVn
-YXJkcw0KDQpCZXJrYXkgUy4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208bWFp
-bHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0K
+Hello Casey,
 
---_000_bfe1242e31c1487aaaac63266f1e1027erdcdrenmil_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I was trying to delete DPDK files manually (because i installed DPDK 19 at
+first, and it doesnt have an uninstall method), and accidentally crashed my
+OS (it was my fault, deleted something important). After reinstalling
+Ubuntu, i installed everything again and the error was gone. Reinstalling
+everything took like 3-4 hours, i spent much more trying the fix the error.
+I also faced a few more errors in next steps, i mention them below, might
+be useful for some people.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
-b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4
-DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0
-eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7
-fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBp
-biAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rp
-b24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1
-bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEt
-LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzpp
-ZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtl
-bmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0i
-cHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SGkgQmVya2F5LDxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
-OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SeKAmW0gYWN0dWFsbHkgaGF2aW5nIHRoaXMg
-ZXhhY3Qgc2FtZSBpc3N1ZS4gV2UgaGF2ZSBwcmV0dHkgbXVjaCBhbGwgdGhlIHNhbWUgaGFyZHdh
-cmUvc29mdHdhcmUvVWJ1bnR1IGV0YyBhbmQgYWZ0ZXIgdXNpbmcgbWVzb24gYW5kIG5pbmphIEkg
-d2FzIGFibGUgdG8gZ2V0IHRvDQogdGhpcyBwb2ludCB5b3UgYXJlIGF0IGhlcmUuIERpZCB5b3Ug
-ZXZlciBmaWd1cmUgb3V0IGhvdyB0byByZXNvbHZlIHRoaXM/IE11Y2ggYXBwcmVjaWF0ZWQhPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5DYXNleTxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+UFMgSSB0cmllZCBzZW5kaW5nIHRoaXMg
-cmVwbHkgdmlhIHRoZSBhcmNoaXZlcyB3ZWJwYWdlIHdoaWNoIGRpZG7igJl0IHNlZW0gdG8gYmUg
-d29ya2luZywgc28gYXBvbG9naWVzIGlmIHRoaXMgaXMgYmVpbmcgc2VudCAyIG9yIDMgdGltZXM8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmIj4gQmVya2F5IFNBWUdJTEkgJmx0O3p1aGFzZGFzbkBnbWFpbC5jb20mZ3Q7DQo8YnI+
-DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIE1heSAyNywgMjAyMSA1OjA2IEFNPGJyPg0KPGI+VG86
-PC9iPiBXYWRlIEZpZmUgJmx0O3dhZGUuZmlmZUBldHR1cy5jb20mZ3Q7PGJyPg0KPGI+Q2M6PC9i
-PiB1c3JwLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5T
-dWJqZWN0OjwvYj4gW1VTUlAtdXNlcnNdIFJlOiBEUERLIHNldHVwIHdpdGggVUhEIDQuMDxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IZWxsbyBhZ2Fpbiw8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VXNpbmcg
-bWVzb24gYW5kIG5pbmphIG1hZGUgZHBkayByZWNvZ25pemVkIGJ5IHVoZCBjbWFrZS4gSSBpbml0
-aWFsbHkgdXNlZCB0aGUgaW5zdHJ1Y3Rpb25zIGZyb20gJnF1b3Q7PGEgaHJlZj0iQmxvY2tlZGh0
-dHBzOi8vZG9jLmRwZGsub3JnL2d1aWRlcy0xOC4xMS9saW51eF9nc2cvYnVpbGRfZHBkay5odG1s
-QmxvY2tlZCI+QmxvY2tlZGh0dHBzOi8vZG9jLmRwZGsub3JnL2d1aWRlcy0xOC4xMS9saW51eF9n
-c2cvYnVpbGRfZHBkay5odG1sQmxvY2tlZDwvYT4mcXVvdDsuDQogSG93ZXZlciwgd2hlbiBpIHRy
-aWVkIHRvIGNvbXBsZXRlIHRoZSB1aGQgaW5zdGFsbGF0aW9uIHdpdGggbWFrZSBjb21tYW5kLCBh
-bm90aGVyIHByb2JsZW0gd2FzIG9jY3VycmVkIChnaXZlbiBiZWxvdykuIEp1c3QgdG8gbGV0IHlv
-dSBrbm93LCBpIGNvdWxkbid0IG1ha2UgJnF1b3Q7Q09ORklHX1JURV9CVUlMRF9TSEFSRURfTElC
-PXkmcXVvdDsgd2l0aCBtZXNvbiBidWlsZCAoaSBkb250IGtub3cgaWYgaXQgaXMgbmVjZXNzYXJ5
-KS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-WyA1MSVdIExpbmtpbmcgQ1hYIHNoYXJlZCBsaWJyYXJ5IGxpYnVoZC5zbzxicj4NClsgNTElXSBC
-dWlsdCB0YXJnZXQgdWhkPGJyPg0KU2Nhbm5pbmcgZGVwZW5kZW5jaWVzIG9mIHRhcmdldCB1c3Jw
-X2xpc3Rfc2Vuc29yczxicj4NClsgNTElXSBCdWlsZGluZyBDWFggb2JqZWN0IGV4YW1wbGVzL0NN
-YWtlRmlsZXMvdXNycF9saXN0X3NlbnNvcnMuZGlyL3VzcnBfbGlzdF9zZW5zb3JzLmNwcC5vPGJy
-Pg0KWyA1MSVdIExpbmtpbmcgQ1hYIGV4ZWN1dGFibGUgdXNycF9saXN0X3NlbnNvcnM8YnI+DQov
-dXNyL2Jpbi9sZDogLi4vbGliL2xpYnVoZC5zby40LjAuMDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0
-byBgbGNvcmVfY29uZmlnJzxicj4NCi91c3IvYmluL2xkOiAuLi9saWIvbGlidWhkLnNvLjQuMC4w
-OiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBydGVfZWFsX2dldF9jb25maWd1cmF0aW9uJzxicj4N
-CmNvbGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1czxicj4NCm1ha2VbMl06
-ICoqKiBbZXhhbXBsZXMvQ01ha2VGaWxlcy91c3JwX2xpc3Rfc2Vuc29ycy5kaXIvYnVpbGQubWFr
-ZTo5NTogZXhhbXBsZXMvdXNycF9saXN0X3NlbnNvcnNdIEVycm9yIDE8YnI+DQptYWtlWzFdOiAq
-KiogW0NNYWtlRmlsZXMvTWFrZWZpbGUyOjEwMzg6IGV4YW1wbGVzL0NNYWtlRmlsZXMvdXNycF9s
-aXN0X3NlbnNvcnMuZGlyL2FsbF0gRXJyb3IgMjxicj4NCm1ha2U6ICoqKiBbTWFrZWZpbGU6MTYz
-OiBhbGxdIEVycm9yIDI8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+SSB1c2UgVWJ1bnR1IDIwLjA0LjEsIGFuZCBoYXZlIGFuIFg1MjAtREEyIGNh
-cmQuIEkgYW0gYXQgdGhlICZxdW90O0luc3RhbGxpbmcgVUhEJnF1b3Q7IHBhcnQgaW4NCjxhIGhy
-ZWY9IkJsb2NrZWRodHRwczovL2tiLmV0dHVzLmNvbS9HZXR0aW5nX1N0YXJ0ZWRfd2l0aF9EUERL
-X2FuZF9VSERCbG9ja2VkIiB0YXJnZXQ9Il9ibGFuayI+DQpCbG9ja2VkaHR0cHM6Ly9rYi5ldHR1
-cy5jb20vR2V0dGluZ19TdGFydGVkX3dpdGhfRFBES19hbmRfVUhEQmxvY2tlZDwvYT4sIHNvIGkg
-ZG9udCBoYXZlIHRoZSB1aGQuY29uZiBmaWxlIGluIHJvb3QuIEluIGFkZGl0aW9uLCBpIGRvd25s
-b2FkZWQgaXhnYmUgZHJpdmVyIGF0IGZpcnN0LCB0aGVuIHN3aXRjaGVkIGl0IHRvIHZmaW8tcGNp
-PGEgaHJlZj0iQmxvY2tlZGh0dHBzOi8va2IuZXR0dXMuY29tL0dldHRpbmdfU3RhcnRlZF93aXRo
-X0RQREtfYW5kX1VIREJsb2NrZWQiIHRhcmdldD0iX2JsYW5rIj48YnI+DQo8L2E+PG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVzdCBSZWdh
-cmRzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PkJlcmtheSBTLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5PbiBUaHUsIDI3IE1heSAyMDIxIGF0IDAwOjA1LCBXYWRlIEZpZmUgJmx0OzxhIGhy
-ZWY9Im1haWx0bzp3YWRlLmZpZmVAZXR0dXMuY29tIj53YWRlLmZpZmVAZXR0dXMuY29tPC9hPiZn
-dDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3Jk
-ZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGluIDBpbiAw
-aW4gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBpbiI+DQo8ZGl2Pg0KPGRp
-dj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgQmVya2F5LDxvOnA+PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFsc28gaGFk
-IGEgbG90IG9mIHRyb3VibGUgZ2V0dGluZyBEUERLIHRvIGJlIHJlY29nbml6ZWQuIEl0IGNvdWxk
-IGJlIGEgbG90IG9mIHRoaW5ncywgc28gSSBjYW4gb25seSBzcGVjdWxhdGUgd2hhdCB0aGUgcHJv
-YmxlbSBpcyBpbiB5b3VyIGNhc2UuIEluIG15IGNhc2UsIEkgaGFkIGh5cGhlbnMgaW5zdGVhZCBv
-ZiB1bmRlcnNjb3JlcyBpbiBteSB1aGQuY29uZiBmaWxlLiBJIHRoaW5rIEkgYWxzbyBoYWQgc29t
-ZQ0KIGlzc3VlcyB3aXRoIHNwZWNpZnlpbmcgdGhlIGNvcnJlY3QgbG9jYXRpb24gb2YgdGhlIERQ
-REsgZHJpdmVyLiBIb3BlZnVsbHkgeW91J3ZlIGFscmVhZHkgcmVhZCB0aHJvdWdoIHRoZSBLQiBv
-biBob3cgdG8gc2V0IGl0IHVwLg0KPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxhIGhyZWY9IkJsb2NrZWRodHRwczovL2tiLmV0dHVzLmNvbS9H
-ZXR0aW5nX1N0YXJ0ZWRfd2l0aF9EUERLX2FuZF9VSERCbG9ja2VkIiB0YXJnZXQ9Il9ibGFuayI+
-QmxvY2tlZGh0dHBzOi8va2IuZXR0dXMuY29tL0dldHRpbmdfU3RhcnRlZF93aXRoX0RQREtfYW5k
-X1VIREJsb2NrZWQ8L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPlRoZXJlIGFyZSBhbHNvIHNvbWUgZHJpdmVyIGRlcGVuZGVuY2llcyBhbmQs
-IGRlcGVuZGluZyBvbiB5b3VyIEV0aGVybmV0IGNhcmQsIHNvbWUgZmxhZ3MgbWF5IGJlIG5lZWRl
-ZCB3aGVuIGJ1aWxkaW5nIERQREsuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPk1heWJlIHlvdSBjb3VsZCBzaGFyZSBzb21lIGFkZGl0aW9uYWwg
-ZGV0YWlscyBhYm91dCB5b3VyIHNldHVwLCBzdWNoIGFzIHdoaWNoIGNhcmQgeW91J3JlIHVzaW5n
-LCB3aGljaCBkcml2ZXIvdmVyc2lvbiwgaG93IHlvdSBidWlsdCBEUERLLCBldGMuPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkxvb2tpbmcgYXQg
-bXkgbm90ZXMsIEkgYnVpbHQgRFBESyB1c2luZyB0aGUgZm9sbG93aW5nIHN0ZXBzLiBJJ20gdXNp
-bmcgYSBNZWxsYW5veCBDWDUxNkEuPGJyPg0KY2QgZHBkay1zdGFibGUtMTguMTEuMTEvPGJyPg0K
-bWVzb24gYnVpbGQ8YnI+DQpjZCBidWlsZDxicj4NCm5pbmphPGJyPg0Kc3VkbyBuaW5qYSBpbnN0
-YWxsPGJyPg0Kc3VkbyBsZGNvbmZpZzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5NeSAvcm9vdC8udWhkL3VoZC5jb25mIHByZXR0eSBtdWNoIG1h
-dGNoZXMgdGhlIG9uZSBpbiB0aGUgS0IgdW5kZXIgVUhEIDQuMCwgYWx0aG91Z2ggSSBjb21tZW50
-ZWQgc29tZSB0aGluZ3Mgb3V0LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+W3VzZV9kcGRrPTFdPGJyPg0KZHBka19tdHU9OTAwMDxicj4NCmRwZGtf
-ZHJpdmVyPS91c3IvbG9jYWwvbGliLzxicj4NCmRwZGtfY29yZWxpc3Q9MiwzLDQ8YnI+DQo7ZHBk
-a19udW1fbWJ1ZnM9NDA5NTxicj4NCjtkcGRrX21idWZfY2FjaGVfc2l6ZT0zMTU8YnI+DQo8YnI+
-DQpbZHBka19tYWM9WFg6WFg6WFg6WFg6WFg6WFhdPGJyPg0KZHBka19sY29yZSA9IDM8YnI+DQpk
-cGRrX2lwdjQgPSA8YSBocmVmPSJCbG9ja2VkaHR0cDovLzE5Mi4xNjguMTAuMS8yNEJsb2NrZWQi
-IHRhcmdldD0iX2JsYW5rIj4xOTIuMTY4LjEwLjEvMjQ8L2E+PGJyPg0KPGJyPg0KO1tkcGRrX21h
-Yz1YWDpYWDpYWDpYWDpYWDpYWF08YnI+DQo7ZHBka19sY29yZSA9IDQ8YnI+DQo7ZHBka19pcHY0
-ID0gPGEgaHJlZj0iQmxvY2tlZGh0dHA6Ly8xOTIuMTY4LjIwLjEvMjRCbG9ja2VkIiB0YXJnZXQ9
-Il9ibGFuayI+MTkyLjE2OC4yMC4xLzI0PC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XYWRlPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwv
-ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBXZWQsIE1heSAy
-NiwgMjAyMSBhdCAzOjU2IEFNIEJlcmtheSBTQVlHSUxJICZsdDs8YSBocmVmPSJtYWlsdG86enVo
-YXNkYXNuQGdtYWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnp1aGFzZGFzbkBnbWFpbC5jb208L2E+
-Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJv
-cmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGlu
-IDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGVsbG8sPG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkndmUgYmVlbiB0cnlpbmcgdG8gdXNlIGRw
-ZGsgd2l0aCBVSEQgNC4wIG9uIG91ciBuZXdseSBwdXJjaGFzZWQgTjMyMCwgYnV0IGl0IGlzIHNo
-b3duIGFzIGRpc2FibGVkIGNvbXBvbmVudCB3aGVuIGkgY21ha2UgdWhkLiBGaXJzdCwgaSB1c2Vk
-ICZxdW90O2FwdC1nZXQgaW5zdGFsbCBkcGRrIGRwZGstZGV2JnF1b3Q7LCB0aGVuIHJlYWxpemVk
-IGl0IGluc3RhbGxlZCB3cm9uZyB2ZXJzaW9uLCBhZnRlcndvcmRzIGkgZG93bmxvYWRlZA0KIGRw
-ZGsgMTguMTEuIGZyb20gdGhlIHNvdXJjZSBhbmQgY29tcGlsZWQuIEFub3RoZXIgbWlzdGFrZSB3
-YXMgbm90IGVuYWJsaW5nIHNoYXJlZCBsaWJyYXJ5IGJ1aWxkLCBzbyBpIHJlYnVpbGRlZCBpdCB3
-aXRoIHNoYXJlIGxpYnJhcmllcyBlbmFibGVkIChpIGNhbiAuc28gZmlsZXMgbm93IGluIHRoZSBs
-aWIpLiBCdXQsIHN0aWxsIGNtYWtlIHNob3dzIHRoYXQgZHBkayBpcyBkaXNhYmxlZC4gSSBhZGRl
-ZCBjbWFrZWNhY2hlLnR4dCBmaWxlIHRvIHRoaXMNCiBtYWlsLCBtYXliZSBpdCBjYW4gYmUgdXNl
-ZnVsLiBCdHcsIGkgY29tcGxldGVkIGFsbCBvdGhlciBzdGVwcyBsaWtlIGVuYWJsaW5nIGh1Z2Vw
-YWdlcywgYWRkaW5nIGRyaXZlcnMsIGV0Yy4gRG8geW91IGhhdmUgYW55IHNvbHV0aW9uIHRvIHRo
-aXMgcHJvYmxlbT88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5CZXN0IHJlZ2FyZHM8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVya2F5IFMuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhy
-ZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0K
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBh
-biBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
-b20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9h
-PjxvOnA+PC9vOnA+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+1) It was something about invalid elf headers. DPDK tries to compile
+everything in the uhf.conf - dpdk_driver location. In my case,
+"/usr/local/lib/x86_64-linux-gnu/dpdk/pmds-18.11" file had only librte_pmd
+and librte_mempool dynamic libraries, so using this address fixed the error=
+.
+2) DPDK was not able to find the device, because i used capital letters in
+the mac address of uhd.conf. They should be lowercase.
 
---_000_bfe1242e31c1487aaaac63266f1e1027erdcdrenmil_--
+3) "[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization.
+EnvironmentError: IOError: Timed out getting recv buff for management
+transaction". I realized this error occurs with or without using DPDK, and
+rarely it was working correctly (but mostly didnt work). I changed fpga
+image to default (HG or 1 GbE, and 10 GbE sfp+), also reinstalled embedded
+linux with mender. The problem was gone. Then, i installed dual 10 GbE sfp+
+image (XG), and haven't faced the same problem.
 
---===============5275393076712200305==
+My new problem is that DPDK is slower than without using DPDK. I sent a new
+mail about it today, still waiting for suggestions. GL with your setup, i
+have spent my whole week to get DPDK working.
+
+
+Berkay S.
+
+On Thu, 10 Jun 2021 at 20:56, Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV <
+Carl.L.Wolsieffer@erdc.dren.mil> wrote:
+
+> Hi Berkay,
+>
+>
+>
+> I=E2=80=99m actually having this exact same issue. We have pretty much al=
+l the
+> same hardware/software/Ubuntu etc and after using meson and ninja I was
+> able to get to this point you are at here. Did you ever figure out how to
+> resolve this? Much appreciated!
+>
+>
+>
+> Casey
+>
+>
+>
+> PS I tried sending this reply via the archives webpage which didn=E2=80=
+=99t seem
+> to be working, so apologies if this is being sent 2 or 3 times
+>
+>
+>
+> *From:* Berkay SAYGILI <zuhasdasn@gmail.com>
+> *Sent:* Thursday, May 27, 2021 5:06 AM
+> *To:* Wade Fife <wade.fife@ettus.com>
+> *Cc:* usrp-users <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Re: DPDK setup with UHD 4.0
+>
+>
+>
+> Hello again,
+>
+>
+>
+> Using meson and ninja made dpdk recognized by uhd cmake. I initially used
+> the instructions from "
+> Blockedhttps://doc.dpdk.org/guides-18.11/linux_gsg/build_dpdk.htmlBlocked=
+".
+> However, when i tried to complete the uhd installation with make command,
+> another problem was occurred (given below). Just to let you know, i
+> couldn't make "CONFIG_RTE_BUILD_SHARED_LIB=3Dy" with meson build (i dont =
+know
+> if it is necessary).
+>
+>
+>
+> [ 51%] Linking CXX shared library libuhd.so
+> [ 51%] Built target uhd
+> Scanning dependencies of target usrp_list_sensors
+> [ 51%] Building CXX object
+> examples/CMakeFiles/usrp_list_sensors.dir/usrp_list_sensors.cpp.o
+> [ 51%] Linking CXX executable usrp_list_sensors
+> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `lcore_config=
+'
+> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
+> `rte_eal_get_configuration'
+> collect2: error: ld returned 1 exit status
+> make[2]: *** [examples/CMakeFiles/usrp_list_sensors.dir/build.make:95:
+> examples/usrp_list_sensors] Error 1
+> make[1]: *** [CMakeFiles/Makefile2:1038:
+> examples/CMakeFiles/usrp_list_sensors.dir/all] Error 2
+> make: *** [Makefile:163: all] Error 2
+>
+>
+>
+> I use Ubuntu 20.04.1, and have an X520-DA2 card. I am at the "Installing
+> UHD" part in
+> Blockedhttps://kb.ettus.com/Getting_Started_with_DPDK_and_UHDBlocked, so
+> i dont have the uhd.conf file in root. In addition, i downloaded ixgbe
+> driver at first, then switched it to vfio-pci
+>
+>
+>
+>
+>
+> Best Regards
+>
+>
+>
+> Berkay S.
+>
+>
+>
+> On Thu, 27 May 2021 at 00:05, Wade Fife <wade.fife@ettus.com> wrote:
+>
+> Hi Berkay,
+>
+>
+>
+> I also had a lot of trouble getting DPDK to be recognized. It could be a
+> lot of things, so I can only speculate what the problem is in your case. =
+In
+> my case, I had hyphens instead of underscores in my uhd.conf file. I thin=
+k
+> I also had some issues with specifying the correct location of the DPDK
+> driver. Hopefully you've already read through the KB on how to set it up.
+>
+>
+>
+> Blockedhttps://kb.ettus.com/Getting_Started_with_DPDK_and_UHDBlocked
+>
+>
+>
+> There are also some driver dependencies and, depending on your Ethernet
+> card, some flags may be needed when building DPDK.
+>
+>
+>
+> Maybe you could share some additional details about your setup, such as
+> which card you're using, which driver/version, how you built DPDK, etc.
+>
+>
+>
+> Looking at my notes, I built DPDK using the following steps. I'm using a
+> Mellanox CX516A.
+> cd dpdk-stable-18.11.11/
+> meson build
+> cd build
+> ninja
+> sudo ninja install
+> sudo ldconfig
+>
+>
+>
+> My /root/.uhd/uhd.conf pretty much matches the one in the KB under UHD
+> 4.0, although I commented some things out.
+>
+> [use_dpdk=3D1]
+> dpdk_mtu=3D9000
+> dpdk_driver=3D/usr/local/lib/
+> dpdk_corelist=3D2,3,4
+> ;dpdk_num_mbufs=3D4095
+> ;dpdk_mbuf_cache_size=3D315
+>
+> [dpdk_mac=3DXX:XX:XX:XX:XX:XX]
+> dpdk_lcore =3D 3
+> dpdk_ipv4 =3D 192.168.10.1/24
+>
+> ;[dpdk_mac=3DXX:XX:XX:XX:XX:XX]
+> ;dpdk_lcore =3D 4
+> ;dpdk_ipv4 =3D 192.168.20.1/24
+>
+>
+>
+> Wade
+>
+>
+>
+> On Wed, May 26, 2021 at 3:56 AM Berkay SAYGILI <zuhasdasn@gmail.com>
+> wrote:
+>
+> Hello,
+>
+>
+>
+> I've been trying to use dpdk with UHD 4.0 on our newly purchased N320, bu=
+t
+> it is shown as disabled component when i cmake uhd. First, i used "apt-ge=
+t
+> install dpdk dpdk-dev", then realized it installed wrong version,
+> afterwords i downloaded dpdk 18.11. from the source and compiled. Another
+> mistake was not enabling shared library build, so i rebuilded it with sha=
+re
+> libraries enabled (i can .so files now in the lib). But, still cmake show=
+s
+> that dpdk is disabled. I added cmakecache.txt file to this mail, maybe it
+> can be useful. Btw, i completed all other steps like enabling hugepages,
+> adding drivers, etc. Do you have any solution to this problem?
+>
+>
+>
+>
+>
+> Best regards
+>
+>
+>
+> Berkay S.
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+
+--00000000000005877005c46f98f6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello Casey,</div><div><br></div><div>I was trying to=
+ delete DPDK files manually (because i installed DPDK 19 at first, and it d=
+oesnt have an uninstall method), and accidentally crashed my OS (it was my =
+fault, deleted something important). After reinstalling Ubuntu, i installed=
+ everything again and the error was gone. Reinstalling everything took like=
+ 3-4 hours, i spent much more trying the fix the error. I also faced a few =
+more errors in next steps, i mention them below, might be useful for some p=
+eople.</div><div><br></div><div>1) It was something about invalid elf heade=
+rs. DPDK tries to compile everything in the uhf.conf - dpdk_driver location=
+. In my case, &quot;/usr/local/lib/x86_64-linux-gnu/dpdk/pmds-18.11&quot; f=
+ile had only librte_pmd and librte_mempool dynamic libraries, so using this=
+ address fixed the error.</div><div></div><div>2) DPDK was not able to find=
+ the device, because i used capital letters in the mac address of uhd.conf.=
+ They should be lowercase.</div><div><br></div><div>3) &quot;[ERROR] [RFNOC=
+::GRAPH] IO Error during GSM initialization.=20
+EnvironmentError: IOError: Timed out getting recv buff for management=20
+transaction&quot;. I realized this error occurs with or without using DPDK,=
+ and rarely it was working correctly (but mostly didnt work). I changed fpg=
+a image to default (HG or 1 GbE, and 10 GbE sfp+), also reinstalled embedde=
+d linux with mender. The problem was gone. Then, i installed dual 10 GbE sf=
+p+ image (XG), and haven&#39;t faced the same problem.=C2=A0 <br></div><div=
+><br></div><div>My new problem is that DPDK is slower than without using DP=
+DK. I sent a new mail about it today, still waiting for suggestions. GL wit=
+h your setup, i have spent my whole week to get DPDK working.</div><div><br=
+></div><div><br></div><div>Berkay S.<br></div></div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 10 Jun 2021 at 20:56,=
+ Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV &lt;<a href=3D"mailto:Carl.L.Wolsi=
+effer@erdc.dren.mil">Carl.L.Wolsieffer@erdc.dren.mil</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-2712818932827829995WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)">Hi Berkay,<u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)">I=E2=80=99m actually having this=
+ exact same issue. We have pretty much all the same hardware/software/Ubunt=
+u etc and after using meson and ninja I was able to get to
+ this point you are at here. Did you ever figure out how to resolve this? M=
+uch appreciated!<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)">Casey<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)">PS I tried sending this reply vi=
+a the archives webpage which didn=E2=80=99t seem to be working, so apologie=
+s if this is being sent 2 or 3 times<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:&quot;C=
+alibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11pt;font=
+-family:&quot;Calibri&quot;,sans-serif"> Berkay SAYGILI &lt;<a href=3D"mail=
+to:zuhasdasn@gmail.com" target=3D"_blank">zuhasdasn@gmail.com</a>&gt;
+<br>
+<b>Sent:</b> Thursday, May 27, 2021 5:06 AM<br>
+<b>To:</b> Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_=
+blank">wade.fife@ettus.com</a>&gt;<br>
+<b>Cc:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [USRP-users] Re: DPDK setup with UHD 4.0<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hello again,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Using meson and ninja made dpdk recognized by uhd cm=
+ake. I initially used the instructions from &quot;<a>Blockedhttps://doc.dpd=
+k.org/guides-18.11/linux_gsg/build_dpdk.htmlBlocked</a>&quot;.
+ However, when i tried to complete the uhd installation with make command, =
+another problem was occurred (given below). Just to let you know, i couldn&=
+#39;t make &quot;CONFIG_RTE_BUILD_SHARED_LIB=3Dy&quot; with meson build (i =
+dont know if it is necessary).<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">[ 51%] Linking CXX shared library libuhd.so<br>
+[ 51%] Built target uhd<br>
+Scanning dependencies of target usrp_list_sensors<br>
+[ 51%] Building CXX object examples/CMakeFiles/usrp_list_sensors.dir/usrp_l=
+ist_sensors.cpp.o<br>
+[ 51%] Linking CXX executable usrp_list_sensors<br>
+/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `lcore_config&#=
+39;<br>
+/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `rte_eal_get_co=
+nfiguration&#39;<br>
+collect2: error: ld returned 1 exit status<br>
+make[2]: *** [examples/CMakeFiles/usrp_list_sensors.dir/build.make:95: exam=
+ples/usrp_list_sensors] Error 1<br>
+make[1]: *** [CMakeFiles/Makefile2:1038: examples/CMakeFiles/usrp_list_sens=
+ors.dir/all] Error 2<br>
+make: *** [Makefile:163: all] Error 2<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I use Ubuntu 20.04.1, and have an X520-DA2 card. I a=
+m at the &quot;Installing UHD&quot; part in
+<a>
+Blockedhttps://kb.ettus.com/Getting_Started_with_DPDK_and_UHDBlocked</a>, s=
+o i dont have the uhd.conf file in root. In addition, i downloaded ixgbe dr=
+iver at first, then switched it to vfio-pci<a><br>
+</a><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Best Regards<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Berkay S.<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Thu, 27 May 2021 at 00:05, Wade Fife &lt;<a href=
+=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&g=
+t; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
+b(204,204,204);border-style:none none none solid;border-width:medium medium=
+ medium 1pt;padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in">
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Hi Berkay,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I also had a lot of trouble getting DPDK to be recog=
+nized. It could be a lot of things, so I can only speculate what the proble=
+m is in your case. In my case, I had hyphens instead of underscores in my u=
+hd.conf file. I think I also had some
+ issues with specifying the correct location of the DPDK driver. Hopefully =
+you&#39;ve already read through the KB on how to set it up.
+<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><a>Blockedhttps://kb.ettus.com/Getting_Started_with_=
+DPDK_and_UHDBlocked</a><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">There are also some driver dependencies and, dependi=
+ng on your Ethernet card, some flags may be needed when building DPDK.<u></=
+u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Maybe you could share some additional details about =
+your setup, such as which card you&#39;re using, which driver/version, how =
+you built DPDK, etc.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Looking at my notes, I built DPDK using the followin=
+g steps. I&#39;m using a Mellanox CX516A.<br>
+cd dpdk-stable-18.11.11/<br>
+meson build<br>
+cd build<br>
+ninja<br>
+sudo ninja install<br>
+sudo ldconfig<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">My /root/.uhd/uhd.conf pretty much matches the one i=
+n the KB under UHD 4.0, although I commented some things out.<u></u><u></u>=
+</p>
+</div>
+<div>
+<p class=3D"MsoNormal">[use_dpdk=3D1]<br>
+dpdk_mtu=3D9000<br>
+dpdk_driver=3D/usr/local/lib/<br>
+dpdk_corelist=3D2,3,4<br>
+;dpdk_num_mbufs=3D4095<br>
+;dpdk_mbuf_cache_size=3D315<br>
+<br>
+[dpdk_mac=3DXX:XX:XX:XX:XX:XX]<br>
+dpdk_lcore =3D 3<br>
+dpdk_ipv4 =3D <a>192.168.10.1/24</a><br>
+<br>
+;[dpdk_mac=3DXX:XX:XX:XX:XX:XX]<br>
+;dpdk_lcore =3D 4<br>
+;dpdk_ipv4 =3D <a>192.168.20.1/24</a><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Wade<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Wed, May 26, 2021 at 3:56 AM Berkay SAYGILI &lt;<=
+a href=3D"mailto:zuhasdasn@gmail.com" target=3D"_blank">zuhasdasn@gmail.com=
+</a>&gt; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
+b(204,204,204);border-style:none none none solid;border-width:medium medium=
+ medium 1pt;padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in">
+<div>
+<div>
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I&#39;ve been trying to use dpdk with UHD 4.0 on our=
+ newly purchased N320, but it is shown as disabled component when i cmake u=
+hd. First, i used &quot;apt-get install dpdk dpdk-dev&quot;, then realized =
+it installed wrong version, afterwords i downloaded
+ dpdk 18.11. from the source and compiled. Another mistake was not enabling=
+ shared library build, so i rebuilded it with share libraries enabled (i ca=
+n .so files now in the lib). But, still cmake shows that dpdk is disabled. =
+I added cmakecache.txt file to this
+ mail, maybe it can be useful. Btw, i completed all other steps like enabli=
+ng hugepages, adding drivers, etc. Do you have any solution to this problem=
+?<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Best regards<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Berkay S.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><u></u><u></u></p>
+</blockquote>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+</blockquote></div>
+
+--00000000000005877005c46f98f6--
+
+--===============6123101260036739966==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -385,4 +615,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5275393076712200305==--
+--===============6123101260036739966==--
