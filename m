@@ -2,218 +2,150 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F043A4949
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Jun 2021 21:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49CA33A4B8A
+	for <lists+usrp-users@lfdr.de>; Sat, 12 Jun 2021 01:59:39 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CAF3B3849CF
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Jun 2021 15:07:57 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 176A0384098
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Jun 2021 19:59:38 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="IFHmMTmd";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ourowndomain-com.20150623.gappssmtp.com header.i=@ourowndomain-com.20150623.gappssmtp.com header.b="AP6dihN3";
 	dkim-atps=neutral
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 85E9338436D
-	for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 15:07:08 -0400 (EDT)
-Received: by mail-wm1-f49.google.com with SMTP id f17so8619137wmf.2
-        for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 12:07:08 -0700 (PDT)
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8412F38406D
+	for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 19:58:51 -0400 (EDT)
+Received: by mail-io1-f48.google.com with SMTP id b25so32925359iot.5
+        for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 16:58:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=jBBEvH5/HYDgXcxnvy03V5iR9Qz4AAi0H4tGS6QCsug=;
-        b=IFHmMTmdGmV+nmjGrBp9M0MfPqFQ/ezUtAFNPwbe62NPtkmLZ+ZabgPgQ5mH8yu5yy
-         JqmuoUWNvj3RkzRBYNNkHa9TaCf6szRB0NlJ4XMReJWgYwjqnFICg+5XAH4ysbsktbfH
-         WCknAaRzPVI5sNXN5AjQSnyO5G6CgZ/dKlNtHePo1tnfyE3dCZVPtg1qYYeyg0/eTue2
-         G79Q8vy5ZGMC5Mo8u2n7kVgD9KlEcarAO50J8JU/hJVp/Wf+3CDVAoIu4xLAu4OtmOD5
-         QFakZAw7Iox9Cgyp3p73bs2E0gWVRj+zfWAtqXGE/21bxEvp5R1NRovFpS6qAfmdNpr7
-         3kZA==
+        d=ourowndomain-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fCnNqYl28NeZCf4iGEdhEixJBWhoepy2E5kO/ITwtbo=;
+        b=AP6dihN3I/p3mXgvniQp+NvJThq1SKLmXsDDO88xC86LF0tPdDyazUzYt/CycZ3TvQ
+         mzi730c5j3Uq96c1VvglTzl6zP3JtphvyULpOzL5PAAvajNZ51xNVpfuwthZ1qscV62/
+         HT4CfquD7tRqInRQnxZ8DpBLU4gKt7uOEaaiVc6MEfK/qkHAnVz2tQ5Vo231psCLTYGs
+         R4QcR+gQIXksy/awGIP8yCx6M6LQat8aMFuCiuvDRs/GIiqA80OsPdeQ5SEWcKQuQcwe
+         F3XdF8h4gQ6+EqjLxVM+kQHa0tXtq25dYHnUhxZ6ezWkO/gQ8mpb4ONipOeQVxj4ezwH
+         Vvnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=jBBEvH5/HYDgXcxnvy03V5iR9Qz4AAi0H4tGS6QCsug=;
-        b=Ic/5kH50K4e/aw6tgQObeOKYwWD6ERAVvApA/pXSP+sdB+IOZ6eicVhk5yHVVKAWoc
-         E9nrGUun4PDJKIjXAbQ/kVIfMJgRJSji3xEmO5nIeqbi1MC9eiAW99oWE/F4sNhBvU5P
-         99CNhC4HYN0X0X0sBNWCcypGcK1OkSX+fZ50l2G1svkmcc1sAKr0VkwnjBX2bcpdQpgq
-         FSmeP4OzCH1XLbb4EoqaKrUIRvHunYyG1IHXSC1lA+sHS5livUjOuEdG0EgywqeaHVgy
-         lB25keLNrS8w+/iBTBEzX+BYSFT4lRJHLng31/0PxMh0lulDmvblzLMnc1sgw0WCAuuz
-         d41g==
-X-Gm-Message-State: AOAM531RSyhluoguecv4990FqTTEBdRiHPQ2iNLY7TtmoBSAHwhpb8k0
-	BOk+ZDr1/DW039LVVA1vlUC/k7MOtpQZZNcG
-X-Google-Smtp-Source: ABdhPJzoA1w9a6rusHkjCnuYSy52Gz9Py2teDrLcxSfiYpIVOxOgxROyfcPmIj54i8gXeqFgzTHvTg==
-X-Received: by 2002:a7b:cc8f:: with SMTP id p15mr21874262wma.111.1623438427183;
-        Fri, 11 Jun 2021 12:07:07 -0700 (PDT)
-Received: from [192.168.128.8] (HSI-KBW-46-223-162-195.hsi.kabel-badenwuerttemberg.de. [46.223.162.195])
-        by smtp.gmail.com with ESMTPSA id k12sm13408592wmr.2.2021.06.11.12.07.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Jun 2021 12:07:06 -0700 (PDT)
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
- Jim Palladino <jim@gardettoengineering.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <MN2PR12MB3312739D7A0996F851BC7093B8349@MN2PR12MB3312.namprd12.prod.outlook.com>
- <18dc6abe-6785-2c0c-221a-03c48028b718@ettus.com> <60C3679C.8070900@gmail.com>
- <MN2PR12MB331229296F2D645E866AD0C4B8349@MN2PR12MB3312.namprd12.prod.outlook.com>
- <60C36C0F.7040209@gmail.com>
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-Message-ID: <8c624ce3-ab9e-477a-1b37-d2a9289e6f7d@ettus.com>
-Date: Fri, 11 Jun 2021 21:07:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fCnNqYl28NeZCf4iGEdhEixJBWhoepy2E5kO/ITwtbo=;
+        b=MveOWz8hTAD8bmhVE9koRx86ZiZctSjpc6k3Vl3U7l7fYsCPM/I0S/e+mhSIxToysm
+         X8fGshB/36MX52a9RIeqEU2+Lyd8PKSbaithG6lOBbobg2tB/hvdDhpgKmLxbJ63npD5
+         9KNsjYTCDwEoOH17QoVGCSzE0bY3QS2ZLzIbWNE3VC1EWpvS9HnQJfmOfPgLpHGXm8g9
+         h2bGUuCISdwULYoG7T5irfXh8HnkluLHJ9cTpZeozg34L3NNLj5AJoCrqpXy4TfBoP3i
+         4RcvIjxJl2ksHKgKnHD1qQ1cHF0NeEXagh2jJgxilfaqWRll4s01wiCIvhxrCjsEUGmG
+         Cbkg==
+X-Gm-Message-State: AOAM530pNyC2R+Ky3BBlMTJkV6VVrWzDEcWHieHwZTpZdff3v1+gMtcP
+	TzSyzaEtYomPfZS79mgR0n6N3VJOC4YS9k3DtXemibTZ1TPixg==
+X-Google-Smtp-Source: ABdhPJyRSnlDkAfHAhRSn4+zVfjxi2Kc7lm/2N3sFuP8nK/e6RK6+ICdb8cP364y+A7FKwOkMcxJ5fQFICgqm3M+S5k=
+X-Received: by 2002:a05:6602:2283:: with SMTP id d3mr5087864iod.121.1623455930674;
+ Fri, 11 Jun 2021 16:58:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <60C36C0F.7040209@gmail.com>
-Content-Language: en-US
-Message-ID-Hash: VQWVF2L4IDFMEXCHK5CYLUM6DJNQP2I3
-X-Message-ID-Hash: VQWVF2L4IDFMEXCHK5CYLUM6DJNQP2I3
-X-MailFrom: marcus.mueller@ettus.com
+References: <CANsNear-N8KBfZO87wVk8btEnQk=tsvF_Td0zjv1YDoE2ATVFw@mail.gmail.com>
+ <9a02875e-a4a9-aa5a-0e3f-6d0f301aee0e@ettus.com>
+In-Reply-To: <9a02875e-a4a9-aa5a-0e3f-6d0f301aee0e@ettus.com>
+From: Rich Gopstein <rich@ourowndomain.com>
+Date: Fri, 11 Jun 2021 19:58:39 -0400
+Message-ID: <CANsNeap0PxCncob=tfYBZ0BVvKaGBZ=oDJDo521rrULqDj9w8Q@mail.gmail.com>
+To: Martin Braun <martin.braun@ettus.com>
+Message-ID-Hash: 4QOKCFGILGRQ47TSLUBIIEJOUDBQ2CMQ
+X-Message-ID-Hash: 4QOKCFGILGRQ47TSLUBIIEJOUDBQ2CMQ
+X-MailFrom: rich@ourowndomain.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 1PPS input voltage
+Subject: [USRP-users] Re: Replacing idle FPGA image on an E310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VQWVF2L4IDFMEXCHK5CYLUM6DJNQP2I3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4QOKCFGILGRQ47TSLUBIIEJOUDBQ2CMQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/mixed; boundary="===============2047092077803431337=="
 
-Hi Jim,
+--===============2047092077803431337==
+Content-Type: multipart/alternative; boundary="0000000000000e873705c4864a84"
 
-The congregation of Marcuses checked with R&D, and we figured out that in f=
-act, the
-NC7SV157 in U24 was replaced by a SN74LVC2G34, which is OK up to 6.5 V inpu=
-t, in Hardware
-revisions starting with Rev C.
+--0000000000000e873705c4864a84
+Content-Type: text/plain; charset="UTF-8"
 
-So, if (and only if) you have a N320 in a revision that's C or greater, you=
-'re safe.
-Otherwise, please don't connect a 5V source to the PPS input for now.
+Thanks.  I'll give that a try.
 
-Best regards,
-
-Marcus
+Rich
 
 
-On 11.06.21 15:58, Marcus D. Leech wrote:
-> On 06/11/2021 09:45 AM, Jim Palladino wrote:
->> Hi Marcus,
->>
->> Right -- the output of the Octoclock is 5V. I'm not seeing how the N320 =
-can accept that
->> as an input. The knowledge base article says the N320 expects 5Vpp at th=
-e 1pps input.
->> But the schematics/parts data sheet for the input buffer don't seem to s=
-upport that . .
->> . unless I'm missing something.
->>
->> Thanks,
->> Jim
-> It certainly looks like a potential problem, but I haven't heard of anyon=
-e having 1PPS
-> failure issues on the N320 when used with
-> =A0 Octoclock--pretty sure it was tested with Octoclock prior to release.=
-=A0 But I'll check
-> with R&D.
+On Fri, Jun 11, 2021 at 10:32 AM Martin Braun <martin.braun@ettus.com>
+wrote:
+
+> On 04/06/2021 21:19, Rich Gopstein wrote:
+> > I've successfully replaced the non-idle FPGA image on my UHD 4.0 E310
+> > using uhd_image_loader.
+> >
+> > What's the process to replace the idle FPGA image?  I didn't see any
+> > documentation on using uhd_image_loader for that.
+> >
+> > I saw FPGA images in /user/share/uhd/images and /lib/firmware, but
+> > wasn't sure if I could just copy on top of those?
 >
+> Yes, you can copy on top of those. /lib/firmware is the one that'll get
+> applied, the next time an idle image is loaded.
 >
->>
->> ------------------------------------------------------------------------=
-------------------
->> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
->> *Sent:* Friday, June 11, 2021 9:39 AM
->> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
->> *Subject:* [USRP-users] Re: N320 1PPS input voltage
->> =A0
->> On 06/11/2021 09:11 AM, Marcus M=FCller wrote:
->> > Hello Jim,
->> >
->> >
->> > hm, that knowledge base article must be wrong: The octoclock internall=
-y only has a 3.3V
->> > supply. But before I say something wrong here, let me check back.
->> >
->> >
->> > Best regards,
->> >
->> > Marcus
->> The 1PPS outputs on the Octoclock are bufered by 7404 inverters, which
->> appear to have a 5V Vcc.
->>
->> >
->> >
->> > On 11.06.21 14:17, Jim Palladino wrote:
->> >
->> >> Hello,
->> >>
->> >> We are planning on using an octoclock with several devices, including=
- an N320. The
->> >> octoclock outputs a 5V 1pps signal, but I'm confused about the N320 1=
-pps input.
->> >>
->> >> According to
->> (https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__kb.ettus.com_N32=
-0_N321-29-3A&d=3DDwIF-g&c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=
-=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=3D-9vS_HYCWF4BKKIX7QR3SO2L=
-J3yD1MyEElYsX5a8WMs&s=3DTdFHQJNItGehIsL1D4yXezIfq_vO05AvF1_lMSyNpHs&e=3D
->> >> "PPS - Pulse Per Second Using a PPS signal for timestamp synchronizat=
-ion requires a
->> >> square wave signal with the following a 5Vpp amplitude."
->> >>
->> >> If I look at the schematics for the N320, on page 15,
->> >>
->> (https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__kb.ettus.com_ima=
-ges_f_f4_USRP-5FN3XX-5FMB-5FSchematic.pdf&d=3DDwIF-g&c=3DeuGZstcaTDllvimEN8=
-b7jXrwqOf-v5A_CdpgnVfiiMM&r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=
-=3D-9vS_HYCWF4BKKIX7QR3SO2LJ3yD1MyEElYsX5a8WMs&s=3D6JTHdP9IoYFRQhn24LgJjEof=
-kuFwgAsHTs9iHhgMuBg&e=3D
->> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__kb.ettus.com_ima=
-ges_f_f4_USRP-5FN3XX-5FMB-5FSchematic.pdf&d=3DDwIF-g&c=3DeuGZstcaTDllvimEN8=
-b7jXrwqOf-v5A_CdpgnVfiiMM&r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=
-=3D-9vS_HYCWF4BKKIX7QR3SO2LJ3yD1MyEElYsX5a8WMs&s=3D6JTHdP9IoYFRQhn24LgJjEof=
-kuFwgAsHTs9iHhgMuBg&e=3D>)
->> they show that the input
->> >> 1pps signal goes through an NC7SV157. Vcc for that is 3.3V in the sch=
-ematics.
->> >>
->> >> According to the datasheet, the absolute maximum rating on the input =
-is 4.3V.
->> >>
->> "https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__www.onsemi.com_p=
-df_datasheet_nc7sv157-2Dd.pdf&d=3DDwIF-g&c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5=
-A_CdpgnVfiiMM&r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=3D-9vS_HYCW=
-F4BKKIX7QR3SO2LJ3yD1MyEElYsX5a8WMs&s=3DXPmiCDRDfM2wVtI1g4KChC9dkOJhMyrqBTMv=
-_Rx01Xg&e=3D
->> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__www.onsemi.com_p=
-df_datasheet_nc7sv157-2Dd.pdf&d=3DDwIF-g&c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5=
-A_CdpgnVfiiMM&r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=3D-9vS_HYCW=
-F4BKKIX7QR3SO2LJ3yD1MyEElYsX5a8WMs&s=3DXPmiCDRDfM2wVtI1g4KChC9dkOJhMyrqBTMv=
-_Rx01Xg&e=3D>"
->> >>
->> >> So, I'm not sure how the N320 can safely accept a 5V input (from the =
-octoclock or other
->> >> device).
->> >>
->> >> Thanks,
->> >> Jim
->> >>
->> >>
->> >> _______________________________________________
->> >> USRP-users mailing list -- usrp-users@lists.ettus.com
->> >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->> > _______________________________________________
->> > USRP-users mailing list -- usrp-users@lists.ettus.com
->> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
+> --M
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000000e873705c4864a84
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thanks.=C2=A0 I&#39;ll give that a try.<div><br></div><div=
+>Rich</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Fri, Jun 11, 2021 at 10:32 AM Martin Braun &lt=
+;<a href=3D"mailto:martin.braun@ettus.com">martin.braun@ettus.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 04/06/2=
+021 21:19, Rich Gopstein wrote:<br>
+&gt; I&#39;ve successfully replaced the non-idle FPGA image on my UHD 4.0 E=
+310 <br>
+&gt; using=C2=A0uhd_image_loader.<br>
+&gt; <br>
+&gt; What&#39;s the process to replace the idle FPGA image?=C2=A0 I didn&#3=
+9;t see any <br>
+&gt; documentation on using=C2=A0uhd_image_loader for that.<br>
+&gt; <br>
+&gt; I saw FPGA images in /user/share/uhd/images and /lib/firmware, but <br=
+>
+&gt; wasn&#39;t sure if I could just copy on top of those?<br>
+<br>
+Yes, you can copy on top of those. /lib/firmware is the one that&#39;ll get=
+ <br>
+applied, the next time an idle image is loaded.<br>
+<br>
+--M<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000000e873705c4864a84--
+
+--===============2047092077803431337==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2047092077803431337==--
