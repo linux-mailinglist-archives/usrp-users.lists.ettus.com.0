@@ -2,610 +2,230 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AF643A352C
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 22:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F743A41DC
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Jun 2021 14:18:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 43FCF38472B
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Jun 2021 16:55:05 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6D53D38414C
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Jun 2021 08:18:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Blbyd8ki";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="s1X6fls/";
 	dkim-atps=neutral
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 525E438425B
-	for <usrp-users@lists.ettus.com>; Thu, 10 Jun 2021 16:54:15 -0400 (EDT)
-Received: by mail-io1-f53.google.com with SMTP id p66so26688902iod.8
-        for <usrp-users@lists.ettus.com>; Thu, 10 Jun 2021 13:54:15 -0700 (PDT)
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [67.231.154.164])
+	by mm2.emwd.com (Postfix) with ESMTPS id 07FFF3840D2
+	for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 08:17:39 -0400 (EDT)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.178])
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id B5C5C40066
+	for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 12:17:38 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2102.outbound.protection.outlook.com [104.47.55.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 69DFCB00073
+	for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 12:17:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oUgdUkm0M+oGJbonpA4sEHtYNimcwOP0Y9W/RbOIHkXL94zIRYca1fNMVFpyaLjtgpDhbbTgpRM6MyY0CywVyPla0BVYhL5dU0UN20z/3Ei2D9EgiL8Q3KIixvrAcNwKTHATisyvZXtWHq5vE44Sn5gBH7EonUGReu6XAqYmAbG0fI+Mp+y+9HM4Rb6pwZgp5iFbzyBiVz0wKGbnpUL+xhMY31AAbR3D80rIZ4gghQsw0xfM+HwdLIywbJXfVdF27FcF0WK8GqWrpgkSaxmzyceMM+UoiucCV+0MZbTgqvSrjPpxAI/FnS1D+/Fdb/H6Ei6oHhEeEV+/h26fqV1kdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FTIeb27QBaA7XrWQAOoUo9Giy4MMFJ+FYAwtiZduj4E=;
+ b=nTPQ4mLohpFyMkX/NTjN1QOznXfnbxD3fVsrFBfQqX6/3GrgSuyBt5Qr8xvmh47oZabiFMtF2udF5QpT0c4dWbE+JEwPwc8Q2BDGlvhWZXxXA8A4nVHC3WwaPrN96nyt5LSx8VWEj009EZcRqT9gsK7EPuQ+Nnwn7EMcvJz1taCm/Eo/GBpOvsyPW8mXjC7dalR2vazHySqsjaUcde00D26KJct8DDSC6rlm8LhPsGwlIM3cN5UX86mkDXoy846bFeg7G3XtdRaL1vgEYUwhvi/1eMrO5p2rJHlILDKzRzcQIae/k/9cmpj8FSDQ/WeUuNW+eWNT7hoY32WSDdbFAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9cSEkidpjQHZ0JPI2Tunt8FXrg7HgjaEtccf4BomXI8=;
-        b=Blbyd8ki8zMJi2urmmnE3G6cp5zLWtE6vvZuBJdMIDOxDj/yajMHejuCdsrRSg1B0D
-         h6vjWttU7Qhpe3BXt8jqn5OxyJta0bi4E4fYZbNXH0jiEszGriHIeNc6QM3IyR13OnJX
-         0Rd5mSu8H+ms+w9uJd7V1faWTdFv9u04VOMc8kO/dSvPQDbZ9/uib+6cxhqZd9hI17ZK
-         tsXsd2MK1uPk5GjDvQKirGqzDjJHbMZrxOqaNgwJQPuEPfdl0kI5Vb2HLDGPnRgv80KC
-         oS71KHwcT/hNt2cLMEJq42RrbupPwQ8cOSeXUhSaeNbQ4+YWwBkyIftBAgHWRd8L+v0A
-         2J+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9cSEkidpjQHZ0JPI2Tunt8FXrg7HgjaEtccf4BomXI8=;
-        b=c6Db6WqaueWbq/vds24FWK2g0RnrUFGxGfWDxPmtMPsQuRFLt/mV+FFxLkYBoSiYch
-         zey0sh37+UgBE+gu0G0m86WCY9NRifXZ0tFf42cLL5+dtuPXD0CtPcqxehq36zMN9Fdu
-         ENFdcSczI7HCXLDsR4aMbzdDvlXZnIaAqHqofRjSPLrYgvYwCAuuuiLJR7NKlmq34I1N
-         eYTxYUse05zQGTwLlpcKMADFHI/bvenVLTdtHdB4gq7XPBdvjoHkoNysqpQGehrNsm9/
-         dkMeLcMfDfva7FSnciR6IaSwwE6x+3uPCYs/AAE12CdCDN96IpKL5+5sl/2MpP0qwx+Y
-         WtpA==
-X-Gm-Message-State: AOAM5322TZRjQksy73CIpLiX+WUY5LCBZZ4M487DDDQikgHQ/eTVT4yE
-	v0hMd24dyyO442oM5WwK/Dk2DTOiQQI4JsdT7FU=
-X-Google-Smtp-Source: ABdhPJwU3bzteTcB6wU54PfiP+U0LQtEzo0re6utwjW2YLWPLJ1O3MoiX3IQr3mE08S6NzGH0pEqpTDhWp5OAJC5+Pg=
-X-Received: by 2002:a6b:e50c:: with SMTP id y12mr390652ioc.20.1623358454464;
- Thu, 10 Jun 2021 13:54:14 -0700 (PDT)
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FTIeb27QBaA7XrWQAOoUo9Giy4MMFJ+FYAwtiZduj4E=;
+ b=s1X6fls/lPXZkgWK+x+y5vEg/eD9EV6XGhJ6pLczP/Pxfhng9Dr9psRm8If+lQxXBzymwdw9jOy7IajYuUPS+ee6f7aZ/vTM0o6UQd5b4VGlRObqC6gWCZucNDe9d0vgR0lzQfg0i0zHZ2VAAh0bqTmlrHDK388WqxvdGKX4vkc=
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
+ by MN2PR12MB3648.namprd12.prod.outlook.com (2603:10b6:208:c1::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4219.20; Fri, 11 Jun
+ 2021 12:17:35 +0000
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::cb6:31ec:520c:c197]) by MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::cb6:31ec:520c:c197%7]) with mapi id 15.20.4219.024; Fri, 11 Jun 2021
+ 12:17:34 +0000
+From: Jim Palladino <jim@gardettoengineering.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: N320 1PPS input voltage 
+Thread-Index: AQHXXrsEFk6GKS0mUEmOl1kUojleFg==
+Date: Fri, 11 Jun 2021 12:17:34 +0000
+Message-ID: 
+ <MN2PR12MB3312739D7A0996F851BC7093B8349@MN2PR12MB3312.namprd12.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none
+ header.from=gardettoengineering.com;
+x-originating-ip: [65.127.220.137]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8e7acec1-dd30-47cb-73e5-08d92cd2e522
+x-ms-traffictypediagnostic: MN2PR12MB3648:
+x-microsoft-antispam-prvs: 
+ <MN2PR12MB36486F084ECF47DB271D291BB8349@MN2PR12MB3648.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ NRkJLnyeL/op2wKSZawcgOow/kpbDqxCUVme3TtkOw8+FeoPHz9BHJEpdTYWf7OubLbBjaKLG9X18T87hVnuZ7ZMBnHx/oI3jm2MHMhcIy32R9cQCdGUWIXxeX7cbnkS2OWSXGmb6BY9sZtApdg17j26bOxkbh/My2jN2vVOfzT+GJP03rx9Fle+T08faAs2nICvYhEHTqHLUmm7n0psl2t2mp5+QJ1iJZkLY+AmIyIDxQPvaiADuXIazYYo4aSRgD5aWrd53TOMaxFHaPdLdqWjtJKhHPi56Yy5xR6uNXlIOyCn0Lt4zJFyxZULcFr84ur70uvLaPLZvQBMj0di+5vYJQGA7MyxbJnxyH9JUialAQiQDKPgj9CB+3mhGQ7pBgSEUKDyrTg9sv9iz08n1OqPhC6v8YTW4xtV8CxyjWkzv/nxqadPINVFwQnH25a+rslUoxm2He5OcQ6XqVaa5CeRSsNoV8xTEjD8TxrJbAxFYHuTdFmSPyJ9iSXR33SXUJaU6+nILz8REEwOXwgvw4fKtL0hZ5ib0xpJ8Uj+gn5EF/phsZPM3FRXQiSH3IlxF4dMrjSLShi4KyZbXUoqeFq44rhKiOu36HToSkdkigIXuy4yDqSexxDNYqN+e+Dt0v3e80RNcmiOldZnRP6eTUGK8Hv35krRzJ8h1Ndoovbu0eUqf6Vw2ZW3JlW0VqFtGCskDErmP0XpDdmC1l3X3A==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3312.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(39830400003)(376002)(136003)(346002)(8936002)(83380400001)(4743002)(55016002)(86362001)(6916009)(8676002)(26005)(5660300002)(71200400001)(66446008)(478600001)(38100700002)(9686003)(316002)(76116006)(64756008)(66556008)(2906002)(52536014)(186003)(4744005)(66946007)(19627405001)(122000001)(7696005)(66476007)(6506007)(33656002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?GRQ6PJCmxRVkVA3pCnBf5u1XEIvxXqlH6fg7bOK+ldG4vxMn25AArpAjx3?=
+ =?iso-8859-1?Q?xr8AMfY4qjLZ7cULQ8D3vhBbz75ZkIdDWEQ4fvxRj9dMlhpWe1vdvqmi4I?=
+ =?iso-8859-1?Q?cA89T+pjdgxLJPW7U3ZPeWtPFkxUgrMjsbsTiSrerzYXXWcj7Kro9gULd4?=
+ =?iso-8859-1?Q?7S+wBy4xMhKpSpAJlSmMEWa9xTpCG+sq4SF9/XaEQYMqm5GQJ56URJPxos?=
+ =?iso-8859-1?Q?pcWxlCAJVcLcccKlKf9KjyoVpOLd99V/m8yvn/y3nDpEMwm1AG9mCBMVp+?=
+ =?iso-8859-1?Q?mpzpDIhVlO1UBLjgj2pn7da4ZmMGBcXrylJXDp2hWeBIOMg2eaoii7skpb?=
+ =?iso-8859-1?Q?8S2iz3iSwrRX0ySUoKckrGOs7+GMe1Jg23GSpeEN5tZFFPZx7U0MVm1OjY?=
+ =?iso-8859-1?Q?1qZmbAcjxDXYgGwhflEv8Cl91p33+IA74JVjxWNEIZGdTBBy9Jy36oGu4c?=
+ =?iso-8859-1?Q?Fr0KcJomxryo2gFTiQHlEvHBkj8WmnV8krXi+Njxihcvt6zQey9MX3T6GA?=
+ =?iso-8859-1?Q?i4FJgujgKXqm9+tAJMAU7s7ZsHNzhNU1cK6i1Npm6aEtrLUkWUDHT2Dqmg?=
+ =?iso-8859-1?Q?yRUDnDUjmtq6nrXyFZRHl4cmXrOTT+Zl5lmDcNgVeZjpCV+SJ997yGcvfc?=
+ =?iso-8859-1?Q?hJbohaUdZxUQu2RwtHYwRBiY4z/VvQrPs7CZOjgMBFFZ3l3cKbWgNNIB3G?=
+ =?iso-8859-1?Q?Hj4EHFB301GQZ1azNQ1NOae3ov6oI5jPGzBOnPDa+pvRDNrIwkk1Q3X81+?=
+ =?iso-8859-1?Q?pdTB9ANSsqoUYFp77ka7py7qH0mMVpYTJR1Xo9WSuV2A31yc8XAohNKlpf?=
+ =?iso-8859-1?Q?9LkwWNjDAuI5sUwVVbZNEd/wIkBFtBOMbgex9UKkm7FkJcA7v6sJRV67ne?=
+ =?iso-8859-1?Q?D6Mv3OA+HgYfonmuof0Y4mTOKI8UyEYJe1JzX6UXPDJZra/aS/NNdAdgJd?=
+ =?iso-8859-1?Q?qm8nflPAB39P26MjNDw1ZKsiiWd6qp7f27Qa88Nwny8yTTAmHEv4uC6yip?=
+ =?iso-8859-1?Q?MJl6N/rcHQ3tLLPiFbNM329vOlJF+oocot7aaSnYaVGfPuIdgh0XyjyQt6?=
+ =?iso-8859-1?Q?MWGq3JstVPXQu2PFKXEZuHs9j3PUuzR29MxQfnnmJ/dnXnaP7egXt8T+Xi?=
+ =?iso-8859-1?Q?UqnxN8xDDvxnIIXJo96SAv5jzjFF0DKXsNz2RgjIcB9OTGGoa1JF+RFUuY?=
+ =?iso-8859-1?Q?UDNZU59UqM95SD6LYwirOiFimKJS0eXLP73PjzgSsKA5XQ3qM6475zlKPa?=
+ =?iso-8859-1?Q?bCERlBr7tzAXHCMpA44A5wY2Ll5P5aJro+sJ/ljisyT9dW0VpLf/eiZh/T?=
+ =?iso-8859-1?Q?Y1Tpei1ckISj2tG3waqgWWHyRKhlT/YbPV8quaL+OZo+NLQ=3D?=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <CAA7+tqS5VzQQePfvw96igArX=wQNWME_2xg9OPP3ir7yRRVPsw@mail.gmail.com>
- <CAFche=hJ6h7kWWdjAycyOUopqqwQZEJqUiBFBJ93spFKANZOUA@mail.gmail.com>
- <CAA7+tqRsdZ+r=oHhnd_pDonkbnA2vgxskuQYvAR+Qaqh+JNUtw@mail.gmail.com> <bfe1242e31c1487aaaac63266f1e1027@erdc.dren.mil>
-In-Reply-To: <bfe1242e31c1487aaaac63266f1e1027@erdc.dren.mil>
-From: Berkay SAYGILI <zuhasdasn@gmail.com>
-Date: Thu, 10 Jun 2021 23:54:03 +0300
-Message-ID: <CAA7+tqQUHkaDPM3PLAZ_w+Eb88qOb4iMgg-dyeEYSVUOsBrftw@mail.gmail.com>
-To: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV" <Carl.L.Wolsieffer@erdc.dren.mil>
-Message-ID-Hash: EEY5K74ZNVIEHUW4LD7VJYXSQDZN2XYU
-X-Message-ID-Hash: EEY5K74ZNVIEHUW4LD7VJYXSQDZN2XYU
-X-MailFrom: zuhasdasn@gmail.com
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e7acec1-dd30-47cb-73e5-08d92cd2e522
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2021 12:17:34.6541
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KbgBlDj6rQxKyS2lJQ2CqDZor6d9J5dbrsTqcda0TYuvgbx6+tB0MaA0cAPiKbB4lwwfadq4UOlfxdP8b6d74/VIx2xu57Zg2uKcS4/+42k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3648
+X-MDID: 1623413859-bIGniv33U_7w
+Message-ID-Hash: TD4W74FM7OZQ4MVYYNBM3WVCZZVFOLUE
+X-Message-ID-Hash: TD4W74FM7OZQ4MVYYNBM3WVCZZVFOLUE
+X-MailFrom: jim@gardettoengineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: DPDK setup with UHD 4.0
+Subject: [USRP-users] N320 1PPS input voltage 
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EEY5K74ZNVIEHUW4LD7VJYXSQDZN2XYU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/H2IXJKOM64W54XCBOZIN3WW3YMQQLYAW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6123101260036739966=="
+Content-Type: multipart/mixed; boundary="===============7740861883030817219=="
 
---===============6123101260036739966==
-Content-Type: multipart/alternative; boundary="00000000000005877005c46f98f6"
+--===============7740861883030817219==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB3312739D7A0996F851BC7093B8349MN2PR12MB3312namp_"
 
---00000000000005877005c46f98f6
-Content-Type: text/plain; charset="UTF-8"
+--_000_MN2PR12MB3312739D7A0996F851BC7093B8349MN2PR12MB3312namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Casey,
+Hello,
 
-I was trying to delete DPDK files manually (because i installed DPDK 19 at
-first, and it doesnt have an uninstall method), and accidentally crashed my
-OS (it was my fault, deleted something important). After reinstalling
-Ubuntu, i installed everything again and the error was gone. Reinstalling
-everything took like 3-4 hours, i spent much more trying the fix the error.
-I also faced a few more errors in next steps, i mention them below, might
-be useful for some people.
+We are planning on using an octoclock with several devices, including an N3=
+20. The octoclock outputs a 5V 1pps signal, but I'm confused about the N320=
+ 1pps input.
 
-1) It was something about invalid elf headers. DPDK tries to compile
-everything in the uhf.conf - dpdk_driver location. In my case,
-"/usr/local/lib/x86_64-linux-gnu/dpdk/pmds-18.11" file had only librte_pmd
-and librte_mempool dynamic libraries, so using this address fixed the error=
-.
-2) DPDK was not able to find the device, because i used capital letters in
-the mac address of uhd.conf. They should be lowercase.
+According to (https://kb.ettus.com/N320/N321):
+"PPS - Pulse Per Second Using a PPS signal for timestamp synchronization re=
+quires a square wave signal with the following a 5Vpp amplitude."
 
-3) "[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization.
-EnvironmentError: IOError: Timed out getting recv buff for management
-transaction". I realized this error occurs with or without using DPDK, and
-rarely it was working correctly (but mostly didnt work). I changed fpga
-image to default (HG or 1 GbE, and 10 GbE sfp+), also reinstalled embedded
-linux with mender. The problem was gone. Then, i installed dual 10 GbE sfp+
-image (XG), and haven't faced the same problem.
+If I look at the schematics for the N320, on page 15, (https://kb.ettus.com=
+/images/f/f4/USRP_N3XX_MB_Schematic.pdf) they show that the input 1pps sign=
+al goes through an NC7SV157. Vcc for that is 3.3V in the schematics.
 
-My new problem is that DPDK is slower than without using DPDK. I sent a new
-mail about it today, still waiting for suggestions. GL with your setup, i
-have spent my whole week to get DPDK working.
+According to the datasheet, the absolute maximum rating on the input is 4.3=
+V. "https://www.onsemi.com/pdf/datasheet/nc7sv157-d.pdf"
+
+So, I'm not sure how the N320 can safely accept a 5V input (from the octocl=
+ock or other device).
+
+Thanks,
+Jim
 
 
-Berkay S.
-
-On Thu, 10 Jun 2021 at 20:56, Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV <
-Carl.L.Wolsieffer@erdc.dren.mil> wrote:
-
-> Hi Berkay,
->
->
->
-> I=E2=80=99m actually having this exact same issue. We have pretty much al=
-l the
-> same hardware/software/Ubuntu etc and after using meson and ninja I was
-> able to get to this point you are at here. Did you ever figure out how to
-> resolve this? Much appreciated!
->
->
->
-> Casey
->
->
->
-> PS I tried sending this reply via the archives webpage which didn=E2=80=
-=99t seem
-> to be working, so apologies if this is being sent 2 or 3 times
->
->
->
-> *From:* Berkay SAYGILI <zuhasdasn@gmail.com>
-> *Sent:* Thursday, May 27, 2021 5:06 AM
-> *To:* Wade Fife <wade.fife@ettus.com>
-> *Cc:* usrp-users <usrp-users@lists.ettus.com>
-> *Subject:* [USRP-users] Re: DPDK setup with UHD 4.0
->
->
->
-> Hello again,
->
->
->
-> Using meson and ninja made dpdk recognized by uhd cmake. I initially used
-> the instructions from "
-> Blockedhttps://doc.dpdk.org/guides-18.11/linux_gsg/build_dpdk.htmlBlocked=
-".
-> However, when i tried to complete the uhd installation with make command,
-> another problem was occurred (given below). Just to let you know, i
-> couldn't make "CONFIG_RTE_BUILD_SHARED_LIB=3Dy" with meson build (i dont =
-know
-> if it is necessary).
->
->
->
-> [ 51%] Linking CXX shared library libuhd.so
-> [ 51%] Built target uhd
-> Scanning dependencies of target usrp_list_sensors
-> [ 51%] Building CXX object
-> examples/CMakeFiles/usrp_list_sensors.dir/usrp_list_sensors.cpp.o
-> [ 51%] Linking CXX executable usrp_list_sensors
-> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `lcore_config=
-'
-> /usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to
-> `rte_eal_get_configuration'
-> collect2: error: ld returned 1 exit status
-> make[2]: *** [examples/CMakeFiles/usrp_list_sensors.dir/build.make:95:
-> examples/usrp_list_sensors] Error 1
-> make[1]: *** [CMakeFiles/Makefile2:1038:
-> examples/CMakeFiles/usrp_list_sensors.dir/all] Error 2
-> make: *** [Makefile:163: all] Error 2
->
->
->
-> I use Ubuntu 20.04.1, and have an X520-DA2 card. I am at the "Installing
-> UHD" part in
-> Blockedhttps://kb.ettus.com/Getting_Started_with_DPDK_and_UHDBlocked, so
-> i dont have the uhd.conf file in root. In addition, i downloaded ixgbe
-> driver at first, then switched it to vfio-pci
->
->
->
->
->
-> Best Regards
->
->
->
-> Berkay S.
->
->
->
-> On Thu, 27 May 2021 at 00:05, Wade Fife <wade.fife@ettus.com> wrote:
->
-> Hi Berkay,
->
->
->
-> I also had a lot of trouble getting DPDK to be recognized. It could be a
-> lot of things, so I can only speculate what the problem is in your case. =
-In
-> my case, I had hyphens instead of underscores in my uhd.conf file. I thin=
-k
-> I also had some issues with specifying the correct location of the DPDK
-> driver. Hopefully you've already read through the KB on how to set it up.
->
->
->
-> Blockedhttps://kb.ettus.com/Getting_Started_with_DPDK_and_UHDBlocked
->
->
->
-> There are also some driver dependencies and, depending on your Ethernet
-> card, some flags may be needed when building DPDK.
->
->
->
-> Maybe you could share some additional details about your setup, such as
-> which card you're using, which driver/version, how you built DPDK, etc.
->
->
->
-> Looking at my notes, I built DPDK using the following steps. I'm using a
-> Mellanox CX516A.
-> cd dpdk-stable-18.11.11/
-> meson build
-> cd build
-> ninja
-> sudo ninja install
-> sudo ldconfig
->
->
->
-> My /root/.uhd/uhd.conf pretty much matches the one in the KB under UHD
-> 4.0, although I commented some things out.
->
-> [use_dpdk=3D1]
-> dpdk_mtu=3D9000
-> dpdk_driver=3D/usr/local/lib/
-> dpdk_corelist=3D2,3,4
-> ;dpdk_num_mbufs=3D4095
-> ;dpdk_mbuf_cache_size=3D315
->
-> [dpdk_mac=3DXX:XX:XX:XX:XX:XX]
-> dpdk_lcore =3D 3
-> dpdk_ipv4 =3D 192.168.10.1/24
->
-> ;[dpdk_mac=3DXX:XX:XX:XX:XX:XX]
-> ;dpdk_lcore =3D 4
-> ;dpdk_ipv4 =3D 192.168.20.1/24
->
->
->
-> Wade
->
->
->
-> On Wed, May 26, 2021 at 3:56 AM Berkay SAYGILI <zuhasdasn@gmail.com>
-> wrote:
->
-> Hello,
->
->
->
-> I've been trying to use dpdk with UHD 4.0 on our newly purchased N320, bu=
-t
-> it is shown as disabled component when i cmake uhd. First, i used "apt-ge=
-t
-> install dpdk dpdk-dev", then realized it installed wrong version,
-> afterwords i downloaded dpdk 18.11. from the source and compiled. Another
-> mistake was not enabling shared library build, so i rebuilded it with sha=
-re
-> libraries enabled (i can .so files now in the lib). But, still cmake show=
-s
-> that dpdk is disabled. I added cmakecache.txt file to this mail, maybe it
-> can be useful. Btw, i completed all other steps like enabling hugepages,
-> adding drivers, etc. Do you have any solution to this problem?
->
->
->
->
->
-> Best regards
->
->
->
-> Berkay S.
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-
---00000000000005877005c46f98f6
-Content-Type: text/html; charset="UTF-8"
+--_000_MN2PR12MB3312739D7A0996F851BC7093B8349MN2PR12MB3312namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello Casey,</div><div><br></div><div>I was trying to=
- delete DPDK files manually (because i installed DPDK 19 at first, and it d=
-oesnt have an uninstall method), and accidentally crashed my OS (it was my =
-fault, deleted something important). After reinstalling Ubuntu, i installed=
- everything again and the error was gone. Reinstalling everything took like=
- 3-4 hours, i spent much more trying the fix the error. I also faced a few =
-more errors in next steps, i mention them below, might be useful for some p=
-eople.</div><div><br></div><div>1) It was something about invalid elf heade=
-rs. DPDK tries to compile everything in the uhf.conf - dpdk_driver location=
-. In my case, &quot;/usr/local/lib/x86_64-linux-gnu/dpdk/pmds-18.11&quot; f=
-ile had only librte_pmd and librte_mempool dynamic libraries, so using this=
- address fixed the error.</div><div></div><div>2) DPDK was not able to find=
- the device, because i used capital letters in the mac address of uhd.conf.=
- They should be lowercase.</div><div><br></div><div>3) &quot;[ERROR] [RFNOC=
-::GRAPH] IO Error during GSM initialization.=20
-EnvironmentError: IOError: Timed out getting recv buff for management=20
-transaction&quot;. I realized this error occurs with or without using DPDK,=
- and rarely it was working correctly (but mostly didnt work). I changed fpg=
-a image to default (HG or 1 GbE, and 10 GbE sfp+), also reinstalled embedde=
-d linux with mender. The problem was gone. Then, i installed dual 10 GbE sf=
-p+ image (XG), and haven&#39;t faced the same problem.=C2=A0 <br></div><div=
-><br></div><div>My new problem is that DPDK is slower than without using DP=
-DK. I sent a new mail about it today, still waiting for suggestions. GL wit=
-h your setup, i have spent my whole week to get DPDK working.</div><div><br=
-></div><div><br></div><div>Berkay S.<br></div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 10 Jun 2021 at 20:56,=
- Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV &lt;<a href=3D"mailto:Carl.L.Wolsi=
-effer@erdc.dren.mil">Carl.L.Wolsieffer@erdc.dren.mil</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-2712818932827829995WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)">Hi Berkay,<u></u><u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)">I=E2=80=99m actually having this=
- exact same issue. We have pretty much all the same hardware/software/Ubunt=
-u etc and after using meson and ninja I was able to get to
- this point you are at here. Did you ever figure out how to resolve this? M=
-uch appreciated!<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)">Casey<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)">PS I tried sending this reply vi=
-a the archives webpage which didn=E2=80=99t seem to be working, so apologie=
-s if this is being sent 2 or 3 times<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family:&quot;C=
-alibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11pt;font=
--family:&quot;Calibri&quot;,sans-serif"> Berkay SAYGILI &lt;<a href=3D"mail=
-to:zuhasdasn@gmail.com" target=3D"_blank">zuhasdasn@gmail.com</a>&gt;
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+Hello,
+<div><br>
+</div>
+<div>We are planning on using an octoclock with several devices, including =
+an N320. The octoclock outputs a 5V 1pps signal, but I'm confused about the=
+ N320 1pps input.</div>
+<div><br>
+</div>
+<div>According to (https://kb.ettus.com/N320/N321):</div>
+<div>&quot;PPS - Pulse Per Second Using a PPS signal for timestamp synchron=
+ization requires a square wave signal with the following a 5Vpp amplitude.&=
+quot;<br>
+</div>
+<div><br>
+</div>
+<div>If I look at the schematics for the N320, on page 15, (https://kb.ettu=
+s.com/images/f/f4/USRP_N3XX_MB_Schematic.pdf) they show that the input 1pps=
+ signal goes through an NC7SV157. Vcc for that is 3.3V in the schematics.&n=
+bsp;</div>
+<div><br>
+</div>
+<div>According to the datasheet, the absolute maximum rating on the input i=
+s 4.3V. &quot;https://www.onsemi.com/pdf/datasheet/nc7sv157-d.pdf&quot;</di=
+v>
+<div><br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+So, I'm not sure how the N320 can safely accept a 5V input (from the octocl=
+ock or other device).</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
 <br>
-<b>Sent:</b> Thursday, May 27, 2021 5:06 AM<br>
-<b>To:</b> Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_=
-blank">wade.fife@ettus.com</a>&gt;<br>
-<b>Cc:</b> usrp-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" tar=
-get=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> [USRP-users] Re: DPDK setup with UHD 4.0<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">Hello again,<u></u><u></u></p>
 </div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Using meson and ninja made dpdk recognized by uhd cm=
-ake. I initially used the instructions from &quot;<a>Blockedhttps://doc.dpd=
-k.org/guides-18.11/linux_gsg/build_dpdk.htmlBlocked</a>&quot;.
- However, when i tried to complete the uhd installation with make command, =
-another problem was occurred (given below). Just to let you know, i couldn&=
-#39;t make &quot;CONFIG_RTE_BUILD_SHARED_LIB=3Dy&quot; with meson build (i =
-dont know if it is necessary).<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">[ 51%] Linking CXX shared library libuhd.so<br>
-[ 51%] Built target uhd<br>
-Scanning dependencies of target usrp_list_sensors<br>
-[ 51%] Building CXX object examples/CMakeFiles/usrp_list_sensors.dir/usrp_l=
-ist_sensors.cpp.o<br>
-[ 51%] Linking CXX executable usrp_list_sensors<br>
-/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `lcore_config&#=
-39;<br>
-/usr/bin/ld: ../lib/libuhd.so.4.0.0: undefined reference to `rte_eal_get_co=
-nfiguration&#39;<br>
-collect2: error: ld returned 1 exit status<br>
-make[2]: *** [examples/CMakeFiles/usrp_list_sensors.dir/build.make:95: exam=
-ples/usrp_list_sensors] Error 1<br>
-make[1]: *** [CMakeFiles/Makefile2:1038: examples/CMakeFiles/usrp_list_sens=
-ors.dir/all] Error 2<br>
-make: *** [Makefile:163: all] Error 2<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I use Ubuntu 20.04.1, and have an X520-DA2 card. I a=
-m at the &quot;Installing UHD&quot; part in
-<a>
-Blockedhttps://kb.ettus.com/Getting_Started_with_DPDK_and_UHDBlocked</a>, s=
-o i dont have the uhd.conf file in root. In addition, i downloaded ixgbe dr=
-iver at first, then switched it to vfio-pci<a><br>
-</a><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Best Regards<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Berkay S.<u></u><u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Thu, 27 May 2021 at 00:05, Wade Fife &lt;<a href=
-=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&g=
-t; wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
-b(204,204,204);border-style:none none none solid;border-width:medium medium=
- medium 1pt;padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in">
-<div>
-<div>
-<div>
-<div>
-<p class=3D"MsoNormal">Hi Berkay,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I also had a lot of trouble getting DPDK to be recog=
-nized. It could be a lot of things, so I can only speculate what the proble=
-m is in your case. In my case, I had hyphens instead of underscores in my u=
-hd.conf file. I think I also had some
- issues with specifying the correct location of the DPDK driver. Hopefully =
-you&#39;ve already read through the KB on how to set it up.
-<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><a>Blockedhttps://kb.ettus.com/Getting_Started_with_=
-DPDK_and_UHDBlocked</a><u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">There are also some driver dependencies and, dependi=
-ng on your Ethernet card, some flags may be needed when building DPDK.<u></=
-u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Maybe you could share some additional details about =
-your setup, such as which card you&#39;re using, which driver/version, how =
-you built DPDK, etc.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Looking at my notes, I built DPDK using the followin=
-g steps. I&#39;m using a Mellanox CX516A.<br>
-cd dpdk-stable-18.11.11/<br>
-meson build<br>
-cd build<br>
-ninja<br>
-sudo ninja install<br>
-sudo ldconfig<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">My /root/.uhd/uhd.conf pretty much matches the one i=
-n the KB under UHD 4.0, although I commented some things out.<u></u><u></u>=
-</p>
-</div>
-<div>
-<p class=3D"MsoNormal">[use_dpdk=3D1]<br>
-dpdk_mtu=3D9000<br>
-dpdk_driver=3D/usr/local/lib/<br>
-dpdk_corelist=3D2,3,4<br>
-;dpdk_num_mbufs=3D4095<br>
-;dpdk_mbuf_cache_size=3D315<br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Jim</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
 <br>
-[dpdk_mac=3DXX:XX:XX:XX:XX:XX]<br>
-dpdk_lcore =3D 3<br>
-dpdk_ipv4 =3D <a>192.168.10.1/24</a><br>
-<br>
-;[dpdk_mac=3DXX:XX:XX:XX:XX:XX]<br>
-;dpdk_lcore =3D 4<br>
-;dpdk_ipv4 =3D <a>192.168.20.1/24</a><u></u><u></u></p>
 </div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Wade<u></u><u></u></p>
-</div>
-</div>
-</div>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Wed, May 26, 2021 at 3:56 AM Berkay SAYGILI &lt;<=
-a href=3D"mailto:zuhasdasn@gmail.com" target=3D"_blank">zuhasdasn@gmail.com=
-</a>&gt; wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
-b(204,204,204);border-style:none none none solid;border-width:medium medium=
- medium 1pt;padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I&#39;ve been trying to use dpdk with UHD 4.0 on our=
- newly purchased N320, but it is shown as disabled component when i cmake u=
-hd. First, i used &quot;apt-get install dpdk dpdk-dev&quot;, then realized =
-it installed wrong version, afterwords i downloaded
- dpdk 18.11. from the source and compiled. Another mistake was not enabling=
- shared library build, so i rebuilded it with share libraries enabled (i ca=
-n .so files now in the lib). But, still cmake shows that dpdk is disabled. =
-I added cmakecache.txt file to this
- mail, maybe it can be useful. Btw, i completed all other steps like enabli=
-ng hugepages, adding drivers, etc. Do you have any solution to this problem=
-?<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Best regards<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Berkay S.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-<p class=3D"MsoNormal">_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">
-usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><u></u><u></u></p>
-</blockquote>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
+</body>
+</html>
 
-</blockquote></div>
+--_000_MN2PR12MB3312739D7A0996F851BC7093B8349MN2PR12MB3312namp_--
 
---00000000000005877005c46f98f6--
-
---===============6123101260036739966==
+--===============7740861883030817219==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -615,4 +235,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6123101260036739966==--
+--===============7740861883030817219==--
