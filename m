@@ -2,150 +2,179 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49CA33A4B8A
-	for <lists+usrp-users@lfdr.de>; Sat, 12 Jun 2021 01:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5815A3A5059
+	for <lists+usrp-users@lfdr.de>; Sat, 12 Jun 2021 21:32:09 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 176A0384098
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Jun 2021 19:59:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E171B38406B
+	for <lists+usrp-users@lfdr.de>; Sat, 12 Jun 2021 15:32:03 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ourowndomain-com.20150623.gappssmtp.com header.i=@ourowndomain-com.20150623.gappssmtp.com header.b="AP6dihN3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=olifantasia.com header.i=@olifantasia.com header.b="s7NSbF19";
 	dkim-atps=neutral
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8412F38406D
-	for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 19:58:51 -0400 (EDT)
-Received: by mail-io1-f48.google.com with SMTP id b25so32925359iot.5
-        for <usrp-users@lists.ettus.com>; Fri, 11 Jun 2021 16:58:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ourowndomain-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fCnNqYl28NeZCf4iGEdhEixJBWhoepy2E5kO/ITwtbo=;
-        b=AP6dihN3I/p3mXgvniQp+NvJThq1SKLmXsDDO88xC86LF0tPdDyazUzYt/CycZ3TvQ
-         mzi730c5j3Uq96c1VvglTzl6zP3JtphvyULpOzL5PAAvajNZ51xNVpfuwthZ1qscV62/
-         HT4CfquD7tRqInRQnxZ8DpBLU4gKt7uOEaaiVc6MEfK/qkHAnVz2tQ5Vo231psCLTYGs
-         R4QcR+gQIXksy/awGIP8yCx6M6LQat8aMFuCiuvDRs/GIiqA80OsPdeQ5SEWcKQuQcwe
-         F3XdF8h4gQ6+EqjLxVM+kQHa0tXtq25dYHnUhxZ6ezWkO/gQ8mpb4ONipOeQVxj4ezwH
-         Vvnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fCnNqYl28NeZCf4iGEdhEixJBWhoepy2E5kO/ITwtbo=;
-        b=MveOWz8hTAD8bmhVE9koRx86ZiZctSjpc6k3Vl3U7l7fYsCPM/I0S/e+mhSIxToysm
-         X8fGshB/36MX52a9RIeqEU2+Lyd8PKSbaithG6lOBbobg2tB/hvdDhpgKmLxbJ63npD5
-         9KNsjYTCDwEoOH17QoVGCSzE0bY3QS2ZLzIbWNE3VC1EWpvS9HnQJfmOfPgLpHGXm8g9
-         h2bGUuCISdwULYoG7T5irfXh8HnkluLHJ9cTpZeozg34L3NNLj5AJoCrqpXy4TfBoP3i
-         4RcvIjxJl2ksHKgKnHD1qQ1cHF0NeEXagh2jJgxilfaqWRll4s01wiCIvhxrCjsEUGmG
-         Cbkg==
-X-Gm-Message-State: AOAM530pNyC2R+Ky3BBlMTJkV6VVrWzDEcWHieHwZTpZdff3v1+gMtcP
-	TzSyzaEtYomPfZS79mgR0n6N3VJOC4YS9k3DtXemibTZ1TPixg==
-X-Google-Smtp-Source: ABdhPJyRSnlDkAfHAhRSn4+zVfjxi2Kc7lm/2N3sFuP8nK/e6RK6+ICdb8cP364y+A7FKwOkMcxJ5fQFICgqm3M+S5k=
-X-Received: by 2002:a05:6602:2283:: with SMTP id d3mr5087864iod.121.1623455930674;
- Fri, 11 Jun 2021 16:58:50 -0700 (PDT)
+Received: from outbound0.mail.transip.nl (outbound0.mail.transip.nl [149.210.149.69])
+	by mm2.emwd.com (Postfix) with ESMTPS id D97E2383FBB
+	for <usrp-users@lists.ettus.com>; Sat, 12 Jun 2021 15:31:11 -0400 (EDT)
+Received: from submission8.mail.transip.nl (unknown [10.103.8.159])
+	by outbound0.mail.transip.nl (Postfix) with ESMTP id 4G2SW23ZlGzxPLF
+	for <usrp-users@lists.ettus.com>; Sat, 12 Jun 2021 21:31:10 +0200 (CEST)
+Received: from mail.olifantasia.eu (server1.olifantasia.eu [37.97.153.37])
+	by submission8.mail.transip.nl (Postfix) with ESMTPSA id 4G2SW01VzTz2ZNg3
+	for <usrp-users@lists.ettus.com>; Sat, 12 Jun 2021 21:31:05 +0200 (CEST)
+Received: from [192.168.1.101] (unknown [83.80.231.114])
+	by mail.olifantasia.eu (Postfix) with ESMTPSA id C504A60379
+	for <usrp-users@lists.ettus.com>; Sat, 12 Jun 2021 21:31:02 +0200 (CEST)
+To: usrp-users@lists.ettus.com
+From: Martin <usrp-users-list@olifantasia.com>
+Message-ID: <7fc6799d-d4af-f60b-645c-e199109e6535@olifantasia.com>
+Date: Sat, 12 Jun 2021 21:30:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
 MIME-Version: 1.0
-References: <CANsNear-N8KBfZO87wVk8btEnQk=tsvF_Td0zjv1YDoE2ATVFw@mail.gmail.com>
- <9a02875e-a4a9-aa5a-0e3f-6d0f301aee0e@ettus.com>
-In-Reply-To: <9a02875e-a4a9-aa5a-0e3f-6d0f301aee0e@ettus.com>
-From: Rich Gopstein <rich@ourowndomain.com>
-Date: Fri, 11 Jun 2021 19:58:39 -0400
-Message-ID: <CANsNeap0PxCncob=tfYBZ0BVvKaGBZ=oDJDo521rrULqDj9w8Q@mail.gmail.com>
-To: Martin Braun <martin.braun@ettus.com>
-Message-ID-Hash: 4QOKCFGILGRQ47TSLUBIIEJOUDBQ2CMQ
-X-Message-ID-Hash: 4QOKCFGILGRQ47TSLUBIIEJOUDBQ2CMQ
-X-MailFrom: rich@ourowndomain.com
+Content-Language: en-US
+X-Scanned-By: ClueGetter at submission8.mail.transip.nl
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ s=transip-a; d=olifantasia.com; t=1623526268; h=from:subject:to:date:
+ mime-version:content-type;
+ bh=1A+Okc2spjdYQaMQeG6FahIRCes5BJP7I+bZd4y3kxg=;
+ b=s7NSbF19/SrkfsmFOQQuQYIr5Gzy5jZrNJk/jiAmP0pOr7RY5TcsIXl3hUoi9S7QD/cd1l
+ DBO+Z24BiWhB1axM4AD754b0Tkz0KeMS3HBNEMRLUIjRb/VmNrT9NVOx6r6X2vosAwXslA
+ P3E5jCiPXYV+h2DiwBop6763PzI1Sxi3Ge2UP2nlUp8AUTyyu+FtXUVHnPirdIJv5nODqW
+ wVBeYtAY6wsLVD5QLX+fVE+lXEJs8Tp4/UiWHSYQDjJjrQaRSJlL6ZIWxQbkxx0RjnAmvV
+ FRoltHtalomghucAWBNnnBNdPmuFIYxrh1G18ZlD0HnrGe+qFoVXvJ1acPKAgw==
+X-Report-Abuse-To: abuse@transip.nl
+Message-ID-Hash: WAFNLMXMZJHIMVVNEWWDXQNSVTORG6ZW
+X-Message-ID-Hash: WAFNLMXMZJHIMVVNEWWDXQNSVTORG6ZW
+X-MailFrom: usrp-users-list@olifantasia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Replacing idle FPGA image on an E310
+Subject: [USRP-users] How to instantiate axi_ram_fifo (radio_2x64.yml) in E310. Or how to find out or add _device_ port names
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4QOKCFGILGRQ47TSLUBIIEJOUDBQ2CMQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WAFNLMXMZJHIMVVNEWWDXQNSVTORG6ZW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2047092077803431337=="
-
---===============2047092077803431337==
-Content-Type: multipart/alternative; boundary="0000000000000e873705c4864a84"
-
---0000000000000e873705c4864a84
-Content-Type: text/plain; charset="UTF-8"
-
-Thanks.  I'll give that a try.
-
-Rich
-
-
-On Fri, Jun 11, 2021 at 10:32 AM Martin Braun <martin.braun@ettus.com>
-wrote:
-
-> On 04/06/2021 21:19, Rich Gopstein wrote:
-> > I've successfully replaced the non-idle FPGA image on my UHD 4.0 E310
-> > using uhd_image_loader.
-> >
-> > What's the process to replace the idle FPGA image?  I didn't see any
-> > documentation on using uhd_image_loader for that.
-> >
-> > I saw FPGA images in /user/share/uhd/images and /lib/firmware, but
-> > wasn't sure if I could just copy on top of those?
->
-> Yes, you can copy on top of those. /lib/firmware is the one that'll get
-> applied, the next time an idle image is loaded.
->
-> --M
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000000e873705c4864a84
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Thanks.=C2=A0 I&#39;ll give that a try.<div><br></div><div=
->Rich</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Fri, Jun 11, 2021 at 10:32 AM Martin Braun &lt=
-;<a href=3D"mailto:martin.braun@ettus.com">martin.braun@ettus.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 04/06/2=
-021 21:19, Rich Gopstein wrote:<br>
-&gt; I&#39;ve successfully replaced the non-idle FPGA image on my UHD 4.0 E=
-310 <br>
-&gt; using=C2=A0uhd_image_loader.<br>
-&gt; <br>
-&gt; What&#39;s the process to replace the idle FPGA image?=C2=A0 I didn&#3=
-9;t see any <br>
-&gt; documentation on using=C2=A0uhd_image_loader for that.<br>
-&gt; <br>
-&gt; I saw FPGA images in /user/share/uhd/images and /lib/firmware, but <br=
->
-&gt; wasn&#39;t sure if I could just copy on top of those?<br>
-<br>
-Yes, you can copy on top of those. /lib/firmware is the one that&#39;ll get=
- <br>
-applied, the next time an idle image is loaded.<br>
-<br>
---M<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000000e873705c4864a84--
-
---===============2047092077803431337==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
+Hi,
+Amongst others I am trying to add an RFNoc axi_ram_fifo using 
+radio_2x64.yml to a E310 RFNoC image. But I am having a hard time to 
+find out which port names to use for connections and clocks.
+
+Apparently I am using the wrong port name for dram. Or I somehow have to 
+add dram to the _device_
+But I haven't found where all ports of _device_ are defined for each 
+USRP. In which file is that?
+Do I have to add a dram component to the verilog?
+I saw that e320_core.v has dram defined. But I am still not sure where 
+the dram portname is defined and how it corresponds to the dram_xxx 
+wires in the verilog.
+
+I added the following to my e310_rfnoc_image_core.yml file based on the 
+examples I saw in e320 and x310 yml files.
+
+noc_blocks:
+   fifo0:
+     block_desc: 'axi_ram_fifo_2x64.yml'
+     parameters:
+       # These parameters correspond to the memory interface on the E320
+       MEM_ADDR_W:   31
+       MEM_DATA_W:   64
+       MEM_CLK_RATE: "300e6" #TODO MDVH check if this clockspeed is 
+correct for E310 (copied from E320)
+       # Create two non-overlapping 32 MB buffers by default
+       FIFO_ADDR_BASE: "{31'h02000000, 31'h00000000}" #Are these 
+addresses correct for E310 (copied from E320)
+       FIFO_ADDR_MASK: "{31'h01FFFFFF, 31'h01FFFFFF}"
+
+connections:
+   - { srcblk: fifo0, srcport: axi_ram, dstblk: _device_, dstport: dram  }
+
+clk_domains:
+   - { srcblk: _device_, srcport: dram,  dstblk: fifo0,  dstport: mem   }
+
+When I try to build with rfnoc_image_builder I get the error
+[ERR] 1 Unresolved connection(s)
+[ERR]     (fifo0-axi_ram -> _device_-dram)
+[INF]         (('radio0', 'ctrl_port', 'master'),)
+[INF]         (('radio0', 'time_keeper', 'listener'),)
+[INF]         (('radio0', 'x300_radio', 'slave'),)
+[INF]         (('fifo0', 'axi_ram', 'master'),)
+[INF]         (('_device_', 'ctrlport_radio', 'slave'),)
+[INF]         (('_device_', 'time_keeper', 'broadcaster'),)
+[INF]         (('_device_', 'x300_radio', 'master'),)
+
+
+Here is the whole log:
+
+rfnoc_image_builder -y 
+e310_rfnoc_gamma_image_core_add_fifo_logpwr_keep_one_in_n_moving_avg.yml 
+-t E310_SG1 -F ../uhd40/fpga 2>&1 | tee 
+rfnoc_image_builder_-y_e310_rfnoc_gamma_image_core_add_fifo_logpwr_keep_one_in_n_moving_avg.yml_2021061201.log
+[INF] Using FPGA directory /opt/uhd40/src/uhd40/fpga
+[INF] Selected device e310
+[INF] Using io_signatures.yml from /opt/uhd40/share/uhd/rfnoc/core.
+[INF] Using e310_bsp.yml from /opt/uhd40/share/uhd/rfnoc/core.
+[INF] Adding block description from addsub.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from axi_ram_fifo.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from axi_ram_fifo_2x64.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from axi_ram_fifo_4x64.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from ddc.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from duc.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from fft_1x64.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from fir_filter.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from fosphor.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from keep_one_in_n.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from logpwr.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from moving_avg.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from null_src_sink.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from radio.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from radio_1x64.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from radio_2x64.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from replay.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from siggen.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from split_stream.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from switchboard.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from vector_iir.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[INF] Adding block description from window.yml 
+(/opt/uhd40/share/uhd/rfnoc/blocks).
+[ERR] 1 Unresolved connection(s)
+[ERR]     (fifo0-axi_ram -> _device_-dram)
+[INF]         (('radio0', 'ctrl_port', 'master'),)
+[INF]         (('radio0', 'time_keeper', 'listener'),)
+[INF]         (('radio0', 'x300_radio', 'slave'),)
+[INF]         (('fifo0', 'axi_ram', 'master'),)
+[INF]         (('_device_', 'ctrlport_radio', 'slave'),)
+[INF]         (('_device_', 'time_keeper', 'broadcaster'),)
+[INF]         (('_device_', 'x300_radio', 'master'),)
+
+Thanks in advance,
+
+Martin
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2047092077803431337==--
