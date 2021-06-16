@@ -2,61 +2,61 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AFEC3AA315
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 20:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 278173AA4A7
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 21:51:49 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 68F46385409
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 14:19:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 09355384E9C
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 15:51:48 -0400 (EDT)
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BA51D384FB5
-	for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 14:16:57 -0400 (EDT)
-Date: Wed, 16 Jun 2021 18:16:57 +0000
+	by mm2.emwd.com (Postfix) with ESMTP id 5CFBB384715
+	for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 15:50:53 -0400 (EDT)
+Date: Wed, 16 Jun 2021 19:50:53 +0000
 To: usrp-users@lists.ettus.com
-From: paradis@kwesst.com
-Message-ID: <ennj27wwYFEWXXNJu1B7vkFGp1uIiIFwxJA9U6LBKNY@lists.ettus.com>
+From: rblack@swri.org
+Message-ID: <PAENj2GQY2vk2Ain2dloCTYHmgmsIPkBQYMuEy8YQ@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: grTKaFDyytdw5hl7xIThdrniDHpj648Hlo7Oa6rkj4@lists.ettus.com
+In-Reply-To: WSwo09qG6wXMSvqO0g9Q8xUPUVCLDNrEdhaI7k0dbwk@lists.ettus.com
 MIME-Version: 1.0
-Message-ID-Hash: W2QI5XPXIHACZDA62S6EZRUIXUW4ZWHB
-X-Message-ID-Hash: W2QI5XPXIHACZDA62S6EZRUIXUW4ZWHB
-X-MailFrom: paradis@kwesst.com
+Message-ID-Hash: CCMG5LKUBCUNVTGWPNHZPWDCCXY37II6
+X-Message-ID-Hash: CCMG5LKUBCUNVTGWPNHZPWDCCXY37II6
+X-MailFrom: rblack@swri.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: is there a UHD v4.0.0.0 for Ubuntu 20.04 LTS?
+Subject: [USRP-users] Re: Software Loopback RFNoC TX/RX same flowgraph
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/W2QI5XPXIHACZDA62S6EZRUIXUW4ZWHB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CCMG5LKUBCUNVTGWPNHZPWDCCXY37II6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3749375985584277903=="
+Content-Type: multipart/mixed; boundary="===============4809006302936345908=="
 
 This is a multi-part message in MIME format.
 
---===============3749375985584277903==
+--===============4809006302936345908==
 Content-Type: multipart/alternative;
- boundary="b1_ennj27wwYFEWXXNJu1B7vkFGp1uIiIFwxJA9U6LBKNY"
+ boundary="b1_PAENj2GQY2vk2Ain2dloCTYHmgmsIPkBQYMuEy8YQ"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_ennj27wwYFEWXXNJu1B7vkFGp1uIiIFwxJA9U6LBKNY
+--b1_PAENj2GQY2vk2Ain2dloCTYHmgmsIPkBQYMuEy8YQ
 Content-Type: text/plain; charset=us-ascii
 
-alternately, is there a way to cross-compile the UHD v4.0.0.0 libraries on my x86 machine but target the ARM processor on my SBC?
+Sorry I see that the HA just indicates the image built for 1G.   We intend to use 10G (XA),  but I doubt that this has any effect on the patch.
 
---b1_ennj27wwYFEWXXNJu1B7vkFGp1uIiIFwxJA9U6LBKNY
+--b1_PAENj2GQY2vk2Ain2dloCTYHmgmsIPkBQYMuEy8YQ
 Content-Type: text/html; charset=us-ascii
 
-<p>alternately, is there a way to cross-compile the UHD v4.0.0.0 libraries on my x86 machine but target the ARM processor on my SBC?</p><p><br></p>
+<p>Sorry I see that the HA just indicates the image built for 1G.   We intend to use 10G (XA),  but I doubt that this has any effect on the patch.</p>
 
 
---b1_ennj27wwYFEWXXNJu1B7vkFGp1uIiIFwxJA9U6LBKNY--
+--b1_PAENj2GQY2vk2Ain2dloCTYHmgmsIPkBQYMuEy8YQ--
 
---===============3749375985584277903==
+--===============4809006302936345908==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -66,4 +66,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3749375985584277903==--
+--===============4809006302936345908==--
