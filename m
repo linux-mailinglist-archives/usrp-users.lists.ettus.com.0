@@ -2,160 +2,172 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE91F3AA296
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 19:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D0A3AA29B
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 19:45:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0820138515A
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 13:42:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4E6C3385231
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 13:45:21 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QOybPv31";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SqMg5oj9";
 	dkim-atps=neutral
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8E570384D9E
-	for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 13:41:09 -0400 (EDT)
-Received: by mail-il1-f177.google.com with SMTP id q18so3040024ile.10
-        for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 10:41:09 -0700 (PDT)
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5D0A9384A78
+	for <USRP-users@lists.ettus.com>; Wed, 16 Jun 2021 13:44:33 -0400 (EDT)
+Received: by mail-qk1-f177.google.com with SMTP id j184so247283qkd.6
+        for <USRP-users@lists.ettus.com>; Wed, 16 Jun 2021 10:44:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MYZhLlI/nYpreMgJUd/bjcGz1s04da35aHlSLo6p5LY=;
-        b=QOybPv31ZQqE673Dztj18YTGT0BJb7arA6WKtyt46nh4C72JtZbkNCsKhoWKjoJ8/f
-         aTN+btsPl5VB72SFDUbyzfAseTFBENUVhE56yMYCyxtMZOZDs9YVXn9rPSMxuIl424Vy
-         wGHT9xqA9PQuPOTDb+PjsmxDwRdFoY+nVrq/fhJuAVh1oFbBc+4AMN3nGXwv26suKEpH
-         4Sj4mUiycGVvOhAAiA7/iV+wnSF6R1DhlPDYy1b7VEaBIzO8CqDosVRi/e/5lbYx7DUx
-         y/WCH32UZFXom/PIRaK0nZoeL9EQnERCrq1cC0LR42I7Cff72xCi64SjuQVplmdR5vgY
-         3sDg==
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=qMLSdN4cUYTTE6hWrr7RYNQPPsBhcUbyk4SYII6w/fM=;
+        b=SqMg5oj9FIEsLU8Gcah2gyl8xZFvYHITrqLDnI7fB7k4ht111LKlukaGxkdBbDGcdJ
+         ngFT9TSa0Ci6tdMtjuu9KreXNkIW1caJ7ZB0hoMZS87/NgZybHkcRgVgTkwQkKjqs+Wr
+         BsT87AQjr+lsfBnRAF++xJVo+nJnEnXCI5jSIq1X/QsUrufRRfWK5YZ9YD+qbv82BHa+
+         9F3IGPXy7jsCcWWPNyFl2f8D00p5k3GdN/PXMgT2hoHSLfv8wrImRAgP1Yh6KMD+XuRF
+         0pzjUwMy0Hl0ds4Iddp7AziOn2LYpMUuC5JzaSnT8XKVIO55oOK1mkIc/IPvlTFNd4jD
+         SwvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MYZhLlI/nYpreMgJUd/bjcGz1s04da35aHlSLo6p5LY=;
-        b=n9y5st8zOoXoaO/YHrtr6ZhYNGuPJkCCGV4JNTYgvx1ZHhx5xU4CIzI7Izm8BXvonr
-         NDpM8kJKB0qS/R9eegShw4Ei0QAm5WXdovMQGb9+eiN7wC1a25n9D1LYXckn4sVPYoLL
-         QtRjweRmqsQe4Vx6LTaUOHmRdEQSuMv+JaezUBmxRklciMEcLXsg5MPys+hujuE2xwUc
-         WEqGbgMCCXnNp3pVHORP44GJ2qsgkRZ73SjtdQhMEOva89trRZ8YfQMxU+r1qssue2Sw
-         iBUnBWJ8s13EE5KSPR3kA7uyFLCWQiIvbJ8v7G5twfSreDT19EA4jbp3Mdq8TaEYGtEV
-         9BCA==
-X-Gm-Message-State: AOAM5338ACqWHA8cQ2YVEKMMllkw5gSSrXqvsBcu6zf3V44Gfnq/8+S6
-	TUe6twkXOb/nijsSiqAUcssr6zstr0MJIktK1xU=
-X-Google-Smtp-Source: ABdhPJyrh/+Tktuobr2NoXDYJ0W/Wk8pdNnRgrbNX7QdAosIAt3E/v4XRcGxr34JYW4ZZx6N2sFkSfAvPpsTrsj22qw=
-X-Received: by 2002:a92:ca8b:: with SMTP id t11mr524140ilo.263.1623865268849;
- Wed, 16 Jun 2021 10:41:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAE0dfYbKnA20uy2Db3sYBZ0whUpzTexv1HAOWG5Yb7H54AAqbQ@mail.gmail.com>
-In-Reply-To: <CAE0dfYbKnA20uy2Db3sYBZ0whUpzTexv1HAOWG5Yb7H54AAqbQ@mail.gmail.com>
-From: Dan <thebouleoffools@gmail.com>
-Date: Wed, 16 Jun 2021 11:40:57 -0600
-Message-ID: <CAG==tssT9Jk5Z02ne4Jnpgx0LGTy+kh0jG6EE7T3aC3c=ABqmQ@mail.gmail.com>
-To: Alex Humberstone <alex.m.humberstone@gmail.com>
-Message-ID-Hash: 2NTSINAHVOXVWGY4SR2R6ZW7LCCMHOHX
-X-Message-ID-Hash: 2NTSINAHVOXVWGY4SR2R6ZW7LCCMHOHX
-X-MailFrom: thebouleoffools@gmail.com
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=qMLSdN4cUYTTE6hWrr7RYNQPPsBhcUbyk4SYII6w/fM=;
+        b=PpFBMknu46pjL/WUEV8hiaPeCC1zvSUCihdTMfxcaVCjcQss7zcXNgPiMxflJkzyAR
+         9Ul6nv03n8yOF2feQrw/EdZIQDPbOtZJps2EBUREOuIDxXP0SE+YZi2xXdEHOW/cA+YG
+         HJilFAMXxqaRMpzMv2UCLfK4F8sKJr8pDcgKlLfaXsA8/VMHaeaGPy7MiP3uzeCNJAtN
+         Tk7f8FClIzz71uNxF5iAxyw/FtEQOx3HViOU/glsA6TVGYYzZQotHlGycy3KoqI25Cre
+         Hxifhhy6qwAdMbsPNm6LwK1tmw3+EuVQ1qzlSfGrSuiCiLgPbhjE/VJFrFDmJhljf7ne
+         6ToQ==
+X-Gm-Message-State: AOAM530Gc5JM2QKOsWvO0a46vBMIDKWOWbxGJjsZRtP9M03Hy7rWnP8A
+	AahX3P19YvFJ0WwM2qC5EO+G5Fuu1Od54g==
+X-Google-Smtp-Source: ABdhPJwQ34yv8itbdMG+WQiaYmWaqJUfQJuymnO0h0Ho0f8OE+ZI1+gHW/wyyH8icfuFyMUCA57ZRA==
+X-Received: by 2002:a37:b7c1:: with SMTP id h184mr1253703qkf.65.1623865472784;
+        Wed, 16 Jun 2021 10:44:32 -0700 (PDT)
+Received: from smtpclient.apple (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id m14sm1703695qti.12.2021.06.16.10.44.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Jun 2021 10:44:32 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Wed, 16 Jun 2021 13:44:31 -0400
+Message-Id: <CCDC230C-80FB-4845-923C-A5138A0144BB@gmail.com>
+References: <NtjmANHyQsfQc4DmyHKy3d3WOM83De97HMnMg2BxQ@lists.ettus.com>
+In-Reply-To: <NtjmANHyQsfQc4DmyHKy3d3WOM83De97HMnMg2BxQ@lists.ettus.com>
+To: paradis@kwesst.com
+X-Mailer: iPhone Mail (18F72)
+Message-ID-Hash: OMS2EMJTMDDYGHE47QHY3NDV76HM3GJ7
+X-Message-ID-Hash: OMS2EMJTMDDYGHE47QHY3NDV76HM3GJ7
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Any problems building and running UHD 4.0 on Ubuntu 21.04?
+Subject: [USRP-users] Re: is there a UHD v4.0.0.0 for Ubuntu 20.04 LTS?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2NTSINAHVOXVWGY4SR2R6ZW7LCCMHOHX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OMS2EMJTMDDYGHE47QHY3NDV76HM3GJ7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0494750256765881948=="
+Content-Type: multipart/mixed; boundary="===============3764379774937874283=="
 
---===============0494750256765881948==
-Content-Type: multipart/alternative; boundary="00000000000083500e05c4e598df"
 
---00000000000083500e05c4e598df
-Content-Type: text/plain; charset="UTF-8"
+--===============3764379774937874283==
+Content-Type: multipart/alternative; boundary=Apple-Mail-0688A9A7-6348-495B-8423-01A8FFB72350
+Content-Transfer-Encoding: 7bit
 
-I am currently running UHD 4.0 with Gnuradio 3.8.3.0 on Ubuntu 21.04. I had
-some amount of difficulty, as the installation instructions didn't quite
-capture all the idiosyncrasies of library incompatibilities and bugs,
-particularly during the cross-compile for the E320. If I remember right, I
-needed to use Python 3.7.6, dpdk 18.11.11, and use the external volk
-library that is in the Ubuntu 21.04 repository (libvolk2-dev 2.4.1-2)
-instead of the one that was in the gnuradio git source. If you don't need
-to cross compile, the host machine compile should work fine.
 
--Dan
+--Apple-Mail-0688A9A7-6348-495B-8423-01A8FFB72350
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 16, 2021 at 11:21 AM Alex Humberstone <
-alex.m.humberstone@gmail.com> wrote:
+Is your SBC Arm or X86? There=E2=80=99s no way libraries for
+An X86 will run on an ARM.=20
 
-> We got a new powerful Dell desktop for the lab here, and we want to
-> put the latest Ubuntu 21.04 on it. But will UHD 4.0 build from source and
-> run properly on Ubuntu 21.04? Are there any known issues? Does anyone
-> already have this running successfully? Thanks in advance for the help, and
-> for potentially saving me tons of time!
->
-> Sincerely,
-> Alex-M-Humberstone
-> PhD Student
-> Klipsch School of Electrical Engineering
-> New Mexico State University (NMSU)
-> Las Cruces, New Mexico, USA
->
+Even among X86 there are incompatibilities like 64 vs 32 but libraries. In A=
+RM land, it=E2=80=99s even worse, with different ARM architecture versions n=
+ot having mutually-compatible libraries.=20
+
+
+
+Sent from my iPhone
+
+> On Jun 16, 2021, at 1:17 PM, paradis@kwesst.com wrote:
+>=20
+> =EF=BB=BF
+> Hi everyone,
+>=20
+> In ubuntu=E2=80=99s package manager, the latest version of UHD is 3.15.
+>=20
+> For background, I=E2=80=99m running a laptop with Ubuntu 20.04 LTS, and bu=
+ild UHD v4.0.0.0 from source and everything works find with my B210s.
+>=20
+> Now I=E2=80=99m trying to migrate to a Single-Board Computer, which is als=
+o running Ubuntu 20.04 LTS, and build UHD from source isn=E2=80=99t really f=
+easible.
+>=20
+> I tried following the instructions here:
+>=20
+> https://files.ettus.com/manual/page_install.html#install_linux
+>=20
+> To install from binaries, but it keeps giving an error about "libuhd003 pa=
+ckage not found", and when it installs libuhd-dev, it's installing the 3.15 v=
+ersions, not the 4.0 versions.
+>=20
+> I'm kind of dead in the water until I can get the UHD v4.0.0.0 on this SBC=
+, but other than building from source there doesn't seem to be any way of do=
+ing it, is that correct?
+>=20
+> Also, I tried just copying the uhd libs from my laptop to the SBC, but whe=
+n I try to build and link my app, it says the libuhd.so is not compatible an=
+d fails.
+>=20
+> Any help or information would be appreciated, thanks!
+>=20
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
 
-
--- 
-Dan "The Man Himself" Brunski
-
---00000000000083500e05c4e598df
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-0688A9A7-6348-495B-8423-01A8FFB72350
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I am currently running UHD 4.0 with Gnuradio 3.8.3.0 =
-on Ubuntu 21.04. I had some amount of difficulty, as the installation instr=
-uctions didn&#39;t quite capture all the idiosyncrasies of library incompat=
-ibilities and bugs, particularly during the cross-compile for the E320. If =
-I remember right, I needed to use Python 3.7.6, dpdk 18.11.11, and use the =
-external volk library that is in the Ubuntu 21.04 repository (libvolk2-dev =
-2.4.1-2) instead of the one that was in the gnuradio git source. If you don=
-&#39;t need to cross compile, the host machine compile should work fine.</d=
-iv><div><br></div><div>-Dan<br></div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 16, 2021 at 11:21 AM Alex =
-Humberstone &lt;<a href=3D"mailto:alex.m.humberstone@gmail.com" target=3D"_=
-blank">alex.m.humberstone@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_def=
-ault" style=3D"font-family:monospace;font-size:large">We got a new powerful=
- Dell desktop for the lab here, and we want to put=C2=A0the latest Ubuntu 2=
-1.04 on it. But will UHD 4.0 build from source and run properly on Ubuntu=
-=C2=A021.04? Are there any known issues? Does anyone already have this runn=
-ing successfully?=C2=A0Thanks=C2=A0in advance for the help, and for potenti=
-ally saving me tons of time!</div><div class=3D"gmail_default" style=3D"fon=
-t-family:monospace;font-size:large"><br></div><div><div dir=3D"ltr"><div di=
-r=3D"ltr"><font size=3D"4"><span style=3D"font-family:monospace">Sincerely,=
-<br></span></font><div><font size=3D"4"><span style=3D"font-family:monospac=
-e">Alex-M-Humberstone</span></font></div><div><font size=3D"4"><span style=
-=3D"font-family:monospace">PhD Student</span></font></div><div><font size=
-=3D"4"><span style=3D"font-family:monospace">Klipsch School of Electrical E=
-ngineering<br></span></font></div><div><font size=3D"4"><span style=3D"font=
--family:monospace">New Mexico State University (NMSU)<br><span><span>Las Cr=
-uces, </span></span>New Mexico, USA</span></font></div><div><font size=3D"4=
-"><span style=3D"font-family:monospace"><br></span></font></div><div><font =
-size=3D"4"><span style=3D"font-family:monospace"></span></font></div></div>=
-</div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr">Dan &quot;=
-The Man Himself&quot; Brunski<br></div>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Is your SBC Arm or X86? There=E2=80=99s no w=
+ay libraries for<div>An X86 will run on an ARM.&nbsp;</div><div><br></div><d=
+iv>Even among X86 there are incompatibilities like 64 vs 32 but libraries. I=
+n ARM land, it=E2=80=99s even worse, with different ARM architecture version=
+s not having mutually-compatible libraries.&nbsp;</div><div><br></div><div><=
+br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><block=
+quote type=3D"cite">On Jun 16, 2021, at 1:17 PM, paradis@kwesst.com wrote:<b=
+r><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF=
+<p>Hi everyone, </p><p>In ubuntu=E2=80=99s package manager, the latest versi=
+on of UHD is 3.15.</p><p>For background, I=E2=80=99m running a laptop with U=
+buntu 20.04 LTS, and build UHD v4.0.0.0 from source and everything works fin=
+d with my B210s.</p><p>Now I=E2=80=99m trying to migrate to a Single-Board C=
+omputer, which is also running Ubuntu 20.04 LTS, and build UHD from source i=
+sn=E2=80=99t really feasible.</p><p>I tried following the instructions here:=
+</p><p><a href=3D"https://files.ettus.com/manual/page_install.html#install_l=
+inux">https://files.ettus.com/manual/page_install.html#install_linux</a></p>=
+<p>To install from binaries, but it keeps giving an error about "libuhd003 p=
+ackage not found", and when it installs libuhd-dev, it's installing the 3.15=
+ versions, not the 4.0 versions.</p><p>I'm kind of dead in the water until I=
+ can get the UHD v4.0.0.0 on this SBC, but other than building from source t=
+here doesn't seem to be any way of doing it, is that correct?</p><p>Also, I t=
+ried just copying the uhd libs from my laptop to the SBC, but when I try to b=
+uild and link my app, it says the libuhd.so is not compatible and fails.</p>=
+<p>Any help or information would be appreciated, thanks!</p>
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
+be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
+quote></div></body></html>=
 
---00000000000083500e05c4e598df--
+--Apple-Mail-0688A9A7-6348-495B-8423-01A8FFB72350--
 
---===============0494750256765881948==
+--===============3764379774937874283==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -165,4 +177,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0494750256765881948==--
+--===============3764379774937874283==--
