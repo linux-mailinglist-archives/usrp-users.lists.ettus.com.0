@@ -2,174 +2,160 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704813AA294
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 19:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE91F3AA296
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 19:42:25 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BA18A384E25
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 13:41:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0820138515A
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 13:42:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FgtEIS9b";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QOybPv31";
 	dkim-atps=neutral
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 83AB1384285
-	for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 13:40:37 -0400 (EDT)
-Received: by mail-qv1-f49.google.com with SMTP id l3so164987qvl.0
-        for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 10:40:37 -0700 (PDT)
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8E570384D9E
+	for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 13:41:09 -0400 (EDT)
+Received: by mail-il1-f177.google.com with SMTP id q18so3040024ile.10
+        for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 10:41:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=R6kpdr8ATQ1u6sLWvx3J//WaYDQGZShqPTcNvoMZSN4=;
-        b=FgtEIS9b4CAG7mCKknGpzS6FgPxnlwvK+y1OoQV3DeJDXXGuxF0pMXIqXFLfdQXSjS
-         oFRqzs+FYkccPe9SjQpTl/E6t6rq94SuiJ6n30SI5FVbyrXCdPM8XCQQJbz3dAc68Hze
-         8vTnVQRHt1d225CfWtQrMVdHPAn8F10STqlejanRCgW7OkR3ayK5rdXq8inV7qdLP4gO
-         R26QofUluYpoNBpHqJ9PU97+bCv6Rk0mzT7rijIVCzG4GPyy3TRXibogyUTLvrHCAz/6
-         A+uCjb6o4lRNkBu2qS5omLZE5mcGZKQDumZQIYnDBYeEbXKkF+VM/qN7cjLAHXLQomYp
-         HQsw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MYZhLlI/nYpreMgJUd/bjcGz1s04da35aHlSLo6p5LY=;
+        b=QOybPv31ZQqE673Dztj18YTGT0BJb7arA6WKtyt46nh4C72JtZbkNCsKhoWKjoJ8/f
+         aTN+btsPl5VB72SFDUbyzfAseTFBENUVhE56yMYCyxtMZOZDs9YVXn9rPSMxuIl424Vy
+         wGHT9xqA9PQuPOTDb+PjsmxDwRdFoY+nVrq/fhJuAVh1oFbBc+4AMN3nGXwv26suKEpH
+         4Sj4mUiycGVvOhAAiA7/iV+wnSF6R1DhlPDYy1b7VEaBIzO8CqDosVRi/e/5lbYx7DUx
+         y/WCH32UZFXom/PIRaK0nZoeL9EQnERCrq1cC0LR42I7Cff72xCi64SjuQVplmdR5vgY
+         3sDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=R6kpdr8ATQ1u6sLWvx3J//WaYDQGZShqPTcNvoMZSN4=;
-        b=s7ZQ/KK2AMf+fHiCj9IMXf5tow9P05oz8M7CoKS36VmUjDIFu5PAPfDJzM0RASNvIs
-         qLco9lufstfoznJfZBe2BHI0Xu/fNxaezwLXvQtYBPflsbKti2GwDBtc2jTw0DnlLiTt
-         paGcJsazmWYV/Et/i3VgU5+MzO0Gfskf/NdlC7hoECVV1TMm9TU+JSEEZ4eyiOHTtvWN
-         5ssmenoJeMGBim/hp1UhmxJIMa69BYMjYpsV9cUtMeEXFJS1KCWnq3AdLg8qdd2cdlWw
-         n6OHmfBM1pshbdN21F6MzVEn9hr13+NShRDdcF+Cr8PMKZdM6+vaBjw0HijhvnE9WHtM
-         ipHw==
-X-Gm-Message-State: AOAM532Cjfs9HWRbY0VyALAPH8gG12g3GZORIPzPQwdx1tXM6UdgVHfV
-	Zwfj/t7H2W5vQkPbSN5W5ADiPHU+Ld2I+w==
-X-Google-Smtp-Source: ABdhPJx0/kzB/wXCou6e7/DxXq9ve5+if3uYZ1zI2eKVqNehHvvP4yBobarji/MYaSg0l0tfDPt/Bw==
-X-Received: by 2002:a05:6214:1869:: with SMTP id eh9mr1239051qvb.16.1623865236782;
-        Wed, 16 Jun 2021 10:40:36 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id x5sm342938qke.92.2021.06.16.10.40.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Jun 2021 10:40:36 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Wed, 16 Jun 2021 13:40:35 -0400
-Message-Id: <0B6AD8EE-27BB-4DC7-A40A-1C7EDCB3EAF5@gmail.com>
-References: <CAGLr63sjiDtx3SpTzAP7vo1zQLaOOd8J9uLXgO9rbRcCXiY6hw@mail.gmail.com>
-In-Reply-To: <CAGLr63sjiDtx3SpTzAP7vo1zQLaOOd8J9uLXgO9rbRcCXiY6hw@mail.gmail.com>
-To: Cameron Matson <ncmatson95@gmail.com>
-X-Mailer: iPhone Mail (18F72)
-Message-ID-Hash: 3QHFA7KTYOTQ7K7QP6DB6ZHQ62W5XEMZ
-X-Message-ID-Hash: 3QHFA7KTYOTQ7K7QP6DB6ZHQ62W5XEMZ
-X-MailFrom: patchvonbraun@gmail.com
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MYZhLlI/nYpreMgJUd/bjcGz1s04da35aHlSLo6p5LY=;
+        b=n9y5st8zOoXoaO/YHrtr6ZhYNGuPJkCCGV4JNTYgvx1ZHhx5xU4CIzI7Izm8BXvonr
+         NDpM8kJKB0qS/R9eegShw4Ei0QAm5WXdovMQGb9+eiN7wC1a25n9D1LYXckn4sVPYoLL
+         QtRjweRmqsQe4Vx6LTaUOHmRdEQSuMv+JaezUBmxRklciMEcLXsg5MPys+hujuE2xwUc
+         WEqGbgMCCXnNp3pVHORP44GJ2qsgkRZ73SjtdQhMEOva89trRZ8YfQMxU+r1qssue2Sw
+         iBUnBWJ8s13EE5KSPR3kA7uyFLCWQiIvbJ8v7G5twfSreDT19EA4jbp3Mdq8TaEYGtEV
+         9BCA==
+X-Gm-Message-State: AOAM5338ACqWHA8cQ2YVEKMMllkw5gSSrXqvsBcu6zf3V44Gfnq/8+S6
+	TUe6twkXOb/nijsSiqAUcssr6zstr0MJIktK1xU=
+X-Google-Smtp-Source: ABdhPJyrh/+Tktuobr2NoXDYJ0W/Wk8pdNnRgrbNX7QdAosIAt3E/v4XRcGxr34JYW4ZZx6N2sFkSfAvPpsTrsj22qw=
+X-Received: by 2002:a92:ca8b:: with SMTP id t11mr524140ilo.263.1623865268849;
+ Wed, 16 Jun 2021 10:41:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAE0dfYbKnA20uy2Db3sYBZ0whUpzTexv1HAOWG5Yb7H54AAqbQ@mail.gmail.com>
+In-Reply-To: <CAE0dfYbKnA20uy2Db3sYBZ0whUpzTexv1HAOWG5Yb7H54AAqbQ@mail.gmail.com>
+From: Dan <thebouleoffools@gmail.com>
+Date: Wed, 16 Jun 2021 11:40:57 -0600
+Message-ID: <CAG==tssT9Jk5Z02ne4Jnpgx0LGTy+kh0jG6EE7T3aC3c=ABqmQ@mail.gmail.com>
+To: Alex Humberstone <alex.m.humberstone@gmail.com>
+Message-ID-Hash: 2NTSINAHVOXVWGY4SR2R6ZW7LCCMHOHX
+X-Message-ID-Hash: 2NTSINAHVOXVWGY4SR2R6ZW7LCCMHOHX
+X-MailFrom: thebouleoffools@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: ettus e312 file system images and gnuradio
+Subject: [USRP-users] Re: Any problems building and running UHD 4.0 on Ubuntu 21.04?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3QHFA7KTYOTQ7K7QP6DB6ZHQ62W5XEMZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2NTSINAHVOXVWGY4SR2R6ZW7LCCMHOHX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6735982711312855942=="
+Content-Type: multipart/mixed; boundary="===============0494750256765881948=="
 
+--===============0494750256765881948==
+Content-Type: multipart/alternative; boundary="00000000000083500e05c4e598df"
 
---===============6735982711312855942==
-Content-Type: multipart/alternative; boundary=Apple-Mail-CA79571F-057F-4704-A33E-925E9977B982
-Content-Transfer-Encoding: 7bit
+--00000000000083500e05c4e598df
+Content-Type: text/plain; charset="UTF-8"
 
+I am currently running UHD 4.0 with Gnuradio 3.8.3.0 on Ubuntu 21.04. I had
+some amount of difficulty, as the installation instructions didn't quite
+capture all the idiosyncrasies of library incompatibilities and bugs,
+particularly during the cross-compile for the E320. If I remember right, I
+needed to use Python 3.7.6, dpdk 18.11.11, and use the external volk
+library that is in the Ubuntu 21.04 repository (libvolk2-dev 2.4.1-2)
+instead of the one that was in the gnuradio git source. If you don't need
+to cross compile, the host machine compile should work fine.
 
---Apple-Mail-CA79571F-057F-4704-A33E-925E9977B982
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+-Dan
 
-I think that most people who have done =E2=80=9Creal work=E2=80=9D on the E3=
-10/312 do so with just the UHD library and their own custom FPGA code and/or=
- RFNOC. The ARM cpus on the E310 along with limited memory
-Make running any kind of serious GNU Radio flow (at >1Msps rates) not terrib=
-ly practical. Now YMMV, etc.=20
+On Wed, Jun 16, 2021 at 11:21 AM Alex Humberstone <
+alex.m.humberstone@gmail.com> wrote:
 
-Sent from my iPhone
-
-> On Jun 16, 2021, at 1:33 PM, Cameron Matson <ncmatson95@gmail.com> wrote:
->=20
-> =EF=BB=BF
-> Hello all,
->=20
-> I'd like to run gnuradio flowgraphs on an e312 in embedded mode.  My under=
-standing is that to do this the gnuradio and uhd versions that I build the f=
-lowgraph with on my host machine must match that of the embedded environment=
- on the e312.
->=20
-> I'd like to use gnuradio 3.8 and uhd 3.15.  I've installed gnuradio and uh=
-d (in this case on mac via macports), but when I use the uhd_images_download=
-er tool the .sdimg image I get has gnuradio 3.7.  I'd like to avoid building=
- a custom file system.  Is there an already built image that meets my needs o=
-r am I out of luck?
->=20
-> Also I noticed the uhd docs say:
-> "7. E310 filesystem no longer contains GNURadio by default. Custom filesys=
-tems are need to run GNURadio."
->=20
-> I'm a little confused what that exactly means as I have recent images with=
- gnuradio installed.  Does this mean literally the e310 (as opposed to e312)=
- or is this what I'm running into in the sense that there's only the much ol=
-der gnuradio 3.7?
->=20
-> In general what is the intended workflow for using the e312 in embedded mo=
-de if not via gnuradio flowgraphs?
->=20
-> Thanks for your help,
->=20
-> Cameron
+> We got a new powerful Dell desktop for the lab here, and we want to
+> put the latest Ubuntu 21.04 on it. But will UHD 4.0 build from source and
+> run properly on Ubuntu 21.04? Are there any known issues? Does anyone
+> already have this running successfully? Thanks in advance for the help, and
+> for potentially saving me tons of time!
+>
+> Sincerely,
+> Alex-M-Humberstone
+> PhD Student
+> Klipsch School of Electrical Engineering
+> New Mexico State University (NMSU)
+> Las Cruces, New Mexico, USA
+>
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---Apple-Mail-CA79571F-057F-4704-A33E-925E9977B982
-Content-Type: text/html;
-	charset=utf-8
+
+-- 
+Dan "The Man Himself" Brunski
+
+--00000000000083500e05c4e598df
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">I think that most people who have done =E2=80=
-=9Creal work=E2=80=9D on the E310/312 do so with just the UHD library and th=
-eir own custom FPGA code and/or RFNOC. The ARM cpus on the E310 along with l=
-imited memory<div>Make running any kind of serious GNU Radio flow (at &gt;1M=
-sps rates) not terribly practical. Now YMMV, etc.&nbsp;<br><div><div><br><di=
-v dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blockquote type=
-=3D"cite">On Jun 16, 2021, at 1:33 PM, Cameron Matson &lt;ncmatson95@gmail.c=
-om&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D=
-"ltr">=EF=BB=BF<div dir=3D"ltr"><div dir=3D"ltr">Hello all,</div><div dir=3D=
-"ltr"><br></div><div dir=3D"ltr">I'd like to run gnuradio flowgraphs on an e=
-312 in embedded mode.&nbsp; My understanding is that to do this the gnuradio=
- and uhd versions that I build the flowgraph with on my host machine must ma=
-tch that of the embedded environment&nbsp;on the e312.<div><br></div><div>I'=
-d like to use gnuradio 3.8 and uhd 3.15.&nbsp; I've installed gnuradio and u=
-hd (in this case on mac via macports), but when I use the uhd_images_downloa=
-der tool the .sdimg image I get has gnuradio 3.7.&nbsp; I'd like to avoid bu=
-ilding a custom file system.&nbsp; Is there an already built image that meet=
-s my needs or am I out of luck?</div><div><br></div><div>Also I noticed the u=
-hd docs say:</div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;p=
-adding:0px"><div>"7. E310<span style=3D"color:rgb(0,0,0);font-family:Roboto,=
-sans-serif;font-size:14px"> filesystem no longer contains GNURadio by defaul=
-t. Custom filesystems are </span>need<span style=3D"color:rgb(0,0,0);font-fa=
-mily:Roboto,sans-serif;font-size:14px"> to run GNURadio."</span></div></bloc=
-kquote></div><div dir=3D"ltr"><div><br></div><div>I'm a little confused what=
- that exactly means as I have recent images with gnuradio installed.&nbsp; D=
-oes this mean literally the e310 (as opposed to e312) or is this what I'm ru=
-nning into in the sense that there's only the much older gnuradio 3.7?</div>=
-<div><br></div><div>In general what is the intended workflow for using the e=
-312 in embedded mode if not via gnuradio flowgraphs?</div><div><br></div><di=
-v>Thanks for your help,</div><div><br></div><div>Cameron</div></div></div>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></div></div></div></body></html>=
+<div dir=3D"ltr"><div>I am currently running UHD 4.0 with Gnuradio 3.8.3.0 =
+on Ubuntu 21.04. I had some amount of difficulty, as the installation instr=
+uctions didn&#39;t quite capture all the idiosyncrasies of library incompat=
+ibilities and bugs, particularly during the cross-compile for the E320. If =
+I remember right, I needed to use Python 3.7.6, dpdk 18.11.11, and use the =
+external volk library that is in the Ubuntu 21.04 repository (libvolk2-dev =
+2.4.1-2) instead of the one that was in the gnuradio git source. If you don=
+&#39;t need to cross compile, the host machine compile should work fine.</d=
+iv><div><br></div><div>-Dan<br></div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 16, 2021 at 11:21 AM Alex =
+Humberstone &lt;<a href=3D"mailto:alex.m.humberstone@gmail.com" target=3D"_=
+blank">alex.m.humberstone@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_def=
+ault" style=3D"font-family:monospace;font-size:large">We got a new powerful=
+ Dell desktop for the lab here, and we want to put=C2=A0the latest Ubuntu 2=
+1.04 on it. But will UHD 4.0 build from source and run properly on Ubuntu=
+=C2=A021.04? Are there any known issues? Does anyone already have this runn=
+ing successfully?=C2=A0Thanks=C2=A0in advance for the help, and for potenti=
+ally saving me tons of time!</div><div class=3D"gmail_default" style=3D"fon=
+t-family:monospace;font-size:large"><br></div><div><div dir=3D"ltr"><div di=
+r=3D"ltr"><font size=3D"4"><span style=3D"font-family:monospace">Sincerely,=
+<br></span></font><div><font size=3D"4"><span style=3D"font-family:monospac=
+e">Alex-M-Humberstone</span></font></div><div><font size=3D"4"><span style=
+=3D"font-family:monospace">PhD Student</span></font></div><div><font size=
+=3D"4"><span style=3D"font-family:monospace">Klipsch School of Electrical E=
+ngineering<br></span></font></div><div><font size=3D"4"><span style=3D"font=
+-family:monospace">New Mexico State University (NMSU)<br><span><span>Las Cr=
+uces, </span></span>New Mexico, USA</span></font></div><div><font size=3D"4=
+"><span style=3D"font-family:monospace"><br></span></font></div><div><font =
+size=3D"4"><span style=3D"font-family:monospace"></span></font></div></div>=
+</div></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr">Dan &quot;=
+The Man Himself&quot; Brunski<br></div>
 
---Apple-Mail-CA79571F-057F-4704-A33E-925E9977B982--
+--00000000000083500e05c4e598df--
 
---===============6735982711312855942==
+--===============0494750256765881948==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -179,4 +165,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6735982711312855942==--
+--===============0494750256765881948==--
