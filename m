@@ -2,116 +2,117 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C2B3AA511
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 22:17:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D36723AA61F
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 23:24:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4516D384B14
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 16:17:45 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AFBC9384844
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Jun 2021 17:24:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vg27ukSu";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RiQ9VhDo";
 	dkim-atps=neutral
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1BEE73849AC
-	for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 16:16:54 -0400 (EDT)
-Received: by mail-io1-f42.google.com with SMTP id f10so571149iok.6
-        for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 13:16:54 -0700 (PDT)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id B8E2F384450
+	for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 17:23:54 -0400 (EDT)
+Received: by mail-lj1-f171.google.com with SMTP id a21so824124ljj.1
+        for <usrp-users@lists.ettus.com>; Wed, 16 Jun 2021 14:23:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ht6Ym7O57q8jGQzahRdoQq6iuU+9BHHVD0OgdKeIeLs=;
-        b=Vg27ukSubZLsr6CdP5adELfAClxpnaTAR54sYWhBGyAeT9iOXfDVGV6zLfXNGhMZRO
-         GwtQPseIGuDgMVTyG92Xv9wt9uIoQSjXPYAT1qoI8CLPLV21DGSOBBPtRXO2N54jf0ZL
-         xO2y6Hd/goUom2zF3w9KiHkjaIedvuNiU95KJSuRu2vRODZ4HHuuPItSaNe6jW/4cJuL
-         5MpoZXLRijheZqB9rBY36VWZC2WPpfHcxhQigbqUqVJxH688B3UE0+ik9pxhXVUswoUy
-         SC9TMNyEpXpxNzh7nUnkMPwgfKYE7UkJmbSJTsgH6rHiIG4JfHRRhwn5nIFJMMcUazY9
-         kIew==
+        bh=qkWZAsutT/jyFnH6Cm63SvV7sre7mkng10IV2YBLBaQ=;
+        b=RiQ9VhDo8twKv57KYVJTW+R7bJN2fqujlf1ZySLMeUBkMy+L1ZPEgC7Yby0+bUpkxn
+         Si9z1RTIo6oHHONP1MqMS9854zo7Ks625yjLivfCcuBdHwMyjPM+z6XPr9SpI5PLm/Ux
+         SMPh24nrre87XBpb/7IIH3GKHRxr5RVvzhVMEfXegdrHdfxvXbxWFdfe9CIVssXJdunV
+         JZ2o7ycvgetgii7BdhNEsIL5dlRGUo9ZbaQiaxvtOacSXfBlimaa8E8DVTSdLJ1EjCvI
+         x5aKzM+h/GK++3mjXvcBTOti8IhAKYLy8pEtyjKKmZAU3WGz9xlXPv8EFEcxz105K1xi
+         svtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ht6Ym7O57q8jGQzahRdoQq6iuU+9BHHVD0OgdKeIeLs=;
-        b=eu1CAtngnY0GwxYRqkeTEI16pPSRfCibMZvSC8qxNogF1mpbVULg3xByS+PWiFGtt9
-         PtEotMsLVVeLEioMvBHrnxJmTUmyyU2ck2DJmbAkJB07Kpafi07x4v5blBBnzqdjsxlm
-         /qeY38ZBk8NzkiKhXfb/iAYGLVOOhZ4gNyx2wD99HiS/+KS+Ncut3xcdTpoqyqsNtz9q
-         z/0HTG5asNbmTivSGHfdcBIeLBpfGXEWps6dwM29yXK5cH2nA653KyV5CBDzID4y1cz/
-         LnAEMchygOr1VFVuxoxpw/fsSv2LP643sbv1S1lL2f+LK6AiAX64NCeMPF1WVMWQxj1t
-         Wz/w==
-X-Gm-Message-State: AOAM530X9E28HZ08xz52dHAX70CgSBlOSTeQcVDNjtNhFJfsP3zCZ18t
-	1+8cSmtwO40wCGLlELvMOe5qwDrlshp3cRJvxXqVdZ9yui8=
-X-Google-Smtp-Source: ABdhPJx2xcfbvH9yW1q5/wBUPPR+uPe3Moi2m156BbGayGPBqjOmZaJvKueE6WckDLP1kERV6916l5q6O9lShZmR7o4=
-X-Received: by 2002:a6b:f81a:: with SMTP id o26mr909823ioh.56.1623874614417;
- Wed, 16 Jun 2021 13:16:54 -0700 (PDT)
+        bh=qkWZAsutT/jyFnH6Cm63SvV7sre7mkng10IV2YBLBaQ=;
+        b=JKEZL8ItNJz/W8gx4RSEiZtOAaRoe6J0J/jL10RaSNu2TV0aibjVAjXMfyaBDoUDAz
+         Brgjz7FF4k2AoSoVENiGTb5ZJAR7LYqxVigam9V15wv9+tqUyl0zdaSnJ78lugA5KMmJ
+         tHp9aryieFDAF0LKXcJwmPVsz2IzP7R7KwC7EhU0reeTtFibryvze7sqKgT9meNvvgMp
+         Oas6HBYGxlT73pC5bxj6XSSlVrxaTnnMUJPDebAQwiRt+Pk8KrHLgrVrdoJf0i2OKWBw
+         S+KxJrOCXnShpHf39NnhzBOlBWFDhKNo03G1X2mspliqfCMZmzySPQB7yZlBboEZyHjS
+         mHWw==
+X-Gm-Message-State: AOAM530J51ssc4tHYBCBN4XlYvZZT455FOoGlU8K0378axRmXR5h6c73
+	inVGxB4M4RvCgpXpZ1UjMdplAe54F6ZUWsFEuio=
+X-Google-Smtp-Source: ABdhPJy4f9DlyfAZSGcIjVduXc4VewDrk0i/MGeoZYS15GWC3rbVj4ZVYSzb9huanWOcKIwzzhT/5nXJkpFjqLNqjNw=
+X-Received: by 2002:a2e:8814:: with SMTP id x20mr1643195ljh.394.1623878633388;
+ Wed, 16 Jun 2021 14:23:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <ennj27wwYFEWXXNJu1B7vkFGp1uIiIFwxJA9U6LBKNY@lists.ettus.com>
-In-Reply-To: <ennj27wwYFEWXXNJu1B7vkFGp1uIiIFwxJA9U6LBKNY@lists.ettus.com>
-From: Nick Foster <bistromath@gmail.com>
-Date: Wed, 16 Jun 2021 13:16:43 -0700
-Message-ID: <CA+JMMq_y38U11HibkQvQhXCiZHmoPBOvwdJgR14x8V4Mc5hRwg@mail.gmail.com>
-To: paradis@kwesst.com
-Message-ID-Hash: A3IQLOQ75HLJUX4CW4IHJSC2EHTRUAWP
-X-Message-ID-Hash: A3IQLOQ75HLJUX4CW4IHJSC2EHTRUAWP
-X-MailFrom: bistromath@gmail.com
+References: <PAENj2GQY2vk2Ain2dloCTYHmgmsIPkBQYMuEy8YQ@lists.ettus.com>
+In-Reply-To: <PAENj2GQY2vk2Ain2dloCTYHmgmsIPkBQYMuEy8YQ@lists.ettus.com>
+From: Paul Atreides <maud.dib1984@gmail.com>
+Date: Wed, 16 Jun 2021 17:23:42 -0400
+Message-ID: <CACwKM9J0yXYzqmggD0t9fk+QRGesO3XmCw9577MSxfqV7Ndf7Q@mail.gmail.com>
+To: rblack@swri.org
+Message-ID-Hash: SSKUVZJ5O66KWMVC65XVQQGV2F2GFAP7
+X-Message-ID-Hash: SSKUVZJ5O66KWMVC65XVQQGV2F2GFAP7
+X-MailFrom: maud.dib1984@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: is there a UHD v4.0.0.0 for Ubuntu 20.04 LTS?
+Subject: [USRP-users] Re: Software Loopback RFNoC TX/RX same flowgraph
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A3IQLOQ75HLJUX4CW4IHJSC2EHTRUAWP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SSKUVZJ5O66KWMVC65XVQQGV2F2GFAP7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6035448277630296900=="
+Content-Type: multipart/mixed; boundary="===============8571958225150000735=="
 
---===============6035448277630296900==
-Content-Type: multipart/alternative; boundary="0000000000008d616c05c4e7c58f"
+--===============8571958225150000735==
+Content-Type: multipart/alternative; boundary="0000000000001a00ff05c4e8b5da"
 
---0000000000008d616c05c4e7c58f
+--0000000000001a00ff05c4e8b5da
 Content-Type: text/plain; charset="UTF-8"
 
-That's what I'm describing. Bitbake is an environment which lets you
-generate cross-compiled filesystems for embedded devices. It's a big hammer
-because you need to have locally consistent versions of all the libraries
-and headers UHD depends on, in order to compile a working UHD. This means
-it's also compiling an entire Linux distribution alongside UHD. The weird
-method I described above is a way to attempt to get around that by linking
-against the libraries your embedded device already has.
+yes, you are correct about the HA vs XA (although i haven't tried XA yet).
+Also, yes the image type shouldn't have any effect on the patch as the
+patch is for gr-ettus which  doesn't have anything to do with the image
+itself, just how it's initialized. The HA (or in your case XA) image needs
+to be synthesized using a vivado license and the rfnoc_image_builder since
+Ettus doesn't include that in the UHD source. If you want to build an XA
+image, i guess you can just use:
+default_target: 'X310_XA'
+that should tell the image builder to pull together a 10G links Ethernet
+link and an Aurora link.
 
-Nick
+On Wed, Jun 16, 2021 at 3:57 PM <rblack@swri.org> wrote:
 
-On Wed, Jun 16, 2021 at 12:57 PM <paradis@kwesst.com> wrote:
-
-> alternately, is there a way to cross-compile the UHD v4.0.0.0 libraries on
-> my x86 machine but target the ARM processor on my SBC?
->
->
+> Sorry I see that the HA just indicates the image built for 1G. We intend
+> to use 10G (XA), but I doubt that this has any effect on the patch.
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---0000000000008d616c05c4e7c58f
+--0000000000001a00ff05c4e8b5da
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>That&#39;s what I&#39;m describing. Bitbake is an env=
-ironment which lets you generate cross-compiled filesystems for embedded de=
-vices. It&#39;s a big hammer because you need to have locally consistent ve=
-rsions of all the libraries and headers UHD depends on, in order to compile=
- a working UHD. This means it&#39;s also compiling an entire Linux distribu=
-tion alongside UHD. The weird method I described above is a way to attempt =
-to get around that by linking against the libraries your embedded device al=
-ready has.</div><div><br></div><div>Nick<br></div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 16, 2021 at 1=
-2:57 PM &lt;<a href=3D"mailto:paradis@kwesst.com">paradis@kwesst.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>alte=
-rnately, is there a way to cross-compile the UHD v4.0.0.0 libraries on my x=
-86 machine but target the ARM processor on my SBC?</p><p><br></p>
+<div dir=3D"ltr"><div>yes, you are correct about the HA vs XA (although i h=
+aven&#39;t tried XA yet). Also, yes the image type shouldn&#39;t have any e=
+ffect on the patch as the patch is for gr-ettus which=C2=A0 doesn&#39;t hav=
+e anything to do with the image itself, just how it&#39;s initialized. The =
+HA (or in your case XA) image needs to be synthesized using a vivado licens=
+e and the rfnoc_image_builder since Ettus doesn&#39;t include that in the U=
+HD source. If you want to build an XA image, i guess you can just use:<br><=
+/div><div>default_target: &#39;X310_XA&#39;</div><div>that should tell the =
+image builder to pull together a 10G links Ethernet link and an Aurora link=
+.<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
+mail_attr">On Wed, Jun 16, 2021 at 3:57 PM &lt;<a href=3D"mailto:rblack@swr=
+i.org">rblack@swri.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><p>Sorry I see that the HA just indicates the image b=
+uilt for 1G.   We intend to use 10G (XA),  but I doubt that this has any ef=
+fect on the patch.</p>
 
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
@@ -120,9 +121,9 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---0000000000008d616c05c4e7c58f--
+--0000000000001a00ff05c4e8b5da--
 
---===============6035448277630296900==
+--===============8571958225150000735==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +133,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6035448277630296900==--
+--===============8571958225150000735==--
