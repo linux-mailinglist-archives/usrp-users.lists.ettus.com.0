@@ -2,293 +2,262 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90AF93B0CAA
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 20:14:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3FC3B0DAB
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 21:32:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D70B6384AD4
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 14:14:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AB128384ADE
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 15:32:53 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="OG4kNcGE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="EElYXoYs";
 	dkim-atps=neutral
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6094F384653
-	for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 14:13:15 -0400 (EDT)
-Received: by mail-vs1-f51.google.com with SMTP id x12so8628vsp.4
-        for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 11:13:15 -0700 (PDT)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id B0D82384655
+	for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 15:32:02 -0400 (EDT)
+Received: by mail-ej1-f45.google.com with SMTP id ho18so116803ejc.8
+        for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 12:32:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ettus-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=5XKtHs6EJABIvXFzxVKiO5cqmxJlgvW21CI5DKCoM5w=;
-        b=OG4kNcGENXOxXwm7tbBVVhIcwbnY7gUg3F8aHcqDHptgWn6NX40KglBVO3mbXoODdh
-         /r7YnBX6/4q4nkaZeRL/SgkOZh7D1rMCDgJBsaMgHQCep9kQeIKDaQgxgLwFv1p9gkNv
-         HgzEOKgyQRfNtI/clWu4HKtZR1i0xB87wOjGaJ5JYfBpQSyRo6xL+m/BfJX4l2nXH8q2
-         XZVwNMYwBxzLCxkwNj9HAy7390casEotT4rb7UnqKvPASaNYQh43N+zH5mR9uawwHb7+
-         PvKHb7kkMwPEWSR3/HhPM+KRQxupZYcb2+GWK6O/U9OZTilwJ2hrJrInmrbknSlAvA0i
-         5yoQ==
+        bh=wxpZ0NwVm7gK2GN5eVucZzwzf02WQxXrN/75IHrX1/o=;
+        b=EElYXoYsX77DRpGZrGng5njLeC6jIRLtDzFA0r36Pq9sDBQQmBdEdTalOkJ42PHg0n
+         schqFfx/98D5BZy0XFG+HX8+ZFV9J1GdUsX5KMCxh4VGhnSzpIBLoUDBcHKiK8Wx51XE
+         FfPBoi+G48rcIsMxCkVcBPm8KJahQbjrPIBxtNaqVmOSMCZ28AZ7kRDLZX8g3dTlYnls
+         7u9lP+dM2jUEWYKdC7Uvjlg1D4c6JDlNmozm5/8mTleZW44mKBJbLSA3d8NL1wV8me31
+         GbDyOTZdOib0xydSMFAIBFDeSbdpntNz3JGmaG++78GuXFJduiFMgM+rKZxcE2nK9967
+         EuZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=5XKtHs6EJABIvXFzxVKiO5cqmxJlgvW21CI5DKCoM5w=;
-        b=RUPlriK7cZDEFkgVhz+x0xDGA3x8n0dbsQlQ4btsgcPtstcmiF1ynOFJMy0a98K69S
-         bOUE5pWLwTH14qO12bwFs5RrVJhogvnBJSumvrl94OnhT2v+wC9CkXM12N27TNWKeBIv
-         l56t0z2xXXgFzUD7EBBrRGhBpRPkzM8qRgaw9dVR/Uwoxa6pYRaeV+5cklWep0Lxg8+e
-         6i9ROgOA/30b8kFqjLl3vQeUgAlHJbT0WRIT1ui1DncHAxQr5szFbETmcs79dopFimT6
-         je5Y+88MTUtpenEu53S2GQcQWsynnzC694pjr/audLbgRMl3O6rCopYbMvbuv2ZXCcpb
-         tbRA==
-X-Gm-Message-State: AOAM530DoGKhrayDQr7Ar0iiPmOt4/JooD+Ty5XN+gxivNCur+lRYPR5
-	m5hDJWiAIVAkwSxWg1cL89fADoS/LvoSNbMO0CH8O9wFqZnQzu2o
-X-Google-Smtp-Source: ABdhPJwEjSlZnZPq1y59V5MkJradgFNPccgW63Mi4i4e9h4rLM6TuSN7L2lEPCczQqEKI5umrjgdQDiuRlgfu7O/UXs=
-X-Received: by 2002:a05:6102:11b:: with SMTP id z27mr23666803vsq.8.1624385594788;
- Tue, 22 Jun 2021 11:13:14 -0700 (PDT)
+        bh=wxpZ0NwVm7gK2GN5eVucZzwzf02WQxXrN/75IHrX1/o=;
+        b=SPGp7CJpfn81hktHHJqCtwJo9trfzs4hqOdx681R2hVdhyrW/22QB1QU1MqRuOMFbR
+         vn5rJgsfn2BnO6YuPLJUZKG1+Q3R2SK7PseVrGmonpdQqwa+1ygt4xgtZriQg5EtarFf
+         SVjzHwiYsTyFWfz09NjWEopIcxlV7sSZgb+h2wl7e8xMxcEZoXynJ/WHa+BifQcVkAFV
+         xHySzhL46TIU1xIyZEIU2Risrxp0PLkbr1c++CHf8BSuZOD8CcY6JigNyofS9Syt0npA
+         pN4YjjNlhVroWaAySup2AR2Qzlh3zkz2lIZAfkCj+KcyLToK6Ehu/RsTgZhVVCUsFGp/
+         3b6A==
+X-Gm-Message-State: AOAM5334ZAq3PKum7AMyE7EdQoFCzysCmS1NCfKf2EMGDpgngHjiN39J
+	oksdAH/T+G5mhpI+qLGPMUf6jqeYAY7qgk7dh8dHBnNp
+X-Google-Smtp-Source: ABdhPJxI94H9UiMOqRhT4KS6NZmkOePaB9wyvNaI+uPcuo/lDp62feQBDAudIr4m3/9XYBobPaykTi98754q45MKXG4=
+X-Received: by 2002:a17:907:379:: with SMTP id rs25mr5881427ejb.426.1624390321603;
+ Tue, 22 Jun 2021 12:32:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <0d826d5c-bd63-51a3-1822-b02240199638@olifantasia.com>
-In-Reply-To: <0d826d5c-bd63-51a3-1822-b02240199638@olifantasia.com>
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Date: Tue, 22 Jun 2021 14:12:39 -0400
-Message-ID: <CAL7q81sET5pTz5pcMHao6hZNePyO6fDLq_6Gqncgyio7Wg0PCw@mail.gmail.com>
-To: Martin <usrp-users-list@olifantasia.com>
-Message-ID-Hash: 3S626TOBZGZ5ZKW23NNJAHWZAAET7UT6
-X-Message-ID-Hash: 3S626TOBZGZ5ZKW23NNJAHWZAAET7UT6
-X-MailFrom: jonathon.pendlum@ettus.com
+References: <bb6acb72-70e9-28b1-326a-ad63945c8e03@gmail.com>
+ <CAGNhwTNf4F9gEEgJX_V7v0RWnndgRP7gr3_uF-R82j6sbkS93Q@mail.gmail.com> <ca7130e2-3932-e6a0-faab-c281bb14ce24@gmail.com>
+In-Reply-To: <ca7130e2-3932-e6a0-faab-c281bb14ce24@gmail.com>
+From: Michael Dickens <michael.dickens@ettus.com>
+Date: Tue, 22 Jun 2021 15:31:50 -0400
+Message-ID: <CAGNhwTNQq3rU-eXtTK_cKq=5-BeLzZ6VvO7_nz9pWSmfQC+deA@mail.gmail.com>
+To: Vladica Sark <vladicasark@gmail.com>
+Message-ID-Hash: LT6NKGJEXSMFPK33IAICFUSYFG5QOVKN
+X-Message-ID-Hash: LT6NKGJEXSMFPK33IAICFUSYFG5QOVKN
+X-MailFrom: michael.dickens@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E310 rfnoc_rx_to_file Error: rpc::timeout: Timeout of 2000ms while calling RPC function 'set_device_id'
+Subject: [USRP-users] Re: Optical SFP+ adapters for N321
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3S626TOBZGZ5ZKW23NNJAHWZAAET7UT6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LT6NKGJEXSMFPK33IAICFUSYFG5QOVKN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7041841273439588627=="
+Content-Type: multipart/mixed; boundary="===============5228902932627029690=="
 
---===============7041841273439588627==
-Content-Type: multipart/alternative; boundary="0000000000005b20f905c55ebe8e"
+--===============5228902932627029690==
+Content-Type: multipart/alternative; boundary="000000000000189f4f05c55fd86b"
 
---0000000000005b20f905c55ebe8e
+--000000000000189f4f05c55fd86b
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Martin,
+I'm using primarily FS adapters, cables (single and multi mode), and fiber
+connectors (to allow multiplexing lanes). The adapters I bought were
+"generic" and had to be tweaked using an FS BOX to be fully compatible with
+Intel or Mellanox NICs. This tweaking seems to have helped a lot with the
+100 Gb interface (E810); the 10 Gb interfaces do not show much benefit to
+be manufacturer specific -- though I'm sure it doesn't hurt! I have not
+tried a multi-mode to single mode splitter / joiner, but I'd suppose they
+do exist & if anybody here has had experience that would be useful to hear
+about! I hope this is useful! - MLD
 
-From your logs, it looks like the E310 locally is running UHD 3.15, but
-your host computer is running UHD 4.0. You need to run the same version of
-UHD on both the host and device. You should image your SD card to UHD 4.0
-using this file:
-https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v4.0.0.0/e3xx_e310_sg1_sdimg_default-v4.0.0.0.zip
-.
 
-Jonathon
+On Tue, Jun 22, 2021 at 10:05 AM Vladica Sark <vladicasark@gmail.com> wrote:
 
-On Mon, Jun 21, 2021 at 11:48 AM Martin <usrp-users-list@olifantasia.com>
-wrote:
-
-> Hi,
+> Hi Michael,
 >
-> I am trying to run the RFNoC example rfnoc_rx_to_file on a E310 sg1.
+> Thanks for the answer. For now for the data I am using DAC cables, but
+> we would need larger distances, i.e. 50+ meters, and for this I would
+> need fibers for both WR and data.
 >
-> When I run it directly on the E310 hardware it succeeds.
-> But if I run it from a host-computer (connected to the E310 over
-> ethernet) it fails with:
+> Is there also some optical multiplexer for these wavelengths, in order
+> to use a simplex fiber, for both WR and data?
 >
-> Error: rpc::timeout: Timeout of 2000ms while calling RPC function
-> 'set_device_id'
+> BR,
+> Vladica
 >
-> The only place I found that does set_device_id is in
-> host/lib/usrp/mpmd/mpmd_mb_iface.cpp
->
-> mpmd_mboard_impl::mpmd_mb_iface::mpmd_mb_iface(
->      const uhd::device_addr_t& mb_args, uhd::rpc_client::sptr rpc)
->      : _mb_args(mb_args), _rpc(rpc),
-> _link_if_mgr(xport::mpmd_link_if_mgr::make(mb_args))
-> {
->      _remote_device_id = allocate_device_id();
->      UHD_LOG_TRACE("MPMD::MB_IFACE", "Assigning device_id " <<
-> _remote_device_id);
->      _rpc->notify_with_token("set_device_id", _remote_device_id);
-> }
->
->
-> But I am not sure what this code does, or why it is run and fails here.
->
-> Here is the output of the failing remote and succeeding local runs:
->
-> Running from a host-computer fails:
-> nldudok1@rojo:/opt/uhd40/src/uhd40/host/examples$
-> /opt/uhd40/lib/uhd/examples/rfnoc_rx_to_file --duration 1.0
->
-> Creating the RFNoC graph with args: ...
-> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
-> UHD_4.0.0.0-133-g7ec04886
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
->
-> mgmt_addr=192.168.1.102,type=e3xx,product=e310_sg1,serial=F661C4,claimed=False,addr=192.168.1.102
-> [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
-> Error: rpc::timeout: Timeout of 2000ms while calling RPC function
-> 'set_device_id'
->
->
-> Running directly on the E310 succeeds:
-> root@ni-e31x:~# /usr/lib/uhd/examples/rfnoc_rx_to_file --duration 1.0
-> Creating the USRP device with: ...
-> [INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800;
-> UHD_3.15.0.0-0-gaea0e2de
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=127.0.0.1,type=e3xx,product=e310_sg1,serial=F661C4,claimed=False
-> [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
-> [INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000003310)
-> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `product=e310_sg1,mgmt_addr=127.0.0.1'.
-> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
-> [INFO] [0/Radio_0] Performing CODEC loopback test...
-> [INFO] [0/Radio_0] CODEC loopback test passed
-> [INFO] [0/Radio_0] Performing CODEC loopback test...
-> [INFO] [0/Radio_0] CODEC loopback test passed
-> Using radio 0, channel 0
-> Setting RX Rate: 1.000000 Msps...
-> Actual RX Rate: 1.000000 Msps...
->
-> Setting RX Freq: 0.000000 MHz...
-> Actual RX Freq: 70.000000 MHz...
->
-> Samples per packet: 2044
-> Using streamer args: block_id=0/Radio_0,block_port=0,spp=2044
-> Press Ctrl + C to stop streaming...
-> Issuing stream cmd
-> Issuing stop stream cmd
->
-> Done!
->
-> Thanks in advance for any clue.
->
-> Best regards,
->
-> Martin
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> On 22.06.21 15:41, Michael Dickens wrote:
+> > Hi Vladica - I've tested a variety of fiber adapters and cables with
+> > no issues (e.g., ZyXEL, FS, Axcen). The primary keys are to make sure
+> > the various related parameters match up between the adapters and
+> > cables and devices. For example: If the adapter is 1490/1310, then you
+> > want to make sure the cable is for the same wavelengths. Same for the
+> > fiber polish and other parameters (single / dual fiber ; . Some are
+> > easier than others, none of this is too difficult luckily!
+> >
+> > For short distances, a DAC cable will work for all of the N320/N321
+> > SFP interfaces.
+> >
+> > At the moment, WR support is being fixed for UHD 3.14.0.0 to current.
+> > If you -require- WR support -right now- you can use UHD 3.13.1.0 while
+> > we're working out how to fix WR for newer UHD. We expect the fix to be
+> > available to customers sometime in mid/late-July (2021); once the fix
+> > is determined and verified we will commit it to the various branches
+> > of the UHD repository, and it will be available in UHD -after- the
+> > forthcoming 4.1 release. It will be available in the public UHD
+> > repository for folks to use to patch UHD between releases.
+> >
+> > I hope this is useful! - MLD
+> >
+> >
+> > On Tue, Jun 22, 2021 at 6:19 AM Vladica Sark <vladicasark@gmail.com
+> > <mailto:vladicasark@gmail.com>> wrote:
+> >
+> >     Dear all,
+> >
+> >     I would like to use N321 with WRS 3/18 which uses optical cables. I
+> >     would like to use also for the 10 Gbit SFP1 optical SFP+ transceiver.
+> >     Do you have some recommended optical SFP+ adapters, duplex and,
+> >     preferably, simplex?
+> >     The idea is to use a duplex monomode fiber, one fiber for the 10 Gbit
+> >     data and one fiber for WRS synchronization.
+> >     They would be connected to 10 Gbit switch or QNAP Thunderbolt to SFP+
+> >     adapter, so they do not have to be Intel.
+> >
+> >
+> >     Best regards,
+> >
+> >     Vladica
+> >
+> >     _______________________________________________
+> >     USRP-users mailing list -- usrp-users@lists.ettus.com
+> >     <mailto:usrp-users@lists.ettus.com>
+> >     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> >     <mailto:usrp-users-leave@lists.ettus.com>
+> >
 >
 
---0000000000005b20f905c55ebe8e
+--000000000000189f4f05c55fd86b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Martin,<div><br></div><div>From your logs, it looks lik=
-e the E310 locally is running UHD 3.15, but your host computer is running U=
-HD 4.0. You need to run the same version of UHD on both the host and device=
-. You should image your SD card to UHD 4.0 using this file:=C2=A0<a href=3D=
-"https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v4.0.0.0/e3xx_e310_=
-sg1_sdimg_default-v4.0.0.0.zip">https://files.ettus.com/binaries/cache/e3xx=
-/meta-ettus-v4.0.0.0/e3xx_e310_sg1_sdimg_default-v4.0.0.0.zip</a>.</div><di=
-v><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Mon, Jun 21, 2021 at 11:48 AM Martin &lt;=
-<a href=3D"mailto:usrp-users-list@olifantasia.com">usrp-users-list@olifanta=
-sia.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex">Hi,<br>
+<div dir=3D"ltr">I&#39;m using primarily FS adapters, cables (single and mu=
+lti mode), and fiber connectors (to allow multiplexing lanes). The adapters=
+ I bought were &quot;generic&quot; and had to be tweaked using an FS BOX to=
+ be fully compatible with Intel or Mellanox NICs. This tweaking seems to ha=
+ve helped a lot with the 100 Gb interface (E810); the 10 Gb interfaces do n=
+ot show much benefit to be manufacturer specific -- though=C2=A0I&#39;m sur=
+e it doesn&#39;t hurt! I have not tried a multi-mode to single mode splitte=
+r / joiner, but I&#39;d suppose they do exist &amp; if anybody here has had=
+ experience that would be useful to hear about! I hope this is useful! - ML=
+D<br><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Tue, Jun 22, 2021 at 10:05 AM Vladica Sark &lt;<a href=3D"mailt=
+o:vladicasark@gmail.com">vladicasark@gmail.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex">Hi Michael,<br>
 <br>
-I am trying to run the RFNoC example rfnoc_rx_to_file on a E310 sg1.<br>
+Thanks for the answer. For now for the data I am using DAC cables, but <br>
+we would need larger distances, i.e. 50+ meters, and for this I would <br>
+need fibers for both WR and data.<br>
 <br>
-When I run it directly on the E310 hardware it succeeds.<br>
-But if I run it from a host-computer (connected to the E310 over <br>
-ethernet) it fails with:<br>
+Is there also some optical multiplexer for these wavelengths, in order <br>
+to use a simplex fiber, for both WR and data?<br>
 <br>
-Error: rpc::timeout: Timeout of 2000ms while calling RPC function <br>
-&#39;set_device_id&#39;<br>
+BR,<br>
+Vladica<br>
 <br>
-The only place I found that does set_device_id is in<br>
-host/lib/usrp/mpmd/mpmd_mb_iface.cpp<br>
+On 22.06.21 15:41, Michael Dickens wrote:<br>
+&gt; Hi=C2=A0Vladica - I&#39;ve tested a variety of fiber adapters and cabl=
+es with <br>
+&gt; no issues (e.g., ZyXEL, FS, Axcen). The primary keys are to make sure =
 <br>
-mpmd_mboard_impl::mpmd_mb_iface::mpmd_mb_iface(<br>
-=C2=A0 =C2=A0 =C2=A0const uhd::device_addr_t&amp; mb_args, uhd::rpc_client:=
-:sptr rpc)<br>
-=C2=A0 =C2=A0 =C2=A0: _mb_args(mb_args), _rpc(rpc), <br>
-_link_if_mgr(xport::mpmd_link_if_mgr::make(mb_args))<br>
-{<br>
-=C2=A0 =C2=A0 =C2=A0_remote_device_id =3D allocate_device_id();<br>
-=C2=A0 =C2=A0 =C2=A0UHD_LOG_TRACE(&quot;MPMD::MB_IFACE&quot;, &quot;Assigni=
-ng device_id &quot; &lt;&lt; <br>
-_remote_device_id);<br>
-=C2=A0 =C2=A0 =C2=A0_rpc-&gt;notify_with_token(&quot;set_device_id&quot;, _=
-remote_device_id);<br>
-}<br>
+&gt; the various related parameters match up between the adapters and <br>
+&gt; cables and devices. For example: If the adapter is 1490/1310, then you=
+ <br>
+&gt; want to make sure the cable is for the same wavelengths. Same for the =
 <br>
+&gt; fiber polish and other parameters=C2=A0(single / dual fiber ; . Some a=
+re <br>
+&gt; easier than others, none of this is too difficult luckily!<br>
+&gt;<br>
+&gt; For short distances, a DAC cable will work for all of the N320/N321 <b=
+r>
+&gt; SFP interfaces.<br>
+&gt;<br>
+&gt; At the moment, WR support is being fixed for UHD 3.14.0.0 to current. =
 <br>
-But I am not sure what this code does, or why it is run and fails here.<br>
+&gt; If you -require- WR support -right now- you can use UHD 3.13.1.0 while=
+ <br>
+&gt; we&#39;re working out how to fix WR for newer UHD. We expect the fix t=
+o be <br>
+&gt; available to customers sometime in mid/late-July (2021); once the fix =
 <br>
-Here is the output of the failing remote and succeeding local runs:<br>
-<br>
-Running from a host-computer fails:<br>
-nldudok1@rojo:/opt/uhd40/src/uhd40/host/examples$ <br>
-/opt/uhd40/lib/uhd/examples/rfnoc_rx_to_file --duration 1.0<br>
-<br>
-Creating the RFNoC graph with args: ...<br>
-[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; <br>
-UHD_4.0.0.0-133-g7ec04886<br>
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: <br>
-mgmt_addr=3D192.168.1.102,type=3De3xx,product=3De310_sg1,serial=3DF661C4,cl=
-aimed=3DFalse,addr=3D192.168.1.102<br>
-[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).<br>
-Error: rpc::timeout: Timeout of 2000ms while calling RPC function <br>
-&#39;set_device_id&#39;<br>
-<br>
-<br>
-Running directly on the E310 succeeds:<br>
-root@ni-e31x:~# /usr/lib/uhd/examples/rfnoc_rx_to_file --duration 1.0<br>
-Creating the USRP device with: ...<br>
-[INFO] [UHD] linux; GNU C++ version 8.2.0; Boost_106800; <br>
-UHD_3.15.0.0-0-gaea0e2de<br>
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: <br>
-mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg1,serial=3DF661C4,claime=
-d=3DFalse<br>
-[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).<br>
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000003310)<=
+&gt; is determined and verified we will commit it to the various branches <=
 br>
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)<br=
+&gt; of the UHD repository, and it will be available in UHD -after- the <br=
 >
-[INFO] [MPM.PeriphManager] init() called with device args <br>
-`product=3De310_sg1,mgmt_addr=3D127.0.0.1&#39;.<br>
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)<br=
->
-[INFO] [0/Radio_0] Performing CODEC loopback test...<br>
-[INFO] [0/Radio_0] CODEC loopback test passed<br>
-[INFO] [0/Radio_0] Performing CODEC loopback test...<br>
-[INFO] [0/Radio_0] CODEC loopback test passed<br>
-Using radio 0, channel 0<br>
-Setting RX Rate: 1.000000 Msps...<br>
-Actual RX Rate: 1.000000 Msps...<br>
-<br>
-Setting RX Freq: 0.000000 MHz...<br>
-Actual RX Freq: 70.000000 MHz...<br>
-<br>
-Samples per packet: 2044<br>
-Using streamer args: block_id=3D0/Radio_0,block_port=3D0,spp=3D2044<br>
-Press Ctrl + C to stop streaming...<br>
-Issuing stream cmd<br>
-Issuing stop stream cmd<br>
-<br>
-Done!<br>
-<br>
-Thanks in advance for any clue.<br>
-<br>
-Best regards,<br>
-<br>
-Martin<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+&gt; forthcoming 4.1=C2=A0release. It will be available in the public UHD <=
+br>
+&gt; repository for folks to use to patch UHD between releases.<br>
+&gt;<br>
+&gt; I hope this is useful! - MLD<br>
+&gt;<br>
+&gt;<br>
+&gt; On Tue, Jun 22, 2021 at 6:19 AM Vladica Sark &lt;<a href=3D"mailto:vla=
+dicasark@gmail.com" target=3D"_blank">vladicasark@gmail.com</a> <br>
+&gt; &lt;mailto:<a href=3D"mailto:vladicasark@gmail.com" target=3D"_blank">=
+vladicasark@gmail.com</a>&gt;&gt; wrote:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Dear all,<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0I would like to use N321 with WRS 3/18 which uses o=
+ptical cables. I<br>
+&gt;=C2=A0 =C2=A0 =C2=A0would like to use also for the 10 Gbit SFP1 optical=
+ SFP+ transceiver.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Do you have some recommended optical SFP+ adapters,=
+ duplex and,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0preferably, simplex?<br>
+&gt;=C2=A0 =C2=A0 =C2=A0The idea is to use a duplex monomode fiber, one fib=
+er for the 10 Gbit<br>
+&gt;=C2=A0 =C2=A0 =C2=A0data and one fiber for WRS synchronization.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0They would be connected to 10 Gbit switch or QNAP T=
+hunderbolt to SFP+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0adapter, so they do not have to be Intel.<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Best regards,<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Vladica<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0_______________________________________________<br>
+&gt;=C2=A0 =C2=A0 =C2=A0USRP-users mailing list -- <a href=3D"mailto:usrp-u=
+sers@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0To unsubscribe send an email to <a href=3D"mailto:u=
+srp-users-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.e=
+ttus.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:usrp-users-leave@lists=
+.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>&gt;<br>
+&gt;<br>
 </blockquote></div>
 
---0000000000005b20f905c55ebe8e--
+--000000000000189f4f05c55fd86b--
 
---===============7041841273439588627==
+--===============5228902932627029690==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -298,4 +267,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7041841273439588627==--
+--===============5228902932627029690==--
