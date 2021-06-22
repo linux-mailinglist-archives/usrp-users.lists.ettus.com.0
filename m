@@ -2,183 +2,126 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 495B53B0602
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 15:42:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D783B0677
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 16:06:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1DBFF383C0C
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 09:42:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EB2B9383EFB
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 10:06:10 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="V5HREabe";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MCawb2nm";
 	dkim-atps=neutral
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id D14D4383BF0
-	for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 09:41:37 -0400 (EDT)
-Received: by mail-ej1-f52.google.com with SMTP id he7so34572477ejc.13
-        for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 06:41:37 -0700 (PDT)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id AB1BE380A0B
+	for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 10:05:17 -0400 (EDT)
+Received: by mail-ej1-f44.google.com with SMTP id gn32so7317537ejc.2
+        for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 07:05:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pRJzTuvwQhykYzeMQorFL5XZw6c1QxVDlqPALSPEm0k=;
-        b=V5HREabeRwb3SqK3K/h29xHw7P58UTbxBY3s64ZEhFk9NBvbXbZr9aI9pkm/kgyVcU
-         hjs4SfP45zuaxhr37tIXFlgVpjgRIRx7BaGLvvfPWlWo2N1WaM3QQRvKQXUnC+3Um4Kg
-         ZtzWAaKmOEjNthxNwxKa+/pS+hfqPM0h08Os3ueaAPno49XeGet2tQssD5Eyn9/Ob7V3
-         jmrv+41Rk9H6tkPId5slwCpr3tjJGSwQIl4vUrrZ3Kj+eqTErueXaIh6hqmlHkwCjZQi
-         gOFPKbslvY1YhEgTE3P9FWNTnXGhW2qF2CBoDaXLZan6aC7PBs57wVb6Jj1HR0XWGggO
-         bSpg==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=85xNCT41mZnm6uvfwHKOH8ETkowWoD4AZ8Cn9mv6LjI=;
+        b=MCawb2nm6cY8Rp8yXCXIZ0AolUMEDKVqhVqYkE4B+3O4T7cCfXd822e3yuSESmOZne
+         Xztu7WBM1raXXCxYbYOWRHLQ8mYrIvSyLmP307Z1n2ej8EMxlvM+wuPPc/c0xoSLPjNu
+         TS4VxETNDkbGWZHI7HxS2tUGHYkGiQA5bn323g3FwSSbtzhAdRuHtqlg0OClfFoRuELk
+         hhRV4v7B2gWDQrhvqLinKnXjjJcXUr5ffnYu+UWfgE68vp3FOZH5pDuAJTExtM6NNpd4
+         1HfPi6MsYI3SXTKAkJo10Z2ET0WphIlbIfGTtQ0uCDLbgw7Krt5+O10gABLoi47TpnQL
+         PnLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pRJzTuvwQhykYzeMQorFL5XZw6c1QxVDlqPALSPEm0k=;
-        b=OcwIXTv2NSw2+XF6fYKAfvWI+Wr+dSVKJcgC9Uu9fjgb8wqHuxmjYBbvdMrewj+WkV
-         PC9ZsCn+B3OVwGbApGuCONwQ6Yn9wqnMK5anMMtydlkh5jzuu3ksNFIkyLwRfboJfcdb
-         MHh/McGmOYuvoDb4g/TNE3ANsQfcBKNiQL8trWFkc8K51v8vitTM9EL5f+MBxNRv4a0X
-         YAk/edWNYDE157jzKAWODmYisqoyfAvi0c5U+J4EWZybh7TRf04Ng1f5UI5SA7HJGv7t
-         zcs4E1KPLcMTiUHIdF7+CtFeky4X3gPdD8AtpLcOHaSwCiPSuIVkj+ticHVrYXl797fr
-         W2oA==
-X-Gm-Message-State: AOAM533cP72cx2tcLMZXVO/0tEVavxvNBfG5XRdbwiT2Jma5pshYfKEx
-	5bL/oqDKBF0ryB8f/Tgn98qW9W2jfwqFa8t/E8VNQzDy
-X-Google-Smtp-Source: ABdhPJxGwSLdqDky+7n/QD92520YJ2o7XsJBRaWnk5NZkbqoo72l+FVFIqjvAZlXdTiiRPr8hv42VumyrGnjUAUJ3BQ=
-X-Received: by 2002:a17:907:9db:: with SMTP id bx27mr4158269ejc.136.1624369296739;
- Tue, 22 Jun 2021 06:41:36 -0700 (PDT)
-MIME-Version: 1.0
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=85xNCT41mZnm6uvfwHKOH8ETkowWoD4AZ8Cn9mv6LjI=;
+        b=oQed4vTVgYGzS4+qTmvuOxfGKod4v8s1zRatw/X4MvkLsQLlD2EJsYfYgydacVOZtf
+         MwoZ8eZBXNdhiKENPxsqhubhVQt4Nur5TGuYlxBNg1KGLLfPfEcr2u0KxNCe9SEFDwC+
+         Xu8h3SQYrewbC1BPOxVpHhH89+sYjGpvXbruGk9seccwTAwzYqN2cDhK+G+9te4zx3kv
+         Qqa1Kz8S18xH1s9FtbwzxqC5gYH3PeEICCsxbAp7gwjxBKHEs6k8nw5y79ZHHjcwFtIx
+         7cy/UlCJV7gn9MMTo5DN41Imx8ZTByLeTmS+ei9dnRixk41ybXQy37QHMr76nm6XZM+N
+         fSiA==
+X-Gm-Message-State: AOAM532NVFbqZv7fFKB0lyzMmvi/Ym6T4Q+rBiVtWZ5ptT8i49vN62+u
+	1s3oTJwD/pX54t67/1vXJ/oVlkWwCsw5Sw==
+X-Google-Smtp-Source: ABdhPJxZIFBeNFuctVKkhF09Db20JLNa4SgD2mPyJCFYLch2om/j5NqS7xH3YRBsBohRWD9/h6dAkw==
+X-Received: by 2002:a17:906:a18b:: with SMTP id s11mr4263422ejy.8.1624370716377;
+        Tue, 22 Jun 2021 07:05:16 -0700 (PDT)
+Received: from [172.18.236.171] ([141.20.217.203])
+        by smtp.gmail.com with ESMTPSA id kf3sm6268317ejc.8.2021.06.22.07.05.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Jun 2021 07:05:16 -0700 (PDT)
+To: Michael Dickens <michael.dickens@ettus.com>
 References: <bb6acb72-70e9-28b1-326a-ad63945c8e03@gmail.com>
-In-Reply-To: <bb6acb72-70e9-28b1-326a-ad63945c8e03@gmail.com>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Tue, 22 Jun 2021 09:41:24 -0400
-Message-ID: <CAGNhwTNf4F9gEEgJX_V7v0RWnndgRP7gr3_uF-R82j6sbkS93Q@mail.gmail.com>
-To: Vladica Sark <vladicasark@gmail.com>
-Message-ID-Hash: VTUAY7NUTXUXUUVFD67WQ26WXYIEK4II
-X-Message-ID-Hash: VTUAY7NUTXUXUUVFD67WQ26WXYIEK4II
-X-MailFrom: michael.dickens@ettus.com
+ <CAGNhwTNf4F9gEEgJX_V7v0RWnndgRP7gr3_uF-R82j6sbkS93Q@mail.gmail.com>
+From: Vladica Sark <vladicasark@gmail.com>
+Message-ID: <ca7130e2-3932-e6a0-faab-c281bb14ce24@gmail.com>
+Date: Tue, 22 Jun 2021 16:05:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.8.1
+MIME-Version: 1.0
+In-Reply-To: <CAGNhwTNf4F9gEEgJX_V7v0RWnndgRP7gr3_uF-R82j6sbkS93Q@mail.gmail.com>
+Content-Language: en-US
+Message-ID-Hash: II7IYPXSFNFU2SQBUMQPXIZS7GRITJA4
+X-Message-ID-Hash: II7IYPXSFNFU2SQBUMQPXIZS7GRITJA4
+X-MailFrom: vladicasark@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Optical SFP+ adapters for N321
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VTUAY7NUTXUXUUVFD67WQ26WXYIEK4II/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/II7IYPXSFNFU2SQBUMQPXIZS7GRITJA4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0006258295000008904=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============0006258295000008904==
-Content-Type: multipart/alternative; boundary="000000000000eaa7a305c55af26c"
-
---000000000000eaa7a305c55af26c
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Vladica - I've tested a variety of fiber adapters and cables with no
-issues (e.g., ZyXEL, FS, Axcen). The primary keys are to make sure the
-various related parameters match up between the adapters and cables and
-devices. For example: If the adapter is 1490/1310, then you want to make
-sure the cable is for the same wavelengths. Same for the fiber polish and
-other parameters (single / dual fiber ; . Some are easier than others, none
-of this is too difficult luckily!
-
-For short distances, a DAC cable will work for all of the N320/N321 SFP
-interfaces.
-
-At the moment, WR support is being fixed for UHD 3.14.0.0 to current. If
-you -require- WR support -right now- you can use UHD 3.13.1.0 while we're
-working out how to fix WR for newer UHD. We expect the fix to be available
-to customers sometime in mid/late-July (2021); once the fix is determined
-and verified we will commit it to the various branches of the UHD
-repository, and it will be available in UHD -after- the forthcoming
-4.1 release. It will be available in the public UHD repository for folks to
-use to patch UHD between releases.
-
-I hope this is useful! - MLD
-
-
-On Tue, Jun 22, 2021 at 6:19 AM Vladica Sark <vladicasark@gmail.com> wrote:
-
-> Dear all,
->
-> I would like to use N321 with WRS 3/18 which uses optical cables. I
-> would like to use also for the 10 Gbit SFP1 optical SFP+ transceiver.
-> Do you have some recommended optical SFP+ adapters, duplex and,
-> preferably, simplex?
-> The idea is to use a duplex monomode fiber, one fiber for the 10 Gbit
-> data and one fiber for WRS synchronization.
-> They would be connected to 10 Gbit switch or QNAP Thunderbolt to SFP+
-> adapter, so they do not have to be Intel.
->
->
-> Best regards,
->
-> Vladica
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000eaa7a305c55af26c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
-mail=3D"gmail_signature"><div dir=3D"ltr"><div>Hi=C2=A0Vladica - I&#39;ve t=
-ested a variety of fiber adapters and cables with no issues (e.g., ZyXEL, F=
-S, Axcen). The primary keys are to make sure the various related parameters=
- match up between the adapters and cables and devices. For example: If the =
-adapter is 1490/1310, then you want to make sure the cable is for the same =
-wavelengths. Same for the fiber polish and other parameters=C2=A0(single / =
-dual fiber ; . Some are easier than others, none of this is too difficult l=
-uckily!</div><div><br></div><div>For short distances, a DAC cable will work=
- for all of the N320/N321 SFP interfaces.</div><div><br></div><div>At the m=
-oment, WR support is being fixed for UHD 3.14.0.0 to current. If you -requi=
-re- WR support -right now- you can use UHD 3.13.1.0 while we&#39;re working=
- out how to fix WR for newer UHD. We expect the fix to be available to cust=
-omers sometime in mid/late-July (2021); once the fix is determined and veri=
-fied we will commit it to the various branches of the UHD repository, and i=
-t will be available in UHD  -after- the forthcoming 4.1=C2=A0release. It wi=
-ll be available in the public UHD repository for folks to use to patch UHD =
-between releases.<br></div><div><br></div><div>I hope this is useful! - MLD=
-</div></div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Tue, Jun 22, 2021 at 6:19 AM Vladica Sark =
-&lt;<a href=3D"mailto:vladicasark@gmail.com">vladicasark@gmail.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Dear all,=
-<br>
-<br>
-I would like to use N321 with WRS 3/18 which uses optical cables. I <br>
-would like to use also for the 10 Gbit SFP1 optical SFP+ transceiver.<br>
-Do you have some recommended optical SFP+ adapters, duplex and, <br>
-preferably, simplex?<br>
-The idea is to use a duplex monomode fiber, one fiber for the 10 Gbit <br>
-data and one fiber for WRS synchronization.<br>
-They would be connected to 10 Gbit switch or QNAP Thunderbolt to SFP+ <br>
-adapter, so they do not have to be Intel.<br>
-<br>
-<br>
-Best regards,<br>
-<br>
-Vladica<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000eaa7a305c55af26c--
-
---===============0006258295000008904==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============0006258295000008904==--
+SGkgTWljaGFlbCwNCg0KVGhhbmtzIGZvciB0aGUgYW5zd2VyLiBGb3Igbm93IGZvciB0aGUgZGF0
+YSBJIGFtIHVzaW5nIERBQyBjYWJsZXMsIGJ1dCANCndlIHdvdWxkIG5lZWQgbGFyZ2VyIGRpc3Rh
+bmNlcywgaS5lLiA1MCsgbWV0ZXJzLCBhbmQgZm9yIHRoaXMgSSB3b3VsZCANCm5lZWQgZmliZXJz
+IGZvciBib3RoIFdSIGFuZCBkYXRhLg0KDQpJcyB0aGVyZSBhbHNvIHNvbWUgb3B0aWNhbCBtdWx0
+aXBsZXhlciBmb3IgdGhlc2Ugd2F2ZWxlbmd0aHMsIGluIG9yZGVyIA0KdG8gdXNlIGEgc2ltcGxl
+eCBmaWJlciwgZm9yIGJvdGggV1IgYW5kIGRhdGE/DQoNCkJSLA0KVmxhZGljYQ0KDQpPbiAyMi4w
+Ni4yMSAxNTo0MSwgTWljaGFlbCBEaWNrZW5zIHdyb3RlOg0KPiBIacKgVmxhZGljYSAtIEkndmUg
+dGVzdGVkIGEgdmFyaWV0eSBvZiBmaWJlciBhZGFwdGVycyBhbmQgY2FibGVzIHdpdGggDQo+IG5v
+IGlzc3VlcyAoZS5nLiwgWnlYRUwsIEZTLCBBeGNlbikuIFRoZSBwcmltYXJ5IGtleXMgYXJlIHRv
+IG1ha2Ugc3VyZSANCj4gdGhlIHZhcmlvdXMgcmVsYXRlZCBwYXJhbWV0ZXJzIG1hdGNoIHVwIGJl
+dHdlZW4gdGhlIGFkYXB0ZXJzIGFuZCANCj4gY2FibGVzIGFuZCBkZXZpY2VzLiBGb3IgZXhhbXBs
+ZTogSWYgdGhlIGFkYXB0ZXIgaXMgMTQ5MC8xMzEwLCB0aGVuIHlvdSANCj4gd2FudCB0byBtYWtl
+IHN1cmUgdGhlIGNhYmxlIGlzIGZvciB0aGUgc2FtZSB3YXZlbGVuZ3Rocy4gU2FtZSBmb3IgdGhl
+IA0KPiBmaWJlciBwb2xpc2ggYW5kIG90aGVyIHBhcmFtZXRlcnPCoChzaW5nbGUgLyBkdWFsIGZp
+YmVyIDsgLiBTb21lIGFyZSANCj4gZWFzaWVyIHRoYW4gb3RoZXJzLCBub25lIG9mIHRoaXMgaXMg
+dG9vIGRpZmZpY3VsdCBsdWNraWx5IQ0KPg0KPiBGb3Igc2hvcnQgZGlzdGFuY2VzLCBhIERBQyBj
+YWJsZSB3aWxsIHdvcmsgZm9yIGFsbCBvZiB0aGUgTjMyMC9OMzIxIA0KPiBTRlAgaW50ZXJmYWNl
+cy4NCj4NCj4gQXQgdGhlIG1vbWVudCwgV1Igc3VwcG9ydCBpcyBiZWluZyBmaXhlZCBmb3IgVUhE
+IDMuMTQuMC4wIHRvIGN1cnJlbnQuIA0KPiBJZiB5b3UgLXJlcXVpcmUtIFdSIHN1cHBvcnQgLXJp
+Z2h0IG5vdy0geW91IGNhbiB1c2UgVUhEIDMuMTMuMS4wIHdoaWxlIA0KPiB3ZSdyZSB3b3JraW5n
+IG91dCBob3cgdG8gZml4IFdSIGZvciBuZXdlciBVSEQuIFdlIGV4cGVjdCB0aGUgZml4IHRvIGJl
+IA0KPiBhdmFpbGFibGUgdG8gY3VzdG9tZXJzIHNvbWV0aW1lIGluIG1pZC9sYXRlLUp1bHkgKDIw
+MjEpOyBvbmNlIHRoZSBmaXggDQo+IGlzIGRldGVybWluZWQgYW5kIHZlcmlmaWVkIHdlIHdpbGwg
+Y29tbWl0IGl0IHRvIHRoZSB2YXJpb3VzIGJyYW5jaGVzIA0KPiBvZiB0aGUgVUhEIHJlcG9zaXRv
+cnksIGFuZCBpdCB3aWxsIGJlIGF2YWlsYWJsZSBpbiBVSEQgLWFmdGVyLSB0aGUgDQo+IGZvcnRo
+Y29taW5nIDQuMcKgcmVsZWFzZS4gSXQgd2lsbCBiZSBhdmFpbGFibGUgaW4gdGhlIHB1YmxpYyBV
+SEQgDQo+IHJlcG9zaXRvcnkgZm9yIGZvbGtzIHRvIHVzZSB0byBwYXRjaCBVSEQgYmV0d2VlbiBy
+ZWxlYXNlcy4NCj4NCj4gSSBob3BlIHRoaXMgaXMgdXNlZnVsISAtIE1MRA0KPg0KPg0KPiBPbiBU
+dWUsIEp1biAyMiwgMjAyMSBhdCA2OjE5IEFNIFZsYWRpY2EgU2FyayA8dmxhZGljYXNhcmtAZ21h
+aWwuY29tIA0KPiA8bWFpbHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNvbT4+IHdyb3RlOg0KPg0KPiAg
+ICAgRGVhciBhbGwsDQo+DQo+ICAgICBJIHdvdWxkIGxpa2UgdG8gdXNlIE4zMjEgd2l0aCBXUlMg
+My8xOCB3aGljaCB1c2VzIG9wdGljYWwgY2FibGVzLiBJDQo+ICAgICB3b3VsZCBsaWtlIHRvIHVz
+ZSBhbHNvIGZvciB0aGUgMTAgR2JpdCBTRlAxIG9wdGljYWwgU0ZQKyB0cmFuc2NlaXZlci4NCj4g
+ICAgIERvIHlvdSBoYXZlIHNvbWUgcmVjb21tZW5kZWQgb3B0aWNhbCBTRlArIGFkYXB0ZXJzLCBk
+dXBsZXggYW5kLA0KPiAgICAgcHJlZmVyYWJseSwgc2ltcGxleD8NCj4gICAgIFRoZSBpZGVhIGlz
+IHRvIHVzZSBhIGR1cGxleCBtb25vbW9kZSBmaWJlciwgb25lIGZpYmVyIGZvciB0aGUgMTAgR2Jp
+dA0KPiAgICAgZGF0YSBhbmQgb25lIGZpYmVyIGZvciBXUlMgc3luY2hyb25pemF0aW9uLg0KPiAg
+ICAgVGhleSB3b3VsZCBiZSBjb25uZWN0ZWQgdG8gMTAgR2JpdCBzd2l0Y2ggb3IgUU5BUCBUaHVu
+ZGVyYm9sdCB0byBTRlArDQo+ICAgICBhZGFwdGVyLCBzbyB0aGV5IGRvIG5vdCBoYXZlIHRvIGJl
+IEludGVsLg0KPg0KPg0KPiAgICAgQmVzdCByZWdhcmRzLA0KPg0KPiAgICAgVmxhZGljYQ0KPg0K
+PiAgICAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4g
+ICAgIFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+DQo+ICAgICA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPiAgICAgVG8gdW5z
+dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
+bQ0KPiAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCj4KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUg
+c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
