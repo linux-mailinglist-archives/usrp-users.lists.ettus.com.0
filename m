@@ -2,375 +2,358 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D6B3B07EA
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 16:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04BFD3B0870
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 17:15:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C10F13843C9
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 10:51:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 16C65384704
+	for <lists+usrp-users@lfdr.de>; Tue, 22 Jun 2021 11:15:00 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nDoW5X4d";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=erdc.dren.mil header.i=@erdc.dren.mil header.b="NMUXIjrv";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=erdc.dren.mil header.i=@erdc.dren.mil header.b="dEhIbNf/";
 	dkim-atps=neutral
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id A6E23383B81
-	for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 10:50:11 -0400 (EDT)
-Received: by mail-qv1-f49.google.com with SMTP id u2so2918178qvp.13
-        for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 07:50:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=zIVVUFfqTFWpqL/AvXvZ2U5JgNjc5J3UJqcEquaJ1eQ=;
-        b=nDoW5X4dXTrbWFoGhCdr6dRvf1As51AIxLr23rayyNBrL5IWh1nlNhdwJZeElnlkJt
-         1AQUpI/ZcGFUMEFZgYrrxF/4dRTpf2sh4kauDdh9HB/Wd/r2u8oCCU3ddfLicdz7xkVg
-         OY0akWTMk+DWErWPu9nXIckmpKfWq9w5ZzAnGrVdKtbE49VlVcPd0p30F/0+ZIwHBJhd
-         JKZIsImXh+uImwQi7sSCO5J5/sd8jPaf22rnooEhGhB71B4Fdqj0HQZ+wh2nwLR3PWaM
-         xevl7i16i/T4N7IGosK3PkuDsbi7dTH7DLGz7OYb6sMushUr3JeHd/0k/Ra7ezvpReSz
-         kgaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=zIVVUFfqTFWpqL/AvXvZ2U5JgNjc5J3UJqcEquaJ1eQ=;
-        b=fzQfC2rzoVgOf4J4SXhxbMbzGYP0P+K2NpNDS3nT//Hc/fZIsYfNQE5GWdpvS1nyJt
-         dH5Ew7rehEm1S02gsXFNRYNiu2VTJIo548HqX0o1huHjxw3evGP2NjnUMlOVMNBoCw09
-         pmHs4UxsG6eCa+uAi0Bhv9426bbF+z0t732l+1a6EC2ZnGxryOtJlEUS+WJvsNsS/W1e
-         Rqnyk8NtDCxiXlFzvd257z0JJcApHWfWHEwJp7dwBhFXvsQwXofX27aPh+3tbwfUCReQ
-         AYPw1U66u2uh14yOxuk/DmpeoXUOPQcJeRym0JdKX5clCjm3CmfccEJ3vUWke4aVm0zH
-         kZdQ==
-X-Gm-Message-State: AOAM530N7cffpxbkCyAmyAXSNUHsaip1kb/owMP65TexkCLLFR953q+x
-	uGMPsld95vAPFKxDREsbUGEvthBIgvxGHQ==
-X-Google-Smtp-Source: ABdhPJy7xW3LkI4K6Li2mVZ8Yp2us1jDpYitQQAVajDoFaSm8pIkdlagb4PugN7oWDWCdrAp9I8pGw==
-X-Received: by 2002:a05:6214:186f:: with SMTP id eh15mr16125390qvb.29.1624373410876;
-        Tue, 22 Jun 2021 07:50:10 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id g19sm1755639qtg.36.2021.06.22.07.50.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Jun 2021 07:50:10 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Tue, 22 Jun 2021 10:50:09 -0400
-Message-Id: <4691C65A-AC95-42C7-B876-14B5B75661B2@gmail.com>
+Received: from mfw.dren.mil (mfw.dren.mil [140.32.61.234])
+	by mm2.emwd.com (Postfix) with ESMTPS id 38D8D3842FC
+	for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 11:14:07 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdc.dren.mil; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=s1.dkim; bh=GnGIGxCyHNvw6PsYJQzSs8kUY5FgyvSIKjG2npeAZiE=;
+ b=NMUXIjrvbYmh2c9clXYO8y/ZUGXkVWtqQ9ZJ3qNzQJu970oLb+QFehLyRdVBTYMB+Ynu
+ nu0EWk8P3cwsRP3UtybPW4taTJJcjW3MPHtoyPV8FfDg867LzJBNCHNVdA7CPxlxYGSg
+ SiyOvAgzxCa4PgapTHS3qCo0iMkNyPjfEFE=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdc.dren.mil; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ mime-version; s=s2.dkim; bh=GnGIGxCyHNvw6PsYJQzSs8kUY5FgyvSIKjG2npeAZiE=;
+ b=dEhIbNf/B+5LLuicsrpM1Blq7d4IeaPalDIU8nXqdaUdWq6rD4HBnsmipNPnMuLARpM/
+ sG7IyhqjcwhhczzrZa3C3iH9VaMw/xIdD7b5RBMkpLxC+vX1kI5KoO1gGRuqQ6LL/d/F
+ WOQV93p6yaoQ31zfQUQpxqLK5WgeplyOlKL0fmQH07uOttwuqmsm6IS3S4kFGTy0I6g8
+ m4AQgpOep+5dwvNTICqiPS6Zp64IPjjIyQEJiyaX25AOouHvdfNu8tiLt/f43JOgmPw9
+ qv3Ux7JGGETF47APdja18w6ZEGU2vR/ekViFHxx3RR+SdNVfBSG1fRT13tFlVWl5Hv9+ eg==
+Received: from rde-gw1.erdc.dren.mil (rde-gw1.erdc.dren.mil [134.164.23.110])
+	by ppaw.dren.mil (8.16.1.2/8.16.1.2) with ESMTPS id 15MFE4uG046733
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+	for <usrp-users@lists.ettus.com>; Tue, 22 Jun 2021 15:14:05 GMT
+X-IronPort-AV: E=Sophos;i="5.83,291,1616475600";
+   d="scan'208,217";a="61200283"
+Received: from unknown (HELO ERDC-EX1.erdc.dren.mil) ([134.164.254.13])
+  by rde-gw1.erdc.dren.mil with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Jun 2021 10:14:04 -0500
+Received: from ERDC-EX3.erdc.dren.mil (134.164.254.15) by
+ ERDC-EX1.erdc.dren.mil (134.164.254.13) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.1.2176.14; Tue, 22 Jun 2021 10:14:03 -0500
+Received: from ERDC-EX1.erdc.dren.mil (134.164.254.13) by
+ ERDC-EX3.erdc.dren.mil (134.164.254.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.1.2176.14; Tue, 22 Jun 2021 10:14:03 -0500
+Received: from ERDC-EX1.erdc.dren.mil ([fe80::b0df:9b58:9980:1cc8]) by
+ ERDC-EX1.erdc.dren.mil ([fe80::b0df:9b58:9980:1cc8%6]) with mapi id
+ 15.01.2176.014; Tue, 22 Jun 2021 10:14:03 -0500
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] intermittent TX error using DPDK and x310
+Thread-Index: AddncuH1hHDL89/KQ5Ce+J4RwAW7YAALOxiAAAmqDAA=
+Date: Tue, 22 Jun 2021 15:14:03 +0000
+Message-ID: <8324554fce67426fb14b18bdae01dbc1@erdc.dren.mil>
 References: <cde9266a2c524eecb4a3bb5c1af2fe25@erdc.dren.mil>
-In-Reply-To: <cde9266a2c524eecb4a3bb5c1af2fe25@erdc.dren.mil>
-To: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV" <Carl.L.Wolsieffer@erdc.dren.mil>
-X-Mailer: iPhone Mail (18F72)
-Message-ID-Hash: 2HSHZ4D5RXHFMR5UMJY7KN6VBAONHJDX
-X-Message-ID-Hash: 2HSHZ4D5RXHFMR5UMJY7KN6VBAONHJDX
-X-MailFrom: patchvonbraun@gmail.com
+ <4691C65A-AC95-42C7-B876-14B5B75661B2@gmail.com>
+In-Reply-To: <4691C65A-AC95-42C7-B876-14B5B75661B2@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [134.164.254.60]
+MIME-Version: 1.0
+Message-ID-Hash: GXZSOAM74W3Z56MXZ356WBJRJCH5GTTC
+X-Message-ID-Hash: GXZSOAM74W3Z56MXZ356WBJRJCH5GTTC
+X-MailFrom: Carl.L.Wolsieffer@erdc.dren.mil
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: intermittent TX error using DPDK and x310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2HSHZ4D5RXHFMR5UMJY7KN6VBAONHJDX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GXZSOAM74W3Z56MXZ356WBJRJCH5GTTC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5162526694140437152=="
+From: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV" <Carl.L.Wolsieffer@erdc.dren.mil>
+Content-Type: multipart/mixed; boundary="===============7636866629254218746=="
 
+--===============7636866629254218746==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8324554fce67426fb14b18bdae01dbc1erdcdrenmil_"
 
---===============5162526694140437152==
-Content-Type: multipart/alternative; boundary=Apple-Mail-69107FD1-0C72-49B9-988D-92AAC45F7B04
-Content-Transfer-Encoding: 7bit
+--_000_8324554fce67426fb14b18bdae01dbc1erdcdrenmil_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+WWVzIHRoYXTigJlzIGNvcnJlY3QsIG9uZSBpcyB0aGUgZGVmYXVsdCAxOTIuMTY4LjQwLjIgYW5k
+IHRoZSBvdGhlciBJIGNoYW5nZWQgdG8gMTkyLjE2OC41MC4yDQoNCkZyb206IE1hcmN1cyBEIExl
+ZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6IFR1ZXNkYXksIEp1bmUgMjIsIDIw
+MjEgMTA6NTAgQU0NClRvOiBXb2xzaWVmZmVyLCBDYXJsIEwuIEVSREMtUkRFLUNSTC1OSCBDSVYg
+PENhcmwuTC5Xb2xzaWVmZmVyQGVyZGMuZHJlbi5taWw+DQpDYzogdXNycC11c2VycyA8dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIGludGVybWl0
+dGVudCBUWCBlcnJvciB1c2luZyBEUERLIGFuZCB4MzEwDQoNClRoZSBkZXZpY2VzIGhhdmUgZGlz
+dGluY3QgSVAgYWRkcmVzc2VzIG9uIGFsbCB0aGVpciBjb25uZWN0ZWQgcG9ydHMgcHJlc3VtYWJs
+eT8NClNlbnQgZnJvbSBteSBpUGhvbmUNCg0KDQpPbiBKdW4gMjIsIDIwMjEsIGF0IDEwOjM4IEFN
+LCBXb2xzaWVmZmVyLCBDYXJsIEwuIEVSREMtUkRFLUNSTC1OSCBDSVYgdmlhIFVTUlAtdXNlcnMg
+PHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4+IHdyb3RlOg0K77u/DQoNCkhlbGxvLA0KDQoNCg0KRmluYWxseSBnb3QgRFBESyBydW5u
+aW5nIG9uIG15IHVidW50dSAyMC4wNCBtYWNoaW5lLiBJIGhhdmUgdHdvIHgzMTAncyBvdmVyIGEg
+MTBHYmUgZWFjaCBnb2luZyB0byB0aGVpciBvd24gcG9ydCBvbiBhIGludGVsIHg1MjAuIElmIEkg
+aGF2ZSBqdXN0IGEgc2luZ2xlIHgzMTAgaG9va2VkIHVwLCB0aGUgcnhfc2FtcGxlc190b19maWxl
+IGFuZCB0eF9zYW1wbGVzX2Zyb21fZmlsZSBib3RoIHdvcmsgZmxhd2xlc3NseSBhdCAyMDAgTXNw
+cy4gSWYgdGhleSBhcmUgYm90aCBob29rZWQgdXAsIEkgZ2V0IGEgZmV3IGVycm9ycyB3aGVuIHRy
+YW5zbWl0dGluZyB0aGF0IEkgYW0gbm90IGFibGUgdG8gZGlzY2VybiBhcmUgZ29pbmcgdG8gY2F1
+c2UgbWUgdHJvdWJsZSBvciBub3QuIFRoaXMgaXMgYSB0eXBpY2FsIG91dHB1dCB1cG9uIGNhbGxp
+bmcgdHhfZnJvbV9zYW1wbGVzLiBUaGUgW0VSUk9SXSBbVUhEXSBhbmQgW0VSUk9SXSBbVVNSUDJd
+IGRvbid0IHNlZW0gdG8gYmUgYSBtYWpvciBpc3N1ZSwgc2luY2UgdGhlIFBDIGlzIGZpbmRpbmcg
+dGhlIHgzMTAgd2l0aG91dCBhIHByb2JsZW0sIGJ1dCBJIGRvbid0IGtub3cgd2hhdCB0aGUgW0VS
+Uk9SXSBbQ1RSTEVQXSBhdCB0aGUgZW5kIGlzIHRyeWluZyB0byB0ZWxsIG1lLiBBbnkgdGhvdWdo
+dHM/DQoNCg0KDQpyb290QGZtY3ctc291bmRlcjovdXNyL2xvY2FsL2xpYi91aGQvZXhhbXBsZXMj
+IC4vdHhfc2FtcGxlc19mcm9tX2ZpbGUgLS1maWxlIHRlc3Rfc2FtcGxlcy5kYXQgLS1nYWluIDAg
+LS1mcmVxIDI0MDAwMDAwMDAgLS1sby1vZmZzZXQgMTAwMDAwMDAwIC0tcmF0ZSAyMDAwMDAwMDAg
+LS1hcmdzICJhZGRyPTE5Mi4xNjguNTAuMix1c2VfZHBkaz0xIg0KDQoNCg0KQ3JlYXRpbmcgdGhl
+IHVzcnAgZGV2aWNlIHdpdGg6IGFkZHI9MTkyLjE2OC41MC4yLHVzZV9kcGRrPTEuLi4NCg0KW0lO
+Rk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOS4zLjA7IEJvb3N0XzEwNzEwMDsgVUhE
+XzQuMC4wLkhFQUQtMC1nOTBjZTYwNjINCg0KW1dBUk5JTkddIFtQUkVGU10gTG9hZGVkIGNvbmZp
+ZyBmcm9tIC9yb290Ly51aGQuIFRoaXMgbG9jYXRpb24gaXMgY29uc2lkZXJlZCBkZXByZWNhdGVk
+LCBjb25zaWRlciBtb3ZpbmcgeW91ciBjb25maWcgZmlsZSB0byAvcm9vdC8uY29uZmlnIGluc3Rl
+YWQuDQoNCkVBTDogRGV0ZWN0ZWQgMTIgbGNvcmUocykNCg0KRUFMOiBEZXRlY3RlZCAxIE5VTUEg
+bm9kZXMNCg0KRUFMOiBNdWx0aS1wcm9jZXNzIHNvY2tldCAvdmFyL3J1bi9kcGRrL3J0ZS9tcF9z
+b2NrZXQNCg0KRUFMOiBObyBmcmVlIGh1Z2VwYWdlcyByZXBvcnRlZCBpbiBodWdlcGFnZXMtMTA0
+ODU3NmtCDQoNCkVBTDogUHJvYmluZyBWRklPIHN1cHBvcnQuLi4NCg0KRUFMOiBWRklPIHN1cHBv
+cnQgaW5pdGlhbGl6ZWQNCg0KRUFMOiBQQ0kgZGV2aWNlIDAwMDA6MDE6MDAuMCBvbiBOVU1BIHNv
+Y2tldCAtMQ0KDQpFQUw6ICAgSW52YWxpZCBOVU1BIHNvY2tldCwgZGVmYXVsdCB0byAwDQoNCkVB
+TDogICBwcm9iZSBkcml2ZXI6IDgwODY6MTBmYiBuZXRfaXhnYmUNCg0KRUFMOiAgIHVzaW5nIElP
+TU1VIHR5cGUgMSAoVHlwZSAxKQ0KDQpFQUw6IElnbm9yZSBtYXBwaW5nIElPIHBvcnQgYmFyKDIp
+DQoNCkVBTDogUENJIGRldmljZSAwMDAwOjAxOjAwLjEgb24gTlVNQSBzb2NrZXQgLTENCg0KRUFM
+OiAgIEludmFsaWQgTlVNQSBzb2NrZXQsIGRlZmF1bHQgdG8gMA0KDQpFQUw6ICAgcHJvYmUgZHJp
+dmVyOiA4MDg2OjEwZmIgbmV0X2l4Z2JlDQoNCkVBTDogSWdub3JlIG1hcHBpbmcgSU8gcG9ydCBi
+YXIoMikNCg0KW0VSUk9SXSBbVUhEXSBEZXZpY2UgZGlzY292ZXJ5IGVycm9yOiBzZW5kX3RvOiBO
+ZXR3b3JrIGlzIHVucmVhY2hhYmxlDQoNCltFUlJPUl0gW1VTUlAyXSBVU1JQMiBOZXR3b3JrIGRp
+c2NvdmVyeSBlcnJvciBzZW5kX3RvOiBOZXR3b3JrIGlzIHVucmVhY2hhYmxlDQoNCltJTkZPXSBb
+WDMwMF0gWDMwMCBpbml0aWFsaXphdGlvbiBzZXF1ZW5jZS4uLg0KDQpbSU5GT10gW1gzMDBdIE1h
+eGltdW0gZnJhbWUgc2l6ZTogODAwMCBieXRlcy4NCg0KW0lORk9dIFtYMzAwXSBSYWRpbyAxeCBj
+bG9jazogMjAwIE1Ieg0KDQpVc2luZyBEZXZpY2U6IFNpbmdsZSBVU1JQOg0KDQogIERldmljZTog
+WC1TZXJpZXMgRGV2aWNlDQoNCiAgTWJvYXJkIDA6IFgzMTANCg0KICBSWCBDaGFubmVsOiAwDQoN
+CiAgICBSWCBEU1A6IDANCg0KICAgIFJYIERib2FyZDogQQ0KDQogICAgUlggU3ViZGV2OiBVQlgg
+UlgNCg0KICBSWCBDaGFubmVsOiAxDQoNCiAgICBSWCBEU1A6IDENCg0KICAgIFJYIERib2FyZDog
+Qg0KDQogICAgUlggU3ViZGV2OiBVbmtub3duICgweGZmZmYpIC0gMA0KDQogIFRYIENoYW5uZWw6
+IDANCg0KICAgIFRYIERTUDogMA0KDQogICAgVFggRGJvYXJkOiBBDQoNCiAgICBUWCBTdWJkZXY6
+IFVCWCBUWA0KDQogIFRYIENoYW5uZWw6IDENCg0KICAgIFRYIERTUDogMQ0KDQogICAgVFggRGJv
+YXJkOiBCDQoNCiAgICBUWCBTdWJkZXY6IFVua25vd24gKDB4ZmZmZikgLSAwDQoNCg0KDQpTZXR0
+aW5nIFRYIFJhdGU6IDIwMC4wMDAwMDAgTXNwcy4uLg0KDQpBY3R1YWwgVFggUmF0ZTogMjAwLjAw
+MDAwMCBNc3BzLi4uDQoNCg0KDQpTZXR0aW5nIFRYIEZyZXE6IDI0MDAuMDAwMDAwIE1Iei4uLg0K
+DQpTZXR0aW5nIFRYIExPIE9mZnNldDogMTAwLjAwMDAwMCBNSHouLi4NCg0KQWN0dWFsIFRYIEZy
+ZXE6IDI0MDAuMDAwMDAwIE1Iei4uLg0KDQoNCg0KU2V0dGluZyBUWCBHYWluOiAwLjAwMDAwMCBk
+Qi4uLg0KDQpBY3R1YWwgVFggR2FpbjogMC4wMDAwMDAgZEIuLi4NCg0KDQoNCkNoZWNraW5nIFRY
+OiBUWExPOiBsb2NrZWQgLi4uDQoNCltXQVJOSU5HXSBbMC9SYWRpbyMwXSBBdHRlbXB0aW5nIHRv
+IHNldCB0aWNrIHJhdGUgdG8gMC4gU2tpcHBpbmcuDQoNCg0KDQpEb25lIQ0KDQoNCg0KW0VSUk9S
+XSBbQ1RSTEVQXSBDYXVnaHQgZXhjZXB0aW9uIGR1cmluZyBhc3luYyBtZXNzYWdlIGhhbmRsaW5n
+OiBtYXA6OmF0DQoNCg0KDQpyb290QGZtY3ctc291bmRlcjovdXNyL2xvY2FsL2xpYi91aGQvZXhh
+bXBsZXMjDQoNCg0KDQoNCg0KVGhhbmtzIQ0KDQpDYXNleQ0KPHR4X291dHB1dC50eHQ+DQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3Jw
+LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0
+cy5ldHR1cy5jb20+DQo=
 
---Apple-Mail-69107FD1-0C72-49B9-988D-92AAC45F7B04
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--_000_8324554fce67426fb14b18bdae01dbc1erdcdrenmil_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-The devices have distinct IP addresses on all their connected ports presumab=
-ly?
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjoj
+OTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29QbGFpblRleHQsIGxp
+Lk1zb1BsYWluVGV4dCwgZGl2Lk1zb1BsYWluVGV4dA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJbXNvLXN0eWxlLWxpbms6IlBsYWluIFRleHQgQ2hhciI7DQoJbWFyZ2luOjBpbjsNCgltYXJn
+aW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2Fs
+aWJyaSIsc2Fucy1zZXJpZjt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29u
+b3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6
+YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0K
+CW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1l
+cyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uUGxhaW5UZXh0Q2hhcg0KCXttc28tc3R5bGUtbmFt
+ZToiUGxhaW4gVGV4dCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxl
+LWxpbms6IlBsYWluIFRleHQiOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0No
+cERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBw
+dDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
+aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+WWVzIHRoYXTigJlzIGNvcnJlY3Qs
+IG9uZSBpcyB0aGUgZGVmYXVsdCAxOTIuMTY4LjQwLjIgYW5kIHRoZSBvdGhlciBJIGNoYW5nZWQg
+dG8gMTkyLjE2OC41MC4yPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
+cD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUx
+RTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48Yj5Gcm9tOjwvYj4gTWFyY3VzIEQgTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29t
+Jmd0OyA8YnI+DQo8Yj5TZW50OjwvYj4gVHVlc2RheSwgSnVuZSAyMiwgMjAyMSAxMDo1MCBBTTxi
+cj4NCjxiPlRvOjwvYj4gV29sc2llZmZlciwgQ2FybCBMLiBFUkRDLVJERS1DUkwtTkggQ0lWICZs
+dDtDYXJsLkwuV29sc2llZmZlckBlcmRjLmRyZW4ubWlsJmd0Ozxicj4NCjxiPkNjOjwvYj4gdXNy
+cC11c2VycyAmbHQ7dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVj
+dDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gaW50ZXJtaXR0ZW50IFRYIGVycm9yIHVzaW5nIERQREsg
+YW5kIHgzMTA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
+YXJnaW4tYm90dG9tOjEyLjBwdCI+VGhlIGRldmljZXMgaGF2ZSBkaXN0aW5jdCBJUCBhZGRyZXNz
+ZXMgb24gYWxsIHRoZWlyIGNvbm5lY3RlZCBwb3J0cyBwcmVzdW1hYmx5PzxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTIuMHB0Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+U2VudCBmcm9tIG15IGlQaG9uZTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8
+YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+T24gSnVu
+IDIyLCAyMDIxLCBhdCAxMDozOCBBTSwgV29sc2llZmZlciwgQ2FybCBMLiBFUkRDLVJERS1DUkwt
+TkggQ0lWIHZpYSBVU1JQLXVzZXJzICZsdDs8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPiZndDsgd3JvdGU6PG86
+cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJt
+YXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPu+7vyA8c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTom
+cXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDssc2VyaWYiPg0KPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+SGVsbG8sPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFp
+blRleHQiPkZpbmFsbHkgZ290IERQREsgcnVubmluZyBvbiBteSB1YnVudHUgMjAuMDQgbWFjaGlu
+ZS4gSSBoYXZlIHR3byB4MzEwJ3Mgb3ZlciBhIDEwR2JlIGVhY2ggZ29pbmcgdG8gdGhlaXIgb3du
+IHBvcnQgb24gYSBpbnRlbCB4NTIwLiBJZiBJIGhhdmUganVzdCBhIHNpbmdsZSB4MzEwIGhvb2tl
+ZCB1cCwgdGhlIHJ4X3NhbXBsZXNfdG9fZmlsZSBhbmQgdHhfc2FtcGxlc19mcm9tX2ZpbGUgYm90
+aCB3b3JrIGZsYXdsZXNzbHkNCiBhdCAyMDAgTXNwcy4gSWYgdGhleSBhcmUgYm90aCBob29rZWQg
+dXAsIEkgZ2V0IGEgZmV3IGVycm9ycyB3aGVuIHRyYW5zbWl0dGluZyB0aGF0IEkgYW0gbm90IGFi
+bGUgdG8gZGlzY2VybiBhcmUgZ29pbmcgdG8gY2F1c2UgbWUgdHJvdWJsZSBvciBub3QuIFRoaXMg
+aXMgYSB0eXBpY2FsIG91dHB1dCB1cG9uIGNhbGxpbmcgdHhfZnJvbV9zYW1wbGVzLiBUaGUgW0VS
+Uk9SXSBbVUhEXSBhbmQgW0VSUk9SXSBbVVNSUDJdIGRvbid0IHNlZW0gdG8gYmUNCiBhIG1ham9y
+IGlzc3VlLCBzaW5jZSB0aGUgUEMgaXMgZmluZGluZyB0aGUgeDMxMCB3aXRob3V0IGEgcHJvYmxl
+bSwgYnV0IEkgZG9uJ3Qga25vdyB3aGF0IHRoZSBbRVJST1JdIFtDVFJMRVBdIGF0IHRoZSBlbmQg
+aXMgdHJ5aW5nIHRvIHRlbGwgbWUuIEFueSB0aG91Z2h0cz88bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29QbGFpblRleHQiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1Bs
+YWluVGV4dCI+cm9vdEBmbWN3LXNvdW5kZXI6L3Vzci9sb2NhbC9saWIvdWhkL2V4YW1wbGVzIyAu
+L3R4X3NhbXBsZXNfZnJvbV9maWxlIC0tZmlsZSB0ZXN0X3NhbXBsZXMuZGF0IC0tZ2FpbiAwIC0t
+ZnJlcSAyNDAwMDAwMDAwIC0tbG8tb2Zmc2V0IDEwMDAwMDAwMCAtLXJhdGUgMjAwMDAwMDAwIC0t
+YXJncyAmcXVvdDthZGRyPTE5Mi4xNjguNTAuMix1c2VfZHBkaz0xJnF1b3Q7PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29QbGFpblRleHQiPkNyZWF0aW5nIHRoZSB1c3JwIGRldmljZSB3aXRoOiBhZGRyPTE5
+Mi4xNjguNTAuMix1c2VfZHBkaz0xLi4uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxh
+aW5UZXh0Ij5bSU5GT10gW1VIRF0gbGludXg7IEdOVSBDJiM0MzsmIzQzOyB2ZXJzaW9uIDkuMy4w
+OyBCb29zdF8xMDcxMDA7IFVIRF80LjAuMC5IRUFELTAtZzkwY2U2MDYyPG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5bV0FSTklOR10gW1BSRUZTXSBMb2FkZWQgY29uZmln
+IGZyb20gL3Jvb3QvLnVoZC4gVGhpcyBsb2NhdGlvbiBpcyBjb25zaWRlcmVkIGRlcHJlY2F0ZWQs
+IGNvbnNpZGVyIG1vdmluZyB5b3VyIGNvbmZpZyBmaWxlIHRvIC9yb290Ly5jb25maWcgaW5zdGVh
+ZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPkVBTDogRGV0ZWN0ZWQg
+MTIgbGNvcmUocyk8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPkVBTDog
+RGV0ZWN0ZWQgMSBOVU1BIG5vZGVzPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5U
+ZXh0Ij5FQUw6IE11bHRpLXByb2Nlc3Mgc29ja2V0IC92YXIvcnVuL2RwZGsvcnRlL21wX3NvY2tl
+dDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+RUFMOiBObyBmcmVlIGh1
+Z2VwYWdlcyByZXBvcnRlZCBpbiBodWdlcGFnZXMtMTA0ODU3NmtCPG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5FQUw6IFByb2JpbmcgVkZJTyBzdXBwb3J0Li4uPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5FQUw6IFZGSU8gc3VwcG9ydCBpbml0
+aWFsaXplZDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+RUFMOiBQQ0kg
+ZGV2aWNlIDAwMDA6MDE6MDAuMCBvbiBOVU1BIHNvY2tldCAtMTxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb1BsYWluVGV4dCI+RUFMOiZuYnNwOyZuYnNwOyBJbnZhbGlkIE5VTUEgc29ja2V0
+LCBkZWZhdWx0IHRvIDA8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPkVB
+TDombmJzcDsmbmJzcDsgcHJvYmUgZHJpdmVyOiA4MDg2OjEwZmIgbmV0X2l4Z2JlPG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5FQUw6Jm5ic3A7Jm5ic3A7IHVzaW5nIElP
+TU1VIHR5cGUgMSAoVHlwZSAxKTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4
+dCI+RUFMOiBJZ25vcmUgbWFwcGluZyBJTyBwb3J0IGJhcigyKTxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb1BsYWluVGV4dCI+RUFMOiBQQ0kgZGV2aWNlIDAwMDA6MDE6MDAuMSBvbiBOVU1B
+IHNvY2tldCAtMTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+RUFMOiZu
+YnNwOyZuYnNwOyBJbnZhbGlkIE5VTUEgc29ja2V0LCBkZWZhdWx0IHRvIDA8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPkVBTDombmJzcDsmbmJzcDsgcHJvYmUgZHJpdmVy
+OiA4MDg2OjEwZmIgbmV0X2l4Z2JlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5U
+ZXh0Ij5FQUw6IElnbm9yZSBtYXBwaW5nIElPIHBvcnQgYmFyKDIpPG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48Yj5bRVJST1JdIFtVSERdIERldmljZSBkaXNjb3Zlcnkg
+ZXJyb3I6IHNlbmRfdG86IE5ldHdvcmsgaXMgdW5yZWFjaGFibGU8L2I+PG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48Yj5bRVJST1JdIFtVU1JQMl0gVVNSUDIgTmV0d29y
+ayBkaXNjb3ZlcnkgZXJyb3Igc2VuZF90bzogTmV0d29yayBpcyB1bnJlYWNoYWJsZTwvYj48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPltJTkZPXSBbWDMwMF0gWDMwMCBp
+bml0aWFsaXphdGlvbiBzZXF1ZW5jZS4uLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1Bs
+YWluVGV4dCI+W0lORk9dIFtYMzAwXSBNYXhpbXVtIGZyYW1lIHNpemU6IDgwMDAgYnl0ZXMuPG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5bSU5GT10gW1gzMDBdIFJhZGlv
+IDF4IGNsb2NrOiAyMDAgTUh6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0
+Ij5Vc2luZyBEZXZpY2U6IFNpbmdsZSBVU1JQOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b1BsYWluVGV4dCI+Jm5ic3A7IERldmljZTogWC1TZXJpZXMgRGV2aWNlPG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDsgTWJvYXJkIDA6IFgzMTA8bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZuYnNwOyBSWCBDaGFubmVsOiAwPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDsmbmJzcDsmbmJzcDsgUlgg
+RFNQOiAwPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDsmbmJz
+cDsmbmJzcDsgUlggRGJvYXJkOiBBPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5U
+ZXh0Ij4mbmJzcDsmbmJzcDsmbmJzcDsgUlggU3ViZGV2OiBVQlggUlg8bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZuYnNwOyBSWCBDaGFubmVsOiAxPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDsmbmJzcDsmbmJzcDsgUlggRFNQOiAx
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDsmbmJzcDsmbmJz
+cDsgUlggRGJvYXJkOiBCPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4m
+bmJzcDsmbmJzcDsmbmJzcDsgUlggU3ViZGV2OiBVbmtub3duICgweGZmZmYpIC0gMDxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jm5ic3A7IFRYIENoYW5uZWw6IDA8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZuYnNwOyZuYnNwOyZuYnNwOyBU
+WCBEU1A6IDA8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZuYnNwOyZu
+YnNwOyZuYnNwOyBUWCBEYm9hcmQ6IEE8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFp
+blRleHQiPiZuYnNwOyZuYnNwOyZuYnNwOyBUWCBTdWJkZXY6IFVCWCBUWDxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jm5ic3A7IFRYIENoYW5uZWw6IDE8bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZuYnNwOyZuYnNwOyZuYnNwOyBUWCBEU1A6
+IDE8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZuYnNwOyZuYnNwOyZu
+YnNwOyBUWCBEYm9hcmQ6IEI8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQi
+PiZuYnNwOyZuYnNwOyZuYnNwOyBUWCBTdWJkZXY6IFVua25vd24gKDB4ZmZmZikgLSAwPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29QbGFpblRleHQiPlNldHRpbmcgVFggUmF0ZTogMjAwLjAwMDAwMCBNc3Bz
+Li4uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5BY3R1YWwgVFggUmF0
+ZTogMjAwLjAwMDAwMCBNc3BzLi4uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5U
+ZXh0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPlNldHRp
+bmcgVFggRnJlcTogMjQwMC4wMDAwMDAgTUh6Li4uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvUGxhaW5UZXh0Ij5TZXR0aW5nIFRYIExPIE9mZnNldDogMTAwLjAwMDAwMCBNSHouLi48bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPkFjdHVhbCBUWCBGcmVxOiAyNDAw
+LjAwMDAwMCBNSHouLi48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZu
+YnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+U2V0dGluZyBUWCBH
+YWluOiAwLjAwMDAwMCBkQi4uLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4
+dCI+QWN0dWFsIFRYIEdhaW46IDAuMDAwMDAwIGRCLi4uPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFp
+blRleHQiPkNoZWNraW5nIFRYOiBUWExPOiBsb2NrZWQgLi4uPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvUGxhaW5UZXh0Ij5bV0FSTklOR10gWzAvUmFkaW8jMF0gQXR0ZW1wdGluZyB0byBz
+ZXQgdGljayByYXRlIHRvIDAuIFNraXBwaW5nLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b1BsYWluVGV4dCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0
+Ij5Eb25lITxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jm5ic3A7PG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48Yj5bRVJST1JdIFtDVFJMRVBd
+IENhdWdodCBleGNlcHRpb24gZHVyaW5nIGFzeW5jIG1lc3NhZ2UgaGFuZGxpbmc6IG1hcDo6YXQ8
+L2I+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mbmJzcDs8bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPnJvb3RAZm1jdy1zb3VuZGVyOi91c3Iv
+bG9jYWwvbGliL3VoZC9leGFtcGxlcyM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFp
+blRleHQiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jm5i
+c3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5UaGFua3MhPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5DYXNleTxvOnA+PC9vOnA+PC9wPg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyxzZXJpZiI+Jmx0O3R4X291
+dHB1dC50eHQmZ3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtmb250LWZhbWlseTomcXVvdDtU
+aW1lcyBOZXcgUm9tYW4mcXVvdDssc2VyaWYiPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJl
+Zj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9
+Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSI+DQp1c3JwLXVzZXJzLWxl
+YXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwv
+YmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-Sent from my iPhone
+--_000_8324554fce67426fb14b18bdae01dbc1erdcdrenmil_--
 
-> On Jun 22, 2021, at 10:38 AM, Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV via U=
-SRP-users <usrp-users@lists.ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hello,
-> =20
-> Finally got DPDK running on my ubuntu 20.04 machine. I have two x310's ove=
-r a 10Gbe each going to their own port on a intel x520. If I have just a sin=
-gle x310 hooked up, the rx_samples_to_file and tx_samples_from_file both wor=
-k flawlessly at 200 Msps. If they are both hooked up, I get a few errors whe=
-n transmitting that I am not able to discern are going to cause me trouble o=
-r not. This is a typical output upon calling tx_from_samples. The [ERROR] [U=
-HD] and [ERROR] [USRP2] don't seem to be a major issue, since the PC is find=
-ing the x310 without a problem, but I don't know what the [ERROR] [CTRLEP] a=
-t the end is trying to tell me. Any thoughts?
-> =20
-> root@fmcw-sounder:/usr/local/lib/uhd/examples# ./tx_samples_from_file --fi=
-le test_samples.dat --gain 0 --freq 2400000000 --lo-offset 100000000 --rate 2=
-00000000 --args "addr=3D192.168.50.2,use_dpdk=3D1"
-> =20
-> Creating the usrp device with: addr=3D192.168.50.2,use_dpdk=3D1...
-> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.0.0.HEAD-0-=
-g90ce6062
-> [WARNING] [PREFS] Loaded config from /root/.uhd. This location is consider=
-ed deprecated, consider moving your config file to /root/.config instead.
-> EAL: Detected 12 lcore(s)
-> EAL: Detected 1 NUMA nodes
-> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
-> EAL: No free hugepages reported in hugepages-1048576kB
-> EAL: Probing VFIO support...
-> EAL: VFIO support initialized
-> EAL: PCI device 0000:01:00.0 on NUMA socket -1
-> EAL:   Invalid NUMA socket, default to 0
-> EAL:   probe driver: 8086:10fb net_ixgbe
-> EAL:   using IOMMU type 1 (Type 1)
-> EAL: Ignore mapping IO port bar(2)
-> EAL: PCI device 0000:01:00.1 on NUMA socket -1
-> EAL:   Invalid NUMA socket, default to 0
-> EAL:   probe driver: 8086:10fb net_ixgbe
-> EAL: Ignore mapping IO port bar(2)
-> [ERROR] [UHD] Device discovery error: send_to: Network is unreachable
-> [ERROR] [USRP2] USRP2 Network discovery error send_to: Network is unreacha=
-ble
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> Using Device: Single USRP:
->   Device: X-Series Device
->   Mboard 0: X310
->   RX Channel: 0
->     RX DSP: 0
->     RX Dboard: A
->     RX Subdev: UBX RX
->   RX Channel: 1
->     RX DSP: 1
->     RX Dboard: B
->     RX Subdev: Unknown (0xffff) - 0
->   TX Channel: 0
->     TX DSP: 0
->     TX Dboard: A
->     TX Subdev: UBX TX
->   TX Channel: 1
->     TX DSP: 1
->     TX Dboard: B
->     TX Subdev: Unknown (0xffff) - 0
-> =20
-> Setting TX Rate: 200.000000 Msps...
-> Actual TX Rate: 200.000000 Msps...
-> =20
-> Setting TX Freq: 2400.000000 MHz...
-> Setting TX LO Offset: 100.000000 MHz...
-> Actual TX Freq: 2400.000000 MHz...
-> =20
-> Setting TX Gain: 0.000000 dB...
-> Actual TX Gain: 0.000000 dB...
-> =20
-> Checking TX: TXLO: locked ...
-> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
-> =20
-> Done!
-> =20
-> [ERROR] [CTRLEP] Caught exception during async message handling: map::at
-> =20
-> root@fmcw-sounder:/usr/local/lib/uhd/examples#
-> =20
-> =20
-> Thanks!
-> Casey
-> <tx_output.txt>
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-69107FD1-0C72-49B9-988D-92AAC45F7B04
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">The devices have distinct IP addresses on a=
-ll their connected ports presumably?<br><br><div dir=3D"ltr">Sent from my iP=
-hone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jun 22, 2021, at=
- 10:38 AM, Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV via USRP-users &lt;usrp-u=
-sers@lists.ettus.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D=
-"cite"><div dir=3D"ltr">=EF=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
-
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-
-
-<div class=3D"WordSection1">
-<p class=3D"MsoPlainText">Hello,<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Finally got DPDK running on my ubuntu 20.04 machin=
-e. I have two x310's over a 10Gbe each going to their own port on a intel x5=
-20. If I have just a single x310 hooked up, the rx_samples_to_file and tx_sa=
-mples_from_file both work flawlessly
- at 200 Msps. If they are both hooked up, I get a few errors when transmitti=
-ng that I am not able to discern are going to cause me trouble or not. This i=
-s a typical output upon calling tx_from_samples. The [ERROR] [UHD] and [ERRO=
-R] [USRP2] don't seem to be
- a major issue, since the PC is finding the x310 without a problem, but I do=
-n't know what the [ERROR] [CTRLEP] at the end is trying to tell me. Any thou=
-ghts?<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">root@fmcw-sounder:/usr/local/lib/uhd/examples# ./t=
-x_samples_from_file --file test_samples.dat --gain 0 --freq 2400000000 --lo-=
-offset 100000000 --rate 200000000 --args "addr=3D192.168.50.2,use_dpdk=3D1"<=
-o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Creating the usrp device with: addr=3D192.168.50.2=
-,use_dpdk=3D1...<o:p></o:p></p>
-<p class=3D"MsoPlainText">[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_1=
-07100; UHD_4.0.0.HEAD-0-g90ce6062<o:p></o:p></p>
-<p class=3D"MsoPlainText">[WARNING] [PREFS] Loaded config from /root/.uhd. T=
-his location is considered deprecated, consider moving your config file to /=
-root/.config instead.<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: Detected 12 lcore(s)<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: Detected 1 NUMA nodes<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: Multi-process socket /var/run/dpdk/rte/mp_soc=
-ket<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: No free hugepages reported in hugepages-10485=
-76kB<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: Probing VFIO support...<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: VFIO support initialized<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: PCI device 0000:01:00.0 on NUMA socket -1<o:p=
-></o:p></p>
-<p class=3D"MsoPlainText">EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0=
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL:&nbsp;&nbsp; probe driver: 8086:10fb net_ixgbe=
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL:&nbsp;&nbsp; using IOMMU type 1 (Type 1)<o:p><=
-/o:p></p>
-<p class=3D"MsoPlainText">EAL: Ignore mapping IO port bar(2)<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: PCI device 0000:01:00.1 on NUMA socket -1<o:p=
-></o:p></p>
-<p class=3D"MsoPlainText">EAL:&nbsp;&nbsp; Invalid NUMA socket, default to 0=
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL:&nbsp;&nbsp; probe driver: 8086:10fb net_ixgbe=
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">EAL: Ignore mapping IO port bar(2)<o:p></o:p></p>
-<p class=3D"MsoPlainText"><b>[ERROR] [UHD] Device discovery error: send_to: N=
-etwork is unreachable<o:p></o:p></b></p>
-<p class=3D"MsoPlainText"><b>[ERROR] [USRP2] USRP2 Network discovery error s=
-end_to: Network is unreachable<o:p></o:p></b></p>
-<p class=3D"MsoPlainText">[INFO] [X300] X300 initialization sequence...<o:p>=
-</o:p></p>
-<p class=3D"MsoPlainText">[INFO] [X300] Maximum frame size: 8000 bytes.<o:p>=
-</o:p></p>
-<p class=3D"MsoPlainText">[INFO] [X300] Radio 1x clock: 200 MHz<o:p></o:p></=
-p>
-<p class=3D"MsoPlainText">Using Device: Single USRP:<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp; Device: X-Series Device<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp; Mboard 0: X310<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp; RX Channel: 0<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; RX DSP: 0<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; RX Dboard: A<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; RX Subdev: UBX RX<o:p></o:p></p=
->
-<p class=3D"MsoPlainText">&nbsp; RX Channel: 1<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; RX DSP: 1<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; RX Dboard: B<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; RX Subdev: Unknown (0xffff) - 0=
-<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp; TX Channel: 0<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; TX DSP: 0<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; TX Dboard: A<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; TX Subdev: UBX TX<o:p></o:p></p=
->
-<p class=3D"MsoPlainText">&nbsp; TX Channel: 1<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; TX DSP: 1<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; TX Dboard: B<o:p></o:p></p>
-<p class=3D"MsoPlainText">&nbsp;&nbsp;&nbsp; TX Subdev: Unknown (0xffff) - 0=
-<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Setting TX Rate: 200.000000 Msps...<o:p></o:p></p>=
-
-<p class=3D"MsoPlainText">Actual TX Rate: 200.000000 Msps...<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Setting TX Freq: 2400.000000 MHz...<o:p></o:p></p>=
-
-<p class=3D"MsoPlainText">Setting TX LO Offset: 100.000000 MHz...<o:p></o:p>=
-</p>
-<p class=3D"MsoPlainText">Actual TX Freq: 2400.000000 MHz...<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Setting TX Gain: 0.000000 dB...<o:p></o:p></p>
-<p class=3D"MsoPlainText">Actual TX Gain: 0.000000 dB...<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Checking TX: TXLO: locked ...<o:p></o:p></p>
-<p class=3D"MsoPlainText">[WARNING] [0/Radio#0] Attempting to set tick rate t=
-o 0. Skipping.<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Done!<o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><b>[ERROR] [CTRLEP] Caught exception during async m=
-essage handling: map::at<o:p></o:p></b></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">root@fmcw-sounder:/usr/local/lib/uhd/examples#<o:p=
-></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Thanks!<o:p></o:p></p>
-<p class=3D"MsoPlainText">Casey<o:p></o:p></p>
-</div>
-
-
-<div>&lt;tx_output.txt&gt;</div><span>______________________________________=
-_________</span><br><span>USRP-users mailing list -- usrp-users@lists.ettus.=
-com</span><br><span>To unsubscribe send an email to usrp-users-leave@lists.e=
-ttus.com</span><br></div></blockquote></body></html>=
-
---Apple-Mail-69107FD1-0C72-49B9-988D-92AAC45F7B04--
-
---===============5162526694140437152==
+--===============7636866629254218746==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -380,4 +363,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5162526694140437152==--
+--===============7636866629254218746==--
