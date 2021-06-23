@@ -2,148 +2,93 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B63853B1A69
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Jun 2021 14:45:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4D153B1C56
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Jun 2021 16:21:27 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8E192383F4C
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Jun 2021 08:45:03 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 96848383B9F
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Jun 2021 10:21:26 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=olifantasia.com header.i=@olifantasia.com header.b="Q17AjtPk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Drx+xD2R";
 	dkim-atps=neutral
-Received: from outbound0.mail.transip.nl (outbound0.mail.transip.nl [149.210.149.69])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8B2DC383F0F
-	for <usrp-users@lists.ettus.com>; Wed, 23 Jun 2021 08:44:16 -0400 (EDT)
-Received: from submission2.mail.transip.nl (unknown [10.100.4.71])
-	by outbound0.mail.transip.nl (Postfix) with ESMTP id 4G92yR1TtYzxPJg;
-	Wed, 23 Jun 2021 14:44:15 +0200 (CEST)
-Received: from mail.olifantasia.eu (server1.olifantasia.eu [37.97.153.37])
-	by submission2.mail.transip.nl (Postfix) with ESMTPSA id 4G92yQ0rBcz18GYx;
-	Wed, 23 Jun 2021 14:44:14 +0200 (CEST)
-Received: from [192.168.1.101] (unknown [83.80.231.114])
-	by mail.olifantasia.eu (Postfix) with ESMTPSA id EC3056000B;
-	Wed, 23 Jun 2021 14:44:13 +0200 (CEST)
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-References: <0d826d5c-bd63-51a3-1822-b02240199638@olifantasia.com>
- <CAL7q81sET5pTz5pcMHao6hZNePyO6fDLq_6Gqncgyio7Wg0PCw@mail.gmail.com>
-From: Martin <usrp-users-list@olifantasia.com>
-Message-ID: <f2716933-4069-e285-ea8f-a3bde87da428@olifantasia.com>
-Date: Wed, 23 Jun 2021 14:44:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.1
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 97EA7383A8B
+	for <usrp-users@lists.ettus.com>; Wed, 23 Jun 2021 10:20:35 -0400 (EDT)
+Received: by mail-qk1-f177.google.com with SMTP id g4so5629321qkl.1
+        for <usrp-users@lists.ettus.com>; Wed, 23 Jun 2021 07:20:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=6U1b1F37YtVYK0HqeII2yjU/wQqHzO73ay1bcPY+AAE=;
+        b=Drx+xD2RlbAWa62ZTMts3kx7l/AABIAIMVNgAwJQMapnDpFAmo5lOeALj+6iEYO/Zi
+         THpxpnWLahB2TbxhZBY0OucVHJVEdTkuXD60ttcuyV4cCYNdIwPawVRnrejcrbeqL5t8
+         BmqZx8WCbCOeclqVFc1oA8AGVwo5DmaRz85v5oQup2a3UL/rm2Lh0LXprfAnLqcisoW2
+         aOJWYPLnzCBBS89F2lcujTa/TGUZotE4Z6/3Mn4sZrqCMubJwAbw/xN5lUIcB/txA47j
+         c4YYf3zouicrbbBTmCWsPhtFMBqcx1YK9pUGugg+CtQWl2g7ac+ZVLuQ53Gr50rhcrsK
+         UZcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=6U1b1F37YtVYK0HqeII2yjU/wQqHzO73ay1bcPY+AAE=;
+        b=Uq3W0u4BoKADAtolxZAJAXOFeT6QQlfHqzI268OYOxjckN05lh/llGyZW6uaZmO3yn
+         KfrZucmXadsb/Biosb4nqNOEvMLuciAeSYY58+PJa4IRRgP/pOgeddHpxrxSllwGp9eX
+         q+0txSgHjPKX0IpFCSpUGCXZzJUpvibALYMRFDMlskvASd+8qgt7zRuqnyso/UeUqrnu
+         H4+Z1UTPoyNvBWmqGwomEUuP9hOBWG0Or74H2uepmSrYcHPfObBZ8+I375bgo18/QYyN
+         mmkSo/h1+oQE08lg3bz+fe+6SLpC3VM1YPZ72I6+1dotWfkDPwn0sPPpuYN5CufvQaoU
+         QQDg==
+X-Gm-Message-State: AOAM531moGmbX7x0yE7lIKxQ/GhsL7lTmKozr6XXiUcsAmZs9bHwEIVT
+	DWHt6EFCGBYcAIOCztEUPnj5VlpUBDSdBvAYxw/E/UeCB9Q=
+X-Google-Smtp-Source: ABdhPJxZc804W1mk73rQPcVJJsd0Kby+jFW1XN2eZwSOG7OYUrsymf0pWxHXFlM/zytPGA5QkrZw+iDd0kBHcgCWUSU=
+X-Received: by 2002:a5b:310:: with SMTP id j16mr12372734ybp.36.1624458034808;
+ Wed, 23 Jun 2021 07:20:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAL7q81sET5pTz5pcMHao6hZNePyO6fDLq_6Gqncgyio7Wg0PCw@mail.gmail.com>
-Content-Language: en-US
-X-Scanned-By: ClueGetter at submission2.mail.transip.nl
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- s=transip-a; d=olifantasia.com; t=1624452254; h=from:subject:to:cc:
- references:in-reply-to:date:mime-version:content-type;
- bh=4r0CRVGYi/utm0X5SqZcSYpAH434YNNWE3xr+j0MUR0=;
- b=Q17AjtPk6+EfgJuYy1Lq2rKohv3uhutVM/1kXWxoq4iHM3XHIbaMPrVupl7FxNu5HjPW9r
- Ms6A9oB4P4VkS6PMm2ga9gwgFRRyXaWXLpmsQsZaKKB3mtaUJ3CojZRT+cQNoXNUeU/W4X
- NogKKCUAE1uyiK2W2cxBFcP2kTGVC3BmGZwtowdLdMeA4BzQmGAV/6pdOHzr1mjqv1AMXr
- 1LlM8GrahrGtQIvFK+RRhD9lvUiIadUBO7q4DS5qVJRMIcwfTO0SACBPCPg+AcIZh7GKk2
- y/yEqhVW3tbdxaPv32od1kClU97VeDK0ReLoEeRWAcNzFzRXHVMLbA8znN3MtA==
-X-Report-Abuse-To: abuse@transip.nl
-Message-ID-Hash: WYFTHXSM2NPDKPOTNNQMW7QQFDKQRIBS
-X-Message-ID-Hash: WYFTHXSM2NPDKPOTNNQMW7QQFDKQRIBS
-X-MailFrom: usrp-users-list@olifantasia.com
+From: Daniel May <danielmay83@gmail.com>
+Date: Wed, 23 Jun 2021 09:20:24 -0500
+Message-ID: <CAKazox0Np_582yPH4wv-aK3E8RmNS6t-AR2d=uca4L+ZshfqSg@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: ILUFZ4HY3ALGRKSIIR5QAUFO4HC4Q6BR
+X-Message-ID-Hash: ILUFZ4HY3ALGRKSIIR5QAUFO4HC4Q6BR
+X-MailFrom: danielmay83@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E310 rfnoc_rx_to_file Error: rpc::timeout: Timeout of 2000ms while calling RPC function 'set_device_id'
+Subject: [USRP-users] E310 EOL Schedule?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WYFTHXSM2NPDKPOTNNQMW7QQFDKQRIBS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ILUFZ4HY3ALGRKSIIR5QAUFO4HC4Q6BR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7021043601094932293=="
 
-SGkgSm9uYXRob24sDQoNClRoYW5rcywgeW91IGFyZSByaWdodC4NCkkgYW0gbm9ybWFsbHkgd29y
-a2luZyB3aXRoIFVIRCA0LjAgb24gYm90aCBob3N0IGFuZCBkZXZpY2UuDQpCdXQgSSBmb3Jnb3Qg
-SSBoYWQgc3dhcHBlZCB0aGUgc2QtY2FyZCB3aXRoIGEgdWhkIDMuMTUgdmVyc2lvbiBmb3IgYSAN
-CnRlc3QgdGhlIHByZXZpb3VzIGRheS4NCkkgcHV0IHRoZSBVSEQgNC4wIGJhY2sgaW4gYW5kIG5v
-dyBpdCB3b3Jrcy4NCg0KQmVzdCByZWdhcmRzLA0KDQpNYXJ0aW4NCg0KT24gMjItMDYtMjAyMSAy
-MDoxMiwgSm9uYXRob24gUGVuZGx1bSB3cm90ZToNCj4gSGkgTWFydGluLA0KPiANCj4gIEZyb20g
-eW91ciBsb2dzLCBpdCBsb29rcyBsaWtlIHRoZSBFMzEwIGxvY2FsbHkgaXMgcnVubmluZyBVSEQg
-My4xNSwgYnV0IA0KPiB5b3VyIGhvc3QgY29tcHV0ZXIgaXMgcnVubmluZyBVSEQgNC4wLiBZb3Ug
-bmVlZCB0byBydW4gdGhlIHNhbWUgdmVyc2lvbiANCj4gb2YgVUhEIG9uIGJvdGggdGhlIGhvc3Qg
-YW5kIGRldmljZS4gWW91IHNob3VsZCBpbWFnZSB5b3VyIFNEIGNhcmQgdG8gVUhEIA0KPiA0LjAg
-dXNpbmcgdGhpcyBmaWxlOiANCj4gaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vYmluYXJpZXMvY2Fj
-aGUvZTN4eC9tZXRhLWV0dHVzLXY0LjAuMC4wL2UzeHhfZTMxMF9zZzFfc2RpbWdfZGVmYXVsdC12
-NC4wLjAuMC56aXAgDQo+IDxodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9iaW5hcmllcy9jYWNoZS9l
-M3h4L21ldGEtZXR0dXMtdjQuMC4wLjAvZTN4eF9lMzEwX3NnMV9zZGltZ19kZWZhdWx0LXY0LjAu
-MC4wLnppcD4uDQo+IA0KPiBKb25hdGhvbg0KPiANCj4gT24gTW9uLCBKdW4gMjEsIDIwMjEgYXQg
-MTE6NDggQU0gTWFydGluIDx1c3JwLXVzZXJzLWxpc3RAb2xpZmFudGFzaWEuY29tIA0KPiA8bWFp
-bHRvOnVzcnAtdXNlcnMtbGlzdEBvbGlmYW50YXNpYS5jb20+PiB3cm90ZToNCj4gDQo+ICAgICBI
-aSwNCj4gDQo+ICAgICBJIGFtIHRyeWluZyB0byBydW4gdGhlIFJGTm9DIGV4YW1wbGUgcmZub2Nf
-cnhfdG9fZmlsZSBvbiBhIEUzMTAgc2cxLg0KPiANCj4gICAgIFdoZW4gSSBydW4gaXQgZGlyZWN0
-bHkgb24gdGhlIEUzMTAgaGFyZHdhcmUgaXQgc3VjY2VlZHMuDQo+ICAgICBCdXQgaWYgSSBydW4g
-aXQgZnJvbSBhIGhvc3QtY29tcHV0ZXIgKGNvbm5lY3RlZCB0byB0aGUgRTMxMCBvdmVyDQo+ICAg
-ICBldGhlcm5ldCkgaXQgZmFpbHMgd2l0aDoNCj4gDQo+ICAgICBFcnJvcjogcnBjOjp0aW1lb3V0
-OiBUaW1lb3V0IG9mIDIwMDBtcyB3aGlsZSBjYWxsaW5nIFJQQyBmdW5jdGlvbg0KPiAgICAgJ3Nl
-dF9kZXZpY2VfaWQnDQo+IA0KPiAgICAgVGhlIG9ubHkgcGxhY2UgSSBmb3VuZCB0aGF0IGRvZXMg
-c2V0X2RldmljZV9pZCBpcyBpbg0KPiAgICAgaG9zdC9saWIvdXNycC9tcG1kL21wbWRfbWJfaWZh
-Y2UuY3BwDQo+IA0KPiAgICAgbXBtZF9tYm9hcmRfaW1wbDo6bXBtZF9tYl9pZmFjZTo6bXBtZF9t
-Yl9pZmFjZSgNCj4gICAgICDCoCDCoCDCoGNvbnN0IHVoZDo6ZGV2aWNlX2FkZHJfdCYgbWJfYXJn
-cywgdWhkOjpycGNfY2xpZW50OjpzcHRyIHJwYykNCj4gICAgICDCoCDCoCDCoDogX21iX2FyZ3Mo
-bWJfYXJncyksIF9ycGMocnBjKSwNCj4gICAgIF9saW5rX2lmX21ncih4cG9ydDo6bXBtZF9saW5r
-X2lmX21ncjo6bWFrZShtYl9hcmdzKSkNCj4gICAgIHsNCj4gICAgICDCoCDCoCDCoF9yZW1vdGVf
-ZGV2aWNlX2lkID0gYWxsb2NhdGVfZGV2aWNlX2lkKCk7DQo+ICAgICAgwqAgwqAgwqBVSERfTE9H
-X1RSQUNFKCJNUE1EOjpNQl9JRkFDRSIsICJBc3NpZ25pbmcgZGV2aWNlX2lkICIgPDwNCj4gICAg
-IF9yZW1vdGVfZGV2aWNlX2lkKTsNCj4gICAgICDCoCDCoCDCoF9ycGMtPm5vdGlmeV93aXRoX3Rv
-a2VuKCJzZXRfZGV2aWNlX2lkIiwgX3JlbW90ZV9kZXZpY2VfaWQpOw0KPiAgICAgfQ0KPiANCj4g
-DQo+ICAgICBCdXQgSSBhbSBub3Qgc3VyZSB3aGF0IHRoaXMgY29kZSBkb2VzLCBvciB3aHkgaXQg
-aXMgcnVuIGFuZCBmYWlscyBoZXJlLg0KPiANCj4gICAgIEhlcmUgaXMgdGhlIG91dHB1dCBvZiB0
-aGUgZmFpbGluZyByZW1vdGUgYW5kIHN1Y2NlZWRpbmcgbG9jYWwgcnVuczoNCj4gDQo+ICAgICBS
-dW5uaW5nIGZyb20gYSBob3N0LWNvbXB1dGVyIGZhaWxzOg0KPiAgICAgbmxkdWRvazFAcm9qbzov
-b3B0L3VoZDQwL3NyYy91aGQ0MC9ob3N0L2V4YW1wbGVzJA0KPiAgICAgL29wdC91aGQ0MC9saWIv
-dWhkL2V4YW1wbGVzL3Jmbm9jX3J4X3RvX2ZpbGUgLS1kdXJhdGlvbiAxLjANCj4gDQo+ICAgICBD
-cmVhdGluZyB0aGUgUkZOb0MgZ3JhcGggd2l0aCBhcmdzOiAuLi4NCj4gICAgIFtJTkZPXSBbVUhE
-XSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDkuMy4wOyBCb29zdF8xMDcxMDA7DQo+ICAgICBVSERf
-NC4wLjAuMC0xMzMtZzdlYzA0ODg2DQo+ICAgICBbSU5GT10gW01QTURdIEluaXRpYWxpemluZyAx
-IGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFyZ3M6DQo+ICAgICBtZ210X2FkZHI9MTkyLjE2
-OC4xLjEwMix0eXBlPWUzeHgscHJvZHVjdD1lMzEwX3NnMSxzZXJpYWw9RjY2MUM0LGNsYWltZWQ9
-RmFsc2UsYWRkcj0xOTIuMTY4LjEuMTAyDQo+ICAgICBbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2Vy
-XSBGb3VuZCAxIGRhdWdodGVyYm9hcmQocykuDQo+ICAgICBFcnJvcjogcnBjOjp0aW1lb3V0OiBU
-aW1lb3V0IG9mIDIwMDBtcyB3aGlsZSBjYWxsaW5nIFJQQyBmdW5jdGlvbg0KPiAgICAgJ3NldF9k
-ZXZpY2VfaWQnDQo+IA0KPiANCj4gICAgIFJ1bm5pbmcgZGlyZWN0bHkgb24gdGhlIEUzMTAgc3Vj
-Y2VlZHM6DQo+ICAgICByb290QG5pLWUzMXg6fiMgL3Vzci9saWIvdWhkL2V4YW1wbGVzL3Jmbm9j
-X3J4X3RvX2ZpbGUgLS1kdXJhdGlvbiAxLjANCj4gICAgIENyZWF0aW5nIHRoZSBVU1JQIGRldmlj
-ZSB3aXRoOiAuLi4NCj4gICAgIFtJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDgu
-Mi4wOyBCb29zdF8xMDY4MDA7DQo+ICAgICBVSERfMy4xNS4wLjAtMC1nYWVhMGUyZGUNCj4gICAg
-IFtJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5nIDEgZGV2aWNlKHMpIGluIHBhcmFsbGVsIHdpdGgg
-YXJnczoNCj4gICAgIG1nbXRfYWRkcj0xMjcuMC4wLjEsdHlwZT1lM3h4LHByb2R1Y3Q9ZTMxMF9z
-ZzEsc2VyaWFsPUY2NjFDNCxjbGFpbWVkPUZhbHNlDQo+ICAgICBbSU5GT10gW01QTS5QZXJpcGhN
-YW5hZ2VyXSBGb3VuZCAxIGRhdWdodGVyYm9hcmQocykuDQo+ICAgICBbSU5GT10gWzAvUmFkaW9f
-MF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDoNCj4gICAgIDB4MTJBRDEwMDAw
-MDAwMzMxMCkNCj4gICAgIFtJTkZPXSBbMC9ERENfMF0gSW5pdGlhbGl6aW5nIGJsb2NrIGNvbnRy
-b2wgKE5PQyBJRDogMHhEREMwMDAwMDAwMDAwMDAwKQ0KPiAgICAgW0lORk9dIFtNUE0uUGVyaXBo
-TWFuYWdlcl0gaW5pdCgpIGNhbGxlZCB3aXRoIGRldmljZSBhcmdzDQo+ICAgICBgcHJvZHVjdD1l
-MzEwX3NnMSxtZ210X2FkZHI9MTI3LjAuMC4xJy4NCj4gICAgIFtJTkZPXSBbMC9EVUNfMF0gSW5p
-dGlhbGl6aW5nIGJsb2NrIGNvbnRyb2wgKE5PQyBJRDogMHhEMEMwMDAwMDAwMDAwMDAyKQ0KPiAg
-ICAgW0lORk9dIFswL1JhZGlvXzBdIFBlcmZvcm1pbmcgQ09ERUMgbG9vcGJhY2sgdGVzdC4uLg0K
-PiAgICAgW0lORk9dIFswL1JhZGlvXzBdIENPREVDIGxvb3BiYWNrIHRlc3QgcGFzc2VkDQo+ICAg
-ICBbSU5GT10gWzAvUmFkaW9fMF0gUGVyZm9ybWluZyBDT0RFQyBsb29wYmFjayB0ZXN0Li4uDQo+
-ICAgICBbSU5GT10gWzAvUmFkaW9fMF0gQ09ERUMgbG9vcGJhY2sgdGVzdCBwYXNzZWQNCj4gICAg
-IFVzaW5nIHJhZGlvIDAsIGNoYW5uZWwgMA0KPiAgICAgU2V0dGluZyBSWCBSYXRlOiAxLjAwMDAw
-MCBNc3BzLi4uDQo+ICAgICBBY3R1YWwgUlggUmF0ZTogMS4wMDAwMDAgTXNwcy4uLg0KPiANCj4g
-ICAgIFNldHRpbmcgUlggRnJlcTogMC4wMDAwMDAgTUh6Li4uDQo+ICAgICBBY3R1YWwgUlggRnJl
-cTogNzAuMDAwMDAwIE1Iei4uLg0KPiANCj4gICAgIFNhbXBsZXMgcGVyIHBhY2tldDogMjA0NA0K
-PiAgICAgVXNpbmcgc3RyZWFtZXIgYXJnczogYmxvY2tfaWQ9MC9SYWRpb18wLGJsb2NrX3BvcnQ9
-MCxzcHA9MjA0NA0KPiAgICAgUHJlc3MgQ3RybCArIEMgdG8gc3RvcCBzdHJlYW1pbmcuLi4NCj4g
-ICAgIElzc3Vpbmcgc3RyZWFtIGNtZA0KPiAgICAgSXNzdWluZyBzdG9wIHN0cmVhbSBjbWQNCj4g
-DQo+ICAgICBEb25lIQ0KPiANCj4gICAgIFRoYW5rcyBpbiBhZHZhbmNlIGZvciBhbnkgY2x1ZS4N
-Cj4gDQo+ICAgICBCZXN0IHJlZ2FyZHMsDQo+IA0KPiAgICAgTWFydGluDQo+ICAgICBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiAgICAgVVNSUC11c2Vy
-cyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gICAgIDxtYWls
-dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQo+ICAgICBUbyB1bnN1YnNjcmliZSBzZW5k
-IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+ICAgICA8bWFp
-bHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KPiANCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0
-IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
-aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============7021043601094932293==
+Content-Type: multipart/alternative; boundary="0000000000001e14d605c56f9cb2"
+
+--0000000000001e14d605c56f9cb2
+Content-Type: text/plain; charset="UTF-8"
+
+Is there currently an EOL schedule for the E310, or will the E310 be
+available for the foreseeable future?
+
+Thanks,
+Daniel
+
+--0000000000001e14d605c56f9cb2
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr"><div>Is there currently an EOL schedule for the E310, or will the E310 be available for the foreseeable future?</div><div><br></div><div>Thanks,</div><div>Daniel<br></div></div>
+
+--0000000000001e14d605c56f9cb2--
+
+--===============7021043601094932293==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7021043601094932293==--
