@@ -2,150 +2,302 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7977A3B3B5D
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Jun 2021 05:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C78C3B3C63
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Jun 2021 07:56:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4DDA6383D63
-	for <lists+usrp-users@lfdr.de>; Thu, 24 Jun 2021 23:57:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3B6B4383D56
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Jun 2021 01:56:19 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="fHN+M9DB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=external.thalesgroup.com header.i=@external.thalesgroup.com header.b="jUNtS7kA";
 	dkim-atps=neutral
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 01F3D3809E1
-	for <usrp-users@lists.ettus.com>; Thu, 24 Jun 2021 23:57:13 -0400 (EDT)
-Received: by mail-oi1-f180.google.com with SMTP id q10so9920199oij.5
-        for <usrp-users@lists.ettus.com>; Thu, 24 Jun 2021 20:57:13 -0700 (PDT)
+Received: from thsbbfxrt01p.thalesgroup.com (thsbbfxrt01p.thalesgroup.com [192.54.144.131])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0B17F383B85
+	for <usrp-users@lists.ettus.com>; Fri, 25 Jun 2021 01:55:35 -0400 (EDT)
+Received: from thsbbfxrt01p.thalesgroup.com (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id 4GB5ny51pgz45SS;
+	Fri, 25 Jun 2021 07:55:34 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=G6HcPlJEJ1i83ZjobBIPt3jnUkOWbAxkfDYgKKBnOwQ=;
-        b=fHN+M9DB0xMJMAEt9iDa8PQqIQIph3B56q1dWXPC+KEJn50mJigpS+f7j5gArhd0p3
-         41CPlEBCwIa+1jvtzPVvA5OBKR7grfEGKmAnXz4k7L+n65JBNFXr5qfogw+MzpaU9AeO
-         Co+uyDpsVYA7EfUn9/04k/zqO6s5wtQjkgmILHCNRqz+48fY3OifjJMyulqEU29Xl6my
-         yypmDwi9UiufVLf5uzheKE1g0iPKyX6kreHMS0Tx4Rxm1wChaqSqDRT7d1Fs7QZxnvLw
-         dqWuJQx7/feoyaUp9EBezaX4QS9SOhdeZjK+fJgTjzf5wK3jY7CsKFEzFTkKbiR8tHxM
-         x/Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=G6HcPlJEJ1i83ZjobBIPt3jnUkOWbAxkfDYgKKBnOwQ=;
-        b=TV01VmfF9qFTpj2Hrnpl0ad8ALs6Z40ImooKSrZp3bnQBk2VdH0/0uXem/qEorLIDb
-         5vG1sjKALIkc4Mjt8ARzmjbQXlgLce5Vb8vseeKOily/fDBgBdRReh9n+NPR04mYCMVQ
-         +xxLZAGoMATcdHOtgJleaO14C32XpZ7tYnmW9HnPn6syY1+QTmeWOlxRgWfESS4Bog9D
-         H28rizTTDIQF5D63dTrDSZYs4pEgSavEwibuIrpVhfqQeaVB2SNr/jWkfIF2D02/tql8
-         /dxKJAErN95AaJHNwd+/i6b+Y0S8MwziOtHvi1Rh0D4j/l4eUP2qeNoHyMaeKQy+Akjj
-         VVBA==
-X-Gm-Message-State: AOAM532qftgczixtWU8pUADVTbJfmEjIV7cEFGQuKX8ljgNbTcdaY0yl
-	T8cwGhCXF5yznpylnQVIylQ/1ppQGhWh22UeFA+Z1wXm7m/jZQ==
-X-Google-Smtp-Source: ABdhPJysNgTsf3+2/+YM1C3JLdtcSb4oXpFePAfxM+X6Ooq2ywRpbMSj2mlkAxBJFWctNj2GzPrbPrk0ls1RPhPzeN0=
-X-Received: by 2002:aca:170a:: with SMTP id j10mr10184710oii.23.1624593433252;
- Thu, 24 Jun 2021 20:57:13 -0700 (PDT)
+	d=external.thalesgroup.com; s=xrt20181201; t=1624600534;
+	bh=QfBnkbYytNZ2zmtMXAuhYSw1HODX7koIbsUhCsKT6sg=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:From;
+	b=jUNtS7kAXui/VlJj7w0fhllo3LpbyFjPtcaIpIpyDosOK4KmYiY7Kz1aNiKb6GFlP
+	 4Z4ZBMDQHvCK6+NNAZYWXL+MpRi1kYJW27Itry8c+GIAalnAWXsQyvujAfva5CWF41
+	 QV+fbcQVWb7Zvu6JGaDpyvnoAAiV10/2fYNU7r7TW0qyOB1rhr6ljNYR8je5XKCX+f
+	 /c788Rg3TxypXCvugD92I3iK0pzYTrp6bzrE1mKI2nS+NqoMiTxFowfBq4LCn1YJPF
+	 hTw5R0AiLw+Lin3mGmb5JO5rx+MR1cf0IiCgJayr4TPF22yt3qI/yZjdbzADI49MVM
+	 g6ridb7javVaA==
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+	"discuss-gnuradio@gnu.org" <discuss-gnuradio@gnu.org>
+Thread-Topic: LibUHD - Python API problem (RFNoC not found)
+Thread-Index: AddphrXYq0YTs6cFTv+kz9XkgAEedQ==
+Date: Fri, 25 Jun 2021 05:55:33 +0000
+Message-ID: <2ea431f8bcfc4d1eb4431e45172401d3@external.thalesgroup.com>
+Accept-Language: fr-FR, en-US
+Content-Language: fr-FR
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-pmwin-version: 4.0.3, Antivirus-Engine: 3.82.0, Antivirus-Data: 5.85
 MIME-Version: 1.0
-References: <CAKHaR3ngMGQGFLtNSnHstCT5XuYZqQo1j7VNXcR7jA0Rv9QP+g@mail.gmail.com>
-In-Reply-To: <CAKHaR3ngMGQGFLtNSnHstCT5XuYZqQo1j7VNXcR7jA0Rv9QP+g@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Thu, 24 Jun 2021 22:56:58 -0500
-Message-ID: <CAFche=hDE6qUZg7PpaiLvvPNrJd+Ph1E6DW1O0aBodUYp76Xew@mail.gmail.com>
-To: Dario Pennisi <dario@iptronix.com>
-Message-ID-Hash: DC4QX6B65FVXDFWSN6EEPT5P47NCQIRX
-X-Message-ID-Hash: DC4QX6B65FVXDFWSN6EEPT5P47NCQIRX
-X-MailFrom: wade.fife@ettus.com
+Message-ID-Hash: GFUNIQQWKY5TBACRXPSVH4H7JPDHREEB
+X-Message-ID-Hash: GFUNIQQWKY5TBACRXPSVH4H7JPDHREEB
+X-MailFrom: frederique.courant@external.thalesgroup.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD 4.0 OOT control port inaccessible when routed statically
+Subject: [USRP-users] LibUHD - Python API problem (RFNoC not found)
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DC4QX6B65FVXDFWSN6EEPT5P47NCQIRX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GFUNIQQWKY5TBACRXPSVH4H7JPDHREEB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4423481110151243507=="
+From: COURANT Frederique - Contractor via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: COURANT Frederique - Contractor <frederique.courant@external.thalesgroup.com>
+Content-Type: multipart/mixed; boundary="===============3864728798552460088=="
 
---===============4423481110151243507==
-Content-Type: multipart/alternative; boundary="0000000000007e6ac905c58f22e7"
+--===============3864728798552460088==
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_2ea431f8bcfc4d1eb4431e45172401d3externalthalesgroupcom_"
 
---0000000000007e6ac905c58f22e7
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Dario,
-
-Could you share the YAML description of the FPGA and your block with me,
-and maybe the generated rfnoc_image_core Verilog file? I'd like to
-understand what's going on.
-
-Thanks,
-
-Wade
-
-On Thu, Jun 24, 2021 at 8:50 AM Dario Pennisi <dario@iptronix.com> wrote:
-
-> Hi,
-> i developed a rfnoc block based on uhd 4.0. this block has two input ports
-> meant to be connected statically to the two radios and to have a single
-> output port that is meant to go to the PC.
-> if i connect the radio0 to in0 and an endpoint to in1 so that i can either
-> feed data from the PC or from radio1 everything works however if i connect
-> radio0 to in0 and radio1 to in1 statically gnuradio won't start saying
-> there's no route to the control port.
-> I see that the generated verilog file has a control port connection in the
-> control axi crossbar however for some reason UHD seems not to know how to
-> reach it.
-> Is there any possibility to handle the case of connecting everything
-> statically? i really need to save as many resources as possible in the
-> final build.
-> thanks,
->
-> Dario Pennisi
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000007e6ac905c58f22e7
-Content-Type: text/html; charset="UTF-8"
+--_000_2ea431f8bcfc4d1eb4431e45172401d3externalthalesgroupcom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Dario,</div><div><br></div><div>Could you share th=
-e YAML description of the FPGA and your block with me, and maybe the genera=
-ted rfnoc_image_core Verilog file? I&#39;d like to understand what&#39;s go=
-ing on.</div><div><br></div><div>Thanks,</div><div><br></div><div>Wade<br><=
-/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Thu, Jun 24, 2021 at 8:50 AM Dario Pennisi &lt;<a href=3D"mailto:da=
-rio@iptronix.com">dario@iptronix.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<div>i developed a =
-rfnoc block based on uhd 4.0. this block has two input ports meant to be co=
-nnected statically to the two radios and to have a single output port that =
-is meant to go to the PC.</div><div>if i connect the radio0 to in0 and an e=
-ndpoint to in1 so that i can either feed data from the PC or from radio1 ev=
-erything works however if i connect radio0 to in0 and radio1 to in1 statica=
-lly gnuradio won&#39;t start saying there&#39;s no route to the control por=
-t.</div><div>I see that the generated verilog file has a control port conne=
-ction in the control axi crossbar however for some reason UHD seems not to =
-know how to reach it.</div><div>Is there any possibility to handle the case=
- of connecting everything statically? i really need to save as many resourc=
-es as possible in the final build.</div><div>thanks,</div><div><br clear=3D=
-"all"><div><div dir=3D"ltr"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0=
-);font-family:Calibri,sans-serif;font-size:13.3333px">Dario Pennisi</span><=
-br style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.33=
-33px"><br></div></div></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+Hello users,
 
---0000000000007e6ac905c58f22e7--
+When I try to install UHD 3.14.0.0 on RedHat 7.5 system, I can't enabled co=
+mponents LibUHD - Python API. For GNU Radio's installation I don't have pro=
+blem.
+For the install I have follow this tutorials :
 
---===============4423481110151243507==
+*       https://files.ettus.com/manual_archive/v3.14.0.0/html/page_build_gu=
+ide.html#build_instructions_unix
+
+*       https://www.gnuradio.org/doc/doxygen-3.7/build_guide.html#dependenc=
+ies
+I have try to add -DENABLE_PYTHON_API=3DON.
+
+I have also install python3-devel like it is mentioned at this link : USRP =
+Hardware Driver and USRP Manual: Python API (ettus.com)<https://files.ettus=
+.com/manual/page_python.html>
+
+If someone has ever had this problem could you explain me how to solve this=
+ please, because when I try to build my block I cannot find ettus and after=
+ if I try to build gr-ettus I cannot find RFNoC. So I suppose that the prob=
+lem is LibUHD - Python API but I not sure. When I launch my flowgraph GNU R=
+adio doesn't recognize Radio, DDC, DUC and my own block that I can't build.
+My program works on Ubuntu 18.04 system with UHD-3.14.0.0 and GNU Radio 3.7=
+.11.1.
+
+Thanks for your help.
+
+Regards.
+
+Fred
+
+--_000_2ea431f8bcfc4d1eb4431e45172401d3externalthalesgroupcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:484515225;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1723261954 67895297 67895299 67895301 67895297 67895=
+299 67895301 67895297 67895299 67895301;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello users,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">When I try to install UHD 3.14.=
+0.0 on RedHat 7.5 system, I can&#8217;t enabled components LibUHD &#8211; P=
+ython API. For GNU Radio&#8217;s installation I don&#8217;t have problem.<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">For the install I have follow t=
+his tutorials :<o:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:Sym=
+bol"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><a href=3D"https://files.ettus.com/manual_ar=
+chive/v3.14.0.0/html/page_build_guide.html#build_instructions_unix"><span l=
+ang=3D"EN-US">https://files.ettus.com/manual_archive/v3.14.0.0/html/page_bu=
+ild_guide.html#build_instructions_unix</span></a><span lang=3D"EN-US"><o:p>=
+</o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
+l1 lfo1"><![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:Sym=
+bol"><span style=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quo=
+t;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><a href=3D"https://www.gnuradio.org/doc/doxy=
+gen-3.7/build_guide.html#dependencies"><span lang=3D"EN-US">https://www.gnu=
+radio.org/doc/doxygen-3.7/build_guide.html#dependencies</span></a><span lan=
+g=3D"EN-US"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have try to add -DENABLE_PYTH=
+ON_API=3DON.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have also install python3-dev=
+el like it is mentioned at this link :
+</span><a href=3D"https://files.ettus.com/manual/page_python.html"><span la=
+ng=3D"EN-US">USRP Hardware Driver and USRP Manual: Python API (ettus.com)</=
+span></a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">If someone has ever had this pr=
+oblem could you explain me how to solve this please, because when I try to =
+build my block I cannot find ettus and after if I try to build gr-ettus I c=
+annot find RFNoC. So I suppose that
+ the problem is LibUHD &#8211; Python API but I not sure. When I launch my =
+flowgraph GNU Radio doesn&#8217;t recognize Radio, DDC, DUC and my own bloc=
+k that I can&#8217;t build.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">My program works on Ubuntu 18.0=
+4 system with UHD-3.14.0.0 and GNU Radio 3.7.11.1.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks for your help.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Fred<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_2ea431f8bcfc4d1eb4431e45172401d3externalthalesgroupcom_--
+
+--===============3864728798552460088==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -155,4 +307,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4423481110151243507==--
+--===============3864728798552460088==--
