@@ -2,293 +2,252 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8608B3B9D44
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Jul 2021 10:01:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B032A3BA0D2
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Jul 2021 15:00:45 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5BF603845D7
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Jul 2021 04:01:21 -0400 (EDT)
-Received: from cc.mail.osaka-u.ac.jp (cc-ext.ccc.osaka-u.ac.jp [133.1.138.214])
-	by mm2.emwd.com (Postfix) with SMTP id 99ECA38457E
-	for <usrp-users@lists.ettus.com>; Fri,  2 Jul 2021 04:00:29 -0400 (EDT)
-Received: (qmail 628 invoked by uid 0); 2 Jul 2021 17:00:26 +0900
-X-Qmail-Scanner-Diagnostics: from 106.154.131.140 (viktor+ist@106.154.131.140) by m27 (envelope-from <viktor@ist.osaka-u.ac.jp>, uid 0) with qmail-scanner-2.11
- (clamdscan: 0.99.4/26096.  
- Clear:RC:0(106.154.131.140):.
- Processed in 0.09504 secs); 02 Jul 2021 08:00:26 -0000
-X-Qmail-Scanner-Mail-From: viktor@ist.osaka-u.ac.jp via m27
-X-Qmail-Scanner: 2.11 (Clear:RC:0(106.154.131.140):. Processed in 0.09504 secs)
-Received: from unknown (HELO v-prec.higashi-local) (viktor+ist@106.154.131.140)
-  by 172.30.102.167 with SMTP; 2 Jul 2021 17:00:25 +0900
-To: usrp-users@lists.ettus.com
-References: <CAAg5+Mx13UALQeVb1mYs71NREpXHnJ3s5cMW--3FL9Ox81PWHA@mail.gmail.com>
-From: Viktor Erdelyi <viktor@ist.osaka-u.ac.jp>
-Message-ID: <76b322bd-be80-cd4a-ef43-9ef752edbc93@ist.osaka-u.ac.jp>
-Date: Fri, 2 Jul 2021 17:00:25 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <CAAg5+Mx13UALQeVb1mYs71NREpXHnJ3s5cMW--3FL9Ox81PWHA@mail.gmail.com>
+	by mm2.emwd.com (Postfix) with ESMTP id 1EBAA384623
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Jul 2021 09:00:41 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=outlook.com header.i=@outlook.com header.b="IdKuMtk8";
+	dkim-atps=neutral
+Received: from APC01-PU1-obe.outbound.protection.outlook.com (mail-oln040092254077.outbound.protection.outlook.com [40.92.254.77])
+	by mm2.emwd.com (Postfix) with ESMTPS id 27840384520
+	for <USRP-users@lists.ettus.com>; Fri,  2 Jul 2021 08:59:52 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g8ojZe/OEHDR3V6CfUDouI9H+vFaK9599rNVcWsf2hx1DbjATr+p+1MD+zr0eh69cQsclHzwNVYe7vGQNitY39uaLE4vi6R6ZsezXHwV/wndeYNu5xQ40bEx9fGRXeytNMNUKDW0Dx5iM7QaFco+gOiYKJjRQlxQ8ultDZup2sBMei0wc0oG6j8HX0A0ZUsDdCXsOmtxAEIn2w1GZUFnu8k0rGKQqtJC2N/94CcIUqhmCGiC8Wj18NS6KEugSDRQUS3JYnlxuH5Pzu+T6XBsWOYYnQ0F4gmj49Gar4uycVEoIbuS6ufq0vaZKW/fg+iqNSD0gqYMqHF0tjOQyVQy5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z/l/QS8rUFszJZ7yp6gYF8tc3euIf+aRER0dmgrW5fo=;
+ b=Ad+aEnq11V4NR3N1gfV7znXptLxTFsBahbEVwwrau5v7etU/4Szam3QBZOCWMmr8HozZMrMv3TpYCOhmagHowmu1yW2steo0IkD5G3OBy10rjjHkEQUrOSMgWzpm1QNaUuvjvSonBsasoOxfS6JiRilQBE0cmrxZEZosHGMnPfsaHI+BTuoB1yYmMLKwarKG4lZHrb5j00+STysc8c32baSguPy4aNqqKiiwCoCoUDEaN9M6GxswFLVFFhWkHx7oAL3nfpulFqmF+XW2CaTRIxShOjVcmIjFLsK/IKvw6KpKMfTnBwtklMWrZ83KWfauMiOon/gs+3qSlfYWz6F3gg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z/l/QS8rUFszJZ7yp6gYF8tc3euIf+aRER0dmgrW5fo=;
+ b=IdKuMtk8EoNR49LJcDN3oGjAzsiwaabmjnoTbK4H74oKLBGX+regFQbm2CrwtXASOHu28HOxS2nm+4lPQyqzs8IjVXrKXLRMBbexSCHe52GmlMDaj4kY/KbGL5lNs3X1LeMZNmUVUVQUDRNU2a8M8ABvs6a8zzH4tNqDjCXNRZAbeCKBDGhPW0WBYDw9Qv+5Uy+FgA7TcT4BkSquXzPe4iJ7hzZFt472zM9T57RHDKiXGgTBJRBFwKt1tVh37BrkUtp7nDPqJ5poJaajxe67xxCuhtnxA063GiJELNyOzdKqBtYrVYs3GZTgha2qth7cDtkyoJgdpYKY3neFpbA4OQ==
+Received: from SL2P216CA0047.KORP216.PROD.OUTLOOK.COM (2603:1096:100:1a::33)
+ by SG2PR06MB3548.apcprd06.prod.outlook.com (2603:1096:4:96::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22; Fri, 2 Jul
+ 2021 12:59:49 +0000
+Received: from PU1APC01FT049.eop-APC01.prod.protection.outlook.com
+ (2603:1096:100:1a:cafe::53) by SL2P216CA0047.outlook.office365.com
+ (2603:1096:100:1a::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22 via Frontend
+ Transport; Fri, 2 Jul 2021 12:59:48 +0000
+Received: from TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM (2a01:111:e400:7ebe::4f)
+ by PU1APC01FT049.mail.protection.outlook.com (2a01:111:e400:7ebe::265) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22 via Frontend
+ Transport; Fri, 2 Jul 2021 12:59:48 +0000
+Received: from TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::5c59:e887:13d9:1941]) by TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM
+ ([fe80::5c59:e887:13d9:1941%4]) with mapi id 15.20.4287.026; Fri, 2 Jul 2021
+ 12:59:48 +0000
+From: Oscar Pablo <oscar_pabloo@outlook.com>
+To: =?Windows-1252?Q?Marcus_M=FCller?= <marcus.mueller@ettus.com>,
+	"usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+Thread-Topic: [USRP-users] how to get time of last pps during streaming
+Thread-Index: AQHXT3t89FZ0ao1brUOSkoP5IsRBrarxe6kAgD5kt3Q=
+Date: Fri, 2 Jul 2021 12:59:48 +0000
+Message-ID: 
+ <TYYP286MB14079C6F1D2249EA826A090BF01F9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>
+References: 
+ <TYYP286MB1407EBA5E5C751049DE906B5F0279@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>,<3e0a6f7f-ea86-91d4-8553-3ac641aa7774@ettus.com>
+In-Reply-To: <3e0a6f7f-ea86-91d4-8553-3ac641aa7774@ettus.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-matriXscan-msec-AV: Clean
-X-odins-Action: Approve
-X-odins-spam: Uncategorized
-Message-ID-Hash: IELIAJHDDXTAKI3LXTZ7OIFGYSVAJIUP
-X-Message-ID-Hash: IELIAJHDDXTAKI3LXTZ7OIFGYSVAJIUP
-X-MailFrom: viktor@ist.osaka-u.ac.jp
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: 
+ OriginalChecksum:EB040F6F1E9E4095B327D773AC72449D3AE3E4CC0371540CB9341DDB6D01B13C;UpperCasedChecksum:7E28C81E0ACF2DEB1604BC70A75755264B0CF4589AA8E98D556EC7450D887E83;SizeAsReceived:6971;Count:43
+x-tmn: [VZ9LvjoiVVe77IwzKrwpJhFGoM+y3D0T]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 43
+x-eopattributedmessage: 0
+x-ms-office365-filtering-correlation-id: 909b86df-50bc-4f5a-ea46-08d93d5945bb
+x-ms-traffictypediagnostic: SG2PR06MB3548:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ bEnlc5e6nE4tPrxaeJUAA21Ntqdr463yRMMwFxn/NRRCrWFBmBlBZoPNf1Fk6eTYwHEB26RrxCpdSdanI8Q8Hy6e/TIK7fS3Keqa6wUvgE/YVnWhd+xBdTXRYSMjD9+oYbOhL21z+hXFAgXoUR05E4n6YFw3UJ2DgfiRYUreHMTWIKXm4lBuuafn4Xifcq55GZ0L17pVDBjR8eMAoDt3ZxcxyrPU5gyv4J24lsT9Khcd32MnyDnNf7RJWW5mPbK0XIVnpl7QayfYw6xSfukqRnyb36HY52ZdNY/4z0XZpdzVAf1vljg2Iio6mAvMpaJWYXhSCNVZtIDVnhZbLFAjjdz/t5QwIMJJhkd/ar6gXyPzYi8qU5JIntfD6EkrxCA9qIBt4f8Dw7iCj9bcpH8LgmcUO2JvrgvyKqcVFmXg3gOgUg9bSIjvKm2JLL+QuFFZ
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ Gob6QN+wc1zZeYQhRg7AHq2mF0CiDcpbcpjbT17f0ysW3Q499qWAJHRFVEmbjsgp/8hkmxGMEr4LpzpP3UV/yWzMsZBa7/OgJd5W0eIoeO8xzR6hrig9kZDsxgmATGWVn1bgYTDPPd3DXlER3hQxwA==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT049.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 909b86df-50bc-4f5a-ea46-08d93d5945bb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2021 12:59:48.0444
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB3548
+Message-ID-Hash: GSAOTDOCLP4BA5KQBHSUR67WULMHD5QB
+X-Message-ID-Hash: GSAOTDOCLP4BA5KQBHSUR67WULMHD5QB
+X-MailFrom: oscar_pabloo@outlook.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD 4.1.0.0 released!
+Subject: [USRP-users] Re: how to get time of last pps during streaming
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IELIAJHDDXTAKI3LXTZ7OIFGYSVAJIUP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZDXIZ7JJVNCGJV67P4RO7GP5FULVEQLN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3207331740942534715=="
+Content-Type: multipart/mixed; boundary="===============5522365801905268165=="
 
-This is a multi-part message in MIME format.
---===============3207331740942534715==
-Content-Type: multipart/alternative;
- boundary="------------B5C1E7C1DEFED5F3EAFD3EB3"
+--===============5522365801905268165==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_TYYP286MB14079C6F1D2249EA826A090BF01F9TYYP286MB1407JPNP_"
 
-This is a multi-part message in MIME format.
---------------B5C1E7C1DEFED5F3EAFD3EB3
-Content-Type: text/plain; charset=utf-8; format=flowed
+--_000_TYYP286MB14079C6F1D2249EA826A090BF01F9TYYP286MB1407JPNP_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Dear all,
+HI Marcus,
+this timestamp in the metadata is not the accurate timestamp this timestamp=
+ is computed from the the sample count so the accuracy is depend on the acc=
+uracy of the on board crystal. so why i want to know the time of last pps b=
+ecause usrp do not keep the time sync to PPS. the sync only happen when set=
+ the time of PPS. for example when set next pps time to 0 seconds then afte=
+r 1 hour the pps time should be 3600 seconds but for the error of the on bo=
+ard crystal so the pps time is 3600+-error. so we need to keep to know the =
+time of pps for long time sync.
 
-Has the LO sharing API changed in UHD 4.1? I have used the following=20
-code in UHD 4.0 to share LOs on a USRP X310 with 2 TwinRX installed, and=20
-it worked (all 4 channels were in sync, i.e. more or less consistent=20
-phase offset). Now if I switch to UHD 4.1, channels 0 and 1 keep=20
-drifting away from channels 2 and 3. It seems like the RF A and RF B=20
-frontends are not in sync, but the 2 channels within them are in sync.
 
-// based on https://github.com/EttusResearch/uhd/issues/237 usrp->set_rx_=
-lo_export_enabled(true,uhd::usrp::multi_usrp::ALL_LOS,0);
-usrp->set_rx_lo_source("companion",uhd::usrp::multi_usrp::ALL_LOS,1);
-usrp->set_rx_lo_source("external",uhd::usrp::multi_usrp::ALL_LOS,2);
-usrp->set_rx_lo_source("external",uhd::usrp::multi_usrp::ALL_LOS,3);
+________________________________
+From: Marcus M=FCller <marcus.mueller@ettus.com>
+Sent: Sunday, May 23, 2021 7:53 PM
+To: Oscar Pablo <oscar_pabloo@outlook.com>; usrp-users@lists.ettus.com <USR=
+P-users@lists.ettus.com>
+Subject: Re: [USRP-users] how to get time of last pps during streaming
 
-Thanks,
-Viktor
+Hi Oscar,
 
-On 7/1/21 11:33 PM, Aaron Rossetto wrote:
-> Hello USRP community,
->
-> On behalf on everyone at NI/Ettus Research, I am very proud to=20
-> announce the release of UHD 4.1, the latest version of the USRP=20
-> Hardware Driver! As my colleague Haydn Nelson posted to the list=20
-> earlier in the week, UHD 4.1 offers support for the newest member of=20
-> the USRP family, the NI Ettus USRP X410. This new generation of USRP=20
-> provides the highest performance of any USRP to date, sporting 4x4=20
-> TX/RX channels, 400 MHz instantaneous bandwidth per channel, and a=20
-> tunable range from 1 MHz to 7.2 GHz, to name just a few of its=20
-> best-in-class features. Check out the Ettus Research website[1] to=20
-> learn more about the X410. Beyond support for the X410, however, UHD=20
-> 4.1 also provides numerous bug fixes and stability improvements=20
-> benefitting the entire stable of USRP devices. See the changelog=20
-> associated with the v4.1.0.0 tag[2] for a more comprehensive list of=20
-> changes.
->
-> While=C2=A0we strive to ensure the highest quality of UHD releases, it =
-is=20
-> possible that some gremlins may have found their way into the process.=20
-> We appreciate your patience and understanding as we shake out any=20
-> remaining bugs. If you encounter problems, please let us know by=20
-> filing a issue against UHD on the GitHub repo[3] or by posting to the=20
-> USRP-users mailing list so that we can get it resolved.
->
-> Finally, we hope to see you in person or virtually at GNU Radio=20
-> Conference 2021[4], taking place 20-24 September 2021.
->
-> With best regards,
-> Aaron Rossetto
->
-> [1]=20
-> https://www.ettus.com/introducing-the-most-advanced-sdr-the-ni-ettus-us=
-rp-x410/=20
-> <https://www.ettus.com/introducing-the-most-advanced-sdr-the-ni-ettus-u=
-srp-x410/>
-> [2] https://github.com/EttusResearch/uhd/releases/tag/v4.1.0.0=20
-> <https://github.com/EttusResearch/uhd/releases/tag/v4.1.0.0>
-> [3] https://github.com/EttusResearch/uhd/issues/=20
-> <https://github.com/EttusResearch/uhd/issues/>
-> [4] https://events.gnuradio.org/event/8/=20
-> <https://events.gnuradio.org/event/8/>
+
+the metadata contains a timestamp. That's literally a timestamp =96 If you =
+know the time at
+*any* PPS, for example because you set it, then you can directly infer the =
+time at the
+last PPS from the timestamp.
+
+However, usually people care about the time of a sample, not the time at th=
+e last PPS.
+
+
+Best regards,
+
+Marcus
+
+On 23.05.21 04:36, Oscar Pablo wrote:
+> Hi,
+> i want to know the time of each pps during rx streaming. i don't know if =
+i call
+> get_time_last_pps will cause the overload? is there a way to let uhd put =
+time of last
+> pps in the meta data of the received data?
 >
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---------------B5C1E7C1DEFED5F3EAFD3EB3
-Content-Type: text/html; charset=utf-8
+--_000_TYYP286MB14079C6F1D2249EA826A090BF01F9TYYP286MB1407JPNP_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Dear all,</p>
-    <p>Has the LO sharing API changed in UHD 4.1? I have used the
-      following code in UHD 4.0 to share LOs on a USRP X310 with 2
-      TwinRX installed, and it worked (all 4 channels were in sync, i.e.
-      more or less consistent phase offset). Now if I switch to UHD 4.1,
-      channels 0 and 1 keep drifting away from channels 2 and 3. It
-      seems like the RF A and RF B frontends are not in sync, but the 2
-      channels within them are in sync.<br>
-    </p>
-    <pre style=3D"background-color:#ffffff;color:#080808;font-family:'Jet=
-Brains Mono',monospace;font-size:11.3pt;"><span style=3D"color:#8c8c8c;fo=
-nt-style:italic;">// based on <a class=3D"moz-txt-link-freetext" href=3D"=
-https://github.com/EttusResearch/uhd/issues/237">https://github.com/Ettus=
-Research/uhd/issues/237</a>
-</span><span style=3D"color:#660e7a;">usrp</span><span style=3D"color:#00=
-8080;">-&gt;</span>set_rx_lo_export_enabled(<span style=3D"color:#0033b3;=
-">true</span>, <span style=3D"color:#008080;">uhd</span>::<span style=3D"=
-color:#008080;">usrp</span>::<span style=3D"color:#008080;">multi_usrp</s=
-pan>::<span style=3D"color:#660e7a;">ALL_LOS</span>, <span style=3D"color=
-:#1750eb;">0</span>);
-<span style=3D"color:#660e7a;">usrp</span><span style=3D"color:#008080;">=
--&gt;</span>set_rx_lo_source(<span style=3D"color:#067d17;">"companion"</=
-span>, <span style=3D"color:#008080;">uhd</span>::<span style=3D"color:#0=
-08080;">usrp</span>::<span style=3D"color:#008080;">multi_usrp</span>::<s=
-pan style=3D"color:#660e7a;">ALL_LOS</span>, <span style=3D"color:#1750eb=
-;">1</span>);
-<span style=3D"color:#660e7a;">usrp</span><span style=3D"color:#008080;">=
--&gt;</span>set_rx_lo_source(<span style=3D"color:#067d17;">"external"</s=
-pan>, <span style=3D"color:#008080;">uhd</span>::<span style=3D"color:#00=
-8080;">usrp</span>::<span style=3D"color:#008080;">multi_usrp</span>::<sp=
-an style=3D"color:#660e7a;">ALL_LOS</span>, <span style=3D"color:#1750eb;=
-">2</span>);
-<span style=3D"color:#660e7a;">usrp</span><span style=3D"color:#008080;">=
--&gt;</span>set_rx_lo_source(<span style=3D"color:#067d17;">"external"</s=
-pan>, <span style=3D"color:#008080;">uhd</span>::<span style=3D"color:#00=
-8080;">usrp</span>::<span style=3D"color:#008080;">multi_usrp</span>::<sp=
-an style=3D"color:#660e7a;">ALL_LOS</span>, <span style=3D"color:#1750eb;=
-">3</span>);</pre>
-    <div class=3D"moz-cite-prefix">Thanks,</div>
-    <div class=3D"moz-cite-prefix">Viktor<br>
-    </div>
-    <div class=3D"moz-cite-prefix"><br>
-    </div>
-    <div class=3D"moz-cite-prefix">On 7/1/21 11:33 PM, Aaron Rossetto
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAAg5+Mx13UALQeVb1mYs71NREpXHnJ3s5cMW--3FL9Ox81PWHA@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">Hello
-          USRP community,</div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f"><br>
-        </div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">On
-          behalf on everyone at NI/Ettus Research, I am very proud to
-          announce the release of UHD 4.1, the latest version of the
-          USRP Hardware Driver! As my colleague Haydn Nelson posted to
-          the list earlier in the week, UHD 4.1 offers support for the
-          newest member of the USRP family, the NI Ettus USRP X410. This
-          new generation of USRP provides the highest performance of any
-          USRP to date, sporting 4x4 TX/RX channels, 400 MHz
-          instantaneous bandwidth per channel, and a tunable range from
-          1 MHz to 7.2 GHz, to name just a few of its best-in-class
-          features. Check out the Ettus Research website[1] to learn
-          more about the X410. Beyond support for the X410, however, UHD
-          4.1 also provides numerous bug fixes and stability
-          improvements benefitting the entire stable of USRP devices.
-          See the changelog associated with the v4.1.0.0 tag[2] for a
-          more comprehensive list of changes.<br>
-        </div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f"><br>
-        </div>
-        <div><span class=3D"gmail_default"
-            style=3D"font-family:arial,sans-serif">While</span><span
-            class=3D"gmail_default" style=3D"font-family:arial,sans-serif=
-">=C2=A0we
-            strive to ensure the highest quality of UHD releases, it is
-            possible that some gremlins may have found their way into
-            the process. We appreciate your patience and understanding
-            as we shake out any remaining bugs. If you encounter
-            problems, please let us know by filing a issue against UHD
-            on the GitHub repo[3] or by posting to the USRP-users
-            mailing list so that we can get it resolved.<br>
-          </span></div>
-        <div><span class=3D"gmail_default"
-            style=3D"font-family:arial,sans-serif"><br>
-          </span></div>
-        <div><span class=3D"gmail_default"
-            style=3D"font-family:arial,sans-serif">Finally, we hope to se=
-e
-            you in person or virtually at GNU Radio Conference 2021[4],
-            taking place 20-24 September 2021.<br>
-          </span></div>
-        <div><span class=3D"gmail_default"
-            style=3D"font-family:arial,sans-serif"><br>
-          </span></div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">With
-          best regards,</div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">Aaron
-          Rossetto<br>
-        </div>
-        <br>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">[1]
-          <a
-href=3D"https://www.ettus.com/introducing-the-most-advanced-sdr-the-ni-et=
-tus-usrp-x410/"
-            moz-do-not-send=3D"true">https://www.ettus.com/introducing-th=
-e-most-advanced-sdr-the-ni-ettus-usrp-x410/</a></div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">[2]
-          <a
-            href=3D"https://github.com/EttusResearch/uhd/releases/tag/v4.=
-1.0.0"
-            moz-do-not-send=3D"true">https://github.com/EttusResearch/uhd=
-/releases/tag/v4.1.0.0</a></div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">[3]
-          <a href=3D"https://github.com/EttusResearch/uhd/issues/"
-            moz-do-not-send=3D"true">https://github.com/EttusResearch/uhd=
-/issues/</a></div>
-        <div class=3D"gmail_default" style=3D"font-family:arial,sans-seri=
-f">[4]
-          <a href=3D"https://events.gnuradio.org/event/8/"
-            moz-do-not-send=3D"true">https://events.gnuradio.org/event/8/=
-</a></div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+HI Marcus,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+this timestamp in the metadata is not the accurate timestamp this timestamp=
+ is computed from the the sample count so the accuracy is depend on the acc=
+uracy of the on board crystal. so why i want to know the time of last pps b=
+ecause usrp do not keep the time
+ sync to PPS. the sync only happen when set the time of PPS. for example wh=
+en set next pps time to 0 seconds then after 1 hour the pps time should be =
+3600 seconds but for the error of the on board crystal so the pps time is 3=
+600+-error. so we need to keep to
+ know the time of pps for long time sync.<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Marcus M=FCller &lt=
+;marcus.mueller@ettus.com&gt;<br>
+<b>Sent:</b> Sunday, May 23, 2021 7:53 PM<br>
+<b>To:</b> Oscar Pablo &lt;oscar_pabloo@outlook.com&gt;; usrp-users@lists.e=
+ttus.com &lt;USRP-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] how to get time of last pps during streami=
+ng</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
+>
+<div class=3D"PlainText">Hi Oscar,<br>
+<br>
+<br>
+the metadata contains a timestamp. That's literally a timestamp =96 If you =
+know the time at<br>
+*any* PPS, for example because you set it, then you can directly infer the =
+time at the<br>
+last PPS from the timestamp.<br>
+<br>
+However, usually people care about the time of a sample, not the time at th=
+e last PPS.<br>
+<br>
+<br>
+Best regards,<br>
+<br>
+Marcus<br>
+<br>
+On 23.05.21 04:36, Oscar Pablo wrote:<br>
+&gt; Hi,<br>
+&gt; i want to know the time of each pps during rx streaming. i don't know =
+if i call<br>
+&gt; get_time_last_pps will cause the overload? is there a way to let uhd p=
+ut time of last<br>
+&gt; pps in the meta data of the received data?<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- usrp-users@lists.ettus.com<br>
+&gt; To unsubscribe send an email to usrp-users-leave@lists.ettus.com<br>
+</div>
+</span></font></div>
+</div>
+</body>
 </html>
 
---------------B5C1E7C1DEFED5F3EAFD3EB3--
+--_000_TYYP286MB14079C6F1D2249EA826A090BF01F9TYYP286MB1407JPNP_--
 
---===============3207331740942534715==
+--===============5522365801905268165==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -298,4 +257,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3207331740942534715==--
+--===============5522365801905268165==--
