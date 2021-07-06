@@ -2,250 +2,121 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFD433BC487
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 03:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FEB43BC4A3
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 03:40:17 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4D68D383FCE
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Jul 2021 21:12:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 09FF6383EC2
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Jul 2021 21:40:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=outlook.com header.i=@outlook.com header.b="VRzg8S2Z";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=iptronix.com header.i=@iptronix.com header.b="BGQQkryK";
 	dkim-atps=neutral
-Received: from JPN01-OS2-obe.outbound.protection.outlook.com (mail-os2jpn01olkn0150.outbound.protection.outlook.com [104.47.92.150])
-	by mm2.emwd.com (Postfix) with ESMTPS id B6FAC383EAA
-	for <usrp-users@lists.ettus.com>; Mon,  5 Jul 2021 21:11:51 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ReK8cZoG0YeQpb2oxN6MX2AOJIYr6xq1vkQJOEE8woIKcHRstvFWDi3yNtB/F31F8itssotRBur/OIY6zdLHDIKG05aJs0zLQhdkRd6Wksf5BGAHyddOQJUUdI5t2SGSjK7hIqdYrXqHRU9KCG2zKQpVLG8mCN2aIkfpTAb8W6eyPibvsAe8Ehkleah1HYVF/JmV4gUsKpvC/52N08aI6E8tjDlN/qpjg9ygE0YJTGEEMPImEEHwnpIej8H3ma/WHvJnrgcZFUT1oev2UE99N5H0yqQEGpdAsFSo7lRChfku+dEAqiDpRF0H4MTjDASUJZSDbLpW36+jhAxZXnvpUA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0k4fvWdBpGtsjzORKhg+N+UHEUvaEzS+kfufXCTKDAU=;
- b=bRuOXjWJ1xN8apz/u1+7a+IR2Ohpyw9s2Ngs+YoWxvhK4ROJO7EM1RL/D5MPTtZnPEWt28jMS71YLf8FoXxNnHjXogQnNlEZ1666bgnGD49TzO24kPoASuKz71H3bfyI+ouEuGKPZZWxlcx+t1KoWhYNORRwsNEuV0dOdeSRbWJnOSVHXVmsy/+nHW0sD9XR+PzR4K6aoCUCqFajEybQ42zoCR/QwZkgrocrGbH29+qPiC/jRT0sS3RE2WLhfA0ph8TTbPhTBpl5y53NWoqDMt+UAqldlykCXuXJdGqAvpNutOahBJDLScFSfgFiyCjzaFk00h+7cTBk8TbqZmO/FQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0k4fvWdBpGtsjzORKhg+N+UHEUvaEzS+kfufXCTKDAU=;
- b=VRzg8S2ZTuQslZEIbrnJ0wBqL8n9NfaXKBMZtAotNHOoswXktFwXN6AZYa5wCRmobFmOJb9+zueZQK3j6OoMGIvd/PYNTWarVjEykKh8N0XzP6pyuDM2kZdkJ0XpuJziuRF4WEoWrzY+im5rOaZ1U9Fsf8Y2e2Dz28Xm/+FAfVAT6gVQZxw9NPeLiUSUfHgXL/tm37nRj/7cOeMf1P/KjaGjRs32rBC+JTv4G4AxQQLA5Fm3Rn9RsNg+l4r5hQCU+bi1qttiAG93MKk6ak8pUvtvxbqq79+WLcXJBUE1lsxPIhee19SdNmwB8khYY98cXF32H5XIY5M1UWNcqqdjaw==
-Received: from PS1PR0601CA0108.apcprd06.prod.outlook.com (2603:1096:803:1::34)
- by TYAPR06MB2255.apcprd06.prod.outlook.com (2603:1096:404:24::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22; Tue, 6 Jul
- 2021 01:11:48 +0000
-Received: from PU1APC01FT045.eop-APC01.prod.protection.outlook.com
- (2603:1096:803:1:cafe::48) by PS1PR0601CA0108.outlook.office365.com
- (2603:1096:803:1::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.22 via Frontend
- Transport; Tue, 6 Jul 2021 01:11:48 +0000
-Received: from TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM (10.152.252.53) by
- PU1APC01FT045.mail.protection.outlook.com (10.152.253.32) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4287.22 via Frontend Transport; Tue, 6 Jul 2021 01:11:48 +0000
-Received: from TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM
- ([fe80::5c59:e887:13d9:1941]) by TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM
- ([fe80::5c59:e887:13d9:1941%4]) with mapi id 15.20.4287.033; Tue, 6 Jul 2021
- 01:11:48 +0000
-From: Oscar Pablo <oscar_pabloo@outlook.com>
-To: =?iso-8859-1?Q?C=E9dric_Hannotier?= <cedric.hannotier@ulb.be>
-Thread-Topic: [USRP-users] Re: how to use pps to sync different usrp in
- gnuradio
-Thread-Index: AQHXb0JUzwV1gVvG8U2KJSmu6RTBmKsvwj2AgACh1NeAA9ufgIAA52m3
-Date: Tue, 6 Jul 2021 01:11:48 +0000
-Message-ID: 
- <TYYP286MB1407CB42585AE0B2BCE87C0EF01B9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>
-References: 
- <TYYP286MB1407D3F10F883B963086DA60F01F9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>
- <20210702144145.hgwtczc2zruignh6@barbe>
- <TYYP286MB1407FECBCE067E3C500D0362F01E9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>,<20210705111547.4rrurvdl7yl5dudt@barbe>
-In-Reply-To: <20210705111547.4rrurvdl7yl5dudt@barbe>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: 
- OriginalChecksum:B86401ED942E8C65FB5A8070B003A87DEEFFFC0EC63C046C822C828A27273CF3;UpperCasedChecksum:0E3AFCEE07C7854F257540B0E9373D1AE7AC55F93F814B522D3992CFC5A7E35F;SizeAsReceived:7127;Count:44
-x-tmn: [zUrNFRBpacllFaLUU4eGrGSzStSsnq8Z]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 44
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: dc2bc8ee-62c1-47f0-0d75-08d9401b0768
-x-ms-traffictypediagnostic: TYAPR06MB2255:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- Igbbb9wq1EqhDB2QS4qB4nhxiw5qOz68XDxq55EkhOfZDj2Ryerpw1o2T7iTG23L/6JSw/4Sk03HpCdQuGDjWYTEH7uUItccRD6/u2mDxJ2O0ulOEI7F8mb/PoBwozUDWOB4c99WI6L6ggo2lHbH+uDJVBiD1QkeA+aX4BD83HQ5En8C5LWqmY22RBOHG935eomKtUac5TmfTYyudRGy2Gsvx6RX2/O+eO5X6I0XOcPOzjoKaBwgQtC2dm+VP7/JcLKWOWWcq5s8rMKwIYvvI7q4dDvgat1wiV3PUbA0+NMVN4CHXGN3Zew0KEM4MM3L+h7Zjqqzb2NVdOmE4nK1Yzetlxd7uDcofTMxtWZBPdsWIvbAJXQM5VA0VioQ+qLUqlQuSYh9X5Xn3fGLR81O6vDP32G6NKwnfiDeUEjRgKp3mAH67kqWP+h1CObVpeDVXZMvc6jJ6xHCAeVSY/fnhIhxB8S8JjkgEuvmoIo96/c=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- tMpQPwVaCPlH+nuXc1I82vG7cpbVpPGozHVbY4fbkQZAhKRxTkXa/l/SvMijB7H8Yh0itGQJpeJJkVxUTks1rXhGVYw2LyYphTuXRP8Mnwdu+A2Bk+0NOZ521bS8R4Q041nIIN1s83xRNHbSqLwiBQ==
-x-ms-exchange-transport-forked: True
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2026D383E9E
+	for <usrp-users@lists.ettus.com>; Mon,  5 Jul 2021 21:39:26 -0400 (EDT)
+Received: by mail-wr1-f48.google.com with SMTP id n9so6702518wrs.13
+        for <usrp-users@lists.ettus.com>; Mon, 05 Jul 2021 18:39:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=iptronix.com; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=L9BNobK6l9af3Vh6iupU4mvxsiJTJvSV6UJhxYTSJRw=;
+        b=BGQQkryKpK1hvDvM5y05Yubalkkm2r26q5BxpfzXhzGkVCVBQXM9IgUkQW18eYhwLL
+         FK3FSp9AF8UAjUpT5vO0hEpbq/Lf4DE6puiXLtw+a+a3G7/7BofGg7oTL5cB3o6hgulB
+         9IsSKFtLqxdNZi6NWnplYUUgKleS/SyWSsVcKlLzJrQMOk7GwDTYX1piVRGq0gaX+3iY
+         BhSTOl6A6AVbpFSH6kEO2xQj1fO0047SLrJmiR8A4BiN9XEpDU4kJaoCBkhsjSmM1ffE
+         sC7ktxyG6RcZ8meE8RswC2cJ1KJmKBLliFw+F3w4kNBhD68CXOQZ8XLeFg1RtDVTthEo
+         1LVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=L9BNobK6l9af3Vh6iupU4mvxsiJTJvSV6UJhxYTSJRw=;
+        b=FsdiZ1U8w/wbmbaNgoEzGViwpKHzrcEEd5iAP7SLTELI9bAmGIdLgHnVbpDb+yXiY3
+         POsHzEG6FW+dTgjVJo+JxJNt3veNe0QwAbkUT6tBvp0YMKotGjqinQZTyoZLcQ4yO+Iz
+         6HP04lPHe0A2FEHcgUDLUCW5u3wjDttB/owgu8bkSGy/oflmXTD4UxaXt0E8qWI3ZMV5
+         7OsHS1fQNQY6lnkCYQG9tOEk7T4h1cojf0IWmmLiAUJK2DAlPh3MjdknMj6lxeRZa/kU
+         OO1EXOlwXiR+RtKcDVp28FxdcT8E531JzTBSWKL+q4mDLecQPboEf3Orx0mOyAqpVuz/
+         t3Bw==
+X-Gm-Message-State: AOAM532yRm3X6C5wPiWWSLBSKwjkMZ0ubA1MVqayqhxyNmRtEm8wAFVh
+	HHZrD0RV3RoYQCj8Vi7M0Ueg6SC+JhJzpTGFNkDy+3vNzapcfwTU
+X-Google-Smtp-Source: ABdhPJxt/FLWLhq6SDCSGuKe2C5fk7TpWn9mNYArywVvoALLNowqN8sTky0o2md/n0zR2GMpvcd1IhPCoe9GWY+YfaU=
+X-Received: by 2002:adf:f2d1:: with SMTP id d17mr262804wrp.254.1625535564641;
+ Mon, 05 Jul 2021 18:39:24 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-AuthSource: PU1APC01FT045.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc2bc8ee-62c1-47f0-0d75-08d9401b0768
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jul 2021 01:11:48.1343
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR06MB2255
-Message-ID-Hash: AOGSEHNW3UMWNPUHGX6E46RJJVNRL7XO
-X-Message-ID-Hash: AOGSEHNW3UMWNPUHGX6E46RJJVNRL7XO
-X-MailFrom: oscar_pabloo@outlook.com
+From: Dario Pennisi <dario@iptronix.com>
+Date: Tue, 6 Jul 2021 03:39:13 +0200
+Message-ID: <CAKHaR3kM-b7J03CfmH9enfbXJnE6cJEBhmQ+08y-xQXjA87-yw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: KSCXVK5R2EDOPKQ5VT3TZ2SZN6ER5OSW
+X-Message-ID-Hash: KSCXVK5R2EDOPKQ5VT3TZ2SZN6ER5OSW
+X-MailFrom: dario@iptronix.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: how to use pps to sync different usrp in gnuradio
+Subject: [USRP-users] RFNoC internal MTU on N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FTYEHGGT3NODB444CEDCSHPN5YR4M462/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KSCXVK5R2EDOPKQ5VT3TZ2SZN6ER5OSW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1966469664152443686=="
+Content-Type: multipart/mixed; boundary="===============3772619242504034715=="
 
---===============1966469664152443686==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_TYYP286MB1407CB42585AE0B2BCE87C0EF01B9TYYP286MB1407JPNP_"
+--===============3772619242504034715==
+Content-Type: multipart/alternative; boundary="000000000000e6862805c66a7d20"
 
---_000_TYYP286MB1407CB42585AE0B2BCE87C0EF01B9TYYP286MB1407JPNP_
-Content-Type: text/plain; charset="iso-8859-1"
+--000000000000e6862805c66a7d20
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+i wrote a custom block and i'm trying to output packets that are around the
+size of the MAX MTU directly from my block. since packets have to be
+handled by Zynq's ARM i understand the MTU i have to consider is the one
+for int0 which is 8000. my block's MTU is set to 10 which, considering a
+chdr width of 64 bits makes 8192 bytes if i'm not wrong. When i try to
+generate packets of more than 1500 bytes i start to get very bad errors
+such as:
+
+[ERROR] [STREAMER] The receive transport caught a value exception.
+ValueError: Bad CHDR header or invalid packet length.
+gr::log :WARN: rfnoc_rx_streamer0 - RFNoC Streamer block received error
+ERROR_CODE_BAD_PACKET (Code: 0xf)
+
+is there any hard limit on CHDR packet size? is there any setting anywhere
+in the code that limits the length of a packet?
+note that i set noc shell to automatically calculate packet lengths as i
+set SIDEBAND_AT_END to 1.
+thanks,
+
+Dario Pennisi
+
+--000000000000e6862805c66a7d20
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi C=E9dric,
-thanks for your reply.
-assuming i have multi usrp and pc. each usrp connect to different pc. each =
-usrp set unknown pps time to 0 then i want to get the samples at time 1. so=
- how to do?
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi,<div>i wrote a custom=
+ block and i&#39;m trying to output packets that are around the size of the=
+ MAX MTU directly from my block. since packets have to be handled by Zynq&#=
+39;s ARM i understand the MTU i have to consider is the one for int0 which =
+is 8000. my block&#39;s MTU is set to 10 which, considering a chdr width of=
+ 64 bits makes 8192 bytes if i&#39;m not wrong. When i try to generate pack=
+ets of more than 1500 bytes i start to get very bad errors such as:</div><d=
+iv><div><br></div><div>[ERROR] [STREAMER] The receive transport caught a va=
+lue exception.</div><div>ValueError: Bad CHDR header or invalid packet leng=
+th.</div><div>gr::log :WARN: rfnoc_rx_streamer0 - RFNoC Streamer block rece=
+ived error ERROR_CODE_BAD_PACKET (Code: 0xf)</div></div><div><br></div><div=
+>is there any hard limit on CHDR packet size? is there any setting anywhere=
+ in the code that limits the length of a packet?</div><div>note that i set =
+noc shell to automatically calculate packet lengths as i set SIDEBAND_AT_EN=
+D to 1.</div><div>thanks,</div><div><br clear=3D"all"><div><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0)=
+;font-family:Calibri,sans-serif;font-size:13.3333px">Dario Pennisi</span><b=
+r style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;font-size:13.333=
+3px"><br></div></div></div></div></div></div></div>
 
+--000000000000e6862805c66a7d20--
 
-________________________________
-From: C=E9dric Hannotier <cedric.hannotier@ulb.be>
-Sent: Monday, July 5, 2021 11:15 AM
-To: Oscar Pablo <oscar_pabloo@outlook.com>
-Cc: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Re: how to use pps to sync different usrp in gnur=
-adio
-
-On 03/07/21 00:34, Oscar Pablo wrote:
-> this use what time to call .set_time_unknown_pps()?
-
-If you mean which initial value, then it set to 0 [1].
-If you mean which time source,
-then it depends on the "Mbx: Time Source" block parameter.
-
-> and after sync how to get the timed sync sample and set the transmit time=
-?
-> for example we want to get the samples at the same time for different usr=
-p
-> and transmit at the same time for different usrp.
-
-I am not sure what you want, but:
-The USRP block uses the multi_usrp API.
-If you specify multiple USRPs in the GnuRadio USRP block,
-and sync them (by sharing PPS), then UHD API should take care of
-aligning the packets. Ie they will transmit/receive at the same time.
-
-[1] https://github.com/gnuradio/gnuradio/blob/5547665ee92f748a7ee47d64dfbf1=
-33db77fcfce/gr-uhd/grc/gen_uhd_usrp_blocks.py
-
-Regards
---
-
-C=E9dric Hannotier
-
---_000_TYYP286MB1407CB42585AE0B2BCE87C0EF01B9TYYP286MB1407JPNP_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hi <font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00=
-0000">C=E9dric,</font></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
-0">thanks for your reply.</font></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<font style=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#00000=
-0">assuming i have multi usrp and pc. each usrp connect to different pc. ea=
-ch usrp set unknown pps time to 0</font> then i want to get the samples at =
-time 1. so how to do?<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div>
-<div id=3D"appendonsend"></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
-=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> C=E9dric Hannotier =
-&lt;cedric.hannotier@ulb.be&gt;<br>
-<b>Sent:</b> Monday, July 5, 2021 11:15 AM<br>
-<b>To:</b> Oscar Pablo &lt;oscar_pabloo@outlook.com&gt;<br>
-<b>Cc:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> Re: [USRP-users] Re: how to use pps to sync different usrp =
-in gnuradio</font>
-<div>&nbsp;</div>
-</div>
-<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt"=
->
-<div class=3D"PlainText">On 03/07/21 00:34, Oscar Pablo wrote:<br>
-&gt; this use what time to call .set_time_unknown_pps()?<br>
-<br>
-If you mean which initial value, then it set to 0 [1].<br>
-If you mean which time source,<br>
-then it depends on the &quot;Mbx: Time Source&quot; block parameter.<br>
-<br>
-&gt; and after sync how to get the timed sync sample and set the transmit t=
-ime?<br>
-&gt; for example we want to get the samples at the same time for different =
-usrp<br>
-&gt; and transmit at the same time for different usrp.<br>
-<br>
-I am not sure what you want, but:<br>
-The USRP block uses the multi_usrp API.<br>
-If you specify multiple USRPs in the GnuRadio USRP block,<br>
-and sync them (by sharing PPS), then UHD API should take care of<br>
-aligning the packets. Ie they will transmit/receive at the same time.<br>
-<br>
-[1] <a href=3D"https://github.com/gnuradio/gnuradio/blob/5547665ee92f748a7e=
-e47d64dfbf133db77fcfce/gr-uhd/grc/gen_uhd_usrp_blocks.py">
-https://github.com/gnuradio/gnuradio/blob/5547665ee92f748a7ee47d64dfbf133db=
-77fcfce/gr-uhd/grc/gen_uhd_usrp_blocks.py</a><br>
-<br>
-Regards<br>
--- <br>
-<br>
-C=E9dric Hannotier<br>
-</div>
-</span></font></div>
-</div>
-</body>
-</html>
-
---_000_TYYP286MB1407CB42585AE0B2BCE87C0EF01B9TYYP286MB1407JPNP_--
-
---===============1966469664152443686==
+--===============3772619242504034715==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -255,4 +126,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1966469664152443686==--
+--===============3772619242504034715==--
