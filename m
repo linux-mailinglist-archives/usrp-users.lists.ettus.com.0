@@ -2,216 +2,228 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E90A3BDA68
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 17:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DDF13BDA84
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 17:51:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 455323840CC
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 11:44:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D4322384157
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 11:51:29 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JWWkxUYT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Cz1x4jIS";
 	dkim-atps=neutral
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 48F55383F12
-	for <usrp-users@lists.ettus.com>; Tue,  6 Jul 2021 11:43:12 -0400 (EDT)
-Received: by mail-qv1-f41.google.com with SMTP id j14so9945615qvu.6
-        for <usrp-users@lists.ettus.com>; Tue, 06 Jul 2021 08:43:12 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id E2639383F16
+	for <USRP-users@lists.ettus.com>; Tue,  6 Jul 2021 11:50:44 -0400 (EDT)
+Received: by mail-yb1-f172.google.com with SMTP id i4so34957555ybe.2
+        for <USRP-users@lists.ettus.com>; Tue, 06 Jul 2021 08:50:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:subject:references
-         :in-reply-to;
-        bh=kuN6rb0/hbjCFceU+DaeQ8ijNPlWuLOUABypH6xAeU4=;
-        b=JWWkxUYTNSY/xdj2Y3VmpQQaEke6rGoe7oOkTXDMeWeJOlA91+4dlZQG/f5gANKTDz
-         Jn+fggvZz9A7mXGEEFftepl417tMFYRBN9/Js3CULBE3IUrfGWwOfrUjS3b6cPdlJvMM
-         rVNJ1aidUQ7Qf3+dCVjJ3G0IAmKW1vRPWBEYM/t/eiyzb5b12dAVgAhbN1aycRoilQGc
-         65PHVOlJlMlLG+BYAXctStpN50fQZZICIEpM8IrgLDUx+aQW4goC4fMbUOLhFWz8Tr6G
-         NwLCWhvY3cKVu3FLYoaMuAJywqSiEJTAAPFAjxP+wzpoeXmr5/l0zyt6y4+xbrdpU7N5
-         j4KA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jFdbSug6CfxyyCbxj9E0LjpY0AK+9e2lpEufbhvXiNI=;
+        b=Cz1x4jISaIQPYzMjSHfKQTk+l3D/kCnaEkszVcOU8z71gVJ1XfZSkdaAEME+zqMF62
+         ktAmbL/ugy34HYKSItS5yPEUK3RmOwQM7GXCdndRv21JSS95xooiEr4YkKmTBUMN8vjN
+         Y4inKxdzGZjT4Qs/1qxITMj+BGjv50wx26LpF3Sg6rJ8gHPP+B5bLPjMgSWOFq67R66x
+         shDJljaeCO00gS7p26EDaXTCjznlo0n70lt3k+hg4P+D6AUKXpapUifn4ZgUpKrKw+xk
+         c/QyDZ3xbhZyy0+EZIxjFoMOyxspo1OAKd/hOvuTOjDkjWM/vR9iQuKVFCiAT0SLcGxC
+         qDug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :subject:references:in-reply-to;
-        bh=kuN6rb0/hbjCFceU+DaeQ8ijNPlWuLOUABypH6xAeU4=;
-        b=q56o7Z4UA7BEyboKMQ3s+fxpUYFvSb1OMUISvKZNNz55LEXZ+6ZABGNA3Ixu6BypuR
-         aSPDwannYMpklhKYmrazk2LOrGo7qfAeZeIMexgy9xrtgKwekmBJMktN71jgiPWws24y
-         0JQtCPf8YgPP+ztH0GbSviaRl1gZfQ3tVk/RltdPZNXcKqhCXMOsqIw1mH4nb2X+x0ky
-         RPU/ERnA1CmVmQT4Jp/b5CIJ0b4FCOSNLW46FD6eexIWQCH1HZ2S9dwff9/J+bJuSx44
-         Br0+RKh6xhSLej/HFXyDV06GO0ul1rHGzxkJK0hZRvDdDON1LBpIoOaHBsmUo3NQz7Ox
-         izQw==
-X-Gm-Message-State: AOAM532uNiXsY3Nt3Vje+Dy5BrGsXIZDvOhmgP3v9TAAG87S+6gPERYo
-	HicJTN8E/9qYNUpxSbxMNIAOyNLxhGyDbw==
-X-Google-Smtp-Source: ABdhPJx7oBvq7XT7ETZA5HVEPh9qKJWPHL8/HZzQxd1r/4tMt9NkYs9ZcNhULUdzSgQhF/PV9oyUGA==
-X-Received: by 2002:ad4:5386:: with SMTP id i6mr18890126qvv.2.1625586191432;
-        Tue, 06 Jul 2021 08:43:11 -0700 (PDT)
-Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id x14sm3542792qkm.64.2021.07.06.08.43.10
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Jul 2021 08:43:10 -0700 (PDT)
-Message-ID: <60E47A0D.6030001@gmail.com>
-Date: Tue, 06 Jul 2021 11:43:09 -0400
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jFdbSug6CfxyyCbxj9E0LjpY0AK+9e2lpEufbhvXiNI=;
+        b=cQ2NCC0ypGRXrYt5VqKQxheX4WK+3SqLvJs/95aSWvOm+mm3Cdg9DEIDkSlQt4wWT3
+         k73l0vdajXcu8uwtuuPHukNTTgCZVu8nDRRF0+3lLUpc15RMsVG5u1t+AJriVd2Tn+2K
+         ACY1fa9cdMw+sejpFMoXcVsNVoXUAUDzhBDLBgxasqlS5ihI3QiUnEr1+WS0i20jPHCE
+         qEKhyRrAvKM0DK/qQudT4grDBrU8Yr1jZTW8C5XxZ2rOvofNC4zSIhoUkwTYix8dGQmV
+         iLht4Q3QKRXX5zuMiSdHLI5mYZ1cW85DVBMZjVPUETh/fR6YHHfFJs8o6yTgxmEa5jSc
+         ZvXQ==
+X-Gm-Message-State: AOAM533ZcLa6AsSxe9ndZjvGe0qNg9vch6JGbuPuo/g8rx6YESpsgDRh
+	z6lbNOTvdqOIr1DeWJ95aSF1tmzM33/k6gPDes0=
+X-Google-Smtp-Source: ABdhPJxRWi45pyzzRnH2PjO/zEH8fn120m6f+ULo8mWADkRZQuLLp6hon4sRK7Gi1c64nrvIQISbxPg3P76KCKPuzfU=
+X-Received: by 2002:a25:370b:: with SMTP id e11mr6336242yba.82.1625586644189;
+ Tue, 06 Jul 2021 08:50:44 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <012701d77215$89e6e850$9db4b8f0$@zengyi-tech.com>
-In-Reply-To: <012701d77215$89e6e850$9db4b8f0$@zengyi-tech.com>
-Message-ID-Hash: LNL6OW2JJ4NNEFRK45HLTNKJEL3NT4YO
-X-Message-ID-Hash: LNL6OW2JJ4NNEFRK45HLTNKJEL3NT4YO
-X-MailFrom: patchvonbraun@gmail.com
+References: <3226c6ec-fac3-8c0f-5927-b2d5c76cbe2e@opensdr.com>
+ <dfa5504f-0536-7989-4354-3cb005cdca2b@balister.org> <CAL7q81t=oSq6_N4jfeJd-FQUiUw-nEmZZFgoJbx1FcZeExuMmg@mail.gmail.com>
+ <cfb01058-a2ed-0084-7bb6-9433bafa1357@balister.org>
+In-Reply-To: <cfb01058-a2ed-0084-7bb6-9433bafa1357@balister.org>
+From: Ben Magistro <koncept1@gmail.com>
+Date: Tue, 6 Jul 2021 11:50:33 -0400
+Message-ID: <CAKx8PBhEsFiY4D0rDqADyYO6+gAL3h+mT5M1oK+vJHQ5h_tL1A@mail.gmail.com>
+To: Philip Balister <philip@balister.org>
+Message-ID-Hash: OJJZOMN5RKLSNQZH6YIDTAIG2OWAOFX4
+X-Message-ID-Hash: OJJZOMN5RKLSNQZH6YIDTAIG2OWAOFX4
+X-MailFrom: koncept1@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: FPGA Source Code Problem
+Subject: [USRP-users] Re: E300 sg3 images with uhd 4.0
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LNL6OW2JJ4NNEFRK45HLTNKJEL3NT4YO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OJJZOMN5RKLSNQZH6YIDTAIG2OWAOFX4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5532933236618198555=="
+Content-Type: multipart/mixed; boundary="===============7582535578405814312=="
 
-This is a multi-part message in MIME format.
---===============5532933236618198555==
-Content-Type: multipart/alternative;
- boundary="------------060306020801080303000503"
+--===============7582535578405814312==
+Content-Type: multipart/alternative; boundary="0000000000007a858a05c6766235"
 
-This is a multi-part message in MIME format.
---------------060306020801080303000503
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000007a858a05c6766235
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/05/2021 11:18 PM, zeyuan.li@zengyi-tech.com wrote:
+I haven't done much testing beyond power on, but it appears the UHD 4.1
+image restores the SG3 speeds.  It is still based on Zeus with GCC 9.2 so
+likely has the fftw segfault still.
+
+ Ben
+
+On Thu, Apr 15, 2021 at 8:45 AM Philip Balister <philip@balister.org> wrote:
+
+> Any updates on this? Anyone have a fix for the ftw segfaults?
 >
-> Hello,
+> Philip
 >
-> We are studying your company's b200mini product recently. In the 
-> process of learning FPGA source code, we found DDC_ CHAIN 's 
-> simulation file chain_ chain_ TB missing two files,they are 
-> radio_setting_regs.v and task_library.v , without them the simulation 
-> can not run, can you provide the two simulation files for us to learn 
-> b200mini?
-> thank you !
+> On 10/2/20 7:48 PM, Jonathon Pendlum wrote:
+> > Hey Philip,
+> >
+> > You are not the only person to report this. I'm working on getting an
+> > answer, but it will take a bit longer.
+> >
+> > Jonathon
+> >
+> > On Thu, Oct 1, 2020 at 10:46 AM Philip Balister via USRP-users <
+> > usrp-users@lists.ettus.com> wrote:
+> >
+> >> Ping? Anyone noticed sg3 units running slower with the uhd 4.0 image?
+> >>
+> >> Philip
+> >>
+> >> On 9/24/20 1:28 PM, Philip Balister via USRP-users wrote:
+> >>> I booted an image from:
+> >>>
+> >>> https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v4.0.0.0/
+> >>>
+> >>> on a sg3 unit. The BogoMIPS display suggests the clocks are set to what
+> >>> I expect for a sg1 unit though. I couldn't find any knobs in /sys or
+> >>> /proc. I compared with the ancient release-4 image and that has the
+> >>> number of BogoMIPS expected from that unit.
+> >>>
+> >>> Anyone at Ettus have any insite into how cpu clock speed is handled
+> with
+> >>> that image. Diffing the ps7 files didn't show many diffs in clock
+> setup.
+> >>> (And they looked like they came from a source besides vivado)
+> >>>
+> >>> Philip
+> >>>
+> >>> _______________________________________________
+> >>> USRP-users mailing list
+> >>> USRP-users@lists.ettus.com
+> >>> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >>>
+> >>
+> >> _______________________________________________
+> >> USRP-users mailing list
+> >> USRP-users@lists.ettus.com
+> >> http://lists.ettus.com/mailman/listinfo/usrp-users_lists.ettus.com
+> >>
+> >
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
->
-My guess is that the simulation framework files have simply not been 
-maintained, so I'm guessing also that this isn't a simple matter
-   of providing these files.
 
-But someone with more knowledge of the FPGA codebase could comment here.
-
-
-
---------------060306020801080303000503
-Content-Type: text/html; charset=UTF-8
+--0000000000007a858a05c6766235
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content=3D"text/html; charset=3DUTF-8" http-equiv=3D"Content-Ty=
-pe">
-  </head>
-  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"moz-cite-prefix">On 07/05/2021 11:18 PM,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:zeyuan.li@zeng=
-yi-tech.com">zeyuan.li@zengyi-tech.com</a> wrote:<br>
-    </div>
-    <blockquote
-      cite=3D"mid:012701d77215$89e6e850$9db4b8f0$@zengyi-tech.com"
-      type=3D"cite">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Helvetica;
-	panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-	{font-family:=E5=AE=8B=E4=BD=93;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:=E7=AD=89=E7=BA=BF;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=E7=AD=89=E7=BA=BF";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=E5=AE=8B=E4=BD=93";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	font-size:10.5pt;
-	font-family:=E7=AD=89=E7=BA=BF;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:=E7=AD=89=E7=BA=BF;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:=E7=AD=89=E7=BA=BF;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Helvetica&quot;,sans-serif;color:#=
-5F6062"
-            lang=3D"EN-US">Hello,<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-family:&quot;Helvetica&quot;,sans-serif;color:#=
-5F6062"
-            lang=3D"EN-US"> We are studying your company's b200mini
-            product recently. In the process of learning FPGA source
-            code, we found DDC_ CHAIN 's simulation file chain_ chain_
-            TB missing two files,they are radio_setting_regs.v and
-            task_library.v , without them the simulation can not run,
-            can you provide the two simulation files for us to learn
-            b200mini?<br>
-            thank you !</span><span lang=3D"EN-US"><o:p></o:p></span></p>
-        <br>
-      </div>
-    </blockquote>
-    My guess is that the simulation framework files have simply not been
-    maintained, so I'm guessing also that this isn't a simple matter<br>
-    =C2=A0 of providing these files.<br>
-    <br>
-    But someone with more knowledge of the FPGA codebase could comment
-    here.<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr">I haven&#39;t done much testing beyond power on, but it ap=
+pears the UHD 4.1 image restores the SG3 speeds.=C2=A0 It is still based on=
+ Zeus with GCC 9.2 so likely has the fftw segfault still.<div><br></div><di=
+v>=C2=A0Ben</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Thu, Apr 15, 2021 at 8:45 AM Philip Balister &lt;<a hre=
+f=3D"mailto:philip@balister.org">philip@balister.org</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex">Any updates on this? An=
+yone have a fix for the ftw segfaults?<br>
+<br>
+Philip<br>
+<br>
+On 10/2/20 7:48 PM, Jonathon Pendlum wrote:<br>
+&gt; Hey Philip,<br>
+&gt; <br>
+&gt; You are not the only person to report this. I&#39;m working on getting=
+ an<br>
+&gt; answer, but it will take a bit longer.<br>
+&gt; <br>
+&gt; Jonathon<br>
+&gt; <br>
+&gt; On Thu, Oct 1, 2020 at 10:46 AM Philip Balister via USRP-users &lt;<br=
+>
+&gt; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br>
+&gt; <br>
+&gt;&gt; Ping? Anyone noticed sg3 units running slower with the uhd 4.0 ima=
+ge?<br>
+&gt;&gt;<br>
+&gt;&gt; Philip<br>
+&gt;&gt;<br>
+&gt;&gt; On 9/24/20 1:28 PM, Philip Balister via USRP-users wrote:<br>
+&gt;&gt;&gt; I booted an image from:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; <a href=3D"https://files.ettus.com/binaries/cache/e3xx/meta-et=
+tus-v4.0.0.0/" rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com=
+/binaries/cache/e3xx/meta-ettus-v4.0.0.0/</a><br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; on a sg3 unit. The BogoMIPS display suggests the clocks are se=
+t to what<br>
+&gt;&gt;&gt; I expect for a sg1 unit though. I couldn&#39;t find any knobs =
+in /sys or<br>
+&gt;&gt;&gt; /proc. I compared with the ancient release-4 image and that ha=
+s the<br>
+&gt;&gt;&gt; number of BogoMIPS expected from that unit.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Anyone at Ettus have any insite into how cpu clock speed is ha=
+ndled with<br>
+&gt;&gt;&gt; that image. Diffing the ps7 files didn&#39;t show many diffs i=
+n clock setup.<br>
+&gt;&gt;&gt; (And they looked like they came from a source besides vivado)<=
+br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Philip<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; _______________________________________________<br>
+&gt;&gt;&gt; USRP-users mailing list<br>
+&gt;&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank=
+">USRP-users@lists.ettus.com</a><br>
+&gt;&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_=
+lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.co=
+m/mailman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; USRP-users mailing list<br>
+&gt;&gt; <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">US=
+RP-users@lists.ettus.com</a><br>
+&gt;&gt; <a href=3D"http://lists.ettus.com/mailman/listinfo/usrp-users_list=
+s.ettus.com" rel=3D"noreferrer" target=3D"_blank">http://lists.ettus.com/ma=
+ilman/listinfo/usrp-users_lists.ettus.com</a><br>
+&gt;&gt;<br>
+&gt; <br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---------------060306020801080303000503--
+--0000000000007a858a05c6766235--
 
---===============5532933236618198555==
+--===============7582535578405814312==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -221,4 +233,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5532933236618198555==--
+--===============7582535578405814312==--
