@@ -2,207 +2,159 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2ECA3BC50D
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 05:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70D6A3BC7D5
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 10:27:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 030FE384490
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Jul 2021 23:18:58 -0400 (EDT)
-Received: from out28-125.mail.aliyun.com (out28-125.mail.aliyun.com [115.124.28.125])
-	by mm2.emwd.com (Postfix) with ESMTPS id C3757383F39
-	for <usrp-users@lists.ettus.com>; Mon,  5 Jul 2021 23:18:10 -0400 (EDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1328344|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0133353-0.000927196-0.985738;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047207;MF=zeyuan.li@zengyi-tech.com;NM=1;PH=DS;RN=1;RT=1;SR=0;TI=SMTPD_---.KcnCCDo_1625541486;
-Received: from DESKTOPGVK0E1U(mailfrom:zeyuan.li@zengyi-tech.com fp:SMTPD_---.KcnCCDo_1625541486)
-          by smtp.aliyun-inc.com(10.194.99.38);
-          Tue, 06 Jul 2021 11:18:06 +0800
-From: <zeyuan.li@zengyi-tech.com>
-To: <usrp-users@lists.ettus.com>
-Date: Tue, 6 Jul 2021 11:18:05 +0800
-Message-ID: <012701d77215$89e6e850$9db4b8f0$@zengyi-tech.com>
+	by mm2.emwd.com (Postfix) with ESMTP id 3792E3842E6
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jul 2021 04:27:21 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="Bgg7HDBc";
+	dkim-atps=neutral
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2125.outbound.protection.outlook.com [40.107.20.125])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1DEAF383E8D
+	for <usrp-users@lists.ettus.com>; Tue,  6 Jul 2021 04:26:36 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V7tGyDEA1g0ndfmRKejffutgh0HGnH1znHMLHTKVzi//FthsQonunEvLpazLbbIDrWOtjizyVUx95w2T4OpepH+OP97rRYqzV8jaHCAsVFx2TIC8cByTLpLD/nJEeK9uwjWZnd3Wq8ydqWvEvr8e0Ccawvd4SDVe6/7j1Qf6Oa00ENj2+rYg2u6AMe8qKGwzXwGu2uGpeDemn2iWsdGUeUp1vsQAS6iEHgqPfRM5iALVDU2T14T1IdYQ8hcdARmHvufN/2QQEwnUSGiSBNcvt3HSkJZ8EmSe3vO3Hmzj6qQRf6ziDENkEA0lko7nSihyoHsGZMVXcCkG/XpPwJDOHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KKPVWYm00zhkJF/RuPMN7yCpmMoyJbShp55+CRHfgvM=;
+ b=C23wWMxKiMdMbWjcVWb5DhaUuzFGQ5N77QaNBvkC6wc0IxWYZgh+ArcATNNZlGjFoMDhX+X41JMGSeJgmlzNLC9Q/kx1yDK+YIicxYKKSnin1RGsHHvUrqr8vcD/9wVeZK8WXm5hnT9JFTcsxJw8TO8sviHBgwx00gRlNio7ZwrSOm2UFfvhTFwHO3A+XRwT313Z4ziVSqdTKy6iC5uvypBV1/C49xYj3QFNxV0PIw5D5qu99IoblDB/dAWZ7f5SHBFPO+AzGNydD4IhFBnIqWcJWPmCNqWyOTE16/AviPhU1JC2ZuZoTFSX3bqi8CE+Q7P9iQnxfdEnzBdLXrRf3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
+ header.d=ulb.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KKPVWYm00zhkJF/RuPMN7yCpmMoyJbShp55+CRHfgvM=;
+ b=Bgg7HDBcIaqPn/PMrkMy8wNwxtA2O5Z+FCpwsCXOEALoEoUW1IbpwyirpQR0XR7YVnVlDuOfpvphHfpfSxo4wSi+M6rW9wjqeflfZM1g0k8G45UOu2dyjPUQ97ccwo3W0FIJwEx9GbSz5XsulQAqg5nqldY9xXcW+11rldr85H0=
+Authentication-Results: outlook.com; dkim=none (message not signed)
+ header.d=none;outlook.com; dmarc=none action=none header.from=ulb.be;
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
+ by AM7P190MB0776.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:119::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4287.27; Tue, 6 Jul
+ 2021 08:26:35 +0000
+Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::64af:1bac:3690:e237]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ ([fe80::64af:1bac:3690:e237%3]) with mapi id 15.20.4287.033; Tue, 6 Jul 2021
+ 08:26:35 +0000
+Date: Tue, 6 Jul 2021 10:26:34 +0200
+To: Oscar Pablo <oscar_pabloo@outlook.com>
+Message-ID: <20210706082634.7ggx7wkbfpkrczsc@barbe>
+Mail-Followup-To: Oscar Pablo <oscar_pabloo@outlook.com>,
+	"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <TYYP286MB1407D3F10F883B963086DA60F01F9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>
+ <20210702144145.hgwtczc2zruignh6@barbe>
+ <TYYP286MB1407FECBCE067E3C500D0362F01E9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>
+ <20210705111547.4rrurvdl7yl5dudt@barbe>
+ <TYYP286MB1407CB42585AE0B2BCE87C0EF01B9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>
+Content-Disposition: inline
+In-Reply-To: <TYYP286MB1407CB42585AE0B2BCE87C0EF01B9@TYYP286MB1407.JPNP286.PROD.OUTLOOK.COM>
+X-Originating-IP: [2a02:1811:371b:2300:8cd:8224:5bff:b3c2]
+X-ClientProxiedBy: AM0PR10CA0107.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:e6::24) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:11e::20)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AddyFXkB5FE/V//TS4WXKIvWdZaekQ==
-Content-Language: zh-cn
-Message-ID-Hash: MGB2U5BIS64MWKFYE2RK5U5EYUZNQXOB
-X-Message-ID-Hash: MGB2U5BIS64MWKFYE2RK5U5EYUZNQXOB
-X-MailFrom: zeyuan.li@zengyi-tech.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost (2a02:1811:371b:2300:8cd:8224:5bff:b3c2) by AM0PR10CA0107.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:e6::24) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.19 via Frontend Transport; Tue, 6 Jul 2021 08:26:34 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e86b1fd4-02bf-4d9c-aa3c-08d94057c443
+X-MS-TrafficTypeDiagnostic: AM7P190MB0776:
+X-Microsoft-Antispam-PRVS: 
+	<AM7P190MB07760369D13AAFECEF838F88F01B9@AM7P190MB0776.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	QbO0HBVouGh7RNzxUk6UmJ7iHEdMSocbMoO+2RSXjUbacO3JCzCOjyYiegZHdMcEAVXYb3b3ivQjlxVw95M08VgRKbfzkTtIviRDAR5he9lfVopPpIqaO/wFM/4kskOqga+iFRtINU1i5QfAu3XMHui0n11hEPwrxOo8J1zb9FTGwZ0DBonDxOGalTnx6EGMB4G4dnh67Pz+nbxvC4QF5B7QZH9NQMz6kDV3btJo5UHBNGvBAjr9unD8/bnmvHCiKegyRp4AMi2d6+kCXQonfSL32+4vdMh7J6fuuXEbLH3cOkgacNInBruB/dqrN8c55f6nDS3Q4G0AJtIIKfnkEa7EM6dwW+Kb3h/32p3I5sHoTV0E9cXdcHVr35/hArR/L5wpFzrPvELVVu4gey8c5+iw7qoh2+BqNHBmG6hCGc6fyHeOLMqhyTNBEHccotYxx5xV4UMnTYN8V6IEh4X29YCrdqhkdChwklfKm5rjzVYN0nF0gpuB7EpzurLno9OdR/dNH7tW3vFiCVjP/bz0gcGo2riJqCiEA1n5npiy5L0ghayY0KUG4hn7nmY5Fyqk3IKzE1xAEgHUlbSYjBWX+Fx/cb9ZmYPoqNXChIA1gLMBx0IMYoZGDBq4oE+mFQj1GdpoLhFzrtG9SK84C8YEA3NAzJZJwoAlkCMSckvp3Vz4R5DXCgsdpQCyRcjIJLKkTs7CWfhLnihzBiwkRgCHXg==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(7916004)(4636009)(136003)(366004)(376002)(346002)(39850400004)(396003)(33716001)(66946007)(6486002)(478600001)(316002)(34580700001)(9686003)(66556008)(66476007)(786003)(4326008)(52116002)(38100700002)(83380400001)(8936002)(6916009)(86362001)(53546011)(16526019)(8676002)(186003)(5660300002)(4744005)(6496006)(2906002)(1076003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?iso-8859-1?Q?eo4vQWfGxawF6nS9SDWCLaVMlyIu+hO5fHP0eP8MDMOVEpddF9QrT0McCB?=
+ =?iso-8859-1?Q?iEhQ0V/eFePDQ6FnqLgJD/3NUoZS7S2OnWg/ujmsihxAaxBpftA6UWk7zr?=
+ =?iso-8859-1?Q?Z1n8EMEArMc3No6qZC19hw5k9Sj2gJZ31+MehQ7lLvJLkTGcIHeTvmZ+An?=
+ =?iso-8859-1?Q?TKGsjn4+RAIepUEKOESm74JTmkhukM0oon3v+tsl5EN/wqSrEW60rfDHfe?=
+ =?iso-8859-1?Q?qL8G/1A6nXKk9I9Am7PO7nnRqwS6cMvAfDYMmCEkUjD773DQ0gAC+ujIEV?=
+ =?iso-8859-1?Q?YsGVpMZmSlmW1hwLnT2ws8ZUha9Pjs0Pcrqf/j9cbGOvzEFvjPwjdiPQwU?=
+ =?iso-8859-1?Q?koAJLy8OgpL83t4PBizkNg/UsQirr0oB8QTQqBI/P3cy4pzgNQWfQGNnZ0?=
+ =?iso-8859-1?Q?OHy1TYU1DbHL/wxwyVhgP+b0TkMO03B4LxX0lA+1i6kOSNWhb06MDllL9y?=
+ =?iso-8859-1?Q?uz/OK1Vz778w/Wu39n8UL0+ErUNxHZZFclkAZ8SAcRAEYek12Wstx72gz5?=
+ =?iso-8859-1?Q?cLwOVRes3Kt4/P2JFrXGpID5LEFZQYge+uua53PfCeBGqVFkAV1ozTJGXe?=
+ =?iso-8859-1?Q?PdjUWFIqcjg61ZBPr056Ska8pF7BvxJZuNwzKjPDSvVjekRtLcFmXP7Tqd?=
+ =?iso-8859-1?Q?nqzSJD4TsvPMn1MtoGEuI9r2sC/x2Z6zZZRW7PQlUz+QY1k/utz3bOdgvC?=
+ =?iso-8859-1?Q?Picswx8xw57Vq70QYL9M44vwGbaWCWMzy+eamk4+WmKhYTZIeNLpohH7or?=
+ =?iso-8859-1?Q?rHBx4tc4frz2pVB5xe0hCjhxt25nr2F91yDwquDueWNLHsutEs4xr5fBhA?=
+ =?iso-8859-1?Q?zn0lQn2nZm2BoppCdx13BHhJR34k4P0Ko3h6qsf3Ey9k0ijpSTYO9tbUY0?=
+ =?iso-8859-1?Q?gyauShmbebwuLs9BGcaQs4+v6KEsWH1UStzJZuYyFXkZ3il6Y65BTv94Jz?=
+ =?iso-8859-1?Q?D48n09O///IYAP1fxECtTukPXS5Kev8lpm3Q8fbUqRzREky2q+0R4F5HE6?=
+ =?iso-8859-1?Q?jnXTrDHuCaUqrceaRLN5GpnPgtfnrV142Fb9I75B1OZbeSIv7kj2IJWia/?=
+ =?iso-8859-1?Q?zhLAD6LiMu/BrKvkaE5FChFwMD7t+KS6sp7+gVX0u/91K1raROKPT9L1f1?=
+ =?iso-8859-1?Q?k2UaX9Q1L5Vx/GuLW/7E5HPUzBe8qVB3dkDUhNXxCHHeVEtpXFwG4P9JuX?=
+ =?iso-8859-1?Q?aWPM2wADpOPIXJq2/uLpbcdbF/GxgmpI6HZ99A40R7iwdTzx36FO8CGwDy?=
+ =?iso-8859-1?Q?La3M7bMztJIEwioGwvSieNamehv+aiWwUfd3q4Kx7CyTYK4sJhTTse/qxP?=
+ =?iso-8859-1?Q?Qgnu1F5SRk7GsRZtn8RoiBF64+DH40DcGBZaXCey4lGyODfuKgTv6u52DF?=
+ =?iso-8859-1?Q?tMdqeW/bckJqVig17ZnuR95Zx62zUSFNxEjAvR4fOgRluzDLU6wMmUfyOH?=
+ =?iso-8859-1?Q?CYqtZjIZMBkfPuAS?=
+X-OriginatorOrg: ulb.be
+X-MS-Exchange-CrossTenant-Network-Message-Id: e86b1fd4-02bf-4d9c-aa3c-08d94057c443
+X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2021 08:26:35.1415
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pySq7Yi6CpIo0WPIJCqqgoWcXwjeCpquLbC0NGbyae6MbLmg/kPENiw4IWxICsbGKQXjQNTfzRA1AQZ7krPcXQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7P190MB0776
+Message-ID-Hash: OFRFHCBNDUTAD3PDHBH3IXXUYBXFJMP5
+X-Message-ID-Hash: OFRFHCBNDUTAD3PDHBH3IXXUYBXFJMP5
+X-MailFrom: Cedric.Hannotier@ulb.be
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] FPGA Source Code Problem
+Subject: [USRP-users] Re: how to use pps to sync different usrp in gnuradio
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MGB2U5BIS64MWKFYE2RK5U5EYUZNQXOB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OFRFHCBNDUTAD3PDHBH3IXXUYBXFJMP5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3721850658605542703=="
-
-This is a multipart message in MIME format.
-
---===============3721850658605542703==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0128_01D77258.980A9D80"
-Content-Language: zh-cn
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0128_01D77258.980A9D80
-Content-Type: text/plain;
-	charset="gb2312"
-Content-Transfer-Encoding: base64
-
-SGVsbG8sDQoNCldlIGFyZSBzdHVkeWluZyB5b3VyIGNvbXBhbnkncyBiMjAwbWluaSBwcm9kdWN0
-IHJlY2VudGx5LiBJbiB0aGUgcHJvY2VzcyBvZg0KbGVhcm5pbmcgRlBHQSBzb3VyY2UgY29kZSwg
-d2UgZm91bmQgRERDXyBDSEFJTiAncyBzaW11bGF0aW9uIGZpbGUgY2hhaW5fDQpjaGFpbl8gVEIg
-bWlzc2luZyB0d28gZmlsZXMsdGhleSBhcmUgcmFkaW9fc2V0dGluZ19yZWdzLnYgYW5kIHRhc2tf
-bGlicmFyeS52DQosIHdpdGhvdXQgdGhlbSB0aGUgc2ltdWxhdGlvbiBjYW4gbm90IHJ1biwgY2Fu
-IHlvdSBwcm92aWRlIHRoZSB0d28NCnNpbXVsYXRpb24gZmlsZXMgZm9yIHVzIHRvIGxlYXJuIGIy
-MDBtaW5pPw0KdGhhbmsgeW91ICENCg0KIA0KDQogDQoNCiANCg0KIA0KDQrQu9C7o6zT0MjOus7O
-yszix+vL5sqx0+vO0sGqz7WjoQ0KDQqhqqGqoaqhqqGqoaqhqqGqoaqhqqGqoaqhqqGqoaqhqqGq
-oaqhqqGqoaqhqg0KDQrA7tTz1LZ80dC3ormks8zKpg0KDQqxsb6p1PjS5r/GvLzT0M/euavLvg0K
-DQrK1rv6o7oxMzEyMTE2MjA0NA0KDQq12Na3o7qxsb6pytC6o7Xtx/jW0LnYtOW0873W1tC52LTl
-U09ITyAxMTA4DQrN+Na3o7ogPGh0dHA6Ly93d3cuemVuZ3lpLXRlY2guY29tPiB3d3cuemVuZ3lp
-LXRlY2guY29tDQoNCiANCg0K
-
-------=_NextPart_000_0128_01D77258.980A9D80
-Content-Type: text/html;
-	charset="gb2312"
+From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dgb2312"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Helvetica;
-	panose-1:2 11 6 4 2 2 2 2 2 4;}
-@font-face
-	{font-family:=CB=CE=CC=E5;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:=B5=C8=CF=DF;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=B5=C8=CF=DF";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=CB=CE=CC=E5";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	font-size:10.5pt;
-	font-family:=B5=C8=CF=DF;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:=B5=C8=CF=DF;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:=B5=C8=CF=DF;}
-/* Page Definitions */
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN =
-link=3D"#0563C1" vlink=3D"#954F72" =
-style=3D'text-justify-trim:punctuation'><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-family:"Helvetica",sans-serif;color:#5F6062'>Hello,<o:p></o=
-:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-family:"Helvetica",sans-serif;color:#5F6062'> We are =
-studying your company's b200mini product recently. In the process of =
-learning FPGA source code, we found DDC_ CHAIN 's simulation file chain_ =
-chain_ TB missing two files,they are radio_setting_regs.v and =
-task_library.v , without them the simulation can not run, can you =
-provide the two simulation files for us to learn b200mini?<br>thank you =
-!</span><span lang=3DEN-US><o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span =
-lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'><o:p>&nbsp;</o:p></sp=
-an></p><p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span =
-lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'><o:p>&nbsp;</o:p></sp=
-an></p><p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span =
-lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'><o:p>&nbsp;</o:p></sp=
-an></p><p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'>=D0=BB=D0=BB=A3=AC=D3=
-=D0=C8=CE=BA=CE=CE=CA=CC=E2=C7=EB=CB=E6=CA=B1=D3=EB=CE=D2=C1=AA=CF=B5=A3=A1=
-<span lang=3DEN-US><o:p></o:p></span></span></p><p class=3DMsoNormal =
-align=3Dleft style=3D'text-align:left'><span =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'>=A1=AA=A1=AA=A1=AA=A1=
-=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=
-=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA=A1=AA<span =
-lang=3DEN-US><o:p></o:p></span></span></p><p class=3DMsoNormal =
-align=3Dleft style=3D'text-align:left'><span =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5;color:black;border:non=
-e windowtext 1.0pt;padding:0cm;background:white'>=C0=EE=D4=F3=D4=B6<span =
-lang=3DEN-US>|</span>=D1=D0=B7=A2=B9=A4=B3=CC=CA=A6</span><span =
-lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'><o:p></o:p></span></p=
-><p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5;color:black;border:non=
-e windowtext =
-1.0pt;padding:0cm;background:white'>=B1=B1=BE=A9=D4=F8=D2=E6=BF=C6=BC=BC=D3=
-=D0=CF=DE=B9=AB=CB=BE</span><span lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'><o:p></o:p></span></p=
-><p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5;color:black;border:non=
-e windowtext 1.0pt;padding:0cm;background:white'>=CA=D6=BB=FA=A3=BA<span =
-lang=3DEN-US>13121162044</span></span><span lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'><o:p></o:p></span></p=
-><p class=3DMsoNormal align=3Dleft style=3D'text-align:left'><span =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5;color:black;border:non=
-e windowtext =
-1.0pt;padding:0cm;background:white'>=B5=D8=D6=B7=A3=BA=B1=B1=BE=A9=CA=D0=BA=
-=A3=B5=ED=C7=F8=D6=D0=B9=D8=B4=E5=B4=F3=BD=D6=D6=D0=B9=D8=B4=E5<span =
-lang=3DEN-US>SOHO 1108<br></span>=CD=F8=D6=B7=A3=BA<u><span =
-lang=3DEN-US><a href=3D"http://www.zengyi-tech.com"><span =
-style=3D'color:#0563C1'>www.zengyi-tech.com</span></a></span></u></span><=
-span lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=CB=CE=CC=E5'><o:p></o:p></span></p=
-><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-------=_NextPart_000_0128_01D77258.980A9D80--
+Hi Oscar,
 
---===============3721850658605542703==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+On 06/07/21 01:11, Oscar Pablo wrote:
+> assuming i have multi usrp and pc. each usrp connect to different pc.
 
+If each USRP is connected/controlled to a different PC then
+they are not under the same multi_usrp block.
+
+Being in the same multi_usrp block means that in the USRP source/sink,
+you specify every USRPs in the "Device Address" parameter
+(addr0=3DIP_first_usrp,addr1=3DIP_second_usrp, etc.).
+I.e one computer controls every USRPs under the same instance.
+
+If each one of them is controlled by a different PC,
+then there is no guarantee that they will be aligned
+(even with a shared PPS).
+
+> each usrp set unknown pps time to 0 then i want to get the samples at
+> time 1. so how to do?
+
+If they are controlled by different PCs with different execution delays,
+then they won't set their 0 time at the same PPS rising-edge.
+
+Regards
+--=20
+
+C=E9dric Hannotier
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============3721850658605542703==--
