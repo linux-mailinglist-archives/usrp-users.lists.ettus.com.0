@@ -2,402 +2,444 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04533BE9E2
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Jul 2021 16:39:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB4FC3BEA02
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Jul 2021 16:43:57 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A26773849CA
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Jul 2021 10:39:05 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2523F38457C
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Jul 2021 10:43:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=cttc.es header.i=@cttc.es header.b="f8AngYIK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zr93SZpr";
 	dkim-atps=neutral
-Received: from mx02.puc.rediris.es (outbound4sev.lav.puc.rediris.es [130.206.19.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7CA45383DD8
-	for <usrp-users@lists.ettus.com>; Wed,  7 Jul 2021 10:38:17 -0400 (EDT)
-Received: from leo.cttc.es (leo.cttc.es [84.88.62.208])
-	by mx02.puc.rediris.es  with ESMTP id 167EcBnf012385-167EcBnh012385
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Wed, 7 Jul 2021 16:38:11 +0200
-Received: from localhost (localhost [127.0.0.1])
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-References: <2547566f-fdc2-8dfc-6ef0-198de1a1f578@cttc.es>
- <60E5BB23.7000305@gmail.com>
-From: Armin Ghani <aghani@cttc.es>
-Message-ID: <f135fa58-cfed-d47d-f174-56bbf4e0a693@cttc.es>
-Date: Wed, 7 Jul 2021 16:38:11 +0200
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6D097384544
+	for <usrp-users@lists.ettus.com>; Wed,  7 Jul 2021 10:43:12 -0400 (EDT)
+Received: by mail-qt1-f174.google.com with SMTP id z12so2176424qtj.3
+        for <usrp-users@lists.ettus.com>; Wed, 07 Jul 2021 07:43:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=message-id:date:from:user-agent:mime-version:to:cc:subject
+         :references:in-reply-to;
+        bh=mUIRlmTNknITEviD/p2JBl2USO6UzIZq78MnB+hjgp4=;
+        b=Zr93SZpr9FYVRDy+Dg+st88J87yePQ2jZfduDgBHoN3OYH3EjeAJK+KCSvIFKGbonu
+         Tp7EI08rdAxkfEkX52KpcPgfxII4FA90bGt9FbAnLrE0WYt4aKNwS/d/EdTe4omCU/PO
+         VPFhFkFz3N/ra/4sFSttl6Y2dp1+XT9bms896R8z3eIjAoXugCqJ/MgeViRJbQYdfAPB
+         9egENahP13bCo/YXz7SltXov8gCD8GJo5jcIs7yfkHgfkMuNMuN4TOan4kYCOtlKZdzb
+         VTf+8FsjJ4C7W6XO8Fs9P8tBy+Yri19g3vTbLcDrHAMWUx2fkaoaMAXtVVIoMVOaQ9RZ
+         VnZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+         :cc:subject:references:in-reply-to;
+        bh=mUIRlmTNknITEviD/p2JBl2USO6UzIZq78MnB+hjgp4=;
+        b=IdEduIzsMdM19I96HFdT32QAVnTjoFFZQfXL/6xBOEzuVu3u9bIJqDZHf8wlSlXZOO
+         x8NMUZTyTSis7+jpo6s7dMNIlcbEvC/2ZORpz56UeWwpOp4U7ZUAnXWeMxE2IZCVA2ip
+         QQxNeY1mvxwHwhFgWFCa9OdC9YuwnWtYJI+qyR7zENllgiYxckXkZW2QxiAwH+VwiqLu
+         mOf89A0TXsh4NkYaDXigxHx/CiyQ8UiOz/4VmNa8Rew8VNUgleAqoL5xsG7tNv1lRnlk
+         kP+d+sPbWqnGj8rSOFQvh4KMmCHSOvLW545Z96xfpns+W0QM1d1heNDgHCL+Ud8VLHBI
+         8n1g==
+X-Gm-Message-State: AOAM532BmTR2GCE+HSznAoPB4SvPhE5QQomeFR52pSnWHfKRvoqCJEl8
+	mCxPrbrIwhdN4rXJjPXp7ck13DOq/DHT9w==
+X-Google-Smtp-Source: ABdhPJyNJeyIxlhS8qWwe8VDt4tAZY2ca+NnoX/ggqG/1AHESkRC/68LBuoJwcKzW5IZF7zA8naRuA==
+X-Received: by 2002:ac8:140a:: with SMTP id k10mr23016276qtj.190.1625668991724;
+        Wed, 07 Jul 2021 07:43:11 -0700 (PDT)
+Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id x22sm5265011qto.34.2021.07.07.07.43.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 07 Jul 2021 07:43:11 -0700 (PDT)
+Message-ID: <60E5BD7E.4050700@gmail.com>
+Date: Wed, 07 Jul 2021 10:43:10 -0400
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-In-Reply-To: <60E5BB23.7000305@gmail.com>
-Content-Language: en-US
-X-FE-Attachment-Name: aciemmgicippkphh.jpeg, ghdjbdfimciikmjg.png
-X-FE-Policy-ID: 2:6:0:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=cttc.es; s=DKIM; c=relaxed/relaxed;
- h=subject:to:references:cc:from:message-id:date:mime-version:content-type;
- bh=wn1IhT7TVaweYt7XdK4ha/yQQJoca3cJo2F2KFc9xDA=;
- b=f8AngYIKIX79WdVSVJOCLZAYtsgqe5p+3W0C5uV/WPSQoVnpDu00LGkbsRLtUV6mdBmo8RpCTuBw
-	bGCpyyxsHX2riN9EtxY0qfzXt695K72r6iAJEBJJUX+CVb6UH3UH+2+EE6i4TJ4YGKMf7MybzZrZ
-	OF/vFxGhZF/5l2nmnuWb5+BGYYPSC98OnvcExHbOWh3fm07LiJ2qtP50gum2fA8iZSXcngwX+QPh
-	XXpztI0cPLZswTLeiTaY7bCWkxqajF/we+fvlLqqq8WNuylXkmasPnEE71DpmfQSFm7YVyCFSjyQ
-	N8APIJoIWL8yq2exKHpPTwoBoP+5Hp3dL4NsyQ==
-Message-ID-Hash: HYI2GL4QV4QNU53TK3RZMHKESSAHQD7S
-X-Message-ID-Hash: HYI2GL4QV4QNU53TK3RZMHKESSAHQD7S
-X-MailFrom: prvs=1818a61fe1=aghani@cttc.es
+To: Armin Ghani <aghani@cttc.es>
+References: <2547566f-fdc2-8dfc-6ef0-198de1a1f578@cttc.es> <60E5BB23.7000305@gmail.com> <f135fa58-cfed-d47d-f174-56bbf4e0a693@cttc.es>
+In-Reply-To: <f135fa58-cfed-d47d-f174-56bbf4e0a693@cttc.es>
+Message-ID-Hash: 2AUGQ4ZMTSYQZKEQ4NEC5XTN2MFAYTZM
+X-Message-ID-Hash: 2AUGQ4ZMTSYQZKEQ4NEC5XTN2MFAYTZM
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RuntimeError: Reference Clock PLL failed to lock to external source, when trying to synch 3 USRPs
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HYI2GL4QV4QNU53TK3RZMHKESSAHQD7S/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2AUGQ4ZMTSYQZKEQ4NEC5XTN2MFAYTZM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1458739113932179800=="
+Content-Type: multipart/mixed; boundary="===============4588394546195905696=="
 
 This is a multi-part message in MIME format.
---===============1458739113932179800==
+--===============4588394546195905696==
 Content-Type: multipart/alternative;
- boundary="------------827BB7C137C347B220A68B0E"
-Content-Language: en-US
+ boundary="------------060802060206010506050707"
 
 This is a multi-part message in MIME format.
---------------827BB7C137C347B220A68B0E
+--------------060802060206010506050707
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Marcus for quick answer.
+On 07/07/2021 10:38 AM, Armin Ghani wrote:
+>
+> What do you mean by not implemented? Do you mean it is not assembled=20
+> on USRP hardware?
+>
+My recollection is that the "feature" was implemented originally, but it=20
+was found to be a very poor reference clock, and I thought
+   (maybe I'm wrong) that later FPGA releases ended up turning it off.
 
-There are two status LEDs on the octoclock which turns on (for 10MHz=20
-ref) and start to blinking (for 1PPS) after the flowgraph starts.
+So the next thing to check is that 10MHz and 1PPS are actually making it=20
+out of your octoclock (with a scope) when things are
+   configured (assuming that the input is correct).
 
-But I'll try to check it with Oscop as well.
 
-What do you mean by not implemented? Do you mean it is not assembled on=20
-USRP hardware?
-
-Regards.
-
-On 7/7/21 16:33, Marcus D. Leech wrote:
-> On 07/07/2021 09:36 AM, Armin Ghani wrote:
->>
->> Dear USRP and GNURadio Community
->>
->> I have 3 USRP X310 with two SBX-120 daughterboards installed. each of=20
->> USRPs has two dedicated 10GB Interface with host server.
->>
->> I'm trying to build a synchronouse system which has 2 receiver and=20
->> one transmitter and Octoclock CDA-2990 is used to synch both clock=20
->> and time of all USRPs.
->>
->> Since the octoclock doesnt provide reference source, I used one of=20
->> the USRPs clock source external output as octoclock input rerefence=20
->> and three distributed output references (both 10MHz and PPS) are fed=20
->> to the three USRPs (including the USRP which provide reference source=20
->> to the octoclock)
->>
->> Attached you can find the flowgraph in GNURadio to run a very simple=20
->> system in order to evaluate the results. You can find more details of=20
->> how UHD source and sink blocks are configured. In summary, for the=20
->> UHD sink block, clock and time references are set to internal and=20
->> default respectively. And UHD source block are configured as=20
->> multi-usrp config with clock and time sources for both motherboards=20
->> to the external.
->>
->> GNURadio v3.8.2.0 and UHD v3.15.0.0 are used.
->>
->> When I run the flowgraph, after UHD initialization for all USRPs, the=20
->> running system ends up with the folowing output in console:
->>
->> Executing: /usr/bin/python3 -u=20
->> /home/.../Documents/gnuradio-tests/octoclock_test.py
->>
->> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;=20
->> UHD_3.15.0.HEAD-0-gaea0e2de
->> [INFO] [X300] X300 initialization sequence...
->> [INFO] [X300] Maximum frame size: 1472 bytes.
->> [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends a=20
->> send frame size of at least 4000 for best
->> performance, but your configuration will only allow 1472.This may=20
->> negatively impact your maximum achievable sample rate.
->> Check the MTU on the interface and/or the send_frame_size argument.
->> [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends a=20
->> receive frame size of at least 8000 for best
->> performance, but your configuration will only allow 1472.This may=20
->> negatively impact your maximum achievable sample rate.
->> Check the MTU on the interface and/or the recv_frame_size argument.
->> [INFO] [X300] Maximum frame size: 1472 bytes.
->> [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends a=20
->> send frame size of at least 4000 for best
->> performance, but your configuration will only allow 1472.This may=20
->> negatively impact your maximum achievable sample rate.
->> Check the MTU on the interface and/or the send_frame_size argument.
->> [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends a=20
->> receive frame size of at least 8000 for best
->> performance, but your configuration will only allow 1472.This may=20
->> negatively impact your maximum achievable sample rate.
->> Check the MTU on the interface and/or the recv_frame_size argument.
->> [INFO] [X300] Radio 1x clock: 200 MHz
->> [INFO] [X300] Radio 1x clock: 200 MHz
->> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:=20
->> 0xF1F0D00000000000)
->> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)
->> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1318 MB/s)
->> [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:=20
->> 0xF1F0D00000000000)
->> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)
->> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)
->> [INFO] [0/Radio_0] Initializing block control (NOC ID:=20
->> 0x12AD100000000001)
->> [INFO] [1/Radio_0] Initializing block control (NOC ID:=20
->> 0x12AD100000000001)
->> [INFO] [0/Radio_1] Initializing block control (NOC ID:=20
->> 0x12AD100000000001)
->> [INFO] [1/Radio_1] Initializing block control (NOC ID:=20
->> 0x12AD100000000001)
->> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC000000000000=
-0)
->> [INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC000000000000=
-0)
->> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC000000000000=
-0)
->> [INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC000000000000=
-0)
->> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C000000000000=
-0)
->> [INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C000000000000=
-0)
->> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C000000000000=
-0)
->> [INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C000000000000=
-0)
->> Traceback (most recent call last):
->> =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py", line=20
->> 334, in <module>
->> =A0=A0=A0 main()
->> =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py", line=20
->> 310, in main
->> =A0=A0=A0 tb =3D top_block_cls()
->> =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py", line=20
->> 91, in __init__
->> =A0=A0=A0 self.uhd_usrp_source_0.set_clock_source('external', 0)
->> =A0 File=20
->> "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py", line=20
->> 3793, in set_clock_source
->> =A0=A0=A0 return _uhd_swig.usrp_source_sptr_set_clock_source(self, sou=
-rce,=20
->> mboard)
->>
->> RuntimeError: RuntimeError: Reference Clock PLL failed to lock to=20
->> external source.
->>
->>
->> --=20
->>
->> Armin Ghani
->>
->> Research Engineer | Communication Systems Division (CSD)
->>
->> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
->>
->> Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
->>
->> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
->>
->> 08860 - Castelldefels (Barcelona, Spain)
->>
->> www.cttc.cat
+> Regards.
+>
+> On 7/7/21 16:33, Marcus D. Leech wrote:
+>> On 07/07/2021 09:36 AM, Armin Ghani wrote:
+>>>
+>>> Dear USRP and GNURadio Community
+>>>
+>>> I have 3 USRP X310 with two SBX-120 daughterboards installed. each=20
+>>> of USRPs has two dedicated 10GB Interface with host server.
+>>>
+>>> I'm trying to build a synchronouse system which has 2 receiver and=20
+>>> one transmitter and Octoclock CDA-2990 is used to synch both clock=20
+>>> and time of all USRPs.
+>>>
+>>> Since the octoclock doesnt provide reference source, I used one of=20
+>>> the USRPs clock source external output as octoclock input rerefence=20
+>>> and three distributed output references (both 10MHz and PPS) are fed=20
+>>> to the three USRPs (including the USRP which provide reference=20
+>>> source to the octoclock)
+>>>
+>>> Attached you can find the flowgraph in GNURadio to run a very simple=20
+>>> system in order to evaluate the results. You can find more details=20
+>>> of how UHD source and sink blocks are configured. In summary, for=20
+>>> the UHD sink block, clock and time references are set to internal=20
+>>> and default respectively. And UHD source block are configured as=20
+>>> multi-usrp config with clock and time sources for both motherboards=20
+>>> to the external.
+>>>
+>>> GNURadio v3.8.2.0 and UHD v3.15.0.0 are used.
+>>>
+>>> When I run the flowgraph, after UHD initialization for all USRPs,=20
+>>> the running system ends up with the folowing output in console:
+>>>
+>>> Executing: /usr/bin/python3 -u=20
+>>> /home/.../Documents/gnuradio-tests/octoclock_test.py
+>>>
+>>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;=20
+>>> UHD_3.15.0.HEAD-0-gaea0e2de
+>>> [INFO] [X300] X300 initialization sequence...
+>>> [INFO] [X300] Maximum frame size: 1472 bytes.
+>>> [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends a=20
+>>> send frame size of at least 4000 for best
+>>> performance, but your configuration will only allow 1472.This may=20
+>>> negatively impact your maximum achievable sample rate.
+>>> Check the MTU on the interface and/or the send_frame_size argument.
+>>> [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends a=20
+>>> receive frame size of at least 8000 for best
+>>> performance, but your configuration will only allow 1472.This may=20
+>>> negatively impact your maximum achievable sample rate.
+>>> Check the MTU on the interface and/or the recv_frame_size argument.
+>>> [INFO] [X300] Maximum frame size: 1472 bytes.
+>>> [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends a=20
+>>> send frame size of at least 4000 for best
+>>> performance, but your configuration will only allow 1472.This may=20
+>>> negatively impact your maximum achievable sample rate.
+>>> Check the MTU on the interface and/or the send_frame_size argument.
+>>> [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends a=20
+>>> receive frame size of at least 8000 for best
+>>> performance, but your configuration will only allow 1472.This may=20
+>>> negatively impact your maximum achievable sample rate.
+>>> Check the MTU on the interface and/or the recv_frame_size argument.
+>>> [INFO] [X300] Radio 1x clock: 200 MHz
+>>> [INFO] [X300] Radio 1x clock: 200 MHz
+>>> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:=20
+>>> 0xF1F0D00000000000)
+>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)
+>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1318 MB/s)
+>>> [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:=20
+>>> 0xF1F0D00000000000)https://www.radio-astronomy.org/
+>>> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)
+>>> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)
+>>> [INFO] [0/Radio_0] Initializing block control (NOC ID:=20
+>>> 0x12AD100000000001)
+>>> [INFO] [1/Radio_0] Initializing block control (NOC ID:=20
+>>> 0x12AD100000000001)
+>>> [INFO] [0/Radio_1] Initializing block control (NOC ID:=20
+>>> 0x12AD100000000001)
+>>> [INFO] [1/Radio_1] Initializing block control (NOC ID:=20
+>>> 0x12AD100000000001)
+>>> [INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC00000000000=
+00)
+>>> [INFO] [1/DDC_0] Initializing block control (NOC ID: 0xDDC00000000000=
+00)
+>>> [INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC00000000000=
+00)
+>>> [INFO] [1/DDC_1] Initializing block control (NOC ID: 0xDDC00000000000=
+00)
+>>> [INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C00000000000=
+00)
+>>> [INFO] [1/DUC_0] Initializing block control (NOC ID: 0xD0C00000000000=
+00)
+>>> [INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C00000000000=
+00)
+>>> [INFO] [1/DUC_1] Initializing block control (NOC ID: 0xD0C00000000000=
+00)
+>>> Traceback (most recent call last):
+>>>   File "/home/.../Documents/gnuradio-tests/octoclock_test.py", line=20
+>>> 334, in <module>
+>>>     main()
+>>>   File "/home/.../Documents/gnuradio-tests/octoclock_test.py", line=20
+>>> 310, in main
+>>>     tb =3D top_block_cls()
+>>>   File "/home/.../Documents/gnuradio-tests/octoclock_test.py", line=20
+>>> 91, in __init__
+>>>     self.uhd_usrp_source_0.set_clock_source('external', 0)
+>>>   File=20
+>>> "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py",=20
+>>> line 3793, in set_clock_source
+>>>     return _uhd_swig.usrp_source_sptr_set_clock_source(self, source,=20
+>>> mboard)
+>>>
+>>> RuntimeError: RuntimeError: Reference Clock PLL failed to lock to=20
+>>> external source.
+>>>
+>>>
+>>> --=20
+>>>
+>>> Armin Ghani
+>>>
+>>> Research Engineer | Communication Systems Division (CSD)
+>>>
+>>> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
+>>>
+>>> Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
+>>>
+>>> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
+>>>
+>>> 08860 - Castelldefels (Barcelona, Spain)
+>>>
+>>> www.cttc.cat
+>>>
+>>>
+>>>
+>>> _______________________________________________
+>>> USRP-users mailing list --usrp-users@lists.ettus.com
+>>> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>> Check to make sure that the REF OUT on the X310 you're using as the=20
+>> reference is actually producing a 10MHz clock.  My recollection
+>>   is that the REF OUT on the X310 was never actually implemented.
 >>
 >>
 >>
 >> _______________________________________________
 >> USRP-users mailing list --usrp-users@lists.ettus.com
 >> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-> Check to make sure that the REF OUT on the X310 you're using as the=20
-> reference is actually producing a 10MHz clock.=A0 My recollection
-> =A0 is that the REF OUT on the X310 was never actually implemented.
+> --=20
 >
+> Armin Ghani
 >
+> Research Engineer | Communication Systems Division (CSD)
 >
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
---=20
-
-Armin Ghani
-
-Research Engineer | Communication Systems Division (CSD)
-
-aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
-
-Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
-
-Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
-
-08860 - Castelldefels (Barcelona, Spain)
-
-www.cttc.cat
+> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
+>
+> Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
+>
+> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
+>
+> 08860 - Castelldefels (Barcelona, Spain)
+>
+> www.cttc.cat
+>
 
 
---------------827BB7C137C347B220A68B0E
+--------------060802060206010506050707
 Content-Type: multipart/related;
- boundary="------------4E35961022E02369EF5E4232"
+ boundary="------------030206000800010407090904"
 
 
---------------4E35961022E02369EF5E4232
+--------------030206000800010407090904
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html;
-      charset=3Dwindows-1252">
+    <meta content=3D"text/html; charset=3Dwindows-1252"
+      http-equiv=3D"Content-Type">
   </head>
-  <body>
-    <p>Thanks Marcus for quick answer.</p>
-    <p>There are two status LEDs on the octoclock which turns on (for
-      10MHz ref) and start to blinking (for 1PPS) after the flowgraph
-      starts.</p>
-    <p>But I'll try to check it with Oscop as well.</p>
-    <p>What do you mean by not implemented? Do you mean it is not
-      assembled on USRP hardware?</p>
-    <p>Regards.<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 7/7/21 16:33, Marcus D. Leech wrote=
-:<br>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"moz-cite-prefix">On 07/07/2021 10:38 AM, Armin Ghani
+      wrote:<br>
     </div>
-    <blockquote type=3D"cite" cite=3D"mid:60E5BB23.7000305@gmail.com">
-      <meta content=3D"text/html; charset=3Dwindows-1252"
-        http-equiv=3D"Content-Type">
-      <div class=3D"moz-cite-prefix">On 07/07/2021 09:36 AM, Armin Ghani
+    <blockquote cite=3D"mid:f135fa58-cfed-d47d-f174-56bbf4e0a693@cttc.es"
+      type=3D"cite">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html;
+        charset=3Dwindows-1252">
+      <p>What do you mean by not implemented? Do you mean it is not
+        assembled on USRP hardware?</p>
+    </blockquote>
+    My recollection is that the "feature" was implemented originally,
+    but it was found to be a very poor reference clock, and I thought<br>
+    =A0 (maybe I'm wrong) that later FPGA releases ended up turning it
+    off.=A0 <br>
+    <br>
+    So the next thing to check is that 10MHz and 1PPS are actually
+    making it out of your octoclock (with a scope) when things are<br>
+    =A0 configured (assuming that the input is correct).<br>
+    <br>
+    <br>
+    <blockquote cite=3D"mid:f135fa58-cfed-d47d-f174-56bbf4e0a693@cttc.es"
+      type=3D"cite">
+      <p>Regards.<br>
+      </p>
+      <div class=3D"moz-cite-prefix">On 7/7/21 16:33, Marcus D. Leech
         wrote:<br>
       </div>
-      <blockquote
-        cite=3D"mid:2547566f-fdc2-8dfc-6ef0-198de1a1f578@cttc.es"
-        type=3D"cite">
-        <meta http-equiv=3D"content-type" content=3D"text/html;
-          charset=3Dwindows-1252">
-        <p>Dear USRP and GNURadio Community</p>
-        <p>I have 3 USRP X310 with two SBX-120 daughterboards installed.
-          each of USRPs has two dedicated 10GB Interface with host
-          server.</p>
-        <p>I'm trying to build a synchronouse system which has 2
-          receiver and one transmitter and Octoclock CDA-2990 is used to
-          synch both clock and time of all USRPs.</p>
-        <p>Since the octoclock doesnt provide reference source, I used
-          one of the USRPs clock source external output as octoclock
-          input rerefence and three distributed output references (both
-          10MHz and PPS) are fed to the three USRPs (including the USRP
-          which provide reference source to the octoclock)</p>
-        <p>Attached you can find the flowgraph in GNURadio to run a very
-          simple system in order to evaluate the results. You can find
-          more details of how UHD source and sink blocks are configured.
-          In summary, for the UHD sink block, clock and time references
-          are set to internal and default respectively. And UHD source
-          block are configured as multi-usrp config with clock and time
-          sources for both motherboards to the external.<br>
-        </p>
-        <p>GNURadio v3.8.2.0 and UHD v3.15.0.0 are used.</p>
-        <p>When I run the flowgraph, after UHD initialization for all
-          USRPs, the running system ends up with the folowing output in
-          console:</p>
-        Executing: /usr/bin/python3 -u
-        /home/.../Documents/gnuradio-tests/octoclock_test.py<br>
-        <br>
-        [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
-        UHD_3.15.0.HEAD-0-gaea0e2de<br>
-        [INFO] [X300] X300 initialization sequence...<br>
-        [INFO] [X300] Maximum frame size: 1472 bytes.<br>
-        [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends
-        a send frame size of at least 4000 for best<br>
-        performance, but your configuration will only allow 1472.This
-        may negatively impact your maximum achievable sample rate.<br>
-        Check the MTU on the interface and/or the send_frame_size
-        argument.<br>
-        [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends
-        a receive frame size of at least 8000 for best<br>
-        performance, but your configuration will only allow 1472.This
-        may negatively impact your maximum achievable sample rate.<br>
-        Check the MTU on the interface and/or the recv_frame_size
-        argument.<br>
-        [INFO] [X300] Maximum frame size: 1472 bytes.<br>
-        [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends
-        a send frame size of at least 4000 for best<br>
-        performance, but your configuration will only allow 1472.This
-        may negatively impact your maximum achievable sample rate.<br>
-        Check the MTU on the interface and/or the send_frame_size
-        argument.<br>
-        [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends
-        a receive frame size of at least 8000 for best<br>
-        performance, but your configuration will only allow 1472.This
-        may negatively impact your maximum achievable sample rate.<br>
-        Check the MTU on the interface and/or the recv_frame_size
-        argument.<br>
-        [INFO] [X300] Radio 1x clock: 200 MHz<br>
-        [INFO] [X300] Radio 1x clock: 200 MHz<br>
-        [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-        0xF1F0D00000000000)<br>
-        [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)<br>
-        [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1318 MB/s)<br>
-        [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:
-        0xF1F0D00000000000)<br>
-        [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)<br>
-        [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)<br>
-        [INFO] [0/Radio_0] Initializing block control (NOC ID:
-        0x12AD100000000001)<br>
-        [INFO] [1/Radio_0] Initializing block control (NOC ID:
-        0x12AD100000000001)<br>
-        [INFO] [0/Radio_1] Initializing block control (NOC ID:
-        0x12AD100000000001)<br>
-        [INFO] [1/Radio_1] Initializing block control (NOC ID:
-        0x12AD100000000001)<br>
-        [INFO] [0/DDC_0] Initializing block control (NOC ID:
-        0xDDC0000000000000)<br>
-        [INFO] [1/DDC_0] Initializing block control (NOC ID:
-        0xDDC0000000000000)<br>
-        [INFO] [0/DDC_1] Initializing block control (NOC ID:
-        0xDDC0000000000000)<br>
-        [INFO] [1/DDC_1] Initializing block control (NOC ID:
-        0xDDC0000000000000)<br>
-        [INFO] [0/DUC_0] Initializing block control (NOC ID:
-        0xD0C0000000000000)<br>
-        [INFO] [1/DUC_0] Initializing block control (NOC ID:
-        0xD0C0000000000000)<br>
-        [INFO] [0/DUC_1] Initializing block control (NOC ID:
-        0xD0C0000000000000)<br>
-        [INFO] [1/DUC_1] Initializing block control (NOC ID:
-        0xD0C0000000000000)<br>
-        Traceback (most recent call last):<br>
-        =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py",
-        line 334, in &lt;module&gt;<br>
-        =A0=A0=A0 main()<br>
-        =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py",
-        line 310, in main<br>
-        =A0=A0=A0 tb =3D top_block_cls()<br>
-        =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py",
-        line 91, in __init__<br>
-        =A0=A0=A0 self.uhd_usrp_source_0.set_clock_source('external', 0)<=
-br>
-        =A0 File
-        "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py",
-        line 3793, in set_clock_source<br>
-        =A0=A0=A0 return _uhd_swig.usrp_source_sptr_set_clock_source(self=
-,
-        source, mboard)<br>
-        <p> RuntimeError: RuntimeError: Reference Clock PLL failed to
-          lock to external source.</p>
-        <p><br>
-        </p>
-        <div class=3D"moz-signature">-- <br>
+      <blockquote type=3D"cite" cite=3D"mid:60E5BB23.7000305@gmail.com">
+        <meta content=3D"text/html; charset=3Dwindows-1252"
+          http-equiv=3D"Content-Type">
+        <div class=3D"moz-cite-prefix">On 07/07/2021 09:36 AM, Armin Ghan=
+i
+          wrote:<br>
+        </div>
+        <blockquote
+          cite=3D"mid:2547566f-fdc2-8dfc-6ef0-198de1a1f578@cttc.es"
+          type=3D"cite">
           <meta http-equiv=3D"content-type" content=3D"text/html;
             charset=3Dwindows-1252">
-          <title></title>
-          <p> </p>
-          <p>
-            <meta name=3D"ProgId" content=3D"Word.Document">
-            <meta name=3D"Generator" content=3D"Microsoft Word 15">
-            <meta name=3D"Originator" content=3D"Microsoft Word 15">
-            <style>@font-face
+          <p>Dear USRP and GNURadio Community</p>
+          <p>I have 3 USRP X310 with two SBX-120 daughterboards
+            installed. each of USRPs has two dedicated 10GB Interface
+            with host server.</p>
+          <p>I'm trying to build a synchronouse system which has 2
+            receiver and one transmitter and Octoclock CDA-2990 is used
+            to synch both clock and time of all USRPs.</p>
+          <p>Since the octoclock doesnt provide reference source, I used
+            one of the USRPs clock source external output as octoclock
+            input rerefence and three distributed output references
+            (both 10MHz and PPS) are fed to the three USRPs (including
+            the USRP which provide reference source to the octoclock)</p>
+          <p>Attached you can find the flowgraph in GNURadio to run a
+            very simple system in order to evaluate the results. You can
+            find more details of how UHD source and sink blocks are
+            configured. In summary, for the UHD sink block, clock and
+            time references are set to internal and default
+            respectively. And UHD source block are configured as
+            multi-usrp config with clock and time sources for both
+            motherboards to the external.<br>
+          </p>
+          <p>GNURadio v3.8.2.0 and UHD v3.15.0.0 are used.</p>
+          <p>When I run the flowgraph, after UHD initialization for all
+            USRPs, the running system ends up with the folowing output
+            in console:</p>
+          Executing: /usr/bin/python3 -u
+          /home/.../Documents/gnuradio-tests/octoclock_test.py<br>
+          <br>
+          [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+          UHD_3.15.0.HEAD-0-gaea0e2de<br>
+          [INFO] [X300] X300 initialization sequence...<br>
+          [INFO] [X300] Maximum frame size: 1472 bytes.<br>
+          [WARNING] [X300] For the 192.168.30.2 connection, UHD
+          recommends a send frame size of at least 4000 for best<br>
+          performance, but your configuration will only allow 1472.This
+          may negatively impact your maximum achievable sample rate.<br>
+          Check the MTU on the interface and/or the send_frame_size
+          argument.<br>
+          [WARNING] [X300] For the 192.168.30.2 connection, UHD
+          recommends a receive frame size of at least 8000 for best<br>
+          performance, but your configuration will only allow 1472.This
+          may negatively impact your maximum achievable sample rate.<br>
+          Check the MTU on the interface and/or the recv_frame_size
+          argument.<br>
+          [INFO] [X300] Maximum frame size: 1472 bytes.<br>
+          [WARNING] [X300] For the 192.168.50.2 connection, UHD
+          recommends a send frame size of at least 4000 for best<br>
+          performance, but your configuration will only allow 1472.This
+          may negatively impact your maximum achievable sample rate.<br>
+          Check the MTU on the interface and/or the send_frame_size
+          argument.<br>
+          [WARNING] [X300] For the 192.168.50.2 connection, UHD
+          recommends a receive frame size of at least 8000 for best<br>
+          performance, but your configuration will only allow 1472.This
+          may negatively impact your maximum achievable sample rate.<br>
+          Check the MTU on the interface and/or the recv_frame_size
+          argument.<br>
+          [INFO] [X300] Radio 1x clock: 200 MHz<br>
+          [INFO] [X300] Radio 1x clock: 200 MHz<br>
+          [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+          0xF1F0D00000000000)<br>
+          [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1311 MB/s)<br>
+          [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1318 MB/s)<br>
+          [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:
+          0xF1F0D00000000000)<a class=3D"moz-txt-link-freetext" href=3D"h=
+ttps://www.radio-astronomy.org/">https://www.radio-astronomy.org/</a><br>
+          [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)<br>
+          [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1299 MB/s)<br>
+          [INFO] [0/Radio_0] Initializing block control (NOC ID:
+          0x12AD100000000001)<br>
+          [INFO] [1/Radio_0] Initializing block control (NOC ID:
+          0x12AD100000000001)<br>
+          [INFO] [0/Radio_1] Initializing block control (NOC ID:
+          0x12AD100000000001)<br>
+          [INFO] [1/Radio_1] Initializing block control (NOC ID:
+          0x12AD100000000001)<br>
+          [INFO] [0/DDC_0] Initializing block control (NOC ID:
+          0xDDC0000000000000)<br>
+          [INFO] [1/DDC_0] Initializing block control (NOC ID:
+          0xDDC0000000000000)<br>
+          [INFO] [0/DDC_1] Initializing block control (NOC ID:
+          0xDDC0000000000000)<br>
+          [INFO] [1/DDC_1] Initializing block control (NOC ID:
+          0xDDC0000000000000)<br>
+          [INFO] [0/DUC_0] Initializing block control (NOC ID:
+          0xD0C0000000000000)<br>
+          [INFO] [1/DUC_0] Initializing block control (NOC ID:
+          0xD0C0000000000000)<br>
+          [INFO] [0/DUC_1] Initializing block control (NOC ID:
+          0xD0C0000000000000)<br>
+          [INFO] [1/DUC_1] Initializing block control (NOC ID:
+          0xD0C0000000000000)<br>
+          Traceback (most recent call last):<br>
+          =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py"=
+,
+          line 334, in &lt;module&gt;<br>
+          =A0=A0=A0 main()<br>
+          =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py"=
+,
+          line 310, in main<br>
+          =A0=A0=A0 tb =3D top_block_cls()<br>
+          =A0 File "/home/.../Documents/gnuradio-tests/octoclock_test.py"=
+,
+          line 91, in __init__<br>
+          =A0=A0=A0 self.uhd_usrp_source_0.set_clock_source('external', 0=
+)<br>
+          =A0 File
+          "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py"=
+,
+          line 3793, in set_clock_source<br>
+          =A0=A0=A0 return _uhd_swig.usrp_source_sptr_set_clock_source(se=
+lf,
+          source, mboard)<br>
+          <p> RuntimeError: RuntimeError: Reference Clock PLL failed to
+            lock to external source.</p>
+          <p><br>
+          </p>
+          <div class=3D"moz-signature">-- <br>
+            <meta http-equiv=3D"content-type" content=3D"text/html;
+              charset=3Dwindows-1252">
+            <title></title>
+            <p> </p>
+            <p>
+              <meta name=3D"ProgId" content=3D"Word.Document">
+              <meta name=3D"Generator" content=3D"Microsoft Word 15">
+              <meta name=3D"Originator" content=3D"Microsoft Word 15">
+              <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;
 	mso-font-charset:0;
@@ -467,63 +509,69 @@ rmal
 	margin-bottom:8.0pt;
 	line-height:107%;}div.WordSection1
 	{page:WordSection1;}</style> </p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><img
-              src=3D"cid:part1.4EEE63D3.0AE6D954@cttc.es" class=3D""
-              width=3D"151" hspace=3D"12" height=3D"100" align=3D"left"><=
-span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family:
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><img
+                src=3D"cid:part1.03030004.09060406@gmail.com" class=3D""
+                align=3D"left" height=3D"100" hspace=3D"12" width=3D"151"=
+><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family:
 Aharoni;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">Armin
-              Ghani</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Resea=
-rch
-              Engineer | Communication Systems Division (CSD)</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><a
-              moz-do-not-send=3D"true" href=3D"mailto:aghani@cttc.es"><sp=
-an
+                Ghani</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
                 style=3D"font-size:9.0pt;font-family:&quot;Arial
-                Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">agh=
-ani@cttc.es</span></a><span
-              style=3D"font-size: 9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> |
-              +34 93 645 29 08 (2143)</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centr=
-e
-              Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</span=
-></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
-              Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860
-              - Castelldefels (Barcelona, Spain)</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><a
-              moz-do-not-send=3D"true"><span
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Res=
+earch
+
+                Engineer | Communication Systems Division (CSD)</span></p=
+>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><a
+                moz-do-not-send=3D"true" href=3D"mailto:aghani@cttc.es"><=
+span
+                  style=3D"font-size:9.0pt;font-family:&quot;Arial
+                  Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">a=
+ghani@cttc.es</span></a><span
+                style=3D"font-size: 9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> |
+                +34 93 645 29 08 (2143)</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
                 style=3D"font-size:9.0pt;font-family:&quot;Arial
-                Black&quot;,sans-serif;
-                mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
-                lang=3D"ES">www.cttc.cat</span></a><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family:
-              Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
-        </div>
-        <br>
-        <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-        <br>
-        <pre wrap=3D"">_______________________________________________
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Cen=
+tre
+
+                Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</sp=
+an></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
+
+                Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">088=
+60
+
+                - Castelldefels (Barcelona, Spain)</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><a
+                moz-do-not-send=3D"true"><span
+                  style=3D"font-size:9.0pt;font-family:&quot;Arial
+                  Black&quot;,sans-serif;
+                  mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
+                  lang=3D"ES">www.cttc.cat</span></a><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family:
+                Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
+          </div>
+          <br>
+          <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+          <br>
+          <pre wrap=3D"">_______________________________________________
 USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
 mailto:usrp-users@lists.ettus.com" moz-do-not-send=3D"true">usrp-users@li=
 sts.ettus.com</a>
@@ -531,35 +579,36 @@ To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
 f=3D"mailto:usrp-users-leave@lists.ettus.com" moz-do-not-send=3D"true">us=
 rp-users-leave@lists.ettus.com</a>
 </pre>
-      </blockquote>
-      Check to make sure that the REF OUT on the X310 you're using as
-      the reference is actually producing a 10MHz clock.=A0 My
-      recollection<br>
-      =A0 is that the REF OUT on the X310 was never actually implemented.=
-<br>
-      <br>
-      <br>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
+        </blockquote>
+        Check to make sure that the REF OUT on the X310 you're using as
+        the reference is actually producing a 10MHz clock.=A0 My
+        recollection<br>
+        =A0 is that the REF OUT on the X310 was never actually
+        implemented.<br>
+        <br>
+        <br>
+        <br>
+        <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+        <pre class=3D"moz-quote-pre" wrap=3D"">__________________________=
+_____________________
+USRP-users mailing list -- <a moz-do-not-send=3D"true" class=3D"moz-txt-l=
+ink-abbreviated" href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@li=
+sts.ettus.com</a>
+To unsubscribe send an email to <a moz-do-not-send=3D"true" class=3D"moz-=
+txt-link-abbreviated" href=3D"mailto:usrp-users-leave@lists.ettus.com">us=
+rp-users-leave@lists.ettus.com</a>
 </pre>
-    </blockquote>
-    <div class=3D"moz-signature">-- <br>
-      <meta http-equiv=3D"content-type" content=3D"text/html;
-        charset=3Dwindows-1252">
-      <title></title>
-      <p> </p>
-      <p>
-        <meta name=3D"ProgId" content=3D"Word.Document">
-        <meta name=3D"Generator" content=3D"Microsoft Word 15">
-        <meta name=3D"Originator" content=3D"Microsoft Word 15">
-        <style>@font-face
+      </blockquote>
+      <div class=3D"moz-signature">-- <br>
+        <meta http-equiv=3D"content-type" content=3D"text/html;
+          charset=3Dwindows-1252">
+        <title></title>
+        <p> </p>
+        <p>
+          <meta name=3D"ProgId" content=3D"Word.Document">
+          <meta name=3D"Generator" content=3D"Microsoft Word 15">
+          <meta name=3D"Originator" content=3D"Microsoft Word 15">
+          <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;
 	mso-font-charset:0;
@@ -629,64 +678,66 @@ rmal
 	margin-bottom:8.0pt;
 	line-height:107%;}div.WordSection1
 	{page:WordSection1;}</style> </p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><img
-          src=3D"cid:part6.4B9EA7C5.83B01E96@cttc.es" width=3D"151"
-          hspace=3D"12" height=3D"100" align=3D"left"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><img
+            src=3D"cid:part8.04040904.07040707@gmail.com" align=3D"left"
+            height=3D"100" hspace=3D"12" width=3D"151"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
 Aharoni;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">Armin
-          Ghani</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Research
-          Engineer | Communication Systems Division (CSD)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a
-          href=3D"mailto:aghani@cttc.es"><span
+            Ghani</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghani@=
-cttc.es</span></a><span
-          style=3D"font-size: 9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34 93
-          645 29 08 (2143)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
-          Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</span></p=
->
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av. Carl
-          Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860 -
-          Castelldefels (Barcelona, Spain)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a><span
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Researc=
+h
+
+            Engineer | Communication Systems Division (CSD)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            moz-do-not-send=3D"true" href=3D"mailto:aghani@cttc.es"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghan=
+i@cttc.es</span></a><span
+            style=3D"font-size: 9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34
+            93 645 29 08 (2143)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;
-            mso-bidi-font-family:Aharoni;mso-ansi-language:ES" lang=3D"ES=
-">www.cttc.cat</span></a><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
-          Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
-    </div>
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
+            Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</span><=
+/p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
+            Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860
+            - Castelldefels (Barcelona, Spain)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            moz-do-not-send=3D"true"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif;
+              mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
+              lang=3D"ES">www.cttc.cat</span></a><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
+            Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
+      </div>
+    </blockquote>
+    <br>
   </body>
 </html>
 
---------------4E35961022E02369EF5E4232
-Content-Type: image/png;
- name="ghdjbdfimciikmjg.png"
+--------------030206000800010407090904
+Content-Type: image/png
 Content-Transfer-Encoding: base64
-Content-ID: <part1.4EEE63D3.0AE6D954@cttc.es>
-Content-Disposition: inline;
- filename="ghdjbdfimciikmjg.png"
+Content-ID: <part1.03030004.09060406@gmail.com>
 
 /9j/4AAQSkZJRgABAQEAkACQAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAm
 JSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMp
@@ -825,13 +876,10 @@ DdtLilooAKKKKAGPEkn31Vv94Zpv2aE/8sY/++RUtFAEJtIDg+TFkcg7BUuKWigAooooAKQ0
 tFAETQRM2WjQk9yoo+zQ/wDPGP8A74FSUUAMSCONtyIinGMqoBp4GKWigBKKWigBMVDc2cF3
 GY7qGOZD1V1BFT0hoA5+fwL4euW3SabED/sEqPyBpsXgDw5FIsi6am5TkbnYj8ia6Klp8z7g
 VbXTbOyTbaW0MAByBGgWrAGKdSUgClpKWgAooooAKKKKAP/Z
---------------4E35961022E02369EF5E4232
-Content-Type: image/jpeg;
- name="aciemmgicippkphh.jpeg"
+--------------030206000800010407090904
+Content-Type: image/jpeg
 Content-Transfer-Encoding: base64
-Content-ID: <part6.4B9EA7C5.83B01E96@cttc.es>
-Content-Disposition: inline;
- filename="aciemmgicippkphh.jpeg"
+Content-ID: <part8.04040904.07040707@gmail.com>
 
 /9j/4AAQSkZJRgABAQEAkACQAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAm
 JSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMp
@@ -970,11 +1018,11 @@ DdtLilooAKKKKAGPEkn31Vv94Zpv2aE/8sY/++RUtFAEJtIDg+TFkcg7BUuKWigAooooAKQ0
 tFAETQRM2WjQk9yoo+zQ/wDPGP8A74FSUUAMSCONtyIinGMqoBp4GKWigBKKWigBMVDc2cF3
 GY7qGOZD1V1BFT0hoA5+fwL4euW3SabED/sEqPyBpsXgDw5FIsi6am5TkbnYj8ia6Klp8z7g
 VbXTbOyTbaW0MAByBGgWrAGKdSUgClpKWgAooooAKKKKAP/Z
---------------4E35961022E02369EF5E4232--
+--------------030206000800010407090904--
 
---------------827BB7C137C347B220A68B0E--
+--------------060802060206010506050707--
 
---===============1458739113932179800==
+--===============4588394546195905696==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -984,4 +1032,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1458739113932179800==--
+--===============4588394546195905696==--
