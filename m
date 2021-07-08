@@ -2,184 +2,129 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D7233C1A7F
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Jul 2021 22:21:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 667EA3C1B39
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Jul 2021 23:48:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BF975383E7F
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Jul 2021 16:21:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5B40438403D
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Jul 2021 17:48:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UdGdA0mi";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="hwdid8nV";
 	dkim-atps=neutral
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id D3772383E52
-	for <usrp-users@lists.ettus.com>; Thu,  8 Jul 2021 16:20:39 -0400 (EDT)
-Received: by mail-qk1-f176.google.com with SMTP id 77so5257464qkk.11
-        for <usrp-users@lists.ettus.com>; Thu, 08 Jul 2021 13:20:39 -0700 (PDT)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id AACD5383E56
+	for <usrp-users@lists.ettus.com>; Thu,  8 Jul 2021 17:47:49 -0400 (EDT)
+Received: by mail-wm1-f44.google.com with SMTP id n33so5029784wms.1
+        for <usrp-users@lists.ettus.com>; Thu, 08 Jul 2021 14:47:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=VSP0SC1Fb7O2ToIe5jrzCnhtpVDELvhdKpVjh4JTp44=;
-        b=UdGdA0miBqbLHKZS41QQE9Bw6XIqfs5WOXFdB3W24+Nz+Sc5nCCtVmYKb2OPH46lb+
-         JnMckZR2XQSoirn1G/57C4h3MN7vCpyXcfICfTwrIESW7EuefkfAkvHgq+TOdUU3saJk
-         i6tBeY2dmz4NizbelXCawKUBCWCgwmHkQ/GQILWgFjS8pW7STIfM2Kk42SGcC5iPzber
-         g4Dl1t7D8nqXkRg72TALfU0hnxZgOvumfN6wZ6O9ocdLSG1v2TbYiPaQky7cLDlZyaIB
-         VxnSwvXKPkFVOld18Itx7tbejZhgN9hlKKzK5on7oq1DutpDuebsApNX0SwEMNOG4SLK
-         ntHA==
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=+KS+HyBtG5pzMuM/zaOCc4n70cVGBIlCDKLZ8u+1fjo=;
+        b=hwdid8nVMYjRyuCupHxQqZQopD2M43qhMI4474sESY7Hl4Qe7B77fcMjcwIzHznhWz
+         BVn6MHk3qvkxiPlWLXJ4RHvbUVNPEcwYS7d3Pl9LSW3E80BFOI/NMZbTJJ6e+tjntGob
+         TGHgJw9aeyDEyU+v7wjTNTusOGDx0hSlR9ihLrvRRxtjhtlB0hH2Qg0TMqPzWuVQG917
+         3gwlP/+vlrqnnWT1mKZ2jiYybhItD3f09+7M66cUMr0FysT1R7cpsOITCXfIq7zXfgUU
+         quGlqBLGf9OVKhb7i2kNfqcDRF/2abswIK4IexWQik3SSuGHBExhZoVFIyIJe1fgEJzS
+         /zlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=VSP0SC1Fb7O2ToIe5jrzCnhtpVDELvhdKpVjh4JTp44=;
-        b=mDJC+2/B8GXlgaX8mBayaJ/ObnuMs6UpEUnYaF5hghZqou6QGKGN3pk534mzuvfgix
-         9JUMT7yKEdKMIrllUBechouZu018yM+0mi8gm43iaTH8cNKo2Vr5mrXqBSckZ0+FSJpx
-         7CFEN6yMVO9M6svyF+XEOUp+zk/Q6Z9DaT8s0o5U8jyPMr9DWgSVEkBh+ggsAYG6SLS1
-         YTfU4WuBt2e3P12R/xOYcnlvoa1wnQ2XxT0paiUIERu/P7Pa+uSmo6ygWZEw4gqw3aeH
-         GAomJnof+puSw6MFHxBJzx4QPG98vfLYWZcAPY1IpcwbTmmftUjL0kOj8e8gxMBUNqMd
-         rH6g==
-X-Gm-Message-State: AOAM531F6jvT08+HiUI+1xYBJBlHj0gBIFzxidVS8mIJehE9pha7eDzq
-	VOp9rsaLHSreGA8uD6pm6I2IpPerA9DHMg==
-X-Google-Smtp-Source: ABdhPJyE3dyQlRw+TV0/X+JAmF+gmoo4r7TsatlyxwQbPYKs4CxoePzB4CJKabQwAMrnTEyRAj4XeQ==
-X-Received: by 2002:a37:2e86:: with SMTP id u128mr33080759qkh.26.1625775639035;
-        Thu, 08 Jul 2021 13:20:39 -0700 (PDT)
-Received: from DESKTOP70IB7GE ([129.10.131.194])
-        by smtp.gmail.com with ESMTPSA id d15sm1354273qtb.72.2021.07.08.13.20.38
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=+KS+HyBtG5pzMuM/zaOCc4n70cVGBIlCDKLZ8u+1fjo=;
+        b=m4VLoHIbJ+ypn5SoVzoNvPhw7LxwnhE8hJ+LJcI+TVzHKYZhIxYtdoALJxs71iIKBb
+         +6w1T8kTXlCF6JbgJ2wRY9QPk6yzA/z4PCybb+BJ5F8HrHiuo1IGnJFJ8ELzJtRKxFf5
+         qJMQ6YL+yMRj9Ng2xOtivFXqT5q6WsqMrAje1wpFEEW99aawzpOUdkRfmnQ0x/RwBhL1
+         aeoF9bsVA1DITJCs2LR0s3U3j1e8hHdM/E/jsOdbQwK6K7c7i3jtl77v7zG8lYUR+LZZ
+         m32LC3SNMKGffYAnm/8B7Wl/nvTReCkVAqkItP3nl7EPEKILw8o0pa0/VRAw7QOpcuMc
+         pZ5Q==
+X-Gm-Message-State: AOAM532Zydg7ekgO/usjiC/qM+HmNsugPoFR3GOwTZV4fEtIAJWXjpdy
+	BMuR3U74kO49MChCLzK5v7QDYI0JHre6PWNm
+X-Google-Smtp-Source: ABdhPJyNL8NtsWMZClqNu12mjyIvUwlBbPjPQVb+e6I1If2hZU9t9DHGNrFPcD+kH2qw7Lg/WawZdg==
+X-Received: by 2002:a7b:c042:: with SMTP id u2mr33843492wmc.86.1625780868414;
+        Thu, 08 Jul 2021 14:47:48 -0700 (PDT)
+Received: from [192.168.128.8] (HSI-KBW-46-223-163-85.hsi.kabel-badenwuerttemberg.de. [46.223.163.85])
+        by smtp.gmail.com with ESMTPSA id o11sm11090302wmc.2.2021.07.08.14.47.47
         for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 08 Jul 2021 13:20:38 -0700 (PDT)
-From: <zhang.weit3@gmail.com>
-To: <usrp-users@lists.ettus.com>
-Date: Thu, 8 Jul 2021 16:20:27 -0500
-Message-ID: <026701d7743f$12e04bd0$38a0e370$@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 Jul 2021 14:47:47 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <026701d7743f$12e04bd0$38a0e370$@gmail.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Message-ID: <d836560f-3bc5-65df-c3a6-913262f9eac8@ettus.com>
+Date: Thu, 8 Jul 2021 23:47:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: Add0PdGaQwOxi8grSZyCq/wBR6Ss3Q==
-Content-Language: en-us
-Message-ID-Hash: WPLBPBHYKYUQHQASKG3NAFDIN4RUQJPH
-X-Message-ID-Hash: WPLBPBHYKYUQHQASKG3NAFDIN4RUQJPH
-X-MailFrom: zhang.weit3@gmail.com
+In-Reply-To: <026701d7743f$12e04bd0$38a0e370$@gmail.com>
+Content-Language: en-US
+Message-ID-Hash: UYOZCSTJJ3ALGSAT6H24RQC3Z3I6GLD7
+X-Message-ID-Hash: UYOZCSTJJ3ALGSAT6H24RQC3Z3I6GLD7
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Initialize LO Frequency
+Subject: [USRP-users] Re: Initialize LO Frequency
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WPLBPBHYKYUQHQASKG3NAFDIN4RUQJPH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UYOZCSTJJ3ALGSAT6H24RQC3Z3I6GLD7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4544496494455202294=="
-
-This is a multipart message in MIME format.
-
---===============4544496494455202294==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0268_01D77415.2A0AB900"
-Content-Language: en-us
-
-This is a multipart message in MIME format.
-
-------=_NextPart_000_0268_01D77415.2A0AB900
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Hi all,
-
- 
-
-I am playing with a B210. I noticed the LO TX/RX frequency is initialized to
-1.0GHz whenever the USRP object is created in Python by uhd.usrp.MultiUSRP.
-I am trying to have a different initial frequency, for instance 700MHz,
-which means that the LO will always operate at 700MHz whenever the USRP
-object is created. Note I do not want to call any other API functions after
-the USRP initialization. Do anyone know how I can change the initial LO
-frequency? Thank you very much for your sharing in advance!
-
- 
-
- 
-
-Thank you,
-
-Weite
-
-
-------=_NextPart_000_0268_01D77415.2A0AB900
-Content-Type: text/html;
-	charset="us-ascii"
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal>Hi all,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I am playing =
-with a B210. I noticed the LO TX/RX frequency is initialized to 1.0GHz =
-whenever the USRP object is created in Python by =
-<i>uhd.usrp.MultiUSRP</i>. I am trying to have a different initial =
-frequency, for instance 700MHz, which means that the LO will always =
-operate at 700MHz whenever the USRP object is created. Note I do not =
-want to call any other API functions after the USRP initialization. Do =
-anyone know how I can change the initial LO frequency? Thank you very =
-much for your sharing in advance!<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thank =
-you,<o:p></o:p></p><p =
-class=3DMsoNormal>Weite<o:p></o:p></p></div></body></html>
-------=_NextPart_000_0268_01D77415.2A0AB900--
+That's not possible; you'll have to use the set_rx_frequency / set_tx_frequ=
+ency API.
 
---===============4544496494455202294==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
+validated as a product, for use in a deployed application or system, or for=
+ use in hazardous environments. You assume all risks for use of the Code. U=
+se of the Code is subject to terms of the licenses to the UHD or RFNoC code=
+ with which the Code is used. Standard licenses to UHD and RFNoC can be fou=
+nd at https://www.ettus.com/sdr-software/licenses/.
 
+NI will only perform services based on its understanding and condition that=
+ the goods or services (i) are not for the use in the production or develop=
+ment of any item produced, purchased, or ordered by any entity with a footn=
+ote 1 designation in the license requirement column of Supplement No. 4 to =
+Part 744, U.S. Export Administration Regulations and (ii) such a company is=
+ not a party to the transaction.  If our understanding is incorrect, please=
+ notify us immediately because a specific authorization may be required fro=
+m the U.S. Commerce Department before the transaction may proceed further.
+
+On 08.07.21 23:20, zhang.weit3@gmail.com wrote:
+>
+> Hi all,
+>
+> =A0
+>
+> I am playing with a B210. I noticed the LO TX/RX frequency is initialized=
+ to 1.0GHz
+> whenever the USRP object is created in Python by /uhd.usrp.MultiUSRP/. I =
+am trying to
+> have a different initial frequency, for instance 700MHz, which means that=
+ the LO will
+> always operate at 700MHz whenever the USRP object is created. Note I do n=
+ot want to call
+> any other API functions after the USRP initialization. Do anyone know how=
+ I can change
+> the initial LO frequency? Thank you very much for your sharing in advance!
+>
+> =A0
+>
+> =A0
+>
+> Thank you,
+>
+> Weite
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4544496494455202294==--
