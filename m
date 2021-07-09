@@ -2,367 +2,415 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3B863C2719
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Jul 2021 17:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 840343C271B
+	for <lists+usrp-users@lfdr.de>; Fri,  9 Jul 2021 17:57:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A0812384727
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Jul 2021 11:55:02 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C94C6384D73
+	for <lists+usrp-users@lfdr.de>; Fri,  9 Jul 2021 11:57:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=cttc.es header.i=@cttc.es header.b="O0ZbmkzA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IgB1Y38i";
 	dkim-atps=neutral
-Received: from mx02.puc.rediris.es (outbound3sev.lav.puc.rediris.es [130.206.19.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id DB1123846F8
-	for <usrp-users@lists.ettus.com>; Fri,  9 Jul 2021 11:54:12 -0400 (EDT)
-Received: from leo.cttc.es (leo.cttc.es [84.88.62.208])
-	by mx02.puc.rediris.es  with ESMTP id 169Fs8UR008226-169Fs8UT008226
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK)
-	for <usrp-users@lists.ettus.com>; Fri, 9 Jul 2021 17:54:08 +0200
-Received: from localhost (localhost [127.0.0.1])
-To: usrp-users@lists.ettus.com
-References: <0f01b8f9-0390-462f-f650-3e108ced0508@cttc.es>
- <60E843EE.2020702@gmail.com> <de086712-0b2c-bd0a-2403-a21e3d60195c@cttc.es>
- <60E87031.4000103@gmail.com>
-From: Armin Ghani <aghani@cttc.es>
-Message-ID: <eb828814-823b-709a-244b-bebb223c17ad@cttc.es>
-Date: Fri, 9 Jul 2021 17:54:07 +0200
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 65A3D384714
+	for <usrp-users@lists.ettus.com>; Fri,  9 Jul 2021 11:56:16 -0400 (EDT)
+Received: by mail-qv1-f43.google.com with SMTP id g14so4732395qvo.7
+        for <usrp-users@lists.ettus.com>; Fri, 09 Jul 2021 08:56:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=message-id:date:from:user-agent:mime-version:to:subject:references
+         :in-reply-to;
+        bh=EYv06r6ZerxJzWIuGc+ss7asP6SkLgNVNpFQ940yroQ=;
+        b=IgB1Y38iq2NeSr35zF4yyaOo4N2VqepCOOUsIlWQPG4+za1u5Dvfd//pIF7MYMrhP4
+         tbiaQM8nv+6mNAvuTbc5CLlSl0rNV29SIYMuan9v7+DBMGoSfoJwNJzsXm3OmB8HU+T7
+         39UkW7KYUNHGRjj5wTn/xbmSGteZDTD8TGSSGGgxjwDH0fLJhm0A7RcXPiX0QLxYj/6+
+         IkxpuSjQ/fCEJXUtJ8eZom8hlDB5befcIoMg4+BwTQBuiHbNAOIKLP2yMvlF/Z1Uj15d
+         QmPZPX4jsI+e2Ewr+IeWXhWQ/yQ01odHfyJ9HhBTrRYxxQKE9wFXqsKHIa0YSoTajfhk
+         7e2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+         :subject:references:in-reply-to;
+        bh=EYv06r6ZerxJzWIuGc+ss7asP6SkLgNVNpFQ940yroQ=;
+        b=g8coJ7zllre0Tu8dXZifkB4b3WO4/iEI7qflOXOQLseNZlEICbPcgRKT2BKAo3Oc0o
+         gdHtOZFsaHtvLGTIWmSzpgFHZ2JmLQNozpLRQwk3g30ZUSFsKvKHOR096BAEJi+ucs9U
+         KVXncvm5MqrMbyzGknJU2i+RQr+q1oqUXS6K5zsF24emAdKCgcVeRi/u9czoGCig6Fml
+         /7PERJW2TPXDgY1xtroj62nd9l+mYc0F0rErPzKAs2y5O5dznVjVpt8DCsE2pl0Jt5Ks
+         C6LRcuZbJqfHxGfx2UcnyQnl/KP9rTAYEXUJfJWehRDLr6PmSguxPV+Z6YAsrlHOAxxu
+         ckDg==
+X-Gm-Message-State: AOAM532djR1qXGgSX2Li9qgsRCPVoSwKYzeyuoIT6vdwe0rc4bnb89GO
+	8cwxR5lvqEx01pHa2y5Z7DIlMUhWwzFpWw==
+X-Google-Smtp-Source: ABdhPJx6b2O+xr3kvFgkM4FQ/n4Y3vDknr7mOnztS5jr/Uq1cl8oU3xADmjmXUDLzEoM9HZEDfQZFg==
+X-Received: by 2002:a05:6214:d02:: with SMTP id 2mr26515754qvh.33.1625846175718;
+        Fri, 09 Jul 2021 08:56:15 -0700 (PDT)
+Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id j65sm2714635qkd.17.2021.07.09.08.56.15
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Jul 2021 08:56:15 -0700 (PDT)
+Message-ID: <60E8719E.7070206@gmail.com>
+Date: Fri, 09 Jul 2021 11:56:14 -0400
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-In-Reply-To: <60E87031.4000103@gmail.com>
-Content-Language: en-US
-X-FE-Attachment-Name: ahbbpdkgmccnehaa.png, eefndjcdoenoigce.jpeg
-X-FE-Policy-ID: 2:6:0:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=cttc.es; s=DKIM; c=relaxed/relaxed;
- h=subject:to:references:from:message-id:date:mime-version:content-type;
- bh=XEZ5sUCbtvKXvyMzIYxsaD0gbX+Oa3y94FIDQ983VK0=;
- b=O0ZbmkzAutq7AKyQPmJ9E48zMulpnzg5NSv8yg+T4jwIytI4doLZJNQq95OpTax7yS9DwFiz/Su5
-	yKQFZ/1EE9+EaUvLtN0FdwcTtCnACGrUVFZCFGRv5G0UiAE5XF0hO3d9vE+XaUWFqJgIvO0vECi8
-	IIgpO2Yute/4c9RvCLE4RuqM2rIVB3POljfy3RGZvTfqc3MKST9ccM9sQU3mRqbBY9rpfVmyKjNO
-	Xu48VqUS7lf9Xza8Bi3sNYeR4tisZBJf/j6ut3EtfyKUAd0TVB1LLACaXw6P5Ea/1s0ey957+6pF
-	8SNM0TfXaK5596dRqoFbM7skQqov3g4dXjLE2Q==
-Message-ID-Hash: IP5CTPV4USW76UFUERLY23H4W6YBQ4RS
-X-Message-ID-Hash: IP5CTPV4USW76UFUERLY23H4W6YBQ4RS
-X-MailFrom: prvs=1820b229c1=aghani@cttc.es
+To: usrp-users@lists.ettus.com
+References: <0f01b8f9-0390-462f-f650-3e108ced0508@cttc.es> <60E843EE.2020702@gmail.com> <de086712-0b2c-bd0a-2403-a21e3d60195c@cttc.es> <60E87031.4000103@gmail.com> <eb828814-823b-709a-244b-bebb223c17ad@cttc.es>
+In-Reply-To: <eb828814-823b-709a-244b-bebb223c17ad@cttc.es>
+Message-ID-Hash: ORGCES7CEFLUE34J5Y4OEYONG6WRCOBW
+X-Message-ID-Hash: ORGCES7CEFLUE34J5Y4OEYONG6WRCOBW
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Multi USRP TX configuration in GNURadio
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IP5CTPV4USW76UFUERLY23H4W6YBQ4RS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ORGCES7CEFLUE34J5Y4OEYONG6WRCOBW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2600212044698058774=="
+Content-Type: multipart/mixed; boundary="===============0290194641287798058=="
 
 This is a multi-part message in MIME format.
---===============2600212044698058774==
+--===============0290194641287798058==
 Content-Type: multipart/alternative;
- boundary="------------260BC695D671471B5C16F71D"
-Content-Language: en-US
+ boundary="------------040107000500060203040202"
 
 This is a multi-part message in MIME format.
---------------260BC695D671471B5C16F71D
+--------------040107000500060203040202
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-5Msps
+On 07/09/2021 11:54 AM, Armin Ghani wrote:
+>
+> 5Msps
+>
+If there's a way to up it to 10Msps (keeping the same bandwidth), that=20
+might help with the "L"--which basically means the
+   pipeline is starving for samples.  Now, it might also mean that your=20
+computer cannot "keep up" and is delivering samples
+   a little late.
 
-On 9/7/21 17:50, Marcus D. Leech wrote:
-> On 07/09/2021 10:31 AM, Armin Ghani wrote:
+
+> On 9/7/21 17:50, Marcus D. Leech wrote:
+>> On 07/09/2021 10:31 AM, Armin Ghani wrote:
+>>>
+>>> Thanks Marcus.
+>>>
+>>> It helped to resolve the error. But UHD consistently prints "L" in=20
+>>> the output.
+>>>
+>>> Would you what DRAM FIFO block actually does?
+>>>
+>> It's a FIFO between the DUC and the ADC as far as I know.
 >>
->> Thanks Marcus.
+>> What is your sample rate?
 >>
->> It helped to resolve the error. But UHD consistently prints "L" in=20
->> the output.
 >>
->> Would you what DRAM FIFO block actually does?
->>
-> It's a FIFO between the DUC and the ADC as far as I know.
->
-> What is your sample rate?
->
->
->> Regards
->>
->> On 9/7/21 14:41, Marcus D. Leech wrote:
->>> On 07/09/2021 07:40 AM, Armin Ghani wrote:
->>>>
->>>> Dear community
->>>>
->>>> I've been trying to make a fully synchronous multi USRP transmitter=20
->>>> in GNURadio v3.8.2.0 and UHD v3.15.0.0.
->>>>
->>>> In order to have a common clock and time between 2 USRPs, an=20
->>>> octoclock is also used.
->>>>
->>>> when trying to run a flowgraph which consists one multi_usrp sink=20
->>>> block that is connected to a signal source in GNURadio and running=20
->>>> the flowgrapth I get this error:
->>>>
->>>> Executing: /usr/bin/python3 -u=20
->>>> /home/.../Documents/gnuradio-tests/octoclock_test.py
->>>>
->>>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;=20
->>>> UHD_3.15.0.HEAD-0-gaea0e2de
->>>> [INFO] [X300] X300 initialization sequence...
->>>> [INFO] [X300] Maximum frame size: 7972 bytes.
->>>> [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends a=20
->>>> receive frame size of at least 8000 for best
->>>> performance, but your configuration will only allow 7972.This may=20
->>>> negatively impact your maximum achievable sample rate.
->>>> Check the MTU on the interface and/or the recv_frame_size argument.
->>>> [INFO] [X300] Maximum frame size: 7972 bytes.
->>>> [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends a=20
->>>> receive frame size of at least 8000 for best
->>>> performance, but your configuration will only allow 7972.This may=20
->>>> negatively impact your maximum achievable sample rate.
->>>> Check the MTU on the interface and/or the recv_frame_size argument.
->>>> [INFO] [X300] Radio 1x clock: 200 MHz
->>>> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:=20
->>>> 0xF1F0D00000000000)
->>>> [INFO] [X300] Radio 1x clock: 200 MHz
->>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1308 MB/s)
->>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312 MB/s)
->>>> [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:=20
->>>> 0xF1F0D00000000000)
->>>> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1316 MB/s)
->>>> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1304 MB/s)
->>>> [INFO] [0/Radio_0] Initializing block control (NOC ID:=20
->>>> 0x12AD100000000001)
->>>> [INFO] [1/Radio_0] Initializing block control (NOC ID:=20
->>>> 0x12AD100000000001)
->>>> [INFO] [0/Radio_1] Initializing block control (NOC ID:=20
->>>> 0x12AD100000000001)
->>>> [INFO] [1/Radio_1] Initializing block control (NOC ID:=20
->>>> 0x12AD100000000001)
->>>> [INFO] [0/DDC_0] Initializing block control (NOC ID:=20
->>>> 0xDDC0000000000000)
->>>> [INFO] [1/DDC_0] Initializing block control (NOC ID:=20
->>>> 0xDDC0000000000000)
->>>> [INFO] [0/DDC_1] Initializing block control (NOC ID:=20
->>>> 0xDDC0000000000000)
->>>> [INFO] [1/DDC_1] Initializing block control (NOC ID:=20
->>>> 0xDDC0000000000000)
->>>> [INFO] [0/DUC_0] Initializing block control (NOC ID:=20
->>>> 0xD0C0000000000000)
->>>> [INFO] [1/DUC_0] Initializing block control (NOC ID:=20
->>>> 0xD0C0000000000000)
->>>> [INFO] [0/DUC_1] Initializing block control (NOC ID:=20
->>>> 0xD0C0000000000000)
->>>> [INFO] [1/DUC_1] Initializing block control (NOC ID:=20
->>>> 0xD0C0000000000000)
->>>> [INFO] [MULTI_USRP]=A0=A0=A0=A0 1) catch time transition at pps edge
->>>> [INFO] [MULTI_USRP]=A0=A0=A0=A0 2) set times next pps (synchronously=
-)
->>>> thread[thread-per-block[6]: <block usrp_sink(1)>]: RuntimeError:=20
->>>> Multiple sampling rates downstream of TX Terminator 0:=20
->>>> RuntimeError: Node 0/DUC_0 specifies 1e+06, node 0/DUC_1 specifies=20
->>>> 390625.
+>>> Regards
+>>>
+>>> On 9/7/21 14:41, Marcus D. Leech wrote:
+>>>> On 07/09/2021 07:40 AM, Armin Ghani wrote:
+>>>>>
+>>>>> Dear community
+>>>>>
+>>>>> I've been trying to make a fully synchronous multi USRP=20
+>>>>> transmitter in GNURadio v3.8.2.0 and UHD v3.15.0.0.
+>>>>>
+>>>>> In order to have a common clock and time between 2 USRPs, an=20
+>>>>> octoclock is also used.
+>>>>>
+>>>>> when trying to run a flowgraph which consists one multi_usrp sink=20
+>>>>> block that is connected to a signal source in GNURadio and running=20
+>>>>> the flowgrapth I get this error:
+>>>>>
+>>>>> Executing: /usr/bin/python3 -u=20
+>>>>> /home/.../Documents/gnuradio-tests/octoclock_test.py
+>>>>>
+>>>>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;=20
+>>>>> UHD_3.15.0.HEAD-0-gaea0e2de
+>>>>> [INFO] [X300] X300 initialization sequence...
+>>>>> [INFO] [X300] Maximum frame size: 7972 bytes.
+>>>>> [WARNING] [X300] For the 192.168.30.2 connection, UHD recommends a=20
+>>>>> receive frame size of at least 8000 for best
+>>>>> performance, but your configuration will only allow 7972.This may=20
+>>>>> negatively impact your maximum achievable sample rate.
+>>>>> Check the MTU on the interface and/or the recv_frame_size argument.
+>>>>> [INFO] [X300] Maximum frame size: 7972 bytes.
+>>>>> [WARNING] [X300] For the 192.168.50.2 connection, UHD recommends a=20
+>>>>> receive frame size of at least 8000 for best
+>>>>> performance, but your configuration will only allow 7972.This may=20
+>>>>> negatively impact your maximum achievable sample rate.
+>>>>> Check the MTU on the interface and/or the recv_frame_size argument.
+>>>>> [INFO] [X300] Radio 1x clock: 200 MHz
+>>>>> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:=20
+>>>>> 0xF1F0D00000000000)
+>>>>> [INFO] [X300] Radio 1x clock: 200 MHz
+>>>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1308 MB/s)
+>>>>> [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312 MB/s)
+>>>>> [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:=20
+>>>>> 0xF1F0D00000000000)
+>>>>> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1316 MB/s)
+>>>>> [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1304 MB/s)
+>>>>> [INFO] [0/Radio_0] Initializing block control (NOC ID:=20
+>>>>> 0x12AD100000000001)
+>>>>> [INFO] [1/Radio_0] Initializing block control (NOC ID:=20
+>>>>> 0x12AD100000000001)
+>>>>> [INFO] [0/Radio_1] Initializing block control (NOC ID:=20
+>>>>> 0x12AD100000000001)
+>>>>> [INFO] [1/Radio_1] Initializing block control (NOC ID:=20
+>>>>> 0x12AD100000000001)
+>>>>> [INFO] [0/DDC_0] Initializing block control (NOC ID:=20
+>>>>> 0xDDC0000000000000)
+>>>>> [INFO] [1/DDC_0] Initializing block control (NOC ID:=20
+>>>>> 0xDDC0000000000000)
+>>>>> [INFO] [0/DDC_1] Initializing block control (NOC ID:=20
+>>>>> 0xDDC0000000000000)
+>>>>> [INFO] [1/DDC_1] Initializing block control (NOC ID:=20
+>>>>> 0xDDC0000000000000)
+>>>>> [INFO] [0/DUC_0] Initializing block control (NOC ID:=20
+>>>>> 0xD0C0000000000000)
+>>>>> [INFO] [1/DUC_0] Initializing block control (NOC ID:=20
+>>>>> 0xD0C0000000000000)
+>>>>> [INFO] [0/DUC_1] Initializing block control (NOC ID:=20
+>>>>> 0xD0C0000000000000)
+>>>>> [INFO] [1/DUC_1] Initializing block control (NOC ID:=20
+>>>>> 0xD0C0000000000000)
+>>>>> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+>>>>> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+>>>>> thread[thread-per-block[6]: <block usrp_sink(1)>]: RuntimeError:=20
+>>>>> Multiple sampling rates downstream of TX Terminator 0:=20
+>>>>> RuntimeError: Node 0/DUC_0 specifies 1e+06, node 0/DUC_1 specifies=20
+>>>>> 390625.
+>>>>>
+>>>>>
+>>>> What happens if you use the "skip_dram=3D1" argument in the device=20
+>>>> argument?
 >>>>
 >>>>
->>> What happens if you use the "skip_dram=3D1" argument in the device=20
->>> argument?
+>>>>
+>>>> _______________________________________________
+>>>> USRP-users mailing list --usrp-users@lists.ettus.com
+>>>> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>>> --=20
+>>>
+>>> Armin Ghani
+>>>
+>>> Research Engineer | Communication Systems Division (CSD)
+>>>
+>>> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
+>>>
+>>> Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
+>>>
+>>> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
+>>>
+>>> 08860 - Castelldefels (Barcelona, Spain)
+>>>
+>>> www.cttc.cat
 >>>
 >>>
 >>>
 >>> _______________________________________________
 >>> USRP-users mailing list --usrp-users@lists.ettus.com
 >>> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
->> --=20
->>
->> Armin Ghani
->>
->> Research Engineer | Communication Systems Division (CSD)
->>
->> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
->>
->> Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
->>
->> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
->>
->> 08860 - Castelldefels (Barcelona, Spain)
->>
->> www.cttc.cat
->>
 >>
 >>
 >> _______________________________________________
 >> USRP-users mailing list --usrp-users@lists.ettus.com
 >> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+> --=20
+>
+> Armin Ghani
+>
+> Research Engineer | Communication Systems Division (CSD)
+>
+> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
+>
+> Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
+>
+> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
+>
+> 08860 - Castelldefels (Barcelona, Spain)
+>
+> www.cttc.cat
+>
 >
 >
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
---=20
-
-Armin Ghani
-
-Research Engineer | Communication Systems Division (CSD)
-
-aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
-
-Centre Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)
-
-Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
-
-08860 - Castelldefels (Barcelona, Spain)
-
-www.cttc.cat
 
 
---------------260BC695D671471B5C16F71D
+--------------040107000500060203040202
 Content-Type: multipart/related;
- boundary="------------1DBAC4DC23F5C445C4F8C977"
+ boundary="------------030706020001010505010100"
 
 
---------------1DBAC4DC23F5C445C4F8C977
+--------------030706020001010505010100
 Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html;
-      charset=3Dwindows-1252">
+    <meta content=3D"text/html; charset=3Dwindows-1252"
+      http-equiv=3D"Content-Type">
   </head>
-  <body>
-    <p>5Msps</p>
-    <div class=3D"moz-cite-prefix">On 9/7/21 17:50, Marcus D. Leech wrote=
-:<br>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"moz-cite-prefix">On 07/09/2021 11:54 AM, Armin Ghani
+      wrote:<br>
     </div>
-    <blockquote type=3D"cite" cite=3D"mid:60E87031.4000103@gmail.com">
-      <meta content=3D"text/html; charset=3Dwindows-1252"
-        http-equiv=3D"Content-Type">
-      <div class=3D"moz-cite-prefix">On 07/09/2021 10:31 AM, Armin Ghani
+    <blockquote cite=3D"mid:eb828814-823b-709a-244b-bebb223c17ad@cttc.es"
+      type=3D"cite">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html;
+        charset=3Dwindows-1252">
+      <p>5Msps</p>
+    </blockquote>
+    If there's a way to up it to 10Msps (keeping the same bandwidth),
+    that might help with the "L"--which basically means the<br>
+    =A0 pipeline is starving for samples.=A0 Now, it might also mean that
+    your computer cannot "keep up" and is delivering samples<br>
+    =A0 a little late.<br>
+    <br>
+    <br>
+    <blockquote cite=3D"mid:eb828814-823b-709a-244b-bebb223c17ad@cttc.es"
+      type=3D"cite">
+      <div class=3D"moz-cite-prefix">On 9/7/21 17:50, Marcus D. Leech
         wrote:<br>
       </div>
-      <blockquote
-        cite=3D"mid:de086712-0b2c-bd0a-2403-a21e3d60195c@cttc.es"
-        type=3D"cite">
-        <meta http-equiv=3D"Content-Type" content=3D"text/html;
-          charset=3Dwindows-1252">
-        <p>Thanks Marcus.</p>
-        <p>It helped to resolve the error. But UHD consistently prints
-          "L" in the output.</p>
-        <p>Would you what DRAM FIFO block actually does?</p>
-      </blockquote>
-      It's a FIFO between the DUC and the ADC as far as I know.<br>
-      <br>
-      What is your sample rate?<br>
-      <br>
-      <br>
-      <blockquote
-        cite=3D"mid:de086712-0b2c-bd0a-2403-a21e3d60195c@cttc.es"
-        type=3D"cite">
-        <p>Regards<br>
-        </p>
-        <div class=3D"moz-cite-prefix">On 9/7/21 14:41, Marcus D. Leech
+      <blockquote type=3D"cite" cite=3D"mid:60E87031.4000103@gmail.com">
+        <meta content=3D"text/html; charset=3Dwindows-1252"
+          http-equiv=3D"Content-Type">
+        <div class=3D"moz-cite-prefix">On 07/09/2021 10:31 AM, Armin Ghan=
+i
           wrote:<br>
         </div>
-        <blockquote type=3D"cite" cite=3D"mid:60E843EE.2020702@gmail.com"=
->
-          <meta content=3D"text/html; charset=3Dwindows-1252"
-            http-equiv=3D"Content-Type">
-          <div class=3D"moz-cite-prefix">On 07/09/2021 07:40 AM, Armin
-            Ghani wrote:<br>
+        <blockquote
+          cite=3D"mid:de086712-0b2c-bd0a-2403-a21e3d60195c@cttc.es"
+          type=3D"cite">
+          <meta http-equiv=3D"Content-Type" content=3D"text/html;
+            charset=3Dwindows-1252">
+          <p>Thanks Marcus.</p>
+          <p>It helped to resolve the error. But UHD consistently prints
+            "L" in the output.</p>
+          <p>Would you what DRAM FIFO block actually does?</p>
+        </blockquote>
+        It's a FIFO between the DUC and the ADC as far as I know.<br>
+        <br>
+        What is your sample rate?<br>
+        <br>
+        <br>
+        <blockquote
+          cite=3D"mid:de086712-0b2c-bd0a-2403-a21e3d60195c@cttc.es"
+          type=3D"cite">
+          <p>Regards<br>
+          </p>
+          <div class=3D"moz-cite-prefix">On 9/7/21 14:41, Marcus D. Leech
+            wrote:<br>
           </div>
-          <blockquote
-            cite=3D"mid:0f01b8f9-0390-462f-f650-3e108ced0508@cttc.es"
-            type=3D"cite">
-            <meta http-equiv=3D"content-type" content=3D"text/html;
-              charset=3Dwindows-1252">
-            <p>Dear community</p>
-            <p>I've been trying to make a fully synchronous multi USRP
-              transmitter in GNURadio v3.8.2.0 and UHD v3.15.0.0.</p>
-            <p>In order to have a common clock and time between 2 USRPs,
-              an octoclock is also used.</p>
-            <p>when trying to run a flowgraph which consists one
-              multi_usrp sink block that is connected to a signal source
-              in GNURadio and running the flowgrapth I get this error:</p=
->
-            <p>Executing: /usr/bin/python3 -u
-              /home/.../Documents/gnuradio-tests/octoclock_test.py<br>
+          <blockquote type=3D"cite" cite=3D"mid:60E843EE.2020702@gmail.co=
+m">
+            <meta content=3D"text/html; charset=3Dwindows-1252"
+              http-equiv=3D"Content-Type">
+            <div class=3D"moz-cite-prefix">On 07/09/2021 07:40 AM, Armin
+              Ghani wrote:<br>
+            </div>
+            <blockquote
+              cite=3D"mid:0f01b8f9-0390-462f-f650-3e108ced0508@cttc.es"
+              type=3D"cite">
+              <meta http-equiv=3D"content-type" content=3D"text/html;
+                charset=3Dwindows-1252">
+              <p>Dear community</p>
+              <p>I've been trying to make a fully synchronous multi USRP
+                transmitter in GNURadio v3.8.2.0 and UHD v3.15.0.0.</p>
+              <p>In order to have a common clock and time between 2
+                USRPs, an octoclock is also used.</p>
+              <p>when trying to run a flowgraph which consists one
+                multi_usrp sink block that is connected to a signal
+                source in GNURadio and running the flowgrapth I get this
+                error:</p>
+              <p>Executing: /usr/bin/python3 -u
+                /home/.../Documents/gnuradio-tests/octoclock_test.py<br>
+                <br>
+                [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+                UHD_3.15.0.HEAD-0-gaea0e2de<br>
+                [INFO] [X300] X300 initialization sequence...<br>
+                [INFO] [X300] Maximum frame size: 7972 bytes.<br>
+                [WARNING] [X300] For the 192.168.30.2 connection, UHD
+                recommends a receive frame size of at least 8000 for
+                best<br>
+                performance, but your configuration will only allow
+                7972.This may negatively impact your maximum achievable
+                sample rate.<br>
+                Check the MTU on the interface and/or the
+                recv_frame_size argument.<br>
+                [INFO] [X300] Maximum frame size: 7972 bytes.<br>
+                [WARNING] [X300] For the 192.168.50.2 connection, UHD
+                recommends a receive frame size of at least 8000 for
+                best<br>
+                performance, but your configuration will only allow
+                7972.This may negatively impact your maximum achievable
+                sample rate.<br>
+                Check the MTU on the interface and/or the
+                recv_frame_size argument.<br>
+                [INFO] [X300] Radio 1x clock: 200 MHz<br>
+                [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
+                0xF1F0D00000000000)<br>
+                [INFO] [X300] Radio 1x clock: 200 MHz<br>
+                [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1308 MB/s)<=
+br>
+                [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312 MB/s)<=
+br>
+                [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:
+                0xF1F0D00000000000)<br>
+                [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1316 MB/s)<=
+br>
+                [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1304 MB/s)<=
+br>
+                [INFO] [0/Radio_0] Initializing block control (NOC ID:
+                0x12AD100000000001)<br>
+                [INFO] [1/Radio_0] Initializing block control (NOC ID:
+                0x12AD100000000001)<br>
+                [INFO] [0/Radio_1] Initializing block control (NOC ID:
+                0x12AD100000000001)<br>
+                [INFO] [1/Radio_1] Initializing block control (NOC ID:
+                0x12AD100000000001)<br>
+                [INFO] [0/DDC_0] Initializing block control (NOC ID:
+                0xDDC0000000000000)<br>
+                [INFO] [1/DDC_0] Initializing block control (NOC ID:
+                0xDDC0000000000000)<br>
+                [INFO] [0/DDC_1] Initializing block control (NOC ID:
+                0xDDC0000000000000)<br>
+                [INFO] [1/DDC_1] Initializing block control (NOC ID:
+                0xDDC0000000000000)<br>
+                [INFO] [0/DUC_0] Initializing block control (NOC ID:
+                0xD0C0000000000000)<br>
+                [INFO] [1/DUC_0] Initializing block control (NOC ID:
+                0xD0C0000000000000)<br>
+                [INFO] [0/DUC_1] Initializing block control (NOC ID:
+                0xD0C0000000000000)<br>
+                [INFO] [1/DUC_1] Initializing block control (NOC ID:
+                0xD0C0000000000000)<br>
+                [INFO] [MULTI_USRP]=A0=A0=A0=A0 1) catch time transition =
+at pps
+                edge<br>
+                [INFO] [MULTI_USRP]=A0=A0=A0=A0 2) set times next pps
+                (synchronously)<br>
+                thread[thread-per-block[6]: &lt;block usrp_sink(1)&gt;]:
+                RuntimeError: Multiple sampling rates downstream of TX
+                Terminator 0: RuntimeError: Node 0/DUC_0 specifies
+                1e+06, node 0/DUC_1 specifies 390625.<br>
+              </p>
               <br>
-              [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
-              UHD_3.15.0.HEAD-0-gaea0e2de<br>
-              [INFO] [X300] X300 initialization sequence...<br>
-              [INFO] [X300] Maximum frame size: 7972 bytes.<br>
-              [WARNING] [X300] For the 192.168.30.2 connection, UHD
-              recommends a receive frame size of at least 8000 for best<b=
-r>
-              performance, but your configuration will only allow
-              7972.This may negatively impact your maximum achievable
-              sample rate.<br>
-              Check the MTU on the interface and/or the recv_frame_size
-              argument.<br>
-              [INFO] [X300] Maximum frame size: 7972 bytes.<br>
-              [WARNING] [X300] For the 192.168.50.2 connection, UHD
-              recommends a receive frame size of at least 8000 for best<b=
-r>
-              performance, but your configuration will only allow
-              7972.This may negatively impact your maximum achievable
-              sample rate.<br>
-              Check the MTU on the interface and/or the recv_frame_size
-              argument.<br>
-              [INFO] [X300] Radio 1x clock: 200 MHz<br>
-              [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:
-              0xF1F0D00000000000)<br>
-              [INFO] [X300] Radio 1x clock: 200 MHz<br>
-              [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1308 MB/s)<br=
->
-              [INFO] [0/DmaFIFO_0] BIST passed (Throughput: 1312 MB/s)<br=
->
-              [INFO] [1/DmaFIFO_0] Initializing block control (NOC ID:
-              0xF1F0D00000000000)<br>
-              [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1316 MB/s)<br=
->
-              [INFO] [1/DmaFIFO_0] BIST passed (Throughput: 1304 MB/s)<br=
->
-              [INFO] [0/Radio_0] Initializing block control (NOC ID:
-              0x12AD100000000001)<br>
-              [INFO] [1/Radio_0] Initializing block control (NOC ID:
-              0x12AD100000000001)<br>
-              [INFO] [0/Radio_1] Initializing block control (NOC ID:
-              0x12AD100000000001)<br>
-              [INFO] [1/Radio_1] Initializing block control (NOC ID:
-              0x12AD100000000001)<br>
-              [INFO] [0/DDC_0] Initializing block control (NOC ID:
-              0xDDC0000000000000)<br>
-              [INFO] [1/DDC_0] Initializing block control (NOC ID:
-              0xDDC0000000000000)<br>
-              [INFO] [0/DDC_1] Initializing block control (NOC ID:
-              0xDDC0000000000000)<br>
-              [INFO] [1/DDC_1] Initializing block control (NOC ID:
-              0xDDC0000000000000)<br>
-              [INFO] [0/DUC_0] Initializing block control (NOC ID:
-              0xD0C0000000000000)<br>
-              [INFO] [1/DUC_0] Initializing block control (NOC ID:
-              0xD0C0000000000000)<br>
-              [INFO] [0/DUC_1] Initializing block control (NOC ID:
-              0xD0C0000000000000)<br>
-              [INFO] [1/DUC_1] Initializing block control (NOC ID:
-              0xD0C0000000000000)<br>
-              [INFO] [MULTI_USRP]=A0=A0=A0=A0 1) catch time transition at=
- pps
-              edge<br>
-              [INFO] [MULTI_USRP]=A0=A0=A0=A0 2) set times next pps
-              (synchronously)<br>
-              thread[thread-per-block[6]: &lt;block usrp_sink(1)&gt;]:
-              RuntimeError: Multiple sampling rates downstream of TX
-              Terminator 0: RuntimeError: Node 0/DUC_0 specifies 1e+06,
-              node 0/DUC_1 specifies 390625.<br>
-            </p>
+            </blockquote>
+            What happens if you use the "skip_dram=3D1" argument in the
+            device argument?<br>
             <br>
-          </blockquote>
-          What happens if you use the "skip_dram=3D1" argument in the
-          device argument?<br>
-          <br>
-          <br>
-          <br>
-          <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-          <pre class=3D"moz-quote-pre" wrap=3D"">________________________=
-_______________________
+            <br>
+            <br>
+            <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+            <pre class=3D"moz-quote-pre" wrap=3D"">______________________=
+_________________________
 USRP-users mailing list -- <a moz-do-not-send=3D"true" class=3D"moz-txt-l=
 ink-abbreviated" href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@li=
 sts.ettus.com</a>
@@ -370,17 +418,17 @@ To unsubscribe send an email to <a moz-do-not-send=3D"true" class=3D"moz-=
 txt-link-abbreviated" href=3D"mailto:usrp-users-leave@lists.ettus.com">us=
 rp-users-leave@lists.ettus.com</a>
 </pre>
-        </blockquote>
-        <div class=3D"moz-signature">-- <br>
-          <meta http-equiv=3D"content-type" content=3D"text/html;
-            charset=3Dwindows-1252">
-          <title></title>
-          <p> </p>
-          <p>
-            <meta name=3D"ProgId" content=3D"Word.Document">
-            <meta name=3D"Generator" content=3D"Microsoft Word 15">
-            <meta name=3D"Originator" content=3D"Microsoft Word 15">
-            <style>@font-face
+          </blockquote>
+          <div class=3D"moz-signature">-- <br>
+            <meta http-equiv=3D"content-type" content=3D"text/html;
+              charset=3Dwindows-1252">
+            <title></title>
+            <p> </p>
+            <p>
+              <meta name=3D"ProgId" content=3D"Word.Document">
+              <meta name=3D"Generator" content=3D"Microsoft Word 15">
+              <meta name=3D"Originator" content=3D"Microsoft Word 15">
+              <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;
 	mso-font-charset:0;
@@ -450,63 +498,69 @@ rmal
 	margin-bottom:8.0pt;
 	line-height:107%;}div.WordSection1
 	{page:WordSection1;}</style> </p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><img
-              src=3D"cid:part3.18DB1D7A.94E37F50@cttc.es" class=3D""
-              width=3D"151" hspace=3D"12" height=3D"100" align=3D"left"><=
-span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family:
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><img
+                src=3D"cid:part3.05030600.06050209@gmail.com" class=3D""
+                align=3D"left" height=3D"100" hspace=3D"12" width=3D"151"=
+><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family:
 Aharoni;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">Armin
-              Ghani</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Resea=
-rch
-              Engineer | Communication Systems Division (CSD)</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><a
-              moz-do-not-send=3D"true" href=3D"mailto:aghani@cttc.es"><sp=
-an
+                Ghani</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
                 style=3D"font-size:9.0pt;font-family:&quot;Arial
-                Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">agh=
-ani@cttc.es</span></a><span
-              style=3D"font-size: 9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> |
-              +34 93 645 29 08 (2143)</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centr=
-e
-              Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</span=
-></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
-              Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860
-              - Castelldefels (Barcelona, Spain)</span></p>
-          <p class=3D"MsoNormal"
-            style=3D"margin-bottom:0in;line-height:normal"><a
-              moz-do-not-send=3D"true"><span
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Res=
+earch
+
+                Engineer | Communication Systems Division (CSD)</span></p=
+>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><a
+                moz-do-not-send=3D"true" href=3D"mailto:aghani@cttc.es"><=
+span
+                  style=3D"font-size:9.0pt;font-family:&quot;Arial
+                  Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">a=
+ghani@cttc.es</span></a><span
+                style=3D"font-size: 9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> |
+                +34 93 645 29 08 (2143)</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
                 style=3D"font-size:9.0pt;font-family:&quot;Arial
-                Black&quot;,sans-serif;
-                mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
-                lang=3D"ES">www.cttc.cat</span></a><span
-              style=3D"font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif;mso-bidi-font-family:
-              Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
-        </div>
-        <br>
-        <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-        <br>
-        <pre wrap=3D"">_______________________________________________
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Cen=
+tre
+
+                Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</sp=
+an></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
+
+                Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">088=
+60
+
+                - Castelldefels (Barcelona, Spain)</span></p>
+            <p class=3D"MsoNormal"
+              style=3D"margin-bottom:0in;line-height:normal"><a
+                moz-do-not-send=3D"true"><span
+                  style=3D"font-size:9.0pt;font-family:&quot;Arial
+                  Black&quot;,sans-serif;
+                  mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
+                  lang=3D"ES">www.cttc.cat</span></a><span
+                style=3D"font-size:9.0pt;font-family:&quot;Arial
+                Black&quot;,sans-serif;mso-bidi-font-family:
+                Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
+          </div>
+          <br>
+          <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+          <br>
+          <pre wrap=3D"">_______________________________________________
 USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
 mailto:usrp-users@lists.ettus.com" moz-do-not-send=3D"true">usrp-users@li=
 sts.ettus.com</a>
@@ -514,29 +568,30 @@ To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
 f=3D"mailto:usrp-users-leave@lists.ettus.com" moz-do-not-send=3D"true">us=
 rp-users-leave@lists.ettus.com</a>
 </pre>
-      </blockquote>
-      <br>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
+        </blockquote>
+        <br>
+        <br>
+        <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+        <pre class=3D"moz-quote-pre" wrap=3D"">__________________________=
+_____________________
+USRP-users mailing list -- <a moz-do-not-send=3D"true" class=3D"moz-txt-l=
+ink-abbreviated" href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@li=
+sts.ettus.com</a>
+To unsubscribe send an email to <a moz-do-not-send=3D"true" class=3D"moz-=
+txt-link-abbreviated" href=3D"mailto:usrp-users-leave@lists.ettus.com">us=
+rp-users-leave@lists.ettus.com</a>
 </pre>
-    </blockquote>
-    <div class=3D"moz-signature">-- <br>
-      <meta http-equiv=3D"content-type" content=3D"text/html;
-        charset=3Dwindows-1252">
-      <title></title>
-      <p> </p>
-      <p>
-        <meta name=3D"ProgId" content=3D"Word.Document">
-        <meta name=3D"Generator" content=3D"Microsoft Word 15">
-        <meta name=3D"Originator" content=3D"Microsoft Word 15">
-        <style>@font-face
+      </blockquote>
+      <div class=3D"moz-signature">-- <br>
+        <meta http-equiv=3D"content-type" content=3D"text/html;
+          charset=3Dwindows-1252">
+        <title></title>
+        <p> </p>
+        <p>
+          <meta name=3D"ProgId" content=3D"Word.Document">
+          <meta name=3D"Generator" content=3D"Microsoft Word 15">
+          <meta name=3D"Originator" content=3D"Microsoft Word 15">
+          <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;
 	mso-font-charset:0;
@@ -606,64 +661,76 @@ rmal
 	margin-bottom:8.0pt;
 	line-height:107%;}div.WordSection1
 	{page:WordSection1;}</style> </p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><img
-          src=3D"cid:part8.11203E3B.764302D4@cttc.es" width=3D"151"
-          hspace=3D"12" height=3D"100" align=3D"left"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><img
+            src=3D"cid:part10.03060304.06050501@gmail.com" align=3D"left"
+            height=3D"100" hspace=3D"12" width=3D"151"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
 Aharoni;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">Armin
-          Ghani</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Research
-          Engineer | Communication Systems Division (CSD)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a
-          href=3D"mailto:aghani@cttc.es"><span
+            Ghani</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghani@=
-cttc.es</span></a><span
-          style=3D"font-size: 9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34 93
-          645 29 08 (2143)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
-          Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</span></p=
->
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av. Carl
-          Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860 -
-          Castelldefels (Barcelona, Spain)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a><span
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Researc=
+h
+
+            Engineer | Communication Systems Division (CSD)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            moz-do-not-send=3D"true" href=3D"mailto:aghani@cttc.es"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghan=
+i@cttc.es</span></a><span
+            style=3D"font-size: 9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34
+            93 645 29 08 (2143)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;
-            mso-bidi-font-family:Aharoni;mso-ansi-language:ES" lang=3D"ES=
-">www.cttc.cat</span></a><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
-          Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
-    </div>
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
+            Tecnol=F2gic de Telecomunicacions de Catalunya (CTTC)</span><=
+/p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
+            Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860
+            - Castelldefels (Barcelona, Spain)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            moz-do-not-send=3D"true"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif;
+              mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
+              lang=3D"ES">www.cttc.cat</span></a><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
+            Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap=3D"">_______________________________________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
   </body>
 </html>
 
---------------1DBAC4DC23F5C445C4F8C977
-Content-Type: image/png;
- name="ahbbpdkgmccnehaa.png"
+--------------030706020001010505010100
+Content-Type: image/png
 Content-Transfer-Encoding: base64
-Content-ID: <part3.18DB1D7A.94E37F50@cttc.es>
-Content-Disposition: inline;
- filename="ahbbpdkgmccnehaa.png"
+Content-ID: <part3.05030600.06050209@gmail.com>
 
 /9j/4AAQSkZJRgABAQEAkACQAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAm
 JSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMp
@@ -802,13 +869,10 @@ DdtLilooAKKKKAGPEkn31Vv94Zpv2aE/8sY/++RUtFAEJtIDg+TFkcg7BUuKWigAooooAKQ0
 tFAETQRM2WjQk9yoo+zQ/wDPGP8A74FSUUAMSCONtyIinGMqoBp4GKWigBKKWigBMVDc2cF3
 GY7qGOZD1V1BFT0hoA5+fwL4euW3SabED/sEqPyBpsXgDw5FIsi6am5TkbnYj8ia6Klp8z7g
 VbXTbOyTbaW0MAByBGgWrAGKdSUgClpKWgAooooAKKKKAP/Z
---------------1DBAC4DC23F5C445C4F8C977
-Content-Type: image/jpeg;
- name="eefndjcdoenoigce.jpeg"
+--------------030706020001010505010100
+Content-Type: image/jpeg
 Content-Transfer-Encoding: base64
-Content-ID: <part8.11203E3B.764302D4@cttc.es>
-Content-Disposition: inline;
- filename="eefndjcdoenoigce.jpeg"
+Content-ID: <part10.03060304.06050501@gmail.com>
 
 /9j/4AAQSkZJRgABAQEAkACQAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAm
 JSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMp
@@ -947,11 +1011,11 @@ DdtLilooAKKKKAGPEkn31Vv94Zpv2aE/8sY/++RUtFAEJtIDg+TFkcg7BUuKWigAooooAKQ0
 tFAETQRM2WjQk9yoo+zQ/wDPGP8A74FSUUAMSCONtyIinGMqoBp4GKWigBKKWigBMVDc2cF3
 GY7qGOZD1V1BFT0hoA5+fwL4euW3SabED/sEqPyBpsXgDw5FIsi6am5TkbnYj8ia6Klp8z7g
 VbXTbOyTbaW0MAByBGgWrAGKdSUgClpKWgAooooAKKKKAP/Z
---------------1DBAC4DC23F5C445C4F8C977--
+--------------030706020001010505010100--
 
---------------260BC695D671471B5C16F71D--
+--------------040107000500060203040202--
 
---===============2600212044698058774==
+--===============0290194641287798058==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -961,4 +1025,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2600212044698058774==--
+--===============0290194641287798058==--
