@@ -2,148 +2,165 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB2053C3329
-	for <lists+usrp-users@lfdr.de>; Sat, 10 Jul 2021 08:17:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C566F3C3583
+	for <lists+usrp-users@lfdr.de>; Sat, 10 Jul 2021 18:25:14 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9348238444C
-	for <lists+usrp-users@lfdr.de>; Sat, 10 Jul 2021 02:17:58 -0400 (EDT)
-Received: from cc.mail.osaka-u.ac.jp (cc-ext.ccc.osaka-u.ac.jp [133.1.138.214])
-	by mm2.emwd.com (Postfix) with SMTP id 6423E3843DD
-	for <usrp-users@lists.ettus.com>; Sat, 10 Jul 2021 02:17:09 -0400 (EDT)
-Received: (qmail 3211 invoked by uid 0); 10 Jul 2021 15:17:07 +0900
-X-Qmail-Scanner-Diagnostics: from 60.134.44.43 (viktor+ist@60.134.44.43) by m24 (envelope-from <viktor@ist.osaka-u.ac.jp>, uid 0) with qmail-scanner-2.11
- (clamdscan: 0.99.4/26096.  
- Clear:RC:0(60.134.44.43):.
- Processed in 0.006238 secs); 10 Jul 2021 06:17:07 -0000
-X-Qmail-Scanner-Mail-From: viktor@ist.osaka-u.ac.jp via m24
-X-Qmail-Scanner: 2.11 (Clear:RC:0(60.134.44.43):. Processed in 0.006238 secs)
-Received: from unknown (HELO localhost.localdomain) (viktor+ist@60.134.44.43)
-  by 172.30.102.164 with SMTP; 10 Jul 2021 15:17:07 +0900
-To: usrp-users@lists.ettus.com
-References: <be633461-d5cf-4e8c-0929-03736bc7e9a2@ist.osaka-u.ac.jp>
- <60E5BEE6.9010200@gmail.com>
-From: Viktor Erdelyi <viktor@ist.osaka-u.ac.jp>
-Message-ID: <1cd781e1-77dc-ed66-0c7e-167dd3e85260@ist.osaka-u.ac.jp>
-Date: Sat, 10 Jul 2021 15:17:06 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	by mm2.emwd.com (Postfix) with ESMTP id 5541F3843FE
+	for <lists+usrp-users@lfdr.de>; Sat, 10 Jul 2021 12:25:13 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JVKuYutr";
+	dkim-atps=neutral
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id EC837384202
+	for <usrp-users@lists.ettus.com>; Sat, 10 Jul 2021 12:24:23 -0400 (EDT)
+Received: by mail-ej1-f51.google.com with SMTP id hc16so22886317ejc.12
+        for <usrp-users@lists.ettus.com>; Sat, 10 Jul 2021 09:24:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=ZWuu4N4s5S64Q1AJLOzXhkHIV0EWKleREmNBI2znpTs=;
+        b=JVKuYutrhyojnkpnHddq5vEtFQHs74aGVmIiY/1u14j2ahJ2iw4r4HFfjkhF6J59H1
+         u4oM8H2OATF4sefBRxqgaHh4qqZg7Rewhz3UVFbnSMdWgRtxoDBKuZX6ZqIDOBJGJIgN
+         GnNx6lFK1pKWgHzPVd/7SgdWqwAd8ULqSiHG8mD3FqtPsbYi4G8oxturnnJTUG2DedHd
+         Ps3wRkshtBTFSxFhQWjGsIaOm9jxMP+iJyLmAs2ohvAwhipHp5SD0dVu+HEHkTXrawIN
+         P3NjYz6tpUnUt/uHgHTy1jMxuzLlXivKshCgtMIxqiPo0tWGtH4sdLXf/PTvEXEF+ldt
+         Jygw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=ZWuu4N4s5S64Q1AJLOzXhkHIV0EWKleREmNBI2znpTs=;
+        b=fci+8I86x8gYMsm5wPCpUIfC1JMEMZinR1o8QF+NzFRntXU4akynCoap282zHisLoR
+         D2a5Q0U+PxjuM2j3NCOzRZHiMonNrH7lXqQSrD1jtoq92ZgdjKvOy0aMtXkpQnHECW6N
+         99xZfC0LYh7cOduOQ8VR0KZai8cfMFAOCLtUrWqjTPeXtv/R6SvNukyCuo3wSeoYCx/M
+         JdGolra0HXBfm6w29BUqX8Jhnk7nnbvettHNJXauMtoXRbJUHVTvVFc6mFObE4YhPfBq
+         PNeDHfNXICiKeOZdxfP2Jit1VQCcf5RDbZXDvmiULrI8gYTMZk6oj412y5ekov+V6uBE
+         NZFQ==
+X-Gm-Message-State: AOAM533OXHkC3QJWYzHR4yKneKZHGqoriNpozB8/DHNinqczXAkHGLl5
+	YMDOlTng0nBD7cWo/4eA78+7GRwy2pKwD/UjtOkcVuqtDTY=
+X-Google-Smtp-Source: ABdhPJygbAUiRcnHabTb2NesC/8sKk1Nuav3AaTGsWeeC+zSsmWqJjKTPUt0yxsOhiQ8k37F4Z5t7Eul8N576PAlgv8=
+X-Received: by 2002:a17:906:f285:: with SMTP id gu5mr44581630ejb.226.1625934262594;
+ Sat, 10 Jul 2021 09:24:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <60E5BEE6.9010200@gmail.com>
-Content-Language: en-US
-X-matriXscan-msec-AV: Clean
-X-odins-Action: Approve
-X-odins-spam: Uncategorized
-Message-ID-Hash: N3GRD6DYUWAJYEOQDQTVBAJLBQYW72ZL
-X-Message-ID-Hash: N3GRD6DYUWAJYEOQDQTVBAJLBQYW72ZL
-X-MailFrom: viktor@ist.osaka-u.ac.jp
+From: southindian sdrusergroup <southindiansdrusergroup@gmail.com>
+Date: Sat, 10 Jul 2021 21:54:12 +0530
+Message-ID: <CA+ZVCtV4q3=-PO94n9B0PqJDAAu7Qn4PTabHBV5ZXNVDRATSog@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: CVX2SMETQPVXG2O7RGWHJ6JZMBXRAM4A
+X-Message-ID-Hash: CVX2SMETQPVXG2O7RGWHJ6JZMBXRAM4A
+X-MailFrom: southindiansdrusergroup@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Assertion fail when destroying tx streamer (UHD 4)
+Subject: [USRP-users] Announcing the inaugural event of the South Indian SDR User Group (SI-SDR-UG) on Saturday July 24
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N3GRD6DYUWAJYEOQDQTVBAJLBQYW72ZL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CVX2SMETQPVXG2O7RGWHJ6JZMBXRAM4A/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6133724091353762168=="
 
-SGkgTWFyY3VzLA0KDQpUaGFua3MgZm9yIHlvdXIgY29tbWVudC4gVW5mb3J0dW5hdGVseSBJIHdv
-bid0IGJlIGFibGUgdG8gdHJ5IHRoaXMgZm9yIGEgDQp3aGlsZSAoZHVlIHRvIGFuIHVuZXhwZWN0
-ZWQgc3RheS1ob21lIG9yZGVyIGFmdGVyIENPVklEIGNsb3NlIGNvbnRhY3QpLCANCmJ1dCBJIHRy
-aWVkIHNvbWV0aGluZyBzaW1pbGFyIGVhcmxpZXIsIHNvIEkgd2lsbCBleHBsYWluIHRoYXQuDQoN
-CkkgY3JlYXRlZCBhbmQgY29uZmlndXJlZCBhIFVTUlAgb2JqZWN0LCB1c2VkIGl0LCBhbmQgdGhl
-biBjcmVhdGVkIGEgbmV3IA0Kb25lLCBhc3NpZ25pbmcgaXQgdG8gdGhlIHNhbWUgc2hhcmVkX3B0
-ci4gSW4gdGhpcyBjYXNlLCB0aGUgc2hhcmVkX3B0ciANCmdvZXMgb3V0IG9mIHNjb3BlIGFuZCBn
-ZXRzIGRlc3Ryb3llZCwgYnV0IHRoZSBhcHBsaWNhdGlvbiBrZWVwcyBydW5uaW5nIA0KYW5kIHRy
-aWVzIHRvIHVzZSB0aGUgbmV3IG9iamVjdC4gSW4gdGhhdCBjYXNlLCBJIHNvbWV0aW1lcyBnZXQg
-YW4gDQphZGRpdGlvbmFsIGVycm9yIHNheWluZyBzb21ldGhpbmcgbGlrZSAiYXR0ZW1wdGluZyB0
-byByZWNvbm5lY3QgUmZub2MgDQpibG9jayIsIGJ1dCB1bHRpbWF0ZWx5IChtYXliZSBhZnRlciBh
-bm90aGVyIGRlc3RydWN0aW9uL3JlY3JlYXRpb24gDQpjeWNsZSkgaXQgZmFpbHMgd2l0aCB0aGUg
-c2FtZSBlcnJvciBJIHNlbnQgZWFybGllci4gQmFzaWNhbGx5LCB0aGUgZXJyb3IgDQpzZWVtcyB0
-byBiZSB0cmlnZ2VyZWQgYnkgdGhlIGRlc3RydWN0aW9uIG9mIGEgc3RyZWFtZXIgb2JqZWN0LCBh
-bmQgDQp3aGF0ZXZlciByZm5vYyBjbGVhbnVwIHRoYXQgZW50YWlscyBpbnRlcm5hbGx5LiBDb3Vs
-ZCBpdCBiZSB0aGF0IEkgDQpzaG91bGQgd2FpdC9zbGVlcCBhZnRlciBkZXN0cm95aW5nIGEgc3Ry
-ZWFtZXIgdG8gbGV0IHRoZSByZm5vYyBtYWdpYyANCmNvbXBsZXRlIGJlZm9yZSBhdHRlbXB0aW5n
-IHRvIGNyZWF0ZSBhIG5ldyBzdHJlYW1lciBvciBxdWl0dGluZyB0aGUgDQphcHBsaWNhdGlvbj8N
-Cg0KUC5TLiBhbHNvIG5vdGUgdGhhdCB0aGUgY29kZSBJIHNlbnQgZWFybGllciBkb2VzIG5vdCBw
-cmludCAidDEgZGVhZCwgDQpPSyIsIG1lYW5pbmcgdGhhdCBpdCBjcmFzaGVzIGJlZm9yZSB0aGUg
-cmV0dXJuIHN0YXRlbWVudC4NCg0KVGhhbmtzLA0KVmlrdG9yDQoNCk9uIDcvNy8yMSAxMTo0OSBQ
-TSwgTWFyY3VzIEQuIExlZWNoIHdyb3RlOg0KPiBPbiAwNy8wNy8yMDIxIDA5OjA5IEFNLCBWaWt0
-b3IgRXJkZWx5aSB3cm90ZToNCj4+IEhpIGFsbCwNCj4+DQo+PiBJIGdldCBhbiB1bmRlY2lwaGVy
-YWJsZSBhc3NlcnRpb24gZmFpbHVyZSB3aGVuIHJ1bm5pbmcgdGhlIGZvbGxvd2luZyANCj4+IHNp
-bXBsZSBjb2RlIHVzaW5nIGEgMUdicHMgRXRoZXJuZXQgbGluay4gVGhlIGVycm9yIGhhcHBlbnMg
-d2hlbiB0MSANCj4+IGdvZXMgb3V0IG9mIHNjb3BlLCBldmVyeSB0aW1lIEkgcnVuIHRoZSBhcHBs
-aWNhdGlvbi4gV2hhdCBhbSBJIG1pc3Npbmc/DQo+Pg0KPj4gaW50IG1haW4oaW50IGFyZ2MsIGNo
-YXIgKmFyZ3ZbXSkgew0KPj4gwqDCoMKgIHVoZDo6ZGV2aWNlX2FkZHJfdCBkZXZBZGRyZXNzZXMo
-ImFkZHI9MTkyLjE2OC4xMC4yIik7DQo+PiDCoMKgwqAgYXV0byB1c3JwID0gdWhkOjp1c3JwOjpt
-dWx0aV91c3JwOjptYWtlKGRldkFkZHJlc3Nlcyk7DQo+PiDCoMKgwqAgdWhkOjpzdHJlYW1fYXJn
-c190IHN0cmVhbV9hcmdzKCJmYzMyIiwgInNjMTYiKTsNCj4+IMKgwqDCoCBzdHJlYW1fYXJncy5j
-aGFubmVscy5wdXNoX2JhY2soMCk7DQo+PiDCoMKgwqAgew0KPj4gwqDCoMKgwqDCoMKgwqAgYXV0
-byB0MSA9IHVzcnAtPmdldF90eF9zdHJlYW0oc3RyZWFtX2FyZ3MpOw0KPj4gwqDCoMKgwqDCoMKg
-wqAgc3RkOjpjb3V0IDw8ICJ0MSBhbGl2ZSIgPDwgc3RkOjplbmRsOw0KPj4gwqDCoMKgIH0NCj4+
-IMKgwqDCoCBzdGQ6OmNvdXQgPDwgInQxIGRlYWQsIE9LIiA8PCBzdGQ6OmVuZGw7DQo+PiDCoMKg
-wqAgcmV0dXJuIDA7DQo+Pg0KPj4gfQ0KPj4NCj4+IFRoZSBvdXRwdXQgYW5kIHRoZSBlcnJvciBp
-cyBhcyBmb2xsb3dzOg0KPj4NCj4+IFtJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9u
-IDExLjAuMSAyMDIxMDMyNCAoUmVkIEhhdCANCj4+IDExLjAuMS0wKTsgQm9vc3RfMTA3NTAwOyBV
-SERfNC4wLjAuMA0KPj4gW0lORk9dIFtYMzAwXSBYMzAwIGluaXRpYWxpemF0aW9uIHNlcXVlbmNl
-Li4uDQo+PiBbSU5GT10gW1gzMDBdIE1heGltdW0gZnJhbWUgc2l6ZTogMTQ3MiBieXRlcy4NCj4+
-IFtJTkZPXSBbWDMwMF0gUmFkaW8gMXggY2xvY2s6IDIwMCBNSHoNCj4+IHQxIGFsaXZlDQo+PiBb
-V0FSTklOR10gWzAvUmFkaW8jMF0gQXR0ZW1wdGluZyB0byBzZXQgdGljayByYXRlIHRvIDAuIFNr
-aXBwaW5nLg0KPj4gL3Vzci9pbmNsdWRlL2MrKy8xMS9iaXRzL3N0bF92ZWN0b3IuaDoxMDQ1OiBz
-dGQ6OnZlY3RvcjxfVHAsIA0KPj4gX0FsbG9jPjo6cmVmZXJlbmNlIHN0ZDo6dmVjdG9yPF9UcCwg
-DQo+PiBfQWxsb2M+OjpvcGVyYXRvcltdKHN0ZDo6dmVjdG9yPF9UcCwgX0FsbG9jPjo6c2l6ZV90
-eXBlKSBbd2l0aCBfVHAgPSANCj4+IGJvb3N0OjpkZXRhaWw6OmFkal9saXN0X2dlbjxib29zdDo6
-YWRqYWNlbmN5X2xpc3Q8Ym9vc3Q6OnZlY1MsIA0KPj4gYm9vc3Q6OnZlY1MsIGJvb3N0OjpiaWRp
-cmVjdGlvbmFsUywgDQo+PiBib29zdDo6cHJvcGVydHk8dWhkOjpyZm5vYzo6ZGV0YWlsOjpncmFw
-aF90Ojp2ZXJ0ZXhfcHJvcGVydHlfdCwgDQo+PiB1aGQ6OnJmbm9jOjpub2RlX3QqPiwgDQo+PiBi
-b29zdDo6cHJvcGVydHk8dWhkOjpyZm5vYzo6ZGV0YWlsOjpncmFwaF90OjplZGdlX3Byb3BlcnR5
-X3QsIA0KPj4gdWhkOjpyZm5vYzo6Z3JhcGhfZWRnZV90PiA+LCBib29zdDo6dmVjUywgYm9vc3Q6
-OnZlY1MsIA0KPj4gYm9vc3Q6OmJpZGlyZWN0aW9uYWxTLCANCj4+IGJvb3N0Ojpwcm9wZXJ0eTx1
-aGQ6OnJmbm9jOjpkZXRhaWw6OmdyYXBoX3Q6OnZlcnRleF9wcm9wZXJ0eV90LCANCj4+IHVoZDo6
-cmZub2M6Om5vZGVfdCo+LCANCj4+IGJvb3N0Ojpwcm9wZXJ0eTx1aGQ6OnJmbm9jOjpkZXRhaWw6
-OmdyYXBoX3Q6OmVkZ2VfcHJvcGVydHlfdCwgDQo+PiB1aGQ6OnJmbm9jOjpncmFwaF9lZGdlX3Q+
-LCBib29zdDo6bm9fcHJvcGVydHksIA0KPj4gYm9vc3Q6Omxpc3RTPjo6Y29uZmlnOjpzdG9yZWRf
-dmVydGV4OyBfQWxsb2MgPSANCj4+IHN0ZDo6YWxsb2NhdG9yPGJvb3N0OjpkZXRhaWw6OmFkal9s
-aXN0X2dlbjxib29zdDo6YWRqYWNlbmN5X2xpc3Q8Ym9vc3Q6OnZlY1MsIA0KPj4gYm9vc3Q6OnZl
-Y1MsIGJvb3N0OjpiaWRpcmVjdGlvbmFsUywgDQo+PiBib29zdDo6cHJvcGVydHk8dWhkOjpyZm5v
-Yzo6ZGV0YWlsOjpncmFwaF90Ojp2ZXJ0ZXhfcHJvcGVydHlfdCwgDQo+PiB1aGQ6OnJmbm9jOjpu
-b2RlX3QqPiwgDQo+PiBib29zdDo6cHJvcGVydHk8dWhkOjpyZm5vYzo6ZGV0YWlsOjpncmFwaF90
-OjplZGdlX3Byb3BlcnR5X3QsIA0KPj4gdWhkOjpyZm5vYzo6Z3JhcGhfZWRnZV90PiA+LCBib29z
-dDo6dmVjUywgYm9vc3Q6OnZlY1MsIA0KPj4gYm9vc3Q6OmJpZGlyZWN0aW9uYWxTLCANCj4+IGJv
-b3N0Ojpwcm9wZXJ0eTx1aGQ6OnJmbm9jOjpkZXRhaWw6OmdyYXBoX3Q6OnZlcnRleF9wcm9wZXJ0
-eV90LCANCj4+IHVoZDo6cmZub2M6Om5vZGVfdCo+LCANCj4+IGJvb3N0Ojpwcm9wZXJ0eTx1aGQ6
-OnJmbm9jOjpkZXRhaWw6OmdyYXBoX3Q6OmVkZ2VfcHJvcGVydHlfdCwgDQo+PiB1aGQ6OnJmbm9j
-OjpncmFwaF9lZGdlX3Q+LCBib29zdDo6bm9fcHJvcGVydHksIA0KPj4gYm9vc3Q6Omxpc3RTPjo6
-Y29uZmlnOjpzdG9yZWRfdmVydGV4Pjsgc3RkOjp2ZWN0b3I8X1RwLCANCj4+IF9BbGxvYz46OnJl
-ZmVyZW5jZSA9IA0KPj4gYm9vc3Q6OmRldGFpbDo6YWRqX2xpc3RfZ2VuPGJvb3N0OjphZGphY2Vu
-Y3lfbGlzdDxib29zdDo6dmVjUywgDQo+PiBib29zdDo6dmVjUywgYm9vc3Q6OmJpZGlyZWN0aW9u
-YWxTLCANCj4+IGJvb3N0Ojpwcm9wZXJ0eTx1aGQ6OnJmbm9jOjpkZXRhaWw6OmdyYXBoX3Q6OnZl
-cnRleF9wcm9wZXJ0eV90LCANCj4+IHVoZDo6cmZub2M6Om5vZGVfdCo+LCANCj4+IGJvb3N0Ojpw
-cm9wZXJ0eTx1aGQ6OnJmbm9jOjpkZXRhaWw6OmdyYXBoX3Q6OmVkZ2VfcHJvcGVydHlfdCwgDQo+
-PiB1aGQ6OnJmbm9jOjpncmFwaF9lZGdlX3Q+ID4sIGJvb3N0Ojp2ZWNTLCBib29zdDo6dmVjUywg
-DQo+PiBib29zdDo6YmlkaXJlY3Rpb25hbFMsIA0KPj4gYm9vc3Q6OnByb3BlcnR5PHVoZDo6cmZu
-b2M6OmRldGFpbDo6Z3JhcGhfdDo6dmVydGV4X3Byb3BlcnR5X3QsIA0KPj4gdWhkOjpyZm5vYzo6
-bm9kZV90Kj4sIA0KPj4gYm9vc3Q6OnByb3BlcnR5PHVoZDo6cmZub2M6OmRldGFpbDo6Z3JhcGhf
-dDo6ZWRnZV9wcm9wZXJ0eV90LCANCj4+IHVoZDo6cmZub2M6OmdyYXBoX2VkZ2VfdD4sIGJvb3N0
-Ojpub19wcm9wZXJ0eSwgDQo+PiBib29zdDo6bGlzdFM+Ojpjb25maWc6OnN0b3JlZF92ZXJ0ZXgm
-OyBzdGQ6OnZlY3RvcjxfVHAsIA0KPj4gX0FsbG9jPjo6c2l6ZV90eXBlID0gbG9uZyB1bnNpZ25l
-ZCBpbnRdOiBBc3NlcnRpb24gJ19fbiA8IA0KPj4gdGhpcy0+c2l6ZSgpJyBmYWlsZWQuDQo+Pg0K
-Pj4gLi9xdWlja1J1bi5zaDogbGluZSA4OiA0NzEzOCBBYm9ydGVkwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgKGNvcmUgZHVtcGVkKSANCj4+IC4vJE9VVE5BTUUNCj4+DQo+Pg0KPj4g
-RW52aXJvbm1lbnQ6DQo+Pg0KPj4gRmVkb3JhIDM0IHg2NA0KPj4gVUhEIDQuMC4wLjANCj4+IFVT
-UlAgWDMxMCB3LyBVQlgtMTYwIHggMg0KPj4NCj4+IFRoYW5rcywNCj4+IFZpa3Rvcg0KPj4gX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IFVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiBUbyB1bnN1
-YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
-DQo+IFdoYXQgaGFwcGVucyBpZiB5b3Ugc2xlZXAgZm9yIHBlcmhhcHMgMSBzZWNvbmQgcHJpb3Ig
-dG8gZXhpdGluZz8NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbQ0KPgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVA
-bGlzdHMuZXR0dXMuY29tCg==
+--===============6133724091353762168==
+Content-Type: multipart/alternative; boundary="0000000000002671dd05c6c75279"
+
+--0000000000002671dd05c6c75279
+Content-Type: text/plain; charset="UTF-8"
+
+We would like to announce the inaugural event of the South Indian SDR
+User Group (SI-SDR-UG)!The South Indian SDR User Group (SI-SDR-UG) was
+founded in January 2021, and is a community of people, from novices to
+experts, spanning industry, academia, and government, who are
+interested in the design and implementation of Software-Defined Radio
+(SDR) technology and systems. This includes such diverse areas such as
+RF, digital signal processing (DSP), wireless communications,
+operating systems, computer networking, software development and
+optimization, machine learning, and radio hardware. The mission of our
+community is to facilitate the exchange of ideas and enable greater
+collaboration within the SDR community in India. We host a regular
+technical workshops and gatherings, and we also run a dedicated Slack
+workspace for the community. We have a YouTube channel for recordings
+of past events, and a GitHub page for any relevant code. Our Twitter
+feed contains announcements about events and other news relevant to
+the community. We are not focused or tied to any one single software
+tool, hardware platform, commercial vendor, or specific technology.
+The SI-SDR-UG is non-profit, and the people on the organizing
+committee are all volunteers. We are based in Bangalore, but we invite
+people from all throughout India, as well as from outside India, to
+join our community.Our first event will be held on *** Saturday July
+24 at 19:00 (India time) ***, and will be streamed live on our YouTube
+account.We still have an open slot for one more presentation in the
+event, and we would like to offer it to the community.  If you would
+be interested in speaking at the event, on Saturday July 24, sometime
+between 19:00 and 23:00 (India time), then please get in touch with
+us, we would be very interested in having you.Please see our website
+for more information about the event agenda, as well as links to our
+Slack workspace and YouTube
+account.https://www.softwaredefinedradio.in/We look forward to seeing
+you all at the event!
+
+--0000000000002671dd05c6c75279
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><pre class=3D"gmail-c-mrkdwn__pre" style=3D"box-sizing:inh=
+erit;margin-top:4px;margin-bottom:4px;padding:8px;line-height:1.50001;font-=
+variant-ligatures:none;white-space:pre-wrap;word-break:normal;border-radius=
+:4px;color:rgb(29,28,29)"><font face=3D"verdana, sans-serif" style=3D"">We =
+would like to announce the inaugural event of the South Indian SDR User Gro=
+up (SI-SDR-UG)!</font><span class=3D"gmail-c-mrkdwn__br" style=3D"box-sizin=
+g:inherit;display:block;height:unset"></span><font face=3D"verdana, sans-se=
+rif" style=3D"">The South Indian SDR User Group (SI-SDR-UG) was founded in =
+January 2021, and is a community of people, from novices to experts, spanni=
+ng industry, academia, and government, who are interested in the design and=
+ implementation of Software-Defined Radio (SDR) technology and systems. Thi=
+s includes such diverse areas such as RF, digital signal processing (DSP), =
+wireless communications, operating systems, computer networking, software d=
+evelopment and optimization, machine learning, and radio hardware. The miss=
+ion of our community is to facilitate the exchange of ideas and enable grea=
+ter collaboration within the SDR community in India. We host a regular tech=
+nical workshops and gatherings, and we also run a dedicated Slack workspace=
+ for the community. We have a YouTube channel for recordings of past events=
+, and a GitHub page for any relevant code. Our Twitter feed contains announ=
+cements about events and other news relevant to the community. We are not f=
+ocused or tied to any one single software tool, hardware platform, commerci=
+al vendor, or specific technology. The SI-SDR-UG is non-profit, and the peo=
+ple on the organizing committee are all volunteers. We are based in Bangalo=
+re, but we invite people from all throughout India, as well as from outside=
+ India, to join our community.</font><span class=3D"gmail-c-mrkdwn__br" sty=
+le=3D"box-sizing:inherit;display:block;height:unset"></span><font face=3D"v=
+erdana, sans-serif" style=3D"">Our first event will be held on *** Saturday=
+ July 24 at 19:00 (India time) ***, and will be streamed live on our YouTub=
+e account.</font><span class=3D"gmail-c-mrkdwn__br" style=3D"box-sizing:inh=
+erit;display:block;height:unset"></span><font face=3D"verdana, sans-serif" =
+style=3D"">We still have an open slot for one more presentation in the even=
+t, and we would like to offer it to the community.  If you would be interes=
+ted in speaking at the event, on Saturday July 24, sometime between 19:00 a=
+nd 23:00 (India time), then please get in touch with us, we would be very i=
+nterested in having you.</font><span class=3D"gmail-c-mrkdwn__br" style=3D"=
+box-sizing:inherit;display:block;height:unset"></span><font face=3D"verdana=
+, sans-serif" style=3D"">Please see our website for more information about =
+the event agenda, as well as links to our Slack workspace and YouTube accou=
+nt.</font><span class=3D"gmail-c-mrkdwn__br" style=3D"box-sizing:inherit;di=
+splay:block;height:unset"></span><a target=3D"_blank" class=3D"gmail-c-link=
+" href=3D"https://www.softwaredefinedradio.in/" rel=3D"noopener noreferrer"=
+ style=3D"box-sizing:inherit;color:inherit;text-decoration-line:none"><font=
+ face=3D"verdana, sans-serif">https://www.softwaredefinedradio.in/</font></=
+a><span class=3D"gmail-c-mrkdwn__br" style=3D"box-sizing:inherit;display:bl=
+ock;height:unset"></span><font face=3D"verdana, sans-serif" style=3D"">We l=
+ook forward to seeing you all at the event!</font></pre></div>
+
+--0000000000002671dd05c6c75279--
+
+--===============6133724091353762168==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6133724091353762168==--
