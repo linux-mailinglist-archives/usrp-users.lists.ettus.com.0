@@ -2,231 +2,327 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA1D03C5E44
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 16:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76E5D3C5FA3
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 17:45:23 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CCB3F383DD1
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 10:20:33 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EBWiNUnF";
-	dkim-atps=neutral
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id C08DA383E8B
-	for <usrp-users@lists.ettus.com>; Mon, 12 Jul 2021 10:12:45 -0400 (EDT)
-Received: by mail-lj1-f172.google.com with SMTP id h19so13578962ljl.4
-        for <usrp-users@lists.ettus.com>; Mon, 12 Jul 2021 07:12:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QpHJx5U6gUcMIPIv9IBMX2FFgJFUjPMqtqBLPo1n/Wk=;
-        b=EBWiNUnF3bQJnd6HNEr98S3KVmnKcZ03kfQym1baqgzuaub3Xp8vpi0xNvHT83Rzhs
-         8xCLEZ1Xvw0R5JT+QT1FDNQd3xethM6vJmrtt++JxoKVXPIN2E8EsM45WLEhG6NwPebw
-         K14e5kPzyn7ljbeQA8Lj0etFaIIHmuTr4kAQX0QTaD2VcKRx0C5+3b1UmRFuqaEaA9Gj
-         JyWdDD7gKMW+kE4mEKOAd6eOJ8XY77Oc1sl4L0nDJN9QV0UNbcXm0NEWQk4jy+wLKqer
-         Pjcsr9kotj7ER4drrWMLd9Pgdn7bF0xeTgQgzru33kmsh4G1zadvZEj1rFcmp0xWZML5
-         iKbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QpHJx5U6gUcMIPIv9IBMX2FFgJFUjPMqtqBLPo1n/Wk=;
-        b=QYp109qjugT+D+2VfTjc/aO5ehqbQZnamaOmqaqHjew5DPFSbiIXZojkcccOtIi9bP
-         XIiwqY3Ztzh6K7Ribe1OOI6foyZ8BOR01ZOou2GYwCBba/HTv2axW8rJd1fzupYufGqK
-         cBb9T3l7vSoGQqea9IzZP2kvX8QbGiAdWT9L0kQir1s3ZOp+IdxDFkwifalqe9LCkbC1
-         5PTVcQ1+V4C8sDEME4PFFPDpTKZNAGA2DJ5mhItl+Fuai9UJu+YeunalUzKyM9qFhd+6
-         SL/NQz2AjXGfNRVwydIJD4b3RJOXTBKOxj9g8/36Nr9X7/L5gsvq0DZzjLUC4eKgZXlu
-         qyzQ==
-X-Gm-Message-State: AOAM531aD0WD7HafeXn//KzgXAwHF/5+J+rw29rhsdco94j9sThpjYIO
-	tGgDBmz/K7QZZ0JnvXgU1izwZvj7CdYJKfiqjSU=
-X-Google-Smtp-Source: ABdhPJyxwJlew0sh0vvbTKJZ8NJQ1V+I7TNKns5zxLp+FqTlrup8PNsjsJaQOI6LJEq9oI4eCvX5eAlh+A/w69kKULY=
-X-Received: by 2002:a2e:a307:: with SMTP id l7mr16446235lje.71.1626099164487;
- Mon, 12 Jul 2021 07:12:44 -0700 (PDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 777783844D3
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 11:45:22 -0400 (EDT)
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id F1E64383C7E
+	for <usrp-users@lists.ettus.com>; Mon, 12 Jul 2021 11:44:32 -0400 (EDT)
+Date: Mon, 12 Jul 2021 15:44:32 +0000
+To: usrp-users@lists.ettus.com
+From: arjan.feta@unifi.it
+Message-ID: <gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <ef868d72c8cd4f889c9efa8ed61d4db3@tudelft.nl>
-In-Reply-To: <ef868d72c8cd4f889c9efa8ed61d4db3@tudelft.nl>
-From: Paul Atreides <maud.dib1984@gmail.com>
-Date: Mon, 12 Jul 2021 10:12:33 -0400
-Message-ID: <CACwKM9JXQ+XqyhvoPz-jMeD_PXMWSfjN9or2byObC8XWUAkzoQ@mail.gmail.com>
-To: Cherif Diouf <C.E.V.Diouf@tudelft.nl>
-Message-ID-Hash: FRWW3NYGY2IBVJHYEDNHZNYW3UYZCVUV
-X-Message-ID-Hash: FRWW3NYGY2IBVJHYEDNHZNYW3UYZCVUV
-X-MailFrom: maud.dib1984@gmail.com
+Content-Type: multipart/mixed;
+ boundary="b1_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4"
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: JXZAGCAISUTANU6PJKRCHKGUNNHY4Y43
+X-Message-ID-Hash: JXZAGCAISUTANU6PJKRCHKGUNNHY4Y43
+X-MailFrom: arjan.feta@unifi.it
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC TX Streamer issue
+Subject: [USRP-users] Power calibration subject to temperature variations (X300+TwinRX)
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FRWW3NYGY2IBVJHYEDNHZNYW3UYZCVUV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JXZAGCAISUTANU6PJKRCHKGUNNHY4Y43/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1300485825013866394=="
 
---===============1300485825013866394==
-Content-Type: multipart/alternative; boundary="00000000000011a52205c6edb787"
+This is a multi-part message in MIME format.
 
---00000000000011a52205c6edb787
-Content-Type: text/plain; charset="UTF-8"
+--b1_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4
+Content-Type: multipart/alternative;
+ boundary="b2_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4"
 
-the default X310 image has static connections in between the radio and the
-endpoint on the crossbar, so while the dynamic routing of the stream is
-still available, the two need to be used as a pair
-in the image the layout is like this:
-RX->DDC->EP->crossbar
-EP->DUC->EP->crossbar
-
-the crossbar isn't exposed to the user via GNURadio, but i'm alluding to
-the deepre architecture of RFNoC.
-i'd recommend watching and reviewing these two presentations and their
-accompanying video thoroughly as they describe the general architecture and
-move into development.
-
-Presentations:
-https://www.gnuradio.org/grcon/grcon20/grcon20_RFNoC_4_Part1.pdf
-https://www.gnuradio.org/grcon/grcon20/grcon20_RFNoC_4_Part2.pdf
-Video: https://youtu.be/M9ntwQie9vs
-
-
-
-
-
-On Mon, Jul 12, 2021 at 7:41 AM Cherif Diouf <C.E.V.Diouf@tudelft.nl> wrote:
-
-> Hi,
->
->
->
-> I am using an X310 device and I have freshly install RFNoC 4, (Vivado
-> 2019.1, UHD 4.0, GNU Radio 3.8, gr-ettus )using the migration guide
->
->
->
-> (https://kb.ettus.com/RFNoC_4_Migration_Guide#Prerequisites).
->
->
->
-> I tried to build a simple GNU Radio flowgraph
->
->
->
-> GNU Radio source signal (cosine) -> RFNoC TX streamer -> RFNoC Radio.
->
-> But when I run the graph I obtain the following error:
->
->
->
-> *"/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line 1584, in
-> make     return _ettus_swig.rfnoc_tx_streamer_make(graph, num_chans,
-> stream_args, vlen) RuntimeError: LookupError: KeyError: [convert] Cannot
-> find an item size for: `'*
->
->
->
-> Do you have any idea where it should come from.
->
->
->
-> Best Regards
->
-> Cherif
->
->
->
-> Below is the full tx script
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000011a52205c6edb787
-Content-Type: text/html; charset="UTF-8"
+--b2_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">the default X310 image has static connections in between t=
-he radio and the endpoint on the crossbar, so while the dynamic routing of =
-the stream is still available, the two need to be used as a pair<div>in the=
- image the layout is like this:<br>RX-&gt;DDC-&gt;EP-&gt;crossbar</div><div=
->EP-&gt;DUC-&gt;EP-&gt;crossbar</div><div><br></div><div>the crossbar isn&#=
-39;t exposed to the user via GNURadio, but i&#39;m alluding=C2=A0to the dee=
-pre architecture of RFNoC.=C2=A0</div><div>i&#39;d recommend watching and r=
-eviewing these two presentations and their accompanying video thoroughly as=
- they describe the general architecture and move into development.</div><di=
-v><br></div><div>Presentations:</div><div><a href=3D"https://www.gnuradio.o=
-rg/grcon/grcon20/grcon20_RFNoC_4_Part1.pdf">https://www.gnuradio.org/grcon/=
-grcon20/grcon20_RFNoC_4_Part1.pdf</a><br></div><div><a href=3D"https://www.=
-gnuradio.org/grcon/grcon20/grcon20_RFNoC_4_Part2.pdf">https://www.gnuradio.=
-org/grcon/grcon20/grcon20_RFNoC_4_Part2.pdf</a><br></div><div>Video:=C2=A0<=
-a href=3D"https://youtu.be/M9ntwQie9vs">https://youtu.be/M9ntwQie9vs</a></d=
-iv><div><br></div><div><br></div><div><br></div><div><br></div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jul =
-12, 2021 at 7:41 AM Cherif Diouf &lt;<a href=3D"mailto:C.E.V.Diouf@tudelft.=
-nl">C.E.V.Diouf@tudelft.nl</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex">
+Hi all,
+
+I am measuring the power of two signals (sinusoids) through an RMS calcul=
+ation, using an TwinRX on a x300 motherboard. In the calibration process =
+(lab conditions, no noise, no interference) I=E2=80=99m trying to obtain =
+a differential power (p1-p2) of 0dB or at least constant at =C2=B10.5dB .=
+ One of the channels, RX2, is highly stable with respect to the environme=
+nt temperature variations, while the other one, RX1, is much less so.
+
+I am aware that this might be a very particular use case, but was wanderi=
+ng if anyone had had this kind of experience or at least knows if there i=
+s any documentation/datasheet concerning temperature sensibility of these=
+ two components?
+
+Best regards,
+
+Arjan
+
+--b2_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi all,</p><p>I am measuring the power of two signals (sinusoids) thro=
+ugh an RMS calculation, using an TwinRX on a x300 motherboard. In the cal=
+ibration process (lab conditions, no noise, no interference) I=E2=80=99m =
+trying to obtain a differential power (p1-p2) of 0dB or at least constant=
+ at =C2=B10.5dB . One of the channels, RX2, is highly stable with respect=
+ to the environment temperature variations, while the other one, RX1, is =
+much less so.</p><p>I am aware that this might be a very particular use c=
+ase, but was wandering if anyone had had this kind of experience or at le=
+ast knows if there is any documentation/datasheet concerning temperature =
+sensibility of these two components?</p><p>Best regards,</p><p>Arjan</p>
 
 
+--b2_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4--
 
+--b1_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4
+Content-Type: image/png; name=block_diag.png
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=block_diag.png
 
+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
 
-<div lang=3D"NL">
-<div class=3D"gmail-m_-58900789772059627WordSection1">
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I am using an X310 device and I=
- have freshly install RFNoC 4, (Vivado 2019.1, UHD 4.0, GNU Radio 3.8, gr-e=
-ttus )using the migration guide<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">(<a href=3D"https://kb.ettus.co=
-m/RFNoC_4_Migration_Guide#Prerequisites" target=3D"_blank">https://kb.ettus=
-.com/RFNoC_4_Migration_Guide#Prerequisites</a>).<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">I tried to build a simple GNU R=
-adio flowgraph<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">GNU Radio source signal (cosine=
-) -&gt; RFNoC TX streamer -&gt; RFNoC Radio.
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">But when I run the graph I obta=
-in the following error:<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><b><span lang=3D"EN-GB" style=3D"color:black">&quot;=
-/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py&quot;, line 1584, =
-in make<br>
-=C2=A0=C2=A0=C2=A0 return _ettus_swig.rfnoc_tx_streamer_make(graph, num_cha=
-ns, stream_args, vlen)<br>
-RuntimeError: LookupError: KeyError: [convert] Cannot find an item size for=
-: `&#39;</span></b><b><span lang=3D"EN-GB" style=3D"font-size:12pt;color:bl=
-ack"><u></u><u></u></span></b></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Do you have any idea where it s=
-hould come from.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Best Regards<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Cherif<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB">Below is the full tx script<u><=
-/u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-GB"><u></u>=C2=A0<u></u></span></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000011a52205c6edb787--
-
---===============1300485825013866394==
+--b1_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -236,4 +332,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1300485825013866394==--
+--b1_gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4--
