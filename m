@@ -2,141 +2,211 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DC483C61D1
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 19:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E3743C61FE
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 19:32:43 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 312743843CA
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 13:24:01 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4F21C384B67
+	for <lists+usrp-users@lfdr.de>; Mon, 12 Jul 2021 13:32:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="rahpDEua";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=unifi.it header.i=@unifi.it header.b="Cogx7zwb";
 	dkim-atps=neutral
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 59C3738180A
-	for <usrp-users@lists.ettus.com>; Mon, 12 Jul 2021 13:23:19 -0400 (EDT)
-Received: by mail-ej1-f49.google.com with SMTP id dt7so6256674ejc.12
-        for <usrp-users@lists.ettus.com>; Mon, 12 Jul 2021 10:23:18 -0700 (PDT)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 008C3384588
+	for <usrp-users@lists.ettus.com>; Mon, 12 Jul 2021 13:31:56 -0400 (EDT)
+Received: by mail-lf1-f49.google.com with SMTP id 22so14587800lfy.12
+        for <usrp-users@lists.ettus.com>; Mon, 12 Jul 2021 10:31:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        d=unifi.it; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=xUHXMYymyEkd+oEzDAAh9RC8fEk9kglrAa2PrrO2xLs=;
-        b=rahpDEuaXLWFmfZZef0DRjD9GouUxemdokS/oMPbaBXr9R3oi4g7Szy2ssBHuAScPL
-         AmiDyM6sxkhjdculmnE8NWB+jnyzTbfDFi16sALSiSb1HsM6RJe9KGoZbPGM3ZR94O3h
-         W0OAQwgwiym6Is6iYdWwsWMasktQMU6HQ3hE3BQD3/Kl85BzDRmR1rfRbVcz99OjIF1O
-         plfnhl83dsPltDRGKzPbtnEcXMzYWEd87E59AvzXh0uAocV6t/ZHv5gz0g2HzSGLw70/
-         vcLLpejFzmJGEy6HXhkQ/ra68OTMa+HODr5znXgOSpZ9tJgYR56NNMcappCMc7hQar/1
-         v/fQ==
+        bh=nBAhauprZYdP87cAQqTRh1EyGHpMatjJ1A/Vonqpc44=;
+        b=Cogx7zwbiUPzZjGJGQggUh5DWzAUPkCT8kFG6E6cq7o8ecmHArgNEhNEV9BSHVoWCR
+         jD77B8+6mASxeP0xpV+FdPNHmNbffQXndmUKlL+vHQkaRU2PCeav8lBzS3LKNQ1ij17n
+         O7YrQM0wR0cHdqxFY6l8g7wXreiJrIBiL4ZVdRBpM5FQ/cb0ItIfsHFGEReCRMD2lAqn
+         qfV5wT+tVTczz/4ST2JPdmq6HxkORKV9c5gs+kQZFDd1D4aZLKjSzCK4gfET8P3cS8kR
+         Ykc/9SI54FV0P5SdJSs0JtI7fNgnI8gZ1A4H6WW0PlW358vKs2Ymy2tTOXA/SgWxfOeC
+         NOcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=xUHXMYymyEkd+oEzDAAh9RC8fEk9kglrAa2PrrO2xLs=;
-        b=oc5aG4U7Xbung2pAP1SGXjL82zkZesUNlrSsVdqZDEHxjS+juoIVuKJyPTTcncIDRs
-         JLu1WEp2emxOUJd4gW51wnL4oO6zGcxnAbK0UfRpfKEMy0oBr7CY7AAgR7mTYstvgL+g
-         SzQXU9Mx+xIIlULK+ZOAv+XDbHZmkJ9NDylNZ9mNJdGtIRsrKZrWzz2KIwslRVhXd6fL
-         fM7hy/71W4PNxXCyD2l85gX4bal/x5GGHqpvpGB1iapGBOpRRcI1w74DlqjF9nbXRvPm
-         VdXkUe41s+ma7RiXcy4op6XgzB6FCbiYQYUmIXl1vaE7KmnnoiJYnON16CdbP2uOJLzJ
-         tCNg==
-X-Gm-Message-State: AOAM531KNd0j2WffLj4SHEfzxqG+NJps3+nUnrkFX4Lf4eDd8rsm2VxS
-	7xjedwEEaSqNQF/FpoLRKmuTRGgMUFGIQP3f9BahAAgc
-X-Google-Smtp-Source: ABdhPJyyRWNst5UoBhVVhOhYEQPCD4ASrvIK3Pv6poP8/WxCdtno8+oFvM2DLhtuxtovtSFN0C2xxv4kN0j94fnyzqc=
-X-Received: by 2002:a17:907:3c81:: with SMTP id gl1mr202148ejc.136.1626110598097;
- Mon, 12 Jul 2021 10:23:18 -0700 (PDT)
+        bh=nBAhauprZYdP87cAQqTRh1EyGHpMatjJ1A/Vonqpc44=;
+        b=qWAGFa90W+9ZNTtnk+Vvlseg0rGnBA6BwVRUX8ZbabC0oE7SetFSjlChfKNZ6eD1+2
+         7/GK2eFlA5vcQifXIQLgqtqR0bLXyIKaBGh6eLyDIPsJypPqf4LSnn5zP39Zva4bpLFB
+         +penlU4CfFR3FQ86ZUj7mgb19NZczR0PAVEA1L5bYp5lsedHrslI92c2sVEpf+1czJz4
+         tJ5thplcrSfZDRgYwBJqoP40V4T+JOnuvpaTmTbW+zyHnSTpzKKFhIjN0WhGBS6o1aeJ
+         /NzZ2f3rWVc9wjENw+Dmtcc6KoWXiNRPeatVcbGr6dszbWzdhuCg8LT0EPPoP8+ZRp4S
+         Xn7Q==
+X-Gm-Message-State: AOAM533b/ig384j3ov0TxAKv1ZajEfO/AadiGow1ij80DUc49Tsek7aY
+	XElje7CyeEFddn5TgNQ9F636ZUGLTCJgvvEvdv9ZsA==
+X-Google-Smtp-Source: ABdhPJy3uy8+yQPK6KGGNVbQkjgOmUIWlUOv+JCMBZH54HmKAYiBX5X3vXBlxPy7CJ5Bg1CUKnVDxJW/5g+H6y1v26U=
+X-Received: by 2002:ac2:58e1:: with SMTP id v1mr10299865lfo.616.1626111115668;
+ Mon, 12 Jul 2021 10:31:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <nSBZtuJ5Ip9rzPubsi4Win5P93BS1xUBjyReK0KJc@lists.ettus.com>
-In-Reply-To: <nSBZtuJ5Ip9rzPubsi4Win5P93BS1xUBjyReK0KJc@lists.ettus.com>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Mon, 12 Jul 2021 13:23:07 -0400
-Message-ID: <CAGNhwTPJAgU5fbYxP7uzCcvbYS4RUwwUUt=mnPPRXGY+mJhRHQ@mail.gmail.com>
-To: rblack@swri.org
-Message-ID-Hash: 7HZCMKCBJN7F7SW6EFGRUK5RN2CAFUPL
-X-Message-ID-Hash: 7HZCMKCBJN7F7SW6EFGRUK5RN2CAFUPL
-X-MailFrom: michael.dickens@ettus.com
+References: <gKHN30YZKExbabEwNniBHHVITTM428uKVVSUcEE1f4@lists.ettus.com> <60EC778A.7050201@gmail.com>
+In-Reply-To: <60EC778A.7050201@gmail.com>
+From: Arjan Feta <arjan.feta@unifi.it>
+Date: Mon, 12 Jul 2021 19:31:42 +0200
+Message-ID: <CADH2tdNkH7OdYLjX4AYyWu+3u8DzrB_OTzf7HEfqabK3aCm=PA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: ZPZWSMGRK67AEEEL7JS75CEHAX66MTPF
+X-Message-ID-Hash: ZPZWSMGRK67AEEEL7JS75CEHAX66MTPF
+X-MailFrom: arjan.feta@unifi.it
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP list <usrp-users@lists.ettus.com>
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: GnuRadio Instrumentation Block "Frequency Sink"
+Subject: [USRP-users] Re: Power calibration subject to temperature variations (X300+TwinRX)
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7HZCMKCBJN7F7SW6EFGRUK5RN2CAFUPL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZPZWSMGRK67AEEEL7JS75CEHAX66MTPF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8579933899077217016=="
+Content-Type: multipart/mixed; boundary="===============8734334633382767881=="
 
---===============8579933899077217016==
-Content-Type: multipart/alternative; boundary="00000000000090c2d005c6f0606d"
+--===============8734334633382767881==
+Content-Type: multipart/alternative; boundary="0000000000006a4b6205c6f07fa5"
 
---00000000000090c2d005c6f0606d
+--0000000000006a4b6205c6f07fa5
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Your query is best asked on the GR discussion list / GR chat rooms:
-https://lists.gnu.org/mailman/listinfo/discuss-gnuradio . - MLD
+Helloo Marcus and thank you!
+I have already did some tests with the two physical channels, fom TX to
+right before the X300 SMA ports, once with: Ch1->RX1, Ch2->RX2; and then I
+exchanged to: Ch2->RX1, Ch1->RX2.
+The results showed instability with temperature gradients in RX1 only. This
+throughs suspitions mainly to what comes after, hence the USRP device. The
+main suspect for us is obviously the TwinRX. More specifically the
+temperature gradients inside the x300 case, being that RX1 SMA port is
+nearer to the case's edge. Could it be the reason?
+If that is so, do you recomend to take the device off from it and use it
+like that?
 
+Regards,
+Arjan
 
-On Sun, Jul 11, 2021 at 5:39 PM <rblack@swri.org> wrote:
+On Mon, Jul 12, 2021, 7:10 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
 
-> I have a couple of questions about the GnuRadio QT GUI Frequency Sink
-> Block , which allows you to specify FFT size and update rate.
+> On 07/12/2021 11:44 AM, arjan.feta@unifi.it wrote:
+> >
+> > Hi all,
+> >
+> > I am measuring the power of two signals (sinusoids) through an RMS
+> > calculation, using an TwinRX on a x300 motherboard. In the calibration
+> > process (lab conditions, no noise, no interference) I=E2=80=99m trying =
+to
+> > obtain a differential power (p1-p2) of 0dB or at least constant at
+> > =C2=B10.5dB . One of the channels, RX2, is highly stable with respect t=
+o
+> > the environment temperature variations, while the other one, RX1, is
+> > much less so.
+> >
+> > I am aware that this might be a very particular use case, but was
+> > wandering if anyone had had this kind of experience or at least knows
+> > if there is any documentation/datasheet concerning temperature
+> > sensibility of these two components?
+> >
+> > Best regards,
+> >
+> > Arjan
+> >
+> >
+> RF components have a temperature dependence.  Amplifiers typically these
+> days have a gain-vs-temperature coefficient of roughly 0.05dB/C.  Cabling
+>    also has a temperature-vs-loss coefficient which varies with cable
+> length, cable type, and operating frequency.
 >
->    -
+> Something else that sneaks in is loose connectors--SMAs in particular
+> are notorious for developing temperature-related "funnies" while not bein=
+g
+>    obviously damaged.  They need to be torqued properly.
 >
->    My understanding it that , when it is time go compute another spectrum
->    according to the update rate setting, the block will grab the most recent N
->    samples to do so; so that any IQ data coming in between updates is dropped
->    on the floor. Right?
->    -
->
->    The blocks output is a graphical plot. If anything in the system
->    causes the graphics to really slow down, will it also slow down the
->    spectrum update rate to less than the configured setting?
->
-> The above are Gnuradio questions, not usrp questions, so if this is the
-> wrong place for them I apologize.
->
->
-> rb
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000090c2d005c6f0606d
+--0000000000006a4b6205c6f07fa5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Your query is best asked on the GR discussion list / GR ch=
-at rooms:=C2=A0<a href=3D"https://lists.gnu.org/mailman/listinfo/discuss-gn=
-uradio">https://lists.gnu.org/mailman/listinfo/discuss-gnuradio</a> . - MLD=
-<br><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Sun, Jul 11, 2021 at 5:39 PM &lt;<a href=3D"mailto:rblack@swri.o=
-rg">rblack@swri.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><p>I have a couple of questions about the GnuRadio QT GU=
-I Frequency Sink Block , which allows you to specify FFT size and update ra=
-te.</p><ul><li><p> My understanding it that , when it is time go compute an=
-other spectrum according to the update rate setting,  the block will  grab =
-the most recent N samples to do so; so that any IQ data coming in between u=
-pdates is dropped on the floor.  Right?</p></li><li><p>The blocks output is=
- a graphical plot.  If anything in the system causes the graphics to really=
- slow down,  will it also slow down the spectrum update rate to less than t=
-he configured setting?</p></li></ul><p>The above are Gnuradio questions, no=
-t usrp questions,  so if this is the wrong place for them I apologize.</p><=
-p><br></p><p>rb</p>
-
+<div dir=3D"auto">Helloo Marcus and thank you!<div dir=3D"auto">I have alre=
+ady did some tests with the two physical channels, fom TX to right before t=
+he X300 SMA ports, once with: Ch1-&gt;RX1, Ch2-&gt;RX2; and then I exchange=
+d to: Ch2-&gt;RX1, Ch1-&gt;RX2.</div><div dir=3D"auto">The results showed i=
+nstability with temperature gradients in RX1 only. This throughs suspitions=
+ mainly to what comes after, hence the USRP device. The main suspect for us=
+ is obviously the TwinRX. More specifically the temperature gradients insid=
+e the x300 case, being that RX1 SMA port is nearer to the case&#39;s edge. =
+Could it be the reason?</div><div dir=3D"auto">If that is so, do you recome=
+nd to take the device off from it and use it like that?</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">Regards,</div><div dir=3D"auto">Arjan</div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Mon, Jul 12, 2021, 7:10 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvo=
+nbraun@gmail.com" rel=3D"noreferrer noreferrer" target=3D"_blank">patchvonb=
+raun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">On 07=
+/12/2021 11:44 AM, <a href=3D"mailto:arjan.feta@unifi.it" rel=3D"noreferrer=
+ noreferrer noreferrer" target=3D"_blank">arjan.feta@unifi.it</a> wrote:<br=
+>
+&gt;<br>
+&gt; Hi all,<br>
+&gt;<br>
+&gt; I am measuring the power of two signals (sinusoids) through an RMS <br=
+>
+&gt; calculation, using an TwinRX on a x300 motherboard. In the calibration=
+ <br>
+&gt; process (lab conditions, no noise, no interference) I=E2=80=99m trying=
+ to <br>
+&gt; obtain a differential power (p1-p2) of 0dB or at least constant at <br=
+>
+&gt; =C2=B10.5dB . One of the channels, RX2, is highly stable with respect =
+to <br>
+&gt; the environment temperature variations, while the other one, RX1, is <=
+br>
+&gt; much less so.<br>
+&gt;<br>
+&gt; I am aware that this might be a very particular use case, but was <br>
+&gt; wandering if anyone had had this kind of experience or at least knows =
+<br>
+&gt; if there is any documentation/datasheet concerning temperature <br>
+&gt; sensibility of these two components?<br>
+&gt;<br>
+&gt; Best regards,<br>
+&gt;<br>
+&gt; Arjan<br>
+&gt;<br>
+&gt;<br>
+RF components have a temperature dependence.=C2=A0 Amplifiers typically the=
+se <br>
+days have a gain-vs-temperature coefficient of roughly 0.05dB/C.=C2=A0 Cabl=
+ing<br>
+=C2=A0 =C2=A0also has a temperature-vs-loss coefficient which varies with c=
+able <br>
+length, cable type, and operating frequency.<br>
+<br>
+Something else that sneaks in is loose connectors--SMAs in particular <br>
+are notorious for developing temperature-related &quot;funnies&quot; while =
+not being<br>
+=C2=A0 =C2=A0obviously damaged.=C2=A0 They need to be torqued properly.<br>
+<br>
 _______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
+l=3D"noreferrer noreferrer noreferrer" target=3D"_blank">usrp-users@lists.e=
+ttus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+tus.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">usrp-us=
+ers-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---00000000000090c2d005c6f0606d--
+--0000000000006a4b6205c6f07fa5--
 
---===============8579933899077217016==
+--===============8734334633382767881==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -146,4 +216,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8579933899077217016==--
+--===============8734334633382767881==--
