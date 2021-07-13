@@ -2,178 +2,200 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A70A13C7793
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jul 2021 21:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 37BC33C7844
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jul 2021 22:54:52 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3D1703845FF
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jul 2021 15:59:11 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=lunet.onmicrosoft.com header.i=@lunet.onmicrosoft.com header.b="EKeiVZlL";
-	dkim-atps=neutral
-Received: from mta-2.lboro.ac.uk (mta-2.lut.ac.uk [158.125.160.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id BAAE5384228
-	for <usrp-users@lists.ettus.com>; Tue, 13 Jul 2021 15:58:07 -0400 (EDT)
-Received: from itsex-1.lboro.ac.uk ([158.125.160.16] helo=itsex-1.lunet.lboro.ac.uk)
-	by mta-2.lboro.ac.uk with esmtps (TLS1.2:ECDHE-RSA-AES128-SHA256:128)
-	(Exim 4.94.2)
-	id 1m3OXY-0002el-D0; Tue, 13 Jul 2021 20:58:05 +0100
-Received: from itsex-4.lunet.lboro.ac.uk (2001:630:301:d314::160:15) by
- itsex-1.lunet.lboro.ac.uk (2001:630:301:d314::160:16) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2242.10; Tue, 13 Jul 2021 20:57:57 +0100
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
- (2a01:111:f400:7e1e::205) by itsex-4.lunet.lboro.ac.uk
- (2001:630:301:d314::160:15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2242.10 via
- Frontend Transport; Tue, 13 Jul 2021 20:57:57 +0100
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UQBJBqelTWtu5Ngb0ykrH772bv3lQ0wK7Wpbyqm0IazdmPM6vho0tX6loanlL4e3trjWb6PHkH5kt8tZnKQ+xrvzj6Vs0BJdVou80w+lL33Tv/XHo/g2GefYKrrPt/NLcGe8WiL/1IMNXjlv1sj30tV9FHUh57Zwu+S9IrWfTZvVJKEw1f1iOQB9OsTetP8w9OhOvdfngbW93oO3RJuj5zT4Hj+dbcovY9Mpf9zREMcXYLmNPVP/bZXIkvbRvyKsSmICuWzioE3N1yHzU1WeXH2zI6sby365gQfeQZsFWA+FLxMpWor6P5yK/WZtqcZHMWfZPTDoVYOghe9TS4t+Qw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=97IQmsngm8BLLrixmk6+56wj2zZO8sy2sUX7vuu/9F0=;
- b=Z7ZPR7sU/4x+c4oSUkOAaxDpPdq9/5Jj2Xvn7GfyhPS0j5aIk/5RSd8xV6NnlYNcAHN74GvwEj5BFpuprJKp5UUYEQzv7M0FontTYMZ/wRhFLyIna0VV3FJHY6PUYrvSYjkwMcApARHNs4VzAjP+uwuq15FZ7tljT2aMUgwZAYIMB9XdrtwZsHurEmHrzBCicPiw0Ki4/WB1/ypF6GO1UjV3lee9sfDJNekJXf5GeZenl5VcVqcUKw4ufA8RdsGN+KgVnh4aXS+Vvs0kQ6qEFPW8xtiHCDUWXn6AItA0vBPsCPOSOnrU4gpdrMHuzG4pr74D1Cwod0kMC4dBnN7Qdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=lboro.ac.uk; dmarc=pass action=none header.from=lboro.ac.uk;
- dkim=pass header.d=lboro.ac.uk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lunet.onmicrosoft.com;
- s=selector2-lunet-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=97IQmsngm8BLLrixmk6+56wj2zZO8sy2sUX7vuu/9F0=;
- b=EKeiVZlL7P0Bq7k2PhDslmipzsaSq5hpDcejLnGVFF4ZwvF1qmu7c/4OAJS4n+0+3fHV9NrU3Nyu5DShoRYyOzEPckYWudX5Lv6wyUD7ilRVYZGVly2nkn2wvdSOF/jagKmxGHS4KqqEIn+6dqtIemfDIe5kCUNuzYt0z1/K7r4=
-Received: from VE1PR04MB6653.eurprd04.prod.outlook.com (2603:10a6:803:122::28)
- by VI1PR04MB6224.eurprd04.prod.outlook.com (2603:10a6:803:100::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4308.23; Tue, 13 Jul
- 2021 19:57:50 +0000
-Received: from VE1PR04MB6653.eurprd04.prod.outlook.com
- ([fe80::70d1:64f6:b14b:19b0]) by VE1PR04MB6653.eurprd04.prod.outlook.com
- ([fe80::70d1:64f6:b14b:19b0%7]) with mapi id 15.20.4308.027; Tue, 13 Jul 2021
- 19:57:50 +0000
-From: Ming You <M.You@lboro.ac.uk>
-To: Wade Fife <wade.fife@ettus.com>
-Thread-Topic: [USRP-users] Regarding RFNoC FIR Filter block
-Thread-Index: AQHXdES3QyYW9SuZxE6wa57cQlSgmqs/oaGAgAGIAjA=
-Date: Tue, 13 Jul 2021 19:57:50 +0000
-Message-ID: <VE1PR04MB6653226B36C4080A243D6696BA149@VE1PR04MB6653.eurprd04.prod.outlook.com>
-References: <VE1PR04MB6653DA41666B704DD2D9DC30BA199@VE1PR04MB6653.eurprd04.prod.outlook.com>,<CAFche=jYZ6DUGd2hX3GXNmvetJ8Ji-BZyN7VBbKuQVsejE9QJQ@mail.gmail.com>
-In-Reply-To: <CAFche=jYZ6DUGd2hX3GXNmvetJ8Ji-BZyN7VBbKuQVsejE9QJQ@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-GB
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: ettus.com; dkim=none (message not signed)
- header.d=none;ettus.com; dmarc=none action=none header.from=lboro.ac.uk;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c29891a5-47fc-47ec-9a78-08d946387ea6
-x-ms-traffictypediagnostic: VI1PR04MB6224:
-x-microsoft-antispam-prvs: <VI1PR04MB6224184248A78859D7E0A5E9BA149@VI1PR04MB6224.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kb60koc7sQe7ZeFAMAhmMPE0zgn0+N6QWJo9DPhdYPZ7g9t7Wx+jOIgSzUWeJItDiv7fFfSZZa2aAJRtckeJYdAWu+ohBnxujB29fvvxPnm+GGe2Gc372j2+B+7zB7p6jLCgPIxVlsTkYzMGWXl51gxW+lDerJSPteo7rqt3EIiJobnoWGTAKFAFvNpa8kusamWAK4wSERKg2Pqp8YEGxJpmy4+mf2OeLe4K7Y4382ySYaZgrul0bMFCLpCfDMaBNsG9PaNXKscqX4IHrtF+/TZtWmoAkJJgRE7/K3lgJ3mc6Wdg7VUACrIR0EDdArB3+D33a4viRzED4wn2r1kyDNBBdmUlNwd80tohpVdcIr4Whvg0Iwu2qgC/V5+BocHnWZftgIeLC8ht049AjjhgNksy8+wSTJmjA+Kqo5UdoKtlfpAFzA1tcjAdnX9ECSierBB5Z7B6IAbbhwsVKNeFE+NIVjc8I620JvS8p8aotuwLu+nh0JWO8xrm3+nKvuVKX3KiAoAp8hKRQg6ygDH7ktmZ/mNnGa6pakJx6LKzNCuD54gJXTXu7xLhGSVMkbAIgTjaaGxqrHZ5B/D7UFOQ1TjSMCi6XAntPmEOSg4woVsN8EBQCQJ1ZBvPmf6I3ANQwb9Cft5Si+w4XeADw1O28Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6653.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(396003)(39840400004)(136003)(346002)(376002)(5660300002)(8676002)(4326008)(55016002)(9686003)(33656002)(186003)(71200400001)(66476007)(122000001)(83380400001)(2906002)(86362001)(8936002)(66556008)(64756008)(53546011)(6506007)(91956017)(66446008)(478600001)(66946007)(76116006)(52536014)(786003)(6916009)(7696005)(38100700002)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?K+BTzgA3lETwy1cM5OydTbIczH74Bx9HKbIRv5ITDOuC2vrg6WnSTnconUPg?=
- =?us-ascii?Q?8NSy8mblBELKqBNtwjgI8CUxwPiYANe8j/ik3Se2u1njF/U1LHYkm5wbYzBo?=
- =?us-ascii?Q?lU8vNg3DyYXKjaK21PBtNCnS1Y2wJ9alSbY+y0MfNGjeQ0rMBva24CYnfeLK?=
- =?us-ascii?Q?q9Mba+ShfRYTRu7kYSY9XLaBupzs/7lq9F9fWlUquc9w505tdlNPonqWhT96?=
- =?us-ascii?Q?MSga88tuIsV8WsWnOhAOJukul2cph+qK0Zn08eyiqQeZZho4B0112DredD76?=
- =?us-ascii?Q?Lqxz8nKGf/UyvcCmVw0hcxEcIixJrm9KgP539XT7c0FIpmdYH3jdO/JU0mXd?=
- =?us-ascii?Q?5Xdo0e/ZHkcpxS7oZ9Iw6tHdenVCZA+cX3rpLZfBmigZjYDHwTEKOynYiu0q?=
- =?us-ascii?Q?ShpAv2Taakz/6rVf0NVBzVynQvz09dRnCxoElO+McK8vAuRWq8y4xKja7RPX?=
- =?us-ascii?Q?8FEXAIkUQVmzW3aMtpIqI4dfJQ3ZcKRMy0l95cHepkPrXEzaMZNB7aa5JXda?=
- =?us-ascii?Q?B4XA5nMvg5S2iSXZGk0RqvWm/E9RqUAvATv7hq1+A7366l77T/kJefk985f6?=
- =?us-ascii?Q?YTkP3/iEemovQdANmzuR3FIyMfrxT2yd2hrXhxMavmFWhIFqMhLy6GxyVrKo?=
- =?us-ascii?Q?rs9IWdemjOAie9dPIGJ1fjAHQdoZ/ywKoDM2PBbxGS91tdYRYsTyEGdKV44p?=
- =?us-ascii?Q?eOkFZEKsSyz4Gz3w7qoJE8q1baj/fwoq+WJWWf1XdPKVT08ZzoPSXmY9hVpE?=
- =?us-ascii?Q?m0deB7ZlrlKKKth0UV31FlhTD4h0t5oX0z+ziinZ0bAwS/urzPOAyq4oHwD7?=
- =?us-ascii?Q?3xL2IG+7WgH53EvFREaeSXcXaWm4TVFyZjNaZ9OpvbUEJuyn65jRwub2R9cN?=
- =?us-ascii?Q?HjFJGWNTt4udAgCCxRjteLPZxC2qEQdDwte23qDfjxJrbgzNSavhpdHZYj+C?=
- =?us-ascii?Q?cnno39qnwuQjno4uj3+oBWbjFO/aBc9vQ8DzEubgSiBJtYGtCX87DDE6nQkv?=
- =?us-ascii?Q?Kq70mrVAKK+FgRbuBQZDjyPvpxhWmMSPMvV8CQObvTtxZ8JVKerPnINe3Bqr?=
- =?us-ascii?Q?8RUJrnEeIwpJbxhAZY2XOCToSAqJyPKbGjdwfS0PSgvIlY6rMZygI5V0gt1z?=
- =?us-ascii?Q?EHSHcswl4mb7oyblCiMAxnGn1fY1QELshd5FN1XluyDZxE8qAHQoDZ6C+ZUa?=
- =?us-ascii?Q?11Q2w/erbnj4OF/Idv2hW0xteVQnq0Y205uKGRzN2Zz0gYTmdXzt9gcD/0Kg?=
- =?us-ascii?Q?FkFVO/xPecY7nPxtd+PGCcqJuGkR7tkiqNzcJfoaatnIUwcqZpHRmUi5o7gv?=
- =?us-ascii?Q?0PvFW7IYYF/VsZVWb1gz5P/KiQ4MyS0Qp/OEjF9ME7WQ3Q=3D=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
+	by mm2.emwd.com (Postfix) with ESMTP id 5E0C73849C2
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jul 2021 16:54:51 -0400 (EDT)
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id D3FF4383D08
+	for <usrp-users@lists.ettus.com>; Tue, 13 Jul 2021 16:54:02 -0400 (EDT)
+Date: Tue, 13 Jul 2021 20:54:02 +0000
+To: usrp-users@lists.ettus.com
+From: sunny04sam@gmail.com
+Message-ID: <pM95ht57q9GReZHXVb85LlBgY4xqq2Izcpz6YxkoxE@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6653.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c29891a5-47fc-47ec-9a78-08d946387ea6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jul 2021 19:57:50.6036
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: cf264fc0-aeb8-449f-9054-82ce4454084b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8Xun0oMea3JfvN1YLzneG0eYP0czhmBsiugF+JVlN4uUhQ9HZn+lW1aZY9DUQfUcLeaHjaBsBwdRVlwTgvUl2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6224
-X-OriginatorOrg: lboro.ac.uk
-X-Scan-Signature: f4558957a20c2001bf4d8755976cf276
-X-Lboro-Creds: scanned on mta-2.lboro.ac.uk
-Message-ID-Hash: C3L43MIRXR5FABWESG7QFTJ6ELSUINJ4
-X-Message-ID-Hash: C3L43MIRXR5FABWESG7QFTJ6ELSUINJ4
-X-MailFrom: M.You@lboro.ac.uk
+Message-ID-Hash: AN6RTYDUU2RDHNRM5SP6H6I5TVWPLCQT
+X-Message-ID-Hash: AN6RTYDUU2RDHNRM5SP6H6I5TVWPLCQT
+X-MailFrom: sunny04sam@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Regarding RFNoC FIR Filter block
+Subject: [USRP-users] Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/C3L43MIRXR5FABWESG7QFTJ6ELSUINJ4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AN6RTYDUU2RDHNRM5SP6H6I5TVWPLCQT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============4231677490269158862=="
+
+This is a multi-part message in MIME format.
+
+--===============4231677490269158862==
+Content-Type: multipart/alternative;
+ boundary="b1_pM95ht57q9GReZHXVb85LlBgY4xqq2Izcpz6YxkoxE"
 Content-Transfer-Encoding: 7bit
 
-Hi Wade,
+This is a multi-part message in MIME format.
 
-Thank you for the reply. That was also the parameter set I was using, and I think the problem might be due to the Vivado simulator. For static parameters in the rfnoc-FIR, coeffs are generated as registers, and Vivado will produce unexpected results unless these registers are properly initialized. By adding initialization codes for these coeffs, the static parameters are working as expected.
+--b1_pM95ht57q9GReZHXVb85LlBgY4xqq2Izcpz6YxkoxE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-As you've got no problem with the simulation, is this unique to Vivado only (e.g., needing extra config.?)?
+Hi all,=C2=A0
 
-Thanks,
-Ming
+I am using x310 to continuously=C2=A0receive=C2=A0 on RF A RX2, process t=
+he data, and schedule a transmit periodically on RF B TX.=C2=A0 The issue=
+ I am running into is when the RX is in=C2=A0STREAM_MODE_START_CONTINUOUS=
+, and TX is scheduled to send at a specific=C2=A0time in the future a set=
+ number of samples, I get a lot of LLLLs. I understand L is a late packet=
+, but I get the same LLLs even if=C2=A0I add more time to the tx schedule=
+.=C2=A0=C2=A0
 
-________________________________________
-From: Wade Fife <wade.fife@ettus.com>
-Sent: 12 July 2021 18:41
-To: Ming You
-Cc: usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] Regarding RFNoC FIR Filter block
+After I confirm=C2=A0the specified=C2=A0number of samples are sent, I set=
+ md.end_of_burst =3D true and call tx_stream->send("", 0, md). And, this =
+when I see the LLLLs. I used the rec_sysnc_msg and found out the LLLs are=
+ printed while it is waiting for EVENT_CODE_BURST_ACK.=C2=A0
 
-Hi Ming,
+Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess\
+Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess
 
-For static coefficients, try setting RELOADABLE_COEFFS = 0 and USE_EMBEDDED_REGS_COEFFS = 0. I did a quick simulation and it seemed to work, but I didn't spend much time checking it. Make sure you also set NUM_COEFFS and COEFFS_VEC correctly where the rfnoc_block_fir_filter is instantiated. The testbench has examples of how to do this.
+I don't see this issue if RX is also scheduled or if I turn off=C2=A0the =
+RX and send data from a buffer. Below is part of the code that handles th=
+e tx schedule=C2=A0and send.=C2=A0Any help=C2=A0would be greatly apprecia=
+ted.=20
 
-Thanks,
+uhd::tx_metadata_t md;\
+md.start_of_burst =3D false;\
+md.end_of_burst =3D false;\
+md.has_time_spec =3D true;\
+md.time_spec =3D uhd::time_spec_t(tx_send_time)\
+tx_timeout =3D 2.0\
+\
+while (mainloop)\
+{\
+=C2=A0 =C2=A0 //\*\*\
+=C2=A0 =C2=A0 \*\*//\
+=C2=A0 =C2=A0 while (num_tx_samps < tx_buff_size)\
+=C2=A0 =C2=A0 {\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 num_tx_samps =3D tx_stream->send(&txBuff\[tx_=
+buff_index\], tx_buff_size, md, tx_timeout);\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (num_tx_samps < tx_buff_size)\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 {\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 std::cout << " =C2=A0TX number =
+of sample error: " << std::endl;\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tx_buff_size -=3D num_tx_samps;=
+\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tx_buff_index +=3D num_tx_samps=
+;\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 num_tx_samps =3D 0;\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }\
+\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 md.has_time_spec =3D false;\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 md.start_of_burst =3D false;\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 md.end_of_burst =3D false;\
+=C2=A0 =C2=A0 }\
+\
+=C2=A0 =C2=A0 // send a mini EOB packet\
+=C2=A0 =C2=A0 md.end_of_burst =3D true;\
+=C2=A0 =C2=A0 tx_stream->send("", 0, md);\
+\
+=C2=A0 =C2=A0 std::cout << std::endl\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 << "Waiting for async bu=
+rst ACK... " << std::flush;\
+=C2=A0 =C2=A0 uhd::async_metadata_t async_md;\
+=C2=A0 =C2=A0 bool got_async_burst_ack =3D false;\
+=C2=A0 =C2=A0 // loop through all messages for the ACK packet (may have u=
+nderflow messages in queue)\
+=C2=A0 =C2=A0 while (not got_async_burst_ack and tx_stream->recv_async_ms=
+g(async_md, tx_timeout))\
+=C2=A0 =C2=A0 {\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 got_async_burst_ack =3D\
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (async_md.event_code =3D=3D uhd=
+::async_metadata_t::EVENT_CODE_BURST_ACK);\
+=C2=A0 =C2=A0 }\
+=C2=A0 =C2=A0 std::cout << (got_async_burst_ack ? "success" : "fail") << =
+std::endl;\
+\
+=C2=A0 =C2=A0 //schedule the next tx\
+=C2=A0 =C2=A0 md.has_time_spec =3D true;\
+=C2=A0 =C2=A0 md.start_of_burst =3D false;\
+=C2=A0 =C2=A0 md.end_of_burst =3D false;\
+=C2=A0 =C2=A0 tx_time_spec +=3D tx_time_interval;\
+=C2=A0 =C2=A0 md.time_spec =3D uhd::time_spec_t(tx_time_spec);\
+=C2=A0 =C2=A0 //\*\*\
+=C2=A0 =C2=A0 \*\*//\
+}
 
-Wade
+Thanks!
 
-On Thu, Jul 8, 2021 at 5:42 PM Ming You <M.You@lboro.ac.uk<mailto:M.You@lboro.ac.uk>> wrote:
-Dear ALL,
+--b1_pM95ht57q9GReZHXVb85LlBgY4xqq2Izcpz6YxkoxE
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-I am trying to modify the RFNoC fir filter block to a static coeffs. fir, and I've managed to use the Vivado simulator to monitor the simulation waveforms generated by the testbench code.
+<p>Hi all,&nbsp;</p><p>I am using x310 to continuously&nbsp;receive&nbsp; o=
+n RF A RX2, process the data, and schedule a transmit periodically on RF B =
+TX.&nbsp; The issue I am running into is when the RX is in&nbsp;STREAM_MODE=
+_START_CONTINUOUS, and TX is scheduled to send at a specific&nbsp;time in t=
+he future a set number of samples, I get a lot of LLLLs. I understand L is =
+a late packet, but I get the same LLLs even if&nbsp;I add more time to the =
+tx schedule.&nbsp;&nbsp;</p><p>After I confirm&nbsp;the specified&nbsp;numb=
+er of samples are sent, I set md.end_of_burst =3D true and call tx_stream-&=
+gt;send("", 0, md). And, this when I see the LLLLs. I used the rec_sysnc_ms=
+g and found out the LLLs are printed while it is waiting for EVENT_CODE_BUR=
+ST_ACK.&nbsp;</p><p>Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess<=
+br>Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess<br><br></p><p>I d=
+on't see this issue if RX is also scheduled or if I turn off&nbsp;the RX an=
+d send data from a buffer. Below is part of the code that handles the tx sc=
+hedule&nbsp;and send.&nbsp;Any help&nbsp;would be greatly appreciated. </p>=
+<p>uhd::tx_metadata_t md;<br>md.start_of_burst =3D false;<br>md.end_of_burs=
+t =3D false;<br>md.has_time_spec =3D true;<br>md.time_spec =3D uhd::time_sp=
+ec_t(tx_send_time)<br>tx_timeout =3D 2.0<br><br>while (mainloop)<br>{<br>&n=
+bsp; &nbsp; //**<br>&nbsp; &nbsp; **//<br>&nbsp; &nbsp; while (num_tx_samps=
+ &lt; tx_buff_size)<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; num_t=
+x_samps =3D tx_stream-&gt;send(&amp;txBuff[tx_buff_index], tx_buff_size, md=
+, tx_timeout);<br>&nbsp; &nbsp; &nbsp; &nbsp; if (num_tx_samps &lt; tx_buff=
+_size)<br>&nbsp; &nbsp; &nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; std::cout &lt;&lt; " &nbsp;TX number of sample error: " &lt;&lt; =
+std::endl;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tx_buff_size -=3D n=
+um_tx_samps;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tx_buff_index +=
+=3D num_tx_samps;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; num_tx_samps=
+ =3D 0;<br>&nbsp; &nbsp; &nbsp; &nbsp; }<br><br>&nbsp; &nbsp; &nbsp; &nbsp;=
+ md.has_time_spec =3D false;<br>&nbsp; &nbsp; &nbsp; &nbsp; md.start_of_bur=
+st =3D false;<br>&nbsp; &nbsp; &nbsp; &nbsp; md.end_of_burst =3D false;<br>=
+&nbsp; &nbsp; }<br><br>&nbsp; &nbsp; // send a mini EOB packet<br>&nbsp; &n=
+bsp; md.end_of_burst =3D true;<br>&nbsp; &nbsp; tx_stream-&gt;send("", 0, m=
+d);<br><br>&nbsp; &nbsp; std::cout &lt;&lt; std::endl<br>&nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &lt;&lt; "Waiting for async burst ACK... " &=
+lt;&lt; std::flush;<br>&nbsp; &nbsp; uhd::async_metadata_t async_md;<br>&nb=
+sp; &nbsp; bool got_async_burst_ack =3D false;<br>&nbsp; &nbsp; // loop thr=
+ough all messages for the ACK packet (may have underflow messages in queue)=
+<br>&nbsp; &nbsp; while (not got_async_burst_ack and tx_stream-&gt;recv_asy=
+nc_msg(async_md, tx_timeout))<br>&nbsp; &nbsp; {<br>&nbsp; &nbsp; &nbsp; &n=
+bsp; got_async_burst_ack =3D<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (=
+async_md.event_code =3D=3D uhd::async_metadata_t::EVENT_CODE_BURST_ACK);<br=
+>&nbsp; &nbsp; }<br>&nbsp; &nbsp; std::cout &lt;&lt; (got_async_burst_ack ?=
+ "success" : "fail") &lt;&lt; std::endl;<br><br>&nbsp; &nbsp; //schedule th=
+e next tx<br>&nbsp; &nbsp; md.has_time_spec =3D true;<br>&nbsp; &nbsp; md.s=
+tart_of_burst =3D false;<br>&nbsp; &nbsp; md.end_of_burst =3D false;<br>&nb=
+sp; &nbsp; tx_time_spec +=3D tx_time_interval;<br>&nbsp; &nbsp; md.time_spe=
+c =3D uhd::time_spec_t(tx_time_spec);<br>&nbsp; &nbsp; //**<br>&nbsp; &nbsp=
+; **//<br>}<br><br></p><p>Thanks!</p>
 
-Strange things to me are that:
+--b1_pM95ht57q9GReZHXVb85LlBgY4xqq2Izcpz6YxkoxE--
 
-1. When enabling the reloadable feature (i.e., RELOADABLE_COEFFS =1), and enabling the DSP-embedded reg feature (USE_EMBEDDED_REGS_COEFFS=1), everything will work alright and the outputs are expected.
-2. When enabling the reloadable feature (i.e., RELOADABLE_COEFFS =1), and disabling the DSP-embedded reg feature (USE_EMBEDDED_REGS_COEFFS=0), there are some outputs but not expected.
-3. When disabling the reloadable feature (i.e., RELOADABLE_COEFFS =0), and disabling the DSP-embedded reg feature (USE_EMBEDDED_REGS_COEFFS=0), there are outputs but the outputs are simply XXXX.
+--===============4231677490269158862==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-Can anyone tell me how to correctly configure the rfnoc_block_fir_filter or its sub-modules, so that it can work with static coeffs.? Or this rfnoc block is intended to work only under reloadable+embedded setup, while the static coeff. was initially ok to use but later not maintained?
-
-Thank you for your time and kind help in advance!
-
-Ming
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com>
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usrp-users-leave@lists.ettus.com>
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4231677490269158862==--
