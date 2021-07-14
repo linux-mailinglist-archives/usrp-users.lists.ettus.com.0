@@ -2,240 +2,170 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88AD73C7885
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jul 2021 23:13:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 056263C7D97
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 06:39:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9B192384ADE
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jul 2021 17:13:13 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9AF923846A0
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 00:39:06 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Yn4u80KW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UsU6Qgry";
 	dkim-atps=neutral
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id BA18D38408A
-	for <usrp-users@lists.ettus.com>; Tue, 13 Jul 2021 17:12:29 -0400 (EDT)
-Received: by mail-ot1-f53.google.com with SMTP id o17-20020a9d76510000b02903eabfc221a9so347604otl.0
-        for <usrp-users@lists.ettus.com>; Tue, 13 Jul 2021 14:12:29 -0700 (PDT)
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8908138469A
+	for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 00:38:18 -0400 (EDT)
+Received: by mail-oi1-f172.google.com with SMTP id q16so898037oiw.6
+        for <usrp-users@lists.ettus.com>; Tue, 13 Jul 2021 21:38:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6iK/LyOXoAVWvx+DQKEBeV57Y90UmMRktnRTjFyq2+I=;
-        b=Yn4u80KWjlwHF+NyhDBGmAs5OsC48EC8ooC2BG+6Ft0EdEyhRLnA9J4tC7iXX37B2k
-         x58JShM1HnZZfmPOjEyCE/MAJNWMRYJC9Db0E3aLCN4ae2rJPHMLr8KYg44MquQHygXt
-         oddeK9wJ6hrrvkXmVlupjjlrgfVeyIsORGe9nudgzkLVvRr4SIg7Jx6RGHB+QlKB4ZPN
-         rxnzq+b76JkDRDYuC8hbPoPRxGsIiHn4I8UZArhXfgYc8FYZSbszQka6X0Qv4Tlj8rUT
-         y5ECnlPD9TkzsWiLWuC10YLFrlB93CWHWbl8t3IZyumb0s5/+OhVIhqusVolOFTcHWpY
-         KaJA==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:thread-topic:thread-index:date:message-id
+         :accept-language:content-language:mime-version;
+        bh=fGJR4Je150RQUkfH6+QLw2CklfleaiCa0NnZy5XNTS4=;
+        b=UsU6QgryJla0mROmDsuL9HJvcw9Tf8aWTY+f295ceoZxkY3QVF4Yae0BeOSnbbwM10
+         krcsz5KczZPRY0h+BZpa2SbMJ8IC5Pw0lGH8BZ4ZvAtnRaNwtmyMQs6vzVCOqpGnimKF
+         09tGwU5x8KQoX+G6ppZ0KGnccFiw0Ev+m9saswiohLlxZrU8PgmH95LOzoEz1bJZ5yuP
+         mkD7+KTxs5N/cSGploT8kkeM0xlnUkPNk1suCHmdOYAcUMUseLshucrs+jNBo9baJyEW
+         ZRXkYnoU9JQU9sevgseJq4U0yc63By9NlpR4afyGBrMjtj9A4bdJ2PbYB0rJEixK1fhX
+         sK0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6iK/LyOXoAVWvx+DQKEBeV57Y90UmMRktnRTjFyq2+I=;
-        b=EiwtXoBJ2yBUvhDjad0R2ToYIWUi8zfYXaW4LNpB11kOGilrNq6A0SHxonY3qjVXBX
-         eQ4hyhiRlSyKmQpS+TvzTe6R6/4fVsN17qP7kZPjdERT+ytt72Vb/0z7EWqM4NyiG+lX
-         OGwU96iNWskHrcS7nxJXWKK9nk6s9dLlpQzR7a1qV2JOUyrtYb6JZGZOxu/zHPhAIojC
-         6ERmZtS1uhKKIlayZgZEKVEt00tdTkSj3M08LZ+gwJTAtilS2CpYytCQ4or3MHx23AmL
-         vLLX01AhOae8ZwWGSoYMQiyzdWr/5OgVKsYs9mA9ZcUHzA0vz+PNGTUMTmfmJUsTpsua
-         AUhA==
-X-Gm-Message-State: AOAM530OWqOR3kBm3uHDmb6tDkutE1Xw0cVnr0nlCFZjWR8XEuTde7jt
-	bIWkFJoD4/X59O4W8ap6hQ1AkWwY/B5EXBDI1ET98A==
-X-Google-Smtp-Source: ABdhPJxJqJeMqDIIqC17Y6zKoYpuvDLioL5uVz5M77xM1qaKBwPYP16w5ZvS3P3tY9EW7cFDM3OYVSvOU8Sh2fd7MY0=
-X-Received: by 2002:a9d:3a04:: with SMTP id j4mr5110780otc.301.1626210748775;
- Tue, 13 Jul 2021 14:12:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:thread-topic:thread-index:date
+         :message-id:accept-language:content-language:mime-version;
+        bh=fGJR4Je150RQUkfH6+QLw2CklfleaiCa0NnZy5XNTS4=;
+        b=OWLWZJuqDPUNN+twcvKmZWWmSrEwG14DeZUX5HUA1gqH4HfLeBDUmjZJA2Xs8RtwyE
+         notZjNOEB+BE9x6NI7isTYL+xRKZkprK7jZR5QDZB7yAotN7E282230pp3F1NI/McOPm
+         1rQzkFW16o95klC0bAT5XRAdMLTtVJ8OytbnSTSZmRUQjnKhYaXYx8XKKFRHlJab2XLO
+         OaAE841Hc/KWpm/EtJk8Ga9QQ6zsPdeGWeOZWV5XoaAsS7wh3gbQQntCvaNWnts2Yfbg
+         1PkdYLUnJqnZR8lCEivtbSNnOa0iuL4cMXKL678d4h0z3b1hoJJTAEnKQ/EccKF/barZ
+         5wwA==
+X-Gm-Message-State: AOAM531CUKiKw69xT/7NrYYEjpFEHHt3QDMwWM8APnhxvl64B4eS1R85
+	p5Mcb/Te9IMYg7rmAF6wL84H8oBFzzk=
+X-Google-Smtp-Source: ABdhPJx60hvV7NNpwaMmsz8x3FHsDgW+v83wqPNOVWh1qM20n5ZKMIQCJ3FcPMQyyZMTxBhSVGcIyw==
+X-Received: by 2002:aca:fc12:: with SMTP id a18mr5846925oii.85.1626237497576;
+        Tue, 13 Jul 2021 21:38:17 -0700 (PDT)
+Received: from SN6PR05MB4429.namprd05.prod.outlook.com ([2603:1036:805:29::5])
+        by smtp.gmail.com with ESMTPSA id h96sm289177oth.25.2021.07.13.21.38.16
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 13 Jul 2021 21:38:17 -0700 (PDT)
+From: Weite Zhang <zhang.weit3@gmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Maximum data rate using multiple B210s
+Thread-Index: AQHXeGaViXMP5HFJdkmsIU4W/TKhEw==
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date: Wed, 14 Jul 2021 04:37:44 +0000
+Message-ID: 
+	<SN6PR05MB4429867C3429BF6478271D6BF4139@SN6PR05MB4429.namprd05.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator: 
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
 MIME-Version: 1.0
-References: <pM95ht57q9GReZHXVb85LlBgY4xqq2Izcpz6YxkoxE@lists.ettus.com>
-In-Reply-To: <pM95ht57q9GReZHXVb85LlBgY4xqq2Izcpz6YxkoxE@lists.ettus.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 13 Jul 2021 16:12:18 -0500
-Message-ID: <CAB__hTRqvSdcA-L2xn3feko941p8_HOqb-DnQNHO=i=ukEyifw@mail.gmail.com>
-To: sunny04sam@gmail.com
-Message-ID-Hash: EKUKA33GU5GLQNJWXLWW26MJ4S4RAE2S
-X-Message-ID-Hash: EKUKA33GU5GLQNJWXLWW26MJ4S4RAE2S
-X-MailFrom: rkossler@nd.edu
+Message-ID-Hash: 2HJR7IGI65FFEEIOAR7SWOUFVTJH5RQB
+X-Message-ID-Hash: 2HJR7IGI65FFEEIOAR7SWOUFVTJH5RQB
+X-MailFrom: zhang.weit3@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess
+Subject: [USRP-users] Maximum data rate using multiple B210s
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EKUKA33GU5GLQNJWXLWW26MJ4S4RAE2S/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G5BV2CGHIGZBMJ3NFEQWJLZ7V4EUB6HB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1625234496466590384=="
+Content-Type: multipart/mixed; boundary="===============4204457177313329999=="
 
---===============1625234496466590384==
-Content-Type: multipart/alternative; boundary="000000000000030b9205c707b223"
+--===============4204457177313329999==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_"
 
---000000000000030b9205c707b223
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-Which version of UHD?  Also, what if you have Rx on continuously and
-schedule Tx but make Tx completely independent of Rx such that Tx is just
-sending a dummy buffer?  Does this still produce L?
-Rob
-
-On Tue, Jul 13, 2021 at 3:54 PM <sunny04sam@gmail.com> wrote:
-
-> Hi all,
->
-> I am using x310 to continuously receive  on RF A RX2, process the data,
-> and schedule a transmit periodically on RF B TX.  The issue I am running
-> into is when the RX is in STREAM_MODE_START_CONTINUOUS, and TX is scheduled
-> to send at a specific time in the future a set number of samples, I get a
-> lot of LLLLs. I understand L is a late packet, but I get the same LLLs even
-> if I add more time to the tx schedule.
->
-> After I confirm the specified number of samples are sent, I set
-> md.end_of_burst = true and call tx_stream->send("", 0, md). And, this when
-> I see the LLLLs. I used the rec_sysnc_msg and found out the LLLs are
-> printed while it is waiting for EVENT_CODE_BURST_ACK.
->
-> Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess
-> Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess
->
-> I don't see this issue if RX is also scheduled or if I turn off the RX and
-> send data from a buffer. Below is part of the code that handles the tx
-> schedule and send. Any help would be greatly appreciated.
->
-> uhd::tx_metadata_t md;
-> md.start_of_burst = false;
-> md.end_of_burst = false;
-> md.has_time_spec = true;
-> md.time_spec = uhd::time_spec_t(tx_send_time)
-> tx_timeout = 2.0
->
-> while (mainloop)
-> {
->     //**
->     **//
->     while (num_tx_samps < tx_buff_size)
->     {
->         num_tx_samps = tx_stream->send(&txBuff[tx_buff_index],
-> tx_buff_size, md, tx_timeout);
->         if (num_tx_samps < tx_buff_size)
->         {
->             std::cout << "  TX number of sample error: " << std::endl;
->             tx_buff_size -= num_tx_samps;
->             tx_buff_index += num_tx_samps;
->             num_tx_samps = 0;
->         }
->
->         md.has_time_spec = false;
->         md.start_of_burst = false;
->         md.end_of_burst = false;
->     }
->
->     // send a mini EOB packet
->     md.end_of_burst = true;
->     tx_stream->send("", 0, md);
->
->     std::cout << std::endl
->               << "Waiting for async burst ACK... " << std::flush;
->     uhd::async_metadata_t async_md;
->     bool got_async_burst_ack = false;
->     // loop through all messages for the ACK packet (may have underflow
-> messages in queue)
->     while (not got_async_burst_ack and tx_stream->recv_async_msg(async_md,
-> tx_timeout))
->     {
->         got_async_burst_ack =
->             (async_md.event_code ==
-> uhd::async_metadata_t::EVENT_CODE_BURST_ACK);
->     }
->     std::cout << (got_async_burst_ack ? "success" : "fail") << std::endl;
->
->     //schedule the next tx
->     md.has_time_spec = true;
->     md.start_of_burst = false;
->     md.end_of_burst = false;
->     tx_time_spec += tx_time_interval;
->     md.time_spec = uhd::time_spec_t(tx_time_spec);
->     //**
->     **//
-> }
->
-> Thanks!
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000030b9205c707b223
-Content-Type: text/html; charset="UTF-8"
+--_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi,</div><div>Which version of UHD?=C2=A0=
- Also, what if you have Rx on continuously and schedule Tx but make Tx comp=
-letely independent of Rx such that Tx is just sending a dummy buffer?=C2=A0=
- Does this still produce L?</div><div>Rob</div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jul 13, 2021 at 3:54 PM &l=
-t;<a href=3D"mailto:sunny04sam@gmail.com">sunny04sam@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hi all,=C2=
-=A0</p><p>I am using x310 to continuously=C2=A0receive=C2=A0 on RF A RX2, p=
-rocess the data, and schedule a transmit periodically on RF B TX.=C2=A0 The=
- issue I am running into is when the RX is in=C2=A0STREAM_MODE_START_CONTIN=
-UOUS, and TX is scheduled to send at a specific=C2=A0time in the future a s=
-et number of samples, I get a lot of LLLLs. I understand L is a late packet=
-, but I get the same LLLs even if=C2=A0I add more time to the tx schedule.=
-=C2=A0=C2=A0</p><p>After I confirm=C2=A0the specified=C2=A0number of sample=
-s are sent, I set md.end_of_burst =3D true and call tx_stream-&gt;send(&quo=
-t;&quot;, 0, md). And, this when I see the LLLLs. I used the rec_sysnc_msg =
-and found out the LLLs are printed while it is waiting for EVENT_CODE_BURST=
-_ACK.=C2=A0</p><p>Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess<br=
->Waiting for async burst ACK... LLLLLLLLLLLLLLLLsuccess<br><br></p><p>I don=
-&#39;t see this issue if RX is also scheduled or if I turn off=C2=A0the RX =
-and send data from a buffer. Below is part of the code that handles the tx =
-schedule=C2=A0and send.=C2=A0Any help=C2=A0would be greatly appreciated. </=
-p><p>uhd::tx_metadata_t md;<br>md.start_of_burst =3D false;<br>md.end_of_bu=
-rst =3D false;<br>md.has_time_spec =3D true;<br>md.time_spec =3D uhd::time_=
-spec_t(tx_send_time)<br>tx_timeout =3D 2.0<br><br>while (mainloop)<br>{<br>=
-=C2=A0 =C2=A0 //**<br>=C2=A0 =C2=A0 **//<br>=C2=A0 =C2=A0 while (num_tx_sam=
-ps &lt; tx_buff_size)<br>=C2=A0 =C2=A0 {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 num=
-_tx_samps =3D tx_stream-&gt;send(&amp;txBuff[tx_buff_index], tx_buff_size, =
-md, tx_timeout);<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (num_tx_samps &lt; tx_bu=
-ff_size)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 std::cout &lt;&lt; &quot; =C2=A0TX number of sample error: &q=
-uot; &lt;&lt; std::endl;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tx_bu=
-ff_size -=3D num_tx_samps;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tx_=
-buff_index +=3D num_tx_samps;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-num_tx_samps =3D 0;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br><br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 md.has_time_spec =3D false;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 md=
-.start_of_burst =3D false;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 md.end_of_burst =
-=3D false;<br>=C2=A0 =C2=A0 }<br><br>=C2=A0 =C2=A0 // send a mini EOB packe=
-t<br>=C2=A0 =C2=A0 md.end_of_burst =3D true;<br>=C2=A0 =C2=A0 tx_stream-&gt=
-;send(&quot;&quot;, 0, md);<br><br>=C2=A0 =C2=A0 std::cout &lt;&lt; std::en=
-dl<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;&lt; &quot;Waiti=
-ng for async burst ACK... &quot; &lt;&lt; std::flush;<br>=C2=A0 =C2=A0 uhd:=
-:async_metadata_t async_md;<br>=C2=A0 =C2=A0 bool got_async_burst_ack =3D f=
-alse;<br>=C2=A0 =C2=A0 // loop through all messages for the ACK packet (may=
- have underflow messages in queue)<br>=C2=A0 =C2=A0 while (not got_async_bu=
-rst_ack and tx_stream-&gt;recv_async_msg(async_md, tx_timeout))<br>=C2=A0 =
-=C2=A0 {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 got_async_burst_ack =3D<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (async_md.event_code =3D=3D uhd::async_m=
-etadata_t::EVENT_CODE_BURST_ACK);<br>=C2=A0 =C2=A0 }<br>=C2=A0 =C2=A0 std::=
-cout &lt;&lt; (got_async_burst_ack ? &quot;success&quot; : &quot;fail&quot;=
-) &lt;&lt; std::endl;<br><br>=C2=A0 =C2=A0 //schedule the next tx<br>=C2=A0=
- =C2=A0 md.has_time_spec =3D true;<br>=C2=A0 =C2=A0 md.start_of_burst =3D f=
-alse;<br>=C2=A0 =C2=A0 md.end_of_burst =3D false;<br>=C2=A0 =C2=A0 tx_time_=
-spec +=3D tx_time_interval;<br>=C2=A0 =C2=A0 md.time_spec =3D uhd::time_spe=
-c_t(tx_time_spec);<br>=C2=A0 =C2=A0 //**<br>=C2=A0 =C2=A0 **//<br>}<br><br>=
-</p><p>Thanks!</p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+Hi,
 
---000000000000030b9205c707b223--
+I am testing four B210s streaming simultaneously and using a laptop that ha=
+s four USB3.0 ports. I found the maximum achievable data rate in my case is=
+ much lower than what I expect, which should be 20Gbps (4x5Gbps considering=
+ the speed limit of a single USB3.0 port is ~5Gbps).
 
---===============1625234496466590384==
+Does anyone has used multiple B210s connected to a single host PC to stream=
+ing data simultaneously and is able to run a data rate approaching the maxi=
+mum?  Are there any specific hardware requirements in order to do that?
+
+
+Thank you,
+Weit
+
+
+
+--_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div dir=3D"ltr">Hi,&nbsp;</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I am testing four B210s streaming simultaneously and using=
+ a laptop that has four USB3.0 ports. I found t<span style=3D"caret-color: =
+rgb(0, 0, 0); font-family: -apple-system, HelveticaNeue; background-color: =
+rgb(255, 255, 255); display: inline !important">he
+ maximum achievable data rate in my case is much lower than what I expect, =
+which should be 20Gbps (4x5Gbps considering the speed limit of a single&nbs=
+p;<span style=3D"caret-color: rgb(0, 0, 0); font-family: -apple-system, Hel=
+veticaNeue; background-color: rgb(255, 255, 255); display: inline !importan=
+t">USB3.0
+ port is ~5Gbps</span>).</span></div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
+nline !important">Does anyone has used multiple B210s connected to a single=
+ host PC to streaming data simultaneously
+ and is able to run a data rate approaching the maximum? &nbsp;Are there an=
+y specific hardware requirements in order to do that?</span><br>
+</div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
+nline !important"><br>
+</span></div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
+nline !important"><br>
+</span></div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
+nline !important">Thank you,</span></div>
+<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
+ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
+nline !important">Weit</span></div>
+<div><br>
+</div>
+<div id=3D"ms-outlook-mobile-signature" dir=3D"ltr"><br>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_--
+
+--===============4204457177313329999==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -245,4 +175,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1625234496466590384==--
+--===============4204457177313329999==--
