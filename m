@@ -2,154 +2,98 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E68C63C85B9
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 16:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB533C8B57
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 20:59:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BB497384503
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 10:01:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 02660383F5E
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 14:59:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="msZQNUfB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="T9ccwuU6";
 	dkim-atps=neutral
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5EA013842F7
-	for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 10:01:10 -0400 (EDT)
-Received: by mail-qk1-f172.google.com with SMTP id j184so1622280qkd.6
-        for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 07:01:10 -0700 (PDT)
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4E95A383F49
+	for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 14:58:43 -0400 (EDT)
+Received: by mail-io1-f50.google.com with SMTP id u7so3442080ion.3
+        for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 11:58:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:cc:subject
-         :references:in-reply-to;
-        bh=2vvCKV9c3RTaazj+gIIxdpIZHkKUCwwiX/SEVdbyTZQ=;
-        b=msZQNUfB+3je5hHVUuiOz1Zq+hnJHXKblLwe8NnRXsrhfty0XQDIEtQlsiDTmbKaRK
-         wXI2L9cZ8CEfJQLLyr1OIWuFp/ta3hNdFvvDPTyXHbUKSJS8QbCC6bITwsuPW0kjwfwp
-         azC3/5QIsc2T3ePXfOIYgsYQR91TOPCIQE0KjzidPOMGirDcYd/HXxb6dqBEPI+kNcv9
-         pxPw6J9zZxCMBJmbpetR24yjGkcGqxdsLEffdBQdUlVSwA13fe+d+ImrcuprLoXSeoJO
-         N0C6RiOF/j7els6PWU6kr+Q2m48hU77lBmtaB2ahdjlxuYFajxQWPdClsmJN9TTC9SHB
-         0Afw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=B97lpPzIDdf9iMJ6ky6e7EqANGW78cHQ4TZicleFvuU=;
+        b=T9ccwuU69WsEE2aHfyX1usl4WGmT+BGgTo5ZqN2p8sWoAn030h7nVQROvc+cnH0zRR
+         4DAcWdNfoY8GdY7Bi285MguDzlmnZfMi6cJjlDyLMIyFcoY1HjKTdshp9KFkUs/PNhvo
+         jGovKUuQ6H+9bpQ91fiEz1+I0Fsc/pFE8pqdfMLN1tYkurvgdXhxaGA6xFvU8wmX04WD
+         1x/msdMgEb0oeunfYUMIz/PotMVM0miUz5hgqh4Zyouv3Y2y/Iih8lKUaY1EfEFe3RtP
+         g7wZjnXNMfKZCHXJR7qkBFypJAtx6wOnZr6MH8OBPeFMeSpt1ECscZ8z/VB1PoyK1CK0
+         opBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :cc:subject:references:in-reply-to;
-        bh=2vvCKV9c3RTaazj+gIIxdpIZHkKUCwwiX/SEVdbyTZQ=;
-        b=fX/lS1CnfoYcEOPrwFLiXPRjdvJTkgpAslYFEi55Os+N5O6hJpJs/Idfszlj6T0dIg
-         N5W4mBEibOaguZ34Tu5PZc1FOW8i4d6WdjyKUopBPP5M6hHxZF/jol8p7cqE8FJE4KKy
-         IKHhmCVvC+y7Sos3No8QgUDQ42RByEeGFji0Ri/gjMVbhtVptRB2Lfp7abvX4U1lVVAW
-         WzQ2e1SjboMTsSqVqj+QbrLhJ/12RRp6pwqYT+NakoCkdyFvra3YHb3uBOzZRWWawXlS
-         3uzbZ7WlPftw7yfxfqepTKoYG43ospvH2VqWThgWDUfMre46friP6/VMVh7HjgJuSoLb
-         Tavg==
-X-Gm-Message-State: AOAM533qREzWTp0fsTpaswKHZJG4DDfXrFrD96PSC8USol+fTZzMh/SF
-	ohO/w6+YZVmVbi9hiOGdKh57qyoBfZcSQw==
-X-Google-Smtp-Source: ABdhPJzGWv42OWRNpB5U1XRAuIr4zAdivVpS0M+CqJBzPvCrLxd5g0HfEaNelC3fUQ9r4pZtw1H3mA==
-X-Received: by 2002:a37:b2c3:: with SMTP id b186mr9993533qkf.172.1626271269653;
-        Wed, 14 Jul 2021 07:01:09 -0700 (PDT)
-Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id d16sm785338qtj.69.2021.07.14.07.01.08
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Jul 2021 07:01:09 -0700 (PDT)
-Message-ID: <60EEEE24.3040203@gmail.com>
-Date: Wed, 14 Jul 2021 10:01:08 -0400
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=B97lpPzIDdf9iMJ6ky6e7EqANGW78cHQ4TZicleFvuU=;
+        b=oVgBx8BvBNCWT3E0Adf5McUTuYXWfmDvYkWL15sa/x+Shcf1C0iORzmzOWmZUnH1xU
+         NGcrDn3q3Ru58fynG9qPourjSeuttYvmbqaZYC8o0EHZPckxRij7CjcKbiHJjqfj4qTf
+         Yjs29lAcLgz1XcHGZkWtUm+SffBgCF6r0VEYsp9+GBtmTboJ1224VpFKg3IWEB0K0WI+
+         /0BuadkEv5UU9hFbJf3VPAm53jT5IYTg26rDt92tnzxpsvpmV0sZrCuKPTYDaQ0/Hw1E
+         o8H7mmDN5RVytMWVSibgS8yvQzjygeFkJ3nidVSeppzOolMq/nhcbvdF1ZpPaKCTOQnc
+         a/Ew==
+X-Gm-Message-State: AOAM532aE4GzzMznT4DWqmLAW/Z1bg3koTqYBDiVDkhKa/eMm+pxGmnY
+	ZweBM5PFAnnzRUvBzlMPGcVyzI/dzEpGtcHP0w4hyOp28ZI=
+X-Google-Smtp-Source: ABdhPJzkSWvC+xlOS+u2btD2S8LO+/M5kWLpJ2qMClZ54HZVerxDzQkpi8yD2N7knKhObUmX4NzVoY4kP985TRPlm3s=
+X-Received: by 2002:a5e:8e44:: with SMTP id r4mr8127561ioo.124.1626289122409;
+ Wed, 14 Jul 2021 11:58:42 -0700 (PDT)
 MIME-Version: 1.0
-To: Armin Ghani <aghani@cttc.es>,
- Jonathon Pendlum <jonathon.pendlum@ettus.com>
-References: <0f01b8f9-0390-462f-f650-3e108ced0508@cttc.es> <60E843EE.2020702@gmail.com> <de086712-0b2c-bd0a-2403-a21e3d60195c@cttc.es> <60E87031.4000103@gmail.com> <eb828814-823b-709a-244b-bebb223c17ad@cttc.es> <60E8719E.7070206@gmail.com> <CAL7q81tOT3aQRf9BOHb9A-9KNCU1rMG5eku2c2UOFh7zoL3HUg@mail.gmail.com> <8d17e3e1-48c0-f896-1075-45a9e82a3d1e@cttc.es>
-In-Reply-To: <8d17e3e1-48c0-f896-1075-45a9e82a3d1e@cttc.es>
-Message-ID-Hash: 2CCER2DB4MASSTAZFNTLKBDV6GHJMIC2
-X-Message-ID-Hash: 2CCER2DB4MASSTAZFNTLKBDV6GHJMIC2
-X-MailFrom: patchvonbraun@gmail.com
+From: wan <liuwsdr@gmail.com>
+Date: Wed, 14 Jul 2021 14:58:31 -0400
+Message-ID: <CABNzRJn+EvXSa6+4GLDddM2k3XH6SiGWmm1xrMTbnEYy-EnQVA@mail.gmail.com>
+To: Ettus Mail List <usrp-users@lists.ettus.com>
+Message-ID-Hash: CATAS3EZB5HEVCK3BIYTNWFEM7PTEGFG
+X-Message-ID-Hash: CATAS3EZB5HEVCK3BIYTNWFEM7PTEGFG
+X-MailFrom: liuwsdr@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Multi USRP TX configuration in GNURadio
+Subject: [USRP-users] UHD deb dependencies
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2CCER2DB4MASSTAZFNTLKBDV6GHJMIC2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CATAS3EZB5HEVCK3BIYTNWFEM7PTEGFG/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7214400387113890003=="
+Content-Type: multipart/mixed; boundary="===============6706571429313354704=="
 
-This is a multi-part message in MIME format.
---===============7214400387113890003==
-Content-Type: multipart/alternative;
- boundary="------------080005060206070207030006"
+--===============6706571429313354704==
+Content-Type: multipart/alternative; boundary="0000000000007182e305c719f1bd"
 
-This is a multi-part message in MIME format.
---------------080005060206070207030006
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--0000000000007182e305c719f1bd
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/14/2021 04:32 AM, Armin Ghani wrote:
->
-> Dear Marcus
->
-> I didnt get your point about set sample rate to 10Msps with the same 
-> bandwidth. Would you explain more?
->
-> I know that L character at console means starving for samples but what 
-> I really dont understand is that why it comes up when skip_dram 
-> argument sets to one with the same sample rate though?
->
-> Regards.
->
->
-I just meant that you could interpolate your signal up to a higher 
-sample rate to see if that made the "L" go away.  There were 
-historically problems
-   with lower sample rates on X310 in certain configurations.
+Hello,
 
-I don't know why there's a dependency on skip_dram, since I'm not one of 
-the designers.
+I noticed there is a Docker file with Ubuntu 20.04 dependencies in the UHD
+repo at .ci/docker/uhd-builder-ubuntu2004.Dockerfile. I plan on
+building/installing UHD to a custom prefix, but not a deb package. Can I
+skip all the packages in "deb dependencies"  section? What about libncurses
+and ruamel.yaml?
 
+Regards,
 
+Wan
 
---------------080005060206070207030006
-Content-Type: text/html; charset=utf-8
+--0000000000007182e305c719f1bd
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Ty=
-pe">
-  </head>
-  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"moz-cite-prefix">On 07/14/2021 04:32 AM, Armin Ghani
-      wrote:<br>
-    </div>
-    <blockquote cite=3D"mid:8d17e3e1-48c0-f896-1075-45a9e82a3d1e@cttc.es"
-      type=3D"cite">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Du=
-tf-8">
-      <p>Dear Marcus</p>
-      <p>I didnt get your point about set sample rate to 10Msps with the
-        same bandwidth. Would you explain more?</p>
-      <p>I know that L character at console means starving for samples
-        but what I really dont understand is that why it comes up when
-        skip_dram argument sets to one with the same sample rate though?<=
-/p>
-      <p>Regards.<br>
-      </p>
-      <br>
-    </blockquote>
-    I just meant that you could interpolate your signal up to a higher
-    sample rate to see if that made the "L" go away.=C2=A0 There were
-    historically problems<br>
-    =C2=A0 with lower sample rates on X310 in certain configurations.<br>
-    <br>
-    I don't know why there's a dependency on skip_dram, since I'm not
-    one of the designers.<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div><div><div>Hello,<br><br></div>I noticed there is a Do=
+cker file with Ubuntu 20.04 dependencies in the UHD repo at .ci/docker/uhd-=
+builder-ubuntu2004.Dockerfile. I plan on building/installing UHD to a custo=
+m prefix, but not a deb package. Can I skip all the packages in &quot;deb d=
+ependencies&quot;=C2=A0 section? What about libncurses and ruamel.yaml?<br>=
+<br></div>Regards,<br><br></div>Wan<br></div>
 
---------------080005060206070207030006--
+--0000000000007182e305c719f1bd--
 
---===============7214400387113890003==
+--===============6706571429313354704==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -159,4 +103,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7214400387113890003==--
+--===============6706571429313354704==--
