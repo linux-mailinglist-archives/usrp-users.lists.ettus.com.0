@@ -2,177 +2,136 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 056263C7D97
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 06:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC1553C7F30
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 09:14:43 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9AF923846A0
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 00:39:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DFA643846A0
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Jul 2021 03:14:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UsU6Qgry";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="AAfl8r8V";
 	dkim-atps=neutral
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8908138469A
-	for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 00:38:18 -0400 (EDT)
-Received: by mail-oi1-f172.google.com with SMTP id q16so898037oiw.6
-        for <usrp-users@lists.ettus.com>; Tue, 13 Jul 2021 21:38:18 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id B1096384454
+	for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 03:13:51 -0400 (EDT)
+Received: by mail-wm1-f47.google.com with SMTP id u5-20020a7bc0450000b02901480e40338bso2856807wmc.1
+        for <usrp-users@lists.ettus.com>; Wed, 14 Jul 2021 00:13:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:thread-topic:thread-index:date:message-id
-         :accept-language:content-language:mime-version;
-        bh=fGJR4Je150RQUkfH6+QLw2CklfleaiCa0NnZy5XNTS4=;
-        b=UsU6QgryJla0mROmDsuL9HJvcw9Tf8aWTY+f295ceoZxkY3QVF4Yae0BeOSnbbwM10
-         krcsz5KczZPRY0h+BZpa2SbMJ8IC5Pw0lGH8BZ4ZvAtnRaNwtmyMQs6vzVCOqpGnimKF
-         09tGwU5x8KQoX+G6ppZ0KGnccFiw0Ev+m9saswiohLlxZrU8PgmH95LOzoEz1bJZ5yuP
-         mkD7+KTxs5N/cSGploT8kkeM0xlnUkPNk1suCHmdOYAcUMUseLshucrs+jNBo9baJyEW
-         ZRXkYnoU9JQU9sevgseJq4U0yc63By9NlpR4afyGBrMjtj9A4bdJ2PbYB0rJEixK1fhX
-         sK0g==
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-transfer-encoding:content-language;
+        bh=ScKzfMSoLg7biCSMY4kKER3v7iZzN3KSTcg9PBYjg9c=;
+        b=AAfl8r8VCxOE7XI4iTP1fwwi1oEIDcot/TJlm5edbYBpNPBxUPcH6XuIhFCc5j2EPx
+         VB1hUpx0UUhKK4aX3ntsHbBnOmu78RCd0epeiSUpAv2ll85pDi/8/yyTPp/kq5ZEUZwA
+         4sktuXKFIJSvM9nuC06TKcho8D13Dm3qDmwGqK0Y+XQqw0QRjuxds7Vu1bDHypK+A1q3
+         wNc6T4Fyg8J8KEZG0f7lnOuHi4WcL1XqbTRGm9+AKavoR7qsW8e0f1Uh71z9I93scjLm
+         1soRReLGbmmoQK+n6EY73u0cmcx6DL8yjj8HwVVych8thK+W8SWw2XdbUHeY8SaNfBGI
+         NTXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:thread-topic:thread-index:date
-         :message-id:accept-language:content-language:mime-version;
-        bh=fGJR4Je150RQUkfH6+QLw2CklfleaiCa0NnZy5XNTS4=;
-        b=OWLWZJuqDPUNN+twcvKmZWWmSrEwG14DeZUX5HUA1gqH4HfLeBDUmjZJA2Xs8RtwyE
-         notZjNOEB+BE9x6NI7isTYL+xRKZkprK7jZR5QDZB7yAotN7E282230pp3F1NI/McOPm
-         1rQzkFW16o95klC0bAT5XRAdMLTtVJ8OytbnSTSZmRUQjnKhYaXYx8XKKFRHlJab2XLO
-         OaAE841Hc/KWpm/EtJk8Ga9QQ6zsPdeGWeOZWV5XoaAsS7wh3gbQQntCvaNWnts2Yfbg
-         1PkdYLUnJqnZR8lCEivtbSNnOa0iuL4cMXKL678d4h0z3b1hoJJTAEnKQ/EccKF/barZ
-         5wwA==
-X-Gm-Message-State: AOAM531CUKiKw69xT/7NrYYEjpFEHHt3QDMwWM8APnhxvl64B4eS1R85
-	p5Mcb/Te9IMYg7rmAF6wL84H8oBFzzk=
-X-Google-Smtp-Source: ABdhPJx60hvV7NNpwaMmsz8x3FHsDgW+v83wqPNOVWh1qM20n5ZKMIQCJ3FcPMQyyZMTxBhSVGcIyw==
-X-Received: by 2002:aca:fc12:: with SMTP id a18mr5846925oii.85.1626237497576;
-        Tue, 13 Jul 2021 21:38:17 -0700 (PDT)
-Received: from SN6PR05MB4429.namprd05.prod.outlook.com ([2603:1036:805:29::5])
-        by smtp.gmail.com with ESMTPSA id h96sm289177oth.25.2021.07.13.21.38.16
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=ScKzfMSoLg7biCSMY4kKER3v7iZzN3KSTcg9PBYjg9c=;
+        b=Sy5WgYli0bCF5pd0AqOz/ZHtU9vPM+IhJc1OYhilDG7hKa/x2z09qaHIOjx7cRwHii
+         L9K05aD2I2Gl/r1Mesi420N2YZEP7ngdkpHsrlBJBQ82D9OZ3RNPT9idUHKHkfgCx+oa
+         88n8ZRL9eyBjYkx54VIDCYmHCyY0zzrqyDahn/W75NJ8DedfnLBEWVckk9NIfauMYm+n
+         P9sO7IjcqixdPKgQPUT4XFlJxfeUyvmwbDPturT9+DvetE8038ecwBLeb1QNpGrE49ZP
+         D9Res7wmGRUSEQXq3QXliV+c/rcS1qQFsaM8XIvhjtGM+MduTmkLSR9eApiEV5eLM4PN
+         H9PQ==
+X-Gm-Message-State: AOAM530ENWl9VG94W2x5vgWzfoQR5fy9wuw35MydDU89CbAunn6DUoED
+	hZ3OHPCStI3T/4lHBSIdlMZzWkIXd0Avjh/K
+X-Google-Smtp-Source: ABdhPJzeULUdBvU5nt+GA+hDMn+t+rGn7Cguuy90EY+mONZWC39n/bp4oQCkq0FSYqocRCNNkAnJmQ==
+X-Received: by 2002:a1c:4405:: with SMTP id r5mr9624907wma.181.1626246830508;
+        Wed, 14 Jul 2021 00:13:50 -0700 (PDT)
+Received: from [192.168.128.8] (HSI-KBW-46-223-163-85.hsi.kabel-badenwuerttemberg.de. [46.223.163.85])
+        by smtp.gmail.com with ESMTPSA id x17sm1518905wru.6.2021.07.14.00.13.49
         for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Jul 2021 21:38:17 -0700 (PDT)
-From: Weite Zhang <zhang.weit3@gmail.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Maximum data rate using multiple B210s
-Thread-Index: AQHXeGaViXMP5HFJdkmsIU4W/TKhEw==
-X-MS-Exchange-MessageSentRepresentingType: 1
-Date: Wed, 14 Jul 2021 04:37:44 +0000
-Message-ID: 
-	<SN6PR05MB4429867C3429BF6478271D6BF4139@SN6PR05MB4429.namprd05.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-Exchange-Organization-SCL: -1
-X-MS-TNEF-Correlator: 
-X-MS-Exchange-Organization-RecordReviewCfmType: 0
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 14 Jul 2021 00:13:50 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <SN6PR05MB4429867C3429BF6478271D6BF4139@SN6PR05MB4429.namprd05.prod.outlook.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+Message-ID: <ab24dc84-904e-df78-74b9-73132c14c404@ettus.com>
+Date: Wed, 14 Jul 2021 09:13:49 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Message-ID-Hash: 2HJR7IGI65FFEEIOAR7SWOUFVTJH5RQB
-X-Message-ID-Hash: 2HJR7IGI65FFEEIOAR7SWOUFVTJH5RQB
-X-MailFrom: zhang.weit3@gmail.com
+In-Reply-To: <SN6PR05MB4429867C3429BF6478271D6BF4139@SN6PR05MB4429.namprd05.prod.outlook.com>
+Content-Language: en-US
+Message-ID-Hash: YQWHGUHRNDEMAWEQOSJIM6YWMVJVGDMW
+X-Message-ID-Hash: YQWHGUHRNDEMAWEQOSJIM6YWMVJVGDMW
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Maximum data rate using multiple B210s
+Subject: [USRP-users] Re: Maximum data rate using multiple B210s
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G5BV2CGHIGZBMJ3NFEQWJLZ7V4EUB6HB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YQWHGUHRNDEMAWEQOSJIM6YWMVJVGDMW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4204457177313329999=="
-
---===============4204457177313329999==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_"
-
---_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hello Weit,
 
-I am testing four B210s streaming simultaneously and using a laptop that ha=
-s four USB3.0 ports. I found the maximum achievable data rate in my case is=
- much lower than what I expect, which should be 20Gbps (4x5Gbps considering=
- the speed limit of a single USB3.0 port is ~5Gbps).
-
-Does anyone has used multiple B210s connected to a single host PC to stream=
-ing data simultaneously and is able to run a data rate approaching the maxi=
-mum?  Are there any specific hardware requirements in order to do that?
-
-
-Thank you,
-Weit
+the maximum sampling rate of a B210 is 30.72 MHz per direction per frontend=
+, so that's
+61.42 MS/s per direction (TX and RX). That times 12 bit per sample makes 1.=
+47 Gb/s. So, I
+don't really know where the 5 Gb/s your USRP might theoretically go. So, I =
+must admit your
+question makes little sense to me!
 
 
+Best regards,
+Marcus
 
---_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+DISCLAIMER: Any attached Code is provided As Is. It has not been tested or =
+validated as a product, for use in a deployed application or system, or for=
+ use in hazardous environments. You assume all risks for use of the Code. U=
+se of the Code is subject to terms of the licenses to the UHD or RFNoC code=
+ with which the Code is used. Standard licenses to UHD and RFNoC can be fou=
+nd at https://www.ettus.com/sdr-software/licenses/.
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+NI will only perform services based on its understanding and condition that=
+ the goods or services (i) are not for the use in the production or develop=
+ment of any item produced, purchased, or ordered by any entity with a footn=
+ote 1 designation in the license requirement column of Supplement No. 4 to =
+Part 744, U.S. Export Administration Regulations and (ii) such a company is=
+ not a party to the transaction.  If our understanding is incorrect, please=
+ notify us immediately because a specific authorization may be required fro=
+m the U.S. Commerce Department before the transaction may proceed further.
+
+On 14.07.21 06:37, Weite Zhang wrote:
+> Hi,=A0
 >
-</head>
-<body>
-<div dir=3D"ltr">
-<div></div>
-<div>
-<div dir=3D"ltr">Hi,&nbsp;</div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr">I am testing four B210s streaming simultaneously and using=
- a laptop that has four USB3.0 ports. I found t<span style=3D"caret-color: =
-rgb(0, 0, 0); font-family: -apple-system, HelveticaNeue; background-color: =
-rgb(255, 255, 255); display: inline !important">he
- maximum achievable data rate in my case is much lower than what I expect, =
-which should be 20Gbps (4x5Gbps considering the speed limit of a single&nbs=
-p;<span style=3D"caret-color: rgb(0, 0, 0); font-family: -apple-system, Hel=
-veticaNeue; background-color: rgb(255, 255, 255); display: inline !importan=
-t">USB3.0
- port is ~5Gbps</span>).</span></div>
-<div dir=3D"ltr"><br>
-</div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
-nline !important">Does anyone has used multiple B210s connected to a single=
- host PC to streaming data simultaneously
- and is able to run a data rate approaching the maximum? &nbsp;Are there an=
-y specific hardware requirements in order to do that?</span><br>
-</div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
-nline !important"><br>
-</span></div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
-nline !important"><br>
-</span></div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
-nline !important">Thank you,</span></div>
-<div dir=3D"ltr"><span style=3D"caret-color: rgb(0, 0, 0); font-family: -ap=
-ple-system, HelveticaNeue; background-color: rgb(255, 255, 255); display: i=
-nline !important">Weit</span></div>
-<div><br>
-</div>
-<div id=3D"ms-outlook-mobile-signature" dir=3D"ltr"><br>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_SN6PR05MB4429867C3429BF6478271D6BF4139SN6PR05MB4429namp_--
-
---===============4204457177313329999==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
+> I am testing four B210s streaming simultaneously and using a laptop that =
+has four USB3.0
+> ports. I found the maximum achievable data rate in my case is much lower =
+than what I
+> expect, which should be 20Gbps (4x5Gbps considering the speed limit of a =
+single=A0USB3.0
+> port is ~5Gbps).
+>
+> Does anyone has used multiple B210s connected to a single host PC to stre=
+aming data
+> simultaneously and is able to run a data rate approaching the maximum? =
+=A0Are there any
+> specific hardware requirements in order to do that?
+>
+>
+> Thank you,
+> Weit
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4204457177313329999==--
