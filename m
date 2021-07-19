@@ -2,291 +2,325 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DF483CDCC8
-	for <lists+usrp-users@lfdr.de>; Mon, 19 Jul 2021 17:35:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 71DB53CE073
+	for <lists+usrp-users@lfdr.de>; Mon, 19 Jul 2021 18:00:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 33B3938466A
-	for <lists+usrp-users@lfdr.de>; Mon, 19 Jul 2021 11:35:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5CF79384676
+	for <lists+usrp-users@lfdr.de>; Mon, 19 Jul 2021 12:00:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=nist.gov header.i=@nist.gov header.b="Eyvp3isX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="syB5b9Oq";
 	dkim-atps=neutral
-Received: from GCC02-BL0-obe.outbound.protection.outlook.com (mail-bl2gcc02on2117.outbound.protection.outlook.com [40.107.89.117])
-	by mm2.emwd.com (Postfix) with ESMTPS id B1A9D384229
-	for <usrp-users@lists.ettus.com>; Mon, 19 Jul 2021 11:33:36 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NwfKBAMed/lLvNCwVI+YxuL7TpQ6+OasA07h7cAjbr82vHX/vlOK3jGQq02OP6N5aFTx3rzyEBd77v1IZicVv5EpS5VZPNVmzoAKyPw3fZUZXuUuiopRKPmNaJyK+48X+6LcCl7G+XHy8nhDZ9K+ltpr4FdCTClvrkJsgsSQSk7l1BeSn9EumFLl2cfLyNPHanduswJaTXxFV+5fAQMHa95Saf4pCEaZgUBIKLwLc9eEPtNo1S+9Z6pWxwp/WXUyH3l6tKRypjvQ7AJ1QXXgv2ERsBIxOxMnTwz1diRoVSJZnJA9eGFt0KUIQVJX8IVimOTQBxnufsCxg1zksYEZjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hSYFgJKLuIV4GqNevqBmQT7ulE5lq+yYcMVVN5DmM24=;
- b=bxFwjEvIYg8UpTodug0UilQvl3lPVTQbFMmlvrxNITDOD9Zta6HAwrA418FNT13oaaxDDF2OzO9uu2uYSE3FJLxukfRHz3cubRFORpxJjQpiv/srpiMMtdEXH0AjcBKkEFvrZlNNWisJ2Yyc5Yq6mHatg7WJPqeN1Suos0KFaLbspcwQngqotqhS6nXkrpb1tAvERIpOx/eR9Hgo0HnZpbZWKMWDy3++1RfQDmSeH+FYyGzx5r9HUy0yZeAYDWRi7cjVsDkx4bkwvFR7mcdCD9QzvCVUrg0Eva3Q4hOX36+kBVKMBmx+6BsE6AAUUN1cTRAgiXtNcmMoovz0ZrDMQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nist.gov; dmarc=pass action=none header.from=nist.gov;
- dkim=pass header.d=nist.gov; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nist.gov; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hSYFgJKLuIV4GqNevqBmQT7ulE5lq+yYcMVVN5DmM24=;
- b=Eyvp3isXaJ2pQpGA1pSuVON5NcEpqQibhHbJXpFS8ZM4/0fFw2XLTKRCth0zhf/YYrzntimzGUhrEzJys1tMwreQ987aGKit6LT/TtgY9087cbKmreTFVGqpPejZcIvfIFBP0i8/Iq0Iko6o5fhv2cVYi8SH4ImiF12hyDEkC6k=
-Received: from BLAPR09MB7298.namprd09.prod.outlook.com (2603:10b6:208:2a6::7)
- by BLAPR09MB6964.namprd09.prod.outlook.com (2603:10b6:208:2ae::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4331.24; Mon, 19 Jul
- 2021 15:33:35 +0000
-Received: from BLAPR09MB7298.namprd09.prod.outlook.com
- ([fe80::f558:354f:e2bf:259c]) by BLAPR09MB7298.namprd09.prod.outlook.com
- ([fe80::f558:354f:e2bf:259c%6]) with mapi id 15.20.4331.033; Mon, 19 Jul 2021
- 15:33:35 +0000
-To: Ron Economos <w6rz@comcast.net>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: Is UHD supposed to keep running after detecting
- overrun?
-Thread-Index: AQHXfHIQKkL18NWvb0ehZCr4kRuPZatKa+Ug
-Date: Mon, 19 Jul 2021 15:33:35 +0000
-Message-ID: 
- <BLAPR09MB729804BC17F3C9EA89D70BD2D4E19@BLAPR09MB7298.namprd09.prod.outlook.com>
-References: 
- <CABNzRJkKcuoxoUJ3HULOM5o6sLC4Nw2+xnz+LdNwEh3t_Fcs8g@mail.gmail.com>
- <d760ade1-ec3e-757e-91b0-1b93753b02cb@comcast.net>
-In-Reply-To: <d760ade1-ec3e-757e-91b0-1b93753b02cb@comcast.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-authentication-results: comcast.net; dkim=none (message not signed)
- header.d=none;comcast.net; dmarc=none action=none header.from=nist.gov;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ab45350f-9017-4b57-220f-08d94aca9297
-x-ms-traffictypediagnostic: BLAPR09MB6964:
-x-microsoft-antispam-prvs: 
- <BLAPR09MB6964450E1D991210CE6FF129D4E19@BLAPR09MB6964.namprd09.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- TRj+UFsId9vQp4bRaY55bmHGKZTwO/gKAwhYYQmBAOHmoEO7nstvheacu8kbFwc7SpnvfbDEoR24rihsI5y6dKbCTy5pcFXwWnuk5AQyuu1xbgFTJP06HfmACVisj6NmAF6fv908AYmODiLidC15nOmHRDLfOPSP8WBfu5EYabWrCUAkocy1rFaZnMmt+nHLQqxqLTWKdlTgnfGwrA9FUNIcabQ56PrQFV5bwqRqDfnmT5ZuL27R6OzsvrvjEJCQZ/zqXoy2IINh5QQoTVbMRHaBYaIWlkw5fLRcXoNjtJjoXmG+flK7W+xx/ereVEkhI+2pEulGPSOvOOjMhwbaPKGcnz/5I1YJ1rhxK3HODmEFw2XhLlDw000rzRU3WjXq29ibxN9RYBhNZEfEheH8hnRqPAUUA02np7lG9+74eG4qIrerLZeO3WUPS1qgI9mwGzJZzSyu2hVEjIWB1jB+gZysZBrWZCeNlJhwc039/mhoK8WUS0vJ5XP0IbykezKLnEtRKL3ELIMEZj60Mer3P/aT9hBgO+tLllokeZfj6v6eE9wDpIAFIJ68ujs1UK848SATxPboN7TspqS0yyZhlq4SbVpmatxXYMRWeVN90KTOW6n1qJDvBXmLINKyiUTXSkFi2x+vHdrU6eYflAUU+CuX8ELVhyUCJEgIw4ReXWbxBWQuupCavDs6iOfsn0kWZ3IdxRuazZ8DuQ3vUX15Dg==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BLAPR09MB7298.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39850400004)(376002)(136003)(366004)(346002)(38100700002)(6506007)(122000001)(53546011)(110136005)(7696005)(83380400001)(186003)(2906002)(9686003)(55016002)(99936003)(9326002)(5660300002)(52536014)(86362001)(26005)(316002)(64756008)(8676002)(76116006)(66946007)(71200400001)(33656002)(8936002)(478600001)(66446008)(66556008)(66576008)(66476007)(38070700004);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?UnkvZHNIeFEyNmk4bmd6VktKRXNFRitlbDJNaGYycnJqQWk1cDBaUzhhd1hH?=
- =?utf-8?B?WGZsb3NYTnVYSWFoTmord29ndVR4Nmd0dWM5V3Y1Z2NzSzJEQUVSU1paTzhU?=
- =?utf-8?B?TU9uVlZYWWFOTnBnZzJXcmJxOWJSS2lyaFhCUkVoQldpOHI2RSswMEhOZ3VS?=
- =?utf-8?B?MGcvMmFyVEc4WERpd01MKzUzS2NrYTlRSEE2VEVkamdNNTZ3UGpuNGZRM0p4?=
- =?utf-8?B?OXZzWlRCUkFsZUIvYjE3Y0hKQU1NQUpxeEdQR3JxNS9JRmw3WERzYWZkL2dH?=
- =?utf-8?B?bHNpMjlTOW96MUVUQStlSWtoTkhEa28xTEhtd2MxYmlheituWDNtdms0b3JO?=
- =?utf-8?B?M2M4WS9ibmk2WWpWYW5VaFNURm1jU3o0T1JIdFlFZUNvb08yWklnQURPdmNN?=
- =?utf-8?B?em9vTzUxNGFQU1JRZUpPQnRtWk5hZ0NxWmczbDVaTmVEeHN6azBTTmMyQjAv?=
- =?utf-8?B?aWZGaU14Wi8zQlVYN1lra2FoZVpPVUV4cDJINUFOTGwzNDJYUmUxQ3NnSjk0?=
- =?utf-8?B?VktBN2ZDL1ZYMTJUWUluTlVpSFJlRXNqb3hmNWk5SDd1RGhsdllnMnVIc3JF?=
- =?utf-8?B?cGtMcmFZRzcyUFAxV2w4MW1tYXppekd6Y2VnbmtIMXBYUVFoUkpvcWkvY2J2?=
- =?utf-8?B?UGQ2cVpFL3o4VG1RWUVLNVJZblZEcUM3NUdEcStlallMaUFZM3B3bTI4SkI4?=
- =?utf-8?B?OUYxdGxrZmVLYW94N1NCUlJQY1lraDIzUnY4REFEeERSWklRRFlXWXB1Sk5y?=
- =?utf-8?B?b0FXbGVkeEphTG1KV0dNVnJXcFZoY1QzVjZ3eGFkTk85c2JwZUpGT0dCYktV?=
- =?utf-8?B?cGJxNzIrMWxYRTRhU2pqazB0Ym5zd3g3Y3JUaE1kbGxXWXlTWEhEVmgwa2cv?=
- =?utf-8?B?OFdvMktrOEhic0c1K1lQa0o3ZjNsbVFDVTBWYVZyZnRaODVidVpzUERzcm42?=
- =?utf-8?B?NFRYVWZ3eEFGYWxQYmdDaGowQ0RiczkrN1JqdHZZcSs1elg1UFZjMWt6THJs?=
- =?utf-8?B?QXN1eC9vNUNuN3pCbXZFcDl3V1dmV0g5a1lWL0pmMTBBdUtOWGlkeERUZ2Vt?=
- =?utf-8?B?OFp2V0Zza0tEcytHMEp4T05qUjZsZVNKNC9QaGVnaHBhUVdGZnpXbW13N0lR?=
- =?utf-8?B?bVlRRjBXYnV4MTgzV01BZktORkhwblEzOExoUHJkL2U3bW0zVUx2V3AvcE5N?=
- =?utf-8?B?MnJ1aGZ5Mkdld2dWYjVIVWRUZDBHR3lEbTRhemJPUGpCaUFZb2pwN0tmb2wx?=
- =?utf-8?B?bStwMjBac0hWT21UdFBVNzhxSWJNTlZDUGVQZGN4MWZ5QlJzcncwTkdNaDdt?=
- =?utf-8?B?TGRodUxYQUdOcXplNVpPSSs1NUdxbW5reUlMdDhBRlBSbENGS2xwWEZYQ0hw?=
- =?utf-8?B?dG4yb2ZTZzZaWmNiTUxGazVzQ2NGT1R6UVNJRldKeTgwT1p6NVlxQWxXY3Q0?=
- =?utf-8?B?R2d4M0gycjEzWU51aEI3Zjg0NnhqWE5FN2NyVmwvNXE0b0d0eGFrL24xRGNo?=
- =?utf-8?B?R3UxcC9nekcwQkxUalpRQU5rTVJlbUJMRGRDV045WEJJb0kvclBwamlTUFV0?=
- =?utf-8?B?cU1MM3JTSmp0d3lOZVcrZjRTNk1rMUlXSXM3WEJnNHQra2NHOGlsSXpCZGJG?=
- =?utf-8?B?RWtqeGFqZEhZZUN4WjJyNHpzNlRoOFZsdjd6ZFVlZmpRcnh5Y0lIdWFqak1S?=
- =?utf-8?B?VTB0alEyeXJmUzJieTZNZE9UT3BBV3FEbGFxSGpwVWRLOHZmai96M2xLdDNu?=
- =?utf-8?Q?5EG3f+VGygXBlkZwdg=3D?=
-x-ms-exchange-transport-forked: True
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 36CA638460D
+	for <usrp-users@lists.ettus.com>; Mon, 19 Jul 2021 11:59:01 -0400 (EDT)
+Received: by mail-io1-f41.google.com with SMTP id u7so20468681ion.3
+        for <usrp-users@lists.ettus.com>; Mon, 19 Jul 2021 08:59:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ne2QHq+n5eD/fnjdbsQ6uE5zxjQHBCNxwyKDpx3cBUs=;
+        b=syB5b9OqrXB68sfHiR7v7K30/Z/8OgetZnX+X51opA/7YCnwLzkTWI4cF3JM90zPFo
+         0GhIC+e0CYEk8mOHN6ZdqziUsDcKL8ajCRAA/MKlwgXQSATpwpRZe5aCTwPCuqcnHGGG
+         VPz0+FuXxBNb39PgWs8LHUTnjBm57tr+2XLJHw5QNRBGCSx0qeYq+wubG1M1uEuZL645
+         pmnNDCzRWKMK8stAYNBRhyJ8rOk79kQ7XMteCKeUJM+F7atkJK+9jrOrFaRKod1r08r/
+         zuRH9tJh2tXy74PKCI7X6+WxDvHxchCb2zgWr1m2uUJbpRcja6AAL1ik14vldoKDB32W
+         u98g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ne2QHq+n5eD/fnjdbsQ6uE5zxjQHBCNxwyKDpx3cBUs=;
+        b=f0fHYAhyI+F0ZwpfRZCGL4u/s8bs3O82T0s4BIGwgIiO4xmtfZCayoPDpFqvZUqK1/
+         Z6iR6FXa86zxS/G5jAMfpTDik8AjPoakobxDXviTtF+TAXCoF0TQc+gc6xhy6UQTRV8z
+         NWokERU07m/aSMYcD4qzQrqcisStHe4bzQFVxqnjmkq+OoeSSy2fZJHC92CTYd/x99Q8
+         yX48znXz9naFeWx6lUZ5T3QPLAPppqSaX9gRpJPum7VgTHT0IG6h7H5d8XuIJ1Mv12wp
+         BvWNfkwFq7OXwfhxttG7k+jOPf+cM1pNhLsuS+3MvnlM+TDFQPls5mn4hHZfUqYKl9gU
+         SFpg==
+X-Gm-Message-State: AOAM533cfz5VgIShcp4Peroxpfg8g77i2FOoXxH8wbyMiKUCNULVHtW7
+	qHc6l8LXX2w7CaEPRKtLSzWBUxrkTs/VfCZiUlg=
+X-Google-Smtp-Source: ABdhPJzKWQQwupGWszHWV+dBBmwv6zF7czMDpBNIUmcnC2k4VAnv2OEd2QiFJW0uj5/py/RtMoqD29NgS0PPuV78xXs=
+X-Received: by 2002:a5e:8816:: with SMTP id l22mr14296916ioj.100.1626710340123;
+ Mon, 19 Jul 2021 08:59:00 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nist.gov
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BLAPR09MB7298.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab45350f-9017-4b57-220f-08d94aca9297
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2021 15:33:35.1758
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 2ab5d82f-d8fa-4797-a93e-054655c61dec
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR09MB6964
-Message-ID-Hash: SYHR2FCNERMLKTMTPCEZ2FEUKJ4UKP6X
-X-Message-ID-Hash: SYHR2FCNERMLKTMTPCEZ2FEUKJ4UKP6X
-X-MailFrom: michael.m.mcnulty@nist.gov
+References: <CABNzRJkKcuoxoUJ3HULOM5o6sLC4Nw2+xnz+LdNwEh3t_Fcs8g@mail.gmail.com>
+ <d760ade1-ec3e-757e-91b0-1b93753b02cb@comcast.net> <BLAPR09MB729804BC17F3C9EA89D70BD2D4E19@BLAPR09MB7298.namprd09.prod.outlook.com>
+In-Reply-To: <BLAPR09MB729804BC17F3C9EA89D70BD2D4E19@BLAPR09MB7298.namprd09.prod.outlook.com>
+From: wan <liuwsdr@gmail.com>
+Date: Mon, 19 Jul 2021 11:58:49 -0400
+Message-ID: <CABNzRJ=imMO-HNdXvOPyskT1oJ6aS7HwR9NC7EGnmOoOWph8XA@mail.gmail.com>
+To: "McNulty, Mike (Assoc)" <michael.m.mcnulty@nist.gov>
+Message-ID-Hash: ZIN5B3MWKNJASR34JXG3IS4DQ6JF2OHO
+X-Message-ID-Hash: ZIN5B3MWKNJASR34JXG3IS4DQ6JF2OHO
+X-MailFrom: liuwsdr@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Is UHD supposed to keep running after detecting overrun?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XJ3OJOD6ZZ35FS2VLYZOMX3YA4W7MQLW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZIN5B3MWKNJASR34JXG3IS4DQ6JF2OHO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "McNulty, Mike (Assoc) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "McNulty, Mike (Assoc)" <michael.m.mcnulty@nist.gov>
-Content-Type: multipart/mixed; boundary="===============2928011505796686404=="
+Content-Type: multipart/mixed; boundary="===============0418180506253753239=="
 
---===============2928011505796686404==
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_006_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_";
-	type="multipart/alternative"
+--===============0418180506253753239==
+Content-Type: multipart/related; boundary="000000000000fa23f205c77c0324"
 
---_006_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_
-Content-Type: multipart/alternative;
-	boundary="_000_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_"
+--000000000000fa23f205c77c0324
+Content-Type: multipart/alternative; boundary="000000000000fa23f005c77c0323"
 
---_000_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000fa23f005c77c0323
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGVsbG8sDQoNCkkgZG9u4oCZdCB3YW50IHRvIGludGVycnVwdCB0aGUgdGhyZWFkIGJ1dCBJIGFj
-dHVhbGx5IGpvaW5lZCB0aGUgbWFpbGluZyBsaXN0IGZvciB0aGlzIGlzc3VlLiBJIGp1c3QgdXBn
-cmFkZWQgdG8gVUhEIDQuMS4wLjEgYW5kIEnigJltIGV4cGVyaWVuY2luZyB0aGUgc2FtZSB0aW1l
-b3V0IGlzc3VlLg0KDQpbY2lkOmltYWdlMDA0LnBuZ0AwMUQ3N0M4MC5GQzU5NTUxMF0NCg0KVGhp
-cyBpcyBhIHNuaXAgZnJvbSBhIC4vbGliL3VoZC9leGFtcGxlcy9iZW5jaG1hcmsgcnVuIGF0IDUg
-TXNwcy4NCg0KW2NpZDppbWFnZTAwNS5wbmdAMDFENzdDODAuRkM1OTU1MTBdDQoNCkl0IGxvb2tz
-IHRvIG1lIGFzIHNvb24gYXMgaXQgcmVjZWl2ZXMgdGhlIGZpcnN0IG92ZXJmbG93IHRoZSBleGVj
-dXRpb24gdGVybWluYXRlcy4gIFNvbWV3aGVyZSBiZXR3ZWVuIDIuMCBhbmQgNS4wIE1zcHMgbXkg
-c3lzdGVtIGRyb3BzIHNhbXBsZXMNCg0KW2NpZDppbWFnZTAwNi5wbmdAMDFENzdDODAuRkM1OTU1
-MTBdDQoNClRoYW5rcyBmb3IgZXZlcnl0aGluZyBldmVyeW9uZSBkb2VzISBJIHdhbnRlZCB0byBq
-dXN0IGFkZCBteSBleHBlcmllbmNlIHRvIGhlbHAgd2l0aCBkZXZlbG9wbWVudC4NCg0KTWlrZQ0K
-DQoNCg0KRnJvbTogUm9uIEVjb25vbW9zIDx3NnJ6QGNvbWNhc3QubmV0Pg0KU2VudDogTW9uZGF5
-LCBKdWx5IDE5LCAyMDIxIDE6NDUgQU0NClRvOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
-U3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBJcyBVSEQgc3VwcG9zZWQgdG8ga2VlcCBydW5uaW5n
-IGFmdGVyIGRldGVjdGluZyBvdmVycnVuPw0KDQoNCkl0IGlzIGEgYnVnIGluIFVIRCB2NC4wLjAu
-MCwgYnV0IGl0IHNob3VsZCBiZSBmaXhlZCBpbiBVSEQgdjQuMS4wLjEgKGFuZCBVSEQgdjQuMS4w
-LjApLg0KDQpSb24NCk9uIDcvMTgvMjEgOTozNyBQTSwgd2FuIHdyb3RlOg0KSGVsbG8sDQpXaGVu
-IFVIRCBkZXRlY3RzIGFuIG92ZXJydW4sIGlzIGl0IHN1cHBvc2VkIHRvIGtlZXAgZ29pbmcgb3Ig
-ZnJlZXplPyBJJ20gdXNpbmcgYW4gVVNSUCBCMjAwbWluaS4gSSB0ZXN0ZWQgaXQgd2l0aCB0aGUg
-cnhfYXNjaWlfZGZ0IGFuZCB0aGUgdWhkX2ZmdCBHUkMgZXhhbXBsZSB1c2luZyBkaWZmZXJlbnQg
-dmVyc2lvbnMgb2YgVUhEIG9uIFVidW50dSAyMC4wNC4gV2hlbiB1c2luZyBVSEQgMy4xNS4wLCBh
-biBvdmVycnVuIGlzIGRldGVjdGVkLCB0aGUgYXBwbGljYXRpb24ga2VlcHMgcnVubmluZyBhbmQg
-cHJpbnRzIGEgc2VxdWVuY2Ugb2YgIk8iIHRvIHRoZSB0ZXJtaW5hbC4gSG93ZXZlciwgd2hlbiBJ
-IHVzZSBVSEQgNC4wLjAuMCBhbmQgNC4xLjAuMSwgYXMgc29vbiBhcyBhbiBvdmVycnVuIGlzIGRl
-dGVjdGVkLCB0aGUgYXNjaWkgb3IgZ251cmFkaW8gUVQgZGlzcGxheXMgc3RvcCB1cGRhdGluZy4N
-ClJlZ2FyZHMsDQpXYW4NCg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQoNClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCg0KVG8gdW5z
-dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
-bTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo=
+Ron,
+I didnt find an open issue related to this at first, but after your
+response I found it in the closed issues (
+https://github.com/EttusResearch/uhd/issues/380). The fix was committed in
+Oct 2020. However, I tried master (UHD_4.1.0.0-13-g240c7fd), v4.1.0.0 and
+v4.1.0.1, and I have the problem in all three versions. Is it working for
+you in any of these versions?
 
---_000_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Mike,
+Thanks for joining the discussion. I'm also seeing the ERROR_CODE_TIMEOUT
+problem with benchmark_rate. However, it usually happens when I set the
+sample rate to 50 Msps or higher, and run for more than 30 seconds. At 2 to
+5 MSps, I dont have any errors or overruns. I didn't mention it before
+because I figured it's normal since I'm running at a high sample rate.
+However, on v3.15.0.0, I can consistently stream at 50 Msps without getting
+any timeouts or overruns.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
-ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
-YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
-I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
-W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
-DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
-MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIg
-MTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q29uc29sYXM7
-DQoJcGFub3NlLTE6MiAxMSA2IDkgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
-Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBp
-bjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
-O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
-CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwcmUNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFy
-IjsNCgltYXJnaW46MGluOw0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJp
-ZXIgTmV3Ijt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJI
-VE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0
-eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseToiQ29uc29sYXMiLHNl
-cmlmO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZv
-bnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGlu
-Ow0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJ
-e3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
-DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+
-PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4
-dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxh
-eW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5r
-PSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRp
-diBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhlbGxvLDxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGRvbuKAmXQgd2FudCB0byBpbnRlcnJ1cHQgdGhlIHRocmVh
-ZCBidXQgSSBhY3R1YWxseSBqb2luZWQgdGhlIG1haWxpbmcgbGlzdCBmb3IgdGhpcyBpc3N1ZS4g
-SSBqdXN0IHVwZ3JhZGVkIHRvIFVIRCA0LjEuMC4xIGFuZCBJ4oCZbSBleHBlcmllbmNpbmcgdGhl
-IHNhbWUgdGltZW91dCBpc3N1ZS4NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48aW1nIHdpZHRo
-PSI2NTgiIGhlaWdodD0iMTM3IiBzdHlsZT0id2lkdGg6Ni44NTgzaW47aGVpZ2h0OjEuNDI1aW4i
-IGlkPSJQaWN0dXJlX3gwMDIwXzEiIHNyYz0iY2lkOmltYWdlMDA0LnBuZ0AwMUQ3N0M4MC5GQzU5
-NTUxMCI+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoaXMgaXMgYSBzbmlwIGZyb20gYSAuL2xp
-Yi91aGQvZXhhbXBsZXMvYmVuY2htYXJrIHJ1biBhdCA1IE1zcHMuPG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxpbWcgd2lkdGg9IjY1NyIgaGVpZ2h0PSIzNzciIHN0eWxlPSJ3aWR0aDo2Ljg0MTZp
-bjtoZWlnaHQ6My45MjVpbiIgaWQ9IlBpY3R1cmVfeDAwMjBfMiIgc3JjPSJjaWQ6aW1hZ2UwMDUu
-cG5nQDAxRDc3QzgwLkZDNTk1NTEwIj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SXQgbG9va3Mg
-dG8gbWUgYXMgc29vbiBhcyBpdCByZWNlaXZlcyB0aGUgZmlyc3Qgb3ZlcmZsb3cgdGhlIGV4ZWN1
-dGlvbiB0ZXJtaW5hdGVzLiAmbmJzcDtTb21ld2hlcmUgYmV0d2VlbiAyLjAgYW5kIDUuMCBNc3Bz
-IG15IHN5c3RlbSBkcm9wcyBzYW1wbGVzPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxpbWcgd2lk
-dGg9IjY2OCIgaGVpZ2h0PSIzNDUiIHN0eWxlPSJ3aWR0aDo2Ljk1ODNpbjtoZWlnaHQ6My41OTE2
-aW4iIGlkPSJQaWN0dXJlX3gwMDIwXzMiIHNyYz0iY2lkOmltYWdlMDA2LnBuZ0AwMUQ3N0M4MC5G
-QzU5NTUxMCI+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBmb3IgZXZlcnl0aGluZyBl
-dmVyeW9uZSBkb2VzISBJIHdhbnRlZCB0byBqdXN0IGFkZCBteSBleHBlcmllbmNlIHRvIGhlbHAg
-d2l0aCBkZXZlbG9wbWVudC4NCjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5NaWtlPG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7
-Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4i
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IFJvbiBFY29ub21vcyAmbHQ7dzZy
-ekBjb21jYXN0Lm5ldCZndDsgPGJyPg0KPGI+U2VudDo8L2I+IE1vbmRheSwgSnVseSAxOSwgMjAy
-MSAxOjQ1IEFNPGJyPg0KPGI+VG86PC9iPiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4N
-CjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gUmU6IElzIFVIRCBzdXBwb3NlZCB0byBrZWVw
-IHJ1bm5pbmcgYWZ0ZXIgZGV0ZWN0aW5nIG92ZXJydW4/PG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cD5J
-dCBpcyBhIGJ1ZyBpbiBVSEQgdjQuMC4wLjAsIGJ1dCBpdCBzaG91bGQgYmUgZml4ZWQgaW4gVUhE
-IHY0LjEuMC4xIChhbmQgVUhEIHY0LjEuMC4wKS48bzpwPjwvbzpwPjwvcD4NCjxwPlJvbjxvOnA+
-PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDcvMTgvMjEgOTozNyBQ
-TSwgd2FuIHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0i
-bWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxkaXY+DQo8ZGl2Pg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+SGVs
-bG8sPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
-YXJnaW4tYm90dG9tOjEyLjBwdCI+V2hlbiBVSEQgZGV0ZWN0cyBhbiBvdmVycnVuLCBpcyBpdCBz
-dXBwb3NlZCB0byBrZWVwIGdvaW5nIG9yIGZyZWV6ZT8gSSdtIHVzaW5nIGFuIFVTUlAgQjIwMG1p
-bmkuIEkgdGVzdGVkIGl0IHdpdGggdGhlIHJ4X2FzY2lpX2RmdCBhbmQgdGhlIHVoZF9mZnQgR1JD
-IGV4YW1wbGUgdXNpbmcgZGlmZmVyZW50IHZlcnNpb25zIG9mIFVIRCBvbiBVYnVudHUgMjAuMDQu
-DQogV2hlbiB1c2luZyBVSEQgMy4xNS4wLCBhbiBvdmVycnVuIGlzIGRldGVjdGVkLCB0aGUgYXBw
-bGljYXRpb24ga2VlcHMgcnVubmluZyBhbmQgcHJpbnRzIGEgc2VxdWVuY2Ugb2YgJnF1b3Q7TyZx
-dW90OyB0byB0aGUgdGVybWluYWwuIEhvd2V2ZXIsIHdoZW4gSSB1c2UgVUhEIDQuMC4wLjAgYW5k
-IDQuMS4wLjEsIGFzIHNvb24gYXMgYW4gb3ZlcnJ1biBpcyBkZXRlY3RlZCwgdGhlIGFzY2lpIG9y
-IGdudXJhZGlvIFFUIGRpc3BsYXlzIHN0b3AgdXBkYXRpbmcuPG86cD48L286cD48L3A+DQo8L2Rp
-dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4w
-cHQiPlJlZ2FyZHMsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5XYW48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxwcmU+X19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5V
-U1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9w
-cmU+DQo8cHJlPlRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRv
-OnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
-LmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcHJlPg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQo8
-L2JvZHk+DQo8L2h0bWw+DQo=
 
---_000_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_--
 
---_006_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_
+On Mon, 19 Jul 2021 at 11:34, McNulty, Mike (Assoc) via USRP-users <
+usrp-users@lists.ettus.com> wrote:
+
+> Hello,
+>
+>
+>
+> I don=E2=80=99t want to interrupt the thread but I actually joined the ma=
+iling
+> list for this issue. I just upgraded to UHD 4.1.0.1 and I=E2=80=99m exper=
+iencing
+> the same timeout issue.
+>
+>
+>
+>
+>
+> This is a snip from a ./lib/uhd/examples/benchmark run at 5 Msps.
+>
+>
+>
+>
+>
+> It looks to me as soon as it receives the first overflow the execution
+> terminates.  Somewhere between 2.0 and 5.0 Msps my system drops samples
+>
+>
+>
+>
+>
+> Thanks for everything everyone does! I wanted to just add my experience t=
+o
+> help with development.
+>
+>
+>
+> Mike
+>
+>
+>
+>
+>
+>
+>
+> *From:* Ron Economos <w6rz@comcast.net>
+> *Sent:* Monday, July 19, 2021 1:45 AM
+> *To:* usrp-users@lists.ettus.com
+> *Subject:* [USRP-users] Re: Is UHD supposed to keep running after
+> detecting overrun?
+>
+>
+>
+> It is a bug in UHD v4.0.0.0, but it should be fixed in UHD v4.1.0.1 (and
+> UHD v4.1.0.0).
+>
+> Ron
+>
+> On 7/18/21 9:37 PM, wan wrote:
+>
+> Hello,
+>
+> When UHD detects an overrun, is it supposed to keep going or freeze? I'm
+> using an USRP B200mini. I tested it with the rx_ascii_dft and the uhd_fft
+> GRC example using different versions of UHD on Ubuntu 20.04. When using U=
+HD
+> 3.15.0, an overrun is detected, the application keeps running and prints =
+a
+> sequence of "O" to the terminal. However, when I use UHD 4.0.0.0 and
+> 4.1.0.1, as soon as an overrun is detected, the ascii or gnuradio QT
+> displays stop updating.
+>
+> Regards,
+>
+> Wan
+>
+>
+>
+> _______________________________________________
+>
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+>
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000fa23f005c77c0323
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Ron,<br>I didnt find an open issue related to th=
+is at first, but after your response I found it in the closed issues (<a hr=
+ef=3D"https://github.com/EttusResearch/uhd/issues/380" target=3D"_blank">ht=
+tps://github.com/EttusResearch/uhd/issues/380</a>). The fix was committed i=
+n Oct 2020. However, I tried master (UHD_4.1.0.0-13-g240c7fd), v4.1.0.0 and=
+ v4.1.0.1, and I have the problem in all three versions. Is it working for =
+you in any of these versions?<br><br></div>Mike,<br></div>Thanks for joinin=
+g the discussion. I&#39;m also seeing the ERROR_CODE_TIMEOUT problem with b=
+enchmark_rate. However, it usually happens when I set the sample rate to 50=
+ Msps or higher, and run for more than 30 seconds. At 2 to 5 MSps, I dont h=
+ave any errors or overruns. I didn&#39;t mention it before because I figure=
+d it&#39;s normal since I&#39;m running at a high sample rate. However, on =
+v3.15.0.0, I can consistently stream at 50 Msps without getting any timeout=
+s or overruns.<br><br><br></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Mon, 19 Jul 2021 at 11:34, McNulty, Mike (Asso=
+c) via USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-us=
+ers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex">
+
+
+
+
+
+<div style=3D"overflow-wrap: break-word;" lang=3D"EN-US">
+<div class=3D"gmail-m_-2842874153423426516WordSection1">
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I don=E2=80=99t want to interrupt the thread but I a=
+ctually joined the mailing list for this issue. I just upgraded to UHD 4.1.=
+0.1 and I=E2=80=99m experiencing the same timeout issue.
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><img style=3D"width: 6.8583in; height: 1.425in;" id=
+=3D"gmail-m_-2842874153423426516Picture_x0020_1" src=3D"cid:17abf763bd27745=
+b41" width=3D"658" height=3D"137"><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">This is a snip from a ./lib/uhd/examples/benchmark r=
+un at 5 Msps.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><img style=3D"width: 6.8416in; height: 3.925in;" id=
+=3D"gmail-m_-2842874153423426516Picture_x0020_2" src=3D"cid:17abf763bd3855d=
+352" width=3D"657" height=3D"377"><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">It looks to me as soon as it receives the first over=
+flow the execution terminates.=C2=A0 Somewhere between 2.0 and 5.0 Msps my =
+system drops samples<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><img style=3D"width: 6.9583in; height: 3.5916in;" id=
+=3D"gmail-m_-2842874153423426516Picture_x0020_3" src=3D"cid:17abf763bd39374=
+b63" width=3D"668" height=3D"345"><u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks for everything everyone does! I wanted to jus=
+t add my experience to help with development.
+<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Mike<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;borde=
+r-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in"=
+>
+<p class=3D"MsoNormal"><b>From:</b> Ron Economos &lt;<a href=3D"mailto:w6rz=
+@comcast.net" target=3D"_blank">w6rz@comcast.net</a>&gt; <br>
+<b>Sent:</b> Monday, July 19, 2021 1:45 AM<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> [USRP-users] Re: Is UHD supposed to keep running after dete=
+cting overrun?<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p>It is a bug in UHD v4.0.0.0, but it should be fixed in UHD v4.1.0.1 (and=
+ UHD v4.1.0.0).<u></u><u></u></p>
+<p>Ron<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">On 7/18/21 9:37 PM, wan wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt">Hello,<u></u><u></u></p=
+>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt">When UHD detects an ove=
+rrun, is it supposed to keep going or freeze? I&#39;m using an USRP B200min=
+i. I tested it with the rx_ascii_dft and the uhd_fft GRC example using diff=
+erent versions of UHD on Ubuntu 20.04.
+ When using UHD 3.15.0, an overrun is detected, the application keeps runni=
+ng and prints a sequence of &quot;O&quot; to the terminal. However, when I =
+use UHD 4.0.0.0 and 4.1.0.1, as soon as an overrun is detected, the ascii o=
+r gnuradio QT displays stop updating.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt">Regards,<u></u><u></u><=
+/p>
+</div>
+<div>
+<p class=3D"MsoNormal">Wan<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><br>
+<br>
+<u></u><u></u></p>
+<pre>_______________________________________________<u></u><u></u></pre>
+<pre>USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><u></u><u></u></pre>
+<pre>To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><u></u>=
+<u></u></pre>
+</blockquote>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000fa23f005c77c0323--
+
+--000000000000fa23f205c77c0324
 Content-Type: image/png; name="image004.png"
-Content-Description: image004.png
-Content-Disposition: inline; filename="image004.png"; size=115659;
-	creation-date="Mon, 19 Jul 2021 15:33:33 GMT";
-	modification-date="Mon, 19 Jul 2021 15:33:33 GMT"
-Content-ID: <image004.png@01D77C80.FC595510>
+Content-Disposition: inline; filename="image004.png"
 Content-Transfer-Encoding: base64
+Content-ID: <17abf763bd27745b41>
+X-Attachment-Id: 17abf763bd27745b41
 
 iVBORw0KGgoAAAANSUhEUgAAAzcAAACrCAYAAABbnWJ/AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAS
 dAAAEnQB3mYfeAAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAP+QSURBVHhe
@@ -2318,15 +2352,12 @@ OalsuZS27FlM3lo+7cju5bgPfEDUdFPQ/Ne1UL8PeFF7mEXAImARsAhYBCwCFgGLgEXAIvChEMi6
 pWXT0rIparkUM7dqkpmhJbTYQuueMyLFZKtgVF0KLQiE1MwhBqRHhhfkMrscCSefsChWo7lN9qee
 l0N+cjQnTxoSPWcOkbEk5EPdDfZgi4BFwCJgEbAIWAQsAhYBi8DHGIH/H6N0UOxIgp80AAAAAElF
 TkSuQmCC
-
---_006_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_
+--000000000000fa23f205c77c0324
 Content-Type: image/png; name="image005.png"
-Content-Description: image005.png
-Content-Disposition: inline; filename="image005.png"; size=316923;
-	creation-date="Mon, 19 Jul 2021 15:33:34 GMT";
-	modification-date="Mon, 19 Jul 2021 15:33:34 GMT"
-Content-ID: <image005.png@01D77C80.FC595510>
+Content-Disposition: inline; filename="image005.png"
 Content-Transfer-Encoding: base64
+Content-ID: <17abf763bd3855d352>
+X-Attachment-Id: 17abf763bd3855d352
 
 iVBORw0KGgoAAAANSUhEUgAAAzUAAAHXCAYAAACF/3RMAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAS
 dAAAEnQB3mYfeAAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAP+QSURBVHhe
@@ -7889,15 +7920,12 @@ eAL+K1fQNSwZmOm1pBwhTHZdwvlv/hn+w8+BiXrOvGE5nD6UgBJQAkpACSgBJaAElIAS+NUj8L49
 NckUhcR5Pm/ymEV8hCdGEb40ir5L7/8iESN+loL5D/ejfsZmaWZ7ItEwGt7ou+7F8rvAYId5Xr7h
 rqcFTfbXocAIQmeOoPsm16+bKQEloASUgBJQAkpACSgBJfDLSeD/B21MWVGS9Qc1AAAAAElFTkSu
 QmCC
-
---_006_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_
+--000000000000fa23f205c77c0324
 Content-Type: image/png; name="image006.png"
-Content-Description: image006.png
-Content-Disposition: inline; filename="image006.png"; size=246487;
-	creation-date="Mon, 19 Jul 2021 15:33:34 GMT";
-	modification-date="Mon, 19 Jul 2021 15:33:34 GMT"
-Content-ID: <image006.png@01D77C80.FC595510>
+Content-Disposition: inline; filename="image006.png"
 Content-Transfer-Encoding: base64
+Content-ID: <17abf763bd39374b63>
+X-Attachment-Id: 17abf763bd39374b63
 
 iVBORw0KGgoAAAANSUhEUgAAA0MAAAGvCAYAAACZ2Q4/AAAAAXNSR0IArs4c6QAAAAlwSFlzAAAS
 dAAAEnQB3mYfeAAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAP+QSURBVHhe
@@ -12224,10 +12252,9 @@ WwooDOkCkYAEJCABCUhAAhKQgARmpIDC0Iw87frQEpCABCQgAQlIQAISkIDCkK4BCUhAAhKQgAQk
 IAEJSGBGCigMzcjTrg8tAQlIQAISkIAEJCABCSgM6RqQgAQkIAEJSEACEpCABGakgMLQjDzt+tAS
 kIAEJCABCUhAAhKQgMKQrgEJSEACEpCABCQgAQlIYEYKKAzNyNOuDy0BCUhAAhKQgAQkIAEJ/H9b
 hWz83EMWrwAAAABJRU5ErkJggg==
+--000000000000fa23f205c77c0324--
 
---_006_BLAPR09MB729804BC17F3C9EA89D70BD2D4E19BLAPR09MB7298namp_--
-
---===============2928011505796686404==
+--===============0418180506253753239==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -12237,4 +12264,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2928011505796686404==--
+--===============0418180506253753239==--
