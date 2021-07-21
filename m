@@ -2,306 +2,176 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A94F3D0E3C
-	for <lists+usrp-users@lfdr.de>; Wed, 21 Jul 2021 13:57:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20ECD3D12AE
+	for <lists+usrp-users@lfdr.de>; Wed, 21 Jul 2021 17:41:14 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0CF023843FE
-	for <lists+usrp-users@lfdr.de>; Wed, 21 Jul 2021 07:57:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AE6473849D7
+	for <lists+usrp-users@lfdr.de>; Wed, 21 Jul 2021 11:41:10 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Rw9siIek";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dj4Ylwg9";
 	dkim-atps=neutral
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 211DC38482B
-	for <USRP-users@lists.ettus.com>; Wed, 21 Jul 2021 07:56:53 -0400 (EDT)
-Received: by mail-qv1-f53.google.com with SMTP id ay16so756165qvb.12
-        for <USRP-users@lists.ettus.com>; Wed, 21 Jul 2021 04:56:53 -0700 (PDT)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id 68429384947
+	for <usrp-users@lists.ettus.com>; Wed, 21 Jul 2021 11:40:20 -0400 (EDT)
+Received: by mail-ed1-f45.google.com with SMTP id w14so2944184edc.8
+        for <usrp-users@lists.ettus.com>; Wed, 21 Jul 2021 08:40:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=qchaA0Q+ojNVkHhQnFMsl/BrjTGhnMnlCSVDTkR0pzE=;
-        b=Rw9siIek/fJoKQQQ63oY3EoQwKEyXm249CBLBliZ/Vy06WQ6YWjorotcfsAORdQ0AA
-         Vyd+IR78fNpoQiiyfemhV9C6SFidKWqjj54AhHVCsAF29FLD8a4LG7nTxWbK1VZfdtDj
-         MGAHshK0jNWDYRo1ZTuW6t0YiaXC6pD7wyiOX+3UhjY+ZaWDPsSCFaqh90hUoWdNI0QG
-         7IeOq+fAXcNTlOFBoAH1fIeyagnYL0hd3V1GN3FddFBtkkuZKbCvbs6emAdK2cGW7S6A
-         MLRwtD8hG7CTdmJVq2Mukcs3pNxter7Qv4l/bZxJborFLdoS9V1gXIdAW/2oMyujF6A3
-         iNuw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=SHUl4PnBA0muPak9HIQUQIzQIbbX3/I2R6MwwdnS4t8=;
+        b=dj4Ylwg9YKq7uHBa3AM5XoflfKsRBbSlv9bwc3FhIQukGgS56C3jQDyQMyseVKp50B
+         D2qM/QdmKKEIO5s96ImQ96dNKma/A0q4r4ckLKcsfqS8ZucHThrEj03B8PvGfH5W1ca2
+         Rmza9bV56Lgl3UxCAkbq/eojZ+S05aNM7VTjJkgQtozQ7YjrKJoDF1vi7KsXVZkfawhU
+         2/4WNzWfyw32sGF3o6Ru6pKnCLNtyEyuNKO9LZSOi7Xa7cTWoKXPZYNjhpiTNeU0VimU
+         +PLQR1DQUhKUjL2l00bbss5XDtFcSnbX6KUWqTLN+90CBt25P3sT6wK5yt/Bz0wJQvb0
+         5O8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=qchaA0Q+ojNVkHhQnFMsl/BrjTGhnMnlCSVDTkR0pzE=;
-        b=I3Rzo5330uTcC99NUtE6j1vtIqtdbSTTcWsNPEQNLUM9mbdUn5CH04PBr2xpqJTTMx
-         M/+yX5C2L2D6x+qjvdd+EhsVGe3mPwQ55FMASTLBmiPBHBHyvKTGeGTc9d/BAuvXmEfx
-         en0OpOrlHiO7Sw+3BiiqQg5mFHiLAFHlyuZyIe2lpiPtrgspwbJNrw/gRqFRHBXDVYQC
-         l4kyylfk7nxWR2TGn35BHIEONXtmULJjK1IONLuv2Wr/tiRz15nI463azNL/bXcM5xVM
-         035WCcbcep/Cjtk0h7ZIN9Haymi8POrsrb5PEYWBz/3kzL1dczPVzMxhALO5KPUU4T3f
-         rlvw==
-X-Gm-Message-State: AOAM532xUxmNUwAHBddLZ280gvm0+agONdxLBdYsRe4FKALy2xiMtkbe
-	I/NbyOE48380FJfD4EHpQAI=
-X-Google-Smtp-Source: ABdhPJyZnZI117T1sijWuitN3yDRCewc767HVbu3/w/5kbgq1sgOqWmoLo/OLJxVEbK2pGZo+34k6Q==
-X-Received: by 2002:a05:6214:20ef:: with SMTP id 15mr35559265qvk.54.1626868613451;
-        Wed, 21 Jul 2021 04:56:53 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id f2sm8923646qth.11.2021.07.21.04.56.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jul 2021 04:56:53 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Wed, 21 Jul 2021 07:56:52 -0400
-Message-Id: <980AC0B2-6A7A-407D-BB83-19EF639C38CC@gmail.com>
-References: <20de6ef8-a841-59bc-e365-f23a0340c949@cttc.es>
-In-Reply-To: <20de6ef8-a841-59bc-e365-f23a0340c949@cttc.es>
-To: Armin Ghani <aghani@cttc.es>
-X-Mailer: iPhone Mail (18F72)
-Message-ID-Hash: VRCPOUV4P2KD53L4CG3J3FLHYWIOU3EX
-X-Message-ID-Hash: VRCPOUV4P2KD53L4CG3J3FLHYWIOU3EX
-X-MailFrom: patchvonbraun@gmail.com
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=SHUl4PnBA0muPak9HIQUQIzQIbbX3/I2R6MwwdnS4t8=;
+        b=hY8GIr2896O10v7kXGHfBOiPh/Q+S5nMzXtErFz3Ya46uSljRayZCgSye91FOshRR2
+         hm+P4ZgcAy8V9eMOeNDVt1qOk30Vwh2Im8nPoj53V30zDeACQFq7PClwa2WFeqcNfw0U
+         wcKv4HhmvpJA9iAzyq17m2IE7qIiT2E8dTANbJ+NDMPYXSLLwJ6Sinxy6nBgNSfpNTNw
+         NKi8+SDQD6TfgcwGz1vIFeFV6F2B9I9LpJ292CrFPzm68GiI+KnS6J5+lR5jUN/SZEGn
+         Z/cvLYfM268qS20l7z1xU5JEdYvTs5399k4OHYp1qUz5cYqu0f6bsm4+vyNJhLg/MYx9
+         8l5g==
+X-Gm-Message-State: AOAM532h1VrkB04BWJuFEOu9woICihjAiwe9U3p/uedD59TTc38G+gpm
+	p9EVy92K/mM29YQSnu+/KME8VMc43PmINdhepMBZqWrcyY4=
+X-Google-Smtp-Source: ABdhPJyoqXVGu9vbalc3rAE/VouquULkwFHPgGyaMwp9WAxkxz1XJjvYj8w7y24lD/bq/z12IgkJV+cfiFM3iIWUiBc=
+X-Received: by 2002:a05:6402:1d86:: with SMTP id dk6mr49442208edb.136.1626882019214;
+ Wed, 21 Jul 2021 08:40:19 -0700 (PDT)
+MIME-Version: 1.0
+From: southindian sdrusergroup <southindiansdrusergroup@gmail.com>
+Date: Wed, 21 Jul 2021 21:10:20 +0530
+Message-ID: <CA+ZVCtXGCSnctVVs0o80t_6JemcUJ3a+ymZhuACetacDC6dj3A@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: 2ZLMNWUYBXGR4EGZUYTVL6SNJQXPMGG7
+X-Message-ID-Hash: 2ZLMNWUYBXGR4EGZUYTVL6SNJQXPMGG7
+X-MailFrom: southindiansdrusergroup@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Transmission and Reception samples synchronously in GNURadio
+Subject: [USRP-users] Announcing the inaugural event of the South Indian SDR User Group this Saturday July 24
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VRCPOUV4P2KD53L4CG3J3FLHYWIOU3EX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2ZLMNWUYBXGR4EGZUYTVL6SNJQXPMGG7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3078500902564214098=="
+Content-Type: multipart/mixed; boundary="===============2537231106878219711=="
 
+--===============2537231106878219711==
+Content-Type: multipart/alternative; boundary="000000000000d8c9f005c7a3fc6f"
 
---===============3078500902564214098==
-Content-Type: multipart/alternative; boundary=Apple-Mail-BA2501C0-E967-4F51-8031-B9AB936C4D4A
-Content-Transfer-Encoding: 7bit
+--000000000000d8c9f005c7a3fc6f
+Content-Type: text/plain; charset="UTF-8"
 
+We would like to announce the inaugural event of the South Indian SDR
+User Group (SI-SDR-UG)!
 
---Apple-Mail-BA2501C0-E967-4F51-8031-B9AB936C4D4A
-Content-Type: text/plain;
-	charset=utf-8
+The South Indian SDR User Group (SI-SDR-UG) was founded in January
+2021, and is a community of people, from novices to experts, spanning
+industry, academia, and government, who are interested in the design
+and implementation of Software-Defined Radio (SDR) technology and
+systems. This includes such diverse areas such as RF, digital signal
+processing (DSP), wireless communications, operating systems, computer
+networking, software development and optimization, machine learning,
+and radio hardware. The mission of our community is to facilitate the
+exchange of ideas and enable greater collaboration within the SDR
+community in India. We host regular technical workshops and
+gatherings, and we also run a dedicated Slack workspace for the
+community. We have a YouTube channel for recordings of past events,
+and a GitHub page for any relevant code. Our Twitter feed contains
+announcements about events and other news relevant to the community.
+We are not focused or tied to any one single software tool, hardware
+platform, commercial vendor, or specific technology. The SI-SDR-UG is
+non-profit, and the people on the organizing committee are all
+volunteers. We are based in Bangalore, but we invite people from all
+throughout India, as well as from outside India, to join our
+community.
+
+*Our first event will be held on Saturday July 24 at 19:00 (India
+time)*, and will be streamed live on our YouTube account.
+
+*We still have an open slot for one more presentation in the event*,
+and we would like to offer it to the community.  You can reply to this
+email with an abstract of your talk, it should not exceed 30 minutes
+of duration followed by a 15 minute Q&A section. If you would be
+interested in speaking at the event, on Saturday July 24, sometime
+between 19:00 and 23:00 (India time), then please get in touch with
+us, we would be very interested in having you.
+
+Please see our website for more information about the event agenda, as
+well as links to our Slack workspace and YouTube account.
+
+https://www.softwaredefinedradio.in/
+
+You can watch our first event on our YouTube channel at:
+https://www.youtube.com/channel/UCy04XwXPMDVUucWYYvwg-Yg
+
+Join our Slack workspace to ask questions and interact with other attendees:
+http://si-sdr-ug.slack.com/
+
+We look forward to seeing you all on Saturday July 24!
+
+Thanks and regards,
+
+Rohan Sundar
+
+Organizing Committee SI-SDR-UG
+
+--000000000000d8c9f005c7a3fc6f
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-You can modify the generated Python code to use timed transmission and recep=
-tion.=20
+<div dir=3D"ltr"><pre class=3D"gmail-c-mrkdwn__pre" style=3D"box-sizing:inh=
+erit;margin-top:4px;margin-bottom:4px;padding:8px;font-size:12px;line-heigh=
+t:1.50001;font-variant-ligatures:none;white-space:pre-wrap;word-break:norma=
+l;border-radius:4px;color:rgb(29,28,29)"><font face=3D"tahoma, sans-serif">=
+We would like to announce the inaugural event of the South Indian SDR User =
+Group (SI-SDR-UG)!<br><br>The South Indian SDR User Group (SI-SDR-UG) was f=
+ounded in January 2021, and is a community of people, from novices to exper=
+ts, spanning industry, academia, and government, who are interested in the =
+design and implementation of Software-Defined Radio (SDR) technology and sy=
+stems. This includes such diverse areas such as RF, digital signal processi=
+ng (DSP), wireless communications, operating systems, computer networking, =
+software development and optimization, machine learning, and radio hardware=
+. The mission of our community is to facilitate the exchange of ideas and e=
+nable greater collaboration within the SDR community in India. We host regu=
+lar technical workshops and gatherings, and we also run a dedicated Slack w=
+orkspace for the community. We have a YouTube channel for recordings of pas=
+t events, and a GitHub page for any relevant code. Our Twitter feed contain=
+s announcements about events and other news relevant to the community. We a=
+re not focused or tied to any one single software tool, hardware platform, =
+commercial vendor, or specific technology. The SI-SDR-UG is non-profit, and=
+ the people on the organizing committee are all volunteers. We are based in=
+ Bangalore, but we invite people from all throughout India, as well as from=
+ outside India, to join our community.<br><br><b>Our first event will be he=
+ld on Saturday July 24 at 19:00 (India time)</b>, and will be streamed live=
+ on our YouTube account.<br><br><b>We still have an open slot for one more =
+presentation in the event</b>, and we would like to offer it to the communi=
+ty.=C2=A0 You can reply to this email with an abstract of your talk, it sho=
+uld not exceed 30 minutes of duration followed by a 15 minute Q&amp;A secti=
+on. If you would be interested in speaking at the event, on Saturday July 2=
+4, sometime between 19:00 and 23:00 (India time), then please get in touch =
+with us, we would be very interested in having you.<br><br>Please see our w=
+ebsite for more information about the event agenda, as well as links to our=
+ Slack workspace and YouTube account.<br><br><a href=3D"https://www.softwar=
+edefinedradio.in/">https://www.softwaredefinedradio.in/</a><br><br>You can =
+watch our first event on our YouTube channel at:<br><a href=3D"https://www.=
+youtube.com/channel/UCy04XwXPMDVUucWYYvwg-Yg">https://www.youtube.com/chann=
+el/UCy04XwXPMDVUucWYYvwg-Yg</a><br><br>Join our Slack workspace to ask ques=
+tions and interact with other attendees:<br><a href=3D"http://si-sdr-ug.sla=
+ck.com/">http://si-sdr-ug.slack.com/</a><br><br>We look forward to seeing y=
+ou all on Saturday July 24!<br><br>Thanks and regards,<br><br>Rohan Sundar<=
+br><br>Organizing Committee SI-SDR-UG</font><font face=3D"Monaco, Menlo, Co=
+nsolas, Courier New, monospace"><br></font></pre></div>
 
-Sent from my iPhone
+--000000000000d8c9f005c7a3fc6f--
 
-> On Jul 21, 2021, at 7:41 AM, Armin Ghani <aghani@cttc.es> wrote:
->=20
-> =EF=BB=BF
-> Dear Community
->=20
-> I've been trying to transmit samples while trying to receive RX samples at=
- the same frequency which the delay between TX and RX samples suppose to be p=
-redictable aka fixed value .
->=20
-> In the UHD host code examples there are two example source files where one=
- transmits TX samples in specific time in future, the other does this in RX s=
-ide.
->=20
-> I am pretty aware how timing commands works but since I've been developing=
- my system in GRC environment, I prefer to do it in GRC.
->=20
-> When I put USRP sink and source blocks in the flowgraph, and try to transm=
-it 1ms tone signal every 1 second, the delay which TX samples will be in RX s=
-amples are fixed during one run but variable randomly when I run it for mult=
-iple times.
->=20
-> I'm looking for a trick in GRC to synchronize USRP sink and source blocks w=
-here I'd like to be sure when transmitting TX signals (assuming at the same f=
-requency reception), I'll have those samples in the RX stream which is delay=
-ed equal to end-to-end propagation delay of USRPs.
->=20
-> If you have any tips/tricks to do it in GRC, I'll be more than thankfull.
->=20
-> Regards.
->=20
-> --=20
-> <bbknokionefeeele.jpeg>
-> Armin Ghani
-> Research Engineer | Communication Systems Division (CSD)
-> aghani@cttc.es | +34 93 645 29 08 (2143)
-> Centre Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)
-> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
-> 08860 - Castelldefels (Barcelona, Spain)
-> www.cttc.cat
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-BA2501C0-E967-4F51-8031-B9AB936C4D4A
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">You can modify the generated Python code to=
- use timed transmission and reception.&nbsp;<br><br><div dir=3D"ltr">Sent fr=
-om my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jul 21, 2=
-021, at 7:41 AM, Armin Ghani &lt;aghani@cttc.es&gt; wrote:<br><br></blockquo=
-te></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
- =20
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-8"=
->
- =20
- =20
-    <div class=3D"moz-forward-container">
-      <p>Dear Community</p>
-      <p>I've been trying to transmit samples while trying to receive RX
-        samples at the same frequency which the delay between TX and RX
-        samples suppose to be predictable aka fixed value .</p>
-      <p>In the UHD host code examples there are two example source
-        files where one transmits TX samples in specific time in future,
-        the other does this in RX side.</p>
-      <p>I am pretty aware how timing commands works but since I've been
-        developing my system in GRC environment, I prefer to do it in
-        GRC.</p>
-      <p>When I put USRP sink and source blocks in the flowgraph, and
-        try to transmit 1ms tone signal every 1 second, the delay which
-        TX samples will be in RX samples are fixed during one run but
-        variable randomly when I run it for multiple times.</p>
-      <p>I'm looking for a trick in GRC to synchronize USRP sink and
-        source blocks where I'd like to be sure when transmitting TX
-        signals (assuming at the same frequency reception), I'll have
-        those samples in the RX stream which is delayed equal to
-        end-to-end propagation delay of USRPs.</p>
-      <p>If you have any tips/tricks to do it in GRC, I'll be more than
-        thankfull.</p>
-      <p>Regards.<br>
-      </p>
-      <div class=3D"moz-signature">-- <br>
-        <meta http-equiv=3D"content-type" content=3D"text/html;
-          charset=3DUTF-8">
-        <title></title>
-        <p> </p>
-        <p>
-          <meta name=3D"ProgId" content=3D"Word.Document">
-          <meta name=3D"Generator" content=3D"Microsoft Word 15">
-          <meta name=3D"Originator" content=3D"Microsoft Word 15">
-          <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;
-	mso-font-charset:0;
-	mso-generic-font-family:roman;
-	mso-font-pitch:variable;
-	mso-font-signature:3 0 0 0 1 0;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;
-	mso-font-charset:0;
-	mso-generic-font-family:swiss;
-	mso-font-pitch:variable;
-	mso-font-signature:-469750017 -1073732485 9 0 511 0;}@font-face
-	{font-family:"Arial Black";
-	panose-1:2 11 10 4 2 1 2 2 2 4;
-	mso-font-charset:0;
-	mso-generic-font-family:swiss;
-	mso-font-pitch:variable;
-	mso-font-signature:-1610612049 1073772795 0 0 159 0;}@font-face
-	{font-family:Aharoni;
-	mso-font-charset:177;
-	mso-generic-font-family:auto;
-	mso-font-pitch:variable;
-	mso-font-signature:2051 0 0 0 33 0;}p.MsoNormal, li.MsoNormal, div.=
-MsoNormal
-	{mso-style-unhide:no;
-	mso-style-qformat:yes;
-	mso-style-parent:"";
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:8.0pt;
-	margin-left:0in;
-	line-height:107%;
-	mso-pagination:widow-orphan;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ascii-font-family:Calibri;
-	mso-ascii-theme-font:minor-latin;
-	mso-fareast-font-family:Calibri;
-	mso-fareast-theme-font:minor-latin;
-	mso-hansi-font-family:Calibri;
-	mso-hansi-theme-font:minor-latin;
-	mso-bidi-font-family:Arial;
-	mso-bidi-theme-font:minor-bidi;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	mso-themecolor:hyperlink;
-	text-decoration:underline;
-	text-underline:single;}a:visited, span.MsoHyperlinkFollowed
-	{mso-style-noshow:yes;
-	mso-style-priority:99;
-	color:#954F72;
-	mso-themecolor:followedhyperlink;
-	text-decoration:underline;
-	text-underline:single;}.MsoChpDefault
-	{mso-style-type:export-only;
-	mso-default-props:yes;
-	font-family:"Calibri",sans-serif;
-	mso-ascii-font-family:Calibri;
-	mso-ascii-theme-font:minor-latin;
-	mso-fareast-font-family:Calibri;
-	mso-fareast-theme-font:minor-latin;
-	mso-hansi-font-family:Calibri;
-	mso-hansi-theme-font:minor-latin;
-	mso-bidi-font-family:Arial;
-	mso-bidi-theme-font:minor-bidi;}.MsoPapDefault
-	{mso-style-type:export-only;
-	margin-bottom:8.0pt;
-	line-height:107%;}div.WordSection1
-	{page:WordSection1;}</style> </p>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:normal=
-"><div>&lt;bbknokionefeeele.jpeg&gt;</div><span style=3D"font-size:9.0pt;fon=
-t-family:&quot;Arial
-            Black&quot;,sans-serif;mso-bidi-font-family:
-Aharoni;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">Armin
-            Ghani</span></p>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:normal=
-"><span style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Research
-            Engineer | Communication Systems Division (CSD)</span></p>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:normal=
-"><a href=3D"mailto:aghani@cttc.es" moz-do-not-send=3D"true"><span style=3D"=
-font-size:9.0pt;font-family:&quot;Arial
-              Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghani@c=
-ttc.es</span></a><span style=3D"font-size: 9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34
-            93 645 29 08 (2143)</span></p>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:normal=
-"><span style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
-            Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)</span><=
-/p>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:normal=
-"><span style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
-            Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:normal=
-"><span style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860
-            - Castelldefels (Barcelona, Spain)</span></p>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:normal=
-"><a moz-do-not-send=3D"true"><span style=3D"font-size:9.0pt;font-family:&qu=
-ot;Arial
-              Black&quot;,sans-serif;
-              mso-bidi-font-family:Aharoni;mso-ansi-language:ES" lang=3D"ES"=
->www.cttc.cat</span></a><span style=3D"font-size:9.0pt;font-family:&quot;Ari=
-al
-            Black&quot;,sans-serif;mso-bidi-font-family:
-            Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
-      </div>
-    </div>
- =20
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></body></html>=
-
---Apple-Mail-BA2501C0-E967-4F51-8031-B9AB936C4D4A--
-
---===============3078500902564214098==
+--===============2537231106878219711==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -311,4 +181,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3078500902564214098==--
+--===============2537231106878219711==--
