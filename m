@@ -2,168 +2,140 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED7B03DE32C
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Aug 2021 01:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CAE63DE341
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Aug 2021 01:51:19 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 129E63846C2
-	for <lists+usrp-users@lfdr.de>; Mon,  2 Aug 2021 19:41:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0F561384215
+	for <lists+usrp-users@lfdr.de>; Mon,  2 Aug 2021 19:51:18 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=canyonconsulting.onmicrosoft.com header.i=@canyonconsulting.onmicrosoft.com header.b="GSLXsBPi";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ez8bGT7V";
 	dkim-atps=neutral
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2048.outbound.protection.outlook.com [40.107.243.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0EF2D384220
-	for <USRP-users@lists.ettus.com>; Mon,  2 Aug 2021 19:40:41 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RER71ZKPHSaRbC2z6NQEYQHxaEI9VPW8Zj5EzaWShLknH/Xwry1P67a6AkePUolCJ+Z51yff1o5r+iSKtbYB3JzP2AcSI8J9DgKNwEw1Y/mSwQhNytfEuScbUqgvDXP3vGCOTD/4niWWvWlYOOZpLnaLgQkQ2XrDXyxjY8druDcvBSQSlyanDCabe3qpxtrQ8FUV2WSCeAN3JjdVZP7WxNRVjEVATHzaG3ZNevvgsFBAF4cf0iN1UWPmjvV8XzbR2cYxS+Q1VELrlx1/89gUVmBeqRS7UZ5Nwbuh8/djyySYaLOKWRkYVmB0pPZ2xbWvAlMkKoLisTO7qS1vQsADgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ticT1jJOxBj1xNUXZKi0OwfDDiJSf6FDPkWfQWXLIkM=;
- b=IXf76Y4XdQv5eIIbHXqZOz7oJkPv6wzKbw94/14QotlMknorLBIP/6ueoo8Ms4jO5xHOmFqvlHHc/lG+7Yb+NftBEwOGgP4Doz4qDYSfTQSBo0kkLGMCgpQKE1uILBp8Xak79TtCfEkFcBH7daczD+whP79Ofa5PItkfFwuLZTPTadNVVcN/yYhhHUOQPTkiMZGaYdo/N92O7xqvpYA+dsprjRPKBc7+4Cfs1awlBbSQZ7LhoVFaMWJOWjS6FlXluvD+z3A1z7gJ0ovQAei/RsHV5VuMPDWPMysHeLd2FMKcjTdD11OLX3ytEWc5WiObmRapDMXoKsJW+bNgORvvSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=canyon-us.com; dmarc=pass action=none
- header.from=canyon-us.com; dkim=pass header.d=canyon-us.com; arc=none
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id B50A8383F1E
+	for <USRP-users@lists.ettus.com>; Mon,  2 Aug 2021 19:50:36 -0400 (EDT)
+Received: by mail-qk1-f177.google.com with SMTP id z24so18348588qkz.7
+        for <USRP-users@lists.ettus.com>; Mon, 02 Aug 2021 16:50:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=canyonconsulting.onmicrosoft.com;
- s=selector2-canyonconsulting-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ticT1jJOxBj1xNUXZKi0OwfDDiJSf6FDPkWfQWXLIkM=;
- b=GSLXsBPiPK+k8QWd8QoJeueBelV+szlDhJ8bPQhhtazdpQdYz4ueywtAG8TRrHECbmeyKEm7LyKxeMi1Ke4Qa39iEgd3SbUvrEc9gc30Qz14WB3T5rBDTZATXjbo8Y+quHDuIfRR+d0ZgNni779qMW0W7TLAOSZG5U8PGXhy2UU=
-Received: from CO6PR19MB4801.namprd19.prod.outlook.com (2603:10b6:5:341::23)
- by MWHPR19MB0943.namprd19.prod.outlook.com (2603:10b6:300:a4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4373.25; Mon, 2 Aug
- 2021 23:40:39 +0000
-Received: from CO6PR19MB4801.namprd19.prod.outlook.com
- ([fe80::e937:6f45:7891:cdd0]) by CO6PR19MB4801.namprd19.prod.outlook.com
- ([fe80::e937:6f45:7891:cdd0%2]) with mapi id 15.20.4373.026; Mon, 2 Aug 2021
- 23:40:39 +0000
-From: Jerrid Plymale <jerrid.plymale@canyon-us.com>
-To: "usrp-users@lists.ettus.com" <USRP-users@lists.ettus.com>
-Thread-Topic: Re: Setting the TX SPP to reduce underruns 
-Thread-Index: AdeH975uNiqFdJ1iRaaboeD4hQUv9g==
-Date: Mon, 2 Aug 2021 23:40:38 +0000
-Message-ID: 
- <CO6PR19MB48015606D1B15436822D285FC6EF9@CO6PR19MB4801.namprd19.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=canyon-us.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ac3fdcbd-8861-461f-0a0a-08d9560eef27
-x-ms-traffictypediagnostic: MWHPR19MB0943:
-x-microsoft-antispam-prvs: 
- <MWHPR19MB09435A363D934AD222D18BC5C6EF9@MWHPR19MB0943.namprd19.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- qjRFy/dkgixqSgvnAePNObUGkOqMWA/4jz6AmmAytf7HqAhI5FIKsh1+vWh1EaZMRm7VwS+F+s4K2bRPbA3qzK5DRoi3EuQapXoEbs8GVOVP5sZax1TWOIfa+bUlC24+kSrKzGXKSGKrfKYz4voc6LX9m4TE63YyA8zJrazDqKOdVY5ocKJ0fVNMZi2ReMjgYjrIr4p7LuYPk3Pi9RWysBiMDZOqAA2nfv+qpAvzAu9Ck4Q3ryqjwu9klXB0+KvKnJwr/5SQ+nABQiWA5n7uJkytKCRxbE4qFPR1gi4kUrzKIDhDyVx7UYEnVX+oovexXNcb273pnvu897K5mgpkwZdxV7+krS3QCii8knEvo1vmlVJfPLih4c7EfWrDh0AUNB3dOuao6qr463VYtyGxKBMbwBmBBAdbD5QdQVzI8Lu4WXLOC3LKWLTwhmtQmMDaEpvzkuGFOWGzPZvFS6lNexKDRJuguaxXHPo4XbpCm1b3RbD5RpBJQq1TLRcaUROqU2BG/KD/avPYmA4mJXHhj7qRH7hY0AhG8Bqwf5hJBAwOscR1N+ISUrgRV04DpP0uf6Nq01QPdrpNnmIDm/223/9DXsdvMGw1UvWwA/JATGMh/79RRxfYc1CTP+dL4UM7GmT7ukMblXtBBg9yKe6o87GGML0vPwRpLEXdlyuRL8iCiUujYO8f75mKbOZguYRqAEsE1NtROhn3/NW9gHRlxw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR19MB4801.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(39830400003)(366004)(376002)(136003)(38100700002)(2906002)(7696005)(44832011)(122000001)(71200400001)(66946007)(38070700005)(6916009)(76116006)(9326002)(316002)(66556008)(66446008)(8676002)(64756008)(66476007)(8936002)(52536014)(5660300002)(33656002)(6506007)(26005)(4743002)(478600001)(83380400001)(86362001)(9686003)(55016002)(186003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?UPtvefmQ0GVY3FQtoWSJ0WWiTkUGeTW8c7gb4hbWhGA7DNHm5Tvh+OpTBiZN?=
- =?us-ascii?Q?KlzoD1NqDv7tVENKWjlYLHQGbAGKY/RLxhBHHUFcNwiVpDS6pfgG/lpjRKss?=
- =?us-ascii?Q?p3Wq3cH+ApvdrruyGKMnQL/Xe6cPBqNwKLPxNf/0IkaxltYo/aKm+bv0vpqd?=
- =?us-ascii?Q?V4w55zPkWelqOXKyhXJyDWhjGkCufbAP8+dX6cavvXllKuzVXvvlVfGWXo8O?=
- =?us-ascii?Q?7dGJUpScR8k89LWSqVL1KpLGmDWRfj7Ljfp5K8zkFbw4fML5Ao7nXBAn1JNw?=
- =?us-ascii?Q?+kFH0/al87v4ci/bICZ7maxzGIUu8+TxBTheclP68t0WjfcpNeJxBB2Lohem?=
- =?us-ascii?Q?BFraA5XN7arpPH0r1QBs4Jg0lJK7FEkzSbzyhYYRjnS7Zv7FeRt8bPx33TbC?=
- =?us-ascii?Q?60vt9H/5qGanLn0+KkT8huNgn5gjxuHKkQ8srlcykCQOgkCvYsqk5eqBeSBk?=
- =?us-ascii?Q?zQg30lRpOItpNaTApsD9+/k7NRFL61QTzdVIon2ot40HiV8tfLFHdVtWZImH?=
- =?us-ascii?Q?acBuJCq3cUsoZ082LMj5JQuls6oKryhHLO2kDfWjN/1JHa5+vl4HOO63e0ff?=
- =?us-ascii?Q?KQ7GeDsIqYZdX/km2ZBn1+zrVGwMPJDKeZ68MtCVh0dDMQU44Vf3WFNmG6na?=
- =?us-ascii?Q?CwOJM1glIPpD16v8jGyiphwPAGj5RDQiV/SOb2kPylimz4Yp6OJChtJipO7K?=
- =?us-ascii?Q?9EkVxzb1f2r91Pic2j5ZsX/XG0fz3FXv+Rg3K8YKvmXpuRmuquUOlFWulUOf?=
- =?us-ascii?Q?ji4WqciZbZij9gZnCrw+ZwXEwHd1g6VlFOmUKXb6znaqqD3kSYCSfbdjxI2P?=
- =?us-ascii?Q?PvKH8O2rNnVfzPw2mTx99Tptn87Qhws/pKC4rN8Wrr0eDobhD5YYwg5Hn+Ax?=
- =?us-ascii?Q?4uBUMuodoyW9qRsi+7vPqns0qsn7jlvOB+GbM/Tqk4/R1U7BFnBZZyMaaPfG?=
- =?us-ascii?Q?W0c51c/fw1T4Q/x1vZwIs69R1bxByL5tt29o8PD0y1Gm8JJSOdQpQcJwUdOm?=
- =?us-ascii?Q?mu2IalGo2VX6jBU8GKY+cgG5PLeiMxbMURT80srrOQ52LOeSTWvCsf56iDic?=
- =?us-ascii?Q?UtOSVaQyjrRw3w9mjEg3PLUaEmbdTaCUXJIV3Bll7c9KKAZBr225VPCGu8r1?=
- =?us-ascii?Q?lGkL7BYBCVzpMaqP13/hTb50SDQRIaecqEqizp/66e/sqhw2OEjzqN3x18TI?=
- =?us-ascii?Q?NCeXmAlsFTi42ul88XMuyEAT7d0qZz9Y84MMJ1LrUj3KB5sgsLFN4BwDqgqP?=
- =?us-ascii?Q?5/+1W2nk5C2Aiss4VJ04W5z0cbKG4Dr+VIfQFejYnomk40yp5REZ5QvwKW0J?=
- =?us-ascii?Q?evo=3D?=
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: canyon-us.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO6PR19MB4801.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac3fdcbd-8861-461f-0a0a-08d9560eef27
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2021 23:40:38.9319
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 9678663c-cb50-402b-8020-093ca69329d6
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AYonXMOXJbAuk3l8x/J5iclCHSWtgdxRWf+ZWyxyEMv7bjytZTDarXGMvXsDDcpmYe9e/4Eh9WnXA+1LoEAQB2KfFA2dROJrD4ATdqA+vcc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR19MB0943
-Message-ID-Hash: MO7ZX37GBOCGMKFCFURTSD5LREVOEWOK
-X-Message-ID-Hash: MO7ZX37GBOCGMKFCFURTSD5LREVOEWOK
-X-MailFrom: jerrid.plymale@canyon-us.com
+        d=gmail.com; s=20161025;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=2cgsIAiNHVFM7gdcbxuLD0AMI6eYAF+UaR+Hszv8IOA=;
+        b=ez8bGT7VIHU7MRsZl6GDTQDMI1CYdEmkdNcc9cRFWhPAm4YGd1CFAxNkNnYaQJNo+U
+         tQrNS2h3Q9OTPXB6Sr9HBhVahoWuERHOOZZufgnL3ctqss3qnIoh6rjN7EkyxGpK7X9Z
+         iPDLfvQmNEmnYu9JFKsSyxfdNuor0YUkAlUQ3JgTiv7wfvAu6thG+JskiB8E/0yE/dbp
+         W162wGQ2MwboTBZrwM+bhsez2Pgj0lNnTuv4mwibqhfCbM+5mhp4KXshbeaMhE6nTVY0
+         Wa1AiA/fdfMg2K8IUzyur0ViaOuZq0uCXwVN/cH34QJCvx6kqGFysVLBFExVF0Tnkrbf
+         X8cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=2cgsIAiNHVFM7gdcbxuLD0AMI6eYAF+UaR+Hszv8IOA=;
+        b=LWh9Wb2+XXWkCFHXuef5GVT1RwmnzT5KKOt8f7/ZG+p5Re9PHKB0jNO+GMq4sNz1qp
+         N0mmkZSheyx0t64tJ8TBQPCws1288aY5GPisQfO4EapVbCfdCaz6Uspax9MRxvI9CetM
+         El2kiBtvZM1FU/8j/479f+VDLkS1N4KGIMV+suNTLpS6cfVbF6uDEWIOHXtc9YFaE7ID
+         ew2p+8QE60J0n8cT3/WNL8fvynA2e+qDBzNatyVoU2a24DZ3BseCyj1B/TEnxUvsloLJ
+         7r/IWFSNqZd5aWA7yOlZbGJFfjMpIN4ukv0J5WQ8vdSdeGREtQhz7I53Uwb6tUN4c0Ze
+         t/qw==
+X-Gm-Message-State: AOAM532hjmBR5SYxnbGzUB5HvT8nH1DTy4KiwTeLLdi2AR9h8GyBiRCN
+	YIxJGXuSAhPLlDb0wMk3qCskzZt5kr0=
+X-Google-Smtp-Source: ABdhPJy0lchKuWurjnK+JPBBhcOBNMrb80XLGC22QzMGeDBy1yON6lPl5p1aBm7dLaHGUPn5BPO+cA==
+X-Received: by 2002:a37:4042:: with SMTP id n63mr17707622qka.425.1627948235974;
+        Mon, 02 Aug 2021 16:50:35 -0700 (PDT)
+Received: from smtpclient.apple (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.gmail.com with ESMTPSA id p22sm5259864qtq.64.2021.08.02.16.50.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Aug 2021 16:50:35 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Mon, 2 Aug 2021 19:50:34 -0400
+Message-Id: <592283D1-F988-4D4C-B068-1F6DADE9A2B5@gmail.com>
+References: <CO6PR19MB48015606D1B15436822D285FC6EF9@CO6PR19MB4801.namprd19.prod.outlook.com>
+In-Reply-To: <CO6PR19MB48015606D1B15436822D285FC6EF9@CO6PR19MB4801.namprd19.prod.outlook.com>
+To: Jerrid Plymale <jerrid.plymale@canyon-us.com>
+X-Mailer: iPhone Mail (18F72)
+Message-ID-Hash: G6NOULJC3TXKFSV3UBITFJY5LP3ZSDZQ
+X-Message-ID-Hash: G6NOULJC3TXKFSV3UBITFJY5LP3ZSDZQ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Setting the TX SPP to reduce underruns 
+Subject: [USRP-users] Re: Setting the TX SPP to reduce underruns
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RFDKZ6WH46CT2ALTNRXZPM57LO6JMG3M/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G6NOULJC3TXKFSV3UBITFJY5LP3ZSDZQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6524447545458258669=="
+Content-Type: multipart/mixed; boundary="===============6830242118348837158=="
 
---===============6524447545458258669==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CO6PR19MB48015606D1B15436822D285FC6EF9CO6PR19MB4801namp_"
 
---_000_CO6PR19MB48015606D1B15436822D285FC6EF9CO6PR19MB4801namp_
-Content-Type: text/plain; charset="us-ascii"
+--===============6830242118348837158==
+Content-Type: multipart/alternative; boundary=Apple-Mail-8D8844A8-233C-4184-BB84-F20B171CC3E1
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-8D8844A8-233C-4184-BB84-F20B171CC3E1
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+SPP is just about how samples are packed on the wire and have very little to=
+ do with the buffering dynamics within Gnu Radio. They=E2=80=99re entirely a=
+ UHD driver concept as far as I know.=20
 
-I am reaching out on this subject again as I had some interesting results t=
-oday from some tests I ran. First, I want to make sure I understand this co=
-rrectly, the SPP argument is going to set the size of each packet sent rece=
-ived and sent by the UHD source and sink blocks. This could be checked then=
- by looking at the length of the in_sig in a python block correct?
+Sent from my iPhone
 
-I ask because today I ran a test and was able to see the length of each in_=
-sig packet was the same value as the SPP I set in the UDH source and sink b=
-locks, however when I ran the same test, and subsequent tests today, the fi=
-rst packet length would be the same as the SPP, but then the rest would be =
-at 4096 or so. I have been running tests today using different min and mac =
-output buffer values trying to eliminate the occasional underruns that happ=
-en when my flowgraph running. With that said, does anyone know how changing=
- the min and max output buffers may be Having an affect on the SPP getting =
-set? Does anyone know why the SPP seems to be setting the first packet corr=
-ectly, be the remaining packets do not match the SPP in length?
+> On Aug 2, 2021, at 7:41 PM, Jerrid Plymale <jerrid.plymale@canyon-us.com> w=
+rote:
+>=20
+> =EF=BB=BF
+> Hello All,
+> =20
+> I am reaching out on this subject again as I had some interesting results t=
+oday from some tests I ran. First, I want to make sure I understand this cor=
+rectly, the SPP argument is going to set the size of each packet sent receiv=
+ed and sent by the UHD source and sink blocks. This could be checked then by=
+ looking at the length of the in_sig in a python block correct?
+> =20
+> I ask because today I ran a test and was able to see the length of each in=
+_sig packet was the same value as the SPP I set in the UDH source and sink b=
+locks, however when I ran the same test, and subsequent tests today, the fir=
+st packet length would be the same as the SPP, but then the rest would be at=
+ 4096 or so. I have been running tests today using different min and mac out=
+put buffer values trying to eliminate the occasional underruns that happen w=
+hen my flowgraph running. With that said, does anyone know how changing the m=
+in and max output buffers may be Having an affect on the SPP getting set? Do=
+es anyone know why the SPP seems to be setting the first packet correctly, b=
+e the remaining packets do not match the SPP in length?
+> =20
+> Any help with these problems will be greatly appreciated!
+> =20
+> Best Regards,
+> Jerrid
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-Any help with these problems will be greatly appreciated!
-
-Best Regards,
-Jerrid
-
---_000_CO6PR19MB48015606D1B15436822D285FC6EF9CO6PR19MB4801namp_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail-8D8844A8-233C-4184-BB84-F20B171CC3E1
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">SPP is just about how samples are packed on=
+ the wire and have very little to do with the buffering dynamics within Gnu R=
+adio. They=E2=80=99re entirely a UHD driver concept as far as I know.&nbsp;<=
+br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><block=
+quote type=3D"cite">On Aug 2, 2021, at 7:41 PM, Jerrid Plymale &lt;jerrid.pl=
+ymale@canyon-us.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D=
+"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
+
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -196,46 +168,49 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
+
+
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hello All,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am reaching out on this subject again as I had som=
-e interesting results today from some tests I ran. First, I want to make su=
-re I understand this correctly, the SPP argument is going to set the size o=
-f each packet sent received and sent
- by the UHD source and sink blocks. This could be checked then by looking a=
-t the length of the in_sig in a python block correct?
+<p class=3D"MsoNormal">I am reaching out on this subject again as I had some=
+ interesting results today from some tests I ran. First, I want to make sure=
+ I understand this correctly, the SPP argument is going to set the size of e=
+ach packet sent received and sent
+ by the UHD source and sink blocks. This could be checked then by looking at=
+ the length of the in_sig in a python block correct?
 <o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I ask because today I ran a test and was able to see=
- the length of each in_sig packet was the same value as the SPP I set in th=
-e UDH source and sink blocks, however when I ran the same test, and subsequ=
-ent tests today, the first packet
- length would be the same as the SPP, but then the rest would be at 4096 or=
- so. I have been running tests today using different min and mac output buf=
-fer values trying to eliminate the occasional underruns that happen when my=
- flowgraph running. With that said,
- does anyone know how changing the min and max output buffers may be Having=
- an affect on the SPP getting set? Does anyone know why the SPP seems to be=
- setting the first packet correctly, be the remaining packets do not match =
-the SPP in length?<o:p></o:p></p>
+<p class=3D"MsoNormal">I ask because today I ran a test and was able to see t=
+he length of each in_sig packet was the same value as the SPP I set in the U=
+DH source and sink blocks, however when I ran the same test, and subsequent t=
+ests today, the first packet
+ length would be the same as the SPP, but then the rest would be at 4096 or s=
+o. I have been running tests today using different min and mac output buffer=
+ values trying to eliminate the occasional underruns that happen when my flo=
+wgraph running. With that said,
+ does anyone know how changing the min and max output buffers may be Having a=
+n affect on the SPP getting set? Does anyone know why the SPP seems to be se=
+tting the first packet correctly, be the remaining packets do not match the S=
+PP in length?<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any help with these problems will be greatly appreci=
-ated! <o:p>
+<p class=3D"MsoNormal">Any help with these problems will be greatly apprecia=
+ted! <o:p>
 </o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
 <p class=3D"MsoNormal">Jerrid <o:p></o:p></p>
 </div>
-</body>
-</html>
 
---_000_CO6PR19MB48015606D1B15436822D285FC6EF9CO6PR19MB4801namp_--
 
---===============6524447545458258669==
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
+be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
+quote></body></html>=
+
+--Apple-Mail-8D8844A8-233C-4184-BB84-F20B171CC3E1--
+
+--===============6830242118348837158==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -245,4 +220,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6524447545458258669==--
+--===============6830242118348837158==--
