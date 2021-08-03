@@ -2,1358 +2,609 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0354B3DF4F2
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Aug 2021 20:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 256823DF69C
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Aug 2021 22:49:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 16F24384BC8
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Aug 2021 14:48:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7C94838483C
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Aug 2021 16:49:39 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="O3NfrDN7";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Pk1BOyQE";
 	dkim-atps=neutral
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id B35D238462D
-	for <usrp-users@lists.ettus.com>; Tue,  3 Aug 2021 14:47:39 -0400 (EDT)
-Received: by mail-oi1-f171.google.com with SMTP id u10so29266804oiw.4
-        for <usrp-users@lists.ettus.com>; Tue, 03 Aug 2021 11:47:39 -0700 (PDT)
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 90065384793
+	for <usrp-users@lists.ettus.com>; Tue,  3 Aug 2021 16:48:42 -0400 (EDT)
+Received: by mail-qk1-f182.google.com with SMTP id o13so678888qkk.9
+        for <usrp-users@lists.ettus.com>; Tue, 03 Aug 2021 13:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:date:message-id:subject:from:to:in-reply-to:references
-         :user-agent;
-        bh=zEC3kVmkZD8a8Twox7P+Io0PtZatfvVtQuR14hkrTig=;
-        b=O3NfrDN7YgYJT+RHUFkhdnt98YWKj9eMIEh2P6JHJJfVd5xGEmH6KnHTdIQBkYVUdi
-         vLjdC0+l334xs3blbKUxfv95xxfu61FiiKnOUCTEo3mp3fsoMwkNgMHYDegfCJqr21dN
-         jMCr9s1UdMEzpr7cPY4uhjSvXgQNvUFbUXWngvTYGb5My6OKrL2yUufbny6lNYKPoT1x
-         eBwL/wE/KQ+HPzYNcEWm/QZBVW6hz9gI35/tUKWGrk3j7dwMQu+jFcr2bKwR0zdCBklF
-         u+6r8x4WT0fGqnAF9iqpywkKGNB410ug29VrzCdBFoGcFqupFAnrHpYW5qzqHGGgJmkZ
-         DcxQ==
+        h=message-id:date:from:user-agent:mime-version:to:subject:references
+         :in-reply-to:content-transfer-encoding;
+        bh=H8PjJYYihJ5pmeil1G7XYDGmsKap+k9Wsij7Iva99vA=;
+        b=Pk1BOyQEC5/cBMJU0hBzcIc1YBVCQGZOhCHc3LPXaoLj1VxB/HeF6Tbzo7xJRBqcMi
+         466/LZO0TZfuNDjSN1+dq4G4y+wRc4LeKGo9aLMIrHYzFMp3hqw78C2ZEkdbYt8xhxL8
+         XYhTYd7piI+MkOY5oPNPVjjixxZ2zmvzRo0PwsvopSDStS6ItOCOnNp6jEuhPkw34GpF
+         uJEckfUZHCTwHU3s4asNFiSSk4YT95cWBkxgxErj3YBIxpLB9ompE6okTRvJNjXte/sj
+         qHPK1atdTv0QO3Y2Pxhf2HktoFwOTDO38Jn7f42m9af5FIs3usPosLj9wbKj5XlGuqwG
+         eA7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-         :in-reply-to:references:user-agent;
-        bh=zEC3kVmkZD8a8Twox7P+Io0PtZatfvVtQuR14hkrTig=;
-        b=Xcdf1w0ALh25hiUZdeIipmIFnIf70urf7lq+ZNYieEmuDU8JU6ttzwUj1c+bALutYT
-         dEAJB+L9o2Iz8cYCxQ05d/kjyrfBVeNJxbX3a5FpdWQvTl800rKbEy1eb53/a1PdWh6A
-         4k/wVIz2onzUH25rI2acXlM+EGnI3o4QkWpvzN1jlj0lQYzv7Gjk/uxuyrrvEasN2ln3
-         omJqHcJWLBNWLBG/aUrjJCkIX8NXjwoTLiMYmD9qEsKJEohwts4y+hXHLVe708NsmOiC
-         7YlXE5LN31ltSyzgD/929zrq95IlB857Z+MWh16IBZ0u+furjZtD5Y7KU2wFmvtqKoYu
-         sc3Q==
-X-Gm-Message-State: AOAM5333logTN/3mD8PvsAv51Z+6r/qS+/vkAewVJKlWEI4poe2NRBNB
-	ItFUsBourMe6kKTUsxBg3mA=
-X-Google-Smtp-Source: ABdhPJz/BMFPK8SAYvBDzAF/AQdSN8a+Vh4Suk9iHq762tTFsXcOjNE+CvE/anVr5DIFTtRvoxtM7w==
-X-Received: by 2002:a05:6808:159a:: with SMTP id t26mr4074200oiw.102.1628016458982;
-        Tue, 03 Aug 2021 11:47:38 -0700 (PDT)
-Received: from [192.168.1.3] (47-218-105-159.bcstcmta04.res.dyn.suddenlink.net. [47.218.105.159])
-        by smtp.gmail.com with ESMTPSA id f23sm463172oou.5.2021.08.03.11.47.38
+        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+         :subject:references:in-reply-to:content-transfer-encoding;
+        bh=H8PjJYYihJ5pmeil1G7XYDGmsKap+k9Wsij7Iva99vA=;
+        b=cp0j012UKeCORVHZoWURtOHhMabu4bcSgqdgjBIf1nYiHqzX8vZUvS5wGlqa6UGa/L
+         qgvVzD43Nwl2+Hwcbs+PFxip/04wWgkxqfQq1wdk0iHLkjkgTLgQanrd2GJsGg6muL01
+         mpFci49cddsMN5y8IkSh/gvohCjzr7cm7CJoQ1vz9kjC1d5KRGrx8LDBYD5JklS+bQaY
+         7ktq6a+xaNFkba4WYwhXNslYuxdasyNEfoPrIBgx0D1pVNjJVa7Yg97h2kkbVmrWsT7o
+         i8UEZuj3rctsD2DmoU2+xWl1xWwydEwDs33MNchDWtZPdavEYCsn6gTiMDL2IGIKLlZ/
+         5I9A==
+X-Gm-Message-State: AOAM531tj4ryT6IT1F/tta9SSupI9Rj5toKaRNUwSLh06RuOQdsgQcsY
+	IgL66KWUZId8flvfXviKN7nNMS+60JA=
+X-Google-Smtp-Source: ABdhPJwyhXgKrpTKNMbrxgLU3+4FM+gZM1aXCJCw91v6rlatkqgXP12dJj+/tpvxPH2b4yATnObb8Q==
+X-Received: by 2002:a05:620a:2446:: with SMTP id h6mr21927891qkn.497.1628023721629;
+        Tue, 03 Aug 2021 13:48:41 -0700 (PDT)
+Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id c16sm320qtv.32.2021.08.03.13.48.40
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 03 Aug 2021 11:47:38 -0700 (PDT)
+        Tue, 03 Aug 2021 13:48:41 -0700 (PDT)
+Message-ID: <6109ABA8.6050309@gmail.com>
+Date: Tue, 03 Aug 2021 16:48:40 -0400
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Date: Tue, 03 Aug 2021 13:47:27 -0500
-Message-ID: <Mailbird-5039ed21-6f5c-485c-b20b-920210f47451@gmail.com>
-From: "page heller" <pageheller@gmail.com>
-To: "Marcin Wachowiak" <marcin.r.wachowiak@gmail.com>,
- "McNulty, Mike (Assoc) via USRP-users" <usrp-users@lists.ettus.com>
-In-Reply-To: <003401d78883$73f1aab0$5bd50010$@gmail.com>
+To: usrp-users@lists.ettus.com
 References: <003401d78883$73f1aab0$5bd50010$@gmail.com>
-User-Agent: Mailbird/2.9.37.0
-X-Mailbird-ID: Mailbird-5039ed21-6f5c-485c-b20b-920210f47451@gmail.com
-Message-ID-Hash: VGQMB47SCSNRHROS2WZLBBGQXQ3WFWEP
-X-Message-ID-Hash: VGQMB47SCSNRHROS2WZLBBGQXQ3WFWEP
-X-MailFrom: pageheller@gmail.com
+In-Reply-To: <003401d78883$73f1aab0$5bd50010$@gmail.com>
+Message-ID-Hash: BGYGJR2XHNZ3YEDJUB7XLNVWRORIVEUS
+X-Message-ID-Hash: BGYGJR2XHNZ3YEDJUB7XLNVWRORIVEUS
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: One RX channel of B210 presents distorted signal from splitter
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VGQMB47SCSNRHROS2WZLBBGQXQ3WFWEP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BGYGJR2XHNZ3YEDJUB7XLNVWRORIVEUS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7782672987380618182=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============7782672987380618182==
-Content-Type: multipart/alternative;
- boundary="----=_NextPart_13161088.797861521985"
-
-------=_NextPart_13161088.797861521985
-Content-Type: text/plain;
- charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Marcin, we are using the B210 in an application that requires a high degree=
- of coherency between the two Rx inputs. We rarely change the data capture =
-from 20MSPS, unlike your case, but I have completed analysis of 260 1-Gb da=
-ta files and have not seen anything like what I saw in your videos. When lo=
-oking at the videos, my first instinct was that you were picking up WiFi or=
- Bluetooth interference on one channel. Perhaps you are well past such cons=
-iderations, but I thought I'd give my 30-second impression.=C2=A0
--page heller
-
-On 8/3/2021 1:20:57 PM, marcin.r.wachowiak@gmail.com <marcin.r.wachowiak@gm=
-ail.com> wrote:
-Hello,
-Thank You for the interest in my problem.
-Yes I am feeding the signal into both RX2 ports. I have just repeated the s=
-ame thing symmetrically for TX/RX ports and the distortion was present agai=
-n.
-
-Kind regard,
-Marcin Wachowiak
-
------Wiadomo=C5=9B=C4=87 oryginalna-----
-Od: usrp-users-request@lists.ettus.com
-Wys=C5=82ano: Tuesday, 3 August 2021 19:48
-Do: usrp-users@lists.ettus.com
-Temat: USRP-users Digest, Vol 132, Issue 8
-
-Send USRP-users mailing list submissions to
-usrp-users@lists.ettus.com
-
-To subscribe or unsubscribe via email, send a message with subject or body =
-'help' to
-usrp-users-request@lists.ettus.com
-
-You can reach the person managing the list at
-usrp-users-owner@lists.ettus.com
-
-When replying, please edit your Subject line so it is more specific than "R=
-e: Contents of USRP-users digest..."
-
-Today's Topics:
-
-1. Re: Optical SFP+ adapters for N321 (Vladica Sark)
-2. Re: One RX channel of B210 presents distorted signal from splitter
-(Marcus D. Leech)
-
-
-----------------------------------------------------------------------
-
-Message: 1
-Date: Tue, 3 Aug 2021 17:39:36 +0200
-From: Vladica Sark
-Subject: [USRP-users] Re: Optical SFP+ adapters for N321
-To: Michael Dickens
-Cc: "usrp-users@lists.ettus.com"
-Message-ID:
-Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed
-
-Hi Michael,
-
-Thanks for informing us about this. I would be happy to test it. I am in th=
-e moment on vacation, but next week I will find some time to test it.
-
-Best regards,
-Vladica
-
-
-On 03.08.21 17:17, Michael Dickens wrote:
-> Hi Vladica & the USRP community - For those of you who have White
-> Rabbit equipment, you can download brand new hot off the buildbots WR
-> FPGA images (WX and XQ) for your N3x0 or N32x here <
-> https://drive.google.com/drive/folders/1y-AJA2ZBaHgwyRCiOfatfAyLSX0t1G
-> 7l?usp=3Dsharing
->
-> G7l?usp=3Dsharing>> . Note that these are for UHD 4.1.0.X -- UHD public
-> GIT master; GIT branch UHD-4.1, or 4.1.0.0 or 4.1.0.1 releases. I've
-> tested these FPGA images on N310 revision 5 and 7, and N320 (current
-> revision); just up through "benchmark_rate" when specifying
-> "time_source=3Dsfp0" and multiple channels, both on the USRP and remote
-> to a host ... all works fine! Thus, I wanted to get the FPGA images
-> out to customers for testing / evaluation ... If you do so, I'd love
-> to hear of your successes / issues! - MLD
->
->
-> On Tue, Jul 13, 2021 at 2:01 PM Vladica Sark
-> > wrote:
->
-> Hi Rob,
->
-> Thanks for this useful information.
-> According to Michael it should be fixed mid/late July 2021, so pretty
-> soon. Meanwhile I can only switch back to X310 probably, and see
-> if it
-> works there.
->
-> Let's hope it would be fixed soon.
->
->
-> BR,
-> Vladica
->
->
-> On 12.07.21 17:47, Rob Kossler wrote:
-> > Hi Vladica,
-> > From the 'changelog', it appears that N321 support began with
-> release
-> > 3.14. But, at that point I believe that WR was already broken.
-> So, I
-> > think that there is no solution to your problem other than to
-> wait for
-> > Ettus to fix the WR issues. However, WR has been broken for a
-> while
-> > (note user-list posts from last fall Sept & Dec) so I don't
-> know when
-> > this will be working again.
-> > Rob
-> >
-> >
-> > On Wed, Jul 7, 2021 at 10:26 AM Vladica Sark
->
-> > >>
-> wrote:
-> >
-> > Hi Michael,
-> >
-> > I obtained the necessary SFP+ optical adapters and now I am
-> trying to
-> > put uhd 3.13.1.0 on the N321s in order to use the WR
-> synchronization.
-> > Unfortunately, when I update the sd card image with 3.13.1.0
-> the N321
-> > boots but the SFP0 and SFP1 do not go up. When I try to run
-> > uhd_find_devices, on a terminal using the USB port it says
-> no UHD
-> > devices are found.
-> >
-> > I believe that the right FPGA image should be put on the
-> FPGA, but
-> > the
-> > ways described in Knowledgebase are not working.
-> >
-> > Is there a way to put the version 3.13.1.0 on the N321? I
-> have tried
-> > version 4.0.0.0 and it is working fine, but WR is broken.
-> >
-> > BR,
-> > Vladica
-> >
-> >
-> > On 22.06.21 21:31, Michael Dickens wrote:
-> > > I'm using primarily FS adapters, cables (single and multi
-> mode),
-> > and
-> > > fiber connectors (to allow multiplexing lanes). The adapters I
-> > bought
-> > > were "generic" and had to be tweaked using an FS BOX to be
-> fully
-> > > compatible with Intel or Mellanox NICs. This tweaking
-> seems to have
-> > > helped a lot with the 100 Gb interface (E810); the 10 Gb
-> > interfaces do
-> > > not show much benefit to be manufacturer specific --
-> though I'm
-> > sure
-> > > it doesn't hurt! I have not tried a multi-mode to single mode
-> > splitter
-> > > / joiner, but I'd suppose they do exist & if anybody here
-> has had
-> > > experience that would be useful to hear about! I hope this is
-> > useful!
-> > > - MLD
-> > >
-> > >
-> > > On Tue, Jun 22, 2021 at 10:05 AM Vladica Sark
-> >
-> >
-> > >
->
-> >>>
-> > wrote:
-> > >
-> > > Hi Michael,
-> > >
-> > > Thanks for the answer. For now for the data I am using DAC
-> > cables,
-> > > but
-> > > we would need larger distances, i.e. 50+ meters, and for
-> > this I would
-> > > need fibers for both WR and data.
-> > >
-> > > Is there also some optical multiplexer for these
-> wavelengths, in
-> > > order
-> > > to use a simplex fiber, for both WR and data?
-> > >
-> > > BR,
-> > > Vladica
-> > >
-> > > On 22.06.21 15:41, Michael Dickens wrote:
-> > > > Hi Vladica - I've tested a variety of fiber adapters and
-> > cables
-> > > with
-> > > > no issues (e.g., ZyXEL, FS, Axcen). The primary keys are
-> > to make
-> > > sure
-> > > > the various related parameters match up between the
-> > adapters and
-> > > > cables and devices. For example: If the adapter is
-> 1490/1310,
-> > > then you
-> > > > want to make sure the cable is for the same
-> wavelengths. Same
-> > > for the
-> > > > fiber polish and other parameters (single / dual
-> fiber ; .
-> > Some are
-> > > > easier than others, none of this is too difficult
-> luckily!
-> > > >
-> > > > For short distances, a DAC cable will work for all
-> of the
-> > N320/N321
-> > > > SFP interfaces.
-> > > >
-> > > > At the moment, WR support is being fixed for UHD
-> 3.14.0.0 to
-> > > current.
-> > > > If you -require- WR support -right now- you can use UHD
-> > 3.13.1.0
-> > > while
-> > > > we're working out how to fix WR for newer UHD. We expect
-> > the fix
-> > > to be
-> > > > available to customers sometime in mid/late-July
-> (2021); once
-> > > the fix
-> > > > is determined and verified we will commit it to the
-> various
-> > > branches
-> > > > of the UHD repository, and it will be available in UHD
-> > -after- the
-> > > > forthcoming 4.1 release. It will be available in the
-> > public UHD
-> > > > repository for folks to use to patch UHD between
-> releases.
-> > > >
-> > > > I hope this is useful! - MLD
-> > > >
-> > > >
-> > > > On Tue, Jun 22, 2021 at 6:19 AM Vladica Sark
-> > >
-> >
-> >
-> >>
-> > > >
->
-> >
-> >
->
-> > >>>>
-> > > wrote:
-> > > >
-> > > > Dear all,
-> > > >
-> > > > I would like to use N321 with WRS 3/18 which
-> uses optical
-> > > cables. I
-> > > > would like to use also for the 10 Gbit SFP1
-> optical SFP+
-> > > transceiver.
-> > > > Do you have some recommended optical SFP+ adapters,
-> > duplex and,
-> > > > preferably, simplex?
-> > > > The idea is to use a duplex monomode fiber, one
-> fiber for
-> > > the 10 Gbit
-> > > > data and one fiber for WRS synchronization.
-> > > > They would be connected to 10 Gbit switch or QNAP
-> > > Thunderbolt to SFP+
-> > > > adapter, so they do not have to be Intel.
-> > > >
-> > > >
-> > > > Best regards,
-> > > >
-> > > > Vladica
-> > > >
-> > > > _______________________________________________
-> > > > USRP-users mailing list --
-> usrp-users@lists.ettus.com
-> >
-> >
-> > >
->
-> >
-> >>
-> > > >
->
-> >
-> >
-> > >
->
-> >
-> >>>
-> > > > To unsubscribe send an email to
-> > > usrp-users-leave@lists.ettus.com
->
-> >
-> >
-> > >
->
-> >
-> >>
-> > > >
->
-> >
-> >
-> > >
->
-> >
-> >>>
-> > > >
-> > >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
->
-> >
-> >
-> > To unsubscribe send an email to
-> usrp-users-leave@lists.ettus.com
->
-> >
-> >
-> >
->
-
-------------------------------
-
-Message: 2
-Date: Tue, 03 Aug 2021 13:48:17 -0400
-From: "Marcus D. Leech"
-Subject: [USRP-users] Re: One RX channel of B210 presents distorted
-signal from splitter
-To: usrp-users@lists.ettus.com
-Message-ID: <61098161.4060405@gmail.com>
-Content-Type: multipart/alternative;
-boundary=3D"------------040402040901010904020401"
-
-On 08/03/2021 11:08 AM, Marcin Wachowiak wrote:
-> Hello,
-> The signals provided at the input have quite low power, far below the
-> threshold of -20dbm. ( I don't know the exact values but I
-> additionally even added a 30dB attenuator for safety) What I also
-> found out is that the distortions are dependent more on the setting of
-> the RX, TX gain than the value. During live testing I observed the
-> this harmonic distortion at one channel only, and after increasing the
-> TX or RX gain it disappeared (what is visible in the new videos):
-> usrp_b210_strange_harmonic_distoriton.mp4
->
-> w?usp=3Ddrive_web>
-> usrp_b210_strange_harmonic_distoriton_2.mp4
->
-> w?usp=3Ddrive_web>
-> Kind regards,
-> Marcin Wachowiak
-Right because distortion in RF components isn't going to start occurring at=
- a uniform level over each discrete device--there will be variability.
-
-Are you using the same (RX2) antenna inputs in each case? At high gain leve=
-ls it doesn't take much to drive things into non-linear operation.
-
-
->
-> On Mon, 2 Aug 2021 at 18:57,
-> > wrote:
->
-> Send USRP-users mailing list submissions to
-> usrp-users@lists.ettus.com
->
-> To subscribe or unsubscribe via email, send a message with subject or
-> body 'help' to
-> usrp-users-request@lists.ettus.com
->
->
-> You can reach the person managing the list at
-> usrp-users-owner@lists.ettus.com
->
->
-> When replying, please edit your Subject line so it is more specific
-> than "Re: Contents of USRP-users digest..."
->
-> Today's Topics:
->
-> 1. Older B100 and associated Daughter cards. (Guy Mengel)
-> 2. Re: Older B100 and associated Daughter cards. (Richard Stanley)
-> 3. One RX channel of B210 presents distorted signal from splitter
-> (Marcin Wachowiak)
-> 4. Re: One RX channel of B210 presents distorted signal from
-> splitter
-> (Marcus D. Leech)
->
->
-> ----------------------------------------------------------------------
->
-> Message: 1
-> Date: Mon, 02 Aug 2021 09:47:18 -0400
-> From: Guy Mengel >
-> Subject: [USRP-users] Older B100 and associated Daughter cards.
-> To: usrp-users@lists.ettus.com
-> Message-ID: <823ADE77-DFB9-4632-B924-C31C5B76B128@eastroad.org
-> >
-> Content-Type: text/plain; markup=3Dmarkdown
->
-> Hi All,
-> I am finally going to get started using an older B100 USRP with
-> the LFTX, LFRX, WBX daughter boards. I purchased these from a
-> well known amateur radio op in January of this year. I had played
-> with it for a short time on Ubuntu 18.04 with the older
-> unsupported Python2 interface, this was a start. Then the Covid
-> Pandemic hit.
-> Well, I am now back.
-> Are there any users in the group using the B100 USRP with the
-> LFTX, LFRX, WBX daughter boards using a newer Ubuntu 20.04 with
-> updated Python 3.X with GNURADIO? I wanted to see if there were
-> any still using this older SDR. My plans are to experiment with
-> it and create a rig to be used at HF and possibly UHF to microwave
-> down the road.
->
-> I would also like to have pointers too!
->
-> Thanks!
-> Guy Mengel N1GMM
->
->
-> ------------------------------
->
-> Message: 2
-> Date: Mon, 2 Aug 2021 10:37:14 -0400
-> From: Richard Stanley
-> >
-> Subject: [USRP-users] Re: Older B100 and associated Daughter cards.
-> To: Guy Mengel >
-> Cc: usrp-users@lists.ettus.com
-> Message-ID: <17BFD25F-4714-4789-AB3F-4503A89B25F2@gmail.com
-> >
-> Content-Type: text/plain; charset=3Dus-ascii
->
-> (Resent to include mailing list)
->
-> Hi Guy,
->
-> I've recently used B100s with the LFRX, BasicRX, and (EOL) TVRX2
-> with the latest UHD and GNU Radio 3.8 on Ubuntu 20.04.
->
-> A challenge for me with the LFRX/TX and BasicRX/TX was finding the
-> correct sub-device specification as they can acquire/transmit an
-> IQ pair or real-valued signals. In addition, I required a Hilbert
-> transform to convert real-valued samples in baseband to complex
-> for some processing in GNU Radio for Rx. There are a lot of
-> questions about these daughtercards in the mailing list archive
-> and often the questions seem to be about sub-device specification
-> and real-valued versus IQ.
->
-> Enjoy the B100!
->
-> HTH,
-> Richard
->
-> On Aug 2, 2021, at 09:47, Guy Mengel
-> > wrote:
->
-> Hi All,
-> I am finally going to get started using an older B100 USRP with
-> the LFTX, LFRX, WBX daughter boards. I purchased these from a
-> well known amateur radio op in January of this year. I had played
-> with it for a short time on Ubuntu 18.04 with the older
-> unsupported Python2 interface, this was a start. Then the Covid
-> Pandemic hit.
-> Well, I am now back.
-> Are there any users in the group using the B100 USRP with the
-> LFTX, LFRX, WBX daughter boards using a newer Ubuntu 20.04 with
-> updated Python 3.X with GNURADIO? I wanted to see if there were
-> any still using this older SDR. My plans are to experiment with
-> it and create a rig to be used at HF and possibly UHF to microwave
-> down the road.
->
-> I would also like to have pointers too!
->
-> Thanks!
-> Guy Mengel N1GMM
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
->
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> ------------------------------
->
-> Message: 3
-> Date: Mon, 2 Aug 2021 18:37:08 +0200
-> From: Marcin Wachowiak
-> >
-> Subject: [USRP-users] One RX channel of B210 presents distorted signal
-> from splitter
-> To: usrp-users@lists.ettus.com
-> Message-ID:
->
-> >
-> Content-Type: multipart/alternative;
-> boundary=3D"000000000000d8512b05c8962e2b"
->
-> Hello,
-> I am working on a phase coherent application using USRP B210. As
-> the phase
-> difference between RX channels of B210 is relatively stable I
-> wanted to see
-> how it behaves across the whole frequency range. I performed some
-> measurements and unfortunately for some frequencies I observed strange
-> distortions. The setup consists of a TX USRP, RF splitter, matched
-> cables
-> and a second USRP with both RX channels connected to the splitter.
-> Screams documenting the distortions:
-> https://drive.google.com/drive/folders/1DkjrVKz3ywv3ZE0eS1UYeCMTtQwL3Du8?=
-usp=3Dsharing
-> The received sine wave should have quite similar shape and spectral
-> properties across both RX channels of USRP.
-> What I observe instead is a symmetrical harmonic tone at one of
-> the RX,
-> when the other does not record it.
-> There are also random distortions in one of the RX channels
-> looking as if
-> the sine signal was split and shifted at some point in time (looks
-> like a
-> some sort of buffer issue)
-> This kind of distortion for some settings persists for some is not
-> present
-> or occurs regularly.
-> To provide some illustiation I attach recordings and screens of the
-> registered distortions.
-> usrpb210_sine_rx_distoriton2.mp4
->
-> usrpb210_sine_rx_distoriton.mp4
->
->
-> I tried to debug this problem but it appears to be related to
-> sample rate,
-> TX tone frequency, carrier frequency and gains. (I checked dynamic IQ
-> imbalance or gain controls and changing of the parameters did not
-> affect
-> anything)
-> There are now underflow/overflow flags present while I run the
-> flowchart.
-> The signal that is provided to both RX is identical ( RF
-> mini-circuits RF
-> splitter), and any outside interferences are limited as the whole
-> setup is
-> connected via concentric cables. I tried to set the number of
-> receive and
-> sent frames to 1024 to ensure continuity, but that didn't help.
-> It is strange that for some frequencies this phenomenon occurs
-> while for
-> others the phase difference variance is very low and there are no such
-> distortions.
-> Could You please explain the cause or propose some kind of
-> solution to this
-> issue?
->
-> Kind regards,
-> Marcin Wachowiak
-> -------------- next part --------------
-> A message part incompatible with plain text digests has been
-> removed ...
-> Name: not available
-> Type: text/html
-> Size: 4104 bytes
-> Desc: not available
->
-> ------------------------------
->
-> Message: 4
-> Date: Mon, 02 Aug 2021 12:39:31 -0400
-> From: "Marcus D. Leech"
-> >
-> Subject: [USRP-users] Re: One RX channel of B210 presents distorted
-> signal from splitter
-> To: usrp-users@lists.ettus.com
-> Message-ID: <61081FC3.1010007@gmail.com
-> >
-> Content-Type: multipart/alternative;
-> boundary=3D"------------050204020106080302070102"
->
-> On 08/02/2021 12:37 PM, Marcin Wachowiak wrote:
-> > Hello,
-> > I am working on a phase coherent application using USRP B210. As
-> the
-> > phase difference between RX channels of B210 is relatively stable I
-> > wanted to see how it behaves across the whole frequency range. I
-> > performed some measurements and unfortunately for some
-> frequencies I
-> > observed strange distortions. The setup consists of a TX USRP, RF
-> > splitter, matched cables and a second USRP with both RX channels
-> > connected to the splitter.
-> > Screams documenting the distortions:
-> >
-> https://drive.google.com/drive/folders/1DkjrVKz3ywv3ZE0eS1UYeCMTtQwL3Du8?=
-usp=3Dsharing
-> > The received sine wave should have quite similar shape and spectral
-> > properties across both RX channels of USRP.
-> > What I observe instead is a symmetrical harmonic tone at one of the
-> > RX, when the other does not record it.
-> > There are also random distortions in one of the RX channels
-> looking as
-> > if the sine signal was split and shifted at some point in time
-> (looks
-> > like a some sort of buffer issue)
-> > This kind of distortion for some settings persists for some is not
-> > present or occurs regularly.
-> > To provide some illustiation I attach recordings and screens of the
-> > registered distortions.
-> > usrpb210_sine_rx_distoriton2.mp4
-> >
->
-> > usrpb210_sine_rx_distoriton.mp4
-> >
->
-> >
-> > I tried to debug this problem but it appears to be related to
-> sample
-> > rate, TX tone frequency, carrier frequency and gains. (I checked
-> > dynamic IQ imbalance or gain controls and changing of the
-> parameters
-> > did not affect anything)
-> > There are now underflow/overflow flags present while I run the
-> > flowchart. The signal that is provided to both RX is identical ( RF
-> > mini-circuits RF splitter), and any outside interferences are
-> limited
-> > as the whole setup is connected via concentric cables. I tried
-> to set
-> > the number of receive and sent frames to 1024 to ensure continuity,
-> > but that didn't help.
-> > It is strange that for some frequencies this phenomenon occurs
-> while
-> > for others the phase difference variance is very low and there
-> are no
-> > such distortions.
-> > Could You please explain the cause or propose some kind of
-> solution to
-> > this issue?
-> >
-> > Kind regards,
-> > Marcin Wachowiak
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
->
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> What are your signal levels going into the RX USRP?
->
-> They need to be well below -20dBm or so to protect against
-> non-linearity, and even then, that's awfully loud.
->
->
->
->
-> -------------- next part --------------
-> A message part incompatible with plain text digests has been
-> removed ...
-> Name: not available
-> Type: text/html
-> Size: 6081 bytes
-> Desc: not available
->
-> ------------------------------
->
-> Subject: Digest Footer
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
->
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
->
-> ------------------------------
->
-> End of USRP-users Digest, Vol 132, Issue 2
-> ******************************************
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
--------------- next part --------------
-A message part incompatible with plain text digests has been removed ...
-Name: not available
-Type: text/html
-Size: 24310 bytes
-Desc: not available
-
-------------------------------
-
-Subject: Digest Footer
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
-
-------------------------------
-
-End of USRP-users Digest, Vol 132, Issue 8
-******************************************
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
-------=_NextPart_13161088.797861521985
-Content-Type: text/html;
- charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-family: Ar=
-ial;color: #000000;text-align: left" dir=3D"ltr">=0A                       =
-                 Marcin, we are using the B210 in an application that requi=
-res a high degree of coherency between the two Rx inputs. We rarely change =
-the data capture from 20MSPS, unlike your case, but I have completed analys=
-is of 260 1-Gb data files and have not seen anything like what I saw in you=
-r videos. When looking at the videos, my first instinct was that you were p=
-icking up WiFi or Bluetooth interference on one channel. Perhaps you are we=
-ll past such considerations, but I thought I'd give my 30-second impression=
-.&nbsp;<div>-page heller<br><div class=3D"mb_sig"></div><blockquote class=
-=3D"history_container" type=3D"cite" style=3D"border-left-style:solid;borde=
-r-width:1px; margin-top:20px; margin-left:0px;padding-left:10px;">=0A      =
-                  <p style=3D"color: #AAAAAA; margin-top: 10px;">On 8/3/202=
-1 1:20:57 PM, marcin.r.wachowiak@gmail.com &lt;marcin.r.wachowiak@gmail.com=
-&gt; wrote:</p><div style=3D"font-family:Arial,Helvetica,sans-serif">Hello,=
- =0A<br>Thank You for the interest in my problem.=0A<br>Yes I am feeding th=
-e signal into both RX2 ports. I have just repeated the same thing symmetric=
-ally for TX/RX ports and the distortion was present again.=0A<br>=0A<br>Kin=
-d regard,=0A<br>Marcin Wachowiak=0A<br>=0A<br>-----Wiadomo=C5=9B=C4=87 oryg=
-inalna-----=0A<br>Od: usrp-users-request@lists.ettus.com <usrp-users-reques=
-t@lists.ettus.com> =0A<br>Wys=C5=82ano: Tuesday, 3 August 2021 19:48=0A<br>=
-Do: usrp-users@lists.ettus.com=0A<br>Temat: USRP-users Digest, Vol 132, Iss=
-ue 8=0A<br>=0A<br>Send USRP-users mailing list submissions to=0A<br>	usrp-u=
-sers@lists.ettus.com=0A<br>=0A<br>To subscribe or unsubscribe via email, se=
-nd a message with subject or body 'help' to=0A<br>	usrp-users-request@lists=
-.ettus.com=0A<br>=0A<br>You can reach the person managing the list at=0A<br=
->	usrp-users-owner@lists.ettus.com=0A<br>=0A<br>When replying, please edit =
-your Subject line so it is more specific than "Re: Contents of USRP-users d=
-igest..."=0A<br>=0A<br>Today's Topics:=0A<br>=0A<br>   1. Re: Optical SFP+ =
-adapters for N321 (Vladica Sark)=0A<br>   2. Re: One RX channel of B210 pre=
-sents distorted signal from splitter=0A<br>      (Marcus D. Leech)=0A<br>=
-=0A<br>=0A<br>-------------------------------------------------------------=
----------=0A<br>=0A<br>Message: 1=0A<br>Date: Tue, 3 Aug 2021 17:39:36 +020=
-0=0A<br>From: Vladica Sark <vladicasark@gmail.com>=0A<br>Subject: [USRP-use=
-rs] Re: Optical SFP+ adapters for N321=0A<br>To: Michael Dickens <michael.d=
-ickens@ettus.com>=0A<br>Cc: "usrp-users@lists.ettus.com" <usrp-users@lists.=
-ettus.com>=0A<br>Message-ID: <e04c8632-3f91-31d3-bdfc-bd7e764d7cd8@gmail.co=
-m>=0A<br>Content-Type: text/plain; charset=3Dutf-8; format=3Dflowed=0A<br>=
-=0A<br>Hi Michael,=0A<br>=0A<br>Thanks for informing us about this. I would=
- be happy to test it. I am in the moment on vacation, but next week I will =
-find some time to test it.=0A<br>=0A<br>Best regards,=0A<br>Vladica=0A<br>=
-=0A<br>=0A<br>On 03.08.21 17:17, Michael Dickens wrote:=0A<br>&gt; Hi Vladi=
-ca &amp; the USRP community - For those of you who have White =0A<br>&gt; R=
-abbit equipment, you can download brand new hot off the buildbots WR =0A<br=
->&gt; FPGA images (WX and XQ) for your N3x0 or N32x here &lt; =0A<br>&gt; h=
-ttps://drive.google.com/drive/folders/1y-AJA2ZBaHgwyRCiOfatfAyLSX0t1G=0A<br=
->&gt; 7l?usp=3Dsharing =0A<br>&gt; <https: drive.google.com=3D"" drive=3D""=
- folders=3D"" 1y-aja2zbahgwyrciofatfaylsx0t1=3D""></https:><br>&gt; G7l?usp=
-=3Dsharing&gt;&gt; . Note that these are for UHD 4.1.0.X -- UHD public =0A<=
-br>&gt; GIT master; GIT branch UHD-4.1, or 4.1.0.0 or 4.1.0.1 releases. I'v=
-e =0A<br>&gt; tested these FPGA images on N310 revision 5 and 7, and N320 (=
-current =0A<br>&gt; revision); just up through "benchmark_rate" when specif=
-ying =0A<br>&gt; "time_source=3Dsfp0" and multiple channels, both on the US=
-RP and remote =0A<br>&gt; to a host ... all works fine! Thus, I wanted to g=
-et the FPGA images =0A<br>&gt; out to customers for testing / evaluation ..=
-. If you do so, I'd love =0A<br>&gt; to hear of your successes / issues! - =
-MLD=0A<br>&gt;=0A<br>&gt;=0A<br>&gt; On Tue, Jul 13, 2021 at 2:01 PM Vladic=
-a Sark <vladicasark@gmail.com></vladicasark@gmail.com><br>&gt; <mailto:vlad=
-icasark@gmail.com>&gt; wrote:=0A<br>&gt;=0A<br>&gt;     Hi Rob,=0A<br>&gt;=
-=0A<br>&gt;     Thanks for this useful information.=0A<br>&gt;     Accordin=
-g to Michael it should be fixed mid/late July 2021, so pretty=0A<br>&gt;   =
-  soon. Meanwhile I can only switch back to X310 probably, and see=0A<br>&g=
-t;     if it=0A<br>&gt;     works there.=0A<br>&gt;=0A<br>&gt;     Let's ho=
-pe it would be fixed soon.=0A<br>&gt;=0A<br>&gt;=0A<br>&gt;     BR,=0A<br>&=
-gt;     Vladica=0A<br>&gt;=0A<br>&gt;=0A<br>&gt;     On 12.07.21 17:47, Rob=
- Kossler wrote:=0A<br>&gt;     &gt; Hi Vladica,=0A<br>&gt;     &gt; From th=
-e 'changelog', it appears that N321 support began with=0A<br>&gt;     relea=
-se=0A<br>&gt;     &gt; 3.14.  But, at that point I believe that WR was alre=
-ady broken. =0A<br>&gt;     So, I=0A<br>&gt;     &gt; think that there is n=
-o solution to your problem other than to=0A<br>&gt;     wait for=0A<br>&gt;=
-     &gt; Ettus to fix the WR issues.  However, WR has been broken for a=0A=
-<br>&gt;     while=0A<br>&gt;     &gt; (note user-list posts from last fall=
- Sept  &amp; Dec) so I don't=0A<br>&gt;     know when=0A<br>&gt;     &gt; t=
-his will be working again.=0A<br>&gt;     &gt; Rob=0A<br>&gt;     &gt;=0A<b=
-r>&gt;     &gt;=0A<br>&gt;     &gt; On Wed, Jul 7, 2021 at 10:26 AM Vladica=
- Sark=0A<br>&gt;     <vladicasark@gmail.com></vladicasark@gmail.com><mailto=
-:vladicasark@gmail.com>=0A<br>&gt;     &gt; <mailto:vladicasark@gmail.com><=
-/mailto:vladicasark@gmail.com><mailto:vladicasark@gmail.com>&gt;&gt;=0A<br>=
-&gt;     wrote:=0A<br>&gt;     &gt;=0A<br>&gt;     &gt;     Hi Michael,=0A<=
-br>&gt;     &gt;=0A<br>&gt;     &gt;     I obtained the necessary SFP+ opti=
-cal adapters and now I am=0A<br>&gt;     trying to=0A<br>&gt;     &gt;     =
-put uhd 3.13.1.0 on the N321s in order to use the WR=0A<br>&gt;     synchro=
-nization.=0A<br>&gt;     &gt;     Unfortunately, when I update the sd card =
-image with 3.13.1.0=0A<br>&gt;     the N321=0A<br>&gt;     &gt;     boots b=
-ut the SFP0 and SFP1 do not go up. When I try to run=0A<br>&gt;     &gt;   =
-  uhd_find_devices, on a terminal using the USB port it says=0A<br>&gt;    =
- no UHD=0A<br>&gt;     &gt;     devices are found.=0A<br>&gt;     &gt;=0A<b=
-r>&gt;     &gt;     I believe that the right FPGA image should be put on th=
-e=0A<br>&gt;     FPGA, but=0A<br>&gt;     &gt;     the=0A<br>&gt;     &gt; =
-    ways described in Knowledgebase are not working.=0A<br>&gt;     &gt;=0A=
-<br>&gt;     &gt;     Is there a way to put the version 3.13.1.0 on the N32=
-1? I=0A<br>&gt;     have tried=0A<br>&gt;     &gt;     version 4.0.0.0 and =
-it is working fine, but WR is broken.=0A<br>&gt;     &gt;=0A<br>&gt;     &g=
-t;     BR,=0A<br>&gt;     &gt;     Vladica=0A<br>&gt;     &gt;=0A<br>&gt;  =
-   &gt;=0A<br>&gt;     &gt;     On 22.06.21 21:31, Michael Dickens wrote:=
-=0A<br>&gt;     &gt;     &gt; I'm using primarily FS adapters, cables (sing=
-le and multi=0A<br>&gt;     mode),=0A<br>&gt;     &gt;     and=0A<br>&gt;  =
-   &gt;     &gt; fiber connectors (to allow multiplexing lanes). The adapte=
-rs I=0A<br>&gt;     &gt;     bought=0A<br>&gt;     &gt;     &gt; were "gene=
-ric" and had to be tweaked using an FS BOX to be=0A<br>&gt;     fully=0A<br=
->&gt;     &gt;     &gt; compatible with Intel or Mellanox NICs. This tweaki=
-ng=0A<br>&gt;     seems to have=0A<br>&gt;     &gt;     &gt; helped a lot w=
-ith the 100 Gb interface (E810); the 10 Gb=0A<br>&gt;     &gt;     interfac=
-es do=0A<br>&gt;     &gt;     &gt; not show much benefit to be manufacturer=
- specific --=0A<br>&gt;     though I'm=0A<br>&gt;     &gt;     sure=0A<br>&=
-gt;     &gt;     &gt; it doesn't hurt! I have not tried a multi-mode to sin=
-gle mode=0A<br>&gt;     &gt;     splitter=0A<br>&gt;     &gt;     &gt; / jo=
-iner, but I'd suppose they do exist &amp; if anybody here=0A<br>&gt;     ha=
-s had=0A<br>&gt;     &gt;     &gt; experience that would be useful to hear =
-about! I hope this is=0A<br>&gt;     &gt;     useful!=0A<br>&gt;     &gt;  =
-   &gt; - MLD=0A<br>&gt;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;=0A<=
-br>&gt;     &gt;     &gt; On Tue, Jun 22, 2021 at 10:05 AM Vladica Sark=0A<=
-br>&gt;     &gt;     <vladicasark@gmail.com></vladicasark@gmail.com><mailto=
-:vladicasark@gmail.com>=0A<br>&gt;     <mailto:vladicasark@gmail.com></mail=
-to:vladicasark@gmail.com><mailto:vladicasark@gmail.com>&gt;=0A<br>&gt;     =
-&gt;     &gt; <mailto:vladicasark@gmail.com></mailto:vladicasark@gmail.com>=
-<br>&gt;     <mailto:vladicasark@gmail.com> <mailto:vladicasark@gmail.com><=
-/mailto:vladicasark@gmail.com><br>&gt;     <mailto:vladicasark@gmail.com>&g=
-t;&gt;&gt;=0A<br>&gt;     &gt;     wrote:=0A<br>&gt;     &gt;     &gt;=0A<b=
-r>&gt;     &gt;     &gt;     Hi Michael,=0A<br>&gt;     &gt;     &gt;=0A<br=
->&gt;     &gt;     &gt;     Thanks for the answer. For now for the data I a=
-m using DAC=0A<br>&gt;     &gt;     cables,=0A<br>&gt;     &gt;     &gt;   =
-  but=0A<br>&gt;     &gt;     &gt;     we would need larger distances, i.e.=
- 50+ meters, and for=0A<br>&gt;     &gt;     this I would=0A<br>&gt;     &g=
-t;     &gt;     need fibers for both WR and data.=0A<br>&gt;     &gt;     &=
-gt;=0A<br>&gt;     &gt;     &gt;     Is there also some optical multiplexer=
- for these=0A<br>&gt;     wavelengths, in=0A<br>&gt;     &gt;     &gt;     =
-order=0A<br>&gt;     &gt;     &gt;     to use a simplex fiber, for both WR =
-and data?=0A<br>&gt;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;     BR,=
-=0A<br>&gt;     &gt;     &gt;     Vladica=0A<br>&gt;     &gt;     &gt;=0A<b=
-r>&gt;     &gt;     &gt;     On 22.06.21 15:41, Michael Dickens wrote:=0A<b=
-r>&gt;     &gt;     &gt;     &gt; Hi Vladica - I've tested a variety of fib=
-er adapters and=0A<br>&gt;     &gt;     cables=0A<br>&gt;     &gt;     &gt;=
-     with=0A<br>&gt;     &gt;     &gt;     &gt; no issues (e.g., ZyXEL, FS,=
- Axcen). The primary keys are=0A<br>&gt;     &gt;     to make=0A<br>&gt;   =
-  &gt;     &gt;     sure=0A<br>&gt;     &gt;     &gt;     &gt; the various =
-related parameters match up between the=0A<br>&gt;     &gt;     adapters an=
-d=0A<br>&gt;     &gt;     &gt;     &gt; cables and devices. For example: If=
- the adapter is=0A<br>&gt;     1490/1310,=0A<br>&gt;     &gt;     &gt;     =
-then you=0A<br>&gt;     &gt;     &gt;     &gt; want to make sure the cable =
-is for the same=0A<br>&gt;     wavelengths. Same=0A<br>&gt;     &gt;     &g=
-t;     for the=0A<br>&gt;     &gt;     &gt;     &gt; fiber polish and other=
- parameters (single / dual=0A<br>&gt;     fiber ; .=0A<br>&gt;     &gt;    =
- Some are=0A<br>&gt;     &gt;     &gt;     &gt; easier than others, none of=
- this is too difficult=0A<br>&gt;     luckily!=0A<br>&gt;     &gt;     &gt;=
-     &gt;=0A<br>&gt;     &gt;     &gt;     &gt; For short distances, a DAC =
-cable will work for all=0A<br>&gt;     of the=0A<br>&gt;     &gt;     N320/=
-N321=0A<br>&gt;     &gt;     &gt;     &gt; SFP interfaces.=0A<br>&gt;     &=
-gt;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;     &gt; At the moment, =
-WR support is being fixed for UHD=0A<br>&gt;     3.14.0.0 to=0A<br>&gt;    =
- &gt;     &gt;     current.=0A<br>&gt;     &gt;     &gt;     &gt; If you -r=
-equire- WR support -right now- you can use UHD=0A<br>&gt;     &gt;     3.13=
-.1.0=0A<br>&gt;     &gt;     &gt;     while=0A<br>&gt;     &gt;     &gt;   =
-  &gt; we're working out how to fix WR for newer UHD. We expect=0A<br>&gt; =
-    &gt;     the fix=0A<br>&gt;     &gt;     &gt;     to be=0A<br>&gt;     =
-&gt;     &gt;     &gt; available to customers sometime in mid/late-July=0A<=
-br>&gt;     (2021); once=0A<br>&gt;     &gt;     &gt;     the fix=0A<br>&gt=
-;     &gt;     &gt;     &gt; is determined and verified we will commit it t=
-o the=0A<br>&gt;     various=0A<br>&gt;     &gt;     &gt;     branches=0A<b=
-r>&gt;     &gt;     &gt;     &gt; of the UHD repository, and it will be ava=
-ilable in UHD=0A<br>&gt;     &gt;     -after- the=0A<br>&gt;     &gt;     &=
-gt;     &gt; forthcoming 4.1 release. It will be available in the=0A<br>&gt=
-;     &gt;     public UHD=0A<br>&gt;     &gt;     &gt;     &gt; repository =
-for folks to use to patch UHD between=0A<br>&gt;     releases.=0A<br>&gt;  =
-   &gt;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;     &gt; I hope this=
- is useful! - MLD=0A<br>&gt;     &gt;     &gt;     &gt;=0A<br>&gt;     &gt;=
-     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;     &gt; On Tue, Jun 22, 20=
-21 at 6:19 AM Vladica Sark=0A<br>&gt;     &gt;     &gt;     <vladicasark@gm=
-ail.com></vladicasark@gmail.com><mailto:vladicasark@gmail.com>=0A<br>&gt;  =
-   <mailto:vladicasark@gmail.com></mailto:vladicasark@gmail.com><mailto:vla=
-dicasark@gmail.com>&gt;=0A<br>&gt;     &gt;     <mailto:vladicasark@gmail.c=
-om></mailto:vladicasark@gmail.com><mailto:vladicasark@gmail.com>=0A<br>&gt;=
-     <mailto:vladicasark@gmail.com></mailto:vladicasark@gmail.com><mailto:v=
-ladicasark@gmail.com>&gt;&gt;=0A<br>&gt;     &gt;     &gt;     &gt; <mailto=
-:vladicasark@gmail.com></mailto:vladicasark@gmail.com><br>&gt;     <mailto:=
-vladicasark@gmail.com>=0A<br>&gt;     &gt;     <mailto:vladicasark@gmail.co=
-m></mailto:vladicasark@gmail.com><br>&gt;     <mailto:vladicasark@gmail.com=
->&gt; <mailto:vladicasark@gmail.com></mailto:vladicasark@gmail.com><br>&gt;=
-     <mailto:vladicasark@gmail.com>=0A<br>&gt;     &gt;     <mailto:vladica=
-sark@gmail.com></mailto:vladicasark@gmail.com><mailto:vladicasark@gmail.com=
->&gt;&gt;&gt;&gt;=0A<br>&gt;     &gt;     &gt;     wrote:=0A<br>&gt;     &g=
-t;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;     &gt;     Dear all,=0A=
-<br>&gt;     &gt;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;     &gt;  =
-   I would like to use N321 with WRS 3/18 which=0A<br>&gt;     uses optical=
-=0A<br>&gt;     &gt;     &gt;     cables. I=0A<br>&gt;     &gt;     &gt;   =
-  &gt;     would like to use also for the 10 Gbit SFP1=0A<br>&gt;     optic=
-al SFP+=0A<br>&gt;     &gt;     &gt;     transceiver.=0A<br>&gt;     &gt;  =
-   &gt;     &gt;     Do you have some recommended optical SFP+ adapters,=0A=
-<br>&gt;     &gt;     duplex and,=0A<br>&gt;     &gt;     &gt;     &gt;    =
- preferably, simplex?=0A<br>&gt;     &gt;     &gt;     &gt;     The idea is=
- to use a duplex monomode fiber, one=0A<br>&gt;     fiber for=0A<br>&gt;   =
-  &gt;     &gt;     the 10 Gbit=0A<br>&gt;     &gt;     &gt;     &gt;     d=
-ata and one fiber for WRS synchronization.=0A<br>&gt;     &gt;     &gt;    =
- &gt;     They would be connected to 10 Gbit switch or QNAP=0A<br>&gt;     =
-&gt;     &gt;     Thunderbolt to SFP+=0A<br>&gt;     &gt;     &gt;     &gt;=
-     adapter, so they do not have to be Intel.=0A<br>&gt;     &gt;     &gt;=
-     &gt;=0A<br>&gt;     &gt;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt=
-;     &gt;     Best regards,=0A<br>&gt;     &gt;     &gt;     &gt;=0A<br>&g=
-t;     &gt;     &gt;     &gt;     Vladica=0A<br>&gt;     &gt;     &gt;     =
-&gt;=0A<br>&gt;     &gt;     &gt;     &gt;  _______________________________=
-________________=0A<br>&gt;     &gt;     &gt;     &gt;     USRP-users maili=
-ng list --=0A<br>&gt;     usrp-users@lists.ettus.com <mailto:usrp-users@lis=
-ts.ettus.com>=0A<br>&gt;     &gt;     <mailto:usrp-users@lists.ettus.com></=
-mailto:usrp-users@lists.ettus.com><br>&gt;     <mailto:usrp-users@lists.ett=
-us.com>&gt;=0A<br>&gt;     &gt;     &gt;     <mailto:usrp-users@lists.ettus=
-.com></mailto:usrp-users@lists.ettus.com><br>&gt;     <mailto:usrp-users@li=
-sts.ettus.com>=0A<br>&gt;     &gt;     <mailto:usrp-users@lists.ettus.com><=
-/mailto:usrp-users@lists.ettus.com><br>&gt;     <mailto:usrp-users@lists.et=
-tus.com>&gt;&gt;=0A<br>&gt;     &gt;     &gt;     &gt;     <mailto:usrp-use=
-rs@lists.ettus.com></mailto:usrp-users@lists.ettus.com><br>&gt;     <mailto=
-:usrp-users@lists.ettus.com>=0A<br>&gt;     &gt;     <mailto:usrp-users@lis=
-ts.ettus.com></mailto:usrp-users@lists.ettus.com><br>&gt;     <mailto:usrp-=
-users@lists.ettus.com>&gt;=0A<br>&gt;     &gt;     &gt;     <mailto:usrp-us=
-ers@lists.ettus.com></mailto:usrp-users@lists.ettus.com><br>&gt;     <mailt=
-o:usrp-users@lists.ettus.com>=0A<br>&gt;     &gt;     <mailto:usrp-users@li=
-sts.ettus.com></mailto:usrp-users@lists.ettus.com><br>&gt;     <mailto:usrp=
--users@lists.ettus.com>&gt;&gt;&gt;=0A<br>&gt;     &gt;     &gt;     &gt;  =
-   To unsubscribe send an email to=0A<br>&gt;     &gt;     &gt; usrp-users-=
-leave@lists.ettus.com=0A<br>&gt;     <mailto:usrp-users-leave@lists.ettus.c=
-om>=0A<br>&gt;     &gt;     <mailto:usrp-users-leave@lists.ettus.com></mail=
-to:usrp-users-leave@lists.ettus.com><br>&gt;     <mailto:usrp-users-leave@l=
-ists.ettus.com>&gt;=0A<br>&gt;     &gt;     &gt;     <mailto:usrp-users-lea=
-ve@lists.ettus.com></mailto:usrp-users-leave@lists.ettus.com><br>&gt;     <=
-mailto:usrp-users-leave@lists.ettus.com>=0A<br>&gt;     &gt;     <mailto:us=
-rp-users-leave@lists.ettus.com></mailto:usrp-users-leave@lists.ettus.com><b=
-r>&gt;     <mailto:usrp-users-leave@lists.ettus.com>&gt;&gt;=0A<br>&gt;    =
- &gt;     &gt;     &gt;     <mailto:usrp-users-leave@lists.ettus.com></mail=
-to:usrp-users-leave@lists.ettus.com><br>&gt;     <mailto:usrp-users-leave@l=
-ists.ettus.com>=0A<br>&gt;     &gt;     <mailto:usrp-users-leave@lists.ettu=
-s.com></mailto:usrp-users-leave@lists.ettus.com><br>&gt;     <mailto:usrp-u=
-sers-leave@lists.ettus.com>&gt;=0A<br>&gt;     &gt;     &gt;     <mailto:us=
-rp-users-leave@lists.ettus.com></mailto:usrp-users-leave@lists.ettus.com><b=
-r>&gt;     <mailto:usrp-users-leave@lists.ettus.com>=0A<br>&gt;     &gt;   =
-  <mailto:usrp-users-leave@lists.ettus.com></mailto:usrp-users-leave@lists.=
-ettus.com><br>&gt;     <mailto:usrp-users-leave@lists.ettus.com>&gt;&gt;&gt=
-;=0A<br>&gt;     &gt;     &gt;     &gt;=0A<br>&gt;     &gt;     &gt;=0A<br>=
-&gt;     &gt;     _______________________________________________=0A<br>&gt=
-;     &gt;     USRP-users mailing list -- usrp-users@lists.ettus.com=0A<br>=
-&gt;     <mailto:usrp-users@lists.ettus.com>=0A<br>&gt;     &gt;     <mailt=
-o:usrp-users@lists.ettus.com></mailto:usrp-users@lists.ettus.com><br>&gt;  =
-   <mailto:usrp-users@lists.ettus.com>&gt;=0A<br>&gt;     &gt;     To unsub=
-scribe send an email to=0A<br>&gt;     usrp-users-leave@lists.ettus.com=0A<=
-br>&gt;     <mailto:usrp-users-leave@lists.ettus.com>=0A<br>&gt;     &gt;  =
-   <mailto:usrp-users-leave@lists.ettus.com></mailto:usrp-users-leave@lists=
-.ettus.com><br>&gt;     <mailto:usrp-users-leave@lists.ettus.com>&gt;=0A<br=
->&gt;     &gt;=0A<br>&gt;=0A<br>=0A<br>------------------------------=0A<br=
->=0A<br>Message: 2=0A<br>Date: Tue, 03 Aug 2021 13:48:17 -0400=0A<br>From: =
-"Marcus D. Leech" <patchvonbraun@gmail.com>=0A<br>Subject: [USRP-users] Re:=
- One RX channel of B210 presents distorted=0A<br>	signal from splitter=0A<b=
-r>To: usrp-users@lists.ettus.com=0A<br>Message-ID: &lt;61098161.4060405@gma=
-il.com&gt;=0A<br>Content-Type: multipart/alternative;=0A<br>	boundary=3D"--=
-----------040402040901010904020401"=0A<br>=0A<br>On 08/03/2021 11:08 AM, Ma=
-rcin Wachowiak wrote:=0A<br>&gt; Hello,=0A<br>&gt; The signals provided at =
-the input have quite low power, far below the =0A<br>&gt; threshold of -20d=
-bm. ( I don't know the exact values but I =0A<br>&gt; additionally even add=
-ed a 30dB attenuator for safety) What I also =0A<br>&gt; found out is that =
-the distortions are dependent more on the setting of =0A<br>&gt; the RX, TX=
- gain than the value.  During live testing I observed the =0A<br>&gt; this =
-harmonic distortion at one channel only, and after increasing the =0A<br>&g=
-t; TX or RX gain it disappeared  (what is visible in the new videos):=0A<br=
->&gt; usrp_b210_strange_harmonic_distoriton.mp4=0A<br>&gt; <https: drive.go=
-ogle.com=3D"" file=3D"" d=3D"" 1hyhfi_oxke5k9pgtz-r88n-dnfaijuyp=3D"" vie=
-=3D""></https:><br>&gt; w?usp=3Ddrive_web&gt;=0A<br>&gt; usrp_b210_strange_=
-harmonic_distoriton_2.mp4=0A<br>&gt; <https: drive.google.com=3D"" file=3D"=
-" d=3D"" 15bq0hmujflwska8qb7w_7-expf3ogv7y=3D"" vie=3D""></https:><br>&gt; =
-w?usp=3Ddrive_web&gt;=0A<br>&gt; Kind regards,=0A<br>&gt; Marcin Wachowiak=
-=0A<br>Right because distortion in RF components isn't going to start occur=
-ring at a uniform level over each discrete device--there will be variabilit=
-y.=0A<br>=0A<br>Are you using the same (RX2) antenna inputs in each case?  =
-At high gain levels it doesn't take much to drive things into non-linear op=
-eration.=0A<br>=0A<br>=0A<br>&gt;=0A<br>&gt; On Mon, 2 Aug 2021 at 18:57, <=
-usrp-users-request@lists.ettus.com></usrp-users-request@lists.ettus.com><br=
->&gt; <mailto:usrp-users-request@lists.ettus.com>&gt; wrote:=0A<br>&gt;=0A<=
-br>&gt;     Send USRP-users mailing list submissions to=0A<br>&gt;     usrp=
--users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>=0A<br>&gt;=0A<br=
->&gt;     To subscribe or unsubscribe via email, send a message with subjec=
-t or=0A<br>&gt;     body 'help' to=0A<br>&gt;     usrp-users-request@lists.=
-ettus.com=0A<br>&gt;     <mailto:usrp-users-request@lists.ettus.com>=0A<br>=
-&gt;=0A<br>&gt;     You can reach the person managing the list at=0A<br>&gt=
-;     usrp-users-owner@lists.ettus.com=0A<br>&gt;     <mailto:usrp-users-ow=
-ner@lists.ettus.com>=0A<br>&gt;=0A<br>&gt;     When replying, please edit y=
-our Subject line so it is more specific=0A<br>&gt;     than "Re: Contents o=
-f USRP-users digest..."=0A<br>&gt;=0A<br>&gt;     Today's Topics:=0A<br>&gt=
-;=0A<br>&gt;        1. Older B100 and associated Daughter cards. (Guy Menge=
-l)=0A<br>&gt;        2. Re: Older B100 and associated Daughter cards. (Rich=
-ard Stanley)=0A<br>&gt;        3. One RX channel of B210 presents distorted=
- signal from splitter=0A<br>&gt;           (Marcin Wachowiak)=0A<br>&gt;   =
-     4. Re: One RX channel of B210 presents distorted signal from=0A<br>&gt=
-;     splitter=0A<br>&gt;           (Marcus D. Leech)=0A<br>&gt;=0A<br>&gt;=
-=0A<br>&gt;     -----------------------------------------------------------=
------------=0A<br>&gt;=0A<br>&gt;     Message: 1=0A<br>&gt;     Date: Mon, =
-02 Aug 2021 09:47:18 -0400=0A<br>&gt;     From: Guy Mengel <guy@eastroad.or=
-g></guy@eastroad.org><mailto:guy@eastroad.org>&gt;=0A<br>&gt;     Subject: =
-[USRP-users] Older B100 and associated Daughter cards.=0A<br>&gt;     To: u=
-srp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>=0A<br>&gt;   =
-  Message-ID: &lt;823ADE77-DFB9-4632-B924-C31C5B76B128@eastroad.org=0A<br>&=
-gt;     <mailto:823ade77-dfb9-4632-b924-c31c5b76b128@eastroad.org>&gt;=0A<b=
-r>&gt;     Content-Type: text/plain; markup=3Dmarkdown=0A<br>&gt;=0A<br>&gt=
-;     Hi All,=0A<br>&gt;     I am finally going to get started using an old=
-er B100 USRP with=0A<br>&gt;     the LFTX, LFRX, WBX daughter boards.  I pu=
-rchased these from a=0A<br>&gt;     well known amateur radio op in January =
-of this year. I had played=0A<br>&gt;     with it for a short time on Ubunt=
-u 18.04 with the older=0A<br>&gt;     unsupported Python2 interface, this w=
-as a start. Then the Covid=0A<br>&gt;     Pandemic hit.=0A<br>&gt;     Well=
-, I am now back.=0A<br>&gt;     Are there any users in the group using the =
-B100 USRP with the=0A<br>&gt;     LFTX, LFRX, WBX daughter boards using a n=
-ewer Ubuntu 20.04 with=0A<br>&gt;     updated Python 3.X with GNURADIO?  I =
-wanted to see if there were=0A<br>&gt;     any still using this older SDR. =
- My plans are to experiment with=0A<br>&gt;     it and create a rig to be u=
-sed at HF and possibly UHF to microwave=0A<br>&gt;     down the road.=0A<br=
->&gt;=0A<br>&gt;     I would also like to have pointers too!=0A<br>&gt;=0A<=
-br>&gt;     Thanks!=0A<br>&gt;     Guy Mengel N1GMM=0A<br>&gt;=0A<br>&gt;=
-=0A<br>&gt;     ------------------------------=0A<br>&gt;=0A<br>&gt;     Me=
-ssage: 2=0A<br>&gt;     Date: Mon, 2 Aug 2021 10:37:14 -0400=0A<br>&gt;    =
- From: Richard Stanley <richardlstanley@gmail.com></richardlstanley@gmail.c=
-om><br>&gt;     <mailto:richardlstanley@gmail.com>&gt;=0A<br>&gt;     Subje=
-ct: [USRP-users] Re: Older B100 and associated Daughter cards.=0A<br>&gt;  =
-   To: Guy Mengel <guy@eastroad.org></guy@eastroad.org><mailto:guy@eastroad=
-.org>&gt;=0A<br>&gt;     Cc: usrp-users@lists.ettus.com <mailto:usrp-users@=
-lists.ettus.com>=0A<br>&gt;     Message-ID: &lt;17BFD25F-4714-4789-AB3F-450=
-3A89B25F2@gmail.com=0A<br>&gt;     <mailto:17bfd25f-4714-4789-ab3f-4503a89b=
-25f2@gmail.com>&gt;=0A<br>&gt;     Content-Type: text/plain;       charset=
-=3Dus-ascii=0A<br>&gt;=0A<br>&gt;     (Resent to include mailing list)=0A<b=
-r>&gt;=0A<br>&gt;     Hi Guy,=0A<br>&gt;=0A<br>&gt;     I've recently used =
-B100s with the LFRX, BasicRX, and (EOL) TVRX2=0A<br>&gt;     with the lates=
-t UHD and GNU Radio 3.8 on Ubuntu 20.04.=0A<br>&gt;=0A<br>&gt;     A challe=
-nge for me with the LFRX/TX and BasicRX/TX was finding the=0A<br>&gt;     c=
-orrect sub-device specification as they can acquire/transmit an=0A<br>&gt; =
-    IQ pair or real-valued signals. In addition, I required a Hilbert=0A<br=
->&gt;     transform to convert real-valued samples in baseband to complex=
-=0A<br>&gt;     for some processing in GNU Radio for Rx. There are a lot of=
-=0A<br>&gt;     questions about these daughtercards in the mailing list arc=
-hive=0A<br>&gt;     and often the questions seem to be about sub-device spe=
-cification=0A<br>&gt;     and real-valued versus IQ.=0A<br>&gt;=0A<br>&gt; =
-    Enjoy the B100!=0A<br>&gt;=0A<br>&gt;     HTH,=0A<br>&gt;     Richard=
-=0A<br>&gt;=0A<br>&gt;     On Aug 2, 2021, at 09:47, Guy Mengel <guy@eastro=
-ad.org></guy@eastroad.org><br>&gt;     <mailto:guy@eastroad.org>&gt; wrote:=
-=0A<br>&gt;=0A<br>&gt;     Hi All,=0A<br>&gt;     I am finally going to get=
- started using an older B100 USRP with=0A<br>&gt;     the LFTX, LFRX, WBX d=
-aughter boards.  I purchased these from a=0A<br>&gt;     well known amateur=
- radio op in January of this year. I had played=0A<br>&gt;     with it for =
-a short time on Ubuntu 18.04 with the older=0A<br>&gt;     unsupported Pyth=
-on2 interface, this was a start. Then the Covid=0A<br>&gt;     Pandemic hit=
-.=0A<br>&gt;     Well, I am now back.=0A<br>&gt;     Are there any users in=
- the group using the B100 USRP with the=0A<br>&gt;     LFTX, LFRX, WBX daug=
-hter boards using a newer Ubuntu 20.04 with=0A<br>&gt;     updated Python 3=
-.X with GNURADIO?  I wanted to see if there were=0A<br>&gt;     any still u=
-sing this older SDR.  My plans are to experiment with=0A<br>&gt;     it and=
- create a rig to be used at HF and possibly UHF to microwave=0A<br>&gt;    =
- down the road.=0A<br>&gt;=0A<br>&gt;     I would also like to have pointer=
-s too!=0A<br>&gt;=0A<br>&gt;     Thanks!=0A<br>&gt;     Guy Mengel N1GMM=0A=
-<br>&gt;=0A<br>&gt;     _______________________________________________=0A<=
-br>&gt;     USRP-users mailing list -- usrp-users@lists.ettus.com=0A<br>&gt=
-;     <mailto:usrp-users@lists.ettus.com>=0A<br>&gt;     To unsubscribe sen=
-d an email to usrp-users-leave@lists.ettus.com=0A<br>&gt;     <mailto:usrp-=
-users-leave@lists.ettus.com>=0A<br>&gt;=0A<br>&gt;     --------------------=
-----------=0A<br>&gt;=0A<br>&gt;     Message: 3=0A<br>&gt;     Date: Mon, 2=
- Aug 2021 18:37:08 +0200=0A<br>&gt;     From: Marcin Wachowiak <marcin.r.wa=
-chowiak@gmail.com></marcin.r.wachowiak@gmail.com><br>&gt;     <mailto:marci=
-n.r.wachowiak@gmail.com>&gt;=0A<br>&gt;     Subject: [USRP-users] One RX ch=
-annel of B210 presents distorted signal=0A<br>&gt;             from splitte=
-r=0A<br>&gt;     To: usrp-users@lists.ettus.com <mailto:usrp-users@lists.et=
-tus.com>=0A<br>&gt;     Message-ID:=0A<br>&gt;            =0A<br>&gt;     <=
-caofh71xdrz7a+xu89t-6gewy4aa_hmnfb+-0aege6y-f4zvnla@mail.gmail.com></caofh7=
-1xdrz7a+xu89t-6gewy4aa_hmnfb+-0aege6y-f4zvnla@mail.gmail.com><mailto:caofh7=
-1xdrz7a%2bxu89t-6gewy4aa_hmnfb%2b-0aege6y-f4zvnla@mail.gmail.com>&gt;=0A<br=
->&gt;     Content-Type: multipart/alternative;=0A<br>&gt;             bound=
-ary=3D"000000000000d8512b05c8962e2b"=0A<br>&gt;=0A<br>&gt;     Hello,=0A<br=
->&gt;     I am working on a phase coherent application using USRP B210. As=
-=0A<br>&gt;     the phase=0A<br>&gt;     difference between RX channels of =
-B210 is relatively stable I=0A<br>&gt;     wanted to see=0A<br>&gt;     how=
- it behaves across the whole frequency range. I performed some=0A<br>&gt;  =
-   measurements and unfortunately for some frequencies I observed strange=
-=0A<br>&gt;     distortions. The setup consists of a TX USRP, RF splitter, =
-matched=0A<br>&gt;     cables=0A<br>&gt;     and a second USRP with both RX=
- channels connected to the splitter.=0A<br>&gt;     Screams documenting the=
- distortions:=0A<br>&gt;     https://drive.google.com/drive/folders/1DkjrVK=
-z3ywv3ZE0eS1UYeCMTtQwL3Du8?usp=3Dsharing=0A<br>&gt;     The received sine w=
-ave should have quite similar shape and spectral=0A<br>&gt;     properties =
-across both RX channels of USRP.=0A<br>&gt;     What I observe instead is a=
- symmetrical harmonic tone at one of=0A<br>&gt;     the RX,=0A<br>&gt;     =
-when the other does not record it.=0A<br>&gt;     There are also random dis=
-tortions in one of the RX channels=0A<br>&gt;     looking as if=0A<br>&gt; =
-    the sine signal was split and shifted at some point in time (looks=0A<b=
-r>&gt;     like a=0A<br>&gt;     some sort of buffer issue)=0A<br>&gt;     =
-This kind of distortion for some settings persists for some is not=0A<br>&g=
-t;     present=0A<br>&gt;     or occurs regularly.=0A<br>&gt;     To provid=
-e some illustiation I attach recordings and screens of the=0A<br>&gt;     r=
-egistered distortions.=0A<br>&gt;      usrpb210_sine_rx_distoriton2.mp4=0A<=
-br>&gt;     <https: drive.google.com=3D"" file=3D"" d=3D"" 1hif0dzy2ah7ipc1=
-3nfudhok5hd0jem9m=3D"" view?usp=3D"drive_web">=0A<br>&gt;      usrpb210_sin=
-e_rx_distoriton.mp4=0A<br>&gt;     <https: drive.google.com=3D"" file=3D"" =
-d=3D"" 13niybdl6h4w0akdf28keontnzkuscuaw=3D"" view?usp=3D"drive_web">=0A<br=
->&gt;=0A<br>&gt;     I tried to debug this problem but it appears to be rel=
-ated to=0A<br>&gt;     sample rate,=0A<br>&gt;     TX tone frequency, carri=
-er frequency and gains. (I checked dynamic IQ=0A<br>&gt;     imbalance or g=
-ain controls and changing of the parameters did not=0A<br>&gt;     affect=
-=0A<br>&gt;     anything)=0A<br>&gt;     There are now underflow/overflow f=
-lags present while I run the=0A<br>&gt;     flowchart.=0A<br>&gt;     The s=
-ignal that is provided to both RX is identical ( RF=0A<br>&gt;     mini-cir=
-cuits RF=0A<br>&gt;     splitter), and any outside interferences are limite=
-d as the whole=0A<br>&gt;     setup is=0A<br>&gt;     connected via concent=
-ric cables. I tried to set the number of=0A<br>&gt;     receive and=0A<br>&=
-gt;     sent frames to 1024 to ensure continuity, but that didn't help.=0A<=
-br>&gt;     It is strange that for some frequencies this phenomenon occurs=
-=0A<br>&gt;     while for=0A<br>&gt;     others the phase difference varian=
-ce is very low and there are no such=0A<br>&gt;     distortions.=0A<br>&gt;=
-     Could You please explain the cause or propose some kind of=0A<br>&gt; =
-    solution to this=0A<br>&gt;     issue?=0A<br>&gt;=0A<br>&gt;     Kind r=
-egards,=0A<br>&gt;     Marcin Wachowiak=0A<br>&gt;     -------------- next =
-part --------------=0A<br>&gt;     A message part incompatible with plain t=
-ext digests has been=0A<br>&gt;     removed ...=0A<br>&gt;     Name: not av=
-ailable=0A<br>&gt;     Type: text/html=0A<br>&gt;     Size: 4104 bytes=0A<b=
-r>&gt;     Desc: not available=0A<br>&gt;=0A<br>&gt;     ------------------=
-------------=0A<br>&gt;=0A<br>&gt;     Message: 4=0A<br>&gt;     Date: Mon,=
- 02 Aug 2021 12:39:31 -0400=0A<br>&gt;     From: "Marcus D. Leech" <patchvo=
-nbraun@gmail.com></patchvonbraun@gmail.com><br>&gt;     <mailto:patchvonbra=
-un@gmail.com>&gt;=0A<br>&gt;     Subject: [USRP-users] Re: One RX channel o=
-f B210 presents distorted=0A<br>&gt;             signal from splitter=0A<br=
->&gt;     To: usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com=
->=0A<br>&gt;     Message-ID: &lt;61081FC3.1010007@gmail.com=0A<br>&gt;     =
-<mailto:61081fc3.1010007@gmail.com>&gt;=0A<br>&gt;     Content-Type: multip=
-art/alternative;=0A<br>&gt;             boundary=3D"------------05020402010=
-6080302070102"=0A<br>&gt;=0A<br>&gt;     On 08/02/2021 12:37 PM, Marcin Wac=
-howiak wrote:=0A<br>&gt;     &gt; Hello,=0A<br>&gt;     &gt; I am working o=
-n a phase coherent application using USRP B210. As=0A<br>&gt;     the=0A<br=
->&gt;     &gt; phase difference between RX channels of B210 is relatively s=
-table I=0A<br>&gt;     &gt; wanted to see how it behaves across the whole f=
-requency range. I=0A<br>&gt;     &gt; performed some measurements and unfor=
-tunately for some=0A<br>&gt;     frequencies I=0A<br>&gt;     &gt; observed=
- strange distortions. The setup consists of a TX USRP, RF=0A<br>&gt;     &g=
-t; splitter, matched cables and a second USRP with both RX channels=0A<br>&=
-gt;     &gt; connected to the splitter.=0A<br>&gt;     &gt; Screams documen=
-ting the distortions:=0A<br>&gt;     &gt;=0A<br>&gt;     https://drive.goog=
-le.com/drive/folders/1DkjrVKz3ywv3ZE0eS1UYeCMTtQwL3Du8?usp=3Dsharing=0A<br>=
-&gt;     &gt; The received sine wave should have quite similar shape and sp=
-ectral=0A<br>&gt;     &gt; properties across both RX channels of USRP.=0A<b=
-r>&gt;     &gt; What I observe instead is a symmetrical harmonic tone at on=
-e of the=0A<br>&gt;     &gt; RX, when the other does not record it.=0A<br>&=
-gt;     &gt; There are also random distortions in one of the RX channels=0A=
-<br>&gt;     looking as=0A<br>&gt;     &gt; if the sine signal was split an=
-d shifted at some point in time=0A<br>&gt;     (looks=0A<br>&gt;     &gt; l=
-ike a some sort of buffer issue)=0A<br>&gt;     &gt; This kind of distortio=
-n for some settings persists for some is not=0A<br>&gt;     &gt; present or=
- occurs regularly.=0A<br>&gt;     &gt; To provide some illustiation I attac=
-h recordings and screens of the=0A<br>&gt;     &gt; registered distortions.=
-=0A<br>&gt;     &gt; usrpb210_sine_rx_distoriton2.mp4=0A<br>&gt;     &gt;=
-=0A<br>&gt;     <https: drive.google.com=3D"" file=3D"" d=3D"" 1hif0dzy2ah7=
-ipc13nfudhok5hd0jem9m=3D"" view?usp=3D"drive_web">=0A<br>&gt;     &gt; usrp=
-b210_sine_rx_distoriton.mp4=0A<br>&gt;     &gt;=0A<br>&gt;     <https: driv=
-e.google.com=3D"" file=3D"" d=3D"" 13niybdl6h4w0akdf28keontnzkuscuaw=3D"" v=
-iew?usp=3D"drive_web">=0A<br>&gt;     &gt;=0A<br>&gt;     &gt; I tried to d=
-ebug this problem but it appears to be related to=0A<br>&gt;     sample=0A<=
-br>&gt;     &gt; rate, TX tone frequency, carrier frequency and gains. (I c=
-hecked=0A<br>&gt;     &gt; dynamic IQ imbalance or gain controls and changi=
-ng of the=0A<br>&gt;     parameters=0A<br>&gt;     &gt; did not affect anyt=
-hing)=0A<br>&gt;     &gt; There are now underflow/overflow flags present wh=
-ile I run the=0A<br>&gt;     &gt; flowchart. The signal that is provided to=
- both RX is identical ( RF=0A<br>&gt;     &gt; mini-circuits RF splitter), =
-and any outside interferences are=0A<br>&gt;     limited=0A<br>&gt;     &gt=
-; as the whole setup is connected via concentric cables. I tried=0A<br>&gt;=
-     to set=0A<br>&gt;     &gt; the number of receive and sent frames to 10=
-24 to ensure continuity,=0A<br>&gt;     &gt; but that didn't help.=0A<br>&g=
-t;     &gt; It is strange that for some frequencies this phenomenon occurs=
-=0A<br>&gt;     while=0A<br>&gt;     &gt; for others the phase difference v=
-ariance is very low and there=0A<br>&gt;     are no=0A<br>&gt;     &gt; suc=
-h distortions.=0A<br>&gt;     &gt; Could You please explain the cause or pr=
-opose some kind of=0A<br>&gt;     solution to=0A<br>&gt;     &gt; this issu=
-e?=0A<br>&gt;     &gt;=0A<br>&gt;     &gt; Kind regards,=0A<br>&gt;     &gt=
-; Marcin Wachowiak=0A<br>&gt;     &gt;=0A<br>&gt;     &gt;=0A<br>&gt;     &=
-gt; _______________________________________________=0A<br>&gt;     &gt; USR=
-P-users mailing list -- usrp-users@lists.ettus.com=0A<br>&gt;     <mailto:u=
-srp-users@lists.ettus.com>=0A<br>&gt;     &gt; To unsubscribe send an email=
- to usrp-users-leave@lists.ettus.com=0A<br>&gt;     <mailto:usrp-users-leav=
-e@lists.ettus.com>=0A<br>&gt;     What are your signal levels going into th=
-e RX USRP?=0A<br>&gt;=0A<br>&gt;     They need to be well below -20dBm or s=
-o to protect against=0A<br>&gt;     non-linearity, and even then, that's aw=
-fully loud.=0A<br>&gt;=0A<br>&gt;=0A<br>&gt;=0A<br>&gt;=0A<br>&gt;     ----=
----------- next part --------------=0A<br>&gt;     A message part incompati=
-ble with plain text digests has been=0A<br>&gt;     removed ...=0A<br>&gt; =
-    Name: not available=0A<br>&gt;     Type: text/html=0A<br>&gt;     Size:=
- 6081 bytes=0A<br>&gt;     Desc: not available=0A<br>&gt;=0A<br>&gt;     --=
-----------------------------=0A<br>&gt;=0A<br>&gt;     Subject: Digest Foot=
-er=0A<br>&gt;=0A<br>&gt;     ______________________________________________=
-_=0A<br>&gt;     USRP-users mailing list -- usrp-users@lists.ettus.com=0A<b=
-r>&gt;     <mailto:usrp-users@lists.ettus.com>=0A<br>&gt;     To unsubscrib=
-e send an email to usrp-users-leave@lists.ettus.com=0A<br>&gt;     <mailto:=
-usrp-users-leave@lists.ettus.com>=0A<br>&gt;=0A<br>&gt;=0A<br>&gt;     ----=
---------------------------=0A<br>&gt;=0A<br>&gt;     End of USRP-users Dige=
-st, Vol 132, Issue 2=0A<br>&gt;     ***************************************=
-***=0A<br>&gt;=0A<br>&gt;=0A<br>&gt;=0A<br>&gt; ___________________________=
-____________________=0A<br>&gt; USRP-users mailing list -- usrp-users@lists=
-.ettus.com=0A<br>&gt; To unsubscribe send an email to usrp-users-leave@list=
-s.ettus.com=0A<br>=0A<br>-------------- next part --------------=0A<br>A me=
-ssage part incompatible with plain text digests has been removed ...=0A<br>=
-Name: not available=0A<br>Type: text/html=0A<br>Size: 24310 bytes=0A<br>Des=
-c: not available=0A<br>=0A<br>------------------------------=0A<br>=0A<br>S=
-ubject: Digest Footer=0A<br>=0A<br>________________________________________=
-_______=0A<br>USRP-users mailing list -- usrp-users@lists.ettus.com=0A<br>T=
-o unsubscribe send an email to usrp-users-leave@lists.ettus.com=0A<br>=0A<b=
-r>=0A<br>------------------------------=0A<br>=0A<br>End of USRP-users Dige=
-st, Vol 132, Issue 8=0A<br>******************************************=0A<br=
->_______________________________________________<br>USRP-users mailing list=
- -- usrp-users@lists.ettus.com<br>To unsubscribe send an email to usrp-user=
-s-leave@lists.ettus.com<br></mailto:usrp-users-leave@lists.ettus.com></mail=
-to:usrp-users@lists.ettus.com></mailto:usrp-users-leave@lists.ettus.com></m=
-ailto:usrp-users@lists.ettus.com></https:></https:></mailto:61081fc3.101000=
-7@gmail.com></mailto:usrp-users@lists.ettus.com></mailto:patchvonbraun@gmai=
-l.com></https:></https:></mailto:caofh71xdrz7a%2bxu89t-6gewy4aa_hmnfb%2b-0a=
-ege6y-f4zvnla@mail.gmail.com></mailto:usrp-users@lists.ettus.com></mailto:m=
-arcin.r.wachowiak@gmail.com></mailto:usrp-users-leave@lists.ettus.com></mai=
-lto:usrp-users@lists.ettus.com></mailto:guy@eastroad.org></mailto:17bfd25f-=
-4714-4789-ab3f-4503a89b25f2@gmail.com></mailto:usrp-users@lists.ettus.com><=
-/mailto:guy@eastroad.org></mailto:richardlstanley@gmail.com></mailto:823ade=
-77-dfb9-4632-b924-c31c5b76b128@eastroad.org></mailto:usrp-users@lists.ettus=
-.com></mailto:guy@eastroad.org></mailto:usrp-users-owner@lists.ettus.com></=
-mailto:usrp-users-request@lists.ettus.com></mailto:usrp-users@lists.ettus.c=
-om></mailto:usrp-users-request@lists.ettus.com></patchvonbraun@gmail.com></=
-mailto:usrp-users-leave@lists.ettus.com></mailto:usrp-users-leave@lists.ett=
-us.com></mailto:usrp-users@lists.ettus.com></mailto:usrp-users@lists.ettus.=
-com></mailto:usrp-users-leave@lists.ettus.com></mailto:usrp-users-leave@lis=
-ts.ettus.com></mailto:usrp-users-leave@lists.ettus.com></mailto:usrp-users-=
-leave@lists.ettus.com></mailto:usrp-users-leave@lists.ettus.com></mailto:us=
-rp-users-leave@lists.ettus.com></mailto:usrp-users-leave@lists.ettus.com></=
-mailto:usrp-users-leave@lists.ettus.com></mailto:usrp-users@lists.ettus.com=
-></mailto:usrp-users@lists.ettus.com></mailto:usrp-users@lists.ettus.com></=
-mailto:usrp-users@lists.ettus.com></mailto:usrp-users@lists.ettus.com></mai=
-lto:usrp-users@lists.ettus.com></mailto:usrp-users@lists.ettus.com></mailto=
-:usrp-users@lists.ettus.com></mailto:vladicasark@gmail.com></mailto:vladica=
-sark@gmail.com></mailto:vladicasark@gmail.com></mailto:vladicasark@gmail.co=
-m></mailto:vladicasark@gmail.com></mailto:vladicasark@gmail.com></mailto:vl=
-adicasark@gmail.com></mailto:vladicasark@gmail.com></mailto:vladicasark@gma=
-il.com></mailto:vladicasark@gmail.com></mailto:vladicasark@gmail.com></mail=
-to:vladicasark@gmail.com></mailto:vladicasark@gmail.com></mailto:vladicasar=
-k@gmail.com></mailto:vladicasark@gmail.com></e04c8632-3f91-31d3-bdfc-bd7e76=
-4d7cd8@gmail.com></usrp-users@lists.ettus.com></michael.dickens@ettus.com><=
-/vladicasark@gmail.com></usrp-users-request@lists.ettus.com></div></blockqu=
-ote>=0A                                        </div></div>
-------=_NextPart_13161088.797861521985--
-
---===============7782672987380618182==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============7782672987380618182==--
+T24gMDgvMDMvMjAyMSAxMjoyMCBQTSwgbWFyY2luLnIud2FjaG93aWFrQGdtYWlsLmNvbSB3cm90
+ZToNCj4gSGVsbG8sDQo+IFRoYW5rIFlvdSBmb3IgdGhlIGludGVyZXN0IGluIG15IHByb2JsZW0u
+DQo+IFllcyBJIGFtIGZlZWRpbmcgdGhlIHNpZ25hbCBpbnRvIGJvdGggUlgyIHBvcnRzLiBJIGhh
+dmUganVzdCByZXBlYXRlZCB0aGUgc2FtZSB0aGluZyBzeW1tZXRyaWNhbGx5IGZvciBUWC9SWCBw
+b3J0cyBhbmQgdGhlIGRpc3RvcnRpb24gd2FzIHByZXNlbnQgYWdhaW4uDQo+DQo+IEtpbmQgcmVn
+YXJkLA0KPiBNYXJjaW4gV2FjaG93aWFrDQpXaGF0IGFyZSB5b3VyIGdhaW4gc2V0dGluZ3Mgb24g
+Ulggd2hlbiB0aGUgZGlzdG9ydGlvbiBzaG93cyB1cD8NCg0KV2hhdCBhYm91dCBUWCBnYWluPyAg
+Q2FuIHlvdSBpbmRlcGVuZGVudGx5IGV2YWx1YXRlIHlvdXIgVFggd2F2ZWZvcm0gYW5kIA0KY29u
+ZmlybSB0aGF0IGl0IGlzL2lzLW5vdCBkaXN0b3J0ZWQ/DQoNCldoYXQgYXJlIHRoZSBtYWduaXR1
+ZGVzIG9mIHRoZSBiYXNlYmFuZCBzaWduYWxzIHlvdSdyZSBzZW5kaW5nIHRvIHRoZSANCnJhZGlv
+PyAgVGhlIHNob3VsZCBuZXZlciBleGNlZWQgYWJvdXQgMC45IChwZXJoYXBzIGEgYml0IGxlc3Mp
+Lg0KDQoNCj4NCj4gLS0tLS1XaWFkb21vxZvEhyBvcnlnaW5hbG5hLS0tLS0NCj4gT2Q6IHVzcnAt
+dXNlcnMtcmVxdWVzdEBsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnMtcmVxdWVzdEBsaXN0cy5l
+dHR1cy5jb20+DQo+IFd5c8WCYW5vOiBUdWVzZGF5LCAzIEF1Z3VzdCAyMDIxIDE5OjQ4DQo+IERv
+OiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUZW1hdDogVVNSUC11c2VycyBEaWdlc3Qs
+IFZvbCAxMzIsIElzc3VlIDgNCj4NCj4gU2VuZCBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCBzdWJt
+aXNzaW9ucyB0bw0KPiAJdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4NCj4gVG8gc3Vic2Ny
+aWJlIG9yIHVuc3Vic2NyaWJlIHZpYSBlbWFpbCwgc2VuZCBhIG1lc3NhZ2Ugd2l0aCBzdWJqZWN0
+IG9yIGJvZHkgJ2hlbHAnIHRvDQo+IAl1c3JwLXVzZXJzLXJlcXVlc3RAbGlzdHMuZXR0dXMuY29t
+DQo+DQo+IFlvdSBjYW4gcmVhY2ggdGhlIHBlcnNvbiBtYW5hZ2luZyB0aGUgbGlzdCBhdA0KPiAJ
+dXNycC11c2Vycy1vd25lckBsaXN0cy5ldHR1cy5jb20NCj4NCj4gV2hlbiByZXBseWluZywgcGxl
+YXNlIGVkaXQgeW91ciBTdWJqZWN0IGxpbmUgc28gaXQgaXMgbW9yZSBzcGVjaWZpYyB0aGFuICJS
+ZTogQ29udGVudHMgb2YgVVNSUC11c2VycyBkaWdlc3QuLi4iDQo+DQo+IFRvZGF5J3MgVG9waWNz
+Og0KPg0KPiAgICAgMS4gUmU6IE9wdGljYWwgU0ZQKyBhZGFwdGVycyBmb3IgTjMyMSAoVmxhZGlj
+YSBTYXJrKQ0KPiAgICAgMi4gUmU6IE9uZSBSWCBjaGFubmVsIG9mIEIyMTAgcHJlc2VudHMgZGlz
+dG9ydGVkIHNpZ25hbCBmcm9tIHNwbGl0dGVyDQo+ICAgICAgICAoTWFyY3VzIEQuIExlZWNoKQ0K
+Pg0KPg0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+DQo+IE1lc3NhZ2U6IDENCj4gRGF0ZTogVHVlLCAzIEF1
+ZyAyMDIxIDE3OjM5OjM2ICswMjAwDQo+IEZyb206IFZsYWRpY2EgU2FyayA8dmxhZGljYXNhcmtA
+Z21haWwuY29tPg0KPiBTdWJqZWN0OiBbVVNSUC11c2Vyc10gUmU6IE9wdGljYWwgU0ZQKyBhZGFw
+dGVycyBmb3IgTjMyMQ0KPiBUbzogTWljaGFlbCBEaWNrZW5zIDxtaWNoYWVsLmRpY2tlbnNAZXR0
+dXMuY29tPg0KPiBDYzogInVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiA8dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20+DQo+IE1lc3NhZ2UtSUQ6IDxlMDRjODYzMi0zZjkxLTMxZDMtYmRmYy1i
+ZDdlNzY0ZDdjZDhAZ21haWwuY29tPg0KPiBDb250ZW50LVR5cGU6IHRleHQvcGxhaW47IGNoYXJz
+ZXQ9dXRmLTg7IGZvcm1hdD1mbG93ZWQNCj4NCj4gSGkgTWljaGFlbCwNCj4NCj4gVGhhbmtzIGZv
+ciBpbmZvcm1pbmcgdXMgYWJvdXQgdGhpcy4gSSB3b3VsZCBiZSBoYXBweSB0byB0ZXN0IGl0LiBJ
+IGFtIGluIHRoZSBtb21lbnQgb24gdmFjYXRpb24sIGJ1dCBuZXh0IHdlZWsgSSB3aWxsIGZpbmQg
+c29tZSB0aW1lIHRvIHRlc3QgaXQuDQo+DQo+IEJlc3QgcmVnYXJkcywNCj4gVmxhZGljYQ0KPg0K
+Pg0KPiBPbiAwMy4wOC4yMSAxNzoxNywgTWljaGFlbCBEaWNrZW5zIHdyb3RlOg0KPj4gSGkgVmxh
+ZGljYSAmIHRoZSBVU1JQIGNvbW11bml0eSAtIEZvciB0aG9zZSBvZiB5b3Ugd2hvIGhhdmUgV2hp
+dGUNCj4+IFJhYmJpdCBlcXVpcG1lbnQsIHlvdSBjYW4gZG93bmxvYWQgYnJhbmQgbmV3IGhvdCBv
+ZmYgdGhlIGJ1aWxkYm90cyBXUg0KPj4gRlBHQSBpbWFnZXMgKFdYIGFuZCBYUSkgZm9yIHlvdXIg
+TjN4MCBvciBOMzJ4IGhlcmUgPA0KPj4gaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2RyaXZlL2Zv
+bGRlcnMvMXktQUpBMlpCYUhnd3lSQ2lPZmF0ZkF5TFNYMHQxRw0KPj4gN2w/dXNwPXNoYXJpbmcN
+Cj4+IDxodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZHJpdmUvZm9sZGVycy8xeS1BSkEyWkJhSGd3
+eVJDaU9mYXRmQXlMU1gwdDENCj4+IEc3bD91c3A9c2hhcmluZz4+IC4gTm90ZSB0aGF0IHRoZXNl
+IGFyZSBmb3IgVUhEIDQuMS4wLlggLS0gVUhEIHB1YmxpYw0KPj4gR0lUIG1hc3RlcjsgR0lUIGJy
+YW5jaCBVSEQtNC4xLCBvciA0LjEuMC4wIG9yIDQuMS4wLjEgcmVsZWFzZXMuIEkndmUNCj4+IHRl
+c3RlZCB0aGVzZSBGUEdBIGltYWdlcyBvbiBOMzEwIHJldmlzaW9uIDUgYW5kIDcsIGFuZCBOMzIw
+IChjdXJyZW50DQo+PiByZXZpc2lvbik7IGp1c3QgdXAgdGhyb3VnaCAiYmVuY2htYXJrX3JhdGUi
+IHdoZW4gc3BlY2lmeWluZw0KPj4gInRpbWVfc291cmNlPXNmcDAiIGFuZCBtdWx0aXBsZSBjaGFu
+bmVscywgYm90aCBvbiB0aGUgVVNSUCBhbmQgcmVtb3RlDQo+PiB0byBhIGhvc3QgLi4uIGFsbCB3
+b3JrcyBmaW5lISBUaHVzLCBJIHdhbnRlZCB0byBnZXQgdGhlIEZQR0EgaW1hZ2VzDQo+PiBvdXQg
+dG8gY3VzdG9tZXJzIGZvciB0ZXN0aW5nIC8gZXZhbHVhdGlvbiAuLi4gSWYgeW91IGRvIHNvLCBJ
+J2QgbG92ZQ0KPj4gdG8gaGVhciBvZiB5b3VyIHN1Y2Nlc3NlcyAvIGlzc3VlcyEgLSBNTEQNCj4+
+DQo+Pg0KPj4gT24gVHVlLCBKdWwgMTMsIDIwMjEgYXQgMjowMSBQTSBWbGFkaWNhIFNhcmsgPHZs
+YWRpY2FzYXJrQGdtYWlsLmNvbQ0KPj4gPG1haWx0bzp2bGFkaWNhc2Fya0BnbWFpbC5jb20+PiB3
+cm90ZToNCj4+DQo+PiAgICAgIEhpIFJvYiwNCj4+DQo+PiAgICAgIFRoYW5rcyBmb3IgdGhpcyB1
+c2VmdWwgaW5mb3JtYXRpb24uDQo+PiAgICAgIEFjY29yZGluZyB0byBNaWNoYWVsIGl0IHNob3Vs
+ZCBiZSBmaXhlZCBtaWQvbGF0ZSBKdWx5IDIwMjEsIHNvIHByZXR0eQ0KPj4gICAgICBzb29uLiBN
+ZWFud2hpbGUgSSBjYW4gb25seSBzd2l0Y2ggYmFjayB0byBYMzEwIHByb2JhYmx5LCBhbmQgc2Vl
+DQo+PiAgICAgIGlmIGl0DQo+PiAgICAgIHdvcmtzIHRoZXJlLg0KPj4NCj4+ICAgICAgTGV0J3Mg
+aG9wZSBpdCB3b3VsZCBiZSBmaXhlZCBzb29uLg0KPj4NCj4+DQo+PiAgICAgIEJSLA0KPj4gICAg
+ICBWbGFkaWNhDQo+Pg0KPj4NCj4+ICAgICAgT24gMTIuMDcuMjEgMTc6NDcsIFJvYiBLb3NzbGVy
+IHdyb3RlOg0KPj4gICAgICA+IEhpIFZsYWRpY2EsDQo+PiAgICAgID4gRnJvbSB0aGUgJ2NoYW5n
+ZWxvZycsIGl0IGFwcGVhcnMgdGhhdCBOMzIxIHN1cHBvcnQgYmVnYW4gd2l0aA0KPj4gICAgICBy
+ZWxlYXNlDQo+PiAgICAgID4gMy4xNC4gIEJ1dCwgYXQgdGhhdCBwb2ludCBJIGJlbGlldmUgdGhh
+dCBXUiB3YXMgYWxyZWFkeSBicm9rZW4uDQo+PiAgICAgIFNvLCBJDQo+PiAgICAgID4gdGhpbmsg
+dGhhdCB0aGVyZSBpcyBubyBzb2x1dGlvbiB0byB5b3VyIHByb2JsZW0gb3RoZXIgdGhhbiB0bw0K
+Pj4gICAgICB3YWl0IGZvcg0KPj4gICAgICA+IEV0dHVzIHRvIGZpeCB0aGUgV1IgaXNzdWVzLiAg
+SG93ZXZlciwgV1IgaGFzIGJlZW4gYnJva2VuIGZvciBhDQo+PiAgICAgIHdoaWxlDQo+PiAgICAg
+ID4gKG5vdGUgdXNlci1saXN0IHBvc3RzIGZyb20gbGFzdCBmYWxsIFNlcHQgICYgRGVjKSBzbyBJ
+IGRvbid0DQo+PiAgICAgIGtub3cgd2hlbg0KPj4gICAgICA+IHRoaXMgd2lsbCBiZSB3b3JraW5n
+IGFnYWluLg0KPj4gICAgICA+IFJvYg0KPj4gICAgICA+DQo+PiAgICAgID4NCj4+ICAgICAgPiBP
+biBXZWQsIEp1bCA3LCAyMDIxIGF0IDEwOjI2IEFNIFZsYWRpY2EgU2Fyaw0KPj4gICAgICA8dmxh
+ZGljYXNhcmtAZ21haWwuY29tIDxtYWlsdG86dmxhZGljYXNhcmtAZ21haWwuY29tPg0KPj4gICAg
+ICA+IDxtYWlsdG86dmxhZGljYXNhcmtAZ21haWwuY29tIDxtYWlsdG86dmxhZGljYXNhcmtAZ21h
+aWwuY29tPj4+DQo+PiAgICAgIHdyb3RlOg0KPj4gICAgICA+DQo+PiAgICAgID4gICAgIEhpIE1p
+Y2hhZWwsDQo+PiAgICAgID4NCj4+ICAgICAgPiAgICAgSSBvYnRhaW5lZCB0aGUgbmVjZXNzYXJ5
+IFNGUCsgb3B0aWNhbCBhZGFwdGVycyBhbmQgbm93IEkgYW0NCj4+ICAgICAgdHJ5aW5nIHRvDQo+
+PiAgICAgID4gICAgIHB1dCB1aGQgMy4xMy4xLjAgb24gdGhlIE4zMjFzIGluIG9yZGVyIHRvIHVz
+ZSB0aGUgV1INCj4+ICAgICAgc3luY2hyb25pemF0aW9uLg0KPj4gICAgICA+ICAgICBVbmZvcnR1
+bmF0ZWx5LCB3aGVuIEkgdXBkYXRlIHRoZSBzZCBjYXJkIGltYWdlIHdpdGggMy4xMy4xLjANCj4+
+ICAgICAgdGhlIE4zMjENCj4+ICAgICAgPiAgICAgYm9vdHMgYnV0IHRoZSBTRlAwIGFuZCBTRlAx
+IGRvIG5vdCBnbyB1cC4gV2hlbiBJIHRyeSB0byBydW4NCj4+ICAgICAgPiAgICAgdWhkX2ZpbmRf
+ZGV2aWNlcywgb24gYSB0ZXJtaW5hbCB1c2luZyB0aGUgVVNCIHBvcnQgaXQgc2F5cw0KPj4gICAg
+ICBubyBVSEQNCj4+ICAgICAgPiAgICAgZGV2aWNlcyBhcmUgZm91bmQuDQo+PiAgICAgID4NCj4+
+ICAgICAgPiAgICAgSSBiZWxpZXZlIHRoYXQgdGhlIHJpZ2h0IEZQR0EgaW1hZ2Ugc2hvdWxkIGJl
+IHB1dCBvbiB0aGUNCj4+ICAgICAgRlBHQSwgYnV0DQo+PiAgICAgID4gICAgIHRoZQ0KPj4gICAg
+ICA+ICAgICB3YXlzIGRlc2NyaWJlZCBpbiBLbm93bGVkZ2ViYXNlIGFyZSBub3Qgd29ya2luZy4N
+Cj4+ICAgICAgPg0KPj4gICAgICA+ICAgICBJcyB0aGVyZSBhIHdheSB0byBwdXQgdGhlIHZlcnNp
+b24gMy4xMy4xLjAgb24gdGhlIE4zMjE/IEkNCj4+ICAgICAgaGF2ZSB0cmllZA0KPj4gICAgICA+
+ICAgICB2ZXJzaW9uIDQuMC4wLjAgYW5kIGl0IGlzIHdvcmtpbmcgZmluZSwgYnV0IFdSIGlzIGJy
+b2tlbi4NCj4+ICAgICAgPg0KPj4gICAgICA+ICAgICBCUiwNCj4+ICAgICAgPiAgICAgVmxhZGlj
+YQ0KPj4gICAgICA+DQo+PiAgICAgID4NCj4+ICAgICAgPiAgICAgT24gMjIuMDYuMjEgMjE6MzEs
+IE1pY2hhZWwgRGlja2VucyB3cm90ZToNCj4+ICAgICAgPiAgICAgPiBJJ20gdXNpbmcgcHJpbWFy
+aWx5IEZTIGFkYXB0ZXJzLCBjYWJsZXMgKHNpbmdsZSBhbmQgbXVsdGkNCj4+ICAgICAgbW9kZSks
+DQo+PiAgICAgID4gICAgIGFuZA0KPj4gICAgICA+ICAgICA+IGZpYmVyIGNvbm5lY3RvcnMgKHRv
+IGFsbG93IG11bHRpcGxleGluZyBsYW5lcykuIFRoZSBhZGFwdGVycyBJDQo+PiAgICAgID4gICAg
+IGJvdWdodA0KPj4gICAgICA+ICAgICA+IHdlcmUgImdlbmVyaWMiIGFuZCBoYWQgdG8gYmUgdHdl
+YWtlZCB1c2luZyBhbiBGUyBCT1ggdG8gYmUNCj4+ICAgICAgZnVsbHkNCj4+ICAgICAgPiAgICAg
+PiBjb21wYXRpYmxlIHdpdGggSW50ZWwgb3IgTWVsbGFub3ggTklDcy4gVGhpcyB0d2Vha2luZw0K
+Pj4gICAgICBzZWVtcyB0byBoYXZlDQo+PiAgICAgID4gICAgID4gaGVscGVkIGEgbG90IHdpdGgg
+dGhlIDEwMCBHYiBpbnRlcmZhY2UgKEU4MTApOyB0aGUgMTAgR2INCj4+ICAgICAgPiAgICAgaW50
+ZXJmYWNlcyBkbw0KPj4gICAgICA+ICAgICA+IG5vdCBzaG93IG11Y2ggYmVuZWZpdCB0byBiZSBt
+YW51ZmFjdHVyZXIgc3BlY2lmaWMgLS0NCj4+ICAgICAgdGhvdWdoIEknbQ0KPj4gICAgICA+ICAg
+ICBzdXJlDQo+PiAgICAgID4gICAgID4gaXQgZG9lc24ndCBodXJ0ISBJIGhhdmUgbm90IHRyaWVk
+IGEgbXVsdGktbW9kZSB0byBzaW5nbGUgbW9kZQ0KPj4gICAgICA+ICAgICBzcGxpdHRlcg0KPj4g
+ICAgICA+ICAgICA+IC8gam9pbmVyLCBidXQgSSdkIHN1cHBvc2UgdGhleSBkbyBleGlzdCAmIGlm
+IGFueWJvZHkgaGVyZQ0KPj4gICAgICBoYXMgaGFkDQo+PiAgICAgID4gICAgID4gZXhwZXJpZW5j
+ZSB0aGF0IHdvdWxkIGJlIHVzZWZ1bCB0byBoZWFyIGFib3V0ISBJIGhvcGUgdGhpcyBpcw0KPj4g
+ICAgICA+ICAgICB1c2VmdWwhDQo+PiAgICAgID4gICAgID4gLSBNTEQNCj4+ICAgICAgPiAgICAg
+Pg0KPj4gICAgICA+ICAgICA+DQo+PiAgICAgID4gICAgID4gT24gVHVlLCBKdW4gMjIsIDIwMjEg
+YXQgMTA6MDUgQU0gVmxhZGljYSBTYXJrDQo+PiAgICAgID4gICAgIDx2bGFkaWNhc2Fya0BnbWFp
+bC5jb20gPG1haWx0bzp2bGFkaWNhc2Fya0BnbWFpbC5jb20+DQo+PiAgICAgIDxtYWlsdG86dmxh
+ZGljYXNhcmtAZ21haWwuY29tIDxtYWlsdG86dmxhZGljYXNhcmtAZ21haWwuY29tPj4NCj4+ICAg
+ICAgPiAgICAgPiA8bWFpbHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNvbQ0KPj4gICAgICA8bWFpbHRv
+OnZsYWRpY2FzYXJrQGdtYWlsLmNvbT4gPG1haWx0bzp2bGFkaWNhc2Fya0BnbWFpbC5jb20NCj4+
+ICAgICAgPG1haWx0bzp2bGFkaWNhc2Fya0BnbWFpbC5jb20+Pj4+DQo+PiAgICAgID4gICAgIHdy
+b3RlOg0KPj4gICAgICA+ICAgICA+DQo+PiAgICAgID4gICAgID4gICAgIEhpIE1pY2hhZWwsDQo+
+PiAgICAgID4gICAgID4NCj4+ICAgICAgPiAgICAgPiAgICAgVGhhbmtzIGZvciB0aGUgYW5zd2Vy
+LiBGb3Igbm93IGZvciB0aGUgZGF0YSBJIGFtIHVzaW5nIERBQw0KPj4gICAgICA+ICAgICBjYWJs
+ZXMsDQo+PiAgICAgID4gICAgID4gICAgIGJ1dA0KPj4gICAgICA+ICAgICA+ICAgICB3ZSB3b3Vs
+ZCBuZWVkIGxhcmdlciBkaXN0YW5jZXMsIGkuZS4gNTArIG1ldGVycywgYW5kIGZvcg0KPj4gICAg
+ICA+ICAgICB0aGlzIEkgd291bGQNCj4+ICAgICAgPiAgICAgPiAgICAgbmVlZCBmaWJlcnMgZm9y
+IGJvdGggV1IgYW5kIGRhdGEuDQo+PiAgICAgID4gICAgID4NCj4+ICAgICAgPiAgICAgPiAgICAg
+SXMgdGhlcmUgYWxzbyBzb21lIG9wdGljYWwgbXVsdGlwbGV4ZXIgZm9yIHRoZXNlDQo+PiAgICAg
+IHdhdmVsZW5ndGhzLCBpbg0KPj4gICAgICA+ICAgICA+ICAgICBvcmRlcg0KPj4gICAgICA+ICAg
+ICA+ICAgICB0byB1c2UgYSBzaW1wbGV4IGZpYmVyLCBmb3IgYm90aCBXUiBhbmQgZGF0YT8NCj4+
+ICAgICAgPiAgICAgPg0KPj4gICAgICA+ICAgICA+ICAgICBCUiwNCj4+ICAgICAgPiAgICAgPiAg
+ICAgVmxhZGljYQ0KPj4gICAgICA+ICAgICA+DQo+PiAgICAgID4gICAgID4gICAgIE9uIDIyLjA2
+LjIxIDE1OjQxLCBNaWNoYWVsIERpY2tlbnMgd3JvdGU6DQo+PiAgICAgID4gICAgID4gICAgID4g
+SGkgVmxhZGljYSAtIEkndmUgdGVzdGVkIGEgdmFyaWV0eSBvZiBmaWJlciBhZGFwdGVycyBhbmQN
+Cj4+ICAgICAgPiAgICAgY2FibGVzDQo+PiAgICAgID4gICAgID4gICAgIHdpdGgNCj4+ICAgICAg
+PiAgICAgPiAgICAgPiBubyBpc3N1ZXMgKGUuZy4sIFp5WEVMLCBGUywgQXhjZW4pLiBUaGUgcHJp
+bWFyeSBrZXlzIGFyZQ0KPj4gICAgICA+ICAgICB0byBtYWtlDQo+PiAgICAgID4gICAgID4gICAg
+IHN1cmUNCj4+ICAgICAgPiAgICAgPiAgICAgPiB0aGUgdmFyaW91cyByZWxhdGVkIHBhcmFtZXRl
+cnMgbWF0Y2ggdXAgYmV0d2VlbiB0aGUNCj4+ICAgICAgPiAgICAgYWRhcHRlcnMgYW5kDQo+PiAg
+ICAgID4gICAgID4gICAgID4gY2FibGVzIGFuZCBkZXZpY2VzLiBGb3IgZXhhbXBsZTogSWYgdGhl
+IGFkYXB0ZXIgaXMNCj4+ICAgICAgMTQ5MC8xMzEwLA0KPj4gICAgICA+ICAgICA+ICAgICB0aGVu
+IHlvdQ0KPj4gICAgICA+ICAgICA+ICAgICA+IHdhbnQgdG8gbWFrZSBzdXJlIHRoZSBjYWJsZSBp
+cyBmb3IgdGhlIHNhbWUNCj4+ICAgICAgd2F2ZWxlbmd0aHMuIFNhbWUNCj4+ICAgICAgPiAgICAg
+PiAgICAgZm9yIHRoZQ0KPj4gICAgICA+ICAgICA+ICAgICA+IGZpYmVyIHBvbGlzaCBhbmQgb3Ro
+ZXIgcGFyYW1ldGVycyAoc2luZ2xlIC8gZHVhbA0KPj4gICAgICBmaWJlciA7IC4NCj4+ICAgICAg
+PiAgICAgU29tZSBhcmUNCj4+ICAgICAgPiAgICAgPiAgICAgPiBlYXNpZXIgdGhhbiBvdGhlcnMs
+IG5vbmUgb2YgdGhpcyBpcyB0b28gZGlmZmljdWx0DQo+PiAgICAgIGx1Y2tpbHkhDQo+PiAgICAg
+ID4gICAgID4gICAgID4NCj4+ICAgICAgPiAgICAgPiAgICAgPiBGb3Igc2hvcnQgZGlzdGFuY2Vz
+LCBhIERBQyBjYWJsZSB3aWxsIHdvcmsgZm9yIGFsbA0KPj4gICAgICBvZiB0aGUNCj4+ICAgICAg
+PiAgICAgTjMyMC9OMzIxDQo+PiAgICAgID4gICAgID4gICAgID4gU0ZQIGludGVyZmFjZXMuDQo+
+PiAgICAgID4gICAgID4gICAgID4NCj4+ICAgICAgPiAgICAgPiAgICAgPiBBdCB0aGUgbW9tZW50
+LCBXUiBzdXBwb3J0IGlzIGJlaW5nIGZpeGVkIGZvciBVSEQNCj4+ICAgICAgMy4xNC4wLjAgdG8N
+Cj4+ICAgICAgPiAgICAgPiAgICAgY3VycmVudC4NCj4+ICAgICAgPiAgICAgPiAgICAgPiBJZiB5
+b3UgLXJlcXVpcmUtIFdSIHN1cHBvcnQgLXJpZ2h0IG5vdy0geW91IGNhbiB1c2UgVUhEDQo+PiAg
+ICAgID4gICAgIDMuMTMuMS4wDQo+PiAgICAgID4gICAgID4gICAgIHdoaWxlDQo+PiAgICAgID4g
+ICAgID4gICAgID4gd2UncmUgd29ya2luZyBvdXQgaG93IHRvIGZpeCBXUiBmb3IgbmV3ZXIgVUhE
+LiBXZSBleHBlY3QNCj4+ICAgICAgPiAgICAgdGhlIGZpeA0KPj4gICAgICA+ICAgICA+ICAgICB0
+byBiZQ0KPj4gICAgICA+ICAgICA+ICAgICA+IGF2YWlsYWJsZSB0byBjdXN0b21lcnMgc29tZXRp
+bWUgaW4gbWlkL2xhdGUtSnVseQ0KPj4gICAgICAoMjAyMSk7IG9uY2UNCj4+ICAgICAgPiAgICAg
+PiAgICAgdGhlIGZpeA0KPj4gICAgICA+ICAgICA+ICAgICA+IGlzIGRldGVybWluZWQgYW5kIHZl
+cmlmaWVkIHdlIHdpbGwgY29tbWl0IGl0IHRvIHRoZQ0KPj4gICAgICB2YXJpb3VzDQo+PiAgICAg
+ID4gICAgID4gICAgIGJyYW5jaGVzDQo+PiAgICAgID4gICAgID4gICAgID4gb2YgdGhlIFVIRCBy
+ZXBvc2l0b3J5LCBhbmQgaXQgd2lsbCBiZSBhdmFpbGFibGUgaW4gVUhEDQo+PiAgICAgID4gICAg
+IC1hZnRlci0gdGhlDQo+PiAgICAgID4gICAgID4gICAgID4gZm9ydGhjb21pbmcgNC4xIHJlbGVh
+c2UuIEl0IHdpbGwgYmUgYXZhaWxhYmxlIGluIHRoZQ0KPj4gICAgICA+ICAgICBwdWJsaWMgVUhE
+DQo+PiAgICAgID4gICAgID4gICAgID4gcmVwb3NpdG9yeSBmb3IgZm9sa3MgdG8gdXNlIHRvIHBh
+dGNoIFVIRCBiZXR3ZWVuDQo+PiAgICAgIHJlbGVhc2VzLg0KPj4gICAgICA+ICAgICA+ICAgICA+
+DQo+PiAgICAgID4gICAgID4gICAgID4gSSBob3BlIHRoaXMgaXMgdXNlZnVsISAtIE1MRA0KPj4g
+ICAgICA+ICAgICA+ICAgICA+DQo+PiAgICAgID4gICAgID4gICAgID4NCj4+ICAgICAgPiAgICAg
+PiAgICAgPiBPbiBUdWUsIEp1biAyMiwgMjAyMSBhdCA2OjE5IEFNIFZsYWRpY2EgU2Fyaw0KPj4g
+ICAgICA+ICAgICA+ICAgICA8dmxhZGljYXNhcmtAZ21haWwuY29tIDxtYWlsdG86dmxhZGljYXNh
+cmtAZ21haWwuY29tPg0KPj4gICAgICA8bWFpbHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNvbSA8bWFp
+bHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNvbT4+DQo+PiAgICAgID4gICAgIDxtYWlsdG86dmxhZGlj
+YXNhcmtAZ21haWwuY29tIDxtYWlsdG86dmxhZGljYXNhcmtAZ21haWwuY29tPg0KPj4gICAgICA8
+bWFpbHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNvbSA8bWFpbHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNv
+bT4+Pg0KPj4gICAgICA+ICAgICA+ICAgICA+IDxtYWlsdG86dmxhZGljYXNhcmtAZ21haWwuY29t
+DQo+PiAgICAgIDxtYWlsdG86dmxhZGljYXNhcmtAZ21haWwuY29tPg0KPj4gICAgICA+ICAgICA8
+bWFpbHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNvbQ0KPj4gICAgICA8bWFpbHRvOnZsYWRpY2FzYXJr
+QGdtYWlsLmNvbT4+IDxtYWlsdG86dmxhZGljYXNhcmtAZ21haWwuY29tDQo+PiAgICAgIDxtYWls
+dG86dmxhZGljYXNhcmtAZ21haWwuY29tPg0KPj4gICAgICA+ICAgICA8bWFpbHRvOnZsYWRpY2Fz
+YXJrQGdtYWlsLmNvbSA8bWFpbHRvOnZsYWRpY2FzYXJrQGdtYWlsLmNvbT4+Pj4+DQo+PiAgICAg
+ID4gICAgID4gICAgIHdyb3RlOg0KPj4gICAgICA+ICAgICA+ICAgICA+DQo+PiAgICAgID4gICAg
+ID4gICAgID4gICAgIERlYXIgYWxsLA0KPj4gICAgICA+ICAgICA+ICAgICA+DQo+PiAgICAgID4g
+ICAgID4gICAgID4gICAgIEkgd291bGQgbGlrZSB0byB1c2UgTjMyMSB3aXRoIFdSUyAzLzE4IHdo
+aWNoDQo+PiAgICAgIHVzZXMgb3B0aWNhbA0KPj4gICAgICA+ICAgICA+ICAgICBjYWJsZXMuIEkN
+Cj4+ICAgICAgPiAgICAgPiAgICAgPiAgICAgd291bGQgbGlrZSB0byB1c2UgYWxzbyBmb3IgdGhl
+IDEwIEdiaXQgU0ZQMQ0KPj4gICAgICBvcHRpY2FsIFNGUCsNCj4+ICAgICAgPiAgICAgPiAgICAg
+dHJhbnNjZWl2ZXIuDQo+PiAgICAgID4gICAgID4gICAgID4gICAgIERvIHlvdSBoYXZlIHNvbWUg
+cmVjb21tZW5kZWQgb3B0aWNhbCBTRlArIGFkYXB0ZXJzLA0KPj4gICAgICA+ICAgICBkdXBsZXgg
+YW5kLA0KPj4gICAgICA+ICAgICA+ICAgICA+ICAgICBwcmVmZXJhYmx5LCBzaW1wbGV4Pw0KPj4g
+ICAgICA+ICAgICA+ICAgICA+ICAgICBUaGUgaWRlYSBpcyB0byB1c2UgYSBkdXBsZXggbW9ub21v
+ZGUgZmliZXIsIG9uZQ0KPj4gICAgICBmaWJlciBmb3INCj4+ICAgICAgPiAgICAgPiAgICAgdGhl
+IDEwIEdiaXQNCj4+ICAgICAgPiAgICAgPiAgICAgPiAgICAgZGF0YSBhbmQgb25lIGZpYmVyIGZv
+ciBXUlMgc3luY2hyb25pemF0aW9uLg0KPj4gICAgICA+ICAgICA+ICAgICA+ICAgICBUaGV5IHdv
+dWxkIGJlIGNvbm5lY3RlZCB0byAxMCBHYml0IHN3aXRjaCBvciBRTkFQDQo+PiAgICAgID4gICAg
+ID4gICAgIFRodW5kZXJib2x0IHRvIFNGUCsNCj4+ICAgICAgPiAgICAgPiAgICAgPiAgICAgYWRh
+cHRlciwgc28gdGhleSBkbyBub3QgaGF2ZSB0byBiZSBJbnRlbC4NCj4+ICAgICAgPiAgICAgPiAg
+ICAgPg0KPj4gICAgICA+ICAgICA+ICAgICA+DQo+PiAgICAgID4gICAgID4gICAgID4gICAgIEJl
+c3QgcmVnYXJkcywNCj4+ICAgICAgPiAgICAgPiAgICAgPg0KPj4gICAgICA+ICAgICA+ICAgICA+
+ICAgICBWbGFkaWNhDQo+PiAgICAgID4gICAgID4gICAgID4NCj4+ICAgICAgPiAgICAgPiAgICAg
+PiAgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+ICAg
+ICAgPiAgICAgPiAgICAgPiAgICAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0NCj4+ICAgICAg
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4NCj4+ICAgICAgPiAgICAgPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
+Pj4gICAgICA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4NCj4+ICAgICAgPiAg
+ICAgPiAgICAgPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgICA8bWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAgICA+ICAgICA8bWFpbHRvOnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0
+cy5ldHR1cy5jb20+Pj4NCj4+ICAgICAgPiAgICAgPiAgICAgPiAgICAgPG1haWx0bzp1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgICA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPg0KPj4gICAgICA+ICAgICA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
+DQo+PiAgICAgIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0KPj4gICAgICA+
+ICAgICA+ICAgICA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgIDxt
+YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQo+PiAgICAgID4gICAgIDxtYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+ICAgICAgPG1haWx0bzp1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbT4+Pj4NCj4+ICAgICAgPiAgICAgPiAgICAgPiAgICAgVG8gdW5zdWJzY3Jp
+YmUgc2VuZCBhbiBlbWFpbCB0bw0KPj4gICAgICA+ICAgICA+IHVzcnAtdXNlcnMtbGVhdmVAbGlz
+dHMuZXR0dXMuY29tDQo+PiAgICAgIDxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20+DQo+PiAgICAgID4gICAgIDxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20NCj4+ICAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4+
+DQo+PiAgICAgID4gICAgID4gICAgIDxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20NCj4+ICAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4N
+Cj4+ICAgICAgPiAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0K
+Pj4gICAgICA8bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPj4+DQo+PiAg
+ICAgID4gICAgID4gICAgID4gICAgIDxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20NCj4+ICAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4N
+Cj4+ICAgICAgPiAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0K
+Pj4gICAgICA8bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPj4NCj4+ICAg
+ICAgPiAgICAgPiAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0K
+Pj4gICAgICA8bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAg
+ICA+ICAgICA8bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAg
+IDxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+Pj4+DQo+PiAgICAgID4g
+ICAgID4gICAgID4NCj4+ICAgICAgPiAgICAgPg0KPj4gICAgICA+ICAgICBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4gICAgICA+ICAgICBVU1JQLXVz
+ZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgICA8
+bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAgICA+ICAgICA8bWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgIDxtYWlsdG86dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20+Pg0KPj4gICAgICA+ICAgICBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
+YWlsIHRvDQo+PiAgICAgIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAg
+IDxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo+PiAgICAgID4gICAg
+IDxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4+ICAgICAgPG1haWx0
+bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4+DQo+PiAgICAgID4NCj4+DQo+IC0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPg0KPiBNZXNzYWdlOiAyDQo+IERhdGU6IFR1
+ZSwgMDMgQXVnIDIwMjEgMTM6NDg6MTcgLTA0MDANCj4gRnJvbTogIk1hcmN1cyBELiBMZWVjaCIg
+PHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KPiBTdWJqZWN0OiBbVVNSUC11c2Vyc10gUmU6IE9u
+ZSBSWCBjaGFubmVsIG9mIEIyMTAgcHJlc2VudHMgZGlzdG9ydGVkDQo+IAlzaWduYWwgZnJvbSBz
+cGxpdHRlcg0KPiBUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gTWVzc2FnZS1JRDog
+PDYxMDk4MTYxLjQwNjA0MDVAZ21haWwuY29tPg0KPiBDb250ZW50LVR5cGU6IG11bHRpcGFydC9h
+bHRlcm5hdGl2ZTsNCj4gCWJvdW5kYXJ5PSItLS0tLS0tLS0tLS0wNDA0MDIwNDA5MDEwMTA5MDQw
+MjA0MDEiDQo+DQo+IE9uIDA4LzAzLzIwMjEgMTE6MDggQU0sIE1hcmNpbiBXYWNob3dpYWsgd3Jv
+dGU6DQo+PiBIZWxsbywNCj4+IFRoZSBzaWduYWxzIHByb3ZpZGVkIGF0IHRoZSBpbnB1dCBoYXZl
+IHF1aXRlIGxvdyBwb3dlciwgZmFyIGJlbG93IHRoZQ0KPj4gdGhyZXNob2xkIG9mIC0yMGRibS4g
+KCBJIGRvbid0IGtub3cgdGhlIGV4YWN0IHZhbHVlcyBidXQgSQ0KPj4gYWRkaXRpb25hbGx5IGV2
+ZW4gYWRkZWQgYSAzMGRCIGF0dGVudWF0b3IgZm9yIHNhZmV0eSkgV2hhdCBJIGFsc28NCj4+IGZv
+dW5kIG91dCBpcyB0aGF0IHRoZSBkaXN0b3J0aW9ucyBhcmUgZGVwZW5kZW50IG1vcmUgb24gdGhl
+IHNldHRpbmcgb2YNCj4+IHRoZSBSWCwgVFggZ2FpbiB0aGFuIHRoZSB2YWx1ZS4gIER1cmluZyBs
+aXZlIHRlc3RpbmcgSSBvYnNlcnZlZCB0aGUNCj4+IHRoaXMgaGFybW9uaWMgZGlzdG9ydGlvbiBh
+dCBvbmUgY2hhbm5lbCBvbmx5LCBhbmQgYWZ0ZXIgaW5jcmVhc2luZyB0aGUNCj4+IFRYIG9yIFJY
+IGdhaW4gaXQgZGlzYXBwZWFyZWQgICh3aGF0IGlzIHZpc2libGUgaW4gdGhlIG5ldyB2aWRlb3Mp
+Og0KPj4gdXNycF9iMjEwX3N0cmFuZ2VfaGFybW9uaWNfZGlzdG9yaXRvbi5tcDQNCj4+IDxodHRw
+czovL2RyaXZlLmdvb2dsZS5jb20vZmlsZS9kLzFoWUhmSV9vWGtlNUs5UEdUei1SODhuLUROZmFp
+SlVZUC92aWUNCj4+IHc/dXNwPWRyaXZlX3dlYj4NCj4+IHVzcnBfYjIxMF9zdHJhbmdlX2hhcm1v
+bmljX2Rpc3Rvcml0b25fMi5tcDQNCj4+IDxodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZmlsZS9k
+LzE1YnEwaG1VSkZMV3NrQThxYjd3XzctRVhQRjNvR3Y3WS92aWUNCj4+IHc/dXNwPWRyaXZlX3dl
+Yj4NCj4+IEtpbmQgcmVnYXJkcywNCj4+IE1hcmNpbiBXYWNob3dpYWsNCj4gUmlnaHQgYmVjYXVz
+ZSBkaXN0b3J0aW9uIGluIFJGIGNvbXBvbmVudHMgaXNuJ3QgZ29pbmcgdG8gc3RhcnQgb2NjdXJy
+aW5nIGF0IGEgdW5pZm9ybSBsZXZlbCBvdmVyIGVhY2ggZGlzY3JldGUgZGV2aWNlLS10aGVyZSB3
+aWxsIGJlIHZhcmlhYmlsaXR5Lg0KPg0KPiBBcmUgeW91IHVzaW5nIHRoZSBzYW1lIChSWDIpIGFu
+dGVubmEgaW5wdXRzIGluIGVhY2ggY2FzZT8gIEF0IGhpZ2ggZ2FpbiBsZXZlbHMgaXQgZG9lc24n
+dCB0YWtlIG11Y2ggdG8gZHJpdmUgdGhpbmdzIGludG8gbm9uLWxpbmVhciBvcGVyYXRpb24uDQo+
+DQo+DQo+PiBPbiBNb24sIDIgQXVnIDIwMjEgYXQgMTg6NTcsIDx1c3JwLXVzZXJzLXJlcXVlc3RA
+bGlzdHMuZXR0dXMuY29tDQo+PiA8bWFpbHRvOnVzcnAtdXNlcnMtcmVxdWVzdEBsaXN0cy5ldHR1
+cy5jb20+PiB3cm90ZToNCj4+DQo+PiAgICAgIFNlbmQgVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
+c3VibWlzc2lvbnMgdG8NCj4+ICAgICAgdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCj4+DQo+PiAgICAgIFRvIHN1YnNjcmliZSBv
+ciB1bnN1YnNjcmliZSB2aWEgZW1haWwsIHNlbmQgYSBtZXNzYWdlIHdpdGggc3ViamVjdCBvcg0K
+Pj4gICAgICBib2R5ICdoZWxwJyB0bw0KPj4gICAgICB1c3JwLXVzZXJzLXJlcXVlc3RAbGlzdHMu
+ZXR0dXMuY29tDQo+PiAgICAgIDxtYWlsdG86dXNycC11c2Vycy1yZXF1ZXN0QGxpc3RzLmV0dHVz
+LmNvbT4NCj4+DQo+PiAgICAgIFlvdSBjYW4gcmVhY2ggdGhlIHBlcnNvbiBtYW5hZ2luZyB0aGUg
+bGlzdCBhdA0KPj4gICAgICB1c3JwLXVzZXJzLW93bmVyQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAg
+ICA8bWFpbHRvOnVzcnAtdXNlcnMtb3duZXJAbGlzdHMuZXR0dXMuY29tPg0KPj4NCj4+ICAgICAg
+V2hlbiByZXBseWluZywgcGxlYXNlIGVkaXQgeW91ciBTdWJqZWN0IGxpbmUgc28gaXQgaXMgbW9y
+ZSBzcGVjaWZpYw0KPj4gICAgICB0aGFuICJSZTogQ29udGVudHMgb2YgVVNSUC11c2VycyBkaWdl
+c3QuLi4iDQo+Pg0KPj4gICAgICBUb2RheSdzIFRvcGljczoNCj4+DQo+PiAgICAgICAgIDEuIE9s
+ZGVyIEIxMDAgYW5kIGFzc29jaWF0ZWQgRGF1Z2h0ZXIgY2FyZHMuIChHdXkgTWVuZ2VsKQ0KPj4g
+ICAgICAgICAyLiBSZTogT2xkZXIgQjEwMCBhbmQgYXNzb2NpYXRlZCBEYXVnaHRlciBjYXJkcy4g
+KFJpY2hhcmQgU3RhbmxleSkNCj4+ICAgICAgICAgMy4gT25lIFJYIGNoYW5uZWwgb2YgQjIxMCBw
+cmVzZW50cyBkaXN0b3J0ZWQgc2lnbmFsIGZyb20gc3BsaXR0ZXINCj4+ICAgICAgICAgICAgKE1h
+cmNpbiBXYWNob3dpYWspDQo+PiAgICAgICAgIDQuIFJlOiBPbmUgUlggY2hhbm5lbCBvZiBCMjEw
+IHByZXNlbnRzIGRpc3RvcnRlZCBzaWduYWwgZnJvbQ0KPj4gICAgICBzcGxpdHRlcg0KPj4gICAg
+ICAgICAgICAoTWFyY3VzIEQuIExlZWNoKQ0KPj4NCj4+DQo+PiAgICAgIC0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0N
+Cj4+DQo+PiAgICAgIE1lc3NhZ2U6IDENCj4+ICAgICAgRGF0ZTogTW9uLCAwMiBBdWcgMjAyMSAw
+OTo0NzoxOCAtMDQwMA0KPj4gICAgICBGcm9tOiBHdXkgTWVuZ2VsIDxndXlAZWFzdHJvYWQub3Jn
+IDxtYWlsdG86Z3V5QGVhc3Ryb2FkLm9yZz4+DQo+PiAgICAgIFN1YmplY3Q6IFtVU1JQLXVzZXJz
+XSBPbGRlciBCMTAwIGFuZCBhc3NvY2lhdGVkIERhdWdodGVyIGNhcmRzLg0KPj4gICAgICBUbzog
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4NCj4+ICAgICAgTWVzc2FnZS1JRDogPDgyM0FERTc3LURGQjktNDYzMi1COTI0LUMzMUM1
+Qjc2QjEyOEBlYXN0cm9hZC5vcmcNCj4+ICAgICAgPG1haWx0bzo4MjNBREU3Ny1ERkI5LTQ2MzIt
+QjkyNC1DMzFDNUI3NkIxMjhAZWFzdHJvYWQub3JnPj4NCj4+ICAgICAgQ29udGVudC1UeXBlOiB0
+ZXh0L3BsYWluOyBtYXJrdXA9bWFya2Rvd24NCj4+DQo+PiAgICAgIEhpIEFsbCwNCj4+ICAgICAg
+SSBhbSBmaW5hbGx5IGdvaW5nIHRvIGdldCBzdGFydGVkIHVzaW5nIGFuIG9sZGVyIEIxMDAgVVNS
+UCB3aXRoDQo+PiAgICAgIHRoZSBMRlRYLCBMRlJYLCBXQlggZGF1Z2h0ZXIgYm9hcmRzLiAgSSBw
+dXJjaGFzZWQgdGhlc2UgZnJvbSBhDQo+PiAgICAgIHdlbGwga25vd24gYW1hdGV1ciByYWRpbyBv
+cCBpbiBKYW51YXJ5IG9mIHRoaXMgeWVhci4gSSBoYWQgcGxheWVkDQo+PiAgICAgIHdpdGggaXQg
+Zm9yIGEgc2hvcnQgdGltZSBvbiBVYnVudHUgMTguMDQgd2l0aCB0aGUgb2xkZXINCj4+ICAgICAg
+dW5zdXBwb3J0ZWQgUHl0aG9uMiBpbnRlcmZhY2UsIHRoaXMgd2FzIGEgc3RhcnQuIFRoZW4gdGhl
+IENvdmlkDQo+PiAgICAgIFBhbmRlbWljIGhpdC4NCj4+ICAgICAgV2VsbCwgSSBhbSBub3cgYmFj
+ay4NCj4+ICAgICAgQXJlIHRoZXJlIGFueSB1c2VycyBpbiB0aGUgZ3JvdXAgdXNpbmcgdGhlIEIx
+MDAgVVNSUCB3aXRoIHRoZQ0KPj4gICAgICBMRlRYLCBMRlJYLCBXQlggZGF1Z2h0ZXIgYm9hcmRz
+IHVzaW5nIGEgbmV3ZXIgVWJ1bnR1IDIwLjA0IHdpdGgNCj4+ICAgICAgdXBkYXRlZCBQeXRob24g
+My5YIHdpdGggR05VUkFESU8/ICBJIHdhbnRlZCB0byBzZWUgaWYgdGhlcmUgd2VyZQ0KPj4gICAg
+ICBhbnkgc3RpbGwgdXNpbmcgdGhpcyBvbGRlciBTRFIuICBNeSBwbGFucyBhcmUgdG8gZXhwZXJp
+bWVudCB3aXRoDQo+PiAgICAgIGl0IGFuZCBjcmVhdGUgYSByaWcgdG8gYmUgdXNlZCBhdCBIRiBh
+bmQgcG9zc2libHkgVUhGIHRvIG1pY3Jvd2F2ZQ0KPj4gICAgICBkb3duIHRoZSByb2FkLg0KPj4N
+Cj4+ICAgICAgSSB3b3VsZCBhbHNvIGxpa2UgdG8gaGF2ZSBwb2ludGVycyB0b28hDQo+Pg0KPj4g
+ICAgICBUaGFua3MhDQo+PiAgICAgIEd1eSBNZW5nZWwgTjFHTU0NCj4+DQo+Pg0KPj4gICAgICAt
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4+DQo+PiAgICAgIE1lc3NhZ2U6IDINCj4+
+ICAgICAgRGF0ZTogTW9uLCAyIEF1ZyAyMDIxIDEwOjM3OjE0IC0wNDAwDQo+PiAgICAgIEZyb206
+IFJpY2hhcmQgU3RhbmxleSA8cmljaGFyZGxzdGFubGV5QGdtYWlsLmNvbQ0KPj4gICAgICA8bWFp
+bHRvOnJpY2hhcmRsc3RhbmxleUBnbWFpbC5jb20+Pg0KPj4gICAgICBTdWJqZWN0OiBbVVNSUC11
+c2Vyc10gUmU6IE9sZGVyIEIxMDAgYW5kIGFzc29jaWF0ZWQgRGF1Z2h0ZXIgY2FyZHMuDQo+PiAg
+ICAgIFRvOiBHdXkgTWVuZ2VsIDxndXlAZWFzdHJvYWQub3JnIDxtYWlsdG86Z3V5QGVhc3Ryb2Fk
+Lm9yZz4+DQo+PiAgICAgIENjOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8bWFpbHRvOnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAgICBNZXNzYWdlLUlEOiA8MTdCRkQyNUYt
+NDcxNC00Nzg5LUFCM0YtNDUwM0E4OUIyNUYyQGdtYWlsLmNvbQ0KPj4gICAgICA8bWFpbHRvOjE3
+QkZEMjVGLTQ3MTQtNDc4OS1BQjNGLTQ1MDNBODlCMjVGMkBnbWFpbC5jb20+Pg0KPj4gICAgICBD
+b250ZW50LVR5cGU6IHRleHQvcGxhaW47ICAgICAgIGNoYXJzZXQ9dXMtYXNjaWkNCj4+DQo+PiAg
+ICAgIChSZXNlbnQgdG8gaW5jbHVkZSBtYWlsaW5nIGxpc3QpDQo+Pg0KPj4gICAgICBIaSBHdXks
+DQo+Pg0KPj4gICAgICBJJ3ZlIHJlY2VudGx5IHVzZWQgQjEwMHMgd2l0aCB0aGUgTEZSWCwgQmFz
+aWNSWCwgYW5kIChFT0wpIFRWUlgyDQo+PiAgICAgIHdpdGggdGhlIGxhdGVzdCBVSEQgYW5kIEdO
+VSBSYWRpbyAzLjggb24gVWJ1bnR1IDIwLjA0Lg0KPj4NCj4+ICAgICAgQSBjaGFsbGVuZ2UgZm9y
+IG1lIHdpdGggdGhlIExGUlgvVFggYW5kIEJhc2ljUlgvVFggd2FzIGZpbmRpbmcgdGhlDQo+PiAg
+ICAgIGNvcnJlY3Qgc3ViLWRldmljZSBzcGVjaWZpY2F0aW9uIGFzIHRoZXkgY2FuIGFjcXVpcmUv
+dHJhbnNtaXQgYW4NCj4+ICAgICAgSVEgcGFpciBvciByZWFsLXZhbHVlZCBzaWduYWxzLiBJbiBh
+ZGRpdGlvbiwgSSByZXF1aXJlZCBhIEhpbGJlcnQNCj4+ICAgICAgdHJhbnNmb3JtIHRvIGNvbnZl
+cnQgcmVhbC12YWx1ZWQgc2FtcGxlcyBpbiBiYXNlYmFuZCB0byBjb21wbGV4DQo+PiAgICAgIGZv
+ciBzb21lIHByb2Nlc3NpbmcgaW4gR05VIFJhZGlvIGZvciBSeC4gVGhlcmUgYXJlIGEgbG90IG9m
+DQo+PiAgICAgIHF1ZXN0aW9ucyBhYm91dCB0aGVzZSBkYXVnaHRlcmNhcmRzIGluIHRoZSBtYWls
+aW5nIGxpc3QgYXJjaGl2ZQ0KPj4gICAgICBhbmQgb2Z0ZW4gdGhlIHF1ZXN0aW9ucyBzZWVtIHRv
+IGJlIGFib3V0IHN1Yi1kZXZpY2Ugc3BlY2lmaWNhdGlvbg0KPj4gICAgICBhbmQgcmVhbC12YWx1
+ZWQgdmVyc3VzIElRLg0KPj4NCj4+ICAgICAgRW5qb3kgdGhlIEIxMDAhDQo+Pg0KPj4gICAgICBI
+VEgsDQo+PiAgICAgIFJpY2hhcmQNCj4+DQo+PiAgICAgIE9uIEF1ZyAyLCAyMDIxLCBhdCAwOTo0
+NywgR3V5IE1lbmdlbCA8Z3V5QGVhc3Ryb2FkLm9yZw0KPj4gICAgICA8bWFpbHRvOmd1eUBlYXN0
+cm9hZC5vcmc+PiB3cm90ZToNCj4+DQo+PiAgICAgIEhpIEFsbCwNCj4+ICAgICAgSSBhbSBmaW5h
+bGx5IGdvaW5nIHRvIGdldCBzdGFydGVkIHVzaW5nIGFuIG9sZGVyIEIxMDAgVVNSUCB3aXRoDQo+
+PiAgICAgIHRoZSBMRlRYLCBMRlJYLCBXQlggZGF1Z2h0ZXIgYm9hcmRzLiAgSSBwdXJjaGFzZWQg
+dGhlc2UgZnJvbSBhDQo+PiAgICAgIHdlbGwga25vd24gYW1hdGV1ciByYWRpbyBvcCBpbiBKYW51
+YXJ5IG9mIHRoaXMgeWVhci4gSSBoYWQgcGxheWVkDQo+PiAgICAgIHdpdGggaXQgZm9yIGEgc2hv
+cnQgdGltZSBvbiBVYnVudHUgMTguMDQgd2l0aCB0aGUgb2xkZXINCj4+ICAgICAgdW5zdXBwb3J0
+ZWQgUHl0aG9uMiBpbnRlcmZhY2UsIHRoaXMgd2FzIGEgc3RhcnQuIFRoZW4gdGhlIENvdmlkDQo+
+PiAgICAgIFBhbmRlbWljIGhpdC4NCj4+ICAgICAgV2VsbCwgSSBhbSBub3cgYmFjay4NCj4+ICAg
+ICAgQXJlIHRoZXJlIGFueSB1c2VycyBpbiB0aGUgZ3JvdXAgdXNpbmcgdGhlIEIxMDAgVVNSUCB3
+aXRoIHRoZQ0KPj4gICAgICBMRlRYLCBMRlJYLCBXQlggZGF1Z2h0ZXIgYm9hcmRzIHVzaW5nIGEg
+bmV3ZXIgVWJ1bnR1IDIwLjA0IHdpdGgNCj4+ICAgICAgdXBkYXRlZCBQeXRob24gMy5YIHdpdGgg
+R05VUkFESU8/ICBJIHdhbnRlZCB0byBzZWUgaWYgdGhlcmUgd2VyZQ0KPj4gICAgICBhbnkgc3Rp
+bGwgdXNpbmcgdGhpcyBvbGRlciBTRFIuICBNeSBwbGFucyBhcmUgdG8gZXhwZXJpbWVudCB3aXRo
+DQo+PiAgICAgIGl0IGFuZCBjcmVhdGUgYSByaWcgdG8gYmUgdXNlZCBhdCBIRiBhbmQgcG9zc2li
+bHkgVUhGIHRvIG1pY3Jvd2F2ZQ0KPj4gICAgICBkb3duIHRoZSByb2FkLg0KPj4NCj4+ICAgICAg
+SSB3b3VsZCBhbHNvIGxpa2UgdG8gaGF2ZSBwb2ludGVycyB0b28hDQo+Pg0KPj4gICAgICBUaGFu
+a3MhDQo+PiAgICAgIEd1eSBNZW5nZWwgTjFHTU0NCj4+DQo+PiAgICAgIF9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+PiAgICAgIFVTUlAtdXNlcnMgbWFp
+bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgIDxtYWlsdG86
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQo+PiAgICAgIFRvIHVuc3Vic2NyaWJlIHNlbmQg
+YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4+ICAgICAgPG1h
+aWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCj4+DQo+PiAgICAgIC0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPj4NCj4+ICAgICAgTWVzc2FnZTogMw0KPj4gICAg
+ICBEYXRlOiBNb24sIDIgQXVnIDIwMjEgMTg6Mzc6MDggKzAyMDANCj4+ICAgICAgRnJvbTogTWFy
+Y2luIFdhY2hvd2lhayA8bWFyY2luLnIud2FjaG93aWFrQGdtYWlsLmNvbQ0KPj4gICAgICA8bWFp
+bHRvOm1hcmNpbi5yLndhY2hvd2lha0BnbWFpbC5jb20+Pg0KPj4gICAgICBTdWJqZWN0OiBbVVNS
+UC11c2Vyc10gT25lIFJYIGNoYW5uZWwgb2YgQjIxMCBwcmVzZW50cyBkaXN0b3J0ZWQgc2lnbmFs
+DQo+PiAgICAgICAgICAgICAgZnJvbSBzcGxpdHRlcg0KPj4gICAgICBUbzogdXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20gPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCj4+ICAg
+ICAgTWVzc2FnZS1JRDoNCj4+ICAgICAgICAgICAgIA0KPj4gICAgICA8Q0FPZkg3MXhEUlo3QStY
+VTg5dC02R0VXeTRhYV9IbU5mQistMGFlR0U2eS1GNHp2bkxBQG1haWwuZ21haWwuY29tIDxtYWls
+dG86Q0FPZkg3MXhEUlo3QSUyQlhVODl0LTZHRVd5NGFhX0htTmZCJTJCLTBhZUdFNnktRjR6dm5M
+QUBtYWlsLmdtYWlsLmNvbT4+DQo+PiAgICAgIENvbnRlbnQtVHlwZTogbXVsdGlwYXJ0L2FsdGVy
+bmF0aXZlOw0KPj4gICAgICAgICAgICAgIGJvdW5kYXJ5PSIwMDAwMDAwMDAwMDBkODUxMmIwNWM4
+OTYyZTJiIg0KPj4NCj4+ICAgICAgSGVsbG8sDQo+PiAgICAgIEkgYW0gd29ya2luZyBvbiBhIHBo
+YXNlIGNvaGVyZW50IGFwcGxpY2F0aW9uIHVzaW5nIFVTUlAgQjIxMC4gQXMNCj4+ICAgICAgdGhl
+IHBoYXNlDQo+PiAgICAgIGRpZmZlcmVuY2UgYmV0d2VlbiBSWCBjaGFubmVscyBvZiBCMjEwIGlz
+IHJlbGF0aXZlbHkgc3RhYmxlIEkNCj4+ICAgICAgd2FudGVkIHRvIHNlZQ0KPj4gICAgICBob3cg
+aXQgYmVoYXZlcyBhY3Jvc3MgdGhlIHdob2xlIGZyZXF1ZW5jeSByYW5nZS4gSSBwZXJmb3JtZWQg
+c29tZQ0KPj4gICAgICBtZWFzdXJlbWVudHMgYW5kIHVuZm9ydHVuYXRlbHkgZm9yIHNvbWUgZnJl
+cXVlbmNpZXMgSSBvYnNlcnZlZCBzdHJhbmdlDQo+PiAgICAgIGRpc3RvcnRpb25zLiBUaGUgc2V0
+dXAgY29uc2lzdHMgb2YgYSBUWCBVU1JQLCBSRiBzcGxpdHRlciwgbWF0Y2hlZA0KPj4gICAgICBj
+YWJsZXMNCj4+ICAgICAgYW5kIGEgc2Vjb25kIFVTUlAgd2l0aCBib3RoIFJYIGNoYW5uZWxzIGNv
+bm5lY3RlZCB0byB0aGUgc3BsaXR0ZXIuDQo+PiAgICAgIFNjcmVhbXMgZG9jdW1lbnRpbmcgdGhl
+IGRpc3RvcnRpb25zOg0KPj4gICAgICBodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZHJpdmUvZm9s
+ZGVycy8xRGtqclZLejN5d3YzWkUwZVMxVVllQ01UdFF3TDNEdTg/dXNwPXNoYXJpbmcNCj4+ICAg
+ICAgVGhlIHJlY2VpdmVkIHNpbmUgd2F2ZSBzaG91bGQgaGF2ZSBxdWl0ZSBzaW1pbGFyIHNoYXBl
+IGFuZCBzcGVjdHJhbA0KPj4gICAgICBwcm9wZXJ0aWVzIGFjcm9zcyBib3RoIFJYIGNoYW5uZWxz
+IG9mIFVTUlAuDQo+PiAgICAgIFdoYXQgSSBvYnNlcnZlIGluc3RlYWQgaXMgYSBzeW1tZXRyaWNh
+bCBoYXJtb25pYyB0b25lIGF0IG9uZSBvZg0KPj4gICAgICB0aGUgUlgsDQo+PiAgICAgIHdoZW4g
+dGhlIG90aGVyIGRvZXMgbm90IHJlY29yZCBpdC4NCj4+ICAgICAgVGhlcmUgYXJlIGFsc28gcmFu
+ZG9tIGRpc3RvcnRpb25zIGluIG9uZSBvZiB0aGUgUlggY2hhbm5lbHMNCj4+ICAgICAgbG9va2lu
+ZyBhcyBpZg0KPj4gICAgICB0aGUgc2luZSBzaWduYWwgd2FzIHNwbGl0IGFuZCBzaGlmdGVkIGF0
+IHNvbWUgcG9pbnQgaW4gdGltZSAobG9va3MNCj4+ICAgICAgbGlrZSBhDQo+PiAgICAgIHNvbWUg
+c29ydCBvZiBidWZmZXIgaXNzdWUpDQo+PiAgICAgIFRoaXMga2luZCBvZiBkaXN0b3J0aW9uIGZv
+ciBzb21lIHNldHRpbmdzIHBlcnNpc3RzIGZvciBzb21lIGlzIG5vdA0KPj4gICAgICBwcmVzZW50
+DQo+PiAgICAgIG9yIG9jY3VycyByZWd1bGFybHkuDQo+PiAgICAgIFRvIHByb3ZpZGUgc29tZSBp
+bGx1c3RpYXRpb24gSSBhdHRhY2ggcmVjb3JkaW5ncyBhbmQgc2NyZWVucyBvZiB0aGUNCj4+ICAg
+ICAgcmVnaXN0ZXJlZCBkaXN0b3J0aW9ucy4NCj4+ICAgICAgIHVzcnBiMjEwX3NpbmVfcnhfZGlz
+dG9yaXRvbjIubXA0DQo+PiAgICAgIDxodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZmlsZS9kLzFI
+aWYwZFpZMkFoN2lwQzEzbmZ1ZGhvSzVIRDBKZU05TS92aWV3P3VzcD1kcml2ZV93ZWI+DQo+PiAg
+ICAgICB1c3JwYjIxMF9zaW5lX3J4X2Rpc3Rvcml0b24ubXA0DQo+PiAgICAgIDxodHRwczovL2Ry
+aXZlLmdvb2dsZS5jb20vZmlsZS9kLzEzbml5QmRsNkg0dzBBa2RmMjhLZW9udG5aS1VzQ1VhVy92
+aWV3P3VzcD1kcml2ZV93ZWI+DQo+Pg0KPj4gICAgICBJIHRyaWVkIHRvIGRlYnVnIHRoaXMgcHJv
+YmxlbSBidXQgaXQgYXBwZWFycyB0byBiZSByZWxhdGVkIHRvDQo+PiAgICAgIHNhbXBsZSByYXRl
+LA0KPj4gICAgICBUWCB0b25lIGZyZXF1ZW5jeSwgY2FycmllciBmcmVxdWVuY3kgYW5kIGdhaW5z
+LiAoSSBjaGVja2VkIGR5bmFtaWMgSVENCj4+ICAgICAgaW1iYWxhbmNlIG9yIGdhaW4gY29udHJv
+bHMgYW5kIGNoYW5naW5nIG9mIHRoZSBwYXJhbWV0ZXJzIGRpZCBub3QNCj4+ICAgICAgYWZmZWN0
+DQo+PiAgICAgIGFueXRoaW5nKQ0KPj4gICAgICBUaGVyZSBhcmUgbm93IHVuZGVyZmxvdy9vdmVy
+ZmxvdyBmbGFncyBwcmVzZW50IHdoaWxlIEkgcnVuIHRoZQ0KPj4gICAgICBmbG93Y2hhcnQuDQo+
+PiAgICAgIFRoZSBzaWduYWwgdGhhdCBpcyBwcm92aWRlZCB0byBib3RoIFJYIGlzIGlkZW50aWNh
+bCAoIFJGDQo+PiAgICAgIG1pbmktY2lyY3VpdHMgUkYNCj4+ICAgICAgc3BsaXR0ZXIpLCBhbmQg
+YW55IG91dHNpZGUgaW50ZXJmZXJlbmNlcyBhcmUgbGltaXRlZCBhcyB0aGUgd2hvbGUNCj4+ICAg
+ICAgc2V0dXAgaXMNCj4+ICAgICAgY29ubmVjdGVkIHZpYSBjb25jZW50cmljIGNhYmxlcy4gSSB0
+cmllZCB0byBzZXQgdGhlIG51bWJlciBvZg0KPj4gICAgICByZWNlaXZlIGFuZA0KPj4gICAgICBz
+ZW50IGZyYW1lcyB0byAxMDI0IHRvIGVuc3VyZSBjb250aW51aXR5LCBidXQgdGhhdCBkaWRuJ3Qg
+aGVscC4NCj4+ICAgICAgSXQgaXMgc3RyYW5nZSB0aGF0IGZvciBzb21lIGZyZXF1ZW5jaWVzIHRo
+aXMgcGhlbm9tZW5vbiBvY2N1cnMNCj4+ICAgICAgd2hpbGUgZm9yDQo+PiAgICAgIG90aGVycyB0
+aGUgcGhhc2UgZGlmZmVyZW5jZSB2YXJpYW5jZSBpcyB2ZXJ5IGxvdyBhbmQgdGhlcmUgYXJlIG5v
+IHN1Y2gNCj4+ICAgICAgZGlzdG9ydGlvbnMuDQo+PiAgICAgIENvdWxkIFlvdSBwbGVhc2UgZXhw
+bGFpbiB0aGUgY2F1c2Ugb3IgcHJvcG9zZSBzb21lIGtpbmQgb2YNCj4+ICAgICAgc29sdXRpb24g
+dG8gdGhpcw0KPj4gICAgICBpc3N1ZT8NCj4+DQo+PiAgICAgIEtpbmQgcmVnYXJkcywNCj4+ICAg
+ICAgTWFyY2luIFdhY2hvd2lhaw0KPj4gICAgICAtLS0tLS0tLS0tLS0tLSBuZXh0IHBhcnQgLS0t
+LS0tLS0tLS0tLS0NCj4+ICAgICAgQSBtZXNzYWdlIHBhcnQgaW5jb21wYXRpYmxlIHdpdGggcGxh
+aW4gdGV4dCBkaWdlc3RzIGhhcyBiZWVuDQo+PiAgICAgIHJlbW92ZWQgLi4uDQo+PiAgICAgIE5h
+bWU6IG5vdCBhdmFpbGFibGUNCj4+ICAgICAgVHlwZTogdGV4dC9odG1sDQo+PiAgICAgIFNpemU6
+IDQxMDQgYnl0ZXMNCj4+ICAgICAgRGVzYzogbm90IGF2YWlsYWJsZQ0KPj4NCj4+ICAgICAgLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+Pg0KPj4gICAgICBNZXNzYWdlOiA0DQo+PiAg
+ICAgIERhdGU6IE1vbiwgMDIgQXVnIDIwMjEgMTI6Mzk6MzEgLTA0MDANCj4+ICAgICAgRnJvbTog
+Ik1hcmN1cyBELiBMZWVjaCIgPHBhdGNodm9uYnJhdW5AZ21haWwuY29tDQo+PiAgICAgIDxtYWls
+dG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+Pg0KPj4gICAgICBTdWJqZWN0OiBbVVNSUC11c2Vy
+c10gUmU6IE9uZSBSWCBjaGFubmVsIG9mIEIyMTAgcHJlc2VudHMgZGlzdG9ydGVkDQo+PiAgICAg
+ICAgICAgICAgc2lnbmFsIGZyb20gc3BsaXR0ZXINCj4+ICAgICAgVG86IHVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tIDxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQo+PiAgICAg
+IE1lc3NhZ2UtSUQ6IDw2MTA4MUZDMy4xMDEwMDA3QGdtYWlsLmNvbQ0KPj4gICAgICA8bWFpbHRv
+OjYxMDgxRkMzLjEwMTAwMDdAZ21haWwuY29tPj4NCj4+ICAgICAgQ29udGVudC1UeXBlOiBtdWx0
+aXBhcnQvYWx0ZXJuYXRpdmU7DQo+PiAgICAgICAgICAgICAgYm91bmRhcnk9Ii0tLS0tLS0tLS0t
+LTA1MDIwNDAyMDEwNjA4MDMwMjA3MDEwMiINCj4+DQo+PiAgICAgIE9uIDA4LzAyLzIwMjEgMTI6
+MzcgUE0sIE1hcmNpbiBXYWNob3dpYWsgd3JvdGU6DQo+PiAgICAgID4gSGVsbG8sDQo+PiAgICAg
+ID4gSSBhbSB3b3JraW5nIG9uIGEgcGhhc2UgY29oZXJlbnQgYXBwbGljYXRpb24gdXNpbmcgVVNS
+UCBCMjEwLiBBcw0KPj4gICAgICB0aGUNCj4+ICAgICAgPiBwaGFzZSBkaWZmZXJlbmNlIGJldHdl
+ZW4gUlggY2hhbm5lbHMgb2YgQjIxMCBpcyByZWxhdGl2ZWx5IHN0YWJsZSBJDQo+PiAgICAgID4g
+d2FudGVkIHRvIHNlZSBob3cgaXQgYmVoYXZlcyBhY3Jvc3MgdGhlIHdob2xlIGZyZXF1ZW5jeSBy
+YW5nZS4gSQ0KPj4gICAgICA+IHBlcmZvcm1lZCBzb21lIG1lYXN1cmVtZW50cyBhbmQgdW5mb3J0
+dW5hdGVseSBmb3Igc29tZQ0KPj4gICAgICBmcmVxdWVuY2llcyBJDQo+PiAgICAgID4gb2JzZXJ2
+ZWQgc3RyYW5nZSBkaXN0b3J0aW9ucy4gVGhlIHNldHVwIGNvbnNpc3RzIG9mIGEgVFggVVNSUCwg
+UkYNCj4+ICAgICAgPiBzcGxpdHRlciwgbWF0Y2hlZCBjYWJsZXMgYW5kIGEgc2Vjb25kIFVTUlAg
+d2l0aCBib3RoIFJYIGNoYW5uZWxzDQo+PiAgICAgID4gY29ubmVjdGVkIHRvIHRoZSBzcGxpdHRl
+ci4NCj4+ICAgICAgPiBTY3JlYW1zIGRvY3VtZW50aW5nIHRoZSBkaXN0b3J0aW9uczoNCj4+ICAg
+ICAgPg0KPj4gICAgICBodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZHJpdmUvZm9sZGVycy8xRGtq
+clZLejN5d3YzWkUwZVMxVVllQ01UdFF3TDNEdTg/dXNwPXNoYXJpbmcNCj4+ICAgICAgPiBUaGUg
+cmVjZWl2ZWQgc2luZSB3YXZlIHNob3VsZCBoYXZlIHF1aXRlIHNpbWlsYXIgc2hhcGUgYW5kIHNw
+ZWN0cmFsDQo+PiAgICAgID4gcHJvcGVydGllcyBhY3Jvc3MgYm90aCBSWCBjaGFubmVscyBvZiBV
+U1JQLg0KPj4gICAgICA+IFdoYXQgSSBvYnNlcnZlIGluc3RlYWQgaXMgYSBzeW1tZXRyaWNhbCBo
+YXJtb25pYyB0b25lIGF0IG9uZSBvZiB0aGUNCj4+ICAgICAgPiBSWCwgd2hlbiB0aGUgb3RoZXIg
+ZG9lcyBub3QgcmVjb3JkIGl0Lg0KPj4gICAgICA+IFRoZXJlIGFyZSBhbHNvIHJhbmRvbSBkaXN0
+b3J0aW9ucyBpbiBvbmUgb2YgdGhlIFJYIGNoYW5uZWxzDQo+PiAgICAgIGxvb2tpbmcgYXMNCj4+
+ICAgICAgPiBpZiB0aGUgc2luZSBzaWduYWwgd2FzIHNwbGl0IGFuZCBzaGlmdGVkIGF0IHNvbWUg
+cG9pbnQgaW4gdGltZQ0KPj4gICAgICAobG9va3MNCj4+ICAgICAgPiBsaWtlIGEgc29tZSBzb3J0
+IG9mIGJ1ZmZlciBpc3N1ZSkNCj4+ICAgICAgPiBUaGlzIGtpbmQgb2YgZGlzdG9ydGlvbiBmb3Ig
+c29tZSBzZXR0aW5ncyBwZXJzaXN0cyBmb3Igc29tZSBpcyBub3QNCj4+ICAgICAgPiBwcmVzZW50
+IG9yIG9jY3VycyByZWd1bGFybHkuDQo+PiAgICAgID4gVG8gcHJvdmlkZSBzb21lIGlsbHVzdGlh
+dGlvbiBJIGF0dGFjaCByZWNvcmRpbmdzIGFuZCBzY3JlZW5zIG9mIHRoZQ0KPj4gICAgICA+IHJl
+Z2lzdGVyZWQgZGlzdG9ydGlvbnMuDQo+PiAgICAgID4gdXNycGIyMTBfc2luZV9yeF9kaXN0b3Jp
+dG9uMi5tcDQNCj4+ICAgICAgPg0KPj4gICAgICA8aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2Zp
+bGUvZC8xSGlmMGRaWTJBaDdpcEMxM25mdWRob0s1SEQwSmVNOU0vdmlldz91c3A9ZHJpdmVfd2Vi
+Pg0KPj4gICAgICA+IHVzcnBiMjEwX3NpbmVfcnhfZGlzdG9yaXRvbi5tcDQNCj4+ICAgICAgPg0K
+Pj4gICAgICA8aHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL2ZpbGUvZC8xM25peUJkbDZINHcwQWtk
+ZjI4S2VvbnRuWktVc0NVYVcvdmlldz91c3A9ZHJpdmVfd2ViPg0KPj4gICAgICA+DQo+PiAgICAg
+ID4gSSB0cmllZCB0byBkZWJ1ZyB0aGlzIHByb2JsZW0gYnV0IGl0IGFwcGVhcnMgdG8gYmUgcmVs
+YXRlZCB0bw0KPj4gICAgICBzYW1wbGUNCj4+ICAgICAgPiByYXRlLCBUWCB0b25lIGZyZXF1ZW5j
+eSwgY2FycmllciBmcmVxdWVuY3kgYW5kIGdhaW5zLiAoSSBjaGVja2VkDQo+PiAgICAgID4gZHlu
+YW1pYyBJUSBpbWJhbGFuY2Ugb3IgZ2FpbiBjb250cm9scyBhbmQgY2hhbmdpbmcgb2YgdGhlDQo+
+PiAgICAgIHBhcmFtZXRlcnMNCj4+ICAgICAgPiBkaWQgbm90IGFmZmVjdCBhbnl0aGluZykNCj4+
+ICAgICAgPiBUaGVyZSBhcmUgbm93IHVuZGVyZmxvdy9vdmVyZmxvdyBmbGFncyBwcmVzZW50IHdo
+aWxlIEkgcnVuIHRoZQ0KPj4gICAgICA+IGZsb3djaGFydC4gVGhlIHNpZ25hbCB0aGF0IGlzIHBy
+b3ZpZGVkIHRvIGJvdGggUlggaXMgaWRlbnRpY2FsICggUkYNCj4+ICAgICAgPiBtaW5pLWNpcmN1
+aXRzIFJGIHNwbGl0dGVyKSwgYW5kIGFueSBvdXRzaWRlIGludGVyZmVyZW5jZXMgYXJlDQo+PiAg
+ICAgIGxpbWl0ZWQNCj4+ICAgICAgPiBhcyB0aGUgd2hvbGUgc2V0dXAgaXMgY29ubmVjdGVkIHZp
+YSBjb25jZW50cmljIGNhYmxlcy4gSSB0cmllZA0KPj4gICAgICB0byBzZXQNCj4+ICAgICAgPiB0
+aGUgbnVtYmVyIG9mIHJlY2VpdmUgYW5kIHNlbnQgZnJhbWVzIHRvIDEwMjQgdG8gZW5zdXJlIGNv
+bnRpbnVpdHksDQo+PiAgICAgID4gYnV0IHRoYXQgZGlkbid0IGhlbHAuDQo+PiAgICAgID4gSXQg
+aXMgc3RyYW5nZSB0aGF0IGZvciBzb21lIGZyZXF1ZW5jaWVzIHRoaXMgcGhlbm9tZW5vbiBvY2N1
+cnMNCj4+ICAgICAgd2hpbGUNCj4+ICAgICAgPiBmb3Igb3RoZXJzIHRoZSBwaGFzZSBkaWZmZXJl
+bmNlIHZhcmlhbmNlIGlzIHZlcnkgbG93IGFuZCB0aGVyZQ0KPj4gICAgICBhcmUgbm8NCj4+ICAg
+ICAgPiBzdWNoIGRpc3RvcnRpb25zLg0KPj4gICAgICA+IENvdWxkIFlvdSBwbGVhc2UgZXhwbGFp
+biB0aGUgY2F1c2Ugb3IgcHJvcG9zZSBzb21lIGtpbmQgb2YNCj4+ICAgICAgc29sdXRpb24gdG8N
+Cj4+ICAgICAgPiB0aGlzIGlzc3VlPw0KPj4gICAgICA+DQo+PiAgICAgID4gS2luZCByZWdhcmRz
+LA0KPj4gICAgICA+IE1hcmNpbiBXYWNob3dpYWsNCj4+ICAgICAgPg0KPj4gICAgICA+DQo+PiAg
+ICAgID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+
+ICAgICAgPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbQ0KPj4gICAgICA8bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAg
+ICA+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0
+cy5ldHR1cy5jb20NCj4+ICAgICAgPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
+LmNvbT4NCj4+ICAgICAgV2hhdCBhcmUgeW91ciBzaWduYWwgbGV2ZWxzIGdvaW5nIGludG8gdGhl
+IFJYIFVTUlA/DQo+Pg0KPj4gICAgICBUaGV5IG5lZWQgdG8gYmUgd2VsbCBiZWxvdyAtMjBkQm0g
+b3Igc28gdG8gcHJvdGVjdCBhZ2FpbnN0DQo+PiAgICAgIG5vbi1saW5lYXJpdHksIGFuZCBldmVu
+IHRoZW4sIHRoYXQncyBhd2Z1bGx5IGxvdWQuDQo+Pg0KPj4NCj4+DQo+Pg0KPj4gICAgICAtLS0t
+LS0tLS0tLS0tLSBuZXh0IHBhcnQgLS0tLS0tLS0tLS0tLS0NCj4+ICAgICAgQSBtZXNzYWdlIHBh
+cnQgaW5jb21wYXRpYmxlIHdpdGggcGxhaW4gdGV4dCBkaWdlc3RzIGhhcyBiZWVuDQo+PiAgICAg
+IHJlbW92ZWQgLi4uDQo+PiAgICAgIE5hbWU6IG5vdCBhdmFpbGFibGUNCj4+ICAgICAgVHlwZTog
+dGV4dC9odG1sDQo+PiAgICAgIFNpemU6IDYwODEgYnl0ZXMNCj4+ICAgICAgRGVzYzogbm90IGF2
+YWlsYWJsZQ0KPj4NCj4+ICAgICAgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+Pg0K
+Pj4gICAgICBTdWJqZWN0OiBEaWdlc3QgRm9vdGVyDQo+Pg0KPj4gICAgICBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4gICAgICBVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gICAgICA8bWFpbHRv
+OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPj4gICAgICBUbyB1bnN1YnNjcmliZSBzZW5k
+IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+PiAgICAgIDxt
+YWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo+Pg0KPj4NCj4+ICAgICAg
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+Pg0KPj4gICAgICBFbmQgb2YgVVNSUC11
+c2VycyBEaWdlc3QsIFZvbCAxMzIsIElzc3VlIDINCj4+ICAgICAgKioqKioqKioqKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqDQo+Pg0KPj4NCj4+DQo+PiBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxp
+c3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQg
+YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4gLS0tLS0tLS0t
+LS0tLS0gbmV4dCBwYXJ0IC0tLS0tLS0tLS0tLS0tDQo+IEEgbWVzc2FnZSBwYXJ0IGluY29tcGF0
+aWJsZSB3aXRoIHBsYWluIHRleHQgZGlnZXN0cyBoYXMgYmVlbiByZW1vdmVkIC4uLg0KPiBOYW1l
+OiBub3QgYXZhaWxhYmxlDQo+IFR5cGU6IHRleHQvaHRtbA0KPiBTaXplOiAyNDMxMCBieXRlcw0K
+PiBEZXNjOiBub3QgYXZhaWxhYmxlDQo+DQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LQ0KPg0KPiBTdWJqZWN0OiBEaWdlc3QgRm9vdGVyDQo+DQo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
+aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4NCj4NCj4gLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+DQo+IEVuZCBvZiBVU1JQLXVzZXJzIERpZ2VzdCwgVm9s
+IDEzMiwgSXNzdWUgOA0KPiAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
+KioNCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4g
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4g
+VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
+dHVzLmNvbQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8g
+dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
+LmNvbQo=
