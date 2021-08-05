@@ -2,228 +2,223 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6C583DF8B0
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Aug 2021 01:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4473E14AE
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Aug 2021 14:26:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7400638479C
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Aug 2021 19:57:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A51D2384080
+	for <lists+usrp-users@lfdr.de>; Thu,  5 Aug 2021 08:26:06 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ea6qDjE4";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YhAq35XL";
 	dkim-atps=neutral
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id AB6F0384411
-	for <USRP-users@lists.ettus.com>; Tue,  3 Aug 2021 19:57:17 -0400 (EDT)
-Received: by mail-qv1-f50.google.com with SMTP id js7so330908qvb.4
-        for <USRP-users@lists.ettus.com>; Tue, 03 Aug 2021 16:57:17 -0700 (PDT)
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id 934133837C6
+	for <usrp-users@lists.ettus.com>; Thu,  5 Aug 2021 08:25:23 -0400 (EDT)
+Received: by mail-qk1-f180.google.com with SMTP id x3so6002545qkl.6
+        for <usrp-users@lists.ettus.com>; Thu, 05 Aug 2021 05:25:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=enU/etCVXjQKCoJ/okZPYgEfwBkFXVQCwh/fqi1mkc0=;
-        b=ea6qDjE4mXH6Mi9MRNOi3SwrNbbtnAvhi/JgOdWcAO6b7NCUmqDGTWBe3QFseV6VMg
-         +OCRkbXG6EfsJz1o1PW5iD0DJTFnWdwBqW3KH8PIfW+iVnTfTmZTF9qHUv4Uezxr46ai
-         XmplAaQ5DjwvOfaN6+mEJXUwMe59frJsm4fIZ4ivscm9ODWjabNElwMGbkTsYGwlQ4ZO
-         maa5pssrAYIU5s0z4r2TF8IOvXM5jQU3GziKYcRBdrhIGSv1zlZXzuUJw7aqr3++5/Cw
-         lxu3RqW1Ytx3WMzQwwsrljD8zC+cZzufPvvpeOcNwz2ud8U5cmO440tZJWg0huRjSJdw
-         Hx7A==
+        h=message-id:date:from:user-agent:mime-version:to:subject:references
+         :in-reply-to;
+        bh=ZupxheU+O6Sxz0vf8Ld8MHBQYHK4QGNLZdZp3qotmSE=;
+        b=YhAq35XLOa7WeIJYyAaBC00gnwYcZbrrPsXUXSCM+UDuBlQIf+ugCh8hoEzeSVBcfe
+         dlWl5anqzURf1G+SPURqrXQhCUxHG43Okx92oKE5lfYtBW/+FbKshVA8Z0ayuMlcuKII
+         jM+AZsaec+awMxI1RAdX47lSmY4fMxZayFBKZpwFLslyNPR03BA2lSsgQfBuiaOgN2od
+         sbKWrrn1VQnT50sdYPdrsedBERv4RJY+tOXKlML3zQwdeUak9Y8+Tn1y0Uh7p4f5KmYJ
+         89OIoWxm/n1A4lXW/siNqEt11yhe/awmEEc+VMWJ2UzQ0TBGJrA4nhq8wNlq726Vdadb
+         Wk7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=enU/etCVXjQKCoJ/okZPYgEfwBkFXVQCwh/fqi1mkc0=;
-        b=o6HuxXy52HIfV1MKqWpeAcvtgs4/Scinp7nOqG8+69XxeOHjZ5a5zzeyVQV8G840Sl
-         qaM01xQnDKLDcQ4M6xzPxLYcfSKG1shnqK0rmKfr1KMQjduesps6g5BUqlF4CdNh8k6c
-         PML2p2zKnyr7ovRSV4ki3R5LbZOReWwXckNiwyzcFUH5Ht3DQkmoG6DzqLJau1TjXWvv
-         dbjsfJ3aIBNjlIsyKB9luT1CHQEewRq6T24zOe8IKk1g2+aLLlA2JA5haf8WX0aGQbeB
-         3xvcLIh8WmNDPsxGFG0zf4AZUWlOyMmXCyESjK8W9DmQSee1jAqAjx7iMv9IODKC444c
-         oPHg==
-X-Gm-Message-State: AOAM533OqHVjBPAtinJvNTieRLShxETMJ2rTkRdd1ERnQv2Gc3Z7SRVS
-	DZW199IgRh2tWRhcOhr2Ez0=
-X-Google-Smtp-Source: ABdhPJxaMGf1jwHtVwz4R9f5RQ2rtNLSsfII8puswka4h7N5NzzB5VNNni7ecHH0bBrlRaklUVf2ow==
-X-Received: by 2002:a0c:f308:: with SMTP id j8mr23940495qvl.25.1628035037210;
-        Tue, 03 Aug 2021 16:57:17 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id u7sm195377qta.27.2021.08.03.16.57.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Aug 2021 16:57:16 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Tue, 3 Aug 2021 19:57:15 -0400
-Message-Id: <C9C5D1D8-D5A3-435C-86AD-179CDBFB263A@gmail.com>
-References: <f54a0ee1-c48e-47c5-847d-2bd49550883c@Spark>
-In-Reply-To: <f54a0ee1-c48e-47c5-847d-2bd49550883c@Spark>
-To: Ernest Poletaev <epoletaev@i-blades.com>
-X-Mailer: iPhone Mail (18F72)
-Message-ID-Hash: MXYDAMSS267N6HINDK545HZ5NDKX26YG
-X-Message-ID-Hash: MXYDAMSS267N6HINDK545HZ5NDKX26YG
+        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+         :subject:references:in-reply-to;
+        bh=ZupxheU+O6Sxz0vf8Ld8MHBQYHK4QGNLZdZp3qotmSE=;
+        b=In7omxDJvhjkPdzae+FYt+t/KVjdmbRnDqgCaBwjK7n24oRyjrLUVpmtxE4RI4RNNT
+         Qmuk2yLZ+r/3h8F4maZCagUzMOqrKJIkSMDQ7W8nrwOO7LsXmpj49YWgBgTMYOuUdI14
+         ZBgQ7LvmeRp66HBSBvvfwJfl3WL8FuqfhSn7iSZ5rbRCPHOXqv9tb1qm0iq9eAl9vpBy
+         oNqrrZLZu5kZcCCwWf4Au1uP9hfssIjzX7ZcUINNtpWf7vhKotLZkuB2sRGTRCpSMwgn
+         TVHkXs9OBl+ovn7WlsyaW/+b0SZKB/cerNYYXmvRonSXTPwxWVeH6U2I1HcCg+hkAYX4
+         Axpg==
+X-Gm-Message-State: AOAM5330/SiUMl8lBjmy3ahgZs2pNZiZoEuUpPPpbBjjmC20UCyC4/tQ
+	zTQM+21yKEqLOWp3UP8V0Q5oQPcdYJs=
+X-Google-Smtp-Source: ABdhPJwKdh473uIrdjefra8a7Kc3xLd/Pwvy5EfPoO3tawK5JvMcb7IMRzA1GK1c99W/4chm08LB4Q==
+X-Received: by 2002:a37:9142:: with SMTP id t63mr4431321qkd.59.1628166322421;
+        Thu, 05 Aug 2021 05:25:22 -0700 (PDT)
+Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id s12sm2215458qtc.72.2021.08.05.05.25.21
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 05 Aug 2021 05:25:21 -0700 (PDT)
+Message-ID: <610BD8B0.4000304@gmail.com>
+Date: Thu, 05 Aug 2021 08:25:20 -0400
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: Daniel Ozer <danielozer22@gmail.com>,
+ "Discuss-gnuradio@gnu.org" <Discuss-gnuradio@gnu.org>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <CAE_Rk57FWHzJCE2bT+sf=URPKg+RpS3et46v8rHCUrrPKduT4w@mail.gmail.com> <6107DDD9.6070503@gmail.com> <CAE_Rk556qi1gaQg5bMQ2n2SMgWMJk34cbKVLqndeCGftWFkWCg@mail.gmail.com>
+In-Reply-To: <CAE_Rk556qi1gaQg5bMQ2n2SMgWMJk34cbKVLqndeCGftWFkWCg@mail.gmail.com>
+Message-ID-Hash: SORUDVIA4OLKLMTXMK26MG3EPIXR7ME7
+X-Message-ID-Hash: SORUDVIA4OLKLMTXMK26MG3EPIXR7ME7
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Low power mode
+Subject: [USRP-users] Re: Question on the usrp
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MXYDAMSS267N6HINDK545HZ5NDKX26YG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SORUDVIA4OLKLMTXMK26MG3EPIXR7ME7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6745567565031624860=="
+Content-Type: multipart/mixed; boundary="===============7874518851772514784=="
 
+This is a multi-part message in MIME format.
+--===============7874518851772514784==
+Content-Type: multipart/alternative;
+ boundary="------------090105000509080705090705"
 
---===============6745567565031624860==
-Content-Type: multipart/alternative; boundary=Apple-Mail-FAA73F02-8D95-44C6-942C-D4465ACF5460
+This is a multi-part message in MIME format.
+--------------090105000509080705090705
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 08/05/2021 07:45 AM, Daniel Ozer wrote:
+> Hi about this question im using gnuradio and its the one who call the 
+> recv function in the background and i cant access that part of the 
+> code. Do you know a way I can get the interrupt within a block of 
+> gnuradio while I'm not the one who call the recv function
+>
+>     3. While using high sample rate 50M+ i saw that once in a while 
+>     'D' is written to the terminal . How can get an interrupt that
+>     indicates that a packet has lost ? Is it one packet every time or
+>     only some of the packet not arriving ? Is there a way to make sure
+>     that packets won't lost ?
+>
+> The recv() call returns metadata that includes an error code.  See:
+>
+> https://files.ettus.com/manual/structuhd_1_1rx__metadata__t.html
+>
+In which case, you want to look at the tags produced by the gr-uhd 
+interface:
 
---Apple-Mail-FAA73F02-8D95-44C6-942C-D4465ACF5460
-Content-Type: text/plain;
-	charset=utf-8
+https://www.gnuradio.org/doc/doxygen-3.7.2/group__uhd__blk.html
+
+Whenever an overrun type event happens, gr-uhd inserts a fresh timestamp 
+into the tag stream associated with the sample stream. That allows
+   you to:
+
+   (A) Infer that an over-run type event occurred
+   (B) Know how many samples were dropped--by computing the difference 
+between what the expected timestamp should be and what
+         it actually is in the timestamp tag.
+
+I've cross-posted to discuss-gnuradio, where there's a bigger audience 
+for Gnu Radio questions.
+
+
+
+
+
+
+--------------090105000509080705090705
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-My guess making this actually work would not be that simple.=20
+<html>
+  <head>
+    <meta content=3D"text/html; charset=3Dutf-8" http-equiv=3D"Content-Ty=
+pe">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"moz-cite-prefix">On 08/05/2021 07:45 AM, Daniel Ozer
+      wrote:<br>
+    </div>
+    <blockquote
+cite=3D"mid:CAE_Rk556qi1gaQg5bMQ2n2SMgWMJk34cbKVLqndeCGftWFkWCg@mail.gmai=
+l.com"
+      type=3D"cite">
+      <div dir=3D"auto">Hi about this question im using gnuradio and its
+        the one who call the recv function in the background and i cant
+        access that part of the code. Do you know a way I can get the
+        interrupt within a block of gnuradio while I'm not the one who
+        call the recv function
+        <div dir=3D"auto"><br>
+        </div>
+        <div dir=3D"auto">
+          <div style=3D"font-size:13.696px;margin:0px 16px" dir=3D"auto">
+            <div>
+              <div style=3D"width:328px;margin:16px 0px">
+                <div>
+                  <div>
+                    <div style=3D"color:rgb(80,0,80)">
+                      <blockquote
+                        style=3D"font-family:sans-serif;font-size:12.8px;=
+margin-left:0.8ex!important;margin-right:0px!important;border-left:1px
+                        solid
+                        rgb(204,204,204)!important;padding-left:1ex!impor=
+tant">
+                        <div dir=3D"auto">
+                          <div dir=3D"auto">3. While using high sample
+                            rate 50M+ i saw that once in a while=C2=A0 'D=
+' is
+                            written to the terminal . How can get an
+                            interrupt that indicates that a packet has
+                            lost ? Is it one packet every time or only
+                            some of the packet not arriving ? Is there a
+                            way to make sure that packets won't lost ?</d=
+iv>
+                        </div>
+                      </blockquote>
+                    </div>
+                    The recv() call returns metadata that includes an
+                    error code.=C2=A0 See:<br>
+                    <br>
+                    <a moz-do-not-send=3D"true"
+                      href=3D"https://files.ettus.com/manual/structuhd_1_=
+1rx__metadata__t.html"
+style=3D"text-decoration-line:none;color:rgb(66,133,244)">https://files.e=
+ttus.com/manual/structuhd_1_1rx__metadata__t.html</a><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+    </blockquote>
+    In which case, you want to look at the tags produced by the gr-uhd
+    interface:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://www.gnuradio.org/d=
+oc/doxygen-3.7.2/group__uhd__blk.html">https://www.gnuradio.org/doc/doxyg=
+en-3.7.2/group__uhd__blk.html</a><br>
+    <br>
+    Whenever an overrun type event happens, gr-uhd inserts a fresh
+    timestamp into the tag stream associated with the sample stream.=C2=A0
+    That allows<br>
+    =C2=A0 you to:<br>
+    <br>
+    =C2=A0 (A) Infer that an over-run type event occurred<br>
+    =C2=A0 (B) Know how many samples were dropped--by computing the
+    difference between what the expected timestamp should be and what<br>
+    =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 it actually is in the time=
+stamp tag.<br>
+    <br>
+    I've cross-posted to discuss-gnuradio, where there's a bigger
+    audience for Gnu Radio questions.<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
 
-PCB design files are proprietary to Ettus/NI.=20
+--------------090105000509080705090705--
 
-Sent from my iPhone
-
-> On Aug 3, 2021, at 7:39 PM, Ernest Poletaev <epoletaev@i-blades.com> wrote=
-:
->=20
-> =EF=BB=BF
-> Thanks Marcus,
->=20
-> I was looking into it, there is power management in Spartan-6 FPGA (which I=
- suppose is the main power hog).
-> However, it requires using Suspend pin which is inaccessible on board due t=
-o BGA package.
->=20
-> If we had PCB design we could modify wiring on FPGA to allow us to use thi=
-s pin, but so far I was not able to find PCB design files.
->=20
-> Best Regards,
-> Ernest
->> On 4 Aug 2021 05:56 +0700, Marcus D Leech <patchvonbraun@gmail.com>, wrot=
-e:
->> My gut tells me this would require exotic power management support in the=
- FPGA fabric itself. Which it doesn=E2=80=99t as far as I know, have.=20
->>=20
->> Sent from my iPhone
->>=20
->>> On Aug 3, 2021, at 6:44 PM, Ernest Poletaev <epoletaev@i-blades.com> wro=
-te:
->>>=20
->>> =EF=BB=BF
->>> Hello,
->>>=20
->>> Power consumption is low until processing is started for the first time a=
-fter FPGA firmware loaded.
->>> =46rom this point power consumption remains the same even if processing i=
-s stopped.
->>>=20
->>> Power cycle will reduce power consumption but result in requiring to loa=
-d FPGA firmware which is lengthy process.
->>>=20
->>> Is it possible to temporarily reduce B205mini power consumption without r=
-equiring to reprogram FPGA?
->>>=20
->>> Using libuhd or with hardware mod or by modifying FPGA source code?
->>>=20
->>> Best Regards,
->>> Ernest
->>> _______________________________________________
->>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-FAA73F02-8D95-44C6-942C-D4465ACF5460
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">My guess making this actually work would no=
-t be that simple.&nbsp;<div><br></div><div>PCB design files are proprietary t=
-o Ettus/NI.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D=
-"ltr"><br><blockquote type=3D"cite">On Aug 3, 2021, at 7:39 PM, Ernest Polet=
-aev &lt;epoletaev@i-blades.com&gt; wrote:<br><br></blockquote></div><blockqu=
-ote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
-
-<title></title>
-
-
-<div name=3D"messageBodySection">
-<div dir=3D"auto">Thanks Marcus,<br>
-<br>
-I was looking into it, there is power management in Spartan-6 FPGA (which I s=
-uppose is the main power hog).<br>
-However, it requires using Suspend pin which is inaccessible on board due to=
- BGA package.<br>
-<br>
-If we had PCB design we could modify wiring on FPGA to allow us to use this p=
-in, but so far I was not able to find PCB design files.</div>
-</div>
-<div name=3D"messageSignatureSection"><br>
-<div class=3D"matchFont">
-<div dir=3D"auto">Best Regards,
-<div dir=3D"auto">Ernest</div>
-</div>
-</div>
-</div>
-<div name=3D"messageReplySection">On 4 Aug 2021 05:56 +0700, Marcus D Leech &=
-lt;patchvonbraun@gmail.com&gt;, wrote:<br>
-<blockquote type=3D"cite" style=3D"border-left-color: grey; border-left-widt=
-h: thin; border-left-style: solid; margin: 5px 5px;padding-left: 10px;">My g=
-ut tells me this would require exotic power management support in the FPGA f=
-abric itself. Which it doesn=E2=80=99t as far as I know, have.&nbsp;<br>
-<br>
-<div dir=3D"ltr">Sent from my iPhone</div>
-<div dir=3D"ltr"><br>
-<blockquote type=3D"cite">On Aug 3, 2021, at 6:44 PM, Ernest Poletaev &lt;ep=
-oletaev@i-blades.com&gt; wrote:<br>
-<br></blockquote>
-</div>
-<blockquote type=3D"cite">
-<div dir=3D"ltr">=EF=BB=BF
-<div name=3D"messageBodySection">
-<div dir=3D"auto">Hello,<br>
-<br>
-<span style=3D"color:var(--textColor);background-color:var(--backgroundColor=
-)">Power consumption is low until processing is started for the first time a=
-fter FPGA firmware loaded.</span><br>
-=46rom this point power consumption remains the same even if processing is s=
-topped.<br>
-<br>
-Power cycle will reduce power consumption but result in requiring to load FP=
-GA firmware which is lengthy process.<br>
-<br>
-Is it possible to temporarily reduce B205mini power consumption without requ=
-iring to reprogram FPGA?<br>
-<br>
-Using libuhd or with hardware mod or by modifying FPGA source code?</div>
-</div>
-<div name=3D"messageSignatureSection"><br>
-<div class=3D"matchFont">
-<div dir=3D"auto">Best Regards,
-<div dir=3D"auto">Ernest</div>
-</div>
-</div>
-</div>
-<span>_______________________________________________</span><br>
-<span>USRP-users mailing list -- usrp-users@lists.ettus.com</span><br>
-<span>To unsubscribe send an email to usrp-users-leave@lists.ettus.com</span=
-><br></div>
-</blockquote>
-</blockquote>
-</div>
-
-
-</div></blockquote></div></body></html>=
-
---Apple-Mail-FAA73F02-8D95-44C6-942C-D4465ACF5460--
-
---===============6745567565031624860==
+--===============7874518851772514784==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -233,4 +228,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6745567565031624860==--
+--===============7874518851772514784==--
