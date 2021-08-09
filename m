@@ -2,135 +2,212 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449553E4AA4
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 19:15:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 769E53E4AA7
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 19:17:04 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 91E68384EF6
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 13:15:54 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BA8B83849D4
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 13:17:03 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BgPqx801";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="emUT2OsL";
 	dkim-atps=neutral
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id A7E8A380857
-	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 13:15:07 -0400 (EDT)
-Received: by mail-ot1-f50.google.com with SMTP id r16-20020a0568304190b02904f26cead745so18418164otu.10
-        for <usrp-users@lists.ettus.com>; Mon, 09 Aug 2021 10:15:07 -0700 (PDT)
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5D37738552F
+	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 13:15:39 -0400 (EDT)
+Received: by mail-qt1-f179.google.com with SMTP id y9so2786213qtv.7
+        for <usrp-users@lists.ettus.com>; Mon, 09 Aug 2021 10:15:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gzn4menPcNCIw2nCABc3OlnCIGcA104HTglZ9DoY/mQ=;
-        b=BgPqx801K2NHMNBiYKdfhIVhLxVGxOGwbQk1hETIwSbLwIPSxjHcnzTCsm0adyEH4g
-         n2vaZPJ+e2fXqliRS0suL8oMK/GieKkmna0P+Ec/n1/hZJcI6BZi8i7OFSvQBsdsLIOP
-         lB0pTIYjB/oeF1eHaUtsMvp12VPFCjOv2n6n0maOzF2Je6IUmbAft3Lw5GJULu2vwkNE
-         YiKJjQPwpuYTORdCr4fXn9hw6hD2nGgZqrRPfXmN/LCWutqaspmUqvLOWHQiVZRitLu6
-         vpdnnVfdJ9T2PaPCGp1kWHuJULsCIfPHXt0V8ovdbo69c8bK/5kzFGXVIFICdlqH9P1Q
-         LyWQ==
+        h=message-id:date:from:user-agent:mime-version:to:subject:references
+         :in-reply-to;
+        bh=DwbU3nEi0UAJNFhjYN3SvRsDp+Ksf54mQaGkHJRqiSk=;
+        b=emUT2OsLfQSx3m3uX7A/2dWg/KQckO3IcRNHsE8Iz+QTZ5MXtCex3hMLPg7GTG101S
+         /mqpEed9Zx2bMWM+2Kger6+b1Df5PVboxkA65SZp32F0mkpHqBDYNGqRLAPwEcHtof2g
+         O0m0OwZe7FwuOM+NQGGAKdy12zIBVRxj+IT1hwxI5zMyoru0SqDAN32e9Cufg77bmaIS
+         uQDchPhctMdnDVO4vveHeqxtak1mVBPZru/Hgxy4IuB5u3DXmgkyZcYYEAVhTljTH+q4
+         xrEwRYXUE2KYcDwy4/19Dep/XogJdg0PHBUObFZ4L/XPJ0irhRZIVa3qoaNpuFNoz+ST
+         XuvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gzn4menPcNCIw2nCABc3OlnCIGcA104HTglZ9DoY/mQ=;
-        b=G8Oh6NRH4EQMQxN3v9/r1gi5LvxSTEABWr70TTfb4wcEPejwazz5xpAA3OuV6s9Ltu
-         CpdldrQXXE4UrAtjDGbEKpNEL3i7APx/V4y590W+xtBxisLyVGz+U0gjcGWk5A2EvRc2
-         s+lUazr58wjh782uR3j8Gnjhii9QYQgA0ecT3XsbZ7xZ3S90oHeP6e+12JNpu1rgnfkb
-         Wx/UKcQ85ooWQROBxhSGCE9VuTZxN/V9ORFeuDGI3OPaGwCed+ffoNA1ayzMwYmzzlHZ
-         cy36dgu8/u/TzUiIjtBoM/0Zb3q9pb+AS6DmoHjUxDElPEy+6B1v9LIl6cATGZObm3K+
-         +s+A==
-X-Gm-Message-State: AOAM533M0k+5FGJyMiUfEkBBDW60t6cDwFWzvJFlAPJqrJlts32wTGb5
-	zIxVdodUwbUpmLbiLSYkYNJZ9E3bQOJ3uHO5o6Q=
-X-Google-Smtp-Source: ABdhPJzLNhGfohG62igYRMlmDGX3wQVxhr+gKALnjIGuzp3oGlc2JcTll57wnpjh1nOs2rmxz2WmbRHyQTyT4JaY2Yk=
-X-Received: by 2002:a05:6830:3109:: with SMTP id b9mr17963066ots.276.1628529306958;
- Mon, 09 Aug 2021 10:15:06 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+         :subject:references:in-reply-to;
+        bh=DwbU3nEi0UAJNFhjYN3SvRsDp+Ksf54mQaGkHJRqiSk=;
+        b=MMJWQHH9otsGiWNaEb7W59SGMhC1mILoiWtgqjud8FunIcgzMUi9yiN/BpoU1yTiDW
+         KaeVZc5nNoUcAKl71DFrV1xR/Bz/kMgmTDJEbcr+Q8b+5D/ck+90q6FqscisEyV1DswB
+         Csd04y2a/6GYKDrKae41nAOYycD5y+pb502feevF7RO2qojCQXV7jh1GYMbUY+nir7fr
+         S4qo2mH0VP2+2APcTihfiyzhhosfvmSsMzJ07t1jurmTTTvlpZ5WA/9BT/hgKGamZ+WC
+         SOSo1VBKCGHd1gAk3KGdMIX5pLEnCHvmaQNVGB0RlJrtpAARoQ9U12gU3nouGK/YLsJz
+         r1lA==
+X-Gm-Message-State: AOAM533xyvgZKPCz0xumT0a1hh3izrWIRLGaThD+HjgFIdo3mzyoM99H
+	0FQLqgknWxgOuGefo8wFM6noa8MXgbVhNQ==
+X-Google-Smtp-Source: ABdhPJx1OFgaeyMF1RB/W86HRAFvLnczwfi+XksLSqA9gyjtykd3ErbqRJzEg25hWrcdEOtTkyWl8Q==
+X-Received: by 2002:ac8:7eea:: with SMTP id r10mr20608360qtc.349.1628529338622;
+        Mon, 09 Aug 2021 10:15:38 -0700 (PDT)
+Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id j7sm6896518qtx.39.2021.08.09.10.15.37
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 09 Aug 2021 10:15:38 -0700 (PDT)
+Message-ID: <611162B8.3050908@gmail.com>
+Date: Mon, 09 Aug 2021 13:15:36 -0400
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
+To: usrp-users@lists.ettus.com
 References: <A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.com>
 In-Reply-To: <A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Mon, 9 Aug 2021 13:14:55 -0400
-Message-ID: <CAEXYVK5o4sfq-rC4x34Hoq5cP7ahXksBhMdg4rtzp07sGGMWVw@mail.gmail.com>
-To: rblack@swri.org
-Message-ID-Hash: OPZARSWC6363XOXR226PHLIEY2JUPDHO
-X-Message-ID-Hash: OPZARSWC6363XOXR226PHLIEY2JUPDHO
-X-MailFrom: bpadalino@gmail.com
+Message-ID-Hash: 7LHKDFNHZ64P2ISVS23XK3BBGAROK6R7
+X-Message-ID-Hash: 7LHKDFNHZ64P2ISVS23XK3BBGAROK6R7
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X310 RFNoc radio block question
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OPZARSWC6363XOXR226PHLIEY2JUPDHO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7LHKDFNHZ64P2ISVS23XK3BBGAROK6R7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4142001335128940142=="
+Content-Type: multipart/mixed; boundary="===============1620609475460074390=="
 
---===============4142001335128940142==
-Content-Type: multipart/alternative; boundary="000000000000d908d405c923861b"
+This is a multi-part message in MIME format.
+--===============1620609475460074390==
+Content-Type: multipart/alternative;
+ boundary="------------000704040905010606070003"
 
---000000000000d908d405c923861b
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------000704040905010606070003
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 9, 2021 at 1:03 PM <rblack@swri.org> wrote:
+On 08/09/2021 12:45 PM, rblack@swri.org wrote:
+>
+> Ettus documentation suggests the radio can be configured for a 25 MS=20
+> sampling rate (The master 200M / 8). I=92m wondering if it is possible=20
+> to get the RFNoc RX *Radio block *to do this without the DDC block. Is=20
+> that possible? Entering anything other than 200M in the =93Sample Rate=20
+> (Hz)=94 field causes errors.
+>
+No.  The architecture is that the radio operates at the ADC rate, and in=20
+many cases (X310) the ADC rate is mostly fixed (or selectable from
+   a small number of discrete values).
 
-> Ettus documentation suggests the radio can be configured for a 25 MS
-> sampling rate (The master 200M / 8). I=E2=80=99m wondering if it is possi=
-ble to get
-> the RFNoc RX *Radio block *to do this without the DDC block. Is that
-> possible? Entering anything other than 200M in the =E2=80=9CSample Rate (=
-Hz)=E2=80=9D field
-> causes errors.
+The entire role of the DDC is to do both rate conversion and final=20
+frequency tuning (because many synthesizers aren't able to tune to
+   very-fine frequency increments).
 >
 > In these Radio blocks, what is the Bandwidth(Hz) entry used for?
 >
-
-Some boards have some analog filters for the reconstruction filter on the
-output of the DAC.
+The bandwidth setting sets the *ANALOG* bandwidth ahead of the ADC. In=20
+many cases, it's  "do nothing" because the radio complex-baseband filters
+   are fixed, to match the ADC rates.
 
 
 >
-> Is there any reason that you cannot use a Radio block *without* the DDC
-> block, sampling rates aside?
+> Is there any reason that you cannot use a Radio block *without* the=20
+> DDC block, sampling rates aside?
 >
+Conceptually, no.  But the DDC exists for very good reasons.
 
-The ADC is running at a fixed rate.  I believe there are 2 rates readily
-available: 200 MHz and 184.32 MHz.  The DDC is needed to change the rates
-by filtering and decimating.
 
-Does that make sense?
+>
+> thanks- rb
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-Brian
 
---000000000000d908d405c923861b
-Content-Type: text/html; charset="UTF-8"
+--------------000704040905010606070003
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Mon, Aug 9, 2021 at 1:03 PM &lt;<a hre=
-f=3D"mailto:rblack@swri.org">rblack@swri.org</a>&gt; wrote:<br></div><div c=
-lass=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>E=
-ttus documentation suggests the radio can be configured for a 25 MS samplin=
-g rate (The master 200M / 8).  I=E2=80=99m wondering if it is possible to g=
-et the RFNoc RX *Radio block *to do this without the DDC block.   Is that p=
-ossible?   Entering anything other than 200M in the =E2=80=9CSample Rate (H=
-z)=E2=80=9D field causes errors.</p><p>In these Radio blocks, what is the B=
-andwidth(Hz) entry used for?</p></blockquote><div><br></div><div>Some board=
-s have some analog filters for the reconstruction filter on the output of t=
-he DAC.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><p><br></p><p>Is there any reason that you cannot use a Radio block *w=
-ithout* the DDC block, sampling rates aside?</p></blockquote><div><br></div=
-><div>The ADC is running at a fixed rate.=C2=A0 I believe there are 2 rates=
- readily available: 200 MHz and 184.32 MHz.=C2=A0 The DDC is needed to chan=
-ge the rates by filtering and decimating.</div><div><br></div><div>Does tha=
-t make sense?</div><div><br></div><div>Brian</div></div></div>
+<html>
+  <head>
+    <meta content=3D"text/html; charset=3Dwindows-1252"
+      http-equiv=3D"Content-Type">
+  </head>
+  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div class=3D"moz-cite-prefix">On 08/09/2021 12:45 PM, <a class=3D"mo=
+z-txt-link-abbreviated" href=3D"mailto:rblack@swri.org">rblack@swri.org</=
+a>
+      wrote:<br>
+    </div>
+    <blockquote
+      cite=3D"mid:A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.co=
+m"
+      type=3D"cite">
+      <p>Ettus documentation suggests the radio can be configured for a
+        25 MS sampling rate (The master 200M / 8). I=92m wondering if it
+        is possible to get the RFNoc RX *Radio block *to do this without
+        the DDC block. Is that possible? Entering anything other than
+        200M in the =93Sample Rate (Hz)=94 field causes errors.</p>
+    </blockquote>
+    No.=A0 The architecture is that the radio operates at the ADC rate,
+    and in many cases (X310) the ADC rate is mostly fixed (or selectable
+    from<br>
+    =A0 a small number of discrete values).<br>
+    <br>
+    The entire role of the DDC is to do both rate conversion and final
+    frequency tuning (because many synthesizers aren't able to tune to<br=
+>
+    =A0 very-fine frequency increments).<br>
+    <blockquote
+      cite=3D"mid:A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.co=
+m"
+      type=3D"cite">
+      <p>In these Radio blocks, what is the Bandwidth(Hz) entry used
+        for?</p>
+    </blockquote>
+    The bandwidth setting sets the *ANALOG* bandwidth ahead of the ADC.=A0
+    In many cases, it's=A0 "do nothing" because the radio complex-baseban=
+d
+    filters<br>
+    =A0 are fixed, to match the ADC rates.<br>
+    <br>
+    <br>
+    <blockquote
+      cite=3D"mid:A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.co=
+m"
+      type=3D"cite">
+      <p><br>
+      </p>
+      <p>Is there any reason that you cannot use a Radio block *without*
+        the DDC block, sampling rates aside?</p>
+    </blockquote>
+    Conceptually, no.=A0 But the DDC exists for very good reasons.=A0 <br=
+>
+    <br>
+    <br>
+    <blockquote
+      cite=3D"mid:A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.co=
+m"
+      type=3D"cite">
+      <p><br>
+      </p>
+      <p>thanks- rb</p>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap=3D"">_______________________________________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
---000000000000d908d405c923861b--
+--------------000704040905010606070003--
 
---===============4142001335128940142==
+--===============1620609475460074390==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -140,4 +217,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4142001335128940142==--
+--===============1620609475460074390==--
