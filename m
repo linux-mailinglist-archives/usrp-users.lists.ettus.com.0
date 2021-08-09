@@ -2,271 +2,164 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 290B23E4BCE
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 20:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 748B43E4C85
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 20:56:58 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 33F4B384893
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 14:03:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A08CD3847F4
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 14:56:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="KMBexOoL";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZdwKgH5h";
 	dkim-atps=neutral
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id C6CED384324
-	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 14:02:38 -0400 (EDT)
-Received: by mail-qv1-f49.google.com with SMTP id f91so9451461qva.9
-        for <usrp-users@lists.ettus.com>; Mon, 09 Aug 2021 11:02:38 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 351CC3847C7
+	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 14:56:15 -0400 (EDT)
+Received: by mail-yb1-f177.google.com with SMTP id p145so31377917ybg.6
+        for <usrp-users@lists.ettus.com>; Mon, 09 Aug 2021 11:56:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=message-id:date:from:user-agent:mime-version:to:subject:references
-         :in-reply-to;
-        bh=TqeXFgTjVKSGht1sFGMNiPtPolstTCklZfxZrr57fC0=;
-        b=KMBexOoLHi3b3h3L1jJCVLiiaewRQSFBSqbjpsozkoD9phyoH6xLFTfBz88hXxuEV0
-         ZGwKCrbvRP1R0QLG6C1kg5RnhRbK1TMtxNhFALMIsGqAod21uUSYEGmacmtzzj9wjiV/
-         YpDGCkuXxs3pY6cYg6MB45kmGR2SG8rdLmrzubehktMboikjdbKZIRWaymvuLeQE4Lb2
-         Pyye06Mu+Nz2uiGRgJhj+0LMDNYWefxKUzK1LyI5doivTevZdVmcF7QdXXQC4K2mPxpY
-         4yURB8pTFbvnL4pfV0LDhimXwma3sJIcGm5y+ek6Rxwa1879c5cxMrxAQ5jGPgs30UQS
-         llbg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=c/kSbCI5UWxUfEWennK6i3SaNSS3XZNRaElGVazMA18=;
+        b=ZdwKgH5hGsQpUFIL3O7clXHpJkHmnfnCMxzi3HWJ/KvlZ/AXZU0NMFHODrgvYJHq0u
+         R55Ms/NYAct287NjZREAUtdC7JPpZaLbE48P+At6r/4Bsvq2bxyymPqa4rUpoR4U7l5r
+         b6pYLcCycfcjJHV9XqdxzlH8wQkNsGhAaqFvFfnr5yX/CnMiCDmsPuwQDkPukIS1OQXk
+         /p7ywW9lDCaiEV8PGGWSzGRwr/hkwmRIovKb7WuufJ/ZjbF9WeJFo+Vs44lwqIi8k9+o
+         M4P6jqLAX6XSAqTY2e/P0QvX2An+zwxx2K/wbiAyyE4kU+1gNihli8Q1MBo+DNeM4WSC
+         92zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-         :subject:references:in-reply-to;
-        bh=TqeXFgTjVKSGht1sFGMNiPtPolstTCklZfxZrr57fC0=;
-        b=ogQ3BRqiiN2b0tZAlmFAszuXq4vZYKWEnj/M6/0oxjODkBFAsaK9ba6gLkvSHYod+Q
-         SRkMz+WxPUXsY8i5+5Wkm5m6OYScndd9gfQZ7VGpnU1KDS9FjQmpSe3/Owvm+ov2CDdy
-         fmnTHVJMJSPfVPgWiVSq8AaAtlL8dAiTVtcASmdhhnTG6uJtsISYF4rUBDSmzP3EjfPh
-         2viY764Sd5OEVIi8sUX0VF/BUYr10cbqJtXSrsg16kWNDz6PnB0KQlBoZHizovA/cQAA
-         N3upZAUA73QA1lPau5thQ/GqobgK2bBnEl8jVA89QottQJWLeQva39eAsI1uzJyxgVb5
-         nYWg==
-X-Gm-Message-State: AOAM533aDCiVy0jOsuR+/N6YvoIXpQr3/VSudQAVWnk7Znr1Xk+9l4Gz
-	sHP4IEPtCsrYNtLKQmFnmmaWmIxj6SDhuA==
-X-Google-Smtp-Source: ABdhPJw+QkUxG3HuO3T9dRnNhjFMyiVFlE9U9gvvvbOvW1/mK+fvlLisZ6T8AP9saMz5xYjNMVR3Hw==
-X-Received: by 2002:ad4:4eaf:: with SMTP id ed15mr25093528qvb.11.1628532158124;
-        Mon, 09 Aug 2021 11:02:38 -0700 (PDT)
-Received: from [192.168.2.12] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id n124sm9617115qkf.119.2021.08.09.11.02.37
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Aug 2021 11:02:37 -0700 (PDT)
-Message-ID: <61116DBC.2020308@gmail.com>
-Date: Mon, 09 Aug 2021 14:02:36 -0400
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=c/kSbCI5UWxUfEWennK6i3SaNSS3XZNRaElGVazMA18=;
+        b=HWsq8IsT50Igjj7I/LE0DNV//cf9AFlbM0Nvb8tUeedvjyJVQrdNFm1kXyCFCBeFib
+         ikWdOn8s+W1IDiBu8g/yu9PFLvPrZ0IAeyI+1QkECqSLHmqTHYAolQFkCR37FLyNG4GU
+         twHkad5UXSU5I+Wx5FJ2f3fwX5CMcxRhINDNdaI8rGxJHzn9+riCWnsIo2MbWsPVH7WG
+         WEc1fpmLQLJEnmhXZj1vvZfL1YZs+lNp9Vpcy/EiVUmQM3KJxVu7D+4EhkYnRl0GqowF
+         l0DgdYTTQ6Txcd2vwQJaSEx8G7Ys3WUmEgZ5SYiDL2Sl1F0kv23DQjhNoM+VDJzRnZ61
+         zGMQ==
+X-Gm-Message-State: AOAM530Yyai0ZNZcsfLTcmO/Qr0xGKsystgFTLelLUbNBGgRHntMpccJ
+	xRn8oyYMJ6jAIK+AU0M5v5w2yZNEnz6YDHyKVryWk90xDfk=
+X-Google-Smtp-Source: ABdhPJwxR6CMVWSs2KR5quDa2OelzpHz8Of1VP5xKbAinQmpHNgeHBONwrnmAARq0wsBj3gv40+MxHonu4MdYR7KuiQ=
+X-Received: by 2002:a25:d488:: with SMTP id m130mr32896029ybf.116.1628535374626;
+ Mon, 09 Aug 2021 11:56:14 -0700 (PDT)
 MIME-Version: 1.0
-To: usrp-users@lists.ettus.com
-References: <A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.com> <CAEXYVK5o4sfq-rC4x34Hoq5cP7ahXksBhMdg4rtzp07sGGMWVw@mail.gmail.com> <BN1P110MB01323D8769737F7F320EB88D95F69@BN1P110MB0132.NAMP110.PROD.OUTLOOK.COM> <CAEXYVK4=93B2Xef37C0K4+R6yHB=2OKa0VWNkgg4VFjAPqVSuA@mail.gmail.com>
-In-Reply-To: <CAEXYVK4=93B2Xef37C0K4+R6yHB=2OKa0VWNkgg4VFjAPqVSuA@mail.gmail.com>
-Message-ID-Hash: EWSRHO55MUXVGQ2ONGV66A3Z63HKBXFO
-X-Message-ID-Hash: EWSRHO55MUXVGQ2ONGV66A3Z63HKBXFO
-X-MailFrom: patchvonbraun@gmail.com
+References: <8ef118c6-fddb-377e-6a7b-654bdf2a110e@olifantasia.com>
+In-Reply-To: <8ef118c6-fddb-377e-6a7b-654bdf2a110e@olifantasia.com>
+From: Michael Wentz <mchlwntz@gmail.com>
+Date: Mon, 9 Aug 2021 14:56:03 -0400
+Message-ID: <CAFTrPL0qJZbn4Wk8cZuWiRyJaZWdO-Yzm45__6R8WboD2F5n1w@mail.gmail.com>
+To: Martin <usrp-users-list@olifantasia.com>, USRP list <usrp-users@lists.ettus.com>
+Message-ID-Hash: CPRQL3NXCW2ZTSFLCCNTDX2F6XQUELFC
+X-Message-ID-Hash: CPRQL3NXCW2ZTSFLCCNTDX2F6XQUELFC
+X-MailFrom: mchlwntz@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310 RFNoc radio block question
+Subject: [USRP-users] Re: UHD source IO type sc16 is not accepted by any GRC block in gnuradio 3.8 (error source IO type "sc16" does not match sink IO type "short")
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EWSRHO55MUXVGQ2ONGV66A3Z63HKBXFO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CPRQL3NXCW2ZTSFLCCNTDX2F6XQUELFC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5085004932837130117=="
+Content-Type: multipart/mixed; boundary="===============2398330520257142364=="
 
-This is a multi-part message in MIME format.
---===============5085004932837130117==
-Content-Type: multipart/alternative;
- boundary="------------080703090105070109030000"
+--===============2398330520257142364==
+Content-Type: multipart/alternative; boundary="00000000000082431b05c924f071"
 
-This is a multi-part message in MIME format.
---------------080703090105070109030000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--00000000000082431b05c924f071
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/09/2021 01:35 PM, Brian Padalino wrote:
-> On Mon, Aug 9, 2021 at 1:21 PM Black, Robert <RBlack@d16.swri.us 
-> <mailto:RBlack@d16.swri.us>> wrote:
->
->     Brian yes.- The Radio block is permanently running at a permanent
->     200 MSamp rate.
->
->     I would actually be useful to be able to change (reduce) the ADC
->     sampling clock, with appropriate analog anti-aliasing filtering in
->     front of the device. It is too bad that the radio hardware cannot
->     be configured to support this.
->
-The ADC clock on the X310 is constrained by timing-closure constraints 
-in the FPGA from what I understand, which is why it has only a couple of
-   different rates. But if you made it broadly-flexible, then the 
-various daughtercards available would dwindle to only those that have
-   variable analog bandwidth to match the ADC and DAC rate.
+I also noticed this problem. It appears to be a bug in GNU Radio,
+introduced by this commit (or at least reverting it fixes the problem):
+https://github.com/gnuradio/gnuradio/commit/d44ee73deeaab86a7cc5820ef62688f291331b88#diff-07eb034ef7119f3142143792b6a91429ea645e3dd21cd48251d5332abf7486a2
 
-When USRPs were first introduced, the ADC ran at a fixed 64Msps rate.  
-Similarly with USRP2 and USRP N210 at 100Msps.  That changed in
-   some parts of the family tree, but not others.
+-Michael
 
-Many of the daugtercards for X3xx family use discrete synthesizer+mixer 
-implementations, and it's fairly difficult to design variable-properties
-   anti-alias filters that scale over very large bandwidths.    The 
-fixed-converter-rate-with-DUC/DDC-in-FPGA is a pretty normal 
-architecture, and
-   it offers considerable advantages over analog-heavy approaches. Even 
-in RFIC chips like AD9361, the variable-user-bandwidth is mostly
-   implemented in an embedded DSP engine in the ASIC.
+On Fri, Aug 6, 2021 at 11:37 AM Martin <usrp-users-list@olifantasia.com>
+wrote:
 
-
+> Hi,
+> I used to be able to select output IO type "sc16" in a UHD source block.
+> And then connect it to anything that expects a vector of two shorts on
+> its input.
+> For example a head block with type short and vectorsize 2.
+> Or a filesink with type short and vectorsize 2.
 >
-> Just curious - why the hesitation on using the DDC block?
+> But with current gnuradio 3.8 I get this error when I connect a UHD
+> source with output type sc16 to a block which expects a vector of two
+> shorts on its input:
 >
-> The oversampling ratio should actually help you out, unless you have 
-> some really really close-in jammers - but even then would an analog 
-> filter help that much?  The linearity of the ADC should be very good, 
-> and digitally filtering should be superior - yes?  Possibly even get 
-> some bit-growth with digital filtering and decimation?
+> Source IO type "sc16" does not match sink IO type "short"
 >
-> Brian
+> I could not find any block that accepts IOtype sc16 on its input inside
+> grc.
 >
+> Am I missing something obvious here?
+> How can I use complex short samples from a UHD source block?
+>
+> Thanks and best regards,
+>
+> Martin
 >
 >
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-
---------------080703090105070109030000
-Content-Type: text/html; charset=windows-1252
+--00000000000082431b05c924f071
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content=3D"text/html; charset=3Dwindows-1252"
-      http-equiv=3D"Content-Type">
-  </head>
-  <body bgcolor=3D"#FFFFFF" text=3D"#000000">
-    <div class=3D"moz-cite-prefix">On 08/09/2021 01:35 PM, Brian Padalino
-      wrote:<br>
-    </div>
-    <blockquote
-cite=3D"mid:CAEXYVK4=3D93B2Xef37C0K4+R6yHB=3D2OKa0VWNkgg4VFjAPqVSuA@mail.=
-gmail.com"
-      type=3D"cite">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">On Mon, Aug 9, 2021 at 1:21 PM Black, Robert &lt=
-;<a
-            moz-do-not-send=3D"true" href=3D"mailto:RBlack@d16.swri.us">R=
-Black@d16.swri.us</a>&gt;
-          wrote:<br>
-        </div>
-        <div class=3D"gmail_quote">
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div lang=3D"EN-US">
-              <div class=3D"gmail-m_7218659178059861720WordSection1">
-                <p class=3D"MsoNormal"><span
-                    style=3D"font-size:11pt;font-family:Arial,sans-serif;=
-color:rgb(31,73,125)">Brian
-                    yes.- The Radio block is permanently running at a
-                    permanent 200 MSamp rate.</span></p>
-                <p class=3D"MsoNormal"><span
-                    style=3D"font-size:11pt;font-family:Arial,sans-serif;=
-color:rgb(31,73,125)">=A0</span></p>
-                <p class=3D"MsoNormal"><span
-                    style=3D"font-size:11pt;font-family:Arial,sans-serif;=
-color:rgb(31,73,125)">I
-                    would actually be useful to be able to change
-                    (reduce) the ADC sampling clock, with appropriate
-                    analog anti-aliasing filtering in front of the
-                    device. It is too bad that the radio hardware cannot
-                    be configured to support this.</span></p>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    The ADC clock on the X310 is constrained by timing-closure
-    constraints in the FPGA from what I understand, which is why it has
-    only a couple of<br>
-    =A0 different rates. But if you made it broadly-flexible, then the
-    various daughtercards available would dwindle to only those that
-    have<br>
-    =A0 variable analog bandwidth to match the ADC and DAC rate.<br>
-    <br>
-    When USRPs were first introduced, the ADC ran at a fixed 64Msps
-    rate.=A0 Similarly with USRP2 and USRP N210 at 100Msps.=A0 That chang=
-ed
-    in<br>
-    =A0 some parts of the family tree, but not others.<br>
-    <br>
-    Many of the daugtercards for X3xx family use discrete
-    synthesizer+mixer implementations, and it's fairly difficult to
-    design variable-properties<br>
-    =A0 anti-alias filters that scale over very large bandwidths.=A0=A0=A0=
- The
-    fixed-converter-rate-with-DUC/DDC-in-FPGA is a pretty normal
-    architecture, and<br>
-    =A0 it offers considerable advantages over analog-heavy approaches.=A0=
-=A0
-    Even in RFIC chips like AD9361, the variable-user-bandwidth is
-    mostly<br>
-    =A0 implemented in an embedded DSP engine in the ASIC.<br>
-    <br>
-    <br>
-    <blockquote
-cite=3D"mid:CAEXYVK4=3D93B2Xef37C0K4+R6yHB=3D2OKa0VWNkgg4VFjAPqVSuA@mail.=
-gmail.com"
-      type=3D"cite">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div><br>
-          </div>
-          <div>Just curious - why the hesitation on using the DDC block?<=
-/div>
-          <div><br>
-          </div>
-          <div>The oversampling ratio should actually help you out,
-            unless you have some really really close-in jammers - but
-            even then would an analog filter help that much?=A0 The
-            linearity of the ADC should be very good, and digitally
-            filtering should be superior - yes?=A0 Possibly even get some
-            bit-growth with digital filtering and decimation?</div>
-          <div><br>
-          </div>
-          <div>Brian</div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div lang=3D"EN-US">
-              <div class=3D"gmail-m_7218659178059861720WordSection1">
-                <div>
-                  <div>
-                    <div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <br>
-      <pre wrap=3D"">_______________________________________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div>I also noticed this problem. It appears to be a bug i=
+n GNU Radio, introduced by this commit (or at least reverting it fixes the =
+problem): <a href=3D"https://github.com/gnuradio/gnuradio/commit/d44ee73dee=
+aab86a7cc5820ef62688f291331b88#diff-07eb034ef7119f3142143792b6a91429ea645e3=
+dd21cd48251d5332abf7486a2">https://github.com/gnuradio/gnuradio/commit/d44e=
+e73deeaab86a7cc5820ef62688f291331b88#diff-07eb034ef7119f3142143792b6a91429e=
+a645e3dd21cd48251d5332abf7486a2</a></div><div><br></div><div>-Michael</div>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Fri, Aug 6, 2021 at 11:37 AM Martin &lt;<a href=3D"mailto:usrp-users-lis=
+t@olifantasia.com">usrp-users-list@olifantasia.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
+I used to be able to select output IO type &quot;sc16&quot; in a UHD source=
+ block.<br>
+And then connect it to anything that expects a vector of two shorts on <br>
+its input.<br>
+For example a head block with type short and vectorsize 2.<br>
+Or a filesink with type short and vectorsize 2.<br>
+<br>
+But with current gnuradio 3.8 I get this error when I connect a UHD <br>
+source with output type sc16 to a block which expects a vector of two <br>
+shorts on its input:<br>
+<br>
+Source IO type &quot;sc16&quot; does not match sink IO type &quot;short&quo=
+t;<br>
+<br>
+I could not find any block that accepts IOtype sc16 on its input inside grc=
+.<br>
+<br>
+Am I missing something obvious here?<br>
+How can I use complex short samples from a UHD source block?<br>
+<br>
+Thanks and best regards,<br>
+<br>
+Martin<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---------------080703090105070109030000--
+--00000000000082431b05c924f071--
 
---===============5085004932837130117==
+--===============2398330520257142364==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -276,4 +169,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5085004932837130117==--
+--===============2398330520257142364==--
