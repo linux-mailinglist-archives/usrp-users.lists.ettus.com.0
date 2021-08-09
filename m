@@ -2,150 +2,171 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F01053E4AF3
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 19:36:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEF6A3E4A20
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 18:41:37 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1CBED384F36
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 13:36:41 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DB622384994
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 12:41:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UlnQhioH";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pMzh5sM0";
 	dkim-atps=neutral
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 27C293843C9
-	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 13:35:58 -0400 (EDT)
-Received: by mail-ot1-f48.google.com with SMTP id r17-20020a0568302371b0290504f3f418fbso4633942oth.12
-        for <usrp-users@lists.ettus.com>; Mon, 09 Aug 2021 10:35:58 -0700 (PDT)
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7A0FE384955
+	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 12:40:42 -0400 (EDT)
+Received: by mail-qt1-f174.google.com with SMTP id c6so8711893qtv.5
+        for <usrp-users@lists.ettus.com>; Mon, 09 Aug 2021 09:40:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dsSOwEOCDTxlA7Ov6vyDzLPfo4D1koHkGkZIPp404oY=;
-        b=UlnQhioHhWofGw0havFPCxBfIBq1oiC4xRcKkCLfTbhF/FjppQGYYUjhiL981tqw/Z
-         jE1zXoeqNw5CjAbyEk8v+RejxR17iGpr+uo5hKhAvIDeK8YU9/tSM1l7r8b+/l3l94CY
-         QGlLahnpgL60ir5eDcIkG5fH9vbg30IQcD80rS9P9FvMN8Kj1Z66Zkp6iQ2JaxfRObqW
-         +YqXb+mntsiVgEusQJfqKf8Ueo60BT8aRc13PmUrC0IfeKYIfMsy2qP35vbB0zQnCnKi
-         kswjCngXOLMAeOknA/0UgKrsI1FbwtAsAoIAKuQcDwm3/dfKYoHLCD3DOOFE8fCNb81U
-         A7bw==
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=vFQWQaDPtgWxCHATZUrlbi8jx50UnMXokdd8tf9ft28=;
+        b=pMzh5sM0MacUYDd+P7kWx2rSIgek5fOQSKJH0wDJmFziFMYpN3r0f3f4goJU93NO+Q
+         QTpYjLjgRatwe/ZPR6EyIkdhLlc+ypVrY6zKaUDRLtsTECHA4gNHSWG9xDlI8vzHDZpW
+         2hgBx9HOX6y5/T+jTbyBTRKgDHlz0btdumsA8QN2yrmF1ri5c7Wuwm4Zae9MPyLnuD0e
+         HCoC206yx8EXYbjxwMtIqJI/2dkaR8Umz6UHmOYCV6pJcjHhxEuanRgIIpimqKBlI2yY
+         NIs8ZbGHXNYlAX0v8B8/ZmvJRgh0/IbUYPj3tARE+RolXaHeX7/uV4t6TsqzYA8UPKju
+         gkAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dsSOwEOCDTxlA7Ov6vyDzLPfo4D1koHkGkZIPp404oY=;
-        b=MoeZqOfDFmpx305jKf6ebkGdj93UnTt9qk0RX2aJG77UHJISkoreQkXgo2BW0swdp1
-         FG5inPxT8PVKuPqaI0iq/If26zheWaatcscUmLBT25ZRiUhYhunpEXVnv14+rDa6OlsB
-         8hCkPo84KkRzzM2QQDffn2d+/XejZr4yPxnHa3YzjrBk1Jcv3A8ivZvTlnZdDz5pNVBQ
-         WTyN3eZHyI2bJuqL+dOBAEcSOZeKYLkJaKV0/smnIClNf4jpx2DLnlAjNjRKLcnBvwqj
-         0CsHn9WEhJEmDHTDl83aBKSwo7O/a5QOIxcSiR0KeeCi4w1TX425Mr7pMknCcFNlljAg
-         YO9w==
-X-Gm-Message-State: AOAM532uHTqgN+J0BJPzCzDFbyteA1deSMueUVinM7C3YhxOshkQpyZ4
-	jI5GQub5SiY9zwSzWdAjqQbIadky0lCLTqFiTqQ=
-X-Google-Smtp-Source: ABdhPJwN91zG/4Wiq7oiY8SVBmwufJCt7E1LxZEXQWUNj6rL03+c+HsTySagQAv12HbfuKSNmRNiZlBdeNPXBSL7HOE=
-X-Received: by 2002:a05:6830:3109:: with SMTP id b9mr18031706ots.276.1628530557539;
- Mon, 09 Aug 2021 10:35:57 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=vFQWQaDPtgWxCHATZUrlbi8jx50UnMXokdd8tf9ft28=;
+        b=BYTaT4gUy+7HfqsLVUqG0rSWumHbjeZ5Hh5O46um1n4rdyVFFmhzDeDPUlEMUHjc4G
+         4nvDiEZgGdANutXGWrXNxoYdA9HGbmmXcsOhmLKr/4gISwf7IyyTOVlEGCNk30AF2daI
+         b7UZowHyhtbfZP4rxyVJ/hZ3WC5ffs9eaZECc9YKKWWp5izOIp2c7/N1Z3/VZ7DzFgwX
+         rvg59sdScvacJkMOq8YcZgYyeLr+j11KjVHE7K03V77vlDAcE4bYX1W7iBTqg+6cMnsg
+         DZROEL7mFT0DexVEQDPcq7YBtB0w1lgPBoFntfOwn3j1mh0RnL/yA0odt39KWTAlcv+6
+         Y1UQ==
+X-Gm-Message-State: AOAM533lzLf7CrTv7Ur3NcKQHhnz7A0Hjfv2VelBV6ty21WBP2YmEmk6
+	lSDibtDK3opZ5d/EPj5Ji+ApfxvT4Kw=
+X-Google-Smtp-Source: ABdhPJzRvLTMYDmLiw9qE/HL+uA+2Fsl48Nz8RU9a1PbBthYd6PPDQEKv+cKu2wUvQCkDJkVPM1Seg==
+X-Received: by 2002:ac8:665a:: with SMTP id j26mr4039041qtp.173.1628527241632;
+        Mon, 09 Aug 2021 09:40:41 -0700 (PDT)
+Received: from DESKTOP70IB7GE ([129.10.131.194])
+        by smtp.gmail.com with ESMTPSA id n189sm5861029qka.69.2021.08.09.09.40.40
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 09 Aug 2021 09:40:41 -0700 (PDT)
+From: <zhang.weit3@gmail.com>
+To: <usrp-users@lists.ettus.com>
+Date: Mon, 9 Aug 2021 12:40:37 -0500
+Message-ID: <015c01d78d45$aa24fe90$fe6efbb0$@gmail.com>
 MIME-Version: 1.0
-References: <A0qfQ4NVDJav3t78VGqE7RQSoqlsUKAMQAMKDtBc@lists.ettus.com>
- <CAEXYVK5o4sfq-rC4x34Hoq5cP7ahXksBhMdg4rtzp07sGGMWVw@mail.gmail.com> <BN1P110MB01323D8769737F7F320EB88D95F69@BN1P110MB0132.NAMP110.PROD.OUTLOOK.COM>
-In-Reply-To: <BN1P110MB01323D8769737F7F320EB88D95F69@BN1P110MB0132.NAMP110.PROD.OUTLOOK.COM>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Mon, 9 Aug 2021 13:35:46 -0400
-Message-ID: <CAEXYVK4=93B2Xef37C0K4+R6yHB=2OKa0VWNkgg4VFjAPqVSuA@mail.gmail.com>
-To: "Black, Robert" <RBlack@d16.swri.us>
-Message-ID-Hash: RA7FNJR2ORZEASFG45L4ZWUMTBNDQ3KQ
-X-Message-ID-Hash: RA7FNJR2ORZEASFG45L4ZWUMTBNDQ3KQ
-X-MailFrom: bpadalino@gmail.com
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdeNRH9lt0rXYYEHTT6ISVCZYuyPnQ==
+Content-Language: en-us
+Message-ID-Hash: OMKNR3YSLFWNIUJFKPWVKLBY4JFDXSBY
+X-Message-ID-Hash: OMKNR3YSLFWNIUJFKPWVKLBY4JFDXSBY
+X-MailFrom: zhang.weit3@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "rblack@swri.org" <rblack@swri.org>, "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310 RFNoc radio block question
+Subject: [USRP-users] FPGA as OctoClock-G
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RA7FNJR2ORZEASFG45L4ZWUMTBNDQ3KQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OMKNR3YSLFWNIUJFKPWVKLBY4JFDXSBY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3198272258544517013=="
+Content-Type: multipart/mixed; boundary="===============9083687534240332693=="
 
---===============3198272258544517013==
-Content-Type: multipart/alternative; boundary="0000000000006357fb05c923d121"
+This is a multipart message in MIME format.
 
---0000000000006357fb05c923d121
-Content-Type: text/plain; charset="UTF-8"
+--===============9083687534240332693==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_015D_01D78D1B.C14FB9E0"
+Content-Language: en-us
 
-On Mon, Aug 9, 2021 at 1:21 PM Black, Robert <RBlack@d16.swri.us> wrote:
+This is a multipart message in MIME format.
 
-> Brian yes.- The Radio block is permanently running at a permanent 200
-> MSamp rate.
->
->
->
-> I would actually be useful to be able to change (reduce) the ADC sampling
-> clock, with appropriate analog anti-aliasing filtering in front of the
-> device. It is too bad that the radio hardware cannot be configured to
-> support this.
->
+------=_NextPart_000_015D_01D78D1B.C14FB9E0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Just curious - why the hesitation on using the DDC block?
+Hi,
 
-The oversampling ratio should actually help you out, unless you have some
-really really close-in jammers - but even then would an analog filter help
-that much?  The linearity of the ADC should be very good, and digitally
-filtering should be superior - yes?  Possibly even get some bit-growth with
-digital filtering and decimation?
+ 
 
-Brian
+I am thinking of using FPGA to generate 1PPS and 10MHz signals for
+multi-USRP, which plays the same functionality as that of the OctoClock-G
+module. Will there be any potential shortcomings to use FPGA compared to
+OctoClock-G?
 
->
+ 
 
---0000000000006357fb05c923d121
-Content-Type: text/html; charset="UTF-8"
+ 
+
+Thank you,
+
+Weit
+
+
+------=_NextPart_000_015D_01D78D1B.C14FB9E0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Mon, Aug 9, 2021 at 1:21 PM Black, Rob=
-ert &lt;<a href=3D"mailto:RBlack@d16.swri.us">RBlack@d16.swri.us</a>&gt; wr=
-ote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal>Hi,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>I am =
+thinking of using FPGA to generate 1PPS and 10MHz signals for =
+multi-USRP, which plays the same functionality as that of the =
+OctoClock-G module. Will there be any potential shortcomings to use FPGA =
+compared to OctoClock-G?<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thank =
+you,<o:p></o:p></p><p =
+class=3DMsoNormal>Weit<o:p></o:p></p></div></body></html>
+------=_NextPart_000_015D_01D78D1B.C14FB9E0--
 
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_7218659178059861720WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Arial,sans=
--serif;color:rgb(31,73,125)">Brian yes.- The Radio block is permanently run=
-ning at a permanent 200 MSamp rate.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Arial,sans=
--serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Arial,sans=
--serif;color:rgb(31,73,125)">I would actually be useful to be able to chang=
-e (reduce) the ADC sampling clock, with appropriate analog anti-aliasing fi=
-ltering in front of the device. It is too
- bad that the radio hardware cannot be configured to support this.</span></=
-p></div></div></blockquote><div><br></div><div>Just curious - why the hesit=
-ation on using the DDC block?</div><div><br></div><div>The oversampling rat=
-io should actually help you out, unless you have some really really close-i=
-n jammers - but even then would an analog filter help that much?=C2=A0 The =
-linearity of the ADC should be very good, and digitally filtering should be=
- superior - yes?=C2=A0 Possibly even get some bit-growth with digital filte=
-ring and decimation?</div><div><br></div><div>Brian</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><div class=3D"gmail-m_=
-7218659178059861720WordSection1"><div><div><div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-</blockquote></div></div>
-
---0000000000006357fb05c923d121--
-
---===============3198272258544517013==
+--===============9083687534240332693==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -155,4 +176,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3198272258544517013==--
+--===============9083687534240332693==--
