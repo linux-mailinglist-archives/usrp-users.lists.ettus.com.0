@@ -2,1140 +2,295 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5EEB3E490C
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 17:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82D4E3E497E
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 18:11:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EC08E384BE0
-	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 11:43:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 42910384E25
+	for <lists+usrp-users@lfdr.de>; Mon,  9 Aug 2021 12:11:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=augustusaerospace.onmicrosoft.com header.i=@augustusaerospace.onmicrosoft.com header.b="kUN9xFq6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="oMuJoAvJ";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2132.outbound.protection.outlook.com [40.107.93.132])
-	by mm2.emwd.com (Postfix) with ESMTPS id DEC4C38487D
-	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 11:42:49 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HBhWbAax7JikGA+A6NRtrOmnO5OrXD/1GBcRS+e+Z6KMSs4HG3qINGlXIBqOOLTTLj4wQQ+kJgBBFf6ftu+nNiRtqPRNlDDesrzcb2v/QKBIAHmmUwUdrXkzhTXvgRZErl8pHICqqoqWarSQwdqEmrjrOlG9iX8w3PSYI+sro/7mObhR3Vz/mJS17TVgKNr5rJ8/rady9brHsJvjZQu66BGhdmMboPjPZ4k+qfBR6gLkGcGdetakfPYVCojogXd1/lo37BuxFbOKcUhui4l7HyeVuxxRrivK/BNgcnrPZu+OYtMEB9RP6Iu0I1lTQhuXw4C2JdHCyaem3AAlbKfsow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8T7Kc895OyaudoJZqR5ZOcI9pqu8b75MtwrqD6UKUBI=;
- b=bGbTBceum9rYcN6a1ZqQXma0/Fmlf9Oea4mIKI5dLYK9fQ6yaVB/PfoOKrlbKFcYTAaUX/mlToHuEaAYHL1r7fUBjvU0BLQloJyqLWMMJMNGJlqgQoUCdZJluUTjtBTlh42JAHYysjqhTeBK+KLStO3K5EOwY+Ox4Wy0IunvreCCHcdH/nMyVpXmJ+AgbcssD0uc6lF9vKSMAK2jsjn8A+NqStcYc9j9ZBdSXrZIbB11yWwq8Sjs6mmEsymBlltb9KIsfco6e1dQiobKdHS+mTEgw/St9mUv/oE1sN7TsVkuVdIw7SHFekAAMqRwz1W28SQIL2hxuo46qYoEKkZr3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=augustusaero.com; dmarc=pass action=none
- header.from=augustusaero.com; dkim=pass header.d=augustusaero.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=augustusaerospace.onmicrosoft.com;
- s=selector1-augustusaerospace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8T7Kc895OyaudoJZqR5ZOcI9pqu8b75MtwrqD6UKUBI=;
- b=kUN9xFq6BIJZn5Y3gLnG6ASfcbMrHfieMxDJA/Bkg9Nm2uWUjHT681SNEe4p3jErQyQG4AvQf6YUUfaAbGEznJ5K+63oTK2oczdjUfg8m0bDp+tpMC9xvY6IVWwirjtf9cUpszsAI244FMO38n+FhophNkHax+I4/ZYZtWjCu/w=
-Received: from BN7PR05MB4500.namprd05.prod.outlook.com (2603:10b6:406:fb::28)
- by BN7PR05MB5810.namprd05.prod.outlook.com (2603:10b6:408:8::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4415.5; Mon, 9 Aug
- 2021 15:42:45 +0000
-Received: from BN7PR05MB4500.namprd05.prod.outlook.com
- ([fe80::3cc7:bea2:75e7:4b21]) by BN7PR05MB4500.namprd05.prod.outlook.com
- ([fe80::3cc7:bea2:75e7:4b21%6]) with mapi id 15.20.4415.012; Mon, 9 Aug 2021
- 15:42:45 +0000
-From: Jonathan Tobin <Tobin@augustusaero.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: Too Many Samples in a Single Burst
-Thread-Index: 
- AQHXixlt7MMSt7rLTUiLfYIQFhPkb6tnSLGAgAANz1mAANWeAIAADfA4gAAPkoCAAwlFUYAAARnw
-Date: Mon, 9 Aug 2021 15:42:45 +0000
-Message-ID: 
- <BN7PR05MB45009AF50E6C4419B7D2837DD5F69@BN7PR05MB4500.namprd05.prod.outlook.com>
-References: 
- <BN7PR05MB4500ABFB5DD85D4FDB6FAD99D5F39@BN7PR05MB4500.namprd05.prod.outlook.com>,<610DE851.70308@gmail.com>
- <BN7PR05MB45007CFF2FEC947F65240178D5F49@BN7PR05MB4500.namprd05.prod.outlook.com>,<610EA718.1080908@gmail.com>
- <BN7PR05MB45000D8D6B914F082812F1A9D5F49@BN7PR05MB4500.namprd05.prod.outlook.com>
- <610EBFD9.2060400@gmail.com>
- <BN7PR05MB450047CE239680F69CB94A0ED5F69@BN7PR05MB4500.namprd05.prod.outlook.com>
-In-Reply-To: 
- <BN7PR05MB450047CE239680F69CB94A0ED5F69@BN7PR05MB4500.namprd05.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=augustusaero.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7382cc1a-1035-4ff5-39c4-08d95b4c5544
-x-ms-traffictypediagnostic: BN7PR05MB5810:
-x-microsoft-antispam-prvs: 
- <BN7PR05MB581051FF4D27C0C64D7B10FCD5F69@BN7PR05MB5810.namprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3631;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- ZQiKnHhPfooF2GHke0nRkdM+Uhtd+4TEAypaqoQYMKNovUBvY+OUqzAhTRCnm822aDjW9iNupvXtN2/uHm7HuKoSp28av9YAeXecgp87MUaEKeaToyp1LpfAYg/ykZPYZ8ZR2FNNaB8MGob9xHSV9fixio5u9SwFFGlhPSNUbICFMyMCKL+4EUoxiKZVz2zUrULjNb8t++7Sn7IUZkPKsdHD0gTZzx9iHEEP0/SdeE+GRrYpuKZR3xQdrAkB+Xa+d+HVuDJvywjWJ/bGaFamzFhseQbmPbv07ukoQAcKfouEeZHI7iJykJ3HBSFDK+udEOUtxsOvAjMFaDstO5JLDDp1Ez+PCxzmZ2HN7NA1sytDw+EyR2xvuhoh2/Uv1WTpLAp8ecJTlrofPU1izOuerh310mWoP1gqbcUe7GpXsXA/zuCjVsDzQXzY0HfU3Xa2eti0eMMPeYFz40SHykypwz+dAo3QtYLlhfR6ZSg8oU3nDAY4i7eX7GHyfZoQSCxqFmBjzPmr91y2+3AqVCreylA5xBzGrY1RUTLZnC2AEb3J6fsnA8vLV2Az28GpEd1CbpxeH5lpUstwN2Yd5C1AmdoPpskuVMYPR1QZ/PNRRn9CMriaC5AAPBzK26Ipl4n5Spy7TL5/K807oHrnxDRXXEfLk7eP+8dsphRFhB4ncxHOc7Zn8J7g9pgzAvzvteXfmgTa1yJYtlUBw9Q3ISBNcA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR05MB4500.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39830400003)(42606007)(346002)(396003)(376002)(136003)(478600001)(2940100002)(8676002)(91956017)(66556008)(66946007)(76116006)(66446008)(2906002)(64756008)(66476007)(110136005)(122000001)(71200400001)(8936002)(38100700002)(5660300002)(86362001)(83380400001)(316002)(52536014)(19627405001)(55016002)(7696005)(38070700005)(26005)(33656002)(186003)(9686003)(6506007)(53546011);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?Windows-1252?Q?S57+KMyVYEdi99NlXmZzDa3dCiuwPdnJtlexbKrAP+4+ixcAwRoAwE3/?=
- =?Windows-1252?Q?Kg1g+6Qq8Ng0WNlR55b4zdJ9eHluUYm8b5XareCp8oIrr3OS6VidUkje?=
- =?Windows-1252?Q?cfP5ku+TJ4AzheGpruZDRzgQ+0SmRJDLmXVKKfsP/OWuse5B11hNFp9t?=
- =?Windows-1252?Q?eXMGFUmHzDyxDlsm2wjyBdD7+kh8B4wbc2WUe24e5UG4QENiI2MbKv0a?=
- =?Windows-1252?Q?8p/PqQ27HdvRcszf+YwXHw4mGQqWMgEero0762tTrBuvnAT43sxrnB3n?=
- =?Windows-1252?Q?MnJ65PHeE/8QKEFrRNj1fcQzSXNPMQmMbs2yYSU1+ooz6O1RaDYKyMQ7?=
- =?Windows-1252?Q?NoMe9QR2t1Dde4IcH1vn+MqrfDp4qcEnktkKdrNJMrg/Q5L5fspyBp4n?=
- =?Windows-1252?Q?jm385QycmAq8LxG+vEry6Qtq/fzvvfr0zkiqUxRH+weiNKEzAalHfo1A?=
- =?Windows-1252?Q?XFgIiAhWPFzK7k7jLfAo+qFDpJ0MWRKyx2InX3ZdBkUd7s7Wzh3qSj0H?=
- =?Windows-1252?Q?irUskSkxwQWwby1bKKnfQNnJe134ZkWQnKe6sr7gY2HBjUCvAIDDv2rs?=
- =?Windows-1252?Q?n+fZ3eZzhVtQEUr3b1utRj4o2WWysS3MyKY7LVRpT78qaxhcbWhIpqgf?=
- =?Windows-1252?Q?C7uHaWfOE/ODy8RjAzG5OzFl2qyL6aMQI44BStgaWyGGKk6IFoTr48+S?=
- =?Windows-1252?Q?rqxdPjGsCqmOqXxr9kNMJfVhhe7fKmLoOUZqMcPVs8DKjS4kBea7aKyI?=
- =?Windows-1252?Q?jkRhwfEHW+tymlmw9Q8BLhoKbricutIkJMJgIPYEWAI3KUg+dZY/iEC0?=
- =?Windows-1252?Q?C0j4/fmAdwEubF7ovEWIb3qwWmc97qdQc/J06UbcJmuWe6tTSHNc5Oof?=
- =?Windows-1252?Q?5A+6JREgBa99NpjNMV47LMdicgN+auBY10v0s/1yQranLheQk/lt5bM/?=
- =?Windows-1252?Q?wEwlr41W9krDUjQahx5DnX7ZS14GnSWizWaQ6Q0RMmrgtxLLeDEJBQsl?=
- =?Windows-1252?Q?YV4albgHq1iqhBG0so+0hYqaO5cDwh5Jbg6H2NEbiltqFQG/ZJGrTsxD?=
- =?Windows-1252?Q?1S6Ok0ZkMvXqvohgHGucnO4XYecQ6DJspo6pEneDSp2LqZJQUYAp0Rdm?=
- =?Windows-1252?Q?M1G8vUJJ8eaGW8ppXTNzY7CV3zbE+4jYJ7fUO2DYxLDQ/TbE8sZXNmgM?=
- =?Windows-1252?Q?CqcgKSQbsqA2lnBlqENWZZmydxI1PxI0NLmZTB5yvLaXQjw9zdkQnZDb?=
- =?Windows-1252?Q?QKrw0hrj9t1En8kasujstqIln0yNToOwmG/7v7xWs05/JHF2t30wXOP4?=
- =?Windows-1252?Q?204Do3TumtKjJd/3zG65r0yN6S13tKQcaF+CFKCT4W3rmtbRMZqeTQ16?=
- =?Windows-1252?Q?4yUSPwxNz3lvpPpRKPjPc5VM3gkuSpM66ek=3D?=
-x-ms-exchange-transport-forked: True
+Received: from sonic307-1.consmr.mail.bf2.yahoo.com (sonic307-1.consmr.mail.bf2.yahoo.com [74.6.134.40])
+	by mm2.emwd.com (Postfix) with ESMTPS id 25AD43845A7
+	for <usrp-users@lists.ettus.com>; Mon,  9 Aug 2021 12:11:07 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1628525467; bh=dMED4coSjNgbN0tS+89eQnRKWFShARq/jk9stfuJ7S8=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=oMuJoAvJQAsqv1btBa0xlhh7FdfRwOe7QC7zOzvqHwv8CzGaJkMReL70w0lohZrNi8EBKsQ0nkFPUlnuETPWa8t/sD23x5WV4zUAQPPKs1Hks3hmXI/DXMtSB49siG1H2HXhBEYeeAsjd19Rq6/xGU0O7r6cBR/BI3DZtwaBgWptLBi4vNRr39oZ+bn4u1LxMiYeIT9EsGXajUFFket41ADhwxxfTlJ8QCUG1CWZFGZyRBnBNxTmoRQJ6GU79PdyOhfWN07HDY/Ef7uD7lsQXfxH1EOtPDkEUc65a+cgi9G/M3GnbjEtxgeKSWLAUFpbdBxVeq5CxpuINEfx7I3kQA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1628525467; bh=P7DYBxnzDCaHiD9/OX/C/n+eo11BugLARxSGI5Ul1u4=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=a1ibmgte6mUprFiHjeZ+WxDHXdJE2uNBrgMEGnvrRLMQAFcgrCW1meyfbtmvLK4bhxyYxU5VTsgdP+WgF1CA4xy4IC6FZirfwIy/qDQy+iGSGOsm1Dq6gJ0Yz6XDFsvTtnkTnQJhyBj3S7wef9qCLRiwjhCFvsmY02BP2cEgS05fRuGL6A9nJX9VpNgIe+eDpDlwwJmlATpOm+iU7EW0mjl74nQ4IVjvj80y7IN7Pj7RTk5fdP4NZmVnx0k4KrCz9Lt3rjTdwXRaTjKH8rnq1p1Qwp4+NvYGkFw2Qbn6k6AO7nKFZN7EcMWe27abnvuFomDtWLgqbvVXwMDn6dYnOw==
+X-YMail-OSG: _jDaI4EVM1lCNr3JCZtWZJkF2V8kOUS6cF7X8SN16zxUwvmq3AhoumD6qCTCoIW
+ ttvNVYcJMYUDrC_vZikGndtxjFOz0q5dFtnfCUv3IZrKxN4O.vMV9mxyE74ZcaxX_YnRGEnOi5rn
+ a71oXRBOOfwtww7OFL6.bUmS0rOhv6yqn5ynaOGXu2WhcGVOyVxL4RETsdBh3ZJqhbh_Frw3DxxY
+ Qg_zd51TWIlFA8sntyaM6n5Iy7hGzr88bA3BgUimEgPhxaa1v0Lb7XhN7a6d83h0U89hpOcY_9Af
+ 9rbFD_e1RoRhiyoYIErzXBdepCprW5DzFE8yUdVSg_WYYFvetDGssxJSsTdjobLFhwIu7JK6X5E9
+ t7NzlGPYfxAh.4dlBLj9v_Our5m9CFL4BIjASudizVwAC5G1B_CfW1rIwbvX_yRb5Nh_0_yJDSfj
+ 6C84iar4XOa2V4dQXHv0FFQEC3_RGC6ljIJNnptCSkg7RHXALck69HPNixHuoXvxYZfbxquN0ge5
+ fQJQSLfDz5Cu3PUgKLqn1EyTiIiOCyGjS06HphpbN4wcNZejhgmHfSkdI9fqwrIVVCRRmU4rATF0
+ XY4EDM5fc6iHnHy8f3TBGVyyWjalSXprrp68XhgPyUGH4lQj6ei81n9ec6Z4XB2CWgvmPEnORAWe
+ ay46kROcMMPqzUw6pzvwik4p5m.uGIrIw1sJUC6pXP1b4z8QADog9WiFdvC08oPR3AS4P41UlD9T
+ yP3vAYXGf4JN8wADORMOSevUcEQDOEuAFD_QKKYPLlkcgWcWwU41RHgF3y6QrwOMRdH7V8eQtM4G
+ ZNArAfB_msRLbH35LyZohwm5rBKS.BsxPpEDsymr_ZO.TgK7tHuePtcBXrdTF199NMr1RnKOgRUm
+ 2iQrWy_7V91JKC_u1Q4aG.zrTjruNMYIddlkYya8nYcfsxrCjwUJ44LF4zkhw42zqpH__LDB0Eom
+ MkGL17q0n_ehNsfZnWUgYx5gdH1N3BVkgopUy_VzdNCowCY0RrLhej6O_lu6HTw0OrtUzxuKzE7R
+ 56CtSCj.R4PmpLZX9CBjDgbtc5NrKAW6.tWG3EA09zO6m06lNOddHfdok_MyAALt3qkUDrV9cZZ6
+ VDuCrGQ1GXbmAemsG1Ktxr6tqt8bLFEW9w3C8KujZYCzSxTWScYyHVL5s.U4tBS8OvSvAwS.g65F
+ ic72wLQ8s1v2GErFj9UiRBCNW5zbAQotfREDnilXpQFK35ebS9YMbHU7oc_DxBjt1xEhliebbwug
+ a_Z2P2wvlWTH5TGvoayw5Pk8liyQc6Ei8N9YPZmf_Uhzore8qQDoQwCDtQwFtN2WcmqP5RtFNi5O
+ 5LBK.IQ2U.cEfcIc_1dPpOa_WBu14vmt.0utpWKm2GCqW6InRQfiHGI2Fz.1T2SYzASBmfDp3jyp
+ DcufISjevIhezgSP3JxIGP7_gw1X47mNvTUbr0wZ7yrYeGtXyL_VWaUnudxG4YTjzxhBko.znD.2
+ joFkOOO2BCWKaPPg.pGxEyFmJ0b41Py5TxUFj9PSgbLi6EXi8DJrj2jveEokSpLMCckH4FDCeb6s
+ tD9w9gf9QjQ5cdw02CMHq2voa6QUK7E9.MWwQYRsFiC9Y8fFniNQg.kmBcooWI7yKgWkV4IqBYdY
+ BD0K_9k.SD0Rgk.jr7P_uzGTAqMqtvlzrhR1aK4d2PXJKzaLgXQHGSuvBoJbfkQFBdOvMordQLc_
+ o70WT1xV0aKiECcRMrE.DiDoOeiAonY4j5sX8VQ9oMkPJ91aI9L_Np.GpETo5NXdSFnX9OfFkXeU
+ IsmBVwyDlpMOT.6V4GrYW9PzlWgQ9oS56o595.fun0I24KJzSwR8sNJXN71NAv2GKIijgUA4y3pE
+ qOK5Ui2VM.klNXkQ7o5CHx7Llp5mATCvu8YcxwBlFTQ.ccnQ5TMHzJxYThNXI6_ztGQsVDHBFr57
+ VlZg28qeFkTbvsCQR9Op7JrJuYLE3TpHSpGChMaxlXVgxTObYE1Z_n_5RBapC5qYo_oxtqLjUQ.v
+ fhSEPL1OA7D3CWB31grQETt3Utmu8iw.lxAUHy22yGgJb..jLbQanXhAeK116.AxExk0GSbCEpiT
+ xQmBzsxqqdgvze_GaSgtvb3h.sby.E.b7Kr23mnBQUdk6uI9xV3_1jt3DrV3GGaIdq9nBqKChFbF
+ FxU2EnpniYoab0XU.9LjhthVKbC_VEj51dGpxEWe0HZcYaiPvp_BV6JT_6ies3hyau1l5LSFAJvX
+ yUN3Ho8WDhybT2ucsM57yDuBnnbVrqNQyMGqbrLL1CTFX.HicjGsB_IyTikkQzodc9jZnxIn0L51
+ idEM.MZgdMP_ju8e4UW7iHipTcgt78h_8kGpDxg5KW5U9eudk8pg1nkj3h_XBXH7hW_5huQDOgea
+ imqpWffVDwqllIrlqkXbsNguRTodC6uxWiBhtRMfjGTb6PbiwzP9IxkX_1bjSiKZ.wUgvNc9BvZT
+ UPIlJk2fw1mndaamA7CFS3KIYakK8fyfYmXIM0A1hyRAKvNOi_Vo9AN0Pc7pp9Eg7Au5FEHKLD74
+ WW.ByYwztCsHcbbJLdRb6xwB2SoC0_aByEXrfWcCIoVzqrBlfDnLMMmHGUmlJGBNGOpcr8Q--
+X-Sonic-MF: <t_whit_87@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.bf2.yahoo.com with HTTP; Mon, 9 Aug 2021 16:11:07 +0000
+Date: Mon, 9 Aug 2021 16:11:03 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>,
+	"Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <67539975.406248.1628525463281@mail.yahoo.com>
+In-Reply-To: <221044459.342469.1628517452268@mail.yahoo.com>
+References: <1343769836.268037.1628477116595.ref@mail.yahoo.com> <1343769836.268037.1628477116595@mail.yahoo.com> <61112AE8.4050100@gmail.com> <221044459.342469.1628517452268@mail.yahoo.com>
 MIME-Version: 1.0
-X-OriginatorOrg: augustusaero.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR05MB4500.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7382cc1a-1035-4ff5-39c4-08d95b4c5544
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2021 15:42:45.4103
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 04d66077-4301-4950-bf2c-c3d5b922ae52
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qe2XAMXfp975VyEaGr9uwcuLBVnzEZCusBfI8MN40u4Hnkv+mgHeRuCMh10Kf9YkaHGM5+4oxsEpB7NNKIhXRQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR05MB5810
-Message-ID-Hash: CO22UQYY2C6546CMDFIX4W3A44Z7O3WH
-X-Message-ID-Hash: CO22UQYY2C6546CMDFIX4W3A44Z7O3WH
-X-MailFrom: Tobin@augustusaero.com
+X-Mailer: WebService/1.1.18796 YMailNorrin
+Message-ID-Hash: L3ZBVM43ITG7KJ4CDN477K3DIJWSWCBI
+X-Message-ID-Hash: L3ZBVM43ITG7KJ4CDN477K3DIJWSWCBI
+X-MailFrom: t_whit_87@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Too Many Samples in a Single Burst
+Subject: [USRP-users] Re: "Failure to create rfnoc_graph" error when updating FGPA on N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UTUKYS44V2WF26MHVYCMDWEKZDWHAWYZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/L3ZBVM43ITG7KJ4CDN477K3DIJWSWCBI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6986519346700466491=="
+From: Tellrell White via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Tellrell White <t_whit_87@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============2620348172624700744=="
 
---===============6986519346700466491==
-Content-Language: en-US
+--===============2620348172624700744==
 Content-Type: multipart/alternative;
-	boundary="_000_BN7PR05MB45009AF50E6C4419B7D2837DD5F69BN7PR05MB4500namp_"
+	boundary="----=_Part_406247_1677884262.1628525463279"
 
---_000_BN7PR05MB45009AF50E6C4419B7D2837DD5F69BN7PR05MB4500namp_
-Content-Type: text/plain; charset="Windows-1252"
+------=_Part_406247_1677884262.1628525463279
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Meant late packets.
-________________________________
-From: Jonathan Tobin <Tobin@augustusaero.com>
-Sent: Monday, August 9, 2021 5:41 AM
-To: Marcus D. Leech <patchvonbraun@gmail.com>; usrp-users@lists.ettus.com <=
-usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Re: Too Many Samples in a Single Burst
-
-Hi Marcus,
-
-Here is the output from a simple run of txrx_loopback_to_file "out of the b=
-ox." As can be seen, the same error occurs (along with dropped packets this=
- time).
-
-
-./txrx_loopback_to_file --tx-args "addr=3D192.168.10.2" --rx-args "type=3Dn=
-3xx,addr=3D192.168.10.2,time_source=3Dinternal,clock_source=3Dinternal" --r=
-x-freq 2500e6 --rx-rate 6.25e6 --rx-subdev "A:0 A:1 B:0 B:1" --rx-channels =
-"0,1,2,3" --rx-gain 60 --nsamps 62500000 --tx-rate 6.25e6 --tx-freq 2500e6
-
-Creating the transmit usrp device with: addr=3D192.168.10.2...
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.HEAD-0-=
-gaea0e2de
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D3218B5F,claimed=3DFalse,add=
-r=3D192.168.10.2
-[INFO] [MPM.PeriphManager] init() called with device args `product=3Dn310,m=
-gmt_addr=3D192.168.10.2,time_source=3Dinternal,clock_source=3Dinternal'.
-[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)
-[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312)
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
-[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)
-[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
-[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
-[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)
-[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-Creating the receive usrp device with: type=3Dn3xx,addr=3D192.168.10.2,time=
-_source=3Dinternal,clock_source=3Dinternal...
-Using TX Device: Single USRP:
-  Device: N300-Series Device
-  Mboard 0: ni-n3xx-3218B5F
-  RX Channel: 0
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: Magnesium
-  RX Channel: 1
-    RX DSP: 1
-    RX Dboard: A
-    RX Subdev: Magnesium
-  RX Channel: 2
-    RX DSP: 0
-    RX Dboard: B
-    RX Subdev: Magnesium
-  RX Channel: 3
-    RX DSP: 1
-    RX Dboard: B
-    RX Subdev: Magnesium
-  TX Channel: 0
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: Magnesium
-  TX Channel: 1
-    TX DSP: 1
-    TX Dboard: A
-    TX Subdev: Magnesium
-  TX Channel: 2
-    TX DSP: 0
-    TX Dboard: B
-    TX Subdev: Magnesium
-  TX Channel: 3
-    TX DSP: 1
-    TX Dboard: B
-    TX Subdev: Magnesium
-
-Using RX Device: Single USRP:
-  Device: N300-Series Device
-  Mboard 0: ni-n3xx-3218B5F
-  RX Channel: 0
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: Magnesium
-  RX Channel: 1
-    RX DSP: 1
-    RX Dboard: A
-    RX Subdev: Magnesium
-  RX Channel: 2
-    RX DSP: 0
-    RX Dboard: B
-    RX Subdev: Magnesium
-  RX Channel: 3
-    RX DSP: 1
-    RX Dboard: B
-    RX Subdev: Magnesium
-  TX Channel: 0
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: Magnesium
-  TX Channel: 1
-    TX DSP: 1
-    TX Dboard: A
-    TX Subdev: Magnesium
-  TX Channel: 2
-    TX DSP: 0
-    TX Dboard: B
-    TX Subdev: Magnesium
-  TX Channel: 3
-    TX DSP: 1
-    TX Dboard: B
-    TX Subdev: Magnesium
-
-Setting TX Rate: 6.250000 Msps...
-Actual TX Rate: 6.250000 Msps...
-
-Setting RX Rate: 6.250000 Msps...
-Actual RX Rate: 6.250000 Msps...
-
-Setting TX Freq: 2500.000000 MHz...
-Actual TX Freq: 2500.000000 MHz...
-
-Configuring RX Channel 0
-Setting RX Freq: 2500.000000 MHz...
-Actual RX Freq: 2500.000000 MHz...
-
-Setting RX Gain: 60.000000 dB...
-Actual RX Gain: 60.000000 dB...
-
-Configuring RX Channel 1
-Setting RX Freq: 2500.000000 MHz...
-Actual RX Freq: 2500.000000 MHz...
-
-Setting RX Gain: 60.000000 dB...
-Actual RX Gain: 60.000000 dB...
-
-Configuring RX Channel 2
-Setting RX Freq: 2500.000000 MHz...
-Actual RX Freq: 2500.000000 MHz...
-
-Setting RX Gain: 60.000000 dB...
-Actual RX Gain: 60.000000 dB...
-
-Configuring RX Channel 3
-Setting RX Freq: 2500.000000 MHz...
-Actual RX Freq: 2500.000000 MHz...
-
-Setting RX Gain: 60.000000 dB...
-Actual RX Gain: 60.000000 dB...
-
-Checking TX: all_los: locked ...
-Checking RX: all_los: locked ...
-Setting device timestamp to 0...
-[ERROR] [RFNOC RADIO] Requesting too many samples in a single burst! Reques=
-ted 1250000000, maximum is 268435455.
-[INFO] [RFNOC RADIO] Note that a decimation block will increase the number =
-of samples per burst by the decimation factor. Your application may have re=
-quested fewer samples.
-LLLLLLLLLLLLLLLLLLLError: ValueError: Requested too many samples in a singl=
-e burst.
-
-
-
-Thanks,
-Jonathan
-
-
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com>
-Sent: Saturday, August 7, 2021 7:16 AM
-To: Jonathan Tobin <Tobin@augustusaero.com>; usrp-users@lists.ettus.com <us=
-rp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Re: Too Many Samples in a Single Burst
-
-On 08/07/2021 12:23 PM, Jonathan Tobin wrote:
-Reducing nsamps to below 268435455/2 works - but at 6.25Msps for all four c=
-hannels (two daughterboards) this is very short amount of time.  I can try =
-changing channels but for my application I do need all four channels receiv=
-ing - though this will have to be on Monday.
-
-Yes, rx_multi_samples "out of the box" (no modifications to the example).
-
-Thanks,
-Jonathan
-Given that rx_multi_samples doesn't actually *DO* anything with the samples=
-, I'm curious about how it's actually useful for you in any
-  production sense--it is just a demo app to show some of the API usage.
-
-It may be the case that this example needs to be updated because it's mis-u=
-sing the API in some what that isn't immediately obvious to me.
-  But again, it doesn't actually *DO* anything with the samples, so I don't=
- know how it's useful other than as a learning tool...
-
-
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.=
-com>
-Sent: Saturday, August 7, 2021 5:30 AM
-To: Jonathan Tobin <Tobin@augustusaero.com><mailto:Tobin@augustusaero.com>;=
- usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-users@=
-lists.ettus.com><mailto:usrp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Re: Too Many Samples in a Single Burst
-
-On 08/06/2021 10:47 PM, Jonathan Tobin wrote:
-Hi Marcus,
-
-No, I have not attempted on UHD 4+. Due to some other software constraints =
-I am only able to use 3.15 at the moment.
-
-Thanks,
-Jonathan
-Does reducing nsamps help?  What about channel count?
-
-Just looking for clues as to what might be going on.  Looking at the code, =
-nothing really leaps out at me.  You're using rx_multi_samples
-  "out of the box" or with modifications?
-
-
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com><mailto:patchvonbraun@gmail.=
-com>
-Sent: Friday, August 6, 2021 3:56 PM
-To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com><mailto:usrp-users@lists.ettus.com>
-Subject: [USRP-users] Re: Too Many Samples in a Single Burst
-
-On 08/06/2021 07:26 PM, Jonathan Tobin wrote:
-
-
-
-Hello,
-
-
-
-In trying to test the =91rx_multi_samples=92 example with all four channels=
- on an n310. I run into an error of =93Requesting too many samples in a sin=
-gle burst=94 when I attempt a longer record (really anything over a few sec=
-onds). Seems to be my nsamps value, but I am unsure how to remedy the issue=
-. Below is my argument and the terminal output for an attempt to receive fo=
-r 10 seconds:
-
-
-
-./rx_multi_samples --args "type=3Dn3xx,addr=3D192.168.10.2,time_source=3Dgp=
-sdo,clock_source=3Dgpsdo" --rate 6.25e6 --subdev "A:0 A:1 B:0 B:1" --channe=
-ls "0,1,2,3" --nsamps 625000000
-
-
-
-Creating the usrp device with: type=3Dn3xx,addr=3D192.168.10.2,time_source=
-=3Dgpsdo,clock_source=3Dgpsdo...
-
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.HEAD-0-=
-gaea0e2de
-
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
-92.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D3218B5F,claimed=3DFalse,add=
-r=3D192.168.10.2,time_source=3Dgpsdo,clock_source=3Dgpsdo
-
-[INFO] [MPM.PeriphManager] init() called with device args `clock_source=3Dg=
-psdo,time_source=3Dgpsdo,product=3Dn310,mgmt_addr=3D192.168.10.2'.
-
-[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A00000000004)
-
-[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312)
-
-[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312)
-
-[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)
-
-[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)
-
-[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)
-
-[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)
-
-[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)
-
-Using Device: Single USRP:
-
-  Device: N300-Series Device
-
-  Mboard 0: ni-n3xx-3218B5F
-
-  RX Channel: 0
-
-    RX DSP: 0
-
-    RX Dboard: A
-
-    RX Subdev: Magnesium
-
-  RX Channel: 1
-
-    RX DSP: 1
-
-    RX Dboard: A
-
-    RX Subdev: Magnesium
-
-  RX Channel: 2
-
-    RX DSP: 0
-
-    RX Dboard: B
-
-    RX Subdev: Magnesium
-
-  RX Channel: 3
-
-    RX DSP: 1
-
-    RX Dboard: B
-
-    RX Subdev: Magnesium
-
-  TX Channel: 0
-
-    TX DSP: 0
-
-    TX Dboard: A
-
-    TX Subdev: Magnesium
-
-  TX Channel: 1
-
-    TX DSP: 1
-
-    TX Dboard: A
-
-    TX Subdev: Magnesium
-
-  TX Channel: 2
-
-    TX DSP: 0
-
-    TX Dboard: B
-
-    TX Subdev: Magnesium
-
-  TX Channel: 3
-
-    TX DSP: 1
-
-    TX Dboard: B
-
-    TX Subdev: Magnesium
-
-
-
-Setting RX Rate: 6.250000 Msps...
-
-Actual RX Rate: 6.250000 Msps...
-
-
-
-Setting device timestamp to 0...
-
-
-
-Begin streaming 625000000 samples, 1.500000 seconds in the future...
-
-[ERROR] [RFNOC RADIO] Requesting too many samples in a single burst! Reques=
-ted 12500000000, maximum is 268435455.
-
-[INFO] [RFNOC RADIO] Note that a decimation block will increase the number =
-of samples per burst by the decimation factor. Your application may have re=
-quested fewer samples.
-
-Error: ValueError: Requested too many samples in a single burst.
-
-
-
-Thanks,
-
-Jonathan
-
-That looks like a bug--have you tried this on UHD 4.recent?
-
-
-
-
-
---_000_BN7PR05MB45009AF50E6C4419B7D2837DD5F69BN7PR05MB4500namp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Meant late packets.<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jonathan Tobin &lt;To=
-bin@augustusaero.com&gt;<br>
-<b>Sent:</b> Monday, August 9, 2021 5:41 AM<br>
-<b>To:</b> Marcus D. Leech &lt;patchvonbraun@gmail.com&gt;; usrp-users@list=
-s.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Re: Too Many Samples in a Single Burst</fo=
-nt>
-<div>&nbsp;</div>
-</div>
-<style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi Marcus,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Here is the output from a simple run of txrx_loopback_to_file &quot;out of =
-the box.&quot; As can be seen, the same error occurs (along with dropped pa=
-ckets this time).</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-./txrx_loopback_to_file --tx-args &quot;addr=3D192.168.10.2&quot; --rx-args=
- &quot;type=3Dn3xx,addr=3D192.168.10.2,time_source=3Dinternal,clock_source=
-=3Dinternal&quot; --rx-freq 2500e6 --rx-rate 6.25e6 --rx-subdev &quot;A:0 A=
-:1 B:0 B:1&quot; --rx-channels &quot;0,1,2,3&quot; --rx-gain 60 --nsamps 62=
-500000 --tx-rate
- 6.25e6 --tx-freq 2500e6
-<div><br>
-</div>
-<div>Creating the transmit usrp device with: addr=3D192.168.10.2...</div>
-<div>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.HE=
-AD-0-gaea0e2de</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D192.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D3218B5F,claimed=3DFals=
-e,addr=3D192.168.10.2</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `product=3Dn=
-310,mgmt_addr=3D192.168.10.2,time_source=3Dinternal,clock_source=3Dinternal=
-'.</div>
-<div>[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A0000000=
-0004)</div>
-<div>[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011=
-312)</div>
-<div>[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011=
-312)</div>
-<div>[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC000000000000=
-0)</div>
-<div>[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC000000000000=
-0)</div>
-<div>[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C000000000000=
-2)</div>
-<div>[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C000000000000=
-2)</div>
-<div>[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F00000000000=
-00)</div>
-<div>[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F00000000000=
-00)</div>
-<div>[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F00000000000=
-00)</div>
-<div>[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F00000000000=
-00)</div>
-<div><br>
-</div>
-<div>Creating the receive usrp device with: type=3Dn3xx,addr=3D192.168.10.2=
-,time_source=3Dinternal,clock_source=3Dinternal...</div>
-<div>Using TX Device: Single USRP:</div>
-<div>&nbsp; Device: N300-Series Device</div>
-<div>&nbsp; Mboard 0: ni-n3xx-3218B5F</div>
-<div>&nbsp; RX Channel: 0</div>
-<div>&nbsp; &nbsp; RX DSP: 0</div>
-<div>&nbsp; &nbsp; RX Dboard: A</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; RX Channel: 1</div>
-<div>&nbsp; &nbsp; RX DSP: 1</div>
-<div>&nbsp; &nbsp; RX Dboard: A</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; RX Channel: 2</div>
-<div>&nbsp; &nbsp; RX DSP: 0</div>
-<div>&nbsp; &nbsp; RX Dboard: B</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; RX Channel: 3</div>
-<div>&nbsp; &nbsp; RX DSP: 1</div>
-<div>&nbsp; &nbsp; RX Dboard: B</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 0</div>
-<div>&nbsp; &nbsp; TX DSP: 0</div>
-<div>&nbsp; &nbsp; TX Dboard: A</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 1</div>
-<div>&nbsp; &nbsp; TX DSP: 1</div>
-<div>&nbsp; &nbsp; TX Dboard: A</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 2</div>
-<div>&nbsp; &nbsp; TX DSP: 0</div>
-<div>&nbsp; &nbsp; TX Dboard: B</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 3</div>
-<div>&nbsp; &nbsp; TX DSP: 1</div>
-<div>&nbsp; &nbsp; TX Dboard: B</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div><br>
-</div>
-<div>Using RX Device: Single USRP:</div>
-<div>&nbsp; Device: N300-Series Device</div>
-<div>&nbsp; Mboard 0: ni-n3xx-3218B5F</div>
-<div>&nbsp; RX Channel: 0</div>
-<div>&nbsp; &nbsp; RX DSP: 0</div>
-<div>&nbsp; &nbsp; RX Dboard: A</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; RX Channel: 1</div>
-<div>&nbsp; &nbsp; RX DSP: 1</div>
-<div>&nbsp; &nbsp; RX Dboard: A</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; RX Channel: 2</div>
-<div>&nbsp; &nbsp; RX DSP: 0</div>
-<div>&nbsp; &nbsp; RX Dboard: B</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; RX Channel: 3</div>
-<div>&nbsp; &nbsp; RX DSP: 1</div>
-<div>&nbsp; &nbsp; RX Dboard: B</div>
-<div>&nbsp; &nbsp; RX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 0</div>
-<div>&nbsp; &nbsp; TX DSP: 0</div>
-<div>&nbsp; &nbsp; TX Dboard: A</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 1</div>
-<div>&nbsp; &nbsp; TX DSP: 1</div>
-<div>&nbsp; &nbsp; TX Dboard: A</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 2</div>
-<div>&nbsp; &nbsp; TX DSP: 0</div>
-<div>&nbsp; &nbsp; TX Dboard: B</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div>&nbsp; TX Channel: 3</div>
-<div>&nbsp; &nbsp; TX DSP: 1</div>
-<div>&nbsp; &nbsp; TX Dboard: B</div>
-<div>&nbsp; &nbsp; TX Subdev: Magnesium</div>
-<div><br>
-</div>
-<div>Setting TX Rate: 6.250000 Msps...</div>
-<div>Actual TX Rate: 6.250000 Msps...</div>
-<div><br>
-</div>
-<div>Setting RX Rate: 6.250000 Msps...</div>
-<div>Actual RX Rate: 6.250000 Msps...</div>
-<div><br>
-</div>
-<div>Setting TX Freq: 2500.000000 MHz...</div>
-<div>Actual TX Freq: 2500.000000 MHz...</div>
-<div><br>
-</div>
-<div>Configuring RX Channel 0</div>
-<div>Setting RX Freq: 2500.000000 MHz...</div>
-<div>Actual RX Freq: 2500.000000 MHz...</div>
-<div><br>
-</div>
-<div>Setting RX Gain: 60.000000 dB...</div>
-<div>Actual RX Gain: 60.000000 dB...</div>
-<div><br>
-</div>
-<div>Configuring RX Channel 1</div>
-<div>Setting RX Freq: 2500.000000 MHz...</div>
-<div>Actual RX Freq: 2500.000000 MHz...</div>
-<div><br>
-</div>
-<div>Setting RX Gain: 60.000000 dB...</div>
-<div>Actual RX Gain: 60.000000 dB...</div>
-<div><br>
-</div>
-<div>Configuring RX Channel 2</div>
-<div>Setting RX Freq: 2500.000000 MHz...</div>
-<div>Actual RX Freq: 2500.000000 MHz...</div>
-<div><br>
-</div>
-<div>Setting RX Gain: 60.000000 dB...</div>
-<div>Actual RX Gain: 60.000000 dB...</div>
-<div><br>
-</div>
-<div>Configuring RX Channel 3</div>
-<div>Setting RX Freq: 2500.000000 MHz...</div>
-<div>Actual RX Freq: 2500.000000 MHz...</div>
-<div><br>
-</div>
-<div>Setting RX Gain: 60.000000 dB...</div>
-<div>Actual RX Gain: 60.000000 dB...</div>
-<div><br>
-</div>
-<div>Checking TX: all_los: locked ...</div>
-<div>Checking RX: all_los: locked ...</div>
-<div>Setting device timestamp to 0...</div>
-<div>[ERROR] [RFNOC RADIO] Requesting too many samples in a single burst! R=
-equested 1250000000, maximum is 268435455.</div>
-<div>[INFO] [RFNOC RADIO] Note that a decimation block will increase the nu=
-mber of samples per burst by the decimation factor. Your application may ha=
-ve requested fewer samples.</div>
-<span>LLLLLLLLLLLLLLLLLLLError: ValueError: Requested too many samples in a=
- single burst.</span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Thanks,
-<div>Jonathan</div>
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"x_appendonsend"></div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
-color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech &lt=
-;patchvonbraun@gmail.com&gt;<br>
-<b>Sent:</b> Saturday, August 7, 2021 7:16 AM<br>
-<b>To:</b> Jonathan Tobin &lt;Tobin@augustusaero.com&gt;; usrp-users@lists.=
-ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Re: Too Many Samples in a Single Burst</fo=
-nt>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_x_moz-cite-prefix">On 08/07/2021 12:23 PM, Jonathan Tobin w=
-rote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Reducing nsamps to below&nbsp;<span style=3D"font-family:Calibri,sans-serif=
-; background-color:rgb(255,255,255); display:inline!important">268435455/2 =
-works - but at 6.25Msps for all four channels (two daughterboards) this is =
-very short amount of time.&nbsp; I can try changing
- channels but for my application I do need all four channels receiving - th=
-ough this will have to be on Monday.&nbsp;</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"font-family:Calibri,sans-serif; background-color:rgb(255,255=
-,255); display:inline!important"><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"font-family:Calibri,sans-serif; background-color:rgb(255,255=
-,255); display:inline!important">Yes, rx_multi_samples &quot;out of the box=
-&quot; (no modifications to the example).</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"font-family:Calibri,sans-serif; background-color:rgb(255,255=
-,255); display:inline!important"><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"font-family:Calibri,sans-serif; background-color:rgb(255,255=
-,255); display:inline!important">Thanks,</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span style=3D"font-family:Calibri,sans-serif; background-color:rgb(255,255=
-,255); display:inline!important">Jonathan&nbsp;
-<br>
-</span></div>
-</blockquote>
-Given that rx_multi_samples doesn't actually *DO* anything with the samples=
-, I'm curious about how it's actually useful for you in any<br>
-&nbsp; production sense--it is just a demo app to show some of the API usag=
-e.<br>
-<br>
-It may be the case that this example needs to be updated because it's mis-u=
-sing the API in some what that isn't immediately obvious to me.<br>
-&nbsp; But again, it doesn't actually *DO* anything with the samples, so I =
-don't know how it's useful other than as a learning tool...<br>
-<br>
-<br>
-<blockquote type=3D"cite">
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D"C=
-alibri, sans-serif" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech
-<a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun@gmail.c=
-om">&lt;patchvonbraun@gmail.com&gt;</a><br>
-<b>Sent:</b> Saturday, August 7, 2021 5:30 AM<br>
-<b>To:</b> Jonathan Tobin <a class=3D"x_x_moz-txt-link-rfc2396E" href=3D"ma=
-ilto:Tobin@augustusaero.com">
-&lt;Tobin@augustusaero.com&gt;</a>; <a class=3D"x_x_moz-txt-link-abbreviate=
-d" href=3D"mailto:usrp-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a> <a class=3D"x_x_moz-txt-link-rfc2396E" href=
-=3D"mailto:usrp-users@lists.ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>Subject:</b> Re: [USRP-users] Re: Too Many Samples in a Single Burst</fo=
-nt>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_x_x_moz-cite-prefix">On 08/06/2021 10:47 PM, Jonathan Tobin=
- wrote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
-<!--
-p
-	{margin-top:0;
-	margin-bottom:0}
--->
-</style>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi&nbsp;Marcus,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-No, I have not attempted on UHD 4+. Due to some other software constraints =
-I am only able to use 3.15 at the moment.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Thanks,
-<div>Jonathan</div>
-</div>
-</blockquote>
-Does reducing nsamps help?&nbsp; What about channel count?<br>
-<br>
-Just looking for clues as to what might be going on.&nbsp; Looking at the c=
-ode, nothing really leaps out at me.&nbsp; You're using rx_multi_samples<br=
->
-&nbsp; &quot;out of the box&quot; or with modifications?<br>
-<br>
-<br>
-<blockquote type=3D"cite">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_x_x_divRplyFwdMsg" dir=3D"ltr"><font color=3D"#000000" face=3D=
-"Calibri,
-              sans-serif" style=3D"font-size:11pt"><b>From:</b> Marcus D. L=
-eech
-<a class=3D"x_x_x_moz-txt-link-rfc2396E" href=3D"mailto:patchvonbraun@gmail=
-.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
-<b>Sent:</b> Friday, August 6, 2021 3:56 PM<br>
-<b>To:</b> <a class=3D"x_x_x_moz-txt-link-abbreviated" href=3D"mailto:usrp-=
-users@lists.ettus.com">
-usrp-users@lists.ettus.com</a> <a class=3D"x_x_x_moz-txt-link-rfc2396E" hre=
-f=3D"mailto:usrp-users@lists.ettus.com">
-&lt;usrp-users@lists.ettus.com&gt;</a><br>
-<b>Subject:</b> [USRP-users] Re: Too Many Samples in a Single Burst</font>
-<div>&nbsp;</div>
-</div>
-<div style=3D"background-color:#FFFFFF">
-<div class=3D"x_x_x_x_moz-cite-prefix">On 08/06/2021 07:26 PM, Jonathan Tob=
-in wrote:<br>
-</div>
-<blockquote type=3D"cite">
-<meta name=3D"Generator" content=3D"Microsoft Word 15
-                (filtered medium)">
-<style>
-<!--
-@font-face
-	{font-family:"Cambria Math"}
-@font-face
-	{font-family:Calibri}
-p.x_x_x_x_MsoNormal, li.x_x_x_x_MsoNormal, div.x_x_x_x_MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif}
-@page WordSection1
-	{margin:1.0in 1.0in 1.0in 1.0in}
--->
-</style>
-<div class=3D"x_x_x_x_WordSection1">
-<p class=3D"x_x_x_x_MsoNormal">&nbsp;</p>
-<p class=3D"x_x_x_x_MsoNormal">Hello,</p>
-<p class=3D"x_x_x_x_MsoNormal">&nbsp;</p>
-<p class=3D"x_x_x_x_MsoNormal">In trying to test the =91rx_multi_samples=92=
- example with all four channels on an n310. I run into an error of =93Reque=
-sting too many samples in a single burst=94 when I attempt a longer record =
-(really anything over a few seconds). Seems
- to be my nsamps value, but I am unsure how to remedy the issue. Below is m=
-y argument and the terminal output for an attempt to receive for 10 seconds=
-:</p>
-<p class=3D"x_x_x_x_MsoNormal">&nbsp;</p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">./rx_multi_samples --args &quot;type=3Dn3xx,addr=3D192.168.10.2,time_sour=
-ce=3Dgpsdo,clock_source=3Dgpsdo&quot; --rate 6.25e6 --subdev &quot;A:0 A:1 =
-B:0 B:1&quot; --channels &quot;0,1,2,3&quot; --nsamps 625000000
-</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp;</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">Creating the usrp device with: type=3Dn3xx,addr=3D192.168.10.2,time_sourc=
-e=3Dgpsdo,clock_source=3Dgpsdo...</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.HEAD-=
-0-gaea0e2de</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=
-=3D192.168.10.2,type=3Dn3xx,product=3Dn310,serial=3D3218B5F,claimed=3DFalse=
-,addr=3D192.168.10.2,time_source=3Dgpsdo,clock_source=3Dgpsdo</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [MPM.PeriphManager] init() called with device args `clock_source=
-=3Dgpsdo,time_source=3Dgpsdo,product=3Dn310,mgmt_addr=3D192.168.10.2'.</spa=
-n></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/Replay_0] Initializing block control (NOC ID: 0x4E91A0000000000=
-4)</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/Radio_0] Initializing block control (NOC ID: 0x12AD100000011312=
-)</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/Radio_1] Initializing block control (NOC ID: 0x12AD100000011312=
-)</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/DDC_0] Initializing block control (NOC ID: 0xDDC0000000000000)<=
-/span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/DDC_1] Initializing block control (NOC ID: 0xDDC0000000000000)<=
-/span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/DUC_0] Initializing block control (NOC ID: 0xD0C0000000000002)<=
-/span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/DUC_1] Initializing block control (NOC ID: 0xD0C0000000000002)<=
-/span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/FIFO_0] Initializing block control (NOC ID: 0xF1F0000000000000)=
-</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/FIFO_1] Initializing block control (NOC ID: 0xF1F0000000000000)=
-</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/FIFO_2] Initializing block control (NOC ID: 0xF1F0000000000000)=
-</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [0/FIFO_3] Initializing block control (NOC ID: 0xF1F0000000000000)=
-</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">Using Device: Single USRP:</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; Device: N300-Series Device</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; Mboard 0: ni-n3xx-3218B5F</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; RX Channel: 0</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX DSP: 0</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Dboard: A</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; RX Channel: 1</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX DSP: 1</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Dboard: A</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; RX Channel: 2</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX DSP: 0</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Dboard: B</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; RX Channel: 3</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX DSP: 1</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Dboard: B</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; RX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; TX Channel: 0</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX DSP: 0</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Dboard: A</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; TX Channel: 1</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX DSP: 1</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Dboard: A</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; TX Channel: 2</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX DSP: 0</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Dboard: B</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; TX Channel: 3</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX DSP: 1</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Dboard: B</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp; &nbsp; TX Subdev: Magnesium</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp;</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">Setting RX Rate: 6.250000 Msps...</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">Actual RX Rate: 6.250000 Msps...</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp;</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">Setting device timestamp to 0...</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">&nbsp;</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">Begin streaming 625000000 samples, 1.500000 seconds in the future...</spa=
-n></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[ERROR] [RFNOC RADIO] Requesting too many samples in a single burst! Requ=
-ested 12500000000, maximum is 268435455.</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">[INFO] [RFNOC RADIO] Note that a decimation block will increase the numbe=
-r of samples per burst by the decimation factor. Your application may have =
-requested fewer samples.</span></p>
-<p class=3D"x_x_x_x_MsoNormal"><span style=3D"font-size:12.0pt; color:black=
-">Error: ValueError: Requested too many samples in a single burst.</span></=
-p>
-<p class=3D"x_x_x_x_MsoNormal">&nbsp;</p>
-<p class=3D"x_x_x_x_MsoNormal">Thanks,</p>
-<p class=3D"x_x_x_x_MsoNormal">Jonathan</p>
-</div>
-<br>
-</blockquote>
-That looks like a bug--have you tried this on UHD 4.recent?<br>
-<br>
-<br>
-</div>
-</blockquote>
-<br>
-</div>
-</blockquote>
-<br>
-</div>
-</div>
-</body>
-</html>
-
---_000_BN7PR05MB45009AF50E6C4419B7D2837DD5F69BN7PR05MB4500namp_--
-
---===============6986519346700466491==
+=20
+Also, I should have mentioned that I'm connected to the device via the cons=
+ole JTAG interface, however, I believe this interface may only be for comma=
+nd and control of the N310. Unfortunately, I don't have an SFP adapter so I=
+'ve been trying to load the FPGA image onto the device using JTAG and I bel=
+ieve this can only successfully be done using the SFP port. Can someone con=
+firm this for me.=20
+    On Monday, August 9, 2021, 9:58:15 AM EDT, Tellrell White via USRP-user=
+s <usrp-users@lists.ettus.com> wrote: =20
+=20
+ =20
+MarcusNo, I haven't. This is a new VM I created running Ubuntu 18.04. Check=
+ing to see if there's an active firewall results in the following:=20
+
+tw@tw-virtual-machine:~/uhd$ sudo ufw status
+Status: inactive
+
+
+
+    On Monday, August 9, 2021, 9:18:04 AM EDT, Marcus D. Leech <patchvonbra=
+un@gmail.com> wrote: =20
+=20
+  On 08/08/2021 10:45 PM, Tellrell White via USRP-users wrote:
+ =20
+  Hello=20
+   I'm currently trying to update the default fpga image on a usrp n310 and=
+ I'm getting an error. This a print out=20
+ =20
+=20
+ tw@tw-virtual-machine:/usr/local/share/uhd/images$ uhd_image_loader --args=
+ "type=3Dn3xx,addr=3D172.37.104.131" --fpga-path=3Dusrp_n310_fpga_HG.bit
+ [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.1.0.heads-v=
+4.0.0.0-13-g240c7fdd
+ [INFO] [MPMD] Initializing 1 device(s) in parallel with args:mgmt_addr=3D1=
+72.37.104.131,type=3Dn3xx,product=3Dn310,serial=3D316CD05,fpga=3DHG,claimed=
+=3DFalse,skip_init=3D1
+ [INFO] [MPMD] Claimed device without full initialization.
+ [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
+ [INFO] [MPM.PeriphManager] Installing component `fpga'
+ [INFO] [MPM.PeriphManager] Installing component `dts'
+ [INFO] [MPM.RPCServer] Resetting peripheral manager.
+ [INFO] [MPM.PeriphManager] Device serial number: 316CD05
+ [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).
+ [INFO] [MPM.PeriphManager] init() called with device args `clock_source=3D=
+internal,time_source=3Dinternal'.
+ [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
+ [WARNING] [MPM.PeriphManager.UDP.UDP] No internal interface to forward CHD=
+R packets to from eth0.
+ [INFO] [MPMD] Initializing 1 device(s) in parallel with args:mgmt_addr=3D1=
+72.37.104.131,type=3Dn3xx,product=3Dn310,serial=3D316CD05,fpga=3DHG,claimed=
+=3DFalse,addr=3D172.37.104.131,find_all=3D1
+ [WARNING] [UDP] The recv buffer could not be resized sufficiently.
+ Target sock buff size: 2500000 bytes.
+ Actual sock buff size: 212992 bytes.
+ See the transport application notes on buffer resizing.
+ Please run: sudo sysctl -w net.core.rmem_max=3D2500000
+ [WARNING] [UDP] The send buffer could not be resized sufficiently.
+ Target sock buff size: 2500000 bytes.
+ Actual sock buff size: 212992 bytes.
+ See the transport application notes on buffer resizing.
+ Please run: sudo sysctl -w net.core.wmem_max=3D2500000
+ [WARNING] [UDP] The current recv_buff_size of 212992 is less than the mini=
+mum recommended size of 816000 and may result in dropped packets on some NI=
+Cs
+ [WARNING] [UDP] The current send_buff_size of 212992 is less than the mini=
+mum recommended size of 307200 and may result in dropped packets on some NI=
+Cs
+ [ERROR] [RFNOC::GRAPH] IO Error during GSM initialization. EnvironmentErro=
+r: IOError: recv error on socket: Connection refused
+ [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Environm=
+entError: IOError: recv error on socket: Connection refused
+ [INFO] [MPM.PeriphManager] init() called with device args`find_all=3D1,fpg=
+a=3DHG,mgmt_addr=3D172.37.104.131,product=3Dn310,clock_source=3Dinternal,ti=
+me_source=3Dinternal'.
+ [WARNING] [MPM.PeriphManager.UDP.UDP] No internal interface to forward CHD=
+R packets to from eth0.
+ Error: RuntimeError: Failure to create rfnoc_graph.
+=20
+  =20
+ =20
+ You have you used a USRP device successfully on your host PC before?=C2=A0=
+ I wonder if your firewall is blocking packets to/from UDP 49152?
+=20
+=20
+ _______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+  _______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+ =20
+------=_Part_406247_1677884262.1628525463279
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body><div class="ydpccf5363eyahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div></div>
+        <div><br></div><div dir="ltr" data-setdir="false">Also, I should have mentioned that I'm connected to the device via the console JTAG interface, however, I believe this interface may only be for command and control of the N310. Unfortunately, I don't have an SFP adapter so I've been trying to load the FPGA image onto the device using JTAG and I believe this can only successfully be done using the SFP port. Can someone confirm this for me. <br></div>
+        
+        </div><div id="yahoo_quoted_8874763480" class="yahoo_quoted">
+            <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
+                
+                <div>
+                    On Monday, August 9, 2021, 9:58:15 AM EDT, Tellrell White via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id="yiv5011282540"><div><div class="yiv5011282540ydp2559e301yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div></div>
+        <div><br clear="none"></div><div dir="ltr">Marcus</div><div dir="ltr">No, I haven't. This is a new VM I created running Ubuntu 18.04. Checking to see if there's an active firewall results in the following: <br clear="none"></div><div dir="ltr"><br clear="none"></div><div dir="ltr"><div>tw@tw-virtual-machine:~/uhd$ sudo ufw status<br clear="none">Status: inactive<br clear="none"><br clear="none"></div><div><br clear="none"></div></div><div dir="ltr"><br clear="none"></div>
+        
+        </div><div class="yiv5011282540yahoo_quoted" id="yiv5011282540yahoo_quoted_9129661450">
+            <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
+                
+                <div class="yiv5011282540yqt8701757017" id="yiv5011282540yqt37084"><div>
+                    On Monday, August 9, 2021, 9:18:04 AM EDT, Marcus D. Leech &lt;patchvonbraun@gmail.com&gt; wrote:
+                </div>
+                <div><br clear="none"></div>
+                <div><br clear="none"></div>
+                <div><div id="yiv5011282540"><div>
+    <div class="yiv5011282540yqt3811638609" id="yiv5011282540yqt03735"><div class="yiv5011282540moz-cite-prefix">On 08/08/2021 10:45 PM, Tellrell White
+      via USRP-users wrote:<br clear="none">
+    </div>
+    <blockquote type="cite">
+      <div class="yiv5011282540yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;">
+        <div dir="ltr">Hello <br clear="none">
+        </div>
+        <div dir="ltr">
+          <div>I'm currently trying to update the default fpga image on
+            a usrp n310 and I'm getting an error. This a print out <br clear="none">
+          </div>
+          <div><br clear="none">
+            <br clear="none">
+            tw@tw-virtual-machine:/usr/local/share/uhd/images$
+            uhd_image_loader --args "type=n3xx,addr=172.37.104.131"
+            --fpga-path=usrp_n310_fpga_HG.bit<br clear="none">
+            [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
+            UHD_4.1.0.heads-v4.0.0.0-13-g240c7fdd<br clear="none">
+            [INFO] [MPMD] Initializing 1 device(s) in parallel with
+            args:
+mgmt_addr=172.37.104.131,type=n3xx,product=n310,serial=316CD05,fpga=HG,claimed=False,skip_init=1<br clear="none">
+            [INFO] [MPMD] Claimed device without full initialization.<br clear="none">
+            [INFO] [MPMD IMAGE LOADER] Starting update. This may take a
+            while.<br clear="none">
+            [INFO] [MPM.PeriphManager] Installing component `fpga'<br clear="none">
+            [INFO] [MPM.PeriphManager] Installing component `dts'<br clear="none">
+            [INFO] [MPM.RPCServer] Resetting peripheral manager.<br clear="none">
+            [INFO] [MPM.PeriphManager] Device serial number: 316CD05<br clear="none">
+            [INFO] [MPM.PeriphManager] Initialized 2 daughterboard(s).<br clear="none">
+            [INFO] [MPM.PeriphManager] init() called with device args
+            `clock_source=internal,time_source=internal'.<br clear="none">
+            [INFO] [MPMD IMAGE LOADER] Update component function
+            succeeded.<br clear="none">
+            [WARNING] [MPM.PeriphManager.UDP.UDP] No internal interface
+            to forward CHDR packets to from eth0.<br clear="none">
+            [INFO] [MPMD] Initializing 1 device(s) in parallel with
+            args:
+mgmt_addr=172.37.104.131,type=n3xx,product=n310,serial=316CD05,fpga=HG,claimed=False,addr=172.37.104.131,find_all=1<br clear="none">
+            [WARNING] [UDP] The recv buffer could not be resized
+            sufficiently.<br clear="none">
+            Target sock buff size: 2500000 bytes.<br clear="none">
+            Actual sock buff size: 212992 bytes.<br clear="none">
+            See the transport application notes on buffer resizing.<br clear="none">
+            Please run: sudo sysctl -w net.core.rmem_max=2500000<br clear="none">
+            [WARNING] [UDP] The send buffer could not be resized
+            sufficiently.<br clear="none">
+            Target sock buff size: 2500000 bytes.<br clear="none">
+            Actual sock buff size: 212992 bytes.<br clear="none">
+            See the transport application notes on buffer resizing.<br clear="none">
+            Please run: sudo sysctl -w net.core.wmem_max=2500000<br clear="none">
+            [WARNING] [UDP] The current recv_buff_size of 212992 is less
+            than the minimum recommended size of 816000 and may result
+            in dropped packets on some NICs<br clear="none">
+            [WARNING] [UDP] The current send_buff_size of 212992 is less
+            than the minimum recommended size of 307200 and may result
+            in dropped packets on some NICs<br clear="none">
+            [ERROR] [RFNOC::GRAPH] IO Error during GSM initialization.
+            EnvironmentError: IOError: recv error on socket: Connection
+            refused<br clear="none">
+            [ERROR] [RFNOC::GRAPH] Caught exception while initializing
+            graph: EnvironmentError: IOError: recv error on socket:
+            Connection refused<br clear="none">
+            [INFO] [MPM.PeriphManager] init() called with device args
+`find_all=1,fpga=HG,mgmt_addr=172.37.104.131,product=n310,clock_source=internal,time_source=internal'.<br clear="none">
+            [WARNING] [MPM.PeriphManager.UDP.UDP] No internal interface
+            to forward CHDR packets to from eth0.<br clear="none">
+            Error: RuntimeError: Failure to create rfnoc_graph.<br clear="none">
+            <br clear="none">
+          </div>
+        </div>
+        <br clear="none">
+      </div>
+    </blockquote></div>
+    You have you used a USRP device successfully on your host PC
+    before?&nbsp; I wonder if your firewall is blocking packets to/from UDP
+    49152?<br clear="none">
+    <br clear="none">
+    <br clear="none">
+  </div></div><div class="yiv5011282540yqt3811638609" id="yiv5011282540yqt02357">_______________________________________________<br clear="none">USRP-users mailing list -- <a rel="nofollow noopener noreferrer" shape="rect" ymailto="mailto:usrp-users@lists.ettus.com" target="_blank" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br clear="none">To unsubscribe send an email to <a rel="nofollow noopener noreferrer" shape="rect" ymailto="mailto:usrp-users-leave@lists.ettus.com" target="_blank" href="mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.com</a><br clear="none"></div></div></div>
+            </div>
+        </div></div></div><div class="yqt8701757017" id="yqt82341">_______________________________________________<br clear="none">USRP-users mailing list -- <a shape="rect" ymailto="mailto:usrp-users@lists.ettus.com" href="mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br clear="none">To unsubscribe send an email to <a shape="rect" ymailto="mailto:usrp-users-leave@lists.ettus.com" href="mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.com</a><br clear="none"></div></div>
+            </div>
+        </div></body></html>
+------=_Part_406247_1677884262.1628525463279--
+
+--===============2620348172624700744==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1145,4 +300,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6986519346700466491==--
+--===============2620348172624700744==--
