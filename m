@@ -2,227 +2,654 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9793E97B2
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Aug 2021 20:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9130D3E98E9
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Aug 2021 21:38:23 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3029D3853B4
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Aug 2021 14:33:57 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 73519384867
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Aug 2021 15:38:22 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=kth.se header.i=@kth.se header.b="DJ2yU8Lp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="AN1wJRVl";
 	dkim-atps=neutral
-Received: from smtp-3.sys.kth.se (smtp-3.sys.kth.se [130.237.48.192])
-	by mm2.emwd.com (Postfix) with ESMTPS id 514AF38413A
-	for <USRP-users@lists.ettus.com>; Wed, 11 Aug 2021 14:33:13 -0400 (EDT)
-Received: from smtp-3.sys.kth.se (localhost.localdomain [127.0.0.1])
-	by smtp-3.sys.kth.se (Postfix) with ESMTP id 541B63009;
-	Wed, 11 Aug 2021 20:33:11 +0200 (CEST)
-X-Virus-Scanned: by amavisd-new at kth.se
-Received: from smtp-3.sys.kth.se ([127.0.0.1])
-	by smtp-3.sys.kth.se (smtp-3.sys.kth.se [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id 5tL5WWRcvC9m; Wed, 11 Aug 2021 20:33:07 +0200 (CEST)
-Received: from exdb4.ug.kth.se (exdb4.ug.kth.se [192.168.32.59])
-	by smtp-3.sys.kth.se (Postfix) with ESMTPS id CFFFE32C7;
-	Wed, 11 Aug 2021 20:33:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kth.se; s=default;
-	t=1628706786; bh=eBg95ZCIddeL5RB2Rxm98UnB1YDSwcPf12E7GkNpjrg=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=DJ2yU8Lpp89UgYKx/9LbinNibBQW5Qy9xypcv+B1bWtnfyetmCSWGdsvfwuiNzrQF
-	 ZCmtQ1+FZ2jbkIfyrOOZHufPstWkoPYDtjpqLJtfuAEtmCYdrKobYx2mOIxsnbRGVh
-	 coL920lHksQApVW4YRB7IflFccHXrBLjmDm+FXHQ=
-Received: from exdb2.ug.kth.se (192.168.32.57) by exdb4.ug.kth.se
- (192.168.32.59) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.15; Wed, 11 Aug
- 2021 20:32:55 +0200
-Received: from exdb2.ug.kth.se ([192.168.32.57]) by exdb2.ug.kth.se
- ([192.168.32.57]) with mapi id 15.02.0858.015; Wed, 11 Aug 2021 20:32:55
- +0200
-From: Anton Ottosson <antonott@kth.se>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] N210 Center frequency tuning resolution
-Thread-Index: AQHXjtQigHT4yf/xL02wX0AvlO3UtKtubNAAgAAi6d3//+CeAIAALkBw
-Date: Wed, 11 Aug 2021 18:32:55 +0000
-Message-ID: <4f74d975b15c48a095f537ca205b246c@kth.se>
-References: <ca21b213473c4123827230dfe49c903f@kth.se>,<1C2330B0-309C-460B-AD6C-CE956F051D30@gmail.com>
- <9234b191f02a41169c046f50ab73e311@kth.se>,<61140B32.1020506@gmail.com>
-In-Reply-To: <61140B32.1020506@gmail.com>
-Accept-Language: en-US, sv-SE
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.32.250]
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2A26A380D17
+	for <usrp-users@lists.ettus.com>; Wed, 11 Aug 2021 15:37:29 -0400 (EDT)
+Received: by mail-ed1-f47.google.com with SMTP id by4so5537336edb.0
+        for <usrp-users@lists.ettus.com>; Wed, 11 Aug 2021 12:37:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=fjkD9W63esIPW/6bo7TLEzKzvX8g9CG0hFWKv4463MM=;
+        b=AN1wJRVl10ZeclSy30qhhfibnaXmVlJVBmvqmp1ke9WdZfhR5PcGtdiesuY/XpamXo
+         JlZi7NG2ABZ3JQXwg0EfRJ32Dw2AGRMbyMDqWU83dPMvZqdEnqY4KshoQ61Akz8r7+Wt
+         ob2H/89tlO93wPFSVDVG3iAlW3bc/NRXccSUHdxCkSPu69Q1QO/7u9OAtwBNSWBCxY/T
+         +mJV1ZDkkbfTuwohjVASosXrh3bpg9N+vAYniZ1WaKKKQ5nMHzHQG/fy4mieG3i9Obdd
+         Iyiaw9CYFn1SHEkwMdWbvuvT5HmOy8tkeJjVcG0ovEtp7d3rNJvTTot2xuBuqa/8j0c1
+         2yvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=fjkD9W63esIPW/6bo7TLEzKzvX8g9CG0hFWKv4463MM=;
+        b=TjAMOF+gIuSmvPo7XXHHjl4MPafNj3tv2UWg1ljcDLgDVN5mdalrRhoNfm/NhRkV8B
+         zIZwBtExKvlNxNhcTe9fb32QR6FA15vrDsd/+Pc3yxELSBAH0UWo58qakXvtEoQLsI3C
+         5HR8fC91YfCcjRP/NuYC2A7htsygN3EonwCo2tp3Sgf8SS9g+XQ6vCbevQHyQMwtiyP4
+         OgvcpHp6S8SEaUcC9yatXqMUwILxhIAYL9AMjuXxCi2uepHs3Lt7ZBqHc6FDfWxD8x8Y
+         YCYrAzBaNvsI8+uCpwZY21n+K3NrL87wu4JFWy5WygXzNK1Qnh9/IoyGLi3nEBJWnGMG
+         0pqQ==
+X-Gm-Message-State: AOAM533+McuMoNE0zDk6LU9p51TT471JCJZNvpJk120Pxm3EC+YZY/jl
+	H75HfqOVpPK8w6+oRYOaLIiplgJxHAZPLYEWydaQjiijsSGOCcqEgf4=
+X-Google-Smtp-Source: ABdhPJxgAq8OB2GzQ8zrtDidVZB04cs8T1gO5vj5oUmo2LhvhXbjdXSFOibOjKuR34DLiFVwrKdQSuzbONGw1mcVvm4=
+X-Received: by 2002:aa7:d681:: with SMTP id d1mr685390edr.186.1628710648778;
+ Wed, 11 Aug 2021 12:37:28 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: M446CUOBOKAQXVTLVTOW53PTL2DWA5WR
-X-Message-ID-Hash: M446CUOBOKAQXVTLVTOW53PTL2DWA5WR
-X-MailFrom: antonott@kth.se
+References: <c6aa89dd-f347-6094-3b6b-319b506faadf@comcast.net>
+ <E0638E2A-C2D8-4258-A334-001D11E67F7F@gmail.com> <CAGNhwTOCg=9kne-5jcW3PRGOJaov-3c+obt0didmw0PQmVA=TQ@mail.gmail.com>
+ <CACwKM9L2b0o5aLRRVCwgcOVAa+HV_J+fhheTNbMOJJEC6J+wwQ@mail.gmail.com>
+ <6113D9AA.3060909@gmail.com> <CACwKM9+E4=q-UHCF6YxCxd+noszB+eHrkErc0_42x2Fs76A03w@mail.gmail.com>
+ <6113E069.1090300@gmail.com> <CACwKM9KX4g_XpCtP8YRjYZucuinyNosJoH6e_KRukf=c3wpxng@mail.gmail.com>
+ <CACwKM9LEE7LtFeS-e1LEzOZ1o64ZcttwZ+YTPc6GQzhQ9xbkAA@mail.gmail.com>
+ <CACwKM9KH5OVWHAEsdGH0=c7oRMoOQ7f5V+3-o+kM0Lp4ZnUxsw@mail.gmail.com> <daec4724-2664-bfcc-9545-8f83ebc28ce5@comcast.net>
+In-Reply-To: <daec4724-2664-bfcc-9545-8f83ebc28ce5@comcast.net>
+From: Michael Dickens <michael.dickens@ettus.com>
+Date: Wed, 11 Aug 2021 15:37:17 -0400
+Message-ID: <CAGNhwTONg2LfTpe_DB5Rbqam_mgLdF5akyaxZVh0YxKyj_uF-Q@mail.gmail.com>
+To: USRP list <usrp-users@lists.ettus.com>
+Message-ID-Hash: FB4QDRT3K7DKUSCUZO5XEB5NDRB5DR6D
+X-Message-ID-Hash: FB4QDRT3K7DKUSCUZO5XEB5NDRB5DR6D
+X-MailFrom: michael.dickens@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N210 Center frequency tuning resolution
+Subject: [USRP-users] Re: B2XX radios don't continue on overflows
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M446CUOBOKAQXVTLVTOW53PTL2DWA5WR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FB4QDRT3K7DKUSCUZO5XEB5NDRB5DR6D/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6445962132266306724=="
+Content-Type: multipart/mixed; boundary="===============1245444355197668643=="
 
---===============6445962132266306724==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_4f74d975b15c48a095f537ca205b246ckthse_"
+--===============1245444355197668643==
+Content-Type: multipart/alternative; boundary="000000000000a9a25a05c94dbfcb"
 
---_000_4f74d975b15c48a095f537ca205b246ckthse_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000a9a25a05c94dbfcb
+Content-Type: text/plain; charset="UTF-8"
 
-VGhhbmsgeW91LiBUaGF0J3MgZmluZTsgSSBkb24ndCByZWFsbHkgbmVlZCB0byByZXNvbHZlIGRv
-d24gdG8gaW5kaXZpZHVhbCBoZXJ0eiBldmVuLiBUZW5zLCBvciBldmVuIGFzIG11Y2ggYXMgfjEw
-MCBIeiByZXNvbHV0aW9uIHdvdWxkIHByb2JhYmx5IGJlIGZpbmUgZm9yIG15IHB1cnBvc2VzLg0K
-DQoNCkJlc3QsDQoNCkFudG9uDQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-Xw0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6
-IFdlZG5lc2RheSwgQXVndXN0IDExLCAyMDIxIDc6Mzg6NTggUE0NClRvOiBBbnRvbiBPdHRvc3Nv
-bg0KQ2M6IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNl
-cnNdIE4yMTAgQ2VudGVyIGZyZXF1ZW5jeSB0dW5pbmcgcmVzb2x1dGlvbg0KDQpPbiAwOC8xMS8y
-MDIxIDAxOjMzIFBNLCBBbnRvbiBPdHRvc3NvbiB3cm90ZToNCg0KVGhhdCdzIGdyZWF0IHRvIGhl
-YXIhIFRoYW5rIHlvdSEgQnkgdGhlIHdheSwgaXMgdGhpcyBkb2N1bWVudGVkIGFueXdoZXJlIChJ
-IG1pZ2h0IGhhdmUgdG8gZ2l2ZSBhIHNvdXJjZSBhdCBzb21lIHBvaW50KT8NCg0KaHR0cHM6Ly9m
-aWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfZ2VuZXJhbC5odG1sI2dlbmVyYWxfdHVuaW5nDQoN
-ClRoZW4gdGhlcmUncyB0aGUgc291cmNlLWNvZGUgZm9yIHRoZSByZWxldmFudCBGUEdBIGltYWdl
-Li4uDQoNCktlZXAgaW4gbWluZCB0aGF0IHZlcnktZmluZSB0dW5pbmcgcmVzb2x1dGlvbiBkb2Vz
-bid0IHJlYWxseSBnZXQgeW91IHZlcnkgZmFyIHdoZW4gdGhlIHN5c3RlbSByZWZlcmVuY2UgY2xv
-Y2sgcHJvZHVjZXMgbXVjaA0KICBtb3JlIHVuY2VydGFpbnR5IHRoYW4geW91ciB0dW5pbmcgc3Rl
-cC4NCg0KVGhlIG9uLWJvYXJkIGNsb2NrIG9uIHRoZSBOMjEwIGlzIChBRkFJUikgMi41UFBNLiAg
-IFNvLCBzdWItMUh6IHJlc29sdXRpb24gaXNuJ3QgdGVycmlibHkgbWVhbmluZ2Z1bC4uLg0KDQoN
-Cg0KDQpCZXN0LA0KDQpBbnRvbg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
-RnJvbTogTWFyY3VzIEQgTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPjxtYWlsdG86cGF0
-Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBXZWRuZXNkYXksIEF1Z3VzdCAxMSwgMjAyMSA3
-OjI2OjIwIFBNDQpUbzogQW50b24gT3R0b3Nzb24NCkNjOiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbTxtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VT
-UlAtdXNlcnNdIE4yMTAgQ2VudGVyIGZyZXF1ZW5jeSB0dW5pbmcgcmVzb2x1dGlvbg0KDQpJdOKA
-mXMgdW5kZXIgMUh6IG93aW5nIHRvIHRoZSByZXNvbHV0aW9uIG9mIHRoZSBEREMgYW5kL29yIERV
-Qy4NCg0KRXZlbiB0aG91Z2ggaW5kaXZpZHVhbCBkYXVnaHRlciBjYXJkcyB3aWxsIGhhdmUgYSBz
-eW50aGVzaXplciByZXNvbHV0aW9uIG11Y2ggbGFyZ2VyIHRoYW4gdGhhdCwgdGhlIHR1bmluZyBj
-b2RlIHVzZXMgdGhhdCBrbm93bGVkZ2UgYW5kIHByb2dyYW1taW5nIG9mIHRoZSBEREMgLyBEVUMg
-dG8gZGVsaXZlciBzdWJIeiByZXNvbHV0aW9uLg0KDQoNCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0K
-DQpPbiBBdWcgMTEsIDIwMjEsIGF0IDE6MjMgUE0sIEFudG9uIE90dG9zc29uIDxhbnRvbm90dEBr
-dGguc2U+PG1haWx0bzphbnRvbm90dEBrdGguc2U+IHdyb3RlOg0KDQrvu78NCg0KSGksDQoNCg0K
-RG9lcyBhbnkgb25lIGhlcmUga25vdyB3aGF0IHRoZSBjZW50ZXIgZnJlcXVlbmN5IHR1bmluZyBy
-ZXNvbHV0aW9uIGlzIGZvciB0aGUgTjIxMCwgb3IgaG93IG9uZSBtaWdodCBmaW5kIG91dD8gQnkg
-dHVuaW5nIHJlc29sdXRpb24gSSBtZWFuLCBiYXNpY2FsbHksIHRoZSBzdGVwIHNpemUgd2hlbiBz
-ZWxlY3RpbmcgY2VudGVyIGZyZXF1ZW5jeS4gSSBoYXZlIGJlZW4gbG9va2luZyBvdmVyIHRoZSBE
-ZXZpY2VzICYgVXNhZ2UgTWFudWFsPGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdl
-X2RldmljZXMuaHRtbD4sIGJ1dCBoYXZlIG5vdCBiZWVuIGFibGUgdG8gZmluZCBhbiBhbnN3ZXIu
-DQoNCg0KQmVzdCwNCg0KQW50b24NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRvIHVuc3Vi
-c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208
-bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KDQo=
+For completion here:
 
---_000_4f74d975b15c48a095f537ca205b246ckthse_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is topic now a public UHD issue :
+https://github.com/EttusResearch/uhd/issues/475
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPjwhLS0gUCB7bWFyZ2luLXRvcDowO21hcmdpbi1ib3R0b206MDt9IC0t
-Pjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBkaXI9Imx0ciI+DQo8ZGl2IGlkPSJkaXZ0YWdkZWZh
-dWx0d3JhcHBlciIgc3R5bGU9ImZvbnQtc2l6ZToxMnB0O2NvbG9yOiMwMDAwMDA7Zm9udC1mYW1p
-bHk6Q2FsaWJyaSxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsiIGRpcj0ibHRyIj4NCjxkaXYgaWQ9ImRp
-dnRhZ2RlZmF1bHR3cmFwcGVyIiBkaXI9Imx0ciIgc3R5bGU9ImZvbnQtc2l6ZTogMTJwdDsgY29s
-b3I6IHJnYigwLCAwLCAwKTsgZm9udC1mYW1pbHk6IENhbGlicmksIEhlbHZldGljYSwgc2Fucy1z
-ZXJpZiwgJnF1b3Q7RW1vamlGb250JnF1b3Q7LCAmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90
-OywgJnF1b3Q7U2Vnb2UgVUkgRW1vamkmcXVvdDssIE5vdG9Db2xvckVtb2ppLCAmcXVvdDtTZWdv
-ZSBVSSBTeW1ib2wmcXVvdDssICZxdW90O0FuZHJvaWQgRW1vamkmcXVvdDssIEVtb2ppU3ltYm9s
-czsiPg0KPHA+VGhhbmsgeW91LiBUaGF0J3MgZmluZTsgSSBkb24ndCByZWFsbHkgbmVlZCB0byBy
-ZXNvbHZlIGRvd24gdG8gaW5kaXZpZHVhbCBoZXJ0eiBldmVuLiBUZW5zLCBvciBldmVuIGFzIG11
-Y2ggYXMgfjEwMCBIeiByZXNvbHV0aW9uIHdvdWxkIHByb2JhYmx5IGJlIGZpbmUgZm9yIG15IHB1
-cnBvc2VzLjxicj4NCjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPkJlc3QsPC9wPg0KPHA+QW50b248
-YnI+DQo8L3A+DQo8cD48YnI+DQo8L3A+DQo8cD48YnI+DQo8L3A+DQo8L2Rpdj4NCjxociB0YWJp
-bmRleD0iLTEiIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxkaXYg
-aWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBzdHlsZT0iZm9udC1zaXplOjExcHQi
-IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9yPSIjMDAwMDAwIj48Yj5Gcm9tOjwvYj4g
-TWFyY3VzIEQuIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDs8YnI+DQo8Yj5T
-ZW50OjwvYj4gV2VkbmVzZGF5LCBBdWd1c3QgMTEsIDIwMjEgNzozODo1OCBQTTxicj4NCjxiPlRv
-OjwvYj4gQW50b24gT3R0b3Nzb248YnI+DQo8Yj5DYzo8L2I+IFVTUlAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gTjIxMCBDZW50ZXIg
-ZnJlcXVlbmN5IHR1bmluZyByZXNvbHV0aW9uPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwv
-ZGl2Pg0KPGRpdj4NCjxkaXYgY2xhc3M9Im1vei1jaXRlLXByZWZpeCI+T24gMDgvMTEvMjAyMSAw
-MTozMyBQTSwgQW50b24gT3R0b3Nzb24gd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSB0
-eXBlPSJjaXRlIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiIHN0eWxlPSJkaXNwbGF5Om5vbmUiPgo8
-IS0tCnAKCXttYXJnaW4tdG9wOjA7CgltYXJnaW4tYm90dG9tOjB9Ci0tPgo8L3N0eWxlPg0KPGRp
-diBpZD0iZGl2dGFnZGVmYXVsdHdyYXBwZXIiIGRpcj0ibHRyIiBzdHlsZT0iZm9udC1zaXplOiAx
-MnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyBmb250LWZhbWlseTogQ2FsaWJyaSwgSGVsdmV0aWNh
-LCBzYW5zLXNlcmlmLCAmcXVvdDtFbW9qaUZvbnQmcXVvdDssICZxdW90O0FwcGxlIENvbG9yIEVt
-b2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgTm90b0NvbG9yRW1vamksICZx
-dW90O1NlZ29lIFVJIFN5bWJvbCZxdW90OywgJnF1b3Q7QW5kcm9pZCBFbW9qaSZxdW90OywgRW1v
-amlTeW1ib2xzOyI+DQo8cD5UaGF0J3MgZ3JlYXQgdG8gaGVhciEgVGhhbmsgeW91ISBCeSB0aGUg
-d2F5LCBpcyB0aGlzIGRvY3VtZW50ZWQgYW55d2hlcmUgKEkgbWlnaHQgaGF2ZSB0byBnaXZlIGEg
-c291cmNlIGF0IHNvbWUgcG9pbnQpPzwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGJyPg0K
-PGEgY2xhc3M9Im1vei10eHQtbGluay1mcmVldGV4dCIgaHJlZj0iaHR0cHM6Ly9maWxlcy5ldHR1
-cy5jb20vbWFudWFsL3BhZ2VfZ2VuZXJhbC5odG1sI2dlbmVyYWxfdHVuaW5nIiBpZD0iTFBsbmsy
-ODE5NCIgcHJldmlld3JlbW92ZWQ9InRydWUiPmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVh
-bC9wYWdlX2dlbmVyYWwuaHRtbCNnZW5lcmFsX3R1bmluZzwvYT48YnI+DQo8YnI+DQpUaGVuIHRo
-ZXJlJ3MgdGhlIHNvdXJjZS1jb2RlIGZvciB0aGUgcmVsZXZhbnQgRlBHQSBpbWFnZS4uLjxicj4N
-Cjxicj4NCktlZXAgaW4gbWluZCB0aGF0IHZlcnktZmluZSB0dW5pbmcgcmVzb2x1dGlvbiBkb2Vz
-bid0IHJlYWxseSBnZXQgeW91IHZlcnkgZmFyIHdoZW4gdGhlIHN5c3RlbSByZWZlcmVuY2UgY2xv
-Y2sgcHJvZHVjZXMgbXVjaDxicj4NCiZuYnNwOyBtb3JlIHVuY2VydGFpbnR5IHRoYW4geW91ciB0
-dW5pbmcgc3RlcC48YnI+DQo8YnI+DQpUaGUgb24tYm9hcmQgY2xvY2sgb24gdGhlIE4yMTAgaXMg
-KEFGQUlSKSAyLjVQUE0uJm5ic3A7Jm5ic3A7IFNvLCBzdWItMUh6IHJlc29sdXRpb24gaXNuJ3Qg
-dGVycmlibHkgbWVhbmluZ2Z1bC4uLjxicj4NCjxicj4NCjxicj4NCjxibG9ja3F1b3RlIHR5cGU9
-ImNpdGUiPg0KPGRpdiBpZD0iZGl2dGFnZGVmYXVsdHdyYXBwZXIiIGRpcj0ibHRyIiBzdHlsZT0i
-Zm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyBmb250LWZhbWlseTogQ2FsaWJy
-aSwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmLCAmcXVvdDtFbW9qaUZvbnQmcXVvdDssICZxdW90O0Fw
-cGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgTm90b0Nv
-bG9yRW1vamksICZxdW90O1NlZ29lIFVJIFN5bWJvbCZxdW90OywgJnF1b3Q7QW5kcm9pZCBFbW9q
-aSZxdW90OywgRW1vamlTeW1ib2xzOyI+DQo8cD48YnI+DQo8L3A+DQo8cD5CZXN0LDwvcD4NCjxw
-PkFudG9uPGJyPg0KPC9wPg0KPC9kaXY+DQo8aHIgdGFiaW5kZXg9Ii0xIiBzdHlsZT0iZGlzcGxh
-eTppbmxpbmUtYmxvY2s7IHdpZHRoOjk4JSI+DQo8ZGl2IGlkPSJkaXZScGx5RndkTXNnIiBkaXI9
-Imx0ciI+PGZvbnQgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBmYWNlPSJDYWxpYnJpLCBzYW5zLXNl
-cmlmIiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IE1hcmN1cyBEIExlZWNoDQo8YSBjbGFz
-cz0ibW96LXR4dC1saW5rLXJmYzIzOTZFIiBocmVmPSJtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFp
-bC5jb20iPiZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDs8L2E+PGJyPg0KPGI+U2VudDo8
-L2I+IFdlZG5lc2RheSwgQXVndXN0IDExLCAyMDIxIDc6MjY6MjAgUE08YnI+DQo8Yj5Ubzo8L2I+
-IEFudG9uIE90dG9zc29uPGJyPg0KPGI+Q2M6PC9iPiA8YSBjbGFzcz0ibW96LXR4dC1saW5rLWFi
-YnJldmlhdGVkIiBocmVmPSJtYWlsdG86VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPg0KVVNS
-UC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNS
-UC11c2Vyc10gTjIxMCBDZW50ZXIgZnJlcXVlbmN5IHR1bmluZyByZXNvbHV0aW9uPC9mb250Pg0K
-PGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdj5JdOKAmXMgdW5kZXIgMUh6IG93aW5nIHRv
-IHRoZSByZXNvbHV0aW9uIG9mIHRoZSBEREMgYW5kL29yIERVQy4mbmJzcDsNCjxkaXY+PGJyPg0K
-PC9kaXY+DQo8ZGl2PkV2ZW4gdGhvdWdoIGluZGl2aWR1YWwgZGF1Z2h0ZXIgY2FyZHMgd2lsbCBo
-YXZlIGEgc3ludGhlc2l6ZXIgcmVzb2x1dGlvbiBtdWNoIGxhcmdlciB0aGFuIHRoYXQsIHRoZSB0
-dW5pbmcgY29kZSB1c2VzIHRoYXQga25vd2xlZGdlIGFuZCBwcm9ncmFtbWluZyBvZiB0aGUgRERD
-IC8gRFVDIHRvIGRlbGl2ZXIgc3ViSHogcmVzb2x1dGlvbi4mbmJzcDs8L2Rpdj4NCjxkaXY+PGJy
-Pg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjxicj4NCjxkaXYgZGlyPSJsdHIiPlNlbnQgZnJvbSBteSBp
-UGhvbmU8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxicj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUi
-Pk9uIEF1ZyAxMSwgMjAyMSwgYXQgMToyMyBQTSwgQW50b24gT3R0b3Nzb24gPGEgY2xhc3M9Im1v
-ei10eHQtbGluay1yZmMyMzk2RSIgaHJlZj0ibWFpbHRvOmFudG9ub3R0QGt0aC5zZSI+DQombHQ7
-YW50b25vdHRAa3RoLnNlJmd0OzwvYT4gd3JvdGU6PGJyPg0KPGJyPg0KPC9ibG9ja3F1b3RlPg0K
-PC9kaXY+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIj4NCjxkaXYgZGlyPSJsdHIiPu+7vw0KPGRp
-diBpZD0iZGl2dGFnZGVmYXVsdHdyYXBwZXIiIGRpcj0ibHRyIiBzdHlsZT0iIj4NCjxwPkhpLDwv
-cD4NCjxwPjxicj4NCjwvcD4NCjxwPkRvZXMgYW55IG9uZSBoZXJlIGtub3cgd2hhdCB0aGUgY2Vu
-dGVyIGZyZXF1ZW5jeSB0dW5pbmcgcmVzb2x1dGlvbiBpcyBmb3IgdGhlIE4yMTAsIG9yIGhvdyBv
-bmUgbWlnaHQgZmluZCBvdXQ/IEJ5IHR1bmluZyByZXNvbHV0aW9uIEkgbWVhbiwgYmFzaWNhbGx5
-LCB0aGUgc3RlcCBzaXplIHdoZW4gc2VsZWN0aW5nIGNlbnRlciBmcmVxdWVuY3kuIEkgaGF2ZSBi
-ZWVuIGxvb2tpbmcgb3ZlciB0aGUNCjxhIGhyZWY9Imh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21h
-bnVhbC9wYWdlX2RldmljZXMuaHRtbCIgY2xhc3M9Ik9XQUF1dG9MaW5rIj5EZXZpY2VzICZhbXA7
-IFVzYWdlIE1hbnVhbDwvYT4sIGJ1dCBoYXZlIG5vdCBiZWVuIGFibGUgdG8gZmluZCBhbiBhbnN3
-ZXIuPC9wPg0KPHA+PGJyPg0KPC9wPg0KPHA+QmVzdCw8L3A+DQo8cD5BbnRvbjxicj4NCjwvcD4N
-CjwvZGl2Pg0KPHNwYW4+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX188L3NwYW4+PGJyPg0KPHNwYW4+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgY2xh
-c3M9Im1vei10eHQtbGluay1hYmJyZXZpYXRlZCIgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjwvc3Bhbj48YnI+
-DQo8c3Bhbj5UbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGNsYXNzPSJtb3otdHh0
-LWxpbmstYWJicmV2aWF0ZWQiIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
-dHVzLmNvbSI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48L3NwYW4+PGJy
-Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0K
-PGJyPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+R&D's Michael West replied there "We are aware of the issue and already
+have a fix in progress. It should be available within 2-4 weeks."
 
---_000_4f74d975b15c48a095f537ca205b246ckthse_--
+On Wed, Aug 11, 2021 at 2:31 PM Ron Economos <w6rz@comcast.net> wrote:
 
---===============6445962132266306724==
+> Here's what's working for me.
+>
+> 1) git clone https://github.com/EttusResearch/uhd.git
+>
+> 2) git checkout v4.0.0.0 -b tmp
+>
+> 3) edit the file host/lib/usrp/cores/rx_vita_core_3000.cpp and apply the
+> one line patch in the correct place (before the comment "// issue the
+> stream command").
+>
+>         _continuous_streaming = stream_cmd.stream_mode
+>                                 ==
+> stream_cmd_t::STREAM_MODE_START_CONTINUOUS;
+>
+> 4) git diff
+>
+> If you edited the file correctly, you should see:
+>
+> diff --git a/host/lib/usrp/cores/rx_vita_core_3000.cpp
+> b/host/lib/usrp/cores/rx_vita_core_3000.cpp
+> index 4b09f75fd..368ae8e0a 100644
+> --- a/host/lib/usrp/cores/rx_vita_core_3000.cpp
+> +++ b/host/lib/usrp/cores/rx_vita_core_3000.cpp
+> @@ -117,6 +117,9 @@ struct rx_vita_core_3000_impl : rx_vita_core_3000
+>          cmd_word |= uint32_t((inst_stop) ? 1 : 0) << 28;
+>          cmd_word |= (inst_samps) ? stream_cmd.num_samps : ((inst_stop) ?
+> 0 : 1);
+>
+> +        _continuous_streaming = stream_cmd.stream_mode
+> +                                ==
+> stream_cmd_t::STREAM_MODE_START_CONTINUOUS;
+> +
+>          // issue the stream command
+>          _iface->poke32(REG_CTRL_CMD, cmd_word);
+>          const uint64_t ticks =
+>
+> 5) build as usual
+>
+> Just because the patch is in 4.1.0.0 and 4.1.0.1, doesn't mean they are
+> fixed. Something else could be broken that causes the same issue.
+>
+> Ron
+> On 8/11/21 9:39 AM, Paul Atreides wrote:
+>
+> just uninstalled and changed to origin/UHD4.1 and i have the same issue.
+> On branch UHD-4.1
+> Your branch is up to date with 'origin/UHD-4.1'.
+>
+> On Wed, Aug 11, 2021 at 12:23 PM Paul Atreides <maud.dib1984@gmail.com>
+> wrote:
+>
+>> just built uhd systemwide from source. no pybombs environment. same issue
+>> rx_benchmark terminates after the first dropped sample.
+>> maybe the patch didn't make it? or i'm on the wrong branch?
+>> i ran git checkout v4.1.0.1 then the regular dance
+>>
+>> ~/uhd$ git status
+>> HEAD detached at v4.1.0.1
+>> nothing to commit, working tree clean
+>>
+>> cd uhd/host
+>> mkdir build
+>> cd build
+>> cmake ../ (no errors or exclusions other than DPDK)
+>> make -j($nproc)
+>> sudo make install
+>> sudo ldconfig
+>>
+>>
+>>
+>> uhd/host/build/examples/./rx_samples_to_file --rate 40e6 --gain 40.0
+>> --freq 915e6 --bw 36e6 --progress --file testfile.bin --continue --duration
+>> 20
+>>
+>> Creating the usrp device with: ...
+>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+>> UHD_4.1.0.HEAD-0-gf633b497
+>> [INFO] [B200] Detected Device: B210
+>> [INFO] [B200] Operating over USB 3.
+>> [INFO] [B200] Detecting internal GPSDO....
+>> [INFO] [GPS] Found an internal GPSDO: GPSTCXO, Firmware Rev 0.929b
+>> [INFO] [B200] Initialize CODEC control...
+>> [INFO] [B200] Initialize Radio control...
+>> [INFO] [B200] Performing register loopback test...
+>> [INFO] [B200] Register loopback test passed
+>> [INFO] [B200] Performing register loopback test...
+>> [INFO] [B200] Register loopback test passed
+>> [INFO] [B200] Setting master clock rate selection to 'automatic'.
+>> [INFO] [B200] Asking for clock rate 16.000000 MHz...
+>> [INFO] [B200] Actually got clock rate 16.000000 MHz.
+>> Using Device: Single USRP:
+>>   Device: B-Series Device
+>>   Mboard 0: B210
+>>   RX Channel: 0
+>>     RX DSP: 0
+>>     RX Dboard: A
+>>     RX Subdev: FE-RX2
+>>   RX Channel: 1
+>>     RX DSP: 1
+>>     RX Dboard: A
+>>     RX Subdev: FE-RX1
+>>   TX Channel: 0
+>>     TX DSP: 0
+>>     TX Dboard: A
+>>     TX Subdev: FE-TX2
+>>   TX Channel: 1
+>>     TX DSP: 1
+>>     TX Dboard: A
+>>     TX Subdev: FE-TX1
+>>
+>> Setting RX Rate: 40.000000 Msps...
+>> [INFO] [B200] Asking for clock rate 40.000000 MHz...
+>> [INFO] [B200] Actually got clock rate 40.000000 MHz.
+>> Actual RX Rate: 40.000000 Msps...
+>>
+>> Setting RX Freq: 915.000000 MHz...
+>> Setting RX LO Offset: 0.000000 MHz...
+>> Actual RX Freq: 915.000000 MHz...
+>>
+>> Setting RX Gain: 40.000000 dB...
+>> Actual RX Gain: 40.000000 dB...
+>>
+>> Setting RX Bandwidth: 36.000000 MHz...
+>> Actual RX Bandwidth: 36.000000 MHz...
+>>
+>> Waiting for "lo_locked": ++++++++++ locked.
+>>
+>> Press Ctrl + C to stop streaming...
+>> 40.0125 Msps
+>> 39.9994 Msps
+>> 39.9995 Msps
+>> OGot an overflow indication. Please consider the following:
+>>   Your write medium must sustain a rate of 160.000000MB/s.
+>>   Dropped samples will not be written to the file.
+>>   Please modify this example for your purposes.
+>>   This message will not appear again.
+>> Timeout while streaming
+>>
+>> Done!
+>>
+>> On Wed, Aug 11, 2021 at 10:42 AM Paul Atreides <maud.dib1984@gmail.com>
+>> wrote:
+>>
+>>> right on. thanks marcus.
+>>> i'm going to try a regular source build instead of pybombs and see if
+>>> that fixes it (he said for the 200th time in his career).
+>>> i just wanted 2 dev environments for gnuradio and that worked really
+>>> well for 3.7/3.8. if you have any suggestions i'm open to that.
+>>>
+>>> i'll keep you guys posted and thanks again for helping.
+>>>
+>>>
+>>> On Wed, Aug 11, 2021 at 10:36 AM Marcus D. Leech <
+>>> patchvonbraun@gmail.com> wrote:
+>>>
+>>>> On 08/11/2021 10:20 AM, Paul Atreides wrote:
+>>>>
+>>>> right. i tried 4.1 first, then master then rolled back to 4.0. they all
+>>>> did the same thing.
+>>>> according to micheal's post above the patch is applied to 4.0 master.
+>>>> the latest UHD-4.0 rev is here
+>>>> <https://github.com/EttusResearch/uhd/commit/0d184ff412c2710c15c0237711ab57c5033692a2>
+>>>> (0d184ff)
+>>>> this is my output
+>>>> UHD_4.0.0.0-193-g0d184ff4
+>>>>
+>>>>
+>>>> The patch is definitely in 4.1.0.0 and 4.1.0.1
+>>>>
+>>>>
+>>>>
+>>>> On Wed, Aug 11, 2021 at 10:07 AM Marcus D. Leech <
+>>>> patchvonbraun@gmail.com> wrote:
+>>>>
+>>>>> On 08/11/2021 10:03 AM, Paul Atreides wrote:
+>>>>>
+>>>>> Ok, then what else could it be? it's the identical behavior to the
+>>>>> report ed bug.
+>>>>>
+>>>>> I have a b210 and b205mini and both produce this issue
+>>>>> Both have worked fine at higher sample rates in the past.
+>>>>>
+>>>>> My setup is
+>>>>> ubuntu20.04
+>>>>> UHD 4.0 (via pybombs)
+>>>>> GNURadio 3.9 (via pybombs)
+>>>>>
+>>>>> This is what Michael Dickens said:
+>>>>>
+>>>>> It was not part of the UHD 4.0.0.0 release, and has not been
+>>>>> backported to the UHD-3.15-LTS (or prior) branch. - MLD
+>>>>>
+>>>>> You're still running 4.0.0.0 as shown in the UHD startup header here:
+>>>>>
+>>>>> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+>>>>> UHD_4.0.0.0-193-g0d184ff4
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000a9a25a05c94dbfcb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>For completion here:</div><div><br></div>This is topi=
+c now a public UHD issue : <a href=3D"https://github.com/EttusResearch/uhd/=
+issues/475">https://github.com/EttusResearch/uhd/issues/475</a><div><br></d=
+iv><div>R&amp;D&#39;s Michael West replied there &quot;We are aware of the =
+issue and already have a fix in progress. It should be available within 2-4=
+ weeks.&quot;<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Wed, Aug 11, 2021 at 2:31 PM Ron Economos &lt;<a =
+href=3D"mailto:w6rz@comcast.net">w6rz@comcast.net</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <p>Here&#39;s what&#39;s working for me.<br>
+    </p>
+    <p>1) git clone <a href=3D"https://github.com/EttusResearch/uhd.git" ta=
+rget=3D"_blank">https://github.com/EttusResearch/uhd.git</a></p>
+    <p>2) git checkout v4.0.0.0 -b tmp</p>
+    <p>3) edit the file host/lib/usrp/cores/rx_vita_core_3000.cpp and
+      apply the one line patch in the correct place (before the comment
+      &quot;// issue the stream command&quot;).<br>
+    </p>
+    <p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _continuous_streaming =3D=
+ stream_cmd.stream_mode<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=3D
+      stream_cmd_t::STREAM_MODE_START_CONTINUOUS;</p>
+    <p>4) git diff</p>
+    <p>If you edited the file correctly, you should see:</p>
+    <p>diff --git a/host/lib/usrp/cores/rx_vita_core_3000.cpp
+      b/host/lib/usrp/cores/rx_vita_core_3000.cpp<br>
+      index 4b09f75fd..368ae8e0a 100644<br>
+      --- a/host/lib/usrp/cores/rx_vita_core_3000.cpp<br>
+      +++ b/host/lib/usrp/cores/rx_vita_core_3000.cpp<br>
+      @@ -117,6 +117,9 @@ struct rx_vita_core_3000_impl :
+      rx_vita_core_3000<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cmd_word |=3D uint32=
+_t((inst_stop) ? 1 : 0) &lt;&lt; 28;<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cmd_word |=3D (inst_=
+samps) ? stream_cmd.num_samps :
+      ((inst_stop) ? 0 : 1);<br>
+      =C2=A0<br>
+      +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _continuous_streaming =3D=
+ stream_cmd.stream_mode<br>
+      +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=3D
+      stream_cmd_t::STREAM_MODE_START_CONTINUOUS;<br>
+      +<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 // issue the stream =
+command<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 _iface-&gt;poke32(RE=
+G_CTRL_CMD, cmd_word);<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const uint64_t ticks=
+ =3D<br>
+    </p>
+    <p>5) build as usual</p>
+    <p>Just because the patch is in 4.1.0.0 and 4.1.0.1, doesn&#39;t mean
+      they are fixed. Something else could be broken that causes the
+      same issue.</p>
+    <p>Ron<br>
+    </p>
+    <div>On 8/11/21 9:39 AM, Paul Atreides
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div>just uninstalled and changed to origin/UHD4.1 and i have
+          the same issue. <br>
+        </div>
+        <div>On branch UHD-4.1<br>
+          Your branch is up to date with &#39;origin/UHD-4.1&#39;.<br>
+        </div>
+      </div>
+      <br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 11, 2021 at 12:23
+          PM Paul Atreides &lt;<a href=3D"mailto:maud.dib1984@gmail.com" ta=
+rget=3D"_blank">maud.dib1984@gmail.com</a>&gt; wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div dir=3D"ltr">
+            <div>just built uhd systemwide from source. no pybombs
+              environment. same issue rx_benchmark terminates after the
+              first dropped sample.</div>
+            <div>maybe the patch didn&#39;t make it? or i&#39;m on the wron=
+g
+              branch?</div>
+            <div>i ran git checkout v4.1.0.1 then the regular dance</div>
+            <div><br>
+            </div>
+            <div>
+              <div>~/uhd$ git status<br>
+                HEAD detached at v4.1.0.1</div>
+              <div>nothing to commit, working tree clean<br>
+              </div>
+            </div>
+            <div><br>
+            </div>
+            <div>cd uhd/host</div>
+            <div>mkdir build</div>
+            <div>cd build</div>
+            <div>cmake ../ (no errors or exclusions other than DPDK)</div>
+            <div>make -j($nproc)</div>
+            <div>sudo make install</div>
+            <div>sudo ldconfig<br>
+            </div>
+            <div><br>
+            </div>
+            <br>
+            <div><br>
+            </div>
+            <div>uhd/host/build/examples/./rx_samples_to_file --rate
+              40e6 --gain 40.0 --freq 915e6 --bw 36e6 --progress --file
+              testfile.bin --continue --duration 20<br>
+              <br>
+              Creating the usrp device with: ...<br>
+              [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+              UHD_4.1.0.HEAD-0-gf633b497<br>
+              [INFO] [B200] Detected Device: B210<br>
+              [INFO] [B200] Operating over USB 3.<br>
+              [INFO] [B200] Detecting internal GPSDO.... <br>
+              [INFO] [GPS] Found an internal GPSDO: GPSTCXO, Firmware
+              Rev 0.929b<br>
+              [INFO] [B200] Initialize CODEC control...<br>
+              [INFO] [B200] Initialize Radio control...<br>
+              [INFO] [B200] Performing register loopback test... <br>
+              [INFO] [B200] Register loopback test passed<br>
+              [INFO] [B200] Performing register loopback test... <br>
+              [INFO] [B200] Register loopback test passed<br>
+              [INFO] [B200] Setting master clock rate selection to
+              &#39;automatic&#39;.<br>
+              [INFO] [B200] Asking for clock rate 16.000000 MHz... <br>
+              [INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
+              Using Device: Single USRP:<br>
+              =C2=A0 Device: B-Series Device<br>
+              =C2=A0 Mboard 0: B210<br>
+              =C2=A0 RX Channel: 0<br>
+              =C2=A0 =C2=A0 RX DSP: 0<br>
+              =C2=A0 =C2=A0 RX Dboard: A<br>
+              =C2=A0 =C2=A0 RX Subdev: FE-RX2<br>
+              =C2=A0 RX Channel: 1<br>
+              =C2=A0 =C2=A0 RX DSP: 1<br>
+              =C2=A0 =C2=A0 RX Dboard: A<br>
+              =C2=A0 =C2=A0 RX Subdev: FE-RX1<br>
+              =C2=A0 TX Channel: 0<br>
+              =C2=A0 =C2=A0 TX DSP: 0<br>
+              =C2=A0 =C2=A0 TX Dboard: A<br>
+              =C2=A0 =C2=A0 TX Subdev: FE-TX2<br>
+              =C2=A0 TX Channel: 1<br>
+              =C2=A0 =C2=A0 TX DSP: 1<br>
+              =C2=A0 =C2=A0 TX Dboard: A<br>
+              =C2=A0 =C2=A0 TX Subdev: FE-TX1<br>
+              <br>
+              Setting RX Rate: 40.000000 Msps...<br>
+              [INFO] [B200] Asking for clock rate 40.000000 MHz... <br>
+              [INFO] [B200] Actually got clock rate 40.000000 MHz.<br>
+              Actual RX Rate: 40.000000 Msps...<br>
+              <br>
+              Setting RX Freq: 915.000000 MHz...<br>
+              Setting RX LO Offset: 0.000000 MHz...<br>
+              Actual RX Freq: 915.000000 MHz...<br>
+              <br>
+              Setting RX Gain: 40.000000 dB...<br>
+              Actual RX Gain: 40.000000 dB...<br>
+              <br>
+              Setting RX Bandwidth: 36.000000 MHz...<br>
+              Actual RX Bandwidth: 36.000000 MHz...<br>
+              <br>
+              Waiting for &quot;lo_locked&quot;: ++++++++++ locked.<br>
+              <br>
+              Press Ctrl + C to stop streaming...<br>
+              40.0125 Msps<br>
+              39.9994 Msps<br>
+              39.9995 Msps<br>
+              OGot an overflow indication. Please consider the
+              following:<br>
+              =C2=A0 Your write medium must sustain a rate of 160.000000MB/=
+s.<br>
+              =C2=A0 Dropped samples will not be written to the file.<br>
+              =C2=A0 Please modify this example for your purposes.<br>
+              =C2=A0 This message will not appear again.<br>
+              Timeout while streaming<br>
+              <br>
+              Done!<br>
+            </div>
+          </div>
+          <br>
+          <div class=3D"gmail_quote">
+            <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 11, 2021 at
+              10:42 AM Paul Atreides &lt;<a href=3D"mailto:maud.dib1984@gma=
+il.com" target=3D"_blank">maud.dib1984@gmail.com</a>&gt;
+              wrote:<br>
+            </div>
+            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+              <div dir=3D"ltr">
+                <div>right on. thanks marcus. <br>
+                </div>
+                <div>i&#39;m going to try a regular source build instead of
+                  pybombs and see if that fixes it (he said for the
+                  200th time in his career). <br>
+                </div>
+                <div>i just wanted 2 dev environments for gnuradio and
+                  that worked really well for 3.7/3.8. if you have any
+                  suggestions i&#39;m open to that. <br>
+                </div>
+                <div><br>
+                </div>
+                <div>i&#39;ll keep you guys posted and thanks again for
+                  helping. <br>
+                </div>
+                <div><br>
+                </div>
+              </div>
+              <br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 11, 2021
+                  at 10:36 AM Marcus D. Leech &lt;<a href=3D"mailto:patchvo=
+nbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                  <div bgcolor=3D"#FFFFFF">
+                    <div>On 08/11/2021 10:20 AM, Paul Atreides wrote:<br>
+                    </div>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">right. i tried 4.1 first, then
+                        master then rolled back to 4.0. they all did the
+                        same thing.<br>
+                        <div>according to micheal&#39;s post above the patc=
+h
+                          is applied to 4.0 master. the latest UHD-4.0
+                          rev is <a href=3D"https://github.com/EttusResearc=
+h/uhd/commit/0d184ff412c2710c15c0237711ab57c5033692a2" target=3D"_blank">he=
+re</a>
+                          (0d184ff)</div>
+                        <div>this is my output<br>
+                        </div>
+                        <div>UHD_4.0.0.0-193-g0d184ff4</div>
+                        <div><br>
+                        </div>
+                        <div><br>
+                        </div>
+                      </div>
+                    </blockquote>
+                    The patch is definitely in 4.1.0.0 and 4.1.0.1<br>
+                    <br>
+                    <br>
+                    <blockquote type=3D"cite"><br>
+                      <div class=3D"gmail_quote">
+                        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug
+                          11, 2021 at 10:07 AM Marcus D. Leech &lt;<a href=
+=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.c=
+om</a>&gt;
+                          wrote:<br>
+                        </div>
+                        <blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                          <div bgcolor=3D"#FFFFFF">
+                            <div>On 08/11/2021 10:03 AM, Paul Atreides
+                              wrote:<br>
+                            </div>
+                            <blockquote type=3D"cite">
+                              <div dir=3D"ltr">
+                                <div dir=3D"auto">
+                                  <div dir=3D"ltr">
+                                    <div dir=3D"ltr">Ok, then what else
+                                      could it be? it&#39;s the identical
+                                      behavior to the report ed bug.<br>
+                                      <br>
+                                      <div><span style=3D"color:rgb(0,0,0)"=
+>I
+                                          have a b210 and b205mini and
+                                          both produce this issue=C2=A0</sp=
+an>
+                                        <div style=3D"color:rgb(0,0,0)">Bot=
+h
+                                          have worked fine at higher
+                                          sample rates in the past.=C2=A0</=
+div>
+                                      </div>
+                                      <div style=3D"color:rgb(0,0,0)"><br>
+                                      </div>
+                                      <div>My setup is=C2=A0</div>
+                                      <div>ubuntu20.04</div>
+                                      <div>UHD 4.0 (via pybombs)</div>
+                                      <div>GNURadio 3.9 (via pybombs)</div>
+                                      <br>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </blockquote>
+                            This is what Michael Dickens said:<br>
+                            <br>
+                            It was not part of the UHD 4.0.0.0 release,
+                            and has not been backported to the
+                            UHD-3.15-LTS (or prior) branch. - MLD<br>
+                            <div><br>
+                              You&#39;re still running 4.0.0.0 as shown in
+                              the UHD startup header here:<br>
+                              <br>
+                              [INFO] [UHD] linux; GNU C++ version 9.3.0;
+                              Boost_107100; UHD_4.0.0.0-193-g0d184ff4<br>
+                              <br>
+                              <br>
+                              <br>
+                            </div>
+                            <br>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </blockquote>
+                    <br>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+          </div>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+    </blockquote>
+  </div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000a9a25a05c94dbfcb--
+
+--===============1245444355197668643==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -232,4 +659,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6445962132266306724==--
+--===============1245444355197668643==--
