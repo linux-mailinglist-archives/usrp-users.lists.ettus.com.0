@@ -2,193 +2,271 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A60DD3EACDF
-	for <lists+usrp-users@lfdr.de>; Fri, 13 Aug 2021 00:03:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66E523EAD68
+	for <lists+usrp-users@lfdr.de>; Fri, 13 Aug 2021 00:54:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 93F64383DDA
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Aug 2021 18:03:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 355E53844A2
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Aug 2021 18:54:58 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=augustusaerospace.onmicrosoft.com header.i=@augustusaerospace.onmicrosoft.com header.b="ILVhtaqB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=student.nmt.edu header.i=@student.nmt.edu header.b="cq4EBvqp";
 	dkim-atps=neutral
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2113.outbound.protection.outlook.com [40.107.236.113])
-	by mm2.emwd.com (Postfix) with ESMTPS id EDB44383C5C
-	for <usrp-users@lists.ettus.com>; Thu, 12 Aug 2021 18:02:48 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MUEhjLb64SmuBuh0fRRKAYqvVVQ6764c/LR3ZOhR1aToGKSMOahrcSQ4LzsUXIbyJp+7z1BH0SfbiivXaxuTG198kJVOrbqeKjUieSGUrDNNlRMxn4vneQe9umX9XlJTvCkGCuLwJ+z4XOdN+XEx4qP/meGsPrKw3xtmRHRu1OczMAnUqNI8jCsMENdSammIoXkS39ZcSi6QF1bZV9+VRexNM3vjNZsUU0i/pbPT1KJ06zHm5gKpcqaktqrUnjbws8czRG7EAc9sogb8YjLa4sniMhBKNd51Wyv7YQsunZK7v+iTQyvsIMYKW7dJKfRKs5dXc4NEzh3HNniS5/wVUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+tP1mp8eGp+ktfIjQOStlDxbF0MbIBuD0+ODhpGFb04=;
- b=cZAzFCUhokCCsJp1joA5O9L2aQCLQ4VD/N3FPmHnm6JRwWoE+McvVcfdTxQic3kF7NGE2BG4WmIPabM7NtJtxKDplNmdVXWMG47FZ9/1Qu/9x5w8HbtIBw7dyaqzUjNsCbR3ksf4Py5o5F6SBtBClcYfD1CP7IbzkP0hdk2+hdD5eIzG4flruWh9Xr5aaSjkO2iEmQ8U3zSvLz18MQZlqxXZHxdQiEwVA2NibLw4S5XS6cSHsNszRybZo9XRG7byOsQpOVMbiCp1RWtKrRiyyfwYsHGwko1k6ChNgNt50x3KICQ4J+LQZEFPvzOKROxliMkHKksA7P+lfZ3cquCzBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=augustusaero.com; dmarc=pass action=none
- header.from=augustusaero.com; dkim=pass header.d=augustusaero.com; arc=none
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5F1A8383676
+	for <usrp-users@lists.ettus.com>; Thu, 12 Aug 2021 18:54:13 -0400 (EDT)
+Received: by mail-ot1-f50.google.com with SMTP id v10-20020a9d604a0000b02904fa9613b53dso9833199otj.6
+        for <usrp-users@lists.ettus.com>; Thu, 12 Aug 2021 15:54:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=augustusaerospace.onmicrosoft.com;
- s=selector1-augustusaerospace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+tP1mp8eGp+ktfIjQOStlDxbF0MbIBuD0+ODhpGFb04=;
- b=ILVhtaqB3u39RWr2czhAz6iumjg9T5KyZbHEXBvNC1r849pB72UcXANSX+SQtvHwqpi64H9nzT5KMTnAi0o6QyAnYKRGIIF4vTzjLEeAIuzvWAWJDud0CX2EwTNcbv2zIjIkJTt0OPi1uj4kX7xNzPac63VeCMtoJN1ridDG0xs=
-Received: from BN7PR05MB4500.namprd05.prod.outlook.com (2603:10b6:406:fb::28)
- by BN8PR05MB6033.namprd05.prod.outlook.com (2603:10b6:408:67::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.8; Thu, 12 Aug
- 2021 22:02:45 +0000
-Received: from BN7PR05MB4500.namprd05.prod.outlook.com
- ([fe80::3cc7:bea2:75e7:4b21]) by BN7PR05MB4500.namprd05.prod.outlook.com
- ([fe80::3cc7:bea2:75e7:4b21%6]) with mapi id 15.20.4436.008; Thu, 12 Aug 2021
- 22:02:45 +0000
-From: Jonathan Tobin <Tobin@augustusaero.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: N310 Phase Coherence
-Thread-Index: AQHXj8WT7HtY3f0YYkOpKMZNZKqcIw==
-Date: Thu, 12 Aug 2021 22:02:45 +0000
-Message-ID: 
- <BN7PR05MB450080F8E19AC008CDFEA2FED5F99@BN7PR05MB4500.namprd05.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=augustusaero.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ab9bf575-537c-4d54-46b1-08d95ddcea23
-x-ms-traffictypediagnostic: BN8PR05MB6033:
-x-microsoft-antispam-prvs: 
- <BN8PR05MB60330E3CD724100DAC605E0ED5F99@BN8PR05MB6033.namprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- mhRaZUy592k/Ax7+MRFe2iepbJI16N3Pbij82xc9DgWDZz2GhQvoN82r9ubYtRvXmLyTNTEqkizUbmA3HCtlNIdTgtRqP/zxqaMS6bOk3E4huu7KAdWOuLCBRVaWj1KjI0p4No4lWdArooi6+GoDF0dbJuTM3rl0f5WLgw6QAyo9zXsCFcBNO0TGBrYJdLFu09ziT+/68S3H8qy6KwHLS/FjEKJYm6E6kYjxoABKLPjAvO1iIarzR6n5fQBuLOjvoP24AqyrMxDp8tfZ9r92tGYTh62IjbdIbZrw6nUfyuBHeFSH3g59U3Mrp6jl8daoe3/VpUMKmZ7JM9nsQqMjj64iL92nTglozfz4Znd/wAEyj78hJTsJ61See2PJg6Hy3ZkD7HiU/qNXcqgo61cwosiwQyQ46aUYE4S82Urz/80FMOmVpxpD84YwfCL8Db1emjseerxz+Xvc7M6r0TcPD39XxUx32pzd4mLGG8YU18wtHI1XqJR+npwB+rPmku/yo8y0mQuR5rgncNfBGQt7hTBft9H5jLoGyqofP7gOD4tz9XwDAy88YqzdmxA/1Lu2H9thACv1MjSbdnNtmwB8XF5fRWwtk+ujLT3I5tx6kKDdm6iPS1gmzIUckGTB6s3cAkpTGK8FM1v8XNvW7LTKUk74PZUQ5LGUuecW1jJ9H3QiH4kWZ5M3tvHFYDJ7Il4cQAW7SXDKL+3FQ6eW7/QwoA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR05MB4500.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(39830400003)(42606007)(346002)(136003)(376002)(396003)(366004)(7696005)(7116003)(2906002)(508600001)(6916009)(52536014)(316002)(186003)(5660300002)(122000001)(55016002)(8936002)(33656002)(71200400001)(8676002)(6506007)(64756008)(66556008)(66476007)(9686003)(86362001)(558084003)(91956017)(76116006)(66946007)(26005)(66446008)(38100700002)(38070700005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?hMh5msUPW8p4Suj/9S37BG7+8ifIGc7d5MWN/W7tMfN6Z/dEZTsRkhdNe2Mo?=
- =?us-ascii?Q?9Ni0UnDWBofC9nb7YXH/42OcSQBD124STKE6BAcVHxMZAvzPYAYB8nzJyZKq?=
- =?us-ascii?Q?VqQQznV4cqxYQpjw6QRAy4UgURSl1cvsY1gK23E5e6zpotXQAvVHVhh0fmqa?=
- =?us-ascii?Q?dZ4yYq88UAgPBAbp2MaVYFV6l+afbJfs4cyToXtgxbgyGosxk8q23x0gaD3p?=
- =?us-ascii?Q?dvYCZgO5366+lKD8lt+lhwBcmNGnv3zz8dadijR0TxoP2w4kqQx+DCMWFlSn?=
- =?us-ascii?Q?2H5vHWNBCEBX/2vODPh/D9d+1fT12XvdO5nYzGIKftQUiHVS6zQS8uj5yvqu?=
- =?us-ascii?Q?/FNuqoqqLW+hC4lvnrEi9g+oBYeyC+nEXRaa+JtzH7F68oZdyN15nd+OKAdD?=
- =?us-ascii?Q?lXIOwZ+R3K0PcU9Jr1oo3oK7MNGsUmE/Ptv2D0DA11x3o0FFtZ6omPo/hFkg?=
- =?us-ascii?Q?ggeWSOA8jOLeW3bdMblhT96vfNCuFhJNDwOBn3JuqBlLbkrKGn23zCSnNBaL?=
- =?us-ascii?Q?Njbl6URkIACEDzB6SB4codCSr/elwa/NKO8Tlyd9lIi+d7u2vUITWwbPfLAH?=
- =?us-ascii?Q?Jvgx0YYgxE4fbQ+DPfv2TqlYmaSdesornD24ZRegOZ4rfwIwO6QwDf60qlXb?=
- =?us-ascii?Q?rTKcR9WDvP24p5HO9EYrCpui0Orlqts4IDNrTCE/K1efKnt7a06wVQ8uZZiY?=
- =?us-ascii?Q?ll1wbYVfQltF5hYGr1mWhRRmZyg7VOHrQB5bBs63ewnhxZr3l+E3OMnZqEqD?=
- =?us-ascii?Q?1ScdnA842CxYtxesZOWh/E3GPJR9R81mjBmQiw0L6VXwTkGZ5sR82i/FuNbX?=
- =?us-ascii?Q?PnuzggVfadPw/MLxjkhetq+6eLFEK+OWGpNmdhSWRSZOS3bOpKksPxtr5Fzx?=
- =?us-ascii?Q?L8uqxl4gQ7u0jYboi4CJxsE/pjOhWRSGSFSCUGlRzkfazMrchBUbwRhZ+aqv?=
- =?us-ascii?Q?4qqkgnDNN1zqGKbPSsYWLM0sF726W8mFkT6fvjxkJmhe6aUNiM1D8jXDYc3A?=
- =?us-ascii?Q?4rHzCpOG/abYB6I+vI4Mjs4bwD9iSrG9i7YIxc7Ki3aadwg1fmwoii3C6if+?=
- =?us-ascii?Q?IJv4vQmdJy7p0U5ugHC9Vxd8F30WCorl7mNULT3UB0qF5//aUE5wop4s0tq/?=
- =?us-ascii?Q?G5g5y8vUk1zNHTsEje1xBNmeV7um1HeJFWv1jBuGfKMBM9emm0OCd7w9GOKZ?=
- =?us-ascii?Q?SXpQgGiNLHkcJsMVLVRNUwIebWUXP16tu66MITGI0jzljOJoa0gWUtPK5nth?=
- =?us-ascii?Q?ykeM8pPaGyV1WtAMMlM3h38n3uHkELQ7fcv1MISFJ1wS45944LTicinX4sfd?=
- =?us-ascii?Q?MxqLCwYUH2TQAsyDzZ5epAyFTLUg5aVXcUxXxp8/A2P31g=3D=3D?=
-x-ms-exchange-transport-forked: True
+        d=student.nmt.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QQhdzo40yNHNCf03JO0fbT6ol9iWmnASCJajUauH/kc=;
+        b=cq4EBvqp68owZ6L4VwUFv4obwNFT9EdBKaH3SatfZuHpyMjLLQDw7YhOSj1xlbzbf8
+         h7JNG9mLM+E9aEMYMylQKQ5OHOBgsGqgLu3PuXpKfDxUiTiw9Mxc5EZtJn+HWKZz/VWG
+         +5S8eE3M+3lYPQPjUmnVoLi1njcr0lofY2W+Q8GsJ1wcAgWt5iiYqYS7P3dBkzusm1Cn
+         iHdvOwkuYuXctcq4OxowMxFAC+m560hsfSw/ynK8mvSthtVzt8s2ILCTY5xlPnvv1jWG
+         xnYWarYpXzOD41sJMwlhT6/z6T+Y40Z8muvneX3ScUtox8yhzN4T/FKTHzFVyJNbyj29
+         ZNQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QQhdzo40yNHNCf03JO0fbT6ol9iWmnASCJajUauH/kc=;
+        b=Hno1ZzzqhXW9TReOjup1+/CnQ8QzqTYnR4NqdSlFnLsjHq67bGXU0i679BNGrJPK2J
+         qyPVLvKMlW+hDUYiPt2qoQ/GpZcZ07YvGaev7o1je53/n6+3bQoCfLrpGfhHzyPp3aUv
+         HUf/rclbM/PDfFFvnMJ60Ph97uz9HbGkSreCjDD4/HuSSQx91JZoAJp0NsUs0PtcPI/I
+         r0wk2lFXR3rjGIEDi6RC49r8EzAMowWy70bbFrg2DVLOVa3/yMC5EyY0+ijNIEJDYOUr
+         /9DGHQss/3Jmc1DhRky33noQmwkWB3hfDod1XhmF4SkCNda6JCcxX+Mz4DwzaAL4tZrU
+         XY+w==
+X-Gm-Message-State: AOAM532GRyynUmCeEOUWnybP8Fxo1Kn/1twxTuEsrQO+xYeor9mvYGIl
+	0sD/VQbZ49eMZE8pOcF4Mj+UDMbBnRZzPw1wQCJmFg==
+X-Google-Smtp-Source: ABdhPJyOCgr14wTNQDZ8UKyH/L0UNqif3w0FmUfjYRnqEp7plb5taDGhkJDCiNPlJqCgmXwTrlVxpw035wAQDy7zhlg=
+X-Received: by 2002:a05:6830:3145:: with SMTP id c5mr5225322ots.245.1628808852582;
+ Thu, 12 Aug 2021 15:54:12 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: augustusaero.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN7PR05MB4500.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab9bf575-537c-4d54-46b1-08d95ddcea23
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2021 22:02:45.0175
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 04d66077-4301-4950-bf2c-c3d5b922ae52
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JJw0khrjtHPAvMOMzgfqODgG/GRYlR77vTe3200oyW6XFfJoVFX7KqZommAl7n9MZvPrVuBCkWLfNQ3lH7FSJw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR05MB6033
-Message-ID-Hash: 24767575ZV6TZJLWBHWQYZ7YAGSOPU2M
-X-Message-ID-Hash: 24767575ZV6TZJLWBHWQYZ7YAGSOPU2M
-X-MailFrom: Tobin@augustusaero.com
+References: <CABnzEf4cBntcTqQB=GNoNohvJAXPLrkcpVpu+O8WLRFX=MQp1A@mail.gmail.com>
+ <61146653.5060607@gmail.com>
+In-Reply-To: <61146653.5060607@gmail.com>
+From: Bobbi Taylor <bobbi.taylor@student.nmt.edu>
+Date: Thu, 12 Aug 2021 16:53:37 -0600
+Message-ID: <CABnzEf7HPrrameL7u+FgH4szNJ2+HO_q6H3+Rdm5taNf=n5sMQ@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: FGUT2GDJH3ZSMUEXSKTE4MDH2SVIJK6F
+X-Message-ID-Hash: FGUT2GDJH3ZSMUEXSKTE4MDH2SVIJK6F
+X-MailFrom: bobbi.taylor@student.nmt.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] N310 Phase Coherence
+Subject: [USRP-users] Re: UHD no devices found
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2ATZOA2JVWRSH7BQPHL2OE3AP3VPJ2ZJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FGUT2GDJH3ZSMUEXSKTE4MDH2SVIJK6F/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7603613423727653944=="
+Content-Type: multipart/mixed; boundary="===============6837924895256515612=="
 
---===============7603613423727653944==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN7PR05MB450080F8E19AC008CDFEA2FED5F99BN7PR05MB4500namp_"
+--===============6837924895256515612==
+Content-Type: multipart/alternative; boundary="00000000000010cb3d05c9649d86"
 
---_000_BN7PR05MB450080F8E19AC008CDFEA2FED5F99BN7PR05MB4500namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--00000000000010cb3d05c9649d86
+Content-Type: text/plain; charset="UTF-8"
 
+For the E312, I updated the SD card with the newest default image from
+ettus.
 
-Hi all,
+For the N210s, the one in safe mode responds properly to pings at
+192.168.10,2. For the other N210 that is not in safe mode, I can still set
+the IP address and it responds properly to pings as well.
 
-For those that have used the N310 for phase coherent applications, what was=
- your approximate phase difference between channels?
+I am only ever using one radio with my computer at a time, so one ethernet
+port per USRP.
 
-Thanks,
-Jonathan
+I tried to load a new FPGA image using the directions at the bottom of the
+page linked below, but there were cable drivers missing so I wasn't able to
+get Xilinx LabTools to recognize the JTAG programmer I was using. Since the
+"CPLD loaded" and "firmware loaded" light indicators were on on the N210, I
+was hoping there was nothing wrong with the images on the FPGA.
+https://files.ettus.com/manual/page_usrp2.html
 
---_000_BN7PR05MB450080F8E19AC008CDFEA2FED5F99BN7PR05MB4500namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+I'll try to load a new FPGA image from the link you've pasted.
 
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+Thanks much
+
+On Wed, Aug 11, 2021 at 6:08 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 08/11/2021 07:35 PM, Bobbi Taylor wrote:
+> > Hello,
+> >
+> > I have two N210s and an E312, and I'm not able to detect any of them
+> > with uhd_find_devices.
+> >
+> > I have set a static IP address on my computer as well as on the radio.
+> > I have a gigabit ethernet cable, as well as a gigabit port on my
+> > laptop. For one of the N210s, I've hit the safe mode button (S2) to
+> > boot into a safe image. This appeared to work (lights flashed after I
+> > power cycled), but UHD is still not able to detect the device. On the
+> > N210, the D and F lights on the front panel light up indicating that
+> > the firmware is loaded and the CPLD is loaded, indicating that there
+> > isn't a problem with the FPGA and that the device isn't bricked.
+> >
+> > I am able to ping the device, but uhd_find_devices or uhd_usrp_probe
+> > doesn't detect anything, even if input arguments are given such as
+> > serial, type, or IP address.
+> >
+> > For the E312, I was able to run the test example (rx_ascii_art_dft)
+> > without any issues. Still wasn't detected by UHD.
+> >
+> > The version of UHD I have is 4.0.0, but I have also attempted this
+> > with multiple previous versions. I used both N210s about 6 months ago
+> > and didn't have any issues at all. The E312 hasn't been used before.
+> >
+> > Thanks in advance,
+> > Bobbi
+> >
+> What version of the E312 system image are you running?  You must run the
+> network-mode software on the E312 for another UHD host to
+>    "see" it as a UHD device, and in recent versions of the system image,
+> network-mode is deprecated, because performance of network-mode
+>    is necessarily exceedingly poor, and the device is intended really to
+> be an embedded-only device.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style>
-</head>
-<body lang=3D"EN-US" style=3D"word-wrap:break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hi all,</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">For those that have used the N310 for phase coherent=
- applications, what was your approximate phase difference between channels?
-</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,</p>
-<p class=3D"MsoNormal">Jonathan</p>
-</div>
-</body>
-</html>
+> Does the N210, when in safe mode, respond properly to pings at:
+> 192.168.10.2   ???
+>
+> Is it the only device on its network stub?  Really you need one ethernet
+> (1G) port per USRP device that you intend to stream samples from.
+>
+> Once that has been established, then, while it is in safe mode, load new
+> FPGA images:
+>
+> https://files.ettus.com/manual/page_images.html
+>
+>
+> Then power-cycle the device.  Note that it will come up with whatever
+> EEPROM IP address it previously had prior to safe-mode.  So you may need
+>    to program the IP address into the EEPROM *while it is in safe mode*.
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---_000_BN7PR05MB450080F8E19AC008CDFEA2FED5F99BN7PR05MB4500namp_--
+--00000000000010cb3d05c9649d86
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---===============7603613423727653944==
+<div dir=3D"ltr">For the E312, I updated the SD card with the newest defaul=
+t image from ettus.=C2=A0<div><br></div><div>For the N210s, the one in safe=
+ mode responds properly to pings at 192.168.10,2. For the other N210 that i=
+s not in safe mode, I can still set the IP address and it responds properly=
+=C2=A0to pings as well.</div><div><br></div><div>I am only ever using one r=
+adio with my computer at a time, so one ethernet port per USRP.</div><div><=
+br></div><div>I tried to load a new FPGA image using the directions at the =
+bottom of the page linked below, but there were cable drivers missing so I =
+wasn&#39;t able to get Xilinx=C2=A0LabTools to recognize the JTAG programme=
+r I was using. Since the &quot;CPLD loaded&quot; and &quot;firmware loaded&=
+quot; light indicators were on on=C2=A0the N210, I was hoping there was not=
+hing wrong with the images on the FPGA.</div><div><a href=3D"https://files.=
+ettus.com/manual/page_usrp2.html">https://files.ettus.com/manual/page_usrp2=
+.html</a>=C2=A0<br></div><div><br></div><div>I&#39;ll try to load a new FPG=
+A image from the link you&#39;ve pasted.</div><div><br></div><div>Thanks mu=
+ch</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Wed, Aug 11, 2021 at 6:08 PM Marcus D. Leech &lt;<a href=3D"mail=
+to:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">On 08/11/2021 07:35 PM, =
+Bobbi Taylor wrote:<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt; I have two N210s and an E312, and I&#39;m not able to detect any of th=
+em <br>
+&gt; with uhd_find_devices.<br>
+&gt;<br>
+&gt; I have set a static IP address on my computer as well as on the radio.=
+ <br>
+&gt; I have a gigabit ethernet cable, as well as a gigabit port on my <br>
+&gt; laptop. For one of the N210s, I&#39;ve hit the safe mode button (S2) t=
+o <br>
+&gt; boot into a safe image. This appeared to work (lights flashed after I =
+<br>
+&gt; power cycled), but UHD is still not able to detect the device. On the =
+<br>
+&gt; N210, the D and F lights on the front panel light up indicating that <=
+br>
+&gt; the firmware is loaded and the CPLD is loaded, indicating that there <=
+br>
+&gt; isn&#39;t a problem with the FPGA and that the device isn&#39;t bricke=
+d.<br>
+&gt;<br>
+&gt; I am able to ping the device, but uhd_find_devices or uhd_usrp_probe <=
+br>
+&gt; doesn&#39;t detect anything, even if input arguments are given such as=
+ <br>
+&gt; serial, type, or IP address.<br>
+&gt;<br>
+&gt; For the E312, I was able to run the test example (rx_ascii_art_dft) <b=
+r>
+&gt; without any issues. Still wasn&#39;t detected by UHD.<br>
+&gt;<br>
+&gt; The version of UHD I have is 4.0.0, but I have also attempted this <br=
+>
+&gt; with multiple previous versions. I used both N210s about 6 months ago =
+<br>
+&gt; and didn&#39;t have any issues at all. The E312 hasn&#39;t been used b=
+efore.<br>
+&gt;<br>
+&gt; Thanks in advance,<br>
+&gt; Bobbi<br>
+&gt;<br>
+What version of the E312 system image are you running?=C2=A0 You must run t=
+he <br>
+network-mode software on the E312 for another UHD host to<br>
+=C2=A0 =C2=A0&quot;see&quot; it as a UHD device, and in recent versions of =
+the system image, <br>
+network-mode is deprecated, because performance of network-mode<br>
+=C2=A0 =C2=A0is necessarily exceedingly poor, and the device is intended re=
+ally to <br>
+be an embedded-only device.<br>
+<br>
+Does the N210, when in safe mode, respond properly to pings at: <br>
+192.168.10.2=C2=A0 =C2=A0???<br>
+<br>
+Is it the only device on its network stub?=C2=A0 Really you need one ethern=
+et <br>
+(1G) port per USRP device that you intend to stream samples from.<br>
+<br>
+Once that has been established, then, while it is in safe mode, load new <b=
+r>
+FPGA images:<br>
+<br>
+<a href=3D"https://files.ettus.com/manual/page_images.html" rel=3D"noreferr=
+er" target=3D"_blank">https://files.ettus.com/manual/page_images.html</a><b=
+r>
+<br>
+<br>
+Then power-cycle the device.=C2=A0 Note that it will come up with whatever =
+<br>
+EEPROM IP address it previously had prior to safe-mode.=C2=A0 So you may ne=
+ed<br>
+=C2=A0 =C2=A0to program the IP address into the EEPROM *while it is in safe=
+ mode*.<br>
+<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000010cb3d05c9649d86--
+
+--===============6837924895256515612==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -198,4 +276,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7603613423727653944==--
+--===============6837924895256515612==--
