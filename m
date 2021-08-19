@@ -2,153 +2,171 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C0E13F1082
-	for <lists+usrp-users@lfdr.de>; Thu, 19 Aug 2021 04:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8747C3F10F5
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Aug 2021 05:03:25 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 276EB383C20
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Aug 2021 22:44:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CB58F384194
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Aug 2021 23:03:24 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HmJExg87";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="HfdpBBks";
 	dkim-atps=neutral
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9041F383BD6
-	for <usrp-users@lists.ettus.com>; Wed, 18 Aug 2021 22:43:17 -0400 (EDT)
-Received: by mail-qk1-f174.google.com with SMTP id t68so5551401qkf.8
-        for <usrp-users@lists.ettus.com>; Wed, 18 Aug 2021 19:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=RRvdiAFqETAJ4kvD5yuz1EhhH+ojTr3+aqjJ6UY/Gbk=;
-        b=HmJExg87PHq0HCBL7pe/eQ11w5Dd6Sg2l5Jzg3LsKvAIGoAI/6qVUaaU9IUkZv9VmZ
-         QGRODrOtwlq71UoNJ1DHzdm+WGUczh2gCDNK+ItuIYX7SHZHeIHA0UFYX7Z3oKXJvbFU
-         d7glG0dFdciudR5z/rmNfjhAQrZr+4XXEd5T7tnvz9i3N4HfUj5qYJrjxN6GKd8aeOhB
-         YdwpJVe/Ga55wMZrH6ASyxyHAblyp7ttqTkUcyRQD0WWuF/no/TqEmoOAykzQVYa20xc
-         n/hz6I1ZtL2sk+c5z3FkMLG8xSx/H5iFvJKI1sHRIeoTB9WQGgggjZmjkfFjHFy6MI44
-         QiBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=RRvdiAFqETAJ4kvD5yuz1EhhH+ojTr3+aqjJ6UY/Gbk=;
-        b=W80zma8GN4MkEzsunlbQIIBmRvzirsl/72R8upby4wMKZzmEDbtnj6prLEcszBSpw9
-         QD3zAdJPQ/QvVnsW1POJC7Ayip+jVr0z923PxZaTuIz0xYWPiDA3YE3sYA/WEWx9pMzz
-         GQ8O7oHeLkbz/s2d8O1ErmID8/MLSomyP9zizJ4OgHXzeN4uX5E4SPgdXAUMQrhU86bG
-         cht9Y3dqEM9f26sxvjbJcnIh9nuQfzk1zEEQemdgVReF381JechRdnU11u3gzdRLAIbt
-         N1jUL2+uuvbC/lWnT/Mpxp9uuvnFx29+Sfq5Zr9xm6+xM3m5QsTe84TJsRqdMx1UMRBu
-         BuKA==
-X-Gm-Message-State: AOAM5339espSqj6ldb33/pp8RAflofeyyVnvq9Pq7C6npUMdQaYE2TNc
-	IKJXn+CLwxGmrENbobyiOa/+qI71eeW6GA==
-X-Google-Smtp-Source: ABdhPJxzsy0awYCvVPWxCqbvdjrMX0B1QY1qMKTv2zJ4JCjCT4xW5v3pUdMDCWGw6PL6WHleNbxpyQ==
-X-Received: by 2002:a05:620a:254c:: with SMTP id s12mr1533279qko.112.1629340996778;
-        Wed, 18 Aug 2021 19:43:16 -0700 (PDT)
-Received: from [192.168.2.19] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id h70sm973702qke.54.2021.08.18.19.43.15
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Aug 2021 19:43:16 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <CWLP265MB339632A5A9B43B1C73C5E426A5C09@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <c9193ec9-349d-9ad5-8e1e-eb91dafe70b5@gmail.com>
-Date: Wed, 18 Aug 2021 22:43:15 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <CWLP265MB339632A5A9B43B1C73C5E426A5C09@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com (mail-cwlgbr01olkn0170.outbound.protection.outlook.com [104.47.20.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id AF2E53839A4
+	for <usrp-users@lists.ettus.com>; Wed, 18 Aug 2021 23:02:40 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k/iL/x1g9nmfprfSXlTAHvCCWh83kp8MbMQxYUP4Y36hKL7EWv6he5BeO8e4k8petaosJewWKoPBEDvYwZ8kTkuXY36Gr+RZw560l6hwg9UD+AU+LezK6hjfjcxolfPefSSz6pY4SQrmhBXEzy6RkvPw2IRPJTAFmWcDE0mi+zcGSR2sitaPmMsS5O99RQQ1IXxDTtE6y1w9HRV/3Yt/DV6TOScAPUYTQkOsVyPmD0BAG50r+5hL+oDyXmjyP81iRoCYzYiM6kp38dBcFfrIXvIR8GioIgGElg5ETZ9aA8Xvr+Sb9xpw8aAsQ/f/FzegFf4oPS49hpkQKkuAjo+u8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a8Jfx5LmZGi75Kd+JNqVvy1Z6WRJkp5EfgbUU3AwEtM=;
+ b=Sy+203Mql/4i8qasvKcymzncOSItKeDyCWLdXjk1V/QFvoMiIUDPMqRVOVnv3qsK/ccKYoNqI2U8CZUBG98PiEdc02Phd66TiOS6mqwvuZ76jf0wqwPgO8EwwztNzBO3c+9EtR02LqJGbVvbogpftpUML20U+b4r58k1WJJ8UJIrroWQ+KVdw5d7K9t5jbJxLtpbucs3xxDom9ADlC6wLfAATJswNcvjxtOxJsSLGW/8CHC1Ai1Leb5b9wHzSQsYfOMmK/R0C6AEQt50CnUYvxQtyq03bvOyvx5hPuY2VEf1C/aeQJZKUPqk3fQ/OTBq4hgcLSMZOjZchWSMHyRkxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a8Jfx5LmZGi75Kd+JNqVvy1Z6WRJkp5EfgbUU3AwEtM=;
+ b=HfdpBBksAfzT21oker4KHeQVXiqaygJJ/zSdEpCQ2L642zppbQfIsHEgWLzARbbZ6vLctM8LkkfUGHuVeZvjlvNTYwRFyFKDtOKxIwTo0K/ButNntVCj9i4lTy/9HZodVgiFQWvre9vXGIK79X41REPFk4WCkkO6goN9qmoh6jfk+JbZMD3I+zyVL93X2GZVRTagcGgJ/CGBA0ASqNUhX37fV5R2xmKmWNOiKqVQ6tngYlpaW2h1r3S/Ood9Kg/VsJonw55/gsREsXOMjzCyj/H2AG/amoBnDXQPL6+aNciFYGRR4vdkJoDu6run5BXaU1z6yGShBl+6p1jULyX7fQ==
+Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:d7::9) by
+ CWXP265MB1877.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:3b::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4436.19; Thu, 19 Aug 2021 03:02:39 +0000
+Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::15d2:c20a:e0e1:452d]) by CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::15d2:c20a:e0e1:452d%5]) with mapi id 15.20.4436.019; Thu, 19 Aug 2021
+ 03:02:39 +0000
+From: ?? WANG Cui <iucgnaw@msn.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: How to prepare I/Q sample for tx_streamer
+Thread-Index: AdeUoUkrCROuZwQ3RS+PO+7Jd8zf0AAAqxSAAABspiA=
+Date: Thu, 19 Aug 2021 03:02:38 +0000
+Message-ID: 
+ <CWLP265MB3396958B0D0915A3FA6325D7A5C09@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+References: 
+ <CWLP265MB339632A5A9B43B1C73C5E426A5C09@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+ <c9193ec9-349d-9ad5-8e1e-eb91dafe70b5@gmail.com>
+In-Reply-To: <c9193ec9-349d-9ad5-8e1e-eb91dafe70b5@gmail.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-Message-ID-Hash: PY42ATZU24RO7QCVCYOCFVLZC2OCPJTG
-X-Message-ID-Hash: PY42ATZU24RO7QCVCYOCFVLZC2OCPJTG
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-tmn: [21pbf20ytQNVDH2ZpRI3pp89zxSbSueD]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a2c443c1-d372-4707-0c81-08d962bdcdd1
+x-ms-traffictypediagnostic: CWXP265MB1877:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ QJXizAOncagbZQDAHwuWa2kWH76FTmxK/cSt0x2j5f8eOWWz3e2TP+Irr5J0dZbWQKQcjB2JGepjNLSSsi9Iwp/0MX1vz/fLbtjdQbAaConcSEF5Qy7njv4xxbxuzo9b0TQItDuuFOgDtLJ27ASvLgGR+5k/PBjxzTLmUH+EO+M9y8eLUkeWy97BSLSXRLJGUvPq5d+JAlueFXXVlLbMXyayIrCXZrGmjcxE6DPTX+P/MPcDjDLSQmZCys00wp+1U+Qwsx1RiWLJkjQKIBA470tr6sDHkrlud5u377BEG3MxBxXuXll0JgCTRSRUUyn5naEA7qR097+zN8H+1MWfY/awrEnFiYO6HnXP0optw2RMkpwDFrH5F5WX4gZqeq0T/G3EC3i6acFO6/c1xYdIC7z0p3aXDGpk9M8Aea1Rv6mtft9Y/T2KNJw9ZAmBXTS4PdN04h/uKnRv5m9UAggV5uBfGokZyFdb4enTYfOKWV8=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ tUjgGL/gXiNYR6VrvglGQv62UrKtzmjACyFORPQoebyl82XkDBKuJGEuD8anCVK4CThwjiQQ1DX3i5LUpFNMEwR1vqWPY0n2qqdX9PBpwIuOOSvlbMafBvOpna1YwN0dYAr6UNcu5g9Xusyl2Y3xCw==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-3174-20-msonline-outlook-1ae57.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2c443c1-d372-4707-0c81-08d962bdcdd1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2021 03:02:38.9811
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB1877
+Message-ID-Hash: HQB5VWEHZBJMDIXJJFRDNZYAOFQWOIYC
+X-Message-ID-Hash: HQB5VWEHZBJMDIXJJFRDNZYAOFQWOIYC
+X-MailFrom: iucgnaw@msn.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: How to prepare I/Q sample for tx_streamer
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PY42ATZU24RO7QCVCYOCFVLZC2OCPJTG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MJ5CBXMJWION65RNWC7BNUVLIKZSQUBE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0940300103753647021=="
+Content-Type: multipart/mixed; boundary="===============9172955251548801006=="
 
-This is a multi-part message in MIME format.
---===============0940300103753647021==
-Content-Type: multipart/alternative;
- boundary="------------B9DDF9232119D84FD34253F1"
+--===============9172955251548801006==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CWLP265MB3396958B0D0915A3FA6325D7A5C09CWLP265MB3396GBRP_"
 
-This is a multi-part message in MIME format.
---------------B9DDF9232119D84FD34253F1
-Content-Type: text/plain; charset=windows-1252; format=flowed
+--_000_CWLP265MB3396958B0D0915A3FA6325D7A5C09CWLP265MB3396GBRP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Marcus,
+Thanks for the explanation, so I have to prepare the I/Q samples in my prog=
+ram.
+Furthermore, can I understand the send() function will multiplex/transform =
+the I/Q samples to final REAL baseband waveform samples. Then the USRP hard=
+ware simply multiply amplitude of each REAL sample to the carrier frequency=
+ and transmit?
+WANG Cui
+
+From: Marcus D. Leech <patchvonbraun@gmail.com>
+Sent: Thursday, August 19, 2021 10:43 AM
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] Re: How to prepare I/Q sample for tx_streamer
 
 On 2021-08-18 10:31 p.m., ?? WANG Cui wrote:
->
-> Hi,
->
-> Maybe I am asking a newbie question.
->
-> When use tx_streamer::send() function to send signal, the required=20
-> format is I/Q samples (say otw_format =3D sc16). I understand should=20
-> provide I/Q samples buffer in arguments.
->
-> I am wondering for the I/Q samples, should I provide binary values=20
-> buffer (e.g. I: 1, -1, 1..., Q: -1, 1, -1...), then the USRP firmware=20
-> will modulate the binary values to specific Cos/Sin waves?
->
-> Or I should do the Cos/Sin modulation in my program (e.g. I: 0, -.001,=20
-> 0.002..., Q: -1, 0.999, -0.998...) before pass the buffer send() functi=
-on?
->
-> I searched the documents, but can=92t find answer, thanks in advance fo=
-r=20
-> explanation,
->
-> WANG Cui
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-The whole point of an SDR is that it doesn't have any pre-defined notion=20
-of what modulation techniques are used, etc.=A0 That's entirely up to you=
-.
+Hi,
+Maybe I am asking a newbie question.
+When use tx_streamer::send() function to send signal, the required format i=
+s I/Q samples (say otw_format =3D sc16). I understand should provide I/Q sa=
+mples buffer in arguments.
+I am wondering for the I/Q samples, should I provide binary values buffer (=
+e.g. I: 1, -1, 1..., Q: -1, 1, -1...), then the USRP firmware will modulate=
+ the binary values to specific Cos/Sin waves?
+Or I should do the Cos/Sin modulation in my program (e.g. I: 0, -.001, 0.00=
+2..., Q: -1, 0.999, -0.998...) before pass the buffer send() function?
+I searched the documents, but can't find answer, thanks in advance for expl=
+anation,
 
-You're sending a complex-baseband representation of *waveforms*. The UHD=20
-library is NOT a DSP library.=A0 It is a device-interface library.
-
-If you need something higher-level, there's Gnu Radio=20
-(http://www.gnuradio.org) or even MATLAB.=A0 But SDR radios in general=20
-don't have any
- =A0 built-in modulation.=A0 They want sampled baseband waveforms.
+WANG Cui
 
 
 
---------------B9DDF9232119D84FD34253F1
-Content-Type: text/html; charset=windows-1252
+
+_______________________________________________
+
+USRP-users mailing list -- usrp-users@lists.ettus.com<mailto:usrp-users@lis=
+ts.ettus.com>
+
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usr=
+p-users-leave@lists.ettus.com>
+The whole point of an SDR is that it doesn't have any pre-defined notion of=
+ what modulation techniques are used, etc.  That's entirely up to you.
+
+You're sending a complex-baseband representation of *waveforms*.   The UHD =
+library is NOT a DSP library.  It is a device-interface library.
+
+If you need something higher-level, there's Gnu Radio (http://www.gnuradio.=
+org) or even MATLAB.  But SDR radios in general don't have any
+  built-in modulation.  They want sampled baseband waveforms.
+
+
+--_000_CWLP265MB3396958B0D0915A3FA6325D7A5C09CWLP265MB3396GBRP_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html;
-      charset=3Dwindows-1252">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2021-08-18 10:31 p.m., ?? WANG Cui
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CWLP265MB339632A5A9B43B1C73C5E426A5C09@CWLP265MB3396.GBRP265.=
-PROD.OUTLOOK.COM">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html;
-        charset=3Dwindows-1252">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
 /* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
@@ -156,8 +174,17 @@ PROD.OUTLOOK.COM">
 	{font-family:DengXian;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
 	{font-family:DengXian;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -174,12 +201,37 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:#954F72;
 	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:DengXian;
+	color:windowtext;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
 	font-family:DengXian;
 	color:windowtext;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.25in 1.0in 1.25in;}
@@ -191,61 +243,90 @@ div.WordSection1
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-        <p class=3D"MsoNormal">Maybe I am asking a newbie question.<o:p><=
-/o:p></p>
-        <p class=3D"MsoNormal">When use tx_streamer::send() function to
-          send signal, the required format is I/Q samples (say
-          otw_format =3D sc16). I understand should provide I/Q samples
-          buffer in arguments.<o:p></o:p></p>
-        <p class=3D"MsoNormal">I am wondering for the I/Q samples, should
-          I provide binary values buffer (e.g. I: 1, -1, 1..., Q: -1, 1,
-          -1...), then the USRP firmware will modulate the binary values
-          to specific Cos/Sin waves?<o:p></o:p></p>
-        <p class=3D"MsoNormal">Or I should do the Cos/Sin modulation in m=
-y
-          program (e.g. I: 0, -.001, 0.002..., Q: -1, 0.999, -0.998...)
-          before pass the buffer send() function?<o:p></o:p></p>
-        <p class=3D"MsoNormal">I searched the documents, but can=92t find
-          answer, thanks in advance for explanation,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=A0</o:p></p>
-        <p class=3D"MsoNormal">WANG Cui<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=A0</o:p></p>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    The whole point of an SDR is that it doesn't have any pre-defined
-    notion of what modulation techniques are used, etc.=A0 That's entirel=
-y
-    up to you.<br>
-    <br>
-    You're sending a complex-baseband representation of *waveforms*.=A0=A0
-    The UHD library is NOT a DSP library.=A0 It is a device-interface
-    library.<br>
-    <br>
-    If you need something higher-level, there's Gnu Radio
-    (<a class=3D"moz-txt-link-freetext" href=3D"http://www.gnuradio.org">=
-http://www.gnuradio.org</a>) or even MATLAB.=A0 But SDR radios in general
-    don't have any<br>
-    =A0 built-in modulation.=A0 They want sampled baseband waveforms.<br>
-    <br>
-    <br>
-  </body>
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Marcus,<o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks for the explanation, so I have to prepare the=
+ I/Q samples in my program.<o:p></o:p></p>
+<p class=3D"MsoNormal">Furthermore, can I understand the send() function wi=
+ll multiplex/transform the I/Q samples to final REAL baseband waveform samp=
+les. Then the USRP hardware simply multiply amplitude of each REAL sample t=
+o the carrier frequency and transmit?<o:p></o:p></p>
+<p class=3D"MsoNormal">WANG Cui<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><b><span st=
+yle=3D"font-family:&quot;Calibri&quot;,sans-serif">From:</span></b><span st=
+yle=3D"font-family:&quot;Calibri&quot;,sans-serif"> Marcus D. Leech &lt;pat=
+chvonbraun@gmail.com&gt;
+<br>
+<b>Sent:</b> Thursday, August 19, 2021 10:43 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [USRP-users] Re: How to prepare I/Q sample for tx_streamer<=
+o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><o:p>&nbsp;=
+</o:p></p>
+<div>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left">On 2021-08-=
+18 10:31 p.m., ?? WANG Cui wrote:<o:p></o:p></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">Maybe I am asking a newbie question.<o:p></o:p></p>
+<p class=3D"MsoNormal">When use tx_streamer::send() function to send signal=
+, the required format is I/Q samples (say otw_format =3D sc16). I understan=
+d should provide I/Q samples buffer in arguments.<o:p></o:p></p>
+<p class=3D"MsoNormal">I am wondering for the I/Q samples, should I provide=
+ binary values buffer (e.g. I: 1, -1, 1..., Q: -1, 1, -1...), then the USRP=
+ firmware will modulate the binary values to specific Cos/Sin waves?<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">Or I should do the Cos/Sin modulation in my program =
+(e.g. I: 0, -.001, 0.002..., Q: -1, 0.999, -0.998...) before pass the buffe=
+r send() function?<o:p></o:p></p>
+<p class=3D"MsoNormal">I searched the documents, but can<span lang=3D"ZH-CN=
+">&#8217;</span>t find answer, thanks in advance for explanation,<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal">WANG Cui<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal" align=3D"left" style=3D"text-align:left"><span style=
+=3D"font-family:&quot;Calibri&quot;,sans-serif"><br>
+<br>
+<o:p></o:p></span></p>
+<pre>_______________________________________________<o:p></o:p></pre>
+<pre>USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m">usrp-users@lists.ettus.com</a><o:p></o:p></pre>
+<pre>To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com">usrp-users-leave@lists.ettus.com</a><o:p></o:p></pre>
+</blockquote>
+<p class=3D"MsoNormal" align=3D"left" style=3D"margin-bottom:12.0pt;text-al=
+ign:left"><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">The wh=
+ole point of an SDR is that it doesn't have any pre-defined notion of what =
+modulation techniques are used, etc.&nbsp; That's entirely
+ up to you.<br>
+<br>
+You're sending a complex-baseband representation of *waveforms*.&nbsp;&nbsp=
+; The UHD library is NOT a DSP library.&nbsp; It is a device-interface libr=
+ary.<br>
+<br>
+If you need something higher-level, there's Gnu Radio (<a href=3D"http://ww=
+w.gnuradio.org">http://www.gnuradio.org</a>) or even MATLAB.&nbsp; But SDR =
+radios in general don't have any<br>
+&nbsp; built-in modulation.&nbsp; They want sampled baseband waveforms.<br>
+<br>
+<o:p></o:p></span></p>
+</div>
+</body>
 </html>
 
---------------B9DDF9232119D84FD34253F1--
+--_000_CWLP265MB3396958B0D0915A3FA6325D7A5C09CWLP265MB3396GBRP_--
 
---===============0940300103753647021==
+--===============9172955251548801006==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -255,4 +336,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0940300103753647021==--
+--===============9172955251548801006==--
