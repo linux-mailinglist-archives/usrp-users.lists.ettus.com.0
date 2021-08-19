@@ -2,153 +2,197 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C1113F0817
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Aug 2021 17:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0223F1066
+	for <lists+usrp-users@lfdr.de>; Thu, 19 Aug 2021 04:31:58 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 20AB7383CA8
-	for <lists+usrp-users@lfdr.de>; Wed, 18 Aug 2021 11:34:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2A8DB383C52
+	for <lists+usrp-users@lfdr.de>; Wed, 18 Aug 2021 22:31:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="U+uwcPHC";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="du0iITtb";
 	dkim-atps=neutral
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id BD36E383B4D
-	for <usrp-users@lists.ettus.com>; Wed, 18 Aug 2021 11:33:49 -0400 (EDT)
-Received: by mail-ed1-f54.google.com with SMTP id b7so3809962edu.3
-        for <usrp-users@lists.ettus.com>; Wed, 18 Aug 2021 08:33:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=knZ8LfzDjEKoOKQkG0vDGKZt9X9c5DO9AURPpnATdFA=;
-        b=U+uwcPHCUcq3LCfTTKdz8boXt30Z5jQm63OvA9Ne+2OaXW5UqrkHbQlQeWbrf2WOVT
-         ihZpWRoNFblkxVjJ+Ig4cP88Dg22Oe5AXzmYYzP2+bn72yBtH+1O8UuJQcAHEEHAzTA6
-         +mzZfBG2jUVV2M2ebdEeV8MhWzL9LViuuU2C4hnED1WK25bN40COpM3lqn1Sc05G7F6t
-         Rfdq8574Mex6nvgtlIWYnrNYYoxHXb42Zchh7CUfzgC+oQ8Wx9o5xCTrn5cbZubfNFo0
-         bS+mySwAJBCeg+NBI/HjoWtoreEozOxbE9scPbIH+S7xD4+cylj1OBrB7XIfeNaSSHF4
-         K+Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=knZ8LfzDjEKoOKQkG0vDGKZt9X9c5DO9AURPpnATdFA=;
-        b=TMNtQwwUC7C/X10X4ZJMkeck7cXoBkDUT5Ul+X0vlH44MubzI5KKNPRkcG6Jhd/Aww
-         dCD4BLVlryPCeR9UYtQ9/65L68ZM4MnK0WIusPtZnW13Zi7MJIh+gAFm260VuJltjJY2
-         hIzjRxE9HkavOXEgkXRyHbDyG1C/16L3eFHiruvYpmkbrJHT3juT5E32bRBlPEmXKFj/
-         7xlsU8NaZyZDCDbBD2I+AocWbBSwQsHLD/2PFx9I9cAVYkZXuGzIDrM7Gp79Xef+jdym
-         Rs+6BRgo24EahdWaFe33t2gabEgXdJcG9qNeHPjQXnZI7KycaNNpiTniy0vST/x4G62a
-         kGFg==
-X-Gm-Message-State: AOAM533SXoGSP8xuyZ/oGuby/aqVDYjqIJWgX7RwPgg7pAtx4+7ILlQY
-	kwyatIHQcV3IFKrgy5HFRrKP6ImGJ1TM/e1NJMC0Wd2w/Mk=
-X-Google-Smtp-Source: ABdhPJwtwIHPuVFASWtq9RNB7J17FwlW0qIUZlKAXNWDRvxbpMp0+dVcnfP1xGgedgfxeFvkhJ5OBmApTze3B0iiqXk=
-X-Received: by 2002:aa7:c302:: with SMTP id l2mr10877389edq.200.1629300828647;
- Wed, 18 Aug 2021 08:33:48 -0700 (PDT)
-MIME-Version: 1.0
-From: Sunny Sam <sunny04sam@gmail.com>
-Date: Wed, 18 Aug 2021 11:33:37 -0400
-Message-ID: <CAGu8PGz9RQWE+DTY8ZP1BmWY3ynyrO3P+56w+0ZSOvF5-DNBzQ@mail.gmail.com>
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com (mail-cwlgbr01olkn0147.outbound.protection.outlook.com [104.47.20.147])
+	by mm2.emwd.com (Postfix) with ESMTPS id F30D0383BAE
+	for <usrp-users@lists.ettus.com>; Wed, 18 Aug 2021 22:31:08 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YNXXx7WCHZQpl7fM7BwA0JNJPvHZSqFRFfEv72P5bpWqecsMmfv3i+e9QPlfT4dn15HrtLCeB33QHbTig+QfUELuYVchs2TNhc3ZeweoSlK2fj6eqp8/HFyIyFEv9reYMf60f7D+Xb0Ng3WdCf5B/9nTGCu5kFco80+ixxt/5UHa1uFj+SOM+f+OMA2Olg/Aq4nvLevL1h+mh9DDbyNIqchjNTbJVFUUuuVeWyN9wGtS4P+EUHq78RGpLMVLq3qyEszfvBq22UACNml8O4HiIPmbiZ99MLJEFmUI9jhSQlzMbTBrsMBDhKvBGixwPmH6E5Imaz3S6rrDa3eWgcw+tQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KcGlP6Wlf5FMA0lDKkkEk3e1nS3um+Vu02p+VsOJNjY=;
+ b=RXCG77Rn09di0sc/prtWxuMEcEZyj1QMZhfTNKN58SL2GwHx03bklGbvIAjiGiF6WWpQ7hRI8NSEqttQpWNtrEkjR84QdWh0xLUxan8so1yTvRQrDJdJlebAobfXIzOsLsA8C3Y9is4s/9KuyUY/HLlgkpDZOrNh7i/0RD9pvHVqyhW+kgyZbet8tiSrKG35FEvIKogLTY2Og0I+2vtdcAwhKmEE0fAiTlIf64TlWoRZxhrHdkqTkP+75X/vPyY0GAcfbKKiLf7y6zPGVIRXP+IGBDWqArzpPzzwgrI7rum9PLGqEW7ybaWXlXjr6jQ93p+3tIOERwtE02Ww7ENaDw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KcGlP6Wlf5FMA0lDKkkEk3e1nS3um+Vu02p+VsOJNjY=;
+ b=du0iITtbvi5uJ9fzfGGpCGiOBkvTIazreWlm+FfGoxhGb3RuU2J5NxVewwTWtA7j1IQ+JqBdl7f5HPO0zzjvaA1slRh8Lr42gCcQZZseqn5b+bmbyT+aKHzpKGy1ORJbuFhUcDty/yeDaCGbOx/35ys4nUHXrcCK7YhxV9hsgN8Tph/4rCbFYmk03nbR49ZE0/PR9PHAQp6PnzcSICGqcx2jFlynYEB+w9DYBn70v32/JCeP4+gz/F7FKO7E285zTklQyTsHJUNVqBW6S3JsQE6+rltu2OUKj5wELqiZk0n+5iIsvUjOQqax3Ne6UIoIYzK6XJYU3K/AFQxC3+oLbw==
+Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:d7::9) by
+ CWXP265MB3896.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:103::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4415.17; Thu, 19 Aug 2021 02:31:07 +0000
+Received: from CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::15d2:c20a:e0e1:452d]) by CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::15d2:c20a:e0e1:452d%5]) with mapi id 15.20.4436.019; Thu, 19 Aug 2021
+ 02:31:07 +0000
+From: ?? WANG Cui <iucgnaw@msn.com>
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: 5U75ZPGUZEY5LBLMJM6MA6JIUCLLNABE
-X-Message-ID-Hash: 5U75ZPGUZEY5LBLMJM6MA6JIUCLLNABE
-X-MailFrom: sunny04sam@gmail.com
+Thread-Topic: How to prepare I/Q sample for tx_streamer
+Thread-Index: AdeUoUkrCROuZwQ3RS+PO+7Jd8zf0A==
+Date: Thu, 19 Aug 2021 02:31:07 +0000
+Message-ID: 
+ <CWLP265MB339632A5A9B43B1C73C5E426A5C09@CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-tmn: [rEO4UvqyJ7iCPq1kT04Ma8LMF9mJeYMr]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 013358c8-14d2-4548-29b0-08d962b96633
+x-ms-traffictypediagnostic: CWXP265MB3896:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ kipcDc3INLYdRhOX8KVDNCkVyPIUg60HFo5pjcb194QzYjCbRZqW/kp57/7ab+qP8h5bRyfTX4qmEswKS6aV26+jYZmgSxMUBEbnrnXXwTHjM+ZyMVLTnpH96x3dnroyrT8nLQCCWQ7ejBvpcUEvDmwQ5MQ3kw4/e/zadauxKNls8wNvG2YaZhSdyyZslXUMlmAmJCVvPE1ZVVvcL1/+z5Ib2P2aUHSfXCvyqQlNUKsrDUNR1xyhvl8n1QP4GD/jvojJ715ojJAPGmwTz7u5YkgANEsTrsF9bAsx4aMzGB04JF+M/ZOTZRJqeQhsIyyU/d1kLyAkyVRU2CwW++f1ePBqAMN8s+RUdqSVhkqTfuSp42IYxFVjc+EcHfZSEFxN9+ru+aZRPpQvnAvRDRRdd+oZecXg/j0+OY2naizt8ppufXrRWDI00KFvtcpTDM8W
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ bzxrQYZ1d5DWYvnIM3MTN7R7AMXB/eZV7vvKp+qoTnppNJpOGS922CXpAlepX3bQXJw7AdPG34SoTKTh0PDItY47Q3jh2Rno3IBuJILG5y8h/wJEYfT745BZ1vOPrsusDRX0OCiMsY2cOZVSuuR5Yg==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-3174-20-msonline-outlook-1ae57.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CWLP265MB3396.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 013358c8-14d2-4548-29b0-08d962b96633
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Aug 2021 02:31:07.1591
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB3896
+Message-ID-Hash: GTIARAEWET6ZL6N3ITQS4X4XEPZGY2RS
+X-Message-ID-Hash: GTIARAEWET6ZL6N3ITQS4X4XEPZGY2RS
+X-MailFrom: iucgnaw@msn.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] USRP scheduling multiple receive with multiple time_spec without waiting for the rx_streamer.recv blocking call to return
+Subject: [USRP-users] How to prepare I/Q sample for tx_streamer
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5U75ZPGUZEY5LBLMJM6MA6JIUCLLNABE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7Y6LIN2NXBTU33CVSTMZG2X5DLTEY5CF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6456343711365008017=="
+Content-Type: multipart/mixed; boundary="===============1246902987324546367=="
 
---===============6456343711365008017==
-Content-Type: multipart/alternative; boundary="0000000000001fb52605c9d729ad"
+--===============1246902987324546367==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CWLP265MB339632A5A9B43B1C73C5E426A5C09CWLP265MB3396GBRP_"
 
---0000000000001fb52605c9d729ad
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-
-I want to be able to schedule multiple timed receives without waiting for
-the rx_streamer blocking call to schedule the next receive. When the time
-difference between two consecutive rx_streamer->recv() calls is below
-around 400 microseconds, the  time_spec for the second call sometimes will
-be in the past because of the latency of the first blocking call
-for lower sample rates. Is there a way to schedule multiple receives in
-advance to avoid this issue? I included a sample code below. The
-next_rx_time is configured to make sure rx has enough time to collect the
-number of samples specified in num_rx_samples based on the radio sample
-rate. I am using X310.
-
-For tx, the buffer and the time to send is issued with the
-tx_streamer.send() call. But for rx, the time to receive has to be set
-first with issue_stream_cmd before calling the rx_streamer.recv(). Why is
-this implemented this way for rx?
-
-uhd::stream_cmd_t
-stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
-stream_cmd.stream_now = false;
-stream_cmd.num_samps = num_rx_samples;
-stream_cmd.time_spec = uhd::time_spec_t(rx_time_spec);
-rx_streamer->issue_stream_cmd(stream_cmd);
-
-while (1)
-{
-   rx_streamer->recv(&buff.front(),  num_rx_samples , md, 1.0);
-   ....
-   //schedule the next recv
-   rx_time_spec += next_rx_time;
-   stream_cmd.time_spec = uhd::time_spec_t(rx_time_spec);
-   stream_cmd.stream_now = false;
-   stream_cmd.num_samps =  num_rx_samples;
-   rx_streamer->issue_stream_cmd(stream_cmd);
-}
-
-Thank you in advance for your help.
-
-Sunny
-
---0000000000001fb52605c9d729ad
-Content-Type: text/html; charset="UTF-8"
+--_000_CWLP265MB339632A5A9B43B1C73C5E426A5C09CWLP265MB3396GBRP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,=C2=A0</div><div><br></div><div>I want to be ab=
-le to schedule multiple timed receives without waiting for the rx_streamer =
-blocking call to schedule the next receive. When the time difference=C2=A0b=
-etween two consecutive rx_streamer-&gt;recv() calls is below around 400 mic=
-roseconds, the=C2=A0
+Hi,
+Maybe I am asking a newbie question.
+When use tx_streamer::send() function to send signal, the required format i=
+s I/Q samples (say otw_format =3D sc16). I understand should provide I/Q sa=
+mples buffer in arguments.
+I am wondering for the I/Q samples, should I provide binary values buffer (=
+e.g. I: 1, -1, 1..., Q: -1, 1, -1...), then the USRP firmware will modulate=
+ the binary values to specific Cos/Sin waves?
+Or I should do the Cos/Sin modulation in my program (e.g. I: 0, -.001, 0.00=
+2..., Q: -1, 0.999, -0.998...) before pass the buffer send() function?
+I searched the documents, but can't find answer, thanks in advance for expl=
+anation,
 
-time_spec=C2=A0for the second call sometimes will be in the past because of=
- the latency of the first blocking call for=C2=A0lower=C2=A0sample rates. I=
-s there a way to schedule=C2=A0multiple receives in advance=C2=A0to avoid t=
-his issue? I included a sample code below. The next_rx_time is configured=
-=C2=A0to make sure rx has enough time to collect the number of samples spec=
-ified=C2=A0in num_rx_samples based on the radio sample rate. I am using X31=
-0.</div><div><br></div><div>For tx, the buffer and the time to send is issu=
-ed with the tx_streamer.send() call. But for rx, the time to receive has to=
- be set first with issue_stream_cmd before calling the rx_streamer.recv(). =
-Why is this implemented this way for rx?=C2=A0<br></div><div><br></div><div=
->uhd::stream_cmd_t stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_=
-DONE);<br>stream_cmd.stream_now =3D false;<br>stream_cmd.num_samps =3D num_=
-rx_samples;=C2=A0</div><div>stream_cmd.time_spec =3D uhd::time_spec_t(rx_ti=
-me_spec);<br>rx_streamer-&gt;issue_stream_cmd(stream_cmd);<br></div><div><b=
-r></div><div>while (1)</div><div>{</div><div>=C2=A0 =C2=A0rx_streamer-&gt;r=
-ecv(&amp;buff.front(),=C2=A0
+WANG Cui
 
-num_rx_samples=C2=A0, md, 1.0);=C2=A0</div><div>=C2=A0 =C2=A0....</div><div=
->=C2=A0 =C2=A0//schedule the next recv<br>=C2=A0 =C2=A0rx_time_spec +=3D ne=
-xt_rx_time;<br>=C2=A0 =C2=A0stream_cmd.time_spec =3D uhd::time_spec_t(rx_ti=
-me_spec);<br>=C2=A0 =C2=A0stream_cmd.stream_now =3D false;<br></div><div>=
-=C2=A0 =C2=A0stream_cmd.num_samps =3D=C2=A0
 
-num_rx_samples;=C2=A0<br></div><div>=C2=A0 =C2=A0rx_streamer-&gt;issue_stre=
-am_cmd(stream_cmd);<br></div><div>}</div><div><br></div><div>Thank you in a=
-dvance for your help.=C2=A0</div><div><br></div><div>Sunny</div></div>
+--_000_CWLP265MB339632A5A9B43B1C73C5E426A5C09CWLP265MB3396GBRP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---0000000000001fb52605c9d729ad--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:11.0pt;
+	font-family:DengXian;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:DengXian;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">Maybe I am asking a newbie question.<o:p></o:p></p>
+<p class=3D"MsoNormal">When use tx_streamer::send() function to send signal=
+, the required format is I/Q samples (say otw_format =3D sc16). I understan=
+d should provide I/Q samples buffer in arguments.<o:p></o:p></p>
+<p class=3D"MsoNormal">I am wondering for the I/Q samples, should I provide=
+ binary values buffer (e.g. I: 1, -1, 1..., Q: -1, 1, -1...), then the USRP=
+ firmware will modulate the binary values to specific Cos/Sin waves?<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">Or I should do the Cos/Sin modulation in my program =
+(e.g. I: 0, -.001, 0.002..., Q: -1, 0.999, -0.998...) before pass the buffe=
+r send() function?<o:p></o:p></p>
+<p class=3D"MsoNormal">I searched the documents, but can&#8217;t find answe=
+r, thanks in advance for explanation,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">WANG Cui<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---===============6456343711365008017==
+--_000_CWLP265MB339632A5A9B43B1C73C5E426A5C09CWLP265MB3396GBRP_--
+
+--===============1246902987324546367==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,4 +202,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6456343711365008017==--
+--===============1246902987324546367==--
