@@ -2,198 +2,251 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C6223F5007
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Aug 2021 20:02:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90C363F52CB
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Aug 2021 23:22:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5C176383D4D
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Aug 2021 14:02:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4FD91383BD7
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Aug 2021 17:22:09 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=iptronix.com header.i=@iptronix.com header.b="MwMqFVTY";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RjAC4f43";
 	dkim-atps=neutral
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 07523383BA6
-	for <usrp-users@lists.ettus.com>; Mon, 23 Aug 2021 14:02:11 -0400 (EDT)
-Received: by mail-ej1-f54.google.com with SMTP id n27so6808119eja.5
-        for <usrp-users@lists.ettus.com>; Mon, 23 Aug 2021 11:02:11 -0700 (PDT)
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9BC4B38392B
+	for <usrp-users@lists.ettus.com>; Mon, 23 Aug 2021 17:21:20 -0400 (EDT)
+Received: by mail-io1-f43.google.com with SMTP id n24so23657982ion.10
+        for <usrp-users@lists.ettus.com>; Mon, 23 Aug 2021 14:21:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=iptronix.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qzEBpAI9fxL6LkPfCXEGbk+170Cv1sl9koeGdiuwkQg=;
-        b=MwMqFVTYY/Z/GMptWUKXuawJ9cTaRQFfUB7HhXLqxPIjh5zViWQwS8RC8WGNSTeTd0
-         C3AWHrltIpVbnwHdZXokqn47tt+ea80tZOQUvnFIDmPa8YC6FeXCPMVaVuTudQ67uhYz
-         CBzm3GvTRphW/7/TG84FmJzRq6a7yvjQ1MFA3C7865O3zqQuR1f3mFHlry7CWHN+eKZX
-         ugGsz7Xprn31UmI78agqKRyKQx1yvi1Gy+GWRNSVZk076s5pC36TzuVoof7nZQtkDkEa
-         lKgeG2SRfBlHj1jFtEx7Zv8Z28mIwjmVtYKmLqFj9U8P+02L5h99RxvaLwcVqyRMw2sW
-         FrMA==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=NFpgKOjVAKK0s0uhcleYVGkq3dkDD8v25qYrAAeyEeI=;
+        b=RjAC4f43C3drpSMvMN63/qEMzvpTuiOT/IRr/NhYri36gZt905Vu0bQdQMzgjz2Xgb
+         qqe3GNocPs7kPqcs/1DCKzCDuPp0BPM0aQdWYZMtQ5VBi4/83nAC7uP0tUfxmUca9slb
+         /7xJYBpeZ8I7mXhjguUa1VCHrFFd1o3f5Haa39irG+ujJdvaYCHkybK3nB83En1EE3le
+         8nLrDjszDJsWnpLBgjlm95qJHgxxGv7ZI7cpgCN9wHMV5cSMFXr/MFAhlOHPiqaL/XrY
+         lh0fs36So8co/kryOyzTK6tR3kzYlmImU5Gj6iltAzFSLnQLn+vFcQ1sb/bCBTEw42dL
+         ZtYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qzEBpAI9fxL6LkPfCXEGbk+170Cv1sl9koeGdiuwkQg=;
-        b=e28qEW4nOhbPLwTYfod06SMSRmRsIVf/SD4B6Tm4PvwKFLlK7SyL796lC+TF8rZolg
-         MlkRxrzTvPoKcuRpaj2MXwtVAlde4M+66lNRUA65A2LcIEstV5okrO0ugs+ZNa+VEVWP
-         CaIDiKiO6k8vw8sFtHnsaUPyV3oBT+aWXM4ZaLIx2ShSWmBWQJp0qw8arf1peUU3P0oX
-         LSNHjM5SvznBIikQjT39tdQ202u06sEn+X9kEJc1WdgywVz4q2DfZMddT22PomD18Sag
-         rITTsiZtdbFd0rjk+MTid004GGppsnS1/kdZW6k6qRPEGNMLlc26j8RYXcpG59piiTvy
-         RL6w==
-X-Gm-Message-State: AOAM531o3Z1ouEpAb5nAw4pVLv6Dc4fYOQ2SNmYb3rM1BxUe5QL3MrvH
-	v0GZo5WB4fQ2ECAEVtFvNmD7tKxDPo+3Ah8hKv7zsA==
-X-Google-Smtp-Source: ABdhPJxnSzDf+CwTso1SX5wq3Z7u61h2Rc8Zs4NFPLxMLuFLBepOcHCqq7zrI9QPik6bGE+Ut5MLwEJTsAaiqnjQ7ew=
-X-Received: by 2002:a17:907:2b09:: with SMTP id gc9mr37775347ejc.49.1629741730731;
- Mon, 23 Aug 2021 11:02:10 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=NFpgKOjVAKK0s0uhcleYVGkq3dkDD8v25qYrAAeyEeI=;
+        b=DWFJFEDqoyJlYmMZwz1sXQDuEpnuefQHGzzLYj7Wfy4hZNn6vBrC86I7BCdzQe8cpO
+         7haQ/MpEsCPNBlNGcxvjsWvJS4IZPTS7rf9DcKL8S87nRqujwbvCQ98fYC5JK4XuUVpk
+         CnyUuM6sQ3KvYe8f3oEf71+qpspel+Wz8rgfDhSLparReZwOO9xKfQu5GBWnt5yVt3D8
+         9IjAYJkQPSxmu1SDmym065z8QRvvgT/4bluMw/fjyp/7DzlPnJQBnD8kGYQxWeNMsTOt
+         LtzgZYoaZjBsxPBJVTFm8KyUX11WIHNIKw12oF6a5mFtxEEJxESnyTuM6eQGx5vBQPEU
+         UvZg==
+X-Gm-Message-State: AOAM533IfKS85cixgjsDwXsfDpqdJXTopHunnD+wFffkG9IlhnwO6Lpk
+	Rvylo5S1bCEvkeAhEhTJMGgFCIYQ0v71gDm6SDHtDM1R0bc=
+X-Google-Smtp-Source: ABdhPJyQuddezRFNFtv9xBgUfRYFV58qtZ9eN7oKuaE4gkqJ7Yd4yCo+Fv2Xl4hq2Q5HE3UCGH1PGFBikOOLqL+yBN8=
+X-Received: by 2002:a5d:9eda:: with SMTP id a26mr28537513ioe.166.1629753679420;
+ Mon, 23 Aug 2021 14:21:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAKHaR3kE1Td0vH7QM9xDExms7N_drXXf__V6OUk-a5BWbyGTmQ@mail.gmail.com>
- <CAB__hTTAyMrGR3bsCK94OcUS4uOZBcpoa7W6R6bGsEi9doXw6Q@mail.gmail.com>
-In-Reply-To: <CAB__hTTAyMrGR3bsCK94OcUS4uOZBcpoa7W6R6bGsEi9doXw6Q@mail.gmail.com>
-From: Dario Pennisi <dario@iptronix.com>
-Date: Mon, 23 Aug 2021 20:01:58 +0200
-Message-ID: <CAKHaR3=sbWZVMMZA1qE1eGBW4Rdy0ZW0hmNEhTj6W1moKxX1vg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Message-ID-Hash: SY3CAKPGN3ISI4XCR5MDSFXRIEA3JHUI
-X-Message-ID-Hash: SY3CAKPGN3ISI4XCR5MDSFXRIEA3JHUI
-X-MailFrom: dario@iptronix.com
+From: Ivan Zahartchuk <adray0001@gmail.com>
+Date: Tue, 24 Aug 2021 00:21:08 +0300
+Message-ID: <CAPRRyxvOhiUu5uYoAStfJUHgkuAtt1Oc6j6qv6tXRFMOjRUm6w@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: YOHULZFR26PS2OJKP3SGI3STA65V7QXZ
+X-Message-ID-Hash: YOHULZFR26PS2OJKP3SGI3STA65V7QXZ
+X-MailFrom: adray0001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: input only rfnoc blocks with UHD 4.1
+Subject: [USRP-users] Creating a graph for UHD4 with python
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SY3CAKPGN3ISI4XCR5MDSFXRIEA3JHUI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YOHULZFR26PS2OJKP3SGI3STA65V7QXZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2730627940629964570=="
+Content-Type: multipart/mixed; boundary="===============2286114852748150733=="
 
---===============2730627940629964570==
-Content-Type: multipart/alternative; boundary="000000000000efc1a905ca3dd099"
+--===============2286114852748150733==
+Content-Type: multipart/alternative; boundary="000000000000221f6405ca409914"
 
---000000000000efc1a905ca3dd099
+--000000000000221f6405ca409914
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Rob,
-As I was mentioning we're trying to get rid of the streamers so ideally I'd
-only have two radios connected to my block which has no outputs. The graph
-would appear to be entirely in the FPGA  and nothing except register reads
-and writes would enter or exit FPGA.
-As far as I understand there is no start streaming command on the radios
-and I don't think I have them on my block.
-I was tempted to directly write radio stream registers but it's a very
-dirty solution...
+Hello. I want to create a graph with two fft blocks for UHD4 and
+manage them using python.
+ I am using USRP E310. My FPGA connections look like this:
+0/Radio#0:0==>0/FFT#0:0
+0/FFT#0:0==>0/SEP#0:0
+0/Radio#0:1==>0/FFT#1:0
+0/FFT#1:0==>0/SEP#1:0
+I want to receive data from two blocks at the same time.
+But as a result, I get 0 samples. Here is my code:
+```
+import numpy as np
+import uhd
+graph = uhd.rfnoc.RfnocGraph('type=e3xx')
+for i in graph.enumerate_static_connections():
+    print(i.to_string())
+fft_lenght = 1024
+radio_noc_block = graph.get_block('0/Radio#0')
+radio_block = uhd.rfnoc.RadioControl(radio_noc_block)
 
-Thanks,
+radio_block.set_rx_frequency(856e6,0)
+radio_block.set_rx_gain(65,0)
+radio_block.set_rx_antenna('RX2',0)
+radio_block.set_rate(100e3)
+fft_amplitude = uhd.libpyuhd.rfnoc.fft_magnitude.COMPLEX
+fft_direction = uhd.libpyuhd.rfnoc.fft_direction.FORWARD
+fft_shift = uhd.libpyuhd.rfnoc.fft_shift.REVERSE
+fft = uhd.rfnoc.FftBlockControl(graph.get_block('0/FFT#0'))
+fft.set_length(fft_lenght)
+fft.set_magnitude(fft_amplitude)
+fft.set_direction(fft_direction)
+fft.set_shift_config(fft_shift)
+fft1 = uhd.rfnoc.FftBlockControl(graph.get_block('0/FFT#1'))
+fft1.set_length(fft_lenght)
+fft1.set_magnitude(fft_amplitude)
+fft1.set_direction(fft_direction)
+fft1.set_shift_config(fft_shift)
+graph.connect('0/Radio#0',0,'0/FFT#0',0,False)
+graph.connect('0/Radio#0',1,'0/FFT#1',0,False)
+sa = uhd.usrp.StreamArgs('fc32','sc16')
+sa.args = 'spp='+str(fft_lenght)
 
-Dario
+rx_streamer = graph.create_rx_streamer(2,sa)
+graph.connect('0/FFT#1',0,rx_streamer,1)
+graph.connect('0/FFT#0',0,rx_streamer,0)
+num_samps = int(fft.get_length()*5)
+radio_zeros = np.zeros((2,num_samps),dtype=np.complex64)
 
-Il Lun 23 Ago 2021, 15:48 Rob Kossler <rkossler@nd.edu> ha scritto:
+graph.commit()
+print(num_samps)
+stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.num_done)
+stream_cmd.num_samps =num_samps
+stream_cmd.stream_now = False
+stream_cmd.time_spec =
+graph.get_mb_controller(0).get_timekeeper(0).get_time_now()+0.1
+rx_streamer.issue_stream_cmd(stream_cmd)
+rx_metadata = uhd.types.RXMetadata()
+num_samps = rx_streamer.recv(radio_zeros,rx_metadata,0.1)
+print(num_samps)
+print(rx_metadata)
+print(radio_zeros)
+```
+And I am getting the following error:
+Has timespec: No	Time of first sample: 0
+Fragmented: No  Fragmentation offset: 0
+Start of burst: No	End of burst: No
+Error Code: ERROR_CODE_TIMEOUT	Out of sequence: No
+Please tell me what the problem is,
+since I did not find documentation and examples other than
+https://www.youtube.com/watch?v=fbcxm7f-Tj0&t=290s
 
-> Hi Dario,
-> How do you start the streaming? Using issue_stream_cmd()? If so, is this
-> called on the streamer object or on the DDC or radio? The reason I ask is
-> that if you call it on the streamer, I'm wondering if your issue is related
-> to command propagation.  That is, the command is not propagating through
-> your block.  If this is the case, try calling issue_stream_cmd() on the DDC
-> block which will then propagate it to the Radio block (or call directly on
-> the Radio if there is no DDC).
-> Rob
->
-> On Fri, Aug 20, 2021 at 1:26 PM Dario Pennisi <dario@iptronix.com> wrote:
->
->> Hi,
->> i'm trying to optimize FPGA consumption and on N310/UHD4.1.0.1 i am
->> testing a block that needs only 2 inputs and no outputs. since i don't need
->> to stream any data in/out of the FPGA i declared a single streamer with
->> control only and declared no connection between it and any block in the yml
->> and this way i can see i can read and write registers.
->> the issue arises when i try to stream data to the block: if i have no
->> outputs declared, inputs will not receive anything. if i have 1 output
->> connected to a streamer, connected to a null sink, i can receive from the
->> first input, if i have 2 outputs connected to two streamers connected to
->> null sinks i can receive on both inputs.
->> is there any way i can get rid of those useless outputs and remove at
->> least 1 endpoint?
->> if i declare i need a single endpoint with no data why does it complain
->> if i don't declare buff_size in the yml?
->> my rfnoc block uses a noc shell that outputs axi stream payload which i
->> adapted for programmable number of inputs and outputs.
->> It seems to me the issue is not on the FPGA side as the backend block
->> seems to properly report information and o don't see any connection in NOC
->> shell between input and outputs other than in there...
->>
->> Thanks,
->>
->> Dario
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->
+Thank you in advance
 
---000000000000efc1a905ca3dd099
+--000000000000221f6405ca409914
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi Rob,<div dir=3D"auto">As I was mentioning we&#39;re tr=
-ying to get rid of the streamers so ideally I&#39;d only have two radios co=
-nnected to my block which has no outputs. The graph would appear to be enti=
-rely in the FPGA=C2=A0 and nothing except register reads and writes would e=
-nter or exit FPGA.=C2=A0</div><div dir=3D"auto">As far as I understand ther=
-e is no start streaming command on the radios and I don&#39;t think I have =
-them on my block.</div><div dir=3D"auto">I was tempted to directly write ra=
-dio stream registers but it&#39;s a very dirty solution...</div><div dir=3D=
-"auto"><br></div><div dir=3D"auto">Thanks,</div><div dir=3D"auto"><br></div=
-><div dir=3D"auto">Dario</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">Il Lun 23 Ago 2021, 15:48 Rob Kossler &lt;<a =
-href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; ha scritto:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
-1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Dario=
-,<div>How do you start the streaming? Using issue_stream_cmd()? If so, is t=
-his called on the streamer object or on the DDC or radio? The reason I ask =
-is that if you call it on the streamer, I&#39;m wondering if your issue is =
-related to command propagation.=C2=A0 That=C2=A0is, the command is not prop=
-agating through your block.=C2=A0 If this is the case, try calling issue_st=
-ream_cmd() on the DDC block which=C2=A0will then propagate=C2=A0it to the R=
-adio block (or call directly on the Radio if there is no DDC).</div><div>Ro=
-b</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Fri, Aug 20, 2021 at 1:26 PM Dario Pennisi &lt;<a href=3D"mailto:=
-dario@iptronix.com" target=3D"_blank" rel=3D"noreferrer">dario@iptronix.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<div dir=3D"auto"><div dir=3D"ltr">Hi,<div>i&#39;m trying to optimize FPGA =
-consumption and on N310/UHD4.1.0.1 i am testing a block that needs only 2 i=
-nputs and no outputs. since i don&#39;t need to stream any data in/out of t=
-he FPGA i declared a single streamer with control only and declared no conn=
-ection between it and any block in the yml and this way i can see i can rea=
-d and write registers.</div><div>the issue arises when i try to stream data=
- to the block: if i have no outputs declared, inputs will not receive=C2=A0=
-anything. if i have 1 output connected to a streamer, connected to a null s=
-ink, i can receive from the first input, if i have 2 outputs connected to t=
-wo streamers connected to null sinks i can receive on both inputs.</div><di=
-v>is there any way i can get rid of those useless outputs and remove at lea=
-st 1 endpoint?</div><div>if i declare i need a single endpoint with no data=
- why does it complain if i don&#39;t declare buff_size in the yml?</div><di=
-v>my rfnoc block uses a noc shell that outputs axi stream payload which i a=
-dapted for programmable number of inputs and outputs.</div><div dir=3D"auto=
-">It seems to me the issue is not on the FPGA side as the backend block see=
-ms to properly report information and o don&#39;t see any connection in NOC=
- shell between input and outputs other than in there...</div><div dir=3D"au=
-to"><br></div><div dir=3D"auto">Thanks,</div><div dir=3D"auto"><br></div><d=
-iv dir=3D"auto">Dario</div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
-com</a><br>
-</blockquote></div></div>
-</blockquote></div>
+<div dir=3D"ltr"><pre class=3D"gmail-tw-data-text gmail-tw-text-large gmail=
+-XcVN5d gmail-tw-ta" id=3D"gmail-tw-target-text" style=3D"text-align:left" =
+dir=3D"ltr"><span style=3D"font-family:georgia,serif"><span class=3D"gmail-=
+Y2IQFc" lang=3D"en">Hello. I want to create a graph with two fft blocks for=
+ UHD4 and manage them using python.<br> I am using USRP E310. My FPGA conne=
+ctions look like this:<br>0/Radio#0:0=3D=3D&gt;0/FFT#0:0<br>0/FFT#0:0=3D=3D=
+&gt;0/SEP#0:0<br>0/Radio#0:1=3D=3D&gt;0/FFT#1:0<br>0/FFT#1:0=3D=3D&gt;0/SEP=
+#1:0<br><span class=3D"gmail-Y2IQFc" lang=3D"en">I want to receive data fro=
+m two blocks at the same time. <br>But as a result, I get 0 samples. Here i=
+s my code:<br>```<br><span style=3D"color:rgb(204,120,50)">import </span>nu=
+mpy <span style=3D"color:rgb(204,120,50)">as </span>np<br><span style=3D"co=
+lor:rgb(204,120,50)">import </span>uhd<br>graph =3D uhd.rfnoc.RfnocGraph(<s=
+pan style=3D"color:rgb(106,135,89)">&#39;type=3De3xx&#39;</span>)<br><span =
+style=3D"color:rgb(204,120,50)">for </span>i <span style=3D"color:rgb(204,1=
+20,50)">in </span>graph.enumerate_static_connections():<br>    <span style=
+=3D"color:rgb(136,136,198)">print</span>(i.to_string())<br>fft_lenght =3D <=
+span style=3D"color:rgb(104,151,187)">1024<br></span>radio_noc_block =3D gr=
+aph.get_block(<span style=3D"color:rgb(106,135,89)">&#39;0/Radio#0&#39;</sp=
+an>)<br>radio_block =3D uhd.rfnoc.RadioControl(radio_noc_block)<br><br>radi=
+o_block.set_rx_frequency(<span style=3D"color:rgb(104,151,187)">856e6</span=
+><span style=3D"color:rgb(204,120,50)">,</span><span style=3D"color:rgb(104=
+,151,187)">0</span>)<br>radio_block.set_rx_gain(<span style=3D"color:rgb(10=
+4,151,187)">65</span><span style=3D"color:rgb(204,120,50)">,</span><span st=
+yle=3D"color:rgb(104,151,187)">0</span>)<br>radio_block.set_rx_antenna(<spa=
+n style=3D"color:rgb(106,135,89)">&#39;RX2&#39;</span><span style=3D"color:=
+rgb(204,120,50)">,</span><span style=3D"color:rgb(104,151,187)">0</span>)<b=
+r>radio_block.set_rate(<span style=3D"color:rgb(104,151,187)">100e3</span>)=
+<br>fft_amplitude =3D uhd.libpyuhd.rfnoc.fft_magnitude.COMPLEX<br>fft_direc=
+tion =3D uhd.libpyuhd.rfnoc.fft_direction.FORWARD<br>fft_shift =3D uhd.libp=
+yuhd.rfnoc.fft_shift.REVERSE<br>fft =3D uhd.rfnoc.FftBlockControl(graph.get=
+_block(<span style=3D"color:rgb(106,135,89)">&#39;0/FFT#0&#39;</span>))<br>=
+fft.set_length(fft_lenght)<br>fft.set_magnitude(fft_amplitude)<br>fft.set_d=
+irection(fft_direction)<br>fft.set_shift_config(fft_shift)<br>fft1 =3D uhd.=
+rfnoc.FftBlockControl(graph.get_block(<span style=3D"color:rgb(106,135,89)"=
+>&#39;0/FFT#1&#39;</span>))<br>fft1.set_length(fft_lenght)<br>fft1.set_magn=
+itude(fft_amplitude)<br>fft1.set_direction(fft_direction)<br>fft1.set_shift=
+_config(fft_shift)<br>graph.connect(<span style=3D"color:rgb(106,135,89)">&=
+#39;0/Radio#0&#39;</span><span style=3D"color:rgb(204,120,50)">,</span><spa=
+n style=3D"color:rgb(104,151,187)">0</span><span style=3D"color:rgb(204,120=
+,50)">,</span><span style=3D"color:rgb(106,135,89)">&#39;0/FFT#0&#39;</span=
+><span style=3D"color:rgb(204,120,50)">,</span><span style=3D"color:rgb(104=
+,151,187)">0</span><span style=3D"color:rgb(204,120,50)">,False</span>)<br>=
+graph.connect(<span style=3D"color:rgb(106,135,89)">&#39;0/Radio#0&#39;</sp=
+an><span style=3D"color:rgb(204,120,50)">,</span><span style=3D"color:rgb(1=
+04,151,187)">1</span><span style=3D"color:rgb(204,120,50)">,</span><span st=
+yle=3D"color:rgb(106,135,89)">&#39;0/FFT#1&#39;</span><span style=3D"color:=
+rgb(204,120,50)">,</span><span style=3D"color:rgb(104,151,187)">0</span><sp=
+an style=3D"color:rgb(204,120,50)">,False</span>)<br>sa =3D uhd.usrp.Stream=
+Args(<span style=3D"color:rgb(106,135,89)">&#39;fc32&#39;</span><span style=
+=3D"color:rgb(204,120,50)">,</span><span style=3D"color:rgb(106,135,89)">&#=
+39;sc16&#39;</span>)<br>sa.args =3D <span style=3D"color:rgb(106,135,89)">&=
+#39;spp=3D&#39;</span>+<span style=3D"color:rgb(136,136,198)">str</span>(ff=
+t_lenght)<br><br>rx_streamer =3D graph.create_rx_streamer(<span style=3D"co=
+lor:rgb(104,151,187)">2</span><span style=3D"color:rgb(204,120,50)">,</span=
+>sa)<br>graph.connect(<span style=3D"color:rgb(106,135,89)">&#39;0/FFT#1&#3=
+9;</span><span style=3D"color:rgb(204,120,50)">,</span><span style=3D"color=
+:rgb(104,151,187)">0</span><span style=3D"color:rgb(204,120,50)">,</span>rx=
+_streamer<span style=3D"color:rgb(204,120,50)">,</span><span style=3D"color=
+:rgb(104,151,187)">1</span>)<br>graph.connect(<span style=3D"color:rgb(106,=
+135,89)">&#39;0/FFT#0&#39;</span><span style=3D"color:rgb(204,120,50)">,</s=
+pan><span style=3D"color:rgb(104,151,187)">0</span><span style=3D"color:rgb=
+(204,120,50)">,</span>rx_streamer<span style=3D"color:rgb(204,120,50)">,</s=
+pan><span style=3D"color:rgb(104,151,187)">0</span>)<br>num_samps =3D <span=
+ style=3D"color:rgb(136,136,198)">int</span>(fft.get_length()*<span style=
+=3D"color:rgb(104,151,187)">5</span>)<br>radio_zeros =3D np.zeros((<span st=
+yle=3D"color:rgb(104,151,187)">2</span><span style=3D"color:rgb(204,120,50)=
+">,</span>num_samps)<span style=3D"color:rgb(204,120,50)">,</span><span sty=
+le=3D"color:rgb(170,73,38)">dtype</span>=3Dnp.complex64)<br><br>graph.commi=
+t()<br><span style=3D"color:rgb(136,136,198)">print</span>(num_samps)<br>st=
+ream_cmd =3D uhd.types.StreamCMD(uhd.types.StreamMode.num_done)<br>stream_c=
+md.num_samps =3Dnum_samps<br>stream_cmd.stream_now =3D <span style=3D"color=
+:rgb(204,120,50)">False<br></span>stream_cmd.time_spec =3D graph.get_mb_con=
+troller(<span style=3D"color:rgb(104,151,187)">0</span>).get_timekeeper(<sp=
+an style=3D"color:rgb(104,151,187)">0</span>).get_time_now()+<span style=3D=
+"color:rgb(104,151,187)">0.1<br></span>rx_streamer.issue_stream_cmd(stream_=
+cmd)<br>rx_metadata =3D uhd.types.RXMetadata()<br>num_samps =3D rx_streamer=
+.recv(radio_zeros<span style=3D"color:rgb(204,120,50)">,</span>rx_metadata<=
+span style=3D"color:rgb(204,120,50)">,</span><span style=3D"color:rgb(104,1=
+51,187)">0.1</span>)<br><span style=3D"color:rgb(136,136,198)">print</span>=
+(num_samps)<br><span style=3D"color:rgb(136,136,198)">print</span>(rx_metad=
+ata)<br><span style=3D"color:rgb(136,136,198)">print</span>(radio_zeros)<br=
+><span style=3D"color:rgb(106,135,89)">```<span style=3D"background-color:r=
+gb(243,243,243)"><br></span><span class=3D"gmail-Y2IQFc" lang=3D"en"><span =
+style=3D"background-color:rgb(243,243,243)"><span style=3D"color:rgb(0,0,0)=
+">And I am getting the following error:<br>Has timespec: No	Time of first s=
+ample: 0<br>Fragmented: No =C2=A0Fragmentation offset: 0<br>Start of burst:=
+ No	End of burst: No<br>Error Code: ERROR_CODE_TIMEOUT	Out of sequence: No<=
+br></span></span><span class=3D"gmail-Y2IQFc" lang=3D"en"><span style=3D"ba=
+ckground-color:rgb(243,243,243)"><span style=3D"color:rgb(0,0,0)">Please te=
+ll me what the problem is, <br>since I did not find documentation and examp=
+les other than <a href=3D"https://www.youtube.com/watch?v=3Dfbcxm7f-Tj0&amp=
+;t=3D290s">https://www.youtube.com/watch?v=3Dfbcxm7f-Tj0&amp;t=3D290s</a></=
+span></span><br></span></span></span></span></span></span></pre><div class=
+=3D"gmail-tw-ta-container gmail-F0azHf gmail-tw-nfl" id=3D"gmail-tw-target-=
+text-container" tabindex=3D"0"><pre class=3D"gmail-tw-data-text gmail-tw-te=
+xt-large gmail-XcVN5d gmail-tw-ta" id=3D"gmail-tw-target-text" style=3D"tex=
+t-align:left" dir=3D"ltr"><span style=3D"font-family:georgia,serif"><span c=
+lass=3D"gmail-Y2IQFc" lang=3D"en">Thank you in advance</span></span></pre><=
+/div></div>
 
---000000000000efc1a905ca3dd099--
+--000000000000221f6405ca409914--
 
---===============2730627940629964570==
+--===============2286114852748150733==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -203,4 +256,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2730627940629964570==--
+--===============2286114852748150733==--
