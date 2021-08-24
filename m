@@ -2,294 +2,150 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F963F6C08
-	for <lists+usrp-users@lfdr.de>; Wed, 25 Aug 2021 01:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F31603F6C12
+	for <lists+usrp-users@lfdr.de>; Wed, 25 Aug 2021 01:07:36 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B7CF3384F01
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Aug 2021 19:03:18 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 45FF1384FCE
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Aug 2021 19:07:36 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ourowndomain-com.20150623.gappssmtp.com header.i=@ourowndomain-com.20150623.gappssmtp.com header.b="xuNFWAyt";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20150623.gappssmtp.com header.i=@ettus-com.20150623.gappssmtp.com header.b="FR7QH5T4";
 	dkim-atps=neutral
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9A3383814DF
-	for <usrp-users@lists.ettus.com>; Tue, 24 Aug 2021 19:02:33 -0400 (EDT)
-Received: by mail-il1-f181.google.com with SMTP id x5so22156293ill.3
-        for <usrp-users@lists.ettus.com>; Tue, 24 Aug 2021 16:02:33 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id B692D3813E4
+	for <usrp-users@lists.ettus.com>; Tue, 24 Aug 2021 19:06:52 -0400 (EDT)
+Received: by mail-ua1-f54.google.com with SMTP id y36so12671103uad.7
+        for <usrp-users@lists.ettus.com>; Tue, 24 Aug 2021 16:06:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ourowndomain-com.20150623.gappssmtp.com; s=20150623;
+        d=ettus-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=nJ/wPhzyhbXGFxSZbq+6KnEPy0F3kgn3l2Uesyh0rQo=;
-        b=xuNFWAytpioKN3isIiyEP/G2r0B6MXGXFVPf1+zdKxS/cmFNFp05Y0FVeUZTZeTnVb
-         ckFFOIXFB8s2PW81kwhObLxX7RI2E6mTnH1K7HH9LrHQyRIIRH4l5oywG3+QDHcFKaW3
-         DV8PIbGwOnhp++WZDqJTq1ZycBzjx2VbgAy/Fcua03G4rPs48Z4Sxbc7qoiVbOyhsdNh
-         4/WbpjFJ0u2Jr5MQJAvNlpbcukEvoZQkZCVFfna/jG7MT8a/AZHluESkNCqC2SdGta98
-         FzmSmxJonYVbROK47gN6wTsG3KYjO371MJuoBSkJnUaQ051XLZlhaThsthNVZ+FFeebc
-         3Cxw==
+        bh=j8OUYRFjiMdxApD566B2MAg147JToEnr4Hoc1P8507Q=;
+        b=FR7QH5T4GcA81+ojFuiSL8JomZeI7WczFk9nHVkgSEsu8UkF09nPdCyheeimmu9M2D
+         1bFni/6QFWaOXhmsYlh7y2arAzVnVkMJcE6REEdoXg7lj3jwz61B3mbOqpS2XXPl5LZw
+         fosafsCd0zHjrXl4FQ2Y9BsZKxOso66TczN6fWu/1NeYW/n2q32Jaq9APhm5WuvEsNCA
+         hZbOL1+c6fgfyn1eHN7J2QoLZ+jm+yTQ6c0d08Jn3kn/g+OJCMgJXz/Z7eVD/gWZ5DZQ
+         7LqAW+9qJFuzNYCQMNT4C4Q24luqzVokXaPAJNnDFGZwVM7m96CrZ28+wEyeFnybAGaW
+         3C1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nJ/wPhzyhbXGFxSZbq+6KnEPy0F3kgn3l2Uesyh0rQo=;
-        b=dwRIzeAQh9QMoBkFySOLb/mDum/tqWWr7PW/I4maR+KCrEpoo/4kUwKaF8JwZSqULa
-         Dw2hLpYTUqwnF311W8iPIdfnbfh6uiHpM+mOIo2o3fL6kOLKaDxxvTq7KPVow1J/L14D
-         JDYcG6tZRbAkCems4OpKGPKh3YJEf+hYPAjGHaG0gq7xbWM092lDBWf8plmuRd0BpT3G
-         likxNUIZvgutDnVsQCNWaACY41hwYTORt+xVYUlZOdwTfVsk5dB4YOsbr52qL0Z7oiSe
-         M+BhoPq6xD2GxI7uQ/TLjNFRQGsdX8GFEKgRVhRMHJsgQBNJ6b/respXCg5+8vOwnmVh
-         6N/g==
-X-Gm-Message-State: AOAM5303Xiv5P8OxmukpBO9wqxzw9rhjKy1NYz4U2tRpty3VS3yVppsB
-	GnZ24aKFz2NVWBL1fvGWU6krLcB6/APj1Pxsv/bNH59u+P+0pA==
-X-Google-Smtp-Source: ABdhPJzBmbIT61ZuBEi0Pa1duQOSN6HyGtMY6wffVCTceQiXjSwdA+ywiKr4cj8aeIFQmyh7CFI3hHbZhOXf9HO2BG4=
-X-Received: by 2002:a92:a801:: with SMTP id o1mr28524403ilh.128.1629846152628;
- Tue, 24 Aug 2021 16:02:32 -0700 (PDT)
+        bh=j8OUYRFjiMdxApD566B2MAg147JToEnr4Hoc1P8507Q=;
+        b=nRdPxm0tNbXR2cIu2QfUCM0GFH+Fd4QxPcoA8KOTIKw/VidS5F+N3XZV1HJ0Qy4Swu
+         OozcRzl9abJZqCMIMWqHO0hTI1kGXL/ZWf2pRAkJDUjq3ALbHatdzQuC/j9Sdi2XDhAX
+         Fn0yb94mGCYlgIVFXBerXalOUTYZtOO7nYofbpeR+UR9TIaj40esMMiv0uZdIsM1bWK1
+         njR1/qJ3IfXx4IcqnpMX/Lw53T68X8mR+Xw218K5nsEDV+U39PlKG1M1eZw0pDc4dCWC
+         rolW23bJpavl7pUtC8V4kfDzAm6o8Uo++Nz8DVECCIRQnDULgbIaRH2h3zuF53pFjGEI
+         nKyA==
+X-Gm-Message-State: AOAM5328sB8NJH+ttwlEpIXRa0WTiiGCPmlMboulScNUt7x/DiSJeGxo
+	ph6i+KErS5MH7PBkFW+ajBmEV+Q5XKlQDpv0D+bh7nM1
+X-Google-Smtp-Source: ABdhPJzscNiskHYhWeTpwllcSiHaOGFplhTAwWxW+ZLlFKzCXelCuHESSLEk3BpoIead7MFTyUAso4WmfstEXUJaERk=
+X-Received: by 2002:a9f:264b:: with SMTP id 69mr209327uag.112.1629846412188;
+ Tue, 24 Aug 2021 16:06:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <CANsNeao6k=2hTMc7orLE2L=dXKuoM243zTJ3VDWtUnDYU_YvZQ@mail.gmail.com>
- <19B59BC4-DD76-4F88-9465-085241A4398F@gmail.com> <572877336.1228759.1629843589505@mail.yahoo.com>
- <1126607151.1233468.1629843927338@mail.yahoo.com>
-In-Reply-To: <1126607151.1233468.1629843927338@mail.yahoo.com>
-From: Rich Gopstein <rich@ourowndomain.com>
-Date: Tue, 24 Aug 2021 19:02:21 -0400
-Message-ID: <CANsNeaqzeT0ANus-UYwJhwTis5FYBX0qqLnag=1gbYO0iNxB2A@mail.gmail.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: QCJONUUEE3NUNKAUQYUPH2Q7533PH4Y5
-X-Message-ID-Hash: QCJONUUEE3NUNKAUQYUPH2Q7533PH4Y5
-X-MailFrom: rich@ourowndomain.com
+References: <CAPRRyxsM=2UogKNO1Z6idwXU+FZ3bX0H7kDkQQtw_WP60Dh-1Q@mail.gmail.com>
+In-Reply-To: <CAPRRyxsM=2UogKNO1Z6idwXU+FZ3bX0H7kDkQQtw_WP60Dh-1Q@mail.gmail.com>
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Date: Tue, 24 Aug 2021 19:06:16 -0400
+Message-ID: <CAL7q81tkGV0XUtAkdFC1m1S028dvtszXfDgHjnOU570NaHG7UA@mail.gmail.com>
+To: Ivan Zahartchuk <adray0001@gmail.com>
+Message-ID-Hash: WRFILXYZ76JAYBS22MAMJYKE2B4DGHUZ
+X-Message-ID-Hash: WRFILXYZ76JAYBS22MAMJYKE2B4DGHUZ
+X-MailFrom: jonathon.pendlum@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Reading E310 temperatures
+Subject: [USRP-users] Re: setting lenght of fft RFNoC UHD 4
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QCJONUUEE3NUNKAUQYUPH2Q7533PH4Y5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WRFILXYZ76JAYBS22MAMJYKE2B4DGHUZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1290075395453597960=="
+Content-Type: multipart/mixed; boundary="===============0458555170427133134=="
 
---===============1290075395453597960==
-Content-Type: multipart/alternative; boundary="000000000000f7607b05ca56203f"
+--===============0458555170427133134==
+Content-Type: multipart/alternative; boundary="0000000000006ff45105ca56301b"
 
---000000000000f7607b05ca56203f
+--0000000000006ff45105ca56301b
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thanks for both suggestions.  I installed lm_sensors, and it seems to find
-two of the temp sensors.  Not sure which two, though:
+Hello Ivan,
 
-# sensors
-e31x_battery-virtual-0
-Adapter: Virtual device
-temp1:       -273.0=C2=B0C
+Are you steaming into the ARM processor / PS or are you streaming over the
+network? Are you running a UHD app or using GNU Radio?
 
-e000b000ethernetffffffff00-mdio-0
-Adapter: MDIO adapter
-temp1:        +28.0=C2=B0C  (crit =3D +100.0=C2=B0C)
+Jonathon
 
-jc-42.4-temp-i2c-0-19
-Adapter: Cadence I2C at e0004000
-temp1:        +33.2=C2=B0C  (low  =3D  +0.0=C2=B0C)                  ALARM =
-(HIGH, CRIT)
-                       (high =3D  +0.0=C2=B0C, hyst =3D  +0.0=C2=B0C)
-                       (crit =3D  +0.0=C2=B0C, hyst =3D  +0.0=C2=B0C)
+On Tue, Aug 24, 2021 at 5:40 PM Ivan Zahartchuk <adray0001@gmail.com> wrote:
 
-
-On Tue, Aug 24, 2021 at 6:25 PM aneesh patel <ampselectronics@yahoo.com>
-wrote:
-
-> Correction-- missed you said "outside of gnuradio." Basically everything
-> below minus gnuradio. if the sensors_lm package is available (as marcus
-> stated), parse that output or just manually parse the /sys or /proc (forg=
-ot
-> which one) file descriptor for the sensor when you find it.
+> Hi,
+> I try to set length of fft = 512 or 1024 for USRP E310 (RFNoC UHD 4), but when the value is set I haven`t received the data. When the fft = 256 it`s work fine.
 >
-> Best of luck!
+> My graph looks like this:
+> 0/Radio#0:0==>0/FFT#0:0
+> 0/FFT#0:0==>0/SEP#0:0
 >
-> Aneesh
+> Setup of my SEP is:
 >
-> On Tuesday, August 24, 2021, 06:19:49 PM EDT, aneesh patel <
-> ampselectronics@yahoo.com> wrote:
+> stream_endpoints:
+>   ep0:                       # Stream endpoint name
+>     ctrl: True                      # Endpoint passes control traffic
+>     data: True                      # Endpoint passes data traffic
+>     buff_size: 32768              # Ingress buffer size for data
 >
->
-> Concur on verifying-- that being said I know at least one of them
-> (possibly CPU) was available on the SG3 image a while back (I'm sure
-> nothing much has changed there but its been a while).
->
-> Then is would be very simple to write a simple custom GNURadio block (lik=
-e
-> basically a command line script to cat the sensor file descriptor [just
-> google that as I can't recall if its in /sys or /proc]) to pull that data
-> from the OS to pass temp messages and ingest them into your message passi=
-ng
-> or logging system. On the tougher end, depending on dev cycles, one can
-> cross-compile or pull code from lm-sensors and then turn that into a
-> GNURadio block (and maybe even being able to add the other sensors when
-> reading into the ettus kernel mod code/schematics if possible). Some
-> options exist.
->
-> Going all from memory here but that should be >94.27% correct. :)
->
-> Best of luck!
->
-> Aneesh
->
-> On Tuesday, August 24, 2021, 05:20:51 PM EDT, Marcus D Leech <
-> patchvonbraun@gmail.com> wrote:
->
->
-> My approach would be to see if any of those sensors are understood by the
-> kernel lm_sensors subsystem.
->
-> Sent from my iPhone
->
-> > On Aug 24, 2021, at 5:12 PM, Rich Gopstein <rich@ourowndomain.com>
-> wrote:
-> >
-> > =EF=BB=BF
-> > I'm helping out on a project that's using an E310.  Someone else is
-> doing the GNURadio code, but I need to read the temperature values
-> periodically (once every few seconds).  My code will not be running in
-> GNURadio.
-> >
-> > It looks like there are three temp sensors (Zynq, ADT7408, and the
-> AD9361).
-> >
-> > What are my options for reading the temp values outside of GNURadio?  I=
-f
-> it matters, the E310 is running UHD_3.15
-> > My code will be running on the E310 directly.
-> >
-> >
-> > Thanks.
-> >
-> > Rich
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> How can I set value fft length 512 or 1024 and how it`s work?
+> I would greatly appreciate your answer.
 >
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000f7607b05ca56203f
+--0000000000006ff45105ca56301b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for both suggestions.=C2=A0 I installed lm_sensors,=
- and it seems to find two of the temp sensors.=C2=A0 Not sure which two, th=
-ough:<div><br></div><div><font face=3D"monospace"># sensors<br>e31x_battery=
--virtual-0<br>Adapter: Virtual device<br>temp1: =C2=A0 =C2=A0 =C2=A0 -273.0=
-=C2=B0C<br><br>e000b000ethernetffffffff00-mdio-0<br>Adapter: MDIO adapter<b=
-r>temp1: =C2=A0 =C2=A0 =C2=A0 =C2=A0+28.0=C2=B0C =C2=A0(crit =3D +100.0=C2=
-=B0C)<br><br>jc-42.4-temp-i2c-0-19<br>Adapter: Cadence I2C at e0004000<br>t=
-emp1: =C2=A0 =C2=A0 =C2=A0 =C2=A0+33.2=C2=B0C =C2=A0(low =C2=A0=3D =C2=A0+0=
-.0=C2=B0C) =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0AL=
-ARM (HIGH, CRIT)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0(high =3D =C2=A0+0.0=C2=B0C, hyst =3D =C2=A0+0.=
-0=C2=B0C)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0(crit =3D =C2=A0+0.0=C2=B0C, hyst =3D =C2=A0+0.0=C2=B0=
-C)</font><br></div><div><br></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 24, 2021 at 6:25 PM aneesh pa=
-tel &lt;<a href=3D"mailto:ampselectronics@yahoo.com">ampselectronics@yahoo.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Aria=
-l,sans-serif;font-size:13px"><div></div>
-        <div dir=3D"ltr">Correction-- missed you said &quot;outside of gnur=
-adio.&quot; Basically everything below minus gnuradio. if the sensors_lm pa=
-ckage is available (as marcus stated), parse that output or just manually p=
-arse the /sys or /proc (forgot which one) file descriptor for the sensor wh=
-en you find it.=C2=A0</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Best=
- of luck!</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Aneesh</div><div=
-><br></div>
-       =20
-        </div><div id=3D"gmail-m_13919340374060557ydpb3eb0d01yahoo_quoted_0=
-229013022">
-            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
-Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
-               =20
-                <div>
-                    On Tuesday, August 24, 2021, 06:19:49 PM EDT, aneesh pa=
-tel &lt;<a href=3D"mailto:ampselectronics@yahoo.com" target=3D"_blank">amps=
-electronics@yahoo.com</a>&gt; wrote:
-                </div>
-                <div><br></div>
-                <div><br></div>
-                <div><div id=3D"gmail-m_13919340374060557ydpb3eb0d01yiv6860=
-814934"><div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica=
-,Arial,sans-serif;font-size:13px"><div></div>
-        <div dir=3D"ltr">Concur on verifying-- that being said I know at le=
-ast one of them (possibly CPU) was available on the SG3 image a while back =
-(I&#39;m sure nothing much has changed there but its been a while).</div><d=
-iv dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Then is would be v=
-ery simple to write a simple custom GNURadio block (like basically a comman=
-d line script to cat the sensor file descriptor [just google that as I can&=
-#39;t recall if its in /sys or /proc]) to pull that data from the OS to pas=
-s temp messages and ingest them into your message passing or logging system=
-. On the tougher end, depending on dev cycles, one can cross-compile or pul=
-l code from lm-sensors and then turn that into a GNURadio block (and maybe =
-even being able to add the other sensors when reading into the ettus kernel=
- mod code/schematics if possible). Some options exist.</div><div dir=3D"ltr=
-"><br clear=3D"none"></div><div dir=3D"ltr">Going all from memory here but =
-that should be &gt;94.27% correct. :)</div><div dir=3D"ltr"><br clear=3D"no=
-ne"></div><div dir=3D"ltr">Best of luck!</div><div dir=3D"ltr"><br clear=3D=
-"none"></div><div dir=3D"ltr">Aneesh=C2=A0</div><div><br clear=3D"none"></d=
-iv>
-       =20
-        </div><div id=3D"gmail-m_13919340374060557ydpb3eb0d01yiv6860814934y=
-qt80428"><div id=3D"gmail-m_13919340374060557ydpb3eb0d01yiv6860814934ydpca3=
-3aaa6yahoo_quoted_0518387881">
-            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
-Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
-               =20
-                <div>
-                    On Tuesday, August 24, 2021, 05:20:51 PM EDT, Marcus D =
-Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patc=
-hvonbraun@gmail.com</a>&gt; wrote:
-                </div>
-                <div><br clear=3D"none"></div>
-                <div><br clear=3D"none"></div>
-                <div><div dir=3D"ltr">My approach would be to see if any of=
- those sensors are understood by the kernel lm_sensors subsystem. <br clear=
-=3D"none"><br clear=3D"none">Sent from my iPhone<br clear=3D"none"><br clea=
-r=3D"none">&gt; On Aug 24, 2021, at 5:12 PM, Rich Gopstein &lt;<a shape=3D"=
-rect" href=3D"mailto:rich@ourowndomain.com" rel=3D"nofollow" target=3D"_bla=
-nk">rich@ourowndomain.com</a>&gt; wrote:<br clear=3D"none">&gt; <br clear=
-=3D"none">&gt; =EF=BB=BF<br clear=3D"none">&gt; I&#39;m helping out on a pr=
-oject that&#39;s using an E310.=C2=A0 Someone else is doing the GNURadio co=
-de, but I need to read the temperature values periodically (once every few =
-seconds).=C2=A0 My code will not be running in GNURadio.<br clear=3D"none">=
-&gt; <br clear=3D"none">&gt; It looks like there are three temp sensors (Zy=
-nq, ADT7408, and the AD9361).=C2=A0 <br clear=3D"none">&gt; <br clear=3D"no=
-ne">&gt; What are my options for reading the temp values outside of GNURadi=
-o?=C2=A0 If it matters, the E310 is running UHD_3.15<br clear=3D"none">&gt;=
- My code will be running on the E310 directly.<br clear=3D"none">&gt; <br c=
-lear=3D"none">&gt; <br clear=3D"none">&gt; Thanks.<br clear=3D"none">&gt; <=
-br clear=3D"none">&gt; Rich<br clear=3D"none">&gt; <br clear=3D"none">&gt; =
-_______________________________________________<br clear=3D"none">&gt; USRP=
--users mailing list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.et=
-tus.com" rel=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a><=
-br clear=3D"none">&gt; To unsubscribe send an email to <a shape=3D"rect" hr=
-ef=3D"mailto:usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_=
-blank">usrp-users-leave@lists.ettus.com</a><div id=3D"gmail-m_1391934037406=
-0557ydpb3eb0d01yiv6860814934ydpca33aaa6yqtfd42373"><br clear=3D"none">_____=
-__________________________________________<br clear=3D"none">USRP-users mai=
-ling list -- <a shape=3D"rect" href=3D"mailto:usrp-users@lists.ettus.com" r=
-el=3D"nofollow" target=3D"_blank">usrp-users@lists.ettus.com</a><br clear=
-=3D"none">To unsubscribe send an email to <a shape=3D"rect" href=3D"mailto:=
-usrp-users-leave@lists.ettus.com" rel=3D"nofollow" target=3D"_blank">usrp-u=
-sers-leave@lists.ettus.com</a><br clear=3D"none"></div></div></div>
-            </div>
-        </div></div></div></div></div>
-            </div>
-        </div></div></blockquote></div>
+<div dir=3D"ltr">Hello Ivan,<div><br></div><div>Are you steaming into the A=
+RM processor / PS or are you streaming over the network? Are you running a =
+UHD app or using GNU Radio?</div><div><br></div><div>Jonathon</div></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, =
+Aug 24, 2021 at 5:40 PM Ivan Zahartchuk &lt;<a href=3D"mailto:adray0001@gma=
+il.com">adray0001@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr"><pre id=3D"gmail-m_788569047819=
+7112252gmail-tw-target-text" style=3D"text-align:left" dir=3D"ltr"><span la=
+ng=3D"en">Hi,<br>I try to set length of fft =3D 512 or 1024 for USRP E310 (=
+RFNoC UHD 4), but when the value is set I haven`t received the data. When t=
+he fft =3D 256 it`s work fine.<br></span></pre><pre id=3D"gmail-m_788569047=
+8197112252gmail-tw-target-text" style=3D"text-align:left"><span lang=3D"en"=
+>My graph looks like this:<br>0/Radio#0:0=3D=3D&gt;0/FFT#0:0<br>0/FFT#0:0=
+=3D=3D&gt;0/SEP#0:0<br><br></span></pre><pre id=3D"gmail-m_7885690478197112=
+252gmail-tw-target-text" style=3D"text-align:left"><span lang=3D"en">Setup =
+of my SEP is:<br><br>stream_endpoints:<br>=C2=A0 ep0: =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Stream endpoint n=
+ame<br>=C2=A0 =C2=A0 ctrl: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes control traffic<br>=C2=
+=A0 =C2=A0 data: True =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0# Endpoint passes data traffic<br>=C2=A0 =C2=A0 buf=
+f_size: 32768 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Ingress buf=
+fer size for data<br><br></span></pre><pre id=3D"gmail-m_788569047819711225=
+2gmail-tw-target-text" style=3D"text-align:left"><span lang=3D"en">How can =
+I set value fft length 512 or 1024 and how it`s work?<br>I would greatly ap=
+preciate your answer.</span></pre></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---000000000000f7607b05ca56203f--
+--0000000000006ff45105ca56301b--
 
---===============1290075395453597960==
+--===============0458555170427133134==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -299,4 +155,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1290075395453597960==--
+--===============0458555170427133134==--
