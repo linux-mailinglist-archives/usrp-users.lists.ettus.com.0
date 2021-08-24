@@ -2,254 +2,230 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAB393F53AA
-	for <lists+usrp-users@lfdr.de>; Tue, 24 Aug 2021 01:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B6643F5594
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Aug 2021 03:47:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4DF63381009
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Aug 2021 19:32:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A4B97383BAD
+	for <lists+usrp-users@lfdr.de>; Mon, 23 Aug 2021 21:47:46 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=caltech.edu header.i=@caltech.edu header.b="DqY8K7Mh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="OQkfQ+lQ";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2058.outbound.protection.outlook.com [40.107.93.58])
-	by mm2.emwd.com (Postfix) with ESMTPS id 464CE3809CB
-	for <usrp-users@lists.ettus.com>; Mon, 23 Aug 2021 19:32:09 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ENemUyjFeXPj3kEgG/IQXb4d15OZXeGf+IO/s875touqpCpdix7UWHir85g3J5xlfX1XwDsKf7JaVRRcRqK4vuzBaalN0wNiPo8MLNFR6pod8wfj1i/nGsq7+AOtmLAUJwSEf08Je2S1/A9DM3qG0SzrlMOotZIj4+MeQ5/qJPfXjAAu4rP9wk3KN6Kq4f4feJUD39QvWfWyG0810RMP7SBv6UOUEu+XXxWeN6N7VO8XscCnN7mfe8IVtQnjUOD749KeBKob2HGKfmEuenG0FIsIKiUp86inCbalh0Bd4plnOwNY6k6SJtzpzKQaHTmf2tmkEfAkIe2gJiyFvr5JwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2xX8NXqXGX0UZT+ejViPO23UlssaZJEn3vTB+1IXsCk=;
- b=i2FMieATny77zbPmg5yPwlNpc4Z5JRcjIrNGZd+mT1jmcDjdlp2+8xXkUaMR73gfG5Lk5Wpi6umY7hL0yTBZsDO0+UGo5z4hKYxjcQgqlqn6vcmXi3SgP26RV5WbsrgF4t91fTlMVWyU9gqJSaujIkC3fQywusFGHettTmltpH+kteZyP/pmhLo97Z/QtXDULB5KH1R5zE5HAxSkZ70h3RzpxxwtBi2Nt4hw888a+GrgD5BAF1jrrD3l0eLD7+XJrQHLqnjHzxvepXqW/fIgypGR58Mu2GRooEbVqkKKO+TkRN9xlqEcMzAaUIYV2ShnQsT4RDmEnQrm0mOVYtUUdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
- dkim=pass header.d=caltech.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caltech.edu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2xX8NXqXGX0UZT+ejViPO23UlssaZJEn3vTB+1IXsCk=;
- b=DqY8K7MhZwg2Dhw1nm1a5TiEJsEhq2Jq8u1z3coA58x94Y1d1KtgpjZEfSAfmve2UTEiflTzkiEIv8frY9Ob9YORCHfHh2yFgE+Bk3J9S/AmwItjKAEsVtHj67/ZxbSQPSExF5NaNiLbAlQDk//ad+9i33YfRcmAPu5f3jJHU9r/h55orTZIEpTqmZQXQQEcAfdtyRQBZDEcRQMuAF+gxg9D7xBEc7ZuI+KnTXOY7lmvJqAMOT9BydKiHNxhDK50h/ICc8XmJwpG4e5kEN2w5gCtgwSSc6t/yXOypna+mZjZIamDSkNLKxq6hLvuUVve22wFwOyeIalF9zCKuFkW/A==
-Received: from MN2PR03MB4685.namprd03.prod.outlook.com (2603:10b6:208:af::15)
- by MN2PR03MB4974.namprd03.prod.outlook.com (2603:10b6:208:1a4::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4436.21; Mon, 23 Aug
- 2021 23:32:07 +0000
-Received: from MN2PR03MB4685.namprd03.prod.outlook.com
- ([fe80::29cb:8ae3:a3be:ef96]) by MN2PR03MB4685.namprd03.prod.outlook.com
- ([fe80::29cb:8ae3:a3be:ef96%7]) with mapi id 15.20.4436.024; Mon, 23 Aug 2021
- 23:32:06 +0000
-From: "Minutolo, Lorenzo" <minutolo@caltech.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Mender update error
-Thread-Index: AQHXmHZ+rUWVdYTW8EmW1gEUZD9k9g==
-Date: Mon, 23 Aug 2021 23:32:06 +0000
-Message-ID: 
- <MN2PR03MB4685293037E591CA42220DC1D3C49@MN2PR03MB4685.namprd03.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none
- header.from=caltech.edu;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fba097c8-e2c7-44b5-9124-08d9668e388d
-x-ms-traffictypediagnostic: MN2PR03MB4974:
-x-microsoft-antispam-prvs: 
- <MN2PR03MB4974DF96820491B0B5D8552AD3C49@MN2PR03MB4974.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- Ok1SZaO+14ofLEYlLb8rdQF1C14MA1zLK31P6wfaZaPubdrMJvry6ENcJPDA2j4rPdHRfZHcgImQJCSICSYpY/NpJ6afSD0OrI3BFrPM6PUpzyixq1oXPUQBYQR2/MQr3x7JS70ShtZAOSnvjs6tYuxGVIyAyO8Ik16J73JiAl+1gpQMWJ8Eylfv+oDCWLsxCZyTElJS+9YvQTKCPskdf4rRXjUr0seXNT0nwFQiv7pkChHzT/eRtHHuO/VAihwvNJXeqXrBKkehtm57U8ATTLpQB/LyaBfuuyAy0ToTd2LJ2CsdS9W2S0tXdI59ba6rfJ+OGNB7/1BRgCDjTyBZsRNpkMpM1qH4hcbA7ih/hq1WhM3GKG9ITODa/RzKX1Z3YAnuhIWCn+e6xH4MCmsgpdvEM/yhTXfjwAuT2iPqhvzUo59IoS0svB7XsXBVAkO80wnY5SEHfI/LCMOPsDqA9p2T86rryCci1DAgdhUd1nLPGUOj+Mup+wxDTX7+TKj+rwPbHE+XpLFGtvfnpZNoS2jFp4LSZUotRMXXLny+o8SGLvzHXPTa8v1Q5rie4p1vAAxOIYSnSdk3+cn0O7jilCBW/2Dg95iiF02Q64dAYgQIY+WSftTgehuDoLzrzJSs+0SmVzaWaXSOCo0cHDY0A8N6eu34GFHSP3XHQpjE/MZjoKGlTYnnmVKcwZbGoKCagGwbj0Z/s53vSBctvwcIuw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR03MB4685.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(39860400002)(136003)(396003)(346002)(478600001)(15650500001)(86362001)(3480700007)(5660300002)(33656002)(8936002)(7116003)(7696005)(2906002)(71200400001)(6506007)(6916009)(786003)(83380400001)(316002)(19627405001)(66476007)(66556008)(38070700005)(55016002)(64756008)(66446008)(122000001)(91956017)(8676002)(76116006)(66946007)(9686003)(186003)(75432002)(52536014)(38100700002)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?hcUZWjF6ULtTxonmd5JJwYRDQTFmNYOksqKMCtcNAA0gSGEIxr0gJtCFXI?=
- =?iso-8859-1?Q?wdkELzaMweRb+gEO+IPeUw2aby3mFv+JhUMWR/AULaNC6BJ12yBPhvTaO4?=
- =?iso-8859-1?Q?+pmKtDXz91Nk+Ywrm1prl7UnbD0tjGetjm1fbqyPt5Li7QIei1FRNKLShn?=
- =?iso-8859-1?Q?mDq34PJBxqlTp+aR8bWBgjdmdFSI4ScNaOW4ZBN9or8geURcUbj1advcQ3?=
- =?iso-8859-1?Q?pvPmkbIBMAYQ/PZwZzR1tOtKqwIcjFw0yE/QfUn9cN/rvmIHXxdWett///?=
- =?iso-8859-1?Q?c5p6FPRy745FX3iAUiRoUmqvljwlmQ9MItg8vzWF+lMMHWIhbb/bf3rCRx?=
- =?iso-8859-1?Q?n3WjThtcDelZk/MvXuDu5YFrdQAxtRpF/rL8LEWTXC3Gu5CRok01K3lscp?=
- =?iso-8859-1?Q?Ij87+GZoMerKwWS/8zOXnn3agvnj73Ev0Y6lv+xaJIaVo7kRZzgSCDIL3J?=
- =?iso-8859-1?Q?qJZFNQqxSRGhI92MHI/nCrM2OMlr/TSFpoIhWKbcXuEbKouxq66uWPiY2V?=
- =?iso-8859-1?Q?2DvNYzmffOh8lKwm8erfx3nxQkzF7A+DmoEnwZZfqvA8CdAXlsBEiemAqH?=
- =?iso-8859-1?Q?e75w6ztsddT/AWKE9uJTyoj8JmL00AN74Mifp2KYg41VM9v2Mp14ydzH1B?=
- =?iso-8859-1?Q?V5QY8KGyYLt9ZDmfOU2jF4yJ87mtvsgPoJJ6UolSpXqYCG6+zZcPYvflki?=
- =?iso-8859-1?Q?cNOq/XKkdvTYDwODkrIwMHoGVe8T+8pjjAXGiSs2+JpPXL5Oa8SLqr54ev?=
- =?iso-8859-1?Q?c+P/TPWhc/tjqp0mHTUrsL3m1qg/M5BVKtygVwpG38OPGu9g9uzE/rTCKj?=
- =?iso-8859-1?Q?LCpyvAIZyYBOfFOv7QkTW21Cxxx83qV3yJdbzrEMdHh5o0pTRjhtNDusQx?=
- =?iso-8859-1?Q?8mjKYQm0B0VoQEXngtmOt9PcKyMH5Xu9evDvCqqCnBmnQRagG0RM3Z7GoW?=
- =?iso-8859-1?Q?aKvREFH3DIA1PQUsji4kI0jCSXRONPkbu+8FCfjWmwHCVAAuYuPY56s+yB?=
- =?iso-8859-1?Q?rHQWyni9CuJhM08u2IAj3gNBg8Sh8dEPu642w6wrCO9jNduV11lA4Bat1D?=
- =?iso-8859-1?Q?ZNPRUO28vkWCutReCrHhMbOrnkuF79UARhG60NJCNDX/NWOxu466nIUXG7?=
- =?iso-8859-1?Q?RDFaZwLtPC82iD/Q9WuuZvugKtWkw6Sn3sVkPMoVbm96P4nZM52exO1dB6?=
- =?iso-8859-1?Q?zJjSLTYNjPR/GRR8ztOhNabFcgUY35bWQBIpf5qcHyZ9LkcQnzQCg9merM?=
- =?iso-8859-1?Q?Q5r1+1shSrSWAvB5iCZuW5LN7gHBWR9CYywEZtGgijj1h/EYrgWI7r/aYi?=
- =?iso-8859-1?Q?coaHH9uFWKFyJW6eZdOcN0tchUCHAJ6QbzwqFlqHv/WVzeI=3D?=
-x-ms-exchange-transport-forked: True
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id CC0B0383C3A
+	for <usrp-users@lists.ettus.com>; Mon, 23 Aug 2021 21:47:03 -0400 (EDT)
+Received: by mail-oo1-f50.google.com with SMTP id y16-20020a4ad6500000b0290258a7ff4058so6015755oos.10
+        for <usrp-users@lists.ettus.com>; Mon, 23 Aug 2021 18:47:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TkIXkaXM/qM/RnAYHs2EzCDdq96KCDRzYLkFDicZ2zg=;
+        b=OQkfQ+lQ2h814ffvhK5OKfPom77/VldBvSvGPTVfFsfmHhZ6RGVXrbu2kdwbxHfv8l
+         vUdYUT2249U/Yl6tWgF1RNnaGFbjT5HA3z4dC7mcgBnDdj8NAKBtv4xpkyf46QYSp8jE
+         rmAELGbgzSjov9SbPqgE1iUFUsnP5EARt3Uix3GzkO9U9W1mgLMmNA2Ni3lExM2OIxRC
+         8Cvqz6jOEUVFdXGG1l4h8c4O9tvKxhqXNpsP64gLETj97NCe5GXwXIQczPeHv59CtLaa
+         FuNtmhmwMpHBwI2fGkvW1yRdW1i0zSfyFQgnKNfXkkG7K3ptGuAP9mJu/YEWAsoz/vdZ
+         lBTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TkIXkaXM/qM/RnAYHs2EzCDdq96KCDRzYLkFDicZ2zg=;
+        b=IEE/+lA1r/bGcty19tCIo1gPpZttjnGd4k84gsHgujHYAxRacVREwNC+tn2PBk7m1P
+         pdkh7rhWx8zSrkq4kghFFLUITGwnURH/1okehQ1eGLovytZFtDgSSxfYB93/KebEm41M
+         2qqQwWCIW5HQB5iaL72jHKm0NLJxcZnlGckePtFXiA5ZPzmcF0xv6aod1IdlMfuJeyGx
+         nKn2Rhm5Ii8wUjo0i107peZKZJNZgm4t+Fq0wD/nyVFT5E4XU1HuCOffEkyPJX+TdV7Z
+         11w98XzRqSMCswE9JZwyTUSxeSNoGUkHU5NyTG8sMd3j72Q/28U88bZP9yH61EZn+GoI
+         MB8w==
+X-Gm-Message-State: AOAM533tplyW9N9zVXIUDtqb2SDnPT4KZP4qbI/BWWd1FX1wH5a8nHJT
+	r6UQwhBeAg2GRbjJQiYEZmBlNRgST4m7Qbu0uknLrO+zKgc=
+X-Google-Smtp-Source: ABdhPJwuKgLqBjF6+bGe8XfBaMrZv+DS70uw8Tr+T+mTQhJvnc2YfNJIicxOiOtuRO4bv37xaOBtPKn3/D/G1SWvA3Q=
+X-Received: by 2002:a4a:d752:: with SMTP id h18mr28218854oot.13.1629769622834;
+ Mon, 23 Aug 2021 18:47:02 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: caltech.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR03MB4685.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fba097c8-e2c7-44b5-9124-08d9668e388d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2021 23:32:06.9127
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1f0uzUR7CjuBSHpe9tCFTiv/qWeDpT1UpwRJMLwWUYcx0j0+VyzsxUmHLfgT/BU7K9g+EWGnJPdcKZ0V4FM6dA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR03MB4974
-Message-ID-Hash: N3STIMWMIKEAIFHKIIC7AN3IWXV3EDHB
-X-Message-ID-Hash: N3STIMWMIKEAIFHKIIC7AN3IWXV3EDHB
-X-MailFrom: minutolo@caltech.edu
+References: <CAKHaR3kE1Td0vH7QM9xDExms7N_drXXf__V6OUk-a5BWbyGTmQ@mail.gmail.com>
+ <CAB__hTTAyMrGR3bsCK94OcUS4uOZBcpoa7W6R6bGsEi9doXw6Q@mail.gmail.com> <CAKHaR3=sbWZVMMZA1qE1eGBW4Rdy0ZW0hmNEhTj6W1moKxX1vg@mail.gmail.com>
+In-Reply-To: <CAKHaR3=sbWZVMMZA1qE1eGBW4Rdy0ZW0hmNEhTj6W1moKxX1vg@mail.gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Mon, 23 Aug 2021 21:46:51 -0400
+Message-ID: <CAB__hTRBbKF==A8zUiLpzDLrDqQbA-Josws-6yETubJQxwx+8A@mail.gmail.com>
+To: Dario Pennisi <dario@iptronix.com>
+Message-ID-Hash: 6JLQO552Q4RGHX6CWY63FOZTWTOC2ZFF
+X-Message-ID-Hash: 6JLQO552Q4RGHX6CWY63FOZTWTOC2ZFF
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Mender update error
+Subject: [USRP-users] Re: input only rfnoc blocks with UHD 4.1
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JJ24CY2SIGUVQ2OI4ISJOWLZ46EL6YUW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6JLQO552Q4RGHX6CWY63FOZTWTOC2ZFF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8774986176213391970=="
+Content-Type: multipart/mixed; boundary="===============3370266516692446697=="
 
---===============8774986176213391970==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MN2PR03MB4685293037E591CA42220DC1D3C49MN2PR03MB4685namp_"
+--===============3370266516692446697==
+Content-Type: multipart/alternative; boundary="0000000000006f8ee205ca444f0d"
 
---_000_MN2PR03MB4685293037E591CA42220DC1D3C49MN2PR03MB4685namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--0000000000006f8ee205ca444f0d
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Dario,
+In the UHD manual, issue_stream_cmd() can be called from the UHD radio
+controller as well as several other controllers including an rx_streamer.
+The typical way to start streaming from UHD is to call this command on the
+rx_streamer controller, which in turn propagates this command to the DDC
+controller and ultimately to the Radio controller.  I suppose that this
+architecture allows each block in the graph to get prepared for the stream
+that is about to start.  In the end, it is the Radio that starts that
+stream.  In your case with only Radios and your block, it seems you could
+call the Radio_Ctrl->issue_stream_cmd() to start the streaming. I believe
+that this will indeed invoke a register write as you are thinking.
+Rob
+
+On Mon, Aug 23, 2021 at 2:02 PM Dario Pennisi <dario@iptronix.com> wrote:
+
+> Hi Rob,
+> As I was mentioning we're trying to get rid of the streamers so ideally
+> I'd only have two radios connected to my block which has no outputs. The
+> graph would appear to be entirely in the FPGA  and nothing except register
+> reads and writes would enter or exit FPGA.
+> As far as I understand there is no start streaming command on the radios
+> and I don't think I have them on my block.
+> I was tempted to directly write radio stream registers but it's a very
+> dirty solution...
+>
+> Thanks,
+>
+> Dario
+>
+> Il Lun 23 Ago 2021, 15:48 Rob Kossler <rkossler@nd.edu> ha scritto:
+>
+>> Hi Dario,
+>> How do you start the streaming? Using issue_stream_cmd()? If so, is this
+>> called on the streamer object or on the DDC or radio? The reason I ask is
+>> that if you call it on the streamer, I'm wondering if your issue is related
+>> to command propagation.  That is, the command is not propagating through
+>> your block.  If this is the case, try calling issue_stream_cmd() on the DDC
+>> block which will then propagate it to the Radio block (or call directly on
+>> the Radio if there is no DDC).
+>> Rob
+>>
+>> On Fri, Aug 20, 2021 at 1:26 PM Dario Pennisi <dario@iptronix.com> wrote:
+>>
+>>> Hi,
+>>> i'm trying to optimize FPGA consumption and on N310/UHD4.1.0.1 i am
+>>> testing a block that needs only 2 inputs and no outputs. since i don't need
+>>> to stream any data in/out of the FPGA i declared a single streamer with
+>>> control only and declared no connection between it and any block in the yml
+>>> and this way i can see i can read and write registers.
+>>> the issue arises when i try to stream data to the block: if i have no
+>>> outputs declared, inputs will not receive anything. if i have 1 output
+>>> connected to a streamer, connected to a null sink, i can receive from the
+>>> first input, if i have 2 outputs connected to two streamers connected to
+>>> null sinks i can receive on both inputs.
+>>> is there any way i can get rid of those useless outputs and remove at
+>>> least 1 endpoint?
+>>> if i declare i need a single endpoint with no data why does it complain
+>>> if i don't declare buff_size in the yml?
+>>> my rfnoc block uses a noc shell that outputs axi stream payload which i
+>>> adapted for programmable number of inputs and outputs.
+>>> It seems to me the issue is not on the FPGA side as the backend block
+>>> seems to properly report information and o don't see any connection in NOC
+>>> shell between input and outputs other than in there...
+>>>
+>>> Thanks,
+>>>
+>>> Dario
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
+
+--0000000000006f8ee205ca444f0d
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-I'm trying to update the filesystem on my N321 to use UHD 4.1. I'm running =
-into some troubles.
+<div dir=3D"ltr">Hi Dario,<div>In the UHD manual, issue_stream_cmd() can be=
+ called from the UHD radio controller as well as several other controllers =
+including an rx_streamer. The typical way to start streaming from UHD is to=
+ call this command on the rx_streamer controller, which in turn propagates =
+this command to the DDC controller and ultimately to the Radio controller.=
+=C2=A0 I suppose that this architecture allows each block in the graph to g=
+et prepared for the stream that is about to start.=C2=A0 In the end, it is =
+the Radio that starts that stream.=C2=A0 In your case with only Radios and =
+your block, it seems you could call the Radio_Ctrl-&gt;issue_stream_cmd() t=
+o start the streaming. I believe that this will indeed invoke a register wr=
+ite as you are thinking.</div><div>Rob</div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 23, 2021 at 2:02 PM=
+ Dario Pennisi &lt;<a href=3D"mailto:dario@iptronix.com">dario@iptronix.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+<div dir=3D"auto">Hi Rob,<div dir=3D"auto">As I was mentioning we&#39;re tr=
+ying to get rid of the streamers so ideally I&#39;d only have two radios co=
+nnected to my block which has no outputs. The graph would appear to be enti=
+rely in the FPGA=C2=A0 and nothing except register reads and writes would e=
+nter or exit FPGA.=C2=A0</div><div dir=3D"auto">As far as I understand ther=
+e is no start streaming command on the radios and I don&#39;t think I have =
+them on my block.</div><div dir=3D"auto">I was tempted to directly write ra=
+dio stream registers but it&#39;s a very dirty solution...</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">Thanks,</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">Dario</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">Il Lun 23 Ago 2021, 15:48 Rob Kossler &lt;<a =
+href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; h=
+a scritto:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr"><div dir=3D"ltr">Hi Dario,<div>How do you start the streaming? =
+Using issue_stream_cmd()? If so, is this called on the streamer object or o=
+n the DDC or radio? The reason I ask is that if you call it on the streamer=
+, I&#39;m wondering if your issue is related to command propagation.=C2=A0 =
+That=C2=A0is, the command is not propagating through your block.=C2=A0 If t=
+his is the case, try calling issue_stream_cmd() on the DDC block which=C2=
+=A0will then propagate=C2=A0it to the Radio block (or call directly on the =
+Radio if there is no DDC).</div><div>Rob</div></div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug 20, 2021 at 1:26 =
+PM Dario Pennisi &lt;<a href=3D"mailto:dario@iptronix.com" rel=3D"noreferre=
+r" target=3D"_blank">dario@iptronix.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><div dir=3D"ltr">H=
+i,<div>i&#39;m trying to optimize FPGA consumption and on N310/UHD4.1.0.1 i=
+ am testing a block that needs only 2 inputs and no outputs. since i don&#3=
+9;t need to stream any data in/out of the FPGA i declared a single streamer=
+ with control only and declared no connection between it and any block in t=
+he yml and this way i can see i can read and write registers.</div><div>the=
+ issue arises when i try to stream data to the block: if i have no outputs =
+declared, inputs will not receive=C2=A0anything. if i have 1 output connect=
+ed to a streamer, connected to a null sink, i can receive from the first in=
+put, if i have 2 outputs connected to two streamers connected to null sinks=
+ i can receive on both inputs.</div><div>is there any way i can get rid of =
+those useless outputs and remove at least 1 endpoint?</div><div>if i declar=
+e i need a single endpoint with no data why does it complain if i don&#39;t=
+ declare buff_size in the yml?</div><div>my rfnoc block uses a noc shell th=
+at outputs axi stream payload which i adapted for programmable number of in=
+puts and outputs.</div><div dir=3D"auto">It seems to me the issue is not on=
+ the FPGA side as the backend block seems to properly report information an=
+d o don&#39;t see any connection in NOC shell between input and outputs oth=
+er than in there...</div><div dir=3D"auto"><br></div><div dir=3D"auto">Than=
+ks,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Dario</div></div></d=
+iv>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
+l=3D"noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">usrp-users-leave@lists.ettus.=
+com</a><br>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div>
 
-After installing UHD 4.1, downloading and copying the image, logging in int=
-o the N321:
+--0000000000006f8ee205ca444f0d--
 
-root@ni-n3xx-xxxxxxx:~# mender install usrp_n3xx_fs.mender
-INFO[0000] Loaded configuration file: /var/lib/mender/mender.conf
-INFO[0000] Loaded configuration file: /etc/mender/mender.conf
-INFO[0000] No dual rootfs configuration present
-INFO[0000] Start updating from local image file: [usrp_n3xx_fs.mender]
-Installing Artifact of size 395053568...
-INFO[0000] No public key was provided for authenticating the artifact
-INFO[0000] Update Module path "/usr/share/mender/modules/v3" could not be o=
-pened (open /usr/share/mender/modules/v3: no such file or directory). Updat=
-e modules will not be available
-ERRO[0000] Reading headers failed: installer: failed to read Artifact: Arti=
-fact Payload type 'rootfs-image' is not supported by this Mender Client. En=
-sure that the Mender Client is fully integrated and that the RootfsPartA/B =
-configuration variables are set correctly in 'mender.conf'
-ERRO[0000] installer: failed to read Artifact: Artifact Payload type 'rootf=
-s-image' is not supported by this Mender Client. Ensure that the Mender Cli=
-ent is fully integrated and that the RootfsPartA/B configuration variables =
-are set correctly in 'mender.conf'
-
-
-I also tried
-
-root@ni-n3xx-xxxxxxx:~# mender install usrp_n3xx_fs.mender --force
-
-with the same result. I did not touch any configuration file since we got t=
-he N321.
-How do I update the filesystem?
-
-Thanks,
-Lorenzo
-
-
---_000_MN2PR03MB4685293037E591CA42220DC1D3C49MN2PR03MB4685namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Hi,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"font-family: calibri, arial, helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);">I'm tryi=
-n</span><span style=3D"font-family: calibri, arial, helvetica, sans-serif; =
-font-size: 12pt; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);">=
-g
- to update t</span><span style=3D"font-family: calibri, arial, helvetica, s=
-ans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-color: rgba(0, =
-0, 0, 0);">he filesystem on my N321 to use UHD 4.1. I'm running into some t=
-roubles.</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"font-family: calibri, arial, helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);"><br>
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<span style=3D"font-family: calibri, arial, helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0);">After in=
-stalling UHD 4.1, downloading and copying the image, logging in into the N3=
-21:<br>
-</span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<pre>root@ni-n3xx-xxxxxxx:~# mender install usrp_n3xx_fs.mender=0A=
-<font color=3D"#06989A">INFO</font>[0000] Loaded configuration file: /var/l=
-ib/mender/mender.conf =0A=
-<font color=3D"#06989A">INFO</font>[0000] Loaded configuration file: /etc/m=
-ender/mender.conf =0A=
-<font color=3D"#06989A">INFO</font>[0000] No dual rootfs configuration pres=
-ent &nbsp; &nbsp; &nbsp; &nbsp; =0A=
-<font color=3D"#06989A">INFO</font>[0000] Start updating from local image f=
-ile: [usrp_n3xx_fs.mender] =0A=
-Installing Artifact of size 395053568...=0A=
-<font color=3D"#06989A">INFO</font>[0000] No public key was provided for au=
-thenticating the artifact =0A=
-<font color=3D"#06989A">INFO</font>[0000] Update Module path &quot;/usr/sha=
-re/mender/modules/v3&quot; could not be opened (open /usr/share/mender/modu=
-les/v3: no such file or directory). Update modules will not be available =
-=0A=
-<font color=3D"#CC0000">ERRO</font>[0000] Reading headers failed: installer=
-: failed to read Artifact: Artifact Payload type 'rootfs-image' is not supp=
-orted by this Mender Client. Ensure that the Mender Client is fully integra=
-ted and that the RootfsPartA/B configuration variables are set correctly in=
- 'mender.conf' =0A=
-<font color=3D"#CC0000">ERRO</font>[0000] installer: failed to read Artifac=
-t: Artifact Payload type 'rootfs-image' is not supported by this Mender Cli=
-ent. Ensure that the Mender Client is fully integrated and that the RootfsP=
-artA/B configuration variables are set correctly in 'mender.conf' =0A=
-</pre>
-I also tried <br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<pre>root@ni-n3xx-xxxxxxx:~# mender install usrp_n3xx_fs.mender --force<br>=
-<br><span style=3D"font-family: Arial, Helvetica, sans-serif;">with the sam=
-e result. I did not touch any configuration file since we got the N321.</sp=
-an><br><span style=3D"font-family: Arial, Helvetica, sans-serif;">How do I =
-update the filesystem?<br><br>Thanks,<br>Lorenzo<br></span></pre>
-<br>
-</div>
-</body>
-</html>
-
---_000_MN2PR03MB4685293037E591CA42220DC1D3C49MN2PR03MB4685namp_--
-
---===============8774986176213391970==
+--===============3370266516692446697==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -259,4 +235,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8774986176213391970==--
+--===============3370266516692446697==--
