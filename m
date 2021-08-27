@@ -2,90 +2,66 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538583F904B
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Aug 2021 23:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B5503F91D0
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Aug 2021 03:06:06 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F33B63844B1
-	for <lists+usrp-users@lfdr.de>; Thu, 26 Aug 2021 17:47:58 -0400 (EDT)
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 09CC5383CF2
-	for <usrp-users@lists.ettus.com>; Thu, 26 Aug 2021 17:47:12 -0400 (EDT)
-Date: Thu, 26 Aug 2021 21:47:12 +0000
-To: usrp-users@lists.ettus.com
-From: thebouleoffools@gmail.com
-Message-ID: <NxJ8cGyEWaXtlNHPS3errsMmWpyBhNZs0roRxF9gA@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: ff7d48dc-f52e-76ed-bb9a-e6ee287d6838@gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id DE8C43844DE
+	for <lists+usrp-users@lfdr.de>; Thu, 26 Aug 2021 21:05:54 -0400 (EDT)
+Received: from smtp5.emailarray.com (smtp5.emailarray.com [65.39.216.39])
+	by mm2.emwd.com (Postfix) with ESMTPS id D1BE9384040
+	for <usrp-users@lists.ettus.com>; Thu, 26 Aug 2021 21:05:12 -0400 (EDT)
+Received: (qmail 60920 invoked by uid 89); 27 Aug 2021 01:05:11 -0000
+Received: from unknown (HELO ?192.168.11.139?) (cGhpbGlwQG9wZW5zZHIuY29tQDczLjI1MS4xMC4xNDM=) (POLARISLOCAL)  
+  by smtp5.emailarray.com with SMTP; 27 Aug 2021 01:05:11 -0000
+To: thebouleoffools@gmail.com, usrp-users@lists.ettus.com
+References: <NxJ8cGyEWaXtlNHPS3errsMmWpyBhNZs0roRxF9gA@lists.ettus.com>
+From: Philip Balister <philip@balister.org>
+Message-ID: <51c672f1-a52c-ec1a-5f2b-df2c987feaa7@balister.org>
+Date: Thu, 26 Aug 2021 21:05:11 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Message-ID-Hash: SB4XF3F2PYQLHT7UZMAUAQRXVV76D5FY
-X-Message-ID-Hash: SB4XF3F2PYQLHT7UZMAUAQRXVV76D5FY
-X-MailFrom: thebouleoffools@gmail.com
+In-Reply-To: <NxJ8cGyEWaXtlNHPS3errsMmWpyBhNZs0roRxF9gA@lists.ettus.com>
+Content-Language: en-US
+Message-ID-Hash: 6LVCP7JTOPZAJEJ2L63OVHSNRT6RHPQI
+X-Message-ID-Hash: 6LVCP7JTOPZAJEJ2L63OVHSNRT6RHPQI
+X-MailFrom: philip@balister.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Python documentation / interfacing with GPSDO
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SB4XF3F2PYQLHT7UZMAUAQRXVV76D5FY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6LVCP7JTOPZAJEJ2L63OVHSNRT6RHPQI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2017703857003127230=="
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============2017703857003127230==
-Content-Type: multipart/alternative;
- boundary="b1_NxJ8cGyEWaXtlNHPS3errsMmWpyBhNZs0roRxF9gA"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_NxJ8cGyEWaXtlNHPS3errsMmWpyBhNZs0roRxF9gA
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-So actually what I=E2=80=99ve done is use the OpenEmbedded system to buil=
-d my own SDK. This was both a fun and not a fun process. This way I can c=
-ompile new packages for my radio and let it deal with the dependencies. S=
-o far I=E2=80=99ve added influxdb, ntp, and gnss-sdr to my E320. I starte=
-d with the instructions at https://github.com/carlesfernandez/oe-gnss-sdr=
--manifest, using the zeus yocto linux release, and have been hacking off =
-the unnecessary bits (e.g. X11) to reduce the size. I still haven=E2=80=99=
-t gotten it to where I=E2=80=99m comfortable loading the entire image it =
-produces onto my radio, but I can at least copy the individual compiled t=
-arballs of stuff I want out of the work directory, or use the new sdk wit=
-h all the libraries I need.
-
---b1_NxJ8cGyEWaXtlNHPS3errsMmWpyBhNZs0roRxF9gA
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>So actually what I=E2=80=99ve done is use the OpenEmbedded system to b=
-uild my own SDK. This was both a fun and not a fun process. This way I ca=
-n compile new packages for my radio and let it deal with the dependencies=
-. So far I=E2=80=99ve added influxdb, ntp, and gnss-sdr to my E320. I sta=
-rted with the instructions at https://github.com/carlesfernandez/oe-gnss-=
-sdr-manifest, using the zeus yocto linux release, and have been hacking o=
-ff the unnecessary bits (e.g. X11) to reduce the size. I still haven=E2=80=
-=99t gotten it to where I=E2=80=99m comfortable loading the entire image =
-it produces onto my radio, but I can at least copy the individual compile=
-d tarballs of stuff I want out of the work directory, or use the new sdk =
-with all the libraries I need.</p>
-
-
---b1_NxJ8cGyEWaXtlNHPS3errsMmWpyBhNZs0roRxF9gA--
-
---===============2017703857003127230==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2017703857003127230==--
+QmUgY2FyZWZ1bCwgemV1cyBpcyAqdmVyeSogb3V0IG9mIGRhdGUgYW5kIG9uIG1hbnkgY3VycmVu
+dCBkaXN0cm9zLCB5b3UNCndpbGwgbmVlZCB0byB1c2Ugc29tZXRoaW5nIGxpa2UgcHlyZXggKGh0
+dHBzOi8vZ2l0aHViLmNvbS9nYXJtaW4vcHlyZXgpDQp0byBzZXQgdXAgYSBjb250YWluZXIgdG8g
+ZG8gdGhlIGJ1aWxkIGluLg0KDQpQaGlsaXANCg0KT24gOC8yNi8yMSA1OjQ3IFBNLCB0aGVib3Vs
+ZW9mZm9vbHNAZ21haWwuY29tIHdyb3RlOg0KPiBTbyBhY3R1YWxseSB3aGF0IEnigJl2ZSBkb25l
+IGlzIHVzZSB0aGUgT3BlbkVtYmVkZGVkIHN5c3RlbSB0byBidWlsZCBteSBvd24gU0RLLiBUaGlz
+IHdhcyBib3RoIGEgZnVuIGFuZCBub3QgYSBmdW4gcHJvY2Vzcy4gVGhpcyB3YXkgSSBjYW4gY29t
+cGlsZSBuZXcgcGFja2FnZXMgZm9yIG15IHJhZGlvIGFuZCBsZXQgaXQgZGVhbCB3aXRoIHRoZSBk
+ZXBlbmRlbmNpZXMuIFNvIGZhciBJ4oCZdmUgYWRkZWQgaW5mbHV4ZGIsIG50cCwgYW5kIGduc3Mt
+c2RyIHRvIG15IEUzMjAuIEkgc3RhcnRlZCB3aXRoIHRoZSBpbnN0cnVjdGlvbnMgYXQgaHR0cHM6
+Ly9naXRodWIuY29tL2Nhcmxlc2Zlcm5hbmRlei9vZS1nbnNzLXNkci1tYW5pZmVzdCwgdXNpbmcg
+dGhlIHpldXMgeW9jdG8gbGludXggcmVsZWFzZSwgYW5kIGhhdmUgYmVlbiBoYWNraW5nIG9mZiB0
+aGUgdW5uZWNlc3NhcnkgYml0cyAoZS5nLiBYMTEpIHRvIHJlZHVjZSB0aGUgc2l6ZS4gSSBzdGls
+bCBoYXZlbuKAmXQgZ290dGVuIGl0IHRvIHdoZXJlIEnigJltIGNvbWZvcnRhYmxlIGxvYWRpbmcg
+dGhlIGVudGlyZSBpbWFnZSBpdCBwcm9kdWNlcyBvbnRvIG15IHJhZGlvLCBidXQgSSBjYW4gYXQg
+bGVhc3QgY29weSB0aGUgaW5kaXZpZHVhbCBjb21waWxlZCB0YXJiYWxscyBvZiBzdHVmZiBJIHdh
+bnQgb3V0IG9mIHRoZSB3b3JrIGRpcmVjdG9yeSwgb3IgdXNlIHRoZSBuZXcgc2RrIHdpdGggYWxs
+IHRoZSBsaWJyYXJpZXMgSSBuZWVkLg0KPiANCj4gDQo+IF9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwg
+dG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4gCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwg
+dG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
