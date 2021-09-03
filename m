@@ -2,257 +2,322 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21ADC3FFC83
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Sep 2021 11:01:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7556A400129
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Sep 2021 16:22:45 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 04E5F38427E
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Sep 2021 05:01:20 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 491663840EA
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Sep 2021 10:22:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=cttc.es header.i=@cttc.es header.b="i01uFXyU";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RlNHk3jy";
 	dkim-atps=neutral
-Received: from mx01.puc.rediris.es (outbound6mad.lav.puc.rediris.es [130.206.19.150])
-	by mm2.emwd.com (Postfix) with ESMTPS id 282D23841F4
-	for <usrp-users@lists.ettus.com>; Fri,  3 Sep 2021 05:00:27 -0400 (EDT)
-Received: from leo.cttc.es (leo.cttc.es [84.88.62.208])
-	by mx01.puc.rediris.es  with ESMTP id 18390QJC003271-18390QJE003271
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK)
-	for <usrp-users@lists.ettus.com>; Fri, 3 Sep 2021 11:00:26 +0200
-Received: from localhost (localhost [127.0.0.1])
-To: usrp-users <usrp-users@lists.ettus.com>
-From: Armin Ghani <aghani@cttc.es>
-Message-ID: <b24ff5bf-8432-8b63-d75c-82631e45fd9f@cttc.es>
-Date: Fri, 3 Sep 2021 11:00:25 +0200
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6A26D383F49
+	for <usrp-users@lists.ettus.com>; Fri,  3 Sep 2021 10:21:50 -0400 (EDT)
+Received: by mail-qv1-f44.google.com with SMTP id s16so3203184qvt.13
+        for <usrp-users@lists.ettus.com>; Fri, 03 Sep 2021 07:21:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=HVPQUXD9zVn732HpxyBeJ4NiXPgX2OJKk1jjr65fxdM=;
+        b=RlNHk3jyOq324K57i8Q01LWpIKeovd1uEskcrOVe6LsObCvMDxrmOQU76HKK6inKhS
+         1/SyIOaYzDikRyAzMaZ1R18g3WZdhIo8JFhvi6j2gj2qwEMPnyZnjq6OcOzfUZIR080y
+         kDM516khiVpHjFSo/GQDW0KhsLj6HVLDI7LdXLy1f/QLzbcYVhcbe5Dyog8tWA9LC6Ea
+         7z6trfIoX2bmP+BkdeakOFS3epWZTDBY3OQzpImAaeuMvKHNY6cAVOAwtmJauJ1h93ok
+         +whcUoD/IMGBPsPN5KXiwUcdH1627snhYrjG+DwINB2meZpmOqv7PWHdRboZk9ZyVF3l
+         T2tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=HVPQUXD9zVn732HpxyBeJ4NiXPgX2OJKk1jjr65fxdM=;
+        b=HKZ5PuMH3HL0fGOKGT9l/M3LISipLvtvBfarw31ER3u9JBAZ7trA1PVXM+dtYJ6/Vn
+         vVTwlmRTdQlqhvQ9R5H/Wn1PZQ6gAXnOi/TUmSVfWiMXpR9YAOKioH5jY7DqTcMx8m2r
+         3nawkRfIYgB9tD+hL+PF+Xx96nsnnhCWr7087PJcqzgGhnu3YIh96k69URYKXhR33ib9
+         Zs52t4j9ORHyXeOzaBEafwDhwbAeicC/6ejdvziKpE7+uA5J6mbXR9ch+IlkGMvg8yeL
+         9wTXN8MZvUHLyPR294py3gt/3UrTW9ZlV8vVwxx7oFG2i5yRgw2MrVJhc/QxOkt27gLZ
+         ypvQ==
+X-Gm-Message-State: AOAM530Pg0yCDblz3WsUEKx8VOohNwyQfxJPfhDERWukKJI5ksxJuq7o
+	szYiEqpb3UdACrzr8GrePHNmn7wFHKf15w==
+X-Google-Smtp-Source: ABdhPJyDq4UY7ZVUzM1cB6A71R+KtxlgX9u+FELZREvaPRks+2wPlcou9ifq/1dFKHaJJwDfiYKiGA==
+X-Received: by 2002:a0c:c707:: with SMTP id w7mr3972243qvi.14.1630678909546;
+        Fri, 03 Sep 2021 07:21:49 -0700 (PDT)
+Received: from [192.168.2.232] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id s20sm3023017qtw.14.2021.09.03.07.21.48
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Sep 2021 07:21:48 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <b24ff5bf-8432-8b63-d75c-82631e45fd9f@cttc.es>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <8dd72780-0d9e-9066-958f-d39474178cfe@gmail.com>
+Date: Fri, 3 Sep 2021 10:21:48 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
+In-Reply-To: <b24ff5bf-8432-8b63-d75c-82631e45fd9f@cttc.es>
 Content-Language: en-US
-X-FE-Attachment-Name: ghgbnjldhbgmmpcj.jpeg
-X-FE-Policy-ID: 2:6:0:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=cttc.es; s=DKIM; c=relaxed/relaxed;
- h=to:from:subject:message-id:date:mime-version:content-type;
- bh=6VLrob/mt46cM83tuQOW26OX9T2p0tHRi37mrgRdHYk=;
- b=i01uFXyU/t/lhwBmhAt04V0np4cfl1c23PXMxRqjstkdZdtLtyWfLg3/Kudl/eOF4ol6jCe3b3eO
-	PWYlLZzOZblYmcuPUZwmepfRUCYHWMwciZfVwCPtr/8tO1lOPsFhztemFyto1e5hkGoanpGji1x9
-	3TyZRYGlmG7Ahei+Ewu7us/5hEaDSD3fBr+O7do9J5ghBVoeR5f+/TfikbChSUsIEtiC1lA4leI9
-	FfrYOuMGJosVdyaYdZkcViMJw0GQmlRf7cvHEOun+z7Wpsfl1RqnPcyHnxo0ytRfjgCWQI7MrnMO
-	sqa5cDrLEVK1lUL0QLqWCJKBxbBMAjCTCE5Ysg==
-Message-ID-Hash: 2KBD3OE4DI4UL5AXYCSU4AJJ3DYCRQLT
-X-Message-ID-Hash: 2KBD3OE4DI4UL5AXYCSU4AJJ3DYCRQLT
-X-MailFrom: aghani@cttc.es
+Message-ID-Hash: DZOKZWYODW5QAUEEC55NTDCDGXLMLABW
+X-Message-ID-Hash: DZOKZWYODW5QAUEEC55NTDCDGXLMLABW
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Remote Resetting of USRP
+Subject: [USRP-users] Re: Remote Resetting of USRP
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2KBD3OE4DI4UL5AXYCSU4AJJ3DYCRQLT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DZOKZWYODW5QAUEEC55NTDCDGXLMLABW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7539607008332803613=="
+Content-Type: multipart/mixed; boundary="===============0654155198574360803=="
 
 This is a multi-part message in MIME format.
---===============7539607008332803613==
+--===============0654155198574360803==
 Content-Type: multipart/alternative;
- boundary="------------9F37233E10E6EE9E3A2D765B"
+ boundary="------------7AAD2877A40609E43578D393"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------9F37233E10E6EE9E3A2D765B
+--------------7AAD2877A40609E43578D393
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Dear Community
+On 2021-09-03 5:00 a.m., Armin Ghani wrote:
+>
+> Dear Community
+>
+> I'm working remotely with USRPs. Sometimes due to unknown reasons,=20
+> USRPs go to unknown state where they are still accessible through ping=20
+> but they product error while initializing:
+>
+The only thing that's really reliable in this regard (other than=20
+potential fixes for the bugs that cause this in UHD 4.x), would be=20
+something like a network
+ =C2=A0 power relay:
 
-I'm working remotely with USRPs. Sometimes due to unknown reasons, USRPs=20
-go to unknown state where they are still accessible through ping but=20
-they product error while initializing:
+https://dataprobe.com/iboot-g2/
+
+Or similar
+
+>
+> Executing: /usr/bin/python3 -u=20
+> /home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py
+>
+>
+> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;=20
+> UHD_3.15.0.HEAD-0-gaea0e2de
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> [ERROR] [UHD] Exception caught in safe-call.
+> =C2=A0 in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with=20
+> uhd::endianness_t _endianness =3D (uhd::endianness_t)0]
+> =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:52
+> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block=20
+> ctrl (CE_00_Port_30) no response packet - AssertionError: bool(buff)
+> =C2=A0 in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, dou=
+ble)=20
+> [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =
+=3D=20
+> long unsigned int]
+> =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
+>
+> Traceback (most recent call last):
+> =C2=A0 File "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.p=
+y",=20
+> line 1067, in <module>
+> =C2=A0=C2=A0=C2=A0 main()
+> =C2=A0 File "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.p=
+y",=20
+> line 1043, in main
+> =C2=A0=C2=A0=C2=A0 tb =3D top_block_cls(cp_len=3Doptions.cp_len, fft_le=
+n=3Doptions.fft_len,=20
+> samp_rate=3Doptions.samp_rate, tx_freq=3Doptions.tx_freq)
+> =C2=A0 File "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.p=
+y",=20
+> line 237, in __init__
+> =C2=A0=C2=A0=C2=A0 channels=3Dlist(range(0,1)),
+> =C2=A0 File=20
+> "/usr/local/lib/python3/dist-packages/gnuradio/uhd/__init__.py", line=20
+> 125, in constructor_interceptor
+> =C2=A0=C2=A0=C2=A0 return old_constructor(*args)
+> =C2=A0 File=20
+> "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py", line=20
+> 3294, in make
+> =C2=A0=C2=A0=C2=A0 return _uhd_swig.usrp_source_make(device_addr, strea=
+m_args,=20
+> issue_stream_cmd_on_start)
+> RuntimeError: EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no=20
+> response packet - AssertionError: bool(buff)
+> =C2=A0 in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, dou=
+ble)=20
+> [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =
+=3D=20
+> long unsigned int]
+> =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
+>
+>
+> And the only solution for this is hard resetting the USRP which is a=20
+> bit difficult for me. I'd like to know if there are any other way to=20
+> solve this issue or if you know remote ways to do resetting which is=20
+> equivalent to hard reset.
+>
+> Regards.
+>
+>
+> --=20
+>
+> Armin Ghani
+>
+> Research Engineer | Communication Systems Division (CSD)
+>
+> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
+>
+> Centre Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)
+>
+> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
+>
+> 08860 - Castelldefels (Barcelona, Spain)
+>
+> www.cttc.cat
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
 
-Executing: /usr/bin/python3 -u=20
-/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py
-
-
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;=20
-UHD_3.15.0.HEAD-0-gaea0e2de
-[INFO] [X300] X300 initialization sequence...
-[INFO] [X300] Maximum frame size: 8000 bytes.
-[INFO] [X300] Radio 1x clock: 200 MHz
-[ERROR] [UHD] Exception caught in safe-call.
- =C2=A0 in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with=20
-uhd::endianness_t _endianness =3D (uhd::endianness_t)0]
- =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:52
-this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl=20
-(CE_00_Port_30) no response packet - AssertionError: bool(buff)
- =C2=A0 in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, doub=
-le)=20
-[with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D=
-=20
-long unsigned int]
- =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
-
-Traceback (most recent call last):
- =C2=A0 File "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py=
-",=20
-line 1067, in <module>
- =C2=A0=C2=A0=C2=A0 main()
- =C2=A0 File "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py=
-",=20
-line 1043, in main
- =C2=A0=C2=A0=C2=A0 tb =3D top_block_cls(cp_len=3Doptions.cp_len, fft_len=
-=3Doptions.fft_len,=20
-samp_rate=3Doptions.samp_rate, tx_freq=3Doptions.tx_freq)
- =C2=A0 File "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py=
-",=20
-line 237, in __init__
- =C2=A0=C2=A0=C2=A0 channels=3Dlist(range(0,1)),
- =C2=A0 File "/usr/local/lib/python3/dist-packages/gnuradio/uhd/__init__.=
-py",=20
-line 125, in constructor_interceptor
- =C2=A0=C2=A0=C2=A0 return old_constructor(*args)
- =C2=A0 File "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.=
-py",=20
-line 3294, in make
- =C2=A0=C2=A0=C2=A0 return _uhd_swig.usrp_source_make(device_addr, stream=
-_args,=20
-issue_stream_cmd_on_start)
-RuntimeError: EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no=20
-response packet - AssertionError: bool(buff)
- =C2=A0 in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, doub=
-le)=20
-[with uhd::endianness_t _endianness =3D (uhd::endianness_t)0; uint64_t =3D=
-=20
-long unsigned int]
- =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
-
-
-And the only solution for this is hard resetting the USRP which is a bit=20
-difficult for me. I'd like to know if there are any other way to solve=20
-this issue or if you know remote ways to do resetting which is=20
-equivalent to hard reset.
-
-Regards.
-
-
---=20
-
-Armin Ghani
-
-Research Engineer | Communication Systems Division (CSD)
-
-aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
-
-Centre Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)
-
-Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
-
-08860 - Castelldefels (Barcelona, Spain)
-
-www.cttc.cat
-
-
---------------9F37233E10E6EE9E3A2D765B
+--------------7AAD2877A40609E43578D393
 Content-Type: multipart/related;
- boundary="------------4A9E17C4D0A7C9EA940239F6"
+ boundary="------------BE324409DE333691F532CA3B"
 
 
---------------4A9E17C4D0A7C9EA940239F6
+--------------BE324409DE333691F532CA3B
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
 -8">
   </head>
   <body>
-    <p>Dear Community</p>
-    <p>I'm working remotely with USRPs. Sometimes due to unknown
-      reasons, USRPs go to unknown state where they are still accessible
-      through ping but they product error while initializing:</p>
-    <p><br>
-    </p>
-    <p><font face=3D"Courier New, Courier, monospace">Executing:
-        /usr/bin/python3 -u
-        /home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py<br>
-      </font></p>
-    <p><br>
-      <font face=3D"Courier New, Courier, monospace">[INFO] [UHD] linux;
-        GNU C++ version 7.5.0; Boost_106501; UHD_3.15.0.HEAD-0-gaea0e2de<=
-br>
-        [INFO] [X300] X300 initialization sequence...<br>
-        [INFO] [X300] Maximum frame size: 8000 bytes.<br>
-        [INFO] [X300] Radio 1x clock: 200 MHz<br>
-        [ERROR] [UHD] Exception caught in safe-call.<br>
-        =C2=A0 in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl()
-        [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0]<br>
-        =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:5=
-2<br>
-        this-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError:
-        IOError: Block ctrl (CE_00_Port_30) no response packet -
-        AssertionError: bool(buff)<br>
-        =C2=A0 in uint64_t
-        ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double)
-        [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0;
-        uint64_t =3D long unsigned int]<br>
-        =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:1=
-51<br>
-        <br>
-        Traceback (most recent call last):<br>
-        =C2=A0 File
-        "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py",
-        line 1067, in &lt;module&gt;<br>
-        =C2=A0=C2=A0=C2=A0 main()<br>
-        =C2=A0 File
-        "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py",
-        line 1043, in main<br>
-        =C2=A0=C2=A0=C2=A0 tb =3D top_block_cls(cp_len=3Doptions.cp_len,
-        fft_len=3Doptions.fft_len, samp_rate=3Doptions.samp_rate,
-        tx_freq=3Doptions.tx_freq)<br>
-        =C2=A0 File
-        "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py",
-        line 237, in __init__<br>
-        =C2=A0=C2=A0=C2=A0 channels=3Dlist(range(0,1)),<br>
-        =C2=A0 File
-        "/usr/local/lib/python3/dist-packages/gnuradio/uhd/__init__.py",
-        line 125, in constructor_interceptor<br>
-        =C2=A0=C2=A0=C2=A0 return old_constructor(*args)<br>
-        =C2=A0 File
-        "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py",
-        line 3294, in make<br>
-        =C2=A0=C2=A0=C2=A0 return _uhd_swig.usrp_source_make(device_addr,=
- stream_args,
-        issue_stream_cmd_on_start)<br>
-        RuntimeError: EnvironmentError: IOError: Block ctrl
-        (CE_00_Port_30) no response packet - AssertionError: bool(buff)<b=
-r>
-        =C2=A0 in uint64_t
-        ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double)
-        [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0;
-        uint64_t =3D long unsigned int]<br>
-        =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp:1=
-51</font></p>
-    <p><br>
-    </p>
-    <p>And the only solution for this is hard resetting the USRP which
-      is a bit difficult for me. I'd like to know if there are any other
-      way to solve this issue or if you know remote ways to do resetting
-      which is equivalent to hard reset.</p>
-    <p>Regards.<br>
-    </p>
-    <p><br>
-    </p>
-    <div class=3D"moz-signature">-- <br>
+    <div class=3D"moz-cite-prefix">On 2021-09-03 5:00 a.m., Armin Ghani
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:b24ff5bf-8432-8b63-d75c-82631e45fd9f@cttc.es">
       <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
 TF-8">
-      <title></title>
-      <p> </p>
-      <p>
-        <meta name=3D"ProgId" content=3D"Word.Document">
-        <meta name=3D"Generator" content=3D"Microsoft Word 15">
-        <meta name=3D"Originator" content=3D"Microsoft Word 15">
-        <style>@font-face
+      <p>Dear Community</p>
+      <p>I'm working remotely with USRPs. Sometimes due to unknown
+        reasons, USRPs go to unknown state where they are still
+        accessible through ping but they product error while
+        initializing:</p>
+    </blockquote>
+    The only thing that's really reliable in this regard (other than
+    potential fixes for the bugs that cause this in UHD 4.x), would be
+    something like a network<br>
+    =C2=A0 power relay:<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://dataprobe.com/iboo=
+t-g2/">https://dataprobe.com/iboot-g2/</a><br>
+    <br>
+    Or similar<br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:b24ff5bf-8432-8b63-d75c-82631e45fd9f@cttc.es">
+      <p><br>
+      </p>
+      <p><font face=3D"Courier New, Courier, monospace">Executing:
+          /usr/bin/python3 -u
+          /home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py<br>
+        </font></p>
+      <p><br>
+        <font face=3D"Courier New, Courier, monospace">[INFO] [UHD] linux=
+;
+          GNU C++ version 7.5.0; Boost_106501;
+          UHD_3.15.0.HEAD-0-gaea0e2de<br>
+          [INFO] [X300] X300 initialization sequence...<br>
+          [INFO] [X300] Maximum frame size: 8000 bytes.<br>
+          [INFO] [X300] Radio 1x clock: 200 MHz<br>
+          [ERROR] [UHD] Exception caught in safe-call.<br>
+          =C2=A0 in ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl(=
+)
+          [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0]<b=
+r>
+          =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp=
+:52<br>
+          this-&gt;send_cmd_pkt(0, 0, true); -&gt; EnvironmentError:
+          IOError: Block ctrl (CE_00_Port_30) no response packet -
+          AssertionError: bool(buff)<br>
+          =C2=A0 in uint64_t
+          ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double)
+          [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0;
+          uint64_t =3D long unsigned int]<br>
+          =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp=
+:151<br>
+          <br>
+          Traceback (most recent call last):<br>
+          =C2=A0 File
+          "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py",
+          line 1067, in &lt;module&gt;<br>
+          =C2=A0=C2=A0=C2=A0 main()<br>
+          =C2=A0 File
+          "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py",
+          line 1043, in main<br>
+          =C2=A0=C2=A0=C2=A0 tb =3D top_block_cls(cp_len=3Doptions.cp_len=
+,
+          fft_len=3Doptions.fft_len, samp_rate=3Doptions.samp_rate,
+          tx_freq=3Doptions.tx_freq)<br>
+          =C2=A0 File
+          "/home/.../Documents/.../ml/autoencoder/grc/dnn_ofdm_test.py",
+          line 237, in __init__<br>
+          =C2=A0=C2=A0=C2=A0 channels=3Dlist(range(0,1)),<br>
+          =C2=A0 File
+          "/usr/local/lib/python3/dist-packages/gnuradio/uhd/__init__.py"=
+,
+          line 125, in constructor_interceptor<br>
+          =C2=A0=C2=A0=C2=A0 return old_constructor(*args)<br>
+          =C2=A0 File
+          "/usr/local/lib/python3/dist-packages/gnuradio/uhd/uhd_swig.py"=
+,
+          line 3294, in make<br>
+          =C2=A0=C2=A0=C2=A0 return _uhd_swig.usrp_source_make(device_add=
+r,
+          stream_args, issue_stream_cmd_on_start)<br>
+          RuntimeError: EnvironmentError: IOError: Block ctrl
+          (CE_00_Port_30) no response packet - AssertionError:
+          bool(buff)<br>
+          =C2=A0 in uint64_t
+          ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool, double)
+          [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0;
+          uint64_t =3D long unsigned int]<br>
+          =C2=A0 at /home/.../Documents/uhd/host/lib/rfnoc/ctrl_iface.cpp=
+:151</font></p>
+      <p><br>
+      </p>
+      <p>And the only solution for this is hard resetting the USRP which
+        is a bit difficult for me. I'd like to know if there are any
+        other way to solve this issue or if you know remote ways to do
+        resetting which is equivalent to hard reset.</p>
+      <p>Regards.<br>
+      </p>
+      <p><br>
+      </p>
+      <div class=3D"moz-signature">-- <br>
+        <meta http-equiv=3D"content-type" content=3D"text/html;
+          charset=3DUTF-8">
+        <title></title>
+        <p> </p>
+        <p>
+          <meta name=3D"ProgId" content=3D"Word.Document">
+          <meta name=3D"Generator" content=3D"Microsoft Word 15">
+          <meta name=3D"Originator" content=3D"Microsoft Word 15">
+          <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;
 	mso-font-charset:0;
@@ -322,62 +387,77 @@ rmal
 	margin-bottom:8.0pt;
 	line-height:107%;}div.WordSection1
 	{page:WordSection1;}</style> </p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><img
-          src=3D"cid:part1.7D5092F6.9E59E459@cttc.es" width=3D"151"
-          hspace=3D"12" height=3D"100" align=3D"left"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><img
+            src=3D"cid:part1.AE637862.3DEDDDEC@gmail.com" class=3D""
+            width=3D"151" hspace=3D"12" height=3D"100" align=3D"left"><sp=
+an
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
 Aharoni;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">Armin
-          Ghani</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Research
-          Engineer | Communication Systems Division (CSD)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a
-          href=3D"mailto:aghani@cttc.es"><span
+            Ghani</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghani@=
-cttc.es</span></a><span
-          style=3D"font-size: 9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34 93
-          645 29 08 (2143)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
-          Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)</span>=
-</p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av. Carl
-          Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860 -
-          Castelldefels (Barcelona, Spain)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a><span
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Researc=
+h
+            Engineer | Communication Systems Division (CSD)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            href=3D"mailto:aghani@cttc.es" moz-do-not-send=3D"true"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghan=
+i@cttc.es</span></a><span
+            style=3D"font-size: 9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34
+            93 645 29 08 (2143)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;
-            mso-bidi-font-family:Aharoni;mso-ansi-language:ES" lang=3D"ES=
-">www.cttc.cat</span></a><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
-          Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
-    </div>
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
+            Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)</spa=
+n></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
+            Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860
+            - Castelldefels (Barcelona, Spain)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            moz-do-not-send=3D"true"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif;
+              mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
+              lang=3D"ES">www.cttc.cat</span></a><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
+            Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
   </body>
 </html>
 
---------------4A9E17C4D0A7C9EA940239F6
+--------------BE324409DE333691F532CA3B
 Content-Type: image/jpeg;
  name="ghgbnjldhbgmmpcj.jpeg"
 Content-Transfer-Encoding: base64
-Content-ID: <part1.7D5092F6.9E59E459@cttc.es>
+Content-ID: <part1.AE637862.3DEDDDEC@gmail.com>
 Content-Disposition: inline;
  filename="ghgbnjldhbgmmpcj.jpeg"
 
@@ -518,11 +598,11 @@ DdtLilooAKKKKAGPEkn31Vv94Zpv2aE/8sY/++RUtFAEJtIDg+TFkcg7BUuKWigAooooAKQ0
 tFAETQRM2WjQk9yoo+zQ/wDPGP8A74FSUUAMSCONtyIinGMqoBp4GKWigBKKWigBMVDc2cF3
 GY7qGOZD1V1BFT0hoA5+fwL4euW3SabED/sEqPyBpsXgDw5FIsi6am5TkbnYj8ia6Klp8z7g
 VbXTbOyTbaW0MAByBGgWrAGKdSUgClpKWgAooooAKKKKAP/Z
---------------4A9E17C4D0A7C9EA940239F6--
+--------------BE324409DE333691F532CA3B--
 
---------------9F37233E10E6EE9E3A2D765B--
+--------------7AAD2877A40609E43578D393--
 
---===============7539607008332803613==
+--===============0654155198574360803==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -532,4 +612,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7539607008332803613==--
+--===============0654155198574360803==--
