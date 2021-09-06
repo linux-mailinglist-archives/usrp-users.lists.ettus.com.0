@@ -2,718 +2,565 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0B140210B
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 23:18:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C8540211B
+	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 23:33:29 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 00C3C3818CD
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 17:18:15 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3E028380E6D
+	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 17:33:28 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dk4Lt/9f";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="MtMzaERQ";
 	dkim-atps=neutral
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6309E383F67
-	for <usrp-users@lists.ettus.com>; Mon,  6 Sep 2021 17:17:28 -0400 (EDT)
-Received: by mail-qv1-f49.google.com with SMTP id s16so4604865qvt.13
-        for <usrp-users@lists.ettus.com>; Mon, 06 Sep 2021 14:17:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=PL1IZV/IrtGJMdJTYedefu57AmRYSpnd/9uqpjNiHiE=;
-        b=Dk4Lt/9fkWKea6qcdn0M2hyKYmbhfTKV2XQMny2+VuJEpkcvPg+lEjKNr3lIVkQzHA
-         9I4DhHpIZGefL+lrtE+QnTuXfl/nHHkloSM2HEdEJED87Odbn/hm1GBNLbP6Osszi8bX
-         OwVzVcVeqDkhymM8i0jkq7xc/Yhj5kDPzsnWpPrkOnM1bmmOuIRJwJL9UA5YYkmdcoVN
-         25s9y9lO99DYw2SK5jrnHF70yag4hZtq41ygde0EBzLs4ltXrrzd3OU3DkpdJFyd8cXq
-         XWZmTifGP6ZvCr3Vl580MabBD6GkA6JpXifupZBWrP7nSSnbcCGm1/OLjyByF73Dv1yt
-         HMIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=PL1IZV/IrtGJMdJTYedefu57AmRYSpnd/9uqpjNiHiE=;
-        b=OhavfmtFYpLUsSkdHF3sYegJxPqqfxk6Fwta+zyeDqyjT/t1LUWnxojDEM8uZxiptp
-         k3bwYxNkr9DdDKFU3maWtZVPl6RjmoVpBSBadQQJb3/Y6+rZbd1Q2vjDV6BjwqZWBt2z
-         t3gjnJSTwcO5M6V5LdgOcHPHcGe9pgOFTBHfnjEBU9ULCxRDfMb8ZXGxTFYzj1sXYBsh
-         c23DaquQefZ/wv+pOXydY5k5Ab5RSifQhp/mJMH6o7FKt4YpHDjTqUd2lHhRES9hFR02
-         YzvVf0LVZaY+bajRma8pIHerofAbJF4HVEfQ5ScAbGJWoV5EOj6EQKcg73j81ai83MWc
-         +r4g==
-X-Gm-Message-State: AOAM533ljyhyi+GXrQHfaqCL46pbLYGZKcJ4FaVCXg93x0Ix/aQ/sUaS
-	YStuiS4zcSX7jYSmJTJ7yn69eg9PWlL3MQ==
-X-Google-Smtp-Source: ABdhPJxmRuStcyQfNM9iun5smTGemv2/ZJ2HaEsMbOxNcdTwpec9w3ZD57+4l9qDnBBNQIwoKZw5Ag==
-X-Received: by 2002:a0c:80ce:: with SMTP id 72mr4136115qvb.39.1630963047473;
-        Mon, 06 Sep 2021 14:17:27 -0700 (PDT)
-Received: from [192.168.2.239] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id 90sm6035488qte.89.2021.09.06.14.17.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Sep 2021 14:17:27 -0700 (PDT)
-To: zhou <hwzhou@yahoo.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <78915145.1401871.1630855703615.ref@mail.yahoo.com>
- <78915145.1401871.1630855703615@mail.yahoo.com>
- <4afe8421-25a7-4607-cb3e-77de5a2e048f@gmail.com>
- <1905083994.1719552.1630939087195@mail.yahoo.com>
- <048e44e1-7a98-3502-e0c9-d4f89aea1f15@gmail.com>
- <985193204.1564657.1630962787077@mail.yahoo.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <81367c38-e66a-538f-8cac-8645794e2bbe@gmail.com>
-Date: Mon, 6 Sep 2021 17:17:26 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+Received: from sonic317-27.consmr.mail.bf2.yahoo.com (sonic317-27.consmr.mail.bf2.yahoo.com [74.6.129.82])
+	by mm2.emwd.com (Postfix) with ESMTPS id A723E3844CB
+	for <usrp-users@lists.ettus.com>; Mon,  6 Sep 2021 17:32:37 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1630963956; bh=Bk36QJIX6S4OzEYdrf/nvv6cVYEWOQErAECWC0WTD1Q=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=MtMzaERQQnip8ZjHD0Y3a0qiEpsRA5UY4/OAQgFnh32d0I+UAfExoi+64rExtlVK3E5FJFUq9YIuH64fk2grhDM3pR9/K7JZ6+e+yhUHdi7xqmJoWJFv3nfZxV9fUhlCR+QVm5XpCxeEWO37Haw8+6myJyqcJm/2jHGIBYQitZsnlAE+K4Cy2tPVpoQ9pRDQvSQ7FWD07+XC4y6te4IYEzhAxQeL1i6gJib2LrzxWFm00cFQ9GsvCjquighi0cCP0w8e3240JafGgPOaAYOWMfzS1iKBX6rGMhY5LLnlUiqiico6TJh1ohaeiUMgpWN2kemLQSksRB5eSn1U4IZaFg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1630963956; bh=vQMm+hB/f9VVckZQm0N8AL8fZCxvGBY74kV5lUs2W3g=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=ZOwlN3/mmjkZhGuI1p5pN3B/28TLkNW4+MopwKw7dty78dSbr9/cjvIoaqdicuiUlYsb0XZR8Pdfcsp2VmG6Eb0N5nn7ThTetiM6/h20wrNg248huZwNtITDAYuOVV/jWboJimr3I6IOrz4PDFR39M0lMnlrkP1pTzB5T9EW6YWYl0IRatlbA6vD3r3U8SQDBmxzQLr+eQOxVJSW52qBUrgMbUvWN+4TCOqhXQDpglaXh8u8x0u1Shwi4shFvDgFSCHvJ9r9/g3W9I4FJU4VFv6IfTOkmyQa05duQ/pZkuKUzxgaVVYrItt+yeB1M0f1yp52gKMaNMPbrNay+H+kUA==
+X-YMail-OSG: N_9IzLEVM1mLkaC30Qc_.G6YjaOa6YzPcTx7dXq_SYqEbwpmsU9nRjGSV27.aYt
+ i6KC7mJ6lfoT1x03LgF4tT_O78yeyvOhAfLc.dIvLzgd_G758_XDIhcgg.8atbcwn8jOshkgN6Bv
+ QdcVdyOm8FyBU.JDTpjcO70aGfCQxnx7g1S4vEgPkHQsksAxLknQ5bOsvee8MbfmawDCNk2K53oD
+ JtkXhgPRbpKkk97Z8mWvqbF5LdJj6dn5DPCOjOQBZKLuW7xx1EY8BNsdVh.K1qtAcuodcXywR56e
+ AVq5LQpCxdhvGsZLfPcMTW5tQu_upyCdqKcVd6mYtf2c8he6aNacA66_MNy1r.opSgeQFoGwduSa
+ Q7nIFn7zblhzDq9g3nrQaHdFnSTjzoOXThEXltljidbakpZkczws6Gageb4L3l0U5zSFdyDgbXSO
+ 0XVO.0sAsnKvpdD69HpTYhM68XeqE9eeCJTSNHldi4ePzAu8c22RlBDVbPoBge2WaAD5akR_GVX7
+ .wVUmyg.Quum5Hpq93wWUiaxpSnzTGRZRp38K8jx9C53BN3NBWOSpFEt3uRqaNOuZYKMOrgbhimc
+ ivinIIpjTSGz8SlE11wYr1mlm96ywMPPxSO3g8lsra3ffWi6.7bDwT9g2MYwam2LZc84LU1mAIoC
+ QCZu2nY_Nwq1SJCZVOVOrtRSrKUiZAKQ0ZW.7LA4fF67cQ_sURSBj7YYIj22uKFinvgy5XV3c9zK
+ r3fsPK.qXPHnAElWWEH1EaarpY86ESy0hTsSJEfggtgh4tlw_B3r8UqBdbhXkur7HM6cISKF4s02
+ TClvvVFbtS5vGrM8LyeIRwW_7Asfa14_4gGETL1w6lXH6sPGGWhqxfGiIziJj0Dg0RupXbt9Vxks
+ 7OxA92RciKTT6YEIxZBtt6SCdQVaMV5QO6npvrfsjY8cTdp6a8Dbbjaqzd2MW0gfS8XUEWaWYEsq
+ 8XbhsddaIRdNyQC9AH2IAr_xh2lYx5gN4Krnj96oZWActZeDs7Yi073QbNYTkFVkgcOKz32lhCTp
+ 5DAqbFloyMHrp6DRnbqCWLpB8a8XSG9kq1uQVYUJtpuexYFCl9tB7XnW6cxx2n0jhv.cSJgFiCfe
+ Ibjgr1pyvzxMTTh1erhIEp4ts9Xz59rqj4E2gohVzNskJed2KjJ4r2nYJLOASVecHTKl74P4x_79
+ H1..hRD65yLmz.yJOf63iXghio6ilFN8Vu6cjUN20Soyaj1sx19cavFYl.EXEErzmj5iypDT_.Dj
+ wrRG712BJvqac.fldjv1xWOCuTSie2M.Pwk2gdqfndRqohsnteaXt9IsuvSGCvm8cqLEtKpgQIRy
+ 2hc41nhjQpo_AD38QbmqLotJAtvJsC9rESegwzEdMb2juzaf.Th9e8jEFLvQrsYJlm_g.UY_hxSs
+ 8giwmj.Ot2KValiBFVcmXkjuOvmQmplNj7dYjTUgV.zY3ksU.eof2yxc15qvQ0EYITDwzjyN2bbY
+ uJVSxlF5VaUGcsYOYe5hZjdOYTFTwRu2ykIwaZTaThg8VSgdnK4IJwDYrYSYIocmH4Q4Ira8u7nN
+ 22ahSJWBQjIaMq.FY2CfJWWRiQnC_8.BahkWY6Qda.3.ksdmXRjkAok1Bw1A9pe5r3aHFTYlIY5y
+ SmeCrjiHSapUNRZ9puS17H0iF2NpoD44r1Lifp27Df6fLkJExa7odlax1x4UA0jaroV1RFzUs0qA
+ ivBVT0rB5OWD7muo5noqhrYlGJa7I4CrDHbirTbzg3g4iPKc6DU19dYFnWap_4MOy7j1HomNu1v6
+ 5bRaRRPyPk_w_AkoWZdqAPQG4akTqzfOaK2qoFK4PwD2ZeHaYtlBOpfD8nEyugSr5Skzu7mT.WFP
+ yv5ZCok6Gel5jtv3CKNWcpe54Ezzz2ig4Si19E2PalfnXDn8KbiEPX5Itwizopq3EPs8lEf0mBDz
+ DcH4ZBMwmwLT9VdHsmHxiQ3YlrgC.v5aEmpCQLNhmhEKuzqlLcpCRI1g1FP8dXSORM2Ncyedua4w
+ V46k3HQ2U1MDRfa2wc1DuHUeQeWqK7RmsKlxJcMqaT5kwD5PRy7GjVBlVP8GDB5WPSNYQonxSYpQ
+ HCceXqxluTP7uKzx4iHCQE1sFqOtxYUDkzn6AGJtx61xWQcp_5A50iIbh.4Nf_DW_snF8N7ct41X
+ v8THU5RKu1ztvQp_I7hpCBY6J8idCLNb9nx9UvoA59MY.ah3c9JPDz44s4i9ytD7Yd5VIhXD.rfj
+ jDQQNwOXHWmBYMycCPdCPa2D2DI1.coj5lMUjMHwPKv9ZgCe4v70k
+X-Sonic-MF: <hwzhou@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic317.consmr.mail.bf2.yahoo.com with HTTP; Mon, 6 Sep 2021 21:32:36 +0000
+Date: Mon, 6 Sep 2021 21:32:32 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <606552990.1786539.1630963952986@mail.yahoo.com>
+In-Reply-To: <78915145.1401871.1630855703615@mail.yahoo.com>
+References: <78915145.1401871.1630855703615.ref@mail.yahoo.com> <78915145.1401871.1630855703615@mail.yahoo.com>
 MIME-Version: 1.0
-In-Reply-To: <985193204.1564657.1630962787077@mail.yahoo.com>
-Content-Language: en-US
-Message-ID-Hash: VEVMYP7TGXSN5YCQNQC2K5DILGRKYLVZ
-X-Message-ID-Hash: VEVMYP7TGXSN5YCQNQC2K5DILGRKYLVZ
-X-MailFrom: patchvonbraun@gmail.com
+X-Mailer: WebService/1.1.18924 YMailNorrin
+Message-ID-Hash: TN4AQGODP4YKBFFQMUNNZTDNDIHZSCJT
+X-Message-ID-Hash: TN4AQGODP4YKBFFQMUNNZTDNDIHZSCJT
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD4.10+X310USRP: Error in Rx in Final Stage
+Subject: [USRP-users] Rx Packet Drop in N321 USRP
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VEVMYP7TGXSN5YCQNQC2K5DILGRKYLVZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TN4AQGODP4YKBFFQMUNNZTDNDIHZSCJT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6948086816417137389=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============2392596143821254200=="
 
-This is a multi-part message in MIME format.
---===============6948086816417137389==
+--===============2392596143821254200==
 Content-Type: multipart/alternative;
- boundary="------------93881F748F10C1F559EC234D"
-Content-Language: en-US
+	boundary="----=_Part_1786538_1658159489.1630963952983"
 
-This is a multi-part message in MIME format.
---------------93881F748F10C1F559EC234D
-Content-Type: text/plain; charset=utf-8; format=flowed
+------=_Part_1786538_1658159489.1630963952983
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 2021-09-06 5:13 p.m., zhou wrote:
-> Thanks for your explanation, Marcus.
->
-> The number of samples is based on the sampling rate. I am using X310=20
-> USRP. Its sampling rate is equal to its master clock, 184.32MHz.=20
-> Usually I capture signal for 20ms, so the number of samples =3D 20*1843=
-20.
-> We have many X310 USRPs and have been using UHD3.10 for a few years.=20
-> We have been capturing signals without extra trailing 0s. There is no=20
-> problem so far. Because it is stable, we don't upgrade UHD even though=20
-> new UHD versions come out.
-> Only until recently, we need to use higher sampling rate for new=20
-> signals with wider band. I am using N321 USRP for this. We use the=20
-> latest UHD for this USRP. Though the new system is intended for the=20
-> new USRP, I also try to use it on the old X310 USRP, then I find this=20
-> capture problem. Not all test cases fail with this new UHD. In some=20
-> cases, the EVMs are all good; only in some test cases, the last EVM is=20
-> bad.
->
-> I haven't observed this EVM issue in the UHD4.1.0+N321 combination. It=20
-> only happens in UHD4.1.0+X310 sometimes, and it is repeatable. At the=20
-> moment, my workaround is to do 1ms extra capture for UHD4.1.0+X310=20
-> combination.
->
-> I do have other problem with N321. I will start another thread for it.=20
-> Hope you can continue to help.
->
-I would suggest that you look at the time-domain signal in raw form near=20
-the end of your capture, and that might well give you good hints about
- =C2=A0 what is going on.=C2=A0 The N321 and X310 are different platforms=
-, and=20
-will have slightly-different fine-scale behavior.
+  Hi,=C2=A0
+I have a problem with the N321 USRP. I find packet droppedin USRP but not i=
+n host. In host, I am running Ubuntu 18.04.
+
+=C2=A0Below is the ifconfig result in N321:
+
+root@ni-n3xx-320CAAB:~# ifconfig
+
+eth0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Ethernet=C2=A0 HWaddr 00:80:2F=
+:32:36:BA
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:192.168.10.=
+165=C2=A0 Bcast:192.168.255.255=C2=A0 Mask:255.255.255.0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
+MULTICAST=C2=A0 MTU:1500=C2=A0 Metric:1
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:618374 err=
+ors:0 dropped:11485 overruns:0 frame:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:193714 err=
+ors:0 dropped:0 overruns:0 carrier:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
+en:1000
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:39776733 (37=
+.9 MiB)=C2=A0 TX bytes:14546432 (13.8 MiB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Interrupt:27 Base add=
+ress:0xb000
+
+=C2=A0
+
+int0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link encap:Ethernet=C2=A0HWaddr AE:CD:BA=
+:E1:CF:96
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:169.254.0.1=
+=C2=A0 Bcast:169.254.0.255=C2=A0 Mask:255.255.255.0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
+MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:456 errors=
+:0 dropped:0 overruns:0 frame:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:15 errors:=
+0 dropped:0 overruns:0 carrier:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
+en:1000
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:37392 (36.5 =
+KiB)=C2=A0 TX bytes:2770 (2.7 KiB)
+
+=C2=A0
+
+lo=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Local Loopback
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:127.0.0.1=
+=C2=A0 Mask:255.0.0.0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPLOOPBACK RUNNING=
+=C2=A0 MTU:65536=C2=A0 Metric:1
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:89 errors:=
+0 dropped:0 overruns:0 frame:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:89 errors:=
+0 dropped:0 overruns:0 carrier:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
+en:1000
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:7480 (7.3 Ki=
+B)=C2=A0 TX bytes:7480 (7.3 KiB)
+
+=C2=A0
+
+sfp0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Ethernet=C2=A0 HWaddr 00:80:2F=
+:32:36:BB
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:192.168.12.=
+2=C2=A0 Bcast:192.168.12.255=C2=A0 Mask:255.255.255.0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
+MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:6239 error=
+s:0 dropped:804 overruns:0frame:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:5669 error=
+s:0 dropped:0 overruns:0 carrier:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
+en:1000
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:18466697 (17=
+.6 MiB)=C2=A0 TX bytes:18417536 (17.5 MiB)
+
+=C2=A0
+
+sfp1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Ethernet=C2=A0 HWaddr 00:80:2F=
+:32:36:BC
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:192.168.13.=
+2=C2=A0 Bcast:192.168.13.255=C2=A0 Mask:255.255.255.0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
+MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:24868 erro=
+rs:0 dropped:796 overruns:0 frame:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:24613 erro=
+rs:0 dropped:0 overruns:0 carrier:0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
+en:1000
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:20486915 (19=
+.5 MiB)=C2=A0 TX bytes:19611643 (18.7 MiB)
+
+=C2=A0
+
+Below is ifconfig result in host:
+
+user@USRP-SERVER:~$ ifconfig
+
+eno1:flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 1500
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet192.168.10.143=C2=A0 netmask=
+ 255.255.255.0=C2=A0 broadcast 192.168.255.255
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6fe80::b27b:25ff:fe1d:9e4e=
+=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0etherb0:7b:25:1d:9e:4e=C2=A0 txqu=
+euelen 1000=C2=A0 (Ethernet)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets5604=C2=A0 bytes 41643=
+5 (416.4 KB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
+ overruns 0=C2=A0 frame 0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets404=C2=A0 bytes 68556 =
+(68.5 KB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
+uns 0=C2=A0 carrier 0=C2=A0 collisions 0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device interrupt16=C2=A0 memory =
+0xd2100000-d2120000
+
+=C2=A0
+
+enp1s0f0:flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 9000
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet192.168.12.1=C2=A0 netmask 2=
+55.255.255.0=C2=A0 broadcast 192.168.12.255
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6fe80::faf2:1eff:fe42:dddc=
+=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 etherf8:f2:1e:42:dd:dc=C2=A0 txq=
+ueuelen 1000=C2=A0 (Ethernet)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets294=C2=A0 bytes 35184 =
+(35.1 KB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
+ overruns 0=C2=A0 frame 0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets395=C2=A0 bytes 37148 =
+(37.1 KB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
+uns 0=C2=A0 carrier 0=C2=A0 collisions 0
+
+=C2=A0
+
+enp1s0f1:flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 9000
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet192.168.13.1=C2=A0 netmask 2=
+55.255.255.0=C2=A0 broadcast 192.168.13.255
+
+=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0inet6fe80::faf2:1eff:fe42:dddd=
+=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 etherf8:f2:1e:42:dd:dd=C2=A0 txq=
+ueuelen 1000=C2=A0 (Ethernet)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets9=C2=A0 bytes 2228 (2.=
+2 KB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
+ overruns 0=C2=A0 frame 0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets72=C2=A0 bytes 7983 (7=
+.9 KB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
+uns 0=C2=A0 carrier 0=C2=A0 collisions 0
+
+=C2=A0
+
+lo: flags=3D73<UP,LOOPBACK,RUNNING>=C2=A0 mtu 65536
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet127.0.0.1=C2=A0 netmask 255.=
+0.0.0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6 ::1=C2=A0prefixlen 128=C2=
+=A0 scopeid 0x10<host>
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 loop=C2=A0txqueuelen 1000=C2=A0 =
+(Local Loopback)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets 21071=C2=A0bytes 1497=
+110 (1.4 MB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
+ overruns 0=C2=A0 frame 0
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets21071=C2=A0 bytes 1497=
+110 (1.4 MB)
+
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
+uns 0=C2=A0 carrier 0=C2=A0 collisions 0
+=C2=A0Could you please let me know what is the possible reason forpacket dr=
+op in USRP? How to fix it?
+Thanks for any inputs.
 
 
->
->
-> On Monday, 6 September 2021, 16:18:00 BST, Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
->
->
-> On 2021-09-06 10:38 a.m., zhou wrote:
-> Hi Marcus,
->
-> Thanks for your comments.
-> What is group-delay in FPGA? I had a guess that there was some delay=20
-> between the time instance when FPGA issued Rx command and the time=20
-> instance when ADC started to sample. Does group-delay mean this?
->
-> I use time-based capture - specify a start time and specify the number=20
-> of samples to capture,
-> uhd::stream_cmd_t=20
-> stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_DONE);
-> stream_cmd.time_spec =3D time_spec
-> stream_cmd.num_samps =3D num_requested_samples
->
-> In a while loop, I keep calling rx_stream->recv() to receive samples.=20
-> When the number of samples are received, capture is done.
->
-> The samples are saved in buffer when calling recv(); after all samples=20
-> are received, they will be saved into a file and processed offline.
->
-> From the EVM results, I don't think the whole timing is shifted=20
-> between the two UHD versions, otherwise, the whole EVM should become=20
-> worse, but we only see the final EVM becomes worse. It looks to me=20
-> that FPGA is "releasing" ADC earlier than it should. If I increase=20
-> num_requested_samples, that seems to delay its release.
->
-> Look forward to your further comments.
->
-> Many thanks,
->
-> Hongwei
->
-> Group delay is a property of any filtering element in a=20
-> signal-processing chain.=C2=A0 Whether it's an analog filter or digital=
-=20
-> filter.=C2=A0 Any SDR=C2=A0 that has an ADC clock
-> =C2=A0 that is higher than the host-side sample rate will need a digita=
-l=20
-> down-converter (DDC) and that involves a digital filter.=C2=A0 That dig=
-ital=20
-> filter has group delay
-> =C2=A0 (usually on the order of 10s of sample times). Different version=
-s of=20
-> UHD might employ slightly different versions in the DDC portion of the=20
-> FPGA, leading
-> =C2=A0 to slightly-different group-delay behavior.
->
-> If you're calculating the number of samples you need based on=20
-> something like:
->
-> number-of-frames-I-want X number-of-samples-per-frame
->
-> Then there is ALWAYS the chance that the last frame will get cut off.
->
-> Just as you usually need to "pad" the TX side with a few trailing 0s,=20
-> so too should you extend your receive for a few samples beyond what=20
-> you exactly need.
-> =C2=A0 This has always been true.=C2=A0 That you "got away" with it in =
-UHD 3.10=20
-> was likely just a matter of luck.
->
->
->
->>
->>
->> On Sunday, 5 September 2021, 20:47:39 BST, Marcus D. Leech=20
->> <patchvonbraun@gmail.com> <mailto:patchvonbraun@gmail.com> wrote:
->>
->>
->> On 2021-09-05 11:28 a.m., zhou via USRP-users wrote:
->> Hi All,
->>
->> I have a problem in using X310 USRP after upgrading UHD from 3.10 to=20
->> 4.1.0. I am using it to capture NR5G radio signal in UL. After=20
->> analyzing the captured signal, the quality in the last subframe is=20
->> worse than the earlier subframes.
->> EVM =3D
->> [1.014, 1.08, 1.055, 1.053, 0.954, 1.043, 1.145, 1.112, 1.162, 1.072,=20
->> 1.131, 1.125, 1.038, 1.08, 1.003, 1.1, 0.972, 0.941, 1.046, 0.917,=20
->> 1.01, 1.023, 1.025, 0.982, 1.101, 1.044, 1.089, 0.987, 0.923, 1.022,=20
->> 1.012, 1.009, 1.021, 1.037, 0.998, 1.112, 1.112, 0.981, 0.987, *2.785*=
-]
->>
->> When using UHD 3.10, I had no such problem.
->>
->> If I deliberately capture one more subframe with UHD 4.1.0 but ignore=20
->> it when analyzing the signals, I will have good EVM.
->>
->> Is this a bug in FPGA for UHD4.1.0 in X310?
->>
->> Thanks for any input.
->>
->> Hongwei
->>
->>
->> My guess is that there are just slight timing and/or group-delay=20
->> deifferences between the two FPGA releases, and your capture time is=20
->> just slightly too short
->> =C2=A0 to account for that.
->>
->> It is inevitable that going from a quite-old release to very=C2=A0 muc=
-h=20
->> newer (latest) release that there will be subtle things like group=20
->> delay differences between the
->> =C2=A0 two FPGA implementations.
->>
->> How do you decide when you are "done" capturing?=C2=A0=C2=A0=C2=A0 How=
- are you=20
->> capturing?=C2=A0 Do you do your processing in real-time, or do you cap=
-ture=20
->> to a file then
->> =C2=A0 process the file.
->>
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com=20
->> <mailto:usrp-users@lists.ettus.com>
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com=20
->> <mailto:usrp-users-leave@lists.ettus.com>
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com=20
-> <mailto:usrp-users@lists.ettus.com>
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com=20
-> <mailto:usrp-users-leave@lists.ettus.com>
 
+------=_Part_1786538_1658159489.1630963952983
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---------------93881F748F10C1F559EC234D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+<html><head></head><body><div class="ydpb9dc4fa4yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div></div>
+        <div dir="ltr" data-setdir="false"> <div><div dir="ltr" data-setdir="false">Hi,&nbsp;</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">I have a problem with the N321 USRP. I find packet dropped
+in USRP but not in host. In host, I am running Ubuntu 18.04.</div><div><br></div>
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2021-09-06 5:13 p.m., zhou wrote:<b=
-r>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:985193204.1564657.1630962787077@mail.yahoo.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div class=3D"ydp861463e0yahoo-style-wrap"
-        style=3D"font-family:Helvetica Neue, Helvetica, Arial,
-        sans-serif;font-size:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false">Thanks for your explanatio=
-n,
-          Marcus.</div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div dir=3D"ltr" data-setdir=3D"false">The number of samples is
-          based on the sampling rate. I am using X310 USRP. Its sampling
-          rate is equal to its master clock, 184.32MHz. Usually I
-          capture signal for 20ms, so the number of samples =3D 20*184320=
-.</div>
-        <div dir=3D"ltr" data-setdir=3D"false">We have many X310 USRPs an=
-d
-          have been using UHD3.10 for a few years. We have been
-          capturing signals without extra trailing 0s. There is no
-          problem so far. Because it is stable, we don't upgrade UHD
-          even though new UHD versions come out.</div>
-        <div dir=3D"ltr" data-setdir=3D"false">=C2=A0</div>
-        <div dir=3D"ltr" data-setdir=3D"false">Only until recently, we ne=
-ed
-          to use higher sampling rate for new signals with=C2=A0<span><sp=
-an
-              style=3D"color: rgb(0, 0, 0); font-family: Helvetica Neue,
-              Helvetica, Arial, sans-serif;">wider band. I am using N321
-              USRP for this. We use the latest UHD for this USRP. Though
-              the new system is intended for the new USRP, I also try to
-              use it on the old X310 USRP, then I find this capture
-              problem. Not all test cases fail with this new UHD. In
-              some cases, the EVMs are all good; only in some test
-              cases, the last EVM is bad.</span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color=
-:
-              rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica,
-              Arial, sans-serif;"><br>
-            </span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color=
-:
-              rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica,
-              Arial, sans-serif;">I haven't observed this EVM issue in
-              the UHD4.1.0+N321 combination. It only happens in
-              UHD4.1.0+X310 sometimes, and it is repeatable. At the
-              moment, my workaround is to do 1ms extra capture for
-              UHD4.1.0+X310 combination.</span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color=
-:
-              rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica,
-              Arial, sans-serif;"><br>
-            </span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color=
-:
-              rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica,
-              Arial, sans-serif;">I do have other problem with N321. I
-              will start another thread for it. Hope you can continue to
-              help.</span></span></div>
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color=
-:
-              rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica,
-              Arial, sans-serif;"><br>
-            </span></span></div>
-      </div>
-    </blockquote>
-    I would suggest that you look at the time-domain signal in raw form
-    near the end of your capture, and that might well give you good
-    hints about<br>
-    =C2=A0 what is going on.=C2=A0 The N321 and X310 are different platfo=
-rms, and
-    will have slightly-different fine-scale behavior.=C2=A0 <br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:985193204.1564657.1630962787077@mail.yahoo.com">
-      <div class=3D"ydp861463e0yahoo-style-wrap"
-        style=3D"font-family:Helvetica Neue, Helvetica, Arial,
-        sans-serif;font-size:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color=
-:
-              rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica,
-              Arial, sans-serif;"><br>
-            </span></span></div>
-        <div><br>
-        </div>
-      </div>
-      <div id=3D"ydp98e98598yahoo_quoted_1775407810"
-        class=3D"ydp98e98598yahoo_quoted">
-        <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial,
-          sans-serif;font-size:13px;color:#26282a;">
-          <div> On Monday, 6 September 2021, 16:18:00 BST, Marcus D.
-            Leech <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patch=
-vonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> wrote: </div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>
-            <div id=3D"ydp98e98598yiv3028384882">
-              <div>
-                <div class=3D"ydp98e98598yiv3028384882moz-cite-prefix">On
-                  2021-09-06 10:38 a.m., zhou wrote:<br clear=3D"none">
-                </div>
-                <blockquote type=3D"cite"> </blockquote>
-              </div>
-              <div>
-                <div
-                  class=3D"ydp98e98598yiv3028384882ydpe09f327fyahoo-style=
--wrap"
-                  style=3D"font-family:Helvetica Neue, Helvetica, Arial,
-                  sans-serif;font-size:13px;">
-                  <div dir=3D"ltr">Hi Marcus,</div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">Thanks for your comments.</div>
-                  <div dir=3D"ltr">What is group-delay in FPGA? I had a
-                    guess that there was some delay between the time
-                    instance when FPGA issued Rx command and the time
-                    instance when ADC started to sample. Does
-                    group-delay mean this?</div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">I use time-based capture - specify a
-                    start time and specify the number of samples to
-                    capture,=C2=A0</div>
-                  <div dir=3D"ltr">uhd::stream_cmd_t
-                    stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_A=
-ND_DONE);<br
-                      clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr"><span><span>stream_cmd.time_spec =3D
-                        time_spec</span><br clear=3D"none">
-                    </span></div>
-                  <div dir=3D"ltr"><span><span><span>stream_cmd.num_samps
-                          =3D=C2=A0<span>num_requested_samples</span></sp=
-an><br
-                          clear=3D"none">
-                      </span></span></div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">In a while loop, I keep calling=C2=A0<=
-span>rx_stream-&gt;recv()
-                      to receive samples.=C2=A0</span>When the number of
-                    samples are received, capture is done.=C2=A0</div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">The samples are saved in buffer when
-                    calling recv(); after all samples are received, they
-                    will be saved into a file and processed offline.</div=
->
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">From the EVM results, I don't think th=
-e
-                    whole timing is shifted between the two UHD
-                    versions, otherwise, the whole EVM should become
-                    worse, but we only see the final EVM becomes worse.
-                    It looks to me that FPGA is "releasing" ADC earlier
-                    than it should. If I increase=C2=A0<span><span
-                        style=3D"color:rgb(0, 0, 0);font-family:Helvetica
-                        Neue, Helvetica, Arial, sans-serif;">num_requeste=
-d_samples,
-                        that seems to delay its release.</span></span>=C2=
-=A0=C2=A0</div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">Look forward to your further comments.=
-=C2=A0</div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">Many thanks,</div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                  <div dir=3D"ltr">Hongwei</div>
-                  <div dir=3D"ltr"><br clear=3D"none">
-                  </div>
-                </div>
-                Group delay is a property of any filtering element in a
-                signal-processing chain.=C2=A0 Whether it's an analog fil=
-ter
-                or digital filter.=C2=A0 Any SDR=C2=A0 that has an ADC cl=
-ock<br
-                  clear=3D"none">
-                =C2=A0 that is higher than the host-side sample rate will
-                need a digital down-converter (DDC) and that involves a
-                digital filter.=C2=A0 That digital filter has group delay=
-<br
-                  clear=3D"none">
-                =C2=A0 (usually on the order of 10s of sample times).=C2=A0
-                Different versions of UHD might employ slightly
-                different versions in the DDC portion of the FPGA,
-                leading<br clear=3D"none">
-                =C2=A0 to slightly-different group-delay behavior.<br
-                  clear=3D"none">
-                <br clear=3D"none">
-                If you're calculating the number of samples you need
-                based on something like:<br clear=3D"none">
-                <br clear=3D"none">
-                number-of-frames-I-want X number-of-samples-per-frame<br
-                  clear=3D"none">
-                <br clear=3D"none">
-                Then there is ALWAYS the chance that the last frame will
-                get cut off.<br clear=3D"none">
-                <br clear=3D"none">
-                Just as you usually need to "pad" the TX side with a few
-                trailing 0s, so too should you extend your receive for a
-                few samples beyond what you exactly need.<br
-                  clear=3D"none">
-                =C2=A0 This has always been true.=C2=A0 That you "got awa=
-y" with
-                it in UHD 3.10 was likely just a matter of luck.
-                <div class=3D"ydp98e98598yiv3028384882yqt5387678254"
-                  id=3D"ydp98e98598yiv3028384882yqtfd99070"><br
-                    clear=3D"none">
-                  <br clear=3D"none">
-                  <br clear=3D"none">
-                  <blockquote type=3D"cite">
-                    <div
-                      class=3D"ydp98e98598yiv3028384882ydpe09f327fyahoo-s=
-tyle-wrap"
-                      style=3D"font-family:Helvetica Neue, Helvetica,
-                      Arial, sans-serif;font-size:13px;">
-                      <div dir=3D"ltr"><span><span style=3D"color:rgb(0, =
-0,
-                            0);font-family:Helvetica Neue, Helvetica,
-                            Arial, sans-serif;"><br clear=3D"none">
-                          </span></span></div>
-                      <div><br clear=3D"none">
-                      </div>
-                    </div>
-                    <div
-                      class=3D"ydp98e98598yiv3028384882ydpb3a0926yahoo_qu=
-oted"
-id=3D"ydp98e98598yiv3028384882ydpb3a0926yahoo_quoted_1405315321">
-                      <div style=3D"font-family:'Helvetica Neue',
-                        Helvetica, Arial,
-                        sans-serif;font-size:13px;color:#26282a;">
-                        <div> On Sunday, 5 September 2021, 20:47:39 BST,
-                          Marcus D. Leech <a shape=3D"rect"
-                            class=3D"ydp98e98598yiv3028384882moz-txt-link=
--rfc2396E"
-                            href=3D"mailto:patchvonbraun@gmail.com"
-                            rel=3D"nofollow" target=3D"_blank"
-                            moz-do-not-send=3D"true">&lt;patchvonbraun@gm=
-ail.com&gt;</a>
-                          wrote: </div>
-                        <div><br clear=3D"none">
-                        </div>
-                        <div><br clear=3D"none">
-                        </div>
-                        <div>
-                          <div
-                            id=3D"ydp98e98598yiv3028384882ydpb3a0926yiv57=
-83056899">
-                            <div
-                              class=3D"ydp98e98598yiv3028384882ydpb3a0926=
-yiv5783056899yqt3445910838"
-id=3D"ydp98e98598yiv3028384882ydpb3a0926yiv5783056899yqt17672">
-                              <div>
-                                <div
-                                  class=3D"ydp98e98598yiv3028384882ydpb3a=
-0926yiv5783056899moz-cite-prefix">On
-                                  2021-09-05 11:28 a.m., zhou via
-                                  USRP-users wrote:<br clear=3D"none">
-                                </div>
-                                <blockquote type=3D"cite"> </blockquote>
-                              </div>
-                              <div>
-                                <div
-                                  class=3D"ydp98e98598yiv3028384882ydpb3a=
-0926yiv5783056899yahoo-style-wrap"
-                                  style=3D"font-family:Helvetica Neue,
-                                  Helvetica, Arial,
-                                  sans-serif;font-size:13px;">
-                                  <div dir=3D"ltr">Hi All,</div>
-                                  <div dir=3D"ltr"><br clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr">I have a problem in
-                                    using X310 USRP after upgrading UHD
-                                    from 3.10 to 4.1.0. I am using it to
-                                    capture NR5G radio signal in UL.
-                                    After analyzing the captured signal,
-                                    the quality in the last subframe is
-                                    worse than the earlier subframes.</di=
-v>
-                                  <div dir=3D"ltr">EVM =3D</div>
-                                  <div dir=3D"ltr"><span><span
-                                        style=3D"color:rgb(23, 43,
-                                        77);font-family:-apple-system,
-                                        BlinkMacSystemFont, Roboto,
-                                        Oxygen, Ubuntu,
-                                        sans-serif;font-size:14px;backgro=
-und-color:rgb(244,
-                                        245, 247);">[1.014, 1.08, 1.055,
-                                        1.053, 0.954, 1.043, 1.145,
-                                        1.112, 1.162, 1.072, 1.131,
-                                        1.125, 1.038, 1.08, 1.003, 1.1,
-                                        0.972, 0.941, 1.046, 0.917,
-                                        1.01, 1.023, 1.025, 0.982,
-                                        1.101, 1.044, 1.089, 0.987,
-                                        0.923, 1.022, 1.012, 1.009,
-                                        1.021, 1.037, 0.998, 1.112,
-                                        1.112, 0.981, 0.987,=C2=A0</span>=
-<font
-style=3D"font-family:-apple-system, BlinkMacSystemFont, Roboto, Oxygen,
-                                        Ubuntu,
-                                        sans-serif;font-size:14px;backgro=
-und-color:rgb(244,
-                                        245, 247);" color=3D"#de350b"><b>=
-2.785</b></font><span
-                                        style=3D"color:rgb(23, 43,
-                                        77);font-family:-apple-system,
-                                        BlinkMacSystemFont, Roboto,
-                                        Oxygen, Ubuntu,
-                                        sans-serif;font-size:14px;backgro=
-und-color:rgb(244,
-                                        245, 247);">]</span></span><br
-                                      clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr"><br clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr">When using UHD 3.10, I
-                                    had no such problem.<br clear=3D"none=
-">
-                                  </div>
-                                  <div dir=3D"ltr"><br clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr">
-                                    <div>
-                                      <div dir=3D"ltr">If I deliberately
-                                        capture one more subframe with
-                                        UHD 4.1.0 but ignore it when
-                                        analyzing the signals, I will
-                                        have good EVM.</div>
-                                    </div>
-                                    <div dir=3D"ltr"><br clear=3D"none">
-                                    </div>
-                                    <div dir=3D"ltr">Is this a bug in FPG=
-A
-                                      for UHD4.1.0 in X310?</div>
-                                    <div dir=3D"ltr"><br clear=3D"none">
-                                    </div>
-                                    <div dir=3D"ltr">Thanks for any input=
-.</div>
-                                    <div dir=3D"ltr"><br clear=3D"none">
-                                    </div>
-                                    <div dir=3D"ltr">Hongwei</div>
-                                    <div dir=3D"ltr"><br clear=3D"none">
-                                    </div>
-                                    <br clear=3D"none">
-                                  </div>
-                                </div>
-                                My guess is that there are just slight
-                                timing and/or group-delay deifferences
-                                between the two FPGA releases, and your
-                                capture time is just slightly too short<b=
-r
-                                  clear=3D"none">
-                                =C2=A0 to account for that.<br clear=3D"n=
-one">
-                                <br clear=3D"none">
-                                It is inevitable that going from a
-                                quite-old release to very=C2=A0 much newe=
-r
-                                (latest) release that there will be
-                                subtle things like group delay
-                                differences between the<br clear=3D"none"=
->
-                                =C2=A0 two FPGA implementations.=C2=A0 <b=
-r
-                                  clear=3D"none">
-                                <br clear=3D"none">
-                                How do you decide when you are "done"
-                                capturing?=C2=A0=C2=A0=C2=A0 How are you =
-capturing?=C2=A0 Do
-                                you do your processing in real-time, or
-                                do you capture to a file then<br
-                                  clear=3D"none">
-                                =C2=A0 process the file.<br clear=3D"none=
-">
-                                <br clear=3D"none">
-                                <br clear=3D"none">
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class=3D"ydp98e98598yiv3028384882ydpb3a0926yq=
-t3445910838"
-id=3D"ydp98e98598yiv3028384882ydpb3a0926yqt23932">_______________________=
-________________________<br
-                              clear=3D"none">
-                            USRP-users mailing list -- <a shape=3D"rect"
-                              href=3D"mailto:usrp-users@lists.ettus.com"
-                              rel=3D"nofollow" target=3D"_blank"
-                              moz-do-not-send=3D"true">usrp-users@lists.e=
-ttus.com</a><br
-                              clear=3D"none">
-                            To unsubscribe send an email to <a
-                              shape=3D"rect"
-                              href=3D"mailto:usrp-users-leave@lists.ettus=
-.com"
-                              rel=3D"nofollow" target=3D"_blank"
-                              moz-do-not-send=3D"true">usrp-users-leave@l=
-ists.ettus.com</a><br
-                              clear=3D"none">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </blockquote>
-                  <br clear=3D"none">
-                </div>
-              </div>
-            </div>
-            <div class=3D"ydp98e98598yqt5387678254"
-              id=3D"ydp98e98598yqtfd52046">______________________________=
-_________________<br
-                clear=3D"none">
-              USRP-users mailing list -- <a shape=3D"rect"
-                href=3D"mailto:usrp-users@lists.ettus.com" rel=3D"nofollo=
-w"
-                target=3D"_blank" moz-do-not-send=3D"true">usrp-users@lis=
-ts.ettus.com</a><br
-                clear=3D"none">
-              To unsubscribe send an email to <a shape=3D"rect"
-                href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                rel=3D"nofollow" target=3D"_blank" moz-do-not-send=3D"tru=
-e">usrp-users-leave@lists.ettus.com</a><br
-                clear=3D"none">
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+<p class="ydpc002c510MsoNormal"><b>&nbsp;<u>Below is the ifconfig result in N321:</u></b></p>
 
---------------93881F748F10C1F559EC234D--
+<p class="ydpc002c510MsoNormal">root@ni-n3xx-320CAAB:~# ifconfig</p>
 
---===============6948086816417137389==
+<p class="ydpc002c510MsoNormal"><b>eth0</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
+encap:Ethernet&nbsp; HWaddr 00:80:2F:32:36:BA</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+addr:192.168.10.165&nbsp; Bcast:192.168.255.255&nbsp; Mask:255.255.255.0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
+BROADCAST RUNNING MULTICAST&nbsp; MTU:<b>1500</b>&nbsp; Metric:1</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+packets:618374 errors:0 <b><span style="color:red">dropped:11485</span></b><span style="color:red"> </span>overruns:0 frame:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
+packets:193714 errors:0 dropped:0 overruns:0 carrier:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:0 txqueuelen:1000</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+bytes:39776733 (37.9 MiB)&nbsp; TX bytes:14546432 (13.8 MiB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Interrupt:27 Base address:0xb000</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal">int0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link encap:Ethernet&nbsp;
+HWaddr AE:CD:BA:E1:CF:96</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+addr:169.254.0.1&nbsp; Bcast:169.254.0.255&nbsp; Mask:255.255.255.0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
+BROADCAST RUNNING MULTICAST&nbsp; MTU:9000&nbsp; Metric:1</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+packets:456 errors:0 dropped:0 overruns:0 frame:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
+packets:15 errors:0 dropped:0 overruns:0 carrier:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:0 txqueuelen:1000</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+bytes:37392 (36.5 KiB)&nbsp; TX bytes:2770 (2.7 KiB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal">lo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
+encap:Local Loopback</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+addr:127.0.0.1&nbsp; Mask:255.0.0.0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
+LOOPBACK RUNNING&nbsp; MTU:65536&nbsp; Metric:1</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+packets:89 errors:0 dropped:0 overruns:0 frame:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
+packets:89 errors:0 dropped:0 overruns:0 carrier:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:0 txqueuelen:1000</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+bytes:7480 (7.3 KiB)&nbsp; TX bytes:7480 (7.3 KiB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal"><b>sfp0</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
+encap:Ethernet&nbsp; HWaddr 00:80:2F:32:36:BB</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+addr:192.168.12.2&nbsp; Bcast:192.168.12.255&nbsp; Mask:255.255.255.0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
+BROADCAST RUNNING MULTICAST&nbsp; MTU:<b>9000</b>&nbsp; Metric:1</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+packets:6239 errors:0 <b><span style="color:red">dropped:804 </span></b>overruns:0
+frame:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
+packets:5669 errors:0 dropped:0 overruns:0 carrier:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:0 txqueuelen:1000</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+bytes:18466697 (17.6 MiB)&nbsp; TX bytes:18417536 (17.5 MiB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal"><b>sfp1</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
+encap:Ethernet&nbsp; HWaddr 00:80:2F:32:36:BC</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+addr:192.168.13.2&nbsp; Bcast:192.168.13.255&nbsp; Mask:255.255.255.0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
+BROADCAST RUNNING MULTICAST&nbsp; MTU:<b>9000</b>&nbsp; Metric:1</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+packets:24868 errors:0 <b><span style="color:red">dropped:796</span></b><span style="color:red"> </span>overruns:0 frame:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
+packets:24613 errors:0 dropped:0 overruns:0 carrier:0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+collisions:0 txqueuelen:1000</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
+bytes:20486915 (19.5 MiB)&nbsp; TX bytes:19611643 (18.7 MiB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal"><u><b>Below is ifconfig result in host:</b></u></p>
+
+<p class="ydpc002c510MsoNormal">user@USRP-SERVER:~$ ifconfig</p>
+
+<p class="ydpc002c510MsoNormal"><b>eno1</b>:
+flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;&nbsp; mtu <b>1500</b></p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+192.168.10.143&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.255.255</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet6
+fe80::b27b:25ff:fe1d:9e4e&nbsp; prefixlen 64&nbsp; scopeid 0x20&lt;link&gt;</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ether
+b0:7b:25:1d:9e:4e&nbsp; txqueuelen 1000&nbsp; (Ethernet)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets
+5604&nbsp; bytes 416435 (416.4 KB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
+dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
+404&nbsp; bytes 68556 (68.5 KB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
+dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device interrupt
+16&nbsp; memory 0xd2100000-d2120000</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal"><b>enp1s0f0</b>:
+flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;&nbsp; mtu <b><span style="color:red">9000</span></b></p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+192.168.12.1&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.12.255</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet6
+fe80::faf2:1eff:fe42:dddc&nbsp; prefixlen 64&nbsp; scopeid 0x20&lt;link&gt;</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether
+f8:f2:1e:42:dd:dc&nbsp; txqueuelen 1000&nbsp; (Ethernet)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets
+294&nbsp; bytes 35184 (35.1 KB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
+dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
+395&nbsp; bytes 37148 (37.1 KB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
+dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal"><b>enp1s0f1</b>:
+flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;&nbsp; mtu <b>9000</b></p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+192.168.13.1&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.13.255</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;inet6
+fe80::faf2:1eff:fe42:dddd&nbsp; prefixlen 64&nbsp; scopeid 0x20&lt;link&gt;</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether
+f8:f2:1e:42:dd:dd&nbsp; txqueuelen 1000&nbsp; (Ethernet)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets
+9&nbsp; bytes 2228 (2.2 KB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
+dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
+72&nbsp; bytes 7983 (7.9 KB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
+dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;</p>
+
+<p class="ydpc002c510MsoNormal">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;&nbsp; mtu 65536</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
+127.0.0.1&nbsp; netmask 255.0.0.0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet6 ::1&nbsp;
+prefixlen 128&nbsp; scopeid 0x10&lt;host&gt;</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; loop&nbsp;
+txqueuelen 1000&nbsp; (Local Loopback)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets 21071&nbsp;
+bytes 1497110 (1.4 MB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
+dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
+21071&nbsp; bytes 1497110 (1.4 MB)</p>
+
+<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
+dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
+
+<div>&nbsp;</div><div>Could you please let me know what is the possible reason for
+packet drop in USRP? How to fix it?</div></div><div><br></div><div dir="ltr" data-setdir="false">Thanks for any inputs.</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false"><br></div><br></div></div></body></html>
+------=_Part_1786538_1658159489.1630963952983--
+
+--===============2392596143821254200==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -723,4 +570,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6948086816417137389==--
+--===============2392596143821254200==--
