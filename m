@@ -2,565 +2,654 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06C8540211B
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 23:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E09E402120
+	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 23:40:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3E028380E6D
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 17:33:28 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8697538446B
+	for <lists+usrp-users@lfdr.de>; Mon,  6 Sep 2021 17:40:53 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="MtMzaERQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g1XgEKaO";
 	dkim-atps=neutral
-Received: from sonic317-27.consmr.mail.bf2.yahoo.com (sonic317-27.consmr.mail.bf2.yahoo.com [74.6.129.82])
-	by mm2.emwd.com (Postfix) with ESMTPS id A723E3844CB
-	for <usrp-users@lists.ettus.com>; Mon,  6 Sep 2021 17:32:37 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1630963956; bh=Bk36QJIX6S4OzEYdrf/nvv6cVYEWOQErAECWC0WTD1Q=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=MtMzaERQQnip8ZjHD0Y3a0qiEpsRA5UY4/OAQgFnh32d0I+UAfExoi+64rExtlVK3E5FJFUq9YIuH64fk2grhDM3pR9/K7JZ6+e+yhUHdi7xqmJoWJFv3nfZxV9fUhlCR+QVm5XpCxeEWO37Haw8+6myJyqcJm/2jHGIBYQitZsnlAE+K4Cy2tPVpoQ9pRDQvSQ7FWD07+XC4y6te4IYEzhAxQeL1i6gJib2LrzxWFm00cFQ9GsvCjquighi0cCP0w8e3240JafGgPOaAYOWMfzS1iKBX6rGMhY5LLnlUiqiico6TJh1ohaeiUMgpWN2kemLQSksRB5eSn1U4IZaFg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1630963956; bh=vQMm+hB/f9VVckZQm0N8AL8fZCxvGBY74kV5lUs2W3g=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=ZOwlN3/mmjkZhGuI1p5pN3B/28TLkNW4+MopwKw7dty78dSbr9/cjvIoaqdicuiUlYsb0XZR8Pdfcsp2VmG6Eb0N5nn7ThTetiM6/h20wrNg248huZwNtITDAYuOVV/jWboJimr3I6IOrz4PDFR39M0lMnlrkP1pTzB5T9EW6YWYl0IRatlbA6vD3r3U8SQDBmxzQLr+eQOxVJSW52qBUrgMbUvWN+4TCOqhXQDpglaXh8u8x0u1Shwi4shFvDgFSCHvJ9r9/g3W9I4FJU4VFv6IfTOkmyQa05duQ/pZkuKUzxgaVVYrItt+yeB1M0f1yp52gKMaNMPbrNay+H+kUA==
-X-YMail-OSG: N_9IzLEVM1mLkaC30Qc_.G6YjaOa6YzPcTx7dXq_SYqEbwpmsU9nRjGSV27.aYt
- i6KC7mJ6lfoT1x03LgF4tT_O78yeyvOhAfLc.dIvLzgd_G758_XDIhcgg.8atbcwn8jOshkgN6Bv
- QdcVdyOm8FyBU.JDTpjcO70aGfCQxnx7g1S4vEgPkHQsksAxLknQ5bOsvee8MbfmawDCNk2K53oD
- JtkXhgPRbpKkk97Z8mWvqbF5LdJj6dn5DPCOjOQBZKLuW7xx1EY8BNsdVh.K1qtAcuodcXywR56e
- AVq5LQpCxdhvGsZLfPcMTW5tQu_upyCdqKcVd6mYtf2c8he6aNacA66_MNy1r.opSgeQFoGwduSa
- Q7nIFn7zblhzDq9g3nrQaHdFnSTjzoOXThEXltljidbakpZkczws6Gageb4L3l0U5zSFdyDgbXSO
- 0XVO.0sAsnKvpdD69HpTYhM68XeqE9eeCJTSNHldi4ePzAu8c22RlBDVbPoBge2WaAD5akR_GVX7
- .wVUmyg.Quum5Hpq93wWUiaxpSnzTGRZRp38K8jx9C53BN3NBWOSpFEt3uRqaNOuZYKMOrgbhimc
- ivinIIpjTSGz8SlE11wYr1mlm96ywMPPxSO3g8lsra3ffWi6.7bDwT9g2MYwam2LZc84LU1mAIoC
- QCZu2nY_Nwq1SJCZVOVOrtRSrKUiZAKQ0ZW.7LA4fF67cQ_sURSBj7YYIj22uKFinvgy5XV3c9zK
- r3fsPK.qXPHnAElWWEH1EaarpY86ESy0hTsSJEfggtgh4tlw_B3r8UqBdbhXkur7HM6cISKF4s02
- TClvvVFbtS5vGrM8LyeIRwW_7Asfa14_4gGETL1w6lXH6sPGGWhqxfGiIziJj0Dg0RupXbt9Vxks
- 7OxA92RciKTT6YEIxZBtt6SCdQVaMV5QO6npvrfsjY8cTdp6a8Dbbjaqzd2MW0gfS8XUEWaWYEsq
- 8XbhsddaIRdNyQC9AH2IAr_xh2lYx5gN4Krnj96oZWActZeDs7Yi073QbNYTkFVkgcOKz32lhCTp
- 5DAqbFloyMHrp6DRnbqCWLpB8a8XSG9kq1uQVYUJtpuexYFCl9tB7XnW6cxx2n0jhv.cSJgFiCfe
- Ibjgr1pyvzxMTTh1erhIEp4ts9Xz59rqj4E2gohVzNskJed2KjJ4r2nYJLOASVecHTKl74P4x_79
- H1..hRD65yLmz.yJOf63iXghio6ilFN8Vu6cjUN20Soyaj1sx19cavFYl.EXEErzmj5iypDT_.Dj
- wrRG712BJvqac.fldjv1xWOCuTSie2M.Pwk2gdqfndRqohsnteaXt9IsuvSGCvm8cqLEtKpgQIRy
- 2hc41nhjQpo_AD38QbmqLotJAtvJsC9rESegwzEdMb2juzaf.Th9e8jEFLvQrsYJlm_g.UY_hxSs
- 8giwmj.Ot2KValiBFVcmXkjuOvmQmplNj7dYjTUgV.zY3ksU.eof2yxc15qvQ0EYITDwzjyN2bbY
- uJVSxlF5VaUGcsYOYe5hZjdOYTFTwRu2ykIwaZTaThg8VSgdnK4IJwDYrYSYIocmH4Q4Ira8u7nN
- 22ahSJWBQjIaMq.FY2CfJWWRiQnC_8.BahkWY6Qda.3.ksdmXRjkAok1Bw1A9pe5r3aHFTYlIY5y
- SmeCrjiHSapUNRZ9puS17H0iF2NpoD44r1Lifp27Df6fLkJExa7odlax1x4UA0jaroV1RFzUs0qA
- ivBVT0rB5OWD7muo5noqhrYlGJa7I4CrDHbirTbzg3g4iPKc6DU19dYFnWap_4MOy7j1HomNu1v6
- 5bRaRRPyPk_w_AkoWZdqAPQG4akTqzfOaK2qoFK4PwD2ZeHaYtlBOpfD8nEyugSr5Skzu7mT.WFP
- yv5ZCok6Gel5jtv3CKNWcpe54Ezzz2ig4Si19E2PalfnXDn8KbiEPX5Itwizopq3EPs8lEf0mBDz
- DcH4ZBMwmwLT9VdHsmHxiQ3YlrgC.v5aEmpCQLNhmhEKuzqlLcpCRI1g1FP8dXSORM2Ncyedua4w
- V46k3HQ2U1MDRfa2wc1DuHUeQeWqK7RmsKlxJcMqaT5kwD5PRy7GjVBlVP8GDB5WPSNYQonxSYpQ
- HCceXqxluTP7uKzx4iHCQE1sFqOtxYUDkzn6AGJtx61xWQcp_5A50iIbh.4Nf_DW_snF8N7ct41X
- v8THU5RKu1ztvQp_I7hpCBY6J8idCLNb9nx9UvoA59MY.ah3c9JPDz44s4i9ytD7Yd5VIhXD.rfj
- jDQQNwOXHWmBYMycCPdCPa2D2DI1.coj5lMUjMHwPKv9ZgCe4v70k
-X-Sonic-MF: <hwzhou@yahoo.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic317.consmr.mail.bf2.yahoo.com with HTTP; Mon, 6 Sep 2021 21:32:36 +0000
-Date: Mon, 6 Sep 2021 21:32:32 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <606552990.1786539.1630963952986@mail.yahoo.com>
-In-Reply-To: <78915145.1401871.1630855703615@mail.yahoo.com>
-References: <78915145.1401871.1630855703615.ref@mail.yahoo.com> <78915145.1401871.1630855703615@mail.yahoo.com>
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9C19A3843DE
+	for <usrp-users@lists.ettus.com>; Mon,  6 Sep 2021 17:39:57 -0400 (EDT)
+Received: by mail-qt1-f171.google.com with SMTP id x5so6369588qtq.13
+        for <usrp-users@lists.ettus.com>; Mon, 06 Sep 2021 14:39:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=OBW9S0XCnZTAC/4/gwRuK3CvKx/BV1gfQTmNdOStfAM=;
+        b=g1XgEKaOCzBrjE/uEQ/E0oKnMAS3sH2fbXQdZOXljemymuDBSL16b9zjjP8jkgUb2M
+         FhzcXvXd349hl5/x3gtRqvarFLNsUYULcmmc7T+xE9EyyJAPkkW26nZDQnYrQJyHRC6N
+         wMZUI+Z13iW5+yeyebWxX+c4MYLgHGdziqcDeRqy3Uza5wKlxWJpAT+u6CWw/t+B8Zje
+         LEAfQllJ0NbzyUZAtWgTra4dBnqHqaQmmnoolUUerwMzWw/7l+DLd2BVQrFb7hdm2onK
+         shx1H0kXoouVvj6/qv4OCOpoPSF7u8QIAHP5rSBbAankPyz0grpADXomZJbBnouD+rYU
+         vqcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=OBW9S0XCnZTAC/4/gwRuK3CvKx/BV1gfQTmNdOStfAM=;
+        b=J8lwg48fPKe3LMVZx98APg2uizkrX8Vf+aNm8VB9QOiaP55BY5HcTKFuVDGbBij5CS
+         KAxYV/2xXB4bv2Yp0PYQgrZkHyGCWx61giXeqoHRZ9tA1RqvPp6zLNkNOXO87WWpaBfV
+         iXxq29huYVg5aQ/wEo17HYSH/CVtLgF6ZDslcF8VutdICU/P3Fiz3rD3QKzNCgmRvxo/
+         niUFHvsVMY4m5HHqX8dITatYPxYzgGXUHN2IuP0WmODUCi9suQMcdlINnL4BwGIW+Bkb
+         YmSUhtAIlLRShH0VfX6tGPlNglF5uTmx8Y7hRJk5NwmeHex7Ct5Pkm/FEWRSeU1Pv2+4
+         tZHQ==
+X-Gm-Message-State: AOAM530UgPbiMZ1dz+ro1tBrJpfld/88hTsu6Lh3+W14HRqb0n+RIeGE
+	E8RKwz8LRoC9sjoVZomlcZtJ1v8IONVrOQ==
+X-Google-Smtp-Source: ABdhPJzp31BHdx28JzTbbdpXXp8OtyePseJHmIiHh1/P8HfVCmTQt3IbQ9NTOquGNlDu3mh2DNbzmg==
+X-Received: by 2002:ac8:78c:: with SMTP id l12mr13173913qth.112.1630964396832;
+        Mon, 06 Sep 2021 14:39:56 -0700 (PDT)
+Received: from [192.168.2.239] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id c17sm6367866qtq.42.2021.09.06.14.39.56
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Sep 2021 14:39:56 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <78915145.1401871.1630855703615.ref@mail.yahoo.com>
+ <78915145.1401871.1630855703615@mail.yahoo.com>
+ <606552990.1786539.1630963952986@mail.yahoo.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <091849f1-add1-fb06-902f-50dc12c4e4ef@gmail.com>
+Date: Mon, 6 Sep 2021 17:39:55 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.18924 YMailNorrin
-Message-ID-Hash: TN4AQGODP4YKBFFQMUNNZTDNDIHZSCJT
-X-Message-ID-Hash: TN4AQGODP4YKBFFQMUNNZTDNDIHZSCJT
-X-MailFrom: hwzhou@yahoo.com
+In-Reply-To: <606552990.1786539.1630963952986@mail.yahoo.com>
+Content-Language: en-US
+Message-ID-Hash: WDQJVNA4YGIDM6SOJOJCMZW4IK7RA3SZ
+X-Message-ID-Hash: WDQJVNA4YGIDM6SOJOJCMZW4IK7RA3SZ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Rx Packet Drop in N321 USRP
+Subject: [USRP-users] Re: Rx Packet Drop in N321 USRP
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TN4AQGODP4YKBFFQMUNNZTDNDIHZSCJT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WDQJVNA4YGIDM6SOJOJCMZW4IK7RA3SZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: zhou via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: zhou <hwzhou@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============2392596143821254200=="
+Content-Type: multipart/mixed; boundary="===============4853535798425433157=="
 
---===============2392596143821254200==
+This is a multi-part message in MIME format.
+--===============4853535798425433157==
 Content-Type: multipart/alternative;
-	boundary="----=_Part_1786538_1658159489.1630963952983"
+ boundary="------------8E5C01FE63C627116C5F5D77"
+Content-Language: en-US
 
-------=_Part_1786538_1658159489.1630963952983
-Content-Type: text/plain; charset=UTF-8
+This is a multi-part message in MIME format.
+--------------8E5C01FE63C627116C5F5D77
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-  Hi,=C2=A0
-I have a problem with the N321 USRP. I find packet droppedin USRP but not i=
-n host. In host, I am running Ubuntu 18.04.
-
-=C2=A0Below is the ifconfig result in N321:
-
-root@ni-n3xx-320CAAB:~# ifconfig
-
-eth0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Ethernet=C2=A0 HWaddr 00:80:2F=
-:32:36:BA
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:192.168.10.=
-165=C2=A0 Bcast:192.168.255.255=C2=A0 Mask:255.255.255.0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
-MULTICAST=C2=A0 MTU:1500=C2=A0 Metric:1
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:618374 err=
-ors:0 dropped:11485 overruns:0 frame:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:193714 err=
-ors:0 dropped:0 overruns:0 carrier:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
-en:1000
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:39776733 (37=
-.9 MiB)=C2=A0 TX bytes:14546432 (13.8 MiB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0Interrupt:27 Base add=
-ress:0xb000
-
-=C2=A0
-
-int0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link encap:Ethernet=C2=A0HWaddr AE:CD:BA=
-:E1:CF:96
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:169.254.0.1=
-=C2=A0 Bcast:169.254.0.255=C2=A0 Mask:255.255.255.0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
-MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:456 errors=
-:0 dropped:0 overruns:0 frame:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:15 errors:=
-0 dropped:0 overruns:0 carrier:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
-en:1000
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:37392 (36.5 =
-KiB)=C2=A0 TX bytes:2770 (2.7 KiB)
-
-=C2=A0
-
-lo=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Local Loopback
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:127.0.0.1=
-=C2=A0 Mask:255.0.0.0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPLOOPBACK RUNNING=
-=C2=A0 MTU:65536=C2=A0 Metric:1
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:89 errors:=
-0 dropped:0 overruns:0 frame:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:89 errors:=
-0 dropped:0 overruns:0 carrier:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
-en:1000
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:7480 (7.3 Ki=
-B)=C2=A0 TX bytes:7480 (7.3 KiB)
-
-=C2=A0
-
-sfp0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Ethernet=C2=A0 HWaddr 00:80:2F=
-:32:36:BB
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:192.168.12.=
-2=C2=A0 Bcast:192.168.12.255=C2=A0 Mask:255.255.255.0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
-MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:6239 error=
-s:0 dropped:804 overruns:0frame:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:5669 error=
-s:0 dropped:0 overruns:0 carrier:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
-en:1000
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:18466697 (17=
-.6 MiB)=C2=A0 TX bytes:18417536 (17.5 MiB)
-
-=C2=A0
-
-sfp1=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Linkencap:Ethernet=C2=A0 HWaddr 00:80:2F=
-:32:36:BC
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inetaddr:192.168.13.=
-2=C2=A0 Bcast:192.168.13.255=C2=A0 Mask:255.255.255.0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UPBROADCAST RUNNING =
-MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXpackets:24868 erro=
-rs:0 dropped:796 overruns:0 frame:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TXpackets:24613 erro=
-rs:0 dropped:0 overruns:0 carrier:0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0collisions:0 txqueuel=
-en:1000
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RXbytes:20486915 (19=
-.5 MiB)=C2=A0 TX bytes:19611643 (18.7 MiB)
-
-=C2=A0
-
-Below is ifconfig result in host:
-
-user@USRP-SERVER:~$ ifconfig
-
-eno1:flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 1500
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet192.168.10.143=C2=A0 netmask=
- 255.255.255.0=C2=A0 broadcast 192.168.255.255
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6fe80::b27b:25ff:fe1d:9e4e=
-=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0etherb0:7b:25:1d:9e:4e=C2=A0 txqu=
-euelen 1000=C2=A0 (Ethernet)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets5604=C2=A0 bytes 41643=
-5 (416.4 KB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
- overruns 0=C2=A0 frame 0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets404=C2=A0 bytes 68556 =
-(68.5 KB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
-uns 0=C2=A0 carrier 0=C2=A0 collisions 0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device interrupt16=C2=A0 memory =
-0xd2100000-d2120000
-
-=C2=A0
-
-enp1s0f0:flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 9000
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet192.168.12.1=C2=A0 netmask 2=
-55.255.255.0=C2=A0 broadcast 192.168.12.255
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6fe80::faf2:1eff:fe42:dddc=
-=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 etherf8:f2:1e:42:dd:dc=C2=A0 txq=
-ueuelen 1000=C2=A0 (Ethernet)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets294=C2=A0 bytes 35184 =
-(35.1 KB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
- overruns 0=C2=A0 frame 0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets395=C2=A0 bytes 37148 =
-(37.1 KB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
-uns 0=C2=A0 carrier 0=C2=A0 collisions 0
-
-=C2=A0
-
-enp1s0f1:flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 9000
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet192.168.13.1=C2=A0 netmask 2=
-55.255.255.0=C2=A0 broadcast 192.168.13.255
-
-=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0inet6fe80::faf2:1eff:fe42:dddd=
-=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 etherf8:f2:1e:42:dd:dd=C2=A0 txq=
-ueuelen 1000=C2=A0 (Ethernet)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets9=C2=A0 bytes 2228 (2.=
-2 KB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
- overruns 0=C2=A0 frame 0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets72=C2=A0 bytes 7983 (7=
-.9 KB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
-uns 0=C2=A0 carrier 0=C2=A0 collisions 0
-
-=C2=A0
-
-lo: flags=3D73<UP,LOOPBACK,RUNNING>=C2=A0 mtu 65536
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet127.0.0.1=C2=A0 netmask 255.=
-0.0.0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6 ::1=C2=A0prefixlen 128=C2=
-=A0 scopeid 0x10<host>
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 loop=C2=A0txqueuelen 1000=C2=A0 =
-(Local Loopback)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets 21071=C2=A0bytes 1497=
-110 (1.4 MB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0=C2=A0dropped 0=C2=A0=
- overruns 0=C2=A0 frame 0
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets21071=C2=A0 bytes 1497=
-110 (1.4 MB)
-
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0=C2=A0dropped 0 overr=
-uns 0=C2=A0 carrier 0=C2=A0 collisions 0
-=C2=A0Could you please let me know what is the possible reason forpacket dr=
-op in USRP? How to fix it?
-Thanks for any inputs.
-
-
-
-------=_Part_1786538_1658159489.1630963952983
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html><head></head><body><div class="ydpb9dc4fa4yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div></div>
-        <div dir="ltr" data-setdir="false"> <div><div dir="ltr" data-setdir="false">Hi,&nbsp;</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">I have a problem with the N321 USRP. I find packet dropped
-in USRP but not in host. In host, I am running Ubuntu 18.04.</div><div><br></div>
-
-<p class="ydpc002c510MsoNormal"><b>&nbsp;<u>Below is the ifconfig result in N321:</u></b></p>
-
-<p class="ydpc002c510MsoNormal">root@ni-n3xx-320CAAB:~# ifconfig</p>
-
-<p class="ydpc002c510MsoNormal"><b>eth0</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
-encap:Ethernet&nbsp; HWaddr 00:80:2F:32:36:BA</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-addr:192.168.10.165&nbsp; Bcast:192.168.255.255&nbsp; Mask:255.255.255.0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
-BROADCAST RUNNING MULTICAST&nbsp; MTU:<b>1500</b>&nbsp; Metric:1</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-packets:618374 errors:0 <b><span style="color:red">dropped:11485</span></b><span style="color:red"> </span>overruns:0 frame:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
-packets:193714 errors:0 dropped:0 overruns:0 carrier:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-collisions:0 txqueuelen:1000</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-bytes:39776733 (37.9 MiB)&nbsp; TX bytes:14546432 (13.8 MiB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Interrupt:27 Base address:0xb000</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal">int0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link encap:Ethernet&nbsp;
-HWaddr AE:CD:BA:E1:CF:96</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-addr:169.254.0.1&nbsp; Bcast:169.254.0.255&nbsp; Mask:255.255.255.0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
-BROADCAST RUNNING MULTICAST&nbsp; MTU:9000&nbsp; Metric:1</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-packets:456 errors:0 dropped:0 overruns:0 frame:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
-packets:15 errors:0 dropped:0 overruns:0 carrier:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-collisions:0 txqueuelen:1000</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-bytes:37392 (36.5 KiB)&nbsp; TX bytes:2770 (2.7 KiB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal">lo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
-encap:Local Loopback</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-addr:127.0.0.1&nbsp; Mask:255.0.0.0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
-LOOPBACK RUNNING&nbsp; MTU:65536&nbsp; Metric:1</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-packets:89 errors:0 dropped:0 overruns:0 frame:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
-packets:89 errors:0 dropped:0 overruns:0 carrier:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-collisions:0 txqueuelen:1000</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-bytes:7480 (7.3 KiB)&nbsp; TX bytes:7480 (7.3 KiB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal"><b>sfp0</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
-encap:Ethernet&nbsp; HWaddr 00:80:2F:32:36:BB</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-addr:192.168.12.2&nbsp; Bcast:192.168.12.255&nbsp; Mask:255.255.255.0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
-BROADCAST RUNNING MULTICAST&nbsp; MTU:<b>9000</b>&nbsp; Metric:1</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-packets:6239 errors:0 <b><span style="color:red">dropped:804 </span></b>overruns:0
-frame:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
-packets:5669 errors:0 dropped:0 overruns:0 carrier:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-collisions:0 txqueuelen:1000</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-bytes:18466697 (17.6 MiB)&nbsp; TX bytes:18417536 (17.5 MiB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal"><b>sfp1</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Link
-encap:Ethernet&nbsp; HWaddr 00:80:2F:32:36:BC</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-addr:192.168.13.2&nbsp; Bcast:192.168.13.255&nbsp; Mask:255.255.255.0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; UP
-BROADCAST RUNNING MULTICAST&nbsp; MTU:<b>9000</b>&nbsp; Metric:1</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-packets:24868 errors:0 <b><span style="color:red">dropped:796</span></b><span style="color:red"> </span>overruns:0 frame:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX
-packets:24613 errors:0 dropped:0 overruns:0 carrier:0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-collisions:0 txqueuelen:1000</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX
-bytes:20486915 (19.5 MiB)&nbsp; TX bytes:19611643 (18.7 MiB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal"><u><b>Below is ifconfig result in host:</b></u></p>
-
-<p class="ydpc002c510MsoNormal">user@USRP-SERVER:~$ ifconfig</p>
-
-<p class="ydpc002c510MsoNormal"><b>eno1</b>:
-flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;&nbsp; mtu <b>1500</b></p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-192.168.10.143&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.255.255</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet6
-fe80::b27b:25ff:fe1d:9e4e&nbsp; prefixlen 64&nbsp; scopeid 0x20&lt;link&gt;</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ether
-b0:7b:25:1d:9e:4e&nbsp; txqueuelen 1000&nbsp; (Ethernet)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets
-5604&nbsp; bytes 416435 (416.4 KB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
-dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
-404&nbsp; bytes 68556 (68.5 KB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
-dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; device interrupt
-16&nbsp; memory 0xd2100000-d2120000</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal"><b>enp1s0f0</b>:
-flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;&nbsp; mtu <b><span style="color:red">9000</span></b></p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-192.168.12.1&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.12.255</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet6
-fe80::faf2:1eff:fe42:dddc&nbsp; prefixlen 64&nbsp; scopeid 0x20&lt;link&gt;</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether
-f8:f2:1e:42:dd:dc&nbsp; txqueuelen 1000&nbsp; (Ethernet)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets
-294&nbsp; bytes 35184 (35.1 KB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
-dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
-395&nbsp; bytes 37148 (37.1 KB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
-dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal"><b>enp1s0f1</b>:
-flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;&nbsp; mtu <b>9000</b></p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-192.168.13.1&nbsp; netmask 255.255.255.0&nbsp; broadcast 192.168.13.255</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;inet6
-fe80::faf2:1eff:fe42:dddd&nbsp; prefixlen 64&nbsp; scopeid 0x20&lt;link&gt;</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether
-f8:f2:1e:42:dd:dd&nbsp; txqueuelen 1000&nbsp; (Ethernet)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets
-9&nbsp; bytes 2228 (2.2 KB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
-dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
-72&nbsp; bytes 7983 (7.9 KB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
-dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;</p>
-
-<p class="ydpc002c510MsoNormal">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;&nbsp; mtu 65536</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet
-127.0.0.1&nbsp; netmask 255.0.0.0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inet6 ::1&nbsp;
-prefixlen 128&nbsp; scopeid 0x10&lt;host&gt;</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; loop&nbsp;
-txqueuelen 1000&nbsp; (Local Loopback)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX packets 21071&nbsp;
-bytes 1497110 (1.4 MB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RX errors 0&nbsp;
-dropped 0&nbsp; overruns 0&nbsp; frame 0</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX packets
-21071&nbsp; bytes 1497110 (1.4 MB)</p>
-
-<p class="ydpc002c510MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; TX errors 0&nbsp;
-dropped 0 overruns 0&nbsp; carrier 0&nbsp; collisions 0</p>
-
-<div>&nbsp;</div><div>Could you please let me know what is the possible reason for
-packet drop in USRP? How to fix it?</div></div><div><br></div><div dir="ltr" data-setdir="false">Thanks for any inputs.</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false"><br></div><br></div></div></body></html>
-------=_Part_1786538_1658159489.1630963952983--
-
---===============2392596143821254200==
+On 2021-09-06 5:32 p.m., zhou via USRP-users wrote:
+> Hi,
+>
+> I have a problem with the N321 USRP. I find packet dropped in USRP but=20
+> not in host. In host, I am running Ubuntu 18.04.
+>
+> *_Below is the ifconfig result in N321:_*
+>
+> root@ni-n3xx-320CAAB:~# ifconfig
+>
+> *eth0*=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link encap:Ethernet=C2=A0 HWaddr 0=
+0:80:2F:32:36:BA
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet addr:192.16=
+8.10.165=C2=A0 Bcast:192.168.255.255=20
+> Mask:255.255.255.0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP BROADCAST RUN=
+NING MULTICAST=C2=A0 MTU:*1500*=C2=A0 Metric:1
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets:61837=
+4 errors:0 *dropped:11485*overruns:0 frame:0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets:19371=
+4 errors:0 dropped:0 overruns:0 carrier:0
+>
+> collisions:0 txqueuelen:1000
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX bytes:3977673=
+3 (37.9 MiB)=C2=A0 TX bytes:14546432 (13.8 MiB)
+>
+> Interrupt:27 Base address:0xb000
+>
+> int0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link encap:Ethernet HWaddr AE:CD:BA:=
+E1:CF:96
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet addr:169.25=
+4.0.1=C2=A0 Bcast:169.254.0.255=C2=A0 Mask:255.255.255.0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP BROADCAST RUN=
+NING MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets:456 e=
+rrors:0 dropped:0 overruns:0 frame:0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets:15 er=
+rors:0 dropped:0 overruns:0 carrier:0
+>
+> collisions:0 txqueuelen:1000
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX bytes:37392 (=
+36.5 KiB)=C2=A0 TX bytes:2770 (2.7 KiB)
+>
+> lo=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link encap:Local Loopback
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet addr:127.0.=
+0.1=C2=A0 Mask:255.0.0.0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP LOOPBACK RUNN=
+ING=C2=A0 MTU:65536=C2=A0 Metric:1
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets:89 er=
+rors:0 dropped:0 overruns:0 frame:0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets:89 er=
+rors:0 dropped:0 overruns:0 carrier:0
+>
+> collisions:0 txqueuelen:1000
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX bytes:7480 (7=
+.3 KiB)=C2=A0 TX bytes:7480 (7.3 KiB)
+>
+> *sfp0*=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link encap:Ethernet=C2=A0 HWaddr 0=
+0:80:2F:32:36:BB
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet addr:192.16=
+8.12.2=C2=A0 Bcast:192.168.12.255 Mask:255.255.255.0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP BROADCAST RUN=
+NING MULTICAST=C2=A0 MTU:*9000*=C2=A0 Metric:1
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets:6239 =
+errors:0 *dropped:804 *overruns:0 frame:0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets:5669 =
+errors:0 dropped:0 overruns:0 carrier:0
+>
+> collisions:0 txqueuelen:1000
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX bytes:1846669=
+7 (17.6 MiB)=C2=A0 TX bytes:18417536 (17.5 MiB)
+>
+> *sfp1*=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Link encap:Ethernet=C2=A0 HWaddr 0=
+0:80:2F:32:36:BC
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet addr:192.16=
+8.13.2=C2=A0 Bcast:192.168.13.255 Mask:255.255.255.0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP BROADCAST RUN=
+NING MULTICAST=C2=A0 MTU:*9000*=C2=A0 Metric:1
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets:24868=
+ errors:0 *dropped:796*overruns:0 frame:0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets:24613=
+ errors:0 dropped:0 overruns:0 carrier:0
+>
+> collisions:0 txqueuelen:1000
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX bytes:2048691=
+5 (19.5 MiB)=C2=A0 TX bytes:19611643 (18.7 MiB)
+>
+> _*Below is ifconfig result in host:*_
+>
+> user@USRP-SERVER:~$ ifconfig
+>
+> *eno1*: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu *1500*
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet 192.168.10.143=C2=A0 ne=
+tmask 255.255.255.0=C2=A0 broadcast=20
+> 192.168.255.255
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6 fe80::b27b:25ff:fe1d:9=
+e4e=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ether b0:7b:25:1d:9e:4e=C2=A0=
+ txqueuelen 1000=C2=A0 (Ethernet)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets 5604=C2=A0 bytes =
+416435 (416.4 KB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0 dropped 0=C2=A0 =
+overruns 0=C2=A0 frame 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets 404=C2=A0 bytes 6=
+8556 (68.5 KB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0 dropped 0 overru=
+ns 0=C2=A0 carrier 0=C2=A0 collisions 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device interrupt 16=C2=A0 me=
+mory 0xd2100000-d2120000
+>
+> *enp1s0f0*: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu *900=
+0*
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet 192.168.12.1=C2=A0 netm=
+ask 255.255.255.0=C2=A0 broadcast 192.168.12.255
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6 fe80::faf2:1eff:fe42:d=
+ddc=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ether f8:f2:1e:42:dd:dc=C2=A0=
+ txqueuelen 1000=C2=A0 (Ethernet)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets 294=C2=A0 bytes 3=
+5184 (35.1 KB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0 dropped 0=C2=A0 =
+overruns 0=C2=A0 frame 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets 395=C2=A0 bytes 3=
+7148 (37.1 KB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0 dropped 0 overru=
+ns 0=C2=A0 carrier 0=C2=A0 collisions 0
+>
+> *enp1s0f1*: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu *900=
+0*
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet 192.168.13.1=C2=A0 netm=
+ask 255.255.255.0=C2=A0 broadcast 192.168.13.255
+>
+> =C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0inet6 fe80::faf2:1eff:fe42:d=
+ddd=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<link>
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ether f8:f2:1e:42:dd:dd=C2=A0=
+ txqueuelen 1000=C2=A0 (Ethernet)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets 9=C2=A0 bytes 222=
+8 (2.2 KB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0 dropped 0=C2=A0 =
+overruns 0=C2=A0 frame 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets 72=C2=A0 bytes 79=
+83 (7.9 KB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0 dropped 0 overru=
+ns 0=C2=A0 carrier 0=C2=A0 collisions 0
+>
+> lo: flags=3D73<UP,LOOPBACK,RUNNING>=C2=A0 mtu 65536
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet 127.0.0.1=C2=A0 netmask=
+ 255.0.0.0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet6 ::1 prefixlen 128=C2=A0=
+ scopeid 0x10<host>
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 loop txqueuelen 1000=C2=A0 (=
+Local Loopback)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX packets 21071 bytes 14971=
+10 (1.4 MB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX errors 0 dropped 0=C2=A0 =
+overruns 0=C2=A0 frame 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX packets 21071=C2=A0 bytes=
+ 1497110 (1.4 MB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX errors 0 dropped 0 overru=
+ns 0=C2=A0 carrier 0=C2=A0 collisions 0
+>
+> Could you please let me know what is the possible reason for packet=20
+> drop in USRP? How to fix it?
+>
+> Thanks for any inputs.
+>
+>
+These often PHY-layer issues--bad cables.
+
+But also can be due to the driver being forced to drop a frame on the=20
+floor because there's nowhere to put it because kernel-to-userland=20
+buffers have filled up.=C2=A0 That's
+ =C2=A0 usually due to simple inability for the userland application to "=
+keep=20
+up" with traffic.=C2=A0 That shouldn't ever be the case here, unless you =
+have=20
+some application that is
+ =C2=A0 trying to stream outside of the confines of the FPGA.=C2=A0 The s=
+tream=20
+endpoints for UHD sample traffic never really get "seen" by the CPU as=20
+far as I know, so the only
+ =C2=A0 thing the N310 CPU sees is management "stuff", which is very low =
+rate=20
+(comparatively speaking).
+
+
+
+--------------8E5C01FE63C627116C5F5D77
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2021-09-06 5:32 p.m., zhou via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:606552990.1786539.1630963952986@mail.yahoo.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div class=3D"ydpb9dc4fa4yahoo-style-wrap"
+        style=3D"font-family:Helvetica Neue, Helvetica, Arial,
+        sans-serif;font-size:13px;">
+        <div dir=3D"ltr" data-setdir=3D"false">
+          <div>
+            <div dir=3D"ltr" data-setdir=3D"false">Hi,=C2=A0</div>
+            <div dir=3D"ltr" data-setdir=3D"false"><br>
+            </div>
+            <div dir=3D"ltr" data-setdir=3D"false">I have a problem with =
+the
+              N321 USRP. I find packet dropped
+              in USRP but not in host. In host, I am running Ubuntu
+              18.04.</div>
+            <div><br>
+            </div>
+            <p class=3D"ydpc002c510MsoNormal"><b>=C2=A0<u>Below is the if=
+config
+                  result in N321:</u></b></p>
+            <p class=3D"ydpc002c510MsoNormal">root@ni-n3xx-320CAAB:~#
+              ifconfig</p>
+            <p class=3D"ydpc002c510MsoNormal"><b>eth0</b>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 Link
+              encap:Ethernet=C2=A0 HWaddr 00:80:2F:32:36:BA</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet
+              addr:192.168.10.165=C2=A0 Bcast:192.168.255.255=C2=A0
+              Mask:255.255.255.0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP
+              BROADCAST RUNNING MULTICAST=C2=A0 MTU:<b>1500</b>=C2=A0 Met=
+ric:1</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              packets:618374 errors:0 <b><span style=3D"color:red">droppe=
+d:11485</span></b><span
+                style=3D"color:red"> </span>overruns:0 frame:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX
+              packets:193714 errors:0 dropped:0 overruns:0 carrier:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+              collisions:0 txqueuelen:1000</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              bytes:39776733 (37.9 MiB)=C2=A0 TX bytes:14546432 (13.8 MiB=
+)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+              Interrupt:27 Base address:0xb000</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal">int0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Link
+              encap:Ethernet=C2=A0
+              HWaddr AE:CD:BA:E1:CF:96</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet
+              addr:169.254.0.1=C2=A0 Bcast:169.254.0.255=C2=A0 Mask:255.2=
+55.255.0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP
+              BROADCAST RUNNING MULTICAST=C2=A0 MTU:9000=C2=A0 Metric:1</=
+p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              packets:456 errors:0 dropped:0 overruns:0 frame:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX
+              packets:15 errors:0 dropped:0 overruns:0 carrier:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+              collisions:0 txqueuelen:1000</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              bytes:37392 (36.5 KiB)=C2=A0 TX bytes:2770 (2.7 KiB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal">lo=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 Link
+              encap:Local Loopback</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet
+              addr:127.0.0.1=C2=A0 Mask:255.0.0.0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP
+              LOOPBACK RUNNING=C2=A0 MTU:65536=C2=A0 Metric:1</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              packets:89 errors:0 dropped:0 overruns:0 frame:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX
+              packets:89 errors:0 dropped:0 overruns:0 carrier:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+              collisions:0 txqueuelen:1000</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              bytes:7480 (7.3 KiB)=C2=A0 TX bytes:7480 (7.3 KiB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal"><b>sfp0</b>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 Link
+              encap:Ethernet=C2=A0 HWaddr 00:80:2F:32:36:BB</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet
+              addr:192.168.12.2=C2=A0 Bcast:192.168.12.255=C2=A0
+              Mask:255.255.255.0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP
+              BROADCAST RUNNING MULTICAST=C2=A0 MTU:<b>9000</b>=C2=A0 Met=
+ric:1</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              packets:6239 errors:0 <b><span style=3D"color:red">dropped:=
+804
+                </span></b>overruns:0
+              frame:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX
+              packets:5669 errors:0 dropped:0 overruns:0 carrier:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+              collisions:0 txqueuelen:1000</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              bytes:18466697 (17.6 MiB)=C2=A0 TX bytes:18417536 (17.5 MiB=
+)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal"><b>sfp1</b>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 Link
+              encap:Ethernet=C2=A0 HWaddr 00:80:2F:32:36:BC</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 inet
+              addr:192.168.13.2=C2=A0 Bcast:192.168.13.255=C2=A0
+              Mask:255.255.255.0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 UP
+              BROADCAST RUNNING MULTICAST=C2=A0 MTU:<b>9000</b>=C2=A0 Met=
+ric:1</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              packets:24868 errors:0 <b><span style=3D"color:red">dropped=
+:796</span></b><span
+                style=3D"color:red"> </span>overruns:0 frame:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 TX
+              packets:24613 errors:0 dropped:0 overruns:0 carrier:0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0
+              collisions:0 txqueuelen:1000</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 RX
+              bytes:20486915 (19.5 MiB)=C2=A0 TX bytes:19611643 (18.7 MiB=
+)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal"><u><b>Below is ifconfig
+                  result in host:</b></u></p>
+            <p class=3D"ydpc002c510MsoNormal">user@USRP-SERVER:~$ ifconfi=
+g</p>
+            <p class=3D"ydpc002c510MsoNormal"><b>eno1</b>:
+              flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;=C2=A0 mt=
+u <b>1500</b></p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 inet
+              192.168.10.143=C2=A0 netmask 255.255.255.0=C2=A0 broadcast
+              192.168.255.255</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 inet6
+              fe80::b27b:25ff:fe1d:9e4e=C2=A0 prefixlen 64=C2=A0 scopeid
+              0x20&lt;link&gt;</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0ether
+              b0:7b:25:1d:9e:4e=C2=A0 txqueuelen 1000=C2=A0 (Ethernet)</p=
+>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX packets
+              5604=C2=A0 bytes 416435 (416.4 KB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX errors 0=C2=A0
+              dropped 0=C2=A0 overruns 0=C2=A0 frame 0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX packets
+              404=C2=A0 bytes 68556 (68.5 KB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX errors 0=C2=A0
+              dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 collisions 0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 device interrupt
+              16=C2=A0 memory 0xd2100000-d2120000</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal"><b>enp1s0f0</b>:
+              flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;=C2=A0 mt=
+u <b><span
+                  style=3D"color:red">9000</span></b></p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 inet
+              192.168.12.1=C2=A0 netmask 255.255.255.0=C2=A0 broadcast
+              192.168.12.255</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 inet6
+              fe80::faf2:1eff:fe42:dddc=C2=A0 prefixlen 64=C2=A0 scopeid
+              0x20&lt;link&gt;</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 ether
+              f8:f2:1e:42:dd:dc=C2=A0 txqueuelen 1000=C2=A0 (Ethernet)</p=
+>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX packets
+              294=C2=A0 bytes 35184 (35.1 KB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX errors 0=C2=A0
+              dropped 0=C2=A0 overruns 0=C2=A0 frame 0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX packets
+              395=C2=A0 bytes 37148 (37.1 KB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX errors 0=C2=A0
+              dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 collisions 0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal"><b>enp1s0f1</b>:
+              flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;=C2=A0 mt=
+u <b>9000</b></p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 inet
+              192.168.13.1=C2=A0 netmask 255.255.255.0=C2=A0 broadcast
+              192.168.13.255</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0 =C2=A0=C2=
+=A0=C2=A0=C2=A0inet6
+              fe80::faf2:1eff:fe42:dddd=C2=A0 prefixlen 64=C2=A0 scopeid
+              0x20&lt;link&gt;</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 ether
+              f8:f2:1e:42:dd:dd=C2=A0 txqueuelen 1000=C2=A0 (Ethernet)</p=
+>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX packets
+              9=C2=A0 bytes 2228 (2.2 KB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX errors 0=C2=A0
+              dropped 0=C2=A0 overruns 0=C2=A0 frame 0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX packets
+              72=C2=A0 bytes 7983 (7.9 KB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX errors 0=C2=A0
+              dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 collisions 0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0</p>
+            <p class=3D"ydpc002c510MsoNormal">lo:
+              flags=3D73&lt;UP,LOOPBACK,RUNNING&gt;=C2=A0 mtu 65536</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 inet
+              127.0.0.1=C2=A0 netmask 255.0.0.0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 inet6 ::1=C2=A0
+              prefixlen 128=C2=A0 scopeid 0x10&lt;host&gt;</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 loop=C2=A0
+              txqueuelen 1000=C2=A0 (Local Loopback)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX packets 21071=C2=A0
+              bytes 1497110 (1.4 MB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 RX errors 0=C2=A0
+              dropped 0=C2=A0 overruns 0=C2=A0 frame 0</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX packets
+              21071=C2=A0 bytes 1497110 (1.4 MB)</p>
+            <p class=3D"ydpc002c510MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 TX errors 0=C2=A0
+              dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 collisions 0</p>
+            <div>=C2=A0</div>
+            <div>Could you please let me know what is the possible
+              reason for
+              packet drop in USRP? How to fix it?</div>
+          </div>
+          <div><br>
+          </div>
+          <div dir=3D"ltr" data-setdir=3D"false">Thanks for any inputs.</=
+div>
+          <div dir=3D"ltr" data-setdir=3D"false"><br>
+          </div>
+          <br>
+        </div>
+      </div>
+    </blockquote>
+    These often PHY-layer issues--bad cables.<br>
+    <br>
+    But also can be due to the driver being forced to drop a frame on
+    the floor because there's nowhere to put it because
+    kernel-to-userland buffers have filled up.=C2=A0 That's<br>
+    =C2=A0 usually due to simple inability for the userland application t=
+o
+    "keep up" with traffic.=C2=A0 That shouldn't ever be the case here,
+    unless you have some application that is<br>
+    =C2=A0 trying to stream outside of the confines of the FPGA.=C2=A0 Th=
+e stream
+    endpoints for UHD sample traffic never really get "seen" by the CPU
+    as far as I know, so the only<br>
+    =C2=A0 thing the N310 CPU sees is management "stuff", which is very l=
+ow
+    rate (comparatively speaking).<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------8E5C01FE63C627116C5F5D77--
+
+--===============4853535798425433157==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -570,4 +659,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2392596143821254200==--
+--===============4853535798425433157==--
