@@ -2,152 +2,678 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F94403078
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 23:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E17640309D
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Sep 2021 00:00:23 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8ACE238484C
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 17:52:15 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8FE6A384B13
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 18:00:22 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Dc2Jwgwl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gKW5FFpX";
 	dkim-atps=neutral
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 828C43845A5
-	for <usrp-users@lists.ettus.com>; Tue,  7 Sep 2021 17:51:08 -0400 (EDT)
-Received: by mail-io1-f49.google.com with SMTP id a22so427219iok.12
-        for <usrp-users@lists.ettus.com>; Tue, 07 Sep 2021 14:51:08 -0700 (PDT)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 59C053848A3
+	for <usrp-users@lists.ettus.com>; Tue,  7 Sep 2021 17:59:35 -0400 (EDT)
+Received: by mail-io1-f41.google.com with SMTP id q3so493813iot.3
+        for <usrp-users@lists.ettus.com>; Tue, 07 Sep 2021 14:59:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=Xv91ip6TpMqni+UOyveUleulWH9ux2tSNNIyMJ+iUWs=;
-        b=Dc2JwgwlJyDL97iIjFTytgnKmfuoppUpZ9MN97xhN+H9moJw2vx6pFEMZZ8ftp2IKj
-         iH9/VGBALCTeEQUJqvqt2uEs9pXrVtOsgvVeOjehXJJnAPKIh3B5/l3ilbsA0TZE0DMA
-         0vvlvEpRxHaG6b+LKDUFFGLoxjjJwhOiIEM26rCKNHphA3gRoePbfpn8/yV0CZ5q1DAb
-         yYLixYAb0Sn9uobJ9KXtd4hJjObweEivdnH1Z36nyiIXWZSQFzOLYO3ZHsi99ZFWCBhh
-         9HAgKYu1LfIo+H/53j1yUhWyqOhe8hLwGRXvqOpqUcB+tGQG/qYn/c32VO5UWhQ57r3h
-         CN2w==
+         :in-reply-to:content-language;
+        bh=lekf+NOObPrLsCX/XNAjWefcCUW09kglOfp2PC6S5kc=;
+        b=gKW5FFpXN+WQ31VuMpyA2/57LzH2dJXDd5qPTJgIejFcAdPNgOQo0UgS/pll0dQ9XT
+         6YZwnC8sB6Vx7aggiBCh9AuZJboEprg9NgbdmuTyt5uhoEWweoCdZ34k/cUhjagfWAWr
+         awj+2BY8U02cCYD1rG2Iw9KQgN3G6MDFMEr8uTxPQ0qxk2e9f4fTWWGKE11NVvH+fYCP
+         4NkgtsXQSORuafmK7m2Qhy/G6cZ+hzYuUIagjFQ/u0jp4tFtefbTxl+JTJKajccp+twd
+         J2SBpDk+kVL2a1QkycWJqTHYZ2KUh2XOCv16U4cg+ISXE/n81B/bmBdyViF+YKnW479s
+         7+XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=Xv91ip6TpMqni+UOyveUleulWH9ux2tSNNIyMJ+iUWs=;
-        b=aGtx3eNQuWFz79ELZZlc1Etnd70ycTAfd5WeweXS8bEHfFJMIK3SgWnhRzjlKh5dbH
-         cu3jxIO4fpLH4vFAztoDbzPJ2P1knOp6G2B8yCPdce5HhP6SNlXgYNKorbWyOY2wDizN
-         sJoeM6p9HDt0AhQz3K28eAHdPPM0miGt3JsyeWU8y7ZzYu+86EnYivXocYFILyaAZvEY
-         0qtufRDYazDofe6NESaBzvw57Vf/oH4xqou/qHFkEDHwdrACyfBRkJSd0tKY1HJ3ZFI0
-         HQYY1E9KA5vg88QwAmJ0gM78JLEz80Opw2Y40pjGeQzPh2v0IVCstcX45KnioEj9J/R/
-         KGqg==
-X-Gm-Message-State: AOAM533V2b6JenNb1y04bmLq+N6BbW0Nd1GW8mwM6s62Xc71RNKQxtml
-	RRB7pq+399+2Qk/H2ChMIfLxfjfxwqqDKQ==
-X-Google-Smtp-Source: ABdhPJyxFQeHcI9n58Y1s2tedsMbqZ0ohZTmzT10b6cZzCHSrlKGAgOgtYivUVcldsoaXI7AOkgL/Q==
-X-Received: by 2002:a05:6638:1484:: with SMTP id j4mr464719jak.80.1631051467434;
-        Tue, 07 Sep 2021 14:51:07 -0700 (PDT)
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=lekf+NOObPrLsCX/XNAjWefcCUW09kglOfp2PC6S5kc=;
+        b=MO+IhkTDyQnrs5E/xbTGJwj1s3ZQd3IGGpOUCjbWIoBwFllcNPXMnSIacKk6rNIyXB
+         hHXrzyK7gIBn+s1ae6srlNDUJ15IGWbF7L5JGMdY0tGtiTvIDoygnm73KrKy4DQYjhs7
+         kBmqwtBjiKKpJFc4NTcK/auC964CYzNrqNKjccjvFDC3MgLV108DQfdwS1hziQ6QmEcI
+         dcu/tAu1V0+kNRFGZ68wrLhbO0qjKPnEbg1B/t9dNYQceGozUe/RnJ8n6Pejs8qClbI3
+         qprkx89jcOkgXE3QG1GYcc5yFkpP/idlCMy6+fdSjooyBVqVvkcl2csUrKYvkvFS5e0Q
+         O2PA==
+X-Gm-Message-State: AOAM530tp3Akgmw3MbZhWJ9bzPauFxs21RE5wju/9ba3wbed0QS6eOIM
+	U+9tdmSV++hPuOXI2gvLayzQaagnBCAWMg==
+X-Google-Smtp-Source: ABdhPJzN+n1qVxIW5yhnPYhaE7CjN4dwmyfg/gBuVF84SdlMxqM1PCIfPl/oePGqcxNsKxH6aAI8CQ==
+X-Received: by 2002:a05:6638:d43:: with SMTP id d3mr466494jak.138.1631051974398;
+        Tue, 07 Sep 2021 14:59:34 -0700 (PDT)
 Received: from [192.168.2.242] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id q14sm178018ilj.34.2021.09.07.14.51.06
-        for <usrp-users@lists.ettus.com>
+        by smtp.googlemail.com with ESMTPSA id s12sm202948ilo.0.2021.09.07.14.59.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 14:51:07 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <20210907222503.Horde.1VehEQybsJZtjZQOIfHL6dd@wimap.feld.cvut.cz>
+        Tue, 07 Sep 2021 14:59:34 -0700 (PDT)
+To: Ivan Zahartchuk <adray0001@gmail.com>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <CAPRRyxsM=2UogKNO1Z6idwXU+FZ3bX0H7kDkQQtw_WP60Dh-1Q@mail.gmail.com>
+ <CAPRRyxuyvEkVv7bVjg0bY9fs=hw0qqSNS1WcEUym+==y6zVE9Q@mail.gmail.com>
+ <CAPRRyxuM+PgYWxUBCQBAtLUr0EYvDRZ9JyMuJ8+9AXNgMpLZDw@mail.gmail.com>
+ <a26f9e54-6a37-b0c2-690e-851be59dd7aa@gmail.com>
+ <CAPRRyxu39Syg3qzWMqmSCLwwaJnwfBM+-eQj8Ccx+KjdH2GUdg@mail.gmail.com>
+ <c07ce7bd-925c-7bb4-27df-a8b98f79ae7d@gmail.com>
+ <CAPRRyxvi9-jNH72m8UEcbzmLvLkzJWYE0hVoENT1ZFqibVRHGA@mail.gmail.com>
+ <b94b5e08-233d-46e2-501d-a18f3f2b3416@gmail.com>
+ <CAL7q81vLuNuq8324djbG4_L7tgXojSDBExUsLxiPpEv_oh8-Jg@mail.gmail.com>
+ <CAPRRyxtb__BVZXHUNW-bBwPz+yqLfbeyyq0dJ-BPE7y8MW=Mqw@mail.gmail.com>
+ <CAL7q81tnm7_ZTOWVgRtSrOT173wFST4ZeA5CbrxW13mf_ECu5Q@mail.gmail.com>
+ <CAPRRyxsLUrpPEtw0gJc7B3AKLSGovRFtoRCxb1+nV+6+HjnR0w@mail.gmail.com>
+ <CAPRRyxv+KUkGff8s9x4hZfYBypEPt7vhZo3=nbQoJ8MKG8s4FQ@mail.gmail.com>
+ <bcd84a06-1ee6-41eb-e446-6611932b60fa@gmail.com>
+ <CAPRRyxvDfB3XYNovUAXH-trzVYXNNaf1rr_QZC4PqN4iq2hhUw@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <34f9ecb7-b9e4-5b9b-2dc2-1a81aef4cde9@gmail.com>
-Date: Tue, 7 Sep 2021 17:51:06 -0400
+Message-ID: <85d13f30-a205-120c-455b-9d6ce04adaef@gmail.com>
+Date: Tue, 7 Sep 2021 17:59:32 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20210907222503.Horde.1VehEQybsJZtjZQOIfHL6dd@wimap.feld.cvut.cz>
+In-Reply-To: <CAPRRyxvDfB3XYNovUAXH-trzVYXNNaf1rr_QZC4PqN4iq2hhUw@mail.gmail.com>
 Content-Language: en-US
-Message-ID-Hash: 2M4PDXU6KHEJK5LM3OOORZ7JS36HDY4V
-X-Message-ID-Hash: 2M4PDXU6KHEJK5LM3OOORZ7JS36HDY4V
+Message-ID-Hash: OKYLCY2AFMEOYPKPJ4HUJRW42P6PSE4F
+X-Message-ID-Hash: OKYLCY2AFMEOYPKPJ4HUJRW42P6PSE4F
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Struggling to build kernel and userspace for x400
+Subject: [USRP-users] Re: setting lenght of fft RFNoC UHD 4
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2M4PDXU6KHEJK5LM3OOORZ7JS36HDY4V/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OKYLCY2AFMEOYPKPJ4HUJRW42P6PSE4F/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5398911237377347798=="
 
-T24gMjAyMS0wOS0wNyA0OjI1IHAubS4sIHR5d29uZW1pQGZlbC5jdnV0LmN6IHdyb3RlOg0KPiBE
-ZWFyIFVTUlAgbWFpbnRhaW5lcnMsDQo+DQo+IEFzIG15IG1hc3RlcidzIHRoZXNpcyBJJ3ZlIHNl
-dCBvdXQgdG8gcG9ydCB0aGUgR05VIFJhZGlvIFJGTm9DIHRvIHRoZSANCj4gUkZTb0MgMngyIGRl
-dmVsb3BtZW50IGJvYXJkIGZvciBwdXJwb3NlcyBvZiBhY2FkZW1pYyByZXNlYXJjaCBvZiANCj4g
-b3B0aWNhbCBjb21tdW5pY2F0aW9ucywgYW5kIEkgaGF2ZSBzb21lIGlzc3Vlcy4gSWYgaXQncyBt
-b3JlIHByYWN0aWNhbCANCj4gZm9yIHlvdSwgZmVlbCBmcmVlIHRvIGZvcndhcmQgbWUgdG8gd3Jp
-dHRlbiByZXNvdXJjZXMgSSBtYXkgaGF2ZSBtaXNzZWQuDQo+IEZpcnN0IHNvbWUgY29udGV4dDog
-VGhlIG1vdGl2YXRpb24gZm9yIHRoaXMgaXMgcmFwaWQgZGV2ZWxvcG1lbnQgYW5kIA0KPiBtZWFz
-dXJlbWVudCBvbiBhIGRpZ2l0aXplci1saWtlIHBsYXRmb3JtIHdpdGhvdXQgUkYgZnJvbnRlbmRz
-LiBTaW5jZSANCj4gVVNSUCB4NDEwIGhhcyB0aGUgc2FtZSBTb0Mgb24gYm9hcmQsIHRoZSBlYXNp
-ZXN0IHdheSBmb3IgbWUgdG8gZG8gdGhpcyANCj4gd2lsbCBiZSB0byB1c2UgYXMgbXVjaCBvZiB0
-aGUgZXhpc3Rpbmcgb3BlbiBzb3VyY2Ugd29yayBkb25lIGJ5IA0KPiBmb3JraW5nIHRoZSBVU1JQ
-IGRlc2lnbi4gSG93ZXZlciwgSSdtIGdldHRpbmcgc3R1Y2sgb24gYnVpbGRpbmcgeW9jdG8gDQo+
-IGR1ZSB0byBhIHN5bWJvbCBkdXBsaWNhdGUgaW4gZ2RibSBidWlsZCB3aXRoaW4gdGhlIG9lLWNv
-cmUgcGFja2FnZS4NCj4gVGhlcmUgc2VlbSB0byBiZSBzZXZlcmFsIHN0ZXBzIGludm9sdmVkIGlu
-IHRoaXMgcG9ydC9mb3JrIC0gc3R1YmJpbmcgDQo+IHRoZSBSRiBmcm9udGVuZCBjb250cm9scyBh
-bmQgcmVtb3Zpbmcgc3VwcG9ydCBpbiB0aGUgVUhEIGhvc3QgZHJpdmVycywgDQo+IGFkYXB0aW5n
-IHRoZSBib2FyZCBjb25zdHJhaW50cywgcG9zc2libHkgcmVkdWNpbmcgc29tZSBidWZmZXIgc2l6
-ZXMgDQo+IGR1ZSB0byBsb3dlciBhdmFpbGFibGUgUEwgUkFNLCBidXQgcmlnaHQgbm93IEkgYW0g
-dHJ5aW5nIHRvIHZlcmlmeSBpZiANCj4gSSdsbCBiZSBhYmxlIHRvIGdldCBhY2Nlc3MgdG8gYWxs
-IHRoZSBzb3VyY2VzIGFuZCB0b29scyByZXF1aXJlZCB0byANCj4gbWFrZSB0aGUgcHJvY2Vzc2lu
-ZyBzdWJzeXN0ZW0gcGlwZSBvciBmaWx0ZXIgc2FtcGxlcyBiZXR3ZWVuIHRoZSBoYXJkIA0KPiBs
-b2dpYyBnaWdhYml0IGV0aGVybmV0IGNvbnRyb2xsZXIgYW5kIHRoZSBwcm9ncmFtbWFibGUgbG9n
-aWMgd2l0aCB0aGUgDQo+IFJGTm9DIGNyb3NzYmFyLCBhbmQgdG8gcGVyZm9ybSB0aGUgUkZOb0Mg
-Y29udHJvbCBvcGVyYXRpb25zLiBUaGlzIGlzIA0KPiBiZWNhdXNlIHRoZSBSRlNvQyAyeDIgbGFj
-a3MgYW4gU0ZQLWxpa2UgaW50ZXJmYWNlIGZvciBoaWdoZXIgYmFuZHdpZHRoIA0KPiBkYXRhIHBh
-Y2tldCBzdHJlYW1pbmcuIEl0J3Mgb25seSBtZW50aW9uZWQgaW4gb25lIGxpbmUgaW4gdGhlIHg0
-MTAgDQo+IG1hbnVhbDoNCj4gTGlrZSBvdGhlciBVU1JQcywgaXQgaXMgYWRkcmVzc2FibGUgdGhy
-b3VnaCBhIDEgR2JFIFJKNDUgY29ubmVjdG9yLCANCj4gd2hpY2ggYWxsb3dzIGZ1bGwgYWNjZXNz
-IHRvIHRoZSBlbWJlZGRlZCBMaW51eCBzeXN0ZW0sIGFzIHdlbGwgYXMgZGF0YSANCj4gc3RyZWFt
-aW5nIGF0IGxvdyByYXRlcy4NCj4gSSdkIGxpa2UgdG8gYnVpbGQgTGludXggZm9yIHRoZSBVU1JQ
-IHRvIHNlZSB3aGF0IHNvdXJjZXMgaXQgcHVsbHMgYW5kIA0KPiB0byB2ZXJpZnkgYW5kIG1heWJl
-IG1vZGlmeSB0aGUgZGF0YXBhdGggZnJvbSB0aGUgZ2lnYWJpdCBjb250cm9sbGVyIA0KPiB0aHJv
-dWdoIHRoZSBkcml2ZXIgdG8gdGhlIFBMLiBIb3dldmVyLCBJIGhhdmUgdHJvdWJsZSBnZXR0aW5n
-IGl0IHRvIA0KPiBidWlsZC4NCj4gSSdtIHJ1bm5pbmcgQXJjaCBMaW51eCB3aXRoIEdDQyAxMS4x
-LCBrYXMgMi41IChkaXJlY3RseSwgbm8gZG9ja2VyIA0KPiBpbWFnZSkuDQo+IE9uIG1ldGEtZXR0
-dXMgcmVwb3NpdG9yeSwgdGFnIHY0LjEuMC4yLXJjMywgcnVubmluZyANCj4gYC4vY29udHJpYi9r
-YXNfYnVpbGRfaW1nc19wYWNrYWdlLnNoIHg0eHhgIGZhaWxzIHRoZSBvZS1jb3JlIHN0ZXA6DQo+
-DQo+IHwgL2hvbWUvZW1pbC9zY2hvb2wvbWV0YS1ldHR1cy9idWlsZC90bXAtZ2xpYmMvaG9zdHRv
-b2xzL2xkOiANCj4gLi9saWJnZGJtYXBwLmEocGFyc2VvcHQubyk6KC5ic3MrMHg4KTogbXVsdGlw
-bGUgZGVmaW5pdGlvbiBvZiANCj4gYHBhcnNlb3B0X3Byb2dyYW1fYXJncyc7IGdkYm10b29sLm86
-KC5kYXRhLnJlbC5sb2NhbCsweDI2MCk6IGZpcnN0IA0KPiBkZWZpbmVkIGhlcmUNCj4gfCAvaG9t
-ZS9lbWlsL3NjaG9vbC9tZXRhLWV0dHVzL2J1aWxkL3RtcC1nbGliYy9ob3N0dG9vbHMvbGQ6IA0K
-PiAuL2xpYmdkYm1hcHAuYShwYXJzZW9wdC5vKTooLmJzcysweDEwKTogbXVsdGlwbGUgZGVmaW5p
-dGlvbiBvZiANCj4gYHBhcnNlb3B0X3Byb2dyYW1fZG9jJzsgZ2RibXRvb2wubzooLmRhdGEucmVs
-LmxvY2FsKzB4MjY4KTogZmlyc3QgDQo+IGRlZmluZWQgaGVyZQ0KPg0KPiBJcyB0aGlzIHJlcGxp
-Y2FibGUgZm9yIHlvdT8gSXQgaGFwcGVucyB0byBtZSB3aXRoIHRoZSB4NHh4LXByZXJlbGVhc2Ug
-DQo+IHRhZywgdG9vLiBJcyB0aGVyZSBzb21lIGZyb3plbiBkZXZlbG9wbWVudCBzZXR1cCBlbnZp
-cm9ubWVudCB0aGF0IA0KPiBzaG91bGQgYmUgdXNlZD8gSXMgdGhhdCBpbmNsdWRlZCBpbiB0aGUg
-a2FzIGRvY2tlcj8gSWYgc28sIGhvdyB3b3VsZCBJIA0KPiBpbnZva2Uga2FzIGZyb20gZG9ja2Vy
-IHRvIHVzZSB0aGUgeWFtbCBjb25maWdzPw0KPg0KPiBBbHNvLCBJJ3ZlIGdvbmUgdGhyb3VnaCB0
-aGUgIk1QTSIgYW5kICJmaXJtd2FyZSIgc2VjdGlvbnMgb2YgdGhlIFVIRCANCj4gdHJlZSBsb29r
-aW5nIGZvciBzb2Z0d2FyZSB0aGF0IHdvdWxkIHJ1biBvbiB0aGUgU29DIGFuZCBjb25maWd1cmUg
-dGhlIA0KPiBnaWdhYml0IGV0aGVybmV0IGFuZCB3b3JrIHdpdGggaXQuIEZvciBleGFtcGxlLCBp
-biB4MzAwLCB0aGlzIGlzIGRvbmUgDQo+IGluIGZpcm13YXJlL3VzcnAzL3gzMDAveDMwMF9pbml0
-LmMgYnV0IEkgaGF2ZSBub3QgZm91bmQgYW55IA0KPiBjb25maWd1cmF0aW9uIChhbnkgZXZlbnR1
-YWwgY2FsbHMgdG8geGdlXyogZXRjKS4gQW0gSSB3cm9uZyB0byBhc3N1bWUgDQo+IHRoYXQgdGhp
-cyBjb2RlIGhhcyBub3QgYmVlbiBwdWJsaXNoZWQgeWV0PyBJcyBpdCBnb2luZyB0byBiZSBtYWRl
-IG9wZW4gDQo+IHNvdXJjZSBpbiB0aGUgZnV0dXJlPyBJdCByZWFsbHkgc2VlbXMgbGlrZSBldmVy
-eXRoaW5nIGVsc2UgaXMgcHJlc2VudCwgDQo+IGJ1dCB0aGUgYWN0dWFsIHVzZXJzcGFjZSBzb2Z0
-d2FyZSBydW5uaW5nIG9uIHRoZSB4NDAwLg0KPg0KPiBCZXN0IHJlZ2FyZHMsDQo+DQo+IEVtaWwg
-SiBUeXdvbmlhaywNCj4gRmFjdWx0eSBvZiBFbGVjdHJpY2FsIEVuZ2luZWVyaW5nDQo+IEN6ZWNo
-IFRlY2huaWNhbCBVbml2ZXJzaXR5IGluIFByYWd1ZQ0KVGhpcyBzZWVtcyBhIHZlcnkgYW1iaXRp
-b3VzIHByb2plY3QsIGFuZCBJIHdpc2ggeW91IGx1Y2suDQoNClRoZSBhbW91bnQgb2YgZXhwZXJp
-ZW5jZSAib3V0IHRoZXJlIiB3aXRoIHRoZSBYNDAwIHNlcmllcyBmcm9tIEV0dHVzIGF0IA0KdGhp
-cyBwb2ludCBpcyB2ZXJ5IHNtYWxsLCBzbyBkb24ndCBiZSB0aGF0IHN1cnByaXNlZCBub3QgdG8g
-Z2V0IG11Y2ggaW4gDQp0aGUgd2F5IG9mIGhlbHANCiDCoCBmcm9tICJ0aGUgY29tbXVuaXR5Ii4N
-Cg0KSW4gdGVybXMgb2YgRXR0dXMgUiZEIGZvbGtzIHdobyBtYXkgYmUgYWJsZSB0byBoZWxwIHlv
-dSwgdGhleSdyZSBwcmV0dHkgDQpidXN5IHdvcmtpbmcgb24gYWN0dWFsIEV0dHVzL05JIHByb2R1
-Y3RzLCBhbmQgbGlrZWx5IGRvbid0IGhhdmUgYSBsb3Qgb2YgDQp0aW1lDQogwqB0byBoZWxwIGZv
-bGtzIHBvcnRpbmcgRXR0dXMgY29kZSB0byBub24tRXR0dXMgaGFyZHdhcmUuwqAgSnVzdCBhIA0K
-cHJhY3RpY2FsaXR5IG9mIHRpbWUgbWFuYWdlbWVudC4NCg0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1
-c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+This is a multi-part message in MIME format.
+--===============5398911237377347798==
+Content-Type: multipart/alternative;
+ boundary="------------67B1932536EF87413133CEB0"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------67B1932536EF87413133CEB0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+On 2021-09-07 5:55 p.m., Ivan Zahartchuk wrote:
+> I am setting 256 points FFT with the following parameters:=20
+> fft_amplitude =3D uhd.libpyuhd.rfnoc.fft_magnitude.MAGNITUDE_SQUARED=20
+> fft_direction =3D uhd.libpyuhd.rfnoc.fft_direction.FORWARD fft_shift =3D=
+=20
+> uhd.libpyuhd.rfnoc.fft_shift.NORMAL After that I do abs and display=20
+> the data. Tell me how to do it better? And do I need to set a=20
+> different type for the array which is passed to the recv function when=20
+> setting Mag ** 2?
+YOu're already setting Mag**2, so there's no need to ABS. Typically,=20
+after that you'll use a 10*log10 function which is then itself scaled by
+ =C2=A0 the FFT length and a few other factors.=C2=A0 I'd suggest looking=
+ at the=20
+Gnu Radio FFT code to see how it scales the FFT output.=C2=A0 There are
+ =C2=A0 MANY ways to scale an FFT (and even the MAG**2 output of an FFT)-=
+-the=20
+RFNOC FFT produces a linear-form output, so if you
+ =C2=A0 want to see it in dB units you have to do that yourself from what=
+ I=20
+understand.=C2=A0 Implementing a 10*log10 in the FPGA would likely
+ =C2=A0 be prohibitive, and usually you do that after you've done some=20
+averaging and frame-rate reduction.
+
+
+>
+> =D1=81=D1=80, 8 =D1=81=D0=B5=D0=BD=D1=82. 2021 =D0=B3. =D0=B2 00:43, Ma=
+rcus D. Leech <patchvonbraun@gmail.com=20
+> <mailto:patchvonbraun@gmail.com>>:
+>
+>     On 2021-09-07 4:17 p.m., Ivan Zahartchuk wrote:
+>>     Hello. There is any information on my question. I also noticed
+>>     that if you take the data after the FFT, then the sensitivity
+>>     drops very much. I see a -30 dBm signal but -60 dBm is no longer
+>>     displayed.
+>     How are you scaling and displaying your FFT output?=C2=A0 What opti=
+ons
+>     do you have set on your FFT?=C2=A0 DO you have it using Mag**2, how=
+ do
+>     you scale it
+>     =C2=A0 after that?
+>
+>
+>>
+>>     =D1=81=D0=B1, 4 =D1=81=D0=B5=D0=BD=D1=82. 2021 =D0=B3. =D0=B2 00:0=
+4, Ivan Zahartchuk <adray0001@gmail.com
+>>     <mailto:adray0001@gmail.com>>:
+>>
+>>         Here is my script. I am trying to read different amounts of
+>>         data from DDC and from FFT. Are there any new statements on
+>>         my question?
+>>
+>>
+>>         =D1=87=D1=82, 2 =D1=81=D0=B5=D0=BD=D1=82. 2021 =D0=B3. =D0=B2 =
+10:06, Jonathon Pendlum
+>>         <jonathon.pendlum@ettus.com <mailto:jonathon.pendlum@ettus.com=
+>>:
+>>
+>>             Great, thanks. Can you also share your latest python scrip=
+t?
+>>
+>>             Jonathon
+>>
+>>             On Wed, Sep 1, 2021 at 6:37 PM Ivan Zahartchuk
+>>             <adray0001@gmail.com <mailto:adray0001@gmail.com>> wrote:
+>>
+>>                 Yes, I can try it but next week. But I still wanted
+>>                 to do FFT on FPGA. And one more question. Is it
+>>                 possible to create two streamers and read 256 samples
+>>                 one at a time and another 8192 for example? I want to
+>>                 do FFT on one channel and start a stream with DDC for
+>>                 demodulation on the other. What is possible?
+>>
+>>
+>>                 =D1=81=D1=80, 1 =D1=81=D0=B5=D0=BD=D1=82. 2021 =D0=B3.=
+ =D0=B2 21:09, Jonathon Pendlum
+>>                 <jonathon.pendlum@ettus.com
+>>                 <mailto:jonathon.pendlum@ettus.com>>:
+>>
+>>                     Hi Ivan,
+>>
+>>                     Can you try running your script with the SPP set
+>>                     to 512 and without the FFT block, i.e. Radio ->
+>>                     Rx Streamer? This may be a general issue with SPP
+>>                     unrelated to the FFT. I'm getting the same "Bad
+>>                     CHDR packet" error on a different device with the
+>>                     FIR filter block, but it goes away when I remove
+>>                     the block.
+>>
+>>                     Jonathon
+>>
+>>                     On Mon, Aug 30, 2021 at 3:46 PM Marcus D. Leech
+>>                     <patchvonbraun@gmail.com
+>>                     <mailto:patchvonbraun@gmail.com>> wrote:
+>>
+>>                         On 2021-08-30 2:30 p.m., Ivan Zahartchuk wrote=
+:
+>>>
+>>>
+>>
+>>                         Thanks. Still trying to work this out.=C2=A0 I=
+n
+>>                         UHD 4, the interface to the FPGA changed from
+>>                         a straightforward DMA implementation--done by
+>>                         ADI for
+>>                         =C2=A0 their IIO subsystem, to a driver that m=
+akes
+>>                         the FPGA/Radio "look" like a network device
+>>                         with an MTU of 9000.
+>>
+>>                         With an MTU that large, you should have no
+>>                         trouble with 512-bin FFTs. But clearly, you ar=
+e.
+>>
+>>                         The "int0" network interface exists only
+>>                         while there's a session with the radio, so it
+>>                         won't show up in "ifconfig" unless there's a
+>>                         session active,
+>>                         =C2=A0 and it indeed has an MTU of 9000. So MT=
+U
+>>                         isn't your problem.=C2=A0 It's something else,=
+ and
+>>                         I'm not sure what at the moment.
+>>
+>>
+>>>                         =D0=BF=D0=BD, 30 =D0=B0=D0=B2=D0=B3. 2021 =D0=
+=B3. =D0=B2 15:08, Marcus D. Leech
+>>>                         <patchvonbraun@gmail.com
+>>>                         <mailto:patchvonbraun@gmail.com>>:
+>>>
+>>>                             On 2021-08-29 7:17 a.m., Ivan Zahartchuk
+>>>                             wrote:
+>>>>                             Thanks a lot. Here is my output with
+>>>>                             uhd_usrp_probe and my code:
+>>>                             Could you share with us the output of:
+>>>
+>>>                             ip link
+>>>
+>>>                             or ifconfig
+>>>
+>>>
+>>>>
+>>>>                             =D1=81=D0=B1, 28 =D0=B0=D0=B2=D0=B3. 202=
+1 =D0=B3. =D0=B2 20:19, Marcus D.
+>>>>                             Leech <patchvonbraun@gmail.com
+>>>>                             <mailto:patchvonbraun@gmail.com>>:
+>>>>
+>>>>                                 On 2021-08-28 10:49 a.m., Ivan
+>>>>                                 Zahartchuk wrote:
+>>>>>                                 Tell me who I can turn to for help
+>>>>>                                 or how can I solve the problem
+>>>>>                                 with the fact that I cannot set
+>>>>>                                 the number of FFT points> 256. I
+>>>>>                                 apologize for my persistence, but
+>>>>>                                 this is critical for me. Thank you
+>>>>>                                 for understanding.
+>>>>>
+>>>>                                 Ivan, I've been poking around all
+>>>>                                 morning try to find where there may
+>>>>                                 be a limit.=C2=A0 I can't find it.=C2=
+=A0 I'm
+>>>>                                 hampered by not being an RFNOC exper=
+t.
+>>>>
+>>>>                                 I have a query in to Ettus R&D, but
+>>>>                                 it being the weekend, I don't
+>>>>                                 expect any kind of answer until Mond=
+ay.
+>>>>
+>>>>                                 Could you share your Python code,
+>>>>                                 and the output of uhd_usrp_probe on
+>>>>                                 your E310?
+>>>>
+>>>>
+>>>
+>>
+>
+
+
+--------------67B1932536EF87413133CEB0
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2021-09-07 5:55 p.m., Ivan
+      Zahartchuk wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAPRRyxvDfB3XYNovUAXH-trzVYXNNaf1rr_QZC4PqN4iq2hhUw@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">
+        <div class=3D"gmail-oSioSc">
+          <div id=3D"gmail-tw-target">
+            <div id=3D"gmail-kAz1tf" class=3D"gmail-g9WsWb">
+              <div class=3D"gmail-tw-ta-container gmail-F0azHf
+                gmail-tw-nfl" id=3D"gmail-tw-target-text-container"
+                tabindex=3D"0">
+                <pre class=3D"gmail-tw-data-text gmail-tw-text-large gmai=
+l-XcVN5d gmail-tw-ta" id=3D"gmail-tw-target-text" style=3D"text-align:lef=
+t" dir=3D"ltr"><span class=3D"gmail-Y2IQFc" lang=3D"en">I am setting 256 =
+points FFT with the following parameters:
+<span style=3D"color:rgb(114,115,122)">fft_amplitude </span>=3D uhd.libpy=
+uhd.rfnoc.fft_magnitude.MAGNITUDE_SQUARED
+<span style=3D"color:rgb(114,115,122)">fft_direction </span>=3D uhd.libpy=
+uhd.rfnoc.fft_direction.FORWARD
+<span style=3D"color:rgb(114,115,122)">fft_shift </span>=3D uhd.libpyuhd.=
+rfnoc.fft_shift.NORMAL
+<span class=3D"gmail-Y2IQFc" lang=3D"en">After that I do abs and display =
+the data. Tell me how to do it better? And do I need to set a different t=
+ype for the array which is passed to the recv function when setting Mag *=
+* 2?</span></span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    YOu're already setting Mag**2, so there's no need to ABS.=C2=A0=C2=A0
+    Typically, after that you'll use a 10*log10 function which is then
+    itself scaled by<br>
+    =C2=A0 the FFT length and a few other factors.=C2=A0 I'd suggest look=
+ing at
+    the Gnu Radio FFT code to see how it scales the FFT output.=C2=A0 The=
+re
+    are<br>
+    =C2=A0 MANY ways to scale an FFT (and even the MAG**2 output of an
+    FFT)--the RFNOC FFT produces a linear-form output, so if you<br>
+    =C2=A0 want to see it in dB units you have to do that yourself from w=
+hat
+    I understand.=C2=A0 Implementing a 10*log10 in the FPGA would likely<=
+br>
+    =C2=A0 be prohibitive, and usually you do that after you've done some
+    averaging and frame-rate reduction.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAPRRyxvDfB3XYNovUAXH-trzVYXNNaf1rr_QZC4PqN4iq2hhUw@mail.gmai=
+l.com"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D1=80, 8 =D1=81=D0=B5=
+=D0=BD=D1=82. 2021 =D0=B3. =D0=B2 00:43,
+          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"
+            moz-do-not-send=3D"true">patchvonbraun@gmail.com</a>&gt;:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <div>On 2021-09-07 4:17 p.m., Ivan Zahartchuk wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <pre id=3D"gmail-m_-4277278929202622664gmail-tw-target-te=
+xt" style=3D"text-align:left" dir=3D"ltr"><span lang=3D"en">Hello. There =
+is any information on my question. I also noticed that if you take the da=
+ta after the FFT, then the sensitivity drops very much. I see a -30 dBm s=
+ignal but -60 dBm is no longer displayed.</span></pre>
+              </div>
+            </blockquote>
+            How are you scaling and displaying your FFT output?=C2=A0 Wha=
+t
+            options do you have set on your FFT?=C2=A0 DO you have it usi=
+ng
+            Mag**2, how do you scale it<br>
+            =C2=A0 after that?<br>
+            <br>
+            <br>
+            <blockquote type=3D"cite"><br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D0=B1, 4 =D1=
+=81=D0=B5=D0=BD=D1=82. 2021 =D0=B3. =D0=B2
+                  00:04, Ivan Zahartchuk &lt;<a
+                    href=3D"mailto:adray0001@gmail.com" target=3D"_blank"
+                    moz-do-not-send=3D"true">adray0001@gmail.com</a>&gt;:=
+<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px
+                  0px 0.8ex;border-left:1px solid
+                  rgb(204,204,204);padding-left:1ex">
+                  <div dir=3D"ltr">
+                    <pre id=3D"gmail-m_-4277278929202622664gmail-m_783857=
+7010434833064gmail-tw-target-text" style=3D"text-align:left" dir=3D"ltr">=
+<span lang=3D"en">Here is my script. I am trying to read different amount=
+s of data from DDC and from FFT.
+<span lang=3D"en">Are there any new statements on my question?</span></sp=
+an></pre>
+                  </div>
+                  <br>
+                  <div class=3D"gmail_quote">
+                    <div dir=3D"ltr" class=3D"gmail_attr">=D1=87=D1=82, 2=
+ =D1=81=D0=B5=D0=BD=D1=82. 2021
+                      =D0=B3. =D0=B2 10:06, Jonathon Pendlum &lt;<a
+                        href=3D"mailto:jonathon.pendlum@ettus.com"
+                        target=3D"_blank" moz-do-not-send=3D"true">jonath=
+on.pendlum@ettus.com</a>&gt;:<br>
+                    </div>
+                    <blockquote class=3D"gmail_quote" style=3D"margin:0px
+                      0px 0px 0.8ex;border-left:1px solid
+                      rgb(204,204,204);padding-left:1ex">
+                      <div dir=3D"ltr">Great, thanks. Can you also share
+                        your latest python script?
+                        <div><br>
+                        </div>
+                        <div>Jonathon</div>
+                      </div>
+                      <br>
+                      <div class=3D"gmail_quote">
+                        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep=
+ 1,
+                          2021 at 6:37 PM Ivan Zahartchuk &lt;<a
+                            href=3D"mailto:adray0001@gmail.com"
+                            target=3D"_blank" moz-do-not-send=3D"true">ad=
+ray0001@gmail.com</a>&gt;
+                          wrote:<br>
+                        </div>
+                        <blockquote class=3D"gmail_quote"
+                          style=3D"margin:0px 0px 0px
+                          0.8ex;border-left:1px solid
+                          rgb(204,204,204);padding-left:1ex">
+                          <div dir=3D"ltr">
+                            <pre id=3D"gmail-m_-4277278929202622664gmail-=
+m_7838577010434833064gmail-m_6532976554816249605gmail-m_50282017486482493=
+25gmail-tw-target-text" style=3D"text-align:left" dir=3D"ltr"><span lang=3D=
+"en">Yes, I can try it but next week. But I still wanted to do FFT on FPG=
+A. And one more question. Is it possible to create two streamers and read=
+ 256 samples one at a time and another 8192 for example? I want to do FFT=
+ on one channel and start a stream with DDC for demodulation on the other=
+. What is possible?</span></pre>
+                          </div>
+                          <br>
+                          <div class=3D"gmail_quote">
+                            <div dir=3D"ltr" class=3D"gmail_attr">=D1=81=D1=
+=80, 1
+                              =D1=81=D0=B5=D0=BD=D1=82. 2021 =D0=B3. =D0=B2=
+ 21:09, Jonathon Pendlum
+                              &lt;<a
+                                href=3D"mailto:jonathon.pendlum@ettus.com=
+"
+                                target=3D"_blank" moz-do-not-send=3D"true=
+">jonathon.pendlum@ettus.com</a>&gt;:<br>
+                            </div>
+                            <blockquote class=3D"gmail_quote"
+                              style=3D"margin:0px 0px 0px
+                              0.8ex;border-left:1px solid
+                              rgb(204,204,204);padding-left:1ex">
+                              <div dir=3D"ltr">Hi Ivan,
+                                <div><br>
+                                </div>
+                                <div>Can you try running your script
+                                  with the SPP set to 512 and without
+                                  the FFT block, i.e. Radio -&gt; Rx
+                                  Streamer? This may be a general issue
+                                  with SPP unrelated to the FFT. I'm
+                                  getting the same "Bad CHDR packet"
+                                  error on a different device with the
+                                  FIR filter block, but it goes away
+                                  when I remove the block.</div>
+                                <div><br>
+                                </div>
+                                <div>Jonathon</div>
+                              </div>
+                              <br>
+                              <div class=3D"gmail_quote">
+                                <div dir=3D"ltr" class=3D"gmail_attr">On
+                                  Mon, Aug 30, 2021 at 3:46 PM Marcus D.
+                                  Leech &lt;<a
+                                    href=3D"mailto:patchvonbraun@gmail.co=
+m"
+                                    target=3D"_blank"
+                                    moz-do-not-send=3D"true">patchvonbrau=
+n@gmail.com</a>&gt;
+                                  wrote:<br>
+                                </div>
+                                <blockquote class=3D"gmail_quote"
+                                  style=3D"margin:0px 0px 0px
+                                  0.8ex;border-left:1px solid
+                                  rgb(204,204,204);padding-left:1ex">
+                                  <div>
+                                    <div>On 2021-08-30 2:30 p.m., Ivan
+                                      Zahartchuk wrote:<br>
+                                    </div>
+                                    <blockquote type=3D"cite">
+                                      <div dir=3D"ltr"><br>
+                                      </div>
+                                      <br>
+                                    </blockquote>
+                                    <br>
+                                    Thanks. Still trying to work this
+                                    out.=C2=A0 In UHD 4, the interface to=
+ the
+                                    FPGA changed from a straightforward
+                                    DMA implementation--done by ADI for<b=
+r>
+                                    =C2=A0 their IIO subsystem, to a driv=
+er
+                                    that makes the FPGA/Radio "look"
+                                    like a network device with an MTU of
+                                    9000.<br>
+                                    <br>
+                                    With an MTU that large, you should
+                                    have no trouble with 512-bin FFTs.=C2=
+=A0
+                                    But clearly, you are.<br>
+                                    <br>
+                                    The "int0" network interface exists
+                                    only while there's a session with
+                                    the radio, so it won't show up in
+                                    "ifconfig" unless there's a session
+                                    active,<br>
+                                    =C2=A0 and it indeed has an MTU of 90=
+00.=C2=A0
+                                    So MTU isn't your problem.=C2=A0 It's
+                                    something else, and I'm not sure
+                                    what at the moment.<br>
+                                    <br>
+                                    <br>
+                                    <blockquote type=3D"cite">
+                                      <div class=3D"gmail_quote">
+                                        <div dir=3D"ltr"
+                                          class=3D"gmail_attr">=D0=BF=D0=BD=
+, 30 =D0=B0=D0=B2=D0=B3.
+                                          2021 =D0=B3. =D0=B2 15:08, Marc=
+us D.
+                                          Leech &lt;<a
+                                            href=3D"mailto:patchvonbraun@=
+gmail.com"
+                                            target=3D"_blank"
+                                            moz-do-not-send=3D"true">patc=
+hvonbraun@gmail.com</a>&gt;:<br>
+                                        </div>
+                                        <blockquote class=3D"gmail_quote"
+                                          style=3D"margin:0px 0px 0px
+                                          0.8ex;border-left:1px solid
+                                          rgb(204,204,204);padding-left:1=
+ex">
+                                          <div>
+                                            <div>On 2021-08-29 7:17
+                                              a.m., Ivan Zahartchuk
+                                              wrote:<br>
+                                            </div>
+                                            <blockquote type=3D"cite">
+                                              <div dir=3D"ltr">
+                                                <pre id=3D"gmail-m_-42772=
+78929202622664gmail-m_7838577010434833064gmail-m_6532976554816249605gmail=
+-m_5028201748648249325gmail-m_911825999819262281gmail-m_-3359743557855716=
+41gmail-m_-2376322789871959447gmail-m_7479178677743032933gmail-tw-target-=
+text" style=3D"text-align:left" dir=3D"ltr"><span lang=3D"en">Thanks a lo=
+t. Here is my output with uhd_usrp_probe and my code:</span></pre>
+                                              </div>
+                                            </blockquote>
+                                            Could you share with us the
+                                            output of:<br>
+                                            <br>
+                                            ip link<br>
+                                            <br>
+                                            or ifconfig<br>
+                                            <br>
+                                            <br>
+                                            <blockquote type=3D"cite"><br=
+>
+                                              <div class=3D"gmail_quote">
+                                                <div dir=3D"ltr"
+                                                  class=3D"gmail_attr">=D1=
+=81=D0=B1,
+                                                  28 =D0=B0=D0=B2=D0=B3. =
+2021 =D0=B3. =D0=B2
+                                                  20:19, Marcus D. Leech
+                                                  &lt;<a
+                                                    href=3D"mailto:patchv=
+onbraun@gmail.com"
+                                                    target=3D"_blank"
+                                                    moz-do-not-send=3D"tr=
+ue">patchvonbraun@gmail.com</a>&gt;:<br>
+                                                </div>
+                                                <blockquote
+                                                  class=3D"gmail_quote"
+                                                  style=3D"margin:0px 0px
+                                                  0px
+                                                  0.8ex;border-left:1px
+                                                  solid
+                                                  rgb(204,204,204);paddin=
+g-left:1ex">
+                                                  <div>
+                                                    <div>On 2021-08-28
+                                                      10:49 a.m., Ivan
+                                                      Zahartchuk wrote:<b=
+r>
+                                                    </div>
+                                                    <blockquote
+                                                      type=3D"cite">
+                                                      <div dir=3D"ltr">
+                                                        <pre id=3D"gmail-=
+m_-4277278929202622664gmail-m_7838577010434833064gmail-m_6532976554816249=
+605gmail-m_5028201748648249325gmail-m_911825999819262281gmail-m_-33597435=
+5785571641gmail-m_-2376322789871959447gmail-m_7479178677743032933gmail-m_=
+2248216012660293957gmail-tw-target-text" style=3D"text-align:left" dir=3D=
+"ltr"><span lang=3D"en">Tell me who I can turn to for help or how can I s=
+olve the problem with the fact that I cannot set the number of FFT points=
+&gt; 256. I apologize for my persistence, but this is critical for me. Th=
+ank you for understanding.</span></pre>
+                                                      </div>
+                                                      <br>
+                                                    </blockquote>
+                                                    Ivan, I've been
+                                                    poking around all
+                                                    morning try to find
+                                                    where there may be a
+                                                    limit.=C2=A0 I can't =
+find
+                                                    it.=C2=A0 I'm hampere=
+d by
+                                                    not being an RFNOC
+                                                    expert.<br>
+                                                    <br>
+                                                    I have a query in to
+                                                    Ettus R&amp;D, but
+                                                    it being the
+                                                    weekend, I don't
+                                                    expect any kind of
+                                                    answer until Monday.<=
+br>
+                                                    <br>
+                                                    Could you share your
+                                                    Python code, and the
+                                                    output of
+                                                    uhd_usrp_probe on
+                                                    your E310?<br>
+                                                    <br>
+                                                    <br>
+                                                  </div>
+                                                </blockquote>
+                                              </div>
+                                            </blockquote>
+                                            <br>
+                                          </div>
+                                        </blockquote>
+                                      </div>
+                                    </blockquote>
+                                    <br>
+                                  </div>
+                                </blockquote>
+                              </div>
+                            </blockquote>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </blockquote>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------67B1932536EF87413133CEB0--
+
+--===============5398911237377347798==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5398911237377347798==--
