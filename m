@@ -2,50 +2,50 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D65C4029B0
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 15:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB1C34029E2
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 15:40:28 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 420483843F7
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 09:27:03 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 31CD838443B
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 09:40:28 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="P5YJDHhr";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PwMPFcE5";
 	dkim-atps=neutral
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id C80E7384265
-	for <usrp-users@lists.ettus.com>; Tue,  7 Sep 2021 09:26:14 -0400 (EDT)
-Received: by mail-io1-f48.google.com with SMTP id n24so12747898ion.10
-        for <usrp-users@lists.ettus.com>; Tue, 07 Sep 2021 06:26:14 -0700 (PDT)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id BB68B384407
+	for <usrp-users@lists.ettus.com>; Tue,  7 Sep 2021 09:39:39 -0400 (EDT)
+Received: by mail-io1-f41.google.com with SMTP id f6so12899076iox.0
+        for <usrp-users@lists.ettus.com>; Tue, 07 Sep 2021 06:39:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
          :in-reply-to:content-language;
-        bh=+KGB+ZF1F5SI3lZq5Azi7ecx9HwFQP7QZGmJxXEmYtk=;
-        b=P5YJDHhrraRYpS+FBdtPN5UrbwTqGNzWaU+zhgzYypzJbcwLS1M3oe83lDRy9b6CB8
-         +GgVz3l1i1bNnxD58WopFizm5bBviv1DUVYUqU7Eo64V0vLxLVzl7FBIwpdi7T0rxPb2
-         05M9Mc7GcFGkZ9JupcOlr3f8R8/ezhCPeMVdn99F0KWjiEMUtkxzVn0wDtSPzduw2M+/
-         ipeC+kiXDoCx0lAsBipGUm+1nHral24fTNNdTNBEpLBNoE1djjyVPdcCAehpc/Xev+w9
-         tfyx8noKlltM7VQvQ8oLdM7E7D2dvoR2EMdR0CybTaopjl7iuAc/lZUfmX102JPqnl0S
-         CPhA==
+        bh=FS7HTTtxrAO34t8jklC/B49u09DZ3O5olID3K8di+6k=;
+        b=PwMPFcE5PNeaR9eSDnsXbz1ywgV/wbFAiJyZiKXX1YhklOY5/mCIUdKS+KhJlv+uN9
+         mQjtKW3hjd9XlLg7/jA30ZP6/N/N6jzKuhT9tkaWIG3fZm/y5lRYg5q6WA1CGa7Jshk5
+         HI9h7w3FSXy4ssozJAgAUHQB2yvO9JSmn1dvIZmS8xBZfBEEdR303t4WEMv0bCPcWzBp
+         21FXUD1hMWWwonR2JT0NfQpmomWJ3Cv7OcbF3jy7nCWBolo9q5i8tNzpZgtBlEczUdAI
+         8Lu3bpMZZXld8WkzxO+5m7j9HYjaOEgLvZST/35NI9hyrmZoomaMdOgypdroomDhY5jf
+         oKfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language;
-        bh=+KGB+ZF1F5SI3lZq5Azi7ecx9HwFQP7QZGmJxXEmYtk=;
-        b=VQXfnokZK9YhwiKymGMLQOZLJ6Mr89sUhtpvf8jpcQo7Cc8Qdbgd9br1hyrOGOYNWJ
-         Zl8U65Y0I6+OgiXnk2n00HHTOhkLuU+PvY5v45kYSqL/eoNbrhY8H4QzLXwxHip2qwVU
-         0R6nhILr2YI6+mAnmMSYtgnqmTuKgglcLsrwEIi2VvuTVbIvXbqeLtu1CNU29CfQ5zTw
-         HstgTc/vCh9uHcx+NH+y6W80H0vTB1SMPEfhjyrOSdF/GVXBq+ihCqszlbTxvawyrGyD
-         WgfK69bbGBQSeN5RwyPh+tvidkjMDPTs9XXF8awtf8aL5ce8kBaJtShSBoJWWp4fEv66
-         OjLg==
-X-Gm-Message-State: AOAM5325Xj+Fkd6Qn/yE+Alh+8uPk56lB958bKU3CSktjL5tfr1p7YZl
-	5pCLrxSJ0zUW/AUBqXnwWqBAs/saWl+hDw==
-X-Google-Smtp-Source: ABdhPJyf82CRBG0iFJkFJi65ocut8LvUesZ1Z+Dhe1PIy1XARg2V0616Sg/kii3Ufv4LqOJbShihyA==
-X-Received: by 2002:a02:6a24:: with SMTP id l36mr11974908jac.24.1631021173979;
-        Tue, 07 Sep 2021 06:26:13 -0700 (PDT)
+        bh=FS7HTTtxrAO34t8jklC/B49u09DZ3O5olID3K8di+6k=;
+        b=XLiPOkaUWqW6lrKNZ1aPaOcv3s81Bytdn8UVVLgIwEwzRzzyGdTB3A2YOGEeulGLNF
+         aBvTqNzlKgOUcV5Cptsip4hhgwBDBpJyvAEJrHCUJTGA4lvhpZpPi3H5EUXU4SbkVMx0
+         cey5GlZ/LVBV6TilIQYLbxkGNjouULrFIzrd61TdWhECI7nX/Xa/QzK6jVadSjk5wi9E
+         TL4hvUuznizsmrO6vWtvNSE1+x240RpauJ9lATJ9OrVzIKvkCKRcp8EG2hOYRSFbqNoQ
+         +5pJYSo6VUwwjZVQhmB8v3RSt7kgYgqtbyLrg3kkCo4wuRHjfjLQ3vs+Y/8lqoxxR2w6
+         J6vA==
+X-Gm-Message-State: AOAM5337SN30dSyOAvVEfT/e3d99qHoqmpOriiIcRzHfTB9KUf9HpLp2
+	B9L8ngl5KB+rl7HHoih+0BEJddnDK2eZ1w==
+X-Google-Smtp-Source: ABdhPJwrFVfW7HGX9BkLH5RD3P1L+TbpjNaDFCw9AiygBwR7gG/JiHTJnLlwCDzd7Bd/USQdUH+hrw==
+X-Received: by 2002:a5d:9304:: with SMTP id l4mr14051767ion.167.1631021978893;
+        Tue, 07 Sep 2021 06:39:38 -0700 (PDT)
 Received: from [192.168.2.239] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id g14sm6461681ila.28.2021.09.07.06.26.13
+        by smtp.googlemail.com with ESMTPSA id r13sm6605720ilh.80.2021.09.07.06.39.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 06:26:13 -0700 (PDT)
+        Tue, 07 Sep 2021 06:39:38 -0700 (PDT)
 To: zhou <hwzhou@yahoo.com>,
  "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <78915145.1401871.1630855703615.ref@mail.yahoo.com>
@@ -55,38 +55,38 @@ References: <78915145.1401871.1630855703615.ref@mail.yahoo.com>
  <7d2c5ec1-812b-4f04-6718-d3a0029017ad@gmail.com>
  <715684581.1865263.1631015683450@mail.yahoo.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <f52b1f91-a3e0-ae66-f58e-899139da6ae2@gmail.com>
-Date: Tue, 7 Sep 2021 09:26:12 -0400
+Message-ID: <c1edb69a-6d45-f2c1-73b3-c49ca4863c28@gmail.com>
+Date: Tue, 7 Sep 2021 09:39:37 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
 In-Reply-To: <715684581.1865263.1631015683450@mail.yahoo.com>
 Content-Language: en-US
-Message-ID-Hash: OPWBMFEKXEX3KP7SBRLLDKDBWWXVQ4VJ
-X-Message-ID-Hash: OPWBMFEKXEX3KP7SBRLLDKDBWWXVQ4VJ
+Message-ID-Hash: EK5ZEHEN64A2QJGNDG4IEVUJJZKJ4C62
+X-Message-ID-Hash: EK5ZEHEN64A2QJGNDG4IEVUJJZKJ4C62
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Rx Packet Drop in N321 USRP
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OPWBMFEKXEX3KP7SBRLLDKDBWWXVQ4VJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EK5ZEHEN64A2QJGNDG4IEVUJJZKJ4C62/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7195874310402965169=="
+Content-Type: multipart/mixed; boundary="===============3691868870101443625=="
 
 This is a multi-part message in MIME format.
---===============7195874310402965169==
+--===============3691868870101443625==
 Content-Type: multipart/alternative;
- boundary="------------1DBC218E7847F0026FC02819"
+ boundary="------------A601F663A1BDBA1398189A81"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------1DBC218E7847F0026FC02819
+--------------A601F663A1BDBA1398189A81
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -94,16 +94,31 @@ On 2021-09-07 7:54 a.m., zhou wrote:
 > Thanks Marcus. What is the reason for Rx packet drop in N321? I have=20
 > configured the same MTU on both ends of the connection. Interestingly,=20
 > there is no Tx packet loss but Rx.
-Well, the *usual* reason is cabling issues.=C2=A0 But a secondary reason=20
-would be overload--the drivers run out of buffers to place packets
- =C2=A0 for the user/application layer.=C2=A0 That shouldn't be the case =
-here,=20
-unless you're doing a LOT of ordinary Linux CPU=C2=A0 network traffic ove=
-r
- =C2=A0 those interfaces.
+Hmmm, so, just found this:
+
+    Beginning with kernel 2.6.37, it has been changed the meaning of
+    dropped packet count. Before, dropped packets was most likely due to
+    an error. Now, the rx_dropped counter shows statistics for dropped
+    frames because of:
+
+      * Softnet backlog full
+      * Bad / Unintended VLAN tags
+      * Unknown / Unregistered protocols
+      * IPv6 frames when the server is not configured for IPv6
+
+    [...]
+
+    If the rx_dropped counter stops incrementing while tcpdump is
+    running; then it is more than likely showing drops because of the
+    reasons listed earlier.
 
 
->
+
+    IN other words, mostly harmless. At some point, the semantics of
+    "dropped packets" changed, and I didn't even notice.
+
+
+
 >
 > On Tuesday, 7 September 2021, 00:05:57 BST, Marcus D. Leech=20
 > <patchvonbraun@gmail.com> wrote:
@@ -319,7 +334,7 @@ rt=20
 >
 
 
---------------1DBC218E7847F0026FC02819
+--------------A601F663A1BDBA1398189A81
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -345,24 +360,40 @@ TF-8">
           Tx packet loss but Rx.</div>
       </div>
     </blockquote>
-    Well, the *usual* reason is cabling issues.=C2=A0 But a secondary rea=
-son
-    would be overload--the drivers run out of buffers to place packets<br=
->
-    =C2=A0 for the user/application layer.=C2=A0 That shouldn't be the ca=
-se here,
-    unless you're doing a LOT of ordinary Linux CPU=C2=A0 network traffic
-    over<br>
-    =C2=A0 those interfaces.<br>
+    Hmmm, so, just found this:<br>
     <br>
-    <br>
+    <blockquote>
+      <p>Beginning with kernel 2.6.37, it has been changed the meaning
+        of dropped packet count. Before, dropped packets was most likely
+        due to an error. Now, the rx_dropped counter shows statistics
+        for dropped frames because of:</p>
+      <ul>
+        <li>Softnet backlog full</li>
+        <li>Bad / Unintended VLAN tags</li>
+        <li>Unknown / Unregistered protocols</li>
+        <li>IPv6 frames when the server is not configured for IPv6</li>
+      </ul>
+      <p>[...]</p>
+      <p>If the rx_dropped counter stops incrementing while tcpdump is
+        running; then it is more than likely showing drops because of
+        the reasons listed earlier.</p>
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+      <p>IN other words, mostly harmless. At some point, the semantics
+        of "dropped packets" changed, and I didn't even notice.<br>
+      </p>
+      <p><br>
+      </p>
+      <p><br>
+      </p>
+    </blockquote>
     <blockquote type=3D"cite"
       cite=3D"mid:715684581.1865263.1631015683450@mail.yahoo.com">
       <div class=3D"ydp49813887yahoo-style-wrap"
         style=3D"font-family:Helvetica Neue, Helvetica, Arial,
         sans-serif;font-size:13px;">
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
         <div><br>
         </div>
       </div>
@@ -990,9 +1021,9 @@ ists.ettus.com</a><br
   </body>
 </html>
 
---------------1DBC218E7847F0026FC02819--
+--------------A601F663A1BDBA1398189A81--
 
---===============7195874310402965169==
+--===============3691868870101443625==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1002,4 +1033,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7195874310402965169==--
+--===============3691868870101443625==--
