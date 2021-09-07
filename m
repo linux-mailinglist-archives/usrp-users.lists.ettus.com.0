@@ -2,50 +2,50 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E17640309D
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Sep 2021 00:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DDBD403169
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Sep 2021 01:14:17 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8FE6A384B13
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 18:00:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7A3F7384E82
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Sep 2021 19:14:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gKW5FFpX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fvh9o0Pt";
 	dkim-atps=neutral
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 59C053848A3
-	for <usrp-users@lists.ettus.com>; Tue,  7 Sep 2021 17:59:35 -0400 (EDT)
-Received: by mail-io1-f41.google.com with SMTP id q3so493813iot.3
-        for <usrp-users@lists.ettus.com>; Tue, 07 Sep 2021 14:59:35 -0700 (PDT)
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 350513846AF
+	for <usrp-users@lists.ettus.com>; Tue,  7 Sep 2021 19:13:27 -0400 (EDT)
+Received: by mail-io1-f50.google.com with SMTP id a13so694917iol.5
+        for <usrp-users@lists.ettus.com>; Tue, 07 Sep 2021 16:13:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
          :in-reply-to:content-language;
-        bh=lekf+NOObPrLsCX/XNAjWefcCUW09kglOfp2PC6S5kc=;
-        b=gKW5FFpXN+WQ31VuMpyA2/57LzH2dJXDd5qPTJgIejFcAdPNgOQo0UgS/pll0dQ9XT
-         6YZwnC8sB6Vx7aggiBCh9AuZJboEprg9NgbdmuTyt5uhoEWweoCdZ34k/cUhjagfWAWr
-         awj+2BY8U02cCYD1rG2Iw9KQgN3G6MDFMEr8uTxPQ0qxk2e9f4fTWWGKE11NVvH+fYCP
-         4NkgtsXQSORuafmK7m2Qhy/G6cZ+hzYuUIagjFQ/u0jp4tFtefbTxl+JTJKajccp+twd
-         J2SBpDk+kVL2a1QkycWJqTHYZ2KUh2XOCv16U4cg+ISXE/n81B/bmBdyViF+YKnW479s
-         7+XA==
+        bh=kjPzwJ0C7T5T0TklLBB9FXwa+d6x1nMFKuxMd9H2FLU=;
+        b=Fvh9o0Ptz8QWbPa0pLGwgw5UEGySREtfAeYY17onfJt9y0E64dZP6nurOAeN8CdBnL
+         niNVIT0LSU+tOcwF9q70qLyLlsiEjV1CmkDElvXnPqc8kLkIMDTHLZi3Qk5wqA2qKYrg
+         AgJ9guAkSiGScZfHuVXZMAKoU8zAMtC1PhOtP0gQ7lyG0THfF9moK90iYYmv8vUv147b
+         UC1CQ48YNNxK/apaRHU4S/oC57CZ5UwQi3LjMMiGmMPgKFqUg0dTHkBD5Rtl9Hr+ISXp
+         RPH8deCBVdaw3x10lVCM3ga/JaoSxC9AohFvGg2Shjs7ql0v9vqHWSBxk/e33z6BvLcN
+         1Ppw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language;
-        bh=lekf+NOObPrLsCX/XNAjWefcCUW09kglOfp2PC6S5kc=;
-        b=MO+IhkTDyQnrs5E/xbTGJwj1s3ZQd3IGGpOUCjbWIoBwFllcNPXMnSIacKk6rNIyXB
-         hHXrzyK7gIBn+s1ae6srlNDUJ15IGWbF7L5JGMdY0tGtiTvIDoygnm73KrKy4DQYjhs7
-         kBmqwtBjiKKpJFc4NTcK/auC964CYzNrqNKjccjvFDC3MgLV108DQfdwS1hziQ6QmEcI
-         dcu/tAu1V0+kNRFGZ68wrLhbO0qjKPnEbg1B/t9dNYQceGozUe/RnJ8n6Pejs8qClbI3
-         qprkx89jcOkgXE3QG1GYcc5yFkpP/idlCMy6+fdSjooyBVqVvkcl2csUrKYvkvFS5e0Q
-         O2PA==
-X-Gm-Message-State: AOAM530tp3Akgmw3MbZhWJ9bzPauFxs21RE5wju/9ba3wbed0QS6eOIM
-	U+9tdmSV++hPuOXI2gvLayzQaagnBCAWMg==
-X-Google-Smtp-Source: ABdhPJzN+n1qVxIW5yhnPYhaE7CjN4dwmyfg/gBuVF84SdlMxqM1PCIfPl/oePGqcxNsKxH6aAI8CQ==
-X-Received: by 2002:a05:6638:d43:: with SMTP id d3mr466494jak.138.1631051974398;
-        Tue, 07 Sep 2021 14:59:34 -0700 (PDT)
+        bh=kjPzwJ0C7T5T0TklLBB9FXwa+d6x1nMFKuxMd9H2FLU=;
+        b=mL/+kEQr8vy8GS5RMgQiaVw3ji4YZkB++/bYMju2EnYuXqM+9lYdSB9236+tDFNlbz
+         oPbA5EWJG9H9eAYiUL6hyH0AmaE5tcEMmNaJPJl/Hf9Llu0+joAYKuy8zOEEW9wacB5a
+         5nw+z7gixPWEnCsxoEzKTbQquWjo/EiMHnmcWPrGS6s+S7djje0kw4TFXxMSPHW6jBlv
+         oQdbEHOVCqaGwpwd8/i3u4qTzw7B3m0lDuFZNsS0mCvd2QsBRKUIy7gAYCbymjq4tfTa
+         M6COGoPklzsLpoRJTPZOqWMQ8DI8zZrBxbWCmBCMbVwmrn4SB/iMq5cSLCdjZ/XTtxFr
+         ar6Q==
+X-Gm-Message-State: AOAM5337DUOyL261DRVNC2XQcR7gDz0AnfiOqSTx2l8DnQ6wifExlCaA
+	vaDSqPsIBdcaLvIwJR0RtKwjygSdA7j36A==
+X-Google-Smtp-Source: ABdhPJyf1YB1JmY3fODeavtt8WsUi5NjF3diignndnBUgRiART//aNNYnvBNrlp5luXdjCo2rf8VSg==
+X-Received: by 2002:a02:878e:: with SMTP id t14mr738360jai.4.1631056406363;
+        Tue, 07 Sep 2021 16:13:26 -0700 (PDT)
 Received: from [192.168.2.242] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id s12sm202948ilo.0.2021.09.07.14.59.33
+        by smtp.googlemail.com with ESMTPSA id t11sm273889ilf.16.2021.09.07.16.13.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Sep 2021 14:59:34 -0700 (PDT)
+        Tue, 07 Sep 2021 16:13:25 -0700 (PDT)
 To: Ivan Zahartchuk <adray0001@gmail.com>,
  "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 References: <CAPRRyxsM=2UogKNO1Z6idwXU+FZ3bX0H7kDkQQtw_WP60Dh-1Q@mail.gmail.com>
@@ -64,38 +64,38 @@ References: <CAPRRyxsM=2UogKNO1Z6idwXU+FZ3bX0H7kDkQQtw_WP60Dh-1Q@mail.gmail.com>
  <bcd84a06-1ee6-41eb-e446-6611932b60fa@gmail.com>
  <CAPRRyxvDfB3XYNovUAXH-trzVYXNNaf1rr_QZC4PqN4iq2hhUw@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <85d13f30-a205-120c-455b-9d6ce04adaef@gmail.com>
-Date: Tue, 7 Sep 2021 17:59:32 -0400
+Message-ID: <7ce1eab9-8b18-87fa-d4d1-12dda585a016@gmail.com>
+Date: Tue, 7 Sep 2021 19:13:24 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
 In-Reply-To: <CAPRRyxvDfB3XYNovUAXH-trzVYXNNaf1rr_QZC4PqN4iq2hhUw@mail.gmail.com>
 Content-Language: en-US
-Message-ID-Hash: OKYLCY2AFMEOYPKPJ4HUJRW42P6PSE4F
-X-Message-ID-Hash: OKYLCY2AFMEOYPKPJ4HUJRW42P6PSE4F
+Message-ID-Hash: I42IOE6NNUOMR6W36H5NVOM3AU25CD4Y
+X-Message-ID-Hash: I42IOE6NNUOMR6W36H5NVOM3AU25CD4Y
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: setting lenght of fft RFNoC UHD 4
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OKYLCY2AFMEOYPKPJ4HUJRW42P6PSE4F/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/I42IOE6NNUOMR6W36H5NVOM3AU25CD4Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5398911237377347798=="
+Content-Type: multipart/mixed; boundary="===============4030853390814093497=="
 
 This is a multi-part message in MIME format.
---===============5398911237377347798==
+--===============4030853390814093497==
 Content-Type: multipart/alternative;
- boundary="------------67B1932536EF87413133CEB0"
+ boundary="------------2BD882F05EFFECDACA376C22"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------67B1932536EF87413133CEB0
+--------------2BD882F05EFFECDACA376C22
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -108,19 +108,15 @@ On 2021-09-07 5:55 p.m., Ivan Zahartchuk wrote:
 > the data. Tell me how to do it better? And do I need to set a=20
 > different type for the array which is passed to the recv function when=20
 > setting Mag ** 2?
-YOu're already setting Mag**2, so there's no need to ABS. Typically,=20
-after that you'll use a 10*log10 function which is then itself scaled by
- =C2=A0 the FFT length and a few other factors.=C2=A0 I'd suggest looking=
- at the=20
-Gnu Radio FFT code to see how it scales the FFT output.=C2=A0 There are
- =C2=A0 MANY ways to scale an FFT (and even the MAG**2 output of an FFT)-=
--the=20
-RFNOC FFT produces a linear-form output, so if you
- =C2=A0 want to see it in dB units you have to do that yourself from what=
- I=20
-understand.=C2=A0 Implementing a 10*log10 in the FPGA would likely
- =C2=A0 be prohibitive, and usually you do that after you've done some=20
-averaging and frame-rate reduction.
+Actually, there IS a logpwr block in RFNOC.=C2=A0=C2=A0 I don't know exac=
+tly what=20
+scaling strategy it uses.
+
+If I wanted to get power estimates out of an RFNOC FFT, I'd have:
+
+FFT(with MAG2)--->MOVING_AVG--->KEEP-ONE-IN-N=C2=A0=C2=A0 all inside RFNO=
+C, and=20
+then scale to my hearts content at leisurely rates on the host.
 
 
 >
@@ -277,7 +273,7 @@ ay.
 >
 
 
---------------67B1932536EF87413133CEB0
+--------------2BD882F05EFFECDACA376C22
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -322,22 +318,16 @@ ype for the array which is passed to the recv function when setting Mag *=
         </div>
       </div>
     </blockquote>
-    YOu're already setting Mag**2, so there's no need to ABS.=C2=A0=C2=A0
-    Typically, after that you'll use a 10*log10 function which is then
-    itself scaled by<br>
-    =C2=A0 the FFT length and a few other factors.=C2=A0 I'd suggest look=
-ing at
-    the Gnu Radio FFT code to see how it scales the FFT output.=C2=A0 The=
-re
-    are<br>
-    =C2=A0 MANY ways to scale an FFT (and even the MAG**2 output of an
-    FFT)--the RFNOC FFT produces a linear-form output, so if you<br>
-    =C2=A0 want to see it in dB units you have to do that yourself from w=
-hat
-    I understand.=C2=A0 Implementing a 10*log10 in the FPGA would likely<=
-br>
-    =C2=A0 be prohibitive, and usually you do that after you've done some
-    averaging and frame-rate reduction.<br>
+    Actually, there IS a logpwr block in RFNOC.=C2=A0=C2=A0 I don't know =
+exactly
+    what scaling strategy it uses.<br>
+    <br>
+    If I wanted to get power estimates out of an RFNOC FFT, I'd have:<br>
+    <br>
+    FFT(with MAG2)---&gt;MOVING_AVG---&gt;KEEP-ONE-IN-N=C2=A0=C2=A0 all i=
+nside
+    RFNOC, and then scale to my hearts content at leisurely rates on the
+    host.<br>
     <br>
     <br>
     <blockquote type=3D"cite"
@@ -664,9 +654,9 @@ br>
   </body>
 </html>
 
---------------67B1932536EF87413133CEB0--
+--------------2BD882F05EFFECDACA376C22--
 
---===============5398911237377347798==
+--===============4030853390814093497==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -676,4 +666,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5398911237377347798==--
+--===============4030853390814093497==--
