@@ -2,19 +2,19 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89955403900
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Sep 2021 13:40:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39EDE40390C
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Sep 2021 13:44:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 46422384753
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Sep 2021 07:40:32 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7F7E9384DA1
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Sep 2021 07:44:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="cYp/cBdK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="Jw50ElNd";
 	dkim-atps=neutral
-Received: from sonic309-13.consmr.mail.bf2.yahoo.com (sonic309-13.consmr.mail.bf2.yahoo.com [74.6.129.123])
-	by mm2.emwd.com (Postfix) with ESMTPS id 694E1384251
-	for <usrp-users@lists.ettus.com>; Wed,  8 Sep 2021 07:39:39 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1631101178; bh=9EngJ5cENMfaYbYCE2STsLsQV/MKdZP7U+OVBHOhmKY=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=cYp/cBdKwmL1CBH7JFtDZJJN9cxnQ4SdYbfDOzZpPo9jU3bXMotfBLkyFlQHvK2HjCbCo59YW/8tTiJm5VsvUu/Pr5mbD9xgoYVmn/KMfczVCx2MqWEGw5XAJpG0thVwWz+r3hIu4dOKl1+Y1ENPfo3k+Wrcm0poyeTooSkpaQaM4VXrXmD+OIi/pCcgYeKw4OCY8o1qasH+WI/XwnYmJgY6AeL/YAV4TalG3DD97c21sJKzWmel6q0FYm5hBbSk3R2q1rvpDbD5eF3WOKIJZSo1lM61m6VmqwfErfxHVNBfwIQ+hD0iYb3GWRnNCADTCjLUZC5Igs8++WjNAIL8pA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1631101178; bh=5Nf4i1v6JKOI1+rMfmpJuAs2oElOI4DOAQmgRFGMTQV=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=SkDGs69TSWidE3HB5MuP1jKfcxBGOnnGp4TfoGKgkFdaprAS3278yl1aY6+brOVePmr79wS3+AJT3z1e7o3lBIRRmw6MFniiePGg7l/4iShwxh+4jt1/Q4T3NqQG/uhvyrbK37UqOykLqtNy4pX4vr+c/WHbIRtClbX1rcYnQdlPv1nNPyDlHPLi7sn/RGfHu8pUSzLyZWcscAuBH/QpvgGSLErJW+9dYJS0KqZ+81TZtCKOSuYu3s86bi29aooKqex3TQQwVOOKepAyHj/dkDMLHk2/5NgJSURfqLFtvzNddWOE3f5FiYG66T+IsucvBXG2s24XrmkEzc77TqFvgQ==
+Received: from sonic308-1.consmr.mail.bf2.yahoo.com (sonic308-1.consmr.mail.bf2.yahoo.com [74.6.130.40])
+	by mm2.emwd.com (Postfix) with ESMTPS id 84741384981
+	for <usrp-users@lists.ettus.com>; Wed,  8 Sep 2021 07:43:18 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1631101398; bh=9EngJ5cENMfaYbYCE2STsLsQV/MKdZP7U+OVBHOhmKY=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=Jw50ElNdpgr1AauHfjkZ9/69Ouubhkv54w0m/KzCYjAfw6qx9maZppVA+qIpWQ2aaPiaKtTUWIik32Hd7q0SSb+0JtWkPprCK6rXKMHvtC1SZXXBVuhbwwT/c8FdsEJuBket24yJHot+R6GnPYkqmya5ftfyj7kLjrWkyTBS+txuOlbqo+ziIWF4myGr7uXj5GX8nEgUkYn0CbLCnCs62i0kjzI06/UkzOH4yaN5EwXQUNN1thkBZ7RJrNZeEauaPP+Qi2IdOjxe3Xki4NahftcmgiQweHdjbynKGv1+TDRv94tk+GRu8GTv4udmuvYIZjP7zh/jg7Kv+pcIqCmReQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1631101398; bh=8HCNEiy4XEAu0oR8W64Y31e2jiWi75BTIU4ubRujF7S=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=sTIRwfT9FHlwQK8mUwoMhMQ9nbijcUsw9IPkMqHUN8HSaELsn3X3+KR00AVp5mDZBCSXv2MNaWc0iw9jqBUoRwkf6H0k7Wv6rQxoEIs3jYKvRfCa/jZDcARoL7144M8cPNPgFTqJzo4mqbcNqpaFeygbnHNXW/43XZpz3maFfqQxNroL0RzJiyS90TCC9ZYG8l3iCJtM978yRUjQ89kNiQOmVjiYpwTnUOljJavCCYb8UoylZv3iKEYVkc+GMbCCoPNt0C06KQajhXVD+QwQxNngZCCKbygXyNs6+5197x5NBl7pyz1PuCgcCH/oj3S2FCgEV0QYhpy/HDNpBpLd5g==
 X-YMail-OSG: t5FsRTwVM1mJ3ab1.GXJ09z9_XZm9UAX.8CbN3GsVYxlnaqyBJKrRas90rqR55a
  ngw_Gu38E49UUFtVLbRIJ0XUbx.6B6.s9YaABTDRNte43Xa43HscjLGeamnZ2X.mZyrhqsBJ456u
  9eOUQeu5fdfsyAlZ_W0rVWJwTheywi_l3ofmI.4HErP6QDLMaWoaVYZh_p56xO.LC4lKLClUxM.U
@@ -47,7 +47,7 @@ X-YMail-OSG: t5FsRTwVM1mJ3ab1.GXJ09z9_XZm9UAX.8CbN3GsVYxlnaqyBJKrRas90rqR55a
  V7b21LzjEjQKcPJKV04QivbFIb.hyzfivNKMMVoRuhZtpURAx.AuamIunXt5LszV5z6KvgdNI.VF
  y.YoYBKRbAmksntFbe41EwdoIwiswLe3UR.P6drm85O3a8Vkz.lWHNojXxzyz
 X-Sonic-MF: <hwzhou@yahoo.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Wed, 8 Sep 2021 11:39:38 +0000
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.bf2.yahoo.com with HTTP; Wed, 8 Sep 2021 11:43:18 +0000
 Date: Wed, 8 Sep 2021 10:26:56 +0000 (UTC)
 To: <usrp-users@lists.ettus.com>,
 	"Marcus D. Leech" <patchvonbraun@gmail.com>
@@ -73,9 +73,9 @@ List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 From: zhou via USRP-users <usrp-users@lists.ettus.com>
 Reply-To: zhou <hwzhou@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============4242741183903419958=="
+Content-Type: multipart/mixed; boundary="===============1660996035987273708=="
 
---===============4242741183903419958==
+--===============1660996035987273708==
 Content-Type: multipart/alternative;
 	boundary="----=_Part_2099898_718703225.1631096816167"
 
@@ -1407,7 +1407,7 @@ rp-users-leave@lists.ettus.com</a><br clear=3D"none">
         </div></body></html>
 ------=_Part_2099898_718703225.1631096816167--
 
---===============4242741183903419958==
+--===============1660996035987273708==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1417,4 +1417,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4242741183903419958==--
+--===============1660996035987273708==--
