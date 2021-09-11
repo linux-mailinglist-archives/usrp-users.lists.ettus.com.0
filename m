@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C724440744F
-	for <lists+usrp-users@lfdr.de>; Sat, 11 Sep 2021 03:05:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AAAF407451
+	for <lists+usrp-users@lfdr.de>; Sat, 11 Sep 2021 03:06:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C7063384B7B
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Sep 2021 21:05:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A03B9384BCC
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Sep 2021 21:06:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ew8Dl8hy";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cJgsnrh8";
 	dkim-atps=neutral
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6E12F3849C0
-	for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 21:04:42 -0400 (EDT)
-Received: by mail-qv1-f42.google.com with SMTP id 62so2460368qvb.11
-        for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 18:04:42 -0700 (PDT)
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5115E3849DD
+	for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 21:04:48 -0400 (EDT)
+Received: by mail-qt1-f173.google.com with SMTP id c19so3181903qte.7
+        for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 18:04:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
          :in-reply-to:content-language;
-        bh=wpCeYeAjOVvJw4Ry4KVCwYha6gFkIIOQpt30ptnk4BQ=;
-        b=ew8Dl8hyCt0jUdbmFam819Nxyva9a8xJQ4qCYS615Y4UonjemlF7b/TGD0vDgr4cuj
-         ys0sC7xD+Z+FNVwBNKb1MeKd/bx7j7dehG/7Kkog7iYmlWC4E+mVT1yhPtAt7MtwY/em
-         fVSYDzpb7gD09MvKXjG0SF9XmnFb6qVL7FDLxBHJW8gtE4Dohktuvg+Vg8eiupbDQGAg
-         IBU/nkH7LpJepXF8fKtRBnBRMMbI0BMzXM8KYKnVVsJ5YeXW4RnCNWLAijS58GAoJXAB
-         hGWLE3tRd2owWVSnGQr841GmxuWSd43FJt9sb4atf6n7jS/CffAfxkyWH8EXnk0ZZQF0
-         9JTw==
+        bh=gRhLqx4qNBgZ+GGD+31YzVRQufJ/ebbbhlw+kKy36Rc=;
+        b=cJgsnrh82++BoK+WDOTBfCL6A0bKn3MROkWulmkpttHVPbR37pjGrBSzOEn6adgXeN
+         XiDiJ9VVH7wr/kSserzgZYVR0TOZZz/RZHkk4zcx+cndZDvB0fhqmNvzHmIugdbROU7g
+         vWfSa/tedldcReMjAjEHdXAtvBiFIBwXeX0azqzibeO9eLU7ANw7uQxNKe81Oj2Tf6qC
+         YgS9Jramwwf4OyH8T2GD3QGRjHUENL1or5To+5KNVuuP/kE0qBv6a2Fet5ENNKIFGYDf
+         TYAphxqmd5SWDs3MhZHu0JC9Ry0YkGdCcQGvhbgolx4jXnDsZmgfTyMW9PaZ0Bxr1n5z
+         FXfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language;
-        bh=wpCeYeAjOVvJw4Ry4KVCwYha6gFkIIOQpt30ptnk4BQ=;
-        b=PbsTuo8uMlzepIYKv0MYYla4PLWPFxKaldhxZjnLMZ/SeAl6Y+wI3JK/nI9CDKhTHj
-         4UBwurV+sCfo1NOUIugim5BETzz3DNWzz9VyZ83hqJ7dvXB6jvP4rMKFgdxnI9Mfn7BX
-         xENnXSR5HKXojQqQuEaEdkpConh1ZfxHwPH9uqSl3A/Au8Z52f9WVetstR3XY9QXTvCu
-         68oN5pdGnQz8fWa8t99sXja4u1oH5F2OHr/QBeJSPyTnIHWmwU6RJBjj7fzXrB/VKfiF
-         +mNdn0DJITESAWP6VQC5id+9s8s5BHIthI/pPNNBMFB/6MFhtmLLmmFcBeypXZfDnE5W
-         /ulw==
-X-Gm-Message-State: AOAM532/eP9HE8mOzTDuMks4l2jNAp2+Xcx7N8CHsWlPixizfgndKWoi
-	3+p+YLw3vHLdkDly24fE9pJ8YVqe6/tvWw==
-X-Google-Smtp-Source: ABdhPJy+F/DEgDd+K6RHGZo+QLeU8Y7GBOQTgK0qv/W0U/1mttGWAvUywghwGCEuXyp7vyRH9e8n1w==
-X-Received: by 2002:ad4:496d:: with SMTP id p13mr431239qvy.46.1631322281637;
-        Fri, 10 Sep 2021 18:04:41 -0700 (PDT)
+        bh=gRhLqx4qNBgZ+GGD+31YzVRQufJ/ebbbhlw+kKy36Rc=;
+        b=R9Vm4mhhwIUid32UT7+rlM+cEQH11tckxrpka9hOPCFO0IEebjH9/jQgy4z1mE8yKG
+         d7wABPP/PgRQuM7y3PAZciRhQ2+z5qYPaSdM6hpdr3UVY8V+BWICz82xd5rQyINETeWc
+         W1BYLSjSrCD91eXA0/kyJ2O6I+88GKrFOWypKvrAWE/KMes4ytyIddfg0ze5IxRQL+eS
+         ampE2tyy3GCJHJgi799/7CBHJJKu1kpbNs7MsF0fFCoZP9kGrX4i2UBScnxVhuXnuR9w
+         p9UlkD7oIv/GWf66XMYhvxB/lWZbOMRZ5IhG55gx6MnqDYXxTHAtU21tcnc+Of6rZdi9
+         SdBQ==
+X-Gm-Message-State: AOAM530bitprSkYdMLa990ilOrfM7B17B64ahWcsOwNzyqERnLHQjfJF
+	mCo1Zo3bwjoyn7XUboHlBfSHRskVvoXQUA==
+X-Google-Smtp-Source: ABdhPJxZcaDiNM28BAq/xVSmCil1mBxYsuced7GGZ1/eMa2/Zil0BYmRyJKGQs3a/COyBvWV87eT5w==
+X-Received: by 2002:a05:622a:11d3:: with SMTP id n19mr392168qtk.90.1631322287402;
+        Fri, 10 Sep 2021 18:04:47 -0700 (PDT)
 Received: from [192.168.2.249] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id d68sm247739qke.19.2021.09.10.18.04.40
+        by smtp.googlemail.com with ESMTPSA id s6sm227998qkf.80.2021.09.10.18.04.46
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Sep 2021 18:04:40 -0700 (PDT)
+        Fri, 10 Sep 2021 18:04:46 -0700 (PDT)
 To: usrp-users@lists.ettus.com
 References: <401c2280-1625-fcce-1ae5-a90e95da07e6@gmail.com>
  <75760422-a05d-95d1-10c1-f571ae8dccb2@gmail.com>
@@ -54,38 +54,38 @@ References: <401c2280-1625-fcce-1ae5-a90e95da07e6@gmail.com>
  <8c101f57-04d5-6d20-fe37-3e182bb707e0@gmail.com>
  <79146926-b3c3-69d2-5e8a-4323b4c64997@gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <e65ab60c-c009-99a5-684f-e2ada7c589c7@gmail.com>
-Date: Fri, 10 Sep 2021 21:04:39 -0400
+Message-ID: <a78f92e5-f732-0849-c172-be4de293c872@gmail.com>
+Date: Fri, 10 Sep 2021 21:04:46 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
 In-Reply-To: <79146926-b3c3-69d2-5e8a-4323b4c64997@gmail.com>
 Content-Language: en-US
-Message-ID-Hash: MYYLZMQVTS45FJHTANKFKALQ54V4SUHU
-X-Message-ID-Hash: MYYLZMQVTS45FJHTANKFKALQ54V4SUHU
+Message-ID-Hash: OWPXL3QAUZH2MST6P747VUWGPAEN5FAX
+X-Message-ID-Hash: OWPXL3QAUZH2MST6P747VUWGPAEN5FAX
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: how to use a usrp b210 with external gpsdo and nmea0183 as clock source
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MYYLZMQVTS45FJHTANKFKALQ54V4SUHU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OWPXL3QAUZH2MST6P747VUWGPAEN5FAX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5680247112225205841=="
+Content-Type: multipart/mixed; boundary="===============7132569093013107571=="
 
 This is a multi-part message in MIME format.
---===============5680247112225205841==
+--===============7132569093013107571==
 Content-Type: multipart/alternative;
- boundary="------------26A8453EE744C0FCAD5BE472"
+ boundary="------------FBC912CEE225CEC320F8A067"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------26A8453EE744C0FCAD5BE472
+--------------FBC912CEE225CEC320F8A067
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -176,7 +176,7 @@ that may not be good enough for some cellular implementations.
 
 
 
---------------26A8453EE744C0FCAD5BE472
+--------------FBC912CEE225CEC320F8A067
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -306,9 +306,9 @@ TF-8">
   </body>
 </html>
 
---------------26A8453EE744C0FCAD5BE472--
+--------------FBC912CEE225CEC320F8A067--
 
---===============5680247112225205841==
+--===============7132569093013107571==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -318,4 +318,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5680247112225205841==--
+--===============7132569093013107571==--
