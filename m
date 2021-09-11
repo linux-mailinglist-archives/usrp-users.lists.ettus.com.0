@@ -2,51 +2,51 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AAAF407451
-	for <lists+usrp-users@lfdr.de>; Sat, 11 Sep 2021 03:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14297407452
+	for <lists+usrp-users@lfdr.de>; Sat, 11 Sep 2021 03:08:40 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A03B9384BCC
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Sep 2021 21:06:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 12878384C9E
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Sep 2021 21:08:39 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cJgsnrh8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="V3pahCRl";
 	dkim-atps=neutral
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5115E3849DD
-	for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 21:04:48 -0400 (EDT)
-Received: by mail-qt1-f173.google.com with SMTP id c19so3181903qte.7
-        for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 18:04:48 -0700 (PDT)
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 88A7438484B
+	for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 21:07:42 -0400 (EDT)
+Received: by mail-qv1-f49.google.com with SMTP id z12so2468326qvx.5
+        for <usrp-users@lists.ettus.com>; Fri, 10 Sep 2021 18:07:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:references:from:message-id:date:user-agent:mime-version
          :in-reply-to:content-language;
-        bh=gRhLqx4qNBgZ+GGD+31YzVRQufJ/ebbbhlw+kKy36Rc=;
-        b=cJgsnrh82++BoK+WDOTBfCL6A0bKn3MROkWulmkpttHVPbR37pjGrBSzOEn6adgXeN
-         XiDiJ9VVH7wr/kSserzgZYVR0TOZZz/RZHkk4zcx+cndZDvB0fhqmNvzHmIugdbROU7g
-         vWfSa/tedldcReMjAjEHdXAtvBiFIBwXeX0azqzibeO9eLU7ANw7uQxNKe81Oj2Tf6qC
-         YgS9Jramwwf4OyH8T2GD3QGRjHUENL1or5To+5KNVuuP/kE0qBv6a2Fet5ENNKIFGYDf
-         TYAphxqmd5SWDs3MhZHu0JC9Ry0YkGdCcQGvhbgolx4jXnDsZmgfTyMW9PaZ0Bxr1n5z
-         FXfA==
+        bh=Ri0gaPMxvEcGoD0vXOLuuHGEXdG/B06xhISlAncuUsw=;
+        b=V3pahCRlq9YELLleQgN30azyV+NhlmhNlDIiFXhYS5n7RqpKgNSmF35oJQ6um1oJV2
+         CrnV4jQY9xHK1k6p2QIwxbJlzZe66x+WW7lX8kXf2DTGQcQGuD926MLCAZRFcAG+b+2G
+         xY9xQUfwVk9SF/kvbT58RZ0pKdB1Z8lgYJfo0QAeIw4Mx/pKTuLbdC6ng1oYuHmSRZZ6
+         tmnaZU1AP8O5I8TsvsJfbGRVW5HSW6vSum1jpcQiXONXvCxu9h4GCRrhpacwBC+EeB2u
+         UIm/VuXYrGuXgUky0+Vxoyr5xkHBN0nn8VvEIgbwr2J4FEdVpTlzTRKblAXBYblbnP4O
+         fgsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language;
-        bh=gRhLqx4qNBgZ+GGD+31YzVRQufJ/ebbbhlw+kKy36Rc=;
-        b=R9Vm4mhhwIUid32UT7+rlM+cEQH11tckxrpka9hOPCFO0IEebjH9/jQgy4z1mE8yKG
-         d7wABPP/PgRQuM7y3PAZciRhQ2+z5qYPaSdM6hpdr3UVY8V+BWICz82xd5rQyINETeWc
-         W1BYLSjSrCD91eXA0/kyJ2O6I+88GKrFOWypKvrAWE/KMes4ytyIddfg0ze5IxRQL+eS
-         ampE2tyy3GCJHJgi799/7CBHJJKu1kpbNs7MsF0fFCoZP9kGrX4i2UBScnxVhuXnuR9w
-         p9UlkD7oIv/GWf66XMYhvxB/lWZbOMRZ5IhG55gx6MnqDYXxTHAtU21tcnc+Of6rZdi9
-         SdBQ==
-X-Gm-Message-State: AOAM530bitprSkYdMLa990ilOrfM7B17B64ahWcsOwNzyqERnLHQjfJF
-	mCo1Zo3bwjoyn7XUboHlBfSHRskVvoXQUA==
-X-Google-Smtp-Source: ABdhPJxZcaDiNM28BAq/xVSmCil1mBxYsuced7GGZ1/eMa2/Zil0BYmRyJKGQs3a/COyBvWV87eT5w==
-X-Received: by 2002:a05:622a:11d3:: with SMTP id n19mr392168qtk.90.1631322287402;
-        Fri, 10 Sep 2021 18:04:47 -0700 (PDT)
+        bh=Ri0gaPMxvEcGoD0vXOLuuHGEXdG/B06xhISlAncuUsw=;
+        b=dExnnPqLYUwSUG9k0w9XWiJ4tDv7BblkaRXG5D0duWu5398ZgLnVMPwSXnviQev0CK
+         TxozFoc3cvVS34Av7jwZpTXetjEFDxRu7OKPMTskw/WS0Urdo22mqicwz2V4a8xy0Yyn
+         WWEs7aWgZjYMk8W4MynQlOjRVJ0Ji5xT2/Q34leMbgEN2z4D/KBlcCxcpXIq1BWO2m+l
+         wM++K+56sdZVkHZyKTTW3wa43O+hyR/4aUn5nl1/E2JBI89yYZfefqwOdNKYCKAnzooY
+         U7mloLaE7eoe/xZuicUFQOr19wIFJTyjIVhv73vLY4du0PdTfo9WlgXeiDcEdZoIf2wa
+         bz2Q==
+X-Gm-Message-State: AOAM532QaOuY12I9Fq9Qs3GW0DIlotHw0V8WfS9pzbAuZkrp2yfGaJ2n
+	KkMU3BIW+abPdyU4pDNMgGIKfds7IundHA==
+X-Google-Smtp-Source: ABdhPJyz8CB8oLPQhYV+u9ene/rrSZS4evRggO1Ms9+BLyigfph2P98cVCMdA8yf/CK5PMjSMg9ZRQ==
+X-Received: by 2002:a05:6214:122e:: with SMTP id p14mr284836qvv.37.1631322461775;
+        Fri, 10 Sep 2021 18:07:41 -0700 (PDT)
 Received: from [192.168.2.249] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id s6sm227998qkf.80.2021.09.10.18.04.46
+        by smtp.googlemail.com with ESMTPSA id p123sm231385qke.94.2021.09.10.18.07.41
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Sep 2021 18:04:46 -0700 (PDT)
+        Fri, 10 Sep 2021 18:07:41 -0700 (PDT)
 To: usrp-users@lists.ettus.com
 References: <401c2280-1625-fcce-1ae5-a90e95da07e6@gmail.com>
  <75760422-a05d-95d1-10c1-f571ae8dccb2@gmail.com>
@@ -54,38 +54,38 @@ References: <401c2280-1625-fcce-1ae5-a90e95da07e6@gmail.com>
  <8c101f57-04d5-6d20-fe37-3e182bb707e0@gmail.com>
  <79146926-b3c3-69d2-5e8a-4323b4c64997@gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <a78f92e5-f732-0849-c172-be4de293c872@gmail.com>
-Date: Fri, 10 Sep 2021 21:04:46 -0400
+Message-ID: <7e876aa4-960b-2c6e-f579-8eaabba70bb4@gmail.com>
+Date: Fri, 10 Sep 2021 21:07:40 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
 In-Reply-To: <79146926-b3c3-69d2-5e8a-4323b4c64997@gmail.com>
 Content-Language: en-US
-Message-ID-Hash: OWPXL3QAUZH2MST6P747VUWGPAEN5FAX
-X-Message-ID-Hash: OWPXL3QAUZH2MST6P747VUWGPAEN5FAX
+Message-ID-Hash: KQFTCYYNFZZWY224Z2GTL7Y24I3Y3TOQ
+X-Message-ID-Hash: KQFTCYYNFZZWY224Z2GTL7Y24I3Y3TOQ
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: how to use a usrp b210 with external gpsdo and nmea0183 as clock source
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OWPXL3QAUZH2MST6P747VUWGPAEN5FAX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KQFTCYYNFZZWY224Z2GTL7Y24I3Y3TOQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7132569093013107571=="
+Content-Type: multipart/mixed; boundary="===============5856201762451373222=="
 
 This is a multi-part message in MIME format.
---===============7132569093013107571==
+--===============5856201762451373222==
 Content-Type: multipart/alternative;
- boundary="------------FBC912CEE225CEC320F8A067"
+ boundary="------------936B6821C0845E0C7D646A36"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------FBC912CEE225CEC320F8A067
+--------------936B6821C0845E0C7D646A36
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -165,18 +165,11 @@ On 2021-09-10 9:01 p.m., msfu wrote:
 > i think it has to do with the communication between usrp and pll-gpsdo.
 >
 >
-Well, connect your GPSDO 10MHz and 1PPS outputs to the appropriate=20
-inputs of the USRP B210, and then perhaps ask the devs of=20
-CrocoDileHunter to add provision
- =C2=A0 for clock setup for external clocks.
-
-The native clock on the B210 is actually fairly decent--2.5PPM.=C2=A0 But=
-=20
-that may not be good enough for some cellular implementations.
+If your GPS "Mouse" cannot get a fix, that has NOTHING, ZERO, NADA, to=20
+do with the USRP.=C2=A0 Utterly unrelated.
 
 
-
---------------FBC912CEE225CEC320F8A067
+--------------936B6821C0845E0C7D646A36
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -293,22 +286,15 @@ TF-8">
         pll-gpsdo.</p>
       <br>
     </blockquote>
-    Well, connect your GPSDO 10MHz and 1PPS outputs to the appropriate
-    inputs of the USRP B210, and then perhaps ask the devs of
-    CrocoDileHunter to add provision<br>
-    =C2=A0 for clock setup for external clocks.<br>
-    <br>
-    The native clock on the B210 is actually fairly decent--2.5PPM.=C2=A0=
- But
-    that may not be good enough for some cellular implementations.<br>
-    <br>
+    If your GPS "Mouse" cannot get a fix, that has NOTHING, ZERO, NADA,
+    to do with the USRP.=C2=A0 Utterly unrelated.<br>
     <br>
   </body>
 </html>
 
---------------FBC912CEE225CEC320F8A067--
+--------------936B6821C0845E0C7D646A36--
 
---===============7132569093013107571==
+--===============5856201762451373222==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -318,4 +304,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7132569093013107571==--
+--===============5856201762451373222==--
