@@ -2,88 +2,437 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B5C84100C8
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Sep 2021 23:38:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A58D411061
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Sep 2021 09:42:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8389A384473
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Sep 2021 17:37:58 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EafczbNX";
-	dkim-atps=neutral
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2E5723843F7
-	for <USRP-users@lists.ettus.com>; Fri, 17 Sep 2021 17:37:14 -0400 (EDT)
-Received: by mail-qv1-f49.google.com with SMTP id w8so1226031qvu.1
-        for <USRP-users@lists.ettus.com>; Fri, 17 Sep 2021 14:37:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=nEO/U9Y+4o+cqZRDmompSrfzYLW8i6XCCtTO8PDQLH0=;
-        b=EafczbNXf2wkTLdTwZ5c2rXdEscewYLH2ud6AEADF5G9pDYMtgwVa5r09ug0y7Egn3
-         0ZrzpuQhFdBJ9/OXAkGPpc3XRZZjvSbSdFu8jo06QIqt1pLWcrlYZdUptkPYnGVNkQk2
-         zntCCbfEW3wD9O3Co7K5lgzMna0tux35ZlSxfYDxsS58huyJCuX6fe7uA4qG4xiQzAWy
-         rG6Ysqu4iqWguDZtbxF3wUxKMNHmkkYlKS8acO3oAQv1jKTq1cQp1D7wu45vIash+Wnc
-         p8m+NxKLlTvwqn9TdqKbX8X7Q0/36jZHCn3kQMXkBI9j7PlhLB5vsSTC2CXTGRaCUaZR
-         Q7DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=nEO/U9Y+4o+cqZRDmompSrfzYLW8i6XCCtTO8PDQLH0=;
-        b=gnHG0BmkpQMoDWe9fxB011UHF9LFxwxzg7cz7hCKMlN6s4LdPugfor5tPqN8wLA5AX
-         a6Sz2uh+RnmitHLlieuFICjshxDmp+ZaF3CmiYAKalGUnHsoqKJMTG1fOtpgVuplu/qb
-         pZoAH8v5EdiBJ0V9/vqDY3HKfqXAg/MxDuMA7pTFsuNAuErBB/1J0mJ4NX59zOE46VB0
-         z6ev9qX/4fkwqH5gH6oyrGcm7dHVcbf2qGhaxpaRV9h3pUqgMJya4ikZCudn/hkbnzv0
-         Jetdys+HGdXR+oTH644oRSgSNxcOV1cbygbhofrwCs63V4aD1HplULDJBfjO+jNpK9ks
-         JesA==
-X-Gm-Message-State: AOAM5307FbLSj3pde37aw8mwJRI+w33BxP4hntO/JdpZkwaorWQqHoHv
-	koRl94iXkkkzHnKqbGOQpx7wjQWm5c//0w==
-X-Google-Smtp-Source: ABdhPJyP6RPg2gMa531YlhNHHZi4ljIVC5+OcilB0YN2+XSZ84UyIm/95JQeM4A6EtXfvT0zzZBGJg==
-X-Received: by 2002:a05:6214:56a:: with SMTP id cj10mr13588048qvb.60.1631914634542;
-        Fri, 17 Sep 2021 14:37:14 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.gmail.com with ESMTPSA id l12sm203913qki.81.2021.09.17.14.37.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Sep 2021 14:37:14 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Fri, 17 Sep 2021 17:37:13 -0400
-Message-Id: <83EFBB8A-6FB0-41C0-BB04-74EB465B103B@gmail.com>
-References: <4c01dabe-99c7-8fdc-1c7f-130c400ff95f@rurisond.com>
-In-Reply-To: <4c01dabe-99c7-8fdc-1c7f-130c400ff95f@rurisond.com>
-To: Tom Riddle <triddle@rurisond.com>
-X-Mailer: iPhone Mail (18G82)
-Message-ID-Hash: 5ODD4E4FHW3VY6CSCHJQAC5GVVWXKDIB
-X-Message-ID-Hash: 5ODD4E4FHW3VY6CSCHJQAC5GVVWXKDIB
-X-MailFrom: patchvonbraun@gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id 387FF384083
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Sep 2021 03:42:47 -0400 (EDT)
+Received: from mail2.swro.de (mail2.swro.de [88.133.160.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 94763384036
+	for <usrp-users@lists.ettus.com>; Mon, 20 Sep 2021 03:41:54 -0400 (EDT)
+IronPort-SDR: M5HLVlSt4a0q37b+++hug8dgLWF/KlpIcDDSKQT/4J2sEBjwyfwOXWOtpZSqmHJ0ngqzJmE4Jb
+ Ovqw+m4D2WB4uiNrf0uub0ERDPnPYvsRWY6CNRpm0TkTfgBe0RjYosc1861+9pk+KOsHmAvrHz
+ 3GF4M/R4/PcbTEKxZO5rHhgch3EK5+Py6bjIH8xL0xxn7aqVR0Os3yPYUH6rjZain0Od6DLrg8
+ F76Cfkxz+2Iay9rESoRaplyeojoHFDx/FISTJJBCbgOqoU1rgkkAICEqXZ/LkgvEnBBHu6Vf9E
+ ek/nsAtjwjGvnSV1n5tHDU7Y
+X-IronPort-AV: E=Sophos;i="5.85,307,1624312800";
+   d="scan'208,217";a="230946"
+Received: from unknown (HELO mail.office.komro.net) ([10.2.38.140])
+  by mail2.swro.de with ESMTP; 20 Sep 2021 09:41:53 +0200
+Received: from EX01.komro.local (10.2.38.40) by EX02.komro.local (10.2.38.140)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Mon, 20 Sep
+ 2021 09:41:52 +0200
+Received: from EX01.komro.local ([fe80::c096:6704:88ee:70e]) by
+ EX01.komro.local ([fe80::c096:6704:88ee:70e%4]) with mapi id 15.01.2242.012;
+ Mon, 20 Sep 2021 09:41:52 +0200
+From: Thangaraj Mukara Dhakshinamoorthy <thangaraj@komro.net>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Help_Failed to build UHD in Ubuntu 20.04
+Thread-Index: Adet8vnsCISeAzZgTLKs/NXJvb17nA==
+Date: Mon, 20 Sep 2021 07:41:52 +0000
+Message-ID: <78d01bc8cbdc44739d061046f13f6aa8@komro.net>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.2.35.84]
+MIME-Version: 1.0
+Message-ID-Hash: FRNDFERHHQ47W4XETEDYFWFAATZUTGVM
+X-Message-ID-Hash: FRNDFERHHQ47W4XETEDYFWFAATZUTGVM
+X-MailFrom: thangaraj@komro.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Upgrading E310 to UHD 4.2.0
+Subject: [USRP-users] Help_Failed to build UHD in Ubuntu 20.04
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5ODD4E4FHW3VY6CSCHJQAC5GVVWXKDIB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FRNDFERHHQ47W4XETEDYFWFAATZUTGVM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0582425068608654655=="
 
-WW91IGNhbiB1c2UgdWhkX2ltYWdlc19kb3dubG9hZGVyIGFuZCBzcGVjaWZ5IOKAlHR5cGUgc2Rp
-bWcg4oCUdHlwZSBlMzEwLiBUaGlzIHdpbGwgZG93bmxvYWQgYW5kIHNkIGNhcmQgaW1hZ2UgdGhh
-dCBtYXRjaGVzLiBUaGVuIHByb2dyYW0gdGhlIGFzIGNhcmQuIA0KDQpTZW50IGZyb20gbXkgaVBo
-b25lDQoNCj4gT24gU2VwIDE3LCAyMDIxLCBhdCA1OjIwIFBNLCBUb20gUmlkZGxlIDx0cmlkZGxl
-QHJ1cmlzb25kLmNvbT4gd3JvdGU6DQo+IA0KPiDvu79IaSwNCj4gDQo+IEkndmUgdXBncmFkZWQg
-bXkgaG9zdCBzaWRlIHRvIFVIRCA0LjIuMC4gQ2FuIHNvbWVvbmUgcG9pbnQgbWUgdG8gaW5zdHJ1
-Y3Rpb25zIG9uIGhvdyB0byB1cGRhdGUgdGhlIFVIRCB0byA0LjIuMCBvbiBteSBFMzEwLi4uIHRo
-YW5rcyBpbiBhZHZhbmNlLCBUb20NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVz
-ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMt
-bGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============0582425068608654655==
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_78d01bc8cbdc44739d061046f13f6aa8komronet_"
+
+--_000_78d01bc8cbdc44739d061046f13f6aa8komronet_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Sir/Madam,
+I am using Ettus N320 and I am trying to build and install UHD in my WSL Ub=
+untu 20.04 by following the instructions from https://kb.ettus.com/Building=
+_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux=
+#Update_and_Install_dependencies,<https://kb.ettus.com/Building_and_Install=
+ing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux%23Update_an=
+d_Install_dependencies,> but unfortunately it is throwing some errors after=
+ executing the command > cmake .. as shown below (while building UHD from s=
+ource):
+
+thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake ..
+--
+-- Configuring the python interpreter...
+-- Python interpreter: /usr/bin/python2
+-- Override with: -DPYTHON_EXECUTABLE=3D<path-to-python>
+-- Python runtime interpreter: /usr/bin/python2
+-- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D<path-to-python>
+-- Working off of feature or development branch. Updating version number.
+-- Using UHD Images Directory: /usr/local/share/uhd/images
+-- Build type not specified: defaulting to release.
+--
+-- Configuring Boost C++ Libraries...
+-- Looking for optional Boost components...
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cm=
+ake (found suitable version "1.71.0", minimum required is "1.53") found com=
+ponents: python
+-- Looking for required Boost components...
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cm=
+ake (found suitable version "1.71.0", minimum required is "1.53") found com=
+ponents: chrono date_time filesystem program_options regex system unit_test=
+_framework serialization thread
+-- Boost include directories: /usr/include
+-- Boost library directories: /usr/lib/x86_64-linux-gnu
+-- Boost libraries: Boost::chrono;Boost::date_time;Boost::filesystem;Boost:=
+:program_options;Boost::regex;Boost::system;Boost::unit_test_framework;Boos=
+t::serialization;Boost::thread
+CMake Warning (dev) at cmake/Modules/UHDLog.cmake:68 (set):
+  implicitly converting 'FILE' to 'STRING' type.
+Call Stack (most recent call first):
+  CMakeLists.txt:365 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Could NOT find PythonLibs (missing: PYTHON_LIBRARIES PYTHON_INCLUDE_DIRS=
+) (Required is at least version "2.7")
+--
+-- Python checking for Python version 2.7 or greater
+-- Python checking for Python version 2.7 or greater - found
+--
+-- Python checking for Mako templates 0.4.2 or greater
+-- Python checking for Mako templates 0.4.2 or greater - "import mako" fail=
+ed
+--
+-- Python checking for requests 2.0 or greater
+-- Python checking for requests 2.0 or greater - "import requests" failed
+--
+-- Python checking for numpy 1.7 or greater
+-- Python checking for numpy 1.7 or greater - "import numpy" failed
+--
+-- Configuring LibUHD support...
+--   Dependency Boost_FOUND =3D TRUE
+--   Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D TRUE
+--   Dependency HAVE_PYTHON_MODULE_MAKO =3D FALSE
+CMake Error at cmake/Modules/UHDComponent.cmake:59 (message):
+  Dependencies for required component LibUHD not met.
+Call Stack (most recent call first):
+  CMakeLists.txt:430 (LIBUHD_REGISTER_COMPONENT)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/thangaraj/workarea/uhd/host/build/CMakeFiles/CMakeOutput.lo=
+g".
+See also "/home/thangaraj/workarea/uhd/host/build/CMakeFiles/CMakeError.log=
+".
+
+Please help me build and install necessary tools on my host machine, so tha=
+t I can connect Ettus N320 to the GNU-Radio or Serial Console in Ubuntu 20.=
+04! Moreover if you have any examples GNU-Radio flowgraphs, please share me=
+ some links to that which I can learn and try!
+
+Looking forward to your response. Thank you in advance!
+
+Best Regards,
+Thangaraj
+
+
+--_000_78d01bc8cbdc44739d061046f13f6aa8komronet_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Verdana",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hello Sir/Madam,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">I am using Ettus N320 and I am trying to build and =
+install UHD in my WSL Ubuntu 20.04 by following the instructions from
+<a href=3D"https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Sourc=
+e_Toolchain_(UHD_and_GNU_Radio)_on_Linux%23Update_and_Install_dependencies,=
+">
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain=
+_(UHD_and_GNU_Radio)_on_Linux#Update_and_Install_dependencies,</a> but unfo=
+rtunately it is throwing some errors after executing the command &gt;
+<b><span style=3D"background:yellow;mso-highlight:yellow">cmake ..</span></=
+b> as shown below (while building UHD from source):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:silver;mso-highlight:silver">thangaraj=
+@KOM1292:~/workarea/uhd/host/build$ cmake ..<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Configuri=
+ng the python interpreter...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python in=
+terpreter: /usr/bin/python2<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Override =
+with: -DPYTHON_EXECUTABLE=3D&lt;path-to-python&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ru=
+ntime interpreter: /usr/bin/python2<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Override =
+with: -DRUNTIME_PYTHON_EXECUTABLE=3D&lt;path-to-python&gt;<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Working o=
+ff of feature or development branch. Updating version number.<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Using UHD=
+ Images Directory: /usr/local/share/uhd/images<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Build typ=
+e not specified: defaulting to release.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Configuri=
+ng Boost C&#43;&#43; Libraries...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Looking f=
+or optional Boost components...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Found Boo=
+st: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found s=
+uitable version &quot;1.71.0&quot;, minimum required is
+ &quot;1.53&quot;) found components: python<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Looking f=
+or required Boost components...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Found Boo=
+st: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cmake (found s=
+uitable version &quot;1.71.0&quot;, minimum required is
+ &quot;1.53&quot;) found components: chrono date_time filesystem program_op=
+tions regex system unit_test_framework serialization thread<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Boost inc=
+lude directories: /usr/include<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Boost lib=
+rary directories: /usr/lib/x86_64-linux-gnu<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Boost lib=
+raries: Boost::chrono;Boost::date_time;Boost::filesystem;Boost::program_opt=
+ions;Boost::regex;Boost::system;Boost::unit_test_framework;Boost::serializa=
+tion;Boost::thread<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">CMake Warnin=
+g (dev) at cmake/Modules/UHDLog.cmake:68 (set):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">&nbsp; impli=
+citly converting 'FILE' to 'STRING' type.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">Call Stack (=
+most recent call first):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">&nbsp; CMake=
+Lists.txt:365 (include)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">This warning=
+ is for project developers.&nbsp; Use -Wno-dev to suppress it.<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver"><o:p>&nbsp;<=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Could NOT=
+ find PythonLibs (missing: PYTHON_LIBRARIES PYTHON_INCLUDE_DIRS) (Required =
+is at least version &quot;2.7&quot;)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for Python version 2.7 or greater<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for Python version 2.7 or greater - found<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for Mako templates 0.4.2 or greater<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for Mako templates 0.4.2 or greater - &quot;import mako&quot; failed=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for requests 2.0 or greater<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for requests 2.0 or greater - &quot;import requests&quot; failed<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for numpy 1.7 or greater<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Python ch=
+ecking for numpy 1.7 or greater - &quot;import numpy&quot; failed<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Configuri=
+ng LibUHD support...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--&nbsp;&nbs=
+p; Dependency Boost_FOUND =3D TRUE<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--&nbsp;&nbs=
+p; Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D TRUE<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">--&nbsp;&nbs=
+p; Dependency HAVE_PYTHON_MODULE_MAKO =3D FALSE<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">CMake Error =
+at cmake/Modules/UHDComponent.cmake:59 (message):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">&nbsp; Depen=
+dencies for required component LibUHD not met.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">Call Stack (=
+most recent call first):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">&nbsp; CMake=
+Lists.txt:430 (LIBUHD_REGISTER_COMPONENT)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver"><o:p>&nbsp;<=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver"><o:p>&nbsp;<=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">-- Configuri=
+ng incomplete, errors occurred!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">See also &qu=
+ot;/home/thangaraj/workarea/uhd/host/build/CMakeFiles/CMakeOutput.log&quot;=
+.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:silver;mso-highlight:silver">See also &qu=
+ot;/home/thangaraj/workarea/uhd/host/build/CMakeFiles/CMakeError.log&quot;.=
+</span><span style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans=
+-serif"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Please help me build and install necessary tools on=
+ my host machine, so that I can connect Ettus N320 to the GNU-Radio or Seri=
+al Console in Ubuntu 20.04! Moreover if you have
+ any examples GNU-Radio flowgraphs, please share me some links to that whic=
+h I can learn and try!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Looking forward to your response. Thank you in adva=
+nce!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Best Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Thangaraj<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_78d01bc8cbdc44739d061046f13f6aa8komronet_--
+
+--===============0582425068608654655==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0582425068608654655==--
