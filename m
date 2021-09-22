@@ -2,157 +2,1308 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 364E8414A21
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Sep 2021 15:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F35B414AA0
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Sep 2021 15:36:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7D89A384543
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Sep 2021 09:06:25 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XehPlaDt";
-	dkim-atps=neutral
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id B3C1C383C8C
-	for <usrp-users@lists.ettus.com>; Wed, 22 Sep 2021 09:05:37 -0400 (EDT)
-Received: by mail-qk1-f176.google.com with SMTP id 194so9017200qkj.11
-        for <usrp-users@lists.ettus.com>; Wed, 22 Sep 2021 06:05:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=83AgIJRr6HkKg5waglnm1WejHN8e5vFNfSV59H5MatU=;
-        b=XehPlaDtEUudLDFGNwpVKaz6xFb3fZfljurAn3srSF1Gq09wT8q3u/8wsD68r+VUOz
-         Et446uw2qD/jv8m124y7G4cFmP9wpVdjqTd2LOHoiS2c7TUOPDOK5NI9at8fkOzr8ea2
-         1+p4eWg9Q7+/FpwkZvInmkHP3zfg6WQqAnozvt/h8t5dVCP7pfkCUtJWxkFoATFwwHNz
-         AwqaikuZI6Da1zIYCw8JVKTuixmFnjPDSa61t4XN86HD+xzIF0UuhLrp+JQVBnYNqHmA
-         0KDKLwYM21OFAUPYKdsUagEXTHxJl6qunVbKedLKMhv8iQlsuwtXChWvMek4/XIrAR3w
-         i/tQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=83AgIJRr6HkKg5waglnm1WejHN8e5vFNfSV59H5MatU=;
-        b=5FDvsQ77tJPSqUWioLaIbUEcH37p3TktFv8pXDUw6jvxCsFAtSaLG/5cxcK9rshKnI
-         /ejEgQ4eQe7/CqVJwJyoA5Xqj2XrvabYsDngc7Fd3AQq5J8tLVQ6KzLBk52adxIjAkr8
-         LLnkCxHyOKylMq70ZRNv9auL9RxCGMcr45dxJlWm1e5i/cyANaE7Qy+Qgm30iJciPQpG
-         +NqTj4oxx69KYumy88YDZhsc7l7/s61ev///xlHNAJZRIuBxXQSPus/zBxRaxanZxCX+
-         YwXSjxMNQ5I4kTzbAihy1JgIBWJsP7Ka98zctB6AkXd+GQj08WiSKwbERZVfMr6wXXDZ
-         j32Q==
-X-Gm-Message-State: AOAM531VPQ1cBpn1Uu/hSBszMxZluQs8yrQvabQxVZSFRjw42hsMcYQQ
-	C04Lr6p7My5h3xDa3cVtL7kseDo2KTUpeA==
-X-Google-Smtp-Source: ABdhPJx5fmZoq2m0kP/qpCEXmdO5sXJ8cO9hPQORpcbg0+PGtC27AOZPj8tffEFyb/arcEXNubnwtQ==
-X-Received: by 2002:ae9:ec0f:: with SMTP id h15mr34940688qkg.224.1632315936801;
-        Wed, 22 Sep 2021 06:05:36 -0700 (PDT)
-Received: from [192.168.2.230] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id j14sm1335649qtv.36.2021.09.22.06.05.36
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Sep 2021 06:05:36 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <BA6RaHKUM1adFuGVrRUGqyfgi1lL7LGzMhdQXXEqBlw@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <f9daa9c2-e073-77fb-d74e-3f9937ad617d@gmail.com>
-Date: Wed, 22 Sep 2021 09:05:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+	by mm2.emwd.com (Postfix) with ESMTP id 56FCC3848BD
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Sep 2021 09:36:14 -0400 (EDT)
+Received: from mail2.swro.de (mail2.swro.de [88.133.160.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6DFF4381117
+	for <usrp-users@lists.ettus.com>; Wed, 22 Sep 2021 09:35:22 -0400 (EDT)
+IronPort-SDR: ltwgmtUkgSw58oSX94/HbqK64bzMk5F5W6GSIJBHT2mBn4VLQDmUzFmtWWX3tqfWN2BMeUQxyN
+ mgwMnQAlrauFb422OYp4F5QO6F/GI+Zo2W5iQJbR7ua+HnxuKBN+0vRnD3BLneNzaBEcAIAp+K
+ V/KeqGv9Dv1PtxFlcvLI4qiYfHoNlD000iHb3HdfVwRNbeXBHw640fqoKab74E84euFZ2GHAX1
+ Q6VNS/oZgz5JgG9L09tiKFT9nrad7Ryq9K+u1uAVOVDhX0J9fXyeo8Lxn1Gti4Hj/g6DQfLoiy
+ Mbx774i6MIkxy7YgZrsqTyK1
+X-IronPort-AV: E=Sophos;i="5.85,314,1624312800";
+   d="scan'208,217";a="241993"
+Received: from unknown (HELO mail.office.komro.net) ([10.2.38.140])
+  by mail2.swro.de with ESMTP; 22 Sep 2021 15:35:20 +0200
+Received: from EX01.komro.local (10.2.38.40) by EX02.komro.local (10.2.38.140)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Wed, 22 Sep
+ 2021 15:35:19 +0200
+Received: from EX01.komro.local ([fe80::c096:6704:88ee:70e]) by
+ EX01.komro.local ([fe80::c096:6704:88ee:70e%4]) with mapi id 15.01.2242.012;
+ Wed, 22 Sep 2021 15:35:19 +0200
+From: Thangaraj Mukara Dhakshinamoorthy <thangaraj@komro.net>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: AW: AW: AW: [USRP-users] Re: Help_Failed to build UHD in Ubuntu
+ 20.04
+Thread-Index: Adet8vnsCISeAzZgTLKs/NXJvb17nAAGAT4AAAslGCD//+LJgP/+2QNAgAKEjgD//mW+sIADLeiA///c42A=
+Date: Wed, 22 Sep 2021 13:35:19 +0000
+Message-ID: <046adcb243384423a06209c356426225@komro.net>
+References: <78d01bc8cbdc44739d061046f13f6aa8@komro.net>
+ <013d81cf-214e-a884-d807-0cd1b22407b5@gmail.com>
+ <ae4f4b0c23774d9a9c103b7db3287b6a@komro.net>
+ <cb5a50c8-cdbc-739c-7b27-f7584cd933dc@gmail.com>
+ <837c3db130174070882c9f00c3eeff47@komro.net>
+ <5da73615-17fa-d419-46b6-98dca598d418@gmail.com>
+ <5a185fce56a34dbb8efef32b11747009@komro.net>
+ <a5629b97-07e1-75ed-974e-063626dbfa6b@gmail.com>
+In-Reply-To: <a5629b97-07e1-75ed-974e-063626dbfa6b@gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.2.35.84]
 MIME-Version: 1.0
-In-Reply-To: <BA6RaHKUM1adFuGVrRUGqyfgi1lL7LGzMhdQXXEqBlw@lists.ettus.com>
-Content-Language: en-US
-Message-ID-Hash: QG2QGSDP3X6Y7LOCODEJNHEMFBTFLG2X
-X-Message-ID-Hash: QG2QGSDP3X6Y7LOCODEJNHEMFBTFLG2X
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: OGXNMJCARC7EW2UBVEBGWCJVZK73QJJ2
+X-Message-ID-Hash: OGXNMJCARC7EW2UBVEBGWCJVZK73QJJ2
+X-MailFrom: thangaraj@komro.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Create two stream with python UHD
+Subject: [USRP-users] Re: Help_Failed to build UHD in Ubuntu 20.04
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QG2QGSDP3X6Y7LOCODEJNHEMFBTFLG2X/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OGXNMJCARC7EW2UBVEBGWCJVZK73QJJ2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1147697323220792729=="
+Content-Type: multipart/mixed; boundary="===============3027536401855226884=="
 
-This is a multi-part message in MIME format.
---===============1147697323220792729==
+--===============3027536401855226884==
+Content-Language: de-DE
 Content-Type: multipart/alternative;
- boundary="------------D885843299A7EDC65D8FF10C"
-Content-Language: en-US
+	boundary="_000_046adcb243384423a06209c356426225komronet_"
 
-This is a multi-part message in MIME format.
---------------D885843299A7EDC65D8FF10C
-Content-Type: text/plain; charset=utf-8; format=flowed
+--_000_046adcb243384423a06209c356426225komronet_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On 2021-09-22 3:35 a.m., christophe.grimault@novagrid.com wrote:
->
-> Thank you.
->
-> Can you share the call to rx_multi_samples, with the args passed, that=20
-> does the two channels streaming. I=E2=80=99ll try and see if I can go f=
-urther=20
-> with python version and get back to you on this matter=E2=80=A6
->
-> Best regards,
->
-> Chris
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-rx_multi_samples --args "type=3Dusrp2" --subdev "A:B A:B" --channels 0,1=20
---rate 1.5625e6
+Hello Marcus,
+Unfortunately, the pre-packaged versions of UHD and GNU-Radio are also prob=
+lematic!
+
+This looks like you don't have a Python2.7 install on your system--or it ca=
+nnot be found.  During the build.  What version of UHD are you trying to bu=
+ild?
+> UHD v3.14.0.0 (as mentioned in the installation guidelines)
+Also, in Ubuntu 20.04, if you're just using Gnu Radio and not doing RFNOC w=
+ork, you can just use the pre-packaged versions of UHD and Gnu Radio, and u=
+se
+  apt-install to install them:
+
+GNU Installation:
+
+thangaraj@KOM1292:~$ sudo apt install gnuradio
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  gnuradio-dev
+Suggested packages:
+  gr-fosphor gr-osmosdr
+Recommended packages:
+  python3-qwt-qt5
+The following NEW packages will be installed:
+  gnuradio gnuradio-dev
+0 upgraded, 2 newly installed, 0 to remove and 1 not upgraded.
+Need to get 6374 kB of archives.
+After this operation, 38.8 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://ppa.launchpad.net/gnuradio/gnuradio-master/ubuntu focal/main a=
+md64 gnuradio amd64 3.10.0.git~master~14443~focal-1 [6052 kB]
+Get:2 http://ppa.launchpad.net/gnuradio/gnuradio-master/ubuntu focal/main a=
+md64 gnuradio-dev amd64 3.10.0.git~master~14443~focal-1 [322 kB]
+Fetched 6374 kB in 3s (2292 kB/s)
+Selecting previously unselected package gnuradio.
+(Reading database ... 103340 files and directories currently installed.)
+Preparing to unpack .../gnuradio_3.10.0.git~master~14443~focal-1_amd64.deb =
+...
+Unpacking gnuradio (3.10.0.git~master~14443~focal-1) ...
+Selecting previously unselected package gnuradio-dev:amd64.
+Preparing to unpack .../gnuradio-dev_3.10.0.git~master~14443~focal-1_amd64.=
+deb ...
+Unpacking gnuradio-dev:amd64 (3.10.0.git~master~14443~focal-1) ...
+Setting up gnuradio (3.10.0.git~master~14443~focal-1) ...
+Setting up gnuradio-dev:amd64 (3.10.0.git~master~14443~focal-1) ...
+Processing triggers for shared-mime-info (1.15-1) ...
+Processing triggers for mime-support (3.64ubuntu1) ...
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+Processing triggers for man-db (2.9.1-1) ...
+thangaraj@KOM1292:~$ gnuradio-companion (failed to start)
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+/usr/lib/python3/dist-packages/apport/report.py:13: DeprecationWarning: the=
+ imp module is deprecated in favour of importlib; see the module's document=
+ation for alternative uses
+  import fnmatch, glob, traceback, errno, sys, atexit, locale, imp, stat
+Traceback (most recent call last):
+  File "/usr/bin/gnuradio-companion", line 92, in <module>
+    run_main()
+  File "/usr/bin/gnuradio-companion", line 85, in run_main
+    exit(main())
+  File "/usr/lib/python3/dist-packages/gnuradio/grc/main.py", line 70, in m=
+ain
+    from .gui.Platform import Platform
+  File "/usr/lib/python3/dist-packages/gnuradio/grc/gui/Platform.py", line =
+14, in <module>
+    from . import canvas
+  File "/usr/lib/python3/dist-packages/gnuradio/grc/gui/canvas/__init__.py"=
+, line 10, in <module>
+    from .param import Param
+  File "/usr/lib/python3/dist-packages/gnuradio/grc/gui/canvas/param.py", l=
+ine 11, in <module>
+    from .. import ParamWidgets, Utils, Constants, Actions
+  File "/usr/lib/python3/dist-packages/gnuradio/grc/gui/ParamWidgets.py", l=
+ine 58, in <module>
+    add_style_provider()
+  File "/usr/lib/python3/dist-packages/gnuradio/grc/gui/ParamWidgets.py", l=
+ine 53, in add_style_provider
+    Gtk.StyleContext.add_provider_for_screen(
+TypeError: Argument 0 does not allow None as a value
+
+UHD Installation:
+
+thangaraj@KOM1292:~$ sudo apt install uhd libuhd
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package uhd
+E: Unable to locate package libuhd
+thangaraj@KOM1292:~$ sudo apt-get install uhd libuhd
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package uhd
+E: Unable to locate package libuhd
+thangaraj@KOM1292:~$ sudo add-apt-repository ppa:ettusresearch/uhd
+
+More info: https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd
+Press [ENTER] to continue or Ctrl-c to cancel adding it.
+
+Get:1 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal InRelease [18=
+.1 kB]
+Hit:2 http://ppa.launchpad.net/gnuradio/gnuradio-master/ubuntu focal InRele=
+ase
+Hit:3 https://download.docker.com/linux/ubuntu focal InRelease
+Hit:4 http://ppa.launchpad.net/gnuradio/gnuradio-releases/ubuntu focal InRe=
+lease
+Hit:5 http://archive.ubuntu.com/ubuntu focal InRelease
+Get:6 http://archive.ubuntu.com/ubuntu focal-updates InRelease [114 kB]
+Get:7 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-backports InRelease [101 kB]
+Get:9 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal/main amd64 Pa=
+ckages [1048 B]
+Get:10 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal/main Transla=
+tion-en [600 B]
+Fetched 348 kB in 5s (68.1 kB/s)
+Reading package lists... Done
+thangaraj@KOM1292:~$ sudo apt-get update
+Hit:1 http://archive.ubuntu.com/ubuntu focal InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu focal-updates InRelease
+Hit:3 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal InRelease
+Hit:4 https://download.docker.com/linux/ubuntu focal InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu focal-backports InRelease
+Hit:6 http://ppa.launchpad.net/gnuradio/gnuradio-master/ubuntu focal InRele=
+ase
+Hit:7 http://ppa.launchpad.net/gnuradio/gnuradio-releases/ubuntu focal InRe=
+lease
+Hit:8 http://security.ubuntu.com/ubuntu focal-security InRelease
+Reading package lists... Done
+thangaraj@KOM1292:~$ sudo apt-get install libuhd-dev libuhd003 uhd-host (fa=
+iled)
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Package libuhd003 is not available, but is referred to by another package.
+This may mean that the package is missing, has been obsoleted, or
+is only available from another source
+However the following packages replace it:
+  libuhd3.15.0
+
+E: Package 'libuhd003' has no installation candidate
+thangaraj@KOM1292:~$ sudo apt-get install libuhd-dev libuhd003.15.0 uhd-hos=
+t (failed)
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package libuhd003.15.0
+E: Couldn't find any package by glob 'libuhd003.15.0'
+E: Couldn't find any package by regex 'libuhd003.15.0'
+thangaraj@KOM1292:~$ sudo apt-get install libuhd-dev libuhd003.14.0 uhd-hos=
+t (failed)
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Unable to locate package libuhd003.14.0
+E: Couldn't find any package by glob 'libuhd003.14.0'
+E: Couldn't find any package by regex 'libuhd003.14.0'
+thangaraj@KOM1292:~$ sudo apt-get install libuhd-dev uhd-host (completed)
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  libuhd3.15.0 python-is-python2 python-tk
+Suggested packages:
+  tix python-tk-dbg
+The following NEW packages will be installed:
+  libuhd-dev python-is-python2 python-tk
+The following packages will be upgraded:
+  libuhd3.15.0 uhd-host
+2 upgraded, 3 newly installed, 0 to remove and 1 not upgraded.
+Need to get 11.8 MB of archives.
+After this operation, 13.9 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu focal/universe amd64 python-is-pytho=
+n2 all 2.7.17-4 [2496 B]
+Get:2 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal/main amd64 uh=
+d-host amd64 3.15.0.0-1-1ubuntu1~focal1 [5463 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal/universe amd64 python-tk amd64=
+ 2.7.18-1 [25.3 kB]
+Get:4 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal/main amd64 li=
+buhd3.15.0 amd64 3.15.0.0-1-1ubuntu1~focal1 [3061 kB]
+Get:5 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal/main amd64 li=
+buhd-dev amd64 3.15.0.0-1-1ubuntu1~focal1 [3230 kB]
+Fetched 11.8 MB in 6s (2110 kB/s)
+(Reading database ... 105690 files and directories currently installed.)
+Preparing to unpack .../uhd-host_3.15.0.0-1-1ubuntu1~focal1_amd64.deb ...
+Unpacking uhd-host (3.15.0.0-1-1ubuntu1~focal1) over (3.15.0.0-2build5) ...
+Selecting previously unselected package python-is-python2.
+Preparing to unpack .../python-is-python2_2.7.17-4_all.deb ...
+Unpacking python-is-python2 (2.7.17-4) ...
+Preparing to unpack .../libuhd3.15.0_3.15.0.0-1-1ubuntu1~focal1_amd64.deb .=
+..
+Unpacking libuhd3.15.0:amd64 (3.15.0.0-1-1ubuntu1~focal1) over (3.15.0.0-2b=
+uild5) ...
+Selecting previously unselected package libuhd-dev.
+Preparing to unpack .../libuhd-dev_3.15.0.0-1-1ubuntu1~focal1_amd64.deb ...
+Unpacking libuhd-dev (3.15.0.0-1-1ubuntu1~focal1) ...
+Selecting previously unselected package python-tk.
+Preparing to unpack .../python-tk_2.7.18-1_amd64.deb ...
+Unpacking python-tk (2.7.18-1) ...
+Setting up python-tk (2.7.18-1) ...
+Setting up python-is-python2 (2.7.17-4) ...
+Setting up libuhd3.15.0:amd64 (3.15.0.0-1-1ubuntu1~focal1) ...
+Setting up libuhd-dev (3.15.0.0-1-1ubuntu1~focal1) ...
+Setting up uhd-host (3.15.0.0-1-1ubuntu1~focal1) ...
+sysctl: cannot stat /proc/sys/net/core/rmem_max: No such file or directory
+sysctl: cannot stat /proc/sys/net/core/wmem_max: No such file or directory
+Warning: Could not update sysctl settings for network devices.
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.2) ...
+
+Looking forward to your kind response.
+
+Regards,
+Thangaraj
+Von: Marcus D. Leech <patchvonbraun@gmail.com>
+Gesendet: Mittwoch, 22. September 2021 15:04
+An: Thangaraj Mukara Dhakshinamoorthy <thangaraj@komro.net>; usrp-users@lis=
+ts.ettus.com
+Betreff: Re: AW: AW: AW: [USRP-users] Re: Help_Failed to build UHD in Ubunt=
+u 20.04
+
+On 2021-09-22 7:47 a.m., Thangaraj Mukara Dhakshinamoorthy wrote:
+Hello Marcus,
+As you mentioned, I have followed the step-by-step installation guide, whil=
+e building and installing UHD from source code, it throws an error which I =
+mentioned previously!
+
+thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake ..
+--
+-- Configuring the python interpreter...
+-- Python interpreter: /usr/bin/python3
+-- Override with: -DPYTHON_EXECUTABLE=3D<path-to-python>
+-- Python runtime interpreter: /usr/bin/python3
+-- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D<path-to-python>
+-- Working off of feature or development branch. Updating version number.
+-- Using UHD Images Directory: /usr/local/share/uhd/images
+-- Build type not specified: defaulting to release.
+--
+-- Configuring Boost C++ Libraries...
+-- Looking for optional Boost components...
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cm=
+ake (found suitable version "1.71.0", minimum required is "1.53") found com=
+ponents: python
+-- Looking for required Boost components...
+-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.71.0/BoostConfig.cm=
+ake (found suitable version "1.71.0", minimum required is "1.53") found com=
+ponents: chrono date_time filesystem program_options regex system unit_test=
+_framework serialization thread
+-- Boost include directories: /usr/include
+-- Boost library directories: /usr/lib/x86_64-linux-gnu
+-- Boost libraries: Boost::chrono;Boost::date_time;Boost::filesystem;Boost:=
+:program_options;Boost::regex;Boost::system;Boost::unit_test_framework;Boos=
+t::serialization;Boost::thread
+CMake Warning (dev) at cmake/Modules/UHDLog.cmake:68 (set):
+  implicitly converting 'FILE' to 'STRING' type.
+Call Stack (most recent call first):
+  CMakeLists.txt:365 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+--
+-- Python checking for Python version 2.7 or greater
+-- Python checking for Python version 2.7 or greater - "assert platform.pyt=
+hon_version() >=3D '2.7' and platform.python_version() < '3.0'" failed
+--
+-- Python checking for Mako templates 0.4.2 or greater
+-- Python checking for Mako templates 0.4.2 or greater - found
+--
+-- Python checking for requests 2.0 or greater
+-- Python checking for requests 2.0 or greater - found
+--
+-- Python checking for numpy 1.7 or greater
+-- Python checking for numpy 1.7 or greater - found
+--
+-- Configuring LibUHD support...
+--   Dependency Boost_FOUND =3D TRUE
+--   Dependency HAVE_PYTHON_PLAT_MIN_VERSION =3D FALSE
+--   Dependency HAVE_PYTHON_MODULE_MAKO =3D TRUE
+CMake Error at cmake/Modules/UHDComponent.cmake:59 (message):
+  Dependencies for required component LibUHD not met.
+Call Stack (most recent call first):
+  CMakeLists.txt:430 (LIBUHD_REGISTER_COMPONENT)
 
 
---------------D885843299A7EDC65D8FF10C
-Content-Type: text/html; charset=utf-8
+-- Configuring incomplete, errors occurred!
+See also "/home/thangaraj/workarea/uhd/host/build/CMakeFiles/CMakeOutput.lo=
+g".
+See also "/home/thangaraj/workarea/uhd/host/build/CMakeFiles/CMakeError.log=
+".
+
+Also, tried executing below commands but got the same above output:
+thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake -DPYTHON_EXECUTABLE=3D/u=
+sr/bin/python3 ..
+thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake -DPYTHON_EXECUTABLE=3D/u=
+sr/bin/python3 -DRUNTIME_PYTHON_EXECUTABLE=3D/usr/bin/python3 ..
+thangaraj@KOM1292:~/workarea/uhd/host/build$ /usr/bin/cmake ..
+thangaraj@KOM1292:~/workarea/uhd/host/build$ PATH=3D/usr/bin:$PATH cmake ..
+thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake -DCMAKE_FIND_ROOT_PATH=
+=3D/usr ..
+
+PFA CMake logfiles.
+
+I am stumbled with this UHD & GNU installation issue for almost a week, it =
+would great if anyone can help me out, I would appreciate it and be very th=
+ankful!
+
+PS: I am using WSL-Windows Subsytem for Linux (running Ubuntu 20.04.3 LTS)!
+
+Regards,
+Thangaraj
+
+This looks like you don't have a Python2.7 install on your system--or it ca=
+nnot be found.  During the build.  What version of UHD are you trying to bu=
+ild?
+
+Also, in Ubuntu 20.04, if you're just using Gnu Radio and not doing RFNOC w=
+ork, you can just use the pre-packaged versions of UHD and Gnu Radio, and u=
+se
+  apt-install to install them:
+
+sudo apt install gnuradio
+sudp apt install uhd libuhd
+
+
+
+
+--_000_046adcb243384423a06209c356426225komronet_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2021-09-22 3:35 a.m.,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:christophe.gri=
-mault@novagrid.com">christophe.grimault@novagrid.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:BA6RaHKUM1adFuGVrRUGqyfgi1lL7LGzMhdQXXEqBlw@lists.ettus=
-.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Thank you.</p>
-      <p>Can you share the call to rx_multi_samples, with the args
-        passed, that does the two channels streaming. I=E2=80=99ll try an=
-d see
-        if I can go further with python version and get back to you on
-        this matter=E2=80=A6</p>
-      <p>Best regards,</p>
-      <p>Chris</p>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    rx_multi_samples --args "type=3Dusrp2" --subdev "A:B A:B" --channels
-    0,1 --rate 1.5625e6<br>
-    <br>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Vorformatiert Zchn";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.HTMLVorformatiertZchn
+	{mso-style-name:"HTML Vorformatiert Zchn";
+	mso-style-priority:99;
+	mso-style-link:"HTML Vorformatiert";
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+span.E-MailFormatvorlage20
+	{mso-style-type:personal;
+	font-family:"Verdana",sans-serif;
+	color:windowtext;}
+span.E-MailFormatvorlage21
+	{mso-style-type:personal;
+	font-family:"Verdana",sans-serif;
+	color:windowtext;}
+span.E-MailFormatvorlage22
+	{mso-style-type:personal;
+	font-family:"Verdana",sans-serif;
+	color:windowtext;}
+span.E-MailFormatvorlage23
+	{mso-style-type:personal;
+	font-family:"Verdana",sans-serif;
+	color:windowtext;}
+span.E-MailFormatvorlage24
+	{mso-style-type:personal-reply;
+	font-family:"Verdana",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;mso-fareast-language:DE">Hello Marcus,<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;mso-fareast-language:DE">Unfortunately, the pre-p=
+ackaged versions of UHD and GNU-Radio are also problematic!<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;mso-fareast-language:DE"><o:p>&nbsp;</o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;mso-fareast-language:DE">This looks like you don'=
+t have a Python2.7 install on your system--or it cannot be found.&nbsp; Dur=
+ing the build.&nbsp; What version of UHD are you trying
+ to build?<br>
+&gt; <span style=3D"background:yellow;mso-highlight:yellow">UHD v3.14.0.0</=
+span> (as mentioned in the installation guidelines)<br>
+Also, in Ubuntu 20.04, if you're just using Gnu Radio and not doing RFNOC w=
+ork, you can just use the pre-packaged versions of UHD and Gnu Radio, and u=
+se<br>
+&nbsp; apt-install to install them:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;mso-fareast-language:DE"><o:p>&nbsp;</o:p></span>=
+</p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:12.0pt;font-family:&q=
+uot;Times New Roman&quot;,serif;mso-fareast-language:DE">GNU Installation:<=
+o:p></o:p></span></u></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;mso-fareast-language:DE"><br>
+</span><b><span style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,s=
+ans-serif;background:yellow;mso-highlight:yellow">thangaraj@KOM1292:~$ sudo=
+ apt install gnuradio</span></b><b><span style=3D"font-size:10.0pt;font-fam=
+ily:&quot;Verdana&quot;,sans-serif"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Building dependency tree<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading state information... Done<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">The following additional packages will be installed=
+:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; gnuradio-dev<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Suggested packages:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; gr-fosphor gr-osmosdr<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Recommended packages:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; python3-qwt-qt5<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">The following NEW packages will be installed:<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; gnuradio gnuradio-dev<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">0 upgraded, 2 newly installed, 0 to remove and 1 no=
+t upgraded.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Need to get 6374 kB of archives.<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">After this operation, 38.8 MB of additional disk sp=
+ace will be used.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:yellow;mso-highlight:yellow">Do you wa=
+nt to continue? [Y/n] y</span></b><b><span style=3D"font-size:10.0pt;font-f=
+amily:&quot;Verdana&quot;,sans-serif"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:1 http://ppa.launchpad.net/gnuradio/gnuradio-ma=
+ster/ubuntu focal/main amd64 gnuradio amd64 3.10.0.git~master~14443~focal-1=
+ [6052 kB]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:2 http://ppa.launchpad.net/gnuradio/gnuradio-ma=
+ster/ubuntu focal/main amd64 gnuradio-dev amd64 3.10.0.git~master~14443~foc=
+al-1 [322 kB]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Fetched 6374 kB in 3s (2292 kB/s)<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Selecting previously unselected package gnuradio.<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">(Reading database ... 103340 files and directories =
+currently installed.)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Preparing to unpack .../gnuradio_3.10.0.git~master~=
+14443~focal-1_amd64.deb ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unpacking gnuradio (3.10.0.git~master~14443~focal-1=
+) ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Selecting previously unselected package gnuradio-de=
+v:amd64.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Preparing to unpack .../gnuradio-dev_3.10.0.git~mas=
+ter~14443~focal-1_amd64.deb ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unpacking gnuradio-dev:amd64 (3.10.0.git~master~144=
+43~focal-1) ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Setting up gnuradio (3.10.0.git~master~14443~focal-=
+1) ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Setting up gnuradio-dev:amd64 (3.10.0.git~master~14=
+443~focal-1) ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Processing triggers for shared-mime-info (1.15-1) .=
+..<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Processing triggers for mime-support (3.64ubuntu1) =
+...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Processing triggers for hicolor-icon-theme (0.17-2)=
+ ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Processing triggers for libc-bin (2.31-0ubuntu9.2) =
+...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Processing triggers for man-db (2.9.1-1) ...<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:red;mso-highlight:red">thangaraj@KOM12=
+92:~$ gnuradio-companion (failed to start)</span></b><b><span style=3D"font=
+-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif"><o:p></o:p></span>=
+</b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unable to init server: Could not connect: Connectio=
+n refused<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unable to init server: Could not connect: Connectio=
+n refused<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unable to init server: Could not connect: Connectio=
+n refused<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">/usr/lib/python3/dist-packages/apport/report.py:13:=
+ DeprecationWarning: the imp module is deprecated in favour of importlib; s=
+ee the module's documentation for alternative
+ uses<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; import fnmatch, glob, traceback, errno, sys,=
+ atexit, locale, imp, stat<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Traceback (most recent call last):<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/bin/gnuradio-companion&quot;=
+, line 92, in &lt;module&gt;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; run_main()<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/bin/gnuradio-companion&quot;=
+, line 85, in run_main<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; exit(main())<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
+uradio/grc/main.py&quot;, line 70, in main<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; from .gui.Platform import Platfo=
+rm<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
+uradio/grc/gui/Platform.py&quot;, line 14, in &lt;module&gt;<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; from . import canvas<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
+uradio/grc/gui/canvas/__init__.py&quot;, line 10, in &lt;module&gt;<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; from .param import Param<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
+uradio/grc/gui/canvas/param.py&quot;, line 11, in &lt;module&gt;<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; from .. import ParamWidgets, Uti=
+ls, Constants, Actions<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
+uradio/grc/gui/ParamWidgets.py&quot;, line 58, in &lt;module&gt;<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; add_style_provider()<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
+uradio/grc/gui/ParamWidgets.py&quot;, line 53, in add_style_provider<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; Gtk.StyleContext.add_provider_fo=
+r_screen(<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">TypeError: Argument 0 does not allow None as a valu=
+e<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
+uot;Verdana&quot;,sans-serif">UHD Installation:<o:p></o:p></span></u></b></=
+p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
+uot;Verdana&quot;,sans-serif"><o:p><span style=3D"text-decoration:none">&nb=
+sp;</span></o:p></span></u></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:yellow;mso-highlight:yellow">thangaraj=
+@KOM1292:~$ sudo apt install uhd libuhd</span></b><b><span style=3D"font-si=
+ze:10.0pt;font-family:&quot;Verdana&quot;,sans-serif"><o:p></o:p></span></b=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Building dependency tree<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading state information... Done<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Unable to locate package uhd<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Unable to locate package libuhd<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:yellow;mso-highlight:yellow">thangaraj=
+@KOM1292:~$ sudo apt-get install uhd libuhd</span></b><b><span style=3D"fon=
+t-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif"><o:p></o:p></span=
+></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Building dependency tree<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading state information... Done<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Unable to locate package uhd<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Unable to locate package libuhd<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:yellow;mso-highlight:yellow">thangaraj=
+@KOM1292:~$ sudo add-apt-repository ppa:ettusresearch/uhd</span></b><b><spa=
+n style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif"><o:=
+p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">More info: https://launchpad.net/~ettusresearch/&#4=
+3;archive/ubuntu/uhd<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Press [ENTER] to continue or Ctrl-c to cancel addin=
+g it.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:1 http://ppa.launchpad.net/ettusresearch/uhd/ub=
+untu focal InRelease [18.1 kB]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:2 http://ppa.launchpad.net/gnuradio/gnuradio-ma=
+ster/ubuntu focal InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:3 https://download.docker.com/linux/ubuntu foca=
+l InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:4 http://ppa.launchpad.net/gnuradio/gnuradio-re=
+leases/ubuntu focal InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:5 http://archive.ubuntu.com/ubuntu focal InRele=
+ase<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:6 http://archive.ubuntu.com/ubuntu focal-update=
+s InRelease [114 kB]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:7 http://security.ubuntu.com/ubuntu focal-secur=
+ity InRelease [114 kB]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:8 http://archive.ubuntu.com/ubuntu focal-backpo=
+rts InRelease [101 kB]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:9 http://ppa.launchpad.net/ettusresearch/uhd/ub=
+untu focal/main amd64 Packages [1048 B]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:10 http://ppa.launchpad.net/ettusresearch/uhd/u=
+buntu focal/main Translation-en [600 B]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Fetched 348 kB in 5s (68.1 kB/s)<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:yellow;mso-highlight:yellow">thangaraj=
+@KOM1292:~$ sudo apt-get update</span></b><b><span style=3D"font-size:10.0p=
+t;font-family:&quot;Verdana&quot;,sans-serif"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:1 http://archive.ubuntu.com/ubuntu focal InRele=
+ase<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:2 http://archive.ubuntu.com/ubuntu focal-update=
+s InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:3 http://ppa.launchpad.net/ettusresearch/uhd/ub=
+untu focal InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:4 https://download.docker.com/linux/ubuntu foca=
+l InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:5 http://archive.ubuntu.com/ubuntu focal-backpo=
+rts InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:6 http://ppa.launchpad.net/gnuradio/gnuradio-ma=
+ster/ubuntu focal InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:7 http://ppa.launchpad.net/gnuradio/gnuradio-re=
+leases/ubuntu focal InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hit:8 http://security.ubuntu.com/ubuntu focal-secur=
+ity InRelease<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:red;mso-highlight:red">thangaraj@KOM12=
+92:~$ sudo apt-get install libuhd-dev libuhd003 uhd-host (failed)</span></b=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-se=
+rif"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Building dependency tree<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading state information... Done<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Package libuhd003 is not available, but is referred=
+ to by another package.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">This may mean that the package is missing, has been=
+ obsoleted, or<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">is only available from another source<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">However the following packages replace it:<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; libuhd3.15.0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Package 'libuhd003' has no installation candidat=
+e<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:red;mso-highlight:red">thangaraj@KOM12=
+92:~$ sudo apt-get install libuhd-dev libuhd003.15.0 uhd-host (failed)</spa=
+n></b><b><span style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sa=
+ns-serif"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Building dependency tree<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading state information... Done<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Unable to locate package libuhd003.15.0<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Couldn't find any package by glob 'libuhd003.15.=
+0'<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Couldn't find any package by regex 'libuhd003.15=
+.0'<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:red;mso-highlight:red">thangaraj@KOM12=
+92:~$ sudo apt-get install libuhd-dev libuhd003.14.0 uhd-host (failed)</spa=
+n></b><b><span style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sa=
+ns-serif"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Building dependency tree<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading state information... Done<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Unable to locate package libuhd003.14.0<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Couldn't find any package by glob 'libuhd003.14.=
+0'<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">E: Couldn't find any package by regex 'libuhd003.14=
+.0'<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Verdana&quot;,sans-serif;background:yellow;mso-highlight:yellow">thangaraj=
+@KOM1292:~$ sudo apt-get install libuhd-dev uhd-host (completed)</span></b>=
+<b><span style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-ser=
+if"><o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading package lists... Done<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Building dependency tree<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Reading state information... Done<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">The following additional packages will be installed=
+:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; libuhd3.15.0 python-is-python2 python-tk<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Suggested packages:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; tix python-tk-dbg<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">The following NEW packages will be installed:<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; libuhd-dev python-is-python2 python-tk<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">The following packages will be upgraded:<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; libuhd3.15.0 uhd-host<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">2 upgraded, 3 newly installed, 0 to remove and 1 no=
+t upgraded.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Need to get 11.8 MB of archives.<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">After this operation, 13.9 MB of additional disk sp=
+ace will be used.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Do you want to continue? [Y/n] y<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:1 http://archive.ubuntu.com/ubuntu focal/univer=
+se amd64 python-is-python2 all 2.7.17-4 [2496 B]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:2 http://ppa.launchpad.net/ettusresearch/uhd/ub=
+untu focal/main amd64 uhd-host amd64 3.15.0.0-1-1ubuntu1~focal1 [5463 kB]<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:3 http://archive.ubuntu.com/ubuntu focal/univer=
+se amd64 python-tk amd64 2.7.18-1 [25.3 kB]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:4 http://ppa.launchpad.net/ettusresearch/uhd/ub=
+untu focal/main amd64 libuhd3.15.0 amd64 3.15.0.0-1-1ubuntu1~focal1 [3061 k=
+B]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Get:5 http://ppa.launchpad.net/ettusresearch/uhd/ub=
+untu focal/main amd64 libuhd-dev amd64 3.15.0.0-1-1ubuntu1~focal1 [3230 kB]=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Fetched 11.8 MB in 6s (2110 kB/s)<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">(Reading database ... 105690 files and directories =
+currently installed.)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Preparing to unpack .../uhd-host_3.15.0.0-1-1ubuntu=
+1~focal1_amd64.deb ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unpacking uhd-host (3.15.0.0-1-1ubuntu1~focal1) ove=
+r (3.15.0.0-2build5) ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Selecting previously unselected package python-is-p=
+ython2.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Preparing to unpack .../python-is-python2_2.7.17-4_=
+all.deb ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unpacking python-is-python2 (2.7.17-4) ...<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Preparing to unpack .../libuhd3.15.0_3.15.0.0-1-1ub=
+untu1~focal1_amd64.deb ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unpacking libuhd3.15.0:amd64 (3.15.0.0-1-1ubuntu1~f=
+ocal1) over (3.15.0.0-2build5) ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Selecting previously unselected package libuhd-dev.=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Preparing to unpack .../libuhd-dev_3.15.0.0-1-1ubun=
+tu1~focal1_amd64.deb ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unpacking libuhd-dev (3.15.0.0-1-1ubuntu1~focal1) .=
+..<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Selecting previously unselected package python-tk.<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Preparing to unpack .../python-tk_2.7.18-1_amd64.de=
+b ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Unpacking python-tk (2.7.18-1) ...<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Setting up python-tk (2.7.18-1) ...<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Setting up python-is-python2 (2.7.17-4) ...<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Setting up libuhd3.15.0:amd64 (3.15.0.0-1-1ubuntu1~=
+focal1) ...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Setting up libuhd-dev (3.15.0.0-1-1ubuntu1~focal1) =
+...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Setting up uhd-host (3.15.0.0-1-1ubuntu1~focal1) ..=
+.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">sysctl: cannot stat /proc/sys/net/core/rmem_max: No=
+ such file or directory<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">sysctl: cannot stat /proc/sys/net/core/wmem_max: No=
+ such file or directory<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Warning: Could not update sysctl settings for netwo=
+rk devices.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Processing triggers for man-db (2.9.1-1) ...<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Processing triggers for libc-bin (2.31-0ubuntu9.2) =
+...<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Looking forward to your kind response.<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Thangaraj<o:p></o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"mso-fareast-language:DE">Von:</spa=
+n></b><span style=3D"mso-fareast-language:DE"> Marcus D. Leech &lt;patchvon=
+braun@gmail.com&gt;
+<br>
+<b>Gesendet:</b> Mittwoch, 22. September 2021 15:04<br>
+<b>An:</b> Thangaraj Mukara Dhakshinamoorthy &lt;thangaraj@komro.net&gt;; u=
+srp-users@lists.ettus.com<br>
+<b>Betreff:</b> Re: AW: AW: AW: [USRP-users] Re: Help_Failed to build UHD i=
+n Ubuntu 20.04<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 2021-09-22 7:47 a.m., Thangaraj Mukara Dhakshinam=
+oorthy wrote:<span style=3D"font-size:12.0pt;mso-fareast-language:DE"><o:p>=
+</o:p></span></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Hello Marcus,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">As you mentioned, I have followed the step-by-step =
+installation guide, while building and installing UHD from source code, it =
+throws an error which I mentioned previously!</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif;background:yellow;mso-highlight:yellow">thangaraj@KO=
+M1292:~/workarea/uhd/host/build$ cmake ..</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Configuring the python interpreter...</span><o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python interpreter: /usr/bin/python3</span><o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Override with: -DPYTHON_EXECUTABLE=3D&lt;path-to=
+-python&gt;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python runtime interpreter: /usr/bin/python3</sp=
+an><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Override with: -DRUNTIME_PYTHON_EXECUTABLE=3D&lt=
+;path-to-python&gt;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Working off of feature or development branch. Up=
+dating version number.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Using UHD Images Directory: /usr/local/share/uhd=
+/images</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Build type not specified: defaulting to release.=
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Configuring Boost C&#43;&#43; Libraries...</span=
+><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Looking for optional Boost components...</span><=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boo=
+st-1.71.0/BoostConfig.cmake (found suitable version &quot;1.71.0&quot;, min=
+imum required is &quot;1.53&quot;) found components: python</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Looking for required Boost components...</span><=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boo=
+st-1.71.0/BoostConfig.cmake (found suitable version &quot;1.71.0&quot;, min=
+imum required is &quot;1.53&quot;) found components: chrono date_time
+ filesystem program_options regex system unit_test_framework serialization =
+thread</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Boost include directories: /usr/include</span><o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Boost library directories: /usr/lib/x86_64-linux=
+-gnu</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Boost libraries: Boost::chrono;Boost::date_time;=
+Boost::filesystem;Boost::program_options;Boost::regex;Boost::system;Boost::=
+unit_test_framework;Boost::serialization;Boost::thread</span><o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">CMake Warning (dev) at cmake/Modules/UHDLog.cmake:6=
+8 (set):</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; implicitly converting 'FILE' to 'STRING' typ=
+e.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Call Stack (most recent call first):</span><o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; CMakeLists.txt:365 (include)</span><o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">This warning is for project developers.&nbsp; Use -=
+Wno-dev to suppress it.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for Python version 2.7 or greate=
+r</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for Python version 2.7 or greate=
+r - &quot;assert platform.python_version() &gt;=3D '2.7' and platform.pytho=
+n_version() &lt; '3.0'&quot; failed</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for Mako templates 0.4.2 or grea=
+ter</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for Mako templates 0.4.2 or grea=
+ter - found</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for requests 2.0 or greater</spa=
+n><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for requests 2.0 or greater - fo=
+und</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for numpy 1.7 or greater</span><=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Python checking for numpy 1.7 or greater - found=
+</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Configuring LibUHD support...</span><o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--&nbsp;&nbsp; Dependency Boost_FOUND =3D TRUE</spa=
+n><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--&nbsp;&nbsp; Dependency HAVE_PYTHON_PLAT_MIN_VERS=
+ION =3D FALSE</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">--&nbsp;&nbsp; Dependency HAVE_PYTHON_MODULE_MAKO =
+=3D TRUE</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">CMake Error at cmake/Modules/UHDComponent.cmake:59 =
+(message):</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; Dependencies for required component LibUHD n=
+ot met.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Call Stack (most recent call first):</span><o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp; CMakeLists.txt:430 (LIBUHD_REGISTER_COMPONEN=
+T)</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">-- Configuring incomplete, errors occurred!</span><=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">See also &quot;/home/thangaraj/workarea/uhd/host/bu=
+ild/CMakeFiles/CMakeOutput.log&quot;.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">See also &quot;/home/thangaraj/workarea/uhd/host/bu=
+ild/CMakeFiles/CMakeError.log&quot;.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
+uot;Verdana&quot;,sans-serif">Also, tried executing below commands but got =
+the same above output:</span></u></b><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake =
+-DPYTHON_EXECUTABLE=3D/usr/bin/python3 ..</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake =
+-DPYTHON_EXECUTABLE=3D/usr/bin/python3 -DRUNTIME_PYTHON_EXECUTABLE=3D/usr/b=
+in/python3 ..</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">thangaraj@KOM1292:~/workarea/uhd/host/build$ /usr/b=
+in/cmake ..</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">thangaraj@KOM1292:~/workarea/uhd/host/build$ PATH=
+=3D/usr/bin:$PATH cmake ..</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">thangaraj@KOM1292:~/workarea/uhd/host/build$ cmake =
+&#8211;DCMAKE_FIND_ROOT_PATH=3D/usr ..</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">PFA CMake logfiles.</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">I am stumbled with this UHD &amp; GNU installation =
+issue for almost a week, it would great if anyone can help me out, I would =
+appreciate it and be very thankful!</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">PS: I am using WSL-Windows Subsytem for Linux (runn=
+ing Ubuntu 20.04.3 LTS)!</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">&nbsp;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Regards,</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
+rdana&quot;,sans-serif">Thangaraj</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,serif;mso-fareast-language:DE"><o:p>&nbsp;</o:p></span>=
+</p>
+</blockquote>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
+ize:12.0pt;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-langua=
+ge:DE">This looks like you don't have a Python2.7 install on your system--o=
+r it cannot be found.&nbsp; During the build.&nbsp; What version
+ of UHD are you trying to build?<br>
+<br>
+Also, in Ubuntu 20.04, if you're just using Gnu Radio and not doing RFNOC w=
+ork, you can just use the pre-packaged versions of UHD and Gnu Radio, and u=
+se<br>
+&nbsp; apt-install to install them:<br>
+<br>
+sudo apt install gnuradio<br>
+sudp apt install uhd libuhd <br>
+<br>
+<br>
+<br>
+<o:p></o:p></span></p>
+</div>
+</body>
 </html>
 
---------------D885843299A7EDC65D8FF10C--
+--_000_046adcb243384423a06209c356426225komronet_--
 
---===============1147697323220792729==
+--===============3027536401855226884==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -162,4 +1313,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1147697323220792729==--
+--===============3027536401855226884==--
