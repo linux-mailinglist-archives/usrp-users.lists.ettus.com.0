@@ -2,562 +2,831 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D948E416E7D
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Sep 2021 11:07:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 502CE417648
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Sep 2021 15:54:25 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 928D23842A4
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Sep 2021 05:07:20 -0400 (EDT)
-Received: from mail.swro.de (mail.swro.de [88.133.160.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 82F5A38428A
-	for <usrp-users@lists.ettus.com>; Fri, 24 Sep 2021 05:06:35 -0400 (EDT)
-IronPort-SDR: TjDXP7vgBd3yMYIRKi2UhFX+SnuJrdgLTQ7PlgNdeFMloQk5BZkB9Xm7eG30A6IkItSppL8TPl
- KHQ4b/1XwRGzmJlmTHAvL/468LFn5hKeo=
-X-IronPort-AV: E=Sophos;i="5.85,319,1624312800";
-   d="scan'208,217";a="252465"
-Received: from unknown (HELO mail.office.komro.net) ([10.2.38.40])
-  by mail.swro.de with ESMTP; 24 Sep 2021 11:06:34 +0200
-Received: from EX01.komro.local (10.2.38.40) by EX01.komro.local (10.2.38.40)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.12; Fri, 24 Sep
- 2021 11:06:32 +0200
-Received: from EX01.komro.local ([fe80::c096:6704:88ee:70e]) by
- EX01.komro.local ([fe80::c096:6704:88ee:70e%4]) with mapi id 15.01.2242.012;
- Fri, 24 Sep 2021 11:06:32 +0200
-From: Thangaraj Mukara Dhakshinamoorthy <thangaraj@komro.net>
-To: "markus.freund@etit.tu-chemnitz.de" <markus.freund@etit.tu-chemnitz.de>,
-	"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: Help_Failed to build UHD in Ubuntu 20.04
-Thread-Index: AQHXsQfHkvsFHsup+kq1FaaasRNJTauy4jgg
-Date: Fri, 24 Sep 2021 09:06:32 +0000
-Message-ID: <f033c3497b9948beb010df9452c3184a@komro.net>
-References: eed428d705084c8eacc529f73d7a9f94@komro.net
- <yvihFszum0xbmZ1alvfvUJLHqDePaIDR6hXw7IPGiw@lists.ettus.com>
-In-Reply-To: <yvihFszum0xbmZ1alvfvUJLHqDePaIDR6hXw7IPGiw@lists.ettus.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.2.35.84]
+	by mm2.emwd.com (Postfix) with ESMTP id E3663380D1C
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Sep 2021 09:54:23 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZFu341EV";
+	dkim-atps=neutral
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 39671383FBC
+	for <usrp-users@lists.ettus.com>; Fri, 24 Sep 2021 09:50:47 -0400 (EDT)
+Received: by mail-qk1-f178.google.com with SMTP id t4so27867069qkb.9
+        for <usrp-users@lists.ettus.com>; Fri, 24 Sep 2021 06:50:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=V6KO4gnNWhcYbjKskoxFj4qRixLQFJrwtXckDLxVSqg=;
+        b=ZFu341EVefnXhMEBLLvv1eDCz7FeC11WWuqepEc+TgRZSWPFanVsDe1CpqyRLnCApU
+         t+DaDSB4bu3RIyg1uwEE4luRK96DupN0nhE9nFf9vVPueP5ycUCNNbEmq2P4QlYF4Kao
+         hL9i+zmjNqoPbRRikghU5MwstkRkH/Bor3XcX2ykvVZ6h5IZ6VBNZtOhCCeMiGq+5D8y
+         rZW6DbXAVsk2+7P6LIwEMDoLXk5ArsuJjSFi0c6i5lxxU4UHU6Jv39x1yvg9TD1ZzDhc
+         j4xRtSebfvGi1e1Sg/7DoNWe1H7HqXQjf34yBfKlMZKNhjR+p0PoQF91CIhOLbdlYH/r
+         Dzwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=V6KO4gnNWhcYbjKskoxFj4qRixLQFJrwtXckDLxVSqg=;
+        b=Ih4CWUKYX/geFsN7238ladrUkVLm9I8S53I5RuoukIBduFvbDqPmBVSVgffjUqXAZ1
+         esjd4+mVpYnrZqw4sHGBH7ieec4f95DEKGxwE1xsuQDMH/NUbxsz1tLIt61KTc3U8ie1
+         oVTD5TBYSYYTpvU25ckdCaOznS23kdetgnmDOfa71KE5lNYNNL59vhMu/sep9p5uQtZP
+         hpjINxJ5sPwPNeVUBvdytN4A6sgDHXq1M2v47qiMZzzdQXPfvfxsIvO586/2WB7gwsmr
+         TLGwrb+YT8/aWfdjMPBJrOeh2R4DlFWQ6ZgWUBoC4PIpDfS7OAsu1vuvMY3l7iPzIvI1
+         Cybw==
+X-Gm-Message-State: AOAM530wekNPlBwmaNUJY0vMCbZiBs9u8MqH/yvYnLkMkPyKUP5A3sA5
+	DB1FJxCqbSq3j3iML8o3ZBbkWJVk8lk4GA==
+X-Google-Smtp-Source: ABdhPJxaFWLgXcPZCrK8QYTETaupgSkVzEtFgKqbX7CsMPqbE70mU2SaJIEm1xnNb6vFYb0Wyn4ANQ==
+X-Received: by 2002:a37:a20a:: with SMTP id l10mr10593472qke.273.1632491446269;
+        Fri, 24 Sep 2021 06:50:46 -0700 (PDT)
+Received: from [192.168.2.234] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
+        by smtp.googlemail.com with ESMTPSA id l13sm6546718qkj.130.2021.09.24.06.50.45
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Sep 2021 06:50:45 -0700 (PDT)
+To: usrp-users@lists.ettus.com
+References: <yvihFszum0xbmZ1alvfvUJLHqDePaIDR6hXw7IPGiw@lists.ettus.com>
+ <f033c3497b9948beb010df9452c3184a@komro.net>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <b6ffe3ea-cc05-a9e0-482a-62c4ef7983e6@gmail.com>
+Date: Fri, 24 Sep 2021 09:50:45 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Message-ID-Hash: NJPDFC7UB3PJCMNFN4RP3KNROS5IJ2GO
-X-Message-ID-Hash: NJPDFC7UB3PJCMNFN4RP3KNROS5IJ2GO
-X-MailFrom: thangaraj@komro.net
+In-Reply-To: <f033c3497b9948beb010df9452c3184a@komro.net>
+Content-Language: en-US
+Message-ID-Hash: UXAU2UH23XGI3IRCTPTXQ2EZ7IA5OO25
+X-Message-ID-Hash: UXAU2UH23XGI3IRCTPTXQ2EZ7IA5OO25
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Help_Failed to build UHD in Ubuntu 20.04
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NJPDFC7UB3PJCMNFN4RP3KNROS5IJ2GO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UXAU2UH23XGI3IRCTPTXQ2EZ7IA5OO25/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8474265405871651563=="
+Content-Type: multipart/mixed; boundary="===============1441235587551994395=="
 
---===============8474265405871651563==
-Content-Language: de-DE
+This is a multi-part message in MIME format.
+--===============1441235587551994395==
 Content-Type: multipart/alternative;
-	boundary="_000_f033c3497b9948beb010df9452c3184akomronet_"
+ boundary="------------A773EC2839F519647158356B"
+Content-Language: en-US
 
---_000_f033c3497b9948beb010df9452c3184akomronet_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------A773EC2839F519647158356B
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-SGFsbG8gTWFya3VzLA0KVGhlIFZNIGlzIG5vdCByZWNvZ25pemluZyB0aGUgRXR0dXMgTjMyMCwg
-YnV0IHRoZSB3aW5kb3dzIGhvc3QgY2FuIHNlZSBhbmQgcGluZyBzdWNjZXNzZnVsbHkhDQoNCklu
-IFdpbmRvd3MgSG9zdCBPUzoNCg0KQzpcUHJvZ3JhbSBGaWxlc1xVSERcYmluPmlwY29uZmlnDQoN
-CldpbmRvd3MtSVAtS29uZmlndXJhdGlvbg0KDQoNClVuYmVrYW5udGVyIEFkYXB0ZXIgTWFuYWdl
-bWVudDoNCg0KICAgVmVyYmluZHVuZ3NzcGV6aWZpc2NoZXMgRE5TLVN1ZmZpeDoNCiAgIElQdjQt
-QWRyZXNzZSAgLiAuIC4gLiAuIC4gLiAuIC4gLiA6IDEwLjIuMzUuODQNCiAgIFN1Ym5ldHptYXNr
-ZSAgLiAuIC4gLiAuIC4gLiAuIC4gLiA6IDI1NS4yNTUuMjU1LjI1NQ0KICAgU3RhbmRhcmRnYXRl
-d2F5IC4gLiAuIC4gLiAuIC4gLiAuIDoNCg0KRXRoZXJuZXQtQWRhcHRlciBFdGhlcm5ldDoNCg0K
-ICAgVmVyYmluZHVuZ3NzcGV6aWZpc2NoZXMgRE5TLVN1ZmZpeDogZnJpdHouYm94DQogICBWZXJi
-aW5kdW5nc2xva2FsZSBJUHY2LUFkcmVzc2UgIC4gOiBmZTgwOjplODY4OjZjNjozNDlhOjQzNGUl
-MTQNCiAgIElQdjQtQWRyZXNzZSAgLiAuIC4gLiAuIC4gLiAuIC4gLiA6IDE5Mi4xNjguMTc4LjQz
-DQogICBTdWJuZXR6bWFza2UgIC4gLiAuIC4gLiAuIC4gLiAuIC4gOiAyNTUuMjU1LjI1NS4wDQog
-ICBTdGFuZGFyZGdhdGV3YXkgLiAuIC4gLiAuIC4gLiAuIC4gOiAxOTIuMTY4LjE3OC4xDQoNCkV0
-aGVybmV0LUFkYXB0ZXIgVmlydHVhbEJveCBIb3N0LU9ubHkgTmV0d29yazoNCg0KICAgVmVyYmlu
-ZHVuZ3NzcGV6aWZpc2NoZXMgRE5TLVN1ZmZpeDoNCiAgIFZlcmJpbmR1bmdzbG9rYWxlIElQdjYt
-QWRyZXNzZSAgLiA6IGZlODA6OjY4Yjk6NGU5MTo0ODc1OjhlMzAlOQ0KICAgSVB2NC1BZHJlc3Nl
-ICAuIC4gLiAuIC4gLiAuIC4gLiAuIDogMTkyLjE2OC41Ni4xDQogICBTdWJuZXR6bWFza2UgIC4g
-LiAuIC4gLiAuIC4gLiAuIC4gOiAyNTUuMjU1LjI1NS4wDQogICBTdGFuZGFyZGdhdGV3YXkgLiAu
-IC4gLiAuIC4gLiAuIC4gOg0KDQpFdGhlcm5ldC1BZGFwdGVyIEV0aGVybmV0IDI6DQoNCiAgIFZl
-cmJpbmR1bmdzc3BlemlmaXNjaGVzIEROUy1TdWZmaXg6DQogICBWZXJiaW5kdW5nc2xva2FsZSBJ
-UHY2LUFkcmVzc2UgIC4gOiBmZTgwOjplYzM5OjM3NWI6MTQxMTo0ZWJiJTQNCiAgIElQdjQtQWRy
-ZXNzZSAoQXV0by4gS29uZmlndXJhdGlvbik6IDE2OS4yNTQuNzguMTg3DQogICBTdWJuZXR6bWFz
-a2UgIC4gLiAuIC4gLiAuIC4gLiAuIC4gOiAyNTUuMjU1LjAuMA0KICAgU3RhbmRhcmRnYXRld2F5
-IC4gLiAuIC4gLiAuIC4gLiAuIDoNCg0KQzpcUHJvZ3JhbSBGaWxlc1xVSERcYmluPnBpbmcgMTY5
-LjI1NC43OC4xODcNCg0KUGluZyB3aXJkIGF1c2dlZsO8aHJ0IGbDvHIgMTY5LjI1NC43OC4xODcg
-bWl0IDMyIEJ5dGVzIERhdGVuOg0KQW50d29ydCB2b24gMTY5LjI1NC43OC4xODc6IEJ5dGVzPTMy
-IFplaXQ8MW1zIFRUTD0xMjgNCkFudHdvcnQgdm9uIDE2OS4yNTQuNzguMTg3OiBCeXRlcz0zMiBa
-ZWl0PDFtcyBUVEw9MTI4DQpBbnR3b3J0IHZvbiAxNjkuMjU0Ljc4LjE4NzogQnl0ZXM9MzIgWmVp
-dDwxbXMgVFRMPTEyOA0KQW50d29ydCB2b24gMTY5LjI1NC43OC4xODc6IEJ5dGVzPTMyIFplaXQ8
-MW1zIFRUTD0xMjgNCg0KUGluZy1TdGF0aXN0aWsgZsO8ciAxNjkuMjU0Ljc4LjE4NzoNCiAgICBQ
-YWtldGU6IEdlc2VuZGV0ID0gNCwgRW1wZmFuZ2VuID0gNCwgVmVybG9yZW4gPSAwDQogICAgKDAl
-IFZlcmx1c3QpLA0KQ2EuIFplaXRhbmdhYmVuIGluIE1pbGxpc2VrLjoNCiAgICBNaW5pbXVtID0g
-MG1zLCBNYXhpbXVtID0gMG1zLCBNaXR0ZWx3ZXJ0ID0gMG1zDQoNCkM6XFByb2dyYW0gRmlsZXNc
-VUhEXGJpbj51aGRfZmluZF9kZXZpY2VzLmV4ZQ0KW0lORk9dIFtVSERdIFdpbjMyOyBNaWNyb3Nv
-ZnQgVmlzdWFsIEMrKyB2ZXJzaW9uIDE0LjE7IEJvb3N0XzEwNzAwMDsgVUhEXzQuMS4wLjEtcmVs
-ZWFzZQ0KW0VSUk9SXSBbWDMwMF0gWDMwMCBOZXR3b3JrIGRpc2NvdmVyeSBlcnJvciByZWNlaXZl
-X2Zyb206IEVpbmUgdm9yaGFuZGVuZSBWZXJiaW5kdW5nIHd1cmRlIHZvbSBSZW1vdGVob3N0IGdl
-c2NobG9zc2VuDQpbRVJST1JdIFtVSERdIERldmljZSBkaXNjb3ZlcnkgZXJyb3I6IHJlY2VpdmVf
-ZnJvbTogRWluZSB2b3JoYW5kZW5lIFZlcmJpbmR1bmcgd3VyZGUgdm9tIFJlbW90ZWhvc3QgZ2Vz
-Y2hsb3NzZW4NCltFUlJPUl0gW1VIRF0gRGV2aWNlIGRpc2NvdmVyeSBlcnJvcjogcmVjZWl2ZV9m
-cm9tOiBFaW5lIHZvcmhhbmRlbmUgVmVyYmluZHVuZyB3dXJkZSB2b20gUmVtb3RlaG9zdCBnZXNj
-aGxvc3Nlbg0KTm8gVUhEIERldmljZXMgRm91bmQNCltFUlJPUl0gW1VIRF0gRGV2aWNlIGRpc2Nv
-dmVyeSBlcnJvcjogcmVjZWl2ZV9mcm9tOiBFaW5lIHZvcmhhbmRlbmUgVmVyYmluZHVuZyB3dXJk
-ZSB2b20gUmVtb3RlaG9zdCBnZXNjaGxvc3Nlbg0KDQpDOlxQcm9ncmFtIEZpbGVzXFVIRFxiaW4+
-dWhkX3VzcnBfcHJvYmUuZXhlDQpbSU5GT10gW1VIRF0gV2luMzI7IE1pY3Jvc29mdCBWaXN1YWwg
-QysrIHZlcnNpb24gMTQuMTsgQm9vc3RfMTA3MDAwOyBVSERfNC4xLjAuMS1yZWxlYXNlDQpFcnJv
-cjogTG9va3VwRXJyb3I6IEtleUVycm9yOiBObyBkZXZpY2VzIGZvdW5kIGZvciAtLS0tLT4NCkVt
-cHR5IERldmljZSBBZGRyZXNzDQoNCkluIFZpcnR1YWxib3ggVWJ1bnR1IEd1ZXN0IE9TOg0KDQp0
-aGFuZ3pAdGhhbmd6LVZpcnR1YWxCb3g6fi9EZXNrdG9wJCBpZmNvbmZpZw0KZW5wMHMzOiBmbGFn
-cz00MTYzPFVQLEJST0FEQ0FTVCxSVU5OSU5HLE1VTFRJQ0FTVD4gIG10dSAxNTAwDQogICAgICAg
-IGluZXQgMTAuMC4yLjE1ICBuZXRtYXNrIDI1NS4yNTUuMjU1LjAgIGJyb2FkY2FzdCAxMC4wLjIu
-MjU1DQogICAgICAgIGluZXQ2IGZlODA6Ojk5ZDc6NGM4NDo4YmFiOjJhZmYgIHByZWZpeGxlbiA2
-NCAgc2NvcGVpZCAweDIwPGxpbms+DQogICAgICAgIGV0aGVyIDA4OjAwOjI3Ojg5OjA1OjkzICB0
-eHF1ZXVlbGVuIDEwMDAgIChFdGhlcm5ldCkNCiAgICAgICAgUlggcGFja2V0cyAxMTc5ICBieXRl
-cyAxMjkzNjAzICgxLjIgTUIpDQogICAgICAgIFJYIGVycm9ycyAwICBkcm9wcGVkIDAgIG92ZXJy
-dW5zIDAgIGZyYW1lIDANCiAgICAgICAgVFggcGFja2V0cyA3NTcgIGJ5dGVzIDc5MjYwICg3OS4y
-IEtCKQ0KICAgICAgICBUWCBlcnJvcnMgMCAgZHJvcHBlZCAwIG92ZXJydW5zIDAgIGNhcnJpZXIg
-MCAgY29sbGlzaW9ucyAwDQoNCmxvOiBmbGFncz03MzxVUCxMT09QQkFDSyxSVU5OSU5HPiAgbXR1
-IDY1NTM2DQogICAgICAgIGluZXQgMTI3LjAuMC4xICBuZXRtYXNrIDI1NS4wLjAuMA0KICAgICAg
-ICBpbmV0NiA6OjEgIHByZWZpeGxlbiAxMjggIHNjb3BlaWQgMHgxMDxob3N0Pg0KICAgICAgICBs
-b29wICB0eHF1ZXVlbGVuIDEwMDAgIChMb2NhbCBMb29wYmFjaykNCiAgICAgICAgUlggcGFja2V0
-cyAyNTAgIGJ5dGVzIDIyMDc0ICgyMi4wIEtCKQ0KICAgICAgICBSWCBlcnJvcnMgMCAgZHJvcHBl
-ZCAwICBvdmVycnVucyAwICBmcmFtZSAwDQogICAgICAgIFRYIHBhY2tldHMgMjUwICBieXRlcyAy
-MjA3NCAoMjIuMCBLQikNCiAgICAgICAgVFggZXJyb3JzIDAgIGRyb3BwZWQgMCBvdmVycnVucyAw
-ICBjYXJyaWVyIDAgIGNvbGxpc2lvbnMgMA0KDQpBcHBhcmVudGx5LCB0aGUgVmlydHVhbGJveCBp
-cyBub3QgcmVjb2duaXppbmcgdGhlIEV0dHVzIE4zMjAhDQoNCkxvb2tpbmcgZm9yd2FyZCB0byB5
-b3VyIGtpbmQgYWR2aWNlLg0KDQpSZWdhcmRzLA0KVGhhbmdhcmFqDQpWb246IG1hcmt1cy5mcmV1
-bmRAZXRpdC50dS1jaGVtbml0ei5kZSA8bWFya3VzLmZyZXVuZEBldGl0LnR1LWNoZW1uaXR6LmRl
-Pg0KR2VzZW5kZXQ6IEZyZWl0YWcsIDI0LiBTZXB0ZW1iZXIgMjAyMSAwNzo0Nw0KQW46IHVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tDQpCZXRyZWZmOiBbVVNSUC11c2Vyc10gUmU6IEhlbHBfRmFp
-bGVkIHRvIGJ1aWxkIFVIRCBpbiBVYnVudHUgMjAuMDQNCg0KDQpIZWxsbyBUaGFuZ2FyYWosDQoN
-CnlvdSBuZWVkIHRvIGNoZWNrIHRoZSAgSVAtQWRkcmVzcyBvZiB0aGUgdmlydHVhbCBtYWNoaW5l
-LiBUaGVyZeKAmXMgdHdvIGRpZmZlcmVudCBhZGRyZXNzZXMgZm9yIGVhY2ggU0ZQIG9uIHRoZSBV
-U1JQIGRldmljZS4gVGhleSBhcmUgZGVwZW5kaW5nIG9uIGJvdGggdGhlIHBvcnQgYW5kIHRoZSBz
-cGVlZC4gT24gbWluZSAoWDMxMCkgdGhleSBhcmUgMTkyLjE2OC4xMC4yIGZvciB0aGUgMUdCaXQv
-cyBhbmQgMTkyLjE2OC4zMC4yIG9yIDE5Mi4xNjguNDAuMi4gIEkgZ3Vlc3MgaXQgaXMgdGhlIHNh
-bWUgd2l0aCB5b3Vycy4gWW91IGNhbiBmaXJzdCB0cnkgdG8gcGluZyB0aGUgZGV2aWNlIGJvdGgg
-b24gdGhlIGhvc3QgYW5kIHRoZSBWTS4NCg0KDQoNCkJlc3QgTWFya3VzDQo=
+On 2021-09-24 5:06 a.m., Thangaraj Mukara Dhakshinamoorthy wrote:
+>
+> Hallo Markus,
+>
+> The VM is not recognizing the Ettus N320, but the windows host can see=20
+> and ping successfully!
+>
+> *_In Windows Host OS:_*
+>
+> C:\Program Files\UHD\bin>ipconfig
+>
+> Windows-IP-Konfiguration
+>
+> Unbekannter Adapter Management:
+>
+> Verbindungsspezifisches DNS-Suffix:
+>
+> IPv4-Adresse=C2=A0 . . . . . . . . . . : 10.2.35.84
+>
+> Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.255.255
+>
+> Standardgateway . . . . . . . . . :
+>
+> Ethernet-Adapter Ethernet:
+>
+> Verbindungsspezifisches DNS-Suffix: fritz.box
+>
+> Verbindungslokale IPv6-Adresse=C2=A0 . : fe80::e868:6c6:349a:434e%14
+>
+> IPv4-Adresse=C2=A0 . . . . . . . . . . : 192.168.178.43
+>
+> Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.255.0
+>
+> Standardgateway . . . . . . . . . : 192.168.178.1
+>
+> Ethernet-Adapter VirtualBox Host-Only Network:
+>
+> Verbindungsspezifisches DNS-Suffix:
+>
+> Verbindungslokale IPv6-Adresse=C2=A0 . : fe80::68b9:4e91:4875:8e30%9
+>
+> IPv4-Adresse=C2=A0 . . . . . . . . . . : 192.168.56.1
+>
+> Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.255.0
+>
+> Standardgateway . . . . . . . . . :
+>
+> Ethernet-Adapter Ethernet 2:
+>
+> Verbindungsspezifisches DNS-Suffix:
+>
+> Verbindungslokale IPv6-Adresse=C2=A0 . : fe80::ec39:375b:1411:4ebb%4
+>
+> IPv4-Adresse (Auto. Konfiguration): *169.254.78.187*
+>
+> Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.0.0
+>
+> Standardgateway . . . . . . . . . :
+>
+> C:\Program Files\UHD\bin>ping 169.254.78.187
+>
+> Ping wird ausgef=C3=BChrt f=C3=BCr 169.254.78.187 mit 32 Bytes Daten:
+>
+> Antwort von 169.254.78.187: Bytes=3D32 Zeit<1ms TTL=3D128
+>
+> Antwort von 169.254.78.187: Bytes=3D32 Zeit<1ms TTL=3D128
+>
+> Antwort von 169.254.78.187: Bytes=3D32 Zeit<1ms TTL=3D128
+>
+> Antwort von 169.254.78.187: Bytes=3D32 Zeit<1ms TTL=3D128
+>
+> Ping-Statistik f=C3=BCr 169.254.78.187:
+>
+> Pakete: Gesendet =3D 4, Empfangen =3D 4, Verloren =3D 0
+>
+> (0% Verlust),
+>
+> Ca. Zeitangaben in Millisek.:
+>
+> Minimum =3D 0ms, Maximum =3D 0ms, Mittelwert =3D 0ms
+>
+> C:\Program Files\UHD\bin>uhd_find_devices.exe
+>
+> [INFO] [UHD] Win32; Microsoft Visual C++ version 14.1; Boost_107000;=20
+> UHD_4.1.0.1-release
+>
+> [ERROR] [X300] X300 Network discovery error receive_from: Eine=20
+> vorhandene Verbindung wurde vom Remotehost geschlossen
+>
+> [ERROR] [UHD] Device discovery error: receive_from: Eine vorhandene=20
+> Verbindung wurde vom Remotehost geschlossen
+>
+> [ERROR] [UHD] Device discovery error: receive_from: Eine vorhandene=20
+> Verbindung wurde vom Remotehost geschlossen
+>
+> No UHD Devices Found
+>
+> [ERROR] [UHD] Device discovery error: receive_from: Eine vorhandene=20
+> Verbindung wurde vom Remotehost geschlossen
+>
+> C:\Program Files\UHD\bin>uhd_usrp_probe.exe
+>
+> [INFO] [UHD] Win32; Microsoft Visual C++ version 14.1; Boost_107000;=20
+> UHD_4.1.0.1-release
+>
+> Error: LookupError: KeyError: No devices found for ----->
+>
+> Empty Device Address
+>
+> *_In Virtualbox Ubuntu Guest OS:_*
+>
+> *__*
+>
+> thangz@thangz-VirtualBox:~/Desktop$ ifconfig
+>
+> enp0s3: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>=C2=A0 mtu 1500
+>
+> inet 10.0.2.15=C2=A0 netmask 255.255.255.0=C2=A0 broadcast 10.0.2.255
+>
+> inet6 fe80::99d7:4c84:8bab:2aff=C2=A0 prefixlen 64=C2=A0 scopeid 0x20<l=
+ink>
+>
+> ether 08:00:27:89:05:93=C2=A0 txqueuelen 1000=C2=A0 (Ethernet)
+>
+> RX packets 1179=C2=A0 bytes 1293603 (1.2 MB)
+>
+> RX errors 0=C2=A0 dropped 0=C2=A0 overruns 0=C2=A0 frame 0
+>
+> TX packets 757=C2=A0 bytes 79260 (79.2 KB)
+>
+> TX errors 0=C2=A0 dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 collisions=
+ 0
+>
+> lo: flags=3D73<UP,LOOPBACK,RUNNING>=C2=A0 mtu 65536
+>
+> inet 127.0.0.1=C2=A0 netmask 255.0.0.0
+>
+> inet6 ::1=C2=A0 prefixlen 128=C2=A0 scopeid 0x10<host>
+>
+> loop=C2=A0 txqueuelen 1000=C2=A0 (Local Loopback)
+>
+> RX packets 250=C2=A0 bytes 22074 (22.0 KB)
+>
+> RX errors 0=C2=A0 dropped 0=C2=A0 overruns 0=C2=A0 frame 0
+>
+> TX packets 250=C2=A0 bytes 22074 (22.0 KB)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0TX errors 0=C2=A0 dropped 0 overrun=
+s 0=C2=A0 carrier 0 collisions 0
+>
+> Apparently, the Virtualbox is not recognizing the Ettus N320!
+>
+> Looking forward to your kind advice.
+>
+> Regards,
+>
+> Thangaraj
+>
+> *Von:*markus.freund@etit.tu-chemnitz.de=20
+> <markus.freund@etit.tu-chemnitz.de>
+> *Gesendet:* Freitag, 24. September 2021 07:47
+> *An:* usrp-users@lists.ettus.com
+> *Betreff:* [USRP-users] Re: Help_Failed to build UHD in Ubuntu 20.04
+>
+> Hello Thangaraj,
+>
+> you need to check the=C2=A0 IP-Address of the virtual machine. There=E2=
+=80=99s two=20
+> different addresses for each SFP on the USRP device. They are=20
+> depending on both the port and the speed. On mine (X310) they are=20
+> 192.168.10.2 for the 1GBit/s and 192.168.30.2 or 192.168.40.2. =C2=A0I=20
+> guess it is the same with yours. You can first try to ping the device=20
+> both on the host and the VM.
+>
+> Best Markus
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+Your PING example is pinging the IP address of the host, NOT the USRP=20
+N320.=C2=A0 This will always succeed.
 
---_000_f033c3497b9948beb010df9452c3184akomronet_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+You'll need to change the IP address of that network interface to=20
+192.168.10.1, so that it is on the same subnet as the USRP N320 default=20
+address for the SFP0 port
+ =C2=A0 of 192.168.10.2.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpWZXJkYW5hOw0KCXBhbm9zZS0xOjIgMTEg
-NiA0IDMgNSA0IDQgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwg
-bGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowY207DQoJbWFyZ2luLWJvdHRv
-bTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBS
-b21hbiIsc2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJp
-b3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30N
-CmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3Jp
-dHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnAN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1h
-cmdpbi1yaWdodDowY207DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxl
-ZnQ6MGNtOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21h
-biIsc2VyaWY7fQ0KcC5tc29ub3JtYWwwLCBsaS5tc29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0K
-CXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJ
-bWFyZ2luLXJpZ2h0OjBjbTsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4t
-bGVmdDowY207DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
-bWFuIixzZXJpZjt9DQpzcGFuLkUtTWFpbEZvcm1hdHZvcmxhZ2UxOQ0KCXttc28tc3R5bGUtdHlw
-ZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiVmVyZGFuYSIsc2Fucy1zZXJpZjsNCglj
-b2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9y
-dC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0
-LWxhbmd1YWdlOkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzky
-LjBwdDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDIuMGNtIDcwLjg1cHQ7fQ0KZGl2LldvcmRT
-ZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1z
-byA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIg
-Lz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVs
-YXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8
-L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJE
-RSIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
-b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1s
-YW5ndWFnZTpFTi1VUyI+SGFsbG8gTWFya3VzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1V
-UyI+VGhlIFZNIGlzIG5vdCByZWNvZ25pemluZyB0aGUgRXR0dXMgTjMyMCwgYnV0IHRoZSB3aW5k
-b3dzIGhvc3QgY2FuIHNlZSBhbmQgcGluZyBzdWNjZXNzZnVsbHkhPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxh
-bmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48Yj48dT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTom
-cXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
-PkluIFdpbmRvd3MgSG9zdCBPUzo8bzpwPjwvbzpwPjwvc3Bhbj48L3U+PC9iPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1V
-UyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90
-OyxzYW5zLXNlcmlmO2JhY2tncm91bmQ6eWVsbG93O21zby1oaWdobGlnaHQ6eWVsbG93O21zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5DOlxQcm9ncmFtIEZpbGVzXFVIRFxiaW4mZ3Q7aXBjb25m
-aWc8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7
-bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFn
-ZTpFTi1VUyI+V2luZG93cy1JUC1Lb25maWd1cmF0aW9uPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdl
-OkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5h
-JnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtt
-c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+VW5iZWthbm50ZXIgQWRhcHRlciBNYW5hZ2VtZW50
-OjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1z
-ZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxh
-bmd1YWdlOkVOLVVTIj4mbmJzcDsmbmJzcDsgVmVyYmluZHVuZ3NzcGV6aWZpc2NoZXMgRE5TLVN1
-ZmZpeDo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNh
-bnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZuYnNwOyBJUHY0LUFk
-cmVzc2UmbmJzcDsgLiAuIC4gLiAuIC4gLiAuIC4gLiA6IDEwLjIuMzUuODQ8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
-LjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVh
-c3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZuYnNwOyBTdWJuZXR6bWFza2UmbmJzcDsgLiAuIC4g
-LiAuIC4gLiAuIC4gLiA6IDI1NS4yNTUuMjU1LjI1NTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpF
-Ti1VUyI+Jm5ic3A7Jm5ic3A7IFN0YW5kYXJkZ2F0ZXdheSAuIC4gLiAuIC4gLiAuIC4gLiA6PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlm
-O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
-LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVMiPkV0aGVybmV0LUFkYXB0ZXIgRXRoZXJuZXQ6PG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1
-YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJk
-YW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZu
-YnNwOyBWZXJiaW5kdW5nc3NwZXppZmlzY2hlcyBETlMtU3VmZml4OiBmcml0ei5ib3g8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZuYnNwOyBWZXJiaW5kdW5nc2xva2FsZSBJ
-UHY2LUFkcmVzc2UmbmJzcDsgLiA6IGZlODA6OmU4Njg6NmM2OjM0OWE6NDM0ZSUxNDxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28t
-ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7IElQdjQtQWRyZXNzZSZuYnNwOyAu
-IC4gLiAuIC4gLiAuIC4gLiAuIDogMTkyLjE2OC4xNzguNDM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
-LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVMiPiZuYnNwOyZuYnNwOyBTdWJuZXR6bWFza2UmbmJzcDsgLiAuIC4gLiAuIC4gLiAu
-IC4gLiA6IDI1NS4yNTUuMjU1LjA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtW
-ZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNw
-OyZuYnNwOyBTdGFuZGFyZGdhdGV3YXkgLiAuIC4gLiAuIC4gLiAuIC4gOiAxOTIuMTY4LjE3OC4x
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNl
-cmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtm
-b250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6RU4tVVMiPkV0aGVybmV0LUFkYXB0ZXIgVmlydHVhbEJveCBIb3N0LU9ubHkgTmV0d29y
-azo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMt
-c2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1s
-YW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7IFZlcmJpbmR1bmdzc3BlemlmaXNjaGVzIEROUy1T
-dWZmaXg6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90Oyxz
-YW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj4mbmJzcDsmbmJzcDsgVmVyYmlu
-ZHVuZ3Nsb2thbGUgSVB2Ni1BZHJlc3NlJm5ic3A7IC4gOiBmZTgwOjo2OGI5OjRlOTE6NDg3NTo4
-ZTMwJTk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNh
-bnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZuYnNwOyBJUHY0LUFk
-cmVzc2UmbmJzcDsgLiAuIC4gLiAuIC4gLiAuIC4gLiA6IDE5Mi4xNjguNTYuMTxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7IFN1Ym5ldHptYXNrZSZuYnNwOyAuIC4g
-LiAuIC4gLiAuIC4gLiAuIDogMjU1LjI1NS4yNTUuMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpF
-Ti1VUyI+Jm5ic3A7Jm5ic3A7IFN0YW5kYXJkZ2F0ZXdheSAuIC4gLiAuIC4gLiAuIC4gLiA6PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlm
-O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
-LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7YmFja2dyb3VuZDp5ZWxsb3c7
-bXNvLWhpZ2hsaWdodDp5ZWxsb3c7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkV0aGVybmV0
-LUFkYXB0ZXIgRXRoZXJuZXQgMjo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtW
-ZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7YmFja2dyb3VuZDp5ZWxsb3c7bXNvLWhpZ2hsaWdodDp5
-ZWxsb3c7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtiYWNrZ3JvdW5kOnll
-bGxvdzttc28taGlnaGxpZ2h0OnllbGxvdzttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5i
-c3A7Jm5ic3A7IFZlcmJpbmR1bmdzc3BlemlmaXNjaGVzIEROUy1TdWZmaXg6PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2JhY2tncm91
-bmQ6eWVsbG93O21zby1oaWdobGlnaHQ6eWVsbG93O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij4mbmJzcDsmbmJzcDsgVmVyYmluZHVuZ3Nsb2thbGUgSVB2Ni1BZHJlc3NlJm5ic3A7IC4gOiBm
-ZTgwOjplYzM5OjM3NWI6MTQxMTo0ZWJiJTQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTom
-cXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7YmFja2dyb3VuZDp5ZWxsb3c7bXNvLWhpZ2hs
-aWdodDp5ZWxsb3c7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZuYnNwOyBJUHY0
-LUFkcmVzc2UgKEF1dG8uIEtvbmZpZ3VyYXRpb24pOg0KPGI+MTY5LjI1NC43OC4xODc8L2I+PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlm
-O2JhY2tncm91bmQ6eWVsbG93O21zby1oaWdobGlnaHQ6eWVsbG93O21zby1mYXJlYXN0LWxhbmd1
-YWdlOkVOLVVTIj4mbmJzcDsmbmJzcDsgU3VibmV0em1hc2tlJm5ic3A7IC4gLiAuIC4gLiAuIC4g
-LiAuIC4gOiAyNTUuMjU1LjAuMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Zl
-cmRhbmEmcXVvdDssc2Fucy1zZXJpZjtiYWNrZ3JvdW5kOnllbGxvdzttc28taGlnaGxpZ2h0Onll
-bGxvdzttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7IFN0YW5kYXJkZ2F0
-ZXdheSAuIC4gLiAuIC4gLiAuIC4gLiA6PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFz
-dC1sYW5ndWFnZTpFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVy
-ZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2Vy
-aWY7YmFja2dyb3VuZDp5ZWxsb3c7bXNvLWhpZ2hsaWdodDp5ZWxsb3c7bXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6RU4tVVMiPkM6XFByb2dyYW0gRmlsZXNcVUhEXGJpbiZndDtwaW5nIDE2OS4yNTQuNzgu
-MTg3PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlm
-O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
-LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVMiPlBpbmcgd2lyZCBhdXNnZWbDvGhydCBmw7xyIDE2OS4yNTQuNzguMTg3IG1pdCAz
-MiBCeXRlcyBEYXRlbjo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5h
-JnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkFudHdvcnQgdm9u
-IDE2OS4yNTQuNzguMTg3OiBCeXRlcz0zMiBaZWl0Jmx0OzFtcyBUVEw9MTI4PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJl
-YXN0LWxhbmd1YWdlOkVOLVVTIj5BbnR3b3J0IHZvbiAxNjkuMjU0Ljc4LjE4NzogQnl0ZXM9MzIg
-WmVpdCZsdDsxbXMgVFRMPTEyODxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Zl
-cmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+QW50d29y
-dCB2b24gMTY5LjI1NC43OC4xODc6IEJ5dGVzPTMyIFplaXQmbHQ7MW1zIFRUTD0xMjg8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkFudHdvcnQgdm9uIDE2OS4yNTQuNzguMTg3OiBCeXRl
-cz0zMiBaZWl0Jmx0OzFtcyBUVEw9MTI4PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNh
-bnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlBpbmctU3RhdGlzdGlrIGbDvHIg
-MTY5LjI1NC43OC4xODc6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFu
-YSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj4mbmJzcDsmbmJz
-cDsmbmJzcDsgUGFrZXRlOiBHZXNlbmRldCA9IDQsIEVtcGZhbmdlbiA9IDQsIFZlcmxvcmVuID0g
-MDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1z
-ZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7ICgwJSBW
-ZXJsdXN0KSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7
-LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkNhLiBaZWl0YW5nYWJlbiBp
-biBNaWxsaXNlay46PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZx
-dW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj4mbmJzcDsmbmJzcDsm
-bmJzcDsgTWluaW11bSA9IDBtcywgTWF4aW11bSA9IDBtcywgTWl0dGVsd2VydCA9IDBtczxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtt
-c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2JhY2tncm91bmQ6eWVsbG93O21z
-by1oaWdobGlnaHQ6eWVsbG93O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5DOlxQcm9ncmFt
-IEZpbGVzXFVIRFxiaW4mZ3Q7dWhkX2ZpbmRfZGV2aWNlcy5leGU8L3NwYW4+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNl
-cmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZh
-bWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6
-RU4tVVMiPltJTkZPXSBbVUhEXSBXaW4zMjsgTWljcm9zb2Z0IFZpc3VhbCBDJiM0MzsmIzQzOyB2
-ZXJzaW9uIDE0LjE7IEJvb3N0XzEwNzAwMDsgVUhEXzQuMS4wLjEtcmVsZWFzZTxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUyI+W0VSUk9SXSBbWDMwMF0gWDMwMCBOZXR3b3JrIGRpc2NvdmVy
-eSBlcnJvciByZWNlaXZlX2Zyb206IEVpbmUgdm9yaGFuZGVuZSBWZXJiaW5kdW5nIHd1cmRlIHZv
-bSBSZW1vdGVob3N0IGdlc2NobG9zc2VuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5b
-RVJST1JdIFtVSERdIERldmljZSBkaXNjb3ZlcnkgZXJyb3I6IHJlY2VpdmVfZnJvbTogRWluZSB2
-b3JoYW5kZW5lIFZlcmJpbmR1bmcgd3VyZGUgdm9tIFJlbW90ZWhvc3QgZ2VzY2hsb3NzZW48bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7
-bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPltFUlJPUl0gW1VIRF0gRGV2aWNlIGRpc2NvdmVy
-eSBlcnJvcjogcmVjZWl2ZV9mcm9tOiBFaW5lIHZvcmhhbmRlbmUgVmVyYmluZHVuZyB3dXJkZSB2
-b20gUmVtb3RlaG9zdCBnZXNjaGxvc3NlbjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+
-Tm8gVUhEIERldmljZXMgRm91bmQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtW
-ZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPltFUlJP
-Ul0gW1VIRF0gRGV2aWNlIGRpc2NvdmVyeSBlcnJvcjogcmVjZWl2ZV9mcm9tOiBFaW5lIHZvcmhh
-bmRlbmUgVmVyYmluZHVuZyB3dXJkZSB2b20gUmVtb3RlaG9zdCBnZXNjaGxvc3NlbjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28t
-ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2JhY2tncm91bmQ6eWVsbG93O21zby1o
-aWdobGlnaHQ6eWVsbG93O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5DOlxQcm9ncmFtIEZp
-bGVzXFVIRFxiaW4mZ3Q7dWhkX3VzcnBfcHJvYmUuZXhlPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjtt
-c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij5bSU5GT10gW1VIRF0gV2luMzI7IE1pY3Jvc29mdCBWaXN1YWwgQyYjNDM7JiM0MzsgdmVyc2lv
-biAxNC4xOyBCb29zdF8xMDcwMDA7IFVIRF80LjEuMC4xLXJlbGVhc2U8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
-dDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3Qt
-bGFuZ3VhZ2U6RU4tVVMiPkVycm9yOiBMb29rdXBFcnJvcjogS2V5RXJyb3I6IE5vIGRldmljZXMg
-Zm91bmQgZm9yIC0tLS0tJmd0OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Zl
-cmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+RW1wdHkg
-RGV2aWNlIEFkZHJlc3M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5h
-JnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjx1PjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1z
-ZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+SW4gVmlydHVhbGJveCBVYnVudHUgR3Vl
-c3QgT1M6PG86cD48L286cD48L3NwYW4+PC91PjwvYj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48Yj48dT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtW
-ZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+
-PHNwYW4gc3R5bGU9InRleHQtZGVjb3JhdGlvbjpub25lIj4mbmJzcDs8L3NwYW4+PC9vOnA+PC9z
-cGFuPjwvdT48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO2Jh
-Y2tncm91bmQ6eWVsbG93O21zby1oaWdobGlnaHQ6eWVsbG93O21zby1mYXJlYXN0LWxhbmd1YWdl
-OkVOLVVTIj50aGFuZ3pAdGhhbmd6LVZpcnR1YWxCb3g6fi9EZXNrdG9wJCBpZmNvbmZpZzwvc3Bh
-bj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5h
-JnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUyI+ZW5wMHMzOiBmbGFncz00MTYzJmx0O1VQLEJST0FEQ0FTVCxS
-VU5OSU5HLE1VTFRJQ0FTVCZndDsmbmJzcDsgbXR1IDE1MDA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250
-LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3Vh
-Z2U6RU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbmV0
-IDEwLjAuMi4xNSZuYnNwOyBuZXRtYXNrIDI1NS4yNTUuMjU1LjAmbmJzcDsgYnJvYWRjYXN0IDEw
-LjAuMi4yNTU8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7
-LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBpbmV0NiBmZTgwOjo5OWQ3OjRjODQ6OGJhYjoyYWZm
-Jm5ic3A7IHByZWZpeGxlbiA2NCZuYnNwOyBzY29wZWlkIDB4MjAmbHQ7bGluayZndDs8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyBldGhlciAwODowMDoyNzo4OTowNTo5MyZuYnNwOyB0eHF1ZXVlbGVuIDEwMDAm
-bmJzcDsgKEV0aGVybmV0KTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRh
-bmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFJYIHBhY2tldHMgMTE3OSZuYnNwOyBi
-eXRlcyAxMjkzNjAzICgxLjIgTUIpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj4mbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgUlggZXJyb3JzIDAmbmJzcDsg
-ZHJvcHBlZCAwJm5ic3A7IG92ZXJydW5zIDAmbmJzcDsgZnJhbWUgMDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1s
-YW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-IFRYIHBhY2tldHMgNzU3Jm5ic3A7IGJ5dGVzIDc5MjYwICg3OS4yIEtCKTxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFz
-dC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7IFRYIGVycm9ycyAwJm5ic3A7IGRyb3BwZWQgMCBvdmVycnVucyAwJm5ic3A7IGNhcnJpZXIg
-MCZuYnNwOyBjb2xsaXNpb25zIDA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtW
-ZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1z
-ZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+bG86IGZsYWdzPTczJmx0O1VQLExPT1BC
-QUNLLFJVTk5JTkcmZ3Q7Jm5ic3A7IG10dSA2NTUzNjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpF
-Ti1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IGluZXQgMTI3
-LjAuMC4xJm5ic3A7IG5ldG1hc2sgMjU1LjAuMC4wPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVO
-LVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgaW5ldDYgOjox
-Jm5ic3A7IHByZWZpeGxlbiAxMjgmbmJzcDsgc2NvcGVpZCAweDEwJmx0O2hvc3QmZ3Q7PG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21z
-by1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsgbG9vcCZuYnNwOyB0eHF1ZXVlbGVuIDEwMDAmbmJzcDsgKExvY2FsIExvb3Bi
-YWNrKTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fu
-cy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFJYIHBhY2tldHMgMjUwJm5ic3A7IGJ5dGVzIDIyMDc0ICgy
-Mi4wIEtCKTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDss
-c2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFJYIGVycm9ycyAwJm5ic3A7IGRyb3BwZWQgMCZuYnNw
-OyBvdmVycnVucyAwJm5ic3A7IGZyYW1lIDA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTom
-cXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
-PiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBUWCBwYWNrZXRzIDI1
-MCZuYnNwOyBieXRlcyAyMjA3NCAoMjIuMCBLQik8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWls
-eTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPiZuYnNwOyAmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDtUWCBlcnJvcnMg
-MCZuYnNwOyBkcm9wcGVkIDAgb3ZlcnJ1bnMgMCZuYnNwOyBjYXJyaWVyIDAmbmJzcDsgY29sbGlz
-aW9ucyAwPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90Oyxz
-YW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
-LjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7YmFja2dyb3Vu
-ZDp5ZWxsb3c7bXNvLWhpZ2hsaWdodDp5ZWxsb3c7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
-PkFwcGFyZW50bHksIHRoZSBWaXJ0dWFsYm94IGlzIG5vdCByZWNvZ25pemluZyB0aGUgRXR0dXMg
-TjMyMCE8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2Vy
-aWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssc2Fucy1zZXJpZjttc28tZmFyZWFzdC1sYW5n
-dWFnZTpFTi1VUyI+TG9va2luZyBmb3J3YXJkIHRvIHlvdXIga2luZCBhZHZpY2UuPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OyxzYW5zLXNlcmlmO21zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWls
-eTomcXVvdDtWZXJkYW5hJnF1b3Q7LHNhbnMtc2VyaWY7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPlJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZx
-dW90OyxzYW5zLXNlcmlmO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5UaGFuZ2FyYWo8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWYiPlZvbjo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IG1hcmt1cy5mcmV1bmRAZXRpdC50
-dS1jaGVtbml0ei5kZSAmbHQ7bWFya3VzLmZyZXVuZEBldGl0LnR1LWNoZW1uaXR6LmRlJmd0Ow0K
-PGJyPg0KPGI+R2VzZW5kZXQ6PC9iPiBGcmVpdGFnLCAyNC4gU2VwdGVtYmVyIDIwMjEgMDc6NDc8
-YnI+DQo8Yj5Bbjo8L2I+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+QmV0cmVm
-Zjo8L2I+IFtVU1JQLXVzZXJzXSBSZTogSGVscF9GYWlsZWQgdG8gYnVpbGQgVUhEIGluIFVidW50
-dSAyMC4wNDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPHAgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5IZWxsbyBU
-aGFuZ2FyYWosPG86cD48L286cD48L3A+DQo8cD55b3UgbmVlZCB0byBjaGVjayB0aGUmbmJzcDsg
-SVAtQWRkcmVzcyBvZiB0aGUgdmlydHVhbCBtYWNoaW5lLiBUaGVyZeKAmXMgdHdvIGRpZmZlcmVu
-dCBhZGRyZXNzZXMgZm9yIGVhY2ggU0ZQIG9uIHRoZSBVU1JQIGRldmljZS4gVGhleSBhcmUgZGVw
-ZW5kaW5nIG9uIGJvdGggdGhlIHBvcnQgYW5kIHRoZSBzcGVlZC4gT24gbWluZSAoWDMxMCkgdGhl
-eSBhcmUgMTkyLjE2OC4xMC4yIGZvciB0aGUgMUdCaXQvcyBhbmQgMTkyLjE2OC4zMC4yIG9yIDE5
-Mi4xNjguNDAuMi4NCiAmbmJzcDtJIGd1ZXNzIGl0IGlzIHRoZSBzYW1lIHdpdGggeW91cnMuIFlv
-dSBjYW4gZmlyc3QgdHJ5IHRvIHBpbmcgdGhlIGRldmljZSBib3RoIG9uIHRoZSBob3N0IGFuZCB0
-aGUgVk0uPG86cD48L286cD48L3A+DQo8cD4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwPkJlc3Qg
-TWFya3VzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+Please read:
 
---_000_f033c3497b9948beb010df9452c3184akomronet_--
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Probe=
+_the_USRP
 
---===============8474265405871651563==
+
+
+--------------A773EC2839F519647158356B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2021-09-24 5:06 a.m., Thangaraj
+      Mukara Dhakshinamoorthy wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:f033c3497b9948beb010df9452c3184a@komro.net">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}p.msonormal0, li.msonormal0, div.ms=
+onormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}span.E-MailFormatvorlage19
+	{mso-style-type:personal-reply;
+	font-family:"Verdana",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Hallo
+            Markus,<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">The
+            VM is not recognizing the Ettus N320, but the windows host
+            can see and ping successfully!<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><b><u><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">In
+                Windows Host OS:<o:p></o:p></span></u></b></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">C:\Program
+            Files\UHD\bin&gt;ipconfig</span><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Windows-IP-Konfiguration<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Unbekannter
+            Adapter Management:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Verbindungsspezifisches DNS-Suffix:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            IPv4-Adresse=C2=A0 . . . . . . . . . . : 10.2.35.84<o:p></o:p=
+></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.255.255<o:p>=
+</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Standardgateway . . . . . . . . . :<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Ethernet-Adapter
+            Ethernet:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Verbindungsspezifisches DNS-Suffix: fritz.box<o:p></o:p></spa=
+n></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Verbindungslokale IPv6-Adresse=C2=A0 . :
+            fe80::e868:6c6:349a:434e%14<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            IPv4-Adresse=C2=A0 . . . . . . . . . . : 192.168.178.43<o:p><=
+/o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.255.0<o:p></=
+o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Standardgateway . . . . . . . . . : 192.168.178.1<o:p></o:p><=
+/span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Ethernet-Adapter
+            VirtualBox Host-Only Network:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Verbindungsspezifisches DNS-Suffix:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Verbindungslokale IPv6-Adresse=C2=A0 . :
+            fe80::68b9:4e91:4875:8e30%9<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            IPv4-Adresse=C2=A0 . . . . . . . . . . : 192.168.56.1<o:p></o=
+:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.255.0<o:p></=
+o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0
+            Standardgateway . . . . . . . . . :<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">Ethernet-A=
+dapter
+            Ethernet 2:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US"><o:p>=C2=A0=
+</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">=C2=A0=C2=A0
+            Verbindungsspezifisches DNS-Suffix:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">=C2=A0=C2=A0
+            Verbindungslokale IPv6-Adresse=C2=A0 . :
+            fe80::ec39:375b:1411:4ebb%4<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">=C2=A0=C2=A0
+            IPv4-Adresse (Auto. Konfiguration):
+            <b>169.254.78.187</b><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">=C2=A0=C2=A0
+            Subnetzmaske=C2=A0 . . . . . . . . . . : 255.255.0.0<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">=C2=A0=C2=A0
+            Standardgateway . . . . . . . . . :</span><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">C:\Program
+            Files\UHD\bin&gt;ping 169.254.78.187</span><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Ping
+            wird ausgef=C3=BChrt f=C3=BCr 169.254.78.187 mit 32 Bytes Dat=
+en:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Antwort
+            von 169.254.78.187: Bytes=3D32 Zeit&lt;1ms TTL=3D128<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Antwort
+            von 169.254.78.187: Bytes=3D32 Zeit&lt;1ms TTL=3D128<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Antwort
+            von 169.254.78.187: Bytes=3D32 Zeit&lt;1ms TTL=3D128<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Antwort
+            von 169.254.78.187: Bytes=3D32 Zeit&lt;1ms TTL=3D128<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Ping-Statistik
+            f=C3=BCr 169.254.78.187:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0
+            Pakete: Gesendet =3D 4, Empfangen =3D 4, Verloren =3D 0<o:p><=
+/o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0
+            (0% Verlust),<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Ca.
+            Zeitangaben in Millisek.:<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0
+            Minimum =3D 0ms, Maximum =3D 0ms, Mittelwert =3D 0ms<o:p></o:=
+p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">C:\Program
+            Files\UHD\bin&gt;uhd_find_devices.exe</span><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">[INFO]
+            [UHD] Win32; Microsoft Visual C++ version 14.1;
+            Boost_107000; UHD_4.1.0.1-release<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">[ERROR]
+            [X300] X300 Network discovery error receive_from: Eine
+            vorhandene Verbindung wurde vom Remotehost geschlossen<o:p></=
+o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">[ERROR]
+            [UHD] Device discovery error: receive_from: Eine vorhandene
+            Verbindung wurde vom Remotehost geschlossen<o:p></o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">[ERROR]
+            [UHD] Device discovery error: receive_from: Eine vorhandene
+            Verbindung wurde vom Remotehost geschlossen<o:p></o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">No
+            UHD Devices Found<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">[ERROR]
+            [UHD] Device discovery error: receive_from: Eine vorhandene
+            Verbindung wurde vom Remotehost geschlossen<o:p></o:p></span>=
+</p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">C:\Program
+            Files\UHD\bin&gt;uhd_usrp_probe.exe</span><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">[INFO]
+            [UHD] Win32; Microsoft Visual C++ version 14.1;
+            Boost_107000; UHD_4.1.0.1-release<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Error:
+            LookupError: KeyError: No devices found for -----&gt;<o:p></o=
+:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Empty
+            Device Address<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><b><u><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">In
+                Virtualbox Ubuntu Guest OS:<o:p></o:p></span></u></b></p>
+        <p class=3D"MsoNormal"><b><u><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p><span
+                    style=3D"text-decoration:none">=C2=A0</span></o:p></s=
+pan></u></b></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">thangz@tha=
+ngz-VirtualBox:~/Desktop$
+            ifconfig</span><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">enp0s3:
+            flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;=C2=A0 mtu =
+1500<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            inet 10.0.2.15=C2=A0 netmask 255.255.255.0=C2=A0 broadcast 10=
+.0.2.255<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            inet6 fe80::99d7:4c84:8bab:2aff=C2=A0 prefixlen 64=C2=A0 scop=
+eid
+            0x20&lt;link&gt;<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            ether 08:00:27:89:05:93=C2=A0 txqueuelen 1000=C2=A0 (Ethernet=
+)<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            RX packets 1179=C2=A0 bytes 1293603 (1.2 MB)<o:p></o:p></span=
+></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            RX errors 0=C2=A0 dropped 0=C2=A0 overruns 0=C2=A0 frame 0<o:=
+p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            TX packets 757=C2=A0 bytes 79260 (79.2 KB)<o:p></o:p></span><=
+/p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            TX errors 0=C2=A0 dropped 0 overruns 0=C2=A0 carrier 0=C2=A0 =
+collisions 0<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">lo:
+            flags=3D73&lt;UP,LOOPBACK,RUNNING&gt;=C2=A0 mtu 65536<o:p></o=
+:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            inet 127.0.0.1=C2=A0 netmask 255.0.0.0<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            inet6 ::1=C2=A0 prefixlen 128=C2=A0 scopeid 0x10&lt;host&gt;<=
+o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            loop=C2=A0 txqueuelen 1000=C2=A0 (Local Loopback)<o:p></o:p><=
+/span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            RX packets 250=C2=A0 bytes 22074 (22.0 KB)<o:p></o:p></span><=
+/p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            RX errors 0=C2=A0 dropped 0=C2=A0 overruns 0=C2=A0 frame 0<o:=
+p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+            TX packets 250=C2=A0 bytes 22074 (22.0 KB)<o:p></o:p></span><=
+/p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">=C2=A0
+            =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0TX errors 0=C2=A0 dropped=
+ 0 overruns 0=C2=A0 carrier 0=C2=A0
+            collisions 0<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
+ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US">Apparently=
+,
+            the Virtualbox is not recognizing the Ettus N320!</span><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Looking
+            forward to your kind advice.<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Regards,<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
+fareast-language:EN-US">Thangaraj<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><b><span
+              style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,s=
+ans-serif">Von:</span></b><span
+style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">
+            <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:markus.f=
+reund@etit.tu-chemnitz.de">markus.freund@etit.tu-chemnitz.de</a>
+            <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:markus.freu=
+nd@etit.tu-chemnitz.de">&lt;markus.freund@etit.tu-chemnitz.de&gt;</a>
+            <br>
+            <b>Gesendet:</b> Freitag, 24. September 2021 07:47<br>
+            <b>An:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"mail=
+to:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+            <b>Betreff:</b> [USRP-users] Re: Help_Failed to build UHD in
+            Ubuntu 20.04<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p style=3D"margin-bottom:12.0pt">Hello Thangaraj,<o:p></o:p></p>
+        <p>you need to check the=C2=A0 IP-Address of the virtual machine.
+          There=E2=80=99s two different addresses for each SFP on the USR=
+P
+          device. They are depending on both the port and the speed. On
+          mine (X310) they are 192.168.10.2 for the 1GBit/s and
+          192.168.30.2 or 192.168.40.2. =C2=A0I guess it is the same with
+          yours. You can first try to ping the device both on the host
+          and the VM.<o:p></o:p></p>
+        <p>=C2=A0<o:p></o:p></p>
+        <p>Best Markus<o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    Your PING example is pinging the IP address of the host, NOT the
+    USRP N320.=C2=A0 This will always succeed.<br>
+    <br>
+    You'll need to change the IP address of that network interface to
+    192.168.10.1, so that it is on the same subnet as the USRP N320
+    default address for the SFP0 port<br>
+    =C2=A0 of 192.168.10.2.<br>
+    <br>
+    Please read:<br>
+    <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/USRP_N300=
+/N310/N320/N321_Getting_Started_Guide#Probe_the_USRP">https://kb.ettus.co=
+m/USRP_N300/N310/N320/N321_Getting_Started_Guide#Probe_the_USRP</a><br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------A773EC2839F519647158356B--
+
+--===============1441235587551994395==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -567,4 +836,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8474265405871651563==--
+--===============1441235587551994395==--
