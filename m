@@ -2,226 +2,135 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019784198CC
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Sep 2021 18:21:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4696419E36
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Sep 2021 20:26:26 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AC361383C0B
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Sep 2021 12:21:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 89BF03840A5
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Sep 2021 14:26:25 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IZIiQi0S";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="mysXEntV";
 	dkim-atps=neutral
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id B64C638005C
-	for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 12:20:56 -0400 (EDT)
-Received: by mail-qk1-f174.google.com with SMTP id 72so37245190qkk.7
-        for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 09:20:56 -0700 (PDT)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id AA97C380928
+	for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 14:25:35 -0400 (EDT)
+Received: by mail-ed1-f51.google.com with SMTP id o23so918565edt.12
+        for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 11:25:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=0OowL0+sqJwPczzgszCEKGs3X5ffTktd6y2CqtYFbwg=;
-        b=IZIiQi0SomQ6C58EVqwZpR4sMPlAXQANvzz3cuyOTjxbrrfnimzAcRRPLNLOudhQMu
-         qjBAN9Oj/Mk3OQxdHhozlfWfOKSEqTXs9SPh6oR00ZsZebXkHB9JugJxH0ZokT242PQ8
-         pvEPgu8mMcAJ0B2WWM97ngB85VGGrTm04X20kp1clIauFQE4dmDrMNvp079sEP8+YuqB
-         dRtphlnL89uTvxgt2/qOfj+CTx978Qn1N3pm25TL7tEMMVjGcUYrO/rM5PoEvvSMbzN8
-         ygqabELqw7T5UM+/OVJe3iq5SE1+5gfrOg8wzcGGp4YOl0txMLaIZw7YuUQoYFNVoV2g
-         v/VQ==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=/i8DIjdy70/XPAZ/l9VjI8adjKpytIFl0AtvDYF4BGo=;
+        b=mysXEntV34ItYCLpt3tKYfYNBnADVkKcaBWmWniQbhAu8bYzjMuchAPL2RwYtzFCmS
+         +ED2O56Tgdm7v+ObapuFW4ZMnpLI1hYJTludNZkpkSaENDELQu8xDwpoi6KkxMJDDQlr
+         IKdO47k7QkZ5D5/vvbEDeOiKCOmZcOJDcxDk8CEm5Eh9t4LuygA+keTb9JPngykGYKre
+         jucrtcNf4QjET0YX9VTX8K+sW0Xr6ke5UdhmmTKhJ5CIGx7mLX0qIvx3SbD6lA9W+5JO
+         Pw/5CUWlEoCOrWurV0asy0qCbYF7Bqtd2KA2zrpGptvaZl1+T+xy+SpDjrgLOeml2UiS
+         VotA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=0OowL0+sqJwPczzgszCEKGs3X5ffTktd6y2CqtYFbwg=;
-        b=UsNExEgEZ2myNTn3gw2rukiudJlcL8zPLnAPc+NyYidA0FoFoii5fH190EWyQfIMCr
-         pInhWrUeGaH6tNlL/Sc9llzess4iPZK2uRUC9F/Q5zqciVyEJWndtxs3DXP0pdAOKNty
-         Pcf38KlzOAtO1qJSzPYQ1LlcGLDkd1zVx/dEw4lJKJrJIAxz2KEYYUvMRjaWSZgVa2v5
-         yqbSBBH1e4lzwCwBqIQZv9q0SAYJ7CKUzhjomKJvKkHchRzfufowZjiWzRkOsvLetuXM
-         YqJ6sT3SemluAvaHSUcVo+ki+EcldWOiBEndYqTFOnxZ4Ah2shTQWexUMXa+NzRZuEw4
-         +Ogg==
-X-Gm-Message-State: AOAM5336UCEX55+BcDNhZ/QYIQSMzXVKQpzjKjOIm7TMBAXEA1VKJ2no
-	JnAFzw5o1wFw8vaxnRE/UmS8qAS/Gv5fuA==
-X-Google-Smtp-Source: ABdhPJwUU33oe16fiE5pZTZLMlSuiMEGmO8l+Zzta8/FYs6/wo9WPtMj+UFgU1C6rpkC/awu9QlkOQ==
-X-Received: by 2002:a37:a193:: with SMTP id k141mr727790qke.447.1632759655916;
-        Mon, 27 Sep 2021 09:20:55 -0700 (PDT)
-Received: from [192.168.2.244] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id 18sm3629337qtz.49.2021.09.27.09.20.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Sep 2021 09:20:55 -0700 (PDT)
-To: Thangaraj Mukara Dhakshinamoorthy <thangaraj@komro.net>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <yvihFszum0xbmZ1alvfvUJLHqDePaIDR6hXw7IPGiw@lists.ettus.com>
- <f033c3497b9948beb010df9452c3184a@komro.net>
- <b6ffe3ea-cc05-a9e0-482a-62c4ef7983e6@gmail.com>
- <1ee6a256cd214bb89085fcd4c3b9c381@komro.net>
- <dc64e705-7b7d-b438-3ee2-5535ce894024@gmail.com>
- <0c75bc58ab4f4970ab0176313c206451@komro.net>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <1674928c-2eb1-d8da-3496-72b7bc45cadc@gmail.com>
-Date: Mon, 27 Sep 2021 12:20:54 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=/i8DIjdy70/XPAZ/l9VjI8adjKpytIFl0AtvDYF4BGo=;
+        b=Vroa8LyQF0l8EvAyvfED2z//AeLmyJnwe5b2n1kaZUa+9aCn2QtqlMG5FlYK7X9H/6
+         PxYdlLt6kqTZ3JLqHjV84krU7h5vULQtiYIVAGnM8KBAQL3uthe84fK1Qvi5GsB8L6Zd
+         26PSjtosdL6PEwE1kYrkUUe21gTIOM0S4U1xU8HXvbO0xtBmaNtq4YkkQCCOKAxzHnNA
+         owR96V7k8UdBfemltsOutbCVnw46at0jEglge29bcdXpl+iri2U98pU27K41aN93POEr
+         ZVib4GfBiXf1ENXcC1qPlrV74oUFEHQOR4v8291S+Dod2h/M5uekMWci5OR+XPWq1LyC
+         dyig==
+X-Gm-Message-State: AOAM531xRF74lqPTjx4433Vkvv0S+Lr7IIjkplL/7a0wj2NThApMUrM4
+	enztFmvcoQIZ1YG+L9XORgIAldE9I7OD2UFQZRQOXMaomgwqCdV8
+X-Google-Smtp-Source: ABdhPJzw+TVQ2laymuhjQST4vVV5IO8dmgxcSBKUXWzNnQMslr9TVIhEG1tiHuu5DSaM31R6wVO82ByPFRqZhs0OISk=
+X-Received: by 2002:a50:d8ce:: with SMTP id y14mr1858710edj.92.1632767134577;
+ Mon, 27 Sep 2021 11:25:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <0c75bc58ab4f4970ab0176313c206451@komro.net>
-Content-Language: en-US
-Message-ID-Hash: U47U72GCC2M7P5VUSZFSXK66AOWJNHVR
-X-Message-ID-Hash: U47U72GCC2M7P5VUSZFSXK66AOWJNHVR
-X-MailFrom: patchvonbraun@gmail.com
+From: Aaron Rossetto <aaron.rossetto@ettus.com>
+Date: Mon, 27 Sep 2021 13:25:23 -0500
+Message-ID: <CAAg5+MwOdjZNwxjrm+K9aTpUdkPj1t1GUD5JQuJeoRA-qazG8Q@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: JL2IHCCNSL65YI7E67RLTOMJFIBYDHR6
+X-Message-ID-Hash: JL2IHCCNSL65YI7E67RLTOMJFIBYDHR6
+X-MailFrom: aaron.rossetto@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Help_Failed to build UHD in Ubuntu 20.04
+Subject: [USRP-users] UHD 4.1.0.2 and 4.1.0.3 released!
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/U47U72GCC2M7P5VUSZFSXK66AOWJNHVR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JL2IHCCNSL65YI7E67RLTOMJFIBYDHR6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6229905848816019415=="
+Content-Type: multipart/mixed; boundary="===============0325706522991641824=="
 
-This is a multi-part message in MIME format.
---===============6229905848816019415==
-Content-Type: multipart/alternative;
- boundary="------------A7DFB764EC20A38DD4697CB2"
-Content-Language: en-US
+--===============0325706522991641824==
+Content-Type: multipart/alternative; boundary="0000000000000ec52405ccfe395c"
 
-This is a multi-part message in MIME format.
---------------A7DFB764EC20A38DD4697CB2
-Content-Type: text/plain; charset=utf-8; format=flowed
+--0000000000000ec52405ccfe395c
+Content-Type: text/plain; charset="UTF-8"
+
+Hello USRP community,
+
+In all the excitement of attending and presenting at last week's GNU Radio
+Conference 2021, I neglected to send out the announcement for these two
+releases. These releases have some late-breaking bugfixes for the NI Ettus
+USRP X410, USRP B2xx, and a few other friends/issues we met along the way.
+
+UHD 4.1.0.3 Release
+ * uhd
+   - zbx: Prevent TX antenna config from disrupting RX
+
+UHD 4.1.0.2 Release
+ * b200
+   - Fix overflow handling
+ * fpga
+   - Re-order error and data packets
+   - Fix sc16 to sc12 converter
+ * host
+   - Add static_assert to prevent meta_range_t(0,0)
+ * mpm
+   - x4xx: update mboard_max_rev
+ * mpmd
+   - Add discoverable feature for trig i/o mode
+ * sim
+   - Update chdr_16sc_to_sc12 testbench
+ * tests
+   - Add recv(0) case to rx_streamer_test
+ * uhd
+   - transport: Avoid exceptions in disconnect_receiver()
+   - streamer: Restore original recv(0) semantics
+ * x4xx_bist
+   - use get_mpm_client in gpio bist
+
+With very best regards,
+Aaron
+
+--0000000000000ec52405ccfe395c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2021-09-27 11:18 a.m., Thangaraj Mukara Dhakshinamoorthy wrote:
->
-> Hallo Marcus,
->
-> Unfortunately, no change, it doesn=E2=80=99t work either!
->
->
-The consensus inside NI/Ettus is that you'll have to upgrade your N320=20
-to match your host.
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,sa=
+ns-serif">Hello USRP community,<br><br>In all the excitement of attending a=
+nd presenting at last week&#39;s GNU Radio Conference 2021, I neglected to =
+send out the announcement for these two releases. These releases have some =
+late-breaking bugfixes for the NI Ettus USRP X410, USRP B2xx, and a few oth=
+er friends/issues we met along the way.<br><br>UHD 4.1.0.3 Release<br>=C2=
+=A0* uhd<br>=C2=A0 =C2=A0- zbx: Prevent TX antenna config from disrupting R=
+X<br><br>UHD 4.1.0.2 Release<br>=C2=A0* b200<br>=C2=A0 =C2=A0- Fix overflow=
+ handling<br>=C2=A0* fpga<br>=C2=A0 =C2=A0- Re-order error and data packets=
+<br>=C2=A0 =C2=A0- Fix sc16 to sc12 converter<br>=C2=A0* host<br>=C2=A0 =C2=
+=A0- Add static_assert to prevent meta_range_t(0,0)<br>=C2=A0* mpm<br>=C2=
+=A0 =C2=A0- x4xx: update mboard_max_rev<br>=C2=A0* mpmd<br>=C2=A0 =C2=A0- A=
+dd discoverable feature for trig i/o mode<br>=C2=A0* sim<br>=C2=A0 =C2=A0- =
+Update chdr_16sc_to_sc12 testbench<br>=C2=A0* tests<br>=C2=A0 =C2=A0- Add r=
+ecv(0) case to rx_streamer_test<br>=C2=A0* uhd<br>=C2=A0 =C2=A0- transport:=
+ Avoid exceptions in disconnect_receiver()<br>=C2=A0 =C2=A0- streamer: Rest=
+ore original recv(0) semantics<br>=C2=A0* x4xx_bist<br>=C2=A0 =C2=A0- use g=
+et_mpm_client in gpio bist<br><br>With very best regards,<br>Aaron</div></d=
+iv>
 
-This might be the most straightforward approach:
+--0000000000000ec52405ccfe395c--
 
-https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card
-
-
-
---------------A7DFB764EC20A38DD4697CB2
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2021-09-27 11:18 a.m., Thangaraj
-      Mukara Dhakshinamoorthy wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:0c75bc58ab4f4970ab0176313c206451@komro.net">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Vorformatiert Zchn";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}span.HTMLVorformatiertZchn
-	{mso-style-name:"HTML Vorformatiert Zchn";
-	mso-style-priority:99;
-	mso-style-link:"HTML Vorformatiert";
-	font-family:Consolas;}span.E-MailFormatvorlage21
-	{mso-style-type:personal;
-	font-family:"Verdana",sans-serif;
-	color:windowtext;}span.E-MailFormatvorlage22
-	{mso-style-type:personal;
-	font-family:"Verdana",sans-serif;
-	color:windowtext;}span.E-MailFormatvorlage23
-	{mso-style-type:personal-reply;
-	font-family:"Verdana",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
-fareast-language:EN-US">Hallo
-            Marcus,<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
-fareast-language:EN-US"><o:p>=C2=A0</o:p></span></p>
-        <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;mso-=
-fareast-language:EN-US">Unfortunately,
-            no change, it doesn=E2=80=99t work either!<o:p></o:p></span><=
-/p>
-        <p class=3D"MsoNormal"><span
-style=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif;back=
-ground:yellow;mso-highlight:yellow;mso-fareast-language:EN-US"><o:p>=C2=A0=
-</o:p></span></p>
-        <br>
-      </div>
-    </blockquote>
-    The consensus inside NI/Ettus is that you'll have to upgrade your
-    N320 to match your host.<br>
-    <br>
-    This might be the most straightforward approach:<br>
-    <br>
-<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/Writing_t=
-he_USRP_File_System_Disk_Image_to_a_SD_Card">https://kb.ettus.com/Writing=
-_the_USRP_File_System_Disk_Image_to_a_SD_Card</a><br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------A7DFB764EC20A38DD4697CB2--
-
---===============6229905848816019415==
+--===============0325706522991641824==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -231,4 +140,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6229905848816019415==--
+--===============0325706522991641824==--
