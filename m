@@ -2,64 +2,64 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E71541A49D
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Sep 2021 03:32:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD1641A513
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Sep 2021 04:03:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A164038458B
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Sep 2021 21:32:26 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5D80A38446A
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Sep 2021 22:03:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OGvhE5TA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BkykvLfS";
 	dkim-atps=neutral
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 78DB7384122
-	for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 21:31:43 -0400 (EDT)
-Received: by mail-qt1-f176.google.com with SMTP id f15so5643621qtv.9
-        for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 18:31:43 -0700 (PDT)
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id D44C8383BD2
+	for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 22:03:06 -0400 (EDT)
+Received: by mail-qv1-f52.google.com with SMTP id x9so6314492qvn.12
+        for <usrp-users@lists.ettus.com>; Mon, 27 Sep 2021 19:03:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=HPK+7b6YbB29YgLiWNEEkcM5IcN2oq4On+uR8TcPeVM=;
-        b=OGvhE5TAuR+JP46j88GySqVNSqvpP9BehvGJBK1y0kLcc7vfb3yV23OWN5qlmymR7F
-         9UIMs6UnRfDYKMCjJR8fv6M4GVJzOqZE7bSA4gnv4TA8GnS8vNLZA82kTAi1aZpWOycd
-         nZHbXFPr2/GMFeIWL7zgw5Nt1XNDrX0r860j9JcZTmcOHLiIC+43fbjHePmH6Q3ZZG8+
-         KiIEzotOobDLqDQ66uN9/cuGNDrSm1ViD/6Q+63Srf9m74LtVvLTnmCUxjE8hkzMXw8D
-         F73i2Jbsxm3EtT92DDLpKuSfzJTmdAk5fHEqdHI6KSRqIRyZVR7O7Icwmrmd3tZ52hhF
-         qFSQ==
+        bh=07Y6pdYiLpeWO9HNOVlF30ALzaiNJ4W69DizlkByypY=;
+        b=BkykvLfSkgW5NgRnlC+ZAh4XYnLqSZAJDv1YzEAQSc49yY9DaBDV31UgJpRsF8Gytx
+         lO+xqCpAiqK04Y112dfHJzwJDF+rumu4ST0aI7XgGElXZha5V/H+PmrmvG0NBS5ygTN5
+         /GA/dUOAZUFu48PIN0RyvbOBurXeyN4Ld2RyiKnb0xtuBmBOnosL/yQNQulKfbSaYFys
+         HobLGOHsjux9TQcPxWHWQGZXBv5KcTumLT8/yZepsya5+SkT9d/SU9u41gYEur+fAXIb
+         x+vtWdXxTv5kxUxjgTQe2mxu0NxYRNFjpwYVdI1PcN4UgMBT0UEZlOtrczdjXnSrUH3k
+         ICYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language;
-        bh=HPK+7b6YbB29YgLiWNEEkcM5IcN2oq4On+uR8TcPeVM=;
-        b=ib04yJjTXcN7TvFwtHqanf1Sc4oQYmKQB/Xb+fyswDRRDCFW8BRjY6h95fJTNxk9dF
-         tfIh85XqD8dnqqyANqgpRZbeiOp3iPzPJyXvCVUcBPSaIQUQrwCVcPnTDddGM0coYOTS
-         NlwHfWoT+O57xfzhStZ7X2Lu1Ugzc+FrhlXtsHjxsP45kFnhXa7YOpwq/H8b51FOAWwz
-         F3OqCJDmxHGYxo7MV9H4sWoz7NQKnHywHT/MqRptzlQHJYTPNaT8/g7DrBnI+cz7e87f
-         CcNls0L7C8JLyAsdCOr0lNHxA5lNoBdFrts6SfCHeZgfx48kEN0Dsc+OrWasbdS0bNhd
-         Sq1A==
-X-Gm-Message-State: AOAM530g9fhbtHW7fQw7r1u//eB8IgSN87Rj5k18dJF8ZnzTXhpyoZhK
-	ffPIMVjtEA6RavIwDoZ3PlQT8dTn933skQ==
-X-Google-Smtp-Source: ABdhPJxHp0Q4h2i+IjN4f2bqfcVrQFaYV58BDybBVi/y10BhBgvvnvTMm4qS3bVDoPelSNowYE34lg==
-X-Received: by 2002:ac8:13c5:: with SMTP id i5mr3029060qtj.68.1632792702504;
-        Mon, 27 Sep 2021 18:31:42 -0700 (PDT)
+        bh=07Y6pdYiLpeWO9HNOVlF30ALzaiNJ4W69DizlkByypY=;
+        b=x3lAuhFmZVLoAl+lJDDPCkx0G5Ddgfv3FyG6EFjySc+QiTafqo66xY32I8Z+SbzkL4
+         7ywljPj/wngXjSo/l/NCF7Dkyc5BcPM+GJzf12Ly/8rr9oUqVL+maqaYEzTgWjvmiSkS
+         KMbfNOOQl4jgEB12fqpR4e8FMGnTRy3jBataoLdXm1cgPry2SBEH+ONmnQoDJuSSmDa8
+         Z1smIb9q664ch1o1qsVPgc9ENGrYpCBPkPALw3GB7PULiFzYYlKCS7iqW1ORSk9n+8BH
+         Ja9pLzDkVmhhLJ/4qu3YZpXYntNTFX+grWwnlTKZYGJitc2W0VwBGolNMlPhvjfnXgW4
+         KO6Q==
+X-Gm-Message-State: AOAM531ah3M8wplMviDDs+wE75C4KAe+LsMdMyd9QCc0HFE18usRHPpJ
+	CGl+MfQiI0kmN9KCb7CjUyQR5xg2mFI6eQ==
+X-Google-Smtp-Source: ABdhPJx3CV1rvNHDQXDgRdiZjJJ5pel96csY3nQvXU4ZADidiHJJngMjBQ+7a+ICDRvJtJfQUaeV6g==
+X-Received: by 2002:a0c:aa15:: with SMTP id d21mr2993444qvb.18.1632794586036;
+        Mon, 27 Sep 2021 19:03:06 -0700 (PDT)
 Received: from [192.168.2.246] (bras-base-smflon1825w-grc-18-76-67-104-5.dsl.bell.ca. [76.67.104.5])
-        by smtp.googlemail.com with ESMTPSA id f10sm13984536qkp.50.2021.09.27.18.31.41
+        by smtp.googlemail.com with ESMTPSA id m11sm4282441qkh.112.2021.09.27.19.03.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Sep 2021 18:31:42 -0700 (PDT)
+        Mon, 27 Sep 2021 19:03:05 -0700 (PDT)
 To: Tellrell White <t_whit_87@yahoo.com>
 References: <599675072.1235424.1632788672233@mail.yahoo.com>
  <AF84E197-4329-4C6B-A48D-2DDBAE9AE5C9@gmail.com>
  <351392126.1248499.1632790971208@mail.yahoo.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <65d92acd-309a-0f71-f91e-36d495fb9f9f@gmail.com>
-Date: Mon, 27 Sep 2021 21:31:40 -0400
+Message-ID: <fd780300-9771-fab7-e050-aa66bc1aa17f@gmail.com>
+Date: Mon, 27 Sep 2021 22:03:04 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
 In-Reply-To: <351392126.1248499.1632790971208@mail.yahoo.com>
 Content-Language: en-US
-Message-ID-Hash: KC46YNHFOMUWSAEEQA4LGQ3GDDMOKLDY
-X-Message-ID-Hash: KC46YNHFOMUWSAEEQA4LGQ3GDDMOKLDY
+Message-ID-Hash: MQPTJFBGX56K4Q5HBLOSVO6SIHLIGO34
+X-Message-ID-Hash: MQPTJFBGX56K4Q5HBLOSVO6SIHLIGO34
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Usrp-users <usrp-users@lists.ettus.com>
@@ -67,23 +67,23 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Problems cross compiling for N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KC46YNHFOMUWSAEEQA4LGQ3GDDMOKLDY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MQPTJFBGX56K4Q5HBLOSVO6SIHLIGO34/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6776258553933612014=="
+Content-Type: multipart/mixed; boundary="===============7189724959491392339=="
 
 This is a multi-part message in MIME format.
---===============6776258553933612014==
+--===============7189724959491392339==
 Content-Type: multipart/alternative;
- boundary="------------B7BF48F0E26F5F64638E9940"
+ boundary="------------8831B0CA625B5692CAE36777"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------B7BF48F0E26F5F64638E9940
+--------------8831B0CA625B5692CAE36777
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -110,89 +110,14 @@ neon-oe-linux-gnueabi$=20
 > indicated above?
 >
 >
-Use $CC as if it were your compiler command.
-
-$CC -o hello hello.c
-
-What happens then?
-
-
->
->
-> On Monday, September 27, 2021, 8:53:49 PM EDT, Marcus D Leech=20
-> <patchvonbraun@gmail.com> wrote:
->
->
-> Have you confirmed that there=E2=80=99s =E2=80=9Cstuff=E2=80=9D under t=
-he sysyroot that is=20
-> being pointed to in that $CC variable?
->
-> Sent from my iPhone
->
->> On Sep 27, 2021, at 8:26 PM, Tellrell White via USRP-users=20
->> <usrp-users@lists.ettus.com> wrote:
->>
->> =EF=BB=BF
->> I'm trying to cross-compile a simple "hello world" c file on a host=20
->> system running ubuntu 18.04. I installed version=20
->> UHD_4.0.0.HEAD-0-g90ce6062 and I have the same version of UHD running=20
->> on the N310 I'm using. As instructed, I followed the steps under=20
->> "Obtaining an SDK" and "SDK Usage" at the following link
->>
->> https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_software_dev_s=
-dk=20
->> <https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_software_dev_=
-sdk>=20
->> and the command $CC -dumpmachine shows the correct result as shown.
->>
->>
->> apg@apg-virtual-machine:~$ $CC -dumpmachine
->> arm-oe-linux-gnueabi
->>
->> My issue is when i try to compile a simple hello world.c file I get=20
->> the following
->>
->> apg@apg-virtual-machine:~$ arm-oe-linux-gnueabi-gcc hello_world.c
->> hello_world.c:1:10: fatal error: stdio.h: No such file or directory
->> =C2=A0=C2=A0=C2=A0 1 | #include <stdio.h>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 ^~~~~~~~~
->> compilation terminated.
->>
->>
->> Not sure why i'm getting this simple error at the moment but the=20
->> proper env=C2=A0 variables have been set as shown
->>
->> apg@apg-virtual-machine:~$ echo $CC
->> arm-oe-linux-gnueabi-gcc -mthumb -mfpu=3Dneon -mfloat-abi=3Dhard=20
->> -mcpu=3Dcortex-a9=20
->> --sysroot=3D/usr/local/oecore-x86_64/sysroots/cortexa9t2hf-neon-oe-lin=
-ux-gnueabi
->>
->> Perhaps there are some add'l paths that I need to be set ??
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+I just downloaded the SDK myself, and ran the setup script, and used $CC=20
+in place of what I would normally use (to the extent that I even do any=20
+C coding
+ =C2=A0 anymore).=C2=A0 It worked just fine.
 
 
---------------B7BF48F0E26F5F64638E9940
+
+--------------8831B0CA625B5692CAE36777
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -248,207 +173,21 @@ the
           <div><br>
           </div>
         </div>
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
+        <br>
       </div>
     </blockquote>
-    Use $CC as if it were your compiler command.<br>
+    I just downloaded the SDK myself, and ran the setup script, and used
+    $CC in place of what I would normally use (to the extent that I even
+    do any C coding<br>
+    =C2=A0 anymore).=C2=A0 It worked just fine.<br>
     <br>
-    $CC -o hello hello.c<br>
-    <br>
-    What happens then?<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:351392126.1248499.1632790971208@mail.yahoo.com">
-      <div class=3D"ydp2496375yahoo-style-wrap" style=3D"font-family:
-        Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 13px;">
-        <div dir=3D"ltr" data-setdir=3D"false"><br>
-        </div>
-        <div><br>
-        </div>
-      </div>
-      <div id=3D"yahoo_quoted_3316240964" class=3D"yahoo_quoted">
-        <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial,
-          sans-serif;font-size:13px;color:#26282a;">
-          <div> On Monday, September 27, 2021, 8:53:49 PM EDT, Marcus D
-            Leech <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patch=
-vonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> wrote: </div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>
-            <div id=3D"yiv7417892434">
-              <div>Have you confirmed that there=E2=80=99s =E2=80=9Cstuff=
-=E2=80=9D under the
-                sysyroot that is being pointed to in that $CC variable?<b=
-r
-                  clear=3D"none">
-                <br clear=3D"none">
-                <div dir=3D"ltr">Sent from my iPhone</div>
-                <div dir=3D"ltr"><br clear=3D"none">
-                  <blockquote type=3D"cite">On Sep 27, 2021, at 8:26 PM,
-                    Tellrell White via USRP-users
-                    <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:usr=
-p-users@lists.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a> wrote:<br
-                      clear=3D"none">
-                    <br clear=3D"none">
-                  </blockquote>
-                </div>
-                <blockquote type=3D"cite">
-                  <div dir=3D"ltr">=EF=BB=BF
-                    <div class=3D"yiv7417892434yahoo-style-wrap"
-                      style=3D"font-family:Helvetica Neue, Helvetica,
-                      Arial, sans-serif;font-size:13px;">
-                      <div class=3D"yiv7417892434yqt7797519226"
-                        id=3D"yiv7417892434yqt04076">
-                        <div dir=3D"ltr">
-                          <div dir=3D"ltr">I'm trying to cross-compile a
-                            simple "hello world" c file on a host system
-                            running ubuntu 18.04. I installed version <sp=
-an>UHD_4.0.0.HEAD-0-g90ce6062
-                              and I have the same version of UHD running
-                              on the N310 I'm using. As instructed, I
-                              followed the steps under "Obtaining an
-                              SDK" and "SDK Usage" at the following link
-                              <br clear=3D"none">
-                            </span></div>
-                          <div dir=3D"ltr"><span><br clear=3D"none">
-                            </span></div>
-                          <div dir=3D"ltr"><a rel=3D"nofollow noopener
-                              noreferrer" shape=3D"rect" target=3D"_blank=
-"
-href=3D"https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_software_=
-dev_sdk"
-                              moz-do-not-send=3D"true">https://files.ettu=
-s.com/manual/page_usrp_n3xx.html#n3xx_software_dev_sdk</a>
-                            and the command $CC -dumpmachine shows the
-                            correct result as shown. <br clear=3D"none">
-                          </div>
-                          <div dir=3D"ltr"><br clear=3D"none">
-                          </div>
-                          <div dir=3D"ltr"><br clear=3D"none">
-                          </div>
-                          <div dir=3D"ltr">
-                            <div>apg@apg-virtual-machine:~$ $CC
-                              -dumpmachine<br clear=3D"none">
-                              <div>arm-oe-linux-gnueabi</div>
-                              <div><br clear=3D"none">
-                              </div>
-                              <div dir=3D"ltr">
-                                <div>My issue is when i try to compile a
-                                  simple hello world.c file I get the
-                                  following <br clear=3D"none">
-                                </div>
-                                <div><br clear=3D"none">
-                                </div>
-                                <div>apg@apg-virtual-machine:~$
-                                  arm-oe-linux-gnueabi-gcc hello_world.c
-                                  <br clear=3D"none">
-                                  hello_world.c:1:10: fatal error:
-                                  stdio.h: No such file or directory<br
-                                    clear=3D"none">
-                                  =C2=A0=C2=A0=C2=A0 1 | #include &lt;std=
-io.h&gt;<br
-                                    clear=3D"none">
-                                  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~~<br
-                                    clear=3D"none">
-                                  <div>compilation terminated.</div>
-                                  <div><br clear=3D"none">
-                                  </div>
-                                  <div><br clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr">
-                                    <div>Not sure why i'm getting this
-                                      simple error at the moment but the
-                                      proper env=C2=A0 variables have bee=
-n
-                                      set as shown</div>
-                                    <div><br clear=3D"none">
-                                    </div>
-                                    <div>apg@apg-virtual-machine:~$ echo
-                                      $CC<br clear=3D"none">
-                                      <div>arm-oe-linux-gnueabi-gcc
-                                        -mthumb -mfpu=3Dneon
-                                        -mfloat-abi=3Dhard -mcpu=3Dcortex=
--a9
---sysroot=3D/usr/local/oecore-x86_64/sysroots/cortexa9t2hf-neon-oe-linux-=
-gnueabi</div>
-                                      <div><br clear=3D"none">
-                                      </div>
-                                      <div dir=3D"ltr">Perhaps there are
-                                        some add'l paths that I need to
-                                        be set ??<br clear=3D"none">
-                                      </div>
-                                      <br clear=3D"none">
-                                    </div>
-                                  </div>
-                                  <div dir=3D"ltr"><br clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr"><br clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr"><br clear=3D"none">
-                                  </div>
-                                  <div dir=3D"ltr"><br clear=3D"none">
-                                  </div>
-                                  <br clear=3D"none">
-                                </div>
-                                <div><br clear=3D"none">
-                                </div>
-                              </div>
-                              <div dir=3D"ltr"><br clear=3D"none">
-                              </div>
-                              <div dir=3D"ltr"><br clear=3D"none">
-                              </div>
-                              <br clear=3D"none">
-                            </div>
-                            <div><br clear=3D"none">
-                            </div>
-                          </div>
-                          <div dir=3D"ltr"><br clear=3D"none">
-                          </div>
-                          <div dir=3D"ltr"><br clear=3D"none">
-                          </div>
-                          <div><br clear=3D"none">
-                          </div>
-                          <div><br clear=3D"none">
-                          </div>
-                          <div><br clear=3D"none">
-                          </div>
-                          <div dir=3D"ltr"><br clear=3D"none">
-                            <span></span><span></span><span></span></div>
-                        </div>
-                      </div>
-                    </div>
-                    <span>_______________________________________________=
-</span><br
-                      clear=3D"none">
-                    <span>USRP-users mailing list --
-                      <a class=3D"moz-txt-link-abbreviated" href=3D"mailt=
-o:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a></span><br cl=
-ear=3D"none">
-                    <span>To unsubscribe send an email to
-                      <a class=3D"moz-txt-link-abbreviated" href=3D"mailt=
-o:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.com</a><=
-/span><br
-                      clear=3D"none">
-                  </div>
-                </blockquote>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
     <br>
   </body>
 </html>
 
---------------B7BF48F0E26F5F64638E9940--
+--------------8831B0CA625B5692CAE36777--
 
---===============6776258553933612014==
+--===============7189724959491392339==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -458,4 +197,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6776258553933612014==--
+--===============7189724959491392339==--
