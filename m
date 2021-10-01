@@ -2,358 +2,384 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEC3041EB00
-	for <lists+usrp-users@lfdr.de>; Fri,  1 Oct 2021 12:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C22EC41EEC3
+	for <lists+usrp-users@lfdr.de>; Fri,  1 Oct 2021 15:42:37 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4CBE3384704
-	for <lists+usrp-users@lfdr.de>; Fri,  1 Oct 2021 06:33:28 -0400 (EDT)
-Received: from mail2.swro.de (mail2.swro.de [88.133.160.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id 48D1D38427F
-	for <usrp-users@lists.ettus.com>; Fri,  1 Oct 2021 06:32:38 -0400 (EDT)
-IronPort-SDR: UfcEy5P7mdi9lHLDDxhhD82P1OsRQIK+utt3uiASVqi27UnZkISUwgCbSG06ePujFXMG24+rD4
- AyBlCQZnYWUWwYXgscc1r7w3hUW1yLj6GhbN70rfyRbGnr8cwZMLMskIfcfsWv7mwRy17IZirR
- fVrhJTDomqEnTmZqsp8z6RVV6yCW05ZFd6HiXlyk26IRAS2JqMO6lJ2TtpG5N61ouqkFYadY2h
- Eg7m5M1RNC6jH00FK+V4qW8LvJCnSFPxHYIAxcQgNvLsNSf7vgZZulnBFj8wxK5rrZ76W9YWMQ
- grM+4pQ/f4W8F38lrSGtB5Fh
-X-IronPort-AV: E=Sophos;i="5.85,337,1624312800";
-   d="jpg'145?scan'145,208,217,145";a="274341"
-Received: from unknown (HELO mail.office.komro.net) ([10.2.38.40])
-  by mail2.swro.de with ESMTP; 01 Oct 2021 12:32:35 +0200
-Received: from EX01.komro.local (10.2.38.40) by EX01.komro.local (10.2.38.40)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.7; Fri, 1 Oct 2021
- 12:32:35 +0200
-Received: from EX01.komro.local ([fe80::c096:6704:88ee:70e]) by
- EX01.komro.local ([fe80::c096:6704:88ee:70e%4]) with mapi id 15.01.2375.007;
- Fri, 1 Oct 2021 12:32:35 +0200
-From: Thangaraj Mukara Dhakshinamoorthy <thangaraj@komro.net>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: Help_Window Type Error after upgrading GNU Radio v3.10
-Thread-Index: Ade2r5sBnL5xint9TiigGKowgsWx6A==
-Date: Fri, 1 Oct 2021 10:32:35 +0000
-Message-ID: <bbbff2d09aa64a85b4f821610712d80a@komro.net>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.2.35.84]
+	by mm2.emwd.com (Postfix) with ESMTP id B7916384667
+	for <lists+usrp-users@lfdr.de>; Fri,  1 Oct 2021 09:42:36 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="oRjYjydB";
+	dkim-atps=neutral
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1EABD38454B
+	for <usrp-users@lists.ettus.com>; Fri,  1 Oct 2021 09:41:47 -0400 (EDT)
+Received: by mail-ed1-f49.google.com with SMTP id r18so34856481edv.12
+        for <usrp-users@lists.ettus.com>; Fri, 01 Oct 2021 06:41:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ku+6fHtg5MBwjMdlxrOIGTOvMiOSgwFxKDjSH3HZbZs=;
+        b=oRjYjydBn99I1dMh6Jqf9ZjhTCpJuQZYNzP/iG7T1m9wkmsGLEm6PaSt11uxHD6KqR
+         gep9xaJe5CMbk7uxM6x/YEzi/PN4On0TKCnf1rfiFX1zIGLuSZ4ClPC4eKP5WbdKuzbJ
+         o8MQZlaGqxGSeGzcr8TB+7mGr8APf9PpgoZMn13jFJDSYh6pKBJJl7NVmoWTJGKxB9EC
+         P5CJyuDDoEJ9r4RityTiDv3QmOQEkSlVs4oTvllxi1PnvLUZSl/3idhrr6GxnQThnveV
+         qT/J1bcD/hJZdNMnrqN/krq7acaDwYGQzGLcDsk9RrHg7XYr+mQvgdZYD2hTKQ4ElbqN
+         AVDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ku+6fHtg5MBwjMdlxrOIGTOvMiOSgwFxKDjSH3HZbZs=;
+        b=u/WVKH3xqPn8EJ6RcCUGhYhav00Q3jKjMrx3wIrUFq5ZW9Plm93uucc1JWaO4A9brc
+         6bsn7Rd9udLhl1rNyYoQFzIfYIueO9eJ5nasWdvp9q44FWygic0LbIIrZgMk5nA3ncsa
+         5RG09exvpi0PBcQ1dHr9jZUeTw4lJhmgCZJd95WR+Avw/ORr1KpYgV45KZDWx42xnhwT
+         1oznbkkU9HznH9uPibbhMHcE0jWtnC51ztJMwg1Is+4zvUgrPpkRv4hvpO+sIq+DlgtR
+         Cyn6okBgFtJE9mLgeUUfyydzE4BRvOEGSIrmIrtyQCGi0qhLkC5J0vjRI+n8h3MsW/Tv
+         QO2w==
+X-Gm-Message-State: AOAM5303WcpXxY6SghaxJuhK5nJyEwRMTI5hIp0PO+mB0yqT7+2QzWrs
+	m4CdxZckb+b2/qbv2g6C8a151U3cenCL5g17qjJ07X+j
+X-Google-Smtp-Source: ABdhPJxZXhup4gQPXe+ZlMFBRruQRJJm14QRlv/elMIVJ2SNcE1GWM2ErQdVTwp8cl88/qcAMfMVD2gHIIfQJQvw9wU=
+X-Received: by 2002:a17:906:491:: with SMTP id f17mr6254148eja.413.1633095704898;
+ Fri, 01 Oct 2021 06:41:44 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: 427XLTCGFRUHVO4G3E6AFZYXLTDLQL3H
-X-Message-ID-Hash: 427XLTCGFRUHVO4G3E6AFZYXLTDLQL3H
-X-MailFrom: thangaraj@komro.net
+References: <bbbff2d09aa64a85b4f821610712d80a@komro.net>
+In-Reply-To: <bbbff2d09aa64a85b4f821610712d80a@komro.net>
+From: Michael Dickens <michael.dickens@ettus.com>
+Date: Fri, 1 Oct 2021 09:41:33 -0400
+Message-ID: <CAGNhwTNFLjeq1YE-ezJkUb=YdwYtebMQ46NXXM-0D=YTtnAWmw@mail.gmail.com>
+To: Thangaraj Mukara Dhakshinamoorthy <thangaraj@komro.net>
+Message-ID-Hash: Y5IVCGBD7CY5HMIVAR6GQHVD43HVMXUT
+X-Message-ID-Hash: Y5IVCGBD7CY5HMIVAR6GQHVD43HVMXUT
+X-MailFrom: michael.dickens@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Help_Window Type Error after upgrading GNU Radio v3.10
+Subject: [USRP-users] Re: Help_Window Type Error after upgrading GNU Radio v3.10
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/427XLTCGFRUHVO4G3E6AFZYXLTDLQL3H/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y5IVCGBD7CY5HMIVAR6GQHVD43HVMXUT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6044430238645830669=="
+Content-Type: multipart/mixed; boundary="===============2428907859581698148=="
 
---===============6044430238645830669==
-Content-Language: de-DE
-Content-Type: multipart/related;
-	boundary="_004_bbbff2d09aa64a85b4f821610712d80akomronet_";
-	type="multipart/alternative"
+--===============2428907859581698148==
+Content-Type: multipart/related; boundary="000000000000605fb505cd4ab9b5"
 
---_004_bbbff2d09aa64a85b4f821610712d80akomronet_
-Content-Type: multipart/alternative;
-	boundary="_000_bbbff2d09aa64a85b4f821610712d80akomronet_"
+--000000000000605fb505cd4ab9b5
+Content-Type: multipart/alternative; boundary="000000000000605fb305cd4ab9b4"
 
---_000_bbbff2d09aa64a85b4f821610712d80akomronet_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--000000000000605fb305cd4ab9b4
+Content-Type: text/plain; charset="UTF-8"
 
-Hello everyone,
-
-My system config:
-Host OS: Windows 10
-Guest OS: VirtualBox Ubuntu 20.04.3 LTS
-UHD version: 3.15.0.0
-GNU Radio version: 3.10.0.0
-SDR Device : Ettus USRP N320
-
-I have installed the gnuradio v3.10 recently, after the installation I got =
-the below error in a simple QT GUI sink block > Window Type:
-[cid:image003.jpg@01D7B6C0.68A15AA0]
-
-The error is gone if I enter some integer value in the window type menu. Bu=
-t when I tried to build this flowgraph, I am getting the following catch ex=
-ception error:
-
-Console logs:
-
-Generating: '/home/thangz/Desktop/gnuradio/rtlsdr_fm_spectrum_simple.py'
-Generate Error: 'catch_exceptions'
->>> Failure
-Traceback (most recent call last):
-  File "/usr/lib/python3/dist-packages/gnuradio/grc/gui/Application.py", li=
-ne 720, in _handle_action
-    generator.write()
-  File "/usr/lib/python3/dist-packages/gnuradio/grc/core/generator/top_bloc=
-k.py", line 83, in write
-    for filename, data in self._build_python_code_from_template():
-  File "/usr/lib/python3/dist-packages/gnuradio/grc/core/generator/top_bloc=
-k.py", line 123, in _build_python_code_from_template
-    'catch_exceptions': fg.get_option('catch_exceptions')
-  File "/usr/lib/python3/dist-packages/gnuradio/grc/core/FlowGraph.py", lin=
-e 182, in get_option
-    return self.options_block.params[key].get_evaluated()
-KeyError: 'catch_exceptions'
-^CTraceback (most recent call last):
-  File "/usr/bin/gnuradio-companion", line 92, in <module>
-    run_main()
-  File "/usr/bin/gnuradio-companion", line 85, in run_main
-    exit(main())
-  File "/usr/lib/python3/dist-packages/gnuradio/grc/main.py", line 85, in m=
-ain
-    sys.exit(app.run())
-  File "/usr/lib/python3/dist-packages/gi/overrides/Gio.py", line 44, in ru=
-n
-    return Gio.Application.run(self, *args, **kwargs)
-  File "/usr/lib/python3.8/contextlib.py", line 120, in __exit__
-    next(self.gen)
-  File "/usr/lib/python3/dist-packages/gi/_ossighelper.py", line 251, in re=
-gister_sigint_fallback
-    signal.default_int_handler(signal.SIGINT, None)
-KeyboardInterrupt
-
-Is there any fix/solution for this error?
+Hi Thangaraj - 2 responses: (1) your question is a good one for the GNU
+Radio discussion list (
+https://lists.gnu.org/mailman/listinfo/discuss-gnuradio); your query has
+nothing to do with UHD or USRPs that I can see, and hence doesn't seem to
+be relevant here in UHD/ USRP discussion. (2) There is no GR 3.10 release
+yet, but rather this branch is in development & might have significant bugs
+-- maybe like the one you found. I would strongly recommend using the
+latest 3.8 or 3.9 release, since those are current and fairly well tested;
+which one you use is up to you & your application needs. Good luck! - MLD
 
 
-Regard,
-Thangaraj
+On Fri, Oct 1, 2021 at 6:33 AM Thangaraj Mukara Dhakshinamoorthy <
+thangaraj@komro.net> wrote:
 
-
---_000_bbbff2d09aa64a85b4f821610712d80akomronet_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hello everyone,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Verdana",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Hello everyone,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Verdana&quot;,sans-serif">My system config:<o:p></o:p></span></u></b></=
+>
+>
+> *My system config:*
+>
+> Host OS: Windows 10
+>
+> Guest OS: VirtualBox Ubuntu 20.04.3 LTS
+>
+> UHD version: 3.15.0.0
+>
+> GNU Radio version: 3.10.0.0
+>
+> SDR Device : Ettus USRP N320
+>
+>
+>
+> I have installed the gnuradio v3.10 recently, after the installation I got
+> the below error in a simple *QT* *GUI sink block > Window Type:*
+>
+>
+>
+> The error is gone if I enter some integer value in the window type menu.
+> But when I tried to build this flowgraph, I am getting the following *catch
+> exception* error*:*
+>
+>
+>
+> *Console logs:*
+>
+>
+>
+> Generating: '/home/thangz/Desktop/gnuradio/rtlsdr_fm_spectrum_simple.py'
+>
+> Generate Error: 'catch_exceptions'
+>
+> >>> Failure
+>
+> Traceback (most recent call last):
+>
+>   File "/usr/lib/python3/dist-packages/gnuradio/grc/gui/Application.py",
+> line 720, in _handle_action
+>
+>     generator.write()
+>
+>   File
+> "/usr/lib/python3/dist-packages/gnuradio/grc/core/generator/top_block.py",
+> line 83, in write
+>
+>     for filename, data in self._build_python_code_from_template():
+>
+>   File
+> "/usr/lib/python3/dist-packages/gnuradio/grc/core/generator/top_block.py",
+> line 123, in _build_python_code_from_template
+>
+>     'catch_exceptions': fg.get_option('catch_exceptions')
+>
+>   File "/usr/lib/python3/dist-packages/gnuradio/grc/core/FlowGraph.py",
+> line 182, in get_option
+>
+>     return self.options_block.params[key].get_evaluated()
+>
+> KeyError: 'catch_exceptions'
+>
+> ^CTraceback (most recent call last):
+>
+>   File "/usr/bin/gnuradio-companion", line 92, in <module>
+>
+>     run_main()
+>
+>   File "/usr/bin/gnuradio-companion", line 85, in run_main
+>
+>     exit(main())
+>
+>   File "/usr/lib/python3/dist-packages/gnuradio/grc/main.py", line 85, in
+> main
+>
+>     sys.exit(app.run())
+>
+>   File "/usr/lib/python3/dist-packages/gi/overrides/Gio.py", line 44, in
+> run
+>
+>     return Gio.Application.run(self, *args, **kwargs)
+>
+>   File "/usr/lib/python3.8/contextlib.py", line 120, in __exit__
+>
+>     next(self.gen)
+>
+>   File "/usr/lib/python3/dist-packages/gi/_ossighelper.py", line 251, in
+> register_sigint_fallback
+>
+>     signal.default_int_handler(signal.SIGINT, None)
+>
+> KeyboardInterrupt
+>
+>
+>
+> Is there any fix/solution for this error?
+>
+>
+>
+>
+>
+> Regard,
+>
+> Thangaraj
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000605fb305cd4ab9b4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi=C2=A0Thangaraj - 2 responses: (1) your question is a go=
+od one for the GNU Radio discussion list (=C2=A0<a href=3D"https://lists.gn=
+u.org/mailman/listinfo/discuss-gnuradio">https://lists.gnu.org/mailman/list=
+info/discuss-gnuradio</a>); your query has nothing to do with UHD or USRPs =
+that I can see, and hence doesn&#39;t seem to be relevant here in UHD/ USRP=
+ discussion. (2) There is no GR 3.10 release yet, but rather this branch is=
+ in development &amp; might have significant=C2=A0bugs -- maybe like the on=
+e you found. I would strongly recommend using the latest 3.8 or 3.9 release=
+, since those are current and fairly well tested; which one you use is up t=
+o you &amp; your application needs. Good luck! - MLD<br><br></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 1, =
+2021 at 6:33 AM Thangaraj Mukara Dhakshinamoorthy &lt;<a href=3D"mailto:tha=
+ngaraj@komro.net">thangaraj@komro.net</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">
+
+
+
+
+
+<div lang=3D"DE">
+<div class=3D"gmail-m_4395440186386876676WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Hello everyone,<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10pt;font-family:Verd=
+ana,sans-serif">My system config:<u></u><u></u></span></u></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Host OS: Windows 10<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Guest OS: VirtualBox Ubuntu 20.04.3 LTS<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">UHD version: 3.15.0.0<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">GNU Radio version: 3.10.0.0<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">SDR Device : Ettus USRP N320<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">I have installed the gnuradio v3.10 recently, after the installat=
+ion I got the below error in a simple
+<b><span style=3D"background:yellow">QT</span></b><span style=3D"background=
+:yellow">
+<b>GUI sink block &gt; Window Type:</b></span><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><img width=3D"799" height=3D"498" style=3D"wid=
+th: 8.3229in; height: 5.1875in;" id=3D"gmail-m_4395440186386876676Grafik_x0=
+020_1" src=3D"cid:17c3c128a856917eb1"></span><span style=3D"font-size:10pt;=
+font-family:Verdana,sans-serif"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">The error is gone if I enter some integer value in the window typ=
+e menu. But when I tried to build this flowgraph, I am getting the followin=
+g
+<b><span style=3D"background:yellow">catch exception</span></b> error<b><u>=
+:<u></u><u></u></u></b></span></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10pt;font-family:Verd=
+ana,sans-serif"><u></u><span style=3D"text-decoration:none">=C2=A0</span><u=
+></u></span></u></b></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10pt;font-family:Verd=
+ana,sans-serif">Console logs:<u></u><u></u></span></u></b></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10pt;font-family:Verd=
+ana,sans-serif"><u></u><span style=3D"text-decoration:none">=C2=A0</span><u=
+></u></span></u></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Generating: &#39;/home/thangz/Desktop/gnuradio/rtlsdr_fm_spectrum=
+_simple.py&#39;<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Generate Error: &#39;catch_exceptions&#39;<u></u><u></u></span></=
 p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Host OS: Windows 10<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Guest OS: VirtualBox Ubuntu 20.04.3 LTS<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">UHD version: 3.15.0.0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">GNU Radio version: 3.10.0.0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">SDR Device : Ettus USRP N320<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">I have installed the gnuradio v3.10 recently, after=
- the installation I got the below error in a simple
-<b><span style=3D"background:yellow;mso-highlight:yellow">QT</span></b><spa=
-n style=3D"background:yellow;mso-highlight:yellow">
-<b>GUI sink block &gt; Window Type:</b></span><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DE"><img width=
-=3D"799" height=3D"498" style=3D"width:8.3229in;height:5.1875in" id=3D"Graf=
-ik_x0020_1" src=3D"cid:image003.jpg@01D7B6C0.68A15AA0"></span><span style=
-=3D"font-size:10.0pt;font-family:&quot;Verdana&quot;,sans-serif"><o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">The error is gone if I enter some integer value in =
-the window type menu. But when I tried to build this flowgraph, I am gettin=
-g the following
-<b><span style=3D"background:yellow;mso-highlight:yellow">catch exception</=
-span></b> error<b><u>:<o:p></o:p></u></b></span></p>
-<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Verdana&quot;,sans-serif"><o:p><span style=3D"text-decoration:none">&nb=
-sp;</span></o:p></span></u></b></p>
-<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Verdana&quot;,sans-serif">Console logs:<o:p></o:p></span></u></b></p>
-<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Verdana&quot;,sans-serif"><o:p><span style=3D"text-decoration:none">&nb=
-sp;</span></o:p></span></u></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Generating: '/home/thangz/Desktop/gnuradio/rtlsdr_f=
-m_spectrum_simple.py'<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Generate Error: 'catch_exceptions'<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&gt;&gt;&gt; Failure<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Traceback (most recent call last):<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
-uradio/grc/gui/Application.py&quot;, line 720, in _handle_action<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; generator.write()<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
-uradio/grc/core/generator/top_block.py&quot;, line 83, in write<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; for filename, data in self._buil=
-d_python_code_from_template():<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
-uradio/grc/core/generator/top_block.py&quot;, line 123, in _build_python_co=
-de_from_template<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; 'catch_exceptions': fg.get_optio=
-n('catch_exceptions')<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
-uradio/grc/core/FlowGraph.py&quot;, line 182, in get_option<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; return self.options_block.params=
-[key].get_evaluated()<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">KeyError: 'catch_exceptions'<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">^CTraceback (most recent call last):<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/bin/gnuradio-companion&quot;=
-, line 92, in &lt;module&gt;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; run_main()<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/bin/gnuradio-companion&quot;=
-, line 85, in run_main<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; exit(main())<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gn=
-uradio/grc/main.py&quot;, line 85, in main<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; sys.exit(app.run())<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gi=
-/overrides/Gio.py&quot;, line 44, in run<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; return Gio.Application.run(self,=
- *args, **kwargs)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3.8/contextlib.py&=
-quot;, line 120, in __exit__<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; next(self.gen)<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp; File &quot;/usr/lib/python3/dist-packages/gi=
-/_ossighelper.py&quot;, line 251, in register_sigint_fallback<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">&nbsp;&nbsp;&nbsp; signal.default_int_handler(signa=
-l.SIGINT, None)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">KeyboardInterrupt<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10.0pt;font-family:&q=
-uot;Verdana&quot;,sans-serif"><o:p><span style=3D"text-decoration:none">&nb=
-sp;</span></o:p></span></u></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Is there any fix/solution for this error?<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Regard,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif">Thangaraj<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ve=
-rdana&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">&gt;&gt;&gt; Failure<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Traceback (most recent call last):<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3/dist-packages/gnuradio/grc/gui=
+/Application.py&quot;, line 720, in _handle_action<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 generator.write()<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3/dist-packages/gnuradio/grc/cor=
+e/generator/top_block.py&quot;, line 83, in write<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 for filename, data in self._build_python_code_=
+from_template():<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3/dist-packages/gnuradio/grc/cor=
+e/generator/top_block.py&quot;, line 123, in _build_python_code_from_templa=
+te<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 &#39;catch_exceptions&#39;: fg.get_option(&#39=
+;catch_exceptions&#39;)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3/dist-packages/gnuradio/grc/cor=
+e/FlowGraph.py&quot;, line 182, in get_option<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 return self.options_block.params[key].get_eval=
+uated()<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">KeyError: &#39;catch_exceptions&#39;<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">^CTraceback (most recent call last):<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/bin/gnuradio-companion&quot;, line 92, in =
+&lt;module&gt;<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 run_main()<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/bin/gnuradio-companion&quot;, line 85, in =
+run_main<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 exit(main())<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3/dist-packages/gnuradio/grc/mai=
+n.py&quot;, line 85, in main<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 sys.exit(app.run())<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3/dist-packages/gi/overrides/Gio=
+.py&quot;, line 44, in run<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 return Gio.Application.run(self, *args, **kwar=
+gs)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3.8/contextlib.py&quot;, line 12=
+0, in __exit__<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 next(self.gen)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0 File &quot;/usr/lib/python3/dist-packages/gi/_ossighelper.=
+py&quot;, line 251, in register_sigint_fallback<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">=C2=A0=C2=A0=C2=A0 signal.default_int_handler(signal.SIGINT, None=
+)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">KeyboardInterrupt<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:10pt;font-family:Verd=
+ana,sans-serif"><u></u><span style=3D"text-decoration:none">=C2=A0</span><u=
+></u></span></u></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Is there any fix/solution for this error?<u></u><u></u></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Regard,<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif">Thangaraj<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Verdana,sa=
+ns-serif"><u></u>=C2=A0<u></u></span></p>
 </div>
-</body>
-</html>
+</div>
 
---_000_bbbff2d09aa64a85b4f821610712d80akomronet_--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---_004_bbbff2d09aa64a85b4f821610712d80akomronet_
+--000000000000605fb305cd4ab9b4--
+
+--000000000000605fb505cd4ab9b5
 Content-Type: image/jpeg; name="image003.jpg"
-Content-Description: image003.jpg
-Content-Disposition: inline; filename="image003.jpg"; size=53068;
-	creation-date="Fri, 01 Oct 2021 10:32:34 GMT";
-	modification-date="Fri, 01 Oct 2021 10:32:34 GMT"
-Content-ID: <image003.jpg@01D7B6C0.68A15AA0>
+Content-Disposition: inline; filename="image003.jpg"
 Content-Transfer-Encoding: base64
+Content-ID: <17c3c128a856917eb1>
+X-Attachment-Id: 17c3c128a856917eb1
 
 /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
 IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7
@@ -1287,10 +1313,9 @@ KKKACiiigAooooAKKKKACiiigAooooAKYn+sk+o/lRRQA+iiigAooooAKKKKACiiigAooooAKKKK
 ACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA
 KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/
 2Q==
+--000000000000605fb505cd4ab9b5--
 
---_004_bbbff2d09aa64a85b4f821610712d80akomronet_--
-
---===============6044430238645830669==
+--===============2428907859581698148==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1300,4 +1325,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6044430238645830669==--
+--===============2428907859581698148==--
