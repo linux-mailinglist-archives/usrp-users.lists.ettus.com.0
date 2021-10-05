@@ -2,99 +2,118 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5732C421A7E
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Oct 2021 01:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 247B9422077
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Oct 2021 10:17:40 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E26DC38438E
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Oct 2021 19:16:03 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 031F538419F
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Oct 2021 04:17:39 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BXgDNXwO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GeVccTJY";
 	dkim-atps=neutral
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 28C50383C33
-	for <usrp-users@lists.ettus.com>; Mon,  4 Oct 2021 19:15:20 -0400 (EDT)
-Received: by mail-qv1-f54.google.com with SMTP id 11so10959672qvd.11
-        for <usrp-users@lists.ettus.com>; Mon, 04 Oct 2021 16:15:20 -0700 (PDT)
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8C98F383E2F
+	for <usrp-users@lists.ettus.com>; Tue,  5 Oct 2021 04:16:51 -0400 (EDT)
+Received: by mail-lf1-f48.google.com with SMTP id x27so82847366lfu.5
+        for <usrp-users@lists.ettus.com>; Tue, 05 Oct 2021 01:16:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-transfer-encoding:content-language;
-        bh=rvs/SwKHZ8Te+qCkCQosBR7j2KUlKeEz/faSmxmW45k=;
-        b=BXgDNXwOVrJv/eHpcGJ3J1KsNYzJDgx9F2uIgsIqOnoUGaHfd0lGkbPygrHEN/7uoL
-         hJz/jrQTDa4/iBzjqCpp3QcJV30+42v2Ojc9EzrV21Lde+TNZqVqTjf32sJwJ5beOSVK
-         pY+KGguESfAOt/dnLkLWs8NxfI3zY2aMqZHc07/Qjrs6ACzLWdFkQarpFsjt+6IRPpHv
-         T57Qoy6xTvPHWcyJM3HgpAWsEB2dc/s6vQwyH+Kvo2R04MfYc9L2faw7qE2zQSR+iQuy
-         +poONUgylaaAWMDnugPiXTvbOBICv2lPiBKE9CJOT1V2/6SWKYD3gjm/XKUGvgIhuEXU
-         IgLw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=9223MKahtc7O9rpTJ+sSrbGxkcuN96BXAyoLrMFa6nY=;
+        b=GeVccTJY1fwBg7UkBQdZOAIk4oSd2Y2szbGo+Ij4BCn2pGbpD0eK5becENoYZgfEyQ
+         Du62Fb6LlSvIEAdLfs115aNK9OFKqEKQfKKGZ6z5xDaxnnZrQ8+4iqs+zm8fJNJcY5MP
+         0+XKnsqf3cSZ4VI1ymADrTcqcL0NoSzs5IST/msrM6ov69BmuwSWhl7da4uEHIk4/APF
+         Eco0O7z7lC4AwW3/SES5fMCL6UOLaFhfKjo/Cy98zqixalPrDAq/5jCei/oE3wvWMRE/
+         iHD7dHPKidAy//N/QSNQO/+KLGOA48Y0al16Hv9hOUc93n8HhAVmNt0Sldo/uyLDiJJ7
+         BmQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=rvs/SwKHZ8Te+qCkCQosBR7j2KUlKeEz/faSmxmW45k=;
-        b=3Xdee6Ilh9ymy+WTkXRHsCPk0i9BGtSz2fg4XGae51BTEIaRVgKhLqey3KfVbb1gc7
-         88s19Ln4JMbi7tNg2e8FFwAy1CaTYLzPbMG33zmxjFtF5Y3ggLfkGV6CAXBPJMQyefnH
-         WlbATlLwjQlW4d+zwrUbAOcYZkQyiimNrO5f+2JmcaKS5jlrj+yDaIAdI16uh6q4hbef
-         GzIfjqfkkSGmbABYZAS/aw1B5LWs6ofhUoqC3xNlNcnKXshvPzkchl66TnFxUToF++Is
-         z0tnP5QtcWRZfkJCbb+LNykbVnmWC75HoXhBDSxMuLuMG7I2UE7/cdjZ/NTSUjFFm4hL
-         IWeA==
-X-Gm-Message-State: AOAM533/WRzbXSsMfbmgA7CGdprzwGOp9bRVTtXlwt/KF8FX/x7KHYMs
-	w1KEBLCaH/tF3tcjTkpc+MTS+3GvWuE=
-X-Google-Smtp-Source: ABdhPJxGB0eBEoGIFlW2mRls+bCIgxFpgP4tzK5XMAwCz27SfhYBfDCv6dHAMyu4YIVRxWw4hzTSig==
-X-Received: by 2002:a0c:e090:: with SMTP id l16mr26391773qvk.60.1633389319218;
-        Mon, 04 Oct 2021 16:15:19 -0700 (PDT)
-Received: from [192.168.2.250] (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
-        by smtp.googlemail.com with ESMTPSA id 188sm8348543qkm.21.2021.10.04.16.15.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Oct 2021 16:15:18 -0700 (PDT)
-To: rouba zeitoun <roubazeitoun@gmail.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <CAHqKquxikMusGTodb+hEMtUwpdxAu=QXSvgFtSNWU4DsUkZiRg@mail.gmail.com>
- <9b016ef8-2417-c5b5-05d2-9ff57f859651@gmail.com>
- <CAHqKquzk42hw-hng32CsumPLbhOF2z=KTKtAZ7=u_z7SG+TKBQ@mail.gmail.com>
- <28473d50-9f0e-3fe2-776b-d7ebdddee1cc@gmail.com>
- <CAHqKquwnGY1afzpmo4kWZnyXxGrrKLY23zUkAH=wEcQ6tjtetg@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <287a52ab-a082-2e5b-01ef-cbda8f40b6e0@gmail.com>
-Date: Mon, 4 Oct 2021 19:15:18 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=9223MKahtc7O9rpTJ+sSrbGxkcuN96BXAyoLrMFa6nY=;
+        b=zf4He6O8taxHt/QL0j0Vzt8BgPSVaB/xIauF2OtCJoIupFdK3xEoEP5KuRkgr6H8j3
+         3ddOOauU39clqGWaUejUBjJGfdkwgz40rO/jZJR70tl26NtWzvj3iMcFj5yx+3p7wI76
+         W8iSANlexZqKyXd08GN2pgvpV670XAnHdnbYy7LsFRaAZ1l9iE+KBF0ssBnSc03fSJtB
+         DfDAwg1BTXTyLOq1s7Ky6vOux9FUQRrQ7ZZy9/jp6x/XV1M8VbtbHwlD/KxZeCEBood3
+         QlZdHDCb5eo2U6DgQv4eH91X+Tv83wCUeGstQIVkTqWb0hEUuwmk/2Fz9kc0wXh+T+pF
+         TkwQ==
+X-Gm-Message-State: AOAM530dPTy438E+xV9TKDz6+piMoQ92XSuihiJVU1b2kkQRLYYlnwiS
+	2fA+aX5eG5I4F/x+4vHheZeVKSapYHWLfegRB7qUGJOx/ZE=
+X-Google-Smtp-Source: ABdhPJyetQ4y56LVN+HJvM1aFoSxbNCnoBytRozDqp+1Fp3IHYbX3IniUcsrU+Crm2+4BLj9+F5UugMJeYc4bMyC/iI=
+X-Received: by 2002:a2e:7c0c:: with SMTP id x12mr21514459ljc.186.1633421809866;
+ Tue, 05 Oct 2021 01:16:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAHqKquwnGY1afzpmo4kWZnyXxGrrKLY23zUkAH=wEcQ6tjtetg@mail.gmail.com>
-Content-Language: en-US
-Message-ID-Hash: 7BBR6R4M4VSOIDVPMI6WFFCLNMXUFZLM
-X-Message-ID-Hash: 7BBR6R4M4VSOIDVPMI6WFFCLNMXUFZLM
-X-MailFrom: patchvonbraun@gmail.com
+From: Huang Wei <weizardry@gmail.com>
+Date: Tue, 5 Oct 2021 09:16:39 +0100
+Message-ID: <CAAopBk9+n6aMqQ+n27nezBeXc9AvtT89euJRWHDo39RcfzSLAw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: 7L2IMJTQFJX46KNVH2TR3DSEKWWH4DI6
+X-Message-ID-Hash: 7L2IMJTQFJX46KNVH2TR3DSEKWWH4DI6
+X-MailFrom: weizardry@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP B210 problem
+Subject: [USRP-users] Reset set_start_time of USRP at runtime
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7BBR6R4M4VSOIDVPMI6WFFCLNMXUFZLM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7L2IMJTQFJX46KNVH2TR3DSEKWWH4DI6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5821557728105887714=="
 
-T24gMjAyMS0xMC0wNCA2OjM2IHAubS4sIHJvdWJhIHplaXRvdW4gd3JvdGU6DQo+IEkgdHJpZWQg
-dG8gdXNlIGFuIGV4dGVybmFsIHBvd2VyIHN1cHBseSwgYnV0IGFmdGVyIEkgY29ubmVjdGVkIHRo
-ZSANCj4gQjIxMCB0byBteSBsYXB0b3AsIHRoZSBsZWQgbGlnaHQgb24gaXQgdHVybmVkIGZvcm0g
-Ymx1ZSB0byByZWQuDQo+DQo+IE5vLCBpdCBkb2VzIG5vdCBoYXZlIGEgR1BTRE8uDQo+DQo+IENv
-dWxkIHlvdSBwbGVhc2UgZXhwbGFpbiBmb3IgbWUgd2hhdCBjb3VsZCBiZcKgdGhlIHByb2JsZW0/
-DQo+DQpSRUQgbGlnaHQgbWVhbnMgZXh0ZXJuYWwgcG93ZXIuwqAgVGhhdCBpcyB0byBiZSBleHBl
-Y3RlZC4NCg0KUGxlYXNlIHNoYXJlIHRoZSBvdXRwdXQgb2YNCg0KdWhkX3VzcnBfcHJvYmUgLS1h
-cmdzIHR5cGU9YjIwMA0KDQpJIG5lZWQgdG8gc2VlIGF0IHdoYXQgcG9pbnQgaXQgZ2V0cyBpbnRv
-IHRyb3VibGUuDQoNCk15IHN1c3BpY2lvbiB3YXMgcGVyaGFwcyBhIHBvd2VyIGlzc3VlLCBhbmQg
-dGhlIEZYMyBVU0IyLzMgcHJvY2Vzc29yIG9uIA0KdGhlIGJvYXJkIHdhcyBleHBlcmllbmNpbmcg
-YSBicm93bi1vdXQgY29uZGl0aW9uLg0KDQpCdXQgdGhlcmUncyBubyB3YXkgZm9yIG1lIHRvIHRl
-bGwgZm9yIHN1cmUuwqAgUmVhbGx5LCB0aGF0J3MgaG93IHRoaXMgDQp3b3Jrcy7CoCBJIGFzayB5
-b3UgY2xhcmlmeWluZyBxdWVzdGlvbnMsIGFuZCB3aXRoIHRoZSBhbnN3ZXJzIHRvIHRob3NlDQog
-wqAgcXVlc3Rpb25zLCBJIGNhbiBnZXQgY2xvc2VyIHRvIGZpZ3VyaW5nIG91dCB3aGF0J3Mgd3Jv
-bmcgd2l0aCB5b3VyIGJvYXJkLg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVh
-dmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============5821557728105887714==
+Content-Type: multipart/alternative; boundary="000000000000bedbbb05cd96a66b"
+
+--000000000000bedbbb05cd96a66b
+Content-Type: text/plain; charset="UTF-8"
+
+Hello group,
+
+I am running USRP in GRC. I would like the USRP to  stop and restart
+transmission at specific times. so I wrote a function in the top_block
+class like:
+self.stop()
+self.wait()
+self.usrp.set_start_time(an absolute time)
+self.start()
+It doesn't work. Also I tried  1) add clear_commnad_time() and
+set_command_time() before; 2) disconnect(), set_command_time() and connect
+(); 3) usrp.stop(), usrp start(). All these methods don't make sure USRP
+will restart at the time I want.
+Is there any command that can achieve this purpose?
+
+Thank you very much!
+
+Best regards,
+Wei
+
+--000000000000bedbbb05cd96a66b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello group,<div><br></div><div>I am running USRP in GRC. =
+I would like the USRP to=C2=A0 stop and restart transmission at specific ti=
+mes. so I wrote a function in the top_block class like:</div><div>self.stop=
+()</div><div>self.wait()</div><div>self.usrp.set_start_time(an absolute tim=
+e)</div><div>self.start()</div><div>It doesn&#39;t work. Also I tried=C2=A0=
+ 1) add clear_commnad_time() and set_command_time() before; 2) disconnect()=
+, set_command_time() and connect (); 3) usrp.stop(), usrp start(). All thes=
+e methods don&#39;t make sure USRP will restart at the time I want.=C2=A0=
+=C2=A0</div><div>Is there any command that can achieve this purpose?</div><=
+div><br></div><div>Thank you very much!</div><div><br></div><div>Best regar=
+ds,</div><div>Wei</div><div><br></div></div>
+
+--000000000000bedbbb05cd96a66b--
+
+--===============5821557728105887714==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5821557728105887714==--
