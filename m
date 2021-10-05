@@ -2,216 +2,107 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A86422B95
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Oct 2021 16:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D6BB422C50
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Oct 2021 17:23:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3E0F0384AB3
-	for <lists+usrp-users@lfdr.de>; Tue,  5 Oct 2021 10:56:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A22AC384B51
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Oct 2021 11:23:21 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="TsEW4YLz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bJBaKqRW";
 	dkim-atps=neutral
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3FFFF383ED7
-	for <usrp-users@lists.ettus.com>; Tue,  5 Oct 2021 10:55:53 -0400 (EDT)
-Received: by mail-lf1-f43.google.com with SMTP id x27so86732940lfa.9
-        for <usrp-users@lists.ettus.com>; Tue, 05 Oct 2021 07:55:53 -0700 (PDT)
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1E70838452F
+	for <usrp-users@lists.ettus.com>; Tue,  5 Oct 2021 11:22:36 -0400 (EDT)
+Received: by mail-qv1-f46.google.com with SMTP id a16so2939914qvm.2
+        for <usrp-users@lists.ettus.com>; Tue, 05 Oct 2021 08:22:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=upaJ7Pd8cGnm8xZPHCOycRgzkv1VoUUdUz1pbAYmX8A=;
-        b=TsEW4YLz6yCWPhceUrzNXy1Rs1rVKO/e2nEFUmKB3xqir8Ss2QAkkwesSjPANOeT2E
-         4GbZYHESC0Mym6dhLwfCf4t0SukVPNriXlEOhkDdQHYWOeFhOEnwfXwGOnrh/RVXfVxi
-         vpCBclRqJArdlJvYjZh3kjckBbFtCk+UA9bd/G1/ezTal3n/ygaRxRfvUnebilj00AzL
-         MqsiYGBvhSXyKTUErYLBQhtfoG7DfgjMbPf+HAiyLOcfHy4k76+ulpE0V+TW2Ic/lU3E
-         hPneiAedg+TxkCxqmujOBSb8pjRNIDlwUp/7RQyAU5Ef2XW6QRG5tMJuj206l0iIn3iS
-         D6UA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=C8KTKYHrZAeLa2WKNgFzROg6/7DxPNHZlIKoxPj1aNM=;
+        b=bJBaKqRWw+eOhFMveBK2Sc96mRn9MW3UaT8x2c/IqPx9c3NiQMXxMcWu/kSoqk/CaH
+         c7xuiMq/NKTLq75qisPNArevMGfc/21eC1lqm9XoYJq7LoNA3xfScY7oTPfAlPXjADoP
+         G0qrJA4TYSCxKQH1HO0E33zHuhsJ4655tkQKP4i78//NdQ1roUm5TshQ1oaVtLJ2VfNs
+         jSFMlezZs22u5opVw/s07mat2RuJOurv10mEQRIu8MenHPlZ9yMlONXNuY5rpqbQHrLW
+         stp6quyAKO9KIM4ag+G+DJ801iYe1s7eWqtkyoa1kQP8nVlVYqJTR/Dc0EV+qsoT7KGN
+         qsDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=upaJ7Pd8cGnm8xZPHCOycRgzkv1VoUUdUz1pbAYmX8A=;
-        b=J9S2b6r0CYpMnt/7+ritLIRqxreS7Ao8xXZEhXu8PCfSCqQ+a3iRmtBghTOvj45OiG
-         i78GS3I+GHOfJbMAfGFfAKxnLMR2H+aDM52EHnfBhIfKr8q7LlCbNcHd4opayeQvK1Xr
-         a4Mbm/qn+Ldm8cj7lEBAdESqFMXN+yviwdtMg4ZBz9SiYloQ7FfHU4qsS3Dm79DmqYGk
-         HAbC9q8Gs1M7loohuqMCJSz176nxkU9EijMhvsuEDmW7ZDvUrm8PjeFT+kT/cLzHllC6
-         9GuuPCjCSQu1eiM1HctylUc/E20xZP+YO0HIEtZKay9nWNH4SgN8diRpYb44/M2kOq9u
-         AhPQ==
-X-Gm-Message-State: AOAM5300X/EiZmTBo4AlyXgtemcBb8Axn/+k8PdAo5teMqjopf3wsd0Q
-	17S8bELrD0Uz0ZW65+RwyoZ7HZMTXvKAO3bhLbs=
-X-Google-Smtp-Source: ABdhPJx4+lee0k7povciIbp/sJrZpQqAcZCCUyQdjm2+MCoHSq+EnI8uxJNvxnMrhzkYC5xm+BaIaCB81FGNR3KB6gA=
-X-Received: by 2002:a05:6512:10d0:: with SMTP id k16mr3883212lfg.530.1633445745171;
- Tue, 05 Oct 2021 07:55:45 -0700 (PDT)
-MIME-Version: 1.0
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=C8KTKYHrZAeLa2WKNgFzROg6/7DxPNHZlIKoxPj1aNM=;
+        b=gyVdGcmx63uT7n7MKrgbm8PhDxtIQRS4l8RP77j2wSlyiSgcGicm9aEn/Mg6oWISti
+         fRNLYf0NWr6THM57Glb/dOC7zf04k5HDGRYCh9MbMKhsKnUv7suydCGZh8oAvU7gZs37
+         oxxQc/ovF6IBM0Fk+3lj3ZGEV47g+jt0mD1AE5QGEFZsyrg+qRDSLJtH1b04i3QWGFU3
+         txF0gxzXiIMbmdOqX9nPBH8kbEIGrbLuY5fJfr/sTFUTcgHqZJGfQzGwb7WvBSHwaPAw
+         eI+7lvHIN4/y/BOSZRKEKX0BBlYxsMlICxZi77ZH1t9253/gGc3M2DT1laWM1zYbuPCj
+         SEaQ==
+X-Gm-Message-State: AOAM531i691K5xaS2Rs/sOtfsVWn0El5qVCxMijFD7nqa9zlEgVI74zg
+	N9dxXDUVsHbE0KRzKsIoGFqgGAc/hN8=
+X-Google-Smtp-Source: ABdhPJy1780Y0b2zjpECWs/iX2BV9ioVEHfoGB9gkgtVpDz4VQ3GwSSaUR1/ptcFY7sZow9qO2Uhfg==
+X-Received: by 2002:a0c:9d4d:: with SMTP id n13mr28514174qvf.40.1633447355695;
+        Tue, 05 Oct 2021 08:22:35 -0700 (PDT)
+Received: from [192.168.2.251] (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
+        by smtp.googlemail.com with ESMTPSA id d11sm11935865qtb.39.2021.10.05.08.22.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Oct 2021 08:22:35 -0700 (PDT)
+To: Huang Wei <weizardry@gmail.com>
 References: <CAAopBk9+n6aMqQ+n27nezBeXc9AvtT89euJRWHDo39RcfzSLAw@mail.gmail.com>
  <fe7012b8-f339-c7f3-54d4-09c0fd1795cc@gmail.com>
-In-Reply-To: <fe7012b8-f339-c7f3-54d4-09c0fd1795cc@gmail.com>
-From: Huang Wei <weizardry@gmail.com>
-Date: Tue, 5 Oct 2021 15:55:34 +0100
-Message-ID: <CAAopBk9EyA4Pu4LFQ3LAV6mMKpKJ9NYLQmN4mmyKapb80Q2uxQ@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: 4CBFFPHH6XKBCJ6SCGCFC6L4Y2JHIFXM
-X-Message-ID-Hash: 4CBFFPHH6XKBCJ6SCGCFC6L4Y2JHIFXM
-X-MailFrom: weizardry@gmail.com
+ <CAAopBk9EyA4Pu4LFQ3LAV6mMKpKJ9NYLQmN4mmyKapb80Q2uxQ@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <5bd467ce-f7ba-6305-e291-bea7895f107f@gmail.com>
+Date: Tue, 5 Oct 2021 11:22:34 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <CAAopBk9EyA4Pu4LFQ3LAV6mMKpKJ9NYLQmN4mmyKapb80Q2uxQ@mail.gmail.com>
+Content-Language: en-US
+Message-ID-Hash: 5R7D2QZM3G6WSLXLQ4QFJBOEMAWDBICK
+X-Message-ID-Hash: 5R7D2QZM3G6WSLXLQ4QFJBOEMAWDBICK
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Reset set_start_time of USRP at runtime
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4CBFFPHH6XKBCJ6SCGCFC6L4Y2JHIFXM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5R7D2QZM3G6WSLXLQ4QFJBOEMAWDBICK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9150218274307315843=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============9150218274307315843==
-Content-Type: multipart/alternative; boundary="00000000000066e1f405cd9c3971"
-
---00000000000066e1f405cd9c3971
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Marcus,
-
-Initially when I create the USRP object, I synchronize USRP to external PPS
-though self.usrp1.set_time_next_pps(round(time.time())+1) method.
-and in the function get_start(), I wrote like:
-  self.stop()
-  self.wait()
-  self.disconnect_all()
-  #self.usrp1.stop()
-  #self.usrp1.start()
-  self.usrp1.set_start_time(self.usrp1.get_time_now() + uhd.time_spec_t(5))
-  self.connect(...)
-  self.connect(...)
-  self.connect(filesink, self.usrp1)
-  self.start
-I wish the USRP stops, and restarts transmission 5 sec later every time I
-run the get_start() function. But the USRP doesn't stop, and will produces
-LLLLLLLLLL on the screen after around 5 sec. If I use
-" self.usrp1.set_command_time(self.usrp1.get_time_now() +
-uhd.time_spec_t(5))" instead of set_start_time(), it does stop transmission
-for 5 sec and start, but it's not the correct command for start time.
-
-Do you have any advice how can I make it work?
-I appreciate all your help!
-
-Best regards,
-Wei
-
-Marcus D. Leech <patchvonbraun@gmail.com> =E4=BA=8E2021=E5=B9=B410=E6=9C=88=
-5=E6=97=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=883:15=E5=86=99=E9=81=93=EF=BC=
-=9A
-
-> On 2021-10-05 4:16 a.m., Huang Wei wrote:
-> > Hello group,
-> >
-> > I am running USRP in GRC. I would like the USRP to  stop and restart
-> > transmission at specific times. so I wrote a function in the top_block
-> > class like:
-> > self.stop()
-> > self.wait()
-> > self.usrp.set_start_time(an absolute time)
-> > self.start()
-> > It doesn't work. Also I tried  1) add clear_commnad_time() and
-> > set_command_time() before; 2) disconnect(), set_command_time() and
-> > connect (); 3) usrp.stop(), usrp start(). All these methods don't make
-> > sure USRP will restart at the time I want.
-> > Is there any command that can achieve this purpose?
-> >
-> > Thank you very much!
-> >
-> > Best regards,
-> > Wei
-> >
-> What times are you setting?  How are you setting the initial time on the
-> device?
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000066e1f405cd9c3971
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Marcus,<div><br></div><div>Initially when I create the =
-USRP object, I synchronize USRP to external PPS though self.usrp1.set_time_=
-next_pps(round(time.time())+1) method.</div><div>and in the function get_st=
-art(), I wrote like:</div><div>=C2=A0 self.stop()</div><div>=C2=A0 self.wai=
-t()</div><div>=C2=A0 self.disconnect_all()</div><div>=C2=A0 #self.usrp1.sto=
-p()</div><div>=C2=A0 #self.usrp1.start()</div><div>=C2=A0 self.usrp1.set_st=
-art_time(self.usrp1.get_time_now() + uhd.time_spec_t(5))</div><div>=C2=A0 s=
-elf.connect(...)</div><div>=C2=A0 self.connect(...)</div><div>=C2=A0 self.c=
-onnect(filesink, self.usrp1)</div><div>=C2=A0 self.start</div><div>I wish t=
-he USRP stops, and restarts transmission 5 sec later every time I run the g=
-et_start() function. But the USRP doesn&#39;t stop, and will produces LLLLL=
-LLLLL on the screen after around 5 sec. If I use &quot;=C2=A0self.usrp1.set=
-_command_time(self.usrp1.get_time_now() + uhd.time_spec_t(5))&quot; instead=
- of set_start_time(), it does stop transmission for 5 sec and start, but it=
-&#39;s not the correct command for start time.</div><div><br></div><div>Do =
-you have any advice how can I make it work?</div><div>I appreciate all your=
- help!</div><div><br></div><div>Best regards,</div><div>Wei</div></div><br>=
-<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Marcus D. =
-Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.co=
-m</a>&gt; =E4=BA=8E2021=E5=B9=B410=E6=9C=885=E6=97=A5=E5=91=A8=E4=BA=8C =E4=
-=B8=8B=E5=8D=883:15=E5=86=99=E9=81=93=EF=BC=9A<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">On 2021-10-05 4:16 a.m., Huang Wei wrote:<=
-br>
-&gt; Hello group,<br>
-&gt;<br>
-&gt; I am running USRP in GRC. I would like the USRP to=C2=A0 stop and rest=
-art <br>
-&gt; transmission at specific times. so I wrote a function in the top_block=
- <br>
-&gt; class like:<br>
-&gt; self.stop()<br>
-&gt; self.wait()<br>
-&gt; self.usrp.set_start_time(an absolute time)<br>
-&gt; self.start()<br>
-&gt; It doesn&#39;t work. Also I tried=C2=A0 1) add clear_commnad_time() an=
-d <br>
-&gt; set_command_time() before; 2) disconnect(), set_command_time() and <br=
->
-&gt; connect (); 3) usrp.stop(), usrp start(). All these methods don&#39;t =
-make <br>
-&gt; sure USRP will restart at the time I want.<br>
-&gt; Is there any command that can achieve this purpose?<br>
-&gt;<br>
-&gt; Thank you very much!<br>
-&gt;<br>
-&gt; Best regards,<br>
-&gt; Wei<br>
-&gt;<br>
-What times are you setting?=C2=A0 How are you setting the initial time on t=
-he <br>
-device?<br>
-<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000066e1f405cd9c3971--
-
---===============9150218274307315843==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============9150218274307315843==--
+T24gMjAyMS0xMC0wNSAxMDo1NSBhLm0uLCBIdWFuZyBXZWkgd3JvdGU6DQo+IEhpIE1hcmN1cywN
+Cj4NCj4gSW5pdGlhbGx5IHdoZW4gSSBjcmVhdGUgdGhlIFVTUlAgb2JqZWN0LCBJIHN5bmNocm9u
+aXplIFVTUlAgdG8gDQo+IGV4dGVybmFsIFBQUyB0aG91Z2ggc2VsZi51c3JwMS5zZXRfdGltZV9u
+ZXh0X3Bwcyhyb3VuZCh0aW1lLnRpbWUoKSkrMSkgDQo+IG1ldGhvZC4NCj4gYW5kIGluIHRoZSBm
+dW5jdGlvbiBnZXRfc3RhcnQoKSwgSSB3cm90ZSBsaWtlOg0KPiDCoCBzZWxmLnN0b3AoKQ0KPiDC
+oCBzZWxmLndhaXQoKQ0KPiDCoCBzZWxmLmRpc2Nvbm5lY3RfYWxsKCkNCj4gwqAgI3NlbGYudXNy
+cDEuc3RvcCgpDQo+IMKgICNzZWxmLnVzcnAxLnN0YXJ0KCkNCj4gwqAgc2VsZi51c3JwMS5zZXRf
+c3RhcnRfdGltZShzZWxmLnVzcnAxLmdldF90aW1lX25vdygpICsgDQo+IHVoZC50aW1lX3NwZWNf
+dCg1KSkNCj4gwqAgc2VsZi5jb25uZWN0KC4uLikNCj4gwqAgc2VsZi5jb25uZWN0KC4uLikNCj4g
+wqAgc2VsZi5jb25uZWN0KGZpbGVzaW5rLCBzZWxmLnVzcnAxKQ0KPiDCoCBzZWxmLnN0YXJ0DQo+
+IEkgd2lzaCB0aGUgVVNSUCBzdG9wcywgYW5kIHJlc3RhcnRzIHRyYW5zbWlzc2lvbiA1IHNlYyBs
+YXRlciBldmVyeSANCj4gdGltZSBJIHJ1biB0aGUgZ2V0X3N0YXJ0KCkgZnVuY3Rpb24uIEJ1dCB0
+aGUgVVNSUCBkb2Vzbid0IHN0b3AsIGFuZCANCj4gd2lsbCBwcm9kdWNlcyBMTExMTExMTExMIG9u
+IHRoZSBzY3JlZW4gYWZ0ZXIgYXJvdW5kIDUgc2VjLiBJZiBJIHVzZSANCj4gIsKgc2VsZi51c3Jw
+MS5zZXRfY29tbWFuZF90aW1lKHNlbGYudXNycDEuZ2V0X3RpbWVfbm93KCkgKyANCj4gdWhkLnRp
+bWVfc3BlY190KDUpKSIgaW5zdGVhZCBvZiBzZXRfc3RhcnRfdGltZSgpLCBpdCBkb2VzIHN0b3Ag
+DQo+IHRyYW5zbWlzc2lvbiBmb3IgNSBzZWMgYW5kIHN0YXJ0LCBidXQgaXQncyBub3QgdGhlIGNv
+cnJlY3QgY29tbWFuZCBmb3IgDQo+IHN0YXJ0IHRpbWUuDQo+DQo+IERvIHlvdSBoYXZlIGFueSBh
+ZHZpY2UgaG93IGNhbiBJIG1ha2UgaXQgd29yaz8NCj4gSSBhcHByZWNpYXRlIGFsbCB5b3VyIGhl
+bHAhDQo+DQo+IEJlc3QgcmVnYXJkcywNCj4gV2VpDQo+DQpJIHN1c3BlY3QgdGhhdCB5b3UncmUg
+YmV0dGVyIG9mZiBsb29raW5nIGludG8gdGFnZ2VkIHN0cmVhbXMgaW4gR251IA0KUmFkaW8gdGhh
+dCBzdXBwb3J0ICJidXJzdHkiIHRyYW5zbWlzc2lvbjoNCg0KaHR0cHM6Ly93d3cuZ251cmFkaW8u
+b3JnL2RvYy9kb3h5Z2VuL2NsYXNzZ3JfMV8xdWhkXzFfMXVzcnBfX3NpbmsuaHRtbA0KDQpZb3Ug
+bWF5IGdldCBtb3JlIGhlbHAgb24gdGhhdCBmcm9tIHRoZSBkaXNjdXNzLWdudXJhZGlvIG1haWxp
+bmcgbGlzdC4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+ClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRv
+IHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb20K
