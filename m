@@ -2,241 +2,327 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBDB425A1A
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Oct 2021 19:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A663425AD1
+	for <lists+usrp-users@lfdr.de>; Thu,  7 Oct 2021 20:32:46 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 419863846D0
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Oct 2021 13:56:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5E6653841C7
+	for <lists+usrp-users@lfdr.de>; Thu,  7 Oct 2021 14:32:45 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="BbTBiJGm";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=augustusaerospace.onmicrosoft.com header.i=@augustusaerospace.onmicrosoft.com header.b="D70aLf4v";
 	dkim-atps=neutral
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6DD4A38440C
-	for <usrp-users@lists.ettus.com>; Thu,  7 Oct 2021 13:56:06 -0400 (EDT)
-Received: by mail-oi1-f169.google.com with SMTP id n64so10152150oih.2
-        for <usrp-users@lists.ettus.com>; Thu, 07 Oct 2021 10:56:06 -0700 (PDT)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2135.outbound.protection.outlook.com [40.107.237.135])
+	by mm2.emwd.com (Postfix) with ESMTPS id 69E13384152
+	for <usrp-users@lists.ettus.com>; Thu,  7 Oct 2021 14:31:59 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bmxfPTxmubDxWOi7GzklzxUQRNq97WssCPRo0ZiBNiz0uqvRVqRzJzdAWPQQFx0V9FIcTwbDykykJFiFfScDP9T2qaC8eawqatR2+gfFdehugpSGAh5oyAgThjRMtQ80hiTuU4MFCeqaRI5IPzoBSzFZBfd2JXrUZS4d/GD2IFfOMEclmrXn5fE35nBMiV4qr5n2T4+JxiU4b8mlRf0h8u3jXzbkYDC0mWrxHemwM1i+S7epBWc1jArqtjBzrsMLoywoimMIaIrXwIDTNsUFkFHb9kfkfCCRAB9M/FX2c1UdZIYO4PCjiqLaRpVXU52WqguEMqGn36aDHJe5OlK16g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cRvyeE8C6mOoFjBEM+HZjUaWBajPYzqkg+ZUWGRkvJY=;
+ b=cyOprEgSRWaZ5DZDxYHbJyEpliPKe1P9YJeG3bz0wfBDzFZy3wJZojmVwvNHULG0TrDIKpcUe3hD+rezTvGmlitsvGbKoX2s/Bui6vbWTsN6XTFr93zPfzcMR6w+OBXms2teO64vyC552C/0f1A5Ols1v4v53OyHqwaGZsRO8lZuY3Tf21hqbF6expSGR41ryS9c0UnXX6Elemk6Ru5YPR3kODmM6tsBapoNADHIr4IDOgXa2cr/STEAWl2EeW9NJyQ8+NnaYFbS8vIa4bCEzoqu4RpBec3pW/JCsYnXb/ejyuLx3xf6NqOaxFPMcS2NrfwXu5cKhCAeX/23SiGlOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=augustusaero.com; dmarc=pass action=none
+ header.from=augustusaero.com; dkim=pass header.d=augustusaero.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MoQJNYsxjbYci01zPq21LLDSx3kaWcXrvuNpMmWWxFA=;
-        b=BbTBiJGm3mEB1144e3bKc50w1Z/zet+EZafz5P9U+BUEZBJyGSChKXuoVseb2cneND
-         FHUqd3Bk1lKhFNuxjInOZAYkIrEGlEMxxrlSArk6hLaKjmZasx6Xdwg5KcoFtOlrGYIF
-         2f7vyBVqbzpuDQNaJDiF/fLDrmu+KueQI6hnzietxDFBDJVzTjjWqfXhGnhrkQtgwEh3
-         /xlvlSvHAt6D+wYNmjk1GKPBK8MBQHa76WnUXXRWAHoGAlbKF6guckIE65HLmnvUwZFE
-         IchzphJhdeScl84tGwkD482OPnfrdf8NBcQYf5lZJFACKx6FEmJvnq/VZCLlBj8cvlYh
-         kpEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MoQJNYsxjbYci01zPq21LLDSx3kaWcXrvuNpMmWWxFA=;
-        b=DyLYdJqKd5DZfjPIwdgiVCxrU0s6WTVr3Av48ktUXgpsRZwt3UTKLR+ZvYeo+/gK2r
-         Xqd78OeZ5QuHXrU0WwXT4rX9tvExEnrBirsRpEWVrm3k/4/j5VfQilJNnjLHnRx3DO4K
-         bdsQ1KLZWDP3mNUINWcNJNYYqoTmz78GwNOJbevAW7PtUPk7aYMdcQ4eVXocykRZyFNe
-         4Sh9DLQALRvd6ZdMbM6N7QY4ZafC/41gTPq8hFlsvPbaY7RI5K8TBGW3te5vgAmYwdLx
-         wk79z6bajVurLfY40wQSAOlnRdCORMK1vrv7aF5ZeABjKKEnXUAcsk4s9C53P3qcWnsL
-         B0Ew==
-X-Gm-Message-State: AOAM533FxtVZXXAXIIqiXEg9six0rXsayZi1oFb5UH7vACVqYCqNr4Ir
-	h8rYtGPK5kV0AhNtCHUOQZ4hQ1tWVH83YK29ca9nhHXoRlk=
-X-Google-Smtp-Source: ABdhPJzJ9EyTJ2a+9RT3kwlW7TLMGsRcDEtmLJoSwzvvuvN+e+9bBMRtPJW/GoMoxvOsw+env+WePUgMAyhDvbLE4+A=
-X-Received: by 2002:aca:e141:: with SMTP id y62mr7085650oig.124.1633629365522;
- Thu, 07 Oct 2021 10:56:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <BN7PR05MB4500C27C573EBDAB9A2FD998D5B19@BN7PR05MB4500.namprd05.prod.outlook.com>
+ d=augustusaerospace.onmicrosoft.com;
+ s=selector1-augustusaerospace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cRvyeE8C6mOoFjBEM+HZjUaWBajPYzqkg+ZUWGRkvJY=;
+ b=D70aLf4vWplThWC3qbOa51dc5CuMHDQNm/888yEBuF7oEGHZjJy4kmXFustSyHGvwGBc9bnWu7dP2yN8LsnjuBD5+ANwhoaqOzKUWF93fBLCPryoTSH4QKlSU4BhEmPUcwrrqz4k+IDd9IAyh6OEfC/bz86FsUZO6/ogkaj9za0=
+Received: from BN7PR05MB4500.namprd05.prod.outlook.com (2603:10b6:406:fb::28)
+ by BN7PR05MB4033.namprd05.prod.outlook.com (2603:10b6:406:90::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4608.4; Thu, 7 Oct
+ 2021 18:31:57 +0000
+Received: from BN7PR05MB4500.namprd05.prod.outlook.com
+ ([fe80::6475:8813:2550:ba95]) by BN7PR05MB4500.namprd05.prod.outlook.com
+ ([fe80::6475:8813:2550:ba95%7]) with mapi id 15.20.4608.005; Thu, 7 Oct 2021
+ 18:31:57 +0000
+From: Jonathan Tobin <Tobin@augustusaero.com>
+To: Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] UHD 3.15 on Windows
+Thread-Index: Ade7obwvgPCXPoHWSxSR6X2LBKRWKgAAq3sAAAAKIgAAATC7IA==
+Date: Thu, 7 Oct 2021 18:31:57 +0000
+Message-ID: 
+ <BN7PR05MB45000A47C92750DDCFEC590CD5B19@BN7PR05MB4500.namprd05.prod.outlook.com>
+References: 
+ <BN7PR05MB4500C27C573EBDAB9A2FD998D5B19@BN7PR05MB4500.namprd05.prod.outlook.com>
  <CAB__hTQbAiyie8RxsnpE1arSu6sR7Zqxozz4VOpugNK2qSLGMQ@mail.gmail.com>
-In-Reply-To: <CAB__hTQbAiyie8RxsnpE1arSu6sR7Zqxozz4VOpugNK2qSLGMQ@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Thu, 7 Oct 2021 13:55:54 -0400
-Message-ID: <CAB__hTR35saQd6PsoATaN93woLe_0g1Bnq2qoLzPATkZmMnz7A@mail.gmail.com>
-To: Jonathan Tobin <Tobin@augustusaero.com>
-Message-ID-Hash: XUDZMDYY4OQMUCKXAB2SFF3F5BSWN66G
-X-Message-ID-Hash: XUDZMDYY4OQMUCKXAB2SFF3F5BSWN66G
-X-MailFrom: rkossler@nd.edu
+ <CAB__hTR35saQd6PsoATaN93woLe_0g1Bnq2qoLzPATkZmMnz7A@mail.gmail.com>
+In-Reply-To: 
+ <CAB__hTR35saQd6PsoATaN93woLe_0g1Bnq2qoLzPATkZmMnz7A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nd.edu; dkim=none (message not signed)
+ header.d=none;nd.edu; dmarc=none action=none header.from=augustusaero.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b8c00ac6-b755-45bd-a03e-08d989c0bebd
+x-ms-traffictypediagnostic: BN7PR05MB4033:
+x-microsoft-antispam-prvs: 
+ <BN7PR05MB4033C87830949E6272D0EA1DD5B19@BN7PR05MB4033.namprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ zT9UZjbxcQpwGglLLaJZGFn7W42UjjO++t8DFKLqXktwXk4cXmqQ20z102WzbJHRAUjINjriJfanNo6T9nAonQB15cLfadRrK32jYomQDThA38wcS6rxyCsbI0tEw/row83JntErkCcnnQJ5RkRDiePc2mnapyBseWuIBtHwPtx3Rh0Ho6TcLxrxfOSWjuLvyX4719dwQWI2ykfbccUUc7wQH/ySkfcvlG3NgyBt+D7nPaXRxyXY2qKpf9BROpZ62qpzbt3uEB2gCEy0qjnB+jkooPM0mJNKlDQuylxm0M8dJiPdRmz+/qPqGSJ1EyVkOQvyKb+A8CIAOu+us4ul9bl/QIatCqiFedTacN5LBimgvOntGlkZxqtfumqxNEys6rQypGbQskUwtBsfoJJPcjyxoOx67mz8rbMMp3Jf/XRl/aEJXUPbmuQG+l+W9/bzOLhxD4nE742/NHmght2kaap25nrxbbZJhfUfM/77qccd1N4+q6ePEZadZzkheUFIhlvkatNA93Kr2JeBLpkRJVvPo4xSAYP2xdET6Ae5j9wTmIsONpQPcZS1bL/Wrgcn2pDwxoGLNDX3JAm1+eDzBq5HcNPh5di2v1rP+7mxSuN3HWgEn2gfvAa0nv5AVeG2sN0jwWovBkCP57Xw9Hr/wq7cXPSI/7zICfih/imzNuAvnbgQIUOEpsKev33UNSM2fko9Xl+phNguJ+TxbBqCWA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN7PR05MB4500.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(396003)(376002)(346002)(39830400003)(42606007)(366004)(76116006)(38070700005)(6916009)(86362001)(8676002)(8936002)(316002)(45080400002)(66446008)(55016002)(508600001)(71200400001)(66556008)(52536014)(66476007)(2906002)(4326008)(9686003)(5660300002)(122000001)(38100700002)(64756008)(53546011)(26005)(33656002)(83380400001)(6506007)(186003)(7696005)(66946007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?RVpXTmVxZVNXdmhNNllBaG5kQTRjaTdSWnlwSVp1cnRsR0ZMaDVnRk5LWFVh?=
+ =?utf-8?B?cmdkNVFMME1xRUtzeSs4WXg3elNjczBENEpmRGdNU1pMVzNDL0xveThpYXEr?=
+ =?utf-8?B?WDR6enpjSWhwaE9uZE5YY1ZPMm5ZaGFRODNYaVpDS3o4ZjFYc1p2ODBvc0ZP?=
+ =?utf-8?B?eWhGSGxJdGt4WGxLb1RLdjQzMnVoRFo5cFE3aVVqRit5bDZoR0hIeUxaUE1v?=
+ =?utf-8?B?NXlXTzcwMVBqRko3NFBkaVdvendZeXJWa3F2UGVpV0NPSjNJMTNFV00xYXEx?=
+ =?utf-8?B?UUxDS0xmSm9aUTVicHg1VHdmVTRkcFFWTzEyYVVlc3dxaFdBWE5aVVEwcVlV?=
+ =?utf-8?B?M1lKK2pZL3ByUFRwcFdCRVlpUFZNRG4vUW1RWWFRZXhmV1k4Q1JBcWVaeXJa?=
+ =?utf-8?B?Q1o5azhWaUFiVS91bDVwZlE2RnRWY1l0Rk1Ed2hxWDJPc01Kcy9WdEp3eVkx?=
+ =?utf-8?B?OTgvNVFocWhHRGdIOHZHWTNnRWtyUUpFcWh2c3ErNlBKNC9ROWx1MytMOFQ2?=
+ =?utf-8?B?L3ZnZnJwM1RTSkladXdnTFZOQnI3Q081TndPTExvY3V6S2x5QmFqQ2kzbHNU?=
+ =?utf-8?B?U05IOVhXaTAxR0txeHBjNE9QWHlIdkRUbnI0ZXEwMzByK2hzR1pobHY0eTRS?=
+ =?utf-8?B?SVBuUmZ0NjJQTkkvN3VUdHJQRzA0WHcvM3RySGNheG4zQXBJcmhFS21uUHZT?=
+ =?utf-8?B?QWw5N3VqREFEcXM0bDB0b0VxbkdvTkZkUGtSNktmMTYwanpvVGRBc2swdFU5?=
+ =?utf-8?B?dkN0bjNOSE9RUUhBdzNCWlBQbUh4dlZpd1lJZ3ZtN2VxUERQV3BwUC9FSzhs?=
+ =?utf-8?B?REZ3YXlraGk3VDVoMWVweHplK0liSUdoUjFwaDV0Z2tjWk9Ddk5iRndtZFRw?=
+ =?utf-8?B?SUNvcU82ZFd1S1gwcnZiL0pFdi9NbEJRM0U4T05wZTEvNW1UUCtwdjdnYkc3?=
+ =?utf-8?B?V2NIZ2svY1lod1dQOXVCS2ppNW1LNGM0ZjNIZllCbTd2Q2RrbU1pT3FHcjll?=
+ =?utf-8?B?NTA2ZUtjVkIxSE5EVlBkY0R1ZGdQL2hBNUEwcUpKcVBJaTdGLzRxbGk0YVND?=
+ =?utf-8?B?RW11Mm1kS1lmajh1TnVKUmg5TE52S2hPRDd6RWNON0dNRzZzelV5MzFqb2xC?=
+ =?utf-8?B?bStZU3ZKYjloNG5kT0JmOXQvaVRwekxYaWVheHZoUFhxUDU5VWZRQ2E5VkRH?=
+ =?utf-8?B?NS9Sb0wzR0xvV1VHamRoQ0dReTg4WEVWVEJGeForYk01NU5VQWdtb0k5WEhB?=
+ =?utf-8?B?aFhEbUhpM0lCL0ZsWUhYMittUDFvUTVjYUNONGdRQUwrWUVjTGFUM1N6UUg0?=
+ =?utf-8?B?d0htaGNlSDM4MmlxSXRKc3BPWGg5Z1lsS2xiR2dydFh1TjZDR2srb2t3UEpj?=
+ =?utf-8?B?YmxKWVplVWtudWsyTGtRNEhINVphSVR2ZE1VaFoydWdPaHZCenVKL3VsVjdq?=
+ =?utf-8?B?d1pCZUJ5ZWRBTDNuL3VTMW1scFpDWmlnQ0R0WTd6a2VFam9Cd1NOTm5BYVdX?=
+ =?utf-8?B?M2JEN3pjSjlCNzhmUUlmajJicmxJU2QvQ0FHRDZtUVJ3cDYxWWRsVUhEWEwz?=
+ =?utf-8?B?c2lqQjRVcXFRb0puZzFSMmdCUTBneEM4QitEcjVzcWpYZjBOaGorZkNSVjAv?=
+ =?utf-8?B?WkF2TEM2TzJLR2RCaGIzbnFiMU95N2VIM2hXU3NlQXlRVjRvUmRBZ0gxMWFa?=
+ =?utf-8?B?UWRBbGJlTWZzYnJYN3YzakNIYmRBcEYxeWQ2SDE5LzFLSisrSHI1VlRnRHJ4?=
+ =?utf-8?Q?+h3dYLAHg6fa5PX1QLLAltRgOT9WKEH/P9wBEf2?=
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: augustusaero.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN7PR05MB4500.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b8c00ac6-b755-45bd-a03e-08d989c0bebd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2021 18:31:57.5350
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 04d66077-4301-4950-bf2c-c3d5b922ae52
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bHX4H3ly5iVdCXkdpvjIQY1l6klIEz++X39vzD1Qj9NjZZufV35vHrNylCe6T0+glty6OPCwz/FC32OFDBuYvw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR05MB4033
+Message-ID-Hash: 2GSZGLIFDSL6LKVC2MI7KMT5VVNMKSON
+X-Message-ID-Hash: 2GSZGLIFDSL6LKVC2MI7KMT5VVNMKSON
+X-MailFrom: Tobin@augustusaero.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: UHD 3.15 on Windows
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XUDZMDYY4OQMUCKXAB2SFF3F5BSWN66G/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WTM4ZAIAHTVVOYFOAPJEPXCB6JIUXQ3T/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5177402509608952237=="
+Content-Type: multipart/mixed; boundary="===============2401608700098138066=="
 
---===============5177402509608952237==
-Content-Type: multipart/alternative; boundary="00000000000007093305cdc6fa84"
+--===============2401608700098138066==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN7PR05MB45000A47C92750DDCFEC590CD5B19BN7PR05MB4500namp_"
 
---00000000000007093305cdc6fa84
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_BN7PR05MB45000A47C92750DDCFEC590CD5B19BN7PR05MB4500namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Also, does the N310 have the 3.15 file system / MPM installed?
+SSBhbSBvbmx5IGNvbm5lY3RlZCB0byB0aGUgVVNSUCB2aWEgZXRoZXJuZXQgdG8gU0ZQKzAgcG9y
+dC4NCg0KSSBoYXZlIG5vIHByb2JsZW1zIHdpdGggYSBMaW51eCBIb3N0IHJ1bm5pbmcgMy4xNS4N
+Cg0KRnJvbTogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5kLmVkdT4NClNlbnQ6IFRodXJzZGF5LCBP
+Y3RvYmVyIDcsIDIwMjEgMTE6NTYgQU0NClRvOiBKb25hdGhhbiBUb2JpbiA8VG9iaW5AYXVndXN0
+dXNhZXJvLmNvbT4NCkNjOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6
+IFtVU1JQLXVzZXJzXSBVSEQgMy4xNSBvbiBXaW5kb3dzDQoNCkFsc28sIGRvZXMgdGhlIE4zMTAg
+aGF2ZSB0aGUgMy4xNSBmaWxlIHN5c3RlbSAvIE1QTSBpbnN0YWxsZWQ/DQoNCk9uIFRodSwgT2N0
+IDcsIDIwMjEgYXQgMTo1NCBQTSBSb2IgS29zc2xlciA8cmtvc3NsZXJAbmQuZWR1PG1haWx0bzpy
+a29zc2xlckBuZC5lZHU+PiB3cm90ZToNClBlcmhhcHMgeW91IGFyZSBqdXN0IGZpbmRpbmcgdGhl
+IGFkZHJlc3Mgb2YgdGhlIE4zMTAgUko0NSBFdGhlcm5ldCBwb3J0LCBidXQgbm90IHRoZSBhZGRy
+ZXNzIG9mIHRoZSBTRlArIHBvcnRzPyBUaGVzZSBhcmUgbmVlZGVkIGZvciBVSEQgKGF0IGxlYXN0
+IG9uZSBvZiB0aGVtKS4gQXJlIHlvdSBvbmx5IGNvbm5lY3RlZCB2aWEgMUdCPyAgRG8geW91IGhh
+dmUgYSBkaXJlY3QgbGluayBiZXR3ZWVuIGhvc3QgUEMgYW5kIG9uZSBvZiB0aGUgU0ZQKyBwb3J0
+cz8NClJvYg0KDQpPbiBUaHUsIE9jdCA3LCAyMDIxIGF0IDE6MzcgUE0gSm9uYXRoYW4gVG9iaW4g
+PFRvYmluQGF1Z3VzdHVzYWVyby5jb208bWFpbHRvOlRvYmluQGF1Z3VzdHVzYWVyby5jb20+PiB3
+cm90ZToNCkhlbGxvIOKAkyBJIGFtIGF0dGVtcHRpbmcgdG8gaW5zdGFsbCBVSEQgMy4xNSBvbiBt
+eSBXaW5kb3dzIDEwIFBDLiBJIGFtIGFibGUgdG8gcGluZyBhbmQgZmluZCB0aGUgZGV2aWNlLCBi
+dXQgY3VycmVudGx5IHVuYWJsZSB0byBwcm9iZS4gTm90IHN1cmUgd2hhdCB0aGUgaXNzdWUgaXMg
+4oCTIGFueSByZWNvbW1lbmRhdGlvbnM/DQoNCkNvbW1hbmQgUHJvbXB0IG91dHB1dDoNCg0KQzpc
+UHJvZ3JhbSBGaWxlc1xVSEQzXGJpbj51aGRfZmluZF9kZXZpY2VzDQpbSU5GT10gW1VIRF0gV2lu
+MzI7IE1pY3Jvc29mdCBWaXN1YWwgQysrIHZlcnNpb24gMTQuMjsgQm9vc3RfMTA3MjAwOyBVSERf
+My4xNS4wLkhFQUQtMC1nYWVhMGUyZGUNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tDQotLSBVSEQgRGV2aWNlIDANCi0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQpEZXZpY2UgQWRkcmVzczoNCiAgICBzZXJp
+YWw6IDMyMThCNUYNCiAgICBjbGFpbWVkOiBGYWxzZQ0KICAgIG1nbXRfYWRkcjogMTkyLjE2OC4x
+MC4yDQogICAgcHJvZHVjdDogbjMxMA0KICAgIHJlYWNoYWJsZTogTm8NCiAgICB0eXBlOiBuM3h4
+DQoNCkM6XFByb2dyYW0gRmlsZXNcVUhEM1xiaW4+dWhkX3VzcnBfcHJvYmUNCltJTkZPXSBbVUhE
+XSBXaW4zMjsgTWljcm9zb2Z0IFZpc3VhbCBDKysgdmVyc2lvbiAxNC4yOyBCb29zdF8xMDcyMDA7
+IFVIRF8zLjE1LjAuSEVBRC0wLWdhZWEwZTJkZQ0KW0lORk9dIFtNUE1EIEZJTkRdIEZvdW5kIE1Q
+TSBkZXZpY2VzLCBidXQgbm9uZSBhcmUgcmVhY2hhYmxlIGZvciBhIFVIRCBzZXNzaW9uLiBTcGVj
+aWZ5IGZpbmRfYWxsIHRvIGZpbmQgYWxsIGRldmljZXMuDQpFcnJvcjogTG9va3VwRXJyb3I6IEtl
+eUVycm9yOiBObyBkZXZpY2VzIGZvdW5kIGZvciAtLS0tLT4NCkVtcHR5IERldmljZSBBZGRyZXNz
+DQoNCg0KVGhhbmtzLA0KSm9uYXRoYW4NCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8g
+dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
+LmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQo=
 
-On Thu, Oct 7, 2021 at 1:54 PM Rob Kossler <rkossler@nd.edu> wrote:
+--_000_BN7PR05MB45000A47C92750DDCFEC590CD5B19BN7PR05MB4500namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> Perhaps you are just finding the address of the N310 RJ45 Ethernet port,
-> but not the address of the SFP+ ports? These are needed for UHD (at least
-> one of them). Are you only connected via 1GB?  Do you have a direct link
-> between host PC and one of the SFP+ ports?
-> Rob
->
-> On Thu, Oct 7, 2021 at 1:37 PM Jonathan Tobin <Tobin@augustusaero.com>
-> wrote:
->
->> Hello =E2=80=93 I am attempting to install UHD 3.15 on my Windows 10 PC.=
- I am
->> able to ping and find the device, but currently unable to probe. Not sur=
-e
->> what the issue is =E2=80=93 any recommendations?
->>
->>
->>
->> Command Prompt output:
->>
->>
->>
->> C:\Program Files\UHD3\bin>uhd_find_devices
->>
->> [INFO] [UHD] Win32; Microsoft Visual C++ version 14.2; Boost_107200;
->> UHD_3.15.0.HEAD-0-gaea0e2de
->>
->> --------------------------------------------------
->>
->> -- UHD Device 0
->>
->> --------------------------------------------------
->>
->> Device Address:
->>
->>     serial: 3218B5F
->>
->>     claimed: False
->>
->>     mgmt_addr: 192.168.10.2
->>
->>     product: n310
->>
->>     reachable: No
->>
->>     type: n3xx
->>
->>
->>
->> C:\Program Files\UHD3\bin>uhd_usrp_probe
->>
->> [INFO] [UHD] Win32; Microsoft Visual C++ version 14.2; Boost_107200;
->> UHD_3.15.0.HEAD-0-gaea0e2de
->>
->> [INFO] [MPMD FIND] Found MPM devices, but none are reachable for a UHD
->> session. Specify find_all to find all devices.
->>
->> Error: LookupError: KeyError: No devices found for ----->
->>
->> Empty Device Address
->>
->>
->>
->>
->>
->> Thanks,
->>
->> Jonathan
->>
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
+OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
+bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
+b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
+CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
+ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
+eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
+IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
+eSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3Jh
+cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5JIGFtIG9ubHkgY29ubmVjdGVkIHRvIHRoZSBVU1JQIHZpYSBldGhlcm5ldCB0byBT
+RlArMCBwb3J0LiAmbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBoYXZlIG5vIHByb2Js
+ZW1zIHdpdGggYSBMaW51eCBIb3N0IHJ1bm5pbmcgMy4xNS48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVy
+Om5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBp
+biAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+RnJvbTo8L2I+IFJvYiBLb3NzbGVyICZs
+dDtya29zc2xlckBuZC5lZHUmZ3Q7IDxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgT2N0b2Jl
+ciA3LCAyMDIxIDExOjU2IEFNPGJyPg0KPGI+VG86PC9iPiBKb25hdGhhbiBUb2JpbiAmbHQ7VG9i
+aW5AYXVndXN0dXNhZXJvLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10gVUhEIDMuMTUg
+b24gV2luZG93czxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5BbHNvLCBk
+b2VzIHRoZSBOMzEwIGhhdmUgdGhlIDMuMTUgZmlsZSBzeXN0ZW0gLyBNUE0gaW5zdGFsbGVkPzxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVGh1LCBPY3Qg
+NywgMjAyMSBhdCAxOjU0IFBNIFJvYiBLb3NzbGVyICZsdDs8YSBocmVmPSJtYWlsdG86cmtvc3Ns
+ZXJAbmQuZWR1Ij5ya29zc2xlckBuZC5lZHU8L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlk
+ICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0Ljhw
+dDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+UGVyaGFwcyB5b3UgYXJlIGp1c3QgZmluZGluZyB0aGUgYWRkcmVzcyBvZiB0aGUgTjMxMCBSSjQ1
+IEV0aGVybmV0IHBvcnQsIGJ1dCBub3QgdGhlIGFkZHJlc3Mgb2YgdGhlIFNGUCsgcG9ydHM/IFRo
+ZXNlIGFyZSBuZWVkZWQgZm9yIFVIRCAoYXQgbGVhc3Qgb25lIG9mIHRoZW0pLiBBcmUgeW91IG9u
+bHkgY29ubmVjdGVkIHZpYSAxR0I/Jm5ic3A7IERvIHlvdSBoYXZlIGEgZGlyZWN0Jm5ic3A7bGlu
+ayBiZXR3ZWVuIGhvc3QgUEMNCiBhbmQgb25lIG9mIHRoZSBTRlArIHBvcnRzPzxvOnA+PC9vOnA+
+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlJvYjxvOnA+PC9vOnA+PC9wPg0KPC9k
+aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
+PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBUaHUsIE9jdCA3LCAyMDIxIGF0
+IDE6MzcgUE0gSm9uYXRoYW4gVG9iaW4gJmx0OzxhIGhyZWY9Im1haWx0bzpUb2JpbkBhdWd1c3R1
+c2Flcm8uY29tIiB0YXJnZXQ9Il9ibGFuayI+VG9iaW5AYXVndXN0dXNhZXJvLmNvbTwvYT4mZ3Q7
+IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVy
+Om5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBpbiAwaW4gMGlu
+IDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowaW4iPg0KPGRpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
+LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkhlbGxvIOKAkyBJIGFtIGF0dGVtcHRpbmcgdG8gaW5z
+dGFsbCBVSEQgMy4xNSBvbiBteSBXaW5kb3dzIDEwIFBDLiBJIGFtIGFibGUgdG8gcGluZyBhbmQg
+ZmluZCB0aGUgZGV2aWNlLCBidXQgY3VycmVudGx5IHVuYWJsZSB0byBwcm9iZS4gTm90IHN1cmUg
+d2hhdCB0aGUgaXNzdWUgaXMg4oCTIGFueSByZWNvbW1lbmRhdGlvbnM/PG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
+LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90
+dG9tLWFsdDphdXRvIj5Db21tYW5kIFByb21wdCBvdXRwdXQ6PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
+bi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFs
+dDphdXRvIj5DOlxQcm9ncmFtIEZpbGVzXFVIRDNcYmluJmd0O3VoZF9maW5kX2RldmljZXM8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
+bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+W0lORk9dIFtVSERdIFdpbjMyOyBN
+aWNyb3NvZnQgVmlzdWFsIEMrKyB2ZXJzaW9uIDE0LjI7IEJvb3N0XzEwNzIwMDsgVUhEXzMuMTUu
+MC5IRUFELTAtZ2FlYTBlMmRlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+Pi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPi0tIFVIRCBEZXZpY2UgMDxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
+dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFs
+dDphdXRvIj5EZXZpY2UgQWRkcmVzczo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHNlcmlhbDogMzIxOEI1RjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDsmbmJzcDsmbmJzcDsgY2xhaW1lZDogRmFsc2U8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7ICZuYnNwOyZuYnNw
+O21nbXRfYWRkcjogMTkyLjE2OC4xMC4yPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPiZuYnNwOyZuYnNwOyZuYnNwOyBwcm9kdWN0OiBuMzEwPG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOyZuYnNwOyZuYnNwOyByZWFjaGFibGU6IE5vPG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3At
+YWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOyZuYnNwOyZuYnNwOyB0
+eXBlOiBuM3h4PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
+LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5DOlxQcm9ncmFtIEZpbGVzXFVI
+RDNcYmluJmd0O3VoZF91c3JwX3Byb2JlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPltJTkZPXSBbVUhEXSBXaW4zMjsgTWljcm9zb2Z0IFZpc3VhbCBDKysgdmVyc2lvbiAx
+NC4yOyBCb29zdF8xMDcyMDA7IFVIRF8zLjE1LjAuSEVBRC0wLWdhZWEwZTJkZTxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
+O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5bSU5GT10gW01QTUQgRklORF0gRm91bmQgTVBN
+IGRldmljZXMsIGJ1dCBub25lIGFyZSByZWFjaGFibGUgZm9yIGEgVUhEIHNlc3Npb24uIFNwZWNp
+ZnkgZmluZF9hbGwgdG8gZmluZCBhbGwgZGV2aWNlcy48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+RXJyb3I6IExvb2t1cEVycm9yOiBLZXlFcnJvcjogTm8gZGV2aWNlcyBm
+b3VuZCBmb3IgLS0tLS0mZ3Q7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+PkVtcHR5IERldmljZSBBZGRyZXNzPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+VGhhbmtzLDxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
+O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5Kb25hdGhhbjxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1h
+bHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJl
+Zj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFu
+ayI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcD4N
+CjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---00000000000007093305cdc6fa84
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_BN7PR05MB45000A47C92750DDCFEC590CD5B19BN7PR05MB4500namp_--
 
-<div dir=3D"ltr">Also, does the N310 have the 3.15 file system / MPM instal=
-led?</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Thu, Oct 7, 2021 at 1:54 PM Rob Kossler &lt;<a href=3D"mailto:rkossl=
-er@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Perhaps you are=
- just finding the address of the N310 RJ45 Ethernet port, but not the addre=
-ss of the SFP+ ports? These are needed for UHD (at least one of them). Are =
-you only connected via 1GB?=C2=A0 Do you have a direct=C2=A0link between ho=
-st PC and one of the SFP+ ports?<div>Rob</div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 7, 2021 at 1:37 P=
-M Jonathan Tobin &lt;<a href=3D"mailto:Tobin@augustusaero.com" target=3D"_b=
-lank">Tobin@augustusaero.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div>
-<p class=3D"MsoNormal">Hello =E2=80=93 I am attempting to install UHD 3.15 =
-on my Windows 10 PC. I am able to ping and find the device, but currently u=
-nable to probe. Not sure what the issue is =E2=80=93 any recommendations?<u=
-></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Command Prompt output:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">C:\Program Files\UHD3\bin&gt;uhd_find_devices<u></u>=
-<u></u></p>
-<p class=3D"MsoNormal">[INFO] [UHD] Win32; Microsoft Visual C++ version 14.=
-2; Boost_107200; UHD_3.15.0.HEAD-0-gaea0e2de<u></u><u></u></p>
-<p class=3D"MsoNormal">--------------------------------------------------<u=
-></u><u></u></p>
-<p class=3D"MsoNormal">-- UHD Device 0<u></u><u></u></p>
-<p class=3D"MsoNormal">--------------------------------------------------<u=
-></u><u></u></p>
-<p class=3D"MsoNormal">Device Address:<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 serial: 3218B5F<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 claimed: False<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0 =C2=A0=C2=A0mgmt_addr: 192.168.10.2<u></u><u>=
-</u></p>
-<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 product: n310<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 reachable: No<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 type: n3xx<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">C:\Program Files\UHD3\bin&gt;uhd_usrp_probe<u></u><u=
-></u></p>
-<p class=3D"MsoNormal">[INFO] [UHD] Win32; Microsoft Visual C++ version 14.=
-2; Boost_107200; UHD_3.15.0.HEAD-0-gaea0e2de<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPMD FIND] Found MPM devices, but none are r=
-eachable for a UHD session. Specify find_all to find all devices.<u></u><u>=
-</u></p>
-<p class=3D"MsoNormal">Error: LookupError: KeyError: No devices found for -=
-----&gt;<u></u><u></u></p>
-<p class=3D"MsoNormal">Empty Device Address<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal">Jonathan<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-</blockquote></div>
-
---00000000000007093305cdc6fa84--
-
---===============5177402509608952237==
+--===============2401608700098138066==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -246,4 +332,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5177402509608952237==--
+--===============2401608700098138066==--
