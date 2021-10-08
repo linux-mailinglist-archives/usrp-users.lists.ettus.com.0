@@ -2,475 +2,226 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96F83425B89
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Oct 2021 21:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7B34264C6
+	for <lists+usrp-users@lfdr.de>; Fri,  8 Oct 2021 08:42:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 51976381346
-	for <lists+usrp-users@lfdr.de>; Thu,  7 Oct 2021 15:28:08 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CF7A438444F
+	for <lists+usrp-users@lfdr.de>; Fri,  8 Oct 2021 02:42:31 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Cf8hBhod";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="PQcx45YA";
 	dkim-atps=neutral
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3AFAC384528
-	for <usrp-users@lists.ettus.com>; Thu,  7 Oct 2021 15:27:14 -0400 (EDT)
-Received: by mail-qt1-f182.google.com with SMTP id r17so2003991qtx.10
-        for <usrp-users@lists.ettus.com>; Thu, 07 Oct 2021 12:27:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=dM9NjulFKywDKGcM4iLCS/Mj9JbcdOHtqJJg88rQf9g=;
-        b=Cf8hBhodc5PlzAzuhKcB48XfK2Q4Xq8R/5v2mGZXZfQDy870gy3yU7HzHKLQSbKc88
-         1lo/j3LvLVom82agiGpAXErG18gC4GvSIxtSiDbOmqSqpFLwkv1MY8VS6C8qFTktTTyz
-         VyPxkUQw7uZwwc5tu7FspQSx6qjDouG2H+C+kdenVG2/mKn3eXr4k+m8/DiXvsbl2Jmu
-         dRcHRKfmoAIxyf9IfN58KrBtOTk1pYkD1tHwTd8P9YhkagOyOPyQAg+igAWXV2wvppMx
-         +5b2Ru8IkPtCZ160BZbQUGR1uZQorAcczDI4EGTgpsTEn3+wg0wcBKV7ptblg1U/pVOi
-         Z5cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=dM9NjulFKywDKGcM4iLCS/Mj9JbcdOHtqJJg88rQf9g=;
-        b=ambAfcWjCtsu4edcrKD04dJjoxTR5NYTlBaEiwYFSb6RFuZYmWJ3WNHeRQC0gXvNfl
-         Vp7FkAUFY7FaZwch48/okBmgyxpvDERsYmXzwTXI9rx5QTL2xafDuQmhefIQkTZTD/Z7
-         i3AueR1BdYl+9wwwH/c5DQlY98GlSDCSkRfepiigvHASYgnTWvJCGtinbSziE6pPjBvw
-         ikxYQc9Cczt1buIsKkPp8ZsCzoRJG565ZbOQg6cOnd7hXNLHKe7YJ21duASuNFgcyWft
-         a9FAVGGcEWAbRa4z8liYDva8GCTAOUTBw1VWkn1kagI7IouXZ05LVVlkBPQjSU+tQLpI
-         tt7g==
-X-Gm-Message-State: AOAM530+OYTRunAsapFyQqUtroZPT14VPqN2AtvaVGJ16Sc/MU1pHaFY
-	vE2+yaB7dPykBdamgD8B9N0/z8FEyBo=
-X-Google-Smtp-Source: ABdhPJzwEZ989aLUkVg1kCDcMaXtVzhPwAHiC9VV+OVuPC8frXz/vLa2kvDC9I99RkVl/C2WQNO4Fw==
-X-Received: by 2002:ac8:4585:: with SMTP id l5mr6817237qtn.93.1633634833533;
-        Thu, 07 Oct 2021 12:27:13 -0700 (PDT)
-Received: from [192.168.2.253] (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
-        by smtp.googlemail.com with ESMTPSA id k16sm299380qta.27.2021.10.07.12.27.12
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Oct 2021 12:27:13 -0700 (PDT)
-To: usrp-users@lists.ettus.com
-References: <BN7PR05MB4500C27C573EBDAB9A2FD998D5B19@BN7PR05MB4500.namprd05.prod.outlook.com>
- <CAB__hTQbAiyie8RxsnpE1arSu6sR7Zqxozz4VOpugNK2qSLGMQ@mail.gmail.com>
- <CAB__hTR35saQd6PsoATaN93woLe_0g1Bnq2qoLzPATkZmMnz7A@mail.gmail.com>
- <BN7PR05MB45000A47C92750DDCFEC590CD5B19@BN7PR05MB4500.namprd05.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <9449daef-bcc9-e996-f0eb-be6d8676f1c6@gmail.com>
-Date: Thu, 7 Oct 2021 15:27:12 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <BN7PR05MB45000A47C92750DDCFEC590CD5B19@BN7PR05MB4500.namprd05.prod.outlook.com>
+Received: from APC01-PU1-obe.outbound.protection.outlook.com (mail-oln040092254029.outbound.protection.outlook.com [40.92.254.29])
+	by mm2.emwd.com (Postfix) with ESMTPS id DD42D38429C
+	for <usrp-users@lists.ettus.com>; Fri,  8 Oct 2021 02:41:40 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lUd0nCYhycoMX08dQITLXJSqT4hZ1zNb/tK2BfwzoEHIpy+ocuTryS/NHIumilWEGlfWNui23YXezU0E80OeRGh20RIrYT7xnG/+4H22M34RXTr328SYDiCBtFnjdq2rIKy3afrZgQtanTyzoFrdngrs4uM5ptrmyOWeiZhLMFzWuruwxk2WQatEGNssCWAvgqhonK/4xaE3TPzAlXjG3wYzpw1IhsoPm7BT2KhK4u8f38kA6r3+KZ/3OiG6VdH3Wqpx2qxttH6ePN0AS+mAcdCX1qgpFBtFCC3/pdyDfuQv0nGLo0AC2l1Bok+6hIJ6EZc4Pl3aZ4Kj9Co4hY3ujA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9r74LlnYmfqsCBhD+rEhvsu7hufO6/xsN62nTNOtYE0=;
+ b=nM/k8eMENfB9RjEhIZYloXD34nBHV83C832/ePiTUIVdtlUS2b3Z1Z2/qOK6IIRKnwMw4gaOJb11EeojfDllC8QRcn6X1dqPHTwi91LEmilzoNqTSA2vBrZweFbyRn4z7zAnA8p3dlIX1HwTBiF48+IiXH6ga2j0i8HoXTNlLgg/1utrg48Az5/XL+dJ7gb00mp2bZRg4pWMe7cpXX28CBqTxLday9SIEYKnJVBWO4ldXxx8ONPbllbt0WMi6aa8fPtiWIXNl16O+NBlTUBT4jFRxE1XR3C5rWBgYarxDEIxzj6QnoXJLUFUXkSsPZH4pNyFi3kyCz2IIG5FqCjjZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9r74LlnYmfqsCBhD+rEhvsu7hufO6/xsN62nTNOtYE0=;
+ b=PQcx45YA8wMydMR8b2qkvhDtBqoJruO4PC3GqzyWuEuDsBn5e004CNAksVLWMcPyVqGlID7yEWiVXYPqPIO4yYXef3JfaHWv7AwRgIJv18buFjvf/oLtrYQFrggNYYVG1eB1Wyfzp5eeGCbqlmRkPkzGPHqAzOE817uptJjxygaO5skkcpnnfxoWGHqdiFuftadOvDYqNu/GW5zDUod4UiKi9rwlL+092FPAPLGXzJQtzQrCV3239L2fzc4LylxEeAqyl6cEbHkKJhG+hQGpO99anxPzlI1kJ08ga4OZ4pdl0cf922cJC/rGgqMxJCGOtIgEVJ2MLkdagUYDIfhxAA==
+Received: from SI2PR02MB5145.apcprd02.prod.outlook.com (2603:1096:4:155::8) by
+ SI2PR02MB4761.apcprd02.prod.outlook.com (2603:1096:4:12c::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4587.19; Fri, 8 Oct 2021 06:41:38 +0000
+Received: from SI2PR02MB5145.apcprd02.prod.outlook.com
+ ([fe80::a5bf:9f6:c240:6124]) by SI2PR02MB5145.apcprd02.prod.outlook.com
+ ([fe80::a5bf:9f6:c240:6124%7]) with mapi id 15.20.4587.021; Fri, 8 Oct 2021
+ 06:41:38 +0000
+From: Gabriel Lim <icyveins@hotmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: X310 USRP Dual TwinRX LEDs not turning on properly
+Thread-Index: AQHXvA9+NqldoQ9tYES8LKnJZL2vEQ==
+Date: Fri, 8 Oct 2021 06:41:37 +0000
+Message-ID: 
+ <SI2PR02MB51450DFCDEF99A2BE9F70027DBB29@SI2PR02MB5145.apcprd02.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-Message-ID-Hash: DMW632GQY52IGMMQTMEEBNBENAZAV2GC
-X-Message-ID-Hash: DMW632GQY52IGMMQTMEEBNBENAZAV2GC
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+suggested_attachment_session_id: 704729e8-d088-5ce6-84a3-2e5d357d6329
+x-tmn: [c1Twq3i5OoK0GnBYTflPpT48VpzlAidm]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7a780848-db1e-4e6b-4909-08d98a26ade1
+x-ms-traffictypediagnostic: SI2PR02MB4761:
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ y5EyXwUZj1MwSO7SCBbCGWGZKaXqkl1XwOfZAKYw0c39SxgiIapXyznelZsm1yii9IlhOODYLgIZaoux6fbK+qUda45SvF3ofHtPC9/4M3wwEObygDjI8CvXo4SuPvq8pE7T/1NEsFgVBJ5G2Jc8HB72T+vfQwId+yS8ltcBc1dmauv/sAJafvwQkav95b78umMvGj06UV5Y99jO8oW2ergcrbMp2//AtdSpltTk6kuWRWw7DrJ4SirOnDh+Ha1fjY3I2KN2tgP/bFzS2+klfP0Q64A9O64DlaFVTX4gZeBb7AuVzet0wWLnp1ReRfKmIBf+2ctP818vGJoWjCEulM58b4js+yEAejxQ/gs4yTDYhtTf04cYMdiANYfTbGNDizp8u0LmW94I2TZL6k1MmRI98faRrp65f8cvI0UuycUrZCCc3DI7VfsN213dLZxy
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ WWlPzfy9dCkUpbsoZX/8DCKFlpLuhwbTFvNXCaNoO7Jig1vhL3S/oAUgidwF815fsYuPFvzOogUm66tP/zIxyLGybhQ0U4li+6RYhx/VSlHO5bynwNbrRWej5HY8yiW7JvM841LEJGXpm3hpmm6NiQ==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: sct-15-20-3174-20-msonline-outlook-0bb73.templateTenant
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SI2PR02MB5145.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a780848-db1e-4e6b-4909-08d98a26ade1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2021 06:41:37.9621
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR02MB4761
+Message-ID-Hash: 3LJTQRIEPAAUP2255Y6RA2OWAKJEZWVA
+X-Message-ID-Hash: 3LJTQRIEPAAUP2255Y6RA2OWAKJEZWVA
+X-MailFrom: icyveins@hotmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD 3.15 on Windows
+Subject: [USRP-users] X310 USRP Dual TwinRX LEDs not turning on properly
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DMW632GQY52IGMMQTMEEBNBENAZAV2GC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y5ZAUWJS7PPSRZQNFYZJGIDY3RW34WBE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6306849498566757942=="
+Content-Type: multipart/mixed; boundary="===============1214039049215527737=="
 
-This is a multi-part message in MIME format.
---===============6306849498566757942==
-Content-Type: multipart/alternative;
- boundary="------------C49775C75217F2C334FE41A7"
+--===============1214039049215527737==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SI2PR02MB51450DFCDEF99A2BE9F70027DBB29SI2PR02MB5145apcp_"
 
-This is a multi-part message in MIME format.
---------------C49775C75217F2C334FE41A7
-Content-Type: text/plain; charset=utf-8; format=flowed
+--_000_SI2PR02MB51450DFCDEF99A2BE9F70027DBB29SI2PR02MB5145apcp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On 2021-10-07 2:31 p.m., Jonathan Tobin wrote:
->
-> I am only connected to the USRP via ethernet to SFP+0 port.
->
-> I have no problems with a Linux Host running 3.15.
->
-Yup, so try:
+Am re-posting my issue that I raised on the github here.
 
-uhd_usrp_probe --args addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310
+Issue Description
 
-If that *still* fails, then you probably have a much-older image on the=20
-N310, and should follow the directions for updating it:
+X310 with two TwinRX daughterboards, opening all 4 channels for receive via=
+ a subdev spec of "A:0 A:1 B:0 B:1", and channels "0,1,2,3", results in onl=
+y the RX2 lights of both daughterboards turning on. Further experimentation=
+ shows that the order in which the channels are selected matters i.e. Doing=
+ A:RX1, A:RX2, B:RX2, B:RX1 (via GNURadio) results in only the A:RX2 and B:=
+RX1 lights being on.
 
-https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card
+The recording itself was unaffected i.e. even though the LED was off, it wa=
+s still recording 4 channels correctly (tested with external signal source =
+plugged into each channel one by one).
 
+Issue did not occur when using UHD 3.15.0 (and subsequently also re-flashin=
+g the FPGA for compatibility, so it may be the FPGA image that is the cause=
+). All lights turned on.
 
+Setup Details
 
-> *From:* Rob Kossler <rkossler@nd.edu>
-> *Sent:* Thursday, October 7, 2021 11:56 AM
-> *To:* Jonathan Tobin <Tobin@augustusaero.com>
-> *Cc:* usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] UHD 3.15 on Windows
->
-> Also, does the N310 have the 3.15 file system / MPM installed?
->
-> On Thu, Oct 7, 2021 at 1:54 PM Rob Kossler <rkossler@nd.edu=20
-> <mailto:rkossler@nd.edu>> wrote:
->
->     Perhaps you are just finding the address of the N310 RJ45 Ethernet
->     port, but not the address of the SFP+ ports? These are needed for
->     UHD (at least one of them). Are you only connected via 1GB?=C2=A0 D=
-o
->     you have a direct=C2=A0link between host PC and one of the SFP+ por=
-ts?
->
->     Rob
->
->     On Thu, Oct 7, 2021 at 1:37 PM Jonathan Tobin
->     <Tobin@augustusaero.com <mailto:Tobin@augustusaero.com>> wrote:
->
->         Hello =E2=80=93 I am attempting to install UHD 3.15 on my Windo=
-ws 10
->         PC. I am able to ping and find the device, but currently
->         unable to probe. Not sure what the issue is =E2=80=93 any recom=
-mendations?
->
->         Command Prompt output:
->
->         C:\Program Files\UHD3\bin>uhd_find_devices
->
->         [INFO] [UHD] Win32; Microsoft Visual C++ version 14.2;
->         Boost_107200; UHD_3.15.0.HEAD-0-gaea0e2de
->
->         --------------------------------------------------
->
->         -- UHD Device 0
->
->         --------------------------------------------------
->
->         Device Address:
->
->         serial: 3218B5F
->
->         claimed: False
->
->         =C2=A0=C2=A0mgmt_addr: 192.168.10.2
->
->         product: n310
->
->         reachable: No
->
->         type: n3xx
->
->         C:\Program Files\UHD3\bin>uhd_usrp_probe
->
->         [INFO] [UHD] Win32; Microsoft Visual C++ version 14.2;
->         Boost_107200; UHD_3.15.0.HEAD-0-gaea0e2de
->
->         [INFO] [MPMD FIND] Found MPM devices, but none are reachable
->         for a UHD session. Specify find_all to find all devices.
->
->         Error: LookupError: KeyError: No devices found for ----->
->
->         Empty Device Address
->
->         Thanks,
->
->         Jonathan
->
->         _______________________________________________
->         USRP-users mailing list -- usrp-users@lists.ettus.com
->         <mailto:usrp-users@lists.ettus.com>
->         To unsubscribe send an email to
->         usrp-users-leave@lists.ettus.com
->         <mailto:usrp-users-leave@lists.ettus.com>
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+UHD 4.0 and 4.1 were tested and were the culprits. FPGA versions were whate=
+ver was required i.e. upon uhd_usrp_probe, if asked to re-flash due to comp=
+atibility issues for that version, I did so.
+
+OS: Both Windows 10 and Ubuntu had the same issue.
+Hardware: Has occurred on both my laptop (i7-8565UC) and my desktop (Ryzen =
+5 1600x).
+
+Expected Behavior
+
+All 4 LEDs should light up, as per the UHD 3.15.0 test.
+
+Actual Behaviour
+
+Only the 2nd selected antenna for each TwinRX lights up (example in the des=
+cription at the start).
+
+Steps to reproduce the problem
+
+Easiest way to reproduce is to run
+
+rx_multi_samples --rate 200000 --subdev=3D"A:0 A:1 B:0 B:1" --channels 0,1,=
+2,3
 
 
---------------C49775C75217F2C334FE41A7
-Content-Type: text/html; charset=utf-8
+and observe the LEDs below the SMA ports. I also used GRC to hook up a UHD =
+Source to 4 outputs, with the same subdev config, and played around with ch=
+annel antennas. This allowed me to change the ordering to A:RX1, A:RX2, B:R=
+X2, B:RX1, which then showed that only the second antenna LEDs lit up (in t=
+his case, A:RX2 and B:RX1).
+
+Additional Information
+
+Nothing for now.
+
+
+--_000_SI2PR02MB51450DFCDEF99A2BE9F70027DBB29SI2PR02MB5145apcp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2021-10-07 2:31 p.m., Jonathan Tobi=
-n
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:BN7PR05MB45000A47C92750DDCFEC590CD5B19@BN7PR05MB4500.namprd05=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">I am only connected to the USRP via
-          ethernet to SFP+0 port. =C2=A0<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">I have no problems with a Linux Host
-          running 3.15.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      </div>
-    </blockquote>
-    Yup, so try:<br>
-    <br>
-    uhd_usrp_probe --args addr=3D192.168.10.2,type=3Dn3xx,product=3Dn310<=
-br>
-    <br>
-    If that *still* fails, then you probably have a much-older image on
-    the N310, and should follow the directions for updating it:<br>
-    <br>
-<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/Writing_t=
-he_USRP_File_System_Disk_Image_to_a_SD_Card">https://kb.ettus.com/Writing=
-_the_USRP_File_System_Disk_Image_to_a_SD_Card</a><br>
-    <br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:BN7PR05MB45000A47C92750DDCFEC590CD5B19@BN7PR05MB4500.namprd05=
-.prod.outlook.com">
-      <div class=3D"WordSection1">
-        <div style=3D"border:none;border-top:solid #E1E1E1
-          1.0pt;padding:3.0pt 0in 0in 0in">
-          <p class=3D"MsoNormal"><b>From:</b> Rob Kossler
-            <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:rkossler@nd=
-.edu">&lt;rkossler@nd.edu&gt;</a> <br>
-            <b>Sent:</b> Thursday, October 7, 2021 11:56 AM<br>
-            <b>To:</b> Jonathan Tobin <a class=3D"moz-txt-link-rfc2396E" =
-href=3D"mailto:Tobin@augustusaero.com">&lt;Tobin@augustusaero.com&gt;</a>=
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+Am re-posting my issue that I raised on the github here.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
 <br>
-            <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"mail=
-to:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-            <b>Subject:</b> Re: [USRP-users] UHD 3.15 on Windows<o:p></o:=
-p></p>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <p class=3D"MsoNormal">Also, does the N310 have the 3.15 file
-            system / MPM installed?<o:p></o:p></p>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div>
-            <p class=3D"MsoNormal">On Thu, Oct 7, 2021 at 1:54 PM Rob
-              Kossler &lt;<a href=3D"mailto:rkossler@nd.edu"
-                moz-do-not-send=3D"true">rkossler@nd.edu</a>&gt; wrote:<o=
-:p></o:p></p>
-          </div>
-          <blockquote style=3D"border:none;border-left:solid #CCCCCC
-            1.0pt;padding:0in 0in 0in
-            6.0pt;margin-left:4.8pt;margin-right:0in">
-            <div>
-              <div>
-                <p class=3D"MsoNormal">Perhaps you are just finding the
-                  address of the N310 RJ45 Ethernet port, but not the
-                  address of the SFP+ ports? These are needed for UHD
-                  (at least one of them). Are you only connected via
-                  1GB?=C2=A0 Do you have a direct=C2=A0link between host =
-PC and
-                  one of the SFP+ ports?<o:p></o:p></p>
-                <div>
-                  <p class=3D"MsoNormal">Rob<o:p></o:p></p>
-                </div>
-              </div>
-              <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-              <div>
-                <div>
-                  <p class=3D"MsoNormal">On Thu, Oct 7, 2021 at 1:37 PM
-                    Jonathan Tobin &lt;<a
-                      href=3D"mailto:Tobin@augustusaero.com"
-                      target=3D"_blank" moz-do-not-send=3D"true">Tobin@au=
-gustusaero.com</a>&gt;
-                    wrote:<o:p></o:p></p>
-                </div>
-                <blockquote style=3D"border:none;border-left:solid #CCCCC=
-C
-                  1.0pt;padding:0in 0in 0in
-                  6.0pt;margin-left:4.8pt;margin-right:0in">
-                  <div>
-                    <div>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">Hello
-                        =E2=80=93 I am attempting to install UHD 3.15 on =
-my
-                        Windows 10 PC. I am able to ping and find the
-                        device, but currently unable to probe. Not sure
-                        what the issue is =E2=80=93 any recommendations?<=
-o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">Command
-                        Prompt output:<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">C:\Program
-                        Files\UHD3\bin&gt;uhd_find_devices<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">[INFO]
-                        [UHD] Win32; Microsoft Visual C++ version 14.2;
-                        Boost_107200; UHD_3.15.0.HEAD-0-gaea0e2de<o:p></o=
-:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">--------------------------------------------------<o:p></o:p>=
-</p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">--
-                        UHD Device 0<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">--------------------------------------------------<o:p></o:p>=
-</p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">Device
-                        Address:<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0=C2=A0=C2=A0
-                        serial: 3218B5F<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0=C2=A0=C2=A0
-                        claimed: False<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0
-                        =C2=A0=C2=A0mgmt_addr: 192.168.10.2<o:p></o:p></p=
->
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0=C2=A0=C2=A0
-                        product: n310<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0=C2=A0=C2=A0
-                        reachable: No<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0=C2=A0=C2=A0
-                        type: n3xx<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">C:\Program
-                        Files\UHD3\bin&gt;uhd_usrp_probe<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">[INFO]
-                        [UHD] Win32; Microsoft Visual C++ version 14.2;
-                        Boost_107200; UHD_3.15.0.HEAD-0-gaea0e2de<o:p></o=
-:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">[INFO]
-                        [MPMD FIND] Found MPM devices, but none are
-                        reachable for a UHD session. Specify find_all to
-                        find all devices.<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">Error:
-                        LookupError: KeyError: No devices found for
-                        -----&gt;<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">Empty
-                        Device Address<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">Thanks,<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">Jonathan<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0<o:p></o:p></p>
-                      <p class=3D"MsoNormal"
-                        style=3D"mso-margin-top-alt:auto;mso-margin-botto=
-m-alt:auto">=C2=A0<o:p></o:p></p>
-                    </div>
-                  </div>
-                  <p class=3D"MsoNormal">________________________________=
-_______________<br>
-                    USRP-users mailing list -- <a
-                      href=3D"mailto:usrp-users@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true">
-                      usrp-users@lists.ettus.com</a><br>
-                    To unsubscribe send an email to <a
-                      href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true">
-                      usrp-users-leave@lists.ettus.com</a><o:p></o:p></p>
-                </blockquote>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
+ color: rgb(0, 0, 0);">
+<h2>Issue Description</h2>
+<p>X310 with two TwinRX daughterboards, opening all 4 channels for receive =
+via a subdev spec of &quot;A:0 A:1 B:0 B:1&quot;, and channels &quot;0,1,2,=
+3&quot;, results in only the RX2 lights of both daughterboards turning on. =
+Further experimentation shows that the order in which
+ the channels are selected matters i.e. Doing A:RX1, A:RX2, B:RX2, B:RX1 (v=
+ia GNURadio) results in only the A:RX2 and B:RX1 lights being on.</p>
+<p>The recording itself was unaffected i.e. even though the LED was off, it=
+ was still recording 4 channels correctly (tested with external signal sour=
+ce plugged into each channel one by one).</p>
+<p>Issue did not occur when using UHD 3.15.0 (and subsequently also re-flas=
+hing the FPGA for compatibility, so it may be the FPGA image that is the ca=
+use). All lights turned on.</p>
+<h2>Setup Details</h2>
+<p>UHD 4.0 and 4.1 were tested and were the culprits. FPGA versions were wh=
+atever was required i.e. upon uhd_usrp_probe, if asked to re-flash due to c=
+ompatibility issues for that version, I did so.</p>
+<p>OS: Both Windows 10 and Ubuntu had the same issue.<br>
+Hardware: Has occurred on both my laptop (i7-8565UC) and my desktop (Ryzen =
+5 1600x).</p>
+<h2>Expected Behavior</h2>
+<p>All 4 LEDs should light up, as per the UHD 3.15.0 test.</p>
+<h2>Actual Behaviour</h2>
+<p>Only the 2nd selected antenna for each TwinRX lights up (example in the =
+description at the start).</p>
+<h2>Steps to reproduce the problem</h2>
+<p>Easiest way to reproduce is to run</p>
+<div class=3D"snippet-clipboard-content position-relative overflow-auto">
+<pre><code>rx_multi_samples --rate 200000 --subdev=3D&quot;A:0 A:1 B:0 B:1&=
+quot; --channels 0,1,2,3=0A=
+</code></pre>
+</div>
+<p>and observe the LEDs below the SMA ports. I also used GRC to hook up a U=
+HD Source to 4 outputs, with the same subdev config, and played around with=
+ channel antennas. This allowed me to change the ordering to A:RX1, A:RX2, =
+B:RX2, B:RX1, which then showed
+ that only the second antenna LEDs lit up (in this case, A:RX2 and B:RX1).<=
+/p>
+<h2>Additional Information</h2>
+<p>Nothing for now.</p>
+<br>
+</div>
+</body>
 </html>
 
---------------C49775C75217F2C334FE41A7--
+--_000_SI2PR02MB51450DFCDEF99A2BE9F70027DBB29SI2PR02MB5145apcp_--
 
---===============6306849498566757942==
+--===============1214039049215527737==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -480,4 +231,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6306849498566757942==--
+--===============1214039049215527737==--
