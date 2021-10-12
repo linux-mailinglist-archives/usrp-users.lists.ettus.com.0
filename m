@@ -2,392 +2,324 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91AD42A9EB
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Oct 2021 18:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC1442AB26
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Oct 2021 19:50:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 13D4A384749
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Oct 2021 12:48:05 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 42E05383D34
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Oct 2021 13:50:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ni.com header.i=@ni.com header.b="10EfcbKn";
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=nio365.onmicrosoft.com header.i=@nio365.onmicrosoft.com header.b="RXWurCTv";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="pa9Bt4qT";
 	dkim-atps=neutral
-Received: from mx0b-00010702.pphosted.com (mx0b-00010702.pphosted.com [148.163.158.57])
-	by mm2.emwd.com (Postfix) with ESMTPS id 696F938469E
-	for <usrp-users@lists.ettus.com>; Tue, 12 Oct 2021 12:47:19 -0400 (EDT)
-Received: from pps.filterd (m0098779.ppops.net [127.0.0.1])
-	by mx0b-00010702.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 19C70TBx030639;
-	Tue, 12 Oct 2021 11:47:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ni.com; h=from : to : subject :
- date : message-id : references : in-reply-to : content-type :
- mime-version; s=PPS11062020;
- bh=Z9mAfEe3KQHKOLW7QoeCWc0bAGaObptuvAusgXWtsbI=;
- b=10EfcbKniPO11fcKY/Cpa3MHjcedQu2yJfhEb+/WDL0oETmC3sj2HZLYu2y/gozg6+BL
- qBs8P1PcHjy/xsOa/RsFmNmafVEBPJoljcLHfyPAzQOgMYsxgYV+XKitLNoBD5cpyIS4
- mHJLd/YfnyLyiggi3xzWiEmUMWBU/B4Kw6bemNi4LDatV0uw+U4Jq7wLH/P11mxRrZ2g
- r8xiSxJgmgPBB8gk8fydhCKJzCRpEmo6hK/JoyZQm2jEGmnLTA8x68dc60aOy6ol5YJv
- mOCUDY9iPlOdtn+/GPGbNEzyrqw1vWVfCHp5S5j3iPzzzTIbnC3KZ6dq4AIfFKBWHwa1 SA==
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2170.outbound.protection.outlook.com [104.47.57.170])
-	by mx0b-00010702.pphosted.com with ESMTP id 3bn5kh982q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Oct 2021 11:47:18 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IPQSAEadi6Ka61ELiCbDK+clW88BQON9QhccksoVi1R+O/5PzWP+5f/xS1XBnH1cZQgs5bIFAPviriuapJ7sueVYj9rFdUgDgYKwT9VUZZnlcxXGORaHR1I8Rq9oiY7W2eDAuCCQvbvnclOgpkHs6BqYCUp+9+ZMRer0DNCSopSrUTJyKxHEQKaANZ+D2ff56iHgMZN1wzQc9I7NL1VYLFhtne7fT9Tlj9CPmUiI1c5qRp1zlxhruJiX66nCCc0muRZhz3BV8AXrGxg7auLb0J1su1jdyeF7GpppGWZ6z1VOanN9afKxQQB3ajpkyXRfEOWjE+yq4NPhCc6GD9HjCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z9mAfEe3KQHKOLW7QoeCWc0bAGaObptuvAusgXWtsbI=;
- b=chWamq8v7+YNNbpQqu7ac3vvEmWNL2tlNdvermztwXfDshJT5uKTlWvAimG8sgHwMePsclwm/unCb8VtXJm4wKLvF8BaaFBS6PTfwQedY73N0DXD6maKb7YdBCjEdv7+zdMnR3sdj521xtW5pYeLudb5zOdr7tYvsQFjXIe5mwTCvXQE5NAIailAaf5W903LE524NJkRI+vta+m/d6TKNHrjKpv4fdEmfWXslVJJ2/s3R8bBjf8QSsUQvQR0F0aE8Y127Bn+DxzCQsYIStFCJv9adQ0fbfBQAMdg1rGanHGQ2/hHNi1nCjzUPrqWPwtZLOoqTO2kcyacA1OdZ31LZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id DC7A8380B5E
+	for <USRP-users@lists.ettus.com>; Tue, 12 Oct 2021 13:50:12 -0400 (EDT)
+Received: by mail-qv1-f52.google.com with SMTP id m13so183905qvk.1
+        for <USRP-users@lists.ettus.com>; Tue, 12 Oct 2021 10:50:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z9mAfEe3KQHKOLW7QoeCWc0bAGaObptuvAusgXWtsbI=;
- b=RXWurCTvJPnNqXgXdG/kvBoewzQfg8wOt82B6sEK/G46KD0DfmRYhNvkl/7XsrSZLoOLxM5OPhwcRABVykBg6HuDauFh1170yk56qmVAxxTBsMQ8wLyeD3nw7yxBnmeYW54adOl1cLBOnfVB/UHb47XXiTW/cpsbu+F2jyBdjLs=
-Received: from DM8PR04MB8007.namprd04.prod.outlook.com (2603:10b6:5:314::20)
- by DM8PR04MB7943.namprd04.prod.outlook.com (2603:10b6:8:d::17) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4587.18; Tue, 12 Oct 2021 16:47:16 +0000
-Received: from DM8PR04MB8007.namprd04.prod.outlook.com
- ([fe80::dd2e:fff2:970b:9a7e]) by DM8PR04MB8007.namprd04.prod.outlook.com
- ([fe80::dd2e:fff2:970b:9a7e%6]) with mapi id 15.20.4587.026; Tue, 12 Oct 2021
- 16:47:16 +0000
-From: Jan Schirok <jan.schirok@ni.com>
-To: jason pro <jason_proj@outlook.com>,
-        "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: pin definitions of the two HDMI interfaces of x410
-Thread-Index: AQHXvfwEUydS4WTsKkCnRv7+suuBJavPCnlA
-Date: Tue, 12 Oct 2021 16:47:15 +0000
-Message-ID: 
- <DM8PR04MB8007ABD4D8F4206AF55091779EB69@DM8PR04MB8007.namprd04.prod.outlook.com>
-References: 
- <PSAPR01MB395913EB4374CB88EFF03C1DFDB49@PSAPR01MB3959.apcprd01.prod.exchangelabs.com>
-In-Reply-To: 
- <PSAPR01MB395913EB4374CB88EFF03C1DFDB49@PSAPR01MB3959.apcprd01.prod.exchangelabs.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: outlook.com; dkim=none (message not signed)
- header.d=none;outlook.com; dmarc=none action=none header.from=ni.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 36992b3e-3f15-4105-2aed-08d98d9ff2b5
-x-ms-traffictypediagnostic: DM8PR04MB7943:
-x-microsoft-antispam-prvs: 
- <DM8PR04MB7943841B10D2B6B3CE0963929EB69@DM8PR04MB7943.namprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- KYKdA8aDUH6wZzrJRL2SHYobAT8qU/pG8M+kzaoGEcHgFACszE8XhDswifJxN9BBro4dNvg5jQ76yClY5SUWocElSnQiO8IFb4Lm3ZpPKCFWEUWnvsu0MqbLPs4G++9Zf3zlVlx5XKmjsBdFd3aZdjGTyUxR0RiOuAmMxppSnngbwdEiWKr0ABc2dl/s+ieg7UDLNGPmhk+vSbSJ3/CTDBWG2rKjjRDiAPEJp1dfgNsuDsxJyT66dLApz+6XREvLVdt06diyJ5+h9X24Aca/MSe8cz1zqgnjnBN3pCC8WAffQMdsiLZPqiB7r7fz5GXu+mAUJ7EF3OajmTROwnbtRetmLGXSrhqg3ee1F7wVaU3qC0o160TBxLTtfPrHOaqT7SjDHHK8Z8NBN60rhJ1tpDkP5+ofUXpKBHZene1JDHognUr2Mtk7u4TZRU0Nt94pC9nIoXMbT5SN4nac8UyelDgMiiJNR2UsN4kBS4eIZlpb62OLQS0w7viW8wzY6DaBcxa9sgnU/7O3hcakJHLVZlzI1zm9tWP7Y6ZhT4lXqrgDSSVKWNOVGR94eAzy/QN9Lv/NJE9Fge0IJJ9l5CMZYabXrCVEFWbXtVTaxyN26TmJI1t/bpvM3hwLFXyjKf4yxn6+poG4CcKhKXxs4dWnpg16rd5J9DrnNgTetY3cpSpsyTgpUx7mjAWFUAcAWY5OUYlIgWFpY8x9calgyxVys4gyEayaM8cYkbmfSXlCKYBvgK6gHRfDSWhKAjgY06UfY7aCuEQrLvO40r6kZpkHrUfXmFB56lEm8+UFXD+V3L8=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR04MB8007.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(53546011)(508600001)(38100700002)(6506007)(2906002)(122000001)(38070700005)(9326002)(71200400001)(966005)(186003)(83380400001)(8936002)(9686003)(55016002)(26005)(8676002)(52536014)(5660300002)(66574015)(66446008)(76116006)(45080400002)(86362001)(166002)(316002)(44832011)(66946007)(64756008)(66476007)(33656002)(66556008)(110136005)(7696005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?UVc74YyRN9duvgoBd0A4Zb+hXpQiDsMK5EapuXyUs63ko//TSDxuS9FhBz/X?=
- =?us-ascii?Q?e6lHQQTJGWxMWDjEYJ03J1hP0rYTAjhVuDpv5tMFHWs5s+rW+0+OQTHEa3qq?=
- =?us-ascii?Q?XiMmo98xZD5SQfl/cQJuCHJ1a52AXyX7ThC43gHz66J14KThgxCPRmcwUlxq?=
- =?us-ascii?Q?yS8P5nigPb0fOyNjb3JlkLlrndBhvAPAoBpZPkvfLU1O5nijuwoDN1jNzGe7?=
- =?us-ascii?Q?8bby0EoMvlHO6ChvIKxZOjHu75ngGXzHxPsOn6XrRo/XAYZ1CG6XNa/fSkOn?=
- =?us-ascii?Q?rc6dlOAJfhgILQ/BjG3siARgAms+mB0CIeEwufapfw2wCuIO54iwn4g5nngl?=
- =?us-ascii?Q?vlVkv7JhG05RYlg+Rh5wC6R9C7ZuJpcEhRUBEdGcI8c3PyKrwPgrK+n7q0nb?=
- =?us-ascii?Q?QBJi9uYTqsCUhLyntKcIGYnmr/XAFRwouMe20Kjg/0fwnXyMNZeU0w4eUxHQ?=
- =?us-ascii?Q?SxltajeMGVSRhYHDsPV7s+bjOT5ecIy2FebfY45cgkcSnxsMcufNoZirNzUS?=
- =?us-ascii?Q?j1+NHp3vc2TOdQ7BxELwdiNZVPxpMsJsdA5nVFaydUGqLm15fHrfVvMYzhTg?=
- =?us-ascii?Q?r0Gg6q3eZ/3gNPAdSw9mcI7JddzI2sgx2ugexUi1gHOqu9dcZSV1T7mAXpza?=
- =?us-ascii?Q?wbnONUY2IMI77A5xRqrcyG2G8aGIPVW/v/bjus/8FDDwSaCE415eMhyv03yb?=
- =?us-ascii?Q?+tc4rO69iZfOIgvie+fblLVWKRRVSnPkFs0Ma/D85A7T4wFJaqyJAHaf2Sbs?=
- =?us-ascii?Q?cOku/w6KDyQth91RZ4far1vJrHTpspQu6/dNQKwmnon3GrxHw7cxaXj6CtB1?=
- =?us-ascii?Q?rpPa4BjnjI+8J+QjbDK+ETGIlJiNS4zLA94OpI6flm0Z3vA/K6vbYRzKc+dA?=
- =?us-ascii?Q?YX78g2taQ9fj8ZBEEhR74IYywRFoKZw6IdnKbzWPURbrBXqWqz7SRQ17ceNF?=
- =?us-ascii?Q?6v6G6xDXz1GavNJfJHHFAKqVDgNutbEe310eueI7emIbdBEJ9UTG8gTdRzWC?=
- =?us-ascii?Q?kXRKl0eJS6LyE8L2/6HP0TfejZAXMSlUz2UwYUt3hhxp76z1rK0qBLdZbGG1?=
- =?us-ascii?Q?p69eerWtZUuH5Lm0DGp/tFHQ4XFnJOCxW06dQVnJ8Qm+OYIPz8V/MekEOInA?=
- =?us-ascii?Q?sCqoF6Yu+xOhlbUBV6jAaA4J031OnueLCZHmdF4poxZRKENaRzSSDWGEOJgf?=
- =?us-ascii?Q?vyE9B1s0xTmSTBfjCEz+cpA3xOOPSW27Nw9p8Y4IyUHyq+bM8sXZvBHSE3hd?=
- =?us-ascii?Q?uI7WILKCccPNx6Jqr3B2R/DIlFZvJBEnjNhaMvCE0g9Owg3saBCvMAUBMMSJ?=
- =?us-ascii?Q?vYBF55X/7FbbvBZctrXnqGSg?=
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR04MB8007.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36992b3e-3f15-4105-2aed-08d98d9ff2b5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Oct 2021 16:47:15.9716
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9U0PkzgLnQ7/iVkb497zrFHqnkBWIdbrs1TFYGTsn3qCGuLsNNxAPlMcmFOOM/YEy4u8A2xtarBiv6aeDvUtRA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR04MB7943
-X-Proofpoint-ORIG-GUID: DDIakeorSV9ohynaq2yUvCiBGiNdbXwg
-X-Proofpoint-GUID: DDIakeorSV9ohynaq2yUvCiBGiNdbXwg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.182.1,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-10-12_04,2021-10-12_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 mlxscore=0
- malwarescore=0 spamscore=0 suspectscore=0 mlxlogscore=999 phishscore=0
- clxscore=1011 lowpriorityscore=0 priorityscore=1501 bulkscore=0
- impostorscore=0 adultscore=0 classifier=spam adjust=30 reason=mlx
- scancount=1 engine=8.12.0-2109230001 definitions=main-2110120093
-Message-ID-Hash: RSG5TZ5774AUKXSDCKK3UX3GDMJY5YGW
-X-Message-ID-Hash: RSG5TZ5774AUKXSDCKK3UX3GDMJY5YGW
-X-MailFrom: prvs=59197a27d9=jan.schirok@ni.com
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=ow4GtHtWQyoby7mxkXXFrYCepZiWJR6hCkpg/kwmCt8=;
+        b=pa9Bt4qT4MD5S8nlbpfVdx56XQRDI3NFlV8N/BDHpAUx1LBvNGiWszTEx6ZPBECeVg
+         UzWiIJ1Ty8jzFo1+E0ZgqqjWcPR6CJ2C3EBqxg4NAZjM3FsPv3A4uG1UVv+goHNBOj30
+         lXdLw14yeXmY6k7N5IVRI2XyBoBLhXd2SjCWrqOCc61z0aV0AthnWHlr/PMaFnJgus/4
+         Lajzmemq7YcL1ofvdt9AQ3uCIHLU0uTfwWel6WYPkp9TeB2yR1uZsminSCOFeukJ3wb/
+         3vxLiOczIG9xfoWShrwXn4RrLWcBlXrYihQd5O3K7ZPgtEDvPIYw3RhdrHbNjtinjgI8
+         +CRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=ow4GtHtWQyoby7mxkXXFrYCepZiWJR6hCkpg/kwmCt8=;
+        b=fSFKjiVAXCQTvvqbzv7RBkpJPl24v/RFxwQCPeiN3HzwbcG2mxz3RpIHG2HtSxCMpS
+         uJILKN8suZdJ65uXrmAxkOgi7RhmvxH1PAxchWnKhzJgqTKkPiDdb42WjuaBOCHH0CqW
+         LJtglDvMcPVD2AslbQCvXSIAEnkodB7xZnAlJWuSCPZ7EQIxloTWpP4yOMVeGDCMZfWQ
+         sJB10Dag9NGrhNWaNTDEI8Eru44slMXK+Zm/6ayB0C2uJScHqbsbQyrhQkL6sIszsI2O
+         saYAU7z1842l0Wp8f3TiFGndC3f8yIy3wrLVpGgRNGf+pbY8EuU6CELG0nq9EIlhmwbS
+         Q2YA==
+X-Gm-Message-State: AOAM5309NV9MCY9OpS0ntwEdWEnpT5+loPMxHc1d7kKowdEnSWwZQDg6
+	W7CgapACDv9nrco32Lf4tjxsfqaXots=
+X-Google-Smtp-Source: ABdhPJy2A2QNI0iOWrOJvVUKXe8kt1W7feveg0reWTuZ4PqsSrOM0QqzOQ2sRjyl4LVZGRoM2y4URg==
+X-Received: by 2002:a0c:cd86:: with SMTP id v6mr8673295qvm.22.1634061012269;
+        Tue, 12 Oct 2021 10:50:12 -0700 (PDT)
+Received: from smtpclient.apple ([174.93.0.206])
+        by smtp.gmail.com with ESMTPSA id l4sm759116qke.107.2021.10.12.10.50.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Oct 2021 10:50:11 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 12 Oct 2021 13:50:06 -0400
+Message-Id: <85AEED2D-0B70-47B9-9DE5-696466F4A310@gmail.com>
+References: <1552911735.1055946.1634056580695@mail.yahoo.com>
+In-Reply-To: <1552911735.1055946.1634056580695@mail.yahoo.com>
+To: Tellrell White <t_whit_87@yahoo.com>
+X-Mailer: iPhone Mail (18G82)
+Message-ID-Hash: GJD6TVKFTRPIT5RJ2P53QSRPUXVROYU6
+X-Message-ID-Hash: GJD6TVKFTRPIT5RJ2P53QSRPUXVROYU6
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Philip Balister <philip@balister.org>, USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: pin definitions of the two HDMI interfaces of x410
+Subject: [USRP-users] Re: I2C communication on the USRP N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SBL663WYLI2DSQHMA7QT6GI5R6NRVUQS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GJD6TVKFTRPIT5RJ2P53QSRPUXVROYU6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0523714468370543033=="
+Content-Type: multipart/mixed; boundary="===============6805863413018306265=="
 
---===============0523714468370543033==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM8PR04MB8007ABD4D8F4206AF55091779EB69DM8PR04MB8007namp_"
 
---_000_DM8PR04MB8007ABD4D8F4206AF55091779EB69DM8PR04MB8007namp_
-Content-Type: text/plain; charset="us-ascii"
+--===============6805863413018306265==
+Content-Type: multipart/alternative; boundary=Apple-Mail-7D08B8D7-F9B5-4648-A82B-35A86FA9D4FE
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-7D08B8D7-F9B5-4648-A82B-35A86FA9D4FE
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jason,
+Which i2C device are you trying to access?
 
-for the GPIO pinout, the best starting point right now would be the descrip=
-tion in the MPM code:
-https://github.com/EttusResearch/uhd/blob/master/mpm/python/usrp_mpm/periph=
-_manager/x4xx_periphs.py
-Essentially, we've connected the 12 I/O lines that the regular HDMI pinout =
-also defines as signals.
-I/O voltages can be set per connector as well (1.8V/2.5V/3.3V).
-One thing to keep in mind for the pinout: I/O direction setting is slow, so=
- a fast protocol needs to have fixed I/O directions per pin.
-If you're interested in using the HDMI voltage supply output, we've hooked =
-up 3.3V, ~500mA to the power pin of HDMI.
+Sent from my iPhone
 
-In terms of SW support for UHD to use the GPIOs, we're working on getting t=
-he support in - no firm timelines yet unfortunately.
+> On Oct 12, 2021, at 12:36 PM, Tellrell White <t_whit_87@yahoo.com> wrote:
+>=20
+> =EF=BB=BF
+>=20
+> Philip I'm highlty doubtful that its a permissions issue. After moving the=
+ app over to the n310, I enable it for all users to run it permissions wise.=
+ However, the only "user" is root on the n310.=20
+>=20
+> Martin I followed your instruction to disable usrp-hwd and then reboot and=
+ after rebooting and running "systemctl status usrp-hwd" i get "Active:inact=
+ive(dead)" which leads me to believe that upon rebooting the MPM isn't runni=
+ng however, when re-running my app I get the same error. Is it anyway that M=
+PM may still be holding these resources or is there something else going on h=
+ere?=20
+>=20
+> On Thursday, October 7, 2021, 03:02:09 AM EDT, Martin Braun <martin.braun@=
+ettus.com> wrote:
+>=20
+>=20
+> Just to make sure we're talking abou the same things: To disable MPM, you r=
+un
+>=20
+>     systemctl stop usrp-hwd
+>=20
+> You can also run
+>=20
+>     systemctl disable usrp-hwd
+>=20
+> which does not stop MPM, but will avoid it being started on reboot.
+>=20
+> It seems you know what you're doing, but for the record: when MPM is not r=
+unning, your USRP is a heavy piece of metal running Linux (at least, until y=
+ou've ported OpenCPI or some other custom software). That's why we have desi=
+gned MPM to keep running at all times, even when some kind of fatal error oc=
+curred, so UHD can at least see some kind of device. We use systemd watchdog=
+s to reboot it when it's gone.
+>=20
+> --M
+>=20
+> On Wed, Oct 6, 2021 at 11:45 PM Marcus D. Leech <patchvonbraun@gmail.com> w=
+rote:
+> On 2021-10-06 5:17 p.m., Tellrell White wrote:
+>>=20
+>> So, just to clarify, if its "required" is there no way of disabling it or=
+ removing??=20
+>>=20
+>> The project I'm working on is based on using the Open CPI framework, whic=
+h is basically an opensource framework for developing and executing componen=
+t based apps on embedded platforms. With that being said, my task isn't tigh=
+tly bound to using UHD, therefore, I would like to disable or remove MPM for=
+ a custom application. =20
+>>=20
+> After killing MPM, you can use "ps" to check to see if it has come back, a=
+nd if it hasn't and "something else" still owns the I2C devices, you can use=
 
-Another option for peripheral circuit boards may be to use the USB-C connec=
-tion in the back - depends on your application requirements of course.
+>   "lsof" to see which processes have which devices open.  I think the i2C d=
+evices will manifest in the /dev filesystem.  For example, on my *laptop*, t=
+here's:
+>=20
+> rw------- 1 root root 89, 0 Sep 28 18:14 /dev/i2c-0
+> crw------- 1 root root 89, 1 Sep 28 18:14 /dev/i2c-1
+> crw------- 1 root root 89, 2 Sep 28 18:14 /dev/i2c-2
+> crw------- 1 root root 89, 3 Sep 28 18:14 /dev/i2c-3
+> crw------- 1 root root 89, 4 Sep 28 18:14 /dev/i2c-4
+> crw------- 1 root root 89, 5 Sep 28 18:14 /dev/i2c-5
+>=20
+>=20
+>>=20
+>>=20
+>>=20
+>=20
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-Hope this helps
-Jan
-
-
-From: jason pro <jason_proj@outlook.com>
-Sent: Sonntag, 10. Oktober 2021 19:27
-To: usrp-users@lists.ettus.com
-Subject: [EXTERNAL] [USRP-users] pin definitions of the two HDMI interfaces=
- of x410
-
-Hi dear Engineers of Ettus Research,
-
-We plan to design a peripheral circuit board controlled by GPIO of x410. No=
-w I would like to know the pin definitions of the two HDMI interfaces of x4=
-10. could you share relevant information?
-
-Best regards,
-Jason
-National Instruments Dresden GmbH; Gesch?ftsf?hrer (Managing Director): Kev=
-in Schultz; Sitz (Registered Office): Dresden; HRB (Commercial Register No.=
-): 22081; Registergericht (Registration Court): Dresden
-
-This email and any attachments are intended only for the person to whom thi=
-s email is addressed and may contain confidential and/or privileged informa=
-tion. If you received this email in error, please do not disclose the conte=
-nts to anyone, but notify the sender by return email and delete this email =
-(and any attachments) from your system.
-
---_000_DM8PR04MB8007ABD4D8F4206AF55091779EB69DM8PR04MB8007namp_
-Content-Type: text/html; charset="us-ascii"
+--Apple-Mail-7D08B8D7-F9B5-4648-A82B-35A86FA9D4FE
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:PMingLiU;
-	panose-1:2 1 6 1 0 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@PMingLiU";
-	panose-1:2 1 6 1 0 1 1 1 1 1;}
-@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:12.0pt;
-	font-family:SimSun;
-	mso-fareast-language:ZH-CN;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle21
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">Hi Jason,<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">for the GPIO pinout, the=
- best starting point right now would be the description in the MPM code:<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW"><a href=3D"https://githu=
-b.com/EttusResearch/uhd/blob/master/mpm/python/usrp_mpm/periph_manager/x4xx=
-_periphs.py">https://github.com/EttusResearch/uhd/blob/master/mpm/python/us=
-rp_mpm/periph_manager/x4xx_periphs.py</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">Essentially, we&#8217;ve=
- connected the 12 I/O lines that the regular HDMI pinout also defines as si=
-gnals.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">I/O voltages can be set =
-per connector as well (1.8V/2.5V/3.3V).<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">One thing to keep in min=
-d for the pinout: I/O direction setting is slow, so a fast protocol needs t=
-o have fixed I/O directions per pin.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">If you&#8217;re interest=
-ed in using the HDMI voltage supply output, we&#8217;ve hooked up 3.3V, ~50=
-0mA to the power pin of HDMI.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">In terms of SW support f=
-or UHD to use the GPIOs, we&#8217;re working on getting the support in &#82=
-11; no firm timelines yet unfortunately.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">Another option for perip=
-heral circuit boards may be to use the USB-C connection in the back &#8211;=
- depends on your application requirements of course.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">Hope this helps<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW">Jan<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;mso-fareast-language:ZH-TW"><o:p>&nbsp;</o:p></span>=
-</p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
-font-family:&quot;Calibri&quot;,sans-serif"> jason pro &lt;jason_proj@outlo=
-ok.com&gt;
-<br>
-<b>Sent:</b> Sonntag, 10. Oktober 2021 19:27<br>
-<b>To:</b> usrp-users@lists.ettus.com<br>
-<b>Subject:</b> [EXTERNAL] [USRP-users] pin definitions of the two HDMI int=
-erfaces of x410<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif;color:black">Hi dear Engineers of Ettus Research,
-<o:p></o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif;color:black">We plan to design a peripheral circuit board controlled =
-by GPIO of x410. Now I would like to know the pin definitions of the two HD=
-MI interfaces of x410. could you share relevant
- information?<o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif;color:black">Best regards,<o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif;color:black">Jason<o:p></o:p></span></p>
-</div>
-</div>
-National Instruments Dresden GmbH; Gesch&auml;ftsf&uuml;hrer (Managing Dire=
-ctor): Kevin Schultz; Sitz (Registered Office): Dresden; HRB (Commercial Re=
-gister No.): 22081; Registergericht (Registration Court): Dresden<br>
-<br>
-This email and any attachments are intended only for the person to whom thi=
-s email is addressed and may contain confidential and/or privileged informa=
-tion. If you received this email in error, please do not disclose the conte=
-nts to anyone, but notify the sender
- by return email and delete this email (and any attachments) from your syst=
-em.
-</body>
-</html>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Which i2C device are you trying to access?<=
+br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><block=
+quote type=3D"cite">On Oct 12, 2021, at 12:36 PM, Tellrell White &lt;t_whit_=
+87@yahoo.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite">=
+<div dir=3D"ltr">=EF=BB=BF<div class=3D"ydp7e1eb3f9yahoo-style-wrap" style=3D=
+"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><=
+div></div>
+        <div><br></div><div dir=3D"ltr" data-setdir=3D"false">Philip I'm hig=
+hlty doubtful that its a permissions issue. After moving the app over to the=
+ n310, I enable it for all users to run it permissions wise. However, the on=
+ly "user" is root on the n310. <br></div><div dir=3D"ltr" data-setdir=3D"fal=
+se"><br></div><div dir=3D"ltr" data-setdir=3D"false">Martin I followed your i=
+nstruction to disable usrp-hwd and then reboot and after rebooting and runni=
+ng "systemctl status usrp-hwd" i get "Active:inactive(dead)" which leads me t=
+o believe that upon rebooting the MPM isn't running however, when re-running=
+ my app I get the same error. Is it anyway that MPM may still be holding the=
+se resources or is there something else going on here? <br></div><div dir=3D=
+"ltr" data-setdir=3D"false"><br></div>
+       =20
+        </div><div id=3D"yahoo_quoted_4370215868" class=3D"yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, sa=
+ns-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Thursday, October 7, 2021, 03:02:09 AM EDT, Martin Br=
+aun &lt;martin.braun@ettus.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"yiv6994985167"><div><div dir=3D"ltr"><div>Ju=
+st to make sure we're talking abou the same things: To disable MPM, you run<=
+/div><div><br clear=3D"none"></div><div>&nbsp;&nbsp;&nbsp; systemctl stop us=
+rp-hwd</div><div><br clear=3D"none"></div><div>You can also run</div><div><b=
+r clear=3D"none"></div><div>&nbsp;&nbsp;&nbsp; systemctl disable usrp-hwd</d=
+iv><div><br clear=3D"none"></div><div>which does not stop MPM, but will avoi=
+d it being started on reboot.</div><div><br clear=3D"none"></div><div>It see=
+ms you know what you're doing, but for the record: when MPM is not running, y=
+our USRP is a heavy piece of metal running Linux (at least, until you've por=
+ted OpenCPI or some other custom software). That's why we have designed MPM t=
+o keep running at all times, even when some kind of fatal error occurred, so=
+ UHD can at least see some kind of device. We use systemd watchdogs to reboo=
+t it when it's gone.<br clear=3D"none"></div><div><br clear=3D"none"></div><=
+div>--M<br clear=3D"none"></div></div><br clear=3D"none"><div class=3D"yiv69=
+94985167gmail_quote"><div class=3D"yiv6994985167yqt3102340049" id=3D"yiv6994=
+985167yqt65401"><div class=3D"yiv6994985167gmail_attr" dir=3D"ltr">On Wed, O=
+ct 6, 2021 at 11:45 PM Marcus D. Leech &lt;<a rel=3D"nofollow noopener noref=
+errer" shape=3D"rect" ymailto=3D"mailto:patchvonbraun@gmail.com" target=3D"_=
+blank" href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&g=
+t; wrote:<br clear=3D"none"></div><blockquote class=3D"yiv6994985167gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex;">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 2021-10-06 5:17 p.m., Tellrell White
+      wrote:<br clear=3D"none">
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif=
+;font-size:13px;">
+        <div><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">So, just to clarify, if its
+          "required" is there no way of disabling it or removing?? <br clear=
+=3D"none">
+        </div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr"> The project I'm working on
+          is based on using the Open CPI framework, which is basically
+          an opensource framework for developing and executing component
+          based apps on embedded platforms. With that being said, my
+          task isn't tightly bound to using UHD, therefore, I would like
+          to disable or remove MPM for a custom application.&nbsp; <br clear=
+=3D"none">
+        </div>
+      </div>
+      <div id=3D"yiv6994985167gmail-m_-2172980616365166026yahoo_quoted_44262=
+25589">
+        <div style=3D"font-family:Helvetica, Arial, sans-serif;font-size:13p=
+x;color:rgb(38,40,42);"><br clear=3D"none">
+        </div>
+      </div>
+    </blockquote>
+    After killing MPM, you can use "ps" to check to see if it has come
+    back, and if it hasn't and "something else" still owns the I2C
+    devices, you can use<br clear=3D"none">
+    &nbsp; "lsof" to see which processes have which devices open.&nbsp; I th=
+ink
+    the i2C devices will manifest in the /dev filesystem.&nbsp; For example,=
 
---_000_DM8PR04MB8007ABD4D8F4206AF55091779EB69DM8PR04MB8007namp_--
+    on my *laptop*, there's:<br clear=3D"none">
+    <br clear=3D"none">
+    rw------- 1 root root 89, 0 Sep 28 18:14 /dev/i2c-0<br clear=3D"none">
+    crw------- 1 root root 89, 1 Sep 28 18:14 /dev/i2c-1<br clear=3D"none">
+    crw------- 1 root root 89, 2 Sep 28 18:14 /dev/i2c-2<br clear=3D"none">
+    crw------- 1 root root 89, 3 Sep 28 18:14 /dev/i2c-3<br clear=3D"none">
+    crw------- 1 root root 89, 4 Sep 28 18:14 /dev/i2c-4<br clear=3D"none">
+    crw------- 1 root root 89, 5 Sep 28 18:14 /dev/i2c-5<br clear=3D"none">
+    <br clear=3D"none">
+    <br clear=3D"none">
+    <blockquote type=3D"cite">
+      <div id=3D"yiv6994985167gmail-m_-2172980616365166026yahoo_quoted_44262=
+25589">
+        <div style=3D"font-family:Helvetica, Arial, sans-serif;font-size:13p=
+x;color:rgb(38,40,42);">
+          <div>
+            <div id=3D"yiv6994985167gmail-m_-2172980616365166026yiv535189603=
+1">
+              <div>
+                <div id=3D"yiv6994985167gmail-m_-2172980616365166026yiv53518=
+96031yqtfd56378"><br clear=3D"none">
+                  <br clear=3D"none">
+                  <br clear=3D"none">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br clear=3D"none">
+  </div>
 
---===============0523714468370543033==
+_______________________________________________<br clear=3D"none">
+USRP-users mailing list -- <a rel=3D"nofollow noopener noreferrer" shape=3D"=
+rect" ymailto=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank" href=3D=
+"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br clear=3D=
+"none">
+To unsubscribe send an email to <a rel=3D"nofollow noopener noreferrer" shap=
+e=3D"rect" ymailto=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_bl=
+ank" href=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists=
+.ettus.com</a><br clear=3D"none">
+</blockquote></div></div>
+</div></div><div class=3D"yqt3102340049" id=3D"yqt35643">___________________=
+____________________________<br clear=3D"none">USRP-users mailing list -- <a=
+ shape=3D"rect" ymailto=3D"mailto:usrp-users@lists.ettus.com" href=3D"mailto=
+:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br clear=3D"none=
+">To unsubscribe send an email to <a shape=3D"rect" ymailto=3D"mailto:usrp-u=
+sers-leave@lists.ettus.com" href=3D"mailto:usrp-users-leave@lists.ettus.com"=
+>usrp-users-leave@lists.ettus.com</a><br clear=3D"none"></div></div>
+            </div>
+        </div></div></blockquote></body></html>=
+
+--Apple-Mail-7D08B8D7-F9B5-4648-A82B-35A86FA9D4FE--
+
+--===============6805863413018306265==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -397,4 +329,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0523714468370543033==--
+--===============6805863413018306265==--
