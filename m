@@ -2,99 +2,185 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93F042E232
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Oct 2021 21:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9967542F885
+	for <lists+usrp-users@lfdr.de>; Fri, 15 Oct 2021 18:44:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8A4DC3844AA
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Oct 2021 15:51:05 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 620D8384803
+	for <lists+usrp-users@lfdr.de>; Fri, 15 Oct 2021 12:44:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="casx/68b";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hbnJtpgA";
 	dkim-atps=neutral
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id EC640384493
-	for <USRP-users@lists.ettus.com>; Thu, 14 Oct 2021 15:50:23 -0400 (EDT)
-Received: by mail-qt1-f176.google.com with SMTP id z24so6814251qtv.9
-        for <USRP-users@lists.ettus.com>; Thu, 14 Oct 2021 12:50:23 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id EFB10383DBB
+	for <USRP-users@lists.ettus.com>; Fri, 15 Oct 2021 12:44:08 -0400 (EDT)
+Received: by mail-yb1-f177.google.com with SMTP id i84so24074258ybc.12
+        for <USRP-users@lists.ettus.com>; Fri, 15 Oct 2021 09:44:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=CKSh0mVE7gEN89coZMFzRPfXcLpBQf5LNKbumyT5pbI=;
-        b=casx/68bpcGxyYVB31U9/VaY6WsecTQyhI7BTvQ5MrxhROVyZLUPSNrvZa6tfCh9wO
-         zNuth5TVWaGAHbjh/b4+zr8mdB77PoagjO7S+CFz/VQ4+E7xLcU9GgFnMKD5isD9t1hE
-         cqfQdr8+Ms2L3n+c+7px6620rUi8u9EMLQruX3XzJddtigHXvXIJsdBACkqktKFImhPN
-         UqEQsvwZlOEUSjva7Bmr97GKiHDxnO3zP+Z/1VWmPtry/wvMdoq279H+0DjZn1HsQEJH
-         leleRRI3P0HDv8e149a2d5A8FbV/svwdt7qORjiCbW1YmlXCfZyiaBN9pilGGyCFujHZ
-         w+1A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
+        bh=SePPUTkJ5ctFY5q3/H/xNHuYF4F3aglK8/3BnYtckbI=;
+        b=hbnJtpgA7PgngRaoQF2pRL0AaacGV0cL59/Cvg81WnzJfzg08zc015QxydGykAcOvY
+         BU2v2yns0jrMCdj8IuFj3k76YChvq2qhcVdZbszt28NEaB+NYexXMByqGq+eRTSBUv6s
+         L0PD6Xmnj9mxlr/Bfw+xrfAw/9O0lIY+9VMrSNo863kHWCVQ0bsks2Hvq5xMfITm5CSd
+         hhflnXcnv6XTwZ+f2+8UGCF+3h1mAJYCmKrC8SI7Idm5Ac/wndpb0mLNJf2QVyo7xaVA
+         3oB4NxGqYD7hdGIChYXtsdK7ZwRFqlizE+iPpMAmWnCvyOU4hA9YuOMjDavd1VUK3U8W
+         dyZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=CKSh0mVE7gEN89coZMFzRPfXcLpBQf5LNKbumyT5pbI=;
-        b=irfAicwMUIq7Fi8O0q5e3KzpyrwWIjhmy5We7sy3qvzI+YCrj7xP3KQrDl/l0yNY+N
-         8ZSFKxr4Mlcz7Q2xBLGzfyaOjx2ZY2ICiIbO5bkP6gjv45H33WaXPARwH7Y8xpQwBgdC
-         FO1pqzs/cZ3tB+KMyQkPSymxeVDmke8vH43tqfYy+NlDMR3ET5z+gJfnVmxkm+m5j9Pn
-         64Aq27+bU+pyrJZmMezbY2+24q6KHwW9sDp1sYLs8UeQ2ON6Sfpyu9yImIzikYlob7D8
-         ZPBkD6SRNl2Zo9risYEDg8xkNYZ2CmlSiL4tfR08l7jtKJztugdP43h7IfWf/PyGC0sb
-         28sg==
-X-Gm-Message-State: AOAM530VADX5VBK8aNI1xc91oIB8txc+DNeOtjrxPuwIjHZ4ZrH/xtG9
-	E365kilf61roj1Kj8TjF/di8oorncmI=
-X-Google-Smtp-Source: ABdhPJy0HlpNOwVqle0eGb6iRWkkXTQNOX3c1YRKSf9+C2YPsFJV2IFrzqwrSNnEpzEpRFVYN59w7w==
-X-Received: by 2002:ac8:5a0d:: with SMTP id n13mr8926146qta.198.1634241023245;
-        Thu, 14 Oct 2021 12:50:23 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
-        by smtp.gmail.com with ESMTPSA id 201sm1770790qkh.43.2021.10.14.12.50.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Oct 2021 12:50:22 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Thu, 14 Oct 2021 15:50:22 -0400
-Message-Id: <564F776E-53EB-4128-A46E-D0C4047BD66C@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:cc;
+        bh=SePPUTkJ5ctFY5q3/H/xNHuYF4F3aglK8/3BnYtckbI=;
+        b=A3KiYUKkvunRKw1mCRJehEIZazZsZ4aLp55NkCuqRkJO8BZ8gEG+7ZSu1VXdgmi+XA
+         94JbNQL5bsdmD0ndiZyUdMSU3eTK2docksSuhv/icHrsHDeBrEK79hco8sDleqzz08CC
+         5FA5BsONLdQftV3fI0S7djnGhAswSUrl5bTwCpyqio9/BAV6G2rcPVxIFxgejGUYyptv
+         3CYqg6hsEqlA2ewriwdKxIgPQHD4CWb0StSI28DTC6u5OVVDEt8qGYeS8FBEK8/DYWMC
+         tJn8WQFuIUkZz/rsKmRzlO/7rH1QKOqgSUdZU9Y9CSUWu+sIF22csUTT+DvaohZUsPgP
+         +DOA==
+X-Gm-Message-State: AOAM531rk62zy5/RonaKJfmlC6p06GjCdxFgG3yFQpUMFpKWjbWrgE/I
+	Piv3q+iiVr6CNHWCvn/LEAFBf9hdL1WaEAsJtCx+n2d8mCw=
+X-Google-Smtp-Source: ABdhPJyvtdpOFbJFP4f7hjFDwT0N+OBkeJQjEmTmo3KZa7XZpyC0wfb8h+u69WrQn0UXSqHn5FipDwTQ7rWoOhWSBJs=
+X-Received: by 2002:a25:db49:: with SMTP id g70mr13164503ybf.341.1634316248120;
+ Fri, 15 Oct 2021 09:44:08 -0700 (PDT)
+MIME-Version: 1.0
 References: <CAErymBgdKeG9dKdwN_LTmYW0=gXTvO+POuGZ6Ge9VOkk5X33aw@mail.gmail.com>
-In-Reply-To: <CAErymBgdKeG9dKdwN_LTmYW0=gXTvO+POuGZ6Ge9VOkk5X33aw@mail.gmail.com>
-To: Achilleas Anastasopoulos <anastas@umich.edu>
-X-Mailer: iPhone Mail (18G82)
-Message-ID-Hash: D62JOOPJCIIU4HE5BK7VJDF3M4B2SJXP
-X-Message-ID-Hash: D62JOOPJCIIU4HE5BK7VJDF3M4B2SJXP
-X-MailFrom: patchvonbraun@gmail.com
+ <564F776E-53EB-4128-A46E-D0C4047BD66C@gmail.com>
+In-Reply-To: <564F776E-53EB-4128-A46E-D0C4047BD66C@gmail.com>
+From: isaac mario tupac davila <isacctd92@gmail.com>
+Date: Fri, 15 Oct 2021 11:43:56 -0500
+Message-ID: <CAN+Y6vB901JY71q7HgzLPh+11ONNcW8K6B-xNP-r1pah3gjB6w@mail.gmail.com>
+Message-ID-Hash: VAZJKOEPCRDZXCRI2DL356P3KPHWXGNK
+X-Message-ID-Hash: VAZJKOEPCRDZXCRI2DL356P3KPHWXGNK
+X-MailFrom: isacctd92@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP X310 with internal GPSDO: GSM led in front panel
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/D62JOOPJCIIU4HE5BK7VJDF3M4B2SJXP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VAZJKOEPCRDZXCRI2DL356P3KPHWXGNK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8907151070632917029=="
 
-VXNpbmcgdWhkX3VzcnBfcHJvYmUgaXMgb25lIHdheS4gWW91IGNhbiBhbHNvIHVzZSB0aGUgc3lu
-Y190b19ncHMgZXhhbXBsZSB3aGljaCB3aWxsIGJhbGsgaWYgdGhlcmUgaXNu4oCZdCBhIEdQUy4g
-DQoNCk15IHJlY29sbGVjdGlvbiBpcyB0aGF0IHRoZSBQUFMgbGlnaHQgd2lsbCBzdGFydCBibGlu
-a2luZyBvbmNlIHRoZSBHUFMgaGFzIGFjcXVpcmVkIGxvY2suIFdoaWNoIGNhbiB0YWtlIDEwcyBv
-ZiBtaW51dGVzIGZyb20gYSBjb2xkIHN0YXJ0LiANCg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQo+
-IE9uIE9jdCAxNCwgMjAyMSwgYXQgMjozMyBQTSwgQWNoaWxsZWFzIEFuYXN0YXNvcG91bG9zIDxh
-bmFzdGFzQHVtaWNoLmVkdT4gd3JvdGU6DQo+IA0KPiDvu78NCj4gSSBoYXZlIHNvbWUgcXVlc3Rp
-b25zIHJlZ2FyZGluZyB0aGUgb3BlcmF0aW9uIG9mIFgzMTAuDQo+IA0KPiAxKSBIb3cgZG8gSSBr
-bm93IGlmIEkgaGF2ZSBhbiBpbnRlcm5hbCBHUFNETyAod2UgaGF2ZSAyMCBVU1JQcyBpbiB0aGUg
-TGFiIGFuZCBJIHJlbWVtYmVyIHdlIGJvdWdodCBzb21lIG9mIHRoZW0gd2l0aCBHUFNETykuIEkg
-a25vdyB0aGF0IHdoZW4gSSBkbyAidWhkX3VzcnBfcHJvYmUiLCBhIGRldmljZSB3aXRob3V0IEdQ
-U0RPIHNheXMgIm5vIGludGVybmFsIEdQU0RPIGRldGVjdGVkIiBidXQgaW4gdGhlIGFic2VuY2Ug
-b2YgdGhpcyBtZXNzYWdlLCBzaG91bGQgSSBhc3N1bWUgdGhlcmUgaXMgb25lIGluc2lkZT8NCj4g
-DQo+IDIpIFVwb24gcG93ZXJpbmcgdXAgdGhlIFVTUlAgYW5kIGFzc3VtaW5nIEkgaGF2ZSBhbiBh
-Y3RpdmUgYW50ZW5uYSBjb25uZWN0ZWQgaW4gdGhlIGJhY2sgc2lkZSAoR1BTIGFudGVubmEpIGlu
-cHV0LCBzaG91bGQgSSBleHBlY3QgdGhhdCBhdCBzb21lIHBvaW50IHRoZSBHUFMgbGVkIChmcm9u
-dCBwYW5lbCkgd2lsbCBzdGFydCBibGlua2luZz8gb3IgZG8gSSBoYXZlIHRvIGRvIHNvbWV0aGlu
-ZyB0byBpbml0aWF0ZSBHUFMgYWNxdWlzaXRpb24/DQo+IA0KPiB0aGFua3MNCj4gQWNoaWxsZWFz
-DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRv
-IHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
-cy5jb20KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNS
-UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5z
-dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
-bQo=
+--===============8907151070632917029==
+Content-Type: multipart/alternative; boundary="0000000000006b7fdb05ce66e77f"
+
+--0000000000006b7fdb05ce66e77f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I was just asking myself if there is a code to probe the gps.
+
+Thanks
+Regards
+Isaac T.
+
+El jue, 14 oct 2021 a las 14:51, Marcus D Leech (<patchvonbraun@gmail.com>)
+escribi=C3=B3:
+
+> Using uhd_usrp_probe is one way. You can also use the sync_to_gps example
+> which will balk if there isn=E2=80=99t a GPS.
+>
+> My recollection is that the PPS light will start blinking once the GPS ha=
+s
+> acquired lock. Which can take 10s of minutes from a cold start.
+>
+> Sent from my iPhone
+>
+> > On Oct 14, 2021, at 2:33 PM, Achilleas Anastasopoulos <anastas@umich.ed=
+u>
+> wrote:
+> >
+> > =EF=BB=BF
+> > I have some questions regarding the operation of X310.
+> >
+> > 1) How do I know if I have an internal GPSDO (we have 20 USRPs in the
+> Lab and I remember we bought some of them with GPSDO). I know that when I
+> do "uhd_usrp_probe", a device without GPSDO says "no internal GPSDO
+> detected" but in the absence of this message, should I assume there is on=
+e
+> inside?
+> >
+> > 2) Upon powering up the USRP and assuming I have an active antenna
+> connected in the back side (GPS antenna) input, should I expect that at
+> some point the GPS led (front panel) will start blinking? or do I have to
+> do something to initiate GPS acquisition?
+> >
+> > thanks
+> > Achilleas
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000006b7fdb05ce66e77f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I was just asking myself if there is a code to probe =
+the gps.<br></div><div><br></div><div>Thanks</div><div>Regards</div><div>Is=
+aac T.<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">El jue, 14 oct 2021 a las 14:51, Marcus D Leech (&lt;<a hre=
+f=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;) escri=
+bi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Using =
+uhd_usrp_probe is one way. You can also use the sync_to_gps example which w=
+ill balk if there isn=E2=80=99t a GPS. <br>
+<br>
+My recollection is that the PPS light will start blinking once the GPS has =
+acquired lock. Which can take 10s of minutes from a cold start. <br>
+<br>
+Sent from my iPhone<br>
+<br>
+&gt; On Oct 14, 2021, at 2:33 PM, Achilleas Anastasopoulos &lt;<a href=3D"m=
+ailto:anastas@umich.edu" target=3D"_blank">anastas@umich.edu</a>&gt; wrote:=
+<br>
+&gt; <br>
+&gt; =EF=BB=BF<br>
+&gt; I have some questions regarding the operation of X310.<br>
+&gt; <br>
+&gt; 1) How do I know if I have an internal GPSDO (we have 20 USRPs in the =
+Lab and I remember we bought some of them with GPSDO). I know that when I d=
+o &quot;uhd_usrp_probe&quot;, a device without GPSDO says &quot;no internal=
+ GPSDO detected&quot; but in the absence of this message, should I assume t=
+here is one inside?<br>
+&gt; <br>
+&gt; 2) Upon powering up the USRP and assuming I have an active antenna con=
+nected in the back side (GPS antenna) input, should I expect that at some p=
+oint the GPS led (front panel) will start blinking? or do I have to do some=
+thing to initiate GPS acquisition?<br>
+&gt; <br>
+&gt; thanks<br>
+&gt; Achilleas<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000006b7fdb05ce66e77f--
+
+--===============8907151070632917029==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8907151070632917029==--
