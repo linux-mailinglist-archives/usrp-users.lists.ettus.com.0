@@ -2,114 +2,141 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF3E3430F1A
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Oct 2021 06:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF0F431E92
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Oct 2021 16:00:42 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 867583840CE
-	for <lists+usrp-users@lfdr.de>; Mon, 18 Oct 2021 00:41:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 90AE7384353
+	for <lists+usrp-users@lfdr.de>; Mon, 18 Oct 2021 10:00:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gpKtxr8O";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IeWgvnnJ";
 	dkim-atps=neutral
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id A6B3138403F
-	for <usrp-users@lists.ettus.com>; Mon, 18 Oct 2021 00:40:41 -0400 (EDT)
-Received: by mail-yb1-f174.google.com with SMTP id q189so1887797ybq.1
-        for <usrp-users@lists.ettus.com>; Sun, 17 Oct 2021 21:40:41 -0700 (PDT)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id D3A0A38427C
+	for <usrp-users@lists.ettus.com>; Mon, 18 Oct 2021 09:59:48 -0400 (EDT)
+Received: by mail-ed1-f44.google.com with SMTP id 5so40912130edw.7
+        for <usrp-users@lists.ettus.com>; Mon, 18 Oct 2021 06:59:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=tt4KHOCtrv/OurpIKVYdq7xzoP3e6oysW20Eb/o2e9Q=;
-        b=gpKtxr8OaRlpXKrCxBum5iEzFIf7Ob/ljMRZtZkIPPsF6gGbMFviOjmNSbfbSwSncK
-         HxWIyX5C7SJ4utDsA1StBM99j+PmSWv70tdqrQ8GRquyHeTAvgAc5Hr5BlY2G+QTWne0
-         B70CNVntnbAHRUUvFAjcuhHc7cZJWM+km+cewsKeOXcbOJVLnlxcX6LUCEY3ObWl7g/9
-         ZG+Yp7HeKGU+u7OeNLEa3G3hduSpBcACZp1s+L4Nuuq2HrF7Y5sO1KmM61rqE4eZdmyh
-         YPthn44nd8Vkpk9WYOQBcQZ+iHKSocfTRdK+Be4SiUYlyMwcRQQr271QCRDohdb89tgh
-         gtBQ==
+        h=from:to:subject:thread-topic:thread-index:date:message-id
+         :accept-language:content-language:mime-version;
+        bh=e77AY4iWa9gu9ryix9OlNuYyWHggBdIM+gfmeNX8vHM=;
+        b=IeWgvnnJxpDzBBgo0yTZJmXG+1crI42d/3A1XWqE8UTI9z+dWztjGHlPo4aHRyna7V
+         WUqXLaIpYb7AqAE6BNQEQm0x1kYmGXB3FFdCr3hqWiF1AA6LnmCvxK2Q6GiehL6EWP8N
+         QhJcc/X7xEi6GJn3xZdgXUplFcZ3cggo2z/a6jD+Q9aubWUNpPjBOZ0mbxw7k0LId5lM
+         +FJEUh/wsnyYj4ghjNuZFghCcjlba8Y6ol69KPvDt8dJamMp5CMgjLGzhOQP02zVMYwi
+         a3mXZYGzoFYZzrbTiyFTmQMsVuxmrEVvGdd+sUUsVTtzr2XsGIFGKFHHiAGSSKcxRo5i
+         E+Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=tt4KHOCtrv/OurpIKVYdq7xzoP3e6oysW20Eb/o2e9Q=;
-        b=wc3M2ePfCV2L/7l5JqovWiiayHllGuW0DY/l878acfDCMxfF9x37KJcD8OXOlaCw8a
-         jdyiBokUNAc8OurBoulz1PnMUQ3w7/BbZDbr/Utl2lncULj/7prqQKzWJzdL9OBCIsX1
-         pKnOzTnVNoRTIBEAX2vJ7OhDHBYIYziQiZxbQIESUy+TFl8b5y8DpiMgQeld49INRWwy
-         sxtWnYfwStlG4wwzpQJS59a48v7VHasKzgY8woShX8oprOYCKRE7WByKMXS9o3k7kqTm
-         bxtVAgZhonY1aiPA5xPLnA65k4LzVhH6Q20ZWNMT26lKRGT53u0crc19BMKwF1gAu/hm
-         1tRg==
-X-Gm-Message-State: AOAM532j7RHVtv8fYE20Hm5LUBtw15vFHozRQdhLsqGNx2TXYVcdJJKW
-	16u5Ap9w18tFrkFfLyg1B0lrqdQV1N6LGwMeygUCFeT4
-X-Google-Smtp-Source: ABdhPJxVZxhdn7NfD7+kVV1ZNhvNQ7RL5f4u/oeCK0NIm3agtctub0cA09d3hRf6PD/X1Vzvb5+WxX3PHdvAd42nqTg=
-X-Received: by 2002:a25:dcd:: with SMTP id 196mr998147ybn.480.1634532040883;
- Sun, 17 Oct 2021 21:40:40 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:thread-topic:thread-index:date
+         :message-id:accept-language:content-language:mime-version;
+        bh=e77AY4iWa9gu9ryix9OlNuYyWHggBdIM+gfmeNX8vHM=;
+        b=Tkr0lrvz9Et8ugGJw3G4XoxpTsvTEt6AAPD6VFFTG3ZAGXrZsSNjfbGbwrNqfykE7W
+         nKNJHs8SILPWILuoa5Soah4+onTXL2LOMVaYXtQNHu8aBqs/i5J7Rdr9GNj6Jp1G/j5P
+         l3u9aJyFVgz5hdpnIlY7fxl8smJ0q/OO4yu8L1uTnaLmrax4GHOUF7AmXCrT6ZjAt82N
+         ariP4hgiEG7ey/Jf9qyEhz4K2uEW6D6cA3IRzLpikV6H1lCofIJXNsVEAyYMvDqDT4kt
+         beYne0JlbhLLryqfKMVgnmEfbR4FMl0XkYmwRaRCuDgpyW9r60cOh8WwkIm4Vj2Dz8A7
+         uKmw==
+X-Gm-Message-State: AOAM532auCFMehkSrqj899rEpk/k8HNfEbslk8IYgzHtYiZ4zEfRIY7w
+	o+VuZwH6vQ8EFBimc5sGLXnh8wVst/o=
+X-Google-Smtp-Source: ABdhPJzdZW6XmFiByZzQge6zxwvqZDUR7Eqm0hlqPSXkND4CX5jhBYGlxhVeFlwqK/rnC6GK1s9z+g==
+X-Received: by 2002:a17:906:6a2a:: with SMTP id qw42mr29143567ejc.313.1634565413255;
+        Mon, 18 Oct 2021 06:56:53 -0700 (PDT)
+Received: from SN6PR05MB4429.namprd05.prod.outlook.com ([2603:1036:805:29::5])
+        by smtp.gmail.com with ESMTPSA id y4sm9142687ejw.3.2021.10.18.06.56.52
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 18 Oct 2021 06:56:52 -0700 (PDT)
+From: Weite Zhang <zhang.weit3@gmail.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: B210 Maximum input power 
+Thread-Index: AQHXxCc++wIR4DFXi0afDok8Jj3M+A==
+X-MS-Exchange-MessageSentRepresentingType: 1
+Date: Mon, 18 Oct 2021 13:56:50 +0000
+Message-ID: 
+	<SN6PR05MB4429C5A8BE04B909AA01FE0BF4BC9@SN6PR05MB4429.namprd05.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-Exchange-Organization-SCL: -1
+X-MS-TNEF-Correlator: 
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
 MIME-Version: 1.0
-From: Shamil Prematunga <shamildilshan.b@gmail.com>
-Date: Mon, 18 Oct 2021 10:10:29 +0530
-Message-ID: <CAGeA34H5uj6pcFV39dNJBpSksVqq_jOYypBYMvBQhzJmX+Kyzw@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: 6LW472YR3U2YIXTWMXWK54PUKXA5SNLE
-X-Message-ID-Hash: 6LW472YR3U2YIXTWMXWK54PUKXA5SNLE
-X-MailFrom: shamildilshan.b@gmail.com
+Message-ID-Hash: 4FBF2KOSWVIEZXX2YZSEEK4CYGAH5FEL
+X-Message-ID-Hash: 4FBF2KOSWVIEZXX2YZSEEK4CYGAH5FEL
+X-MailFrom: zhang.weit3@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: pasan.dharmasiri@outlook.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Can't communicate between USRP N310 and B210
+Subject: [USRP-users] B210 Maximum input power 
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6LW472YR3U2YIXTWMXWK54PUKXA5SNLE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OSIBJCKWOJTU7TF3HYOQ4AC5FWW2MQ2C/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8331765172104339577=="
+Content-Type: multipart/mixed; boundary="===============8280380304991637189=="
 
---===============8331765172104339577==
-Content-Type: multipart/alternative; boundary="000000000000abc07105ce992566"
+--===============8280380304991637189==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN6PR05MB4429C5A8BE04B909AA01FE0BF4BC9SN6PR05MB4429namp_"
 
---000000000000abc07105ce992566
-Content-Type: text/plain; charset="UTF-8"
-
-Hi All,
-
-I am a research engineer in Dialog-University of Moratuwa Research Lab Sri
-Lanka who is new to USRP devices. I am currently working on an OAI setup
-with N310 as a gNB and B210 as a UE.
-
-When the setup is running I wasn't able to make proper communication in
-between SDRs even over the air or through cables.
-
-I tested using GNURadio and B210 working as a spectrum analyzer to capture
-signals which are transmitted by the N310. It shows small fluctuations
-around the center frequency when N310 is up and running.
-
-Can someone who has experience with OAI and USRPs please help me to figure
-out the problem.
-
-Thanks in advance.
-
-Best Regards,
-Shamil Prematunga
-
---000000000000abc07105ce992566
-Content-Type: text/html; charset="UTF-8"
+--_000_SN6PR05MB4429C5A8BE04B909AA01FE0BF4BC9SN6PR05MB4429namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi All,<div><br></div><div>I am a research engineer in Dia=
-log-University of Moratuwa Research Lab Sri Lanka who is new to USRP device=
-s. I am currently working on an OAI setup with N310 as a gNB and B210 as a =
-UE.=C2=A0</div><div><br></div><div>When the setup is running I wasn&#39;t a=
-ble to make proper communication in between SDRs even over the air or throu=
-gh cables.=C2=A0</div><div><br></div><div>I tested=C2=A0using GNURadio and =
-B210 working as a spectrum analyzer to capture signals which are transmitte=
-d by the N310. It shows small fluctuations around the center frequency when=
- N310 is up and running.=C2=A0</div><div><br></div><div>Can someone who has=
- experience with OAI and USRPs please help me to figure out the=C2=A0proble=
-m.</div><div><br></div><div>Thanks in advance.=C2=A0</div><div><br></div><d=
-iv>Best Regards,</div><div>Shamil Prematunga=C2=A0</div></div>
+Hi,
 
---000000000000abc07105ce992566--
+I am playing with a B210 board. I am just wondering whether any of the hard=
+ware components/chips on the board might get burned or unrecoverable damage=
+ if I have high input power at the Rx channels, eg 20dBm, or 30dBm? Could a=
+nyone help? Thank you!
 
---===============8331765172104339577==
+
+
+Regards,
+West
+
+--_000_SN6PR05MB4429C5A8BE04B909AA01FE0BF4BC9SN6PR05MB4429namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"ltr">
+<div></div>
+<div>
+<div>Hi,</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">I am playing with a B210 board. I am just wondering whethe=
+r any of the hardware components/chips on the board might get burned or unr=
+ecoverable damage if I have high input power at the Rx channels, eg 20dBm, =
+or 30dBm? Could anyone help? Thank
+ you!</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr"><br>
+</div>
+<div dir=3D"ltr">Regards,</div>
+<div dir=3D"ltr">West</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_SN6PR05MB4429C5A8BE04B909AA01FE0BF4BC9SN6PR05MB4429namp_--
+
+--===============8280380304991637189==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +146,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8331765172104339577==--
+--===============8280380304991637189==--
