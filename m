@@ -2,50 +2,50 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C2554385D4
-	for <lists+usrp-users@lfdr.de>; Sun, 24 Oct 2021 00:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B754389BD
+	for <lists+usrp-users@lfdr.de>; Sun, 24 Oct 2021 17:18:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0D03B38477C
-	for <lists+usrp-users@lfdr.de>; Sat, 23 Oct 2021 18:47:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5B90E384487
+	for <lists+usrp-users@lfdr.de>; Sun, 24 Oct 2021 11:18:00 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UdcgxRXx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="b+5ilf/o";
 	dkim-atps=neutral
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id B99723843BB
-	for <usrp-users@lists.ettus.com>; Sat, 23 Oct 2021 18:46:18 -0400 (EDT)
-Received: by mail-qv1-f46.google.com with SMTP id o13so4778577qvm.4
-        for <usrp-users@lists.ettus.com>; Sat, 23 Oct 2021 15:46:18 -0700 (PDT)
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7A20F383E2F
+	for <usrp-users@lists.ettus.com>; Sun, 24 Oct 2021 11:17:15 -0400 (EDT)
+Received: by mail-qk1-f171.google.com with SMTP id h65so9753639qke.0
+        for <usrp-users@lists.ettus.com>; Sun, 24 Oct 2021 08:17:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=EzWscAUo7W7sffmtzWNU4iICYeskGnriqBHZBg4IQ1M=;
-        b=UdcgxRXxFWqdwwY1IP1UsCiK6XrPBuRwqG6uICh7RGvYY2WM/Xdw6xWWxI53DXru+a
-         pp3GcdkLP9Nq/5fEzUlRIcyblpfemyo+acG8t06xTb6oQJZPe473bZpVs0RdxSE0P0b8
-         tHsZwmDInKjdyPwOUakK0ZcNZkudq2qL8UxZDMnsfCAsqdqZNIjl1tv+mRotHkki1pQq
-         65mpf//B7/Md3/G3YNgyneqP3wDmjldsItFbLCj4+4EbEhh1r2PJFvo1c0SXbqsf1g6+
-         xMqoA8iNc2pdnDkaYmZIhnv0eZtovmnVXontPTdgsnZWg/drUySEUbgdIMW2OHPPgxVX
-         Smtw==
+        bh=zjqi4qqEiE9YelbbMnmQs66TeZq6pYNOEHjyCy5xLuk=;
+        b=b+5ilf/oup+vplRsfp/FkzNYQBKyFQSrHbHGQB0XeieFQ0nt8TB4jdY5u0jUNcMO+O
+         JuUNY+CBpoO0ppL0GtpiDsQwgWmMZdeXjjGMpCZRhRWML8IUGh2CakhqcSLIT5n1CuHc
+         23/QjsE5fvGuzb099mLEPxeux/POb/rVazrUiUokKoq98VUovh/TLpgHZbUvsBZdh567
+         jMQWFYr9As3lJ56XZlbHVof7j00QpmbG7L7pTxpmZ8M5mjp7LADP3GwlD2khLPKGMIqv
+         qoa9N3U7sdztaBnteAFnNwjdp2pSjo4TiWzdwDMQR3qijrs6PBUE5RCNbFDxeBRS35wD
+         vSRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language;
-        bh=EzWscAUo7W7sffmtzWNU4iICYeskGnriqBHZBg4IQ1M=;
-        b=1G9n2Wlr2CiVkaIqm8JFE2ws/vDp7fjgrAaLwKIQUSZVC3VJ9ZeEw/r2MpDA5RVMcz
-         WyYktK9Z9Tcp8cz4Py1ZeEkC5S6y8HjNSuXNR+7Tv0gEPetsLiPaOHksUBRSFnQzDcBx
-         nfz+tTBL0ombmNd3FKgUKfborvIUwS6jCZaFcA7iivxaYzBjr5jsYAlyo9hxska00iVU
-         MtVi+iMG+ABeQU3GWvhrO8lmIDAQlcof3NPnz8wg3puB7Zf0G8tgWfn+gBi67Bcsnhwr
-         0ekdfmsuNv07KaRT8QHiFJ0jLn9ppZdSsC3HjHwuJegf5VCIYGrLngGEFlikoPI9HsJn
-         8JFA==
-X-Gm-Message-State: AOAM533Fv2ucy2iFXmvDYFred+4pon/KQMAmKfNHXzwQcmPw9GumTDTI
-	q4khaHUAJ49/gOtBplpPh3hEyq/ehEU=
-X-Google-Smtp-Source: ABdhPJyoskFZ+wurpWiLFGDyY7U+LPyf7SKcCVtgxW2neVvjg4jj7K5ijsEsLs3AKeUuDthCGJic6A==
-X-Received: by 2002:ad4:5c67:: with SMTP id i7mr7321351qvh.18.1635029177997;
-        Sat, 23 Oct 2021 15:46:17 -0700 (PDT)
+        bh=zjqi4qqEiE9YelbbMnmQs66TeZq6pYNOEHjyCy5xLuk=;
+        b=8MD67wq5yysivA5G6c2ZUPo5v/88GatHzSkb1lhaeD45UbyOcEpwBRBd3s2qUjFeR7
+         KX8jIGWVLquxInberomouuzVq7nARMZIzg07BKB+vjRR4OV8EnjIBpC+a8v6cKmOShbS
+         Xe3ttre1EpbMRaOJthSdLTaitpLjXqGXv7Wc3jnDoXCPRKseh8XKJsHQaLs7LXWZmLRg
+         xRZGkXYlTKZ4X7CbEC6RB368iu+Q0k3GbtMvLRTXjfw4VOLgQKgUdulCxIz1frrQhbX+
+         DY1VUv1Ea4dTrhnmwDFTYt0sWJwF1b+/+gkG5pK0LWtxYd+vJe9Q2cuKtyQ/NyuKaiA/
+         oZ3A==
+X-Gm-Message-State: AOAM530SHJwE5kWeUEkxhS/J1/1Fj+Bai6Cby33/8suNywlbt8lgMY+8
+	mookAeZxdcy4SoWOwT7U8gGUQFbUFuI=
+X-Google-Smtp-Source: ABdhPJxBrt6jDcWwCvvqjDHpVZCNq1N5wAX4P1lx/+GeiUwXPiEzx4cUOPtDQ9tQJ/JJtSGBRJpkOA==
+X-Received: by 2002:a05:620a:1790:: with SMTP id ay16mr9303942qkb.264.1635088634723;
+        Sun, 24 Oct 2021 08:17:14 -0700 (PDT)
 Received: from [192.168.2.252] (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
-        by smtp.googlemail.com with ESMTPSA id k9sm6369191qkj.75.2021.10.23.15.46.17
+        by smtp.googlemail.com with ESMTPSA id p9sm7150446qki.51.2021.10.24.08.17.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 23 Oct 2021 15:46:17 -0700 (PDT)
+        Sun, 24 Oct 2021 08:17:14 -0700 (PDT)
 To: Ivan Zahartchuk <adray0001@gmail.com>
 References: <CAPRRyxsHu+FoQrLpC+fVyVdtmdu4kfXEq8CBmBsA5iGJ+xT-FA@mail.gmail.com>
  <CAPRRyxsDhTm=m_EWds6SbJUuDkVaK0GJyOETVaSPisb_kfzbkw@mail.gmail.com>
@@ -54,15 +54,15 @@ References: <CAPRRyxsHu+FoQrLpC+fVyVdtmdu4kfXEq8CBmBsA5iGJ+xT-FA@mail.gmail.com>
  <b806b59f-3454-01eb-00f6-db6aeea4a1c5@gmail.com>
  <CAPRRyxsi1Ay+z1VC8eAa49v=2Z8sB3rptrPD+3=bh-OZNAqmDw@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID: <6d364a32-0e4a-911c-ccff-aa11da5023ec@gmail.com>
-Date: Sat, 23 Oct 2021 18:46:16 -0400
+Message-ID: <9db5f18f-ec4b-fc6b-fb65-bcef88563bab@gmail.com>
+Date: Sun, 24 Oct 2021 11:17:13 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
 In-Reply-To: <CAPRRyxsi1Ay+z1VC8eAa49v=2Z8sB3rptrPD+3=bh-OZNAqmDw@mail.gmail.com>
 Content-Language: en-US
-Message-ID-Hash: 32DUTBRBWRGRKH3JMQG53NVPZB4D7NGT
-X-Message-ID-Hash: 32DUTBRBWRGRKH3JMQG53NVPZB4D7NGT
+Message-ID-Hash: KV775YG2XCUWZVLPOAWFVUGRSRUZJ5LT
+X-Message-ID-Hash: KV775YG2XCUWZVLPOAWFVUGRSRUZJ5LT
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: discuss-gnuradio <discuss-gnuradio@gnu.org>, usrp-users <usrp-users@lists.ettus.com>
@@ -70,23 +70,23 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Fwd: Adding a Window block to an RFNOC graph
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/32DUTBRBWRGRKH3JMQG53NVPZB4D7NGT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KV775YG2XCUWZVLPOAWFVUGRSRUZJ5LT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4127331963285021886=="
+Content-Type: multipart/mixed; boundary="===============7555156219580218262=="
 
 This is a multi-part message in MIME format.
---===============4127331963285021886==
+--===============7555156219580218262==
 Content-Type: multipart/alternative;
- boundary="------------7E5E71C0E934B54FFEE109BF"
+ boundary="------------F34EE053E77DBC2147E9C3FC"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------7E5E71C0E934B54FFEE109BF
+--------------F34EE053E77DBC2147E9C3FC
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,27 +96,6 @@ On 2021-10-23 5:58 p.m., Ivan Zahartchuk wrote:
 > above. I need to do windowing and FFT on the FPGA side. And understand=20
 > why FFT returns zero values even when it is configured to produce=20
 > complex data.
-There are two distinct problems described here.=C2=A0 One is that for=20
-very-small input values, the FFT produces zero outputs. This is very=20
-likely due to the
- =C2=A0=C2=A0 fact that the FFT implementation in the FPGA is an integer=20
-implementation, with fixed precision.=C2=A0 If it's scaling the output=20
-appropriately for
- =C2=A0=C2=A0 mag**2, there will be cases where it produces zeros.=C2=A0=C2=
-=A0 You can=20
-either increase the RF gain, or, as I *THINK* you're trying to do, use=20
-the window
- =C2=A0=C2=A0 function to artificially boost the input amplitudes prior t=
-o the FFT=20
-computation?
-
-Unfortunately, I don't personally have an RFNOC toolchain myself, so I=20
-can't offer much in the way of advice on the build error you're getting,=20
-and I'm
- =C2=A0 hoping someone with more RFNOC-on-E310 experience can be of more =
-help.
-
-
 > image.png
 >
 > =D0=BF=D1=82, 22 =D0=BE=D0=BA=D1=82. 2021 =D0=B3. =D0=B2 17:55, Marcus =
@@ -186,9 +165,17 @@ om  <mailto:usrp-users-leave@lists.ettus.com>
 >>         <mailto:usrp-users-leave@lists.ettus.com>
 >>
 >
+I noticed looking at your .yaml file that it references x300_radio=20
+blocks, and since this is an E310, that may not be appropriate?=C2=A0 I k=
+now=20
+that there have
+ =C2=A0 historically been considerable differences between the X300 RFNOC=
+=20
+radio blocks and those for E310.
 
 
---------------7E5E71C0E934B54FFEE109BF
+
+--------------F34EE053E77DBC2147E9C3FC
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -240,60 +227,6 @@ ndow function but I get the error I described above. My yaml file is also=
 erstand why FFT returns zero values even when it is configured to produce=
  complex data.</span></pre>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </span></div>
-      </div>
-    </blockquote>
-    There are two distinct problems described here.=C2=A0 One is that for
-    very-small input values, the FFT produces zero outputs. This is very
-    likely due to the<br>
-    =C2=A0=C2=A0 fact that the FFT implementation in the FPGA is an integ=
-er
-    implementation, with fixed precision.=C2=A0 If it's scaling the outpu=
-t
-    appropriately for<br>
-    =C2=A0=C2=A0 mag**2, there will be cases where it produces zeros.=C2=A0=
-=C2=A0 You can
-    either increase the RF gain, or, as I *THINK* you're trying to do,
-    use the window<br>
-    =C2=A0=C2=A0 function to artificially boost the input amplitudes prio=
-r to the
-    FFT computation?<br>
-    <br>
-    Unfortunately, I don't personally have an RFNOC toolchain myself, so
-    I can't offer much in the way of advice on the build error you're
-    getting, and I'm<br>
-    =C2=A0 hoping someone with more RFNOC-on-E310 experience can be of mo=
-re
-    help.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAPRRyxsi1Ay+z1VC8eAa49v=3D2Z8sB3rptrPD+3=3Dbh-OZNAqmDw@mail.=
-gmail.com">
-      <div dir=3D"ltr">
-        <div id=3D"gmail-tw-container" class=3D"gmail-"
-style=3D"width:652px;color:rgb(32,33,36);font-family:arial,sans-serif;fon=
-t-size:medium"><span
-            style=3D"display:block">
-            <div>
-              <div>
-                <div class=3D"gmail-tw-src-ltr" id=3D"gmail-tw-ob"
-                  style=3D"display:flex;min-height:140px">
-                  <div class=3D"gmail-oSioSc"
-                    style=3D"width:0px;display:flex">
-                    <div id=3D"gmail-tw-target"
-style=3D"font-size:0px;margin:0px;text-align:initial;background-color:rgb=
-(248,249,250);border-radius:8px;min-width:0px;width:0px;display:flex">
-                      <div id=3D"gmail-kAz1tf" class=3D"gmail-g9WsWb"
-                        style=3D"margin:0px;text-align:initial;padding:10=
-px
-                        16px 48px">
                         <div class=3D"gmail-tw-target-rmn
                           gmail-tw-ta-container gmail-F0azHf
                           gmail-tw-nfl"
@@ -497,13 +430,21 @@ sts.ettus.com</a>
         </blockquote>
       </div>
     </blockquote>
+    I noticed looking at your .yaml file that it references x300_radio
+    blocks, and since this is an E310, that may not be appropriate?=C2=A0=
+ I
+    know that there have<br>
+    =C2=A0 historically been considerable differences between the X300 RF=
+NOC
+    radio blocks and those for E310.<br>
+    <br>
     <br>
   </body>
 </html>
 
---------------7E5E71C0E934B54FFEE109BF--
+--------------F34EE053E77DBC2147E9C3FC--
 
---===============4127331963285021886==
+--===============7555156219580218262==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -513,4 +454,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4127331963285021886==--
+--===============7555156219580218262==--
