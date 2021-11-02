@@ -2,93 +2,116 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE7643FEAD
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Oct 2021 16:47:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 102AF4425A8
+	for <lists+usrp-users@lfdr.de>; Tue,  2 Nov 2021 03:35:56 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7FB45384A76
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Oct 2021 10:47:32 -0400 (EDT)
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 444A9384708
-	for <usrp-users@lists.ettus.com>; Fri, 29 Oct 2021 10:46:43 -0400 (EDT)
-Date: Fri, 29 Oct 2021 14:46:43 +0000
-To: usrp-users@lists.ettus.com
-From: christopher_beaudoin@uml.edu
-Message-ID: <8WwKufvkzUaamqFX4HaSOlTk97ZnJTMv5Yq7kFPnyrw@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	by mm2.emwd.com (Postfix) with ESMTP id BD012383B9F
+	for <lists+usrp-users@lfdr.de>; Mon,  1 Nov 2021 22:35:54 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="i857is9H";
+	dkim-atps=neutral
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 87FA138191F
+	for <usrp-users@lists.ettus.com>; Mon,  1 Nov 2021 22:35:07 -0400 (EDT)
+Received: by mail-qk1-f172.google.com with SMTP id bj20so7162939qkb.11
+        for <usrp-users@lists.ettus.com>; Mon, 01 Nov 2021 19:35:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=gGCdqtwzQWV+QAC58V7IuSTvi9Hn5xjpwpyN7X0ZDRo=;
+        b=i857is9HjtbWvrPJ3GtZumm/GXIDzJRrQv+Ljke/5bSpSD6tRLPD83v6ski8wYv4y1
+         tW09knZdCfzzm5L16jFr6xIsi7BG9ile4zcVeTdnagYVGjFInCK5RvxGm5bDYuK9FSp+
+         Yft4KH5iVsWiG8TCCCus4j4iNJ7w3BJ1qP+KF1xkSBOLj3rQAunbbmfn0zR+9p3lt1LM
+         uiapwmpVDi5fa4cR5NSinIKU+3te66kXU6QtDGfo6exSy/bcbktW2Z2+h8mcDwp84agI
+         QOFCINBjmcurtH0x2el/oI03HVV39n2claCq15c9n1t0Io6/Cw26u2vslRHUGlI/g2g+
+         b8/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gGCdqtwzQWV+QAC58V7IuSTvi9Hn5xjpwpyN7X0ZDRo=;
+        b=zxyC84i3Z073ZdSMadBEl114Y23vA1zfYxXhOh0XSWOsF98kMq4+B/fH6F2EgvXu2f
+         esHfEfv3giIqWwuNNN+wHSKQInsAT9AVaSyfqIGcA95AIyAAnUReNg5FtxfOh5mH6CKL
+         autgONWK8u973YhtwH6dCUHjmq+bHeFePf2OyZj7LFouHGEg95//uapWHJRzrroSoIdz
+         D+w1uYVZEt+EVVhyVFAF2sA9r/ryklAMRqt5BqUGy/EZo9Sd8ALIKTcArAfSa0Wvsl20
+         QNKCI1kGz6ySoGr9kCy9d4rbK45RQfmeoJ/JgjryLiIcu++m0DfQLDE/XKdioNYagQ0A
+         rqDw==
+X-Gm-Message-State: AOAM5328hoLzr2I4Qm6gGQZ10+T6xewvUUBiiipRj2wO0RwDVHAuCrFS
+	nAMA69uyeyCy+g38D15tdcd8e/JzyFA=
+X-Google-Smtp-Source: ABdhPJwQoGhrvS0qulO3La7ujjxZ2z93E7IO+74CMUH4jJQ4EwzQsGhtp5GupBBBxLm8j0KON7jh6g==
+X-Received: by 2002:a05:620a:bca:: with SMTP id s10mr26043385qki.416.1635820506616;
+        Mon, 01 Nov 2021 19:35:06 -0700 (PDT)
+Received: from [192.168.2.253] (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
+        by smtp.googlemail.com with ESMTPSA id s22sm12293960qko.88.2021.11.01.19.35.05
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Nov 2021 19:35:06 -0700 (PDT)
+Message-ID: <02c15964-cdbc-8c4e-dd91-11d38f89f914@gmail.com>
+Date: Mon, 1 Nov 2021 22:35:05 -0400
 MIME-Version: 1.0
-Message-ID-Hash: 77E5FSWKWDJWCJEXDPRVWOJUROP36RPT
-X-Message-ID-Hash: 77E5FSWKWDJWCJEXDPRVWOJUROP36RPT
-X-MailFrom: christopher_beaudoin@uml.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.2
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <8WwKufvkzUaamqFX4HaSOlTk97ZnJTMv5Yq7kFPnyrw@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <8WwKufvkzUaamqFX4HaSOlTk97ZnJTMv5Yq7kFPnyrw@lists.ettus.com>
+Message-ID-Hash: GXNMUYKKWDU3O2WJGHEFCPSZT7HXZBIF
+X-Message-ID-Hash: GXNMUYKKWDU3O2WJGHEFCPSZT7HXZBIF
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Timing of GPIO Readback
+Subject: [USRP-users] Re: Timing of GPIO Readback
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/77E5FSWKWDJWCJEXDPRVWOJUROP36RPT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GXNMUYKKWDU3O2WJGHEFCPSZT7HXZBIF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6630057490270160550=="
-
-This is a multi-part message in MIME format.
-
---===============6630057490270160550==
-Content-Type: multipart/alternative;
- boundary="b1_8WwKufvkzUaamqFX4HaSOlTk97ZnJTMv5Yq7kFPnyrw"
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
 Content-Transfer-Encoding: 7bit
 
-This is a multi-part message in MIME format.
+On 2021-10-29 10:46, christopher_beaudoin@uml.edu wrote:
+>
+> Hi Folks,
+>
+> I'm working on a project that needs an asynchronous time tag event to 
+> flag a time instant to apply specific processing to the RF samples 
+> from a B210. The GPIO seems like the obvious resource to provide the 
+> time alignment between my external event and the RF samples. But I've 
+> never used the GPIO and the GPIO C++ example code leaves me with some 
+> timing related questions.
+>
+> Specifically, in that code it appears GPIO Readback is timed by when 
+> the host controller asks for the state of the pin. With my external 
+> timing signal, I'm looking for a change of state over a period as 
+> short as 10us. So if I were to poll the state of that signal in the 
+> while loop reading the receive samples, there is a good chance that 
+> the state change would be missed. I suppose if I make the sample rate 
+> high enough and the frame size small enough, I could guarantee 
+> capturing the state transition within my timing constraints. But this 
+> seems less than ideal, particularly because of how sensitive the b210 
+> data buffering is to packet size and processing load. Maybe the way 
+> the UHD driver supports GPIO makes it incompatible with my 
+> application. But before I try to engineer a different solution, I'm 
+> hoping someone with a clearer understanding of the GPIO implementation 
+> could tell me whether or not this is the case.
+>
+>
+> Thanks,
+>
+> Chris
+>
+>
+You may have some success using the "timed command" infrastructure:
 
---b1_8WwKufvkzUaamqFX4HaSOlTk97ZnJTMv5Yq7kFPnyrw
-Content-Type: text/plain; charset=us-ascii
-
-Hi Folks,
-
-        I'm working on a project that needs an asynchronous time tag event to flag a time instant to apply specific processing to the RF samples from a B210. The GPIO seems like the obvious resource to provide the time alignment between my external event and the RF samples. But I've never used the GPIO and the GPIO C++ example code leaves me with some timing related questions. 
-
-Specifically, in that code it appears GPIO Readback is timed by when the host controller asks for the state of the pin. With my external timing signal, I'm looking for a change of state over a period as short as 10us. So if I were to poll the state of that signal in the while loop reading the receive samples, there is a good chance that the state change would be missed. I suppose if I make the sample rate high enough and the frame size small enough, I could guarantee capturing the state transition within my timing constraints. But this seems less than ideal, particularly because of how sensitive the b210 data buffering is to packet size and processing load. Maybe the way the UHD driver supports GPIO makes it incompatible with my application. But before I try to engineer a different solution, I'm hoping someone with a clearer understanding of the GPIO implementation could tell me whether or not this is the case.
-
-Thanks,
-
-Chris
-
---b1_8WwKufvkzUaamqFX4HaSOlTk97ZnJTMv5Yq7kFPnyrw
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Folks,</p><p>        I'm working on a project that needs an asynchron=
-ous time tag event to flag a time instant to apply specific processing to t=
-he RF samples from a B210. The GPIO seems like the obvious resource to prov=
-ide the time alignment between my external event and the RF samples. But I'=
-ve never used the GPIO and the GPIO C++ example code leaves me with some ti=
-ming related questions. </p><p>Specifically, in that code it appears GPIO R=
-eadback is timed by when the host controller asks for the state of the pin.=
- With my external timing signal, I'm looking for a change of state over a p=
-eriod as short as 10us. So if I were to poll the state of that signal in th=
-e while loop reading the receive samples, there is a good chance that the s=
-tate change would be missed. I suppose if I make the sample rate high enoug=
-h and the frame size small enough, I could guarantee capturing the state tr=
-ansition within my timing constraints. But this seems less than ideal, part=
-icularly because of how sensitive the b210 data buffering is to packet size=
- and processing load. Maybe the way the UHD driver supports GPIO makes it i=
-ncompatible with my application. But before I try to engineer a different s=
-olution, I'm hoping someone with a clearer understanding of the GPIO implem=
-entation could tell me whether or not this is the case.</p><p><br></p><p>Th=
-anks,</p><p>Chris</p>
-
---b1_8WwKufvkzUaamqFX4HaSOlTk97ZnJTMv5Yq7kFPnyrw--
-
---===============6630057490270160550==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UHD#Example:_Using_Timed_Commands_to_Control_GPIO
 
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6630057490270160550==--
