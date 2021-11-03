@@ -2,136 +2,195 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7771944491E
-	for <lists+usrp-users@lfdr.de>; Wed,  3 Nov 2021 20:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B7344494D
+	for <lists+usrp-users@lfdr.de>; Wed,  3 Nov 2021 21:01:51 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 32656383FCD
-	for <lists+usrp-users@lfdr.de>; Wed,  3 Nov 2021 15:41:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 94597383F26
+	for <lists+usrp-users@lfdr.de>; Wed,  3 Nov 2021 16:01:50 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FpAqjBcQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nkom.no header.i=@nkom.no header.b="aePZBQAN";
 	dkim-atps=neutral
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0A35F383D8B
-	for <usrp-users@lists.ettus.com>; Wed,  3 Nov 2021 15:40:18 -0400 (EDT)
-Received: by mail-qk1-f171.google.com with SMTP id p17so2368595qkj.0
-        for <usrp-users@lists.ettus.com>; Wed, 03 Nov 2021 12:40:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=xeTuDYgPjNM77r2ijqmwcD7jUPf0oq/2Nxv1gNHd1Ns=;
-        b=FpAqjBcQlTGoGi5WRhbAG4faZ9rl33u3M0lh9tT7WIafcvI7wgZy65a460MEjFEtgq
-         YltCMFTFLjN/PlU27ic0vbsiFCbJazRtY6VxLJitPEsJRAaDenlfMKaZ2lDI5Ggmz3M/
-         hcplMbtex83IU+XKSypBcGQNq1CuYxSWFz5zqEugCfs9s/K6clteCTZPA9mjyop1Wzyq
-         72btpjJ9XZuqHZnGcv0cAVD5P1eJpdr269yr4yRNcyVvEoL/jrQJ2XO+zalu/YwQbnCS
-         Y0rjuM9OibJtoauwS2Z0HCB+nruYnjVcJxL7WRmeimgDwEjv+YmVk6O9+dvQwUd41Mbe
-         AGwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xeTuDYgPjNM77r2ijqmwcD7jUPf0oq/2Nxv1gNHd1Ns=;
-        b=jYZS9uk2NFtHbh9pE9/F0ivbIPGEwWRrjFEcgDGCTXSar4EuOBnFxHt1ugzJnPhutl
-         iE/VNkOHo5N9D0GAN3gAiPzgB7IYNX8cGDj5CXMUoPr74MAr9ZEQ9mH87NLcwL0IVcJw
-         rPzsNbVBgNyDgakiQi2Yp9OBUQEI71xHJM05F3lWr55ZmpWl0mQ+LoeUDJYdh4OQP9ki
-         FuT/uknwaKKlp0wR+6CVySZqGpysbde2tCv61M80B/mpIym4RbjcHk3RleHs9r+16V6f
-         6Rqf868+sGeNlD2rflsf+G6ZuTlatFzxELK+nXkqaDqZWUO/ZRoYD+JWkksA1hUULmRf
-         7zZg==
-X-Gm-Message-State: AOAM533v+rJmgHpM0HpaHHrUoMpHI8LTabGcjaSzWw7Qtq9AAIoxMBcI
-	ZN/QuerAO4yfkFguaRImasphR5tnicw=
-X-Google-Smtp-Source: ABdhPJwrjTgRrbDoMZfkRP/QPxZeQ+ZQL6hBUs2YRAcfGelVA8rudSJY94oyvT4u3hejfpI7Fy3q/g==
-X-Received: by 2002:a05:620a:c4a:: with SMTP id u10mr36067638qki.69.1635968418239;
-        Wed, 03 Nov 2021 12:40:18 -0700 (PDT)
-Received: from [192.168.2.248] (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
-        by smtp.googlemail.com with ESMTPSA id d18sm2380772qtb.70.2021.11.03.12.40.17
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Nov 2021 12:40:17 -0700 (PDT)
-Message-ID: <3eba92d0-2cb7-262f-9786-528042cc4679@gmail.com>
-Date: Wed, 3 Nov 2021 15:40:17 -0400
+Received: from NOR01-OL1-obe.outbound.protection.outlook.com (mail-ol1nor01on2122.outbound.protection.outlook.com [40.107.224.122])
+	by mm2.emwd.com (Postfix) with ESMTPS id D82EF383BB4
+	for <usrp-users@lists.ettus.com>; Wed,  3 Nov 2021 16:00:57 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ikvs3bdmsTiY1hiV13Ldtkr/l0czcuFtt7cwQeR+Ose5u1+V/SvmImPN85Wp5z2Q7sGYhjomc776Qx1O4bI075fFjLRjB7BzcqSdpsyc0LpbI1aedhBrJvDikqpt7VlPN1BtLIu4lsEkb8ZD77zjxEfyDqaqaCKgL4VkdIUSpkuQX//zI7itZkXvDSkPq4NrsAzPfIEX84nIFEbO5rKjNcAnl4R26fAmAPAtww7AZWQeEekixBXGZWbe8PW/ydufkN7gflmZjyU+GMY/shWYqti8IK6W8qeBL9hyDi3TxNlTCiwJwft4bkYmH7dmorMbDAUhgPixL6fjgRfCW4pZBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=avCpBN7AhzgKxvGxMP7oVZ3bjsqlqX/SCiq1jBn/lis=;
+ b=BpYT3mH7VKmj0ri3oLCJhWG0snICqy+Zt4HOVDJzTZkJrKBctVQ2O+CWgrxns4gpGi8OB+HF/0TjordCh2pyAEXf2601UefjDnj+ramNLHANE8lIocwY+dDMAWUcdDG0dWLnPrpNWbcgfRxoV5Hj8LxXTp38eVL7V7K4NS9Fs+gMnYcbLy7ZMszCWBMKZ9mjgy6H7xOdtpdGrUXEIoaKKo/1zEKVKu7/u8nc6OLwmKQeciRBPz4Se3b88HWQkYju+CxJb//pXZX15yKYSB9KC8zZIHsgOiZKZcU7mdfSr1pkFjivVAstgL+gxfzarj9iesVi/GaH3/PCFP0dlOSwOw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nkom.no; dmarc=pass action=none header.from=nkom.no; dkim=pass
+ header.d=nkom.no; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=avCpBN7AhzgKxvGxMP7oVZ3bjsqlqX/SCiq1jBn/lis=;
+ b=aePZBQANv7nVhXfpxhlpEqVR1xl5bXQyv+x0eNnqhIc8sjXQKFJRnXjjTCx3+EgGZ3ipWEBnz1jnjmdjcoAe4ymQ0xDFEFhi1G8gtlR7ytryZ4VSnu/bWB9aRK3EIGIXbpGlXanLdzL6nLM//m8DA3sF4LiyW79d/Hk9kCF96NaP574YDItplwuc34nO02giVkjjH9a/CAV55wcArasY1dcXLJ2D3aEgYW6dkvtDMQUbu18vOPHtx4r7eHjbyzowTFg9uq5vLCSe5qshMkX6puec4sNGt5jUsZ/P70K9BgZBQ7RDJRlCXP66wHmqAw5IATK//8itZQ7nC/Hpvx9Wyw==
+Received: from OL1P279MB0083.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:f::16) by
+ OS4P279MB0436.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:1e::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4669.11; Wed, 3 Nov 2021 20:00:55 +0000
+Received: from OL1P279MB0083.NORP279.PROD.OUTLOOK.COM
+ ([fe80::4162:d6f1:2ee3:8c1a]) by OL1P279MB0083.NORP279.PROD.OUTLOOK.COM
+ ([fe80::4162:d6f1:2ee3:8c1a%5]) with mapi id 15.20.4649.020; Wed, 3 Nov 2021
+ 20:00:55 +0000
+From: =?iso-8859-1?Q?Skorstad=2C_J=F8rn?= <jsk@nkom.no>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: LO frequency change
+Thread-Index: AQHX0OuUDgLx41MDwkCiEfvTJ4xFjQ==
+Date: Wed, 3 Nov 2021 20:00:55 +0000
+Message-ID: 
+ <OL1P279MB00832E3402FDBDD18E8F2EE7A08C9@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
+Accept-Language: nb-NO, en-US
+Content-Language: nb-NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: lists.ettus.com; dkim=none (message not signed)
+ header.d=none;lists.ettus.com; dmarc=none action=none header.from=nkom.no;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ce9f3651-ff25-402e-bb2e-08d99f04a5b0
+x-ms-traffictypediagnostic: OS4P279MB0436:
+x-microsoft-antispam-prvs: 
+ <OS4P279MB0436EF22A38DC9005AEA12ECA08C9@OS4P279MB0436.NORP279.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ oeOqPS2bN5HSzx+omhfiN/y8kfpRj1SAxBiar9QOZpOFxAuJhbxv0ZnJ6TFqr5LDk53864hnIVZCtvgcT5yOYtBFtQa50UkybDzfTcKOY4f+fuE7guG3bh37YGUFJC24FrbwnLdo6Gc2qlQ8TjLg/PzbBFYURzZGfPPrh7xjXvHet6a2KupSU2n+KobNc2u5WIG9/cWswsRqg6tC2eDiFof+OO9vdlmJPT8GsSbfvxsv1GGSAL3OqhefxE9V5RviUXLY/VLLak++H38ipwJ96Q94ep1/6IeZyPd8L/7BhJnOYO+7N9MlS6pFVRDYS6pVBLKkHiKfaS6T+UvTXXXk5pMb/Gr1uNCAgZ2Qzk07s2RYqQsvGxjlvvozoZskGLXi+iTys8+rSVHN/6oZ1Vy/MsMLI3HRGnje/0qKzYxVqr/RfFaFL5SOHH2VmA9lBedo+DHpQT+xc0MRDfZ4hzlSq1lzHmyhmKKljZcyKRPHDYzX8KTqyzuuheKM0ES4/oBgjhKZ7+Djv5xQvEYOzOrAL0Z/FtK+yP7udWIEPrWn/owSgtyR7jpVpiiEEqXB+49iXhnURdPE/rkaJsV1/pBfnYdHMcLr8tWbwnVVqv6PrG8Y0AKDS6d+Dw4hgG83l+lWOBHCqq7phQt3yo6lvN903s6Z4SeKqDnH15wWPfnvTvXElY+gCe4L+iisYzxNJPJp1ZHJcuj1iHwEl+pKmj8xCg==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OL1P279MB0083.NORP279.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(396003)(39850400004)(376002)(346002)(6506007)(71200400001)(3480700007)(83380400001)(7696005)(76116006)(7116003)(5660300002)(66556008)(66476007)(64756008)(8676002)(122000001)(4744005)(66446008)(66946007)(2906002)(508600001)(86362001)(33656002)(52536014)(55016002)(8936002)(186003)(26005)(6916009)(316002)(38100700002)(9686003)(38070700005);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?6JD//J/6kfya1qP1t68bfzTbUd8JCpRR/iKFtQcsjYfNN52UGEyQR2BpBU?=
+ =?iso-8859-1?Q?VvzHckFRXazrZI3ENlLGUsEAVz7bFuZlwfxwOcIChqVshaGBvLG4iRvb5J?=
+ =?iso-8859-1?Q?nnQsi6mAKH4Mvw95DoNO2fPdtgDKWZxfR3MVkigNbrnPkr7aguF61kMZ8W?=
+ =?iso-8859-1?Q?RIt66C+hWUmXjCg73aqi49vgcJsgWatPh/rmbojWjB4Bhe5+11Uos/Y7zy?=
+ =?iso-8859-1?Q?JrSBNPpEOTWlpZpQYFuF4pGUpPaCG+aB2gzG1+oa3LThXRe2f9rAM1Jby/?=
+ =?iso-8859-1?Q?ZNSvQkgD7C3DnOKoC6R1zZDgGu54iJjT9/1+hU4xaD+1B0dqknZVn+2zTb?=
+ =?iso-8859-1?Q?3k3IHxSiYX0ym8MLq0lLA9KbaWcurIS3CZahRIo8OV7zDFtvx6FG3R+E06?=
+ =?iso-8859-1?Q?1/p4oOoWmxwEV8S5aSRCOpD21idPxqyuc+bNqASraYrSI00Zj63erHn/Kd?=
+ =?iso-8859-1?Q?4giE6JwpAWwni7rmA96Ukw/BT/KAJ0ZlHbRUiYuYepO72OiTiBPpaLYtB1?=
+ =?iso-8859-1?Q?h1kGeplsvNR1Ot93cVQoz5qYQxRImGETALgHuqryLmyD9Q9mpTd/xtflct?=
+ =?iso-8859-1?Q?GhzPih/HpXM8/Dx4865xytq5I7LFA+FCbcflqiNYMmq3/9xYE8+GICxJ2S?=
+ =?iso-8859-1?Q?RBU7ty/EYe8p2h0hiCSDsLwu5R6ynOdX84uG6lxk4koysGzfN6xNiCVE8l?=
+ =?iso-8859-1?Q?N4nyDdxrbooJ/KfxCHHw/EIxx1rgkuYjyM/jw3HA9seN8CTUWO+i33kVp/?=
+ =?iso-8859-1?Q?725Lov7Bz0622ZyMRfhlZ5hJkpIgmb+oE8JcPb5hvZM7FxqzweXe3M6ceW?=
+ =?iso-8859-1?Q?7y46c4r/DhiVfqlaDkVf0B3O5XRgEdLByfFVwga6as3iBNnzx+eUNT0BwJ?=
+ =?iso-8859-1?Q?Sj7qn4s9ZDfle44pHOYcdrHLS3Yl/pAvfzn9eUp7WRnI0tl9fVHfG36ntk?=
+ =?iso-8859-1?Q?hoCtOjjGTlcAWpp398Sh07FHDd8MwwzgBZ3s8OM2Ixmvn8Aft8hTpLQiVe?=
+ =?iso-8859-1?Q?SCqqjpli1x5pTTSR0W2N+aQ5xH5KWpl1qbVPcl8pbs9sqIiwypbjTgzzFL?=
+ =?iso-8859-1?Q?VW/UK/r6znD5+Q0/Z+lwNc4xYFBEqTP5ZTFTlMRa5bSR/e1etjPdiQUg9O?=
+ =?iso-8859-1?Q?PiyI5ShTyPRzcz8+tjBVZEVBuCHrnD5RVJifUrU/ixN7GchQSV4WUKciir?=
+ =?iso-8859-1?Q?So693EN/cqZ2Moh8o6zfulCttJD7VzDLg1IDsd3Py5TUkiEY+yQrGRs3AE?=
+ =?iso-8859-1?Q?XB/CxN5sWHipeTXqEMQcTGprW/6EeXZIPX9lV1bDFyYMYeWZ+kqqvQghOt?=
+ =?iso-8859-1?Q?wyUnnKqBpGNTLkfHYrKZLclvR4wp14OmyxfvqvnjnVW67YtYi6eRB0/ACU?=
+ =?iso-8859-1?Q?ZLOGI/dJxUoCj8fl7Hk1L33qNCFc8GzOJa7K9bEqNZ7FYd7WS44uQye/Sr?=
+ =?iso-8859-1?Q?vq/V3Gw06Fdeo3l7YDriV1t6iUqdxwBmVX8BuNOC4BOTgc1Km4xla5wJIb?=
+ =?iso-8859-1?Q?pREJk12ZEiSx4DRk3nFPcYPzg8iLrnrfKNDKK+Ga60/zxlGTRHBdHDdCvG?=
+ =?iso-8859-1?Q?mfUyjMOEmG5/7azDK8g736u1qaMrFsqcZlD4wLPlaeMjmhvTS9XiC8ZPpI?=
+ =?iso-8859-1?Q?slxWi6uyBPhGk=3D?=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.2
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <97776b25089c4fec9a2cd5e9b4bf5d8c@erdc.dren.mil>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <97776b25089c4fec9a2cd5e9b4bf5d8c@erdc.dren.mil>
-Message-ID-Hash: HMK54Q6C4OXRL2UPFMWLSUVHMISNBPX6
-X-Message-ID-Hash: HMK54Q6C4OXRL2UPFMWLSUVHMISNBPX6
-X-MailFrom: patchvonbraun@gmail.com
+X-OriginatorOrg: nkom.no
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OL1P279MB0083.NORP279.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce9f3651-ff25-402e-bb2e-08d99f04a5b0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2021 20:00:55.7158
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ad83e65c-03f6-4cfd-b799-47a2fafd7bce
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H9EaPg7wGd4bRc5uQ0F1CHIyCxH8MwBi0+jz8S4Ot1aZy0p6+/GS5erCE81tu/5Q
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS4P279MB0436
+Message-ID-Hash: MQWAHVK37T3TKIGOKPU4TGESTYJMO2PQ
+X-Message-ID-Hash: MQWAHVK37T3TKIGOKPU4TGESTYJMO2PQ
+X-MailFrom: jsk@nkom.no
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problem with error_code_late_command using two x310's
+Subject: [USRP-users] LO frequency change
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HMK54Q6C4OXRL2UPFMWLSUVHMISNBPX6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4IEKSJ73QGOLJFBIZZIIT5XW5ZJILONT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5371905345525197435=="
 
-T24gMjAyMS0xMS0wMyAxMzoxNCwgV29sc2llZmZlciwgQ2FybCBMLiBFUkRDLVJERS1DUkwtTkgg
-Q0lWIHZpYSANClVTUlAtdXNlcnMgd3JvdGU6DQo+IEhlbGxvIGFsbCwNCj4NCj4gSSBoYXZlIDIg
-eDMxMCdzLCBvbmUgaXMgYSB0cmFuc21pdHRlciBhbmQgdGhlIG90aGVyIGlzIGEgcmVjZWl2ZXIu
-IEkgaGF2ZSBzb21lIGNvZGUgSSBhZGFwdGVkIGZyb20gYSB1c3JwIGV4YW1wbGUgYXdoaWxlIGJh
-Y2sgYW5kIGluIHRlc3RpbmcgdGhlIGJvdW5kcyBvZiBteSBzeXN0ZW0sIEkgYW0gZ2V0dGluZyBh
-IEVSUk9SX0NPREVfTEFURV9DT01NQU5EIHdhcm5pbmcgYWZ0ZXIgYSBmZXcgc2Vjb25kcyB3aGVu
-IHRyeWluZyB0byByZWNlaXZlIGV2ZXJ5IGZldyBtcyBhbmQgdGhpbmsgSSBtYXkgYmUgbWlzaW50
-ZXJwcmV0aW5nIGF0IGxlYXN0IHBhcnRpYWxseSB3aGF0IG15IGNvZGUgaXMgZG9pbmcuIEkgY2Fu
-IHJ1biB0aGUgY29kZSBmb3IgdXAgdG8gNSwwMDBpc2ggbG9vcHMgc28gSSdtIGd1ZXNzaW5nIHNv
-bWV0aGluZyBpcyBldmVudHVhbGx5IGxvc2luZyBncm91bmQgc29tZXdoZXJlIGFuZCBmYWlscw0K
-Pg0KPiBJdCBhbGwgb3BlcmF0ZXMgb3V0IG9mIG9uZSAuY3BwIHByb2dyYW0gYW5kIG1hbmFnZXMg
-YSBzZW5kX2Zyb21fZmlsZSBhbmQgcmVjdl90b19maWxlIHRocmVhZC4NCj4NCj4gSSdtIGd1ZXNz
-aW5nIHRoZSBwcm9ibGVtIGlzIG9uIHRoZSByZWNlaXZlIHNpZGUsIGFuZCBlc3NlbnRpYWxseSB0
-aGUgcmVjdl90b19maWxlIGZ1bmN0aW9uIGdvZXMgc29tZXRoaW5nIGxpa2UgdGhpczoNCj4NCj4g
-c3RyZWFtX2NtZC5udW1fc2FtcGVzID0gbnVtX3JlcXVlc3RlZF9zYW1wbGVzOw0KPiBzdHJlYW1f
-Y21kLnN0cmVhbV9ub3cgPSBmYWxzZTsNCj4gc3RyZWFtX2NtZC50aW1lX3NwZWMgPSB1aGQ6OnRp
-bWVfc3BlY190KCByZWN2X3RpbWUgKTsNCj4gcnhfc3RyZWFtLT5pc3N1ZV9zdHJlYW1fY21kKCBz
-dHJlYW1fY21kICk7DQo+DQo+IHdoaWxlIChub3Qgc3RvcF9zaWduYWxfY2FsbGVkKSB7DQo+IAkN
-Cj4gCW51bV9zYW1wbGVzID0gcnhfc3RyZWFtLT5yZWN2KCBidWZmZXJfcHRycywgc2FtcGxzX3Bl
-cl9idWZmLCBtZXRhX2RhdGEsIHRpbWVvdXQgKTsNCj4NCj4gCXRvdGFsX251bV9zYW1wcyA9IHRv
-dGFsX251bV9zYW1wcyArIG51bV9zYW1wczsNCj4NCj4gCS8vLy8vIFJlY2VpdmUgZm9yIDIwIHVz
-IC8vLy8vLw0KPiAJLy8vLy8gYmFzaWNhbGx5IGl0J3MgbGlzdGVuaW5nIGZvciBhIDIwdXMgbG9u
-ZyBzaWduYWwgc2VudCBmcm9tIHRyYW5zbWl0dGVyIChzZW50IGF0ICJyZWN2X3RpbWUiIGFzIHdl
-bGwpDQo+IAkvLy8vLyB3cml0ZXMgdG8gb3V0ZmlsZSAvLy8vLy8vLw0KPiAJLy8vLy8gY2hlY2sg
-Zm9yIGVycm9ycyAvLy8vLy8vLw0KPiAJDQo+IAkvLyBlbmQgb2YgdHJhbnNtaXR0ZWQgZmlsZSBw
-cmVzdW1hYmx5IHJlYWNoZWQNCj4gCUlmICggbnVtX3RvdGFsX3NhbXBsZXMgPj0gbnVtX3JlcXVl
-c3RlZF9zYW1wbGVzKSB7DQo+IAkNCj4gCQludW1fdG90YWxfc2FtcGxlcyA9IDA7DQo+IAkJDQo+
-IAkJcmVjdl90aW1lID0gcmVjdl90aW1lICsgZGVsYXk7IC8vIGluY3JlbWVudCBkZWxheSBieSAx
-IG1zIGhhdmUgdHJpZWQgYXMgaGlnaCBhcyAxMCBtcyB3aXRoIG5vIGx1Y2sgYWZ0ZXIgYWJvdXQg
-MTAsMDAwIGxvb3BzIG9yIHNvDQo+IAkJc3RyZWFtX2NtZC50aW1lX3NwZWMgPSB1aGQ6OnR1bmVf
-c3BlY190KCByZWN2X3RpbWUgKTsNCj4gCQlyeF9zdHJlYW0tPmlzc3VlX3N0cmVhbV9jbWQoIHN0
-cmVhbV9jbWQgKTsNCj4gCQkNCj4gCQlmb3IgKHNpemVfdCBpPTA7IGk8IGJ1ZmZzLnNpemUoKTsg
-aSsrKSB7DQo+IAkJCWJ1ZmZfcHRycy5wdXNoX2JhY2soJmJ1ZmZzW2ldLmZyb250KCkpOw0KPiAJ
-CX0NCj4gCX0NCj4gfQ0KPg0KPg0KPiBJJ20gdGhpbmtpbmcgaXQgbWF5IGp1c3QgYmUgYW4gZXJy
-b3IgaW4gaG93IEkndmUgaW50ZXJwcmV0ZWQgdGhlIGV4YW1wbGUgY29kZSBhbmQgcmVwdXJwb3Nl
-ZCBpdC4gSSBkb24ndCBoYXZlIGEgc3Ryb25nIHVuZGVyc3RhbmRpbmcgb2YgdGhlIGRpZmZlcmVu
-Y2UgYmV0d2VlbiBpc3N1ZV9zdHJlYW1fY21kKCkgYW5kIHJlY3YoKSB3aGljaCBjb3VsZCBiZSBw
-YXJ0IG9mIHRoZSBwcm9ibGVtIGFzIHdlbGwuIFRoaXMgaXMgYSBzaW1wbGlmaWVkIHZlcnNpb24g
-b2YgdGhlIGNvZGUgdG8gZXhwbGFpbiB3aGF0J3MgaGFwcGVuaW5nIHNvIHBsZWFzZSBsZXQgbWUg
-a25vdyBpZiB5b3UgbmVlZCBhZGRpdGlvbmFsIGRldGFpbHMNCj4NCj4NCj4gVGhhbmtzDQo+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vi
-c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20N
-ClRoZSBzdHJlYW0gY29tbWFuZCBpbnN0cnV0cyB0aGUgVVNSUCB0byBzdGFydCBzdHJlYW1pbmcg
-c2FtcGxlcywgd2hpbGUgDQpyZWN2KCkgaXMgdXNlZCB0byBjYXB0dXJlIHRob3NlIHNhbXBsZXMu
-wqAgVGhleSBhcmVuJ3QgbmVjZXNzYXJpbHkgMToxIA0KZGVwZW5kaW5nIG9uIHRoZSBzdHJlYW1p
-bmcNCiDCoCAqTU9ERSouDQoNClNlZSB0aGUgQVBJIGRvY3VtZW50YXRpb24gaGVyZToNCg0KaHR0
-cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL2NsYXNzdWhkXzFfMXVzcnBfMV8xbXVsdGlfX3Vz
-cnAuaHRtbCNhZmU1MGMyYjI0MjczZDFiM2IyYTM0M2I3MzYwOWIzMTANCg0KaHR0cHM6Ly9maWxl
-cy5ldHR1cy5jb20vbWFudWFsL3N0cnVjdHVoZF8xXzFzdHJlYW1fX2NtZF9fdC5odG1sDQoNCg0K
-U28sIGZvciBleGFtcGxlIGZvciBTVFJFQU1fTU9ERV9TVEFSVF9DT05USU5VT1VTwqAgeW91J2Qg
-aXNzdWUgZXhhY3RseSAxIA0Kb2YgdGhvc2UsIGFuZCB0aGVuIHJlY3YoKSBzYW1wbGVzIHVudGls
-IHlvdSBhcmUgYm9yZWQsIGFuZCB0aGVuIGlzc3VlIGENCiDCoCBTVFJFQU1fTU9ERV9TVE9QX0NP
-TlRJTlVPVVMuDQoNCkJ1dCB0aGVyZSdzIGFsc28gU1RSRUFNX01PREVfTlVNX1NBTVBTX0FORF9E
-T05FIGFuZCANClNUUkVBTV9NT0RFX05VTV9TQU1QU19BTkRfTU9SRQ0KDQpZb3UgcHJvYmFibHkg
-d2FudCBTVFJFQU1fTU9ERV9OVU1fU0FNUFNfQU5EX01PUkUNCg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
-byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============5371905345525197435==
+Content-Language: nb-NO
+Content-Type: multipart/alternative;
+	boundary="_000_OL1P279MB00832E3402FDBDD18E8F2EE7A08C9OL1P279MB0083NORP_"
+
+--_000_OL1P279MB00832E3402FDBDD18E8F2EE7A08C9OL1P279MB0083NORP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi all,
+
+Started rewriting my code to work with UHD 4.1 recently. I notice that the =
+command set_rx_frequency() in uhd::rdnoc::radio_control takes about 104 ms =
+to complete, no matter what frequency is set.
+
+Is this blocking time something like worst case scenario time it can take t=
+o retune the LO? I think this command was faster in UHD 3.8.
+
+Is it possible to do the LO retuning faster manually somehow?
+
+BR
+Jorn
+
+
+
+--_000_OL1P279MB00832E3402FDBDD18E8F2EE7A08C9OL1P279MB0083NORP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+</head>
+<body>
+<div>Hi all,</div>
+<div><br>
+</div>
+<div dir=3D"auto">Started rewriting my code to work with UHD 4.1 recently. =
+I notice that the command set_rx_frequency() in uhd::rdnoc::radio_control t=
+akes about 104 ms to complete, no matter what frequency is set.&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Is this blocking time something like worst case scenario =
+time it can take to retune the LO? I think this command was faster in UHD 3=
+.8.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Is it possible to do the LO retuning faster manually some=
+how?&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">BR</div>
+<div dir=3D"auto">Jorn</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+</body>
+</html>
+
+--_000_OL1P279MB00832E3402FDBDD18E8F2EE7A08C9OL1P279MB0083NORP_--
+
+--===============5371905345525197435==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5371905345525197435==--
