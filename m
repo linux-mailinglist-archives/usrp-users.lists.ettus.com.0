@@ -2,166 +2,1047 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B4234459B5
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Nov 2021 19:27:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AA6A4459B9
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Nov 2021 19:28:36 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 177C038437F
-	for <lists+usrp-users@lfdr.de>; Thu,  4 Nov 2021 14:27:36 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C77E0384868
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Nov 2021 14:28:35 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=erdc.dren.mil header.i=@erdc.dren.mil header.b="qGWBjwhb";
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=erdc.dren.mil header.i=@erdc.dren.mil header.b="Tnou0RwA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="IchQEhNv";
 	dkim-atps=neutral
-Received: from mfw.dren.mil (mfw.dren.mil [140.32.61.234])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7C0063842FA
-	for <usrp-users@lists.ettus.com>; Thu,  4 Nov 2021 14:26:50 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdc.dren.mil; h=from : to :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=s1.dkim;
- bh=B59w036FHWBIr0KNvT7YJFD01hrgIl1vWIxZ/yAKh4Y=;
- b=qGWBjwhbKaftEAwOWv8DMrv+lWBKP8QPzukY0m8LtXH9RLaHmuo055PqxiD90oKQxkh2
- xIefzbRyFFQvu0bS/8lF9b4PA+xeQ0tzza0ALzrsdBg+XWBhn77WbZJGRvperDsy9sEK
- jN+kipFMjwQ2uLM4OvXfKUm/D8pIPiFRysQ=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=erdc.dren.mil; h=from : to :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=s2.dkim;
- bh=B59w036FHWBIr0KNvT7YJFD01hrgIl1vWIxZ/yAKh4Y=;
- b=Tnou0RwAlrpoEJEfYmW+yg3LJ8+6EZkr12EzesYrFeF8Tbrl9KrM1kdlpOfb8gVCEk+x
- CZ5RNCGrJelieEqCu/A4qMJ3UbUgYU6TmHU7ySFogysA9yKdk8lFi+AwEviCaDBF+Ebo
- rhzqDy+R975DEZqqs3xeW+aCLxpaBs2hXbHGQSZRLbtMg4bmLrkbwgpGizmvOrUAhkkk
- jN98vu28bGkvLQ99LVQhHFspptDwCWtsykp8EPQ8ybuvQcy/wYh1w7kZ9vLJGmBD6S5/
- tzwTqgqsPzlzzGNc+miW8wGgcWqTr9nmH60Y8+3vxL1neyVZBBPmX980lpEl+CaKUm5z jA==
-Received: from rde-gw2.erdc.dren.mil (rde-gw2.erdc.dren.mil [134.164.23.111])
-	by ppaw.dren.mil (8.16.1.2/8.16.1.2) with ESMTPS id 1A4IQkJ8009376
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Thu, 4 Nov 2021 18:26:46 GMT
-X-IronPort-AV: E=Sophos;i="5.84,326,1620709200";
-   d="scan'208";a="63539825"
-Received: from unknown (HELO ERDC-EX2.erdc.dren.mil) ([134.164.254.14])
-  by rde-gw2.erdc.dren.mil with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Nov 2021 13:26:46 -0500
-Received: from ERDC-EX4.erdc.dren.mil (134.164.254.16) by
- ERDC-EX2.erdc.dren.mil (134.164.254.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.14; Thu, 4 Nov 2021 13:26:46 -0500
-Received: from ERDC-EX1.erdc.dren.mil (134.164.254.13) by
- ERDC-EX4.erdc.dren.mil (134.164.254.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.14; Thu, 4 Nov 2021 13:26:46 -0500
-Received: from ERDC-EX1.erdc.dren.mil ([fe80::8956:5285:1d33:5b6b]) by
- ERDC-EX1.erdc.dren.mil ([fe80::8956:5285:1d33:5b6b%6]) with mapi id
- 15.01.2308.014; Thu, 4 Nov 2021 13:26:46 -0500
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
-        "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: Problem with error_code_late_command using two
- x310's
-Thread-Index: AdfQ0luKPW4Za/otQma2liYj5vsaqgAQi4iAACHyoJA=
-Date: Thu, 4 Nov 2021 18:26:46 +0000
-Message-ID: <86f20ba533bc43c5890137771456becf@erdc.dren.mil>
-References: <97776b25089c4fec9a2cd5e9b4bf5d8c@erdc.dren.mil>
- <3eba92d0-2cb7-262f-9786-528042cc4679@gmail.com>
-In-Reply-To: <3eba92d0-2cb7-262f-9786-528042cc4679@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [134.164.254.60]
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7243B384564
+	for <usrp-users@lists.ettus.com>; Thu,  4 Nov 2021 14:27:32 -0400 (EDT)
+Received: by mail-oi1-f171.google.com with SMTP id o83so10663988oif.4
+        for <usrp-users@lists.ettus.com>; Thu, 04 Nov 2021 11:27:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6u6zmh7ysFbsN4z8ogc9fJUTlXEpAF0k4mj8mmXHKKU=;
+        b=IchQEhNvOUbk0ZYP9+L/Ghdlt+oaN+Cr49RcaaTeV5FUXrb3y2F0No9UDcfALIiBz3
+         IPcMDjvgRGtwuBTZNT6QMnmuqB7ikMOo/oT4RfXPAYT6AzGvEClxcyrmlvTVw0gc2YO5
+         O1fUg/8rhgCf58N3oily5VF4cXs3z9XGsxZQZXzxvH525+gySeTVcs9zOAGotzM/gw08
+         xDKdufC3tdFUmyh/+Fba7QI1HRbvpkJjORLG4IUIPO01GliTcJpbQSTmEfRYk9dTixoP
+         Mja1EcwxEhBPzsbQElM65uFDgU5pzGlWmkDiBW80ASu/ipAwCWIJNh4dUTSHjIwmav3+
+         kArw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6u6zmh7ysFbsN4z8ogc9fJUTlXEpAF0k4mj8mmXHKKU=;
+        b=qUM9qSMCXsrFNVru8KX94iOdeLm3VQcMisf3dASmv9EdSXJv9wISYcN7gUZAukP+oI
+         O6izZWSrmL0MUNZDnqDW2CjxBwYvdOOrnw5DSfZsQzTCmmB0tTSuM+lOTyZZUyXb4Q0d
+         PgJ5qpFUTTgFegI5tGN6ean3QOwlDPq1dzPDKAZJg3IYg88OIs64a4zKIh7u2d61V2CO
+         ehtOVhPF1Ys3O3oFDCbtwwNC9KNQY584oA6UTSYF1wQ1qu/oUksbLrGgdIR/tvt4SAS2
+         voIjgDM8eyZtZVvIQh4ffBsx5fwyU70Gk/L76YebUcTJr5M3nZ6zx6D511BsCf35FmOi
+         68fw==
+X-Gm-Message-State: AOAM531T58T8oqLyIEV7nhJIfh3veVDIexjgL4ubxPu2I19PNzgfzKYP
+	LQFHHx76o2GQe61VOeb2tWkf0wAV7TerYp+YMxMRO5FB6OM09w==
+X-Google-Smtp-Source: ABdhPJyLWziYkO2p8fVqWsxn/92wxj3WeAVEedwq0J18nrW/VCAd4/hzAF+RRxM5qt+Rn8aaLFeH2Awxdag9QW15Mm0=
+X-Received: by 2002:aca:5841:: with SMTP id m62mr17814986oib.150.1636050451618;
+ Thu, 04 Nov 2021 11:27:31 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: CJ4TFW27WZQ43KK3VVCLXZ2PKX75CJTF
-X-Message-ID-Hash: CJ4TFW27WZQ43KK3VVCLXZ2PKX75CJTF
-X-MailFrom: Carl.L.Wolsieffer@erdc.dren.mil
+References: <79b89ffb765545ba9023f3475db937a2@gmv.com> <76091DB1-CBD2-4365-A7F3-C1FFA2F59ECA@gmail.com>
+ <CAB__hTQJ0tVGt9U-rdHNhCUsR3on26=JZCvJg5c0bhp1WKGWXA@mail.gmail.com>
+ <31a4c3e34dba44aea5b8077c78be7fb3@gmv.com> <37284843-a7ea-fca4-9faa-9e91b4f96d98@gmail.com>
+In-Reply-To: <37284843-a7ea-fca4-9faa-9e91b4f96d98@gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Thu, 4 Nov 2021 14:27:20 -0400
+Message-ID: <CAB__hTQtfiCo6iHWoD-_ee1-Hyi5X8Kmc7LgoqGV-hg5ke7krw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: WZJHZLPCFRECQSURSQMKRQOODFUMVOMX
+X-Message-ID-Hash: WZJHZLPCFRECQSURSQMKRQOODFUMVOMX
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Guillermo Ortas Delgado <g.ortas@gmv.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problem with error_code_late_command using two x310's
+Subject: [USRP-users] Re: UHD 4.1 error
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CJ4TFW27WZQ43KK3VVCLXZ2PKX75CJTF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WZJHZLPCFRECQSURSQMKRQOODFUMVOMX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Wolsieffer, Carl L. ERDC-RDE-CRL-NH CIV" <Carl.L.Wolsieffer@erdc.dren.mil>
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============9175686062816081076=="
 
-QWggSSBzZWUsIG9yaWdpbmFsbHkgSSBkaWQgaGF2ZSBpdCBzZXQgc3VjaCB0aGF0LCBpZiBJIHJl
-cXVlc3QgYSBzZXQgbnVtYmVyIG9mIHNhbXBsZXMgKHdoaWNoIEkgYWxtb3N0IGFsd2F5cyB3aWxs
-IGluIG15IGFwcGxpY2F0aW9uKSwgdGhlbiBpdCBzZXRzIG1vZGUgdG8gU1RSRUFNX01PREVfTlVN
-X1NBTVBTX0FORF9ET05FLCBidXQgaGF2ZSBjaGFuZ2UgaXQgdG8gQU5EX01PUkUuIA0KDQpJbiBt
-eSBjYXNlIEkgYW0gc3RpbGwgZ2V0dGluZyAiTCJzIHNvbWVob3cuIEkgY2FuIGRvIGFib3V0IDEw
-MDAgY2hpcnBzIGF0IDFtcyBzcGFjaW5nIHdpdGggbm8gaXNzdWUgYnV0IGl0IEkgc3RhcnQgdG8g
-Z2V0IEwncyBhZnRlciB0aGF0IHNvIEkgbXVzdCBiZSBsYWdnaW5nIHNvbWV3aGVyZQ0KDQpXaGF0
-IGluaGVyZW50bHkgaXMgZGlmZmVyZW50IGJldHdlZW4gQU5EX0RPTkUgYW5kIEFORF9NT1JFPyBD
-b3VsZCBpdCBiZSBjYXVzaW5nIHRoZSByZWNlaXZlciB0byAiZmFsbCBiZWhpbmQiIGFuZCByZWNl
-aXZlIGxhdGUgY29tbWFuZHM/IERvZXMgdGhlIEFORF9NT1JFIG1vZGUgcmVxdWlyZSBhbnkgYWRk
-aXRpb25hbCBzdHJlYW0gY29tbWFuZHMgc2VudCBhc2lkZSBmcm9tIHVwZGF0aW5nIHdoZW4gdGhl
-IG5leHQgc3RhcnQgdGltZSB3aWxsIGJlPw0KDQoNClRoYW5rIHlvdSBhcyBhbHdheXMgZm9yIHlv
-dXIgaGVscA0KDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IE1hcmN1cyBE
-LiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+IA0KU2VudDogV2VkbmVzZGF5LCBOb3Zl
-bWJlciAzLCAyMDIxIDM6NDAgUE0NClRvOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3Vi
-amVjdDogW1VTUlAtdXNlcnNdIFJlOiBQcm9ibGVtIHdpdGggZXJyb3JfY29kZV9sYXRlX2NvbW1h
-bmQgdXNpbmcgdHdvIHgzMTAncw0KDQpPbiAyMDIxLTExLTAzIDEzOjE0LCBXb2xzaWVmZmVyLCBD
-YXJsIEwuIEVSREMtUkRFLUNSTC1OSCBDSVYgdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQo+IEhlbGxv
-IGFsbCwNCj4NCj4gSSBoYXZlIDIgeDMxMCdzLCBvbmUgaXMgYSB0cmFuc21pdHRlciBhbmQgdGhl
-IG90aGVyIGlzIGEgcmVjZWl2ZXIuIEkgDQo+IGhhdmUgc29tZSBjb2RlIEkgYWRhcHRlZCBmcm9t
-IGEgdXNycCBleGFtcGxlIGF3aGlsZSBiYWNrIGFuZCBpbiANCj4gdGVzdGluZyB0aGUgYm91bmRz
-IG9mIG15IHN5c3RlbSwgSSBhbSBnZXR0aW5nIGEgDQo+IEVSUk9SX0NPREVfTEFURV9DT01NQU5E
-IHdhcm5pbmcgYWZ0ZXIgYSBmZXcgc2Vjb25kcyB3aGVuIHRyeWluZyB0byANCj4gcmVjZWl2ZSBl
-dmVyeSBmZXcgbXMgYW5kIHRoaW5rIEkgbWF5IGJlIG1pc2ludGVycHJldGluZyBhdCBsZWFzdCAN
-Cj4gcGFydGlhbGx5IHdoYXQgbXkgY29kZSBpcyBkb2luZy4gSSBjYW4gcnVuIHRoZSBjb2RlIGZv
-ciB1cCB0byA1LDAwMGlzaCANCj4gbG9vcHMgc28gSSdtIGd1ZXNzaW5nIHNvbWV0aGluZyBpcyBl
-dmVudHVhbGx5IGxvc2luZyBncm91bmQgc29tZXdoZXJlIA0KPiBhbmQgZmFpbHMNCj4NCj4gSXQg
-YWxsIG9wZXJhdGVzIG91dCBvZiBvbmUgLmNwcCBwcm9ncmFtIGFuZCBtYW5hZ2VzIGEgc2VuZF9m
-cm9tX2ZpbGUgYW5kIHJlY3ZfdG9fZmlsZSB0aHJlYWQuDQo+DQo+IEknbSBndWVzc2luZyB0aGUg
-cHJvYmxlbSBpcyBvbiB0aGUgcmVjZWl2ZSBzaWRlLCBhbmQgZXNzZW50aWFsbHkgdGhlIHJlY3Zf
-dG9fZmlsZSBmdW5jdGlvbiBnb2VzIHNvbWV0aGluZyBsaWtlIHRoaXM6DQo+DQo+IHN0cmVhbV9j
-bWQubnVtX3NhbXBlcyA9IG51bV9yZXF1ZXN0ZWRfc2FtcGxlczsgc3RyZWFtX2NtZC5zdHJlYW1f
-bm93ID0gDQo+IGZhbHNlOyBzdHJlYW1fY21kLnRpbWVfc3BlYyA9IHVoZDo6dGltZV9zcGVjX3Qo
-IHJlY3ZfdGltZSApOyANCj4gcnhfc3RyZWFtLT5pc3N1ZV9zdHJlYW1fY21kKCBzdHJlYW1fY21k
-ICk7DQo+DQo+IHdoaWxlIChub3Qgc3RvcF9zaWduYWxfY2FsbGVkKSB7DQo+IAkNCj4gCW51bV9z
-YW1wbGVzID0gcnhfc3RyZWFtLT5yZWN2KCBidWZmZXJfcHRycywgc2FtcGxzX3Blcl9idWZmLCAN
-Cj4gbWV0YV9kYXRhLCB0aW1lb3V0ICk7DQo+DQo+IAl0b3RhbF9udW1fc2FtcHMgPSB0b3RhbF9u
-dW1fc2FtcHMgKyBudW1fc2FtcHM7DQo+DQo+IAkvLy8vLyBSZWNlaXZlIGZvciAyMCB1cyAvLy8v
-Ly8NCj4gCS8vLy8vIGJhc2ljYWxseSBpdCdzIGxpc3RlbmluZyBmb3IgYSAyMHVzIGxvbmcgc2ln
-bmFsIHNlbnQgZnJvbSB0cmFuc21pdHRlciAoc2VudCBhdCAicmVjdl90aW1lIiBhcyB3ZWxsKQ0K
-PiAJLy8vLy8gd3JpdGVzIHRvIG91dGZpbGUgLy8vLy8vLy8NCj4gCS8vLy8vIGNoZWNrIGZvciBl
-cnJvcnMgLy8vLy8vLy8NCj4gCQ0KPiAJLy8gZW5kIG9mIHRyYW5zbWl0dGVkIGZpbGUgcHJlc3Vt
-YWJseSByZWFjaGVkDQo+IAlJZiAoIG51bV90b3RhbF9zYW1wbGVzID49IG51bV9yZXF1ZXN0ZWRf
-c2FtcGxlcykgew0KPiAJDQo+IAkJbnVtX3RvdGFsX3NhbXBsZXMgPSAwOw0KPiAJCQ0KPiAJCXJl
-Y3ZfdGltZSA9IHJlY3ZfdGltZSArIGRlbGF5OyAvLyBpbmNyZW1lbnQgZGVsYXkgYnkgMSBtcyBo
-YXZlIHRyaWVkIGFzIGhpZ2ggYXMgMTAgbXMgd2l0aCBubyBsdWNrIGFmdGVyIGFib3V0IDEwLDAw
-MCBsb29wcyBvciBzbw0KPiAJCXN0cmVhbV9jbWQudGltZV9zcGVjID0gdWhkOjp0dW5lX3NwZWNf
-dCggcmVjdl90aW1lICk7DQo+IAkJcnhfc3RyZWFtLT5pc3N1ZV9zdHJlYW1fY21kKCBzdHJlYW1f
-Y21kICk7DQo+IAkJDQo+IAkJZm9yIChzaXplX3QgaT0wOyBpPCBidWZmcy5zaXplKCk7IGkrKykg
-ew0KPiAJCQlidWZmX3B0cnMucHVzaF9iYWNrKCZidWZmc1tpXS5mcm9udCgpKTsNCj4gCQl9DQo+
-IAl9DQo+IH0NCj4NCj4NCj4gSSdtIHRoaW5raW5nIGl0IG1heSBqdXN0IGJlIGFuIGVycm9yIGlu
-IGhvdyBJJ3ZlIGludGVycHJldGVkIHRoZSANCj4gZXhhbXBsZSBjb2RlIGFuZCByZXB1cnBvc2Vk
-IGl0LiBJIGRvbid0IGhhdmUgYSBzdHJvbmcgdW5kZXJzdGFuZGluZyBvZiANCj4gdGhlIGRpZmZl
-cmVuY2UgYmV0d2VlbiBpc3N1ZV9zdHJlYW1fY21kKCkgYW5kIHJlY3YoKSB3aGljaCBjb3VsZCBi
-ZSANCj4gcGFydCBvZiB0aGUgcHJvYmxlbSBhcyB3ZWxsLiBUaGlzIGlzIGEgc2ltcGxpZmllZCB2
-ZXJzaW9uIG9mIHRoZSBjb2RlIA0KPiB0byBleHBsYWluIHdoYXQncyBoYXBwZW5pbmcgc28gcGxl
-YXNlIGxldCBtZSBrbm93IGlmIHlvdSBuZWVkIA0KPiBhZGRpdGlvbmFsIGRldGFpbHMNCj4NCj4N
-Cj4gVGhhbmtzDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tIFRvIHVuc3Vic2NyaWJlIA0KPiBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVA
-bGlzdHMuZXR0dXMuY29tDQpUaGUgc3RyZWFtIGNvbW1hbmQgaW5zdHJ1dHMgdGhlIFVTUlAgdG8g
-c3RhcnQgc3RyZWFtaW5nIHNhbXBsZXMsIHdoaWxlDQpyZWN2KCkgaXMgdXNlZCB0byBjYXB0dXJl
-IHRob3NlIHNhbXBsZXMuwqAgVGhleSBhcmVuJ3QgbmVjZXNzYXJpbHkgMToxIGRlcGVuZGluZyBv
-biB0aGUgc3RyZWFtaW5nDQogwqAgKk1PREUqLg0KDQpTZWUgdGhlIEFQSSBkb2N1bWVudGF0aW9u
-IGhlcmU6DQoNCmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9jbGFzc3VoZF8xXzF1c3Jw
-XzFfMW11bHRpX191c3JwLmh0bWwjYWZlNTBjMmIyNDI3M2QxYjNiMmEzNDNiNzM2MDliMzEwDQoN
-Cmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9zdHJ1Y3R1aGRfMV8xc3RyZWFtX19jbWRf
-X3QuaHRtbA0KDQoNClNvLCBmb3IgZXhhbXBsZSBmb3IgU1RSRUFNX01PREVfU1RBUlRfQ09OVElO
-VU9VU8KgIHlvdSdkIGlzc3VlIGV4YWN0bHkgMSBvZiB0aG9zZSwgYW5kIHRoZW4gcmVjdigpIHNh
-bXBsZXMgdW50aWwgeW91IGFyZSBib3JlZCwgYW5kIHRoZW4gaXNzdWUgYQ0KIMKgIFNUUkVBTV9N
-T0RFX1NUT1BfQ09OVElOVU9VUy4NCg0KQnV0IHRoZXJlJ3MgYWxzbyBTVFJFQU1fTU9ERV9OVU1f
-U0FNUFNfQU5EX0RPTkUgYW5kIFNUUkVBTV9NT0RFX05VTV9TQU1QU19BTkRfTU9SRQ0KDQpZb3Ug
-cHJvYmFibHkgd2FudCBTVFJFQU1fTU9ERV9OVU1fU0FNUFNfQU5EX01PUkUNCg0KX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGlu
-ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIFRvIHVuc3Vic2NyaWJlIHNlbmQg
-YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4g
-ZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============9175686062816081076==
+Content-Type: multipart/alternative; boundary="0000000000000114aa05cffaae6b"
+
+--0000000000000114aa05cffaae6b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+There are a number of emails/posts that may be of interest. Here is the one
+within a long chain. You can search the subject line.
+https://www.mail-archive.com/usrp-users@lists.ettus.com/msg11842.html
+
+
+On Thu, Nov 4, 2021 at 1:56 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 2021-11-04 13:40, Guillermo Ortas Delgado wrote:
+>
+> Thank you Rob and Marcus,
+>
+>
+>
+> Is there a specific page or resource that I should read for guidance?
+> Anything in particular that I should keep in mind?
+>
+> I would really appreciate it, especially if there are so many gotchas as
+> you say.
+>
+>
+>
+> Best,
+>
+> Guillermo
+>
+> I don't use it myself, so I have no experience to convey.
+>
+> DPDK wouldn't even be necessary if the OS kernel-layer network drivers
+> were "up" to the task of
+>   very-high rate continuous streaming.  They aren't.  Which is why DPDK
+> was developed in the first
+>   place.
+>
+>
+>
+>
+> *De:* Rob Kossler [mailto:rkossler@nd.edu <rkossler@nd.edu>]
+> *Enviado el:* 04 November 2021 17:13
+> *Para:* Marcus D Leech <patchvonbraun@gmail.com> <patchvonbraun@gmail.com=
+>
+> *CC:* Guillermo Ortas Delgado <g.ortas@gmv.com> <g.ortas@gmv.com>;
+> usrp-users@lists.ettus.com; Anabel Almodovar <anabel.almodovar@gmail.com>
+> <anabel.almodovar@gmail.com>
+> *Asunto:* Re: [USRP-users] Re: UHD 4.1 error
+>
+>
+>
+> I also recommend that you search the user's list archive regarding DPDK.
+> There are lots of gotchas that are not well documented (or documented at
+> all).
+>
+> Rob
+>
+>
+>
+> On Thu, Nov 4, 2021 at 9:43 AM Marcus D Leech <patchvonbraun@gmail.com>
+> wrote:
+>
+> The consensus from Ettus R&D is to build the required version from source=
+.
+>
+> Sent from my iPhone
+>
+>
+>
+> On Nov 4, 2021, at 5:45 AM, Guillermo Ortas Delgado <g.ortas@gmv.com>
+> wrote:
+>
+> =EF=BB=BF
+>
+> Hi Marcus,
+>
+>
+>
+> I would also like to get DPDK running and I have tried in the past.
+>
+> Let me point out a problem: the latest release of UHD requires DPDK
+> version 18.11, but in fact this version is not supported on Ubuntu 20.04.
+> The oldest available version is 19.11, so what should I do to get it
+> working?
+> I tried editing the makefile when compiling UHD to accept DPDK version
+> 19.11, but then the build fails mid-way. Could you provide a solution
+> please?
+>
+>
+>
+> Best,
+>
+> Guillermo
+>
+>
+>
+> *De:* Marcus D. Leech [mailto:patchvonbraun@gmail.com]
+> *Enviado el:* 03 November 2021 16:17
+> *Para:* Anabel Almodovar <anabel.almodovar@gmail.com>
+> *CC:* usrp-users@lists.ettus.com
+> *Asunto:* [USRP-users] Re: UHD 4.1 error
+>
+>
+>
+> On 2021-11-03 03:04, Anabel Almodovar wrote:
+>
+> Thank you for your explanation. So is there any kind of solution for my
+> problem with GNU Radio?
+>
+>
+>
+> Thanks in advance.
+>
+> Regards,
+>
+> Anabel
+>
+> I have suggested this in the past--look into using DPDK if you're running
+> at high sample rates over 10GiGe:
+>
+> https://files.ettus.com/manual/page_dpdk.html
+> <https://urldefense.com/v3/__https:/files.ettus.com/manual/page_dpdk.html=
+__;!!MvyJQugb!Ug3KUJdelEBGny3uBLviYm_qf2FjZMI6Kd_bzmXKMBMc4asgXNo56mlkCx8$>
+>
+> https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD
+> <https://urldefense.com/v3/__https:/kb.ettus.com/Getting_Started_with_DPD=
+K_and_UHD__;!!MvyJQugb!Ug3KUJdelEBGny3uBLviYm_qf2FjZMI6Kd_bzmXKMBMc4asgXNo5=
+jyS_8IE$>
+>
+>
+>
+>
+> El mi=C3=A9, 27 oct 2021 a las 17:48, Marcus D. Leech (<patchvonbraun@gma=
+il.com>)
+> escribi=C3=B3:
+>
+> On 2021-10-27 11:37, Anabel Almodovar wrote:
+>
+> Hello,
+>
+>
+>
+> When I run a benchmark_rate example it indicates that there are no sample
+> losses even with 30s of acquisition.
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *rack_2021@rack-HP-Z4-G4-Workstation:~/workarea-uhd/uhd/host/examples/bui=
+ld$
+> sudo ./benchmark_rate
+> --args=3D"addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_size=
+=3D900000000"
+> --channels=3D"0,1" --rx_rate 200e6 --duration 30 --rx_subdev=3D"A:0 B:0" =
+[INFO]
+> [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+> UHD_4.1.0.HEAD-0-gd21735d5 [00:00:00.000677] Creating the usrp device wit=
+h:
+> addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_size=3D900000000=
+...
+> [INFO] [X300] X300 initialization sequence... [INFO] [X300] Maximum frame
+> size: 8000 bytes. [INFO] [X300] Maximum frame size: 8000 bytes. [INFO]
+> [X300] Radio 1x clock: 200 MHz Using Device: Single USRP:   Device:
+> X-Series Device   Mboard 0: X310   RX Channel: 0     RX DSP: 0     RX
+> Dboard: A     RX Subdev: UBX RX   RX Channel: 1     RX DSP: 1     RX
+> Dboard: B     RX Subdev: UBX RX   TX Channel: 0     TX DSP: 0     TX
+> Dboard: A     TX Subdev: UBX TX   TX Channel: 1     TX DSP: 1     TX
+> Dboard: B     TX Subdev: UBX TX [00:00:02.923799498] Setting device
+> timestamp to 0... [INFO] [MULTI_USRP]     1) catch time transition at pps
+> edge [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping. [WARNIN=
+G]
+> [0/Radio#1] Attempting to set tick rate to 0. Skipping.
+> [00:00:04.262875535] Testing receive rate 200.000000 Msps on 2 channels
+> [00:00:34.313774651] Benchmark complete. Benchmark rate summary:   Num
+> received samples:     12000000380   Num dropped samples:      0   Num
+> overruns detected:    0   Num transmitted samples:  0   Num sequence erro=
+rs
+> (Tx): 0   Num sequence errors (Rx): 0   Num underruns detected:   0   Num
+> late commands:        0   Num timeouts (Tx):        0   Num timeouts (Rx)=
+:
+>        0 Done!*
+>
+>
+>
+> However, when I run rx_samples_to_file I get overflows from 8 sec for a
+> single receiving channel.
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *sudo ./rx_samples_to_file
+>  --file=3D"/home/rack_2021/Escritorio/pruebas_codigos_agosto/usrp_samples=
+.dat"
+> --duration 8
+> --args=3D"addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_size=
+=3D900000000"
+> --channel=3D"0" --subdev=3D"A:0" --rate 200e6 --bw 200e6 --gain 5 --freq =
+800e6
+> Creating the usrp device with:
+> addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_size=3D900000000=
+...
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100;
+> UHD_4.1.0.HEAD-0-gd21735d5 [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes. [INFO] [X300] Maximum frame
+> size: 8000 bytes. [INFO] [X300] Radio 1x clock: 200 MHz Using Device:
+> Single USRP:   Device: X-Series Device   Mboard 0: X310   RX Channel: 0
+> RX DSP: 0     RX Dboard: A     RX Subdev: UBX RX   TX Channel: 0     TX
+> DSP: 0     TX Dboard: A     TX Subdev: UBX TX   TX Channel: 1     TX DSP:=
+ 1
+>     TX Dboard: B     TX Subdev: UBX TX Setting RX Rate: 200.000000 Msps..=
+.
+> Actual RX Rate: 200.000000 Msps... Setting RX Freq: 800.000000 MHz...
+> Setting RX LO Offset: 0.000000 MHz... Actual RX Freq: 800.000000 MHz...
+> Setting RX Gain: 5.000000 dB... Actual RX Gain: 5.000000 dB... Setting RX
+> Bandwidth: 200.000000 MHz... Actual RX Bandwidth: 200.000000 MHz... Waiti=
+ng
+> for "lo_locked": ++++++++++ locked. Press Ctrl + C to stop streaming... O
+> Done!*
+>
+>
+>
+> I am using a native Ubuntu, not a VM and I have the CPU governor set to
+> "performance".
+>
+>
+>
+> I have managed to patch the code that worked for me before updating the
+> system to the new versions of Ubuntu and UHD, so I ask for more samples
+> than I want since I have observed that the recv () reception buffer is no=
+t
+> always constant and it does not always acquire the maximum number of
+> samples as I request (1996 samples), at least not at the beginning. But I
+> would like to know the cause of this so that I can fix it and why GNU Rad=
+io
+> keeps giving me the same error.
+>
+>
+>
+> Thanks in advance.
+>
+> Regards,
+>
+> Anabel
+>
+>
+>
+> The recv() call doesn't necessarily guarantee that you'll get all the
+> samples you asked for in that call, as far as I know. It isn't surprising
+> that there would be slight differences
+>   in behavior across different versions of UHD and OS versions in this
+> regard.  You always have to be prepared to receive fewer samples than you
+> asked for.
+>
+> If Gnu Radio applications are producing overruns, that is firmly in the
+> territory of Gnu Radio, and NOT UHD.   Clearly, on your machine, UHD is
+> able to sustain 200e6 SPS.
+>   But as you add layers of application processing, the system is more
+> heavily loaded.  Gnu Radio actually "does things" with the samples, which
+> means the
+>   instructions-per-sample is MUCH higher than your simple
+> rx_samples_to_file test.
+>
+>
+>
+>
+> P Please consider the environment before printing this e-mail.
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+> P Please consider the environment before printing this e-mail.
+>
+>
+>
+
+--0000000000000114aa05cffaae6b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>There are a number of emails/posts that may be of int=
+erest. Here is the one within a long chain. You can search the=C2=A0subject=
+ line.</div><div><a href=3D"https://www.mail-archive.com/usrp-users@lists.e=
+ttus.com/msg11842.html">https://www.mail-archive.com/usrp-users@lists.ettus=
+.com/msg11842.html</a><br></div><div><br></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 4, 2021 at 1:56 PM Mar=
+cus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@g=
+mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 2021-11-04 13:40, Guillermo Ortas
+      Delgado wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+     =20
+     =20
+      <div>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">Thank you Rob and Mar=
+cus,<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u></u><=
+/span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">Is there a specific p=
+age or resource that I
+            should read for guidance? Anything in particular that I
+            should keep in mind?<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">I would really apprec=
+iate it, especially if
+            there are so many gotchas as you say.<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u></u><=
+/span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)">Best,<u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)">Guillermo</span></p>
+      </div>
+    </blockquote>
+    I don&#39;t use it myself, so I have no experience to convey.<br>
+    <br>
+    DPDK wouldn&#39;t even be necessary if the OS kernel-layer network
+    drivers were &quot;up&quot; to the task of<br>
+    =C2=A0 very-high rate continuous streaming.=C2=A0 They aren&#39;t.=C2=
+=A0 Which is why
+    DPDK was developed in the first<br>
+    =C2=A0 place.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)"><u></u><u></u></span></p>
+        <p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:Ca=
+libri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
+        <p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;font-family=
+:Calibri,sans-serif">De:</span></b><span style=3D"font-size:11pt;font-famil=
+y:Calibri,sans-serif"> Rob
+            Kossler [<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">m=
+ailto:rkossler@nd.edu</a>]
+            <br>
+            <b>Enviado el:</b> 04 November 2021 17:13<br>
+            <b>Para:</b> Marcus D Leech <a href=3D"mailto:patchvonbraun@gma=
+il.com" target=3D"_blank">&lt;patchvonbraun@gmail.com&gt;</a><br>
+            <b>CC:</b> Guillermo Ortas Delgado <a href=3D"mailto:g.ortas@gm=
+v.com" target=3D"_blank">&lt;g.ortas@gmv.com&gt;</a>;
+            <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"=
+>usrp-users@lists.ettus.com</a>; Anabel Almodovar
+            <a href=3D"mailto:anabel.almodovar@gmail.com" target=3D"_blank"=
+>&lt;anabel.almodovar@gmail.com&gt;</a><br>
+            <b>Asunto:</b> Re: [USRP-users] Re: UHD 4.1 error<u></u><u></u>=
+</span></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <div>
+          <div>
+            <p class=3D"MsoNormal">I also recommend that you search the
+              user&#39;s list archive regarding DPDK. There are lots of
+              gotchas that are not well documented (or documented at
+              all).<u></u><u></u></p>
+            <div>
+              <p class=3D"MsoNormal">Rob<u></u><u></u></p>
+            </div>
+          </div>
+          <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+          <div>
+            <div>
+              <p class=3D"MsoNormal">On Thu, Nov 4, 2021 at 9:43 AM Marcus
+                D Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" targ=
+et=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+                wrote:<u></u><u></u></p>
+            </div>
+            <blockquote style=3D"border-top:none;border-right:none;border-b=
+ottom:none;border-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;m=
+argin-left:4.8pt;margin-right:0cm">
+              <div>
+                <p class=3D"MsoNormal" style=3D"margin-bottom:12pt">The
+                  consensus from Ettus R&amp;D is to build the required
+                  version from source.=C2=A0<u></u><u></u></p>
+                <div>
+                  <p class=3D"MsoNormal">Sent from my iPhone<u></u><u></u><=
+/p>
+                </div>
+                <div>
+                  <p class=3D"MsoNormal"><br>
+                    <br>
+                    <u></u><u></u></p>
+                  <blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+                    <p class=3D"MsoNormal" style=3D"margin-bottom:12pt">On
+                      Nov 4, 2021, at 5:45 AM, Guillermo Ortas Delgado
+                      &lt;<a href=3D"mailto:g.ortas@gmv.com" target=3D"_bla=
+nk">g.ortas@gmv.com</a>&gt;
+                      wrote:<u></u><u></u></p>
+                  </blockquote>
+                </div>
+                <blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+                  <div>
+                    <p class=3D"MsoNormal"><span style=3D"font-family:Tahom=
+a,sans-serif">=EF=BB=BF</span>
+                      <u></u>
+                      <u></u></p>
+                    <div>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)">Hi
+                          Marcus,</span><u></u><u></u></p>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u=
+></u></p>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">I would=
+ also like to get DPDK
+                          running and I have tried in the past.</span><u></=
+u><u></u></p>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">Let me =
+point out a problem: the
+                          latest release of UHD requires DPDK version
+                          18.11, but in fact this version is not
+                          supported on Ubuntu 20.04. The oldest
+                          available version is 19.11, so what should I
+                          do to get it working?<br>
+                          I tried editing the makefile when compiling
+                          UHD to accept DPDK version 19.11, but then the
+                          build fails mid-way. Could you provide a
+                          solution please?</span><u></u><u></u></p>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">=C2=A0<=
+/span><u></u><u></u></p>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">Best,</=
+span><u></u><u></u></p>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">Guiller=
+mo</span><u></u><u></u></p>
+                      <p class=3D"MsoNormal"><span style=3D"font-size:11pt;=
+font-family:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><u></u><u=
+></u></p>
+                      <div>
+                        <div style=3D"border-right:none;border-bottom:none;=
+border-left:none;border-top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm"=
+>
+                          <p class=3D"MsoNormal"><b><span style=3D"font-siz=
+e:11pt;font-family:Calibri,sans-serif">De:</span></b><span style=3D"font-si=
+ze:11pt;font-family:Calibri,sans-serif">
+                              Marcus D. Leech [mailto:<a href=3D"mailto:pat=
+chvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>]
+                              <br>
+                              <b>Enviado el:</b> 03 November 2021 16:17<br>
+                              <b>Para:</b> Anabel Almodovar &lt;<a href=3D"=
+mailto:anabel.almodovar@gmail.com" target=3D"_blank">anabel.almodovar@gmail=
+.com</a>&gt;<br>
+                              <b>CC:</b> <a href=3D"mailto:usrp-users@lists=
+.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+                              <b>Asunto:</b> [USRP-users] Re: UHD 4.1
+                              error</span><u></u><u></u></p>
+                        </div>
+                      </div>
+                      <p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+                      <div>
+                        <p class=3D"MsoNormal">On
+                          2021-11-03 03:04, Anabel Almodovar wrote:<u></u><=
+u></u></p>
+                      </div>
+                      <blockquote style=3D"margin-top:5pt;margin-bottom:5pt=
+">
+                        <div>
+                          <p class=3D"MsoNormal">Thank
+                            you for your explanation.=C2=A0So is there any
+                            kind of solution for my problem with GNU
+                            Radio?
+                            <u></u><u></u></p>
+                          <div>
+                            <p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+                          </div>
+                          <div>
+                            <p class=3D"MsoNormal">Thanks
+                              in=C2=A0advance.<u></u><u></u></p>
+                          </div>
+                          <div>
+                            <p class=3D"MsoNormal">Regards,<u></u><u></u></=
+p>
+                          </div>
+                          <div>
+                            <p class=3D"MsoNormal">Anabel<u></u><u></u></p>
+                          </div>
+                        </div>
+                      </blockquote>
+                      <p class=3D"MsoNormal" style=3D"margin-bottom:12pt">I
+                        have suggested this in the past--look into using
+                        DPDK if you&#39;re running at high sample rates ove=
+r
+                        10GiGe:<br>
+                        <br>
+                        <a href=3D"https://urldefense.com/v3/__https:/files=
+.ettus.com/manual/page_dpdk.html__;!!MvyJQugb!Ug3KUJdelEBGny3uBLviYm_qf2FjZ=
+MI6Kd_bzmXKMBMc4asgXNo56mlkCx8$" target=3D"_blank">https://files.ettus.com/=
+manual/page_dpdk.html</a><br>
+                        <br>
+                        <a href=3D"https://urldefense.com/v3/__https:/kb.et=
+tus.com/Getting_Started_with_DPDK_and_UHD__;!!MvyJQugb!Ug3KUJdelEBGny3uBLvi=
+Ym_qf2FjZMI6Kd_bzmXKMBMc4asgXNo5jyS_8IE$" target=3D"_blank">https://kb.ettu=
+s.com/Getting_Started_with_DPDK_and_UHD</a><br>
+                        <br>
+                        <br>
+                        <u></u><u></u></p>
+                      <blockquote style=3D"margin-top:5pt;margin-bottom:5pt=
+">
+                        <p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+                        <div>
+                          <div>
+                            <p class=3D"MsoNormal">El
+                              mi=C3=A9, 27 oct 2021 a las 17:48, Marcus D.
+                              Leech (&lt;<a href=3D"mailto:patchvonbraun@gm=
+ail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;)
+                              escribi=C3=B3:<u></u><u></u></p>
+                          </div>
+                          <blockquote style=3D"border-top:none;border-right=
+:none;border-bottom:none;border-left:1pt solid rgb(204,204,204);padding:0cm=
+ 0cm 0cm 6pt;margin:5pt 0cm 5pt 4.8pt">
+                            <div>
+                              <div>
+                                <p class=3D"MsoNormal">On
+                                  2021-10-27 11:37, Anabel Almodovar
+                                  wrote:<u></u><u></u></p>
+                              </div>
+                              <blockquote style=3D"margin-top:5pt;margin-bo=
+ttom:5pt">
+                                <div>
+                                  <div>
+                                    <p class=3D"MsoNormal">Hello,<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">=C2=A0<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">When
+                                      I run a benchmark_rate example it
+                                      indicates that there are no sample
+                                      losses even with 30s of
+                                      acquisition.
+                                      <u></u><u></u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">=C2=A0<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal"><b><i>rack_2021@=
+rack-HP-Z4-G4-Workstation:~/workarea-uhd/uhd/host/examples/build$
+                                          sudo ./benchmark_rate
+--args=3D&quot;addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_siz=
+e=3D900000000&quot;
+                                          --channels=3D&quot;0,1&quot; --rx=
+_rate
+                                          200e6 --duration 30
+                                          --rx_subdev=3D&quot;A:0 B:0&quot;=
+ <br>
+                                          <br>
+                                          [INFO] [UHD] linux; GNU C++
+                                          version 9.3.0; Boost_107100;
+                                          UHD_4.1.0.HEAD-0-gd21735d5<br>
+                                          [00:00:00.000677] Creating the
+                                          usrp device with:
+                                          addr=3D192.168.40.2,second_addr=
+=3D192.168.30.2,recv_buff_size=3D900000000...<br>
+                                          [INFO] [X300] X300
+                                          initialization sequence...<br>
+                                          [INFO] [X300] Maximum frame
+                                          size: 8000 bytes.<br>
+                                          [INFO] [X300] Maximum frame
+                                          size: 8000 bytes.<br>
+                                          [INFO] [X300] Radio 1x clock:
+                                          200 MHz<br>
+                                          Using Device: Single USRP:<br>
+                                          =C2=A0 Device: X-Series Device<br=
+>
+                                          =C2=A0 Mboard 0: X310<br>
+                                          =C2=A0 RX Channel: 0<br>
+                                          =C2=A0 =C2=A0 RX DSP: 0<br>
+                                          =C2=A0 =C2=A0 RX Dboard: A<br>
+                                          =C2=A0 =C2=A0 RX Subdev: UBX RX<b=
+r>
+                                          =C2=A0 RX Channel: 1<br>
+                                          =C2=A0 =C2=A0 RX DSP: 1<br>
+                                          =C2=A0 =C2=A0 RX Dboard: B<br>
+                                          =C2=A0 =C2=A0 RX Subdev: UBX RX<b=
+r>
+                                          =C2=A0 TX Channel: 0<br>
+                                          =C2=A0 =C2=A0 TX DSP: 0<br>
+                                          =C2=A0 =C2=A0 TX Dboard: A<br>
+                                          =C2=A0 =C2=A0 TX Subdev: UBX TX<b=
+r>
+                                          =C2=A0 TX Channel: 1<br>
+                                          =C2=A0 =C2=A0 TX DSP: 1<br>
+                                          =C2=A0 =C2=A0 TX Dboard: B<br>
+                                          =C2=A0 =C2=A0 TX Subdev: UBX TX<b=
+r>
+                                          <br>
+                                          [00:00:02.923799498] Setting
+                                          device timestamp to 0...<br>
+                                          [INFO] [MULTI_USRP] =C2=A0 =C2=A0=
+ 1)
+                                          catch time transition at pps
+                                          edge<br>
+                                          [INFO] [MULTI_USRP] =C2=A0 =C2=A0=
+ 2) set
+                                          times next pps (synchronously)<br=
+>
+                                          [WARNING] [0/Radio#0]
+                                          Attempting to set tick rate to
+                                          0. Skipping.<br>
+                                          [WARNING] [0/Radio#1]
+                                          Attempting to set tick rate to
+                                          0. Skipping.<br>
+                                          [00:00:04.262875535] Testing
+                                          receive rate 200.000000 Msps
+                                          on 2 channels<br>
+                                          [00:00:34.313774651] Benchmark
+                                          complete.<br>
+                                          <br>
+                                          Benchmark rate summary:<br>
+                                          =C2=A0 Num received samples: =C2=
+=A0 =C2=A0
+                                          12000000380<br>
+                                          =C2=A0 Num dropped samples: =C2=
+=A0 =C2=A0 =C2=A00<br>
+                                          =C2=A0 Num overruns detected: =C2=
+=A0 =C2=A00<br>
+                                          =C2=A0 Num transmitted samples: =
+=C2=A00<br>
+                                          =C2=A0 Num sequence errors (Tx): =
+0<br>
+                                          =C2=A0 Num sequence errors (Rx): =
+0<br>
+                                          =C2=A0 Num underruns detected: =
+=C2=A0 0<br>
+                                          =C2=A0 Num late commands: =C2=A0 =
+=C2=A0 =C2=A0 =C2=A00<br>
+                                          =C2=A0 Num timeouts (Tx): =C2=A0 =
+=C2=A0 =C2=A0 =C2=A00<br>
+                                          =C2=A0 Num timeouts (Rx): =C2=A0 =
+=C2=A0 =C2=A0 =C2=A00<br>
+                                          <br>
+                                          Done!</i></b><u></u><u></u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">=C2=A0<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">However,
+                                      when I run rx_samples_to_file I
+                                      get overflows from 8 sec for a
+                                      single receiving channel.<u></u><u></=
+u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">=C2=A0<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal"><b><i>sudo
+                                          ./rx_samples_to_file
+=C2=A0--file=3D&quot;/home/rack_2021/Escritorio/pruebas_codigos_agosto/usrp=
+_samples.dat&quot;
+                                          --duration 8
+--args=3D&quot;addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_siz=
+e=3D900000000&quot;
+                                          --channel=3D&quot;0&quot; --subde=
+v=3D&quot;A:0&quot;
+                                          --rate 200e6 --bw 200e6 --gain
+                                          5 --freq 800e6<br>
+                                          <br>
+                                          Creating the usrp device with:
+addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_size=3D900000000..=
+.<br>
+                                          [INFO] [UHD] linux; GNU C++
+                                          version 9.3.0; Boost_107100;
+                                          UHD_4.1.0.HEAD-0-gd21735d5<br>
+                                          [INFO] [X300] X300
+                                          initialization sequence...<br>
+                                          [INFO] [X300] Maximum frame
+                                          size: 8000 bytes.<br>
+                                          [INFO] [X300] Maximum frame
+                                          size: 8000 bytes.<br>
+                                          [INFO] [X300] Radio 1x clock:
+                                          200 MHz<br>
+                                          Using Device: Single USRP:<br>
+                                          =C2=A0 Device: X-Series Device<br=
+>
+                                          =C2=A0 Mboard 0: X310<br>
+                                          =C2=A0 RX Channel: 0<br>
+                                          =C2=A0 =C2=A0 RX DSP: 0<br>
+                                          =C2=A0 =C2=A0 RX Dboard: A<br>
+                                          =C2=A0 =C2=A0 RX Subdev: UBX RX<b=
+r>
+                                          =C2=A0 TX Channel: 0<br>
+                                          =C2=A0 =C2=A0 TX DSP: 0<br>
+                                          =C2=A0 =C2=A0 TX Dboard: A<br>
+                                          =C2=A0 =C2=A0 TX Subdev: UBX TX<b=
+r>
+                                          =C2=A0 TX Channel: 1<br>
+                                          =C2=A0 =C2=A0 TX DSP: 1<br>
+                                          =C2=A0 =C2=A0 TX Dboard: B<br>
+                                          =C2=A0 =C2=A0 TX Subdev: UBX TX<b=
+r>
+                                          <br>
+                                          Setting RX Rate: 200.000000
+                                          Msps...<br>
+                                          Actual RX Rate: 200.000000
+                                          Msps...<br>
+                                          <br>
+                                          Setting RX Freq: 800.000000
+                                          MHz...<br>
+                                          Setting RX LO Offset: 0.000000
+                                          MHz...<br>
+                                          Actual RX Freq: 800.000000
+                                          MHz...<br>
+                                          <br>
+                                          Setting RX Gain: 5.000000
+                                          dB...<br>
+                                          Actual RX Gain: 5.000000 dB...<br=
+>
+                                          <br>
+                                          Setting RX Bandwidth:
+                                          200.000000 MHz...<br>
+                                          Actual RX Bandwidth:
+                                          200.000000 MHz...<br>
+                                          <br>
+                                          Waiting for &quot;lo_locked&quot;=
+:
+                                          ++++++++++ locked.<br>
+                                          <br>
+                                          Press Ctrl + C to stop
+                                          streaming...<br>
+                                          O<br>
+                                          Done!</i></b><u></u><u></u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">=C2=A0<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">I
+                                      am using a native Ubuntu, not a VM
+                                      and I have the CPU governor set to
+                                      &quot;performance&quot;.<u></u><u></u=
+></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">=C2=A0<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">I
+                                      have managed to patch the code
+                                      that worked for me before updating
+                                      the system to the new versions of
+                                      Ubuntu and UHD, so I ask for more
+                                      samples than I want since I have
+                                      observed that the recv ()
+                                      reception buffer is not always
+                                      constant and it does not always
+                                      acquire the maximum number of
+                                      samples as I request (1996
+                                      samples), at least not at the
+                                      beginning. But I would like to
+                                      know the cause of this so that I
+                                      can fix it and why GNU Radio keeps
+                                      giving me the same error.<u></u><u></=
+u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">=C2=A0<u></u><u>=
+</u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">Thanks
+                                      in advance.<u></u><u></u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">Regards,
+                                      <u></u><u></u></p>
+                                  </div>
+                                  <div>
+                                    <p class=3D"MsoNormal">Anabel<u></u><u>=
+</u></p>
+                                  </div>
+                                </div>
+                                <p class=3D"MsoNormal">=C2=A0<u></u><u></u>=
+</p>
+                              </blockquote>
+                              <p class=3D"MsoNormal" style=3D"margin-bottom=
+:12pt">The
+                                recv() call doesn&#39;t necessarily
+                                guarantee that you&#39;ll get all the
+                                samples you asked for in that call, as
+                                far as I know. It isn&#39;t surprising that
+                                there would be slight differences<br>
+                                =C2=A0 in behavior across different version=
+s
+                                of UHD and OS versions in this regard.=C2=
+=A0
+                                You always have to be prepared to
+                                receive fewer samples than you asked
+                                for.<br>
+                                <br>
+                                If Gnu Radio applications are producing
+                                overruns, that is firmly in the
+                                territory of Gnu Radio, and NOT UHD.=C2=A0=
+=C2=A0
+                                Clearly, on your machine, UHD is able to
+                                sustain 200e6 SPS.<br>
+                                =C2=A0 But as you add layers of application
+                                processing, the system is more heavily
+                                loaded.=C2=A0 Gnu Radio actually &quot;does
+                                things&quot; with the samples, which means
+                                the<br>
+                                =C2=A0 instructions-per-sample is MUCH high=
+er
+                                than your simple rx_samples_to_file
+                                test.<u></u><u></u></p>
+                            </div>
+                          </blockquote>
+                        </div>
+                      </blockquote>
+                      <p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+                    </div>
+                    <p class=3D"MsoNormal"><br>
+                      <span style=3D"font-size:18pt;font-family:Webdings;co=
+lor:green">P
+                      </span><span style=3D"font-size:7pt;font-family:Arial=
+,sans-serif;color:green">Please
+                        consider the environment before printing this
+                        e-mail.</span>
+                      <u></u><u></u></p>
+                  </div>
+                </blockquote>
+              </div>
+              <p class=3D"MsoNormal">______________________________________=
+_________<br>
+                USRP-users mailing list -- <a href=3D"mailto:usrp-users@lis=
+ts.ettus.com" target=3D"_blank">
+                  usrp-users@lists.ettus.com</a><br>
+                To unsubscribe send an email to <a href=3D"mailto:usrp-user=
+s-leave@lists.ettus.com" target=3D"_blank">
+                  usrp-users-leave@lists.ettus.com</a><u></u><u></u></p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+      <span><br>
+      </span><span style=3D"font-size:18pt;line-height:125%;font-family:Web=
+dings;color:green">P<span></span>
+        <span style=3D"font-size:7pt;line-height:125%;font-family:Arial,&qu=
+ot;sans-serif&quot;;color:green">
+          Please consider the environment before printing this e-mail.</spa=
+n></span><span></span>
+    </blockquote>
+    <br>
+  </div>
+</blockquote></div></div>
+
+--0000000000000114aa05cffaae6b--
+
+--===============9175686062816081076==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============9175686062816081076==--
