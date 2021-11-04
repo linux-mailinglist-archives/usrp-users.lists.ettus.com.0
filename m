@@ -2,266 +2,643 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB68844496A
-	for <lists+usrp-users@lfdr.de>; Wed,  3 Nov 2021 21:17:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 86FE844542F
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Nov 2021 14:44:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0D926383F5C
-	for <lists+usrp-users@lfdr.de>; Wed,  3 Nov 2021 16:17:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 629F438448C
+	for <lists+usrp-users@lfdr.de>; Thu,  4 Nov 2021 09:44:19 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nkom.no header.i=@nkom.no header.b="Fw0cB+OF";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gLC6y3UX";
 	dkim-atps=neutral
-Received: from NOR01-OL1-obe.outbound.protection.outlook.com (mail-ol1nor01on2131.outbound.protection.outlook.com [40.107.224.131])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9A0F5383A50
-	for <usrp-users@lists.ettus.com>; Wed,  3 Nov 2021 16:16:19 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NjsyTg0bFNWR/n27fHbTj/Lr5ftC9HI57SEjJmfcp2HXc3OJBvaoDe9cGkQHIhLyE4bl0mbkciy3S3M/jJ9nZgGwTO3Mj2eFta01hzRU0Q9p7HTBZi9wAvHuwenICKeDLTNSehhNvfM2qXmJcqL329Ut0EBA/DdEaz1ITOgRenwmIJqVfdBxwC4LWg1epFlp7Kprv2/OlBeNE0Yaz6q6IA+MDD0Zk3DPtUUiE8gA+FlHshB0Gxsuo5FBjpWOHLBZwACv41EwavL7/IAIedqIUhHxwf5zyRYP7Q0G33BOyQlmwnyc8VabCZGTWKcuhBIZALwLAlsJ2S+EgCJ1CmIcig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jM5Ww6UvUnhORbTiWSFfW2AQKf7nGR5RVp/QUfo+0E0=;
- b=ixNJF62wS4LZdgaHOvpGIaXin1kbgR79RZJoQEvJLkKhRbu6DTi78U5LSLUehyOcmqo1xgiLs6YK0A+Z7hTf4k27tlE0x3Vr1H2bd7SVS57j1ohzqi0ohfoInK+V6Mb7NWNPbcXO7Nrb560Wt6Kn16lAhf3I0pp9gntGZmrBc3rknOKmofIZpy8U8nwpLYlU3Mynof+h8uIL1Urg+OaZucG1mL1PDUP862in1xdLWs37G9ujSbeLbkGO9WDdCZzMaJ+CAfVlQ+QUogITHFdcuHcfgvQLa0okUEgsGewfenT4QGSr71su7/RPjaYFQ01xmA0YomY1Eh5leNWhOrTqvw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nkom.no; dmarc=pass action=none header.from=nkom.no; dkim=pass
- header.d=nkom.no; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jM5Ww6UvUnhORbTiWSFfW2AQKf7nGR5RVp/QUfo+0E0=;
- b=Fw0cB+OFDsJWspIE9HkQ3y9Y5IShrqJ695l8U5St3+t6nbeC2/yTrJdQRtmeDAMIZ7sKOXMcGdXBXEpMHJ7aOdcsIT1K1XQXYXodkIycwL7gIvlLHIhO5lcnMZPWEkdvoPXhpgXKdaIbx8xUDtwGeXk3DMiZYmRrMcghmasIbDQTBt65EO4peZLIcudJ99VWeNeF0tWjW7iazMsLuSBm2OaPJ0ZkSUtKpYYhEpazb8qnFvCBTDOGlcvkjtAmJ7JUAJER50+Yl3JXzC24daBKB44uBj8q+xrO37qkMdk0tK0mWNUCFF/8K6QwLu3DIrKuFpJnL9wr795TVtHKGBZfVA==
-Received: from OL1P279MB0083.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:f::16) by
- OS4P279MB0402.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:1c::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.4669.10; Wed, 3 Nov 2021 20:16:17 +0000
-Received: from OL1P279MB0083.NORP279.PROD.OUTLOOK.COM
- ([fe80::4162:d6f1:2ee3:8c1a]) by OL1P279MB0083.NORP279.PROD.OUTLOOK.COM
- ([fe80::4162:d6f1:2ee3:8c1a%5]) with mapi id 15.20.4649.020; Wed, 3 Nov 2021
- 20:16:17 +0000
-From: =?iso-8859-1?Q?Skorstad=2C_J=F8rn?= <jsk@nkom.no>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: LO frequency change
-Thread-Index: AQHX0OuUDgLx41MDwkCiEfvTJ4xFjavyO7mAgAAAZBqAAADzzA==
-Date: Wed, 3 Nov 2021 20:16:17 +0000
-Message-ID: 
- <OL1P279MB00831E0624666113C1F2B544A08C9@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
-References: 
- <OL1P279MB00832E3402FDBDD18E8F2EE7A08C9@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
- <5e9e826a-79a1-f0f1-6e6b-b44ddc6864f5@gmail.com>
- <OL1P279MB0083EDF8974B201E9C6889E1A08C9@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
-In-Reply-To: 
- <OL1P279MB0083EDF8974B201E9C6889E1A08C9@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
-Accept-Language: nb-NO, en-US
-Content-Language: nb-NO
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lists.ettus.com; dkim=none (message not signed)
- header.d=none;lists.ettus.com; dmarc=none action=none header.from=nkom.no;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6cda7692-f925-4592-25c7-08d99f06cb12
-x-ms-traffictypediagnostic: OS4P279MB0402:
-x-microsoft-antispam-prvs: 
- <OS4P279MB04020A122F86A79F5C7B24D4A08C9@OS4P279MB0402.NORP279.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:1417;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- aCMYf2OC/csNLEHGNivtjz8FZF01Kl8p0DrWEyElPtrMZDogQ8PHDgfpdW5uPkXZy2VcCraAv5UPy4m7diHE8OGwzCwxhHrlsTIPyZ0JqylpkjG7DmzJg8++92HfADtdaNgjKBdj50//7BAro9FsWgaslIhq+IKrxfV7DBDTxw+AISjFQhWKm3d5HAy07jIcLfuptmlxlvXjM4bE+MytvJ+anyJcqX82MFyAAdIROCKkcLAALxtXwoUezCmYBBimz8go64kiZlCGR+bXwlMHFOsqzIDy03KH51bAPovIrrN54Z/587hDU6jp3WvLpx2AnEGpvCWukZx5wNZD/EsQpNALcAj4rRXnd22OX9mesT+liEWbJsFTGkSvkjmNG8NPtPuwpFsbDMRD0FvD2YgfaEza4pDIGfm4I1GnQA9pKs3P20p1OiUUebDOPj7Z2E35udNsuj3zd6Yu85peuPdA9kzX0O6cJFMQK56J9JH+bTKiQmn5VX7e1RyTffHj024rwjhHece1k0UArchlYfC7z+9Q/+I+TYOTjzIfKsCPaK/h3oQMmFg1nSVyiLRzkFwo1m1jFdHC37WuCEXczsY2L6/9MXo4kbeeo7SQ0elgbmutMcsBPg7c1gvJXawcBTpAAOE1vNW5plVvccNi0OuUBSnevkXEI/mpHu8Gn1q5R/CuGgjVFX5+pzt3YEJBqNpJlmTFt2V23KAVXzVUOnBpDA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OL1P279MB0083.NORP279.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(136003)(39850400004)(346002)(396003)(376002)(366004)(66946007)(55016002)(38100700002)(7696005)(66574015)(8936002)(83380400001)(76116006)(33656002)(26005)(2906002)(2940100002)(52536014)(66446008)(64756008)(9686003)(66476007)(71200400001)(53546011)(6506007)(66556008)(8676002)(38070700005)(86362001)(6916009)(5660300002)(316002)(122000001)(186003)(508600001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?4+bOfnSiUhM7IgaG7389z6z03AI/01a3puSYZ3oByxmSv1mxj0eTCh9dKa?=
- =?iso-8859-1?Q?WkhiX3bE6908iF/X4FY2cA2jVIPRF+MyI2vCvjg/7VMyUODO7BNcPNbfIs?=
- =?iso-8859-1?Q?6OmHS7HLEfu0HQaBDjW1bOPXB547cc4p0JVz88q+E5rNiRUOFfEyyLS8aK?=
- =?iso-8859-1?Q?epuJ7TQmPVM2wYVwYZzC/2NGhcDLd8cE4xSue0SMYVCeAH+yz68Y8CT5qT?=
- =?iso-8859-1?Q?06UlvA8f+zdHSQBa7a0BhB73BzuGMEqz/Ul+akDuuY75+Zhw072V4VA4z/?=
- =?iso-8859-1?Q?rMb9U+sTpoj0RonDIK1dFsQ95gIlpIN9NT4/P2VHTHCx6B0zZRSkVvGno8?=
- =?iso-8859-1?Q?kp4D9okFLcV2BOfEZn3kfQgqgOZfElSYQCpUAN9WUgcCDA7ZYWvNkhVLeS?=
- =?iso-8859-1?Q?Tw0q0RG+aRWCxJfSu7ZO3lynbWGalFe4vLjMqcernS4PZN+cust/hZJECD?=
- =?iso-8859-1?Q?JnT6Z8QI62K5DyWU8tiC9BGBNSMd4UOEkBCTIjRXd/n4hdWo+5SKHuY9kv?=
- =?iso-8859-1?Q?piIqVRM/DPXFiQNWGoblXdtKX8/1T4HEr50J9BfohFzfeGF4x1sAi3lGxa?=
- =?iso-8859-1?Q?srRKRPap5HdHP914u0Z5cIw8D8LRA9XCaG1je4xdkuOTG4MO9l+Qm4gYDp?=
- =?iso-8859-1?Q?f/okiCD5kWYiXGQ2ohG8Jv1VHk7xIpbvD+KtRaN5IAWwNOpS5u804cVOSl?=
- =?iso-8859-1?Q?uXQZz0OFnFM7UBf49UC8AIbEysR3Gc3VmwsnyqjhMR0lScCCHH+H3ekFSV?=
- =?iso-8859-1?Q?vrIj22ikvhLEothnTIyxg0D5fRzhiJkVtYQdecNW0L58Q21X1vFxB10Gjf?=
- =?iso-8859-1?Q?mtog54UEpdhxoGylLmKFnlRE21mP4HbuGa6RFQWOPzjajQVFlao/F4Gq/U?=
- =?iso-8859-1?Q?yfDGTXD84qb24hV8o2/WPmBhncuyqeYrAaYRKqgXeSoJ7yjjP4QPDCbIy6?=
- =?iso-8859-1?Q?2MXc0zpHP10TU0vZ3xykCHX1VqzpuDgPYFlfNwc7JQSrB2SGglG8Y5Dm2m?=
- =?iso-8859-1?Q?Z4pZ7Y2II8vMM8SE+YZGs+gEk8fNHIkdzbC+FmXOrgwUvHGm71ID87sFp4?=
- =?iso-8859-1?Q?ee2x9yUByoLq7TMF76ofhKURZNjlWZmi7H0F6qKu48Gt8LNIEqe4CVh8+e?=
- =?iso-8859-1?Q?dGdekS7Q1SzPIzF94bY1RWiFzO4ChK+6ZrNr46R1gZdPw5J0OO8o/ehm7l?=
- =?iso-8859-1?Q?NZ9NuJIp8iIi7B942US2lTgidonxvl5fpG6Xhk6+PKC4cCpzvkzN2zoj7p?=
- =?iso-8859-1?Q?FC9DXiTdXA38RPIcF9a8sqqWRvM+fKxNkXF4y/ltyA5SoRpD/FaHyrdBQq?=
- =?iso-8859-1?Q?6qYqBZpMp22V7tPemfnnUmLFXG5naKm9u40PLvxKT20HQ1L5ZupuxkExhs?=
- =?iso-8859-1?Q?nrNy7ogm1kFXfxFb0KZKwMYQHsCkjED44IObSNTvM569ufoqTM4XorC87G?=
- =?iso-8859-1?Q?rc2V+spDf+EqEp/Aav4+Uf1ZaTa3tl6UtAPtNw/Wvizc7GWLviNHaAADZ1?=
- =?iso-8859-1?Q?34sxTevVjT/JHQlzCrsKwD7zxRDUzmAdonc1kdLtMnxbr9C75/hXDrjMp6?=
- =?iso-8859-1?Q?yMILqsENJ7Dc3+ETM8X/peHWOajPdTsL922Tk6uCZIPT/6pKOfULUSOpjx?=
- =?iso-8859-1?Q?AUbl7Qra7UGv0=3D?=
-MIME-Version: 1.0
-X-OriginatorOrg: nkom.no
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OL1P279MB0083.NORP279.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cda7692-f925-4592-25c7-08d99f06cb12
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2021 20:16:17.4523
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ad83e65c-03f6-4cfd-b799-47a2fafd7bce
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5Ei5fSuz5y5SYt1ILPFe7b2aqOvuFX98bgceJZTf5I/ix1twXK18BGvLiPOwYKiV
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS4P279MB0402
-Message-ID-Hash: ZWKJXGVDNB73TPEBFRDXRGZD3LAO6LVZ
-X-Message-ID-Hash: ZWKJXGVDNB73TPEBFRDXRGZD3LAO6LVZ
-X-MailFrom: jsk@nkom.no
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 86E58383EA1
+	for <USRP-users@lists.ettus.com>; Thu,  4 Nov 2021 09:43:35 -0400 (EDT)
+Received: by mail-qv1-f53.google.com with SMTP id i13so5266783qvm.1
+        for <USRP-users@lists.ettus.com>; Thu, 04 Nov 2021 06:43:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=UW3sQcnQDCVoo0CkJ1LRVEcTEnCgO22y+uL/Ar/y4Tc=;
+        b=gLC6y3UXRBRaJ0bysRS09dpNKLfE1UeQthxcyjxHeBrVI05S78Pv/IJjroofuom3MR
+         wCcwWZzLOOxVR+9NBk8Tk7R5JsfsPEMfQ7KbqJSW+JAKxBz/OjPT8n4gTDTW8b+ZHK8X
+         F9muoLlOTk5MSwPFMQgpF3431MoEsjWnh1gcE35GRW+ayouQGvjAIKgujw4mBEfikC9e
+         TEhOTUAqfYqSZ7WVYbfbssVk4ron5rMP8EsY3D8/fSA9sOWw1OYJb0JtGg3PJ/LZ3TOn
+         yvNanEy5vFulxXQ4CcQu61IVcudVYvcDySnMemIhMx2tv1GGN3j1+kUdrixitwcTILfJ
+         TYRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=UW3sQcnQDCVoo0CkJ1LRVEcTEnCgO22y+uL/Ar/y4Tc=;
+        b=BF236xj2X3oGPB/n43C8J6IPxnkGctg2aGtDwwmUS0BzhyXckwtZTkhgYOBdszufQw
+         i5Mf0R4wBpoF63rU9bluNqF6HIv9wxKH4/7DHc7xvPIZpd/j9TLz/0qXuHDhPkNsLMwA
+         T1Z5bYd3Yqj6CwQgVKHK8lBPbO/PmxpE4WhU3ZNoKowLZq507BLKlocaXLaA7YUvth5h
+         vm0M99fBb/1wCi1CzevQRSSTjoT7R0uuATI+sG+B/aOcncy48Ugat9aMP6RXD/3P1lyH
+         3XOmwknM2cG3IPKWT/y9yRNC2RKYCeJ5PAnFRROdErzYKsecmOjpLutR/wheq8oEU3ve
+         M1bQ==
+X-Gm-Message-State: AOAM531arVsSO/3FF005qanA1VacBBTVExS4BUXAEQP355flQCgvMccE
+	Bd22ips4dV0IbVLjrMLQwoH1NKvWHLk=
+X-Google-Smtp-Source: ABdhPJxuP72/lN0YFlxuyvL0HCaxFTZcTDEW4lVBRJMCdpLIhfC38eafogFx0UJkK72bHzY6rH2uAg==
+X-Received: by 2002:a05:6214:1c8a:: with SMTP id ib10mr50643319qvb.46.1636033414865;
+        Thu, 04 Nov 2021 06:43:34 -0700 (PDT)
+Received: from smtpclient.apple (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
+        by smtp.gmail.com with ESMTPSA id c14sm3905352qtd.97.2021.11.04.06.43.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Nov 2021 06:43:34 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 4 Nov 2021 09:43:33 -0400
+Message-Id: <76091DB1-CBD2-4365-A7F3-C1FFA2F59ECA@gmail.com>
+References: <79b89ffb765545ba9023f3475db937a2@gmv.com>
+In-Reply-To: <79b89ffb765545ba9023f3475db937a2@gmv.com>
+To: Guillermo Ortas Delgado <g.ortas@gmv.com>
+X-Mailer: iPhone Mail (18H17)
+Message-ID-Hash: MEN47MGJU7NSVMUFUGHB3ZJCM5KCCMEV
+X-Message-ID-Hash: MEN47MGJU7NSVMUFUGHB3ZJCM5KCCMEV
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: USRP-users@lists.ettus.com, Anabel Almodovar <anabel.almodovar@gmail.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: LO frequency change
+Subject: [USRP-users] Re: UHD 4.1 error
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/I3HXNUJNXDRPMBOH5SNAUNDKOAVIQQPB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MEN47MGJU7NSVMUFUGHB3ZJCM5KCCMEV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1786086904020398568=="
+Content-Type: multipart/mixed; boundary="===============6013400725995323492=="
 
---===============1786086904020398568==
-Content-Language: nb-NO
-Content-Type: multipart/alternative;
-	boundary="_000_OL1P279MB00831E0624666113C1F2B544A08C9OL1P279MB0083NORP_"
 
---_000_OL1P279MB00831E0624666113C1F2B544A08C9OL1P279MB0083NORP_
-Content-Type: text/plain; charset="iso-8859-1"
+--===============6013400725995323492==
+Content-Type: multipart/alternative; boundary=Apple-Mail-0F81C07F-7FF6-4B08-9AAE-D16F9348AB9F
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-0F81C07F-7FF6-4B08-9AAE-D16F9348AB9F
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
+The consensus from Ettus R&D is to build the required version from source.=20=
 
 
-Good point. I am using an E310, program runs on the unit itself (No network=
- mode).
+Sent from my iPhone
 
-________________________________
-From: Marcus D. Leech <patchvonbraun@gmail.com>
-Sent: Wednesday, November 3, 2021 9:10:01 PM
-To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Re: LO frequency change
+> On Nov 4, 2021, at 5:45 AM, Guillermo Ortas Delgado <g.ortas@gmv.com> wrot=
+e:
+>=20
+> =EF=BB=BF
+> Hi Marcus,
+> =20
+> I would also like to get DPDK running and I have tried in the past.
+> Let me point out a problem: the latest release of UHD requires DPDK versio=
+n 18.11, but in fact this version is not supported on Ubuntu 20.04. The olde=
+st available version is 19.11, so what should I do to get it working?
+> I tried editing the makefile when compiling UHD to accept DPDK version 19.=
+11, but then the build fails mid-way. Could you provide a solution please?
+> =20
+> Best,
+> Guillermo
+> =20
+> De: Marcus D. Leech [mailto:patchvonbraun@gmail.com]=20
+> Enviado el: 03 November 2021 16:17
+> Para: Anabel Almodovar <anabel.almodovar@gmail.com>
+> CC: usrp-users@lists.ettus.com
+> Asunto: [USRP-users] Re: UHD 4.1 error
+> =20
+> On 2021-11-03 03:04, Anabel Almodovar wrote:
+> Thank you for your explanation. So is there any kind of solution for my pr=
+oblem with GNU Radio?
+> =20
+> Thanks in advance.
+> Regards,
+> Anabel
+> I have suggested this in the past--look into using DPDK if you're running a=
+t high sample rates over 10GiGe:
+>=20
+> https://files.ettus.com/manual/page_dpdk.html
+>=20
+> https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD
+>=20
+>=20
+>=20
+> =20
+> El mi=C3=A9, 27 oct 2021 a las 17:48, Marcus D. Leech (<patchvonbraun@gmai=
+l.com>) escribi=C3=B3:
+> On 2021-10-27 11:37, Anabel Almodovar wrote:
+> Hello,
+> =20
+> When I run a benchmark_rate example it indicates that there are no sample l=
+osses even with 30s of acquisition.
+> =20
+> rack_2021@rack-HP-Z4-G4-Workstation:~/workarea-uhd/uhd/host/examples/build=
+$ sudo ./benchmark_rate --args=3D"addr=3D192.168.40.2,second_addr=3D192.168.=
+30.2,recv_buff_size=3D900000000" --channels=3D"0,1" --rx_rate 200e6 --durati=
+on 30 --rx_subdev=3D"A:0 B:0"=20
+>=20
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.1.0.HEAD-0-=
+gd21735d5
+> [00:00:00.000677] Creating the usrp device with: addr=3D192.168.40.2,secon=
+d_addr=3D192.168.30.2,recv_buff_size=3D900000000...
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> Using Device: Single USRP:
+>   Device: X-Series Device
+>   Mboard 0: X310
+>   RX Channel: 0
+>     RX DSP: 0
+>     RX Dboard: A
+>     RX Subdev: UBX RX
+>   RX Channel: 1
+>     RX DSP: 1
+>     RX Dboard: B
+>     RX Subdev: UBX RX
+>   TX Channel: 0
+>     TX DSP: 0
+>     TX Dboard: A
+>     TX Subdev: UBX TX
+>   TX Channel: 1
+>     TX DSP: 1
+>     TX Dboard: B
+>     TX Subdev: UBX TX
+>=20
+> [00:00:02.923799498] Setting device timestamp to 0...
+> [INFO] [MULTI_USRP]     1) catch time transition at pps edge
+> [INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+> [WARNING] [0/Radio#1] Attempting to set tick rate to 0. Skipping.
+> [00:00:04.262875535] Testing receive rate 200.000000 Msps on 2 channels
+> [00:00:34.313774651] Benchmark complete.
+>=20
+> Benchmark rate summary:
+>   Num received samples:     12000000380
+>   Num dropped samples:      0
+>   Num overruns detected:    0
+>   Num transmitted samples:  0
+>   Num sequence errors (Tx): 0
+>   Num sequence errors (Rx): 0
+>   Num underruns detected:   0
+>   Num late commands:        0
+>   Num timeouts (Tx):        0
+>   Num timeouts (Rx):        0
+>=20
+> Done!
+> =20
+> However, when I run rx_samples_to_file I get overflows from 8 sec for a si=
+ngle receiving channel.
+> =20
+> sudo ./rx_samples_to_file  --file=3D"/home/rack_2021/Escritorio/pruebas_co=
+digos_agosto/usrp_samples.dat" --duration 8 --args=3D"addr=3D192.168.40.2,se=
+cond_addr=3D192.168.30.2,recv_buff_size=3D900000000" --channel=3D"0" --subde=
+v=3D"A:0" --rate 200e6 --bw 200e6 --gain 5 --freq 800e6
+>=20
+> Creating the usrp device with: addr=3D192.168.40.2,second_addr=3D192.168.3=
+0.2,recv_buff_size=3D900000000...
+> [INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.1.0.HEAD-0-=
+gd21735d5
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> Using Device: Single USRP:
+>   Device: X-Series Device
+>   Mboard 0: X310
+>   RX Channel: 0
+>     RX DSP: 0
+>     RX Dboard: A
+>     RX Subdev: UBX RX
+>   TX Channel: 0
+>     TX DSP: 0
+>     TX Dboard: A
+>     TX Subdev: UBX TX
+>   TX Channel: 1
+>     TX DSP: 1
+>     TX Dboard: B
+>     TX Subdev: UBX TX
+>=20
+> Setting RX Rate: 200.000000 Msps...
+> Actual RX Rate: 200.000000 Msps...
+>=20
+> Setting RX Freq: 800.000000 MHz...
+> Setting RX LO Offset: 0.000000 MHz...
+> Actual RX Freq: 800.000000 MHz...
+>=20
+> Setting RX Gain: 5.000000 dB...
+> Actual RX Gain: 5.000000 dB...
+>=20
+> Setting RX Bandwidth: 200.000000 MHz...
+> Actual RX Bandwidth: 200.000000 MHz...
+>=20
+> Waiting for "lo_locked": ++++++++++ locked.
+>=20
+> Press Ctrl + C to stop streaming...
+> O
+> Done!
+> =20
+> I am using a native Ubuntu, not a VM and I have the CPU governor set to "p=
+erformance".
+> =20
+> I have managed to patch the code that worked for me before updating the sy=
+stem to the new versions of Ubuntu and UHD, so I ask for more samples than I=
+ want since I have observed that the recv () reception buffer is not always c=
+onstant and it does not always acquire the maximum number of samples as I re=
+quest (1996 samples), at least not at the beginning. But I would like to kno=
+w the cause of this so that I can fix it and why GNU Radio keeps giving me t=
+he same error.
+> =20
+> Thanks in advance.
+> Regards,
+> Anabel
+> =20
+> The recv() call doesn't necessarily guarantee that you'll get all the samp=
+les you asked for in that call, as far as I know. It isn't surprising that t=
+here would be slight differences
+>   in behavior across different versions of UHD and OS versions in this reg=
+ard.  You always have to be prepared to receive fewer samples than you asked=
+ for.
+>=20
+> If Gnu Radio applications are producing overruns, that is firmly in the te=
+rritory of Gnu Radio, and NOT UHD.   Clearly, on your machine, UHD is able t=
+o sustain 200e6 SPS.
+>   But as you add layers of application processing, the system is more heav=
+ily loaded.  Gnu Radio actually "does things" with the samples, which means t=
+he
+>   instructions-per-sample is MUCH higher than your simple rx_samples_to_fi=
+le test.
+>=20
+>=20
+> =20
+>=20
+> P Please consider the environment before printing this e-mail.
 
-On 2021-11-03 16:00, Skorstad, J=F8rn wrote:
-Hi all,
-
-Started rewriting my code to work with UHD 4.1 recently. I notice that the =
-command set_rx_frequency() in uhd::rdnoc::radio_control takes about 104 ms =
-to complete, no matter what frequency is set.
-
-Is this blocking time something like worst case scenario time it can take t=
-o retune the LO? I think this command was faster in UHD 3.8.
-
-Is it possible to do the LO retuning faster manually somehow?
-
-BR
-Jorn
-
-
-
-
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com<mailto:usrp-users@lis=
-ts.ettus.com>
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usr=
-p-users-leave@lists.ettus.com>
-
-
-You haven't mentioned which of MANY USRP and USRP+daughtercard combinations=
- you're using, so it's impossible to say.
-
-
-
-
---_000_OL1P279MB00831E0624666113C1F2B544A08C9OL1P279MB0083NORP_
-Content-Type: text/html; charset="iso-8859-1"
+--Apple-Mail-0F81C07F-7FF6-4B08-9AAE-D16F9348AB9F
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-</head>
-<body>
-<div id=3D"id-385a43c5-4b83-4740-acec-19bee89fb05f" class=3D"ms-outlook-mob=
-ile-reference-message" dir=3D"auto">
-<div style=3D"font-family: sans-serif; font-size: 12pt; color: rgb(0, 0, 0)=
-;" dir=3D"auto">
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">The consensus from Ettus R&amp;D is to buil=
+d the required version from source.&nbsp;<br><br><div dir=3D"ltr">Sent from m=
+y iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Nov 4, 2021,=
+ at 5:45 AM, Guillermo Ortas Delgado &lt;g.ortas@gmv.com&gt; wrote:<br><br><=
+/blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EstiloCorreo17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+
+
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US">Hi Marcus,<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp;<=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-f=
+amily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-U=
+S">I would also like to get DPDK running and I have tried in the past.<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-f=
+amily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-U=
+S">Let me point out a problem: the latest release of UHD requires DPDK versi=
+on 18.11, but in fact this version is not supported
+ on Ubuntu 20.04. The oldest available version is 19.11, so what should I do=
+ to get it working?<br>
+I tried editing the makefile when compiling UHD to accept DPDK version 19.11=
+, but then the build fails mid-way. Could you provide a solution please?<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-f=
+amily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-U=
+S"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-f=
+amily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-U=
+S">Best,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-f=
+amily:&quot;Calibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-U=
+S">Guillermo<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;color:#1F497D;mso-fareast-language:EN-US"><o:p>&nbsp;<=
+/o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0=
+cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot;=
+Calibri&quot;,sans-serif">De:</span></b><span style=3D"font-size:11.0pt;font=
+-family:&quot;Calibri&quot;,sans-serif"> Marcus D. Leech [mailto:patchvonbra=
+un@gmail.com]
 <br>
+<b>Enviado el:</b> 03 November 2021 16:17<br>
+<b>Para:</b> Anabel Almodovar &lt;anabel.almodovar@gmail.com&gt;<br>
+<b>CC:</b> usrp-users@lists.ettus.com<br>
+<b>Asunto:</b> [USRP-users] Re: UHD 4.1 error<o:p></o:p></span></p>
 </div>
-<br>
-Good point. I am using an E310, program runs on the unit itself (No network=
- mode).&nbsp;</div>
-<div id=3D"id-385a43c5-4b83-4740-acec-19bee89fb05f" class=3D"ms-outlook-mob=
-ile-reference-message">
-&nbsp;
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
-lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech &lt;p=
-atchvonbraun@gmail.com&gt;<br>
-<b>Sent:</b> Wednesday, November 3, 2021 9:10:01 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> [USRP-users] Re: LO frequency change</font>
-<div>&nbsp;</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal">On 2021-11-03 03:04, Anabel Almodovar wrote:<o:p></o:=
+p></p>
+</div>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<p class=3D"MsoNormal">Thank you for your explanation.&nbsp;So is there any k=
+ind of solution for my problem with GNU Radio?
+<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
 <div>
-<div class=3D"x_moz-cite-prefix">On 2021-11-03 16:00, Skorstad, J=F8rn wrot=
-e:<br>
+<p class=3D"MsoNormal">Thanks in&nbsp;advance.<o:p></o:p></p>
 </div>
-<blockquote type=3D"cite">
-<div>Hi all,</div>
-<div><br>
+<div>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
 </div>
-<div dir=3D"auto">Started rewriting my code to work with UHD 4.1 recently. =
-I notice that the command set_rx_frequency() in uhd::rdnoc::radio_control t=
-akes about 104 ms to complete, no matter what frequency is set.&nbsp;</div>
-<div dir=3D"auto"><br>
+<div>
+<p class=3D"MsoNormal">Anabel<o:p></o:p></p>
 </div>
-<div dir=3D"auto">Is this blocking time something like worst case scenario =
-time it can take to retune the LO? I think this command was faster in UHD 3=
-.8.</div>
-<div dir=3D"auto"><br>
 </div>
-<div dir=3D"auto">Is it possible to do the LO retuning faster manually some=
-how?&nbsp;</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto">BR</div>
-<div dir=3D"auto">Jorn</div>
-<div dir=3D"auto"><br>
-</div>
-<div dir=3D"auto"><br>
-</div>
-<br>
-<fieldset class=3D"x_mimeAttachmentHeader"></fieldset>
-<pre class=3D"x_moz-quote-pre">____________________________________________=
-___=0A=
-USRP-users mailing list -- <a class=3D"x_moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=0A=
-To unsubscribe send an email to <a class=3D"x_moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettus.=
-com</a>=0A=
-</pre>
 </blockquote>
-You haven't mentioned which of MANY USRP and USRP+daughtercard combinations=
- you're using, so it's impossible to say.<br>
+<p class=3D"MsoNormal">I have suggested this in the past--look into using DP=
+DK if you're running at high sample rates over 10GiGe:<br>
+<br>
+<a href=3D"https://urldefense.com/v3/__https:/files.ettus.com/manual/page_dp=
+dk.html__;!!MvyJQugb!Ug3KUJdelEBGny3uBLviYm_qf2FjZMI6Kd_bzmXKMBMc4asgXNo56ml=
+kCx8$">https://files.ettus.com/manual/page_dpdk.html</a><br>
+<br>
+<a href=3D"https://urldefense.com/v3/__https:/kb.ettus.com/Getting_Started_w=
+ith_DPDK_and_UHD__;!!MvyJQugb!Ug3KUJdelEBGny3uBLviYm_qf2FjZMI6Kd_bzmXKMBMc4a=
+sgXNo5jyS_8IE$">https://kb.ettus.com/Getting_Started_with_DPDK_and_UHD</a><b=
+r>
 <br>
 <br>
+<br>
+<o:p></o:p></p>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal">El mi=C3=A9, 27 oct 2021 a las 17:48, Marcus D. Leech=
+ (&lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>=
+&gt;) escribi=C3=B3:<o:p></o:p></p>
 </div>
-<br>
+<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm=
+ 0cm 0cm 6.0pt;margin-left:4.8pt;margin-right:0cm">
+<div>
+<div>
+<p class=3D"MsoNormal">On 2021-10-27 11:37, Anabel Almodovar wrote:<o:p></o:=
+p></p>
 </div>
-</body>
-</html>
+<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<div>
+<div>
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">When I run a benchmark_rate example it indicates that=
+ there are no sample losses even with 30s of acquisition.
+<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><i>rack_2021@rack-HP-Z4-G4-Workstation:~/workarea-=
+uhd/uhd/host/examples/build$ sudo ./benchmark_rate --args=3D"addr=3D192.168.=
+40.2,second_addr=3D192.168.30.2,recv_buff_size=3D900000000" --channels=3D"0,=
+1" --rx_rate 200e6 --duration 30 --rx_subdev=3D"A:0
+ B:0" <br>
+<br>
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.1.0.HEAD-0-gd=
+21735d5<br>
+[00:00:00.000677] Creating the usrp device with: addr=3D192.168.40.2,second_=
+addr=3D192.168.30.2,recv_buff_size=3D900000000...<br>
+[INFO] [X300] X300 initialization sequence...<br>
+[INFO] [X300] Maximum frame size: 8000 bytes.<br>
+[INFO] [X300] Maximum frame size: 8000 bytes.<br>
+[INFO] [X300] Radio 1x clock: 200 MHz<br>
+Using Device: Single USRP:<br>
+&nbsp; Device: X-Series Device<br>
+&nbsp; Mboard 0: X310<br>
+&nbsp; RX Channel: 0<br>
+&nbsp; &nbsp; RX DSP: 0<br>
+&nbsp; &nbsp; RX Dboard: A<br>
+&nbsp; &nbsp; RX Subdev: UBX RX<br>
+&nbsp; RX Channel: 1<br>
+&nbsp; &nbsp; RX DSP: 1<br>
+&nbsp; &nbsp; RX Dboard: B<br>
+&nbsp; &nbsp; RX Subdev: UBX RX<br>
+&nbsp; TX Channel: 0<br>
+&nbsp; &nbsp; TX DSP: 0<br>
+&nbsp; &nbsp; TX Dboard: A<br>
+&nbsp; &nbsp; TX Subdev: UBX TX<br>
+&nbsp; TX Channel: 1<br>
+&nbsp; &nbsp; TX DSP: 1<br>
+&nbsp; &nbsp; TX Dboard: B<br>
+&nbsp; &nbsp; TX Subdev: UBX TX<br>
+<br>
+[00:00:02.923799498] Setting device timestamp to 0...<br>
+[INFO] [MULTI_USRP] &nbsp; &nbsp; 1) catch time transition at pps edge<br>
+[INFO] [MULTI_USRP] &nbsp; &nbsp; 2) set times next pps (synchronously)<br>
+[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.<br>
+[WARNING] [0/Radio#1] Attempting to set tick rate to 0. Skipping.<br>
+[00:00:04.262875535] Testing receive rate 200.000000 Msps on 2 channels<br>
+[00:00:34.313774651] Benchmark complete.<br>
+<br>
+Benchmark rate summary:<br>
+&nbsp; Num received samples: &nbsp; &nbsp; 12000000380<br>
+&nbsp; Num dropped samples: &nbsp; &nbsp; &nbsp;0<br>
+&nbsp; Num overruns detected: &nbsp; &nbsp;0<br>
+&nbsp; Num transmitted samples: &nbsp;0<br>
+&nbsp; Num sequence errors (Tx): 0<br>
+&nbsp; Num sequence errors (Rx): 0<br>
+&nbsp; Num underruns detected: &nbsp; 0<br>
+&nbsp; Num late commands: &nbsp; &nbsp; &nbsp; &nbsp;0<br>
+&nbsp; Num timeouts (Tx): &nbsp; &nbsp; &nbsp; &nbsp;0<br>
+&nbsp; Num timeouts (Rx): &nbsp; &nbsp; &nbsp; &nbsp;0<br>
+<br>
+Done!</i></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">However, when I run rx_samples_to_file I get overflow=
+s from 8 sec for a single receiving channel.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><i>sudo ./rx_samples_to_file &nbsp;--file=3D"/home=
+/rack_2021/Escritorio/pruebas_codigos_agosto/usrp_samples.dat" --duration 8 -=
+-args=3D"addr=3D192.168.40.2,second_addr=3D192.168.30.2,recv_buff_size=3D900=
+000000" --channel=3D"0" --subdev=3D"A:0" --rate 200e6
+ --bw 200e6 --gain 5 --freq 800e6<br>
+<br>
+Creating the usrp device with: addr=3D192.168.40.2,second_addr=3D192.168.30.=
+2,recv_buff_size=3D900000000...<br>
+[INFO] [UHD] linux; GNU C++ version 9.3.0; Boost_107100; UHD_4.1.0.HEAD-0-gd=
+21735d5<br>
+[INFO] [X300] X300 initialization sequence...<br>
+[INFO] [X300] Maximum frame size: 8000 bytes.<br>
+[INFO] [X300] Maximum frame size: 8000 bytes.<br>
+[INFO] [X300] Radio 1x clock: 200 MHz<br>
+Using Device: Single USRP:<br>
+&nbsp; Device: X-Series Device<br>
+&nbsp; Mboard 0: X310<br>
+&nbsp; RX Channel: 0<br>
+&nbsp; &nbsp; RX DSP: 0<br>
+&nbsp; &nbsp; RX Dboard: A<br>
+&nbsp; &nbsp; RX Subdev: UBX RX<br>
+&nbsp; TX Channel: 0<br>
+&nbsp; &nbsp; TX DSP: 0<br>
+&nbsp; &nbsp; TX Dboard: A<br>
+&nbsp; &nbsp; TX Subdev: UBX TX<br>
+&nbsp; TX Channel: 1<br>
+&nbsp; &nbsp; TX DSP: 1<br>
+&nbsp; &nbsp; TX Dboard: B<br>
+&nbsp; &nbsp; TX Subdev: UBX TX<br>
+<br>
+Setting RX Rate: 200.000000 Msps...<br>
+Actual RX Rate: 200.000000 Msps...<br>
+<br>
+Setting RX Freq: 800.000000 MHz...<br>
+Setting RX LO Offset: 0.000000 MHz...<br>
+Actual RX Freq: 800.000000 MHz...<br>
+<br>
+Setting RX Gain: 5.000000 dB...<br>
+Actual RX Gain: 5.000000 dB...<br>
+<br>
+Setting RX Bandwidth: 200.000000 MHz...<br>
+Actual RX Bandwidth: 200.000000 MHz...<br>
+<br>
+Waiting for "lo_locked": ++++++++++ locked.<br>
+<br>
+Press Ctrl + C to stop streaming...<br>
+O<br>
+Done!</i></b><o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I am using a native Ubuntu, not a VM and I have the C=
+PU governor set to "performance".<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I have managed to patch the code that worked for me b=
+efore updating the system to the new versions of Ubuntu and UHD, so I ask fo=
+r more samples than I want since I have observed that the recv () reception b=
+uffer is not always constant and
+ it does not always acquire the maximum number of samples as I request (1996=
+ samples), at least not at the beginning. But I would like to know the cause=
+ of this so that I can fix it and why GNU Radio keeps giving me the same err=
+or.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thanks in advance.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Regards, <o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Anabel<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</blockquote>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">The recv() call doesn'=
+t necessarily guarantee that you'll get all the samples you asked for in tha=
+t call, as far as I know. It isn't surprising that there would be slight dif=
+ferences<br>
+&nbsp; in behavior across different versions of UHD and OS versions in this r=
+egard.&nbsp; You always have to be prepared to receive fewer samples than yo=
+u asked for.<br>
+<br>
+If Gnu Radio applications are producing overruns, that is firmly in the terr=
+itory of Gnu Radio, and NOT UHD.&nbsp;&nbsp; Clearly, on your machine, UHD i=
+s able to sustain 200e6 SPS.<br>
+&nbsp; But as you add layers of application processing, the system is more h=
+eavily loaded.&nbsp; Gnu Radio actually "does things" with the samples, whic=
+h means the<br>
+&nbsp; instructions-per-sample is MUCH higher than your simple rx_samples_to=
+_file test.<br>
+<br>
+<o:p></o:p></p>
+</div>
+</blockquote>
+</div>
+</blockquote>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<span style=3D""><br>
+</span><span style=3D"font-size:18.0pt; line-height:125%; font-family:Webdin=
+gs; color:green">P<span style=3D""></span>
+<span style=3D"font-size:7.0pt; line-height:125%; font-family:&quot;Arial&qu=
+ot;,&quot;sans-serif&quot;; color:green">
+Please consider the environment before printing this e-mail.</span></span><s=
+pan style=3D""></span>
 
---_000_OL1P279MB00831E0624666113C1F2B544A08C9OL1P279MB0083NORP_--
 
---===============1786086904020398568==
+</div></blockquote></body></html>=
+
+--Apple-Mail-0F81C07F-7FF6-4B08-9AAE-D16F9348AB9F--
+
+--===============6013400725995323492==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -271,4 +648,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1786086904020398568==--
+--===============6013400725995323492==--
