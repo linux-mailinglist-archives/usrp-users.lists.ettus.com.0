@@ -2,147 +2,178 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 751B144DE37
-	for <lists+usrp-users@lfdr.de>; Fri, 12 Nov 2021 00:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A7AA44DE6C
+	for <lists+usrp-users@lfdr.de>; Fri, 12 Nov 2021 00:21:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 781B238482C
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Nov 2021 18:01:02 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4AC84384692
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Nov 2021 18:21:03 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="W8M2Ch1W";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="HpKImDUO";
 	dkim-atps=neutral
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id D705D3845D0
-	for <usrp-users@lists.ettus.com>; Thu, 11 Nov 2021 18:00:10 -0500 (EST)
-Received: by mail-oo1-f48.google.com with SMTP id q39-20020a4a962a000000b002b8bb100791so2377343ooi.0
-        for <usrp-users@lists.ettus.com>; Thu, 11 Nov 2021 15:00:10 -0800 (PST)
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 206A73842F8
+	for <usrp-users@lists.ettus.com>; Thu, 11 Nov 2021 18:20:20 -0500 (EST)
+Received: by mail-vk1-f170.google.com with SMTP id 84so4171388vkc.6
+        for <usrp-users@lists.ettus.com>; Thu, 11 Nov 2021 15:20:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=2vZiNrL2PUREaiKOEIjfweAaaAV3S1o2YQx8SM7ONfQ=;
-        b=W8M2Ch1WNMFmU4zVEIPdZLYikdB7rzy1kZVYWdKFb7AP0zADzjdnJne1DH0rk8xX1z
-         0hkEboDSrhkFYdcvRXf2tcDSNnq3a1wmU5sMWEbSaocTKgKZIl1o2aOCy4hrE49TohaB
-         ySbAirpkXlPMtr5fqKUrPQNqPuhFUESja5/azZrTZUnyTG2MI0mhrSOCeA2eherev8C6
-         2MroVgdjOz2/Ssv9pAK6NO+84I54nUaGsZbBwoon5GeFca0h8ZTFmmjF1dAUkg+apra4
-         SWUB8T2796HxBAhmZrkKh5xTiYWzepfHk6eiUc1cOJUzC3sV+LiLrd+27vBnk129CuRf
-         UtnA==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1dK2ZWF3yVaCaWKd6MW9ixoxEKbtq4IgugAjw0/PZzI=;
+        b=HpKImDUOT+lk2/CpCbbs5vS855uhGyCWHOUwpdWSJs5d1T/gANhsqnNfI7K6nNFpHO
+         tLAja+ComBRkI03gXJlvWjVpeSI8FC+NvNylM4Zqv4APGJHdWfyEiWd1t5zWHtvZYQ8V
+         bM3KUO2UvhdETXPdzd0m/poJYQJrtrDHG1TypwlQzoqzOL/H9/jPq9BR9Ugh72rTNt1z
+         LLLbFojAEt0dqvwNn8f38Y0WcQ0Idp9dVRs1Fce/rXS8yIH3PmcSqvqz2df568/JOYIr
+         6+RpdM3VjnUSk+y6X5kFa6nDZZ5uhKss3efwp2cydsIdDeREZ1sfJeC9yvKeSeE0JHpy
+         GYkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=2vZiNrL2PUREaiKOEIjfweAaaAV3S1o2YQx8SM7ONfQ=;
-        b=U+Qsv2v/E3fbmwLFT66wtrlndIZmLGoX0Q54NvgsrggmZGfBIOsuvO0zOoXugYjj39
-         59v38FkM4qc6FGxKw7OFeA56WCEs2m/GfzpDvruaImEMeBtUx/F9hrKOkCvJBEu/k4BR
-         2b7RxX07VBgfKrmoxhtipC8Zq1w5KPbtxFkAiqtjNGdYBegJfOohOeBr07XZh6+u+xW4
-         taS/tNYByCdQhGk9bXiNEqyKvM1qaU50FpW9U8JKz/c8geVB1CBFpglXT6lOHRLWruQj
-         iSCdgC1RaPz8Wde0Eu6pxmxnYOoRwaKu2JKACaJJawKG9E8G9kXI+NPd0+pSe6h/k/9q
-         BP2Q==
-X-Gm-Message-State: AOAM533EXajt5Tdt5fvtTzWaF/+AvYE28JSGtL5NV40FQJLWc3PUZJ0/
-	5NI5oT1JlGoyAwlio2qs0ecU/hiMTK3uZFS9wTTLoiKloPEhHQ==
-X-Google-Smtp-Source: ABdhPJy+o+vaImBRgKE7SV2fyvR+ejRBj/+22+x4yynb+U+oIM1LJ08SV3XcnUA6KEUKo0SXBDcZC9O+UB0daVKphEk=
-X-Received: by 2002:a4a:e848:: with SMTP id j8mr6131879ooj.61.1636671609678;
- Thu, 11 Nov 2021 15:00:09 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1dK2ZWF3yVaCaWKd6MW9ixoxEKbtq4IgugAjw0/PZzI=;
+        b=tEJkDBORnzcQNzlTWcktCsPJ5Hsu6fbHQzhQnKZ2s59uKrrKj6TImTT5h9rOVeiWGc
+         qOIlxI7AV+EvbLBe5at25cd95MWpE6fXa6feXNCduKuaklxvXJREcHaBxb/nLYpHsJpo
+         pP6nB6i/j+F7wiongeVygl9eVPEGB6cM0SNEJg4WWg3u+ucmm58fMu3nY3XLj3oALBc8
+         8cHQ5wH2sWE/4Y7urI8j5cupIG0MI9di9gFqEeTnAplGVtvK6HFQaLJC91xy+n9WAO7c
+         8yDBLugY8o+46zlXMhKUWel55K8ONEriG/LCR9pIPf7jEg4vLEqUcHU/wdqxo8AQcHDO
+         EFRA==
+X-Gm-Message-State: AOAM531Fw31tbfitpcK29+RXnqcvfLCYyWOWfAFYzeD5C75b4UOgfDQT
+	neItM3nQDPGCo9EshBR15Yd3TX/GnDi3pWzjyR6yIBDU
+X-Google-Smtp-Source: ABdhPJzudkKDyXfrLeHe52VkLE2eYEHh2vKOLlb18RKkrfQOBUrvTXR03fg7tlPgMvxVzD96kuV/J/CJ7yCFRcYWMQk=
+X-Received: by 2002:a05:6122:884:: with SMTP id 4mr16769741vkf.6.1636672819947;
+ Thu, 11 Nov 2021 15:20:19 -0800 (PST)
 MIME-Version: 1.0
-From: Rob Kossler <rkossler@nd.edu>
-Date: Thu, 11 Nov 2021 17:59:59 -0500
-Message-ID: <CAB__hTT2dcHqDV-OKN9konwjX-5ru1DicuVjU1gsjYPf+CGz1A@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: S7JS3NP2YXXA2AGY4Z33JP52FAHAIOT5
-X-Message-ID-Hash: S7JS3NP2YXXA2AGY4Z33JP52FAHAIOT5
-X-MailFrom: rkossler@nd.edu
+References: <CAB__hTT2dcHqDV-OKN9konwjX-5ru1DicuVjU1gsjYPf+CGz1A@mail.gmail.com>
+In-Reply-To: <CAB__hTT2dcHqDV-OKN9konwjX-5ru1DicuVjU1gsjYPf+CGz1A@mail.gmail.com>
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Date: Thu, 11 Nov 2021 18:20:08 -0500
+Message-ID: <CAL7q81vYb9ktOTQb=CfhtEM26dK3cHOe-xE41jD=gWhQniKfVA@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: 5UNU3SYPCYDI7234ZTZCM5TBLLWGBJBN
+X-Message-ID-Hash: 5UNU3SYPCYDI7234ZTZCM5TBLLWGBJBN
+X-MailFrom: jonathon.pendlum@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E310 file system problems
+Subject: [USRP-users] Re: E310 file system problems
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S7JS3NP2YXXA2AGY4Z33JP52FAHAIOT5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5UNU3SYPCYDI7234ZTZCM5TBLLWGBJBN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1350927324874616072=="
+Content-Type: multipart/mixed; boundary="===============1815895184827651327=="
 
---===============1350927324874616072==
-Content-Type: multipart/alternative; boundary="000000000000e8f27105d08b4d45"
+--===============1815895184827651327==
+Content-Type: multipart/alternative; boundary="0000000000000c017305d08b968a"
 
---000000000000e8f27105d08b4d45
+--0000000000000c017305d08b968a
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-I'm having some issues with my E310 related to booting up the file system
-(UHD 4.1 file system loaded using bmaptool). Any help appreciated!
+Hey Rob,
 
-   - Issue 1: during boot up, E310 linux fails mounting the /data partition
-   and consequently doesn't configure the Ethernet correctly (such that I
-   can't login via ssh) (see below startup log from console window).
-      - Note that I can look at the micro SD card on my Ubuntu host and I
-      see 4 partitions: /uboot, /data, & the 2 OS partitions.  Everything l=
-ooks
-      OK.
-      - I'm starting to suspect a bad micro SD card, but I don't have solid
-      reasoning for that.
-   - Issue 2: when I'm in this failed startup state, I can use "ip addr
-   add" to configure the eth0 device but I can't figure out how to restart =
-the
-   sshd so that I can ssh into it (note I can ssh out just fine after setti=
-ng
-   the IP addr). Does anyone know how to do so?
-   - Issue 3: I can't figure out how to set the real-time clock.  If I run
-   "date" after bootup, it shows "Aug 6".  I can fix this, but upon reboot,=
- it
-   is back to "Aug 6".  If I run "hwclock", it says it can't find the hwclo=
-ck.
-   Does anyone know how to set the time in a non-volatile way such that it
-   won't be "Aug 6" after a power cycle.
+Did you use bmaptool to write the image to your SD card? I ran into the
+same issue when using bmaptool. I switched to using dd instead and that
+fixed the issue.
 
-Rob
+Jonathon
 
+On Thu, Nov 11, 2021, 18:00 Rob Kossler <rkossler@nd.edu> wrote:
 
-*Bootup Console Log*
-[  OK  ] Found device /dev/mmcblk0p1.
-[  OK  ] Found device /dev/mmcblk0p4.
-         Starting File System Check on /dev/mmcblk0p1...
-         Starting File System Check on /dev/mmcblk0p4...
-[  OK  ] Started File System Check on /dev/mmcblk0p1.
-         Mounting /uboot...
-[  OK  ] Mounted /uboot.
-[FAILED] Failed to start File System Check on /dev/mmcblk0p4.
-See 'systemctl status systemd-fsck@dev-mmcblk0p4.service' for details.
-[DEPEND] Dependency failed for /data.
-[DEPEND] Dependency failed for Local File Systems.
-[DEPEND] Dependency failed for Grow File System on /data.
-[  OK  ] Stopped Dispatch Password =E2=80=A6ts to Console Directory Watch.
-[  OK  ] Stopped Forward Password R=E2=80=A6uests to Wall Directory Watch.
+> Hi,
+> I'm having some issues with my E310 related to booting up the file system
+> (UHD 4.1 file system loaded using bmaptool). Any help appreciated!
+>
+>    - Issue 1: during boot up, E310 linux fails mounting the /data
+>    partition and consequently doesn't configure the Ethernet correctly (s=
+uch
+>    that I can't login via ssh) (see below startup log from console window=
+).
+>       - Note that I can look at the micro SD card on my Ubuntu host and I
+>       see 4 partitions: /uboot, /data, & the 2 OS partitions.  Everything=
+ looks
+>       OK.
+>       - I'm starting to suspect a bad micro SD card, but I don't have
+>       solid reasoning for that.
+>    - Issue 2: when I'm in this failed startup state, I can use "ip addr
+>    add" to configure the eth0 device but I can't figure out how to restar=
+t the
+>    sshd so that I can ssh into it (note I can ssh out just fine after set=
+ting
+>    the IP addr). Does anyone know how to do so?
+>    - Issue 3: I can't figure out how to set the real-time clock.  If I
+>    run "date" after bootup, it shows "Aug 6".  I can fix this, but upon
+>    reboot, it is back to "Aug 6".  If I run "hwclock", it says it can't f=
+ind
+>    the hwclock. Does anyone know how to set the time in a non-volatile wa=
+y
+>    such that it won't be "Aug 6" after a power cycle.
+>
+> Rob
+>
+>
+> *Bootup Console Log*
+> [  OK  ] Found device /dev/mmcblk0p1.
+> [  OK  ] Found device /dev/mmcblk0p4.
+>          Starting File System Check on /dev/mmcblk0p1...
+>          Starting File System Check on /dev/mmcblk0p4...
+> [  OK  ] Started File System Check on /dev/mmcblk0p1.
+>          Mounting /uboot...
+> [  OK  ] Mounted /uboot.
+> [FAILED] Failed to start File System Check on /dev/mmcblk0p4.
+> See 'systemctl status systemd-fsck@dev-mmcblk0p4.service' for details.
+> [DEPEND] Dependency failed for /data.
+> [DEPEND] Dependency failed for Local File Systems.
+> [DEPEND] Dependency failed for Grow File System on /data.
+> [  OK  ] Stopped Dispatch Password =E2=80=A6ts to Console Directory Watch=
+.
+> [  OK  ] Stopped Forward Password R=E2=80=A6uests to Wall Directory Watch=
+.
+>
+> *hwclock output*
+> sh-5.0# hwclock --verbose
+> hwclock from util-linux 2.34
+> System Time: 1628268135.768399
+> Trying to open: /dev/rtc0
+> Trying to open: /dev/rtc
+> Trying to open: /dev/misc/rtc
+> No usable clock interface found.
+> hwclock: Cannot access the Hardware Clock via any known method.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-*hwclock output*
-sh-5.0# hwclock --verbose
-hwclock from util-linux 2.34
-System Time: 1628268135.768399
-Trying to open: /dev/rtc0
-Trying to open: /dev/rtc
-Trying to open: /dev/misc/rtc
-No usable clock interface found.
-hwclock: Cannot access the Hardware Clock via any known method.
-
---000000000000e8f27105d08b4d45
+--0000000000000c017305d08b968a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div>I&#39;m having some issues with my E310 related to=
- booting up the file system (UHD 4.1 file system loaded using bmaptool). An=
-y help appreciated!</div><div><ul><li>Issue 1: during boot up, E310 linux f=
-ails mounting the /data partition and consequently doesn&#39;t configure th=
-e Ethernet correctly (such that I can&#39;t login via ssh) (see below start=
-up log from console window).=C2=A0</li><ul><li>Note that I can look at the =
-micro SD card on my Ubuntu host and I see 4 partitions: /uboot, /data, &amp=
-; the 2 OS partitions.=C2=A0 Everything looks OK.=C2=A0</li><li>I&#39;m sta=
-rting to suspect a bad micro SD card, but I don&#39;t have solid reasoning =
-for that.</li></ul><li>Issue 2: when I&#39;m in this failed startup state, =
-I can use &quot;ip addr add&quot; to configure the eth0 device but I can&#3=
-9;t figure out how to restart the sshd so that I can ssh into it (note I ca=
-n ssh out just fine after setting the IP addr). Does anyone know how to do =
-so?</li><li>Issue 3: I can&#39;t figure out how to set the real-time clock.=
+<div dir=3D"auto">Hey Rob,<div dir=3D"auto"><br></div><div dir=3D"auto">Did=
+ you use bmaptool to write the image to your SD card? I ran into the same i=
+ssue when using bmaptool. I switched to using dd instead and that fixed the=
+ issue.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Jonathon</div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Thu, Nov 11, 2021, 18:00 Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu=
+">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><d=
+iv dir=3D"ltr">Hi,<div>I&#39;m having some issues with my E310 related to b=
+ooting up the file system (UHD 4.1 file system loaded using bmaptool). Any =
+help appreciated!</div><div><ul><li>Issue 1: during boot up, E310 linux fai=
+ls mounting the /data partition and consequently doesn&#39;t configure the =
+Ethernet correctly (such that I can&#39;t login via ssh) (see below startup=
+ log from console window).=C2=A0</li><ul><li>Note that I can look at the mi=
+cro SD card on my Ubuntu host and I see 4 partitions: /uboot, /data, &amp; =
+the 2 OS partitions.=C2=A0 Everything looks OK.=C2=A0</li><li>I&#39;m start=
+ing to suspect a bad micro SD card, but I don&#39;t have solid reasoning fo=
+r that.</li></ul><li>Issue 2: when I&#39;m in this failed startup state, I =
+can use &quot;ip addr add&quot; to configure the eth0 device but I can&#39;=
+t figure out how to restart the sshd so that I can ssh into it (note I can =
+ssh out just fine after setting the IP addr). Does anyone know how to do so=
+?</li><li>Issue 3: I can&#39;t figure out how to set the real-time clock.=
 =C2=A0 If I run &quot;date&quot; after bootup, it shows &quot;Aug 6&quot;.=
 =C2=A0 I can fix this, but upon reboot, it is back to &quot;Aug 6&quot;.=C2=
 =A0 If I run &quot;hwclock&quot;, it says it can&#39;t find the hwclock. Do=
@@ -169,10 +200,17 @@ ospace"><b>hwclock output</b></font></div><div><font face=3D"monospace">sh-=
 rying to open: /dev/misc/rtc<br>No usable clock interface found.<br>hwclock=
 : Cannot access the Hardware Clock via any known method.<br></font></div></=
 div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank" rel=3D"noreferrer">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank" rel=3D"noreferrer">usrp-users-leave@lists.ettus.=
+com</a><br>
+</blockquote></div>
 
---000000000000e8f27105d08b4d45--
+--0000000000000c017305d08b968a--
 
---===============1350927324874616072==
+--===============1815895184827651327==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -182,4 +220,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1350927324874616072==--
+--===============1815895184827651327==--
