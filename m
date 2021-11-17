@@ -2,171 +2,224 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47868453ED6
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Nov 2021 04:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C4D454186
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Nov 2021 08:00:50 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2EAB2383D08
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Nov 2021 22:11:35 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 3A819383E07
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Nov 2021 02:00:49 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MSEihEtA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ncsu.edu header.i=@ncsu.edu header.b="OfxXDgnU";
 	dkim-atps=neutral
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7C2BB383A39
-	for <usrp-users@lists.ettus.com>; Tue, 16 Nov 2021 22:10:46 -0500 (EST)
-Received: by mail-qk1-f169.google.com with SMTP id g28so1078666qkk.9
-        for <usrp-users@lists.ettus.com>; Tue, 16 Nov 2021 19:10:46 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6E9D23837DE
+	for <USRP-users@lists.ettus.com>; Wed, 17 Nov 2021 02:00:05 -0500 (EST)
+Received: by mail-yb1-f173.google.com with SMTP id v138so4477334ybb.8
+        for <USRP-users@lists.ettus.com>; Tue, 16 Nov 2021 23:00:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=UWc/pXZT7J4ooTAxVzxfYtSJxQ3t8QJfdb5N8Ct0tvM=;
-        b=MSEihEtA8hhm+ZLC2QbhmHiKuUtiVI8MJTnvjGlrQNxaYLSw6Q5zn3EgRT7uuLLN7w
-         RBL4NznFv2j0bboFfDRGWMZQCQj7wfIoZynKfmUv+rAt1M1jKBg+sFSgfRda8Ynx9CWO
-         79cvV5CjyCnjjHjFG9+kOd2l2uyRzucLDhvCFZeFwt6HzTHz+dMAHXwAtr0OCUkdo5aF
-         BxKsKUJJhkVNieUE8W3b3s8OYel0ACAqK61vgXLseFI/fhvsUELIoAdJWTAQxGvH7c7M
-         VZlEpPONELf1dley6C+hlVH8kmrSHvDUSng3hvvb7+K16U7lRP4/woXQbvWz/AtHq+i/
-         eWzQ==
+        d=ncsu.edu; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=oNB6hVy9Z/qVEJGkaH89sNcf4itqkpiWsusnhhUiqrs=;
+        b=OfxXDgnUs+HoxhFkjvQP0MuJIheuOZcJR6sY+BkEbYTa5/Jml5yxAc/BuAroOll8UF
+         saN8uLfDjmxzznjoDDX7JRoCT18Q9GABLiC24IbJ9rYmOyM1dBMfzPfVY+eHRbh/3QS+
+         QLG9eBjLoCE6nSrrWHH8LwUF7pU9sNofybL5Vn4S9gSX6g8G2qtsaYkkUSl+YcaU2Owb
+         UT/RHuzq8pi3rs9xZ8N1nzqALYqC9i52pkYDzcVzkdj03IllEnDxr46c15OTAEEN3vuj
+         7BTB9qBqHzN9/VRI0Df4JTPnvO1TIOu4MFb59MO1Nt4DhAt19E0Vm8fy9T2OJT9LekE8
+         JdCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=UWc/pXZT7J4ooTAxVzxfYtSJxQ3t8QJfdb5N8Ct0tvM=;
-        b=0T3VbXhoy6PYbggShE+92F9nUSa1kZu/t0+SrupYu0/1hgmXBruQBRPck+g4nKqz/7
-         DHpEkL+CdSQjOFfQjYamuzlRY+N0Zqnf8kpmCCSF7GFH+NgJR2QFcGD6D88kU2mupYnm
-         sHMV2IqHMpMYvRdQQ+IkOT712WfUY2oDXBxz+8MGOCJRoVNWtLldoHRV/bltJ9/7pHyt
-         uAwMuClnF4KeXXsP6gech7OQhyfo3ZhXLVTi67L8O4BKFrXgRZvReRA+9lyw4/0fthci
-         Yt5bTLu2le5FwXGbUJDqzapVi8DsTgfteitqO7LejK348MYcMrhajV66LdMblmeXHZEa
-         kB6g==
-X-Gm-Message-State: AOAM5310xKiTmbFZjAaxzYo7gasLtNHM8ZoUvutOrcGVTO+ZHk2ujo5/
-	7rz1CCrS8+65v/wO8JKrg+SnOFF2BiM=
-X-Google-Smtp-Source: ABdhPJxyQh9yUFPa6kK7nDPLe9DpAF8LDuciBWF8pKTNOz0YjfzQgYTwegxK5228ZNKOMMNJpnGlGg==
-X-Received: by 2002:a05:620a:710:: with SMTP id 16mr10307088qkc.379.1637118645612;
-        Tue, 16 Nov 2021 19:10:45 -0800 (PST)
-Received: from [192.168.2.222] (bras-base-smflon1825w-grc-07-174-93-0-206.dsl.bell.ca. [174.93.0.206])
-        by smtp.googlemail.com with ESMTPSA id n19sm3764115qta.78.2021.11.16.19.09.25
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Nov 2021 19:10:02 -0800 (PST)
-Message-ID: <17bb316f-06e4-3e2f-1dff-056bb542b8a4@gmail.com>
-Date: Tue, 16 Nov 2021 22:09:23 -0500
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=oNB6hVy9Z/qVEJGkaH89sNcf4itqkpiWsusnhhUiqrs=;
+        b=tIrhajuDfMCKOeJ3+TkFEarcqC90BfdR5NhGWYCxTtH7UiQeI9kQWv7lzM/aY6bIn7
+         UiWk4XVhpfe8cHbb6EwlsRhva23gQfk78I1/ciUnkLBVoCOHV3fzVDpdcrNGf7EWOeks
+         XKhHxVPsdPNKCZQMepBhQlGIfHoEioaPbl3fozLix5GufNRWF4sgdc7OUQU3bytiBm54
+         DNu0nM9yZXKhDoroMsFvANkEAyvp742dP/1rylOnrp9G1ydkD7ubulvFRgEW2yVivb8S
+         nztaOMJOy3fnJDnRIg/VEXId22s3vH/tUMXt3AM1Gqa/3RvNtTtJX++CJJkPf6REeiKS
+         4ZXg==
+X-Gm-Message-State: AOAM5318G/VGH43O1ybz5I0JK7W44aM/S+t+wyJMrZ83cSF2KvFMWtJ6
+	lxLR2zp3EKweZYrevkAwyqV9Kvq/tzunO9r3A5F/AP/PAAA=
+X-Google-Smtp-Source: ABdhPJwcsVAmtkSWO7Li8WYsnXrzAmxea8CGsgGvhLua9li2sen61m/wblVIo4w8Jnzn7ypyvDxx+FXmrZ62cAlmfVY=
+X-Received: by 2002:a25:db04:: with SMTP id g4mr14767916ybf.196.1637132404628;
+ Tue, 16 Nov 2021 23:00:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <e19102d3-9da5-bdcc-2f97-671ad786f166@muc.ccc.de>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <e19102d3-9da5-bdcc-2f97-671ad786f166@muc.ccc.de>
-Message-ID-Hash: 47SG3DRQFBOTBEBRKGOVS4ZRWKDDIVVG
-X-Message-ID-Hash: 47SG3DRQFBOTBEBRKGOVS4ZRWKDDIVVG
-X-MailFrom: patchvonbraun@gmail.com
+From: LoyCurtis Smith <ljsmith9@ncsu.edu>
+Date: Wed, 17 Nov 2021 01:59:54 -0500
+Message-ID: <CAKhiL6XmU9VLYFAGOoGPTTUcw_T1AHC75PrpYu3vOpwmHi5N+A@mail.gmail.com>
+To: USRP-users@lists.ettus.com
+Message-ID-Hash: T4TGDAOFWIC2ZNLBPDD2QIUOV6WWRVHA
+X-Message-ID-Hash: T4TGDAOFWIC2ZNLBPDD2QIUOV6WWRVHA
+X-MailFrom: ljsmith9@ncsu.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: gps_locked sensor indicating internal GPSDO lock too early
+Subject: [USRP-users] USRP x310 ERROR_CODE_OVERFLOW issue
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/47SG3DRQFBOTBEBRKGOVS4ZRWKDDIVVG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T4TGDAOFWIC2ZNLBPDD2QIUOV6WWRVHA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Type: multipart/mixed; boundary="===============0795664424216374097=="
+
+--===============0795664424216374097==
+Content-Type: multipart/alternative; boundary="0000000000006dc58105d0f697a3"
+
+--0000000000006dc58105d0f697a3
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I am attempting to use two USRP x310 to deploy a 5G SA networking using the
+openairinterface5g open-source system. However, I am experiencing a receive
+overflow error when attempting to deploy both an OAI-nrUE and OAI-gNB.
+
+
+The nrUE gives an *ERROR_CODE_OVERFLOW (Overflow) *warning before failing
+and referencing a function in the OAI code.
+
+
+My gNB runs irregularly, constantly showing the
+*ERROR_CODE_OVERFLOW(Overflow) *message. In addition to multiple late or
+"L" messages.
+
+
+My system setting is as follows:
+
+   - *OAI-nrUE* - Latitude -E5570* (laptop)* - 16 GB RAM, i7-6820HQ with 4
+   cores, 8 threads @ 2.70 GHz running Ubuntu 18.04 with 5.40-90 low latency
+   kernel; 1-GigE connection to USRP x310 with CBX-120 daughterboard. UHD 3.15
+   - *OAI-gNB* - Optiplex-7040* (desktop)** - *16 GB RAM, i7-6700 with 4
+   cores, 8 threads @ 3.40 GHz- running Ubuntu 18.04 with 5.40-89 low latency
+   kernel; 1-GigE connection to USRP x310 with CBX-120 daughterboard. UHD 4.1
+
+
+I've made the following changes to both systems:
+
+   - Set the socket buffers (rmem_default, rmem_max, wmem_max,
+   wmem_default) to 33554432
+   - Set TX and RX ring buffers on the interface to max value of 4096.
+   - Set scaling_governor to "performance" mode for each CPU.
+   - Disabled C states.
+   - Performed self-calibration on OAI-nrUE USRP x310 using
+   uhd_cal_rx_iq_balance, uhd_cal_tx_iq_balance, and uhd_cal_tx_dc_offset.
+
+
+Do you have any recommendations for my overflow issues? Also, Is there a
+way to lower the number of samples transmitted?
+
+Additionally, I tried to run the UHD benchmark test in examples. However, I
+had issues converting the cpp file to an executable. It failed for some
+reason. Do you have any advice for this as well?
+
+-- 
+
+V/r
+
+LoyCurtis Smith
+
+--0000000000006dc58105d0f697a3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi,=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to"><div style=3D"border-color:rgb(49,49,49);color:rgb(49,49,49)"><p style=
+=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);color:rgb(1=
+4,16,26)" dir=3D"auto"><span style=3D"font-size:1rem;border-color:rgb(14,16=
+,26)">I am attempting to use two USRP x310 to deploy a 5G SA networking usi=
+ng the openairinterface5g open-source system. However, I am experiencing a =
+receive overflow error when attempting to deploy both an OAI-nrUE and OAI-g=
+NB.=C2=A0</span><br></p><p style=3D"margin-top:0pt;margin-bottom:0pt;border=
+-color:rgb(14,16,26);color:rgb(14,16,26)"><br></p><p style=3D"margin-top:0p=
+t;margin-bottom:0pt;border-color:rgb(14,16,26);color:rgb(14,16,26)" dir=3D"=
+auto"><span style=3D"margin-top:0pt;margin-bottom:0pt;font-size:1rem;border=
+-color:rgb(14,16,26)">The nrUE gives an=C2=A0<b style=3D"font-size:1rem;bor=
+der-color:rgb(14,16,26)">ERROR_CODE_OVERFLOW (Overflow)=C2=A0</b>warning be=
+fore failing and referencing a function in the OAI code.</span></p><p style=
+=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);color:rgb(1=
+4,16,26)"><br></p><p style=3D"margin-top:0pt;margin-bottom:0pt;border-color=
+:rgb(14,16,26);color:rgb(14,16,26)" dir=3D"auto"><span style=3D"margin-top:=
+0pt;margin-bottom:0pt;font-size:1rem;border-color:rgb(14,16,26)">My gNB run=
+s irregularly, constantly showing the=C2=A0<b style=3D"font-size:1rem;borde=
+r-color:rgb(14,16,26)">ERROR_CODE_OVERFLOW(Overflow)=C2=A0</b>message. In a=
+ddition to multiple late or &quot;L&quot; messages.</span></p><p style=3D"m=
+argin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);color:rgb(14,16,=
+26)"><br></p><p style=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(=
+14,16,26);color:rgb(14,16,26)"><span style=3D"margin-top:0pt;margin-bottom:=
+0pt;font-size:1rem;border-color:rgb(14,16,26)">My system setting is as foll=
+ows:=C2=A0</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;border-c=
+olor:rgb(14,16,26);color:rgb(14,16,26)" dir=3D"auto"><li style=3D"margin-to=
+p:0pt;margin-bottom:0pt;list-style-type:disc;border-color:rgb(14,16,26)"><s=
+trong style=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26)"=
+>OAI-nrUE</strong><span style=3D"margin-top:0pt;margin-bottom:0pt;font-size=
+:1rem;border-color:rgb(14,16,26)">=C2=A0- Latitude -E5570</span><strong sty=
+le=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26)"><em styl=
+e=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26)"><u style=
+=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26)"><span styl=
+e=3D"margin-top:0pt;margin-bottom:0pt;font-size:1rem;border-color:rgb(14,16=
+,26)">=C2=A0(laptop)</span></u></em></strong><span style=3D"margin-top:0pt;=
+margin-bottom:0pt;font-size:1rem;border-color:rgb(14,16,26)">=C2=A0- 16 GB =
+RAM, i7-6820HQ with 4 cores, 8 threads @ 2.70 GHz running Ubuntu 18.04 with=
+ 5.40-90 low latency kernel; 1-GigE connection to USRP x310 with CBX-120 da=
+ughterboard. UHD 3.15</span></li><li style=3D"margin-top:0pt;margin-bottom:=
+0pt;list-style-type:disc;border-color:rgb(14,16,26)"><strong style=3D"margi=
+n-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26)">OAI-gNB</strong><sp=
+an style=3D"margin-top:0pt;margin-bottom:0pt;font-size:1rem;border-color:rg=
+b(14,16,26)">=C2=A0- Optiplex-7040</span><strong style=3D"margin-top:0pt;ma=
+rgin-bottom:0pt;border-color:rgb(14,16,26)"><em style=3D"margin-top:0pt;mar=
+gin-bottom:0pt;border-color:rgb(14,16,26)"><u style=3D"margin-top:0pt;margi=
+n-bottom:0pt;border-color:rgb(14,16,26)"><span style=3D"margin-top:0pt;marg=
+in-bottom:0pt;font-size:1rem;border-color:rgb(14,16,26)">=C2=A0(desktop)</s=
+pan></u></em></strong><em style=3D"margin-top:0pt;margin-bottom:0pt;border-=
+color:rgb(14,16,26)">=C2=A0-=C2=A0</em><span style=3D"margin-top:0pt;margin=
+-bottom:0pt;font-size:1rem;border-color:rgb(14,16,26)">16 GB RAM, i7-6700 w=
+ith 4 cores, 8 threads @ 3.40 GHz- running Ubuntu 18.04 with 5.40-89 low la=
+tency kernel; 1-GigE connection to USRP x310 with CBX-120 daughterboard. UH=
+D 4.1</span></li></ul><p style=3D"margin-top:0pt;margin-bottom:0pt;border-c=
+olor:rgb(14,16,26);color:rgb(14,16,26)"></p></div><div style=3D"border-colo=
+r:rgb(49,49,49);color:rgb(49,49,49)"><div dir=3D"ltr" data-smartmail=3D"gma=
+il_signature" style=3D"word-spacing:1px;border-color:rgb(49,49,49)"><div di=
+r=3D"ltr" style=3D"border-color:rgb(49,49,49)"><div dir=3D"ltr" style=3D"bo=
+rder-color:rgb(49,49,49)"><br></div><div style=3D"font-size:1rem;border-col=
+or:rgb(49,49,49)">I&#39;ve made the following changes to both systems:=C2=
+=A0</div><div style=3D"border-color:rgb(49,49,49)"><ul style=3D"border-colo=
+r:rgb(49,49,49)" dir=3D"auto"><li style=3D"font-size:1rem;border-color:rgb(=
+49,49,49)">Set the socket buffers (rmem_default, rmem_max,=C2=A0wmem_max, w=
+mem_default) to 33554432</li><li style=3D"font-size:1rem;border-color:rgb(4=
+9,49,49)">Set TX and RX ring buffers on the interface to max value of 4096.=
+</li><li style=3D"font-size:1rem;border-color:rgb(49,49,49)">Set=C2=A0scali=
+ng_governor to &quot;performance&quot; mode for each CPU.</li><li style=3D"=
+font-size:1rem;border-color:rgb(49,49,49)">Disabled C states.</li><li style=
+=3D"font-size:1rem;border-color:rgb(49,49,49)">Performed self-calibration o=
+n OAI-nrUE USRP x310 using uhd_cal_rx_iq_balance, uhd_cal_tx_iq_balance, an=
+d uhd_cal_tx_dc_offset.</li></ul></div><div style=3D"border-color:rgb(49,49=
+,49)"><font style=3D"border-color:rgb(7,55,99);color:rgb(7,55,99)"><br></fo=
+nt></div><div style=3D"font-size:1rem;border-color:rgb(49,49,49)" dir=3D"au=
+to">Do you have any recommendations for my overflow issues? Also, Is there =
+a way to lower the number of samples transmitted?=C2=A0</div><div style=3D"=
+font-size:1rem;border-color:rgb(49,49,49)" dir=3D"auto"><br></div><div styl=
+e=3D"font-size:1rem;border-color:rgb(49,49,49)" dir=3D"auto">Additionally, =
+I tried to run the UHD benchmark test in examples. However, I had issues co=
+nverting the cpp file to an executable. It failed for some reason. Do you h=
+ave any advice for this as well?=C2=A0</div></div></div></div><br class=3D"=
+Apple-interchange-newline" style=3D"color:rgb(0,0,0)"></div>-- <br><div dir=
+=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><font color=3D"#073763"><br></font></div>=
+<div dir=3D"ltr"><font color=3D"#073763">V/r</font><div><span style=3D"back=
+ground-color:rgb(255,255,255)"><font color=3D"#073763"><br></font></span></=
+div><div><span style=3D"background-color:rgb(255,255,255)"><font color=3D"#=
+073763">LoyCurtis Smith</font></span></div></div></div></div></div>
+
+--0000000000006dc58105d0f697a3--
+
+--===============0795664424216374097==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-
-On 2021-11-16 19:12, schneider wrote:
-> Hi,
->
-> I've experienced and issue while working with the internal GPSDO (TCXO
-> option) of an USRP B210: a call to `get_mboard_sensor("gps_locked", 0)`
-> can return `true` even if the (Jackson Labs) GPSDO is not properly
-> locked yet.
->
-> The reason seems to be that the "gps_locked" sensor is looking at a
-> field in the GPGGA sentence which can change from "0" to "1" before the
-> GPSDO is properly locked.
->
-> I've collected some debug traces, consisting of SERVO, GPGGA and GPRMC
-> sentences (as defined in `lib/usrp/gps_ctrl.cpp`). They are attached at
-> the end of this mail.
->
-> Index 6 of the GPGGA sentence is used by the "gps_locked" sensor.
->
-> Index 7 of the SERVO sentence actually indicates lock status of a
-> Jackson Labs GPSDO (as defined on page 40 of the user manual:
-> http://www.jackson-labs.com/assets/uploads/main/LC_XO_Manual.pdf). A
-> value of "6" indicates a proper lock.
->
-> It can be seen that index 6 of the GPGGA does not actually reflect the
-> GPSDO lock state in a meaningful way. The USRP was already running for
-> some time and the GPS module already knew where it was located. It
-> however did not have an accurate time yet (as indicated by the
-> 2006-01-01 date in the SERVO and GPRMC sentences). In an application
-> waiting for a lock this bogus time would then be used to set the next PPS.
->
-> Afterwards the SERVO sentence starts to change and after some time
-> arrives at a proper date with a proper lock.
->
->
-> I'm wondering how a good solution to his could look like. The SERVO
-> sentence is obviously specific to the Jackson Labs module. Other
-> (internal) GPSDOs might behave differently (they do exist...). Otherwise
-> I would have recommended to change the "gps_locked" sensor to use the
-> SERVO sentence instead of the GPGGA sentence.
->
-> Best
-> schneider
->
->
-> Logs:
->
-> 1637105473: Mi 17. Nov 00:31:13 CET 2021
-> SERVO: 06-01-01 0 45293 0.00 1.00E-08 10 5 1 0x38
-> GPGGA:
-> $GPGGA,002547.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,04,11.8,306.2,M,46.2,M,,*58
->              get_mboard_sensor("gps_locked", 0)---^
-> GPRMC: $GPRMC,002548.00,A,4808.8745,N,01134.7031,E,11.1,79.2,010106,,*3B
->
-> [....]
->
-> 1637105608: Mi 17. Nov 00:33:28 CET 2021
-> SERVO: 06-01-01 0 45293 0.00 1.00E-08 10 7 1 0x38
-> GPGGA:
-> $GPGGA,002801.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,548.2,M,46.3,M,,*65
->
-> 1637105609: Mi 17. Nov 00:33:29 CET 2021
-> SERVO: 06-01-01 1416 45293 0.00 1.00E-08 10 7 2 0x20
-> GPGGA:
-> $GPGGA,002802.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,548.1,M,46.3,M,,*68
->
-> 1637105610: Mi 17. Nov 00:33:30 CET 2021
-> SERVO: 21-11-16 1417 45293 0.00 2.00E-09 10 7 2 0x0
-> GPGGA:
-> $GPGGA,233330.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,547.8,M,46.3,M,,*6B
->
-> [.....]
->
-> 1637105640: Mi 17. Nov 00:34:00 CET 2021
-> SERVO: 21-11-16 1447 44718 -4.26 -1.42E-10 10 7 2 0x0
-> GPGGA:
-> $GPGGA,233400.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,557.6,M,46.3,M,,*65
->
-> 1637105641: Mi 17. Nov 00:34:01 CET 2021
-> SERVO: 21-11-16 1448 44667 -4.62 -1.49E-10 10 7 6 0x0
->          Jackson Labs GPSDO actually locked -----^
-> GPGGA:
-> $GPGGA,233401.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,558.2,M,46.3,M,,*68
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-Interesting, because the LC_XO module ALSO has a "lock_ok" pin, which is 
-what I *thought* the drivers were looking at.
-
-It could be the case that particular pin is ALSO not a reliable 
-indication of TIME lock, and they moved to using GPGGA instead.
+Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0795664424216374097==--
