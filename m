@@ -2,109 +2,124 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B414F453C87
-	for <lists+usrp-users@lfdr.de>; Wed, 17 Nov 2021 00:05:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB1F9453D0C
+	for <lists+usrp-users@lfdr.de>; Wed, 17 Nov 2021 01:15:10 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8F61D384137
-	for <lists+usrp-users@lfdr.de>; Tue, 16 Nov 2021 18:05:19 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="DQhjBvhJ";
-	dkim-atps=neutral
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 339F9383E71
-	for <usrp-users@lists.ettus.com>; Tue, 16 Nov 2021 18:04:31 -0500 (EST)
-Received: by mail-ot1-f51.google.com with SMTP id h12-20020a056830034c00b0055c8458126fso1256431ote.0
-        for <usrp-users@lists.ettus.com>; Tue, 16 Nov 2021 15:04:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=l6nubEr7MmKw/wU4oFzx76IT76rRghC1iGaDGV7u5gs=;
-        b=DQhjBvhJTlYQhKyxpRLfrUUPcvO+TBDp4qbit9GuOdvEqbMpoCrGf/55KP6Y7FR9l4
-         cdXRlxmEswWdU1teot384ePD3jyxc3OHVNNBviT4qyu12CULDrvdewQs2QoaU5iR/vWb
-         J86neVb6yj4vlXudbGGmNtsfrCS5yyoBxmjnOHZ3mBkad1OpSjGc0+/qW9OiNQ0CjsT4
-         oBjCNPIG31ShpKPHmXSDNwebQSsS69vzDdsVsngbonaP1JpifgmNRVKcIAvEraX11JLc
-         bY727xUvl9FXaW9aNDDDQAphfh7ghcnA5S4BDBXoF5Iin8bXFl5vnTCMqQd6ibT8DR6V
-         hrNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=l6nubEr7MmKw/wU4oFzx76IT76rRghC1iGaDGV7u5gs=;
-        b=log4awHhXEyuvaawZ2u0xvN33B3MbBFaBRCeWojSI4TmVoFULOxqifJ8jH7kMN+R26
-         NCBj0M8QPf+Df3AVyuJzjYajY3Xt3F8SBbeQSn+sxi2HajMmO55FSB1ngInNwl9QzlFH
-         hxRa0hhL+SIphLXmAQR/Raz9+jnWmVT1dgQEAhHc8Te/FRSk4UiCy7v9CB1+QqEVt/O5
-         XA34jOaFeeRZtpH8Nvwg3u/0F3g/yDzCMCgDv9RLYpnnG6LNO6nSwyaaL4uBGpZbjZQq
-         XwRD3md0Mtm+65WTb+WVRHAhuRQEaU24omSsYexs/u2fVZCmNG7QPEMnkpm7Jx0iFfmP
-         bi2Q==
-X-Gm-Message-State: AOAM532kaL0hIpycLEDx82vqPpkxZb9yOO+408gYvOr0eKymRmHTk3Z1
-	SKxhsXeIYLd21M8eTWgNor6kgy+ATzm4IWnfA3oJuZj855Y=
-X-Google-Smtp-Source: ABdhPJwdEZQfK1redhJeV03CEMl61LLOioTeMo88avUhOKpdAt5sMbpX6IdEmLw4qoc4t6IuJ5yQo19vC0SeKE8/uyA=
-X-Received: by 2002:a05:6830:138b:: with SMTP id d11mr9466898otq.235.1637103870084;
- Tue, 16 Nov 2021 15:04:30 -0800 (PST)
+	by mm2.emwd.com (Postfix) with ESMTP id 94F67384060
+	for <lists+usrp-users@lfdr.de>; Tue, 16 Nov 2021 19:15:09 -0500 (EST)
+Received: from mail.xtort.eu (mail.xtort.eu [176.9.105.145])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2A99B383F72
+	for <usrp-users@lists.ettus.com>; Tue, 16 Nov 2021 19:12:31 -0500 (EST)
+Received: from [192.168.1.66] (i6DFAE125.versanet.de [109.250.225.37])
+	by mail.xtort.eu (Postfix) with ESMTPSA id 27B43281000
+	for <usrp-users@lists.ettus.com>; Wed, 17 Nov 2021 01:12:30 +0100 (CET)
+To: usrp-users@lists.ettus.com
+From: schneider <schneider@muc.ccc.de>
+Message-ID: <e19102d3-9da5-bdcc-2f97-671ad786f166@muc.ccc.de>
+Date: Wed, 17 Nov 2021 01:12:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 16 Nov 2021 18:04:19 -0500
-Message-ID: <CAB__hTScPb2yKf9wUWBSSu6RiyKSwvrYXc-ZB-t7wK1fVdFaNQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: CBSWTYBYYOJIDVNCJFADZUHJGQC3MAU3
-X-Message-ID-Hash: CBSWTYBYYOJIDVNCJFADZUHJGQC3MAU3
-X-MailFrom: rkossler@nd.edu
+Content-Language: en-US
+Message-ID-Hash: 6ZOCFQSKLHSG2IH3ID7XPWVKHVHZXPBP
+X-Message-ID-Hash: 6ZOCFQSKLHSG2IH3ID7XPWVKHVHZXPBP
+X-MailFrom: schneider@muc.ccc.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] rfnoc_graph->synchronize_devices()
+Subject: [USRP-users] gps_locked sensor indicating internal GPSDO lock too early
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CBSWTYBYYOJIDVNCJFADZUHJGQC3MAU3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6ZOCFQSKLHSG2IH3ID7XPWVKHVHZXPBP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6418513547972245347=="
-
---===============6418513547972245347==
-Content-Type: multipart/alternative; boundary="000000000000a34a7d05d0eff273"
-
---000000000000a34a7d05d0eff273
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
 Hi,
-I recently stumbled across this synchonize_devices() function and I'm
-wondering if I need to be calling it.  I ran grep in the UHD source folder
-and there are no examples of calling this function.  I read the help but
-it's not clear to me how this function differs from calling
-set_time_next_pps() on all of the motherboards (such as is done in the
-lib/multi_usrp_rfnoc.cpp code).  My thought process is: if multi_usrp_rfnoc
-does not need to call synchonize_devices(), why would my custom application
-need to call it?  Any help would be appreciated.
 
-Thanks.
-Rob
+I've experienced and issue while working with the internal GPSDO (TCXO
+option) of an USRP B210: a call to `get_mboard_sensor("gps_locked", 0)`
+can return `true` even if the (Jackson Labs) GPSDO is not properly
+locked yet.
 
---000000000000a34a7d05d0eff273
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The reason seems to be that the "gps_locked" sensor is looking at a
+field in the GPGGA sentence which can change from "0" to "1" before the
+GPSDO is properly locked.
 
-<div dir=3D"ltr">Hi,<div>I recently stumbled across this synchonize_devices=
-() function and I&#39;m wondering if I need to be calling it.=C2=A0 I ran g=
-rep in the UHD source folder and there are no examples of calling this func=
-tion.=C2=A0 I read the help but it&#39;s not clear to me how this function =
-differs from calling set_time_next_pps() on all of the motherboards (such a=
-s is done in the lib/multi_usrp_rfnoc.cpp code).=C2=A0 My thought process i=
-s: if multi_usrp_rfnoc does not need to call synchonize_devices(), why woul=
-d my custom application need to call it?=C2=A0 Any help would be appreciate=
-d.<div><br></div><div>Thanks.</div><div>Rob</div></div></div>
+I've collected some debug traces, consisting of SERVO, GPGGA and GPRMC
+sentences (as defined in `lib/usrp/gps_ctrl.cpp`). They are attached at
+the end of this mail.
 
---000000000000a34a7d05d0eff273--
+Index 6 of the GPGGA sentence is used by the "gps_locked" sensor.
 
---===============6418513547972245347==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
+Index 7 of the SERVO sentence actually indicates lock status of a
+Jackson Labs GPSDO (as defined on page 40 of the user manual:
+http://www.jackson-labs.com/assets/uploads/main/LC_XO_Manual.pdf). A
+value of "6" indicates a proper lock.
 
+It can be seen that index 6 of the GPGGA does not actually reflect the
+GPSDO lock state in a meaningful way. The USRP was already running for
+some time and the GPS module already knew where it was located. It
+however did not have an accurate time yet (as indicated by the
+2006-01-01 date in the SERVO and GPRMC sentences). In an application
+waiting for a lock this bogus time would then be used to set the next PPS.
+
+Afterwards the SERVO sentence starts to change and after some time
+arrives at a proper date with a proper lock.
+
+
+I'm wondering how a good solution to his could look like. The SERVO
+sentence is obviously specific to the Jackson Labs module. Other
+(internal) GPSDOs might behave differently (they do exist...). Otherwise
+I would have recommended to change the "gps_locked" sensor to use the
+SERVO sentence instead of the GPGGA sentence.
+
+Best
+schneider
+
+
+Logs:
+
+1637105473: Mi 17. Nov 00:31:13 CET 2021
+SERVO: 06-01-01 0 45293 0.00 1.00E-08 10 5 1 0x38
+GPGGA:
+$GPGGA,002547.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,04,11.8,306.2,M,46.2,M,,*58
+            get_mboard_sensor("gps_locked", 0)---^
+GPRMC: $GPRMC,002548.00,A,4808.8745,N,01134.7031,E,11.1,79.2,010106,,*3B
+
+[....]
+
+1637105608: Mi 17. Nov 00:33:28 CET 2021
+SERVO: 06-01-01 0 45293 0.00 1.00E-08 10 7 1 0x38
+GPGGA:
+$GPGGA,002801.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,548.2,M,46.3,M,,*65
+
+1637105609: Mi 17. Nov 00:33:29 CET 2021
+SERVO: 06-01-01 1416 45293 0.00 1.00E-08 10 7 2 0x20
+GPGGA:
+$GPGGA,002802.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,548.1,M,46.3,M,,*68
+
+1637105610: Mi 17. Nov 00:33:30 CET 2021
+SERVO: 21-11-16 1417 45293 0.00 2.00E-09 10 7 2 0x0
+GPGGA:
+$GPGGA,233330.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,547.8,M,46.3,M,,*6B
+
+[.....]
+
+1637105640: Mi 17. Nov 00:34:00 CET 2021
+SERVO: 21-11-16 1447 44718 -4.26 -1.42E-10 10 7 2 0x0
+GPGGA:
+$GPGGA,233400.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,557.6,M,46.3,M,,*65
+
+1637105641: Mi 17. Nov 00:34:01 CET 2021
+SERVO: 21-11-16 1448 44667 -4.62 -1.49E-10 10 7 6 0x0
+        Jackson Labs GPSDO actually locked -----^
+GPGGA:
+$GPGGA,233401.00,XXXX.XXXX,N,XXXXX.XXXX,E,1,06,1.3,558.2,M,46.3,M,,*68
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6418513547972245347==--
