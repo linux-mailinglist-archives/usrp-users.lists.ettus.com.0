@@ -2,358 +2,292 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE580457425
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 17:54:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74089457556
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 18:20:36 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AD4B5383BAA
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 11:54:19 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id AF8E6384350
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 12:20:30 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gtri.gatech.edu header.i=@gtri.gatech.edu header.b="PdYC89Pd";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="690v2R+n";
 	dkim-atps=neutral
-Received: from unifiededge.gtri.gatech.edu (unifiededge.gtri.gatech.edu [130.207.205.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9B7DF3841EF
-	for <usrp-users@lists.ettus.com>; Fri, 19 Nov 2021 11:53:17 -0500 (EST)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=unifiededge;
-	c=simple/simple; t=1637340795; h=from:subject:to:date:message-id;
-	bh=JvA8U0LV/BDtYeulEf2YavpD0MTlfoH1JsCpSfaUlDQ=;
-	b=PdYC89PdldD1FoeYBnA+GV6MM3hmerwcco9O4WFI6ZWkzuKN8P9IC/TUFRYVXDvX33Oz8EKNFop
-	XSXmasdTufrob0ll0DCkqzfO6n/W+TRu/b7hWHkK6J4ZRxdUU0a6qHMT7ItqOA/d3OWjmRdOF7b32
-	wivVCy/n6SceCNt1+JZYGu4IzUJ7vT0W+zsj/WnrOdX4oH/Hs3NwaAJPWS3iLsU6rie1ojMLbicbu
-	vSbSC98tgu9sulqnSpGVJ4iRLAu93G5SCX1mvkG3J/wpaIR+WOOi1DFznUyNWQD3zt98PsrJwW0k5
-	A80hRlx1RDvrghZKARfATUHQJ1HpQZPHt4uA==
-Received: from jekyll.core.gtri.org (10.41.1.48) by exedge06.gtri.dmz
- (10.41.104.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.858.5; Fri, 19 Nov 2021
- 11:53:15 -0500
-Received: from tybee.core.gtri.org (2610:148:610:2901::49) by
- jekyll.core.gtri.org (2610:148:610:2901::48) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2375.12; Fri, 19 Nov 2021 11:53:14 -0500
-Received: from tybee.core.gtri.org ([fe80::bc87:62f3:89b0:fc9e]) by
- tybee.core.gtri.org ([fe80::bc87:62f3:89b0:fc9e%15]) with mapi id
- 15.01.2375.012; Fri, 19 Nov 2021 11:53:14 -0500
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Testbench Compile Error
-Thread-Index: AdfdYiRhXseSbK60Se6AD5JOiQz+7Q==
-Date: Fri, 19 Nov 2021 16:53:14 +0000
-Message-ID: <d078107dcf9a451fa06aabce9066ae81@gtri.gatech.edu>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.41.0.30]
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 99A36383EF1
+	for <usrp-users@lists.ettus.com>; Fri, 19 Nov 2021 12:19:41 -0500 (EST)
+Received: by mail-il1-f178.google.com with SMTP id l19so10972767ilk.0
+        for <usrp-users@lists.ettus.com>; Fri, 19 Nov 2021 09:19:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hZMfl4pSsePjIO0AYIoJtMYAch9nmorc05pjI0Ay+LY=;
+        b=690v2R+nhOuPIn8GsIsPPJ9iMFrTEVgPUvFWraJ10cNsQH/b+MSfNGJn315p2gTGRP
+         naz3LwxZr5Nn8O0GhxG0s6oRtKN5hpqANgnirkeH7Nr8UBxCJZmvHxQpfHX9PBPaFUDv
+         PKHdgGaBbMgttEajCbxxFDIsAeOOKxqnxtsx7eT3jDNdcSjx+zUiAAnIi0hinUfOFUit
+         NuDYcrLOzHCoydM0baDVxa6YOra3WghLdSaHGSylKSddaXC+4U27njRsjYk180DMepyV
+         09HJVSFSqGcUtZQMKVuass/70i/HoSxqt1GJM2WXZV80KMbZ4wz3tpRHFvEV9OUm5Kzy
+         c2zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hZMfl4pSsePjIO0AYIoJtMYAch9nmorc05pjI0Ay+LY=;
+        b=mWqUqE9/mtuEAnsX7sfqX7Q2Xl+dBftEQSRU2RcLL3kkm1gtXVRnc3Eo96m3VBsk9M
+         7KLdGD28uoj7hf+FdRYmM/e6KEwzmZAYvUm++xlJL9DKcPc/eJg2DEJd0e+IrhFl1MOF
+         HTcFfB3ExSBDKGSvIZAXFGilk6draebjgMJo1JiUaiixsuKhDs0m6veNjv1QYCfG/Jye
+         ookEGnHY7VcwGBL7xcKDPA08VN4X2n81b2X2IcxspbFiE1k9FL/OhzlKoGzWxYwNUqRE
+         x/cc1R83yM0tSHwEWyKnSZn4/9kMUrAFWEQKSbXyDeN0ZRanVeUrcdneh9aoLhHP2EZG
+         eucQ==
+X-Gm-Message-State: AOAM531oZovd3hAuh8D5l1CqPpT3U4pP4Ik325+JJm2YSOiCJOMu3DMr
+	GXuAQmNblrpt+tdp0KCefnPBFfgrTvUiVvMN6wGzEcO+
+X-Google-Smtp-Source: ABdhPJymFE/Rv7Tkq42LPp4dkdA2oGSlJLo3VBOF/3Q/7J79vfaTz7vsnULorK8GvwEvYqRVIRiSw9VrKeHzFn0MRVU=
+X-Received: by 2002:a05:6e02:1ba6:: with SMTP id n6mr6190002ili.254.1637342380896;
+ Fri, 19 Nov 2021 09:19:40 -0800 (PST)
 MIME-Version: 1.0
-Message-ID-Hash: HH6KZIEJQ5C6OYQCQJNEGKJUZQ533AUC
-X-Message-ID-Hash: HH6KZIEJQ5C6OYQCQJNEGKJUZQ533AUC
-X-MailFrom: Michael.Rich@gtri.gatech.edu
+References: <CAKhiL6XmU9VLYFAGOoGPTTUcw_T1AHC75PrpYu3vOpwmHi5N+A@mail.gmail.com>
+In-Reply-To: <CAKhiL6XmU9VLYFAGOoGPTTUcw_T1AHC75PrpYu3vOpwmHi5N+A@mail.gmail.com>
+From: Neel Pandeya <neel.pandeya@ettus.com>
+Date: Fri, 19 Nov 2021 11:19:04 -0600
+Message-ID: <CACaXmv_gG+Ah4dvEuXxYa5Fkx5fE=zmvOar87RRiv7snjHNmtA@mail.gmail.com>
+To: LoyCurtis Smith <ljsmith9@ncsu.edu>
+Message-ID-Hash: UUH4EKHY64ZBQK3BNLHQB734RJIUNM2I
+X-Message-ID-Hash: UUH4EKHY64ZBQK3BNLHQB734RJIUNM2I
+X-MailFrom: neel.pandeya@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Testbench Compile Error
+Subject: [USRP-users] Re: USRP x310 ERROR_CODE_OVERFLOW issue
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HH6KZIEJQ5C6OYQCQJNEGKJUZQ533AUC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UUH4EKHY64ZBQK3BNLHQB734RJIUNM2I/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Rich, Michael via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Rich, Michael" <Michael.Rich@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============8483281737791527072=="
+Content-Type: multipart/mixed; boundary="===============5872886817036788916=="
 
---===============8483281737791527072==
-Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_000C_01D7DD3C.083F4760"
+--===============5872886817036788916==
+Content-Type: multipart/alternative; boundary="000000000000fd488b05d1277a60"
 
-------=_NextPart_000_000C_01D7DD3C.083F4760
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_000D_01D7DD3C.083F4760"
+--000000000000fd488b05d1277a60
+Content-Type: text/plain; charset="UTF-8"
 
+Hello LoyCurtis Smith:
 
-------=_NextPart_001_000D_01D7DD3C.083F4760
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Thanks for the detailed information about your system configuration.
+Everything looks fine at initial glance, and I would expect this to work.
+I might say that the clock speed of your Dell Latitude E5570 i7-6820HQ CPU
+might be too low, I would generally recommend a clock speed of 3.5 GHz or
+higher, but it depends on what you're doing, what the sampling rate is, and
+what the network traffic is, etc.
 
-I'm trying to run the testbench for a new module I created (UHD4) and I'm
-getting the following error:
+What channel bandwidth are you using?
 
- 
+Could you please run the "benchmark_rate" utility on both the gNB and nrUE
+sides, using the same sampling rates that you're using for the gNB and
+nrUE, and let me know your results?  This utility will test your interface
+at the desired sampling rate and see if it can sustain the data streaming
+rate.
 
-INFO: [VRFC 10-2263] Analyzing Verilog file
-"/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v" into library
-xil_defaultlib
+./benchmark_rate --tx_rate 15.76e6 --rx_rate 15.76e6 --duration 600
 
-INFO: [VRFC 10-311] analyzing module gray2bin
-
-ERROR: [VRFC 10-1103] net type must be explicitly specified for 'gray' when
-default_nettype is none [/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]
-
-ERROR: [VRFC 10-3594] non-net port 'gray' cannot be of mode input
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]
-
-ERROR: [VRFC 10-845] illegal operand for operator ^
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:21]
-
-ERROR: [VRFC 10-2865] module 'gray2bin' ignored due to previous errors
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:10]
-
- 
-
-This file seems to compile without issue on my previous testbench, so I'm
-not sure what the difference would be here. If anyone has any insights into
-what could be going on I'd greatly appreciate it.
-
- 
-
-Thank you,
-
- 
-
-Michael H. Rich
-
-Electronic Systems Laboratory
-
-Georgia Tech Research InstituteR
-
-Phone: (404) 407-8358
-
-E-mail:  <mailto:michael.rich@gtri.gatech.edu> michael.rich@gtri.gatech.edu
-
- 
+--Neel Pandeya
 
 
-------=_NextPart_001_000D_01D7DD3C.083F4760
-Content-Type: text/html;
-	charset="us-ascii"
+
+On Wed, 17 Nov 2021 at 01:00, LoyCurtis Smith <ljsmith9@ncsu.edu> wrote:
+
+> Hi,
+>
+> I am attempting to use two USRP x310 to deploy a 5G SA networking using
+> the openairinterface5g open-source system. However, I am experiencing a
+> receive overflow error when attempting to deploy both an OAI-nrUE and
+> OAI-gNB.
+>
+>
+> The nrUE gives an *ERROR_CODE_OVERFLOW (Overflow) *warning before failing
+> and referencing a function in the OAI code.
+>
+>
+> My gNB runs irregularly, constantly showing the
+> *ERROR_CODE_OVERFLOW(Overflow) *message. In addition to multiple late or
+> "L" messages.
+>
+>
+> My system setting is as follows:
+>
+>    - *OAI-nrUE* - Latitude -E5570* (laptop)* - 16 GB RAM, i7-6820HQ with
+>    4 cores, 8 threads @ 2.70 GHz running Ubuntu 18.04 with 5.40-90 low latency
+>    kernel; 1-GigE connection to USRP x310 with CBX-120 daughterboard. UHD 3.15
+>    - *OAI-gNB* - Optiplex-7040* (desktop)** - *16 GB RAM, i7-6700 with 4
+>    cores, 8 threads @ 3.40 GHz- running Ubuntu 18.04 with 5.40-89 low latency
+>    kernel; 1-GigE connection to USRP x310 with CBX-120 daughterboard. UHD 4.1
+>
+>
+> I've made the following changes to both systems:
+>
+>    - Set the socket buffers (rmem_default, rmem_max, wmem_max,
+>    wmem_default) to 33554432
+>    - Set TX and RX ring buffers on the interface to max value of 4096.
+>    - Set scaling_governor to "performance" mode for each CPU.
+>    - Disabled C states.
+>    - Performed self-calibration on OAI-nrUE USRP x310 using
+>    uhd_cal_rx_iq_balance, uhd_cal_tx_iq_balance, and uhd_cal_tx_dc_offset.
+>
+>
+> Do you have any recommendations for my overflow issues? Also, Is there a
+> way to lower the number of samples transmitted?
+>
+> Additionally, I tried to run the UHD benchmark test in examples. However,
+> I had issues converting the cpp file to an executable. It failed for some
+> reason. Do you have any advice for this as well?
+>
+> --
+>
+> V/r
+>
+> LoyCurtis Smith
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000fd488b05d1277a60
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>I&#8217;m trying to run the testbench for a new module =
-I created (UHD4) and I&#8217;m getting the following =
-error:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal><span style=3D'font-family:"Courier New"'>INFO: [VRFC =
-10-2263] Analyzing Verilog file =
-&quot;/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v&quot; into library =
-xil_defaultlib<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-family:"Courier New"'>INFO: [VRFC 10-311] analyzing module =
-gray2bin<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-family:"Courier New"'>ERROR: [VRFC 10-1103] net type must =
-be explicitly specified for 'gray' when default_nettype is none =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]<o:p></o:p></span></p=
-><p class=3DMsoNormal><span style=3D'font-family:"Courier New"'>ERROR: =
-[VRFC 10-3594] non-net port 'gray' cannot be of mode input =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]<o:p></o:p></span></p=
-><p class=3DMsoNormal><span style=3D'font-family:"Courier New"'>ERROR: =
-[VRFC 10-845] illegal operand for operator ^ =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:21]<o:p></o:p></span></p=
-><p class=3DMsoNormal><span style=3D'font-family:"Courier New"'>ERROR: =
-[VRFC 10-2865] module 'gray2bin' ignored due to previous errors =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:10]<o:p></o:p></span></p=
-><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>This =
-file seems to compile without issue on my previous testbench, so =
-I&#8217;m not sure what the difference would be here. If anyone has any =
-insights into what could be going on I&#8217;d greatly appreciate =
-it.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal>Thank you,<o:p></o:p></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:12.0pt;color:black'><o:p>&nbsp;</o:p></span></b></p><p=
- class=3DMsoNormal><b><span =
-style=3D'font-size:12.0pt;color:black'>Michael H. Rich</span></b><span =
-style=3D'color:#1F497D'><o:p></o:p></span></p><p =
-class=3DMsoNormal><i><span =
-style=3D'font-size:10.0pt;color:black'>Electronic Systems =
-Laboratory</span></i><span =
-style=3D'color:#1F497D'><o:p></o:p></span></p><p =
-class=3DMsoNormal><b><i><span =
-style=3D'font-size:10.0pt;color:black'>Georgia Tech Research =
-Institute&reg;</span></i></b><span =
-style=3D'color:#1F497D'><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;color:black'>Phone: (404) 407-8358</span><span =
-style=3D'color:#1F497D'><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;color:black'>E-mail:</span><span =
-style=3D'font-size:10.0pt;color:#1F497D'> <a =
-href=3D"mailto:michael.rich@gtri.gatech.edu"><span =
-style=3D'color:blue'>michael.rich@gtri.gatech.edu</span></a></span><span =
-style=3D'color:#1F497D'><o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_001_000D_01D7DD3C.083F4760--
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><=
+font face=3D"verdana, sans-serif">Hello=C2=A0LoyCurtis Smith:</font></div><=
+div class=3D"gmail_default" style=3D""><font face=3D"verdana, sans-serif"><=
+br></font></div><div class=3D"gmail_default" style=3D""><font face=3D"verda=
+na, sans-serif">Thanks for the detailed information about=C2=A0your system =
+configuration.=C2=A0 Everything looks fine at=C2=A0initial glance, and I wo=
+uld expect this to work.=C2=A0 I might say that the clock speed of your=C2=
+=A0Dell Latitude E5570 i7-6820HQ CPU might be too low, I would generally=C2=
+=A0recommend a clock speed of 3.5 GHz or higher, but it depends=C2=A0on wha=
+t you&#39;re doing, what the sampling rate is, and what the network traffic=
+ is, etc.</font></div><div class=3D"gmail_default" style=3D""><font face=3D=
+"verdana, sans-serif"><br></font></div><div class=3D"gmail_default" style=
+=3D""><span style=3D"font-family:verdana,sans-serif">What channel bandwidth=
+ are you using?</span><br></div><div class=3D"gmail_default" style=3D""><fo=
+nt face=3D"verdana, sans-serif"><br></font></div><div class=3D"gmail_defaul=
+t" style=3D""><font face=3D"verdana, sans-serif">Could you please run the &=
+quot;benchmark_rate&quot; utility on both the gNB and nrUE sides, using the=
+ same sampling rates that you&#39;re using for the gNB and nrUE, and let me=
+ know your results?=C2=A0 This utility will test your interface at the desi=
+red sampling rate and see if it can sustain the data streaming rate.</font>=
+</div><div class=3D"gmail_default" style=3D""><font face=3D"verdana, sans-s=
+erif"><br></font></div><div class=3D"gmail_default" style=3D""><font face=
+=3D"monospace">./benchmark_rate --tx_rate 15.76e6 --rx_rate 15.76e6 --durat=
+ion 600</font><font face=3D"verdana, sans-serif"><br></font></div><div clas=
+s=3D"gmail_default" style=3D""><font face=3D"verdana, sans-serif"><br></fon=
+t></div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"g=
+mail_signature"><div dir=3D"ltr"><font face=3D"verdana, sans-serif">--Neel =
+Pandeya</font></div><div dir=3D"ltr"><font face=3D"verdana, sans-serif"><br=
+></font></div><div dir=3D"ltr"><font face=3D"verdana, sans-serif"><br></fon=
+t></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Wed, 17 Nov 2021 at 01:00, LoyCurtis Smith &lt;<a hr=
+ef=3D"mailto:ljsmith9@ncsu.edu">ljsmith9@ncsu.edu</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Hi,=C2=
+=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div style=3D"border=
+-color:rgb(49,49,49);color:rgb(49,49,49)"><p style=3D"margin-top:0pt;margin=
+-bottom:0pt;border-color:rgb(14,16,26);color:rgb(14,16,26)" dir=3D"auto"><s=
+pan style=3D"font-size:1rem;border-color:rgb(14,16,26)">I am attempting to =
+use two USRP x310 to deploy a 5G SA networking using the openairinterface5g=
+ open-source system. However, I am experiencing a receive overflow error wh=
+en attempting to deploy both an OAI-nrUE and OAI-gNB.=C2=A0</span><br></p><=
+p style=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);colo=
+r:rgb(14,16,26)"><br></p><p style=3D"margin-top:0pt;margin-bottom:0pt;borde=
+r-color:rgb(14,16,26);color:rgb(14,16,26)" dir=3D"auto"><span style=3D"marg=
+in-top:0pt;margin-bottom:0pt;font-size:1rem;border-color:rgb(14,16,26)">The=
+ nrUE gives an=C2=A0<b style=3D"font-size:1rem;border-color:rgb(14,16,26)">=
+ERROR_CODE_OVERFLOW (Overflow)=C2=A0</b>warning before failing and referenc=
+ing a function in the OAI code.</span></p><p style=3D"margin-top:0pt;margin=
+-bottom:0pt;border-color:rgb(14,16,26);color:rgb(14,16,26)"><br></p><p styl=
+e=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);color:rgb(=
+14,16,26)" dir=3D"auto"><span style=3D"margin-top:0pt;margin-bottom:0pt;fon=
+t-size:1rem;border-color:rgb(14,16,26)">My gNB runs irregularly, constantly=
+ showing the=C2=A0<b style=3D"font-size:1rem;border-color:rgb(14,16,26)">ER=
+ROR_CODE_OVERFLOW(Overflow)=C2=A0</b>message. In addition to multiple late =
+or &quot;L&quot; messages.</span></p><p style=3D"margin-top:0pt;margin-bott=
+om:0pt;border-color:rgb(14,16,26);color:rgb(14,16,26)"><br></p><p style=3D"=
+margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);color:rgb(14,16=
+,26)"><span style=3D"margin-top:0pt;margin-bottom:0pt;font-size:1rem;border=
+-color:rgb(14,16,26)">My system setting is as follows:=C2=A0</span></p><ul =
+style=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);color:=
+rgb(14,16,26)" dir=3D"auto"><li style=3D"margin-top:0pt;margin-bottom:0pt;l=
+ist-style-type:disc;border-color:rgb(14,16,26)"><strong style=3D"margin-top=
+:0pt;margin-bottom:0pt;border-color:rgb(14,16,26)">OAI-nrUE</strong><span s=
+tyle=3D"margin-top:0pt;margin-bottom:0pt;font-size:1rem;border-color:rgb(14=
+,16,26)">=C2=A0- <span class=3D"gmail_default" style=3D"font-family:verdana=
+,sans-serif"></span>Latitude -E5570</span><strong style=3D"margin-top:0pt;m=
+argin-bottom:0pt;border-color:rgb(14,16,26)"><em style=3D"margin-top:0pt;ma=
+rgin-bottom:0pt;border-color:rgb(14,16,26)"><u style=3D"margin-top:0pt;marg=
+in-bottom:0pt;border-color:rgb(14,16,26)"><span style=3D"margin-top:0pt;mar=
+gin-bottom:0pt;font-size:1rem;border-color:rgb(14,16,26)">=C2=A0(laptop)</s=
+pan></u></em></strong><span style=3D"margin-top:0pt;margin-bottom:0pt;font-=
+size:1rem;border-color:rgb(14,16,26)">=C2=A0- 16 GB RAM, <span class=3D"gma=
+il_default" style=3D"font-family:verdana,sans-serif"></span>i7-6820HQ with =
+4 cores, 8 threads @ 2.70 GHz running Ubuntu 18.04 with 5.40-90 low latency=
+ kernel; 1-GigE connection to USRP x310 with CBX-120 daughterboard. UHD 3.1=
+5</span></li><li style=3D"margin-top:0pt;margin-bottom:0pt;list-style-type:=
+disc;border-color:rgb(14,16,26)"><strong style=3D"margin-top:0pt;margin-bot=
+tom:0pt;border-color:rgb(14,16,26)">OAI-gNB</strong><span style=3D"margin-t=
+op:0pt;margin-bottom:0pt;font-size:1rem;border-color:rgb(14,16,26)">=C2=A0-=
+ Optiplex-7040</span><strong style=3D"margin-top:0pt;margin-bottom:0pt;bord=
+er-color:rgb(14,16,26)"><em style=3D"margin-top:0pt;margin-bottom:0pt;borde=
+r-color:rgb(14,16,26)"><u style=3D"margin-top:0pt;margin-bottom:0pt;border-=
+color:rgb(14,16,26)"><span style=3D"margin-top:0pt;margin-bottom:0pt;font-s=
+ize:1rem;border-color:rgb(14,16,26)">=C2=A0(desktop)</span></u></em></stron=
+g><em style=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26)"=
+>=C2=A0-=C2=A0</em><span style=3D"margin-top:0pt;margin-bottom:0pt;font-siz=
+e:1rem;border-color:rgb(14,16,26)">16 GB RAM, i7-6700 with 4 cores, 8 threa=
+ds @ 3.40 GHz- running Ubuntu 18.04 with 5.40-89 low latency kernel; 1-GigE=
+ connection to USRP x310 with CBX-120 daughterboard. UHD 4.1</span></li></u=
+l><p style=3D"margin-top:0pt;margin-bottom:0pt;border-color:rgb(14,16,26);c=
+olor:rgb(14,16,26)"></p></div><div style=3D"border-color:rgb(49,49,49);colo=
+r:rgb(49,49,49)"><div dir=3D"ltr" style=3D"word-spacing:1px;border-color:rg=
+b(49,49,49)"><div dir=3D"ltr" style=3D"border-color:rgb(49,49,49)"><div dir=
+=3D"ltr" style=3D"border-color:rgb(49,49,49)"><br></div><div style=3D"font-=
+size:1rem;border-color:rgb(49,49,49)">I&#39;ve made the following changes t=
+o both systems:=C2=A0</div><div style=3D"border-color:rgb(49,49,49)"><ul st=
+yle=3D"border-color:rgb(49,49,49)" dir=3D"auto"><li style=3D"font-size:1rem=
+;border-color:rgb(49,49,49)">Set the socket buffers (rmem_default, rmem_max=
+,=C2=A0wmem_max, wmem_default) to 33554432</li><li style=3D"font-size:1rem;=
+border-color:rgb(49,49,49)">Set TX and RX ring buffers on the interface to =
+max value of 4096.</li><li style=3D"font-size:1rem;border-color:rgb(49,49,4=
+9)">Set=C2=A0scaling_governor to &quot;performance&quot; mode for each CPU.=
+</li><li style=3D"font-size:1rem;border-color:rgb(49,49,49)">Disabled C sta=
+tes.</li><li style=3D"font-size:1rem;border-color:rgb(49,49,49)">Performed =
+self-calibration on OAI-nrUE USRP x310 using uhd_cal_rx_iq_balance, uhd_cal=
+_tx_iq_balance, and uhd_cal_tx_dc_offset.</li></ul></div><div style=3D"bord=
+er-color:rgb(49,49,49)"><font style=3D"border-color:rgb(7,55,99);color:rgb(=
+7,55,99)"><br></font></div><div style=3D"font-size:1rem;border-color:rgb(49=
+,49,49)" dir=3D"auto">Do you have any recommendations for my overflow issue=
+s? Also, Is there a way to lower the number of samples transmitted?=C2=A0</=
+div><div style=3D"font-size:1rem;border-color:rgb(49,49,49)" dir=3D"auto"><=
+br></div><div style=3D"font-size:1rem;border-color:rgb(49,49,49)" dir=3D"au=
+to">Additionally, I tried to run the UHD benchmark test in examples. Howeve=
+r, I had issues converting the cpp file to an executable. It failed for som=
+e reason. Do you have any advice for this as well?=C2=A0</div></div></div><=
+/div><br style=3D"color:rgb(0,0,0)"></div>-- <br><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><font color=3D"#073763"><br></font></div><di=
+v dir=3D"ltr"><font color=3D"#073763">V/r</font><div><span style=3D"backgro=
+und-color:rgb(255,255,255)"><font color=3D"#073763"><br></font></span></div=
+><div><span style=3D"background-color:rgb(255,255,255)"><font color=3D"#073=
+763">LoyCurtis Smith</font></span></div></div></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
 
-------=_NextPart_000_000C_01D7DD3C.083F4760
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+--000000000000fd488b05d1277a60--
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIVtzCCBDIw
-ggMaoAMCAQICAQEwDQYJKoZIhvcNAQEFBQAwezELMAkGA1UEBhMCR0IxGzAZBgNVBAgMEkdyZWF0
-ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBwwHU2FsZm9yZDEaMBgGA1UECgwRQ29tb2RvIENBIExpbWl0
-ZWQxITAfBgNVBAMMGEFBQSBDZXJ0aWZpY2F0ZSBTZXJ2aWNlczAeFw0wNDAxMDEwMDAwMDBaFw0y
-ODEyMzEyMzU5NTlaMHsxCzAJBgNVBAYTAkdCMRswGQYDVQQIDBJHcmVhdGVyIE1hbmNoZXN0ZXIx
-EDAOBgNVBAcMB1NhbGZvcmQxGjAYBgNVBAoMEUNvbW9kbyBDQSBMaW1pdGVkMSEwHwYDVQQDDBhB
-QUEgQ2VydGlmaWNhdGUgU2VydmljZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC+
-QJ30buHqdoccTUVEjr5GyIMGncEq/hgfjuQC+vOrXVCKFjELmgbQxXAizUktVGPMtm5oRgtT6stM
-JMC8ck7q8RWu9FSaEgrDerIzYOLaiVXzIljz3tzP74OGooyUT59o8piQRoQnx3a/48w1LIteB2Rl
-gsBIsKiR+WGfdiBQqJHHZrXreGIDVvCKGhPqMaMeoJn9OPb2JzJYbwf1a7j7FCuvt6rM1mNfc4za
-BZmoOKjLF3g2UazpnvR4Oo3PD9lC4pgMqy+fDgHe75+ZSfEt36x0TRuYtUfF5SnR+ZAYx2KcvoPH
-Jns+iiXHwN2d5jVoECCdj9je0sOEnA1e6C/JAgMBAAGjgcAwgb0wHQYDVR0OBBYEFKARCiM+lvEH
-7OKvKe+CpX/QMKS0MA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MHsGA1UdHwR0MHIw
-OKA2oDSGMmh0dHA6Ly9jcmwuY29tb2RvY2EuY29tL0FBQUNlcnRpZmljYXRlU2VydmljZXMuY3Js
-MDagNKAyhjBodHRwOi8vY3JsLmNvbW9kby5uZXQvQUFBQ2VydGlmaWNhdGVTZXJ2aWNlcy5jcmww
-DQYJKoZIhvcNAQEFBQADggEBAAhW/ALwm+j/pPrWe8ZEgM5PxMX2AFjMpra8FEloBHbo5u5d7AIP
-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
-MDMxNzAwMDAwMFoXDTIzMDMxNzIzNTk1OVowgd8xDjAMBgNVBBETBTMwMzMyMRMwEQYDVQQLEwpH
-VFJJLUVMU1lTMSgwJgYDVQQKEx9HZW9yZ2lhIEluc3RpdHV0ZSBvZiBUZWNobm9sb2d5MRkwFwYD
-VQQJExAyMjUgTk9SVEggQVZFIE5XMRAwDgYDVQQIEwdHZW9yZ2lhMRAwDgYDVQQHEwdBdGxhbnRh
-MQswCQYDVQQGEwJVUzEVMBMGA1UEAxMMTWljaGFlbCBSaWNoMSswKQYJKoZIhvcNAQkBFhxtaWNo
-YWVsLnJpY2hAZ3RyaS5nYXRlY2guZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
-24fvyXxky1Bj+3LTRunyP4Qx7xk3OtkgVLXktky9UAvurKAdtF+kgdgS7BqEZK2yG+Y3nQHSods+
-g8EDrgnyCmIuYVwlrH/H36Pg9Ca601ZYpBVbJ+vonDNhmRWWH+w5pbuhQ8IrtTxVKkR1Q7iZu9+T
-CEtjZ/Q8a0NKt8xpDNqF+ey73OSl5cIgkhVjobDTF0hzx8y3eLZfoZ7Vg8gRNpK1WLG9dWRi4NVS
-qD5wDW7IxS/vvvYdGh406ZiezNsOuZjCnpTU5lrXeHvrXPjLrs74kaNIfyQzs/b4pckcFEhJXJkx
-gh1LSCAvIMHA57dg1BfyR7hB/1b4nOUpAWFHKQIDAQABo4IB+jCCAfYwHwYDVR0jBBgwFoAUfe5x
-0B/rqWFtj2aErQ8rB+Ix27wwHQYDVR0OBBYEFAQKpoUYI6FNQQLbi8DZCQshCN24MA4GA1UdDwEB
-/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMEBggrBgEFBQcDAjBqBgNV
-HSAEYzBhMF8GDSsGAQQBriMBBAMDAAEwTjBMBggrBgEFBQcCARZAaHR0cHM6Ly93d3cuaW5jb21t
-b24ub3JnL2NlcnQvcmVwb3NpdG9yeS9jcHNfc3RhbmRhcmRfY2xpZW50LnBkZjBVBgNVHR8ETjBM
-MEqgSKBGhkRodHRwOi8vY3JsLmluY29tbW9uLXJzYS5vcmcvSW5Db21tb25SU0FTdGFuZGFyZEFz
-c3VyYW5jZUNsaWVudENBLmNybDCBigYIKwYBBQUHAQEEfjB8MFAGCCsGAQUFBzAChkRodHRwOi8v
-Y3J0LmluY29tbW9uLXJzYS5vcmcvSW5Db21tb25SU0FTdGFuZGFyZEFzc3VyYW5jZUNsaWVudENB
-LmNydDAoBggrBgEFBQcwAYYcaHR0cDovL29jc3AuaW5jb21tb24tcnNhLm9yZzAnBgNVHREEIDAe
-gRxtaWNoYWVsLnJpY2hAZ3RyaS5nYXRlY2guZWR1MA0GCSqGSIb3DQEBCwUAA4IBAQAOQx1GHPoX
-3sz6J9o9zk1NjXH7ZclwC/PQawXElV3vDGSryCnNsNqQJNMnG7OOzjq/u9PnGdDpmVI8mFjci6jr
-YR8yTgd3aTiG230emq+lbmYmGhibxQZGRN725JFt9veX62fp3esnMoIqKbAz+LxnUtWc42uJeCoF
-C0+d+Jmo+VIrVSO3vJJLGimOPh+iHrLpyV2bqj0AorSi2Mfb4c3G4oiAGykF38pZtsW9cwoo+ZE+
-IsCBiMn7JCXIEFtpmYUpPCeECgAVOOQvB7B3maSa+Qu0BRQZ78sRXluHAEoh6PhsMgqNuwEVNvp3
-BQx7uNz8j+30hpKBMV0X26FUKefDMIIGAzCCA+ugAwIBAgIQP7008rpS/A7TClejgeG+ZDANBgkq
-hkiG9w0BAQ0FADCBiDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcT
-C0plcnNleSBDaXR5MR4wHAYDVQQKExVUaGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNVBAMTJVVT
-RVJUcnVzdCBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTQwOTE5MDAwMDAwWhcNMjQw
-OTE4MjM1OTU5WjCBiTELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAk1JMRIwEAYDVQQHEwlBbm4gQXJi
-b3IxEjAQBgNVBAoTCUludGVybmV0MjERMA8GA1UECxMISW5Db21tb24xMjAwBgNVBAMTKUluQ29t
-bW9uIFJTQSBTdGFuZGFyZCBBc3N1cmFuY2UgQ2xpZW50IENBMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEAgP7KW3d3xh/sgvvnWYpVrcDqnrEH6CYrNgmi8S9MOllAnKuc8kApQCWScil4
-j5sGahB8t2QH/xj8UNuoGCDG5xEZxgFoRz/ZkuzdNJK4ZJ8b9dIm2XPUTKbgIwluPp38+oLV5P6k
-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
-HvDTuW3YNQEAAAAAAAA=
-
-------=_NextPart_000_000C_01D7DD3C.083F4760--
-
---===============8483281737791527072==
+--===============5872886817036788916==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -363,4 +297,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8483281737791527072==--
+--===============5872886817036788916==--
