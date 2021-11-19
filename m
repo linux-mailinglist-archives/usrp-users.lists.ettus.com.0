@@ -2,766 +2,358 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF7B457178
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 16:14:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE580457425
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 17:54:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4EB453843D4
-	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 10:14:14 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id AD4B5383BAA
+	for <lists+usrp-users@lfdr.de>; Fri, 19 Nov 2021 11:54:19 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="WjORZSL8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gtri.gatech.edu header.i=@gtri.gatech.edu header.b="PdYC89Pd";
 	dkim-atps=neutral
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id D9F06383C9C
-	for <usrp-users@lists.ettus.com>; Fri, 19 Nov 2021 10:13:26 -0500 (EST)
-Received: by mail-ed1-f41.google.com with SMTP id r25so7121707edq.7
-        for <usrp-users@lists.ettus.com>; Fri, 19 Nov 2021 07:13:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3i7X8Qp9iQpywFhhxtIBFYOKzWKfBXGkoGcE+AjRdo8=;
-        b=WjORZSL8I8vFZR31jzjgCVmOrrlULjtAmiwX+HJGXmBOcO1BY7EQA4vPAbZzpeluZH
-         hGyuB4y6jQdAtGqhAs/M5Ot7CCSkngZS3vgElYzGYyqNkm30TU4qljREInlofJNgr/Pw
-         JcEm2PQ+H2uqMr7cMhl5NeRMa10o3Lq35ncVIqrPLiu0CpevG2Nf1aGeXBXmqKdHh51F
-         x8RDGcrjLqLqNILTzsi82t7W4ZjscuRTzbaXmEqapKJbNi7B7+OW9enSWV60zFiCKNRL
-         zSqbNmZ67FQWYh4tCrYBStlM+Sm+LDiozoSktDEnff10gAMehp6OCVFQZMIm/KQJ9nxX
-         OGFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3i7X8Qp9iQpywFhhxtIBFYOKzWKfBXGkoGcE+AjRdo8=;
-        b=GcqRWCemBzoq1jcLkpfJT9deS4meBWbvTxvFfo+Eom5yJXCrr1TuZ9DQh/ZHW+MIRy
-         /zeqTxO98dgbjvk7b9WLsW9pebEf1BtJTNQMOhddqLJj/dHe9cpJczncamvWYBLVIvOn
-         zkmKKPj/3yuG0EdWN89rtgXvhOB47x2xvN9H5sk0dQ93I49bnJ9cXYPClh3JpD240ue0
-         w0wnq8VY+ygaJWPlR9BzB79bKz6NDAQ7fQE8o7iA2jPz4Z+z0X5rGcLpiBksJNX7RnRe
-         0xJkJfsc/3DFsAE4A/iXAL2/THBt0JvyWnhhjTaEGMM6uetaNcqxvEuBPItU7rVg0SNd
-         3JNA==
-X-Gm-Message-State: AOAM532H0yAtLEigROmFeL7fN3Q4TDiwQgiX7Dp3Ba5XqDH+8LmHi9g3
-	6CHotRcE2eYtw5ytST2RSYWgZ925M0D8JU0BabN9SX5r
-X-Google-Smtp-Source: ABdhPJwabMK5c4LgYEskoZTcT3HueX2nbozSY3sitRfoBtBI0ZTnVsVTwbq+9uO0ynlmhVmNTb+rnRovIONQU9bxlkQ=
-X-Received: by 2002:a05:6402:653:: with SMTP id u19mr24746237edx.106.1637334805700;
- Fri, 19 Nov 2021 07:13:25 -0800 (PST)
+Received: from unifiededge.gtri.gatech.edu (unifiededge.gtri.gatech.edu [130.207.205.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9B7DF3841EF
+	for <usrp-users@lists.ettus.com>; Fri, 19 Nov 2021 11:53:17 -0500 (EST)
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=unifiededge;
+	c=simple/simple; t=1637340795; h=from:subject:to:date:message-id;
+	bh=JvA8U0LV/BDtYeulEf2YavpD0MTlfoH1JsCpSfaUlDQ=;
+	b=PdYC89PdldD1FoeYBnA+GV6MM3hmerwcco9O4WFI6ZWkzuKN8P9IC/TUFRYVXDvX33Oz8EKNFop
+	XSXmasdTufrob0ll0DCkqzfO6n/W+TRu/b7hWHkK6J4ZRxdUU0a6qHMT7ItqOA/d3OWjmRdOF7b32
+	wivVCy/n6SceCNt1+JZYGu4IzUJ7vT0W+zsj/WnrOdX4oH/Hs3NwaAJPWS3iLsU6rie1ojMLbicbu
+	vSbSC98tgu9sulqnSpGVJ4iRLAu93G5SCX1mvkG3J/wpaIR+WOOi1DFznUyNWQD3zt98PsrJwW0k5
+	A80hRlx1RDvrghZKARfATUHQJ1HpQZPHt4uA==
+Received: from jekyll.core.gtri.org (10.41.1.48) by exedge06.gtri.dmz
+ (10.41.104.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.858.5; Fri, 19 Nov 2021
+ 11:53:15 -0500
+Received: from tybee.core.gtri.org (2610:148:610:2901::49) by
+ jekyll.core.gtri.org (2610:148:610:2901::48) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2375.12; Fri, 19 Nov 2021 11:53:14 -0500
+Received: from tybee.core.gtri.org ([fe80::bc87:62f3:89b0:fc9e]) by
+ tybee.core.gtri.org ([fe80::bc87:62f3:89b0:fc9e%15]) with mapi id
+ 15.01.2375.012; Fri, 19 Nov 2021 11:53:14 -0500
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Testbench Compile Error
+Thread-Index: AdfdYiRhXseSbK60Se6AD5JOiQz+7Q==
+Date: Fri, 19 Nov 2021 16:53:14 +0000
+Message-ID: <d078107dcf9a451fa06aabce9066ae81@gtri.gatech.edu>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.41.0.30]
 MIME-Version: 1.0
-References: <d636bd419e2548878b27baeacbca4b39@gmv.com> <6cc298a5-c5c6-27e4-f5d6-b23a2975e372@gmail.com>
- <CAB__hTQY491Q0xiYWY75hTpbEV3u744uYMr9EK3xk-R-Lzy+RQ@mail.gmail.com>
- <1e81a40f9ccc4a15be101a63c926b8f7@gmv.com> <836ea247-5c8d-c5cd-86d9-78372ef7f99e@gmail.com>
- <CAB__hTTPKrcry6NmiP8sLuH1TGsu1tq3q=3Rh+DE1mBXmw3zRw@mail.gmail.com>
- <fd555cbc7d2c4498bd1fa48ee720af7d@gmv.com> <f2e476e2-20c7-5f0d-18ff-fb14ba86d223@gmail.com>
- <7ac64ef957f2477ea403b0b03739ce8c@gmv.com> <a925d2f2-aa2b-4e2a-318c-248c2c101178@gmail.com>
- <053b1b73b720470b846a73d8f79c5f72@gmv.com> <CAB__hTQGyfjs=1r3cffcfac8=TN-DTRqTUL2WD8KQXXx062FGw@mail.gmail.com>
- <CAA7+tqSZ2KtkP1Kmu=a2Q4Rvk=hbdqJaeAEA_dYz2p1xG0bUVg@mail.gmail.com>
-In-Reply-To: <CAA7+tqSZ2KtkP1Kmu=a2Q4Rvk=hbdqJaeAEA_dYz2p1xG0bUVg@mail.gmail.com>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Fri, 19 Nov 2021 10:13:14 -0500
-Message-ID: <CAGNhwTP07=GSHcfkgczAActtxLqjQe66g9c_YAJoiQ+anio5Rg@mail.gmail.com>
-To: Berkay SAYGILI <zuhasdasn@gmail.com>
-Message-ID-Hash: YFRBCNRTDRDVFLV3EJSVW34GDIF24XJP
-X-Message-ID-Hash: YFRBCNRTDRDVFLV3EJSVW34GDIF24XJP
-X-MailFrom: michael.dickens@ettus.com
+Message-ID-Hash: HH6KZIEJQ5C6OYQCQJNEGKJUZQ533AUC
+X-Message-ID-Hash: HH6KZIEJQ5C6OYQCQJNEGKJUZQ533AUC
+X-MailFrom: Michael.Rich@gtri.gatech.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Rob Kossler <rkossler@nd.edu>, Guillermo Ortas Delgado <g.ortas@gmv.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: DPDK drops samples at low rates
+Subject: [USRP-users] Testbench Compile Error
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YFRBCNRTDRDVFLV3EJSVW34GDIF24XJP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HH6KZIEJQ5C6OYQCQJNEGKJUZQ533AUC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4464453340908185000=="
+From: "Rich, Michael via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Rich, Michael" <Michael.Rich@gtri.gatech.edu>
+Content-Type: multipart/mixed; boundary="===============8483281737791527072=="
 
---===============4464453340908185000==
-Content-Type: multipart/alternative; boundary="00000000000078f26f05d125b7d8"
+--===============8483281737791527072==
+Content-Language: en-US
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+	micalg=SHA1; boundary="----=_NextPart_000_000C_01D7DD3C.083F4760"
 
---00000000000078f26f05d125b7d8
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_000C_01D7DD3C.083F4760
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_001_000D_01D7DD3C.083F4760"
+
+
+------=_NextPart_001_000D_01D7DD3C.083F4760
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+I'm trying to run the testbench for a new module I created (UHD4) and I'm
+getting the following error:
+
+ 
+
+INFO: [VRFC 10-2263] Analyzing Verilog file
+"/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v" into library
+xil_defaultlib
+
+INFO: [VRFC 10-311] analyzing module gray2bin
+
+ERROR: [VRFC 10-1103] net type must be explicitly specified for 'gray' when
+default_nettype is none [/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]
+
+ERROR: [VRFC 10-3594] non-net port 'gray' cannot be of mode input
+[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]
+
+ERROR: [VRFC 10-845] illegal operand for operator ^
+[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:21]
+
+ERROR: [VRFC 10-2865] module 'gray2bin' ignored due to previous errors
+[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:10]
+
+ 
+
+This file seems to compile without issue on my previous testbench, so I'm
+not sure what the difference would be here. If anyone has any insights into
+what could be going on I'd greatly appreciate it.
+
+ 
+
+Thank you,
+
+ 
+
+Michael H. Rich
+
+Electronic Systems Laboratory
+
+Georgia Tech Research InstituteR
+
+Phone: (404) 407-8358
+
+E-mail:  <mailto:michael.rich@gtri.gatech.edu> michael.rich@gtri.gatech.edu
+
+ 
+
+
+------=_NextPart_001_000D_01D7DD3C.083F4760
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-It is worth trying a Mellanox 10 GbE NIC. In our recent internal testing
-with UHD + DPDK + N320/N321, we saw similar issues as Berkay notes, and
-eventually tracked the issue to the Intel driver. We approached Intel and
-while they acknowledged the probable issue, since they have moved
-development work to the 800-series NICs, they declined to fix the issue in
-their 500/700 series NIC driver. We switched to a Mellanox NIC and that
-resolved the issues. Please note that UHD currently supports DPDK 18.11
-(exact version), which does not have support for Intel 800-series NICs --
-the oldest DPDK for that support is 19.04, and 19.11 is recommended as the
-minimum version. We are actively working on updating DPDK support to 19.11
-/ 20.11 / 21.11 -- looks like the same API, which is different from that
-for 18.11. - MLD
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>I&#8217;m trying to run the testbench for a new module =
+I created (UHD4) and I&#8217;m getting the following =
+error:<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><span style=3D'font-family:"Courier New"'>INFO: [VRFC =
+10-2263] Analyzing Verilog file =
+&quot;/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v&quot; into library =
+xil_defaultlib<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Courier New"'>INFO: [VRFC 10-311] analyzing module =
+gray2bin<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Courier New"'>ERROR: [VRFC 10-1103] net type must =
+be explicitly specified for 'gray' when default_nettype is none =
+[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]<o:p></o:p></span></p=
+><p class=3DMsoNormal><span style=3D'font-family:"Courier New"'>ERROR: =
+[VRFC 10-3594] non-net port 'gray' cannot be of mode input =
+[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]<o:p></o:p></span></p=
+><p class=3DMsoNormal><span style=3D'font-family:"Courier New"'>ERROR: =
+[VRFC 10-845] illegal operand for operator ^ =
+[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:21]<o:p></o:p></span></p=
+><p class=3DMsoNormal><span style=3D'font-family:"Courier New"'>ERROR: =
+[VRFC 10-2865] module 'gray2bin' ignored due to previous errors =
+[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:10]<o:p></o:p></span></p=
+><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>This =
+file seems to compile without issue on my previous testbench, so =
+I&#8217;m not sure what the difference would be here. If anyone has any =
+insights into what could be going on I&#8217;d greatly appreciate =
+it.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thank you,<o:p></o:p></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:12.0pt;color:black'><o:p>&nbsp;</o:p></span></b></p><p=
+ class=3DMsoNormal><b><span =
+style=3D'font-size:12.0pt;color:black'>Michael H. Rich</span></b><span =
+style=3D'color:#1F497D'><o:p></o:p></span></p><p =
+class=3DMsoNormal><i><span =
+style=3D'font-size:10.0pt;color:black'>Electronic Systems =
+Laboratory</span></i><span =
+style=3D'color:#1F497D'><o:p></o:p></span></p><p =
+class=3DMsoNormal><b><i><span =
+style=3D'font-size:10.0pt;color:black'>Georgia Tech Research =
+Institute&reg;</span></i></b><span =
+style=3D'color:#1F497D'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;color:black'>Phone: (404) 407-8358</span><span =
+style=3D'color:#1F497D'><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-size:10.0pt;color:black'>E-mail:</span><span =
+style=3D'font-size:10.0pt;color:#1F497D'> <a =
+href=3D"mailto:michael.rich@gtri.gatech.edu"><span =
+style=3D'color:blue'>michael.rich@gtri.gatech.edu</span></a></span><span =
+style=3D'color:#1F497D'><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+------=_NextPart_001_000D_01D7DD3C.083F4760--
 
-On Fri, Nov 19, 2021 at 1:54 AM Berkay SAYGILI <zuhasdasn@gmail.com> wrote:
+------=_NextPart_000_000C_01D7DD3C.083F4760
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
 
-> Hello Guillermo,
->
-> I have the same problem with DPDK. I can receive data with 200 MSPS in
-> both channels with a single N320 without DPDK, but when I use DPDK, it
-> starts to drop samples even at much lower sample rates. I have an X520-DA=
-2
-> NIC. When I wrote this problem to Ettus, they suggested me to try the DPD=
-K
-> with Mellanox NIC. Therefore, I am considering buying a Mellanox NIC at t=
-he
-> moment, but I am not certain that a new NIC will solve the problem.
->
->
-> Best regards
->
-> Berkay S.
->
-> On Thu, 18 Nov 2021 at 18:01, Rob Kossler <rkossler@nd.edu> wrote:
->
->> Hi Guillermo,
->> My experience with DPDK was the following:
->>
->>    - very difficult to configure
->>    - once configured properly, streaming was exceptional (significant
->>    improvement compared to no DPDK).  I was using Intel cards (likely X5=
-20-DA2
->>    and XL710-QDA1).
->>    - lots of bad side effects related to DPDK taking over a dedicated
->>    CPU. I'm not sure why but at times even the mouse and keyboard would =
-get so
->>    slow that the system became unusable - it occurred to me that maybe t=
-he
->>    mouse/keyboard were mistakenly being serviced by the CPU that was ded=
-icated
->>    to DPDK - very strange. And, it wasn't just the mouse - other applica=
-tions
->>    could be affected.  The side effects were severe enough for me to aba=
-ndon
->>    using DPDK on a regular basis.  That said, I would consider it in you=
-r
->>    situation where you needed the performance.
->>
->> I never experienced the troubles you are having where DPDK is working bu=
-t
->> performing poorly. In my case, if it worked at all, the performance was
->> good. Sorry that I don't have any good suggestions for you.
->>
->> Whenever I am trying to capture high data rate receive streams, I save
->> the data to files in a RAM file system. If I need these files permanentl=
-y
->> stored, I have had best success with running a separate utility that
->> moves the saved files from RAM to storage.  It doesn't seem like this
->> approach should be necessary (as compared to multi threads within one
->> process and/or keeping the data in shared memory rather than buffering i=
-n
->> 'files') but perhaps my attempts at other approaches were faulty.
->>
->> Rob
->>
->> On Thu, Nov 18, 2021 at 5:03 AM Guillermo Ortas Delgado <g.ortas@gmv.com=
->
->> wrote:
->>
->>> Hi Marcus,
->>>
->>>
->>>
->>> Wow, good to know that I=E2=80=99m doing good. I thought I wasn=E2=80=
-=99t the only one
->>> working at these high rates.
->>>
->>> I guess there is the possibility to spread the load on another computer=
-,
->>> but I was interested in DPDK as it showed potential to accomplish my go=
-al
->>> more elegantly instead of just throwing more money at the problem.
->>>
->>>
->>>
->>> I=E2=80=99m still puzzled by DPDK dropping samples at even 25Msps on 2 =
-channels.
->>>
->>> *@Rob Kossler: do you have any more input on this matter?*
->>>
->>>
->>>
->>> Best,
->>>
->>> Guillermo
->>>
->>>
->>>
->>> *De:* Marcus D. Leech [mailto:patchvonbraun@gmail.com]
->>> *Enviado el:* 17 November 2021 17:43
->>> *Para:* Guillermo Ortas Delgado <g.ortas@gmv.com>; Rob Kossler <
->>> rkossler@nd.edu>
->>> *CC:* usrp-users@lists.ettus.com
->>> *Asunto:* Re: [USRP-users] Re: DPDK drops samples at low rates
->>>
->>>
->>>
->>> On 2021-11-17 11:27, Guillermo Ortas Delgado wrote:
->>>
->>> Hi Marcus, thank you for your message.
->>>
->>>
->>>
->>> I do think the network layer is indeed the most significant part of thi=
-s
->>> challenging setup, let me illustrate:
->>>
->>> The platform I=E2=80=99m using is a server form-factor computer with a =
-Xeon
->>> Silver 4215R, 32GB of memory and no GPU. For storage, I have 4 SSDs of
->>> 3.2TB mounted in RAID 0 providing a write capacity of 4GB/s, so that=E2=
-=80=99s no
->>> issue. I=E2=80=99m using all the optimizations mentioned here
->>> <https://urldefense.com/v3/__https:/kb.ettus.com/Getting_Started_with_D=
-PDK_and_UHD__;!!MvyJQugb!UJ8FfsPbUrq0LfNpjFLHfw9YyY1nkelByXNeHL_5zu_b0NDpEm=
-1rMWVt0ZYW$>
->>> and here
->>> <https://urldefense.com/v3/__https:/kb.ettus.com/USRP_Host_Performance_=
-Tuning_Tips_and_Tricks__;!!MvyJQugb!UJ8FfsPbUrq0LfNpjFLHfw9YyY1nkelByXNeHL_=
-5zu_b0NDpEm1rMVnRj1fb$>,
->>> so raw CPU power I think should be enough.
->>>
->>> Each of the four x310 USRPs is attached to a dedicated network card wit=
-h
->>> dual 10GbE ports, so network capacity is theoretically more than enough
->>> (6.4Gb out of 10Gb maximum usage per interface).
->>>
->>> The scheme I=E2=80=99m trying to run is as follows:
->>>
->>> 1.      USRP 1: 200 Msps on both channels
->>>
->>> 2.      USRP 2: 200 Msps on both channels
->>>
->>> 3.      USRP 3: 50 Msps on both channels
->>>
->>> 4.      USRP 4: 50 Msps on both channels
->>>
->>> I=E2=80=99m streaming samples directly into shared memory, from which a=
- separate
->>> thread converts the samples to selectable 1/2/4/8/16 bits per sample an=
-d
->>> stores them to the RAID 0 disk volume. Bit depth conversion is fast and
->>> doesn=E2=80=99t seem to be the bottleneck. In fact, converting to 4 bit=
-s per sample
->>> achieves better results than no conversion at all, forcing me to write =
-the
->>> full incoming 16 bits per sample. I launch a separate instance of my
->>> program to store samples for each USRP, as I have observed this deliver=
-s
->>> the best performance.
->>>
->>> With this, I=E2=80=99m able to run 4 channels at 200Msps and 2 channels=
- at
->>> 50Msps. But when I launch the last two channels at 50Msps the system ca=
-n=E2=80=99t
->>> keep up and the recording starts losing/dropping samples.
->>>
->>> I was able to run 4 channels at 184.32Msps and 4 channels at 46.08Msps
->>> for a few seconds, but this is also not sustainable and samples are dro=
-pped
->>> periodically.
->>>
->>> The application is very sensitive, so even a single sample lost or
->>> dropped completely invalidates the recording.
->>>
->>>
->>>
->>> At these rates, the sheer amount of kernel systems calls seems to be th=
-e
->>> most significant performance hit, that=E2=80=99s why I was looking at D=
-PDK as a
->>> potential solution. That being said, I=E2=80=99m able to sustain a soli=
-d stream
->>> using the benchmark_rate program (discarding the samples) with 4
->>> channels at 200Msps and 4 channels at 50Msps without any drops/overflow=
-s.
->>>
->>> Do you have a sample program for high-performance/high-rate sample
->>> streaming? The provided rx_samples_to_file is not nearly enough.
->>>
->>> What=E2=80=99s the preferred way to approach storing samples for maximu=
-m
->>> performance?
->>>
->>>
->>>
->>> Thank you a lot and best regards,
->>>
->>> Guillermo
->>>
->>> 1Gsps is a totally *eye-watering* sample-rate for an ordinary computer
->>> to "swallow" and write to disk.  You are very likely at the very bleedi=
-ng
->>> edge with this, and
->>>   I'm not aware of anyone else doing work at these aggregate rates.  Th=
-e
->>> fact that you are able to *both* "do stuff with the samples" AND write =
-them
->>> to a RAID
->>>   array at ~1Gsps is amazing.
->>>
->>> Do all USRPs have to be on the same computer for your application?  Are
->>> there opportunities to use a more distributed approach?
->>>
->>>
->>>
->>> *De:* Marcus D. Leech [mailto:patchvonbraun@gmail.com
->>> <patchvonbraun@gmail.com>]
->>> *Enviado el:* 17 November 2021 16:51
->>> *Para:* Guillermo Ortas Delgado <g.ortas@gmv.com> <g.ortas@gmv.com>;
->>> Rob Kossler <rkossler@nd.edu> <rkossler@nd.edu>
->>> *CC:* usrp-users@lists.ettus.com
->>> *Asunto:* Re: [USRP-users] Re: DPDK drops samples at low rates
->>>
->>>
->>>
->>> On 2021-11-17 04:50, Guillermo Ortas Delgado wrote:
->>>
->>> Thanks for your message, I already have the mbuf size maxed out to 512
->>> (that=E2=80=99s the maximum value it will take).
->>>
->>>
->>>
->>> I have noticed that DPDPK v19.11 made great improvements to the BNXT
->>> driver. Is there any chance to get UHD running with DPDK 19.11? Or even
->>> better 20.11.3?
->>>
->>> Both are long-term support releases which are more mature and support
->>> vector mode, which offers must better performance.
->>>
->>> Quote from DPDK 19.11:
->>> =E2=80=9CThe BNXT PMD includes support for SSE vector mode on x86 platf=
-orms.
->>> Vector provides *significantly improved performance* over the base
->>> implementation=E2=80=9D
->>>
->>>
->>>
->>> I already tried building UHD 4.1.0.4 with DPDK 19.11 by modifying the
->>> makefile to accept this version, but the build fails.
->>>
->>> I would really appreciate it if you could add support for newer version=
-s
->>> of DPDK.
->>>
->>>
->>>
->>> Best,
->>>
->>> Guillermo
->>>
->>>
->>>
->>>
->>>
->>> P Please consider the environment before printing this e-mail.
->>>
->>>
->>>
->>> P Please consider the environment before printing this e-mail.
->>>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIVtzCCBDIw
+ggMaoAMCAQICAQEwDQYJKoZIhvcNAQEFBQAwezELMAkGA1UEBhMCR0IxGzAZBgNVBAgMEkdyZWF0
+ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBwwHU2FsZm9yZDEaMBgGA1UECgwRQ29tb2RvIENBIExpbWl0
+ZWQxITAfBgNVBAMMGEFBQSBDZXJ0aWZpY2F0ZSBTZXJ2aWNlczAeFw0wNDAxMDEwMDAwMDBaFw0y
+ODEyMzEyMzU5NTlaMHsxCzAJBgNVBAYTAkdCMRswGQYDVQQIDBJHcmVhdGVyIE1hbmNoZXN0ZXIx
+EDAOBgNVBAcMB1NhbGZvcmQxGjAYBgNVBAoMEUNvbW9kbyBDQSBMaW1pdGVkMSEwHwYDVQQDDBhB
+QUEgQ2VydGlmaWNhdGUgU2VydmljZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC+
+QJ30buHqdoccTUVEjr5GyIMGncEq/hgfjuQC+vOrXVCKFjELmgbQxXAizUktVGPMtm5oRgtT6stM
+JMC8ck7q8RWu9FSaEgrDerIzYOLaiVXzIljz3tzP74OGooyUT59o8piQRoQnx3a/48w1LIteB2Rl
+gsBIsKiR+WGfdiBQqJHHZrXreGIDVvCKGhPqMaMeoJn9OPb2JzJYbwf1a7j7FCuvt6rM1mNfc4za
+BZmoOKjLF3g2UazpnvR4Oo3PD9lC4pgMqy+fDgHe75+ZSfEt36x0TRuYtUfF5SnR+ZAYx2KcvoPH
+Jns+iiXHwN2d5jVoECCdj9je0sOEnA1e6C/JAgMBAAGjgcAwgb0wHQYDVR0OBBYEFKARCiM+lvEH
+7OKvKe+CpX/QMKS0MA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MHsGA1UdHwR0MHIw
+OKA2oDSGMmh0dHA6Ly9jcmwuY29tb2RvY2EuY29tL0FBQUNlcnRpZmljYXRlU2VydmljZXMuY3Js
+MDagNKAyhjBodHRwOi8vY3JsLmNvbW9kby5uZXQvQUFBQ2VydGlmaWNhdGVTZXJ2aWNlcy5jcmww
+DQYJKoZIhvcNAQEFBQADggEBAAhW/ALwm+j/pPrWe8ZEgM5PxMX2AFjMpra8FEloBHbo5u5d7AIP
+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
+MDMxNzAwMDAwMFoXDTIzMDMxNzIzNTk1OVowgd8xDjAMBgNVBBETBTMwMzMyMRMwEQYDVQQLEwpH
+VFJJLUVMU1lTMSgwJgYDVQQKEx9HZW9yZ2lhIEluc3RpdHV0ZSBvZiBUZWNobm9sb2d5MRkwFwYD
+VQQJExAyMjUgTk9SVEggQVZFIE5XMRAwDgYDVQQIEwdHZW9yZ2lhMRAwDgYDVQQHEwdBdGxhbnRh
+MQswCQYDVQQGEwJVUzEVMBMGA1UEAxMMTWljaGFlbCBSaWNoMSswKQYJKoZIhvcNAQkBFhxtaWNo
+YWVsLnJpY2hAZ3RyaS5nYXRlY2guZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+24fvyXxky1Bj+3LTRunyP4Qx7xk3OtkgVLXktky9UAvurKAdtF+kgdgS7BqEZK2yG+Y3nQHSods+
+g8EDrgnyCmIuYVwlrH/H36Pg9Ca601ZYpBVbJ+vonDNhmRWWH+w5pbuhQ8IrtTxVKkR1Q7iZu9+T
+CEtjZ/Q8a0NKt8xpDNqF+ey73OSl5cIgkhVjobDTF0hzx8y3eLZfoZ7Vg8gRNpK1WLG9dWRi4NVS
+qD5wDW7IxS/vvvYdGh406ZiezNsOuZjCnpTU5lrXeHvrXPjLrs74kaNIfyQzs/b4pckcFEhJXJkx
+gh1LSCAvIMHA57dg1BfyR7hB/1b4nOUpAWFHKQIDAQABo4IB+jCCAfYwHwYDVR0jBBgwFoAUfe5x
+0B/rqWFtj2aErQ8rB+Ix27wwHQYDVR0OBBYEFAQKpoUYI6FNQQLbi8DZCQshCN24MA4GA1UdDwEB
+/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMEBggrBgEFBQcDAjBqBgNV
+HSAEYzBhMF8GDSsGAQQBriMBBAMDAAEwTjBMBggrBgEFBQcCARZAaHR0cHM6Ly93d3cuaW5jb21t
+b24ub3JnL2NlcnQvcmVwb3NpdG9yeS9jcHNfc3RhbmRhcmRfY2xpZW50LnBkZjBVBgNVHR8ETjBM
+MEqgSKBGhkRodHRwOi8vY3JsLmluY29tbW9uLXJzYS5vcmcvSW5Db21tb25SU0FTdGFuZGFyZEFz
+c3VyYW5jZUNsaWVudENBLmNybDCBigYIKwYBBQUHAQEEfjB8MFAGCCsGAQUFBzAChkRodHRwOi8v
+Y3J0LmluY29tbW9uLXJzYS5vcmcvSW5Db21tb25SU0FTdGFuZGFyZEFzc3VyYW5jZUNsaWVudENB
+LmNydDAoBggrBgEFBQcwAYYcaHR0cDovL29jc3AuaW5jb21tb24tcnNhLm9yZzAnBgNVHREEIDAe
+gRxtaWNoYWVsLnJpY2hAZ3RyaS5nYXRlY2guZWR1MA0GCSqGSIb3DQEBCwUAA4IBAQAOQx1GHPoX
+3sz6J9o9zk1NjXH7ZclwC/PQawXElV3vDGSryCnNsNqQJNMnG7OOzjq/u9PnGdDpmVI8mFjci6jr
+YR8yTgd3aTiG230emq+lbmYmGhibxQZGRN725JFt9veX62fp3esnMoIqKbAz+LxnUtWc42uJeCoF
+C0+d+Jmo+VIrVSO3vJJLGimOPh+iHrLpyV2bqj0AorSi2Mfb4c3G4oiAGykF38pZtsW9cwoo+ZE+
+IsCBiMn7JCXIEFtpmYUpPCeECgAVOOQvB7B3maSa+Qu0BRQZ78sRXluHAEoh6PhsMgqNuwEVNvp3
+BQx7uNz8j+30hpKBMV0X26FUKefDMIIGAzCCA+ugAwIBAgIQP7008rpS/A7TClejgeG+ZDANBgkq
+hkiG9w0BAQ0FADCBiDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcT
+C0plcnNleSBDaXR5MR4wHAYDVQQKExVUaGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNVBAMTJVVT
+RVJUcnVzdCBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTQwOTE5MDAwMDAwWhcNMjQw
+OTE4MjM1OTU5WjCBiTELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAk1JMRIwEAYDVQQHEwlBbm4gQXJi
+b3IxEjAQBgNVBAoTCUludGVybmV0MjERMA8GA1UECxMISW5Db21tb24xMjAwBgNVBAMTKUluQ29t
+bW9uIFJTQSBTdGFuZGFyZCBBc3N1cmFuY2UgQ2xpZW50IENBMIIBIjANBgkqhkiG9w0BAQEFAAOC
+AQ8AMIIBCgKCAQEAgP7KW3d3xh/sgvvnWYpVrcDqnrEH6CYrNgmi8S9MOllAnKuc8kApQCWScil4
+j5sGahB8t2QH/xj8UNuoGCDG5xEZxgFoRz/ZkuzdNJK4ZJ8b9dIm2XPUTKbgIwluPp38+oLV5P6k
+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
+HvDTuW3YNQEAAAAAAAA=
 
---00000000000078f26f05d125b7d8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+------=_NextPart_000_000C_01D7DD3C.083F4760--
 
-<div dir=3D"ltr">It is worth trying a Mellanox 10 GbE NIC. In our recent in=
-ternal testing with UHD=C2=A0+ DPDK=C2=A0+ N320/N321, we saw similar issues=
- as Berkay notes, and eventually tracked the issue to the Intel driver. We =
-approached Intel and while they acknowledged the probable issue, since they=
- have moved development work to the 800-series NICs, they declined to fix t=
-he issue in their 500/700 series NIC driver. We switched to a Mellanox NIC =
-and that resolved the issues. Please note that UHD currently supports DPDK =
-18.11 (exact version), which does not have support for Intel 800-series NIC=
-s -- the oldest DPDK for that support is 19.04, and 19.11 is recommended as=
- the minimum version. We are actively=C2=A0working on updating DPDK support=
- to 19.11 / 20.11 / 21.11 -- looks like the same API, which is different fr=
-om that for 18.11. - MLD</div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Fri, Nov 19, 2021 at 1:54 AM Berkay SAYGILI &lt;=
-<a href=3D"mailto:zuhasdasn@gmail.com">zuhasdasn@gmail.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-Hello Guillermo,<div><br></div><div>I have the same problem with DPDK. I ca=
-n receive data with 200 MSPS in both channels with a single N320 without DP=
-DK, but when I use DPDK, it starts to drop samples even at much lower sampl=
-e rates. I have an X520-DA2 NIC. When I wrote this problem to Ettus, they s=
-uggested me to try the DPDK with Mellanox NIC. Therefore, I am considering =
-buying a Mellanox NIC at the moment, but I am not certain that a new NIC wi=
-ll solve the problem.</div><div><br></div><div><br></div><div>Best regards<=
-/div><div><br></div><div>Berkay S.</div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 18 Nov 2021 at 18:01, Rob K=
-ossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd=
-.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Guillermo,<div>My experience with =
-DPDK was the following:</div><div><ul><li>very difficult to configure</li><=
-li>once configured properly, streaming was exceptional (significant improve=
-ment compared to no DPDK).=C2=A0 I was using Intel cards (likely X520-DA2 a=
-nd XL710-QDA1).<br></li><li>lots of bad side effects related to DPDK taking=
- over a dedicated CPU. I&#39;m not sure why but at times even the mouse and=
- keyboard would get so slow that the system became unusable - it occurred t=
-o me that maybe the mouse/keyboard were mistakenly being serviced by the CP=
-U that was dedicated to DPDK - very strange. And, it wasn&#39;t just the mo=
-use - other applications could be affected.=C2=A0 The side effects were sev=
-ere enough for me to abandon using DPDK on a regular basis.=C2=A0 That said=
-, I would consider it in your situation where you needed the performance.</=
-li></ul><div>I never experienced the troubles you are having where DPDK is =
-working but performing poorly. In my case, if it worked at all, the perform=
-ance was good. Sorry that I don&#39;t have any good suggestions for you.</d=
-iv></div><div><br></div><div>Whenever I am trying to capture high data rate=
- receive streams, I save the data=C2=A0to files in a RAM file system. If I =
-need these files permanently stored, I have had best success with running a=
- separate utility that moves=C2=A0the saved files from RAM to storage.=C2=
-=A0 It doesn&#39;t seem like this approach should be necessary (as compared=
- to multi threads within one process and/or keeping the data in shared memo=
-ry rather than buffering in &#39;files&#39;) but perhaps my attempts at oth=
-er approaches were faulty.</div><div><br></div><div>Rob</div></div><br><div=
- class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 18=
-, 2021 at 5:03 AM Guillermo Ortas Delgado &lt;<a href=3D"mailto:g.ortas@gmv=
-.com" target=3D"_blank">g.ortas@gmv.com</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"ES">
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Hi Marcus,<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
-p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Wow, good to know that I=E2=
-=80=99m doing good. I thought I wasn=E2=80=99t the only one working at thes=
-e high rates.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I guess there is the possibil=
-ity to spread the load on another computer, but I was interested in DPDK as=
- it showed potential
- to accomplish my goal more elegantly instead of just throwing more money a=
-t the problem.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
-p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I=E2=80=99m still puzzled by =
-DPDK dropping samples at even 25Msps on 2 channels.<u></u><u></u></span></p=
->
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
--family:Calibri,sans-serif;color:rgb(31,73,125)">@Rob Kossler: do you have =
-any more input on this matter?<u></u><u></u></span></b></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
-p>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Best,<u></u><u></u></span></p=
->
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Guillermo</span><span lang=3D=
-"EN-US" style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31=
-,73,125)"><u></u><u></u></span></p>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></=
-p>
-<div>
-<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
-top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
--family:Calibri,sans-serif">De:</span></b><span lang=3D"EN-US" style=3D"fon=
-t-size:11pt;font-family:Calibri,sans-serif"> Marcus D. Leech [mailto:<a hre=
-f=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.=
-com</a>]
-<br>
-<b>Enviado el:</b> 17 November 2021 17:43<br>
-<b>Para:</b> Guillermo Ortas Delgado &lt;<a href=3D"mailto:g.ortas@gmv.com"=
- target=3D"_blank">g.ortas@gmv.com</a>&gt;; Rob Kossler &lt;<a href=3D"mail=
-to:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt;<br>
-<b>CC:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
-usrp-users@lists.ettus.com</a><br>
-<b>Asunto:</b> Re: [USRP-users] Re: DPDK drops samples at low rates<u></u><=
-u></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<div>
-<p class=3D"MsoNormal">On 2021-11-17 11:27, Guillermo Ortas Delgado wrote:<=
-u></u><u></u></p>
-</div>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Hi Marcus, thank you for your=
- message.</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><span lang=3D"EN=
--US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I do think the network layer =
-is indeed the most significant part of this challenging setup, let me illus=
-trate:</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">The platform I=E2=80=99m usin=
-g is a server form-factor computer with a Xeon Silver 4215R, 32GB of memory=
- and no GPU. For storage,
- I have 4 SSDs of 3.2TB mounted in RAID 0 providing a write capacity of 4GB=
-/s, so that=E2=80=99s no issue. I=E2=80=99m using all the optimizations men=
-tioned
-</span><a href=3D"https://urldefense.com/v3/__https:/kb.ettus.com/Getting_S=
-tarted_with_DPDK_and_UHD__;!!MvyJQugb!UJ8FfsPbUrq0LfNpjFLHfw9YyY1nkelByXNeH=
-L_5zu_b0NDpEm1rMWVt0ZYW$" target=3D"_blank"><span lang=3D"EN-US" style=3D"f=
-ont-size:11pt;font-family:Calibri,sans-serif">here</span></a><span lang=3D"=
-EN-US" style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:rgb(31,=
-73,125)">
- and </span><a href=3D"https://urldefense.com/v3/__https:/kb.ettus.com/USRP=
-_Host_Performance_Tuning_Tips_and_Tricks__;!!MvyJQugb!UJ8FfsPbUrq0LfNpjFLHf=
-w9YyY1nkelByXNeHL_5zu_b0NDpEm1rMVnRj1fb$" target=3D"_blank"><span lang=3D"E=
-N-US" style=3D"font-size:11pt;font-family:Calibri,sans-serif">here</span></=
-a><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Calibri,sans-ser=
-if;color:rgb(31,73,125)">,
- so raw CPU power I think should be enough.</span><span lang=3D"EN-US"><u><=
-/u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Each of the four x310 USRPs i=
-s attached to a dedicated network card with dual 10GbE ports, so network ca=
-pacity is theoretically
- more than enough (6.4Gb out of 10Gb maximum usage per interface).</span><s=
-pan lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">The scheme I=E2=80=99m trying=
- to run is as follows:</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p><u></u><span>1.<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
-ly:Calibri,sans-serif;color:rgb(31,73,125)">USRP 1: 200 Msps on both channe=
-ls</span><u></u><u></u></p>
-<p><u></u><span>2.<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
-ly:Calibri,sans-serif;color:rgb(31,73,125)">USRP 2: 200 Msps on both channe=
-ls</span><u></u><u></u></p>
-<p><u></u><span>3.<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
-ly:Calibri,sans-serif;color:rgb(31,73,125)">USRP 3: 50 Msps on both channel=
-s</span><u></u><u></u></p>
-<p><u></u><span>4.<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0
-</span></span><u></u><span lang=3D"EN-US" style=3D"font-size:11pt;font-fami=
-ly:Calibri,sans-serif;color:rgb(31,73,125)">USRP 4: 50 Msps on both channel=
-s</span><u></u><u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I=E2=80=99m streaming samples=
- directly into shared memory, from which a separate thread converts the sam=
-ples to selectable 1/2/4/8/16
- bits per sample and stores them to the RAID 0 disk volume. Bit depth conve=
-rsion is fast and doesn=E2=80=99t seem to be the bottleneck. In fact, conve=
-rting to 4 bits per sample achieves better results than no conversion at al=
-l, forcing me to write the full incoming
- 16 bits per sample. I launch a separate instance of my program to store sa=
-mples for each USRP, as I have observed this delivers the best performance.=
-</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">With this, I=E2=80=99m able t=
-o run 4 channels at 200Msps and 2 channels at 50Msps. But when I launch the=
- last two channels at
- 50Msps the system can=E2=80=99t keep up and the recording starts losing/dr=
-opping samples.</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I was able to run 4 channels =
-at 184.32Msps and 4 channels at 46.08Msps for a few seconds, but this is al=
-so not sustainable
- and samples are dropped periodically.</span><span lang=3D"EN-US"><u></u><u=
-></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">The application is very sensi=
-tive, so even a single sample lost or dropped completely invalidates the re=
-cording.</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><span lang=3D"EN=
--US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">At these rates, the sheer amo=
-unt of kernel systems calls seems to be the most significant performance hi=
-t, that=E2=80=99s why
- I was looking at DPDK as a potential solution. That being said, I=E2=80=99=
-m able to sustain a solid stream using the
-</span><span lang=3D"EN-US" style=3D"font-size:10pt;font-family:Consolas;co=
-lor:rgb(31,73,125)">benchmark_rate</span><span lang=3D"EN-US" style=3D"font=
--size:10pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">
-</span><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Calibri,san=
-s-serif;color:rgb(31,73,125)">program (discarding the samples) with 4 chann=
-els at 200Msps and 4 channels at 50Msps without any drops/overflows.</span>=
-<span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Do you have a sample program =
-for high-performance/high-rate sample streaming? The provided
-</span><span lang=3D"EN-US" style=3D"font-size:10pt;font-family:Consolas;co=
-lor:rgb(31,73,125)">rx_samples_to_file</span><span lang=3D"EN-US" style=3D"=
-font-size:10pt;font-family:Calibri,sans-serif;color:rgb(31,73,125)">
-</span><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Calibri,san=
-s-serif;color:rgb(31,73,125)">is not nearly enough.</span><span lang=3D"EN-=
-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">What=E2=80=99s the preferred =
-way to approach storing samples for maximum performance?</span><span lang=
-=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><span lang=3D"EN=
--US"><u></u><u></u></span></p>
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Thank you a lot and best rega=
-rds,</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Guillermo</span><span lang=3D=
-"EN-US"><u></u><u></u></span></p>
-</div>
-</blockquote>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">1Gsps is a totally *eye-waterin=
-g* sample-rate for an ordinary computer to &quot;swallow&quot; and write to=
- disk.=C2=A0 You are very likely at the very bleeding edge with this, and<b=
-r>
-=C2=A0 I&#39;m not aware of anyone else doing work at these aggregate rates=
-.=C2=A0 The fact that you are able to *both* &quot;do stuff with the sample=
-s&quot; AND write them to a RAID<br>
-=C2=A0 array at ~1Gsps is amazing.<br>
-<br>
-Do all USRPs have to be on the same computer for your application?=C2=A0 Ar=
-e there opportunities to use a more distributed approach?<br>
-<br>
-<br>
-<br>
-<u></u><u></u></span></p>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<div>
-<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
-top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:11pt;font=
--family:Calibri,sans-serif">De:</span></b><span lang=3D"EN-US" style=3D"fon=
-t-size:11pt;font-family:Calibri,sans-serif"> Marcus D. Leech [</span><a hre=
-f=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank"><span lang=3D"EN-US"=
- style=3D"font-size:11pt;font-family:Calibri,sans-serif">mailto:patchvonbra=
-un@gmail.com</span></a><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif">]
-<br>
-<b>Enviado el:</b> 17 November 2021 16:51<br>
-<b>Para:</b> Guillermo Ortas Delgado </span><a href=3D"mailto:g.ortas@gmv.c=
-om" target=3D"_blank"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fam=
-ily:Calibri,sans-serif">&lt;g.ortas@gmv.com&gt;</span></a><span lang=3D"EN-=
-US" style=3D"font-size:11pt;font-family:Calibri,sans-serif">;
- Rob Kossler </span><a href=3D"mailto:rkossler@nd.edu" target=3D"_blank"><s=
-pan lang=3D"EN-US" style=3D"font-size:11pt;font-family:Calibri,sans-serif">=
-&lt;rkossler@nd.edu&gt;</span></a><span lang=3D"EN-US" style=3D"font-size:1=
-1pt;font-family:Calibri,sans-serif"><br>
-<b>CC:</b> </span><a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_=
-blank"><span lang=3D"EN-US" style=3D"font-size:11pt;font-family:Calibri,san=
-s-serif">usrp-users@lists.ettus.com</span></a><span lang=3D"EN-US" style=3D=
-"font-size:11pt;font-family:Calibri,sans-serif"><br>
-<b>Asunto:</b> Re: [USRP-users] Re: DPDK drops samples at low rates</span><=
-span lang=3D"EN-US"><u></u><u></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
-<div>
-<p class=3D"MsoNormal">On 2021-11-17 04:50, Guillermo Ortas Delgado wrote:<=
-u></u><u></u></p>
-</div>
-<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Thanks for your message, I al=
-ready have the mbuf size maxed out to 512 (that=E2=80=99s the maximum value=
- it will take).</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><span lang=3D"EN=
--US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I have noticed that DPDPK v19=
-.11 made great improvements to the BNXT driver. Is there any chance to get =
-UHD running with
- DPDK 19.11? Or even better 20.11.3?</span><span lang=3D"EN-US"><u></u><u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Both are long-term support re=
-leases which are more mature and support vector mode, which offers must bet=
-ter performance.</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Quote from DPDK 19.11:<br>
-=E2=80=9CThe BNXT PMD includes support for SSE vector mode on x86 platforms=
-. Vector provides
-<b>significantly improved performance</b> over the base implementation=E2=
-=80=9D</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><span lang=3D"EN=
--US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I already tried building UHD =
-4.1.0.4 with DPDK 19.11 by modifying the makefile to accept this version, b=
-ut the build fails.</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">I would really appreciate it =
-if you could add support for newer versions of DPDK.</span><span lang=3D"EN=
--US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">=C2=A0</span><span lang=3D"EN=
--US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Best,</span><span lang=3D"EN-=
-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11pt;font-fa=
-mily:Calibri,sans-serif;color:rgb(31,73,125)">Guillermo
-</span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
-</blockquote>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:18pt;font-family:Webdings;c=
-olor:green">P
-</span><span lang=3D"EN-US" style=3D"font-size:7pt;font-family:Arial,sans-s=
-erif;color:green">Please consider the environment before printing this e-ma=
-il.</span><span lang=3D"EN-US">
-<u></u><u></u></span></p>
-</blockquote>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-</div>
-<span><br>
-</span><span style=3D"font-size:18pt;line-height:125%;font-family:Webdings;=
-color:green">P<span></span>
-<span style=3D"font-size:7pt;line-height:125%;font-family:Arial,&quot;sans-=
-serif&quot;;color:green">
-Please consider the environment before printing this e-mail.</span></span><=
-span></span>
-</div>
-
-</blockquote></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000078f26f05d125b7d8--
-
---===============4464453340908185000==
+--===============8483281737791527072==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -771,4 +363,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4464453340908185000==--
+--===============8483281737791527072==--
