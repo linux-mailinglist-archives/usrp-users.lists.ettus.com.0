@@ -2,162 +2,232 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 256D145A62C
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 16:03:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8C145AA4B
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 18:44:46 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A999D383E7E
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 10:03:12 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 64981383E21
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 12:44:45 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="asdkquUT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kiwf3pz+";
 	dkim-atps=neutral
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id CBB6438392E
-	for <usrp-users@lists.ettus.com>; Tue, 23 Nov 2021 10:02:22 -0500 (EST)
-Received: by mail-oi1-f170.google.com with SMTP id q25so45314309oiw.0
-        for <usrp-users@lists.ettus.com>; Tue, 23 Nov 2021 07:02:22 -0800 (PST)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id A087B383C8C
+	for <USRP-users@lists.ettus.com>; Tue, 23 Nov 2021 12:43:55 -0500 (EST)
+Received: by mail-qt1-f180.google.com with SMTP id j17so48992qtx.2
+        for <USRP-users@lists.ettus.com>; Tue, 23 Nov 2021 09:43:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5LKkcxPXtgSkmWDOKiJAIlhbxmrr4VV6G2IDWB3LiIQ=;
-        b=asdkquUT2WCDlVij8yvjUqmx3OE7IZ6jA6PhqT5eK5985l0pdI20Ax6pApVPfUs7IO
-         fWLqfOcddqRbV5nYccVP4SNedRZFANs0hcfXRQ5xasxd8upqmehrh9X6VdRIGx8d9InE
-         7ZAqphfb9ILAVYzkfcnBIBdXi2mKYZwzkkexwfdLbqWWAzs6tL5rCPNWoH8aeFOH4fBY
-         wAsX2YziRtVuBp9vXitUC37Iro9vw15yiSWQ5peUMQ4h0O5F89dVnxWglmwMZ4gLcmAY
-         AjexfaHX5XgD5EZcyE6nKcvGfmCwCHphXsiPZjwfuTcij9NkCaGBgcwtnZtt4aLyywhC
-         qWPQ==
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=6kfPKUsKAjuQU+OlejxCZ4lqsul0Z3BZBh0grqnhvkY=;
+        b=kiwf3pz+PO1xqJqZmoHyGaEBk60fbFs88soHHPJTXZa66KWcrPmr49w4/V0ZWaT8Dw
+         m4ZOgJLmEi60ZpFFHnEvPyBUxL0Ta9QaN6Cp3KZkMENu9ObcMIVmAiZG0Nwv1l+Y30Ot
+         OeSvVXphsV8It+O3LxGI7eoyKjd0EMGhwuLy8YcxWxhywRKv08eaL2qZMJN4f2UzfM2Z
+         ll9OIVNVOzYNMw7OArVsP3xQsYm42pmsBfvQLl44MhsmtkvREv6uc/gODmfwvoz2/oIU
+         pOfXuGO4R4Zbq2q1nyzn7qxqhP+NMUt52M/m92b4t+7Pv6GzVmgZgfz0B6CNiCfIBtqa
+         hIxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5LKkcxPXtgSkmWDOKiJAIlhbxmrr4VV6G2IDWB3LiIQ=;
-        b=py8/j5NamBK2mrw3Jsq8dcUiv1ILsxY+VTa6UAAA5l+jA3hQkJJd05lJS0evYy0xZc
-         T5dtjVDJt/JBg4KApLUYRKn7P6U/8AeKCxBQcNXFQbA3g0JYQaLGooB4nbQQlHRLolRs
-         bYF+8K1fyuuPCN5ybTy6g85ZVBpOq4WKddUJeuqHZ2o782/NIIJb9HTobPKK8dEYj8R6
-         zOQ1TTyrWCW6TgyirHgyMDfkYnHhzhcG9HTYHTigh+CLnENgc9pe1t/3IMz2hBvfbpml
-         p7VSOCDwG/q54eTm04PAaQYKDKCPlPiU1ZjCJMIgcOaiwgpGR8wPWk9Dnrt0mkcOr65Z
-         rb+g==
-X-Gm-Message-State: AOAM530TbY5ooNGOawKK2rUotgrYfPuiM+C5U7V0u+SLauQAREXP4Fsg
-	zXXsydkPSfsn40S0MepfC5iFvc5wq19jugJsBYblyIORsyk=
-X-Google-Smtp-Source: ABdhPJxLHA+fhKVMbiN7MBOFRSRnaWhLONJJxaBS1oZTfg0MANwrk1fKLt1GM4ViKE9RcP94I30o2+4i0VdK7TSZDkk=
-X-Received: by 2002:aca:5ac6:: with SMTP id o189mr3020277oib.150.1637679741806;
- Tue, 23 Nov 2021 07:02:21 -0800 (PST)
-MIME-Version: 1.0
-References: <m34SbAp7uXvcUdPHRQT4inJeEBEtBNHul7UXTWUDk@lists.ettus.com>
-In-Reply-To: <m34SbAp7uXvcUdPHRQT4inJeEBEtBNHul7UXTWUDk@lists.ettus.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 23 Nov 2021 10:02:11 -0500
-Message-ID: <CAB__hTQu+CNYObAwRapdHFcG4Fdba9impHrJ_R-Kd=8n8ohiHQ@mail.gmail.com>
-To: emanuele.tolomei@intecs.it
-Message-ID-Hash: ENXW7CUXBLCPYU2YPBADW6D3SOVGAZSB
-X-Message-ID-Hash: ENXW7CUXBLCPYU2YPBADW6D3SOVGAZSB
-X-MailFrom: rkossler@nd.edu
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=6kfPKUsKAjuQU+OlejxCZ4lqsul0Z3BZBh0grqnhvkY=;
+        b=PLHlMpI0weTTo/kMmWu4sdC9J+gwufmv3xf8Qu44RJ4xYH7vCPo+rBYEau9L3nKBS+
+         MYPqVI2xB64ja8b8Jp0RuZpYPnXggvtBCvlNGAMaWXGXkK6Wbxn5gxrgUPbi50OpGisE
+         +EAJeR1U2PwsxD4smNxYbl0sEVLVflYtoFKP+N6KSidRRrCavaWTCN1AeWMRU/ARGiSW
+         d/56Nn0WB/1A4/dpAP9eZrSjXLG6kks4xvTOjx9UwNm1XAJFN49BzdGYR2UtaD7F0ckk
+         13b4XWG4jJ6vGxgn0dBVdY+gmCzsHhDLn/K0GOFN2VlsHfSR6vlK9kY/sCTIJmN0puhF
+         5lSQ==
+X-Gm-Message-State: AOAM531+uFlqnRnHvFAHVU5OHjZAn1CR+VKL8PRYfi25uRauAWPKspQC
+	FBFX/OeA0WDSVT7dejpH6sMH891NXPc=
+X-Google-Smtp-Source: ABdhPJzyxuUgwxXPD87mp/dXOmAdQ3Z0WtLfEEIQ8lOSa5QtrZoxBmLcsGiyCo7sKrAomP5oP1ZW/w==
+X-Received: by 2002:a05:622a:1447:: with SMTP id v7mr8141526qtx.92.1637689435019;
+        Tue, 23 Nov 2021 09:43:55 -0800 (PST)
+Received: from smtpclient.apple (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.gmail.com with ESMTPSA id de40sm6553635qkb.99.2021.11.23.09.43.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 09:43:54 -0800 (PST)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 23 Nov 2021 12:43:53 -0500
+Message-Id: <F2B2D4E0-C35D-45B0-BDF1-FFF42E1BAB89@gmail.com>
+References: <OL1P279MB00831EFE3B28943071A61160A0609@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
+In-Reply-To: <OL1P279MB00831EFE3B28943071A61160A0609@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
+To: =?utf-8?Q?"Skorstad,_J=C3=B8rn"?= <jsk@nkom.no>
+X-Mailer: iPhone Mail (18H107)
+Message-ID-Hash: IX5A6LCKCNGWBKZ6W424MODF4U6DHRGF
+X-Message-ID-Hash: IX5A6LCKCNGWBKZ6W424MODF4U6DHRGF
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Trouble with TwinRX frequency tuning
+Subject: [USRP-users] Re: UHD 4.1 memory leak?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ENXW7CUXBLCPYU2YPBADW6D3SOVGAZSB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IX5A6LCKCNGWBKZ6W424MODF4U6DHRGF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1169958261114595458=="
+Content-Type: multipart/mixed; boundary="===============4078736484857550935=="
 
---===============1169958261114595458==
-Content-Type: multipart/alternative; boundary="00000000000044646005d17607c9"
 
---00000000000044646005d17607c9
-Content-Type: text/plain; charset="UTF-8"
+--===============4078736484857550935==
+Content-Type: multipart/alternative; boundary=Apple-Mail-0D20EA05-E454-4F62-BA7F-9F23A7CF22FE
+Content-Transfer-Encoding: 7bit
 
-Hi Emanuele,
-I'm not certain, but it looks like the command buffer to the radio may be
-filling up such that when it's full, you receive the "no response packet"
-error. Configuration commands such as set_rx_frequency are inserted into a
-command FIFO on the FPGA.  One thing that can cause the entire FIFO to be
-blocked is if the command at the head of the FIFO is a timed command and
-the time is still in the future. In this case, all commands behind the head
-command will block until the head command executes at the indicated time.
-And, the FIFO is not deep so it is pretty easy to fill it up if it is not
-simultaneously being consumed.  I didn't notice any bug that should cause
-the FIFO to block. But, the fact that you can run error-free if you don't
-use the timed commands is a clue.  I have 2 suggestions: 1) add a delay
-between the set_time_now() and the get_time_now(), and 2) move the
-get_time_now() below the first set of tune commands.
-Rob
 
-On Tue, Nov 23, 2021 at 4:06 AM <emanuele.tolomei@intecs.it> wrote:
+--Apple-Mail-0D20EA05-E454-4F62-BA7F-9F23A7CF22FE
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-> Hi Marcus, thank you
->
-> I tried both changing the command-time (up to 1 second) and using UHD
-> version 3.15.0.0.
->
-> The application still crashes with the same error.
->
->
-> terminate called after throwing an instance of 'uhd::io_error'
->
-> what(): EnvironmentError: IOError: [0/DDC_0] sr_write() failed:
-> EnvironmentError: IOError: Block ctrl (CE_03_Port_60) no response packet -
-> AssertionError: bool(buff)
->
-> in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [with
-> uhd::endianness_t _endianness = (uhd::endianness_t)0u; uint64_t = long
-> unsigned int]
->
-> at /home/emanuele/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
+This looks like it might be a bug to me.=20
+
+
+
+Sent from my iPhone
+
+> On Nov 23, 2021, at 6:00 AM, Skorstad, J=C3=B8rn <jsk@nkom.no> wrote:
+>=20
+> =EF=BB=BF
+> Hello,
+> =20
+> I have some trouble using the UHD 4.1.0.2 library. I am using RFNOC blocks=
+ RADIO and DDC, and setting up an RX stream using graph->create_rx_streamer.=
+ The receiver loop is running in its own thread doing something like this (s=
+implified):
+> =20
+> uhd::stream_cmd_t stream_cmd(uhd::stream_cmd_t::STREAM_MODE_NUM_SAMPS_AND_=
+MORE);
+> stream_cmd.num_samps  =3D size_t(sampsPerBuff);
+> stream_cmd.stream_now =3D true;
+> stream_cmd.time_spec  =3D uhd::time_spec_t();
+> =20
+> for (;;) {
+>   rx_stream->issue_stream_cmd(stream_cmd);
+>   rx_stream->recv(&buffer.front(), sampsPerBuff, md, 3.0, false);
+>   std::this_thread::sleep_for(std::chrono::milliseconds(2));
+> }
+> =20
+> I am developing for an E310 sg3.
+> =20
+> When calling issue_stream_cmd repeatedly this way memory usage goes up unt=
+il resources are depleted (few hours). If stream_cmd is replaced with STREAM=
+_MODE_START_CONTINUOUS and called just once memory usage is normal. But for t=
+he application developed the mode NUM_SAMPS_AND_MORE is better suited. It is=
+ also what we used with the 3.14.1 library, without any memory problems like=
+ this.
+> =20
+> Any tips?
+> =20
+> BR
+> Jorn
+> =20
+> =20
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
 
---00000000000044646005d17607c9
-Content-Type: text/html; charset="UTF-8"
+--Apple-Mail-0D20EA05-E454-4F62-BA7F-9F23A7CF22FE
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Emanuele,<div>I&#39;m not certain, but it looks like th=
-e command buffer to the radio may be filling up such that when it&#39;s ful=
-l, you receive the &quot;no response packet&quot; error. Configuration comm=
-ands such as set_rx_frequency are inserted into a command FIFO on the FPGA.=
-=C2=A0 One thing that can cause the entire FIFO to be blocked is if the com=
-mand at the head of the FIFO is a timed command and the time is still in th=
-e future. In this case, all commands behind the head command will block unt=
-il the head command executes at the indicated time.=C2=A0 And, the FIFO is =
-not deep so it is pretty easy to fill it up if it is not simultaneously bei=
-ng consumed.=C2=A0 I didn&#39;t notice any bug that should cause the FIFO t=
-o block. But, the fact that you can run error-free if you don&#39;t use the=
- timed commands is a clue.=C2=A0 I have 2 suggestions: 1) add a delay betwe=
-en the set_time_now() and the get_time_now(), and 2) move the get_time_now(=
-) below the first set of tune commands.</div><div>Rob</div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Nov 23, =
-2021 at 4:06 AM &lt;<a href=3D"mailto:emanuele.tolomei@intecs.it">emanuele.=
-tolomei@intecs.it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><p>Hi Marcus, thank you</p><p>I tried both changing the co=
-mmand-time (up to 1 second) and using UHD version 3.15.0.0.</p><p>The appli=
-cation still crashes with the same error.</p><p><br></p><p>terminate called=
- after throwing an instance of &#39;uhd::io_error&#39;</p><p>what():  Envir=
-onmentError: IOError: [0/DDC_0] sr_write() failed: EnvironmentError: IOErro=
-r: Block ctrl (CE_03_Port_60) no response packet - AssertionError: bool(buf=
-f)</p><p>in uint64_t ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool,=
- double) [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0u; uin=
-t64_t =3D long unsigned int]</p><p>at /home/emanuele/uhd/host/lib/rfnoc/ctr=
-l_iface.cpp:151</p>
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">This looks like it might be a bug to me.&nb=
+sp;<div><br></div><div><br><br><div dir=3D"ltr">Sent from my iPhone</div><di=
+v dir=3D"ltr"><br><blockquote type=3D"cite">On Nov 23, 2021, at 6:00 AM, Sko=
+rstad, J=C3=B8rn &lt;jsk@nkom.no&gt; wrote:<br><br></blockquote></div><block=
+quote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
+">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 
---00000000000044646005d17607c9--
 
---===============1169958261114595458==
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have some trouble using the UHD 4.1.0.2 library. I a=
+m using RFNOC blocks RADIO and DDC, and setting up an RX stream using graph-=
+&gt;create_rx_streamer. The receiver loop is running in its own thread doing=
+ something like this (simplified):<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">uhd::stream_cmd_t stream_cmd(uhd::stream_cmd_t::STREA=
+M_MODE_NUM_SAMPS_AND_MORE);<o:p></o:p></p>
+<p class=3D"MsoNormal">stream_cmd.num_samps&nbsp; =3D size_t(sampsPerBuff);<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">stream_cmd.stream_now =3D true;<o:p></o:p></p>
+<p class=3D"MsoNormal">stream_cmd.time_spec&nbsp; =3D uhd::time_spec_t();<o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">for (;;) {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; rx_stream-&gt;issue_stream_cmd(stream_cmd);<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; rx_stream-&gt;recv(&amp;buffer.front(), sampsP=
+erBuff, md, 3.0, false);<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; std::this_thread::sleep_for(std::chrono::milli=
+seconds(2));<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am developing for an E310 sg3.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When calling issue_stream_cmd repeatedly this way mem=
+ory usage goes up until resources are depleted (few hours). If stream_cmd is=
+ replaced with STREAM_MODE_START_CONTINUOUS and called just once memory usag=
+e is normal. But for the application
+ developed the mode NUM_SAMPS_AND_MORE is better suited. It is also what we u=
+sed with the 3.14.1 library, without any memory problems like this.<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any tips?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">BR <o:p></o:p></p>
+<p class=3D"MsoNormal">Jorn<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+
+
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
+be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
+quote></div></body></html>=
+
+--Apple-Mail-0D20EA05-E454-4F62-BA7F-9F23A7CF22FE--
+
+--===============4078736484857550935==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -167,4 +237,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1169958261114595458==--
+--===============4078736484857550935==--
