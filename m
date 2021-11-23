@@ -2,261 +2,131 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A133B45ACFE
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 21:04:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19A2D45AD98
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 21:49:32 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9D9F0380FAA
-	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 15:04:03 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8BACD38413F
+	for <lists+usrp-users@lfdr.de>; Tue, 23 Nov 2021 15:49:30 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="LlG1wvsj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IayC+hfZ";
 	dkim-atps=neutral
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id 44BD238309B
-	for <usrp-users@lists.ettus.com>; Tue, 23 Nov 2021 15:03:14 -0500 (EST)
-Received: by mail-ua1-f45.google.com with SMTP id az37so181293uab.13
-        for <usrp-users@lists.ettus.com>; Tue, 23 Nov 2021 12:03:14 -0800 (PST)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id 60E4238402E
+	for <usrp-users@lists.ettus.com>; Tue, 23 Nov 2021 15:48:34 -0500 (EST)
+Received: by mail-qk1-f175.google.com with SMTP id b67so483893qkg.6
+        for <usrp-users@lists.ettus.com>; Tue, 23 Nov 2021 12:48:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bx6iufBtgMFkFQSb2/2aqRCNZrg1zI/sY1B+CCV+aUY=;
-        b=LlG1wvsjBk0WHU8ANlIhf2lI+pSV6z1gMLz66Bc2qiQkj3xUw/s6x+CeRCL5q3xoPs
-         QVyqdIvh7D2TxCUJ4BpaRXY+VJVBkpnfHv3NP4DxiI7fQdU097IgmqT/g8u46+HsIRES
-         xJbHaiYiXCIjkRj9fGIh+e3gr5yC7VagFosrbTOFAOT5tp+4S92yqNCZxQ9F4Mrv222g
-         Bi5m/CxhMqWeIL+NgwokJyiWjO0sa0l941ntvx/Iz/jS1xiXsdx+oFopk8WcaYl/yyRZ
-         i1M6Cuk0UyhTA1vBnhjqoLS8KOnovS9b3MzOkna6Ww6z0Hy5Cy9SM1yWggzijcZ6ic77
-         LImg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=I6U2rNUj3FN9WUySYPwmoxp4CCfYhHwVolbn8pmZLD8=;
+        b=IayC+hfZncjAM65yCUGb+yw/7QWQTPSNywJzx813WgnmRJ2+nzu6ulMkcdrJCd6yvf
+         XTSVgINlitvEcrEC29VOtjFm7IvjTAizwxDmj30G6E+lrp2pmonpnX8ZMQTok4cr7DyJ
+         Witw/UoRMsweD14ec1YYpkTChN0A3vM0C6pE7Uc5uyP08cW2LoBRaKL7kDao6aegZGeX
+         2+msrnVFPbe6UzsCrd219jRYxPziw/AYpj89MYKVIXLK7/srlMoYlPnj/kRKlv1512Sx
+         ShPw9TfgNVQmeeqzofzoHxjy65mRZQ/OKVOCvOwymubbOWtnEtM7Mvy7Xv7M5f3Iuowe
+         2rdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bx6iufBtgMFkFQSb2/2aqRCNZrg1zI/sY1B+CCV+aUY=;
-        b=aISKHZGijTSgLWvCApmGoxElU/eY/yrSBGXJ8o1as+k5O8Y/ctm2sEg5EaA9JXTlZh
-         NzhdpjapoKgDKK7FuEJVhNzLds3JMlmn1kFnOmpmrBYRTfy9pg17mprRfSR22eGRqAK3
-         0GgRPoH9cyGdoRScVVP5DWi3Ueb1m6XJQtCgTfsX1iEkI3bVQ5BkQgGmzzdD+zDMk09u
-         ojn3IaKtcYWzERbm4+jVERshjwXoGG8nkIY4WR/nAad6hgxTUZhHKliV7AoVlInOPMvQ
-         vYgjW3ivd+TEWckgh9Q0d5K1DOltWKU26ryjBESEtyMEMPIHgqUTJJQpWCjloqFSJwiP
-         L5WQ==
-X-Gm-Message-State: AOAM531YRId0C8DKTn6eAskjcB2/q62lJUw7AVSSTHUQwezPBcHjpjIb
-	pAbdT6BovgPSIlwpNSqG03BQWYCSCn6LlU1R2yEzOSer
-X-Google-Smtp-Source: ABdhPJzsFak2p+u8Kvsj6R3tjU5gyq+MQZDZb1RX4pCrFgcdr94oY56qwX0tdwv81G3BftXwj6yS+sgbCCSEvSk3UVo=
-X-Received: by 2002:a67:3310:: with SMTP id z16mr11439213vsz.5.1637697793457;
- Tue, 23 Nov 2021 12:03:13 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=I6U2rNUj3FN9WUySYPwmoxp4CCfYhHwVolbn8pmZLD8=;
+        b=OrjS+dfuN6wZpL2uggv/rKjAmZvmQ23iqSzH875zvEUJ7ZJyceTJuNbORR2PAz5a3x
+         nYvzWGeKfZVdHWj/L37TKZXyWT9uUV/lyqf4OCAp4ZDAfM6rDtXVzRVH6y2/kjmVEWkP
+         fSIY7nDGWV7MsfK14qxTVP+rfbyRT232vjXWBcL63O8tZkiHxNVPimhwRCnP6cUg8KrO
+         mWm2Ffm+4VDza0o2wiSW4e3MJ5nyschlT87lU9nbIU2vs2J8VOA54q47c8VhfocXhKWt
+         VL1QTciiith3M15Fo7qILYq26We+s4nKNRVk3H8RkiN5YpeudkRkWsJXPRFgwP4dAEIC
+         mrTw==
+X-Gm-Message-State: AOAM530L+ObyY7vDD2a32JtV7qnMTmrJyQ3A/OD4NOTerWK7zQMl3WpR
+	tn2qDg3jly1Oin0/gnHm9Am/Adpuwmc=
+X-Google-Smtp-Source: ABdhPJwbVI89MKxnlSVBef/kZP7BSto9F7zT0JjbJ/FLgbIRheKe63uRvSu67VrMxRXRDea7RRRk1Q==
+X-Received: by 2002:a05:620a:2796:: with SMTP id g22mr283639qkp.341.1637700513585;
+        Tue, 23 Nov 2021 12:48:33 -0800 (PST)
+Received: from [192.168.2.211] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id ay42sm6992105qkb.40.2021.11.23.12.48.32
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 12:48:33 -0800 (PST)
+Message-ID: <482fd72a-048c-c1a9-903b-9a1a2f677e77@gmail.com>
+Date: Tue, 23 Nov 2021 15:48:32 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
 References: <360d04b1-759d-69cb-fa01-d400cb592203@virginia.edu>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <360d04b1-759d-69cb-fa01-d400cb592203@virginia.edu>
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Date: Tue, 23 Nov 2021 15:02:37 -0500
-Message-ID: <CAL7q81tHRknJhdtNhk+x-3QDDf4ZdeBKwO09J8fsphboTNzUyA@mail.gmail.com>
-To: Dustin Widmann <dw2zq@virginia.edu>
-Message-ID-Hash: HLN4DAV7YB52XJD5M64WRLDJMDDEQJIN
-X-Message-ID-Hash: HLN4DAV7YB52XJD5M64WRLDJMDDEQJIN
-X-MailFrom: jonathon.pendlum@ettus.com
+Message-ID-Hash: 3KCF6PHIOKNJ5XDDQ432KPWGYYAG4KA7
+X-Message-ID-Hash: 3KCF6PHIOKNJ5XDDQ432KPWGYYAG4KA7
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X310 FPGA errors
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HLN4DAV7YB52XJD5M64WRLDJMDDEQJIN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3KCF6PHIOKNJ5XDDQ432KPWGYYAG4KA7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7269386710505565416=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============7269386710505565416==
-Content-Type: multipart/alternative; boundary="0000000000003adb3e05d17a3b6b"
-
---0000000000003adb3e05d17a3b6b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Dustin,
-
-Can you provide the error message?
-
-Jonathon
-
-On Tue, Nov 23, 2021 at 2:20 PM Dustin Widmann <dw2zq@virginia.edu> wrote:
-
-> Hi list,
->
-> I occasionally, unpredictably, get FPGA-related errors. Usually some
-> sort of FPGA timeouts, so I have to reset the USRP after these errors,
-> which is rather inconvenient.
->
-> The software is C++ using the UHD 4 multi-usrp API.
->
-> Without going into too much detail, I wonder if there is anything
-> particular to my *approach* that could make things more prone to FPGA
-> errors of any sorts. I'm also curious about the different =E2=80=9Cstream=
-_modes=E2=80=9D
-> that are available, their pros and cons / use cases, and more
-> particularly if I'm really using the one best suited to my use case.
->
-> Before describing that, this is what I'm trying to do. It's fairly
-> simple, but I'm trying to make it tune, collect, and then tune again as
-> quickly as possible without leaving my cozy C++ bed. It's currently
-> doing this >100 times per second.
-> * transmits continuously
-> * in a loop:
-> *** tune the transmitter and receivers and set their gain:
-> *** receive a fixed number of samples
->
-> How I'm currently going about it:
->
->
-> In main object/thread
-> * init the radio
-> * create a tx object and move it to a new thread
-> * give the tx object a streamer
-> * tell the tx object to start streaming
-> * create a rx object and move it to a new thread
-> * give the rx object a streamer
-> * tell the rx object to start streaming
-> * in a loop (forever):
-> *** clear command time
-> *** set command time to now()+0.004
-> *** set_rx_freq to next frequency for both channels
-> *** set_tx_freq to next frequency for channel 0
-> *** set the rx gain
-> *** set the tx gain
-> *** sleep for 4ms
-> *** ask the rx object to save some samples
->
-> in tx object/thread
-> * in a loop (until asked to stop by main)
-> *** call send on the streamer with max_num_samps samples from a fixed
-> waveform
-> * when killed, send an empty end_of_burst
->
-> in rx object/thread
-> * issue STREAM_MODE_START_CONTINUOUS, starting 0.25 in the future/_restar=
-t
-> * in a loop (until asked to stop by main)
-> *** recv  max_num_samps from the streamer
-> *** check for/handle errors if they occur (often do at the start of the
-> stream)
-> *** copy the samples  if currently collecting, else discard them
-> * when killed, issue STREAM_MODE_STOP_CONTINOUS
->
-> I can/will provide more detail/code/etc, but that's not necessarily
-> relevant to the *approach* I wouldn't think. To reiterate the question,
-> I want to know if there is anything about the approach that would make
-> FPGA related errors likely.
->
-> -Dustin
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000003adb3e05d17a3b6b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Dustin,<div><br></div><div>Can you provide the error me=
-ssage?</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Nov 23, 2021 at 2:20 =
-PM Dustin Widmann &lt;<a href=3D"mailto:dw2zq@virginia.edu">dw2zq@virginia.=
-edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x">Hi list,<br>
-<br>
-I occasionally, unpredictably, get FPGA-related errors. Usually some <br>
-sort of FPGA timeouts, so I have to reset the USRP after these errors, <br>
-which is rather inconvenient.<br>
-<br>
-The software is C++ using the UHD 4 multi-usrp API.<br>
-<br>
-Without going into too much detail, I wonder if there is anything <br>
-particular to my *approach* that could make things more prone to FPGA <br>
-errors of any sorts. I&#39;m also curious about the different =E2=80=9Cstre=
-am_modes=E2=80=9D <br>
-that are available, their pros and cons / use cases, and more <br>
-particularly if I&#39;m really using the one best suited to my use case.<br=
->
-<br>
-Before describing that, this is what I&#39;m trying to do. It&#39;s fairly =
-<br>
-simple, but I&#39;m trying to make it tune, collect, and then tune again as=
- <br>
-quickly as possible without leaving my cozy C++ bed. It&#39;s currently <br=
->
-doing this &gt;100 times per second.<br>
-* transmits continuously<br>
-* in a loop:<br>
-*** tune the transmitter and receivers and set their gain:<br>
-*** receive a fixed number of samples<br>
-<br>
-How I&#39;m currently going about it:<br>
-<br>
-<br>
-In main object/thread<br>
-* init the radio<br>
-* create a tx object and move it to a new thread<br>
-* give the tx object a streamer<br>
-* tell the tx object to start streaming<br>
-* create a rx object and move it to a new thread<br>
-* give the rx object a streamer<br>
-* tell the rx object to start streaming<br>
-* in a loop (forever):<br>
-*** clear command time<br>
-*** set command time to now()+0.004<br>
-*** set_rx_freq to next frequency for both channels<br>
-*** set_tx_freq to next frequency for channel 0<br>
-*** set the rx gain<br>
-*** set the tx gain<br>
-*** sleep for 4ms<br>
-*** ask the rx object to save some samples<br>
-<br>
-in tx object/thread<br>
-* in a loop (until asked to stop by main)<br>
-*** call send on the streamer with max_num_samps samples from a fixed <br>
-waveform<br>
-* when killed, send an empty end_of_burst<br>
-<br>
-in rx object/thread<br>
-* issue STREAM_MODE_START_CONTINUOUS, starting 0.25 in the future/_restart<=
-br>
-* in a loop (until asked to stop by main)<br>
-*** recv=C2=A0 max_num_samps from the streamer<br>
-*** check for/handle errors if they occur (often do at the start of the <br=
->
-stream)<br>
-*** copy the samples=C2=A0 if currently collecting, else discard them<br>
-* when killed, issue STREAM_MODE_STOP_CONTINOUS<br>
-<br>
-I can/will provide more detail/code/etc, but that&#39;s not necessarily <br=
->
-relevant to the *approach* I wouldn&#39;t think. To reiterate the question,=
- <br>
-I want to know if there is anything about the approach that would make <br>
-FPGA related errors likely.<br>
-<br>
--Dustin<br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000003adb3e05d17a3b6b--
-
---===============7269386710505565416==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============7269386710505565416==--
+T24gMjAyMS0xMS0yMyAxNDoyMCwgRHVzdGluIFdpZG1hbm4gd3JvdGU6DQo+IEhpIGxpc3QsDQo+
+DQo+IEkgb2NjYXNpb25hbGx5LCB1bnByZWRpY3RhYmx5LCBnZXQgRlBHQS1yZWxhdGVkIGVycm9y
+cy4gVXN1YWxseSBzb21lIA0KPiBzb3J0IG9mIEZQR0EgdGltZW91dHMsIHNvIEkgaGF2ZSB0byBy
+ZXNldCB0aGUgVVNSUCBhZnRlciB0aGVzZSBlcnJvcnMsIA0KPiB3aGljaCBpcyByYXRoZXIgaW5j
+b252ZW5pZW50Lg0KPg0KPiBUaGUgc29mdHdhcmUgaXMgQysrIHVzaW5nIHRoZSBVSEQgNCBtdWx0
+aS11c3JwIEFQSS4NCj4NCj4gV2l0aG91dCBnb2luZyBpbnRvIHRvbyBtdWNoIGRldGFpbCwgSSB3
+b25kZXIgaWYgdGhlcmUgaXMgYW55dGhpbmcgDQo+IHBhcnRpY3VsYXIgdG8gbXkgKmFwcHJvYWNo
+KiB0aGF0IGNvdWxkIG1ha2UgdGhpbmdzIG1vcmUgcHJvbmUgdG8gRlBHQSANCj4gZXJyb3JzIG9m
+IGFueSBzb3J0cy4gSSdtIGFsc28gY3VyaW91cyBhYm91dCB0aGUgZGlmZmVyZW50IA0KPiDigJxz
+dHJlYW1fbW9kZXPigJ0gdGhhdCBhcmUgYXZhaWxhYmxlLCB0aGVpciBwcm9zIGFuZCBjb25zIC8g
+dXNlIGNhc2VzLCANCj4gYW5kIG1vcmUgcGFydGljdWxhcmx5IGlmIEknbSByZWFsbHkgdXNpbmcg
+dGhlIG9uZSBiZXN0IHN1aXRlZCB0byBteSANCj4gdXNlIGNhc2UuDQo+DQo+IEJlZm9yZSBkZXNj
+cmliaW5nIHRoYXQsIHRoaXMgaXMgd2hhdCBJJ20gdHJ5aW5nIHRvIGRvLiBJdCdzIGZhaXJseSAN
+Cj4gc2ltcGxlLCBidXQgSSdtIHRyeWluZyB0byBtYWtlIGl0IHR1bmUsIGNvbGxlY3QsIGFuZCB0
+aGVuIHR1bmUgYWdhaW4gDQo+IGFzIHF1aWNrbHkgYXMgcG9zc2libGUgd2l0aG91dCBsZWF2aW5n
+IG15IGNvenkgQysrIGJlZC4gSXQncyBjdXJyZW50bHkgDQo+IGRvaW5nIHRoaXMgPjEwMCB0aW1l
+cyBwZXIgc2Vjb25kLg0KPiAqIHRyYW5zbWl0cyBjb250aW51b3VzbHkNCj4gKiBpbiBhIGxvb3A6
+DQo+ICoqKiB0dW5lIHRoZSB0cmFuc21pdHRlciBhbmQgcmVjZWl2ZXJzIGFuZCBzZXQgdGhlaXIg
+Z2FpbjoNCj4gKioqIHJlY2VpdmUgYSBmaXhlZCBudW1iZXIgb2Ygc2FtcGxlcw0KPg0KPiBIb3cg
+SSdtIGN1cnJlbnRseSBnb2luZyBhYm91dCBpdDoNCj4NCj4NCj4gSW4gbWFpbiBvYmplY3QvdGhy
+ZWFkDQo+ICogaW5pdCB0aGUgcmFkaW8NCj4gKiBjcmVhdGUgYSB0eCBvYmplY3QgYW5kIG1vdmUg
+aXQgdG8gYSBuZXcgdGhyZWFkDQo+ICogZ2l2ZSB0aGUgdHggb2JqZWN0IGEgc3RyZWFtZXINCj4g
+KiB0ZWxsIHRoZSB0eCBvYmplY3QgdG8gc3RhcnQgc3RyZWFtaW5nDQo+ICogY3JlYXRlIGEgcngg
+b2JqZWN0IGFuZCBtb3ZlIGl0IHRvIGEgbmV3IHRocmVhZA0KPiAqIGdpdmUgdGhlIHJ4IG9iamVj
+dCBhIHN0cmVhbWVyDQo+ICogdGVsbCB0aGUgcnggb2JqZWN0IHRvIHN0YXJ0IHN0cmVhbWluZw0K
+PiAqIGluIGEgbG9vcCAoZm9yZXZlcik6DQo+ICoqKiBjbGVhciBjb21tYW5kIHRpbWUNCj4gKioq
+IHNldCBjb21tYW5kIHRpbWUgdG8gbm93KCkrMC4wMDQNCj4gKioqIHNldF9yeF9mcmVxIHRvIG5l
+eHQgZnJlcXVlbmN5IGZvciBib3RoIGNoYW5uZWxzDQo+ICoqKiBzZXRfdHhfZnJlcSB0byBuZXh0
+IGZyZXF1ZW5jeSBmb3IgY2hhbm5lbCAwDQo+ICoqKiBzZXQgdGhlIHJ4IGdhaW4NCj4gKioqIHNl
+dCB0aGUgdHggZ2Fpbg0KPiAqKiogc2xlZXAgZm9yIDRtcw0KPiAqKiogYXNrIHRoZSByeCBvYmpl
+Y3QgdG8gc2F2ZSBzb21lIHNhbXBsZXMNCj4NCj4gaW4gdHggb2JqZWN0L3RocmVhZA0KPiAqIGlu
+IGEgbG9vcCAodW50aWwgYXNrZWQgdG8gc3RvcCBieSBtYWluKQ0KPiAqKiogY2FsbCBzZW5kIG9u
+IHRoZSBzdHJlYW1lciB3aXRoIG1heF9udW1fc2FtcHMgc2FtcGxlcyBmcm9tIGEgZml4ZWQgDQo+
+IHdhdmVmb3JtDQo+ICogd2hlbiBraWxsZWQsIHNlbmQgYW4gZW1wdHkgZW5kX29mX2J1cnN0DQo+
+DQo+IGluIHJ4IG9iamVjdC90aHJlYWQNCj4gKiBpc3N1ZSBTVFJFQU1fTU9ERV9TVEFSVF9DT05U
+SU5VT1VTLCBzdGFydGluZyAwLjI1IGluIHRoZSANCj4gZnV0dXJlL19yZXN0YXJ0DQo+ICogaW4g
+YSBsb29wICh1bnRpbCBhc2tlZCB0byBzdG9wIGJ5IG1haW4pDQo+ICoqKiByZWN2wqAgbWF4X251
+bV9zYW1wcyBmcm9tIHRoZSBzdHJlYW1lcg0KPiAqKiogY2hlY2sgZm9yL2hhbmRsZSBlcnJvcnMg
+aWYgdGhleSBvY2N1ciAob2Z0ZW4gZG8gYXQgdGhlIHN0YXJ0IG9mIA0KPiB0aGUgc3RyZWFtKQ0K
+PiAqKiogY29weSB0aGUgc2FtcGxlc8KgIGlmIGN1cnJlbnRseSBjb2xsZWN0aW5nLCBlbHNlIGRp
+c2NhcmQgdGhlbQ0KPiAqIHdoZW4ga2lsbGVkLCBpc3N1ZSBTVFJFQU1fTU9ERV9TVE9QX0NPTlRJ
+Tk9VUw0KPg0KPiBJIGNhbi93aWxsIHByb3ZpZGUgbW9yZSBkZXRhaWwvY29kZS9ldGMsIGJ1dCB0
+aGF0J3Mgbm90IG5lY2Vzc2FyaWx5IA0KPiByZWxldmFudCB0byB0aGUgKmFwcHJvYWNoKiBJIHdv
+dWxkbid0IHRoaW5rLiBUbyByZWl0ZXJhdGUgdGhlIA0KPiBxdWVzdGlvbiwgSSB3YW50IHRvIGtu
+b3cgaWYgdGhlcmUgaXMgYW55dGhpbmcgYWJvdXQgdGhlIGFwcHJvYWNoIHRoYXQgDQo+IHdvdWxk
+IG1ha2UgRlBHQSByZWxhdGVkIGVycm9ycyBsaWtlbHkuDQo+DQo+IC1EdXN0aW4NCj4NClNldHRp
+bmcgeW91ciBjb21tYW5kLXRpbWUgb25seSA0bXNlYyBpbiB0aGUgZnV0dXJlIHdpbGwgYmUgYSBi
+aXQgZGljZXksIA0KanVzdCBkdWUgdG8gT1MgYW5kIG5ldHdvcmstbGF5ZXIgbGF0ZW5jeS4NCg0K
+QnV0IGZ1cnRoZXIgaW5wdXQgd2lsbCBsaWtlbHkgcmVxdWlyZSB0aGUgYWN0dWFsIGVycm9ycyBw
+cm9kdWNlZCwgYW5kIA0KcHJvYmFibHkgY29kZSBzbmlwcGV0cyB0byBzaG93IHdoYXQgcHJvdm9r
+ZXMgdGhlIGVycm9ycy4NCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVA
+bGlzdHMuZXR0dXMuY29tCg==
