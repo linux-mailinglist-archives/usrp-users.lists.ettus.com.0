@@ -2,178 +2,114 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AAF645C0F2
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 14:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9723845C877
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 16:18:26 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F152838445A
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 08:09:50 -0500 (EST)
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 540553840DE
-	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 08:08:52 -0500 (EST)
-Date: Wed, 24 Nov 2021 13:08:52 +0000
-To: usrp-users@lists.ettus.com
-From: emanuele.tolomei@intecs.it
-Message-ID: <G1q6uCzFj2BDywtELzLEjKrnqIpczJHyl97ohwgQrU@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAB__hTQu+CNYObAwRapdHFcG4Fdba9impHrJ_R-Kd=8n8ohiHQ@mail.gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id 54173384192
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 10:18:25 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BUI0La0v";
+	dkim-atps=neutral
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id BDE80383D97
+	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 10:17:24 -0500 (EST)
+Received: by mail-qt1-f182.google.com with SMTP id l8so2920726qtk.6
+        for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 07:17:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=QQdPw0AteRPvKoX6j18tH+Ootj3pyxjBbuqXny4IJDA=;
+        b=BUI0La0vYwQez3dMyP4EEjObX/+k4+vg7GOgoEWyGv0W4T9VKBsfW3ZPh0gpJs3PnB
+         8+qd8OolsJIiL/Ii5SwBAXXO/yP0Oy0FF5ilfTn+Ze8pYqikYUObOOQjICdUEWJC1Xpw
+         MDNviLMtWbX5W4f4GFy0oKoJ0DTE6XMctCJ47piCw32Z013a4EY5DIWvmBwCXwWctEVl
+         AqeG1bvvjKxo1RRh6uqd/2qLVE9Z2zak7oxVHeI/E9D+yC5lsh8SfPsv/xUQ0C9h0vYw
+         DWom+e0+2bp5Q9pJyMbtgyU12votbYCvunWmUQzlZuAHqyRwBXb5hEuj7BDhmUv+DGW8
+         L0kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QQdPw0AteRPvKoX6j18tH+Ootj3pyxjBbuqXny4IJDA=;
+        b=tKymfQSvdq3W8cBRJkInu/U/Xde6ZjZDi7deZt69FJanONnT4f9taVoxi320QdnKqg
+         TPPoRQnQRq2IlFYxzAOK54Y0ytQtfAvG7Q3IOn7KRfOV0wq5J2lv9mN7soqt5KINpM10
+         8Eh5qcfcMIP8SkE7hZS4iEVvpRd8RhWa6ULh32Cuf5IL40xV9XYu+92Fcz1T3Q9OMTTp
+         ji5GJzuJxhpf+2QFLfJDkFwdAQ/a1e2qGRLE9k3o5qO4E2h0Xsjq8KDfRDhphNtIkyXy
+         lOju9oZxlTF3yMT1JCmkhGghoIoj2Qt3d8MUY4dKkWvK/r0rByhGF0zG/dgyLALdixbj
+         XE4w==
+X-Gm-Message-State: AOAM5333gALTDw0YTXdMG6em7GL6VB3g+d26Bwk4snRW42H/7duFkKdU
+	hOh8hUGD4p++0a8IFf+J2wxlt0gDqW4=
+X-Google-Smtp-Source: ABdhPJyLoGwftt3H+zS3dA9GoGEwtgtVzEqBOHBLIl9mcdU2f5VZ2ZsqGQfbSmoilXS7dMk1AmP2ng==
+X-Received: by 2002:a05:622a:144:: with SMTP id v4mr8460661qtw.191.1637767044069;
+        Wed, 24 Nov 2021 07:17:24 -0800 (PST)
+Received: from [192.168.2.213] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id 8sm45094qtz.28.2021.11.24.07.17.23
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 07:17:23 -0800 (PST)
+Message-ID: <e9181afd-84c5-1871-05fa-b3c45f04da5d@gmail.com>
+Date: Wed, 24 Nov 2021 10:17:22 -0500
 MIME-Version: 1.0
-Message-ID-Hash: 725MWXNSV4ZGICFMB3YLX47SGJHS66FU
-X-Message-ID-Hash: 725MWXNSV4ZGICFMB3YLX47SGJHS66FU
-X-MailFrom: emanuele.tolomei@intecs.it
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <G1q6uCzFj2BDywtELzLEjKrnqIpczJHyl97ohwgQrU@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <G1q6uCzFj2BDywtELzLEjKrnqIpczJHyl97ohwgQrU@lists.ettus.com>
+Message-ID-Hash: VI4CULNW2CDRGMBAJHDUJUUNKYLDIS2V
+X-Message-ID-Hash: VI4CULNW2CDRGMBAJHDUJUUNKYLDIS2V
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Trouble with TwinRX frequency tuning
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/725MWXNSV4ZGICFMB3YLX47SGJHS66FU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VI4CULNW2CDRGMBAJHDUJUUNKYLDIS2V/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7274754963497258432=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============7274754963497258432==
-Content-Type: multipart/alternative;
- boundary="b1_G1q6uCzFj2BDywtELzLEjKrnqIpczJHyl97ohwgQrU"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_G1q6uCzFj2BDywtELzLEjKrnqIpczJHyl97ohwgQrU
-Content-Type: text/plain; charset=us-ascii
-
-Hi Rob,
-
-yes it seems that the error is caused by an incorrect use of the set_time_now() command. For my application I need to synchronize the multi_usrp time with the system time and issue the command with a delay of less than 1s.
-
-The error does not occur when I reset the multi_usrp time with command 'm_MultiUsrp->set_time_now(uhd::time_spec_t(0.0))' instead of setting it to the system time.
-
-I moved the get_time_now() after the first set of tune commands and tried a delay of up to 3s between set_time_now() and get_time_now() function but the error still occurs (by the way it forces me to hard reset the x300). 
-
-I did several tests and discovered the following two things:
-
-1\. The only way to prevent the error from occurring is to reset the time of the multi_usrp with the command 'm_MultiUsrp->set_time_now(uhd::time_spec_t(0.0))' at each call of the ReceiveSamplesBurst function of the snippet attached in the first post, but this causes a phase shift of the channels. 
-
-2\. The only way to have the channels phased is not to call 'm_MultiUsrp->set_time_now(uhd::time_spec_t(0.0))', but this causes the above error.
-
-Supposing we can relax the synchronization constraint with the system time, how is it possible that the error occurs when inserting such high delays?
-
-Thank you in advance.
-
-Emanuele Tolomei
-
-Rob Kossler wrote:
-
-> Hi Emanuele,
-> I'm not certain, but it looks like the command buffer to the radio may be
-> filling up such that when it's full, you receive the "no response packet"
-> error. Configuration commands such as set_rx_frequency are inserted into a
-> command FIFO on the FPGA.  One thing that can cause the entire FIFO to be
-> blocked is if the command at the head of the FIFO is a timed command and
-> the time is still in the future. In this case, all commands behind the head
-> command will block until the head command executes at the indicated time.
-> And, the FIFO is not deep so it is pretty easy to fill it up if it is not
-> simultaneously being consumed.  I didn't notice any bug that should cause
-> the FIFO to block. But, the fact that you can run error-free if you don't
-> use the timed commands is a clue.  I have 2 suggestions: 1) add a delay
-> between the set_time_now() and the get_time_now(), and 2) move the
-> get_time_now() below the first set of tune commands.
-> Rob
->
-> On Tue, Nov 23, 2021 at 4:06 AM [emanuele.tolomei@intecs.it](mailto:emanuele.tolomei@intecs.it) wrote:
->
-> > Hi Marcus, thank you
-> >
-> > I tried both changing the command-time (up to 1 second) and using UHD
-> > version 3.15.0.0.
-> >
-> > The application still crashes with the same error.
-> >
-> > terminate called after throwing an instance of 'uhd::io_error'
-> >
-> > what(): EnvironmentError: IOError: \[0/DDC_0\] sr_write() failed:
-> > EnvironmentError: IOError: Block ctrl (CE_03_Port_60) no response packet -
-> > AssertionError: bool(buff)
-> >
-> > in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) \[with
-> > uhd::endianness_t _endianness = (uhd::endianness_t)0u; uint64_t = long
-> > unsigned int\]
-> >
-> > at /home/emanuele/uhd/host/lib/rfnoc/ctrl_iface.cpp:151
-> >
-> > ---
-> >
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---b1_G1q6uCzFj2BDywtELzLEjKrnqIpczJHyl97ohwgQrU
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Rob,</p><p>yes it seems that the error is caused by an incorrect use =
-of the set_time_now() command. For my application I need to synchronize the=
- multi_usrp time with the system time and issue the command with a delay of=
- less than 1s.</p><p>The error does not occur when I reset the multi_usrp t=
-ime with command 'm_MultiUsrp-&gt;set_time_now(uhd::time_spec_t(0.0))' inst=
-ead of setting it to the system time.</p><p>I moved the get_time_now() afte=
-r the first set of tune commands and tried a delay of up to 3s between set_=
-time_now() and get_time_now() function but the error still occurs (by the w=
-ay it forces me to hard reset the x300). </p><p>I did several tests and dis=
-covered the following two things:</p><p>1. The only way to prevent the erro=
-r from occurring is to reset the time of the multi_usrp with the command 'm=
-_MultiUsrp-&gt;set_time_now(uhd::time_spec_t(0.0))' at each call of the Rec=
-eiveSamplesBurst function of the snippet attached in the first post, but th=
-is causes a phase shift of the channels. </p><p>2. The only way to have the=
- channels phased is not to call 'm_MultiUsrp-&gt;set_time_now(uhd::time_spe=
-c_t(0.0))', but this causes the above error.</p><p>Supposing we can relax t=
-he synchronization constraint with the system time, how is it possible that=
- the error occurs when inserting such high delays?</p><p>Thank you in advan=
-ce.</p><p>Emanuele Tolomei</p><p>Rob Kossler wrote:</p><blockquote><p>Hi Em=
-anuele,
-I'm not certain, but it looks like the command buffer to the radio may be
-filling up such that when it's full, you receive the "no response packet"
-error. Configuration commands such as set_rx_frequency are inserted into a
-command FIFO on the FPGA.  One thing that can cause the entire FIFO to be
-blocked is if the command at the head of the FIFO is a timed command and
-the time is still in the future. In this case, all commands behind the head
-command will block until the head command executes at the indicated time.
-And, the FIFO is not deep so it is pretty easy to fill it up if it is not
-simultaneously being consumed.  I didn't notice any bug that should cause
-the FIFO to block. But, the fact that you can run error-free if you don't
-use the timed commands is a clue.  I have 2 suggestions: 1) add a delay
-between the set_time_now() and the get_time_now(), and 2) move the
-get_time_now() below the first set of tune commands.
-Rob</p><p>On Tue, Nov 23, 2021 at 4:06 AM <a href=3D"mailto:emanuele.tolome=
-i@intecs.it">emanuele.tolomei@intecs.it</a> wrote:</p><blockquote><p>Hi Mar=
-cus, thank you</p><p>I tried both changing the command-time (up to 1 second=
-) and using UHD
-version 3.15.0.0.</p><p>The application still crashes with the same error.<=
-/p><p>terminate called after throwing an instance of 'uhd::io_error'</p><p>=
-what(): EnvironmentError: IOError: [0/DDC_0] sr_write() failed:
-EnvironmentError: IOError: Block ctrl (CE_03_Port_60) no response packet -
-AssertionError: bool(buff)</p><p>in uint64_t ctrl_iface_impl&lt;_endianness=
-&gt;::wait_for_ack(bool, double) [with
-uhd::endianness_t _endianness =3D (uhd::endianness_t)0u; uint64_t =3D long
-unsigned int]</p><p>at /home/emanuele/uhd/host/lib/rfnoc/ctrl_iface.cpp:151=
-</p><div contenteditable=3D"false"><hr></div><p>USRP-users mailing list -- =
-usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com</p></block=
-quote></blockquote><p><br></p>
-
---b1_G1q6uCzFj2BDywtELzLEjKrnqIpczJHyl97ohwgQrU--
-
---===============7274754963497258432==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============7274754963497258432==--
+T24gMjAyMS0xMS0yNCAwODowOCwgZW1hbnVlbGUudG9sb21laUBpbnRlY3MuaXQgd3JvdGU6DQo+
+DQo+IEhpIFJvYiwNCj4NCj4geWVzIGl0IHNlZW1zIHRoYXQgdGhlIGVycm9yIGlzIGNhdXNlZCBi
+eSBhbiBpbmNvcnJlY3QgdXNlIG9mIHRoZSANCj4gc2V0X3RpbWVfbm93KCkgY29tbWFuZC4gRm9y
+IG15IGFwcGxpY2F0aW9uIEkgbmVlZCB0byBzeW5jaHJvbml6ZSB0aGUgDQo+IG11bHRpX3VzcnAg
+dGltZSB3aXRoIHRoZSBzeXN0ZW0gdGltZSBhbmQgaXNzdWUgdGhlIGNvbW1hbmQgd2l0aCBhIA0K
+PiBkZWxheSBvZiBsZXNzIHRoYW4gMXMuDQo+DQo+IFRoZSBlcnJvciBkb2VzIG5vdCBvY2N1ciB3
+aGVuIEkgcmVzZXQgdGhlIG11bHRpX3VzcnAgdGltZSB3aXRoIGNvbW1hbmQgDQo+ICdtX011bHRp
+VXNycC0+c2V0X3RpbWVfbm93KHVoZDo6dGltZV9zcGVjX3QoMC4wKSknIGluc3RlYWQgb2Ygc2V0
+dGluZyANCj4gaXQgdG8gdGhlIHN5c3RlbSB0aW1lLg0KPg0KPiBJIG1vdmVkIHRoZSBnZXRfdGlt
+ZV9ub3coKSBhZnRlciB0aGUgZmlyc3Qgc2V0IG9mIHR1bmUgY29tbWFuZHMgYW5kIA0KPiB0cmll
+ZCBhIGRlbGF5IG9mIHVwIHRvIDNzIGJldHdlZW4gc2V0X3RpbWVfbm93KCkgYW5kIGdldF90aW1l
+X25vdygpIA0KPiBmdW5jdGlvbiBidXQgdGhlIGVycm9yIHN0aWxsIG9jY3VycyAoYnkgdGhlIHdh
+eSBpdCBmb3JjZXMgbWUgdG8gaGFyZCANCj4gcmVzZXQgdGhlIHgzMDApLg0KPg0KPiBJIGRpZCBz
+ZXZlcmFsIHRlc3RzIGFuZCBkaXNjb3ZlcmVkIHRoZSBmb2xsb3dpbmcgdHdvIHRoaW5nczoNCj4N
+Cj4gMS4gVGhlIG9ubHkgd2F5IHRvIHByZXZlbnQgdGhlIGVycm9yIGZyb20gb2NjdXJyaW5nIGlz
+IHRvIHJlc2V0IHRoZSANCj4gdGltZSBvZiB0aGUgbXVsdGlfdXNycCB3aXRoIHRoZSBjb21tYW5k
+IA0KPiAnbV9NdWx0aVVzcnAtPnNldF90aW1lX25vdyh1aGQ6OnRpbWVfc3BlY190KDAuMCkpJyBh
+dCBlYWNoIGNhbGwgb2YgdGhlIA0KPiBSZWNlaXZlU2FtcGxlc0J1cnN0IGZ1bmN0aW9uIG9mIHRo
+ZSBzbmlwcGV0IGF0dGFjaGVkIGluIHRoZSBmaXJzdCANCj4gcG9zdCwgYnV0IHRoaXMgY2F1c2Vz
+IGEgcGhhc2Ugc2hpZnQgb2YgdGhlIGNoYW5uZWxzLg0KPg0KPiAyLiBUaGUgb25seSB3YXkgdG8g
+aGF2ZSB0aGUgY2hhbm5lbHMgcGhhc2VkIGlzIG5vdCB0byBjYWxsIA0KPiAnbV9NdWx0aVVzcnAt
+PnNldF90aW1lX25vdyh1aGQ6OnRpbWVfc3BlY190KDAuMCkpJywgYnV0IHRoaXMgY2F1c2VzIA0K
+PiB0aGUgYWJvdmUgZXJyb3IuDQo+DQo+IFN1cHBvc2luZyB3ZSBjYW4gcmVsYXggdGhlIHN5bmNo
+cm9uaXphdGlvbiBjb25zdHJhaW50IHdpdGggdGhlIHN5c3RlbSANCj4gdGltZSwgaG93IGlzIGl0
+IHBvc3NpYmxlIHRoYXQgdGhlIGVycm9yIG9jY3VycyB3aGVuIGluc2VydGluZyBzdWNoIA0KPiBo
+aWdoIGRlbGF5cz8NCj4NCj4gVGhhbmsgeW91IGluIGFkdmFuY2UuDQo+DQo+IEVtYW51ZWxlIFRv
+bG9tZWkNCj4NCj4NCkluIHRoZSBzbmlwcGV0IHlvdSBzaGFyZWQsIHlvdSBkbyBhDQoNCnVoZDo6
+dGltZV9zcGVjX3QgdXNycF90aW1lID0gbV9NdWx0aVVzcnAtPmdldF90aW1lX25vdygpOw0KDQpU
+aGVuIGRvIGEgYnVuY2ggb2YgdHVuZXMsIFRIRU46DQoNCm1fTXVsdGlVc3JwLT5zZXRfY29tbWFu
+ZF90aW1lKHVzcnBfdGltZSArIHVoZDo6dGltZV9zcGVjX3QoMC4wMSkpOw0KDQoNCkJ5IHRoZSB0
+aW1lIHRob3NlIHR1bmVzIGFyZSBjb21wbGV0ZSwgInVzcnBfdGltZSIgd2lsbCBiZSBzb21ld2hh
+dCANCiJzdGFsZSIuwqDCoCBTbyBJIHdvdWxkIHB1dCBhbm90aGVyIGNhbGwgdG8gZ2V0X3RpbWVf
+bm93KCkgdG8gInJlZnJlc2giIA0KdXNycF90aW1lIGp1c3QgYmVmb3JlIHlvdQ0KIMKgIHNldCB0
+aGUgY29tbWFuZCB0aW1lLg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVA
+bGlzdHMuZXR0dXMuY29tCg==
