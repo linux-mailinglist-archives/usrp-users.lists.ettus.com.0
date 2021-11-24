@@ -2,254 +2,143 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03B6245B885
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 11:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0C445B927
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 12:36:26 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D4178383E7F
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 05:41:24 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E1E6D3838CB
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 06:36:24 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kongsberg.com header.i=@kongsberg.com header.b="PBYHtTG2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="hf8cSTQ9";
 	dkim-atps=neutral
-Received: from kda-chqmg-03.kongsberg.com (kda-chqmg-03.kongsberg.com [193.71.180.7])
-	by mm2.emwd.com (Postfix) with ESMTPS id D52F4383E3B
-	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 05:40:26 -0500 (EST)
-Received: from pps.filterd (kda-chqmg-03.kongsberg.com [127.0.0.1])
-	by kda-chqmg-03.kongsberg.com (8.16.0.43/8.16.0.43) with SMTP id 1AOAbkW4007629
-	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 11:40:24 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kongsberg.com; h=from : to :
- subject : date : message-id : content-type : mime-version; s=KDA1;
- bh=pFy7llp2nku0uwCvOzAd/e48tuMUPKKsRgdgpa6ufqM=;
- b=PBYHtTG2fPO5d6NiaCcCmHcuiaudI2hO32LwRxhKTZ2cXfBHLs7x5FSoIZq+nsGQu9j8
- RxIeBf2LXSAegddp7vImTQgAaed39kdu6mkDXMj7VtnSoGbf4sVDeqVHm6PByElsRZqw
- DLdaXhYyj2uoDiyISrTO7/GKjZC9A3WbBJTfcRwbkwGfHIPgNHoTNWYYd/fCroIftApk
- JyGjobJ9OEfk+n8Yp/1wxkfdYXC/Wx6cc2qo0tKz7nQpPlpshDD3+D4WfhuRLvvrle86
- gJ6Ee45PgmiA0+p78hs7d+SJxQoB/swUGCLm7SQ1cvbzL1yStMmo1gTuhTZ90KxJ8kEw cA==
-Received: from ukgw-exca2-p01.kda.kongsberg.com ([10.50.100.47])
-	by kda-chqmg-03.kongsberg.com with ESMTP id 3cf2jf0k87-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 11:40:24 +0100
-Received: from Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) by
- Ukgw-ExcA2-p01.kda.kongsberg.com (10.50.100.47) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.20; Wed, 24 Nov 2021 11:40:24 +0100
-Received: from Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::208f:bf43:3727:cea5])
- by Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::208f:bf43:3727:cea5%20]) with
- mapi id 15.01.2308.020; Wed, 24 Nov 2021 11:40:24 +0100
-To: <usrp-users@lists.ettus.com>
-Thread-Topic: Creating sinc-spectrum
-Thread-Index: AdffwZAVCAf2IteuSRibgknc6Ex7bQ==
-Date: Wed, 24 Nov 2021 10:40:24 +0000
-Message-ID: <172b6b6d5dbc4d78a3dfa177cc65503c@kongsberg.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.73.0.202]
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8698D383F0D
+	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 06:34:55 -0500 (EST)
+Received: by mail-wr1-f54.google.com with SMTP id o13so3566623wrs.12
+        for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 03:34:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=pNfXu4QpXy3cRqP20YrPA7gzH1aiYPH2S+EaOiOi2U8=;
+        b=hf8cSTQ968QwpF7bGxFcHl9mSTLI5WDVTU2ceXvolZ7M1Qlv6UUDPnrm7Dm4DXR/Hj
+         k97+8WkkAGOY5HrmLPndX3yN6M4w3uaX9Lk/pZnLkKB3Vxa3+QzN6ScpL6//jfLG8AuR
+         h+O7yrdIG0zWUFNdRa6Qk/5TALwIG3BqyIq0ZjBVgjJE8GCFLVvO9RCR9djo+CjdSI8V
+         1PwjXWuP5dQny4WYbTAEZQBvpuTOeK7XDpker6R90ZTXLVdaits7INVm1Iz7rHi8efGs
+         7MkMwcmjxrVX9rlceUqjT8dBrG+EADlK49rZByvrTMy+c9sFRevqgWYYY4crE0hq9h7M
+         B2FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=pNfXu4QpXy3cRqP20YrPA7gzH1aiYPH2S+EaOiOi2U8=;
+        b=0X7cDvoEMJMz++d/lyrpiuHyxahUU2bhjw4bgvbDGbo/Riu8OuMsZO4k07iPdhKsx+
+         Co9yy4+ez+2JuX2GQgIMS1oz4ulQv1r6qrZu+kxfB3L99RdxDNWvR//xYh3NnYddXlVD
+         O915CMG6vA7l2e0PMwhIF1QEtbCfsCANTFEJzsZx3cEYv85Sg9YNvOvp9Epc3EVb7XTc
+         9NzbwCzAAX04HZjkuk6bTxeJFFDqSBB0ZxoZJUsyNrwJr1OATOip5bdT3ahhdr/XKa8Z
+         3HnAnI9lJoQ8BrE2adpFloSqWq9f3dEee/BJhQn/9CKFnxEzjTx5YBVclKjah0LD8BtS
+         Eqzw==
+X-Gm-Message-State: AOAM532Fp26aZ77IaCIRkjpBOomIuKGWzoFnLSz4K/o6n1B6eDMsQGxE
+	S45eqa5ggpeSJhRtB6s108fX9SIRIwa4cDKO
+X-Google-Smtp-Source: ABdhPJxHfB1O83iG4nNAJqe2/JE0SUeFqvi+ioY/bXY1bxWXgmlv1ca1ocGhVVLX4DdCDhfkvL9p5Q==
+X-Received: by 2002:a05:6000:1048:: with SMTP id c8mr17117778wrx.352.1637753694103;
+        Wed, 24 Nov 2021 03:34:54 -0800 (PST)
+Received: from [192.168.128.8] (HSI-KBW-46-223-163-35.hsi.kabel-badenwuerttemberg.de. [46.223.163.35])
+        by smtp.gmail.com with ESMTPSA id g198sm4595692wme.23.2021.11.24.03.34.53
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 03:34:53 -0800 (PST)
+Message-ID: <57355ef5-9d97-18bf-389b-dae97049f7c2@ettus.com>
+Date: Wed, 24 Nov 2021 12:34:52 +0100
 MIME-Version: 1.0
-X-Proofpoint-ORIG-GUID: orJfmGC3ghCrd86XW0aMLsGYE7vhGz4r
-X-Proofpoint-GUID: orJfmGC3ghCrd86XW0aMLsGYE7vhGz4r
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425,18.0.790
- definitions=2021-11-24_03:2021-11-23,2021-11-24 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 spamscore=0
- priorityscore=1501 impostorscore=0 phishscore=0 adultscore=0
- mlxlogscore=999 suspectscore=0 clxscore=1011 mlxscore=0 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2111240059
-Message-ID-Hash: 6CEMDRXZ4L3JCXUVDLSUTJIS2K5CO4KZ
-X-Message-ID-Hash: 6CEMDRXZ4L3JCXUVDLSUTJIS2K5CO4KZ
-X-MailFrom: Andreas.Bertheussen@kongsberg.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <172b6b6d5dbc4d78a3dfa177cc65503c@kongsberg.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+In-Reply-To: <172b6b6d5dbc4d78a3dfa177cc65503c@kongsberg.com>
+Message-ID-Hash: L57XDI53UPKS6UX4DQ3T6MOZX3ND6HWG
+X-Message-ID-Hash: L57XDI53UPKS6UX4DQ3T6MOZX3ND6HWG
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Creating sinc-spectrum
+Subject: [USRP-users] Re: Creating sinc-spectrum
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6CEMDRXZ4L3JCXUVDLSUTJIS2K5CO4KZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/L57XDI53UPKS6UX4DQ3T6MOZX3ND6HWG/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Andreas.Bertheussen--- via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: Andreas.Bertheussen@kongsberg.com
-Content-Type: multipart/mixed; boundary="===============5850187636949792512=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============5850187636949792512==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_172b6b6d5dbc4d78a3dfa177cc65503ckongsbergcom_"
-
---_000_172b6b6d5dbc4d78a3dfa177cc65503ckongsbergcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-I'd like to create (imitate) the sinc(f/fs) spectrum that would be generate=
-d from an unfiltered zero-order hold DAC output, clocked at 10 Mhz. Main ch=
-aracteristics are a peak around center frequency, rolling off to nulls at +=
-- 10 MHz around the center frequency.
-
-The IF signal is a random BPSK sequence.
-
-When I stream the BPSK sequence at 10 MHz , I get a flat spectrum between +=
-- 5MHz since the DUC is doing its job in upsampling to 200MHz DAC rate.
-
-I have tried to add skip_duc=3D1 which is mentioned in some of the document=
-ation, but the output spectrum does not change. Is this command outdated or=
- not supported? I wonder since the HG FPGA image has listed that the routin=
-g between DUC and radio are "static".
-
-I have noticed that I get something closer to what I want if I choose an od=
-d interpolation order, by setting master_clock_rate to 190 MHz instead of 2=
-00MHz. The upsampling ratio becomes 190MHz/10MHz =3D 19, which is odd, and =
-I get some warnings about half-band filters and CIC roll-of in the console.
-In this mode, what does the DUC do to the signal? Is it equivalent to bypas=
-sing the DUC?
-
-How do I best avoid any effects introduced by DUC?
-
-Regards,
-Andreas.
-
-________________________________
-
-CONFIDENTIALITY
-This e-mail and any attachment contain KONGSBERG information which may be p=
-roprietary, confidential or subject to export regulations, and is only mean=
-t for the intended recipient(s). Any disclosure, copying, distribution or u=
-se is prohibited, if not otherwise explicitly agreed with KONGSBERG. If rec=
-eived in error, please delete it immediately from your system and notify th=
-e sender properly.
-
---_000_172b6b6d5dbc4d78a3dfa177cc65503ckongsbergcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"NO-BOK" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8217;d like to create (imita=
-te) the sinc(f/fs) spectrum that would be generated from an unfiltered zero=
--order hold DAC output, clocked at 10 Mhz. Main characteristics are a peak =
-around center frequency, rolling off to nulls
- at &#43;- 10 MHz around the center frequency.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">The IF signal is a random BPSK =
-sequence.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">When I stream the BPSK sequence=
- at 10 MHz , I get a flat spectrum between &#43;- 5MHz since the DUC is doi=
-ng its job in upsampling to 200MHz DAC rate.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have tried to add skip_duc=3D=
-1 which is mentioned in some of the documentation, but the output spectrum =
-does not change. Is this command outdated or not supported? I wonder since =
-the HG FPGA image has listed that the
- routing between DUC and radio are &#8220;static&#8221;.<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have noticed that I get somet=
-hing closer to what I want if I choose an odd interpolation order, by setti=
-ng master_clock_rate to 190 MHz instead of 200MHz. The upsampling ratio bec=
-omes 190MHz/10MHz =3D 19, which is odd,
- and I get some warnings about half-band filters and CIC roll-of in the con=
-sole.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">In this mode, what does the DUC=
- do to the signal? Is it equivalent to bypassing the DUC?<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">How do I best avoid any effects=
- introduced by DUC?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Andreas.<o:p></o:p></span></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-CONFIDENTIALITY<br>
-This e-mail and any attachment contain KONGSBERG information which may be p=
-roprietary, confidential or subject to export regulations, and is only mean=
-t for the intended recipient(s). Any disclosure, copying, distribution or u=
-se is prohibited, if not otherwise
- explicitly agreed with KONGSBERG. If received in error, please delete it i=
-mmediately from your system and notify the sender properly.<br>
-</font>
-</body>
-</html>
-
---_000_172b6b6d5dbc4d78a3dfa177cc65503ckongsbergcom_--
-
---===============5850187636949792512==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============5850187636949792512==--
+SGkgQW5kcmVhcywNCg0Kd2hpY2ggVVNSUCBpcyB0aGlzIGFib3V0PyBNeSBndWVzcyBpcyB0aGUg
+WDMxMCwgYW5kIHlvdSdyZSB1c2luZyB0aGUgQmFzaWNUWCANCmRhdWdodGVyYm9hcmQuIElzIHRo
+YXQgY29ycmVjdD8NCg0KVG8gdGFsayBhYm91dCBmZWF0dXJlcyBvZiB0aGUgRFNQIGFyY2hpdGVj
+dHVyZSwgaXQncyBhbHNvICh2ZXJ5KSByZWxldmFudCB0byBrbm93IHdoaWNoIA0KdmVyc2lvbiBv
+ZiBVSEQgd2UncmUgdGFsa2luZyBhYm91dCENCg0KPiBJIGhhdmUgdHJpZWQgdG8gYWRkICBza2lw
+X2R1Yz0xIHdoaWNoIGlzIG1lbnRpb25lZCBpbiBzb21lIG9mIHRoZSBkb2N1bWVudGF0aW9uLCBi
+dXQgdGhlIG91dHB1dCBzcGVjdHJ1bSBkb2VzIA0Kbm90IGNoYW5nZS4NCg0KDQpUaGF0J3MgdHJ1
+ZSwgSSBvbmx5IGZpbmQgYSBzaW5nbGUgc2VlbWluZ2x5IG9ycGhhbmVkIGNvZGUgbWVudGlvbiBv
+ZiBza2lwX2R1Yy4uLiBidXQgaXQgDQp3YXMgb25seSBtZW50aW9uIChpZiBJIHJlbWVtYmVyIGNv
+cnJlY3RseSkgaW4gdGhlIGRvY3VtZW50YXRpb24gb2YgdGhlIE4zeHgsIHNvIHRoYXQgd291bGQg
+DQpjb25mbGljdCB3aXRoIG15IFgzeHggZ3Vlc3MuLi4NCg0KDQo+IElzIHRoaXMgY29tbWFuZCAg
+b3V0ZGF0ZWQgb3Igbm90IHN1cHBvcnRlZD8gSSB3b25kZXIgc2luY2UgdGhlIEhHIEZQR0EgaW1h
+Z2UgaGFzIGxpc3RlZCB0aGF0IHRoZSByb3V0aW5nIA0KYmV0d2VlbiBEVUMgYW5kIHJhZGlvIGFy
+ZSDigJxzdGF0aWPigJ0uDQoNCg0KVGhpcyBkZXBlbmRzIG9uIHRoZSBVSEQgdmVyc2lvbjsgZ2Vu
+ZXJhbGx5LCBSRk5vQyB3aWxsIGFsbG93IHlvdSB0byBmZWVkIGZ1bGwtcmF0ZSBzaWduYWwgDQpp
+bnRvIHRoZSByYWRpbyBmcm9udGVuZC4gVGhlICJuZXdlciIgdGhlIFVIRCwgdGhlIG1vcmUgZmxl
+eGlibGUgaXQgZ2V0cywgZXNzZW50aWFsbHkuDQoNCg0KPiBoYXZlIG5vdGljZWQgdGhhdCBJIGdl
+dCBzb21ldGhpbmcgY2xvc2VyIHRvIHdoYXQgSSB3YW50IGlmIEkgY2hvb3NlIGFuIG9kZCBpbnRl
+cnBvbGF0aW9uIA0Kb3JkZXIsIGJ5IHNldHRpbmcgbWFzdGVyX2Nsb2NrX3JhdGUgdG8gMTkwIE1I
+eiBpbnN0ZWFkIG9mIDIwME1Iei4NCg0KDQpVaCEgVGhhdCBub3cgY29tcGxldGVseSBjbGFzaGVz
+IHdpdGggbXkgZ3Vlc3MsIGJlY2F1c2UgdGhlIFgzMTAgZG9lc24ndCBzdXBwb3J0IDE5MCBNSHog
+DQpNQ1IgYXQgYWxsLCBJIHRob3VnaHQuDQoNCkJ1dCB5ZXMsIGlmIHlvdSB1c2UgYW4gb2RkIGlu
+dGVycG9sYXRpb24gb24gYW55IHRoaXJkIHNlcmllcyBVU1JQLCB5b3UgZ2V0ICJsZXNzIGdvb2Qi
+IA0Kc3BlY3RydW0sIGJlY2F1c2Ugbm9uZSBvZiB0aGUgcmVsYXRpdmVseSBnb29kIGhhbGYtYmFu
+ZCBmaWx0ZXJzIGNhbiBiZSB1c2VkLCBhbmQgdGhlIA0KYWRqdXN0YWJsZSBDSUMgZmlsdGVyIG5l
+ZWRzIHRvIGRvIGl0IGFsbCwgbGVhZGluZyB0byBzaWRlbG9iZXMsIHdoaWNoIGluIHR1cm4gbGVh
+ZCB0byBtb3JlIA0Kc3F1YXJpc2huZXNzLg0KDQoNCkJlc3QgcmVnYXJkcywNCg0KTWFyY3VzDQoN
+Ck9uIDI0LjExLjIxIDExOjQwLCBBbmRyZWFzLkJlcnRoZXVzc2VuLS0tIHZpYSBVU1JQLXVzZXJz
+IHdyb3RlOg0KPg0KPiBIaSwNCj4NCj4gSeKAmWQgbGlrZSB0byBjcmVhdGUgKGltaXRhdGUpIHRo
+ZSBzaW5jKGYvZnMpIHNwZWN0cnVtIHRoYXQgd291bGQgYmUgZ2VuZXJhdGVkIGZyb20gYW4gDQo+
+IHVuZmlsdGVyZWQgemVyby1vcmRlciBob2xkIERBQyBvdXRwdXQsIGNsb2NrZWQgYXQgMTAgTWh6
+LiBNYWluIGNoYXJhY3RlcmlzdGljcyBhcmUgYSANCj4gcGVhayBhcm91bmQgY2VudGVyIGZyZXF1
+ZW5jeSwgcm9sbGluZyBvZmYgdG8gbnVsbHMgYXQgKy0gMTAgTUh6IGFyb3VuZCB0aGUgY2VudGVy
+IGZyZXF1ZW5jeS4NCj4NCj4gVGhlIElGIHNpZ25hbCBpcyBhIHJhbmRvbSBCUFNLIHNlcXVlbmNl
+Lg0KPg0KPiBXaGVuIEkgc3RyZWFtIHRoZSBCUFNLIHNlcXVlbmNlIGF0IDEwIE1IeiAsIEkgZ2V0
+IGEgZmxhdCBzcGVjdHJ1bSBiZXR3ZWVuICstIDVNSHogc2luY2UgDQo+IHRoZSBEVUMgaXMgZG9p
+bmcgaXRzIGpvYiBpbiB1cHNhbXBsaW5nIHRvIDIwME1IeiBEQUMgcmF0ZS4NCj4NCj4gSSBoYXZl
+IHRyaWVkIHRvIGFkZCBza2lwX2R1Yz0xIHdoaWNoIGlzIG1lbnRpb25lZCBpbiBzb21lIG9mIHRo
+ZSBkb2N1bWVudGF0aW9uLCBidXQgdGhlIA0KPiBvdXRwdXQgc3BlY3RydW0gZG9lcyBub3QgY2hh
+bmdlLiBJcyB0aGlzIGNvbW1hbmQgb3V0ZGF0ZWQgb3Igbm90IHN1cHBvcnRlZD8gSSB3b25kZXIg
+DQo+IHNpbmNlIHRoZSBIRyBGUEdBIGltYWdlIGhhcyBsaXN0ZWQgdGhhdCB0aGUgcm91dGluZyBi
+ZXR3ZWVuIERVQyBhbmQgcmFkaW8gYXJlIOKAnHN0YXRpY+KAnS4NCj4NCj4gSSBoYXZlIG5vdGlj
+ZWQgdGhhdCBJIGdldCBzb21ldGhpbmcgY2xvc2VyIHRvIHdoYXQgSSB3YW50IGlmIEkgY2hvb3Nl
+IGFuIG9kZCANCj4gaW50ZXJwb2xhdGlvbiBvcmRlciwgYnkgc2V0dGluZyBtYXN0ZXJfY2xvY2tf
+cmF0ZSB0byAxOTAgTUh6IGluc3RlYWQgb2YgMjAwTUh6LiBUaGUgDQo+IHVwc2FtcGxpbmcgcmF0
+aW8gYmVjb21lcyAxOTBNSHovMTBNSHogPSAxOSwgd2hpY2ggaXMgb2RkLCBhbmQgSSBnZXQgc29t
+ZSB3YXJuaW5ncyBhYm91dCANCj4gaGFsZi1iYW5kIGZpbHRlcnMgYW5kIENJQyByb2xsLW9mIGlu
+IHRoZSBjb25zb2xlLg0KPg0KPiBJbiB0aGlzIG1vZGUsIHdoYXQgZG9lcyB0aGUgRFVDIGRvIHRv
+IHRoZSBzaWduYWw/IElzIGl0IGVxdWl2YWxlbnQgdG8gYnlwYXNzaW5nIHRoZSBEVUM/DQo+DQo+
+IEhvdyBkbyBJIGJlc3QgYXZvaWQgYW55IGVmZmVjdHMgaW50cm9kdWNlZCBieSBEVUM/DQo+DQo+
+IFJlZ2FyZHMsDQo+DQo+IEFuZHJlYXMuDQo+DQo+DQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLQ0KPg0KPiBDT05GSURFTlRJQUxJVFkNCj4gVGhpcyBlLW1haWwgYW5kIGFueSBh
+dHRhY2htZW50IGNvbnRhaW4gS09OR1NCRVJHIGluZm9ybWF0aW9uIHdoaWNoIG1heSBiZSBwcm9w
+cmlldGFyeSwgDQo+IGNvbmZpZGVudGlhbCBvciBzdWJqZWN0IHRvIGV4cG9ydCByZWd1bGF0aW9u
+cywgYW5kIGlzIG9ubHkgbWVhbnQgZm9yIHRoZSBpbnRlbmRlZCANCj4gcmVjaXBpZW50KHMpLiBB
+bnkgZGlzY2xvc3VyZSwgY29weWluZywgZGlzdHJpYnV0aW9uIG9yIHVzZSBpcyBwcm9oaWJpdGVk
+LCBpZiBub3QgDQo+IG90aGVyd2lzZSBleHBsaWNpdGx5IGFncmVlZCB3aXRoIEtPTkdTQkVSRy4g
+SWYgcmVjZWl2ZWQgaW4gZXJyb3IsIHBsZWFzZSBkZWxldGUgaXQgDQo+IGltbWVkaWF0ZWx5IGZy
+b20geW91ciBzeXN0ZW0gYW5kIG5vdGlmeSB0aGUgc2VuZGVyIHByb3Blcmx5Lg0KPg0KPiBfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJz
+IG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNj
+cmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJl
+IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
