@@ -2,147 +2,176 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4248645C9F7
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 17:26:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9475D45CA66
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 17:50:56 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 26131384043
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 11:26:21 -0500 (EST)
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A0478383EEE
-	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 11:25:23 -0500 (EST)
-Date: Wed, 24 Nov 2021 16:25:23 +0000
-To: usrp-users@lists.ettus.com
-From: emanuele.tolomei@intecs.it
-Message-ID: <bnuPd0iZONKNjoNooNU7gGQ7BYbRA5HQ0NG8w0SMomk@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: e9181afd-84c5-1871-05fa-b3c45f04da5d@gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id B42613843D1
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 11:50:54 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kongsberg.com header.i=@kongsberg.com header.b="JykQZzMG";
+	dkim-atps=neutral
+Received: from kda-chqmg-04.kongsberg.com (kda-chqmg-04.kongsberg.com [193.71.180.8])
+	by mm2.emwd.com (Postfix) with ESMTPS id 246DA3843C5
+	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 11:49:58 -0500 (EST)
+Received: from pps.filterd (kda-chqmg-04.kongsberg.com [127.0.0.1])
+	by kda-chqmg-04.kongsberg.com (8.16.0.43/8.16.0.43) with SMTP id 1AOGnunj020219;
+	Wed, 24 Nov 2021 17:49:56 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kongsberg.com; h=from : to :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=KDA1;
+ bh=0NOaQoJanzswMiVjxS8vV8RaFzN6tKzyS+d4jVDJdGo=;
+ b=JykQZzMGks4M9vMNtJxxHpI0IQe/rLDgO8faWwLFqPqKgLUILaamSgiJhtB2dHSuSq0Z
+ 91PKjZbWaoORgTnBTL1b9o5lOeM2qOhqV365wBISjtmgtqYR0MQX9BaFJCFqSEIm3gR+
+ P04u3IdcGnrdaZ5BEHsGCgjBsSu6ZiipTzbvq9gLXn25m4vOg0OmHssvSI6/NVC6+kLg
+ H6IbRFL6G/XkyaCmPKkwnLHzTHFScd4/kX9iupax+P3rst/TH5vxmjYpNePhRJLLR4AE
+ 4mR1XpeCrjbU+zwBkf1FMFaxM/lYVcRzhAeZ0fJ2yj6yqfKBVw4hoBVNpPRXOQasuA3X 7w==
+Received: from ukgw-exck4-p01.kda.kongsberg.com ([10.50.100.43])
+	by kda-chqmg-04.kongsberg.com with ESMTP id 3ceqyb0n8h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NOT);
+	Wed, 24 Nov 2021 17:49:55 +0100
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com (10.50.100.41) by
+ Ukgw-ExcK4-P01.kda.kongsberg.com (10.50.100.43) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Wed, 24 Nov 2021 17:49:52 +0100
+Received: from Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::208f:bf43:3727:cea5])
+ by Ukgw-ExcK2-p01.kda.kongsberg.com ([fe80::208f:bf43:3727:cea5%20]) with
+ mapi id 15.01.2308.020; Wed, 24 Nov 2021 17:49:52 +0100
+To: <marcus.mueller@ettus.com>, <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: Creating sinc-spectrum
+Thread-Index: AdffwZAVCAf2IteuSRibgknc6Ex7bQBXVnMAAAx/2jA=
+Date: Wed, 24 Nov 2021 16:49:52 +0000
+Message-ID: <2ec7d46fa6074824a2d484130d6eb221@kongsberg.com>
+References: <172b6b6d5dbc4d78a3dfa177cc65503c@kongsberg.com>
+ <57355ef5-9d97-18bf-389b-dae97049f7c2@ettus.com>
+In-Reply-To: <57355ef5-9d97-18bf-389b-dae97049f7c2@ettus.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.73.0.202]
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Message-ID-Hash: 7D4WIAJJAUQKVY7FTTWVNFSGL3GRP6V6
-X-Message-ID-Hash: 7D4WIAJJAUQKVY7FTTWVNFSGL3GRP6V6
-X-MailFrom: emanuele.tolomei@intecs.it
+X-Proofpoint-GUID: z10tseGVdP9Bf73eNmYBItLmSAUrQv78
+X-Proofpoint-ORIG-GUID: z10tseGVdP9Bf73eNmYBItLmSAUrQv78
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425,18.0.790
+ definitions=2021-11-24_06:2021-11-23,2021-11-24 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 lowpriorityscore=0 mlxlogscore=999
+ spamscore=0 impostorscore=0 malwarescore=0 clxscore=1011 phishscore=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2111240092
+Message-ID-Hash: LX53IIKIEVFFLOUKVA7HNQSNU3MCM5FD
+X-Message-ID-Hash: LX53IIKIEVFFLOUKVA7HNQSNU3MCM5FD
+X-MailFrom: Andreas.Bertheussen@kongsberg.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Trouble with TwinRX frequency tuning
+Subject: [USRP-users] Re: Creating sinc-spectrum
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7D4WIAJJAUQKVY7FTTWVNFSGL3GRP6V6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LX53IIKIEVFFLOUKVA7HNQSNU3MCM5FD/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1500206118636627519=="
+From: "Andreas.Bertheussen--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: Andreas.Bertheussen@kongsberg.com
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============1500206118636627519==
-Content-Type: multipart/alternative;
- boundary="b1_bnuPd0iZONKNjoNooNU7gGQ7BYbRA5HQ0NG8w0SMomk"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_bnuPd0iZONKNjoNooNU7gGQ7BYbRA5HQ0NG8w0SMomk
-Content-Type: text/plain; charset=us-ascii
-
-Hi Marcus,
-
-as I said in the previous post I tried to do a get_time_now() just before the timed command, but without success.
-
-  // Tune all channels to the desired frequency
-
-  uhd::tune_result_t tune_resp = m_MultiUsrp->set_rx_freq(nRxFrequency,0);
-
-  
-
-  //set time on the master (mboard 0)
-
-  struct timespec now;
-
-  clock_gettime(CLOCK_REALTIME, &now);
-
-  m_MultiUsrp->set_time_now(uhd::time_spec_t(now.tv_sec,(double)now.tv_nsec/1.0e6));
-
-  uhd::time_spec_t usrp_time = m_MultiUsrp->get_time_now();
-
-  m_MultiUsrp->set_rx_gain(nGain, 1);
-
-  m_MultiUsrp->set_rx_gain(nGain, 2);
-
-  m_MultiUsrp->set_rx_gain(nGain, 3);
-
-  uhd::tune_request_t tune_req;
-
-  tune_req.rf_freq = tune_resp.actual_rf_freq;
-
-  tune_req.rf_freq_policy = uhd::tune_request_t::POLICY_MANUAL;
-
-  tune_req.dsp_freq = tune_resp.actual_dsp_freq;
-
-  tune_req.dsp_freq_policy = uhd::tune_request_t::POLICY_MANUAL;
-
-  m_MultiUsrp->set_rx_freq(tune_req, 1);
-
-  m_MultiUsrp->set_rx_freq(tune_req, 2);
-
-  m_MultiUsrp->set_rx_freq(tune_req, 3);
-
-  usrp_time = m_MultiUsrp->get_time_now() ;
-
-  // Synchronize the tuned channels
-
-  m_MultiUsrp->set_command_time(usrp_time + uhd::time_spec_t(0.1));
-
-  m_MultiUsrp->set_rx_freq(tune_req, 0);
-
-  m_MultiUsrp->set_rx_freq(tune_req, 1);
-
-  m_MultiUsrp->set_rx_freq(tune_req, 2);
-
-  m_MultiUsrp->set_rx_freq(tune_req, 3);
-
-  m_MultiUsrp->clear_command_time();
-
-Thank you.
-
---b1_bnuPd0iZONKNjoNooNU7gGQ7BYbRA5HQ0NG8w0SMomk
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Marcus,</p><p>as I said in the previous post I tried to do a get_time=
-_now() just before the timed command, but without success.</p><p>  // Tune =
-all channels to the desired frequency</p><p>  uhd::tune_result_t tune_resp =
-=3D m_MultiUsrp-&gt;set_rx_freq(nRxFrequency,0);</p><p>  </p><p>  //set tim=
-e on the master (mboard 0)</p><p>  struct timespec now;</p><p>  clock_getti=
-me(CLOCK_REALTIME, &amp;now);</p><p>  m_MultiUsrp-&gt;set_time_now(uhd::tim=
-e_spec_t(now.tv_sec,(double)now.tv_nsec/1.0e6));</p><p>  uhd::time_spec_t u=
-srp_time =3D m_MultiUsrp-&gt;get_time_now();</p><p>  m_MultiUsrp-&gt;set_rx=
-_gain(nGain, 1);</p><p>  m_MultiUsrp-&gt;set_rx_gain(nGain, 2);</p><p>  m_M=
-ultiUsrp-&gt;set_rx_gain(nGain, 3);</p><p>  uhd::tune_request_t tune_req;</=
-p><p>  tune_req.rf_freq =3D tune_resp.actual_rf_freq;</p><p>  tune_req.rf_f=
-req_policy =3D uhd::tune_request_t::POLICY_MANUAL;</p><p>  tune_req.dsp_fre=
-q =3D tune_resp.actual_dsp_freq;</p><p>  tune_req.dsp_freq_policy =3D uhd::=
-tune_request_t::POLICY_MANUAL;</p><p>  m_MultiUsrp-&gt;set_rx_freq(tune_req=
-, 1);</p><p>  m_MultiUsrp-&gt;set_rx_freq(tune_req, 2);</p><p>  m_MultiUsrp=
--&gt;set_rx_freq(tune_req, 3);</p><p>  usrp_time =3D m_MultiUsrp-&gt;get_ti=
-me_now() ;</p><p>  // Synchronize the tuned channels</p><p>  m_MultiUsrp-&g=
-t;set_command_time(usrp_time + uhd::time_spec_t(0.1));</p><p>  m_MultiUsrp-=
-&gt;set_rx_freq(tune_req, 0);</p><p>  m_MultiUsrp-&gt;set_rx_freq(tune_req,=
- 1);</p><p>  m_MultiUsrp-&gt;set_rx_freq(tune_req, 2);</p><p>  m_MultiUsrp-=
-&gt;set_rx_freq(tune_req, 3);</p><p>  m_MultiUsrp-&gt;clear_command_time();=
-</p><p>Thank you.</p>
-
---b1_bnuPd0iZONKNjoNooNU7gGQ7BYbRA5HQ0NG8w0SMomk--
-
---===============1500206118636627519==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============1500206118636627519==--
+SGkgTWFyY3VzLg0KDQpJIGZvcmdvdCB0byBzdGF0ZSAtIEknbSB1c2luZyB0aGUgWDMxMCB3aXRo
+IFVCWCA0ME1IeiBiYW5kd2lkdGggZGF1aHRlcmJvYXJkLg0KSSd2ZSBiZWVuIHVzaW5nIG9uZSBv
+ZiBVSEQgNC4wIHJlbGVhc2VzLCBhbmQgSSBqdXN0IHJlY2VudGx5IGNoYW5nZWQgdG8gdGhlIGxh
+dGVzdCBVSEQgNC4xIHJlbGVhc2Ugd2hlcmUgSSBzZWUgc2FtZSBiZWhhdmlvci4NCg0KSSByZWFs
+aXplIG5vdyB0aGF0IEknbSBsb29raW5nIGF0IG1hbnVhbCBmb3IgMy4xNSB2ZXJzaW9uIG9mIFVI
+RCAtIG5vIHN1cnByaXNlIHRoZXJlIHdhcyBhIG1pc21hdGNoIGFuZCB0aGF0ICJza2lwX2R1Yz0x
+IiBkb2VzIG5vdCBkbyBhbnl0aGluZy4NCg0KSSdtIHVzaW5nIHRoZSAiSEciIGltYWdlLCBhbmQg
+aXQgbGlzdHMgY29ubmVjdGlvbiBiZXR3ZWVuIERVQyBhbmQgUmFkaW8gYXMgJ3N0YXRpYycsIHNp
+bWlsYXIgdG8gaGVyZTogaHR0cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFydGVkX3dpdGhf
+UkZOb0NfaW5fVUhEXzQuMA0KDQpTbyB1bmxlc3MgdGhlcmUgaXMgc29tZSBjb25maWcgcmVnaXN0
+ZXIgb3Igc2ltaWxhciBmb3IgdGhlIERVQywgdGhlbiBJIGhhdmUgdG8gcmVidWlsZCB0aGUgaW1h
+Z2UgdG8gbWFrZSB0aGUgY29ubmVjdGlvbiBkeW5hbWljLCBvciByZW1vdmUgdGhlIERVQyBhbHRv
+Z2V0aGVyPw0KDQpUaGUgeDMxMCBzZWVtcyB0byBhY2NlcHQgc2V2ZXJhbCBtYXN0ZXIgY2xvY2sg
+c2V0dGluZ3MgaW4gdGhlIHJhbmdlIDE4MC0yMDBNSHouDQoNClJlZ2FyZHMsDQpBbmRyZWFzLg0K
+DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBNYXJjdXMgTcO8bGxlciA8bWFy
+Y3VzLm11ZWxsZXJAZXR0dXMuY29tPg0KU2VudDogb25zZGFnIDI0LiBub3ZlbWJlciAyMDIxIDEy
+OjM1DQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFtVU1JQLXVzZXJz
+XSBSZTogQ3JlYXRpbmcgc2luYy1zcGVjdHJ1bQ0KDQpUaGlzIG1lc3NhZ2UgaXMgZnJvbSBhbiBF
+WFRFUk5BTCBTRU5ERVIgLSBiZSBDQVVUSU9VUywgcGFydGljdWxhcmx5IHdpdGggbGlua3MgYW5k
+IGF0dGFjaG1lbnRzDQoNCkhpIEFuZHJlYXMsDQoNCndoaWNoIFVTUlAgaXMgdGhpcyBhYm91dD8g
+TXkgZ3Vlc3MgaXMgdGhlIFgzMTAsIGFuZCB5b3UncmUgdXNpbmcgdGhlIEJhc2ljVFggZGF1Z2h0
+ZXJib2FyZC4gSXMgdGhhdCBjb3JyZWN0Pw0KDQpUbyB0YWxrIGFib3V0IGZlYXR1cmVzIG9mIHRo
+ZSBEU1AgYXJjaGl0ZWN0dXJlLCBpdCdzIGFsc28gKHZlcnkpIHJlbGV2YW50IHRvIGtub3cgd2hp
+Y2ggdmVyc2lvbiBvZiBVSEQgd2UncmUgdGFsa2luZyBhYm91dCENCg0KPiBJIGhhdmUgdHJpZWQg
+dG8gYWRkICBza2lwX2R1Yz0xIHdoaWNoIGlzIG1lbnRpb25lZCBpbiBzb21lIG9mIHRoZQ0KPiBk
+b2N1bWVudGF0aW9uLCBidXQgdGhlIG91dHB1dCBzcGVjdHJ1bSBkb2VzDQpub3QgY2hhbmdlLg0K
+DQoNClRoYXQncyB0cnVlLCBJIG9ubHkgZmluZCBhIHNpbmdsZSBzZWVtaW5nbHkgb3JwaGFuZWQg
+Y29kZSBtZW50aW9uIG9mIHNraXBfZHVjLi4uIGJ1dCBpdCB3YXMgb25seSBtZW50aW9uIChpZiBJ
+IHJlbWVtYmVyIGNvcnJlY3RseSkgaW4gdGhlIGRvY3VtZW50YXRpb24gb2YgdGhlIE4zeHgsIHNv
+IHRoYXQgd291bGQgY29uZmxpY3Qgd2l0aCBteSBYM3h4IGd1ZXNzLi4uDQoNCg0KPiBJcyB0aGlz
+IGNvbW1hbmQgIG91dGRhdGVkIG9yIG5vdCBzdXBwb3J0ZWQ/IEkgd29uZGVyIHNpbmNlIHRoZSBI
+RyBGUEdBDQo+IGltYWdlIGhhcyBsaXN0ZWQgdGhhdCB0aGUgcm91dGluZw0KYmV0d2VlbiBEVUMg
+YW5kIHJhZGlvIGFyZSDigJxzdGF0aWPigJ0uDQoNCg0KVGhpcyBkZXBlbmRzIG9uIHRoZSBVSEQg
+dmVyc2lvbjsgZ2VuZXJhbGx5LCBSRk5vQyB3aWxsIGFsbG93IHlvdSB0byBmZWVkIGZ1bGwtcmF0
+ZSBzaWduYWwgaW50byB0aGUgcmFkaW8gZnJvbnRlbmQuIFRoZSAibmV3ZXIiIHRoZSBVSEQsIHRo
+ZSBtb3JlIGZsZXhpYmxlIGl0IGdldHMsIGVzc2VudGlhbGx5Lg0KDQoNCj4gaGF2ZSBub3RpY2Vk
+IHRoYXQgSSBnZXQgc29tZXRoaW5nIGNsb3NlciB0byB3aGF0IEkgd2FudCBpZiBJIGNob29zZSBh
+bg0KPiBvZGQgaW50ZXJwb2xhdGlvbg0Kb3JkZXIsIGJ5IHNldHRpbmcgbWFzdGVyX2Nsb2NrX3Jh
+dGUgdG8gMTkwIE1IeiBpbnN0ZWFkIG9mIDIwME1Iei4NCg0KDQpVaCEgVGhhdCBub3cgY29tcGxl
+dGVseSBjbGFzaGVzIHdpdGggbXkgZ3Vlc3MsIGJlY2F1c2UgdGhlIFgzMTAgZG9lc24ndCBzdXBw
+b3J0IDE5MCBNSHogTUNSIGF0IGFsbCwgSSB0aG91Z2h0Lg0KDQpCdXQgeWVzLCBpZiB5b3UgdXNl
+IGFuIG9kZCBpbnRlcnBvbGF0aW9uIG9uIGFueSB0aGlyZCBzZXJpZXMgVVNSUCwgeW91IGdldCAi
+bGVzcyBnb29kIg0Kc3BlY3RydW0sIGJlY2F1c2Ugbm9uZSBvZiB0aGUgcmVsYXRpdmVseSBnb29k
+IGhhbGYtYmFuZCBmaWx0ZXJzIGNhbiBiZSB1c2VkLCBhbmQgdGhlIGFkanVzdGFibGUgQ0lDIGZp
+bHRlciBuZWVkcyB0byBkbyBpdCBhbGwsIGxlYWRpbmcgdG8gc2lkZWxvYmVzLCB3aGljaCBpbiB0
+dXJuIGxlYWQgdG8gbW9yZSBzcXVhcmlzaG5lc3MuDQoNCg0KQmVzdCByZWdhcmRzLA0KDQpNYXJj
+dXMNCg0KT24gMjQuMTEuMjEgMTE6NDAsIEFuZHJlYXMuQmVydGhldXNzZW4tLS0gdmlhIFVTUlAt
+dXNlcnMgd3JvdGU6DQo+DQo+IEhpLA0KPg0KPiBJ4oCZZCBsaWtlIHRvIGNyZWF0ZSAoaW1pdGF0
+ZSkgdGhlIHNpbmMoZi9mcykgc3BlY3RydW0gdGhhdCB3b3VsZCBiZQ0KPiBnZW5lcmF0ZWQgZnJv
+bSBhbiB1bmZpbHRlcmVkIHplcm8tb3JkZXIgaG9sZCBEQUMgb3V0cHV0LCBjbG9ja2VkIGF0IDEw
+DQo+IE1oei4gTWFpbiBjaGFyYWN0ZXJpc3RpY3MgYXJlIGEgcGVhayBhcm91bmQgY2VudGVyIGZy
+ZXF1ZW5jeSwgcm9sbGluZyBvZmYgdG8gbnVsbHMgYXQgKy0gMTAgTUh6IGFyb3VuZCB0aGUgY2Vu
+dGVyIGZyZXF1ZW5jeS4NCj4NCj4gVGhlIElGIHNpZ25hbCBpcyBhIHJhbmRvbSBCUFNLIHNlcXVl
+bmNlLg0KPg0KPiBXaGVuIEkgc3RyZWFtIHRoZSBCUFNLIHNlcXVlbmNlIGF0IDEwIE1IeiAsIEkg
+Z2V0IGEgZmxhdCBzcGVjdHJ1bQ0KPiBiZXR3ZWVuICstIDVNSHogc2luY2UgdGhlIERVQyBpcyBk
+b2luZyBpdHMgam9iIGluIHVwc2FtcGxpbmcgdG8gMjAwTUh6IERBQyByYXRlLg0KPg0KPiBJIGhh
+dmUgdHJpZWQgdG8gYWRkIHNraXBfZHVjPTEgd2hpY2ggaXMgbWVudGlvbmVkIGluIHNvbWUgb2Yg
+dGhlDQo+IGRvY3VtZW50YXRpb24sIGJ1dCB0aGUgb3V0cHV0IHNwZWN0cnVtIGRvZXMgbm90IGNo
+YW5nZS4gSXMgdGhpcw0KPiBjb21tYW5kIG91dGRhdGVkIG9yIG5vdCBzdXBwb3J0ZWQ/IEkgd29u
+ZGVyIHNpbmNlIHRoZSBIRyBGUEdBIGltYWdlIGhhcyBsaXN0ZWQgdGhhdCB0aGUgcm91dGluZyBi
+ZXR3ZWVuIERVQyBhbmQgcmFkaW8gYXJlIOKAnHN0YXRpY+KAnS4NCj4NCj4gSSBoYXZlIG5vdGlj
+ZWQgdGhhdCBJIGdldCBzb21ldGhpbmcgY2xvc2VyIHRvIHdoYXQgSSB3YW50IGlmIEkgY2hvb3Nl
+DQo+IGFuIG9kZCBpbnRlcnBvbGF0aW9uIG9yZGVyLCBieSBzZXR0aW5nIG1hc3Rlcl9jbG9ja19y
+YXRlIHRvIDE5MCBNSHoNCj4gaW5zdGVhZCBvZiAyMDBNSHouIFRoZSB1cHNhbXBsaW5nIHJhdGlv
+IGJlY29tZXMgMTkwTUh6LzEwTUh6ID0gMTksDQo+IHdoaWNoIGlzIG9kZCwgYW5kIEkgZ2V0IHNv
+bWUgd2FybmluZ3MgYWJvdXQgaGFsZi1iYW5kIGZpbHRlcnMgYW5kIENJQyByb2xsLW9mIGluIHRo
+ZSBjb25zb2xlLg0KPg0KPiBJbiB0aGlzIG1vZGUsIHdoYXQgZG9lcyB0aGUgRFVDIGRvIHRvIHRo
+ZSBzaWduYWw/IElzIGl0IGVxdWl2YWxlbnQgdG8gYnlwYXNzaW5nIHRoZSBEVUM/DQo+DQo+IEhv
+dyBkbyBJIGJlc3QgYXZvaWQgYW55IGVmZmVjdHMgaW50cm9kdWNlZCBieSBEVUM/DQo+DQo+IFJl
+Z2FyZHMsDQo+DQo+IEFuZHJlYXMuDQo+DQo+DQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gLS0tLS0tLS0t
+LS0tLS0tLS0tLS0NCj4NCj4gQ09ORklERU5USUFMSVRZDQo+IFRoaXMgZS1tYWlsIGFuZCBhbnkg
+YXR0YWNobWVudCBjb250YWluIEtPTkdTQkVSRyBpbmZvcm1hdGlvbiB3aGljaCBtYXkNCj4gYmUg
+cHJvcHJpZXRhcnksIGNvbmZpZGVudGlhbCBvciBzdWJqZWN0IHRvIGV4cG9ydCByZWd1bGF0aW9u
+cywgYW5kIGlzDQo+IG9ubHkgbWVhbnQgZm9yIHRoZSBpbnRlbmRlZCByZWNpcGllbnQocykuIEFu
+eSBkaXNjbG9zdXJlLCBjb3B5aW5nLA0KPiBkaXN0cmlidXRpb24gb3IgdXNlIGlzIHByb2hpYml0
+ZWQsIGlmIG5vdCBvdGhlcndpc2UgZXhwbGljaXRseSBhZ3JlZWQNCj4gd2l0aCBLT05HU0JFUkcu
+IElmIHJlY2VpdmVkIGluIGVycm9yLCBwbGVhc2UgZGVsZXRlIGl0IGltbWVkaWF0ZWx5IGZyb20g
+eW91ciBzeXN0ZW0gYW5kIG5vdGlmeSB0aGUgc2VuZGVyIHByb3Blcmx5Lg0KPg0KPiBfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSBUbyB1bnN1YnNjcmliZQ0K
+PiBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gVG8gdW5zdWJzY3JpYmUg
+c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KDQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KDQpDT05GSURFTlRJQUxJVFkNClRoaXMgZS1t
+YWlsIGFuZCBhbnkgYXR0YWNobWVudCBjb250YWluIEtPTkdTQkVSRyBpbmZvcm1hdGlvbiB3aGlj
+aCBtYXkgYmUgcHJvcHJpZXRhcnksIGNvbmZpZGVudGlhbCBvciBzdWJqZWN0IHRvIGV4cG9ydCBy
+ZWd1bGF0aW9ucywgYW5kIGlzIG9ubHkgbWVhbnQgZm9yIHRoZSBpbnRlbmRlZCByZWNpcGllbnQo
+cykuIEFueSBkaXNjbG9zdXJlLCBjb3B5aW5nLCBkaXN0cmlidXRpb24gb3IgdXNlIGlzIHByb2hp
+Yml0ZWQsIGlmIG5vdCBvdGhlcndpc2UgZXhwbGljaXRseSBhZ3JlZWQgd2l0aCBLT05HU0JFUkcu
+IElmIHJlY2VpdmVkIGluIGVycm9yLCBwbGVhc2UgZGVsZXRlIGl0IGltbWVkaWF0ZWx5IGZyb20g
+eW91ciBzeXN0ZW0gYW5kIG5vdGlmeSB0aGUgc2VuZGVyIHByb3Blcmx5Lg0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxp
+c3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBl
+bWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
