@@ -2,430 +2,339 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9991445D3D6
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Nov 2021 05:13:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4EDF45D6E2
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Nov 2021 10:12:35 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8F3D138463A
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Nov 2021 23:13:02 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 784D138429E
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Nov 2021 04:12:34 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="ixCMIFAm";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="KLFMdm2B";
 	dkim-atps=neutral
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 50169384075
-	for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 23:12:14 -0500 (EST)
-Received: by mail-ot1-f48.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so7546569otm.10
-        for <usrp-users@lists.ettus.com>; Wed, 24 Nov 2021 20:12:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YG30m7rspLqzZl/e1iBcoH88KqqfCvSGN4bKc3MgfJ0=;
-        b=ixCMIFAmBLwVx0iLXTRik3MA+QMzlMr4ckHfmD6eQX11YqKTVJgAcOVFYP4Nz/I0Ax
-         9ZZ1cD1TrsvjvNvwMJIBpl6tOipgunfBJDxfKw1jacanH6yTadoUQTLAicUci7TCxvAR
-         en0ftW9zjEL4KXOWWSCWZPXDEFaVEVXAkB6YaoeiEY1jKvVmBgc8Fu3VDfFxepQ5a9IM
-         ukfHvT2QnaC/TkWXZFxowdK0D4u0GF+c0PHbKtuJY5tdVmIeRfZbd3ILu8xDLVeWQ/GL
-         uLIq/RTcTa2GNlo7SlVXJ8URcvrbaG7mILc4NdOTVbcoRe+4CxU0hcm1a7C0G6X+PoPF
-         U8Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YG30m7rspLqzZl/e1iBcoH88KqqfCvSGN4bKc3MgfJ0=;
-        b=Qd+PP0hWGZu89MtTUU3M5dGckQpj658EpL4WS/0iL1U6GQCNrUIQnv5RC9AzRrP1jh
-         kpKUsxuBnO2cJwgIBDYwFB/jdjv7BDsLVPu+hdzd0fjia6g/f5CSkCbyBj8ps5/jadoI
-         S/cypRncQOhmS5thhHRseh3vW1myurE/NhMDOGfWiCa4vu/rdcncP36h8T/t1o+V32+e
-         zVnoVOPQn4dWD5if8o/abEQyfQ3jbfj/BVsJ/mBimp4MN1RG2DMVRVJsALPAXWlcjOlt
-         CxslbAeEvb2Da4a9KQ1T3MbnLqwdQIcbNMH2dVOXMtMNixQGKb/Ko8nNDO2C5jdCZoHy
-         uAmg==
-X-Gm-Message-State: AOAM530qkg7sP31++dlZ++A2cLtskXV2Z2+RO7LCzIGuJth7F2T80Xf5
-	qWhSMpK4rWC/IvA0n+yqsbjALH4Nn2HS8i/BDcWpIlJCDk0=
-X-Google-Smtp-Source: ABdhPJzrBrlg7C0blYmNdseG88dh8jvcBQxFmrssLMJQ3mq4bl7hC5X0jjdKgZd7OVJ7cBl7kZapS3Ha7xBq9/4L53k=
-X-Received: by 2002:a05:6830:1301:: with SMTP id p1mr18694491otq.337.1637813533251;
- Wed, 24 Nov 2021 20:12:13 -0800 (PST)
+Received: from m13146.mail.163.com (m13146.mail.163.com [220.181.13.146])
+	by mm2.emwd.com (Postfix) with ESMTP id 29593384267;
+	Thu, 25 Nov 2021 04:11:31 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=BG+yp
+	Nw/VNGg9Cq0nVNMzRYxogCdmJmU29pJ535tEXs=; b=KLFMdm2BpGDlr0jJuscKT
+	/a6OeC40BjKjnESz4DA2jQaBfhnYxP0VxRXOL64UYlrSj4dHhV8SK2FIqzELWred
+	dYBDYcBzNkGCIYD1fpPxNt143zQ6BJh5lX2gvgLwwWtValR3CGGgzJy4MFMGQoyR
+	8CCtSFGVuWDOATQQrE6Bfg=
+Received: from lt4839$163.com ( [61.144.175.162] ) by ajax-webmail-wmsvr146
+ (Coremail) ; Thu, 25 Nov 2021 17:11:25 +0800 (CST)
+X-Originating-IP: [61.144.175.162]
+Date: Thu, 25 Nov 2021 17:11:25 +0800 (CST)
+From: HalaMadrid  <lt4839@163.com>
+To: usrp-users@lists.ettus.com, usrp-users-request@lists.ettus.com,
+	usrp-users-owner@lists.ettus.com
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20210622(1d4788a8)
+ Copyright (c) 2002-2021 www.mailtech.cn 163com
+X-CM-CTRLDATA: cT7BXmZvb3Rlcl9odG09Nzk2OTo1Ng==
 MIME-Version: 1.0
-References: <y1mid4CAT1rVs0rHMzayQnJMltuTH6qxR3PkPyY5Eu0@lists.ettus.com> <fd5c1fe0-2620-b2d7-050b-b2b99230ed97@gmail.com>
-In-Reply-To: <fd5c1fe0-2620-b2d7-050b-b2b99230ed97@gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Wed, 24 Nov 2021 23:12:00 -0500
-Message-ID: <CAB__hTS2hwXkbjhEc_dcYV15sQE0A8hc9OoMLTfqwLPei99WBg@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: VWMAPZNE7J3OE3WSP5UTH3YOQT5RCWL7
-X-Message-ID-Hash: VWMAPZNE7J3OE3WSP5UTH3YOQT5RCWL7
-X-MailFrom: rkossler@nd.edu
+Message-ID: <5dde1dba.5b8e.17d565d273c.Coremail.lt4839@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: ksGowAAHFn4+U59hCVhoAQ--.1478W
+X-CM-SenderInfo: towumjqz6rljoofrz/1tbi7xlW2lr7-6wdEQABsF
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Message-ID-Hash: K3XCBXS6PWJLYO235SJJ7AGHO6AEME6X
+X-Message-ID-Hash: K3XCBXS6PWJLYO235SJJ7AGHO6AEME6X
+X-MailFrom: lt4839@163.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Trouble with TwinRX frequency tuning
+Subject: [USRP-users] Unsubscribe E-mail list
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VWMAPZNE7J3OE3WSP5UTH3YOQT5RCWL7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K3XCBXS6PWJLYO235SJJ7AGHO6AEME6X/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0085134342747115396=="
+Content-Type: multipart/mixed; boundary="===============2190955298896910612=="
 
---===============0085134342747115396==
-Content-Type: multipart/alternative; boundary="000000000000dbecaf05d1952d39"
+--===============2190955298896910612==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_85284_316114510.1637831485244"
 
---000000000000dbecaf05d1952d39
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_85284_316114510.1637831485244
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-Nice catch Marcus. I hadn=E2=80=99t noticed the use of set_time_now() rathe=
-r than
-set_time_unknown_pps().
+RGVhciBtYW5hZ2VyOgoKClBsZWFzZSBoZWxwIHVuc3Vic2NyaWJlIEUtbWFpbCBsaXN0IGZyb20g
+dXNycC11c2Vycy1yZXF1ZXN0QGxpc3RzLmV0dHVzLmNvbS4gVGhhbmsgeW91IQoKCgoKCi0tLS0t
+LS0tIEZvcndhcmRpbmcgbWVzc2FnZXMgLS0tLS0tLS0KRnJvbTogdXNycC11c2Vycy1yZXF1ZXN0
+QGxpc3RzLmV0dHVzLmNvbQpEYXRlOiAyMDIxLTExLTI1IDE2OjMwOjE4ClRvOiAgdXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20KU3ViamVjdDogVVNSUC11c2VycyBEaWdlc3QsIFZvbCAxMzUsIElz
+c3VlIDU0ClNlbmQgVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qgc3VibWlzc2lvbnMgdG8KCXVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tCgpUbyBzdWJzY3JpYmUgb3IgdW5zdWJzY3JpYmUgdmlhIGVt
+YWlsLCBzZW5kIGEgbWVzc2FnZSB3aXRoIHN1YmplY3Qgb3IKYm9keSAnaGVscCcgdG8KCXVzcnAt
+dXNlcnMtcmVxdWVzdEBsaXN0cy5ldHR1cy5jb20KCllvdSBjYW4gcmVhY2ggdGhlIHBlcnNvbiBt
+YW5hZ2luZyB0aGUgbGlzdCBhdAoJdXNycC11c2Vycy1vd25lckBsaXN0cy5ldHR1cy5jb20KCldo
+ZW4gcmVwbHlpbmcsIHBsZWFzZSBlZGl0IHlvdXIgU3ViamVjdCBsaW5lIHNvIGl0IGlzIG1vcmUg
+c3BlY2lmaWMKdGhhbiAiUmU6IENvbnRlbnRzIG9mIFVTUlAtdXNlcnMgZGlnZXN0Li4uIgoKVG9k
+YXkncyBUb3BpY3M6CgogICAxLiBSZTogVHJvdWJsZSB3aXRoIFR3aW5SWCBmcmVxdWVuY3kgdHVu
+aW5nIChSb2IgS29zc2xlcikKCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgpNZXNzYWdlOiAxCkRhdGU6IFdlZCwg
+MjQgTm92IDIwMjEgMjM6MTI6MDAgLTA1MDAKRnJvbTogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5k
+LmVkdT4KU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBUcm91YmxlIHdpdGggVHdpblJYIGZyZXF1
+ZW5jeSB0dW5pbmcKVG86ICJNYXJjdXMgRC4gTGVlY2giIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNv
+bT4KQ2M6IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCk1lc3NhZ2UtSUQ6Cgk8Q0FCX19oVFMy
+aHdYa2JqaEVjX2RjWVYxNXNRRTBBOGhjOU9vTUxUZnF3TFBlaTk5V0JnQG1haWwuZ21haWwuY29t
+PgpDb250ZW50LVR5cGU6IG11bHRpcGFydC9hbHRlcm5hdGl2ZTsKCWJvdW5kYXJ5PSIwMDAwMDAw
+MDAwMDBkYmVjYWYwNWQxOTUyZDM5IgoKTmljZSBjYXRjaCBNYXJjdXMuIEkgaGFkbqGvdCBub3Rp
+Y2VkIHRoZSB1c2Ugb2Ygc2V0X3RpbWVfbm93KCkgcmF0aGVyIHRoYW4Kc2V0X3RpbWVfdW5rbm93
+bl9wcHMoKS4KCkVtYW51ZWxlLCBJIHRoaW5rIGlmIHlvdSB1c2Ugc2V0X3RpbWVfdW5rbm93bl9w
+cHMoMCkgeW91IGNhbiBnZXQgY29uc2lzdGVudApwaGFzZSBiZWhhdmlvci4KCk9uIFdlZCwgTm92
+IDI0LCAyMDIxIGF0IDk6NDEgUE0gTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWls
+LmNvbT4Kd3JvdGU6Cgo+IE9uIDIwMjEtMTEtMjQgMTI6NDcsIGVtYW51ZWxlLnRvbG9tZWlAaW50
+ZWNzLml0IHdyb3RlOgo+Cj4gSXQgd2FzIG5vdCBjbGVhciB0byBtZSBmcm9tIHlvdXIgZW1haWwg
+aWYgdXNpbmcgYSB0aW1lIHNldHRpbmcgb2YgemVybwo+IHdpbGwKPiBzb2x2ZSB0aGUgaXNzdWUu
+IEl0IHNlZW1lZCB0aGF0IHlvdSBzdGlsbCBoYXZlIGEgcGhhc2UgaXNzdWUgaW4gdGhpcyBjYXNl
+Pwo+Cj4gWWVzLiBJZiB3ZSB1c2UgYSB0aW1lIHNldHRpbmcgb2YgemVybywgdGhlIGFwcGxpY2F0
+aW9uIHJ1bnMgc21vb3RobHkKPiB3aXRob3V0IGNyYXNoZXMsIGJ1dCB0aGVyZSBpcyBhbiB1bnBy
+ZWRpY3RhYmxlIHBoYXNlIHNoaWZ0IGJldHdlZW4gdGhlCj4gY2hhbm5lbHMuCj4KPiBPdXIgcHJv
+YmxlbSBvY2N1cnMgb25seSB3aGVuIHRoZSB0dW5pbmcgYW5kIHN5bmNocm9uaXphdGlvbiBpbnN0
+cnVjdGlvbnMKPiBhcmUgcmVwZWF0ZWQgaW4gYSBsb29wLCBldmVuIGlmIHR1bmluZyBhbHdheXMg
+YXQgdGhlIHNhbWUgZnJlcXVlbmN5Lgo+IEluc3RlYWQsIGlmIHdlIHR1bmUgYW5kIHN5bmNocm9u
+aXplIHRoZSBjaGFubmVscyBvbmx5IG9uY2UsIHN1Y2ggYXMgaW4gdGhlCj4gYXR0YWNoZWQgc25p
+cHBldCAoYSBtb2RpZmllZCB2ZXJzaW9uIG9mIHRoZSByeF9tdWx0aV9zYW1wbGVzIFVIRCBleGFt
+cGxlKSwKPiBldmVyeXRoaW5nIHJ1bnMgc21vb3RoIGFuZCB0aGUgcGhhc2Ugc2hpZnQgYmV0d2Vl
+biB0aGUgY2hhbm5lbHMgaXMgY29oZXJlbnQKPiBlYWNoIHRpbWUgd2Ugc3RhcnQgdGhlIGFwcGxp
+Y2F0aW9uLiBBcyB5b3UgY2FuIHNlZSwgaW4gdGhlIGF0dGFjaGVkIGNvZGUKPiB0aGUgc2V0X3Rp
+bWVfbm93KHVoZDo6dGltZV9zcGVjX3QoMC4wKSkgY29tbWFuZCBpcyBuZXZlciBjYWxsZWQsIGFu
+ZCBpZiB3ZQo+IGFkZCB0aGF0IGNvbW1hbmQgdGhlIHBoYXNlIHNoaWZ0cyBiZXR3ZWVuIHRoZSBj
+aGFubmVscyBjaGFuZ2UgYXQgZXZlcnkgcnVuLgo+IEluIG91ciBhcHBsaWNhdGlvbiwgaG93ZXZl
+ciwgcmVtb3ZpbmcgdGhpcyBjb21tYW5kIGxlYWRzIHRoZSBhZm9yZW1lbnRpb25lZAo+IGNyYXNo
+ZXMuCj4KPiBUaGF0IGlzLCB0aGUgRlBHQQo+IHRpbWUgcmVmZXJlbmNlIGNhbiBiZSB6ZXJvIGFu
+ZCB0aGUgQ1BVIHRpbWUgcmVmZXJlbmNlIGNhbiBiZSBzeXN0ZW0tdGltZQo+IGFuZCB3aGVuZXZl
+ciB5b3UgbmVlZCBhIHRpbWUgZnJvbSB0aGUgRlBHQSB5b3UgY2FuIGFwcGx5IHRoZSBhcHByb3By
+aWF0ZQo+IHJlZmVyZW5jZSBpbiB0aGUgQ1BVLgo+Cj4gV2hhdCBkbyB5b3UgbWVhbiB3aXRoIENQ
+VSB0aW1lIHJlZmVyZW5jZT8gSW4gb3VyIGFwcGxpY2F0aW9uIHRoZQo+IHN5c3RlbS10aW1lIGlz
+IHRoZSBob3N0IENQVSB0aW1lLgo+Cj4gRW1hbnVlbGUgVG9sb21laQo+Cj4gVGhlIHByb2JsZW0g
+d2l0aCBzZXRfdGltZV9ub3coKSwgaXMgdGhhdCBpdCBzZXRzIHRoZSB0aW1lIHJlZ2lzdGVyKHMp
+IHRvCj4gd2hhdGV2ZXIgeW91IHN1cHBseSwgYW5kIHNpbmNlIHRoZXJlIGFyZSBhIGNvdXBsZSBv
+ZiB1bmtub3duIGxhdGVuY2llcywgdGhlCj4gdGltZSB3aWxsIG5lY2Vzc2FyaWx5IGJlCj4gICB2
+ZXJ5IGltcHJlY2lzZS4gIFRoZSBmaXJzdCBsYXRlbmN5IGlzIGhvdyBsb25nIGl0IHRha2VzIHRv
+IGNvbmR1Y3QgdGhlCj4gdHJhbnNhY3Rpb24gYWNyb3NzIHRoZSBuZXR3b3JrIGxpbmsgYmV0d2Vl
+biB5b3VyIGNvbXB1dGVyIGFuZCB0aGUgVVNSUC4KPiBUaGUgMm5kIGlzIHRoYXQgaW4gWDMxMCwg
+YXMKPiAgIEkgcmVjYWxsLCB0aGVyZSBhcmUgVFdPIHRpbWUta2VlcGVycywgb25lIGZvciBlYWNo
+IG5vdGlvbmFsICJyYWRpbyIKPiBvYmplY3QuICBTaW5jZSB0aGV5IHdpbGwgbmVjZXNzYXJpbHkg
+YmUgc2V0IHNlcmlhbGx5LCB0aGUgdGltZSByZWdpc3RlcnMKPiB3b24ndCBuZWNlc3NhcmlseSBi
+ZSBjb25zaXN0ZW50IHdpdGgKPiAgIGVhY2ggb3RoZXIsIGFuZCBkZWZpbml0ZWx5IHdvbid0IGJl
+IGNvbnNpc3RlbnQgd2l0aCB3aGF0ZXZlciB0aGUgaG9zdHMKPiBub3Rpb24gb2YgdGltZSBpcy4K
+Pgo+IElmIHlvdSB1c2UgYWN0dWFsIGhvc3QgdGltZS1vZi1kYXksIHRoZSB0aW1lLW9mLWRheSBv
+biB0aGUgVVNSUCB3aWxsIFZFUlkKPiBsaWtlbHkgZHJpZnQgcmVsYXRpdmUgdG8gdGhlIHRpbWUt
+b2YtZGF5IG9uIHRoZSBVU1JQIGRldmljZSwgc2luY2UgdGhleSdyZQo+IG9wZXJhdGluZyBmcm9t
+Cj4gICBkaXNqb2ludCBjbG9ja3MuCj4KPiBUSElTIGlzIHdoeSB0aGUgMVBQUyBpbnB1dCBpcyBp
+bXBvcnRhbnQgaW4gc3luY2hyb25pemF0aW9uLiAgRXZlbiBvbiBhCj4gc2luZ2xlIFgzMTAsIHNp
+bmNlIGl0IGhhcyB0d28gdGltZWtlZXBlcnMsIHRoZSAxUFBTIGlucHV0IHByb3ZpZGVzIGEKPiBw
+cmVkaWN0YWJsZSBhbmQgKnBhcmFsbGVsKgo+ICAgbG9hZCBvZiB0aGUgZGVzaXJlZCB0aW1lLW9m
+LWRheSBpbnRvIHRoZSB0aW1lIHJlZ2lzdGVycy4KPgo+Cj4KPiBSb2IgS29zc2xlciB3cm90ZToK
+Pgo+IEhpIEVtYW51ZWxlLCBJIGhhdmUgbmV2ZXIgdHJpZWQgdG8gdXNlIHNldF90aW1lX25vdygp
+IHdpdGggYW55dGhpbmcgb3RoZXIKPiB0aGFuIHplcm8gYXMgdGhlIHRpbWUgc2V0dGluZy4gT2Yg
+Y291cnNlLCB0aGlzIGRvZXMgbm90IG1lYW4gdGhhdCBpdCBpcwo+IGltcG9zc2libGUuIEJ1dCwg
+SSBhbSB3b25kZXJpbmcgaWYgeW91ciBhcHBsaWNhdGlvbiBjYW4gd29yayBqdXN0IGFzIGVhc2ls
+eQo+IGJ5IGFsd2F5cyB0cmFuc2xhdGluZyB0aGUgdGltZSBvbiB0aGUgQ1BVIHJhdGhlciB0aGFu
+IGluIHRoZSBGUEdBLiBUaGF0IGlzLAo+IHRoZSBGUEdBIHRpbWUgcmVmZXJlbmNlIGNhbiBiZSB6
+ZXJvIGFuZCB0aGUgQ1BVIHRpbWUgcmVmZXJlbmNlIGNhbiBiZQo+IHN5c3RlbS10aW1lIGFuZCB3
+aGVuZXZlciB5b3UgbmVlZCBhIHRpbWUgZnJvbSB0aGUgRlBHQSB5b3UgY2FuIGFwcGx5IHRoZQo+
+IGFwcHJvcHJpYXRlIHJlZmVyZW5jZSBpbiB0aGUgQ1BVLgo+Cj4gSXQgd2FzIG5vdCBjbGVhciB0
+byBtZSBmcm9tIHlvdXIgZW1haWwgaWYgdXNpbmcgYSB0aW1lIHNldHRpbmcgb2YgemVybwo+IHdp
+bGwgc29sdmUgdGhlIGlzc3VlLiBJdCBzZWVtZWQgdGhhdCB5b3Ugc3RpbGwgaGF2ZSBhIHBoYXNl
+IGlzc3VlIGluIHRoaXMKPiBjYXNlPyBSb2IKPgo+IE9uIFdlZCwgTm92IDI0LCAyMDIxIGF0IDEx
+OjI1IEFNIGVtYW51ZWxlLnRvbG9tZWlAaW50ZWNzLml0IHdyb3RlOgo+Cj4gSGkgTWFyY3VzLAo+
+Cj4gYXMgSSBzYWlkIGluIHRoZSBwcmV2aW91cyBwb3N0IEkgdHJpZWQgdG8gZG8gYSBnZXRfdGlt
+ZV9ub3coKSBqdXN0IGJlZm9yZQo+IHRoZSB0aW1lZCBjb21tYW5kLCBidXQgd2l0aG91dCBzdWNj
+ZXNzLgo+Cj4gLy8gVHVuZSBhbGwgY2hhbm5lbHMgdG8gdGhlIGRlc2lyZWQgZnJlcXVlbmN5Cj4K
+PiB1aGQ6OnR1bmVfcmVzdWx0X3QgdHVuZV9yZXNwID0gbV9NdWx0aVVzcnAtPnNldF9yeF9mcmVx
+KG5SeEZyZXF1ZW5jeSwwKTsKPgo+IC8vc2V0IHRpbWUgb24gdGhlIG1hc3RlciAobWJvYXJkIDAp
+Cj4KPiBzdHJ1Y3QgdGltZXNwZWMgbm93Owo+Cj4gY2xvY2tfZ2V0dGltZShDTE9DS19SRUFMVElN
+RSwgJm5vdyk7Cj4KPgo+IG1fTXVsdGlVc3JwLT5zZXRfdGltZV9ub3codWhkOjp0aW1lX3NwZWNf
+dChub3cudHZfc2VjLChkb3VibGUpbm93LnR2X25zZWMvMS4wZTYpKTsKPgo+IHVoZDo6dGltZV9z
+cGVjX3QgdXNycF90aW1lID0gbV9NdWx0aVVzcnAtPmdldF90aW1lX25vdygpOwo+Cj4gbV9NdWx0
+aVVzcnAtPnNldF9yeF9nYWluKG5HYWluLCAxKTsKPgo+IG1fTXVsdGlVc3JwLT5zZXRfcnhfZ2Fp
+bihuR2FpbiwgMik7Cj4KPiBtX011bHRpVXNycC0+c2V0X3J4X2dhaW4obkdhaW4sIDMpOwo+Cj4g
+dWhkOjp0dW5lX3JlcXVlc3RfdCB0dW5lX3JlcTsKPgo+IHR1bmVfcmVxLnJmX2ZyZXEgPSB0dW5l
+X3Jlc3AuYWN0dWFsX3JmX2ZyZXE7Cj4KPiB0dW5lX3JlcS5yZl9mcmVxX3BvbGljeSA9IHVoZDo6
+dHVuZV9yZXF1ZXN0X3Q6OlBPTElDWV9NQU5VQUw7Cj4KPiB0dW5lX3JlcS5kc3BfZnJlcSA9IHR1
+bmVfcmVzcC5hY3R1YWxfZHNwX2ZyZXE7Cj4KPiB0dW5lX3JlcS5kc3BfZnJlcV9wb2xpY3kgPSB1
+aGQ6OnR1bmVfcmVxdWVzdF90OjpQT0xJQ1lfTUFOVUFMOwo+Cj4gbV9NdWx0aVVzcnAtPnNldF9y
+eF9mcmVxKHR1bmVfcmVxLCAxKTsKPgo+IG1fTXVsdGlVc3JwLT5zZXRfcnhfZnJlcSh0dW5lX3Jl
+cSwgMik7Cj4KPiBtX011bHRpVXNycC0+c2V0X3J4X2ZyZXEodHVuZV9yZXEsIDMpOwo+Cj4gdXNy
+cF90aW1lID0gbV9NdWx0aVVzcnAtPmdldF90aW1lX25vdygpIDsKPgo+IC8vIFN5bmNocm9uaXpl
+IHRoZSB0dW5lZCBjaGFubmVscwo+Cj4gbV9NdWx0aVVzcnAtPnNldF9jb21tYW5kX3RpbWUodXNy
+cF90aW1lICsgdWhkOjp0aW1lX3NwZWNfdCgwLjEpKTsKPgo+IG1fTXVsdGlVc3JwLT5zZXRfcnhf
+ZnJlcSh0dW5lX3JlcSwgMCk7Cj4KPiBtX011bHRpVXNycC0+c2V0X3J4X2ZyZXEodHVuZV9yZXEs
+IDEpOwo+Cj4gbV9NdWx0aVVzcnAtPnNldF9yeF9mcmVxKHR1bmVfcmVxLCAyKTsKPgo+IG1fTXVs
+dGlVc3JwLT5zZXRfcnhfZnJlcSh0dW5lX3JlcSwgMyk7Cj4KPiBtX011bHRpVXNycC0+Y2xlYXJf
+Y29tbWFuZF90aW1lKCk7Cj4KPiBUaGFuayB5b3UuCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCj4KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbSBUbyB1bnN1YnNjcmliZSBzZW5kCj4gYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2
+ZUBsaXN0cy5ldHR1cy5jb20KPgo+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVz
+ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo+Cj4KPiBfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXwo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1
+c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo+Ci0tLS0tLS0tLS0tLS0tIG5leHQgcGFy
+dCAtLS0tLS0tLS0tLS0tLQpBIG1lc3NhZ2UgcGFydCBpbmNvbXBhdGlibGUgd2l0aCBwbGFpbiB0
+ZXh0IGRpZ2VzdHMgaGFzIGJlZW4gcmVtb3ZlZCAuLi4KTmFtZTogbm90IGF2YWlsYWJsZQpUeXBl
+OiB0ZXh0L2h0bWwKU2l6ZTogNzk5MyBieXRlcwpEZXNjOiBub3QgYXZhaWxhYmxlCgotLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KClN1YmplY3Q6IERpZ2VzdCBGb290ZXIKCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQg
+YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KCgotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0KCkVuZCBvZiBVU1JQLXVzZXJzIERpZ2VzdCwgVm9sIDEzNSwg
+SXNzdWUgNTQKKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKgo=
+------=_Part_85284_316114510.1637831485244
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-Emanuele, I think if you use set_time_unknown_pps(0) you can get consistent
-phase behavior.
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXYgc3R5bGU9Im1hcmdpbjogMDsiPkRlYXIgbWFuYWdlcjo8
+L2Rpdj48ZGl2IHN0eWxlPSJtYXJnaW46IDA7Ij48YnI+PC9kaXY+PGRpdiBzdHlsZT0ibWFyZ2lu
+OiAwOyI+UGxlYXNlIGhlbHAgdW5zdWJzY3JpYmUgRS1tYWlsIGxpc3QgZnJvbSZuYnNwOzxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTogYXJpYWw7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPnVzcnAt
+dXNlcnMtcmVxdWVzdEBsaXN0cy5ldHR1cy5jb20uIFRoYW5rIHlvdSE8L3NwYW4+PC9kaXY+PHAg
+c3R5bGU9Im1hcmdpbjogMDsiPjxicj48L3A+PHByZT4KLS0tLS0tLS0gRm9yd2FyZGluZyBtZXNz
+YWdlcyAtLS0tLS0tLQpGcm9tOiB1c3JwLXVzZXJzLXJlcXVlc3RAbGlzdHMuZXR0dXMuY29tCkRh
+dGU6IDIwMjEtMTEtMjUgMTY6MzA6MTgKVG86ICB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpT
+dWJqZWN0OiBVU1JQLXVzZXJzIERpZ2VzdCwgVm9sIDEzNSwgSXNzdWUgNTQKU2VuZCBVU1JQLXVz
+ZXJzIG1haWxpbmcgbGlzdCBzdWJtaXNzaW9ucyB0bwoJdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20KClRvIHN1YnNjcmliZSBvciB1bnN1YnNjcmliZSB2aWEgZW1haWwsIHNlbmQgYSBtZXNzYWdl
+IHdpdGggc3ViamVjdCBvcgpib2R5ICdoZWxwJyB0bwoJdXNycC11c2Vycy1yZXF1ZXN0QGxpc3Rz
+LmV0dHVzLmNvbQoKWW91IGNhbiByZWFjaCB0aGUgcGVyc29uIG1hbmFnaW5nIHRoZSBsaXN0IGF0
+Cgl1c3JwLXVzZXJzLW93bmVyQGxpc3RzLmV0dHVzLmNvbQoKV2hlbiByZXBseWluZywgcGxlYXNl
+IGVkaXQgeW91ciBTdWJqZWN0IGxpbmUgc28gaXQgaXMgbW9yZSBzcGVjaWZpYwp0aGFuICJSZTog
+Q29udGVudHMgb2YgVVNSUC11c2VycyBkaWdlc3QuLi4iCgpUb2RheSdzIFRvcGljczoKCiAgIDEu
+IFJlOiBUcm91YmxlIHdpdGggVHdpblJYIGZyZXF1ZW5jeSB0dW5pbmcgKFJvYiBLb3NzbGVyKQoK
+Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0KCk1lc3NhZ2U6IDEKRGF0ZTogV2VkLCAyNCBOb3YgMjAyMSAyMzoxMjow
+MCAtMDUwMApGcm9tOiBSb2IgS29zc2xlciAmbHQ7cmtvc3NsZXJAbmQuZWR1Jmd0OwpTdWJqZWN0
+OiBbVVNSUC11c2Vyc10gUmU6IFRyb3VibGUgd2l0aCBUd2luUlggZnJlcXVlbmN5IHR1bmluZwpU
+bzogIk1hcmN1cyBELiBMZWVjaCIgJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0OwpDYzog
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KTWVzc2FnZS1JRDoKCSZsdDtDQUJfX2hUUzJod1hr
+YmpoRWNfZGNZVjE1c1FFMEE4aGM5T29NTFRmcXdMUGVpOTlXQmdAbWFpbC5nbWFpbC5jb20mZ3Q7
+CkNvbnRlbnQtVHlwZTogbXVsdGlwYXJ0L2FsdGVybmF0aXZlOwoJYm91bmRhcnk9IjAwMDAwMDAw
+MDAwMGRiZWNhZjA1ZDE5NTJkMzkiCgpOaWNlIGNhdGNoIE1hcmN1cy4gSSBoYWRuoa90IG5vdGlj
+ZWQgdGhlIHVzZSBvZiBzZXRfdGltZV9ub3coKSByYXRoZXIgdGhhbgpzZXRfdGltZV91bmtub3du
+X3BwcygpLgoKRW1hbnVlbGUsIEkgdGhpbmsgaWYgeW91IHVzZSBzZXRfdGltZV91bmtub3duX3Bw
+cygwKSB5b3UgY2FuIGdldCBjb25zaXN0ZW50CnBoYXNlIGJlaGF2aW9yLgoKT24gV2VkLCBOb3Yg
+MjQsIDIwMjEgYXQgOTo0MSBQTSBNYXJjdXMgRC4gTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21h
+aWwuY29tJmd0Owp3cm90ZToKCiZndDsgT24gMjAyMS0xMS0yNCAxMjo0NywgZW1hbnVlbGUudG9s
+b21laUBpbnRlY3MuaXQgd3JvdGU6CiZndDsKJmd0OyBJdCB3YXMgbm90IGNsZWFyIHRvIG1lIGZy
+b20geW91ciBlbWFpbCBpZiB1c2luZyBhIHRpbWUgc2V0dGluZyBvZiB6ZXJvCiZndDsgd2lsbAom
+Z3Q7IHNvbHZlIHRoZSBpc3N1ZS4gSXQgc2VlbWVkIHRoYXQgeW91IHN0aWxsIGhhdmUgYSBwaGFz
+ZSBpc3N1ZSBpbiB0aGlzIGNhc2U/CiZndDsKJmd0OyBZZXMuIElmIHdlIHVzZSBhIHRpbWUgc2V0
+dGluZyBvZiB6ZXJvLCB0aGUgYXBwbGljYXRpb24gcnVucyBzbW9vdGhseQomZ3Q7IHdpdGhvdXQg
+Y3Jhc2hlcywgYnV0IHRoZXJlIGlzIGFuIHVucHJlZGljdGFibGUgcGhhc2Ugc2hpZnQgYmV0d2Vl
+biB0aGUKJmd0OyBjaGFubmVscy4KJmd0OwomZ3Q7IE91ciBwcm9ibGVtIG9jY3VycyBvbmx5IHdo
+ZW4gdGhlIHR1bmluZyBhbmQgc3luY2hyb25pemF0aW9uIGluc3RydWN0aW9ucwomZ3Q7IGFyZSBy
+ZXBlYXRlZCBpbiBhIGxvb3AsIGV2ZW4gaWYgdHVuaW5nIGFsd2F5cyBhdCB0aGUgc2FtZSBmcmVx
+dWVuY3kuCiZndDsgSW5zdGVhZCwgaWYgd2UgdHVuZSBhbmQgc3luY2hyb25pemUgdGhlIGNoYW5u
+ZWxzIG9ubHkgb25jZSwgc3VjaCBhcyBpbiB0aGUKJmd0OyBhdHRhY2hlZCBzbmlwcGV0IChhIG1v
+ZGlmaWVkIHZlcnNpb24gb2YgdGhlIHJ4X211bHRpX3NhbXBsZXMgVUhEIGV4YW1wbGUpLAomZ3Q7
+IGV2ZXJ5dGhpbmcgcnVucyBzbW9vdGggYW5kIHRoZSBwaGFzZSBzaGlmdCBiZXR3ZWVuIHRoZSBj
+aGFubmVscyBpcyBjb2hlcmVudAomZ3Q7IGVhY2ggdGltZSB3ZSBzdGFydCB0aGUgYXBwbGljYXRp
+b24uIEFzIHlvdSBjYW4gc2VlLCBpbiB0aGUgYXR0YWNoZWQgY29kZQomZ3Q7IHRoZSBzZXRfdGlt
+ZV9ub3codWhkOjp0aW1lX3NwZWNfdCgwLjApKSBjb21tYW5kIGlzIG5ldmVyIGNhbGxlZCwgYW5k
+IGlmIHdlCiZndDsgYWRkIHRoYXQgY29tbWFuZCB0aGUgcGhhc2Ugc2hpZnRzIGJldHdlZW4gdGhl
+IGNoYW5uZWxzIGNoYW5nZSBhdCBldmVyeSBydW4uCiZndDsgSW4gb3VyIGFwcGxpY2F0aW9uLCBo
+b3dldmVyLCByZW1vdmluZyB0aGlzIGNvbW1hbmQgbGVhZHMgdGhlIGFmb3JlbWVudGlvbmVkCiZn
+dDsgY3Jhc2hlcy4KJmd0OwomZ3Q7IFRoYXQgaXMsIHRoZSBGUEdBCiZndDsgdGltZSByZWZlcmVu
+Y2UgY2FuIGJlIHplcm8gYW5kIHRoZSBDUFUgdGltZSByZWZlcmVuY2UgY2FuIGJlIHN5c3RlbS10
+aW1lCiZndDsgYW5kIHdoZW5ldmVyIHlvdSBuZWVkIGEgdGltZSBmcm9tIHRoZSBGUEdBIHlvdSBj
+YW4gYXBwbHkgdGhlIGFwcHJvcHJpYXRlCiZndDsgcmVmZXJlbmNlIGluIHRoZSBDUFUuCiZndDsK
+Jmd0OyBXaGF0IGRvIHlvdSBtZWFuIHdpdGggQ1BVIHRpbWUgcmVmZXJlbmNlPyBJbiBvdXIgYXBw
+bGljYXRpb24gdGhlCiZndDsgc3lzdGVtLXRpbWUgaXMgdGhlIGhvc3QgQ1BVIHRpbWUuCiZndDsK
+Jmd0OyBFbWFudWVsZSBUb2xvbWVpCiZndDsKJmd0OyBUaGUgcHJvYmxlbSB3aXRoIHNldF90aW1l
+X25vdygpLCBpcyB0aGF0IGl0IHNldHMgdGhlIHRpbWUgcmVnaXN0ZXIocykgdG8KJmd0OyB3aGF0
+ZXZlciB5b3Ugc3VwcGx5LCBhbmQgc2luY2UgdGhlcmUgYXJlIGEgY291cGxlIG9mIHVua25vd24g
+bGF0ZW5jaWVzLCB0aGUKJmd0OyB0aW1lIHdpbGwgbmVjZXNzYXJpbHkgYmUKJmd0OyAgIHZlcnkg
+aW1wcmVjaXNlLiAgVGhlIGZpcnN0IGxhdGVuY3kgaXMgaG93IGxvbmcgaXQgdGFrZXMgdG8gY29u
+ZHVjdCB0aGUKJmd0OyB0cmFuc2FjdGlvbiBhY3Jvc3MgdGhlIG5ldHdvcmsgbGluayBiZXR3ZWVu
+IHlvdXIgY29tcHV0ZXIgYW5kIHRoZSBVU1JQLgomZ3Q7IFRoZSAybmQgaXMgdGhhdCBpbiBYMzEw
+LCBhcwomZ3Q7ICAgSSByZWNhbGwsIHRoZXJlIGFyZSBUV08gdGltZS1rZWVwZXJzLCBvbmUgZm9y
+IGVhY2ggbm90aW9uYWwgInJhZGlvIgomZ3Q7IG9iamVjdC4gIFNpbmNlIHRoZXkgd2lsbCBuZWNl
+c3NhcmlseSBiZSBzZXQgc2VyaWFsbHksIHRoZSB0aW1lIHJlZ2lzdGVycwomZ3Q7IHdvbid0IG5l
+Y2Vzc2FyaWx5IGJlIGNvbnNpc3RlbnQgd2l0aAomZ3Q7ICAgZWFjaCBvdGhlciwgYW5kIGRlZmlu
+aXRlbHkgd29uJ3QgYmUgY29uc2lzdGVudCB3aXRoIHdoYXRldmVyIHRoZSBob3N0cwomZ3Q7IG5v
+dGlvbiBvZiB0aW1lIGlzLgomZ3Q7CiZndDsgSWYgeW91IHVzZSBhY3R1YWwgaG9zdCB0aW1lLW9m
+LWRheSwgdGhlIHRpbWUtb2YtZGF5IG9uIHRoZSBVU1JQIHdpbGwgVkVSWQomZ3Q7IGxpa2VseSBk
+cmlmdCByZWxhdGl2ZSB0byB0aGUgdGltZS1vZi1kYXkgb24gdGhlIFVTUlAgZGV2aWNlLCBzaW5j
+ZSB0aGV5J3JlCiZndDsgb3BlcmF0aW5nIGZyb20KJmd0OyAgIGRpc2pvaW50IGNsb2Nrcy4KJmd0
+OwomZ3Q7IFRISVMgaXMgd2h5IHRoZSAxUFBTIGlucHV0IGlzIGltcG9ydGFudCBpbiBzeW5jaHJv
+bml6YXRpb24uICBFdmVuIG9uIGEKJmd0OyBzaW5nbGUgWDMxMCwgc2luY2UgaXQgaGFzIHR3byB0
+aW1la2VlcGVycywgdGhlIDFQUFMgaW5wdXQgcHJvdmlkZXMgYQomZ3Q7IHByZWRpY3RhYmxlIGFu
+ZCAqcGFyYWxsZWwqCiZndDsgICBsb2FkIG9mIHRoZSBkZXNpcmVkIHRpbWUtb2YtZGF5IGludG8g
+dGhlIHRpbWUgcmVnaXN0ZXJzLgomZ3Q7CiZndDsKJmd0OwomZ3Q7IFJvYiBLb3NzbGVyIHdyb3Rl
+OgomZ3Q7CiZndDsgSGkgRW1hbnVlbGUsIEkgaGF2ZSBuZXZlciB0cmllZCB0byB1c2Ugc2V0X3Rp
+bWVfbm93KCkgd2l0aCBhbnl0aGluZyBvdGhlcgomZ3Q7IHRoYW4gemVybyBhcyB0aGUgdGltZSBz
+ZXR0aW5nLiBPZiBjb3Vyc2UsIHRoaXMgZG9lcyBub3QgbWVhbiB0aGF0IGl0IGlzCiZndDsgaW1w
+b3NzaWJsZS4gQnV0LCBJIGFtIHdvbmRlcmluZyBpZiB5b3VyIGFwcGxpY2F0aW9uIGNhbiB3b3Jr
+IGp1c3QgYXMgZWFzaWx5CiZndDsgYnkgYWx3YXlzIHRyYW5zbGF0aW5nIHRoZSB0aW1lIG9uIHRo
+ZSBDUFUgcmF0aGVyIHRoYW4gaW4gdGhlIEZQR0EuIFRoYXQgaXMsCiZndDsgdGhlIEZQR0EgdGlt
+ZSByZWZlcmVuY2UgY2FuIGJlIHplcm8gYW5kIHRoZSBDUFUgdGltZSByZWZlcmVuY2UgY2FuIGJl
+CiZndDsgc3lzdGVtLXRpbWUgYW5kIHdoZW5ldmVyIHlvdSBuZWVkIGEgdGltZSBmcm9tIHRoZSBG
+UEdBIHlvdSBjYW4gYXBwbHkgdGhlCiZndDsgYXBwcm9wcmlhdGUgcmVmZXJlbmNlIGluIHRoZSBD
+UFUuCiZndDsKJmd0OyBJdCB3YXMgbm90IGNsZWFyIHRvIG1lIGZyb20geW91ciBlbWFpbCBpZiB1
+c2luZyBhIHRpbWUgc2V0dGluZyBvZiB6ZXJvCiZndDsgd2lsbCBzb2x2ZSB0aGUgaXNzdWUuIEl0
+IHNlZW1lZCB0aGF0IHlvdSBzdGlsbCBoYXZlIGEgcGhhc2UgaXNzdWUgaW4gdGhpcwomZ3Q7IGNh
+c2U/IFJvYgomZ3Q7CiZndDsgT24gV2VkLCBOb3YgMjQsIDIwMjEgYXQgMTE6MjUgQU0gZW1hbnVl
+bGUudG9sb21laUBpbnRlY3MuaXQgd3JvdGU6CiZndDsKJmd0OyBIaSBNYXJjdXMsCiZndDsKJmd0
+OyBhcyBJIHNhaWQgaW4gdGhlIHByZXZpb3VzIHBvc3QgSSB0cmllZCB0byBkbyBhIGdldF90aW1l
+X25vdygpIGp1c3QgYmVmb3JlCiZndDsgdGhlIHRpbWVkIGNvbW1hbmQsIGJ1dCB3aXRob3V0IHN1
+Y2Nlc3MuCiZndDsKJmd0OyAvLyBUdW5lIGFsbCBjaGFubmVscyB0byB0aGUgZGVzaXJlZCBmcmVx
+dWVuY3kKJmd0OwomZ3Q7IHVoZDo6dHVuZV9yZXN1bHRfdCB0dW5lX3Jlc3AgPSBtX011bHRpVXNy
+cC0mZ3Q7c2V0X3J4X2ZyZXEoblJ4RnJlcXVlbmN5LDApOwomZ3Q7CiZndDsgLy9zZXQgdGltZSBv
+biB0aGUgbWFzdGVyIChtYm9hcmQgMCkKJmd0OwomZ3Q7IHN0cnVjdCB0aW1lc3BlYyBub3c7CiZn
+dDsKJmd0OyBjbG9ja19nZXR0aW1lKENMT0NLX1JFQUxUSU1FLCAmYW1wO25vdyk7CiZndDsKJmd0
+OwomZ3Q7IG1fTXVsdGlVc3JwLSZndDtzZXRfdGltZV9ub3codWhkOjp0aW1lX3NwZWNfdChub3cu
+dHZfc2VjLChkb3VibGUpbm93LnR2X25zZWMvMS4wZTYpKTsKJmd0OwomZ3Q7IHVoZDo6dGltZV9z
+cGVjX3QgdXNycF90aW1lID0gbV9NdWx0aVVzcnAtJmd0O2dldF90aW1lX25vdygpOwomZ3Q7CiZn
+dDsgbV9NdWx0aVVzcnAtJmd0O3NldF9yeF9nYWluKG5HYWluLCAxKTsKJmd0OwomZ3Q7IG1fTXVs
+dGlVc3JwLSZndDtzZXRfcnhfZ2FpbihuR2FpbiwgMik7CiZndDsKJmd0OyBtX011bHRpVXNycC0m
+Z3Q7c2V0X3J4X2dhaW4obkdhaW4sIDMpOwomZ3Q7CiZndDsgdWhkOjp0dW5lX3JlcXVlc3RfdCB0
+dW5lX3JlcTsKJmd0OwomZ3Q7IHR1bmVfcmVxLnJmX2ZyZXEgPSB0dW5lX3Jlc3AuYWN0dWFsX3Jm
+X2ZyZXE7CiZndDsKJmd0OyB0dW5lX3JlcS5yZl9mcmVxX3BvbGljeSA9IHVoZDo6dHVuZV9yZXF1
+ZXN0X3Q6OlBPTElDWV9NQU5VQUw7CiZndDsKJmd0OyB0dW5lX3JlcS5kc3BfZnJlcSA9IHR1bmVf
+cmVzcC5hY3R1YWxfZHNwX2ZyZXE7CiZndDsKJmd0OyB0dW5lX3JlcS5kc3BfZnJlcV9wb2xpY3kg
+PSB1aGQ6OnR1bmVfcmVxdWVzdF90OjpQT0xJQ1lfTUFOVUFMOwomZ3Q7CiZndDsgbV9NdWx0aVVz
+cnAtJmd0O3NldF9yeF9mcmVxKHR1bmVfcmVxLCAxKTsKJmd0OwomZ3Q7IG1fTXVsdGlVc3JwLSZn
+dDtzZXRfcnhfZnJlcSh0dW5lX3JlcSwgMik7CiZndDsKJmd0OyBtX011bHRpVXNycC0mZ3Q7c2V0
+X3J4X2ZyZXEodHVuZV9yZXEsIDMpOwomZ3Q7CiZndDsgdXNycF90aW1lID0gbV9NdWx0aVVzcnAt
+Jmd0O2dldF90aW1lX25vdygpIDsKJmd0OwomZ3Q7IC8vIFN5bmNocm9uaXplIHRoZSB0dW5lZCBj
+aGFubmVscwomZ3Q7CiZndDsgbV9NdWx0aVVzcnAtJmd0O3NldF9jb21tYW5kX3RpbWUodXNycF90
+aW1lICsgdWhkOjp0aW1lX3NwZWNfdCgwLjEpKTsKJmd0OwomZ3Q7IG1fTXVsdGlVc3JwLSZndDtz
+ZXRfcnhfZnJlcSh0dW5lX3JlcSwgMCk7CiZndDsKJmd0OyBtX011bHRpVXNycC0mZ3Q7c2V0X3J4
+X2ZyZXEodHVuZV9yZXEsIDEpOwomZ3Q7CiZndDsgbV9NdWx0aVVzcnAtJmd0O3NldF9yeF9mcmVx
+KHR1bmVfcmVxLCAyKTsKJmd0OwomZ3Q7IG1fTXVsdGlVc3JwLSZndDtzZXRfcnhfZnJlcSh0dW5l
+X3JlcSwgMyk7CiZndDsKJmd0OyBtX011bHRpVXNycC0mZ3Q7Y2xlYXJfY29tbWFuZF90aW1lKCk7
+CiZndDsKJmd0OyBUaGFuayB5b3UuCiZndDsgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+CiZndDsKJmd0OyBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbSBUbyB1bnN1YnNjcmliZSBzZW5kCiZndDsgYW4gZW1haWwgdG8gdXNycC11c2Vycy1s
+ZWF2ZUBsaXN0cy5ldHR1cy5jb20KJmd0OwomZ3Q7CiZndDsKJmd0OyBfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwomZ3Q7IFVTUlAtdXNlcnMgbWFpbGluZyBs
+aXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCiZndDsgVG8gdW5zdWJzY3JpYmUgc2Vu
+ZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQomZ3Q7CiZndDsK
+Jmd0OyBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwomZ3Q7
+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tCiZn
+dDsgVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
+LmV0dHVzLmNvbQomZ3Q7Ci0tLS0tLS0tLS0tLS0tIG5leHQgcGFydCAtLS0tLS0tLS0tLS0tLQpB
+IG1lc3NhZ2UgcGFydCBpbmNvbXBhdGlibGUgd2l0aCBwbGFpbiB0ZXh0IGRpZ2VzdHMgaGFzIGJl
+ZW4gcmVtb3ZlZCAuLi4KTmFtZTogbm90IGF2YWlsYWJsZQpUeXBlOiB0ZXh0L2h0bWwKU2l6ZTog
+Nzk5MyBieXRlcwpEZXNjOiBub3QgYXZhaWxhYmxlCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0KClN1YmplY3Q6IERpZ2VzdCBGb290ZXIKCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
+c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0KCkVuZCBvZiBVU1JQLXVzZXJzIERpZ2VzdCwgVm9sIDEzNSwgSXNzdWUgNTQKKioqKioqKioq
+KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKgo8L3ByZT48L2Rpdj48YnI+PGJyPjxz
+cGFuIHRpdGxlPSJuZXRlYXNlZm9vdGVyIj48cD4mbmJzcDs8L3A+PC9zcGFuPg==
+------=_Part_85284_316114510.1637831485244--
 
-On Wed, Nov 24, 2021 at 9:41 PM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 2021-11-24 12:47, emanuele.tolomei@intecs.it wrote:
->
-> It was not clear to me from your email if using a time setting of zero
-> will
-> solve the issue. It seemed that you still have a phase issue in this case=
-?
->
-> Yes. If we use a time setting of zero, the application runs smoothly
-> without crashes, but there is an unpredictable phase shift between the
-> channels.
->
-> Our problem occurs only when the tuning and synchronization instructions
-> are repeated in a loop, even if tuning always at the same frequency.
-> Instead, if we tune and synchronize the channels only once, such as in th=
-e
-> attached snippet (a modified version of the rx_multi_samples UHD example)=
-,
-> everything runs smooth and the phase shift between the channels is cohere=
-nt
-> each time we start the application. As you can see, in the attached code
-> the set_time_now(uhd::time_spec_t(0.0)) command is never called, and if w=
-e
-> add that command the phase shifts between the channels change at every ru=
-n.
-> In our application, however, removing this command leads the aforemention=
-ed
-> crashes.
->
-> That is, the FPGA
-> time reference can be zero and the CPU time reference can be system-time
-> and whenever you need a time from the FPGA you can apply the appropriate
-> reference in the CPU.
->
-> What do you mean with CPU time reference? In our application the
-> system-time is the host CPU time.
->
-> Emanuele Tolomei
->
-> The problem with set_time_now(), is that it sets the time register(s) to
-> whatever you supply, and since there are a couple of unknown latencies, t=
-he
-> time will necessarily be
->   very imprecise.  The first latency is how long it takes to conduct the
-> transaction across the network link between your computer and the USRP.
-> The 2nd is that in X310, as
->   I recall, there are TWO time-keepers, one for each notional "radio"
-> object.  Since they will necessarily be set serially, the time registers
-> won't necessarily be consistent with
->   each other, and definitely won't be consistent with whatever the hosts
-> notion of time is.
->
-> If you use actual host time-of-day, the time-of-day on the USRP will VERY
-> likely drift relative to the time-of-day on the USRP device, since they'r=
-e
-> operating from
->   disjoint clocks.
->
-> THIS is why the 1PPS input is important in synchronization.  Even on a
-> single X310, since it has two timekeepers, the 1PPS input provides a
-> predictable and *parallel*
->   load of the desired time-of-day into the time registers.
->
->
->
-> Rob Kossler wrote:
->
-> Hi Emanuele, I have never tried to use set_time_now() with anything other
-> than zero as the time setting. Of course, this does not mean that it is
-> impossible. But, I am wondering if your application can work just as easi=
-ly
-> by always translating the time on the CPU rather than in the FPGA. That i=
-s,
-> the FPGA time reference can be zero and the CPU time reference can be
-> system-time and whenever you need a time from the FPGA you can apply the
-> appropriate reference in the CPU.
->
-> It was not clear to me from your email if using a time setting of zero
-> will solve the issue. It seemed that you still have a phase issue in this
-> case? Rob
->
-> On Wed, Nov 24, 2021 at 11:25 AM emanuele.tolomei@intecs.it wrote:
->
-> Hi Marcus,
->
-> as I said in the previous post I tried to do a get_time_now() just before
-> the timed command, but without success.
->
-> // Tune all channels to the desired frequency
->
-> uhd::tune_result_t tune_resp =3D m_MultiUsrp->set_rx_freq(nRxFrequency,0)=
-;
->
-> //set time on the master (mboard 0)
->
-> struct timespec now;
->
-> clock_gettime(CLOCK_REALTIME, &now);
->
->
-> m_MultiUsrp->set_time_now(uhd::time_spec_t(now.tv_sec,(double)now.tv_nsec=
-/1.0e6));
->
-> uhd::time_spec_t usrp_time =3D m_MultiUsrp->get_time_now();
->
-> m_MultiUsrp->set_rx_gain(nGain, 1);
->
-> m_MultiUsrp->set_rx_gain(nGain, 2);
->
-> m_MultiUsrp->set_rx_gain(nGain, 3);
->
-> uhd::tune_request_t tune_req;
->
-> tune_req.rf_freq =3D tune_resp.actual_rf_freq;
->
-> tune_req.rf_freq_policy =3D uhd::tune_request_t::POLICY_MANUAL;
->
-> tune_req.dsp_freq =3D tune_resp.actual_dsp_freq;
->
-> tune_req.dsp_freq_policy =3D uhd::tune_request_t::POLICY_MANUAL;
->
-> m_MultiUsrp->set_rx_freq(tune_req, 1);
->
-> m_MultiUsrp->set_rx_freq(tune_req, 2);
->
-> m_MultiUsrp->set_rx_freq(tune_req, 3);
->
-> usrp_time =3D m_MultiUsrp->get_time_now() ;
->
-> // Synchronize the tuned channels
->
-> m_MultiUsrp->set_command_time(usrp_time + uhd::time_spec_t(0.1));
->
-> m_MultiUsrp->set_rx_freq(tune_req, 0);
->
-> m_MultiUsrp->set_rx_freq(tune_req, 1);
->
-> m_MultiUsrp->set_rx_freq(tune_req, 2);
->
-> m_MultiUsrp->set_rx_freq(tune_req, 3);
->
-> m_MultiUsrp->clear_command_time();
->
-> Thank you.
-> ------------------------------
->
-> USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe send
-> an email to usrp-users-leave@lists.ettus.com
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000dbecaf05d1952d39
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Nice catch Marcus. I hadn=E2=80=99t noticed the use of se=
-t_time_now() rather than set_time_unknown_pps().=C2=A0</div><div dir=3D"aut=
-o"><br></div><div dir=3D"auto">Emanuele, I think if you use=C2=A0<span styl=
-e=3D"color:rgb(0,0,0)">set_time_unknown_pps(0) you can get consistent phase=
- behavior.=C2=A0</span>=C2=A0</div><div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 24, 2021 at 9:41 PM Marcus D.=
- Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.c=
-om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-l=
-eft:1ex;border-left-color:rgb(204,204,204)">
- =20
-   =20
- =20
-  <div>
-    <div>On 2021-11-24 12:47,
-      <a href=3D"mailto:emanuele.tolomei@intecs.it" target=3D"_blank">emanu=
-ele.tolomei@intecs.it</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <blockquote>
-        <p>It was not clear to me from your email if using a time
-          setting of zero will <br>
-          solve the issue. It seemed that you still have a phase issue
-          in this case?</p>
-      </blockquote>
-      <p>Yes. If we use a time setting of zero, the application runs
-        smoothly without crashes, but there is an unpredictable phase
-        shift between the channels.</p>
-      <p>Our problem occurs only when the tuning and synchronization
-        instructions are repeated in a loop, even if tuning always at
-        the same frequency. Instead, if we tune and synchronize the
-        channels only once, such as in the attached snippet (a modified
-        version of the rx_multi_samples UHD example), everything runs
-        smooth and the phase shift between the channels is coherent each
-        time we start the application. As you can see, in the attached
-        code the set_time_now(uhd::time_spec_t(0.0)) command is never
-        called, and if we add that command the phase shifts between the
-        channels change at every run. In our application, however,
-        removing this command leads the aforementioned crashes.</p>
-      <blockquote>
-        <p>That is, the FPGA <br>
-          time reference can be zero and the CPU time reference can be
-          system-time <br>
-          and whenever you need a time from the FPGA you can apply the
-          appropriate <br>
-          reference in the CPU.</p>
-      </blockquote>
-      <p>What do you mean with CPU time reference? In our application
-        the system-time is the host CPU time.</p>
-      <p>Emanuele Tolomei</p>
-    </blockquote>
-    The problem with set_time_now(), is that it sets the time
-    register(s) to whatever you supply, and since there are a couple of
-    unknown latencies, the time will necessarily be<br>
-    =C2=A0 very imprecise.=C2=A0 The first latency is how long it takes to =
-conduct
-    the transaction across the network link between your computer and
-    the USRP.=C2=A0 The 2nd is that in X310, as<br>
-    =C2=A0 I recall, there are TWO time-keepers, one for each notional
-    &quot;radio&quot; object.=C2=A0 Since they will necessarily be set seri=
-ally, the
-    time registers won&#39;t necessarily be consistent with<br>
-    =C2=A0 each other, and definitely won&#39;t be consistent with whatever=
- the
-    hosts notion of time is.<br>
-    <br>
-    If you use actual host time-of-day, the time-of-day on the USRP will
-    VERY likely drift relative to the time-of-day on the USRP device,
-    since they&#39;re operating from<br>
-    =C2=A0 disjoint clocks.<br>
-    <br>
-    THIS is why the 1PPS input is important in synchronization.=C2=A0 Even =
-on
-    a single X310, since it has two timekeepers, the 1PPS input provides
-    a predictable and *parallel*<br>
-    =C2=A0 load of the desired time-of-day into the time registers.</div><d=
-iv><br>
-    <br>
-    <br>
-    <blockquote type=3D"cite">
-      <p>Rob Kossler wrote:</p>
-      <blockquote>
-        <p>Hi Emanuele,
-          I have never tried to use set_time_now() with anything other
-          than zero as
-          the time setting. Of course, this does not mean that it is
-          impossible. But,
-          I am wondering if your application can work just as easily by
-          always
-          translating the time on the CPU rather than in the FPGA. That
-          is, the FPGA
-          time reference can be zero and the CPU time reference can be
-          system-time
-          and whenever you need a time from the FPGA you can apply the
-          appropriate
-          reference in the CPU.</p>
-        <p>It was not clear to me from your email if using a time
-          setting of zero will
-          solve the issue. It seemed that you still have a phase issue
-          in this case?
-          Rob</p>
-        <p>On Wed, Nov 24, 2021 at 11:25 AM <a href=3D"mailto:emanuele.tolo=
-mei@intecs.it" target=3D"_blank">emanuele.tolomei@intecs.it</a>
-          wrote:</p>
-        <blockquote>
-          <p>Hi Marcus,</p>
-          <p>as I said in the previous post I tried to do a
-            get_time_now() just before
-            the timed command, but without success.</p>
-          <p>// Tune all channels to the desired frequency</p>
-          <p>uhd::tune_result_t tune_resp =3D
-            m_MultiUsrp-&gt;set_rx_freq(nRxFrequency,0);</p>
-          <p>//set time on the master (mboard 0)</p>
-          <p>struct timespec now;</p>
-          <p>clock_gettime(CLOCK_REALTIME, &amp;now);</p>
-          <p>m_MultiUsrp-&gt;set_time_now(uhd::time_spec_t(now.tv_sec,(doub=
-le)now.tv_nsec/1.0e6));</p>
-          <p>uhd::time_spec_t usrp_time =3D
-            m_MultiUsrp-&gt;get_time_now();</p>
-          <p>m_MultiUsrp-&gt;set_rx_gain(nGain, 1);</p>
-          <p>m_MultiUsrp-&gt;set_rx_gain(nGain, 2);</p>
-          <p>m_MultiUsrp-&gt;set_rx_gain(nGain, 3);</p>
-          <p>uhd::tune_request_t tune_req;</p>
-          <p>tune_req.rf_freq =3D tune_resp.actual_rf_freq;</p>
-          <p>tune_req.rf_freq_policy =3D
-            uhd::tune_request_t::POLICY_MANUAL;</p>
-          <p>tune_req.dsp_freq =3D tune_resp.actual_dsp_freq;</p>
-          <p>tune_req.dsp_freq_policy =3D
-            uhd::tune_request_t::POLICY_MANUAL;</p>
-          <p>m_MultiUsrp-&gt;set_rx_freq(tune_req, 1);</p>
-          <p>m_MultiUsrp-&gt;set_rx_freq(tune_req, 2);</p>
-          <p>m_MultiUsrp-&gt;set_rx_freq(tune_req, 3);</p>
-          <p>usrp_time =3D m_MultiUsrp-&gt;get_time_now() ;</p>
-          <p>// Synchronize the tuned channels</p>
-          <p>m_MultiUsrp-&gt;set_command_time(usrp_time +
-            uhd::time_spec_t(0.1));</p>
-          <p>m_MultiUsrp-&gt;set_rx_freq(tune_req, 0);</p>
-          <p>m_MultiUsrp-&gt;set_rx_freq(tune_req, 1);</p>
-          <p>m_MultiUsrp-&gt;set_rx_freq(tune_req, 2);</p>
-          <p>m_MultiUsrp-&gt;set_rx_freq(tune_req, 3);</p>
-          <p>m_MultiUsrp-&gt;clear_command_time();</p>
-          <p>Thank you.</p>
-          <div>
-            <hr></div>
-          <p>USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.=
-ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>
-            To unsubscribe send an email to
-            <a href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_=
-blank">usrp-users-leave@lists.ettus.com</a></p>
-        </blockquote>
-      </blockquote>
-      <p><br>
-      </p>
-      <br>
-      <fieldset></fieldset>
-      <pre style=3D"font-family:monospace">________________________________=
-_______________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank" style=3D"font-family:monospace">usrp-users@lists.ettus.com<=
-/a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank" style=3D"font-family:monospace">usrp-users-leave=
-@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-
---000000000000dbecaf05d1952d39--
-
---===============0085134342747115396==
+--===============2190955298896910612==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -435,4 +344,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0085134342747115396==--
+--===============2190955298896910612==--
