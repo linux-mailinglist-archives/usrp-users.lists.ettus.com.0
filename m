@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19B6445DFDE
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Nov 2021 18:37:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD4AD45DFDF
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Nov 2021 18:39:07 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2F54F3846DB
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Nov 2021 12:37:48 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 87EE3384788
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Nov 2021 12:39:06 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aFipNiS+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a3n9pcUo";
 	dkim-atps=neutral
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 50F7B3846DB
-	for <usrp-users@lists.ettus.com>; Thu, 25 Nov 2021 12:36:53 -0500 (EST)
-Received: by mail-qk1-f169.google.com with SMTP id de30so12477070qkb.0
-        for <usrp-users@lists.ettus.com>; Thu, 25 Nov 2021 09:36:53 -0800 (PST)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 685D338471A
+	for <usrp-users@lists.ettus.com>; Thu, 25 Nov 2021 12:38:08 -0500 (EST)
+Received: by mail-qv1-f41.google.com with SMTP id b17so5164237qvl.9
+        for <usrp-users@lists.ettus.com>; Thu, 25 Nov 2021 09:38:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to;
-        bh=FUK6PFtopZXEgT5kMJsd+Cp6mariyUfKePymXTlb+ig=;
-        b=aFipNiS+LT9KSvsJ4ZnnKk+4oZvPsEaMl7v88Ah8MdzH+kMcuz6kGZVRRwGam4fUey
-         xdlTvthpFu6cDPD+anGAZzZoQ0cGg8afK5MOMIJczTyfyOd5stBadVzNh7CqnF5+DpW6
-         rESgUl+5P6pFTNXTX5S/U9267zWk0QJfmhY1Qlq32s+71BYVsCmahzuRioEF/FnDNy4v
-         inkStEp9+zUru2VCKxLB9q9XzE5W4io02h6D55GIAZk71fyJmxuKcyX7j0leTXolqU9b
-         sOqTztEMEGF6CZ5E1NHvVg4dxVeofXcq9h94mzaWOgh8RAUzo8+PoGTqiuHi7jA5CVEa
-         UEZQ==
+        bh=03nUCKHKLylRuYzHg/wDCTuKVRoOadKd7BxCj5lp0IY=;
+        b=a3n9pcUoSAnTUFbDwaXGf30ullB9j8IP2PlWzpmVWqC7G+/VOP6G71ZpJNvcfxbtLD
+         tXUKilMoITfvp9DkC2rM5aFIt+Pq36iyXcaTTGgt91MhFe09WRCaTBuXfwraCPN3njjP
+         998k8V4SFF5rF/K+WvYXWaeGYhVgNmE88y/WuXrGEZHL0X8aWu63NHVNlyPNUw3lsUKO
+         EBVS8Bo6kqgHB0Yplq93wt+SyYl5nJc9LBlBe3L8F5hoElQIk92SeBw+ELDNSSDLsBnu
+         nQcW53AqJxCSG4LnR9SuMAzRFygwghwMOxedhtEpfIR9suFZoRclobaQUV9gztmMquQ0
+         jNzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to;
-        bh=FUK6PFtopZXEgT5kMJsd+Cp6mariyUfKePymXTlb+ig=;
-        b=Tb0B62I8QP1UBQuIf3PDssJfKk2+S0+d8KDI583c6A3BNPJhBOwto1Zw4lxc23JFkN
-         HexUj0MWTfZZYLe/2dRSjyD9YO2u5bzfnak/zyiyJRWVqRvcKsfxwRJPJ4SG4TkTBtnb
-         2Jfi5C1G9OdT2c0SYcHhTW+pXIUV9latx0OaQGqdJuatQu+YvN2xJgHGwoy392kn0KPo
-         J4YtTxQiqJZtwDlSUg6JmeSuCvcHUsgvjLHiF03qtt8WojLhrAWaX2HNgcY1cq973y5k
-         E99u//OUeaR8zqaUZaG8YgHo9hGMPZHmpa67oRphPkok9XFVyyiHHphrsjGILnphn2ld
-         QNVw==
-X-Gm-Message-State: AOAM532vNtAdF83Ruq9quhbeuy5xKi2od86V99BEzfMIHBMm8etkBtwv
-	pCWblppmlSBLHTqkOgCovxQ=
-X-Google-Smtp-Source: ABdhPJym1qLvSpK7Y9xJYXYR3Wey3Sh01u/e6fhBmRxjzhmNJjLQ8JhD2C2RlurTyPy5c6vj3uYwVw==
-X-Received: by 2002:a37:e04:: with SMTP id 4mr16790183qko.294.1637861812786;
-        Thu, 25 Nov 2021 09:36:52 -0800 (PST)
+        bh=03nUCKHKLylRuYzHg/wDCTuKVRoOadKd7BxCj5lp0IY=;
+        b=w1mj0vxYdqZuAqQHmyforylBcoaf0iJuKrL+o95kNoqoccqWZpYFbnqp/GjN2DEWwz
+         A/ch1WifLvoFZUlqYh87wm6Xdh201dVcmf/5/F0sGTaEIcHkuae68ni5XfgkwVtkK/M0
+         mftl4hNt628mnuhdEmC9bkQPq3ShyvCFWFE/EStjx81+c4a7dUV5gWw0cKDj+DxLbJeT
+         oYUasoqyhAxRTARezR0q9y5WYrMHyENoze0Ngkb0fflocLc9XRhakWXsWm18ra7cU9dD
+         NuSKhlJDOv7CaH8z/m7uFck8PoohUKPr/32HsUQcrwZI/WFlrOYaTZMPUSYlzaeJNap8
+         TpCA==
+X-Gm-Message-State: AOAM530TWSJ4kw9Mz04gOFJj/xcinQddphW7xhHSBeXKR0ePmFmGBARt
+	Rv/WAQ4pOGV0Iup9neZKkTU6hxyiz0E=
+X-Google-Smtp-Source: ABdhPJybiQj9T4bwOfXfKeT+ws7Z9iec/b+92b4CVeCsABacN3pcLU2TTrC3lQ6fARZEzoMpUPEx4Q==
+X-Received: by 2002:a05:6214:27cd:: with SMTP id ge13mr19960831qvb.40.1637861887838;
+        Thu, 25 Nov 2021 09:38:07 -0800 (PST)
 Received: from [192.168.2.214] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id h16sm2009896qtx.20.2021.11.25.09.36.51
+        by smtp.googlemail.com with ESMTPSA id m20sm1979384qtx.39.2021.11.25.09.38.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Nov 2021 09:36:52 -0800 (PST)
-Message-ID: <1fc493f7-de2b-6bf7-5133-206cf84546b8@gmail.com>
-Date: Thu, 25 Nov 2021 12:36:51 -0500
+        Thu, 25 Nov 2021 09:38:07 -0800 (PST)
+Message-ID: <defc3900-7dd7-8213-bd6d-156331644090@gmail.com>
+Date: Thu, 25 Nov 2021 12:38:06 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
@@ -58,8 +58,8 @@ References: <CAJ49BKjeiaLeK9-BqH59KYsA0L3D9w_jPF4ZXbFYVtC0zpfsxQ@mail.gmail.com>
  <CAJ49BKjbNNcw9cvv0FSmbzWymRr6zN-cEC7Et3CrRTjmx-wfog@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <CAJ49BKjbNNcw9cvv0FSmbzWymRr6zN-cEC7Et3CrRTjmx-wfog@mail.gmail.com>
-Message-ID-Hash: JXWCQSE6YRUTLEQVFF4Q4CZPKB4O5E4W
-X-Message-ID-Hash: JXWCQSE6YRUTLEQVFF4Q4CZPKB4O5E4W
+Message-ID-Hash: ZNOPNEKOXY6ZTPRB65NYF2QXJMJACHWU
+X-Message-ID-Hash: ZNOPNEKOXY6ZTPRB65NYF2QXJMJACHWU
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
@@ -67,23 +67,23 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: 10Gb speed on N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JXWCQSE6YRUTLEQVFF4Q4CZPKB4O5E4W/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZNOPNEKOXY6ZTPRB65NYF2QXJMJACHWU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3368915318135731252=="
+Content-Type: multipart/mixed; boundary="===============8707307450675665178=="
 
 This is a multi-part message in MIME format.
---===============3368915318135731252==
+--===============8707307450675665178==
 Content-Type: multipart/alternative;
- boundary="------------WIt4tCD9Y3LcFtadfMC7cEPb"
+ boundary="------------C9XUkQJjSeE8v1BcA7pSvO0v"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------WIt4tCD9Y3LcFtadfMC7cEPb
+--------------C9XUkQJjSeE8v1BcA7pSvO0v
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -92,13 +92,170 @@ On 2021-11-25 12:24, ChunChih Lin wrote:
 >
 > Thanks a lot for your reply.
 > So, is there any way that I can check?
+Quite apart from the PHY negotiated rate, there's the "benchmark_rate" to=
+ol:
+
+
+> UHD Benchmark Rate Allowed options:
+> =C2=A0 --help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 help message
+> =C2=A0 --args arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 single uhd device address args
+> =C2=A0 --duration arg (=3D10)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 duration for=
+ the test in seconds
+> =C2=A0 --rx_subdev arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 specify the device subdev for RX
+> =C2=A0 --tx_subdev arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 specify the device subdev for TX
+> =C2=A0 --rx_rate arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 specify to perform a RX rate=20
+> test (sps)
+> =C2=A0 --tx_rate arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 specify to perform a TX rate=20
+> test (sps)
+> =C2=A0 --rx_otw arg (=3Dsc16)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specify the =
+over-the-wire=20
+> sample mode
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 for RX
+> =C2=A0 --tx_otw arg (=3Dsc16)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specify the =
+over-the-wire=20
+> sample mode
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 for TX
+> =C2=A0 --rx_cpu arg (=3Dfc32)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specify the =
+host/cpu sample=20
+> mode for RX
+> =C2=A0 --tx_cpu arg (=3Dfc32)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specify the =
+host/cpu sample=20
+> mode for TX
+> =C2=A0 --ref arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock reference (internal,=20
+> external,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 mimo, gpsdo)
+> =C2=A0 --pps arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PPS source (internal,=20
+> external, mimo,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 gpsdo)
+> =C2=A0 --mode arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DEPRECATED - use "ref" and "pps"
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 instead (none, mimo)
+> =C2=A0 --random=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Run with random values of=20
+> samples in
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 send() and recv() to=20
+> stress-test the
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 I/O.
+> =C2=A0 --channels arg (=3D0)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 which cha=
+nnel(s) to use=20
+> (specify "0",
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 "1", "0,1", etc)
+> =C2=A0 --rx_channels arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+which RX channel(s) to use=20
+> (specify
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 "0", "1", "0,1", etc)
+> =C2=A0 --tx_channels arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+which TX channel(s) to use=20
+> (specify
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 "0", "1", "0,1", etc)
+> =C2=A0 --overrun-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number of overruns (O) which w=
+ill
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 declare the benchmark a failure.
+> =C2=A0 --underrun-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number of underruns (U) which=20
+> will
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 declare the benchmark a failure.
+> =C2=A0 --drop-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number of dropp=
+ed packets (D)=20
+> which
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 will declare the benchmark a=20
+> failure.
+> =C2=A0 --seq-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number of=
+ dropped packets (D)=20
+> which
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 will declare the benchmark a=20
+> failure.
+> =C2=A0 --tx_delay arg (=3D0.25)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 delay before starting TX=
+ in=20
+> seconds
+> =C2=A0 --rx_delay arg (=3D0.050000000000000003)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 delay before starting RX in=20
+> seconds
+> =C2=A0 --priority arg (=3Dhigh)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 thread priority (high, n=
+ormal)
+>
+> =C2=A0=C2=A0=C2=A0 Specify --rx_rate for a receive-only test.
+> =C2=A0=C2=A0=C2=A0 Specify --tx_rate for a transmit-only test.
+> =C2=A0=C2=A0=C2=A0 Specify both options for a full-duplex test.
 >
 > Many thanks
 > Chun-Chih Lin
-Use ethtool on your host PC to check that the interface has negotiated=20
-10G PHY rates.
-
-
 >
 > On Thu, Nov 25, 2021 at 11:02 AM Marcus D. Leech=20
 > <patchvonbraun@gmail.com> wrote:
@@ -137,11 +294,11 @@ idth
 >     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---------------WIt4tCD9Y3LcFtadfMC7cEPb
+--------------C9XUkQJjSeE8v1BcA7pSvO0v
 Content-Type: multipart/related;
- boundary="------------OP05slg9h1rXr0FRNqTGw0DM"
+ boundary="------------huhF2rRZ85tFnvjEqAw1gCPM"
 
---------------OP05slg9h1rXr0FRNqTGw0DM
+--------------huhF2rRZ85tFnvjEqAw1gCPM
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -164,19 +321,193 @@ TF-8">
         </div>
         <div>Thanks a lot for your reply.</div>
         <div>So, is there any way that I can check?</div>
-        <div><br>
-        </div>
-        <div>Many thanks</div>
-        <div>Chun-Chih Lin</div>
       </div>
     </blockquote>
-    Use ethtool on your host PC to check that the interface has
-    negotiated 10G PHY rates.<br>
+    Quite apart from the PHY negotiated rate, there's the
+    "benchmark_rate" tool:<br>
     <br>
     <br>
     <blockquote type=3D"cite"
 cite=3D"mid:CAJ49BKjbNNcw9cvv0FSmbzWymRr6zN-cEC7Et3CrRTjmx-wfog@mail.gmai=
-l.com"><br>
+l.com">
+      <div dir=3D"ltr">
+        <div>UHD Benchmark Rate Allowed options:<br>
+          =C2=A0 --help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 help message=
+<br>
+          =C2=A0 --args arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 single uhd device
+          address args<br>
+          =C2=A0 --duration arg (=3D10)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 durati=
+on for the test
+          in seconds<br>
+          =C2=A0 --rx_subdev arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 specify the device
+          subdev for RX<br>
+          =C2=A0 --tx_subdev arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 specify the device
+          subdev for TX<br>
+          =C2=A0 --rx_rate arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 specify to perform a
+          RX rate test (sps)<br>
+          =C2=A0 --tx_rate arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 specify to perform a
+          TX rate test (sps)<br>
+          =C2=A0 --rx_otw arg (=3Dsc16)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specif=
+y the
+          over-the-wire sample mode <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 for RX<br>
+          =C2=A0 --tx_otw arg (=3Dsc16)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specif=
+y the
+          over-the-wire sample mode <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 for TX<br>
+          =C2=A0 --rx_cpu arg (=3Dfc32)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specif=
+y the host/cpu
+          sample mode for RX<br>
+          =C2=A0 --tx_cpu arg (=3Dfc32)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 specif=
+y the host/cpu
+          sample mode for TX<br>
+          =C2=A0 --ref arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock reference
+          (internal, external, <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 mimo, gpsdo)<br>
+          =C2=A0 --pps arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 PPS source (internal,
+          external, mimo, <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 gpsdo)<br>
+          =C2=A0 --mode arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 DEPRECATED - use "ref"
+          and "pps" <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 instead (none, mimo)<br>
+          =C2=A0 --random=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Run with random value=
+s
+          of samples in <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 send() and recv() to
+          stress-test the <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 I/O.<br>
+          =C2=A0 --channels arg (=3D0)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+which channel(s) to
+          use (specify "0", <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 "1", "0,1", etc)<br>
+          =C2=A0 --rx_channels arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 which RX channel(s) to
+          use (specify <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 "0", "1", "0,1", etc)<br>
+          =C2=A0 --tx_channels arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 which TX channel(s) to
+          use (specify <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 "0", "1", "0,1", etc)<br>
+          =C2=A0 --overrun-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number of overruns (O=
+)
+          which will <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 declare the benchmark
+          a failure.<br>
+          =C2=A0 --underrun-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number of underruns
+          (U) which will <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 declare the benchmark
+          a failure.<br>
+          =C2=A0 --drop-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Number=
+ of dropped
+          packets (D) which <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 will declare the
+          benchmark a failure.<br>
+          =C2=A0 --seq-threshold arg=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Num=
+ber of dropped
+          packets (D) which <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 will declare the
+          benchmark a failure.<br>
+          =C2=A0 --tx_delay arg (=3D0.25)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 delay before st=
+arting
+          TX in seconds<br>
+          =C2=A0 --rx_delay arg (=3D0.050000000000000003)<br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 delay before starting
+          RX in seconds<br>
+          =C2=A0 --priority arg (=3Dhigh)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 thread priority=
+ (high,
+          normal)<br>
+          <br>
+          =C2=A0=C2=A0=C2=A0 Specify --rx_rate for a receive-only test.<b=
+r>
+          =C2=A0=C2=A0=C2=A0 Specify --tx_rate for a transmit-only test.<=
+br>
+          =C2=A0=C2=A0=C2=A0 Specify both options for a full-duplex test.=
+<br>
+          <br>
+        </div>
+        <div>Many thanks</div>
+        <div>Chun-Chih Lin</div>
+      </div>
+      <br>
       <div class=3D"gmail_quote">
         <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 25, 2021 at 11:=
 02
@@ -210,7 +541,7 @@ sfp+1
                     <div>The bandwidth is fat from 10Gb. The screenshot
                       below is from my desktop.</div>
                     <div><img
-                        src=3D"cid:part1.15qcAQ2W.t8fYhOJ7@gmail.com"
+                        src=3D"cid:part1.01ZEZUvZ.Y2YiVnq3@gmail.com"
                         alt=3D"image.png" class=3D"" width=3D"562"
                         height=3D"285"><br>
                     </div>
@@ -263,10 +594,10 @@ com</a><br>
     <br>
   </body>
 </html>
---------------OP05slg9h1rXr0FRNqTGw0DM
+--------------huhF2rRZ85tFnvjEqAw1gCPM
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
-Content-Id: <part1.15qcAQ2W.t8fYhOJ7@gmail.com>
+Content-Id: <part1.01ZEZUvZ.Y2YiVnq3@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAApUAAAFPCAYAAAAcHDVzAAAgAElEQVR4nOy9X6gjWZrY+es/
@@ -1004,11 +1335,11 @@ giCI94KcSoIgCIIgCKI3Haa/CYIgCIIgCKIdcioJgiAIgiCI3pBTSRAEQRAEQfSGnEqCIAiC
 IAiiN+RUEgRBEARBEL0hp5IgCIIgCILoDTmVBEEQBEEQRG/IqSQIgiAIgiB6Q04lQRAEQRAE
 0RtyKgmCIAiCIIjekFNJEARBEARB9IacSoIgCIIgCKI35FQSBEEQBEEQvfn//OnhC3ci5uEA
 AAAASUVORK5CYII=
---------------OP05slg9h1rXr0FRNqTGw0DM--
+--------------huhF2rRZ85tFnvjEqAw1gCPM--
 
---------------WIt4tCD9Y3LcFtadfMC7cEPb--
+--------------C9XUkQJjSeE8v1BcA7pSvO0v--
 
---===============3368915318135731252==
+--===============8707307450675665178==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1018,4 +1349,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3368915318135731252==--
+--===============8707307450675665178==--
