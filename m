@@ -2,367 +2,463 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F4E4643DE
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Dec 2021 01:15:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8047A4643E9
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Dec 2021 01:20:11 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 719A0384DE9
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Nov 2021 19:15:57 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 2A342384AE8
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Nov 2021 19:20:10 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=srcaus.onmicrosoft.com header.i=@srcaus.onmicrosoft.com header.b="ik6Iewmo";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CPvj/mHH";
 	dkim-atps=neutral
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2066.outbound.protection.outlook.com [40.107.94.66])
-	by mm2.emwd.com (Postfix) with ESMTPS id 23FB7384C04
-	for <usrp-users@lists.ettus.com>; Tue, 30 Nov 2021 19:14:50 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iMUX1X2HXez5mq8nswLqY3BvKMU+78By4pOmmka3COyN8pRLfCpzF2bqd4Zn0/B+4GqfgrJfCej4nU+amCK7hDKTnhQ2yHBGB1AeqJsQVxP+idFFuGO73PEKwphngf4vWOAcgphfxPKBDIOMGhdOZ0c5CxiINMxfVnMRWtlS53h+YxXeoPtzCQA3IFgFXG4i7wEtCBs+0kQScKY+0y/ewDamEfCBCTABgqwwPELsxi+FBiVlqvrIrFkc10lrX+HegkwhefO6VM5eT7OXSThzzm7Quem6QYU+fw6926yP5vD1cQR9d1tlLXHxDJoXUr2bNWmgWcQwhtalEUmD7/ZuTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XMrh1fp74Xf0vdt7GkVwVQmbhYDkU7rKQXWRZILb4x0=;
- b=LhZXYCA1usmciX8a6A2btzKJSbSN6APq8xjxmuILCDqnQX601b2LCtbYaP/9t5Ze9yTUoPfDtI2xbF2RyBBEpY1trm/8Nb2cRA7rSzW+3J1j/YMku+6nhVBrrORnjvMpjYrJfDkmq/taid7kzCGErqnYHsySmHhzSuZ9GUi+otH3WW6ebYY/8ssv4OIFoW1mRqGwqrfumicRyuGU+Ya0zmazJSMCuRx9w+Pm1H4aR4029dAewF2mP/yvrN3IV4ybvNLrrY+2z/OV731SE7/ja452TlVoSaj0jOhhpgVy8pzllv3zPb01JWHe5bDlBO395ytDUC3urzcghulobpPDqg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=srcaus.com; dmarc=pass action=none header.from=srcaus.com;
- dkim=pass header.d=srcaus.com; arc=none
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9458C3846BA
+	for <usrp-users@lists.ettus.com>; Tue, 30 Nov 2021 19:19:03 -0500 (EST)
+Received: by mail-qt1-f178.google.com with SMTP id n15so22200026qta.0
+        for <usrp-users@lists.ettus.com>; Tue, 30 Nov 2021 16:19:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=srcaus.onmicrosoft.com; s=selector2-srcaus-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XMrh1fp74Xf0vdt7GkVwVQmbhYDkU7rKQXWRZILb4x0=;
- b=ik6IewmoppMeck4OlszOwGUTERGo4ncejuAC0Sr6ygcaoDgQhcj1g0mS4sHTCbcymhmjYSo/uns7J+jgnb4nwRUji25dRqhfbitODr1jshIny9st3W/lhBL76nh+Gicmh9eflJfoq/AStKbMud/+wzcj1Buio/GFB1TTLruK3QU=
-Received: from MN2PR16MB3502.namprd16.prod.outlook.com (2603:10b6:208:16c::17)
- by BL0PR16MB2499.namprd16.prod.outlook.com (2603:10b6:208:7b::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Wed, 1 Dec
- 2021 00:14:46 +0000
-Received: from MN2PR16MB3502.namprd16.prod.outlook.com
- ([fe80::9965:5476:4a53:1ec9]) by MN2PR16MB3502.namprd16.prod.outlook.com
- ([fe80::9965:5476:4a53:1ec9%5]) with mapi id 15.20.4734.024; Wed, 1 Dec 2021
- 00:14:46 +0000
-From: Jonathan Pratt <jpratt@srcaus.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: USRP streaming data performance
-Thread-Index: AdflZS8SPk98EMhZSeapQkkyV27f3gAHN6uAADEAVcA=
-Date: Wed, 1 Dec 2021 00:14:46 +0000
-Message-ID: 
- <MN2PR16MB35020798AC36662AA6CA506CB9689@MN2PR16MB3502.namprd16.prod.outlook.com>
-References: 
- <MN2PR16MB350290C9B8C095A24BB79358B9669@MN2PR16MB3502.namprd16.prod.outlook.com>
- <c0883989-44e1-feab-c59b-f069c032c12c@gmail.com>
-In-Reply-To: <c0883989-44e1-feab-c59b-f069c032c12c@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=srcaus.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7b60f76b-c5fa-4d9c-adf6-08d9b45f94db
-x-ms-traffictypediagnostic: BL0PR16MB2499:
-x-microsoft-antispam-prvs: 
- <BL0PR16MB2499F39AE5727E504C059892B9689@BL0PR16MB2499.namprd16.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- ZuvDpBQi26PF6+8gbyvDXKvyUngWF0hN5DYNdSzgudcc1PZbUItENv0bg5vahix0BqhD2kes5t//V4nFBOZSpUqJQXVQQGw6E/XFg7R4HqIKYlJZ0q2v2eP6u7hrv3Hn2Dw0wKodA8NKYuYb3wHYEgLU3PFFVWGANlPFtY0aeDvEM0BZeSHqH1Ate/QtZJjvGS+u/5n+zfp9teYLuuOYPFIJMz21VLOWwArPoy1cA2QbNKTpLfRzKAJhoV+vTPjeB7PimdAMosUoeUEZq5THqcndCztQGzx2xnTr2vRvKnEEjaEXlasnFD/I7Bh2rN2WFUuLusOt4kBvL5hKLvKgQiBoeLXZFQwryegKpO1pGdlwmfyCjHiUVGGWmtN71liEOuCpeLDPZCM3nW12uaGYmMu8+YvkfZqm7qQF749YtROs3HbKpa5gbbjRD8tblRIZcXvsYhCkGyKb123qiF1OxUwcMnYyFxak4L78FvmOxMhqCKrXoTa/LmDhNT577L8OsM2EznXfSS7/06mqoFUgvKwTaFNF9WnmJp+cBaShyRDSsendxmXODirGz1MvhSfXBV9kZONZGnDkqRQXxLlFw2h8j++obqN3jbq1fEEW3A/j4JJJKCaV2OZl/nBkx2of1lKWc19vyAvNvzGcep8zIPR/Thch6PHsa8zA87qFJXB3mL8pnEIqVS3ujVpFdE/pPeOpJEzbzihSXSEeX6VD2kugTU6VPy7JMwd5BeFQkJXH8G1QkCf7pLJrHD9cGrjMDkewIownJrp7kp6nCPhw2b11eUuC2uDEXUVXw7Y8jo0=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR16MB3502.namprd16.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(136003)(39830400003)(366004)(396003)(8676002)(8936002)(4001150100001)(83380400001)(7696005)(6916009)(186003)(9686003)(86362001)(38100700002)(71200400001)(122000001)(33656002)(2906002)(6506007)(316002)(76116006)(26005)(66476007)(66556008)(53546011)(5660300002)(21615005)(52536014)(66446008)(166002)(38070700005)(64756008)(55016003)(66946007)(508600001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?a3FEYVpMbm0za0RGMURRZThRNGE0MUd1RG82SHdaVEVXUnBGbEMyRVRHaGpJ?=
- =?utf-8?B?b0tuc2pVS1pEU3VhQ3hBdnRXTFQ5Z2hXSWVScjhWTVZoOEFtOVJMN3pzR21h?=
- =?utf-8?B?dGxaZUxOZ0EwSU9sNjVhMTlRNDMxSmMvV2dZU0svMHMyZ0RXOW9DV1FTZmx1?=
- =?utf-8?B?OVJiMVU3bFd4VUFMa3U1eGEwSVFOY3A4OGQrNGhUWGp4SExYR3NzbHYxeEtV?=
- =?utf-8?B?L2ZCM1lRRUZKMjlQZm56REdIZXAvOW5kdTBPMno5TTEySVh4M2hMTnYxWXkw?=
- =?utf-8?B?eWdwdnV4UGJMWnl2dW8wQkpmdlNzRW1SZnBWbGtNYWhSSDJUTTM3T2lGZTlz?=
- =?utf-8?B?NWpZOWNydkliR0wxSFZYM2VSaytVdGo2U0JScXF6WUE1VDVvNUgyR21hZkJs?=
- =?utf-8?B?U0FndWp1MG1paEJUajZSYVVnazBsNlVsOE9GbWd0TFdzRk1pdmdPS012RHVO?=
- =?utf-8?B?aE9uWW1ydURsazZDWHh3cVlXVUd2YTlPcEUzNVA1aU5XVXNuRVpoaExBc1lM?=
- =?utf-8?B?djhCRDY5alBLU3hyN09IODJ5Mk56aW1FOFViMnN6MjdiM0Y3ZENMQmRGSVpu?=
- =?utf-8?B?c2p4YVVYeXdtaWdDaWFiVkVxM01mazhaQXNFMmVJMHFValhhTUh4QWFkeFNV?=
- =?utf-8?B?WXNMK0JRUlZyTnVLbjlCNVFZS1dNUXpWZXFmd2lsalNWS0NDQXVpNkkxRXNw?=
- =?utf-8?B?YWVLYmorNkloeHJPY2VDOTdpWmU5MGVwN0wwbGZ5Z3FQZzd6L2t1VllGNnJr?=
- =?utf-8?B?NXdsUWpHZEJkaC9QbkxZelU0QTdCMUZkYnlxZTA5cXdBTkJnemlYSTI3RFU5?=
- =?utf-8?B?bXNrYVFlSTErZWVSWG8rczhwZ0Nmc1FvLzhrWjgwN2Y1RVFiMEpYcHJ6VDFK?=
- =?utf-8?B?Z3Ntc1F1eTducnduMlo3MkRMMGxMK1N4QUg2MlFLenlJTXdiMVR4RFBTZjZi?=
- =?utf-8?B?TEo4WHd3MUdpc3UwTmFBNVdUM0JIWFRFZHNVQ1d4Q0pOMmtPTG8rVUxDaC9z?=
- =?utf-8?B?ekNNVUMyYmtGVktEUFk1WWhtZG43QTgzM3M3TjdvcDZhdXdmdmtMc2dxaGp0?=
- =?utf-8?B?YmpXdEM3bUdNUXJHTG9CYXg1VERDQ01TelJGVTZobk0ydnArbjZsU05RK0dB?=
- =?utf-8?B?Qnh2ZzNWTmhmck4zeUFmaFFTQU96M0NYaFFPQzlieEJrTWF1b3hVaTJaMHJz?=
- =?utf-8?B?ZnRRNzVDY0JBRjVKcTgvTFdCSHZKdlNYMnk2SEtuS3NUTk9Od1dxV2xIdjJx?=
- =?utf-8?B?YVJ3Zzd2WDhEM1oxUVFrdDE0bmxvTEFGajM2Z2grbm1yN1ZGajJJaDQ5cFZY?=
- =?utf-8?B?M2VmRmdlR1RlNVlTWHlRa2JmMk5XUGR6NysvemluUElCZ1NZWVFvZms1OXpV?=
- =?utf-8?B?K3ZCNGQyVHV1R0FrblUwOUFvVVJmeUo3eVhSVllzQUZzNXZoZ0RqRWtjSFpy?=
- =?utf-8?B?ZTd0NVYrWUpmNnpWSmE3ZzJVVUxZaE5JNmJId0JNUW9qT2wwaVlkR3hMMDBh?=
- =?utf-8?B?VTRKOFRGeHdCWHJhc01xZ3ZGTTRtZnV2VllsWlZWcGtJWjhqdXo2YXlIZklX?=
- =?utf-8?B?U00vTFZQOXVwTE5YbUFSZmEwSGFra1lob3RwSTZybVRxa0UzNWl3Q2FhV01B?=
- =?utf-8?B?Tlp1Y2ZzVGlTZ2N1ZGZFTENuUVpldVNBRmtNakFab2kzU0VvZ014QndoQ05L?=
- =?utf-8?B?bkd6MmFvbUZSMDJJcWdDdjRkNUpjSXZpdmV2YzNnYW8wNFhCQ2VKZnV2YzNN?=
- =?utf-8?B?a3hXREJQblpTQStlcmxZN2lmUEd3Q05EekM3b1ZIWWdkSGRHR0ZFTTBuUWlR?=
- =?utf-8?B?L1M3RlJnbjcyUkNNNXdwMUNrSXc2NWVJYSs3SVBMV0JDZ2pxdlFPZktyQ1Jz?=
- =?utf-8?B?SVAxcGdHOUNIZ2h1eVkyU3cwbDk2QmFjRjNPb1E4ZTVJTlViR1A2eTV4dndP?=
- =?utf-8?B?NExCUnpNR3VWNTFocGFjNEw4NHJpWFJEV0Z0dnljS3R3MlJEdnFQaGFhelZi?=
- =?utf-8?B?WmMyL2pBUjdOZE94QVJpc0JjK1Y5Q0UyQWdkU0RtZ1Iyd3l1Y2F6eEwrNGh3?=
- =?utf-8?B?RlRwL1p0bnd5OUgyd000Mm5zOGhsTDg5eXdvSkQwVUJ4QkNNWXFPaE1mY29a?=
- =?utf-8?B?dWJiU2t4TW5Lczl6SjNGbnViYmYwRWdtU1h2am1nOEwvVThSRlgrRkQ5L1p0?=
- =?utf-8?B?YWc9PQ==?=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=YJBVXgihT2FDT+pCqPYcvjD/kooRTLzJ/g1rTEvaucM=;
+        b=CPvj/mHHpoQgeNNoGC9Lg3jmWukvXZZpKau7NV/vsuxYHRfzcMLb0sWuueM1aICqEn
+         wpyMj5n8PZDIjvj1GQil86+Vgb4PQiRkwTq9sdz4kvVVIHHFp3lE4hHAbgKrxdiuYkqD
+         AXtzMmwjBnBjakhMyjLHfirVrGOtv0QFrQyhS1y/9V2sh1fU4g98BJTtvw0PsvTEL7FY
+         +Mkg4FgaPhptZ4MqPXSdU1JuZBHAMqMBf22KnAwgtRduN3EVIUwZtYzI5op/BtUbSIIk
+         VTzIjttWRu5uNWb/Vn6QsuKUuFfM07zCpznq6iqKDwMsTG5/JRF1qahJ29K3iTsnbhPW
+         UXWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=YJBVXgihT2FDT+pCqPYcvjD/kooRTLzJ/g1rTEvaucM=;
+        b=4KK3VcvWZ/a5URutceIRcPwtmWPln7D4ZfWBCA1zDvYpRjAUhcRsbz6zgJKmKjvnlG
+         lbpSUeDTRzIkzbFt/4KUv0wfxqV/u34PYkt7jVW8J5dbaRSR9LGtgriP3VtEv4Nldg97
+         5dN6IUpdUUoVRcVc2smGQcVnJVQ6RgKFK4iMH0ivGtgnUTo7BjDrHWyA6718hs5ainh6
+         A2wCryX9ZBEbuMWzQXHpaG5jWmI9HCaayKhJ/bkvoiptbeF5qW9fsP8FLoGAogaGXz6G
+         nQ3npM+/IoRr1hAoX7vyru2LzlxughjP7sYuRHHHcGj73w2MYGCjogYg/bA+KtpEvSld
+         fr9g==
+X-Gm-Message-State: AOAM532gTjud4yfyty74SqVUuVlVesh3C+mRDGSopMgXutVonbZP3aMq
+	10XPmRbwn95yJoRDX0RlXRDTvPlphYA=
+X-Google-Smtp-Source: ABdhPJz2tar3AWFeGYxBsdxw2v5IXrY/PVhF3zbHX3wn49+9fLP5r/9OnZU2ouYJdRIkZOFT15eH+g==
+X-Received: by 2002:ac8:7d01:: with SMTP id g1mr3311179qtb.175.1638317942664;
+        Tue, 30 Nov 2021 16:19:02 -0800 (PST)
+Received: from [192.168.2.220] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id c13sm11941523qtx.51.2021.11.30.16.19.01
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Nov 2021 16:19:02 -0800 (PST)
+Message-ID: <34902af7-c4cf-8aa3-1b00-62c6573116ec@gmail.com>
+Date: Tue, 30 Nov 2021 19:19:01 -0500
 MIME-Version: 1.0
-X-OriginatorOrg: srcaus.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR16MB3502.namprd16.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7b60f76b-c5fa-4d9c-adf6-08d9b45f94db
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2021 00:14:46.0334
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 22db5897-105f-4d6a-8017-4b11749bab04
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: csTYNptj+sSVAIQwDowtYGDyf3LMu7ITUv+N1q+Ss8qedOcLGLZOKDihi4FBER6A2gcNM0BucxLMorL/OTwjLA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR16MB2499
-Message-ID-Hash: VS2LJVFOBUFDVFKH7SHUND6KL2FAEOAR
-X-Message-ID-Hash: VS2LJVFOBUFDVFKH7SHUND6KL2FAEOAR
-X-MailFrom: jpratt@srcaus.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <MN2PR16MB350290C9B8C095A24BB79358B9669@MN2PR16MB3502.namprd16.prod.outlook.com>
+ <c0883989-44e1-feab-c59b-f069c032c12c@gmail.com>
+ <MN2PR16MB35020798AC36662AA6CA506CB9689@MN2PR16MB3502.namprd16.prod.outlook.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <MN2PR16MB35020798AC36662AA6CA506CB9689@MN2PR16MB3502.namprd16.prod.outlook.com>
+Message-ID-Hash: SE36EYEGLM2J2JSSNWDF5M36BYHXO3WX
+X-Message-ID-Hash: SE36EYEGLM2J2JSSNWDF5M36BYHXO3WX
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: USRP streaming data performance
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P3JN5WQDX7PSXRJIHZB2EGMG3MD63PGN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SE36EYEGLM2J2JSSNWDF5M36BYHXO3WX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3907802276898205543=="
+Content-Type: multipart/mixed; boundary="===============4856922291409411978=="
 
---===============3907802276898205543==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============4856922291409411978==
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_"
+ boundary="------------jUugHosfOkSyDk6JVBeL4kFg"
+Content-Language: en-US
 
---_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------jUugHosfOkSyDk6JVBeL4kFg
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-SGF2ZSBsb29rZWQgaW50byB0aGUgYmVuY2htYXJrIHJhdGUgdXRpbGl0eSAodWhkL2hvc3QvYnVp
-bGQvZXhhbXBsZXMvKSB3aGljaCBzaG93cyBkcm9wb3V0cyBhdCBhbnkgc2FtcGxlIHJhdGUgYWJv
-dmUgMk1TUFMuIEhhdmUgYWxzbyBydW4gdGhlIHNhbWUgdGhpbmcgZnJvbSBhIFBDIGxhcHRvcCBy
-dW5uaW5nIHVidW50dSAyMC4wNCBpbiBhIHZpcnR1YWwgbWFjaGluZSB3aXRoIHRoZSBzYW1lIGdu
-dXJhZGlvICgzLjgpLCBzYW1lIHVoZCAoNC4wLjApIGFuZCBzYW1lIGdyLWV0dHVzIChSRk5vQyA0
-KS4gSXQgYWxzbyBmbGFncyBkcm9wb3V0cyBjb25zaXN0ZW50bHkgYXQgYW55IHNhbXBsZSByYXRl
-IGFib3ZlIDJNU1BTLiAgVGhlIGZwZ2EgaW1hZ2UgZm9yIHRoZSBYMzEwIHdhcyBkb3dubG9hZGVk
-IGFuZCBpbnN0YWxsZWQgYWNjb3JkaW5nIHRvIHRoZSBpbnN0cnVjdGlvbnMgaW4gdGhlIGhhcmR3
-YXJlIG1hbnVhbCAoaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfdXNycF94M3gw
-Lmh0bWwpLiBJdCBhcHBlYXJzIHRvIHVzIHRoYXQgdGhlIGlzc3VlIGxpZXMgd2l0aCBzb21ldGhp
-bmcgdG8gZG8gd2l0aCB0aGUgWDMxMCBvciBzb2Z0d2FyZSB0aGF0IGlzIGNvbW11bmljYXRpbmcg
-d2l0aCBpdCwgb3IgdGhlIGZwZ2EgaW1hZ2UuDQoNCklzIHRoZXJlIGFueSBzZXR1cCBpdGVtIHdl
-IGNhbiBjaGFuZ2UgdG8gZ2V0IG5ldCB0cmFmZmljIHdpdGhvdXQgZHJvcG91dHM/IFdpbGwgdGhl
-cmUgYmUgYSBwcm9ibGVtIGlmIHdlIGRvbuKAmXQgZHJhaW4gZGF0YSBmcm9tIHRoZSBvdGhlciBy
-ZWNlaXZlcyBhdCB0aGUgc2FtZSB0aW1lIHNpbmNlIHRoZXJlIGFyZSBmb3VyIG9mIHRoZW0/DQoN
-ClRoYW5rcw0KSm9uYXRoYW4gUHJhdHQNCg0KDQpGcm9tOiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNo
-dm9uYnJhdW5AZ21haWwuY29tPg0KU2VudDogVHVlc2RheSwgMzAgTm92ZW1iZXIgMjAyMSAxMDoz
-NSBBTQ0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbVVNSUC11c2Vy
-c10gUmU6IFVTUlAgc3RyZWFtaW5nIGRhdGEgcGVyZm9ybWFuY2UNCg0KDQpXQVJOSU5HOiBUaGlz
-IG1lc3NhZ2UgaGFzIG9yaWdpbmF0ZWQgZnJvbSBhbiB1bnRydXN0ZWQgc291cmNlLiBCZSBtaW5k
-ZnVsIG9mIGF0dGFjaG1lbnRzIGFuZCBlbWJlZGRlZCBsaW5rcy4NCk9uIDIwMjEtMTEtMjkgMTg6
-MjIsIEpvbmF0aGFuIFByYXR0IHdyb3RlOg0KV2UgYXJlIGxvb2tpbmcgdG8gZGV2ZWxvcCBhIHN0
-YW5kYWxvbmUgc2RyIHBsYXRmb3JtIGNvbm5lY3RpbmcgYW4gblZpZGlhIEpldHNvbiBBR1ggWGF2
-aWVyIHRvIGEgVVNSUCBYMzEwLiBUaGUgWDMxMCBoYXMgdHdvIGR1YWwgcmVjZWl2ZXIgYm9hcmRz
-IGluc3RhbGxlZCBidXQgd2UgYXJlIG9ubHkgdHJ5aW5nIHRvIHN0cmVhbSBkYXRhIGZyb20gb25l
-IGNvcmUgYXQgdGhpcyB0aW1lLg0KDQpUaGUgWGF2aWVyIGlzIGFuIG9jdGFjb3JlIEFSTSBwbGF0
-Zm9ybSB3aXRoIGFsbCBjb3JlcyBlbmFibGVkIGFuZCBydW5uaW5nIGNsb3NlIHRvIDEuNUdIei4N
-ClRoZSBjb25uZWN0aW9uIGJldHdlZW4gdGhlIHR3byBkZXZpY2VzIGlzIHZpYSBldGhlcm5ldCBy
-dW5uaW5nIGF0IDFHYml0LiBUaGUgeGF2aWVyIGhhcyBhIHgxNiBQQ0llIGludGVyZmFjZSBjb25u
-ZWN0b3IgYW5kIHdlIGFyZSB1c2luZyBhIE5JQyB3aXRoIDFHYnBzIFNGUCBtb2R1bGUg4oCTIHdl
-IGludGVuZCB0byBydW4gdGhlIGxpbmsgYXQgMTBHYml0IGluIHRoZSBmdXR1cmUuIFRoZSBvbmJv
-YXJkIDFHYnBzIGV0aGVybmV0IGlzIGNvbm5lY3RlZCB0byBvdXIgTEFODQoNClRoZSBYYXZpZXIg
-aXMgcnVubmluZyB1YnVudHUgMTguMDQgZm9yIGFybS4gVGhpcyBpcyB0aGUgZGV2ZWxvcG1lbnQg
-cGxhdGZvcm0gdGhhdCBuVmlkaWEgcHJvdmlkZXMuIHVoZCA0LjAuMCwgZ251cmFkaW8gMy44IGFu
-ZCBSZk5vQyA0IGhhdmUgYmVlbiBpbnN0YWxsZWQgb24gdGhlIFhhdmllci4NClRoZSBYYXZpZXIg
-aXMgZ2l2ZW4gYSBzaW1wbGUgZmxvdyB0byBydW4gdW5kZXIgZ251cmFkaW8tY29tcGFuaW9uIHdo
-aWNoIGNvbnNpc3RzIG9mIGEgVVNSUCBTb3VyY2UgY29ubmVjdGVkIGRpcmVjdGx5IHRvICB0aGUg
-UVQgR1VJIEZyZXF1ZW5jeSBzaW5rIChvciBOdWxsIFNpbmspDQpUaGUgbmV0d29yayBidWZmZXJz
-IGFuZCBtdHUgb24gdGhlIHhhdmllciBhcmUgaW5jcmVhc2VkIHRvIGF0IGxlYXN0IHRob3NlIHJl
-Y29tbWVuZGVkLg0KDQpUaGUgcmVzdWx0IHdlIGdldCBpcyBhIHdob2xlIGxvdCBvZiDigJhE4oCZ
-cyBvdXRwdXQgaWYgd2UgaW5jcmVhc2UgdGhlIHNhbXBsZSByYXRlIGJleW9uZCAyTVNQUy4gIFRo
-ZSBzYW1lIHJlc3VsdCBpcyBmb3VuZCBpZiB3ZSBydW4gdGhlIGZsb3cgZnJvbSB0aGUgY29tbWFu
-ZCBsaW5lICh3aXRob3V0IHRoZSBndWkpLg0KDQpGb3IgY29tcGFyaXNvbiB3ZSBoYXZlIGRvbmUg
-YSBzaW1pbGFyIHNldHVwIHdpdGggYSBVU1JQIEUzMTIg4oCTIGNvbm5lY3RlZCB0byBhIHhhdmll
-ciwgYSB1YnVudHUgMjAgdmlydHVhbCBtYWNoaW5lIGFuZCBkaXJlY3RseSB0byBhIGNvbXB1dGVy
-IHJ1bm5pbmcgdWJ1bnR1IDIwLjA0LiBJbiBlYWNoIGNhc2Ugd2hlbiB3ZSBpbmNyZWFzZSB0aGUg
-c2FtcGxlIHJhdGUgYmV5b25kIDJNU1BTIHdlIGdldCDigJhP4oCZcyBvdXRwdXQuDQoNCkNhbiBh
-bnlvbmUgcGxlYXNlIGluZGljYXRlIHdoYXQgc2V0dXAgaXMgcmVxdWlyZWQgdG8gYWNoaWV2ZSB0
-aGUgMjVNU1BTIHRoYXQgc2hvdWxkIGJlIHBvc3NpYmxlIGFjcm9zcyB0aGlzIGxpbms/DQoNClRo
-YW5rcyBpbiBhZHZhbmNlDQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXw0KDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQoNClRvIHVu
-c3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
-b208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KWW91IG1pZ2h0IHdh
-bnQgdG8gcnVuICJiZW5jaG1hcmtfcmF0ZSIgZnJvbSB0aGUgVUhEIGV4YW1wbGVzIGNvZGUgdG8g
-ZWxpbWluYXRlIEdSIGVudGlyZWx5IGF0IGZpcnN0LS1qdXN0IHRvIGdldCBhIGZlZWwgZm9yIHdo
-YXQgeW91ciBtYWNoaW5lIGlzIGNhcGFibGUgb2YuDQoNCkknbGwgbm90ZSB0aGF0IHRoZSAibmV0
-d29yayBtb2RlIiBpbiBFMzEyICh3aGVyZSBpdCBzdHJlYW1zIHRvIGEgcmVndWxhciBQQykgaGFz
-ICpjb25zaWRlcmFibGUqIHBlcmZvcm1hbmNlIGNvbnN0cmFpbnRzLCBhbmQgYWNoaWV2aW5nIGV2
-ZW4gMk1zcHMgaXMgYSBiaXQgb2YgYQ0KICBtaXJhY2xlLg0KDQpUaGUgWDMxMCwgb24gdGhlIG90
-aGVyIGhhbmQsIGlzIE5pYWdhcmEgRmFsbHMuICBBbnkgc3RyZWFtaW5nLXBlcmZvcm1hbmNlIGlz
-c3VlcyBhcmUgeW91ciBob3N0LiAgVGhlIEZQR0Egb24gdGhlIFgzMTAgY2FuIHN0cmVhbSB0byB0
-aGUgeEdJR2UgaW50ZXJmYWNlcyBhcyBmYXN0IGFzDQogIHBoeXNpY3MgYWxsb3dzLCBwcmV0dHkg
-bXVjaC4NCg0KRm9yIGEgIm9yZGVyIG9mIG1hZ25pdHVkZSIgYmVuY2htYXJrLCBJIGNhbiBhY2hp
-ZXZlIDEwTXNwcyBmcm9tIGEgQjJ4eCBpbnRvIGFuIE9kcm9pZCBYVTRRIHdpdGggOC1iaXQgc2Ft
-cGxlcyAodGhlcmUncyBhIFVTQiBiYW5kd2lkdGggaXNzdWUgdGhlcmUpLiAgSSBjYW4gZXZlbg0K
-ICAiZG8gc3R1ZmYiIGF0IDEwTXNwcywgaW5jbHVkaW5nIHNldmVyYWwgZGlmZmVyZW50IHJhZGlv
-IGFzdHJvbm9teSBzaWduYWwgcHJvY2Vzc2luZyBjaGFpbnMuICBJIHdvdWxkIGV4cGVjdCB5b3Vy
-IFhhdmllciB0byBiZSBzaW1pbGFyLg0KDQo=
+On 2021-11-30 19:14, Jonathan Pratt wrote:
+>
+> Have looked into the benchmark rate utility (uhd/host/build/examples/)=20
+> which shows dropouts at any sample rate above 2MSPS. Have also run the=20
+> same thing from a PC laptop running ubuntu 20.04 in a virtual machine=20
+> with the same gnuradio (3.8), same uhd (4.0.0) and same gr-ettus=20
+> (RFNoC 4). It also flags dropouts consistently at any sample rate=20
+> above 2MSPS. =C2=A0The fpga image for the X310 was downloaded and insta=
+lled=20
+> according to the instructions in the hardware manual=20
+> (https://files.ettus.com/manual/page_usrp_x3x0.html). It appears to us=20
+> that the issue lies with something to do with the X310 or software=20
+> that is communicating with it, or the fpga image.
+>
+> Is there any setup item we can change to get net traffic without=20
+> dropouts? Will there be a problem if we don=E2=80=99t drain data from t=
+he=20
+> other receives at the same time since there are four of them?
+>
+> Thanks
+>
+> Jonathan Pratt
+>
+LOTS of people on this list *routinely* stream data out of their X310s=20
+even over 1Gbit links at MUCH MUCH higher sample rates.=C2=A0 What kind o=
+f=20
+1Gbit or 10Gbit interface do you
+ =C2=A0 have?=C2=A0 Are you using the SFP+ ports or the RJ-45 port?
 
---_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+What kind of computer is this on?=C2=A0 We generally DO NOT recommend vir=
+tual=20
+machine implementations because the performance tends to suffer,=20
+PARTICULARLY
+ =C2=A0 the Network and USB performance.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
-IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
-IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCWZvbnQtc2l6ZTox
-MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3Qt
-bGFuZ3VhZ2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUt
-cHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30N
-CnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJl
-Zm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowY207DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250
-LWZhbWlseToiQ291cmllciBOZXciOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFVO30NCnNw
-YW4uSFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0
-dGVkIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRN
-TCBQcmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCW1zby1mYXJlYXN0LWxh
-bmd1YWdlOkVOLVVTO30NCnNwYW4uRW1haWxTdHlsZTIzDQoJe21zby1zdHlsZS10eXBlOnBlcnNv
-bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndp
-bmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
-DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0
-IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29y
-ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
-bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
-IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
-ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
-CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
-IkVOLUFVIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFr
-LXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PkhhdmUgbG9va2VkIGludG8gdGhlIGJlbmNobWFyayByYXRlIHV0aWxpdHkgKHVoZC9ob3N0L2J1
-aWxkL2V4YW1wbGVzLykgd2hpY2ggc2hvd3MgZHJvcG91dHMgYXQgYW55IHNhbXBsZSByYXRlIGFi
-b3ZlIDJNU1BTLiBIYXZlIGFsc28gcnVuIHRoZSBzYW1lIHRoaW5nIGZyb20gYSBQQyBsYXB0b3Ag
-cnVubmluZyB1YnVudHUgMjAuMDQgaW4gYSB2aXJ0dWFsIG1hY2hpbmUgd2l0aCB0aGUgc2FtZSBn
-bnVyYWRpbyAoMy44KSwNCiBzYW1lIHVoZCAoNC4wLjApIGFuZCBzYW1lIGdyLWV0dHVzIChSRk5v
-QyA0KS4gSXQgYWxzbyBmbGFncyBkcm9wb3V0cyBjb25zaXN0ZW50bHkgYXQgYW55IHNhbXBsZSBy
-YXRlIGFib3ZlIDJNU1BTLiAmbmJzcDtUaGUgZnBnYSBpbWFnZSBmb3IgdGhlIFgzMTAgd2FzIGRv
-d25sb2FkZWQgYW5kIGluc3RhbGxlZCBhY2NvcmRpbmcgdG8gdGhlIGluc3RydWN0aW9ucyBpbiB0
-aGUgaGFyZHdhcmUgbWFudWFsICg8YSBocmVmPSJodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51
-YWwvcGFnZV91c3JwX3gzeDAuaHRtbCI+aHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3Bh
-Z2VfdXNycF94M3gwLmh0bWw8L2E+KS4NCiBJdCBhcHBlYXJzIHRvIHVzIHRoYXQgdGhlIGlzc3Vl
-IGxpZXMgd2l0aCBzb21ldGhpbmcgdG8gZG8gd2l0aCB0aGUgWDMxMCBvciBzb2Z0d2FyZSB0aGF0
-IGlzIGNvbW11bmljYXRpbmcgd2l0aCBpdCwgb3IgdGhlIGZwZ2EgaW1hZ2UuDQo8bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+SXMgdGhlcmUgYW55IHNldHVwIGl0ZW0gd2UgY2FuIGNoYW5nZSB0byBn
-ZXQgbmV0IHRyYWZmaWMgd2l0aG91dCBkcm9wb3V0cz8gV2lsbCB0aGVyZSBiZSBhIHByb2JsZW0g
-aWYgd2UgZG9u4oCZdCBkcmFpbiBkYXRhIGZyb20gdGhlIG90aGVyIHJlY2VpdmVzIGF0IHRoZSBz
-YW1lIHRpbWUgc2luY2UgdGhlcmUgYXJlIGZvdXIgb2YgdGhlbT88bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+VGhhbmtzPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Kb25hdGhh
-biBQcmF0dDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxk
-aXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4w
-cHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48
-c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFVIj5Gcm9t
-Ojwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFn
-ZTpFTi1BVSI+IE1hcmN1cyBELiBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7
-DQo8YnI+DQo8Yj5TZW50OjwvYj4gVHVlc2RheSwgMzAgTm92ZW1iZXIgMjAyMSAxMDozNSBBTTxi
-cj4NCjxiPlRvOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0
-OjwvYj4gW1VTUlAtdXNlcnNdIFJlOiBVU1JQIHN0cmVhbWluZyBkYXRhIHBlcmZvcm1hbmNlPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHA+PHN0cm9uZz48c3BhbiBzdHlsZT0iZm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6
-I0RGRkYwMCI+V0FSTklORzo8L3NwYW4+PC9zdHJvbmc+PHN0cm9uZz48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4NCjwvc3Bhbj48L3N0cm9u
-Zz5UaGlzIG1lc3NhZ2UgaGFzIG9yaWdpbmF0ZWQgZnJvbSBhbiB1bnRydXN0ZWQgc291cmNlLiBC
-ZSBtaW5kZnVsIG9mIGF0dGFjaG1lbnRzIGFuZCBlbWJlZGRlZCBsaW5rcy48c3BhbiBzdHlsZT0i
-bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tQVUiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMjAyMS0xMS0yOSAxODoyMiwgSm9uYXRo
-YW4gUHJhdHQgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxl
-PSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+V2UgYXJlIGxvb2tpbmcgdG8gZGV2ZWxvcCBhIHN0YW5kYWxvbmUgc2RyIHBsYXRmb3Jt
-IGNvbm5lY3RpbmcgYW4gblZpZGlhIEpldHNvbiBBR1ggWGF2aWVyIHRvIGEgVVNSUCBYMzEwLiBU
-aGUgWDMxMCBoYXMgdHdvIGR1YWwgcmVjZWl2ZXIgYm9hcmRzIGluc3RhbGxlZCBidXQgd2UgYXJl
-IG9ubHkgdHJ5aW5nIHRvIHN0cmVhbSBkYXRhIGZyb20gb25lIGNvcmUgYXQgdGhpcyB0aW1lLjxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgWGF2aWVyIGlzIGFuIG9jdGFjb3JlIEFSTSBwbGF0
-Zm9ybSB3aXRoIGFsbCBjb3JlcyBlbmFibGVkIGFuZCBydW5uaW5nIGNsb3NlIHRvIDEuNUdIei48
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBjb25uZWN0aW9uIGJldHdl
-ZW4gdGhlIHR3byBkZXZpY2VzIGlzIHZpYSBldGhlcm5ldCBydW5uaW5nIGF0IDFHYml0LiBUaGUg
-eGF2aWVyIGhhcyBhIHgxNiBQQ0llIGludGVyZmFjZSBjb25uZWN0b3IgYW5kIHdlIGFyZSB1c2lu
-ZyBhIE5JQyB3aXRoIDFHYnBzIFNGUCBtb2R1bGUg4oCTIHdlIGludGVuZCB0byBydW4gdGhlIGxp
-bmsgYXQgMTBHYml0IGluIHRoZSBmdXR1cmUuIFRoZSBvbmJvYXJkIDFHYnBzIGV0aGVybmV0DQog
-aXMgY29ubmVjdGVkIHRvIG91ciBMQU4gPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBYYXZp
-ZXIgaXMgcnVubmluZyB1YnVudHUgMTguMDQgZm9yIGFybS4gVGhpcyBpcyB0aGUgZGV2ZWxvcG1l
-bnQgcGxhdGZvcm0gdGhhdCBuVmlkaWEgcHJvdmlkZXMuIHVoZCA0LjAuMCwgZ251cmFkaW8gMy44
-IGFuZCBSZk5vQyA0IGhhdmUgYmVlbiBpbnN0YWxsZWQgb24gdGhlIFhhdmllci48bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBYYXZpZXIgaXMgZ2l2ZW4gYSBzaW1wbGUg
-ZmxvdyB0byBydW4gdW5kZXIgZ251cmFkaW8tY29tcGFuaW9uIHdoaWNoIGNvbnNpc3RzIG9mIGEg
-VVNSUCBTb3VyY2UgY29ubmVjdGVkIGRpcmVjdGx5IHRvICZuYnNwO3RoZSBRVCBHVUkgRnJlcXVl
-bmN5IHNpbmsgKG9yIE51bGwgU2luayk8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPlRoZSBuZXR3b3JrIGJ1ZmZlcnMgYW5kIG10dSBvbiB0aGUgeGF2aWVyIGFyZSBpbmNyZWFz
-ZWQgdG8gYXQgbGVhc3QgdGhvc2UgcmVjb21tZW5kZWQuPG86cD48L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PlRoZSByZXN1bHQgd2UgZ2V0IGlzIGEgd2hvbGUgbG90IG9mIOKAmETigJlzIG91dHB1dCBpZiB3
-ZSBpbmNyZWFzZSB0aGUgc2FtcGxlIHJhdGUgYmV5b25kIDJNU1BTLiAmbmJzcDtUaGUgc2FtZSBy
-ZXN1bHQgaXMgZm91bmQgaWYgd2UgcnVuIHRoZSBmbG93IGZyb20gdGhlIGNvbW1hbmQgbGluZSAo
-d2l0aG91dCB0aGUgZ3VpKS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZu
-YnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Rm9yIGNvbXBhcmlzb24g
-d2UgaGF2ZSBkb25lIGEgc2ltaWxhciBzZXR1cCB3aXRoIGEgVVNSUCBFMzEyIOKAkyBjb25uZWN0
-ZWQgdG8gYSB4YXZpZXIsIGEgdWJ1bnR1IDIwIHZpcnR1YWwgbWFjaGluZSBhbmQgZGlyZWN0bHkg
-dG8gYSBjb21wdXRlciBydW5uaW5nIHVidW50dSAyMC4wNC4gSW4gZWFjaCBjYXNlIHdoZW4gd2Ug
-aW5jcmVhc2UgdGhlIHNhbXBsZSByYXRlIGJleW9uZCAyTVNQUyB3ZSBnZXQg4oCYT+KAmXMgb3V0
-cHV0LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5DYW4gYW55b25lIHBsZWFzZSBpbmRpY2F0ZSB3
-aGF0IHNldHVwIGlzIHJlcXVpcmVkIHRvIGFjaGlldmUgdGhlIDI1TVNQUyB0aGF0IHNob3VsZCBi
-ZSBwb3NzaWJsZSBhY3Jvc3MgdGhpcyBsaW5rPzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFu
-a3MgaW4gYWR2YW5jZTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFVIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cHJlPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fPG86cD48L286cD48L3ByZT4NCjxwcmU+VVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJz
-QGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UbyB1bnN1YnNjcmli
-ZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
-LmV0dHVzLmNvbSI+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286
-cD48L3ByZT4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
-aW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFV
-Ij5Zb3UgbWlnaHQgd2FudCB0byBydW4gJnF1b3Q7YmVuY2htYXJrX3JhdGUmcXVvdDsgZnJvbSB0
-aGUgVUhEIGV4YW1wbGVzIGNvZGUgdG8gZWxpbWluYXRlIEdSIGVudGlyZWx5IGF0IGZpcnN0LS1q
-dXN0IHRvIGdldCBhIGZlZWwgZm9yIHdoYXQgeW91ciBtYWNoaW5lIGlzIGNhcGFibGUgb2YuPGJy
-Pg0KPGJyPg0KSSdsbCBub3RlIHRoYXQgdGhlICZxdW90O25ldHdvcmsgbW9kZSZxdW90OyBpbiBF
-MzEyICh3aGVyZSBpdCBzdHJlYW1zIHRvIGEgcmVndWxhciBQQykgaGFzICpjb25zaWRlcmFibGUq
-IHBlcmZvcm1hbmNlIGNvbnN0cmFpbnRzLCBhbmQgYWNoaWV2aW5nIGV2ZW4gMk1zcHMgaXMgYSBi
-aXQgb2YgYTxicj4NCiZuYnNwOyBtaXJhY2xlLjxicj4NCjxicj4NClRoZSBYMzEwLCBvbiB0aGUg
-b3RoZXIgaGFuZCwgaXMgTmlhZ2FyYSBGYWxscy4mbmJzcDsgQW55IHN0cmVhbWluZy1wZXJmb3Jt
-YW5jZSBpc3N1ZXMgYXJlIHlvdXIgaG9zdC4mbmJzcDsgVGhlIEZQR0Egb24gdGhlIFgzMTAgY2Fu
-IHN0cmVhbSB0byB0aGUgeEdJR2UgaW50ZXJmYWNlcyBhcyBmYXN0IGFzPGJyPg0KJm5ic3A7IHBo
-eXNpY3MgYWxsb3dzLCBwcmV0dHkgbXVjaC48YnI+DQo8YnI+DQpGb3IgYSAmcXVvdDtvcmRlciBv
-ZiBtYWduaXR1ZGUmcXVvdDsgYmVuY2htYXJrLCBJIGNhbiBhY2hpZXZlIDEwTXNwcyBmcm9tIGEg
-QjJ4eCBpbnRvIGFuIE9kcm9pZCBYVTRRIHdpdGggOC1iaXQgc2FtcGxlcyAodGhlcmUncyBhIFVT
-QiBiYW5kd2lkdGggaXNzdWUgdGhlcmUpLiZuYnNwOyBJIGNhbiBldmVuPGJyPg0KJm5ic3A7ICZx
-dW90O2RvIHN0dWZmJnF1b3Q7IGF0IDEwTXNwcywgaW5jbHVkaW5nIHNldmVyYWwgZGlmZmVyZW50
-IHJhZGlvIGFzdHJvbm9teSBzaWduYWwgcHJvY2Vzc2luZyBjaGFpbnMuJm5ic3A7IEkgd291bGQg
-ZXhwZWN0IHlvdXIgWGF2aWVyIHRvIGJlIHNpbWlsYXIuJm5ic3A7DQo8YnI+DQo8YnI+DQo8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_--
+> *From:*Marcus D. Leech <patchvonbraun@gmail.com>
+> *Sent:* Tuesday, 30 November 2021 10:35 AM
+> *To:* usrp-users@lists.ettus.com
+> *Subject:* [USRP-users] Re: USRP streaming data performance
+>
+> *WARNING:***This message has originated from an untrusted source. Be=20
+> mindful of attachments and embedded links.
+>
+> On 2021-11-29 18:22, Jonathan Pratt wrote:
+>
+>     We are looking to develop a standalone sdr platform connecting an
+>     nVidia Jetson AGX Xavier to a USRP X310. The X310 has two dual
+>     receiver boards installed but we are only trying to stream data
+>     from one core at this time.
+>
+>     The Xavier is an octacore ARM platform with all cores enabled and
+>     running close to 1.5GHz.
+>
+>     The connection between the two devices is via ethernet running at
+>     1Gbit. The xavier has a x16 PCIe interface connector and we are
+>     using a NIC with 1Gbps SFP module =E2=80=93 we intend to run the li=
+nk at
+>     10Gbit in the future. The onboard 1Gbps ethernet is connected to
+>     our LAN
+>
+>     The Xavier is running ubuntu 18.04 for arm. This is the
+>     development platform that nVidia provides. uhd 4.0.0, gnuradio 3.8
+>     and RfNoC 4 have been installed on the Xavier.
+>
+>     The Xavier is given a simple flow to run under gnuradio-companion
+>     which consists of a USRP Source connected directly to =C2=A0the QT =
+GUI
+>     Frequency sink (or Null Sink)
+>
+>     The network buffers and mtu on the xavier are increased to at
+>     least those recommended.
+>
+>     The result we get is a whole lot of =E2=80=98D=E2=80=99s output if =
+we increase the
+>     sample rate beyond 2MSPS. =C2=A0The same result is found if we run =
+the
+>     flow from the command line (without the gui).
+>
+>     For comparison we have done a similar setup with a USRP E312 =E2=80=
+=93
+>     connected to a xavier, a ubuntu 20 virtual machine and directly to
+>     a computer running ubuntu 20.04. In each case when we increase the
+>     sample rate beyond 2MSPS we get =E2=80=98O=E2=80=99s output.
+>
+>     Can anyone please indicate what setup is required to achieve the
+>     25MSPS that should be possible across this link?
+>
+>     Thanks in advance
+>
+>
+>
+>     _______________________________________________
+>
+>     USRP-users mailing list --usrp-users@lists.ettus.com
+>
+>     To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>
+> You might want to run "benchmark_rate" from the UHD examples code to=20
+> eliminate GR entirely at first--just to get a feel for what your=20
+> machine is capable of.
+>
+> I'll note that the "network mode" in E312 (where it streams to a=20
+> regular PC) has *considerable* performance constraints, and achieving=20
+> even 2Msps is a bit of a
+> =C2=A0 miracle.
+>
+> The X310, on the other hand, is Niagara Falls.=C2=A0 Any=20
+> streaming-performance issues are your host.=C2=A0 The FPGA on the X310 =
+can=20
+> stream to the xGIGe interfaces as fast as
+> =C2=A0 physics allows, pretty much.
+>
+> For a "order of magnitude" benchmark, I can achieve 10Msps from a B2xx=20
+> into an Odroid XU4Q with 8-bit samples (there's a USB bandwidth issue=20
+> there).=C2=A0 I can even
+> =C2=A0 "do stuff" at 10Msps, including several different radio astronom=
+y=20
+> signal processing chains.=C2=A0 I would expect your Xavier to be simila=
+r.
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 
---===============3907802276898205543==
+--------------jUugHosfOkSyDk6JVBeL4kFg
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2021-11-30 19:14, Jonathan Pratt
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:MN2PR16MB35020798AC36662AA6CA506CB9689@MN2PR16MB3502.namprd16=
+.prod.outlook.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	font-size:10.0pt;
+	font-family:"Courier New";
+	mso-fareast-language:EN-AU;}span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}span.EmailStyle23
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Have looked into the benchmark rate utilit=
+y
+          (uhd/host/build/examples/) which shows dropouts at any sample
+          rate above 2MSPS. Have also run the same thing from a PC
+          laptop running ubuntu 20.04 in a virtual machine with the same
+          gnuradio (3.8), same uhd (4.0.0) and same gr-ettus (RFNoC 4).
+          It also flags dropouts consistently at any sample rate above
+          2MSPS. =C2=A0The fpga image for the X310 was downloaded and
+          installed according to the instructions in the hardware manual
+          (<a href=3D"https://files.ettus.com/manual/page_usrp_x3x0.html"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">http=
+s://files.ettus.com/manual/page_usrp_x3x0.html</a>).
+          It appears to us that the issue lies with something to do with
+          the X310 or software that is communicating with it, or the
+          fpga image.
+          <o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Is there any setup item we can change to
+          get net traffic without dropouts? Will there be a problem if
+          we don=E2=80=99t drain data from the other receives at the same=
+ time
+          since there are four of them?<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+        <p class=3D"MsoNormal">Jonathan Pratt</p>
+      </div>
+    </blockquote>
+    LOTS of people on this list *routinely* stream data out of their
+    X310s even over 1Gbit links at MUCH MUCH higher sample rates.=C2=A0 W=
+hat
+    kind of 1Gbit or 10Gbit interface do you<br>
+    =C2=A0 have?=C2=A0 Are you using the SFP+ ports or the RJ-45 port?<br=
+>
+    <br>
+    What kind of computer is this on?=C2=A0 We generally DO NOT recommend
+    virtual machine implementations because the performance tends to
+    suffer, PARTICULARLY<br>
+    =C2=A0 the Network and USB performance.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:MN2PR16MB35020798AC36662AA6CA506CB9689@MN2PR16MB3502.namprd16=
+.prod.outlook.com">
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <div style=3D"border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0cm 0cm 0cm">
+            <p class=3D"MsoNormal"><b><span
+                  style=3D"mso-fareast-language:EN-AU" lang=3D"EN-US">Fro=
+m:</span></b><span
+                style=3D"mso-fareast-language:EN-AU" lang=3D"EN-US"> Marc=
+us
+                D. Leech <a class=3D"moz-txt-link-rfc2396E" href=3D"mailt=
+o:patchvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a>
+                <br>
+                <b>Sent:</b> Tuesday, 30 November 2021 10:35 AM<br>
+                <b>To:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+                <b>Subject:</b> [USRP-users] Re: USRP streaming data
+                performance<o:p></o:p></span></p>
+          </div>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p><strong><span
+style=3D"font-family:&quot;Calibri&quot;,sans-serif;color:black;backgroun=
+d:#DFFF00">WARNING:</span></strong><strong><span
+              style=3D"font-family:&quot;Calibri&quot;,sans-serif">
+            </span></strong>This message has originated from an
+          untrusted source. Be mindful of attachments and embedded
+          links.<span style=3D"mso-fareast-language:EN-AU"><o:p></o:p></s=
+pan></p>
+        <div>
+          <div>
+            <p class=3D"MsoNormal">On 2021-11-29 18:22, Jonathan Pratt
+              wrote:<o:p></o:p></p>
+          </div>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class=3D"MsoNormal">We are looking to develop a standalone
+              sdr platform connecting an nVidia Jetson AGX Xavier to a
+              USRP X310. The X310 has two dual receiver boards installed
+              but we are only trying to stream data from one core at
+              this time.<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">The Xavier is an octacore ARM platform
+              with all cores enabled and running close to 1.5GHz.<o:p></o=
+:p></p>
+            <p class=3D"MsoNormal">The connection between the two devices
+              is via ethernet running at 1Gbit. The xavier has a x16
+              PCIe interface connector and we are using a NIC with 1Gbps
+              SFP module =E2=80=93 we intend to run the link at 10Gbit in=
+ the
+              future. The onboard 1Gbps ethernet is connected to our LAN
+              <o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">The Xavier is running ubuntu 18.04 for
+              arm. This is the development platform that nVidia
+              provides. uhd 4.0.0, gnuradio 3.8 and RfNoC 4 have been
+              installed on the Xavier.<o:p></o:p></p>
+            <p class=3D"MsoNormal">The Xavier is given a simple flow to
+              run under gnuradio-companion which consists of a USRP
+              Source connected directly to =C2=A0the QT GUI Frequency sin=
+k
+              (or Null Sink)<o:p></o:p></p>
+            <p class=3D"MsoNormal">The network buffers and mtu on the
+              xavier are increased to at least those recommended.<o:p></o=
+:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">The result we get is a whole lot of
+              =E2=80=98D=E2=80=99s output if we increase the sample rate =
+beyond 2MSPS.
+              =C2=A0The same result is found if we run the flow from the
+              command line (without the gui).<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">For comparison we have done a similar
+              setup with a USRP E312 =E2=80=93 connected to a xavier, a u=
+buntu
+              20 virtual machine and directly to a computer running
+              ubuntu 20.04. In each case when we increase the sample
+              rate beyond 2MSPS we get =E2=80=98O=E2=80=99s output.<o:p><=
+/o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Can anyone please indicate what setup
+              is required to achieve the 25MSPS that should be possible
+              across this link?<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Thanks in advance<o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+                style=3D"mso-fareast-language:EN-AU"><br>
+                <br>
+                <o:p></o:p></span></p>
+            <pre>_______________________________________________<o:p></o:=
+p></pre>
+            <pre>USRP-users mailing list -- <a href=3D"mailto:usrp-users@=
+lists.ettus.com" moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext"=
+>usrp-users@lists.ettus.com</a><o:p></o:p></pre>
+            <pre>To unsubscribe send an email to <a href=3D"mailto:usrp-u=
+sers-leave@lists.ettus.com" moz-do-not-send=3D"true" class=3D"moz-txt-lin=
+k-freetext">usrp-users-leave@lists.ettus.com</a><o:p></o:p></pre>
+          </blockquote>
+          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span
+              style=3D"mso-fareast-language:EN-AU">You might want to run
+              "benchmark_rate" from the UHD examples code to eliminate
+              GR entirely at first--just to get a feel for what your
+              machine is capable of.<br>
+              <br>
+              I'll note that the "network mode" in E312 (where it
+              streams to a regular PC) has *considerable* performance
+              constraints, and achieving even 2Msps is a bit of a<br>
+              =C2=A0 miracle.<br>
+              <br>
+              The X310, on the other hand, is Niagara Falls.=C2=A0 Any
+              streaming-performance issues are your host.=C2=A0 The FPGA =
+on
+              the X310 can stream to the xGIGe interfaces as fast as<br>
+              =C2=A0 physics allows, pretty much.<br>
+              <br>
+              For a "order of magnitude" benchmark, I can achieve 10Msps
+              from a B2xx into an Odroid XU4Q with 8-bit samples
+              (there's a USB bandwidth issue there).=C2=A0 I can even<br>
+              =C2=A0 "do stuff" at 10Msps, including several different ra=
+dio
+              astronomy signal processing chains.=C2=A0 I would expect yo=
+ur
+              Xavier to be similar.=C2=A0
+              <br>
+              <br>
+              <o:p></o:p></span></p>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+--------------jUugHosfOkSyDk6JVBeL4kFg--
+
+--===============4856922291409411978==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -372,4 +468,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3907802276898205543==--
+--===============4856922291409411978==--
