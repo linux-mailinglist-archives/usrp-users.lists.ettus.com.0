@@ -2,868 +2,367 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE12463E95
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Nov 2021 20:23:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F4E4643DE
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Dec 2021 01:15:58 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CDA64384933
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Nov 2021 14:23:53 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 719A0384DE9
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Nov 2021 19:15:57 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gtri.gatech.edu header.i=@gtri.gatech.edu header.b="WI/pCu8P";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=srcaus.onmicrosoft.com header.i=@srcaus.onmicrosoft.com header.b="ik6Iewmo";
 	dkim-atps=neutral
-Received: from unifiededge.gtri.gatech.edu (unifiededge.gtri.gatech.edu [130.207.205.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id 63C82384214
-	for <usrp-users@lists.ettus.com>; Tue, 30 Nov 2021 14:22:54 -0500 (EST)
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; d=gtri.gatech.edu; s=unifiededge;
-	c=simple/simple; t=1638300173; h=from:subject:to:date:message-id;
-	bh=sTpjbm7vMpT9vaxrAP+qdj9SdRdilxA182CszLgxhpA=;
-	b=WI/pCu8PWOBy9NZXm2UFwIDm9tL0fh0ex2LPEQlVMOWxVq7JnvV6Wb9+Q958afECMJVYWkh5LJS
-	qttzWwq3O7ChtOfRynh1o36VIxxOMeMxZZp+S5Hqr90N3IJqvXiCYKHrA5tfW0TRWsGO4KYVBPq8z
-	W3ZVsfW9yLVhhOfxWIm6QPQmLJt1tt+GTrXZxi4Lrzby99ehDndrW9Zubl1W74NQ04mK/2OPTt3bP
-	Am/KlasWMVyLyAFstL1RlSwdSVVPh61uOOw1BGd9MHOGigr9CzfifDvjquBmj9yZusbKVpWuCfuI3
-	xL/oItwei1b8FdRTjVswC0Qf1YZRy2tUNQMg==
-Received: from jekyll.core.gtri.org (10.41.1.48) by exedge06.gtri.dmz
- (10.41.104.63) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.858.5; Tue, 30 Nov 2021
- 14:22:53 -0500
-Received: from tybee.core.gtri.org (2610:148:610:2901::49) by
- jekyll.core.gtri.org (2610:148:610:2901::48) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2375.12; Tue, 30 Nov 2021 14:22:53 -0500
-Received: from tybee.core.gtri.org ([fe80::bc87:62f3:89b0:fc9e]) by
- tybee.core.gtri.org ([fe80::bc87:62f3:89b0:fc9e%15]) with mapi id
- 15.01.2375.012; Tue, 30 Nov 2021 14:22:53 -0500
-To: Wade Fife <wade.fife@ettus.com>
-Thread-Topic: [USRP-users] Re: Testbench Compile Error
-Thread-Index: AQHX3Y0tS3BxYxv1n0W0rK5CplqdzawLdtVAgAG0/QCAD1eVgA==
-Date: Tue, 30 Nov 2021 19:22:53 +0000
-Message-ID: <1b54425bdf154b889424b13dc33dc22d@gtri.gatech.edu>
-References: <d078107dcf9a451fa06aabce9066ae81@gtri.gatech.edu>
- <CAB__hTSsRx7v0Ob4YNsju08O=8J8ESE+P89KOApWiKifPNRQAw@mail.gmail.com>
- <CAFche=gNebkUovuoP0FFNbzpg1cS6CEJwXrrJtdAaHQF-vVHqA@mail.gmail.com>
- <9464a8d9b1f6458da01df55f89972acd@gtri.gatech.edu>
- <CAFche=hDQTP1=TkT0k0bG5Y+KSUpDHqM3BxW9JKn81jH_2Hp8Q@mail.gmail.com>
-In-Reply-To: <CAFche=hDQTP1=TkT0k0bG5Y+KSUpDHqM3BxW9JKn81jH_2Hp8Q@mail.gmail.com>
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2066.outbound.protection.outlook.com [40.107.94.66])
+	by mm2.emwd.com (Postfix) with ESMTPS id 23FB7384C04
+	for <usrp-users@lists.ettus.com>; Tue, 30 Nov 2021 19:14:50 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iMUX1X2HXez5mq8nswLqY3BvKMU+78By4pOmmka3COyN8pRLfCpzF2bqd4Zn0/B+4GqfgrJfCej4nU+amCK7hDKTnhQ2yHBGB1AeqJsQVxP+idFFuGO73PEKwphngf4vWOAcgphfxPKBDIOMGhdOZ0c5CxiINMxfVnMRWtlS53h+YxXeoPtzCQA3IFgFXG4i7wEtCBs+0kQScKY+0y/ewDamEfCBCTABgqwwPELsxi+FBiVlqvrIrFkc10lrX+HegkwhefO6VM5eT7OXSThzzm7Quem6QYU+fw6926yP5vD1cQR9d1tlLXHxDJoXUr2bNWmgWcQwhtalEUmD7/ZuTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XMrh1fp74Xf0vdt7GkVwVQmbhYDkU7rKQXWRZILb4x0=;
+ b=LhZXYCA1usmciX8a6A2btzKJSbSN6APq8xjxmuILCDqnQX601b2LCtbYaP/9t5Ze9yTUoPfDtI2xbF2RyBBEpY1trm/8Nb2cRA7rSzW+3J1j/YMku+6nhVBrrORnjvMpjYrJfDkmq/taid7kzCGErqnYHsySmHhzSuZ9GUi+otH3WW6ebYY/8ssv4OIFoW1mRqGwqrfumicRyuGU+Ya0zmazJSMCuRx9w+Pm1H4aR4029dAewF2mP/yvrN3IV4ybvNLrrY+2z/OV731SE7/ja452TlVoSaj0jOhhpgVy8pzllv3zPb01JWHe5bDlBO395ytDUC3urzcghulobpPDqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=srcaus.com; dmarc=pass action=none header.from=srcaus.com;
+ dkim=pass header.d=srcaus.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=srcaus.onmicrosoft.com; s=selector2-srcaus-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XMrh1fp74Xf0vdt7GkVwVQmbhYDkU7rKQXWRZILb4x0=;
+ b=ik6IewmoppMeck4OlszOwGUTERGo4ncejuAC0Sr6ygcaoDgQhcj1g0mS4sHTCbcymhmjYSo/uns7J+jgnb4nwRUji25dRqhfbitODr1jshIny9st3W/lhBL76nh+Gicmh9eflJfoq/AStKbMud/+wzcj1Buio/GFB1TTLruK3QU=
+Received: from MN2PR16MB3502.namprd16.prod.outlook.com (2603:10b6:208:16c::17)
+ by BL0PR16MB2499.namprd16.prod.outlook.com (2603:10b6:208:7b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Wed, 1 Dec
+ 2021 00:14:46 +0000
+Received: from MN2PR16MB3502.namprd16.prod.outlook.com
+ ([fe80::9965:5476:4a53:1ec9]) by MN2PR16MB3502.namprd16.prod.outlook.com
+ ([fe80::9965:5476:4a53:1ec9%5]) with mapi id 15.20.4734.024; Wed, 1 Dec 2021
+ 00:14:46 +0000
+From: Jonathan Pratt <jpratt@srcaus.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: USRP streaming data performance
+Thread-Index: AdflZS8SPk98EMhZSeapQkkyV27f3gAHN6uAADEAVcA=
+Date: Wed, 1 Dec 2021 00:14:46 +0000
+Message-ID: 
+ <MN2PR16MB35020798AC36662AA6CA506CB9689@MN2PR16MB3502.namprd16.prod.outlook.com>
+References: 
+ <MN2PR16MB350290C9B8C095A24BB79358B9669@MN2PR16MB3502.namprd16.prod.outlook.com>
+ <c0883989-44e1-feab-c59b-f069c032c12c@gmail.com>
+In-Reply-To: <c0883989-44e1-feab-c59b-f069c032c12c@gmail.com>
 Accept-Language: en-US
-X-MS-Has-Attach: yes
+Content-Language: en-US
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.41.0.30]
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=srcaus.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7b60f76b-c5fa-4d9c-adf6-08d9b45f94db
+x-ms-traffictypediagnostic: BL0PR16MB2499:
+x-microsoft-antispam-prvs: 
+ <BL0PR16MB2499F39AE5727E504C059892B9689@BL0PR16MB2499.namprd16.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ ZuvDpBQi26PF6+8gbyvDXKvyUngWF0hN5DYNdSzgudcc1PZbUItENv0bg5vahix0BqhD2kes5t//V4nFBOZSpUqJQXVQQGw6E/XFg7R4HqIKYlJZ0q2v2eP6u7hrv3Hn2Dw0wKodA8NKYuYb3wHYEgLU3PFFVWGANlPFtY0aeDvEM0BZeSHqH1Ate/QtZJjvGS+u/5n+zfp9teYLuuOYPFIJMz21VLOWwArPoy1cA2QbNKTpLfRzKAJhoV+vTPjeB7PimdAMosUoeUEZq5THqcndCztQGzx2xnTr2vRvKnEEjaEXlasnFD/I7Bh2rN2WFUuLusOt4kBvL5hKLvKgQiBoeLXZFQwryegKpO1pGdlwmfyCjHiUVGGWmtN71liEOuCpeLDPZCM3nW12uaGYmMu8+YvkfZqm7qQF749YtROs3HbKpa5gbbjRD8tblRIZcXvsYhCkGyKb123qiF1OxUwcMnYyFxak4L78FvmOxMhqCKrXoTa/LmDhNT577L8OsM2EznXfSS7/06mqoFUgvKwTaFNF9WnmJp+cBaShyRDSsendxmXODirGz1MvhSfXBV9kZONZGnDkqRQXxLlFw2h8j++obqN3jbq1fEEW3A/j4JJJKCaV2OZl/nBkx2of1lKWc19vyAvNvzGcep8zIPR/Thch6PHsa8zA87qFJXB3mL8pnEIqVS3ujVpFdE/pPeOpJEzbzihSXSEeX6VD2kugTU6VPy7JMwd5BeFQkJXH8G1QkCf7pLJrHD9cGrjMDkewIownJrp7kp6nCPhw2b11eUuC2uDEXUVXw7Y8jo0=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR16MB3502.namprd16.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(136003)(39830400003)(366004)(396003)(8676002)(8936002)(4001150100001)(83380400001)(7696005)(6916009)(186003)(9686003)(86362001)(38100700002)(71200400001)(122000001)(33656002)(2906002)(6506007)(316002)(76116006)(26005)(66476007)(66556008)(53546011)(5660300002)(21615005)(52536014)(66446008)(166002)(38070700005)(64756008)(55016003)(66946007)(508600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?a3FEYVpMbm0za0RGMURRZThRNGE0MUd1RG82SHdaVEVXUnBGbEMyRVRHaGpJ?=
+ =?utf-8?B?b0tuc2pVS1pEU3VhQ3hBdnRXTFQ5Z2hXSWVScjhWTVZoOEFtOVJMN3pzR21h?=
+ =?utf-8?B?dGxaZUxOZ0EwSU9sNjVhMTlRNDMxSmMvV2dZU0svMHMyZ0RXOW9DV1FTZmx1?=
+ =?utf-8?B?OVJiMVU3bFd4VUFMa3U1eGEwSVFOY3A4OGQrNGhUWGp4SExYR3NzbHYxeEtV?=
+ =?utf-8?B?L2ZCM1lRRUZKMjlQZm56REdIZXAvOW5kdTBPMno5TTEySVh4M2hMTnYxWXkw?=
+ =?utf-8?B?eWdwdnV4UGJMWnl2dW8wQkpmdlNzRW1SZnBWbGtNYWhSSDJUTTM3T2lGZTlz?=
+ =?utf-8?B?NWpZOWNydkliR0wxSFZYM2VSaytVdGo2U0JScXF6WUE1VDVvNUgyR21hZkJs?=
+ =?utf-8?B?U0FndWp1MG1paEJUajZSYVVnazBsNlVsOE9GbWd0TFdzRk1pdmdPS012RHVO?=
+ =?utf-8?B?aE9uWW1ydURsazZDWHh3cVlXVUd2YTlPcEUzNVA1aU5XVXNuRVpoaExBc1lM?=
+ =?utf-8?B?djhCRDY5alBLU3hyN09IODJ5Mk56aW1FOFViMnN6MjdiM0Y3ZENMQmRGSVpu?=
+ =?utf-8?B?c2p4YVVYeXdtaWdDaWFiVkVxM01mazhaQXNFMmVJMHFValhhTUh4QWFkeFNV?=
+ =?utf-8?B?WXNMK0JRUlZyTnVLbjlCNVFZS1dNUXpWZXFmd2lsalNWS0NDQXVpNkkxRXNw?=
+ =?utf-8?B?YWVLYmorNkloeHJPY2VDOTdpWmU5MGVwN0wwbGZ5Z3FQZzd6L2t1VllGNnJr?=
+ =?utf-8?B?NXdsUWpHZEJkaC9QbkxZelU0QTdCMUZkYnlxZTA5cXdBTkJnemlYSTI3RFU5?=
+ =?utf-8?B?bXNrYVFlSTErZWVSWG8rczhwZ0Nmc1FvLzhrWjgwN2Y1RVFiMEpYcHJ6VDFK?=
+ =?utf-8?B?Z3Ntc1F1eTducnduMlo3MkRMMGxMK1N4QUg2MlFLenlJTXdiMVR4RFBTZjZi?=
+ =?utf-8?B?TEo4WHd3MUdpc3UwTmFBNVdUM0JIWFRFZHNVQ1d4Q0pOMmtPTG8rVUxDaC9z?=
+ =?utf-8?B?ekNNVUMyYmtGVktEUFk1WWhtZG43QTgzM3M3TjdvcDZhdXdmdmtMc2dxaGp0?=
+ =?utf-8?B?YmpXdEM3bUdNUXJHTG9CYXg1VERDQ01TelJGVTZobk0ydnArbjZsU05RK0dB?=
+ =?utf-8?B?Qnh2ZzNWTmhmck4zeUFmaFFTQU96M0NYaFFPQzlieEJrTWF1b3hVaTJaMHJz?=
+ =?utf-8?B?ZnRRNzVDY0JBRjVKcTgvTFdCSHZKdlNYMnk2SEtuS3NUTk9Od1dxV2xIdjJx?=
+ =?utf-8?B?YVJ3Zzd2WDhEM1oxUVFrdDE0bmxvTEFGajM2Z2grbm1yN1ZGajJJaDQ5cFZY?=
+ =?utf-8?B?M2VmRmdlR1RlNVlTWHlRa2JmMk5XUGR6NysvemluUElCZ1NZWVFvZms1OXpV?=
+ =?utf-8?B?K3ZCNGQyVHV1R0FrblUwOUFvVVJmeUo3eVhSVllzQUZzNXZoZ0RqRWtjSFpy?=
+ =?utf-8?B?ZTd0NVYrWUpmNnpWSmE3ZzJVVUxZaE5JNmJId0JNUW9qT2wwaVlkR3hMMDBh?=
+ =?utf-8?B?VTRKOFRGeHdCWHJhc01xZ3ZGTTRtZnV2VllsWlZWcGtJWjhqdXo2YXlIZklX?=
+ =?utf-8?B?U00vTFZQOXVwTE5YbUFSZmEwSGFra1lob3RwSTZybVRxa0UzNWl3Q2FhV01B?=
+ =?utf-8?B?Tlp1Y2ZzVGlTZ2N1ZGZFTENuUVpldVNBRmtNakFab2kzU0VvZ014QndoQ05L?=
+ =?utf-8?B?bkd6MmFvbUZSMDJJcWdDdjRkNUpjSXZpdmV2YzNnYW8wNFhCQ2VKZnV2YzNN?=
+ =?utf-8?B?a3hXREJQblpTQStlcmxZN2lmUEd3Q05EekM3b1ZIWWdkSGRHR0ZFTTBuUWlR?=
+ =?utf-8?B?L1M3RlJnbjcyUkNNNXdwMUNrSXc2NWVJYSs3SVBMV0JDZ2pxdlFPZktyQ1Jz?=
+ =?utf-8?B?SVAxcGdHOUNIZ2h1eVkyU3cwbDk2QmFjRjNPb1E4ZTVJTlViR1A2eTV4dndP?=
+ =?utf-8?B?NExCUnpNR3VWNTFocGFjNEw4NHJpWFJEV0Z0dnljS3R3MlJEdnFQaGFhelZi?=
+ =?utf-8?B?WmMyL2pBUjdOZE94QVJpc0JjK1Y5Q0UyQWdkU0RtZ1Iyd3l1Y2F6eEwrNGh3?=
+ =?utf-8?B?RlRwL1p0bnd5OUgyd000Mm5zOGhsTDg5eXdvSkQwVUJ4QkNNWXFPaE1mY29a?=
+ =?utf-8?B?dWJiU2t4TW5Lczl6SjNGbnViYmYwRWdtU1h2am1nOEwvVThSRlgrRkQ5L1p0?=
+ =?utf-8?B?YWc9PQ==?=
 MIME-Version: 1.0
-Message-ID-Hash: Z54O5UNJQXHSI5SC7ESQN6OAST3VOR5V
-X-Message-ID-Hash: Z54O5UNJQXHSI5SC7ESQN6OAST3VOR5V
-X-MailFrom: Michael.Rich@gtri.gatech.edu
+X-OriginatorOrg: srcaus.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR16MB3502.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b60f76b-c5fa-4d9c-adf6-08d9b45f94db
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2021 00:14:46.0334
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 22db5897-105f-4d6a-8017-4b11749bab04
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: csTYNptj+sSVAIQwDowtYGDyf3LMu7ITUv+N1q+Ss8qedOcLGLZOKDihi4FBER6A2gcNM0BucxLMorL/OTwjLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR16MB2499
+Message-ID-Hash: VS2LJVFOBUFDVFKH7SHUND6KL2FAEOAR
+X-Message-ID-Hash: VS2LJVFOBUFDVFKH7SHUND6KL2FAEOAR
+X-MailFrom: jpratt@srcaus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Rob Kossler <rkossler@nd.edu>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Testbench Compile Error
+Subject: [USRP-users] Re: USRP streaming data performance
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z54O5UNJQXHSI5SC7ESQN6OAST3VOR5V/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P3JN5WQDX7PSXRJIHZB2EGMG3MD63PGN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Rich, Michael via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Rich, Michael" <Michael.Rich@gtri.gatech.edu>
-Content-Type: multipart/mixed; boundary="===============1473322696581041834=="
+Content-Type: multipart/mixed; boundary="===============3907802276898205543=="
 
---===============1473322696581041834==
+--===============3907802276898205543==
 Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_005D_01D7E5F5.C22BAF30"
-
-------=_NextPart_000_005D_01D7E5F5.C22BAF30
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_005E_01D7E5F5.C22BAF30"
+	boundary="_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_"
 
-
-------=_NextPart_001_005E_01D7E5F5.C22BAF30
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Sorry, just getting back to this post-thanksgiving.
-
-=20
-
-I tried setting the default nettype back to wire on each of these files, =
-but I have the same error. The good news is that I did make a mistake =
-when modifying gray2bin earlier. So, if I set the default nettype to =
-wire at the top of gray2bin, it works. That serves as a workaround, but =
-I=E2=80=99m still not sure the source of this problem. (And since it =
-only fails on my current block, but not the previous one I did, =
-I=E2=80=99m not sure why this issue has suddenly arisen.)
-
-=20
-
-Michael H. Rich
-
-Electronic Systems Laboratory
-
-Georgia Tech Research Institute=C2=AE
-
-Phone: (404) 407-8358
-
-E-mail: michael.rich@gtri.gatech.edu =
-<mailto:michael.rich@gtri.gatech.edu>=20
-
-=20
-
-From: Wade Fife <wade.fife@ettus.com>=20
-Sent: Saturday, November 20, 2021 3:03 PM
-To: Rich, Michael <Michael.Rich@gtri.gatech.edu>
-Cc: Rob Kossler <rkossler@nd.edu>; usrp-users@lists.ettus.com
-Subject: Re: [USRP-users] Re: Testbench Compile Error
-
-=20
-
-I agree, modifying gray2bin is not a great solution. The root of the =
-problem is really in some other file. I did a grep and found these files =
-set the default_nettype without changing it back. Some are testbenches, =
-others are from the fosphor block IP.
-
-=20
-
-axis_pyld_ctxt_converter_tb.sv <http://axis_pyld_ctxt_converter_tb.sv>=20
-
-ctrlport_endpoint_tb.sv <http://ctrlport_endpoint_tb.sv>=20
-
-rfnoc_block_null_src_sink_tb.sv <http://rfnoc_block_null_src_sink_tb.sv> =
-
-
-=20
-
-f15_avg.v
-
-f15_packetizer.v
-
-f15_histo_mem.v
-
-delay.v
-
-f15_maxhold.v
-
-f15_wf_agg.v
-
-f15_logpwr.vrng.v
-
-f15_rise_decay.v
-
-f15_binmap.v
-
-axi_logpwr.vfifo_srl.v
-
-f15_core.v
-
-f15_line_mem.v
-
-f15_eoseq.v
-
-=20
-
-Are you compiling any of those? I'll see if we can update those files so =
-they don't cause problems in the future. If you figure out which file it =
-is, let me know. I don't have any problems when I compile those files, =
-but I might have just lucked out with my compile order.
-
-=20
-
-Modifying gray2bin should be a quick way to work around the issue. Any =
-chance you didn't enter it correctly? Make sure you use the backtick ` =
-before default_nettype and that it's before the module declaration in =
-gray2bin.v. Like this:
-
-=20
-
-`default_nettype wire
-
-=20
-
-Another option is to modify the gray input of gray2bin.v to make the =
-type explicit, by changing "input [WIDTH-1:0] gray," to "input wire =
-[WIDTH-1:0] gray". But this might just move the problem to the next =
-file.
-
-=20
-
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/control/g=
-ray2bin.v#L13
-
-=20
-
-Thanks,
-
-=20
-
-Wade
-
-=20
-
-On Fri, Nov 19, 2021 at 5:03 PM Rich, Michael =
-<Michael.Rich@gtri.gatech.edu <mailto:Michael.Rich@gtri.gatech.edu> > =
-wrote:
-
-Thanks for the info on how the default-nettype is used. I usually work =
-in VHDL and am not very familiar with Verilog.=20
-
-=20
-
-The testbench SystemVerilog files seem to be set up by default exactly =
-as you=E2=80=99ve said, with =E2=80=9Cdefault_nettype none=E2=80=9D at =
-the top and =E2=80=9Cdefault_nettype wire=E2=80=9D at the end. This is =
-the case for both of my testbenches, but only one of them is exhibiting =
-this issue. That said, I tried changing the default-nettype at the top =
-of the offending testbench to wire, but I get the same error. I even =
-tried setting the default-nettype to wire directly in the gray2bin.v =
-file (even though modifying the UHD code didn=E2=80=99t seem like the =
-best approach) and that had no effect either.=20
-
-=20
-
-Any other suggestions?
-
-=20
-
-Thank you,
-
-=20
-
-Michael H. Rich
-
-Electronic Systems Laboratory
-
-Georgia Tech Research Institute=C2=AE
-
-Phone: (404) 407-8358
-
-E-mail: michael.rich@gtri.gatech.edu =
-<mailto:michael.rich@gtri.gatech.edu>=20
-
-=20
-
-From: Wade Fife <wade.fife@ettus.com <mailto:wade.fife@ettus.com> >=20
-Sent: Friday, November 19, 2021 4:34 PM
-To: Rob Kossler <rkossler@nd.edu <mailto:rkossler@nd.edu> >
-Cc: Rich, Michael <Michael.Rich@gtri.gatech.edu =
-<mailto:Michael.Rich@gtri.gatech.edu> >; usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>=20
-Subject: Re: [USRP-users] Re: Testbench Compile Error
-
-=20
-
-This means there's a file that set default_nettype to none somewhere. =
-That setting will affect the files that get compiled after it, and in =
-your case gray2bin.v doesn't like it.
-
-=20
-
-Like Rob said, you can add "`default_nettype wire" to the top of the =
-file that's having issues and it should compile after that.
-
-=20
-
-Check any files you've added to make sure they don't leave the =
-default_nettype as none. The general convention is to put =
-"`default_nettype none" at the top of a file but have "`default_nettype =
-wire"at the end of a file to avoid messing up any other files in the =
-compile.
-
-=20
-
-Wade
-
-=20
-
-On Fri, Nov 19, 2021 at 1:04 PM Rob Kossler <rkossler@nd.edu =
-<mailto:rkossler@nd.edu> > wrote:
-
-Are you able to run the testbench for the provided "rfnoc-example" =
-folder?  I notice that the gain testbench that is part of this example =
-has the following as the last statement. Perhaps this is needed?
-
-=20
-
-`default_nettype wire
-
-=20
-
-On Fri, Nov 19, 2021 at 11:53 AM Rich, Michael via USRP-users =
-<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com> > wrote:
-
-I=E2=80=99m trying to run the testbench for a new module I created =
-(UHD4) and I=E2=80=99m getting the following error:
-
-=20
-
-INFO: [VRFC 10-2263] Analyzing Verilog file =
-"/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v" into library =
-xil_defaultlib
-
-INFO: [VRFC 10-311] analyzing module gray2bin
-
-ERROR: [VRFC 10-1103] net type must be explicitly specified for 'gray' =
-when default_nettype is none =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]
-
-ERROR: [VRFC 10-3594] non-net port 'gray' cannot be of mode input =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]
-
-ERROR: [VRFC 10-845] illegal operand for operator ^ =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:21]
-
-ERROR: [VRFC 10-2865] module 'gray2bin' ignored due to previous errors =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:10]
-
-=20
-
-This file seems to compile without issue on my previous testbench, so =
-I=E2=80=99m not sure what the difference would be here. If anyone has =
-any insights into what could be going on I=E2=80=99d greatly appreciate =
-it.
-
-=20
-
-Thank you,
-
-=20
-
-Michael H. Rich
-
-Electronic Systems Laboratory
-
-Georgia Tech Research Institute=C2=AE
-
-Phone: (404) 407-8358
-
-E-mail: michael.rich@gtri.gatech.edu =
-<mailto:michael.rich@gtri.gatech.edu>=20
-
-=20
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>=20
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
-<mailto:usrp-users-leave@lists.ettus.com>=20
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>=20
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
-<mailto:usrp-users-leave@lists.ettus.com>=20
-
-
-------=_NextPart_001_005E_01D7E5F5.C22BAF30
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->Sorry, just getting back to this =
-post-thanksgiving.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->I tried setting the default nettype back to wire on each of these =
-files, but I have the same error. The good news is that I <i>did</i> =
-make a mistake when modifying gray2bin earlier. So, if I set the default =
-nettype to wire at the top of gray2bin, it works. That serves as a =
-workaround, but I=E2=80=99m still not sure the source of this problem. =
-(And since it only fails on my current block, but not the previous one I =
-did, I=E2=80=99m not sure why this issue has suddenly =
-arisen.)<o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><span =
-style=3D'font-family:"Calibri",sans-serif;color:black'>Michael H. =
-Rich</span></b><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p></o:p></span></p><p class=3DMsoNormal><i><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>E=
-lectronic Systems Laboratory</span></i><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p></o:p></span></p><p class=3DMsoNormal><b><i><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>G=
-eorgia Tech Research Institute=C2=AE</span></i></b><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>P=
-hone: (404) 407-8358</span><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>E=
--mail:</span><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-> <a =
-href=3D"mailto:michael.rich@gtri.gatech.edu">michael.rich@gtri.gatech.edu=
-</a></span><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>From:</span><=
-/b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
-Wade Fife &lt;wade.fife@ettus.com&gt; <br><b>Sent:</b> Saturday, =
-November 20, 2021 3:03 PM<br><b>To:</b> Rich, Michael =
-&lt;Michael.Rich@gtri.gatech.edu&gt;<br><b>Cc:</b> Rob Kossler =
-&lt;rkossler@nd.edu&gt;; usrp-users@lists.ettus.com<br><b>Subject:</b> =
-Re: [USRP-users] Re: Testbench Compile Error<o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>I =
-agree, modifying gray2bin is not a great solution. The root of the =
-problem is really in some other file. I did a grep and found these files =
-set the default_nettype without changing it back. Some are testbenches, =
-others are from the fosphor block IP.<o:p></o:p></p></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal><a =
-href=3D"http://axis_pyld_ctxt_converter_tb.sv">axis_pyld_ctxt_converter_t=
-b.sv</a><o:p></o:p></p></div><div><p class=3DMsoNormal><a =
-href=3D"http://ctrlport_endpoint_tb.sv">ctrlport_endpoint_tb.sv</a><o:p><=
-/o:p></p></div><div><p class=3DMsoNormal><a =
-href=3D"http://rfnoc_block_null_src_sink_tb.sv">rfnoc_block_null_src_sink=
-_tb.sv</a><o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>f15_avg.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_packetizer.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_histo_mem.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>delay.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_maxhold.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_wf_agg.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_logpwr.vrng.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_rise_decay.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_binmap.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>axi_logpwr.vfifo_srl.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_core.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_line_mem.v<o:p></o:p></p></div><div><p =
-class=3DMsoNormal>f15_eoseq.v<o:p></o:p></p></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal>Are you =
-compiling any of those? I'll see if we can update those files so they =
-don't cause problems in the future. If you figure out which file it is, =
-let me know. I don't have any problems when I compile those files, but I =
-might have just lucked out with my compile =
-order.<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>Modifying gray2bin should be a quick way to work =
-around the issue. Any chance you didn't enter it correctly? Make sure =
-you use the backtick ` before default_nettype and that it's before the =
-module declaration in gray2bin.v. Like this:<o:p></o:p></p><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>`default_nettype wire<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><p =
-class=3DMsoNormal>Another option is to modify the gray input of =
-gray2bin.v to make the type explicit, by changing &quot;input =
-[WIDTH-1:0] gray,&quot; to &quot;input wire [WIDTH-1:0] gray&quot;. But =
-this might just move the problem to the next file.<o:p></o:p></p><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal><a =
-href=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/c=
-ontrol/gray2bin.v#L13">https://github.com/EttusResearch/uhd/blob/master/f=
-pga/usrp3/lib/control/gray2bin.v#L13</a><o:p></o:p></p></div></div><div><=
-p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>Thanks,<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><p =
-class=3DMsoNormal>Wade<o:p></o:p></p></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=3DMsoNormal>On =
-Fri, Nov 19, 2021 at 5:03 PM Rich, Michael &lt;<a =
-href=3D"mailto:Michael.Rich@gtri.gatech.edu">Michael.Rich@gtri.gatech.edu=
-</a>&gt; wrote:<o:p></o:p></p></div><blockquote =
-style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0in 0in 0in =
-6.0pt;margin-left:4.8pt;margin-right:0in'><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->Thanks for the info on how the default-nettype is used. I usually work =
-in VHDL and am not very familiar with Verilog. </span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->The testbench SystemVerilog files seem to be set up by default exactly =
-as you=E2=80=99ve said, with =E2=80=9Cdefault_nettype none=E2=80=9D at =
-the top and =E2=80=9Cdefault_nettype wire=E2=80=9D at the end. This is =
-the case for both of my testbenches, but only one of them is exhibiting =
-this issue. That said, I tried changing the default-nettype at the top =
-of the offending testbench to wire, but I get the same error. I even =
-tried setting the default-nettype to wire directly in the gray2bin.v =
-file (even though modifying the UHD code didn=E2=80=99t seem like the =
-best approach) and that had no effect either. </span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->Any other suggestions?</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->Thank you,</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
-style=3D'font-family:"Calibri",sans-serif;color:black'>Michael H. =
-Rich</span></b><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><i><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>E=
-lectronic Systems Laboratory</span></i><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><i><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>G=
-eorgia Tech Research Institute=C2=AE</span></i></b><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>P=
-hone: (404) 407-8358</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:black'>E=
--mail:</span><span =
-style=3D'font-size:10.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
-> <a href=3D"mailto:michael.rich@gtri.gatech.edu" =
-target=3D"_blank">michael.rich@gtri.gatech.edu</a></span><o:p></o:p></p><=
-p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif;color:#1F497D'=
->&nbsp;</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
-style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'>From:</span><=
-/b><span style=3D'font-size:11.0pt;font-family:"Calibri",sans-serif'> =
-Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" =
-target=3D"_blank">wade.fife@ettus.com</a>&gt; <br><b>Sent:</b> Friday, =
-November 19, 2021 4:34 PM<br><b>To:</b> Rob Kossler &lt;<a =
-href=3D"mailto:rkossler@nd.edu" =
-target=3D"_blank">rkossler@nd.edu</a>&gt;<br><b>Cc:</b> Rich, Michael =
-&lt;<a href=3D"mailto:Michael.Rich@gtri.gatech.edu" =
-target=3D"_blank">Michael.Rich@gtri.gatech.edu</a>&gt;; <a =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a><br><b>Subject:</b> Re: =
-[USRP-users] Re: Testbench Compile Error</span><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>This means =
-there's a file that set default_nettype to none somewhere. That setting =
-will affect the files that get compiled after it, and in your case =
-gray2bin.v doesn't like it.<o:p></o:p></p></div><div><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p></div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Like Rob =
-said, you can add &quot;`default_nettype wire&quot; to the top of the =
-file that's having issues and it should compile after =
-that.<o:p></o:p></p></div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p></div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Check any =
-files you've added to make sure they don't leave the default_nettype as =
-none. The general convention is to put &quot;`default_nettype none&quot; =
-at the top of a file but have &quot;`default_nettype wire&quot;at the =
-end of a file to avoid messing up any other files in the =
-compile.<o:p></o:p></p></div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p></div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Wade<o:p></o=
-:p></p></div></div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>On Fri, Nov =
-19, 2021 at 1:04 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" =
-target=3D"_blank">rkossler@nd.edu</a>&gt; =
-wrote:<o:p></o:p></p></div><blockquote =
-style=3D'border:none;border-left:solid windowtext 1.0pt;padding:0in 0in =
-0in =
-6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0in;margin-bottom:5=
-.0pt;border-color:currentcolor currentcolor currentcolor =
-rgb(204,204,204)'><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Are you =
-able to run the testbench for the provided &quot;rfnoc-example&quot; =
-folder?&nbsp; I notice that the gain testbench that is part of this =
-example has the following as the last statement. Perhaps this is =
-needed?<o:p></o:p></p><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p></div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>`default_net=
-type wire<o:p></o:p></p></div></div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>On Fri, Nov =
-19, 2021 at 11:53 AM Rich, Michael via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a>&gt; =
-wrote:<o:p></o:p></p></div><blockquote =
-style=3D'border:none;border-left:solid windowtext 1.0pt;padding:0in 0in =
-0in =
-6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-right:0in;margin-bottom:5=
-.0pt;border-color:currentcolor currentcolor currentcolor =
-rgb(204,204,204)'><div><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>I=E2=80=99m =
-trying to run the testbench for a new module I created (UHD4) and =
-I=E2=80=99m getting the following error:<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-family:"Courier New"'>INFO: [VRFC 10-2263] Analyzing =
-Verilog file &quot;/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v&quot; =
-into library xil_defaultlib</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-family:"Courier New"'>INFO: [VRFC 10-311] analyzing module =
-gray2bin</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-family:"Courier New"'>ERROR: [VRFC 10-1103] net type must =
-be explicitly specified for 'gray' when default_nettype is none =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]</span><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-family:"Courier New"'>ERROR: [VRFC 10-3594] non-net port =
-'gray' cannot be of mode input =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:13]</span><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-family:"Courier New"'>ERROR: [VRFC 10-845] illegal operand =
-for operator ^ =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:21]</span><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-family:"Courier New"'>ERROR: [VRFC 10-2865] module =
-'gray2bin' ignored due to previous errors =
-[/home/nvd/uhd/fpga/usrp3/lib/control/gray2bin.v:10]</span><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>This file =
-seems to compile without issue on my previous testbench, so I=E2=80=99m =
-not sure what the difference would be here. If anyone has any insights =
-into what could be going on I=E2=80=99d greatly appreciate =
-it.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>Thank =
-you,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
-style=3D'color:black'>&nbsp;</span></b><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><span =
-style=3D'color:black'>Michael H. Rich</span></b><o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><i><span =
-style=3D'font-size:10.0pt;color:black'>Electronic Systems =
-Laboratory</span></i><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><b><i><span =
-style=3D'font-size:10.0pt;color:black'>Georgia Tech Research =
-Institute=C2=AE</span></i></b><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:10.0pt;color:black'>Phone: (404) =
-407-8358</span><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-style=3D'font-size:10.0pt;color:black'>E-mail:</span><span =
-style=3D'font-size:10.0pt;color:#1F497D'> <a =
-href=3D"mailto:michael.rich@gtri.gatech.edu" =
-target=3D"_blank">michael.rich@gtri.gatech.edu</a></span><o:p></o:p></p><=
-p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>&nbsp;<o:p><=
-/o:p></p></div></div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>____________=
-___________________________________<br>USRP-users mailing list -- <a =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send =
-an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" =
-target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></p></bl=
-ockquote></div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'>____________=
-___________________________________<br>USRP-users mailing list -- <a =
-href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send =
-an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" =
-target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></p></bl=
-ockquote></div></div></div></blockquote></div></div></body></html>
-------=_NextPart_001_005E_01D7E5F5.C22BAF30--
-
-------=_NextPart_000_005D_01D7E5F5.C22BAF30
-Content-Type: application/pkcs7-signature; name="smime.p7s"
+--_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIVtzCCBDIw
-ggMaoAMCAQICAQEwDQYJKoZIhvcNAQEFBQAwezELMAkGA1UEBhMCR0IxGzAZBgNVBAgMEkdyZWF0
-ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBwwHU2FsZm9yZDEaMBgGA1UECgwRQ29tb2RvIENBIExpbWl0
-ZWQxITAfBgNVBAMMGEFBQSBDZXJ0aWZpY2F0ZSBTZXJ2aWNlczAeFw0wNDAxMDEwMDAwMDBaFw0y
-ODEyMzEyMzU5NTlaMHsxCzAJBgNVBAYTAkdCMRswGQYDVQQIDBJHcmVhdGVyIE1hbmNoZXN0ZXIx
-EDAOBgNVBAcMB1NhbGZvcmQxGjAYBgNVBAoMEUNvbW9kbyBDQSBMaW1pdGVkMSEwHwYDVQQDDBhB
-QUEgQ2VydGlmaWNhdGUgU2VydmljZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC+
-QJ30buHqdoccTUVEjr5GyIMGncEq/hgfjuQC+vOrXVCKFjELmgbQxXAizUktVGPMtm5oRgtT6stM
-JMC8ck7q8RWu9FSaEgrDerIzYOLaiVXzIljz3tzP74OGooyUT59o8piQRoQnx3a/48w1LIteB2Rl
-gsBIsKiR+WGfdiBQqJHHZrXreGIDVvCKGhPqMaMeoJn9OPb2JzJYbwf1a7j7FCuvt6rM1mNfc4za
-BZmoOKjLF3g2UazpnvR4Oo3PD9lC4pgMqy+fDgHe75+ZSfEt36x0TRuYtUfF5SnR+ZAYx2KcvoPH
-Jns+iiXHwN2d5jVoECCdj9je0sOEnA1e6C/JAgMBAAGjgcAwgb0wHQYDVR0OBBYEFKARCiM+lvEH
-7OKvKe+CpX/QMKS0MA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MHsGA1UdHwR0MHIw
-OKA2oDSGMmh0dHA6Ly9jcmwuY29tb2RvY2EuY29tL0FBQUNlcnRpZmljYXRlU2VydmljZXMuY3Js
-MDagNKAyhjBodHRwOi8vY3JsLmNvbW9kby5uZXQvQUFBQ2VydGlmaWNhdGVTZXJ2aWNlcy5jcmww
-DQYJKoZIhvcNAQEFBQADggEBAAhW/ALwm+j/pPrWe8ZEgM5PxMX2AFjMpra8FEloBHbo5u5d7AIP
-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
-MDMxNzAwMDAwMFoXDTIzMDMxNzIzNTk1OVowgd8xDjAMBgNVBBETBTMwMzMyMRMwEQYDVQQLEwpH
-VFJJLUVMU1lTMSgwJgYDVQQKEx9HZW9yZ2lhIEluc3RpdHV0ZSBvZiBUZWNobm9sb2d5MRkwFwYD
-VQQJExAyMjUgTk9SVEggQVZFIE5XMRAwDgYDVQQIEwdHZW9yZ2lhMRAwDgYDVQQHEwdBdGxhbnRh
-MQswCQYDVQQGEwJVUzEVMBMGA1UEAxMMTWljaGFlbCBSaWNoMSswKQYJKoZIhvcNAQkBFhxtaWNo
-YWVsLnJpY2hAZ3RyaS5nYXRlY2guZWR1MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
-24fvyXxky1Bj+3LTRunyP4Qx7xk3OtkgVLXktky9UAvurKAdtF+kgdgS7BqEZK2yG+Y3nQHSods+
-g8EDrgnyCmIuYVwlrH/H36Pg9Ca601ZYpBVbJ+vonDNhmRWWH+w5pbuhQ8IrtTxVKkR1Q7iZu9+T
-CEtjZ/Q8a0NKt8xpDNqF+ey73OSl5cIgkhVjobDTF0hzx8y3eLZfoZ7Vg8gRNpK1WLG9dWRi4NVS
-qD5wDW7IxS/vvvYdGh406ZiezNsOuZjCnpTU5lrXeHvrXPjLrs74kaNIfyQzs/b4pckcFEhJXJkx
-gh1LSCAvIMHA57dg1BfyR7hB/1b4nOUpAWFHKQIDAQABo4IB+jCCAfYwHwYDVR0jBBgwFoAUfe5x
-0B/rqWFtj2aErQ8rB+Ix27wwHQYDVR0OBBYEFAQKpoUYI6FNQQLbi8DZCQshCN24MA4GA1UdDwEB
-/wQEAwIFoDAMBgNVHRMBAf8EAjAAMB0GA1UdJQQWMBQGCCsGAQUFBwMEBggrBgEFBQcDAjBqBgNV
-HSAEYzBhMF8GDSsGAQQBriMBBAMDAAEwTjBMBggrBgEFBQcCARZAaHR0cHM6Ly93d3cuaW5jb21t
-b24ub3JnL2NlcnQvcmVwb3NpdG9yeS9jcHNfc3RhbmRhcmRfY2xpZW50LnBkZjBVBgNVHR8ETjBM
-MEqgSKBGhkRodHRwOi8vY3JsLmluY29tbW9uLXJzYS5vcmcvSW5Db21tb25SU0FTdGFuZGFyZEFz
-c3VyYW5jZUNsaWVudENBLmNybDCBigYIKwYBBQUHAQEEfjB8MFAGCCsGAQUFBzAChkRodHRwOi8v
-Y3J0LmluY29tbW9uLXJzYS5vcmcvSW5Db21tb25SU0FTdGFuZGFyZEFzc3VyYW5jZUNsaWVudENB
-LmNydDAoBggrBgEFBQcwAYYcaHR0cDovL29jc3AuaW5jb21tb24tcnNhLm9yZzAnBgNVHREEIDAe
-gRxtaWNoYWVsLnJpY2hAZ3RyaS5nYXRlY2guZWR1MA0GCSqGSIb3DQEBCwUAA4IBAQAOQx1GHPoX
-3sz6J9o9zk1NjXH7ZclwC/PQawXElV3vDGSryCnNsNqQJNMnG7OOzjq/u9PnGdDpmVI8mFjci6jr
-YR8yTgd3aTiG230emq+lbmYmGhibxQZGRN725JFt9veX62fp3esnMoIqKbAz+LxnUtWc42uJeCoF
-C0+d+Jmo+VIrVSO3vJJLGimOPh+iHrLpyV2bqj0AorSi2Mfb4c3G4oiAGykF38pZtsW9cwoo+ZE+
-IsCBiMn7JCXIEFtpmYUpPCeECgAVOOQvB7B3maSa+Qu0BRQZ78sRXluHAEoh6PhsMgqNuwEVNvp3
-BQx7uNz8j+30hpKBMV0X26FUKefDMIIGAzCCA+ugAwIBAgIQP7008rpS/A7TClejgeG+ZDANBgkq
-hkiG9w0BAQ0FADCBiDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcT
-C0plcnNleSBDaXR5MR4wHAYDVQQKExVUaGUgVVNFUlRSVVNUIE5ldHdvcmsxLjAsBgNVBAMTJVVT
-RVJUcnVzdCBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTQwOTE5MDAwMDAwWhcNMjQw
-OTE4MjM1OTU5WjCBiTELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAk1JMRIwEAYDVQQHEwlBbm4gQXJi
-b3IxEjAQBgNVBAoTCUludGVybmV0MjERMA8GA1UECxMISW5Db21tb24xMjAwBgNVBAMTKUluQ29t
-bW9uIFJTQSBTdGFuZGFyZCBBc3N1cmFuY2UgQ2xpZW50IENBMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEAgP7KW3d3xh/sgvvnWYpVrcDqnrEH6CYrNgmi8S9MOllAnKuc8kApQCWScil4
-j5sGahB8t2QH/xj8UNuoGCDG5xEZxgFoRz/ZkuzdNJK4ZJ8b9dIm2XPUTKbgIwluPp38+oLV5P6k
-pUZ5AGXlPW7otk5+i+Hr9GaqddHbh27hFaodi/JMnIZe+hPlDGnshdZg+KhtiHMDlafCe9Lxko77
-emOpkahmurX9sy3Sf/zLg5uLiTS9V10KdZdmgJW8l9G6GhjBbLh960aMdWj9sJr4vrPtWT8yt3EG
-QFV3cqUvN0kBgCuri97s2U2KvV5frg8zBZW/NCXRYqw18ZaDi8PbpwIDAQABo4IBZDCCAWAwHwYD
-VR0jBBgwFoAUU3m/WqorSs9UgOHYm8Cd8rIDZsswHQYDVR0OBBYEFH3ucdAf66lhbY9mhK0PKwfi
-Mdu8MA4GA1UdDwEB/wQEAwIBhjASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdJQQWMBQGCCsGAQUF
-BwMCBggrBgEFBQcDBDARBgNVHSAECjAIMAYGBFUdIAAwUAYDVR0fBEkwRzBFoEOgQYY/aHR0cDov
-L2NybC51c2VydHJ1c3QuY29tL1VTRVJUcnVzdFJTQUNlcnRpZmljYXRpb25BdXRob3JpdHkuY3Js
-MHYGCCsGAQUFBwEBBGowaDA/BggrBgEFBQcwAoYzaHR0cDovL2NydC51c2VydHJ1c3QuY29tL1VT
-RVJUcnVzdFJTQUFkZFRydXN0Q0EuY3J0MCUGCCsGAQUFBzABhhlodHRwOi8vb2NzcC51c2VydHJ1
-c3QuY29tMA0GCSqGSIb3DQEBDQUAA4ICAQB206fEkrXkvbWWXa2Zt9VK1Jn/jkTfRVJOQ3uKfWk8
-0zyMpiHpfdGFZLayBbjn/TmZhKuCa8V73JStVPBmo+mGMs9xGbGpQsEWLW0mPkrKjlJjBfULfXJ8
-gyKsnXR5CfCDQliKMgxY3jE9HGyXVNNyCWjK7o1sQAtUMAVvbzVkPvHLaXwCe3PlVJruPa/pu3vs
-tIJQQkrgLtibp6JK6VcCDfOTY3+TiHYXkTivLcsLd/QU85NtYfLdhC1I8BgMn0R8ZMlmid5oqmjp
-QBYqRMsxnIiqak/Y0pyrbzQYiMYq397UphBqV5fhTpGkCQ5NYbHGIHfQ1JFecgOYtyEJUUNkIFVR
-88kf3wn5TDBf3LMjDec4KaNXpZv4VIKYFWdAbuDAtePoa4DuGyfMy2os/dbDxnt3LKoXcS5SqPpD
-u61bm619yi3JmmHKlP7k/6mEUKAQxbWuGOFEuMoDGSznqxYZVzDlWG712JZP4gYz6iLUVBCyTI2Y
-G6OoXxxQw4BLxmMpo7MCjMiH3XJL1O6E5VpxJolK3ri4NaVB7uH4YKaNfN799byF5cmjS2m/8Ep2
-ZqOJuYOJaV3ZsZ+i2YIg+ZHr2bMux5Vw9p+S7EiQu6wZEy4KMkXNYKqNZuwjFuSXUcU+s3Td1Lg3
-iGHZjtdboJYteU55BH1mWfSnkN4K45IeczGCBCYwggQiAgEBMIGfMIGJMQswCQYDVQQGEwJVUzEL
-MAkGA1UECBMCTUkxEjAQBgNVBAcTCUFubiBBcmJvcjESMBAGA1UEChMJSW50ZXJuZXQyMREwDwYD
-VQQLEwhJbkNvbW1vbjEyMDAGA1UEAxMpSW5Db21tb24gUlNBIFN0YW5kYXJkIEFzc3VyYW5jZSBD
-bGllbnQgQ0ECEQCC8ZX9o4+yeeH7nmWXqCIlMAkGBSsOAwIaBQCgggJbMBgGCSqGSIb3DQEJAzEL
-BgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTIxMTEzMDE5MjI1MVowIwYJKoZIhvcNAQkEMRYE
-FGT3oclmIX2nt0NdlHh6MyGPibAqMIGTBgkqhkiG9w0BCQ8xgYUwgYIwCgYIKoZIhvcNAwcwCwYJ
-YIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwDgYIKoZIhvcNAwICAgCAMA0GCCqG
-SIb3DQMCAgFAMAcGBSsOAwIaMAsGCWCGSAFlAwQCAzALBglghkgBZQMEAgIwCwYJYIZIAWUDBAIB
-MIGwBgkrBgEEAYI3EAQxgaIwgZ8wgYkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJNSTESMBAGA1UE
-BxMJQW5uIEFyYm9yMRIwEAYDVQQKEwlJbnRlcm5ldDIxETAPBgNVBAsTCEluQ29tbW9uMTIwMAYD
-VQQDEylJbkNvbW1vbiBSU0EgU3RhbmRhcmQgQXNzdXJhbmNlIENsaWVudCBDQQIRAILxlf2jj7J5
-4fueZZeoIiUwgbIGCyqGSIb3DQEJEAILMYGioIGfMIGJMQswCQYDVQQGEwJVUzELMAkGA1UECBMC
-TUkxEjAQBgNVBAcTCUFubiBBcmJvcjESMBAGA1UEChMJSW50ZXJuZXQyMREwDwYDVQQLEwhJbkNv
-bW1vbjEyMDAGA1UEAxMpSW5Db21tb24gUlNBIFN0YW5kYXJkIEFzc3VyYW5jZSBDbGllbnQgQ0EC
-EQCC8ZX9o4+yeeH7nmWXqCIlMA0GCSqGSIb3DQEBAQUABIIBANrD0OKENQeUQw5K1LZuca7VCEHD
-3oU1EX23d4ID6+ls77xVb2P+mCLcl96YN+MUKZOvm/SQZzd/nGSJsTeu0pCmiLOKDvX7NYEIMX80
-wwozrU+VhhCYcRyF6+ZObgkdxJuBp25qZQqYrwR2ab8iNVCIhFf2ICuZLR5GpQruONfgGCoe+wLm
-vnyLLi47Z8pjyfOkqwVqLk0yrf8N4Wy8Iw/4LABo/OcTfgH3i0cOuhyBx8RtG7abSq0g1F5ziOWf
-1/kW7DVmy6hOj69hnRE1y0Q1wCOEjsuz4xIs9JhCTrpjf6Hrnt+7ytxKv37wT0MuZP6VDX3pb3y4
-hm9VA39s2xcAAAAAAAA=
+SGF2ZSBsb29rZWQgaW50byB0aGUgYmVuY2htYXJrIHJhdGUgdXRpbGl0eSAodWhkL2hvc3QvYnVp
+bGQvZXhhbXBsZXMvKSB3aGljaCBzaG93cyBkcm9wb3V0cyBhdCBhbnkgc2FtcGxlIHJhdGUgYWJv
+dmUgMk1TUFMuIEhhdmUgYWxzbyBydW4gdGhlIHNhbWUgdGhpbmcgZnJvbSBhIFBDIGxhcHRvcCBy
+dW5uaW5nIHVidW50dSAyMC4wNCBpbiBhIHZpcnR1YWwgbWFjaGluZSB3aXRoIHRoZSBzYW1lIGdu
+dXJhZGlvICgzLjgpLCBzYW1lIHVoZCAoNC4wLjApIGFuZCBzYW1lIGdyLWV0dHVzIChSRk5vQyA0
+KS4gSXQgYWxzbyBmbGFncyBkcm9wb3V0cyBjb25zaXN0ZW50bHkgYXQgYW55IHNhbXBsZSByYXRl
+IGFib3ZlIDJNU1BTLiAgVGhlIGZwZ2EgaW1hZ2UgZm9yIHRoZSBYMzEwIHdhcyBkb3dubG9hZGVk
+IGFuZCBpbnN0YWxsZWQgYWNjb3JkaW5nIHRvIHRoZSBpbnN0cnVjdGlvbnMgaW4gdGhlIGhhcmR3
+YXJlIG1hbnVhbCAoaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfdXNycF94M3gw
+Lmh0bWwpLiBJdCBhcHBlYXJzIHRvIHVzIHRoYXQgdGhlIGlzc3VlIGxpZXMgd2l0aCBzb21ldGhp
+bmcgdG8gZG8gd2l0aCB0aGUgWDMxMCBvciBzb2Z0d2FyZSB0aGF0IGlzIGNvbW11bmljYXRpbmcg
+d2l0aCBpdCwgb3IgdGhlIGZwZ2EgaW1hZ2UuDQoNCklzIHRoZXJlIGFueSBzZXR1cCBpdGVtIHdl
+IGNhbiBjaGFuZ2UgdG8gZ2V0IG5ldCB0cmFmZmljIHdpdGhvdXQgZHJvcG91dHM/IFdpbGwgdGhl
+cmUgYmUgYSBwcm9ibGVtIGlmIHdlIGRvbuKAmXQgZHJhaW4gZGF0YSBmcm9tIHRoZSBvdGhlciBy
+ZWNlaXZlcyBhdCB0aGUgc2FtZSB0aW1lIHNpbmNlIHRoZXJlIGFyZSBmb3VyIG9mIHRoZW0/DQoN
+ClRoYW5rcw0KSm9uYXRoYW4gUHJhdHQNCg0KDQpGcm9tOiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNo
+dm9uYnJhdW5AZ21haWwuY29tPg0KU2VudDogVHVlc2RheSwgMzAgTm92ZW1iZXIgMjAyMSAxMDoz
+NSBBTQ0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbVVNSUC11c2Vy
+c10gUmU6IFVTUlAgc3RyZWFtaW5nIGRhdGEgcGVyZm9ybWFuY2UNCg0KDQpXQVJOSU5HOiBUaGlz
+IG1lc3NhZ2UgaGFzIG9yaWdpbmF0ZWQgZnJvbSBhbiB1bnRydXN0ZWQgc291cmNlLiBCZSBtaW5k
+ZnVsIG9mIGF0dGFjaG1lbnRzIGFuZCBlbWJlZGRlZCBsaW5rcy4NCk9uIDIwMjEtMTEtMjkgMTg6
+MjIsIEpvbmF0aGFuIFByYXR0IHdyb3RlOg0KV2UgYXJlIGxvb2tpbmcgdG8gZGV2ZWxvcCBhIHN0
+YW5kYWxvbmUgc2RyIHBsYXRmb3JtIGNvbm5lY3RpbmcgYW4gblZpZGlhIEpldHNvbiBBR1ggWGF2
+aWVyIHRvIGEgVVNSUCBYMzEwLiBUaGUgWDMxMCBoYXMgdHdvIGR1YWwgcmVjZWl2ZXIgYm9hcmRz
+IGluc3RhbGxlZCBidXQgd2UgYXJlIG9ubHkgdHJ5aW5nIHRvIHN0cmVhbSBkYXRhIGZyb20gb25l
+IGNvcmUgYXQgdGhpcyB0aW1lLg0KDQpUaGUgWGF2aWVyIGlzIGFuIG9jdGFjb3JlIEFSTSBwbGF0
+Zm9ybSB3aXRoIGFsbCBjb3JlcyBlbmFibGVkIGFuZCBydW5uaW5nIGNsb3NlIHRvIDEuNUdIei4N
+ClRoZSBjb25uZWN0aW9uIGJldHdlZW4gdGhlIHR3byBkZXZpY2VzIGlzIHZpYSBldGhlcm5ldCBy
+dW5uaW5nIGF0IDFHYml0LiBUaGUgeGF2aWVyIGhhcyBhIHgxNiBQQ0llIGludGVyZmFjZSBjb25u
+ZWN0b3IgYW5kIHdlIGFyZSB1c2luZyBhIE5JQyB3aXRoIDFHYnBzIFNGUCBtb2R1bGUg4oCTIHdl
+IGludGVuZCB0byBydW4gdGhlIGxpbmsgYXQgMTBHYml0IGluIHRoZSBmdXR1cmUuIFRoZSBvbmJv
+YXJkIDFHYnBzIGV0aGVybmV0IGlzIGNvbm5lY3RlZCB0byBvdXIgTEFODQoNClRoZSBYYXZpZXIg
+aXMgcnVubmluZyB1YnVudHUgMTguMDQgZm9yIGFybS4gVGhpcyBpcyB0aGUgZGV2ZWxvcG1lbnQg
+cGxhdGZvcm0gdGhhdCBuVmlkaWEgcHJvdmlkZXMuIHVoZCA0LjAuMCwgZ251cmFkaW8gMy44IGFu
+ZCBSZk5vQyA0IGhhdmUgYmVlbiBpbnN0YWxsZWQgb24gdGhlIFhhdmllci4NClRoZSBYYXZpZXIg
+aXMgZ2l2ZW4gYSBzaW1wbGUgZmxvdyB0byBydW4gdW5kZXIgZ251cmFkaW8tY29tcGFuaW9uIHdo
+aWNoIGNvbnNpc3RzIG9mIGEgVVNSUCBTb3VyY2UgY29ubmVjdGVkIGRpcmVjdGx5IHRvICB0aGUg
+UVQgR1VJIEZyZXF1ZW5jeSBzaW5rIChvciBOdWxsIFNpbmspDQpUaGUgbmV0d29yayBidWZmZXJz
+IGFuZCBtdHUgb24gdGhlIHhhdmllciBhcmUgaW5jcmVhc2VkIHRvIGF0IGxlYXN0IHRob3NlIHJl
+Y29tbWVuZGVkLg0KDQpUaGUgcmVzdWx0IHdlIGdldCBpcyBhIHdob2xlIGxvdCBvZiDigJhE4oCZ
+cyBvdXRwdXQgaWYgd2UgaW5jcmVhc2UgdGhlIHNhbXBsZSByYXRlIGJleW9uZCAyTVNQUy4gIFRo
+ZSBzYW1lIHJlc3VsdCBpcyBmb3VuZCBpZiB3ZSBydW4gdGhlIGZsb3cgZnJvbSB0aGUgY29tbWFu
+ZCBsaW5lICh3aXRob3V0IHRoZSBndWkpLg0KDQpGb3IgY29tcGFyaXNvbiB3ZSBoYXZlIGRvbmUg
+YSBzaW1pbGFyIHNldHVwIHdpdGggYSBVU1JQIEUzMTIg4oCTIGNvbm5lY3RlZCB0byBhIHhhdmll
+ciwgYSB1YnVudHUgMjAgdmlydHVhbCBtYWNoaW5lIGFuZCBkaXJlY3RseSB0byBhIGNvbXB1dGVy
+IHJ1bm5pbmcgdWJ1bnR1IDIwLjA0LiBJbiBlYWNoIGNhc2Ugd2hlbiB3ZSBpbmNyZWFzZSB0aGUg
+c2FtcGxlIHJhdGUgYmV5b25kIDJNU1BTIHdlIGdldCDigJhP4oCZcyBvdXRwdXQuDQoNCkNhbiBh
+bnlvbmUgcGxlYXNlIGluZGljYXRlIHdoYXQgc2V0dXAgaXMgcmVxdWlyZWQgdG8gYWNoaWV2ZSB0
+aGUgMjVNU1BTIHRoYXQgc2hvdWxkIGJlIHBvc3NpYmxlIGFjcm9zcyB0aGlzIGxpbms/DQoNClRo
+YW5rcyBpbiBhZHZhbmNlDQoNCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQoNClRvIHVu
+c3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
+b208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KWW91IG1pZ2h0IHdh
+bnQgdG8gcnVuICJiZW5jaG1hcmtfcmF0ZSIgZnJvbSB0aGUgVUhEIGV4YW1wbGVzIGNvZGUgdG8g
+ZWxpbWluYXRlIEdSIGVudGlyZWx5IGF0IGZpcnN0LS1qdXN0IHRvIGdldCBhIGZlZWwgZm9yIHdo
+YXQgeW91ciBtYWNoaW5lIGlzIGNhcGFibGUgb2YuDQoNCkknbGwgbm90ZSB0aGF0IHRoZSAibmV0
+d29yayBtb2RlIiBpbiBFMzEyICh3aGVyZSBpdCBzdHJlYW1zIHRvIGEgcmVndWxhciBQQykgaGFz
+ICpjb25zaWRlcmFibGUqIHBlcmZvcm1hbmNlIGNvbnN0cmFpbnRzLCBhbmQgYWNoaWV2aW5nIGV2
+ZW4gMk1zcHMgaXMgYSBiaXQgb2YgYQ0KICBtaXJhY2xlLg0KDQpUaGUgWDMxMCwgb24gdGhlIG90
+aGVyIGhhbmQsIGlzIE5pYWdhcmEgRmFsbHMuICBBbnkgc3RyZWFtaW5nLXBlcmZvcm1hbmNlIGlz
+c3VlcyBhcmUgeW91ciBob3N0LiAgVGhlIEZQR0Egb24gdGhlIFgzMTAgY2FuIHN0cmVhbSB0byB0
+aGUgeEdJR2UgaW50ZXJmYWNlcyBhcyBmYXN0IGFzDQogIHBoeXNpY3MgYWxsb3dzLCBwcmV0dHkg
+bXVjaC4NCg0KRm9yIGEgIm9yZGVyIG9mIG1hZ25pdHVkZSIgYmVuY2htYXJrLCBJIGNhbiBhY2hp
+ZXZlIDEwTXNwcyBmcm9tIGEgQjJ4eCBpbnRvIGFuIE9kcm9pZCBYVTRRIHdpdGggOC1iaXQgc2Ft
+cGxlcyAodGhlcmUncyBhIFVTQiBiYW5kd2lkdGggaXNzdWUgdGhlcmUpLiAgSSBjYW4gZXZlbg0K
+ICAiZG8gc3R1ZmYiIGF0IDEwTXNwcywgaW5jbHVkaW5nIHNldmVyYWwgZGlmZmVyZW50IHJhZGlv
+IGFzdHJvbm9teSBzaWduYWwgcHJvY2Vzc2luZyBjaGFpbnMuICBJIHdvdWxkIGV4cGVjdCB5b3Vy
+IFhhdmllciB0byBiZSBzaW1pbGFyLg0KDQo=
 
-------=_NextPart_000_005D_01D7E5F5.C22BAF30--
+--_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---===============1473322696581041834==
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCWZvbnQtc2l6ZTox
+MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3Qt
+bGFuZ3VhZ2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUt
+cHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30N
+CnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJl
+Zm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowY207DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250
+LWZhbWlseToiQ291cmllciBOZXciOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFVO30NCnNw
+YW4uSFRNTFByZWZvcm1hdHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0
+dGVkIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRN
+TCBQcmVmb3JtYXR0ZWQiOw0KCWZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCW1zby1mYXJlYXN0LWxh
+bmd1YWdlOkVOLVVTO30NCnNwYW4uRW1haWxTdHlsZTIzDQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndp
+bmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
+DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0
+IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcyLjBwdDt9DQpkaXYuV29y
+ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
+IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
+ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
+CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
+IkVOLUFVIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFr
+LXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PkhhdmUgbG9va2VkIGludG8gdGhlIGJlbmNobWFyayByYXRlIHV0aWxpdHkgKHVoZC9ob3N0L2J1
+aWxkL2V4YW1wbGVzLykgd2hpY2ggc2hvd3MgZHJvcG91dHMgYXQgYW55IHNhbXBsZSByYXRlIGFi
+b3ZlIDJNU1BTLiBIYXZlIGFsc28gcnVuIHRoZSBzYW1lIHRoaW5nIGZyb20gYSBQQyBsYXB0b3Ag
+cnVubmluZyB1YnVudHUgMjAuMDQgaW4gYSB2aXJ0dWFsIG1hY2hpbmUgd2l0aCB0aGUgc2FtZSBn
+bnVyYWRpbyAoMy44KSwNCiBzYW1lIHVoZCAoNC4wLjApIGFuZCBzYW1lIGdyLWV0dHVzIChSRk5v
+QyA0KS4gSXQgYWxzbyBmbGFncyBkcm9wb3V0cyBjb25zaXN0ZW50bHkgYXQgYW55IHNhbXBsZSBy
+YXRlIGFib3ZlIDJNU1BTLiAmbmJzcDtUaGUgZnBnYSBpbWFnZSBmb3IgdGhlIFgzMTAgd2FzIGRv
+d25sb2FkZWQgYW5kIGluc3RhbGxlZCBhY2NvcmRpbmcgdG8gdGhlIGluc3RydWN0aW9ucyBpbiB0
+aGUgaGFyZHdhcmUgbWFudWFsICg8YSBocmVmPSJodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51
+YWwvcGFnZV91c3JwX3gzeDAuaHRtbCI+aHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3Bh
+Z2VfdXNycF94M3gwLmh0bWw8L2E+KS4NCiBJdCBhcHBlYXJzIHRvIHVzIHRoYXQgdGhlIGlzc3Vl
+IGxpZXMgd2l0aCBzb21ldGhpbmcgdG8gZG8gd2l0aCB0aGUgWDMxMCBvciBzb2Z0d2FyZSB0aGF0
+IGlzIGNvbW11bmljYXRpbmcgd2l0aCBpdCwgb3IgdGhlIGZwZ2EgaW1hZ2UuDQo8bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+SXMgdGhlcmUgYW55IHNldHVwIGl0ZW0gd2UgY2FuIGNoYW5nZSB0byBn
+ZXQgbmV0IHRyYWZmaWMgd2l0aG91dCBkcm9wb3V0cz8gV2lsbCB0aGVyZSBiZSBhIHByb2JsZW0g
+aWYgd2UgZG9u4oCZdCBkcmFpbiBkYXRhIGZyb20gdGhlIG90aGVyIHJlY2VpdmVzIGF0IHRoZSBz
+YW1lIHRpbWUgc2luY2UgdGhlcmUgYXJlIGZvdXIgb2YgdGhlbT88bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+VGhhbmtzPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Kb25hdGhh
+biBQcmF0dDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxk
+aXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4w
+cHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48
+c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFVIj5Gcm9t
+Ojwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFn
+ZTpFTi1BVSI+IE1hcmN1cyBELiBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7
+DQo8YnI+DQo8Yj5TZW50OjwvYj4gVHVlc2RheSwgMzAgTm92ZW1iZXIgMjAyMSAxMDozNSBBTTxi
+cj4NCjxiPlRvOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0
+OjwvYj4gW1VTUlAtdXNlcnNdIFJlOiBVU1JQIHN0cmVhbWluZyBkYXRhIHBlcmZvcm1hbmNlPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHA+PHN0cm9uZz48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6
+I0RGRkYwMCI+V0FSTklORzo8L3NwYW4+PC9zdHJvbmc+PHN0cm9uZz48c3BhbiBzdHlsZT0iZm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4NCjwvc3Bhbj48L3N0cm9u
+Zz5UaGlzIG1lc3NhZ2UgaGFzIG9yaWdpbmF0ZWQgZnJvbSBhbiB1bnRydXN0ZWQgc291cmNlLiBC
+ZSBtaW5kZnVsIG9mIGF0dGFjaG1lbnRzIGFuZCBlbWJlZGRlZCBsaW5rcy48c3BhbiBzdHlsZT0i
+bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tQVUiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMjAyMS0xMS0yOSAxODoyMiwgSm9uYXRo
+YW4gUHJhdHQgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxl
+PSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+V2UgYXJlIGxvb2tpbmcgdG8gZGV2ZWxvcCBhIHN0YW5kYWxvbmUgc2RyIHBsYXRmb3Jt
+IGNvbm5lY3RpbmcgYW4gblZpZGlhIEpldHNvbiBBR1ggWGF2aWVyIHRvIGEgVVNSUCBYMzEwLiBU
+aGUgWDMxMCBoYXMgdHdvIGR1YWwgcmVjZWl2ZXIgYm9hcmRzIGluc3RhbGxlZCBidXQgd2UgYXJl
+IG9ubHkgdHJ5aW5nIHRvIHN0cmVhbSBkYXRhIGZyb20gb25lIGNvcmUgYXQgdGhpcyB0aW1lLjxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUgWGF2aWVyIGlzIGFuIG9jdGFjb3JlIEFSTSBwbGF0
+Zm9ybSB3aXRoIGFsbCBjb3JlcyBlbmFibGVkIGFuZCBydW5uaW5nIGNsb3NlIHRvIDEuNUdIei48
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBjb25uZWN0aW9uIGJldHdl
+ZW4gdGhlIHR3byBkZXZpY2VzIGlzIHZpYSBldGhlcm5ldCBydW5uaW5nIGF0IDFHYml0LiBUaGUg
+eGF2aWVyIGhhcyBhIHgxNiBQQ0llIGludGVyZmFjZSBjb25uZWN0b3IgYW5kIHdlIGFyZSB1c2lu
+ZyBhIE5JQyB3aXRoIDFHYnBzIFNGUCBtb2R1bGUg4oCTIHdlIGludGVuZCB0byBydW4gdGhlIGxp
+bmsgYXQgMTBHYml0IGluIHRoZSBmdXR1cmUuIFRoZSBvbmJvYXJkIDFHYnBzIGV0aGVybmV0DQog
+aXMgY29ubmVjdGVkIHRvIG91ciBMQU4gPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBYYXZp
+ZXIgaXMgcnVubmluZyB1YnVudHUgMTguMDQgZm9yIGFybS4gVGhpcyBpcyB0aGUgZGV2ZWxvcG1l
+bnQgcGxhdGZvcm0gdGhhdCBuVmlkaWEgcHJvdmlkZXMuIHVoZCA0LjAuMCwgZ251cmFkaW8gMy44
+IGFuZCBSZk5vQyA0IGhhdmUgYmVlbiBpbnN0YWxsZWQgb24gdGhlIFhhdmllci48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBYYXZpZXIgaXMgZ2l2ZW4gYSBzaW1wbGUg
+ZmxvdyB0byBydW4gdW5kZXIgZ251cmFkaW8tY29tcGFuaW9uIHdoaWNoIGNvbnNpc3RzIG9mIGEg
+VVNSUCBTb3VyY2UgY29ubmVjdGVkIGRpcmVjdGx5IHRvICZuYnNwO3RoZSBRVCBHVUkgRnJlcXVl
+bmN5IHNpbmsgKG9yIE51bGwgU2luayk8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlRoZSBuZXR3b3JrIGJ1ZmZlcnMgYW5kIG10dSBvbiB0aGUgeGF2aWVyIGFyZSBpbmNyZWFz
+ZWQgdG8gYXQgbGVhc3QgdGhvc2UgcmVjb21tZW5kZWQuPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PlRoZSByZXN1bHQgd2UgZ2V0IGlzIGEgd2hvbGUgbG90IG9mIOKAmETigJlzIG91dHB1dCBpZiB3
+ZSBpbmNyZWFzZSB0aGUgc2FtcGxlIHJhdGUgYmV5b25kIDJNU1BTLiAmbmJzcDtUaGUgc2FtZSBy
+ZXN1bHQgaXMgZm91bmQgaWYgd2UgcnVuIHRoZSBmbG93IGZyb20gdGhlIGNvbW1hbmQgbGluZSAo
+d2l0aG91dCB0aGUgZ3VpKS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZu
+YnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Rm9yIGNvbXBhcmlzb24g
+d2UgaGF2ZSBkb25lIGEgc2ltaWxhciBzZXR1cCB3aXRoIGEgVVNSUCBFMzEyIOKAkyBjb25uZWN0
+ZWQgdG8gYSB4YXZpZXIsIGEgdWJ1bnR1IDIwIHZpcnR1YWwgbWFjaGluZSBhbmQgZGlyZWN0bHkg
+dG8gYSBjb21wdXRlciBydW5uaW5nIHVidW50dSAyMC4wNC4gSW4gZWFjaCBjYXNlIHdoZW4gd2Ug
+aW5jcmVhc2UgdGhlIHNhbXBsZSByYXRlIGJleW9uZCAyTVNQUyB3ZSBnZXQg4oCYT+KAmXMgb3V0
+cHV0LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5DYW4gYW55b25lIHBsZWFzZSBpbmRpY2F0ZSB3
+aGF0IHNldHVwIGlzIHJlcXVpcmVkIHRvIGFjaGlldmUgdGhlIDI1TVNQUyB0aGF0IHNob3VsZCBi
+ZSBwb3NzaWJsZSBhY3Jvc3MgdGhpcyBsaW5rPzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGFu
+a3MgaW4gYWR2YW5jZTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFVIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cHJlPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fPG86cD48L286cD48L3ByZT4NCjxwcmU+VVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
+LS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJz
+QGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UbyB1bnN1YnNjcmli
+ZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
+LmV0dHVzLmNvbSI+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286
+cD48L3ByZT4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
+aW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLUFV
+Ij5Zb3UgbWlnaHQgd2FudCB0byBydW4gJnF1b3Q7YmVuY2htYXJrX3JhdGUmcXVvdDsgZnJvbSB0
+aGUgVUhEIGV4YW1wbGVzIGNvZGUgdG8gZWxpbWluYXRlIEdSIGVudGlyZWx5IGF0IGZpcnN0LS1q
+dXN0IHRvIGdldCBhIGZlZWwgZm9yIHdoYXQgeW91ciBtYWNoaW5lIGlzIGNhcGFibGUgb2YuPGJy
+Pg0KPGJyPg0KSSdsbCBub3RlIHRoYXQgdGhlICZxdW90O25ldHdvcmsgbW9kZSZxdW90OyBpbiBF
+MzEyICh3aGVyZSBpdCBzdHJlYW1zIHRvIGEgcmVndWxhciBQQykgaGFzICpjb25zaWRlcmFibGUq
+IHBlcmZvcm1hbmNlIGNvbnN0cmFpbnRzLCBhbmQgYWNoaWV2aW5nIGV2ZW4gMk1zcHMgaXMgYSBi
+aXQgb2YgYTxicj4NCiZuYnNwOyBtaXJhY2xlLjxicj4NCjxicj4NClRoZSBYMzEwLCBvbiB0aGUg
+b3RoZXIgaGFuZCwgaXMgTmlhZ2FyYSBGYWxscy4mbmJzcDsgQW55IHN0cmVhbWluZy1wZXJmb3Jt
+YW5jZSBpc3N1ZXMgYXJlIHlvdXIgaG9zdC4mbmJzcDsgVGhlIEZQR0Egb24gdGhlIFgzMTAgY2Fu
+IHN0cmVhbSB0byB0aGUgeEdJR2UgaW50ZXJmYWNlcyBhcyBmYXN0IGFzPGJyPg0KJm5ic3A7IHBo
+eXNpY3MgYWxsb3dzLCBwcmV0dHkgbXVjaC48YnI+DQo8YnI+DQpGb3IgYSAmcXVvdDtvcmRlciBv
+ZiBtYWduaXR1ZGUmcXVvdDsgYmVuY2htYXJrLCBJIGNhbiBhY2hpZXZlIDEwTXNwcyBmcm9tIGEg
+QjJ4eCBpbnRvIGFuIE9kcm9pZCBYVTRRIHdpdGggOC1iaXQgc2FtcGxlcyAodGhlcmUncyBhIFVT
+QiBiYW5kd2lkdGggaXNzdWUgdGhlcmUpLiZuYnNwOyBJIGNhbiBldmVuPGJyPg0KJm5ic3A7ICZx
+dW90O2RvIHN0dWZmJnF1b3Q7IGF0IDEwTXNwcywgaW5jbHVkaW5nIHNldmVyYWwgZGlmZmVyZW50
+IHJhZGlvIGFzdHJvbm9teSBzaWduYWwgcHJvY2Vzc2luZyBjaGFpbnMuJm5ic3A7IEkgd291bGQg
+ZXhwZWN0IHlvdXIgWGF2aWVyIHRvIGJlIHNpbWlsYXIuJm5ic3A7DQo8YnI+DQo8YnI+DQo8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+
+--_000_MN2PR16MB35020798AC36662AA6CA506CB9689MN2PR16MB3502namp_--
+
+--===============3907802276898205543==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -873,4 +372,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1473322696581041834==--
+--===============3907802276898205543==--
