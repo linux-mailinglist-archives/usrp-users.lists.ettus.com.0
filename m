@@ -2,368 +2,314 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F6EB468FFC
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Dec 2021 06:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C274690AF
+	for <lists+usrp-users@lfdr.de>; Mon,  6 Dec 2021 08:14:32 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D5C5A384B2E
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Dec 2021 00:14:24 -0500 (EST)
-Received: from out28-74.mail.aliyun.com (out28-74.mail.aliyun.com [115.124.28.74])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7E479384616
-	for <usrp-users@lists.ettus.com>; Mon,  6 Dec 2021 00:13:24 -0500 (EST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07171765|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_social|0.00918019-0.00297119-0.987849;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=zeyuan.li@zengyi-tech.com;NM=1;PH=DS;RN=3;RT=3;SR=0;TI=SMTPD_---.M3hoCWH_1638767594;
-Received: from DESKTOPGVK0E1U(mailfrom:zeyuan.li@zengyi-tech.com fp:SMTPD_---.M3hoCWH_1638767594)
-          by smtp.aliyun-inc.com(33.37.68.38);
-          Mon, 06 Dec 2021 13:13:15 +0800
-From: <zeyuan.li@zengyi-tech.com>
-To: "'Michael Dickens'" <michael.dickens@ettus.com>,
-	"'Marcus D. Leech'" <patchvonbraun@gmail.com>
-References: <00f301d7c978$ef03a150$cd0ae3f0$@zengyi-tech.com> <e2940e0e-515d-a2ac-96a1-5d97c503fa6a@gmail.com> <018b01d7ca10$592a2260$0b7e6720$@zengyi-tech.com> <cf1cae96-1611-bcc4-9bd3-b62e6d809ab6@gmail.com> <01cd01d7ca1f$4e75f830$eb61e890$@zengyi-tech.com> <a607d825-1dba-d69b-4520-be2a17e4a2a5@gmail.com> <007601d7cae0$bd7649d0$3862dd70$@zengyi-tech.com> <ebb155d7-5462-260b-016f-3aa0a469dd52@gmail.com> <00c401d7cb01$d9ee5500$8dcaff00$@zengyi-tech.com> <4f7665d5-76b9-d6ae-c16d-e80c49fee5e7@gmail.com> <CAGNhwTMZyxqyA-FJC7Xb-g--QR4kWSy7Yjy-dmYxe0nuBN9_oQ@mail.gmail.com>
-In-Reply-To: <CAGNhwTMZyxqyA-FJC7Xb-g--QR4kWSy7Yjy-dmYxe0nuBN9_oQ@mail.gmail.com>
-Date: Mon, 6 Dec 2021 13:13:14 +0800
-Message-ID: <00bb01d7ea5f$f907a720$eb16f560$@zengyi-tech.com>
+	by mm2.emwd.com (Postfix) with ESMTP id BF006384784
+	for <lists+usrp-users@lfdr.de>; Mon,  6 Dec 2021 02:14:31 -0500 (EST)
+Received: from mx1.riedel.net (mx1.riedel.net [84.246.251.196])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4F0083841C3
+	for <usrp-users@lists.ettus.com>; Mon,  6 Dec 2021 02:13:32 -0500 (EST)
+Received: from wupms01.riedel.net ([172.21.8.3]:41993)
+	by mx1.riedel.net with esmtps  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
+	(Exim 4.94.2)
+	(envelope-from <Christoph.Schultz@riedel.net>)
+	id 1mu8Bl-0007LR-0J
+	for usrp-users@lists.ettus.com; Mon, 06 Dec 2021 08:13:29 +0100
+Received: from wupms02.riedel.net (172.21.8.4) by wupms01.riedel.net
+ (172.21.8.3) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.2375.17; Mon, 6
+ Dec 2021 08:13:28 +0100
+Received: from wupms02.riedel.net ([fe80::1163:eca1:bd0e:8e57]) by
+ wupms02.riedel.net ([fe80::1163:eca1:bd0e:8e57%21]) with mapi id
+ 15.01.2375.017; Mon, 6 Dec 2021 08:13:28 +0100
+From: "Christoph Schultz (Riedel)" <Christoph.Schultz@riedel.net>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RfnocError: OpTimeout: Control operation timed out waiting for
+ space in command buffer
+Thread-Index: AdfiFRDQ/0Flh6b1Q4izcKgIgkAg2AIWlQGg
+Date: Mon, 6 Dec 2021 07:13:28 +0000
+Message-ID: <c3a818edbb694a94a60a063804386d45@riedel.net>
+References: <e9dc828a6115487ab2fbd574b3b6685c@riedel.net>
+In-Reply-To: <e9dc828a6115487ab2fbd574b3b6685c@riedel.net>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.8.241]
+x-exclaimer-md-config: 6e5a9d98-93d7-4f73-bc2f-3e0581fa6678
+x-exclaimer-md-bifurcation-instance: 0
+x-exclaimer-md-search-key: Uksk+R/aLE627DYL+24jdQ==
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: zh-cn
-Thread-Index: AQE3ddRZwZbIOH3LEMsp8sFULZxREAKNVLCeAgJfVhQBhNs5cAGVISrgApYybY0CRTQeoAFaJrwAAdXk688CKCkBCgGo3CVIrMmgxLA=
-Message-ID-Hash: 5GUEILE72OXNBVMRCKLD6AZIHNNJMVDK
-X-Message-ID-Hash: 5GUEILE72OXNBVMRCKLD6AZIHNNJMVDK
-X-MailFrom: zeyuan.li@zengyi-tech.com
+X-Riedel-SPAMFilter: CheckedBySophosSG
+Message-ID-Hash: 5XR7WFOA3GBNRYMYBMYT22S3EZZJJPQV
+X-Message-ID-Hash: 5XR7WFOA3GBNRYMYBMYT22S3EZZJJPQV
+X-MailFrom: prvs=09748a53c7=christoph.schultz@riedel.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: 'USRP list' <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] =?utf-8?b?562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiDnrZTlpI06IFJlOiDnrZTlpI06IFJlOiBIb3cgdG8gdXNlIEV4dGVybmFsIExPIG9uIE4zMTAgZGV2aWNlPw==?=
+Subject: [USRP-users] Re: RfnocError: OpTimeout: Control operation timed out waiting for space in command buffer
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5GUEILE72OXNBVMRCKLD6AZIHNNJMVDK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5XR7WFOA3GBNRYMYBMYT22S3EZZJJPQV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7659490997841957802=="
+Content-Type: multipart/mixed; boundary="===============3076655690651534127=="
 
-This is a multipart message in MIME format.
-
---===============7659490997841957802==
+--===============3076655690651534127==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_00BC_01D7EAA3.072C6DC0"
-Content-Language: zh-cn
+	boundary="_000_c3a818edbb694a94a60a063804386d45riedelnet_"
 
-This is a multipart message in MIME format.
+--_000_c3a818edbb694a94a60a063804386d45riedelnet_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-------=_NextPart_000_00BC_01D7EAA3.072C6DC0
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+RGVhciBVU1JQLVVzZXJzLA0KDQpJIHdhbnRlZCB0byBnZXQgYmFjayB0byB5b3Ugb24gdGhlIHRv
+cGljIG1lbnRpb25lZCBiZWxvdy4gTWVhbndoaWxlIEkgcmV3b3JrZWQgbXkgY29kZSB0byB3b3Jr
+IGRpcmVjdGx5IHdpdGggdGhlIHVoZCBQeXRob24gY2xhc3MgaW5zdGVhZCBvZiB1c2luZyBhIGdu
+dXJhZGlvIHdyYXBwZXIuDQoNClVuZm9ydHVuYXRlbHkgSSBydW4gaW50byB0aGUgaWRlbnRpY2Fs
+IGlzc3VlIGFnYWluLg0KDQpDb2RlIGlzOg0KDQo+Pg0KaW1wb3J0IHVoZA0KaW1wb3J0IG51bXB5
+IGFzIG5wDQoNCmRldmljZSA9IHVoZC51c3JwLk11bHRpVVNSUCjigJx0eXBlPXgzMDAsYWRkcj0x
+OTIuMTY4LjQwLjLigJ0pDQoNCmZvciBpIGluIHJhbmdlKDIwMCk6DQogICAgICAgICAgICAgICAg
+c2lnID0gZGV2aWNlLnJlY3ZfbnVtX3NhbXBzKGludCgxZTUpLDkwMGU2LDRlNixbMF0sMCkNCiAg
+ICAgICAgICAgICAgICBwcmludChucC5tZWFuKHNpZykpDQoNCjw8DQoNCkl04oCZbGwgY3Jhc2gg
+YWZ0ZXIgMTA0IHJ1bnMgaW4gZmlsZSBtdWx0aV91c3JwLnB5IG9uIGxpbmUgNTQ6DQoNCj4+DQpz
+dXBlcihNdWx0aVVTUlAsIHNlbGYpLnNldF9yeF9nYWluKGdhaW4sY2hhbikNCjw8DQoNCndpdGgg
+dGhlIG1lc3NhZ2UgbWVudGlvbmVkIGJlbG93DQoNCj4+DQpSZm5vY0Vycm9yOiBPcFRpbWVvdXQ6
+IENvbnRyb2wgb3BlcmF0aW9uIHRpbWVkIG91dCB3YWl0aW5nIGZvciBzcGFjZSBpbiBjb21tYW5k
+IGJ1ZmZlcg0KPDwNCg0KQW55Ym9keSBnb3QgYW4gaWRlYSwgaWYgdGhpcyBtaWdodCBiZSBzb21l
+IGtub3duIGlzc3VlIHdpdGggZS5nLiB0aGUgRlBHQSBjb2RlLCBvciB0aGUgZHJpdmVycz8NCg0K
+QmVzdCByZWdhcmRzDQpDaHJpc3RvcGgNCg0KDQoNCkNocmlzdG9waCBTY2h1bHR6DQpSRiBTeXN0
+ZW0gQXJjaGl0ZWN0DQoNCg0KW1JJRURFTCBhdCBTb2NpYWwgTWVkaWFdPGh0dHBzOi8vd3d3LnJp
+ZWRlbC5uZXQvZW4vc29jaWFsLW1lZGlhLWxpbmtzLz4NCg0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXw0KDQpSSUVERUwNCkNvbW11bmljYXRpb25zIEdtYkggJiBDby4gS0cNClVlbGxlbmRh
+aGxlciBTdHIuIDM1Mw0KNDIxMDkgV3VwcGVydGFsDQpEZXV0c2NobGFuZA0KDQpwaG9uZTogKzQ5
+IDIwMiAyOTItOTE1MA0KDQpDaHJpc3RvcGguU2NodWx0ekByaWVkZWwubmV0PG1haWx0bzpDaHJp
+c3RvcGguU2NodWx0ekByaWVkZWwubmV0Pg0Kd3d3LnJpZWRlbC5uZXQ8aHR0cDovL3d3dy5yaWVk
+ZWwubmV0Pg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KUklFREVMIENvbW11bmljYXRp
+b25zIEdtYkggJiBDby4gS0cNClJlZ2lzdGVyZ2VyaWNodDogQW10c2dlcmljaHQgV3VwcGVydGFs
+IEhSQSAyMjM5MA0KVW1zYXR6c3RldWVyLUlkZW50aWZpa2F0aW9uc251bW1lcjogREUgODE0OTA2
+OTg0DQpLb21wbGVtZW50w6RyaW46IFJJRURFTCBDb21tdW5pY2F0aW9ucyBJbnRlcm5hdGlvbmFs
+IEdtYkgsIFd1cHBlcnRhbA0KUmVnaXN0ZXJnZXJpY2h0OiBBbXRzZ2VyaWNodCBXdXBwZXJ0YWwg
+SFJCIDE3MDM4DQpHZXNjaMOkZnRzZsO8aHJlcjogVGhvbWFzIFJpZWRlbCwgRnJhbmsgRWlzY2hl
+dCwgTWFydGluIEJlcmdlcg0KDQpGcm9tOiBDaHJpc3RvcGggU2NodWx0eiAoUmllZGVsKSA8Q2hy
+aXN0b3BoLlNjaHVsdHpAcmllZGVsLm5ldD4NClNlbnQ6IERvbm5lcnN0YWcsIDI1LiBOb3ZlbWJl
+ciAyMDIxIDE3OjA4DQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFJm
+bm9jRXJyb3I6IE9wVGltZW91dDogQ29udHJvbCBvcGVyYXRpb24gdGltZWQgb3V0IHdhaXRpbmcg
+Zm9yIHNwYWNlIGluIGNvbW1hbmQgYnVmZmVyDQoNCkRlYXIgVVNSUC1Vc2VycywNCg0KSSBhbSBm
+YWNpbmcgYSBjcmFzaCB3aGVuIHJlcGVhdGVkbHkgcmVjZWl2aW5nIGRhdGEgb24gYSBYMzAwIHVz
+aW5nIEdudXJhZGlvLg0KVG8gcnVuIGludG8gdGhpcyBpc3N1ZSwgSSBsb2FkIGEgdG9wX2Jsb2Nr
+IHdpdGggYSB1c3JwX3NvdXJjZSwgYSBoZWFkIGFuZCBhIGZpbGVfc2luayBpbml0aWFsbHkuDQpU
+aGVuIGEgc2VxdWVuY2Ugb2Ygc3RhcnQoKS13YWl0KCktc3RvcCgpLXdhaXQoKS1yZWNvbmZpZ3Vy
+ZSBpcyBydW4gZm9yIGUuZy4gMjAwIHRpbWVzLg0KDQpBZnRlciBhIGRldGVybWluaXN0aWMgbnVt
+YmVyIG9mIGN5Y2xlcyB0aGUgZm9sbG93aW5nIGVycm9yIHdpbGwgYXBwZWFyOg0KDQp0aHJlYWRb
+dGhyZWFkLXBlci1ibG9ja1swXSA8YmxvY2sgdXNycF9zb3VyY2UoMSk+XTogUmZub2NFcnJvcjog
+T3BUaW1lb3V0OiBDb250cm9sIG9wZXJhdGlvbiB0aW1lZCBvdXQgd2FpdGluZyBmb3Igc3BhY2Ug
+aW4gY29tbWFuZCBidWZmZXINClNpbWlsYXIgdG8gdGhlIGlzc3VlIGRpc2N1c3NlZCBoZXJlOg0K
+aHR0cHM6Ly93d3cubWFpbC1hcmNoaXZlLmNvbS91c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbS9t
+c2cxMTQxMy5odG1sDQpteSBmaXJzdCBpZGVhIHdhcywgdGhhdCB0aGUgY29tbWFuZCBidWZmZXIg
+aXMgZ2V0dGluZyBmaWxsZWQgZmFzdGVyIHRoYW4gaXQgaXMgc2VudCB0byB0aGUgVVNSUCBkZXZp
+Y2UsIGJ1dCBhcnRpZmljaWFsIHNsZWVwcyBiZXR3ZWVuIHRoZSBsb29wIGN5Y2xlcyBkbyBub3Qg
+Y2hhbmdlIHRoZSBiZWhhdmlvciBhdCBhbGwuDQoNCkkgd2FzIGFsc28gbm90IHN1Y2Nlc3NmdWwg
+aW4gcmVsb2FkaW5nIHRoZSB1c3JwX3NvdXJjZSBvYmplY3Qgb24gUHl0aG9uIGxldmVsICh3aXRo
+b3V0IHN0b3BwaW5nIHRoZSBmdWxsIHB5dGhvbiBwcm9jZXNzLCBhbmQgcmVzdGFydGluZyBpdCBh
+Z2FpbiBtYW51YWxseSkuDQoNClNvIGl0IGxvb2tzIGxpa2UgdGhlIGdudXJhZGlvIGZ1bmN0aW9u
+cyBsZWF2ZSBzb21ldGhpbmcgaW4gdGhlIGNvbW1hbmQgYnVmZmVyIHdoaWNoIEkgY291bGRu4oCZ
+dCBjbGVhciBzbyBmYXIgd2l0aG91dCByZWxvYWRpbmcgdGhlIHdob2xlIGxpYnJhcnkgYnkgcmVz
+dGFydGluZyBQeXRob24uDQoNCklzIHRoaXMgYSBrbm93biBpc3N1ZT8gQXJlIHRoZXJlIGFueSB3
+YXlzIHRvIG1hbnVhbGx5IHJlbGVhc2UgdGhlIGNvbW1hbmQgYnVmZmVyLCBvciBpcyBpdCBhIHBv
+dGVudGlhbCBidWcsIHdoaWNoIHNob3VsZCBnbyB0byB0aGUgYnVnIHRyYWNrZXIgb2YgZ3I/DQoN
+Ck1hbnkgdGhhbmtzIGluIGFkdmFuY2UgYW5kDQpCZXN0IHJlZ2FyZHMNCkNocmlzdG9waA0KDQoN
+Cg0KDQo=
 
-Hi Marcus,
+--_000_c3a818edbb694a94a60a063804386d45riedelnet_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-       I use a signal source output a tone at 5GHz .And I use N310 =
-External LO mode,it received signal at 2.5GHz.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjwhLS0gVGVtcGxhdGUgZ2VuZXJhdGVkIGJ5ICBvbiAw
+ODoxMzoyOCBNb250YWcsIDYgRGV6ZW1iZXIgMjAyMSAtLT4NCjxtZXRhIGh0dHAtZXF1aXY9IkNv
+bnRlbnQtVHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0
+eXBlPSJ0ZXh0L2NzcyI+UC5JbXByaW50VW5pcXVlSUQgew0KCU1BUkdJTjogMGNtIDBjbSAwcHQN
+Cn0NCkxJLkltcHJpbnRVbmlxdWVJRCB7DQoJTUFSR0lOOiAwY20gMGNtIDBwdA0KfQ0KRElWLklt
+cHJpbnRVbmlxdWVJRCB7DQoJTUFSR0lOOiAwY20gMGNtIDBwdA0KfQ0KVEFCTEUuSW1wcmludFVu
+aXF1ZUlEVGFibGUgew0KCU1BUkdJTjogMGNtIDBjbSAwcHQNCn0NCkRJVi5TZWN0aW9uMSB7DQoJ
+cGFnZTogU2VjdGlvbjENCn0NCjwvc3R5bGU+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3IiIGNvbnRl
+bnQ9Ik1pY3Jvc29mdCBXb3JkIDE1IChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT48IS0tDQov
+KiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlh
+IE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8q
+IFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNv
+Tm9ybWFsDQoJe21hcmdpbjowY207DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToi
+Q2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
+cmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVw
+bHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4
+dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250
+LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBw
+dDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDIuMGNtIDcwLjg1cHQ7fQ0KZGl2LldvcmRTZWN0
+aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5
+XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4N
+CjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlv
+dXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286
+c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1V
+UyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWst
+d29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+RGVhciBVU1JQLVVzZXJzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
+cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIHdhbnRlZCB0byBnZXQg
+YmFjayB0byB5b3Ugb24gdGhlIHRvcGljIG1lbnRpb25lZCBiZWxvdy4gTWVhbndoaWxlIEkgcmV3
+b3JrZWQgbXkgY29kZSB0byB3b3JrIGRpcmVjdGx5IHdpdGggdGhlIHVoZCBQeXRob24gY2xhc3Mg
+aW5zdGVhZCBvZiB1c2luZyBhIGdudXJhZGlvIHdyYXBwZXIuPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlVuZm9ydHVuYXRlbHkgSSBydW4gaW50byB0aGUgaWRlbnRpY2FsIGlzc3VlIGFnYWluLjxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Db2RlIGlzOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4m
+Z3Q7Jmd0OzxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+aW1wb3J0
+IHVoZDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+aW1wb3J0IG51bXB5IGFz
+IG5wPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmRldmljZSA9IHVoZC51c3JwLk11bHRpVVNSUCji
+gJx0eXBlPXgzMDAsYWRkcj0xOTIuMTY4LjQwLjLigJ0pPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PmZvciBpIGluIHJhbmdlKDIwMCk6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgPHNwYW4gbGFuZz0iREUiPnNpZyA9
+IGRldmljZS5yZWN2X251bV9zYW1wcyhpbnQoMWU1KSw5MDBlNiw0ZTYsWzBdLDApPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iREUiPiZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
+YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBwcmludChucC5tZWFuKHNpZykpPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iREUiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkRFIj4mbHQ7Jmx0OzxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIGxhbmc9IkRFIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj5JdOKAmWxsIGNyYXNoIGFmdGVyIDEwNCBydW5zIGluIGZpbGUgbXVs
+dGlfdXNycC5weSBvbiBsaW5lIDU0OjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mZ3Q7Jmd0Ozxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+c3VwZXIoTXVsdGlVU1JQ
+LCBzZWxmKS5zZXRfcnhfZ2FpbihnYWluLGNoYW4pPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj4mbHQ7Jmx0OzxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj53aXRoIHRo
+ZSBtZXNzYWdlIG1lbnRpb25lZCBiZWxvdzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mZ3Q7Jmd0
+OzxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+UmZub2NFcnJvcjog
+T3BUaW1lb3V0OiBDb250cm9sIG9wZXJhdGlvbiB0aW1lZCBvdXQgd2FpdGluZyBmb3Igc3BhY2Ug
+aW4gY29tbWFuZCBidWZmZXI8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZs
+dDsmbHQ7PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFueWJvZHkgZ290IGFuIGlkZWEs
+IGlmIHRoaXMgbWlnaHQgYmUgc29tZSBrbm93biBpc3N1ZSB3aXRoIGUuZy4gdGhlIEZQR0EgY29k
+ZSwgb3IgdGhlIGRyaXZlcnM/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJlc3QgcmVnYXJkczxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Q2hyaXN0b3BoPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj48L2Rpdj4NCjwvZGl2Pg0K
+PGZvbnQgZmFjZT0iQXJpYWwiPjwvZm9udD48YnI+DQo8Zm9udCBzdHlsZT0iZm9udC1mYW1pbHk6
+QXJpYWw7Zm9udC1zaXplOjExcHQ7Zm9udC13ZWlnaHQ6Ym9sZDsiPkNocmlzdG9waDwvZm9udD48
+Zm9udCBmYWNlPSJBcmlhbCI+Jm5ic3A7PC9mb250Pjxmb250IHN0eWxlPSJmb250LWZhbWlseTpB
+cmlhbDtmb250LXNpemU6MTFwdDtmb250LXdlaWdodDpib2xkOyI+U2NodWx0ejwvZm9udD48YnI+
+DQo8Zm9udCBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjEwcHQ7Ij5SRiBTeXN0
+ZW0gQXJjaGl0ZWN0PC9mb250Pjxicj4NCjxicj4NCjxicj4NCjx0YWJsZSBjZWxscGFkZGluZz0i
+MCIgY2VsbHNwYWNpbmc9IjAiIHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDsgdGV4dC1hbGlnbjog
+bGVmdDsgdmVydGljYWwtYWxpZ246IHRvcDsiIGNsYXNzPSJjYmQzZTg3MS0xZWE2LTRiZTQtODEw
+Ni0xNzZhZDMyZDA5MzlUYWJsZSI+DQo8dGJvZHk+DQo8dHIgc3R5bGU9InRleHQtYWxpZ246IGxl
+ZnQ7IHZlcnRpY2FsLWFsaWduOiB0b3A7ICI+DQo8dGQgYWxpZ249IkNlbnRlciIgc3R5bGU9InBh
+ZGRpbmctcmlnaHQ6IDVweDsgIj48Zm9udCBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Ij48Zm9u
+dCBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Ij48YSBocmVmPSJodHRwczovL3d3dy5yaWVkZWwu
+bmV0L2VuL3NvY2lhbC1tZWRpYS1saW5rcy8iIHRhcmdldD0iIj48aW1nIHN0eWxlPSJib3JkZXI6
+IDBweCBTb2xpZCA7ICIgc3JjPSJodHRwczovL3d3dy5yaWVkZWwubmV0L2ZpbGVhZG1pbi91c2Vy
+X3VwbG9hZC8xMDA0LXNvY2lhbC1tZWRpYS9JY29ucy9TaWduYXR1ci5qcGciIHRpdGxlPSJSSUVE
+RUwgYXQgU29jaWFsIE1lZGlhIiBhbHQ9IlJJRURFTCBhdCBTb2NpYWwgTWVkaWEiPjwvYT48L2Zv
+bnQ+PC9mb250PjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8Zm9udCBmYWNlPSJB
+cmlhbCI+X19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NCjxicj4NCjwvZm9udD48Zm9u
+dCBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjEwcHQ7Ij5SSUVERUw8YnI+DQpD
+b21tdW5pY2F0aW9ucyBHbWJIICZhbXA7IENvLiBLRzwvZm9udD48YnI+DQo8Zm9udCBzdHlsZT0i
+Zm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjEwcHQ7Ij5VZWxsZW5kYWhsZXIgU3RyLiAzNTM8
+L2ZvbnQ+PGJyPg0KPGZvbnQgc2l6ZT0iMiIgZmFjZT0iQXJpYWwiPjxmb250IHN0eWxlPSJmb250
+LWZhbWlseTpBcmlhbDtmb250LXNpemU6MTBwdDsiPjQyMTA5PC9mb250PiZuYnNwOzxmb250IHN0
+eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNpemU6MTBwdDsiPld1cHBlcnRhbDwvZm9udD48
+L2ZvbnQ+PGJyPg0KPGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZToxMHB0
+OyI+RGV1dHNjaGxhbmQ8L2ZvbnQ+PGJyPg0KPGJyPg0KPGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5
+OkFyaWFsO2ZvbnQtc2l6ZToxMHB0OyI+PGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2Zv
+bnQtc2l6ZToxMHB0OyI+cGhvbmU6DQo8L2ZvbnQ+JiM0Mzs0OSAyMDIgMjkyLTkxNTA8Zm9udCBz
+dHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjEwcHQ7Ij48YnI+DQo8L2ZvbnQ+PC9m
+b250Pjxicj4NCjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNpemU6MTBwdDsi
+PjxhIGhyZWY9Im1haWx0bzpDaHJpc3RvcGguU2NodWx0ekByaWVkZWwubmV0IiB0aXRsZT0iQ2xp
+Y2sgdG8gc2VuZCBlbWFpbCB0byBDaHJpc3RvcGggU2NodWx0eiAoUmllZGVsKSIgdGFyZ2V0PSIi
+IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNpemU6MTBwdDsiPjxzcGFuIHN0eWxlPSJm
+b250LWZhbWlseTpBcmlhbDsgZm9udC1zaXplOjEwcHQ7Ij5DaHJpc3RvcGguU2NodWx0ekByaWVk
+ZWwubmV0PC9zcGFuPjwvYT48L3NwYW4+PGJyPg0KPHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFy
+aWFsO2ZvbnQtc2l6ZToxMHB0OyI+PGEgaHJlZj0iaHR0cDovL3d3dy5yaWVkZWwubmV0IiB0aXRs
+ZT0iIiB0YXJnZXQ9IiIgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZToxMHB0OyI+
+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsOyBmb250LXNpemU6MTBwdDsiPnd3dy5yaWVk
+ZWwubmV0PC9zcGFuPjwvYT48L3NwYW4+PGJyPg0KPGZvbnQgZmFjZT0iQXJpYWwiPl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX188YnI+DQo8L2ZvbnQ+PGZvbnQgZmFjZT0iQXJpYWwiPjxmb250
+IHNpemU9IjEiPjxmb250IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtmb250LXNpemU6OHB0OyI+
+UklFREVMIENvbW11bmljYXRpb25zIEdtYkggJmFtcDsgQ28uIEtHPGJyPg0KUmVnaXN0ZXJnZXJp
+Y2h0OiBBbXRzZ2VyaWNodCBXdXBwZXJ0YWwgSFJBIDIyMzkwPGJyPg0KVW1zYXR6c3RldWVyLUlk
+ZW50aWZpa2F0aW9uc251bW1lcjogREUgODE0OTA2OTg0PGJyPg0KS29tcGxlbWVudMOkcmluOiBS
+SUVERUwgQ29tbXVuaWNhdGlvbnMgSW50ZXJuYXRpb25hbCBHbWJILCBXdXBwZXJ0YWw8YnI+DQpS
+ZWdpc3RlcmdlcmljaHQ6IEFtdHNnZXJpY2h0IFd1cHBlcnRhbCBIUkIgMTcwMzg8YnI+DQpHZXNj
+aMOkZnRzZsO8aHJlcjogVGhvbWFzIFJpZWRlbCwgRnJhbmsgRWlzY2hldCwgTWFydGluIEJlcmdl
+cjwvZm9udD48YnI+DQo8YnI+DQo8L2ZvbnQ+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0K
+PGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAx
+LjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
+PkZyb206PC9iPiBDaHJpc3RvcGggU2NodWx0eiAoUmllZGVsKSAmbHQ7Q2hyaXN0b3BoLlNjaHVs
+dHpAcmllZGVsLm5ldCZndDsNCjxicj4NCjxiPlNlbnQ6PC9iPiBEb25uZXJzdGFnLCAyNS4gTm92
+ZW1iZXIgMjAyMSAxNzowODxicj4NCjxiPlRvOjwvYj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmZub2NFcnJvcjogT3BUaW1lb3V0OiBDb250cm9sIG9w
+ZXJhdGlvbiB0aW1lZCBvdXQgd2FpdGluZyBmb3Igc3BhY2UgaW4gY29tbWFuZCBidWZmZXI8bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkRFIj5EZWFy
+IFVTUlAtVXNlcnMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iREUiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+SSBhbSBmYWNpbmcgYSBjcmFz
+aCB3aGVuIHJlcGVhdGVkbHkgcmVjZWl2aW5nIGRhdGEgb24gYSBYMzAwIHVzaW5nIEdudXJhZGlv
+LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VG8gcnVuIGludG8gdGhpcyBp
+c3N1ZSwgSSBsb2FkIGEgdG9wX2Jsb2NrIHdpdGggYSB1c3JwX3NvdXJjZSwgYSBoZWFkIGFuZCBh
+IGZpbGVfc2luayBpbml0aWFsbHkuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5UaGVuIGEgc2VxdWVuY2Ugb2Ygc3RhcnQoKS13YWl0KCktc3RvcCgpLXdhaXQoKS1yZWNvbmZp
+Z3VyZSBpcyBydW4gZm9yIGUuZy4gMjAwIHRpbWVzLjxicj4NCjxicj4NCkFmdGVyIGEgZGV0ZXJt
+aW5pc3RpYyBudW1iZXIgb2YgY3ljbGVzIHRoZSBmb2xsb3dpbmcgZXJyb3Igd2lsbCBhcHBlYXI6
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+dGhy
+ZWFkW3RocmVhZC1wZXItYmxvY2tbMF0gJmx0O2Jsb2NrIHVzcnBfc291cmNlKDEpJmd0O106IFJm
+bm9jRXJyb3I6IE9wVGltZW91dDogQ29udHJvbCBvcGVyYXRpb24gdGltZWQgb3V0IHdhaXRpbmcg
+Zm9yIHNwYWNlIGluIGNvbW1hbmQgYnVmZmVyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5TaW1pbGFyIHRvIHRoZSBpc3N1ZSBkaXNjdXNzZWQgaGVyZTo8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxhIGhyZWY9Imh0dHBzOi8vd3d3Lm1haWwtYXJjaGl2
+ZS5jb20vdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20vbXNnMTE0MTMuaHRtbCI+aHR0cHM6Ly93
+d3cubWFpbC1hcmNoaXZlLmNvbS91c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbS9tc2cxMTQxMy5o
+dG1sPC9hPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+bXkgZmlyc3QgaWRl
+YSB3YXMsIHRoYXQgdGhlIGNvbW1hbmQgYnVmZmVyIGlzIGdldHRpbmcgZmlsbGVkIGZhc3RlciB0
+aGFuIGl0IGlzIHNlbnQgdG8gdGhlIFVTUlAgZGV2aWNlLCBidXQgYXJ0aWZpY2lhbCBzbGVlcHMg
+YmV0d2VlbiB0aGUgbG9vcCBjeWNsZXMgZG8gbm90IGNoYW5nZSB0aGUgYmVoYXZpb3IgYXQgYWxs
+LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIHdhcyBhbHNvIG5vdCBzdWNjZXNzZnVsIGluIHJl
+bG9hZGluZyB0aGUgdXNycF9zb3VyY2Ugb2JqZWN0IG9uIFB5dGhvbiBsZXZlbCAod2l0aG91dCBz
+dG9wcGluZyB0aGUgZnVsbCBweXRob24gcHJvY2VzcywgYW5kIHJlc3RhcnRpbmcgaXQgYWdhaW4g
+bWFudWFsbHkpLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TbyBpdCBsb29rcyBsaWtlIHRoZSBn
+bnVyYWRpbyBmdW5jdGlvbnMgbGVhdmUgc29tZXRoaW5nIGluIHRoZSBjb21tYW5kIGJ1ZmZlciB3
+aGljaCBJIGNvdWxkbuKAmXQgY2xlYXIgc28gZmFyIHdpdGhvdXQgcmVsb2FkaW5nIHRoZSB3aG9s
+ZSBsaWJyYXJ5IGJ5IHJlc3RhcnRpbmcgUHl0aG9uLjxicj4NCjxicj4NCklzIHRoaXMgYSBrbm93
+biBpc3N1ZT8gQXJlIHRoZXJlIGFueSB3YXlzIHRvIG1hbnVhbGx5IHJlbGVhc2UgdGhlIGNvbW1h
+bmQgYnVmZmVyLCBvciBpcyBpdCBhIHBvdGVudGlhbCBidWcsIHdoaWNoIHNob3VsZCBnbyB0byB0
+aGUgYnVnIHRyYWNrZXIgb2YgZ3I/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk1hbnkgdGhhbmtz
+IGluIGFkdmFuY2UgYW5kPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5CZXN0
+IHJlZ2FyZHM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkNocmlzdG9waDxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YnI+DQo8YnI+DQo8L2ZvbnQ+DQo8L2JvZHk+DQo8L2h0
+bWw+DQo=
 
-But I try to change LO Source to another frequency such as 4GHz. In this =
-situation, the center frequency remain at 2.5GHz but not half of 4GHz.
+--_000_c3a818edbb694a94a60a063804386d45riedelnet_--
 
-I want to know what should I do when I try to change center frequency in =
-External LO mode?
-
-=20
-
-=20
-
-=20
-
-=20
-
-=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=E8=
-=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
-
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
-=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-
-=E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88=
-
-
-=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=
-=85=AC=E5=8F=B8
-
-=E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
-
-=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=
-=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=
-=91SOHO 1108
-=E7=BD=91=E5=9D=80=EF=BC=9A <http://www.zengyi-tech.com> =
-www.zengyi-tech.com
-
-=20
-
-=E5=8F=91=E4=BB=B6=E4=BA=BA: Michael Dickens <michael.dickens@ettus.com> =
-
-=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: =
-2021=E5=B9=B410=E6=9C=8827=E6=97=A5 22:06
-=E6=94=B6=E4=BB=B6=E4=BA=BA: Marcus D. Leech <patchvonbraun@gmail.com>
-=E6=8A=84=E9=80=81: =E6=9D=8E=E6=B3=BD=E8=BF=9C =
-<zeyuan.li@zengyi-tech.com>; USRP list <usrp-users@lists.ettus.com>
-=E4=B8=BB=E9=A2=98: [USRP-users] Re: =E7=AD=94=E5=A4=8D: Re: =
-=E7=AD=94=E5=A4=8D: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=E5=A4=8D: Re: How =
-to use External LO on N310 device?
-
-=20
-
-Forgot to mention earlier: at device initialization you have to supply =
-the external LO at 5 GHz,
-
-as well as set the device argument as noted. Once the device is fully =
-initialized then you can
-
-change the center frequency & the supplied LO must be 2x that. Hope this =
-helps! - MLD
-
-=20
-
-=20
-
-On Wed, Oct 27, 2021 at 9:51 AM Marcus D. Leech <patchvonbraun@gmail.com =
-<mailto:patchvonbraun@gmail.com> > wrote:
-
-On 2021-10-27 03:11, zeyuan.li@zengyi-tech.com =
-<mailto:zeyuan.li@zengyi-tech.com>  wrote:
-
-I set the correct device arguments,but it doesn=E2=80=99t work correctly =
-and also there is no error report.
-
-I don=E2=80=99t what can I do next .
-
-So I want to config this argument in mpm.conf file or usrp_hwd.conf file =
-to try to use external LO .
-
-I couldn=E2=80=99t find this file named "usrp-hwd.conf" in =
-=E2=80=9C/usr=E2=80=9D .and also =E2=80=9Cmpm.conf=E2=80=9D
-
-=20
-
-Again, modifying the MPM config file is NOT necessary to get external LO =
-to work.
-
-What frequency are you trying to use?
-
-Can you share the lines of code you use to set up the N310 for shared LO =
-operation--including the initial device "make" with device arguments, =
-etc.
-
-
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>=20
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
-<mailto:usrp-users-leave@lists.ettus.com>=20
-
-
-------=_NextPart_000_00BC_01D7EAA3.072C6DC0
-Content-Type: text/html;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:=E5=AE=8B=E4=BD=93;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:=E7=AD=89=E7=BA=BF;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=E5=AE=8B=E4=BD=93";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=E7=AD=89=E7=BA=BF";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:=E5=AE=8B=E4=BD=93;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:=E5=AE=8B=E4=BD=93;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:=E7=AD=89=E7=BA=BF;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:=E7=AD=89=E7=BA=BF;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>Hi =
-Marcus,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 I use a signal source output a tone at 5GHz .And I =
-use N310 External LO mode,it received signal at =
-2.5GHz.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>But I try to =
-change LO Source to another frequency such as 4GHz.</span><span =
-lang=3DEN-US> </span><span lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>In this =
-situation, the center frequency remain at 2.5GHz but not half of =
-4GHz.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>I want to know =
-what should I do when I try to change center frequency in External LO =
-mode?<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
-p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal>=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=
-=97=AE=E9=A2=98=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=
-=BB=EF=BC=81<span lang=3DEN-US><o:p></o:p></span></p><p =
-class=3DMsoNormal>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
-=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94<span =
-lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E6=9D=8E=E6=B3=BD=E8=BF=9C<span =
-lang=3DEN-US>|</span>=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88</span>=
-<span lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=
-=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=85=AC=E5=8F=B8</span><span =
-lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E6=89=8B=E6=9C=BA=EF=BC=9A<span =
-lang=3DEN-US>13121162044</span></span><span =
-lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=
-=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=
-=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=91<span lang=3DEN-US>SOHO =
-1108<br></span>=E7=BD=91=E5=9D=80=EF=BC=9A<u><span lang=3DEN-US><a =
-href=3D"http://www.zengyi-tech.com"><span =
-style=3D'color:#0563C1'>www.zengyi-tech.com</span></a></span></u></span><=
-span lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
-p></span></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E4=BB=
-=B6=E4=BA=BA<span lang=3DEN-US>:</span></span></b><span lang=3DEN-US =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> Michael =
-Dickens &lt;michael.dickens@ettus.com&gt; <br></span><b><span =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E9=80=
-=81=E6=97=B6=E9=97=B4<span lang=3DEN-US>:</span></span></b><span =
-lang=3DEN-US style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> =
-2021</span><span =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=B9=B4<span =
-lang=3DEN-US>10</span>=E6=9C=88<span =
-lang=3DEN-US>27</span>=E6=97=A5<span lang=3DEN-US> =
-22:06<br></span><b>=E6=94=B6=E4=BB=B6=E4=BA=BA<span =
-lang=3DEN-US>:</span></b><span lang=3DEN-US> Marcus D. Leech =
-&lt;patchvonbraun@gmail.com&gt;<br></span><b>=E6=8A=84=E9=80=81<span =
-lang=3DEN-US>:</span></b><span lang=3DEN-US> =
-</span>=E6=9D=8E=E6=B3=BD=E8=BF=9C<span lang=3DEN-US> =
-&lt;zeyuan.li@zengyi-tech.com&gt;; USRP list =
-&lt;usrp-users@lists.ettus.com&gt;<br></span><b>=E4=B8=BB=E9=A2=98<span =
-lang=3DEN-US>:</span></b><span lang=3DEN-US> [USRP-users] Re: =
-</span>=E7=AD=94=E5=A4=8D<span lang=3DEN-US>: Re: =
-</span>=E7=AD=94=E5=A4=8D<span lang=3DEN-US>: =
-</span>=E7=AD=94=E5=A4=8D<span lang=3DEN-US>: Re: =
-</span>=E7=AD=94=E5=A4=8D<span lang=3DEN-US>: Re: How to use External LO =
-on N310 device?<o:p></o:p></span></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><div><div><div><div><p =
-class=3DMsoNormal><span lang=3DEN-US>Forgot to mention earlier: at =
-device initialization you have&nbsp;to supply the external LO at 5 =
-GHz,<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-lang=3DEN-US>as well as set the device argument as noted. Once the =
-device is fully initialized then you =
-can<o:p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-lang=3DEN-US>change the center frequency &amp; the supplied LO must be =
-2x that. Hope this helps! - =
-MLD<o:p></o:p></span></p></div></div></div><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><div><div><p =
-class=3DMsoNormal><span lang=3DEN-US>On Wed, Oct 27, 2021 at 9:51 AM =
-Marcus D. Leech &lt;<a =
-href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; =
-wrote:<o:p></o:p></span></p></div><blockquote =
-style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm =
-6.0pt;margin-left:4.8pt;margin-right:0cm'><div><div><p =
-class=3DMsoNormal><span lang=3DEN-US>On 2021-10-27 03:11, <a =
-href=3D"mailto:zeyuan.li@zengyi-tech.com" =
-target=3D"_blank">zeyuan.li@zengyi-tech.com</a> =
-wrote:<o:p></o:p></span></p></div><blockquote =
-style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><div><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-US>I set the correct device arguments,but it doesn=E2=80=99t =
-work correctly and also there is no error =
-report.<o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-US>I don=E2=80=99t what can I do next =
-.<o:p></o:p></span></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-US>So I want to config this argument in mpm.conf file or =
-usrp_hwd.conf file to try to use external LO .<o:p></o:p></span></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto'><span =
-lang=3DEN-US>I couldn=E2=80=99t find this file named =
-&quot;usrp-hwd.conf&quot; in =E2=80=9C/usr=E2=80=9D .and also =
-=E2=80=9Cmpm.conf=E2=80=9D<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></blockquote><p =
-class=3DMsoNormal style=3D'margin-bottom:12.0pt'><span =
-lang=3DEN-US>Again, modifying the MPM config file is NOT necessary to =
-get external LO to work.<br><br>What frequency are you trying to =
-use?<br><br>Can you share the lines of code you use to set up the N310 =
-for shared LO operation--including the initial device &quot;make&quot; =
-with device arguments, etc.<br><br><o:p></o:p></span></p></div><p =
-class=3DMsoNormal><span =
-lang=3DEN-US>_______________________________________________<br>USRP-user=
-s mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank">usrp-users@lists.ettus.com</a><br>To unsubscribe send =
-an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com" =
-target=3D"_blank">usrp-users-leave@lists.ettus.com</a><o:p></o:p></span><=
-/p></blockquote></div></div></body></html>
-------=_NextPart_000_00BC_01D7EAA3.072C6DC0--
-
---===============7659490997841957802==
+--===============3076655690651534127==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -373,4 +319,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7659490997841957802==--
+--===============3076655690651534127==--
