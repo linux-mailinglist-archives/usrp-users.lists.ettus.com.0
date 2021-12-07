@@ -2,85 +2,152 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F97C46B217
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Dec 2021 06:05:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 81AAA46B21B
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Dec 2021 06:11:37 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6CE1B384741
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Dec 2021 00:05:47 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 1E3CE3844D1
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Dec 2021 00:11:36 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AqMKAhwc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=comcast.net header.i=@comcast.net header.b="yPNf+DPi";
 	dkim-atps=neutral
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id BB592384734
-	for <usrp-users@lists.ettus.com>; Tue,  7 Dec 2021 00:04:31 -0500 (EST)
-Received: by mail-qk1-f171.google.com with SMTP id 132so13544771qkj.11
-        for <usrp-users@lists.ettus.com>; Mon, 06 Dec 2021 21:04:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=sRvyc/pbYuFf8HUlWoBbNz6lkUKgjQPtv0UDVke76Rw=;
-        b=AqMKAhwcdsM4jrEwm0AqOKk7XCdg1LpEu3c/Lcwhb0Ea81vnZe3psrt4SGjhl8hkeN
-         AZr5OxeawkdAbuPtyWohnBR7ycjsW5tVaPhTjrWJj4CXZStM+z0zjpWu4ZlKsSn6nbmH
-         ZeVhK9kPA+TPEnz8Kk2WU5ZOpfdCt91CBAagi/5RN4tPkIIcFQW3UNGxNX08GPEXEtHc
-         r3aN79Wq+liUo0xTBAqSnbYAXrGBbchf7GA+Q/82YhSiH8AV+a+H0JSxfQonPaDItzb3
-         61h8t3fDQs7ygSZ7eXn48x5ra1EWtGRTFVokGlH7EpSocZi4zIBplax9kd7f4t+Zno9j
-         6vfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=sRvyc/pbYuFf8HUlWoBbNz6lkUKgjQPtv0UDVke76Rw=;
-        b=JLIdDeuECF0ZT1GJDMRCJmlc41NH5UpyCmCxZz5Kbss/6CU9QVUFLeJ56n8C5nHUNM
-         R+kpFSykxKPp09VJ+tZJtYJH0PoKP4X1K/bhlV2wXi09nNBsELqolAHARJjgjStFq/V3
-         Z9uAlxwQyLmrpUB79ygh4XseDmvWrY7TF3z1aYjnwguGHdR77mn9XEl8QjhfPGwhEdnR
-         4Sfka6+Ma47PkQKEuKxhyeb51fvZqsPBC1bA74fzNGg3T77obPtArbITvZ3xjrLJfSbQ
-         8wL8qytLuo2sohzOKfOPD5812eCj4cqaPr8JR6nBlWiBTwlrfUIcBR952xcpPkx7ycvp
-         9eSA==
-X-Gm-Message-State: AOAM531J4AehMF6LLRbzMt+H7sNonoiJJZ/B0U6V8duhZNSFP0hKzu0f
-	SmMgbf7Lvi3tpZnFU5V3INut64gk2zI=
-X-Google-Smtp-Source: ABdhPJwGsT3P/WwN3gWS+8iJVaiYJ6jRXG/Hpn2rNDXTAytc5AQI0Ir+CaTvQ2+RT0BiKRM8nmwI+Q==
-X-Received: by 2002:a05:620a:e0e:: with SMTP id y14mr37001746qkm.760.1638853470867;
-        Mon, 06 Dec 2021 21:04:30 -0800 (PST)
-Received: from [192.168.2.213] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id k1sm3375301qkh.53.2021.12.06.21.04.30
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Dec 2021 21:04:30 -0800 (PST)
-Message-ID: <a61198a7-b46c-1b42-ab85-6b4f8ecf7124@gmail.com>
-Date: Tue, 7 Dec 2021 00:04:29 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
+Received: from resqmta-po-09v.sys.comcast.net (resqmta-po-09v.sys.comcast.net [96.114.154.168])
+	by mm2.emwd.com (Postfix) with ESMTPS id B9BD63844BC
+	for <usrp-users@lists.ettus.com>; Tue,  7 Dec 2021 00:10:33 -0500 (EST)
+Received: from resomta-po-06v.sys.comcast.net ([96.114.154.230])
+	by resqmta-po-09v.sys.comcast.net with ESMTP
+	id uSihmqJQmd9fnuSkKmhXhG; Tue, 07 Dec 2021 05:10:32 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=20190202a; t=1638853832;
+	bh=c0FtCcVgH5e5JciunZ8PcKYHz5Kz6cYG+XNNFatk6qU=;
+	h=Received:Received:Subject:To:From:Message-ID:Date:MIME-Version:
+	 Content-Type;
+	b=yPNf+DPiM5EgxxlVWCziOs1tPmNxjZy/sXfO6l5dStMQMyNJS83tz07oNqL8ywKOL
+	 OJHsw3LdgY6u/JhUhFjtXv0zEoxoLfGWRzXvm8fBYYHeTNz0A7Px5uRmiHUr8IZ5hp
+	 FYMmWL3ySZ8bXqHHI9g0ZeF2pBVPpJ+PgcudOhPQswi11Yi5y/OUQNFAtqHHwXHZxo
+	 ccyk6gpqVEYXxHuSiDu7TDlYCRkcls3gQFMJjRx7W5df1dJTr7P2Zy/MtGbY2FZDdf
+	 oWYe+3PhBg9yC9jDgRWBdaJittO2TA3XvcSshjCegzr1qjnMW9cM0o4FGxLA15gCVQ
+	 bYrwNCi6ibqYQ==
+Received: from [IPv6:2601:647:4700:284:3753:ebb3:bc4f:c514]
+ ([IPv6:2601:647:4700:284:3753:ebb3:bc4f:c514])
+	by resomta-po-06v.sys.comcast.net with ESMTPSA
+	id uSkJm4SL9BX4cuSkKm1gGC; Tue, 07 Dec 2021 05:10:32 +0000
+X-Xfinity-VMeta: sc=0.00;st=legit
 To: usrp-users@lists.ettus.com
 References: <K8v41G78gIKh3zMZadGJ1xGBmSebKeSJLhRpyEUL0@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+From: Ron Economos <w6rz@comcast.net>
+Message-ID: <ba86a5c0-440c-12b7-40d6-36a90389f1dd@comcast.net>
+Date: Mon, 6 Dec 2021 21:10:31 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
 In-Reply-To: <K8v41G78gIKh3zMZadGJ1xGBmSebKeSJLhRpyEUL0@lists.ettus.com>
-Message-ID-Hash: MZM7TEQQ3WLXXHC2QZVIGV2KXOCPUWUO
-X-Message-ID-Hash: MZM7TEQQ3WLXXHC2QZVIGV2KXOCPUWUO
-X-MailFrom: patchvonbraun@gmail.com
+Content-Language: en-US
+Message-ID-Hash: DWNYOEE52V4KNUYWCBSG3675FXCZW6XO
+X-Message-ID-Hash: DWNYOEE52V4KNUYWCBSG3675FXCZW6XO
+X-MailFrom: w6rz@comcast.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: (B210) UHD Error : Exception caught in safe-call
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MZM7TEQQ3WLXXHC2QZVIGV2KXOCPUWUO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DWNYOEE52V4KNUYWCBSG3675FXCZW6XO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============4217987306841957299=="
 
-T24gMjAyMS0xMi0wNiAyMzo1NCwgY29uZGljaW9uam9obmV4ZWtpZWxAZ21haWwuY29tIHdyb3Rl
-Og0KPg0KPiBNYXkgaSBrbm93IHdoYXQgaXMg4oCcZngz4oCdPw0KPg0KPg0KVGhlIEZYMyBjaGlw
-IG9uIHRoZSBib2FyZCBwcm92aWRlcyB0aGUgVVNCMyBpbnRlcmZhY2UgYW5kIG90aGVyIA0KbWlj
-cm9jb250cm9sbGVyIGZ1bmN0aW9ucyB0aGF0IGFyZW4ndCBwYXJ0IG9mIHRoZSBGUEdBLg0KDQpG
-WDNzIGFyZSB1c2VkIGluIGEgbGFyZ2UgbnVtYmVyIG9mIFVTQi0zLjAtYmFzZWQgcHJvZHVjdHMu
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+This is a multi-part message in MIME format.
+--===============4217987306841957299==
+Content-Type: multipart/alternative;
+ boundary="------------D42E35A79B1060959464B7E6"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------D42E35A79B1060959464B7E6
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+It's the family name of the USB3.0 controller on the B210, the CYUSB3014.
+
+https://www.cypress.com/documentation/datasheets/cyusb301x-cyusb201x-ez-u=
+sb-fx3-superspeed-usb-controller
+
+The program is in the directory:
+
+<uhd_install_dir>/lib/uhd/utils
+
+Which is the same directory as uhd_images_downloader.py.
+
+Ron
+
+On 12/6/21 8:54 PM, condicionjohnexekiel@gmail.com wrote:
+>
+> May i know what is =E2=80=9Cfx3=E2=80=9D?
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--------------D42E35A79B1060959464B7E6
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <p>It's the family name of the USB3.0 controller on the B210, the
+      CYUSB3014.</p>
+    <p><a class=3D"moz-txt-link-freetext" href=3D"https://www.cypress.com=
+/documentation/datasheets/cyusb301x-cyusb201x-ez-usb-fx3-superspeed-usb-c=
+ontroller">https://www.cypress.com/documentation/datasheets/cyusb301x-cyu=
+sb201x-ez-usb-fx3-superspeed-usb-controller</a></p>
+    <p>The program is in the directory:</p>
+    <p>&lt;uhd_install_dir&gt;/lib/uhd/utils</p>
+    <p>Which is the same directory as uhd_images_downloader.py. <br>
+    </p>
+    <p>Ron<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 12/6/21 8:54 PM,
+      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:condicionjohne=
+xekiel@gmail.com">condicionjohnexekiel@gmail.com</a> wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:K8v41G78gIKh3zMZadGJ1xGBmSebKeSJLhRpyEUL0@lists.ettus.c=
+om">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <p>May i know what is =E2=80=9Cfx3=E2=80=9D?</p>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------D42E35A79B1060959464B7E6--
+
+--===============4217987306841957299==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4217987306841957299==--
