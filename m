@@ -2,258 +2,120 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE38D46DDA2
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 22:30:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 411BA46DDB7
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 22:39:26 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AAFB53847BD
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 16:30:09 -0500 (EST)
-Received: from mail.egr.msu.edu (boomhauer.egr.msu.edu [35.9.37.164])
-	by mm2.emwd.com (Postfix) with ESMTPS id 909B5384123
-	for <usrp-users@lists.ettus.com>; Wed,  8 Dec 2021 16:29:16 -0500 (EST)
-Received: from boomhauer (localhost [127.0.0.1])
-	by mail.egr.msu.edu (Postfix) with ESMTP id DE904E7991;
-	Wed,  8 Dec 2021 16:29:15 -0500 (EST)
-X-Virus-Scanned: amavisd-new at egr.msu.edu
-Received: from mail.egr.msu.edu ([127.0.0.1])
-	by boomhauer (boomhauer.egr.msu.edu [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id BStwZhGxhXz6; Wed,  8 Dec 2021 16:29:15 -0500 (EST)
-Received: from EGR authenticated sender merlojas
-From: Jason Merlo <merlojas@egr.msu.edu>
-Message-Id: <57189909-1FD3-49D8-9AB7-4A8D9E64A737@egr.msu.edu>
-Mime-Version: 1.0 (Mac OS X Mail 15.0 \(3693.20.0.1.32\))
-Date: Wed, 8 Dec 2021 16:29:14 -0500
-In-Reply-To: <CAB__hTQ1bfM1Nzu+Fmd8J7AMSDK-bFAkDOg+QwtSn9r3jHTFZg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
+	by mm2.emwd.com (Postfix) with ESMTP id 849A9384AA7
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 16:39:25 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ji5SPbpV";
+	dkim-atps=neutral
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3C6EB3846CD
+	for <usrp-users@lists.ettus.com>; Wed,  8 Dec 2021 16:38:20 -0500 (EST)
+Received: by mail-qt1-f176.google.com with SMTP id l8so3537927qtk.6
+        for <usrp-users@lists.ettus.com>; Wed, 08 Dec 2021 13:38:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=r1UVAmlbrEMdf5Ed6BixHKzEvbJypXHiw05+MQHXkNo=;
+        b=Ji5SPbpVsN5X9G+SnDM7qnBFV290I1FN4HA1Z9yIFjoLRIvHGUJUITvCWK4hRLQxDx
+         m5L5iKC3DM/90UNnHiDbt7JVfEUHwCRYUgFGi5xomHcVLsaG8C168aXc8YVkayaazPk2
+         EQbqBuzrIWMrULBCb69K05FLA1k6qcUu/fSkPxU72QogHXmkEOXOFrG/V5iUmmTEipP8
+         jx3FNM6pCSSnoHvxdLsw7koVwyHcQzSv6oFSh/3rnhXLbBO6pse1hO18HFYkxdaA6V4T
+         /U15swUTfaE9mzgB9EN1Ugw0p+P2qbL6NJ9e2xHxRmn6i0VS3Xo5Umc3WPRSeSgEf4eU
+         0Uzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=r1UVAmlbrEMdf5Ed6BixHKzEvbJypXHiw05+MQHXkNo=;
+        b=Lbdf5mOHILE/PHo2Njv+hTROvEn34rtDKzEjHeC2fCEqllC6dYVz7JG1LDj9yoGj8r
+         JVtrWg3K5UAIUBhDOb1S/5ztjt2SOlq2h1GqGGABjSusRRKLeCEQsRhMSviuHxDDdq41
+         LrySK5jNObeaGcA9Mo0zSe+bH37n7gGWkEIvLe3B92zGHBrZnPIj6gGIt67kJL9ZHlPl
+         K8G6rXjAaQetZ8Mh/pNI4p0FPYRgm0lQRI05j13xqC2sVlcNCsL5pXImmCPK8llgxKTr
+         j46+P/PccyKxBFlLI/SUE4fN6chtPQOYujpBaNazv5yYxpVNurTbjw5Df1S5tzmpprWy
+         JE7w==
+X-Gm-Message-State: AOAM532rWL0I9IfOtc8u4AR9juR8xjIOESXEhE+lX5zEGK9CmEbgZXJK
+	qyQkbV3E40BE2AdmC1QAgRCiTTkkua4=
+X-Google-Smtp-Source: ABdhPJyAQQ3bpuDWvUEZaoXfP95ZbkimJzMwjyfbYjANEAyLywhPu+alFqX3G4AlnI67u02zDZdtGw==
+X-Received: by 2002:a05:622a:4c9:: with SMTP id q9mr10535821qtx.628.1638999499427;
+        Wed, 08 Dec 2021 13:38:19 -0800 (PST)
+Received: from [192.168.2.213] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id w8sm2425161qtc.36.2021.12.08.13.38.18
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Dec 2021 13:38:18 -0800 (PST)
+Message-ID: <c61d276d-37b2-f87b-e764-d7ec41d8a551@gmail.com>
+Date: Wed, 8 Dec 2021 16:38:18 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
 References: <B67BC271-3FD1-4728-ACFC-B1F0B655662C@egr.msu.edu>
  <CAB__hTQ1bfM1Nzu+Fmd8J7AMSDK-bFAkDOg+QwtSn9r3jHTFZg@mail.gmail.com>
-X-Mailer: Apple Mail (2.3693.20.0.1.32)
-Message-ID-Hash: BPIR6LAPA6PN6MDHWR7YPLXIVMMNOFGC
-X-Message-ID-Hash: BPIR6LAPA6PN6MDHWR7YPLXIVMMNOFGC
-X-MailFrom: merlojas@egr.msu.edu
+ <57189909-1FD3-49D8-9AB7-4A8D9E64A737@egr.msu.edu>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <57189909-1FD3-49D8-9AB7-4A8D9E64A737@egr.msu.edu>
+Message-ID-Hash: AAAWFN3XTTSPW7QFSVNQEE4HNPQHYW6Y
+X-Message-ID-Hash: AAAWFN3XTTSPW7QFSVNQEE4HNPQHYW6Y
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: In-place Local Clock Update
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BPIR6LAPA6PN6MDHWR7YPLXIVMMNOFGC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AAAWFN3XTTSPW7QFSVNQEE4HNPQHYW6Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6029793906083141441=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-
---===============6029793906083141441==
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_77B5B445-D09B-4D8A-84CB-0BE0962C1666"
-
-
---Apple-Mail=_77B5B445-D09B-4D8A-84CB-0BE0962C1666
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
-
-Hi Rob,
-
-Thanks for the quick response.=20
-
-> - why do you want to avoid using PPS?
-
-I=E2=80=99m working on techniques for aligning the clocks on the X310's =
-in environments where a shared frequency reference and PPS distribution =
-by conventional means (cabled, or via GNSS) is not feasible.
-
-> - are you using a common 10 MHz ref?
-
-For testing purposes I have a shared 10 MHz reference to keep the clocks =
-from drifting, so I only need to remove the initial timing bias.
-
-> - what is the level of "synchronous" you are looking for?  Are you =
-hoping to have simultaneous sampling across all channels?
-The goal is for the sampling to occur within +/-0.5 clock cycles between =
-two X310s while the shared frequency reference is present; the time bias =
-estimator has been verified to have sufficient accuracy to support this, =
-thus I=E2=80=99m limited by the accuracy with which I can set the clock. =
-To achieve the goal, the the clock set operation would need to be =
-accurate to within one clock cycle which I believe requires a method of =
-setting the local time offset (fetch, add, write-back) that occurs with =
-a deterministic latency that can be calibrated for.
-
-In theory, this should be possible on the FPGA, but I=E2=80=99m =
-wondering if this is possible via existing means in the UHD API, or if =
-it may be implemented using custom RFNoC blocks somehow.
-
-Thanks again,
-Jason
-
-> On Dec 8, 2021, at 3:29 PM, Rob Kossler <rkossler@nd.edu> wrote:
->=20
-> Hi Jason,
-> A few questions:
-> - why do you want to avoid using PPS?
-> - are you using a common 10 MHz ref?
-> - what is the level of "synchronous" you are looking for?  Are you =
-hoping to have simultaneous sampling across all channels?
-> Rob
->=20
-> On Wed, Dec 8, 2021 at 3:15 PM Jason Merlo <merlojas@egr.msu.edu =
-<mailto:merlojas@egr.msu.edu>> wrote:
-> Hi All,
->=20
-> I=E2=80=99m currently working to synchronize multiple X310=E2=80=99s =
-clocks without a PPS input, however right now the best method I can find =
-to update the clock from a host PC (using the C++ API) is to query the =
-current time from the USRP device (using =
-usrp::multi_usrp::get_time_now), add a time delta to the current time, =
-then send back the new clock time to the USRP device (using =
-usrp::multi_usrp::set_time_now).  Unfortunately, this method introduces =
-large timing errors due to the nondeterministic nature of packet =
-processing on both he CPU and network stack.
->=20
-> I=E2=80=99m wondering if anyone knows of any other techniques for an =
-"in-place" time update. I.e., is there a method for the host PC to send =
-a time delta to the USRP which would be added to the clock register in a =
-single operation?
->=20
-> I see there are other get/set_time_now functions in the =
-rfnoc::mb_control and rfnoc::radio_control  classes, but I=E2=80=99m not =
-sure if these would allow me to accomplish this using only the C++ API. =
-I can=E2=80=99t seem to find much documentation on this aside from the =
-examples in the =E2=80=9Cuhd/host/examples/rfnoc*=E2=80=9D folder.
->=20
-> If it=E2=80=99s not possible to accomplish this using a purely C++ =
-approach, is it possible to do this through a custom RFNoC block?  I =
-don=E2=80=99t have experience with RFNoC at the moment and I=E2=80=99m =
-not sure if that register is exposed to user blocks, or if so, if the =
-register update would be deterministic in time, but if there=E2=80=99s =
-motivation I would be willing go down the RFNoC path.
->=20
-> Thanks in advance,
-> Jason
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com =
-<mailto:usrp-users@lists.ettus.com>
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com =
-<mailto:usrp-users-leave@lists.ettus.com>
-
-
---Apple-Mail=_77B5B445-D09B-4D8A-84CB-0BE0962C1666
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">Hi =
-Rob,<div class=3D""><br class=3D""></div><div class=3D"">Thanks for the =
-quick response.&nbsp;</div><div class=3D""><br class=3D""></div><div =
-class=3D""><blockquote type=3D"cite" class=3D""><div dir=3D"ltr" =
-class=3D""><div dir=3D"ltr" class=3D""><div class=3D"">- why do you want =
-to avoid using PPS?</div></div></div></blockquote></div><div =
-class=3D"">I=E2=80=99m working on techniques for aligning the clocks on =
-the X310's in environments where a shared frequency reference and PPS =
-distribution by conventional means (cabled, or via GNSS) is not =
-feasible.</div><div class=3D""><br class=3D""></div><div =
-class=3D""><blockquote type=3D"cite" class=3D""><div dir=3D"ltr" =
-class=3D""><div dir=3D"ltr" class=3D""><div class=3D"">- are you using a =
-common 10 MHz ref?</div></div></div></blockquote></div><div class=3D"">For=
- testing purposes I have a shared 10 MHz reference to keep the clocks =
-from drifting, so I only need to remove the initial timing =
-bias.</div><div class=3D""><br class=3D""></div><div =
-class=3D""><blockquote type=3D"cite" class=3D""><div dir=3D"ltr" =
-class=3D""><div dir=3D"ltr" class=3D""><div class=3D"">- what is the =
-level of "synchronous" you are looking for?&nbsp; Are you hoping to have =
-simultaneous sampling across all =
-channels?</div></div></div></blockquote><div class=3D""><div dir=3D"ltr" =
-class=3D""><div dir=3D"ltr" class=3D""><div class=3D"">The goal is for =
-the sampling to occur within +/-0.5 clock cycles between two X310s while =
-the shared frequency reference is present; the time bias estimator has =
-been verified to have sufficient accuracy to support this, thus I=E2=80=99=
-m limited by the accuracy with which I can set the clock. To achieve the =
-goal, the the clock set operation would need to be accurate to within =
-one clock cycle which I believe requires a method of setting the local =
-time offset (fetch, add, write-back) that occurs with a deterministic =
-latency that can be calibrated for.</div><div class=3D""><br =
-class=3D""></div><div class=3D"">In theory, this should be possible on =
-the FPGA, but I=E2=80=99m wondering if this is possible via existing =
-means in the UHD API, or if it may be implemented using custom RFNoC =
-blocks somehow.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">Thanks again,</div><div =
-class=3D"">Jason</div></div></div></div><div><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D"">On Dec 8, 2021, at 3:29 PM, Rob =
-Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" =
-class=3D"">rkossler@nd.edu</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><meta =
-http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8" =
-class=3D""><div dir=3D"ltr" class=3D""><div dir=3D"ltr" class=3D"">Hi =
-Jason,</div><div dir=3D"ltr" class=3D"">A few questions:<div class=3D"">- =
-why do you want to avoid using PPS?</div><div class=3D"">- are you using =
-a common 10 MHz ref?</div><div class=3D"">- what is the level of =
-"synchronous" you are looking for?&nbsp; Are you hoping to have =
-simultaneous sampling across all channels?</div><div =
-class=3D"">Rob</div></div><br class=3D""><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 8, 2021 at 3:15 PM Jason =
-Merlo &lt;<a href=3D"mailto:merlojas@egr.msu.edu" =
-class=3D"">merlojas@egr.msu.edu</a>&gt; wrote:<br =
-class=3D""></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div style=3D"overflow-wrap: =
-break-word;" class=3D"">Hi All,<div class=3D""><br class=3D""></div><div =
-class=3D"">I=E2=80=99m currently working to synchronize multiple =
-X310=E2=80=99s clocks without a PPS input, however right now the best =
-method I can find to update the clock from a host PC (using the C++ API) =
-is to query the current time from the USRP device (using <font =
-face=3D"Menlo" class=3D"">usrp::multi_usrp::get_time_now</font>), add a =
-time delta to the current time, then send back the new clock time to the =
-USRP device (using&nbsp;<span style=3D"font-family:Menlo" =
-class=3D"">usrp::multi_usrp::set_time_now</span>).&nbsp; Unfortunately, =
-this method introduces large timing errors due to the nondeterministic =
-nature of packet processing on both he CPU and network stack.</div><div =
-class=3D""><br class=3D""></div><div class=3D"">I=E2=80=99m wondering if =
-anyone knows of any other techniques for an "in-place" time update. =
-I.e., is there a method for the host PC to send a time delta to the USRP =
-which would be added to the clock register in a single =
-operation?</div><div class=3D""><br class=3D""></div><div class=3D"">I =
-see there are other&nbsp;<span style=3D"font-family:Menlo" =
-class=3D"">get/set_time_now</span>&nbsp;functions in the <font =
-face=3D"Menlo" class=3D"">rfnoc::mb_control</font> and <font =
-face=3D"Menlo" class=3D"">rfnoc::radio_control</font>&nbsp; classes, but =
-I=E2=80=99m not sure if these would allow me to accomplish this using =
-only the C++ API. I can=E2=80=99t seem to find much documentation on =
-this&nbsp;aside from the examples in the =E2=80=9Cuhd/host/examples/rfnoc*=
-=E2=80=9D folder.</div><div class=3D""><br class=3D""></div><div =
-class=3D"">If it=E2=80=99s not possible to accomplish this using a =
-purely C++ approach, is it possible to do this through a custom RFNoC =
-block?&nbsp; I don=E2=80=99t have experience with RFNoC at the moment =
-and I=E2=80=99m not sure if that register is exposed to user blocks, or =
-if so, if the register update would be deterministic in time, but if =
-there=E2=80=99s motivation I would be willing go down the RFNoC =
-path.</div><div class=3D""><br class=3D""></div><div class=3D"">Thanks =
-in advance,</div><div =
-class=3D"">Jason</div></div>______________________________________________=
-_<br class=3D"">
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" class=3D"">usrp-users@lists.ettus.com</a><br class=3D"">=
-
-To unsubscribe send an email to <a =
-href=3D"mailto:usrp-users-leave@lists.ettus.com" target=3D"_blank" =
-class=3D"">usrp-users-leave@lists.ettus.com</a><br class=3D"">
-</blockquote></div></div>
-</div></blockquote></div><br class=3D""></div></body></html>=
-
---Apple-Mail=_77B5B445-D09B-4D8A-84CB-0BE0962C1666--
-
---===============6029793906083141441==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6029793906083141441==--
+T24gMjAyMS0xMi0wOCAxNjoyOSwgSmFzb24gTWVybG8gd3JvdGU6DQo+IEhpIFJvYiwNCj4NCj4g
+VGhhbmtzIGZvciB0aGUgcXVpY2sgcmVzcG9uc2UuDQo+DQo+PiAtIHdoeSBkbyB5b3Ugd2FudCB0
+byBhdm9pZCB1c2luZyBQUFM/DQo+IEnigJltIHdvcmtpbmcgb24gdGVjaG5pcXVlcyBmb3IgYWxp
+Z25pbmcgdGhlIGNsb2NrcyBvbiB0aGUgWDMxMCdzIGluIA0KPiBlbnZpcm9ubWVudHMgd2hlcmUg
+YSBzaGFyZWQgZnJlcXVlbmN5IHJlZmVyZW5jZSBhbmQgUFBTIGRpc3RyaWJ1dGlvbiANCj4gYnkg
+Y29udmVudGlvbmFsIG1lYW5zIChjYWJsZWQsIG9yIHZpYSBHTlNTKSBpcyBub3QgZmVhc2libGUu
+DQo+DQo+PiAtIGFyZSB5b3UgdXNpbmcgYSBjb21tb24gMTAgTUh6IHJlZj8NCj4gRm9yIHRlc3Rp
+bmcgcHVycG9zZXMgSSBoYXZlIGEgc2hhcmVkIDEwIE1IeiByZWZlcmVuY2UgdG8ga2VlcCB0aGUg
+DQo+IGNsb2NrcyBmcm9tIGRyaWZ0aW5nLCBzbyBJIG9ubHkgbmVlZCB0byByZW1vdmUgdGhlIGlu
+aXRpYWwgdGltaW5nIGJpYXMuDQo+DQo+PiAtIHdoYXQgaXMgdGhlIGxldmVsIG9mICJzeW5jaHJv
+bm91cyIgeW91IGFyZSBsb29raW5nIGZvcj/CoCBBcmUgeW91IA0KPj4gaG9waW5nIHRvIGhhdmUg
+c2ltdWx0YW5lb3VzIHNhbXBsaW5nIGFjcm9zcyBhbGwgY2hhbm5lbHM/DQo+IFRoZSBnb2FsIGlz
+IGZvciB0aGUgc2FtcGxpbmcgdG8gb2NjdXIgd2l0aGluICsvLTAuNSBjbG9jayBjeWNsZXMgDQo+
+IGJldHdlZW4gdHdvIFgzMTBzIHdoaWxlIHRoZSBzaGFyZWQgZnJlcXVlbmN5IHJlZmVyZW5jZSBp
+cyBwcmVzZW50OyB0aGUgDQo+IHRpbWUgYmlhcyBlc3RpbWF0b3IgaGFzIGJlZW4gdmVyaWZpZWQg
+dG8gaGF2ZSBzdWZmaWNpZW50IGFjY3VyYWN5IHRvIA0KPiBzdXBwb3J0IHRoaXMsIHRodXMgSeKA
+mW0gbGltaXRlZCBieSB0aGUgYWNjdXJhY3kgd2l0aCB3aGljaCBJIGNhbiBzZXQgDQo+IHRoZSBj
+bG9jay4gVG8gYWNoaWV2ZSB0aGUgZ29hbCwgdGhlIHRoZSBjbG9jayBzZXQgb3BlcmF0aW9uIHdv
+dWxkIG5lZWQgDQo+IHRvIGJlIGFjY3VyYXRlIHRvIHdpdGhpbiBvbmUgY2xvY2sgY3ljbGUgd2hp
+Y2ggSSBiZWxpZXZlIHJlcXVpcmVzIGEgDQo+IG1ldGhvZCBvZiBzZXR0aW5nIHRoZSBsb2NhbCB0
+aW1lIG9mZnNldCAoZmV0Y2gsIGFkZCwgd3JpdGUtYmFjaykgdGhhdCANCj4gb2NjdXJzIHdpdGgg
+YSBkZXRlcm1pbmlzdGljIGxhdGVuY3kgdGhhdCBjYW4gYmUgY2FsaWJyYXRlZCBmb3IuDQo+DQo+
+IEluIHRoZW9yeSwgdGhpcyBzaG91bGQgYmUgcG9zc2libGUgb24gdGhlIEZQR0EsIGJ1dCBJ4oCZ
+bSB3b25kZXJpbmcgaWYgDQo+IHRoaXMgaXMgcG9zc2libGUgdmlhIGV4aXN0aW5nIG1lYW5zIGlu
+IHRoZSBVSEQgQVBJLCBvciBpZiBpdCBtYXkgYmUgDQo+IGltcGxlbWVudGVkIHVzaW5nIGN1c3Rv
+bSBSRk5vQyBibG9ja3Mgc29tZWhvdy4NCj4NCj4gVGhhbmtzIGFnYWluLA0KPiBKYXNvbg0KPg0K
+VGhlcmUncyBubyB3YXkgeW91IGNhbiBleHBlY3QgYSBnZW5lcmFsLXB1cnBvc2UgT1MgbGlrZSBM
+aW51eCB0byBoYXZlIA0KcHJlZGljdGFibGUgbGF0ZW5jeSBhdCBzY2FsZXMgb2YgMTAwbnNlYyBv
+ciBiZXR0ZXIsIGFuZCB0aGF0J3MgDQpwcmV0dHktbXVjaCB3aGF0IHlvdSdyZQ0KIMKgICJmaWdo
+dGluZyIgd2hlbiB5b3UgdXNlIHNldF90aW1lX25vdygpL2dldF90aW1lX25vdygpLCBldmVuIG92
+ZXIgYSANCnZlcnktZmFzdCBpbnRlcmZhY2UgbGlrZSAxMEdpR2UuwqAgSXQgaXMgcHJlY2lzZWx5
+IGZvciB0aGlzIHJlYXNvbiB0aGF0IA0KdGhpbmdzIGxpa2UgMVBQUw0KIMKgIHRyaWdnZXJpbmcg
+b24gdGhlIGNsb2NrIHJlc2V0IHdhcyBkZXZlbG9wZWQgYXMgYSB0ZWNobmlxdWUgZm9yIA0Kc3lu
+Y2hyb25pemluZyB0aGUgdGltZSBjbG9ja3Mgb24gVVNSUHMgb2YgdmFyaW91cyBmbGF2b3JzLsKg
+IEluIHRoZSANCmFsbW9zdCB0d28gZGVjYWRlcyBJJ3ZlDQogwqAgbXVja2VkLWFib3V0IHdpdGgg
+U0RSIGluIGdlbmVyYWwsIGFuZCBVU1JQcyBpbiBwYXJ0aWN1bGFyLCBJIGhhdmVuJ3QgDQpzZWVu
+IGFueXRoaW5nIGJldHRlciB0aGF0IGEgcGh5c2ljYWwsIHNoYXJlZCwgdHJpZ2dlciBzaWduYWwg
+bGlrZSAxUFBTLCANCmNvbWJpbmVkIHdpdGgNCiDCoCBhIHNoYXJlZCAxME1IeiByZWZlcmVuY2Uu
+DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
