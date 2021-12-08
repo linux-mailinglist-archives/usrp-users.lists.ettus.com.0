@@ -2,210 +2,132 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E86BC46D7AB
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 17:03:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBCCD46D94A
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 18:10:15 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 62831384765
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 11:03:25 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id B9BF63848FF
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Dec 2021 12:10:14 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="oYwDXu1H";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="dZEASVLK";
 	dkim-atps=neutral
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3EADD3846D2
-	for <usrp-users@lists.ettus.com>; Wed,  8 Dec 2021 11:02:28 -0500 (EST)
-Received: by mail-qt1-f174.google.com with SMTP id p19so2554313qtw.12
-        for <usrp-users@lists.ettus.com>; Wed, 08 Dec 2021 08:02:28 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id E28533840C7
+	for <usrp-users@lists.ettus.com>; Wed,  8 Dec 2021 12:09:17 -0500 (EST)
+Received: by mail-yb1-f179.google.com with SMTP id x32so7434454ybi.12
+        for <usrp-users@lists.ettus.com>; Wed, 08 Dec 2021 09:09:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to;
-        bh=9zlm7AYpXVWCzWGJMNHUSwDUx9W26WWQiBad7HSkMYg=;
-        b=oYwDXu1HrM3HuacluJOttX7sIiSZzn4Aq+lBDdhRUnKfkuY9I3brhau7toiNZtqgpK
-         9CFwsflXSUbxhTJB9TXNgjnt4wUWeKq50eophxty3jkG+eiqadUdWsctuYM24VjmUA8q
-         CJRhRBQx2KDo/Ru457E5/VGmApVdJwH5G4dGs93i0Kd+ZKzrCpyxPdzOAgNJ3K2mqeM/
-         70v0hQqnDAldv8jFTScQ3Em5XBWWrnJcAcPEzJroRn7kSV+vi3Gmiz+QtuX2DhlY0wev
-         cEW2JkFvhmRVwliDGJTpJHPkF9zj6rFoXw7DQpQtkoyTxUBLLUuOCmb5sIPd73nrRNq1
-         XIBQ==
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xdmqc+CcpH4sNCcsFyVuAYNlZBQ89AXiT/V5xP/Jljc=;
+        b=dZEASVLKGzAf5ZbFJkkc1t26otwPcRP7DqOZ/gYjKjzh3Zj0tPMUE6ce7ZQLbBuLsf
+         Y62PSoqoBAt0CUKZ4u/WxWNQXU6iRzFw2J3lO+tixerXiUueLoNVxINlrMD4sxJWDVHm
+         HN61KI2HqKfnVbvYfTeZCc826eLwTNSzDmVzq4EqMJE7sxLKvvqX/fKCvaKerGe5UJFZ
+         BQ/2+loWCiIHscgohMpsN502CUnle8UjlF5jkhGKeh3Q7qrBQyBR7VqXiu5TcLmSRBSF
+         9MyWGItEmucQlcURq/XxKF0VVfTXfk0WM0x1pwHM/O51tiwmFAL+OOhk7C6Et4mPCYvd
+         A88w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to;
-        bh=9zlm7AYpXVWCzWGJMNHUSwDUx9W26WWQiBad7HSkMYg=;
-        b=pQpMN/q63JWGcTbEICUMFtJ7+kRAm0BKSGdMMDJbOqBPWkqLwDXyt2FmvX43zyQhJ0
-         xLUVLgyd/rj2ga4U8sB/bODt2E2b1Xiq9jDqvw9Mg7hnqyhTWtMXHD50uDNbWCKY5sw0
-         a5O5nN4t2D5yfFUTm6c5n10V2zmuPqoNasDkkQ5vMrTNMJixrgwoyQKLnNRDkVzXq1DU
-         mIXf9gYktX7cxlaSnHnciqfNJByZuRrRvMgputndxRdQLJxYH8xxyPkUZVc0WuCsKHJF
-         RO0UQLQJY3yQVcpVbalgr0MEv43TawR4nGRj40Ah19jfKsJTtg1v2QFkLlqGA3YnFijR
-         dWzw==
-X-Gm-Message-State: AOAM530VhbNS5JKm6Mt28Df6CNZ3wnQ1kJoF5FeQMSzlpcu5fk6Rb2x9
-	YMojoUGHeXs9GzedXlCD+s8=
-X-Google-Smtp-Source: ABdhPJyUZaD2RD/1iBhb9gkAZlX8B+UQK7kIDpQW57UiPOdaWRs4nG68A7SO5UEBoz4Vs2OiHUaWCQ==
-X-Received: by 2002:ac8:7d47:: with SMTP id h7mr9221298qtb.486.1638979348514;
-        Wed, 08 Dec 2021 08:02:28 -0800 (PST)
-Received: from [192.168.2.213] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id a17sm1610167qkp.108.2021.12.08.08.02.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Dec 2021 08:02:27 -0800 (PST)
-Message-ID: <a2256403-9562-27c3-f50e-bd221a684014@gmail.com>
-Date: Wed, 8 Dec 2021 11:02:26 -0500
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xdmqc+CcpH4sNCcsFyVuAYNlZBQ89AXiT/V5xP/Jljc=;
+        b=PFV38ad7b/ibhGnBAcWilQ9RvO3Je0eHe3AydWpp054L0rvvSPk7buuVusYHhPlTcq
+         +llvFYKBwj7m7d1+aYj4YA1rnCduEif+htG8J5eIqLFQvRLk6tz7iOt8R1pCmkgQfzr7
+         0To5ibh4IwDY+un9htRmH8XYvX6n7jGgrvsn8Meze5saf1IMKbilJLT0bk9AdoFKRQg4
+         73X0N5Miq4CU2jxWB4Was/ne7il3MTAMT/P0cU08XjQBMQw5X8cw7p3DLgqd9y0PeEK6
+         650Kr9bITLU/bNXBh58M1+66Nw0PDMpjomWl+QhPJW/BthO3gz2CB/XpplstDNVtUfT/
+         7Hkw==
+X-Gm-Message-State: AOAM530fZECUcX9nvv/m1nK1lFtmYnVhEfWNB8NQQa5hPPkNEOPPW3sq
+	7XweHIsU/E1gXLImuQP6GIAa4YTkrpjpIxgb/GZVDw==
+X-Google-Smtp-Source: ABdhPJxlKE1B7j0we3oXv7MrUh3q0YhkqSFJDGiPrLUo8CP0qOjjR7bTgGcLgDYnlprHDmAZ3hlPrtvodeAd5h73GKY=
+X-Received: by 2002:a05:6902:4ec:: with SMTP id w12mr61536523ybs.298.1638983357009;
+ Wed, 08 Dec 2021 09:09:17 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: zeyuan.li@zengyi-tech.com, 'Michael Dickens' <michael.dickens@ettus.com>
-References: <00f301d7c978$ef03a150$cd0ae3f0$@zengyi-tech.com>
- <e2940e0e-515d-a2ac-96a1-5d97c503fa6a@gmail.com>
- <018b01d7ca10$592a2260$0b7e6720$@zengyi-tech.com>
- <cf1cae96-1611-bcc4-9bd3-b62e6d809ab6@gmail.com>
- <01cd01d7ca1f$4e75f830$eb61e890$@zengyi-tech.com>
- <a607d825-1dba-d69b-4520-be2a17e4a2a5@gmail.com>
- <007601d7cae0$bd7649d0$3862dd70$@zengyi-tech.com>
- <ebb155d7-5462-260b-016f-3aa0a469dd52@gmail.com>
- <00c401d7cb01$d9ee5500$8dcaff00$@zengyi-tech.com>
- <4f7665d5-76b9-d6ae-c16d-e80c49fee5e7@gmail.com>
- <CAGNhwTMZyxqyA-FJC7Xb-g--QR4kWSy7Yjy-dmYxe0nuBN9_oQ@mail.gmail.com>
- <00bb01d7ea5f$f907a720$eb16f560$@zengyi-tech.com>
- <815c8938-9ece-3cf3-ff13-11834c9d51f7@gmail.com>
- <01a301d7ec02$0612e3f0$1238abd0$@zengyi-tech.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <01a301d7ec02$0612e3f0$1238abd0$@zengyi-tech.com>
-Message-ID-Hash: 54P6OND2VVDJYCRP7XUR57YGKTJOFJI5
-X-Message-ID-Hash: 54P6OND2VVDJYCRP7XUR57YGKTJOFJI5
-X-MailFrom: patchvonbraun@gmail.com
+References: <RqiQXYE4JslXB2HqXFXDRGKC2w8G87gnXkJcWmPZLU@lists.ettus.com>
+In-Reply-To: <RqiQXYE4JslXB2HqXFXDRGKC2w8G87gnXkJcWmPZLU@lists.ettus.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Wed, 8 Dec 2021 12:09:06 -0500
+Message-ID: <CAB__hTSLhWVRr3usu6MuVB0FTDVj2rkJfYaTHFtSSjLkHdYqmA@mail.gmail.com>
+To: enrico.petraglio@heig-vd.ch
+Message-ID-Hash: T6BKKDEYULLRHC77ZW6NVERXSU53UZ2P
+X-Message-ID-Hash: T6BKKDEYULLRHC77ZW6NVERXSU53UZ2P
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: 'USRP list' <usrp-users@lists.ettus.com>
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] =?utf-8?b?UmU6IOetlOWkjTogUmU6IOetlOWkjTogUmU6IOetlOWkjTogUmU6IOetlOWkjTog562U5aSNOiBSZTog562U5aSNOiBSZTogSG93IHRvIHVzZSBFeHRlcm5hbCBMTyBvbiBOMzEwIGRldmljZT8=?=
+Subject: [USRP-users] Re: RFNoC OOT block integration problem
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/54P6OND2VVDJYCRP7XUR57YGKTJOFJI5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T6BKKDEYULLRHC77ZW6NVERXSU53UZ2P/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6474084416087436202=="
+Content-Type: multipart/mixed; boundary="===============3706702438981270142=="
 
-This is a multi-part message in MIME format.
---===============6474084416087436202==
-Content-Type: multipart/alternative;
- boundary="------------09VfGVI7JM1LHm3qRbZWlBh5"
-Content-Language: en-US
+--===============3706702438981270142==
+Content-Type: multipart/alternative; boundary="000000000000c9dfe705d2a58cd8"
 
-This is a multi-part message in MIME format.
---------------09VfGVI7JM1LHm3qRbZWlBh5
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000c9dfe705d2a58cd8
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2021-12-08 02:05, zeyuan.li@zengyi-tech.com wrote:
->
-> I do not set TX or RX.This is my python code.Please give me some=20
-> suggestions.
->
-> Thinks.
->
->
-Ah, you're using Gnu Radio.=C2=A0 I'll have to think about how to meet th=
-e=20
-constraints of external-LO use when using Gnu Radio.
-
-Has anyone else done this?
+Glad it is working. But, I want to mention that if you fixed the issue that
+is causing UHD to NOT locate your custom gain block controller, then it
+would be possible to call issue_stream_cmd() from the rx_streamer as
+usual.  I really mentioned calling from the DDC block controller only as a
+"test case". In the end, you will probably want to figure out why the gain
+block controller is not being found by UHD.
 
 
---------------09VfGVI7JM1LHm3qRbZWlBh5
-Content-Type: text/html; charset=UTF-8
+On Wed, Dec 8, 2021 at 3:43 AM <enrico.petraglio@heig-vd.ch> wrote:
+
+> Thank you Rob,
+>
+> I=E2=80=99ve got the same suggestion on git hub and the fix works.
+>
+> (see https://github.com/EttusResearch/uhd/issues/538)
+>
+> Regards
+>
+> Enrico.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000c9dfe705d2a58cd8
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2021-12-08 02:05,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:zeyuan.li@zeng=
-yi-tech.com">zeyuan.li@zengyi-tech.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:01a301d7ec02$0612e3f0$1238abd0$@zengyi-tech.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:=E5=AE=8B=E4=BD=93;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:=E7=AD=89=E7=BA=BF;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:"\@=E5=AE=8B=E4=BD=93";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}@font-face
-	{font-family:"\@=E7=AD=89=E7=BA=BF";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:=E5=AE=8B=E4=BD=93;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:=E5=AE=8B=E4=BD=93;}span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:=E7=AD=89=E7=BA=BF;
-	color:windowtext;}span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:=E7=AD=89=E7=BA=BF;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF" lan=
-g=3D"EN-US">I do
-            not set TX or RX.This is my python code.Please give me some
-            suggestions.<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF" lan=
-g=3D"EN-US">Thinks.<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span
-            style=3D"font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF" lan=
-g=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
-        <div>
-          <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</o:p></=
-span></p>
-          <br>
-        </div>
-      </div>
-    </blockquote>
-    Ah, you're using Gnu Radio.=C2=A0 I'll have to think about how to mee=
-t
-    the constraints of external-LO use when using Gnu Radio.<br>
-    <br>
-    Has anyone else done this?<br>
-    <br>
-    <br>
-  </body>
-</html>
---------------09VfGVI7JM1LHm3qRbZWlBh5--
+<div dir=3D"ltr">Glad it is working. But, I want to mention that if you fix=
+ed the issue that is causing UHD to NOT locate your custom gain block contr=
+oller, then it would be possible to call issue_stream_cmd() from the rx_str=
+eamer as usual.=C2=A0 I really mentioned calling from the DDC block control=
+ler only as a &quot;test case&quot;. In the end, you will probably want to =
+figure out why the gain block controller is not being found by UHD.<div><br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Wed, Dec 8, 2021 at 3:43 AM &lt;<a href=3D"mailto:enrico.petragli=
+o@heig-vd.ch">enrico.petraglio@heig-vd.ch</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex"><p>Thank you Rob, </p><p>I=E2=80=
+=99ve got the same suggestion on git hub and the fix works. </p><p>(see <a =
+href=3D"https://github.com/EttusResearch/uhd/issues/538" target=3D"_blank">=
+https://github.com/EttusResearch/uhd/issues/538</a>)</p><p>Regards</p><p>En=
+rico.</p>
 
---===============6474084416087436202==
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000c9dfe705d2a58cd8--
+
+--===============3706702438981270142==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -215,4 +137,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6474084416087436202==--
+--===============3706702438981270142==--
