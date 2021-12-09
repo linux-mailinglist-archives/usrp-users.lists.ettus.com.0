@@ -2,143 +2,134 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1EC646E7B1
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Dec 2021 12:40:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FD1A46E996
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Dec 2021 15:04:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B8CFF3848EE
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Dec 2021 06:40:28 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8D67D384BCA
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Dec 2021 09:04:23 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=bitstovolts.com header.i=@bitstovolts.com header.b="LZIWVVhv";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Rr55b/16";
 	dkim-atps=neutral
-Received: from mail.webarch.email (mail.webarch.email [81.95.52.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id DF0F53844A8
-	for <usrp-users@lists.ettus.com>; Thu,  9 Dec 2021 06:39:34 -0500 (EST)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 53BB31A88FA6;
-	Thu,  9 Dec 2021 11:39:25 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bitstovolts.com;
-	s=20200213; t=1639049972;
-	h=from:subject:date:message-id:to:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=oph1GeatNgSU/bSXtthJbj04Uip0lHlQXAK9FGBQl6w=;
-	b=LZIWVVhv4zWUevr1pIbZGdTuW5JmzO+l1a/uI9QtUX9IXguuRvFjnQp6FjONV7zU1dQKCg
-	SXMOmPyL5rGXOEW9pxGdQ4eboRDsx4uWqHIQpAOHuKkOcjSy8kow2NqBPd7K2/xCINqAS1
-	WpeBoGEmcttWvaXeYUvX1o3/bYj/nCdLjGr7g5WboJ1GKrA1wt2KylI8O/6baY2vI5Kns6
-	9VF8zJK4P26I/yrkzAokRCwmW0S+qqX8Apb5LPIuFbw7XSzcWtvpz59oDvUrL3C5ZEXJzE
-	kszvjQzUF//W6qVpcb8GNLgFJQvPEE8DJRLmxOTPANxcFyaoKI6AcOjPLyxCbA==
-Message-ID: <9f6e7c4b-821f-c9af-e79d-968646dd1c86@bitstovolts.com>
-Date: Thu, 9 Dec 2021 11:39:22 +0000
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id E07FF384875
+	for <usrp-users@lists.ettus.com>; Thu,  9 Dec 2021 09:02:02 -0500 (EST)
+Received: by mail-yb1-f174.google.com with SMTP id v203so13874258ybe.6
+        for <usrp-users@lists.ettus.com>; Thu, 09 Dec 2021 06:02:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ZI+8Tp/cZOrVJxSQsVRlysSSnfAK3x8SlObCqKv/2s8=;
+        b=Rr55b/16JP0qPk7F1imrDms8FmdXH7757YlKHHGKBRWEmSAiEI46oFyq7WAk7PkuaT
+         n7nq8R3navG+0RsTy+3RA8t5FIvwgZkF/lw4zcnsHsfpBhIMixfljfOcIB0WtJAoy3SP
+         34hpDTk4ewmllGYTZ+ThFyHcTk1XxymhNsCBqcioouYvEDLGqV3eChB4FRKy3P7q1bxU
+         qGHugYEK5vYiR3va2HnraI7ZU3B4QXbakNsvXj+qtUWphamIzWyyHKxg5KKz5k5VjCwd
+         ZiyZbu1loVI7/F7t/GS+GdC7ceL3CxkcAibgQM+7tPrrAVygNsnDDl3LF/tA3lLVe70S
+         vftg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ZI+8Tp/cZOrVJxSQsVRlysSSnfAK3x8SlObCqKv/2s8=;
+        b=1J9LTtAP+KEksm7Em2na3Z2Jl3eD9R3b6hlRcn8CzEL4jye1x3arujwYDUaBdgBWT6
+         qxNiFna1kd14ZnDLPWnzaJj4kZKA2w9RD5H7WR8G3wI80M+BDurWfaJrSmgGdeqA3bO2
+         FFIoqfZnQK34HMHLvumpR5DFQEjB9J0IxJdqbD/cUefhp3LXZGs5VjuWeI3sP5O8YlaM
+         lNWO+CeVDwUYfxveWia10Vk1oq7oemBVSMEPe30JgCVJewTLOQT64Ucwv7ZtDgyNIR6u
+         LLQqYR8ZyrdVEw2pe4o+k72REAN8sE05pKs/rhau8EfhdHhO3hhEAyL749eZNeRqwGe9
+         xsKg==
+X-Gm-Message-State: AOAM532EBfo9OE7cgL675ogJZRhrHE2OJO6VevRg7Yc/YD8fmrybbpmH
+	4GPuLx6kSorT7y+FGH9IrnvuyopvugOVD43GMTz7vw==
+X-Google-Smtp-Source: ABdhPJxglmS/14NaZ5voCgfUxxSczIqYfj8elhOMaughS3QXwxYwob7NGj3svmZzUYwPuXLj6a0sR+1jHUpjfY0k0o0=
+X-Received: by 2002:a25:e755:: with SMTP id e82mr6095440ybh.389.1639058521864;
+ Thu, 09 Dec 2021 06:02:01 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-To: Jonathan Pratt <jpratt@srcaus.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <MN2PR16MB3502AF60E99998815E99E8E5B9709@MN2PR16MB3502.namprd16.prod.outlook.com>
-From: Derek Kozel <derek@bitstovolts.com>
-In-Reply-To: <MN2PR16MB3502AF60E99998815E99E8E5B9709@MN2PR16MB3502.namprd16.prod.outlook.com>
-X-Last-TLS-Session-Version: TLSv1.3
-Message-ID-Hash: PDY575JMOVD5OEUWLAW4DQ75TOMKROOB
-X-Message-ID-Hash: PDY575JMOVD5OEUWLAW4DQ75TOMKROOB
-X-MailFrom: derek@bitstovolts.com
+References: <B67BC271-3FD1-4728-ACFC-B1F0B655662C@egr.msu.edu>
+ <CAB__hTQ1bfM1Nzu+Fmd8J7AMSDK-bFAkDOg+QwtSn9r3jHTFZg@mail.gmail.com>
+ <57189909-1FD3-49D8-9AB7-4A8D9E64A737@egr.msu.edu> <CAB__hTRj7gNxyZTgnknG9e0YCUjcEGr-py2b-zhjOPPDymHEbA@mail.gmail.com>
+ <56824AED-B725-49AB-9719-2AE5E82699E5@egr.msu.edu> <7ba3e402-a334-287a-5df2-1d6c56af2f75@gmail.com>
+In-Reply-To: <7ba3e402-a334-287a-5df2-1d6c56af2f75@gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Thu, 9 Dec 2021 09:01:50 -0500
+Message-ID: <CAB__hTTxSng_LxrzjpN9x4QgfcHiZHF1HOHuZn0rJ=c_nWDJ_w@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: SN7HIU6LHGFSXKDF5324PE4ET5Y46LCX
+X-Message-ID-Hash: SN7HIU6LHGFSXKDF5324PE4ET5Y46LCX
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: mapping of channels in gnu radio with X310 with twin Rx radios
+Subject: [USRP-users] Re: In-place Local Clock Update
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PDY575JMOVD5OEUWLAW4DQ75TOMKROOB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SN7HIU6LHGFSXKDF5324PE4ET5Y46LCX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Jonathan,
-
-Most of this information relates to the subdevice specification and 
-channel number mapping, described on this manual page.
-https://files.ettus.com/manual/page_configuration.html#config_subdev
-
-If you run uhd_usrp_probe you'll see a description of the available 
-radio hardware for your specific configuration. An X310 has two 
-daughterboard slots, A and B. The TwinRX has two receivers, 0 and 1. The 
-complete subdevice spec for your radio is thus "A:0 A:1 B:0 B:1". These 
-are channels [0,1,2,3] in UHD, and thus up into GNU Radio. These (in my 
-experience) map by default to Antennas [RFA TX/RX, RFA RX2, RFB TX/RX, 
-RFB RX2]. (more on that at the end)
-
-1) The default channel used in a single channel streaming case is 
-Channel 0, mapped to subdevice A:0 using antenna RFA TX/RX.
-
-A different single channel can be addressed in (at least) two ways. You 
-can change the order of the subdevice spec (Making a headache for 
-yourself), or change the channel mapping. I would manually specify the 
-default subdevice spec (to make it explicit and clear) as "A:0 A:1 B:0 
-B:1" and then under "Channels" in GNU Radio, specify the array "[2]" for 
-instance to say that the single channel is the "2" index of the 
-subdevice spec, aka B:0. There's no problem sourcing data from any 
-particular subset of channels.
-
-Discussed in 
-https://files.ettus.com/manual/page_multiple.html#multiple_channumbers
-
-2) By two receivers I assume you mean two X310s. This manual page talks 
-about the basics, and not basics, of working with device/motherboard 
-indexes in addition to the subdevice spec. The antenna connectors in the 
-GNU Radio tab are indexed by channel number, so once you've selected 
-your subdevice spec (for sanity's sake really do keep the same on all 
-the devices) and your channel map array (select which receivers are in 
-use, and which order the user channel numbers map to those receivers) 
-the antenna list should make sense.
-https://files.ettus.com/manual/page_multiple.html
-
-IE: Two X310s with two TwinRX each, both specified in the same GNU Radio 
-USRP Source block. Subdev default "A:0 A:1 B:0 B:1", Channel map 
-[0,2,4,6] would use every other receiver from the 8 available. MB0 A:0 
-B:0, MB1 A:0 B:0. Changing the antenna selector for channel index 2 
-would change it for MB1 A:0.
-
-Yes, you must select 2 motherboards and should supply both IP addresses 
-or device argument IDs in the USRP Source block.
-
-3) No, but yes. You can put a single TwinRX in either slot. Mixing with 
-other daughterboard types might now be supported, but was not for a long 
-time, check with NI Support on the latest. If you put the TwinRX in the 
-B slot you will have receivers B:0 B:1 available. Run uhd_usrp_probe to 
-see this in detail. I'm nearly positive that the unknown daughterboard 
-in side A will not be prefered in the UHD default channel selection, but 
-am not 100% sure, so check the behavior on the bench. If you manually 
-specify the subdev spec as "B:0 B:1" then channel 0 (default) will 
-definitely be the first TwinRX receiver.
-
-Regards,
-Derek
-
-Bits to Volts Ltd
-
-On 12/9/2021 7:06 AM, Jonathan Pratt wrote:
-> Hi all
->
-> We have an X310 with 2 x TWIN RX radios in it.
->
-> We want to set up a GNU radio flow for this setup but not sure exactly how connections are mapped.
->
-> 1. If we create a block (UHD: USRP source) with only one channel, which receiver is the data coming from - in particular which antenna is being used with the normal connection of left Twin RX (looking from the front) Antenna 1 to  RF A TX/RX and Antenna 2 to RFA RX2; and for the right Twin RX Antenna 1 to RFB RX/TX and Antenna A RFB RX2. The presumption is that it is RFA TX/RX but we would like to be certain. Is it possible to address a different receiver as a single channel? Is there a problem with only sourcing data from less than all of the receivers? The reason for doing this is because we can't get enough data from the X310 with all receivers being polled so we want to focus on a single receiver output if possible
->
-> 2. If there are two receivers and the block is configured for four channels do the antenna connections in the RF Options tab refer to the connections of the specific radios? Does the MB option on the General tab need to be set to 2 for this to work properly?
->
-> 3. If we install only one of the Twin RX boards, does it matter which position (RFA or RFB) that we install the board?
->
-> Is there some link that contains this kind of information?
->
-> Thanks
->
-> Kind regards
-> Jonathan Pratt
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+SGkgSmFzb24sDQpJIHN0aWxsIGRvbid0IHRoaW5rIEkgdW5kZXJzdGFuZCB0aGUgcHJvYmxlbS4g
+VW5sZXNzIHlvdSBhcmUgdXNpbmcgdGhlDQpSRiB0cmFuc21pc3Npb24gZnJvbSBvbmUgVVNSUCBh
+cyBhIHRpbWUtYWxpZ25tZW50IHJlZmVyZW5jZSBmb3IgdGhlDQpvdGhlciBVU1JQICh3aGljaCBJ
+IHRoaW5rIHdvdWxkIHdvcmspLCBJIGRvbid0IHNlZSBob3cgdGhlIGFsZ29yaXRobQ0KY2FuIHdv
+cmsuDQoNCkkgZG9uJ3QgaW1tZWRpYXRlbHkgc2VlIGhvdyBpdCBjb3VsZCBiZSBoZWxwZnVsLCBi
+dXQgSSB3aWxsIG1lbnRpb24NCnRoYXQgeW91IGNvdWxkIGluc3RlYWQgdXNlIHNldF90aW1lX25l
+eHRfcHBzKCkgKG9yIG1heWJlIGl0cyBjYWxsZWQNCnNldF90aW1lX3Vua25vd25fcHBzPykgYW5k
+IGdldF90aW1lX2xhc3RfcHBzKCkuICBXaXRoIHRoZXNlIHR3bw0KZnVuY3Rpb25zIChvcGVyYXRp
+bmcgdXNpbmcgdGhlIGludGVybmFsIFBQUyBnZW5lcmF0b3IpLCB5b3UgY291bGQgYWRkDQphIGZp
+eGVkIGRlbHRhIHRvIHRoZSBjdXJyZW50IGNsb2NrIHZhbHVlIHRoYXQgd291bGQgbm90IGJlIGRl
+cGVuZGVudA0Kb24gYW55IG5ldHdvcmsgbGF0ZW5jaWVzLg0KUm9iDQoNCk9uIFdlZCwgRGVjIDgs
+IDIwMjEgYXQgMTA6MjQgUE0gTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNv
+bT4gd3JvdGU6DQo+DQo+IE9uIDIwMjEtMTItMDggMTg6NTcsIEVHUiBFbWFpbCB3cm90ZToNCj4N
+Cj4gVGhlIG9mZnNldCBpcyBjb21wdXRlZCBiYXNlZCBvbiB0aGUgYXNzdW1wdGlvbiB0aGF0IHRo
+ZSByYWRpb3MgY2FuIHByb3Blcmx5IHRpbWVzdGFtcCByZWNlaXZlZCBtZXNzYWdlcyBhbmQgdHJh
+bnNtaXQgbWVzc2FnZXMgYWNjdXJhdGUgdG8gdGhlIGNsb2NrIHRpY2sgdXNpbmcgc2NoZWR1bGUg
+dHJhbnNtaXNzaW9ucy4gIFRoaXMgaXMgZG9uZSB1c2luZyBieSBwZXJmb3JtaW5nIHNjaGVkdWxl
+ZCBSWCBidXJzdHMgYnkgZmlsbGluZyB0aGUgc3RyZWFtX2NtZF90IHN0cnVjdCB3aXRoIGEgcmVj
+ZWl2ZSB0aW1lIHNwZWMgYmVmb3JlIGlzc3VpbmcgdGhlIHJ4X3N0cmVhbWVyOjppc3N1ZV9zdHJl
+YW1fY21kKCkgdG8gdGhlIHJ4X3N0cmVhbWVyLCBhbmQgc2ltaWxhcmx5IGJ5IGZpbGxpbmcgdGhl
+IHR4X21ldGFkYXRhIHN0cnVjdCB3aXRoIGEgdGltZSBzcGVjIGJlZm9yZSB1c2luZyB0aGUgdHhf
+c3RyZWFtZXI6OnNlbmQoKSBjb21tYW5kLiBGcm9tIG15IHRlc3RpbmcgdGhpcyBhcHBlYXJzIHRv
+IHByb3Blcmx5IHNjaGVkdWxlIFRYIGFuZCBSWCBidXJzdHMgd2l0aGluIG9uZSBjbG9jayB0aWNr
+ICh3aGljaCBJIGJlbGlldmUgaXMgdGhlIGludGVuZGVkIGZ1bmN0aW9uIG9mIHRoZXNlIGNvbW1h
+bmRzKS4NCj4NCj4gQmVjYXVzZSB0aGUgc3luY2hyb25pemF0aW9uIGJ1cnN0cyBhcmUgaGFwcGVu
+aW5nIHZpYSBzY2hlZHVsZWQvdGltZWQgY29tbWFuZHMgZnJvbSB0aGUgRlBHQSwgdGhlIGxhdGVu
+Y2llcyBvZiB0aGUgbmV0d29yayBsYXllciBhbmQgT1Mgd2lsbCBoYXZlIG5vIGVmZmVjdCBvbiBz
+eW5jaHJvbml6YXRpb24gYXMgdGhlIHRpbWluZyBvZiB0aGUgY3JpdGljYWwgc2VjdGlvbiBpcyBo
+YXBwZW5pbmcgZW50aXJlbHkgd2l0aGluIHRoZSBGUEdBcy4gIFRoZSBob3N0IFBDIGlzIG9ubHkg
+c2NoZWR1bGluZyB0aGUgc3luY2hyb25pemF0aW9uIGJ1cnN0cyBhdCBzb21lIHRpbWUgaW4gdGhl
+IGZ1dHVyZSBhbmQgcGVyZm9ybWluZyB0aGUgcHJvY2Vzc2luZyBvbiB0aGUgYnVyc3RzIGFmdGVy
+IHRoZXnigJl2ZSBvY2N1cnJlZC4NCj4NCj4gSSBhbSBmYWlybHkgY29uZmlkZW50IHRoaXMgdGVj
+aG5pcXVlIGlzIHdvcmtpbmcgYW5kIHRoZSB0aW1lIGJpYXMgb2Zmc2V0IGlzIGJlaW5nIGNvbXB1
+dGVkIGNvcnJlY3RseSBhbmQgd2l0aCBzdWZmaWNpZW50IGFjY3VyYWN5IHRvIGFsaWduIHRoZSBj
+bG9ja3MgdG8gYSBmcmFjdGlvbiBvZiBhIGNsb2NrIGN5Y2xlLiBUaHVzLCB0aGUgaXNzdWUgcmVt
+YWlucyBhZGRpbmcgYSBkZWx0YSB0byB0aGUgbG9jYWwgY2xvY2sgb2YgdGhlIGRldmljZSB3aXRo
+IGEgZGV0ZXJtaW5pc3RpYyBsYXRlbmN5IHRvIGNvcnJlY3QgZm9yIHRoZSBjb21wdXRlZCBiaWFz
+OyBUaGlzIHNlZW1zIHJlYXNvbmFibGUgdG8gYWNoaWV2ZSBpZiBpdCBjYW4gYmUgZG9uZSBvbiB0
+aGUgRlBHQSwgZXZlbiBpZiB0aGUgaW1wbGVtZW50YXRpb24gbWF5IGJlIHNvbWV3aGF0IGludm9s
+dmVkLiAgRnVuZGFtZW50YWxseSBpdOKAmXMgYSBmZXRjaCwgYWRkLCBhbmQgd3JpdGUgYmFjay4N
+Cj4NCj4gUHJpbWFyaWx5LCBJ4oCZbSBjb25jZXJuZWQgd2l0aCBpZiBpdCBpcyBwb3NzaWJsZSB0
+byBpbnN0cnVjdCB0aGUgRlBHQSB0byBkbyB0aGlzIHZpYSBwcmUtZXhpc3RpbmcgQVBJIGNhbGxz
+LCBvciBpZiBJIHdpbGwgbmVlZCB0byBpbXBsZW1lbnQgbXkgb3duIFJGTm9DIGJsb2NrIHRvIHBl
+cmZvcm0gaXQgKGFnYWluIEnigJltIG5vdCB0b28gZmFtaWxpYXIgd2l0aCBSRk5vQywgYnV0IHRo
+aXMgc2VlbXMgbGlrZSBpdCBzaG91bGQgYmUgcG9zc2libGUsIGlmIHRoZSB0aW1lIHJlZ2lzdGVy
+IGNhbiBiZSBhY2Nlc3NlZCBkaXJlY3RseSkuDQo+DQo+IFVuZm9ydHVuYXRlbHksIG91ciBkZXNp
+cmVkIGFwcGxpY2F0aW9ucyB3b3VsZG7igJl0IGFsbG93IGZvciBhIFdoaXRlIFJhYmJpdCBpbXBs
+ZW1lbnRhdGlvbiwgdGhpcyB3b3VsZCBiZSBhbiBhbHRlcm5hdGl2ZSB0byBXaGl0ZSBSYWJiaXQg
+YXMgaXQgd2lsbCBiZSBpbmZlYXNpYmxlIHRvIHJ1biBmaWJlciBiZXR3ZWVuIHRoZSBkZXZpY2Vz
+Lg0KPg0KPiBUaGFua3MsDQo+IEphc29uDQo+DQo+IFRoZXJlJ3Mgbm8gIkNsb2NrLCBhZGp1c3Qg
+dGh5c2VsZiIgcHJpbWl0aXZlIGluIHRoZSBGUEdBIGFscmVhZHkuICBTbyBpdCB3b3VsZCBoYXZl
+IHRvIGJlIGFkZGVkLg0KPg0KPiBOb3JtYWxseSwgdGhlIFRPRCAodGltZSBvZiBkYXkpIGNsb2Nr
+IGlzIHNldCBlaXRoZXIgInJpZ2h0IG5vdyIgdG8gdGhlIHZhbHVlIHByb3ZpZGVkLCBvciBhIGhv
+bGRpbmcgcmVnaXN0ZXIgaXMgbG9hZGVkIHdpdGggdGhlIHByb3ZpZGVkIHZhbHVlLCBhbmQgdGhl
+biB3aGVuIHRyaWdnZXJlZCBieSBhIDFQUFMNCj4gICBldmVuLCB0aGUgVE9EIGNsb2NrIGlzIGxv
+YWRlZCBmcm9tIHRoZSAiaG9sZGluZyIgcmVnaXN0ZXIuDQo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
+aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
+byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
