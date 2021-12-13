@@ -2,123 +2,149 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D22F472FFC
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Dec 2021 16:03:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2686473062
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Dec 2021 16:26:12 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 88AFA385300
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Dec 2021 10:03:05 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 1D958385388
+	for <lists+usrp-users@lfdr.de>; Mon, 13 Dec 2021 10:26:12 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jWL5FBeh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="PzTMcXiR";
 	dkim-atps=neutral
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id B7053383E14
-	for <usrp-users@lists.ettus.com>; Mon, 13 Dec 2021 09:54:10 -0500 (EST)
-Received: by mail-yb1-f177.google.com with SMTP id x32so38844688ybi.12
-        for <usrp-users@lists.ettus.com>; Mon, 13 Dec 2021 06:54:10 -0800 (PST)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id D56CE3849E3
+	for <usrp-users@lists.ettus.com>; Mon, 13 Dec 2021 10:25:17 -0500 (EST)
+Received: by mail-yb1-f179.google.com with SMTP id q74so39074973ybq.11
+        for <usrp-users@lists.ettus.com>; Mon, 13 Dec 2021 07:25:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=nd.edu; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9q583UBN2LMBF9tr89JAVoErigNHOwcJG9ZgdNCD9M4=;
-        b=jWL5FBehmmlcu9Vao/aJCeV2i0gCFUNpPRnt+n4KgJ+F0LHQjlS5fMyVppZ2qD+oF0
-         0p073GllT/Ru7PVpvi+XYGWIRSkDOTB96BVLk555QoLAEy/Kw3IaJiPyw+u3zNG7VArR
-         S7cU9fJDYWNJi1SI6pgRlAScuMVo5pnng5Lfa+OjkNpl8G7IwApQrjuhZMo5iYCsRb/7
-         JxILj6jMbTOAZzVFXlC9tL5tf6eARvcoIDgMTxcvELd4f70Ih/t/PIcZFaBxQZ3Tfrge
-         Gv7rIoxA5f00lecwaZA2XT5KrjoWcpURhv0O8Bgcnjfh/tSiEWi70frrK7EQZUykuMnp
-         wrwA==
+        bh=StShycA4rg0GYUbVSNW3h534z5mWmB4HQaimieicPyM=;
+        b=PzTMcXiROWRcBANCSKWKdmCnDqrjwax7DZvrOT20HVlJldHgfwyZ5lx2/iswcz1KRI
+         5iWHnGfJ77bbNPCTj9Sk6H+GzieuxtgxSOmmtn6gYhkcC1tCJLHawRm5bfqSB4YzKjPV
+         QjzYNjupxQwRriB8cxjmw1FTTa+xlvpy5KUrqKYC0MTzfxULeIXPchFJ4RAS1SKWw471
+         3GYRRvasfK71g1G0VV/KTD1+6nbp20hvVXI0WgpIWL5Aw519q62kiXAXYokddoVZgQIy
+         FwCJWGbst/mzf7V164qbhlQibUEluQG31uHfl3SSMbER/cG/h17w1uePQUHUSlgtT9r5
+         WGTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9q583UBN2LMBF9tr89JAVoErigNHOwcJG9ZgdNCD9M4=;
-        b=IkubzBNAN9oBZFHnlMAfSVmlSSa8Y+FwtS9q26uIGQ65EyXfkpRebiqdyrF/nis2Rk
-         hz++IMkqCiFLWHCMCS0dp05dUZKzO8e3d3kx4CINdsV828aIkHVKRRn6TDm3Vfwh7vip
-         Dm2j8/s9lkJlC2U/WmB/s3M9YSX/C4crH2N63/nqQCL7FqhJNJM8gmSU6PisdcH73PMA
-         0oCupuB+71dw+i+M1UdF4buSTjxfw+gpMBRIdN8K7K4Tc4uQwposdyKEidY9Sczns+7p
-         D1mWw1LJjhc+i/A43GK4d9VAPfDP45AU96eztBvBp7fY0McH2Va4CyuY8yDb3+LSv2ti
-         XpFg==
-X-Gm-Message-State: AOAM531fL0xKlaFcgM1E/14M2BOhasyhJYBXTXa0ff5GbDu3Sfe7TF/y
-	XId6bzZZZT15ZptmJ08I/nswsfxRhnqCZ6LXbhE=
-X-Google-Smtp-Source: ABdhPJw5CmfyTHJyIikVxHUTYBOEYt7pSgVLdEpnkle7DqJtajjIzKreNFYhB26pOARc0qUW7R+FAALiU9c6Xh8mOWU=
-X-Received: by 2002:a25:7791:: with SMTP id s139mr33392149ybc.699.1639407249951;
- Mon, 13 Dec 2021 06:54:09 -0800 (PST)
+        bh=StShycA4rg0GYUbVSNW3h534z5mWmB4HQaimieicPyM=;
+        b=7L3tkarDkPrn6pSexdQf1gtG+9rJhelG3gPoXx0ngtU5yEbmxc8jv6Q0R9gDtR5BH+
+         Hi5SrzWxFr2cIDqpkwuw9sWRmJzSB71wsakR0xsXA6Dlz7KzvijoFoK8Q3wNLetuA8NX
+         mvACHc6vY3JLnfVseKXMEEd3Tq19+CDAFudllBdTYjEo1jV74LL3PoDTfY4eFPic/0SM
+         nC6YQJo9PVLuBYPDNh5H6fxniBAVn6D8YMEGjTh9vlc+CP1QoL7KJswMfvd+MHDnc3mT
+         Yu9uhDsQE6sa+jpPjRql5piNTnlIGzTRu+b12tDqtSCnicb7EjgFtHsAPBn9ksm1I/DJ
+         gZ+Q==
+X-Gm-Message-State: AOAM532Wcg6T40+4GryWtlXQ/svAAfxik1uvgwUv/YwEMBJa2x8Qzdmd
+	Oc4phYeR2XCewtgBQNWfs3jBoL3u1l7a4Om3BLYxaA==
+X-Google-Smtp-Source: ABdhPJw6Leehw5TNDHOvG5Q5DCb67iYBruwfCUsSysh0a+ZgAkdf+D2Q/8VIgR0HTik8LVgXpmKyQwhtbiR5yh3oFiM=
+X-Received: by 2002:a25:31d5:: with SMTP id x204mr33398548ybx.750.1639409116697;
+ Mon, 13 Dec 2021 07:25:16 -0800 (PST)
 MIME-Version: 1.0
-References: <CAL0m=NZY2QvKHiiokbgR=2Xgj8YL+onxWJGmyEr3sVXar=z6cw@mail.gmail.com>
- <32a71ff5-f1e4-0a87-7f4f-91fd25100336@gmail.com>
-In-Reply-To: <32a71ff5-f1e4-0a87-7f4f-91fd25100336@gmail.com>
-From: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
-Date: Mon, 13 Dec 2021 09:53:59 -0500
-Message-ID: <CAL0m=Navs8QQfb==EvoqCYcRcvFC43Vv2VTDW3iZask0K=sT3Q@mail.gmail.com>
+References: <pDx8ClDRgOJoYyr1t8oX3pYgHfcCNhdvqGXmAlOjXU@lists.ettus.com> <77d8190a-8f27-9297-0ba7-f953251ed02f@gmail.com>
+In-Reply-To: <77d8190a-8f27-9297-0ba7-f953251ed02f@gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Mon, 13 Dec 2021 10:25:05 -0500
+Message-ID: <CAB__hTS=Hc9KcGSOhdYrFLP2NnuTzLKgPLFJ1fs+UwyLnUpe=A@mail.gmail.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: LEDROYC5KAPXLIU6NIKCIA24RMKUKIQX
-X-Message-ID-Hash: LEDROYC5KAPXLIU6NIKCIA24RMKUKIQX
-X-MailFrom: huacheng.zeng@gmail.com
+Message-ID-Hash: 6E4YUWJGQ76FA256WIPX6OHGUZ2FXG5Y
+X-Message-ID-Hash: 6E4YUWJGQ76FA256WIPX6OHGUZ2FXG5Y
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N310 - unexpected DC offset and harmonics
+Subject: [USRP-users] Re: RuntimeError: Device reported an error during initialization
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LEDROYC5KAPXLIU6NIKCIA24RMKUKIQX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6E4YUWJGQ76FA256WIPX6OHGUZ2FXG5Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7138544271659034941=="
+Content-Type: multipart/mixed; boundary="===============0648808415905939495=="
 
---===============7138544271659034941==
-Content-Type: multipart/alternative; boundary="000000000000c68ce205d3083e9e"
+--===============0648808415905939495==
+Content-Type: multipart/alternative; boundary="0000000000000b4adc05d308ae13"
 
---000000000000c68ce205d3083e9e
+--0000000000000b4adc05d308ae13
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Marcus,
+One thing that bothers me about this problem is related to versions. I do
+not know what is meant by "gnuradio 2" or gnuradio 3".  If "gnuradio 2"
+means a 2.x version, then I think this is extremely old. And if "gnuradio
+3" means 3.x version, then I would ask which 3.x version?  And, then there
+is UHD 3.10.x, which seems to be the version you are trying to install.
+This is also very old.
 
-I constantly observed the DC offset and harmonic peaks yesterday. But they
-simply disappeared today. I am pretty sure I did not make any changes on
-hardware or software. One possibility is that they were caused by a long
-time use or the temperature change (room temperature < 25C).
+It seems that the following is true (please comment if part of this is
+false):
+1) you first tried to update the FPGA bitstream using uhd_image_loader, but
+the update failed for some reason and now the X310 does not boot up
+correctly
+2) now, you can operate the X310 if you first load the FPGA bitstream (UHD
+3.10) via JTAG, but of course, this JTAG update must happen with each power
+cycle
+3) When running with UHD 3.10 after loading via JTAG, you are still unable
+to use uhd_image_loader to update the X310 non-volatile flash over Ethernet
+(it is not clear to me if the uhd_image_loader application is using the
+*exact* same bitstream as the one you are loading via JTAG).
 
-I will report here if I can reproduce the problem. Thanks anyway!
+In general, my recommendation would be to forget about gnuradio for now and
+download and install uhd 4.1 (or at least 3.15). Then, use JTAG to load the
+bitstream from the installed "images" folder.  If successful,
+"uhd_usrp_probe" should now run successfully and show the UHD version as
+4.1 (or 3.15) (if not, then perhaps your system has multiple UHD versions
+installed and this may be the problem). Then, use uhd_image_loader with the
+"--fpga-path=3D<path to installed 'bitstream file'>" option to specify the
+exact same file as used with JTAG.  Note that this could be done using
+either a 1G or 10G connection. But, if you want to use the 1G connection,
+you will need to load the "HG" image during the JTAG programming and use
+the left-most SFP+ port with the 1G SFP+/RJ45 adapter.
+Rob
 
-Huacheng
 
-
-
-On Sun, Dec 12, 2021 at 2:24 PM Marcus D. Leech <patchvonbraun@gmail.com>
+On Mon, Dec 13, 2021 at 8:49 AM Marcus D. Leech <patchvonbraun@gmail.com>
 wrote:
 
-> On 2021-12-12 11:57, Zeng, Huacheng wrote:
+> On 2021-12-13 07:50, iw1fnw@gmail.com wrote:
+> >
+> > We received the board at end of June 2020 and not used that much due
+> > to Covid restriction in accessing the lab.
+> >
+> > I think it was working with =E2=80=9Cold=E2=80=9D GNU-Radio (version 2)=
+, but in May
+> > 2021 we updated everything to GNU-Radio 3 (including Linux
+> > distribution, etc.). At that point, I had problem since GNU-Radio was
+> > complaining that the FPGA image was not in line with the USRP drivers,
+> > and it asked to upgrade it using the image loader.
+> >
+> > I did it, and the USPR stopped working (i.e. the image loading was not
+> > successful, with same above error). We recovered using Vivado, and
+> > this is where we are now.
+> >
+> > I may try to upload the image using the PCIe interface on another
+> > machine. That is the only other thing that I can think about now.
+> >
+> >
+> >
+> Just to confirm--you're running the as-supplied-by-Ettus images on the
+> X310 when this happens?
 >
-> Hello,
+> Also make sure that you're loading images that are compatible with the
+> version of UHD you're running.  Use
 >
-> I am using N310 to observe its received signal in its four channels. I
-> observed some unexpected DC offset and harmonics as shown in the attached
-> figure. It happened only at channels RF0 & RF2; the signal from channels
-> RF1 & RF3 looks normal. I disconnected the antennas but the DC and
-> harmonics are still there. And they would not change if I change the center
-> frequency, sampling rate, or RF gain.
+> uhd_images_downloader
 >
-> The GNU RADIO and UHD versions are below:
-> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-> UHD_3.15.0.HEAD-0-gaea0e2de
+> To download compatible images to your PC.
 >
-> I also attached my python script code in case it would be useful for you
-> to identify the problem.
+> IF that fails, you could try following the "unbricking" procedure here:
 >
-> Any suggestions? Thank you  in advance!
->
-> Hua
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> Also, could you try explicitly specifying a subdev-spec of:
->
-> "A:0 A:1 B:0 B:1"
+> https://kb.ettus.com/X300/X310_Device_Recovery
 >
 >
 > _______________________________________________
@@ -126,76 +152,88 @@ wrote:
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000c68ce205d3083e9e
+--0000000000000b4adc05d308ae13
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Marcus,<div><br></div><div>I constantly observed the DC=
- offset and harmonic peaks yesterday. But they simply disappeared today. I =
-am pretty sure I did not make any changes on hardware or software. One poss=
-ibility is that they were caused by a long time use or the temperature chan=
-ge (room temperature &lt; 25C).=C2=A0</div><div><br></div><div>I will repor=
-t here if I can reproduce the problem. Thanks anyway!</div><div><br></div><=
-div>Huacheng</div><div><br></div><div><br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Dec 12, 2021 at 2:2=
-4 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvo=
-nbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    <div>On 2021-12-12 11:57, Zeng, Huacheng
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div>Hello,</div>
-        <div><br>
-        </div>
-        <div>I am using N310 to observe its received signal in its four
-          channels. I observed some unexpected DC offset and harmonics
-          as shown in the attached figure. It happened only at channels
-          RF0 &amp; RF2; the signal from channels RF1 &amp; RF3 looks
-          normal. I disconnected the antennas but the DC and harmonics
-          are still there. And they would not change if I change the
-          center frequency, sampling rate, or RF gain. <br>
-        </div>
-        <div><br>
-        </div>
-        <div>The GNU RADIO and UHD versions are below:</div>
-        <div>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-          UHD_3.15.0.HEAD-0-gaea0e2de</div>
-        <div><br>
-        </div>
-        <div>I also attached my python script code in case it would be
-          useful for you to identify the problem.<br>
-        </div>
-        <div><br>
-        </div>
-        <div>Any suggestions? Thank you=C2=A0 in advance!</div>
-        <div><br>
-        </div>
-        <div>Hua<br>
-        </div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    Also, could you try explicitly specifying a subdev-spec of:<br>
-    <br>
-    &quot;A:0 A:1 B:0 B:1&quot;<br>
-    <br>
-    <br>
-  </div>
+<div dir=3D"ltr">One thing that bothers me about this problem is related to=
+ versions. I do not know what is meant by &quot;gnuradio 2&quot; or gnuradi=
+o 3&quot;.=C2=A0 If &quot;gnuradio 2&quot; means a 2.x version, then I thin=
+k this is extremely old. And if &quot;gnuradio 3&quot; means 3.x version, t=
+hen I would ask which 3.x version?=C2=A0 And, then there is UHD 3.10.x, whi=
+ch seems to be the version you are trying to install. This is also very old=
+.<div><br></div><div>It seems that the following is true (please comment if=
+ part of this is false):</div><div>1) you first tried to update the FPGA bi=
+tstream using uhd_image_loader, but the update failed for some reason and n=
+ow the X310 does not boot up correctly</div><div>2) now, you can operate th=
+e X310 if you first load the FPGA bitstream (UHD 3.10) via JTAG, but of cou=
+rse, this JTAG update must happen with each power cycle</div><div>3) When r=
+unning with UHD 3.10 after loading via JTAG, you are still unable to use uh=
+d_image_loader to update the X310 non-volatile flash over Ethernet (it is n=
+ot clear to me if the uhd_image_loader application is using the *exact* sam=
+e bitstream as the one you are loading via JTAG).</div><div><br></div><div>=
+In general, my recommendation would be to forget about gnuradio for now and=
+ download and install uhd 4.1 (or at least 3.15). Then, use JTAG to load th=
+e bitstream from the installed &quot;images&quot; folder.=C2=A0 If successf=
+ul, &quot;uhd_usrp_probe&quot; should now run successfully and show the UHD=
+ version as 4.1 (or 3.15) (if not, then perhaps your system has multiple UH=
+D versions installed and this may be the problem). Then, use uhd_image_load=
+er with the &quot;--fpga-path=3D&lt;path to installed &#39;bitstream file&#=
+39;&gt;&quot; option to specify the exact same file as used with JTAG.=C2=
+=A0 Note that this could be done using either a 1G or 10G connection. But, =
+if you want to use the 1G connection, you will need to load the &quot;HG&qu=
+ot; image during the JTAG programming and use the left-most SFP+ port with =
+the 1G SFP+/RJ45 adapter.</div><div>Rob</div><div><br></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 13,=
+ 2021 at 8:49 AM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.=
+com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">On 2021-12-13 07:50, <a href=3D"mailto:iw1fnw@g=
+mail.com" target=3D"_blank">iw1fnw@gmail.com</a> wrote:<br>
+&gt;<br>
+&gt; We received the board at end of June 2020 and not used that much due <=
+br>
+&gt; to Covid restriction in accessing the lab.<br>
+&gt;<br>
+&gt; I think it was working with =E2=80=9Cold=E2=80=9D GNU-Radio (version 2=
+), but in May <br>
+&gt; 2021 we updated everything to GNU-Radio 3 (including Linux <br>
+&gt; distribution, etc.). At that point, I had problem since GNU-Radio was =
+<br>
+&gt; complaining that the FPGA image was not in line with the USRP drivers,=
+ <br>
+&gt; and it asked to upgrade it using the image loader.<br>
+&gt;<br>
+&gt; I did it, and the USPR stopped working (i.e. the image loading was not=
+ <br>
+&gt; successful, with same above error). We recovered using Vivado, and <br=
+>
+&gt; this is where we are now.<br>
+&gt;<br>
+&gt; I may try to upload the image using the PCIe interface on another <br>
+&gt; machine. That is the only other thing that I can think about now.<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+Just to confirm--you&#39;re running the as-supplied-by-Ettus images on the =
+<br>
+X310 when this happens?<br>
+<br>
+Also make sure that you&#39;re loading images that are compatible with the =
+<br>
+version of UHD you&#39;re running.=C2=A0 Use<br>
+<br>
+uhd_images_downloader<br>
+<br>
+To download compatible images to your PC.<br>
+<br>
+IF that fails, you could try following the &quot;unbricking&quot; procedure=
+ here:<br>
+<br>
+<a href=3D"https://kb.ettus.com/X300/X310_Device_Recovery" rel=3D"noreferre=
+r" target=3D"_blank">https://kb.ettus.com/X300/X310_Device_Recovery</a><br>
+<br>
+<br>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
@@ -203,9 +241,9 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 
---000000000000c68ce205d3083e9e--
+--0000000000000b4adc05d308ae13--
 
---===============7138544271659034941==
+--===============0648808415905939495==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -215,4 +253,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7138544271659034941==--
+--===============0648808415905939495==--
