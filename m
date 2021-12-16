@@ -2,46 +2,46 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B18A47791E
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Dec 2021 17:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A656C477971
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Dec 2021 17:41:44 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E42B7384E61
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Dec 2021 11:32:02 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 27C61385458
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Dec 2021 11:41:40 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="K9NQ2Zk6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="BUB+QKtt";
 	dkim-atps=neutral
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id AD77B384BB7
-	for <usrp-users@lists.ettus.com>; Thu, 16 Dec 2021 11:30:58 -0500 (EST)
-Received: by mail-yb1-f171.google.com with SMTP id q74so65956817ybq.11
-        for <usrp-users@lists.ettus.com>; Thu, 16 Dec 2021 08:30:58 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 919AC38535F
+	for <usrp-users@lists.ettus.com>; Thu, 16 Dec 2021 11:40:33 -0500 (EST)
+Received: by mail-yb1-f181.google.com with SMTP id f9so66117467ybq.10
+        for <usrp-users@lists.ettus.com>; Thu, 16 Dec 2021 08:40:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=nd.edu; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=lJPa91jxMSSzVniRfl2VEt58fUBq04Lo9Tja+M5BEck=;
-        b=K9NQ2Zk64hY0KsktVlS6X2WCGJXluWreZzY9HCGjUO5uUq+G9GQbN3l39tV/NuRURO
-         k9rZyunXqI1UDNzzwRCOGuHygQS81ihQ90ZJ0LqSxS+dxTFG290jvyr/yUWZokhl86Bw
-         Kk+bwAa9BzJQZlJPUkCKfC7fvtlmKk4t7Ns07XeotmVUU9ONu1s2+uZIcH/YIhqALp9v
-         CkS5ITByULJ4y38k+uOvh0n4gE8+KmMrKd2Tic/+UF8jEQ0XBNyZpjttzlUYoUraU/88
-         OoBZZHQYx9liz9Kuk1wa0h2Ln/tkUae0hx4T5813Smk7uNDB1sCTqvSXANJAqtcYft6c
-         8x8Q==
+        bh=ZtOgRqiw2raSKpcxqLrypc3Ivym1UQjB/c84zqw4Hc4=;
+        b=BUB+QKttnMiC3+rS0DkO/4w0i0J+UiDHQn+P9ZTjV1gbb0tRVol8EDVph0LSw4G7u/
+         L/symqtgmJKb9yQJcnvyaYlYPyLJRBgOjzxsN6AwV+QllxK+aaNPb7aKhUkXEO3wtZtN
+         eDjxtdLIKFgzvP254jjkoh7/c/yI2xJCLsvJ3Po+UayZCqnUK/Cl52495FFBKHjWlP0m
+         vnq6YIkd/DImGLwWIc+/rIR0o/G02DXJ0/1zHyHUGyKKKGR0/9uDhV/Z3DzIT7nNfUry
+         wxZ1rr18AF/CLiN/hC1/5YwWInneXiNr0cO3DSOapM1fe8XlnR66Jsp+TNLYUj8joN2M
+         ipVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=lJPa91jxMSSzVniRfl2VEt58fUBq04Lo9Tja+M5BEck=;
-        b=BBowhvetLbEDD+1GZCqyR9CFEC+jlZGkNvt3ShsWAOb6su0K2MWsVRB4D5PlaUEhuf
-         rbZKlhZhGlwoMtEH2qbC7iTi6mD1voPrOpqAf3rEGIlGMdGxfGZU5/26QJCQS+KjHvIv
-         xGJOLGIKEhczEXKd9gtbQy6MTwvlgbMimPQ7a93DBwwSwertNx1WXv8IjqKH1vrxGWfc
-         Fo+0eofgCrPdvN76mgdM5M/CpIPQP6su9TlonSyGOmzYM1W4BXK+EfOXfC2YiJ1RtKwZ
-         YzbKk8jhH1R8Ro+npDF1uW68daf3pKCYxQPq3I8mKkr9AJSYizeg+t40ck6FXWzHoHn1
-         xsWA==
-X-Gm-Message-State: AOAM5300kGSV8KmOr2+LA/v9bcljE6F/uhGMhlnZqh1OnXj5NIkO1f6g
-	aT5KK1tQDiQZEI/yNl0nlx+3HrZw5h7HqiV6GR24yw==
-X-Google-Smtp-Source: ABdhPJxx9g0GTahca/eVXuHr1eIQg/QSkB3Vd3nLgo69RqCVngX22t9fc4ASG3HLT4yaoZkW9vZPLMXa7XKv8J2bYr8=
-X-Received: by 2002:a25:b3c1:: with SMTP id x1mr14458886ybf.647.1639672256910;
- Thu, 16 Dec 2021 08:30:56 -0800 (PST)
+        bh=ZtOgRqiw2raSKpcxqLrypc3Ivym1UQjB/c84zqw4Hc4=;
+        b=m9OQEMLGFJlU7FadouXrwLqdHiCMNLAG6tGbYAWGcunCSZN1PmcL9knJVSm0wrf1OO
+         fwyaxJsptrkBuf5aVqhHtUlPJWBzCQk0yE4euTiy0/syQPSaquoLx+HDu6TV6T7gLKXR
+         GAewHif15LhaDG4C5Ac/N1pEAdyf9UfZmbqzi283m8+kmq8Q5tR4fWBgK/gE9mDxsaPe
+         6I3uzLBhrvGcKQC3XDg7ZItEkOXvTXoA+2zw37QcUlNPLZn7qpvyfSDrpNwuW70l26zs
+         tgc4/nE8/jV+ep7b/BgA1r/WZP15C8suLrCwhv/ioNdbbdbifT/PIZFS76N0C40Ox94b
+         ECBQ==
+X-Gm-Message-State: AOAM533jIOd98SNiqC5MnBK1XZ66TId2d6cwDtjzzyElKvtihVcwhlNK
+	j1uEO8+HW+XsjIktUXVN0B82W/x4R/CiIv8+uMFT1g==
+X-Google-Smtp-Source: ABdhPJzNXF8NmfJkbPe51uQwDKq4NZNu+Iwds15DIN6/wrgXlM1PxWh2oOCfNAlmFRwtpN/ABScAAiaVxte+wwXaC+8=
+X-Received: by 2002:a25:8752:: with SMTP id e18mr14560132ybn.701.1639672832741;
+ Thu, 16 Dec 2021 08:40:32 -0800 (PST)
 MIME-Version: 1.0
 References: <00f301d7c978$ef03a150$cd0ae3f0$@zengyi-tech.com>
  <018b01d7ca10$592a2260$0b7e6720$@zengyi-tech.com> <cf1cae96-1611-bcc4-9bd3-b62e6d809ab6@gmail.com>
@@ -55,13 +55,14 @@ References: <00f301d7c978$ef03a150$cd0ae3f0$@zengyi-tech.com>
  <009801d7ecc1$1909e0c0$4b1da240$@zengyi-tech.com> <00bd01d7ecc2$a12e5de0$e38b19a0$@zengyi-tech.com>
  <328b76ee-39d9-5439-af99-9a49f566f9fc@gmail.com> <003101d7ed6d$4e10eff0$ea32cfd0$@zengyi-tech.com>
  <28c49e05-b924-81b5-8c06-4dc0fe23ebd3@gmail.com> <004a01d7f236$03d27940$0b776bc0$@zengyi-tech.com>
-In-Reply-To: <004a01d7f236$03d27940$0b776bc0$@zengyi-tech.com>
+ <CAB__hTRi=ZV4ZLHK4G9r+burbc-VyhXfSa77b0hSXAa0eH55vA@mail.gmail.com>
+In-Reply-To: <CAB__hTRi=ZV4ZLHK4G9r+burbc-VyhXfSa77b0hSXAa0eH55vA@mail.gmail.com>
 From: Rob Kossler <rkossler@nd.edu>
-Date: Thu, 16 Dec 2021 11:30:46 -0500
-Message-ID: <CAB__hTRi=ZV4ZLHK4G9r+burbc-VyhXfSa77b0hSXAa0eH55vA@mail.gmail.com>
+Date: Thu, 16 Dec 2021 11:40:21 -0500
+Message-ID: <CAB__hTQCHXztgGrCtuVyNC72S2XP9TXr3HeKiYz6tXrpDi0ewg@mail.gmail.com>
 To: zeyuan.li@zengyi-tech.com
-Message-ID-Hash: DVXGZJS3ASMRJUBN3FOPXCTD5JYO6WB6
-X-Message-ID-Hash: DVXGZJS3ASMRJUBN3FOPXCTD5JYO6WB6
+Message-ID-Hash: AKWDLIZMRSIWJSIGUCTF2SIYSEPEDN2I
+X-Message-ID-Hash: AKWDLIZMRSIWJSIGUCTF2SIYSEPEDN2I
 X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: USRP list <usrp-users@lists.ettus.com>
@@ -69,108 +70,224 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] =?utf-8?b?UmU6IOetlOWkjTogUmU6IOetlOWkjTog562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiDnrZTlpI06IFJlOiDnrZTlpI06IFJlOiBIb3cgdG8gdXNlIEV4dGVybmFsIExPIG9uIE4zMTAgZGV2aWNlPw==?=
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DVXGZJS3ASMRJUBN3FOPXCTD5JYO6WB6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AKWDLIZMRSIWJSIGUCTF2SIYSEPEDN2I/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7338916708916755958=="
+Content-Type: multipart/mixed; boundary="===============6218946445189461602=="
 
---===============7338916708916755958==
-Content-Type: multipart/related; boundary="0000000000006d262a05d345f28e"
+--===============6218946445189461602==
+Content-Type: multipart/related; boundary="000000000000bec16005d34614c7"
 
---0000000000006d262a05d345f28e
-Content-Type: multipart/alternative; boundary="0000000000006d262805d345f28d"
+--000000000000bec16005d34614c7
+Content-Type: multipart/alternative; boundary="000000000000bec15f05d34614c6"
 
---0000000000006d262805d345f28d
+--000000000000bec15f05d34614c6
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-V2hlbiB0aGUgTjMxMCBzdGFydHMgd2l0aCBleHRlcm5hbCBMTyBlbmFibGVkLCB0aGUgTjMxMCBw
-ZXJmb3JtcyBhbg0KImluaXRpYWxpemF0aW9uIGNhbGlicmF0aW9uIiAoSSB0aGluayBmb3IgSS9R
-IGJhbGFuY2Ugb3Igc29tZXRoaW5nKSB3aGVyZQ0KaXQgZXhwZWN0cyB0aGF0IHRoZSBleHRlcm5h
-bCBMTyBpcyBPTiBhbmQgYXQgdGhlIGZyZXF1ZW5jeSA1IEdIei4gVGhpcw0Kc2lnbmFsIGlzIHJl
-cXVpcmVkIGF0IHRoaXMgc3BlY2lmaWMgZnJlcXVlbmN5IGZvciB0aGUgY2FsaWJyYXRpb24uIEFm
-dGVyDQp0aGUgaW5pdGlhbGl6YXRpb24gaXMgZG9uZSAoZG9lc24ndCB0YWtlIGxvbmcpLCB0aGVu
-IHlvdSBjYW4gY2hhbmdlIHRoZQ0KZXh0ZXJuYWwgTE8gZnJlcXVlbmN5IHRvIHdoYXRldmVyIHlv
-dSB3YW50ICh0d2ljZSB0aGUgZGVzaXJlZCBSRikuDQoNClNvLCBteSBxdWVzdGlvbiBpczogd2hl
-biB5b3UgcmFuIHRoaXMgZXhwZXJpbWVudCwgd2FzIHlvdXIgZXh0ZXJuYWwgTE8gYXQgNQ0KR0h6
-Pw0KDQpPbiBXZWQsIERlYyAxNSwgMjAyMSBhdCAxMTozMyBQTSA8emV5dWFuLmxpQHplbmd5aS10
-ZWNoLmNvbT4gd3JvdGU6DQoNCj4gSSBwdXQ6DQo+DQo+IHJ4X2xvX3NvdXJjZT1leHRlcm5hbCx0
-eF9sb19zb3VyY2U9ZXh0ZXJuYWwgaW4gdGhlIGZpZWxkIGxhYmVsbGVkICJEZXZpY2UNCj4gQXJn
-dW1lbnRzIi4NCj4NCj4gQnV0IHRoZSBwcm9jZXNzIHN0dWNrZWQgYW5kIGRldmljZSBjb3VsZCBu
-b3QgYmUgY2FsbGVkLg0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPiDosKLosKLvvIzmnInk
-u7vkvZXpl67popjor7fpmo/ml7bkuI7miJHogZTns7vvvIENCj4NCj4g4oCU4oCU4oCU4oCU4oCU
-4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCUDQo+DQo+
-IOadjuazvei/nHznoJTlj5Hlt6XnqIvluIgNCj4NCj4g5YyX5Lqs5pu+55uK56eR5oqA5pyJ6ZmQ
-5YWs5Y+4DQo+DQo+IOaJi+acuu+8mjEzMTIxMTYyMDQ0DQo+DQo+IOWcsOWdgO+8muWMl+S6rOW4
-gua1t+a3gOWMuuS4reWFs+adkeWkp+ihl+S4reWFs+adkVNPSE8gMTEwOA0KPiDnvZHlnYDvvJoq
-d3d3Lnplbmd5aS10ZWNoLmNvbSA8aHR0cDovL3d3dy56ZW5neWktdGVjaC5jb20+Kg0KPg0KPg0K
-Pg0KPiAq5Y+R5Lu25Lq6OiogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNv
-bT4NCj4gKuWPkemAgeaXtumXtDoqIDIwMjHlubQxMuaciDEw5pelIDEwOjMyDQo+ICrmlLbku7bk
-uro6KiB6ZXl1YW4ubGlAemVuZ3lpLXRlY2guY29tOyAnUm9iIEtvc3NsZXInIDxya29zc2xlckBu
-ZC5lZHU+DQo+ICrmioTpgIE6KiAnVVNSUCBsaXN0JyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20+DQo+ICrkuLvpopg6KiBbVVNSUC11c2Vyc10gUmU6IOetlOWkjTogUmU6IOetlOWkjTog562U
-5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiDnrZTl
-pI06DQo+IFJlOiDnrZTlpI06IFJlOiBIb3cgdG8gdXNlIEV4dGVybmFsIExPIG9uIE4zMTAgZGV2
-aWNlPw0KPg0KPg0KPg0KPiBPbiAyMDIxLTEyLTA5IDIxOjI2LCB6ZXl1YW4ubGlAemVuZ3lpLXRl
-Y2guY29tIHdyb3RlOg0KPg0KPiBCdXQgdGhvc2Ugbm90IGluIFVIRCBTaW5rIG9yIFNvdXJjZSBp
-biBHTlUgUmFkaW8uDQo+DQo+IENvdWxkIHlvdSBzaG93IG1lIGFuIGV4YW1wbGU/DQo+DQo+DQo+
-DQo+DQo+DQo+IFdoYXQgdmVyc2lvbiBvZiBHbnUgUmFkaW8gYXJlIHlvdSB1c2luZywgYW5kIHdo
-YXQgdmVyc2lvbiBvZiBVSEQ/ICBUaGlzIGlzDQo+IHdoYXQgYSBVSEQgc291cmNlIGJsb2NrIGxv
-b2tzIGxpa2Ugd2hlbiB5b3UgZG91YmxlLWNsaWNrIGl0Og0KPg0KPiBbaW1hZ2U6IFVIRCBzb3Vy
-Y2UgcGFyYW1ldGVyc10NCj4NCj4gVGhlcmUgaXMgYSAiRGV2aWNlIEFyZ3VtZW50cyIgZmllbGQs
-IHdoaWNoIGlzIGEgc3RyaW5nIG9mIGNvbW1hLXNlcGFyYXRlZA0KPiBkZXZpY2UgYXJndW1lbnRz
-Lg0KPg0KPiBTbyB5b3UnZCBwdXQ6DQo+DQo+IHJ4X2xvX3NvdXJjZT1leHRlcm5hbCx0eF9sb19z
-b3VyY2U9ZXh0ZXJuYWwgaW4gdGhlIGZpZWxkIGxhYmVsbGVkICJEZXZpY2UNCj4gQXJndW1lbnRz
-Ig0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPiDosKLosKLvvIzmnInku7vkvZXpl67popjor7fpmo/m
-l7bkuI7miJHogZTns7vvvIENCj4NCj4g4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU
-4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCU4oCUDQo+DQo+IOadjuazvei/nHznoJTlj5Hl
-t6XnqIvluIgNCj4NCj4g5YyX5Lqs5pu+55uK56eR5oqA5pyJ6ZmQ5YWs5Y+4DQo+DQo+IOaJi+ac
-uu+8mjEzMTIxMTYyMDQ0DQo+DQo+IOWcsOWdgO+8muWMl+S6rOW4gua1t+a3gOWMuuS4reWFs+ad
-keWkp+ihl+S4reWFs+adkVNPSE8gMTEwOA0KPiDnvZHlnYDvvJoqd3d3Lnplbmd5aS10ZWNoLmNv
-bSA8aHR0cDovL3d3dy56ZW5neWktdGVjaC5jb20+Kg0KPg0KPg0KPg0KPiAq5Y+R5Lu25Lq6Oiog
-TWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4gPHBhdGNodm9uYnJhdW5A
-Z21haWwuY29tPg0KPiAq5Y+R6YCB5pe26Ze0OiogMjAyMeW5tDEy5pyIOeaXpSAyMjozOQ0KPiAq
-5pS25Lu25Lq6OiogemV5dWFuLmxpQHplbmd5aS10ZWNoLmNvbTsgJ1JvYiBLb3NzbGVyJyA8cmtv
-c3NsZXJAbmQuZWR1Pg0KPiA8cmtvc3NsZXJAbmQuZWR1Pg0KPiAq5oqE6YCBOiogJ1VTUlAgbGlz
-dCcgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20+DQo+ICrkuLvpopg6KiBbVVNSUC11c2Vyc10gUmU6IOetlOWkjTog562U5aSNOiBSZTog
-562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiBSZTog562U5aSNOiDnrZTlpI06IFJlOiDn
-rZTlpI06DQo+IFJlOiBIb3cgdG8gdXNlIEV4dGVybmFsIExPIG9uIE4zMTAgZGV2aWNlPw0KPg0K
-Pg0KPg0KPiBPbiAyMDIxLTEyLTA5IDAxOjA0LCB6ZXl1YW4ubGlAemVuZ3lpLXRlY2guY29tIHdy
-b3RlOg0KPg0KPiBJIG5vdGljZWQgdGhpcyB0YWJsZSBtZW50aW9uZWQgZXh0ZXJuYWwgTE8uDQo+
-DQo+IExpbmsgdG8gdGhlcmU6DQo+IGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdl
-X3VzcnBfbjN4eC5odG1sI24zeHhfdXNhZ2VfZGV2aWNlX2FyZ3MuDQo+DQo+DQo+DQo+DQo+DQo+
-DQo+DQo+IFllcy4gIFNvIHVzZSB0aG9zZSBpbiB0aGUgIkRldmljZSBBcmd1bWVudHMiIHBhcmFt
-ZXRlciBpbiB5b3VyIFVIRA0KPiBzb3VyY2Uvc2luayBibG9ja3MgaW4gR251UmFkaW8uICBUaGlz
-IHdpbGwgY2F1c2UgdGhlIGRldmljZSB0byB1c2UgZXh0ZXJuYWwNCj4gTE8gb24gInNlc3Npb24g
-c3RhcnQiLCBhbmQNCj4gICAgYWxsb3cgcHJvcGVyIHNldHVwLg0KPg0KPg0KPg0KPg0K
---0000000000006d262805d345f28d
+Actually, let me re-state. Every time UHD software starts, this calibration
+is performed (such that the external LO must be at 5 GHz).  So, this might
+imply (I think it does) that every time you start the gnuradio flowgraph,
+the external LO must be at 5 GHz.
+Rob
+
+On Thu, Dec 16, 2021 at 11:30 AM Rob Kossler <rkossler@nd.edu> wrote:
+
+> When the N310 starts with external LO enabled, the N310 performs an
+> "initialization calibration" (I think for I/Q balance or something) where
+> it expects that the external LO is ON and at the frequency 5 GHz. This
+> signal is required at this specific frequency for the calibration. After
+> the initialization is done (doesn't take long), then you can change the
+> external LO frequency to whatever you want (twice the desired RF).
+>
+> So, my question is: when you ran this experiment, was your external LO at
+> 5 GHz?
+>
+> On Wed, Dec 15, 2021 at 11:33 PM <zeyuan.li@zengyi-tech.com> wrote:
+>
+>> I put:
+>>
+>> rx_lo_source=3Dexternal,tx_lo_source=3Dexternal in the field labelled "D=
+evice
+>> Arguments".
+>>
+>> But the process stucked and device could not be called.
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=
+=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
+>>
+>> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>>
+>> =E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=
+=88
+>>
+>> =E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=
+=E5=85=AC=E5=8F=B8
+>>
+>> =E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
+>>
+>> =E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=
+=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=
+=9D=91SOHO 1108
+>> =E7=BD=91=E5=9D=80=EF=BC=9A*www.zengyi-tech.com <http://www.zengyi-tech.=
+com>*
+>>
+>>
+>>
+>> *=E5=8F=91=E4=BB=B6=E4=BA=BA:* Marcus D. Leech <patchvonbraun@gmail.com>
+>> *=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4:* 2021=E5=B9=B412=E6=9C=8810=E6=97=
+=A5 10:32
+>> *=E6=94=B6=E4=BB=B6=E4=BA=BA:* zeyuan.li@zengyi-tech.com; 'Rob Kossler' =
+<rkossler@nd.edu>
+>> *=E6=8A=84=E9=80=81:* 'USRP list' <usrp-users@lists.ettus.com>
+>> *=E4=B8=BB=E9=A2=98:* [USRP-users] Re: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=
+=E5=A4=8D: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=E5=A4=
+=8D: Re: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=E5=A4=8D: =E7=AD=94=E5=A4=8D:
+>> Re: =E7=AD=94=E5=A4=8D: Re: How to use External LO on N310 device?
+>>
+>>
+>>
+>> On 2021-12-09 21:26, zeyuan.li@zengyi-tech.com wrote:
+>>
+>> But those not in UHD Sink or Source in GNU Radio.
+>>
+>> Could you show me an example?
+>>
+>>
+>>
+>>
+>>
+>> What version of Gnu Radio are you using, and what version of UHD?  This
+>> is what a UHD source block looks like when you double-click it:
+>>
+>> [image: UHD source parameters]
+>>
+>> There is a "Device Arguments" field, which is a string of comma-separate=
+d
+>> device arguments.
+>>
+>> So you'd put:
+>>
+>> rx_lo_source=3Dexternal,tx_lo_source=3Dexternal in the field labelled "D=
+evice
+>> Arguments"
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> =E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=
+=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
+>>
+>> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>>
+>> =E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=
+=88
+>>
+>> =E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=
+=E5=85=AC=E5=8F=B8
+>>
+>> =E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
+>>
+>> =E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=
+=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=
+=9D=91SOHO 1108
+>> =E7=BD=91=E5=9D=80=EF=BC=9A*www.zengyi-tech.com <http://www.zengyi-tech.=
+com>*
+>>
+>>
+>>
+>> *=E5=8F=91=E4=BB=B6=E4=BA=BA:* Marcus D. Leech <patchvonbraun@gmail.com>
+>> <patchvonbraun@gmail.com>
+>> *=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4:* 2021=E5=B9=B412=E6=9C=889=E6=97=
+=A5 22:39
+>> *=E6=94=B6=E4=BB=B6=E4=BA=BA:* zeyuan.li@zengyi-tech.com; 'Rob Kossler' =
+<rkossler@nd.edu>
+>> <rkossler@nd.edu>
+>> *=E6=8A=84=E9=80=81:* 'USRP list' <usrp-users@lists.ettus.com>
+>> <usrp-users@lists.ettus.com>
+>> *=E4=B8=BB=E9=A2=98:* [USRP-users] Re: =E7=AD=94=E5=A4=8D: =E7=AD=94=E5=
+=A4=8D: Re: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=E5=A4=
+=8D: Re: =E7=AD=94=E5=A4=8D: =E7=AD=94=E5=A4=8D: Re: =E7=AD=94=E5=A4=8D:
+>> Re: How to use External LO on N310 device?
+>>
+>>
+>>
+>> On 2021-12-09 01:04, zeyuan.li@zengyi-tech.com wrote:
+>>
+>> I noticed this table mentioned external LO.
+>>
+>> Link to there:
+>> https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_usage_device_arg=
+s
+>> .
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> Yes.  So use those in the "Device Arguments" parameter in your UHD
+>> source/sink blocks in GnuRadio.  This will cause the device to use exter=
+nal
+>> LO on "session start", and
+>>    allow proper setup.
+>>
+>>
+>>
+>>
+>
+
+--000000000000bec15f05d34614c6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">When the N310 starts with external LO enabled, the N310 pe=
-rforms an &quot;initialization calibration&quot; (I think for I/Q balance o=
-r something) where it expects that the external LO is ON and at the frequen=
-cy 5 GHz. This signal is required at this specific frequency for the calibr=
-ation. After the initialization is done (doesn&#39;t take long), then you c=
-an change the external LO frequency to whatever you want (twice the desired=
- RF).<div><br></div><div>So, my question is: when you ran this experiment, =
-was your external LO at 5 GHz?</div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 15, 2021 at 11:33 PM &lt;<a=
- href=3D"mailto:zeyuan.li@zengyi-tech.com">zeyuan.li@zengyi-tech.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div la=
-ng=3D"ZH-CN"><div class=3D"gmail-m_-5916682094562729416WordSection1"><p cla=
-ss=3D"MsoNormal"><span lang=3D"EN-US">I put:<br><br>rx_lo_source=3Dexternal=
-,tx_lo_source=3Dexternal in the field labelled &quot;Device Arguments&quot;=
-.<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=
-=3D"font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF">But the process stucke=
-d and device could not be called.<u></u><u></u></span></p><p class=3D"MsoNo=
-rmal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:=E7=AD=89=
+<div dir=3D"ltr"><div>Actually, let me re-state. Every time UHD software=C2=
+=A0starts, this calibration is performed (such that the external LO must be=
+ at 5 GHz).=C2=A0 So, this might imply (I think it does) that every time yo=
+u start the gnuradio flowgraph, the external LO must be at 5 GHz.=C2=A0</di=
+v><div>Rob</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Thu, Dec 16, 2021 at 11:30 AM Rob Kossler &lt;<a href=3D"mailt=
+o:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">When the N310 starts wit=
+h external LO enabled, the N310 performs an &quot;initialization calibratio=
+n&quot; (I think for I/Q balance or something) where it expects that the ex=
+ternal LO is ON and at the frequency 5 GHz. This signal is required at this=
+ specific frequency for the calibration. After the initialization is done (=
+doesn&#39;t take long), then you can change the external LO frequency to wh=
+atever you want (twice the desired RF).<div><br></div><div>So, my question =
+is: when you ran this experiment, was your external LO at 5 GHz?</div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On We=
+d, Dec 15, 2021 at 11:33 PM &lt;<a href=3D"mailto:zeyuan.li@zengyi-tech.com=
+" target=3D"_blank">zeyuan.li@zengyi-tech.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"ZH-CN"><div><p cl=
+ass=3D"MsoNormal"><span lang=3D"EN-US">I put:<br><br>rx_lo_source=3Dexterna=
+l,tx_lo_source=3Dexternal in the field labelled &quot;Device Arguments&quot=
+;.<u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US" styl=
+e=3D"font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF">But the process stuck=
+ed and device could not be called.<u></u><u></u></span></p><p class=3D"MsoN=
+ormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:=E7=AD=89=
 =E7=BA=BF"><u></u>=C2=A0<u></u></span></p><div><p class=3D"MsoNormal"><span=
  lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span=
  lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p><p class=3D"MsoNormal"><span=
@@ -243,8 +360,8 @@ ow me an example?</span><span lang=3D"EN-US"><u></u><u></u></span></p><div>=
  of Gnu Radio are you using, and what version of UHD?=C2=A0 This is what a =
 UHD source block looks like when you double-click it:<br><br><img border=3D=
 "0" width=3D"953" height=3D"866" style=3D"width: 9.925in; height: 9.025in;"=
- id=3D"gmail-m_-5916682094562729416_x0000_i1025" src=3D"cid:17dc411db104cff=
-311" alt=3D"UHD source
+ id=3D"gmail-m_3221847168391404168gmail-m_-5916682094562729416_x0000_i1025"=
+ src=3D"cid:17dc411db104cff311" alt=3D"UHD source
       parameters"><br><br>There is a &quot;Device Arguments&quot; field, wh=
 ich is a string of comma-separated device arguments.<br><br>So you&#39;d pu=
 t:<br><br>rx_lo_source=3Dexternal,tx_lo_source=3Dexternal in the field labe=
@@ -317,23 +434,24 @@ l#n3xx_usage_device_args" target=3D"_blank">https://files.ettus.com/manual/=
 page_usrp_n3xx.html#n3xx_usage_device_args</a>.</span><span lang=3D"EN-US">=
 <u></u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US"><img b=
 order=3D"0" width=3D"788" height=3D"504" style=3D"width: 8.2083in; height: =
-5.25in;" id=3D"gmail-m_-5916682094562729416=E5=9B=BE=E7=89=87_x0020_1" src=
-=3D"cid:17dc411db105b006a2"><u></u><u></u></span></p><p class=3D"MsoNormal"=
-><span lang=3D"EN-US" style=3D"font-size:10.5pt;font-family:=E7=AD=89=E7=BA=
-=BF">=C2=A0</span><span lang=3D"EN-US"><u></u><u></u></span></p><div><p cla=
-ss=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p><p cla=
-ss=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p></div>=
-</blockquote><p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><span lang=
-=3D"EN-US">Yes.=C2=A0 So use those in the &quot;Device Arguments&quot; para=
-meter in your UHD source/sink blocks in GnuRadio.=C2=A0 This will cause the=
- device to use external LO on &quot;session start&quot;, and<br>=C2=A0=C2=
-=A0 allow proper setup.<br><br><br><u></u><u></u></span></p></blockquote><p=
- class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p></=
-div></div></blockquote></div>
+5.25in;" id=3D"gmail-m_3221847168391404168gmail-m_-5916682094562729416=E5=
+=9B=BE=E7=89=87_x0020_1" src=3D"cid:17dc411db105b006a2"><u></u><u></u></spa=
+n></p><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.5pt=
+;font-family:=E7=AD=89=E7=BA=BF">=C2=A0</span><span lang=3D"EN-US"><u></u><=
+u></u></span></p><div><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u>=
+</u><u></u></span></p><p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u>=
+</u><u></u></span></p></div></blockquote><p class=3D"MsoNormal" style=3D"ma=
+rgin-bottom:12pt"><span lang=3D"EN-US">Yes.=C2=A0 So use those in the &quot=
+;Device Arguments&quot; parameter in your UHD source/sink blocks in GnuRadi=
+o.=C2=A0 This will cause the device to use external LO on &quot;session sta=
+rt&quot;, and<br>=C2=A0=C2=A0 allow proper setup.<br><br><br><u></u><u></u>=
+</span></p></blockquote><p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=
+=C2=A0<u></u></span></p></div></div></blockquote></div>
+</blockquote></div></div>
 
---0000000000006d262805d345f28d--
+--000000000000bec15f05d34614c6--
 
---0000000000006d262a05d345f28e
+--000000000000bec16005d34614c7
 Content-Type: image/png; name="image001.png"
 Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
@@ -1643,7 +1761,7 @@ s7kXyXoPhshbCiM7Jaxak3WDshWUzR5lgjIAAADun7jcr3c5e2JtR7Leryy6k9W5N7P2K1EpeUBQ
 VjmbfmUAAAAUz1y7YkBcVh3M2fRsnvvqQurBPtHbCm3dTyfj3JRsNmDolExWBgAAQPFZWeT1TeQm
 Zis9m+srbzzbp7fo0ylZZWJhtF5Ym5VkI7K5ThyTygAAANjGuGwmZqt32dyZzwrKOf3KOigLIfSm
 faI7K6wnla1d/XJTsjWjTFwGAABA8UFZ5M0u5ybm3PSsj/8BiHfsXAwOFFcAAAAASUVORK5CYII=
---0000000000006d262a05d345f28e
+--000000000000bec16005d34614c7
 Content-Type: image/jpeg; name="image002.jpg"
 Content-Disposition: inline; filename="image002.jpg"
 Content-Transfer-Encoding: base64
@@ -3857,9 +3975,9 @@ RRQAea/99qPNf++1FFAB5r/32o81/wC+1FFAB5r/AN9qPNf++1FFAB5r/wB9qPNf++1FFAB5r/32
 o81/77UUUAHmv/fajzX/AL7UUUAHmv8A32o81/77UUUAHmv/AH2o81/77UUUAHmv/fajzX/vtRRQ
 Aea/99qPNf8AvtRRQAea/wDfajzX/vtRRQAea/8AfajzX/vtRRQAea/99qPNf++1FFAB5r/32o81
 /wC+1FFAB5r/AN9qPNf++1FFAH//2Q==
---0000000000006d262a05d345f28e--
+--000000000000bec16005d34614c7--
 
---===============7338916708916755958==
+--===============6218946445189461602==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -3869,4 +3987,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7338916708916755958==--
+--===============6218946445189461602==--
