@@ -2,212 +2,152 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50CE7477D5F
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Dec 2021 21:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 776DC478DC8
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Dec 2021 15:28:41 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3D8AB3853BF
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Dec 2021 15:21:21 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MVHG9pyT";
-	dkim-atps=neutral
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5C42F384C0C
-	for <usrp-users@lists.ettus.com>; Thu, 16 Dec 2021 15:20:23 -0500 (EST)
-Received: by mail-ed1-f50.google.com with SMTP id z7so29401104edc.11
-        for <usrp-users@lists.ettus.com>; Thu, 16 Dec 2021 12:20:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=PscWfQkjqaD5Dqg3n8sohPcwvkjKRuODzkl1pofc188=;
-        b=MVHG9pyTl2b6xNNiLYibxqhra0DAbWDi45T8SxzvsPPegbqz5bBhdF5zQdJtdjFB3H
-         PRxTBFpfK5Bc5BK2/B/ok1Ik7pjOXmMVA7DjPuqjcmXv1k5HQl5S4U89v4PFMojIZJNU
-         Sa2gI6T0wdikyNvJnfmb9aFdv2I7KgDy2BQ/cWjvZ3HHjUco9pm0myr0ILBDFTxurIg9
-         utGz+GmrQawn302wToEp6HeTj/nFKctfIYwHOqXqFm0Y5SI6moZDlAdawKR9gLUeBDJs
-         XUS1jF9KGAWjfz5khvMKbTqJqdcmALtLISeD3TawSoHzjwwsUm6EojCjngbphUBRiT4f
-         Wv4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=PscWfQkjqaD5Dqg3n8sohPcwvkjKRuODzkl1pofc188=;
-        b=UmM4PVI32OilFgp35u0nL77+X2u7bzF5AGmIDgr9tZwSh72nAztFVAz0LQFOop2PpW
-         t7SUT/tEQRchkFv/g9bH1527NT+Rk5v5Ucs3kRedBJOM3q0URmA019gr7cFfYnMskqKc
-         5s/q38C+ORy8m/Yg3cossp6sOjF9ZDMDoxIi7Ktlq3FIdXqN7a3AxwEqfkj3e1Plozme
-         BShd5L/3i5wHIYXuv+OlLVR9QeDR3q19I3957xKBc5+hFdMjhEd2oI4o56V8rY4Y9N2m
-         kEEF+vgpwjdrdRXTV1zZkPR8tn+SrhOG5ltZP1MvAZnep/0zk5uwZB/lHmMkjgugLIer
-         Z+uQ==
-X-Gm-Message-State: AOAM532s2Am+y91xA2jDML4nHJCwjJUPERxk1gzlWPMkDjIib3uanrsh
-	Y9RUFTxTbn24TuJvU82gdCqkvXn5pjjP0XtpPgkA2wBFQMsP
-X-Google-Smtp-Source: ABdhPJy2rZBwQTvxo70Gk6PiMsshts5GMmQ16E9GZm/pqYLJuzX6LuaeWnxGVTT5O260q0cqKrgO2fPBgisZuvq7JRE=
-X-Received: by 2002:a17:906:9753:: with SMTP id o19mr16521327ejy.243.1639686022087;
- Thu, 16 Dec 2021 12:20:22 -0800 (PST)
-MIME-Version: 1.0
-From: ZB <balinfd3@gmail.com>
-Date: Thu, 16 Dec 2021 13:20:11 -0700
-Message-ID: <CABqp5jkABa4Pn6hDbfmpMQV3MQExbjFX3b0jGPoQnwgtxjzbhw@mail.gmail.com>
+	by mm2.emwd.com (Postfix) with ESMTP id 28533385612
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Dec 2021 09:28:40 -0500 (EST)
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 7963A384529
+	for <usrp-users@lists.ettus.com>; Fri, 17 Dec 2021 09:27:45 -0500 (EST)
+Date: Fri, 17 Dec 2021 14:27:45 +0000
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: 7MPIB5QJM5K7MTBKM3RYYSFK5ZCTYYR2
-X-Message-ID-Hash: 7MPIB5QJM5K7MTBKM3RYYSFK5ZCTYYR2
-X-MailFrom: balinfd3@gmail.com
+From: maximilian.engelhardt@tu-ilmenau.de
+Message-ID: <PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+ boundary="b1_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o"
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: UL4IUARFZVKKBBTEVENRLSQEZIRRPKTR
+X-Message-ID-Hash: UL4IUARFZVKKBBTEVENRLSQEZIRRPKTR
+X-MailFrom: maximilian.engelhardt@tu-ilmenau.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] N210 w/internal GPSDO .. GPSDO not recognized
+Subject: [USRP-users] UHD DPDK freezes during initialization
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7MPIB5QJM5K7MTBKM3RYYSFK5ZCTYYR2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UL4IUARFZVKKBBTEVENRLSQEZIRRPKTR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8873223873650533579=="
 
---===============8873223873650533579==
-Content-Type: multipart/alternative; boundary="000000000000e3c6da05d349262b"
+This is a multi-part message in MIME format.
 
---000000000000e3c6da05d349262b
-Content-Type: text/plain; charset="UTF-8"
+--b1_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o
+Content-Type: multipart/alternative;
+ boundary="b2_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o"
 
-Good afternoon,
+--b2_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o
+Content-Type: text/plain; charset=us-ascii
 
-I have an N210 - rev4, with the GSDO kit (Firefly-1A) that I installed
-according to the instructions at:
-https://www.ettus.com/wp-content/uploads/2019/01/gpsdo-kit_4.pdf. The GPSDO
-is not being detected according to uhd_usrp_probe and sync_to_gps
+Hello,
 
-I am running UHD ver 4.1.0 (although I also tried 3.15.0.0). FPGA and FW
-have been burnt accordingly to match the UHD version in use. See below
-output from uhd_usrp_probe output. What is interesting is that under clock
-sources there is no option for "gpsdo".
+I'm trying to use UHD-DPDK, but fail because the driver freezes during initalization:
 
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-UHD_4.1.0.HEAD-0-g25d617ca
-[INFO] [USRP2] Opening a USRP2/N-Series device...
-[INFO] [USRP2] Current recv frame size: 1472 bytes
-[INFO] [USRP2] Current send frame size: 1472 bytes
-  _____________________________________________________
- /
-|       Device: USRP2 / N-Series Device
-|     _____________________________________________________
-|    /
-|   |       Mboard: N210r4
-|   |   hardware: 2577
-|   |   mac-addr: 00:80:2f:0a:cd:b8
-|   |   ip-addr: 192.168.20.2
-|   |   subnet: 255.255.255.255
-|   |   gateway: 255.255.255.255
-|   |   gpsdo: none
-|   |   serial: F2B8A2
-|   |   FW Version: 12.4
-|   |   FPGA Version: 11.1
-|   |
-|   |   Time sources:  none, external, _external_, mimo
-|   |   Clock sources: internal, external, mimo
-|   |   Sensors: mimo_locked, ref_locked
-|   |     ________________________________
-=================================================================
+> > UHD_LOG_LEVEL=debug ./benchmark_rate --rx_rate 100e6 --rx_subdev "A:0" --rx_channels 0 --args "mgmt_addr=192.168.30.2,addr=192.168.40.2,use_dpdk=1"\
+> \[INFO\] \[UHD\] linux; GNU C++ version 10.2.1 20210110; Boost_107400; UHD_4.2.0.git-209-gf23ab721\
+> \[DEBUG\] \[PREFS\] Loaded user config file /root/.config/uhd.conf\
+> EAL: Detected 32 lcore(s)\
+> EAL: Detected 1 NUMA nodes\
+> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket\
+> EAL: Selected IOVA mode 'VA'\
+> EAL: No available hugepages reported in hugepages-2048kB\
+> EAL: Probing VFIO support...\
+> EAL: VFIO support initialized\
+> EAL: Invalid NUMA socket, default to 0\
+> EAL: Invalid NUMA socket, default to 0\
+> EAL: Probe PCI driver: mlx5_pci (15b3:1017) device: 0000:08:00.0 (socket 0)\
+> mlx5_pci: Size 0xFFFF is not power of 2, will be aligned to 0x10000.\
+> EAL: Invalid NUMA socket, default to 0\
+> EAL: Probe PCI driver: mlx5_pci (15b3:1017) device: 0000:08:00.1 (socket 0)\
+> mlx5_pci: Size 0xFFFF is not power of 2, will be aligned to 0x10000.\
+> EAL: No legacy callbacks, legacy socket not created
 
-And here is the output from sync_to_gps:
+Here, the output stops, no timeout occurs even after hours.
 
-[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-UHD_4.1.0.HEAD-0-g25d617ca
-[INFO] [USRP2] Opening a USRP2/N-Series device...
-[INFO] [USRP2] Current recv frame size: 1472 bytes
-[INFO] [USRP2] Current send frame size: 1472 bytes
-Using Device: Single USRP:
-  Device: USRP2 / N-Series Device
-  Mboard 0: N210r4
-  RX Channel: 0
-    RX DSP: 0
-    RX Dboard: A
-    RX Subdev: Unknown (0xffff) - 0
-  TX Channel: 0
-    TX DSP: 0
-    TX Dboard: A
-    TX Subdev: Unknown (0xffff) - 0
+Without DPDK, so if I omit the argument use_dpdk=1, it works fine. Other DPDK applications also run without problems.\
+The problem occurs both with the UHD version 4.0.0 (using DPDK 18.11), and with the current state from the git-repository (UHD_4.2.0.git-209-gf23ab721) using DPDK 21.11.
 
-Synchronizing mboard 0: N210r4
+I am using a Mellanox Technologies MCX512A-ACAT to which the USRP X310 is connected with two 10G Ethenet links., of which i tried to use one witch DPDK and the other without. (The documentation suggests to me that this is necessary for the driver to manage the device).\
+\
+I have attached my uhd.conf configuration file and output of ip addr to this mail.
 
-Error: AssertionError: assertion failed:
-  gpsdo is not a valid time source.
-  possible values are: [none, external, _external_, mimo].
-This could mean that you have not installed the GPSDO correctly.
+Does anyone have any idea how I could solve this problem?
 
-And here is an image of the installed N210 and GPSDO kit:
+Thanks in advance
 
-https://i.imgur.com/HzvmXyd.png
+Max
 
-Could you please advise on steps to identify what is the problem ?
-
-Thank you kindly for any assistance!
-
---000000000000e3c6da05d349262b
-Content-Type: text/html; charset="UTF-8"
+--b2_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:large">Goo=
-d afternoon,</div><div class=3D"gmail_default" style=3D"font-size:large"><b=
-r></div><div class=3D"gmail_default" style=3D"font-size:large">I have an N2=
-10 - rev4, with the GSDO kit (Firefly-1A) that I installed according to the=
- instructions at:=C2=A0 <a href=3D"https://www.ettus.com/wp-content/uploads=
-/2019/01/gpsdo-kit_4.pdf">https://www.ettus.com/wp-content/uploads/2019/01/=
-gpsdo-kit_4.pdf</a>. The GPSDO is not being detected according to uhd_usrp_=
-probe and sync_to_gps</div><div class=3D"gmail_default" style=3D"font-size:=
-large"><br></div><div class=3D"gmail_default" style=3D"font-size:large">I a=
-m running UHD ver 4.1.0 (although I also tried 3.15.0.0). FPGA and FW have =
-been burnt accordingly to match the UHD version in use. See below output fr=
-om uhd_usrp_probe output. What is interesting is that under clock sources t=
-here is no option for &quot;gpsdo&quot;.</div><div class=3D"gmail_default" =
-style=3D"font-size:large"><br></div><div class=3D"gmail_default" style=3D"f=
-ont-size:large">[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UH=
-D_4.1.0.HEAD-0-g25d617ca<br>[INFO] [USRP2] Opening a USRP2/N-Series device.=
-..<br>[INFO] [USRP2] Current recv frame size: 1472 bytes<br>[INFO] [USRP2] =
-Current send frame size: 1472 bytes<br>=C2=A0 _____________________________=
-________________________<br>=C2=A0/<br>| =C2=A0 =C2=A0 =C2=A0 Device: USRP2=
- / N-Series Device<br>| =C2=A0 =C2=A0 _____________________________________=
-________________<br>| =C2=A0 =C2=A0/<br>| =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mbo=
-ard: N210r4<br>| =C2=A0 | =C2=A0 hardware: 2577<br>| =C2=A0 | =C2=A0 mac-ad=
-dr: 00:80:2f:0a:cd:b8<br>| =C2=A0 | =C2=A0 ip-addr: 192.168.20.2<br>| =C2=
-=A0 | =C2=A0 subnet: 255.255.255.255<br>| =C2=A0 | =C2=A0 gateway: 255.255.=
-255.255<br>| =C2=A0 | =C2=A0 gpsdo: none<br>| =C2=A0 | =C2=A0 serial: F2B8A=
-2<br>| =C2=A0 | =C2=A0 FW Version: 12.4<br>| =C2=A0 | =C2=A0 FPGA Version: =
-11.1<br>| =C2=A0 |<br>| =C2=A0 | =C2=A0 Time sources: =C2=A0none, external,=
- _external_, mimo<br>| =C2=A0 | =C2=A0 Clock sources: internal, external, m=
-imo<br>| =C2=A0 | =C2=A0 Sensors: mimo_locked, ref_locked<br>| =C2=A0 | =C2=
-=A0 =C2=A0 ________________________________<br></div><div class=3D"gmail_de=
-fault" style=3D"font-size:large">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D</div><div class=3D"gmail_default" style=3D"font-size:large"><br></div><=
-div class=3D"gmail_default" style=3D"font-size:large">And here is the outpu=
-t from sync_to_gps:</div><div class=3D"gmail_default" style=3D"font-size:la=
-rge"><br></div><div class=3D"gmail_default" style=3D"font-size:large">[INFO=
-] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.1.0.HEAD-0-g25d61=
-7ca<br>[INFO] [USRP2] Opening a USRP2/N-Series device...<br>[INFO] [USRP2] =
-Current recv frame size: 1472 bytes<br>[INFO] [USRP2] Current send frame si=
-ze: 1472 bytes<br>Using Device: Single USRP:<br>=C2=A0 Device: USRP2 / N-Se=
-ries Device<br>=C2=A0 Mboard 0: N210r4<br>=C2=A0 RX Channel: 0<br>=C2=A0 =
-=C2=A0 RX DSP: 0<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: =
-Unknown (0xffff) - 0<br>=C2=A0 TX Channel: 0<br>=C2=A0 =C2=A0 TX DSP: 0<br>=
-=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: Unknown (0xffff) - 0=
-<br><br>Synchronizing mboard 0: N210r4<br><br>Error: AssertionError: assert=
-ion failed:<br>=C2=A0 gpsdo is not a valid time source.<br>=C2=A0 possible =
-values are: [none, external, _external_, mimo].<br>This could mean that you=
- have not installed the GPSDO correctly.<br></div><div class=3D"gmail_defau=
-lt" style=3D"font-size:large"><br></div><div class=3D"gmail_default" style=
-=3D"font-size:large">And here is an image of the installed N210 and GPSDO k=
-it:</div><div class=3D"gmail_default" style=3D"font-size:large"><br></div><=
-div class=3D"gmail_default" style=3D"font-size:large"><a href=3D"https://i.=
-imgur.com/HzvmXyd.png">https://i.imgur.com/HzvmXyd.png</a><br></div><div cl=
-ass=3D"gmail_default" style=3D"font-size:large"><br></div><div class=3D"gma=
-il_default" style=3D"font-size:large">Could you please advise on steps to i=
-dentify what is the problem ?</div><div class=3D"gmail_default" style=3D"fo=
-nt-size:large"><br></div><div class=3D"gmail_default" style=3D"font-size:la=
-rge">Thank you kindly for any assistance!</div></div>
+<p>Hello,</p><p>I'm trying to use UHD-DPDK, but fail because the driver fre=
+ezes during initalization:</p><blockquote><p>&gt; UHD_LOG_LEVEL=3Ddebug ./b=
+enchmark_rate --rx_rate 100e6 --rx_subdev "A:0" --rx_channels 0 --args "mgm=
+t_addr=3D192.168.30.2,addr=3D192.168.40.2,use_dpdk=3D1"<br>[INFO] [UHD] lin=
+ux; GNU C++ version 10.2.1 20210110; Boost_107400; UHD_4.2.0.git-209-gf23ab=
+721<br>[DEBUG] [PREFS] Loaded user config file /root/.config/uhd.conf<br>EA=
+L: Detected 32 lcore(s)<br>EAL: Detected 1 NUMA nodes<br>EAL: Multi-process=
+ socket /var/run/dpdk/rte/mp_socket<br>EAL: Selected IOVA mode 'VA'<br>EAL:=
+ No available hugepages reported in hugepages-2048kB<br>EAL: Probing VFIO s=
+upport...<br>EAL: VFIO support initialized<br>EAL: Invalid NUMA socket, def=
+ault to 0<br>EAL: Invalid NUMA socket, default to 0<br>EAL: Probe PCI drive=
+r: mlx5_pci (15b3:1017) device: 0000:08:00.0 (socket 0)<br>mlx5_pci: Size 0=
+xFFFF is not power of 2, will be aligned to 0x10000.<br>EAL: Invalid NUMA s=
+ocket, default to 0<br>EAL: Probe PCI driver: mlx5_pci (15b3:1017) device: =
+0000:08:00.1 (socket 0)<br>mlx5_pci: Size 0xFFFF is not power of 2, will be=
+ aligned to 0x10000.<br>EAL: No legacy callbacks, legacy socket not created=
+</p></blockquote><p>Here, the output stops, no timeout occurs even after ho=
+urs.</p><p>Without DPDK, so if I omit the argument use_dpdk=3D1, it works f=
+ine. Other DPDK applications also run without problems.<br>The problem occu=
+rs both with the UHD version 4.0.0 (using DPDK 18.11), and with the current=
+ state from the git-repository (UHD_4.2.0.git-209-gf23ab721) using DPDK 21.=
+11.</p><p>I am using a Mellanox Technologies MCX512A-ACAT to which the USRP=
+ X310 is connected with two 10G Ethenet links., of which i tried to use one=
+ witch DPDK and the other without. (The documentation suggests to me that t=
+his is necessary for the driver to manage the device).<br><br>I have attach=
+ed my uhd.conf configuration file and output of ip addr to this mail.</p><p=
+>Does anyone have any idea how I could solve this problem?</p><p>Thanks in =
+advance</p><p>Max</p>
 
---000000000000e3c6da05d349262b--
+--b2_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o--
 
---===============8873223873650533579==
+--b1_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o
+Content-Type: text/plain; name=ip_addr
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=ip_addr
+
+Li4uCgoKMzogZW5wOHMwZjBucDA6IDxCUk9BRENBU1QsTVVMVElDQVNULFVQLExPV0VSX1VQPiBt
+dHUgOTAwMCBxZGlzYyBtcSBzdGF0ZSBVUCBncm91cCBkZWZhdWx0IHFsZW4gMTAwMAogICAgbGlu
+ay9ldGhlciAwNDozZjo3MjphYzozMDozNiBicmQgZmY6ZmY6ZmY6ZmY6ZmY6ZmYKICAgIGluZXQg
+MTkyLjE2OC40MC4xLzI0IGJyZCAxOTIuMTY4LjQwLjI1NSBzY29wZSBnbG9iYWwgZW5wOHMwZjBu
+cDAKICAgICAgIHZhbGlkX2xmdCBmb3JldmVyIHByZWZlcnJlZF9sZnQgZm9yZXZlcgogICAgaW5l
+dDYgZmU4MDo6NjNmOjcyZmY6ZmVhYzozMDM2LzY0IHNjb3BlIGxpbmsgCiAgICAgICB2YWxpZF9s
+ZnQgZm9yZXZlciBwcmVmZXJyZWRfbGZ0IGZvcmV2ZXIKNDogZW5wOHMwZjFucDE6IDxCUk9BRENB
+U1QsTVVMVElDQVNULFVQLExPV0VSX1VQPiBtdHUgOTAwMCBxZGlzYyBtcSBzdGF0ZSBVUCBncm91
+cCBkZWZhdWx0IHFsZW4gMTAwMAogICAgbGluay9ldGhlciAwNDozZjo3MjphYzozMDozNyBicmQg
+ZmY6ZmY6ZmY6ZmY6ZmY6ZmYKICAgIGluZXQgMTkyLjE2OC4zMC4xLzI0IGJyZCAxOTIuMTY4LjMw
+LjI1NSBzY29wZSBnbG9iYWwgZW5wOHMwZjFucDEKICAgICAgIHZhbGlkX2xmdCBmb3JldmVyIHBy
+ZWZlcnJlZF9sZnQgZm9yZXZlcgogICAgaW5ldDYgZmU4MDo6NjNmOjcyZmY6ZmVhYzozMDM3LzY0
+IHNjb3BlIGxpbmsgCiAgICAgICB2YWxpZF9sZnQgZm9yZXZlciBwcmVmZXJyZWRfbGZ0IGZvcmV2
+ZXIKCg==
+
+--b1_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o
+Content-Type: text/plain; name=uhd.conf
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=uhd.conf
+
+W3VzZV9kcGRrPTFdCmRwZGtfbXR1PTkwMDAKZHBka19kcml2ZXI9L3Vzci9sb2NhbC9saWIvCmRw
+ZGtfY29yZWxpc3Q9Myw0LDUsNiw3CmRwZGtfbnVtX21idWZzPTQwOTUKZHBka19tYnVmX2NhY2hl
+X3NpemU9MzE1CgpbZHBka19tYWM9MDQ6M2Y6NzI6YWM6MzA6MzZdCmRwZGtfbGNvcmUgPSAzCmRw
+ZGtfaXB2NCA9IDE5Mi4xNjguNDAuMS8yNAo=
+
+--b1_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -217,4 +157,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8873223873650533579==--
+--b1_PUvWvHIpcoT0X2UTAaJqgXLwBRbsZ5dKKyyvl8Bey6o--
