@@ -2,155 +2,125 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C459C47A00F
-	for <lists+usrp-users@lfdr.de>; Sun, 19 Dec 2021 10:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C176447A049
+	for <lists+usrp-users@lfdr.de>; Sun, 19 Dec 2021 12:02:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7A716384A5C
-	for <lists+usrp-users@lfdr.de>; Sun, 19 Dec 2021 04:42:02 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id D3A023849FC
+	for <lists+usrp-users@lfdr.de>; Sun, 19 Dec 2021 06:02:04 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BCh8jWZN";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="A6u/ZwfR";
 	dkim-atps=neutral
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id AF7BE384800
-	for <usrp-users@lists.ettus.com>; Sun, 19 Dec 2021 04:41:05 -0500 (EST)
-Received: by mail-yb1-f176.google.com with SMTP id j2so19550247ybg.9
-        for <usrp-users@lists.ettus.com>; Sun, 19 Dec 2021 01:41:05 -0800 (PST)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7CB053849C5
+	for <usrp-users@lists.ettus.com>; Sun, 19 Dec 2021 06:01:09 -0500 (EST)
+Received: by mail-wr1-f47.google.com with SMTP id v11so13826037wrw.10
+        for <usrp-users@lists.ettus.com>; Sun, 19 Dec 2021 03:01:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=vM59xTPPwyDMgfkGDLUtdGnHC+sYKF1Xkpcvl9DNkYg=;
-        b=BCh8jWZNa1GHyAT94WhXH8rL6QPxw3sspbYVpi/h7YbXBngpJsc5zxcYaafMC0qGUy
-         PgfGPoau64Gz7ztwDVD0UB9vx7neNnyxaRN2RrFyPp0wZj0odWfN+f/8cqimnQeSs4dL
-         3iMTjG2fRi588co7vncrTSvKU/46YSHPAsEoeVWnkDXwhbMkFNb6k2HzhHfCUitqCR/J
-         mPxRqOoG/ovFGObUhO217sWKIFces08agLhFGrGbOMtFdh2oBoOi5UIxgyc3TS6mYRiI
-         p5/mOC+i1U67DJcfrU2ewtPX1mtdSnSdne20yMQT8uOmb9MAxJkKmWKnFD3SeQl3zglb
-         1cHg==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=scxuBUsZGP8GY4OREYhD40boXvWp6l2OTItx7GJcYPM=;
+        b=A6u/ZwfRZCUdJ8R+3jMKI2btkJoV7TFZYO1gs1e2JAg8MeCaXUYEoGjEfnhdqrVGSb
+         NfzkJJ9maeJ2hdBkxFMhmXHmXcWBr281WD7FJa+amypq+IkNdogF+3YuppBH6GdLglV6
+         7wBlmEHfa5khHUyPxFG1rowoBTiPu8Qxjotq6P4u0EvJQ4ZgBQDdirFGceOu9aBY2QT5
+         sfl0C3yyrJMp+evIcx2N0SYa6uZN/DPdk9En6amax3Rh0d2n61upMxHYme6q+vEhiotb
+         EsKRSzkkYPOkSlt6TjmVSBQYEV0hn8wnjLHHf99QWvUwKWgWMGx9Fujs566VntbWCw5g
+         Dblw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=vM59xTPPwyDMgfkGDLUtdGnHC+sYKF1Xkpcvl9DNkYg=;
-        b=tNA+L8swXXWVbet8GlaprVXMdzM+vywOjkdCZPrTmcC2nniMcHu/6cUWOf40oVkRW/
-         oZTWmugw5A7bw3XB3Yr8WaaIl7U8X9wyPSHHWTK+tsyozF7Ku7L8nEi4NNo9gUqJdl25
-         NlKyWB6ib/EyRGaNvuMQlsoYuI9Xftsm/Op1cTrKGksdfd4b2jLE2KW1CkeD0AJDiC2H
-         iP+TTf5iu+qlrOJKGNLBNQFfXI0av0Zc8SqLu1ZJp80r/s4pz3AlE2PC7Msd+4vlZSWu
-         NyfCnDYfznM7MrVIgkRleu/neaAdhI7dw/KUA+Z7SnMtjfn9gmauCUpCESE6zk+x3P2v
-         7nFw==
-X-Gm-Message-State: AOAM532BvndFjQYxQvXcLTY7Z+RkqrvWdRUKfIyEj30DTVMF0g4kWeQR
-	tCHzUGE697SiOITCHSamgdCn5nTH9e8aq2TTTRfeI9OgpbjPGj0+TbI=
-X-Google-Smtp-Source: ABdhPJyB+PRSFMSp734fxAObRjTRp4TdCGO7rjUxBkVfbX7lz8hTFe+AlVw0/0oNTUbH77cPx/SLVog/nKzxixTw7Uo=
-X-Received: by 2002:a25:a449:: with SMTP id f67mr14952010ybi.368.1639906864269;
- Sun, 19 Dec 2021 01:41:04 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=scxuBUsZGP8GY4OREYhD40boXvWp6l2OTItx7GJcYPM=;
+        b=rNAtNjm0eRGXiGEQVay69o65kop+Vt7hPGBsSSCqc/IWyDjFjmOwvuhUiNoQNJzX3U
+         r6Le0X1acNf9joTitb34Suzkq6ZvPcAabaFBkwaLAbRKpnzmP0dfuLobKwyWRG/RaoNc
+         H0BwaaJ2/lo//banzXlBxZytHBNhINvM89YIZZGtroti+xk8Awt8WbvE/IDALFgBuy+X
+         i4a1i648fzNc8mVnsy2vwj9RJhImS76wXPwHX2ScmCDXubE1LRoGMIwHV73DunZPpl29
+         TxRcJY3mHLoA9Viwt9LmjD7U7In2QSY2cf1xar4I9nrhVOC54NaEUlk0rUDk9mIaY/Zq
+         Mpzw==
+X-Gm-Message-State: AOAM533t+4o/rvPH33mUe+8I4LMLd8jviONVGtGvVMKEjuCaPWqJWv2F
+	Gc/wK2cHMG0cFSyH1FyMWtaORfwoRVQfQmoa
+X-Google-Smtp-Source: ABdhPJzeI4nKrS8DA7xOsmjRqFVuNrGcx1syJkdXvlw7rxpYcjnrhFhO7YM+3eq49xijcBGsg4svAg==
+X-Received: by 2002:a5d:64c3:: with SMTP id f3mr8803185wri.295.1639911668252;
+        Sun, 19 Dec 2021 03:01:08 -0800 (PST)
+Received: from [192.168.128.8] (HSI-KBW-46-223-163-38.hsi.kabel-badenwuerttemberg.de. [46.223.163.38])
+        by smtp.gmail.com with ESMTPSA id o12sm16559474wrc.85.2021.12.19.03.01.07
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Dec 2021 03:01:07 -0800 (PST)
+Message-ID: <692f8895-bd3a-5b14-df32-122893d504f3@ettus.com>
+Date: Sun, 19 Dec 2021 12:01:06 +0100
 MIME-Version: 1.0
-From: sp h <stackprogramer@gmail.com>
-Date: Sun, 19 Dec 2021 13:10:53 +0330
-Message-ID: <CAA=S3PvatKct3yuqkE+=j7n2YXmGJhb2nVzVvWTPyfMMay5BuQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: 2H5WCI2MEWWJKXHXGPMK5UWQXETQ4JRW
-X-Message-ID-Hash: 2H5WCI2MEWWJKXHXGPMK5UWQXETQ4JRW
-X-MailFrom: stackprogramer@gmail.com
+References: <CAA=S3PvatKct3yuqkE+=j7n2YXmGJhb2nVzVvWTPyfMMay5BuQ@mail.gmail.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+In-Reply-To: <CAA=S3PvatKct3yuqkE+=j7n2YXmGJhb2nVzVvWTPyfMMay5BuQ@mail.gmail.com>
+Message-ID-Hash: 65ZTEPZ7QSO5WB5KA3JJTSWBU7O2U744
+X-Message-ID-Hash: 65ZTEPZ7QSO5WB5KA3JJTSWBU7O2U744
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] In installing gr-ettus when i built Gnuradio and UHD from source i faced with strange errors...
+Subject: [USRP-users] Re: In installing gr-ettus when i built Gnuradio and UHD from source i faced with strange errors...
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2H5WCI2MEWWJKXHXGPMK5UWQXETQ4JRW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/65ZTEPZ7QSO5WB5KA3JJTSWBU7O2U744/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8238951862428490109=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============8238951862428490109==
-Content-Type: multipart/alternative; boundary="0000000000001c0c7c05d37c92b2"
-
---0000000000001c0c7c05d37c92b2
-Content-Type: text/plain; charset="UTF-8"
-
-I built Gnuradio from the source, Gnuradio version 3.8.1 with UHD 4.1.04 or
-UHD 4.0.0(I tested with  all UHD versions)
-now when I want to install gr-ettus oot in Gnuraadio  I am faced with the
-below errors...
-How can I solve this problem?
-
-Thanks in advance
-
-[ 64%] Swig source ettus_swig.i
-Deprecated command line option: -modern. This option is now always on.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:140:
-Error: Template 'set_property' undefined.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:141:
-Error: Template 'set_property' undefined.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:142:
-Error: Template 'set_property' undefined.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:143:
-Error: Template 'set_property' undefined.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:145:
-Error: Template 'get_property' undefined.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:146:
-Error: Template 'get_property' undefined.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:147:
-Error: Template 'get_property' undefined.
-/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:148:
-Error: Template 'get_property' undefined.
-/usr/local/include/uhd/types/dict.hpp:145: Warning 503: Can't wrap
-'operator std::map<std::string,std::string>' unless renamed to a valid
-identifier.
-make[2]: ***
-[swig/CMakeFiles/ettus_swig_swig_compilation.dir/build.make:65:
-swig/CMakeFiles/ettus_swig.dir/ettus_swigPYTHON.stamp] Error 8
-make[2]: *** Deleting file
-'swig/CMakeFiles/ettus_swig.dir/ettus_swigPYTHON.stamp'
-make[1]: *** [CMakeFiles/Makefile2:421:
-swig/CMakeFiles/ettus_swig_swig_compilation.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2
-
---0000000000001c0c7c05d37c92b2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I built Gnuradio from the source, Gnuradio version 3.8.1 w=
-ith UHD 4.1.04 or UHD 4.0.0(I tested with =C2=A0all UHD versions)<br>now wh=
-en I want to install gr-ettus oot in Gnuraadio =C2=A0I am faced with the be=
-low errors...<div>How can I solve this problem?</div><div><br></div><div>Th=
-anks in advance</div><div><br><font size=3D"1">[ 64%] Swig source ettus_swi=
-g.i<br>Deprecated command line option: -modern. This option is now always o=
-n.<br>/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/=
-swig/ettus_swig.i:140: Error: Template &#39;set_property&#39; undefined.<br=
->/home/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/=
-ettus_swig.i:141: Error: Template &#39;set_property&#39; undefined.<br>/hom=
-e/sp/Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus=
-_swig.i:142: Error: Template &#39;set_property&#39; undefined.<br>/home/sp/=
-Documents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig=
-.i:143: Error: Template &#39;set_property&#39; undefined.<br>/home/sp/Docum=
-ents/gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:14=
-5: Error: Template &#39;get_property&#39; undefined.<br>/home/sp/Documents/=
-gr-ettus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:146: Er=
-ror: Template &#39;get_property&#39; undefined.<br>/home/sp/Documents/gr-et=
-tus-1038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:147: Error: =
-Template &#39;get_property&#39; undefined.<br>/home/sp/Documents/gr-ettus-1=
-038c4ce5135a2803b53554fc4971fe3de747d9a/swig/ettus_swig.i:148: Error: Templ=
-ate &#39;get_property&#39; undefined.<br>/usr/local/include/uhd/types/dict.=
-hpp:145: Warning 503: Can&#39;t wrap &#39;operator std::map&lt;std::string,=
-std::string&gt;&#39; unless renamed to a valid identifier.<br>make[2]: *** =
-[swig/CMakeFiles/ettus_swig_swig_compilation.dir/build.make:65: swig/CMakeF=
-iles/ettus_swig.dir/ettus_swigPYTHON.stamp] Error 8<br>make[2]: *** Deletin=
-g file &#39;swig/CMakeFiles/ettus_swig.dir/ettus_swigPYTHON.stamp&#39;<br>m=
-ake[1]: *** [CMakeFiles/Makefile2:421: swig/CMakeFiles/ettus_swig_swig_comp=
-ilation.dir/all] Error 2<br>make: *** [Makefile:141: all] Error 2</font></d=
-iv></div>
-
---0000000000001c0c7c05d37c92b2--
-
---===============8238951862428490109==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============8238951862428490109==--
+SGkgU3RhY2twcm9ncmFtbWVyLA0KDQpzd2lnIGVycm9ycyBsaWtlIHRoYXQgcmVhbGx5IGxpa2Ug
+dG8gaGFwcGVuIGlmIFNXSUcsIGZvciBzb21lIHJlYXNvbiwgZmluZHMgdGhlIHdyb25nIA0KaGVh
+ZGVycy4gSXMgaXQgcG9zc2libGUgeW91J3ZlIGdvdCAqbXVsdGlwbGUqIGluc3RhbGxhdGlvbnMg
+b2YgVUhELCBvciBHTlUgUmFkaW8sIG9yIGFuIA0KZXhpc3RpbmcgZ3ItZXR0dXMgaW5zdGFsbGF0
+aW9uPw0KDQpCZXN0IHJlZ2FyZHMsDQpNYXJjdXMgTcO8bGxlcg0KDQpPbiAxOS4xMi4yMSAxMDo0
+MCwgc3AgaCB3cm90ZToNCg0KPiBJIGJ1aWx0IEdudXJhZGlvIGZyb20gdGhlIHNvdXJjZSwgR251
+cmFkaW8gdmVyc2lvbiAzLjguMSB3aXRoIFVIRCA0LjEuMDQgb3IgVUhEIDQuMC4wKEkgDQo+IHRl
+c3RlZCB3aXRoIMKgYWxsIFVIRCB2ZXJzaW9ucykNCj4gbm93IHdoZW4gSSB3YW50IHRvIGluc3Rh
+bGwgZ3ItZXR0dXMgb290IGluIEdudXJhYWRpbyDCoEkgYW0gZmFjZWQgd2l0aCB0aGUgYmVsb3cg
+ZXJyb3JzLi4uDQo+IEhvdyBjYW4gSSBzb2x2ZSB0aGlzIHByb2JsZW0/DQo+DQo+IFRoYW5rcyBp
+biBhZHZhbmNlDQo+DQo+IFsgNjQlXSBTd2lnIHNvdXJjZSBldHR1c19zd2lnLmkNCj4gRGVwcmVj
+YXRlZCBjb21tYW5kIGxpbmUgb3B0aW9uOiAtbW9kZXJuLiBUaGlzIG9wdGlvbiBpcyBub3cgYWx3
+YXlzIG9uLg0KPiAvaG9tZS9zcC9Eb2N1bWVudHMvZ3ItZXR0dXMtMTAzOGM0Y2U1MTM1YTI4MDNi
+NTM1NTRmYzQ5NzFmZTNkZTc0N2Q5YS9zd2lnL2V0dHVzX3N3aWcuaToxNDA6IA0KPiBFcnJvcjog
+VGVtcGxhdGUgJ3NldF9wcm9wZXJ0eScgdW5kZWZpbmVkLg0KPiAvaG9tZS9zcC9Eb2N1bWVudHMv
+Z3ItZXR0dXMtMTAzOGM0Y2U1MTM1YTI4MDNiNTM1NTRmYzQ5NzFmZTNkZTc0N2Q5YS9zd2lnL2V0
+dHVzX3N3aWcuaToxNDE6IA0KPiBFcnJvcjogVGVtcGxhdGUgJ3NldF9wcm9wZXJ0eScgdW5kZWZp
+bmVkLg0KPiAvaG9tZS9zcC9Eb2N1bWVudHMvZ3ItZXR0dXMtMTAzOGM0Y2U1MTM1YTI4MDNiNTM1
+NTRmYzQ5NzFmZTNkZTc0N2Q5YS9zd2lnL2V0dHVzX3N3aWcuaToxNDI6IA0KPiBFcnJvcjogVGVt
+cGxhdGUgJ3NldF9wcm9wZXJ0eScgdW5kZWZpbmVkLg0KPiAvaG9tZS9zcC9Eb2N1bWVudHMvZ3It
+ZXR0dXMtMTAzOGM0Y2U1MTM1YTI4MDNiNTM1NTRmYzQ5NzFmZTNkZTc0N2Q5YS9zd2lnL2V0dHVz
+X3N3aWcuaToxNDM6IA0KPiBFcnJvcjogVGVtcGxhdGUgJ3NldF9wcm9wZXJ0eScgdW5kZWZpbmVk
+Lg0KPiAvaG9tZS9zcC9Eb2N1bWVudHMvZ3ItZXR0dXMtMTAzOGM0Y2U1MTM1YTI4MDNiNTM1NTRm
+YzQ5NzFmZTNkZTc0N2Q5YS9zd2lnL2V0dHVzX3N3aWcuaToxNDU6IA0KPiBFcnJvcjogVGVtcGxh
+dGUgJ2dldF9wcm9wZXJ0eScgdW5kZWZpbmVkLg0KPiAvaG9tZS9zcC9Eb2N1bWVudHMvZ3ItZXR0
+dXMtMTAzOGM0Y2U1MTM1YTI4MDNiNTM1NTRmYzQ5NzFmZTNkZTc0N2Q5YS9zd2lnL2V0dHVzX3N3
+aWcuaToxNDY6IA0KPiBFcnJvcjogVGVtcGxhdGUgJ2dldF9wcm9wZXJ0eScgdW5kZWZpbmVkLg0K
+PiAvaG9tZS9zcC9Eb2N1bWVudHMvZ3ItZXR0dXMtMTAzOGM0Y2U1MTM1YTI4MDNiNTM1NTRmYzQ5
+NzFmZTNkZTc0N2Q5YS9zd2lnL2V0dHVzX3N3aWcuaToxNDc6IA0KPiBFcnJvcjogVGVtcGxhdGUg
+J2dldF9wcm9wZXJ0eScgdW5kZWZpbmVkLg0KPiAvaG9tZS9zcC9Eb2N1bWVudHMvZ3ItZXR0dXMt
+MTAzOGM0Y2U1MTM1YTI4MDNiNTM1NTRmYzQ5NzFmZTNkZTc0N2Q5YS9zd2lnL2V0dHVzX3N3aWcu
+aToxNDg6IA0KPiBFcnJvcjogVGVtcGxhdGUgJ2dldF9wcm9wZXJ0eScgdW5kZWZpbmVkLg0KPiAv
+dXNyL2xvY2FsL2luY2x1ZGUvdWhkL3R5cGVzL2RpY3QuaHBwOjE0NTogV2FybmluZyA1MDM6IENh
+bid0IHdyYXAgJ29wZXJhdG9yIA0KPiBzdGQ6Om1hcDxzdGQ6OnN0cmluZyxzdGQ6OnN0cmluZz4n
+IHVubGVzcyByZW5hbWVkIHRvIGEgdmFsaWQgaWRlbnRpZmllci4NCj4gbWFrZVsyXTogKioqIFtz
+d2lnL0NNYWtlRmlsZXMvZXR0dXNfc3dpZ19zd2lnX2NvbXBpbGF0aW9uLmRpci9idWlsZC5tYWtl
+OjY1OiANCj4gc3dpZy9DTWFrZUZpbGVzL2V0dHVzX3N3aWcuZGlyL2V0dHVzX3N3aWdQWVRIT04u
+c3RhbXBdIEVycm9yIDgNCj4gbWFrZVsyXTogKioqIERlbGV0aW5nIGZpbGUgJ3N3aWcvQ01ha2VG
+aWxlcy9ldHR1c19zd2lnLmRpci9ldHR1c19zd2lnUFlUSE9OLnN0YW1wJw0KPiBtYWtlWzFdOiAq
+KiogW0NNYWtlRmlsZXMvTWFrZWZpbGUyOjQyMTogDQo+IHN3aWcvQ01ha2VGaWxlcy9ldHR1c19z
+d2lnX3N3aWdfY29tcGlsYXRpb24uZGlyL2FsbF0gRXJyb3IgMg0KPiBtYWtlOiAqKiogW01ha2Vm
+aWxlOjE0MTogYWxsXSBFcnJvciAyDQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNy
+cC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vy
+c0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVz
+ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
