@@ -2,129 +2,179 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D48347D395
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Dec 2021 15:21:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF36647D4CE
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Dec 2021 17:05:54 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 81408384A89
-	for <lists+usrp-users@lfdr.de>; Wed, 22 Dec 2021 09:21:28 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id AE202384698
+	for <lists+usrp-users@lfdr.de>; Wed, 22 Dec 2021 11:05:53 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=cttc.es header.i=@cttc.es header.b="ZcCGVblg";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HFjqyLkt";
 	dkim-atps=neutral
-Received: from mx01.puc.rediris.es (outbound5mad.lav.puc.rediris.es [130.206.19.148])
-	by mm2.emwd.com (Postfix) with ESMTPS id BEDED3849F8
-	for <usrp-users@lists.ettus.com>; Wed, 22 Dec 2021 09:20:22 -0500 (EST)
-Received: from leo.cttc.es (leo.cttc.es [84.88.62.208])
-	by mx01.puc.rediris.es  with ESMTP id 1BMEKK3Y006491-1BMEKK3a006491
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK)
-	for <usrp-users@lists.ettus.com>; Wed, 22 Dec 2021 15:20:21 +0100
-Received: from localhost (localhost [127.0.0.1])
-To: usrp-users <usrp-users@lists.ettus.com>
-From: Armin Ghani <aghani@cttc.es>
-Message-ID: <22a8dba7-e1a7-bc4d-cd7f-9e6abe34013d@cttc.es>
-Date: Wed, 22 Dec 2021 15:20:19 +0100
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 51D273845F2
+	for <usrp-users@lists.ettus.com>; Wed, 22 Dec 2021 11:04:48 -0500 (EST)
+Received: by mail-qk1-f177.google.com with SMTP id l11so2708700qke.11
+        for <usrp-users@lists.ettus.com>; Wed, 22 Dec 2021 08:04:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=M8vwvZ6Hge0+bdgbmTmHoTSlT5oEH4/oVu63Y+vHKHw=;
+        b=HFjqyLktw4oscs5Od4uP/EVHIduvjLSJCB6gIu/viue/YYFI+kX0ZjDkqXL89zZImF
+         X6JkyF900L6Zc7ZeAVRkVZwC4x5ffL82pSiBniDN0DPtW8FyZs8iKlBt7yFvoATFn3VN
+         GYVn8GBS26AUvqxfF1crfgID3Nvi451/HKtrj/D6Np4Wnj4pEPMvfChGKqn4lnGgb6KU
+         MUZl0ZEJmh45YSEWsLuO6DUVVXBJ18E8H1Q8ZGLXTemKndyTlVel9JOiNRpKBjHveYVp
+         qvlBZ+ad1MNpsiQD5tcgbyRzyDbWBm2S+R8uCGJRfMv2gIYGpyOQrXtTK/NFSX6r8x9j
+         ohSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=M8vwvZ6Hge0+bdgbmTmHoTSlT5oEH4/oVu63Y+vHKHw=;
+        b=uC9Xxjl7owXl060nTcP+TwSQW9LtzAX9BWSP3QvMI0ZXS5pzueog0LVQb/tclysd0j
+         PKTdFNVuecB5V41/yFqLmHDS1YV9OJju9px1cf1T5C2/6QF+cWSJfevoT//wzqo2gxTX
+         vIY59mwmKn82TkECWfdvHcc163vjshPSMWpYMcJpoCzEBe1eT/JrKPysw+mXIgJQJ2DN
+         hENtynLiyGYWnDBS5FahJYQVrB2fKQzpthfGvRwddBrh0Nj2oHS/DnIcQIB4y9tlDEpa
+         08V7VtztTI1kPhIrIPm9KKg+GqytZYkmN4rxLJlBlobJt/XcDhBK/GwNvOtyz5DxZ1Vu
+         ZPuA==
+X-Gm-Message-State: AOAM532LaWrgWozbUSjsfdL2b1bACo35GKPJIknzxYs5OzkuYO816XEP
+	L8D6t9rQvJa76JfqJoyYu/uUxEweEr2NHg==
+X-Google-Smtp-Source: ABdhPJxYXBwpmonDUjIPOunYzrETZqPnsIWOQczvSHnmPHj4fnUWCa22lPOgYcHt5/B+mWtUCESJlQ==
+X-Received: by 2002:a37:9d8f:: with SMTP id g137mr2450080qke.222.1640189087633;
+        Wed, 22 Dec 2021 08:04:47 -0800 (PST)
+Received: from [192.168.2.213] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id s19sm944115qtk.40.2021.12.22.08.04.46
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Dec 2021 08:04:47 -0800 (PST)
+Message-ID: <66aa4a93-9816-a1b5-7dd5-13d266e9e190@gmail.com>
+Date: Wed, 22 Dec 2021 11:04:46 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
 Content-Language: en-US
-X-FE-Attachment-Name: cdafepndiempaaol.jpeg
-X-FE-Policy-ID: 2:6:0:SYSTEM
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=cttc.es; s=DKIM; c=relaxed/relaxed;
- h=to:from:subject:message-id:date:mime-version:content-type;
- bh=DdK/tP2Rcn6EbFZKt+Rbzd2gh+1HGsut7b7x8iWBei0=;
- b=ZcCGVblgL/S1Y0mofaAA8BqD3iQbh1kpxNOusK7x6YSD58x/Ci0RfxV9jIIRSsukPNjapWkKPDrO
-	Ij5RzprUnb8MO9Xfax8oGdLPsH0cwrnwrCL+2dS2QDubC4e9dewci+ZhLPtavIcitoAt9WI5XWse
-	+VX1Ub1ne3nOAEKNYkwKW1sDYgb5d82KS1TJJlMY9E66E9ZVHv3V+pxs7TC+JfY3Ehgcr1wAi9LL
-	b+jKw9o0dALVX8RiHmX63L5djQXsxO/XunLY4fWCO44qVL19gy4HeT57AypX4V66jC1ebegtvPJp
-	+yY6f8tKj3Q/92xdVuveVr2x2pQfR6tiHpQ5qg==
-Message-ID-Hash: JIY2M6CZFZVFFYR5NOEWBWHP4R5PS723
-X-Message-ID-Hash: JIY2M6CZFZVFFYR5NOEWBWHP4R5PS723
-X-MailFrom: aghani@cttc.es
+To: usrp-users@lists.ettus.com
+References: <22a8dba7-e1a7-bc4d-cd7f-9e6abe34013d@cttc.es>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <22a8dba7-e1a7-bc4d-cd7f-9e6abe34013d@cttc.es>
+Message-ID-Hash: SEWR3RLR6G6R4UASVE37DQGDFO6YURQW
+X-Message-ID-Hash: SEWR3RLR6G6R4UASVE37DQGDFO6YURQW
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] eCPRI interfance support for USRPs
+Subject: [USRP-users] Re: eCPRI interfance support for USRPs
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JIY2M6CZFZVFFYR5NOEWBWHP4R5PS723/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SEWR3RLR6G6R4UASVE37DQGDFO6YURQW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9028485991681635432=="
+Content-Type: multipart/mixed; boundary="===============2259057697706575291=="
 
 This is a multi-part message in MIME format.
---===============9028485991681635432==
+--===============2259057697706575291==
 Content-Type: multipart/alternative;
- boundary="------------1F134902E738EC5784D61D26"
+ boundary="------------uitjKyNO56rhVJmSmr2zPmcK"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------1F134902E738EC5784D61D26
-Content-Type: text/plain; charset=utf-8; format=flowed
+--------------uitjKyNO56rhVJmSmr2zPmcK
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Dear Community
+On 2021-12-22 09:20, Armin Ghani wrote:
+>
+> Dear Community
+>
+> Is there anyway to equip USRPs with eCPRI interface in order to use=20
+> them with 5G-beyond software frameworks such as NVIDIA AERIAL SDK?
+>
+> I've found that USRP X410 more likely supports that interface but I=20
+> wonder if anyone know how to implement the interface in other USRP=20
+> products such as X300 series or so.
+>
+> Regards.
+>
+> --=20
+>
+> Armin Ghani
+>
+> Research Engineer | Communication Systems Division (CSD)
+>
+> aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
+>
+> Centre Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)
+>
+> Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
+>
+> 08860 - Castelldefels (Barcelona, Spain)
+>
+> www.cttc.cat
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+My guess, having taken but a cursory look at an eCPRI overview, is that=20
+a major overhaul of the FPGA in any of the Ettus 10Gbit radios (X310,=20
+N3xx, X4xx) would be required to
+ =C2=A0 support eCPRI.
 
-Is there anyway to equip USRPs with eCPRI interface in order to use them=20
-with 5G-beyond software frameworks such as NVIDIA AERIAL SDK?
+An "easier" solution might be to insert an "interstitial" device between=20
+a USRP and your eCPRI network to transform between eCPRI and UHD.
 
-I've found that USRP X410 more likely supports that interface but I=20
-wonder if anyone know how to implement the interface in other USRP=20
-products such as X300 series or so.
-
-Regards.
-
---=20
-
-Armin Ghani
-
-Research Engineer | Communication Systems Division (CSD)
-
-aghani@cttc.es <mailto:aghani@cttc.es>| +34 93 645 29 08 (2143)
-
-Centre Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)
-
-Av. Carl Friedrich Gauss, 7 - Edifici B4 - PMT
-
-08860 - Castelldefels (Barcelona, Spain)
-
-www.cttc.cat
+Remember that USRPs are very general purpose.=C2=A0 They are used in doze=
+ns=20
+of different application areas, and mobile-telephony/data is only ONE of=20
+many different application
+ =C2=A0 areas.=C2=A0=C2=A0 So it should perhaps be no surprise that the d=
+on't come "out=20
+of the box" ready to be used in mobile-telephony.
 
 
---------------1F134902E738EC5784D61D26
+--------------uitjKyNO56rhVJmSmr2zPmcK
 Content-Type: multipart/related;
- boundary="------------B3F658BF504AA7372AD7CC2E"
+ boundary="------------jCOSHk56A3NYQFfpCddj30tS"
 
-
---------------B3F658BF504AA7372AD7CC2E
-Content-Type: text/html; charset=utf-8
+--------------jCOSHk56A3NYQFfpCddj30tS
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
 -8">
   </head>
   <body>
-    <p>Dear Community</p>
-    <p>Is there anyway to equip USRPs with eCPRI interface in order to
-      use them with 5G-beyond software frameworks such as NVIDIA AERIAL
-      SDK?</p>
-    <p>I've found that USRP X410 more likely supports that interface but
-      I wonder if anyone know how to implement the interface in other
-      USRP products such as X300 series or so.</p>
-    <p>Regards.<br>
-    </p>
-    <div class=3D"moz-signature">-- <br>
+    <div class=3D"moz-cite-prefix">On 2021-12-22 09:20, Armin Ghani wrote=
+:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:22a8dba7-e1a7-bc4d-cd7f-9e6abe34013d@cttc.es">
       <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
 TF-8">
-      <title></title>
-      <p> </p>
-      <p>
-        <meta name=3D"ProgId" content=3D"Word.Document">
-        <meta name=3D"Generator" content=3D"Microsoft Word 15">
-        <meta name=3D"Originator" content=3D"Microsoft Word 15">
-        <style>@font-face
+      <p>Dear Community</p>
+      <p>Is there anyway to equip USRPs with eCPRI interface in order to
+        use them with 5G-beyond software frameworks such as NVIDIA
+        AERIAL SDK?</p>
+      <p>I've found that USRP X410 more likely supports that interface
+        but I wonder if anyone know how to implement the interface in
+        other USRP products such as X300 series or so.</p>
+      <p>Regards.<br>
+      </p>
+      <div class=3D"moz-signature">-- <br>
+        <meta http-equiv=3D"content-type" content=3D"text/html;
+          charset=3DUTF-8">
+        <title></title>
+        <p> </p>
+        <p>
+          <meta name=3D"ProgId" content=3D"Word.Document">
+          <meta name=3D"Generator" content=3D"Microsoft Word 15">
+          <meta name=3D"Originator" content=3D"Microsoft Word 15">
+          <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;
 	mso-font-charset:0;
@@ -194,64 +244,92 @@ rmal
 	margin-bottom:8.0pt;
 	line-height:107%;}div.WordSection1
 	{page:WordSection1;}</style> </p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><img
-          src=3D"cid:part1.01630C9D.7CDCF3C1@cttc.es" width=3D"151"
-          hspace=3D"12" height=3D"100" align=3D"left"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><img
+            src=3D"cid:part1.iOph4QWe.GWpK8qA6@gmail.com" class=3D""
+            width=3D"151" hspace=3D"12" height=3D"100" align=3D"left"><sp=
+an
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
 Aharoni;color:#2F5496;mso-themecolor:accent1;mso-themeshade:191">Armin
-          Ghani</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Research
-          Engineer | Communication Systems Division (CSD)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a
-          href=3D"mailto:aghani@cttc.es"><span
+            Ghani</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghani@=
-cttc.es</span></a><span
-          style=3D"font-size: 9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34 93
-          645 29 08 (2143)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
-          Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)</span>=
-</p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av. Carl
-          Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860 -
-          Castelldefels (Barcelona, Spain)</span></p>
-      <p class=3D"MsoNormal" style=3D"margin-bottom:0in;line-height:norma=
-l"><a><span
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Researc=
+h
+            Engineer | Communication Systems Division (CSD)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            href=3D"mailto:aghani@cttc.es" moz-do-not-send=3D"true"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif; mso-bidi-font-family:Aharoni">aghan=
+i@cttc.es</span></a><span
+            style=3D"font-size: 9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:Aharoni"> | +34
+            93 645 29 08 (2143)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
             style=3D"font-size:9.0pt;font-family:&quot;Arial
-            Black&quot;,sans-serif;
-            mso-bidi-font-family:Aharoni;mso-ansi-language:ES" lang=3D"ES=
-">www.cttc.cat</span></a><span
-          style=3D"font-size:9.0pt;font-family:&quot;Arial
-          Black&quot;,sans-serif;mso-bidi-font-family:
-          Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
-    </div>
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Centre
+            Tecnol=C3=B2gic de Telecomunicacions de Catalunya (CTTC)</spa=
+n></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">Av.
+            Carl Friedrich Gauss, 7 - Edifici B4 - PMT</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family: Aharoni">08860
+            - Castelldefels (Barcelona, Spain)</span></p>
+        <p class=3D"MsoNormal"
+          style=3D"margin-bottom:0in;line-height:normal"><a
+            moz-do-not-send=3D"true"><span
+              style=3D"font-size:9.0pt;font-family:&quot;Arial
+              Black&quot;,sans-serif;
+              mso-bidi-font-family:Aharoni;mso-ansi-language:ES"
+              lang=3D"ES">www.cttc.cat</span></a><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial
+            Black&quot;,sans-serif;mso-bidi-font-family:
+            Aharoni;mso-ansi-language:ES" lang=3D"ES"></span></p>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    My guess, having taken but a cursory look at an eCPRI overview, is
+    that a major overhaul of the FPGA in any of the Ettus 10Gbit radios
+    (X310, N3xx, X4xx) would be required to<br>
+    =C2=A0 support eCPRI.<br>
+    <br>
+    An "easier" solution might be to insert an "interstitial" device
+    between a USRP and your eCPRI network to transform between eCPRI and
+    UHD.<br>
+    <br>
+    Remember that USRPs are very general purpose.=C2=A0 They are used in
+    dozens of different application areas, and mobile-telephony/data is
+    only ONE of many different application<br>
+    =C2=A0 areas.=C2=A0=C2=A0 So it should perhaps be no surprise that th=
+e don't come
+    "out of the box" ready to be used in mobile-telephony.<br>
+    <br>
+    <br>
   </body>
 </html>
-
---------------B3F658BF504AA7372AD7CC2E
-Content-Type: image/jpeg;
- name="cdafepndiempaaol.jpeg"
+--------------jCOSHk56A3NYQFfpCddj30tS
+Content-Type: image/jpeg; name="cdafepndiempaaol.jpeg"
+Content-Disposition: inline; filename="cdafepndiempaaol.jpeg"
+Content-Id: <part1.iOph4QWe.GWpK8qA6@gmail.com>
 Content-Transfer-Encoding: base64
-Content-ID: <part1.01630C9D.7CDCF3C1@cttc.es>
-Content-Disposition: inline;
- filename="cdafepndiempaaol.jpeg"
 
 /9j/4AAQSkZJRgABAQEAkACQAAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAm
 JSMgIyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMp
@@ -390,11 +468,11 @@ DdtLilooAKKKKAGPEkn31Vv94Zpv2aE/8sY/++RUtFAEJtIDg+TFkcg7BUuKWigAooooAKQ0
 tFAETQRM2WjQk9yoo+zQ/wDPGP8A74FSUUAMSCONtyIinGMqoBp4GKWigBKKWigBMVDc2cF3
 GY7qGOZD1V1BFT0hoA5+fwL4euW3SabED/sEqPyBpsXgDw5FIsi6am5TkbnYj8ia6Klp8z7g
 VbXTbOyTbaW0MAByBGgWrAGKdSUgClpKWgAooooAKKKKAP/Z
---------------B3F658BF504AA7372AD7CC2E--
+--------------jCOSHk56A3NYQFfpCddj30tS--
 
---------------1F134902E738EC5784D61D26--
+--------------uitjKyNO56rhVJmSmr2zPmcK--
 
---===============9028485991681635432==
+--===============2259057697706575291==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -404,4 +482,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9028485991681635432==--
+--===============2259057697706575291==--
