@@ -2,89 +2,118 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B6F147F99C
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Dec 2021 02:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8234D47FC2F
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Dec 2021 12:25:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 46FA6384E80
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Dec 2021 20:01:53 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4662A384482
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Dec 2021 06:25:23 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="B3vpWzNk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PCqYqe0F";
 	dkim-atps=neutral
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 701DD384D9B
-	for <usrp-users@lists.ettus.com>; Sun, 26 Dec 2021 20:00:58 -0500 (EST)
-Received: by mail-qv1-f52.google.com with SMTP id a9so12646721qvd.12
-        for <usrp-users@lists.ettus.com>; Sun, 26 Dec 2021 17:00:58 -0800 (PST)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0BDBD3848A3
+	for <usrp-users@lists.ettus.com>; Mon, 27 Dec 2021 06:24:22 -0500 (EST)
+Received: by mail-lj1-f182.google.com with SMTP id h21so13302501ljh.3
+        for <usrp-users@lists.ettus.com>; Mon, 27 Dec 2021 03:24:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=joXGQjvP/h/7uIdQSn4EfQnD/X9mG6bSYQN9YomKUEM=;
-        b=B3vpWzNkZLOtLA7rnWrUVdTvs0AtCHx4NPikgCimy+PrPHepeLyC1cGFAtEbI9sZnY
-         eUTNfng0Pu+tU4Vmc1tEK7LcyhlaSWtVVaLAgjcFMObHk8dX3JvCanLO6RVMIjnBq5me
-         4KyjEHXbq9oXgAzkx036X1/EgV/xCSxs27wPDuCfrl8XxlhGcXRhpmluvF+Zr0zhAtwp
-         zwoTv6tcxzq3B5OwUWd12XpULvAP23tEimpThncMugLfcnRNaZ48H5eSAHTeli2Ycwl1
-         RRhrzIMFEfcaDCcOvqCgjPoSJHsSc+jpv/EfMRSt3oRVwd/UYTIDKulm+w36yruqtw9z
-         YdXQ==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=bhIZjmJY3iZMs7i2kzAb31/g0tp2Ql2Fc9XsmKfpoN0=;
+        b=PCqYqe0FDTbC2R6BACuVvCacCNy5Lu9CvzpYCg0Q2LCvER+cgkuNsInOZCb3CjkR2d
+         cPsjQ+hxrqV0z1mMB5vjsGw26BkungxVkl4LhD781pxF+S9VCIz4mGCDG2AtdWdwCWc6
+         vgmEvq+qadTrw8E2DHteSrJVyVhCeJVBxjzFvOL161bVIJeMW8RexWYLM+c+2MHZsPmm
+         X59jQmB2/GdSC1GxNRxJGyrr5CZObgu5CnbZ+zLSmKdokzAxNkc4tottqVDARzDuXWMB
+         crF5imsmWfbzX9avSjKDrNiZa2FIVLGFvoHohM6/RI3qu8twMDGl3Gy4bzdlRYVx8Bvq
+         LsAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=joXGQjvP/h/7uIdQSn4EfQnD/X9mG6bSYQN9YomKUEM=;
-        b=I8x2HAFXcwKBP8/gsP7B2D0s/yWkSUDAPwia3An2Fc+XC7H8Z6rGHI61VUHnYM7WLI
-         NWaNfQnnAcDOuOJN6TZC7FUZ2U6rNrhBG1dsBArOVNB/16w3PZLB/sJSAx5+Uvs+hfAE
-         /YojbPavBfsoPT7EQQk91QSI8XXni1BQVbB8mAXpeB9nqVx6CdOR+mLiSi5RSggJbMpy
-         6IeLELSNWFgBPj6D0qXLZaGH2lmgu5crDfkoD0fZXoO3krkLXgLo42lbqDwHj9QET0/2
-         K5eCevMAbw6TNgYXKN0kaUAKxRRDE6a3FS4Dnd7Nz7yimxkStcyuRZhLtSLnCEax6dnI
-         ti4w==
-X-Gm-Message-State: AOAM532HWYgeRIvf2x1zNkXzrzYVwJcQZx14SX+erZ9BuY/5mCdjbqOt
-	d4ilOYIp4GhXY4BPlymOnnDK61TsTh2Fnw==
-X-Google-Smtp-Source: ABdhPJwps31bumix4exGw39co+7FC0m/+CNqRcKHFXmqQ0l6B/JufaGkLhJkEOS/D28ViZ1vd1QFIw==
-X-Received: by 2002:a05:6214:f61:: with SMTP id iy1mr13517784qvb.28.1640566857679;
-        Sun, 26 Dec 2021 17:00:57 -0800 (PST)
-Received: from [192.168.2.213] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id f12sm11856920qkh.22.2021.12.26.17.00.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Dec 2021 17:00:57 -0800 (PST)
-Message-ID: <53a851c2-1cb3-7e8d-ad5f-023e351652fc@gmail.com>
-Date: Sun, 26 Dec 2021 20:00:56 -0500
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=bhIZjmJY3iZMs7i2kzAb31/g0tp2Ql2Fc9XsmKfpoN0=;
+        b=WDuc6tyKYrhCkGcEWTHuMMgFKcdMo0BhTZc/hgR/VJCG9EcnY7N64FnELUPFWUwdB/
+         GDsIQkOuf5wy5d57+CYlT3Qg4KNL8TUywJIY0w3q7k4lpjyOYOVfT55bqrNnyKwBYycZ
+         Vd7CdujxSkfE5x+CQnG3a3q3rxlHxzswnRgnF+WEOArRvjrVpMyMyb4w2hE6hFyqgcts
+         pRYFzAVHizj2CRktF+Jap19sCZTO2FCAQ1vEhs47KFJAAfjciIoZgYxqN1814G9GnYzL
+         XBAP0BgwU13Fi9jdYUi3QJ6upujALaQxTOSEUGJX8VWqxSpo0reStxwtwfRKcwXI9TVh
+         K2Pg==
+X-Gm-Message-State: AOAM530tLXbTHIlo96w62XHRgjZ/2DtHQGwyROEduM/51ygNChM10MIm
+	vWr+2CvilwqYEepOs4WrCuiGt2J52lziG1vWUFxEEyPe1b8u1Q==
+X-Google-Smtp-Source: ABdhPJzGmbokDYU+wST/Q7F8EV5XU4ICg5AhujYz93M/zVPauQpdcI8RPxTtaAqI/RF3CJuiXAEKB/oHOWBxA6ufBUo=
+X-Received: by 2002:a2e:a0d8:: with SMTP id f24mr12618410ljm.368.1640604261043;
+ Mon, 27 Dec 2021 03:24:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com,
- "Discuss-gnuradio@gnu.org" <Discuss-gnuradio@gnu.org>
-References: <9A281834-D787-491F-ADA1-B2C448BF9E4C@skidmore.edu>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <9A281834-D787-491F-ADA1-B2C448BF9E4C@skidmore.edu>
-Message-ID-Hash: B5DZ2FM6LS4XU4H5FDJMVMUJ7PNFP335
-X-Message-ID-Hash: B5DZ2FM6LS4XU4H5FDJMVMUJ7PNFP335
-X-MailFrom: patchvonbraun@gmail.com
+From: Berkay SAYGILI <zuhasdasn@gmail.com>
+Date: Mon, 27 Dec 2021 14:24:42 +0300
+Message-ID: <CAA7+tqQ+2WwZt80A8nNDBD9PVohowoTXFw1UHPyba37i0GuQGw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: IVWIEY7JZ7O33S2Z6TAAO4QIYCOQGN3R
+X-Message-ID-Hash: IVWIEY7JZ7O33S2Z6TAAO4QIYCOQGN3R
+X-MailFrom: zuhasdasn@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: How to pulse an RF signal?
+Subject: [USRP-users] Network card compatibility
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/B5DZ2FM6LS4XU4H5FDJMVMUJ7PNFP335/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IVWIEY7JZ7O33S2Z6TAAO4QIYCOQGN3R/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1710269840955745160=="
 
-T24gMjAyMS0xMi0yNiAxOTo1OCwgQW50aG9ueSBIb2xsYW5kIHZpYSBVU1JQLXVzZXJzIHdyb3Rl
-Og0KPiBIZWxsbyBVU1JQIGV4cGVydHMhDQo+DQo+IEkgYW4gcnVubmluZyBhIFZDTyBpbiBHbnUg
-cmFkaW8gY29tcGFuaW9uIChjaXJjYSA4MGtoeikNCj4gSG93IGNhbiBJIHB1bHNlIHRoZSBvdXRw
-dXQgc2lnbmFsIG9mIHRoZSBWQ08/DQo+IEnigJlkIGxpa2UgdG8gYmUgYWJsZSB0byB0dXJuIGl0
-IG9uIGFuZCBvZmYgdmVyeSByYXBpZGx54oCmLi4NCj4NCj4gVGhhbmtzIGZvciBhbnkgdGlwcyEN
-Cj4NCj4gQW50aG9ueQ0KPg0KPg0KTXVsdGlwbHkgd2l0aCBhbm90aGVyIHNpZ25hbCB0aGF0J3Mg
-bW9zdGx5IDBzLCB3aXRoIGp1c3QgYSBkYXNoIG9mIDFzID8/DQoNClJlYWxseSwgdGhpcyBiZWxv
-bmdzIG9uIHRoZSBkaXNjdXNzLWdudXJhZGlvIG1haWxpbmcgbGlzdCwgdG8gd2hpY2ggSSANCmhh
-dmUgY3Jvc3MtcG9zdGVkLg0KDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============1710269840955745160==
+Content-Type: multipart/alternative; boundary="000000000000324fbd05d41ef2d4"
+
+--000000000000324fbd05d41ef2d4
+Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+We have purchased "NVIDIA MCX4131A-GCAT ConnectX-4 Lx EN Adapter Card
+50GbE" to work better with the DPDK interface. We had problems with using
+DPDK with x520-DA2 Intel NIC before. Ettus suggested us using Mellanox
+cards. We have also purchased a QSFP28 to QSFP28 DAC cable. I updated the
+N320 fpga firmware to XQ. I can ping 192.168.10.2 (sfp0 in embedded linux)
+from desktop computer. However, i cant ping the 192.168.11.2 (sfp0_1).
+
+Since there is no documentation on using QSFP+ interface with n320, I
+checked the x410's documents. I saw that ettus sells it with QSFP+ to 4
+SFP+ cable. I hope I can use QSFP to QSFP cable with N320 and Mellanox
+MCX4131A-GCAT NIC.
+
+
+Best
+
+Berkay
+
+--000000000000324fbd05d41ef2d4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello,<div><br></div><div>We have purchased &quot;NVIDIA M=
+CX4131A-GCAT ConnectX-4 Lx EN Adapter Card 50GbE&quot; to work better with =
+the DPDK interface. We had problems with using DPDK with x520-DA2 Intel NIC=
+ before. Ettus suggested us using Mellanox cards. We have also purchased a =
+QSFP28 to QSFP28 DAC cable. I updated the N320 fpga firmware to XQ. I can p=
+ing 192.168.10.2 (sfp0 in embedded linux) from desktop computer. However, i=
+ cant ping the 192.168.11.2 (sfp0_1).=C2=A0</div><div><br></div><div>Since =
+there is no documentation on using QSFP+ interface with n320, I checked the=
+ x410&#39;s documents. I saw that ettus sells it with QSFP+ to 4 SFP+ cable=
+. I hope I can use QSFP to QSFP cable with N320 and Mellanox MCX4131A-GCAT =
+NIC.</div><div><br></div><div><br></div>Best<div><br></div><div>Berkay</div=
+></div>
+
+--000000000000324fbd05d41ef2d4--
+
+--===============1710269840955745160==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1710269840955745160==--
