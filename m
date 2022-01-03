@@ -2,268 +2,358 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62D24482FEB
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Jan 2022 11:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36E23482FF5
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Jan 2022 11:37:38 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1105038520E
-	for <lists+usrp-users@lfdr.de>; Mon,  3 Jan 2022 05:31:38 -0500 (EST)
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E8C99384DFD
-	for <usrp-users@lists.ettus.com>; Mon,  3 Jan 2022 05:30:36 -0500 (EST)
-Date: Mon, 3 Jan 2022 10:30:36 +0000
-To: usrp-users@lists.ettus.com
-From: seckinoncu8070@gmail.com
-Message-ID: <KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 5290031e-4f10-22f7-20a7-b1635d73a242@gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id 68BC63852C1
+	for <lists+usrp-users@lfdr.de>; Mon,  3 Jan 2022 05:37:37 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lFqXNPJL";
+	dkim-atps=neutral
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0E0FD384EA1
+	for <usrp-users@lists.ettus.com>; Mon,  3 Jan 2022 05:36:29 -0500 (EST)
+Received: by mail-yb1-f176.google.com with SMTP id 139so66272057ybd.3
+        for <usrp-users@lists.ettus.com>; Mon, 03 Jan 2022 02:36:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=WykEk6vJB4Bq18j3ao4cO2yaCitqNDa4sumAs51Hqx8=;
+        b=lFqXNPJL48cPWC1I1fAWln/KbmWXciyLn1DidBiR1rNAuyKnJHSuUUv6ZWO6duS1Ua
+         VY0axER0RrDjwtZrsLPWSQvInimGA0fxc6KwZGw9BR1iQtj5mV+1IMoDPGVAP9mEPKXm
+         YnTMa3hsPMrflYPCJExuafORMCCBZOKQFvpmfg7+FFkB2nzWXOCuajdchLlqswcfIeJ1
+         yHH52epMZo27HG1nqy7TuNkb0OrwC6nfeXl0APm/iE18WE1zRrkMvpU1Wj6V6N3oEOc8
+         afXYE2lBIFR3WXxpdmK/Uqd3lhaaeAWnwzzQA+5kP2QRVyAH0Gwoh+lb1QffU7TcOr2U
+         jv8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=WykEk6vJB4Bq18j3ao4cO2yaCitqNDa4sumAs51Hqx8=;
+        b=aGDhPdvqmx0feHQmJwWT/tHRk+RVKP2vh1StAYHOS1SxmznO6lqbaUaRGRbrIFw1AF
+         AEbn3p+foEO69sh1CGcxDMksNGEltgRWlLC7NsgIn/+/ob+CWqF8mIpOTnGxyG1V/YM8
+         3NNqVaTOC2fRfseGD+6CuzzgFVCCXHnXaTTUVFPm76ULhmGmlIjWSfMLD6RJKNKzVWgf
+         0u/qCDGqwTDEe3ImZ8e8pRVQRnuAbBFvczXcfxE2d5k4wOoJWtb4mwfZ9KMvUgpRyeKg
+         o6yh714MKXE7Bg6M8LoXYyj4y9F/nNB+DVqk5m7x3tdTz6zLcDSydyeUyLkv+b3koxfW
+         4i/A==
+X-Gm-Message-State: AOAM533Oi+HdHzyJ/OIkDGdLJQkur+k40xBrGsNjPxqwr4fA6nso54bF
+	6plaC8pamIixpsTOcuXk8hbuhuJgBvwFgeOoNerSX434MvH+wiNxyPg=
+X-Google-Smtp-Source: ABdhPJyrL6Y4BQzPGsELP8MN09wuR1DG/aFpQDltix+UXc4KAzgDnmLPSADOggOqWh4OAZlCHvA3d05jUz7rTMqhzm0=
+X-Received: by 2002:a25:9d82:: with SMTP id v2mr55163017ybp.383.1641206188202;
+ Mon, 03 Jan 2022 02:36:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="b1_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ"
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: N6MGLM62X5ATUASUZYVUMB42PUH67T56
-X-Message-ID-Hash: N6MGLM62X5ATUASUZYVUMB42PUH67T56
-X-MailFrom: seckinoncu8070@gmail.com
+From: sp h <stackprogramer@gmail.com>
+Date: Mon, 3 Jan 2022 14:06:16 +0330
+Message-ID: <CAA=S3Pv+aWAsGxtMAj+JcNA9FG8H6WFdQsKgbSJ0SS=+Mym_vA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: G44BXYXR2XZ5MPBS7NEDTYLT4CO3TG2S
+X-Message-ID-Hash: G44BXYXR2XZ5MPBS7NEDTYLT4CO3TG2S
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 LO leakage cancelation
+Subject: [USRP-users] Can any guide me in rfnoc blocks?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N6MGLM62X5ATUASUZYVUMB42PUH67T56/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G44BXYXR2XZ5MPBS7NEDTYLT4CO3TG2S/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============7131118448497811207=="
 
-This is a multi-part message in MIME format.
+--===============7131118448497811207==
+Content-Type: multipart/alternative; boundary="000000000000d9deff05d4ab1725"
 
---b1_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ
-Content-Type: multipart/alternative;
- boundary="b2_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ"
+--000000000000d9deff05d4ab1725
+Content-Type: text/plain; charset="UTF-8"
 
---b2_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ
-Content-Type: text/plain; charset=UTF-8
+Hi, I am studying  RFNOC blocks for USRP, the file that I am reading is in
+the below link...
+https://files.ettus.com/app_notes/RFNoC_Specification.pdf
+I know Verilog language, so another part I am studying RFNOC blocks Verilog
+Code.
+
+However knowing Verilog and RFNoC_Specification is not enough, because I
+think I am faced with a Verilog framework for kintex7.
+So I had some questions yet. Verilog code for an RFNOC block has two main
+files for example: for gain example, we have two files:
+noc_shell_gain.v
+rfnoc_block_gain.v
+
+my question is about noc_shell_gain.v file. there is a section defining the
+input module...
+anyone can guide me on whats do this section(Client Interface)? what's the
+difference between
+this section and the  Framework Interface section?
+what's the difference between context and payload streams?
+thanks in advance
+//---------------------
+// Framework Interface
+//---------------------
+
+// RFNoC Framework Clocks
+input wire rfnoc_chdr_clk,
+input wire rfnoc_ctrl_clk,
+
+// NoC Shell Generated Resets
+output wire rfnoc_chdr_rst,
+output wire rfnoc_ctrl_rst,
+
+// RFNoC Backend Interface
+input wire [511:0] rfnoc_core_config,
+output wire [511:0] rfnoc_core_status,
+
+// AXIS-CHDR Input Ports (from framework)
+input wire [(1)*CHDR_W-1:0] s_rfnoc_chdr_tdata,
+input wire [(1)-1:0] s_rfnoc_chdr_tlast,
+input wire [(1)-1:0] s_rfnoc_chdr_tvalid,
+output wire [(1)-1:0] s_rfnoc_chdr_tready,
+// AXIS-CHDR Output Ports (to framework)
+output wire [(1)*CHDR_W-1:0] m_rfnoc_chdr_tdata,
+output wire [(1)-1:0] m_rfnoc_chdr_tlast,
+output wire [(1)-1:0] m_rfnoc_chdr_tvalid,
+input wire [(1)-1:0] m_rfnoc_chdr_tready,
+
+// AXIS-Ctrl Control Input Port (from framework)
+input wire [31:0] s_rfnoc_ctrl_tdata,
+input wire s_rfnoc_ctrl_tlast,
+input wire s_rfnoc_ctrl_tvalid,
+output wire s_rfnoc_ctrl_tready,
+// AXIS-Ctrl Control Output Port (to framework)
+output wire [31:0] m_rfnoc_ctrl_tdata,
+output wire m_rfnoc_ctrl_tlast,
+output wire m_rfnoc_ctrl_tvalid,
+input wire m_rfnoc_ctrl_tready,
+
+//---------------------
+// Client Interface
+//---------------------
+
+// CtrlPort Clock and Reset
+output wire ctrlport_clk,
+output wire ctrlport_rst,
+// CtrlPort Master
+output wire m_ctrlport_req_wr,
+output wire m_ctrlport_req_rd,
+output wire [19:0] m_ctrlport_req_addr,
+output wire [31:0] m_ctrlport_req_data,
+input wire m_ctrlport_resp_ack,
+input wire [31:0] m_ctrlport_resp_data,
+
+// AXI-Stream Payload Context Clock and Reset
+output wire axis_data_clk,
+output wire axis_data_rst,
+// Payload Stream to User Logic: in
+output wire [32*1-1:0] m_in_payload_tdata,
+output wire [1-1:0] m_in_payload_tkeep,
+output wire m_in_payload_tlast,
+output wire m_in_payload_tvalid,
+input wire m_in_payload_tready,
+// Context Stream to User Logic: in
+output wire [CHDR_W-1:0] m_in_context_tdata,
+output wire [3:0] m_in_context_tuser,
+output wire m_in_context_tlast,
+output wire m_in_context_tvalid,
+input wire m_in_context_tready,
+// Payload Stream from User Logic: out
+input wire [32*1-1:0] s_out_payload_tdata,
+input wire [0:0] s_out_payload_tkeep,
+input wire s_out_payload_tlast,
+input wire s_out_payload_tvalid,
+output wire s_out_payload_tready,
+// Context Stream from User Logic: out
+input wire [CHDR_W-1:0] s_out_context_tdata,
+input wire [3:0] s_out_context_tuser,
+input wire s_out_context_tlast,
+input wire s_out_context_tvalid,
+output wire s_out_context_tready
+
+--000000000000d9deff05d4ab1725
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Marcus,
+<div dir=3D"ltr">Hi, I am studying=C2=A0 RFNOC blocks for USRP, the file th=
+at I am reading is in the below link...<div><a href=3D"https://files.ettus.=
+com/app_notes/RFNoC_Specification.pdf">https://files.ettus.com/app_notes/RF=
+NoC_Specification.pdf</a><br></div><div>I know Verilog language, so another=
+ part I am studying RFNOC blocks Verilog Code.</div><div><br></div><div>How=
+ever knowing Verilog and RFNoC_Specification is not enough, because I think=
+ I am faced with a Verilog framework for kintex7.</div><div>So I had some q=
+uestions yet. Verilog code for an RFNOC block has two main files for exampl=
+e: for gain example, we have two files:</div><div><div style=3D"color:rgb(0=
+,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospa=
+ce,&quot;Droid Sans Fallback&quot;;line-height:19px;white-space:pre"><div s=
+tyle=3D"font-size:14px"> noc_shell_gain.v</div><div style=3D"font-size:14px=
+"> rfnoc_block_gain.v</div><div style=3D"font-size:14px"><br></div><div sty=
+le=3D"">my question is about noc_shell_gain.v file. there is a section defi=
+ning the input module...</div><div style=3D"">anyone can guide me on whats =
+do this section(Client Interface)? what&#39;s the difference between </div>=
+<div style=3D"">this section and the =C2=A0Framework Interface section?</di=
+v><div style=3D"">what&#39;s the difference between context and payload str=
+eams?</div><div style=3D"">thanks in advance</div><div style=3D""><div styl=
+e=3D"font-size:14px;line-height:19px"><div> <span style=3D"color:rgb(0,128,=
+0)">//---------------------</span></div><div style=3D"line-height:19px"><di=
+v>  <span style=3D"color:rgb(0,128,0)">// Framework Interface</span></div><=
+div>  <span style=3D"color:rgb(0,128,0)">//---------------------</span></di=
+v><br><div>  <span style=3D"color:rgb(0,128,0)">// RFNoC Framework Clocks</=
+span></div><div>  <span style=3D"color:rgb(0,0,255)">input</span>  <span st=
+yle=3D"color:rgb(0,0,255)">wire</span> rfnoc_chdr_clk,</div><div>  <span st=
+yle=3D"color:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)"=
+>wire</span> rfnoc_ctrl_clk,</div><br><div>  <span style=3D"color:rgb(0,128=
+,0)">// NoC Shell Generated Resets</span></div><div>  <span style=3D"color:=
+rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span> =
+rfnoc_chdr_rst,</div><div>  <span style=3D"color:rgb(0,0,255)">output</span=
+> <span style=3D"color:rgb(0,0,255)">wire</span> rfnoc_ctrl_rst,</div><br><=
+div>  <span style=3D"color:rgb(0,128,0)">// RFNoC Backend Interface</span><=
+/div><div>  <span style=3D"color:rgb(0,0,255)">input</span>  <span style=3D=
+"color:rgb(0,0,255)">wire</span> [<span style=3D"color:rgb(9,134,88)">511</=
+span>:<span style=3D"color:rgb(9,134,88)">0</span>]          rfnoc_core_con=
+fig,</div><div>  <span style=3D"color:rgb(0,0,255)">output</span> <span sty=
+le=3D"color:rgb(0,0,255)">wire</span> [<span style=3D"color:rgb(9,134,88)">=
+511</span>:<span style=3D"color:rgb(9,134,88)">0</span>]          rfnoc_cor=
+e_status,</div><br><div>  <span style=3D"color:rgb(0,128,0)">// AXIS-CHDR I=
+nput Ports (from framework)</span></div><div>  <span style=3D"color:rgb(0,0=
+,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</span> [(<span=
+ style=3D"color:rgb(9,134,88)">1</span>)*CHDR_W-<span style=3D"color:rgb(9,=
+134,88)">1</span>:<span style=3D"color:rgb(9,134,88)">0</span>] s_rfnoc_chd=
+r_tdata,</div><div>  <span style=3D"color:rgb(0,0,255)">input</span>  <span=
+ style=3D"color:rgb(0,0,255)">wire</span> [(<span style=3D"color:rgb(9,134,=
+88)">1</span>)-<span style=3D"color:rgb(9,134,88)">1</span>:<span style=3D"=
+color:rgb(9,134,88)">0</span>]        s_rfnoc_chdr_tlast,</div><div>  <span=
+ style=3D"color:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,25=
+5)">wire</span> [(<span style=3D"color:rgb(9,134,88)">1</span>)-<span style=
+=3D"color:rgb(9,134,88)">1</span>:<span style=3D"color:rgb(9,134,88)">0</sp=
+an>]        s_rfnoc_chdr_tvalid,</div><div>  <span style=3D"color:rgb(0,0,2=
+55)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span> [(<span s=
+tyle=3D"color:rgb(9,134,88)">1</span>)-<span style=3D"color:rgb(9,134,88)">=
+1</span>:<span style=3D"color:rgb(9,134,88)">0</span>]        s_rfnoc_chdr_=
+tready,</div><div>  <span style=3D"color:rgb(0,128,0)">// AXIS-CHDR Output =
+Ports (to framework)</span></div><div>  <span style=3D"color:rgb(0,0,255)">=
+output</span> <span style=3D"color:rgb(0,0,255)">wire</span> [(<span style=
+=3D"color:rgb(9,134,88)">1</span>)*CHDR_W-<span style=3D"color:rgb(9,134,88=
+)">1</span>:<span style=3D"color:rgb(9,134,88)">0</span>] m_rfnoc_chdr_tdat=
+a,</div><div>  <span style=3D"color:rgb(0,0,255)">output</span> <span style=
+=3D"color:rgb(0,0,255)">wire</span> [(<span style=3D"color:rgb(9,134,88)">1=
+</span>)-<span style=3D"color:rgb(9,134,88)">1</span>:<span style=3D"color:=
+rgb(9,134,88)">0</span>]        m_rfnoc_chdr_tlast,</div><div>  <span style=
+=3D"color:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)">wi=
+re</span> [(<span style=3D"color:rgb(9,134,88)">1</span>)-<span style=3D"co=
+lor:rgb(9,134,88)">1</span>:<span style=3D"color:rgb(9,134,88)">0</span>]  =
+      m_rfnoc_chdr_tvalid,</div><div>  <span style=3D"color:rgb(0,0,255)">i=
+nput</span>  <span style=3D"color:rgb(0,0,255)">wire</span> [(<span style=
+=3D"color:rgb(9,134,88)">1</span>)-<span style=3D"color:rgb(9,134,88)">1</s=
+pan>:<span style=3D"color:rgb(9,134,88)">0</span>]        m_rfnoc_chdr_trea=
+dy,</div><br><div>  <span style=3D"color:rgb(0,128,0)">// AXIS-Ctrl Control=
+ Input Port (from framework)</span></div><div>  <span style=3D"color:rgb(0,=
+0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</span> [<span=
+ style=3D"color:rgb(9,134,88)">31</span>:<span style=3D"color:rgb(9,134,88)=
+">0</span>]           s_rfnoc_ctrl_tdata,</div><div>  <span style=3D"color:=
+rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</span> =
+                 s_rfnoc_ctrl_tlast,</div><div>  <span style=3D"color:rgb(0=
+,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</span>      =
+            s_rfnoc_ctrl_tvalid,</div><div>  <span style=3D"color:rgb(0,0,2=
+55)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>          =
+        s_rfnoc_ctrl_tready,</div><div>  <span style=3D"color:rgb(0,128,0)"=
+>// AXIS-Ctrl Control Output Port (to framework)</span></div><div>  <span s=
+tyle=3D"color:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)=
+">wire</span> [<span style=3D"color:rgb(9,134,88)">31</span>:<span style=3D=
+"color:rgb(9,134,88)">0</span>]           m_rfnoc_ctrl_tdata,</div><div>  <=
+span style=3D"color:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,=
+0,255)">wire</span>                  m_rfnoc_ctrl_tlast,</div><div>  <span =
+style=3D"color:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255=
+)">wire</span>                  m_rfnoc_ctrl_tvalid,</div><div>  <span styl=
+e=3D"color:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">w=
+ire</span>                  m_rfnoc_ctrl_tready,</div><br><div>  <span styl=
+e=3D"color:rgb(0,128,0)">//---------------------</span></div><div>  <span s=
+tyle=3D"color:rgb(0,128,0)">// Client Interface</span></div><div>  <span st=
+yle=3D"color:rgb(0,128,0)">//---------------------</span></div><br><div>  <=
+span style=3D"color:rgb(0,128,0)">// CtrlPort Clock and Reset</span></div><=
+div>  <span style=3D"color:rgb(0,0,255)">output</span> <span style=3D"color=
+:rgb(0,0,255)">wire</span>               ctrlport_clk,</div><div>  <span st=
+yle=3D"color:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)"=
+>wire</span>               ctrlport_rst,</div><div>  <span style=3D"color:r=
+gb(0,128,0)">// CtrlPort Master</span></div><div>  <span style=3D"color:rgb=
+(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>    =
+           m_ctrlport_req_wr,</div><div>  <span style=3D"color:rgb(0,0,255)=
+">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>             =
+  m_ctrlport_req_rd,</div><div>  <span style=3D"color:rgb(0,0,255)">output<=
+/span> <span style=3D"color:rgb(0,0,255)">wire</span> [<span style=3D"color=
+:rgb(9,134,88)">19</span>:<span style=3D"color:rgb(9,134,88)">0</span>]    =
+    m_ctrlport_req_addr,</div><div>  <span style=3D"color:rgb(0,0,255)">out=
+put</span> <span style=3D"color:rgb(0,0,255)">wire</span> [<span style=3D"c=
+olor:rgb(9,134,88)">31</span>:<span style=3D"color:rgb(9,134,88)">0</span>]=
+        m_ctrlport_req_data,</div><div>  <span style=3D"color:rgb(0,0,255)"=
+>input</span>  <span style=3D"color:rgb(0,0,255)">wire</span>              =
+ m_ctrlport_resp_ack,</div><div>  <span style=3D"color:rgb(0,0,255)">input<=
+/span>  <span style=3D"color:rgb(0,0,255)">wire</span> [<span style=3D"colo=
+r:rgb(9,134,88)">31</span>:<span style=3D"color:rgb(9,134,88)">0</span>]   =
+     m_ctrlport_resp_data,</div><br><div>  <span style=3D"color:rgb(0,128,0=
+)">// AXI-Stream Payload Context Clock and Reset</span></div><div>  <span s=
+tyle=3D"color:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)=
+">wire</span>               axis_data_clk,</div><div>  <span style=3D"color=
+:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>=
+               axis_data_rst,</div><div>  <span style=3D"color:rgb(0,128,0)=
+">// Payload Stream to User Logic: in</span></div><div>  <span style=3D"col=
+or:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)">wire</spa=
+n> [<span style=3D"color:rgb(9,134,88)">32</span>*<span style=3D"color:rgb(=
+9,134,88)">1</span>-<span style=3D"color:rgb(9,134,88)">1</span>:<span styl=
+e=3D"color:rgb(9,134,88)">0</span>]    m_in_payload_tdata,</div><div>  <spa=
+n style=3D"color:rgb(0,0,255)">output</span> <span style=3D"color:rgb(0,0,2=
+55)">wire</span> [<span style=3D"color:rgb(9,134,88)">1</span>-<span style=
+=3D"color:rgb(9,134,88)">1</span>:<span style=3D"color:rgb(9,134,88)">0</sp=
+an>]       m_in_payload_tkeep,</div><div>  <span style=3D"color:rgb(0,0,255=
+)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>            =
+   m_in_payload_tlast,</div><div>  <span style=3D"color:rgb(0,0,255)">outpu=
+t</span> <span style=3D"color:rgb(0,0,255)">wire</span>               m_in_=
+payload_tvalid,</div><div>  <span style=3D"color:rgb(0,0,255)">input</span>=
+  <span style=3D"color:rgb(0,0,255)">wire</span>               m_in_payload=
+_tready,</div><div>  <span style=3D"color:rgb(0,128,0)">// Context Stream t=
+o User Logic: in</span></div><div>  <span style=3D"color:rgb(0,0,255)">outp=
+ut</span> <span style=3D"color:rgb(0,0,255)">wire</span> [CHDR_W-<span styl=
+e=3D"color:rgb(9,134,88)">1</span>:<span style=3D"color:rgb(9,134,88)">0</s=
+pan>]  m_in_context_tdata,</div><div>  <span style=3D"color:rgb(0,0,255)">o=
+utput</span> <span style=3D"color:rgb(0,0,255)">wire</span> [<span style=3D=
+"color:rgb(9,134,88)">3</span>:<span style=3D"color:rgb(9,134,88)">0</span>=
+]         m_in_context_tuser,</div><div>  <span style=3D"color:rgb(0,0,255)=
+">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>             =
+  m_in_context_tlast,</div><div>  <span style=3D"color:rgb(0,0,255)">output=
+</span> <span style=3D"color:rgb(0,0,255)">wire</span>               m_in_c=
+ontext_tvalid,</div><div>  <span style=3D"color:rgb(0,0,255)">input</span> =
+ <span style=3D"color:rgb(0,0,255)">wire</span>               m_in_context_=
+tready,</div><div>  <span style=3D"color:rgb(0,128,0)">// Payload Stream fr=
+om User Logic: out</span></div><div>  <span style=3D"color:rgb(0,0,255)">in=
+put</span>  <span style=3D"color:rgb(0,0,255)">wire</span> [<span style=3D"=
+color:rgb(9,134,88)">32</span>*<span style=3D"color:rgb(9,134,88)">1</span>=
+-<span style=3D"color:rgb(9,134,88)">1</span>:<span style=3D"color:rgb(9,13=
+4,88)">0</span>]    s_out_payload_tdata,</div><div>  <span style=3D"color:r=
+gb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</span> [=
+<span style=3D"color:rgb(9,134,88)">0</span>:<span style=3D"color:rgb(9,134=
+,88)">0</span>]         s_out_payload_tkeep,</div><div>  <span style=3D"col=
+or:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</spa=
+n>               s_out_payload_tlast,</div><div>  <span style=3D"color:rgb(=
+0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</span>     =
+          s_out_payload_tvalid,</div><div>  <span style=3D"color:rgb(0,0,25=
+5)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>           =
+    s_out_payload_tready,</div><div>  <span style=3D"color:rgb(0,128,0)">//=
+ Context Stream from User Logic: out</span></div><div>  <span style=3D"colo=
+r:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</span=
+> [CHDR_W-<span style=3D"color:rgb(9,134,88)">1</span>:<span style=3D"color=
+:rgb(9,134,88)">0</span>]  s_out_context_tdata,</div><div>  <span style=3D"=
+color:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</=
+span> [<span style=3D"color:rgb(9,134,88)">3</span>:<span style=3D"color:rg=
+b(9,134,88)">0</span>]         s_out_context_tuser,</div><div>  <span style=
+=3D"color:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wi=
+re</span>               s_out_context_tlast,</div><div>  <span style=3D"col=
+or:rgb(0,0,255)">input</span>  <span style=3D"color:rgb(0,0,255)">wire</spa=
+n>               s_out_context_tvalid,</div><div>  <span style=3D"color:rgb=
+(0,0,255)">output</span> <span style=3D"color:rgb(0,0,255)">wire</span>    =
+           s_out_context_tready</div></div></div></div><div style=3D"font-s=
+ize:14px"><br></div></div></div></div>
 
-I did the calibration but it didn=E2=80=99t change the results. There is =
-still LO leakage on transmitter. I attached the generated cal file locati=
-on as a figure.
+--000000000000d9deff05d4ab1725--
 
---b2_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello Marcus,</p><p>I did the calibration but it didn=E2=80=99t change=
- the results. There is still LO leakage on transmitter. I attached the ge=
-nerated cal file location as a figure.</p><p><br></p>
-
-
---b2_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ--
-
---b1_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ
-Content-Type: image/png; name="Screenshot .png"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="Screenshot .png"
-
-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
-nBxFR2NZ7OzPssg7TGZMzI1JTjQ7t112O1O1Aon6XXoqQEhKZsSMWjvIcx1WzBRrFd8QTgcoWmvW
-krp7cRaU5CQJmeVG4zTWJae1hbXa5CqboZF8k4O3ysLCWFYBMbanZsakIJEVl86S12Z/aSdLFE7t
-FGISGDMj1nZEyGOZMSS79GuItNZV15HnTQztPEet/WbL6YN/nN2xcp5z5Jo3PtgUU+5jEgAAwGPX
-40FDVa2v4nQdI+ndkeSFyP46pri/p16JWVftoIXliR4NfBUnAADooBosgmeAIXX3IFRg9yLqP8MQ
-s67aQQvLa/jRAACApgUJ6LNC34NzMiTCAxaXpC6pP2LWVTtoYXlPIxrFRxf1ta/W8CcAADRBtFpz
-uwAAAAAAdQQjoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICok
-oAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSg
-AAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAA
-AAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAA
-AAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAA
-ACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAA
-ICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAg
-KiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAq
-JKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICok
-oAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSg
-AAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAA
-AAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgKiSgAAAAACAqJKAAAAAAICokoAAA
-AAAgKiSgAAAAACAqJKAAAAAAICokoAAAAAAgIkL+HyoHVQyqJAxEAAAAAElFTkSuQmCC
-
---b1_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ
+--===============7131118448497811207==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -273,4 +363,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---b1_KItYKdwCb5C30mD2PHY0E8Sjb5MRqgdJwxIIugnTeQ--
+--===============7131118448497811207==--
