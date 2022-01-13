@@ -2,190 +2,177 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF26E48DA63
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 16:03:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E8948DB3A
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 17:05:45 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E45D2385455
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 10:03:34 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id DDDC5384B22
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 11:05:44 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SrHYLIYo";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="0ZUPSnBG";
 	dkim-atps=neutral
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 785E23850C2
-	for <usrp-users@lists.ettus.com>; Thu, 13 Jan 2022 10:02:31 -0500 (EST)
-Received: by mail-qv1-f53.google.com with SMTP id jr5so6790658qvb.11
-        for <usrp-users@lists.ettus.com>; Thu, 13 Jan 2022 07:02:31 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 448143847EA
+	for <usrp-users@lists.ettus.com>; Thu, 13 Jan 2022 11:04:44 -0500 (EST)
+Received: by mail-yb1-f173.google.com with SMTP id v186so16403460ybg.1
+        for <usrp-users@lists.ettus.com>; Thu, 13 Jan 2022 08:04:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=h8bG9YiSJazU3WlOQvRHpdawHwhncyvkNH/5bV/ocBU=;
-        b=SrHYLIYoL9heBjHNZTvhE3Y+jDTVEH9J1c3DxnagtqqaWzsC9NJqlWQXqtT8yKDvRu
-         8GXL1VV2glBQrmEmsKL55F6WgEhpYsoJjIkOihV510mq6d5u30QjfUVPFmHAzb4JGsfC
-         jb3+kAFJWUzRzw1dVL+yG/gdTQY4y8Ntp6HlgtALYTSLRuszZKcfe7J0U5L8e2btt+th
-         tSVfrUYnJ9P8dSscNnrP5pIL233Otz2IADcnh1gvXLVVLe0Rzg8vttdXEFuSOTbU7PAT
-         0vSJqGWDDH3cKNe0MpF/0HY4E3RFfg8tSbiPCsZoZKBSX5nuIaqBWMTbAj8FFlEkv40B
-         mNgQ==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4HJGyHgX07//ZsSATTjUfgq3Z2CPufxN5j4ZT3fxOF8=;
+        b=0ZUPSnBGZ4HOGAb3kmW8gvzKxb42thbbmuSylso0vxJT1zzfxhKjjuHJTZirnj3MTZ
+         +8UmZrcwJvhWf6iOOZFNiO0TEcwff6OjAU4qgJdVP7pPEgsFmxTHUPQDNujElTepDEE1
+         iETr237RmwJg2+aedK7ZwFO9TFF5u/ycg/c5b4fRnaZroPdAcacD2R2W/GA445yzKt3C
+         fOvl1t4QfjHbwa0IRu3KmPwMjJUSKG9csMp0rEOCwq7wuWJbJhB9r+/qW4PWmHui1fn2
+         K/LyK+G25gvgWBs+zJENXLL2IrBRBDUqI1C9qeECdiWY8Ua9vqjW0j5rBTggdXvyht2i
+         dNBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=h8bG9YiSJazU3WlOQvRHpdawHwhncyvkNH/5bV/ocBU=;
-        b=nUWlw+3l/qZ5rUC/g44bINb6+KM/f7VD/kuUa41MIHo8lgnsx/0w+9wzJLWZPWsIES
-         pdvG3vxT95MyEnkpLX2DeIRecBwIJqL44MQEE15Dk16zcNxsgFKBeHpGYG73NRTrrCln
-         RJ9WEldfnfVsPK8kYUzdv6Fc545sWrkWqGE5CJXnFmLaS4def4Pk57m6EU/AS1bx0PWS
-         LAsvloG6t8bQKvybyQHeMVPghI9LyNRxGDbHdSljE+7jpXEc4S1NsqVCKzD5kdjiYKUc
-         j4YjLFmiajeV3TSvq0aN3oltt6eKJuZFukQkH5CQ4aI2Q1vumbvBCp7cB6LfSvHFCrLd
-         ntfw==
-X-Gm-Message-State: AOAM5310bHBRIRPUJ+Yx706dj4yxflatSx/BltF9Ope9jzjdBqTrOSYo
-	y9iB+OxwU63Je7e/Mow5i0vAo0fpypQW/g==
-X-Google-Smtp-Source: ABdhPJy0R3bv5xnjird5biU099hPn0lkZ8oQEBXvUxoRY4IYFXHiWR6SOz48dgAGorQf6KnQR/PgTA==
-X-Received: by 2002:a05:6214:3019:: with SMTP id ke25mr2526132qvb.90.1642086150408;
-        Thu, 13 Jan 2022 07:02:30 -0800 (PST)
-Received: from [192.168.2.225] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id w17sm809596qtj.58.2022.01.13.07.02.29
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Jan 2022 07:02:29 -0800 (PST)
-Message-ID: <6d129880-f75c-3381-24da-e4b57044a5c9@gmail.com>
-Date: Thu, 13 Jan 2022 10:02:27 -0500
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4HJGyHgX07//ZsSATTjUfgq3Z2CPufxN5j4ZT3fxOF8=;
+        b=LRCueqOgdXTg9rre/yoaGjskeW4b+T0BKXF0BfMZrCwyHQmrZ8HZKdhiHxANT8p12V
+         zuXDz7pVJbGgpt8nPY9MmKpWUuL5E62vOfuGXYrCj7UWzNFsAb2ZdvF6YmxtTWS7doaE
+         GNIZxSNOohlTyYX8r5O4SD9BSS0g5GBI4XhHVuJkBo74At3smxSGObvFM5DKLhUNDoUd
+         YAYs0+en3LWsuzIgLEwyA6vTIA7+Lt/Qo4mTgU9J4wWCqByjDRhsLxCT/odie6vjuzNr
+         6uUtR8sLpr+lez8WQZVjdz2nvKTG9usjvwJisOu+AsZwlK+EHI5iC9vGe16gsXizXp8p
+         Wyvw==
+X-Gm-Message-State: AOAM532KE82N6ylsA4c/bTok4e4FxJ/0hfi7zCSPcy+F/onMxhOVhaFK
+	kJd2oXfpQ4PDhmeJUQlk3kYjGu3i1Z1d7HuUWqoBJKwBrsFHKg==
+X-Google-Smtp-Source: ABdhPJwu9ovjTHG2fAu6uMG9QS5kpC+mWgl7qoy4AK1dgy7cLe+Ilu6NIoDF+nYX1HRTIixs268lVY3S2MiI/7OdrEI=
+X-Received: by 2002:a25:55c4:: with SMTP id j187mr6291777ybb.653.1642089883623;
+ Thu, 13 Jan 2022 08:04:43 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAA=S3Pt07rbZitdjHCZAe1qk0xv_y_JavpD4s92KCcHJ=nSKfg@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAA=S3Pt07rbZitdjHCZAe1qk0xv_y_JavpD4s92KCcHJ=nSKfg@mail.gmail.com>
-Message-ID-Hash: IJNFZ557BDQ3OSUKMB4EUDTIRPXKZHT7
-X-Message-ID-Hash: IJNFZ557BDQ3OSUKMB4EUDTIRPXKZHT7
-X-MailFrom: patchvonbraun@gmail.com
+References: <7a0dba07-cfba-e011-e7d5-d0d7624a6218@univ-ubs.fr>
+In-Reply-To: <7a0dba07-cfba-e011-e7d5-d0d7624a6218@univ-ubs.fr>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 13 Jan 2022 10:04:28 -0600
+Message-ID: <CAFche=gD4oH_m1FXzHPc8E5sgQNOZC_MGV4PoJvi+rX1Sf9wHQ@mail.gmail.com>
+To: Camille Moniere <camille.moniere@univ-ubs.fr>
+Message-ID-Hash: KU3ES5Q46DHQ3UMBRBJIVO5BU3APSCY5
+X-Message-ID-Hash: KU3ES5Q46DHQ3UMBRBJIVO5BU3APSCY5
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UBX 160 transmit but only there is a small carrier....?
+Subject: [USRP-users] Re: Fir Filter RFNoC
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IJNFZ557BDQ3OSUKMB4EUDTIRPXKZHT7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KU3ES5Q46DHQ3UMBRBJIVO5BU3APSCY5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3447995635377839174=="
+Content-Type: multipart/mixed; boundary="===============5988581128162452395=="
 
-This is a multi-part message in MIME format.
---===============3447995635377839174==
-Content-Type: multipart/alternative;
- boundary="------------yVCj4MBl0F0xTv1IfaQ9X1q0"
-Content-Language: en-US
+--===============5988581128162452395==
+Content-Type: multipart/alternative; boundary="00000000000033f76405d578d890"
 
-This is a multi-part message in MIME format.
---------------yVCj4MBl0F0xTv1IfaQ9X1q0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--00000000000033f76405d578d890
+Content-Type: text/plain; charset="UTF-8"
 
-On 2022-01-13 07:22, sp h wrote:
-> For USRP x310, I had UBX 160 daughterboard, but lately, however, RX=20
-> works correctly But transmit mode is not working correctly.
-> I had no data signal........
-> UBX 160 transmit but only there is a small carrier....?
+Hi Camille,
+
+Maybe you could share your RFNoC YML file and someone could take a look?
+There might be something wrong there.
+
+Wade
+
+On Thu, Jan 13, 2022 at 8:32 AM Camille Moniere <camille.moniere@univ-ubs.fr>
+wrote:
+
+> Hello everyone,
 >
-> For HackrfOne we had the same problem, we replace RF amplifier IC,=C2=A0=
-=20
-> now it works...
-> but for USRP can anyone guide me on which IC is probable is damaged??
-> any offers?
+> I unsuccessfully try to use the FIR Filter RFNoC block in reception, in
+> an USRP X310 with a UBX-160 daughterboard on-board.
+> I have tested several topology for the custom image (radio0 - > ddc0 ->
+> fir0 -> ep0 || radio0 -> ddc0 -> ep0 + ep1 -> fir0 + fir0 -> ep1, for
+> example),
+> with several parameter for the filter (With or without re-loadable
+> coefficients, with or without embedded DSP registers, 21 coef' instead
+> of 41 ...) but it ultimately
+> always fails the same way.
+> When the FIR is used, I can't retrieve any data. I got an Overflow
+> error, without receiving any samples. Sometimes, I even got a "Late
+> Command" error, even when using  RFNoC in C++
+> (graph committed immediately before the stream now stream_cmd).
 >
-> you can see UBX 160 schematic there...
-> https://files.ettus.com/schematics/ubx/
+> For the record, the center frequency is 433 MHz for a sampling rate of 1
+> Msps.
 >
-> Thanks in advance
+> I assumed the filter output one complex sample (sc16) for each new input
+> (sc16 too). Am I wrong? Or is there specific setup I have forgotten?
+> Has someone successfully used this block, and can provide an example or
+> tutorial?
 >
+> Regards,
+>
+> Camille
 > _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-The PHA-1 (U31) is the RF output amplifier, but it sits behind two=20
-layers of RF switch--SKY13350-385LF=C2=A0 and HMC7992 (U50 and U32).
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-I have to ask what you're doing to blow-out RF output amplifiers.=20
-Transmitting into a dead-short for extended periods could do it, but the=20
-power levels
- =C2=A0 of these devices are low enough that transmitting into an "open" =
-or=20
-other type of mis-match is unlikely to cause damage.
-
-
---------------yVCj4MBl0F0xTv1IfaQ9X1q0
-Content-Type: text/html; charset=UTF-8
+--00000000000033f76405d578d890
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-01-13 07:22, sp h wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAA=3DS3Pt07rbZitdjHCZAe1qk0xv_y_JavpD4s92KCcHJ=3DnSKfg@mail.=
-gmail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">For USRP x310, I had UBX 160 daughterboard, but
-        lately, however, RX works correctly But transmit mode is not
-        working correctly.
-        <div>I had no data signal........<br>
-          <div>UBX 160 transmit but only there is a small carrier....?<br=
->
-          </div>
-        </div>
-        <div><br>
-        </div>
-        <div>For HackrfOne we had the same problem, we replace RF
-          amplifier IC,=C2=A0 now it works...</div>
-        <div>but for USRP can anyone guide me on which IC is probable is
-          damaged??</div>
-        <div>any offers?</div>
-        <div><br>
-        </div>
-        <div>you can see UBX 160 schematic there...</div>
-        <div><a href=3D"https://files.ettus.com/schematics/ubx/"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">http=
-s://files.ettus.com/schematics/ubx/</a></div>
-        <div><br>
-        </div>
-        <div>Thanks in advance=C2=A0</div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    The PHA-1 (U31) is the RF output amplifier, but it sits behind two
-    layers of RF switch--SKY13350-385LF=C2=A0 and HMC7992 (U50 and U32).<=
-br>
-    <br>
-    I have to ask what you're doing to blow-out RF output amplifiers.=C2=A0
-    Transmitting into a dead-short for extended periods could do it, but
-    the power levels<br>
-    =C2=A0 of these devices are low enough that transmitting into an "ope=
-n"
-    or other type of mis-match is unlikely to cause damage.<br>
-    <br>
-    <br>
-  </body>
-</html>
---------------yVCj4MBl0F0xTv1IfaQ9X1q0--
+<div dir=3D"ltr"><div>Hi Camille,</div><div><br></div><div>Maybe you could =
+share your RFNoC YML file and someone could take a look? There might be som=
+ething wrong there.</div><div><br></div><div>Wade<br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 13, =
+2022 at 8:32 AM Camille Moniere &lt;<a href=3D"mailto:camille.moniere@univ-=
+ubs.fr">camille.moniere@univ-ubs.fr</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">Hello everyone,<br>
+<br>
+I unsuccessfully try to use the FIR Filter RFNoC block in reception, in=C2=
+=A0 <br>
+an USRP X310 with a UBX-160 daughterboard on-board.<br>
+I have tested several topology for the custom image (radio0 - &gt; ddc0 -&g=
+t;=C2=A0 <br>
+fir0 -&gt; ep0 || radio0 -&gt; ddc0 -&gt; ep0 + ep1 -&gt; fir0 + fir0 -&gt;=
+ ep1, for=C2=A0 <br>
+example),<br>
+with several parameter for the filter (With or without re-loadable=C2=A0 <b=
+r>
+coefficients, with or without embedded DSP registers, 21 coef&#39; instead=
+=C2=A0 <br>
+of 41 ...) but it ultimately<br>
+always fails the same way.<br>
+When the FIR is used, I can&#39;t retrieve any data. I got an Overflow=C2=
+=A0 <br>
+error, without receiving any samples. Sometimes, I even got a &quot;Late=C2=
+=A0 <br>
+Command&quot; error, even when using=C2=A0 RFNoC in C++<br>
+(graph committed immediately before the stream now stream_cmd).<br>
+<br>
+For the record, the center frequency is 433 MHz for a sampling rate of 1=C2=
+=A0 <br>
+Msps.<br>
+<br>
+I assumed the filter output one complex sample (sc16) for each new input=C2=
+=A0 <br>
+(sc16 too). Am I wrong? Or is there specific setup I have forgotten?<br>
+Has someone successfully used this block, and can provide an example or=C2=
+=A0 <br>
+tutorial?<br>
+<br>
+Regards,<br>
+<br>
+Camille<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============3447995635377839174==
+--00000000000033f76405d578d890--
+
+--===============5988581128162452395==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -195,4 +182,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3447995635377839174==--
+--===============5988581128162452395==--
