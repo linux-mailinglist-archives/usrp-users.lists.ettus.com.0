@@ -2,852 +2,266 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3265248DCF2
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 18:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74A7048E03E
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 23:25:49 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 65B693853C6
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 12:32:09 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 43ADB384E3A
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Jan 2022 17:25:48 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="RNgFQZdq";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=srcaus.onmicrosoft.com header.i=@srcaus.onmicrosoft.com header.b="HCBVbfUG";
 	dkim-atps=neutral
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id ED3BA384E94
-	for <usrp-users@lists.ettus.com>; Thu, 13 Jan 2022 12:31:08 -0500 (EST)
-Received: by mail-yb1-f171.google.com with SMTP id z22so16617911ybi.11
-        for <usrp-users@lists.ettus.com>; Thu, 13 Jan 2022 09:31:08 -0800 (PST)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2064.outbound.protection.outlook.com [40.107.236.64])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3D73E3848AA
+	for <usrp-users@lists.ettus.com>; Thu, 13 Jan 2022 17:24:44 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZjsIrk0qlEuXogQriBZUsWKZddZeifdoCyDIdvRObGiMtHmkCx8l7S71Dn7IKrsZ18J8bth2lgO9q5zJo2xwHJ9yNvSabzGwQGiylMvOWK5ZSqqfy/8tyjXCHSjGs1i6hXkhH4AigCBYgk7EoMnG63s0Wd4Mn7JHG65L+c5Bm9aCTaVos/INKuOEeOVkCQ0mjjRADb2NInJcwX2g9SHhkpGhzv5Aoq5PaVLvkqJ+9kG6x0lbRuCNnkhWRy98V+/MVK+AdKd83YmgBRBSqtuOtbPrQnmYqpikQA8QRSS1kxMKkTOiqG84oyR+HZWA7TtRmwrOdCymB4ehQlz/M46x3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fkyLvwx65eUWOnf/+zOBZFF5Tkq6U1FV4UAI0RalfgU=;
+ b=HY47C8sLtmk5HiylPS8J11wKQSCBVN3Y+kcRcJMmDnmDaS2k8QgP5sPD/Ag/ldqUr6x5pQ2joWHW2tfVxfJn7GHcrzF2kIqXGUngLfO8qAe6lIGW1NFfMcxyIP7+yuf1tRo73VujD6xbk5VA1oBCsrUzrvylm2zrhT0O5mJOXHWtxaB2OHTSUl2ODq/DXpXi1VG2M90uyzSWKGGvn0au3HiEtuG6VsdwJQ1l97JjSx5STO3N4ySTvu+eER1jFRsr2cjCl7otG2eH+T7ktAbdi0aGBF/It+K9vQZh2Qu+e1zrR3D7awgelhuWzGKU7o6q4Swz7gEq3ydc8Qn7qarolg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=srcaus.com; dmarc=pass action=none header.from=srcaus.com;
+ dkim=pass header.d=srcaus.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eDaRVMVgg2OjJxmV6EV81I2IxTqqwGMRYVw/T61b2us=;
-        b=RNgFQZdq9HJdcuBpyTIYL8pI/qSBvmrS60QSHN5syVLSvkKkF2pnBiQIEOqOPuUfpF
-         EamxW6L6SaWp+nuErQVuRsd7D+tUPWBveWfHVGmvw+Jjhz3166qpV1SVFaUQZvVH1ceF
-         QZH9HoUiF9cCe43oXL6qyr4AtHuhrEJ4q+sNBClDJ+n6B3QS+kay9DMjTbawssBQeOiB
-         Mloef5J1C0WuzHLTn4dWWgSrY2NX1OFY2ceh+05obGjyKIw66miJ7RcviqnNf91kwzYj
-         Hk+WuXm2smNptoHyjfnUmjn2ZsFl16UPJ3l3l9MJba6uXE9YKtcEn6zQ7VpLOEX16nmQ
-         YTFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eDaRVMVgg2OjJxmV6EV81I2IxTqqwGMRYVw/T61b2us=;
-        b=RtTi9vIMlrUx2WKsqrPKJ+TOxwImzpqXnrbIhDRBzO9uLT6c3RqizHm2grM37BnrJH
-         YU3aeSh30m78+skSHgmRgryKPDt71OXuPq/15SuXpJbaVdvi+0ZUf9vLNwd0I/2m+GAe
-         mLVGuck4qQpP6E0Mb/XA/E+DZRzvdbC0BZ0KEKzxMN71unkcOzWLxBLl+I+CgaO+Bhx0
-         fpjON/4T0oz6kgiu7pTYZcmbUkqLJHviD58awcwQNK3fZ5rlWj5nlS/xdwmt2w4Sgior
-         pWnBhL3NjFfrSJfluWpkac5WPxLHRkP0R6n+o2V36GOc0S7/S+Nzcxcw70IlTo7SLdy/
-         t8wA==
-X-Gm-Message-State: AOAM5300/nldC/pjCSwP+CJAXnCcmM14vCzZ3kLPCATwlXp8ZkEVHKPt
-	8fQ2qC5HzMKKarOICDRF4no26wKUzEJARajTKfd2MtFjze7luKyy
-X-Google-Smtp-Source: ABdhPJyu9bRE/7d9IDTtjyDIUj8Wg9LV1pIkGmz9u+9Jaryy9Og7Q88kcAcrjFTEL6kLqzYaJr46gIRS2x1+V8cqzQA=
-X-Received: by 2002:a25:7e87:: with SMTP id z129mr7602100ybc.719.1642095068269;
- Thu, 13 Jan 2022 09:31:08 -0800 (PST)
+ d=srcaus.onmicrosoft.com; s=selector2-srcaus-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fkyLvwx65eUWOnf/+zOBZFF5Tkq6U1FV4UAI0RalfgU=;
+ b=HCBVbfUGRAJmU0wDyeSKTpdm9hAJ5lkY79is+Pw2gCMkEYaM5Jz4KdQXl9dDPhD3e5HyG3SFRNoyAHJyTHEx4wUUCc/QQb4LueJGuzAU8TfOnWzdbzHq74wjrE746rE0aQySgvzGlmoECZzo+P4puPJrKxNiep7uqJod7tPvAKA=
+Received: from BL3PR16MB4476.namprd16.prod.outlook.com (2603:10b6:208:347::22)
+ by DM6PR16MB2427.namprd16.prod.outlook.com (2603:10b6:5:67::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4888.9; Thu, 13 Jan
+ 2022 22:24:41 +0000
+Received: from BL3PR16MB4476.namprd16.prod.outlook.com
+ ([fe80::39fb:38b8:22a5:ad73]) by BL3PR16MB4476.namprd16.prod.outlook.com
+ ([fe80::39fb:38b8:22a5:ad73%9]) with mapi id 15.20.4888.011; Thu, 13 Jan 2022
+ 22:24:41 +0000
+From: Michael Bassi <mbassi@srcaus.com>
+To: USRP list <usrp-users@lists.ettus.com>
+Thread-Topic: Retrieve USRP time
+Thread-Index: AQHYCMlOI7t1FoYho0qCcekpu8miXQ==
+Date: Thu, 13 Jan 2022 22:24:41 +0000
+Message-ID: 
+ <BL3PR16MB4476E7A5D8EFD323A338B19AB7539@BL3PR16MB4476.namprd16.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+suggested_attachment_session_id: 44a262a7-d928-8353-a5f8-cd7513115b0f
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=srcaus.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a49471c8-cb37-4038-c6e4-08d9d6e37e50
+x-ms-traffictypediagnostic: DM6PR16MB2427:EE_
+x-microsoft-antispam-prvs: 
+ <DM6PR16MB2427328B03009F83F4024D90B7539@DM6PR16MB2427.namprd16.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ mVsfpHGvhcsb1mwx2Cb7AMLusrN/SRSytgFcB4K2prQcvAZQ94ZPQEzt9mqBn7kyQberM/pwMz/Y6oo+2wk8aCHlm+NBai9cKike62PEnRUHXFJqzpwAjW9alsZTcMusz7bAtTjYEeWgDYd8sp65IjNeg6axle70ETSakYF9kEsA8hd0Vyx9mXWvUkBE0OdcfdZr8lWOxsXfp5opY7kf0aEsrcZS76wMZ8DDtu+u2I/YgS+um4jaTQwmRpOf6F04VezAi3FbQsUIRdR7BbFi4R/HmCf+ADgX8JLMtwPxcKRwpTVfsRuGHz9LUEiCz28IDXY1ND6m1WgD8dFrBpn/2T59njfdNUIeJRhHyyfG1hG8BZjQU0ksscPtrPSMe0X1cgGDBn/TJZmb4BAztU6cpGGm3uhhMenER7zCI3K3i/0eMC96krx6+1v2olGTsJH1kVpcwH3a+KuFsMsNRyT7Idxm6oLbS1LVbX8DHEKss/tUO1VJLUtz+bXrKRSBxZ+6rs/A20rfU/6N+ZCl1m5f9mDMYKgoKCGLVjzu0WZuHewYxrWn/g5y2ZTgHppGTxD6duq1hj4/xdKg2P+hs5cCHxbwTdXAG8KiyR9ALUvERIxmr4UiK62wSfDyOzP8aTUTZClgTm9xNBKfShwRz2nFcfGLHGo688zNiiPxoR1JDrVLh1WAF0dVf4WDDfKgsAbl+9pesY6E4IQhTdPuOwBoXlM31Tpeo2YYVRVWPCPiiCM=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR16MB4476.namprd16.prod.outlook.com;PTR:;CAT:NONE;SFS:(39830400003)(346002)(366004)(376002)(136003)(396003)(66946007)(6506007)(8676002)(66476007)(66446008)(33656002)(76116006)(91956017)(64756008)(66556008)(9686003)(71200400001)(186003)(52536014)(7696005)(19627405001)(7116003)(5660300002)(26005)(3480700007)(55016003)(122000001)(83380400001)(86362001)(2906002)(508600001)(6916009)(316002)(8936002)(38100700002)(38070700005)(21314003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?x1jKNRbFPzl+KDH+M7lmqVo7gDxQ0bS+y9cD6QH3ES6XWoYVYq+I4WFFuG?=
+ =?iso-8859-1?Q?u0vnBikB4b3LFIp6HYRpvWkTIhcE/+0PZ7/jBjmuZRfYuh4PfGFbL386qo?=
+ =?iso-8859-1?Q?SWM4Ge/DsySy8+2xsq2/DqU5HnE18ARWTc+0yNz0WP3xrdat0jJIG+9eka?=
+ =?iso-8859-1?Q?c+ZpSAR7HP1bHsOvvYUVZ8a1CVFtfQfw5vJA8WkArsy37YFrhmkjnmRuB9?=
+ =?iso-8859-1?Q?Ksq+Qll4Krq+gBfvqQyOnFMDVw6KMWzNHps/oKyIGxCyTVBS1nQcsF7EZm?=
+ =?iso-8859-1?Q?Urz8u2E7j+499sQjv4VDIzfTnRIuwXSnwKFCuldWgctkb2pjQk1tdQfA49?=
+ =?iso-8859-1?Q?m1qKZq1CkqCVsvuy8hFNI95bY2U/QCUqbcAMaosEVF278fO7Bm9958frM3?=
+ =?iso-8859-1?Q?GK5d7oYJGFpB0IIYRVbrdRQ4pnhqY15aQg4gthchQyGle6IEMILBTeXvHF?=
+ =?iso-8859-1?Q?EO8rCIy//fuXcDSedHl8kDhZ7jw/arHEMx+SfPwXZqjkUKLzF52ZqpS05s?=
+ =?iso-8859-1?Q?xGuTxG2mXMU7W6NS5J0FuTsd70gv/Di37qIkgWn/breH1tHQ+owMgepI6n?=
+ =?iso-8859-1?Q?kVnfipiPBxhcPr/BQ3/7qcecikFPpYjD0HZfHNdZkkJ2U3/iC52JXxdh3A?=
+ =?iso-8859-1?Q?iMc67ximLqh/M2gGG3pCV39oozbqaRz5r8QX5aW1TmD3QLSgQzXhlTxTTi?=
+ =?iso-8859-1?Q?qy0//XbTMuGh33BOlJD+1QC1pa01b1+3J1qeinAyjZWhyM9JF0bM1E8f3t?=
+ =?iso-8859-1?Q?VS7CqaNY31Q99EJ2zwmoAydaaJ4oE9XNuUTpQxgp1jMkRkoAKumlu7SKCd?=
+ =?iso-8859-1?Q?Qyp/pNsBizXV9bQo4pt0iZouwyruyBymCIkZZEf2B2vyfx+5PjR6CRNbq2?=
+ =?iso-8859-1?Q?rdfUOdZX5duIHicWSkuYS1P0z8esjUW4j6sUaKDL4fH3h6ns1jOweH5U2+?=
+ =?iso-8859-1?Q?d9P5ng3rmbPczSdXR89iQDK6RXNOTYOG36bb8fIbKHU4edaPNrfcmlMcOD?=
+ =?iso-8859-1?Q?BI8MpMh6DVG57nrQb+3kdfKGH7EkfX+BD/ZghC5LgFI/v8A26h1bZlG7CD?=
+ =?iso-8859-1?Q?ddZmx3pcHM8i/P5eyGGkSuYsvzPmtqQaja21WY9/xbg5koGQMCGNAl96FZ?=
+ =?iso-8859-1?Q?b716YDe19WYked9sls1wYlF7gjGYOfLvIvOOszSf6TQWtrf7qaT7aczn2p?=
+ =?iso-8859-1?Q?ZHIKX+T0mqztMJOGLv5f7p9y5oh2/n0r4axFdWBVhLPZJzZ6KETVldI7uj?=
+ =?iso-8859-1?Q?0A7reTM3cyul77liubfUOoVz6fy3KBrNmVKRjboz3KHcME6HQqvnYU1BKQ?=
+ =?iso-8859-1?Q?FpUssQ9IDx2TngnEOvM1ePyGLt2KFX4WseJmQyYN36zhhZm+4NygyaQmye?=
+ =?iso-8859-1?Q?8VuJWDd1vPm2xWCAbzCe3bqJG4xTcFIXty5RSg8YLoilFQXgMWOksxv8YA?=
+ =?iso-8859-1?Q?rUOtkyOQB4lwmGr890mlaUfODOtkZxcouHDxDlffb3gYox3FIxtQcYHVIO?=
+ =?iso-8859-1?Q?pXFUgvAIk+UrZH+dKEHpVZU4YzcEXz2eavo1jx3iL+kMsYBcpYLRR8Ho0L?=
+ =?iso-8859-1?Q?hYURF0OlX1JqxRzinlUDdHzC8BUvkKsY6RmgiJLlPRwqePA5O5SvcUSwNg?=
+ =?iso-8859-1?Q?xvkudVY74yJ3YV7h72bMEAl79odfdz+7ugH82HnP6xuOd0AYuVpdgiKA?=
+ =?iso-8859-1?Q?=3D=3D?=
 MIME-Version: 1.0
-References: <7a0dba07-cfba-e011-e7d5-d0d7624a6218@univ-ubs.fr>
- <CAFche=gD4oH_m1FXzHPc8E5sgQNOZC_MGV4PoJvi+rX1Sf9wHQ@mail.gmail.com>
- <CAFche=iGqxswZJUA7+3_v46BParz5XXHMoxBiBh3L-+u+gpLSA@mail.gmail.com> <b116c657-2bcb-1a05-6999-90fc6033cc2b@univ-ubs.fr>
-In-Reply-To: <b116c657-2bcb-1a05-6999-90fc6033cc2b@univ-ubs.fr>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Thu, 13 Jan 2022 11:30:52 -0600
-Message-ID: <CAFche=iodxshymdbtviiMjSd30MRh9qJVu52Rc1Pqu0aVHF+XQ@mail.gmail.com>
-To: Camille Moniere <camille.moniere@univ-ubs.fr>
-Message-ID-Hash: DIYMBGALJTQRSZMRXCYPGDX4KSUGPYHH
-X-Message-ID-Hash: DIYMBGALJTQRSZMRXCYPGDX4KSUGPYHH
-X-MailFrom: wade.fife@ettus.com
+X-OriginatorOrg: srcaus.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR16MB4476.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a49471c8-cb37-4038-c6e4-08d9d6e37e50
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jan 2022 22:24:41.3060
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 22db5897-105f-4d6a-8017-4b11749bab04
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wUxumo5Q/oOM853mcG5Vko/QekSptST+gJa0H12OUWYBNLuebKCiiavSePGY8wIagNfU0ZEfdR9I1xPDumKTOw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR16MB2427
+Message-ID-Hash: RARNBGSOVJA6HHMKXZBYS3RFXAQTRUXT
+X-Message-ID-Hash: RARNBGSOVJA6HHMKXZBYS3RFXAQTRUXT
+X-MailFrom: mbassi@srcaus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Fir Filter RFNoC
+Subject: [USRP-users] Retrieve USRP time
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DIYMBGALJTQRSZMRXCYPGDX4KSUGPYHH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y4HSGSKTJQ5CMWHFMKXJD6QGTVQX4ZGF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6346927854676673757=="
+Content-Type: multipart/mixed; boundary="===============6693457075097942690=="
 
---===============6346927854676673757==
-Content-Type: multipart/alternative; boundary="0000000000003b5f5c05d57a0d7c"
+--===============6693457075097942690==
+Content-Language: en-GB
+Content-Type: multipart/alternative;
+	boundary="_000_BL3PR16MB4476E7A5D8EFD323A338B19AB7539BL3PR16MB4476namp_"
 
---0000000000003b5f5c05d57a0d7c
-Content-Type: text/plain; charset="UTF-8"
+--_000_BL3PR16MB4476E7A5D8EFD323A338B19AB7539BL3PR16MB4476namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-At a glance, the YML has both firS and fir0. I was expecting just fir0. But
-I also would have expected rfnoc_image_builder to throw an error for that.
+Hi all,
 
-Wade
+I'm using GR3.9 with UHD4.1.0.1.
+I have a flowgraph containing a UHD_USRP Source block, with Sync property s=
+et to "PC Clock on Next PPS" so that the device time is synced to PC system=
+ time on the next PPS.
 
-On Thu, Jan 13, 2022 at 11:19 AM Camille Moniere <
-camille.moniere@univ-ubs.fr> wrote:
+I want to then, somewhat frequently, access the usrp time from within downs=
+tream custom C++ blocks.
 
-> Hi wade,
->
-> I had already linked the FIR ce to the ce of the _device_.
->
-> Also, this custom image aims only to receive data (so no duc nor SEP for
-> TX). I tried to free some space, considering only one UBX-160 is availabl=
-e
-> (so only 1 radio).
-> I have read in the RFNoC guide that, for a device to host communication,
-> an ingress buffer of size 0 is possible, again to free resources.
-> A big block is expected to be added in the future...
->
-> Here the YAML file I use with rfnoc_image_builder:
->
-> # General parameters
-> # -----------------------------------------
-> schema: rfnoc_imagebuilder_args # Identifier for the schema used to
-> validate this file
-> copyright: 'Camille Moni=C3=A8re' # Copyright information used in file he=
-aders
-> license: 'SPDX-License-Identifier: LGPL-3.0-or-later' # License
-> information used in file headers
-> version: '1.0' # File version
-> rfnoc_version: '1.0' # RFNoC protocol version
-> chdr_width: 64 # Bit width of the CHDR bus for this image
-> device: 'x310'
-> default_target: 'X310_HG'
-> # A list of all stream endpoints in design
-> # ----------------------------------------
-> stream_endpoints:
-> ep0: # Stream endpoint name
-> ctrl: True # Endpoint passes control traffic
-> data: True # Endpoint passes data traffic
-> buff_size: 0 # Ingress buffer size for data
-> # A list of all NoC blocks in design
-> # ----------------------------------
-> noc_blocks:
-> ddc0:
-> block_desc: 'ddc.yml'
-> parameters:
-> NUM_PORTS: 1
-> radio0:
-> block_desc: 'radio_2x64.yml'
-> parameters:
-> NUM_PORTS: 1
-> fir0:
-> block_desc: 'fir_filter.yml'
-> parameters:
-> NUM_PORTS: 1
-> COEFF_WIDTH: 16
-> NUM_COEFFS: 21
-> COEFFS_VEC: "{ 16'h7FFF, {320{1'b0}} }"
-> RELOADABLE_COEFFS: 1
-> SYMMETRIC_COEFFS: 0
-> SKIP_ZERO_COEFFS: 0
-> USE_EMBEDDED_REGS_COEFFS: 1
-> # A list of all static connections in design
-> # ------------------------------------------
-> # Format: A list of connection maps (list of key-value pairs) with the
-> following keys
-> # - srcblk =3D Source block to connect
-> # - srcport =3D Port on the source block to connect
-> # - dstblk =3D Destination block to connect
-> # - dstport =3D Port on the destination block to connect
-> connections:
-> # radio0 to ep0 - RFA RX
-> - { srcblk: radio0, srcport: out_0, dstblk: ddc0, dstport: in_0 }
-> - { srcblk: ddc0, srcport: out_0, dstblk: firS, dstport: in_0 }
-> - { srcblk: firS, srcport: out_0, dstblk: ep0, dstport: in0 }
-> # BSP Connections
-> - { srcblk: radio0, srcport: ctrl_port, dstblk: _device_, dstport:
-> ctrlport_radio0 }
-> - { srcblk: _device_, srcport: x300_radio0, dstblk: radio0, dstport:
-> x300_radio }
-> - { srcblk: _device_, srcport: time_keeper, dstblk: radio0, dstport:
-> time_keeper }
-> # A list of all clock domain connections in design
-> # ------------------------------------------
-> # Format: A list of connection maps (list of key-value pairs) with the
-> following keys
-> # - srcblk =3D Source block to connect (Always "_device"_)
-> # - srcport =3D Clock domain on the source block to connect
-> # - dstblk =3D Destination block to connect
-> # - dstport =3D Clock domain on the destination block to connect
-> clk_domains:
-> - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
-> - { srcblk: _device_, srcport: ce, dstblk: ddc0, dstport: ce }
-> - { srcblk: _device_, srcport: ce, dstblk: firS, dstport: ce }
->
->
-> I have tried in python and in C++, with UHD and directly with RFNoC API.
-> None succeeded
-> For instance, this is what I do in Python:
->
-> import numpy as np
-> import scipy as sp
-> import ipywidgets as widgets
-> import matplotlib.pyplot as plt
-> import uhd
-> graph =3D uhd.rfnoc.RfnocGraph("addr=3D192.168.10.2,dboard_clock_rate=3D2=
-0e6")
-> radio_crtl =3D uhd.rfnoc.RadioControl(graph.get_block("0/Radio#0"))
-> ddc_crtl =3D uhd.rfnoc.DdcBlockControl(graph.get_block("0/DDC#0"))
-> target_freq =3D 433e6
-> target_gain =3D 25
-> target_rate =3D 1e6
-> radio_crtl.set_rx_antenna('RX2', 0)
-> radio_crtl.get_rx_antenna(0)
-> actual_gain =3D radio_crtl.set_rx_gain(target_gain, 0)
-> actual_rf_freq =3D radio_crtl.set_rx_frequency(target_freq, 0)
-> target_dsp_freq =3D actual_rf_freq - target_freq
-> actual_dsp_freq =3D ddc_crtl.set_freq(target_dsp_freq, 0)
-> clipped_rx_freq =3D actual_rf_freq - actual_dsp_freq
-> actual_rate =3D ddc_crtl.set_output_rate(target_rate, 0)
-> fir_static =3D uhd.rfnoc.FirFilterBlockControl(graph.get_block("0/FIR#0")=
-)
-> coefficients =3D fir_static.get_coefficients()
-> fir_static.set_coefficients(coefficients)
-> coefficients =3D fir_static.get_coefficients()
-> plt.stem(coefficients)
-> plt.show()
-> stream_args =3D uhd.usrp.StreamArgs("fc32", "sc16")
-> recv_stream =3D graph.create_rx_streamer(1, stream_args)
-> graph.connect(radio_crtl.get_block_id(), 0, ddc_crtl.get_block_id(), 0,
-> False)
-> graph.connect(ddc_crtl.get_block_id(), 0, fir_static.get_block_id(), 0,
-> False)
-> graph.connect(fir_static.get_block_id(), 0, recv_stream, 0)
-> graph.commit()
-> num_samps =3D int(1e6) # 1 MB of data, be aware.
-> data =3D np.empty((num_samps), dtype=3Dnp.complex64)
-> md =3D uhd.types.RXMetadata()
-> stream_cmd =3D uhd.types.StreamCMD(uhd.types.StreamMode.num_done)
-> stream_cmd.stream_now =3D True
-> stream_cmd.num_samps =3D num_samps
-> stream_cmd.time_spec =3D uhd.types.TimeSpec(1, 0) # Wait 1s before recept=
-ion
-> recv_stream.issue_stream_cmd(stream_cmd)
-> received_spls =3D recv_stream.recv(data, md, 3.)
-> print(f'Received {float(received_spls):.2e} samples')
-> if md.error_code !=3D md.error_code.none:
-> print(f'\033[1;31m[ERROR]\033[0m {md.strerror()}')
-> else:
-> print(f'Everything went well.')
->
-> Without the Fir (and adapting the code of course), I get my 1e6 data
-> buffer.
->
-> Is there an error I miss, or have I made too much space, deleting
-> important part in the process?
->
-> On 1/13/22 17:08, Wade Fife wrote:
->
-> In particular, make sure you have a clock connected to the CE input of th=
-e
-> FIR filter. Something like this in your clk_domains section:
->
-> clk_domains:
->     - { srcblk: _device_, srcport: ce, dstblk: fir0, dstport: ce }
->
-> Wade
->
-> On Thu, Jan 13, 2022 at 10:04 AM Wade Fife <wade.fife@ettus.com> wrote:
->
->> Hi Camille,
->>
->> Maybe you could share your RFNoC YML file and someone could take a look?
->> There might be something wrong there.
->>
->> Wade
->>
->> On Thu, Jan 13, 2022 at 8:32 AM Camille Moniere <
->> camille.moniere@univ-ubs.fr> wrote:
->>
->>> Hello everyone,
->>>
->>> I unsuccessfully try to use the FIR Filter RFNoC block in reception, in
->>> an USRP X310 with a UBX-160 daughterboard on-board.
->>> I have tested several topology for the custom image (radio0 - > ddc0 ->
->>> fir0 -> ep0 || radio0 -> ddc0 -> ep0 + ep1 -> fir0 + fir0 -> ep1, for
->>> example),
->>> with several parameter for the filter (With or without re-loadable
->>> coefficients, with or without embedded DSP registers, 21 coef' instead
->>> of 41 ...) but it ultimately
->>> always fails the same way.
->>> When the FIR is used, I can't retrieve any data. I got an Overflow
->>> error, without receiving any samples. Sometimes, I even got a "Late
->>> Command" error, even when using  RFNoC in C++
->>> (graph committed immediately before the stream now stream_cmd).
->>>
->>> For the record, the center frequency is 433 MHz for a sampling rate of
->>> 1
->>> Msps.
->>>
->>> I assumed the filter output one complex sample (sc16) for each new
->>> input
->>> (sc16 too). Am I wrong? Or is there specific setup I have forgotten?
->>> Has someone successfully used this block, and can provide an example or
->>> tutorial?
->>>
->>> Regards,
->>>
->>> Camille
->>> _______________________________________________
->>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>
->>
->
+Options that I've considered:
+1. From the custom c++ block - make another UHD USRP device instance (thoug=
+h I don't think this is possible, as the device has already been allocated =
+to the source block):
+    uhd::device_addr_t deviceAddress("");
+    uhd::usrp::multi_usrp::sptr usrp =3D uhd::usrp::multi_usrp::make(device=
+Address);
 
---0000000000003b5f5c05d57a0d7c
-Content-Type: text/html; charset="UTF-8"
+2. From the custom c++ block - Just retrieve clock info from the device a b=
+it like this (but it's too slow):
+    uhd::device_addr_t dev;
+    dev["addr"] =3D "192.168.XXX.XXX";
+    uhd::usrp_clock::multi_usrp_clock::sptr clock =3D uhd::usrp_clock::mult=
+i_usrp_clock::make(dev);
+    std::cout << clock->get_time()
+
+3. From the custom c++ block - Somehow access the already discovered usrp d=
+evice from the UHD_USRP source block (not sure how to do this)
+
+4. Copy and modify the usrp source code to send time as a stream tag along =
+with each packet (seems like a lot of work!)
+a. perhaps this could be achieved using the UHD_USRP Source block stream ar=
+gs property - though would require mods to the .yml?
+
+Thanks for your help!
+Mike
+
+--_000_BL3PR16MB4476E7A5D8EFD323A338B19AB7539BL3PR16MB4476namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>At a glance, the YML has both firS and fir0. I was ex=
-pecting just fir0. But I also would have expected rfnoc_image_builder to th=
-row an error for that.</div><div><br></div><div>Wade<br></div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 1=
-3, 2022 at 11:19 AM Camille Moniere &lt;<a href=3D"mailto:camille.moniere@u=
-niv-ubs.fr">camille.moniere@univ-ubs.fr</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    Hi wade, <br>
-    <br>
-    I had already linked the FIR <tt>ce</tt> to the <tt>ce</tt> of the
-    <tt>_device_</tt>.<br>
-    <br>
-    Also, this custom image aims only to receive data (so no <tt>duc</tt>
-    nor SEP for TX). I tried to free some space, considering only one
-    UBX-160 is available (so only 1 radio).<br>
-    I have read in the RFNoC guide that, for a device to host
-    communication, an ingress buffer of size 0 is possible, again to
-    free resources.<br>
-    A big block is expected to be added in the future...<br>
-    <br>
-    Here the YAML file I use with <tt>rfnoc_image_builder</tt>:<br>
-    <br>
-    <div style=3D"color:rgb(212,212,212);background-color:rgb(30,30,30);fon=
-t-family:&quot;Droid Sans Mono For Powerline&quot;,&quot;Droid Sans Mono&qu=
-ot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-we=
-ight:normal;font-size:14px;line-height:19px;white-space:pre-wrap"><div><spa=
-n style=3D"color:rgb(106,153,85)"># General parameters</span></div><div><sp=
-an style=3D"color:rgb(106,153,85)"># --------------------------------------=
----</span></div><div><span style=3D"color:rgb(86,156,214)">schema</span><sp=
-an style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,1=
-45,120)">rfnoc_imagebuilder_args</span><span style=3D"color:rgb(212,212,212=
-)">                       </span><span style=3D"color:rgb(106,153,85)"># Id=
-entifier for the schema used to validate this file</span></div><div><span s=
-tyle=3D"color:rgb(86,156,214)">copyright</span><span style=3D"color:rgb(212=
-,212,212)">: </span><span style=3D"color:rgb(206,145,120)">&#39;Camille Mon=
-i=C3=A8re&#39;</span><span style=3D"color:rgb(212,212,212)">               =
-           </span><span style=3D"color:rgb(106,153,85)"># Copyright informa=
-tion used in file headers</span></div><div><span style=3D"color:rgb(86,156,=
-214)">license</span><span style=3D"color:rgb(212,212,212)">: </span><span s=
-tyle=3D"color:rgb(206,145,120)">&#39;SPDX-License-Identifier: LGPL-3.0-or-l=
-ater&#39;</span><span style=3D"color:rgb(212,212,212)"> </span><span style=
-=3D"color:rgb(106,153,85)"># License information used in file headers</span=
-></div><div><span style=3D"color:rgb(86,156,214)">version</span><span style=
-=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)"=
->&#39;1.0&#39;</span><span style=3D"color:rgb(212,212,212)">               =
-                         </span><span style=3D"color:rgb(106,153,85)"># Fil=
-e version</span></div><div><span style=3D"color:rgb(86,156,214)">rfnoc_vers=
-ion</span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"co=
-lor:rgb(206,145,120)">&#39;1.0&#39;</span><span style=3D"color:rgb(212,212,=
-212)">                                  </span><span style=3D"color:rgb(106=
-,153,85)"># RFNoC protocol version</span></div><div><span style=3D"color:rg=
-b(86,156,214)">chdr_width</span><span style=3D"color:rgb(212,212,212)">: </=
-span><span style=3D"color:rgb(181,206,168)">64</span><span style=3D"color:r=
-gb(212,212,212)">                                        </span><span style=
-=3D"color:rgb(106,153,85)"># Bit width of the CHDR bus for this image</span=
-></div><div><span style=3D"color:rgb(86,156,214)">device</span><span style=
-=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)"=
->&#39;x310&#39;</span></div><div><span style=3D"color:rgb(86,156,214)">defa=
-ult_target</span><span style=3D"color:rgb(212,212,212)">: </span><span styl=
-e=3D"color:rgb(206,145,120)">&#39;X310_HG&#39;</span></div>
-<div><span style=3D"color:rgb(106,153,85)"># A list of all stream endpoints=
- in design</span></div><div><span style=3D"color:rgb(106,153,85)"># -------=
----------------------------------</span></div><div><span style=3D"color:rgb=
-(86,156,214)">stream_endpoints</span><span style=3D"color:rgb(212,212,212)"=
->:</span></div><div><span style=3D"color:rgb(212,212,212)">  </span><span s=
-tyle=3D"color:rgb(86,156,214)">ep0</span><span style=3D"color:rgb(212,212,2=
-12)">:                       </span><span style=3D"color:rgb(106,153,85)">#=
- Stream endpoint name</span></div><div><span style=3D"color:rgb(212,212,212=
-)">    </span><span style=3D"color:rgb(86,156,214)">ctrl</span><span style=
-=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(86,156,214)">=
-True</span><span style=3D"color:rgb(212,212,212)">                      </s=
-pan><span style=3D"color:rgb(106,153,85)"># Endpoint passes control traffic=
-</span></div><div><span style=3D"color:rgb(212,212,212)">    </span><span s=
-tyle=3D"color:rgb(86,156,214)">data</span><span style=3D"color:rgb(212,212,=
-212)">: </span><span style=3D"color:rgb(86,156,214)">True</span><span style=
-=3D"color:rgb(212,212,212)">                      </span><span style=3D"col=
-or:rgb(106,153,85)"># Endpoint passes data traffic</span></div><div><span s=
-tyle=3D"color:rgb(212,212,212)">    </span><span style=3D"color:rgb(86,156,=
-214)">buff_size</span><span style=3D"color:rgb(212,212,212)">: </span><span=
- style=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(212,212,=
-212)">                    </span><span style=3D"color:rgb(106,153,85)"># In=
-gress buffer size for data</span></div>
-<div><span style=3D"color:rgb(106,153,85)"># A list of all NoC blocks in de=
-sign</span></div><div><span style=3D"color:rgb(106,153,85)"># -------------=
----------------------</span></div><div><span style=3D"color:rgb(86,156,214)=
-">noc_blocks</span><span style=3D"color:rgb(212,212,212)">:</span></div><di=
-v><span style=3D"color:rgb(212,212,212)">  </span><span style=3D"color:rgb(=
-86,156,214)">ddc0</span><span style=3D"color:rgb(212,212,212)">:</span></di=
-v><div><span style=3D"color:rgb(212,212,212)">    </span><span style=3D"col=
-or:rgb(86,156,214)">block_desc</span><span style=3D"color:rgb(212,212,212)"=
->: </span><span style=3D"color:rgb(206,145,120)">&#39;ddc.yml&#39;</span></=
-div><div><span style=3D"color:rgb(212,212,212)">    </span><span style=3D"c=
-olor:rgb(86,156,214)">parameters</span><span style=3D"color:rgb(212,212,212=
-)">:</span></div><div><span style=3D"color:rgb(212,212,212)">      </span><=
-span style=3D"color:rgb(86,156,214)">NUM_PORTS</span><span style=3D"color:r=
-gb(212,212,212)">: </span><span style=3D"color:rgb(181,206,168)">1</span></=
-div><div><span style=3D"color:rgb(212,212,212)">  </span><span style=3D"col=
-or:rgb(86,156,214)">radio0</span><span style=3D"color:rgb(212,212,212)">:</=
-span></div><div><span style=3D"color:rgb(212,212,212)">    </span><span sty=
-le=3D"color:rgb(86,156,214)">block_desc</span><span style=3D"color:rgb(212,=
-212,212)">: </span><span style=3D"color:rgb(206,145,120)">&#39;radio_2x64.y=
-ml&#39;</span></div><div><span style=3D"color:rgb(212,212,212)">    </span>=
-<span style=3D"color:rgb(86,156,214)">parameters</span><span style=3D"color=
-:rgb(212,212,212)">:</span></div><div><span style=3D"color:rgb(212,212,212)=
-">      </span><span style=3D"color:rgb(86,156,214)">NUM_PORTS</span><span =
-style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(181,206,=
-168)">1</span></div><div><span style=3D"color:rgb(212,212,212)">  </span><s=
-pan style=3D"color:rgb(86,156,214)">fir0</span><span style=3D"color:rgb(212=
-,212,212)">:</span></div><div><span style=3D"color:rgb(212,212,212)">    </=
-span><span style=3D"color:rgb(86,156,214)">block_desc</span><span style=3D"=
-color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)">&#3=
-9;fir_filter.yml&#39;</span></div><div><span style=3D"color:rgb(212,212,212=
-)">    </span><span style=3D"color:rgb(86,156,214)">parameters</span><span =
-style=3D"color:rgb(212,212,212)">:</span></div><div><span style=3D"color:rg=
-b(212,212,212)">      </span><span style=3D"color:rgb(86,156,214)">NUM_PORT=
-S</span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"colo=
-r:rgb(181,206,168)">1</span></div><div><span style=3D"color:rgb(212,212,212=
-)">      </span><span style=3D"color:rgb(86,156,214)">COEFF_WIDTH</span><sp=
-an style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(181,2=
-06,168)">16</span></div><div><span style=3D"color:rgb(212,212,212)">      <=
-/span><span style=3D"color:rgb(86,156,214)">NUM_COEFFS</span><span style=3D=
-"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(181,206,168)">21=
-</span></div><div><span style=3D"color:rgb(212,212,212)">      </span><span=
- style=3D"color:rgb(86,156,214)">COEFFS_VEC</span><span style=3D"color:rgb(=
-212,212,212)">: </span><span style=3D"color:rgb(206,145,120)">&quot;{ 16&#3=
-9;h7FFF, {320{1&#39;b0}} }&quot;</span></div><div><span style=3D"color:rgb(=
-212,212,212)">      </span><span style=3D"color:rgb(86,156,214)">RELOADABLE=
-_COEFFS</span><span style=3D"color:rgb(212,212,212)">: </span><span style=
-=3D"color:rgb(181,206,168)">1</span></div><div><span style=3D"color:rgb(212=
-,212,212)">      </span><span style=3D"color:rgb(86,156,214)">SYMMETRIC_COE=
-FFS</span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"co=
-lor:rgb(181,206,168)">0</span></div><div><span style=3D"color:rgb(212,212,2=
-12)">      </span><span style=3D"color:rgb(86,156,214)">SKIP_ZERO_COEFFS</s=
-pan><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rg=
-b(181,206,168)">0</span></div><div><span style=3D"color:rgb(212,212,212)"> =
-     </span><span style=3D"color:rgb(86,156,214)">USE_EMBEDDED_REGS_COEFFS<=
-/span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:=
-rgb(181,206,168)">1</span></div>
-
-<div><span style=3D"color:rgb(106,153,85)"># A list of all static connectio=
-ns in design</span></div><div><span style=3D"color:rgb(106,153,85)"># -----=
--------------------------------------</span></div><div><span style=3D"color=
-:rgb(106,153,85)"># Format: A list of connection maps (list of key-value pa=
-irs) with the following keys</span></div><div><span style=3D"color:rgb(106,=
-153,85)">#         - srcblk  =3D Source block to connect</span></div><div><=
-span style=3D"color:rgb(106,153,85)">#         - srcport =3D Port on the so=
-urce block to connect</span></div><div><span style=3D"color:rgb(106,153,85)=
-">#         - dstblk  =3D Destination block to connect</span></div><div><sp=
-an style=3D"color:rgb(106,153,85)">#         - dstport =3D Port on the dest=
-ination block to connect</span></div><div><span style=3D"color:rgb(86,156,2=
-14)">connections</span><span style=3D"color:rgb(212,212,212)">:</span></div=
-><div><span style=3D"color:rgb(212,212,212)">  </span><span style=3D"color:=
-rgb(106,153,85)"># radio0 to ep0 - RFA RX</span></div><div><span style=3D"c=
-olor:rgb(212,212,212)">  - { </span><span style=3D"color:rgb(86,156,214)">s=
-rcblk</span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"=
-color:rgb(206,145,120)">radio0</span><span style=3D"color:rgb(212,212,212)"=
->, </span><span style=3D"color:rgb(86,156,214)">srcport</span><span style=
-=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)"=
->out_0</span><span style=3D"color:rgb(212,212,212)">, </span><span style=3D=
-"color:rgb(86,156,214)">dstblk</span><span style=3D"color:rgb(212,212,212)"=
->: </span><span style=3D"color:rgb(206,145,120)">ddc0</span><span style=3D"=
-color:rgb(212,212,212)">,   </span><span style=3D"color:rgb(86,156,214)">ds=
-tport</span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"=
-color:rgb(206,145,120)">in_0</span><span style=3D"color:rgb(212,212,212)"> =
-}</span></div><div><span style=3D"color:rgb(212,212,212)">  - { </span><spa=
-n style=3D"color:rgb(86,156,214)">srcblk</span><span style=3D"color:rgb(212=
-,212,212)">: </span><span style=3D"color:rgb(206,145,120)">ddc0</span><span=
- style=3D"color:rgb(212,212,212)">,   </span><span style=3D"color:rgb(86,15=
-6,214)">srcport</span><span style=3D"color:rgb(212,212,212)">: </span><span=
- style=3D"color:rgb(206,145,120)">out_0</span><span style=3D"color:rgb(212,=
-212,212)">, </span><span style=3D"color:rgb(86,156,214)">dstblk</span><span=
- style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145=
-,120)">firS</span><span style=3D"color:rgb(212,212,212)">,   </span><span s=
-tyle=3D"color:rgb(86,156,214)">dstport</span><span style=3D"color:rgb(212,2=
-12,212)">: </span><span style=3D"color:rgb(206,145,120)">in_0</span><span s=
-tyle=3D"color:rgb(212,212,212)"> }</span></div><div><span style=3D"color:rg=
-b(212,212,212)">  - { </span><span style=3D"color:rgb(86,156,214)">srcblk</=
-span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:r=
-gb(206,145,120)">firS</span><span style=3D"color:rgb(212,212,212)">,   </sp=
-an><span style=3D"color:rgb(86,156,214)">srcport</span><span style=3D"color=
-:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)">out_0</s=
-pan><span style=3D"color:rgb(212,212,212)">, </span><span style=3D"color:rg=
-b(86,156,214)">dstblk</span><span style=3D"color:rgb(212,212,212)">: </span=
-><span style=3D"color:rgb(206,145,120)">ep0</span><span style=3D"color:rgb(=
-212,212,212)">,    </span><span style=3D"color:rgb(86,156,214)">dstport</sp=
-an><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb=
-(206,145,120)">in0</span><span style=3D"color:rgb(212,212,212)">  }</span><=
-/div><div><span style=3D"color:rgb(212,212,212)">  </span><span style=3D"co=
-lor:rgb(106,153,85)"># BSP Connections</span></div><div><span style=3D"colo=
-r:rgb(212,212,212)">  - { </span><span style=3D"color:rgb(86,156,214)">srcb=
-lk</span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"col=
-or:rgb(206,145,120)">radio0</span><span style=3D"color:rgb(212,212,212)">, =
-  </span><span style=3D"color:rgb(86,156,214)">srcport</span><span style=3D=
-"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)">ct=
-rl_port</span><span style=3D"color:rgb(212,212,212)">,   </span><span style=
-=3D"color:rgb(86,156,214)">dstblk</span><span style=3D"color:rgb(212,212,21=
-2)">: </span><span style=3D"color:rgb(206,145,120)">_device_</span><span st=
-yle=3D"color:rgb(212,212,212)">, </span><span style=3D"color:rgb(86,156,214=
-)">dstport</span><span style=3D"color:rgb(212,212,212)">: </span><span styl=
-e=3D"color:rgb(206,145,120)">ctrlport_radio0</span><span style=3D"color:rgb=
-(212,212,212)"> }</span></div><div><span style=3D"color:rgb(212,212,212)"> =
- - { </span><span style=3D"color:rgb(86,156,214)">srcblk</span><span style=
-=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)"=
->_device_</span><span style=3D"color:rgb(212,212,212)">, </span><span style=
-=3D"color:rgb(86,156,214)">srcport</span><span style=3D"color:rgb(212,212,2=
-12)">: </span><span style=3D"color:rgb(206,145,120)">x300_radio0</span><spa=
-n style=3D"color:rgb(212,212,212)">, </span><span style=3D"color:rgb(86,156=
-,214)">dstblk</span><span style=3D"color:rgb(212,212,212)">: </span><span s=
-tyle=3D"color:rgb(206,145,120)">radio0</span><span style=3D"color:rgb(212,2=
-12,212)">,   </span><span style=3D"color:rgb(86,156,214)">dstport</span><sp=
-an style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,1=
-45,120)">x300_radio</span><span style=3D"color:rgb(212,212,212)"> }</span><=
-/div><div><span style=3D"color:rgb(212,212,212)">  - { </span><span style=
-=3D"color:rgb(86,156,214)">srcblk</span><span style=3D"color:rgb(212,212,21=
-2)">: </span><span style=3D"color:rgb(206,145,120)">_device_</span><span st=
-yle=3D"color:rgb(212,212,212)">, </span><span style=3D"color:rgb(86,156,214=
-)">srcport</span><span style=3D"color:rgb(212,212,212)">: </span><span styl=
-e=3D"color:rgb(206,145,120)">time_keeper</span><span style=3D"color:rgb(212=
-,212,212)">, </span><span style=3D"color:rgb(86,156,214)">dstblk</span><spa=
-n style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,14=
-5,120)">radio0</span><span style=3D"color:rgb(212,212,212)">,   </span><spa=
-n style=3D"color:rgb(86,156,214)">dstport</span><span style=3D"color:rgb(21=
-2,212,212)">: </span><span style=3D"color:rgb(206,145,120)">time_keeper</sp=
-an><span style=3D"color:rgb(212,212,212)"> }</span></div>
-<div><span style=3D"color:rgb(106,153,85)"># A list of all clock domain con=
-nections in design</span></div><div><span style=3D"color:rgb(106,153,85)">#=
- ------------------------------------------</span></div><div><span style=3D=
-"color:rgb(106,153,85)"># Format: A list of connection maps (list of key-va=
-lue pairs) with the following keys</span></div><div><span style=3D"color:rg=
-b(106,153,85)">#         - srcblk  =3D Source block to connect (Always &quo=
-t;_device&quot;_)</span></div><div><span style=3D"color:rgb(106,153,85)"># =
-        - srcport =3D Clock domain on the source block to connect</span></d=
-iv><div><span style=3D"color:rgb(106,153,85)">#         - dstblk  =3D Desti=
-nation block to connect</span></div><div><span style=3D"color:rgb(106,153,8=
-5)">#         - dstport =3D Clock domain on the destination block to connec=
-t</span></div><div><span style=3D"color:rgb(86,156,214)">clk_domains</span>=
-<span style=3D"color:rgb(212,212,212)">:</span></div><div><span style=3D"co=
-lor:rgb(212,212,212)">    - { </span><span style=3D"color:rgb(86,156,214)">=
-srcblk</span><span style=3D"color:rgb(212,212,212)">: </span><span style=3D=
-"color:rgb(206,145,120)">_device_</span><span style=3D"color:rgb(212,212,21=
-2)">, </span><span style=3D"color:rgb(86,156,214)">srcport</span><span styl=
-e=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)=
-">radio</span><span style=3D"color:rgb(212,212,212)">, </span><span style=
-=3D"color:rgb(86,156,214)">dstblk</span><span style=3D"color:rgb(212,212,21=
-2)">: </span><span style=3D"color:rgb(206,145,120)">radio0</span><span styl=
-e=3D"color:rgb(212,212,212)">, </span><span style=3D"color:rgb(86,156,214)"=
->dstport</span><span style=3D"color:rgb(212,212,212)">: </span><span style=
-=3D"color:rgb(206,145,120)">radio</span><span style=3D"color:rgb(212,212,21=
-2)"> }</span></div><div><span style=3D"color:rgb(212,212,212)">    - { </sp=
-an><span style=3D"color:rgb(86,156,214)">srcblk</span><span style=3D"color:=
-rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)">_device_<=
-/span><span style=3D"color:rgb(212,212,212)">, </span><span style=3D"color:=
-rgb(86,156,214)">srcport</span><span style=3D"color:rgb(212,212,212)">: </s=
-pan><span style=3D"color:rgb(206,145,120)">ce</span><span style=3D"color:rg=
-b(212,212,212)">,    </span><span style=3D"color:rgb(86,156,214)">dstblk</s=
-pan><span style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rg=
-b(206,145,120)">ddc0</span><span style=3D"color:rgb(212,212,212)">,   </spa=
-n><span style=3D"color:rgb(86,156,214)">dstport</span><span style=3D"color:=
-rgb(212,212,212)">: </span><span style=3D"color:rgb(206,145,120)">ce</span>=
-<span style=3D"color:rgb(212,212,212)">    }</span></div><div><span style=
-=3D"color:rgb(212,212,212)">    - { </span><span style=3D"color:rgb(86,156,=
-214)">srcblk</span><span style=3D"color:rgb(212,212,212)">: </span><span st=
-yle=3D"color:rgb(206,145,120)">_device_</span><span style=3D"color:rgb(212,=
-212,212)">, </span><span style=3D"color:rgb(86,156,214)">srcport</span><spa=
-n style=3D"color:rgb(212,212,212)">: </span><span style=3D"color:rgb(206,14=
-5,120)">ce</span><span style=3D"color:rgb(212,212,212)">,    </span><span s=
-tyle=3D"color:rgb(86,156,214)">dstblk</span><span style=3D"color:rgb(212,21=
-2,212)">: </span><span style=3D"color:rgb(206,145,120)">firS</span><span st=
-yle=3D"color:rgb(212,212,212)">,   </span><span style=3D"color:rgb(86,156,2=
-14)">dstport</span><span style=3D"color:rgb(212,212,212)">: </span><span st=
-yle=3D"color:rgb(206,145,120)">ce</span><span style=3D"color:rgb(212,212,21=
-2)">    }</span></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+Hi all, <br>
+<br>
+I'm using GR3.9 with UHD4.1.0.1.<br>
+I have a flowgraph containing a UHD_USRP Source block, with Sync property s=
+et to &quot;PC Clock on Next PPS&quot; so that the device time is synced to=
+ PC system time on the next PPS.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
 </div>
-    <br>
-    <br>
-    I have tried in python and in C++, with UHD and directly with RFNoC
-    API. None succeeded<br>
-    For instance, this is what I do in Python:<br>
-    <br>
-    <div style=3D"color:rgb(212,212,212);background-color:rgb(30,30,30);fon=
-t-family:&quot;Droid Sans Mono For Powerline&quot;,&quot;Droid Sans Mono&qu=
-ot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-we=
-ight:normal;font-size:14px;line-height:19px;white-space:pre-wrap"><div><spa=
-n style=3D"color:rgb(197,134,192)">import</span><span style=3D"color:rgb(21=
-2,212,212)"> numpy </span><span style=3D"color:rgb(197,134,192)">as</span><=
-span style=3D"color:rgb(212,212,212)"> np</span></div><div><span style=3D"c=
-olor:rgb(197,134,192)">import</span><span style=3D"color:rgb(212,212,212)">=
- scipy </span><span style=3D"color:rgb(197,134,192)">as</span><span style=
-=3D"color:rgb(212,212,212)"> sp</span></div>
-<div><span style=3D"color:rgb(197,134,192)">import</span><span style=3D"col=
-or:rgb(212,212,212)"> ipywidgets </span><span style=3D"color:rgb(197,134,19=
-2)">as</span><span style=3D"color:rgb(212,212,212)"> widgets</span></div><d=
-iv><span style=3D"color:rgb(197,134,192)">import</span><span style=3D"color=
-:rgb(212,212,212)"> matplotlib.pyplot </span><span style=3D"color:rgb(197,1=
-34,192)">as</span><span style=3D"color:rgb(212,212,212)"> plt</span></div>
-<div><span style=3D"color:rgb(197,134,192)">import</span><span style=3D"col=
-or:rgb(212,212,212)"> uhd</span></div>
-<div><span style=3D"color:rgb(212,212,212)">graph =3D uhd.rfnoc.RfnocGraph(=
-</span><span style=3D"color:rgb(206,145,120)">&quot;addr=3D192.168.10.2,</s=
-pan><span style=3D"color:rgb(206,145,120)">dboard_clock_rate=3D20e6</span><=
-span style=3D"color:rgb(206,145,120)">&quot;</span><span style=3D"color:rgb=
-(212,212,212)">)</span><span style=3D"color:rgb(206,145,120)"></span></div>
-<div><span style=3D"color:rgb(212,212,212)">radio_crtl =3D uhd.rfnoc.RadioC=
-ontrol(graph.get_block(</span><span style=3D"color:rgb(206,145,120)">&quot;=
-0/Radio#0&quot;</span><span style=3D"color:rgb(212,212,212)">))</span></div=
-><div><span style=3D"color:rgb(212,212,212)">ddc_crtl   =3D uhd.rfnoc.DdcBl=
-ockControl(graph.get_block(</span><span style=3D"color:rgb(206,145,120)">&q=
-uot;0/DDC#0&quot;</span><span style=3D"color:rgb(212,212,212)">))
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+I want to then, somewhat frequently, access the usrp time from within downs=
+tream custom C++ blocks.</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+Options that I've considered:<br>
+1. From the custom c++ block - make another UHD USRP device instance (thoug=
+h I don't think this is possible, as the device has already been allocated =
+to the source block):<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+&nbsp;&nbsp;&nbsp; uhd::device_addr_t deviceAddress(&quot;&quot;);<br>
+&nbsp; &nbsp; uhd::usrp::multi_usrp::sptr usrp =3D uhd::usrp::multi_usrp::m=
+ake(deviceAddress);</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+2. From the custom c++ block - Just retrieve clock info from the device a b=
+it like this (but it's too slow):
+<br>
+&nbsp; &nbsp; uhd::device_addr_t dev;
+<div>&nbsp; &nbsp; dev[&quot;addr&quot;] =3D &quot;192.168.XXX.XXX&quot;;</=
+div>
+<div>&nbsp; &nbsp; uhd::usrp_clock::multi_usrp_clock::sptr clock =3D uhd::u=
+srp_clock::multi_usrp_clock::make(dev);</div>
+&nbsp; &nbsp; std::cout &lt;&lt; clock-&gt;get_time()</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+3. From the custom c++ block - Somehow access the already discovered usrp d=
+evice from the UHD_USRP source block (not sure how to do this)</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+4. Copy and modify the usrp source code to send time as a stream tag along =
+with each packet (seems like a lot of work!)</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+a. perhaps this could be achieved using the UHD_USRP Source block stream ar=
+gs property - though would require mods to the .yml?<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 11pt;=
+ color: rgb(0, 0, 0);">
+Thanks for your help!<br>
+Mike<br>
+</div>
+</body>
+</html>
 
-</span></div><div><span style=3D"color:rgb(212,212,212)">target_freq =3D </=
-span><span style=3D"color:rgb(181,206,168)">433e6</span></div><div><span st=
-yle=3D"color:rgb(212,212,212)">target_gain =3D </span><span style=3D"color:=
-rgb(181,206,168)">25</span></div><div><span style=3D"color:rgb(212,212,212)=
-">target_rate =3D </span><span style=3D"color:rgb(181,206,168)">1e6</span><=
-/div>
-<div><span style=3D"color:rgb(212,212,212)">radio_crtl.set_rx_antenna(</spa=
-n><span style=3D"color:rgb(206,145,120)">&#39;RX2&#39;</span><span style=3D=
-"color:rgb(212,212,212)">, 0)</span></div><div><span style=3D"color:rgb(212=
-,212,212)">radio_crtl.get_rx_antenna(0)</span></div>
-<div><span style=3D"color:rgb(212,212,212)">actual_gain    =3D radio_crtl.s=
-et_rx_gain(target_gain, 0)
-</span>
-<div><span style=3D"color:rgb(212,212,212)">actual_rf_freq  =3D radio_crtl.=
-set_rx_frequency(target_freq, 0)</span></div><span style=3D"color:rgb(212,2=
-12,212)"></span></div><div><span style=3D"color:rgb(212,212,212)">target_ds=
-p_freq =3D actual_rf_freq - target_freq</span></div><div><span style=3D"col=
-or:rgb(212,212,212)">actual_dsp_freq =3D ddc_crtl.set_freq(target_dsp_freq,=
- 0)</span></div><div><span style=3D"color:rgb(212,212,212)">clipped_rx_freq=
- =3D actual_rf_freq - actual_dsp_freq</span></div>
-<div><span style=3D"color:rgb(212,212,212)">actual_rate =3D ddc_crtl.set_ou=
-tput_rate(target_rate, 0)
+--_000_BL3PR16MB4476E7A5D8EFD323A338B19AB7539BL3PR16MB4476namp_--
 
-</span><div style=3D"color:rgb(212,212,212);background-color:rgb(30,30,30);=
-font-family:&quot;Droid Sans Mono For Powerline&quot;,&quot;Droid Sans Mono=
-&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font=
--weight:normal;font-size:14px;line-height:19px;white-space:pre-wrap"><div><=
-span style=3D"color:rgb(212,212,212)">fir_static   =3D uhd.rfnoc.FirFilterB=
-lockControl(graph.get_block(</span><span style=3D"color:rgb(206,145,120)">&=
-quot;0/FIR#0&quot;</span><span style=3D"color:rgb(212,212,212)">))
-</span><div style=3D"color:rgb(212,212,212);background-color:rgb(30,30,30);=
-font-family:&quot;Droid Sans Mono For Powerline&quot;,&quot;Droid Sans Mono=
-&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font=
--weight:normal;font-size:14px;line-height:19px;white-space:pre-wrap"><div><=
-span style=3D"color:rgb(212,212,212)">coefficients =3D </span><span style=
-=3D"color:rgb(212,212,212)"><span style=3D"color:rgb(212,212,212)">fir_stat=
-ic</span>.get_coefficients()</span></div><div><span style=3D"color:rgb(212,=
-212,212)"><span style=3D"color:rgb(212,212,212)">fir_static</span>.set_coef=
-ficients(coefficients)</span></div><div><span style=3D"color:rgb(212,212,21=
-2)">coefficients =3D </span><span style=3D"color:rgb(212,212,212)"><span st=
-yle=3D"color:rgb(212,212,212)">fir_static</span>.get_coefficients()</span><=
-/div><div><span style=3D"color:rgb(212,212,212)">
-plt.stem(coefficients)</span></div><div><span style=3D"color:rgb(212,212,21=
-2)">plt.show() </span></div></div>
-<span style=3D"color:rgb(212,212,212)"></span></div></div><div style=3D"col=
-or:rgb(212,212,212);background-color:rgb(30,30,30);font-family:&quot;Droid =
-Sans Mono For Powerline&quot;,&quot;Droid Sans Mono&quot;,&quot;monospace&q=
-uot;,monospace,&quot;Droid Sans Fallback&quot;;font-weight:normal;font-size=
-:14px;line-height:19px;white-space:pre-wrap"><div><span style=3D"color:rgb(=
-212,212,212)">stream_args =3D uhd.usrp.StreamArgs(</span><span style=3D"col=
-or:rgb(206,145,120)">&quot;fc32&quot;</span><span style=3D"color:rgb(212,21=
-2,212)">, </span><span style=3D"color:rgb(206,145,120)">&quot;sc16&quot;</s=
-pan><span style=3D"color:rgb(212,212,212)">)</span></div><div><span style=
-=3D"color:rgb(212,212,212)">recv_stream =3D graph.create_rx_streamer(</span=
-><span style=3D"color:rgb(181,206,168)">1</span><span style=3D"color:rgb(21=
-2,212,212)">, stream_args)</span></div>
-<div><span style=3D"color:rgb(212,212,212)">graph.connect(radio_crtl.get_bl=
-ock_id(), </span><span style=3D"color:rgb(181,206,168)">0</span><span style=
-=3D"color:rgb(212,212,212)">, ddc_crtl.get_block_id(),   </span><span style=
-=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(212,212,212)">=
-, </span><span style=3D"color:rgb(86,156,214)">False</span><span style=3D"c=
-olor:rgb(212,212,212)">) </span></div><div><span style=3D"color:rgb(212,212=
-,212)">graph.connect(ddc_crtl.get_block_id(),   </span><span style=3D"color=
-:rgb(181,206,168)">0</span><span style=3D"color:rgb(212,212,212)">, fir_sta=
-tic.get_block_id(), </span><span style=3D"color:rgb(181,206,168)">0</span><=
-span style=3D"color:rgb(212,212,212)">, </span><span style=3D"color:rgb(86,=
-156,214)">False</span><span style=3D"color:rgb(212,212,212)">)</span></div>=
-<div><span style=3D"color:rgb(212,212,212)">graph.connect(fir_static.get_bl=
-ock_id(), </span><span style=3D"color:rgb(181,206,168)">0</span><span style=
-=3D"color:rgb(212,212,212)">, recv_stream,               </span><span style=
-=3D"color:rgb(181,206,168)">0</span><span style=3D"color:rgb(212,212,212)">=
-) </span></div>
-<div><span style=3D"color:rgb(212,212,212)">graph.commit()</span></div>
-<div><span style=3D"color:rgb(212,212,212)">num_samps =3D </span><span styl=
-e=3D"color:rgb(78,201,176)">int</span><span style=3D"color:rgb(212,212,212)=
-">(</span><span style=3D"color:rgb(181,206,168)">1e6</span><span style=3D"c=
-olor:rgb(212,212,212)">) </span><span style=3D"color:rgb(106,153,85)"># 1 M=
-B of data, be aware.</span></div>
-<div><span style=3D"color:rgb(212,212,212)">data       =3D np.empty((num_sa=
-mps), </span><span style=3D"color:rgb(156,220,254)">dtype</span><span style=
-=3D"color:rgb(212,212,212)">=3Dnp.complex64)</span></div><div><span style=
-=3D"color:rgb(212,212,212)">md         =3D uhd.types.RXMetadata()</span></d=
-iv><div><span style=3D"color:rgb(212,212,212)">stream_cmd =3D uhd.types.Str=
-eamCMD(uhd.types.StreamMode.num_done)</span></div>
-<div><span style=3D"color:rgb(212,212,212)">stream_cmd.stream_now =3D </spa=
-n><span style=3D"color:rgb(86,156,214)">True</span></div><div><span style=
-=3D"color:rgb(212,212,212)">stream_cmd.num_samps  =3D num_samps</span></div=
-><div><span style=3D"color:rgb(212,212,212)">stream_cmd.time_spec  =3D uhd.=
-types.TimeSpec(</span><span style=3D"color:rgb(181,206,168)">1</span><span =
-style=3D"color:rgb(212,212,212)">, </span><span style=3D"color:rgb(181,206,=
-168)">0</span><span style=3D"color:rgb(212,212,212)">) </span><span style=
-=3D"color:rgb(106,153,85)"># Wait 1s before reception</span></div>
-<div><span style=3D"color:rgb(212,212,212)">recv_stream.issue_stream_cmd(st=
-ream_cmd)</span></div><div><span style=3D"color:rgb(212,212,212)">received_=
-spls =3D recv_stream.recv(data, md, </span><span style=3D"color:rgb(181,206=
-,168)">3</span><span style=3D"color:rgb(212,212,212)">.)</span></div>
-<div><span style=3D"color:rgb(220,220,170)">print</span><span style=3D"colo=
-r:rgb(212,212,212)">(</span><span style=3D"color:rgb(86,156,214)">f</span><=
-span style=3D"color:rgb(206,145,120)">&#39;Received </span><span style=3D"c=
-olor:rgb(86,156,214)">{</span><span style=3D"color:rgb(78,201,176)">float</=
-span><span style=3D"color:rgb(212,212,212)">(received_spls)</span><span sty=
-le=3D"color:rgb(86,156,214)">:.2e}</span><span style=3D"color:rgb(206,145,1=
-20)"> samples&#39;</span><span style=3D"color:rgb(212,212,212)">)</span></d=
-iv>
-<div><span style=3D"color:rgb(197,134,192)">if</span><span style=3D"color:r=
-gb(212,212,212)"> md.error_code !=3D md.error_code.none:</span></div><div><=
-span style=3D"color:rgb(212,212,212)">    </span><span style=3D"color:rgb(2=
-20,220,170)">print</span><span style=3D"color:rgb(212,212,212)">(</span><sp=
-an style=3D"color:rgb(86,156,214)">f</span><span style=3D"color:rgb(206,145=
-,120)">&#39;</span><span style=3D"color:rgb(215,186,125)">\033</span><span =
-style=3D"color:rgb(206,145,120)">[1;31m[ERROR]</span><span style=3D"color:r=
-gb(215,186,125)">\033</span><span style=3D"color:rgb(206,145,120)">[0m </sp=
-an><span style=3D"color:rgb(86,156,214)">{</span><span style=3D"color:rgb(2=
-12,212,212)">md.strerror()</span><span style=3D"color:rgb(86,156,214)">}</s=
-pan><span style=3D"color:rgb(206,145,120)">&#39;</span><span style=3D"color=
-:rgb(212,212,212)">)</span></div><div><span style=3D"color:rgb(197,134,192)=
-">else</span><span style=3D"color:rgb(212,212,212)">:</span></div><div><spa=
-n style=3D"color:rgb(212,212,212)">    </span><span style=3D"color:rgb(220,=
-220,170)">print</span><span style=3D"color:rgb(212,212,212)">(</span><span =
-style=3D"color:rgb(86,156,214)">f</span><span style=3D"color:rgb(206,145,12=
-0)">&#39;Everything went well.&#39;</span><span style=3D"color:rgb(212,212,=
-212)">)</span></div></div><span style=3D"color:rgb(212,212,212)"></span></d=
-iv></div>
-    <br>
-    Without the Fir (and adapting the code of course), I get my 1e6 data
-    buffer.<br>
-    <br>
-    Is there an error I miss, or have I made too much space, deleting
-    important part in the process?<br>
-    <br>
-    <div>On 1/13/22 17:08, Wade Fife wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div>In particular, make sure you have a clock connected to the
-          CE input of the FIR filter. Something like this in your
-          clk_domains section:</div>
-        <div><br>
-        </div>
-        <div>clk_domains:</div>
-        <div>=C2=A0 =C2=A0 - { srcblk: _device_, srcport: ce, dstblk: fir0,
-          dstport: ce }</div>
-        <div><br>
-        </div>
-        <div>Wade<br>
-        </div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 13, 2022 at 10:04
-          AM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D=
-"_blank">wade.fife@ettus.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir=3D"ltr">
-            <div>Hi Camille,</div>
-            <div><br>
-            </div>
-            <div>Maybe you could share your RFNoC YML file and someone
-              could take a look? There might be something wrong there.</div=
->
-            <div><br>
-            </div>
-            <div>Wade<br>
-            </div>
-          </div>
-          <br>
-          <div class=3D"gmail_quote">
-            <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 13, 2022 at
-              8:32 AM Camille Moniere &lt;<a href=3D"mailto:camille.moniere=
-@univ-ubs.fr" target=3D"_blank">camille.moniere@univ-ubs.fr</a>&gt;
-              wrote:<br>
-            </div>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello everyon=
-e,<br>
-              <br>
-              I unsuccessfully try to use the FIR Filter RFNoC block in
-              reception, in=C2=A0 <br>
-              an USRP X310 with a UBX-160 daughterboard on-board.<br>
-              I have tested several topology for the custom image
-              (radio0 - &gt; ddc0 -&gt;=C2=A0 <br>
-              fir0 -&gt; ep0 || radio0 -&gt; ddc0 -&gt; ep0 + ep1 -&gt;
-              fir0 + fir0 -&gt; ep1, for=C2=A0 <br>
-              example),<br>
-              with several parameter for the filter (With or without
-              re-loadable=C2=A0 <br>
-              coefficients, with or without embedded DSP registers, 21
-              coef&#39; instead=C2=A0 <br>
-              of 41 ...) but it ultimately<br>
-              always fails the same way.<br>
-              When the FIR is used, I can&#39;t retrieve any data. I got an
-              Overflow=C2=A0 <br>
-              error, without receiving any samples. Sometimes, I even
-              got a &quot;Late=C2=A0 <br>
-              Command&quot; error, even when using=C2=A0 RFNoC in C++<br>
-              (graph committed immediately before the stream now
-              stream_cmd).<br>
-              <br>
-              For the record, the center frequency is 433 MHz for a
-              sampling rate of 1=C2=A0 <br>
-              Msps.<br>
-              <br>
-              I assumed the filter output one complex sample (sc16) for
-              each new input=C2=A0 <br>
-              (sc16 too). Am I wrong? Or is there specific setup I have
-              forgotten?<br>
-              Has someone successfully used this block, and can provide
-              an example or=C2=A0 <br>
-              tutorial?<br>
-              <br>
-              Regards,<br>
-              <br>
-              Camille<br>
-              _______________________________________________<br>
-              USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists=
-.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-              To unsubscribe send an email to <a href=3D"mailto:usrp-users-=
-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</=
-a><br>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </div>
-
-</blockquote></div>
-
---0000000000003b5f5c05d57a0d7c--
-
---===============6346927854676673757==
+--===============6693457075097942690==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -857,4 +271,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6346927854676673757==--
+--===============6693457075097942690==--
