@@ -2,91 +2,103 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB1848ED7D
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Jan 2022 16:57:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AFE348EDA2
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Jan 2022 17:04:53 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 470DA3855C5
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Jan 2022 10:57:28 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 632CE38550A
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Jan 2022 11:04:52 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F1ZmvLvl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mTuWo6hW";
 	dkim-atps=neutral
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 637E7385025
-	for <usrp-users@lists.ettus.com>; Fri, 14 Jan 2022 10:56:36 -0500 (EST)
-Received: by mail-qk1-f180.google.com with SMTP id o135so340443qke.8
-        for <usrp-users@lists.ettus.com>; Fri, 14 Jan 2022 07:56:36 -0800 (PST)
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 11A8E38507D
+	for <usrp-users@lists.ettus.com>; Fri, 14 Jan 2022 11:03:51 -0500 (EST)
+Received: by mail-io1-f54.google.com with SMTP id s11so4822639ioe.12
+        for <usrp-users@lists.ettus.com>; Fri, 14 Jan 2022 08:03:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6E6JzNjUGy4t7vG0LhG9lse4e1HxqLpm41mNj3U+Xjs=;
-        b=F1ZmvLvlH4Ph6XM2QRikKSa3K2Wo9tJIlhhQPJTI5OVX6Evkd0udpETTZd1v7xWUbK
-         wUXjJQb85GcMCMFLYhVDx+EnTx94VEsEuW4G4DD8HflpnQVXzwqPEoIDJCBN+eKosbVp
-         YRuWh82H4zbI8r9KXnNGWRPbC9KhT+jqQA8RhS081cjvIpNkbgeB2QVAVCqGSKx03XlH
-         vHPRVoGsbVzMQ1cu0Z6DM9iDVoIqLZD3lvvno4Zv+mIVHkNs8Ed+WCQn3Kb11CTpTdPK
-         qsA75PooBPp6nAsYL5N4aRY9OO6KzpEvbTwZRHYgKxYa0R4bpDPC3FfWpGZ+Uj05i0fV
-         DIzw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=zy+RoD9OoflC0Zkwq3Zfoow2pvByCG8RxWBDMYS6aRg=;
+        b=mTuWo6hWNuyqosC71kmq6vpTfArAQWZhHnKM2uQPiqCUEsL7OwzLHEeRVafpcHeb87
+         /DXCu1cUPCA6eFehHyNo+XIF4SaC8QNJlKIO5GO6JPoy2cH4skpaSV/C7Ez4Er6V+8dE
+         TCty6MQ4SjNWdVH65WI0qavC9VdXkjkMuoSbsov3z6ZevOnhy7Jimat9A+RZUV1Bqa1O
+         TcQMkcn3OcLrbz5wNdw0us1581TFP3FDREdA9i+dWzsjtCyODybzXo4BFm9shoU8OeQL
+         jKcoF+eQaIvKfbNIYIejJaI3YhavN7z7SzaJyUkb1RiEpDSRftkwc6ji4m5TSz1HRh+y
+         1Spw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=6E6JzNjUGy4t7vG0LhG9lse4e1HxqLpm41mNj3U+Xjs=;
-        b=ddwY5vsUci50Izz7Bur5zD2jgl2BVB+yM+1wofzGL4/CrP+PGnXAtfCNXV62fQcp/l
-         9XE2yef+MlP4W0qR8wjhOb5nD1olDJAakcJ+wokx9GzN0QxwocBELwuwyQTfr5qRxn9K
-         niVoUGNkgoQoPLwEXW5M7YWnl2xroXAo3wQobw+kGv4dhxiWL8rTRQb5XQckaxIshW72
-         1xpnnl8mfRzF8YRcpZm1bgXd5X/drRNYKX/Y2z4wAh4CpbKlkz4mpLlME5loCoq99gIi
-         OUwth13+C0kkWupoW05rNaYMvzGCDp7/3bzfRM3dtgfawfp2LzNYLtrbpFl7000dZBGe
-         YLpA==
-X-Gm-Message-State: AOAM530qKfVA0BfNphF1BVQ2nr7puL0+vggexWQTFcnc+JeiBC72HTOY
-	1ZniUlojUdfASIZpepeYl+g=
-X-Google-Smtp-Source: ABdhPJwYDGguV5p4eO7EunhDgcGuAR+8scu14CTrn0yzzjVGdbtnZoRPSexAjqUO2ROl660rdbfyKQ==
-X-Received: by 2002:a05:620a:3727:: with SMTP id de39mr6849126qkb.236.1642175795884;
-        Fri, 14 Jan 2022 07:56:35 -0800 (PST)
-Received: from [192.168.2.192] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.gmail.com with ESMTPSA id l15sm4113322qtx.20.2022.01.14.07.56.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Jan 2022 07:56:35 -0800 (PST)
-Message-ID: <006fb235-9773-127c-e6b2-fa6c885ca1b6@gmail.com>
-Date: Fri, 14 Jan 2022 10:56:34 -0500
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=zy+RoD9OoflC0Zkwq3Zfoow2pvByCG8RxWBDMYS6aRg=;
+        b=CHC5IQA6BISO7+im/iowWZEAyVlr1FqmkXD+zaF4kl/tzgetDHqlSz/J8hIHwh6Dp6
+         n2TlE5Kx4alCQexpoPq/nCPa3Z+q3NKG9W5pi3QTHFTvZmQ45u+9Vfmj6ItbWO0Hvu9c
+         dpjv1OrpzLuEtBbtLGTjYGivkW/Yf27c6N1aUEPSCioiYCK2Jqcx1pDfcrLGxDeakAac
+         xwmSU12VZ9SgtB8DM5MS/dvk6Fcy3FaTcZf9wFQxK/UIqW8BylbaS60DvmfKqdu08cdy
+         i/9nI3HvqB1CthawdP74fuQoqDLqm04IPig4JTp5JrqOHAhcnulLBJfPW9hD9xJZn+ZT
+         ql1w==
+X-Gm-Message-State: AOAM532aWHBlfyrgh2vmxsHpEMnXmMB2o/aUsi+JC6ocsXgLyRJmWdCo
+	4SLe46N7sZg3jWUL119/6sHo8wB03d29YLMeuEpmREeHxKg=
+X-Google-Smtp-Source: ABdhPJxiqyP+/RVofA4ZeTa/nA5MKpGkTbcykrFQ2qGfKsXafjO9zQ6Z8T0TzzPi1xXmTMvPFv7FHiAplSq7GLHoiaA=
+X-Received: by 2002:a02:7017:: with SMTP id f23mr4612574jac.272.1642176231141;
+ Fri, 14 Jan 2022 08:03:51 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Content-Language: en-US
-To: Paul Atreides <maud.dib1984@gmail.com>
-References: <55a9f781-6dfd-d2e5-0311-396854c054b3@gmail.com>
- <44F81C71-D632-4048-8B62-7190B8688B05@gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <44F81C71-D632-4048-8B62-7190B8688B05@gmail.com>
-Message-ID-Hash: NTI23KTW7DCUZDORNQI3WND2AOITRBH5
-X-Message-ID-Hash: NTI23KTW7DCUZDORNQI3WND2AOITRBH5
-X-MailFrom: patchvonbraun@gmail.com
+From: Ivan Zahartchuk <adray0001@gmail.com>
+Date: Fri, 14 Jan 2022 18:03:40 +0200
+Message-ID: <CAPRRyxtP9mJYEhQzuwBLffq4R-Q0oouw+mNx0PCFwTT4Raf8fg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: EA2UII52J7TSZL4RT6RHMGGGYILPQWJO
+X-Message-ID-Hash: EA2UII52J7TSZL4RT6RHMGGGYILPQWJO
+X-MailFrom: adray0001@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N321 LO sharing between RF 0/1
+Subject: [USRP-users] Enabling fast lock USRP N210.
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NTI23KTW7DCUZDORNQI3WND2AOITRBH5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EA2UII52J7TSZL4RT6RHMGGGYILPQWJO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6777934736086062705=="
 
-DQpPbiAyMDIyLTAxLTE0IDEwOjQwLCBQYXVsIEF0cmVpZGVzIHdyb3RlOg0KPiBPaCBPSywgSSBj
-YW4gc2VlIHRoYXQgcG9zc2libHkgd29ya2luZyBmb3IgbXkgYXBwbGljYXRpb24uDQo+DQo+ICAg
-RG8geW91IGhhcHBlbiB0byBIYXZlIGFueSBpbnNpZ2h0IG9uIHdoYXQgUm9iIHdhcyB0YWxraW5n
-IGFib3V0LCAgaWYgZ3ItdWhkIFdpbGwgYXV0b21hdGljYWxseSB0dXJuIG9uIHRoZSBUWDAgb3V0
-cHV0IHdoZW4gdGhlIGV4cG9ydCBpcyDigJhUcnVl4oCZIE9yIGRvIHlvdSBrbm93IGlmIHRoYXQg
-c2hvdWxkIGluc3RlYWQgYmUgcGFzc2VkIGluIGEgRGV2aWNlIGFyZ3VtZW50Pw0KPg0KPiBJIGNh
-biBhbHNvIGp1c3QgdGVzdCB0aGlzIGEgbGl0dGxlIGxhdGVyIGFuZCBzZWUgaWYgdGhlIG91dHB1
-dCBsaWdodCBjb21lcyBvbi4NCj4NCj4gPGUNCg0KU2V0dGluZyB0aGUgRXhwb3J0IGNvbnRyb2wg
-aW4gdGhlIFVIRCBibG9jayBTSE9VTEQgYmUgZW5vdWdoIHRvIG1ha2UgDQp0aGF0IExFRCBjb21l
-IG9uIDopDQoNCg0KQnV0IEkgZG9uJ3QgaGF2ZSBvbmUgaW4gbXkgY29sbGVjdGlvbi4NCg0KDQpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmli
-ZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============6777934736086062705==
+Content-Type: multipart/alternative; boundary="000000000000ea72fb05d58cf2be"
+
+--000000000000ea72fb05d58cf2be
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello. I need to simulate a heavy RF environment. It is necessary to
+generate a chirp signal in a 100 MHz band with a total speed of one run of
+about 300 =C2=B5s. But I only have USRP N210. In this regard, I have severa=
+l
+questions.
+ 1. Is it possible to enable fast lock using uhd 4 drivers?
+2. Is it possible to generate such a structure with such time?
+ I have a bad relationship with FPGA....
+
+--000000000000ea72fb05d58cf2be
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello. I need to simulate a heavy RF environment. It is ne=
+cessary to generate a chirp signal in a 100 MHz band with a total speed of =
+one run of about 300 =C2=B5s. But I only have USRP N210. In this regard, I =
+have several questions.<br>=C2=A01. Is it possible to enable fast lock usin=
+g uhd 4 drivers? <br>2. Is it possible to generate such a structure with su=
+ch time?<br>=C2=A0I have a bad relationship with FPGA....</div>
+
+--000000000000ea72fb05d58cf2be--
+
+--===============6777934736086062705==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6777934736086062705==--
