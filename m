@@ -2,181 +2,163 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C5FD492716
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Jan 2022 14:23:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E37E492EB7
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Jan 2022 20:50:34 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F1872384E2F
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Jan 2022 08:23:08 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 530823855B7
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Jan 2022 14:50:33 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=jhuapl.edu header.i=@jhuapl.edu header.b="CBnx1Iu2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JVvYZLrW";
 	dkim-atps=neutral
-Received: from aplegw01.jhuapl.edu (aplegw01.jhuapl.edu [128.244.251.168])
-	by mm2.emwd.com (Postfix) with ESMTPS id A5531384B19
-	for <usrp-users@lists.ettus.com>; Tue, 18 Jan 2022 08:22:09 -0500 (EST)
-Received: from pps.filterd (aplegw01.jhuapl.edu [127.0.0.1])
-	by aplegw01.jhuapl.edu (8.16.0.43/8.16.0.43) with SMTP id 20IDGhiV135763
-	for <usrp-users@lists.ettus.com>; Tue, 18 Jan 2022 08:22:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jhuapl.edu; h=from : to : subject :
- date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=JHUAPLDec2018;
- bh=mHWZQ8OSYZ8oqfsfSDi1/a4fag4ADtEKi6u+UEsQHnQ=;
- b=CBnx1Iu2g58JJ2SQ3EqLtKpxvMxh8CCnNBLDmnPfxWoUJYwZFzD38FuvuxdAe/YXUx1J
- ZdK/jpwJYeZONaV6jC+Tmv6AxhKJ9zb1q841t8Ck2LORM/h8D5m2AYO8WvsPfa+FZcpz
- EHmeijDzWbDJDi5YkwOOLOCYLJuaz3lSXXNCY2Rr4IfW17qjyeO8IdKjulkAUIyqygFi
- Otti+oGaFyArwxmkZNohTVx0GIg3AjkoUZt68irfaiQhENGB3WrjSrIC0/F0ouvWx10G
- gZQv0hUzhdoMe7bXBKh91R/lTybOdKz0YKLTD1+I4Yg7JpNAlUYcJUwsSHmrXJVK79m6 QA==
-Received: from aplex23.dom1.jhuapl.edu (aplex23.dom1.jhuapl.edu [10.114.162.8])
-	by aplegw01.jhuapl.edu with ESMTP id 3dkr6ehhaj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Tue, 18 Jan 2022 08:22:09 -0500
-Received: from APLEX22.dom1.jhuapl.edu (10.114.162.7) by
- APLEX23.dom1.jhuapl.edu (10.114.162.8) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.13; Tue, 18 Jan 2022 08:22:08 -0500
-Received: from APLEX22.dom1.jhuapl.edu ([fe80::a9e0:186c:1e09:4ad3]) by
- APLEX22.dom1.jhuapl.edu ([fe80::a9e0:186c:1e09:4ad3%21]) with mapi id
- 15.02.0922.013; Tue, 18 Jan 2022 08:22:08 -0500
-From: "Ernst, Joseph M." <Joseph.Ernst@jhuapl.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [EXT] USRP-users Digest, Vol 137, Issue 39
-Thread-Index: AQHYC3yZxp23mFtF1EGw5oUSjuxItqxoxcqQ
-Date: Tue, 18 Jan 2022 13:22:08 +0000
-Message-ID: <fb7816a43da04f57bcedda6cd2e2d2c4@jhuapl.edu>
-References: <164240823579.11274.8717752333963675774@mm2.emwd.com>
-In-Reply-To: <164240823579.11274.8717752333963675774@mm2.emwd.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.114.162.26]
-Content-Type: text/plain; charset="utf-8"
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id D8997384D53
+	for <usrp-users@lists.ettus.com>; Tue, 18 Jan 2022 14:49:35 -0500 (EST)
+Received: by mail-lf1-f49.google.com with SMTP id e3so72390107lfc.9
+        for <usrp-users@lists.ettus.com>; Tue, 18 Jan 2022 11:49:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+JaVtLEOj3eBJCEMVGDqTj4JETnLGDXp7AlKt0lDLwc=;
+        b=JVvYZLrWbv2OTmGqHWFz86lcEjnsOcnExqDY/rKBItIassisL2YefmJf8ywFEXaOxl
+         /kWQkNSQg3p1X+vb2xlkgG7ls0o8J+fyPnhSrgmlXuATz/QITcaS9kcrWIf8EXrdD2nw
+         RLCOsrHMi85Hhogl9/6b/ge4KBRN+1/hS5gjmWXS+V/tmOfOsjxoDVLvMbHP3drzgfJp
+         lBHCahglq+/NJD3fP42OwxsdfE86l0ZhlQ6kTf3IJri1ytHNKLRmVB6HblJUSMmAWlmR
+         jhqHdm4YagAeLYZ+GADdSwpasIEwHZloG8uBR2HNS9ngir8HW2cggyxg8FzHy3wf5uE3
+         a+5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+JaVtLEOj3eBJCEMVGDqTj4JETnLGDXp7AlKt0lDLwc=;
+        b=327Z0WCnKErX0CbVakWB4benpd7HN97/HJp776B8OjxXot2xyD6BVuWb2H15rVJ42C
+         Of6GlfhOutVAqBsZ3Wgzdn52StHHUZ6dL/OX2Ua2bwzYs5r7v7ZmKaIitmFB1usLBR3V
+         JajjP2OSFqFbsSTaPXAwyglURE/G4g6HpUQn7UPM8aAt+1Wm/rIViD/f1YodpjSi6ty2
+         Goc+2DzswdtfG/aFnrHiA22nJeXYS5BYTdxsxY6t/Fr5hQPL1oFyXQNi4iHsMnXdw7MD
+         qXCQYG7EKeOUnYIMiFLkYMkSVzgk8Ev3glZPRSmq1dXepjLsvPHWul5lVA/d4Go9VtWJ
+         4lKQ==
+X-Gm-Message-State: AOAM533JXW6yMKPUSUenMKPYi8sw8By4FtTJ8zqOaitCN2Xs7g3sl9PR
+	tt5EwallC2mGgpXFKTrqXGOBtpn/I9lj1qyoknA=
+X-Google-Smtp-Source: ABdhPJyVXs41PxSXV2EwaterGUsxpg2OTn2Nc2tv+g6JuWq9Bdkrhya4KyiciIHu+so8zWSFjQ/wEFKMX67YiRI4dNc=
+X-Received: by 2002:a2e:9092:: with SMTP id l18mr11270147ljg.118.1642535374182;
+ Tue, 18 Jan 2022 11:49:34 -0800 (PST)
 MIME-Version: 1.0
-X-CrossPremisesHeadersFilteredBySendConnector: APLEX23.dom1.jhuapl.edu
-X-OrganizationHeadersPreserved: APLEX23.dom1.jhuapl.edu
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425,18.0.816
- definitions=2022-01-18_03:2022-01-17,2022-01-18 signatures=0
-Message-ID-Hash: WFKH7555JPD2BURGURINWDX7WBKJYFVJ
-X-Message-ID-Hash: WFKH7555JPD2BURGURINWDX7WBKJYFVJ
-X-MailFrom: Joseph.Ernst@jhuapl.edu
+References: <55a9f781-6dfd-d2e5-0311-396854c054b3@gmail.com>
+ <44F81C71-D632-4048-8B62-7190B8688B05@gmail.com> <006fb235-9773-127c-e6b2-fa6c885ca1b6@gmail.com>
+ <CACwKM9LvFd4s8vP6fpMMemHEfwfE0f+D4txNX3zjrGYvpiu9eA@mail.gmail.com>
+ <778d7cf6-1bf3-28ed-f641-080b32b937ea@gmail.com> <CAB__hTTS8mium09MKQL4ZGWOie5VBSOWYUHXA3Fbts308_ABrg@mail.gmail.com>
+ <CAB__hTQit3vA+TbnvdGmWwEuGckUmOVmHhS6eXneeg-oeVsEfg@mail.gmail.com>
+ <71a72a67-db18-fc69-dd35-d404ad49a2dc@gmail.com> <CACwKM9JOGP27FgMMq+cTkpna3v3D5QKC=_74H=953BGjGSe5KA@mail.gmail.com>
+ <a5ac4b90-65d2-c982-5c0f-e921de878b2c@gmail.com>
+In-Reply-To: <a5ac4b90-65d2-c982-5c0f-e921de878b2c@gmail.com>
+From: Paul Atreides <maud.dib1984@gmail.com>
+Date: Tue, 18 Jan 2022 14:49:23 -0500
+Message-ID: <CACwKM9+Z1xzygaZWzPMW8JnkOs4NJ_W58xbGvvyrnRL3JhOCMQ@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: ZTEDAH7UZYZFAJQ3QIJ3NOH7OB7ATSUY
+X-Message-ID-Hash: ZTEDAH7UZYZFAJQ3QIJ3NOH7OB7ATSUY
+X-MailFrom: maud.dib1984@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXT] USRP-users Digest, Vol 137, Issue 39
+Subject: [USRP-users] Re: N321 LO sharing between RF 0/1
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WFKH7555JPD2BURGURINWDX7WBKJYFVJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZTEDAH7UZYZFAJQ3QIJ3NOH7OB7ATSUY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0678356892108619718=="
 
-aGVscA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogdXNycC11c2Vycy1yZXF1
-ZXN0QGxpc3RzLmV0dHVzLmNvbSA8dXNycC11c2Vycy1yZXF1ZXN0QGxpc3RzLmV0dHVzLmNvbT4g
-DQpTZW50OiBNb25kYXksIEphbnVhcnkgMTcsIDIwMjIgMzozMSBBTQ0KVG86IHVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbRVhUXSBVU1JQLXVzZXJzIERpZ2VzdCwgVm9sIDEz
-NywgSXNzdWUgMzkNCg0KQVBMIGV4dGVybmFsIGVtYWlsIHdhcm5pbmc6IFZlcmlmeSBzZW5kZXIg
-dXNycC11c2Vycy1ib3VuY2VzK2pvc2VwaC5lcm5zdD1qaHVhcGwuZWR1QGxpc3RzLmV0dHVzLmNv
-bSBiZWZvcmUgY2xpY2tpbmcgbGlua3Mgb3IgYXR0YWNobWVudHPCoA0KDQpTZW5kIFVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IHN1Ym1pc3Npb25zIHRvDQoJdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20NCg0KVG8gc3Vic2NyaWJlIG9yIHVuc3Vic2NyaWJlIHZpYSBlbWFpbCwgc2VuZCBhIG1lc3Nh
-Z2Ugd2l0aCBzdWJqZWN0IG9yIGJvZHkgJ2hlbHAnIHRvDQoJdXNycC11c2Vycy1yZXF1ZXN0QGxp
-c3RzLmV0dHVzLmNvbQ0KDQpZb3UgY2FuIHJlYWNoIHRoZSBwZXJzb24gbWFuYWdpbmcgdGhlIGxp
-c3QgYXQNCgl1c3JwLXVzZXJzLW93bmVyQGxpc3RzLmV0dHVzLmNvbQ0KDQpXaGVuIHJlcGx5aW5n
-LCBwbGVhc2UgZWRpdCB5b3VyIFN1YmplY3QgbGluZSBzbyBpdCBpcyBtb3JlIHNwZWNpZmljIHRo
-YW4gIlJlOiBDb250ZW50cyBvZiBVU1JQLXVzZXJzIGRpZ2VzdC4uLiINCg0KVG9kYXkncyBUb3Bp
-Y3M6DQoNCiAgIDEuIFJlOiBVQlggMTYwIHRyYW5zbWl0IGJ1dCBvbmx5IHRoZXJlIGlzIGEgc21h
-bGwgY2Fycmllci4uLi4/DQogICAgICAoUm9iaW4gQ294ZSkNCiAgIDIuIEZvciBidWlsZGluZyBW
-ZXJpbG9nIGNvZGUgZm9yIEZQR0EgeDMwMCBzZXJpZXMgd2hpY2ggbGljZW5zZSBWaXZhZG8gc2hv
-dWxkIEkgbmVjZXNzYXJ5Pw0KICAgICAgKHNwIGgpDQogICAzLiBSZTogRm9yIGJ1aWxkaW5nIFZl
-cmlsb2cgY29kZSBmb3IgRlBHQSB4MzAwIHNlcmllcyB3aGljaCBsaWNlbnNlIFZpdmFkbyBzaG91
-bGQgSSBuZWNlc3Nhcnk/DQogICAgICAoc3AgaCkNCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCk1lc3Nh
-Z2U6IDENCkRhdGU6IFN1biwgMTYgSmFuIDIwMjIgMTE6MDc6MjIgLTA4MDANCkZyb206IFJvYmlu
-IENveGUgPGNveGVAcXVhbnR0dXguY29tPg0KU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBVQlgg
-MTYwIHRyYW5zbWl0IGJ1dCBvbmx5IHRoZXJlIGlzIGEgc21hbGwNCgljYXJyaWVyLi4uLj8NClRv
-OiAiTWFyY3VzIEQuIExlZWNoIiA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpDYzogdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20NCk1lc3NhZ2UtSUQ6DQoJPENBS0p5RGsrUzBDTFVnUExhZz1W
-WGlpcnMyWT1YZVRqPU9tcD1yQzItU0tQWnY4UmkwUUBtYWlsLmdtYWlsLmNvbT4NCkNvbnRlbnQt
-VHlwZTogbXVsdGlwYXJ0L2FsdGVybmF0aXZlOw0KCWJvdW5kYXJ5PSIwMDAwMDAwMDAwMDA5NGYz
-MDIwNWQ1YjdiZmFiIg0KDQpBbm90aGVyIGNvbW1vbiBjYXVzZSBvZiBsb3cgdHJhbnNtaXQgcG93
-ZXIgaXMgdGhlIGNvbnRhY3QgYmV0d2VlbiB0aGUgc2lnbmFsIHBpbiBvZiB0aGUgU01BIGNvbm5l
-Y3RvciBhbmQgdGhlIFBDQiBjYW4gYmUgY29tcHJvbWlzZWQgaWYgdGhlDQpjb25uZWN0b3IgaXMg
-b3Zlci10b3JxdWVkLiAgICBJZiB0aGUgdHJhY2UgaXRzZWxmIGlzIHJpcHBlZCBvZmYgdGhlIFBD
-QiwNCnRoaXMgaXMgYSBQcm9ibGVtLCBidXQgc29tZXRpbWVzIGEgYmxvYiBvZiBzb2xkZXIgdG8g
-c2hvcmUgdXAgdGhlDQpjb25uZWN0aW9uIHdpbGwgZml4IHRoZSBpc3N1ZS4gICBUcnkgaW5zcGVj
-dGluZyB0aGlzIGNvbm5lY3Rpb24gdW5kZXIgYQ0KbWFnbmlmaWVyIHRvIHNlZSBpZiBhbnkgZGFt
-YWdlIGlzIGFwcGFyZW50Lg0KDQpPbiBUaHUsIEphbiAxMywgMjAyMiBhdCA3OjAzIEFNIE1hcmN1
-cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQp3cm90ZToNCg0KPiBPbiAyMDIy
-LTAxLTEzIDA3OjIyLCBzcCBoIHdyb3RlOg0KPg0KPiBGb3IgVVNSUCB4MzEwLCBJIGhhZCBVQlgg
-MTYwIGRhdWdodGVyYm9hcmQsIGJ1dCBsYXRlbHksIGhvd2V2ZXIsIFJYIA0KPiB3b3JrcyBjb3Jy
-ZWN0bHkgQnV0IHRyYW5zbWl0IG1vZGUgaXMgbm90IHdvcmtpbmcgY29ycmVjdGx5Lg0KPiBJIGhh
-ZCBubyBkYXRhIHNpZ25hbC4uLi4uLi4uDQo+IFVCWCAxNjAgdHJhbnNtaXQgYnV0IG9ubHkgdGhl
-cmUgaXMgYSBzbWFsbCBjYXJyaWVyLi4uLj8NCj4NCj4gRm9yIEhhY2tyZk9uZSB3ZSBoYWQgdGhl
-IHNhbWUgcHJvYmxlbSwgd2UgcmVwbGFjZSBSRiBhbXBsaWZpZXIgSUMsICANCj4gbm93IGl0IHdv
-cmtzLi4uDQo+IGJ1dCBmb3IgVVNSUCBjYW4gYW55b25lIGd1aWRlIG1lIG9uIHdoaWNoIElDIGlz
-IHByb2JhYmxlIGlzIGRhbWFnZWQ/Pw0KPiBhbnkgb2ZmZXJzPw0KPg0KPiB5b3UgY2FuIHNlZSBV
-QlggMTYwIHNjaGVtYXRpYyB0aGVyZS4uLg0KPiBodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9zY2hl
-bWF0aWNzL3VieC8NCj4NCj4gVGhhbmtzIGluIGFkdmFuY2UNCj4NCj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxp
-c3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gVG8gdW5zdWJzY3JpYmUgDQo+IHNlbmQg
-YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4NCj4gVGhlIFBI
-QS0xIChVMzEpIGlzIHRoZSBSRiBvdXRwdXQgYW1wbGlmaWVyLCBidXQgaXQgc2l0cyBiZWhpbmQg
-dHdvIA0KPiBsYXllcnMgb2YgUkYgc3dpdGNoLS1TS1kxMzM1MC0zODVMRiAgYW5kIEhNQzc5OTIg
-KFU1MCBhbmQgVTMyKS4NCj4NCj4gSSBoYXZlIHRvIGFzayB3aGF0IHlvdSdyZSBkb2luZyB0byBi
-bG93LW91dCBSRiBvdXRwdXQgYW1wbGlmaWVycy4NCj4gVHJhbnNtaXR0aW5nIGludG8gYSBkZWFk
-LXNob3J0IGZvciBleHRlbmRlZCBwZXJpb2RzIGNvdWxkIGRvIGl0LCBidXQgDQo+IHRoZSBwb3dl
-ciBsZXZlbHMNCj4gICBvZiB0aGVzZSBkZXZpY2VzIGFyZSBsb3cgZW5vdWdoIHRoYXQgdHJhbnNt
-aXR0aW5nIGludG8gYW4gIm9wZW4iIG9yIA0KPiBvdGhlciB0eXBlIG9mIG1pcy1tYXRjaCBpcyB1
-bmxpa2VseSB0byBjYXVzZSBkYW1hZ2UuDQo+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVz
-cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIFRvIHVuc3Vic2NyaWJlIA0KPiBzZW5kIGFuIGVtYWls
-IHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+DQotLS0tLS0tLS0tLS0tLSBu
-ZXh0IHBhcnQgLS0tLS0tLS0tLS0tLS0NCkEgbWVzc2FnZSBwYXJ0IGluY29tcGF0aWJsZSB3aXRo
-IHBsYWluIHRleHQgZGlnZXN0cyBoYXMgYmVlbiByZW1vdmVkIC4uLg0KTmFtZTogbm90IGF2YWls
-YWJsZQ0KVHlwZTogdGV4dC9odG1sDQpTaXplOiAyOTY2IGJ5dGVzDQpEZXNjOiBub3QgYXZhaWxh
-YmxlDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQpNZXNzYWdlOiAyDQpEYXRl
-OiBNb24sIDE3IEphbiAyMDIyIDEwOjQ3OjM5ICswMzMwDQpGcm9tOiBzcCBoIDxzdGFja3Byb2dy
-YW1lckBnbWFpbC5jb20+DQpTdWJqZWN0OiBbVVNSUC11c2Vyc10gRm9yIGJ1aWxkaW5nIFZlcmls
-b2cgY29kZSBmb3IgRlBHQSB4MzAwIHNlcmllcw0KCXdoaWNoIGxpY2Vuc2UgVml2YWRvIHNob3Vs
-ZCBJIG5lY2Vzc2FyeT8NClRvOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KTWVzc2FnZS1J
-RDoNCgk8Q0FBPVMzUHZaSEI0VXFpY1NkRFd3Z0pRaEFoWTI1cldCM0owdFdVVjJxLT1aUjVzUHB3
-QG1haWwuZ21haWwuY29tPg0KQ29udGVudC1UeXBlOiBtdWx0aXBhcnQvYWx0ZXJuYXRpdmU7DQoJ
-Ym91bmRhcnk9IjAwMDAwMDAwMDAwMDUwMDM1YzA1ZDVjMWYzZWYiDQoNCkZvciBidWlsZGluZyBW
-ZXJpbG9nIGNvZGUgZm9yIEZQR0EgeDMwMCBzZXJpZXMgd2hpY2ggbGljZW5zZSBWaXZhZG8gc2hv
-dWxkIEkgbmVjZXNzYXJ5Pw0KV2VicGFjayBsaWNlbnNlIGlzIGVub3VnaD8NCk9yIGRvIHdlIG5l
-ZWQgYSBmdWxsIGxpY2Vuc2U/DQoNCnRoYW5rcyB2ZXJ5IG11Y2gNCi0tLS0tLS0tLS0tLS0tIG5l
-eHQgcGFydCAtLS0tLS0tLS0tLS0tLQ0KQSBtZXNzYWdlIHBhcnQgaW5jb21wYXRpYmxlIHdpdGgg
-cGxhaW4gdGV4dCBkaWdlc3RzIGhhcyBiZWVuIHJlbW92ZWQgLi4uDQpOYW1lOiBub3QgYXZhaWxh
-YmxlDQpUeXBlOiB0ZXh0L2h0bWwNClNpemU6IDI0NyBieXRlcw0KRGVzYzogbm90IGF2YWlsYWJs
-ZQ0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KTWVzc2FnZTogMw0KRGF0ZTog
-TW9uLCAxNyBKYW4gMjAyMiAxMTowMDowOCArMDMzMA0KRnJvbTogc3AgaCA8c3RhY2twcm9ncmFt
-ZXJAZ21haWwuY29tPg0KU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBGb3IgYnVpbGRpbmcgVmVy
-aWxvZyBjb2RlIGZvciBGUEdBIHgzMDANCglzZXJpZXMgd2hpY2ggbGljZW5zZSBWaXZhZG8gc2hv
-dWxkIEkgbmVjZXNzYXJ5Pw0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpNZXNzYWdl
-LUlEOg0KCTxDQUE9UzNQczU2Y0JCQk02UWUtcmJLNUN5V2p2ajQtYmNkclFaVDJMbVJlYWFXRl9L
-cXdAbWFpbC5nbWFpbC5jb20+DQpDb250ZW50LVR5cGU6IG11bHRpcGFydC9hbHRlcm5hdGl2ZTsN
-Cglib3VuZGFyeT0iMDAwMDAwMDAwMDAwZjI2MWY4MDVkNWMyMWZhNCINCg0KSSdtIHNvcnJ5IGZv
-ciB0aGUgdHlwbywgSSByZWZvcm1lZCBpdCBGb3IgYnVpbGRpbmcgVmVyaWxvZyBjb2RlICgmIGdl
-bmVyYXRpbmcgYml0c3RyZWFtcyApIGZvciB0aGUgRlBHQSB4MzAwIHNlcmllcyB3aGljaCAgVml2
-YWRvIGxpY2Vuc2UgZm9yIGEgZGV2ZWxvcGVyIGlzIG5lY2Vzc2FyeT8NCldlYnBhY2sgbGljZW5z
-ZSBpcyBlbm91Z2g/DQpPciBkbyB3ZSBuZWVkIGEgZnVsbCBsaWNlbnNlPw0KDQp0aGFua3MgdmVy
-eSBtdWNoDQoNCk9uIE1vbiwgSmFuIDE3LCAyMDIyIGF0IDEwOjQ3IEFNIHNwIGggPHN0YWNrcHJv
-Z3JhbWVyQGdtYWlsLmNvbT4gd3JvdGU6DQoNCj4gRm9yIGJ1aWxkaW5nIFZlcmlsb2cgY29kZSBm
-b3IgRlBHQSB4MzAwIHNlcmllcyB3aGljaCBsaWNlbnNlIFZpdmFkbyANCj4gc2hvdWxkIEkgbmVj
-ZXNzYXJ5Pw0KPiBXZWJwYWNrIGxpY2Vuc2UgaXMgZW5vdWdoPw0KPiBPciBkbyB3ZSBuZWVkIGEg
-ZnVsbCBsaWNlbnNlPw0KPg0KPiB0aGFua3MgdmVyeSBtdWNoDQo+DQo+DQotLS0tLS0tLS0tLS0t
-LSBuZXh0IHBhcnQgLS0tLS0tLS0tLS0tLS0NCkEgbWVzc2FnZSBwYXJ0IGluY29tcGF0aWJsZSB3
-aXRoIHBsYWluIHRleHQgZGlnZXN0cyBoYXMgYmVlbiByZW1vdmVkIC4uLg0KTmFtZTogbm90IGF2
-YWlsYWJsZQ0KVHlwZTogdGV4dC9odG1sDQpTaXplOiA5MDcgYnl0ZXMNCkRlc2M6IG5vdCBhdmFp
-bGFibGUNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNClN1YmplY3Q6IERpZ2Vz
-dCBGb290ZXINCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
-dHR1cy5jb20NCg0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCg0KRW5kIG9mIFVT
-UlAtdXNlcnMgRGlnZXN0LCBWb2wgMTM3LCBJc3N1ZSAzOQ0KKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============0678356892108619718==
+Content-Type: multipart/alternative; boundary="000000000000825c4a05d5e09178"
+
+--000000000000825c4a05d5e09178
+Content-Type: text/plain; charset="UTF-8"
+
+working on this now. where do i get the path mentioned above?
+
+On Tue, Jan 18, 2022 at 12:02 AM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 2022-01-17 23:34, Paul Atreides wrote:
+> > Posting on both GNURadio and USRP lists here, since my application
+> > overlaps both gr-uhd/GNURadio and the UHD API.
+> > The top-level question is, can gr-uhd support all the necessary
+> > N321-specific commands necessary to export the TX LO from RF0 to RF1?
+> > That would include running the command to set the 1x4 splitter. That's
+> > the one in question.
+> >
+> >
+> get_device()->get_tree()->access<bool>("mboards/0/dboards/A/tx_frontends/0/los/lo1/lo_distribution/LO_OUT_0/export").set(true)
+> >
+> > If not, Marcus suggested using a python snippet. I've used that with
+> > RFNoC before, but how would that work?
+> > I'm guessing it would be an "after-init" and then call the python API
+> > for the above (if that command is supported)?
+> >
+> > Thanks
+> >
+> Yeah, I'd say "after-init", and have it grab the object name of the usrp
+> object?  Using Pythonic, rather than C++ syntax?
+>
+>
+>
+
+--000000000000825c4a05d5e09178
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">working on this now. where do i get the path mentioned abo=
+ve?<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Tue, Jan 18, 2022 at 12:02 AM Marcus D. Leech &lt;<a href=3D"mail=
+to:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">On 2022-01-17 23:34, Pau=
+l Atreides wrote:<br>
+&gt; Posting on both GNURadio and USRP lists here, since my application <br=
+>
+&gt; overlaps both gr-uhd/GNURadio and the UHD API.<br>
+&gt; The top-level question is, can gr-uhd support all the necessary <br>
+&gt; N321-specific commands necessary to export the TX LO from RF0 to RF1? =
+<br>
+&gt; That would include running the command to set the 1x4 splitter. That&#=
+39;s <br>
+&gt; the one in question.<br>
+&gt;<br>
+&gt; get_device()-&gt;get_tree()-&gt;access&lt;bool&gt;(&quot;mboards/0/dbo=
+ards/A/tx_frontends/0/los/lo1/lo_distribution/LO_OUT_0/export&quot;).set(tr=
+ue)<br>
+&gt;<br>
+&gt; If not, Marcus suggested using a python snippet. I&#39;ve used that wi=
+th <br>
+&gt; RFNoC before, but how would that work?<br>
+&gt; I&#39;m guessing it would be an &quot;after-init&quot; and then call t=
+he python API <br>
+&gt; for the above (if that command is supported)?<br>
+&gt;<br>
+&gt; Thanks<br>
+&gt;<br>
+Yeah, I&#39;d say &quot;after-init&quot;, and have it grab the object name =
+of the usrp <br>
+object?=C2=A0 Using Pythonic, rather than C++ syntax?<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000825c4a05d5e09178--
+
+--===============0678356892108619718==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0678356892108619718==--
