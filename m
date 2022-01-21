@@ -2,52 +2,52 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 258FD4967A1
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Jan 2022 22:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A91564967C0
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Jan 2022 23:18:21 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 622AA385C59
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Jan 2022 16:57:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id ADC0C3857A5
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Jan 2022 17:18:20 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Xum4O7wZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DhaIH4gy";
 	dkim-atps=neutral
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 714A7384B56
-	for <usrp-users@lists.ettus.com>; Fri, 21 Jan 2022 16:56:09 -0500 (EST)
-Received: by mail-qk1-f172.google.com with SMTP id 193so11470519qkh.13
-        for <usrp-users@lists.ettus.com>; Fri, 21 Jan 2022 13:56:09 -0800 (PST)
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id AEB4038505D
+	for <usrp-users@lists.ettus.com>; Fri, 21 Jan 2022 17:17:29 -0500 (EST)
+Received: by mail-qv1-f46.google.com with SMTP id a7so12084918qvl.1
+        for <usrp-users@lists.ettus.com>; Fri, 21 Jan 2022 14:17:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to;
-        bh=mMX0XJ1tXuf/nw7S6dmPx3OvKFp24ykAtPcxKyoKbag=;
-        b=Xum4O7wZ9AIrOFJt+FA6ei69otjtub1EkbYhM/y3Y2nYFze/zitaQjgsKf64SBOXo6
-         hHNOrQ28wQjctDI2RTaCN6mtQ6yfBhvExOu4Qq+HDUazDZzAvRl274BGE/06mtBcyrmz
-         VSvzWBfnLojym8giyxRc/Lsyg3RoGSipsPf7Pl9ybN3Minqh0+qQnE5uO2BZq8TG8aOl
-         b07ypfWkmbnE7IG80oK2Ld1K/3uFtpUEiGLA3kS5gfruLfavTuA7A43Kq/1iDnoXEnt5
-         obWKMddExGvvZsKRImoVC26dUBh0PMQ/nne3yOJR5UAM8Anr/yMsC7EhA4+1mMxGiV6q
-         UC0w==
+        bh=TG07Qjx69tDp19+Rm1vPOBGltAbnBcr3YBgg4x84nXg=;
+        b=DhaIH4gySGqAA9++zIBwhXsMe9Mf4TZqrA9q372H/rDnO/tQ/3drJW1d56rQH9V9pf
+         qJiLXS/bP1hPhkoerH1SeqIgRII5N2/rOs1XkiksnnM0uEM2zkFt07mupjIKDkjbMTUn
+         lAifdxgtCtyGHz/8aMF4+BgqaOddmq7TtayDpPwsSSWSKyHK4CzA4vmB86OZne8qN0gL
+         5QHxqnKQrCFczZ2LJV1yvmz/e1qVX1JMSFbsWSej5u5oW+2nLUCPSln89yggwNS2AI3U
+         GSzIWW9HRfdzVy5RKJv8PIFyzIdZsRrN8ofJ5M7FXStGQZR4nXwao9oTwAZaOeHEEXhe
+         GLtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to;
-        bh=mMX0XJ1tXuf/nw7S6dmPx3OvKFp24ykAtPcxKyoKbag=;
-        b=W0kT1qDnURRgMQVWBtVXgtM+mVV01EbUAH2ibSY9V/yt6YaXu+AGRn/3jpau1X8o6N
-         GjS6xrnEbHi8BBD4y0CdK3RHjcf1dq7BIRc5H9TX+DfMluYjZ1xo7I8WHAutW1H1s7X4
-         +c72Db24kjYRKz1YCwIXM8rPWqibQ/fonJZd0wL2cE+/2Shg5XG3fGUX0dcCMIKl0etG
-         PC1w/+8W/uuzlTHjsH0yXDjh3SeCU2x6BUGKVxKMTy62XKwUZxcdNNrsO43l/csdqCb3
-         kxgKYwb43oqZlbNOlj/Hb+9GYpVrs/U4HIdi7TQcAKrmNtnCyTN9oEmBBFL2csml0dwa
-         ds0Q==
-X-Gm-Message-State: AOAM530APshBt5p3mRb57I8bJXQdSp6ws/IOsqR+Rta0AHkgBktYyK5/
-	lX50l7E6AufVdNbE2X0KuEo=
-X-Google-Smtp-Source: ABdhPJxvDKMSVxJ4qu9h23zDEKx+o5h6bRQAZTD1lShA7sqoqVmRoKZeJnV68OsmQcHuCtRWiiN9jw==
-X-Received: by 2002:a37:644f:: with SMTP id y76mr4258635qkb.164.1642802168845;
-        Fri, 21 Jan 2022 13:56:08 -0800 (PST)
+        bh=TG07Qjx69tDp19+Rm1vPOBGltAbnBcr3YBgg4x84nXg=;
+        b=OdcWiEeK0wm3CdowM4AFl4jZmzpWh/17KxB55ioS2xYH3y49vmeKHCSf0/zTd3sY71
+         LeNicG3apOl8SSf+QOPPOzzkde6Ce1ue1NiXHzqm8iQnyRGY8K5+qlolBbJEEwrfVVNm
+         6X3PYaDUQkbO2gRXh2xstpN5BxHhOq8wEOOJk6t1dneMc2rag0jEpLepGlINZQw0kNZe
+         SoLEk/2sZDjFC0OXCueGM3hRDEsL3Py0+JN48xQZ1JpBNwy8RiUDA/a3PmxYkjpeEwUE
+         D7Nlhxbvh/4AhHewiLcfN8dulhkWLYNMF/Nq0cUIf1s0kdVBUpo7ifCvYa7ku+j0CVL1
+         xvOA==
+X-Gm-Message-State: AOAM531DMSPXtPwVRQpNjmYJyQHo8hqlDcwYxseIaEQJQK49ZjsKmM2J
+	DodNa+JoqIATMBzW5tHwRGphhcfvusnnmA==
+X-Google-Smtp-Source: ABdhPJzwJ5jA/CgZzAXdf6dkriYBgc4u9c6Hba5DU196XiBqrlKuiKnnrQQubXk7FlIxM3C/Vo969g==
+X-Received: by 2002:a05:6214:c2e:: with SMTP id a14mr5748930qvd.14.1642803449072;
+        Fri, 21 Jan 2022 14:17:29 -0800 (PST)
 Received: from [192.168.2.223] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id y6sm4273442qkp.26.2022.01.21.13.56.08
+        by smtp.googlemail.com with ESMTPSA id o7sm3640606qke.73.2022.01.21.14.17.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Jan 2022 13:56:08 -0800 (PST)
-Message-ID: <bc4e6aee-9904-6536-bb61-328bb50a9fb5@gmail.com>
-Date: Fri, 21 Jan 2022 16:56:07 -0500
+        Fri, 21 Jan 2022 14:17:28 -0800 (PST)
+Message-ID: <c0ea3dc8-726e-2088-492f-844dcc21d985@gmail.com>
+Date: Fri, 21 Jan 2022 17:17:27 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
@@ -61,8 +61,8 @@ References: <CAB__hTTS8mium09MKQL4ZGWOie5VBSOWYUHXA3Fbts308_ABrg@mail.gmail.com>
  <CACwKM9JZCwJmPF8ZudN9tyszLG+L0==PoniS4kPG+jSNpCYooA@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <CACwKM9JZCwJmPF8ZudN9tyszLG+L0==PoniS4kPG+jSNpCYooA@mail.gmail.com>
-Message-ID-Hash: PO3QWOQKZROM6YXPG6N67QHF7SZHQ77Y
-X-Message-ID-Hash: PO3QWOQKZROM6YXPG6N67QHF7SZHQ77Y
+Message-ID-Hash: JRUDU7FKXOGQJ3KAVAPYAQ6YJ5AKKS4Y
+X-Message-ID-Hash: JRUDU7FKXOGQJ3KAVAPYAQ6YJ5AKKS4Y
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
@@ -70,36 +70,40 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N321 LO sharing between RF 0/1
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PO3QWOQKZROM6YXPG6N67QHF7SZHQ77Y/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JRUDU7FKXOGQJ3KAVAPYAQ6YJ5AKKS4Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0684047656919161679=="
+Content-Type: multipart/mixed; boundary="===============1347614946495257472=="
 
 This is a multi-part message in MIME format.
---===============0684047656919161679==
+--===============1347614946495257472==
 Content-Type: multipart/alternative;
- boundary="------------qjMYPf3HsLJqZWNMOzne7p06"
+ boundary="------------Wu1oAiGSZgurBZyw6cgDL5w4"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------qjMYPf3HsLJqZWNMOzne7p06
+--------------Wu1oAiGSZgurBZyw6cgDL5w4
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
 On 2022-01-21 16:52, Paul Atreides wrote:
 > ok. is that just setting up 2 streamers to start at the same time?
-Single sreamer, containing all your channels interleaved.=C2=A0=C2=A0 At =
-least,=20
-that's how the C++ API works.
-
-I1Q1I2Q2=C2=A0=C2=A0=C2=A0 etc
-
-
 >
+ From looking at the code, I *THINK* that if you send it a 2D numpy=20
+array the rows represent the channels.
+
+The "send_waveform" API is Python-API only, and does a fair amount of=20
+dancing-around to "make things just work"
+ =C2=A0 even if you only send a 1D wave-form array.
+
+But, of course, I cannot find any documentation on it, just looking at=20
+the code.
+
+
 > On Fri, Jan 21, 2022 at 4:50 PM Marcus D. Leech=20
 > <patchvonbraun@gmail.com> wrote:
 >
@@ -184,7 +188,7 @@ on
 >>
 >
 
---------------qjMYPf3HsLJqZWNMOzne7p06
+--------------Wu1oAiGSZgurBZyw6cgDL5w4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -206,17 +210,22 @@ TF-8">
 t
         the same time?<br>
       </div>
+      <br>
     </blockquote>
-    Single sreamer, containing all your channels interleaved.=C2=A0=C2=A0=
- At
-    least, that's how the C++ API works.<br>
+    From looking at the code, I *THINK* that if you send it a 2D numpy
+    array the rows represent the channels.<br>
     <br>
-    I1Q1I2Q2=C2=A0=C2=A0=C2=A0 etc<br>
+    The "send_waveform" API is Python-API only, and does a fair amount
+    of dancing-around to "make things just work"<br>
+    =C2=A0 even if you only send a 1D wave-form array.<br>
+    <br>
+    But, of course, I cannot find any documentation on it, just looking
+    at the code.<br>
     <br>
     <br>
     <blockquote type=3D"cite"
 cite=3D"mid:CACwKM9JZCwJmPF8ZudN9tyszLG+L0=3D=3DPoniS4kPG+jSNpCYooA@mail.=
-gmail.com"><br>
+gmail.com">
       <div class=3D"gmail_quote">
         <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jan 21, 2022 at 4:5=
 0
@@ -352,9 +361,9 @@ m it
   </body>
 </html>
 
---------------qjMYPf3HsLJqZWNMOzne7p06--
+--------------Wu1oAiGSZgurBZyw6cgDL5w4--
 
---===============0684047656919161679==
+--===============1347614946495257472==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -364,4 +373,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0684047656919161679==--
+--===============1347614946495257472==--
