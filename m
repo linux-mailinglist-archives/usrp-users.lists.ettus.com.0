@@ -2,205 +2,132 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBD5498A0F
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Jan 2022 20:02:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 854DB49A22B
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Jan 2022 02:54:52 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B22EB38458E
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Jan 2022 14:01:59 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 15EA5383064
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Jan 2022 20:54:51 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="L9YDFU+P";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ncsu.edu header.i=@ncsu.edu header.b="aB8sv9MP";
 	dkim-atps=neutral
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7C229384515
-	for <usrp-users@lists.ettus.com>; Mon, 24 Jan 2022 14:00:56 -0500 (EST)
-Received: by mail-qt1-f179.google.com with SMTP id c15so8189703qtv.1
-        for <usrp-users@lists.ettus.com>; Mon, 24 Jan 2022 11:00:56 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id E45D93844B2
+	for <USRP-users@lists.ettus.com>; Mon, 24 Jan 2022 20:53:59 -0500 (EST)
+Received: by mail-yb1-f177.google.com with SMTP id v186so57262626ybg.1
+        for <USRP-users@lists.ettus.com>; Mon, 24 Jan 2022 17:53:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=/OsJZhu8wHYbEpVXJBAB19VdM+xHPqyzMdHYTOchZPA=;
-        b=L9YDFU+PsvqN9lMnyNJ/Fe9d88xATrcnnFv0aYMGqOLYNES8AAb93qe7ZsDeSar/z1
-         2/EHXWXdt81iyC3qLYidcxHvy7FjkWkjL4q6MJ2Qb98M3jKUULWHNs0ZRqbWrrO8JDH1
-         yf6qSnYGYj45b7Y1/wuYn5RefgjkjoAakm9YhfVJN+npx4NdSojyODgiWP/cip4oH1t9
-         pG1Kn6w2lhVX2Lr00tJrG/oCCDvjDblv2fWurwToLPSkZp/8bx+/Tl7bza0gZ2PXAPwn
-         sXdDIo7MBzux1JJD1AILSFCV7+TDp3pVe/Q+mHtwpDwwWLps5bOslJbDSeAEhiYN6EGk
-         DdcQ==
+        d=ncsu.edu; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=IjDhVohU1SUXcIj3ge502BNeDjxa6bQ53xxRsgvcwlg=;
+        b=aB8sv9MPcKxF+fyhsBCxytdGCPGnm0T/J0QW+aO2tYA9wFlGaRvcgyOqcyrBVSoee+
+         6dy1k1ppRo3abQyKn3hlGeoASWMlMhC+ZtXEJ3c4SnFlJySx90ktKk1xfre/W1qkam7t
+         GaWD0sSdmCVwlbxRtV9JEu4yCKOBLjWBRDM2rqG+ZhcOF6yzOeMXzQZFU5hFiTKsPWQW
+         5bxODcDF0VwYvtb5lCvaMwl5NCjbyCwZ96OTKgXBkGARkV1V0MddhzDITzJGysAjVrID
+         Q9W/YQsvpJpJJbaHKhu9ZsfF+WKY5zLWOrehPrhXNGeIi+r6QV10//USFF+aHBcRAJmo
+         OMBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=/OsJZhu8wHYbEpVXJBAB19VdM+xHPqyzMdHYTOchZPA=;
-        b=sa4SCqK5Ltr9Q/xk9u6Mw/aCJqmUVNvOSaaD849NforFfqnPW1cwwOgxwr8E+XhEYa
-         ilALJ+3zlw29KvJMC9mxGxC+F6hCHJYQw9ZoQQdeH17maqjgvmn5oIGefVpAsgr4pq0a
-         6kb5oZZ3cgT5NsPIlLuC6sNGWsp6aOL17MCmP3iVvZ5eoLU9EJgRIIZHZmYvov/RLexT
-         GrHX10VJlyqV4M5uviEqXMfIfodJtF9apXEIDV8g6azZ2GJAwOEyOlpFwM3J1/3LAMOc
-         f7dfWGSuNTuEtOjP9dFsNMmbJU3OP0fltY+xanDLeTGFHDbnwZU7fWNuxxBWbDeBxIPD
-         LaSA==
-X-Gm-Message-State: AOAM531MmVi+SVrV6u4HyKDgYWWnSiDiZen3KH8XdyyIU75dcp5eU8gA
-	DNhXGfDgzIE3nssVrQoOO7CAEpwNUIFCmw==
-X-Google-Smtp-Source: ABdhPJyVRoTy/nj5DLoKEl+kf0Rg1Nw5tHucrLgCnnmUx+SBZ3bxRfModRRa6krZ/J4TwvGdlZ4i3g==
-X-Received: by 2002:ac8:5c87:: with SMTP id r7mr8983071qta.56.1643050855660;
-        Mon, 24 Jan 2022 11:00:55 -0800 (PST)
-Received: from [192.168.2.225] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id a14sm795168qti.79.2022.01.24.11.00.55
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Jan 2022 11:00:55 -0800 (PST)
-Message-ID: <bea61b03-7229-dee0-01c2-061b7b4e2f4e@gmail.com>
-Date: Mon, 24 Jan 2022 14:00:54 -0500
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=IjDhVohU1SUXcIj3ge502BNeDjxa6bQ53xxRsgvcwlg=;
+        b=rWJomzBeHkXyfwY9Nvn7qFnqwSP7xNSd6zWB9mZv8Vqs5VhMeWMbmthu1Fy4hoOyju
+         hQQxDR94g9GcecdImlH2xsrkx7Det73vsXZaiudzbQPtyLTuQyW70JiJgoqoMTnXavkn
+         x0jskfC5x93UfkhibWmqqM0umBQpBnqMGpBEa7/vR/bihQbAaXfeSo/JMGx/FnKIEqVJ
+         1qoup6SmcAV5bqrXopSOA8WLBpdA7XqSOzowfyRT6nrAVQpKaoKll18YSpwm5adA3okz
+         WoSXPIZ+ImSpEqhrltYlyh6Spm519FGPoHuJZuW6IUURZ4RkL1g/W9BAp5t8+rm1Uv8W
+         Uisw==
+X-Gm-Message-State: AOAM532fQ3V+iN7U9GbzVCJbtzq/fVfd3R2Mi6OcX7d2EOR0Djwghpx8
+	Pn3GwK0M4/kBRr8l07+O5WoNFt9yF7R+ITrHnxsUMNX3D3B0/w==
+X-Google-Smtp-Source: ABdhPJwwNsE6ddzRbXeZ2BsW4obx+o6k97tIcUeVVHm4J0iZHM4uS69Vy/uY4X+vh7oqe6QmX+ggth0HigrKus9XE5Y=
+X-Received: by 2002:a25:418f:: with SMTP id o137mr25674454yba.97.1643075639065;
+ Mon, 24 Jan 2022 17:53:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <164305030384.11266.16739764613533549577@mm2.emwd.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <164305030384.11266.16739764613533549577@mm2.emwd.com>
-Message-ID-Hash: GNKT3TXFI4U6PN6VBYOSHLQJCNWU23GF
-X-Message-ID-Hash: GNKT3TXFI4U6PN6VBYOSHLQJCNWU23GF
-X-MailFrom: patchvonbraun@gmail.com
+Date: Mon, 24 Jan 2022 20:53:48 -0500
+Message-ID: <CAKhiL6XkCaqTqbx3S3AbCUh1Cdkg2JQ-hQwp367K2DkogscniQ@mail.gmail.com>
+To: USRP-users@lists.ettus.com
+Message-ID-Hash: 422WPNFU4UJT33DHGQQ5MUMJD7DKLXC7
+X-Message-ID-Hash: 422WPNFU4UJT33DHGQQ5MUMJD7DKLXC7
+X-MailFrom: ljsmith9@ncsu.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N310 LO Offset tuning
+Subject: [USRP-users] Synchronization of two USRP x310s
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GNKT3TXFI4U6PN6VBYOSHLQJCNWU23GF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/422WPNFU4UJT33DHGQQ5MUMJD7DKLXC7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6488019720546582025=="
+From: LoyCurtis Smith via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: LoyCurtis Smith <ljsmith9@ncsu.edu>
+Content-Type: multipart/mixed; boundary="===============3847716847790395325=="
 
-This is a multi-part message in MIME format.
---===============6488019720546582025==
-Content-Type: multipart/alternative;
- boundary="------------3V0Ttf651FmJ1O2i0ddLcitM"
-Content-Language: en-US
+--===============3847716847790395325==
+Content-Type: multipart/alternative; boundary="000000000000ce66fd05d65e5b59"
 
-This is a multi-part message in MIME format.
---------------3V0Ttf651FmJ1O2i0ddLcitM
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000ce66fd05d65e5b59
+Content-Type: text/plain; charset="UTF-8"
+
+My system setup is as follows:
+
+   - 2 x USRP x310 with CBX-120 daughterboard
+   - 2 x Ubuntu 18.04 workstation
+   - 2 x Taoglas 45.8113 antenna
+   - 2 x  Internal Reference Clock (Master Clock set at 184.32 MHz)
+   - 2 x Internal Time source
+   - 2 x Connected via 1 Gig-E interfaces
+   - 2 x Using UHD 4.1
+
+The devices have been in two setups: stacked and a few inches apart.
+
+I am attempting to deploy a 5G network using the openairinterface (OAI)
+software system. Both devices synchronize initially, then they fail. With
+openairinterface, I am using frequency offset compensation at the UE. Its a
+useful parameter when running over the air and/or without an external
+clock/time source (
+https://gitlab.eurecom.fr/oai/openairinterface5g/blob/develop/doc/RUNMODEM.md
+)
+
+Is there a way to synchronize the reference clock/timing of both USRP x310s
+over the air? In the future, I will be attempting to connect a third USRP
+x310. My setup will include one base station and two user devices.
+
+V/r
+
+LoyCurtis Smith
+
+--000000000000ce66fd05d65e5b59
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-01-24 13:51, Tillson, Bob (US) via USRP-users wrote:
->
-> Is LO offset tuning supported by the N310?
->
-> Using UHD 3.14.1.1 and with rx samples to file, I noticed the=20
-> following output:
->
-> Setting RX Freq: 350.000000 MHz...
->
-> Setting RX LO Offset: 30.000000 MHz...
->
-> Actual RX Freq: 350.000000 MHz...
->
-> Using other values for LO Offset does not change Actual RX Freq either=E2=
-=80=A6
->
-> Thanks,
->
->
-LO offset still delivers the desired center frequency to the host, but=20
-what it does is rather than have LO=3D=3Ddesired, it sets the LO to
- =C2=A0 <specified_offset+desired>, and then uses the DDC machinery to ro=
-tate=20
-the resulting bandwidth down so that 0Hz is
- =C2=A0 right at your desired frequency.
+<div dir=3D"ltr"><div>My system setup is as follows:=C2=A0</div><div><ul><l=
+i>2 x USRP x310 with CBX-120 daughterboard</li><li>2 x Ubuntu 18.04 worksta=
+tion</li><li>2 x Taoglas 45.8113 antenna</li><li>2 x=C2=A0 Internal Referen=
+ce Clock (Master Clock set at 184.32 MHz)</li><li>2 x Internal Time source=
+=C2=A0</li><li>2 x Connected via 1 Gig-E interfaces</li><li>2 x Using UHD 4=
+.1</li></ul><div>The devices have been in two setups: stacked and a few inc=
+hes apart.=C2=A0</div><div><br></div><div>I am attempting to deploy a 5G ne=
+twork using the openairinterface (OAI) software system. Both devices synchr=
+onize initially, then they fail. With openairinterface, I am using frequenc=
+y offset compensation at the UE. Its a useful parameter when running over t=
+he air and/or without an external clock/time source (<a href=3D"https://git=
+lab.eurecom.fr/oai/openairinterface5g/blob/develop/doc/RUNMODEM.md">https:/=
+/gitlab.eurecom.fr/oai/openairinterface5g/blob/develop/doc/RUNMODEM.md</a>)=
+</div><div><br></div><div>Is there a way to synchronize the reference clock=
+/timing of both USRP x310s over the air? In the future, I will be attemptin=
+g to connect a third USRP x310. My setup will include one base station and =
+two user devices.=C2=A0</div><div><div dir=3D"ltr" class=3D"gmail_signature=
+" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"=
+><font color=3D"#073763"><br></font></div><div dir=3D"ltr"><font color=3D"#=
+073763">V/r</font><div><span style=3D"background-color:rgb(255,255,255)"><f=
+ont color=3D"#073763"><br></font></span></div><div><span style=3D"backgroun=
+d-color:rgb(255,255,255)"><font color=3D"#073763">LoyCurtis Smith</font></s=
+pan></div></div></div></div></div></div></div></div>
 
-This is used to side-step things like the DC offset that is inevitable=20
-with direct-conversion receiver designs, as with N310.
+--000000000000ce66fd05d65e5b59--
 
-
---------------3V0Ttf651FmJ1O2i0ddLcitM
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-01-24 13:51, Tillson, Bob (US)
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:164305030384.11266.16739764613533549577@mm2.emwd.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Is LO offset tuning supported by the N310?=
-<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Using UHD 3.14.1.1 and with rx samples to
-          file, I noticed the following output:<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal" style=3D"text-indent:.5in">Setting RX Freq=
-:
-          350.000000 MHz...<o:p></o:p></p>
-        <p class=3D"MsoNormal" style=3D"text-indent:.5in">Setting RX LO
-          Offset: 30.000000 MHz...<o:p></o:p></p>
-        <p class=3D"MsoNormal" style=3D"text-indent:.5in">Actual RX Freq:
-          350.000000 MHz...<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Using other values for LO Offset does not
-          change Actual RX Freq either=E2=80=A6<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      </div>
-      <br>
-    </blockquote>
-    LO offset still delivers the desired center frequency to the host,
-    but what it does is rather than have LO=3D=3Ddesired, it sets the LO =
-to<br>
-    =C2=A0 &lt;specified_offset+desired&gt;, and then uses the DDC machin=
-ery
-    to rotate the resulting bandwidth down so that 0Hz is<br>
-    =C2=A0 right at your desired frequency.<br>
-    <br>
-    This is used to side-step things like the DC offset that is
-    inevitable with direct-conversion receiver designs, as with N310.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------3V0Ttf651FmJ1O2i0ddLcitM--
-
---===============6488019720546582025==
+--===============3847716847790395325==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -210,4 +137,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6488019720546582025==--
+--===============3847716847790395325==--
