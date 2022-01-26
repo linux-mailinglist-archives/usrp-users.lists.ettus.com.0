@@ -2,326 +2,187 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04EE249C54A
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jan 2022 09:31:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FDE749C6E1
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jan 2022 10:51:59 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6C1F5384F3C
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Jan 2022 03:31:14 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E7FFF384BA5
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Jan 2022 04:51:57 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ncsu.edu header.i=@ncsu.edu header.b="KnLiciYR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="fDMK75em";
 	dkim-atps=neutral
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id ADDB1384AB0
-	for <usrp-users@lists.ettus.com>; Wed, 26 Jan 2022 03:30:10 -0500 (EST)
-Received: by mail-qv1-f53.google.com with SMTP id k4so28240289qvt.6
-        for <usrp-users@lists.ettus.com>; Wed, 26 Jan 2022 00:30:10 -0800 (PST)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 76E1A384A2F
+	for <usrp-users@lists.ettus.com>; Wed, 26 Jan 2022 04:51:06 -0500 (EST)
+Received: by mail-wr1-f54.google.com with SMTP id v13so24686510wrv.10
+        for <usrp-users@lists.ettus.com>; Wed, 26 Jan 2022 01:51:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ncsu.edu; s=google;
-        h=mime-version:date:from:subject:thread-topic:in-reply-to:message-id
-         :references:to:cc:content-transfer-encoding;
-        bh=Exh//N0PYzIWfe4PzZshripyxzcFzOzvGqqRqty9Wbg=;
-        b=KnLiciYRn4bhhoLp4XsKq5kGzxzNpbNBWGfzD8MUSOv/kNNOgfQbRHjZiTvWYDFREk
-         7712wY1N7YA5LjqD/3i2rQZv+u7aSCJscGIt1C8brJXF1T7aB71lKjgKR6P6NuK0Rvmg
-         aKw7IZjMH4lC9wuak8PWtAa/SeBaBu/M506SWZ1+3HZoSslKYTLOiy9bHibWc2+o/4tO
-         YVGJV2wW/Nvl61yI/o3Sbsk0a3CcXTnO4BUI3kG1pTxfTlSrge13883hlcp2yz4+HzD8
-         qccT2xUafyeZD68kEa1wBLLcvlefB/EXd1SzfhPL2nWGLQvJ6yvxm8ZEb3SK0TrrSD/R
-         mzVQ==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=26bt7JWno2Cl7lh/+XWr2XUhw/5dfZRJgH/sME7qAYw=;
+        b=fDMK75emKYkeIpWZQ+Ge7yj6/m3BDLFj4DYo4x6cWfGR8M0zf2hQPTwOranADJeBju
+         ob1hY503+FUfaaE0NYCTHh/8gySpJQPHqIhEIhYtl7ZhKE3PKLbhAEIP7LWi+6d2Zko4
+         QOsQaTQKjeWCJLRsoXoyEQ8MN/lSau5oSs4Li/mRbfhvDpUHD5OGLohPQoduUJyONX9b
+         8vNXZ8lsYPzo0ITdaiw8lwG8u9qoGWNI1iLqSsY95rZa/7UlDB6+qUTTwJC2I/PgzzFc
+         EllHzHkG7pAIbIZEKyuJGtmDInJu2p/h7qJs4ipczQy+ocZGtJgl0KCQd8igbvdxO7aL
+         bcNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:date:from:subject:thread-topic
-         :in-reply-to:message-id:references:to:cc:content-transfer-encoding;
-        bh=Exh//N0PYzIWfe4PzZshripyxzcFzOzvGqqRqty9Wbg=;
-        b=n0XRV5IP7CH96Z95lQAIYpqiQtwsZ+G0+R0E0sFQuJ0bEe3DxxNTPfHW/EqAWum27a
-         5BzGfkWTNmnHc3wq1jY/G5vrecNKLz5HuA9mcILfLxq23YB8kRZFHgGxG+wxYUME/cV6
-         9/YTSXRQk6bGzgoWPKQNjZA6oBHJxBIeuyX99oLhfUSzirveF1l3VPQj6oOG7ypABADp
-         m30KAWYX/Z3/Sz2NP6Cnf9+ED2QoNRvNyz4cNNzcwjY4XpgX7KZ4Hu7GsTywyPPENgBP
-         nnMfnjWqHgql5GLxkFUhv922qQxTb21WQ+XCU8/QK+Xi04yYOowNRWxC8qPSj/7FHHu4
-         Wh6Q==
-X-Gm-Message-State: AOAM532UneriYwxQ+iYJskB/hwca8u0X8dS8CKLtS3JJc4EJ98Byu1fj
-	Hy+5I5rTEt/S0ipGs+iSEtQxbI7X/kXn7A==
-X-Google-Smtp-Source: ABdhPJzxcSl6ocoEQBUGQ5xhQuWSXTLDNFl8fsTV3fsvuAtmC4zslPXru9IEhA0m2nNOaQ2slVnMww==
-X-Received: by 2002:a05:6214:21e5:: with SMTP id p5mr5614328qvj.130.1643185809704;
-        Wed, 26 Jan 2022 00:30:09 -0800 (PST)
-Received: from Uvumilivu (2603-6080-9a01-a487-04c1-a855-a8a0-d846.res6.spectrum.com. [2603:6080:9a01:a487:4c1:a855:a8a0:d846])
-        by smtp.gmail.com with ESMTPSA id n22sm10260604qka.46.2022.01.26.00.30.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 26 Jan 2022 00:30:09 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=26bt7JWno2Cl7lh/+XWr2XUhw/5dfZRJgH/sME7qAYw=;
+        b=n882R/oibq2kYy2DttduQshkK59a/b5R4+yTPvg4SwKJ8MZ2BpV0/XxIN4wdOOzv6k
+         QAdD/UnTHlWAbzqPdCPs6ujQAZJcwImNynO2ssFQXfPs0kPu2Ul/mGYgMK6nUe4aRIPr
+         srenHGZ1T9zcKt1FELWpbn6Dn6NPticu6wDo3J9DY2ICrD1kVajVF06XFPnTrMsmJ9r6
+         XY1Mc0US2A+FmFxAvTXv4xwoEw4EAPucG0Hp6qXcSZ6PQP9IykWeBzyGzZ60PqzZOAaM
+         FYEAhHwF8s/2Jg0DExRaLNjlGA11bj+M6VC1Q4vus8ClJTjjTIWA73IM+PsszIYxA9/s
+         TvYA==
+X-Gm-Message-State: AOAM530vmg6tdihlLxUpuhEfEQeEA8gCF2BQWJp+g4qFrOLTOWGWOac+
+	NyguJ/LUaKcri/bnwTMYuZm+viNYU+hTsiDt
+X-Google-Smtp-Source: ABdhPJyFZEXLXvREXJFbYfOev403CvgIraPyqVxt9nfmroyE1iAyhzJM35n/HG3KWr8rSjpKAEiJJQ==
+X-Received: by 2002:adf:9dc5:: with SMTP id q5mr21808984wre.272.1643190665029;
+        Wed, 26 Jan 2022 01:51:05 -0800 (PST)
+Received: from [192.168.178.39] ([87.123.245.231])
+        by smtp.gmail.com with ESMTPSA id i2sm3096605wmq.23.2022.01.26.01.51.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Jan 2022 01:51:04 -0800 (PST)
+Message-ID: <7c5f400a-5a54-a10d-37dc-45556677b574@ettus.com>
+Date: Wed, 26 Jan 2022 10:51:03 +0100
 MIME-Version: 1.0
-Date: Wed, 26 Jan 2022 03:30:06 -0500
-Thread-Topic: RE: [USRP-users] Re: Synchronization of two USRP x310s
-In-Reply-To: <b2bb9131-5ea3-e152-49a1-8c400abdcbf3@gmail.com>
-Message-ID: <C6114C28-BFA1-47A4-9800-CF6AC1F16A88@hxcore.ol>
-References: 
- <CAKhiL6XkCaqTqbx3S3AbCUh1Cdkg2JQ-hQwp367K2DkogscniQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com, ljsmith9@ncsu.edu
+References: <CAKhiL6XkCaqTqbx3S3AbCUh1Cdkg2JQ-hQwp367K2DkogscniQ@mail.gmail.com>
  <b190375f-9565-ddc8-5289-6af588630efe@gmail.com>
- <CAKhiL6V55sfozy+b--6b21GJvERyUfVjPW26KWnuhdh39ow9_w@mail.gmail.com>,<b2bb9131-5ea3-e152-49a1-8c400abdcbf3@gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: ZPEDHHJYYXQCQGSSVPBUIXQFI4L2YXBY
-X-Message-ID-Hash: ZPEDHHJYYXQCQGSSVPBUIXQFI4L2YXBY
-X-MailFrom: ljsmith9@ncsu.edu
+ <CAKhiL6V55sfozy+b--6b21GJvERyUfVjPW26KWnuhdh39ow9_w@mail.gmail.com>
+ <b2bb9131-5ea3-e152-49a1-8c400abdcbf3@gmail.com>
+ <C6114C28-BFA1-47A4-9800-CF6AC1F16A88@hxcore.ol>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+In-Reply-To: <C6114C28-BFA1-47A4-9800-CF6AC1F16A88@hxcore.ol>
+Message-ID-Hash: 377DDRD2ICJYLCQSS5F4FXATX5D34H5H
+X-Message-ID-Hash: 377DDRD2ICJYLCQSS5F4FXATX5D34H5H
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Synchronization of two USRP x310s
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZPEDHHJYYXQCQGSSVPBUIXQFI4L2YXBY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/377DDRD2ICJYLCQSS5F4FXATX5D34H5H/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: LoyCurtis Smith via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: LoyCurtis Smith <ljsmith9@ncsu.edu>
-Content-Type: multipart/mixed; boundary="===============5532513213712233503=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============5532513213712233503==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="utf-8"
-
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta ht=
-tp-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta name=
-=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:677122390;
-	mso-list-template-ids:-1;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style></head><body lang=3DEN-US link=3Dblue vlink=3D"#954F72" style=3D=
-'word-wrap:break-word'><div class=3DWordSection1><p class=3DMsoNormal>Is th=
-ere a resource for synchronizing multiple USRP x310s without an external re=
-ference clock?</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoN=
-ormal>Also, would SBX-120 daughterboards perform better when using multiple=
- USRPs because of its phase sync feature?</p><p class=3DMsoNormal><o:p>&nbs=
-p;</o:p></p><p class=3DMsoNormal><span style=3D'color:#4472C4'>V/r <o:p></o=
-:p></span></p><p class=3DMsoNormal><span style=3D'color:#4472C4'><o:p>&nbsp=
-;</o:p></span></p><p class=3DMsoNormal><span style=3D'color:#4472C4'>LoyCur=
-tis Smith<o:p></o:p></span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><d=
-iv style=3D'mso-element:para-border-div;border:none;border-top:solid #E1E1E=
-1 1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal style=3D'border:non=
-e;padding:0in'><b>From: </b><a href=3D"mailto:patchvonbraun@gmail.com">Marc=
-us D. Leech</a><br><b>Sent: </b>Tuesday, January 25, 2022 11:14<br><b>To: <=
-/b><a href=3D"mailto:ljsmith9@ncsu.edu">LoyCurtis Smith</a><br><b>Cc: </b><=
-a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
-<br><b>Subject: </b>Re: [USRP-users] Re: Synchronization of two USRP x310s<=
-/p></div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNorma=
-l>On 2022-01-25 11:12, LoyCurtis Smith wrote:<o:p></o:p></p></div><blockquo=
-te style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><div><p class=3DMsoNormal=
->Would their mechanism included UHD based code? <o:p></o:p></p></div></bloc=
-kquote><p class=3DMsoNormal>Since UHD is the way ANY application talks to t=
-he radios, yes.&nbsp; But I have no idea if OAI, as one of dozens and dozen=
-s of different appilcations<br>&nbsp; &quot;out there&quot; has any way to =
-support that functionality.<br><br><br><o:p></o:p></p><blockquote style=3D'=
-margin-top:5.0pt;margin-bottom:5.0pt'><div><p class=3DMsoNormal><o:p>&nbsp;=
-</o:p></p></div><div><p class=3DMsoNormal>Also, I assume that the only othe=
-r option would be to purchase an Octoclock or some other clock distribution=
- module?<o:p></o:p></p></div></blockquote><p class=3DMsoNormal>Yes, you'd n=
-eed some kind of shared 10MHz reference clock and 1PPS source, AND your app=
-lication needs to be able to configure the radios to<br>&nbsp; use it.<br><=
-br><br><br><o:p></o:p></p><blockquote style=3D'margin-top:5.0pt;margin-bott=
-om:5.0pt'><div><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p class=
-=3DMsoNormal>On Tue, Jan 25, 2022 at 10:40 Marcus D. Leech &lt;<a href=3D"m=
-ailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<o:p><=
-/o:p></p></div><blockquote style=3D'border:none;border-left:solid #CCCCCC 1=
-.0pt;padding:0in 0in 0in 6.0pt;margin-left:4.8pt;margin-top:5.0pt;margin-ri=
-ght:0in;margin-bottom:5.0pt'><div><div><p class=3DMsoNormal style=3D'margin=
--left:81.6pt'>On 2022-01-24 20:53, LoyCurtis Smith via USRP-users wrote:<o:=
-p></o:p></p></div><blockquote style=3D'margin-top:5.0pt;margin-bottom:5.0pt=
-'><div><div><p class=3DMsoNormal style=3D'margin-left:153.6pt'>My system se=
-tup is as follows:&nbsp;<o:p></o:p></p></div><div><p class=3DMsoNormal styl=
-e=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;margin-left:189.6pt=
-;text-indent:-.25in;mso-list:l0 level1 lfo1'><![if !supportLists]><span sty=
-le=3D'font-size:10.0pt;font-family:Symbol'><span style=3D'mso-list:Ignore'>=
-=C2=B7<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>2 x USRP x310 with CBX-12=
-0 daughterboard<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-=
-alt:auto;mso-margin-bottom-alt:auto;margin-left:189.6pt;text-indent:-.25in;=
-mso-list:l0 level1 lfo1'><![if !supportLists]><span style=3D'font-size:10.0=
-pt;font-family:Symbol'><span style=3D'mso-list:Ignore'>=C2=B7<span style=3D=
-'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <=
-/span></span></span><![endif]>2 x Ubuntu 18.04 workstation<o:p></o:p></p><p=
- class=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:a=
-uto;margin-left:189.6pt;text-indent:-.25in;mso-list:l0 level1 lfo1'><![if !=
-supportLists]><span style=3D'font-size:10.0pt;font-family:Symbol'><span sty=
-le=3D'mso-list:Ignore'>=C2=B7<span style=3D'font:7.0pt "Times New Roman"'>&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>2 =
-x Taoglas 45.8113 antenna<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-m=
-argin-top-alt:auto;mso-margin-bottom-alt:auto;margin-left:189.6pt;text-inde=
-nt:-.25in;mso-list:l0 level1 lfo1'><![if !supportLists]><span style=3D'font=
--size:10.0pt;font-family:Symbol'><span style=3D'mso-list:Ignore'>=C2=B7<spa=
-n style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp; </span></span></span><![endif]>2 x&nbsp; Internal Reference Clock =
-(Master Clock set at 184.32 MHz)<o:p></o:p></p><p class=3DMsoNormal style=
-=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;margin-left:189.6pt;=
-text-indent:-.25in;mso-list:l0 level1 lfo1'><![if !supportLists]><span styl=
-e=3D'font-size:10.0pt;font-family:Symbol'><span style=3D'mso-list:Ignore'>=
-=C2=B7<span style=3D'font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>2 x Internal Time source&=
-nbsp;<o:p></o:p></p><p class=3DMsoNormal style=3D'mso-margin-top-alt:auto;m=
-so-margin-bottom-alt:auto;margin-left:189.6pt;text-indent:-.25in;mso-list:l=
-0 level1 lfo1'><![if !supportLists]><span style=3D'font-size:10.0pt;font-fa=
-mily:Symbol'><span style=3D'mso-list:Ignore'>=C2=B7<span style=3D'font:7.0p=
-t "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></sp=
-an></span><![endif]>2 x Connected via 1 Gig-E interfaces<o:p></o:p></p><p c=
-lass=3DMsoNormal style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:aut=
-o;margin-left:189.6pt;text-indent:-.25in;mso-list:l0 level1 lfo1'><![if !su=
-pportLists]><span style=3D'font-size:10.0pt;font-family:Symbol'><span style=
-=3D'mso-list:Ignore'>=C2=B7<span style=3D'font:7.0pt "Times New Roman"'>&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></span><![endif]>2 x =
-Using UHD 4.1<o:p></o:p></p><div><p class=3DMsoNormal style=3D'margin-left:=
-153.6pt'>The devices have been in two setups: stacked and a few inches apar=
-t.&nbsp;<o:p></o:p></p></div><div><p class=3DMsoNormal style=3D'margin-left=
-:153.6pt'><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal style=3D'mar=
-gin-left:153.6pt'>I am attempting to deploy a 5G network using the openairi=
-nterface (OAI) software system. Both devices synchronize initially, then th=
-ey fail. With openairinterface, I am using frequency offset compensation at=
- the UE. Its a useful parameter when running over the air and/or without an=
- external clock/time source (<a href=3D"https://gitlab.eurecom.fr/oai/opena=
-irinterface5g/blob/develop/doc/RUNMODEM.md">https://gitlab.eurecom.fr/oai/o=
-penairinterface5g/blob/develop/doc/RUNMODEM.md</a>)<o:p></o:p></p></div><di=
-v><p class=3DMsoNormal style=3D'margin-left:153.6pt'><o:p>&nbsp;</o:p></p><=
-/div><div><p class=3DMsoNormal style=3D'margin-left:153.6pt'>Is there a way=
- to synchronize the reference clock/timing of both USRP x310s over the air?=
- In the future, I will be attempting to connect a third USRP x310. My setup=
- will include one base station and two user devices.&nbsp;<o:p></o:p></p></=
-div><div><div><div><div><div><p class=3DMsoNormal style=3D'margin-left:153.=
-6pt'><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal style=3D'margin-l=
-eft:153.6pt'><span style=3D'color:#073763'>V/r</span> <o:p></o:p></p><div><=
-p class=3DMsoNormal style=3D'margin-left:153.6pt'><o:p>&nbsp;</o:p></p></di=
-v><div><p class=3DMsoNormal style=3D'margin-left:153.6pt'><span style=3D'co=
-lor:#073763;background:white'>LoyCurtis Smith</span><o:p></o:p></p></div></=
-div></div></div></div></div></div></div><p class=3DMsoNormal style=3D'mso-m=
-argin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;margin-left:153.6pt=
-'><o:p>&nbsp;</o:p></p></blockquote></div><div><p class=3DMsoNormal style=
-=3D'mso-margin-top-alt:0in;margin-right:0in;margin-bottom:12.0pt;margin-lef=
-t:81.6pt'>Unless OAI provides some mechanism for that, the answer would be =
-no.&nbsp; You need a shared reference clock.<br><br><br><o:p></o:p></p></di=
-v><p class=3DMsoNormal style=3D'margin-left:81.6pt'>_______________________=
-________________________<br>USRP-users mailing list -- <a href=3D"mailto:us=
-rp-users@lists.ettus.com">usrp-users@lists.ettus.com</a><br>To unsubscribe =
-send an email to <a href=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-u=
-sers-leave@lists.ettus.com</a><o:p></o:p></p></blockquote></div></div><p cl=
-ass=3DMsoNormal>-- <o:p></o:p></p><div><div><div><div><p class=3DMsoNormal>=
-<o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal><span style=3D'color:#=
-073763'>V/r</span> <o:p></o:p></p><div><p class=3DMsoNormal><o:p>&nbsp;</o:=
-p></p></div><div><p class=3DMsoNormal><span style=3D'color:#073763;backgrou=
-nd:white'>LoyCurtis Smith</span><o:p></o:p></p></div></div></div></div></di=
-v></blockquote><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNorm=
-al><o:p>&nbsp;</o:p></p></div></body></html>=
-
---===============5532513213712233503==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============5532513213712233503==--
+SGkgTG95Q3VydGlzLA0KDQp0aGVyZSdzIG5vIGdlbmVyYWwgcmVzb3VyY2U7IHRoaXMgaXMganVz
+dCB0aW1lIHN5bmNocm9uaXphdGlvbiBmb3Igd2lyZWxlc3MgbmV0d29ya3M7IA0KeW91J2QgbmVl
+ZCB0byBpbXBsZW1lbnQgaXQgd2l0aGluIHRoZSBib3VuZHMgb2YgdGhlIHdpcmVsZXNzIHN5c3Rl
+bSB5b3UncmUgYnVpbGRpbmcuIEdQUyANCmRvZXMgaXQgZGlmZmVyZW50bHkgdGhhbiBHU00gdGhh
+biBMVEUgdGhhbiBkaXN0cmlidXRlZCByYWRhciBzeXN0ZW1zIHRoYW7igKYNCg0KSSBkb24ndCBr
+bm93IHdoZXRoZXIgYW5kIGlmIHNvLCBob3csIE9BSSBpbXBsZW1lbnRzIHN1Y2ggdGhpbmdzLiBU
+aGlzIGlzIGEgcXVlc3Rpb24gZm9yIA0KdGhlIE9BSSBkb2N1bWVudGF0aW9uLCBJIGd1ZXNzLg0K
+DQpUeXBpY2FsbHksIGNlbGx1bGFyIGJhc2Ugc3RhdGlvbnMgdGVuZCB0byBoYXZlIGEgc2hhcmVk
+IGNsb2NrIGFuZCB0aW1lIOKAkyBlaXRoZXIgdmlhIA0KR1BTLWRpc2NpcGxpbmVkIG9zY2lsbGF0
+b3JzIChzdWNoIGFzIHRoZSBHUFNET3MgZm9yIHRoZSBVU1JQcyEpIG9yIHZpYSBleHBsaWNpdCAN
+CmRpc3RyaWJ1dGlvbiAodmlhIGNvYXgpIG9yIGltcGxpY2l0IGRpc3RyaWJ1dGlvbiAocmVjb3Zl
+cmVkIGZyb20gdGhlIGNsb2NrIG9mIHRoZSANCm5ldHdvcmtpbmcgbGluaykuIFNvLCBpbiBsYXJn
+ZXIgbmV0d29ya3MsIHRoaXMgaXMgc29tZXRoaW5nIHRoYXQncyBzb2x2ZWQgd2l0aCBoYXJkd2Fy
+ZSANCm1ha2luZyBhIHNoYXJlZCBjbG9jayBhdmFpbGFibGUuIEhvd2V2ZXIsIHRoZXJlJ3MgaW4g
+cHJpbmNpcGxlIG5vIG1hdGhlbWF0aWNhbCBvYnN0YWNsZSANCnRoYXQgYSBiYXNlIHN0YXRpb24g
+dGhhdCdzIGFibGUgdG8gcmVjZWl2ZSBvdGhlciBiYXNlIHN0YXRpb25zIGNvdWxkIG5vdCBkZXJp
+dmUgaXRzIG93biANCnZlcnNpb24gb2YgdGltZSDigJMganVzdCBhcyBhIGhhbmRzZXQvVUUgZG9l
+cyBpbiBhIGNlbGx1bGFyIG5ldHdvcmsuIEl0IGlzLCB0aG91Z2gsIGEgYml0IA0KZGFuZ2Vyb3Vz
+LCBzaW5jZSBvZiBjb3Vyc2UgZXZlcnl0aGluZyB5b3UgcmVjb3ZlciBmcm9tIGEgbm9pc3ksIHZh
+cmlhYmxlLWdyb3VwLWRlbGF5IA0KY2hhbm5lbCwgaGFzIGl0cyBvd24gdmFyaWFuY2UsIGFuZCBz
+byB3b3VsZCB0aGUgcmVjb3ZlcmVkIGNsb2NrIGFuZCB0aW1lIChpLmUuLCB5b3UgZ2V0IA0Kb2Zm
+c2V0LCBqaXR0ZXIpOyBhbmQgc2VlaW5nIHRoYXQgdGhpcyBpcyB0aGVuIHVzZWQgYnkgbWFueSBV
+RXMgdG8gY29vcmRpbmF0ZSBhY2Nlc3MsIGFnYWluIA0KaW5jdXJyaW5nIGFkZGl0aW9uYWwgZXJy
+b3IsIHRoaXMgY2FuIHNlcmlvdXNseSBsaW1pdCBwZXJmb3JtYW5jZS4NCg0KQWxzbywgYSBoYXJk
+d2FyZSBzb2x1dGlvbiBjb21lcyBhcyBubyBhZGRpdGlvbmFsIGNvbXB1dGF0aW9uYWwgY29zdCB0
+byB0aGUgc2lnbmFsIA0KY2FsY3VsYXRpb247IGRvaW5nIGEgcmVzYW1wbGluZyBieSAxLjAwMDAx
+IGFuZCBhIGRlbGF5IGJ5IDAuMzM3NiBzYW1wbGUgcGVyaW9kcyBpcyANCnJlbGF0aXZlbHkgZXhw
+ZW5zaXZlIGluIHRlcm1zIG9mIENQVSBjeWNsZXMuDQoNCkJlc3QgcmVnYXJkcywNCk1hcmN1cw0K
+DQpESVNDTEFJTUVSOiBBbnkgYXR0YWNoZWQgQ29kZSBpcyBwcm92aWRlZCBBcyBJcy4gSXQgaGFz
+IG5vdCBiZWVuIHRlc3RlZCBvciB2YWxpZGF0ZWQgYXMgYSBwcm9kdWN0LCBmb3IgdXNlIGluIGEg
+ZGVwbG95ZWQgYXBwbGljYXRpb24gb3Igc3lzdGVtLCBvciBmb3IgdXNlIGluIGhhemFyZG91cyBl
+bnZpcm9ubWVudHMuIFlvdSBhc3N1bWUgYWxsIHJpc2tzIGZvciB1c2Ugb2YgdGhlIENvZGUuIFVz
+ZSBvZiB0aGUgQ29kZSBpcyBzdWJqZWN0IHRvIHRlcm1zIG9mIHRoZSBsaWNlbnNlcyB0byB0aGUg
+VUhEIG9yIFJGTm9DIGNvZGUgd2l0aCB3aGljaCB0aGUgQ29kZSBpcyB1c2VkLiBTdGFuZGFyZCBs
+aWNlbnNlcyB0byBVSEQgYW5kIFJGTm9DIGNhbiBiZSBmb3VuZCBhdCBodHRwczovL3d3dy5ldHR1
+cy5jb20vc2RyLXNvZnR3YXJlL2xpY2Vuc2VzLy4NCg0KTkkgd2lsbCBvbmx5IHBlcmZvcm0gc2Vy
+dmljZXMgYmFzZWQgb24gaXRzIHVuZGVyc3RhbmRpbmcgYW5kIGNvbmRpdGlvbiB0aGF0IHRoZSBn
+b29kcyBvciBzZXJ2aWNlcyAoaSkgYXJlIG5vdCBmb3IgdGhlIHVzZSBpbiB0aGUgcHJvZHVjdGlv
+biBvciBkZXZlbG9wbWVudCBvZiBhbnkgaXRlbSBwcm9kdWNlZCwgcHVyY2hhc2VkLCBvciBvcmRl
+cmVkIGJ5IGFueSBlbnRpdHkgd2l0aCBhIGZvb3Rub3RlIDEgZGVzaWduYXRpb24gaW4gdGhlIGxp
+Y2Vuc2UgcmVxdWlyZW1lbnQgY29sdW1uIG9mIFN1cHBsZW1lbnQgTm8uIDQgdG8gUGFydCA3NDQs
+IFUuUy4gRXhwb3J0IEFkbWluaXN0cmF0aW9uIFJlZ3VsYXRpb25zIGFuZCAoaWkpIHN1Y2ggYSBj
+b21wYW55IGlzIG5vdCBhIHBhcnR5IHRvIHRoZSB0cmFuc2FjdGlvbi4gIElmIG91ciB1bmRlcnN0
+YW5kaW5nIGlzIGluY29ycmVjdCwgcGxlYXNlIG5vdGlmeSB1cyBpbW1lZGlhdGVseSBiZWNhdXNl
+IGEgc3BlY2lmaWMgYXV0aG9yaXphdGlvbiBtYXkgYmUgcmVxdWlyZWQgZnJvbSB0aGUgVS5TLiBD
+b21tZXJjZSBEZXBhcnRtZW50IGJlZm9yZSB0aGUgdHJhbnNhY3Rpb24gbWF5IHByb2NlZWQgZnVy
+dGhlci4NCg0KT24gMjYuMDEuMjIgMDk6MzAsIExveUN1cnRpcyBTbWl0aCB2aWEgVVNSUC11c2Vy
+cyB3cm90ZToNCj4NCj4gSXMgdGhlcmUgYSByZXNvdXJjZSBmb3Igc3luY2hyb25pemluZyBtdWx0
+aXBsZSBVU1JQIHgzMTBzIHdpdGhvdXQgYW4gZXh0ZXJuYWwgcmVmZXJlbmNlIA0KPiBjbG9jaz8N
+Cj4NCj4gQWxzbywgd291bGQgU0JYLTEyMCBkYXVnaHRlcmJvYXJkcyBwZXJmb3JtIGJldHRlciB3
+aGVuIHVzaW5nIG11bHRpcGxlIFVTUlBzIGJlY2F1c2Ugb2YgDQo+IGl0cyBwaGFzZSBzeW5jIGZl
+YXR1cmU/DQo+DQo+IFYvcg0KPg0KPiBMb3lDdXJ0aXMgU21pdGgNCj4NCj4gKkZyb206ICpNYXJj
+dXMgRC4gTGVlY2ggPG1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NCj4gKlNlbnQ6ICpU
+dWVzZGF5LCBKYW51YXJ5IDI1LCAyMDIyIDExOjE0DQo+ICpUbzogKkxveUN1cnRpcyBTbWl0aCA8
+bWFpbHRvOmxqc21pdGg5QG5jc3UuZWR1Pg0KPiAqQ2M6ICp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbQ0KPiAqU3ViamVjdDogKlJlOiBbVVNSUC11c2Vyc10gUmU6IFN5bmNocm9uaXphdGlvbiBv
+ZiB0d28gVVNSUCB4MzEwcw0KPg0KPiBPbiAyMDIyLTAxLTI1IDExOjEyLCBMb3lDdXJ0aXMgU21p
+dGggd3JvdGU6DQo+DQo+ICAgICBXb3VsZCB0aGVpciBtZWNoYW5pc20gaW5jbHVkZWQgVUhEIGJh
+c2VkIGNvZGU/DQo+DQo+IFNpbmNlIFVIRCBpcyB0aGUgd2F5IEFOWSBhcHBsaWNhdGlvbiB0YWxr
+cyB0byB0aGUgcmFkaW9zLCB5ZXMuwqAgQnV0IEkgaGF2ZSBubyBpZGVhIGlmIA0KPiBPQUksIGFz
+IG9uZSBvZiBkb3plbnMgYW5kIGRvemVucyBvZiBkaWZmZXJlbnQgYXBwaWxjYXRpb25zDQo+IMKg
+ICJvdXQgdGhlcmUiIGhhcyBhbnkgd2F5IHRvIHN1cHBvcnQgdGhhdCBmdW5jdGlvbmFsaXR5Lg0K
+Pg0KPg0KPiAgICAgQWxzbywgSSBhc3N1bWUgdGhhdCB0aGUgb25seSBvdGhlciBvcHRpb24gd291
+bGQgYmUgdG8gcHVyY2hhc2UgYW4gT2N0b2Nsb2NrIG9yIHNvbWUNCj4gICAgIG90aGVyIGNsb2Nr
+IGRpc3RyaWJ1dGlvbiBtb2R1bGU/DQo+DQo+IFllcywgeW91J2QgbmVlZCBzb21lIGtpbmQgb2Yg
+c2hhcmVkIDEwTUh6IHJlZmVyZW5jZSBjbG9jayBhbmQgMVBQUyBzb3VyY2UsIEFORCB5b3VyIA0K
+PiBhcHBsaWNhdGlvbiBuZWVkcyB0byBiZSBhYmxlIHRvIGNvbmZpZ3VyZSB0aGUgcmFkaW9zIHRv
+DQo+IMKgIHVzZSBpdC4NCj4NCj4NCj4NCj4gICAgIE9uIFR1ZSwgSmFuIDI1LCAyMDIyIGF0IDEw
+OjQwIE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+IHdyb3RlOg0KPg0K
+PiAgICAgICAgIE9uIDIwMjItMDEtMjQgMjA6NTMsIExveUN1cnRpcyBTbWl0aCB2aWEgVVNSUC11
+c2VycyB3cm90ZToNCj4NCj4gICAgICAgICAgICAgTXkgc3lzdGVtIHNldHVwIGlzIGFzIGZvbGxv
+d3M6DQo+DQo+ICAgICAgICAgICAgIMK3MiB4IFVTUlAgeDMxMCB3aXRoIENCWC0xMjAgZGF1Z2h0
+ZXJib2FyZA0KPg0KPiAgICAgICAgICAgICDCtzIgeCBVYnVudHUgMTguMDQgd29ya3N0YXRpb24N
+Cj4NCj4gICAgICAgICAgICAgwrcyIHggVGFvZ2xhcyA0NS44MTEzIGFudGVubmENCj4NCj4gICAg
+ICAgICAgICAgwrcyIHjCoCBJbnRlcm5hbCBSZWZlcmVuY2UgQ2xvY2sgKE1hc3RlciBDbG9jayBz
+ZXQgYXQgMTg0LjMyIE1IeikNCj4NCj4gICAgICAgICAgICAgwrcyIHggSW50ZXJuYWwgVGltZSBz
+b3VyY2UNCj4NCj4gICAgICAgICAgICAgwrcyIHggQ29ubmVjdGVkIHZpYSAxIEdpZy1FIGludGVy
+ZmFjZXMNCj4NCj4gICAgICAgICAgICAgwrcyIHggVXNpbmcgVUhEIDQuMQ0KPg0KPiAgICAgICAg
+ICAgICBUaGUgZGV2aWNlcyBoYXZlIGJlZW4gaW4gdHdvIHNldHVwczogc3RhY2tlZCBhbmQgYSBm
+ZXcgaW5jaGVzIGFwYXJ0Lg0KPg0KPiAgICAgICAgICAgICBJIGFtIGF0dGVtcHRpbmcgdG8gZGVw
+bG95IGEgNUcgbmV0d29yayB1c2luZyB0aGUgb3BlbmFpcmludGVyZmFjZSAoT0FJKQ0KPiAgICAg
+ICAgICAgICBzb2Z0d2FyZSBzeXN0ZW0uIEJvdGggZGV2aWNlcyBzeW5jaHJvbml6ZSBpbml0aWFs
+bHksIHRoZW4gdGhleSBmYWlsLiBXaXRoDQo+ICAgICAgICAgICAgIG9wZW5haXJpbnRlcmZhY2Us
+IEkgYW0gdXNpbmcgZnJlcXVlbmN5IG9mZnNldCBjb21wZW5zYXRpb24gYXQgdGhlIFVFLiBJdHMg
+YQ0KPiAgICAgICAgICAgICB1c2VmdWwgcGFyYW1ldGVyIHdoZW4gcnVubmluZyBvdmVyIHRoZSBh
+aXIgYW5kL29yIHdpdGhvdXQgYW4gZXh0ZXJuYWwNCj4gICAgICAgICAgICAgY2xvY2svdGltZSBz
+b3VyY2UNCj4gICAgICAgICAgICAgKGh0dHBzOi8vZ2l0bGFiLmV1cmVjb20uZnIvb2FpL29wZW5h
+aXJpbnRlcmZhY2U1Zy9ibG9iL2RldmVsb3AvZG9jL1JVTk1PREVNLm1kKQ0KPg0KPiAgICAgICAg
+ICAgICBJcyB0aGVyZSBhIHdheSB0byBzeW5jaHJvbml6ZSB0aGUgcmVmZXJlbmNlIGNsb2NrL3Rp
+bWluZyBvZiBib3RoIFVTUlAgeDMxMHMNCj4gICAgICAgICAgICAgb3ZlciB0aGUgYWlyPyBJbiB0
+aGUgZnV0dXJlLCBJIHdpbGwgYmUgYXR0ZW1wdGluZyB0byBjb25uZWN0IGEgdGhpcmQgVVNSUA0K
+PiAgICAgICAgICAgICB4MzEwLiBNeSBzZXR1cCB3aWxsIGluY2x1ZGUgb25lIGJhc2Ugc3RhdGlv
+biBhbmQgdHdvIHVzZXIgZGV2aWNlcy4NCj4NCj4gICAgICAgICAgICAgVi9yDQo+DQo+ICAgICAg
+ICAgICAgIExveUN1cnRpcyBTbWl0aA0KPg0KPiAgICAgICAgIFVubGVzcyBPQUkgcHJvdmlkZXMg
+c29tZSBtZWNoYW5pc20gZm9yIHRoYXQsIHRoZSBhbnN3ZXIgd291bGQgYmUgbm8uwqAgWW91IG5l
+ZWQgYQ0KPiAgICAgICAgIHNoYXJlZCByZWZlcmVuY2UgY2xvY2suDQo+DQo+DQo+ICAgICAgICAg
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gICAgICAg
+ICBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
+PiAgICAgICAgIFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2
+ZUBsaXN0cy5ldHR1cy5jb20NCj4NCj4gICAgIC0tIA0KPg0KPiAgICAgVi9yDQo+DQo+ICAgICBM
+b3lDdXJ0aXMgU21pdGgNCj4NCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVz
+ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMt
+bGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
