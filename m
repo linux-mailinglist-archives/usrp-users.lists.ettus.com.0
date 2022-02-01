@@ -2,169 +2,90 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE324A5CEB
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 14:08:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8EE4A60E0
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 17:00:13 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2E0DD384DEA
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 08:08:05 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id A0D6A385114
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 11:00:12 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AdGfHzoE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zn7ggg6/";
 	dkim-atps=neutral
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2B3C4384DCC
-	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 08:07:05 -0500 (EST)
-Received: by mail-vs1-f49.google.com with SMTP id b2so15941409vso.9
-        for <usrp-users@lists.ettus.com>; Tue, 01 Feb 2022 05:07:05 -0800 (PST)
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id E6C0E3850DA
+	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 10:59:15 -0500 (EST)
+Received: by mail-qv1-f49.google.com with SMTP id d8so16430474qvv.2
+        for <usrp-users@lists.ettus.com>; Tue, 01 Feb 2022 07:59:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=ly9Hbr7zzFVt8Hun1L0RxrRudjeJSOc7NmnBYUv0HFA=;
-        b=AdGfHzoEB/+984JjnQCUwW6tR7FVzC/Nm3IlrquNH5unEEzYwmstthNofIAr81Wc9K
-         k6vxoEeA4voQJpKGyvNmUMu6McRF+g3L4b1lrLU1a24Xbg8gAQ658JsOIMD1jjhq0y0+
-         AXbfnT9fbH94pMo6RF/9ep8i6eBENTFqJc3zIUJvSoQtGjzWWDzqARM6bf/W9Kabkwn+
-         GmjMFKiAmmhADflYHIqYenkVylJRlCjMv2aAJvEYXJJDq1DuqIbg/lEF2MbBa1qTgtCu
-         2S8o9JOMeuvqEIS8J8+tOlO8CbCbBqb+ciOC/HcCGHFO+DShulQBLTrNHheMr0C7J8yQ
-         1A5A==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=yO6JZvb7NFzPBGPeWTfIhe4VvxFiqgzelfGpDORhAws=;
+        b=Zn7ggg6/sSA6xmK3cbtzA4EmW08qbacElZDm/kJG2UvtxEO19vHiSFQTCXkpUAS59u
+         d32/eIT8nFwJOOxFNppn/M1ue/ch9o8WLcIDAZ4yswPzQ7579nFyFLz8dJVZ0tLbtUjj
+         vwcrRroS6J5RLd+f43p5gmtZIqTtf+rCZQCYC1svJyTFGi4gb3EVzzXaeyYTqvng4+2t
+         8Lve/qrsRmfarddUH+N2VcNvpXqohG5mINoJ8kixz7umHeMl5XzRwh6TtBy4IyLJHfik
+         k3+5+vsAH6C9zR03tnRjYG46GypkIMjmVIMZcNxIWz4Ac9uWyaEDY9fV8jpsTs2a2fg3
+         dN5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ly9Hbr7zzFVt8Hun1L0RxrRudjeJSOc7NmnBYUv0HFA=;
-        b=OVRlnWRrxf+1eAANmiiNQU321szDCRbGb3dJqNystgt0+jVevzdfVwd73MCtaoSYRa
-         FMVVIx/SdZNs1N6TY6d+dZlemiUtZzGllc+oSAZK0OesQcZhDD0ArETc1siha0QJIokR
-         x7ReibwRq6Gr7FMAFxWGR89VloxrP0dEH3kvWpR7T8sfAcWLDQwa02SaPS0EfnX1HDUI
-         c9E/NVlqS0plgwLRsyP1RNoJmFlpWyjo1wpnidwXMYZOuJLTSVBsBw5d5QdUl1UNH4Kc
-         WXUpOTpV+x0cUf2k5Q+5ErPhLyWwoIu0XRaHSppupgbf2Mvq0ib1O7kL7hBsLopTBkqG
-         plDg==
-X-Gm-Message-State: AOAM532N0TbyH1B1fRClXfATewrBuB+MvsyKbFUcZWU1XttcLbWT42Tm
-	gsgIRWQSpNM4CQc7lL3kPzCTaeBQYgqxRcPj+b78lMfWhR4=
-X-Google-Smtp-Source: ABdhPJxoZoOr1Od0llWUYIc5deP3G/sbxYt4RqHEnKZgpW6n1O5xM/anVHNGYYy6H3iWDnPlheeGandcWKWWqqTbIF4=
-X-Received: by 2002:a67:fd63:: with SMTP id h3mr8874608vsa.77.1643720824364;
- Tue, 01 Feb 2022 05:07:04 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yO6JZvb7NFzPBGPeWTfIhe4VvxFiqgzelfGpDORhAws=;
+        b=Nn4MSwubHqq6HkKvMsRQDDmcIx8Eor0Uf+VGC4vi0N8nKPi3bItsE4s5v8W+E3f+Jf
+         AT2RIbiskr3GljF/v2SktjnH7l8z4Gg4Zm+254ki5gbGp2tuf1Sv/+YZFf5SWfVQSAL4
+         ymLkkiVlJxchRovqWfqQs3hG8aosoMx1Zi+7AXHXduhP4EY+D2m322OOOvYrzDyr+DfP
+         PELS7fNPMpBbvEO7HQcv6touaCHluVIU15sJYbfKrR634lTxGn3uuqGfQU7PuaGaHf2T
+         028oP8F1hQpcjxHzUT7Sl74BuFG9RN5dlB0z2kPETe1E90K57UWXfCONTqDk2P62Tsg6
+         OygQ==
+X-Gm-Message-State: AOAM532H16jLaheqfVKjktyyj9gNC5XDUg2Ac2heUi6KRxjgDH63xxmZ
+	5sbi30mQKdij0i3FoMDReDLn3BLIBY8oUw==
+X-Google-Smtp-Source: ABdhPJz82ssbVl/aatFBTSSGHA5Z6RtwTo5W55Cfb+FKglRJdIPlRYbo6a2iH8WozPakcWBKlqrqfg==
+X-Received: by 2002:a05:6214:301e:: with SMTP id ke30mr23454660qvb.49.1643731154937;
+        Tue, 01 Feb 2022 07:59:14 -0800 (PST)
+Received: from [192.168.2.216] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id o19sm2919784qta.19.2022.02.01.07.59.14
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Feb 2022 07:59:14 -0800 (PST)
+Message-ID: <6629dee1-b941-2c38-30ef-5b128d6ecae1@gmail.com>
+Date: Tue, 1 Feb 2022 10:59:13 -0500
 MIME-Version: 1.0
-From: Lautaro Lorenzen <lorenzen.lautaro@gmail.com>
-Date: Tue, 1 Feb 2022 10:06:53 -0300
-Message-ID: <CAOucfAOSPUtNpdPuNb3VaHKtaapZG_HLKuhvPLKgxvNU9dX-YQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: IYGNCKJQOT4AKZRTXRZYTYHYOR43MLL5
-X-Message-ID-Hash: IYGNCKJQOT4AKZRTXRZYTYHYOR43MLL5
-X-MailFrom: lorenzen.lautaro@gmail.com
+References: <vP0TKDmzz00Ey46ZVHwfMtZRfAMGYOLYhBV7uOH54@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <vP0TKDmzz00Ey46ZVHwfMtZRfAMGYOLYhBV7uOH54@lists.ettus.com>
+Message-ID-Hash: JOBHK4Y7W6HC57Z2MECKMWEU6EKBVA3Z
+X-Message-ID-Hash: JOBHK4Y7W6HC57Z2MECKMWEU6EKBVA3Z
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E31x Fosphor example with RFNoC on UHD 4.0
+Subject: [USRP-users] Re: N320 two channel transmit
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IYGNCKJQOT4AKZRTXRZYTYHYOR43MLL5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JOBHK4Y7W6HC57Z2MECKMWEU6EKBVA3Z/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2663325870227020844=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============2663325870227020844==
-Content-Type: multipart/alternative; boundary="000000000000d8c4a805d6f493d7"
-
---000000000000d8c4a805d6f493d7
-Content-Type: text/plain; charset="UTF-8"
-
-Hello everyone,
-
-I'm trying to implement the Fosphor example on an Ettus E312, but I've come
-across some things that are unclear to me. I'm just starting to develop
-with RFNoC, and I've read the manual, cross compiled everything for the
-Ettus, etc.
-
-As I understand (and it was mentioned in the mailing list a time ago), this
-[1] guide is not up to date, as the "uhd_image_builder_gui.py" is no longer
-available for UHD 4.0. I'm now going through [2], and I've two main
-questions:
-
-I. When I'm trying to make my own YAML file, I'm not sure if every block
-needs to be connected to the rfnoc_chdr clock. What would be the way to
-know for sure? I've been looking the YAML block descriptions but I couldn't
-figure what exactly this "...clocks:  - name: rfnoc_chdr freq: "[]"  -
-name: rfnoc_ctrl   freq: "[]"  - name: ce   freq: "[]"... "  means.
-
-II. Lastly, I couldn't find the "rfnoc_fosphor_network_host/usrp.grc"
-examples on this version. Is there any new place where I can find them or
-should I create my own .grc? I'm trying to work with examples for now to
-use as a reference in the early stages of my development.
-
-
-[1].
-https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source
-[2]. https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
-
-
-
-Thank you very much for your time.
-Regards,
-Lautaro.
-
---000000000000d8c4a805d6f493d7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hello everyone, <br></div><div class=3D"gmail_default" =
-style=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gm=
-ail_default" style=3D"font-family:arial,helvetica,sans-serif">I&#39;m tryin=
-g to implement the Fosphor example on an Ettus E312, but I&#39;ve come acro=
-ss some things that are unclear to me. I&#39;m just starting to develop wit=
-h RFNoC, and I&#39;ve read the manual, cross compiled everything for the Et=
-tus, etc.</div><div class=3D"gmail_default" style=3D"font-family:arial,helv=
-etica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:arial,helvetica,sans-serif">As I understand (and it was mentioned in the=
- mailing list a time ago), this [1] guide is not up to date, as<code><font =
-face=3D"arial,sans-serif"> the &quot;uhd_image_builder_gui.py</font></code>=
-<span style=3D"font-family:arial,sans-serif"><code></code></span>&quot; is =
-no longer available for UHD 4.0. I&#39;m now going through [2], and I&#39;v=
-e two main questions:</div><div class=3D"gmail_default" style=3D"font-famil=
-y:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:arial,helvetica,sans-serif">I. When I&#39;m trying to make =
-my own YAML file, I&#39;m not sure if every block needs to be connected to =
-the rfnoc_chdr clock. What would be the way to know for sure? I&#39;ve been=
- looking the YAML block descriptions but I couldn&#39;t figure what exactly=
- this  &quot;...clocks:=C2=A0 - name: rfnoc_chdr freq: &quot;[]&quot;=C2=A0=
- - name: rfnoc_ctrl =C2=A0 freq: &quot;[]&quot;=C2=A0 - name: ce =C2=A0 fre=
-q: &quot;[]&quot;... &quot;=C2=A0 means.<br></div><div class=3D"gmail_defau=
-lt" style=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=
-=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">II. Las=
-tly, I couldn&#39;t find the &quot;rfnoc_fosphor_network_host/usrp.grc&quot=
-; examples on this version. Is there any new place where I can find them or=
- should I create my own .grc? I&#39;m trying to work with examples for now =
-to use as a reference in the early stages of my development.<br></div><div =
-class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"></=
-div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-=
-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fa=
-mily:arial,helvetica,sans-serif">[1]. <a href=3D"https://kb.ettus.com/Softw=
-are_Development_on_the_E3xx_USRP_-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettu=
-s_from_Source">https://kb.ettus.com/Software_Development_on_the_E3xx_USRP_-=
-_Building_RFNoC_UHD_/_GNU_Radio_/_gr-ettus_from_Source</a></div><div class=
-=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">[2]. <a=
- href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0">https:=
-//kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0</a></div><div class=3D=
-"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><br></div>=
-<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
-f"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvet=
-ica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family=
-:arial,helvetica,sans-serif">Thank you very much for your time.</div><div c=
-lass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">Reg=
-ards,</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetic=
-a,sans-serif">Lautaro.<br></div></div>
-
---000000000000d8c4a805d6f493d7--
-
---===============2663325870227020844==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2663325870227020844==--
+T24gMjAyMi0wMi0wMSAwMzozMywgc2Vja2lub25jdTgwNzBAZ21haWwuY29tIHdyb3RlOg0KPg0K
+PiBVbmZvcnR1bmF0ZWx5LCB0aGF0IGRvZXNu4oCZdCB3b3JrIG5laXRoZXIuIFNhbWUgZXJyb3Ig
+aXMgb2NjdXJlZCBhZ2Fpbi4gDQo+IEkgY2FuIHVuZGVyc3RhbmQgd2h5IGl0IGRyb3BwZWQgcGFj
+a2V0cyAoY2VjYXVzZSBvZiBQQyBvciBOSUMpIGJ1dCBJIA0KPiBoYXZlIG5vIGNsdWUgYWJvdXQg
+d2h5IGl0IHN0b3BzIHRyYW5zbWl0dGluZy4NCj4NCj4NCkNvdWxkIHlvdSBjaGVjayB0aGUgZXJy
+b3IgY291bnRlcnMgb24geW91ciBuZXR3b3JrIGNhcmQgYmVmb3JlIGFuZCBhZnRlciANCnlvdSBz
+dGFydCBhICJydW4iIHdoZXJlIHRoaXMgaGFwcGVucz8NCg0KSG93IHNlbnNpdGl2ZSBpcyBpdCB0
+byBzYW1wbGUgcmF0ZSBmb3IgdHdvIGNoYW5uZWxzP8KgIFRoYXQgaXMsIGlmIHlvdSANCmhhdmUg
+dHdvIGNoYW5uZWxzIGF0IDVNc3BzIGRvZXMgdGhpcyBoYXBwZW4gYXQgYWxsPw0KDQpBcmUgeW91
+IHJ1bm5pbmcgaW5zaWRlIGEgVk0sIG9yIG9uIG5hdGl2ZSBoYXJkd2FyZT/CoMKgIFdoYXQgT1M/
+DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
