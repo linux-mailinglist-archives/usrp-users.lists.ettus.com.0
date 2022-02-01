@@ -2,90 +2,169 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE8EE4A60E0
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 17:00:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38BD94A6178
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 17:38:25 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A0D6A385114
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 11:00:12 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 60138385252
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 11:38:24 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Zn7ggg6/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="FIlXhWyq";
 	dkim-atps=neutral
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id E6C0E3850DA
-	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 10:59:15 -0500 (EST)
-Received: by mail-qv1-f49.google.com with SMTP id d8so16430474qvv.2
-        for <usrp-users@lists.ettus.com>; Tue, 01 Feb 2022 07:59:15 -0800 (PST)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1BACC384FFD
+	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 11:37:33 -0500 (EST)
+Received: by mail-yb1-f174.google.com with SMTP id 23so52613106ybf.7
+        for <usrp-users@lists.ettus.com>; Tue, 01 Feb 2022 08:37:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=yO6JZvb7NFzPBGPeWTfIhe4VvxFiqgzelfGpDORhAws=;
-        b=Zn7ggg6/sSA6xmK3cbtzA4EmW08qbacElZDm/kJG2UvtxEO19vHiSFQTCXkpUAS59u
-         d32/eIT8nFwJOOxFNppn/M1ue/ch9o8WLcIDAZ4yswPzQ7579nFyFLz8dJVZ0tLbtUjj
-         vwcrRroS6J5RLd+f43p5gmtZIqTtf+rCZQCYC1svJyTFGi4gb3EVzzXaeyYTqvng4+2t
-         8Lve/qrsRmfarddUH+N2VcNvpXqohG5mINoJ8kixz7umHeMl5XzRwh6TtBy4IyLJHfik
-         k3+5+vsAH6C9zR03tnRjYG46GypkIMjmVIMZcNxIWz4Ac9uWyaEDY9fV8jpsTs2a2fg3
-         dN5A==
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mJfLP8h1L2N6CQRaQtc4i2/InGt+4IC8nj61USTJNMk=;
+        b=FIlXhWyq2m8N5cyHVInSZg88WuTYhdqcFQ2yvn6z6V0hFRUVDBI/5P7mmutSJ/9g1+
+         TT6K3lU4nLDFCilPFmlq1wz5s/vs4bvKBBS0wPc9BK/B9ylQJwf76Wl3P8WDaepCiZ/U
+         04M0AGdNNHMc8eG21mwbvCoqI0WA5gskhV6uBC6movdj7Zo1SKGvxZjYc9M9rnpNbKjB
+         gA0QK38ilq7EdmKk1A6BBJ58tCxBFoNkzFImqqtJeV2xWHq+Aiowaab43AA/qO4vNI87
+         DQcHX0QLzc2i1gkfeVoUL+So4OO9+1dqdHb8tgRZu4/iV4AaGjkpw3qD2q2IcONdpI8c
+         5kAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yO6JZvb7NFzPBGPeWTfIhe4VvxFiqgzelfGpDORhAws=;
-        b=Nn4MSwubHqq6HkKvMsRQDDmcIx8Eor0Uf+VGC4vi0N8nKPi3bItsE4s5v8W+E3f+Jf
-         AT2RIbiskr3GljF/v2SktjnH7l8z4Gg4Zm+254ki5gbGp2tuf1Sv/+YZFf5SWfVQSAL4
-         ymLkkiVlJxchRovqWfqQs3hG8aosoMx1Zi+7AXHXduhP4EY+D2m322OOOvYrzDyr+DfP
-         PELS7fNPMpBbvEO7HQcv6touaCHluVIU15sJYbfKrR634lTxGn3uuqGfQU7PuaGaHf2T
-         028oP8F1hQpcjxHzUT7Sl74BuFG9RN5dlB0z2kPETe1E90K57UWXfCONTqDk2P62Tsg6
-         OygQ==
-X-Gm-Message-State: AOAM532H16jLaheqfVKjktyyj9gNC5XDUg2Ac2heUi6KRxjgDH63xxmZ
-	5sbi30mQKdij0i3FoMDReDLn3BLIBY8oUw==
-X-Google-Smtp-Source: ABdhPJz82ssbVl/aatFBTSSGHA5Z6RtwTo5W55Cfb+FKglRJdIPlRYbo6a2iH8WozPakcWBKlqrqfg==
-X-Received: by 2002:a05:6214:301e:: with SMTP id ke30mr23454660qvb.49.1643731154937;
-        Tue, 01 Feb 2022 07:59:14 -0800 (PST)
-Received: from [192.168.2.216] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id o19sm2919784qta.19.2022.02.01.07.59.14
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Feb 2022 07:59:14 -0800 (PST)
-Message-ID: <6629dee1-b941-2c38-30ef-5b128d6ecae1@gmail.com>
-Date: Tue, 1 Feb 2022 10:59:13 -0500
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mJfLP8h1L2N6CQRaQtc4i2/InGt+4IC8nj61USTJNMk=;
+        b=AKxb8/oPgiZek5RTcp/Nhz8ZzGDYgB27qXCVfUiBia6SZtcz1sLdXEThS1d7LkrZZb
+         0ont5BBoAIpMy1kRs+aogvANXn6B/7c3GHnzRXZghpLs0ZP9mR9AsVG+tXcDABP8uTa0
+         FgAFg2jvyeVZ8pogIo872JkvRM16h4UrMcp3LkJ/xUt8ninI0EZ+Um4yV+EFzGAyrn3a
+         uFHbIvfe2xJtQf57wU2qgjsipp9e+0F1TmafP9HMdpD0UlV+CGs2XVVhVhMOMcU35U45
+         B+yp/XP2oPrGZvf4or9kgVtDfPZuXPH2vv6FiIHXnEfDK8j0DHMB1sYxQF69R9FZq4sr
+         tHpw==
+X-Gm-Message-State: AOAM5307iAAl13zK7CmKkzUwXvg177oBDTGq1fOXul0uQWSsor/AhSHo
+	0wLiZLrIrJvXqmELmIyPSqn4pAgxq7ZwNOWTqnDfvYb3RYc=
+X-Google-Smtp-Source: ABdhPJxHFeX2bGj0VaeWTFcdEKFAlKd5NVllNEkBQjiFKfjq6Ifw2cXX/5zmFsILM4gwsiPlcVwqrsm4s6BVRh1iQ5o=
+X-Received: by 2002:a25:2155:: with SMTP id h82mr36727298ybh.606.1643733452281;
+ Tue, 01 Feb 2022 08:37:32 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <vP0TKDmzz00Ey46ZVHwfMtZRfAMGYOLYhBV7uOH54@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <vP0TKDmzz00Ey46ZVHwfMtZRfAMGYOLYhBV7uOH54@lists.ettus.com>
-Message-ID-Hash: JOBHK4Y7W6HC57Z2MECKMWEU6EKBVA3Z
-X-Message-ID-Hash: JOBHK4Y7W6HC57Z2MECKMWEU6EKBVA3Z
-X-MailFrom: patchvonbraun@gmail.com
+References: <vP0TKDmzz00Ey46ZVHwfMtZRfAMGYOLYhBV7uOH54@lists.ettus.com> <6629dee1-b941-2c38-30ef-5b128d6ecae1@gmail.com>
+In-Reply-To: <6629dee1-b941-2c38-30ef-5b128d6ecae1@gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Tue, 1 Feb 2022 11:37:20 -0500
+Message-ID: <CAB__hTQGAgt1LaK-UG+oCJfwhisDXPCQZAg5nqaVdFriQzV28w@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: BV2RPL752S6BXGRZL2XSKB3ENIFAQCFN
+X-Message-ID-Hash: BV2RPL752S6BXGRZL2XSKB3ENIFAQCFN
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N320 two channel transmit
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JOBHK4Y7W6HC57Z2MECKMWEU6EKBVA3Z/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BV2RPL752S6BXGRZL2XSKB3ENIFAQCFN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6034574058873584322=="
 
-T24gMjAyMi0wMi0wMSAwMzozMywgc2Vja2lub25jdTgwNzBAZ21haWwuY29tIHdyb3RlOg0KPg0K
-PiBVbmZvcnR1bmF0ZWx5LCB0aGF0IGRvZXNu4oCZdCB3b3JrIG5laXRoZXIuIFNhbWUgZXJyb3Ig
-aXMgb2NjdXJlZCBhZ2Fpbi4gDQo+IEkgY2FuIHVuZGVyc3RhbmQgd2h5IGl0IGRyb3BwZWQgcGFj
-a2V0cyAoY2VjYXVzZSBvZiBQQyBvciBOSUMpIGJ1dCBJIA0KPiBoYXZlIG5vIGNsdWUgYWJvdXQg
-d2h5IGl0IHN0b3BzIHRyYW5zbWl0dGluZy4NCj4NCj4NCkNvdWxkIHlvdSBjaGVjayB0aGUgZXJy
-b3IgY291bnRlcnMgb24geW91ciBuZXR3b3JrIGNhcmQgYmVmb3JlIGFuZCBhZnRlciANCnlvdSBz
-dGFydCBhICJydW4iIHdoZXJlIHRoaXMgaGFwcGVucz8NCg0KSG93IHNlbnNpdGl2ZSBpcyBpdCB0
-byBzYW1wbGUgcmF0ZSBmb3IgdHdvIGNoYW5uZWxzP8KgIFRoYXQgaXMsIGlmIHlvdSANCmhhdmUg
-dHdvIGNoYW5uZWxzIGF0IDVNc3BzIGRvZXMgdGhpcyBoYXBwZW4gYXQgYWxsPw0KDQpBcmUgeW91
-IHJ1bm5pbmcgaW5zaWRlIGEgVk0sIG9yIG9uIG5hdGl2ZSBoYXJkd2FyZT/CoMKgIFdoYXQgT1M/
-DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
-dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vi
-c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============6034574058873584322==
+Content-Type: multipart/alternative; boundary="00000000000087a60f05d6f7845a"
+
+--00000000000087a60f05d6f7845a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Feb 1, 2022 at 10:59 AM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 2022-02-01 03:33, seckinoncu8070@gmail.com wrote:
+> >
+> > Unfortunately, that doesn=E2=80=99t work neither. Same error is occured=
+ again.
+> > I can understand why it dropped packets (cecause of PC or NIC) but I
+> > have no clue about why it stops transmitting.
+> >
+> >
+> Could you check the error counters on your network card before and after
+> you start a "run" where this happens?
+>
+> How sensitive is it to sample rate for two channels?  That is, if you
+> have two channels at 5Msps does this happen at all?
+>
+> Are you running inside a VM, or on native hardware?   What OS?
+>
+
+While debugging this issue, my suggestion is to focus exclusively on the
+UHD example "benchmark_rate" rather than operating from gnuradio. Once
+things are working correctly in "benchmark_rate", then move to a different
+UHD example "tx_samples_from_file" (perhaps initially with a null source
+and then moving to a file source). Once that is working correctly, move
+back into gnuradio world.  This approach just makes debugging a bit clearer=
+.
+Rob
+
+
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--00000000000087a60f05d6f7845a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 1, 2022 at 10:59 AM Marcus D.=
+ Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+">On 2022-02-01 03:33, <a href=3D"mailto:seckinoncu8070@gmail.com" target=
+=3D"_blank">seckinoncu8070@gmail.com</a> wrote:<br>
+&gt;<br>
+&gt; Unfortunately, that doesn=E2=80=99t work neither. Same error is occure=
+d again. <br>
+&gt; I can understand why it dropped packets (cecause of PC or NIC) but I <=
+br>
+&gt; have no clue about why it stops transmitting.<br>
+&gt;<br>
+&gt;<br>
+Could you check the error counters on your network card before and after <b=
+r>
+you start a &quot;run&quot; where this happens?<br>
+<br>
+How sensitive is it to sample rate for two channels?=C2=A0 That is, if you =
+<br>
+have two channels at 5Msps does this happen at all?<br>
+<br>
+Are you running inside a VM, or on native hardware?=C2=A0=C2=A0 What OS?<br=
+></blockquote><div><br></div><div>While debugging this issue, my suggestion=
+ is to focus exclusively on the UHD example &quot;benchmark_rate&quot; rath=
+er than operating from gnuradio. Once things are working correctly in &quot=
+;benchmark_rate&quot;, then move to a different UHD example &quot;tx_sample=
+s_from_file&quot; (perhaps initially with a null source and then moving to =
+a file source). Once that is working correctly, move back into gnuradio wor=
+ld.=C2=A0 This approach just makes debugging a bit clearer.</div><div>Rob</=
+div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
+
+--00000000000087a60f05d6f7845a--
+
+--===============6034574058873584322==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6034574058873584322==--
