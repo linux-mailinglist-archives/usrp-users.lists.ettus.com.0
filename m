@@ -2,499 +2,435 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F694A64BF
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 20:14:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2349F4A6512
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 20:35:00 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8B7AE3853E6
-	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 14:14:38 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="X6AED2le";
-	dkim-atps=neutral
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id B0A353853E6
-	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 14:13:43 -0500 (EST)
-Received: by mail-qk1-f181.google.com with SMTP id g145so16055683qke.3
-        for <usrp-users@lists.ettus.com>; Tue, 01 Feb 2022 11:13:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=geY1yzlRl9Bk22p7lRLB/kWkbCKTBABtkMsAAAdwE4g=;
-        b=X6AED2leEFKJMeuacvDcsjILPByC9uZHb5USP/eP+9EDcWkKU0OTZ63uK8OZ68ZGk6
-         S1G+wSVS35/mi9nUXl22vndmRwN3uf1st4/Xdfm50GsCKfe47f3JgXAPx5xoSI9KBaPW
-         D3pv3Zua8zzg75mxA3SXA4Z6zREShRM3BH6H3HUkt+hXU68QZWamBk6U0orYDlL2yNur
-         5yD/XBWTGeNt9Y0xNHIqV7fv0Ri7cg8bpg+LbnLLFcAIjK4WRDU976bC5Uy8NRU1nLwV
-         f7LjEl9p5V0HgjYxx8cG8DmMZu50LOBO/yeRXAPmq0xbYr3R66U6NzLmXFChpJDVYrKX
-         wSBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=geY1yzlRl9Bk22p7lRLB/kWkbCKTBABtkMsAAAdwE4g=;
-        b=Rfnd5V/qliOVWhk/9NDB2Lb3UBWG4zQxF7JEDyG9dnGOMWD8HrACfvXk2neVy3S5bh
-         DU0TQa0Y6AhZakm3orfBdWVEr+OJx8zhdgLmJEP5SzVsVp8I99b0YemlTIl+bXe4Pl4f
-         V30P5XNgerSANb5gcosymZNqVhI7Om18qsOKR5/CA5WNaJxGki51hkEff+l0bc6lLxcF
-         Y400lTNR93IM5mICFQPozjwl4ried/KWOPVNXtlScEOOZAVxiP1E7Cbe2rNu0aD1VUEA
-         Y3zhkbz7/gmOevOo6UdP79nbtwJywy3p9i3kderSvDdpewd1ZzOmJiwXGYTTLG8mRZG9
-         0h5A==
-X-Gm-Message-State: AOAM531ofY69gNwURAj590u5P2CAkkL9/hkn+kpcTEUv4S3NV5cYyMh0
-	roHmbZslWyfpBbHVPslFvpydluLH8kadIg==
-X-Google-Smtp-Source: ABdhPJw3dadwshi5GVi+x8jpbQd7KJmh20GvsIotaumvCW9hA+fPXEW1IC/L7OBafvflAMDXQv8xQA==
-X-Received: by 2002:a37:a04c:: with SMTP id j73mr18125658qke.65.1643742823181;
-        Tue, 01 Feb 2022 11:13:43 -0800 (PST)
-Received: from [192.168.2.216] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id t11sm9024080qkp.54.2022.02.01.11.13.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Feb 2022 11:13:42 -0800 (PST)
-Message-ID: <4acbc3b9-354e-1a85-5758-fccf65b17835@gmail.com>
-Date: Tue, 1 Feb 2022 14:13:41 -0500
+	by mm2.emwd.com (Postfix) with ESMTP id 2FD4538523D
+	for <lists+usrp-users@lfdr.de>; Tue,  1 Feb 2022 14:34:59 -0500 (EST)
+Received: from postman.dtnt.info (postman.dtnt.info [62.219.91.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 604F2384FE8
+	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 14:34:03 -0500 (EST)
+Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
+	by postman.dtnt.info (Postfix) with ESMTPS id 28C1741141
+	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 21:33:22 +0200 (IST)
+Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
+	by o.dtnt.email (Postfix) with ESMTP id 0772A9FFB1
+	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 21:33:12 +0200 (IST)
+X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
+Received: from o.dtnt.email ([127.0.0.1])
+	by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id c9h0o5wBOeHt for <usrp-users@lists.ettus.com>;
+	Tue,  1 Feb 2022 21:33:09 +0200 (IST)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	by o.dtnt.email (Postfix) with ESMTPSA id 293D99FF71
+	for <usrp-users@lists.ettus.com>; Tue,  1 Feb 2022 21:33:08 +0200 (IST)
+Received: by mail-wr1-f52.google.com with SMTP id e8so34088243wrc.0
+        for <usrp-users@lists.ettus.com>; Tue, 01 Feb 2022 11:33:08 -0800 (PST)
+X-Gm-Message-State: AOAM5304S3dOdAJcLl3Byl7f+ks7SgJdjiOfxMzGrRc7bWrWfNqELxXD
+	j30K5S6cQd4ApWOGKTSumgp35uE2UbFJG9iGuQQ=
+X-Google-Smtp-Source: ABdhPJxKzvkHiG0m8RnaCWNt0i+szrNKB/NrMxq0fTy8gYBBMwCQIQakYaOmNd02AhcO9x1YYnMmrZ7quwvToHqj1wI=
+X-Received: by 2002:a5d:598b:: with SMTP id n11mr22777574wri.702.1643743987920;
+ Tue, 01 Feb 2022 11:33:07 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To: Jim Palladino <jim@gardettoengineering.com>,
- "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <MN2PR12MB3312C4A465FF575C85EF59DEB8269@MN2PR12MB3312.namprd12.prod.outlook.com>
- <fe43546f-cde5-f442-0d76-1967bc5dfebc@gmail.com>
- <MN2PR12MB33129A29C695F7A0ABC8BB6EB8269@MN2PR12MB3312.namprd12.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <MN2PR12MB33129A29C695F7A0ABC8BB6EB8269@MN2PR12MB3312.namprd12.prod.outlook.com>
-Message-ID-Hash: ILL3ZZA45LS5JB5J6SA44MNJBTVZOSUU
-X-Message-ID-Hash: ILL3ZZA45LS5JB5J6SA44MNJBTVZOSUU
-X-MailFrom: patchvonbraun@gmail.com
+References: <164366958084.11274.12985129402155989646@mm2.emwd.com>
+ <CACDReSwaUtZmNFzRrZnOb0dz3E0_RA=OD0L2dBejHXcMxd-w=w@mail.gmail.com>
+ <CAB__hTT5bqDK-MPbS_1wZHFpqjP5XNp25eQdamZHhx+=QPpkuQ@mail.gmail.com> <CAB__hTTGRP0uBZpcs9jWT84N=7CHYtQfx1+WjcupqsdPz9FB7A@mail.gmail.com>
+In-Reply-To: <CAB__hTTGRP0uBZpcs9jWT84N=7CHYtQfx1+WjcupqsdPz9FB7A@mail.gmail.com>
+From: Ofer Saferman <ofer@navigicom.com>
+Date: Tue, 1 Feb 2022 21:32:56 +0200
+X-Gmail-Original-Message-ID: <CACDReSyjBnXe5uYYAyGoAnh1+jhZSAKtz6BTfix6haDGn==rEQ@mail.gmail.com>
+Message-ID: <CACDReSyjBnXe5uYYAyGoAnh1+jhZSAKtz6BTfix6haDGn==rEQ@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+X-DTNT-MailScanner-Information: Please contact the ISP for more information
+X-DTNT-MailScanner-ID: 28C1741141.A2525
+X-DTNT-MailScanner: Found to be clean
+X-DTNT-MailScanner-From: ofer@navigicom.com
+X-Spam-Status: No
+Message-ID-Hash: FV4UV3K5AIROXXI46BOSBHAM6IAKXTHS
+X-Message-ID-Hash: FV4UV3K5AIROXXI46BOSBHAM6IAKXTHS
+X-MailFrom: ofer@navigicom.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Ofer Saferman <ofer@navigicom.com>, usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Timed Commands Not Working
+Subject: [USRP-users] Re: Questions about replay block
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ILL3ZZA45LS5JB5J6SA44MNJBTVZOSUU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FV4UV3K5AIROXXI46BOSBHAM6IAKXTHS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6475669899051881358=="
+Content-Type: multipart/mixed; boundary="===============6107837349862127859=="
 
-This is a multi-part message in MIME format.
---===============6475669899051881358==
-Content-Type: multipart/alternative;
- boundary="------------xMNkC99SmZPEGv4BwQR47hS0"
-Content-Language: en-US
+--===============6107837349862127859==
+Content-Type: multipart/alternative; boundary="00000000000080727805d6f9f868"
 
-This is a multi-part message in MIME format.
---------------xMNkC99SmZPEGv4BwQR47hS0
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--00000000000080727805d6f9f868
+Content-Type: text/plain; charset="UTF-8"
+
+Hello Rob,
+
+Thank you for your assistance.
+I will take your advice and keep it simple and use a separate port for each
+operation/channel.
+I want to do it not only to keep things simple but also because my Tx
+playback should never stop while my recording is timed and rare.
+
+Can you or Wade comment on item (4) in my latest query? - How to issue
+recording simultaneously on two replay ports? As I mentioned, I know how to
+do timed commands on streams but not on the replay block.
+
+Regards,
+Ofer Saferman
+
+On Tue, Feb 1, 2022 at 7:02 PM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Oops. In step 3, I meant graph Replay->rx_streamer.  Also, in step 2,
+> since this is a circular graph, you need to disconnect property propagation
+> on one leg of the graph (or something like that).
+>
+> On Tue, Feb 1, 2022 at 11:58 AM Rob Kossler <rkossler@nd.edu> wrote:
+>
+>> Hi Ofer,
+>> Considering just a single port replay block, it seems that you want to do
+>> the following:
+>> Step 1: Populate Tx samples: Configure tx_streamer->Replay graph and
+>> populate Mem block A with Tx waveform
+>> Step 2: Transmit/Receive samples: Change graph to Radio->Replay->Radio
+>> and "play" from Mem block A while recording to Mem block B
+>> Step 3: Download Rx samples: Change graph to Radio->rx_streamer and play
+>> samples from Mem block B
+>>
+>> This seems doable to me, but you may want to start with a simpler
+>> approach (such as separate ports that don't require reconfiguring graphs).
+>> Also, regarding your question about a fixed number of samples, I think that
+>> the limit is 2^28 samples in the NUM_SAMPS_AND_DONE option. If you need
+>> more than that, I think you are out of luck (I don't think there is a timed
+>> radio command to tell it to stop streaming on a given sample).
+>> Rob
+>>
+>> On Tue, Feb 1, 2022 at 12:18 AM Ofer Saferman <ofer@navigicom.com> wrote:
+>>
+>>> Hello Wade,
+>>>
+>>> Thank you for your prompt response.
+>>> A few more questions please:
+>>> 1. I am not sure that when we say bi-directional we mean the same thing.
+>>> The record and playback functions derive their function to some extent from
+>>> the graph connectivity. I would like, for the *same port* of Replay, to
+>>> make 2 graphs: tx_stream --> Replay --> Radio, Radio --> Replay -->
+>>> rx_stream. When I do record or playback, which of the graphs is active?
+>>> Both of them? In both directions? Can I control it to activate only one
+>>> direction? For Tx I want to use the record function only once to get the
+>>> samples into the buffer and playback them periodically (same as in the
+>>> rfnoc_replay_samples_from_file example) but for the other direction of Rx I
+>>> want to use the record function all the time. When I issue the record
+>>> command, which graph is active? The Tx graph? The Rx graph? Will it allow
+>>> me to make the 2 graphs at all using the same port? It is my understanding
+>>> that for the 2 graphs I mentioned I need two ports of replay, one for each
+>>> graph. Please correct me if I am wrong.
+>>> 4. I would like to use two ports of Replay to record 2 Rx channels. One
+>>> replay port for each Rx channel. How do I issue a record command that will
+>>> cause both channels (ports) to record at the same time instant? I know we
+>>> can do timed commands for streams but how to do it for replay ? My use of
+>>> the rx streams is done later in an offline fashion and can be done in
+>>> series for each of the Rx channels but the recording of samples itself to
+>>> DRAM has to be simultaneous.
+>>>
+>>> Thanks,
+>>> Ofer Saferman
+>>>
+>>> ---------- Forwarded message ----------
+>>>> From: Wade Fife <wade.fife@ettus.com>
+>>>> To: Ofer Saferman <ofer@navigicom.com>
+>>>> Cc: usrp-users <usrp-users@lists.ettus.com>
+>>>> Bcc:
+>>>> Date: Mon, 31 Jan 2022 16:52:41 -0600
+>>>> Subject: [USRP-users] Re: Questions about replay block
+>>>> Hi Ofer,
+>>>>
+>>>> 1. It is bidirectional. You can think of the "record" and the "play"
+>>>> components as independent, but connected to the same memory. So be careful
+>>>> not to read/write to the same memory space and be aware that reading and
+>>>> writing simultaneously slows down the DRAM making under/overflow more
+>>>> likely. But I think the E320 DRAM should be fast enough for your use case.
+>>>>
+>>>> 2. The number of ports on the Replay block doesn't have any
+>>>> restrictions that I know of. Any positive integer should be fine. You could
+>>>> also leave ports unused/unconnected if it was somehow a problem.
+>>>>
+>>>> 3. To record at a predetermined time for a fixed amount of data, you
+>>>> should be able to issue a stream command with the time and the number of
+>>>> samples you want.
+>>>> a. Yes.
+>>>> b. Yes. The first time you want to record data, you call record(). To
+>>>> record to the same buffer again, call record_restart(). Make sure num_samps
+>>>> for your stream command does not exceed the size of your record buffer, or
+>>>> else the radio will overflow.
+>>>> c. Yes, you need to play back the buffer. Since the output is connected
+>>>> to the rx streamer, it'll stream to the host. So you can call recv() on
+>>>> your rx streamer to capture the data. Something like this (in Python):
+>>>> replay.play(0, num_bytes, port, uhd.libpyuhd.types.time_spec(0.0),
+>>>> False)
+>>>> rx_md = uhd.types.RXMetadata()
+>>>> num_rx = rx_streamer.recv(output_data, rx_md, timeout)
+>>>>
+>>>> Happy coding!
+>>>>
+>>>> Wade
+>>>>
+>>>>
+>>>> On Mon, Jan 31, 2022 at 9:45 AM Ofer Saferman <ofer@navigicom.com>
+>>>> wrote:
+>>>>
+>>>>> Hello,
+>>>>>
+>>>>> I am working on a E320 USRP unit and using UHD-4.1.0.5.
+>>>>> I prepared my own FPGA image that has 1 radio block and 1 replay block
+>>>>> with 2 ports (channels)
+>>>>> I would like to be able to simultaneously perform playback of 1 Tx
+>>>>> channel and recording of 2 Rx channels (to/from different memory locations)
+>>>>> The example rfnoc_replay_samples_from_file.cpp is only helpful to some
+>>>>> extent because it shows only the playback path and I am having some
+>>>>> difficulty setting up the recording path.
+>>>>>
+>>>>> I have a few questions about the replay block functionality and
+>>>>> connectivity that I hope you may be able to resolve.
+>>>>>
+>>>>> 1. Is the replay block bi-directional? If I have a replay block with 1
+>>>>> channel, can it be used for both playback of samples and recording of
+>>>>> samples (from/to different memory locations) simultaneously ? or does each
+>>>>> operation require one channel?
+>>>>> 2. If the answer to question (1) is no then I guess I need at least 3
+>>>>> replay channels. Is it possible to define in the FPGA image (in the yml
+>>>>> file) a replay block with 3 channels (ports) or does it have to be a power
+>>>>> of 2? a multiple of 2? I didn't want to try and see what happens because it
+>>>>> takes a while to compile the FPGA image and I would rather get it right on
+>>>>> the 1st try.
+>>>>> 3. I would like to issue samples recording at a predetermined time for
+>>>>> a fixed size data chunk and then at my own leisure dump the memory buffer
+>>>>> that was recorded to a file. Since I don't have a working example I am
+>>>>> having some difficulty getting it right.
+>>>>> a. The graph should be Radio -->  Replay --> rx_stream. Is this
+>>>>> correct?
+>>>>> b. I should start my recording with replay_ctrl->record_restart and
+>>>>> check for fullness, right?
+>>>>> c. Then how do I get the rx_stream to dump it to file? Do I need to do
+>>>>> playback for this to happen, mirroring what is going on in the
+>>>>> rfnoc_replay_samples_from_file example?
+>>>>> If someone has a working code snippet I would appreciate it if they
+>>>>> can share it.
+>>>>>
+>>>>> Thanks,
+>>>>> Ofer Saferman
+>>>>>
+>>>>> --
+>>>>> This message has been scanned for viruses and
+>>>>> dangerous content by *MailScanner* <http://www.mailscanner.info/>,
+>>>>> and is
+>>>>> believed to be clean. _______________________________________________
+>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>
+>>>> _______________________________________________
+>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>
+>>>
+>>> --
+>>> This message has been scanned for viruses and
+>>> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and
+>>> is
+>>> believed to be clean. _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
+
+-- 
+This message has been scanned for viruses and
+dangerous content by MailScanner, and is
+believed to be clean.
+
+
+--00000000000080727805d6f9f868
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-02-01 14:10, Jim Palladino wrote:
-> Hi Marcus,
->
-> In the app I'm writing, for now I'm just setting the time to '0.0'=20
-> after startup, like:
-> =C2=A0 =C2=A0usrp->set_time_now(uhd::time_spec_t(0.0));
-That may be part of your problem--that may produce two separate=20
-transactions for the radio timestamp registers.
+<div dir=3D"ltr"><div>Hello Rob,</div><div><br></div><div>Thank you for you=
+r assistance.</div><div>I will take your advice and keep it simple and use =
+a separate port for each operation/channel. <br></div><div>I want to do it =
+not only to keep things simple but also because my Tx playback should never=
+ stop while my recording is timed and rare.<br></div><div><br></div><div>Ca=
+n you or Wade comment on item (4) in my latest query? - How to issue record=
+ing simultaneously on two replay ports? As I mentioned, I know how to do ti=
+med commands on streams but not on the replay block.<br></div><div><br></di=
+v><div>Regards,</div><div>Ofer Saferman<br></div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Feb 1, 2022 at 7:0=
+2 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr"><div>Oops. In step 3, I meant graph Replay-&gt;rx_streamer.=C2=
+=A0 Also, in step 2, since this is a circular graph, you need to disconnect=
+ property propagation on one leg of the graph (or something like that).</di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
+ue, Feb 1, 2022 at 11:58 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.e=
+du" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi O=
+fer,<div>Considering just a single port replay block, it seems that you wan=
+t to do the following:</div><div>Step 1: Populate Tx samples: Configure tx_=
+streamer-&gt;Replay graph and populate Mem block A with Tx waveform</div><d=
+iv>Step 2: Transmit/Receive samples: Change graph to Radio-&gt;Replay-&gt;R=
+adio=C2=A0 and &quot;play&quot; from Mem block A while recording to Mem blo=
+ck B</div><div>Step 3: Download Rx samples: Change graph to Radio-&gt;rx_st=
+reamer and play samples from Mem block B</div><div><br></div><div>This seem=
+s doable to me, but you may want to start with a simpler approach (such as =
+separate ports that don&#39;t require reconfiguring graphs). Also, regardin=
+g=C2=A0your question about a fixed number of samples, I think that the limi=
+t is 2^28 samples in the NUM_SAMPS_AND_DONE option. If you need more than t=
+hat, I think you are out of luck (I don&#39;t think there is a timed radio =
+command to tell it to stop streaming on a given sample).</div><div>Rob</div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Tue, Feb 1, 2022 at 12:18 AM Ofer Saferman &lt;<a href=3D"mailto:ofer@n=
+avigicom.com" target=3D"_blank">ofer@navigicom.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hel=
+lo Wade,</div><div><br></div><div>Thank you for your prompt response.</div>=
+<div>A few more questions please:</div><div>1. I am not sure that when we s=
+ay bi-directional we mean the same thing. The record and playback functions=
+ derive their function to some extent from the graph connectivity. I would =
+like, for the <u><b>same port</b></u> of Replay, to make 2 graphs: tx_strea=
+m --&gt; Replay --&gt; Radio, Radio --&gt; Replay --&gt; rx_stream. When I =
+do record or playback, which of the graphs is active? Both of them? In both=
+ directions? Can I control it to activate only one direction? For Tx I want=
+ to use the record function only once to get the samples into the buffer an=
+d playback them periodically (same as in the
+rfnoc_replay_samples_from_file example) but for the other direction of Rx I=
+ want to use the record function all the time. When I issue the record comm=
+and, which graph is active? The Tx graph? The Rx graph? Will it allow me to=
+ make the 2 graphs at all using the same port? It is my understanding that =
+for the 2 graphs I mentioned I need two ports of replay, one for each graph=
+. Please correct me if I am wrong.<br></div><div>4. I would like to use two=
+ ports of Replay to record 2 Rx channels. One replay port for each Rx chann=
+el. How do I issue a record command that will cause both channels (ports) t=
+o record at the same time instant? I know we can do timed commands for stre=
+ams but how to do it for replay ? My use of the rx streams is done later in=
+ an offline fashion and can be done in series for each of the Rx channels b=
+ut the recording of samples itself to DRAM has to be simultaneous.</div><di=
+v><br></div><div>Thanks,</div><div>Ofer Saferman<br></div><br><div class=3D=
+"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">---------- =
+Forwarded message ----------<br>From:=C2=A0Wade Fife &lt;<a href=3D"mailto:=
+wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt;<br>To:=
+=C2=A0Ofer Saferman &lt;<a href=3D"mailto:ofer@navigicom.com" target=3D"_bl=
+ank">ofer@navigicom.com</a>&gt;<br>Cc:=C2=A0usrp-users &lt;<a href=3D"mailt=
+o:usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com<=
+/a>&gt;<br>Bcc:=C2=A0<br>Date:=C2=A0Mon, 31 Jan 2022 16:52:41 -0600<br>Subj=
+ect:=C2=A0[USRP-users] Re: Questions about replay block<br><div dir=3D"ltr"=
+><div>Hi Ofer,</div><div><br></div><div>1. It is bidirectional. You can thi=
+nk of the &quot;record&quot; and the &quot;play&quot; components as indepen=
+dent, but connected to the same memory. So be careful not to read/write to =
+the same memory space and be aware that reading and writing simultaneously =
+slows down the DRAM making under/overflow more likely. But I think the E320=
+ DRAM should be fast enough for your use case.</div><div><br></div><div>2. =
+The number of ports on the Replay block doesn&#39;t have any restrictions t=
+hat I know of. Any positive integer should be fine. You could also leave po=
+rts unused/unconnected if it was somehow a problem.<br></div><div><br></div=
+><div>3. To record at a predetermined time for a fixed amount of data, you =
+should be able to issue a stream command with the time and the number of sa=
+mples you want.<br></div><div>a. Yes.</div><div>b. Yes. The first time you =
+want to record data, you call record(). To record to the same buffer again,=
+ call record_restart(). Make sure num_samps for your stream command does no=
+t exceed the size of your record buffer, or else the radio will overflow. <=
+br></div><div>c. Yes, you need to play back the buffer. Since the output is=
+ connected to the rx streamer, it&#39;ll stream to the host. So you can cal=
+l recv() on your rx streamer to capture the data. Something like this (in P=
+ython):<br>replay.play(0, num_bytes, port, uhd.libpyuhd.types.time_spec(0.0=
+), False)<br>rx_md =3D uhd.types.RXMetadata()<br>num_rx =3D rx_streamer.rec=
+v(output_data, rx_md, timeout)</div><div><br></div><div>Happy coding!<br></=
+div><div><br></div><div>Wade<br></div><div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 31, 2022=
+ at 9:45 AM Ofer Saferman &lt;<a href=3D"mailto:ofer@navigicom.com" target=
+=3D"_blank">ofer@navigicom.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br></=
+div><div>I am working on a E320 USRP unit and using UHD-4.1.0.5.<br></div><=
+div>I prepared my own FPGA image that has 1 radio block and 1 replay block =
+with 2 ports (channels)</div><div>I would like to be able to simultaneously=
+ perform playback of 1 Tx channel and recording of 2 Rx channels (to/from d=
+ifferent memory locations)</div><div>The example rfnoc_replay_samples_from_=
+file.cpp is only helpful to some extent because it shows only the playback =
+path and I am having some difficulty setting up the recording path.<br></di=
+v><div></div><div><br></div><div>I have a few questions about the replay bl=
+ock functionality and connectivity that I hope you may be able to resolve.<=
+/div><div><br></div><div>1. Is the replay block bi-directional? If I have a=
+ replay block with 1 channel, can it be used for both playback of samples a=
+nd recording of samples (from/to different memory locations) simultaneously=
+ ? or does each operation require one channel?</div><div>2. If the answer t=
+o question (1) is no then I guess I need at least 3 replay channels. Is it =
+possible to define in the FPGA image (in the yml file) a replay block with =
+3 channels (ports) or does it have to be a power of 2? a multiple of 2? I d=
+idn&#39;t want to try and see what happens because it takes a while to comp=
+ile the FPGA image and I would rather get it right on the 1st try.</div><di=
+v>3. I would like to issue samples recording at a predetermined time for a =
+fixed size data chunk and then at my own leisure dump the memory buffer tha=
+t was recorded to a file. Since I don&#39;t have a working example I am hav=
+ing some difficulty getting it right. <br></div><div>a. The graph should be=
+ Radio --&gt;=C2=A0 Replay --&gt; rx_stream. Is this correct? <br></div><di=
+v>b. I should start my recording with replay_ctrl-&gt;record_restart and ch=
+eck for fullness, right?</div><div>c. Then how do I get the rx_stream to du=
+mp it to file? Do I need to do playback for this to happen, mirroring what =
+is going on in the=20
+rfnoc_replay_samples_from_file example? <br></div><div>If someone has a wor=
+king code snippet I would appreciate it if they can share it.</div><div><br=
+></div><div>Thanks,</div><div>Ofer Saferman<br></div></div>
+<br>--=20
+<br>This message has been scanned for viruses and
+<br>dangerous content by
+<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
+b></a>, and is
+<br>believed to be clean.
 
-Use set_time_unknown_pps() instead, and see if this changes things.
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
+<br>--=20
+<br>This message has been scanned for viruses and
+<br>dangerous content by
+<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
+b></a>, and is
+<br>believed to be clean.
 
-Also, make sure you're setting master_clock_rate=C2=A0 in the device argu=
-ments.
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
+</blockquote></div></div>
+</blockquote></div>
+<br />--=20
+<br />This message has been scanned for viruses and
+<br />dangerous content by
+<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
+<br />believed to be clean.
 
 
->
-> For the "test_timed_commands.cpp" test app, I'm just executing what is=20
-> here:
-> https://github.com/EttusResearch/uhd/blob/UHD-4.1/host/examples/test_ti=
-med_commands.cpp
->
-> It doesn't appear to matter, but my E320 is setup to use an internal=20
-> reference, the N320 is external.
->
-> Thanks,
-> Jim
->
->
-> -----------------------------------------------------------------------=
--
-> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Sent:* Tuesday, February 1, 2022 1:59 PM
-> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-> *Subject:* [USRP-users] Re: Timed Commands Not Working
-> On 2022-02-01 13:55, Jim Palladino wrote:
->> Hello,
->>
->> I've been trying to get an app working with timed commands for an=20
->> E320 or N320 using UHD 4.1. It seems that all commands are processed=20
->> immediately, not at the time I tell them to. Setting the time to=20
->> start RX streaming does seem to work fine, but that is a time_spec=20
->> passed to the streaming function -- not a "timed command".
->>
->> If, on the other hand, I use timed commands to set a series of RX=20
->> frequency tunes in the future -- to retune says every 100ms -- that=20
->> isn't working. All retunes get processed immediately, one after=20
->> another, with no 100ms gap in between. I would post the code I'm=20
->> using here, but I went ahead and ran the UHD-included=20
->> "test_timed_commands" example on both the E320 and N320. The example=20
->> application does not seem to work right on either device and exhibits=20
->> the same behaviour I'm seeing with my code. You can see from the=20
->> results below, that instead of a 100ms gap between get_time_now()=20
->> calls, as the example app is setup to do, the calls to get_time_now()=20
->> return immediately.
->>
->> Here is the output of "test_timed_commands" on the N320. The code is=20
->> unmodified from the provided example source:
->> --------------------------------
->> $ ./test_timed_commands
->>
->> Creating the usrp device with: ...
->> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;=20
->> UHD_4.1.0.4-0-g25d617ca
->> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:=20
->> mgmt_addr=3D192.168.40.2,type=3Dn3xx,product=3Dn320,serial=3D31EDED4,f=
-pga=3DXG,claimed=3DFalse,addr=3D192.168.40.2
->> [INFO] [MPM.PeriphManager] init() called with device args=20
->> `fpga=3DXG,mgmt_addr=3D192.168.40.2,product=3Dn320,clock_source=3Dexte=
-rnal,time_source=3Dexternal'.
->> [INFO] [MPM.Rhodium-0] init() called with args=20
->> `fpga=3DXG,mgmt_addr=3D192.168.40.2,product=3Dn320,clock_source=3Dexte=
-rnal,time_source=3Dexternal'
->> [INFO] [MPM.Rhodium-1] init() called with args=20
->> `fpga=3DXG,mgmt_addr=3D192.168.40.2,product=3Dn320,clock_source=3Dexte=
-rnal,time_source=3Dexternal'
->> Using Device: Single USRP:
->> =C2=A0 Device: N300-Series Device
->> =C2=A0 Mboard 0: n320
->> =C2=A0 RX Channel: 0
->> =C2=A0 =C2=A0 RX DSP: 0
->> =C2=A0 =C2=A0 RX Dboard: A
->> =C2=A0 =C2=A0 RX Subdev: Rhodium
->> =C2=A0 RX Channel: 1
->> =C2=A0 =C2=A0 RX DSP: 1
->> =C2=A0 =C2=A0 RX Dboard: B
->> =C2=A0 =C2=A0 RX Subdev: Rhodium
->> =C2=A0 TX Channel: 0
->> =C2=A0 =C2=A0 TX DSP: 0
->> =C2=A0 =C2=A0 TX Dboard: A
->> =C2=A0 =C2=A0 TX Subdev: Rhodium
->> =C2=A0 TX Channel: 1
->> =C2=A0 =C2=A0 TX DSP: 1
->> =C2=A0 =C2=A0 TX Dboard: B
->> =C2=A0 =C2=A0 TX Subdev: Rhodium
->>
->>
->> Testing support for timed commands on this hardware... pass
->>
->> Perform fast readback of registers:
->> =C2=A0Difference between paired reads: 2016.288086 us
->>
->> Testing control timed command:
->> =C2=A0Span =C2=A0 =C2=A0 =C2=A0: 100000.000000 us
->> =C2=A0Now =C2=A0 =C2=A0 =C2=A0 : 416299.532064 us
->> =C2=A0Response 1: 418303.910319 us
->> =C2=A0Response 2: 420352.290853 us
->> =C2=A0Difference of response time 1: -97995.621745 us
->> =C2=A0Difference of response time 2: -195947.241211 us
->> =C2=A0Difference between actual and expected time delta: -97951.619466=
- us
->>
->> About to start streaming using timed command:
->> =C2=A0Received packet: 100 samples, 0 full secs, 0.524535 frac secs
->> =C2=A0Stream time was: 0 full secs, 0.524535 frac secs
->> =C2=A0Difference between stream time and first packet: 0.000000 us
->>
->> Done!
->> ---------------------------------------------------
->>
->> Any thoughts on this would be appreciated, as timed commands are=20
->> important to the application we are developing.
->>
->> Thanks,
->> Jim
->>
->>
->>
-> How are you setting device time at startup?
->
->
+--00000000000080727805d6f9f868--
 
---------------xMNkC99SmZPEGv4BwQR47hS0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-02-01 14:10, Jim Palladino
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:MN2PR12MB33129A29C695F7A0ABC8BB6EB8269@MN2PR12MB3312.namprd12=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Hi Marcus,</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        In the app I'm writing, for now I'm just setting the time to
-        '0.0' after startup, like:</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        =C2=A0 =C2=A0usrp-&gt;set_time_now(uhd::time_spec_t(0.0));<br>
-      </div>
-    </blockquote>
-    That may be part of your problem--that may produce two separate
-    transactions for the radio timestamp registers.<br>
-    <br>
-    Use set_time_unknown_pps() instead, and see if this changes things.<b=
-r>
-    <br>
-    Also, make sure you're setting master_clock_rate=C2=A0 in the device
-    arguments.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:MN2PR12MB33129A29C695F7A0ABC8BB6EB8269@MN2PR12MB3312.namprd12=
-.prod.outlook.com">
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        For the "test_timed_commands.cpp" test app, I'm just executing
-        what is here:</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <a
-href=3D"https://github.com/EttusResearch/uhd/blob/UHD-4.1/host/examples/t=
-est_timed_commands.cpp"
-          id=3D"LPNoLPOWALinkPreview" moz-do-not-send=3D"true"
-          class=3D"moz-txt-link-freetext">https://github.com/EttusResearc=
-h/uhd/blob/UHD-4.1/host/examples/test_timed_commands.cpp</a><br>
-        <br>
-        It doesn't appear to matter, but my E320 is setup to use an
-        internal reference, the N320 is external.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Thanks,</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        Jim</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
-        <br>
-        <br>
-      </div>
-      <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-      <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt=
-"
-          face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Mar=
-cus
-          D. Leech <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patc=
-hvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
-          <b>Sent:</b> Tuesday, February 1, 2022 1:59 PM<br>
-          <b>To:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"mailto=
-:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:usrp-users@li=
-sts.ettus.com">&lt;usrp-users@lists.ettus.com&gt;</a><br>
-          <b>Subject:</b> [USRP-users] Re: Timed Commands Not Working</fo=
-nt>
-        <div>=C2=A0</div>
-      </div>
-      <div>
-        <div class=3D"x_moz-cite-prefix">On 2022-02-01 13:55, Jim
-          Palladino wrote:<br>
-        </div>
-        <blockquote type=3D"cite">
-          <style type=3D"text/css" style=3D"display:none">p
-	{margin-top:0;
-	margin-bottom:0}</style>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            Hello,</div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <br>
-          </div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            I've been trying to get an app working with timed commands
-            for an E320 or N320 using UHD 4.1. It seems that all
-            commands are processed immediately, not at the time I tell
-            them to. Setting the time to start RX streaming does seem to
-            work fine, but that is a time_spec passed to the streaming
-            function -- not a "timed command".=C2=A0</div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <br>
-          </div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            If, on the other hand, I use timed commands to set a series
-            of RX frequency tunes in the future -- to retune says every
-            100ms -- that isn't working. All retunes get processed
-            immediately, one after another, with no 100ms gap in
-            between. I would post the code I'm using here, but I went
-            ahead and ran the UHD-included "test_timed_commands" example
-            on both the E320 and N320. The example application does not
-            seem to work right on either device and exhibits the same
-            behaviour I'm seeing with my code. You can see from the
-            results below, that instead of a 100ms gap between
-            get_time_now() calls, as the example app is setup to do, the
-            calls to get_time_now() return immediately.</div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <br>
-          </div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            Here is the output of "test_timed_commands" on the N320. The
-            code is unmodified from the provided example source:<br>
-            --------------------------------</div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-          </div>
-          $ ./test_timed_commands
-          <div><br>
-          </div>
-          <div>Creating the usrp device with: ...</div>
-          <div>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501;
-            UHD_4.1.0.4-0-g25d617ca</div>
-          <div>[INFO] [MPMD] Initializing 1 device(s) in parallel with
-            args:
-mgmt_addr=3D192.168.40.2,type=3Dn3xx,product=3Dn320,serial=3D31EDED4,fpga=
-=3DXG,claimed=3DFalse,addr=3D192.168.40.2</div>
-          <div>[INFO] [MPM.PeriphManager] init() called with device args
-`fpga=3DXG,mgmt_addr=3D192.168.40.2,product=3Dn320,clock_source=3Dexterna=
-l,time_source=3Dexternal'.</div>
-          <div>[INFO] [MPM.Rhodium-0] init() called with args
-`fpga=3DXG,mgmt_addr=3D192.168.40.2,product=3Dn320,clock_source=3Dexterna=
-l,time_source=3Dexternal'</div>
-          <div>[INFO] [MPM.Rhodium-1] init() called with args
-`fpga=3DXG,mgmt_addr=3D192.168.40.2,product=3Dn320,clock_source=3Dexterna=
-l,time_source=3Dexternal'</div>
-          <div>Using Device: Single USRP:</div>
-          <div>=C2=A0 Device: N300-Series Device</div>
-          <div>=C2=A0 Mboard 0: n320</div>
-          <div>=C2=A0 RX Channel: 0</div>
-          <div>=C2=A0 =C2=A0 RX DSP: 0</div>
-          <div>=C2=A0 =C2=A0 RX Dboard: A</div>
-          <div>=C2=A0 =C2=A0 RX Subdev: Rhodium</div>
-          <div>=C2=A0 RX Channel: 1</div>
-          <div>=C2=A0 =C2=A0 RX DSP: 1</div>
-          <div>=C2=A0 =C2=A0 RX Dboard: B</div>
-          <div>=C2=A0 =C2=A0 RX Subdev: Rhodium</div>
-          <div>=C2=A0 TX Channel: 0</div>
-          <div>=C2=A0 =C2=A0 TX DSP: 0</div>
-          <div>=C2=A0 =C2=A0 TX Dboard: A</div>
-          <div>=C2=A0 =C2=A0 TX Subdev: Rhodium</div>
-          <div>=C2=A0 TX Channel: 1</div>
-          <div>=C2=A0 =C2=A0 TX DSP: 1</div>
-          <div>=C2=A0 =C2=A0 TX Dboard: B</div>
-          <div>=C2=A0 =C2=A0 TX Subdev: Rhodium</div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>Testing support for timed commands on this hardware...
-            pass</div>
-          <div><br>
-          </div>
-          <div>Perform fast readback of registers:</div>
-          <div>=C2=A0Difference between paired reads: 2016.288086 us</div=
->
-          <div><br>
-          </div>
-          <div>Testing control timed command:</div>
-          <div>=C2=A0Span =C2=A0 =C2=A0 =C2=A0: 100000.000000 us</div>
-          <div>=C2=A0Now =C2=A0 =C2=A0 =C2=A0 : 416299.532064 us</div>
-          <div>=C2=A0Response 1: 418303.910319 us</div>
-          <div>=C2=A0Response 2: 420352.290853 us</div>
-          <div>=C2=A0Difference of response time 1: -97995.621745 us</div=
->
-          <div>=C2=A0Difference of response time 2: -195947.241211 us</di=
-v>
-          <div>=C2=A0Difference between actual and expected time delta:
-            -97951.619466 us</div>
-          <div><br>
-          </div>
-          <div>About to start streaming using timed command:</div>
-          <div>=C2=A0Received packet: 100 samples, 0 full secs, 0.524535 =
-frac
-            secs</div>
-          <div>=C2=A0Stream time was: 0 full secs, 0.524535 frac secs</di=
-v>
-          <div>=C2=A0Difference between stream time and first packet:
-            0.000000 us</div>
-          <div><br>
-          </div>
-          <div><span>Done!</span></div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <span>---------------------------------------------------</sp=
-an></div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <span><br>
-            </span></div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-          </div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            Any thoughts on this would be appreciated, as timed commands
-            are important to the application we are developing.</div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <br>
-          </div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            Thanks,</div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            Jim</div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <br>
-          </div>
-          <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;
-            font-size:12pt; color:rgb(0,0,0)">
-            <br>
-          </div>
-          <br>
-        </blockquote>
-        How are you setting device time at startup?<br>
-        <br>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------xMNkC99SmZPEGv4BwQR47hS0--
-
---===============6475669899051881358==
+--===============6107837349862127859==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -504,4 +440,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6475669899051881358==--
+--===============6107837349862127859==--
