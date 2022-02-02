@@ -2,115 +2,111 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD984A737A
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 15:44:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 070BF4A737C
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 15:45:57 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9B27E383EB7
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 09:44:41 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 0C0873854F6
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 09:45:56 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="oF6A6v9A";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nqORXWSa";
 	dkim-atps=neutral
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id EA984383EB7
-	for <usrp-users@lists.ettus.com>; Wed,  2 Feb 2022 09:43:39 -0500 (EST)
-Received: by mail-qv1-f41.google.com with SMTP id k4so19110028qvt.6
-        for <usrp-users@lists.ettus.com>; Wed, 02 Feb 2022 06:43:39 -0800 (PST)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2B005385292
+	for <usrp-users@lists.ettus.com>; Wed,  2 Feb 2022 09:44:58 -0500 (EST)
+Received: by mail-qk1-f175.google.com with SMTP id o10so18332034qkg.0
+        for <usrp-users@lists.ettus.com>; Wed, 02 Feb 2022 06:44:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to;
-        bh=PEbGBgrqu7G/zcIwQWAuBMw02gcY8dMNvxEa6dPgNXE=;
-        b=oF6A6v9Ax2XkCudVOOhO1ktijGXK7oHAL2iixX2FakhYVBOET2i77efZyL0egPdPuN
-         6Cu6aydEMEnLZxQl9A+6ug+UQ2NQy/ZRNKBSGfidrfY5rIcfo3in1h+sao/r7ma8jnPj
-         sBLZoR4OHuFeVtA6BAKjcpkAnVQsoHd1QO7Frhm/6Oz0BiV7dx3MegilQ9EYUInRECyV
-         vkYlDa9yJoP4L7ooKDFzs8EQFEKscCAgQcoZwRPqnJjvzzScfH5GUTou+DwHXdDp/aAT
-         sDUd/y6rzU98MYDnk/smI3c9hSti2IAgXcTC4GnbCQbEOWxLuqFvdP03wnnIkM4iGwtY
-         gCmQ==
+        bh=oFEp4PdIAtn89SWMC35xFGCFMfskAc7OfEDWlhKFAvk=;
+        b=nqORXWSaV8mwOtEfbST7N23xNuY7M1o3149+Yg8UyUewzo4B8/Be7JLRmq765VhxNy
+         bElE7wV9BjslhKXwZro5FKjIsPh2c6hkfADnEUCygAsUxnj6/0iEWS7WHPO6MF6eCZsM
+         8vvZExN7/tlBTLxQgB1MyvtCTNasQCgHoAeg0Y67SIL7Of1qpA5PdkR8bYUYbqYEG7H3
+         IIXoucu7bE0qj2kDAWyoSrMMlF4IyRJwdn4c+tgQxaDmgI6/OlWuVguqCKl5LvxZcJBc
+         uE6Jwg6ulh+m1EIFWMgoQLCKCLLTZMEn24EmLZfRysEsvZSANM3FfFzsGvba+LRntkdu
+         MeOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to;
-        bh=PEbGBgrqu7G/zcIwQWAuBMw02gcY8dMNvxEa6dPgNXE=;
-        b=xfhuFTLOnoDB4/9mc7x0BgYTQGz06abS3DOYs+PymIQttpbR56Wyh8Evqk67dln9/C
-         2TZReml3dZjjJHj1F0rTOXbRgrnCJlTVuNEc2Vk1hgW2rJfjjgEg1SkFwGTTmFD4tJNV
-         mrrgx/xGX2fjP5yEeu4bks0hvC5U3aQTD+couys2uNSCGDDyF61J7iv3dSm4Sf4ZjTLf
-         DRM8NI83GYrH1xDoNXJcuvoRqZgZ4m39NDFTdh3VX/nkA5B6/U4DH7vSo4RtOGtWSkjk
-         4TvaoRx6Y7caOKXWk5fp6UgQFe7e1gR7igKEKisRylztQtEuVP6+86NCsoAp/PN76X8+
-         zslQ==
-X-Gm-Message-State: AOAM530KK2Go5AibYIQeQkCgNoDClbcrEpe24gB21lCDXauIqO6I9N8I
-	w0638CTLRD1UpEUl9U434cEaKFz5Wsg6xg==
-X-Google-Smtp-Source: ABdhPJxHgUIvXBmRse3vzJs5ZxdmnUvJeKOd/5obqLMibOW6wZ8bzVhvn/izkCe8hjX7+UCBaK3EOw==
-X-Received: by 2002:a05:6214:e8c:: with SMTP id hf12mr26431379qvb.68.1643813019265;
-        Wed, 02 Feb 2022 06:43:39 -0800 (PST)
+        bh=oFEp4PdIAtn89SWMC35xFGCFMfskAc7OfEDWlhKFAvk=;
+        b=eh27KGdHJT2l7bNI8zMvfx8ouWh3zCQK/2xA4Kq2aD0Q8r0NqFC0il6SkS0oD8ssDZ
+         bOh+l7XpkdEOjo26Rl0Hc9eH00KYAA1P65EXEkG8SpF8p1F35eAfkCADvzlgax+xw299
+         U/CWUQdIUEbH+N1Tv+TpR8uW/hdB/8+1Hj7eaj2R5m/O6lqDzXvMNZgcaTqSULRGg43c
+         tO0FZvS7z8p19BJmo2RB/1od+z4pUH4Q5rBtWIxWitIgQbRyP6GE4PryWE4ma3wdtlJw
+         /qZcvejogj49d6eAj4Jobv/FDz+2JDLZDNopWc43KYnqT2TbOSQX//gTuXHllv7zM5Bh
+         L6Rg==
+X-Gm-Message-State: AOAM530bmRZ1qEB81agIaIn7W30p3yESyooSt8CoKXtMkvPd+1k0mgUU
+	FRLvYN9K1xTneAINBa4HcQ2HdBGKnKg0Dw==
+X-Google-Smtp-Source: ABdhPJxREJcUgDqQURjl22yJUv3IrO1X86l88hVPMdh0QHjG3eirT7BLPN0o6thiAJWIu11wUhabbw==
+X-Received: by 2002:a05:620a:1792:: with SMTP id ay18mr20569442qkb.12.1643813098509;
+        Wed, 02 Feb 2022 06:44:58 -0800 (PST)
 Received: from [192.168.2.216] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id u21sm11502827qtw.80.2022.02.02.06.43.38
-        for <usrp-users@lists.ettus.com>
+        by smtp.googlemail.com with ESMTPSA id j13sm9298958qko.46.2022.02.02.06.44.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Feb 2022 06:43:38 -0800 (PST)
-Message-ID: <5aecd4ae-7679-a70e-85c1-6c97f5dfe381@gmail.com>
-Date: Wed, 2 Feb 2022 09:43:38 -0500
+        Wed, 02 Feb 2022 06:44:58 -0800 (PST)
+Message-ID: <8291ea48-606c-ad3a-3836-56ae1106bdd8@gmail.com>
+Date: Wed, 2 Feb 2022 09:44:57 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <bmRt66VHp2qQcNS8bpEAvK8fofebZiXQ5fHqmnCfBx0@lists.ettus.com>
- <CAB__hTRpPmA548JmuK=w1SAU_WPWLHhD_viYv8rJzDwCuNphCQ@mail.gmail.com>
+To: Jim Palladino <jim@gardettoengineering.com>,
+ "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <MN2PR12MB3312C4A465FF575C85EF59DEB8269@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <fe43546f-cde5-f442-0d76-1967bc5dfebc@gmail.com>
+ <MN2PR12MB33129A29C695F7A0ABC8BB6EB8269@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <4acbc3b9-354e-1a85-5758-fccf65b17835@gmail.com>
+ <MN2PR12MB331282717C011B8FA78D241EB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTRpPmA548JmuK=w1SAU_WPWLHhD_viYv8rJzDwCuNphCQ@mail.gmail.com>
-Message-ID-Hash: EJGD5YEN3WEZBZWSWOQUJP5SENECPVEK
-X-Message-ID-Hash: EJGD5YEN3WEZBZWSWOQUJP5SENECPVEK
+In-Reply-To: <MN2PR12MB331282717C011B8FA78D241EB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
+Message-ID-Hash: S4JWYX6EOS2HOUDO5YROXVGL7WJ3F4XA
+X-Message-ID-Hash: S4JWYX6EOS2HOUDO5YROXVGL7WJ3F4XA
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 two channel transmit
+Subject: [USRP-users] Re: Timed Commands Not Working
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EJGD5YEN3WEZBZWSWOQUJP5SENECPVEK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S4JWYX6EOS2HOUDO5YROXVGL7WJ3F4XA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4747304722523096022=="
+Content-Type: multipart/mixed; boundary="===============4507463820907565421=="
 
 This is a multi-part message in MIME format.
---===============4747304722523096022==
+--===============4507463820907565421==
 Content-Type: multipart/alternative;
- boundary="------------9mOP9kOjQl0ZZQDAD3WKVZ44"
+ boundary="------------utt6HcNN20B1A0ZowKJ0v7cp"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------9mOP9kOjQl0ZZQDAD3WKVZ44
+--------------utt6HcNN20B1A0ZowKJ0v7cp
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-02-02 09:39, Rob Kossler wrote:
-> Ok. If benchmark_rate fails, this means that either your host is not=20
-> optimized or else it is underpowered, I think. Did you try the items=20
-> at this=20
-> <https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#Adju=
-st_Network_Buffers>link?=C2=A0=20
-> Are you getting any error messages or warnings (other than those=20
-> shown) when you run benchmark_rate?=C2=A0 How about rx_streaming - are =
-you=20
-> able to consume Rx streaming at high rates without errors?
+On 2022-02-02 07:30, Jim Palladino wrote:
+> Marcus, thanks for the suggestions. I made sure to set the master=20
+> clock rate on both the E320 and N320. In the app I'm developing, I=20
+> also tried set_time_unknown_pps() instead of set_time_now() as you=20
+> suggested. Unfortunately, neither one of those made a difference.
 >
-Or there's something wrong with the ethernet interface hardware, or the=20
-drivers for it.
+>
+Thanks, Jim.
 
-Other folks have (quite recently) done 2-channel transmit experiments=20
-with N320/N321 without any issue.=C2=A0 I don't have one of these myself,=
- so=20
-I cannot do
- =C2=A0 experiments.
+I've put in a query to R&D about this.=C2=A0 It is curious that this appe=
+ars=20
+to be a problem on both N320 and E320.
 
-But if "benchmark_rate" fails at low sample rates (and 5Msps X 2 is=20
-pretty modest), then something is woefully wrong with your system.
+I shall do a test on N310 (which is the closest MPM-type USRP I have)=20
+and see what happens.
 
 
---------------9mOP9kOjQl0ZZQDAD3WKVZ44
+--------------utt6HcNN20B1A0ZowKJ0v7cp
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -120,48 +116,45 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 2022-02-02 09:39, Rob Kossler wrote=
-:<br>
+    <div class=3D"moz-cite-prefix">On 2022-02-02 07:30, Jim Palladino
+      wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTRpPmA548JmuK=3Dw1SAU_WPWLHhD_viYv8rJzDwCuNphCQ@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+cite=3D"mid:MN2PR12MB331282717C011B8FA78D241EB8279@MN2PR12MB3312.namprd12=
+.prod.outlook.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
 TF-8">
-      <div dir=3D"ltr">Ok. If benchmark_rate fails, this means that eithe=
-r
-        your host is not optimized or else it is underpowered, I think.=C2=
-=A0
-        Did you try the items at <a
-href=3D"https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks=
-#Adjust_Network_Buffers"
-          moz-do-not-send=3D"true">this </a>link?=C2=A0 Are you getting a=
-ny
-        error messages or warnings (other than those shown) when you run
-        benchmark_rate?=C2=A0 How about rx_streaming - are you able to
-        consume Rx streaming at high rates without errors?</div>
+      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
+rgin-bottom:0;}</style>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        Marcus, thanks for the suggestions. I made sure to set the
+        master clock rate on both the E320 and N320. In the app I'm
+        developing, I also tried set_time_unknown_pps() instead of
+        set_time_now() as you suggested. Unfortunately, neither one of
+        those made a difference.</div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <br>
+      </div>
       <br>
     </blockquote>
-    Or there's something wrong with the ethernet interface hardware, or
-    the drivers for it.<br>
+    Thanks, Jim.<br>
     <br>
-    Other folks have (quite recently) done 2-channel transmit
-    experiments with N320/N321 without any issue.=C2=A0 I don't have one =
-of
-    these myself, so I cannot do<br>
-    =C2=A0 experiments.<br>
+    I've put in a query to R&amp;D about this.=C2=A0 It is curious that t=
+his
+    appears to be a problem on both N320 and E320.<br>
     <br>
-    But if "benchmark_rate" fails at low sample rates (and 5Msps X 2 is
-    pretty modest), then something is woefully wrong with your system.<br=
->
+    I shall do a test on N310 (which is the closest MPM-type USRP I
+    have) and see what happens.<br>
     <br>
     <br>
   </body>
 </html>
 
---------------9mOP9kOjQl0ZZQDAD3WKVZ44--
+--------------utt6HcNN20B1A0ZowKJ0v7cp--
 
---===============4747304722523096022==
+--===============4507463820907565421==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -171,4 +164,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4747304722523096022==--
+--===============4507463820907565421==--
