@@ -2,62 +2,71 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A454A76B6
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 18:20:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAC8A4A76BD
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 18:23:23 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F10B33856DC
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 12:20:46 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 269123858F5
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Feb 2022 12:23:23 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="Xdp16Tor";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="kirLd/1C";
 	dkim-atps=neutral
-Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [148.163.129.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id DA3C6385523
-	for <usrp-users@lists.ettus.com>; Wed,  2 Feb 2022 12:19:50 -0500 (EST)
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [67.231.154.184])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7ECE638433A
+	for <usrp-users@lists.ettus.com>; Wed,  2 Feb 2022 12:22:25 -0500 (EST)
 X-Virus-Scanned: Proofpoint Essentials engine
-Received: from mx1-us1.ppe-hosted.com (unknown [10.7.67.121])
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 59BC322008A;
-	Wed,  2 Feb 2022 17:19:48 +0000 (UTC)
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2106.outbound.protection.outlook.com [104.47.70.106])
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.177])
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 3BA0F2C006F;
+	Wed,  2 Feb 2022 17:22:24 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2168.outbound.protection.outlook.com [104.47.57.168])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 262704C0079;
-	Wed,  2 Feb 2022 17:19:48 +0000 (UTC)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 21C53680099;
+	Wed,  2 Feb 2022 17:22:24 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XwqPhC+0fOz2cv4s7ll9Aw2ve4lzE5o1iYvrbN0zaBr40rE+Ug3whi+n9e4tZ3WmyfSu6/3HzrHbj62U3J+P/R3za9/+JJkcK1SUrT2SB3A7UyPUDTqfND1uGfZc8VJ2/t+lTX0JFsJE9PBKlFcGZbxK0tn9/N1rcbEHuTLLNZVnWo20/QXH5S4JRSWu1Y+b+AWCedgxxzwkI45ZFZvXe/jOi7i7zEslPRRoGl4V6KryO4ygqHwl5O+9hJSLk15ouieKea/R0yjnRFRnEjEYWdDZq2vyDFOtyQLFb1izsbTERvqGnTqHGSG5vF/vrcQro7Nfla8Z7n3/l91Hmm645g==
+ b=Mrir//ENDEpRV3wWwjfUUzlcmjWew25bEajftPWPZ7QFPWmRsYGj+IWqAC8PLi1w/BUfeIz+Fsz/TBRVzedHg0EQkv1r+vtTuQ7PFmYzjkzb7EGLAnC5elCBRfuJBOQUSH/DUOVRknIm6exzy5W41skSTXpdV7cRGnzbO+K8wYlQETdrTTy6S9DGOJn/lTyvz/wac8F9Ur9UNInAmAibPm5H5Z8AoZKn3IYXpwCdW5DcRuwBLDW3+NB57vUOFq3nzZLsQ5i56jq1bc+ucF+yM1lvXtRIUNUvUXVSw6oKNNOohJsS0+gkvBwh1hjEjdcvfgwbhoeye2N3BZrWL1V5TQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uPtjYlYyygCILxGKpqtLs+krRJIILUqee8d5M6q94a0=;
- b=MnHdJ0geqT7HkMswZbeowVHE5QQEpmJ/6em8Fnf/EVcHKI4ilHFWKLhAKi0tzAD8uhdvD2C+8TDsf8tiDzHfmzuSTNhO3xWjXD1SB5XDOLCWnK24OEQZCvw7kB62DamQNHEv/7qIUhcaGaZSWj90EpDitPDnoEkm5btUE4bnCuw3Jq7+a93rFl68A55J7MRlBug/d8lrEiBS31vr2HTpBtXdtIHocsCY36uTvbCHjCrM0l2SLXuuxsFuYbWAIjVnXo6tHLc7FcjuEPz0bKn8rk6CmLOs84AaxCDmzsQEQsT+lYFmhPTzLsQ4K4c5NY+g8aSR3r35APzzx4qxBqFz+A==
+ bh=vfi5j/jDnR9MdT2bZt1R8x7c7c82zV0giNZWnVNzWmU=;
+ b=VVmEQ+ATIQmHY639KFL05ZaXYUeEfLFGPyqoz/kZGq8pEcjGG6pOTw+2ugLBJQ6lZzQl4FQt44kfoyLduw7Vmb9/jmlV4Scn8MX60ECj0VEbMT/LbkrRD5ODf0z3q9LwvphhqOeMSxH8UqTX314tnmMNHBI/Onuk+eiUoBKJ3d6Z/o6U7rHUOsQ2/9aXAcnoRdGHzoJyfSZtJkstsf/cVGEp3+vDJ3GZQ8yv6ylhnMdKL70a25ZG7rWlsJpBpeDiS0KK3E3VwASRLLhql5rpBo6fb0kqtnrU9TYzJdK+n6OaGDJn+mwbkanzurFUfG+rLO3nPjuGFLrI0pb1Rvp1ZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
  dkim=none; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gardettoengineering.onmicrosoft.com;
  s=selector2-gardettoengineering-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uPtjYlYyygCILxGKpqtLs+krRJIILUqee8d5M6q94a0=;
- b=Xdp16TorNE9P97BvXFSdK/uo6Fh2i8+di4q5VX21F4fsFxI44eWFfYoL5e+6iRb4va7smyKoT3R4rwSQKy69wNQTgB0yJ+4lsNVh/E6sxs3dD+PJMeaOyzAQBHAJvOWY4fW+PJadxwGh/KTmjcSRRyRTQIHSmnBEKiLulpbOS6E=
+ bh=vfi5j/jDnR9MdT2bZt1R8x7c7c82zV0giNZWnVNzWmU=;
+ b=kirLd/1ClcGB4wN8gHtFqZxdZMKO7cMg5+l62dIdxV2v7I7wR84UnucAGJW3nZj1LNrYEt+UT861J44ZRDXbcSCJdILonPaKfCeY3XMIMMGqP/aQaPRU8eEuo3u/j2JMeqPuckSToQnmmaeXnuKq6UaityiEKyIn18kzYzyt6ZM=
 Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
- by BN6PR12MB1684.namprd12.prod.outlook.com (2603:10b6:405:6::23) with
+ by CY4PR12MB1253.namprd12.prod.outlook.com (2603:10b6:903:3c::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Wed, 2 Feb
- 2022 17:19:44 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.11; Wed, 2 Feb
+ 2022 17:22:22 +0000
 Received: from MN2PR12MB3312.namprd12.prod.outlook.com
  ([fe80::d47b:d01d:d9da:4ccf]) by MN2PR12MB3312.namprd12.prod.outlook.com
  ([fe80::d47b:d01d:d9da:4ccf%6]) with mapi id 15.20.4951.012; Wed, 2 Feb 2022
- 17:19:44 +0000
+ 17:22:22 +0000
 From: Jim Palladino <jim@gardettoengineering.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
 	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: RX Frequency Tuning Questions
-Thread-Index: AQHYGEil3QYHPEI5skSEu41rPZVyw6yAdueAgAAKIC8=
-Date: Wed, 2 Feb 2022 17:19:44 +0000
+Thread-Topic: [USRP-users] Re: Timed Commands Not Working
+Thread-Index: 
+ AQHYF5tb715UD5NcGUSH5wmFASi3eKx/DJOAgAABTguAAAKNgIABHYZZgAAs3ACAAAaQGIAABXgAgAABXK+AABrGNw==
+Date: Wed, 2 Feb 2022 17:22:22 +0000
 Message-ID: 
- <MN2PR12MB331233081CB9FE97B11918ABB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <MN2PR12MB3312D53CEDAF9C0B074C6A8FB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
 References: 
- <MN2PR12MB33126FE573E77ACAEC631E8CB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
- <1586968d-0041-14f2-a708-ce6e6337765f@gmail.com>
-In-Reply-To: <1586968d-0041-14f2-a708-ce6e6337765f@gmail.com>
+ <MN2PR12MB3312C4A465FF575C85EF59DEB8269@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <fe43546f-cde5-f442-0d76-1967bc5dfebc@gmail.com>
+ <MN2PR12MB33129A29C695F7A0ABC8BB6EB8269@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <4acbc3b9-354e-1a85-5758-fccf65b17835@gmail.com>
+ <MN2PR12MB331282717C011B8FA78D241EB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <8032a31f-48f3-af30-5a79-3d7c8dde12e2@gmail.com>
+ <MN2PR12MB33129135EE23091DC520E48EB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <a5b4ebc9-36db-b2d9-abbb-e7309562f33a@gmail.com>
+ <MN2PR12MB33125E03CE4418143EC2F8AFB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
+In-Reply-To: 
+ <MN2PR12MB33125E03CE4418143EC2F8AFB8279@MN2PR12MB3312.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -65,182 +74,128 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=gardettoengineering.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 42c63658-13ab-4958-445c-08d9e67034c6
-x-ms-traffictypediagnostic: BN6PR12MB1684:EE_
+x-ms-office365-filtering-correlation-id: e2a0e7fe-8f53-4252-74c6-08d9e67092ac
+x-ms-traffictypediagnostic: CY4PR12MB1253:EE_
 x-microsoft-antispam-prvs: 
- <BN6PR12MB1684462A764236C05B298497B8279@BN6PR12MB1684.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+ <CY4PR12MB12530B12DA3D7537D85005FBB8279@CY4PR12MB1253.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- yGoSo5YJjHozxWL9ljw24Cze9TZj36nt121ZQJRMGhV92QkwZ42nxErmqVZQuLIflG3SefheQlHg1unLTlyCEXmQROckVgwsNtr8f8FIaT7Qfy3uPpasFVZyAsgrBaI1d1zHr9frsRlkCVgMoFAgbgtQHE/mTCNb+VGoLRhy7OKlwR4ycx9TnNMQ3cEkB/UlfgNJrpBQNRPkMyDZovxAkbTqJ3fFC4FiwDY1kMEOrObDRa8Xlt296i/bwFIQHU5fkTs8H8A537aW9ONpL34fgwLIiVhcSt+kSMn1a9fflb0NlfVieAy3Bkhly8Lj9hb8MGeKxi997ws4irhLW1+vmjCovCMxS9MrJyaeFBHrV2V5UjOtQMRfYPj/3qib4w0Ka8H+li+ibSAw6ztoHVBZkHSCAjpQKqVKu7Fj5n8R2oec0tZb6v6QvwkP0AZTcd4UV1CMVY6InPDDRvqo55gyE14QDQYyBZeAffLYQpPzCLuffsGimbGXOawZG13HwZzUeQRdU+PEVGe8r7cesf8WWesEhB4xbko0+ISRCR4W56ba5zpWt4Cnt+lgol1DAGdbazhvsjAbcVPSFGsYv8ImGDubTg3tbWBiEwNHJp6vIRQW9c4+Lp0IDLilvloKzigcrjGczCLt80R86CGnSkq0sx9PQciNjFlHoRhAgn8DQ+GUoiQS/NcWHF4iMo9KT1jbuW3+A7FAsZY7a+EVTqbC4dst9lZAxqeLuiTF7B8Lg30Tt5eeRAz4HWTR3BbrgzMDerTagU5wJNJdFG3YyC1L38ZCEKRZ0rsB+imDni+3LLk=
+ C9dBXOR/TGHlraonto4prKNnI3powhGApwSA9fbBeMXxAMA/8daJwEL46brHEhJ9r4CDCl/ibrRkhQVwpGfXTLiPBVZDeWzTTb4APUI8Wh6ad0JCW12Fv+ftGCF2uqIk2aPDMEwVP8hJeVWoElC4AKLajEf5KVG1MxbQ2i1uv3+0p531W1jpuHsdKBFLCKz+HlmqgcyAdJ848FFx1WJOM41kgd0xvx9g7WnhggMJxEZygWTRToCJQe5AxLqLaajSPy+WTVYUfcFOfA5EUrLG+EabvkOX53msOmSZPXVAMt5wazy/19TtnN12ndeg4VLTOUHQn90F0XYf3HvhKf1BDvXd2lmuqIcmfZNRG8WHIzGhGHMyECxSAmVGyQaZ0/lEwDA5/RsRiqKdC7xUcniPLb0y4ofrUTNzjWGr+RJt0/ZZpBf5Sxt3+CHQiZOSUcuS4OD47u88bLuHD4ZLRrAfs0QJf+wxPlpXtBjuqJ6XjpT/OW7gXlP0YTAQvF5nJoFoZrNl/ap+52v4yuBfcMqt5FS5/TixFIn29uATBplHfAO5Tg3kWPV4zjkX5meM9jvpy8jGXPVp5moEUIjzsCzKcKW81rUWr50E7+LsyvpWAjDdM4ixhPfIwpNR9RtZkaN3+bCDqFzW24u+4IU2s+6SFHJbLpH1Smccyea+qlpuVhd3G02G66w0aACo8Xe8PfBN4y2y5ZbuwJHrr/cdKOU5LA==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3312.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(376002)(136003)(366004)(39830400003)(346002)(396003)(8676002)(110136005)(71200400001)(38070700005)(508600001)(86362001)(33656002)(55016003)(53546011)(7696005)(966005)(6506007)(9686003)(76116006)(38100700002)(166002)(64756008)(66946007)(66556008)(66476007)(66446008)(316002)(8936002)(83380400001)(52536014)(19627405001)(122000001)(5660300002)(26005)(186003)(2906002);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3312.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(396003)(346002)(376002)(39830400003)(136003)(26005)(186003)(64756008)(66946007)(66446008)(66476007)(71200400001)(8936002)(66556008)(8676002)(86362001)(76116006)(5660300002)(2940100002)(53546011)(9686003)(2906002)(33656002)(38070700005)(55016003)(52536014)(122000001)(508600001)(316002)(38100700002)(19627405001)(110136005)(7696005)(6506007);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?TY+8C318l0ihl27EnxBCpxqLV681zAnPSmTUga7vUNnzgxBB/exa8NjCD3q9?=
- =?us-ascii?Q?5VjhxqCklJnhE3deiSHJjfWjl1ADlsr9A9a+qVq5S7YGfh6CPK4/jCTwVxVR?=
- =?us-ascii?Q?hZXw+NEcspb/FG4d/TFQ1VZST7sooK4zPl1Vuss5P+zy9Nhv0iBsxLkJqfCr?=
- =?us-ascii?Q?MSUG7GrIOmN7g+jETImP9aUqmAph9sxlZWfWgu1XxB+0HUIPeb5F3m3QzEXv?=
- =?us-ascii?Q?TrkRUOH9kyGkR7fECzleQcp0lTZgZ9yK8kiNk3ZQk/10UGg/7xT4tby2ujvW?=
- =?us-ascii?Q?ZWtIV69BG++0F4Ek5L6u+ouq0wAsuQjogziDMyiOgsD37XTUjLCt+ga8EiXY?=
- =?us-ascii?Q?yhfk/Jxa6em9FSNbtBGKNUYiIgWTTveT9dReoVtemBabn31ofyB+GqqiFZGc?=
- =?us-ascii?Q?OiBTwGLZqpG2rlZzC6Pt0IcXFxCJVE5IMmH6tfaRPAoqceB++mnTtKMSil+U?=
- =?us-ascii?Q?JxY+6sPi4GztE13HLJ/Th6EiL4F/nRADKgszgg5PKU3L5rPm3/sqLEv9HOuc?=
- =?us-ascii?Q?RAMma5syd2LjxUzowTdqKc4t53D3TrgM89OCVAmzknKwtm8StLVlXW1MZ2EW?=
- =?us-ascii?Q?iv4PanVM4vf+GxZSuWa3/yoA38MmBdKIJRTRhNmeypDrqLFbUX4xV3l5Hk2/?=
- =?us-ascii?Q?6D1j4gk+Q/zwtbdNrc/7ckVDfku/Wn49q5V2dsubbvmOxf9phHFKQaEmJt9h?=
- =?us-ascii?Q?juqWA++BcNevhlWJ/z2vCff+b/YYORhYjBwINli1YXgKAtiuYjmkrn7DS4WD?=
- =?us-ascii?Q?Hw7cebs2U7GsVFlEkjOqDY9Pp8KM5DuwPqy1ivmp/k6MKmqDcrvtS5kx+jJy?=
- =?us-ascii?Q?PXZdzSPBxlcZyU2y1djZYb/UwmaAa6XR0RIhYFSe+Q7Bbyn/QYCOjfJKcZvg?=
- =?us-ascii?Q?m8M2JnhS8D2Q2sSC/Q+FXxLP/HmxqIsKjvUwbz9Pzj6IEVP83qo8RWnqKzyz?=
- =?us-ascii?Q?dgI69IMb99JvVCHzMC97GI/QF2zQyQKAL+crOwWaezqaczOq52gEDxmn1ICT?=
- =?us-ascii?Q?r8i/IWSsszqi5eBsQMuRCEzcK7HHdaId2FDjh3z66zWP0Hto3hbb0kAbbGXy?=
- =?us-ascii?Q?X/nszaHuDiQL9Xc2nxAO5S2KrFq4QR8wah24cTh5H57h3ulvrBplVHqPLbQU?=
- =?us-ascii?Q?wAX1WSyCAMpjqlcxYDQkXYtxYK+PIsHXeXCmLRX0CBdJGiLiyEFA2ijGoLWn?=
- =?us-ascii?Q?3s2MEb5vGARK78J/yEVdNk8e2DhkKbIs27Bl9PnVAsEMUMuiAWlTsxeojUvm?=
- =?us-ascii?Q?8PDpx2F+894aY6ERbBe7qT1NhjzMi0qayTnHKRLVdVXleLr0xGSG2H2VDUG9?=
- =?us-ascii?Q?o0gJ2Vvs+/du6stWoxhCmXqn1kDjyLz2jnK5MpcCr0NIyNcK6upzeTSdwKW2?=
- =?us-ascii?Q?pi6VCBgTv9QbMWcV5M8qUwCtDHvpeJx3QUjmAoP9743oawkNzsUzBI7PKzlc?=
- =?us-ascii?Q?ouAwdDYX9SnngtaeVduFSRJB5mw428ZCzev4CIS7OrlB1DOLH4qs6JhaKVVl?=
- =?us-ascii?Q?NXvjeLsrDeyPAL1I+BsDQ8M85kN5/JcnzxL5Txqnuk4u7xc5fGnEwkYXYPSc?=
- =?us-ascii?Q?55PHC/Md1if5mH7Y264QS4rzymt5Yq+JvmsUJ4wxFUombStrTzhCd40Jkfg9?=
- =?us-ascii?Q?7iThmWpoFZhf4E/mtf6PzRd53G7g8A84DtMUwetgk90qRe6yPmDTtaRN7x2Q?=
- =?us-ascii?Q?6W7r7A=3D=3D?=
+ =?us-ascii?Q?m4MBknLcXoZy5lBt5fZxKu1txUFc5D54cJWkht0OqSFPvOY1AZVbWB/XteVs?=
+ =?us-ascii?Q?co87qIVE1ihc3VI4BCPCNlMo/niYLBdJnW0HO1A2/nBRVTEQQ1INZKT7ngiL?=
+ =?us-ascii?Q?ugQiC5BedVD608bD5rHzsNl7OpUosYtajYDcJQvW6C0MVP7OxLgXhKVMAv2X?=
+ =?us-ascii?Q?U5vL6HC3fGi6gdtjuc3u9ciXV9ekZHGcdZOc+TOi3rcqkOfzXeOVQ+v4Hy7x?=
+ =?us-ascii?Q?6Uvf5JZfClrcFT+bVXpxXMN9RIt5EDWA4TladU3wSQpZtjgDLfWtiLyfjgGM?=
+ =?us-ascii?Q?74Burrgs6iQL8PEdtyY2bBvEs7+XqGsXY3JUu/2aAk5mD6CDEuhHXl5y/+iw?=
+ =?us-ascii?Q?0TmjWMVVmeb/Nio8h0PjuCXij+0J11KtYTRIyXHTBXAMMGFSL7+H5r2bCsdb?=
+ =?us-ascii?Q?2BP5EQ3KKYeE327QyqPbeqJotUfqHuBboUB9E24X/bgQijW+n4B1iOdHr687?=
+ =?us-ascii?Q?qmE75Q7PDKDkJ4prbBCcNrSjALutXnJu0NfqwM71UT39oImSlKPLXIr+w35l?=
+ =?us-ascii?Q?qHKmVM9P5sDIBE33YsWLprZaf8OK+bNn/ofDeBeAJBQf8ATvlfrFw0hu7+wF?=
+ =?us-ascii?Q?NnDDscxVtNCZ3I8ykt5bYu/+8zwe+HxdZqROs4jVNfAcpIJqCBBDZGt9MFGp?=
+ =?us-ascii?Q?HG/eWitM5u0wNgbZcdu7jK5+EKGfdgnjxotvsKC1jjSoEYe3Cc7scdzP1yYA?=
+ =?us-ascii?Q?rDRPSNFrAT2lxqLqN3z/sMymnkOcQVB2HYS8MW65wbN84F6EWXbL0kkD1iYw?=
+ =?us-ascii?Q?Y1FSLsE2FOOaboYcBlXoMjHpUCEAy7yRRxDaMTnmuLGlEngBzwUc+XFZOucl?=
+ =?us-ascii?Q?jyeibzEqixnj4WGANFEvuJb7sQrsnMiWz/tLY5kTdX1o2zCRrmCDh6zDtyOg?=
+ =?us-ascii?Q?XDUd/5RYpZxz927Af5cfhlIYOiKuLL/K28Z4mq8Dn9VUQsFywn5BmOewzU/X?=
+ =?us-ascii?Q?q2RmCm+2zf8zz4HWQnj/u5xwJ3IeQP4pCWwrDB925JXZ/1a3mhxjiJRxLfIb?=
+ =?us-ascii?Q?bdkMcI2/JxFqsLg4VNmNI+Ryz59JtO6zj3IYgCRayeTqKIWBncSmIhkx2gCc?=
+ =?us-ascii?Q?Dtn13bqm51ckwdeu5zXd8LpwOE61yPkc499LlHIUR0oCuGB4eWNXhUeiLgbj?=
+ =?us-ascii?Q?JpbA2ozZadJl2K+nsBu5u4vAIhfP1s1iKGB3UVM+nUD7btqiXO6AcYzzCgBR?=
+ =?us-ascii?Q?ozOQdZ3bYgJmvUy+LVoSiZF2nAipboS48+Ao1jFbVfrkosRc2zyqjd2shcWR?=
+ =?us-ascii?Q?QTqeEqFYr55Vt0G+M/DAUSxQN8eIJT4DLy62uKVR3J81Pv8u4sITO7K0+mcj?=
+ =?us-ascii?Q?DeA3WVlCuinb60aDzVnNE5N97I1LpMZJPWkzYX5llxTML2EC4gmVPUr7IF5j?=
+ =?us-ascii?Q?C/iVt8erfPtRQ9MhDtg9bS6Im8W0rbz5CX93uFR04z5tecimLWFGTMSyvVlT?=
+ =?us-ascii?Q?0PlKlo8M2JATVMn9sIYuebKpXQwmHz0kEnzxZR+/fJCVVRuJTUaxowAn61r7?=
+ =?us-ascii?Q?uwSVhFDqnjwz78GhYohGneyHH4KJ4JjO+nQfnoiHO4eWsVH6ta5KLk2fKlZr?=
+ =?us-ascii?Q?szqIFIHLo82I64CbURK1NdweoUEyTiLskwxWzjGW6quCKFkWaXDJHyyYThCh?=
+ =?us-ascii?Q?syXUtQ325G2WBjZ8UGEnxylzLv0FEacM8R3CpFPTT56+KwaBL0jxIi5Cjr1+?=
+ =?us-ascii?Q?Gp5DxA=3D=3D?=
 MIME-Version: 1.0
 X-OriginatorOrg: gardettoengineering.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 42c63658-13ab-4958-445c-08d9e67034c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2022 17:19:44.4364
+X-MS-Exchange-CrossTenant-Network-Message-Id: e2a0e7fe-8f53-4252-74c6-08d9e67092ac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2022 17:22:22.0199
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: u55jgn8xKtq7w/lpkNJhaBubmNiDXrfilhJL3ybxPz7p8jlT+gk1ez4NebNg7TPhsGhnnt4q6ax7aSC752H0KACpxYVmEYAuWMea2d0lXws=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR12MB1684
-X-MDID: 1643822388-AlR0-KKNfd2v
-Message-ID-Hash: EJZUAUJCJ2V5USLHBHJEDMP5R6EWIORS
-X-Message-ID-Hash: EJZUAUJCJ2V5USLHBHJEDMP5R6EWIORS
+X-MS-Exchange-CrossTenant-userprincipalname: JIYstJ/CBHUPjN0o4zZvowwhQqy1Q+r0Yqo/5TZG9YbPar7GmXjeNEUP6cCYmwghun72B2gdX2L3jHsEVBt61byDFaDVS0T/9wkJUHA5XGQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1253
+X-MDID: 1643822544-lhjrCPAq_7nU
+Message-ID-Hash: ZANJPI477SQBODPDZXSPKMMST6GLUXAY
+X-Message-ID-Hash: ZANJPI477SQBODPDZXSPKMMST6GLUXAY
 X-MailFrom: jim@gardettoengineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RX Frequency Tuning Questions
+Subject: [USRP-users] Re: Timed Commands Not Working
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VLJTXRAHNAMQA62YFRQUN7V2F7W7LIX6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AP76HZTW2E5QNEKUFTRGMHIGS725DQN2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3251817038705267248=="
+Content-Type: multipart/mixed; boundary="===============1718580477942012608=="
 
---===============3251817038705267248==
+--===============1718580477942012608==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB331233081CB9FE97B11918ABB8279MN2PR12MB3312namp_"
+	boundary="_000_MN2PR12MB3312D53CEDAF9C0B074C6A8FB8279MN2PR12MB3312namp_"
 
---_000_MN2PR12MB331233081CB9FE97B11918ABB8279MN2PR12MB3312namp_
+--_000_MN2PR12MB3312D53CEDAF9C0B074C6A8FB8279MN2PR12MB3312namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Marcus,
+Just to add one more data point, I just ran test_timed_commands on a differ=
+ent computer connected to an X310 -- still UHD 4.1. I have the same problem=
+ with that device where it looks like timed commands are not working right.
 
-Thanks. I just checked and usrp_list_sensors() shows the RX LOs are locked =
-on both an N320 and X310 that we have. I think I'll start working with the =
-N320 for now instead of the E320 and see if I can make more progress with t=
-hat for our scanning application, as it isn't AD9361-based.
+Thanks,
+Jim
+
+________________________________
+From: Jim Palladino <jim@gardettoengineering.com>
+Sent: Wednesday, February 2, 2022 10:44 AM
+To: Marcus D. Leech <patchvonbraun@gmail.com>; usrp-users@lists.ettus.com <=
+usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Re: Timed Commands Not Working
+
+Correct -- I am using the stock FPGA image for the E320 and the N320.
 
 Thanks,
 Jim
 
 ________________________________
 From: Marcus D. Leech <patchvonbraun@gmail.com>
-Sent: Wednesday, February 2, 2022 11:41 AM
-To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
-Subject: [USRP-users] Re: RX Frequency Tuning Questions
+Sent: Wednesday, February 2, 2022 10:39 AM
+To: Jim Palladino <jim@gardettoengineering.com>; usrp-users@lists.ettus.com=
+ <usrp-users@lists.ettus.com>
+Subject: Re: [USRP-users] Re: Timed Commands Not Working
 
-On 2022-02-02 10:43, Jim Palladino wrote:
-Hello,
-
-I'm working on a frequency scanning app where I need to maximize the tuning=
- speed. I've been playing with timed commands -- I'm having issues with tha=
-t and have posted about that separately. But I have some questions regardin=
-g RX tuning.
-
-I'm currently using an E320 and UHD 4.1 and developing a C++ scanning app. =
-My first question is related to the set_rx_freq() command. If I look at the=
- documentation here:
-https://files.ettus.com/manual/page_general.html#general_tuning_rfsettling<=
-https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__files.ettus.com_manu=
-al_page-5Fgeneral.html-23general-5Ftuning-5Frfsettling&d=3DDwMFaQ&c=3DeuGZs=
-tcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2N=
-ZkfwDnwpYx0&m=3DGEMRcx3mF9NRSEZH3xxoIfUgpEtahRp18Qx1JSEMnvo&s=3D4JGYhQKGg3X=
-purqA1pKw7EZzPfv6AUBKA-8NHL3CN9A&e=3D>
-
-It implies that you need to wait and check the lo_locked sensor after tunin=
-g if you want to make sure that the LO is really locked. This tells me that=
- the set_rx_freq() command does not block and wait until it locks. I want t=
-o make sure that this is the case, as if I send consecutive get_time_now() =
-commands, the responses are somewhere around 2ms apart. If I send the follo=
-wing series of commands: get_time_now(), set_rx_freq(), get_time_now -- the=
-n the time difference between get_time_now() responses is over 100ms. So, i=
-t seems that the set_rx_freq() command takes quite a while to return. I jus=
-t want to confirm that it is not blocking and waiting for lock before retur=
-ning. This leads to my second question.
-
-On the E320, I list the sensors using "usrp->get_rx_sensor_names(ACTIVE_CHA=
-N);" This returns the following sensors: ad9361_temperature,  rssi,  lo_loc=
-k. Note that it is "lo_lock" and not "lo_locked". I can querry "ad9361_temp=
-erature" and get a reasonable value each time. However, the "lo_lock" senso=
-r always reports back unlocked. I use the following command to querry it:
-
-usrp->get_rx_sensor("lo_lock", ACTIVE_CHAN).to_pp_string()
-
-It doesn't matter how long I wait after tuning -- I can wait many, many sec=
-onds. If I look at the samples I'm streaming and capturing after tuning the=
- RX LO, they look correct. If I insert a tone from a signal generator, I se=
-e it where I expect, and it looks good. At least by eyeball, it looks like =
-the LO is locked. Similarly, if I run the "usrp_list_sensors" example appli=
-cation included with UHD, the results of the RX sensors are:
--------------------------------
-|    /
-|   |       RX Sensors:
-|   |
-|   |   Chan 0:
-|   |   * ad9361_temperature: 66.783625 C
-|   |   * rssi: -50.75 dB
-|   |   * ad9361_lock: unlocked
-|   |
-|   |   Chan 1:
-|   |   * ad9361_temperature: 67.368423 C
-|   |   * rssi: -55.0 dB
-|   |   * ad9361_lock: unlocked
--------------------------------------
-So, that is also reporting unlocked. Basically, I haven't been able to ever=
- read that sensor and have it say: "locked".
-
-Any help understanding whether or not the set_rx_freq() command blocks unti=
-l it's locked or why I can't seem to read the "lo_lock" state and see that =
-it is locked would be appreciated.
+On 2022-02-02 10:21, Jim Palladino wrote:
+Thanks Marcus. Please let me know if R&D comes back with anything. I'm at a=
+ bit of a loss . . .
 
 Thanks,
 Jim
 
-Any device that uses the AD936x family of RFFE chips is going to be "sluggi=
-sh" -- at least when tuning further than 100MHz (AFAIR) from the current fr=
-equency--because the
-  AD9361 needs a lot of "care and feeding" during tuning.
+________________________________
 
-I also recall that the AD9361 doesn't really have an lo_lock indicator, or =
-if it does, the driver doesn't implement it.
+Just to clarify--this is with the stock FPGA image, correct?
 
 
 
---_000_MN2PR12MB331233081CB9FE97B11918ABB8279MN2PR12MB3312namp_
+--_000_MN2PR12MB3312D53CEDAF9C0B074C6A8FB8279MN2PR12MB3312namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -254,18 +209,10 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Marcus,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
+Just to add one more data point, I just ran test_timed_commands on a differ=
+ent computer connected to an X310 -- still UHD 4.1. I have the same problem=
+ with that device where it looks like timed commands are not working right.=
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-Thanks. I just checked and usrp_list_sensors() shows the RX LOs are locked =
-on both an N320 and X310 that we have. I think I'll start working with the =
-N320 for now instead of the E320 and see if I can make more progress with t=
-hat for our scanning application,
- as it isn't AD9361-based.</div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
 <br>
@@ -283,17 +230,50 @@ Jim</div>
 <div id=3D"appendonsend"></div>
 <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
 <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Marcus D. Leech &lt;p=
-atchvonbraun@gmail.com&gt;<br>
-<b>Sent:</b> Wednesday, February 2, 2022 11:41 AM<br>
-<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
->
-<b>Subject:</b> [USRP-users] Re: RX Frequency Tuning Questions</font>
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jim Palladino &lt;jim=
+@gardettoengineering.com&gt;<br>
+<b>Sent:</b> Wednesday, February 2, 2022 10:44 AM<br>
+<b>To:</b> Marcus D. Leech &lt;patchvonbraun@gmail.com&gt;; usrp-users@list=
+s.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Re: Timed Commands Not Working</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Correct -- I am using the stock FPGA image for the E320 and the N320.</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Thanks,
+<div>Jim</div>
+<div><br>
+</div>
+</div>
+<div id=3D"x_appendonsend"></div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech &lt=
+;patchvonbraun@gmail.com&gt;<br>
+<b>Sent:</b> Wednesday, February 2, 2022 10:39 AM<br>
+<b>To:</b> Jim Palladino &lt;jim@gardettoengineering.com&gt;; usrp-users@li=
+sts.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] Re: Timed Commands Not Working</font>
 <div>&nbsp;</div>
 </div>
 <div>
-<div class=3D"x_moz-cite-prefix">On 2022-02-02 10:43, Jim Palladino wrote:<=
-br>
+<div class=3D"x_x_moz-cite-prefix">On 2022-02-02 10:21, Jim Palladino wrote=
+:<br>
 </div>
 <blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
 <!--
@@ -304,122 +284,8 @@ p
 </style>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
 t; color:rgb(0,0,0)">
-Hello,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I'm working on a frequency scanning app where I need to maximize the tuning=
- speed. I've been playing with timed commands -- I'm having issues with tha=
-t and have posted about that separately. But I have some questions regardin=
-g RX tuning.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I'm currently using an E320 and UHD 4.1 and developing a C++ scanning app. =
-My first question is related to the set_rx_freq() command. If I look at the=
- documentation here:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__files.ett=
-us.com_manual_page-5Fgeneral.html-23general-5Ftuning-5Frfsettling&amp;d=3DD=
-wMFaQ&amp;c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&amp;r=3DXUEEtUEfp=
-aAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&amp;m=3DGEMRcx3mF9NRSEZH3xxoIfUgpEtahRp1=
-8Qx1JSEMnvo&amp;s=3D4JGYhQKGg3XpurqA1pKw7EZzPfv6AUBKA-8NHL3CN9A&amp;e=3D" i=
-d=3D"LPNoLPOWALinkPreview" class=3D"x_moz-txt-link-freetext">https://files.=
-ettus.com/manual/page_general.html#general_tuning_rfsettling</a><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-It implies that you need to wait and check the lo_locked sensor after tunin=
-g if you want to make sure that the LO is really locked. This tells me that=
- the set_rx_freq() command does not block and wait until it locks. I want t=
-o make sure that this is the case,
- as if I send consecutive get_time_now() commands, the responses are somewh=
-ere around 2ms apart. If I send the following series of commands: get_time_=
-now(), set_rx_freq(), get_time_now -- then the time difference between get_=
-time_now() responses is over 100ms.
- So, it seems that the set_rx_freq() command takes quite a while to return.=
- I just want to confirm that it is not blocking and waiting for lock before=
- returning. This leads to my second question.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-On the E320, I list the sensors using &quot;usrp-&gt;get_rx_sensor_names(AC=
-TIVE_CHAN);&quot; This returns the following sensors:&nbsp;ad9361_temperatu=
-re,&nbsp; rssi,&nbsp; lo_lock. Note that it is &quot;lo_lock&quot; and not =
-&quot;lo_locked&quot;. I can querry &quot;ad9361_temperature&quot; and get =
-a reasonable value
- each time. However, the &quot;lo_lock&quot; sensor always reports back unl=
-ocked. I use the following command to querry it:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-usrp-&gt;get_rx_sensor(&quot;lo_lock&quot;, ACTIVE_CHAN).to_pp_string()</di=
-v>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-It doesn't matter how long I wait after tuning -- I can wait many, many sec=
-onds. If I look at the samples I'm streaming and capturing after tuning the=
- RX LO, they look correct. If I insert a tone from a signal generator, I se=
-e it where I expect, and it looks
- good. At least by eyeball, it looks like the LO is locked. Similarly, if I=
- run the &quot;usrp_list_sensors&quot; example application included with UH=
-D, the results of the RX sensors are:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
--------------------------------</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-| &nbsp; &nbsp;/
-<div>| &nbsp; | &nbsp; &nbsp; &nbsp; RX Sensors: </div>
-<div>| &nbsp; | &nbsp; </div>
-<div>| &nbsp; | &nbsp; Chan 0: </div>
-<div>| &nbsp; | &nbsp; * ad9361_temperature: 66.783625 C</div>
-<div>| &nbsp; | &nbsp; * rssi: -50.75 dB</div>
-<div>| &nbsp; | &nbsp; * ad9361_lock: unlocked</div>
-<div>| &nbsp; | &nbsp; </div>
-<div>| &nbsp; | &nbsp; Chan 1: </div>
-<div>| &nbsp; | &nbsp; * ad9361_temperature: 67.368423 C</div>
-<div>| &nbsp; | &nbsp; * rssi: -55.0 dB</div>
-<span>| &nbsp; | &nbsp; * ad9361_lock: unlocked</span><br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span>-------------------------------------</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span>So, that is also reporting unlocked. Basically, I haven't been able t=
-o ever read that sensor and have it say: &quot;locked&quot;.&nbsp;</span></=
-div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<span><br>
-</span></div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Any help understanding whether or not the set_rx_freq() command blocks unti=
-l it's locked or why I can't seem to read the &quot;lo_lock&quot; state and=
- see that it is locked would be appreciated.</div>
+Thanks Marcus. Please let me know if R&amp;D comes back with anything. I'm =
+at a bit of a loss . . .&nbsp;</div>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
 t; color:rgb(0,0,0)">
 <br>
@@ -430,25 +296,24 @@ Thanks,</div>
 <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
 t; color:rgb(0,0,0)">
 Jim</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
 <br>
 </blockquote>
-Any device that uses the AD936x family of RFFE chips is going to be &quot;s=
-luggish&quot; -- at least when tuning further than 100MHz (AFAIR) from the =
-current frequency--because the<br>
-&nbsp; AD9361 needs a lot of &quot;care and feeding&quot; during tuning.<br=
->
-<br>
-I also recall that the AD9361 doesn't really have an lo_lock indicator, or =
-if it does, the driver doesn't implement it.<br>
+Just to clarify--this is with the stock FPGA image, correct?<br>
 <br>
 <br>
+</div>
 </div>
 </body>
 </html>
 
---_000_MN2PR12MB331233081CB9FE97B11918ABB8279MN2PR12MB3312namp_--
+--_000_MN2PR12MB3312D53CEDAF9C0B074C6A8FB8279MN2PR12MB3312namp_--
 
---===============3251817038705267248==
+--===============1718580477942012608==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -458,4 +323,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3251817038705267248==--
+--===============1718580477942012608==--
