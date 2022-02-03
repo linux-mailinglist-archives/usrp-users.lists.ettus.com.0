@@ -2,158 +2,139 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D7714A871E
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Feb 2022 15:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 752CC4A8D19
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Feb 2022 21:18:25 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 408B138590E
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Feb 2022 09:56:55 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 20DB1385994
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Feb 2022 15:18:24 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J0WIDzd+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IyOigWpD";
 	dkim-atps=neutral
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 05B7C3858A5
-	for <usrp-users@lists.ettus.com>; Thu,  3 Feb 2022 09:51:07 -0500 (EST)
-Received: by mail-qv1-f53.google.com with SMTP id s7so87102qvb.0
-        for <usrp-users@lists.ettus.com>; Thu, 03 Feb 2022 06:51:07 -0800 (PST)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id 49939385A76
+	for <usrp-users@lists.ettus.com>; Thu,  3 Feb 2022 15:17:19 -0500 (EST)
+Received: by mail-lf1-f45.google.com with SMTP id x23so8500289lfc.0
+        for <usrp-users@lists.ettus.com>; Thu, 03 Feb 2022 12:17:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=OFkZGyAELOhxKKdp0FqGzVLzdY6aAMoA05fD2Wz/Z6w=;
-        b=J0WIDzd+7bz5Gr4axJ63pl1334y4qHYFfIc0WMzPu60yX7WW5lmmod9fM8rF4hOH9h
-         bQBSm9Vvs2XlfhF5/fPEe93IXhRNoEKGbA4mQXV7LkgNozCCloFv/wDTbauNasl4+PZe
-         cUJhVpvs640j2u4ReyT7XPkhZK014GRx/Co25D/9160qvdJgVYOcXnpptBTnRHmHPsf3
-         GjWlkedWwE+MrFEr8rVZ4Jn4ZB/W/I/rcH5ZFFkp9LxaV4s+Xvaef18Td5ZG+1f2xOJr
-         ZJnKSZT4AdWGugf1IY7FreHoFS/f/QLUkABB7tNlEeA3P7r6Z2nl61rxqcijV5aEOXdQ
-         3MuA==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Yp8UB7caGZ37fklH9Ovz7s7qeZZaN3/J8NdaUIWFO8A=;
+        b=IyOigWpDqQOuFXmY1sqXDiGRjw3CwIOHnIBZmExYOnzU0vqouS1ffnCRPQeh0Ka7tn
+         /kwl0E76C69gGfL5HUMmHECa22QwIzpz8BlJmTwN3XoccNPscixRiNE5Oe1rHyk7VV9n
+         UTkZ4t1cyBkVwagND9gDz+p/G7Gq4KMac6KGyyo1w9FOG88CA7PN5BIoHlCFF+TmmSYc
+         /OAtaOGnq+pkd4ndySZXYmmND85UAgmPiccoubGNBqv8WXTEUEUA+PxIacX7gRf1R62V
+         OyrMi+zgf9nOLc5LbGE7E3aB91OidPsXxBISp45rk+JiLH7zAiC/hhXx8iuzLhE9KUbw
+         Xwng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=OFkZGyAELOhxKKdp0FqGzVLzdY6aAMoA05fD2Wz/Z6w=;
-        b=P2nBI0XPrNEjoYOYGFS4hSe4Wz3C/EwebupEWxnH8GKslqKePL0fTn649WSix+e6oX
-         kgKFdKY8T/JyJY+V195nxLGu68TWrA+xWAhpaIIczkwNabgzrEbiR9AVuXJ9hYsG7RiH
-         ZA66WXmcztJ8TjzqILbVO+TGyMxQuubAJvP0GIby1LiaJ1WG3tdYfQAhJ+RNXx/FgQSU
-         7Y0//gxZRaby54JFzuftB4rw+L0+6fB28SdqtksXe+HAALu8tPdIeCDDG3v5Q+snVBSA
-         TrYE82nSicUElnZXqZOeQtUOHeBlGWMdAGlf7ZLrZiqZk2mpTvfS1SIRqNb9v+jQsVZP
-         fiWw==
-X-Gm-Message-State: AOAM532PQwoMW/tPEch7yo/L/Ms4xVBFU1aoQB7MWwcA4aqYbkgHGSQh
-	oIaWrcYAm/qb5yD+QjZ7jd1UUTY0SzY=
-X-Google-Smtp-Source: ABdhPJypZyyB9ituNzUFw8dZYjE8DcXxr//1JLvI2z/tgaIH4d+qMEo9caoLVG98Y3v2o0FfItysUA==
-X-Received: by 2002:a05:6214:e67:: with SMTP id jz7mr30668452qvb.41.1643899867072;
-        Thu, 03 Feb 2022 06:51:07 -0800 (PST)
-Received: from smtpclient.apple ([2600:380:4011:1ad3:f1fa:8e5:a2b8:47c3])
-        by smtp.gmail.com with ESMTPSA id u63sm13766753qkh.43.2022.02.03.06.51.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Feb 2022 06:51:06 -0800 (PST)
-From: Paul Atreides <maud.dib1984@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Thu, 3 Feb 2022 09:51:04 -0500
-Message-Id: <109E63E9-B214-44D2-B364-099636A257A5@gmail.com>
-References: <9ba302d5-4e89-6721-1b65-c025c2db4514@destevez.net>
-In-Reply-To: <9ba302d5-4e89-6721-1b65-c025c2db4514@destevez.net>
-To: =?utf-8?Q?Daniel_Est=C3=A9vez?= <daniel@destevez.net>
-X-Mailer: iPhone Mail (19C63)
-Message-ID-Hash: YR2BKKDAO4B5ERI32BJMYOUXTOWZK6R7
-X-Message-ID-Hash: YR2BKKDAO4B5ERI32BJMYOUXTOWZK6R7
-X-MailFrom: maud.dib1984@gmail.com
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Yp8UB7caGZ37fklH9Ovz7s7qeZZaN3/J8NdaUIWFO8A=;
+        b=F1qXDkoZU9PM3xMG44ilBiQUKPCWCCs5fA4aFwKzwOqHmfa6lv/B3EADSD5wajA8/d
+         9QHD7iBSvIqm3ESqkyVyJHq5JnnLtweNxw8D3LGFOAPunhZcsBzGv1aWy3VqGo3E1053
+         JjYTtfEs+ULbyp5ZBd+yS3MgaZxoAoWpllKjskk7UMTVPEMz/JZFGbWtCKzLU/EG1DNj
+         hfL8SqLduLE7SsAPqqn0zZJABtfFryGAgNta+e2Gki8qxJlJ/3wsuwvzFQJVihScVqF5
+         lTU4StHHONySot2gYBejb7eQsgkPg1sYcvLfbqmrP/xZhGu79JxqqjN45H1/1mjlZUPa
+         6MJg==
+X-Gm-Message-State: AOAM533Mol6Br0b9yPmsZ+brzJDQBnRPcMuh7WmN/1QvocaInrLTZvuH
+	eGvVjXI5YqLSdXN+S+IfK8yw0UIQ8jKThLuxjCm+J86hzc4Q
+X-Google-Smtp-Source: ABdhPJyjk03sjzsAretmEfRe10yfytSV1/rSOi/6UlCm57MZu/zwCAg1ehZZoOP/M3lHBm2AFW+eNBJboUj5v2yzSz8=
+X-Received: by 2002:ac2:58f7:: with SMTP id v23mr27248068lfo.390.1643919438534;
+ Thu, 03 Feb 2022 12:17:18 -0800 (PST)
+MIME-Version: 1.0
+From: John Hodgins <johnyhodgins@gmail.com>
+Date: Thu, 3 Feb 2022 23:17:07 +0300
+Message-ID: <CAGM_aqyAQ9M-vHC7NrbzrvbPd6_YJQ8vZiQRE9hSoPJZfM6vGg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: OPQX7KUAPLROQBMUQJZX3LROC7PU6XTV
+X-Message-ID-Hash: OPQX7KUAPLROQBMUQJZX3LROC7PU6XTV
+X-MailFrom: johnyhodgins@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: GNURadio Discussion List <discuss-gnuradio@gnu.org>, usrp-users <usrp-users@lists.ettus.com>, Rob Kossler <rkossler@nd.edu>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Here's how to get the N321's LO sharing to work in GNURadio 3.9 with UHD4.1.0.5
+Subject: [USRP-users] Timed Commands compatibility between different USRP series
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YR2BKKDAO4B5ERI32BJMYOUXTOWZK6R7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OPQX7KUAPLROQBMUQJZX3LROC7PU6XTV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6546860761987329271=="
 
-SGV5IERhbmllbC4gDQpHbGFkIHlvdSBsaWtlIGl0LiBUaGUgZnVuY3Rpb25hbGl0eSBpcyB0aGVy
-ZSBmb3Igbm93LCBidXQgSSBoYXZlIHNvbWUgcmVzZXJ2YXRpb25zIGFib3V0IHJlY29tbWVuZGlu
-ZyB0aGlzIGZvciB1cHN0cmVhbS4gDQpUTERSOiBtb3JlIHdvcmsgcHJvYmx5IG5lZWRzIHRvIGJl
-IGRvbmUgZm9yIHRoZSBjaGFuZ2VzIHRvIGJlIHN0YWJsZS4gDQoNCk15IHN1Z2dlc3Rpb25zL2Nv
-bmNlcm5zIG9uIHVwc3RyZWFtIGNoYW5nZXMgYXJlIGFzIGZvbGxvd3M6DQoNCjEpIElmIHRoZSBm
-aWxlIHN5c3RlbSBuYW1pbmcgY29udmVudGlvbiBjaGFuZ2VzIGluIG5ldyB2ZXJzaW9ucyBvZiBV
-SEQgbXkgZnVuY3Rpb24gd2lsbCBicmVhayBpbiBnci11aGQgc2luY2UgdGhlIGZpbGUgc3lzdGVt
-IHBhdGggaXMgaGFyZGNvZGVkLiBBcyB5b3XigJl2ZSBwcm9ibHkgbm90aWNlZCBVSEQgYWJzdHJh
-Y3RzIHRoZSB2YXJpb3VzIGZzIHBhdGhzIGludG8gdmFyaWFibGVzIHNvIGNoYW5nZXMgdG8gdGhl
-IGZzIGFyZSB0cmFuc3BhcmVudCB0byB0aGUgQVBJLiANCg0KMikgbXkgY2hhbmdlcyBuZWVkIHRv
-IGZvbGxvdyB0aGUgbmFtaW5nIGNvbnZlbnRpb24gYW5kIGFic3RyYWN0aW9uIG9mIGdyLXVoZC4g
-Rm9yIGV4YW1wbGUsIGFueSBmdW5jdGlvbnMgdGhhdCBleGlzdCBmb3IgYm90aCBUWCBhbmQgUlgg
-YXJlIHB1dCBpbiB0aGUgY29tbW9uIGJsb2NrIGFuZCB0aGVuIHRoZSBzYW1lIGZ1bmN0aW9uIGlz
-IHVzZWQgZm9yIFRYL1JYIGluIGVpdGhlciBzaW5rIG9yIHNvdXJjZSBibG9ja3MgcmVzcGVjdGl2
-ZWx5LiANCg0KMykgSSB0aGluayBhZGRpbmcgTE8gZGlzdHJpYnV0aW9uIGFzIGEgcGFyYW1ldGVy
-IGluIHRoZSBHUkMgYmxvY2sgd291bGQgYWxzbyBiZSBuZWNlc3NhcnkgdG8gZm9sbG93IGhhdmUg
-4oCcR05VUmFkaW8gY2l0aXplbnNoaXDigJ0uIA0KDQpJIGhvbmVzdGx5IGxpa2UgdGhlIGRpcmVj
-dGlvbiBvZiB5b3VyIHNvbHV0aW9uIG1vcmUgYmVjYXVzZSBpdCBmb2xsb3dzIHRoZSBBUEkgaW50
-ZXJwbGF5IHRoYXTigJlzIGFscmVhZHkgaW4gcGxhY2UgYmV0d2VlbiBVSEQgYW5kIGdyLVVIRC4g
-VW5mb3J0dW5hdGVseSwgYXMgeW91IHBvaW50ZWQgb3V0IGl0IHdvdWxkIHJlcXVpcmUgdGhlIG1v
-ZGlmaWNhdGlvbnMgdG8gYmUgYSB1cHN0cmVhbWVkIGZvciBib3RoIFVIRCBhbmQgZ3ItdWhkLiAN
-Cg0KSSB0aGluayBJIGNvdWxkIGhhbmRsZSB0aGUgZ3ItdWhkIHBhcnQgaWYgdGhlIFVIRCBzaWRl
-IGdldHMgZG9uZS4gDQpEb2VzIGFueW9uZSBmcm9tIEV0dHVzIHRoaW5rIHRoaXMgd291bGQgYmUg
-YSB2YWx1YWJsZSBhZGRpdGlvbj8gQ291bGQgd2UgZ2V0IHNvbWUgaGVscCBvbiBhZGRpbmcgYSBj
-b252ZW5pZW5jZSBmdW5jdGlvbiBmb3IgTE8gZGlzdHJpYnV0aW9uIGJvYXJkIGVuYWJsZSB0byB0
-aGUgVUhEIEFQST8NCg0KPGVuZCB0cmFuc21pc3Npb24+DQoNCj4gT24gSmFuIDI5LCAyMDIyLCBh
-dCAwNDo0NiwgRGFuaWVsIEVzdMOpdmV6IDxkYW5pZWxAZGVzdGV2ZXoubmV0PiB3cm90ZToNCj4g
-DQo+IO+7v0hpLA0KPiANCj4gVGhhbmtzISBUaGF0IHNlZW1zIHZlcnkgbmljZS4gQ291bGQgd2Ug
-dHJ5IHVwc3RyZWFtaW5nIHRoaXM/IEkgZG9uJ3Qgc2VlIGFueSBvYnZpb3VzIGRyYXdiYWNrcyB0
-byBoYXZpbmcgdGhpcyBpbi10cmVlLCBwYXJ0aWN1bGFybHkgc2luY2UgeW91ciBhcHByb2FjaCBk
-b2Vzbid0IHJlcXVpcmUgbW9kaWZ5aW5nIFVIRC4NCj4gDQo+IEJlc3QsDQo+IERhbmllbC4NCj4g
-DQo+PiBFbCAyOC8xLzIyIGEgbGFzIDIzOjU1LCBQYXVsIEF0cmVpZGVzIGVzY3JpYmnDszoNCj4+
-IEN1cnJlbnRseSB0aGVyZSdzIG5vIHdheSB0byB1c2UgTE8gc2hhcmluZyB3aXRoIHRoZSBOMzIx
-IGluIGdyLXVoZC4NCj4+IFRoZSBOMzIxIHVzZXMgYW4gUkYgRGlzdHJpYnV0aW9uIGJvYXJkIHdo
-aWNoIGhhcyBwb3J0IHRlcm1pbmF0aW9ucyB0aGF0IG5lZWQgdG8gYmUgc3dpdGNoZWQgdG8gYWN0
-aXZlIG91dHB1dHMgd2hlbiB0aGUgTE8gaXMgZXhwb3J0ZWQuIFRoaXMgaXNuJ3QgYWNjZXNzaWJs
-ZSBpbiBnci11aGQuDQo+PiBJbiBvcmRlciB0byBhY2Nlc3MgdGhlIExPIGRpc3RyaWJ1dGlvbiBl
-bmFibGUgY29tbWFuZHMgc2hvd24gaGVyZToNCj4+IGh0dHBzOi8va2IuZXR0dXMuY29tL1VTUlBf
-TjMyMC9OMzIxX0xPX0Rpc3RyaWJ1dGlvbiNVSERfTE9fRGlzdHJpYnV0aW9uX0NvbW1hbmRzIDxo
-dHRwczovL2tiLmV0dHVzLmNvbS9VU1JQX04zMjAvTjMyMV9MT19EaXN0cmlidXRpb24jVUhEX0xP
-X0Rpc3RyaWJ1dGlvbl9Db21tYW5kcz4NCj4+IGEgZnVuY3Rpb24gbmVlZHMgdG8gYmUgYWRkZWQg
-dG8gZ3ItdWhkDQo+PiBBbGwgdGhpcyBjb2RlIGJlbG93IGlzIHRha2VuIGZyb20gaGVyZToNCj4+
-IGh0dHBzOi8vZ2l0aHViLmNvbS9kYW5pZXN0ZXZlei91aGQvY29tbWl0LzBhNmRhMWEzZmQ1ODM5
-Yjg2MmNhYzc0MGVkNzAyOTIzZWQyMWIwOTYgPGh0dHBzOi8vZ2l0aHViLmNvbS9kYW5pZXN0ZXZl
-ei91aGQvY29tbWl0LzBhNmRhMWEzZmQ1ODM5Yjg2MmNhYzc0MGVkNzAyOTIzZWQyMWIwOTY+DQo+
-PiBodHRwczovL2dpdGh1Yi5jb20vZGFuaWVzdGV2ZXovZ251cmFkaW8vY29tbWl0L2Y5OTA5YmFk
-ZTg2MDQ1ZjM3OWY4MzAwMWRlMjczMTdjYzI2MTgwN2YgPGh0dHBzOi8vZ2l0aHViLmNvbS9kYW5p
-ZXN0ZXZlei9nbnVyYWRpby9jb21taXQvZjk5MDliYWRlODYwNDVmMzc5ZjgzMDAxZGUyNzMxN2Nj
-MjYxODA3Zj4NCj4+IHdpdGggdGhlIHJ4IHN3aXRjaGVkIGZvciB0eCBhbmQgc291cmNlIHN3aXRj
-aGVkIGZvciBzaW5rDQo+PiBpIGFsc28gZGlkIG5vdCBtb2RpZnkgYW55IFVIRCBjb2RlIG1ha2lu
-ZyB0aGlzIGEgZml4IHRoYXQgcmVxdWlyZXMgT05MWSBtb2RpZnlpbmcgZ3ItdWhkDQo+PiB1c3Jw
-X3NpbmtfaW1wbC5jYw0KPj4gdm9pZHVzcnBfc2lua19pbXBsOjpzZXRfdHhfbG9fZGlzdChib29s
-ZW5hYmxlZCwNCj4+IGNvbnN0c3RkOjpzdHJpbmcmbmFtZSwNCj4+IHNpemVfdGNoYW4pDQo+PiB7
-DQo+PiAjaWZkZWZVSERfVVNSUF9NVUxUSV9VU1JQX1RYX0xPX0NPTkZJR19BUEkNCj4+IF9kZXYt
-PmdldF90cmVlKCktPmFjY2Vzczxib29sPigiL2Jsb2Nrcy8wL1JhZGlvIzAvZGJvYXJkL3R4X2Zy
-b250ZW5kcy8wL2xvcy9sbzEvbG9fZGlzdHJpYnV0aW9uIi86OnVoZDo6ZnNfcGF0aChuYW1lKSAv
-ImV4cG9ydCIpLnNldChlbmFibGVkKTsNCj4+ICNlbHNlDQo+PiB0aHJvd3N0ZDo6cnVudGltZV9l
-cnJvcigibm90IGltcGxlbWVudGVkIGluIHRoaXMgdmVyc2lvbiIpOw0KPj4gI2VuZGlmDQo+PiB9
-DQo+PiB1c3JwX3NpbmtfaW1wbC5oDQo+PiB2b2lkc2V0X3R4X2xvX2Rpc3QoYm9vbGVuYWJsZWQs
-DQo+PiBjb25zdHN0ZDo6c3RyaW5nJm5hbWUsIHNpemVfdGNoYW49IDApIG92ZXJyaWRlOw0KPj4g
-dXNycF9zaW5rLmgNCj4+IHZpcnR1YWx2b2lkc2V0X3R4X2xvX2Rpc3QoYm9vbGVuYWJsZWQsIGNv
-bnN0c3RkOjpzdHJpbmcmbmFtZSwgc2l6ZV90Y2hhbj0wKSA9IDA7DQo+PiB1c3JwX3NpbmtfcHl0
-aG9uLmNjDQo+PiAuZGVmKCJzZXRfdHhfbG9fZGlzdCIsDQo+PiAmdXNycF9zaW5rOjpzZXRfdHhf
-bG9fZGlzdCwNCj4+IHB5OjphcmcoImVuYWJsZWQiKSwNCj4+IHB5OjphcmcoIm5hbWUiKSwNCj4+
-IHB5OjphcmcoImNoYW4iKSA9MCwNCj4+IEQodXNycF9zaW5rLCBzZXRfdHhfbG9fZGlzdCkpDQo+
-PiB1c3JwX3NpbmtfcHlkb2NfdGVtcGxhdGUuaA0KPj4gc3RhdGljY29uc3RjaGFyKiBfX2RvY19n
-cl91aGRfdXNycF9zaW5rX3NldF90eF9sb19kaXN0PSBSImRvYygpZG9jIjsNCj4+IEFzc3VtaW5n
-IHRoZSBzaW5rIGJsb2NrIGlzICJ1c3JwX3NpbmtfMCINCj4+IHNuaXBwZXRfMCBjb2RlDQo+PiAn
-TWFpbi1BZnRlciBJbml0Jw0KPj4gIyBUdXJuIG9uIHRoZSBwb3J0cw0KPj4gc2VsZi51c3JwX3Np
-bmtfMC5zZXRfdHhfbG9fZGlzdChUcnVlLCJMT19PVVRfMCIsMCkNCj4+ICMgcmVwZWF0IHRoZSBh
-Ym92ZSBmb3IgYWxsIHBvcnRzIG5lZWRlZCAiTE9fT1VUXzxOPiINCj4+IHNuaXBwZXRfMQ0KPj4g
-J01haW4tQWZ0ZXIgU3RvcCcNCj4+ICMgVHVybiBvZmYgdGhlIHBvcnRzDQo+PiBzZWxmLnVzcnBf
-c2lua18wLnNldF90eF9sb19kaXN0KEZhbHNlLCJMT19PVVRfMCIsMCkNCj4+ICMgcmVwZWF0IGZv
-ciBhbGwgcG9ydHMgeW91IGVuYWJsZWQgIkxPX09VVF88Tj4iDQo+PiBUaGUgb3RoZXIgc2V0dGlu
-Z3MgaSBmb3VuZCB3ZXJlIG5lZWRlZCBpbiB0aGUgZ3ItdWhkIGJsb2NrIGluY2x1ZGVkOg0KPj4g
-U2V0dGluZyB0aGUgc3RhcnQgdGltZSB0byAxDQo+PiBTZXR0aW5nIHRoZSBNYXN0ZXIgQ2xvY2sg
-cmF0ZSB0byAyMDBNSHoNCj4+IENIMDoNCj4+ICAgTE8gU291cmNlID0gZXh0ZXJuYWwNCj4+ICAg
-TE8gRXhwb3J0ID0gVHJ1ZQ0KPj4gQ0gxOg0KPj4gICBMTyBTb3VyY2UgPSBleHRlcm5hbA0KPj4g
-ICBMTyBFeHBvcnQgPSBGYWxzZQ0KPj4gSSdkIGxpa2UgdG8gdGhhbmsgdGhlIGNvbW11bml0eSBv
-ZiB1c2VycyBmb3IgZG9pbmcgYWxsIG9mIHRoaXMgd29yaywgZXNwZWNpYWxseSBNYXJjdXMgTGVl
-Y2gsIFJvYiBLb3NzbGVyIGFuZCBEYW5pZWwgRXN0ZXZleg0KPiAKX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
-byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============6546860761987329271==
+Content-Type: multipart/alternative; boundary="0000000000002c602f05d722d215"
+
+--0000000000002c602f05d722d215
+Content-Type: text/plain; charset="UTF-8"
+
+Hi there,
+
+We have a simple set up where we collect iq snippets from 3 usrp's at the
+same rx-times via timed commands. We introduce delays between the usrp's
+via a reference delay box and try to recover the introduced delays via
+cross-correlation.
+
+Things work great when all the rx's belong to the same USRP family. For
+instance we have been able to recover the correct delay for all B210 (with
+GPSDO/TCXO) or all E310 (with GPS antenna) scenarios. However, when we mix
+different USRP's, the delays computed via cross-correlation no longer make
+sense.
+
+For instance, when we use 1 B210 and 2 E310's the delays between B210 and
+E310's just oscillate wildly but the relative difference between E310
+remains relatively stable. We tested 2 B210's with a single X310 (with
+GPSDO/OCXO) as well and we see the same problem as well. The interesting
+thing is though visualizing the spectrum of collected snippets from
+different USRPs show pretty much the spectrum of the known applied signal.
+
+Is there some fundamental discrepancy between different USRP families? Or
+maybe UHD somehow interprets samples differently for different
+USRP's (flipping i and.q, different rx-time, pps implementations,  some
+precision issues maybe)?
+
+In any case I would be grateful if anyone can shed some light onto this
+behavior.
+
+Best,
+John
+
+--0000000000002c602f05d722d215
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi there,<div><br></div><div>We have a simple set up where=
+ we collect iq snippets from 3 usrp&#39;s at the same rx-times via timed co=
+mmands. We introduce delays between the usrp&#39;s via a reference delay bo=
+x and try to recover the introduced delays via cross-correlation.=C2=A0</di=
+v><div><br></div><div>Things work great when=C2=A0all the rx&#39;s belong t=
+o the same USRP family. For instance we have been able to recover the corre=
+ct delay for all B210 (with GPSDO/TCXO) or all=C2=A0E310 (with GPS antenna)=
+ scenarios. However, when we mix different USRP&#39;s, the delays computed =
+via cross-correlation no longer make sense.=C2=A0</div><div><br></div><div>=
+For instance, when we use 1 B210 and 2 E310&#39;s the delays between B210 a=
+nd E310&#39;s just oscillate wildly but the relative difference between E31=
+0 remains relatively stable. We tested 2 B210&#39;s with a single X310 (wit=
+h GPSDO/OCXO) as well and we see the same problem as well. The interesting =
+thing is though visualizing the spectrum of collected snippets from differe=
+nt USRPs show pretty much the spectrum of the known applied signal.</div><d=
+iv><br></div><div>Is there some fundamental discrepancy between different U=
+SRP families? Or maybe UHD somehow interprets samples differently for diffe=
+rent USRP&#39;s=C2=A0(flipping i and.q, different rx-time, pps implementati=
+ons,=C2=A0 some precision issues maybe)?</div><div><br></div><div>In any ca=
+se I would be grateful if anyone=C2=A0can shed some light onto this behavio=
+r.</div><div><br></div><div>Best,</div><div>John</div></div>
+
+--0000000000002c602f05d722d215--
+
+--===============6546860761987329271==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6546860761987329271==--
