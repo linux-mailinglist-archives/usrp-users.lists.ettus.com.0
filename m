@@ -2,200 +2,478 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E2F4A9D23
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 17:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B7634A9D7B
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 18:13:12 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 98D70385DD3
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 11:50:33 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 77F2F385DF9
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 12:13:11 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="d8Ev8Cem";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WvY6wy9l";
 	dkim-atps=neutral
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0041.outbound.protection.office365.us [23.103.208.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id C35B0385D76
-	for <usrp-users@lists.ettus.com>; Fri,  4 Feb 2022 11:49:34 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=J7oFzKVNwUUCP0bbJZUOJa6vwCgTWjAYOdc+sM5PlaV9yRuUdzbxryJ5NVjgHTSc+vXc/dk8ckMYtHoMY+/Qz2sUZJaWzK0HXRJoN7J5LDX+5l3TQhpNyxuyIiD2zDwYLW+X8Q7UDtoSSDHJ0I3PbZTmSLQZO8bRvQv8ugzvQTwqKsnoN/wP2X4vdCbTWvMcD2XRveV2pB6kZidwwhMaLS3oQYHykXCbeH+5LdNWKXUnxG69QU9Y+HomgKLYK9Do1uSjn6HsCFMlfDT/pFfYQeYy5QyuKwmCT7DqpBZpTSJioD80oSb+vRpMBotYeF5dFIpLkorVfyhWeVp9wJaLJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=txMmgLViH6OoHJ2ABLJ8blFUtPylW8YUg1RSldh4Rjs=;
- b=IyNdTDs02UR7T/K4kDgVm8Fw64ChaIqutd2MJGCIOxZXZkI0JbRavE538CoUU5Wzd1KiWyOjXMZcbefg7wtMeNuYi5NkkKBfJev+xFCgAKhZ/1Tx5zJX/T4FugGh3BqUqJNtQ+wSUTDJYjk32dKskHeoDEmrnIP+xaCUpr0rMWzrBt/mAdSFQp1rVPPeuqnHnht3Ydz1mDKWGJBgEbrBpuCCqh0U1Tc9kxMWA3AUVhYKiQF6qme1GJVvb+2x0axPEHlbaupv6eSozmn8Pxxo1hXt04EtU4tFvyGzvtfw+CvpicNGJTKn9C/YTUrAUALaKfmboIILtxQNnV+cfc1iag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6C331385BE1
+	for <usrp-users@lists.ettus.com>; Fri,  4 Feb 2022 12:11:59 -0500 (EST)
+Received: by mail-yb1-f169.google.com with SMTP id g14so20604819ybs.8
+        for <usrp-users@lists.ettus.com>; Fri, 04 Feb 2022 09:11:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=txMmgLViH6OoHJ2ABLJ8blFUtPylW8YUg1RSldh4Rjs=;
- b=d8Ev8Cemqv6+K2Y+7+MkvTtDYPYzcLz9AmTa2ziAdAWhzogiCS3MV1wnGD2vRea0ewM+RaGbF53FeYfXI+QsOtgnaYHLyfSBTWZIZuzAfqxJx4xUflIwA0ZuoJz8FRA+Ja2GhdwjbmPzkpH/gXYyd8OCNccg3gEKuqN2thvdZ+YVNwa4y14mOrCTMeGjn6CCtrqCYzmAjpqmYYd1bcBdA9PiWSH5Twl+kQGq8MjIo/zUM+YnVG732HA8Q76ohs4owRpDL8tjus6DItfdeqm4rIve56oUwp4SKmL2x++go09aJqqaHdRO11oABRbswLUh0o1o8ceWxGyCbf1i2VgQsw==
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
- by PH1P110MB1522.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:188::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4951.12; Fri, 4 Feb
- 2022 16:49:32 +0000
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870%2]) with mapi id 15.20.4951.016; Fri, 4 Feb 2022
- 16:49:32 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: Rob Kossler <rkossler@nd.edu>
-Thread-Topic: [USRP-users] N320: external ref clock with internal gpsdo timing
- source
-Thread-Index: AdgZSZda+Ix7GgCqTeWN1H6era1WWgABMxwAACV5FdA=
-Date: Fri, 4 Feb 2022 16:49:32 +0000
-Message-ID: 
- <PH1P110MB166546C67FF8FA7A2B933568B7299@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <BN0P110MB167582CB71227F7F71D2E4B7B7289@BN0P110MB1675.NAMP110.PROD.OUTLOOK.COM>
- <CAB__hTQLcFH0WSouSzW6Q5b+2uN=cLR4R7njUVPv7FB8Kz4dCg@mail.gmail.com>
-In-Reply-To: 
- <CAB__hTQLcFH0WSouSzW6Q5b+2uN=cLR4R7njUVPv7FB8Kz4dCg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3b2fdebd-d38c-434f-9926-08d9e7fe51a2
-x-ms-traffictypediagnostic: PH1P110MB1522:EE_
-x-microsoft-antispam-prvs: 
- <PH1P110MB1522BFD58DBB7C6B07149F95B7299@PH1P110MB1522.NAMP110.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- kjyG+RBSTSupTB2CcgdhKun9KO9Kn99bjgz0BWRdrLgji7QKVoIZR5Inuq/7ftbMgpBKajlnXdJvYMmsErp0zC9xHgB9e56Z/v4Qe1R5WOjQJiWw6H7Co0d1/OC01JimvvVykhBCLcINPKuyb2dovxwk0WOL9a1FwExa6AaGwnJRUjdzerb+i5zEU8laCxPbwKJuf+uWQpDulamJXlfrcCpGYHYS+NTPp1HfsiZPqdvqv6N9MjHbi7iUbPrwT+aDgcWp/vvlsb1Cpujt5T/ZPqu6dcBiPUn6WR8YdYhLDDY4cOB/0cNtbvIy+Jy3gPIsJjKaxeIdg110leGyAlhp5BjZVqOQls+oFJtWKo0waP4gyxGIHLv55Qda0k6NN7q8V3GkHnC0Xaq/NBfNwjDRFv83ZSd1oaXsTQUBfDogrTEvCE+o67Lov3BEzBSkShmLLJoHpnH/yPMnDgHtuKDoarJ5ICXEUY4DNsrfiN02nPglHK1E+0PWTgwxulS2SWCRzwUAYADRWPwmygAnok9EBUT6MDwnWHBnEKJZ68QCWOQyOdrcCudnkvASn0VpFdOjU2Ef8OZ3jtFH29YHD7TSUBfJylSwZACuTwpqSXy5IIv4Fyw8g+nRyW1gweSAFXylgDLGbGQgvkrhjrOQ+QcxWQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(376002)(346002)(39830400003)(366004)(136003)(396003)(5660300002)(52536014)(33656002)(186003)(8676002)(76116006)(64756008)(66446008)(66476007)(66556008)(66946007)(6916009)(83380400001)(8936002)(86362001)(4326008)(2906002)(316002)(9686003)(55016003)(6506007)(7696005)(71200400001)(508600001)(38070700005)(122000001)(38100700002)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- uKCzVy6rFPdaPjgoEOvyZy82QBGQDtc4PwIPQEtl9B8FL13IvyM4T5eDRT9sxadPnd83C31atnhOCn8rxWKZHUcfGMF7V0S1Eufqc1UfJKNOyGd3rxMTODEgXQb9Of3Q4kXLXazY2wT0TMHI1soIngztcxXasTdd9uyQTnLY+w0jP3Y/MzpD3UCOu3L3TYjFQeJZSR+P8OAofAuEvXMlxQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+9v+79tcbR/6Gstkj2ShTIjBQw/BNk/vPJnHunWiBc8=;
+        b=WvY6wy9lsGbWV2CvomGL9L8OuqM+RvcsgwYn6UIArCLhqNIMzUmHdASdohspuC0gO5
+         al2WGhF8hlWrHnY1ouNcubCNoX6/HY0k2Zm6wkT//hZaKzpKx3Liw9afOJpGDHMR1YG+
+         MgVRGLSa81BeFKx2Q1KjD/lx46vugo4fZ55CquHKuovM6FoSSS3fZ0EJM/EFWCKJ3cHw
+         v4AoL/b5nig7c9ZdgzSi83MSPzFWcC+QWLrQ5pPxo4THSWozJq8yhvU2CzlUQsMMct2G
+         3uWSzfb61aPAdbnmN8y5EAfTAK5/+TnBAdTYI2hZYLykkKnu37h9eSJ0EZD7qm3f16ik
+         c6sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+9v+79tcbR/6Gstkj2ShTIjBQw/BNk/vPJnHunWiBc8=;
+        b=sSqWm9Gmd6oubuqmRVEgdKmBO0KFB/qQg6u+bo3rBuZVKNcpahNXKbyZ70ZhbLDbO8
+         Tw4tzcJjDV88uxMLhwKMuIiP+q2veZTfJehZT8cF+YR1l2nvbYoo3rJdHksk6YbSKJ21
+         AzX0sx+viW6mpKA0W6CWR7ZzWWcuQFPr5XibOIHE48dD5bRW7YU+qQ8OF0bQQhQM8xv/
+         TWN/s+rdVBKQHSuqEwh+FItAhJeH8MxQjrGIx9qFRBc8hsXKmYEDDz3AGHjOmQlhu2Zf
+         3EYQdiIm1mZDPWT8Uu57ehKWQbscwsKGIbbepdRXlJ9QI0x2MGlc1HJmNEcKkPegYz0/
+         YPZg==
+X-Gm-Message-State: AOAM530HYKSBfr2dTpeJEITRlJJ9PXdAB0lNWZCMO90BdNyb4GbMq7in
+	Nxq43/FEUbVyQ27pZtesp//QkzIXsHLjWp9ryVOz1GGh/NGJ8Q==
+X-Google-Smtp-Source: ABdhPJwRWD6Vl+GwqDlD6y1u8BPRbO/NL3at0ybhsW+oD5RTBoLz3yPWtYMYWExx1fJQfwvdkGjSEnRkVQgDStQK6uc=
+X-Received: by 2002:a25:be43:: with SMTP id d3mr93437ybm.454.1643994718279;
+ Fri, 04 Feb 2022 09:11:58 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b2fdebd-d38c-434f-9926-08d9e7fe51a2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2022 16:49:32.5705
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1522
-Message-ID-Hash: 2XYXUNSLAOBVPRACCEOVTNXEOVBHTUIT
-X-Message-ID-Hash: 2XYXUNSLAOBVPRACCEOVTNXEOVBHTUIT
-X-MailFrom: david@SynopticEngineering.com
+References: <CAA=S3PsErhg-2ScEfGRxKxjF7j1dO1bifVg8_bmY4vHUMipPHw@mail.gmail.com>
+ <CAA=S3PtGaWu0pd2q4UV6v0ca9A=juysZQJOMS1hpbrLRBdLG2A@mail.gmail.com> <CAL7q81v_UDMMqWvtj=Tz6iC7hC7CUGbFxazwZnBsxhSV0U2fvg@mail.gmail.com>
+In-Reply-To: <CAL7q81v_UDMMqWvtj=Tz6iC7hC7CUGbFxazwZnBsxhSV0U2fvg@mail.gmail.com>
+From: sp h <stackprogramer@gmail.com>
+Date: Fri, 4 Feb 2022 20:41:40 +0330
+Message-ID: <CAA=S3PvnC7QuFMQwutBb1kCBX4D4spKC04_Zio_x4QRRB6Oz2Q@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Message-ID-Hash: P2TWUAXP72AZMCSNUSLF5U7K6DUVX7MB
+X-Message-ID-Hash: P2TWUAXP72AZMCSNUSLF5U7K6DUVX7MB
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320: external ref clock with internal gpsdo timing source
+Subject: [USRP-users] Re: Building FPGA [00:12:48] Process terminated. Status: Failure How much can I debug?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MRDLTSAV4FSYXGA4GTZGJN3EU3N2RO4D/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P2TWUAXP72AZMCSNUSLF5U7K6DUVX7MB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0893688518444493294=="
+Content-Type: multipart/mixed; boundary="===============7534463141262851119=="
 
---===============0893688518444493294==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_PH1P110MB166546C67FF8FA7A2B933568B7299PH1P110MB1665NAMP_"
+--===============7534463141262851119==
+Content-Type: multipart/alternative; boundary="000000000000321c5d05d734596d"
 
---_000_PH1P110MB166546C67FF8FA7A2B933568B7299PH1P110MB1665NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000321c5d05d734596d
+Content-Type: text/plain; charset="UTF-8"
 
-SWYgeW91IGNvdWxkIHN0YXJ0IG91dCB3aXRoIGJvdGggMTBNSHogYW5kIFBQUyB1c2luZyBHUFMg
-c2lnbmFsLCBzZXQgYWxsIGNsb2NrcyB0byB0aGUgc2FtZSB0aW1lIChlLmcuLCB6ZXJvKSBhdCB0
-aGUgY29tbW9uIFBQUywgYW5kIHRoZW4gc3dpdGNoIHRvIHVzaW5nIGV4dGVybmFsIHJlZiwgaXQg
-bWlnaHQgYmUgcG9zc2libGUuICBNeSB1bmRlcnN0YW5kaW5nIGlzIHRoYXQgdGhlIG9ubHkgdGhp
-bmcgdGhlIFBQUyBpcyBuZWVkZWQgZm9yIGlzIHNldHRpbmcgdGhlIGNvbW1vbiB0aW1lLiBJbiBv
-dGhlciB3b3JkcywgaXQncyBiYXNpY2FsbHkgYSB0cmlnZ2VyLg0KDQpJIGFwcHJlY2lhdGUgdGhl
-IHN1Z2dlc3Rpb24uIElmIHRoZSBGUEdBIG9ubHkgdXNlcyB0aGUgUFBTIHdoZW4gY2VydGFpbiBV
-SEQgQVBJIGNhbGxzIGFyZSBpbnZva2VkLCBhbmQgZG9lc27igJl0IHVzZSBpdCBmb3IgaW50ZXJu
-YWwgY29ycmVjdGlvbiBvciBza2V3aW5nIG9mIHRoZSB0aW1lYmFzZSwgdGhhdCBtaWdodCB3b3Jr
-LiBIb3dldmVyLCBJIHdhcyBhbHNvIHBsYW5uaW5nIHRvIG9jY2FzaW9uYWxseSB1c2UgZ2V0X3Rp
-bWVfbGFzdF9wcHMoKSB0byBtb25pdG9yIGNsb2NrIGRyaWZ0IHdpdGggcmVzcGVjdCB0byBHUFMg
-UFBTIG92ZXIgbG9uZyBkdXJhdGlvbnMsIHdoaWNoIEkgd291bGRu4oCZdCBiZSBhYmxlIHRvIGRv
-IHdpdGggdGhpcyBhcHByb2FjaC4NCg0KR2l2aW5nIGl0IG1vcmUgdGhvdWdodCwgSeKAmW0gcGVy
-cGxleGVkIGFzIHRvIHdoeSDigJxjbG9ja19zb3VyY2U9ZXh0ZXJuYWwsdGltZV9zb3VyY2U9Z3Bz
-ZG/igJ0gaXNu4oCZdCBzdXBwb3J0ZWQuIFRoZSBGUEdBIHdvdWxkIGJlIHdpbGxpbmcgdG8gYWNj
-ZXB0IGFuIGV4dGVybmFsIHRpbWluZyBzb3VyY2UgdGhhdCBoYXMgbm8gY29ycmVsYXRpb24gdG8g
-dGhlIHJlZiBjbG9jaywgc28gY29uY2VwdHVhbGx5LCBpdCBzZWVtcyBsaWtlIGl0IHNob3VsZCBi
-ZSBhYmxlIHRvIHVzZSB0aGUgR1BTRE8gUFBTIHRoZSBzYW1lIHdheSBoZXJlLiBTdXJlLCBvdmVy
-IHRpbWUgdGhlcmUgd2lsbCBiZSBmcmVxdWVuY3kgZHJpZnQgYnkgbm90IHVzaW5nIHRoZSBHUFMt
-ZGlzY2lwbGluZWQgb3NjaWxsYXRvciwgYnV0IHRoYXQncyBhbiBleHBlY3RlZCBjb25zZXF1ZW5j
-ZSBvZiB1c2luZyBhbiBpbmRlcGVuZGVudCBjbG9jayByZWYuIEnigJlkIGxvdmUgdG8gaGVhciB3
-aHkgdGhpcyBjb25zdHJhaW50IGV4aXN0cy4NCg0KRGF2aWQNCg0K
+ No, I built FPGA from Ubuntu 20.04, a physical PC not VM.
+Ram is enough 12G, In other cases, it can be built correctly.
+I think some connections and blocks in the RFNOC core image have errors...
 
---_000_PH1P110MB166546C67FF8FA7A2B933568B7299PH1P110MB1665NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Fri, Feb 4, 2022 at 5:44 PM Jonathon Pendlum <jonathon.pendlum@ettus.com>
+wrote:
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1z
-dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNl
-cmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5
-cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBh
-Z2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBp
-biAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30N
-Ci0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6
-ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBn
-dGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2
-OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0t
-LT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxl
-IiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24x
-Ij4NCjxkaXY+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1s
-ZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4t
-bGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+SWYgeW91IGNvdWxkIHN0YXJ0IG91dCB3aXRoIGJvdGggMTBNSHogYW5kIFBQUyB1
-c2luZyBHUFMgc2lnbmFsLCBzZXQgYWxsIGNsb2NrcyB0byB0aGUgc2FtZSB0aW1lIChlLmcuLCB6
-ZXJvKSBhdCB0aGUgY29tbW9uIFBQUywgYW5kIHRoZW4gc3dpdGNoIHRvIHVzaW5nIGV4dGVybmFs
-IHJlZiwgaXQgbWlnaHQgYmUgcG9zc2libGUuJm5ic3A7IE15IHVuZGVyc3RhbmRpbmcgaXMgdGhh
-dCB0aGUgb25seSB0aGluZyB0aGUgUFBTDQogaXMgbmVlZGVkIGZvciBpcyBzZXR0aW5nIHRoZSBj
-b21tb24gdGltZS4gSW4gb3RoZXIgd29yZHMsIGl0J3MgYmFzaWNhbGx5IGEgdHJpZ2dlci4mbmJz
-cDsmbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5JIGFwcHJlY2lhdGUgdGhlIHN1Z2dlc3Rpb24uIElmIHRoZSBGUEdBIG9u
-bHkgdXNlcyB0aGUgUFBTIHdoZW4gY2VydGFpbiBVSEQgQVBJIGNhbGxzIGFyZSBpbnZva2VkLCBh
-bmQgZG9lc27igJl0IHVzZSBpdCBmb3IgaW50ZXJuYWwgY29ycmVjdGlvbiBvciBza2V3aW5nIG9m
-IHRoZSB0aW1lYmFzZSwgdGhhdCBtaWdodCB3b3JrLiBIb3dldmVyLCBJIHdhcyBhbHNvIHBsYW5u
-aW5nIHRvIG9jY2FzaW9uYWxseSB1c2UNCiBnZXRfdGltZV9sYXN0X3BwcygpIHRvIG1vbml0b3Ig
-Y2xvY2sgZHJpZnQgd2l0aCByZXNwZWN0IHRvIEdQUyBQUFMgb3ZlciBsb25nIGR1cmF0aW9ucywg
-d2hpY2ggSSB3b3VsZG7igJl0IGJlIGFibGUgdG8gZG8gd2l0aCB0aGlzIGFwcHJvYWNoLjxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5HaXZpbmcgaXQgbW9yZSB0aG91Z2h0LCBJ4oCZbSBwZXJwbGV4
-ZWQgYXMgdG8gd2h5IOKAnGNsb2NrX3NvdXJjZT1leHRlcm5hbCx0aW1lX3NvdXJjZT1ncHNkb+KA
-nSBpc27igJl0IHN1cHBvcnRlZC4gVGhlIEZQR0Egd291bGQgYmUgd2lsbGluZyB0byBhY2NlcHQg
-YW4gZXh0ZXJuYWwgdGltaW5nIHNvdXJjZSB0aGF0IGhhcyBubyBjb3JyZWxhdGlvbiB0byB0aGUg
-cmVmIGNsb2NrLCBzbyBjb25jZXB0dWFsbHksIGl0IHNlZW1zDQogbGlrZSBpdCBzaG91bGQgYmUg
-YWJsZSB0byB1c2UgdGhlIEdQU0RPIFBQUyB0aGUgc2FtZSB3YXkgaGVyZS4gU3VyZSwgb3ZlciB0
-aW1lIHRoZXJlIHdpbGwgYmUgZnJlcXVlbmN5IGRyaWZ0IGJ5IG5vdCB1c2luZyB0aGUgR1BTLWRp
-c2NpcGxpbmVkIG9zY2lsbGF0b3IsIGJ1dCB0aGF0J3MgYW4gZXhwZWN0ZWQgY29uc2VxdWVuY2Ug
-b2YgdXNpbmcgYW4gaW5kZXBlbmRlbnQgY2xvY2sgcmVmLiBJ4oCZZCBsb3ZlIHRvIGhlYXIgd2h5
-IHRoaXMgY29uc3RyYWludA0KIGV4aXN0cy48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+RGF2aWQ8
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+> Hi,
+>
+> Are you running your FPGA build in a VM or on a system with a limited
+> amount of RAM?
+>
+> Jonathon
+>
+> On Fri, Feb 4, 2022 at 8:44 AM sp h <stackprogramer@gmail.com> wrote:
+>
+>> Finally, I found that...
+>> In Vivado there is a limit for the number of warnings and errors which
+>> are displayed by the tool for a particular error or warning; the default
+>> value of this limit is 100.
+>>
+>>
+>> I concluded that:
+>> *The synthesis not completed might be unrelated.  This specific "warning"
+>> is one of the annoying "optimizations are warnings" cases.  This might come
+>> up if you have an incorrect clock/reset configuration, unconnected outputs,
+>> or constant inputs in some cases*
+>>
+>>
+>>
+>> https://forum.digilentinc.com/topic/4781-message-synth-8-3332-appears-100-times-and-further-instances-of-the-messages-will-be-disabled-use-the-tcl-command-set_msg_config-to-change-the-current-settings/
+>>
+>>
+>> https://support.xilinx.com/s/article/53034?language=en_US
+>>
+>> On Thu, Feb 3, 2022 at 1:29 PM sp h <stackprogramer@gmail.com> wrote:
+>>
+>>> When I want to build a new image configuration for USRP X300 I was faced
+>>> with  [00:12:48] Process terminated. Status: Failure
+>>> my new RFNOC core image YAML file, I attached here...
+>>> *And when I want to build I used these commands:*
+>>>
+>>> source setupenv.sh  --vivado-path=/home/sp/xilinx/Vivado
+>>> rfnoc_image_builder -y x300_with_fft.yml -t X300_HG
+>>> --fpga-dir=/home/sp/Documents/uhd-4.1.0.5/fpga
+>>> --vivado-path=/home/sp/xilinx/Vivado
+>>>
+>>> *Errors: I was faced with these errors...*
+>>>
+>>> [00:12:48] Current task: Synthesis +++ Current Phase: Finished
+>>> [00:12:48] Process terminated. Status: Failure
+>>>
+>>> ========================================================
+>>> Warnings:           715
+>>> Critical Warnings:  30
+>>> Errors:             0
+>>>
+>>> make[1]: *** [Makefile.x300.inc:127: bin] Error 1
+>>> make[1]: Leaving directory
+>>> '/home/sp/Documents/uhd-4.1.0.5/fpga/usrp3/top/x300'
+>>> make: *** [Makefile:90: X300_HG] Error 2
+>>>
+>>> *Build log file:*
+>>> I added the end part of the build log file here, I don't see any
+>>> errors...
+>>>
+>>> *my question is how can solve my problem? How much can I debug? as in
+>>> the build log file and terminal I can not see any errors?*
+>>> *thanks in advance*
+>>>
+>>> genblk1[73].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[65].axi_round' (axi_round__parameterized16) to
+>>> 'cic_interpolate:/genblk1[74].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[65].axi_round' (axi_round__parameterized16) to
+>>> 'cic_interpolate:/genblk1[75].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[65].axi_round' (axi_round__parameterized16) to
+>>> 'cic_interpolate:/genblk1[76].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[65].axi_round' (axi_round__parameterized16) to
+>>> 'cic_interpolate:/genblk1[77].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[65].axi_round' (axi_round__parameterized16) to
+>>> 'cic_interpolate:/genblk1[78].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[65].axi_round' (axi_round__parameterized16) to
+>>> 'cic_interpolate:/genblk1[79].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[65].axi_round' (axi_round__parameterized16) to
+>>> 'cic_interpolate:/genblk1[80].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[82].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[83].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[84].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[85].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[86].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[87].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[88].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[89].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[90].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[91].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[92].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[93].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[94].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[95].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[96].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[97].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[98].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[99].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[100].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[81].axi_round' (axi_round__parameterized17) to
+>>> 'cic_interpolate:/genblk1[101].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[103].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[104].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[105].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[106].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[107].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[108].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[109].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[110].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[111].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[112].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[113].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[114].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[115].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[116].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[117].axi_round'
+>>> INFO: [Synth 8-223] decloning instance
+>>> 'cic_interpolate:/genblk1[102].axi_round' (axi_round__parameterized18) to
+>>> 'cic_interpolate:/genblk1[118].axi_round'
+>>> INFO: [Common 17-14] Message 'Synth 8-223' appears 100 times and further
+>>> instances of the messages will be disabled. Use the Tcl command
+>>> set_msg_config to change the current settings.
+>>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
 
---_000_PH1P110MB166546C67FF8FA7A2B933568B7299PH1P110MB1665NAMP_--
+--000000000000321c5d05d734596d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---===============0893688518444493294==
+<div dir=3D"ltr">=C2=A0No, I built FPGA from Ubuntu 20.04, a physical=C2=A0=
+PC not VM.<br><div>Ram is enough 12G, In other cases, it can be built corre=
+ctly.=C2=A0</div><div>I think some connections and blocks in the RFNOC core=
+ image have errors...</div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Fri, Feb 4, 2022 at 5:44 PM Jonathon Pendlum =
+&lt;<a href=3D"mailto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr">Hi,<div><br></div><div>Are you running your FPGA build in=
+ a VM or on a system with a limited amount of RAM?</div><div><br></div><div=
+>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Fri, Feb 4, 2022 at 8:44 AM sp h &lt;<a href=3D"mailto:s=
+tackprogramer@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Finally, I found that...<div><span style=3D"color:rgb(51,51,51);fo=
+nt-family:Roboto,sans-serif;font-size:12px">In Vivado=C2=A0there is a limit=
+ for the number of warnings and errors which are displayed by the tool for =
+a particular error or warning; the default value of this limit is 100.=C2=
+=A0</span><br></div><div><span style=3D"color:rgb(51,51,51);font-family:Rob=
+oto,sans-serif;font-size:12px"><br></span></div><div><span style=3D"color:r=
+gb(51,51,51);font-family:Roboto,sans-serif;font-size:12px"><br></span></div=
+><div><span style=3D"color:rgb(51,51,51);font-family:Roboto,sans-serif;font=
+-size:12px">I concluded that:</span></div><div><span style=3D"color:rgb(53,=
+60,65);font-family:Inter,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-se=
+rif;font-size:14px"><b>The synthesis not completed might be unrelated.=C2=
+=A0 This specific &quot;warning&quot; is one of the annoying &quot;optimiza=
+tions are warnings&quot; cases.=C2=A0 This might come up if you have an inc=
+orrect clock/reset configuration, unconnected outputs, or constant inputs i=
+n some cases</b></span><span style=3D"color:rgb(51,51,51);font-family:Robot=
+o,sans-serif;font-size:12px"><br></span></div><div><span style=3D"color:rgb=
+(53,60,65);font-family:Inter,&quot;Helvetica Neue&quot;,Helvetica,Arial,san=
+s-serif;font-size:14px"><b><br></b></span></div><div><span style=3D"color:r=
+gb(53,60,65);font-family:Inter,&quot;Helvetica Neue&quot;,Helvetica,Arial,s=
+ans-serif;font-size:14px"><b><br></b></span></div><div><a href=3D"https://f=
+orum.digilentinc.com/topic/4781-message-synth-8-3332-appears-100-times-and-=
+further-instances-of-the-messages-will-be-disabled-use-the-tcl-command-set_=
+msg_config-to-change-the-current-settings/" target=3D"_blank">https://forum=
+.digilentinc.com/topic/4781-message-synth-8-3332-appears-100-times-and-furt=
+her-instances-of-the-messages-will-be-disabled-use-the-tcl-command-set_msg_=
+config-to-change-the-current-settings/</a><span style=3D"color:rgb(53,60,65=
+);font-family:Inter,&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;f=
+ont-size:14px"><b><br></b></span></div><div><br></div><div><br></div><div><=
+a href=3D"https://support.xilinx.com/s/article/53034?language=3Den_US" targ=
+et=3D"_blank">https://support.xilinx.com/s/article/53034?language=3Den_US</=
+a><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Thu, Feb 3, 2022 at 1:29 PM sp h &lt;<a href=3D"mailto:stack=
+programer@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
+ltr"><div>When I want to build a new image configuration for USRP X300 I wa=
+s faced with=C2=A0=C2=A0[00:12:48] Process terminated. Status: Failure<br><=
+div>my new RFNOC core image YAML file, I attached here...</div><div><b>And =
+when I want to build I used these commands:</b></div><div><br></div><div>so=
+urce setupenv.sh =C2=A0--vivado-path=3D/home/sp/xilinx/Vivado<br></div><div=
+>rfnoc_image_builder -y x300_with_fft.yml -t X300_HG =C2=A0 --fpga-dir=3D/h=
+ome/sp/Documents/uhd-4.1.0.5/fpga =C2=A0 --vivado-path=3D/home/sp/xilinx/Vi=
+vado =C2=A0<br><br></div><div><b>Errors: I was=C2=A0faced with these errors=
+...</b></div><div><br></div><div>[00:12:48] Current task: Synthesis +++ Cur=
+rent Phase: Finished<br>[00:12:48] Process terminated. Status: Failure<br><=
+br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D<br>Warnings: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 715<b=
+r>Critical Warnings: =C2=A030<br>Errors: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 0<br><br>make[1]: *** [Makefile.x300.inc:127: bin] Error 1<br>make[=
+1]: Leaving directory &#39;/home/sp/Documents/uhd-4.1.0.5/fpga/usrp3/top/x3=
+00&#39;<br>make: *** [Makefile:90: X300_HG] Error 2<br></div><div><br></div=
+><div><b>Build log file:</b></div><div>I added the end part of the build lo=
+g file here, I don&#39;t see any errors...</div><div><br></div><div><b>my q=
+uestion is how can solve my problem? How much=C2=A0can I debug? as in the b=
+uild log file and terminal I can not see any errors?</b></div><div><b>thank=
+s in advance</b></div></div><div><br></div><div>genblk1[73].axi_round&#39;<=
+br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[65]=
+.axi_round&#39; (axi_round__parameterized16) to &#39;cic_interpolate:/genbl=
+k1[74].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_in=
+terpolate:/genblk1[65].axi_round&#39; (axi_round__parameterized16) to &#39;=
+cic_interpolate:/genblk1[75].axi_round&#39;<br>INFO: [Synth 8-223] declonin=
+g instance &#39;cic_interpolate:/genblk1[65].axi_round&#39; (axi_round__par=
+ameterized16) to &#39;cic_interpolate:/genblk1[76].axi_round&#39;<br>INFO: =
+[Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[65].axi_roun=
+d&#39; (axi_round__parameterized16) to &#39;cic_interpolate:/genblk1[77].ax=
+i_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate=
+:/genblk1[65].axi_round&#39; (axi_round__parameterized16) to &#39;cic_inter=
+polate:/genblk1[78].axi_round&#39;<br>INFO: [Synth 8-223] decloning instanc=
+e &#39;cic_interpolate:/genblk1[65].axi_round&#39; (axi_round__parameterize=
+d16) to &#39;cic_interpolate:/genblk1[79].axi_round&#39;<br>INFO: [Synth 8-=
+223] decloning instance &#39;cic_interpolate:/genblk1[65].axi_round&#39; (a=
+xi_round__parameterized16) to &#39;cic_interpolate:/genblk1[80].axi_round&#=
+39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1=
+[81].axi_round&#39; (axi_round__parameterized17) to &#39;cic_interpolate:/g=
+enblk1[82].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;ci=
+c_interpolate:/genblk1[81].axi_round&#39; (axi_round__parameterized17) to &=
+#39;cic_interpolate:/genblk1[83].axi_round&#39;<br>INFO: [Synth 8-223] decl=
+oning instance &#39;cic_interpolate:/genblk1[81].axi_round&#39; (axi_round_=
+_parameterized17) to &#39;cic_interpolate:/genblk1[84].axi_round&#39;<br>IN=
+FO: [Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[81].axi_=
+round&#39; (axi_round__parameterized17) to &#39;cic_interpolate:/genblk1[85=
+].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpo=
+late:/genblk1[81].axi_round&#39; (axi_round__parameterized17) to &#39;cic_i=
+nterpolate:/genblk1[86].axi_round&#39;<br>INFO: [Synth 8-223] decloning ins=
+tance &#39;cic_interpolate:/genblk1[81].axi_round&#39; (axi_round__paramete=
+rized17) to &#39;cic_interpolate:/genblk1[87].axi_round&#39;<br>INFO: [Synt=
+h 8-223] decloning instance &#39;cic_interpolate:/genblk1[81].axi_round&#39=
+; (axi_round__parameterized17) to &#39;cic_interpolate:/genblk1[88].axi_rou=
+nd&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/gen=
+blk1[81].axi_round&#39; (axi_round__parameterized17) to &#39;cic_interpolat=
+e:/genblk1[89].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#3=
+9;cic_interpolate:/genblk1[81].axi_round&#39; (axi_round__parameterized17) =
+to &#39;cic_interpolate:/genblk1[90].axi_round&#39;<br>INFO: [Synth 8-223] =
+decloning instance &#39;cic_interpolate:/genblk1[81].axi_round&#39; (axi_ro=
+und__parameterized17) to &#39;cic_interpolate:/genblk1[91].axi_round&#39;<b=
+r>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[81].=
+axi_round&#39; (axi_round__parameterized17) to &#39;cic_interpolate:/genblk=
+1[92].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_int=
+erpolate:/genblk1[81].axi_round&#39; (axi_round__parameterized17) to &#39;c=
+ic_interpolate:/genblk1[93].axi_round&#39;<br>INFO: [Synth 8-223] decloning=
+ instance &#39;cic_interpolate:/genblk1[81].axi_round&#39; (axi_round__para=
+meterized17) to &#39;cic_interpolate:/genblk1[94].axi_round&#39;<br>INFO: [=
+Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[81].axi_round=
+&#39; (axi_round__parameterized17) to &#39;cic_interpolate:/genblk1[95].axi=
+_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:=
+/genblk1[81].axi_round&#39; (axi_round__parameterized17) to &#39;cic_interp=
+olate:/genblk1[96].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance=
+ &#39;cic_interpolate:/genblk1[81].axi_round&#39; (axi_round__parameterized=
+17) to &#39;cic_interpolate:/genblk1[97].axi_round&#39;<br>INFO: [Synth 8-2=
+23] decloning instance &#39;cic_interpolate:/genblk1[81].axi_round&#39; (ax=
+i_round__parameterized17) to &#39;cic_interpolate:/genblk1[98].axi_round&#3=
+9;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[=
+81].axi_round&#39; (axi_round__parameterized17) to &#39;cic_interpolate:/ge=
+nblk1[99].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic=
+_interpolate:/genblk1[81].axi_round&#39; (axi_round__parameterized17) to &#=
+39;cic_interpolate:/genblk1[100].axi_round&#39;<br>INFO: [Synth 8-223] decl=
+oning instance &#39;cic_interpolate:/genblk1[81].axi_round&#39; (axi_round_=
+_parameterized17) to &#39;cic_interpolate:/genblk1[101].axi_round&#39;<br>I=
+NFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[102].ax=
+i_round&#39; (axi_round__parameterized18) to &#39;cic_interpolate:/genblk1[=
+103].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_inte=
+rpolate:/genblk1[102].axi_round&#39; (axi_round__parameterized18) to &#39;c=
+ic_interpolate:/genblk1[104].axi_round&#39;<br>INFO: [Synth 8-223] declonin=
+g instance &#39;cic_interpolate:/genblk1[102].axi_round&#39; (axi_round__pa=
+rameterized18) to &#39;cic_interpolate:/genblk1[105].axi_round&#39;<br>INFO=
+: [Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[102].axi_r=
+ound&#39; (axi_round__parameterized18) to &#39;cic_interpolate:/genblk1[106=
+].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpo=
+late:/genblk1[102].axi_round&#39; (axi_round__parameterized18) to &#39;cic_=
+interpolate:/genblk1[107].axi_round&#39;<br>INFO: [Synth 8-223] decloning i=
+nstance &#39;cic_interpolate:/genblk1[102].axi_round&#39; (axi_round__param=
+eterized18) to &#39;cic_interpolate:/genblk1[108].axi_round&#39;<br>INFO: [=
+Synth 8-223] decloning instance &#39;cic_interpolate:/genblk1[102].axi_roun=
+d&#39; (axi_round__parameterized18) to &#39;cic_interpolate:/genblk1[109].a=
+xi_round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolat=
+e:/genblk1[102].axi_round&#39; (axi_round__parameterized18) to &#39;cic_int=
+erpolate:/genblk1[110].axi_round&#39;<br>INFO: [Synth 8-223] decloning inst=
+ance &#39;cic_interpolate:/genblk1[102].axi_round&#39; (axi_round__paramete=
+rized18) to &#39;cic_interpolate:/genblk1[111].axi_round&#39;<br>INFO: [Syn=
+th 8-223] decloning instance &#39;cic_interpolate:/genblk1[102].axi_round&#=
+39; (axi_round__parameterized18) to &#39;cic_interpolate:/genblk1[112].axi_=
+round&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/=
+genblk1[102].axi_round&#39; (axi_round__parameterized18) to &#39;cic_interp=
+olate:/genblk1[113].axi_round&#39;<br>INFO: [Synth 8-223] decloning instanc=
+e &#39;cic_interpolate:/genblk1[102].axi_round&#39; (axi_round__parameteriz=
+ed18) to &#39;cic_interpolate:/genblk1[114].axi_round&#39;<br>INFO: [Synth =
+8-223] decloning instance &#39;cic_interpolate:/genblk1[102].axi_round&#39;=
+ (axi_round__parameterized18) to &#39;cic_interpolate:/genblk1[115].axi_rou=
+nd&#39;<br>INFO: [Synth 8-223] decloning instance &#39;cic_interpolate:/gen=
+blk1[102].axi_round&#39; (axi_round__parameterized18) to &#39;cic_interpola=
+te:/genblk1[116].axi_round&#39;<br>INFO: [Synth 8-223] decloning instance &=
+#39;cic_interpolate:/genblk1[102].axi_round&#39; (axi_round__parameterized1=
+8) to &#39;cic_interpolate:/genblk1[117].axi_round&#39;<br>INFO: [Synth 8-2=
+23] decloning instance &#39;cic_interpolate:/genblk1[102].axi_round&#39; (a=
+xi_round__parameterized18) to &#39;cic_interpolate:/genblk1[118].axi_round&=
+#39;<br>INFO: [Common 17-14] Message &#39;Synth 8-223&#39; appears 100 time=
+s and further instances of the messages will be disabled. Use the Tcl comma=
+nd set_msg_config to change the current settings.<br></div></div>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000321c5d05d734596d--
+
+--===============7534463141262851119==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -205,4 +483,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0893688518444493294==--
+--===============7534463141262851119==--
