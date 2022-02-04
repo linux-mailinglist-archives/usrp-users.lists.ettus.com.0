@@ -2,193 +2,133 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 961F44AA296
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 22:49:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AAEF4AA2FE
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 23:18:03 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7DB86385F21
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 16:49:33 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 307DD385A41
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Feb 2022 17:18:02 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="QqFYBgM3";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="WcKhYU3U";
 	dkim-atps=neutral
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id A4E83385CBC
-	for <usrp-users@lists.ettus.com>; Fri,  4 Feb 2022 16:48:37 -0500 (EST)
-Received: by mail-yb1-f177.google.com with SMTP id i10so22469789ybt.10
-        for <usrp-users@lists.ettus.com>; Fri, 04 Feb 2022 13:48:37 -0800 (PST)
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 28EC238595D
+	for <usrp-users@lists.ettus.com>; Fri,  4 Feb 2022 17:16:59 -0500 (EST)
+Received: by mail-qv1-f44.google.com with SMTP id o9so6442610qvy.13
+        for <usrp-users@lists.ettus.com>; Fri, 04 Feb 2022 14:16:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zez1mmqlBhK2OpVBjn9syodCAsYFXEXKujkhPzycN5s=;
-        b=QqFYBgM3K3ygL2nVBoFozd/39mH7QPVfHEfvqycMOqEPay2E17aiXmTGtGTvF1REl9
-         arO5EWeGMyW4se68MWLK/OMtr1TjZ/hVGssth52fHW7yk1D85MKdxhB23hq7HlFRIjOB
-         ariFQwI2Tx9e5+4EfYhk8iO/AzUhQJ+FODlV0P7k2IDDyG4tNCmBCho72HI8X2hZnocp
-         8usii9LlnzyqwM5nwjcUMLfVcVQlJfjkOTAHd9dIFXorrB8W96L8HdD1H9dkOl+A4K3w
-         HhxgH7Tl3it1zg70B1BzJk5sIyy3FdN5yhj4bbJijWXplcWFbJdkXEoW4P4B6O3C56MZ
-         8Ddw==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=2CJFRmzQ/A+qgO3/mMvNQ1BBkkLpHxv8Vg0faBngC9U=;
+        b=WcKhYU3ULjzlt41G2ja9fUm6+e7GlFxhe1G9Pn/4W9vglk+gU1F9bxiEk1kE3Io9cC
+         KL6c6dWE+bYItTyIRX9zYLeqLikQhFdqgQEZPVbJP7w+C2sNs5VHXda7mpnNTp9SuZhi
+         IvBhmlm7vU0ITJ8ac76vIWXGBfusGTyFqnN6V0FFp9qxNpR5DC5C3EfNWa/5qt98vc6p
+         4xDG34w8uVj9HF8ZjdKrDS4sqb8WfTdIE6p7fcrNSwi68mUOtzZjaHyOOSC81hk+8cg/
+         MmUfrf6yjySII/FU7198N0MuVeMZWteEHrqKb49Wvv+k5Bz/X7gPJZbl9c/O94hwT2ph
+         BNjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zez1mmqlBhK2OpVBjn9syodCAsYFXEXKujkhPzycN5s=;
-        b=zxOGaOcWD2nRJfpWxewhRBf4u4Y9NxcD5zgnMsYOS6FThPbzmn+UKtPpFA3zanziI9
-         sALb/dA/2L96QTo2Xr7KxrasjEcgap82v5A42ko38E1W2m4JOdKT9yp3EERSKUJE5STm
-         q1Fk7I9ArWegdCBVBJlGMgpsms2AQFGsGgLzNzwk3jOV3ohmRGMEdg5GsjEAVmCSmEjY
-         Kc298VD6mLfEUMxX1/3SEVlb3gRqQshEcmXzazBL8eCdfDNr34tYqUzCX/VOLeMKqm7i
-         yxDvc4X9RBDOztgoAFsmSBsix2zP2B3hPAgk48Ue/IRwfoLrn39XhGnWYrlws0aJv3mk
-         1iXw==
-X-Gm-Message-State: AOAM531dX5J7XDum/Q/HkXkDhusAB2XQ2W7SmmK3WTLi+gCjJXgNjdxu
-	dHRQ0da76o1fIFaDgCwJD3iUfg7Xw0i2JgEba7XAnAH40mxCkg==
-X-Google-Smtp-Source: ABdhPJzOngu2tZxnved5jvn0hwGg1s3WK5pQg9497WWD4wxlvvOeXM95q3LUNEINe5Ynpoy/A11kClMt4t3XluBqYRw=
-X-Received: by 2002:a81:2542:: with SMTP id l63mr1105182ywl.38.1644011316762;
- Fri, 04 Feb 2022 13:48:36 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2CJFRmzQ/A+qgO3/mMvNQ1BBkkLpHxv8Vg0faBngC9U=;
+        b=QogmDZUqX33a/0jWLtLZpD5TKtGfO/B6gwHZurnU6/KBWsPvzZTT3FhHRczUI3sS8t
+         lyJo1HkJ9YOTpECDRlVVUMRbcSY+KlWNOaxUvR0JDA2OSvwYKDX99XPmQw/dNflCv3IC
+         UPWVdCsTA7rOo+5BbIgChDPqmYWIEauAdD4zLNUqRguu7MXFNCj44bTpweehL1Wgk1zt
+         BctIzv9bnu4UwbvlqXlzRvwqWBz03kKXl/HkVsZ/wstp3NwO81iXQy7+0jHyiUBD0flY
+         sRaYk/dtElCfRZ1GaKVeJZED8H5bDTcne1QZMtoMyTEB4ST1h8Qf4HQTJsP67o0yA9uT
+         6t6Q==
+X-Gm-Message-State: AOAM532AVur3khJskVs37Hpm1s46GrP0O3W8xgFbbvbgMMgM3FVHzD9r
+	+muAngHh3/7a4wt5fsqjyqCltgoyqiw=
+X-Google-Smtp-Source: ABdhPJx5NeRCPPcxqdpzJJH3n8IyOWgrFSqCt/fFwMtmm37zjNKfJMk7lFRIzzxgvztGgnrWTLMkTw==
+X-Received: by 2002:a05:6214:3005:: with SMTP id ke5mr3534528qvb.83.1644013018358;
+        Fri, 04 Feb 2022 14:16:58 -0800 (PST)
+Received: from [192.168.2.223] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id m17sm1915942qtk.53.2022.02.04.14.16.57
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Feb 2022 14:16:57 -0800 (PST)
+Message-ID: <8c046397-e28a-988e-69a6-0d7d3617bd0e@gmail.com>
+Date: Fri, 4 Feb 2022 17:16:57 -0500
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
 References: <CAMMoi3uE+=fDJwuaOP0X2qCqGL1wvxTR=ghC=Udo4waZe3y_6w@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <CAMMoi3uE+=fDJwuaOP0X2qCqGL1wvxTR=ghC=Udo4waZe3y_6w@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Fri, 4 Feb 2022 16:48:25 -0500
-Message-ID: <CAB__hTRB98LJD6nQ69EeURkevq3Hc+f64GX7ZLkNFiVWbSG-zg@mail.gmail.com>
-To: Richard Bell <richard.bell4@gmail.com>
-Message-ID-Hash: V4G6VEU4BNPH5OVRV24AUY4QNHAHV2D5
-X-Message-ID-Hash: V4G6VEU4BNPH5OVRV24AUY4QNHAHV2D5
-X-MailFrom: rkossler@nd.edu
+Message-ID-Hash: HEOR3O77NDFQLVA2QVGSJLDZBCCWNEE3
+X-Message-ID-Hash: HEOR3O77NDFQLVA2QVGSJLDZBCCWNEE3
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: The source of O's
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/V4G6VEU4BNPH5OVRV24AUY4QNHAHV2D5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HEOR3O77NDFQLVA2QVGSJLDZBCCWNEE3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1748058299358409788=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============1748058299358409788==
-Content-Type: multipart/alternative; boundary="0000000000008bc55505d73836d4"
-
---0000000000008bc55505d73836d4
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Richard,
-I don't know the answer but I have a couple of comments / questions:
-1) do you have cables that would enable you to eliminate your switch (at
-least for debugging purposes)? I'm thinking of some type of NIC re-config
-and breakout cable that would allow your NIC to have multiple 10Gbe
-connections such that you could connect directly to several N310 SFP+
-2) you mentioned that you connected both SFP+ cables to each N310.  If you
-are only using 2 channels, you can get by with only one 10Gbe.  I think it
-is worth a try to re-run your tests without using the "second_addr"
-parameter such that the 2nd SFP+ port is unused
-3) Have you optimized your server with the rmemmax and rx descriptors  that
-are mentioned in the Ettus performance tuning tips?
-4) How are you evaluating? If you aren't using benchmark_rate, I would
-suggest trying this.
-
-
-On Fri, Feb 4, 2022 at 3:27 PM Richard Bell <richard.bell4@gmail.com> wrote:
-
-> Hello,
->
-> I know that when I see O's (overruns) in the terminal it means my host
-> processing is not keeping up with the sample stream coming in from the
-> USRP. Samples are being dropped because the host is too slow to keep up.
->
-> I'm wondering if there is a test I can run that would reveal the cause of
-> the O's on my server. What is it on my server that is the bottleneck? Do
-> O's mean the problem is buffer overruns within the NIC itself? Does it mean
-> buffer overrun after the CPU? Does it mean buffer overrun while filling up
-> ram?
->
-> I am using a 2 port QFSP+ 100G NIC with both ports attached via QSFP+
-> cables to a 100G switch. From the switch I connect 5 USRP n310's using
-> their SFP+ ports and SFP+ cables. Each of the n310's dual SFP+ ports are
-> connected to the 100G switch and in this configuration I am able to use 2
-> of the 5 n310's simultaneously with 2 receive antennas per radio sampling
-> at 125 MHz without any O's. When I increase the number of radios above
-> this, I start seeing O's. The server is a 64 core machine with 200G RAM.
->
-> I calculate the total throughput required to keep up with 5 n310's
-> sampling at 125 MHz from 2 antennas with 16 bit I and 16 bit Q coming off
-> the wire at the server as:
-> (5 radios)*(2 antennas)*(125 mega samples per second)*(32 bits per complex
-> sample)=40 Gbit/s or just 5 GByte/s. This is well below the capability of
-> the network and I assume a high end 64 core server, unless I'm overlooking
-> something?
->
-> Any help or feedback is appreciated.
->
-> Richard
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000008bc55505d73836d4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Richard,</div><div>I don&#39;t know the answer but=
- I have a couple of comments / questions:</div><div>1) do you have cables t=
-hat would enable you to eliminate your switch (at least for debugging purpo=
-ses)? I&#39;m thinking of some type of NIC re-config and breakout cable tha=
-t would allow your NIC to have multiple 10Gbe connections such that you cou=
-ld connect directly to several N310 SFP+</div><div>2) you mentioned that yo=
-u connected both SFP+ cables to each N310.=C2=A0 If you are only using 2 ch=
-annels, you can get by with only one 10Gbe.=C2=A0 I think it is worth a try=
- to re-run your tests without using the &quot;second_addr&quot; parameter s=
-uch that the 2nd SFP+ port is unused</div><div>3) Have you optimized your s=
-erver with the rmemmax=C2=A0and rx descriptors=C2=A0 that are mentioned in =
-the Ettus performance tuning tips?</div><div>4) How are you evaluating? If =
-you aren&#39;t using benchmark_rate, I would suggest trying this.</div><div=
-><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Fri, Feb 4, 2022 at 3:27 PM Richard Bell &lt;<a href=3D"mailto:rich=
-ard.bell4@gmail.com">richard.bell4@gmail.com</a>&gt; wrote:<br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hello,<div><br=
-></div><div>I know that when I see O&#39;s (overruns) in the terminal it me=
-ans my host processing is not keeping up with the sample stream coming in f=
-rom the USRP. Samples are being dropped because the host is too slow to kee=
-p up.=C2=A0</div><div><br></div><div>I&#39;m wondering if there is a test I=
- can run that would reveal the cause of the O&#39;s on my server. What is i=
-t on my server that is the bottleneck? Do O&#39;s mean the problem is buffe=
-r overruns within the NIC itself? Does it mean buffer overrun after the CPU=
-? Does it mean buffer overrun while filling up ram?</div><div><br></div><di=
-v>I am using a 2 port QFSP+ 100G NIC with both ports attached via QSFP+ cab=
-les to a 100G switch. From the switch I connect 5 USRP n310&#39;s using the=
-ir SFP+ ports and SFP+ cables. Each of the n310&#39;s dual SFP+ ports are c=
-onnected to the 100G switch and in this configuration I am able to use 2 of=
- the 5 n310&#39;s simultaneously with 2 receive antennas per radio sampling=
- at 125 MHz without any O&#39;s. When I increase the number of radios above=
- this, I start seeing O&#39;s. The server is a 64 core machine with 200G RA=
-M.=C2=A0</div><div><br></div><div>I calculate the total throughput required=
- to keep up with 5 n310&#39;s sampling at 125 MHz from 2 antennas with 16 b=
-it I and 16 bit Q coming off the wire at the server as:<br>(5 radios)*(2 an=
-tennas)*(125 mega samples per second)*(32 bits per complex sample)=3D40 Gbi=
-t/s or just 5 GByte/s. This is well below the capability of the network and=
- I assume a high end 64 core server, unless I&#39;m overlooking something?<=
-/div><div><br></div><div>Any help or feedback is appreciated.=C2=A0</div><d=
-iv><br></div><div>Richard</div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-
---0000000000008bc55505d73836d4--
-
---===============1748058299358409788==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============1748058299358409788==--
+T24gMjAyMi0wMi0wNCAxNToyNiwgUmljaGFyZCBCZWxsIHdyb3RlOg0KPiBIZWxsbywNCj4NCj4g
+SSBrbm93IHRoYXQgd2hlbiBJIHNlZSBPJ3MgKG92ZXJydW5zKSBpbiB0aGUgdGVybWluYWwgaXQg
+bWVhbnMgbXkgaG9zdCANCj4gcHJvY2Vzc2luZyBpcyBub3Qga2VlcGluZyB1cCB3aXRoIHRoZSBz
+YW1wbGUgc3RyZWFtIGNvbWluZyBpbiBmcm9tIHRoZSANCj4gVVNSUC4gU2FtcGxlcyBhcmUgYmVp
+bmcgZHJvcHBlZCBiZWNhdXNlIHRoZSBob3N0IGlzIHRvbyBzbG93IHRvIGtlZXAgdXAuDQo+DQo+
+IEknbSB3b25kZXJpbmcgaWYgdGhlcmUgaXMgYSB0ZXN0IEkgY2FuIHJ1biB0aGF0IHdvdWxkIHJl
+dmVhbCB0aGUgY2F1c2UgDQo+IG9mIHRoZSBPJ3Mgb24gbXkgc2VydmVyLiBXaGF0IGlzIGl0IG9u
+IG15IHNlcnZlciB0aGF0IGlzIHRoZSANCj4gYm90dGxlbmVjaz8gRG8gTydzIG1lYW4gdGhlIHBy
+b2JsZW0gaXMgYnVmZmVyIG92ZXJydW5zIHdpdGhpbiB0aGUgTklDIA0KPiBpdHNlbGY/IERvZXMg
+aXQgbWVhbiBidWZmZXIgb3ZlcnJ1biBhZnRlciB0aGUgQ1BVPyBEb2VzIGl0IG1lYW4gYnVmZmVy
+IA0KPiBvdmVycnVuIHdoaWxlIGZpbGxpbmcgdXAgcmFtPw0KPg0KPiBJIGFtIHVzaW5nIGEgMiBw
+b3J0IFFGU1ArIDEwMEcgTklDIHdpdGggYm90aCBwb3J0cyBhdHRhY2hlZCB2aWEgUVNGUCsgDQo+
+IGNhYmxlcyB0byBhIDEwMEcgc3dpdGNoLiBGcm9tIHRoZSBzd2l0Y2ggSSBjb25uZWN0IDUgVVNS
+UCBuMzEwJ3MgdXNpbmcgDQo+IHRoZWlyIFNGUCsgcG9ydHMgYW5kIFNGUCsgY2FibGVzLiBFYWNo
+IG9mIHRoZSBuMzEwJ3MgZHVhbCBTRlArIHBvcnRzIA0KPiBhcmUgY29ubmVjdGVkIHRvIHRoZSAx
+MDBHIHN3aXRjaCBhbmQgaW4gdGhpcyBjb25maWd1cmF0aW9uIEkgYW0gYWJsZSANCj4gdG8gdXNl
+IDIgb2YgdGhlIDUgbjMxMCdzIHNpbXVsdGFuZW91c2x5IHdpdGggMiByZWNlaXZlIGFudGVubmFz
+IHBlciANCj4gcmFkaW8gc2FtcGxpbmcgYXQgMTI1IE1IeiB3aXRob3V0IGFueSBPJ3MuIFdoZW4g
+SSBpbmNyZWFzZSB0aGUgbnVtYmVyIA0KPiBvZiByYWRpb3MgYWJvdmUgdGhpcywgSSBzdGFydCBz
+ZWVpbmcgTydzLiBUaGUgc2VydmVyIGlzIGEgNjQgY29yZSANCj4gbWFjaGluZSB3aXRoIDIwMEcg
+UkFNLg0KPg0KPiBJIGNhbGN1bGF0ZSB0aGUgdG90YWwgdGhyb3VnaHB1dCByZXF1aXJlZCB0byBr
+ZWVwIHVwIHdpdGggNSBuMzEwJ3MgDQo+IHNhbXBsaW5nIGF0IDEyNSBNSHogZnJvbSAyIGFudGVu
+bmFzIHdpdGggMTYgYml0IEkgYW5kIDE2IGJpdCBRIGNvbWluZyANCj4gb2ZmIHRoZSB3aXJlIGF0
+IHRoZSBzZXJ2ZXIgYXM6DQo+ICg1IHJhZGlvcykqKDIgYW50ZW5uYXMpKigxMjUgbWVnYSBzYW1w
+bGVzIHBlciBzZWNvbmQpKigzMiBiaXRzIHBlciANCj4gY29tcGxleCBzYW1wbGUpPTQwIEdiaXQv
+cyBvciBqdXN0IDUgR0J5dGUvcy4gVGhpcyBpcyB3ZWxsIGJlbG93IHRoZSANCj4gY2FwYWJpbGl0
+eSBvZiB0aGUgbmV0d29yayBhbmQgSSBhc3N1bWUgYSBoaWdoIGVuZCA2NCBjb3JlIHNlcnZlciwg
+DQo+IHVubGVzcyBJJ20gb3Zlcmxvb2tpbmcgc29tZXRoaW5nPw0KPg0KPiBBbnkgaGVscCBvciBm
+ZWVkYmFjayBpcyBhcHByZWNpYXRlZC4NCj4NCj4gUmljaGFyZA0KPg0KRG9uJ3QgZm9yZ2V0IHRo
+YXQgaW4gZ2VuZXJhbCwgYSBzaW5nbGUgQ1BVIGlzIGhhbmRsaW5nIHBhY2tldHMgY29taW5nIA0K
+ZnJvbSB5b3VyIE5JQy7CoCBEaXN0cmlidXRpbmcgdGhhdCBsb2FkIG92ZXIgbXVsdGlwbGUgQ1BV
+cyBpcyBleGNlZWRpbmdseSANCmRpZmZpY3VsdCB0byBtYWtlIHdvcmsNCiDCoCBpbiBzdWNoIGEg
+d2F5IHRoYXQgb3ZlcmFsbCBwZXJmb3JtYW5jZSBpcyBpbXByb3ZlZC4NCg0KT25jZSB5b3VyIHNh
+bXBsZXMgYXJlICJpbnNpZGUgdGhlIHN5c3RlbSIsIHRoZXJlJ3MgYSBMT1Qgb2YgImJpdHMgYW5k
+IA0KcGllY2VzIiBhdCBwbGF5LCBhbmQgaXQncyB1c3VhbGx5IGhhcmQgdG8gcG9pbnQgdG8gYSBz
+aW5nbGUgdGhpbmcgYW5kIA0Kc2F5ICJ0aGVyZSBpdCBpcywgdGhlcmUncw0KIMKgIHRoZSBwZXJm
+b3JtYW5jZSBib3R0bGVuZWNrIi4NCg0KUXVpdGUgYXBhcnQgZnJvbSBDUFUgY29uc2lkZXJhdGlv
+bnMgKGFuZCB5b3UgY2FuIHN0YXJ0IHJ1bm5pbmcgaW50byANCm92ZXJydW4gc2l0dWF0aW9ucyBs
+b25nIGJlZm9yZSB5b3VyIENQVSBpcyBjbG9zZSB0byBzYXR1cmF0ZWQpLCB0aGVyZSdzIA0KbWVt
+b3J5LWJhbmR3aWR0aCBpc3N1ZXMsDQogwqAgSU8gYmFuZHdpZHRoIGlzc3VlcywgZXRjLCBldGMu
+DQoNCkZvciAxMDBNc3BzLXNjYWxlIHNhbXBsZSByYXRlcywgeW91IHNob3VsZCBwcm9iYWJseSBp
+bmNyZWFzZSB0aGUgDQpybWVtX21heCBzeXNjdGwgcGFyYW1ldGVyIGJleW9uZCBldmVuIHdoYXQg
+VUhEIHJlY29tbWVuZHMgYnkgZGVmYXVsdCwgDQpqdXN0IHRvIG1ha2Ugc3VyZSB0aGF0DQogwqAg
+dHJhbnNpZW50IGluc3VmZmljaWVuY2llcyBpbiBtb3Zpbmcgc2FtcGxlcyB1cCB0byB1c2VyLXNw
+YWNlIGRvbid0IA0KY2F1c2UgeW91IGlzc3Vlcy4NCg0KVGhlIG92ZXJhbGwgdGFrZS1hd2F5LCB0
+aG91Z2gsIGlzIHRoYXQgYWRkaW5nIGJ1ZmZlcmluZyB0byBhIA0Kc2lnbmFsLXByb2Nlc3Npbmcg
+cGF0aHdheSB0aGF0IGNhbm5vdCwgb24gYXZlcmFnZSwgImtlZXAgdXAiIGRvZXMgbm90IA0KaGVs
+cCB5b3Ugb3RoZXIgdGhhbiBkZWxheQ0KIMKgIHRoZSBwb2ludCBhdCB3aGljaCBzYW1wbGVzIHN0
+YXJ0IGdldHRpbmcgZHJvcHBlZC7CoCBUaGF0J3MganVzdCBhIA0KYmFzaWMgcHJvZHVjZXItY29u
+c3VtZXIgdGhpbmcgaW4gY29tcHV0ZXIgc2NpZW5jZSwgYW5kIG5vdCB1bmlxdWUgdG8gRFNQIA0K
+Zmxvd3MuLi4NCg0KUm9iIEtvc3NsZXIgaGFzIGFscmVhZHkgbWVudGlvbmVkIHRoaXMgZ3VpZGUs
+IGJ1dCBoZXJlJ3MgYSBwb2ludGVyOg0KDQpodHRwczovL2tiLmV0dHVzLmNvbS9VU1JQX0hvc3Rf
+UGVyZm9ybWFuY2VfVHVuaW5nX1RpcHNfYW5kX1RyaWNrcw0KDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRv
+IHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
