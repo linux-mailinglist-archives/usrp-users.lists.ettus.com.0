@@ -2,145 +2,239 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 753644AB093
-	for <lists+usrp-users@lfdr.de>; Sun,  6 Feb 2022 17:10:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AF4E4AB096
+	for <lists+usrp-users@lfdr.de>; Sun,  6 Feb 2022 17:17:48 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4D20D3854D8
-	for <lists+usrp-users@lfdr.de>; Sun,  6 Feb 2022 11:10:18 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 34053385588
+	for <lists+usrp-users@lfdr.de>; Sun,  6 Feb 2022 11:17:47 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UFKPrrKI";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nrXkl1GM";
 	dkim-atps=neutral
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5CC5F385433
-	for <usrp-users@lists.ettus.com>; Sun,  6 Feb 2022 11:09:14 -0500 (EST)
-Received: by mail-yb1-f176.google.com with SMTP id j2so33793893ybu.0
-        for <usrp-users@lists.ettus.com>; Sun, 06 Feb 2022 08:09:14 -0800 (PST)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id B18D9385430
+	for <usrp-users@lists.ettus.com>; Sun,  6 Feb 2022 11:16:41 -0500 (EST)
+Received: by mail-yb1-f173.google.com with SMTP id z62so21406243ybc.11
+        for <usrp-users@lists.ettus.com>; Sun, 06 Feb 2022 08:16:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=3nNaO77+ObWBzwa4TzTVAH6mxaB6e5WC5SFYjpRvazQ=;
-        b=UFKPrrKIUA1agegYUVNPsaiBDsuJoZIc6SCdl+EsVn/tbdUYjWyNm0/oTElNkIagMV
-         ZzAgKuE/IKoWPnNqiimyeLIZ/EItLjs632WPG3T8/uClIBoFfXLzH9rQWZ/KVfUzMldG
-         052AlZU2d/8N8slmXRzXbkAZ0g9+wxqqmfOFuevKKRbMAHPodxubYsE5MnyltZZXFd27
-         tEjN10JTN4KPsNYF6112TDqCifVUQzZye5cJXkPgwwvdPGL+qhZv0LfJ3xMnFdplnuBt
-         fsY9VGE1YWQKDbBnfBkZ0pvzvBuizsVdMEfGJwcX8YIc/cb4J6kUZRGO5GHSeJI95j2l
-         RTVQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=R1/FQrp8a2WeOKQ0Kck6DZf+V9pie5hVwRqVn4SGem0=;
+        b=nrXkl1GM9HAXBK39soUemkFZhMfl1gCkPWcgKxizndNBeIomqcQ/jGxll531aflzFY
+         rx3+y96M6LZoOAw+e7/E39Mu0HUJL5avE39yZrFdlPqO+hsUXDC9S3M2Ce9buyu/m8Su
+         ZzhnzayGRV0/xM/XBVivz5NEaCt+brle5AfL4k7tE4krFfIhs8O2RtnJzX8o1iYjo4vX
+         jPPXw+hZTorQdRkRE4dL2tU0Cm85dM9dGzwynIYNCt68d/juvAL6+wwXPLw47a/j67SR
+         j/feCi4C9RzNS91Ti7CmDgoJWk6qDjZ9JOyfHWekuvO0CDaHSENNxSg8AZWh4YenUijm
+         ihNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=3nNaO77+ObWBzwa4TzTVAH6mxaB6e5WC5SFYjpRvazQ=;
-        b=xVlKEsTS3l69Hp406pPgWeOiG6nZE0pQX1eOk600nQX/l3/RqaQCSvAMSpmSW3hpVR
-         A2plZWFOOGjhwQoq7pSgDpoWdYTPDwY5l8CJGArAaZzhUgXsoV3/5B2OHcZQpo97Fk/a
-         q+MgxV90penxRlKhw8DnsbziYaM/F2E/IzKkn3buv/f4K9Ky/XbbLvOwwlSj5sOXqlhA
-         OXfRB3XteT7dp5xUc8oVV3a3uM6qovc65TOY0Sr6gSoyPggHfv+ngwJ2RQ9JH9wxLS8r
-         EIC3+ye6VBttAML9DlrOMtXZVmyv88aaerh90J/4qhFvVC8h7Za84kYgwTXHYDnCcuaI
-         uX1A==
-X-Gm-Message-State: AOAM533sBcr7S0xOUTuRLgrtEoEh9kmZASedMhvnRcY7HL32rklpEA7a
-	f4HL6F5q6pBbIG8jgw11cIHdyMeAteWQe+Zn2ubt8yWbhO57+tnX
-X-Google-Smtp-Source: ABdhPJyk/a6AGkA3dZUb9Ux2PQ24yWd031oqeBWdUSoHy28OMjeHKtY1VX+9BLjfEFGHVLR9zhAoJPkhxrlHOdP86Mg=
-X-Received: by 2002:a81:e50b:: with SMTP id s11mr2391162ywl.262.1644163752940;
- Sun, 06 Feb 2022 08:09:12 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=R1/FQrp8a2WeOKQ0Kck6DZf+V9pie5hVwRqVn4SGem0=;
+        b=crnkgYt19eGLuwJt37imveGvhYid7drkPlL19H1HvM5iydherAuHjwVqSIeLwgwV04
+         OM2yN3Y8htDEij333c+IDAajJwRhm+U2sR5LXexWLfaeZ5FRR869pzG4BSu4Q2LKSGA2
+         Z2HXZx6TDPcBHhTfspqFDY6FIbc7hEXDesR1ZW61E09dyyF/J+IpTGut6Ht6joyPZhYG
+         kKQ/ZbIoVBfDsjYQuCHLNk4QECrnkoqUT+Du52RtyBahOdqw+qO2w7GGTJE0cwrmcZrc
+         AIZZO2P0t+u9e3EmmKvqjeX86hpNXDeD7yjso/BlFA0v9Oc2r+UMFUi19uc3BQNlFxB9
+         wK7w==
+X-Gm-Message-State: AOAM533CP2byO7Vns2rd6tiH0ieTt/sqznGncgk/ummX1UTCMLts7Jea
+	ktpy11NoifSFRoTfifDS6htE1mQG0pdbP0r7fFGuwebuMWecGhGd
+X-Google-Smtp-Source: ABdhPJxAfjfBn7d19pT9z/R4T1YTAgippdUUqxvCbXdOagfIfIG3DP6lTOOWQXaHjg4lnHWXI2hSEEeyL+P1OjjZ9J8=
+X-Received: by 2002:a25:be43:: with SMTP id d3mr6989062ybm.454.1644164200476;
+ Sun, 06 Feb 2022 08:16:40 -0800 (PST)
 MIME-Version: 1.0
+References: <CAA=S3PsErhg-2ScEfGRxKxjF7j1dO1bifVg8_bmY4vHUMipPHw@mail.gmail.com>
+ <CAA=S3PtGaWu0pd2q4UV6v0ca9A=juysZQJOMS1hpbrLRBdLG2A@mail.gmail.com>
+ <CAL7q81v_UDMMqWvtj=Tz6iC7hC7CUGbFxazwZnBsxhSV0U2fvg@mail.gmail.com>
+ <CAA=S3PvnC7QuFMQwutBb1kCBX4D4spKC04_Zio_x4QRRB6Oz2Q@mail.gmail.com>
+ <CAFche=iXbPGeA+ONgEc2aXStw-JdQA3Y4Rts_hPSEPavK5r5ew@mail.gmail.com>
+ <CAA=S3PvX6afDxXXM5gOwpVbH5HOGLVoW+1K4WQEBzeJRHHcb_w@mail.gmail.com>
+ <CAFche=i7i99i2K4D64T-f9J2eyMdV8a0QqBVMLkc_LT+utDazA@mail.gmail.com> <CAA=S3PsNBoJamY_uberi-83+gdxsPghy5KacY1WJZeFv2ZKuzQ@mail.gmail.com>
+In-Reply-To: <CAA=S3PsNBoJamY_uberi-83+gdxsPghy5KacY1WJZeFv2ZKuzQ@mail.gmail.com>
 From: sp h <stackprogramer@gmail.com>
-Date: Sun, 6 Feb 2022 19:38:53 +0330
-Message-ID: <CAA=S3Pt1itmEnH62eLNapn=3V3GBOyLNTXqzDrjwK_PPgTi-fQ@mail.gmail.com>
+Date: Sun, 6 Feb 2022 19:46:21 +0330
+Message-ID: <CAA=S3PtkTxfpLQv=oEW46u5U93GLpb8P-gKAHa2q_wQXRdAaPA@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: ZEGJKDCICXZKOEFQ2IHRBNAECFQZ3XPM
-X-Message-ID-Hash: ZEGJKDCICXZKOEFQ2IHRBNAECFQZ3XPM
+Content-Type: multipart/mixed; boundary="0000000000001f53f205d75bcf26"
+Message-ID-Hash: UL2B3TOQBIW6LMQ3R3Q4ZTRMS5GCUBKR
+X-Message-ID-Hash: UL2B3TOQBIW6LMQ3R3Q4ZTRMS5GCUBKR
 X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Vivado: Version 2019.1 not found error when i want to a built a custom RFNOC block
+Subject: [USRP-users] Re: Building FPGA [00:12:48] Process terminated. Status: Failure How much can I debug?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZEGJKDCICXZKOEFQ2IHRBNAECFQZ3XPM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UL2B3TOQBIW6LMQ3R3Q4ZTRMS5GCUBKR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0244416075355117772=="
 
---===============0244416075355117772==
-Content-Type: multipart/alternative; boundary="00000000000072599805d75bb44c"
+--0000000000001f53f205d75bcf26
+Content-Type: multipart/alternative; boundary="0000000000001f53ef05d75bcf24"
 
---00000000000072599805d75bb44c
+--0000000000001f53ef05d75bcf24
 Content-Type: text/plain; charset="UTF-8"
 
-I copied the RFNOC example in a folder. for building, I used these
-commands...
-Building and Installing an OOT Module
-mkdir build
-cd build
-cmake .. -DUHD_FPGA_DIR=/home/sp/Documents/uhd-4.1.0.5/fpga
-make
-Building an FPGA Image with OOT Blocks
-when I want to build FPGA I used these commands...
+Yes, I commented on two other clock sections now I built the FPGA
+bitstream successfully...
+thanks very much
 
-make x310_rfnoc_image_core
+>
 
-I faced with this error
-*Errors:*
-
-
-
-*Setting up a 64-bit FPGA build environment for the USRP-X3x0...- Vivado:
-Version 2019.1 not found in /opt/Xilinx/Vivado (ERROR.. Builds and
-simulations will not work)          Use the --vivado-path option to
-override the search pathBuilt target x310_rfnoc_image_core*
-
-When I used these options I was faced another error...
-
-make x310_rfnoc_image_core --vivado-path=/home/sp/xilinx/Vivado
-
-*Errors:*
-make: unrecognized option '--vivado-path=/home/sp/xilinx/Vivado'
-
-How can build Gain RFNOC example successfully?
-thanks in advance
-
---00000000000072599805d75bb44c
+--0000000000001f53ef05d75bcf24
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I copied the RFNOC example in a folder. for building, I us=
-ed these commands...<div><h3 style=3D"color:rgb(0,0,0);background-image:non=
-e;background-position:initial;background-size:initial;background-repeat:ini=
-tial;background-origin:initial;background-clip:initial;margin:0.3em 0px 0px=
-;overflow:hidden;padding-top:0.5em;padding-bottom:0px;border-bottom:none;li=
-ne-height:1.6;font-family:&quot;Lucida Sans Unicode&quot;,&quot;Lucida Gran=
-de&quot;,sans-serif"><span class=3D"gmail-mw-headline" id=3D"gmail-Building=
-_and_Installing_an_OOT_Module"><font size=3D"2">Building and Installing an =
-OOT Module</font></span></h3></div><div>mkdir build=C2=A0<br><div>cd build<=
-/div>cmake .. -DUHD_FPGA_DIR=3D/home/sp/Documents/uhd-4.1.0.5/fpga<br><div>=
-make<br></div></div><div><h3 style=3D"color:rgb(0,0,0);background-image:non=
-e;background-position:initial;background-size:initial;background-repeat:ini=
-tial;background-origin:initial;background-clip:initial;margin:0.3em 0px 0px=
-;overflow:hidden;padding-top:0.5em;padding-bottom:0px;border-bottom:none;li=
-ne-height:1.6;font-family:&quot;Lucida Sans Unicode&quot;,&quot;Lucida Gran=
-de&quot;,sans-serif"><span class=3D"gmail-mw-headline" id=3D"gmail-Building=
-_an_FPGA_Image_with_OOT_Blocks"><font size=3D"2">Building an FPGA Image wit=
-h OOT Blocks</font></span></h3><div><span class=3D"gmail-mw-headline"><font=
- size=3D"2">when I want to build FPGA I used these commands...</font></span=
-></div><div><span class=3D"gmail-mw-headline"><font size=3D"2"><br></font><=
-/span></div>make x310_rfnoc_image_core<br></div><div><br></div><div>I faced=
- with this error=C2=A0</div><div><b>Errors:</b></div><div><b>Setting up a 6=
-4-bit FPGA build environment for the USRP-X3x0...<br>- Vivado: Version 2019=
-.1 not found in /opt/Xilinx/Vivado (ERROR.. Builds and simulations will not=
- work)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Use the --vivado-path option t=
-o override the search path<br>Built target x310_rfnoc_image_core</b><br></d=
-iv><div><br></div><div>When I used these options I was=C2=A0faced another e=
-rror...</div><div><br></div><div>make x310_rfnoc_image_core --vivado-path=
-=3D/home/sp/xilinx/Vivado<br></div><div><br></div><div><b>Errors:</b></div>=
-<div>make: unrecognized option &#39;--vivado-path=3D/home/sp/xilinx/Vivado&=
-#39;<br></div><div><br></div><div>How can build Gain RFNOC example successf=
-ully?</div><div>thanks in=C2=A0advance</div><div><br></div><div><br></div><=
-div><br></div><div><br></div><div><br></div></div>
+<div dir=3D"ltr"><div dir=3D"ltr"><div id=3D"gmail-:3ts" class=3D"gmail-ii =
+gmail-gt" style=3D"direction:ltr;margin:8px 0px 0px;padding:0px;font-size:0=
+.875rem;font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif"><div id=
+=3D"gmail-:3tt" class=3D"gmail-a3s gmail-aiL" style=3D"font-variant-numeric=
+:normal;font-variant-east-asian:normal;font-stretch:normal;font-size:small;=
+line-height:1.5;font-family:Arial,Helvetica,sans-serif;overflow:hidden"><di=
+v dir=3D"ltr"><div dir=3D"ltr">Yes, I commented on two other clock sections=
+ now I built the FPGA bitstream=C2=A0successfully...<div>thanks very much</=
+div></div></div></div></div></div><div class=3D"gmail_quote"><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex">
+</blockquote></div></div>
 
---00000000000072599805d75bb44c--
+--0000000000001f53ef05d75bcf24--
 
---===============0244416075355117772==
+--0000000000001f53f205d75bcf26
+Content-Type: application/x-yaml; name="x300_with_fft (another copy).yml"
+Content-Disposition: attachment; filename="x300_with_fft (another copy).yml"
+Content-Transfer-Encoding: base64
+Content-ID: <f_kzbgvyis0>
+X-Attachment-Id: f_kzbgvyis0
+
+IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRlcl9hcmdzICAgICAgICAgIyBJZGVudGlm
+aWVyIGZvciB0aGUgc2NoZW1hIHVzZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNvcHlyaWdodDog
+J0V0dHVzIFJlc2VhcmNoLCBBIE5hdGlvbmFsIEluc3RydW1lbnRzIEJyYW5kJyAjIENvcHlyaWdo
+dCBpbmZvcm1hdGlvbiB1c2VkIGluIGZpbGUgaGVhZGVycwpsaWNlbnNlOiAnU1BEWC1MaWNlbnNl
+LUlkZW50aWZpZXI6IExHUEwtMy4wLW9yLWxhdGVyJyAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNl
+ZCBpbiBmaWxlIGhlYWRlcnMKdmVyc2lvbjogJzEuMCcgICAgICAgICAgICAgICAgICAgICAgICAg
+ICMgRmlsZSB2ZXJzaW9uCnJmbm9jX3ZlcnNpb246ICcxLjAnICAgICAgICAgICAgICAgICAgICAj
+IFJGTm9DIHByb3RvY29sIHZlcnNpb24KY2hkcl93aWR0aDogNjQgICAgICAgICAgICAgICAgICAg
+ICAgICAgICMgQml0IHdpZHRoIG9mIHRoZSBDSERSIGJ1cyBmb3IgdGhpcyBpbWFnZQpkZXZpY2U6
+ICd4MzAwJwpkZWZhdWx0X3RhcmdldDogJ1gzMDBfSEcnCgojIEEgbGlzdCBvZiBhbGwgc3RyZWFt
+IGVuZHBvaW50cyBpbiBkZXNpZ24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCnN0cmVhbV9lbmRwb2ludHM6CiAgZXAwOiAgICAgICAgICAgICAgICAgICAgICAgIyBT
+dHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAj
+IEVuZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAg
+ICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6
+IDMyNzY4ICAgICAgICAgICAgICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVw
+MTogICAgICAgICAgICAgICAgICAgICAgICMgU3RyZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6
+IEZhbHNlICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFm
+ZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2Vz
+IGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiAwICAgICAgICAgICAgICAgICAgICAjIEluZ3Jl
+c3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDI6ICAgICAgICAgICAgICAgICAgICAgICAjIFN0
+cmVhbSBlbmRwb2ludCBuYW1lCiAgICBjdHJsOiBGYWxzZSAgICAgICAgICAgICAgICAgICAgICMg
+RW5kcG9pbnQgcGFzc2VzIGNvbnRyb2wgdHJhZmZpYwogICAgZGF0YTogVHJ1ZSAgICAgICAgICAg
+ICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBkYXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTog
+MzI3NjggICAgICAgICAgICAgICAgIyBJbmdyZXNzIGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXAz
+OiAgICAgICAgICAgICAgICAgICAgICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDog
+RmFsc2UgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZm
+aWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMg
+ZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6IDAgICAgICAgICAgICAgICAgICAgICMgSW5ncmVz
+cyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVwNDogICAgICAgICAgICAgICAgICAgICAgICMgU3Ry
+ZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6IEZhbHNlICAgICAgICAgICAgICAgICAgICAgIyBF
+bmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAg
+ICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiA0
+MDk2ICAgICAgICAgICAgICAgICAjIEluZ3Jlc3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDU6
+ICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2ludCBuYW1lCiAgICBjdHJsOiBG
+YWxzZSAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGNvbnRyb2wgdHJhZmZp
+YwogICAgZGF0YTogVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBk
+YXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTogNDA5NiAgICAgICAgICAgICAgICAgIyBJbmdyZXNz
+IGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXBfZmZ0OiAgICAgICAgICAgICAgICAjIFRoZSBuYW1l
+IGNhbiBiZSBpbmNyZW1lbnRlZCBmcm9tIHByZXZpb3VzIFNFUAogICAgY3RybDogRmFsc2UgICAg
+ICAgICAgIyBPbmx5IHRoZSBmaXJzdCBTRVAgbmVlZHMgY29udHJvbCB0cmFmZmljCiAgICBkYXRh
+OiBUcnVlICAgICAgICAgICAjIFdlIGRvIHdhbnQgdG8gcGFzcyBkYXRhIHRocm91Z2ggdGhpcyBT
+RVAKICAgIGJ1ZmZfc2l6ZTogMzI3NjggICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0
+YQoKIyBBIGxpc3Qgb2YgYWxsIE5vQyBibG9ja3MgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLQpub2NfYmxvY2tzOgogIGR1YzA6ICAgICAgICAgICAgICAgICAg
+ICAgICMgTm9DIGJsb2NrIG5hbWUKICAgIGJsb2NrX2Rlc2M6ICdkdWMueW1sJyAgICAjIEJsb2Nr
+IGRldmljZSBkZXNjcmlwdG9yIGZpbGUKICAgIHBhcmFtZXRlcnM6CiAgICAgIE5VTV9QT1JUUzog
+MQogIGRkYzA6CiAgICBibG9ja19kZXNjOiAnZGRjLnltbCcKICAgIHBhcmFtZXRlcnM6CiAgICAg
+IE5VTV9QT1JUUzogMgogIHJhZGlvMDoKICAgIGJsb2NrX2Rlc2M6ICdyYWRpb18yeDY0LnltbCcK
+ICBkdWMxOgogICAgYmxvY2tfZGVzYzogJ2R1Yy55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBO
+VU1fUE9SVFM6IDEKICBkZGMxOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwnCiAgICBwYXJhbWV0
+ZXJzOgogICAgICBOVU1fUE9SVFM6IDIKICByYWRpbzE6CiAgICBibG9ja19kZXNjOiAncmFkaW9f
+Mng2NC55bWwnCiAgcmVwbGF5MDoKICAgIGJsb2NrX2Rlc2M6ICdyZXBsYXkueW1sJwogICAgcGFy
+YW1ldGVyczoKICAgICAgTlVNX1BPUlRTOiAyCiAgICAgIE1FTV9BRERSX1c6IDMwCiAgZmZ0MDog
+ICAgICAgICAgICAgICAgICAgICAgICAgICMgRkZUIGJsb2NrIG5hbWUKICAgIGJsb2NrX2Rlc2M6
+ICdmZnRfMXg2NC55bWwnICAgIyBCbG9jayBZQU1MIGRlc2NyaXB0b3IgZmlsZQogICAgcGFyYW1l
+dGVyczogICAgICAgICAgICAgICAgICAjIFNwZWNpZnkgYW55IFZlcmlsb2cgbW9kdWxlIHBhcmFt
+ZXRlcnMgKG9wdGlvbmFsKQogICAgICBFTl9GRlRfU0hJRlQ6IDEgCgojIEEgbGlzdCBvZiBhbGwg
+c3RhdGljIGNvbm5lY3Rpb25zIGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQojIEZvcm1hdDogQSBsaXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlz
+dCBvZiBrZXktdmFsdWUgcGFpcnMpIHdpdGggdGhlIGZvbGxvd2luZyBrZXlzCiMgICAgICAgICAt
+IHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdAojICAgICAgICAgLSBzcmNwb3J0ID0g
+UG9ydCBvbiB0aGUgc291cmNlIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0YmxrICA9
+IERlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0cG9ydCA9IFBvcnQg
+b24gdGhlIGRlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKY29ubmVjdGlvbnM6CiAgIyBlcDAg
+dG8gcmFkaW8wKDApIC0gUkZBIFRYCiAgLSB7IHNyY2JsazogZXAwLCAgICBzcmNwb3J0OiBvdXQw
+LCAgZHN0YmxrOiBkdWMwLCAgIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IGR1YzAsICAg
+c3JjcG9ydDogb3V0XzAsIGRzdGJsazogcmFkaW8wLCBkc3Rwb3J0OiBpbl8wIH0KICAjIHJhZGlv
+KDApIHRvIGVwMCAtIFJGQSBSWAogIC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDogb3V0XzAs
+IGRzdGJsazogZGRjMCwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBkZGMwLCAgIHNy
+Y3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwMCwgICAgZHN0cG9ydDogaW4wICB9CiAgIyByYWRpbzAo
+MSkgdG8gZXAxIC0gUkZBIFJYCiAgLSB7IHNyY2JsazogcmFkaW8wLCBzcmNwb3J0OiBvdXRfMSwg
+ZHN0YmxrOiBkZGMwLCAgIGRzdHBvcnQ6IGluXzEgfQogIC0geyBzcmNibGs6IGRkYzAsICAgc3Jj
+cG9ydDogb3V0XzEsIGRzdGJsazogZXAxLCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIGVwMiB0byBy
+YWRpbzEoMCkgLSBSRkEgVFgKICAtIHsgc3JjYmxrOiBlcDIsICAgIHNyY3BvcnQ6IG91dDAsICBk
+c3RibGs6IGR1YzEsICAgZHN0cG9ydDogaW5fMCB9CiAgLSB7IHNyY2JsazogZHVjMSwgICBzcmNw
+b3J0OiBvdXRfMCwgZHN0YmxrOiByYWRpbzEsIGRzdHBvcnQ6IGluXzAgfQogICMgcmFkaW8xKDAp
+IHRvIGVwMiAtIFJGQSBSWAogIC0geyBzcmNibGs6IHJhZGlvMSwgc3JjcG9ydDogb3V0XzAsIGRz
+dGJsazogZGRjMSwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBkZGMxLCAgIHNyY3Bv
+cnQ6IG91dF8wLCBkc3RibGs6IGVwMiwgICAgZHN0cG9ydDogaW4wICB9CiAgIyByYWRpbzAoMSkg
+dG8gZXAzIC0gUkZBIFJYCiAgLSB7IHNyY2JsazogcmFkaW8xLCBzcmNwb3J0OiBvdXRfMSwgZHN0
+YmxrOiBkZGMxLCAgIGRzdHBvcnQ6IGluXzEgfQogIC0geyBzcmNibGs6IGRkYzEsICAgc3JjcG9y
+dDogb3V0XzEsIGRzdGJsazogZXAzLCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIGVwNCB0byByZXBs
+YXkwKDApCiAgLSB7IHNyY2JsazogZXA0LCAgICAgc3JjcG9ydDogb3V0MCwgIGRzdGJsazogcmVw
+bGF5MCwgZHN0cG9ydDogaW5fMCB9CiAgIyByZXBsYXkwKDApIHRvIGVwNAogIC0geyBzcmNibGs6
+IHJlcGxheTAsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwNCwgICAgIGRzdHBvcnQ6IGluMCAg
+fQogICMgZXA1IHRvIHJlcGxheTAoMSkKICAtIHsgc3JjYmxrOiBlcDUsICAgICBzcmNwb3J0OiBv
+dXQwLCAgZHN0YmxrOiByZXBsYXkwLCBkc3Rwb3J0OiBpbl8xIH0KICAjIHJlcGxheTAoMSkgdG8g
+ZXA1CiAgLSB7IHNyY2JsazogcmVwbGF5MCwgc3JjcG9ydDogb3V0XzEsIGRzdGJsazogZXA1LCAg
+ICAgZHN0cG9ydDogaW4wICB9CiAgIyBlcF9mZnQgdG8gZmZ0MAogIC0geyBzcmNibGs6IGVwX2Zm
+dCwgc3JjcG9ydDogb3V0MCwgIGRzdGJsazogZmZ0MCwgICBkc3Rwb3J0OiBpbl8wIH0KICAjIGZm
+dDAgdG8gZXBfZmZ0CiAgLSB7IHNyY2JsazogZmZ0MCwgICBzcmNwb3J0OiBvdXRfMCwgZHN0Ymxr
+OiBlcF9mZnQsIGRzdHBvcnQ6IGluMCAgfQoKICAjIEJTUCBDb25uZWN0aW9ucwogIC0geyBzcmNi
+bGs6IHJhZGlvMCwgc3JjcG9ydDogY3RybF9wb3J0LCBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0
+OiBjdHJscG9ydF9yYWRpbzAgfQogIC0geyBzcmNibGs6IHJhZGlvMSwgc3JjcG9ydDogY3RybF9w
+b3J0LCBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0OiBjdHJscG9ydF9yYWRpbzEgfQogIC0geyBz
+cmNibGs6IHJlcGxheTAsIHNyY3BvcnQ6IGF4aV9yYW0sIGRzdGJsazogX2RldmljZV8sIGRzdHBv
+cnQ6IGRyYW0gfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiB4MzAwX3JhZGlvMCwg
+ZHN0YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHgzMDBfcmFkaW8gfQogIC0geyBzcmNibGs6IF9kZXZp
+Y2VfLCBzcmNwb3J0OiB4MzAwX3JhZGlvMSwgZHN0YmxrOiByYWRpbzEsIGRzdHBvcnQ6IHgzMDBf
+cmFkaW8gfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiB0aW1lX2tlZXBlciwgZHN0
+YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHRpbWVfa2VlcGVyIH0KICAtIHsgc3JjYmxrOiBfZGV2aWNl
+Xywgc3JjcG9ydDogdGltZV9rZWVwZXIsIGRzdGJsazogcmFkaW8xLCBkc3Rwb3J0OiB0aW1lX2tl
+ZXBlciB9CiAgCiMgQSBsaXN0IG9mIGFsbCBjbG9jayBkb21haW4gY29ubmVjdGlvbnMgaW4gZGVz
+aWduCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgRm9ybWF0
+OiBBIGxpc3Qgb2YgY29ubmVjdGlvbiBtYXBzIChsaXN0IG9mIGtleS12YWx1ZSBwYWlycykgd2l0
+aCB0aGUgZm9sbG93aW5nIGtleXMKIyAgICAgICAgIC0gc3JjYmxrICA9IFNvdXJjZSBibG9jayB0
+byBjb25uZWN0IChBbHdheXMgIl9kZXZpY2UiXykKIyAgICAgICAgIC0gc3JjcG9ydCA9IENsb2Nr
+IGRvbWFpbiBvbiB0aGUgc291cmNlIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0Ymxr
+ICA9IERlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0cG9ydCA9IENs
+b2NrIGRvbWFpbiBvbiB0aGUgZGVzdGluYXRpb24gYmxvY2sgdG8gY29ubmVjdApjbGtfZG9tYWlu
+czoKICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8w
+LCBkc3Rwb3J0OiByYWRpbyB9CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAg
+ICBkc3RibGs6IGRkYzAsICAgZHN0cG9ydDogY2UgICAgfQogIC0geyBzcmNibGs6IF9kZXZpY2Vf
+LCBzcmNwb3J0OiBjZSwgICAgZHN0YmxrOiBkdWMwLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAtIHsg
+c3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8xLCBkc3Rwb3J0
+OiByYWRpbyB9CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAgICBkc3RibGs6
+IGRkYzEsICAgZHN0cG9ydDogY2UgICAgfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0
+OiBjZSwgICAgZHN0YmxrOiBkdWMxLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAtIHsgc3JjYmxrOiBf
+ZGV2aWNlXywgc3JjcG9ydDogZHJhbSwgIGRzdGJsazogcmVwbGF5MCwgZHN0cG9ydDogbWVtICB9
+CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCBkc3RibGs6IGZmdDAsIGRzdHBv
+cnQ6IGNlIH0KICAjLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IHJmbm9jX2NoZHIsIGRz
+dGJsazogZmZ0MCwgZHN0cG9ydDogY2UgfQogICMtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9y
+dDogcmFkaW8sIGRzdGJsazogZmZ0MCwgZHN0cG9ydDogY2UgfQoKCg==
+--0000000000001f53f205d75bcf26
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -150,4 +244,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0244416075355117772==--
+--0000000000001f53f205d75bcf26--
