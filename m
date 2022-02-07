@@ -2,106 +2,187 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AB84ACC98
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Feb 2022 00:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E521E4ACC9B
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Feb 2022 00:27:22 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D5EFD384FCD
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Feb 2022 18:24:07 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id AF03D384FBB
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Feb 2022 18:27:21 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="bFe9mI/T";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Lq+95MxS";
 	dkim-atps=neutral
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id AB4D9384E6B
-	for <usrp-users@lists.ettus.com>; Mon,  7 Feb 2022 18:23:07 -0500 (EST)
-Received: by mail-yb1-f174.google.com with SMTP id bt13so20774163ybb.2
-        for <usrp-users@lists.ettus.com>; Mon, 07 Feb 2022 15:23:07 -0800 (PST)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id C9C70384EF9
+	for <usrp-users@lists.ettus.com>; Mon,  7 Feb 2022 18:26:15 -0500 (EST)
+Received: by mail-qt1-f180.google.com with SMTP id t1so7388523qtq.13
+        for <usrp-users@lists.ettus.com>; Mon, 07 Feb 2022 15:26:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Y+KfXoKyAbOE1n8v/QO0J3vJeYqlC6WBVOgKifJDSUk=;
-        b=bFe9mI/TpYEHvf48c62IHEs9qPy1wjhj6epprrnS3uGDA1rBY+9PRrwW9PF61M/Xos
-         1rPYWP/yaIXHVE4N9XaeM3i3aQuo9fXGaGrD6RvWGxX+VnUFNhZLlaRTySLNUSxqMyhG
-         6H4666bSbK9DXwd/N5Y9AKjU31ohiUs6TPygJvCPNK8b7DlK6Ijm3oayY/aYzj5Q1m/g
-         44UG9PjjNC7mTk8rP+LKbEY1WyqRtUYWOTZ2QipcOso8BuoSmfgiFQ5NpOz1Rq74+XOn
-         SYc/r1+aYket18WD+7k1+BDgXgc6EnHfAXIwOzJvTvJ8NOx4amfDtzqi6MNuIqPX8q5z
-         sRxw==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=aJrHJemFmToSZ22/1vesVfn5Lg68hambetTu0PsrhZQ=;
+        b=Lq+95MxStj9dclENPeQCkU3piwoTf+eVaFRx5sKMPWk/zpXVFMwkQCZBxfT3hKBQ5t
+         w8qDWnkK7S4yXU4TCG6bptU5Y1otz6R6yz3uOzcrULYAzVlVbCkdUFJl8Uhr6rH3OXuM
+         EQLniZyQ0qLKzXXQFDmcYnwa9DuujE+FygeEbj1ogR9uSioJv7DTruWNyVeaysrB6Y/V
+         uIykoDrHcUPT28IYMwgqTZFM7ZKFn78Qjx9oliJwC9YxzgpBPull5IbHwBlR6Qz4AyiZ
+         CmF9mhL5vQjXA1P6gu2OxmY7Au5DOLv0eB4r3xbGtIXfJsbBnZjQLIH4mQwGH5nCIPOh
+         +IEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Y+KfXoKyAbOE1n8v/QO0J3vJeYqlC6WBVOgKifJDSUk=;
-        b=a9utDE7PV6PBE0Ypvjnf2hWIftwTfgCko69T93KU22f3iRyYFaWnOry8iMLTEPSouP
-         npcRF90sv+OKc2zEM153LkS93i1TLw4G72omWFY7g1ZM/gPp6s7apQcECC0GylpW6dYc
-         zi5insZU83jHfPO6HJzKiZzgZfQdHVvERtI3vK+prsrYzdw7btMYcKTtlbEdWJyteEEm
-         ZcCZWFIme0rqH8d1dLKQweuXA6Dxvz9v0xKeMNjxPeoVlxKUFu1wAAl3+zai75a3BmOi
-         XRRM9AumxhJg8gRrD5v4QvZ8Fyc9UMelRisyRlyBPgdj/j8QINmLmLYvGAPLBegLNIiT
-         GhNA==
-X-Gm-Message-State: AOAM532Khdgoga6mrgFCczAnCTZ6PlSP5cd7F2cSS/vmj7qGASLgS0fl
-	KUe1SjkxayDIoDd6VPB377zU3mX9fWdLQCO+2qN3xDEnMlkm+ZyO
-X-Google-Smtp-Source: ABdhPJwuMywobHKnhD4c9rUSQ8qWFR7+7T9elAGwRHA3P+Od7RQd42lChZN+cwGPy4LCnIDDbW+kMZb1gqEK363C6I4=
-X-Received: by 2002:a25:c307:: with SMTP id t7mr2088405ybf.701.1644276186695;
- Mon, 07 Feb 2022 15:23:06 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=aJrHJemFmToSZ22/1vesVfn5Lg68hambetTu0PsrhZQ=;
+        b=ZLuDncA0V8anqZOFegDQGr+xLewzf05lOp6XhKQrTRDPNy58v/feAUufi9BNTS/oEr
+         bkWeqRQL4npR/lpdPCtK1cZgar48Oy7LL/ucLNjz73xCnq+Bx0po81e1hKT6wJheaFLi
+         iAi09bjTkZw7o0UYxmVWMmqVqrna31KKGNqtqOWtYp5947gfrRzVdi3ZhDbpsd/jX38o
+         Q25g6wBNyh2G/3hWYyO+N2dPTmggRMqUflcuWdltVb1NGhEy2BSpEcmwZR99p8lzkW9C
+         bofcUwPAed2l9e05jwqESB4/5KbcZ4yULGuF+jy/FKQMOnx2fsVSRz03zVW10QgK1xnR
+         5PYg==
+X-Gm-Message-State: AOAM5330C1wh13Ac70QlgvUxwwGnJUWPs5AEWw2MjosDWWG1EKRAON7U
+	+UtpSf7XUj+OlfxmuA4+MJk1DRfQB6M=
+X-Google-Smtp-Source: ABdhPJyHa4ExxXosqT59ND7tzY7l3vhM2ovfXH22MP5cp0J8VhgLLED5O9PM47cSJ66VBEdAalpHSw==
+X-Received: by 2002:ac8:470b:: with SMTP id f11mr1385084qtp.428.1644276374973;
+        Mon, 07 Feb 2022 15:26:14 -0800 (PST)
+Received: from [192.168.2.217] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id b184sm6272850qkf.87.2022.02.07.15.26.14
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Feb 2022 15:26:14 -0800 (PST)
+Message-ID: <2e706246-8d28-275e-cb73-70253d4d77b7@gmail.com>
+Date: Mon, 7 Feb 2022 18:26:13 -0500
 MIME-Version: 1.0
-From: Rob Kossler <rkossler@nd.edu>
-Date: Mon, 7 Feb 2022 18:22:56 -0500
-Message-ID: <CAB__hTTWVyMaR-vum8ThYJuOUJ2Hh-b7abJZGMxvVmBmvZyV0w@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: Q4HDODDBYMPFVCY6EBXUZVZYAVSXBCEP
-X-Message-ID-Hash: Q4HDODDBYMPFVCY6EBXUZVZYAVSXBCEP
-X-MailFrom: rkossler@nd.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <CAB__hTTWVyMaR-vum8ThYJuOUJ2Hh-b7abJZGMxvVmBmvZyV0w@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAB__hTTWVyMaR-vum8ThYJuOUJ2Hh-b7abJZGMxvVmBmvZyV0w@mail.gmail.com>
+Message-ID-Hash: YEMUDEZPJNH6PQZ2IWW5JWMHSQACU2C6
+X-Message-ID-Hash: YEMUDEZPJNH6PQZ2IWW5JWMHSQACU2C6
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E320 with 1Tx and 2RX
+Subject: [USRP-users] Re: E320 with 1Tx and 2RX
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q4HDODDBYMPFVCY6EBXUZVZYAVSXBCEP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YEMUDEZPJNH6PQZ2IWW5JWMHSQACU2C6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5726805975668275242=="
+Content-Type: multipart/mixed; boundary="===============0547368480623435917=="
 
---===============5726805975668275242==
-Content-Type: multipart/alternative; boundary="0000000000000589d305d775e2f5"
+This is a multi-part message in MIME format.
+--===============0547368480623435917==
+Content-Type: multipart/alternative;
+ boundary="------------kkYvRPF8k90TkqCptvFgu16x"
+Content-Language: en-US
 
---0000000000000589d305d775e2f5
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-What does the following error mean for an E320? In my application, I want
-1Tx and 2Rx.
-[ERROR] [0/Radio#0] Invalid channel configuration: This device does not
-support 1 TX x 2 RX or 2 TX x 1 RX configurations!
-Error: RuntimeError: Invalid channel configuration: This device does not
-support 1 TX x 2 RX or 2 TX x 1 RX configurations!
-Does this mean that I simply need an RFNoC graph that is 2x2 to the radio -
-even if I don't initiate any streaming to the 2nd un-needed Tx radio? Or do
-I also need to actively stream samples (e.g., zeros) to the 2nd
-un-needed Tx radio.
-
-Rob
-
---0000000000000589d305d775e2f5
-Content-Type: text/html; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------kkYvRPF8k90TkqCptvFgu16x
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div>What does the following error mean for an E320? In=
- my application, I want 1Tx and 2Rx.</div><div><span style=3D"color:rgb(255=
-,0,0)">[ERROR] [0/Radio#0] Invalid channel configuration: This device does =
-not support 1 TX x 2 RX or 2 TX x 1 RX configurations!</span><br style=3D"c=
-olor:rgb(255,0,0)"><span style=3D"color:rgb(255,0,0)">Error: RuntimeError: =
-Invalid channel configuration: This device does not support 1 TX x 2 RX or =
-2 TX x 1 RX configurations!</span><br></div><div><font color=3D"#000000">Do=
-es this mean that I simply need an RFNoC graph that is 2x2 to the radio - e=
-ven if I don&#39;t initiate any streaming to the 2nd un-needed Tx radio? Or=
- do I also need to actively stream samples (e.g., zeros) to the 2nd un-need=
-ed=C2=A0Tx radio.</font></div><div><font color=3D"#000000"><br></font></div=
-><div><font color=3D"#000000">Rob</font></div></div>
+On 2022-02-07 18:22, Rob Kossler wrote:
+> Hi,
+> What does the following error mean for an E320? In my application, I=20
+> want 1Tx and 2Rx.
+> [ERROR] [0/Radio#0] Invalid channel configuration: This device does=20
+> not support 1 TX x 2 RX or 2 TX x 1 RX configurations!
+> Error: RuntimeError: Invalid channel configuration: This device does=20
+> not support 1 TX x 2 RX or 2 TX x 1 RX configurations!
+> Does this mean that I simply need an RFNoC graph that is 2x2 to the=20
+> radio - even if I don't initiate any streaming to the 2nd un-needed Tx=20
+> radio? Or do I also need to actively stream samples (e.g., zeros) to=20
+> the 2nd un-needed=C2=A0Tx radio.
+>
+> Rob
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+Since the E320 is based on the AD9361, the TX/RX configs are somewhat=20
+constrained, due to the way the data interface to the AD9361 works.
 
---0000000000000589d305d775e2f5--
+You'll need to stream zeros--at least that's the way it is with B2xx and=20
+E310 devices, which use the same AD9361 RFFE chip.
 
---===============5726805975668275242==
+Granted, this *could* be taken care of with the drivers and FPGA=20
+cooperating to make it more "beautifully generalized", but the=20
+constraints of the AD9361 chip
+ =C2=A0 data interface are "exposed".
+
+
+--------------kkYvRPF8k90TkqCptvFgu16x
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-02-07 18:22, Rob Kossler wrote=
+:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAB__hTTWVyMaR-vum8ThYJuOUJ2Hh-b7abJZGMxvVmBmvZyV0w@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">Hi,
+        <div>What does the following error mean for an E320? In my
+          application, I want 1Tx and 2Rx.</div>
+        <div><span style=3D"color:rgb(255,0,0)">[ERROR] [0/Radio#0]
+            Invalid channel configuration: This device does not support
+            1 TX x 2 RX or 2 TX x 1 RX configurations!</span><br
+            style=3D"color:rgb(255,0,0)">
+          <span style=3D"color:rgb(255,0,0)">Error: RuntimeError: Invalid
+            channel configuration: This device does not support 1 TX x 2
+            RX or 2 TX x 1 RX configurations!</span><br>
+        </div>
+        <div><font color=3D"#000000">Does this mean that I simply need an
+            RFNoC graph that is 2x2 to the radio - even if I don't
+            initiate any streaming to the 2nd un-needed Tx radio? Or do
+            I also need to actively stream samples (e.g., zeros) to the
+            2nd un-needed=C2=A0Tx radio.</font></div>
+        <div><font color=3D"#000000"><br>
+          </font></div>
+        <div><font color=3D"#000000">Rob</font></div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    Since the E320 is based on the AD9361, the TX/RX configs are
+    somewhat constrained, due to the way the data interface to the
+    AD9361 works.<br>
+    <br>
+    You'll need to stream zeros--at least that's the way it is with B2xx
+    and E310 devices, which use the same AD9361 RFFE chip.<br>
+    <br>
+    Granted, this *could* be taken care of with the drivers and FPGA
+    cooperating to make it more "beautifully generalized", but the
+    constraints of the AD9361 chip<br>
+    =C2=A0 data interface are "exposed".<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------kkYvRPF8k90TkqCptvFgu16x--
+
+--===============0547368480623435917==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -111,4 +192,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5726805975668275242==--
+--===============0547368480623435917==--
