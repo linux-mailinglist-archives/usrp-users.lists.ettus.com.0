@@ -2,328 +2,325 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEF04AF424
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 15:32:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A884AF458
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 15:46:09 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 19DAE384941
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 09:32:48 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 55C3E384AFA
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 09:46:08 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RoVWI59v";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="CzUR7x+T";
 	dkim-atps=neutral
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id DB2F23836CB
-	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 09:31:37 -0500 (EST)
-Received: by mail-wr1-f53.google.com with SMTP id f17so4452375wrx.1
-        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 06:31:37 -0800 (PST)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id D14E0384AE9
+	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 09:44:56 -0500 (EST)
+Received: by mail-yb1-f177.google.com with SMTP id j2so6749380ybu.0
+        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 06:44:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:to:content-language:from
-         :subject;
-        bh=rQYHaVINCtUpvC5risgmjB6PmtDIm9x6pX/wpqtoFKs=;
-        b=RoVWI59v8LUixgYq0HTUx1gvPMrsf3p/mOi/V0A39MMotJwhU4czafUD0zIVeh7LvA
-         Y0YjTuIsS27WpUnY0UIHWCN9dOzDypJDtYprDWxaz1tqBhaWQ8YppptHltXrPOMBD/b/
-         1WZA4uQ0PuA4Y/XNU9SWuvGHwjy8FfHlbMDVYMugaYdlTDVabMPtYDfiXB95UqAll/MJ
-         M0N3t9BcPZg142ZF3PHJPacWk+2MdjomvUdXULoJvIGtAF+i2kXX+9K1GCXCvFFoYhid
-         8R4fxWrep9P3GaxtcYk22U8IQLVn+nacCbC6umuYao1UGkrUInBKgZWKWNfigZzxTsC/
-         ODvg==
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QmgEKaXi79zPoO37CI+S7zKKtnwdxWnCxgQ1fYxokvE=;
+        b=CzUR7x+TKNFZbKHExYv2W36KevTgNUqpAdoWbB0hjYVMX3kUEKPusCDzqrBpgST+nM
+         PqUf/7cA+hsC1nzu3zJ/3/ETd/FogoubosevudWiJ1klN+yqPqQ0fBiZATw/C1gS5azp
+         akGt9diU6FYeKNE4DwtibpWNcYIwWufofbVdJq8CyO2FFzoyOIAEjTS7Vyjdsh57OW4s
+         cNemjj8xXQkJ9RzZc3dlZczcwsOfieDSrmXNnOPZJYjLlktUkscM4kmfNm5NdGoKpPv5
+         WSuiu9tcJ8XmszAU48ixH53S5srI2oGtnJsyDWlT+ILaDtwDuY+ZxSND5f5q34aGbPb7
+         utMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:to
-         :content-language:from:subject;
-        bh=rQYHaVINCtUpvC5risgmjB6PmtDIm9x6pX/wpqtoFKs=;
-        b=pWWtzU5XH8s3Gd8tASU3nBaObRSpPaS8KFYXlkGJzjkxoQi6D5nox8ALuDawT4u9oq
-         QLdtOld5AQXKRiQ1ms8PFNJh7f01m5KMvaq0pDVruWHgsudfsBddH56ijTknedJe6xMK
-         Xsw3FraM5BDVjhLI0zENEJqFiOKeFjSP+wGvOqck0fwuQo+xiBvI+mTe5bqsoxOoXlbp
-         wavpVV/5UO4paJ3uUJsYrN+UsjQUlB3iJcSIxETSFd5QiKaIvbfbrDlROYTUI/lzczp0
-         LG6m8QItm4ba5O22ZQThlOwyB8R3LHqVeytWpaRPtoGz8NuwKYEEHNbODiIUNYHy+Dxl
-         vIHg==
-X-Gm-Message-State: AOAM530yLBhn7sBNQmlpblGIiWpXfo6Yj8fslM0disAYMzvK7AhJQFyp
-	6k5pmqWpBAmrQlYPr/bdRv9A5dczVZE=
-X-Google-Smtp-Source: ABdhPJxFH7KBRfK3+ZzhmZYqqqptlrYltbrv8dgqgzcxGKv5eLrkkMaLMPWqAXy0Kv9tixwTs9uoBQ==
-X-Received: by 2002:a5d:5981:: with SMTP id n1mr2369431wri.354.1644417096396;
-        Wed, 09 Feb 2022 06:31:36 -0800 (PST)
-Received: from [172.16.4.232] ([193.145.14.195])
-        by smtp.gmail.com with ESMTPSA id c8sm6346492wmq.34.2022.02.09.06.31.35
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Feb 2022 06:31:35 -0800 (PST)
-Message-ID: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com>
-Date: Wed, 9 Feb 2022 15:31:33 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QmgEKaXi79zPoO37CI+S7zKKtnwdxWnCxgQ1fYxokvE=;
+        b=TEBV73P+S5qeYIVNJfuKWrB3DRnyWM2xlR9UZbLU7Ona7lpqYnDVLgvb5+4ShfGX+l
+         X2PKiKyExLkU2x7RX/BoAJvlQ2J+j//hMoQlfTFAdU7nd2KS+2vQUOELEY1IgYGusWOA
+         gs0D9tpXuZZGyABIp9goGCEKLBiXsofMOQQWKBzZ3hbV7c3v9PgZb/7MysbocIlV4gwC
+         EyRyiw8FnQtT5Aro+x0FgVRCf45HdnP+Eq/BTn3HrTtl5t0CTT3abotNdv+obwcmuTDu
+         m671V8pb4Qf4L101CCLVAXDkIyhmSClhSgnIKm+3U5xWnC3JWI4ygAZ2iGk+yynUfAUd
+         pAYg==
+X-Gm-Message-State: AOAM532abqLX6Znkkq6zgbIqxgNTS3RtOOhOtqp3ADSfH2J1PinxPJAr
+	NAC2F/X+55kcoRNdPCnEaPXQ0vJ+TeCS8W3ATpDkUw==
+X-Google-Smtp-Source: ABdhPJwehB2xYk+r82hKu1x7aPL7i02Hwtn/tTvbVhmmADV9oSwqaBddbeWhM/SDlMrvOn6vn3QNwDlFsnxjmpaZIvQ=
+X-Received: by 2002:a25:df48:: with SMTP id w69mr2398266ybg.13.1644417895950;
+ Wed, 09 Feb 2022 06:44:55 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-To: usrp-users@lists.ettus.com
-Content-Language: en-US
-From: Giuseppe Santaromita <giuseppe.santaromita1@gmail.com>
-Message-ID-Hash: P7BLCLT7DGU6K4PQNIDAZYHX47N3TBXL
-X-Message-ID-Hash: P7BLCLT7DGU6K4PQNIDAZYHX47N3TBXL
-X-MailFrom: giuseppe.santaromita1@gmail.com
+References: <CAB__hTQtKRTNS+zMLKPS=i1YRUbJRmb4ofG=g0xhKuC383hU0Q@mail.gmail.com>
+ <CAL7q81v=oCQAeCWGETXKsUMG-_JKfPv1dum+8o6uEm_CosHSLg@mail.gmail.com>
+In-Reply-To: <CAL7q81v=oCQAeCWGETXKsUMG-_JKfPv1dum+8o6uEm_CosHSLg@mail.gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Wed, 9 Feb 2022 09:44:45 -0500
+Message-ID: <CAB__hTSF4+uSrZND88U=OkuYLaR=23Q3rO9vbww_vVeW5nTFoQ@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Message-ID-Hash: K2LCQ5TMTJUGCEZHPOWTYEL2V5CD33O6
+X-Message-ID-Hash: K2LCQ5TMTJUGCEZHPOWTYEL2V5CD33O6
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Mender Update Process N310
+Subject: [USRP-users] Re: Replay block propagation Bug?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P7BLCLT7DGU6K4PQNIDAZYHX47N3TBXL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K2LCQ5TMTJUGCEZHPOWTYEL2V5CD33O6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4077570962036658345=="
+Content-Type: multipart/mixed; boundary="===============8071880167217631913=="
 
-This is a multi-part message in MIME format.
---===============4077570962036658345==
-Content-Type: multipart/alternative;
- boundary="------------RxIMzHak7xwcaN99u0s7bmgM"
-Content-Language: en-US
+--===============8071880167217631913==
+Content-Type: multipart/alternative; boundary="0000000000008d47e805d796e03e"
 
-This is a multi-part message in MIME format.
---------------RxIMzHak7xwcaN99u0s7bmgM
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000008d47e805d796e03e
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks Jonathon,
+OK. I will give 'master' a try. But, I would really like to understand why
+this is happening so that I have a better understanding of how the
+action/property forwarding works. Given the two things I mentioned, the
+radio's policy of Drop and the fact that the Replay block uses different
+ports, it seems to me that either of these should allow a resolvable
+propagation.  Let me know if you have any thoughts on this.
+
+Maybe there are some things that are block-related rather than port-related
+(perhaps MTU policy?).  If that is the case, then for me it is a good
+argument for having four 1-port Replay blocks rather than one 4-port Replay
+block (and the same for DDC/DUC/Radio or any multi-port block).
+
+Rob
+
+On Wed, Feb 9, 2022 at 1:25 AM Jonathon Pendlum <jonathon.pendlum@ettus.com>
+wrote:
+
+> Hi Rob,
+>
+> 3) I see that on 'master', the Replay block was modified to change the
+>> default forwarding to Drop. Perhaps this would fix the issue, but it
+>> doesn't seem like it given that the Radio is already set to Drop.
+>
+>
+> I can't explain why when using different ports you still get the
+> propagation error, but I'd highly suggest giving the master branch a try.
+> It fixed the case you are describing when using the same port.
+>
+> Jonathon
+>
+> On Wed, Feb 9, 2022 at 12:22 AM Rob Kossler <rkossler@nd.edu> wrote:
+>
+>> Hi,
+>> I created a simple example that implements an RFNoC graph between the
+>> Replay block and the Radio block on an N310 using UHD 4.1.0.5.  The idea is
+>> that Replay Port 0 connects to the Tx Radio for playing out samples and
+>> then the same Rx Radio connects to Replay Port 1 for capturing the Rx
+>> samples.  The simple source code is included at the bottom of this email
+>> with the relevant part highlighted.
+>>
+>> The example produces the error message below which indicates a circular
+>> graph, I think. I can fix it by replacing the "connect_through_blocks()"
+>> with "graph->connect()" and skipping property propagation on one connection.
+>>
+>> I do not understand why this graph as-is causes a propagation error. Here
+>> are some remarks:
+>> 1) The Replay port numbers are different.  Given that the Replay
+>> controller on branch 4.1 does not modify the default forwarding and that
+>> the default forwarding is One-to-One, it seems that different port numbers
+>> should not cause a circular propagation.
+>> 2) Additionally, given that the Radio block sets its forwarding to Drop,
+>> it seems that there shouldn't be an issue even if the Replay block port
+>> numbers were the same.
+>> 3) I see that on 'master', the Replay block was modified to change the
+>> default forwarding to Drop. Perhaps this would fix the issue, but it
+>> doesn't seem like it given that the Radio is already set to Drop.
+>>
+>> Please let me know if you know why this graph causes an error.
+>> Rob
+>>
+>> // Console ERROR
+>> [ERROR] [RFNOC::GRAPH::DETAIL] Adding edge 0/DDC#0:0 -> 0/Replay#0:1
+>> without disabling property_propagation_active will lead to unresolvable
+>> graph!
+>> Error: RfnocError: Adding edge without disabling
+>> property_propagation_active will lead to unresolvable graph!
+>>
+>> // Example APPLICATION
+>> #include <uhd/rfnoc/block_id.hpp>
+>> #include <uhd/rfnoc/radio_control.hpp>
+>> #include <uhd/rfnoc/replay_block_control.hpp>
+>> #include <uhd/rfnoc_graph.hpp>
+>> #include <uhd/utils/graph_utils.hpp>
+>> #include <uhd/utils/safe_main.hpp>
+>> #include <boost/program_options.hpp>
+>>
+>> namespace po = boost::program_options;
+>>
+>> using std::cout;
+>> using std::endl;
+>>
+>> int UHD_SAFE_MAIN(int argc, char* argv[])
+>> {
+>> std::string args;
+>>
+>> po::options_description desc("Allowed Options");
+>> // clang-format off
+>> desc.add_options()
+>> ("help", "help message")
+>> ("args", po::value<std::string>(&args)->default_value(""), "multi uhd
+>> device address args")
+>> ;
+>>
+>> po::variables_map vm;
+>> po::store(po::parse_command_line(argc, argv, desc), vm);
+>> po::notify(vm);
+>>
+>> // Print help message
+>> if (vm.count("help"))
+>> {
+>> cout << "Replay graph test " << desc << endl;
+>> return EXIT_FAILURE;
+>> }
+>>
+>> /************************************************************************
+>> * Create device and block controls
+>> ***********************************************************************/
+>> cout << endl;
+>> cout << "Creating the RFNoC graph with args: " << args << endl << endl;
+>> uhd::rfnoc::rfnoc_graph::sptr graph = uhd::rfnoc::rfnoc_graph::make(args);
+>>
+>> // Create handle for radio object
+>> uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);
+>> auto radio_ctrl =
+>> graph->get_block<uhd::rfnoc::radio_control>(radio_ctrl_id);
+>>
+>> uhd::rfnoc::block_id_t replay_ctrl_id(0, "Replay", 0);
+>> auto replay_ctrl =
+>> graph->get_block<uhd::rfnoc::replay_block_control>(replay_ctrl_id);
+>>
+>> // Connect the Replay Port 0 to Tx Radio Port 0
+>> connect_through_blocks(graph, replay_ctrl_id, 0, radio_ctrl_id, 0);
+>>
+>> // Connect the Rx Radio Port 0 to Replay Port 1
+>> connect_through_blocks(graph, radio_ctrl_id, 0, replay_ctrl_id, 1);
+>>
+>> graph->commit();
+>>
+>> cout << "Active graph connections:" << endl;
+>> for (auto& edge : graph->enumerate_active_connections())
+>> cout << "* " << edge.to_string() << endl;
+>> cout << endl;
+>>
+>> return EXIT_SUCCESS;
+>> }
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+
+--0000000000008d47e805d796e03e
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi guys,
+<div dir=3D"ltr"><div dir=3D"ltr">Thanks Jonathon,<div>OK. I will give &#39=
+;master&#39; a try. But, I would really like to understand why this is happ=
+ening so that I have a better understanding of how the action/property forw=
+arding works. Given the two things I mentioned, the radio&#39;s policy of D=
+rop and the fact that the Replay block uses different ports, it seems to me=
+ that either of these should allow a resolvable propagation.=C2=A0 Let me k=
+now if you have any thoughts on this.</div><div><br></div><div>Maybe there =
+are some things that are block-related rather than port-related (perhaps MT=
+U policy?).=C2=A0 If that is the case, then for me it is a good argument fo=
+r having four 1-port Replay blocks rather than one 4-port Replay block (and=
+ the same for DDC/DUC/Radio or any multi-port block).</div><div><br></div><=
+div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Wed, Feb 9, 2022 at 1:25 AM Jonathon Pendlum &lt;<a href=3D=
+"mailto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
+tr">Hi Rob,<div><br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>3) I see that on &#39;master&#39;, the Replay block was modified to change=
+ the default forwarding to Drop. Perhaps this would fix the issue, but it d=
+oesn&#39;t seem like it given that the Radio is already set to Drop.</block=
+quote><div><br></div><div>I can&#39;t explain why when using different port=
+s you still get the propagation error, but I&#39;d highly suggest giving th=
+e master branch a try. It fixed the case you are describing when using the =
+same port.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 9, 2022 at 12=
+:22 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank"=
+>rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div dir=3D"ltr">Hi,<br><div>I created a simple example tha=
+t implements an RFNoC graph between the Replay block and the Radio block on=
+ an N310 using UHD 4.1.0.5.=C2=A0 The idea is that Replay Port 0 connects t=
+o the Tx Radio for playing out samples and then the same Rx Radio connects =
+to Replay Port 1 for capturing the Rx samples.=C2=A0 The simple source code=
+ is included at the bottom of this email with the relevant part highlighted=
+.=C2=A0</div><div><br></div><div>The example produces the error message bel=
+ow which indicates a circular graph, I think. I can fix it by replacing the=
+ &quot;connect_through_blocks()&quot; with &quot;graph-&gt;connect()&quot; =
+and skipping property propagation on one connection.</div><div><br></div><d=
+iv>I do not understand why this graph as-is causes=C2=A0a propagation error=
+. Here are some remarks:</div><div>1) The Replay port numbers are different=
+.=C2=A0 Given that the Replay controller on branch 4.1 does not modify the =
+default forwarding and that the default forwarding is One-to-One, it seems =
+that different port numbers should not cause a circular propagation.</div><=
+div>2) Additionally, given that the Radio block sets its forwarding to Drop=
+, it seems that there shouldn&#39;t be an issue even if the Replay block po=
+rt numbers were the same.</div><div>3) I see that on &#39;master&#39;, the =
+Replay block was modified to change the default forwarding to Drop. Perhaps=
+ this would fix the issue, but it doesn&#39;t seem like it given that the R=
+adio is already set to Drop.</div><div><br></div><div>Please let me know if=
+ you know why this graph causes an error.</div><div>Rob</div><div><br></div=
+><div>// Console ERROR</div><div><font color=3D"#ff0000">[ERROR] [RFNOC::GR=
+APH::DETAIL]</font> Adding edge 0/DDC#0:0 -&gt; 0/Replay#0:1 without disabl=
+ing property_propagation_active will lead to unresolvable graph!<br>Error: =
+RfnocError: Adding edge without disabling property_propagation_active will =
+lead to unresolvable graph!<br></div><div><br></div><div>// Example APPLICA=
+TION</div><div>#include &lt;uhd/rfnoc/block_id.hpp&gt;<br>#include &lt;uhd/=
+rfnoc/radio_control.hpp&gt;<br>#include &lt;uhd/rfnoc/replay_block_control.=
+hpp&gt;<br>#include &lt;uhd/rfnoc_graph.hpp&gt;<br>#include &lt;uhd/utils/g=
+raph_utils.hpp&gt;<br>#include &lt;uhd/utils/safe_main.hpp&gt;<br>#include =
+&lt;boost/program_options.hpp&gt;<br><br>namespace po =3D boost::program_op=
+tions;<br><br>using std::cout;<br>using std::endl;<br><br>int UHD_SAFE_MAIN=
+(int argc, char* argv[])<br>{<br>	std::string args;<br>	<br>	po::options_de=
+scription desc(&quot;Allowed Options&quot;);<br>	// clang-format off<br>	de=
+sc.add_options()<br>		(&quot;help&quot;, &quot;help message&quot;)<br>		(&q=
+uot;args&quot;, po::value&lt;std::string&gt;(&amp;args)-&gt;default_value(&=
+quot;&quot;), &quot;multi uhd device address args&quot;)<br>	;<br><br>	po::=
+variables_map vm;<br>	po::store(po::parse_command_line(argc, argv, desc), v=
+m);<br>	po::notify(vm);<br><br>	// Print help message<br>	if (vm.count(&quo=
+t;help&quot;)) <br>	{<br>		cout &lt;&lt; &quot;Replay graph test &quot; &lt=
+;&lt; desc &lt;&lt; endl;<br>		return EXIT_FAILURE;<br>	}<br><br>	/********=
+****************************************************************<br>	 * Cre=
+ate device and block controls<br>	 ****************************************=
+*******************************/<br>	cout &lt;&lt; endl;<br>	cout &lt;&lt; =
+&quot;Creating the RFNoC graph with args: &quot; &lt;&lt; args &lt;&lt; end=
+l &lt;&lt; endl;<br>	uhd::rfnoc::rfnoc_graph::sptr graph =3D uhd::rfnoc::rf=
+noc_graph::make(args);<br><br>	// Create handle for radio object<br>	uhd::r=
+fnoc::block_id_t radio_ctrl_id(0, &quot;Radio&quot;, 0);<br>	auto radio_ctr=
+l =3D graph-&gt;get_block&lt;uhd::rfnoc::radio_control&gt;(radio_ctrl_id);<=
+br>	<br>	uhd::rfnoc::block_id_t replay_ctrl_id(0, &quot;Replay&quot;, 0);<b=
+r>	auto replay_ctrl =3D graph-&gt;get_block&lt;uhd::rfnoc::replay_block_con=
+trol&gt;(replay_ctrl_id);<br><br><span style=3D"background-color:rgb(255,25=
+5,0)">	// Connect the Replay Port 0 to Tx Radio Port 0<br>	connect_through_=
+blocks(graph, replay_ctrl_id, 0, radio_ctrl_id, 0);<br>	<br>	// Connect the=
+ Rx Radio Port 0 to Replay Port 1<br>	connect_through_blocks(graph, radio_c=
+trl_id, 0, replay_ctrl_id, 1);<br>	<br>	graph-&gt;commit();<br></span>	<br>=
+	cout &lt;&lt; &quot;Active graph connections:&quot; &lt;&lt; endl;<br>	for=
+ (auto&amp; edge : graph-&gt;enumerate_active_connections()) <br>		cout &lt=
+;&lt; &quot;* &quot; &lt;&lt; edge.to_string() &lt;&lt; endl;<br>	cout &lt;=
+&lt; endl;<br><br>	return EXIT_SUCCESS;<br>}<br></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div></div>
 
-I'm trying to update the USRP N310 following this guide:=20
-https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide in=20
-particolar "Mender Update Process".
+--0000000000008d47e805d796e03e--
 
-The results is the follows.
-
-Can anyone help me?
-
-Giuseppe
-
-
-
-mender -rootfs /home/root/usrp_n3xx_fs.mender
-Incorrect Usage. flag provided but not defined: -rootfs
-
-NAME:
- =C2=A0=C2=A0 mender - manage and start the Mender client.
-
-USAGE:
- =C2=A0=C2=A0 [global options] command [command options] [arguments...]
-
-VERSION:
- =C2=A0=C2=A0 a78b45e=C2=A0 runtime: go1.12.9
-
-DESCRIPTION:
- =C2=A0=C2=A0 mender integrates both the mender daemon and commands for m=
-anually=20
-performing tasks performed by
- =C2=A0=C2=A0 the daemon (see list of COMMANDS below).
-
-Global flag remarks:
- =C2=A0 - Supported log levels incudes: 'debug', 'info', 'warning', 'erro=
-r',=20
-'panic' and 'fatal'.
-
-
-COMMANDS:
- =C2=A0=C2=A0 bootstrap=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Perform boots=
-trap and exit.
- =C2=A0=C2=A0 check-update=C2=A0=C2=A0=C2=A0 Force update check.
- =C2=A0=C2=A0 commit=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- Commit current Artifact. Returns (2) if no update in=20
-progress.
- =C2=A0=C2=A0 daemon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- Start the client as a background service.
- =C2=A0=C2=A0 install=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Men=
-der Artifact to install - local file or a `URL`.
- =C2=A0=C2=A0 rollback=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Rollback=
- current Artifact. Returns (2) if no update=20
-in progress.
- =C2=A0=C2=A0 send-inventory=C2=A0 Force inventory update.
- =C2=A0=C2=A0 setup=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 Perform configuration setup - 'mender setup --help'=20
-for command options.
- =C2=A0=C2=A0 snapshot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Create f=
-ilesystem snapshot -'mender snapshot --help'=20
-for more.
- =C2=A0=C2=A0 show-artifact=C2=A0=C2=A0 Print the current artifact name t=
-o the command line=20
-and exit.
- =C2=A0=C2=A0 help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 Shows a list of commands or help for one command
-
-GLOBAL OPTIONS:
- =C2=A0=C2=A0 --config FILE, -c FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 Configuration FILE path. (default:=20
-"/etc/mender/mender.conf")
- =C2=A0=C2=A0 --fallback-config FILE, -b FILE=C2=A0 Fallback configuratio=
-n FILE path.=20
-(default:
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "/var/lib=
-/mender/mender.conf")
- =C2=A0=C2=A0 --data DIR, -d DIR=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mender state data DIRECTORY pa=
-th.=20
-(default: "/var/lib/mender")
- =C2=A0=C2=A0 --log-file FILE, -L FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 FILE to log to.
- =C2=A0=C2=A0 --log-level level, -l level=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 S=
-et logging level. (default: "info")
- =C2=A0=C2=A0 --log-modules value, -m value=C2=A0=C2=A0=C2=A0 -log-module=
-s is accepted for=20
-compatibility but has no effect
- =C2=A0=C2=A0 --trusted-certs FILE, -E FILE=C2=A0=C2=A0=C2=A0 Trusted ser=
-ver certificates FILE path.
- =C2=A0=C2=A0 --forcebootstrap, -F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Force bootstrap. (default: false)
- =C2=A0=C2=A0 --no-syslog=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 Disable logging to syslog.=20
-(default: false)
- =C2=A0=C2=A0 --skipverify=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-Skip certificate verification.=20
-(default: false)
- =C2=A0=C2=A0 --help, -h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 show help (default: false)
- =C2=A0=C2=A0 --version, -v=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print =
-the version (default: false)
-
-ERRO[0000] flag provided but not defined: -rootfs
-
---------------RxIMzHak7xwcaN99u0s7bmgM
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Hi guys,</p>
-    <p>I'm trying to update the USRP N310 following this guide:
-      <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/USR=
-P_N300/N310/N320/N321_Getting_Started_Guide">https://kb.ettus.com/USRP_N3=
-00/N310/N320/N321_Getting_Started_Guide</a>
-      in particolar "Mender Update Process".</p>
-    <p>The results is the follows.</p>
-    <p>Can anyone help me? <br>
-    </p>
-    <p>Giuseppe<br>
-    </p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
-    <p align=3D"left">mender -rootfs /home/root/usrp_n3xx_fs.mender<br>
-      Incorrect Usage. flag provided but not defined: -rootfs<br>
-      <br>
-      NAME:<br>
-      =C2=A0=C2=A0 mender - manage and start the Mender client.<br>
-      <br>
-      USAGE:<br>
-      =C2=A0=C2=A0 [global options] command [command options] [arguments.=
-..]<br>
-      <br>
-      VERSION:<br>
-      =C2=A0=C2=A0 a78b45e=C2=A0 runtime: go1.12.9<br>
-      <br>
-      DESCRIPTION:<br>
-      =C2=A0=C2=A0 mender integrates both the mender daemon and commands =
-for
-      manually performing tasks performed by<br>
-      =C2=A0=C2=A0 the daemon (see list of COMMANDS below).<br>
-      <br>
-      Global flag remarks:<br>
-      =C2=A0 - Supported log levels incudes: 'debug', 'info', 'warning',
-      'error', 'panic' and 'fatal'.<br>
-      <br>
-      <br>
-      COMMANDS:<br>
-      =C2=A0=C2=A0 bootstrap=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Perform =
-bootstrap and exit.<br>
-      =C2=A0=C2=A0 check-update=C2=A0=C2=A0=C2=A0 Force update check.<br>
-      =C2=A0=C2=A0 commit=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 Commit current Artifact. Returns (2) if no
-      update in progress.<br>
-      =C2=A0=C2=A0 daemon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 Start the client as a background service.<br>
-      =C2=A0=C2=A0 install=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- Mender Artifact to install - local file or a
-      `URL`.<br>
-      =C2=A0=C2=A0 rollback=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Rol=
-lback current Artifact. Returns (2) if no
-      update in progress.<br>
-      =C2=A0=C2=A0 send-inventory=C2=A0 Force inventory update.<br>
-      =C2=A0=C2=A0 setup=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 Perform configuration setup - 'mender setup
-      --help' for command options.<br>
-      =C2=A0=C2=A0 snapshot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Cre=
-ate filesystem snapshot -'mender snapshot
-      --help' for more.<br>
-      =C2=A0=C2=A0 show-artifact=C2=A0=C2=A0 Print the current artifact n=
-ame to the command
-      line and exit.<br>
-      =C2=A0=C2=A0 help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 Shows a list of commands or help for one
-      command<br>
-      <br>
-      GLOBAL OPTIONS:<br>
-      =C2=A0=C2=A0 --config FILE, -c FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 Configuration FILE path.
-      (default: "/etc/mender/mender.conf")<br>
-      =C2=A0=C2=A0 --fallback-config FILE, -b FILE=C2=A0 Fallback configu=
-ration FILE
-      path. (default:<br>
-      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "/var/=
-lib/mender/mender.conf")<br>
-      =C2=A0=C2=A0 --data DIR, -d DIR=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mender state data DIRECT=
-ORY
-      path. (default: "/var/lib/mender")<br>
-      =C2=A0=C2=A0 --log-file FILE, -L FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 FILE to log to.<br>
-      =C2=A0=C2=A0 --log-level level, -l level=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 Set logging level. (default:
-      "info")<br>
-      =C2=A0=C2=A0 --log-modules value, -m value=C2=A0=C2=A0=C2=A0 -log-m=
-odules is accepted for
-      compatibility but has no effect<br>
-      =C2=A0=C2=A0 --trusted-certs FILE, -E FILE=C2=A0=C2=A0=C2=A0 Truste=
-d server certificates
-      FILE path.<br>
-      =C2=A0=C2=A0 --forcebootstrap, -F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Force bootstrap. (default:
-      false)<br>
-      =C2=A0=C2=A0 --no-syslog=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 Disable logging to syslog.
-      (default: false)<br>
-      =C2=A0=C2=A0 --skipverify=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 Skip certificate verification.
-      (default: false)<br>
-      =C2=A0=C2=A0 --help, -h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 show help (default: false)<br>
-      =C2=A0=C2=A0 --version, -v=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-print the version (default:
-      false)</p>
-    <p>
-      ERRO[0000] flag provided but not defined: -rootfs=C2=A0=C2=A0=C2=A0=
-=C2=A0 <br>
-    </p>
-  </body>
-</html>
-
---------------RxIMzHak7xwcaN99u0s7bmgM--
-
---===============4077570962036658345==
+--===============8071880167217631913==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -333,4 +330,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4077570962036658345==--
+--===============8071880167217631913==--
