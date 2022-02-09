@@ -2,391 +2,217 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FA94AF56D
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 16:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E25314AF643
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 17:15:19 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A58B2384BBD
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 10:36:08 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id ED21C384951
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 11:15:18 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Ff5J16mT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QnaW6F9U";
 	dkim-atps=neutral
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id AB73A384BD7
-	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 10:32:33 -0500 (EST)
-Received: by mail-yb1-f181.google.com with SMTP id bt13so7088708ybb.2
-        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 07:32:33 -0800 (PST)
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 53D4B38483A
+	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 11:14:21 -0500 (EST)
+Received: by mail-qt1-f176.google.com with SMTP id b5so2178382qtq.11
+        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 08:14:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i80HRjZLaRkq9aLarJxIur/EjmxHbAIAfnmKak7sFYk=;
-        b=Ff5J16mTVM7e40SNk4koMemsKzRVs9Bpa3+yV9bUl42FWV9HfhRascdnY6PZoNW9eL
-         H6iTN63Skwy5pHy9iXW8NzLxs9MN9A4qXP06g19eIHqB1m1M1TtWKLEJ+4V4jwiS1nnC
-         tcJTXhJDy3uGbuUlrX5XbsOIUpT2V6q348Rr5JbqfDOKBZTNGrE0xrADQJhblkP+gtey
-         ZbnEOHzxLsO5kL3TW0Fv8Krl6VjXhrZdm28eoXzt09LpK4frw31IU904ZlPlIWK6U1Mf
-         Aj3dtpZp1L+IZRpD08iajVFq7/5EJ8CnU0wG6eIfFNccrjtD9YKZXBjTd2z8cmCQabC/
-         QFuQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=va0mPLcXWn9uXGjs2OXLf412hYqq2XAzTqSmL8gDYtM=;
+        b=QnaW6F9U4rYOKy9AUDEvJTCbZ3e3BeTH8b46vqRukxKuHQbDl1iMNOKkv69EW3Xw9O
+         1GrD67SYcg1WJYb/TRYs55kbY0OUwrzXudG3uqbNsWp2+WlBFrXqI5Fg/pLd+WbJKrth
+         lDpUVT6F+ae9BhMdI6ebZ3dV8NIOa/cHyZ2ko5f52yWAxWdRw96wME1nkzj0Umy6QWcv
+         do8QzC+0SX6RXstDnumaIwz69LYSaw26b7oY8Lx4fDbpeB4l+3W3J+p0CkYFF/cdnMvP
+         zvlbcKBk61lQk89oYU7ROdMHciCghPEs6b9me1nw8+3cvNELvmIlFlstE2zC5R+sb7x/
+         DqAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i80HRjZLaRkq9aLarJxIur/EjmxHbAIAfnmKak7sFYk=;
-        b=L2/gszxTyylU+lkPszbqyIc4meDN94G7lySWVbQCTTAOy8zjouIDce7o2dLxgKnvWN
-         jFXB04vbsb672jkdF6GDQ89bY6V6iReZ6ihoN8hIfKrQfEP+gXvrFqzfPuvsneclSdOQ
-         tJ1+WaCoGO1Baz1TVJCDkTTuzMrG22CXTYlgMLNCuN1Yex6WtE0Jcwnq0B4/kEMh7vDN
-         TfF2wi21uffM82qeNCse7na8HzJQiesI7za4I5OIPmbowB13tU/reDYwFxrIzi0NGkKH
-         Tzwhv0oyofQlEX0kMGNeMiv8Ft9t11sxWOqDAXRgpeqxW8XqKy/Wh6A2c3uZylxxrr/y
-         inDg==
-X-Gm-Message-State: AOAM530jVBCBUNaaorJ9sLai/9w0bpkaQqVdRfxWCnZxTTPc5oufGjxa
-	5ch4aw8e2vhCAzFYphy8RZgbU3I1AXdLO89KwMGPz6nm2jwEQA==
-X-Google-Smtp-Source: ABdhPJyDsjt7W5jxGime39NeSb2f/cBszreKiUKKxh7jCKyXfYHiV1Tj6dQwmZVUz09tc/3HxBWQ1cKwYI6TIDe110k=
-X-Received: by 2002:a81:5646:: with SMTP id k67mr2659589ywb.76.1644420752673;
- Wed, 09 Feb 2022 07:32:32 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=va0mPLcXWn9uXGjs2OXLf412hYqq2XAzTqSmL8gDYtM=;
+        b=vNo1rn7y13bdex5NtqlqxvR/kfB4h+n2Dj1scg1N9zYd9hWEwWH+6Kvte3d7QK7hXU
+         GC8gsGpGhGN+AJUeiW8/F0PkkywB5ZN+68JHZrwN3GA3E1SrXLw2Hh6emV5XeTQC7F9T
+         BL1fj+VAqf4hwK7JgVromMqpXkbOSrRfDx/IjZwZwL2XFUtHLxJmHCLnYek8cko9Coh8
+         BOac9FxepVi4ZO0PGYJJIKavj6QPrAIfpZ1MCyANa79RjZZ/A5B5DJEe1h3/pZHRyibG
+         YM4uBYbJEEUdetCYmSI+h4tmsHFXfe0YzVB9T4M7lnY/6AUH47fIYVqSBwYg1+GWVu/g
+         0LEA==
+X-Gm-Message-State: AOAM533yBIJWRhZY3PGYwJ4za/KTWqwr9BOnJeCE7LybAGFwDugll2XD
+	Nuyipz5JMZH8MNkdQatr1dqmv73mw2ixSg==
+X-Google-Smtp-Source: ABdhPJwxAHma4v0eRZI1TXGk4+QYpJIWDXF0vHwIZQ5NrzCiJy6dj9lRf2TCk6ERQPSbM51rpe+Sfw==
+X-Received: by 2002:a05:622a:1184:: with SMTP id m4mr1857612qtk.477.1644423260814;
+        Wed, 09 Feb 2022 08:14:20 -0800 (PST)
+Received: from [192.168.2.223] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id d6sm9027824qty.40.2022.02.09.08.14.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Feb 2022 08:14:20 -0800 (PST)
+Message-ID: <8277c5d5-d6de-393c-832b-43d53ff9aa29@gmail.com>
+Date: Wed, 9 Feb 2022 11:14:18 -0500
 MIME-Version: 1.0
-References: <CAB__hTQtKRTNS+zMLKPS=i1YRUbJRmb4ofG=g0xhKuC383hU0Q@mail.gmail.com>
- <CAL7q81v=oCQAeCWGETXKsUMG-_JKfPv1dum+8o6uEm_CosHSLg@mail.gmail.com> <CAB__hTSF4+uSrZND88U=OkuYLaR=23Q3rO9vbww_vVeW5nTFoQ@mail.gmail.com>
-In-Reply-To: <CAB__hTSF4+uSrZND88U=OkuYLaR=23Q3rO9vbww_vVeW5nTFoQ@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Wed, 9 Feb 2022 10:32:21 -0500
-Message-ID: <CAB__hTS+kJYdEFfA0FVbJ1fnLBXu-kBXba4nZSAujQpDw+xaLQ@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Content-Type: multipart/mixed; boundary="000000000000d3877a05d7978afe"
-Message-ID-Hash: IIXY2KIXXM3ZD2SNV3DKGLLUAQOBWWGX
-X-Message-ID-Hash: IIXY2KIXXM3ZD2SNV3DKGLLUAQOBWWGX
-X-MailFrom: rkossler@nd.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To: Emanuel.Staudinger@dlr.de, usrp-users@lists.ettus.com
+References: <f4069dea5a274141ae4b9952254b177a@dlr.de>
+ <84c7f9ba-91c4-58f2-f4e0-94828ac2a5bc@gmail.com>
+ <de238b3f8bf447be9393e5b22d13b97f@dlr.de>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <de238b3f8bf447be9393e5b22d13b97f@dlr.de>
+Message-ID-Hash: RZJC4EG6NGJOJQXHNSZHJW6GMF5Y6CZL
+X-Message-ID-Hash: RZJC4EG6NGJOJQXHNSZHJW6GMF5Y6CZL
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Replay block propagation Bug?
+Subject: [USRP-users] Re: B200 group delay variations
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IIXY2KIXXM3ZD2SNV3DKGLLUAQOBWWGX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RZJC4EG6NGJOJQXHNSZHJW6GMF5Y6CZL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============6148679500017333500=="
 
---000000000000d3877a05d7978afe
-Content-Type: multipart/alternative; boundary="000000000000d3877705d7978afc"
+This is a multi-part message in MIME format.
+--===============6148679500017333500==
+Content-Type: multipart/alternative;
+ boundary="------------xaVdOKo43O111Vmku70aTysT"
+Content-Language: en-US
 
---000000000000d3877705d7978afc
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Jonathon,
-I tried it on 'master' and it still fails.  Attached is a modified version
-of my simple example. The new version allows you to specify desired port
-numbers on the command line.
-Rob
-
-On Wed, Feb 9, 2022 at 9:44 AM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Thanks Jonathon,
-> OK. I will give 'master' a try. But, I would really like to understand why
-> this is happening so that I have a better understanding of how the
-> action/property forwarding works. Given the two things I mentioned, the
-> radio's policy of Drop and the fact that the Replay block uses different
-> ports, it seems to me that either of these should allow a resolvable
-> propagation.  Let me know if you have any thoughts on this.
->
-> Maybe there are some things that are block-related rather than
-> port-related (perhaps MTU policy?).  If that is the case, then for me it is
-> a good argument for having four 1-port Replay blocks rather than one 4-port
-> Replay block (and the same for DDC/DUC/Radio or any multi-port block).
->
-> Rob
->
-> On Wed, Feb 9, 2022 at 1:25 AM Jonathon Pendlum <
-> jonathon.pendlum@ettus.com> wrote:
->
->> Hi Rob,
->>
->> 3) I see that on 'master', the Replay block was modified to change the
->>> default forwarding to Drop. Perhaps this would fix the issue, but it
->>> doesn't seem like it given that the Radio is already set to Drop.
->>
->>
->> I can't explain why when using different ports you still get the
->> propagation error, but I'd highly suggest giving the master branch a try.
->> It fixed the case you are describing when using the same port.
->>
->> Jonathon
->>
->> On Wed, Feb 9, 2022 at 12:22 AM Rob Kossler <rkossler@nd.edu> wrote:
->>
->>> Hi,
->>> I created a simple example that implements an RFNoC graph between the
->>> Replay block and the Radio block on an N310 using UHD 4.1.0.5.  The idea is
->>> that Replay Port 0 connects to the Tx Radio for playing out samples and
->>> then the same Rx Radio connects to Replay Port 1 for capturing the Rx
->>> samples.  The simple source code is included at the bottom of this email
->>> with the relevant part highlighted.
->>>
->>> The example produces the error message below which indicates a circular
->>> graph, I think. I can fix it by replacing the "connect_through_blocks()"
->>> with "graph->connect()" and skipping property propagation on one connection.
->>>
->>> I do not understand why this graph as-is causes a propagation error.
->>> Here are some remarks:
->>> 1) The Replay port numbers are different.  Given that the Replay
->>> controller on branch 4.1 does not modify the default forwarding and that
->>> the default forwarding is One-to-One, it seems that different port numbers
->>> should not cause a circular propagation.
->>> 2) Additionally, given that the Radio block sets its forwarding to Drop,
->>> it seems that there shouldn't be an issue even if the Replay block port
->>> numbers were the same.
->>> 3) I see that on 'master', the Replay block was modified to change the
->>> default forwarding to Drop. Perhaps this would fix the issue, but it
->>> doesn't seem like it given that the Radio is already set to Drop.
->>>
->>> Please let me know if you know why this graph causes an error.
->>> Rob
->>>
->>> // Console ERROR
->>> [ERROR] [RFNOC::GRAPH::DETAIL] Adding edge 0/DDC#0:0 -> 0/Replay#0:1
->>> without disabling property_propagation_active will lead to unresolvable
->>> graph!
->>> Error: RfnocError: Adding edge without disabling
->>> property_propagation_active will lead to unresolvable graph!
->>>
->>> // Example APPLICATION
->>> #include <uhd/rfnoc/block_id.hpp>
->>> #include <uhd/rfnoc/radio_control.hpp>
->>> #include <uhd/rfnoc/replay_block_control.hpp>
->>> #include <uhd/rfnoc_graph.hpp>
->>> #include <uhd/utils/graph_utils.hpp>
->>> #include <uhd/utils/safe_main.hpp>
->>> #include <boost/program_options.hpp>
->>>
->>> namespace po = boost::program_options;
->>>
->>> using std::cout;
->>> using std::endl;
->>>
->>> int UHD_SAFE_MAIN(int argc, char* argv[])
->>> {
->>> std::string args;
->>>
->>> po::options_description desc("Allowed Options");
->>> // clang-format off
->>> desc.add_options()
->>> ("help", "help message")
->>> ("args", po::value<std::string>(&args)->default_value(""), "multi uhd
->>> device address args")
->>> ;
->>>
->>> po::variables_map vm;
->>> po::store(po::parse_command_line(argc, argv, desc), vm);
->>> po::notify(vm);
->>>
->>> // Print help message
->>> if (vm.count("help"))
->>> {
->>> cout << "Replay graph test " << desc << endl;
->>> return EXIT_FAILURE;
->>> }
->>>
->>> /************************************************************************
->>> * Create device and block controls
->>> ***********************************************************************/
->>> cout << endl;
->>> cout << "Creating the RFNoC graph with args: " << args << endl << endl;
->>> uhd::rfnoc::rfnoc_graph::sptr graph =
->>> uhd::rfnoc::rfnoc_graph::make(args);
->>>
->>> // Create handle for radio object
->>> uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);
->>> auto radio_ctrl =
->>> graph->get_block<uhd::rfnoc::radio_control>(radio_ctrl_id);
->>>
->>> uhd::rfnoc::block_id_t replay_ctrl_id(0, "Replay", 0);
->>> auto replay_ctrl =
->>> graph->get_block<uhd::rfnoc::replay_block_control>(replay_ctrl_id);
->>>
->>> // Connect the Replay Port 0 to Tx Radio Port 0
->>> connect_through_blocks(graph, replay_ctrl_id, 0, radio_ctrl_id, 0);
->>>
->>> // Connect the Rx Radio Port 0 to Replay Port 1
->>> connect_through_blocks(graph, radio_ctrl_id, 0, replay_ctrl_id, 1);
->>>
->>> graph->commit();
->>>
->>> cout << "Active graph connections:" << endl;
->>> for (auto& edge : graph->enumerate_active_connections())
->>> cout << "* " << edge.to_string() << endl;
->>> cout << endl;
->>>
->>> return EXIT_SUCCESS;
->>> }
->>> _______________________________________________
->>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>
->>
-
---000000000000d3877705d7978afc
-Content-Type: text/html; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------xaVdOKo43O111Vmku70aTysT
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Jonathon,<div>I tried it on &#39;master&#39; and it sti=
-ll fails.=C2=A0 Attached is a modified version of my simple example. The ne=
-w version allows you to specify desired port numbers on the command line.</=
-div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
-ss=3D"gmail_attr">On Wed, Feb 9, 2022 at 9:44 AM Rob Kossler &lt;<a href=3D=
-"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">T=
-hanks Jonathon,<div>OK. I will give &#39;master&#39; a try. But, I would re=
-ally like to understand why this is happening so that I have a better under=
-standing of how the action/property forwarding works. Given the two things =
-I mentioned, the radio&#39;s policy of Drop and the fact that the Replay bl=
-ock uses different ports, it seems to me that either of these should allow =
-a resolvable propagation.=C2=A0 Let me know if you have any thoughts on thi=
-s.</div><div><br></div><div>Maybe there are some things that are block-rela=
-ted rather than port-related (perhaps MTU policy?).=C2=A0 If that is the ca=
-se, then for me it is a good argument for having four 1-port Replay blocks =
-rather than one 4-port Replay block (and the same for DDC/DUC/Radio or any =
-multi-port block).</div><div><br></div><div>Rob</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 9, 2022 =
-at 1:25 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.co=
-m" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Rob,<div=
-><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">3) I see that =
-on &#39;master&#39;, the Replay block was modified to change the default fo=
-rwarding to Drop. Perhaps this would fix the issue, but it doesn&#39;t seem=
- like it given that the Radio is already set to Drop.</blockquote><div><br>=
-</div><div>I can&#39;t explain why when using different ports you still get=
- the propagation error, but I&#39;d highly suggest giving the master branch=
- a try. It fixed the case you are describing when using the same port.</div=
-><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 9, 2022 at 12:22 AM Rob Koss=
-ler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.ed=
-u</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div dir=3D"ltr">Hi,<br><div>I created a simple example that implements an=
- RFNoC graph between the Replay block and the Radio block on an N310 using =
-UHD 4.1.0.5.=C2=A0 The idea is that Replay Port 0 connects to the Tx Radio =
-for playing out samples and then the same Rx Radio connects to Replay Port =
-1 for capturing the Rx samples.=C2=A0 The simple source code is included at=
- the bottom of this email with the relevant part highlighted.=C2=A0</div><d=
-iv><br></div><div>The example produces the error message below which indica=
-tes a circular graph, I think. I can fix it by replacing the &quot;connect_=
-through_blocks()&quot; with &quot;graph-&gt;connect()&quot; and skipping pr=
-operty propagation on one connection.</div><div><br></div><div>I do not und=
-erstand why this graph as-is causes=C2=A0a propagation error. Here are some=
- remarks:</div><div>1) The Replay port numbers are different.=C2=A0 Given t=
-hat the Replay controller on branch 4.1 does not modify the default forward=
-ing and that the default forwarding is One-to-One, it seems that different =
-port numbers should not cause a circular propagation.</div><div>2) Addition=
-ally, given that the Radio block sets its forwarding to Drop, it seems that=
- there shouldn&#39;t be an issue even if the Replay block port numbers were=
- the same.</div><div>3) I see that on &#39;master&#39;, the Replay block wa=
-s modified to change the default forwarding to Drop. Perhaps this would fix=
- the issue, but it doesn&#39;t seem like it given that the Radio is already=
- set to Drop.</div><div><br></div><div>Please let me know if you know why t=
-his graph causes an error.</div><div>Rob</div><div><br></div><div>// Consol=
-e ERROR</div><div><font color=3D"#ff0000">[ERROR] [RFNOC::GRAPH::DETAIL]</f=
-ont> Adding edge 0/DDC#0:0 -&gt; 0/Replay#0:1 without disabling property_pr=
-opagation_active will lead to unresolvable graph!<br>Error: RfnocError: Add=
-ing edge without disabling property_propagation_active will lead to unresol=
-vable graph!<br></div><div><br></div><div>// Example APPLICATION</div><div>=
-#include &lt;uhd/rfnoc/block_id.hpp&gt;<br>#include &lt;uhd/rfnoc/radio_con=
-trol.hpp&gt;<br>#include &lt;uhd/rfnoc/replay_block_control.hpp&gt;<br>#inc=
-lude &lt;uhd/rfnoc_graph.hpp&gt;<br>#include &lt;uhd/utils/graph_utils.hpp&=
-gt;<br>#include &lt;uhd/utils/safe_main.hpp&gt;<br>#include &lt;boost/progr=
-am_options.hpp&gt;<br><br>namespace po =3D boost::program_options;<br><br>u=
-sing std::cout;<br>using std::endl;<br><br>int UHD_SAFE_MAIN(int argc, char=
-* argv[])<br>{<br>	std::string args;<br>	<br>	po::options_description desc(=
-&quot;Allowed Options&quot;);<br>	// clang-format off<br>	desc.add_options(=
-)<br>		(&quot;help&quot;, &quot;help message&quot;)<br>		(&quot;args&quot;,=
- po::value&lt;std::string&gt;(&amp;args)-&gt;default_value(&quot;&quot;), &=
-quot;multi uhd device address args&quot;)<br>	;<br><br>	po::variables_map v=
-m;<br>	po::store(po::parse_command_line(argc, argv, desc), vm);<br>	po::not=
-ify(vm);<br><br>	// Print help message<br>	if (vm.count(&quot;help&quot;)) =
-<br>	{<br>		cout &lt;&lt; &quot;Replay graph test &quot; &lt;&lt; desc &lt;=
-&lt; endl;<br>		return EXIT_FAILURE;<br>	}<br><br>	/***********************=
-*************************************************<br>	 * Create device and =
-block controls<br>	 *******************************************************=
-****************/<br>	cout &lt;&lt; endl;<br>	cout &lt;&lt; &quot;Creating =
-the RFNoC graph with args: &quot; &lt;&lt; args &lt;&lt; endl &lt;&lt; endl=
-;<br>	uhd::rfnoc::rfnoc_graph::sptr graph =3D uhd::rfnoc::rfnoc_graph::make=
-(args);<br><br>	// Create handle for radio object<br>	uhd::rfnoc::block_id_=
-t radio_ctrl_id(0, &quot;Radio&quot;, 0);<br>	auto radio_ctrl =3D graph-&gt=
-;get_block&lt;uhd::rfnoc::radio_control&gt;(radio_ctrl_id);<br>	<br>	uhd::r=
-fnoc::block_id_t replay_ctrl_id(0, &quot;Replay&quot;, 0);<br>	auto replay_=
-ctrl =3D graph-&gt;get_block&lt;uhd::rfnoc::replay_block_control&gt;(replay=
-_ctrl_id);<br><br><span style=3D"background-color:rgb(255,255,0)">	// Conne=
-ct the Replay Port 0 to Tx Radio Port 0<br>	connect_through_blocks(graph, r=
-eplay_ctrl_id, 0, radio_ctrl_id, 0);<br>	<br>	// Connect the Rx Radio Port =
-0 to Replay Port 1<br>	connect_through_blocks(graph, radio_ctrl_id, 0, repl=
-ay_ctrl_id, 1);<br>	<br>	graph-&gt;commit();<br></span>	<br>	cout &lt;&lt; =
-&quot;Active graph connections:&quot; &lt;&lt; endl;<br>	for (auto&amp; edg=
-e : graph-&gt;enumerate_active_connections()) <br>		cout &lt;&lt; &quot;* &=
-quot; &lt;&lt; edge.to_string() &lt;&lt; endl;<br>	cout &lt;&lt; endl;<br><=
-br>	return EXIT_SUCCESS;<br>}<br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
+On 2022-02-09 01:32, Emanuel.Staudinger@dlr.de wrote:
+>
+> Hi Marcus,
+>
+> Thanks for thoughts on this. We also believe that is has to do with=20
+> the calibration mechanism of the AD9361, due to the very low=20
+> sub-sample delay change.
+>
+> Any thoughts from the Ettus team? Is there a way to retrieve=20
+> calibration information from the RFIC in UHD? This could help to=20
+> identify if there is a correlation between calibration setting and the=20
+> group delay change.
+>
+> Best regards,
+>
+> Emanuel
+>
+>
+Since UHD is an API that strives to provide an *abstraction* from the=20
+hardware, the RFIC details are not exposed
+ =C2=A0 through the usual UHD API.=C2=A0=C2=A0 You will need to dive into=
+ the UHD=20
+source code=C2=A0 and into the low-level AD9361
+ =C2=A0 driver to extract any of that information.
 
---000000000000d3877705d7978afc--
 
---000000000000d3877a05d7978afe
-Content-Type: text/x-c++src; charset="US-ASCII"; name="rfnoc_graph_test.cpp"
-Content-Disposition: attachment; filename="rfnoc_graph_test.cpp"
-Content-Transfer-Encoding: base64
-Content-ID: <f_kzfpn3ab0>
-X-Attachment-Id: f_kzfpn3ab0
+--------------xaVdOKo43O111Vmku70aTysT
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I2luY2x1ZGUgPHVoZC9yZm5vYy9ibG9ja19pZC5ocHA+CiNpbmNsdWRlIDx1aGQvcmZub2MvcmFk
-aW9fY29udHJvbC5ocHA+CiNpbmNsdWRlIDx1aGQvcmZub2MvcmVwbGF5X2Jsb2NrX2NvbnRyb2wu
-aHBwPgojaW5jbHVkZSA8dWhkL3Jmbm9jX2dyYXBoLmhwcD4KI2luY2x1ZGUgPHVoZC91dGlscy9n
-cmFwaF91dGlscy5ocHA+CiNpbmNsdWRlIDx1aGQvdXRpbHMvc2FmZV9tYWluLmhwcD4KI2luY2x1
-ZGUgPGJvb3N0L3Byb2dyYW1fb3B0aW9ucy5ocHA+CgpuYW1lc3BhY2UgcG8gPSBib29zdDo6cHJv
-Z3JhbV9vcHRpb25zOwoKdXNpbmcgc3RkOjpjb3V0Owp1c2luZyBzdGQ6OmVuZGw7CgppbnQgVUhE
-X1NBRkVfTUFJTihpbnQgYXJnYywgY2hhciogYXJndltdKQp7CglzdGQ6OnN0cmluZyBhcmdzOwoJ
-c2l6ZV90IHJlcGxheV9wbGF5X3BvcnQsIHJlcGxheV9yZWNvcmRfcG9ydDsKCQoJcG86Om9wdGlv
-bnNfZGVzY3JpcHRpb24gZGVzYygiQWxsb3dlZCBPcHRpb25zIik7CgkvLyBjbGFuZy1mb3JtYXQg
-b2ZmCglkZXNjLmFkZF9vcHRpb25zKCkKCQkoImhlbHAiLCAiaGVscCBtZXNzYWdlIikKCQkoImFy
-Z3MiLCBwbzo6dmFsdWU8c3RkOjpzdHJpbmc+KCZhcmdzKS0+ZGVmYXVsdF92YWx1ZSgiIiksICJt
-dWx0aSB1aGQgZGV2aWNlIGFkZHJlc3MgYXJncyIpCgkJKCJyZXBsYXktcGxheS1wb3J0IiwgcG86
-OnZhbHVlPHNpemVfdD4oJnJlcGxheV9wbGF5X3BvcnQpLT5kZWZhdWx0X3ZhbHVlKDApLCAicmVw
-bGF5IHBvcnQgZm9yIHBsYXlvdXQiKQoJCSgicmVwbGF5LXJlY29yZC1wb3J0IiwgcG86OnZhbHVl
-PHNpemVfdD4oJnJlcGxheV9yZWNvcmRfcG9ydCktPmRlZmF1bHRfdmFsdWUoMSksICJyZXBsYXkg
-cG9ydCBmb3IgcmVjb3JkaW5nIikKCQk7CgoJcG86OnZhcmlhYmxlc19tYXAgdm07Cglwbzo6c3Rv
-cmUocG86OnBhcnNlX2NvbW1hbmRfbGluZShhcmdjLCBhcmd2LCBkZXNjKSwgdm0pOwoJcG86Om5v
-dGlmeSh2bSk7CgoJLy8gUHJpbnQgaGVscCBtZXNzYWdlCglpZiAodm0uY291bnQoImhlbHAiKSkg
-Cgl7CgkJY291dCA8PCAiUmVwbGF5IGdyYXBoIHRlc3QgIiA8PCBkZXNjIDw8IGVuZGw7CgkJcmV0
-dXJuIEVYSVRfRkFJTFVSRTsKCX0KCgkvKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqCgkgKiBDcmVhdGUgZGV2aWNl
-IGFuZCBibG9jayBjb250cm9scwoJICoqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqLwoJY291dCA8PCBlbmRsOwoJY291
-dCA8PCAiQ3JlYXRpbmcgdGhlIFJGTm9DIGdyYXBoIHdpdGggYXJnczogIiA8PCBhcmdzIDw8IGVu
-ZGwgPDwgZW5kbDsKCXVoZDo6cmZub2M6OnJmbm9jX2dyYXBoOjpzcHRyIGdyYXBoID0gdWhkOjpy
-Zm5vYzo6cmZub2NfZ3JhcGg6Om1ha2UoYXJncyk7CgoJLy8gQ3JlYXRlIGhhbmRsZSBmb3IgcmFk
-aW8gb2JqZWN0Cgl1aGQ6OnJmbm9jOjpibG9ja19pZF90IHJhZGlvX2N0cmxfaWQoMCwgIlJhZGlv
-IiwgMCk7CglhdXRvIHJhZGlvX2N0cmwgPSBncmFwaC0+Z2V0X2Jsb2NrPHVoZDo6cmZub2M6OnJh
-ZGlvX2NvbnRyb2w+KHJhZGlvX2N0cmxfaWQpOwoJCgl1aGQ6OnJmbm9jOjpibG9ja19pZF90IHJl
-cGxheV9jdHJsX2lkKDAsICJSZXBsYXkiLCAwKTsKCWF1dG8gcmVwbGF5X2N0cmwgPSBncmFwaC0+
-Z2V0X2Jsb2NrPHVoZDo6cmZub2M6OnJlcGxheV9ibG9ja19jb250cm9sPihyZXBsYXlfY3RybF9p
-ZCk7CgoJY29uc3Qgc2l6ZV90IHJhZGlvX3BvcnQgPSAwOwoJCgkvLyBDb25uZWN0IHRoZSBSZXBs
-YXkgUG9ydCAwIHRvIFR4IFJhZGlvIFBvcnQgMAoJY29ubmVjdF90aHJvdWdoX2Jsb2NrcyhncmFw
-aCwgcmVwbGF5X2N0cmxfaWQsIHJlcGxheV9wbGF5X3BvcnQsIHJhZGlvX2N0cmxfaWQsIHJhZGlv
-X3BvcnQpOwoJCgkvLyBDb25uZWN0IHRoZSBSeCBSYWRpbyBQb3J0IDAgdG8gUmVwbGF5IFBvcnQg
-MQoJY29ubmVjdF90aHJvdWdoX2Jsb2NrcyhncmFwaCwgcmFkaW9fY3RybF9pZCwgcmFkaW9fcG9y
-dCwgcmVwbGF5X2N0cmxfaWQsIHJlcGxheV9yZWNvcmRfcG9ydCk7CgkKCWdyYXBoLT5jb21taXQo
-KTsKCQoJY291dCA8PCAiQWN0aXZlIGdyYXBoIGNvbm5lY3Rpb25zOiIgPDwgZW5kbDsKCWZvciAo
-YXV0byYgZWRnZSA6IGdyYXBoLT5lbnVtZXJhdGVfYWN0aXZlX2Nvbm5lY3Rpb25zKCkpIAoJCWNv
-dXQgPDwgIiogIiA8PCBlZGdlLnRvX3N0cmluZygpIDw8IGVuZGw7Cgljb3V0IDw8IGVuZGw7CgoJ
-cmV0dXJuIEVYSVRfU1VDQ0VTUzsKfQo=
---000000000000d3877a05d7978afe
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-02-09 01:32,
+      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:Emanuel.Staudi=
+nger@dlr.de">Emanuel.Staudinger@dlr.de</a> wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:de238b3f8bf447be9393e5b22d13b97f@dlr.de">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}p.MsoListParagraph, li.MsoListParagraph, div.=
+MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}p.msonormal0, li.msonormal0, div.msono=
+rmal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}span.E-MailFormatvorlage19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}span.E-MailFormatvorlage20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}ol
+	{margin-bottom:0cm;}ul
+	{margin-bottom:0cm;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Hi Marcus,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thanks for thoughts on this. We also
+          believe that is has to do with the calibration mechanism of
+          the AD9361, due to the very low sub-sample delay change.<o:p></=
+o:p></p>
+        <p class=3D"MsoNormal">Any thoughts from the Ettus team? Is there
+          a way to retrieve calibration information from the RFIC in
+          UHD? This could help to identify if there is a correlation
+          between calibration setting and the group delay change.<o:p></o=
+:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
+        <p class=3D"MsoNormal">Emanuel<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <br>
+      </div>
+    </blockquote>
+    Since UHD is an API that strives to provide an *abstraction* from
+    the hardware, the RFIC details are not exposed<br>
+    =C2=A0 through the usual UHD API.=C2=A0=C2=A0 You will need to dive i=
+nto the UHD
+    source code=C2=A0 and into the low-level AD9361<br>
+    =C2=A0 driver to extract any of that information.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------xaVdOKo43O111Vmku70aTysT--
+
+--===============6148679500017333500==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -396,4 +222,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---000000000000d3877a05d7978afe--
+--===============6148679500017333500==--
