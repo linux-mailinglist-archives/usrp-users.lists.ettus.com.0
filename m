@@ -2,117 +2,205 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E25314AF643
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 17:15:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 960BD4AF9F0
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 19:29:04 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ED21C384951
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 11:15:18 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7D7D0384940
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 13:29:03 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QnaW6F9U";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="d7pUTc/n";
 	dkim-atps=neutral
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 53D4B38483A
-	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 11:14:21 -0500 (EST)
-Received: by mail-qt1-f176.google.com with SMTP id b5so2178382qtq.11
-        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 08:14:21 -0800 (PST)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 242013848FA
+	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 13:27:55 -0500 (EST)
+Received: by mail-qv1-f47.google.com with SMTP id d7so2538788qvk.2
+        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 10:27:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to;
-        bh=va0mPLcXWn9uXGjs2OXLf412hYqq2XAzTqSmL8gDYtM=;
-        b=QnaW6F9U4rYOKy9AUDEvJTCbZ3e3BeTH8b46vqRukxKuHQbDl1iMNOKkv69EW3Xw9O
-         1GrD67SYcg1WJYb/TRYs55kbY0OUwrzXudG3uqbNsWp2+WlBFrXqI5Fg/pLd+WbJKrth
-         lDpUVT6F+ae9BhMdI6ebZ3dV8NIOa/cHyZ2ko5f52yWAxWdRw96wME1nkzj0Umy6QWcv
-         do8QzC+0SX6RXstDnumaIwz69LYSaw26b7oY8Lx4fDbpeB4l+3W3J+p0CkYFF/cdnMvP
-         zvlbcKBk61lQk89oYU7ROdMHciCghPEs6b9me1nw8+3cvNELvmIlFlstE2zC5R+sb7x/
-         DqAw==
+        bh=dcdabBK6Vg0UWoj6bF0fRLUQ/fG9RRNwuRhBgYjEOGg=;
+        b=d7pUTc/nM8Q6AOq7XppdN/4ZGDvyGE0ElxGL/Mr3oD9nbrGBcojLg4GAUrLRRaOGUC
+         6TCwtG93/WD5jhpszieJKcRR819/CNgg+maMUTkDzRavLOGIM56+i1MSh0hcYRWExg9V
+         wx7j7s/AmQlnEWs3rM7Tt9GT+sc0IAfzNSXbqGAxIqab+WstZ/FwwSxQ4GQmOQn/J7b1
+         VPHCv8w6k2H3WpmyJHIzZ3U0AwGmiFCPdfi+PG0hS7rlPPTrstW9h1/wyjOqrmf4WRoe
+         OZHIFugwgseQFDENYHNyOo/8W1Y3W6qML1WdEaUUcHEi6u8wAs8JphZ9IfOucyVLwXO4
+         sQ1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to;
-        bh=va0mPLcXWn9uXGjs2OXLf412hYqq2XAzTqSmL8gDYtM=;
-        b=vNo1rn7y13bdex5NtqlqxvR/kfB4h+n2Dj1scg1N9zYd9hWEwWH+6Kvte3d7QK7hXU
-         GC8gsGpGhGN+AJUeiW8/F0PkkywB5ZN+68JHZrwN3GA3E1SrXLw2Hh6emV5XeTQC7F9T
-         BL1fj+VAqf4hwK7JgVromMqpXkbOSrRfDx/IjZwZwL2XFUtHLxJmHCLnYek8cko9Coh8
-         BOac9FxepVi4ZO0PGYJJIKavj6QPrAIfpZ1MCyANa79RjZZ/A5B5DJEe1h3/pZHRyibG
-         YM4uBYbJEEUdetCYmSI+h4tmsHFXfe0YzVB9T4M7lnY/6AUH47fIYVqSBwYg1+GWVu/g
-         0LEA==
-X-Gm-Message-State: AOAM533yBIJWRhZY3PGYwJ4za/KTWqwr9BOnJeCE7LybAGFwDugll2XD
-	Nuyipz5JMZH8MNkdQatr1dqmv73mw2ixSg==
-X-Google-Smtp-Source: ABdhPJwxAHma4v0eRZI1TXGk4+QYpJIWDXF0vHwIZQ5NrzCiJy6dj9lRf2TCk6ERQPSbM51rpe+Sfw==
-X-Received: by 2002:a05:622a:1184:: with SMTP id m4mr1857612qtk.477.1644423260814;
-        Wed, 09 Feb 2022 08:14:20 -0800 (PST)
+        bh=dcdabBK6Vg0UWoj6bF0fRLUQ/fG9RRNwuRhBgYjEOGg=;
+        b=R+m87lIaJTBJYO7IGd/MXFkjWnUWS0lsxqf1qqocQ9/Hw05sqolEeRVmIA3f/0esKL
+         g0Vcnp1GRpD3ikCKNd54RmVB9gdAU6+9bVPqLTn9fi9IdhSHMB2PsownWdr84uUlQU8Q
+         gF8mM2GeHEvXO1f2Zj+uoQeqcAHjwonM6O+Eyls6AMMhSVSy14CndCDouGIM3hG2t7AE
+         twSAhPtDMYY7vRF4TzryNGrTA9/zWjGLjZJLrciR2VXNHvaRFKSuLwEwsblqHnWukh4k
+         +7+GfUz8BqO4weMjQs3PHvcrmstDICplrkgdPebMURdTwvxKU2nrBa2zRdx1eXvzOLo5
+         52cA==
+X-Gm-Message-State: AOAM531CM2e5mWncYNfeP0Oekfht7oNLVkZUA3Ie6rPren5Z1S3mdyJa
+	iepKbLafJa2ug9Ks4vPSmYTxzkjiwVwAzw==
+X-Google-Smtp-Source: ABdhPJzoed+JCObEl3WT3vnDxt8iGjzkzL6uIFndQd6Ae7dFrPqOHol224XQJTXp5ilMWmAEABieiw==
+X-Received: by 2002:ad4:5ae8:: with SMTP id c8mr2454895qvh.83.1644431275051;
+        Wed, 09 Feb 2022 10:27:55 -0800 (PST)
 Received: from [192.168.2.223] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id d6sm9027824qty.40.2022.02.09.08.14.19
+        by smtp.googlemail.com with ESMTPSA id f22sm9723062qtb.1.2022.02.09.10.27.54
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Feb 2022 08:14:20 -0800 (PST)
-Message-ID: <8277c5d5-d6de-393c-832b-43d53ff9aa29@gmail.com>
-Date: Wed, 9 Feb 2022 11:14:18 -0500
+        Wed, 09 Feb 2022 10:27:54 -0800 (PST)
+Message-ID: <19c6d891-f98b-d88c-e55f-0e11ae0a2ef5@gmail.com>
+Date: Wed, 9 Feb 2022 13:27:53 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
-To: Emanuel.Staudinger@dlr.de, usrp-users@lists.ettus.com
-References: <f4069dea5a274141ae4b9952254b177a@dlr.de>
- <84c7f9ba-91c4-58f2-f4e0-94828ac2a5bc@gmail.com>
- <de238b3f8bf447be9393e5b22d13b97f@dlr.de>
+To: usrp-users@lists.ettus.com
+References: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <de238b3f8bf447be9393e5b22d13b97f@dlr.de>
-Message-ID-Hash: RZJC4EG6NGJOJQXHNSZHJW6GMF5Y6CZL
-X-Message-ID-Hash: RZJC4EG6NGJOJQXHNSZHJW6GMF5Y6CZL
+In-Reply-To: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com>
+Message-ID-Hash: ATJGKYWB3KCA46FPSJAUIKE3Y3OPAG54
+X-Message-ID-Hash: ATJGKYWB3KCA46FPSJAUIKE3Y3OPAG54
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B200 group delay variations
+Subject: [USRP-users] Re: Mender Update Process N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RZJC4EG6NGJOJQXHNSZHJW6GMF5Y6CZL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ATJGKYWB3KCA46FPSJAUIKE3Y3OPAG54/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6148679500017333500=="
+Content-Type: multipart/mixed; boundary="===============0257374882845160094=="
 
 This is a multi-part message in MIME format.
---===============6148679500017333500==
+--===============0257374882845160094==
 Content-Type: multipart/alternative;
- boundary="------------xaVdOKo43O111Vmku70aTysT"
+ boundary="------------ArHSJ0Or16z1JCyHSDYMpp0f"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------xaVdOKo43O111Vmku70aTysT
+--------------ArHSJ0Or16z1JCyHSDYMpp0f
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-02-09 01:32, Emanuel.Staudinger@dlr.de wrote:
+On 2022-02-09 09:31, Giuseppe Santaromita wrote:
 >
-> Hi Marcus,
+> Hi guys,
 >
-> Thanks for thoughts on this. We also believe that is has to do with=20
-> the calibration mechanism of the AD9361, due to the very low=20
-> sub-sample delay change.
+> I'm trying to update the USRP N310 following this guide:=20
+> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide in=20
+> particolar "Mender Update Process".
 >
-> Any thoughts from the Ettus team? Is there a way to retrieve=20
-> calibration information from the RFIC in UHD? This could help to=20
-> identify if there is a correlation between calibration setting and the=20
-> group delay change.
+> The results is the follows.
 >
-> Best regards,
+> Can anyone help me?
 >
-> Emanuel
+> Giuseppe
 >
 >
-Since UHD is an API that strives to provide an *abstraction* from the=20
-hardware, the RFIC details are not exposed
- =C2=A0 through the usual UHD API.=C2=A0=C2=A0 You will need to dive into=
- the UHD=20
-source code=C2=A0 and into the low-level AD9361
- =C2=A0 driver to extract any of that information.
+To be clear, you're running this on the N310 device itself?
 
 
---------------xaVdOKo43O111Vmku70aTysT
+>
+> mender -rootfs /home/root/usrp_n3xx_fs.mender
+> Incorrect Usage. flag provided but not defined: -rootfs
+>
+> NAME:
+> =C2=A0=C2=A0 mender - manage and start the Mender client.
+>
+> USAGE:
+> =C2=A0=C2=A0 [global options] command [command options] [arguments...]
+>
+> VERSION:
+> =C2=A0=C2=A0 a78b45e=C2=A0 runtime: go1.12.9
+>
+> DESCRIPTION:
+> =C2=A0=C2=A0 mender integrates both the mender daemon and commands for =
+manually=20
+> performing tasks performed by
+> =C2=A0=C2=A0 the daemon (see list of COMMANDS below).
+>
+> Global flag remarks:
+> =C2=A0 - Supported log levels incudes: 'debug', 'info', 'warning', 'err=
+or',=20
+> 'panic' and 'fatal'.
+>
+>
+> COMMANDS:
+> =C2=A0=C2=A0 bootstrap=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Perform boot=
+strap and exit.
+> =C2=A0=C2=A0 check-update=C2=A0=C2=A0=C2=A0 Force update check.
+> =C2=A0=C2=A0 commit=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ Commit current Artifact. Returns (2) if no update=20
+> in progress.
+> =C2=A0=C2=A0 daemon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ Start the client as a background service.
+> =C2=A0=C2=A0 install=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Me=
+nder Artifact to install - local file or a `URL`.
+> =C2=A0=C2=A0 rollback=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Rollbac=
+k current Artifact. Returns (2) if no update=20
+> in progress.
+> =C2=A0=C2=A0 send-inventory=C2=A0 Force inventory update.
+> =C2=A0=C2=A0 setup=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Perform configuration setup - 'mender setup --help'=20
+> for command options.
+> =C2=A0=C2=A0 snapshot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Create =
+filesystem snapshot -'mender snapshot=20
+> --help' for more.
+> =C2=A0=C2=A0 show-artifact=C2=A0=C2=A0 Print the current artifact name =
+to the command line=20
+> and exit.
+> =C2=A0=C2=A0 help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 Shows a list of commands or help for one command
+>
+> GLOBAL OPTIONS:
+> =C2=A0=C2=A0 --config FILE, -c FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 Configuration FILE path. (default:=20
+> "/etc/mender/mender.conf")
+> =C2=A0=C2=A0 --fallback-config FILE, -b FILE=C2=A0 Fallback configurati=
+on FILE path.=20
+> (default:
+> "/var/lib/mender/mender.conf")
+> =C2=A0=C2=A0 --data DIR, -d DIR=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mender state data DIRECTORY pa=
+th.=20
+> (default: "/var/lib/mender")
+> =C2=A0=C2=A0 --log-file FILE, -L FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 FILE to log to.
+> =C2=A0=C2=A0 --log-level level, -l level=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+Set logging level. (default: "info")
+> =C2=A0=C2=A0 --log-modules value, -m value=C2=A0=C2=A0=C2=A0 -log-modul=
+es is accepted for=20
+> compatibility but has no effect
+> =C2=A0=C2=A0 --trusted-certs FILE, -E FILE=C2=A0=C2=A0=C2=A0 Trusted se=
+rver certificates FILE path.
+> =C2=A0=C2=A0 --forcebootstrap, -F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Force bootstrap. (default: false)
+> =C2=A0=C2=A0 --no-syslog=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Disable logging to syslog.=20
+> (default: false)
+> =C2=A0=C2=A0 --skipverify=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+Skip certificate verification.=20
+> (default: false)
+> =C2=A0=C2=A0 --help, -h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 show help (default: false)
+> =C2=A0=C2=A0 --version, -v=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pri=
+nt the version (default: false)
+>
+> ERRO[0000] flag provided but not defined: -rootfs
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+
+--------------ArHSJ0Or16z1JCyHSDYMpp0f
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -122,97 +210,157 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 2022-02-09 01:32,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:Emanuel.Staudi=
-nger@dlr.de">Emanuel.Staudinger@dlr.de</a> wrote:<br>
+    <div class=3D"moz-cite-prefix">On 2022-02-09 09:31, Giuseppe
+      Santaromita wrote:<br>
     </div>
     <blockquote type=3D"cite"
-      cite=3D"mid:de238b3f8bf447be9393e5b22d13b97f@dlr.de">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+      cite=3D"mid:deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
 TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}p.MsoListParagraph, li.MsoListParagraph, div.=
-MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}p.msonormal0, li.msonormal0, div.msono=
-rmal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}span.E-MailFormatvorlage19
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}span.E-MailFormatvorlage20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}ol
-	{margin-bottom:0cm;}ul
-	{margin-bottom:0cm;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Hi Marcus,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks for thoughts on this. We also
-          believe that is has to do with the calibration mechanism of
-          the AD9361, due to the very low sub-sample delay change.<o:p></=
-o:p></p>
-        <p class=3D"MsoNormal">Any thoughts from the Ettus team? Is there
-          a way to retrieve calibration information from the RFIC in
-          UHD? This could help to identify if there is a correlation
-          between calibration setting and the group delay change.<o:p></o=
-:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
-        <p class=3D"MsoNormal">Emanuel<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <br>
-      </div>
+      <p>Hi guys,</p>
+      <p>I'm trying to update the USRP N310 following this guide: <a
+          class=3D"moz-txt-link-freetext"
+href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Gui=
+de"
+          moz-do-not-send=3D"true">https://kb.ettus.com/USRP_N300/N310/N3=
+20/N321_Getting_Started_Guide</a>
+        in particolar "Mender Update Process".</p>
+      <p>The results is the follows.</p>
+      <p>Can anyone help me? <br>
+      </p>
+      <p>Giuseppe<br>
+      </p>
+      <p><br>
+      </p>
     </blockquote>
-    Since UHD is an API that strives to provide an *abstraction* from
-    the hardware, the RFIC details are not exposed<br>
-    =C2=A0 through the usual UHD API.=C2=A0=C2=A0 You will need to dive i=
-nto the UHD
-    source code=C2=A0 and into the low-level AD9361<br>
-    =C2=A0 driver to extract any of that information.<br>
+    To be clear, you're running this on the N310 device itself?<br>
     <br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com">
+      <p> </p>
+      <p><br>
+      </p>
+      <p align=3D"left">mender -rootfs /home/root/usrp_n3xx_fs.mender<br>
+        Incorrect Usage. flag provided but not defined: -rootfs<br>
+        <br>
+        NAME:<br>
+        =C2=A0=C2=A0 mender - manage and start the Mender client.<br>
+        <br>
+        USAGE:<br>
+        =C2=A0=C2=A0 [global options] command [command options] [argument=
+s...]<br>
+        <br>
+        VERSION:<br>
+        =C2=A0=C2=A0 a78b45e=C2=A0 runtime: go1.12.9<br>
+        <br>
+        DESCRIPTION:<br>
+        =C2=A0=C2=A0 mender integrates both the mender daemon and command=
+s for
+        manually performing tasks performed by<br>
+        =C2=A0=C2=A0 the daemon (see list of COMMANDS below).<br>
+        <br>
+        Global flag remarks:<br>
+        =C2=A0 - Supported log levels incudes: 'debug', 'info', 'warning'=
+,
+        'error', 'panic' and 'fatal'.<br>
+        <br>
+        <br>
+        COMMANDS:<br>
+        =C2=A0=C2=A0 bootstrap=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Perfor=
+m bootstrap and exit.<br>
+        =C2=A0=C2=A0 check-update=C2=A0=C2=A0=C2=A0 Force update check.<b=
+r>
+        =C2=A0=C2=A0 commit=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Commit current Artifact. Returns (2) if no
+        update in progress.<br>
+        =C2=A0=C2=A0 daemon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Start the client as a background service.<br>
+        =C2=A0=C2=A0 install=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Mender Artifact to install - local file or a
+        `URL`.<br>
+        =C2=A0=C2=A0 rollback=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 R=
+ollback current Artifact. Returns (2) if no
+        update in progress.<br>
+        =C2=A0=C2=A0 send-inventory=C2=A0 Force inventory update.<br>
+        =C2=A0=C2=A0 setup=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 Perform configuration setup - 'mender setup
+        --help' for command options.<br>
+        =C2=A0=C2=A0 snapshot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 C=
+reate filesystem snapshot -'mender snapshot
+        --help' for more.<br>
+        =C2=A0=C2=A0 show-artifact=C2=A0=C2=A0 Print the current artifact=
+ name to the
+        command line and exit.<br>
+        =C2=A0=C2=A0 help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 Shows a list of commands or help for one
+        command<br>
+        <br>
+        GLOBAL OPTIONS:<br>
+        =C2=A0=C2=A0 --config FILE, -c FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Configuration FILE path.
+        (default: "/etc/mender/mender.conf")<br>
+        =C2=A0=C2=A0 --fallback-config FILE, -b FILE=C2=A0 Fallback confi=
+guration FILE
+        path. (default:<br>
+        =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+        "/var/lib/mender/mender.conf")<br>
+        =C2=A0=C2=A0 --data DIR, -d DIR=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mender state data DIRECT=
+ORY
+        path. (default: "/var/lib/mender")<br>
+        =C2=A0=C2=A0 --log-file FILE, -L FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 FILE to log to.<br>
+        =C2=A0=C2=A0 --log-level level, -l level=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Set logging level. (default:
+        "info")<br>
+        =C2=A0=C2=A0 --log-modules value, -m value=C2=A0=C2=A0=C2=A0 -log=
+-modules is accepted for
+        compatibility but has no effect<br>
+        =C2=A0=C2=A0 --trusted-certs FILE, -E FILE=C2=A0=C2=A0=C2=A0 Trus=
+ted server certificates
+        FILE path.<br>
+        =C2=A0=C2=A0 --forcebootstrap, -F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Force bootstrap. (default:
+        false)<br>
+        =C2=A0=C2=A0 --no-syslog=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Disable logging to syslog.
+        (default: false)<br>
+        =C2=A0=C2=A0 --skipverify=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Skip certificate
+        verification. (default: false)<br>
+        =C2=A0=C2=A0 --help, -h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 show help (default: false)<br>
+        =C2=A0=C2=A0 --version, -v=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ print the version (default:
+        false)</p>
+      <p> ERRO[0000] flag provided but not defined: -rootfs=C2=A0=C2=A0=C2=
+=A0=C2=A0 <br>
+      </p>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
     <br>
   </body>
 </html>
 
---------------xaVdOKo43O111Vmku70aTysT--
+--------------ArHSJ0Or16z1JCyHSDYMpp0f--
 
---===============6148679500017333500==
+--===============0257374882845160094==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,4 +370,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6148679500017333500==--
+--===============0257374882845160094==--
