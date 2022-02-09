@@ -2,362 +2,328 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 658804AEA69
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 07:33:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DEF04AF424
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 15:32:49 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8883D384B60
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 01:33:14 -0500 (EST)
-Received: from mailin.dlr.de (mailin.dlr.de [194.94.201.12])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3B2E1384B0B
-	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 01:32:12 -0500 (EST)
-X-IPAS-Result: =?us-ascii?q?A2EMBQCGXwNi/xWKuApQCoQEWYEXFYFTF4Q+kRYDixCTN?=
- =?us-ascii?q?gkLAQEBAQEBAQEBCAEqARYEAQGFBQIXg1gmOBMBAgQBAQEBAwIDAQEBAQEBA?=
- =?us-ascii?q?wEBBgEBAQEBAQUEAQECgRiFL0aCNSKDdQIBAwENFQo4JAIBRwMCAgIfBwoUE?=
- =?us-ascii?q?QEBBAESCIJ9gg5XA6wegTGBAYRqgjsNgkuBOocqAQGHB4JQgRWCKYE/giGBd?=
- =?us-ascii?q?0QfgmITglIEkxcCgVk4GQqBFDuSYIMfiVGfbWsHghCZLIFzhWcwFYNyjCCGJ?=
- =?us-ascii?q?5FUlkogkEGVZgIEAgQFAhaBeGWBGnGCUWdRFwIPnG90OAIGCwEBAwmPXoEQA?=
- =?us-ascii?q?QE?=
-IronPort-PHdr: A9a23:yxlXGROkpaJ1qB1VpJol6na4DRdPi9zP1u491JMrhvp0f7i5+Ny6Z
- QqDv68r0QCCBN2Go9t/yMPu+5j6XmIB5ZvT+FsjS7drEyE/tMMNggY7C9SEA0CoZNTjbig9A
- dgQHAQ9pyLzPkdaAtvxaEPPqXOu8zESBg//NQ1oLejpB4Lelcu62/6s95HJYwhFhjWxba5uI
- Bi2sA7cqtQYjYx+J6gr1xDHuGFIe+NYxWNpIVKcgRPx7dqu8ZBg7ipdpesv+9ZPXqvmcas4S
- 6dYDCk9PGAu+MLrrxjDQhCR6XYaT24bjwBHAwnB7BH9Q5fxri73vfdz1SWGIcH7S60/VDK/5
- KlpVRDokj8KOT4n/m/Klsx+gqFVoByjqBx+34Hbb5qYO+BicqPfZ94WWXZNU8RXWidcAo28d
- YwPD+8ZMOtfoIf9okEBrR2jBQayAOPj0CJGhmPs0q0nzushEAfG3AM+ENIUq3nbsdH1NL0IX
- e+o0qbF1DPOZO5Z1jnh8obHaAwhoe2SUrJqd8rc0VcjGgPLg1uQpoHoPjCY2OsDvWWU6+dtW
- /+ihnAppgx/rTai2tohhIbXi4wb1lzI6SZ0zYQ0KNC7VUJ1b9GpHZpWuiqHNIV2WtsvT3x0t
- Cog17ELupG2cDIXxJkpxBPTceKLf5WQ7h7+SOqdOyp0iXFqdb6lmhq//0utxvfiWsS031tHq
- DdOnMPWuXAXzRPT79CKSv56/ki8xzmCzxvT6uRYIUAskqrbNoIhzqYwlpUNtUTDGTf7lkvwg
- qGYeUsq+uim5ePkbLvhvJGQKZJ4hA7/PakwgMC/AOI4MhQUX2eB4+izybnj/VfjTLpXkPI6i
- qjZsJbEKsQHvqO1HhNZ3pw+5xu8ADqqyskUkHcEIV5fZh6LkpDlO1TUL/D5Cfe/jU6skDBux
- /3eMbPhB4/CLn7ekLj/ebZx8VNSyBYpwtBC+p1UC7cBIP3tVU/rr9HXExs5Mxauz+n6Ftpxz
- oUeVnmXDa+DLKzSqUOI5v4oI+SUeoMZoCz9JOQ95/7ykX85nkcQfbGz0psLdH+4HupmI0KfY
- XX3mNcOC3oKvgwlQezljV2NSz9TZ3KoU60g4TE7DZqqDZ3fSYC1nLyBwCC7E4VLZmBdEFCMC
- W7kd5ifW/gSciKSOdRskjgFVbi6V48hzguiuxHmy7p7M+rU4TcUuo7k1NhwtKXvkkRm7TVoB
- MSD1GeHVWhpmEsHQjY32OZ0pkkrjh/XzLNim7lFDtFJ/NtNUxwmLtjR0/BnEJb5XQeXLfmTT
- 1PzFvijCDcsQ9Z3+MMHfkp8HdqvlDjP2zDsD7JDxO/DP4A97q+Jhyu5HM160XuTjMEc
-IronPort-Data: A9a23:OMCrIq15ktYgNSwwofbD5W9zkn2cJEfYwER7XKvMYLTBsI5bpz0Hz
- WUWCDqCO/eOYmP0f9wgbY7j9ElX7ZTQzoNlGwto3Hw8FHgiRegppDi6wuUcGwvIc6UvmWo+t
- 512huHodZxyFjmFzvuUGuCJQUNUjMlkfZKhTr6UUsxNbVU8En1500ozw7VRbrNA2LBVPSvc4
- bsenOWCYDdJ6xYsWo7Dw/vewP/HlK2aVAIw5jTSV9gS1LPtvyV94KYkGE2EByCQrr+4vwKNb
- 72rILmRpgs19vq2Yz+vuu6TnkYiGtY+MeUS45b/tmfLbhVq/0QPPqgH2PU0NWdKtBeCxM1Lz
- JZ/ipjraSAXDITBh7FIO/VYO3kW0axu1JvrDFaRlO229xefXkvHhfRoEFs/e4Ec4KB7DAmi9
- 9RBcHZUPkzF3rnmhujiIgVvrp1LwM3DEYYWvGxtyXfiEf87TZHFTKjQzdNcxnE8i6iiGN6AO
- 5tDOWQ+MHwsZTURAlcsJ7wBg92PpXOuXztZ8XaTjpQOtj27IAtZleKF3MDuUsSDWc5VgEGer
- HjP4mLRDRQTNdjZwj2AmlqxnfXX2D7gVZgJPLm57eJxxlCP2nEIThYRUDOGTeKRhkqyVtxRL
- k0R4nB3oLg5sk2tUsP0GRG8ujiIs3bwRuZtLgHz0ynVooK83upTLjFsouJpADD+iPILeA==
-IronPort-HdrOrdr: A9a23:5VsT+qpfyNGQLojsy3ceQO8aV5oceYIsimQD101hICG9Kvbo8/
- xG785rsiMc6QxhI03I9urhBEDtex7hHNtOkOws1NSZLXPbUQmTXeJfBOLZqlWKcREWtNQtt5
- uIGJIQNDSENzlHZLHBjjVQfexN/DDNytHPuQ6X9QYVcehFUdAZ0ztE
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.88,354,1635199200";
-   d="scan'208,217";a="64928694"
-From: <Emanuel.Staudinger@dlr.de>
-To: <patchvonbraun@gmail.com>, <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: B200 group delay variations
-Thread-Index: Adgb8qGS0VK46fp+QDeehSX6d+7S+AAR3KgAAFDzXYA=
-Date: Wed, 9 Feb 2022 06:32:09 +0000
-Message-ID: <de238b3f8bf447be9393e5b22d13b97f@dlr.de>
-References: <f4069dea5a274141ae4b9952254b177a@dlr.de>
- <84c7f9ba-91c4-58f2-f4e0-94828ac2a5bc@gmail.com>
-In-Reply-To: <84c7f9ba-91c4-58f2-f4e0-94828ac2a5bc@gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+	by mm2.emwd.com (Postfix) with ESMTP id 19DAE384941
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 09:32:48 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RoVWI59v";
+	dkim-atps=neutral
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id DB2F23836CB
+	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 09:31:37 -0500 (EST)
+Received: by mail-wr1-f53.google.com with SMTP id f17so4452375wrx.1
+        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 06:31:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:to:content-language:from
+         :subject;
+        bh=rQYHaVINCtUpvC5risgmjB6PmtDIm9x6pX/wpqtoFKs=;
+        b=RoVWI59v8LUixgYq0HTUx1gvPMrsf3p/mOi/V0A39MMotJwhU4czafUD0zIVeh7LvA
+         Y0YjTuIsS27WpUnY0UIHWCN9dOzDypJDtYprDWxaz1tqBhaWQ8YppptHltXrPOMBD/b/
+         1WZA4uQ0PuA4Y/XNU9SWuvGHwjy8FfHlbMDVYMugaYdlTDVabMPtYDfiXB95UqAll/MJ
+         M0N3t9BcPZg142ZF3PHJPacWk+2MdjomvUdXULoJvIGtAF+i2kXX+9K1GCXCvFFoYhid
+         8R4fxWrep9P3GaxtcYk22U8IQLVn+nacCbC6umuYao1UGkrUInBKgZWKWNfigZzxTsC/
+         ODvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:to
+         :content-language:from:subject;
+        bh=rQYHaVINCtUpvC5risgmjB6PmtDIm9x6pX/wpqtoFKs=;
+        b=pWWtzU5XH8s3Gd8tASU3nBaObRSpPaS8KFYXlkGJzjkxoQi6D5nox8ALuDawT4u9oq
+         QLdtOld5AQXKRiQ1ms8PFNJh7f01m5KMvaq0pDVruWHgsudfsBddH56ijTknedJe6xMK
+         Xsw3FraM5BDVjhLI0zENEJqFiOKeFjSP+wGvOqck0fwuQo+xiBvI+mTe5bqsoxOoXlbp
+         wavpVV/5UO4paJ3uUJsYrN+UsjQUlB3iJcSIxETSFd5QiKaIvbfbrDlROYTUI/lzczp0
+         LG6m8QItm4ba5O22ZQThlOwyB8R3LHqVeytWpaRPtoGz8NuwKYEEHNbODiIUNYHy+Dxl
+         vIHg==
+X-Gm-Message-State: AOAM530yLBhn7sBNQmlpblGIiWpXfo6Yj8fslM0disAYMzvK7AhJQFyp
+	6k5pmqWpBAmrQlYPr/bdRv9A5dczVZE=
+X-Google-Smtp-Source: ABdhPJxFH7KBRfK3+ZzhmZYqqqptlrYltbrv8dgqgzcxGKv5eLrkkMaLMPWqAXy0Kv9tixwTs9uoBQ==
+X-Received: by 2002:a5d:5981:: with SMTP id n1mr2369431wri.354.1644417096396;
+        Wed, 09 Feb 2022 06:31:36 -0800 (PST)
+Received: from [172.16.4.232] ([193.145.14.195])
+        by smtp.gmail.com with ESMTPSA id c8sm6346492wmq.34.2022.02.09.06.31.35
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Feb 2022 06:31:35 -0800 (PST)
+Message-ID: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com>
+Date: Wed, 9 Feb 2022 15:31:33 +0100
 MIME-Version: 1.0
-Message-ID-Hash: KD7W2OFOGKIV6I4YDCAVJEUA2L2LRRYK
-X-Message-ID-Hash: KD7W2OFOGKIV6I4YDCAVJEUA2L2LRRYK
-X-MailFrom: Emanuel.Staudinger@dlr.de
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+To: usrp-users@lists.ettus.com
+Content-Language: en-US
+From: Giuseppe Santaromita <giuseppe.santaromita1@gmail.com>
+Message-ID-Hash: P7BLCLT7DGU6K4PQNIDAZYHX47N3TBXL
+X-Message-ID-Hash: P7BLCLT7DGU6K4PQNIDAZYHX47N3TBXL
+X-MailFrom: giuseppe.santaromita1@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B200 group delay variations
+Subject: [USRP-users] Mender Update Process N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KD7W2OFOGKIV6I4YDCAVJEUA2L2LRRYK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P7BLCLT7DGU6K4PQNIDAZYHX47N3TBXL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6930956716152903915=="
+Content-Type: multipart/mixed; boundary="===============4077570962036658345=="
 
---===============6930956716152903915==
-Content-Language: de-DE
+This is a multi-part message in MIME format.
+--===============4077570962036658345==
 Content-Type: multipart/alternative;
-	boundary="_000_de238b3f8bf447be9393e5b22d13b97fdlrde_"
+ boundary="------------RxIMzHak7xwcaN99u0s7bmgM"
+Content-Language: en-US
 
---_000_de238b3f8bf447be9393e5b22d13b97fdlrde_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------RxIMzHak7xwcaN99u0s7bmgM
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-SGkgTWFyY3VzLA0KDQpUaGFua3MgZm9yIHRob3VnaHRzIG9uIHRoaXMuIFdlIGFsc28gYmVsaWV2
-ZSB0aGF0IGlzIGhhcyB0byBkbyB3aXRoIHRoZSBjYWxpYnJhdGlvbiBtZWNoYW5pc20gb2YgdGhl
-IEFEOTM2MSwgZHVlIHRvIHRoZSB2ZXJ5IGxvdyBzdWItc2FtcGxlIGRlbGF5IGNoYW5nZS4NCkFu
-eSB0aG91Z2h0cyBmcm9tIHRoZSBFdHR1cyB0ZWFtPyBJcyB0aGVyZSBhIHdheSB0byByZXRyaWV2
-ZSBjYWxpYnJhdGlvbiBpbmZvcm1hdGlvbiBmcm9tIHRoZSBSRklDIGluIFVIRD8gVGhpcyBjb3Vs
-ZCBoZWxwIHRvIGlkZW50aWZ5IGlmIHRoZXJlIGlzIGEgY29ycmVsYXRpb24gYmV0d2VlbiBjYWxp
-YnJhdGlvbiBzZXR0aW5nIGFuZCB0aGUgZ3JvdXAgZGVsYXkgY2hhbmdlLg0KDQpCZXN0IHJlZ2Fy
-ZHMsDQpFbWFudWVsDQoNClZvbjogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWls
-LmNvbT4NCkdlc2VuZGV0OiBNb250YWcsIDcuIEZlYnJ1YXIgMjAyMiAxNzo0OA0KQW46IHVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tDQpCZXRyZWZmOiBbVVNSUC11c2Vyc10gUmU6IEIyMDAgZ3Jv
-dXAgZGVsYXkgdmFyaWF0aW9ucw0KDQpPbiAyMDIyLTAyLTA3IDAyOjQ0LCBFbWFudWVsLlN0YXVk
-aW5nZXJAZGxyLmRlPG1haWx0bzpFbWFudWVsLlN0YXVkaW5nZXJAZGxyLmRlPiB3cm90ZToNCkhp
-IGFsbCwNCg0Kd2UgaGF2ZSBhIGN1c3RvbSBHbnVyYWRpbyBpbXBsZW1lbnRhdGlvbiB3aXRoIG1h
-bnkgQjIwMG1pbmkgVVNSUHMsIHdoaWNoIGVuYWJsZXMgcHJlY2lzZSByb3VuZC10cmlwIHRpbWUg
-KFJUVCkgYmFzZWQgcmFuZ2luZyBhbW9uZyB0aG9zZSBkZXZpY2VzLiBUaGUgTUFDIGlzIFRETUEg
-YmFzZWQgd2l0aCB0aGUgYXV0b21hdGljIFR4L1J4IHN3aXRjaGluZyBhbmQgdG8gY29tcGVuc2F0
-ZSBmb3IgdGhlIFVTUlBzIGdyb3VwIGRlbGF5IHdlIHBlcmZvcm0gcmFuZ2luZyBvdmVyIGFuIFJG
-LXNwbGl0dGVyIHdoaWNoIHdlIGNhbGlicmF0ZWQgYmVmb3JlaGFuZCB3aXRoIGEgdmVjdG9yIG5l
-dHdvcmsgYW5hbHl6ZXIuDQoNCldlIG9ic2VydmVkIHRoYXQgdGhlIGVzdGltYXRlZCBSVFQgb3Zl
-ciBtdWx0aXBsZSBjYWxpYnJhdGlvbiBtZWFzdXJlbWVudCBydW5zIGlzIHVuc3RhYmxlIGluIHRo
-ZSBvcmRlciBvZiB1cCB0byAxbnMuIFdpdGhpbiBvbmUgbWVhc3VyZW1lbnQgcnVuIG9mIGF0IGxl
-YXN0IDUgbWludXRlcyB3aXRoIDEwIFJUVCBlc3RpbWF0ZXMgcGVyIHNlY29uZCwgaXQgaXMgcHJl
-dHR5IHN0YWJsZSwgYnV0IHdoZW4gd2UgcmVzdGFydCB0aGUgZmxvd2dyYXBoLCB3ZSBvYnNlcnZl
-IGEgYmlhcy4NClBsZWFzZSBmaW5kIGF0IHRoZSBlbmQgb2YgdGhpcyBFLU1haWwgYWxsIHRoaW5n
-cyB3ZSBhbHJlYWR5IHRyaWVkIHRvIG5hcnJvdyBkb3duIHRoZSBpc3N1ZSAoYSBjb21wcmVzc2Vk
-IHZlcnNpb24pLg0KSW4gc2hvcnQ6DQoNCiAgMS4gIFdlIGZpbmFsbHkgdXNlZCBvbmx5IHR3byBC
-MjEwIHdpdGggYSBzaW5nbGUgZXh0ZXJuYWwgcmVmZXJlbmNlIGNsb2NrLCBhIHNhbXBsaW5nIHJh
-dGUgb2YgMjVNSHosIGFuZCBhIG1hbnVhbGx5IHNldCBtYXN0ZXIgY2xvY2sgcmF0ZSBvZiA1ME1I
-ei4NCg0KICAgICAqICAgSW4gdGhpcyBzZXR1cCB0aGUgZXN0aW1hdGVkIFJUVCBvdmVyIG11bHRp
-cGxlIG1lYXN1cmVtZW50IHJ1bnMgY2FuIHZhcnkgZnJvbSBydW4gdG8gcnVuIGJ5IDw1MHBzIChv
-ayBmb3IgdXMpLCBidXQgYWxzbyBieSAyODBwcyBvciA3NTBwcyAoZmFyIHRvbyBtdWNoIGZvciB1
-cykuIFRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgUlRUIGVzdGltYXRlcyB3aXRoaW4gb25lIG1l
-YXN1cmVtZW50IHJ1biBpcyBhYm91dCA3MHBzLCBhbmQgZWFjaCBydW4gY29udGFpbnMgMjAwMCB0
-byAzNTAwIFJUVCBlc3RpbWF0ZXMuDQoNCiAgMS4gIFRvIGNyb3NzIGNoZWNrIG91ciBpbXBsZW1l
-bnRhdGlvbiwgd2UgdXNlZCB0aGUgdmVyeSBzYW1lIGZsb3ctZ3JhcGggd2l0aCB0d28gWDMxMCB3
-aXRoIENCWC0xMjAgZnJvbnQtZW5kcywgYSBjb21tb24gZXh0ZXJuYWwgcmVmZXJlbmNlIGNsb2Nr
-LCBhbmQgb25seSBpbmNyZWFzZWQgdGhlIHRyYW5zbWl0IHNpZ25hbCBwYWRkaW5nIGJ5IDQwdXMg
-KGJlY2F1c2UgdGhlIHJhbXAtdXAgdGltZSBpcyBsYXJnZXIgZm9yIHRoaXMgZnJvbnQtZW5kKS4N
-Cg0KICAgICAqICAgUlRUIGVzdGltYXRlcyBvdmVyIG11bHRpcGxlIHJ1bnMgYXJlIHBpY3R1cmUg
-cGVyZmVjdDogdGhlIG1lYW4gUlRUIHZhcmllcyBieSBsZXNzIHRoYW4gNXBzIG92ZXIgbXVsdGlw
-bGUgbWVhc3VyZW1lbnQgcnVucy4NCg0KQW55IGlkZWEgd2hhdCBjb3VsZCBjYXVzZSB0aG9zZSB2
-YXJpYXRpb25zIGZvciB0aGUgQjIwMCBzZXJpZXM/DQpXZSB1c2UgVUhEIDMuMTUuDQoNCkJlc3Qg
-cmVnYXJkcywNCkVtYW51ZWwNCg0KU2luY2UgdGhlc2UgdmFyaWF0aW9ucyBhcmUgdmVyeS1tdWNo
-IHN1Yi1zaW5nbGUtc2FtcGxlIGluIHNjYWxlLCBteSBndWVzcyBpcyB0aGF0IHRoaXMgaGFzIHRv
-IGRvIHdpdGggdGhlIHZlcnktY29tcGxleCAiY2FsaWJyYXRpb24iIG1lY2hhbmlzbSB0aGF0IHRo
-ZSBBRDkzNjENCiAgdW5kZXJnb2VzIHdoZW4gaXQgaXMgaW5pdGlhbGl6ZWQsIGFuZCB3aGVuIHlv
-dSBjaGFuZ2UgZnJlcXVlbmN5LiAgTWFueSBvZiB0aGUgZWxlbWVudHMgaW4gdGhhdCBzZXF1ZW5j
-ZSBhcmUsIEkgdGhpbmssIGFuYWxvZyBpbiBuYXR1cmUuICBUaGVyZSBtYXkgYmUgc29tZQ0KICAi
-TW9udGUtQ2FybG8iIGVsZW1lbnRzIGluIHRoaXMsIGVpdGhlciAiaW5oZXJlbnQiIChiZWNhdXNl
-IHlvdSdyZSBkZWFsaW5nIHdpdGggdGhlIHZhZ2FyaWVzIG9mIHRoZSBhbmFsb2cgd29ybGQpLCBv
-ciBwZXJoYXBzIGV4cGxpY2l0IGluIGFsZ29yaXRobXMgbGlrZQ0KICBJL1EgaW1iYWxhbmNlIGNv
-bXBlbnNhdGlvbi4NCg0KSW4gY29udHJhc3QsIG9uIHRoZSBYMzEwIHdpdGggYSBDQlgsIGFueSBJ
-L1EgYmFsYW5jZSBjb21wZW5zYXRpb24gKHdoaWNoIGNhbiBhZmZlY3QgcGhhc2UpLCBpcyBlbnRp
-cmVseSBzdGF0aWMsIGFuZCB0aGUgc2lnbmFsIHBhdGh3YXkgaW4gdGhlIGFuYWxvZyBkb21haW4g
-aXMgdmVyeQ0KICBtdWNoIHNpbXBsZXIsIHdpdGggdmVyeSBtdWNoIGxlc3MgImR5bmFtaWMgdHdl
-YWtpbmciIGR1cmluZyBpbml0aWFsaXphdGlvbiBhbmQgdHVuaW5nLg0KDQpNeSB1bmRlcnN0YW5k
-aW5nIGlzIHRoYXQgQUQ5MzYxIGRvZXMgbm90IGFsbG93IHR1cm5pbmcgb2ZmIGFueSBvZiB0aG9z
-ZSBjb21wZW5zYXRpb24gYWxnb3JpdGhtcy4NCg0KTm93LCBhIGNhdmVhdCBpcyB0aGF0IHRoaXMg
-aXMgYW4gZWR1Y2F0ZWQgaHVuY2gsIGJhc2VkIG9uIHRoZSBuYXR1cmUgb2YgdGhlIGlzc3VlLiAg
-SXQgY291bGQgYmUgc29tZXRoaW5nIGVsc2UsIGJ1dCB0aGUgKnNjYWxlKiBvZiB0aGUgaXNzdWUg
-c3VnZ2VzdHMgc29tZXRoaW5nDQogIGluIHRoZSBhbmFsb2cgZG9tYWluLg0KDQo=
+Hi guys,
 
---_000_de238b3f8bf447be9393e5b22d13b97fdlrde_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I'm trying to update the USRP N310 following this guide:=20
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide in=20
+particolar "Mender Update Process".
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
-OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1z
-b0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJw
-bGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxp
-Lk1zb0xpc3RQYXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFyYWdyYXBoDQoJe21zby1zdHlsZS1wcmlv
-cml0eTozNDsNCgltYXJnaW4tdG9wOjBjbTsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1hcmdpbi1i
-b3R0b206MGNtOw0KCW1hcmdpbi1sZWZ0OjM2LjBwdDsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7
-DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9
-DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHls
-ZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmln
-aHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsN
-Cglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
-CnNwYW4uRS1NYWlsRm9ybWF0dm9ybGFnZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0K
-c3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVw
-bHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4
-dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250
-LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBw
-dDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDIuMGNtIDcwLjg1cHQ7fQ0KZGl2LldvcmRTZWN0
-aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25zICovDQpAbGlz
-dCBsMA0KCXttc28tbGlzdC1pZDo5ODIyNjk5NTI7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOi0y
-NDAzNzgzNjg7fQ0KQGxpc3QgbDA6bGV2ZWwxDQoJe21zby1sZXZlbC10YWItc3RvcDozNi4wcHQ7
-DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7
-fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC10YWItc3RvcDo3Mi4wcHQ7DQoJbXNvLWxl
-dmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxpc3Qg
-bDA6bGV2ZWwzDQoJe21zby1sZXZlbC10YWItc3RvcDoxMDguMHB0Ow0KCW1zby1sZXZlbC1udW1i
-ZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0O30NCkBsaXN0IGwwOmxldmVs
-NA0KCXttc28tbGV2ZWwtdGFiLXN0b3A6MTQ0LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0
-aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNv
-LWxldmVsLXRhYi1zdG9wOjE4MC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0
-Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxpc3QgbDA6bGV2ZWw2DQoJe21zby1sZXZlbC10
-YWItc3RvcDoyMTYuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
-LWluZGVudDotMTguMHB0O30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtdGFiLXN0b3A6
-MjUyLjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6
-LTE4LjBwdDt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLXRhYi1zdG9wOjI4OC4wcHQ7
-DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7
-fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC10YWItc3RvcDozMjQuMHB0Ow0KCW1zby1s
-ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0O30NCkBsaXN0
-IGwxDQoJe21zby1saXN0LWlkOjE4MDk5MjkyNDM7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOi05
-MjM2MjA3NzA7fQ0KQGxpc3QgbDE6bGV2ZWwxDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
-bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjM2LjBwdDsN
-Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsN
-Cgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlz
-dCBsMTpsZXZlbDINCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
-bC10ZXh0Om87DQoJbXNvLWxldmVsLXRhYi1zdG9wOjcyLjBwdDsNCgltc28tbGV2ZWwtbnVtYmVy
-LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNp
-emU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7DQoJbXNvLWJpZGktZm9udC1m
-YW1pbHk6IlRpbWVzIE5ldyBSb21hbiI7fQ0KQGxpc3QgbDE6bGV2ZWwzDQoJe21zby1sZXZlbC1u
-dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRh
-Yi1zdG9wOjEwOC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
-aW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWls
-eTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw0DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
-bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjE0NC4wcHQ7
-DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7
-DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxp
-c3QgbDE6bGV2ZWw1DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2
-ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjE4MC4wcHQ7DQoJbXNvLWxldmVsLW51
-bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9u
-dC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw2DQoJ
-e21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJ
-bXNvLWxldmVsLXRhYi1zdG9wOjIxNi4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjps
-ZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsN
-Cglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw3DQoJe21zby1sZXZlbC1udW1i
-ZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1z
-dG9wOjI1Mi4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5k
-ZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpT
-eW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw4DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxl
-dDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjI4OC4wcHQ7DQoJ
-bXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJ
-bXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3Qg
-bDE6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
-dGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjMyNC4wcHQ7DQoJbXNvLWxldmVsLW51bWJl
-ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1z
-aXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTow
-Y207fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowY207fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
-c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
-IC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
-bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
-PC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
-RU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
-b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpIE1hcmN1cyw8bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+VGhhbmtzIGZvciB0aG91Z2h0cyBvbiB0aGlzLiBXZSBhbHNvIGJlbGlldmUgdGhhdCBp
-cyBoYXMgdG8gZG8gd2l0aCB0aGUgY2FsaWJyYXRpb24gbWVjaGFuaXNtIG9mIHRoZSBBRDkzNjEs
-IGR1ZSB0byB0aGUgdmVyeSBsb3cgc3ViLXNhbXBsZSBkZWxheSBjaGFuZ2UuPG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5BbnkgdGhvdWdodHMgZnJvbSB0aGUgRXR0dXMgdGVh
-bT8gSXMgdGhlcmUgYSB3YXkgdG8gcmV0cmlldmUgY2FsaWJyYXRpb24gaW5mb3JtYXRpb24gZnJv
-bSB0aGUgUkZJQyBpbiBVSEQ/IFRoaXMgY291bGQgaGVscCB0byBpZGVudGlmeSBpZiB0aGVyZSBp
-cyBhIGNvcnJlbGF0aW9uIGJldHdlZW4gY2FsaWJyYXRpb24gc2V0dGluZyBhbmQgdGhlIGdyb3Vw
-IGRlbGF5IGNoYW5nZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVzdCByZWdhcmRzLDxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+RW1hbnVlbDxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBz
-dHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6
-My4wcHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0i
-REUiPlZvbjo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkRFIj4gTWFyY3VzIEQuIExlZWNoICZsdDtw
-YXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsNCjxicj4NCjxiPkdlc2VuZGV0OjwvYj4gTW9udGFn
-LCA3LiBGZWJydWFyIDIwMjIgMTc6NDg8YnI+DQo8Yj5Bbjo8L2I+IHVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPGJyPg0KPGI+QmV0cmVmZjo8L2I+IFtVU1JQLXVzZXJzXSBSZTogQjIwMCBncm91
-cCBkZWxheSB2YXJpYXRpb25zPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPk9uIDIwMjItMDItMDcgMDI6NDQsIDxhIGhyZWY9Im1haWx0bzpFbWFu
-dWVsLlN0YXVkaW5nZXJAZGxyLmRlIj4NCkVtYW51ZWwuU3RhdWRpbmdlckBkbHIuZGU8L2E+IHdy
-b3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRv
-cDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IGxhbmc9IkRFIj5IaSBhbGwsPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iREUiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPndlIGhhdmUgYSBjdXN0b20gR251cmFkaW8gaW1wbGVtZW50YXRpb24g
-d2l0aCBtYW55IEIyMDBtaW5pIFVTUlBzLCB3aGljaCBlbmFibGVzIHByZWNpc2Ugcm91bmQtdHJp
-cCB0aW1lIChSVFQpIGJhc2VkIHJhbmdpbmcgYW1vbmcgdGhvc2UgZGV2aWNlcy4gVGhlIE1BQyBp
-cyBURE1BIGJhc2VkIHdpdGggdGhlIGF1dG9tYXRpYyBUeC9SeCBzd2l0Y2hpbmcgYW5kIHRvIGNv
-bXBlbnNhdGUgZm9yIHRoZSBVU1JQcyBncm91cA0KIGRlbGF5IHdlIHBlcmZvcm0gcmFuZ2luZyBv
-dmVyIGFuIFJGLXNwbGl0dGVyIHdoaWNoIHdlIGNhbGlicmF0ZWQgYmVmb3JlaGFuZCB3aXRoIGEg
-dmVjdG9yIG5ldHdvcmsgYW5hbHl6ZXIuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldlIG9ic2Vy
-dmVkIHRoYXQgdGhlIGVzdGltYXRlZCBSVFQgb3ZlciBtdWx0aXBsZSBjYWxpYnJhdGlvbiBtZWFz
-dXJlbWVudCBydW5zIGlzIHVuc3RhYmxlIGluIHRoZSBvcmRlciBvZiB1cCB0byAxbnMuIFdpdGhp
-biBvbmUgbWVhc3VyZW1lbnQgcnVuIG9mIGF0IGxlYXN0IDUgbWludXRlcyB3aXRoIDEwIFJUVCBl
-c3RpbWF0ZXMgcGVyIHNlY29uZCwgaXQgaXMgcHJldHR5IHN0YWJsZSwgYnV0IHdoZW4gd2UgcmVz
-dGFydA0KIHRoZSBmbG93Z3JhcGgsIHdlIG9ic2VydmUgYSBiaWFzLjxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+UGxlYXNlIGZpbmQgYXQgdGhlIGVuZCBvZiB0aGlzIEUtTWFp
-bCBhbGwgdGhpbmdzIHdlIGFscmVhZHkgdHJpZWQgdG8gbmFycm93IGRvd24gdGhlIGlzc3VlIChh
-IGNvbXByZXNzZWQgdmVyc2lvbikuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5JbiBzaG9ydDogPG86cD48L286cD48L3A+DQo8b2wgc3R5bGU9Im1hcmdpbi10b3A6MGNtIiBz
-dGFydD0iMSIgdHlwZT0iMSI+DQo8bGkgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJt
-YXJnaW4tbGVmdDowY207bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzMiPldlIGZpbmFsbHkgdXNlZCBv
-bmx5IHR3byBCMjEwIHdpdGggYSBzaW5nbGUgZXh0ZXJuYWwgcmVmZXJlbmNlIGNsb2NrLCBhIHNh
-bXBsaW5nIHJhdGUgb2YgMjVNSHosIGFuZCBhIG1hbnVhbGx5IHNldCBtYXN0ZXIgY2xvY2sgcmF0
-ZSBvZiA1ME1Iei4NCjxvOnA+PC9vOnA+PC9saT48L29sPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9w
-OjBjbSIgc3RhcnQ9IjEiIHR5cGU9IjEiPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9wOjBjbSIgc3Rh
-cnQ9IjEiIHR5cGU9IjEiPg0KPGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFy
-Z2luLWxlZnQ6MGNtO21zby1saXN0OmwwIGxldmVsMiBsZm8zIj5JbiB0aGlzIHNldHVwIHRoZSBl
-c3RpbWF0ZWQgUlRUIG92ZXIgbXVsdGlwbGUgbWVhc3VyZW1lbnQgcnVucyBjYW4gdmFyeSBmcm9t
-IHJ1biB0byBydW4gYnkgJmx0OzUwcHMgKG9rIGZvciB1cyksIGJ1dCBhbHNvIGJ5IDI4MHBzIG9y
-IDc1MHBzIChmYXIgdG9vIG11Y2ggZm9yIHVzKS4gVGhlIHN0YW5kYXJkIGRldmlhdGlvbg0KIG9m
-IFJUVCBlc3RpbWF0ZXMgd2l0aGluIG9uZSBtZWFzdXJlbWVudCBydW4gaXMgYWJvdXQgNzBwcywg
-YW5kIGVhY2ggcnVuIGNvbnRhaW5zIDIwMDAgdG8gMzUwMCBSVFQgZXN0aW1hdGVzLjxvOnA+PC9v
-OnA+PC9saT48L29sPg0KPC9vbD4NCjxvbCBzdHlsZT0ibWFyZ2luLXRvcDowY20iIHN0YXJ0PSIy
-IiB0eXBlPSIxIj4NCjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdpbi1s
-ZWZ0OjBjbTttc28tbGlzdDpsMCBsZXZlbDEgbGZvMyI+VG8gY3Jvc3MgY2hlY2sgb3VyIGltcGxl
-bWVudGF0aW9uLCB3ZSB1c2VkIHRoZSB2ZXJ5IHNhbWUgZmxvdy1ncmFwaCB3aXRoIHR3byBYMzEw
-IHdpdGggQ0JYLTEyMCBmcm9udC1lbmRzLCBhIGNvbW1vbiBleHRlcm5hbCByZWZlcmVuY2UgY2xv
-Y2ssIGFuZCBvbmx5IGluY3JlYXNlZCB0aGUgdHJhbnNtaXQgc2lnbmFsDQogcGFkZGluZyBieSA0
-MHVzIChiZWNhdXNlIHRoZSByYW1wLXVwIHRpbWUgaXMgbGFyZ2VyIGZvciB0aGlzIGZyb250LWVu
-ZCkuIDxvOnA+PC9vOnA+PC9saT48L29sPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9wOjBjbSIgc3Rh
-cnQ9IjIiIHR5cGU9IjEiPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9wOjBjbSIgc3RhcnQ9IjEiIHR5
-cGU9IjEiPg0KPGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6
-MGNtO21zby1saXN0OmwwIGxldmVsMiBsZm8zIj5SVFQgZXN0aW1hdGVzIG92ZXIgbXVsdGlwbGUg
-cnVucyBhcmUgcGljdHVyZSBwZXJmZWN0OiB0aGUgbWVhbiBSVFQgdmFyaWVzIGJ5IGxlc3MgdGhh
-biA1cHMgb3ZlciBtdWx0aXBsZSBtZWFzdXJlbWVudCBydW5zLjxvOnA+PC9vOnA+PC9saT48L29s
-Pg0KPC9vbD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+QW55IGlkZWEgd2hhdCBjb3VsZCBjYXVzZSB0aG9zZSB2YXJpYXRp
-b25zIGZvciB0aGUgQjIwMCBzZXJpZXM/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5XZSB1c2UgVUhEIDMuMTUuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5l
-LWhlaWdodDoxNi4wcHQ7cHVuY3R1YXRpb24td3JhcDpzaW1wbGU7dGV4dC1hdXRvc3BhY2U6bm9u
-ZSI+DQpCZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
-dHlsZT0ibGluZS1oZWlnaHQ6MTYuMHB0O3B1bmN0dWF0aW9uLXdyYXA6c2ltcGxlO3RleHQtYXV0
-b3NwYWNlOm5vbmUiPg0KRW1hbnVlbDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPlNpbmNlIHRoZXNlIHZhcmlhdGlvbnMg
-YXJlIHZlcnktbXVjaCBzdWItc2luZ2xlLXNhbXBsZSBpbiBzY2FsZSwgbXkgZ3Vlc3MgaXMgdGhh
-dCB0aGlzIGhhcyB0byBkbyB3aXRoIHRoZSB2ZXJ5LWNvbXBsZXggJnF1b3Q7Y2FsaWJyYXRpb24m
-cXVvdDsgbWVjaGFuaXNtIHRoYXQgdGhlIEFEOTM2MTxicj4NCiZuYnNwOyB1bmRlcmdvZXMgd2hl
-biBpdCBpcyBpbml0aWFsaXplZCwgYW5kIHdoZW4geW91IGNoYW5nZSBmcmVxdWVuY3kuJm5ic3A7
-IE1hbnkgb2YgdGhlIGVsZW1lbnRzIGluIHRoYXQgc2VxdWVuY2UgYXJlLCBJIHRoaW5rLCBhbmFs
-b2cgaW4gbmF0dXJlLiZuYnNwOyBUaGVyZSBtYXkgYmUgc29tZTxicj4NCiZuYnNwOyAmcXVvdDtN
-b250ZS1DYXJsbyZxdW90OyBlbGVtZW50cyBpbiB0aGlzLCBlaXRoZXIgJnF1b3Q7aW5oZXJlbnQm
-cXVvdDsgKGJlY2F1c2UgeW91J3JlIGRlYWxpbmcgd2l0aCB0aGUgdmFnYXJpZXMgb2YgdGhlIGFu
-YWxvZyB3b3JsZCksIG9yIHBlcmhhcHMgZXhwbGljaXQgaW4gYWxnb3JpdGhtcyBsaWtlPGJyPg0K
-Jm5ic3A7IEkvUSBpbWJhbGFuY2UgY29tcGVuc2F0aW9uLjxicj4NCjxicj4NCkluIGNvbnRyYXN0
-LCBvbiB0aGUgWDMxMCB3aXRoIGEgQ0JYLCBhbnkgSS9RIGJhbGFuY2UgY29tcGVuc2F0aW9uICh3
-aGljaCBjYW4gYWZmZWN0IHBoYXNlKSwgaXMgZW50aXJlbHkgc3RhdGljLCBhbmQgdGhlIHNpZ25h
-bCBwYXRod2F5IGluIHRoZSBhbmFsb2cgZG9tYWluIGlzIHZlcnk8YnI+DQombmJzcDsgbXVjaCBz
-aW1wbGVyLCB3aXRoIHZlcnkgbXVjaCBsZXNzICZxdW90O2R5bmFtaWMgdHdlYWtpbmcmcXVvdDsg
-ZHVyaW5nIGluaXRpYWxpemF0aW9uIGFuZCB0dW5pbmcuPGJyPg0KPGJyPg0KTXkgdW5kZXJzdGFu
-ZGluZyBpcyB0aGF0IEFEOTM2MSBkb2VzIG5vdCBhbGxvdyB0dXJuaW5nIG9mZiBhbnkgb2YgdGhv
-c2UgY29tcGVuc2F0aW9uIGFsZ29yaXRobXMuPGJyPg0KPGJyPg0KTm93LCBhIGNhdmVhdCBpcyB0
-aGF0IHRoaXMgaXMgYW4gZWR1Y2F0ZWQgaHVuY2gsIGJhc2VkIG9uIHRoZSBuYXR1cmUgb2YgdGhl
-IGlzc3VlLiZuYnNwOyBJdCBjb3VsZCBiZSBzb21ldGhpbmcgZWxzZSwgYnV0IHRoZSAqc2NhbGUq
-IG9mIHRoZSBpc3N1ZSBzdWdnZXN0cyBzb21ldGhpbmc8YnI+DQombmJzcDsgaW4gdGhlIGFuYWxv
-ZyBkb21haW4uPGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
+The results is the follows.
 
---_000_de238b3f8bf447be9393e5b22d13b97fdlrde_--
+Can anyone help me?
 
---===============6930956716152903915==
+Giuseppe
+
+
+
+mender -rootfs /home/root/usrp_n3xx_fs.mender
+Incorrect Usage. flag provided but not defined: -rootfs
+
+NAME:
+ =C2=A0=C2=A0 mender - manage and start the Mender client.
+
+USAGE:
+ =C2=A0=C2=A0 [global options] command [command options] [arguments...]
+
+VERSION:
+ =C2=A0=C2=A0 a78b45e=C2=A0 runtime: go1.12.9
+
+DESCRIPTION:
+ =C2=A0=C2=A0 mender integrates both the mender daemon and commands for m=
+anually=20
+performing tasks performed by
+ =C2=A0=C2=A0 the daemon (see list of COMMANDS below).
+
+Global flag remarks:
+ =C2=A0 - Supported log levels incudes: 'debug', 'info', 'warning', 'erro=
+r',=20
+'panic' and 'fatal'.
+
+
+COMMANDS:
+ =C2=A0=C2=A0 bootstrap=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Perform boots=
+trap and exit.
+ =C2=A0=C2=A0 check-update=C2=A0=C2=A0=C2=A0 Force update check.
+ =C2=A0=C2=A0 commit=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ Commit current Artifact. Returns (2) if no update in=20
+progress.
+ =C2=A0=C2=A0 daemon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ Start the client as a background service.
+ =C2=A0=C2=A0 install=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Men=
+der Artifact to install - local file or a `URL`.
+ =C2=A0=C2=A0 rollback=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Rollback=
+ current Artifact. Returns (2) if no update=20
+in progress.
+ =C2=A0=C2=A0 send-inventory=C2=A0 Force inventory update.
+ =C2=A0=C2=A0 setup=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Perform configuration setup - 'mender setup --help'=20
+for command options.
+ =C2=A0=C2=A0 snapshot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Create f=
+ilesystem snapshot -'mender snapshot --help'=20
+for more.
+ =C2=A0=C2=A0 show-artifact=C2=A0=C2=A0 Print the current artifact name t=
+o the command line=20
+and exit.
+ =C2=A0=C2=A0 help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+ =C2=A0=C2=A0 --config FILE, -c FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 Configuration FILE path. (default:=20
+"/etc/mender/mender.conf")
+ =C2=A0=C2=A0 --fallback-config FILE, -b FILE=C2=A0 Fallback configuratio=
+n FILE path.=20
+(default:
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "/var/lib=
+/mender/mender.conf")
+ =C2=A0=C2=A0 --data DIR, -d DIR=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mender state data DIRECTORY pa=
+th.=20
+(default: "/var/lib/mender")
+ =C2=A0=C2=A0 --log-file FILE, -L FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 FILE to log to.
+ =C2=A0=C2=A0 --log-level level, -l level=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 S=
+et logging level. (default: "info")
+ =C2=A0=C2=A0 --log-modules value, -m value=C2=A0=C2=A0=C2=A0 -log-module=
+s is accepted for=20
+compatibility but has no effect
+ =C2=A0=C2=A0 --trusted-certs FILE, -E FILE=C2=A0=C2=A0=C2=A0 Trusted ser=
+ver certificates FILE path.
+ =C2=A0=C2=A0 --forcebootstrap, -F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Force bootstrap. (default: false)
+ =C2=A0=C2=A0 --no-syslog=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Disable logging to syslog.=20
+(default: false)
+ =C2=A0=C2=A0 --skipverify=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+Skip certificate verification.=20
+(default: false)
+ =C2=A0=C2=A0 --help, -h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 show help (default: false)
+ =C2=A0=C2=A0 --version, -v=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print =
+the version (default: false)
+
+ERRO[0000] flag provided but not defined: -rootfs
+
+--------------RxIMzHak7xwcaN99u0s7bmgM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <p>Hi guys,</p>
+    <p>I'm trying to update the USRP N310 following this guide:
+      <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/USR=
+P_N300/N310/N320/N321_Getting_Started_Guide">https://kb.ettus.com/USRP_N3=
+00/N310/N320/N321_Getting_Started_Guide</a>
+      in particolar "Mender Update Process".</p>
+    <p>The results is the follows.</p>
+    <p>Can anyone help me? <br>
+    </p>
+    <p>Giuseppe<br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p align=3D"left">mender -rootfs /home/root/usrp_n3xx_fs.mender<br>
+      Incorrect Usage. flag provided but not defined: -rootfs<br>
+      <br>
+      NAME:<br>
+      =C2=A0=C2=A0 mender - manage and start the Mender client.<br>
+      <br>
+      USAGE:<br>
+      =C2=A0=C2=A0 [global options] command [command options] [arguments.=
+..]<br>
+      <br>
+      VERSION:<br>
+      =C2=A0=C2=A0 a78b45e=C2=A0 runtime: go1.12.9<br>
+      <br>
+      DESCRIPTION:<br>
+      =C2=A0=C2=A0 mender integrates both the mender daemon and commands =
+for
+      manually performing tasks performed by<br>
+      =C2=A0=C2=A0 the daemon (see list of COMMANDS below).<br>
+      <br>
+      Global flag remarks:<br>
+      =C2=A0 - Supported log levels incudes: 'debug', 'info', 'warning',
+      'error', 'panic' and 'fatal'.<br>
+      <br>
+      <br>
+      COMMANDS:<br>
+      =C2=A0=C2=A0 bootstrap=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Perform =
+bootstrap and exit.<br>
+      =C2=A0=C2=A0 check-update=C2=A0=C2=A0=C2=A0 Force update check.<br>
+      =C2=A0=C2=A0 commit=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Commit current Artifact. Returns (2) if no
+      update in progress.<br>
+      =C2=A0=C2=A0 daemon=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Start the client as a background service.<br>
+      =C2=A0=C2=A0 install=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ Mender Artifact to install - local file or a
+      `URL`.<br>
+      =C2=A0=C2=A0 rollback=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Rol=
+lback current Artifact. Returns (2) if no
+      update in progress.<br>
+      =C2=A0=C2=A0 send-inventory=C2=A0 Force inventory update.<br>
+      =C2=A0=C2=A0 setup=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Perform configuration setup - 'mender setup
+      --help' for command options.<br>
+      =C2=A0=C2=A0 snapshot=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Cre=
+ate filesystem snapshot -'mender snapshot
+      --help' for more.<br>
+      =C2=A0=C2=A0 show-artifact=C2=A0=C2=A0 Print the current artifact n=
+ame to the command
+      line and exit.<br>
+      =C2=A0=C2=A0 help=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 Shows a list of commands or help for one
+      command<br>
+      <br>
+      GLOBAL OPTIONS:<br>
+      =C2=A0=C2=A0 --config FILE, -c FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 Configuration FILE path.
+      (default: "/etc/mender/mender.conf")<br>
+      =C2=A0=C2=A0 --fallback-config FILE, -b FILE=C2=A0 Fallback configu=
+ration FILE
+      path. (default:<br>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "/var/=
+lib/mender/mender.conf")<br>
+      =C2=A0=C2=A0 --data DIR, -d DIR=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Mender state data DIRECT=
+ORY
+      path. (default: "/var/lib/mender")<br>
+      =C2=A0=C2=A0 --log-file FILE, -L FILE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 FILE to log to.<br>
+      =C2=A0=C2=A0 --log-level level, -l level=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Set logging level. (default:
+      "info")<br>
+      =C2=A0=C2=A0 --log-modules value, -m value=C2=A0=C2=A0=C2=A0 -log-m=
+odules is accepted for
+      compatibility but has no effect<br>
+      =C2=A0=C2=A0 --trusted-certs FILE, -E FILE=C2=A0=C2=A0=C2=A0 Truste=
+d server certificates
+      FILE path.<br>
+      =C2=A0=C2=A0 --forcebootstrap, -F=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Force bootstrap. (default:
+      false)<br>
+      =C2=A0=C2=A0 --no-syslog=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Disable logging to syslog.
+      (default: false)<br>
+      =C2=A0=C2=A0 --skipverify=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Skip certificate verification.
+      (default: false)<br>
+      =C2=A0=C2=A0 --help, -h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 show help (default: false)<br>
+      =C2=A0=C2=A0 --version, -v=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+print the version (default:
+      false)</p>
+    <p>
+      ERRO[0000] flag provided but not defined: -rootfs=C2=A0=C2=A0=C2=A0=
+=C2=A0 <br>
+    </p>
+  </body>
+</html>
+
+--------------RxIMzHak7xwcaN99u0s7bmgM--
+
+--===============4077570962036658345==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -367,4 +333,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6930956716152903915==--
+--===============4077570962036658345==--
