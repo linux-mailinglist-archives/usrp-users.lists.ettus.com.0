@@ -2,288 +2,362 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7550E4AEA44
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 07:26:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 658804AEA69
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 07:33:15 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4C41B384A52
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 01:26:32 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="IQmRMgrH";
-	dkim-atps=neutral
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 512AC3849A8
-	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 01:25:30 -0500 (EST)
-Received: by mail-vs1-f53.google.com with SMTP id j21so1474903vsg.6
-        for <usrp-users@lists.ettus.com>; Tue, 08 Feb 2022 22:25:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kRlcYmZulvNUZno/XHeNtu267wCxkm3XYv2SudzAzkI=;
-        b=IQmRMgrHOrrpul6evXRDqO2vOkPuvU8Ep4Lrvw5zZNOB7rY/8TMLshV5JLBKfRVP5W
-         noX5kNg5/x/pBJ0lPpsisX/xqrH6e1sghw01PKpW6we/KmtT/pv2pxdkm9CBSdODnfR7
-         +9t7/6sqabq5VpNFprjYoyJRa/QaNtiQQvvnon/wwAv0OrqK97n9Izph5vcZA98xYJJb
-         b9izRvLA0ID2OB1EEPtODjsvbpW0VvFwL4/wRNRi/n+rIeWcUU5AqWJEBdYj/IB/6rvp
-         +j4hYh8iG44n8v9wlfoGV6yKODAEZxp68Qm391/TWEiSsIV6smKtcloZkzS5XPU2Lyvd
-         V9vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kRlcYmZulvNUZno/XHeNtu267wCxkm3XYv2SudzAzkI=;
-        b=BtmuJUhWJgsQiY/QtE3MfNYW43haC1uyvoV4q714XEQ8022AGQ1yRVxzQa+1cYOIwC
-         cI/ktdtkutYFNSvew14/ZQk+YT0VlyGSMsysLK68Rp6XaADNcUAQH2zYzyU74vTf6VI1
-         Fk5HTe4iz6UiAlFWwfmPeIs63HBoKOQgkMn4EWGsKMNU/LImvnxX298pXpbhfJKt9FpL
-         R7pnGkRGG7FwIzGPWm8ZQsi7HfBDB4myD5+8ZY3RYX6I/8Zp4MyRXCuVWlJkrPL7F6Xw
-         t5YEb84xeYaCoypdcf/O46u+OW+l31BPTDreT0nlyYfeuzoaFzrRILSw5l4MF7XkW9/t
-         twow==
-X-Gm-Message-State: AOAM530TXJWEgKllz5oPeMQnN+QilN2lyU0Yl6z8NCwwGTi2Sl5dWTlF
-	+PHIGcGdhyceIlXfR973CRINY2acLqTpvYGHISf2AuM5
-X-Google-Smtp-Source: ABdhPJyate8Qcr9+jPkfwx7AwROUoxYUCQpqgNWOh+rZK9qZwunwvOIr4RTA5/zsYVKNJqUVosJxQX9t+Blmxe6E1jA=
-X-Received: by 2002:a05:6102:1611:: with SMTP id cu17mr227740vsb.59.1644387929578;
- Tue, 08 Feb 2022 22:25:29 -0800 (PST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8883D384B60
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 01:33:14 -0500 (EST)
+Received: from mailin.dlr.de (mailin.dlr.de [194.94.201.12])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3B2E1384B0B
+	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 01:32:12 -0500 (EST)
+X-IPAS-Result: =?us-ascii?q?A2EMBQCGXwNi/xWKuApQCoQEWYEXFYFTF4Q+kRYDixCTN?=
+ =?us-ascii?q?gkLAQEBAQEBAQEBCAEqARYEAQGFBQIXg1gmOBMBAgQBAQEBAwIDAQEBAQEBA?=
+ =?us-ascii?q?wEBBgEBAQEBAQUEAQECgRiFL0aCNSKDdQIBAwENFQo4JAIBRwMCAgIfBwoUE?=
+ =?us-ascii?q?QEBBAESCIJ9gg5XA6wegTGBAYRqgjsNgkuBOocqAQGHB4JQgRWCKYE/giGBd?=
+ =?us-ascii?q?0QfgmITglIEkxcCgVk4GQqBFDuSYIMfiVGfbWsHghCZLIFzhWcwFYNyjCCGJ?=
+ =?us-ascii?q?5FUlkogkEGVZgIEAgQFAhaBeGWBGnGCUWdRFwIPnG90OAIGCwEBAwmPXoEQA?=
+ =?us-ascii?q?QE?=
+IronPort-PHdr: A9a23:yxlXGROkpaJ1qB1VpJol6na4DRdPi9zP1u491JMrhvp0f7i5+Ny6Z
+ QqDv68r0QCCBN2Go9t/yMPu+5j6XmIB5ZvT+FsjS7drEyE/tMMNggY7C9SEA0CoZNTjbig9A
+ dgQHAQ9pyLzPkdaAtvxaEPPqXOu8zESBg//NQ1oLejpB4Lelcu62/6s95HJYwhFhjWxba5uI
+ Bi2sA7cqtQYjYx+J6gr1xDHuGFIe+NYxWNpIVKcgRPx7dqu8ZBg7ipdpesv+9ZPXqvmcas4S
+ 6dYDCk9PGAu+MLrrxjDQhCR6XYaT24bjwBHAwnB7BH9Q5fxri73vfdz1SWGIcH7S60/VDK/5
+ KlpVRDokj8KOT4n/m/Klsx+gqFVoByjqBx+34Hbb5qYO+BicqPfZ94WWXZNU8RXWidcAo28d
+ YwPD+8ZMOtfoIf9okEBrR2jBQayAOPj0CJGhmPs0q0nzushEAfG3AM+ENIUq3nbsdH1NL0IX
+ e+o0qbF1DPOZO5Z1jnh8obHaAwhoe2SUrJqd8rc0VcjGgPLg1uQpoHoPjCY2OsDvWWU6+dtW
+ /+ihnAppgx/rTai2tohhIbXi4wb1lzI6SZ0zYQ0KNC7VUJ1b9GpHZpWuiqHNIV2WtsvT3x0t
+ Cog17ELupG2cDIXxJkpxBPTceKLf5WQ7h7+SOqdOyp0iXFqdb6lmhq//0utxvfiWsS031tHq
+ DdOnMPWuXAXzRPT79CKSv56/ki8xzmCzxvT6uRYIUAskqrbNoIhzqYwlpUNtUTDGTf7lkvwg
+ qGYeUsq+uim5ePkbLvhvJGQKZJ4hA7/PakwgMC/AOI4MhQUX2eB4+izybnj/VfjTLpXkPI6i
+ qjZsJbEKsQHvqO1HhNZ3pw+5xu8ADqqyskUkHcEIV5fZh6LkpDlO1TUL/D5Cfe/jU6skDBux
+ /3eMbPhB4/CLn7ekLj/ebZx8VNSyBYpwtBC+p1UC7cBIP3tVU/rr9HXExs5Mxauz+n6Ftpxz
+ oUeVnmXDa+DLKzSqUOI5v4oI+SUeoMZoCz9JOQ95/7ykX85nkcQfbGz0psLdH+4HupmI0KfY
+ XX3mNcOC3oKvgwlQezljV2NSz9TZ3KoU60g4TE7DZqqDZ3fSYC1nLyBwCC7E4VLZmBdEFCMC
+ W7kd5ifW/gSciKSOdRskjgFVbi6V48hzguiuxHmy7p7M+rU4TcUuo7k1NhwtKXvkkRm7TVoB
+ MSD1GeHVWhpmEsHQjY32OZ0pkkrjh/XzLNim7lFDtFJ/NtNUxwmLtjR0/BnEJb5XQeXLfmTT
+ 1PzFvijCDcsQ9Z3+MMHfkp8HdqvlDjP2zDsD7JDxO/DP4A97q+Jhyu5HM160XuTjMEc
+IronPort-Data: A9a23:OMCrIq15ktYgNSwwofbD5W9zkn2cJEfYwER7XKvMYLTBsI5bpz0Hz
+ WUWCDqCO/eOYmP0f9wgbY7j9ElX7ZTQzoNlGwto3Hw8FHgiRegppDi6wuUcGwvIc6UvmWo+t
+ 512huHodZxyFjmFzvuUGuCJQUNUjMlkfZKhTr6UUsxNbVU8En1500ozw7VRbrNA2LBVPSvc4
+ bsenOWCYDdJ6xYsWo7Dw/vewP/HlK2aVAIw5jTSV9gS1LPtvyV94KYkGE2EByCQrr+4vwKNb
+ 72rILmRpgs19vq2Yz+vuu6TnkYiGtY+MeUS45b/tmfLbhVq/0QPPqgH2PU0NWdKtBeCxM1Lz
+ JZ/ipjraSAXDITBh7FIO/VYO3kW0axu1JvrDFaRlO229xefXkvHhfRoEFs/e4Ec4KB7DAmi9
+ 9RBcHZUPkzF3rnmhujiIgVvrp1LwM3DEYYWvGxtyXfiEf87TZHFTKjQzdNcxnE8i6iiGN6AO
+ 5tDOWQ+MHwsZTURAlcsJ7wBg92PpXOuXztZ8XaTjpQOtj27IAtZleKF3MDuUsSDWc5VgEGer
+ HjP4mLRDRQTNdjZwj2AmlqxnfXX2D7gVZgJPLm57eJxxlCP2nEIThYRUDOGTeKRhkqyVtxRL
+ k0R4nB3oLg5sk2tUsP0GRG8ujiIs3bwRuZtLgHz0ynVooK83upTLjFsouJpADD+iPILeA==
+IronPort-HdrOrdr: A9a23:5VsT+qpfyNGQLojsy3ceQO8aV5oceYIsimQD101hICG9Kvbo8/
+ xG785rsiMc6QxhI03I9urhBEDtex7hHNtOkOws1NSZLXPbUQmTXeJfBOLZqlWKcREWtNQtt5
+ uIGJIQNDSENzlHZLHBjjVQfexN/DDNytHPuQ6X9QYVcehFUdAZ0ztE
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.88,354,1635199200";
+   d="scan'208,217";a="64928694"
+From: <Emanuel.Staudinger@dlr.de>
+To: <patchvonbraun@gmail.com>, <usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: B200 group delay variations
+Thread-Index: Adgb8qGS0VK46fp+QDeehSX6d+7S+AAR3KgAAFDzXYA=
+Date: Wed, 9 Feb 2022 06:32:09 +0000
+Message-ID: <de238b3f8bf447be9393e5b22d13b97f@dlr.de>
+References: <f4069dea5a274141ae4b9952254b177a@dlr.de>
+ <84c7f9ba-91c4-58f2-f4e0-94828ac2a5bc@gmail.com>
+In-Reply-To: <84c7f9ba-91c4-58f2-f4e0-94828ac2a5bc@gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
 MIME-Version: 1.0
-References: <CAB__hTQtKRTNS+zMLKPS=i1YRUbJRmb4ofG=g0xhKuC383hU0Q@mail.gmail.com>
-In-Reply-To: <CAB__hTQtKRTNS+zMLKPS=i1YRUbJRmb4ofG=g0xhKuC383hU0Q@mail.gmail.com>
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Date: Wed, 9 Feb 2022 01:24:53 -0500
-Message-ID: <CAL7q81v=oCQAeCWGETXKsUMG-_JKfPv1dum+8o6uEm_CosHSLg@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Message-ID-Hash: Y5BLYZYH3BSASAC2PW562QSDCWKZNAO3
-X-Message-ID-Hash: Y5BLYZYH3BSASAC2PW562QSDCWKZNAO3
-X-MailFrom: jonathon.pendlum@ettus.com
+Message-ID-Hash: KD7W2OFOGKIV6I4YDCAVJEUA2L2LRRYK
+X-Message-ID-Hash: KD7W2OFOGKIV6I4YDCAVJEUA2L2LRRYK
+X-MailFrom: Emanuel.Staudinger@dlr.de
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Replay block propagation Bug?
+Subject: [USRP-users] Re: B200 group delay variations
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y5BLYZYH3BSASAC2PW562QSDCWKZNAO3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KD7W2OFOGKIV6I4YDCAVJEUA2L2LRRYK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5026092324520224990=="
+Content-Type: multipart/mixed; boundary="===============6930956716152903915=="
 
---===============5026092324520224990==
-Content-Type: multipart/alternative; boundary="0000000000006a779105d78fe65c"
+--===============6930956716152903915==
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_de238b3f8bf447be9393e5b22d13b97fdlrde_"
 
---0000000000006a779105d78fe65c
-Content-Type: text/plain; charset="UTF-8"
+--_000_de238b3f8bf447be9393e5b22d13b97fdlrde_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Rob,
+SGkgTWFyY3VzLA0KDQpUaGFua3MgZm9yIHRob3VnaHRzIG9uIHRoaXMuIFdlIGFsc28gYmVsaWV2
+ZSB0aGF0IGlzIGhhcyB0byBkbyB3aXRoIHRoZSBjYWxpYnJhdGlvbiBtZWNoYW5pc20gb2YgdGhl
+IEFEOTM2MSwgZHVlIHRvIHRoZSB2ZXJ5IGxvdyBzdWItc2FtcGxlIGRlbGF5IGNoYW5nZS4NCkFu
+eSB0aG91Z2h0cyBmcm9tIHRoZSBFdHR1cyB0ZWFtPyBJcyB0aGVyZSBhIHdheSB0byByZXRyaWV2
+ZSBjYWxpYnJhdGlvbiBpbmZvcm1hdGlvbiBmcm9tIHRoZSBSRklDIGluIFVIRD8gVGhpcyBjb3Vs
+ZCBoZWxwIHRvIGlkZW50aWZ5IGlmIHRoZXJlIGlzIGEgY29ycmVsYXRpb24gYmV0d2VlbiBjYWxp
+YnJhdGlvbiBzZXR0aW5nIGFuZCB0aGUgZ3JvdXAgZGVsYXkgY2hhbmdlLg0KDQpCZXN0IHJlZ2Fy
+ZHMsDQpFbWFudWVsDQoNClZvbjogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWls
+LmNvbT4NCkdlc2VuZGV0OiBNb250YWcsIDcuIEZlYnJ1YXIgMjAyMiAxNzo0OA0KQW46IHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tDQpCZXRyZWZmOiBbVVNSUC11c2Vyc10gUmU6IEIyMDAgZ3Jv
+dXAgZGVsYXkgdmFyaWF0aW9ucw0KDQpPbiAyMDIyLTAyLTA3IDAyOjQ0LCBFbWFudWVsLlN0YXVk
+aW5nZXJAZGxyLmRlPG1haWx0bzpFbWFudWVsLlN0YXVkaW5nZXJAZGxyLmRlPiB3cm90ZToNCkhp
+IGFsbCwNCg0Kd2UgaGF2ZSBhIGN1c3RvbSBHbnVyYWRpbyBpbXBsZW1lbnRhdGlvbiB3aXRoIG1h
+bnkgQjIwMG1pbmkgVVNSUHMsIHdoaWNoIGVuYWJsZXMgcHJlY2lzZSByb3VuZC10cmlwIHRpbWUg
+KFJUVCkgYmFzZWQgcmFuZ2luZyBhbW9uZyB0aG9zZSBkZXZpY2VzLiBUaGUgTUFDIGlzIFRETUEg
+YmFzZWQgd2l0aCB0aGUgYXV0b21hdGljIFR4L1J4IHN3aXRjaGluZyBhbmQgdG8gY29tcGVuc2F0
+ZSBmb3IgdGhlIFVTUlBzIGdyb3VwIGRlbGF5IHdlIHBlcmZvcm0gcmFuZ2luZyBvdmVyIGFuIFJG
+LXNwbGl0dGVyIHdoaWNoIHdlIGNhbGlicmF0ZWQgYmVmb3JlaGFuZCB3aXRoIGEgdmVjdG9yIG5l
+dHdvcmsgYW5hbHl6ZXIuDQoNCldlIG9ic2VydmVkIHRoYXQgdGhlIGVzdGltYXRlZCBSVFQgb3Zl
+ciBtdWx0aXBsZSBjYWxpYnJhdGlvbiBtZWFzdXJlbWVudCBydW5zIGlzIHVuc3RhYmxlIGluIHRo
+ZSBvcmRlciBvZiB1cCB0byAxbnMuIFdpdGhpbiBvbmUgbWVhc3VyZW1lbnQgcnVuIG9mIGF0IGxl
+YXN0IDUgbWludXRlcyB3aXRoIDEwIFJUVCBlc3RpbWF0ZXMgcGVyIHNlY29uZCwgaXQgaXMgcHJl
+dHR5IHN0YWJsZSwgYnV0IHdoZW4gd2UgcmVzdGFydCB0aGUgZmxvd2dyYXBoLCB3ZSBvYnNlcnZl
+IGEgYmlhcy4NClBsZWFzZSBmaW5kIGF0IHRoZSBlbmQgb2YgdGhpcyBFLU1haWwgYWxsIHRoaW5n
+cyB3ZSBhbHJlYWR5IHRyaWVkIHRvIG5hcnJvdyBkb3duIHRoZSBpc3N1ZSAoYSBjb21wcmVzc2Vk
+IHZlcnNpb24pLg0KSW4gc2hvcnQ6DQoNCiAgMS4gIFdlIGZpbmFsbHkgdXNlZCBvbmx5IHR3byBC
+MjEwIHdpdGggYSBzaW5nbGUgZXh0ZXJuYWwgcmVmZXJlbmNlIGNsb2NrLCBhIHNhbXBsaW5nIHJh
+dGUgb2YgMjVNSHosIGFuZCBhIG1hbnVhbGx5IHNldCBtYXN0ZXIgY2xvY2sgcmF0ZSBvZiA1ME1I
+ei4NCg0KICAgICAqICAgSW4gdGhpcyBzZXR1cCB0aGUgZXN0aW1hdGVkIFJUVCBvdmVyIG11bHRp
+cGxlIG1lYXN1cmVtZW50IHJ1bnMgY2FuIHZhcnkgZnJvbSBydW4gdG8gcnVuIGJ5IDw1MHBzIChv
+ayBmb3IgdXMpLCBidXQgYWxzbyBieSAyODBwcyBvciA3NTBwcyAoZmFyIHRvbyBtdWNoIGZvciB1
+cykuIFRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgUlRUIGVzdGltYXRlcyB3aXRoaW4gb25lIG1l
+YXN1cmVtZW50IHJ1biBpcyBhYm91dCA3MHBzLCBhbmQgZWFjaCBydW4gY29udGFpbnMgMjAwMCB0
+byAzNTAwIFJUVCBlc3RpbWF0ZXMuDQoNCiAgMS4gIFRvIGNyb3NzIGNoZWNrIG91ciBpbXBsZW1l
+bnRhdGlvbiwgd2UgdXNlZCB0aGUgdmVyeSBzYW1lIGZsb3ctZ3JhcGggd2l0aCB0d28gWDMxMCB3
+aXRoIENCWC0xMjAgZnJvbnQtZW5kcywgYSBjb21tb24gZXh0ZXJuYWwgcmVmZXJlbmNlIGNsb2Nr
+LCBhbmQgb25seSBpbmNyZWFzZWQgdGhlIHRyYW5zbWl0IHNpZ25hbCBwYWRkaW5nIGJ5IDQwdXMg
+KGJlY2F1c2UgdGhlIHJhbXAtdXAgdGltZSBpcyBsYXJnZXIgZm9yIHRoaXMgZnJvbnQtZW5kKS4N
+Cg0KICAgICAqICAgUlRUIGVzdGltYXRlcyBvdmVyIG11bHRpcGxlIHJ1bnMgYXJlIHBpY3R1cmUg
+cGVyZmVjdDogdGhlIG1lYW4gUlRUIHZhcmllcyBieSBsZXNzIHRoYW4gNXBzIG92ZXIgbXVsdGlw
+bGUgbWVhc3VyZW1lbnQgcnVucy4NCg0KQW55IGlkZWEgd2hhdCBjb3VsZCBjYXVzZSB0aG9zZSB2
+YXJpYXRpb25zIGZvciB0aGUgQjIwMCBzZXJpZXM/DQpXZSB1c2UgVUhEIDMuMTUuDQoNCkJlc3Qg
+cmVnYXJkcywNCkVtYW51ZWwNCg0KU2luY2UgdGhlc2UgdmFyaWF0aW9ucyBhcmUgdmVyeS1tdWNo
+IHN1Yi1zaW5nbGUtc2FtcGxlIGluIHNjYWxlLCBteSBndWVzcyBpcyB0aGF0IHRoaXMgaGFzIHRv
+IGRvIHdpdGggdGhlIHZlcnktY29tcGxleCAiY2FsaWJyYXRpb24iIG1lY2hhbmlzbSB0aGF0IHRo
+ZSBBRDkzNjENCiAgdW5kZXJnb2VzIHdoZW4gaXQgaXMgaW5pdGlhbGl6ZWQsIGFuZCB3aGVuIHlv
+dSBjaGFuZ2UgZnJlcXVlbmN5LiAgTWFueSBvZiB0aGUgZWxlbWVudHMgaW4gdGhhdCBzZXF1ZW5j
+ZSBhcmUsIEkgdGhpbmssIGFuYWxvZyBpbiBuYXR1cmUuICBUaGVyZSBtYXkgYmUgc29tZQ0KICAi
+TW9udGUtQ2FybG8iIGVsZW1lbnRzIGluIHRoaXMsIGVpdGhlciAiaW5oZXJlbnQiIChiZWNhdXNl
+IHlvdSdyZSBkZWFsaW5nIHdpdGggdGhlIHZhZ2FyaWVzIG9mIHRoZSBhbmFsb2cgd29ybGQpLCBv
+ciBwZXJoYXBzIGV4cGxpY2l0IGluIGFsZ29yaXRobXMgbGlrZQ0KICBJL1EgaW1iYWxhbmNlIGNv
+bXBlbnNhdGlvbi4NCg0KSW4gY29udHJhc3QsIG9uIHRoZSBYMzEwIHdpdGggYSBDQlgsIGFueSBJ
+L1EgYmFsYW5jZSBjb21wZW5zYXRpb24gKHdoaWNoIGNhbiBhZmZlY3QgcGhhc2UpLCBpcyBlbnRp
+cmVseSBzdGF0aWMsIGFuZCB0aGUgc2lnbmFsIHBhdGh3YXkgaW4gdGhlIGFuYWxvZyBkb21haW4g
+aXMgdmVyeQ0KICBtdWNoIHNpbXBsZXIsIHdpdGggdmVyeSBtdWNoIGxlc3MgImR5bmFtaWMgdHdl
+YWtpbmciIGR1cmluZyBpbml0aWFsaXphdGlvbiBhbmQgdHVuaW5nLg0KDQpNeSB1bmRlcnN0YW5k
+aW5nIGlzIHRoYXQgQUQ5MzYxIGRvZXMgbm90IGFsbG93IHR1cm5pbmcgb2ZmIGFueSBvZiB0aG9z
+ZSBjb21wZW5zYXRpb24gYWxnb3JpdGhtcy4NCg0KTm93LCBhIGNhdmVhdCBpcyB0aGF0IHRoaXMg
+aXMgYW4gZWR1Y2F0ZWQgaHVuY2gsIGJhc2VkIG9uIHRoZSBuYXR1cmUgb2YgdGhlIGlzc3VlLiAg
+SXQgY291bGQgYmUgc29tZXRoaW5nIGVsc2UsIGJ1dCB0aGUgKnNjYWxlKiBvZiB0aGUgaXNzdWUg
+c3VnZ2VzdHMgc29tZXRoaW5nDQogIGluIHRoZSBhbmFsb2cgZG9tYWluLg0KDQo=
 
-3) I see that on 'master', the Replay block was modified to change the
-> default forwarding to Drop. Perhaps this would fix the issue, but it
-> doesn't seem like it given that the Radio is already set to Drop.
+--_000_de238b3f8bf447be9393e5b22d13b97fdlrde_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1z
+b0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJw
+bGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxp
+Lk1zb0xpc3RQYXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFyYWdyYXBoDQoJe21zby1zdHlsZS1wcmlv
+cml0eTozNDsNCgltYXJnaW4tdG9wOjBjbTsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1hcmdpbi1i
+b3R0b206MGNtOw0KCW1hcmdpbi1sZWZ0OjM2LjBwdDsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7
+DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9
+DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHls
+ZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmln
+aHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsN
+Cglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CnNwYW4uRS1NYWlsRm9ybWF0dm9ybGFnZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0K
+c3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdlMjANCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVw
+bHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4
+dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250
+LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBw
+dDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDIuMGNtIDcwLjg1cHQ7fQ0KZGl2LldvcmRTZWN0
+aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25zICovDQpAbGlz
+dCBsMA0KCXttc28tbGlzdC1pZDo5ODIyNjk5NTI7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOi0y
+NDAzNzgzNjg7fQ0KQGxpc3QgbDA6bGV2ZWwxDQoJe21zby1sZXZlbC10YWItc3RvcDozNi4wcHQ7
+DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7
+fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC10YWItc3RvcDo3Mi4wcHQ7DQoJbXNvLWxl
+dmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxpc3Qg
+bDA6bGV2ZWwzDQoJe21zby1sZXZlbC10YWItc3RvcDoxMDguMHB0Ow0KCW1zby1sZXZlbC1udW1i
+ZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0O30NCkBsaXN0IGwwOmxldmVs
+NA0KCXttc28tbGV2ZWwtdGFiLXN0b3A6MTQ0LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0
+aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNv
+LWxldmVsLXRhYi1zdG9wOjE4MC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0
+Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxpc3QgbDA6bGV2ZWw2DQoJe21zby1sZXZlbC10
+YWItc3RvcDoyMTYuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
+LWluZGVudDotMTguMHB0O30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtdGFiLXN0b3A6
+MjUyLjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6
+LTE4LjBwdDt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLXRhYi1zdG9wOjI4OC4wcHQ7
+DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7
+fQ0KQGxpc3QgbDA6bGV2ZWw5DQoJe21zby1sZXZlbC10YWItc3RvcDozMjQuMHB0Ow0KCW1zby1s
+ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0O30NCkBsaXN0
+IGwxDQoJe21zby1saXN0LWlkOjE4MDk5MjkyNDM7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOi05
+MjM2MjA3NzA7fQ0KQGxpc3QgbDE6bGV2ZWwxDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
+bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjM2LjBwdDsN
+Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsN
+Cgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlz
+dCBsMTpsZXZlbDINCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZl
+bC10ZXh0Om87DQoJbXNvLWxldmVsLXRhYi1zdG9wOjcyLjBwdDsNCgltc28tbGV2ZWwtbnVtYmVy
+LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNp
+emU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7DQoJbXNvLWJpZGktZm9udC1m
+YW1pbHk6IlRpbWVzIE5ldyBSb21hbiI7fQ0KQGxpc3QgbDE6bGV2ZWwzDQoJe21zby1sZXZlbC1u
+dW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRh
+Yi1zdG9wOjEwOC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQt
+aW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWls
+eTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw0DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
+bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjE0NC4wcHQ7
+DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7
+DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxp
+c3QgbDE6bGV2ZWw1DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2
+ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjE4MC4wcHQ7DQoJbXNvLWxldmVsLW51
+bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9u
+dC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw2DQoJ
+e21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJ
+bXNvLWxldmVsLXRhYi1zdG9wOjIxNi4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjps
+ZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsN
+Cglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw3DQoJe21zby1sZXZlbC1udW1i
+ZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1z
+dG9wOjI1Mi4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5k
+ZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpT
+eW1ib2w7fQ0KQGxpc3QgbDE6bGV2ZWw4DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxl
+dDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjI4OC4wcHQ7DQoJ
+bXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJ
+bXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3Qg
+bDE6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
+dGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjMyNC4wcHQ7DQoJbXNvLWxldmVsLW51bWJl
+ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1z
+aXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTow
+Y207fQ0KdWwNCgl7bWFyZ2luLWJvdHRvbTowY207fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
+IC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
+bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
+PC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
+RU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
+b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkhpIE1hcmN1cyw8bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+VGhhbmtzIGZvciB0aG91Z2h0cyBvbiB0aGlzLiBXZSBhbHNvIGJlbGlldmUgdGhhdCBp
+cyBoYXMgdG8gZG8gd2l0aCB0aGUgY2FsaWJyYXRpb24gbWVjaGFuaXNtIG9mIHRoZSBBRDkzNjEs
+IGR1ZSB0byB0aGUgdmVyeSBsb3cgc3ViLXNhbXBsZSBkZWxheSBjaGFuZ2UuPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5BbnkgdGhvdWdodHMgZnJvbSB0aGUgRXR0dXMgdGVh
+bT8gSXMgdGhlcmUgYSB3YXkgdG8gcmV0cmlldmUgY2FsaWJyYXRpb24gaW5mb3JtYXRpb24gZnJv
+bSB0aGUgUkZJQyBpbiBVSEQ/IFRoaXMgY291bGQgaGVscCB0byBpZGVudGlmeSBpZiB0aGVyZSBp
+cyBhIGNvcnJlbGF0aW9uIGJldHdlZW4gY2FsaWJyYXRpb24gc2V0dGluZyBhbmQgdGhlIGdyb3Vw
+IGRlbGF5IGNoYW5nZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QmVzdCByZWdhcmRzLDxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+RW1hbnVlbDxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdiBz
+dHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6
+My4wcHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0i
+REUiPlZvbjo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkRFIj4gTWFyY3VzIEQuIExlZWNoICZsdDtw
+YXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsNCjxicj4NCjxiPkdlc2VuZGV0OjwvYj4gTW9udGFn
+LCA3LiBGZWJydWFyIDIwMjIgMTc6NDg8YnI+DQo8Yj5Bbjo8L2I+IHVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tPGJyPg0KPGI+QmV0cmVmZjo8L2I+IFtVU1JQLXVzZXJzXSBSZTogQjIwMCBncm91
+cCBkZWxheSB2YXJpYXRpb25zPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPk9uIDIwMjItMDItMDcgMDI6NDQsIDxhIGhyZWY9Im1haWx0bzpFbWFu
+dWVsLlN0YXVkaW5nZXJAZGxyLmRlIj4NCkVtYW51ZWwuU3RhdWRpbmdlckBkbHIuZGU8L2E+IHdy
+b3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRv
+cDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IGxhbmc9IkRFIj5IaSBhbGwsPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iREUiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPndlIGhhdmUgYSBjdXN0b20gR251cmFkaW8gaW1wbGVtZW50YXRpb24g
+d2l0aCBtYW55IEIyMDBtaW5pIFVTUlBzLCB3aGljaCBlbmFibGVzIHByZWNpc2Ugcm91bmQtdHJp
+cCB0aW1lIChSVFQpIGJhc2VkIHJhbmdpbmcgYW1vbmcgdGhvc2UgZGV2aWNlcy4gVGhlIE1BQyBp
+cyBURE1BIGJhc2VkIHdpdGggdGhlIGF1dG9tYXRpYyBUeC9SeCBzd2l0Y2hpbmcgYW5kIHRvIGNv
+bXBlbnNhdGUgZm9yIHRoZSBVU1JQcyBncm91cA0KIGRlbGF5IHdlIHBlcmZvcm0gcmFuZ2luZyBv
+dmVyIGFuIFJGLXNwbGl0dGVyIHdoaWNoIHdlIGNhbGlicmF0ZWQgYmVmb3JlaGFuZCB3aXRoIGEg
+dmVjdG9yIG5ldHdvcmsgYW5hbHl6ZXIuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldlIG9ic2Vy
+dmVkIHRoYXQgdGhlIGVzdGltYXRlZCBSVFQgb3ZlciBtdWx0aXBsZSBjYWxpYnJhdGlvbiBtZWFz
+dXJlbWVudCBydW5zIGlzIHVuc3RhYmxlIGluIHRoZSBvcmRlciBvZiB1cCB0byAxbnMuIFdpdGhp
+biBvbmUgbWVhc3VyZW1lbnQgcnVuIG9mIGF0IGxlYXN0IDUgbWludXRlcyB3aXRoIDEwIFJUVCBl
+c3RpbWF0ZXMgcGVyIHNlY29uZCwgaXQgaXMgcHJldHR5IHN0YWJsZSwgYnV0IHdoZW4gd2UgcmVz
+dGFydA0KIHRoZSBmbG93Z3JhcGgsIHdlIG9ic2VydmUgYSBiaWFzLjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+UGxlYXNlIGZpbmQgYXQgdGhlIGVuZCBvZiB0aGlzIEUtTWFp
+bCBhbGwgdGhpbmdzIHdlIGFscmVhZHkgdHJpZWQgdG8gbmFycm93IGRvd24gdGhlIGlzc3VlIChh
+IGNvbXByZXNzZWQgdmVyc2lvbikuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5JbiBzaG9ydDogPG86cD48L286cD48L3A+DQo8b2wgc3R5bGU9Im1hcmdpbi10b3A6MGNtIiBz
+dGFydD0iMSIgdHlwZT0iMSI+DQo8bGkgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJt
+YXJnaW4tbGVmdDowY207bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzMiPldlIGZpbmFsbHkgdXNlZCBv
+bmx5IHR3byBCMjEwIHdpdGggYSBzaW5nbGUgZXh0ZXJuYWwgcmVmZXJlbmNlIGNsb2NrLCBhIHNh
+bXBsaW5nIHJhdGUgb2YgMjVNSHosIGFuZCBhIG1hbnVhbGx5IHNldCBtYXN0ZXIgY2xvY2sgcmF0
+ZSBvZiA1ME1Iei4NCjxvOnA+PC9vOnA+PC9saT48L29sPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9w
+OjBjbSIgc3RhcnQ9IjEiIHR5cGU9IjEiPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9wOjBjbSIgc3Rh
+cnQ9IjEiIHR5cGU9IjEiPg0KPGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFy
+Z2luLWxlZnQ6MGNtO21zby1saXN0OmwwIGxldmVsMiBsZm8zIj5JbiB0aGlzIHNldHVwIHRoZSBl
+c3RpbWF0ZWQgUlRUIG92ZXIgbXVsdGlwbGUgbWVhc3VyZW1lbnQgcnVucyBjYW4gdmFyeSBmcm9t
+IHJ1biB0byBydW4gYnkgJmx0OzUwcHMgKG9rIGZvciB1cyksIGJ1dCBhbHNvIGJ5IDI4MHBzIG9y
+IDc1MHBzIChmYXIgdG9vIG11Y2ggZm9yIHVzKS4gVGhlIHN0YW5kYXJkIGRldmlhdGlvbg0KIG9m
+IFJUVCBlc3RpbWF0ZXMgd2l0aGluIG9uZSBtZWFzdXJlbWVudCBydW4gaXMgYWJvdXQgNzBwcywg
+YW5kIGVhY2ggcnVuIGNvbnRhaW5zIDIwMDAgdG8gMzUwMCBSVFQgZXN0aW1hdGVzLjxvOnA+PC9v
+OnA+PC9saT48L29sPg0KPC9vbD4NCjxvbCBzdHlsZT0ibWFyZ2luLXRvcDowY20iIHN0YXJ0PSIy
+IiB0eXBlPSIxIj4NCjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdpbi1s
+ZWZ0OjBjbTttc28tbGlzdDpsMCBsZXZlbDEgbGZvMyI+VG8gY3Jvc3MgY2hlY2sgb3VyIGltcGxl
+bWVudGF0aW9uLCB3ZSB1c2VkIHRoZSB2ZXJ5IHNhbWUgZmxvdy1ncmFwaCB3aXRoIHR3byBYMzEw
+IHdpdGggQ0JYLTEyMCBmcm9udC1lbmRzLCBhIGNvbW1vbiBleHRlcm5hbCByZWZlcmVuY2UgY2xv
+Y2ssIGFuZCBvbmx5IGluY3JlYXNlZCB0aGUgdHJhbnNtaXQgc2lnbmFsDQogcGFkZGluZyBieSA0
+MHVzIChiZWNhdXNlIHRoZSByYW1wLXVwIHRpbWUgaXMgbGFyZ2VyIGZvciB0aGlzIGZyb250LWVu
+ZCkuIDxvOnA+PC9vOnA+PC9saT48L29sPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9wOjBjbSIgc3Rh
+cnQ9IjIiIHR5cGU9IjEiPg0KPG9sIHN0eWxlPSJtYXJnaW4tdG9wOjBjbSIgc3RhcnQ9IjEiIHR5
+cGU9IjEiPg0KPGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6
+MGNtO21zby1saXN0OmwwIGxldmVsMiBsZm8zIj5SVFQgZXN0aW1hdGVzIG92ZXIgbXVsdGlwbGUg
+cnVucyBhcmUgcGljdHVyZSBwZXJmZWN0OiB0aGUgbWVhbiBSVFQgdmFyaWVzIGJ5IGxlc3MgdGhh
+biA1cHMgb3ZlciBtdWx0aXBsZSBtZWFzdXJlbWVudCBydW5zLjxvOnA+PC9vOnA+PC9saT48L29s
+Pg0KPC9vbD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+QW55IGlkZWEgd2hhdCBjb3VsZCBjYXVzZSB0aG9zZSB2YXJpYXRp
+b25zIGZvciB0aGUgQjIwMCBzZXJpZXM/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5XZSB1c2UgVUhEIDMuMTUuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJsaW5l
+LWhlaWdodDoxNi4wcHQ7cHVuY3R1YXRpb24td3JhcDpzaW1wbGU7dGV4dC1hdXRvc3BhY2U6bm9u
+ZSI+DQpCZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibGluZS1oZWlnaHQ6MTYuMHB0O3B1bmN0dWF0aW9uLXdyYXA6c2ltcGxlO3RleHQtYXV0
+b3NwYWNlOm5vbmUiPg0KRW1hbnVlbDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPlNpbmNlIHRoZXNlIHZhcmlhdGlvbnMg
+YXJlIHZlcnktbXVjaCBzdWItc2luZ2xlLXNhbXBsZSBpbiBzY2FsZSwgbXkgZ3Vlc3MgaXMgdGhh
+dCB0aGlzIGhhcyB0byBkbyB3aXRoIHRoZSB2ZXJ5LWNvbXBsZXggJnF1b3Q7Y2FsaWJyYXRpb24m
+cXVvdDsgbWVjaGFuaXNtIHRoYXQgdGhlIEFEOTM2MTxicj4NCiZuYnNwOyB1bmRlcmdvZXMgd2hl
+biBpdCBpcyBpbml0aWFsaXplZCwgYW5kIHdoZW4geW91IGNoYW5nZSBmcmVxdWVuY3kuJm5ic3A7
+IE1hbnkgb2YgdGhlIGVsZW1lbnRzIGluIHRoYXQgc2VxdWVuY2UgYXJlLCBJIHRoaW5rLCBhbmFs
+b2cgaW4gbmF0dXJlLiZuYnNwOyBUaGVyZSBtYXkgYmUgc29tZTxicj4NCiZuYnNwOyAmcXVvdDtN
+b250ZS1DYXJsbyZxdW90OyBlbGVtZW50cyBpbiB0aGlzLCBlaXRoZXIgJnF1b3Q7aW5oZXJlbnQm
+cXVvdDsgKGJlY2F1c2UgeW91J3JlIGRlYWxpbmcgd2l0aCB0aGUgdmFnYXJpZXMgb2YgdGhlIGFu
+YWxvZyB3b3JsZCksIG9yIHBlcmhhcHMgZXhwbGljaXQgaW4gYWxnb3JpdGhtcyBsaWtlPGJyPg0K
+Jm5ic3A7IEkvUSBpbWJhbGFuY2UgY29tcGVuc2F0aW9uLjxicj4NCjxicj4NCkluIGNvbnRyYXN0
+LCBvbiB0aGUgWDMxMCB3aXRoIGEgQ0JYLCBhbnkgSS9RIGJhbGFuY2UgY29tcGVuc2F0aW9uICh3
+aGljaCBjYW4gYWZmZWN0IHBoYXNlKSwgaXMgZW50aXJlbHkgc3RhdGljLCBhbmQgdGhlIHNpZ25h
+bCBwYXRod2F5IGluIHRoZSBhbmFsb2cgZG9tYWluIGlzIHZlcnk8YnI+DQombmJzcDsgbXVjaCBz
+aW1wbGVyLCB3aXRoIHZlcnkgbXVjaCBsZXNzICZxdW90O2R5bmFtaWMgdHdlYWtpbmcmcXVvdDsg
+ZHVyaW5nIGluaXRpYWxpemF0aW9uIGFuZCB0dW5pbmcuPGJyPg0KPGJyPg0KTXkgdW5kZXJzdGFu
+ZGluZyBpcyB0aGF0IEFEOTM2MSBkb2VzIG5vdCBhbGxvdyB0dXJuaW5nIG9mZiBhbnkgb2YgdGhv
+c2UgY29tcGVuc2F0aW9uIGFsZ29yaXRobXMuPGJyPg0KPGJyPg0KTm93LCBhIGNhdmVhdCBpcyB0
+aGF0IHRoaXMgaXMgYW4gZWR1Y2F0ZWQgaHVuY2gsIGJhc2VkIG9uIHRoZSBuYXR1cmUgb2YgdGhl
+IGlzc3VlLiZuYnNwOyBJdCBjb3VsZCBiZSBzb21ldGhpbmcgZWxzZSwgYnV0IHRoZSAqc2NhbGUq
+IG9mIHRoZSBpc3N1ZSBzdWdnZXN0cyBzb21ldGhpbmc8YnI+DQombmJzcDsgaW4gdGhlIGFuYWxv
+ZyBkb21haW4uPGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
+aHRtbD4NCg==
 
-I can't explain why when using different ports you still get the
-propagation error, but I'd highly suggest giving the master branch a try.
-It fixed the case you are describing when using the same port.
+--_000_de238b3f8bf447be9393e5b22d13b97fdlrde_--
 
-Jonathon
-
-On Wed, Feb 9, 2022 at 12:22 AM Rob Kossler <rkossler@nd.edu> wrote:
-
-> Hi,
-> I created a simple example that implements an RFNoC graph between the
-> Replay block and the Radio block on an N310 using UHD 4.1.0.5.  The idea is
-> that Replay Port 0 connects to the Tx Radio for playing out samples and
-> then the same Rx Radio connects to Replay Port 1 for capturing the Rx
-> samples.  The simple source code is included at the bottom of this email
-> with the relevant part highlighted.
->
-> The example produces the error message below which indicates a circular
-> graph, I think. I can fix it by replacing the "connect_through_blocks()"
-> with "graph->connect()" and skipping property propagation on one connection.
->
-> I do not understand why this graph as-is causes a propagation error. Here
-> are some remarks:
-> 1) The Replay port numbers are different.  Given that the Replay
-> controller on branch 4.1 does not modify the default forwarding and that
-> the default forwarding is One-to-One, it seems that different port numbers
-> should not cause a circular propagation.
-> 2) Additionally, given that the Radio block sets its forwarding to Drop,
-> it seems that there shouldn't be an issue even if the Replay block port
-> numbers were the same.
-> 3) I see that on 'master', the Replay block was modified to change the
-> default forwarding to Drop. Perhaps this would fix the issue, but it
-> doesn't seem like it given that the Radio is already set to Drop.
->
-> Please let me know if you know why this graph causes an error.
-> Rob
->
-> // Console ERROR
-> [ERROR] [RFNOC::GRAPH::DETAIL] Adding edge 0/DDC#0:0 -> 0/Replay#0:1
-> without disabling property_propagation_active will lead to unresolvable
-> graph!
-> Error: RfnocError: Adding edge without disabling
-> property_propagation_active will lead to unresolvable graph!
->
-> // Example APPLICATION
-> #include <uhd/rfnoc/block_id.hpp>
-> #include <uhd/rfnoc/radio_control.hpp>
-> #include <uhd/rfnoc/replay_block_control.hpp>
-> #include <uhd/rfnoc_graph.hpp>
-> #include <uhd/utils/graph_utils.hpp>
-> #include <uhd/utils/safe_main.hpp>
-> #include <boost/program_options.hpp>
->
-> namespace po = boost::program_options;
->
-> using std::cout;
-> using std::endl;
->
-> int UHD_SAFE_MAIN(int argc, char* argv[])
-> {
-> std::string args;
->
-> po::options_description desc("Allowed Options");
-> // clang-format off
-> desc.add_options()
-> ("help", "help message")
-> ("args", po::value<std::string>(&args)->default_value(""), "multi uhd
-> device address args")
-> ;
->
-> po::variables_map vm;
-> po::store(po::parse_command_line(argc, argv, desc), vm);
-> po::notify(vm);
->
-> // Print help message
-> if (vm.count("help"))
-> {
-> cout << "Replay graph test " << desc << endl;
-> return EXIT_FAILURE;
-> }
->
-> /************************************************************************
-> * Create device and block controls
-> ***********************************************************************/
-> cout << endl;
-> cout << "Creating the RFNoC graph with args: " << args << endl << endl;
-> uhd::rfnoc::rfnoc_graph::sptr graph = uhd::rfnoc::rfnoc_graph::make(args);
->
-> // Create handle for radio object
-> uhd::rfnoc::block_id_t radio_ctrl_id(0, "Radio", 0);
-> auto radio_ctrl =
-> graph->get_block<uhd::rfnoc::radio_control>(radio_ctrl_id);
->
-> uhd::rfnoc::block_id_t replay_ctrl_id(0, "Replay", 0);
-> auto replay_ctrl =
-> graph->get_block<uhd::rfnoc::replay_block_control>(replay_ctrl_id);
->
-> // Connect the Replay Port 0 to Tx Radio Port 0
-> connect_through_blocks(graph, replay_ctrl_id, 0, radio_ctrl_id, 0);
->
-> // Connect the Rx Radio Port 0 to Replay Port 1
-> connect_through_blocks(graph, radio_ctrl_id, 0, replay_ctrl_id, 1);
->
-> graph->commit();
->
-> cout << "Active graph connections:" << endl;
-> for (auto& edge : graph->enumerate_active_connections())
-> cout << "* " << edge.to_string() << endl;
-> cout << endl;
->
-> return EXIT_SUCCESS;
-> }
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000006a779105d78fe65c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Rob,<div><br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">3) I see that on &#39;master&#39;, the Replay block was modif=
-ied to change the default forwarding to Drop. Perhaps this would fix the is=
-sue, but it doesn&#39;t seem like it given that the Radio is already set to=
- Drop.</blockquote><div><br></div><div>I can&#39;t explain why when using d=
-ifferent ports you still get the propagation error, but I&#39;d highly sugg=
-est giving the master branch a try. It fixed the case you are describing wh=
-en using the same port.</div><div><br></div><div>Jonathon</div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb =
-9, 2022 at 12:22 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkos=
-sler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr">Hi,<br><div>I created a simple example that imp=
-lements an RFNoC graph between the Replay block and the Radio block on an N=
-310 using UHD 4.1.0.5.=C2=A0 The idea is that Replay Port 0 connects to the=
- Tx Radio for playing out samples and then the same Rx Radio connects to Re=
-play Port 1 for capturing the Rx samples.=C2=A0 The simple source code is i=
-ncluded at the bottom of this email with the relevant part highlighted.=C2=
-=A0</div><div><br></div><div>The example produces the error message below w=
-hich indicates a circular graph, I think. I can fix it by replacing the &qu=
-ot;connect_through_blocks()&quot; with &quot;graph-&gt;connect()&quot; and =
-skipping property propagation on one connection.</div><div><br></div><div>I=
- do not understand why this graph as-is causes=C2=A0a propagation error. He=
-re are some remarks:</div><div>1) The Replay port numbers are different.=C2=
-=A0 Given that the Replay controller on branch 4.1 does not modify the defa=
-ult forwarding and that the default forwarding is One-to-One, it seems that=
- different port numbers should not cause a circular propagation.</div><div>=
-2) Additionally, given that the Radio block sets its forwarding to Drop, it=
- seems that there shouldn&#39;t be an issue even if the Replay block port n=
-umbers were the same.</div><div>3) I see that on &#39;master&#39;, the Repl=
-ay block was modified to change the default forwarding to Drop. Perhaps thi=
-s would fix the issue, but it doesn&#39;t seem like it given that the Radio=
- is already set to Drop.</div><div><br></div><div>Please let me know if you=
- know why this graph causes an error.</div><div>Rob</div><div><br></div><di=
-v>// Console ERROR</div><div><font color=3D"#ff0000">[ERROR] [RFNOC::GRAPH:=
-:DETAIL]</font> Adding edge 0/DDC#0:0 -&gt; 0/Replay#0:1 without disabling =
-property_propagation_active will lead to unresolvable graph!<br>Error: Rfno=
-cError: Adding edge without disabling property_propagation_active will lead=
- to unresolvable graph!<br></div><div><br></div><div>// Example APPLICATION=
-</div><div>#include &lt;uhd/rfnoc/block_id.hpp&gt;<br>#include &lt;uhd/rfno=
-c/radio_control.hpp&gt;<br>#include &lt;uhd/rfnoc/replay_block_control.hpp&=
-gt;<br>#include &lt;uhd/rfnoc_graph.hpp&gt;<br>#include &lt;uhd/utils/graph=
-_utils.hpp&gt;<br>#include &lt;uhd/utils/safe_main.hpp&gt;<br>#include &lt;=
-boost/program_options.hpp&gt;<br><br>namespace po =3D boost::program_option=
-s;<br><br>using std::cout;<br>using std::endl;<br><br>int UHD_SAFE_MAIN(int=
- argc, char* argv[])<br>{<br>	std::string args;<br>	<br>	po::options_descri=
-ption desc(&quot;Allowed Options&quot;);<br>	// clang-format off<br>	desc.a=
-dd_options()<br>		(&quot;help&quot;, &quot;help message&quot;)<br>		(&quot;=
-args&quot;, po::value&lt;std::string&gt;(&amp;args)-&gt;default_value(&quot=
-;&quot;), &quot;multi uhd device address args&quot;)<br>	;<br><br>	po::vari=
-ables_map vm;<br>	po::store(po::parse_command_line(argc, argv, desc), vm);<=
-br>	po::notify(vm);<br><br>	// Print help message<br>	if (vm.count(&quot;he=
-lp&quot;)) <br>	{<br>		cout &lt;&lt; &quot;Replay graph test &quot; &lt;&lt=
-; desc &lt;&lt; endl;<br>		return EXIT_FAILURE;<br>	}<br><br>	/************=
-************************************************************<br>	 * Create =
-device and block controls<br>	 ********************************************=
-***************************/<br>	cout &lt;&lt; endl;<br>	cout &lt;&lt; &quo=
-t;Creating the RFNoC graph with args: &quot; &lt;&lt; args &lt;&lt; endl &l=
-t;&lt; endl;<br>	uhd::rfnoc::rfnoc_graph::sptr graph =3D uhd::rfnoc::rfnoc_=
-graph::make(args);<br><br>	// Create handle for radio object<br>	uhd::rfnoc=
-::block_id_t radio_ctrl_id(0, &quot;Radio&quot;, 0);<br>	auto radio_ctrl =
-=3D graph-&gt;get_block&lt;uhd::rfnoc::radio_control&gt;(radio_ctrl_id);<br=
->	<br>	uhd::rfnoc::block_id_t replay_ctrl_id(0, &quot;Replay&quot;, 0);<br>=
-	auto replay_ctrl =3D graph-&gt;get_block&lt;uhd::rfnoc::replay_block_contr=
-ol&gt;(replay_ctrl_id);<br><br><span style=3D"background-color:rgb(255,255,=
-0)">	// Connect the Replay Port 0 to Tx Radio Port 0<br>	connect_through_bl=
-ocks(graph, replay_ctrl_id, 0, radio_ctrl_id, 0);<br>	<br>	// Connect the R=
-x Radio Port 0 to Replay Port 1<br>	connect_through_blocks(graph, radio_ctr=
-l_id, 0, replay_ctrl_id, 1);<br>	<br>	graph-&gt;commit();<br></span>	<br>	c=
-out &lt;&lt; &quot;Active graph connections:&quot; &lt;&lt; endl;<br>	for (=
-auto&amp; edge : graph-&gt;enumerate_active_connections()) <br>		cout &lt;&=
-lt; &quot;* &quot; &lt;&lt; edge.to_string() &lt;&lt; endl;<br>	cout &lt;&l=
-t; endl;<br><br>	return EXIT_SUCCESS;<br>}<br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000006a779105d78fe65c--
-
---===============5026092324520224990==
+--===============6930956716152903915==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -293,4 +367,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5026092324520224990==--
+--===============6930956716152903915==--
