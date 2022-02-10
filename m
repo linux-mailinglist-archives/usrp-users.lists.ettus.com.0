@@ -2,138 +2,134 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A60C4B06D6
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 08:14:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C1A34B079B
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 08:56:47 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3A1FF3850AA
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 02:14:01 -0500 (EST)
-Received: from mailin.dlr.de (mailin.dlr.de [194.94.201.12])
-	by mm2.emwd.com (Postfix) with ESMTPS id 02FC83847AA
-	for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 02:13:07 -0500 (EST)
-X-IPAS-Result: =?us-ascii?q?A2FZAADCuQRi/xiKuApQChoBAQEBAQEBAQEBAwEBAQESA?=
- =?us-ascii?q?QEBAQICAQEBAUCBWoFKgy8XhD6RGYIliGuTOgsLAQEBAQEBAQEBCAEqFwQBA?=
- =?us-ascii?q?YUFAheDXyY4EwECBAEBAQEDAgMBAQEBAQEDAQEGAQEBAQEBBQQBAQKBGIUvR?=
- =?us-ascii?q?oI1IoN1AQEBAwEiET4HEAIBIAICJgICAh8HChUQAgQBDQUIhWIDrESBMYEBh?=
- =?us-ascii?q?GqCOw2CS4EQKgGGCYEjhwqCUIEVg2iCIYF3RCOCXhOCUgSTMIIPKIE/D5YAq?=
- =?us-ascii?q?T9rB4IQmSyBc4VnMBWWPJFUlkkgkEGQYYUFAgQCBAUCFoF4ZYEacYJRZ1EXA?=
- =?us-ascii?q?g+cb3Q4AgYBCgEBAwmQCYEQAQE?=
-IronPort-PHdr: A9a23:lbJU/B+YKTA8Av9uWRO7ngc9DxPPW53KNwIYoqAql6hJOvz6uci4Z
- gqCtL400AeBdL6YwsoMs/DRvaHkVD5Iyre6m1dGTqZxUQQYg94dhQ0qDZ3NI0T6KPn3c35yR
- 5waBxdq8H6hLEdaBtv1aUHMrX2u9z4SHQj0ORZoKujvFYPekdq72/qy9pDXbAlEmTWwba9vJ
- xiqsAvdsdUbj5F/Iagr0BvJpXVIe+VSxWx2IF+Yggjx6MSt8pN96ipco/0u+dJOXqX8ZKQ4U
- KdXDC86PGAv5c3krgfMQA2S7XYBSGoWkx5IAw/Y7BHmW5r6ryX3uvZh1CScIMb7S60/Vza/4
- KdxUBLmiDkJOSMl8G/ZicJwgqBUoBO9qBJwzIHZe52VO+F8fq/BYd8WWWhMU8BMXCJBGIO8a
- I4PAvIGMOhXqonyvV0OrQagCgmoHu/h1yNIiWXr3aIn0uQhFw7G0xI6H98VrXvUqM/1OL0PX
- u+r1aTFyyjIYPxK1znn8ofIbgwhru+WXbJ2acfcyUoiGx7LgFifq4HrMS6Z2/gQvmaV7+dsS
- P6jhm46pwx/vDSix9khh5fVio8bxF7J6Sp0zYQoKNC2RkB3fd6pHZ1NvC+ZL4t7Wt4uT31yt
- ConybALtoS3cDUExZkk3RLTdfOKf5CV7h7/TuqdPDR1iX1/dL6iiRu/8lKsxvP8W8S71ltBs
- zBLncPWtn8X0hze8s2HSvxg8Ui/wTuPzAXT6v1cIUAziKrbN4Ytwr4umZoXtkTOBiH4lkP4g
- qGZdksq+u+m5efgbLv8uJOROIB6hQDgP6g0m8y/B/g4MhIUUGSB5Ou80Kfj8VfkT7pUlvE2k
- 6/Zv47GJckDu6K1HxVZ3psg5huwFTuqzdoVkHodIF5bdx+Ll43pNEvPIPD8A/e/mVOskDJzy
- v7JO73uGJPNLmXdn7flZ7pz9lJcxxAuzd9C5pJUDL4BL+zpWkLqqdPYCgU5PxapzOn5ENl90
- JgRVnqVAqCFKKPSrUOI5uU3LuSDfIMVoiryK+A55/7yin80gUcdcrO13ZQLaHC4APNmI0OCb
- nr2mNgBDGEKsxExTOzvklKCUDpTa2yuUKI74zE3EJimApvbRoCxnLyB2z+2HpxMaWBAEFyDC
- mroeJmHW/cIdi2TItRskjMBVbe7So8h0QuiuxP9y7piNubU4DEXtYr/1Nhp4O3ejQwy9SduD
- 8SFym2NUnp0kX0SRz8tx61/pU19ykyf0ahjmfBXC8BT5+9UUgchL5LT0+t6C9XqVgLbYtiJU
- EqmQsmhATwpTNIx3tsOY0dnFNWklR3MwS6qA74Jl7OVGJM09b/T33n3J8Zy0XrG07Mhj1Z1C
- vdIYDm+j7J09xbUAYTTmlifv6mvfKUYmiXK8THHhT6PtUceWhN7UqHITFgQY0LXqZLy4UaUH
- JG0DrFyZiZEwMifJ68MUcHgkFlHQvjuIvzSZ3j3l2rmVkXA/a+FcIe/IzZV5y7aEkVRy2gu
-IronPort-Data: A9a23:nvnPRa5DTCBPLsIAXXLOiQxRtFXGchMFZxGqfqrLsTDasY5as4F+v
- jZMXGiDPq7bN2Chc4x3ao629BlQuZ6AnNMxTwBk/ytjZn8b8sCt6fZ1j6vT04F+CuWZESqLO
- u1HMoGowPgcFyOa/lH0WlTYhSEUOZugH9IQM8aZfHAhLeNYYH1500g7wbdh2tcAbeWRWmthh
- /uj+6UzB3f4g1aYAkpMg05UgEoy1BhakGpwUm0WPZinjneH/5UmJM53yZWKEpfNatI88thW5
- gr05OrREmvxp3/BAz4++1rxWhVirrX6ZWBihpfKMkQLb9crSiEai84G2PQghUh/1Au3m+gs8
- u9x7MKLSxkVEavols0zekwNe81+FfUuFL7vDVyTnOK96mzjSyGw7sVFSkAwIZcRvOpzGydC+
- JT0KhhUNlba177wmenrDLMw7iggBJCD0Ic3l3RpyyzUCbAdXZneT6TM6tJC9Ds0nIZCEJ4yY
- uJHNWEzPUSfMnWjPH8wB88ezdeSokPdSBkEtVeaifc16kvMmVkZPL/FdYC9lsaxbd1cgk2Yu
- GXA9X7wHxcyO9mWyD7D+XWp7sfOlCW9Up8ZF7m159ZlhVSSwioYDxh+fUagu+H8l1WzQcl3L
- 00P5jFooLQu6VftRd74NzW6vXqFtxg0Vt5RD+Ax7w2MzKWS5ByWblXoVRZNbNArusEzRDkyj
- AOEj9ivBDpzqrTTRXaHsLuZxd+vBRUowaY5TXdsZWM4DxPL+enfUjqnog5fLZOI
-IronPort-HdrOrdr: A9a23:nrRRZ6vJKoiYGmoRagUJxcYI7skDUtV00zEX/kB9WHVpm5Sj5q
- eTdPRy73DJYUUqKRcdcLe7SdS9qBLnhORICOYqTNSftWXd1VdAabsSibcKoAeQZxEWlNQtt5
- uIGpIWYLabMbE5t7ee3ODSKbgdKay8kJxA8t2+854Cd21Xgupbnn5E406gYzVLrSd9dOEEKK
- Y=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=Sophos;i="5.88,358,1635199200";
-   d="scan'208";a="64349879"
-From: <Emanuel.Staudinger@dlr.de>
-To: <patchvonbraun@gmail.com>, <ian.buckley@gmail.com>
-Thread-Topic: [USRP-users] B200 group delay variations
-Thread-Index: AQHYHg3vqaoY1jE4KEeldLHx/PYLGayL9cWAgABmczA=
-Date: Thu, 10 Feb 2022 07:13:05 +0000
-Message-ID: <e86f735c33ce413798bfc5ebbea53e54@dlr.de>
-References: <f4069dea5a274141ae4b9952254b177a@dlr.de>
- <84c7f9ba-91c4-58f2-f4e0-94828ac2a5bc@gmail.com>
- <de238b3f8bf447be9393e5b22d13b97f@dlr.de>
- <8277c5d5-d6de-393c-832b-43d53ff9aa29@gmail.com>
- <68b7fce0-e2f5-67e0-23e6-56865eb1b71d@elitecoding.org>
- <A877AEBE-E64C-4AB4-9D73-F8FD271C07E5@gmail.com>
- <db5b6d55-c37c-8e51-8737-d00234a4f131@gmail.com>
-In-Reply-To: <db5b6d55-c37c-8e51-8737-d00234a4f131@gmail.com>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="utf-8"
+	by mm2.emwd.com (Postfix) with ESMTP id 288F5384FBB
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 02:56:46 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="vJTJOh1i";
+	dkim-atps=neutral
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id E1D8F3847AA
+	for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 02:55:48 -0500 (EST)
+Received: by mail-vs1-f51.google.com with SMTP id i26so1806079vso.9
+        for <usrp-users@lists.ettus.com>; Wed, 09 Feb 2022 23:55:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RZskHV4TeTTMVFBqmIqYPpt94GyCVs5qLDQnES6O2Oo=;
+        b=vJTJOh1iEFCxk4Vofzw31tWSCGKz59U8Lq38tsPDbQdoyYPEZfyN8cdWuv4Ni8SFkZ
+         2wrt+bLXj00saeGgwV6RsYDCqfvaDpn6TPkJ4xgT0ft/EQEmS6OKSf7hinWgC4nlFPg1
+         URe2Z/zvRK4VUeEI6yjlNU6ki0Nz+dWoScZS9Fv+r4g0ofFQ1w0piOv/fzhRECf6mD7h
+         vBLWRUv8y1c3q4d8qkyOu569WSqcKFYu8xgs5NoLH3qHdSjYNfH/hZCElJYcDxXJc4D8
+         O6vtNfjTFVOXwQLIdQFz+3qmgQFscQkgrRU0GUgQ9Mpr46eM67DiiLjXQNEvJRB1Pcol
+         iVWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RZskHV4TeTTMVFBqmIqYPpt94GyCVs5qLDQnES6O2Oo=;
+        b=hMigaygdWxESOIjwQV2GTCTQ9Gi48x51GSd4vppX6/b+5ziMcjHEk4TKvJ7/HjICmN
+         znK0iaX5vq91zdXr7JVajajP+fUFpehzm1L4ZUlooOKdTgfvg2dM4CBLU9Xx4LZAgfky
+         5gl/6mqyna3q48vZpMrc5li3xh3nDvt88zy4BBdMI/c2IPTVBA8LNYUcx5Alxzrhhhac
+         d52KF3TA+NSzJtzSKaIIdnJxrBeUuxi5uJRh/G3idwSotxofZ8sx3BQ7ZClUolVpd4sb
+         0LGsLPoMBR9BQfb3QnwrYWsUBpDAcwdQXc1ah2WSZfEG0GoRVTEgVjqY61lWHuFihVs+
+         pIDQ==
+X-Gm-Message-State: AOAM530ELHHg2xwC/CEGlCvJEGvIY569Ua6n/TaSPJO/9d4mHsndfRWZ
+	pwV9hYbzkTX+3aMM6oO0FmSg6vRJJCgD3RksD+g0GOg/
+X-Google-Smtp-Source: ABdhPJw/EubQc2wDI+6ICMItWn/h18G77G/1hUtI2ciiywGlmIe7ccADFvfCwPVIT19uyY3r3LtWw7m8zNcaaSZIbPc=
+X-Received: by 2002:a67:fd86:: with SMTP id k6mr2239713vsq.0.1644479748077;
+ Wed, 09 Feb 2022 23:55:48 -0800 (PST)
 MIME-Version: 1.0
-Message-ID-Hash: RGDUPEL4KHOSS2DBVNOZ35W346GQVUGQ
-X-Message-ID-Hash: RGDUPEL4KHOSS2DBVNOZ35W346GQVUGQ
-X-MailFrom: Emanuel.Staudinger@dlr.de
+References: <CAB__hTSyT==Q_Nfn8xgfT-FBuutZ_ieD_CKuc-PdA3xm6KHs4w@mail.gmail.com>
+In-Reply-To: <CAB__hTSyT==Q_Nfn8xgfT-FBuutZ_ieD_CKuc-PdA3xm6KHs4w@mail.gmail.com>
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Date: Thu, 10 Feb 2022 02:55:12 -0500
+Message-ID: <CAL7q81tArWo++HCSyo_MGXpThqmdBvt94r-RJccqT3+bhh0PGw@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: MOFCH5J3MEL4KHB3FTZ3OHWIAEXGH7JJ
+X-Message-ID-Hash: MOFCH5J3MEL4KHB3FTZ3OHWIAEXGH7JJ
+X-MailFrom: jonathon.pendlum@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B200 group delay variations
+Subject: [USRP-users] Re: Replay block on E320 data rate
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RGDUPEL4KHOSS2DBVNOZ35W346GQVUGQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MOFCH5J3MEL4KHB3FTZ3OHWIAEXGH7JJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5993286463601814703=="
 
-VGhhbmsgeW91IGZvciBhbGwgdGhlIGluc2lnaHRzIGFuZCBoaW50cy4NCkFzIHdlIGNvbXBpbGUg
-VUhEIGZyb20gc291cmNlLCB3ZSBjYW4gZGVmaW5pdGVseSBjaGFuZ2Ugc29tZSBsb3ctbGV2ZWwg
-Y29kZSBhcyB5b3UgcHJvcG9zZWQuDQpJbmRlZWQsIEkgYWxyZWFkeSBzZWUgc29tZSBzb3J0IG9m
-IFJUVCBiaWFzIGNsdXN0ZXJpbmcgd2l0aCB0aGUgdHdvIEIyMTAsIHRob3VnaCBJIGhhdmUgbm90
-IHlldCBlbm91Z2ggbWVhc3VyZW1lbnQgcnVucyB0byBtYWtlIGEgdmVyeSBjbGVhciBzdGF0ZW1l
-bnQuIEFsc28sIHdpdGggdHdvIEIyMTAsIGFueSBvZiBib3RoLCBhbmQgZWl0aGVyIFR4IG9yIFJ4
-IGNoYWluIGNvdWxkIGluZmx1ZW5jZSB0aGUgUlRUIGJpYXMsIHNvIHRoZSBjbHVzdGVyaW5nIGlz
-IGFscmVhZHkgYSBtaXggb2YgdHdvICJoaWRkZW4iIHN5c3RlbSBzdGF0ZXMuDQoNCkkgd2lsbCB0
-ZXN0IHRoZSBmb2xsb3dpbmcgc2V0dXAgbmV4dCwgdG8gbW9yZSBjbGVhcmx5IGlkZW50aWZ5IHRo
-ZSBjbHVzdGVyaW5nOiBvbmUgWDMxMCB3aXRoIENCWCBmcm9udC1lbmQgYW5kIG9uZSBCMjEwLCBy
-ZWZlcmVuY2VkIHdpdGggdGhlIHNhbWUgYXRvbWljIGNsb2NrIHNpZ25hbC4gVGhlIFgzMTAgaXMg
-c28gc3RhYmxlIHRoYXQgd2UgY2FuIHVzZSBpdCBhcyByZWZlcmVuY2UuIEknbGwga2VlcCB5b3Ug
-dXBkYXRlZCBvbiB0aGlzLg0KDQpBbGwgdGhlIGJlc3QsDQpFbWFudWVsDQoNCg0KLS0tLS1VcnNw
-csO8bmdsaWNoZSBOYWNocmljaHQtLS0tLQ0KVm9uOiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9u
-YnJhdW5AZ21haWwuY29tPiANCkdlc2VuZGV0OiBEb25uZXJzdGFnLCAxMC4gRmVicnVhciAyMDIy
-IDAyOjU2DQpBbjogSWFuIEJ1Y2tsZXkgPGlhbi5idWNrbGV5QGdtYWlsLmNvbT47IFN0YXVkaW5n
-ZXIsIEVtYW51ZWwgPEVtYW51ZWwuU3RhdWRpbmdlckBkbHIuZGU+DQpDYzogUm9iIEtvc3NsZXIg
-dmlhIFVTUlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPjsgSnVsaWFuIEFybm9s
-ZCA8anVsaWFuQGVsaXRlY29kaW5nLm9yZz4NCkJldHJlZmY6IFJlOiBbVVNSUC11c2Vyc10gQjIw
-MCBncm91cCBkZWxheSB2YXJpYXRpb25zDQoNCk9uIDIwMjItMDItMDkgMTg6MzYsIElhbiBCdWNr
-bGV5IHdyb3RlOg0KPiBRdWljayB0aG91Z2h0cy4gU2luY2UgeW91IGFyZSBSVFQgaGVyZSwgdGhl
-IFR4IGFuZCBSeCBSRiBzZWN0aW9ucyBvZiBBRDkzNjEgYXJlIGRyaXZlbiBieSBkaWZmZXJlbnQg
-UkYgZnJhY3Rpb25hbC1uIHN5bnRoZXNpemVycywgdGhleSBtaWdodCBsb2NrIHJ1bi10by1ydW4g
-d2l0aCBkaWZmZXJlbnQgcGhhc2UgcmVsYXRpb25zaGlwcyB0byB0aGVpciBzaGFyZWQgY29tbW9u
-IHJlZmVyZW5jZS4gSWYgeW91IHNlZSBjbHVzdGVyaW5nIGF0IGNlcnRhaW4gKHNpbWlsYXJseSBz
-cGFjZWQpIHRpbWUgYmlucyBpbiB5b3VyIHJlc3VsdCB0aGF0IG1pZ2h0IGJlIGEgaGludCB0b3dh
-cmRzIHRoaXMgYmVpbmcgaW52b2x2ZWQuDQpJIGhhZG4ndCB0aG91Z2h0IGFib3V0IHRoYXQsIGJ1
-dCwgeWVzLCB0aGF0ICpjb3VsZCogYmUgYSBzb3VyY2Ugb2YgdGhlIHZhcmlhYmlsaXR5LsKgwqAg
-SSdtIG5vdCBzdXJlIHdoZXRoZXIgdGhlIEFEOTM2MSBzdXBwb3J0cyBpbnRlZ2VyLU4NCiDCoCB0
-dW5pbmcgbW9kZSwgYnV0IGZvciBzdXJlIFVIRCBkb2Vzbid0IGV4cG9zZSBpdCBpbiB0aGUgZHJp
-dmVyLi4uDQoNCkl0IG9jY3VycmVkIHRvIG1lIHRoYXQgYXMgUkYgc3ludGhlc2l6ZXJzIGVuZCB1
-cCBiZWluZyB1c2VkIGFsbW9zdCBleGNsdXNpdmVseSBpbiBEU1AtYmFzZWQgc3lzdGVtcywgdGhl
-cmUncyBsaXR0bGUgcmVhc29uIGZvcg0KIMKgIGZyYWN0aW9uYWwtTiB0dW5pbmcsIGFzIGZhciBh
-cyBJIGNhbiB0ZWxsLS1pdCB3YXMgaW52ZW50ZWQgdG8gZ2l2ZSB2ZXJ5LXNtYWxsIHN0ZXAgc2l6
-ZXMgd2hlbiB5b3UncmUgdXNpbmcgYSBsYXJnZXIgcmVmZXJlbmNlIGNsb2NrDQogwqAgaW50byB0
-aGUgUExMLsKgIEJ1dCB3aXRoIHRoZXNlIFJGIGNoYWlucyBiZWluZyBiYWNrZWQgYSBsb3QgbW9y
-ZSBieSBmbGV4aWJsZSBEU1AgYXJjaGl0ZWN0dXJlcywgd2hlcmUgeW91IGNhbiBlZmZlY3RpdmVs
-eSBhY2hpZXZlDQogwqAgc3ViLTFIeiB0dW5pbmcgc3RlcCBzaXplLCB0aGUgc3ludGhlc2l6ZXJz
-IGRvbid0IHJlYWxseSBuZWVkIHRoZSB2ZXJ5IGZpbmUgc3RlcCBzaXplLsKgwqAgQnV0IHRoYXQn
-cyBqdXN0IG1lIHdheGluZyBwaGlsb3NvcGhpY2FsLi4uDQoNCg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
-byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============5993286463601814703==
+Content-Type: multipart/alternative; boundary="000000000000398f2505d7a54702"
+
+--000000000000398f2505d7a54702
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Rob,
+
+As long as the DRAM can keep up throughput wise, you should be fine in that
+configuration. I think the E320 has a BIST you can run that reports the
+throughput.
+
+Jonathon
+
+On Wed, Feb 9, 2022 at 3:29 PM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Hi,
+> I am wondering if there are any data rate restrictions for using the
+> Replay block on the E320.  I have a 4-port Replay block for simultaneously
+> playing two streams to the 2-port Radio and capturing two streams from the
+> 2-port Radio.  If the master_clock_rate is equal to the sample rate, does
+> this imply that I will have a data throughput issue?
+> Rob
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000398f2505d7a54702
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Rob,<div><br></div><div>As long as the DRAM can keep up=
+ throughput wise, you should be fine in that configuration. I think the E32=
+0 has a BIST you can run that reports the throughput.=C2=A0</div><div><br><=
+/div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Wed, Feb 9, 2022 at 3:29 PM Rob Kossler &lt;<a h=
+ref=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<br><div>=
+I am wondering if there are any data rate restrictions for using the Replay=
+ block on the E320.=C2=A0 I have a 4-port Replay block for simultaneously p=
+laying two streams to the 2-port Radio and capturing two streams from the 2=
+-port Radio.=C2=A0 If the master_clock_rate is equal to the sample rate, do=
+es this imply that I will have a data throughput issue?</div><div>Rob</div>=
+</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000398f2505d7a54702--
+
+--===============5993286463601814703==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5993286463601814703==--
