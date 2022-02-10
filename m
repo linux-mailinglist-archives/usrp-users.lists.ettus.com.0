@@ -2,596 +2,218 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920054B16DC
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 21:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 266844B1700
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 21:34:14 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 77E4C384EBA
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 15:20:36 -0500 (EST)
-Received: from postman.dtnt.info (postman.dtnt.info [62.219.91.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5DD35384B9B
-	for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 15:19:32 -0500 (EST)
-Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
-	by postman.dtnt.info (Postfix) with ESMTPS id 21D3F41BF6
-	for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 22:18:43 +0200 (IST)
-Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
-	by o.dtnt.email (Postfix) with ESMTP id C29FC9FFB1
-	for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 22:18:32 +0200 (IST)
-X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
-Received: from o.dtnt.email ([127.0.0.1])
-	by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id d92ZqeBPjlu0 for <usrp-users@lists.ettus.com>;
-	Thu, 10 Feb 2022 22:18:31 +0200 (IST)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	by o.dtnt.email (Postfix) with ESMTPSA id A30C19FAE7
-	for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 22:18:25 +0200 (IST)
-Received: by mail-pl1-f182.google.com with SMTP id 10so2840091plj.1
-        for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 12:18:25 -0800 (PST)
-X-Gm-Message-State: AOAM531T63hp55dI1pFWCEoWviupVJpAhalp22TZ8ZUBlwNJvKfzNvbx
-	d+IuKBjjCYirSZNMfyBusBDR+t7UevDLg/vTnkM=
-X-Google-Smtp-Source: ABdhPJwZMIdKOWCrdI7HT7NF6dcIdVXqBVaDVrwoEGfgdHSjdW0kekXcwGnJvhG1qulD/ps3MNKTzCkQgGQthUsMCIU=
-X-Received: by 2002:a17:90a:7f85:: with SMTP id m5mr4503561pjl.5.1644524303263;
- Thu, 10 Feb 2022 12:18:23 -0800 (PST)
+	by mm2.emwd.com (Postfix) with ESMTP id 6EB1C38427E
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 15:34:13 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="V+zV2+Ib";
+	dkim-atps=neutral
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2734E384205
+	for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 15:33:20 -0500 (EST)
+Received: by mail-yb1-f180.google.com with SMTP id m6so18872764ybc.9
+        for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 12:33:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=U3k34fdevyCrJHqlK3YpE5zGoWo8t31pCXU7y5coMuE=;
+        b=V+zV2+IbEYBPxrBKjXxjFqO58GnN7McrFUKi3qRNMRhk/FCixkn5z78I2Ur78PNNso
+         cep0nR6FIELto+91vSBcerX/VIxku+3M4Bv1slFg1CxhoW9V+PCUqOd4dO2CKOT3Mjym
+         BCQtMoZwxIgFCl26+mguIEYPB6yWE8kRwzMr60N43WR/RiHnHZ7UaAgyuflZ4nKMCnaV
+         J/+SkzBrycnE6KQDsvvNqvyvdCqjg0ZK6cL+WugJLkvvdGmkPgcBiXGRhTS5RE7dQ+A0
+         4Zm8rxhGxtHca5x774FHArszIEtuzH2C5bfK2vufP6LerGR9lKr9LhzuJSb8DufN7OLw
+         iO+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=U3k34fdevyCrJHqlK3YpE5zGoWo8t31pCXU7y5coMuE=;
+        b=uqVQ8rGymQasgH1o1alY66P8hSH7RdKOHahyqdz0+sE4xqQtmk8ZRENPhryXNWg2VH
+         VCFshiIIRIXYFcKyCAqW/WQEGK7MSqcblUd1WLuGi3rsgstJJVuL3BiXz7QXc+wfbwxm
+         +LbuDLTjlcHuGk96TtSm2qVMT2m+HcFA6AjWl/MMRy0hfKJ9o9MgN+jCX5734BKrbIAY
+         GgKgK7ul0xURyj7t7LxqSACzwSDpVkqgSi8Ee8VkTJxx5rdxBeEVZM44k+zSv6vGBEtT
+         c2kiu9exdx9bhiCaqQ5NDunE+/3zUsqDVkE7JBdV3PaYEuIdnAYaIZRfcvDb4GYzcY92
+         IycQ==
+X-Gm-Message-State: AOAM531LZAJAaIdD9qXwfbcyHGKxwMeolF9NCXBykMETpRTNYUF3cvvd
+	6Y0WqEKFX/GOh2zJRpxEUhRgyT/DYUzSvtKiy1Ogrpwr
+X-Google-Smtp-Source: ABdhPJyjbmV4Qx1UxdspZkXql9PrloC6wfR0FBEyP/cbzIFVIiX4b/McrK8QRilyBveMJ54hB64H8ZZpR/gyE/DqMsM=
+X-Received: by 2002:a81:eb14:: with SMTP id n20mr9238875ywm.200.1644525200125;
+ Thu, 10 Feb 2022 12:33:20 -0800 (PST)
 MIME-Version: 1.0
-From: Ofer Saferman <ofer@navigicom.com>
-Date: Thu, 10 Feb 2022 22:18:11 +0200
-X-Gmail-Original-Message-ID: <CACDReSy-Z7yj=B-QRGuNf=uwop_1OFMH0ztpTasZ4BLQwoXKQQ@mail.gmail.com>
-Message-ID: <CACDReSy-Z7yj=B-QRGuNf=uwop_1OFMH0ztpTasZ4BLQwoXKQQ@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="000000000000ec6c6d05d7afa65b"
-X-DTNT-MailScanner-Information: Please contact the ISP for more information
-X-DTNT-MailScanner-ID: 21D3F41BF6.A41AC
-X-DTNT-MailScanner: Found to be clean
-X-DTNT-MailScanner-From: ofer@navigicom.com
-X-Spam-Status: No
-Message-ID-Hash: WBMOSGK4YIFFCQCREAXFL7LQCQRFMSTY
-X-Message-ID-Hash: WBMOSGK4YIFFCQCREAXFL7LQCQRFMSTY
-X-MailFrom: ofer@navigicom.com
+References: <CAB__hTSyT==Q_Nfn8xgfT-FBuutZ_ieD_CKuc-PdA3xm6KHs4w@mail.gmail.com>
+ <CAL7q81tArWo++HCSyo_MGXpThqmdBvt94r-RJccqT3+bhh0PGw@mail.gmail.com>
+ <CAFche=gKiRGtNmHE5L=59fbqEdKCvypFEwito3cgXg8qtcL-gA@mail.gmail.com> <CAB__hTQUT8mTDRDAeA-b_mJBmpF=h0UMDFLOgf0XKaJ01ZWbzg@mail.gmail.com>
+In-Reply-To: <CAB__hTQUT8mTDRDAeA-b_mJBmpF=h0UMDFLOgf0XKaJ01ZWbzg@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 10 Feb 2022 14:33:05 -0600
+Message-ID: <CAFche=iXkkR1C9AEXbrytuFkiSUCYL2fpwO7Ufq_VdKoQi7nfA@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: 3VQIXOIOUZCTSDHBCFJXFYJKLINF4QD6
+X-Message-ID-Hash: 3VQIXOIOUZCTSDHBCFJXFYJKLINF4QD6
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Problems with a 4-port replay block on E320
+Subject: [USRP-users] Re: Replay block on E320 data rate
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WBMOSGK4YIFFCQCREAXFL7LQCQRFMSTY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3VQIXOIOUZCTSDHBCFJXFYJKLINF4QD6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============0392828723276299534=="
 
---000000000000ec6c6d05d7afa65b
-Content-Type: multipart/alternative; boundary="000000000000ec6c6b05d7afa659"
+--===============0392828723276299534==
+Content-Type: multipart/alternative; boundary="00000000000060c42b05d7afdcbe"
 
---000000000000ec6c6b05d7afa659
+--00000000000060c42b05d7afdcbe
 Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+I would start by double checking the YAML. For example, make sure the
+MEM_ADDR_W parameter is correct (for E320 it should be 31, for 2 GiB) and
+make sure each in/out port is connected the way you want.
 
-I am working on a USRP E320 unit using UHD 4.1.0.5.
-I have made an FPGA image containing a radio, a 4-port replay block and a
-NullSrcSink.
-After investigating (with a lot of help from Rob Kossler) why my own
-program doesn't work properly, per his suggestion I have tested
-rfnoc_replay_samples_from_file on the 4 ports of the replay block.
-Ports 0,1 work fine and the example is streaming my data. Ports 2,3 get
-stuck on record and don't work properly.
-Please find attached:
-* 4 console logs, one for each replay port.
-* My YML file with which I created the FPGA image.
-* Console log of uhd_usrp_probe.
+If you share the YAML with me, I'm happy to take a look to see if anything
+jumps out at me.
 
-Some further notes that might help:
-* I also tried an original FPGA image of the E320 (with DUC, DDC and all
-the static mapping) with the only change being that the replay block has 4
-ports (and adding 2 more endpoints). The result was the same.
-* I also tried an FPGA image without the NullSrcSink. I added it sometime
-in the debug process and it was just left there. It has no bearing on the
-problem.
+Thanks,
 
-I would appreciate any assistance to debug the issue and make all ports of
-the replay block work properly.
+Wade
 
-Regards,
-Ofer Saferman
+On Thu, Feb 10, 2022 at 10:34 AM Rob Kossler <rkossler@nd.edu> wrote:
 
--- 
-This message has been scanned for viruses and
-dangerous content by MailScanner, and is
-believed to be clean.
+> Thanks Wade,
+> I am helping Ofer Saferman with an issue with the E320 and a 4-port replay
+> block. Apart from your response (& Jonathon's response) indicating that
+> data rates should not be an issue, I have also come to the same conclusion
+> by trying some tests.  After these tests, the issue now seems to be that
+> Replay ports 0 and 1 work as expected, but Replay ports 2 and 3 do not.  I
+> know that a 4-port Replay block works fine on an N310 because I use it
+> often.  So, I'm wondering why we have this issue on the E320.  Perhaps the
+> E320 yml file is wrong - I am still waiting to take a look at this.  I have
+> also requested that Ofer run the stock example
+> "rfnoc_replay_samples_from_file" and use the --replay_chan option to prove
+> that ports 0 and 1 work fine but ports 2 and 3 do not.
+>
+> Anyway, if you have any suggestions, I'd love to hear them.
+> Rob
+>
+>
+> On Thu, Feb 10, 2022 at 11:17 AM Wade Fife <wade.fife@ettus.com> wrote:
+>
+>> The E320's DRAM is pretty fast. It should have no problem keeping up for
+>> your use case.
+>>
+>> Wade
+>>
+>> On Thu, Feb 10, 2022 at 1:56 AM Jonathon Pendlum <
+>> jonathon.pendlum@ettus.com> wrote:
+>>
+>>> Hi Rob,
+>>>
+>>> As long as the DRAM can keep up throughput wise, you should be fine in
+>>> that configuration. I think the E320 has a BIST you can run that reports
+>>> the throughput.
+>>>
+>>> Jonathon
+>>>
+>>> On Wed, Feb 9, 2022 at 3:29 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>
+>>>> Hi,
+>>>> I am wondering if there are any data rate restrictions for using the
+>>>> Replay block on the E320.  I have a 4-port Replay block for simultaneously
+>>>> playing two streams to the 2-port Radio and capturing two streams from the
+>>>> 2-port Radio.  If the master_clock_rate is equal to the sample rate, does
+>>>> this imply that I will have a data throughput issue?
+>>>> Rob
+>>>> _______________________________________________
+>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
 
-
---000000000000ec6c6b05d7afa659
+--00000000000060c42b05d7afdcbe
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I am working on a USR=
-P E320 unit using UHD 4.1.0.5.<br></div><div>I have made an FPGA image cont=
-aining a radio, a 4-port replay block and a NullSrcSink.</div><div>After in=
-vestigating (with a lot of help from Rob Kossler) why my own program doesn&=
-#39;t work properly, per his suggestion I have tested rfnoc_replay_samples_=
-from_file on the 4 ports of the replay block.</div><div>Ports 0,1 work fine=
- and the example is streaming my data. Ports 2,3 get stuck on record and do=
-n&#39;t work properly.</div><div>Please find attached:</div><div>* 4 consol=
-e logs, one for each replay port. <br></div><div>* My YML file with which I=
- created the FPGA image.</div><div>* Console log of uhd_usrp_probe.</div><d=
-iv></div><div><br></div><div>Some further notes that might help:</div><div>=
-* I also tried an original FPGA image of the E320 (with DUC, DDC and all th=
-e static mapping) with the only change being that the replay block has 4 po=
-rts (and adding 2 more endpoints). The result was the same.</div><div>* I a=
-lso tried an FPGA image without the NullSrcSink. I added it sometime in the=
- debug process and it was just left there. It has no bearing on the problem=
-.</div><div><br></div><div>
-<div>I would appreciate any assistance to debug the issue and make all port=
-s of the replay block work properly.</div><div><br></div><div>Regards, <br>=
-</div><div>Ofer Saferman</div><div><br></div>
+<div dir=3D"ltr"><div>I would start by double checking the YAML. For exampl=
+e, make sure the MEM_ADDR_W parameter is correct (for E320 it should be 31,=
+ for 2 GiB) and make sure each in/out port is connected the way you want.<b=
+r></div><div><br></div><div>If you share the YAML with me, I&#39;m happy to=
+ take a look to see if anything jumps out at me.<br></div><div><br></div><d=
+iv>Thanks,</div><div><br></div><div>Wade<br></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022 at 10:34 A=
+M Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr"><div dir=3D"ltr">Thanks Wade,<div>I am helping Ofer Saferman with=
+ an issue with the E320 and a 4-port replay block. Apart from your response=
+ (&amp; Jonathon&#39;s response) indicating that data rates should not be a=
+n issue, I have also come to the same conclusion by trying some tests.=C2=
+=A0 After these tests, the issue now seems to be that Replay ports 0 and 1 =
+work as expected, but Replay ports 2 and 3 do not.=C2=A0 I know that a 4-po=
+rt Replay block works fine on an N310 because I use it often.=C2=A0 So, I&#=
+39;m wondering why we have this issue on the E320.=C2=A0 Perhaps the E320 y=
+ml file is wrong - I am still waiting to take a look at this.=C2=A0 I have =
+also requested that Ofer run the stock example &quot;rfnoc_replay_samples_f=
+rom_file&quot; and use the --replay_chan option to prove that ports 0 and 1=
+ work fine but ports 2 and 3 do not.</div><div><br></div><div>Anyway, if yo=
+u have any suggestions, I&#39;d love to hear them.</div><div>Rob</div><div>=
+<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Thu, Feb 10, 2022 at 11:17 AM Wade Fife &lt;<a href=3D"mailto:=
+wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
+<div>The E320&#39;s DRAM is pretty fast. It should have no problem keeping =
+up for your use case.</div><div><br></div><div>Wade<br></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10=
+, 2022 at 1:56 AM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@e=
+ttus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi R=
+ob,<div><br></div><div>As long as the DRAM can keep up throughput wise, you=
+ should be fine in that configuration. I think the E320 has a BIST you can =
+run that reports the throughput.=C2=A0</div><div><br></div><div>Jonathon</d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Wed, Feb 9, 2022 at 3:29 PM Rob Kossler &lt;<a href=3D"mailto:rkossle=
+r@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,<br><div>I a=
+m wondering if there are any data rate restrictions for using the Replay bl=
+ock on the E320.=C2=A0 I have a 4-port Replay block for simultaneously play=
+ing two streams to the 2-port Radio and capturing two streams from the 2-po=
+rt Radio.=C2=A0 If the master_clock_rate is equal to the sample rate, does =
+this imply that I will have a data throughput issue?</div><div>Rob</div></d=
+iv>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</div>
+</blockquote></div></div>
 
-</div></div>
-<br />--=20
-<br />This message has been scanned for viruses and
-<br />dangerous content by
-<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
-<br />believed to be clean.
+--00000000000060c42b05d7afdcbe--
 
-
---000000000000ec6c6b05d7afa659--
-
---000000000000ec6c6d05d7afa65b
-Content-Type: text/plain; charset="US-ASCII";
-	name="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_2.txt"
-Content-Disposition: attachment;
-	filename="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_2.txt"
-Content-Transfer-Encoding: base64
-Content-ID: <f_kzhf6hrj3>
-X-Attachment-Id: f_kzhf6hrj3
-
-cm9vdEBuaS1lMzIwLTMyMEFGQUE6L3Vzci9saWIvdWhkL2V4YW1wbGVzIyAu
-L3Jmbm9jX3JlcGxheV9zYW1wbGVzX2Zyb21fZmlsZSAtLWFyZ3MgbWFzdGVy
-X2Nsb2NrX3JhdGU9NDAuMGU2IC0tcmVwbGF5X2NoYW49MiAtLWZpbGU9J215
-X3Jmbm9jX3JlcGxheTIvYnVpbGQvc2luZV9mdD0xTV9mcz00ME0uYmluJyAt
-LWZyZXE9Mi40MWU5IC0tcmF0ZT0NCjQwLjBlNiAtLWdhaW49ODAgLS1idz00
-MC4wZTYNCg0KQ3JlYXRpbmcgdGhlIFJGTm9DIGdyYXBoIHdpdGggYXJnczog
-bWFzdGVyX2Nsb2NrX3JhdGU9NDAuMGU2Li4uDQpbSU5GT10gW1VIRF0gbGlu
-dXg7IEdOVSBDKysgdmVyc2lvbiA5LjIuMDsgQm9vc3RfMTA3MTAwOyBVSERf
-NC4xLjAuNS0wLWc2YmQwYmU5Yw0KW0lORk9dIFtNUE1EXSBJbml0aWFsaXpp
-bmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiBtZ210X2Fk
-ZHI9MTI3LjAuMC4xLHR5cGU9ZTN4eCxwcm9kdWN0PWUzMjAsc2VyaWFsPTMy
-MEFGQUEsZnBnYT0xRyxjbGFpbWVkPUZhbHNlLG1hc3Rlcl9jbG9ja19yYXRl
-PTQwLjBlNg0KW0lORk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNh
-bGxlZCB3aXRoIGRldmljZSBhcmdzIGBmcGdhPTFHLG1hc3Rlcl9jbG9ja19y
-YXRlPTQwLjBlNixtZ210X2FkZHI9MTI3LjAuMC4xLHByb2R1Y3Q9ZTMyMCcu
-DQpbSU5GT10gWzAvUmFkaW8jMF0gUGVyZm9ybWluZyBDT0RFQyBsb29wYmFj
-ayB0ZXN0IG9uIGNoYW5uZWwgMCAuLi4NCltJTkZPXSBbMC9SYWRpbyMwXSBD
-T0RFQyBsb29wYmFjayB0ZXN0IHBhc3NlZA0KW0lORk9dIFswL1JhZGlvIzBd
-IFBlcmZvcm1pbmcgQ09ERUMgbG9vcGJhY2sgdGVzdCBvbiBjaGFubmVsIDEg
-Li4uDQpbSU5GT10gWzAvUmFkaW8jMF0gQ09ERUMgbG9vcGJhY2sgdGVzdCBw
-YXNzZWQNClVzaW5nIHJhZGlvIDAvUmFkaW8jMCwgY2hhbm5lbCAwDQpVc2lu
-ZyByZXBsYXkgMC9SZXBsYXkjMCwgY2hhbm5lbCAyDQpTZXR0aW5nIFRYIEZy
-ZXE6IDI0MTAuMDAwMDAwIE1Iei4uLg0KQWN0dWFsIFRYIEZyZXE6IDI0MDku
-OTk5OTk5IE1Iei4uLg0KDQpTZXR0aW5nIFRYIFJhdGU6IDQwLjAwMDAwMCBN
-c3BzLi4uDQpBY3R1YWwgVFggUmF0ZTogNDAuMDAwMDAwIE1zcHMuLi4NCg0K
-U2V0dGluZyBUWCBHYWluOiA4MC4wMDAwMDAgZEIuLi4NCkFjdHVhbCBUWCBH
-YWluOiA4MC4wMDAwMDAgZEIuLi4NCg0KU2V0dGluZyBUWCBCYW5kd2lkdGg6
-IDQwLjAwMDAwMCBNSHouLi4NCkFjdHVhbCBUWCBCYW5kd2lkdGg6IDQwLjAw
-MDAwMCBNSHouLi4NCg0KW0lORk9dIFtURVNUXSBDcmVhdGluZyBncmFwaC4u
-Lg0KW0lORk9dIFtURVNUXSBDb21taXR0aW5nIGdyYXBoLi4uDQpbV0FSTklO
-R10gWzAvUmFkaW8jMF0gQXR0ZW1wdGluZyB0byBzZXQgdGljayByYXRlIHRv
-IDAuIFNraXBwaW5nLg0KW0lORk9dIFtURVNUXSBDb21taXQgY29tcGxldGUu
-DQpSZXBsYXkgZmlsZSBzaXplOiAgICAgMTYwMDAgYnl0ZXMgKDIwMDAgcXdv
-cmRzLCA0MDAwIHNhbXBsZXMpDQpSZWNvcmQgYmFzZSBhZGRyZXNzOiAgMHgw
-DQpSZWNvcmQgYnVmZmVyIHNpemU6ICAgMTYwMDAgYnl0ZXMNClJlY29yZCBm
-dWxsbmVzczogICAgICAwIGJ5dGVzDQoNCkVtcHR5aW5nIHJlY29yZCBidWZm
-ZXIuLi4NClJlY29yZCBmdWxsbmVzczogICAgICAwIGJ5dGVzDQoNClNlbmRp
-bmcgZGF0YSB0byBiZSByZWNvcmRlZC4uLg0KV2FpdGluZyBmb3IgcmVjb3Jk
-aW5nIHRvIGNvbXBsZXRlLi4uDQpeQw==
-
---000000000000ec6c6d05d7afa65b
-Content-Type: text/plain; charset="US-ASCII";
-	name="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_0.txt"
-Content-Disposition: attachment;
-	filename="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_0.txt"
-Content-Transfer-Encoding: base64
-Content-ID: <f_kzhf6hr52>
-X-Attachment-Id: f_kzhf6hr52
-
-cm9vdEBuaS1lMzIwLTMyMEFGQUE6L3Vzci9saWIvdWhkL2V4YW1wbGVzIyAu
-L3Jmbm9jX3JlcGxheV9zYW1wbGVzX2Zyb21fZmlsZSAtLWFyZ3MgbWFzdGVy
-X2Nsb2NrX3JhdGU9NDAuMGU2IC0tcmVwbGF5X2NoYW49MCAtLWZpbGU9J215
-X3Jmbm9jX3JlcGxheTIvYnVpbGQvc2luZV9mdD0xTV9mcz00ME0uYmluJyAt
-LWZyZXE9Mi40MWU5IC0tcmF0ZT00MC4wZTYgLS1nYWluPTgwIC0tYnc9NDAu
-MGU2DQoNCkNyZWF0aW5nIHRoZSBSRk5vQyBncmFwaCB3aXRoIGFyZ3M6IG1h
-c3Rlcl9jbG9ja19yYXRlPTQwLjBlNi4uLg0KW0lORk9dIFtVSERdIGxpbnV4
-OyBHTlUgQysrIHZlcnNpb24gOS4yLjA7IEJvb3N0XzEwNzEwMDsgVUhEXzQu
-MS4wLjUtMC1nNmJkMGJlOWMNCltJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5n
-IDEgZGV2aWNlKHMpIGluIHBhcmFsbGVsIHdpdGggYXJnczogbWdtdF9hZGRy
-PTEyNy4wLjAuMSx0eXBlPWUzeHgscHJvZHVjdD1lMzIwLHNlcmlhbD0zMjBB
-RkFBLGZwZ2E9MUcsY2xhaW1lZD1GYWxzZSxtYXN0ZXJfY2xvY2tfcmF0ZT00
-MC4wZTYNCltJTkZPXSBbTVBNLm1haW5dIExhdW5jaGluZyBVU1JQL01QTSwg
-dmVyc2lvbjogNC4xLjAuNS1nNmJkMGJlOWMNCltJTkZPXSBbTVBNLm1haW5d
-IFNwYXduaW5nIFJQQyBwcm9jZXNzLi4uDQpbSU5GT10gW01QTS5QZXJpcGhN
-YW5hZ2VyXSBEZXZpY2Ugc2VyaWFsIG51bWJlcjogMzIwQUZBQQ0KW0lORk9d
-IFtNUE0uUGVyaXBoTWFuYWdlcl0gRm91bmQgMSBkYXVnaHRlcmJvYXJkKHMp
-Lg0KW0lORk9dIFtNUE0uUlBDU2VydmVyXSBSUEMgc2VydmVyIHJlYWR5IQ0K
-W0lORk9dIFtNUE0uUlBDU2VydmVyXSBTcGF3bmluZyB3YXRjaGRvZyB0YXNr
-Li4uDQpbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkgY2FsbGVk
-IHdpdGggZGV2aWNlIGFyZ3MgYGZwZ2E9MUcsbWFzdGVyX2Nsb2NrX3JhdGU9
-NDAuMGU2LG1nbXRfYWRkcj0xMjcuMC4wLjEscHJvZHVjdD1lMzIwJy4NCltJ
-TkZPXSBbMC9SYWRpbyMwXSBQZXJmb3JtaW5nIENPREVDIGxvb3BiYWNrIHRl
-c3Qgb24gY2hhbm5lbCAwIC4uLg0KW0lORk9dIFswL1JhZGlvIzBdIENPREVD
-IGxvb3BiYWNrIHRlc3QgcGFzc2VkDQpbSU5GT10gWzAvUmFkaW8jMF0gUGVy
-Zm9ybWluZyBDT0RFQyBsb29wYmFjayB0ZXN0IG9uIGNoYW5uZWwgMSAuLi4N
-CltJTkZPXSBbMC9SYWRpbyMwXSBDT0RFQyBsb29wYmFjayB0ZXN0IHBhc3Nl
-ZA0KVXNpbmcgcmFkaW8gMC9SYWRpbyMwLCBjaGFubmVsIDANClVzaW5nIHJl
-cGxheSAwL1JlcGxheSMwLCBjaGFubmVsIDANClNldHRpbmcgVFggRnJlcTog
-MjQxMC4wMDAwMDAgTUh6Li4uDQpBY3R1YWwgVFggRnJlcTogMjQwOS45OTk5
-OTkgTUh6Li4uDQoNClNldHRpbmcgVFggUmF0ZTogNDAuMDAwMDAwIE1zcHMu
-Li4NCkFjdHVhbCBUWCBSYXRlOiA0MC4wMDAwMDAgTXNwcy4uLg0KDQpTZXR0
-aW5nIFRYIEdhaW46IDgwLjAwMDAwMCBkQi4uLg0KQWN0dWFsIFRYIEdhaW46
-IDgwLjAwMDAwMCBkQi4uLg0KDQpTZXR0aW5nIFRYIEJhbmR3aWR0aDogNDAu
-MDAwMDAwIE1Iei4uLg0KQWN0dWFsIFRYIEJhbmR3aWR0aDogNDAuMDAwMDAw
-IE1Iei4uLg0KDQpbSU5GT10gW1RFU1RdIENyZWF0aW5nIGdyYXBoLi4uDQpb
-SU5GT10gW1RFU1RdIENvbW1pdHRpbmcgZ3JhcGguLi4NCltXQVJOSU5HXSBb
-MC9SYWRpbyMwXSBBdHRlbXB0aW5nIHRvIHNldCB0aWNrIHJhdGUgdG8gMC4g
-U2tpcHBpbmcuDQpbSU5GT10gW1RFU1RdIENvbW1pdCBjb21wbGV0ZS4NClJl
-cGxheSBmaWxlIHNpemU6ICAgICAxNjAwMCBieXRlcyAoMjAwMCBxd29yZHMs
-IDQwMDAgc2FtcGxlcykNClJlY29yZCBiYXNlIGFkZHJlc3M6ICAweDANClJl
-Y29yZCBidWZmZXIgc2l6ZTogICAxNjAwMCBieXRlcw0KUmVjb3JkIGZ1bGxu
-ZXNzOiAgICAgIDAgYnl0ZXMNCg0KRW1wdHlpbmcgcmVjb3JkIGJ1ZmZlci4u
-Lg0KUmVjb3JkIGZ1bGxuZXNzOiAgICAgIDAgYnl0ZXMNCg0KU2VuZGluZyBk
-YXRhIHRvIGJlIHJlY29yZGVkLi4uDQpXYWl0aW5nIGZvciByZWNvcmRpbmcg
-dG8gY29tcGxldGUuLi4NClJlY29yZCBmdWxsbmVzczogICAgICAxNjAwMCBi
-eXRlcw0KDQpJc3N1aW5nIHJlcGxheSBjb21tYW5kIGZvciA0MDAwIHNhbXBz
-IGluIGNvbnRpbnVvdXMgbW9kZS4uLg0KUmVwbGF5aW5nIGRhdGEgKFByZXNz
-IEN0cmwrQyB0byBzdG9wKS4uLg0KXkMNClN0b3BwaW5nIHJlcGxheS4uLg==
-
---000000000000ec6c6d05d7afa65b
-Content-Type: text/plain; charset="US-ASCII";
-	name="console_log_2022_02_10_uhd_usrp_probe.txt"
-Content-Disposition: attachment;
-	filename="console_log_2022_02_10_uhd_usrp_probe.txt"
-Content-Transfer-Encoding: base64
-Content-ID: <f_kzhf6hqh0>
-X-Attachment-Id: f_kzhf6hqh0
-
-cm9vdEBuaS1lMzIwLTMyMEFGQUE6fiMgdWhkX3VzcnBfcHJvYmUNCltJTkZP
-XSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDkuMi4wOyBCb29zdF8x
-MDcxMDA7IFVIRF80LjEuMC41LTAtZzZiZDBiZTljDQpbSU5GT10gW01QTURd
-IEluaXRpYWxpemluZyAxIGRldmljZShzKSBpbiBwYXJhbGxlbCB3aXRoIGFy
-Z3M6IG1nbXRfYWRkcj0xMjcuMC4wLjEsdHlwZT1lM3h4LHByb2R1Y3Q9ZTMy
-MCxzZXJpYWw9MzIwQUZBQSxmcGdhPTFHLGNsYWltZWQ9RmFsc2UNCltJTkZP
-XSBbTVBNLm1haW5dIExhdW5jaGluZyBVU1JQL01QTSwgdmVyc2lvbjogNC4x
-LjAuNS1nNmJkMGJlOWMNCltJTkZPXSBbTVBNLm1haW5dIFNwYXduaW5nIFJQ
-QyBwcm9jZXNzLi4uDQpbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBEZXZp
-Y2Ugc2VyaWFsIG51bWJlcjogMzIwQUZBQQ0KW0lORk9dIFtNUE0uUGVyaXBo
-TWFuYWdlcl0gRm91bmQgMSBkYXVnaHRlcmJvYXJkKHMpLg0KW0lORk9dIFtN
-UE0uUlBDU2VydmVyXSBSUEMgc2VydmVyIHJlYWR5IQ0KW0lORk9dIFtNUE0u
-UlBDU2VydmVyXSBTcGF3bmluZyB3YXRjaGRvZyB0YXNrLi4uDQpbSU5GT10g
-W01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkgY2FsbGVkIHdpdGggZGV2aWNl
-IGFyZ3MgYGZwZ2E9MUcsbWdtdF9hZGRyPTEyNy4wLjAuMSxwcm9kdWN0PWUz
-MjAnLg0KW0lORk9dIFswL1JhZGlvIzBdIFBlcmZvcm1pbmcgQ09ERUMgbG9v
-cGJhY2sgdGVzdCBvbiBjaGFubmVsIDAgLi4uDQpbSU5GT10gWzAvUmFkaW8j
-MF0gQ09ERUMgbG9vcGJhY2sgdGVzdCBwYXNzZWQNCltJTkZPXSBbMC9SYWRp
-byMwXSBQZXJmb3JtaW5nIENPREVDIGxvb3BiYWNrIHRlc3Qgb24gY2hhbm5l
-bCAxIC4uLg0KW0lORk9dIFswL1JhZGlvIzBdIENPREVDIGxvb3BiYWNrIHRl
-c3QgcGFzc2VkDQogIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQogLw0KfCAgICAgICBEZXZpY2U6IEUz
-MDAtU2VyaWVzIERldmljZQ0KfCAgICAgX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnwgICAgLw0KfCAg
-IHwgICAgICAgTWJvYXJkOiBuaS1lMzIwLTMyMEFGQUENCnwgICB8ICAgZWVw
-cm9tX3ZlcnNpb246IDMNCnwgICB8ICAgZnNfdmVyc2lvbjogMjAyMTEyMTUx
-MzU0MTgNCnwgICB8ICAgbWVuZGVyX2FydGlmYWN0OiB2NC4xLjAuNV9lMzIw
-DQp8ICAgfCAgIG1wbV9zd192ZXJzaW9uOiA0LjEuMC41LWc2YmQwYmU5Yw0K
-fCAgIHwgICBwaWQ6IDU4MTQ0DQp8ICAgfCAgIHByb2R1Y3Q6IGUzMjANCnwg
-ICB8ICAgcmV2OiA1DQp8ICAgfCAgIHJwY19jb25uZWN0aW9uOiBsb2NhbA0K
-fCAgIHwgICBzZXJpYWw6IDMyMEFGQUENCnwgICB8ICAgdHlwZTogZTN4eA0K
-fCAgIHwgICBNUE0gVmVyc2lvbjogNC4wDQp8ICAgfCAgIEZQR0EgVmVyc2lv
-bjogNi4wDQp8ICAgfCAgIEZQR0EgZ2l0IGhhc2g6IDZiZDBiZTkuZGlydHkN
-CnwgICB8DQp8ICAgfCAgIFRpbWUgc291cmNlczogIGludGVybmFsLCBleHRl
-cm5hbCwgZ3BzZG8NCnwgICB8ICAgQ2xvY2sgc291cmNlczogZXh0ZXJuYWws
-IGludGVybmFsLCBncHNkbw0KfCAgIHwgICBTZW5zb3JzOiByZWZfbG9ja2Vk
-LCBncHNfbG9ja2VkLCBmYW4sIHRlbXBfZnBnYSwgdGVtcF9pbnRlcm5hbCwg
-dGVtcF9yZl9jaGFubmVsQSwgdGVtcF9yZl9jaGFubmVsQiwgdGVtcF9tYWlu
-X3Bvd2VyLCBncHNfZ3BnZ2EsIGdwc19za3ksIGdwc190aW1lLCBncHNfdHB2
-DQp8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KfCAgICAvDQp8ICAgfCAgICAgICBSRk5vQyBi
-bG9ja3Mgb24gdGhpcyBkZXZpY2U6DQp8ICAgfA0KfCAgIHwgICAqIDAvTnVs
-bFNyY1NpbmsjMA0KfCAgIHwgICAqIDAvUmFkaW8jMA0KfCAgIHwgICAqIDAv
-UmVwbGF5IzANCnwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fDQp8ICAgIC8NCnwgICB8ICAgICAg
-IFN0YXRpYyBjb25uZWN0aW9ucyBvbiB0aGlzIGRldmljZToNCnwgICB8DQp8
-ICAgfCAgICogMC9TRVAjMDowPT0+MC9SYWRpbyMwOjANCnwgICB8ICAgKiAw
-L1JhZGlvIzA6MD09PjAvU0VQIzA6MA0KfCAgIHwgICAqIDAvU0VQIzE6MD09
-PjAvUmFkaW8jMDoxDQp8ICAgfCAgICogMC9SYWRpbyMwOjE9PT4wL1NFUCMx
-OjANCnwgICB8ICAgKiAwL1NFUCMyOjA9PT4wL1JlcGxheSMwOjANCnwgICB8
-ICAgKiAwL1JlcGxheSMwOjA9PT4wL1NFUCMyOjANCnwgICB8ICAgKiAwL1NF
-UCMzOjA9PT4wL1JlcGxheSMwOjENCnwgICB8ICAgKiAwL1JlcGxheSMwOjE9
-PT4wL1NFUCMzOjANCnwgICB8ICAgKiAwL1NFUCM0OjA9PT4wL1JlcGxheSMw
-OjINCnwgICB8ICAgKiAwL1JlcGxheSMwOjI9PT4wL1NFUCM0OjANCnwgICB8
-ICAgKiAwL1NFUCM1OjA9PT4wL1JlcGxheSMwOjMNCnwgICB8ICAgKiAwL1Jl
-cGxheSMwOjM9PT4wL1NFUCM1OjANCnwgICB8ICAgKiAwL1NFUCM2OjA9PT4w
-L051bGxTcmNTaW5rIzA6MA0KfCAgIHwgICAqIDAvTnVsbFNyY1NpbmsjMDow
-PT0+MC9TRVAjNjowDQp8ICAgfCAgICogMC9OdWxsU3JjU2luayMwOjE9PT4w
-L051bGxTcmNTaW5rIzA6MQ0KfCAgICAgX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnwgICAgLw0KfCAg
-IHwgICAgICAgVFggRGJvYXJkOiAwL1JhZGlvIzANCnwgICB8ICAgICBfX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXw0KfCAgIHwgICAgLw0KfCAgIHwgICB8ICAgICAgIFRYIEZyb250ZW5k
-OiAwDQp8ICAgfCAgIHwgICBOYW1lOiBFM3h4DQp8ICAgfCAgIHwgICBBbnRl
-bm5hczogVFgvUlgNCnwgICB8ICAgfCAgIEZyZXEgcmFuZ2U6IDQ3LjAwMCB0
-byA2MDAwLjAwMCBNSHoNCnwgICB8ICAgfCAgIEdhaW4gcmFuZ2UgUEdBOiAw
-LjAgdG8gODkuOCBzdGVwIDAuMiBkQg0KfCAgIHwgICB8ICAgQmFuZHdpZHRo
-IHJhbmdlOiAyMDAwMDAwMC4wIHRvIDQwMDAwMDAwLjAgc3RlcCAwLjAgSHoN
-CnwgICB8ICAgfCAgIENvbm5lY3Rpb24gVHlwZTogSVENCnwgICB8ICAgfCAg
-IFVzZXMgTE8gb2Zmc2V0OiBObw0KfCAgIHwgICAgIF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp8ICAg
-fCAgICAvDQp8ICAgfCAgIHwgICAgICAgVFggRnJvbnRlbmQ6IDENCnwgICB8
-ICAgfCAgIE5hbWU6IEUzeHgNCnwgICB8ICAgfCAgIEFudGVubmFzOiBUWC9S
-WA0KfCAgIHwgICB8ICAgRnJlcSByYW5nZTogNDcuMDAwIHRvIDYwMDAuMDAw
-IE1Ieg0KfCAgIHwgICB8ICAgR2FpbiByYW5nZSBQR0E6IDAuMCB0byA4OS44
-IHN0ZXAgMC4yIGRCDQp8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6IDIw
-MDAwMDAwLjAgdG8gNDAwMDAwMDAuMCBzdGVwIDAuMCBIeg0KfCAgIHwgICB8
-ICAgQ29ubmVjdGlvbiBUeXBlOiBJUQ0KfCAgIHwgICB8ICAgVXNlcyBMTyBv
-ZmZzZXQ6IE5vDQp8ICAgICBfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXw0KfCAgICAvDQp8ICAgfCAgICAg
-ICBSWCBEYm9hcmQ6IDAvUmFkaW8jMA0KfCAgIHwgICAgIF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp8
-ICAgfCAgICAvDQp8ICAgfCAgIHwgICAgICAgUlggRnJvbnRlbmQ6IDANCnwg
-ICB8ICAgfCAgIE5hbWU6IEUzeHgNCnwgICB8ICAgfCAgIEFudGVubmFzOiBS
-WDIsIFRYL1JYDQp8ICAgfCAgIHwgICBGcmVxIHJhbmdlOiA3MC4wMDAgdG8g
-NjAwMC4wMDAgTUh6DQp8ICAgfCAgIHwgICBHYWluIHJhbmdlIFBHQTogMC4w
-IHRvIDc2LjAgc3RlcCAxLjAgZEINCnwgICB8ICAgfCAgIEJhbmR3aWR0aCBy
-YW5nZTogMjAwMDAwMDAuMCB0byA0MDAwMDAwMC4wIHN0ZXAgMC4wIEh6DQp8
-ICAgfCAgIHwgICBDb25uZWN0aW9uIFR5cGU6IElRDQp8ICAgfCAgIHwgICBV
-c2VzIExPIG9mZnNldDogTm8NCnwgICB8ICAgICBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KfCAgIHwg
-ICAgLw0KfCAgIHwgICB8ICAgICAgIFJYIEZyb250ZW5kOiAxDQp8ICAgfCAg
-IHwgICBOYW1lOiBFM3h4DQp8ICAgfCAgIHwgICBBbnRlbm5hczogUlgyLCBU
-WC9SWA0KfCAgIHwgICB8ICAgRnJlcSByYW5nZTogNzAuMDAwIHRvIDYwMDAu
-MDAwIE1Ieg0KfCAgIHwgICB8ICAgR2FpbiByYW5nZSBQR0E6IDAuMCB0byA3
-Ni4wIHN0ZXAgMS4wIGRCDQp8ICAgfCAgIHwgICBCYW5kd2lkdGggcmFuZ2U6
-IDIwMDAwMDAwLjAgdG8gNDAwMDAwMDAuMCBzdGVwIDAuMCBIeg0KfCAgIHwg
-ICB8ICAgQ29ubmVjdGlvbiBUeXBlOiBJUQ0KfCAgIHwgICB8ICAgVXNlcyBM
-TyBvZmZzZXQ6IE5v
-
---000000000000ec6c6d05d7afa65b
-Content-Type: text/plain; charset="US-ASCII";
-	name="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_1.txt"
-Content-Disposition: attachment;
-	filename="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_1.txt"
-Content-Transfer-Encoding: base64
-Content-ID: <f_kzhf6hru4>
-X-Attachment-Id: f_kzhf6hru4
-
-cm9vdEBuaS1lMzIwLTMyMEFGQUE6L3Vzci9saWIvdWhkL2V4YW1wbGVzIyAu
-L3Jmbm9jX3JlcGxheV9zYW1wbGVzX2Zyb21fZmlsZSAtLWFyZ3MgbWFzdGVy
-X2Nsb2NrX3JhdGU9NDAuMGU2IC0tcmVwbGF5X2NoYW49MSAtLWZpbGU9J215
-X3Jmbm9jX3JlcGxheTIvYnVpbGQvc2luZV9mdD0xTV9mcz00ME0uYmluJyAt
-LWZyZXE9Mi40MWU5IC0tcmF0ZT00MC4wZTYgLS1nYWluPTgwIC0tYnc9NDAu
-MGU2DQoNCkNyZWF0aW5nIHRoZSBSRk5vQyBncmFwaCB3aXRoIGFyZ3M6IG1h
-c3Rlcl9jbG9ja19yYXRlPTQwLjBlNi4uLg0KW0lORk9dIFtVSERdIGxpbnV4
-OyBHTlUgQysrIHZlcnNpb24gOS4yLjA7IEJvb3N0XzEwNzEwMDsgVUhEXzQu
-MS4wLjUtMC1nNmJkMGJlOWMNCltJTkZPXSBbTVBNRF0gSW5pdGlhbGl6aW5n
-IDEgZGV2aWNlKHMpIGluIHBhcmFsbGVsIHdpdGggYXJnczogbWdtdF9hZGRy
-PTEyNy4wLjAuMSx0eXBlPWUzeHgscHJvZHVjdD1lMzIwLHNlcmlhbD0zMjBB
-RkFBLGZwZ2E9MUcsY2xhaW1lZD1GYWxzZSxtYXN0ZXJfY2xvY2tfcmF0ZT00
-MC4wZTYNCltJTkZPXSBbTVBNLm1haW5dIExhdW5jaGluZyBVU1JQL01QTSwg
-dmVyc2lvbjogNC4xLjAuNS1nNmJkMGJlOWMNCltJTkZPXSBbTVBNLm1haW5d
-IFNwYXduaW5nIFJQQyBwcm9jZXNzLi4uDQpbSU5GT10gW01QTS5QZXJpcGhN
-YW5hZ2VyXSBEZXZpY2Ugc2VyaWFsIG51bWJlcjogMzIwQUZBQQ0KW0lORk9d
-IFtNUE0uUGVyaXBoTWFuYWdlcl0gRm91bmQgMSBkYXVnaHRlcmJvYXJkKHMp
-Lg0KW0lORk9dIFtNUE0uUlBDU2VydmVyXSBSUEMgc2VydmVyIHJlYWR5IQ0K
-W0lORk9dIFtNUE0uUlBDU2VydmVyXSBTcGF3bmluZyB3YXRjaGRvZyB0YXNr
-Li4uDQpbSU5GT10gW01QTS5QZXJpcGhNYW5hZ2VyXSBpbml0KCkgY2FsbGVk
-IHdpdGggZGV2aWNlIGFyZ3MgYGZwZ2E9MUcsbWFzdGVyX2Nsb2NrX3JhdGU9
-NDAuMGU2LG1nbXRfYWRkcj0xMjcuMC4wLjEscHJvZHVjdD1lMzIwJy4NCltJ
-TkZPXSBbMC9SYWRpbyMwXSBQZXJmb3JtaW5nIENPREVDIGxvb3BiYWNrIHRl
-c3Qgb24gY2hhbm5lbCAwIC4uLg0KW0lORk9dIFswL1JhZGlvIzBdIENPREVD
-IGxvb3BiYWNrIHRlc3QgcGFzc2VkDQpbSU5GT10gWzAvUmFkaW8jMF0gUGVy
-Zm9ybWluZyBDT0RFQyBsb29wYmFjayB0ZXN0IG9uIGNoYW5uZWwgMSAuLi4N
-CltJTkZPXSBbMC9SYWRpbyMwXSBDT0RFQyBsb29wYmFjayB0ZXN0IHBhc3Nl
-ZA0KVXNpbmcgcmFkaW8gMC9SYWRpbyMwLCBjaGFubmVsIDANClVzaW5nIHJl
-cGxheSAwL1JlcGxheSMwLCBjaGFubmVsIDENClNldHRpbmcgVFggRnJlcTog
-MjQxMC4wMDAwMDAgTUh6Li4uDQpBY3R1YWwgVFggRnJlcTogMjQwOS45OTk5
-OTkgTUh6Li4uDQoNClNldHRpbmcgVFggUmF0ZTogNDAuMDAwMDAwIE1zcHMu
-Li4NCkFjdHVhbCBUWCBSYXRlOiA0MC4wMDAwMDAgTXNwcy4uLg0KDQpTZXR0
-aW5nIFRYIEdhaW46IDgwLjAwMDAwMCBkQi4uLg0KQWN0dWFsIFRYIEdhaW46
-IDgwLjAwMDAwMCBkQi4uLg0KDQpTZXR0aW5nIFRYIEJhbmR3aWR0aDogNDAu
-MDAwMDAwIE1Iei4uLg0KQWN0dWFsIFRYIEJhbmR3aWR0aDogNDAuMDAwMDAw
-IE1Iei4uLg0KDQpbSU5GT10gW1RFU1RdIENyZWF0aW5nIGdyYXBoLi4uDQpb
-SU5GT10gW1RFU1RdIENvbW1pdHRpbmcgZ3JhcGguLi4NCltXQVJOSU5HXSBb
-MC9SYWRpbyMwXSBBdHRlbXB0aW5nIHRvIHNldCB0aWNrIHJhdGUgdG8gMC4g
-U2tpcHBpbmcuDQpbSU5GT10gW1RFU1RdIENvbW1pdCBjb21wbGV0ZS4NClJl
-cGxheSBmaWxlIHNpemU6ICAgICAxNjAwMCBieXRlcyAoMjAwMCBxd29yZHMs
-IDQwMDAgc2FtcGxlcykNClJlY29yZCBiYXNlIGFkZHJlc3M6ICAweDANClJl
-Y29yZCBidWZmZXIgc2l6ZTogICAxNjAwMCBieXRlcw0KUmVjb3JkIGZ1bGxu
-ZXNzOiAgICAgIDAgYnl0ZXMNCg0KRW1wdHlpbmcgcmVjb3JkIGJ1ZmZlci4u
-Lg0KUmVjb3JkIGZ1bGxuZXNzOiAgICAgIDAgYnl0ZXMNCg0KU2VuZGluZyBk
-YXRhIHRvIGJlIHJlY29yZGVkLi4uDQpXYWl0aW5nIGZvciByZWNvcmRpbmcg
-dG8gY29tcGxldGUuLi4NClJlY29yZCBmdWxsbmVzczogICAgICAxNjAwMCBi
-eXRlcw0KDQpJc3N1aW5nIHJlcGxheSBjb21tYW5kIGZvciA0MDAwIHNhbXBz
-IGluIGNvbnRpbnVvdXMgbW9kZS4uLg0KUmVwbGF5aW5nIGRhdGEgKFByZXNz
-IEN0cmwrQyB0byBzdG9wKS4uLg0KXkMNClN0b3BwaW5nIHJlcGxheS4uLg==
-
---000000000000ec6c6d05d7afa65b
-Content-Type: text/plain; charset="US-ASCII";
-	name="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_3.txt"
-Content-Disposition: attachment;
-	filename="console_log_2022_02_10_rfnoc_replay_samples_from_file_port_3.txt"
-Content-Transfer-Encoding: base64
-Content-ID: <f_kzhf6hqx1>
-X-Attachment-Id: f_kzhf6hqx1
-
-cm9vdEBuaS1lMzIwLTMyMEFGQUE6L3Vzci9saWIvdWhkL2V4YW1wbGVzIyAu
-L3Jmbm9jX3JlcGxheV9zYW1wbGVzX2Zyb21fZmlsZSAtLWFyZ3MgbWFzdGVy
-X2Nsb2NrX3JhdGU9NDAuMGU2IC0tcmVwbGF5X2NoYW49MyAtLWZpbGU9J215
-X3Jmbm9jX3JlcGxheTIvYnVpbGQvc2luZV9mdD0xTV9mcz00ME0uYmluJyAt
-LWZyZXE9Mi40MWU5IC0tcmF0ZT0NCjQwLjBlNiAtLWdhaW49ODAgLS1idz00
-MC4wZTYNCg0KQ3JlYXRpbmcgdGhlIFJGTm9DIGdyYXBoIHdpdGggYXJnczog
-bWFzdGVyX2Nsb2NrX3JhdGU9NDAuMGU2Li4uDQpbSU5GT10gW1VIRF0gbGlu
-dXg7IEdOVSBDKysgdmVyc2lvbiA5LjIuMDsgQm9vc3RfMTA3MTAwOyBVSERf
-NC4xLjAuNS0wLWc2YmQwYmU5Yw0KW0lORk9dIFtNUE1EXSBJbml0aWFsaXpp
-bmcgMSBkZXZpY2UocykgaW4gcGFyYWxsZWwgd2l0aCBhcmdzOiBtZ210X2Fk
-ZHI9MTI3LjAuMC4xLHR5cGU9ZTN4eCxwcm9kdWN0PWUzMjAsc2VyaWFsPTMy
-MEFGQUEsZnBnYT0xRyxjbGFpbWVkPUZhbHNlLG1hc3Rlcl9jbG9ja19yYXRl
-PTQwLjBlNg0KW0lORk9dIFtNUE0uUGVyaXBoTWFuYWdlcl0gaW5pdCgpIGNh
-bGxlZCB3aXRoIGRldmljZSBhcmdzIGBmcGdhPTFHLG1hc3Rlcl9jbG9ja19y
-YXRlPTQwLjBlNixtZ210X2FkZHI9MTI3LjAuMC4xLHByb2R1Y3Q9ZTMyMCcu
-DQpbSU5GT10gWzAvUmFkaW8jMF0gUGVyZm9ybWluZyBDT0RFQyBsb29wYmFj
-ayB0ZXN0IG9uIGNoYW5uZWwgMCAuLi4NCltJTkZPXSBbMC9SYWRpbyMwXSBD
-T0RFQyBsb29wYmFjayB0ZXN0IHBhc3NlZA0KW0lORk9dIFswL1JhZGlvIzBd
-IFBlcmZvcm1pbmcgQ09ERUMgbG9vcGJhY2sgdGVzdCBvbiBjaGFubmVsIDEg
-Li4uDQpbSU5GT10gWzAvUmFkaW8jMF0gQ09ERUMgbG9vcGJhY2sgdGVzdCBw
-YXNzZWQNClVzaW5nIHJhZGlvIDAvUmFkaW8jMCwgY2hhbm5lbCAwDQpVc2lu
-ZyByZXBsYXkgMC9SZXBsYXkjMCwgY2hhbm5lbCAzDQpTZXR0aW5nIFRYIEZy
-ZXE6IDI0MTAuMDAwMDAwIE1Iei4uLg0KQWN0dWFsIFRYIEZyZXE6IDI0MDku
-OTk5OTk5IE1Iei4uLg0KDQpTZXR0aW5nIFRYIFJhdGU6IDQwLjAwMDAwMCBN
-c3BzLi4uDQpBY3R1YWwgVFggUmF0ZTogNDAuMDAwMDAwIE1zcHMuLi4NCg0K
-U2V0dGluZyBUWCBHYWluOiA4MC4wMDAwMDAgZEIuLi4NCkFjdHVhbCBUWCBH
-YWluOiA4MC4wMDAwMDAgZEIuLi4NCg0KU2V0dGluZyBUWCBCYW5kd2lkdGg6
-IDQwLjAwMDAwMCBNSHouLi4NCkFjdHVhbCBUWCBCYW5kd2lkdGg6IDQwLjAw
-MDAwMCBNSHouLi4NCg0KW0lORk9dIFtURVNUXSBDcmVhdGluZyBncmFwaC4u
-Lg0KW0lORk9dIFtURVNUXSBDb21taXR0aW5nIGdyYXBoLi4uDQpbV0FSTklO
-R10gWzAvUmFkaW8jMF0gQXR0ZW1wdGluZyB0byBzZXQgdGljayByYXRlIHRv
-IDAuIFNraXBwaW5nLg0KW0lORk9dIFtURVNUXSBDb21taXQgY29tcGxldGUu
-DQpSZXBsYXkgZmlsZSBzaXplOiAgICAgMTYwMDAgYnl0ZXMgKDIwMDAgcXdv
-cmRzLCA0MDAwIHNhbXBsZXMpDQpSZWNvcmQgYmFzZSBhZGRyZXNzOiAgMHgw
-DQpSZWNvcmQgYnVmZmVyIHNpemU6ICAgMTYwMDAgYnl0ZXMNClJlY29yZCBm
-dWxsbmVzczogICAgICAwIGJ5dGVzDQoNCkVtcHR5aW5nIHJlY29yZCBidWZm
-ZXIuLi4NClJlY29yZCBmdWxsbmVzczogICAgICAwIGJ5dGVzDQoNClNlbmRp
-bmcgZGF0YSB0byBiZSByZWNvcmRlZC4uLg0KV2FpdGluZyBmb3IgcmVjb3Jk
-aW5nIHRvIGNvbXBsZXRlLi4uDQpeQw==
-
---000000000000ec6c6d05d7afa65b
-Content-Type: application/octet-stream; name="e320_rfnoc_replay_4p.yml"
-Content-Disposition: attachment; filename="e320_rfnoc_replay_4p.yml"
-Content-Transfer-Encoding: base64
-Content-ID: <f_kzhf7vcq5>
-X-Attachment-Id: f_kzhf7vcq5
-
-IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRl
-cl9hcmdzICAgICAgICAgIyBJZGVudGlmaWVyIGZvciB0aGUgc2NoZW1hIHVz
-ZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNvcHlyaWdodDogJ0V0dHVzIFJl
-c2VhcmNoLCBBIE5hdGlvbmFsIEluc3RydW1lbnRzIEJyYW5kJyAjIENvcHly
-aWdodCBpbmZvcm1hdGlvbiB1c2VkIGluIGZpbGUgaGVhZGVycwpsaWNlbnNl
-OiAnU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IExHUEwtMy4wLW9yLWxhdGVy
-JyAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNlZCBpbiBmaWxlIGhlYWRlcnMK
-dmVyc2lvbjogJzEuMCcgICAgICAgICAgICAgICAgICAgICAgICAgICMgRmls
-ZSB2ZXJzaW9uCnJmbm9jX3ZlcnNpb246ICcxLjAnICAgICAgICAgICAgICAg
-ICAgICAjIFJGTm9DIHByb3RvY29sIHZlcnNpb24KY2hkcl93aWR0aDogNjQg
-ICAgICAgICAgICAgICAgICAgICAgICAgICMgQml0IHdpZHRoIG9mIHRoZSBD
-SERSIGJ1cyBmb3IgdGhpcyBpbWFnZQpkZXZpY2U6ICdlMzIwJwpkZWZhdWx0
-X3RhcmdldDogJ0UzMjBfMUcnCgoKCiMgQSBsaXN0IG9mIGFsbCBzdHJlYW0g
-ZW5kcG9pbnRzIGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0Kc3RyZWFtX2VuZHBvaW50czoKICBlcDA6ICAg
-ICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2ludCBuYW1lCiAg
-ICBjdHJsOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQg
-cGFzc2VzIGNvbnRyb2wgdHJhZmZpYwogICAgZGF0YTogVHJ1ZSAgICAgICAg
-ICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBkYXRhIHRyYWZmaWMK
-ICAgIGJ1ZmZfc2l6ZTogMzI3NjggICAgICAgICAgICAgICAgIyBJbmdyZXNz
-IGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXAxOiAgICAgICAgICAgICAgICAg
-ICAgICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogRmFsc2Ug
-ICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBjb250cm9s
-IHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAgICAgICAgICAg
-IyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6
-IDMyNzY4ICAgICAgICAgICAgICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBm
-b3IgZGF0YQogIGVwMjogICAgICAgICAgICAgICAgICAgICAgICMgU3RyZWFt
-IGVuZHBvaW50IG5hbWUKICAgIGN0cmw6IEZhbHNlICAgICAgICAgICAgICAg
-ICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmljCiAgICBk
-YXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFz
-c2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiA4MTkyICAgICAgICAg
-ICAgICAgICAjIEluZ3Jlc3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDM6
-ICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2ludCBuYW1l
-CiAgICBjdHJsOiBGYWxzZSAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9p
-bnQgcGFzc2VzIGNvbnRyb2wgdHJhZmZpYwogICAgZGF0YTogVHJ1ZSAgICAg
-ICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBkYXRhIHRyYWZm
-aWMKICAgIGJ1ZmZfc2l6ZTogODE5MiAgICAgICAgICAgICAgICAgIyBJbmdy
-ZXNzIGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXA0OiAgICAgICAgICAgICAg
-ICAgICAgICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogRmFs
-c2UgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBjb250
-cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAgICAgICAg
-ICAgIyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZmX3Np
-emU6IDgxOTIgICAgICAgICAgICAgICAgICMgSW5ncmVzcyBidWZmZXIgc2l6
-ZSBmb3IgZGF0YQogIGVwNTogICAgICAgICAgICAgICAgICAgICAgICMgU3Ry
-ZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6IEZhbHNlICAgICAgICAgICAg
-ICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmljCiAg
-ICBkYXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQg
-cGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiA4MTkyICAgICAg
-ICAgICAgICAgICAjIEluZ3Jlc3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBl
-cDY6ICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2ludCBu
-YW1lCiAgICBjdHJsOiBGYWxzZSAgICAgICAgICAgICAgICAgICAgICMgRW5k
-cG9pbnQgcGFzc2VzIGNvbnRyb2wgdHJhZmZpYwogICAgZGF0YTogVHJ1ZSAg
-ICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBkYXRhIHRy
-YWZmaWMKICAgIGJ1ZmZfc2l6ZTogODE5MiAgICAgICAgICAgICAgICAgIyBJ
-bmdyZXNzIGJ1ZmZlciBzaXplIGZvciBkYXRhCgoKIyBBIGxpc3Qgb2YgYWxs
-IE5vQyBibG9ja3MgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLQpub2NfYmxvY2tzOgogIHJhZGlvMDoKICAgIGJsb2Nr
-X2Rlc2M6ICdyYWRpb18yeDY0LnltbCcKICByZXBsYXkwOgogICAgYmxvY2tf
-ZGVzYzogJ3JlcGxheS55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1f
-UE9SVFM6IDQKICAgICAgTUVNX0FERFJfVzogMzAKICBudWxsc3Jjc2luazA6
-CiAgICBibG9ja19kZXNjOiAnbnVsbF9zcmNfc2luay55bWwnCgojIEEgbGlz
-dCBvZiBhbGwgc3RhdGljIGNvbm5lY3Rpb25zIGluIGRlc2lnbgojIC0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIEZvcm1h
-dDogQSBsaXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlzdCBvZiBrZXktdmFs
-dWUgcGFpcnMpIHdpdGggdGhlIGZvbGxvd2luZyBrZXlzCiMgICAgICAgICAt
-IHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdAojICAgICAgICAg
-LSBzcmNwb3J0ID0gUG9ydCBvbiB0aGUgc291cmNlIGJsb2NrIHRvIGNvbm5l
-Y3QKIyAgICAgICAgIC0gZHN0YmxrICA9IERlc3RpbmF0aW9uIGJsb2NrIHRv
-IGNvbm5lY3QKIyAgICAgICAgIC0gZHN0cG9ydCA9IFBvcnQgb24gdGhlIGRl
-c3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKY29ubmVjdGlvbnM6CiAgIyBl
-cDAgdG8gcmFkaW8wKDApIC0gUkYwIFRYCiAgLSB7IHNyY2JsazogZXAwLCAg
-ICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiByYWRpbzAsIGRzdHBvcnQ6IGlu
-XzAgfQogICMgcmFkaW8wKDApIHRvIGVwMCAtIFJGMCBSWAogIC0geyBzcmNi
-bGs6IHJhZGlvMCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogZXAwLCAgICBk
-c3Rwb3J0OiBpbjAgfQogICMgZXAxIHRvIHJhZGlvMCgxKSAtIFJGMSBUWAog
-IC0geyBzcmNibGs6IGVwMSwgICAgc3JjcG9ydDogb3V0MCwgIGRzdGJsazog
-cmFkaW8wLCBkc3Rwb3J0OiBpbl8xIH0KICAjIHJhZGlvMCgxKSB0byBlcDEg
-LSBSRjEgUlgKICAtIHsgc3JjYmxrOiByYWRpbzAsIHNyY3BvcnQ6IG91dF8x
-LCBkc3RibGs6IGVwMSwgICAgZHN0cG9ydDogaW4wIH0KICAjIGVwMiB0byBy
-ZXBsYXkwKDApCiAgLSB7IHNyY2JsazogZXAyLCAgICAgc3JjcG9ydDogb3V0
-MCwgIGRzdGJsazogcmVwbGF5MCwgZHN0cG9ydDogaW5fMCB9CiAgLSB7IHNy
-Y2JsazogcmVwbGF5MCwgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogZXAyLCAg
-ICAgZHN0cG9ydDogaW4wICB9CiAgIyBlcDMgdG8gcmVwbGF5MCgxKQogIC0g
-eyBzcmNibGs6IGVwMywgICAgIHNyY3BvcnQ6IG91dDAsICBkc3RibGs6IHJl
-cGxheTAsIGRzdHBvcnQ6IGluXzEgfQogIC0geyBzcmNibGs6IHJlcGxheTAs
-IHNyY3BvcnQ6IG91dF8xLCBkc3RibGs6IGVwMywgICAgIGRzdHBvcnQ6IGlu
-MCAgfQogICMgZXA0IHRvIHJlcGxheTAoMikKICAtIHsgc3JjYmxrOiBlcDQs
-ICAgICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiByZXBsYXkwLCBkc3Rwb3J0
-OiBpbl8yIH0KICAtIHsgc3JjYmxrOiByZXBsYXkwLCBzcmNwb3J0OiBvdXRf
-MiwgZHN0YmxrOiBlcDQsICAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIGVwNSB0
-byByZXBsYXkwKDMpCiAgLSB7IHNyY2JsazogZXA1LCAgICAgc3JjcG9ydDog
-b3V0MCwgIGRzdGJsazogcmVwbGF5MCwgZHN0cG9ydDogaW5fMyB9CiAgLSB7
-IHNyY2JsazogcmVwbGF5MCwgc3JjcG9ydDogb3V0XzMsIGRzdGJsazogZXA1
-LCAgICAgZHN0cG9ydDogaW4wICB9CiAgIyBlcDYgdG8gbnVsbHNyY3Npbmsw
-CiAgLSB7IHNyY2JsazogZXA2LCAgICAgc3JjcG9ydDogb3V0MCwgIGRzdGJs
-azogbnVsbHNyY3NpbmswLCBkc3Rwb3J0OiBzaW5rIH0KICAtIHsgc3JjYmxr
-OiBudWxsc3Jjc2luazAsIHNyY3BvcnQ6IHNvdXJjZSwgZHN0YmxrOiBlcDYs
-ICAgICBkc3Rwb3J0OiBpbjAgIH0KICAtIHsgc3JjYmxrOiBudWxsc3Jjc2lu
-azAsIHNyY3BvcnQ6IGxvb3AsIGRzdGJsazogbnVsbHNyY3NpbmswLCAgICAg
-ZHN0cG9ydDogbG9vcCAgfQogICMgQlNQIENvbm5lY3Rpb25zCiAgLSB7IHNy
-Y2JsazogcmFkaW8wLCAgIHNyY3BvcnQ6IGN0cmxfcG9ydCwgICBkc3RibGs6
-IF9kZXZpY2VfLCBkc3Rwb3J0OiBjdHJsX3BvcnQgICB9CiAgLSB7IHNyY2Js
-azogX2RldmljZV8sIHNyY3BvcnQ6IHgzMDBfcmFkaW8sICBkc3RibGs6IHJh
-ZGlvMCwgICBkc3Rwb3J0OiB4MzAwX3JhZGlvICB9CiAgLSB7IHNyY2Jsazog
-X2RldmljZV8sIHNyY3BvcnQ6IHRpbWVfa2VlcGVyLCBkc3RibGs6IHJhZGlv
-MCwgICBkc3Rwb3J0OiB0aW1lX2tlZXBlciB9CiAgLSB7IHNyY2JsazogcmVw
-bGF5MCwgIHNyY3BvcnQ6IGF4aV9yYW0sICAgICBkc3RibGs6IF9kZXZpY2Vf
-LCBkc3Rwb3J0OiBkcmFtICAgICAgICB9CgojIEEgbGlzdCBvZiBhbGwgY2xv
-Y2sgZG9tYWluIGNvbm5lY3Rpb25zIGluIGRlc2lnbgojIC0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIEZvcm1h
-dDogQSBsaXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlzdCBvZiBrZXktdmFs
-dWUgcGFpcnMpIHdpdGggdGhlIGZvbGxvd2luZyBrZXlzCiMgICAgICAgICAt
-IHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdCAoQWx3YXlzICJf
-ZGV2aWNlIl8pCiMgICAgICAgICAtIHNyY3BvcnQgPSBDbG9jayBkb21haW4g
-b24gdGhlIHNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAgICAgICAtIGRz
-dGJsayAgPSBEZXN0aW5hdGlvbiBibG9jayB0byBjb25uZWN0CiMgICAgICAg
-ICAtIGRzdHBvcnQgPSBDbG9jayBkb21haW4gb24gdGhlIGRlc3RpbmF0aW9u
-IGJsb2NrIHRvIGNvbm5lY3QKY2xrX2RvbWFpbnM6CiAgLSB7IHNyY2Jsazog
-X2RldmljZV8sIHNyY3BvcnQ6IHJhZGlvLCAgICAgIGRzdGJsazogcmFkaW8w
-LCAgZHN0cG9ydDogcmFkaW8gfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBz
-cmNwb3J0OiBkcmFtLCAgICAgICBkc3RibGs6IHJlcGxheTAsIGRzdHBvcnQ6
-IG1lbSAgIH0K
-
---000000000000ec6c6d05d7afa65b
+--===============0392828723276299534==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -601,4 +223,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---000000000000ec6c6d05d7afa65b--
+--===============0392828723276299534==--
