@@ -2,168 +2,245 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 747954B0337
-	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 03:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26F024B036F
+	for <lists+usrp-users@lfdr.de>; Thu, 10 Feb 2022 03:35:56 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 582283846E9
-	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 21:18:51 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="mMQ5sKxu";
-	dkim-atps=neutral
-Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0052.outbound.protection.office365.us [23.103.209.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3C798384969
-	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 21:17:47 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=ZZ4WVFEoi5HuiJ+nIrvl1U67P3myLoe8lZgpviz4OediP+ixBO8dhAgpxbKCt1hFAkClSrmfhHszD8hQdBgaVdDIT6ZPpCtyN9zCf3Bb+mu/gaJmJi2E7hjEh6zpv4aIBrUEc1w4FRJcAWqRh0RDYhnBF6YF9tPnRBSRLXucQAi7xjJN7zze+Lps1f4BbChMFXaoWhWQUZBK8N4v7eCQixcag7gk44uwnioa6sEPirQ9GDo7uz6VwfDYGoanCBDxIomVAlduTblKW6ZfB5YOGtF0uJFAk75zKZLhzKmg7luI6GNfRh3p3h9BSOa9Jn96z7seHg3blBeLAG3yi7eCwQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Tct9hsgFZRYcyfMHZYLXa/par39QCWgbg6P68Bc1S+Q=;
- b=Ju2VoJy/4nlgL6umFGfIqv/X7oXTpMN+bZKiuB5RafHataicep+/ALjDSqPAU2zGcAEOulpy7RBXbnoYIb/EngzDP3IoNlapsAA4jmshCA3tEHoL2du++iQdoc4nc1fvAUuuQZYgNDllx/NMu8Z0odckL/ranBZzKPX/Ymv8RhaZMkqSekXazbjxT3+DLtio78rqupu1bShDgY6u9a9NYgV++FH+4BuW1JvTqejATlGHAoJYtRV6oLEl9bKFynPDsPI16npy59J/2TorFUI4uLWe9YrUENDgpjrMv6MmXNUkGL7t6RkDZlvBHofGFj01/51nQT58ke4o6oLOc4qzXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Tct9hsgFZRYcyfMHZYLXa/par39QCWgbg6P68Bc1S+Q=;
- b=mMQ5sKxuW83qf4gjhZDE6XT245f51Uo2KQBIYqtL0zr22BN4YLfEkPw+XSTL5+6wvv3X2xqs0IYyRGdPHpRHMGb+PwIh86t4RkstxVqjvDXdrWdxIyigVqb7UwgkBAt8uP4MZ34slutrFc00ojXwhkvRQEO6d+E6qp5VOFzuPN2exqXalVb4minCAIq7LZLQokQMJFJ4KHZDnkeKl3mKwSmvngKIPsJnExthmrFu3DZr1ijQwvq/WVrvuefjxWLDm/uv4FIwgkP+HrpYMtnZGkbRkoGI/5/zL9R2r824Ymhs1YXHyeIsQwFTAx6FFKFD8yClkZETGOKEABciljQT+Q==
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
- by PH1P110MB1249.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18c::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.11; Thu, 10 Feb
- 2022 02:17:44 +0000
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870%2]) with mapi id 15.20.4975.011; Thu, 10 Feb 2022
- 02:17:44 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: UHD 4.1.0.5 breaks support for DPDK on 10GbE links
-Thread-Index: AdgeI0EZ1fYgapI6T666ppInYdrDRg==
-Date: Thu, 10 Feb 2022 02:17:44 +0000
-Message-ID: 
- <PH1P110MB16651422693C8BB28D0320E7B72F9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bf0bec0e-3e38-4234-e20e-08d9ec3b85e2
-x-ms-traffictypediagnostic: PH1P110MB1249:EE_
-x-microsoft-antispam-prvs: 
- <PH1P110MB12496FF08AE16134D91D37BEB72F9@PH1P110MB1249.NAMP110.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:3383;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- KHZZHaVSy+qaBUhutcUg3KijtZGhEAyH5YH/joRjHtqs49zEQXuT+DI0CcMuCnEvMmPWmvUJ1ohsOUex0aL36kZ0y0J0JPPsC/8+9ay0xQPN6Qui9EVMLrAk3LOw/yXL/zP+EmgQU2N2uEnRDVEiSXbc/eMZwz8jJ67FRsbj82y6on5PHd7tTP2Rk4phbnV/FDW1T9iQJBcw0dfo445cEezoqIC2tvTvcgZXNxgS1vTbbghsuAYFINUus75WgNfCZldieyqsuwLEDoZuYk9XgSVmTEb/KG1LLHP0tjObEcz6qeD71MJ9KbII+/CeQu24Hybl2J+RwK+7UOt2Yyngu2Rs1fE+wIJ7P74/1grfWtP/xUHG2naIeq0SlsG7TBO98ttB5aUhBpLzIGUkShn+/C8mMexEASCn8X/YgWFrBoo6dmEM3+zj1zHgIytAbFhtwSa72EeuBCJDEa55Ky2Xq3SYaROotD5R8BXgXRJ6nH3/mcvvxA9R95Mh3n9nBI0E4QyniNF4wGZI5GRVmv+ZlWXFY/prqAaTAz37mnSiIjLTGDnphhYZlVOjMnUyB9/8BeIL0clvCJ2XQ/VCeIav7c/KyTpjEZhuWsxLT2+JnPAXo9s0kA8W1blVijDC3cGzSaHc+F56mxfrGLyDl23OQQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(376002)(136003)(346002)(39830400003)(366004)(396003)(55016003)(2906002)(33656002)(186003)(122000001)(66476007)(6506007)(83380400001)(38100700002)(76116006)(8676002)(9686003)(6916009)(64756008)(71200400001)(66556008)(66946007)(7696005)(8936002)(66446008)(316002)(86362001)(508600001)(38070700005)(52536014)(5660300002)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- TIlX1K6T4bwUt4ME9WPOPPliLXfNOxn9L7dDntbODlZRbnYID8TfZ0A73CfCXInX8qM6VCzxZ49jTayRh66+AkLQjJ5QisjX8bvw1HV5/Bg9wKE737WYjZsJTK8d1Ep10S2fcG0urds5rG+r1OfNFc/3KGea6YoyAE5knqsiELa52POSdvGGYzwd53UOtevxqbka8pL12dwUOP/TcZHRGA==
+	by mm2.emwd.com (Postfix) with ESMTP id 733973851E6
+	for <lists+usrp-users@lfdr.de>; Wed,  9 Feb 2022 21:35:55 -0500 (EST)
+Received: from out29-124.mail.aliyun.com (out29-124.mail.aliyun.com [115.124.29.124])
+	by mm2.emwd.com (Postfix) with ESMTPS id CE51E384862
+	for <usrp-users@lists.ettus.com>; Wed,  9 Feb 2022 21:35:01 -0500 (EST)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07516284|-1;BR=01201311R261S96rulernew998_84748_2000303;CH=blue;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00732474-0.00179186-0.990883;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zeyuan.li@zengyi-tech.com;NM=1;PH=DS;RN=2;RT=2;SR=0;TI=SMTPD_---.Mnj5A-e_1644460497;
+Received: from DESKTOPGVK0E1U(mailfrom:zeyuan.li@zengyi-tech.com fp:SMTPD_---.Mnj5A-e_1644460497)
+          by smtp.aliyun-inc.com(33.45.37.94);
+          Thu, 10 Feb 2022 10:34:57 +0800
+From: <zeyuan.li@zengyi-tech.com>
+To: "'Giuseppe Santaromita'" <giuseppe.santaromita1@gmail.com>,
+	<usrp-users@lists.ettus.com>
+References: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com>
+In-Reply-To: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com>
+Date: Thu, 10 Feb 2022 10:34:56 +0800
+Message-ID: <014601d81e26$cb469260$61d3b720$@zengyi-tech.com>
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf0bec0e-3e38-4234-e20e-08d9ec3b85e2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2022 02:17:44.0444
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1249
-Message-ID-Hash: AYTR3QUDOPS5JPUNF4GSRSS7WEV7T55E
-X-Message-ID-Hash: AYTR3QUDOPS5JPUNF4GSRSS7WEV7T55E
-X-MailFrom: david@SynopticEngineering.com
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQE0YAuV/lgFMJvSLrG0hrwD3+OZA63TjS0A
+Content-Language: zh-cn
+Message-ID-Hash: IHIKLICWGHR5OM6UXL2HGKNDIJ54W4NR
+X-Message-ID-Hash: IHIKLICWGHR5OM6UXL2HGKNDIJ54W4NR
+X-MailFrom: zeyuan.li@zengyi-tech.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] UHD 4.1.0.5 breaks support for DPDK on 10GbE links
+Subject: [USRP-users] =?utf-8?q?=E7=AD=94=E5=A4=8D=3A_Mender_Update_Process_N310?=
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FSSTVTTCY6KLI4AROX2DMB67PSPFRAOU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IHIKLICWGHR5OM6UXL2HGKNDIJ54W4NR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3092009830161705019=="
+Content-Type: multipart/mixed; boundary="===============7564262869266973206=="
 
---===============3092009830161705019==
-Content-Language: en-US
+This is a multipart message in MIME format.
+
+--===============7564262869266973206==
 Content-Type: multipart/alternative;
-	boundary="_000_PH1P110MB16651422693C8BB28D0320E7B72F9PH1P110MB1665NAMP_"
+	boundary="----=_NextPart_000_0147_01D81E69.D96B8010"
+Content-Language: zh-cn
 
---_000_PH1P110MB16651422693C8BB28D0320E7B72F9PH1P110MB1665NAMP_
-Content-Type: text/plain; charset="us-ascii"
+This is a multipart message in MIME format.
+
+------=_NextPart_000_0147_01D81E69.D96B8010
+Content-Type: text/plain;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+I have used this way updated successfully.Please checkout your update =
+process.
 
-I just updated 4.1.0.1 --> 4.1.0.5, and unfortunately DPDK support was brok=
-en by commit a629ce3a46. Here's a quick trace of the problem:
-(1) The commit increased MPMD_10GE_DATA_FRAME_MAX_SIZE from 7972 to 8016.
-(2) In mpmd_link_if_ctrl_udp.cpp, this constant is passed as the max frame =
-size to discover_mtu(), which then tries to send a 8016-byte buffer via dpd=
-k_simple::send.
-(3) dpdk_simple::send asserts if provided a buffer size >8000. This is beca=
-use its constructor always makes a udp_dpdk_link object with default link p=
-arameters, which hard-codes send_frame_size and recv_frame_size to be to 80=
-00 (toward the bottom of dpdk_simple.cpp).
+=20
 
-Unfortunately, the behavior cannot be circumvented using args. A quick fix =
-might be to increase the hard-coded link params in dpdk_simple, but I noted=
- that a value of 8000 is also hard-coded in a couple other places (e.g. DEF=
-AULT_FRAME_SIZE in dpdk_common.cpp).  In the meantime, my temporary solutio=
-n is to locally revert commit a629ce3a46 until it can be confirmed with DPD=
-K with 10GbE.
+=20
 
-Cheers,
+=20
 
---
-David Raeman
-Synoptic Engineering
+=20
+
+=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=E8=
+=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+
+=E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88=
 
 
---_000_PH1P110MB16651422693C8BB28D0320E7B72F9PH1P110MB1665NAMP_
-Content-Type: text/html; charset="us-ascii"
+=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=
+=85=AC=E5=8F=B8
+
+=E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
+
+=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=
+=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=
+=91SOHO 1108
+=E7=BD=91=E5=9D=80=EF=BC=9A <http://www.zengyi-tech.com> =
+www.zengyi-tech.com
+
+=20
+
+=E5=8F=91=E4=BB=B6=E4=BA=BA: Giuseppe Santaromita =
+<giuseppe.santaromita1@gmail.com>=20
+=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2022=E5=B9=B42=E6=9C=889=E6=97=A5 =
+22:32
+=E6=94=B6=E4=BB=B6=E4=BA=BA: usrp-users@lists.ettus.com
+=E4=B8=BB=E9=A2=98: [USRP-users] Mender Update Process N310
+
+=20
+
+Hi guys,
+
+I'm trying to update the USRP N310 following this guide: =
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide in =
+particolar "Mender Update Process".
+
+The results is the follows.
+
+Can anyone help me?=20
+
+Giuseppe
+
+=20
+
+=20
+
+mender -rootfs /home/root/usrp_n3xx_fs.mender
+Incorrect Usage. flag provided but not defined: -rootfs
+
+NAME:
+   mender - manage and start the Mender client.
+
+USAGE:
+   [global options] command [command options] [arguments...]
+
+VERSION:
+   a78b45e  runtime: go1.12.9
+
+DESCRIPTION:
+   mender integrates both the mender daemon and commands for manually =
+performing tasks performed by
+   the daemon (see list of COMMANDS below).
+
+Global flag remarks:
+  - Supported log levels incudes: 'debug', 'info', 'warning', 'error', =
+'panic' and 'fatal'.
+
+
+COMMANDS:
+   bootstrap       Perform bootstrap and exit.
+   check-update    Force update check.
+   commit          Commit current Artifact. Returns (2) if no update in =
+progress.
+   daemon          Start the client as a background service.
+   install         Mender Artifact to install - local file or a `URL`.
+   rollback        Rollback current Artifact. Returns (2) if no update =
+in progress.
+   send-inventory  Force inventory update.
+   setup           Perform configuration setup - 'mender setup --help' =
+for command options.
+   snapshot        Create filesystem snapshot -'mender snapshot --help' =
+for more.
+   show-artifact   Print the current artifact name to the command line =
+and exit.
+   help            Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --config FILE, -c FILE           Configuration FILE path. (default: =
+"/etc/mender/mender.conf")
+   --fallback-config FILE, -b FILE  Fallback configuration FILE path. =
+(default:
+                                    "/var/lib/mender/mender.conf")
+   --data DIR, -d DIR               Mender state data DIRECTORY path. =
+(default: "/var/lib/mender")
+   --log-file FILE, -L FILE         FILE to log to.
+   --log-level level, -l level      Set logging level. (default: "info")
+   --log-modules value, -m value    -log-modules is accepted for =
+compatibility but has no effect
+   --trusted-certs FILE, -E FILE    Trusted server certificates FILE =
+path.
+   --forcebootstrap, -F             Force bootstrap. (default: false)
+   --no-syslog                      Disable logging to syslog. (default: =
+false)
+   --skipverify                     Skip certificate verification. =
+(default: false)
+   --help, -h                       show help (default: false)
+   --version, -v                    print the version (default: false)
+
+ERRO[0000] flag provided but not defined: -rootfs    =20
+
+
+------=_NextPart_000_0147_01D81E69.D96B8010
+Content-Type: text/html;
+	charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
 /* Font Definitions */
+@font-face
+	{font-family:=E5=AE=8B=E4=BD=93;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
+	{font-family:=E7=AD=89=E7=BA=BF;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@=E7=AD=89=E7=BA=BF";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@=E5=AE=8B=E4=BD=93";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:=E5=AE=8B=E4=BD=93;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:=E5=AE=8B=E4=BD=93;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:=E7=AD=89=E7=BA=BF;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
+	font-size:10.0pt;}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
@@ -171,48 +248,147 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I just updated 4.1.0.1 --&gt; 4.1.0.5, and unfortuna=
-tely DPDK support was broken by commit a629ce3a46. Here's a quick trace of =
-the problem:<o:p></o:p></p>
-<p class=3D"MsoNormal">(1) The commit increased MPMD_10GE_DATA_FRAME_MAX_SI=
-ZE from 7972 to 8016.<o:p></o:p></p>
-<p class=3D"MsoNormal">(2) In mpmd_link_if_ctrl_udp.cpp, this constant is p=
-assed as the max frame size to discover_mtu(), which then tries to send a 8=
-016-byte buffer via dpdk_simple::send.<o:p></o:p></p>
-<p class=3D"MsoNormal">(3) dpdk_simple::send asserts if provided a buffer s=
-ize &gt;8000. This is because its constructor always makes a udp_dpdk_link =
-object with default link parameters, which hard-codes send_frame_size and r=
-ecv_frame_size to be to 8000 (toward
- the bottom of dpdk_simple.cpp).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Unfortunately, the behavior cannot be circumvented u=
-sing args. A quick fix might be to increase the hard-coded link params in d=
-pdk_simple, but I noted that a value of 8000 is also hard-coded in a couple=
- other places (e.g. DEFAULT_FRAME_SIZE
- in dpdk_common.cpp).&nbsp; In the meantime, my temporary solution is to lo=
-cally revert commit a629ce3a46 until it can be confirmed with DPDK with 10G=
-bE.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Cheers,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">-- <o:p></o:p></p>
-<p class=3D"MsoNormal">David Raeman<o:p></o:p></p>
-<p class=3D"MsoNormal">Synoptic Engineering<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+</o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>I =
+have used this way updated successfully.Please checkout your update =
+process.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
+p></span></p><div><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal>=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=
+=97=AE=E9=A2=98=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=
+=BB=EF=BC=81<span lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94<span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=9D=8E=E6=B3=BD=E8=BF=9C<span =
+lang=3DEN-US>|</span>=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88</span>=
+<span lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=
+=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=85=AC=E5=8F=B8</span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=89=8B=E6=9C=BA=EF=BC=9A<span =
+lang=3DEN-US>13121162044</span></span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=
+=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=
+=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=91<span lang=3DEN-US>SOHO =
+1108<br></span>=E7=BD=91=E5=9D=80=EF=BC=9A<u><span lang=3DEN-US><a =
+href=3D"http://www.zengyi-tech.com"><span =
+style=3D'color:#0563C1'>www.zengyi-tech.com</span></a></span></u></span><=
+span lang=3DEN-US><o:p></o:p></span></p></div><p class=3DMsoNormal><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
+p></span></p><div><div style=3D'border:none;border-top:solid #E1E1E1 =
+1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E4=BB=
+=B6=E4=BA=BA<span lang=3DEN-US>:</span></span></b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> Giuseppe =
+Santaromita &lt;giuseppe.santaromita1@gmail.com&gt; <br></span><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E9=80=
+=81=E6=97=B6=E9=97=B4<span lang=3DEN-US>:</span></span></b><span =
+lang=3DEN-US style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> =
+2022</span><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=B9=B4<span =
+lang=3DEN-US>2</span>=E6=9C=88<span lang=3DEN-US>9</span>=E6=97=A5<span =
+lang=3DEN-US> 22:32<br></span><b>=E6=94=B6=E4=BB=B6=E4=BA=BA<span =
+lang=3DEN-US>:</span></b><span lang=3DEN-US> =
+usrp-users@lists.ettus.com<br></span><b>=E4=B8=BB=E9=A2=98<span =
+lang=3DEN-US>:</span></b><span lang=3DEN-US> [USRP-users] Mender Update =
+Process N310<o:p></o:p></span></span></p></div></div><p =
+class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p><span lang=3DEN-US>Hi =
+guys,<o:p></o:p></span></p><p><span lang=3DEN-US>I'm trying to update =
+the USRP N310 following this guide: <a =
+href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Gui=
+de">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide</=
+a> in particolar &quot;Mender Update =
+Process&quot;.<o:p></o:p></span></p><p><span lang=3DEN-US>The results is =
+the follows.<o:p></o:p></span></p><p><span lang=3DEN-US>Can anyone help =
+me? <o:p></o:p></span></p><p><span =
+lang=3DEN-US>Giuseppe<o:p></o:p></span></p><p><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p><span lang=3DEN-US>mender =
+-rootfs /home/root/usrp_n3xx_fs.mender<br>Incorrect Usage. flag provided =
+but not defined: -rootfs<br><br>NAME:<br>&nbsp;&nbsp; mender - manage =
+and start the Mender client.<br><br>USAGE:<br>&nbsp;&nbsp; [global =
+options] command [command options] =
+[arguments...]<br><br>VERSION:<br>&nbsp;&nbsp; a78b45e&nbsp; runtime: =
+go1.12.9<br><br>DESCRIPTION:<br>&nbsp;&nbsp; mender integrates both the =
+mender daemon and commands for manually performing tasks performed =
+by<br>&nbsp;&nbsp; the daemon (see list of COMMANDS =
+below).<br><br>Global flag remarks:<br>&nbsp; - Supported log levels =
+incudes: 'debug', 'info', 'warning', 'error', 'panic' and =
+'fatal'.<br><br><br>COMMANDS:<br>&nbsp;&nbsp; =
+bootstrap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Perform bootstrap and =
+exit.<br>&nbsp;&nbsp; check-update&nbsp;&nbsp;&nbsp; Force update =
+check.<br>&nbsp;&nbsp; =
+commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Commit =
+current Artifact. Returns (2) if no update in progress.<br>&nbsp;&nbsp; =
+daemon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Start the =
+client as a background service.<br>&nbsp;&nbsp; =
+install&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mender Artifact =
+to install - local file or a `URL`.<br>&nbsp;&nbsp; =
+rollback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rollback current =
+Artifact. Returns (2) if no update in progress.<br>&nbsp;&nbsp; =
+send-inventory&nbsp; Force inventory update.<br>&nbsp;&nbsp; =
+setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Perform configuration setup - 'mender setup --help' for command =
+options.<br>&nbsp;&nbsp; =
+snapshot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create filesystem =
+snapshot -'mender snapshot --help' for more.<br>&nbsp;&nbsp; =
+show-artifact&nbsp;&nbsp; Print the current artifact name to the command =
+line and exit.<br>&nbsp;&nbsp; =
+help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Shows a list of commands or help for one command<br><br>GLOBAL =
+OPTIONS:<br>&nbsp;&nbsp; --config FILE, -c =
+FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Configuration FILE path. (default: =
+&quot;/etc/mender/mender.conf&quot;)<br>&nbsp;&nbsp; --fallback-config =
+FILE, -b FILE&nbsp; Fallback configuration FILE path. =
+(default:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; &quot;/var/lib/mender/mender.conf&quot;)<br>&nbsp;&nbsp; --data =
+DIR, -d =
+DIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; Mender state data DIRECTORY path. (default: =
+&quot;/var/lib/mender&quot;)<br>&nbsp;&nbsp; --log-file FILE, -L =
+FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FILE to log =
+to.<br>&nbsp;&nbsp; --log-level level, -l =
+level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set logging level. (default: =
+&quot;info&quot;)<br>&nbsp;&nbsp; --log-modules value, -m =
+value&nbsp;&nbsp;&nbsp; -log-modules is accepted for compatibility but =
+has no effect<br>&nbsp;&nbsp; --trusted-certs FILE, -E =
+FILE&nbsp;&nbsp;&nbsp; Trusted server certificates FILE =
+path.<br>&nbsp;&nbsp; --forcebootstrap, =
+-F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; Force bootstrap. (default: false)<br>&nbsp;&nbsp; =
+--no-syslog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable =
+logging to syslog. (default: false)<br>&nbsp;&nbsp; =
+--skipverify&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Skip =
+certificate verification. (default: false)<br>&nbsp;&nbsp; --help, =
+-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show help =
+(default: false)<br>&nbsp;&nbsp; --version, =
+-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print the version (default: =
+false)<o:p></o:p></span></p><p><span lang=3DEN-US>ERRO[0000] flag =
+provided but not defined: -rootfs&nbsp;&nbsp;&nbsp;&nbsp; =
+<o:p></o:p></span></p></div></body></html>
+------=_NextPart_000_0147_01D81E69.D96B8010--
 
---_000_PH1P110MB16651422693C8BB28D0320E7B72F9PH1P110MB1665NAMP_--
-
---===============3092009830161705019==
+--===============7564262869266973206==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,4 +398,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3092009830161705019==--
+--===============7564262869266973206==--
