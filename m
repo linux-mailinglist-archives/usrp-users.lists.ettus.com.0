@@ -2,330 +2,125 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08F144B1D94
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Feb 2022 06:08:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA4F4B26F3
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Feb 2022 14:17:55 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C2B823849CD
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Feb 2022 00:08:28 -0500 (EST)
-Received: from postman.dtnt.info (postman.dtnt.info [62.219.91.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4D9CB3849CD
-	for <usrp-users@lists.ettus.com>; Fri, 11 Feb 2022 00:07:34 -0500 (EST)
-Received: from o.dtnt.email (o.dtnt.email [62.219.91.154])
-	by postman.dtnt.info (Postfix) with ESMTPS id 99BC041ACD
-	for <usrp-users@lists.ettus.com>; Fri, 11 Feb 2022 07:06:45 +0200 (IST)
-Received: from o.dtnt.email (o.dtnt.email [127.0.0.1])
-	by o.dtnt.email (Postfix) with ESMTP id 2A4849FAE7
-	for <usrp-users@lists.ettus.com>; Fri, 11 Feb 2022 07:06:35 +0200 (IST)
-X-Virus-Scanned: Debian amavisd-new at o.dtnt.email
-Received: from o.dtnt.email ([127.0.0.1])
-	by o.dtnt.email (o.dtnt.email [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id DP4oi21BqJ8b for <usrp-users@lists.ettus.com>;
-	Fri, 11 Feb 2022 07:06:30 +0200 (IST)
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	by o.dtnt.email (Postfix) with ESMTPSA id 052369FFB2
-	for <usrp-users@lists.ettus.com>; Fri, 11 Feb 2022 07:06:29 +0200 (IST)
-Received: by mail-pf1-f169.google.com with SMTP id d187so14205565pfa.10
-        for <usrp-users@lists.ettus.com>; Thu, 10 Feb 2022 21:06:29 -0800 (PST)
-X-Gm-Message-State: AOAM532+//UCePYtlHyYiYYv5b7tdDVIX+z2VP5HcgIz3490huGVMCIG
-	TGWdpvWSX4jSAV6WLgn08X9es8Cw+GUT/7m+VW0=
-X-Google-Smtp-Source: ABdhPJyuh2Vq3ZOmt6bFmDgEHz/VGGGrBoSi/8kXFGtaJ7tKpFGPCTbhBz71GGhcRYyRYKm0k84TKQ/DbX81FELZCmM=
-X-Received: by 2002:a65:67cb:: with SMTP id b11mr3338278pgs.210.1644555987727;
- Thu, 10 Feb 2022 21:06:27 -0800 (PST)
+	by mm2.emwd.com (Postfix) with ESMTP id 39FAA385072
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Feb 2022 08:17:54 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CY4RCozS";
+	dkim-atps=neutral
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7198238494D
+	for <usrp-users@lists.ettus.com>; Fri, 11 Feb 2022 08:16:54 -0500 (EST)
+Received: by mail-vk1-f177.google.com with SMTP id k128so4932049vkk.10
+        for <usrp-users@lists.ettus.com>; Fri, 11 Feb 2022 05:16:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=dW8anR3etzsVBWmfXZ8SzGO/mHS7NQ20DfY04MudAdI=;
+        b=CY4RCozSTcFkr9+wWPQOa5w+g4SrMK42Pl1Z2BhgOxyPpKf2hnzqLpaXYt8XROyziN
+         +K8sd2b6jf0ZmAK1fMYhumsQ6jn6Mvh3gE0FKUwbkr9F0C8OP9F6COK6of1W88dflpIH
+         /gJKzSQ8ZdWzgJpkan+9jTaGWl9KW6uDEugP3S3/847Cg+qyq00ePB2X1fzvvacWgcoQ
+         cUmDzqaoM0A4V3HJ5Moam/oL6Gc+gAdbK9EdpKIFfLCDINa5/5KgM+U25Pls2Cblaefn
+         l8mCHQBRP+IcCZU/AyhpZYVm13WmUBWSvXkOkW0T+jQqk0jqvLk2aDN+fFSdV3+x7L7Q
+         dhdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=dW8anR3etzsVBWmfXZ8SzGO/mHS7NQ20DfY04MudAdI=;
+        b=iY+eSCM0H8uHTe3jbixXaXZpLLtaltT/58S2Uf56sGNl1/Da9NMkxNg6IpShx+REL0
+         I/KbBN0gHBrS1PRiDgBvz1iqJibNgz0F54u1lKRyQzB148AEUAEYf0VhYvLFKVbE6r8F
+         9yg9G36tV+PZ/PjF/IrUfAuTFN1qulspXU5tV5g1g0I4Olp9306a2Ogg0Zj4KhYrsc/4
+         SvUSQTtsm9w4LXN3sswBDbhNLnL6UrnW9GIUpbOTZLcLjA4PHkkiTG1cK+kHenfB/aoj
+         4mRpse1vD67DHiT/F5vIq2qrm7uKuAxUaev+5iIfwEVIYJASyVKtGh/XnbP4nN6Ofrbf
+         LckQ==
+X-Gm-Message-State: AOAM5306+/Oc5izh4b3SB4WK0iUJAyRiQdNdp5+k+OXVWSklIeS0Dsu3
+	+3u3mQXHb1IkzN3b2KePNiYv+cvU2S7Ax78LcKTmPsGGbWQ=
+X-Google-Smtp-Source: ABdhPJyVK1XljltyHgqqEvRfnRrkpVsXlA1/cD8i0U4rm7arM97mMeVWN5vxl5JA2M0acL5rFf0qFxioRI3LcKe/mTY=
+X-Received: by 2002:ac5:c944:: with SMTP id s4mr431257vkm.2.1644585413720;
+ Fri, 11 Feb 2022 05:16:53 -0800 (PST)
 MIME-Version: 1.0
-References: <CACDReSy-Z7yj=B-QRGuNf=uwop_1OFMH0ztpTasZ4BLQwoXKQQ@mail.gmail.com>
- <CAFche=gNSsj8bUKHgqPuo-4r6d7r33suu1-DaVPevrQGw8dS6w@mail.gmail.com>
- <CACDReSxN0ZXv1vnNgssv7_3wpj6rub49Yzm9COnyQegzPFzGaQ@mail.gmail.com>
- <CAL7q81u+7b8yiXDM40n=jpA_cpVtkziZ7vuLNAvLt13MXoVM1Q@mail.gmail.com> <CAFche=gy9eYaGdOU=31bCvM5-3TZxWqiSKyD1Ky-=cPa0yNfAA@mail.gmail.com>
-In-Reply-To: <CAFche=gy9eYaGdOU=31bCvM5-3TZxWqiSKyD1Ky-=cPa0yNfAA@mail.gmail.com>
-From: Ofer Saferman <ofer@navigicom.com>
-Date: Fri, 11 Feb 2022 07:06:15 +0200
-X-Gmail-Original-Message-ID: <CACDReSw4rcavS7=V9go7Qm_+Hq7_C_nOgdTTZCDSmxDuNSr9Hg@mail.gmail.com>
-Message-ID: <CACDReSw4rcavS7=V9go7Qm_+Hq7_C_nOgdTTZCDSmxDuNSr9Hg@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-X-DTNT-MailScanner-Information: Please contact the ISP for more information
-X-DTNT-MailScanner-ID: 99BC041ACD.A7149
-X-DTNT-MailScanner: Found to be clean
-X-DTNT-MailScanner-From: ofer@navigicom.com
-X-Spam-Status: No
-Message-ID-Hash: J3LLHMRZNWACFIWTK74C3AYT6WV5SANF
-X-Message-ID-Hash: J3LLHMRZNWACFIWTK74C3AYT6WV5SANF
-X-MailFrom: ofer@navigicom.com
+From: Lautaro Lorenzen <lorenzen.lautaro@gmail.com>
+Date: Fri, 11 Feb 2022 10:16:43 -0300
+Message-ID: <CAOucfAPKzeN=Ei1g6J4fOL+KcWff8e99afBHUG5w7kZx5xnpQA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: WY3D6IRXKVZQKHWESWPEVSHZXGPTXJRI
+X-Message-ID-Hash: WY3D6IRXKVZQKHWESWPEVSHZXGPTXJRI
+X-MailFrom: lorenzen.lautaro@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Ofer Saferman <ofer@navigicom.com>, usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problems with a 4-port replay block on E320
+Subject: [USRP-users] Could not find block with Noc-ID ...
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/J3LLHMRZNWACFIWTK74C3AYT6WV5SANF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WY3D6IRXKVZQKHWESWPEVSHZXGPTXJRI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6635139269314981467=="
+Content-Type: multipart/mixed; boundary="===============2379753316947005369=="
 
---===============6635139269314981467==
-Content-Type: multipart/alternative; boundary="000000000000763bb205d7b70797"
+--===============2379753316947005369==
+Content-Type: multipart/alternative; boundary="000000000000633f7005d7bde1d4"
 
---000000000000763bb205d7b70797
+--000000000000633f7005d7bde1d4
 Content-Type: text/plain; charset="UTF-8"
 
-Hello all,
-Thanks for the combined effort and catching the bug.
-I will try to fix it manually and make the 4 port replay work.
-Looking forward for a robust fix from NI which will actually implement
-ports per the NUM_PORTS parameter in the YML file.
+Hi everyone,
 
-Wade - Can you share your thoughts on how you think a 2-port replay module
-could both record and play 2 streams simultaneously? I have this on-going
-debate with Rob. I think it does not work because the direction of what
-"record" and "play" do is derived from graph connectivity and you can't
-reconnect the graph while you are already recording or playing.
+I'm trying to follow the RFNoC 4 workshop and I've come up with an error
+when I'm trying to load the image to an ettus 312. I think my environment
+is set up correctly but any help would be appreciated.
+It is worth noting that I'm trying to use RFNoC with gnu-radio.
+I've also seen an email from 2020 but I'm not sure how I could put my
+custom block "in-tree" to solve this issue.
 
-Regards,
-Ofer Saferman
+The error:
+[WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID
+0x501de012, 0xffff
 
-On Fri, Feb 11, 2022 at 12:51 AM Wade Fife <wade.fife@ettus.com> wrote:
+The setup:
+I'm using an E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5.
 
-> Thanks Jonathan for catching that!
->
-> Ofer, I do think you also need to set the MEM_ADDR_W to 31.
->
-> Another thought. I think I mentioned that you should be able to record and
-> play back at the same time, so I think it's possible to record 2 streams
-> and play 2 streams simultaneously with a 2-port Replay block. I need to
-> catch up on this email thread, so apologies if you already ruled that out
-> as an option. Expanding the AXI interconnect is also a viable option and
-> might give better DRAM performance.
->
-> I'll see that this gets fixed on E320.
->
-> Thanks,
->
-> Wade
->
-> On Thu, Feb 10, 2022 at 4:27 PM Jonathon Pendlum <
-> jonathon.pendlum@ettus.com> wrote:
->
->> Hello Ofer,
->>
->> I also sent this Rob in the other thread:
->>
->> It looks like the problem is that while there is a 4 port interconnect
->> available, only ports 0 and 1 are hooked up:
->> https://github.com/EttusResearch/uhd/blob/2c7ce2dbf72414b64f8a477be614e23bc12f086d/fpga/usrp3/top/e320/e320_core.v#L1050
->> .
->>
->> You could modify e320_core.v to hook up the extra ports as a stopgap
->> until it is fixed.
->>
->> Jonathon
->>
->> On Thu, Feb 10, 2022 at 5:17 PM Ofer Saferman <ofer@navigicom.com> wrote:
->>
->>> Hello Wade,
->>>
->>> Do you think that this is the reason that ports 2,3 don't work?
->>> I can try to rebuild the image and see what happens. I will update.
->>>
->>> Regards,
->>> Ofer Saferman
->>>
->>> On Thu, Feb 10, 2022 at 10:36 PM Wade Fife <wade.fife@ettus.com> wrote:
->>>
->>>> Hi Ofer,
->>>>
->>>> I think MEM_ADDR_W should be 31 for E320. Other than that everything
->>>> looks correct.
->>>>
->>>> Wade
->>>>
->>>> On Thu, Feb 10, 2022 at 2:20 PM Ofer Saferman <ofer@navigicom.com>
->>>> wrote:
->>>>
->>>>> Hello,
->>>>>
->>>>> I am working on a USRP E320 unit using UHD 4.1.0.5.
->>>>> I have made an FPGA image containing a radio, a 4-port replay block
->>>>> and a NullSrcSink.
->>>>> After investigating (with a lot of help from Rob Kossler) why my own
->>>>> program doesn't work properly, per his suggestion I have tested
->>>>> rfnoc_replay_samples_from_file on the 4 ports of the replay block.
->>>>> Ports 0,1 work fine and the example is streaming my data. Ports 2,3
->>>>> get stuck on record and don't work properly.
->>>>> Please find attached:
->>>>> * 4 console logs, one for each replay port.
->>>>> * My YML file with which I created the FPGA image.
->>>>> * Console log of uhd_usrp_probe.
->>>>>
->>>>> Some further notes that might help:
->>>>> * I also tried an original FPGA image of the E320 (with DUC, DDC and
->>>>> all the static mapping) with the only change being that the replay block
->>>>> has 4 ports (and adding 2 more endpoints). The result was the same.
->>>>> * I also tried an FPGA image without the NullSrcSink. I added it
->>>>> sometime in the debug process and it was just left there. It has no bearing
->>>>> on the problem.
->>>>>
->>>>> I would appreciate any assistance to debug the issue and make all
->>>>> ports of the replay block work properly.
->>>>>
->>>>> Regards,
->>>>> Ofer Saferman
->>>>>
->>>>>
->>>>> --
->>>>> This message has been scanned for viruses and
->>>>> dangerous content by *MailScanner* <http://www.mailscanner.info/>,
->>>>> and is
->>>>> believed to be clean. _______________________________________________
->>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>
->>>>
->>> --
->>> This message has been scanned for viruses and
->>> dangerous content by *MailScanner* <http://www.mailscanner.info/>, and
->>> is
->>> believed to be clean. _______________________________________________
->>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>
->>
+Thanks in advance,
+Lautaro.
 
--- 
-This message has been scanned for viruses and
-dangerous content by MailScanner, and is
-believed to be clean.
-
-
---000000000000763bb205d7b70797
+--000000000000633f7005d7bde1d4
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello all,</div><div>Thanks for the combined effort a=
-nd catching the bug.</div><div>I will try to fix it manually and make the 4=
- port replay work. <br></div><div>Looking forward for a robust fix from NI =
-which will actually implement ports per the NUM_PORTS parameter in the YML =
-file.<br></div><div><br></div><div>Wade - Can you share your thoughts on ho=
-w you think a 2-port replay module could both record and play 2 streams sim=
-ultaneously? I have this on-going debate with Rob. I think it does not work=
- because the direction of what &quot;record&quot; and &quot;play&quot; do i=
-s derived from graph connectivity and you can&#39;t reconnect the graph whi=
-le you are already recording or playing.</div><div><br></div><div>Regards,<=
-/div><div>Ofer Saferman<br></div></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 11, 2022 at 12:51 AM Wade Fife=
- &lt;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr"><div>Thanks Jonathan for catching that!</div><div><br></div><div>Ofer,=
- I do think you also need to set the=20
-<span>MEM_ADDR_W to 31.</span></div><div><span><br></span></div><div><span>=
-Another thought. I think I mentioned that you should be able to record and =
-play back at the same time, so I think it&#39;s possible to record 2 stream=
-s and play 2 streams simultaneously with a 2-port Replay block. I need to c=
-atch up on this email thread, so apologies if you already ruled that out as=
- an option. Expanding the AXI interconnect is also a viable option and migh=
-t give better DRAM performance.<br></span></div><div><span><br></span></div=
-><div><span>I&#39;ll see that this gets fixed on E320.<br></span></div><div=
-><span><br></span></div><div><span>Thanks,</span></div><div><span><br></spa=
-n></div><div><span>Wade<br></span></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi everyone,</div><div class=3D"gmail_default" style=3D=
+"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_defa=
+ult" style=3D"font-family:arial,helvetica,sans-serif">I&#39;m trying to fol=
+low the RFNoC 4 workshop and I&#39;ve come up with an error when I&#39;m tr=
+ying to load the image to an ettus 312. I think my environment is set up co=
+rrectly but any help would be appreciated. <br></div><div class=3D"gmail_de=
+fault" style=3D"font-family:arial,helvetica,sans-serif">It is worth noting =
+that I&#39;m trying to use RFNoC with gnu-radio.</div><div class=3D"gmail_d=
+efault" style=3D"font-family:arial,helvetica,sans-serif">I&#39;ve also seen=
+ an email from 2020 but I&#39;m not sure how I could put my custom block &q=
+uot;in-tree&quot; to solve this issue.<br></div><div class=3D"gmail_default=
+" style=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"=
+gmail_default" style=3D"font-family:arial,helvetica,sans-serif">The error:<=
+/div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans=
+-serif">[WARNING] [RFNOC::BLOCK_FACTORY] Could not find block with Noc-ID 0=
+x501de012, 0xffff</div><div class=3D"gmail_default" style=3D"font-family:ar=
+ial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"f=
+ont-family:arial,helvetica,sans-serif">The setup:</div><div class=3D"gmail_=
+default" style=3D"font-family:arial,helvetica,sans-serif">I&#39;m using an =
+E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5. <br></div><div class=3D"gmail_=
+default" style=3D"font-family:arial,helvetica,sans-serif"><br></div><div cl=
+ass=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif">Than=
+ks in advance,</div><div class=3D"gmail_default" style=3D"font-family:arial=
+,helvetica,sans-serif">Lautaro.<br></div><div class=3D"gmail_default" style=
+=3D"font-family:arial,helvetica,sans-serif"><br></div></div>
 
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Thu, Feb 10, 2022 at 4:27 PM Jonathon Pendlum &lt;<a href=3D"mailto:jona=
-thon.pendlum@ettus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
-r=3D"ltr">Hello Ofer,<div><br></div><div>I also sent this Rob in the other =
-thread:</div><div><br></div><div>It looks like the problem is that while th=
-ere is a 4 port interconnect available, only ports 0 and 1 are hooked up:=
-=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/blob/2c7ce2dbf72414b6=
-4f8a477be614e23bc12f086d/fpga/usrp3/top/e320/e320_core.v#L1050" target=3D"_=
-blank">https://github.com/EttusResearch/uhd/blob/2c7ce2dbf72414b64f8a477be6=
-14e23bc12f086d/fpga/usrp3/top/e320/e320_core.v#L1050</a>.</div><div><br></d=
-iv><div>You could modify e320_core.v to hook up the extra ports as a stopga=
-p until it is fixed.</div><div><br></div><div>Jonathon</div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10,=
- 2022 at 5:17 PM Ofer Saferman &lt;<a href=3D"mailto:ofer@navigicom.com" ta=
-rget=3D"_blank">ofer@navigicom.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello Wade,</div><d=
-iv><br></div><div>Do you think that this is the reason that ports 2,3 don&#=
-39;t work?</div><div>I can try to rebuild the image and see what happens. I=
- will update.</div><div><br></div><div>Regards,</div><div>Ofer Saferman<br>=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Thu, Feb 10, 2022 at 10:36 PM Wade Fife &lt;<a href=3D"mailto:wade=
-.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
->Hi Ofer,</div><div><br></div><div>I think MEM_ADDR_W should be 31 for E320=
-. Other than that everything looks correct.</div><div><br></div><div>Wade<b=
-r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Thu, Feb 10, 2022 at 2:20 PM Ofer Saferman &lt;<a href=3D"mailto=
-:ofer@navigicom.com" target=3D"_blank">ofer@navigicom.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
-div>Hello,</div><div><br></div><div>I am working on a USRP E320 unit using =
-UHD 4.1.0.5.<br></div><div>I have made an FPGA image containing a radio, a =
-4-port replay block and a NullSrcSink.</div><div>After investigating (with =
-a lot of help from Rob Kossler) why my own program doesn&#39;t work properl=
-y, per his suggestion I have tested rfnoc_replay_samples_from_file on the 4=
- ports of the replay block.</div><div>Ports 0,1 work fine and the example i=
-s streaming my data. Ports 2,3 get stuck on record and don&#39;t work prope=
-rly.</div><div>Please find attached:</div><div>* 4 console logs, one for ea=
-ch replay port. <br></div><div>* My YML file with which I created the FPGA =
-image.</div><div>* Console log of uhd_usrp_probe.</div><div></div><div><br>=
-</div><div>Some further notes that might help:</div><div>* I also tried an =
-original FPGA image of the E320 (with DUC, DDC and all the static mapping) =
-with the only change being that the replay block has 4 ports (and adding 2 =
-more endpoints). The result was the same.</div><div>* I also tried an FPGA =
-image without the NullSrcSink. I added it sometime in the debug process and=
- it was just left there. It has no bearing on the problem.</div><div><br></=
-div><div>
-<div>I would appreciate any assistance to debug the issue and make all port=
-s of the replay block work properly.</div><div><br></div><div>Regards, <br>=
-</div><div>Ofer Saferman</div><div><br></div>
+--000000000000633f7005d7bde1d4--
 
-</div></div>
-<br>--=20
-<br>This message has been scanned for viruses and
-<br>dangerous content by
-<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
-b></a>, and is
-<br>believed to be clean.
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-<br>--=20
-<br>This message has been scanned for viruses and
-<br>dangerous content by
-<a href=3D"http://www.mailscanner.info/" target=3D"_blank"><b>MailScanner</=
-b></a>, and is
-<br>believed to be clean.
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-<br />--=20
-<br />This message has been scanned for viruses and
-<br />dangerous content by
-<a href=3D"http://www.mailscanner.info/"><b>MailScanner</b></a>, and is
-<br />believed to be clean.
-
-
---000000000000763bb205d7b70797--
-
---===============6635139269314981467==
+--===============2379753316947005369==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -335,4 +130,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6635139269314981467==--
+--===============2379753316947005369==--
