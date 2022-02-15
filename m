@@ -2,194 +2,208 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB0E4B6FC9
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 16:30:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF49A4B6FFC
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 16:56:03 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 57555385989
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 10:30:19 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id A6E29385925
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 10:56:02 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="mpGUncXH";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ChXttRXG";
 	dkim-atps=neutral
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0042.outbound.protection.office365.us [23.103.208.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9C902384DA5
-	for <usrp-users@lists.ettus.com>; Tue, 15 Feb 2022 10:29:19 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=PGSoN5BohxloH/bWPtdEldruJ160UfYeTH/nzvmGYZPHUlZ7TWhjVp4QGKEmHQ8KHASIAUSVbyP+pwl8CzW37x15UhBNflbH40XCux+uOAkMqDSv23BKHFIATeh+mMpvQ/qGuayGzJ7/JqPvJi7JIXB+Pcm45IFMeJWjhH0CcQ4/phMrJRrhi/Zu7zkg+rD+wtCxFb9PMdGey0ukQgW+0n8IqUpmVdvKIwBIs0gkjc1+F3kf49OcaSdxU19WtXkUgorW2NpVluvJeg3OYw8isbm1IXeVa08+6noTBYOAkClol5EFdbxBM8vxvgcagtNN2GAV/4pLNXo0I27SPZA6sw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fJJnq6cS3ZPWBz0PQXR23t/gGp2S6iqCtHtY8NVKs8I=;
- b=dENQKwqePtwKuRDy7PqJh7vbjea2RBGsH3b0w04VljWJJAwvkx419lDEIFTwEkynNMl3WgqkgkTCTBmPw5mhHNGdD3DplCkNJ74CFaIQun7q1IEbr6iWQHEM8tZklRAkpUbQl7Xhh19t2Ns88WKFGEKB0KWhkLskpsuO5CuSUAxbS/e3OCYsgHmUTn5nZaW+szP5g7Kn81/EllTectpJpJJb+ZILFWj1xlC9D2xH5v5yMxxbUMXxma5/7yKWFUGAgQ1WjJz6N+k5ZelKc78FX1Z3Vh85MzBRT/P366jLmsXhAYiW08ClOx6Mgon7cH1eFvjS4A1ZP6d0ZDhSQUVoXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 23DB6384B42
+	for <USRP-users@lists.ettus.com>; Tue, 15 Feb 2022 10:55:03 -0500 (EST)
+Received: by mail-qt1-f172.google.com with SMTP id e16so18986238qtq.6
+        for <USRP-users@lists.ettus.com>; Tue, 15 Feb 2022 07:55:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fJJnq6cS3ZPWBz0PQXR23t/gGp2S6iqCtHtY8NVKs8I=;
- b=mpGUncXHvmu8TUCdcWYc1en7eOm07sX2yS3zNf96Z4koOTKKxQ+IRgb/qDCr87sUIReG6VZ53sAq4kIV+DfukWL2oz+mCikO9XfawoKpKR1E6MnmPrWDrbY7VKEL5Wj45Vr/Fty36wRdh8OAVWmqh5+8doA7CTohA9tf0ENpDX4pL33MD1Elxqudld9GHBwwjjmMj0TDPkGd6g4UH8dtW29nMspbnL4dCQymLOCC6rd23BIH28RYUZcLLaWRyVr7K5OKhrWe2yGVbL6BsoXKKMac3UZlRI+b4rfOZjus06VAbK4Kx0EFuvDG34z9BxMC4Jkpr2o/0fVz3CFetL9Emw==
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
- by PH1P110MB1684.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18e::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4975.15; Tue, 15 Feb
- 2022 15:29:16 +0000
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870%2]) with mapi id 15.20.4975.019; Tue, 15 Feb 2022
- 15:29:16 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: Giuseppe Santaromita <giuseppe.santaromita1@gmail.com>,
-	"zeyuan.li@zengyi-tech.com" <zeyuan.li@zengyi-tech.com>,
-	"usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: OAI with USRP N310
-Thread-Index: AQHYIn+mIrGSMZIQM0KR47OgV8h20qyUuzDQ
-Date: Tue, 15 Feb 2022 15:29:16 +0000
-Message-ID: 
- <PH1P110MB1665E5C50ECCF356F8212B5DB7349@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-References: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com>
- <014601d81e26$cb469260$61d3b720$@zengyi-tech.com>
- <384482b4-b1ca-a497-86ec-46baa7c43472@gmail.com>
- <28e04eea-f737-f99c-c851-15b38b02388c@gmail.com>
- <ec67277c-80ac-db10-af63-c15987cf8042@gmail.com>
- <ed848007-2bc2-d246-209e-3217bf37c1a2@gmail.com>
- <c701de64-c2d9-a189-489a-37eac6deba22@gmail.com>
- <c83d6c10-9159-f329-2f25-db055e9429f9@gmail.com>
- <e1b5678a-a961-7fcc-7fe1-2dc4e176b4ef@gmail.com>
- <018e01d82212$05cc7230$11655690$@zengyi-tech.com>
- <f7bba14b-ef1a-7669-e6f4-9fab89507e7e@gmail.com>
- <cfa365c7-0449-2946-e76d-12e2d0e35406@gmail.com>
-In-Reply-To: <cfa365c7-0449-2946-e76d-12e2d0e35406@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b6dce289-d649-4967-1d55-08d9f097edb1
-x-ms-traffictypediagnostic: PH1P110MB1684:EE_
-x-microsoft-antispam-prvs: 
- <PH1P110MB1684C2B29A3D234834BB6076B7349@PH1P110MB1684.NAMP110.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 13Zh5jNrnnfG2OYCdaBCQzhke8UhTNvaRj+8SpLnkrDEva2o/EJs3egjEP+laC+9U9hoDBbdQI7iZNG9cFyQtkbuBJKEZOLEhz/6IN/lPKoVJiU3hCmt2PyZh4mczmKdsJVwee8wvgawT60PIWaZZ/4dtoKCt/Xpyw5UNCYd+XNmfN236M6SosJaX6eOXJ9d1Dkwre856fkBO6ERSlI+KdHKfCtrJ1aMKALz3cbVyPjKxzAfF3tp23HrWkds3qgt/ef67Nr6lI10xSEkH1vbN/AisLkFLd7xwJF3vN1Riow0PNKhSKC4UdbM7dYfYUftQcthbQUBV6dynLlMf2l2MEc1+MORE0ohJxCyL+jrc9TnaugI76MQ/RLMN/ewgQ84dW0xTtM7JrKEB78H6mWxdh1Qu7tthvf9a+XXT0h0lL+anpOr69GWOjf1UlhgjWvnYMTLlVh2JqBY1X4qgYbywtI1vN2P2jExc8n3047PAW1I7Hppy3qNc3Vm64Edydd5hnc1xRrYsEs43CKiWI3iaecwZeDS6pJ11roOSWms1FJajEyGxvd0WQRq8eVCOyjJzTl0HMyELL+ZjxyITDnBB3iZJG81sww5OJ1ZEXwQS+VOPoQ0Jd8l39DscPr0675d7K8sYa2OIEu9D5iO81vvFA==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(136003)(376002)(39830400003)(346002)(396003)(9686003)(83380400001)(110136005)(186003)(316002)(86362001)(55016003)(71200400001)(66556008)(52536014)(5660300002)(2906002)(4744005)(38070700005)(7696005)(66476007)(8676002)(64756008)(76116006)(66446008)(508600001)(38100700002)(8936002)(6506007)(122000001)(33656002)(66946007)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- TJwMHmtZ7ny4Zd6kg3APWyCDn83RKDPphFV4JuBeeUvmO0Loq9oIycS+23cWMtcHRw0dqt49D1sj6+6B76Xqri26QotXV1nYcX71sqhH1dRCT/BQOApM5n2hV2VlbVtnck/K+U1mo+bc3ICCiIARzw4cHJm4VGcre8Oss3t8iiHNp3mO5Cf3ab5Ydr0b+dxQYmGGVOM8tNlekB568eRcMw==
-MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6dce289-d649-4967-1d55-08d9f097edb1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Feb 2022 15:29:16.7078
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1684
-Message-ID-Hash: VW4T5ZSVGB2K34PLYUIJX3L5HSSKE2GG
-X-Message-ID-Hash: VW4T5ZSVGB2K34PLYUIJX3L5HSSKE2GG
-X-MailFrom: david@SynopticEngineering.com
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=QC5o0X4Sty4k0xwuHhue8sCKQfDb+Cw+iO/Ib2vdl/0=;
+        b=ChXttRXG1opIuXLfSA2gwCsJ8D5yzMG0EdkROa/Gq/dMssKn5i9bzIPY411K8KtXIh
+         7/ZwdL30ACegs4FNFWfx3s66crUKWEIQFXtllovIn62PG9en5kGKTy5M0K4W9xDyiMVL
+         37XLq78FFWZDeJYS5vS4bNHbAYCmIG+U+BRiYw0vgPSu/qK89aO6GV1DtuQqxxkazSRG
+         hkbCsybLx7ZdK9xz3tlQJB9cCKpEM+NGUCgCkHM2NsjAraYEtZA0D9B/D14+W1NsWtjS
+         eRp+sMnxO5n1xG1VPF30jwuDAfcehYCbHBNrD+YJQFfmISXfJZ+HtXBg1zgRFXf54Gtd
+         BgEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=QC5o0X4Sty4k0xwuHhue8sCKQfDb+Cw+iO/Ib2vdl/0=;
+        b=JIiz13dUfl6NbxY0LEYlA8WclDD6pNY+upjEkDJPufm53gTzvi286HmozWvYF8YvvD
+         XOXBcGF3p94LXbuj3q5ryBmyLSEyP/s5Ee7QsAOWpWhqHSqBnUGywJ6lgkeraktXMhmg
+         nJyI8Ul/8MI4Wlkc2SNm5u60Uo3stzjMsWeM1cIbF5yWlQw5PkCra7yNZYvIH45piKaW
+         SwDVPMYCKJHh3j7pIrYP28QnFfs1/1G9m10lj8bC/L7woW6UquKZd7y30M80ldExgTPf
+         79tDMcPsTllGR5CAvG7d3nFrPncQ9L4P3KN6lkMVzp6wRold4Gb60XImK4RTBrgevvWa
+         Xx8A==
+X-Gm-Message-State: AOAM530ub/zArpIzMpIK3UxG5fumlKohO6qyQU4XM9A3CFxcUBlkHvZ4
+	Don7NvbVx0VL5DftyRxZxSc=
+X-Google-Smtp-Source: ABdhPJxncs+KFqx4MnBJBbiPGe+vxoUJ6sV4Ydr75+EeKa5E3vUIcMij/5olqQbSkdzdwInZT7nTXQ==
+X-Received: by 2002:ac8:5a08:: with SMTP id n8mr3147550qta.332.1644940503499;
+        Tue, 15 Feb 2022 07:55:03 -0800 (PST)
+Received: from smtpclient.apple (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.gmail.com with ESMTPSA id b14sm3521232qkp.23.2022.02.15.07.55.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Feb 2022 07:55:03 -0800 (PST)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Tue, 15 Feb 2022 10:55:01 -0500
+Message-Id: <C7DAE152-5DB4-47EA-AC1D-A061453AE5B6@gmail.com>
+References: <PH1P110MB1665E5C50ECCF356F8212B5DB7349@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+In-Reply-To: <PH1P110MB1665E5C50ECCF356F8212B5DB7349@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+To: David Raeman <david@synopticengineering.com>
+X-Mailer: iPhone Mail (19C63)
+Message-ID-Hash: LH3ZCZQ2EZHPFGKLEUQ77XTZGNZEHQE4
+X-Message-ID-Hash: LH3ZCZQ2EZHPFGKLEUQ77XTZGNZEHQE4
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Giuseppe Santaromita <giuseppe.santaromita1@gmail.com>, zeyuan.li@zengyi-tech.com, USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: OAI with USRP N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IMQA5YPZI4S5ZEDTPAYG5RPIDNGNIVNP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LH3ZCZQ2EZHPFGKLEUQ77XTZGNZEHQE4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6840862738460870529=="
+Content-Type: multipart/mixed; boundary="===============5115756030282257462=="
 
---===============6840862738460870529==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_PH1P110MB1665E5C50ECCF356F8212B5DB7349PH1P110MB1665NAMP_"
 
---_000_PH1P110MB1665E5C50ECCF356F8212B5DB7349PH1P110MB1665NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--===============5115756030282257462==
+Content-Type: multipart/alternative; boundary=Apple-Mail-583CF5E4-BBD4-46B2-90E9-4022618BA187
+Content-Transfer-Encoding: 7bit
 
-R2VuZXJhbGx5IHNwZWFraW5nIHlvdSBjYW5ub3QgZG8gYmV0dGVyIHRoYW4gYWJvdXQgMjUgTXNw
-cyBvdmVyIGEgMUdiRSBsaW5rLiBCeSBkZWZhdWx0IHRoZSBzYW1wbGVzIGFyZSBzaWduZWQgMTYt
-Yml0IEkvUSBwYWlycywgd2hpY2ggbWVhbnMgMzIgYml0cyBwZXIgc2FtcGxlLiBBdCAyNSBNc3Bz
-LCB0aGF0IG1lYW5zIHRoZSB0b3RhbCBkYXRhIHRocm91Z2hwdXQgaXMgODAwIE1icHMg4oCTIHdo
-aWNoIGlzIHN0YXJ0aW5nIHRvIGFwcHJvYWNoIHRoZSBiYW5kd2lkdGggb3ZlciB0aGUgMSBHYnBz
-IGxpbmsuDQoNCklmIHlvdSBoYXZlIDYwIE1zcHMgc2FtcGxpbmcgcmF0ZSwgdGhhdCBpcyAxOTIw
-IE1icHMgdGhyb3VnaHB1dCwgd2hpY2ggaXMgbW9yZSB0aGFuIGEgMSBHYnBzIGxpbmsuICBJZiB5
-b3UgY2FuIHRvbGVyYXRlIHRoZSBiYWQgcXVhbnRpemF0aW9uIGl04oCZcyBwb3NzaWJsZSB5b3Ug
-Y291bGQgZ2V0IGNsb3NlciB0byB0aGF0IHJhdGUgYnkgdXNpbmcgc2lnbmVkIDgtYml0IEkvUSB2
-YWx1ZXMsIGJ1dCBJ4oCZdmUgbm90IHRyaWVkIGl0LiAgSSB0aGluayB5b3Ugd291bGQgc3BlY2lm
-eSB0aGlzIGFzIOKAnC0tcnhfb3R3IHNjOOKAnQ0KDQpCZXN0LA0KRGF2aWQNCg==
 
---_000_PH1P110MB1665E5C50ECCF356F8212B5DB7349PH1P110MB1665NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail-583CF5E4-BBD4-46B2-90E9-4022618BA187
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-U2ltU3VuOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6RGVuZ1hpYW47DQoJcGFub3NlLTE6MiAxIDYg
-MCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFu
-b3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToi
-XEBTaW1TdW4iOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseToiXEBEZW5nWGlhbiI7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEg
-MTt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwg
-ZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1m
-YW1pbHk6U2ltU3VuO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNv
-bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndp
-bmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
-DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAx
-MS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlv
-bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8
-L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0
-IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNo
-YXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMi
-IGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdv
-cmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZiI+R2VuZXJhbGx5IHNwZWFraW5nIHlvdSBjYW5ub3QgZG8gYmV0dGVyIHRo
-YW4gYWJvdXQgMjUgTXNwcyBvdmVyIGEgMUdiRSBsaW5rLiBCeSBkZWZhdWx0IHRoZSBzYW1wbGVz
-IGFyZSBzaWduZWQgMTYtYml0IEkvUSBwYWlycywgd2hpY2ggbWVhbnMgMzIgYml0cyBwZXIgc2Ft
-cGxlLiBBdCAyNSBNc3BzLA0KIHRoYXQgbWVhbnMgdGhlIHRvdGFsIGRhdGEgdGhyb3VnaHB1dCBp
-cyA4MDAgTWJwcyDigJMgd2hpY2ggaXMgc3RhcnRpbmcgdG8gYXBwcm9hY2ggdGhlIGJhbmR3aWR0
-aCBvdmVyIHRoZSAxIEdicHMgbGluay48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+SWYgeW91IGhhdmUgNjAgTXNw
-cyBzYW1wbGluZyByYXRlLCB0aGF0IGlzIDE5MjAgTWJwcyB0aHJvdWdocHV0LCB3aGljaCBpcyBt
-b3JlIHRoYW4gYSAxIEdicHMgbGluay4mbmJzcDsgSWYgeW91IGNhbiB0b2xlcmF0ZSB0aGUgYmFk
-IHF1YW50aXphdGlvbiBpdOKAmXMgcG9zc2libGUgeW91IGNvdWxkIGdldCBjbG9zZXINCiB0byB0
-aGF0IHJhdGUgYnkgdXNpbmcgc2lnbmVkIDgtYml0IEkvUSB2YWx1ZXMsIGJ1dCBJ4oCZdmUgbm90
-IHRyaWVkIGl0LiZuYnNwOyBJIHRoaW5rIHlvdSB3b3VsZCBzcGVjaWZ5IHRoaXMgYXMg4oCcLS1y
-eF9vdHcgc2M44oCdPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkJlc3QsPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5EYXZpZDxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+I don=E2=80=99t think that N310 supports 8 bit samples. If you want higher r=
+ates you must use a 10Gbe interface.=20
 
---_000_PH1P110MB1665E5C50ECCF356F8212B5DB7349PH1P110MB1665NAMP_--
 
---===============6840862738460870529==
+
+Sent from my iPhone
+
+> On Feb 15, 2022, at 10:30 AM, David Raeman <david@synopticengineering.com>=
+ wrote:
+>=20
+> =EF=BB=BF
+> Generally speaking you cannot do better than about 25 Msps over a 1GbE lin=
+k. By default the samples are signed 16-bit I/Q pairs, which means 32 bits p=
+er sample. At 25 Msps, that means the total data throughput is 800 Mbps =E2=80=
+=93 which is starting to approach the bandwidth over the 1 Gbps link.
+> =20
+> If you have 60 Msps sampling rate, that is 1920 Mbps throughput, which is m=
+ore than a 1 Gbps link.  If you can tolerate the bad quantization it=E2=80=99=
+s possible you could get closer to that rate by using signed 8-bit I/Q value=
+s, but I=E2=80=99ve not tried it.  I think you would specify this as =E2=80=9C=
+--rx_otw sc8=E2=80=9D
+> =20
+> Best,
+> David
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--Apple-Mail-583CF5E4-BBD4-46B2-90E9-4022618BA187
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">I don=E2=80=99t think that N310 supports 8 b=
+it samples. If you want higher rates you must use a 10Gbe interface.&nbsp;<d=
+iv><br></div><div><br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=
+=3D"ltr"><br><blockquote type=3D"cite">On Feb 15, 2022, at 10:30 AM, David R=
+aeman &lt;david@synopticengineering.com&gt; wrote:<br><br></blockquote></div=
+><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@DengXian";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:SimSun;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+
+
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif">Generally speaking you cannot do better than about 25=
+ Msps over a 1GbE link. By default the samples are signed 16-bit I/Q pairs, w=
+hich means 32 bits per sample. At 25 Msps,
+ that means the total data throughput is 800 Mbps =E2=80=93 which is startin=
+g to approach the bandwidth over the 1 Gbps link.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif">If you have 60 Msps sampling rate, that is 1920 Mbps t=
+hroughput, which is more than a 1 Gbps link.&nbsp; If you can tolerate the b=
+ad quantization it=E2=80=99s possible you could get closer
+ to that rate by using signed 8-bit I/Q values, but I=E2=80=99ve not tried i=
+t.&nbsp; I think you would specify this as =E2=80=9C--rx_otw sc8=E2=80=9D<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif">Best,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif">David<o:p></o:p></span></p>
+</div>
+
+
+<span>_______________________________________________</span><br><span>USRP-u=
+sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
+be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
+quote></div></body></html>=
+
+--Apple-Mail-583CF5E4-BBD4-46B2-90E9-4022618BA187--
+
+--===============5115756030282257462==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -199,4 +213,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6840862738460870529==--
+--===============5115756030282257462==--
