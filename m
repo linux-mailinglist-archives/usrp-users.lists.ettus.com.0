@@ -2,319 +2,325 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 773494B60DF
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 03:17:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 373934B60F6
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 03:26:30 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6C49D385B76
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Feb 2022 21:17:20 -0500 (EST)
-Received: from out28-76.mail.aliyun.com (out28-76.mail.aliyun.com [115.124.28.76])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3F8A43851C5
-	for <usrp-users@lists.ettus.com>; Mon, 14 Feb 2022 21:16:24 -0500 (EST)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07461275|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_social|0.00116119-0.000174005-0.998665;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047201;MF=zeyuan.li@zengyi-tech.com;NM=1;PH=DS;RN=2;RT=2;SR=0;TI=SMTPD_---.Mq7T5eW_1644891380;
-Received: from DESKTOPGVK0E1U(mailfrom:zeyuan.li@zengyi-tech.com fp:SMTPD_---.Mq7T5eW_1644891380)
-          by smtp.aliyun-inc.com(33.37.71.62);
-          Tue, 15 Feb 2022 10:16:21 +0800
-From: <zeyuan.li@zengyi-tech.com>
-To: "'Giuseppe Santaromita'" <giuseppe.santaromita1@gmail.com>,
-	<usrp-users@lists.ettus.com>
-References: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com> <014601d81e26$cb469260$61d3b720$@zengyi-tech.com> <384482b4-b1ca-a497-86ec-46baa7c43472@gmail.com> <28e04eea-f737-f99c-c851-15b38b02388c@gmail.com> <ec67277c-80ac-db10-af63-c15987cf8042@gmail.com> <ed848007-2bc2-d246-209e-3217bf37c1a2@gmail.com> <c701de64-c2d9-a189-489a-37eac6deba22@gmail.com> <c83d6c10-9159-f329-2f25-db055e9429f9@gmail.com> <e1b5678a-a961-7fcc-7fe1-2dc4e176b4ef@gmail.com>
-In-Reply-To: <e1b5678a-a961-7fcc-7fe1-2dc4e176b4ef@gmail.com>
-Date: Tue, 15 Feb 2022 10:16:20 +0800
-Message-ID: <018e01d82212$05cc7230$11655690$@zengyi-tech.com>
+	by mm2.emwd.com (Postfix) with ESMTP id 77845384E58
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Feb 2022 21:26:29 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="eTpeZTrG";
+	dkim-atps=neutral
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id AAA05385B96
+	for <usrp-users@lists.ettus.com>; Mon, 14 Feb 2022 21:25:33 -0500 (EST)
+Received: by mail-yb1-f170.google.com with SMTP id y129so51771486ybe.7
+        for <usrp-users@lists.ettus.com>; Mon, 14 Feb 2022 18:25:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7z43nhS/R+dkCBCn67SMbJVkCwOlbmxKi0OAud9K0Dk=;
+        b=eTpeZTrGklpmB9f6L+E4JPGoBxatlCX4xCm1KJ6kJh9IxInJNj4nuLnWD3oOqXgxZb
+         4OGSb6LKEIwmSkgn7FkjUbRJH/e+tAexIZrVJ2F4weMhxwLryuWxMZp9xZEz6/p0XQRC
+         C+9QvCmFFdl/uArK0Vkh49hrdLGUiJPGVG4oFIaPS82DeWBx8aZrrOCPTloAUJdnnbB0
+         lqj+1bI23kwp9xr2KoSKWz9Sk4FLR0uBCWiVcP0MseHYkzONBI6dEmkEey6zD1OiUoq2
+         Ka8ekBvxGaZOeRAcnrTL/+ZeOZVDulRoXVXDvKE+437x6o8xcVGqNFo/3oItmzvFqsXF
+         I9TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7z43nhS/R+dkCBCn67SMbJVkCwOlbmxKi0OAud9K0Dk=;
+        b=U2W/X33+Tro+SU83fomBt5Ha+5wj9SHdFFDYiFKo6p5X871hq3ldtWd2C+iOfCmVwq
+         xjm098KmX55kLSjYYJV+ULAiFCjh1zRfjvVKb08hmRDQN/ELA5JB9Q8GKLXK/BMLeGY1
+         xObhPAG4nJaVslWB2WzoqBi1qlaEq7aiX7ai759ZPQL6EgZQxHo8xVxYcZE0xm6aGl7T
+         SUMWRbcgj8ggeWFmfCs8rK7vJurXXIX/6JhoiL5gxrMBp9TWgDfFxN6kZoJnCDrPFjim
+         ITNUjI9zZzjtqZv7Ait0WPP18nsQrGCg5gVXXEGPcdadR/UobGDQmHEqPPgVlXF8obXp
+         cgqA==
+X-Gm-Message-State: AOAM532R9/GfG4GCkQ59GV+EpTWFHyPZFikzEZOXYqadm7DnIJ02bNMa
+	OFuSdv1ZbDEUOn5sIvsvoiMq8q5PALwSq+Wknx2/lQxuvZvpgg==
+X-Google-Smtp-Source: ABdhPJxqUTPdupkCLcNbsyNlPaRHYoOujzGca9yHNhd7Y5ZZmzOprc5lF0DhTLFZEewPf8Os0djHSm/M5qLXKwsJ4og=
+X-Received: by 2002:a25:abf2:: with SMTP id v105mr1944416ybi.13.1644891932678;
+ Mon, 14 Feb 2022 18:25:32 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: zh-cn
-Thread-Index: AQE0YAuV/lgFMJvSLrG0hrwD3+OZAwK9zSRmAd8hxhcB4Qf9ewLJvRr5Ad4iyGsCzZKYRAIiq0jaAYeCfzWtTnZEwA==
-Message-ID-Hash: KF6DNX63HOZOAZCRK6ITCF6KJ3PWMLEJ
-X-Message-ID-Hash: KF6DNX63HOZOAZCRK6ITCF6KJ3PWMLEJ
-X-MailFrom: zeyuan.li@zengyi-tech.com
+References: <CAB__hTSyT==Q_Nfn8xgfT-FBuutZ_ieD_CKuc-PdA3xm6KHs4w@mail.gmail.com>
+ <CAL7q81tArWo++HCSyo_MGXpThqmdBvt94r-RJccqT3+bhh0PGw@mail.gmail.com>
+ <CAFche=gKiRGtNmHE5L=59fbqEdKCvypFEwito3cgXg8qtcL-gA@mail.gmail.com>
+ <CAB__hTQUT8mTDRDAeA-b_mJBmpF=h0UMDFLOgf0XKaJ01ZWbzg@mail.gmail.com>
+ <CAFche=iXkkR1C9AEXbrytuFkiSUCYL2fpwO7Ufq_VdKoQi7nfA@mail.gmail.com>
+ <CAL7q81uXKHKPje44LA-Xc+STABicFho9J76SUvFyg=AgKFRSMA@mail.gmail.com>
+ <CAB__hTRyjakK=Okw3+0Ot7TAsXymK5aEt14LeZgp5Rzri5O=EQ@mail.gmail.com> <CAL7q81uAmPpypzw=1xx8qyDe6iPB3vUwica43TmL+BgXXs=0Cw@mail.gmail.com>
+In-Reply-To: <CAL7q81uAmPpypzw=1xx8qyDe6iPB3vUwica43TmL+BgXXs=0Cw@mail.gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Mon, 14 Feb 2022 21:25:22 -0500
+Message-ID: <CAB__hTQuibnC+jcz+naR39MwZZOekuJyNWc6zyi-bog8r=Xomg@mail.gmail.com>
+To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Message-ID-Hash: XGMWJM5ZV5LHY2LKSMVC4HUTXCKIEYBH
+X-Message-ID-Hash: XGMWJM5ZV5LHY2LKSMVC4HUTXCKIEYBH
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] =?utf-8?b?562U5aSNOiBPQUkgd2l0aCBVU1JQIE4zMTA=?=
+Subject: [USRP-users] Re: Replay block on E320 data rate
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KF6DNX63HOZOAZCRK6ITCF6KJ3PWMLEJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XGMWJM5ZV5LHY2LKSMVC4HUTXCKIEYBH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5126684625884254547=="
+Content-Type: multipart/mixed; boundary="===============0879361845124429401=="
 
-This is a multipart message in MIME format.
+--===============0879361845124429401==
+Content-Type: multipart/alternative; boundary="000000000000579d4f05d8053fec"
 
---===============5126684625884254547==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_018F_01D82255.13F111C0"
-Content-Language: zh-cn
+--000000000000579d4f05d8053fec
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multipart message in MIME format.
+Jonathon, Wade,
+Regarding the Replay block controller and the recent change on 'master' to
+Drop property, action, & mtu forwarding, there is one other modification
+that I think makes sense. The Replay block is the only block controller
+that implements "issue_stream_cmd" yet doesn't actually register this
+function as an action handler for the stream_cmd action.  What this means
+is that if I connect an rx_streamer to a Replay block output (Play port)
+and call issue_stream_cmd() on the rx_streamer, the Replay block controller
+does not respect this command. In fact, on UHD 4.1, it actually forwards it
+along the path causing real trouble.  On 'master', it just drops the
+command but does nothing (which is better).  Take a look at the null block
+controller or DDC block controller to see that these controllers register
+the stream_cmd action. Let me know what you think.
+Thanks.
+Rob
 
-------=_NextPart_000_018F_01D82255.13F111C0
-Content-Type: text/plain;
-	charset="utf-8"
+
+On Thu, Feb 10, 2022 at 5:01 PM Jonathon Pendlum <jonathon.pendlum@ettus.com>
+wrote:
+
+> Hi Rob,
+>
+> Yup, that should fix the issue.
+>
+> Jonathon
+>
+> On Thu, Feb 10, 2022 at 4:56 PM Rob Kossler <rkossler@nd.edu> wrote:
+>
+>> Thanks Jonathon!
+>> This sure seems like a smoking gun. It doesn't seem like this is an
+>> auto-generated file so it seems we could manually modify it to include
+>> ports 2 and 3 in the same fashion as the N310 and then rebuild. Is this
+>> true?
+>> Rob
+>>
+>> On Thu, Feb 10, 2022 at 4:22 PM Jonathon Pendlum <
+>> jonathon.pendlum@ettus.com> wrote:
+>>
+>>> It looks like the problem is that while there is a 4 port interconnect
+>>> available, only ports 0 and 1 are hooked up:
+>>> https://github.com/EttusResearch/uhd/blob/2c7ce2dbf72414b64f8a477be614e23bc12f086d/fpga/usrp3/top/e320/e320_core.v#L1050
+>>>
+>>> This actually brings up a design suggestion: the Replay Block could have
+>>> it's own internal AXI4 interconnect that scales based on NUM_PORTS. I've
+>>> done this myself in a custom RFNoC block using the Xilinx AXI4 Interconnect
+>>> IP and it worked out well.
+>>>
+>>> Jonathon
+>>>
+>>> On Thu, Feb 10, 2022 at 3:33 PM Wade Fife <wade.fife@ettus.com> wrote:
+>>>
+>>>> I would start by double checking the YAML. For example, make sure the
+>>>> MEM_ADDR_W parameter is correct (for E320 it should be 31, for 2 GiB) and
+>>>> make sure each in/out port is connected the way you want.
+>>>>
+>>>> If you share the YAML with me, I'm happy to take a look to see if
+>>>> anything jumps out at me.
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Wade
+>>>>
+>>>> On Thu, Feb 10, 2022 at 10:34 AM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>
+>>>>> Thanks Wade,
+>>>>> I am helping Ofer Saferman with an issue with the E320 and a 4-port
+>>>>> replay block. Apart from your response (& Jonathon's response) indicating
+>>>>> that data rates should not be an issue, I have also come to the same
+>>>>> conclusion by trying some tests.  After these tests, the issue now seems to
+>>>>> be that Replay ports 0 and 1 work as expected, but Replay ports 2 and 3 do
+>>>>> not.  I know that a 4-port Replay block works fine on an N310 because I use
+>>>>> it often.  So, I'm wondering why we have this issue on the E320.  Perhaps
+>>>>> the E320 yml file is wrong - I am still waiting to take a look at this.  I
+>>>>> have also requested that Ofer run the stock example
+>>>>> "rfnoc_replay_samples_from_file" and use the --replay_chan option to prove
+>>>>> that ports 0 and 1 work fine but ports 2 and 3 do not.
+>>>>>
+>>>>> Anyway, if you have any suggestions, I'd love to hear them.
+>>>>> Rob
+>>>>>
+>>>>>
+>>>>> On Thu, Feb 10, 2022 at 11:17 AM Wade Fife <wade.fife@ettus.com>
+>>>>> wrote:
+>>>>>
+>>>>>> The E320's DRAM is pretty fast. It should have no problem keeping up
+>>>>>> for your use case.
+>>>>>>
+>>>>>> Wade
+>>>>>>
+>>>>>> On Thu, Feb 10, 2022 at 1:56 AM Jonathon Pendlum <
+>>>>>> jonathon.pendlum@ettus.com> wrote:
+>>>>>>
+>>>>>>> Hi Rob,
+>>>>>>>
+>>>>>>> As long as the DRAM can keep up throughput wise, you should be fine
+>>>>>>> in that configuration. I think the E320 has a BIST you can run that reports
+>>>>>>> the throughput.
+>>>>>>>
+>>>>>>> Jonathon
+>>>>>>>
+>>>>>>> On Wed, Feb 9, 2022 at 3:29 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>>>>
+>>>>>>>> Hi,
+>>>>>>>> I am wondering if there are any data rate restrictions for using
+>>>>>>>> the Replay block on the E320.  I have a 4-port Replay block for
+>>>>>>>> simultaneously playing two streams to the 2-port Radio and capturing two
+>>>>>>>> streams from the 2-port Radio.  If the master_clock_rate is equal to the
+>>>>>>>> sample rate, does this imply that I will have a data throughput issue?
+>>>>>>>> Rob
+>>>>>>>> _______________________________________________
+>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>
+>>>>>>> _______________________________________________
+>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>
+>>>>>>
+
+--000000000000579d4f05d8053fec
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Please try this =E2=80=9Csudo ./nr-softmodem -O =
-../../../ci-scripts/conf_files/gnb.band78.tm1.106PRB.usrpn300.conf --sa =
---args clock_source=3Dinternal || sudo tee files_log.txt=E2=80=9D
+<div dir=3D"ltr">Jonathon, Wade,<div>Regarding the Replay block controller =
+and the recent change on &#39;master&#39; to Drop property, action, &amp; m=
+tu forwarding, there is one other modification that I think makes sense. Th=
+e Replay block is the only block controller that implements &quot;issue_str=
+eam_cmd&quot; yet doesn&#39;t actually register this function as an action =
+handler for the stream_cmd action.=C2=A0 What this means is that if I conne=
+ct an rx_streamer to a Replay block output (Play port) and call issue_strea=
+m_cmd() on the rx_streamer, the Replay block controller does not respect th=
+is command. In fact, on UHD 4.1, it actually forwards it along the path cau=
+sing real trouble.=C2=A0 On &#39;master&#39;, it just drops the command but=
+ does nothing (which is better).=C2=A0 Take a look at the null block contro=
+ller or DDC block controller to see that these controllers register the str=
+eam_cmd action. Let me know what you think.</div><div>Thanks.</div><div>Rob=
+</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Thu, Feb 10, 2022 at 5:01 PM Jonathon Pendlum &lt;<=
+a href=3D"mailto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr">Hi Rob,<div><br></div><div>Yup, that should fix the issue.</di=
+v><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022 at 4:56 PM Rob Kos=
+sler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.e=
+du</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div dir=3D"ltr">Thanks Jonathon!<div>This sure seems like a smoking gun.=
+ It doesn&#39;t seem like this is an auto-generated file so it seems we cou=
+ld manually modify it to include ports 2 and 3 in the same fashion as the N=
+310 and then rebuild. Is this true?</div><div>Rob</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022=
+ at 4:22 PM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.c=
+om" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>It lo=
+oks like the problem is that while there is a 4 port interconnect available=
+, only ports 0 and 1 are hooked up:=C2=A0<a href=3D"https://github.com/Ettu=
+sResearch/uhd/blob/2c7ce2dbf72414b64f8a477be614e23bc12f086d/fpga/usrp3/top/=
+e320/e320_core.v#L1050" target=3D"_blank">https://github.com/EttusResearch/=
+uhd/blob/2c7ce2dbf72414b64f8a477be614e23bc12f086d/fpga/usrp3/top/e320/e320_=
+core.v#L1050</a><br></div><div><br></div><div>This actually brings up a des=
+ign suggestion: the Replay Block could have it&#39;s own internal AXI4 inte=
+rconnect that scales based on NUM_PORTS. I&#39;ve done this myself in a cus=
+tom RFNoC block using the Xilinx AXI4 Interconnect IP and it worked out wel=
+l.<br></div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022 at 3:33 =
+PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">w=
+ade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr"><div>I would start by double checking th=
+e YAML. For example, make sure the MEM_ADDR_W parameter is correct (for E32=
+0 it should be 31, for 2 GiB) and make sure each in/out port is connected t=
+he way you want.<br></div><div><br></div><div>If you share the YAML with me=
+, I&#39;m happy to take a look to see if anything jumps out at me.<br></div=
+><div><br></div><div>Thanks,</div><div><br></div><div>Wade<br></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 1=
+0, 2022 at 10:34 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" targ=
+et=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Thanks Wade,=
+<div>I am helping Ofer Saferman with an issue with the E320 and a 4-port re=
+play block. Apart from your response (&amp; Jonathon&#39;s response) indica=
+ting that data rates should not be an issue, I have also come to the same c=
+onclusion by trying some tests.=C2=A0 After these tests, the issue now seem=
+s to be that Replay ports 0 and 1 work as expected, but Replay ports 2 and =
+3 do not.=C2=A0 I know that a 4-port Replay block works fine on an N310 bec=
+ause I use it often.=C2=A0 So, I&#39;m wondering why we have this issue on =
+the E320.=C2=A0 Perhaps the E320 yml file is wrong - I am still waiting to =
+take a look at this.=C2=A0 I have also requested that Ofer run the stock ex=
+ample &quot;rfnoc_replay_samples_from_file&quot; and use the --replay_chan =
+option to prove that ports 0 and 1 work fine but ports 2 and 3 do not.</div=
+><div><br></div><div>Anyway, if you have any suggestions, I&#39;d love to h=
+ear them.</div><div>Rob</div><div><br></div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022 at 11:17 A=
+M Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wa=
+de.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr"><div>The E320&#39;s DRAM is pretty fast. =
+It should have no problem keeping up for your use case.</div><div><br></div=
+><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Thu, Feb 10, 2022 at 1:56 AM Jonathon Pendlum &lt;<a=
+ href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.pend=
+lum@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"ltr">Hi Rob,<div><br></div><div>As long as the DRA=
+M can keep up throughput wise, you should be fine in that configuration. I =
+think the E320 has a BIST you can run that reports the throughput.=C2=A0</d=
+iv><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 9, 2022 at 3:29 PM Rob Kos=
+sler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.e=
+du</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div dir=3D"ltr">Hi,<br><div>I am wondering if there are any data rate re=
+strictions for using the Replay block on the E320.=C2=A0 I have a 4-port Re=
+play block for simultaneously playing two streams to the 2-port Radio and c=
+apturing two streams from the 2-port Radio.=C2=A0 If the master_clock_rate =
+is equal to the sample rate, does this imply that I will have a data throug=
+hput issue?</div><div>Rob</div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</div>
+</blockquote></div></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
 
-=20
+--000000000000579d4f05d8053fec--
 
-=20
-
-=20
-
-=20
-
-=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=E8=
-=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
-
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
-=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-
-=E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88=
-
-
-=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=
-=85=AC=E5=8F=B8
-
-=E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
-
-=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=
-=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=
-=91SOHO 1108
-=E7=BD=91=E5=9D=80=EF=BC=9A <http://www.zengyi-tech.com> =
-www.zengyi-tech.com
-
-=20
-
-=E5=8F=91=E4=BB=B6=E4=BA=BA: Giuseppe Santaromita =
-<giuseppe.santaromita1@gmail.com>=20
-=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2022=E5=B9=B42=E6=9C=8815=E6=97=A5 =
-2:02
-=E6=94=B6=E4=BB=B6=E4=BA=BA: usrp-users@lists.ettus.com
-=E4=B8=BB=E9=A2=98: [USRP-users] OAI with USRP N310
-
-=20
-
-Dear community,
-
-=20
-
-I would like to use OpenAirInterface with the USRP N310 and I am having =
-overflow problems. I am forwarding here the email I sent to the OAI mail =
-list, because I think the problem is with the USRP and non-real time =
-operations.
-
-Does anyone have any ideas?
-
-Thanks in advance,
-
-Giuseppe
-
-=20
-
-Dear community,=20
-
-After solving problems with OAI installation and USRP N310 =
-configuration, I am trying to create a 5G SA link, starting with gNB.=20
-
-I tried this:=20
-sudo ./nr-softmodem -O =
-../../../ci-scripts/conf_files/gnb.band78.tm1.106PRB.usrpn300.conf --sa =
---args clock_source=3Dinternal=20
-
-But it gives problems that I think are related to the fact that probably =
-the operations are not in real time.=20
-
-For example:=20
-[PHY] rx_rf: Asked for 30720 samples, got 18906 from USRP=20
-[PHY] problem receiving samples=20
-LLLLLLLLLLLLLLLLLLLLLLLLLLLO[HW] [recv] received 18906 samples out of =
-30720=20
-[HW] Time: 1.41826 s=20
-ERROR_CODE_OVERFLOW (Overflow)=20
-
-Or, even earlier:=20
-[WARNING] [MPM.RPCServer] A timeout event occured!=20
-
-Also, I would like to attach a log file but I can't find it, and using =
-the "> file_log.txt" at the end of the command it all goes immediately =
-in overflow.=20
-
-Does anyone have any ideas?=20
-
-
-------=_NextPart_000_018F_01D82255.13F111C0
-Content-Type: text/html;
-	charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:=E5=AE=8B=E4=BD=93;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:=E7=AD=89=E7=BA=BF;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=E5=AE=8B=E4=BD=93";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"\@=E7=AD=89=E7=BA=BF";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:-moz-fixed;
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:=E5=AE=8B=E4=BD=93;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:=E5=AE=8B=E4=BD=93;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:=E7=AD=89=E7=BA=BF;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>Please try =
-this =E2=80=9Csudo ./nr-softmodem -O =
-../../../ci-scripts/conf_files/gnb.band78.tm1.106PRB.usrpn300.conf --sa =
---args clock_source=3Dinternal || sudo tee =
-files_log.txt=E2=80=9D<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
-p></span></p><div><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal>=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=
-=97=AE=E9=A2=98=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=
-=BB=EF=BC=81<span lang=3DEN-US><o:p></o:p></span></p><p =
-class=3DMsoNormal>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
-=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94<span =
-lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E6=9D=8E=E6=B3=BD=E8=BF=9C<span =
-lang=3DEN-US>|</span>=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88</span>=
-<span lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=
-=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=85=AC=E5=8F=B8</span><span =
-lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E6=89=8B=E6=9C=BA=EF=BC=9A<span =
-lang=3DEN-US>13121162044</span></span><span =
-lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
-style=3D'color:black;border:none windowtext =
-1.0pt;padding:0cm;background:white'>=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=
-=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=
-=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=91<span lang=3DEN-US>SOHO =
-1108<br></span>=E7=BD=91=E5=9D=80=EF=BC=9A<u><span lang=3DEN-US><a =
-href=3D"http://www.zengyi-tech.com"><span =
-style=3D'color:#0563C1'>www.zengyi-tech.com</span></a></span></u></span><=
-span lang=3DEN-US><o:p></o:p></span></p></div><p class=3DMsoNormal><span =
-lang=3DEN-US =
-style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
-p></span></p><div><div style=3D'border:none;border-top:solid #E1E1E1 =
-1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><b><span =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E4=BB=
-=B6=E4=BA=BA<span lang=3DEN-US>:</span></span></b><span lang=3DEN-US =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> Giuseppe =
-Santaromita &lt;giuseppe.santaromita1@gmail.com&gt; <br></span><b><span =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E9=80=
-=81=E6=97=B6=E9=97=B4<span lang=3DEN-US>:</span></span></b><span =
-lang=3DEN-US style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> =
-2022</span><span =
-style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=B9=B4<span =
-lang=3DEN-US>2</span>=E6=9C=88<span lang=3DEN-US>15</span>=E6=97=A5<span =
-lang=3DEN-US> 2:02<br></span><b>=E6=94=B6=E4=BB=B6=E4=BA=BA<span =
-lang=3DEN-US>:</span></b><span lang=3DEN-US> =
-usrp-users@lists.ettus.com<br></span><b>=E4=B8=BB=E9=A2=98<span =
-lang=3DEN-US>:</span></b><span lang=3DEN-US> [USRP-users] OAI with USRP =
-N310<o:p></o:p></span></span></p></div></div><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><div><p class=3DMsoNormal><span =
-lang=3DEN-US>Dear community,<o:p></o:p></span></p></div><div><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div><div><p =
-class=3DMsoNormal><span lang=3DEN-US>I would like to use =
-OpenAirInterface with the USRP N310 and I am having overflow problems. I =
-am forwarding here the email I sent to the OAI mail list, because I =
-think the problem is with the USRP and non-real time =
-operations.<o:p></o:p></span></p><p><span lang=3DEN-US>Does anyone have =
-any ideas?<o:p></o:p></span></p><p><span lang=3DEN-US>Thanks in =
-advance,<o:p></o:p></span></p><p><span =
-lang=3DEN-US>Giuseppe<o:p></o:p></span></p><p><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><blockquote =
-style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><div><p =
-class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-size:13.5pt;font-family:"-moz-fixed",serif'>Dear =
-community, <br><br>After solving problems with OAI installation and USRP =
-N310 configuration, I am trying to create a 5G SA link, starting with =
-gNB. <br><br>I tried this: <br>sudo ./nr-softmodem -O =
-../../../ci-scripts/conf_files/gnb.band78.tm1.106PRB.usrpn300.conf --sa =
---args clock_source=3Dinternal <br><br>But it gives problems that I =
-think are related to the fact that probably the operations are not in =
-real time. <br><br>For example: <br>[PHY] rx_rf: Asked for 30720 =
-samples, got 18906 from USRP <br>[PHY] problem receiving samples =
-<br>LLLLLLLLLLLLLLLLLLLLLLLLLLLO[HW] [recv] received 18906 samples out =
-of 30720 <br>[HW] Time: 1.41826 s <br>ERROR_CODE_OVERFLOW (Overflow) =
-<br><br>Or, even earlier: <br>[WARNING] [MPM.RPCServer] A timeout event =
-occured! <br><br>Also, I would like to attach a log file but I can't =
-find it, and using the &quot;&gt; file_log.txt&quot; at the end of the =
-command it all goes immediately in overflow. <br><br>Does anyone have =
-any ideas? </span><span lang=3DEN-US =
-style=3D'font-size:9.0pt;font-family:"-moz-fixed",serif'><o:p></o:p></spa=
-n></p></div></blockquote></div></div></body></html>
-------=_NextPart_000_018F_01D82255.13F111C0--
-
---===============5126684625884254547==
+--===============0879361845124429401==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -324,4 +330,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5126684625884254547==--
+--===============0879361845124429401==--
