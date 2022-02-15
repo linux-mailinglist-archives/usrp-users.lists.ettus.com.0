@@ -2,325 +2,654 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373934B60F6
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 03:26:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C9D74B610E
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Feb 2022 03:32:11 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 77845384E58
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Feb 2022 21:26:29 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="eTpeZTrG";
-	dkim-atps=neutral
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id AAA05385B96
-	for <usrp-users@lists.ettus.com>; Mon, 14 Feb 2022 21:25:33 -0500 (EST)
-Received: by mail-yb1-f170.google.com with SMTP id y129so51771486ybe.7
-        for <usrp-users@lists.ettus.com>; Mon, 14 Feb 2022 18:25:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7z43nhS/R+dkCBCn67SMbJVkCwOlbmxKi0OAud9K0Dk=;
-        b=eTpeZTrGklpmB9f6L+E4JPGoBxatlCX4xCm1KJ6kJh9IxInJNj4nuLnWD3oOqXgxZb
-         4OGSb6LKEIwmSkgn7FkjUbRJH/e+tAexIZrVJ2F4weMhxwLryuWxMZp9xZEz6/p0XQRC
-         C+9QvCmFFdl/uArK0Vkh49hrdLGUiJPGVG4oFIaPS82DeWBx8aZrrOCPTloAUJdnnbB0
-         lqj+1bI23kwp9xr2KoSKWz9Sk4FLR0uBCWiVcP0MseHYkzONBI6dEmkEey6zD1OiUoq2
-         Ka8ekBvxGaZOeRAcnrTL/+ZeOZVDulRoXVXDvKE+437x6o8xcVGqNFo/3oItmzvFqsXF
-         I9TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7z43nhS/R+dkCBCn67SMbJVkCwOlbmxKi0OAud9K0Dk=;
-        b=U2W/X33+Tro+SU83fomBt5Ha+5wj9SHdFFDYiFKo6p5X871hq3ldtWd2C+iOfCmVwq
-         xjm098KmX55kLSjYYJV+ULAiFCjh1zRfjvVKb08hmRDQN/ELA5JB9Q8GKLXK/BMLeGY1
-         xObhPAG4nJaVslWB2WzoqBi1qlaEq7aiX7ai759ZPQL6EgZQxHo8xVxYcZE0xm6aGl7T
-         SUMWRbcgj8ggeWFmfCs8rK7vJurXXIX/6JhoiL5gxrMBp9TWgDfFxN6kZoJnCDrPFjim
-         ITNUjI9zZzjtqZv7Ait0WPP18nsQrGCg5gVXXEGPcdadR/UobGDQmHEqPPgVlXF8obXp
-         cgqA==
-X-Gm-Message-State: AOAM532R9/GfG4GCkQ59GV+EpTWFHyPZFikzEZOXYqadm7DnIJ02bNMa
-	OFuSdv1ZbDEUOn5sIvsvoiMq8q5PALwSq+Wknx2/lQxuvZvpgg==
-X-Google-Smtp-Source: ABdhPJxqUTPdupkCLcNbsyNlPaRHYoOujzGca9yHNhd7Y5ZZmzOprc5lF0DhTLFZEewPf8Os0djHSm/M5qLXKwsJ4og=
-X-Received: by 2002:a25:abf2:: with SMTP id v105mr1944416ybi.13.1644891932678;
- Mon, 14 Feb 2022 18:25:32 -0800 (PST)
+	by mm2.emwd.com (Postfix) with ESMTP id 02842385C1F
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Feb 2022 21:32:10 -0500 (EST)
+Received: from out28-122.mail.aliyun.com (out28-122.mail.aliyun.com [115.124.28.122])
+	by mm2.emwd.com (Postfix) with ESMTPS id 22ED4384FEE
+	for <usrp-users@lists.ettus.com>; Mon, 14 Feb 2022 21:31:13 -0500 (EST)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07171527|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00409259-0.00108425-0.994823;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047192;MF=zeyuan.li@zengyi-tech.com;NM=1;PH=DS;RN=2;RT=2;SR=0;TI=SMTPD_---.Mq8aNHs_1644892267;
+Received: from DESKTOPGVK0E1U(mailfrom:zeyuan.li@zengyi-tech.com fp:SMTPD_---.Mq8aNHs_1644892267)
+          by smtp.aliyun-inc.com(33.37.67.126);
+          Tue, 15 Feb 2022 10:31:07 +0800
+From: <zeyuan.li@zengyi-tech.com>
+To: "'Giuseppe Santaromita'" <giuseppe.santaromita1@gmail.com>,
+	<usrp-users@lists.ettus.com>
+References: <deed8d5e-6ab5-21dc-5da9-9f580e859dee@gmail.com> <014601d81e26$cb469260$61d3b720$@zengyi-tech.com> <384482b4-b1ca-a497-86ec-46baa7c43472@gmail.com> <017f01d82210$fb1ca810$f155f830$@zengyi-tech.com>
+In-Reply-To: <017f01d82210$fb1ca810$f155f830$@zengyi-tech.com>
+Date: Tue, 15 Feb 2022 10:31:07 +0800
+Message-ID: <01d501d82214$1643ebf0$42cbc3d0$@zengyi-tech.com>
 MIME-Version: 1.0
-References: <CAB__hTSyT==Q_Nfn8xgfT-FBuutZ_ieD_CKuc-PdA3xm6KHs4w@mail.gmail.com>
- <CAL7q81tArWo++HCSyo_MGXpThqmdBvt94r-RJccqT3+bhh0PGw@mail.gmail.com>
- <CAFche=gKiRGtNmHE5L=59fbqEdKCvypFEwito3cgXg8qtcL-gA@mail.gmail.com>
- <CAB__hTQUT8mTDRDAeA-b_mJBmpF=h0UMDFLOgf0XKaJ01ZWbzg@mail.gmail.com>
- <CAFche=iXkkR1C9AEXbrytuFkiSUCYL2fpwO7Ufq_VdKoQi7nfA@mail.gmail.com>
- <CAL7q81uXKHKPje44LA-Xc+STABicFho9J76SUvFyg=AgKFRSMA@mail.gmail.com>
- <CAB__hTRyjakK=Okw3+0Ot7TAsXymK5aEt14LeZgp5Rzri5O=EQ@mail.gmail.com> <CAL7q81uAmPpypzw=1xx8qyDe6iPB3vUwica43TmL+BgXXs=0Cw@mail.gmail.com>
-In-Reply-To: <CAL7q81uAmPpypzw=1xx8qyDe6iPB3vUwica43TmL+BgXXs=0Cw@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Mon, 14 Feb 2022 21:25:22 -0500
-Message-ID: <CAB__hTQuibnC+jcz+naR39MwZZOekuJyNWc6zyi-bog8r=Xomg@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Message-ID-Hash: XGMWJM5ZV5LHY2LKSMVC4HUTXCKIEYBH
-X-Message-ID-Hash: XGMWJM5ZV5LHY2LKSMVC4HUTXCKIEYBH
-X-MailFrom: rkossler@nd.edu
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: zh-cn
+Thread-Index: AQE0YAuV/lgFMJvSLrG0hrwD3+OZAwK9zSRmAd8hxhcA402uba2vZbng
+Message-ID-Hash: R3ORBAONC4IG6KEXUJCAXEWSYRX33UKW
+X-Message-ID-Hash: R3ORBAONC4IG6KEXUJCAXEWSYRX33UKW
+X-MailFrom: zeyuan.li@zengyi-tech.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Replay block on E320 data rate
+Subject: [USRP-users] =?utf-8?b?562U5aSNOiDnrZTlpI06IOetlOWkjTogTWVuZGVyIFVwZGF0ZSBQcm9jZXNzIE4zMTA=?=
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XGMWJM5ZV5LHY2LKSMVC4HUTXCKIEYBH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R3ORBAONC4IG6KEXUJCAXEWSYRX33UKW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0879361845124429401=="
+Content-Type: multipart/mixed; boundary="===============4736387868198590741=="
 
---===============0879361845124429401==
-Content-Type: multipart/alternative; boundary="000000000000579d4f05d8053fec"
+This is a multipart message in MIME format.
 
---000000000000579d4f05d8053fec
-Content-Type: text/plain; charset="UTF-8"
+--===============4736387868198590741==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_01D6_01D82257.246900B0"
+Content-Language: zh-cn
 
-Jonathon, Wade,
-Regarding the Replay block controller and the recent change on 'master' to
-Drop property, action, & mtu forwarding, there is one other modification
-that I think makes sense. The Replay block is the only block controller
-that implements "issue_stream_cmd" yet doesn't actually register this
-function as an action handler for the stream_cmd action.  What this means
-is that if I connect an rx_streamer to a Replay block output (Play port)
-and call issue_stream_cmd() on the rx_streamer, the Replay block controller
-does not respect this command. In fact, on UHD 4.1, it actually forwards it
-along the path causing real trouble.  On 'master', it just drops the
-command but does nothing (which is better).  Take a look at the null block
-controller or DDC block controller to see that these controllers register
-the stream_cmd action. Let me know what you think.
-Thanks.
-Rob
+This is a multipart message in MIME format.
 
-
-On Thu, Feb 10, 2022 at 5:01 PM Jonathon Pendlum <jonathon.pendlum@ettus.com>
-wrote:
-
-> Hi Rob,
->
-> Yup, that should fix the issue.
->
-> Jonathon
->
-> On Thu, Feb 10, 2022 at 4:56 PM Rob Kossler <rkossler@nd.edu> wrote:
->
->> Thanks Jonathon!
->> This sure seems like a smoking gun. It doesn't seem like this is an
->> auto-generated file so it seems we could manually modify it to include
->> ports 2 and 3 in the same fashion as the N310 and then rebuild. Is this
->> true?
->> Rob
->>
->> On Thu, Feb 10, 2022 at 4:22 PM Jonathon Pendlum <
->> jonathon.pendlum@ettus.com> wrote:
->>
->>> It looks like the problem is that while there is a 4 port interconnect
->>> available, only ports 0 and 1 are hooked up:
->>> https://github.com/EttusResearch/uhd/blob/2c7ce2dbf72414b64f8a477be614e23bc12f086d/fpga/usrp3/top/e320/e320_core.v#L1050
->>>
->>> This actually brings up a design suggestion: the Replay Block could have
->>> it's own internal AXI4 interconnect that scales based on NUM_PORTS. I've
->>> done this myself in a custom RFNoC block using the Xilinx AXI4 Interconnect
->>> IP and it worked out well.
->>>
->>> Jonathon
->>>
->>> On Thu, Feb 10, 2022 at 3:33 PM Wade Fife <wade.fife@ettus.com> wrote:
->>>
->>>> I would start by double checking the YAML. For example, make sure the
->>>> MEM_ADDR_W parameter is correct (for E320 it should be 31, for 2 GiB) and
->>>> make sure each in/out port is connected the way you want.
->>>>
->>>> If you share the YAML with me, I'm happy to take a look to see if
->>>> anything jumps out at me.
->>>>
->>>> Thanks,
->>>>
->>>> Wade
->>>>
->>>> On Thu, Feb 10, 2022 at 10:34 AM Rob Kossler <rkossler@nd.edu> wrote:
->>>>
->>>>> Thanks Wade,
->>>>> I am helping Ofer Saferman with an issue with the E320 and a 4-port
->>>>> replay block. Apart from your response (& Jonathon's response) indicating
->>>>> that data rates should not be an issue, I have also come to the same
->>>>> conclusion by trying some tests.  After these tests, the issue now seems to
->>>>> be that Replay ports 0 and 1 work as expected, but Replay ports 2 and 3 do
->>>>> not.  I know that a 4-port Replay block works fine on an N310 because I use
->>>>> it often.  So, I'm wondering why we have this issue on the E320.  Perhaps
->>>>> the E320 yml file is wrong - I am still waiting to take a look at this.  I
->>>>> have also requested that Ofer run the stock example
->>>>> "rfnoc_replay_samples_from_file" and use the --replay_chan option to prove
->>>>> that ports 0 and 1 work fine but ports 2 and 3 do not.
->>>>>
->>>>> Anyway, if you have any suggestions, I'd love to hear them.
->>>>> Rob
->>>>>
->>>>>
->>>>> On Thu, Feb 10, 2022 at 11:17 AM Wade Fife <wade.fife@ettus.com>
->>>>> wrote:
->>>>>
->>>>>> The E320's DRAM is pretty fast. It should have no problem keeping up
->>>>>> for your use case.
->>>>>>
->>>>>> Wade
->>>>>>
->>>>>> On Thu, Feb 10, 2022 at 1:56 AM Jonathon Pendlum <
->>>>>> jonathon.pendlum@ettus.com> wrote:
->>>>>>
->>>>>>> Hi Rob,
->>>>>>>
->>>>>>> As long as the DRAM can keep up throughput wise, you should be fine
->>>>>>> in that configuration. I think the E320 has a BIST you can run that reports
->>>>>>> the throughput.
->>>>>>>
->>>>>>> Jonathon
->>>>>>>
->>>>>>> On Wed, Feb 9, 2022 at 3:29 PM Rob Kossler <rkossler@nd.edu> wrote:
->>>>>>>
->>>>>>>> Hi,
->>>>>>>> I am wondering if there are any data rate restrictions for using
->>>>>>>> the Replay block on the E320.  I have a 4-port Replay block for
->>>>>>>> simultaneously playing two streams to the 2-port Radio and capturing two
->>>>>>>> streams from the 2-port Radio.  If the master_clock_rate is equal to the
->>>>>>>> sample rate, does this imply that I will have a data throughput issue?
->>>>>>>> Rob
->>>>>>>> _______________________________________________
->>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>>
->>>>>>> _______________________________________________
->>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>
->>>>>>
-
---000000000000579d4f05d8053fec
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_01D6_01D82257.246900B0
+Content-Type: text/plain;
+	charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Jonathon, Wade,<div>Regarding the Replay block controller =
-and the recent change on &#39;master&#39; to Drop property, action, &amp; m=
-tu forwarding, there is one other modification that I think makes sense. Th=
-e Replay block is the only block controller that implements &quot;issue_str=
-eam_cmd&quot; yet doesn&#39;t actually register this function as an action =
-handler for the stream_cmd action.=C2=A0 What this means is that if I conne=
-ct an rx_streamer to a Replay block output (Play port) and call issue_strea=
-m_cmd() on the rx_streamer, the Replay block controller does not respect th=
-is command. In fact, on UHD 4.1, it actually forwards it along the path cau=
-sing real trouble.=C2=A0 On &#39;master&#39;, it just drops the command but=
- does nothing (which is better).=C2=A0 Take a look at the null block contro=
-ller or DDC block controller to see that these controllers register the str=
-eam_cmd action. Let me know what you think.</div><div>Thanks.</div><div>Rob=
-</div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Thu, Feb 10, 2022 at 5:01 PM Jonathon Pendlum &lt;<=
-a href=3D"mailto:jonathon.pendlum@ettus.com">jonathon.pendlum@ettus.com</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- dir=3D"ltr">Hi Rob,<div><br></div><div>Yup, that should fix the issue.</di=
-v><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022 at 4:56 PM Rob Kos=
-sler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.e=
-du</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr">Thanks Jonathon!<div>This sure seems like a smoking gun.=
- It doesn&#39;t seem like this is an auto-generated file so it seems we cou=
-ld manually modify it to include ports 2 and 3 in the same fashion as the N=
-310 and then rebuild. Is this true?</div><div>Rob</div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022=
- at 4:22 PM Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.c=
-om" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>It lo=
-oks like the problem is that while there is a 4 port interconnect available=
-, only ports 0 and 1 are hooked up:=C2=A0<a href=3D"https://github.com/Ettu=
-sResearch/uhd/blob/2c7ce2dbf72414b64f8a477be614e23bc12f086d/fpga/usrp3/top/=
-e320/e320_core.v#L1050" target=3D"_blank">https://github.com/EttusResearch/=
-uhd/blob/2c7ce2dbf72414b64f8a477be614e23bc12f086d/fpga/usrp3/top/e320/e320_=
-core.v#L1050</a><br></div><div><br></div><div>This actually brings up a des=
-ign suggestion: the Replay Block could have it&#39;s own internal AXI4 inte=
-rconnect that scales based on NUM_PORTS. I&#39;ve done this myself in a cus=
-tom RFNoC block using the Xilinx AXI4 Interconnect IP and it worked out wel=
-l.<br></div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail=
-_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022 at 3:33 =
-PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">w=
-ade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex"><div dir=3D"ltr"><div>I would start by double checking th=
-e YAML. For example, make sure the MEM_ADDR_W parameter is correct (for E32=
-0 it should be 31, for 2 GiB) and make sure each in/out port is connected t=
-he way you want.<br></div><div><br></div><div>If you share the YAML with me=
-, I&#39;m happy to take a look to see if anything jumps out at me.<br></div=
-><div><br></div><div>Thanks,</div><div><br></div><div>Wade<br></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 1=
-0, 2022 at 10:34 AM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" targ=
-et=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Thanks Wade,=
-<div>I am helping Ofer Saferman with an issue with the E320 and a 4-port re=
-play block. Apart from your response (&amp; Jonathon&#39;s response) indica=
-ting that data rates should not be an issue, I have also come to the same c=
-onclusion by trying some tests.=C2=A0 After these tests, the issue now seem=
-s to be that Replay ports 0 and 1 work as expected, but Replay ports 2 and =
-3 do not.=C2=A0 I know that a 4-port Replay block works fine on an N310 bec=
-ause I use it often.=C2=A0 So, I&#39;m wondering why we have this issue on =
-the E320.=C2=A0 Perhaps the E320 yml file is wrong - I am still waiting to =
-take a look at this.=C2=A0 I have also requested that Ofer run the stock ex=
-ample &quot;rfnoc_replay_samples_from_file&quot; and use the --replay_chan =
-option to prove that ports 0 and 1 work fine but ports 2 and 3 do not.</div=
-><div><br></div><div>Anyway, if you have any suggestions, I&#39;d love to h=
-ear them.</div><div>Rob</div><div><br></div></div><br><div class=3D"gmail_q=
-uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 10, 2022 at 11:17 A=
-M Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wa=
-de.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex"><div dir=3D"ltr"><div>The E320&#39;s DRAM is pretty fast. =
-It should have no problem keeping up for your use case.</div><div><br></div=
-><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Thu, Feb 10, 2022 at 1:56 AM Jonathon Pendlum &lt;<a=
- href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.pend=
-lum@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
-ng-left:1ex"><div dir=3D"ltr">Hi Rob,<div><br></div><div>As long as the DRA=
-M can keep up throughput wise, you should be fine in that configuration. I =
-think the E320 has a BIST you can run that reports the throughput.=C2=A0</d=
-iv><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_quote"><=
-div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 9, 2022 at 3:29 PM Rob Kos=
-sler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.e=
-du</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr">Hi,<br><div>I am wondering if there are any data rate re=
-strictions for using the Replay block on the E320.=C2=A0 I have a 4-port Re=
-play block for simultaneously playing two streams to the 2-port Radio and c=
-apturing two streams from the 2-port Radio.=C2=A0 If the master_clock_rate =
-is equal to the sample rate, does this imply that I will have a data throug=
-hput issue?</div><div>Rob</div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+If it does not work,I think this document will helpful with you: =
+https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card=
 
---000000000000579d4f05d8053fec--
 
---===============0879361845124429401==
+=20
+
+=20
+
+=20
+
+=20
+
+=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=E8=
+=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+
+=E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88=
+
+
+=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=
+=85=AC=E5=8F=B8
+
+=E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
+
+=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=
+=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=
+=91SOHO 1108
+=E7=BD=91=E5=9D=80=EF=BC=9A <http://www.zengyi-tech.com> =
+www.zengyi-tech.com
+
+=20
+
+=E5=8F=91=E4=BB=B6=E4=BA=BA: zeyuan.li@zengyi-tech.com =
+<zeyuan.li@zengyi-tech.com>=20
+=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2022=E5=B9=B42=E6=9C=8815=E6=97=A5 =
+10:09
+=E6=94=B6=E4=BB=B6=E4=BA=BA: 'Giuseppe Santaromita' =
+<giuseppe.santaromita1@gmail.com>; usrp-users@lists.ettus.com
+=E4=B8=BB=E9=A2=98: [USRP-users] =E7=AD=94=E5=A4=8D: =E7=AD=94=E5=A4=8D: =
+Mender Update Process N310
+
+=20
+
+Please checkout mander files version and than may be you can try this =
+command which is =E2=80=9Cmander install  =
+/home/root/usrp_n3xx_fs.mender=E2=80=9D.
+
+=20
+
+=20
+
+=20
+
+=20
+
+=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=E8=
+=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+
+=E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88=
+
+
+=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=
+=85=AC=E5=8F=B8
+
+=E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
+
+=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=
+=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=
+=91SOHO 1108
+=E7=BD=91=E5=9D=80=EF=BC=9A <http://www.zengyi-tech.com> =
+www.zengyi-tech.com
+
+=20
+
+=E5=8F=91=E4=BB=B6=E4=BA=BA: Giuseppe Santaromita =
+<giuseppe.santaromita1@gmail.com =
+<mailto:giuseppe.santaromita1@gmail.com> >=20
+=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2022=E5=B9=B42=E6=9C=8814=E6=97=A5 =
+23:57
+=E6=94=B6=E4=BB=B6=E4=BA=BA: zeyuan.li@zengyi-tech.com =
+<mailto:zeyuan.li@zengyi-tech.com> ; usrp-users@lists.ettus.com =
+<mailto:usrp-users@lists.ettus.com>=20
+=E4=B8=BB=E9=A2=98: Re: =E7=AD=94=E5=A4=8D: [USRP-users] Mender Update =
+Process N310
+
+=20
+
+=20
+
+What is the correct upgrade process? I update the Linux File System =
+first and then the FPGA, following the link. The problem is that I think =
+something went wrong, because in the past the -roofs worked.
+
+Giuseppe
+
+Il 10/2/22 3:34, zeyuan.li@zengyi-tech.com =
+<mailto:zeyuan.li@zengyi-tech.com>  ha scritto:
+
+I have used this way updated successfully.Please checkout your update =
+process.
+
+=20
+
+=20
+
+=20
+
+=20
+
+=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=97=AE=E9=A2=98=E8=
+=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=BB=EF=BC=81
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+
+=E6=9D=8E=E6=B3=BD=E8=BF=9C|=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88=
+
+
+=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=
+=85=AC=E5=8F=B8
+
+=E6=89=8B=E6=9C=BA=EF=BC=9A13121162044
+
+=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=
+=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=
+=91SOHO 1108
+=E7=BD=91=E5=9D=80=EF=BC=9A <http://www.zengyi-tech.com> =
+www.zengyi-tech.com
+
+=20
+
+=E5=8F=91=E4=BB=B6=E4=BA=BA: Giuseppe Santaromita  =
+<mailto:giuseppe.santaromita1@gmail.com> =
+<giuseppe.santaromita1@gmail.com>=20
+=E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4: 2022=E5=B9=B42=E6=9C=889=E6=97=A5 =
+22:32
+=E6=94=B6=E4=BB=B6=E4=BA=BA: usrp-users@lists.ettus.com =
+<mailto:usrp-users@lists.ettus.com>=20
+=E4=B8=BB=E9=A2=98: [USRP-users] Mender Update Process N310
+
+=20
+
+Hi guys,
+
+I'm trying to update the USRP N310 following this guide: =
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide in =
+particolar "Mender Update Process".
+
+The results is the follows.
+
+Can anyone help me?=20
+
+Giuseppe
+
+=20
+
+=20
+
+mender -rootfs /home/root/usrp_n3xx_fs.mender
+Incorrect Usage. flag provided but not defined: -rootfs
+
+NAME:
+   mender - manage and start the Mender client.
+
+USAGE:
+   [global options] command [command options] [arguments...]
+
+VERSION:
+   a78b45e  runtime: go1.12.9
+
+DESCRIPTION:
+   mender integrates both the mender daemon and commands for manually =
+performing tasks performed by
+   the daemon (see list of COMMANDS below).
+
+Global flag remarks:
+  - Supported log levels incudes: 'debug', 'info', 'warning', 'error', =
+'panic' and 'fatal'.
+
+
+COMMANDS:
+   bootstrap       Perform bootstrap and exit.
+   check-update    Force update check.
+   commit          Commit current Artifact. Returns (2) if no update in =
+progress.
+   daemon          Start the client as a background service.
+   install         Mender Artifact to install - local file or a `URL`.
+   rollback        Rollback current Artifact. Returns (2) if no update =
+in progress.
+   send-inventory  Force inventory update.
+   setup           Perform configuration setup - 'mender setup --help' =
+for command options.
+   snapshot        Create filesystem snapshot -'mender snapshot --help' =
+for more.
+   show-artifact   Print the current artifact name to the command line =
+and exit.
+   help            Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --config FILE, -c FILE           Configuration FILE path. (default: =
+"/etc/mender/mender.conf")
+   --fallback-config FILE, -b FILE  Fallback configuration FILE path. =
+(default:
+                                    "/var/lib/mender/mender.conf")
+   --data DIR, -d DIR               Mender state data DIRECTORY path. =
+(default: "/var/lib/mender")
+   --log-file FILE, -L FILE         FILE to log to.
+   --log-level level, -l level      Set logging level. (default: "info")
+   --log-modules value, -m value    -log-modules is accepted for =
+compatibility but has no effect
+   --trusted-certs FILE, -E FILE    Trusted server certificates FILE =
+path.
+   --forcebootstrap, -F             Force bootstrap. (default: false)
+   --no-syslog                      Disable logging to syslog. (default: =
+false)
+   --skipverify                     Skip certificate verification. =
+(default: false)
+   --help, -h                       show help (default: false)
+   --version, -v                    print the version (default: false)
+
+ERRO[0000] flag provided but not defined: -rootfs    =20
+
+
+------=_NextPart_000_01D6_01D82257.246900B0
+Content-Type: text/html;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
+name=3DGenerator content=3D"Microsoft Word 15 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:=E5=AE=8B=E4=BD=93;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:=E7=AD=89=E7=BA=BF;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@=E5=AE=8B=E4=BD=93";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@=E7=AD=89=E7=BA=BF";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:=E5=AE=8B=E4=BD=93;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:=E5=AE=8B=E4=BD=93;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:=E7=AD=89=E7=BA=BF;
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:=E7=AD=89=E7=BA=BF;
+	color:windowtext;}
+span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:=E7=AD=89=E7=BA=BF;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DZH-CN link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>If it does not =
+work,I think this document will helpful with you:</span><span =
+lang=3DEN-US> </span><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>https://kb.ettu=
+s.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Card<o:p></o:p></sp=
+an></p><p class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
+p></span></p><div><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal>=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=
+=97=AE=E9=A2=98=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=
+=BB=EF=BC=81<span lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94<span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=9D=8E=E6=B3=BD=E8=BF=9C<span =
+lang=3DEN-US>|</span>=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88</span>=
+<span lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=
+=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=85=AC=E5=8F=B8</span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=89=8B=E6=9C=BA=EF=BC=9A<span =
+lang=3DEN-US>13121162044</span></span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=
+=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=
+=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=91<span lang=3DEN-US>SOHO =
+1108<br></span>=E7=BD=91=E5=9D=80=EF=BC=9A<u><span lang=3DEN-US><a =
+href=3D"http://www.zengyi-tech.com"><span =
+style=3D'color:#0563C1'>www.zengyi-tech.com</span></a></span></u></span><=
+span lang=3DEN-US><o:p></o:p></span></p></div><p class=3DMsoNormal><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
+p></span></p><div><div style=3D'border:none;border-top:solid #E1E1E1 =
+1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E4=BB=
+=B6=E4=BA=BA<span lang=3DEN-US>:</span></span></b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> =
+zeyuan.li@zengyi-tech.com &lt;zeyuan.li@zengyi-tech.com&gt; =
+<br></span><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E9=80=
+=81=E6=97=B6=E9=97=B4<span lang=3DEN-US>:</span></span></b><span =
+lang=3DEN-US style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> =
+2022</span><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=B9=B4<span =
+lang=3DEN-US>2</span>=E6=9C=88<span lang=3DEN-US>15</span>=E6=97=A5<span =
+lang=3DEN-US> 10:09<br></span><b>=E6=94=B6=E4=BB=B6=E4=BA=BA<span =
+lang=3DEN-US>:</span></b><span lang=3DEN-US> 'Giuseppe Santaromita' =
+&lt;giuseppe.santaromita1@gmail.com&gt;; =
+usrp-users@lists.ettus.com<br></span><b>=E4=B8=BB=E9=A2=98<span =
+lang=3DEN-US>:</span></b><span lang=3DEN-US> [USRP-users] =
+</span>=E7=AD=94=E5=A4=8D<span lang=3DEN-US>: =
+</span>=E7=AD=94=E5=A4=8D<span lang=3DEN-US>: Mender Update Process =
+N310<o:p></o:p></span></span></p></div></div><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>Please =
+checkout mander files version and than may be you can try this command =
+which is </span><span =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>=E2=80=9C<span =
+lang=3DEN-US>mander install =
+&nbsp;/home/root/usrp_n3xx_fs.mender</span>=E2=80=9D<span =
+lang=3DEN-US>.<o:p></o:p></span></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
+p></span></p><div><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal>=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=
+=97=AE=E9=A2=98=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=
+=BB=EF=BC=81<span lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94<span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=9D=8E=E6=B3=BD=E8=BF=9C<span =
+lang=3DEN-US>|</span>=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88</span>=
+<span lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=
+=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=85=AC=E5=8F=B8</span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=89=8B=E6=9C=BA=EF=BC=9A<span =
+lang=3DEN-US>13121162044</span></span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=
+=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=
+=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=91<span lang=3DEN-US>SOHO =
+1108<br></span>=E7=BD=91=E5=9D=80=EF=BC=9A<u><span lang=3DEN-US><a =
+href=3D"http://www.zengyi-tech.com"><span =
+style=3D'color:#0563C1'>www.zengyi-tech.com</span></a></span></u></span><=
+span lang=3DEN-US><o:p></o:p></span></p></div><p class=3DMsoNormal><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'><o:p>&nbsp;</o:=
+p></span></p><div><div style=3D'border:none;border-top:solid #E1E1E1 =
+1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E4=BB=
+=B6=E4=BA=BA<span lang=3DEN-US>:</span></span></b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> Giuseppe =
+Santaromita &lt;<a =
+href=3D"mailto:giuseppe.santaromita1@gmail.com">giuseppe.santaromita1@gma=
+il.com</a>&gt; <br></span><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E9=80=
+=81=E6=97=B6=E9=97=B4<span lang=3DEN-US>:</span></span></b><span =
+lang=3DEN-US style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> =
+2022</span><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=B9=B4<span =
+lang=3DEN-US>2</span>=E6=9C=88<span lang=3DEN-US>14</span>=E6=97=A5<span =
+lang=3DEN-US> 23:57<br></span><b>=E6=94=B6=E4=BB=B6=E4=BA=BA<span =
+lang=3DEN-US>:</span></b><span lang=3DEN-US> <a =
+href=3D"mailto:zeyuan.li@zengyi-tech.com">zeyuan.li@zengyi-tech.com</a>; =
+<a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+<br></span><b>=E4=B8=BB=E9=A2=98<span lang=3DEN-US>:</span></b><span =
+lang=3DEN-US> Re: </span>=E7=AD=94=E5=A4=8D<span lang=3DEN-US>: =
+[USRP-users] Mender Update Process =
+N310<o:p></o:p></span></span></p></div></div><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p><span lang=3DEN-US>What is =
+the correct upgrade process? I update the Linux File System first and =
+then the FPGA, following the link. The problem is that I think something =
+went wrong, because in the past the -roofs =
+worked.<o:p></o:p></span></p><p><span =
+lang=3DEN-US>Giuseppe<o:p></o:p></span></p><div><p =
+class=3DMsoNormal><span lang=3DEN-US>Il 10/2/22 3:34, <a =
+href=3D"mailto:zeyuan.li@zengyi-tech.com">zeyuan.li@zengyi-tech.com</a> =
+ha scritto:<o:p></o:p></span></p></div><blockquote =
+style=3D'margin-top:5.0pt;margin-bottom:5.0pt'><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>I have used =
+this way updated successfully.Please checkout your update =
+process.</span><span lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>&nbsp;</span><s=
+pan lang=3DEN-US><o:p></o:p></span></p><div><p class=3DMsoNormal><span =
+lang=3DEN-US>&nbsp;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&nbsp;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&nbsp;<o:p></o:p></span></p><p =
+class=3DMsoNormal>=E8=B0=A2=E8=B0=A2=EF=BC=8C=E6=9C=89=E4=BB=BB=E4=BD=95=E9=
+=97=AE=E9=A2=98=E8=AF=B7=E9=9A=8F=E6=97=B6=E4=B8=8E=E6=88=91=E8=81=94=E7=B3=
+=BB=EF=BC=81<span lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94<span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=9D=8E=E6=B3=BD=E8=BF=9C<span =
+lang=3DEN-US>|</span>=E7=A0=94=E5=8F=91=E5=B7=A5=E7=A8=8B=E5=B8=88</span>=
+<span lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=8C=97=E4=BA=AC=E6=9B=BE=E7=9B=8A=E7=
+=A7=91=E6=8A=80=E6=9C=89=E9=99=90=E5=85=AC=E5=8F=B8</span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E6=89=8B=E6=9C=BA=EF=BC=9A<span =
+lang=3DEN-US>13121162044</span></span><span =
+lang=3DEN-US><o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'color:black;border:none windowtext =
+1.0pt;padding:0cm;background:white'>=E5=9C=B0=E5=9D=80=EF=BC=9A=E5=8C=97=E4=
+=BA=AC=E5=B8=82=E6=B5=B7=E6=B7=80=E5=8C=BA=E4=B8=AD=E5=85=B3=E6=9D=91=E5=A4=
+=A7=E8=A1=97=E4=B8=AD=E5=85=B3=E6=9D=91<span lang=3DEN-US>SOHO =
+1108<br></span>=E7=BD=91=E5=9D=80=EF=BC=9A<u><span lang=3DEN-US><a =
+href=3D"http://www.zengyi-tech.com"><span =
+style=3D'color:#0563C1'>www.zengyi-tech.com</span></a></span></u></span><=
+span lang=3DEN-US><o:p></o:p></span></p></div><p class=3DMsoNormal><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:=E7=AD=89=E7=BA=BF'>&nbsp;</span><s=
+pan lang=3DEN-US><o:p></o:p></span></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm'><p class=3DMsoNormal><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E4=BB=
+=B6=E4=BA=BA<span lang=3DEN-US>:</span></span></b><span lang=3DEN-US =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> Giuseppe =
+Santaromita <a =
+href=3D"mailto:giuseppe.santaromita1@gmail.com">&lt;giuseppe.santaromita1=
+@gmail.com&gt;</a> <br></span><b><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=8F=91=E9=80=
+=81=E6=97=B6=E9=97=B4<span lang=3DEN-US>:</span></span></b><span =
+lang=3DEN-US style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'> =
+2022</span><span =
+style=3D'font-size:11.0pt;font-family:=E7=AD=89=E7=BA=BF'>=E5=B9=B4<span =
+lang=3DEN-US>2</span>=E6=9C=88<span lang=3DEN-US>9</span>=E6=97=A5<span =
+lang=3DEN-US> 22:32<br></span><b>=E6=94=B6=E4=BB=B6=E4=BA=BA<span =
+lang=3DEN-US>:</span></b><span lang=3DEN-US> <a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+<br></span><b>=E4=B8=BB=E9=A2=98<span lang=3DEN-US>:</span></b><span =
+lang=3DEN-US> [USRP-users] Mender Update Process N310</span></span><span =
+lang=3DEN-US><o:p></o:p></span></p></div></div><p =
+class=3DMsoNormal><span =
+lang=3DEN-US>&nbsp;<o:p></o:p></span></p><p><span lang=3DEN-US>Hi =
+guys,<o:p></o:p></span></p><p><span lang=3DEN-US>I'm trying to update =
+the USRP N310 following this guide: <a =
+href=3D"https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Gui=
+de">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide</=
+a> in particolar &quot;Mender Update =
+Process&quot;.<o:p></o:p></span></p><p><span lang=3DEN-US>The results is =
+the follows.<o:p></o:p></span></p><p><span lang=3DEN-US>Can anyone help =
+me? <o:p></o:p></span></p><p><span =
+lang=3DEN-US>Giuseppe<o:p></o:p></span></p><p><span =
+lang=3DEN-US>&nbsp;<o:p></o:p></span></p><p><span =
+lang=3DEN-US>&nbsp;<o:p></o:p></span></p><p><span lang=3DEN-US>mender =
+-rootfs /home/root/usrp_n3xx_fs.mender<br>Incorrect Usage. flag provided =
+but not defined: -rootfs<br><br>NAME:<br>&nbsp;&nbsp; mender - manage =
+and start the Mender client.<br><br>USAGE:<br>&nbsp;&nbsp; [global =
+options] command [command options] =
+[arguments...]<br><br>VERSION:<br>&nbsp;&nbsp; a78b45e&nbsp; runtime: =
+go1.12.9<br><br>DESCRIPTION:<br>&nbsp;&nbsp; mender integrates both the =
+mender daemon and commands for manually performing tasks performed =
+by<br>&nbsp;&nbsp; the daemon (see list of COMMANDS =
+below).<br><br>Global flag remarks:<br>&nbsp; - Supported log levels =
+incudes: 'debug', 'info', 'warning', 'error', 'panic' and =
+'fatal'.<br><br><br>COMMANDS:<br>&nbsp;&nbsp; =
+bootstrap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Perform bootstrap and =
+exit.<br>&nbsp;&nbsp; check-update&nbsp;&nbsp;&nbsp; Force update =
+check.<br>&nbsp;&nbsp; =
+commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Commit =
+current Artifact. Returns (2) if no update in progress.<br>&nbsp;&nbsp; =
+daemon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Start the =
+client as a background service.<br>&nbsp;&nbsp; =
+install&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mender Artifact =
+to install - local file or a `URL`.<br>&nbsp;&nbsp; =
+rollback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Rollback current =
+Artifact. Returns (2) if no update in progress.<br>&nbsp;&nbsp; =
+send-inventory&nbsp; Force inventory update.<br>&nbsp;&nbsp; =
+setup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Perform configuration setup - 'mender setup --help' for command =
+options.<br>&nbsp;&nbsp; =
+snapshot&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Create filesystem =
+snapshot -'mender snapshot --help' for more.<br>&nbsp;&nbsp; =
+show-artifact&nbsp;&nbsp; Print the current artifact name to the command =
+line and exit.<br>&nbsp;&nbsp; =
+help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Shows a list of commands or help for one command<br><br>GLOBAL =
+OPTIONS:<br>&nbsp;&nbsp; --config FILE, -c =
+FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+Configuration FILE path. (default: =
+&quot;/etc/mender/mender.conf&quot;)<br>&nbsp;&nbsp; --fallback-config =
+FILE, -b FILE&nbsp; Fallback configuration FILE path. =
+(default:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; &quot;/var/lib/mender/mender.conf&quot;)<br>&nbsp;&nbsp; --data =
+DIR, -d =
+DIR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; Mender state data DIRECTORY path. (default: =
+&quot;/var/lib/mender&quot;)<br>&nbsp;&nbsp; --log-file FILE, -L =
+FILE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FILE to log =
+to.<br>&nbsp;&nbsp; --log-level level, -l =
+level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Set logging level. (default: =
+&quot;info&quot;)<br>&nbsp;&nbsp; --log-modules value, -m =
+value&nbsp;&nbsp;&nbsp; -log-modules is accepted for compatibility but =
+has no effect<br>&nbsp;&nbsp; --trusted-certs FILE, -E =
+FILE&nbsp;&nbsp;&nbsp; Trusted server certificates FILE =
+path.<br>&nbsp;&nbsp; --forcebootstrap, =
+-F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; Force bootstrap. (default: false)<br>&nbsp;&nbsp; =
+--no-syslog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Disable =
+logging to syslog. (default: false)<br>&nbsp;&nbsp; =
+--skipverify&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Skip =
+certificate verification. (default: false)<br>&nbsp;&nbsp; --help, =
+-h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; show help =
+(default: false)<br>&nbsp;&nbsp; --version, =
+-v&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print the version (default: =
+false)<o:p></o:p></span></p><p><span lang=3DEN-US>ERRO[0000] flag =
+provided but not defined: -rootfs&nbsp;&nbsp;&nbsp;&nbsp; =
+<o:p></o:p></span></p></blockquote></div></body></html>
+------=_NextPart_000_01D6_01D82257.246900B0--
+
+--===============4736387868198590741==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -330,4 +659,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0879361845124429401==--
+--===============4736387868198590741==--
