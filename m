@@ -2,107 +2,179 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F1BD4C0FE0
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Feb 2022 11:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2655D4C1309
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Feb 2022 13:43:59 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 257C7380C05
-	for <lists+usrp-users@lfdr.de>; Wed, 23 Feb 2022 05:11:33 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id EFD63384B95
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Feb 2022 07:43:57 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="rfaDRbuJ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eyqF6eDM";
 	dkim-atps=neutral
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-oln040092075078.outbound.protection.outlook.com [40.92.75.78])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3F6D83847FF
-	for <usrp-users@lists.ettus.com>; Wed, 23 Feb 2022 05:10:28 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NaOsDHszXlLugsrdp6yKmclK4gwPVLKDq6aqTchlTVtUwGGYhP8QjTpMlrvWzZmgbgFGADwzCzYCJtmRq/oGl8f1fclBY9HxEmVTyMUS750O9kMUcOCnrD5HHe4wCXEyX1ikc9sTFjaRXWY5PiQeCumlQE6JfCE+mRBP0dp31SLXg3qnaUh/Fv0jKzA9J5MU5VhNwxQ2c9UOHus/pNEcbb7gJ/GOZNYS+RMTVv9bVrz92a6c2eZcpO4rpLh67rsjkH8qyFqw8vWXUOJjJ++TnxCCq3joRAI7FpYRRxhMej0a+jXAvMqMXAlWO27QKzZ7CsUTajNtz37savWT6puwZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wzuzPRIlbLse3Ny4h2Rkp13u1KO8Az8C5nPTx4xaIks=;
- b=cV6mPWG+iWwCLVKoQqP7JeGuhyO7Tcfmvfg0i7UV8scy/r5mfVY/b3neFu+XM0873HdSBEhtsiGFEw1W2HBqPIzmAki5P8Bw/nMWJrqqA0RrYStk+uaBx+PnsdWie0m2RKawqzZbks47iE0Dyf4tjXW7WHtL8aB94d9lKxBERsfKZAk3kMGPpCpfUdgSi/8MHv10PD74gS6YmZJxROC0rz7FlVIBOTzdYoOIwQnEt6kr76xoTFQtbE36pDDNGwJPBufXl1pgmj7WbFoclew34xq/C7wpc88H6u37WJIg9d7OLWB8Sy4G4yp1dW6syiQejhxAKmYeH7hWGNIFuTgouQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wzuzPRIlbLse3Ny4h2Rkp13u1KO8Az8C5nPTx4xaIks=;
- b=rfaDRbuJM6ieMTpX6RMFOFDq4DhdD3WPjJXLNROi1IRgsNtCrLWIrdxlXf6osOQj2+LJmsoNAF5YtxZ3utHLOv7AFkD8r5v+0kqRbn7TxgLKBzKHO8Gjl8hzFpr8GiBEcenWNP7q5BchdknajNoYVWZtxY+jdqtHI+5FXevGy3PxSXitQphU2uG4m9OHj6q5wGBhnW0HFKSFFoNKMhUUayQJL3Ew2zccQDey3BfD2mJtsWeDu2nYC+JJZMe6qVa/DNm6kNDnrw0NlNk+VpPVEibYqCheNH9mOQWNbVGU8+6WX0LiIou6cS8/6ZvSFnvPW1cOVD1RMur4BDm7u076dw==
-Received: from PAXP193MB2252.EURP193.PROD.OUTLOOK.COM (2603:10a6:102:232::16)
- by GV1P193MB2119.EURP193.PROD.OUTLOOK.COM (2603:10a6:150:28::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4995.16; Wed, 23 Feb
- 2022 10:10:26 +0000
-Received: from PAXP193MB2252.EURP193.PROD.OUTLOOK.COM
- ([fe80::599d:c151:e3e1:bce2]) by PAXP193MB2252.EURP193.PROD.OUTLOOK.COM
- ([fe80::599d:c151:e3e1:bce2%4]) with mapi id 15.20.5017.022; Wed, 23 Feb 2022
- 10:10:25 +0000
-From: =?iso-8859-1?Q?Thomas_Lorblanch=E8s?= <zlika_ese@hotmail.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Overflows "O" messages with USRP X300
-Thread-Index: AQHYKJ1mvspOvSVSY0q+hGo44eFebg==
-Date: Wed, 23 Feb 2022 10:10:25 +0000
-Message-ID: 
- <PAXP193MB22523F0DC38B2BBD84D77318963C9@PAXP193MB2252.EURP193.PROD.OUTLOOK.COM>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-FR
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-suggested_attachment_session_id: a2414569-b46f-f4a1-b794-034ffaa70f41
-x-tmn: [FXuklD7n7cJbf7BqKcwNCDoIHJ7yMBRw]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b4b91336-3b66-44e4-57a7-08d9f6b4b5fc
-x-ms-traffictypediagnostic: GV1P193MB2119:EE_
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- R24JBlt60OPf0wAmIsWFuoh3YvTqX36dyP4FqKXZimL/7CJKUvsd+6jL4/8X4lDBBITRXMYpWshjSee0KnoRGLho2F4VGCjAXNhbyyNaoC96hVWYGIAYF5AlBtouPtI0WXB0w4akS4fDmAIXJMMBVrA6zGKAiqCa4j2ErCr+xPBwnDYru1vS3gJx0+vdr1KvThs4OFBbf5jD/mnwYZxLVGU3i7OM5bQ1ukdr3J6Q2ejj+kG7xNjd6RHzkAbVAixrDOnnUYrqteb0tcZK300nfkTLE2mrJa0gKj8SzPYLZNbl45xFOYZZDs/SPy98eiROMmhf/ETI5LiJpEzHGUz7krn/y+ohDFEHlirDNbO1eQc0bObSmfI4I7/W1t4yKz76I9wJ2UQ78tUrWpN+VHyvGkbrX/olLIx06NQUBltiM/0N/rzFvHf8mvruBIDXLqlMdFu0GckUJedx5kZXXxlGyJEhT98cI+89mcEr+E6dO2Z7PNWyCnT33cqnbXBsm1hQKe2PHclHF6S2GwrsXSxwb0wp7SBHp4Yz+vIdcEH4E+7sI3MQlTy9dtCU0l0mf+dIIByF35zbGjqwN6mO2RUvuo72p5fsafKU/+X5D/0GMN/15SKrEPOH6H8GdS062oFm
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- QniNFIicYEaOZ28DZwsljZvGKz+5eq/nk9mcvplW2cbd8D45NNZxDJAf59Kv4nR9iPe8WB+ajHYrVw7v0EwX8VonUQUKq+R1WNaqSXG738FLvYwrg8E5wU36yFK/PluZYcDAuoNXhkyyTqp5Hkvx5lwv2uvRPaaOtcaRGXWFSZ4NeWNn+fjFWWwwzsLxKIFq+vlVqSq0UVc2RzC9/Eo4UU7tcgB7f3InVRaD9Wjwdg4mA+kKsmIevswFE2nvdIAx4+ibYer6CTqZq3tAswvWRATVct5ud8LOLbmEbZLTZakq5sQ+4jkeYmWN7ndQ3eSb4UQi2D7giOzfBavEKTtWU8siwfyDLv4CD0bniS+EnYvx1xykDXjWz8z15ur0vG2v3N/wzlVdU3K31Jn2R8zG/PZUdyO99G23Eg911jzadRyGSroxCi9lfED3Fxr8Nk58myD9+gsYZ0sAkSt4Xwpqs0z0dsjGJN4ImapKCMO6RSVxMXmFKD2kNz0tFnYY0F+ra5qIioHJ+zI2BhjqrqwoshYKFJEDrvg4rqKIt7pNkWKEZsP4esbRAVzPO+gxMhm3bIDCYGJNrFE0Uqr1yxxCDz/WfJ4iC4XOJv2zUwKJCrdY5KN3uRVs9mmEAcH/ZADX5dnpI/Wsx7RuFSdaY3Bt1WoAVVdAK1S6Cjzb2l39fGZ+sasLVPZj1arVMZk6DM8bmY9IHkdXtEpB1R8uBW7gkk8xhWih3nEm2e3VtsDFnvb8AwcT1Q+PaV/VHI8heyplN1Mf2dgWCMUR950T8AA1Ku9En4FhBVNhUU6S1Kl5Da1Ypf5aiGB0cc9hJBZtViiiXwIaAdKFGB64HBXSkt8KlQ68NOXbn7caBAOM5bc4FwwaSzcfGGSpW7I9pX5YZtZpVndFhZqPHt25eu8CLdqQwG0c9m6BQuqq7hBHEPfQIA6HGQtz7C8gMxmdczSE2Wq1
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id C3C53384252
+	for <usrp-users@lists.ettus.com>; Wed, 23 Feb 2022 07:43:04 -0500 (EST)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2d07ae0b1c4so208984277b3.11
+        for <usrp-users@lists.ettus.com>; Wed, 23 Feb 2022 04:43:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0rDWjp/iLzFPUl9vVYWVm/hjwr61TK1jG1Degq4pUPs=;
+        b=eyqF6eDM/X9pMKFhhmf0K7UX6XO6WsH2qJhiQ3T1iHazBXiBAdaZB/ou6xvNPaopz6
+         uDHWMzU2l4ID7GtmqpD2GsObtOjdo5zMoj7jbjtw9WTLU8ZjAy+aUZnUqdFuBBuIISMP
+         9p4PG0mLUsxTXpp4MwzmJUy4XSxeo9onJr4g8wtIR9lbnAgFzDHNdAE1ee09ykFzsIa6
+         gMmyFru33r8iL4Xe0LFQVhsDSNqWd9Rh97YaFFZZ4EETLKKy4lnw0bfkIzQL5qavISHj
+         YZMTZcnUX+cLd2EdAJ6JsyyrplOjvDcc5bFCg6/UPAF9blJGsXU1Etgyhqlev8oLyxoy
+         4GPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0rDWjp/iLzFPUl9vVYWVm/hjwr61TK1jG1Degq4pUPs=;
+        b=sGOVCogBajSCYhzVaFTb3vX7HcMQenp/RASw4jAQrFH4GOzOSZWvyez1GuVaTW7cVv
+         7kCtaF9obss+tA6mIglYi/1VXDSJ7jnLnvmofWBaDkABDd3llfuPwcjPVp4PV6a0Ix07
+         aofI8UK4wnYph1MSHndsP6lyv7M+QU651nuUZxNIYXPuoPYj10DTU2rATHalAqj2OzMq
+         96llMm/IPqIXg0kuvd10F8Eq2d8JFEZgfKnotm6bqWNSWH2XsP2cPBwhgvnQj2h5SwUC
+         m+xlcpRF4CGEfpvOyXd1g7Uaf2ArZI4J3jVC57jc1iGbwg8+pRejTrNLVrqL7Wn0lF2R
+         L+GA==
+X-Gm-Message-State: AOAM532vEHiu2PqOegV02EvU9OnD/rOjrVDEU+1k2C2kspvh4fMpntkc
+	E2+YJzhDHwc10DPsQsUO6yHnOohIG/zik06eI04=
+X-Google-Smtp-Source: ABdhPJw4FP/Pfi8dBrHC1xsZvuAE/5ET/S0ZPoQ01PhxZ5ENlpRSq4PY+LakqPIGBlzcmQyvbPQ+5u+yLzxMsvF8hoE=
+X-Received: by 2002:a81:980c:0:b0:2d1:e9f:69e4 with SMTP id
+ p12-20020a81980c000000b002d10e9f69e4mr28553071ywg.363.1645620184100; Wed, 23
+ Feb 2022 04:43:04 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-80ceb.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXP193MB2252.EURP193.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4b91336-3b66-44e4-57a7-08d9f6b4b5fc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Feb 2022 10:10:25.6614
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1P193MB2119
-Message-ID-Hash: XHIFQTC4AZRIU6LZEO5U56TIE7DSIHH5
-X-Message-ID-Hash: XHIFQTC4AZRIU6LZEO5U56TIE7DSIHH5
-X-MailFrom: zlika_ese@hotmail.com
+References: <CAAC=UJPdKrPns+vxyowygXQTK7khtLMu8koQqpsvHGQJAOjnHw@mail.gmail.com>
+ <4876156c-b6b9-9fb7-7e9f-d0c56961d4f0@gmail.com> <CAAC=UJOtVbZ+L_LmRQRtxs1oUWWHODoosoHpx_6s=F-bqmOo1Q@mail.gmail.com>
+ <69d0baa5-45f7-44ff-88e3-d0c0a46d381c@gmail.com> <CAAC=UJOKOnQ0W2i9FWoDGcgN8otCV4-43BD7tjtvUoo0AKNtFg@mail.gmail.com>
+ <9be7a93d-c746-dcc5-51ec-aa75519b1c24@gmail.com>
+In-Reply-To: <9be7a93d-c746-dcc5-51ec-aa75519b1c24@gmail.com>
+From: Alvaro Pendas Recondo <apruhd@gmail.com>
+Date: Wed, 23 Feb 2022 13:42:56 +0100
+Message-ID: <CAAC=UJNuTseRhHFRtLZEMb+nk4DKCBQkfUD7z91SohT8AqqFOw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: E6QETBGES6ZSPA6JBNUY3KQZYAYUG4NE
+X-Message-ID-Hash: E6QETBGES6ZSPA6JBNUY3KQZYAYUG4NE
+X-MailFrom: apruhd@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Overflows "O" messages with USRP X300
+Subject: [USRP-users] Re: 4 Rx sync with 2 B210
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZYMBLE4GRFRPO7ZC3SWQP6KJBEGRTKHI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E6QETBGES6ZSPA6JBNUY3KQZYAYUG4NE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="===============0117318715737835082=="
 
-Hi all,
-I try to use a USRP X300 with a 10G Ethernet link at full speed (200MS/s), running uhd 3.15.0 and gnuradio 3.8.2.
-I followed all the tips from 
-https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks
-but I still receive "O"s from time to time.
-I don't have these messages at 100MS/s.
-I'm surprised to receive these overflow warnings, because this is not what is 
-described in
-https://files.ettus.com/manual/page_general.html#general_ounotes.
-In this document, network-based devices are only supposed to drop ("D") packets 
-because there is no back-pressure.
-So how is it possible to receive "O"s (i.e. the device's internal buffers 
-become full) with this setup?
-Thanks for your answers.
-Thomas
+--===============0117318715737835082==
+Content-Type: multipart/alternative; boundary="00000000000082335905d8aeceb6"
+
+--00000000000082335905d8aeceb6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I finally managed to make it work by setting both blocks with "No sync" (in
+my first scheme one of them was configured with "Unknown PPS" by accident).
+There is still the problem with the decrease of the maximum sampling rate
+when doing MIMO with B210. Anyway, in this case I was just doing a simple
+characterization of the devices, so I will keep in mind that some problems
+may appear when synchronizing multiple B2xx externally. I am also aware
+that N210 is the model recommended for that.
+
+Thank you very much for your help.
+
+El mar, 22 feb 2022 a las 20:10, Marcus D. Leech (<patchvonbraun@gmail.com>=
+)
+escribi=C3=B3:
+
+> On 2022-02-22 12:05, Alvaro Pendas Recondo wrote:
+> > Yes, I am aware of the 4-channel, but I just forget about it when
+> > doing comparison. The explanation behind is that I only have 3
+> > antennas right now, so I am actually working with 3 Rx.
+> > About setting Sync to "Unknown PPS", I had tried before, with no
+> > result, but I have setted again. However, I have never tried to modify
+> > the "start time", which in GNU Radio is -1.0 by default. The
+> > interesting thing is that if I try to set a positive value I get the
+> error
+> > gr::log :WARN: usrp_source1 - USRP Source Block caught rx error:
+> > ERROR_CODE_LATE_COMMAND
+> >
+> Yeah, this is going to require a bit of custom coding on your part to
+> make sure that both B210 agree on what time it is when the PPS arrives.
+> I think that having
+>    *both* of them set to "Unknown PPS" won't work very well, because the
+> first one will *wait* before the code even gets to the second one, so
+> they'll be in disagreement
+>    about timing.
+>
+> You'll likely have to do the PPS synchronization "dance" yourself.
+>
+>
+>
+
+--00000000000082335905d8aeceb6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I finally managed to make it work by setting both blocks w=
+ith &quot;No sync&quot; (in my first scheme one of them was configured with=
+ &quot;Unknown=C2=A0PPS&quot; by accident). There is still the problem with=
+ the decrease of the maximum sampling rate when doing MIMO with B210. Anywa=
+y, in this case I was just doing a simple characterization of the devices, =
+so I will keep in mind that some problems may appear when synchronizing mul=
+tiple B2xx=C2=A0externally. I am also aware that N210 is the model recommen=
+ded=C2=A0for that.<div><br></div><div>Thank you very much for your help.</d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">El mar, 22 feb 2022 a las 20:10, Marcus D. Leech (&lt;<a href=3D"mailto:=
+patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;) escribi=C3=B3:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex">On 2022-02-22 12:0=
+5, Alvaro Pendas Recondo wrote:<br>
+&gt; Yes, I am aware of the 4-channel, but I just forget about it when <br>
+&gt; doing comparison. The explanation behind is that I only have 3 <br>
+&gt; antennas right now, so I am actually working with 3 Rx.<br>
+&gt; About setting Sync to &quot;Unknown PPS&quot;, I had tried before, wit=
+h no <br>
+&gt; result, but I have setted=C2=A0again. However, I have never tried to m=
+odify <br>
+&gt; the &quot;start time&quot;, which in GNU Radio is -1.0 by default. The=
+ <br>
+&gt; interesting thing is that if I try to set a positive value I get the e=
+rror<br>
+&gt; gr::log :WARN: usrp_source1 - USRP Source Block caught rx error: <br>
+&gt; ERROR_CODE_LATE_COMMAND<br>
+&gt;<br>
+Yeah, this is going to require a bit of custom coding on your part to <br>
+make sure that both B210 agree on what time it is when the PPS arrives.=C2=
+=A0 <br>
+I think that having<br>
+=C2=A0=C2=A0 *both* of them set to &quot;Unknown PPS&quot; won&#39;t work v=
+ery well, because the <br>
+first one will *wait* before the code even gets to the second one, so <br>
+they&#39;ll be in disagreement<br>
+=C2=A0=C2=A0 about timing.<br>
+<br>
+You&#39;ll likely have to do the PPS synchronization &quot;dance&quot; your=
+self.<br>
+<br>
+<br>
+</blockquote></div>
+
+--00000000000082335905d8aeceb6--
+
+--===============0117318715737835082==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0117318715737835082==--
