@@ -2,161 +2,288 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEEE34C497F
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Feb 2022 16:47:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE8E94C516C
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Feb 2022 23:20:02 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3014B38511A
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Feb 2022 10:47:44 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id BAF1638519A
+	for <lists+usrp-users@lfdr.de>; Fri, 25 Feb 2022 17:20:01 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="kYsqMsgv";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Hd4v19tN";
 	dkim-atps=neutral
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0057.outbound.protection.office365.us [23.103.208.57])
-	by mm2.emwd.com (Postfix) with ESMTPS id 33EA23848AC
-	for <usrp-users@lists.ettus.com>; Fri, 25 Feb 2022 10:46:50 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=Vv1fRzRzHZmYy1zVdsEvNNfi6VTGfbmqmOe1+ydHKTHBE/Urs4wcbkbax5CPwwqtS6VzdmOkSyeay+2oK0Ln6cucJuJnusXlpeLI5FuS45+6re6VJTmFz/UKsK/yvQG8bIld0xk/sJVuSaz4ESYSZrPPILW2Eog0QAwuF6DOehKcggwvU/tOVcwV/Z1+uwAc60IzaWxYlXFyJpbMrtdC9bDpU4ze+1pmj2lyx9g0GYQtW1QNUJ8DEBKnPpGJ5D/aBJ3BgshTbAuK6SjyBU5vyQ/TaHp+dd8FfdRvSJgXph2RoHLIe6F/mtz3Q7rTnl1oalVEQpDFOMZ1kQ1Zlqjy8A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=afsJ4523aKGkiJkJHHmt6tmBiCnWbQncItJOpE095uM=;
- b=qJz0gqsFLLGoLaHiq2UQSFRgiIqjzvoaOPQnjhtS8shxogTNc9tYTGih5/P6w8bkBcWt9TsefK5K8OWqVa8e+6jAuwrr55GPEGgOUlulHFX8k5pXxWfF66pbroj+OtQRZrWh5Ev0neUKIPQHA3fLPcWzAOTLquieu6sOYYbRXzyIRYIFP7fYncSTYTtZHcojwkY27Vwb/RtVUsUDEjJQdVieKLpaaam3r9RmquzOz30+S3nLRJi6/iQoaFQGm2H2zV5ZbPH5ItSl5J2/AXSHDWkAt4o9MfYoKXTnc74ObtNo8ToxueZXEUULh0GOhsmuMfV6gw7N4U5pztCM+Us+4A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9A74C3848E1
+	for <usrp-users@lists.ettus.com>; Fri, 25 Feb 2022 17:19:05 -0500 (EST)
+Received: by mail-yb1-f179.google.com with SMTP id v186so8591516ybg.1
+        for <usrp-users@lists.ettus.com>; Fri, 25 Feb 2022 14:19:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=afsJ4523aKGkiJkJHHmt6tmBiCnWbQncItJOpE095uM=;
- b=kYsqMsgvu1lrJBAI9IxTOgJY0kIvAQ564JWTkmYz8edFqnjyrMtWYnkE1Gbhw1pu5KaEC2m3upTr0TkSNvJjY763uM8ri2Vu4raDlYIWQdjzCNndrvvYL8VoGe+wzFunCyq3Ua8so8Lhrf0dlGIU0Q26JEmvxue3HLyON+4b1GkAFB+CiOaMNEuYwJTmsJMBYNircu4QniL6n9RAywpamSkRens9+SWY/Cf2pgxJOakuTpgAXrRs2l9qBlovTQF1zEFrirgziEQmlgbKLn83s/rxP1htjoP42HXfX65apBL4B94yNqKGcNqSrnaSe9LKMuJ33MIAaKxZXZZWZQjd3g==
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
- by PH1P110MB1634.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:188::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.23; Fri, 25 Feb
- 2022 15:46:40 +0000
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::2d99:3572:584d:4870%2]) with mapi id 15.20.5017.026; Fri, 25 Feb 2022
- 15:46:40 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, Brian Padalino
-	<bpadalino@gmail.com>
-Thread-Topic: [USRP-users] Re: Question about external refclk into N320
-Thread-Index: AdgqWWtHuntLxfN+TuOeyRU2r3pkEwAAgrcAAAAOTgAAAHHZAAAALX7A
-Date: Fri, 25 Feb 2022 15:46:40 +0000
-Message-ID: 
- <PH1P110MB166508EFAA2AD7D8F5AD8503B73E9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <PH1P110MB16650FA41146FF675795EAFDB73E9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
- <945ac0f4-1724-3472-84cd-1be23fb5c50f@gmail.com>
- <CAEXYVK5y2S3WRhFwVN2pqRcL8usB1iQii9NiWU4SyO-O8xFhfg@mail.gmail.com>
- <233132a2-d66e-c023-f1cd-41891e01df23@gmail.com>
-In-Reply-To: <233132a2-d66e-c023-f1cd-41891e01df23@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f035e4bf-9d75-4769-052c-08d9f876041d
-x-ms-traffictypediagnostic: PH1P110MB1634:EE_
-x-microsoft-antispam-prvs: 
- <PH1P110MB16342448CBB5BED286896046B73E9@PH1P110MB1634.NAMP110.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- ml/w7/90SnNolNODUIMzT2reujxPyavODPyue3AU5Kfm3xnvZYN8OwxtahbHZieVHqfrUBczhaKkggUmGznGPX0f4lvp4nYM0ParuoZVc9XsHDGKf+TDbwAszU85D1kq9OlM6fcXb7EJTPPFeyMJIb/88bQx9GsbK8jTWrXIVC0Si5N7rc/0NjnTKdfcjj/VlESQXd7vFNE7blt4jBguXzvcANDW8rIb4N92t7As1PHWk++wbLph8G/5Gwcc1vdE6627gpcd6w0Gr8yGedHAw9TuaLv3rWDOo2TTufrs0fzLPLGXmfoj+DLzq+PnAV7u8z2IB5dGeYysfK3NsTwYjwKhN3Sv+mXC9gqcvyOTxvxnHU26TlP9XRLuahWQZqEC8Q2xn8FgzNTjtIfsEbG91kxLhqCKKMdX905opy43jyGHOgOO1K4Rw35SdU7CKbgD6S5Rc7gtoMpwg7TlqyhawTxidqDqYM/Lu1kZAFNNV6i4SrXeQQUVLX5m+jnn+FB3OOyQtPb3PzQK2+MEZjNc1u0X2Fa1U10h/b1K0ibY4CD4FTa/Ecn+YIJqzN6RUGtVLjhfxVMAB3ImneXuYhhqLnYxzL3uscidEIuFYdPAmpD1SAspyVAKB8YUzC1c9/MkOOloDZ5QKqPjxXpyY53V8w==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(346002)(366004)(136003)(376002)(396003)(39830400003)(4326008)(38100700002)(2906002)(76116006)(66446008)(66476007)(508600001)(66556008)(66946007)(86362001)(8676002)(122000001)(38070700005)(55016003)(8936002)(316002)(64756008)(71200400001)(83380400001)(9686003)(558084003)(7696005)(52536014)(6506007)(186003)(33656002)(5660300002)(110136005)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- 2A8tXw78KGQ6slGvso0cl7AeyiEZpRy5AEtkW6lrfiRpl4038H7WBqy4oSjBdz3M4TgdboXdwqnLWnfhRrxW4C22QCoO1aDgv93i29LtXkhwB2IDL6M3wv9LXqDHLadKEPsfuAAAjn+eDoVS80HGlZvrGNwT5WvOLcJWflBay5GxBL8/bYToCm/+swaEkwR4tsTrLsU0LQB6fSfmOz9eLA==
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i77xIL19RG5RsC+3DeWxEtDc2mhO0QjM0gvr7WjXiOU=;
+        b=Hd4v19tNQWtdkNnSGbAmJ8TiUJuhQNIRwkdt8WGhiVfRJqzHMqXJvTTqlpS7K8eufx
+         DsDBxw3S7xIvsHNoACYjufRlpU6LydHjwdYUGk4FbUizWwiDc2bF0TBaB2DKmAr1wkv+
+         1rLtgaOTTrc1Ajl9yYxHL0qU3YYblOXRZtPhgoYCvAQfkXPh0ShHnam5I6LoHplPxhp3
+         3jbBQfYyBzPw2NX+KhQZvPj4jUF+qMyhMKUFs5r9bVrhDNLpPTGnKeAlpzzsM0sTVwqz
+         OSOdMARnCccAuHYgFwIpNHIYkz3+1QFgn1kegCjGoP6/wIZCBg+2WmLDYcW6scDlGUSG
+         3zLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i77xIL19RG5RsC+3DeWxEtDc2mhO0QjM0gvr7WjXiOU=;
+        b=1dDAnsRsI1Cn7cN1QRbuMeqanrHBbIh9QYnrqIzwBHoqTqKQZixh2Z0J/oUcshxe2z
+         297xuOSjrSuMOvTYX6odpdFT0X3quCPa+GRCaGCSZdY5ZxxojnnXzyI4wv2tGlYVeiDP
+         qT4D03vIKVqpAQq6uK+o+cC3cVSL6OC1Jf2MVfR+mZdo5bEneEt2N6Er7m9SsvGZfJWE
+         aDpB14vHDexuGosKImt+pttBkrhS4FCcs9T11QMPpOmn3AJMjqDudLQpoXfOc0ETqhOr
+         j/eSRMBmELrdqTJg0dIF9BZMohnd4Zf/592xbbfk91etbVjZV0dZ6KbyLU77o7oYAOWJ
+         hdXQ==
+X-Gm-Message-State: AOAM530oLTiXtlENAuGRixFLPnHFiB9n/7+/tWfJnl8sst367OtUloZF
+	7tg40N0jqZtLHnvqFUnvXDD/hIHTB2wqucgOf71JlA==
+X-Google-Smtp-Source: ABdhPJwmJLVbe/mU/Pb8z4sljOt6kgdYQ+gHQBvDc47Eo9pI2rHOYbNpsJFzgFEyyjreMjusoaUwH1OAspfxVdgDolM=
+X-Received: by 2002:a25:df41:0:b0:615:7917:b4cc with SMTP id
+ w62-20020a25df41000000b006157917b4ccmr9674967ybg.563.1645827544699; Fri, 25
+ Feb 2022 14:19:04 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: f035e4bf-9d75-4769-052c-08d9f876041d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2022 15:46:40.7694
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1634
-Message-ID-Hash: 62T7K5L5NBVZ3GHNP6MUKOCPGWZ4D7IU
-X-Message-ID-Hash: 62T7K5L5NBVZ3GHNP6MUKOCPGWZ4D7IU
-X-MailFrom: david@SynopticEngineering.com
+References: <CAB__hTSOPxRuE8hBdUa_8t5=UL+-6fDFM_wMiod9cZ4VHYwghA@mail.gmail.com>
+ <CAFche=iW6jhLn-37Kmg3gTcgUL3qc+ZZOnSD4CRrDzBxovtJMQ@mail.gmail.com> <CAB__hTQfTme1csXj=aVNpgu3tyZW4o6=xQZwUG8ZQacAULDncA@mail.gmail.com>
+In-Reply-To: <CAB__hTQfTme1csXj=aVNpgu3tyZW4o6=xQZwUG8ZQacAULDncA@mail.gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Fri, 25 Feb 2022 17:18:53 -0500
+Message-ID: <CAB__hTQ6vj_MsV8M8rcGDKJD==J6+fFvdEVcDurPy_Cbd7_LCg@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Message-ID-Hash: KZEWYNFKHIQJ2UPWMRATKNHDKT7BRS6R
+X-Message-ID-Hash: KZEWYNFKHIQJ2UPWMRATKNHDKT7BRS6R
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Question about external refclk into N320
+Subject: [USRP-users] Re: implement user clock in rfnoc
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OB7J2DEJUGMZG5AOZG4YDDDBRWTI63OZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KZEWYNFKHIQJ2UPWMRATKNHDKT7BRS6R/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7046918511856073521=="
+Content-Type: multipart/mixed; boundary="===============2335288487992972943=="
 
---===============7046918511856073521==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_PH1P110MB166508EFAA2AD7D8F5AD8503B73E9PH1P110MB1665NAMP_"
+--===============2335288487992972943==
+Content-Type: multipart/alternative; boundary="0000000000002a0dce05d8df16aa"
 
---_000_PH1P110MB166508EFAA2AD7D8F5AD8503B73E9PH1P110MB1665NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000002a0dce05d8df16aa
+Content-Type: text/plain; charset="UTF-8"
 
-VGhhbmtzIGFsbCDigJMgSSB0aGluayB0aGF0IGFsbCBtYWtlcyBzZW5zZS4gIFNvIHRoZSBpbnB1
-dCBjbG9jayBpcyBBQyBjb3VwbGVkLCB3aGljaCBzdHJpcHMgdGhlIERDIGNvbXBvbmVudCwgdGhl
-biB0aGUgbGV2ZWwgaXMgY2xhbXBlZCBieSB0aGUgZGlvZGVzLiBUaHVzIHRoZSBUSSBjaGlwIGFs
-d2F5cyBnZXRzIGEgY2xpcHBlZCBzaW5ld2F2ZSByZWdhcmRsZXNzIG9mIHdoYXQgdGhlIGlucHV0
-IHNpZ25hbCBsb29rZWQgbGlrZS4uDQo=
+I was able to build successfully with the 'dram' clock as the 'ce' clock
+for my rfnoc block. But, I didn't get the performance I was expecting. With
+my rfnoc graph of "Radio->DDC->custom-zero-padded-fft-block", the Radio had
+overflows when running at 125e6 but worked well when running 62.5e6.
 
---_000_PH1P110MB166508EFAA2AD7D8F5AD8503B73E9PH1P110MB1665NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+My current thought is that maybe I don't have enough input buffering in my
+custom rfnoc block.  I initially had my payload input and output buffer
+sizes (defined in the block def yaml) set to 'MTU' which is how the DDC
+block does it.  But, when my build failed (attempting to add 4 of my custom
+blocks), I changed this from 'MTU' to '32'. Turns out that this didn't help
+my build succeed, but I did get a successful build after removing all
+Replay blocks / SEPs. So I am now trying to re-build with the 'MTU' setting
+with the hope that the increased buffering will allow me to run at 125e6
+sample rate.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvUGxhaW5UZXh0LCBsaS5Nc29QbGFp
-blRleHQsIGRpdi5Nc29QbGFpblRleHQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1z
-dHlsZS1saW5rOiJQbGFpbiBUZXh0IENoYXIiOw0KCW1hcmdpbjowaW47DQoJZm9udC1zaXplOjEx
-LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpzcGFuLkVtYWlsU3R5
-bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uUGxhaW5UZXh0Q2hhcg0KCXtt
-c28tc3R5bGUtbmFtZToiUGxhaW4gVGV4dCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7
-DQoJbXNvLXN0eWxlLWxpbms6IlBsYWluIFRleHQiOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
-YW5zLXNlcmlmO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
-Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
-MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rp
-b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDld
-Pjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0K
-PC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91
-dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpz
-aGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVT
-IiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQi
-Pg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPlRo
-YW5rcyBhbGwg4oCTIEkgdGhpbmsgdGhhdCBhbGwgbWFrZXMgc2Vuc2UuJm5ic3A7IFNvIHRoZSBp
-bnB1dCBjbG9jayBpcyBBQyBjb3VwbGVkLCB3aGljaCBzdHJpcHMgdGhlIERDIGNvbXBvbmVudCwg
-dGhlbiB0aGUgbGV2ZWwgaXMgY2xhbXBlZCBieSB0aGUgZGlvZGVzLiBUaHVzIHRoZSBUSSBjaGlw
-IGFsd2F5cyBnZXRzIGEgY2xpcHBlZCBzaW5ld2F2ZSByZWdhcmRsZXNzIG9mIHdoYXQgdGhlIGlu
-cHV0IHNpZ25hbA0KIGxvb2tlZCBsaWtlLi48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ib2R5
-Pg0KPC9odG1sPg0K
+But, apart from more buffering, is there perhaps a different explanation
+why my custom FFT block clocked at 300 MHz (with 50% insertion of zeros) is
+not keeping up?
 
---_000_PH1P110MB166508EFAA2AD7D8F5AD8503B73E9PH1P110MB1665NAMP_--
+On a semi-related topic, I'm wondering if anyone has suggestions regarding
+my build failures.  The build error indicates that I needed more slices
+than are available (out of 69350 total, 47879 are available, but I needed
+49414).  If I look at the build report for the default Ettus N310 XG image
+(see snippet below), it looks like there is not much availability for extra
+rfnoc blocks (96.44% util%). And, in my experience, this is where my builds
+usually fail.  I am wondering what I can do in the design of my custom
+blocks (or in the build parameters of the N310) to achieve
+successful builds - specifically related to this slice utilization.  Any
+suggestions welcome.
+Thanks.
+Rob
 
---===============7046918511856073521==
+// From build report of default Ettus N310 XG image
+2. Slice Logic Distribution
+---------------------------
+
++--------------------------------------------+--------+-----------+-------+
+|                  Site Type                 |  Used  | Available | Util% |
++--------------------------------------------+--------+-----------+-------+
+| Slice                                      |  66878 |     69350 | 96.44 |
+|   SLICEL                                   |  40816 |           |       |
+|   SLICEM                                   |  26062 |           |       |
+
+On Thu, Feb 24, 2022 at 9:25 PM Rob Kossler <rkossler@nd.edu> wrote:
+
+> Thanks for the suggestions Wade. I will first try the low-hanging fruit of
+> using the 300MHz DRAM clock.  Fingers crossed!
+> Rob
+>
+> On Thu, Feb 24, 2022 at 6:43 PM Wade Fife <wade.fife@ettus.com> wrote:
+>
+>> Hi Rob,
+>>
+>> RFNoC doesn't support generating user clocks for you yet (the range value
+>> is not currently used). You could use the `dram` clock on N310 and connect
+>> that to the `ce` inputs of your blocks. That should be about 300 MHz. The
+>> `rfnoc_chdr` clock is 200 MHz on N310.
+>>
+>> If it won't close timing with the dram clock, and you want something
+>> slower, then you can modify the HDL to add the clock you want. Take a look
+>> at n3xx_clocking.v. You could probably modify the misc_clock_gen IP block
+>> to add a clock closer to 260 MHz. You'd then have to route that clock into
+>> n3xx_core then rfnoc_image_core, and add the new clock to n310_bsp.yml for
+>> the rfnoc_image_builder to generate code to use it. Adding custom clocks is
+>> a pretty manual process at the moment.
+>>
+>> Wade
+>>
+>> On Wed, Feb 23, 2022 at 10:15 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>
+>>> Hi,
+>>> I have a signal processing block that includes a zero-padded FFT (50%
+>>> zeros) that I built for the N310.  Because of the throttling that occurs
+>>> during insertion of zeros, I expect that my FFT will need to be clocked at
+>>> a bit more than twice the max sample rate. So, since I want to operate the
+>>> N310 at the highest sample rate of 125 MS/s, it seems that my FFT will need
+>>> to be clocked >= 260 MHz.  I'm wondering how to do it.
+>>>
+>>> I've looked at the RFNoC specification and my block is already set up to
+>>> use the "CE" clock for both control & data. In the rfnoc spec, it mentions
+>>> that I can enter a "range" for my clock in the block definition yaml. But,
+>>> I also see that in the end, the top N310 yaml will require me to map a
+>>> _device clock to my block's CE clock port.
+>>>
+>>> It's not clear to me how this works. Does it help to provide a range in
+>>> the block definition yaml? Or, perhaps it is even necessary?  How do I
+>>> specify in the top N310 yaml which device clock will map to my blocks CE
+>>> clock port?  It seems to me that I am missing a step (defining a clock
+>>> somewhere?).
+>>>
+>>> I am pretty much a novice, so I expect that this is the cause of my
+>>> confusion. I am even struggling to figure out what the current clock rates
+>>> are (rfnoc_ctrl, rfnoc_chdr, ce, etc) and where they are defined. Any help
+>>> would be appreciated.
+>>> Rob
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
+
+--0000000000002a0dce05d8df16aa
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">I was able to build successfully with the=
+ &#39;dram&#39; clock as the &#39;ce&#39; clock for my=C2=A0rfnoc block. Bu=
+t, I didn&#39;t get the performance I was expecting. With my rfnoc graph of=
+ &quot;Radio-&gt;DDC-&gt;custom-zero-padded-fft-block&quot;, the Radio had =
+overflows when running at 125e6 but worked well when running 62.5e6.=C2=A0<=
+div><br></div><div>My current thought is that maybe I don&#39;t have enough=
+ input buffering in my custom rfnoc block.=C2=A0 I initially had my payload=
+ input and output buffer sizes (defined in the block def yaml) set to &#39;=
+MTU&#39; which is how the DDC block does it.=C2=A0 But, when my build faile=
+d (attempting to add 4 of my custom blocks), I changed this from &#39;MTU&#=
+39; to &#39;32&#39;. Turns out that this didn&#39;t help my build succeed, =
+but I did get a successful=C2=A0build after removing all Replay blocks / SE=
+Ps. So I am now trying to re-build with the &#39;MTU&#39; setting with the =
+hope that the increased=C2=A0buffering will allow me to run at 125e6 sample=
+ rate.=C2=A0</div><div><br></div><div>But, apart from more buffering, is th=
+ere perhaps a different explanation why my custom FFT block clocked at 300 =
+MHz (with 50% insertion of zeros) is not keeping up?</div><div><br></div><d=
+iv>On a semi-related topic, I&#39;m wondering if anyone has suggestions reg=
+arding my build failures.=C2=A0 The build error indicates that I needed mor=
+e slices than are available (out of 69350 total, 47879 are available,=C2=A0=
+but I needed 49414).=C2=A0 If I look at the build report for the default Et=
+tus N310 XG image (see snippet below), it looks like there is not much avai=
+lability for extra rfnoc blocks (96.44% util%). And, in my experience, this=
+ is where my builds usually fail.=C2=A0 I am wondering what I can do in the=
+ design of my custom blocks (or in the build parameters of the N310) to ach=
+ieve successful=C2=A0builds - specifically related to this slice utilizatio=
+n.=C2=A0 Any suggestions welcome.</div><div>Thanks.</div><div>Rob<br><div><=
+br></div><div><font face=3D"monospace">// From build report of default Ettu=
+s N310 XG image</font></div><div><font face=3D"monospace">2. Slice Logic Di=
+stribution<br>---------------------------<br><br>+-------------------------=
+-------------------+--------+-----------+-------+<br>| =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Site Type =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=A0Used =C2=A0| Available | Util% |=
+<br>+--------------------------------------------+--------+-----------+----=
+---+<br>| Slice =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
+=C2=A066878 | =C2=A0 =C2=A0 69350 | <span style=3D"background-color:rgb(255=
+,255,0)">96.44 </span>|<br>| =C2=A0 SLICEL =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 | =C2=A040816 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =
+=C2=A0 =C2=A0 |<br>| =C2=A0 SLICEM =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 | =C2=A026062 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =
+=C2=A0 |</font><br></div></div></div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Thu, Feb 24, 2022 at 9:25 PM Rob Kossler =
+&lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Than=
+ks for the suggestions Wade. I will first try the low-hanging fruit of usin=
+g the 300MHz DRAM clock.=C2=A0 Fingers crossed!<div>Rob</div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 24=
+, 2022 at 6:43 PM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" targ=
+et=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Rob,</div><div><b=
+r></div><div>RFNoC doesn&#39;t support generating user clocks for you yet (=
+the range value is not currently used). You could use the `dram` clock on N=
+310 and connect that to the `ce` inputs of your blocks. That should be abou=
+t 300 MHz. The `rfnoc_chdr` clock is 200 MHz on N310.</div><div><br></div><=
+div>If it won&#39;t close timing with the dram clock, and you want somethin=
+g slower, then you can modify the HDL to add the clock you want. Take a loo=
+k at n3xx_clocking.v. You could probably modify the misc_clock_gen IP block=
+ to add a clock closer to 260 MHz. You&#39;d then have to route that clock =
+into n3xx_core then rfnoc_image_core, and add the new clock to n310_bsp.yml=
+ for the rfnoc_image_builder to generate code to use it. Adding custom cloc=
+ks is a pretty manual process at the moment.<br></div><div><br></div><div>W=
+ade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Wed, Feb 23, 2022 at 10:15 PM Rob Kossler &lt;<a href=3D"ma=
+ilto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,=
+<div>I have a signal processing block that includes a zero-padded FFT (50% =
+zeros) that I built for the N310.=C2=A0 Because of the=C2=A0throttling that=
+=C2=A0occurs during insertion of zeros, I expect that my FFT will need to b=
+e clocked at a bit more than twice the max sample rate. So, since I want to=
+ operate=C2=A0the N310 at the highest sample rate of 125 MS/s, it seems tha=
+t my FFT will need to be clocked &gt;=3D 260 MHz.=C2=A0 I&#39;m wondering h=
+ow to do it.</div><div><br></div><div>I&#39;ve looked at the RFNoC specific=
+ation and my block is already set up to use the &quot;CE&quot; clock for bo=
+th control &amp; data. In the rfnoc spec, it mentions that I can enter a &q=
+uot;range&quot; for my clock in the block definition yaml. But, I also see =
+that in the end, the top N310 yaml will require me to map a _device clock t=
+o my block&#39;s CE clock port.=C2=A0</div><div><br></div><div>It&#39;s not=
+ clear to me how this works. Does it help to provide a range in the block d=
+efinition yaml? Or, perhaps it is even necessary?=C2=A0 How do I specify in=
+ the top N310 yaml which device clock will map to my blocks CE clock port?=
+=C2=A0 It seems to me that I am missing a step (defining a clock somewhere?=
+).=C2=A0</div><div><br></div><div>I am pretty much a novice, so I expect th=
+at this is the cause of my confusion. I am even struggling to figure out wh=
+at the current clock rates are (rfnoc_ctrl, rfnoc_chdr, ce, etc) and where =
+they are defined. Any help would be appreciated.=C2=A0=C2=A0</div><div>Rob<=
+/div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div></div>
+
+--0000000000002a0dce05d8df16aa--
+
+--===============2335288487992972943==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -166,4 +293,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7046918511856073521==--
+--===============2335288487992972943==--
