@@ -2,232 +2,205 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 926064CC07F
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Mar 2022 15:59:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE4FC4CC098
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Mar 2022 16:02:55 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 563C1384C4E
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Mar 2022 09:59:57 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E10BE38411E
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Mar 2022 10:02:54 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hkL0Vboc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YhOT0IsH";
 	dkim-atps=neutral
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1AA94384D93
-	for <usrp-users@lists.ettus.com>; Thu,  3 Mar 2022 09:58:51 -0500 (EST)
-Received: by mail-qv1-f44.google.com with SMTP id b12so4300609qvk.1
-        for <usrp-users@lists.ettus.com>; Thu, 03 Mar 2022 06:58:50 -0800 (PST)
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id 88B1C383D0A
+	for <usrp-users@lists.ettus.com>; Thu,  3 Mar 2022 10:01:51 -0500 (EST)
+Received: by mail-qt1-f179.google.com with SMTP id n11so4769462qtk.8
+        for <usrp-users@lists.ettus.com>; Thu, 03 Mar 2022 07:01:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to;
-        bh=7WHCMq1+u/D/Wc02TTmjoA/jrEBpsKM9c2HVU7ynSTM=;
-        b=hkL0VbocDC7b0PW9+8eUPb+bcVL+ILlAsL+h7450Okkc10PITHn3mvMy6l6mZXJw3W
-         013EJrqvsVb7zBcvZ50PDAWh/2GFH5YRQjFBUUTknLPyTpDEPBI3CQ3vH04yiY8fFqEu
-         gAOrJFE+dXqPuLI9DParwM3o4V0AqTqnNQcZWaBfmsUti9b18amgqcUFiEP7sQd2/m29
-         EAxzhECu968I8dmw+i+XzmdjYp8jfg2Lri9U+NkBmzgzeBl35RHhPqeK5OzE1JOWqxAD
-         C91XvW4NLNoIlARB5lxOzfrPDE0xm/fvYMF134K7xNX4t7psyEJQnpPj245x3J3o2EHX
-         pPHg==
+        bh=OR6QWHjDd+qc2Nh7etNEloO3fFdRk53bm0d5WJVeD0E=;
+        b=YhOT0IsHuyEcSKiag2nJAJGdiZnosaT4lr5NH5OILgPekwbgiZaISTWNfiZQBEE3/c
+         HSlAMUwipeuli0dvcHe8MEDi7p0LaOTidffA2WqndDNWk0ouU74XHXvTAL7Dh7u1MIpa
+         LJDH8aLXk4DrRe/nwg/o9jHcw/4PP8OcYEcg4U8tEyCZgomQ5Eu2j6Yo0zNXvwe/VyrS
+         ne57Ty9fOM5EIozrgEfGOXMJ6boWA/Puoo7FS52K8FypxxJP/gqXC7aL4usHmIIoQggE
+         Q76jgQS7cREZkYFbUE11kLMEr40Fs9njvmn3XZXyXaWgDExLy2DxXLiILvQx1FCgfKvN
+         Loew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to;
-        bh=7WHCMq1+u/D/Wc02TTmjoA/jrEBpsKM9c2HVU7ynSTM=;
-        b=7goN2zEHjiGmWv3eg2qY3vUnkG2D8L3Bxvv9gVOO8a0l1dZb1FVkZqz45f4x21DYMS
-         pv9i2fCzatHPXLu9NNCxWzKRnW2niUzS7fGGq0HAlhofqhT+XtdtpQusu6iUaBQ5JRy+
-         H+7843rA4/wW0JUXmfuOUIfpX9yw3xfK5OQ81zBWqMXuyJctVIAVsDr208/EiG4EA7kL
-         m++ggPzPrKLH1Wx7FZVClkr7NAddskai8OOnDmOvPe2w1+oWGtWls0gTUUbKhcMRsAbH
-         7/89t3Pxe/Fr+D21CmL/Z3QBQ5kni20AXzogg60aDhIi79wo/3XreLYfUFlkBT1ZlFJE
-         3mOg==
-X-Gm-Message-State: AOAM532bB72RI/RKp8OavDCAMPkzJjNtyBhi7HMKFsj4RFraerzoy5Bm
-	+2INA5dAJkQ1Yr2jO/XQoguReXzJhQ7Jlw==
-X-Google-Smtp-Source: ABdhPJws/MetuZiCBFJ0UJatCHuGA6PNgFnqOflyxoqt85whY1k9SQh/SEj1YjcYF+Jeb1dFfh8sXQ==
-X-Received: by 2002:ad4:5cca:0:b0:42c:3a47:5bc with SMTP id iu10-20020ad45cca000000b0042c3a4705bcmr24811851qvb.69.1646319530234;
-        Thu, 03 Mar 2022 06:58:50 -0800 (PST)
+        bh=OR6QWHjDd+qc2Nh7etNEloO3fFdRk53bm0d5WJVeD0E=;
+        b=dzi6GAscoEm0Bdw82XHItDMNGzZISkiyqarMviuDp1d0eez64bNRPQ9aLaKMARpS6A
+         cBhvyB4gK1mmbZ8hM3pLyjJ3b27XW7YQFAa7K5DWkGbmVyD4ZGDxfGWfyJCBk9V5OzS6
+         RWTlKAIMtAESVke6qYWLsPdg2Cmvbl+t4V/kcU1Pg8FeXsuWHs39CclugBF3i8oq8+H4
+         oZpPGr69qlital0+21kk6dedWzCvv+8EwS3vQTT6KQ9tOpmtDR4TKWXc1a0npd5qIwPN
+         npDPjxT8wmK4mepMCAUqZvooK27ypuWkHP6TxdR6GaPC38FBuAouxvZupaODgKak2Uc8
+         ecuQ==
+X-Gm-Message-State: AOAM5309XFCcgJpgLlhZEIhSi7WguSJKHcNfddPk+I7z6yNpr8tQJagM
+	ktOg4J+6l6GyQ9JYfDZW0XrsedlFU4YhsA==
+X-Google-Smtp-Source: ABdhPJwU+DN+mYW1mmLvQIhyP70xv6GBb3y7PLMNklUnl2ZjFgVMALnw/kYJI5BmItwbg1sTcqPJ8g==
+X-Received: by 2002:ac8:5b56:0:b0:2dc:e6b8:90c6 with SMTP id n22-20020ac85b56000000b002dce6b890c6mr27659734qtw.170.1646319710393;
+        Thu, 03 Mar 2022 07:01:50 -0800 (PST)
 Received: from [192.168.2.196] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id o18-20020a05622a139200b002de25b59013sm1654611qtk.84.2022.03.03.06.58.49
+        by smtp.googlemail.com with ESMTPSA id x6-20020ac86b46000000b002e02be9c0easm1450929qts.69.2022.03.03.07.01.49
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 06:58:49 -0800 (PST)
-Message-ID: <4100823f-e252-70fa-c6ce-24cf57f65c0b@gmail.com>
-Date: Thu, 3 Mar 2022 09:58:48 -0500
+        Thu, 03 Mar 2022 07:01:49 -0800 (PST)
+Message-ID: <ec7815ca-5d91-82d2-79a1-28cf72c66355@gmail.com>
+Date: Thu, 3 Mar 2022 10:01:49 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
-References: <CAHqKquzTK=JtmcEXrBJy_dDODYvYHnf_Y-XXGimrDhv87ompLg@mail.gmail.com>
+References: <SG2PR02MB340107BACBCC4DBD4C25147FB7049@SG2PR02MB3401.apcprd02.prod.outlook.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAHqKquzTK=JtmcEXrBJy_dDODYvYHnf_Y-XXGimrDhv87ompLg@mail.gmail.com>
-Message-ID-Hash: 6IJXU7QPKUACYQNKK36NRMU242MDFGSU
-X-Message-ID-Hash: 6IJXU7QPKUACYQNKK36NRMU242MDFGSU
+In-Reply-To: <SG2PR02MB340107BACBCC4DBD4C25147FB7049@SG2PR02MB3401.apcprd02.prod.outlook.com>
+Message-ID-Hash: ME32ZZULLM3AJOJKWWS4PFG6HKQ3X4NQ
+X-Message-ID-Hash: ME32ZZULLM3AJOJKWWS4PFG6HKQ3X4NQ
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Transmission problem
+Subject: [USRP-users] Re: Technical information about USRP SDR products
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6IJXU7QPKUACYQNKK36NRMU242MDFGSU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ME32ZZULLM3AJOJKWWS4PFG6HKQ3X4NQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6258359766462423829=="
+Content-Type: multipart/mixed; boundary="===============5249745899770726309=="
 
 This is a multi-part message in MIME format.
---===============6258359766462423829==
+--===============5249745899770726309==
 Content-Type: multipart/alternative;
- boundary="------------2fj0MPshziaW4ZPqUx0FGNwY"
+ boundary="------------eJQza1kQZGr08EquG0l00HFr"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------2fj0MPshziaW4ZPqUx0FGNwY
+--------------eJQza1kQZGr08EquG0l00HFr
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On 2022-03-03 02:53, rouba zeitoun wrote:
+On 2022-03-02 23:21, Ramagiddaiah Eediga wrote:
+> Hi,
 >
-> Dear USRP experts
+> I am Ramagiddaiah from Innominds Software Private Ltd, Bangalore. I 
+> would like to know more details about your USRP SDR product (Bus 
+> series, Network series, etc). Could you please help us with the below 
+> info.
 >
->
-> I am currently working on a project that consists of sending live=20
-> stream video from one SDR to another with GNURadio (on the transmitter=20
-> side I am using USRP N210 and on the receiver i am using hackrf). I am=20
-> also using Gstreamer to create a pipeline between 2 computers.
->
-> Unfortunately, I am repetitively facing the same problem where after=20
-> 30 sec a message pops up
->
-> *" WARNING debug information: gstbasesink.c(2902):=20
-> gst_base_sink_is_too_late ():=20
-> /GstPlayBin:playbin/GstPlaySink:playsink/GstBin:vbin/GstXvImageSink:xvi=
-magesink0:*
->
-> *There may be a timestamping problem, or this computer is too slow "*
->
-> and the receiver stops receiving the video. I tried decreasing the=20
-> bitrate which allowed longer sending time but it still stops after a=20
-> while.
->
-> What advice can you give me to solve this problem?
->
-> the commands i used on terminals are:
->
-> *for Tx:*=C2=A0gst-launch-1.0 -v v4l2src device=3D"/dev/video0" !=20
-> videoconvert ! x264enc tune=3Dzerolatency bitrate=3D300 ! mpegtsmux !=20
-> filesink location=3Dvideo1.ts
->
-> *for Rx:*=C2=A0gst-play-1.0 video3.ts
+>  1. Does USRP SDR product will support to O-RAN Specifications?
+>  2. Does RF Front End card include with SDR product or should we need
+>     to purchase seperately?
 >
 >
-> Thank you in advance !
+> Regards
+> Ramagiddaiah
+> Mob: 9110691844
 >
 >
-Your issue is clearly with a piece of software called "gst-launch",=20
-which is not related directly to UHD or USRPs, so I'd suggest
- =C2=A0 asking the good folks who support "gst-launch".
+These are really sales type questions, and I'd suggest contacting 
+sales@ettus.com
 
 
---------------2fj0MPshziaW4ZPqUx0FGNwY
+
+--------------eJQza1kQZGr08EquG0l00HFr
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
 <html>
   <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 2022-03-03 02:53, rouba zeitoun
-      wrote:<br>
+    <div class="moz-cite-prefix">On 2022-03-02 23:21, Ramagiddaiah
+      Eediga wrote:<br>
     </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAHqKquzTK=3DJtmcEXrBJy_dDODYvYHnf_Y-XXGimrDhv87ompLg@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"auto">
-        <div style=3D"font-size:12.8px" dir=3D"auto">
-          <div style=3D"width:380.19px;margin:16px 0px">
-            <div>
-              <div dir=3D"rtl">
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px">Dear
-                  USRP experts</p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px"><br>
-                </p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px">I am
-                  currently working on a project that consists of
-                  sending live stream video from one SDR to another with
-                  GNURadio (on the transmitter side I am using USRP N210
-                  and on the receiver i am using hackrf). I am also
-                  using Gstreamer to create a pipeline between 2
-                  computers.</p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px">Unfort=
-unately,
-                  I am repetitively facing the same problem where after
-                  30 sec a message pops up</p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px"><b>"
-                    WARNING debug information: gstbasesink.c(2902):
-                    gst_base_sink_is_too_late ():
-/GstPlayBin:playbin/GstPlaySink:playsink/GstBin:vbin/GstXvImageSink:xvima=
-gesink0:</b></p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px"><b>The=
-re
-                    may be a timestamping problem, or this computer is
-                    too slow "</b></p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px">and th=
-e
-                  receiver stops receiving the video. I tried decreasing
-                  the bitrate which allowed longer sending time but it
-                  still stops after a while.</p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px">What
-                  advice can you give me to solve this problem?</p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px">the
-                  commands i used on terminals are:</p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px"><b>for
-                    Tx:</b>=C2=A0gst-launch-1.0 -v v4l2src
-                  device=3D"/dev/video0" ! videoconvert ! x264enc
-                  tune=3Dzerolatency bitrate=3D300 ! mpegtsmux ! filesink
-                  location=3Dvideo1.ts</p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px"><b>for
-                    Rx:</b>=C2=A0gst-play-1.0 video3.ts<br>
-                </p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px"><br>
-                </p>
-                <p dir=3D"ltr"
-                  style=3D"margin-bottom:0in;line-height:16.512px">Thank
-                  you in advance !<br>
-                </p>
-              </div>
-            </div>
-          </div>
+    <blockquote type="cite"
+cite="mid:SG2PR02MB340107BACBCC4DBD4C25147FB7049@SG2PR02MB3401.apcprd02.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <style type="text/css" style="display:none;">P {margin-top:0;margin-bottom:0;}</style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0);">
+        <span style="margin:0px;font-size:12pt;background-color:rgb(255,
+          255, 255)">Hi,</span><span style="background-color:rgb(255,
+          255, 255);display:inline !important"></span>
+        <div style="margin:0px;font-size:12pt;background-color:rgb(255,
+          255, 255)"><br>
         </div>
+        <div style="margin:0px;font-size:12pt;background-color:rgb(255,
+          255, 255)"><span
+            style="margin:0px;font-size:14.6667px;font-family:Calibri,
+            sans-serif;color:rgb(32, 31, 30);background-color:rgb(255,
+            255, 255);display:inline !important">I am Ramagiddaiah from
+            Innominds Software Private Ltd, Bangalore. I would like to
+            know more details about your USRP SDR product (Bus series,
+            Network series, etc). Could you please help us with the
+            below info.</span></div>
+        <div style="margin:0px;font-size:12pt;background-color:rgb(255,
+          255, 255)"><span
+            style="margin:0px;font-size:14.6667px;font-family:Calibri,
+            sans-serif;color:rgb(32, 31, 30);background-color:rgb(255,
+            255, 255);display:inline !important"><br>
+          </span></div>
+        <div style="margin:0px;font-size:12pt;background-color:rgb(255,
+          255, 255)">
+          <ol>
+            <li><span style="margin:0px"><span
+                  style="margin:0px;font-size:14.6667px;font-family:Calibri,
+                  sans-serif;color:rgb(32, 31,
+                  30);background-color:rgb(255, 255, 255);display:inline
+                  !important">Does USRP SDR product will support to
+                  O-RAN Specifications?</span><br>
+              </span></li>
+            <li style="font-size:14.6667px;font-family:Calibri,
+              sans-serif;color:rgb(32, 31, 30)">
+              <span style="margin:0px"><span
+                  style="margin:0px;background-color:rgb(255, 255,
+                  255);display:inline !important">Does RF Front End card
+                  include with SDR product or should we need to purchase
+                  seperately?</span></span></li>
+          </ol>
+          <div style="margin:0px"><span style="margin:0px"><span
+                style="margin:0px;font-size:14.6667px;font-family:Calibri,
+                sans-serif;color:rgb(32, 31,
+                30);background-color:rgb(255, 255, 255);display:inline
+                !important"><br>
+              </span></span></div>
+          <div style="margin:0px"><span style="margin:0px"><span
+                style="margin:0px;font-size:14.6667px;font-family:Calibri,
+                sans-serif;color:rgb(32, 31,
+                30);background-color:rgb(255, 255, 255);display:inline
+                !important">Regards</span></span></div>
+          <div style="margin:0px"><span style="margin:0px"><span
+                style="margin:0px;font-size:14.6667px;font-family:Calibri,
+                sans-serif;color:rgb(32, 31,
+                30);background-color:rgb(255, 255, 255);display:inline
+                !important">Ramagiddaiah</span></span></div>
+          <span style="margin:0px"><span style="margin:0px"><span
+                style="margin:0px;font-size:14.6667px;font-family:Calibri,
+                sans-serif;color:rgb(32, 31,
+                30);background-color:rgb(255, 255, 255);display:inline
+                !important">Mob: 9110691844</span></span></span></div>
         <br>
       </div>
+      <br>
     </blockquote>
-    Your issue is clearly with a piece of software called "gst-launch",
-    which is not related directly to UHD or USRPs, so I'd suggest<br>
-    =C2=A0 asking the good folks who support "gst-launch".<br>
+    These are really sales type questions, and I'd suggest contacting
+    <a class="moz-txt-link-abbreviated" href="mailto:sales@ettus.com">sales@ettus.com</a><br>
+    <br>
     <br>
     <br>
   </body>
 </html>
 
---------------2fj0MPshziaW4ZPqUx0FGNwY--
+--------------eJQza1kQZGr08EquG0l00HFr--
 
---===============6258359766462423829==
+--===============5249745899770726309==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -237,4 +210,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6258359766462423829==--
+--===============5249745899770726309==--
