@@ -2,234 +2,486 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B95964D03B9
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Mar 2022 17:10:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 237694D03E2
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Mar 2022 17:18:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9A105384870
-	for <lists+usrp-users@lfdr.de>; Mon,  7 Mar 2022 11:10:01 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id D98D538489C
+	for <lists+usrp-users@lfdr.de>; Mon,  7 Mar 2022 11:18:18 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="ST6luKuf";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=mitre.org header.i=@mitre.org header.b="hivkDDZj";
 	dkim-atps=neutral
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7CAA1384A53
-	for <usrp-users@lists.ettus.com>; Mon,  7 Mar 2022 11:09:03 -0500 (EST)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-2d07ae0b1c0so169763027b3.2
-        for <usrp-users@lists.ettus.com>; Mon, 07 Mar 2022 08:09:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8jk7GOwWzqFMz92mSIAe/IzkSP/tZPf4E5b+Z/5a3pM=;
-        b=ST6luKufd6xK1n3wQs/voktCPoSxM/6V8/Hzq1fg5F0rhfIK/xlwpWa5lkH3cfWPa9
-         9pPZ8e1pln/YKRM5XJJmjqusUclKw4HZMV07+4ycDF7CUYfdnO8ZT7eWm8BR39nlNC2C
-         ctF0ERu0TiXL2KxWBaKA+2ctcvwCoX5cDxnVoHNS/y3DbdmtblTaFRbvnrpDYGNIXRYh
-         ceF0w5iRqclJozorHwt3ewOQT5ctepom/VmxxZdZ9USvEcaCHMnCDPknMi+JnqIIeYAn
-         Vwv25Ru86YLITjHGd7s1vWoCw1DT6MiD8OtuABx7UPSw9FVSOLNq9CCSuvEbBABRmL3B
-         HywA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8jk7GOwWzqFMz92mSIAe/IzkSP/tZPf4E5b+Z/5a3pM=;
-        b=42HQPrhjlCEdhFiXjQms6p0IbTKgfxloV6SjtVwlK3QnY2avldKhnzVFFFTqaSkWQu
-         bs+jRAPNes/PgRNA/VbUzu1bd7qhOEVQ2K/IEj72vh2XoJE7yq+qiSOVTMVPtAuH8ghn
-         SbSXe/f0Z+f3UFfV45/0rMJN+Q2vdibYX9pvf7PNBo+xSEZ+9Vrmz3hYigU3eHaDP/5B
-         /q09waG/P8v5Andl1K88H+vYBjILUe0jRQ51BQ7jEemOj3lLuK2vPeLn4B2EsuQcUuRZ
-         CeY4v0vfbskKoqe/UeuXKXlzJacp0eyaBwocgARKUJpPTDRSiAL33yQM12kCi5vmhWtg
-         2Qag==
-X-Gm-Message-State: AOAM530bhSHMDp2lAJpFOed81ijnOLRu9WuLvbFRGT9OVEyrd6Q0hS1d
-	07elOqcMPK9lLLR6gPUmuswEyol0IRp0OC89NALEpA==
-X-Google-Smtp-Source: ABdhPJyJxQphTBrMp3bQIUMR8tBJN1GRqxwqtaa33hrhREBsVbgV5q5Y9vFiSJl+NL0YfHW/Vb3bxGo68IMM3j8qyPw=
-X-Received: by 2002:a81:3544:0:b0:2dc:2cf:6bab with SMTP id
- c65-20020a813544000000b002dc02cf6babmr9088440ywa.369.1646669342424; Mon, 07
- Mar 2022 08:09:02 -0800 (PST)
+Received: from smtpvbsrv1.mitre.org (smtpvbsrv1.mitre.org [198.49.146.234])
+	by mm2.emwd.com (Postfix) with ESMTPS id A78343847AD
+	for <usrp-users@lists.ettus.com>; Mon,  7 Mar 2022 11:17:08 -0500 (EST)
+Received: from smtpvbsrv1.mitre.org (localhost.localdomain [127.0.0.1])
+	by localhost (Postfix) with SMTP id 48FE6B2E01B
+	for <usrp-users@lists.ettus.com>; Mon,  7 Mar 2022 11:17:08 -0500 (EST)
+Received: from smtpxrhbv1.mitre.org (unknown [198.49.146.55])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	by smtpvbsrv1.mitre.org (Postfix) with ESMTPS id 4C7E9B2E020
+	for <usrp-users@lists.ettus.com>; Mon,  7 Mar 2022 11:16:36 -0500 (EST)
+Received: from GCC02-DM3-obe.outbound.protection.outlook.com (mail-dm3gcc02lp2108.outbound.protection.outlook.com [104.47.65.108])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtpxrhbv1.mitre.org (Postfix) with ESMTPS id 13D6E413DC7
+	for <usrp-users@lists.ettus.com>; Mon,  7 Mar 2022 11:16:36 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=InkMst+pgVvpxGT6k48a5rGqZ9WtyEVhRAdMXGPm7GEwcIwAnSQ1F7wQy1Ias/0kZUJfYY/uFIke1fy/sQnH4JmvE2QTS6V0+a5uw8QWsfCi4vCNz/2RRTanHoZgit3vVDiM4S05rOlT51X9Mz8VGxq2SreXeVRE8rncrVro8LX0I2ZHOtXX9qub9qofpsPbJUwSnD32SslFkPc8L0TRFs4mJBe/23UjO1kpNvXYorGMjgZwBGHpVzSsyZrg5zf5xxpFKX1/xCWEp3BTHFFzBy6352eH1daqjUlO+SS0iyz9jaabstNvERF4WgTSbhrwWhiYINymbgLoSk9JnhzBrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9UUfTGxPGqo/wniq2jq00/G2/PW7I+EMYCKMldcG4T0=;
+ b=PzuqYHkkf/uRawsGtq5Re17muhCE5WhJ+F/pBdjhRRk0SsSBW5E35aALIFjQU/sCP6DXCkvO3lnUdzlpl/P7mP2pwpaA9EFJflp82BTT9vOzXHZMLN76qlkJyWGpones+2Pjbp6AsdUMSbD4L9gHNK3ruANENeCfXmFq3Ea8/JJ7KeA5KdU2aDNqWG7oeZOS22gEn3zQ93SUqLcZCMMhqa+k+LyuCEqf1XScKYg4A5Wj1OwWYGiz8hoKQmH1VkCgFHuOj3TH0jv4D58OXKM/Em+QJeIaG2DNktPN2mZUIIoB83PDuOjASnRfVaPS9GpNoDj83umg1z6yKZDwVFgk7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mitre.org; dmarc=pass action=none header.from=mitre.org;
+ dkim=pass header.d=mitre.org; arc=none
+Received: from BY5PR09MB5491.namprd09.prod.outlook.com (2603:10b6:a03:241::24)
+ by BY5PR09MB4993.namprd09.prod.outlook.com (2603:10b6:a03:24c::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.13; Mon, 7 Mar
+ 2022 16:16:33 +0000
+Received: from BY5PR09MB5491.namprd09.prod.outlook.com
+ ([fe80::91a1:4246:8135:ea7]) by BY5PR09MB5491.namprd09.prod.outlook.com
+ ([fe80::91a1:4246:8135:ea7%4]) with mapi id 15.20.5038.027; Mon, 7 Mar 2022
+ 16:16:33 +0000
+From: Jeffrey P Long <jplong@mitre.org>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNOC dropping packets
+Thread-Index: AdgyNkLzWzV4cEYuQgeXORStddhCGw==
+Date: Mon, 7 Mar 2022 16:16:33 +0000
+Message-ID: 
+ <BY5PR09MB5491FC142DABDFF75F0B1DDDD9089@BY5PR09MB5491.namprd09.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mitre.org;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4cc06962-d1a6-4592-d96b-08da0055d8ca
+x-ms-traffictypediagnostic: BY5PR09MB4993:EE_
+x-microsoft-antispam-prvs: 
+ <BY5PR09MB49934989A1C18FFB9CA541E6D9089@BY5PR09MB4993.namprd09.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ LFgveVHf9J9Vva0OA+qEff2t9EMlQBV6ePDUE6jwAbDLd2Ctly9dHSlcmz+nfBJCCy7glcDe47t17dzvq0ksDb0+1nbINwB1gbVR30/L4z54DVI2kb8cIQd7EcuMSIWVQUpQvNAp7nm2CfnxULHgV46AEOdUi/YhpUzP36ui7KOM/GdegzluQcHKcyTNj4J76Hvm2Xpt+kniluPOoWCOfRguxv9t6FoyvSe09uSqq8UK+LNxs6S6C/svWpycu1jFrK1inBH7mUAht6pnJNBGiHEdnIPDUHs5s9TwpmAzP7PnMrl6vWhc8yrJLPlBD9vZRJAP99hadgaiUDolJlM8B34b5dnRiFEgQoSjOcq5v4cdERH4MPVI/GrqlhpTvRmXjqnwt/kgjgpkYW85vHiDmJZz/LWo159VFpi1doog+ryLDG3CEPlLmMB9G36RuVwrDsQi9PFOg2/m7ufAB2wLQ0QFrdV0Ys+ILp08Bls93ZYzYM9Ul6ijknHbJ1LIJcrozuMFDT7+Lpl5qmA84zF9mGGrDLFuign5Go1lKfMA2+Dbm8bgeOVGEWnCZnUdTdXvjW833fIUNzreiYKgwyQRAGXAUy5hTqRyaDHiGKD+690VUxS+NLnfxA3CpMgtvOPVPPrJaRjeTYL4LEC7eNF1JKQLAWlY7IJaO7vmOco+OLlV3cA13bU74jSOlkdFnWSug52fL/YIcmPIDX9pNNrdDA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR09MB5491.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(5660300002)(33656002)(55016003)(66946007)(9686003)(76116006)(71200400001)(66556008)(38100700002)(26005)(186003)(83380400001)(2906002)(38070700005)(3480700007)(66446008)(7116003)(64756008)(8676002)(86362001)(316002)(508600001)(6916009)(7696005)(6506007)(122000001)(8936002)(52536014)(66476007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?s4k0Hzj3MTHR5rzkOkGWB0fNzcNv9afr9z+pupWfQnjocH1GBapuhC7g/TpJ?=
+ =?us-ascii?Q?4kR9UvsWFqkd5q7nujXP+pN2gvpckr6k8tB4ciRPktRWJkBA5zyeTDVX2QV/?=
+ =?us-ascii?Q?GtQ0cx7NCUED3+ujmowemr44Tm6CRcwHPNRjbS3PPAebD6x7DJYhcJ0f97kK?=
+ =?us-ascii?Q?pVVA/4I1so3vodLy7yh/G4P5nXIe/6XMrduJjRQufWTwL8FCf4bYEwBSJmlq?=
+ =?us-ascii?Q?SJpSIHf/3haSVWhgbNMBlTkS20hDHF+fK0p4n0yFFunzeB11BCsIOXDmEkNI?=
+ =?us-ascii?Q?hctf5mc4yJ5bXHmdvdNzo/hoVzOi7HK1rq0CJbWZwvDAs5QI/RiGLTMmOyNV?=
+ =?us-ascii?Q?b+NT1XlmAqMVeVtjxb6E7qWwGrs6HYAOE36Z1zhk+zQ2Tb35QUASmEHZFLDA?=
+ =?us-ascii?Q?9Zu9wDxxkAtSymWE0OmYOOT8wbmehHqSJVreguAJdj3YW3RvHa2fXiyEbIna?=
+ =?us-ascii?Q?bunZIrH8XjpgP117Pn/MxSILFmcto/Sg7WAE8ftHwLqVDyHaI/IUexvuh6W6?=
+ =?us-ascii?Q?75kzu4VYl0m5MJyeF9Mf9vzhrW5yQqRe0E82Vgjg9KM4SrzdhT2YevjbLs++?=
+ =?us-ascii?Q?JKSBL7WNHErEK4yy1Be0AZBUl5DoP4fCkFtcQFZ5+LKOjaGW4qthuZXjEruY?=
+ =?us-ascii?Q?fpU8psoGxi8+KcZZAzuNNmSzOybIZMAuvGVf5MB9gCZecMNcEpUZN8lhRlNS?=
+ =?us-ascii?Q?RIctEtw7m4qHjF9LSDkeY3/ioL4WXvxNd0Eyh55OYWNbqfKO/HIppI+M5npB?=
+ =?us-ascii?Q?0tu6JQDV1T1S/4FGtP2GVIGrtaL4sSEgFfhG1nEnWu/nBdTysvpume8xeKq7?=
+ =?us-ascii?Q?YRWE+jPqIOffWKb+2kjG1+iuI9TNhG7CrYMzmaQ5XAU2UYe4y30raYz4WbkA?=
+ =?us-ascii?Q?wDN9cswsYNvIdnhmR+CKt0viZxXVtIrbExuhB8XV8iwvBzjiO8NfCWj9BLqw?=
+ =?us-ascii?Q?QYZEToAci8TNaJys9pi1KelGT9fRl0rnNHaEG6gwQAwEttJZfq0vBrtmjiFD?=
+ =?us-ascii?Q?ohiQ21/PthALjez6PEhnkHBc4Rxx7O4GrDkdzc4JlMeEa4pPq8IvJcup8Ysn?=
+ =?us-ascii?Q?reixmu85/xBzgMP+fB2qQ6O51s4khCTlnEblJ7Bt2aNX3g0Hif4upj65FkLm?=
+ =?us-ascii?Q?L3io19fjfANbxz052yNzJBwP6RLkVfyIws1E8RX/lTKhjaO8+FSnC7tKIw0G?=
+ =?us-ascii?Q?pfHp5YCMZ6OUHgL9aDLYDJG2STevYHYUizXbJ2XbUqfC/HxGoclnBaOk51wP?=
+ =?us-ascii?Q?+pMTS7D1bV0h/QwdK9PqXD7gHFjueHLRIqoy3u65sD8bzxIgS58k8OC7UTW0?=
+ =?us-ascii?Q?H8/yibva3fRbJemJpVzFtEGG?=
 MIME-Version: 1.0
-References: <CAA=S3PsLQHmSSRXKqZfuHZ+FgUyMV4Jtv5qVC+s75jLttmSAAQ@mail.gmail.com>
- <CAB__hTSJe7puQo0EoqbWZ2YBOy7wGXfwYUTqAbQaHJnnmSn5-Q@mail.gmail.com>
- <CAA=S3Pup0OazTdNr_SG=TBo4cKMCA8QFTnatU02wyQJkLHVUGA@mail.gmail.com>
- <CAA=S3Ps_XBpgjPJ7r3FqKK6iD_h+gCJgAs0Ny6=W9s6fmmiYtg@mail.gmail.com>
- <CAB__hTRcMAFJ4-=TLFXzYdPBuNUpqo5iVBKXFN+dAhL2eXp90A@mail.gmail.com> <CAA=S3PvpE69KaQb80y2xVym8RtCZMC40KEYYpzwc19CmxXPoSA@mail.gmail.com>
-In-Reply-To: <CAA=S3PvpE69KaQb80y2xVym8RtCZMC40KEYYpzwc19CmxXPoSA@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Mon, 7 Mar 2022 11:08:51 -0500
-Message-ID: <CAB__hTRk=KXTKXX1D8wszStjmquLFkRNFzTtR8OfXW0a0oyzWQ@mail.gmail.com>
-To: sp h <stackprogramer@gmail.com>
-Message-ID-Hash: L344WTCTRWPPCKCFITS77CVPXYZLV6IV
-X-Message-ID-Hash: L344WTCTRWPPCKCFITS77CVPXYZLV6IV
-X-MailFrom: rkossler@nd.edu
+X-OriginatorOrg: mitre.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR09MB5491.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4cc06962-d1a6-4592-d96b-08da0055d8ca
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Mar 2022 16:16:33.4020
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c620dc48-1d50-4952-8b39-df4d54d74d82
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR09MB4993
+X-MITRE: 8GQsMWxq66rxk57w
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitre.org; h=from:to:subject:date:message-id:content-type:mime-version; s=BTxNELhf; bh=9UUfTGxPGqo/wniq2jq00/G2/PW7I+EMYCKMldcG4T0=; b=hivkDDZjegX/RfHcYXilkQLxSWlwjEvcxR4aW9n0vi1bZQ334vlXdNU3zJ4vpOZXlPZckGLvyJMIRodLlIyEzrkwaXPEK7TxqNRksRqEA+/CmcgcshCTzu+4J9epiyU/H2O146pi/9eGFleUzidn0IOQW6COZ+EoSr7X1HxRIqc=
+Message-ID-Hash: 25B4PX6RC5OR52WVYDEPZ264VLZH4UKU
+X-Message-ID-Hash: 25B4PX6RC5OR52WVYDEPZ264VLZH4UKU
+X-MailFrom: jplong@mitre.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: How can create an RFNOC correlate block for USRP?
+Subject: [USRP-users] RFNOC dropping packets
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/L344WTCTRWPPCKCFITS77CVPXYZLV6IV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MPYFHX6Z54IXSXV5OLAXQOAIEYOYVLLH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0200152271805378628=="
+Content-Type: multipart/mixed; boundary="===============8196605470846223778=="
 
---===============0200152271805378628==
-Content-Type: multipart/alternative; boundary="00000000000038136605d9a315ba"
+--===============8196605470846223778==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BY5PR09MB5491FC142DABDFF75F0B1DDDD9089BY5PR09MB5491namp_"
 
---00000000000038136605d9a315ba
-Content-Type: text/plain; charset="UTF-8"
-
-It's not clear to me what you want to implement on the FPGA. The USRP
-typically digitizes and streams continuously. It is not possible to
-implement a cross correlation of infinite length sequences. Even if finite,
-you would need to buffer all of the finite samples in order to perform the
-xcorr.  So, perhaps you can discuss further what you are hoping to
-implement.
-Rob
-
-On Mon, Mar 7, 2022 at 3:24 AM sp h <stackprogramer@gmail.com> wrote:
-
-> Awesome, thanks! But how can implement xcorrelate in RFNOC blocks??  It is
-> very hard to implemented in Verilog
->
->
-> On Fri, Feb 25, 2022 at 5:43 PM Rob Kossler <rkossler@nd.edu> wrote:
->
->> The MATLAB function xcorr() can be implemented in the time domain as a
->> convolution (or similarly an FIR filter) or in the frequency domain as a
->> multiplication. So, if the function is "z = xcorr(x,y)", then you can
->> implement this as "z = ifft(X.*conj(Y))" where X and Y are the FFTs of x
->> and y but with the FFT zero-padded to have length (Lx + Ly).  You also need
->> to apply a circular shift.  Here is MATLAB code that shows the equivalence.
->> For long sequences, it might consume less FPGA resources to implement in
->> the frequency domain using FFT/IFFT pairs.
->>
->> >> L = 500;
->> >> x = randn(L,1) + 1i*randn(L,1);
->> >> y = randn(L,1) + 1i*randn(L,1);
->> >> z = xcorr(x,y);
->> >> Lfft = 2^nextpow2(2*L-1);
->> >> z2 = circshift(ifft(fft(x,Lfft).*conj(fft(y,Lfft)),Lfft),L-1);
->> >> plot(abs(z-z2(1:2*L-1)))
->>
->> On Fri, Feb 25, 2022 at 2:30 AM sp h <stackprogramer@gmail.com> wrote:
->>
->>> Thanks, I know that I can use FFT but I want to implement Xcorrelate
->>> like xcorr Matlab directly...as an independent RFNOC blocks
->>>
->>>
->>> On Wed, Feb 23, 2022 at 10:56 AM sp h <stackprogramer@gmail.com> wrote:
->>>
->>>> Thanks, I know that I can use FFT but I want to implement Xcorrelate
->>>> like xcorr matlab directly...as a  independent RFNOC blocks
->>>>
->>>>
->>>> On Mon, Feb 21, 2022 at 7:40 PM Rob Kossler <rkossler@nd.edu> wrote:
->>>>
->>>>> is there a specific function (such as MATLAB 'xcorr') you want to
->>>>> implement?  You can implement 'cconv' with a pair of FFT/IFFT and complex
->>>>> multiplication.  If you zero-pad and use 2x length FFTs, you can
->>>>> alternatively obtain linear convolution using an overlap-and-add
->>>>> configuration.  I haven't looked at 'xcorr' specifically, but my guess is
->>>>> that you could do what you want with an FFT/IFFT pair.
->>>>> Rob
->>>>>
->>>>> On Mon, Feb 21, 2022 at 6:36 AM sp h <stackprogramer@gmail.com> wrote:
->>>>>
->>>>>> How can create an RFNOC correlate block for USRP?
->>>>>> This thread is created to share results on searching how we can
->>>>>> correlate RFNOC blocks...
->>>>>> Anyone that had an idea, I'm glad to hear it...
->>>>>> thanks in advance
->>>>>>
->>>>>> _______________________________________________
->>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>
->>>>>
-
---00000000000038136605d9a315ba
-Content-Type: text/html; charset="UTF-8"
+--_000_BY5PR09MB5491FC142DABDFF75F0B1DDDD9089BY5PR09MB5491namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">It&#39;s not clear to me what you want to implement on the=
- FPGA. The USRP typically digitizes and streams continuously. It is not pos=
-sible to implement a cross correlation of infinite length sequences. Even i=
-f finite, you would need to buffer all of the finite samples in order to pe=
-rform the xcorr.=C2=A0 So, perhaps you can discuss further what you are hop=
-ing to implement.<div>Rob</div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Mon, Mar 7, 2022 at 3:24 AM sp h &lt;<a h=
-ref=3D"mailto:stackprogramer@gmail.com">stackprogramer@gmail.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr">Awesome, thanks! But how can implement=C2=A0xcorrelate in RFNOC block=
-s??=C2=A0 It is very hard to implemented in Verilog<br><div><br></div></div=
-><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fr=
-i, Feb 25, 2022 at 5:43 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.ed=
-u" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">The MATLAB function xc=
-orr() can be implemented in the time domain as a convolution (or similarly =
-an FIR filter) or in the frequency domain as a multiplication. So, if the f=
-unction is &quot;z =3D xcorr(x,y)&quot;, then you can implement this as &qu=
-ot;z =3D ifft(X.*conj(Y))&quot; where X and Y are the FFTs of x and y but w=
-ith the FFT zero-padded to have length (Lx=C2=A0+ Ly).=C2=A0 You also need =
-to apply a circular shift.=C2=A0 Here is MATLAB code that shows the equival=
-ence. For long sequences, it might consume less FPGA resources to implement=
- in the frequency domain using FFT/IFFT pairs.<div><br><div><font face=3D"m=
-onospace">&gt;&gt; L =3D 500;<br>&gt;&gt; x =3D randn(L,1) + 1i*randn(L,1);=
-<br>&gt;&gt; y =3D randn(L,1) + 1i*randn(L,1);<br>&gt;&gt; z =3D xcorr(x,y)=
-;<br>&gt;&gt; Lfft =3D 2^nextpow2(2*L-1);<br>&gt;&gt; z2 =3D circshift(ifft=
-(fft(x,Lfft).*conj(fft(y,Lfft)),Lfft),L-1);<br>&gt;&gt; plot(abs(z-z2(1:2*L=
--1)))</font><br></div></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Feb 25, 2022 at 2:30 AM sp h &lt;<a h=
-ref=3D"mailto:stackprogramer@gmail.com" target=3D"_blank">stackprogramer@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Thanks, I know that I can use FFT =
-but I want to implement=C2=A0Xcorrelate like xcorr Matlab directly...as an =
-independent RFNOC blocks<div style=3D"outline:none;padding:10px 0px;width:2=
-2px;margin:2px 0px 0px"><br></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 23, 2022 at 10:56 AM sp h &lt=
-;<a href=3D"mailto:stackprogramer@gmail.com" target=3D"_blank">stackprogram=
-er@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div dir=3D"ltr">Thanks, I know that I can use FFT but I want t=
-o implement=C2=A0Xcorrelate like xcorr matlab directly...as a=C2=A0 indepen=
-dent RFNOC blocks<div><br></div></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">On Mon, Feb 21, 2022 at 7:40 PM Rob Kossler=
- &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr">is there a specific function (such as MATLAB &#39;xcorr&#39;=
-) you want to implement?=C2=A0 You can implement &#39;cconv&#39; with a pai=
-r of FFT/IFFT and complex multiplication.=C2=A0 If you zero-pad and use 2x =
-length FFTs, you can alternatively obtain linear convolution using an overl=
-ap-and-add configuration.=C2=A0 I haven&#39;t looked at &#39;xcorr&#39; spe=
-cifically, but my guess is that you could do what you want with an FFT/IFFT=
- pair.<div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
-lass=3D"gmail_attr">On Mon, Feb 21, 2022 at 6:36 AM sp h &lt;<a href=3D"mai=
-lto:stackprogramer@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr">How can create an RFNOC correlate block for USRP?<div>This th=
-read is created to share results on searching how we can correlate RFNOC bl=
-ocks...</div><div>Anyone that had an idea, I&#39;m glad=C2=A0to hear it...<=
-/div><div>thanks in advance</div><div><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+Hi-
 
---00000000000038136605d9a315ba--
+I have determined that somewhere upstream from my custom RFNOC component th=
+e fabric is intermittently dropping a fixed number of packets.
 
---===============0200152271805378628==
+I have a custom transmit waveform encapsulated in a single RFNOC component.=
+ This waveform component effectively takes about 8 32-bit samples of user d=
+ata and produces an entire transmit burst of close to 5 msec in length at a=
+ sample rate of 50 MHz. Therefore, a fairly large "upsampling" operation fo=
+r a RFNOC block. This is a timed transmission, so I have interface logic th=
+at translates the CHDR info and single EOB to a series of packets with a ti=
+mestamp on the first and the EOB set on the last packet along with the appr=
+opriate tlast set along the way. I can verify this works well and will run =
+without issues for about a few minutes on startup. I have a similar RX comp=
+onent that receives this transmission in an analog loopback approach so I c=
+an verify the transmission. I have also inserted a packet number in my tran=
+smit data and have a checker(in the HDL) on the transmit side(upstream of m=
+y component) to check when there is an out of sequence happening. In chipsc=
+ope I have it triggering when it happens so I can observe this behavior ind=
+ependent of the RX process.
+
+Setup: Ubuntu 20 LTS, E320, UHD 4.0.0.0-122-g75f2ba94
+
+Here are some things I have observed:
+
+
+  1.  It will run without an issue for about 1-2 mins on startup. Clean sta=
+rt or re-run does not matter.
+
+
+  1.  It is always 34 source packets that are missing (each is 8 32 bit sam=
+ples in length) each time it drops.
+
+
+  1.  This never happens back to back so it looks like something is overflo=
+wing upstream however it is not perfectly periodic.
+
+
+  1.  If I replace my core tx waveform processing with a simple fifo and al=
+low the 8 sample packets to flow through my processing(no upsampling) it ne=
+ver drops anything. Obviously the large 1 to many and resultant stalling of=
+ the upstream is not making things happy.
+
+
+  1.  This continues to happen if I totally disable the RX processing.
+
+
+
+  1.  There is no indication of underruns or lates or other errors coming f=
+rom the tx_core downstream of my component. I verified also by chipscoping =
+that component and looking for anything.
+
+
+Some things I have tried:
+
+
+  1.  I did increase the (info, pyld) fifo sizes on the input side of my co=
+mponents noc_shell. Did not change the behavior. I did not touch the stream=
+ endpoint buffers.
+  2.  I am generally running this in host mode however I did try cross comp=
+iling the app and running embedded mode on the E320. Interesting observatio=
+n is that it then becomes exactly 33 packets that are lost each time (weird=
+ or telling?).
+  3.  If I insert usleeps in the while loop pushing down the data (txstream=
+->send()) I can change the behavior so that it happens less frequently, tak=
+es longer to happen the first time, and the size of the number lost can cha=
+nge from the 34 normally. In my HDL I increment the timestamp by 50 msec so=
+ the obvious perfect sleep would be something like 50 msec minus the time r=
+est of the code can take. Clearly this is hard to tune. Just setting 50 mse=
+c eventually causes a LLLLLLate condition. There is a sweet spot somewhere =
+but without a RTOS this is a waste of time and would not be the right way t=
+o fix this.
+
+Any help or insight (things to try) would be greatly appreciated. I am out =
+of ideas. My final idea would be to put my own FIFO just in front with a le=
+vel indicator. Fill it up halfway and then monitor it with a register to ke=
+ep it happy. Assuming I could keep up with this polling approach it should =
+keep it happy unless there is a real bug upstream and someone is not obeyin=
+g AXIS protocol. I would think this would be unnecessary however since RFNO=
+C should not allow something like this to happen.
+
+Thanks in advance,
+Jeff Long
+
+
+--_000_BY5PR09MB5491FC142DABDFF75F0B1DDDD9089BY5PR09MB5491namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1672294426;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1579114272 67698705 67698713 67698715 67698703 6769=
+8713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1
+	{mso-list-id:1828395975;
+	mso-list-type:hybrid;
+	mso-list-template-ids:2015815058 67698705 67698713 67698715 67698703 67698=
+713 67698715 67698703 67698713 67698715;}
+@list l1:level1
+	{mso-level-text:"%1\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l1:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi-<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have determined that somewhere upstream from my cu=
+stom RFNOC component the fabric is intermittently dropping a fixed number o=
+f packets.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have a custom transmit waveform encapsulated in a =
+single RFNOC component. This waveform component effectively takes about 8 3=
+2-bit samples of user data and produces an entire transmit burst of close t=
+o 5 msec in length at a sample rate
+ of 50 MHz. Therefore, a fairly large &#8220;upsampling&#8221; operation fo=
+r a RFNOC block. This is a timed transmission, so I have interface logic th=
+at translates the CHDR info and single EOB to a series of packets with a ti=
+mestamp on the first and the EOB set on the
+ last packet along with the appropriate tlast set along the way. I can veri=
+fy this works well and will run without issues for about a few minutes on s=
+tartup. I have a similar RX component that receives this transmission in an=
+ analog loopback approach so I can
+ verify the transmission. I have also inserted a packet number in my transm=
+it data and have a checker(in the HDL) on the transmit side(upstream of my =
+component) to check when there is an out of sequence happening. In chipscop=
+e I have it triggering when it happens
+ so I can observe this behavior independent of the RX process.<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Setup: Ubuntu 20 LTS, E320, UHD 4.0.0.0-122-g75f2ba9=
+4<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here are some things I have observed:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
+lfo1">It will run without an issue for about 1-2 mins on startup. Clean sta=
+rt or re-run does not matter.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"2" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
+lfo1">It is always 34 source packets that are missing (each is 8 32 bit sam=
+ples in length) each time it drops.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"3" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
+lfo1">This never happens back to back so it looks like something is overflo=
+wing upstream however it is not perfectly periodic.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"4" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
+lfo1">If I replace my core tx waveform processing with a simple fifo and al=
+low the 8 sample packets to flow through my processing(no upsampling) it ne=
+ver drops anything. Obviously the large
+ 1 to many and resultant stalling of the upstream is not making things happ=
+y.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"5" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
+lfo1">This continues to happen if I totally disable the RX processing.<o:p>=
+</o:p></li></ol>
+<p class=3D"MsoListParagraph"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"6" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
+lfo1">There is no indication of underruns or lates or other errors coming f=
+rom the tx_core downstream of my component. I verified also by chipscoping =
+that component and looking for anything.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Some things I have tried:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l0 level1 =
+lfo2">I did increase the (info, pyld) fifo sizes on the input side of my co=
+mponents noc_shell. Did not change the behavior. I did not touch the stream=
+ endpoint buffers.<o:p></o:p></li><li class=3D"MsoListParagraph" style=3D"m=
+argin-left:0in;mso-list:l0 level1 lfo2">I am generally running this in host=
+ mode however I did try cross compiling the app and running embedded mode o=
+n the E320. Interesting observation is that it then becomes exactly 33
+ packets that are lost each time (weird or telling?).<o:p></o:p></li><li cl=
+ass=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l0 level1 lfo2">=
+If I insert usleeps in the while loop pushing down the data (txstream-&gt;s=
+end()) I can change the behavior so that it happens less frequently, takes =
+longer to happen the first time,
+ and the size of the number lost can change from the 34 normally. In my HDL=
+ I increment the timestamp by 50 msec so the obvious perfect sleep would be=
+ something like 50 msec minus the time rest of the code can take. Clearly t=
+his is hard to tune. Just setting
+ 50 msec eventually causes a LLLLLLate condition. There is a sweet spot som=
+ewhere but without a RTOS this is a waste of time and would not be the righ=
+t way to fix this.<o:p></o:p></li></ol>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any help or insight (things to try) would be greatly=
+ appreciated. I am out of ideas. My final idea would be to put my own FIFO =
+just in front with a level indicator. Fill it up halfway and then monitor i=
+t with a register to keep it happy.
+ Assuming I could keep up with this polling approach it should keep it happ=
+y unless there is a real bug upstream and someone is not obeying AXIS proto=
+col. I would think this would be unnecessary however since RFNOC should not=
+ allow something like this to happen.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks in advance,<br>
+Jeff Long<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_BY5PR09MB5491FC142DABDFF75F0B1DDDD9089BY5PR09MB5491namp_--
+
+--===============8196605470846223778==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -239,4 +491,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0200152271805378628==--
+--===============8196605470846223778==--
