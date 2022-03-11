@@ -2,120 +2,101 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDDD14D69F3
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Mar 2022 23:12:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 016324D69FB
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Mar 2022 23:32:47 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B18C4384D5F
-	for <lists+usrp-users@lfdr.de>; Fri, 11 Mar 2022 17:12:23 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E44CA384D77
+	for <lists+usrp-users@lfdr.de>; Fri, 11 Mar 2022 17:32:45 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Rlz5p/2g";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="C5zNWKLU";
 	dkim-atps=neutral
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 90E9B3846B9
-	for <usrp-users@lists.ettus.com>; Fri, 11 Mar 2022 17:11:23 -0500 (EST)
-Received: by mail-pg1-f171.google.com with SMTP id t187so8572378pgb.1
-        for <usrp-users@lists.ettus.com>; Fri, 11 Mar 2022 14:11:23 -0800 (PST)
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 02BC83848E9
+	for <usrp-users@lists.ettus.com>; Fri, 11 Mar 2022 17:31:46 -0500 (EST)
+Received: by mail-qv1-f44.google.com with SMTP id j5so8059622qvs.13
+        for <usrp-users@lists.ettus.com>; Fri, 11 Mar 2022 14:31:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=ooD+KO9QUHpoD3JYtHC4S6FAgeZH4rW/fWTJaY7rW40=;
-        b=Rlz5p/2gyicC6kve0tyHLiPHP/kTlRctacSqzoxyYT1eANY9dmQ2TrUcnAnseFO5y0
-         C1anGHSTlllFOhH+0MrIGPs3uROURDpPhD1JYx1fYWwl3TPjWZsTtOj6dMz2K97wwYb6
-         DRVEW6Pte/zVpwVklTO55R+5HAN8Cm5p7uo77Qn+fkymspw4vvWXgnFSTqp7I1ZKKy/C
-         ajU8bDX7LG8C4vrm7kB8DVLdsJT9WjT67S1E4eB4JBr+fqM+jSH0C2C1UhcQJ5RdJKx+
-         kB9H63w1aBRAz+dEqKQ15/0oW/YPuJf1GnDCtBnHAYCBPQUqT211Wgee+c0JEcQYys9T
-         j11w==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=WZRwd9xP0PIO+zvpx8+BdqZplFhjFXhNfPxweKzMkx4=;
+        b=C5zNWKLU3N9PzRV3qW5lqnVdFfriLStQXgFrcYrbV98vXpc9GmgQRzpVHRQKupneLF
+         Dc3sx9oyMHhoq91zuyV/c5wF75M/qU/vuHRmKcVUlFN//dtCh4jDy4175V6c84Lct6fq
+         cEBfhBnMhRyofrNL5AeNYw4CzzYH1y76Gaw/xK6VeiZ3JKeUdfjIypFTDIg+Osg+8kZC
+         RSpvkMJIMPHoLyBLbwskvrqf+A4kKbyCUS9TolQ5obZYvGpELZOksuFszt/qNXoT1sr/
+         yw+QhbW8IWrYqRdCypsB2xZvD6YRs5XYZddFJTozStoBiNJvWsZYmguW//U05jJtaBeG
+         C8ZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ooD+KO9QUHpoD3JYtHC4S6FAgeZH4rW/fWTJaY7rW40=;
-        b=nH/whi/BDBelVO1B60zIm4nar12pLEGCd8zETULa5Vpf1KMoMR17/YMpNjAuizApRL
-         ANOcCVdDk7G55fln80++bm+TLrllpW6lcZeu3KyANpb1d8DPw61b7EuN7W964FjRGqyg
-         dB2JcK04XuQdXhboOoVdmC7zL5Q2ROvTzOE/zj8ITFx4ITUOvAseuchbPYWbSNjTkiaD
-         mYRcL4bXIa9V8VuojlEzeaXCVuQvbjBoYMON7VvyAvcWqFP3LEWrgsjMC79cP8AwWzSe
-         bCu7uY+C0Yj4zVIaNiYDoW+34LcYhi3LAVwF5cy6hRhi1Ob+GLg82GK+nJG0/34i+xY6
-         iQbA==
-X-Gm-Message-State: AOAM531faALOKpJBIG3M0gyoIDhB0cbUTXl4RJTvXq3XsZfvGhrZ/2/N
-	NqgSxdPiIBAi9qjVm+IJODSf/vtb9mZUk1cGrnpGHX2n48zmjQ==
-X-Google-Smtp-Source: ABdhPJzAhXKOMNx+vLHoDhonG/dNgcqpC07J/Hh3pxdI7gapI2O5ljbQRn5u/8JXu4/zqJZHNDaMFVi/gIZgwcBacJU=
-X-Received: by 2002:a63:4c2:0:b0:381:113e:2b07 with SMTP id
- 185-20020a6304c2000000b00381113e2b07mr3428345pge.100.1647036682298; Fri, 11
- Mar 2022 14:11:22 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=WZRwd9xP0PIO+zvpx8+BdqZplFhjFXhNfPxweKzMkx4=;
+        b=YniU3E4vMLJpn1iwF2BBwTFE1s0Zb+wtFIFf0wj5MXeNXhtxgfDKGYXo5uTPtX9rUF
+         o21tTBpUSiRVtkrMP5u2a0dVNuZ/8MiTBlGPVY4tceJ8Jz6IGrlZNGmJZTFfe/O7IV8x
+         JZ5d14xYrk419ss36m8OJIrKin2DCuHgmgrNRAv6AOptCnDgWu8C7lPursWmrRa1g0yc
+         SAmUZy4Ar0k4BUsYQD25OqNSMZwHZjcV8+USW1E19IzhyRmmomZ7Zs/7LX4UCSGfTkZs
+         QnXA0yCq/EQI7J7tQ5iG7ibBnXliWNqR3AaA8v6V3NZjf5vEX6rU7HfwDK1wzSToec8k
+         7/KQ==
+X-Gm-Message-State: AOAM5314yn2JLP2axdw1pN+2Hvx+uvyM9hnDQbAdRuxYNuJh7pWUBfeV
+	WwrAQp+b858yDvGW54bHkUdkRyDzzu8=
+X-Google-Smtp-Source: ABdhPJyAyTuTNT1JvcH6ksu2+9rFnUWacEWQModWlGEQNzxLNjNev9WzgU63vEjuCjtCa/rdziTU0A==
+X-Received: by 2002:ad4:5b86:0:b0:43a:5c52:30bf with SMTP id 6-20020ad45b86000000b0043a5c5230bfmr5035911qvp.22.1647037906102;
+        Fri, 11 Mar 2022 14:31:46 -0800 (PST)
+Received: from [192.168.2.217] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id q8-20020a05622a04c800b002e06d7c1eabsm6440750qtx.16.2022.03.11.14.31.45
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Mar 2022 14:31:45 -0800 (PST)
+Message-ID: <80bca585-776c-3ccf-ac59-79925eee1573@gmail.com>
+Date: Fri, 11 Mar 2022 17:31:45 -0500
 MIME-Version: 1.0
-From: Craigs List <5000craigslist@gmail.com>
-Date: Fri, 11 Mar 2022 16:11:11 -0600
-Message-ID: <CAE+UwfCNb8ZQnriJogKoQwbu-evrZ5ATPxABkW-RKNZ+eupYWQ@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: GPDYRB4SAOILMHHOYQ3N4DF2SZSPOOFX
-X-Message-ID-Hash: GPDYRB4SAOILMHHOYQ3N4DF2SZSPOOFX
-X-MailFrom: 5000craigslist@gmail.com
+References: <CAE+UwfCNb8ZQnriJogKoQwbu-evrZ5ATPxABkW-RKNZ+eupYWQ@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAE+UwfCNb8ZQnriJogKoQwbu-evrZ5ATPxABkW-RKNZ+eupYWQ@mail.gmail.com>
+Message-ID-Hash: SP7VYIXIFGVJBDDBLFCD2T7CRGO5G2YF
+X-Message-ID-Hash: SP7VYIXIFGVJBDDBLFCD2T7CRGO5G2YF
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Register access on E310
+Subject: [USRP-users] Re: Register access on E310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GPDYRB4SAOILMHHOYQ3N4DF2SZSPOOFX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SP7VYIXIFGVJBDDBLFCD2T7CRGO5G2YF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4143133489704758196=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============4143133489704758196==
-Content-Type: multipart/alternative; boundary="00000000000061699905d9f89c94"
-
---00000000000061699905d9f89c94
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-
-I need to do a direct read and write of the AD9361 registers on the E310.
-I'd like to just modify one of the C/C++ examples. I have an existing
-application that uses the AD9361 and need to document the E310 state.
-
-Frankly, I am having trouble getting a clean compile, using uhd::usrp or
-multi_ursp.  I can get things via the tree, but I'd like to be able
-to simply do a peek8 or poke8 and read a register. How to do so?
-
-As an example, I can see if the AGC mode is in fast or slow mode with
-the tree (or the command line 'uhd_usrp_probe --tree .../agc/mode/value')
-but I'd like to read the AGCConfigX registers (0xFA-FC) in their entirety.
-I'm sure it's possible, but I have been struggling with how.
-
-Thank you for any assistance you can provide.
-
-Kevin Tolliver
-
---00000000000061699905d9f89c94
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,<br><br>I need to do a direct read and write of=
- the AD9361 registers on the E310. =C2=A0<br>I&#39;d like to just modify on=
-e of the C/C++ examples. I have an existing <br>application that uses the A=
-D9361 and need to document the E310 state. <br><br>Frankly, I am having tro=
-uble getting a clean compile, using uhd::usrp or <br>multi_ursp.=C2=A0 I ca=
-n get things via the tree, but I&#39;d like to be able <br>to simply do a p=
-eek8 or poke8 and read a register. How to do so?<br><br>As an example, I ca=
-n see if the AGC mode is in fast or slow mode with <br>the tree (or the com=
-mand line &#39;uhd_usrp_probe --tree .../agc/mode/value&#39;) <br>but I&#39=
-;d like to read the AGCConfigX registers (0xFA-FC) in their entirety. <br><=
-/div>I&#39;m sure it&#39;s possible, but I have been struggling with how.<b=
-r><div><br>Thank you for any assistance you can provide.<br><br>Kevin Tolli=
-ver<br><br><br></div></div>
-
---00000000000061699905d9f89c94--
-
---===============4143133489704758196==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4143133489704758196==--
+T24gMjAyMi0wMy0xMSAxNzoxMSwgQ3JhaWdzIExpc3Qgd3JvdGU6DQo+IEhlbGxvLA0KPg0KPiBJ
+IG5lZWQgdG8gZG8gYSBkaXJlY3QgcmVhZCBhbmQgd3JpdGUgb2YgdGhlIEFEOTM2MSByZWdpc3Rl
+cnMgb24gdGhlIEUzMTAuDQo+IEknZCBsaWtlIHRvIGp1c3QgbW9kaWZ5IG9uZSBvZiB0aGUgQy9D
+KysgZXhhbXBsZXMuIEkgaGF2ZSBhbiBleGlzdGluZw0KPiBhcHBsaWNhdGlvbiB0aGF0IHVzZXMg
+dGhlIEFEOTM2MSBhbmQgbmVlZCB0byBkb2N1bWVudCB0aGUgRTMxMCBzdGF0ZS4NCj4NCj4gRnJh
+bmtseSwgSSBhbSBoYXZpbmcgdHJvdWJsZSBnZXR0aW5nIGEgY2xlYW4gY29tcGlsZSwgdXNpbmcg
+dWhkOjp1c3JwIG9yDQo+IG11bHRpX3Vyc3AuwqAgSSBjYW4gZ2V0IHRoaW5ncyB2aWEgdGhlIHRy
+ZWUsIGJ1dCBJJ2QgbGlrZSB0byBiZSBhYmxlDQo+IHRvIHNpbXBseSBkbyBhIHBlZWs4IG9yIHBv
+a2U4IGFuZCByZWFkIGEgcmVnaXN0ZXIuIEhvdyB0byBkbyBzbz8NCj4NCj4gQXMgYW4gZXhhbXBs
+ZSwgSSBjYW4gc2VlIGlmIHRoZSBBR0MgbW9kZSBpcyBpbiBmYXN0IG9yIHNsb3cgbW9kZSB3aXRo
+DQo+IHRoZSB0cmVlIChvciB0aGUgY29tbWFuZCBsaW5lICd1aGRfdXNycF9wcm9iZSAtLXRyZWUg
+Li4uL2FnYy9tb2RlL3ZhbHVlJykNCj4gYnV0IEknZCBsaWtlIHRvIHJlYWQgdGhlIEFHQ0NvbmZp
+Z1ggcmVnaXN0ZXJzICgweEZBLUZDKSBpbiB0aGVpciANCj4gZW50aXJldHkuDQo+IEknbSBzdXJl
+IGl0J3MgcG9zc2libGUsIGJ1dCBJIGhhdmUgYmVlbiBzdHJ1Z2dsaW5nIHdpdGggaG93Lg0KPg0K
+PiBUaGFuayB5b3UgZm9yIGFueSBhc3Npc3RhbmNlIHlvdSBjYW4gcHJvdmlkZS4NCj4NCj4gS2V2
+aW4gVG9sbGl2ZXINCj4NCllvdSBoYXZlbid0IHN0YXRlZCB3aGljaCBzeXN0ZW0gaW1hZ2UgeW91
+J3JlIHJ1bm5pbmcgb24gdGhlIEUzMTAsIGJ1dCANCmFzc3VtaW5nIHRoYXQgaXQgaXMgYSAzLjE1
+IG9yIG5ld2VyIGltYWdlLCB0aGUgTVBNDQogwqAgZGFlbW9uICJvd25zIiB0aGUgaGFyZHdhcmUu
+wqAgTXkgcmVjb2xsZWN0aW9uIChhbmQgaXQgaGFzIGJlZW4gYSANCndoaWxlKSBpcyB0aGF0IHRo
+ZSBBRDkzNjEgaXMgY29udHJvbGxlZCBvdXQgb2YgTVBNLS1zbyB5b3UNCiDCoCBjYW4gbG9vayB0
+aGVyZSBmb3IgaGludHMgYWJvdXQgaG93IHRvICJkaXZlIGJlbG93IHRoZSBjb3ZlcnMiLg0KDQoN
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2Ny
+aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
