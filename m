@@ -2,180 +2,102 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C86E74D7914
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Mar 2022 02:29:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A0A4D7E57
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Mar 2022 10:18:50 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8945D3849B6
-	for <lists+usrp-users@lfdr.de>; Sun, 13 Mar 2022 21:29:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6F144384C3F
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Mar 2022 05:18:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="4PXIprtr";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IiG+lZoA";
 	dkim-atps=neutral
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6B36F3843B4
-	for <usrp-users@lists.ettus.com>; Sun, 13 Mar 2022 21:28:43 -0400 (EDT)
-Received: by mail-pj1-f50.google.com with SMTP id m11-20020a17090a7f8b00b001beef6143a8so13018216pjl.4
-        for <usrp-users@lists.ettus.com>; Sun, 13 Mar 2022 18:28:43 -0700 (PDT)
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id D5D313842EF
+	for <usrp-users@lists.ettus.com>; Mon, 14 Mar 2022 05:17:48 -0400 (EDT)
+Received: by mail-yb1-f173.google.com with SMTP id l2so29391177ybe.8
+        for <usrp-users@lists.ettus.com>; Mon, 14 Mar 2022 02:17:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xUJzHArVLjzipmgwDIkO612+MT6LmzlepeRBTkXWvIo=;
-        b=4PXIprtrHkN3Bde7lL9vnfYAErXd/Ay4RBcJD9QKXZt5kY9FYxCQs9Ou/tvmn9skUI
-         Kk+bCm+9chr9qR0yppF6ATnhQgadbwHdX/1OQInN3tngRcTdhp8W1lZqozzzlg/gGNgi
-         ouheprbulK5h9cW2edvaY3UVmSZyjtEMJmzWcbYXBs78S2m1lJrKUoY+Cjd086bAt2Se
-         ZQMjY6o3wO8XvxKSF1eZ7HeeSToZhs6FdsdaIawoH01djSR56bWazfx9S11Ala6eossu
-         iTUEPts+FN1GDjeyfz/MHdmz44VsKIpQDZvG5Tm95lGxklJFBI9z/iRqSH4ygYS3B429
-         qQhQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=DmhnDLOdDi810CbYqenlbxhOe9BzMfHpm6mWoNVBSKo=;
+        b=IiG+lZoAZrzYf3KV9GQGahug0cKynFI5D49B/3F5icK5CuYLCuQDhNnm7Mie8d3C/p
+         Jhvq15FFz2YpM6+CAM24hNJQFHJOudKuv9trloKnYHOazUboro9GHe8E7CjdtxdLJxnw
+         J9wUWXAFpa7cXbcxZtE5JJFOzlmHADFSDequ3zzIHrydeYtrpnLSLq+6QAOPsuRjvFyg
+         duUwl+LaLjZIOH028LhHLxoD0l0NvyzrOQHv1pzDYJwTzvcC9OYtV2+WsptTKqkcZmi5
+         wHg/2EEW0f+nVYism8/7SAs2I26meB16CTKp3pGSf/JRzuZDxgS5q7auBsjTSBVjJcnh
+         YOhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xUJzHArVLjzipmgwDIkO612+MT6LmzlepeRBTkXWvIo=;
-        b=0KiaZ/bNkYA9SO0Adf0EcqFkfqxBTdPUuvbAvpE7HBO5X5SOqltzk7AUhDnlzwM7TN
-         ek1tbwyMQAvC3rEBK/0oo2fsADVczWLRyLzxQdofDPR8cerby27r1Y2+cCiZkLIqfWP7
-         QY+a0l7zkBnGoTVnY/gHFLZwrcnB7Bl4MS+RZ1onJuod5VETzcjbwkL7wgzXsn8qqUC6
-         ycScPjeiFTw2kpex18F2dOAqNdOx7RG9N8Bu6Iu84Wtn6fdSK4GSTAp19X5+bhKH73cY
-         FAMqzDes1VYGAZs1qrE63tlhQd2U/YXOSjCDU62uGqtNdYpGqBUXavFeOKYjtI0GAlIU
-         9M6A==
-X-Gm-Message-State: AOAM532bsfKbYcrbOL8ZiG1oEIGrwXPqOL2mE+kGkXQhUdEiZNQFRwHi
-	TRm7q1jVQIR7RpKzJZjuwjr1DcaDEHc05DjgTLY+gaNPaN6Fow==
-X-Google-Smtp-Source: ABdhPJz/vc3c1d3pt2rnB4OrXUzXRm2+svtF4iLwYH1ou5dwaWxg/umjiTYBBDbbi2Nt/CpqrqgZVjx0m05y7wKwqVg=
-X-Received: by 2002:a17:90a:af88:b0:1bd:6b5d:4251 with SMTP id
- w8-20020a17090aaf8800b001bd6b5d4251mr22327592pjq.134.1647221322391; Sun, 13
- Mar 2022 18:28:42 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=DmhnDLOdDi810CbYqenlbxhOe9BzMfHpm6mWoNVBSKo=;
+        b=nzDl1o86o8EmQzgEgysWYyWico7vky1Cq4mT0ee52vgHLwQy5YLIXiVQwRsuDHCKUE
+         1xhYSkt9naKhO/FnYGMNqD5lZGpeG52d/dG0ve7ghf2zgBKNzOWZa0cBDnkHWRXQH5pM
+         vqn8HEut0WSUdSy7crLj5M6p4KNo94VHrIec2DCRQnyEjOP/lB0ATLQQGiudB/47Nd8U
+         mJXjpiVVPojOeEOWADwWBQUO3TqFLz7zWWllayMl3DQO887raVTaqM2CMn2CVPL8v/Ob
+         8t+T/TUcEF4PJ4mufZDf/SSmfNazHK+qRIvfP3rZIpG2J1Gjsw60GrjBX8vn7o5jIcVa
+         xIfg==
+X-Gm-Message-State: AOAM531xovYReeAG5Xp1YXCRksdlWBwiAEHIUdH8fIl75R3Bc3n3Pwzj
+	W7jFqpyVIh/UNwNYDsF562OjUnIowg3XPTMJ9+M/A09Pm3Jgy75dtss=
+X-Google-Smtp-Source: ABdhPJzWPtTdkswse5T6pngvJZPwZ8w6Q0NDDHEXkz2BDjRYn3Ko4yo/MhUMyyLdAbAOL8KRHwI1nUhxBUN0v/gU64Q=
+X-Received: by 2002:a25:c708:0:b0:628:d9f2:c0a6 with SMTP id
+ w8-20020a25c708000000b00628d9f2c0a6mr18264481ybe.464.1647249467323; Mon, 14
+ Mar 2022 02:17:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <9D4AD31F-21EF-46DE-8419-7A4EF6DAB197@contoso.com>
-In-Reply-To: <9D4AD31F-21EF-46DE-8419-7A4EF6DAB197@contoso.com>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Sun, 13 Mar 2022 21:28:31 -0400
-Message-ID: <CAGNhwTOG+YaP0_Md2qNpOa_GqJ_ZTPXezi_XapFRe5ovu8H=Yw@mail.gmail.com>
-To: Erik Carlseen <erik.carlseen@brilliantroot.com>
-Message-ID-Hash: TXOHZP22ZLX36VICVYQKSB544654PDTK
-X-Message-ID-Hash: TXOHZP22ZLX36VICVYQKSB544654PDTK
-X-MailFrom: michael.dickens@ettus.com
+From: sp h <stackprogramer@gmail.com>
+Date: Mon, 14 Mar 2022 12:47:36 +0330
+Message-ID: <CAA=S3PuF6+hUSg0Jo8Lpn8fFgrVgPLBvv66yVMxGwpO0b9OKkA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: RJZZZC7TKDVVHXA5ZRHP3WTVSOITMSXG
+X-Message-ID-Hash: RJZZZC7TKDVVHXA5ZRHP3WTVSOITMSXG
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRB Hardware Driver with Apple Silicon Macs
+Subject: [USRP-users] What's the max legal value for these parameters in RFNOC blocks?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TXOHZP22ZLX36VICVYQKSB544654PDTK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RJZZZC7TKDVVHXA5ZRHP3WTVSOITMSXG/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4834946998823734168=="
+Content-Type: multipart/mixed; boundary="===============8479791596158581411=="
 
---===============4834946998823734168==
-Content-Type: multipart/alternative; boundary="000000000000c9b7df05da2399a5"
+--===============8479791596158581411==
+Content-Type: multipart/alternative; boundary="0000000000005b3b9205da2a27ff"
 
---000000000000c9b7df05da2399a5
+--0000000000005b3b9205da2a27ff
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Erik - Yes UHD and USRPs work with Apple M1 / ARM64. I've used an M1 Mac
-Mini with 10 GbE to connect to various USRPs (N320/1, X310, X410) via an
-RJ-45 to SFP+ adapter ... worked nicely with UHD 4.1! UHD does have
-optimizations for certain Intel SIMD; it is not optimized for ARM64, but it
-should work quite well natively (or in Rosetta2 if you wanted to go that
-route). - MLD
+What's the max legal value for these parameters in RFNOC blocks?
+Can I for an RFNOC block set CHDR_W to 1024?
+We know for communication between RFNOC blocks in USRP is used AXI4 stream
+bus.....
+  thanks in advance
 
+parameter CHDR_W = 64,
+parameter [5:0] MTU = 10
 
-On Sun, Mar 13, 2022 at 12:59 PM Erik Carlseen <
-erik.carlseen@brilliantroot.com> wrote:
-
-> Has anybody successfully built and run the USRB Hardware Driver on an
-> Apple Silicon (M1 family of CPUs) Mac?
->
->
->
-> My understanding is that AARCH64 is supported on Linux and MacOS is
-> supported in general, but just assuming that any driver source code will
-> just work on a new architecture / OS combination is generally not a wise
-> gamble.
->
->
->
-> I=E2=80=99m thinking that an M1 Mac Mini might be an outstanding platform=
- for SDR
-> work.
->
-> Thanks,
->
->
->
-> Erik Carlseen
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000c9b7df05da2399a5
+--0000000000005b3b9205da2a27ff
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div dir=3D"ltr" class=3D"gmail_signature" data-smart=
-mail=3D"gmail_signature"><div dir=3D"ltr"><div>Hi Erik - Yes UHD and USRPs =
-work with Apple M1 / ARM64. I&#39;ve used an M1 Mac Mini with 10 GbE to con=
-nect to various USRPs (N320/1, X310, X410) via an RJ-45 to SFP+ adapter ...=
- worked nicely with UHD 4.1! UHD does have optimizations for certain Intel =
-SIMD; it is not optimized for ARM64, but it should work quite well natively=
- (or in Rosetta2 if you wanted to go that route). - MLD</div></div></div></=
-div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Sun, Mar 13, 2022 at 12:59 PM Erik Carlseen &lt;<a href=3D"mailt=
-o:erik.carlseen@brilliantroot.com">erik.carlseen@brilliantroot.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+<div dir=3D"ltr">What&#39;s the max legal value for these parameters in RFN=
+OC blocks?<div>Can I for an RFNOC block set CHDR_W to 1024?</div><div>We kn=
+ow for communication between RFNOC blocks in USRP is used AXI4 stream bus..=
+...</div><div>=C2=A0 thanks in advance</div><div><br><div><div style=3D"col=
+or:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;=
+,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;line-height:19px;=
+white-space:pre"><div>  <span style=3D"color:rgb(0,0,255)">parameter</span>=
+       CHDR_W          =3D <span style=3D"color:rgb(9,134,88)">64</span>,</=
+div><div>  <span style=3D"color:rgb(0,0,255)">parameter</span> [<span style=
+=3D"color:rgb(9,134,88)">5</span>:<span style=3D"color:rgb(9,134,88)">0</sp=
+an>] MTU             =3D <span style=3D"color:rgb(9,134,88)">10</span></div=
+></div></div></div></div>
 
+--0000000000005b3b9205da2a27ff--
 
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-992288893477894207WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Has anybody successfu=
-lly built and run the USRB Hardware Driver on an Apple Silicon (M1 family o=
-f CPUs) Mac?
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">My understanding is t=
-hat AARCH64 is supported on Linux and MacOS is supported in general, but ju=
-st assuming that any driver source code will just work on a new architectur=
-e / OS combination is generally not
- a wise gamble.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">I=E2=80=99m thinking =
-that an M1 Mac Mini might be an outstanding platform for SDR work.<u></u><u=
-></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u><u></u></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks,<u></u><u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Erik Carlseen<u></u><=
-u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
-/span></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---000000000000c9b7df05da2399a5--
-
---===============4834946998823734168==
+--===============8479791596158581411==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,4 +107,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4834946998823734168==--
+--===============8479791596158581411==--
