@@ -2,265 +2,345 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33D594D8A1D
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Mar 2022 17:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E56C74D8A2A
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Mar 2022 17:52:55 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 54524384B28
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Mar 2022 12:46:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CF7F4384D1A
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Mar 2022 12:52:54 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NzRbc6Vy";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="oiJDFp12";
 	dkim-atps=neutral
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5BD9C3844E5
-	for <USRP-users@lists.ettus.com>; Mon, 14 Mar 2022 12:45:26 -0400 (EDT)
-Received: by mail-qk1-f180.google.com with SMTP id s16so13257975qks.4
-        for <USRP-users@lists.ettus.com>; Mon, 14 Mar 2022 09:45:26 -0700 (PDT)
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [148.163.129.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id C3A90384808
+	for <USRP-users@lists.ettus.com>; Mon, 14 Mar 2022 12:51:54 -0400 (EDT)
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.7.67.128])
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 17C882200A4;
+	Mon, 14 Mar 2022 16:51:52 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam08lp2045.outbound.protection.outlook.com [104.47.73.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id C30677800A3;
+	Mon, 14 Mar 2022 16:51:51 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RdOkpKMJHDLPN7T0lGhXWtzdtt5E9gwJoadXWNEbTJItL0zXL2EbeSAZbVwdMwKOWkaJXRezW9+Jslpn1ZfIT6ClP9vkK8RgEXLL5IKWrQ6FUoKSjWYSYRs0dgSw5cY9OhaDRA7L8UoBKYDz+IkhDpFONhb+zaVBnUZPtZHnGGW9WXiNiCqjSjiIeYdT7D4EmNgD7ySIoVctP/myryRqqpUenl5u2xTMvYdfsXTROCd7jfjmLN8JK/b15UWOxjTea8/XQLakC8C7PFpJmvQiVOcyqs0MrIGDm2CQY1sgjfLDvPgnf8FhPNqorBDzzVE1zW8Gd+f83djNekJQ4pAeQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6S/5FzgXjh/RzgaTWVyecCTTos2JtOoF8eeJJRZqUJw=;
+ b=bT/X3+m7o+oNEBtmdP4QHb6z4aBy0Y+1StlUMxLHY2haiCUWcGbpQDlcc8P2uSPLBPBuauN5GDKYO/VXXBFNg/SVrLovhZvGVB5XD0jAWLnnozXX0opPuT617Tf26v3Z2ItV0bFmCZzUjx5mHrNSZlPoJ/mfBqHR4MGMQUtSiT0xcg/vdY4JkACJUktlFNroe0qra0N1Gzz089n8/KhwIw4uTXwHBrA31NKBId8anqko17Hk2DzMuCckKu1uzsbndU51nVPn5PEkFY+18dxIfOIeitxmrpS296VeRMsN1ZykmcAWNhiLk5rloI5rygkb7Kn64HxD0nzhV3J/W3mNLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=4tQnmo1OhxpOZjNBWM/NuzlkA7sUQt/E7jJHZ64kkX0=;
-        b=NzRbc6VyMu0gM4qHxEYziTiWI9+bZAB7Ch/cNFs4pRP2lo2J9bpNycziQW/t0t4nWG
-         zjf9BiUlXJOqcywa3jpHyQ4QI6BVIKUuz4zhdvV5ArMawlpgSVzM72jAxicNAUuwbMtp
-         BOLkmk33+gIKbWXeedietlMF+WiH3u+yKhzsNJWXU9Gz3Wf2+RnOa3lOaRF18Fog9dph
-         TQ+GI0hQ9wcR/opHZN2ekGgU/0PsNKUBvCs6OPFZ4xdmuksh2HrVBcHX7hzs30WCKuFp
-         V/lw3oz7rY4dz2Ryya3+L9lxsheGLmOR8MdDWJoloRv4P7gQ8PxSOc6m5/mNpVHNwtlm
-         0oag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=4tQnmo1OhxpOZjNBWM/NuzlkA7sUQt/E7jJHZ64kkX0=;
-        b=o9NZZSIlkjNjrmvi4hxR8DEz6lS9KXrSRbRO3HjhyxYa2+jVaeRgWPJaIrmqgfvQFe
-         1yXaz1abpJgMNLUDUC2f9YuxuYu9ouyJxcUhzMKZG7KfdqLCIfLaYF7+I9A9pAjpC9K9
-         NJix6hIZEL0psPw+CslETnClEHXhgmhOSupb3byiQ5haTUwWwEO9g06HJgVm1APUMiU1
-         cFaKWFCfPWkq7HimLptj9s73mdHVqZXhdZv456SMz5iKtCz7nDfkYPV4CMUkPzVVEKcV
-         cSfIxKurxAyXQB4hmBtR39ivBTNjj4cTYC6COJ2gsa9BeE8RFwJWgrMaNucd/qpxOI6A
-         kmaw==
-X-Gm-Message-State: AOAM530oS4COjxTw23DD/6voOVP5iK5Wz+9qtuco+QKG212CBEX9h/Px
-	Kn07qT/8dSwNHNx8cAzSwbk=
-X-Google-Smtp-Source: ABdhPJz9ihy/eXxH8zUGd92C+eXOYVZlzPmS9HCPTWv8+ElcXs2rhebzA65KHIYXPM8hcwtLg+MpvQ==
-X-Received: by 2002:a05:620a:200f:b0:67b:3fb7:8784 with SMTP id c15-20020a05620a200f00b0067b3fb78784mr14889472qka.336.1647276325828;
-        Mon, 14 Mar 2022 09:45:25 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.gmail.com with ESMTPSA id d22-20020a05620a167600b0067d8efed4d4sm4537883qko.26.2022.03.14.09.45.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Mar 2022 09:45:25 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Mon, 14 Mar 2022 12:45:24 -0400
-Message-Id: <A65EA2C6-F1FB-472A-912F-6A204ED11065@gmail.com>
-References: <MN2PR12MB3312A2DFCADC494AFE2E29C9B80F9@MN2PR12MB3312.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB3312A2DFCADC494AFE2E29C9B80F9@MN2PR12MB3312.namprd12.prod.outlook.com>
-To: Jim Palladino <jim@gardettoengineering.com>
-X-Mailer: iPhone Mail (19D52)
-Message-ID-Hash: GYXCRPAE6HGMLN62Z67BIPUCBYQZEWHY
-X-Message-ID-Hash: GYXCRPAE6HGMLN62Z67BIPUCBYQZEWHY
-X-MailFrom: patchvonbraun@gmail.com
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6S/5FzgXjh/RzgaTWVyecCTTos2JtOoF8eeJJRZqUJw=;
+ b=oiJDFp12pD+ACFacTZTc6vTqjfP7dZjzqgStKzelwddl1vq8tvaPsIjUm7eRatESQqZw6EYGCCmhs4zcLZnqzuh6Wvp1UVaNWgN3qiVYLEuXi9LZwreQN2qtkFbZZIbnLI7EKJ6iBk5i0o/tN/s8BJEJFLFCHQpnCEHBrdR7gXQ=
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
+ by SN6PR12MB2735.namprd12.prod.outlook.com (2603:10b6:805:69::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.25; Mon, 14 Mar
+ 2022 16:51:49 +0000
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::b457:f58d:2410:5e24]) by MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::b457:f58d:2410:5e24%4]) with mapi id 15.20.5061.028; Mon, 14 Mar 2022
+ 16:51:49 +0000
+From: Jim Palladino <jim@gardettoengineering.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] Problem using IQ calibration coefficients with
+ Rhodium DB
+Thread-Index: AQHYN7zIm+xBVn6GQ0Kmf5SOsFUA0ay/FlMAgAABJeo=
+Date: Mon, 14 Mar 2022 16:51:49 +0000
+Message-ID: 
+ <MN2PR12MB33126E6B256F3A78BBF30C74B80F9@MN2PR12MB3312.namprd12.prod.outlook.com>
+References: 
+ <MN2PR12MB3312A2DFCADC494AFE2E29C9B80F9@MN2PR12MB3312.namprd12.prod.outlook.com>
+ <A65EA2C6-F1FB-472A-912F-6A204ED11065@gmail.com>
+In-Reply-To: <A65EA2C6-F1FB-472A-912F-6A204ED11065@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=gardettoengineering.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4569a372-376a-477d-506c-08da05daef09
+x-ms-traffictypediagnostic: SN6PR12MB2735:EE_
+x-microsoft-antispam-prvs: 
+ <SN6PR12MB273589F92BECB10E983229B3B80F9@SN6PR12MB2735.namprd12.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 4OIumhOQ0ni0YoG8zKMHNWptOiFCMgqhRJJmmRmgKkJMYxijQiyrlBuOmLehyoaWMj98HJVez1PqNau0P77fktUQwJYlVYIF7qW9WPwzFFE1FxM4y570EiVbiaglx1mYQUttDg54xzKoekv1vChysriz5eu3UPTYhDpdKGHbO8rC1pI5w6KJzST2INAicFEAu9yJ+m9WFoevprQLZYe9eD4Cg1gt+5n1au92qq4G5YO30Iwd7faMKRBlcmyN/LbZoK6O5jcvrktl830PU7MvW/6IdnCpVfdJZnu543QdN0G5nK4HW55ep9S+JpCKqbRse8rfhNiSCCv0zQFNk7Uu0wg4nVw23pr+9kLcRvYLw1/qlbU6erbs0biEHxIduO7/EGjdgwR1nqXGtkp7qSsJcwgAQabKNWf4KEUeqdIgwflrsh4zaiXVEK895LsnR7gqOr+IOOCMZLzsO8p8wER5NnnkKdxkiJWT8eytMJIbQo7h4Xsx0Xe/PmfLEjZh0MDQ2IICCYAq0Bykijv26/u7J5VAubr5cNfHQMqgqHdRWrEx8K2NcUlo3pR4SJEcoPjnKtG07onGNI1uoIujqsUrHOtarzryoG8NZfXD/Z4Y1HkGj70ml7xN1TLKT45hh7pzJvCUTDUmIsjocr43PNzWrKAS5sWOEBSuN1h9VdnrrbQcypYslNbR5mMSceWM/RhLrEW3ioP9zCwlkLo4mQ6fUHX2sqxeXIkjx0meWPlmsw3u9DqhF7XHny3qmb9F3LTiEMRr+E9r98Tj49cWeTGmQg8BP/ItvVdWmAN1LjatIfs=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3312.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(376002)(396003)(39830400003)(136003)(346002)(6506007)(7696005)(53546011)(33656002)(8676002)(8936002)(9686003)(64756008)(66446008)(66476007)(66556008)(4326008)(66946007)(86362001)(76116006)(71200400001)(122000001)(19627405001)(38100700002)(6916009)(55016003)(52536014)(5660300002)(508600001)(83380400001)(2906002)(38070700005)(166002)(966005)(26005)(186003)(316002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?aHl1L1J0TEwvU2lxRjEzc1AxNmxacWRjdEFUNUJEVVkzMEVVNzF6ZVBHSS9a?=
+ =?utf-8?B?MDZNVnhXTndzL3dvbzRkZVRsUzUzekRhR0JRWktkNUNRbHphVDIwQlFDc2R3?=
+ =?utf-8?B?RUJNRmZyd3Ntbld5UXQwQWo3dlhGM3JGZ2hjZVpTSmFXNHJyU2ZQbFdWUUpx?=
+ =?utf-8?B?akVIWHlhakNucEk5ZWczUUNhcnF0YXFKMXoyYnRMbFdTc3VualE1dkIyVjVC?=
+ =?utf-8?B?KzQydCtTN080dnpGM3Y1Z0hKSkVtYmFheGVHdS8rQk9rSnk4eUcwaTJDT2pj?=
+ =?utf-8?B?Qjk5bXpQOWJ0dEFvNmFuREtqbXBLMXY4RmJsTlJwNUpYN0pzcjNXL2xSWnli?=
+ =?utf-8?B?TDgxcHU4WHN4NWp2SXE4d2kxTllFOTBCWU0zVEMyTUJvSktjMnY3NXZxY3Vp?=
+ =?utf-8?B?bVBTcVkrcWxXUjgzOVY1QjJVWDVuVEZZWEpwRzNLMTRNZHF6aU5KWHVHMmxh?=
+ =?utf-8?B?eVhKamE3SENCb0R5QWgzSnRpR2VXcTI2dk92NEY5TmNKc0tBUVdsSUI2VjVS?=
+ =?utf-8?B?UzhQTnlxR1JCUk95NERabnJMWWFqYlJiVlJ1S3hhQnFXK1FVbXRzVTdYVEVW?=
+ =?utf-8?B?dkZyVVNKY1FOQVNOOHVSb2hUcnZvS2lqT08zd1p0YkNhVjl4NFlOVTdMZ3V5?=
+ =?utf-8?B?M1EvSU5xVWhJOFVhTWd5ZllEZlZld0pkam5yenZubXNaNTVlUk91SGErc0Ro?=
+ =?utf-8?B?UUsveHhwdWdSRFRVTFZqcTlvbDg4ak94T1VUd25vU1g0MktrQ1VkS2FkRmQw?=
+ =?utf-8?B?QXpFS29OVytaQXNML2FtVWZsOVE5Z05yd2c3Z3hia1E2Ym5QSzREZjBCOUVE?=
+ =?utf-8?B?c0dtSGl5MXNvVzVPaGdZK0xxT3BMNnpzV0pQNDFVVWpDZTJ0MmVHRUwxUURR?=
+ =?utf-8?B?N3dlZzBmOFdpVTdPd002bU02MFZJSlBJbXNaTGpjNlFlaVIxSE0yQ1pkb21q?=
+ =?utf-8?B?ekxtZzJxclo1TDFUREpLUUZLVDZIVDhpMTd2ZFZkUWdjUnhwSmhrZGRjY2xN?=
+ =?utf-8?B?TkFwWHYyMVlKTFVBNVNpNTNreksrQndKMkQrRER1Tlpac0V6NUpQeXZPd01C?=
+ =?utf-8?B?UlowV3M0RjlFSjlJNmk3cFprRmlCY09XVjJwMmswV3dKMjhycVl1WmtrVkp2?=
+ =?utf-8?B?T1p3cEhBT2ZBaVROaVZLVkFoL0dnYmJaQy9CdlZONFZUOUFXVXBkczhwWHpr?=
+ =?utf-8?B?MFkxM25HdjU1UFBYbHZkM2Z3dzdNVUFPTWQ4SzgwNDBJc1hkak9CNjJJV0dD?=
+ =?utf-8?B?OUQ3c0J1YVp6RkZUbTgvOW5HdE9CQXRHaVJ4UjBkYU40VTd6dFdiZ0lWaFVZ?=
+ =?utf-8?B?SjBIYm5FTERONHdQSmFnbjNSbnc4NFBzV0c5bXFjbTVtSHVSckpSbHorTUlS?=
+ =?utf-8?B?SjJTa0V4bFVkY1dpVDlYeGFubStkMkdGeWdVUUtCL2d1L3RuKzhqdHludXhC?=
+ =?utf-8?B?cG1GRTZFSVhSYW0vVHhQYVJkeWQ2Y1ozZXV1Tit3eEdSZElzMlBuRHVTNHZ3?=
+ =?utf-8?B?NTI5Q0xFelJGd3AyYWg1a1l5SW1LanFGc3dwWC9UN2VNSVczbkRwbjFHaXp0?=
+ =?utf-8?B?RU94Q1UxNjhFd3duZVJhNTVobksvTGN4WjRvQTBBV2NBRDYrdDNQeHEvanJ5?=
+ =?utf-8?B?L1UyS1RMbmY2SmNPUXFrVFhxbndzS2o4NUlpUnMrdklKZHp3YUxxZDVBYW1F?=
+ =?utf-8?B?YUFUaGNjQUxQSFM3YzdrUFVwVTNpdjQ2cFplKytXRGwzMzZ0akR1NkZkK1lW?=
+ =?utf-8?B?M05qWitNV2ZBVUVMbWNwZ08yZ0tEM3FCQjRNaGxQYldkS3ZhQ2JHYVlWM1dy?=
+ =?utf-8?B?Zlk4Q0VsMU9VR1c5NjBUaUNLUG1wS0Jsa3RTSjFiSG1sODFqTXpaYVBJdGZW?=
+ =?utf-8?B?a2QvYTJtYzBINDhhb1RiS29Wd1hHdmxBdjVHL2tSRkN0OHZ4bUNqandBUzdJ?=
+ =?utf-8?B?bXp5ZnRxdnJYcHlrNS9ranVrZkxLMFQ1YWZhSFRMN2VhYXF2MGt3cUhvWWhl?=
+ =?utf-8?B?V2VaZ2pWelFBPT0=?=
+MIME-Version: 1.0
+X-OriginatorOrg: gardettoengineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4569a372-376a-477d-506c-08da05daef09
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Mar 2022 16:51:49.6783
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: vunhMq+2GOL1TiBQIdT1Yexd9l9j32dqsIesRTaXnULEP180OM9a9N2oHQQFsjeUV+NLoo3ye5bMEqbyYKPsb3zBsvVUmywWc31WePVCEVE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2735
+X-MDID: 1647276712-RP_otfryHfd5
+Message-ID-Hash: ADM3KAMTE7E4IESYQJZNROWC3LVA2KH5
+X-Message-ID-Hash: ADM3KAMTE7E4IESYQJZNROWC3LVA2KH5
+X-MailFrom: jim@gardettoengineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
+CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Problem using IQ calibration coefficients with Rhodium DB
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GYXCRPAE6HGMLN62Z67BIPUCBYQZEWHY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MP4HIB32I6C5PEF2TRZCZXEG5QUPFRW7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5559599656928530027=="
+Content-Type: multipart/mixed; boundary="===============1926957707986762077=="
 
+--===============1926957707986762077==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR12MB33126E6B256F3A78BBF30C74B80F9MN2PR12MB3312namp_"
 
---===============5559599656928530027==
-Content-Type: multipart/alternative; boundary=Apple-Mail-362986DB-72DC-4150-B07F-FB7016745A8A
-Content-Transfer-Encoding: 7bit
+--_000_MN2PR12MB33126E6B256F3A78BBF30C74B80F9MN2PR12MB3312namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+SGkgTWFyY3VzLA0KDQpPbmUgb2YgbXkgY293b3JrZXJzIGNyZWF0ZWQgYW4gIklzc3VlIiBpbiB0
+aGUgVUhEIGdpdGh1YiByZXBvLiBJZiB0aGVyZSBpcyBhIGRpZmZlcmVudCBwbGFjZSB0byBwb3N0
+IGEgYnVnLCBwbGVhc2UgbGV0IG1lIGtub3cuDQoNClRoYW5rcywNCkppbQ0KDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogTWFyY3VzIEQgTGVlY2ggPHBhdGNodm9uYnJh
+dW5AZ21haWwuY29tPg0KU2VudDogTW9uZGF5LCBNYXJjaCAxNCwgMjAyMiAxMjo0NSBQTQ0KVG86
+IEppbSBQYWxsYWRpbm8gPGppbUBnYXJkZXR0b2VuZ2luZWVyaW5nLmNvbT4NCkNjOiBVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbSA8VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0
+OiBSZTogW1VTUlAtdXNlcnNdIFByb2JsZW0gdXNpbmcgSVEgY2FsaWJyYXRpb24gY29lZmZpY2ll
+bnRzIHdpdGggUmhvZGl1bSBEQg0KDQpUaGFua3MgSmltLg0KDQpDb3VsZCB5b3UgcG9zdCBhIGJp
+ZyByZXBvcnQgdG8gdGhlIHB1YmxpYyBidWd0cmFja2VyIGZvciBVSEQ/DQoNCg0KDQpTZW50IGZy
+b20gbXkgaVBob25lDQoNCk9uIE1hciAxNCwgMjAyMiwgYXQgMTI6MjQgUE0sIEppbSBQYWxsYWRp
+bm8gPGppbUBnYXJkZXR0b2VuZ2luZWVyaW5nLmNvbT4gd3JvdGU6DQoNCu+7vw0KSGVsbG8sDQoN
+CkkndmUgZm91bmQgYW4gaXNzdWUgd2l0aCB0aGUgUmhvZGl1bSBibG9jayBjb250cm9sbGVyIGNv
+ZGUgKHJob2RpdW1fcmFkaW9fY29udHJvbC5jcHApIHdoZXJlIHRoZSBkYXVnaHRlcmJvYXJkIHNl
+cmlhbCBudW1iZXIgaXMgbm90IGhhbmRsZWQgY29ycmVjdGx5LiBJZiB5b3UgbG9vayBhdCBsaW5l
+IDQ1MiBoZXJlOg0KaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvbWFz
+dGVyL2hvc3QvbGliL3VzcnAvZGJvYXJkL3Job2RpdW0vcmhvZGl1bV9yYWRpb19jb250cm9sLmNw
+cDxodHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cHMtM0FfX2dp
+dGh1Yi5jb21fRXR0dXNSZXNlYXJjaF91aGRfYmxvYl9tYXN0ZXJfaG9zdF9saWJfdXNycF9kYm9h
+cmRfcmhvZGl1bV9yaG9kaXVtLTVGcmFkaW8tNUZjb250cm9sLmNwcCZkPUR3TUZhUSZjPWV1R1pz
+dGNhVERsbHZpbUVOOGI3alhyd3FPZi12NUFfQ2RwZ25WZmlpTU0mcj1YVUVFdFVFZnBhQUVHeFJJ
+LVdHdXFIYXVPdnNQZEQyTlprZndEbndwWXgwJm09NHk0aVc4Z1lsVEdlSWN1Q2dtT0lCQ05MMXZa
+dkF1TGFWN0ZHQ1Z1QnNxWSZzPTZ4V2xfQTltVjRXNVoxWW04alZwV1N4amh6ZDNLUjA5aUwxUzZ5
+S3dmNTQmZT0+DQoNCkl0IGxvb2tzIGxpa2UgdGhpczoNCg0KICAgICAgICBjb25zdCBzdGQ6OnZl
+Y3Rvcjx1aW50OF90PiBkYl9zZXJpYWxfdTggPSBnZXRfZGJfZWVwcm9tKCkuY291bnQoInNlcmlh
+bCIpDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICA/IHN0ZDo6dmVjdG9yPHVpbnQ4X3Q+KCkNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIDogZ2V0X2RiX2VlcHJvbSgpLmF0KCJzZXJpYWwiKTsN
+Cg0KVGhpcyBjb2RlIGF0dGVtcHRzIHRvIGNoZWNrIGZvciB0aGUgbnVtYmVyIG9mIGluc3RhbmNl
+cyBvZiAic2VyaWFsIi4gSWYgaXQgZG9lcyBmaW5kIGFuIGluc3RhbmNlIG9mICJzZXJpYWwiLCBp
+dCBjcmVhdGVzIGFuIGVtcHR5IHZlY3RvciBhbmQgYXNzaWducyB0aGF0IHRvICJkYl9zZXJpYWxf
+dTgiLiBJZiBpdCBkb2VzIE5PVCBmaW5kIGFuIGluc3RhbmNlIG9mICJzZXJpYWwsIiBpdCBhdHRl
+bXB0cyB0byBhc3NpZ24gdGhlIGFwcHJvcHJpYXRlICJzZXJpYWwiIHZhbHVlIHRvICJkYl9zZXJp
+YWxfdTgiLiBJIGJlbGlldmUgdGhpcyBpcyBiYWNrd2FyZHMsIGFuZCB0aGUgY29ycmVjdCBjb2Rl
+IHNob3VsZCBiZToNCg0KICAgICAgICBjb25zdCBzdGQ6OnZlY3Rvcjx1aW50OF90PiBkYl9zZXJp
+YWxfdTggPSBnZXRfZGJfZWVwcm9tKCkuY291bnQoInNlcmlhbCIpDQogICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA/IGdldF9kYl9lZXByb20oKS5h
+dCgic2VyaWFsIikNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIDogc3RkOjp2ZWN0b3I8dWludDhfdD4oKTsNCg0KQmVmb3JlIG1ha2luZyB0aGlz
+IGNoYW5nZSBhbmQgcmVidWlsZGluZyBVSEQsIFJYIElRIGNhbGlicmF0aW9uIGNvZWZmaWNpZW50
+cyAoZmlsZXMgZ2VuZXJhdGVkIGZyb20gdGhlICJ1aGRfY2FsX3J4X2lxX2JhbGFuY2UiIHRvb2wp
+IHdlcmUgbm90IGdldHRpbmcgcHJvcGVybHkgbG9hZGVkIG9uIGFuIE4zMjAuIEFmdGVyIG1ha2lu
+ZyB0aGlzIGNoYW5nZSwgdGhlIGNhbGlicmF0aW9uIGNvZWZmaWNpZW50cyBhcmUgbG9hZGVkIGFu
+ZCB3b3JraW5nIGFzIGV4cGVjdGVkLiBJIGNhbiB0ZWxsIHRoaXMgYm90aCBmcm9tIGRlYnVnIG1l
+c3NhZ2VzIGFuZCBieSBsb29raW5nIGF0IHRoZSBGRlQgb2YgcmVjZWl2ZWQgc2FtcGxlcyAocmVk
+dWNlZCBpbWFnZSB3aGVuIHRoZSBjYWxpYnJhdGlvbiBjb2VmZmljaWVudCBmaWxlIGlzIHByZXNl
+bnQpLg0KDQpJJ20gdXNpbmcgVUhEIDQuMS4wLjUsIGJ1dCBJIHNlZSB0aGlzIGlzc3VlIHN0aWxs
+IGV4aXN0cyBpbiAibWFzdGVyIiAtLSBzZWUgdGhlIGxpbmsgYWJvdmUuDQoNClRoYW5rcywNCkpp
+bQ0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NClRvIHVu
+c3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
+b20NCg==
 
---Apple-Mail-362986DB-72DC-4150-B07F-FB7016745A8A
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--_000_MN2PR12MB33126E6B256F3A78BBF30C74B80F9MN2PR12MB3312namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks Jim.=20
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
+YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
+bG9yOiByZ2IoMCwgMCwgMCk7Ij4NCkhpIE1hcmN1cywmbmJzcDs8L2Rpdj4NCjxkaXYgc3R5bGU9
+ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250
+LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBz
+dHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7
+IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KT25lIG9mIG15IGNvd29y
+a2VycyBjcmVhdGVkIGFuICZxdW90O0lzc3VlJnF1b3Q7IGluIHRoZSBVSEQgZ2l0aHViIHJlcG8u
+IElmIHRoZXJlIGlzIGEgZGlmZmVyZW50IHBsYWNlIHRvIHBvc3QgYSBidWcsIHBsZWFzZSBsZXQg
+bWUga25vdy48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwg
+SGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwg
+MCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFy
+aWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigw
+LCAwLCAwKTsiPg0KVGhhbmtzLDwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGli
+cmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6
+IHJnYigwLCAwLCAwKTsiPg0KSmltPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2Fs
+aWJyaSwgQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xv
+cjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgaWQ9ImFwcGVuZG9uc2VuZCI+
+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFiaW5k
+ZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJD
+YWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAwMDAw
+Ij48Yj5Gcm9tOjwvYj4gTWFyY3VzIEQgTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29t
+Jmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIE1hcmNoIDE0LCAyMDIyIDEyOjQ1IFBNPGJy
+Pg0KPGI+VG86PC9iPiBKaW0gUGFsbGFkaW5vICZsdDtqaW1AZ2FyZGV0dG9lbmdpbmVlcmluZy5j
+b20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSAmbHQ7VVNS
+UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNS
+UC11c2Vyc10gUHJvYmxlbSB1c2luZyBJUSBjYWxpYnJhdGlvbiBjb2VmZmljaWVudHMgd2l0aCBS
+aG9kaXVtIERCPC9mb250Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1
+dG8iPlRoYW5rcyBKaW0uJm5ic3A7DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5Db3VsZCB5b3Ug
+cG9zdCBhIGJpZyByZXBvcnQgdG8gdGhlIHB1YmxpYyBidWd0cmFja2VyIGZvciBVSEQ/PC9kaXY+
+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8YnI+DQo8ZGl2IGRpcj0ibHRyIj5TZW50
+IGZyb20gbXkgaVBob25lPC9kaXY+DQo8ZGl2IGRpcj0ibHRyIj48YnI+DQo8YmxvY2txdW90ZSB0
+eXBlPSJjaXRlIj5PbiBNYXIgMTQsIDIwMjIsIGF0IDEyOjI0IFBNLCBKaW0gUGFsbGFkaW5vICZs
+dDtqaW1AZ2FyZGV0dG9lbmdpbmVlcmluZy5jb20mZ3Q7IHdyb3RlOjxicj4NCjxicj4NCjwvYmxv
+Y2txdW90ZT4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2IGRpcj0ibHRy
+Ij7vu78NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNh
+bnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkhlbGxvLDwvZGl2
+Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1z
+ZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8
+ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlm
+OyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJJ3ZlIGZvdW5kIGFuIGlzc3Vl
+IHdpdGggdGhlIFJob2RpdW0gYmxvY2sgY29udHJvbGxlciBjb2RlIChyaG9kaXVtX3JhZGlvX2Nv
+bnRyb2wuY3BwKSB3aGVyZSB0aGUgZGF1Z2h0ZXJib2FyZCBzZXJpYWwgbnVtYmVyIGlzIG5vdCBo
+YW5kbGVkIGNvcnJlY3RseS4gSWYgeW91IGxvb2sgYXQgbGluZSA0NTIgaGVyZTo8YnI+DQo8YSBo
+cmVmPSJodHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cHMtM0Ff
+X2dpdGh1Yi5jb21fRXR0dXNSZXNlYXJjaF91aGRfYmxvYl9tYXN0ZXJfaG9zdF9saWJfdXNycF9k
+Ym9hcmRfcmhvZGl1bV9yaG9kaXVtLTVGcmFkaW8tNUZjb250cm9sLmNwcCZhbXA7ZD1Ed01GYVEm
+YW1wO2M9ZXVHWnN0Y2FURGxsdmltRU44YjdqWHJ3cU9mLXY1QV9DZHBnblZmaWlNTSZhbXA7cj1Y
+VUVFdFVFZnBhQUVHeFJJLVdHdXFIYXVPdnNQZEQyTlprZndEbndwWXgwJmFtcDttPTR5NGlXOGdZ
+bFRHZUljdUNnbU9JQkNOTDF2WnZBdUxhVjdGR0NWdUJzcVkmYW1wO3M9NnhXbF9BOW1WNFc1WjFZ
+bThqVnBXU3hqaHpkM0tSMDlpTDFTNnlLd2Y1NCZhbXA7ZT0iIGlkPSJMUE5vTFBPV0FMaW5rUHJl
+dmlldyI+aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvdWhkL2Jsb2IvbWFzdGVyL2hv
+c3QvbGliL3VzcnAvZGJvYXJkL3Job2RpdW0vcmhvZGl1bV9yYWRpb19jb250cm9sLmNwcDwvYT48
+YnI+DQo8ZGl2IGNsYXNzPSJ4X19FbnRpdHkgeF9fRVR5cGVfT1dBTGlua1ByZXZpZXcgeF9fRUlk
+X09XQUxpbmtQcmV2aWV3IHhfX0VSZWFkb25seV8xIj4NCjwvZGl2Pg0KPGJyPg0KSXQgbG9va3Mg
+bGlrZSB0aGlzOjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxI
+ZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0K
+PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZl
+dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQombmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgY29uc3Qgc3RkOjp2ZWN0b3ImbHQ7dWludDhfdCZndDsg
+ZGJfc2VyaWFsX3U4ID0gZ2V0X2RiX2VlcHJvbSgpLmNvdW50KCZxdW90O3NlcmlhbCZxdW90OykN
+CjxkaXY+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgPyBzdGQ6OnZlY3RvciZsdDt1aW50OF90Jmd0OygpPC9k
+aXY+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJz
+cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyA6IGdldF9kYl9lZXByb20oKS5hdCgmcXVvdDtzZXJpYWwm
+cXVvdDspOzwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2
+ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJy
+Pg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGlj
+YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpUaGlzIGNv
+ZGUgYXR0ZW1wdHMgdG8gY2hlY2sgZm9yIHRoZSBudW1iZXIgb2YgaW5zdGFuY2VzIG9mICZxdW90
+O3NlcmlhbCZxdW90Oy4gSWYgaXQgZG9lcyBmaW5kIGFuIGluc3RhbmNlIG9mICZxdW90O3Nlcmlh
+bCZxdW90OywgaXQgY3JlYXRlcyBhbiBlbXB0eSB2ZWN0b3IgYW5kIGFzc2lnbnMgdGhhdCB0byAm
+cXVvdDtkYl9zZXJpYWxfdTgmcXVvdDsuIElmIGl0IGRvZXMgTk9UIGZpbmQgYW4gaW5zdGFuY2Ug
+b2YgJnF1b3Q7c2VyaWFsLCZxdW90OyBpdCBhdHRlbXB0cyB0byBhc3NpZ24gdGhlIGFwcHJvcHJp
+YXRlICZxdW90O3NlcmlhbCZxdW90Ow0KIHZhbHVlIHRvICZxdW90O2RiX3NlcmlhbF91OCZxdW90
+Oy4gSSBiZWxpZXZlIHRoaXMgaXMgYmFja3dhcmRzLCBhbmQgdGhlIGNvcnJlY3QgY29kZSBzaG91
+bGQgYmU6PGJyPg0KPGJyPg0KPHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwy
+NTUsMjU1KTsgZGlzcGxheTppbmxpbmUhaW1wb3J0YW50Ij4mbmJzcDsgJm5ic3A7ICZuYnNwOyAm
+bmJzcDsgY29uc3Qgc3RkOjp2ZWN0b3ImbHQ7dWludDhfdCZndDsgZGJfc2VyaWFsX3U4ID0gZ2V0
+X2RiX2VlcHJvbSgpLmNvdW50KCZxdW90O3NlcmlhbCZxdW90Oyk8L3NwYW4+DQo8ZGl2IHN0eWxl
+PSJtYXJnaW46MHB4OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPjxzcGFuIHN0
+eWxlPSJtYXJnaW46MHB4OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSk7IGRpc3Bs
+YXk6aW5saW5lIWltcG9ydGFudCI+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgPyBnZXRfZGJfZWVwcm9tKCku
+YXQoJnF1b3Q7c2VyaWFsJnF1b3Q7KTwvc3Bhbj48YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9Im1h
+cmdpbjowcHg7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+Jm5ic3A7ICZuYnNw
+OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAm
+bmJzcDsgOiBzdGQ6OnZlY3RvciZsdDt1aW50OF90Jmd0OygpOzwvZGl2Pg0KPGJyPg0KQmVmb3Jl
+IG1ha2luZyB0aGlzIGNoYW5nZSBhbmQgcmVidWlsZGluZyBVSEQsIFJYIElRIGNhbGlicmF0aW9u
+IGNvZWZmaWNpZW50cyAoZmlsZXMgZ2VuZXJhdGVkIGZyb20gdGhlICZxdW90O3VoZF9jYWxfcnhf
+aXFfYmFsYW5jZSZxdW90OyB0b29sKSB3ZXJlIG5vdCBnZXR0aW5nIHByb3Blcmx5IGxvYWRlZCBv
+biBhbiBOMzIwLiBBZnRlciBtYWtpbmcgdGhpcyBjaGFuZ2UsIHRoZSBjYWxpYnJhdGlvbiBjb2Vm
+ZmljaWVudHMgYXJlIGxvYWRlZCBhbmQgd29ya2luZyBhcw0KIGV4cGVjdGVkLiBJIGNhbiB0ZWxs
+IHRoaXMgYm90aCBmcm9tIGRlYnVnIG1lc3NhZ2VzIGFuZCBieSBsb29raW5nIGF0IHRoZSBGRlQg
+b2YgcmVjZWl2ZWQgc2FtcGxlcyAocmVkdWNlZCBpbWFnZSB3aGVuIHRoZSBjYWxpYnJhdGlvbiBj
+b2VmZmljaWVudCBmaWxlIGlzIHByZXNlbnQpLjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1p
+bHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNv
+bG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpD
+YWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6
+cmdiKDAsMCwwKSI+DQpJJ20gdXNpbmcgVUhEIDQuMS4wLjUsIGJ1dCBJIHNlZSB0aGlzIGlzc3Vl
+IHN0aWxsIGV4aXN0cyBpbiAmcXVvdDttYXN0ZXImcXVvdDsgLS0gc2VlIHRoZSBsaW5rIGFib3Zl
+LjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Es
+c2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9k
+aXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5z
+LXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpUaGFua3MsPC9kaXY+
+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNl
+cmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpKaW08L2Rpdj4NCjxkaXYg
+c3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZv
+bnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPHNwYW4+X19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyPg0K
+PHNwYW4+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b208L3NwYW4+PGJyPg0KPHNwYW4+VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3Jw
+LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvc3Bhbj48YnI+DQo8L2Rpdj4NCjwvYmxvY2tx
+dW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-Could you post a big report to the public bugtracker for UHD?
+--_000_MN2PR12MB33126E6B256F3A78BBF30C74B80F9MN2PR12MB3312namp_--
 
-
-
-Sent from my iPhone
-
-> On Mar 14, 2022, at 12:24 PM, Jim Palladino <jim@gardettoengineering.com> w=
-rote:
->=20
-> =EF=BB=BF
-> Hello,
->=20
-> I've found an issue with the Rhodium block controller code (rhodium_radio_=
-control.cpp) where the daughterboard serial number is not handled correctly.=
- If you look at line 452 here:
-> https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/dboard/rhod=
-ium/rhodium_radio_control.cpp
->=20
-> It looks like this:
->=20
->         const std::vector<uint8_t> db_serial_u8 =3D get_db_eeprom().count(=
-"serial")
->                                                       ? std::vector<uint8_=
-t>()
->                                                       : get_db_eeprom().at=
-("serial");
->=20
-> This code attempts to check for the number of instances of "serial". If it=
- does find an instance of "serial", it creates an empty vector and assigns t=
-hat to "db_serial_u8". If it does NOT find an instance of "serial," it attem=
-pts to assign the appropriate "serial" value to "db_serial_u8". I believe th=
-is is backwards, and the correct code should be:
->=20
->         const std::vector<uint8_t> db_serial_u8 =3D get_db_eeprom().count(=
-"serial")
->                                                       ? get_db_eeprom().at=
-("serial")
->                                                       : std::vector<uint8_=
-t>();
->=20
-> Before making this change and rebuilding UHD, RX IQ calibration coefficien=
-ts (files generated from the "uhd_cal_rx_iq_balance" tool) were not getting p=
-roperly loaded on an N320. After making this change, the calibration coeffic=
-ients are loaded and working as expected. I can tell this both from debug me=
-ssages and by looking at the FFT of received samples (reduced image when the=
- calibration coefficient file is present).
->=20
-> I'm using UHD 4.1.0.5, but I see this issue still exists in "master" -- se=
-e the link above.
->=20
-> Thanks,
-> Jim
->=20
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-362986DB-72DC-4150-B07F-FB7016745A8A
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Thanks Jim.&nbsp;<div><br></div><div>Could y=
-ou post a big report to the public bugtracker for UHD?</div><div><br></div><=
-div><br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><=
-blockquote type=3D"cite">On Mar 14, 2022, at 12:24 PM, Jim Palladino &lt;jim=
-@gardettoengineering.com&gt; wrote:<br><br></blockquote></div><blockquote ty=
-pe=3D"cite"><div dir=3D"ltr">=EF=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-1=
-">
-
-
-
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-Hello,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-I've found an issue with the Rhodium block controller code (rhodium_radio_co=
-ntrol.cpp) where the daughterboard serial number is not handled correctly. I=
-f you look at line 452 here:<br>
-<a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/lib/usrp/db=
-oard/rhodium/rhodium_radio_control.cpp" id=3D"LPNoLPOWALinkPreview">https://=
-github.com/EttusResearch/uhd/blob/master/host/lib/usrp/dboard/rhodium/rhodiu=
-m_radio_control.cpp</a><br>
-<div class=3D"_Entity _EType_OWALinkPreview _EId_OWALinkPreview _EReadonly_1=
-"></div>
-<br>
-It looks like this:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-&nbsp; &nbsp; &nbsp; &nbsp; const std::vector&lt;uint8_t&gt; db_serial_u8 =3D=
- get_db_eeprom().count("serial")
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ? std::vector&lt;uint8_t&gt;()</div=
->
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : get_db_eeprom().at("serial");</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-This code attempts to check for the number of instances of "serial". If it d=
-oes find an instance of "serial", it creates an empty vector and assigns tha=
-t to "db_serial_u8". If it does NOT find an instance of "serial," it attempt=
-s to assign the appropriate "serial"
- value to "db_serial_u8". I believe this is backwards, and the correct code s=
-hould be:<br>
-<br>
-<span style=3D"background-color:rgb(255, 255, 255);display:inline !important=
-">&nbsp; &nbsp; &nbsp; &nbsp; const std::vector&lt;uint8_t&gt; db_serial_u8 =3D=
- get_db_eeprom().count("serial")</span>
-<div style=3D"margin:0px;background-color:rgb(255, 255, 255)"><span style=3D=
-"margin:0px;background-color:rgb(255, 255, 255);display:inline !important">&=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ? get_db_eeprom().at("serial")</span><br>
-</div>
-<div style=3D"margin:0px;background-color:rgb(255, 255, 255)">&nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; : std::vector&lt;uint8_t&gt;();</div>
-<br>
-Before making this change and rebuilding UHD, RX IQ calibration coefficients=
- (files generated from the "uhd_cal_rx_iq_balance" tool) were not getting pr=
-operly loaded on an N320. After making this change, the calibration coeffici=
-ents are loaded and working as
- expected. I can tell this both from debug messages and by looking at the FF=
-T of received samples (reduced image when the calibration coefficient file i=
-s present).</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-I'm using UHD 4.1.0.5, but I see this issue still exists in "master" -- see t=
-he link above.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-Thanks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-Jim</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
- 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></div></body></html>=
-
---Apple-Mail-362986DB-72DC-4150-B07F-FB7016745A8A--
-
---===============5559599656928530027==
+--===============1926957707986762077==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -270,4 +350,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5559599656928530027==--
+--===============1926957707986762077==--
