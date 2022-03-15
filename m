@@ -2,332 +2,242 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C134F4D967F
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Mar 2022 09:42:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A5334D9EAE
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Mar 2022 16:29:29 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5A6F8384C4E
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Mar 2022 04:42:23 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 06461384E42
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Mar 2022 11:29:28 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=airbus.com header.i=@airbus.com header.b="BPYZi22J";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=brilliantroot.com header.i=@brilliantroot.com header.b="VPfwmkWJ";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=brilliantroot.com header.i=@brilliantroot.com header.b="dpIgd01d";
 	dkim-atps=neutral
-Received: from mo3.myeers.net (mo3.myeers.net [87.190.7.238])
-	by mm2.emwd.com (Postfix) with ESMTPS id 518C9384514
-	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 04:41:20 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=airbus.com; i=@airbus.com; l=10699; q=dns/txt;
-  s=eers-ng2048; t=1647333680; x=1678869680;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=qdLITnlha0xx5t+Y+yaFjUv90h27ZyJV0Mup97uJB3g=;
-  b=BPYZi22J5124SWjxjF/Wibv8RwPqoTE9wOGlLsZZEmec0jEcB1jB9NQn
-   cTiZeSpLV2b2/7XSJPg7aeGAd5IOXDIYl4MRxkHPYZLdVCI7EwS06c+RB
-   nRuPRnHoYjlAP5OytcSGjWMgrYoKPS7f3LNAW+NPV/lmGfjjFnV0OrpDC
-   288sVvm7CuaDsx+dQB+tbGuGurfAIcAe4XJ8559ahvtAW4fXgQmUoFMvT
-   BUC99xClOYvCtygpwsdS/HaPEOPNU6EQ/c5WGvnXixCnBlCQhi90854sL
-   BFOO2CnTsBtAvHaKyBi5rSc3Q/qNEOhW1jH3ij8D/+4SY1h8JZHIUDLbj
-   A==;
-IronPort-SDR: K8zgzaHNSyNo6WI+pi0ZX2j9Llwp6iScLDIT05c44tqQzsYt55ZCiRXgoEtNoZV8JAJqP3rt9J
- 7l9nYR7TESWw==
-X-IronPort-AV: E=Sophos;i="5.90,182,1643670000";
-   d="scan'208,217";a="320418964"
-Received: from ec2-44-225-67-175.us-west-2.compute.amazonaws.com (HELO DE0-03HUB-P02.central.mail.corp) ([44.225.67.175])
-  by de0-03iro-p04-out.myeers.net with ESMTP/TLS/ECDHE-RSA-AES256-SHA384; 15 Mar 2022 09:41:07 +0100
-Received: from esa2e.demail.de.airbusds.corp (10.67.144.34) by
- DE0-03HUB-P02.central.mail.corp (44.225.67.177) with Microsoft SMTP Server id
- 15.0.1497.28; Tue, 15 Mar 2022 09:41:04 +0100
-X-ADDIV-1: 1
-IronPort-Data: A9a23:gjMuPqqHc6asSgZDBsghSqtIPhBeBmKPZxIvgKrLsJaIsI4StFCzt
- garIBmAOvrbZGD2KIska4rl/RwOuceAmtc3TFFp/ik1RCNBpZacVYWSI3mrMnLJJKUvbq7HA
- +byyzXkBJppJpMJjk71atANlVEliefQAOCU5NfsYkidfyc8IMsaoU8lyrZRbrJA24DjWVvW4
- I6q+qUzBXf+s9JKGjNNg068gEM31BjCkGtwUosWPK0jUPf2zhH5PbpHTU2DByKQrrp8R4ZWc
- 93+IISRpQs1yfuN5uSNyd4XemVSKlLbFVbW1ioOA8BOiDAazsA5+v5T2Pbx9S67hh3R9+2dx
- umhurSSTVcXM/LGg94EVhZ+OhB4E6sF/qLYdC3XXcy7lyUqclPpyvRqSlouNIYVvOdraY1M3
- aVAbmlVNFbZ3qTtn9pXScE07ignBMziIZkeqHBniyrFAPgvR5GFTrXW6MVe1TMYj8FUF+vFI
- cEebFKDaTyaOUURZQxIWPrSms+omEbDMDhWhmvWpK0zu1P3y1chk5LUZY+9ltuiAJ89clyjj
- n/d5Xy8HwoXLse3zTue7mnqi/PTgDi9U4UXfIBU7dYz2BvKnjZVUkRQDgTTTeSFt3NSkul3c
- yQ8khfCZ4BrnKB3ZrERhyGFnUM=
-IronPort-HdrOrdr: A9a23:+goJn69kciYT1dUzjDJuk+DZI+orL9Y04lQ7vn2ZLiYlF/Bw9v
- re/sjyt3fP4gr5PUtMpTnuAtjlfZqxz/JICOoqTNSftWvd2VdARbsKhbcKpQeOJ8SUzI5gPM
- lbHZRWOZnVN3kSt63H3DU=
-X-IronPort-AV: E=Sophos;i="5.90,182,1643670000";
-   d="scan'208,217";a="22067378"
-Received: from unknown (HELO mail.space.it) ([10.102.21.37])
-  by esa2e.demail.de.airbusds.corp with ESMTP; 15 Mar 2022 09:41:04 +0100
-Received: from localhost (unknown [127.0.0.1])
-	by IMSVA (Postfix) with SMTP id 297A82B80EB
-	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 09:41:20 +0100 (CET)
-X-IMSS-HAND-OFF-DIRECTIVE: 10.67.144.34:25
-Received: from SPROMMAIL02.spengtes.space (unknown [10.102.17.16])
-	by mail.space.it (Postfix) with ESMTP id 38E642B80EB
-	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 09:41:17 +0100 (CET)
-Received: from SPROMMAIL03.spengtes.space ([::1]) by
- SPROMMAIL02.spengtes.space ([10.102.17.16]) with mapi id 14.03.0513.000; Tue,
- 15 Mar 2022 09:41:47 +0100
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: error during x310 fpga build
-Thread-Index: Adg4RxPobtu2t5P8RVa/NhepSvcWSA==
-Date: Tue, 15 Mar 2022 08:41:47 +0000
-Message-ID: <E1188D158AA7A048AF99B6A05DA3D629DFE934BA@SPROMMAIL03.spengtes.space>
-Accept-Language: fr-FR, en-US
+Received: from mx1.brilliantroot.com (wsip-68-226-35-213.lv.lv.cox.net [68.226.35.213])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3FD53384CD3
+	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 11:28:32 -0400 (EDT)
+X-Spam-Status: No
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.brilliantroot.com 4KHy3f65SrzFqwD
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=brilliantroot.com;
+	s=brdkim; t=1647358110;
+	bh=VfdwFGtfx3h3VTsbit2AoQq893I+YHpEmw3kociYL54=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=VPfwmkWJw2BZPfdhnbBxRu254gJeGxsWbJ5AOHvW/fcvL94VcCjFbdb5ZdgwAZgpA
+	 7p36XlQ7EmiK6dWNmbCTz5xbbp8c/llsK6RbNRCV2HaY9pTyZnpB7Ibqm/fuO3bDkm
+	 Ho+Yl+fgxxw0IUSYKl2srzqqZiUmgPENmgInmUKYaA3mevieAHUvHhWke2d3xFYTKT
+	 hoGVmSAtSLE7NCGlTT0dL+sarVmUsi80HNnxfZ1WO5vRyZJyhgMuWycpT+CsmRviGY
+	 CXBgChrLKtSyiWUfCczsTNq69uOdbzYNfe3kidQ4bHtnoG0pZQEevW973oGXMbo0eH
+	 Iabj7uHlMXrsQ==
+X-BrilliantRoot-MailScanner-eFa-Watermark: 1647962908.4696@Mj9iVChfpWCgvBSOOHWPVQ
+X-BrilliantRoot-MailScanner-eFa-From: erik.carlseen@brilliantroot.com
+X-BrilliantRoot-MailScanner-eFa: Found to be clean
+X-BrilliantRoot-MailScanner-eFa-ID: 4KHy3Z466bzFqpk
+X-BrilliantRoot-MailScanner-eFa-Information: Please contact do-not-reply@brilliantroot.com for more information
+Received: from br-ex-ds1-alpha.brilliantroot.com (smtp.brilliantroot.com [10.125.0.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(no client certificate requested)
+	by bi-efa-ds1-alpha.brilliantroot.com (MailScanner Milter) with SMTP id 4KHy3Z466bzFqpk;
+	Tue, 15 Mar 2022 08:28:26 -0700 (PDT)
+DMARC-Filter: OpenDMARC Filter v1.4.1 mx1.brilliantroot.com 4KHy3Z466bzFqpk
+Authentication-Results: bi-efa-ds1-alpha.brilliantroot.com; dmarc=none (p=none dis=none) header.from=brilliantroot.com
+Authentication-Results: bi-efa-ds1-alpha.brilliantroot.com; spf=none smtp.mailfrom=brilliantroot.com
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.brilliantroot.com 4KHy3Z466bzFqpk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=brilliantroot.com;
+	s=brdkim; t=1647358106;
+	bh=VfdwFGtfx3h3VTsbit2AoQq893I+YHpEmw3kociYL54=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=dpIgd01dGiX8vGmQOdGLf01yx2TzOVGBQsuaHNznz+X3U3UIUUzLzf5KG+SmY42BG
+	 zkrjvRJWwO8vZbel+MEiar6Qlcb/OGbLJksXmFrOgQYJig0xieJvVtOp+gHrN0R+1M
+	 XUMPxB8E50dgBKh0QzxX8ISxTIvQnyW7joWbDnt2KFSmoRV/uESJ0JFb47qmu1lbV0
+	 /cQ45JHT3lVqVvrBYbhpcpLh3zLV1hxJXjbj0t73BhjsJetsLClF5BzBqm6QEfAjRG
+	 6CMoC6E70mpg7Td+QEZdfrWkK3c8X5GycCiPJ9erUQFWnZuo4visGlaX0jLYjQ9Gka
+	 P7QrRwMK7J+Xw==
+Received: from BR-EX-DS1-ALPHA.brilliantroot.com (10.125.0.4) by
+ BR-EX-DS1-ALPHA.brilliantroot.com (10.125.0.4) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Tue, 15 Mar 2022 08:28:26 -0700
+Received: from BR-EX-DS1-ALPHA.brilliantroot.com ([fe80::a046:199b:8dd3:49f7])
+ by BR-EX-DS1-ALPHA.brilliantroot.com ([fe80::a046:199b:8dd3:49f7%4]) with
+ mapi id 15.01.2375.018; Tue, 15 Mar 2022 08:28:25 -0700
+From: Erik Carlseen <erik.carlseen@brilliantroot.com>
+To: Michael Dickens <michael.dickens@ettus.com>
+Thread-Topic: ***UNCHECKED*** Re: [USRP-users] USRB Hardware Driver with Apple
+ Silicon Macs
+Thread-Index: AQHYOIFQTId9H3zgokCPrdspYVdwDQ==
+Date: Tue, 15 Mar 2022 15:28:25 +0000
+Message-ID: <AE6BE9EF-F5F1-4205-A451-909FE51285CC@brilliantroot.com>
+References: <9D4AD31F-21EF-46DE-8419-7A4EF6DAB197@contoso.com>
+ <CAGNhwTOG+YaP0_Md2qNpOa_GqJ_ZTPXezi_XapFRe5ovu8H=Yw@mail.gmail.com>
+In-Reply-To: <CAGNhwTOG+YaP0_Md2qNpOa_GqJ_ZTPXezi_XapFRe5ovu8H=Yw@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-tm-as-product-ver: SMEX-11.0.0.4179-8.100.1062-24900.000
-x-tm-as-result: No--23.274000-8.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+x-originating-ip: [172.16.69.17]
 MIME-Version: 1.0
-X-TM-AS-MML: disable
-X-TM-SNTS-SMTP: 9332B29C8A06DCCACC37C4FB75BC6DBD8A785D95E930167A022A06FFA6F960D82000:8
-X-GM-Security: forwarded
-Message-ID-Hash: EXHE463UFIVTW6PA3TACDPH2LWZPHADM
-X-Message-ID-Hash: EXHE463UFIVTW6PA3TACDPH2LWZPHADM
-X-MailFrom: maurizio.stefani.external@airbus.com
+Message-ID-Hash: QBSHJG5F33LAROKOGV26NG7G4PIV77LP
+X-Message-ID-Hash: QBSHJG5F33LAROKOGV26NG7G4PIV77LP
+X-MailFrom: erik.carlseen@brilliantroot.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] error during x310 fpga build
+Subject: [USRP-users] Re: ***UNCHECKED*** Re: USRB Hardware Driver with Apple Silicon Macs
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EXHE463UFIVTW6PA3TACDPH2LWZPHADM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QBSHJG5F33LAROKOGV26NG7G4PIV77LP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "STEFANI, Maurizio (External) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "STEFANI, Maurizio (External)" <maurizio.stefani.external@airbus.com>
-Content-Type: multipart/mixed; boundary="===============7541643420553156695=="
+Content-Type: multipart/mixed; boundary="===============7585206492583887442=="
 
---===============7541643420553156695==
+--===============7585206492583887442==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_E1188D158AA7A048AF99B6A05DA3D629DFE934BASPROMMAIL03spen_"
+	boundary="_000_AE6BE9EFF5F14205A451909FE51285CCbrilliantrootcom_"
 
---_000_E1188D158AA7A048AF99B6A05DA3D629DFE934BASPROMMAIL03spen_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+--_000_AE6BE9EFF5F14205A451909FE51285CCbrilliantrootcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-HI to all,
-I have an ETTUS X310, I would like to build and load the original FPGA,
-I loaded from repository the relevant file
-The files are in:
-/vhd/uhd-master/uhd-master/fpga/usrp3/top/x300
-When I run make:
+TWljaGFlbCwNCg0KVGhhbmtzIGEgbWlsbGlvbiBmb3IgdGhpcyBncmVhdCBpbmZvISBIb3BlZnVs
+bHkgb25lIGRheSB0aGUgSW50ZWwgU0lNRCBvcHRpbWl6YXRpb25zIGNhbiBiZSBwb3J0ZWQgdG8g
+QVJNIE5FT04sIGVzcGVjaWFsbHkgc2luY2UgQXBwbGXigJlzIE5FT04gaW1wbGVtZW50YXRpb24g
+b24gdGhlIE0xIHNlZW1zIHRvIGJlIGEgYml0IG9mIGEgYmVhc3QuDQoNCk11Y2ggYXBwcmVjaWF0
+ZWQhDQoNCi1FcmlrIENhcmxzZWVuDQoNCg0KRnJvbTogTWljaGFlbCBEaWNrZW5zIDxtaWNoYWVs
+LmRpY2tlbnNAZXR0dXMuY29tPg0KRGF0ZTogU3VuZGF5LCBNYXJjaCAxMywgMjAyMiBhdCA2OjI5
+IFBNDQpUbzogRXJpayBDYXJsc2VlbiA8ZXJpay5jYXJsc2VlbkBicmlsbGlhbnRyb290LmNvbT4N
+CkNjOiAidXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4NClN1YmplY3Q6ICoqKlVOQ0hFQ0tFRCoqKiBSZTogW1VTUlAtdXNlcnNdIFVTUkIgSGFy
+ZHdhcmUgRHJpdmVyIHdpdGggQXBwbGUgU2lsaWNvbiBNYWNzDQoNCkhpIEVyaWsgLSBZZXMgVUhE
+IGFuZCBVU1JQcyB3b3JrIHdpdGggQXBwbGUgTTEgLyBBUk02NC4gSSd2ZSB1c2VkIGFuIE0xIE1h
+YyBNaW5pIHdpdGggMTAgR2JFIHRvIGNvbm5lY3QgdG8gdmFyaW91cyBVU1JQcyAoTjMyMC8xLCBY
+MzEwLCBYNDEwKSB2aWEgYW4gUkotNDUgdG8gU0ZQKyBhZGFwdGVyIC4uLiB3b3JrZWQgbmljZWx5
+IHdpdGggVUhEIDQuMSEgVUhEIGRvZXMgaGF2ZSBvcHRpbWl6YXRpb25zIGZvciBjZXJ0YWluIElu
+dGVsIFNJTUQ7IGl0IGlzIG5vdCBvcHRpbWl6ZWQgZm9yIEFSTTY0LCBidXQgaXQgc2hvdWxkIHdv
+cmsgcXVpdGUgd2VsbCBuYXRpdmVseSAob3IgaW4gUm9zZXR0YTIgaWYgeW91IHdhbnRlZCB0byBn
+byB0aGF0IHJvdXRlKS4gLSBNTEQNCg0KDQpPbiBTdW4sIE1hciAxMywgMjAyMiBhdCAxMjo1OSBQ
+TSBFcmlrIENhcmxzZWVuIDxlcmlrLmNhcmxzZWVuQGJyaWxsaWFudHJvb3QuY29tPG1haWx0bzpl
+cmlrLmNhcmxzZWVuQGJyaWxsaWFudHJvb3QuY29tPj4gd3JvdGU6DQpIYXMgYW55Ym9keSBzdWNj
+ZXNzZnVsbHkgYnVpbHQgYW5kIHJ1biB0aGUgVVNSQiBIYXJkd2FyZSBEcml2ZXIgb24gYW4gQXBw
+bGUgU2lsaWNvbiAoTTEgZmFtaWx5IG9mIENQVXMpIE1hYz8NCg0KTXkgdW5kZXJzdGFuZGluZyBp
+cyB0aGF0IEFBUkNINjQgaXMgc3VwcG9ydGVkIG9uIExpbnV4IGFuZCBNYWNPUyBpcyBzdXBwb3J0
+ZWQgaW4gZ2VuZXJhbCwgYnV0IGp1c3QgYXNzdW1pbmcgdGhhdCBhbnkgZHJpdmVyIHNvdXJjZSBj
+b2RlIHdpbGwganVzdCB3b3JrIG9uIGEgbmV3IGFyY2hpdGVjdHVyZSAvIE9TIGNvbWJpbmF0aW9u
+IGlzIGdlbmVyYWxseSBub3QgYSB3aXNlIGdhbWJsZS4NCg0KSeKAmW0gdGhpbmtpbmcgdGhhdCBh
+biBNMSBNYWMgTWluaSBtaWdodCBiZSBhbiBvdXRzdGFuZGluZyBwbGF0Zm9ybSBmb3IgU0RSIHdv
+cmsuDQpUaGFua3MsDQoNCkVyaWsgQ2FybHNlZW4NCg0KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4N
+ClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
+dHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0K
 
-make
-make -f Makefile.x300.inc bin NAME=3DX300_HG ARCH=3D PART_ID=3D BUILD_1G=3D=
-1 BUILD_10G=3D1 SFP0_1GBE=3D1 SFP1_10GBE=3D1  X300=3D1 TOP_MODULE=3Dx300 EX=
-TRA_DEFS=3D"BUILD_1G=3D1 BUILD_10G=3D1 SFP0_1GBE=3D1 SFP1_10GBE=3D1  X300=
-=3D1" DEFAULT_RFNOC_IMAGE_CORE_FILE=3Dx300_rfnoc_image_core.v DEFAULT_EDGE_=
-FILE=3D/home/maurizio.stefani/prove/vhd/uhd-master/uhd-master/fpga/usrp3/to=
-p/x300/x300_static_router.hex
-make[1]: Entering directory '/home/maurizio.stefani/prove/vhd/uhd-master/uh=
-d-master/fpga/usrp3/top/x300'
-BUILDER: Checking tools...
-* GNU bash, version 5.0.17(1)-release (x86_64-pc-linux-gnu)
-* Python 3.8.10
-* Vivado v2019.2 (64-bit)
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-BUILDER: Building IP ten_gig_eth_pcs_pma
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
-/bin/sh: 1: export: format.: bad variable name
-make[1]: *** [/home/maurizio.stefani/prove/vhd/uhd-master/uhd-master/fpga/u=
-srp3/top/x300/ip/ten_gig_eth_pcs_pma/Makefile.inc:41: /home/maurizio.stefan=
-i/prove/vhd/uhd-master/uhd-master/fpga/usrp3/top/x300/build-ip/ten_gig_eth_=
-pcs_pma/ten_gig_eth_pcs_pma.xci.out] Error 2
-make[1]: Leaving directory '/home/maurizio.stefani/prove/vhd/uhd-master/uhd=
--master/fpga/usrp3/top/x300'
-make: *** [Makefile:90: X300_HG] Error 2
+--_000_AE6BE9EFF5F14205A451909FE51285CCbrilliantrootcom_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <4B09AC304899B64982A47F32A4231E27@brilliantroot.com>
+Content-Transfer-Encoding: base64
 
-I am working under Ubuntu:
-release -a
-No LSB modules are available.
-Distributor ID:   Ubuntu
-Description:       Ubuntu 20.04.3 LTS
-Release:              20.04
-Codename:        focal
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
+YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1i
+b3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+IixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
+aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnAubXNv
+bm9ybWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6
+bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowaW47
+DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZvbnQt
+c2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0Kc3Bhbi5F
+bWFpbFN0eWxlMTgNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1p
+bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVm
+YXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30N
+CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
+MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
+MTt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUi
+IHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPk1pY2hhZWwsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBhIG1pbGxp
+b24gZm9yIHRoaXMgZ3JlYXQgaW5mbyEgSG9wZWZ1bGx5IG9uZSBkYXkgdGhlIEludGVsIFNJTUQg
+b3B0aW1pemF0aW9ucyBjYW4gYmUgcG9ydGVkIHRvIEFSTSBORU9OLCBlc3BlY2lhbGx5IHNpbmNl
+IEFwcGxl4oCZcyBORU9OIGltcGxlbWVudGF0aW9uIG9uIHRoZSBNMSBzZWVtcyB0byBiZSBhIGJp
+dCBvZiBhIGJlYXN0LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5NdWNoIGFwcHJlY2lhdGVkITxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4tRXJpayBDYXJsc2VlbjxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRl
+ci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9y
+OmJsYWNrIj5Gcm9tOiA8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2Nv
+bG9yOmJsYWNrIj5NaWNoYWVsIERpY2tlbnMgJmx0O21pY2hhZWwuZGlja2Vuc0BldHR1cy5jb20m
+Z3Q7PGJyPg0KPGI+RGF0ZTogPC9iPlN1bmRheSwgTWFyY2ggMTMsIDIwMjIgYXQgNjoyOSBQTTxi
+cj4NCjxiPlRvOiA8L2I+RXJpayBDYXJsc2VlbiAmbHQ7ZXJpay5jYXJsc2VlbkBicmlsbGlhbnRy
+b290LmNvbSZndDs8YnI+DQo8Yj5DYzogPC9iPiZxdW90O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tJnF1b3Q7ICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5TdWJq
+ZWN0OiA8L2I+KioqVU5DSEVDS0VEKioqIFJlOiBbVVNSUC11c2Vyc10gVVNSQiBIYXJkd2FyZSBE
+cml2ZXIgd2l0aCBBcHBsZSBTaWxpY29uIE1hY3M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5IaSBFcmlrIC0gWWVzIFVIRCBhbmQgVVNSUHMgd29yayB3aXRoIEFwcGxlIE0xIC8gQVJN
+NjQuIEkndmUgdXNlZCBhbiBNMSBNYWMgTWluaSB3aXRoIDEwIEdiRSB0byBjb25uZWN0IHRvIHZh
+cmlvdXMgVVNSUHMgKE4zMjAvMSwgWDMxMCwgWDQxMCkgdmlhIGFuIFJKLTQ1IHRvIFNGUCYjNDM7
+IGFkYXB0ZXIgLi4uIHdvcmtlZCBuaWNlbHkgd2l0aCBVSEQgNC4xISBVSEQgZG9lcyBoYXZlIG9w
+dGltaXphdGlvbnMgZm9yIGNlcnRhaW4NCiBJbnRlbCBTSU1EOyBpdCBpcyBub3Qgb3B0aW1pemVk
+IGZvciBBUk02NCwgYnV0IGl0IHNob3VsZCB3b3JrIHF1aXRlIHdlbGwgbmF0aXZlbHkgKG9yIGlu
+IFJvc2V0dGEyIGlmIHlvdSB3YW50ZWQgdG8gZ28gdGhhdCByb3V0ZSkuIC0gTUxEPG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+T24gU3VuLCBNYXIgMTMsIDIwMjIgYXQgMTI6NTkgUE0gRXJpayBDYXJsc2VlbiAmbHQ7PGEgaHJl
+Zj0ibWFpbHRvOmVyaWsuY2FybHNlZW5AYnJpbGxpYW50cm9vdC5jb20iPmVyaWsuY2FybHNlZW5A
+YnJpbGxpYW50cm9vdC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0Mg
+MS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4t
+cmlnaHQ6MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5IYXMgYW55
+Ym9keSBzdWNjZXNzZnVsbHkgYnVpbHQgYW5kIHJ1biB0aGUgVVNSQiBIYXJkd2FyZSBEcml2ZXIg
+b24gYW4gQXBwbGUgU2lsaWNvbiAoTTEgZmFtaWx5IG9mIENQVXMpIE1hYz8NCjxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
+O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
+LWJvdHRvbS1hbHQ6YXV0byI+TXkgdW5kZXJzdGFuZGluZyBpcyB0aGF0IEFBUkNINjQgaXMgc3Vw
+cG9ydGVkIG9uIExpbnV4IGFuZCBNYWNPUyBpcyBzdXBwb3J0ZWQgaW4gZ2VuZXJhbCwgYnV0IGp1
+c3QgYXNzdW1pbmcgdGhhdCBhbnkgZHJpdmVyIHNvdXJjZSBjb2RlIHdpbGwganVzdCB3b3JrIG9u
+IGEgbmV3IGFyY2hpdGVjdHVyZSAvIE9TDQogY29tYmluYXRpb24gaXMgZ2VuZXJhbGx5IG5vdCBh
+IHdpc2UgZ2FtYmxlLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJz
+cDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SeKAmW0gdGhpbmtpbmcg
+dGhhdCBhbiBNMSBNYWMgTWluaSBtaWdodCBiZSBhbiBvdXRzdGFuZGluZyBwbGF0Zm9ybSBmb3Ig
+U0RSIHdvcmsuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
+LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPlRoYW5rcyw8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkVyaWsgQ2FybHNlZW48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVm
+PSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4g
+ZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29t
+IiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48
+bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8
+L2h0bWw+DQo=
 
-Is here someone able to help me?
+--_000_AE6BE9EFF5F14205A451909FE51285CCbrilliantrootcom_--
 
-Thank you
-Maurizio stefani
-
-The information in this e-mail is confidential. The contents may not be dis=
-closed or used by anyone other than the addressee. Access to this e-mail by=
- anyone else is unauthorised.
-If you are not the intended recipient, please notify Airbus immediately and=
- delete this e-mail.
-Airbus cannot accept any responsibility for the accuracy or completeness of=
- this e-mail as it has been sent over public networks. If you have any conc=
-erns over the content of this message or its Accuracy or Integrity, please =
-contact Airbus immediately.
-All outgoing e-mails from Airbus are checked using regularly updated virus =
-scanning software but you should take whatever measures you deem to be appr=
-opriate to ensure that this message and any attachments are virus free.
-
---_000_E1188D158AA7A048AF99B6A05DA3D629DFE934BASPROMMAIL03spen_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"IT" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">HI to all,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I have an ETTUS X310, I would l=
-ike to build and load the original FPGA,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I loaded from repository the re=
-levant file<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">The files are in:<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">/vhd/uhd-master/uhd-master/fpga=
-/usrp3/top/x300<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">When I run make:<o:p></o:p></sp=
-an></p>
-<div style=3D"mso-element:para-border-div;border:none;border-bottom:solid w=
-indowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm">
-<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><span lang=3D"EN-U=
-S"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">make<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">make -f Makefile.x300.inc bin N=
-AME=3DX300_HG ARCH=3D PART_ID=3D BUILD_1G=3D1 BUILD_10G=3D1 SFP0_1GBE=3D1 S=
-FP1_10GBE=3D1&nbsp; X300=3D1 TOP_MODULE=3Dx300 EXTRA_DEFS=3D&quot;BUILD_1G=
-=3D1 BUILD_10G=3D1 SFP0_1GBE=3D1 SFP1_10GBE=3D1&nbsp; X300=3D1&quot; DEFAUL=
-T_RFNOC_IMAGE_CORE_FILE=3Dx300_rfnoc_image_core.v
- DEFAULT_EDGE_FILE=3D/home/maurizio.stefani/prove/vhd/uhd-master/uhd-master=
-/fpga/usrp3/top/x300/x300_static_router.hex<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">make[1]: Entering directory '/h=
-ome/maurizio.stefani/prove/vhd/uhd-master/uhd-master/fpga/usrp3/top/x300'<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">BUILDER: Checking tools...<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">* GNU bash, version 5.0.17(1)-r=
-elease (x86_64-pc-linux-gnu)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">* Python 3.8.10<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">* Vivado v2019.2 (64-bit)<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">BUILDER: Building IP ten_gig_et=
-h_pcs_pma<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">/bin/sh: 1: export: format.: ba=
-d variable name<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">make[1]: *** [/home/maurizio.st=
-efani/prove/vhd/uhd-master/uhd-master/fpga/usrp3/top/x300/ip/ten_gig_eth_pc=
-s_pma/Makefile.inc:41: /home/maurizio.stefani/prove/vhd/uhd-master/uhd-mast=
-er/fpga/usrp3/top/x300/build-ip/ten_gig_eth_pcs_pma/ten_gig_eth_pcs_pma.xci=
-.out]
- Error 2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">make[1]: Leaving directory '/ho=
-me/maurizio.stefani/prove/vhd/uhd-master/uhd-master/fpga/usrp3/top/x300'<o:=
-p></o:p></span></p>
-<div style=3D"mso-element:para-border-div;border:none;border-bottom:solid w=
-indowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm">
-<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><span lang=3D"EN-U=
-S">make: *** [Makefile:90: X300_HG] Error 2<o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I am working under Ubuntu:<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">release -a<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">No LSB modules are available.<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Distributor ID:&nbsp;&nbsp; Ubu=
-ntu<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Description:&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp; Ubuntu 20.04.3 LTS<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Release:&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20.04<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Codename:&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; focal<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Is here someone able to help me=
-?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Maurizio stefani<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-</div>
-<font style=3D"font-size: 9px;">The information in this e-mail is confident=
-ial. The contents may not be disclosed or used by anyone other than the add=
-ressee. Access to this e-mail by anyone else is unauthorised.<br>If you are=
- not the intended recipient, please notify Airbus immediately and delete th=
-is e-mail.<br>Airbus cannot accept any responsibility for the accuracy or c=
-ompleteness of this e-mail as it has been sent over public networks. If you=
- have any concerns over the content of this message or its Accuracy or Inte=
-grity, please contact Airbus immediately.<br>All outgoing e-mails from Airb=
-us are checked using regularly updated virus scanning software but you shou=
-ld take whatever measures you deem to be appropriate to ensure that this me=
-ssage and any attachments are virus free.</font></body>
-</html>
-
---_000_E1188D158AA7A048AF99B6A05DA3D629DFE934BASPROMMAIL03spen_--
-
---===============7541643420553156695==
+--===============7585206492583887442==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -337,4 +247,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7541643420553156695==--
+--===============7585206492583887442==--
