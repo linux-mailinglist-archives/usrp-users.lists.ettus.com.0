@@ -2,311 +2,341 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEDEB4DA69F
-	for <lists+usrp-users@lfdr.de>; Wed, 16 Mar 2022 01:04:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4B854DA6E8
+	for <lists+usrp-users@lfdr.de>; Wed, 16 Mar 2022 01:32:43 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 88626380F9D
-	for <lists+usrp-users@lfdr.de>; Tue, 15 Mar 2022 20:04:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C9525384E76
+	for <lists+usrp-users@lfdr.de>; Tue, 15 Mar 2022 20:32:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=nio365.onmicrosoft.com header.i=@nio365.onmicrosoft.com header.b="AeqlCXKa";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=postechackr.onmicrosoft.com header.i=@postechackr.onmicrosoft.com header.b="qVNqMKFh";
 	dkim-atps=neutral
-Received: from mx0a-00010702.pphosted.com (mx0a-00010702.pphosted.com [148.163.156.75])
-	by mm2.emwd.com (Postfix) with ESMTPS id 18999384455
-	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 20:03:44 -0400 (EDT)
-Received: from pps.filterd (m0239462.ppops.net [127.0.0.1])
-	by mx0b-00010702.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22FK6D5T018291
-	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 19:03:44 -0500
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2104.outbound.protection.outlook.com [104.47.55.104])
-	by mx0b-00010702.pphosted.com (PPS) with ESMTPS id 3et646upk5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 19:03:43 -0500
+Received: from KOR01-SL2-obe.outbound.protection.outlook.com (mail-eopbgr1290134.outbound.protection.outlook.com [40.107.129.134])
+	by mm2.emwd.com (Postfix) with ESMTPS id 234BB3845AC
+	for <usrp-users@lists.ettus.com>; Tue, 15 Mar 2022 20:31:43 -0400 (EDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ldsS6phfYFcb8nUIfT5lcrhGWVInAmHVHE6Vc5u00VbtwjVvvofIPLVi1eSK8qXB49YYHJFTZGnD9707Uh9HmE04/t3a/6c+5F++aga9kvUxyO9j4JFOwtu7+ZXmabo0b4VDKGXcdUvfB/8fq9zn9fpfRjMDG0a+tC9fT73ykMHekIOUa1Air2pdb87EGWYXGnMcjW2qMU30OO0cKxkUXWHwPgd8zzLwKrDhy0quA2eni6HmUJfB+sEoqtPsheUQjY+9JIxGup0aCg+cKF3727dzGvz4vyn/S0dQKwB208A5tVxNVbRR9TwCEBHfhZFzus7QgAbhQTyWEly061jvzg==
+ b=CbHrWKwFz8MiE22Ujlv37K76dCG++udLcBn82qEsA/QPjXeV3k78PYzQdtl9MHBSgTfJKGAFGAHanCJich3od5m99xHlLSNBaV6ZaMLOmh06oVGgZsh1tvn4y6K+z4fKX1xqtaKuOoPHZAUz5Tv49+Z9XIQQ8qxAM79UKzVewU4uqYypyPE4TBbxfQze7HPiYhTp9/yBcQIen58iIfjzdJcu0dsXWC5ZQW4XxXcgEmgt6Wz88H1qs/5nCeVgcqZJyby0yDMRRqNy4JhhL83oPST3DhgjtVcq7ubYq0NfY/VzDsXYiNPgzWEKD7J9ISKEvVjvuk++SxV2vcPR2/56RQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EmioHDGc4eBcb7GaihCuti+cgaithcnEQGbhVUypNeQ=;
- b=gyDwrOylDq45qiqAKUEuAGLOtiQU2WJqLeeJGSRiJ4/moyBUKXc4PWSh6u5XFWUprMC/RK6v7wO89NK49vdoUnyTev2guuro87naF1GvMwsUGNnrMDnLQfKCADuCs67V7LZ8RghDQFPchYhbqGIMRMmU+bTQzEcOKltVbgJCdtqj60FlJL0p0t4p/eWWi2ojS9+kSLfdgrGPP7ObrxHUjRYZuqWh7NyesWUTQSjzfsvEE6O4Sk3es51irFtyK0JyO7/Pg7nKlI0reQBDNJ1lFAKaqfW12VGFcTl7FlKbUJzg14+AE+u3JUS1vOk/uKi6y9I+txnVWGEksHI1ZXgx9Q==
+ bh=pCWbp/dqbkOhBlvXCmhrCYik+HbLPVvMVc5Xp5zF3+E=;
+ b=MqAGADKDSan9xnSYcWzo1xYo6dz+LRDCjSiCnsODfHI78C3vsoosyEWHsEvpqE+YgLgdaGMTFg/rHC6Z7OSgTU8Eb+53wyfyUJ5c5VLSmbGlntGctd3SQiMQ/UgjtO8EEeCj4xSiOwZzv5UkW8npKnVi+jW8iCtI+vFWerxfeJk7+U0pWLaXpLT/K5NDJBLLJzAuXjL4dQQBgsb1LRC/B0qhInf3ss5TKDJ8K8XVuqV9pAZq6DZkNwsU9hr7LWsjrgXJR2Hfn0/7Jqo5cM51c9QWsr1ABzSRAUzH8WwNC5/cNWnh/h6ys83cz9IKq6MKKmNIOICBuOjE3JOL+Hz4Yg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=digilent.com; dmarc=pass action=none header.from=digilent.com;
- dkim=pass header.d=digilent.com; arc=none
+ smtp.mailfrom=postech.ac.kr; dmarc=pass action=none
+ header.from=postech.ac.kr; dkim=pass header.d=postech.ac.kr; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
+ d=postechackr.onmicrosoft.com; s=selector2-postechackr-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EmioHDGc4eBcb7GaihCuti+cgaithcnEQGbhVUypNeQ=;
- b=AeqlCXKaamZ5GBIrgR3ugBgrzapwk8+YfK0gz7vTRr/sTmDYJ3hGHrZ2f4JKQbnpVFgMqms1fZaID+57BQUz0nyoxeAn+1wVfMcqclNKe1VKtNqigQNIHqONXKYNpohVJJhdchb03axBrXSXE55OaTeewmxgZ+O4OQpZCuUQJOY=
-Received: from MN2PR04MB6736.namprd04.prod.outlook.com (2603:10b6:208:1f0::17)
- by BY5PR04MB6627.namprd04.prod.outlook.com (2603:10b6:a03:22d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.14; Wed, 16 Mar
- 2022 00:03:41 +0000
-Received: from MN2PR04MB6736.namprd04.prod.outlook.com
- ([fe80::1da1:67bf:3753:7f2]) by MN2PR04MB6736.namprd04.prod.outlook.com
- ([fe80::1da1:67bf:3753:7f2%7]) with mapi id 15.20.5061.028; Wed, 16 Mar 2022
- 00:03:41 +0000
-From: David Horn <david.horn@digilent.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+ bh=pCWbp/dqbkOhBlvXCmhrCYik+HbLPVvMVc5Xp5zF3+E=;
+ b=qVNqMKFhsBPxntC2OIWX0WOLa+eQwmOk6gs+PuhY9dAXnrbfDG2ZsVUyBBqETcaCjw/qneIM5SMC1mSBaV9zcY6/fTeO+gx/W2DhZ7TalvvgnBe5AkCNegN1i4pVqySbIBuAMAyRkdGpBdrBTqnRxpnbXTBLzPJIjK4rCJWEROk=
+Received: from SL2P216MB1246.KORP216.PROD.OUTLOOK.COM (2603:1096:101:a::9) by
+ SLXP216MB0974.KORP216.PROD.OUTLOOK.COM (2603:1096:100:e::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5061.25; Wed, 16 Mar 2022 00:31:41 +0000
+Received: from SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+ ([fe80::21b3:4aef:a70a:24be]) by SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+ ([fe80::21b3:4aef:a70a:24be%9]) with mapi id 15.20.5038.031; Wed, 16 Mar 2022
+ 00:31:41 +0000
+From: Kyeong Su Shin <ksshin@postech.ac.kr>
+To: David Horn <david.horn@digilent.com>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
 Thread-Topic: Ettus Projects? 
-Thread-Index: Adg35IRVr3EDdvFkT5eg+92OJYY8zQ==
-Date: Wed, 16 Mar 2022 00:03:41 +0000
+Thread-Index: Adg35IRVr3EDdvFkT5eg+92OJYY8zQA6Ex/b
+Date: Wed, 16 Mar 2022 00:31:41 +0000
 Message-ID: 
+ <SL2P216MB12467D2FBB04D804FC41439593119@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+References: 
  <MN2PR04MB67367AD3612E478590EAC8B6EE119@MN2PR04MB6736.namprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
+In-Reply-To: 
+ <MN2PR04MB67367AD3612E478590EAC8B6EE119@MN2PR04MB6736.namprd04.prod.outlook.com>
+Accept-Language: ko-KR, en-US
+Content-Language: ko-KR
+X-Hashtags: #NewslettersPlus
 X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
+suggested_attachment_session_id: e59fe6dc-698c-0420-8bb1-8a7e5fddd11f
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=postech.ac.kr;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4ca6fbbf-6a64-49ad-fd0e-08da06e06e22
-x-ms-traffictypediagnostic: BY5PR04MB6627:EE_
+x-ms-office365-filtering-correlation-id: 2296f70b-cd7e-4282-ebd9-08da06e4574b
+x-ms-traffictypediagnostic: SLXP216MB0974:EE_
 x-microsoft-antispam-prvs: 
- <BY5PR04MB6627B9808012DE9AA7527CBBEE119@BY5PR04MB6627.namprd04.prod.outlook.com>
+ <SLXP216MB0974C7D429780F3D811D90ED93119@SLXP216MB0974.KORP216.PROD.OUTLOOK.COM>
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- rpFyRHW+i5sL3yJrAYcreMLQ1a/Q69sB4g60JCrBAOedMaRBfhd3r5zH7n6N/abqtXpD892BArirHKsq6JAalB39Og3JoO7riO/POCwvjSvCBiCCJu+VfazKJxy5MZYdXXgddktcimrtgBljjgNSZuyO8d6w4mwLaVWb8lelboBZ3e32M822INbOoH9HgDFl0b3tLED7Bzvu6L9os5blvUwIqepYnIhm1O1gBQh/3NUe55i+21YUj4vPD7XlTSUF721Jz2olp5nJftZHOkgubmuMm2HxXzqqpRGPVZ0cI7mYkK6NiyAhG/OrtP/otZNzEvNX870mb6zxnrGFYdEgZ7fcimd8cEiNFc8qpSthV9/Id4K58DYE9IDoswTLrY/AtRgj3jlF2O7Wam86aP3G2iA2F+IzlQU3ek9P5VECTWuEVKC0Kgp2E4nazqkuRi07QrSRczMa+ud0PqXvghnoiegeZFB6jBlmTxegCNwbqSdnm7PDsemrqHhVrFZzbVPjjrtGYGIl9sgMrY7Z1FuGckloN9ihxoZiGosbkEY4thwR/lyc9pH8Yx6yRELttDgSSq+LYs31uX/BIWhl6CJK7OXCvVs8PlWHAQs+hT4hHMeBJAory0FOmq9GA7ajzOTBGfS5NJf66W8BxmcduENs5fxdYIv3KAIK6Zh28WEWilWPLWTiZAXfBTg3JKy1SSv8cbCTlc6162LVVe0qweDwFb2VhSyUGrqB+JtHjQAsosKw2XRZBvkeMkCYP3p9+LLI3HKaAX7TGMiyVq32O4u78cqjr1R3wqGjXNXY75duEHGYo8pLzqoBQQEtf1Wv56wKgqyr/dvfOymZgYHFtUqGBQ==
+ wFO8Dc3tBtQPy4CdrremhmpyQEuQKgRnx/GAiKlrw8T1RPoLQCRe2IM1XIe+lexBCKY6a8Y8saW2csrwf6pn76J+Xgxbr1wdaaW2Ib5vuABshOaZ2aMWhp54pnl4vTMXrQfVwuTzGWgTI4sZGrpeVEW84CsNS8Dxk9ng+Fylw/BJ8KDcOiz6IZ5d2fgWecM0Ewcsh10uZQ5883bTpS6t8WYDW1Ir6jQuoCVjXAuVg1VlgMnaRmt3CWitswlhui92vCMyOEeE4Pd2GWUH0WLiDsaS8UUUk/f5d/AXxpDZwH+h7VQfJbm64sgYxJAgQLmDeIxh1xO1rXcTNxHNLvAD7hgYkx6dsvz13qHsax13pjrd4bLw8N5oTSkg3TKFvcDITC48lYK/h1svr3aNCwWjS6heEToybzSMpWSNHZC7T2iKS6eaoLBQ0nHFr1I3YlznNsD0Rx0F2B2LdilCaYlHwbKRKls8hn2rpSQ3imTGoY8f4MssbhdtZ76syZQ/QwaWei/Ard1PDDUtmi+MEh2SqyKuSuFt5MLkIwcv+l8TKH8ULN74NXEYtQoIIkHwQao2U6dXU9i3fNZ0412f9cndlZlLJZHTm80TPuUK1jpW9AVubw8h3RoWpfMsHUX3LOgHcoQkltT5/GCeNsf0+YQhYcvnu0Tyqfus4lzmulAcS+CsQ5qztvlK7MYHpamVI3fV3AkY2JsgTpwFn0XNKvQpS/Lf3s3+iyuasnAsICGMZNnbsPvR7reSTqVGw+TmQ1rSTUGGcl9anjxTcLC6qYxWK558QL3EAe1zml4ICjmmqm16yTThGcu2TpnMCbRTyivg7YmiX43IpYN8177+5RR3Lw==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR04MB6736.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(122000001)(6916009)(55016003)(86362001)(4744005)(8936002)(66946007)(52536014)(186003)(66476007)(66556008)(64756008)(76116006)(44832011)(66446008)(8676002)(2906002)(3480700007)(5660300002)(71200400001)(166002)(33656002)(99936003)(508600001)(9686003)(40140700001)(38070700005)(4743002)(7116003)(316002)(7696005)(6506007)(38100700002);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2P216MB1246.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(366004)(8676002)(3480700007)(38100700002)(122000001)(86362001)(76116006)(66946007)(7116003)(66446008)(66556008)(64756008)(71200400001)(55016003)(66476007)(99936003)(316002)(786003)(19627405001)(38070700005)(19627235002)(110136005)(166002)(7696005)(6506007)(186003)(26005)(8936002)(966005)(52536014)(508600001)(33656002)(40140700001)(5660300002)(9686003)(2906002)(4743002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?EL+bbNEBHd61EaQb5PJs8FlHPkAOm+GXceQm06EsAezdDFMt6qW3wEF/Gtyn?=
- =?us-ascii?Q?/8qIHKgLIWfhQ6yJ9DFgG2IhTbUdeBgSsd/3CfnlpceMoldHAw/QI12yJyYW?=
- =?us-ascii?Q?Y0HY6y9TCdVVWza2nTJoN7GlrKHziweSqZJw/5sb2ozO3x5tF6x52SE+oA5Y?=
- =?us-ascii?Q?U4kz6sKAMhXivOYqTsX8uktpzLYROQSN0Oq5vNKjz2pwQx9i2lXOjbGjZg2v?=
- =?us-ascii?Q?zQrzDCzJVPMowOOKVAHJ/2qRcVDIf2UXYj0YONqZ3CZgZ0srEShlvYbUtpsc?=
- =?us-ascii?Q?xOrjeTxoupjnaJBZtM/OFFC41YJEdAkHG7Ab5TvkK66PveLXKDjbzL8BdKwZ?=
- =?us-ascii?Q?3X5BHZk7Y161j6Jf3ytQZQlP9hN3brpti1h8uUZWOJM5n+IUzN9PfikFTHFr?=
- =?us-ascii?Q?rBaDGz7S6nm84DgW4AV5IWxr8FJzjhxMRWCpwmWcy/ayuPGgvmcUeosRyG8S?=
- =?us-ascii?Q?ysvXwo2u0h/gxe5Iwhm7cuytFoWdid/kvuuSgjfDk6ihYoDkhmXyNsgPFLzK?=
- =?us-ascii?Q?pup3tyxYEw1dftxibcpJecrWDKPH8ybde2bkbfGcGi33yEyL2a645sjbeNcm?=
- =?us-ascii?Q?z0cDSbD1/j6CNnejwRCvATeIf74TclcnbajpDZYzclk68CJuCaxsqgzctb5B?=
- =?us-ascii?Q?Uof75saR6MK5StIBvDsJs/OEq0PbInrHfRP5bv/qBgmpczePF77xYUXgY0my?=
- =?us-ascii?Q?6a2fUIW7IiBUzynpXnczTxTWEN2dOA9lx3iNcXKWD0OC6p5N9F3kXpa5cAV3?=
- =?us-ascii?Q?nhwCgqbdc0HlCe3OK0q3sAAdbB/pNXzc7A5jJFLdeBXQ8n6XQJkmQ24MRdql?=
- =?us-ascii?Q?uWo/93cgcvVnueeSo+3v+vAdL6O+x7JFedL652QR/777fm8U5NUGa6gpJalf?=
- =?us-ascii?Q?UO8f2Jov2WeRO6yZ+FRDFbSkK3OEUM4+/DHIElY3hc6/2nIfMEHYH+42cE8v?=
- =?us-ascii?Q?2XaGdWbNQYzC5/oIdr3Qqul581419OaFunUesLT1N7cnHCic9VCYQo2SktbL?=
- =?us-ascii?Q?Q/UBI2NH49C4ucQQjjrWa9aMR4KWDRWPkuIA9UAoPgvVlEhFcDX7v9aX0ics?=
- =?us-ascii?Q?0cX7miXcU15SldRZO3E/H5HR4C3oP8aMhDDnyUUk8wy/PQgcCuxIMS3EJk53?=
- =?us-ascii?Q?39njuwl3LhpjkM/iQzOqWIzSKYFEZPMJC07yBlzOgWUsNXIytZHr+c6kTTNn?=
- =?us-ascii?Q?aQYkUNCDstrbCtpLWanYe5ZOcoNJghavJCXN5DoMji0XXaRbWxgXEzagn/Dg?=
- =?us-ascii?Q?mopr6vvRyvEp+xmU2l3fuh2cjcdjwlfMAzoZsIfOaxsBtDN0PKKwyCOSKkEq?=
- =?us-ascii?Q?ru8MpbEkYjVfxHnYncJsiHN8s6qQgkh1FrFmqIJwyDrBEKE4flFzgQKpTWS7?=
- =?us-ascii?Q?j7P/DJtJ8DTHkdwoUeXRig8Tzib85GgQlGoQtZVKNtQZPaaDxCVm6+zZxnVQ?=
- =?us-ascii?Q?R4XeBIpCJ9553tUHcbu6K6UhVhDH1fGiL4D5zlkDOX+Am8WubKNcHNJA7H/7?=
- =?us-ascii?Q?Pm44UMHXuWCG/zjuK0HZC9EkKpAKuiYkswIM?=
+ =?ks_c_5601-1987?B?bW50M05xVmN2SGloYnAzbW9CdUpPeFk3SEVtY1ZIVHNZaDc0ZWg5?=
+ =?ks_c_5601-1987?B?TGZScHlaeDYxckZQZUVEck1BRUQvMDIxaUFoUXFNZWQ5QnlGdE5I?=
+ =?ks_c_5601-1987?B?N28xSFFoei95dFBZMTNaeGJUNXUrVHRvdHAxV3U4cHdtYkJIb2da?=
+ =?ks_c_5601-1987?B?OGVkUWlzNWJKTTNjS0RidFlTYW1DbjhaeGpRczI1Rm5IaVd3RGh3?=
+ =?ks_c_5601-1987?B?Q1lvSW93aWtlT0VpbEYvS1JWRWgzM0tkWFp4UzI4eVhXY3F3Y3Nn?=
+ =?ks_c_5601-1987?B?anhsak8vWExKd2xsMEdXeGgwRGpoL2N4eklZd0t1bG12eGk1WWVn?=
+ =?ks_c_5601-1987?B?U3c2STFVWHRiblV5ckd6QThpUFdJcWVvUWgvZzl1ZXhQdjRDSWlJ?=
+ =?ks_c_5601-1987?B?azl2bE9rckNrdFhZNmFnOTVJRFNQd2dUNEJwTW0waFNBWkxucjJw?=
+ =?ks_c_5601-1987?B?b1NtbWZnY2haSGZpS241TXJEcGo3L2lpbFNiL2pEa2llY0xRSUsr?=
+ =?ks_c_5601-1987?B?Sk1ETjhuTFVvYU90U3B2L3dkOXVPN3orNElQQUloWExXczZKSjhB?=
+ =?ks_c_5601-1987?B?VUpBUHlrS2srbTdrRm1IMTBKWlR6cTBsbkRtR2JJRlN4Yml4M0ZU?=
+ =?ks_c_5601-1987?B?bFlHUWN6TVd1dkZwbk1pM05YcmUrUk9DZjV3bk5ZWFpId3E1cFla?=
+ =?ks_c_5601-1987?B?c3hKNmM2c1BxNlBzTmlSMzJwUVJuemR6YzJRaWNJVVA4U0dIcG5U?=
+ =?ks_c_5601-1987?B?VFpFOWdpSlNmc3crdEdiTkhhYXlKeGJuVlBUN3VNbUZuVEYwL2tn?=
+ =?ks_c_5601-1987?B?WXZpT3U3RHFtaE5OZFZoY3BLOHhGNUE4V0RjQVJ5VXZLbDhEK2xS?=
+ =?ks_c_5601-1987?B?azFsOEZwSDdWeGhSbkpGejZXSFZMbFNnb2V4U0VPYU41eHlFaUhI?=
+ =?ks_c_5601-1987?B?SmtPd01QSmJNS0ozdSsrQ2Q0QjFVMXk4dlFCYWw3bW1uN3NKR0ND?=
+ =?ks_c_5601-1987?B?OTVuMG5yRjBCeEU1eE5XbHFJWWc0bnYycU1WYm9VaW4wVy9PUzgv?=
+ =?ks_c_5601-1987?B?T3Q5RlRWM0ZWN0cxN2pRbFhrWnpqaUdMR2Z5M28xK0pIN2VSNzdJ?=
+ =?ks_c_5601-1987?B?ZXdEQ3FWSFVRak1uZ3djTWNyUjBlektsOE1IMXg1anpDNVVHck5v?=
+ =?ks_c_5601-1987?B?S3Fxd0dBT2NNV1M5V2VOUDJQeU52YTdPRjJlSm9QRThCSW5qMThs?=
+ =?ks_c_5601-1987?B?UEZaSk5oR2tMWENjTGNLUEtEU3VHM0puUEREdHZ4Z1lMV2piRU9o?=
+ =?ks_c_5601-1987?B?NmZmR0w5QTBZUDFWeWlmSkpSSVZkTHYrU3VoNUlheURWSFpuNGJN?=
+ =?ks_c_5601-1987?B?MGZIWUJ2Y3JvdVJWVWNwRjBZeHRmVlNMZVhWcTdtWXRMd29OTmZa?=
+ =?ks_c_5601-1987?B?Q05rTkxkQmUxVjFhZ3luUndub2RrRWY5Q29pYThuQXJ5ZjNXMEhu?=
+ =?ks_c_5601-1987?B?OWt2ZmZQWklEcUNranVkcHE5Q3BnVzRpbzNvY3pmVFB0cmVkK0ZC?=
+ =?ks_c_5601-1987?B?YjlTU012RWJkNEdRRTFIbE9DclBKTGFlaGphR00xRlp4YmRxb1Ux?=
+ =?ks_c_5601-1987?B?eFdxOFZQYWJFNjZZcUxmRUdxWXBOSmh0TEwwMjJxSDBDSGZLSzFo?=
+ =?ks_c_5601-1987?B?b3NvSHo3RjRRbnQ4Z2dBTm55TjZQMzRCYXdwU004UExpbEpIU3Vs?=
+ =?ks_c_5601-1987?B?YTIzNi8wK0NETnN6d0hLWUUxK1BzZnlOOG84VUNRemVUWTBJV0pN?=
+ =?ks_c_5601-1987?B?K3BUUlZSeVQ5ZFFTOENzSGViZmRMOW1BaUJnemwzWXBEbmYxbDF4?=
+ =?ks_c_5601-1987?B?SDBQSU5qTyt3eitUS2NvN054Rng0cSt4UXpSNWE5dEFzaFNjY09k?=
+ =?ks_c_5601-1987?B?WWU3UjRHOS9ESnVpTVNMTHBNVUJqU0FjOUtHdjNQYUNoK0x0U3VC?=
+ =?ks_c_5601-1987?B?Wk1iaVlXSGk1VzJNbm92VmIzZW9hWlB0RmF4YjZYK09vVkY4WXE0?=
+ =?ks_c_5601-1987?B?dFNxWENOVE9IQlFlbituSDVkazhtamIvYndkWjI3UjF6K0xYNUl5?=
+ =?ks_c_5601-1987?B?WGZrR01ILzZabEdmR1VXYnVuMFE4OW85UkFxMTA2SHFFYnIzdEpw?=
+ =?ks_c_5601-1987?B?TzdjUkdXQ2xwNDc0alhuZGd2MkQ2SDdyT3lPT0VNK1BqME9mMnpl?=
+ =?ks_c_5601-1987?Q?QkWs9pFa/ETuBGIjXFSho6sbuHNGI?=
 MIME-Version: 1.0
-X-OriginatorOrg: digilent.com
+X-OriginatorOrg: postech.ac.kr
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR04MB6736.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ca6fbbf-6a64-49ad-fd0e-08da06e06e22
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2022 00:03:41.5948
+X-MS-Exchange-CrossTenant-AuthSource: SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2296f70b-cd7e-4282-ebd9-08da06e4574b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2022 00:31:41.2162
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-id: bff3e98c-5cca-455c-adc8-5fd24fc9908d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: psgSOrliDJ+R5eiANmFZEoxTZtPNHGaBQGDA0UoQ3YLxA9+a4QtPqDfxpyefVfglwC0DUROxepE9sm/aoMOHjA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR04MB6627
-X-Proofpoint-ORIG-GUID: keh6rhL5Od4bJA5_l_wrIdtZSm7fvdJK
-X-Proofpoint-GUID: keh6rhL5Od4bJA5_l_wrIdtZSm7fvdJK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-15_11,2022-03-15_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=0 impostorscore=0
- clxscore=1011 priorityscore=1501 mlxscore=0 mlxlogscore=854 bulkscore=0
- spamscore=0 phishscore=0 malwarescore=0 adultscore=0 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203150143
-Message-ID-Hash: T3NMCQ3Z5CIDJ7VD24FG5IWRUVTUQD6S
-X-Message-ID-Hash: T3NMCQ3Z5CIDJ7VD24FG5IWRUVTUQD6S
-X-MailFrom: prvs=007494915e=david.horn@digilent.com
+X-MS-Exchange-CrossTenant-userprincipalname: A2Z6+OxiyjjfKYzkE9bQuLlpHeKJn15IqE67kGfkBa1Ino4WT+NKP7L3rdiAgX4jTaSzfDyOic2ngLCQLGTKzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SLXP216MB0974
+Message-ID-Hash: GAM2OTEASQ4W76XDW7LAVT7HWIHRHY6Q
+X-Message-ID-Hash: GAM2OTEASQ4W76XDW7LAVT7HWIHRHY6Q
+X-MailFrom: ksshin@postech.ac.kr
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Ettus Projects? 
+Subject: [USRP-users] Re: Ettus Projects? 
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XCQGJLW6GNWLXJ54GRTGDJUBRXO2ACZK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NL4QGGSNENBTWPJ5Q4O24K4EAVLGOQA5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7965720836426389079=="
+Content-Type: multipart/mixed; boundary="===============0657735628711101847=="
 
---===============7965720836426389079==
-Content-Language: en-US
+--===============0657735628711101847==
+Content-Language: ko-KR
 Content-Type: multipart/related;
-	boundary="_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_";
+	boundary="_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_";
 	type="multipart/alternative"
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_"
+	boundary="_000_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_"
 
---_000_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
-Content-Type: text/plain; charset="us-ascii"
+--_000_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
+Content-Type: text/plain; charset="ks_c_5601-1987"
+Content-Transfer-Encoding: base64
+
+SGVsbG8gRGF2aWQ6DQoNCkkgc3VnZ2VzdCBjaGVja2luZyBvdXQgR05VIFJhZGlvIGNvbmZlcmVu
+Y2UgcGFwZXJzL3JlY29yZGluZ3MsIGFzIG1hbnkgb2YgdGhlbSB1c2VzIFVTUlAocykgaW4gc29t
+ZSB3YXlzLiAoRXhhbXBsZTogaHR0cHM6Ly9ldmVudHMuZ251cmFkaW8ub3JnL2V2ZW50LzgvY29u
+dHJpYnV0aW9ucy8gLCBodHRwczovL3d3dy55b3V0dWJlLmNvbS9jL0dOVVJhZGlvUHJvamVjdCAs
+IGV0Yy4pDQoNCg0KUmVnYXJkcywNCkt5ZW9uZyBTdSBTaGluDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KurizvSC757b3OiBEYXZpZCBIb3JuIDxkYXZpZC5ob3JuQGRpZ2lsZW50
+LmNvbT4NCrq4s70gs6/CpTogMjAyMrPiIDO/+SAxNsDPILz2v+TAzyC/wMD8IDk6MDMNCrnetMIg
+u+e29zogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
+Y29tPg0Kwaa48TogW1VTUlAtdXNlcnNdIEV0dHVzIFByb2plY3RzPw0KDQoNCkhpIEFsbCENCg0K
+DQoNCk15IG5hbWWhr3MgRGF2aWQsIGFuZCBJIGFtIHRoZSBNYXJDb20gTWFuYWdlciBhdCBEaWdp
+bGVudC4gV2Ugc2VsbCBFdHR1cyBwcm9qZWN0cyBvbiBvdXIgc2l0ZSAod2Whr3JlIGFsc28gcGFy
+dCBvZiBOSSksIGJ1dCB3ZSBkb26hr3QgaGF2ZSBhIHRvbiBvZiBleHBlcmllbmNlIHdpdGggU0RS
+IG9uIG91ciBBcHBsaWNhdGlvbnMgdGVhbS4gSSBhbSB3b25kZXJpbmcgaWYgeW91IGFsbCB3b3Vs
+ZG6hr3QgbWluZCBzZW5kaW5nIG1lIHlvdXIgZmF2b3JpdGUgRXR0dXMgcHJvamVjdHMvYXBwbGlj
+YXRpb25zL3dyaXRldXBzL2Jsb2dzIHNvIEkgY2FuIGZlYXR1cmUgdGhlbSBvbiBvdXIgb3duIGNo
+YW5uZWxzLg0KDQoNCg0KV2hpbGUgSSBhbSBvbiB0aGUgdG9waWMsIEmhr2QgYmUgbG9va2luZyB0
+byBzdGFydCBjb252ZXJzYXRpb25zIHdpdGggYW55b25lIHRoYXQgd291bGQgbGlrZSB0byBjb250
+cmlidXRlIGNvbnRlbnQgZm9yIHRoZSBEaWdpbGVudCBibG9nIGZlYXR1cmluZyBFdHR1cyBwcm9k
+dWN0cyAodGhlb3JldGljYWxseSB0ZWFtaW5nIHVwIHdpdGggRGlnaWxlbnQgcHJvZHVjdHMpLiBM
+ZXQgbWUga25vdyEgQ2hlZXJzIQ0KDQoNCg0KRGF2aWQgSG9ybg0KDQpNYXJDb20gTWFuYWdlcg0K
+DQpkYXZpZC5ob3JuQGRpZ2lsZW50LmNvbTxtYWlsdG86ZGF2aWQuaG9ybkBkaWdpbGVudC5jb20+
+DQoNCk06ICgyMTQpIDU1Mi01NTU5DQoNCltjaWQ6aW1hZ2UwMDEuanBnQDAxRDgzN0E5LkQ3RkNG
+NkIwXQ0KW0ZhY2Vib29rXTxodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9EaWdpbGVudD4gIFtMaW5r
+ZWRpbl0gPGh0dHA6Ly93d3cubGlua2VkaW4uY29tL2NvbXBhbnkvZGlnaWxlbnQtaW5jLj4gICBb
+VHdpdHRlcl0gPGh0dHA6Ly90d2l0dGVyLmNvbS9EaWdpbGVudEluYz4gICBbWW91dHViZV0gPGh0
+dHA6Ly93d3cueW91dHViZS5jb20vdXNlci9EaWdpbGVudEluYz4gICBbQmxvZ10gPGh0dHA6Ly9i
+bG9nLmRpZ2lsZW50aW5jLmNvbS8+DQoNCg0K
+
+--_000_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
+Content-Type: text/html; charset="ks_c_5601-1987"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All!
-
-My name's David, and I am the MarCom Manager at Digilent. We sell Ettus pro=
-jects on our site (we're also part of NI), but we don't have a ton of exper=
-ience with SDR on our Applications team. I am wondering if you all wouldn't=
- mind sending me your favorite Ettus projects/applications/writeups/blogs s=
-o I can feature them on our own channels.
-
-While I am on the topic, I'd be looking to start conversations with anyone =
-that would like to contribute content for the Digilent blog featuring Ettus=
- products (theoretically teaming up with Digilent products). Let me know! C=
-heers!
-
-David Horn
-MarCom Manager
-david.horn@digilent.com<mailto:david.horn@digilent.com>
-M: (214) 552-5559
-[cid:image001.jpg@01D837A9.D7FCF6B0]
-[Facebook]<http://www.facebook.com/Digilent>  [Linkedin] <http://www.linked=
-in.com/company/digilent-inc.>   [Twitter] <http://twitter.com/DigilentInc> =
-  [Youtube] <http://www.youtube.com/user/DigilentInc>   [Blog] <http://blog=
-.digilentinc.com/>
-
-
---_000_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dks_c_5601=
+-1987">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hello David:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I suggest checking out GNU Radio conference papers/recordings, as many of t=
+hem uses USRP(s) in some ways. (Example:
+<a href=3D"https://events.gnuradio.org/event/8/contributions/" id=3D"LPNoLP=
+OWALinkPreview">
+https://events.gnuradio.org/event/8/contributions/</a> , <a href=3D"https:/=
+/www.youtube.com/c/GNURadioProject" id=3D"LPNoLPOWALinkPreview_1">
+https://www.youtube.com/c/GNURadioProject</a> , etc.)<br>
+</div>
+<br>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Kyeong Su Shin<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>=BA=B8=B3=BD =BB=E7=B6=F7:</b> =
+David Horn &lt;david.horn@digilent.com&gt;<br>
+<b>=BA=B8=B3=BD =B3=AF=C2=A5:</b> 2022=B3=E2 3=BF=F9 16=C0=CF =BC=F6=BF=E4=
+=C0=CF =BF=C0=C0=FC 9:03<br>
+<b>=B9=DE=B4=C2 =BB=E7=B6=F7:</b> usrp-users@lists.ettus.com &lt;usrp-users=
+@lists.ettus.com&gt;<br>
+<b>=C1=A6=B8=F1:</b> [USRP-users] Ettus Projects? </font>
+<div>&nbsp;</div>
+</div>
+<style>
+<!--
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
+	{font-family:"Cambria Math"}
 @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{font-family:Calibri}
+p.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal
 	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
+	font-family:"Calibri",sans-serif}
+a:link, span.x_MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline}
+a:visited, span.x_MsoHyperlinkFollowed
+	{color:#954F72;
+	text-decoration:underline}
+p.x_msonormal0, li.x_msonormal0, div.x_msonormal0
+	{margin-right:0in;
 	margin-left:0in;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;}
+	font-family:"Calibri",sans-serif}
+span.x_EmailStyle18
+	{font-family:"Calibri",sans-serif;
+	color:windowtext}
+.x_MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Calibri",sans-serif}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My name&#8217;s David, and I am the MarCom Manager a=
-t Digilent. We sell Ettus projects on our site (we&#8217;re also part of NI=
-), but we don&#8217;t have a ton of experience with SDR on our Applications=
- team. I am wondering if you all wouldn&#8217;t mind sending
+	{margin:1.0in 1.0in 1.0in 1.0in}
+div.x_WordSection1
+	{}
+-->
+</style>
+<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"x_WordSection1">
+<p class=3D"x_MsoNormal">Hi All!</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">My name=A1=AFs David, and I am the MarCom Manager =
+at Digilent. We sell Ettus projects on our site (we=A1=AFre also part of NI=
+), but we don=A1=AFt have a ton of experience with SDR on our Applications =
+team. I am wondering if you all wouldn=A1=AFt mind sending
  me your favorite Ettus projects/applications/writeups/blogs so I can featu=
-re them on our own channels.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">While I am on the topic, I&#8217;d be looking to sta=
-rt conversations with anyone that would like to contribute content for the =
-Digilent blog featuring Ettus products (theoretically teaming up with Digil=
-ent products). Let me know! Cheers!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><b><span style=3D"font-family:&quot;Arial&quot;,sans-serif;color:#=
-00703C">David Horn</span></b><span style=3D"font-size:12.0pt;font-family:&q=
-uot;Arial&quot;,sans-serif;color:#1F497D"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Arial&quot;,sans-serif">MarCom Ma=
-nager<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><a href=3D"mailto:david.horn@digilent.com"><span style=3D"font-fam=
-ily:&quot;Arial&quot;,sans-serif;color:#0563C1">david.horn@digilent.com</sp=
-an></a><u><span style=3D"color:#0563C1"><o:p></o:p></span></u></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Arial&quot;,sans-serif">M: (214) =
-552-5559</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><img border=3D"0" width=3D"180" height=3D"42" style=3D"width:1.875=
-in;height:.4375in" id=3D"Picture_x0020_1" src=3D"cid:image001.jpg@01D837A9.=
-D7FCF6B0"><span style=3D"color:#1F497D"><br>
+re them on our own channels.</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">While I am on the topic, I=A1=AFd be looking to st=
+art conversations with anyone that would like to contribute content for the=
+ Digilent blog featuring Ettus products (theoretically teaming up with Digi=
+lent products). Let me know! Cheers!</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal" style=3D""><b><span style=3D"font-family:&quot;Ari=
+al&quot;,sans-serif; color:#00703C">David Horn</span></b><span style=3D"fon=
+t-size:12.0pt; font-family:&quot;Arial&quot;,sans-serif; color:#1F497D"></s=
+pan></p>
+<p class=3D"x_MsoNormal" style=3D""><span style=3D"font-family:&quot;Arial&=
+quot;,sans-serif">MarCom Manager</span></p>
+<p class=3D"x_MsoNormal" style=3D""><a href=3D"mailto:david.horn@digilent.c=
+om"><span style=3D"font-family:&quot;Arial&quot;,sans-serif; color:#0563C1"=
+>david.horn@digilent.com</span></a><u><span style=3D"color:#0563C1"></span>=
+</u></p>
+<p class=3D"x_MsoNormal" style=3D""><span style=3D"font-family:&quot;Arial&=
+quot;,sans-serif">M: (214) 552-5559</span></p>
+<p class=3D"x_MsoNormal" style=3D""><img border=3D"0" width=3D"180" height=
+=3D"42" id=3D"x_Picture_x0020_1" style=3D"width:1.875in; height:.4375in" da=
+ta-outlook-trace=3D"F:1|T:1" src=3D"cid:image001.jpg@01D837A9.D7FCF6B0"><sp=
+an style=3D"color:#1F497D"><br>
 </span><a href=3D"http://www.facebook.com/Digilent"><span style=3D"color:bl=
-ue;text-decoration:none"><img border=3D"0" width=3D"20" height=3D"20" style=
-=3D"width:.2083in;height:.2083in" id=3D"Picture_x0020_18" src=3D"cid:image0=
-02.png@01D837A9.D7FCF6B0" alt=3D"Facebook"></span></a><span style=3D"color:=
-#1F497D">&nbsp;&nbsp;</span><a href=3D"http://www.linkedin.com/company/digi=
-lent-inc."><span style=3D"color:blue;text-decoration:none"><img border=3D"0=
-" width=3D"20" height=3D"20" style=3D"width:.2083in;height:.2083in" id=3D"P=
-icture_x0020_17" src=3D"cid:image003.png@01D837A9.D7FCF6B0" alt=3D"Linkedin=
-"></span></a><span style=3D"color:#1F497D">&nbsp;&nbsp;</span><a href=3D"ht=
-tp://twitter.com/DigilentInc"><span style=3D"color:blue;text-decoration:non=
-e"><img border=3D"0" width=3D"20" height=3D"20" style=3D"width:.2083in;heig=
-ht:.2083in" id=3D"Picture_x0020_16" src=3D"cid:image004.png@01D837A9.D7FCF6=
-B0" alt=3D"Twitter"></span></a><span style=3D"color:#1F497D">&nbsp;&nbsp;</=
-span><a href=3D"http://www.youtube.com/user/DigilentInc"><span style=3D"col=
-or:blue;text-decoration:none"><img border=3D"0" width=3D"20" height=3D"20" =
-style=3D"width:.2083in;height:.2083in" id=3D"Picture_x0020_15" src=3D"cid:i=
-mage005.png@01D837A9.D7FCF6B0" alt=3D"Youtube"></span></a><span style=3D"co=
-lor:#1F497D">&nbsp;&nbsp;</span><a href=3D"http://blog.digilentinc.com/"><s=
-pan style=3D"color:blue;text-decoration:none"><img border=3D"0" width=3D"68=
-" height=3D"20" style=3D"width:.7083in;height:.2083in" id=3D"Picture_x0020_=
-14" src=3D"cid:image006.png@01D837A9.D7FCF6B0" alt=3D"Blog"></span></a><spa=
-n style=3D"font-family:&quot;Arial&quot;,sans-serif"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+ue; text-decoration:none"><img border=3D"0" width=3D"20" height=3D"20" id=
+=3D"x_Picture_x0020_18" alt=3D"Facebook" style=3D"width:.2083in; height:.20=
+83in" data-outlook-trace=3D"F:1|T:1" src=3D"cid:image002.png@01D837A9.D7FCF=
+6B0"></span></a><span style=3D"color:#1F497D">&nbsp;&nbsp;</span><a href=3D=
+"http://www.linkedin.com/company/digilent-inc."><span style=3D"color:blue; =
+text-decoration:none"><img border=3D"0" width=3D"20" height=3D"20" id=3D"x_=
+Picture_x0020_17" alt=3D"Linkedin" style=3D"width:.2083in; height:.2083in" =
+data-outlook-trace=3D"F:1|T:1" src=3D"cid:image003.png@01D837A9.D7FCF6B0"><=
+/span></a><span style=3D"color:#1F497D">&nbsp;&nbsp;</span><a href=3D"http:=
+//twitter.com/DigilentInc"><span style=3D"color:blue; text-decoration:none"=
+><img border=3D"0" width=3D"20" height=3D"20" id=3D"x_Picture_x0020_16" alt=
+=3D"Twitter" style=3D"width:.2083in; height:.2083in" data-outlook-trace=3D"=
+F:1|T:1" src=3D"cid:image004.png@01D837A9.D7FCF6B0"></span></a><span style=
+=3D"color:#1F497D">&nbsp;&nbsp;</span><a href=3D"http://www.youtube.com/use=
+r/DigilentInc"><span style=3D"color:blue; text-decoration:none"><img border=
+=3D"0" width=3D"20" height=3D"20" id=3D"x_Picture_x0020_15" alt=3D"Youtube"=
+ style=3D"width:.2083in; height:.2083in" data-outlook-trace=3D"F:1|T:1" src=
+=3D"cid:image005.png@01D837A9.D7FCF6B0"></span></a><span style=3D"color:#1F=
+497D">&nbsp;&nbsp;</span><a href=3D"http://blog.digilentinc.com/"><span sty=
+le=3D"color:blue; text-decoration:none"><img border=3D"0" width=3D"68" heig=
+ht=3D"20" id=3D"x_Picture_x0020_14" alt=3D"Blog" style=3D"width:.7083in; he=
+ight:.2083in" data-outlook-trace=3D"F:1|T:1" src=3D"cid:image006.png@01D837=
+A9.D7FCF6B0"></span></a><span style=3D"font-family:&quot;Arial&quot;,sans-s=
+erif"></span></p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+</div>
 </div>
 </body>
 </html>
 
---_000_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_--
+--_000_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_--
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
 Content-Type: image/jpeg; name="image001.jpg"
 Content-Description: image001.jpg
 Content-Disposition: inline; filename="image001.jpg"; size=7815;
 	creation-date="Wed, 16 Mar 2022 00:03:39 GMT";
-	modification-date="Wed, 16 Mar 2022 00:03:40 GMT"
+	modification-date="Wed, 16 Mar 2022 00:28:53 GMT"
 Content-ID: <image001.jpg@01D837A9.D7FCF6B0>
 Content-Transfer-Encoding: base64
 
@@ -449,12 +479,12 @@ ssKzpU6dAbI1gS2uksiT8Bma3ybym4nZY8GSnVGsEi5yTlKxa/4yYXinpHYQLBsejY7uxJqaUdsh
 7JKYn26CaxU4lw2PHToDoR1AHQB0AdAHQB0AdAHQB0AdAHQB0AdAHQB0AdAHQB0AdAHQB0AdAHQB
 0AdAf//Z
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
 Content-Type: image/png; name="image002.png"
 Content-Description: image002.png
 Content-Disposition: inline; filename="image002.png"; size=1312;
 	creation-date="Wed, 16 Mar 2022 00:03:40 GMT";
-	modification-date="Wed, 16 Mar 2022 00:03:40 GMT"
+	modification-date="Wed, 16 Mar 2022 00:28:53 GMT"
 Content-ID: <image002.png@01D837A9.D7FCF6B0>
 Content-Transfer-Encoding: base64
 
@@ -483,12 +513,12 @@ uM+MlEExijH7yqt3z3cY43bTAAjVbVw/Jy8rgH5ptjAd5EP4zhGHePOHZRzisV4KYF4d45AVv95V
 6FGwE6h+GHgBKhNm4jWZT6E/4P6Qfyh0FMQ5R66r8CbVOT4CDAAzQQzeNTxU9wAAAABJRU5ErkJg
 gg==
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
 Content-Type: image/png; name="image003.png"
 Content-Description: image003.png
 Content-Disposition: inline; filename="image003.png"; size=1421;
 	creation-date="Wed, 16 Mar 2022 00:03:40 GMT";
-	modification-date="Wed, 16 Mar 2022 00:03:40 GMT"
+	modification-date="Wed, 16 Mar 2022 00:28:53 GMT"
 Content-ID: <image003.png@01D837A9.D7FCF6B0>
 Content-Transfer-Encoding: base64
 
@@ -518,12 +548,12 @@ Wq3g4hgdLOhgm2RvpOtlwgnRbm3JyCgjzcjoqcXIyBgQBzaIiYWDkZGNHSjgF27FyCjGKYws6B1m
 EBjB6JrIhCzowa3qL8+oYsqMLJjAxCUYysgvhCIowsQlKYFf0A7iJB0mriALRkVBkCBvZKyAmLmb
 gL6PrJ5TiECMuhLY+ZysrKKirKxAvwgDmbwMJACAAAMAe4IWT+fpWKkAAAAASUVORK5CYII=
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
 Content-Type: image/png; name="image004.png"
 Content-Description: image004.png
 Content-Disposition: inline; filename="image004.png"; size=1402;
 	creation-date="Wed, 16 Mar 2022 00:03:40 GMT";
-	modification-date="Wed, 16 Mar 2022 00:03:40 GMT"
+	modification-date="Wed, 16 Mar 2022 00:28:53 GMT"
 Content-ID: <image004.png@01D837A9.D7FCF6B0>
 Content-Transfer-Encoding: base64
 
@@ -553,12 +583,12 @@ dAELyjKDrZBU9wRyTCTUwIIh/GC7OfS0GREghgtsK48QJ0JMWIoV6r7gcLigLwvU0Tz2cKXGUWxQ
 QUEv1yA7iKAHC9Q/DKIsCrY6ICFOfWaol1mtFLWUwMrEbWBiDAy8hhG6zm4+qkamzEihxM6vyc7A
 wcLMih56gkyEAhggwACBwBILQ39WmAAAAABJRU5ErkJggg==
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
 Content-Type: image/png; name="image005.png"
 Content-Description: image005.png
 Content-Disposition: inline; filename="image005.png"; size=1582;
 	creation-date="Wed, 16 Mar 2022 00:03:40 GMT";
-	modification-date="Wed, 16 Mar 2022 00:03:40 GMT"
+	modification-date="Wed, 16 Mar 2022 00:28:53 GMT"
 Content-ID: <image005.png@01D837A9.D7FCF6B0>
 Content-Transfer-Encoding: base64
 
@@ -591,12 +621,12 @@ Jy6QqKEGH1CQXanYh9MlMlssQNJOgMNeX5AZJGhspCdZzibsz8+UWFTijxDkNWERZpUKkRHhqUIW
 VAtglWORSY5RNYQIKuXrJflJM7nxc5qlifLq14AE5T3F9CKicqUVQjnKbNTEIbbrMnvX68OAno0Q
 H9RHSgYwEMutogj1OzszHEiA+AABBgDk3UbbFe31OgAAAABJRU5ErkJggg==
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_
 Content-Type: image/png; name="image006.png"
 Content-Description: image006.png
 Content-Disposition: inline; filename="image006.png"; size=2168;
 	creation-date="Wed, 16 Mar 2022 00:03:40 GMT";
-	modification-date="Wed, 16 Mar 2022 00:03:41 GMT"
+	modification-date="Wed, 16 Mar 2022 00:28:53 GMT"
 Content-ID: <image006.png@01D837A9.D7FCF6B0>
 Content-Transfer-Encoding: base64
 
@@ -640,9 +670,9 @@ cBrHgPXUuICpF9mI4PV6t37Qpxt3q4nXXJMtXOcaZf7CWGPYopTPGSKHa41a2E2MUeBRimf1w7PQ
 j3qxyPjAwZ40JBoTRCUq/XsqifqSiHwo+ddyP/1bubX/Nh7/EmAAfVz+JISuvG4AAAAASUVORK5C
 YII=
 
---_009_MN2PR04MB67367AD3612E478590EAC8B6EE119MN2PR04MB6736namp_--
+--_009_SL2P216MB12467D2FBB04D804FC41439593119SL2P216MB1246KORP_--
 
---===============7965720836426389079==
+--===============0657735628711101847==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -652,4 +682,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7965720836426389079==--
+--===============0657735628711101847==--
