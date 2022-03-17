@@ -2,191 +2,100 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 697384DC7BF
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Mar 2022 14:42:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DAA4DC853
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Mar 2022 15:05:12 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0DE5138531D
-	for <lists+usrp-users@lfdr.de>; Thu, 17 Mar 2022 09:42:08 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3F89E384E53
+	for <lists+usrp-users@lfdr.de>; Thu, 17 Mar 2022 10:05:11 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HP7tajgk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LiQ1cxBB";
 	dkim-atps=neutral
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 331CA384C87
-	for <usrp-users@lists.ettus.com>; Thu, 17 Mar 2022 09:41:04 -0400 (EDT)
-Received: by mail-qk1-f169.google.com with SMTP id 85so4316382qkm.9
-        for <usrp-users@lists.ettus.com>; Thu, 17 Mar 2022 06:41:04 -0700 (PDT)
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6DBC8384D05
+	for <usrp-users@lists.ettus.com>; Thu, 17 Mar 2022 10:04:04 -0400 (EDT)
+Received: by mail-qt1-f174.google.com with SMTP id a11so479432qtb.12
+        for <usrp-users@lists.ettus.com>; Thu, 17 Mar 2022 07:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=9TTYqgjH+hq74X62BOVa7tBFJN0P/C8CSefOmXlRoZ0=;
-        b=HP7tajgk5x++NLbJJtqkpb2r6vwKIEWCh3TP2cdfUkpRhB6DmVeHlLqv/4uCG8n1lf
-         xi8g5m+Bii2/eJnit6DKtxM/eK6zSY63LNf2R4lX+ko15ajYS9q4bPTA51PV1bt0NgT8
-         toz2mOQKJfRt4w69b8aOCQin9NeQ89NdG4eW5TOkcjOZ76KUEUSaW62h/KTflGvEgTwh
-         vdM2S7rOy8fJKYu9iHoQL2TJUEzUDy0KuAtvOLERJd3bnLASAifkjb1Cajw2OsEmOM8w
-         suG9sF4OSxF4J8WvEoorTBMuTZvRScN+QNp2Q8U12WD8PlvdzKgFg29vBBTBzkqBgPUa
-         Y9rA==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=3EQG1QlINe32aMaKDeWR/0LRibVmjB2CaL6SQVDGohs=;
+        b=LiQ1cxBBEr4/PhTKEQ2RjVZ9Z5lWqwc4Bwt4Oqz5q/NHOe6VeKy98JIcHY5wQ08633
+         jmkOBs0oTDDHBqEeTR2yIpAG/U+z0nCcdnk+kDd/09e9Rnqj107QYUC5ksjcHlIxwLWq
+         6RiclWOTHj4EvngXiuXJwt3WfsxhucctCCeX12yJQXbjUOc2JpV2JLxZBN1sHoLOXnS3
+         jHBRNXSYCvKvVeD6mv3DdAHkPtOJoUqnfEVp76DZuVx7FwPl/iduv2iLCieX0ez+WO8z
+         oxlYY2hNvlNrI1jtfvshi1lzbOuOcUO+fSY3kKYnqn3EqC0dDPK6RzJeqaBFcoAqNBvb
+         5BAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=9TTYqgjH+hq74X62BOVa7tBFJN0P/C8CSefOmXlRoZ0=;
-        b=M7UqOdWhxH1c5YF9AAxfXlfJnZknrbg6PLf9ilwVa7C0bLrQwwrf81cyIGJEktZf4N
-         OjMhXsGXJrlsrFzP5exgiaOrf7QTeP5MxjnCQO8Ec3mohDNgmF5KuivUqQu4WMjbZbzv
-         wXD8qgrUcNbIXpNapuAHmAWTUXDwUj84yCdq3nIa/N/C+VL4NDWTogwMgWanRI/vDULP
-         5yaj1yOexcyKG9VPz79hPtJPc+ezG4OBmpCaR80dqUHLYrQIBK7H3RMri74M+UjW9dlo
-         x+SVu1Q4btj/3JB6br7zeEbrKi+qugWL/W9L59ehfOEEehGtbqKrsiKp4+6I7mtHMKn+
-         Z3YA==
-X-Gm-Message-State: AOAM530lIHabf8f1S3WQvRwxCXiCqkWq8c6DOURiFVcLo0fUpKNTVU3d
-	oZqZ+4NjoD7jIsSZBWlrdOsWVob3aAA=
-X-Google-Smtp-Source: ABdhPJzdO3I43mRhiwcUFKuWxUWeHV5sYCGpW/C+cSVKoNgXYVdTVlbhXeYJMfP+v3VBxBTiGzznKw==
-X-Received: by 2002:a05:620a:404b:b0:67d:ca17:21a with SMTP id i11-20020a05620a404b00b0067dca17021amr2738138qko.676.1647524463319;
-        Thu, 17 Mar 2022 06:41:03 -0700 (PDT)
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=3EQG1QlINe32aMaKDeWR/0LRibVmjB2CaL6SQVDGohs=;
+        b=G7Qdm/EZRPDnL+jjcFa93Vw8GAvsS+mulOWrc6t4N+F/xeg/xpM28J4krnhLbcQegw
+         RHj9xyHZ9q/42VZS5mO9F9NBkrXwam9vAINUfqxHPRMZiWdDflnPIsdBTvjeV2rebjy9
+         lG953aWmGcVekN2QyQgxKqiKbDfM0evY12AtFRrSn9XVhFncxgMTTHXUqQMViW5O6jsQ
+         1e7zaLLbTdrg6xGZOQ+Wt1PTBh6XiDXnFLAcHuW69r+BYwtJnb2EVjaYGwr+jX15KkUL
+         esB04qK4jozkhPZS0Yw5Iw4f1tW5BHRMxd8nVV2qyIX4y4g9kV9YTvknmxkmBeJ+hAg0
+         6+KQ==
+X-Gm-Message-State: AOAM531KVNLu4E4u+I+MD2+FoC95R9z6eLk9K6eX3mhOElSkLbNzL0wr
+	i07VrQIA2W3AWDwsEisOKKB8XGHU2a8=
+X-Google-Smtp-Source: ABdhPJzvRqeBtBM5xWPROOwxaTDUiWAA+oShHmpY0BorG/DFm1st62VjfFkkvtWHuA2BXdQiiLrkzQ==
+X-Received: by 2002:a05:622a:c1:b0:2e1:e281:2ac0 with SMTP id p1-20020a05622a00c100b002e1e2812ac0mr3822628qtw.608.1647525843310;
+        Thu, 17 Mar 2022 07:04:03 -0700 (PDT)
 Received: from [192.168.2.198] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id t7-20020a05622a180700b002e0ccf0aa49sm3728338qtc.62.2022.03.17.06.41.02
+        by smtp.googlemail.com with ESMTPSA id p64-20020a37a643000000b0067d9afad07asm2507484qke.76.2022.03.17.07.04.01
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 06:41:02 -0700 (PDT)
-Message-ID: <0c95902c-6c5b-0dfd-6bd7-9a2cdf99a9ea@gmail.com>
-Date: Thu, 17 Mar 2022 09:41:01 -0400
+        Thu, 17 Mar 2022 07:04:01 -0700 (PDT)
+Message-ID: <2cd67d6b-9ff9-5ad1-1894-567685bcb2f2@gmail.com>
+Date: Thu, 17 Mar 2022 10:04:00 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
-References: <AM8P250MB010739467356827A8617AFFB9B129@AM8P250MB0107.EURP250.PROD.OUTLOOK.COM>
+References: <pMJt13hKIG0H5eDyn6OUWFHlog07KhItvBFzBIuRQTk@lists.ettus.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <AM8P250MB010739467356827A8617AFFB9B129@AM8P250MB0107.EURP250.PROD.OUTLOOK.COM>
-Message-ID-Hash: MRKWVTT2BOLVMNNA7V6JGAKTHIBLBME7
-X-Message-ID-Hash: MRKWVTT2BOLVMNNA7V6JGAKTHIBLBME7
+In-Reply-To: <pMJt13hKIG0H5eDyn6OUWFHlog07KhItvBFzBIuRQTk@lists.ettus.com>
+Message-ID-Hash: KFEBLGLQ7X4GOZX5S6N754M4Y7T4VKWA
+X-Message-ID-Hash: KFEBLGLQ7X4GOZX5S6N754M4Y7T4VKWA
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [X410] Change hostname
+Subject: [USRP-users] Re: [USRP E312] Disable bb dc offset tracking
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MRKWVTT2BOLVMNNA7V6JGAKTHIBLBME7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KFEBLGLQ7X4GOZX5S6N754M4Y7T4VKWA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6549316951781653578=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
---===============6549316951781653578==
-Content-Type: multipart/alternative;
- boundary="------------5UYM94h7TQ2dxp5jg7w1B0UR"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------5UYM94h7TQ2dxp5jg7w1B0UR
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 2022-03-17 06:24, Tobias Kronauer wrote:
-> Hi altogether,
->
-> I have a rather dumb question: how can I change the hostname of the 
-> USRP? According to the docs (being the standard way of changing host 
-> names in general), I changed the file /etc/hostname and rebooted. 
-> However, after rebooting, the content of /etc/hostname is changed to 
-> its defaults.... Using hostname or hostnamectl in the command line 
-> does not work either. Can you help me on that?
->
-> I am using a X410.
->
-> Thanks in advance,
-> Tobias
->
->
->
-> *Barkhausen Institut*
-> www.barkhauseninstitut.org
->
-IF it's setup for DHCP, it's probably that you're getting your hostname 
-from the DHCP server?
-
-
---------------5UYM94h7TQ2dxp5jg7w1B0UR
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 2022-03-17 06:24, Tobias Kronauer
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:AM8P250MB010739467356827A8617AFFB9B129@AM8P250MB0107.EURP250.PROD.OUTLOOK.COM">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <style type="text/css" style="display:none;">P {margin-top:0;margin-bottom:0;}</style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        Hi altogether,</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        I have a rather dumb question: how can I change the hostname of
-        the USRP? According to the docs (being the standard way of
-        changing host names in general), I changed the file
-        /etc/hostname and rebooted. However, after rebooting, the
-        content of /etc/hostname is changed to its defaults.... Using
-        hostname or hostnamectl in the command line does not work
-        either. Can you help me on that?</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        I am using a X410.<br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        <br>
-      </div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        Thanks in advance,</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class="elementToProof">
-        Tobias<br>
-      </div>
-      <div>
-        <p style="font-size: 11pt; font-family: Calibri, sans-serif,
-          serif, &quot;EmojiFont&quot;; margin: 0px;">
-          <br>
-          <br>
-          <b>Barkhausen Institut</b> <br>
-          <a class="moz-txt-link-abbreviated" href="http://www.barkhauseninstitut.org">www.barkhauseninstitut.org</a> <br>
-        </p>
-      </div>
-    </blockquote>
-    IF it's setup for DHCP, it's probably that you're getting your
-    hostname from the DHCP server?<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------5UYM94h7TQ2dxp5jg7w1B0UR--
-
---===============6549316951781653578==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6549316951781653578==--
+T24gMjAyMi0wMy0xNyAwNDo0OSwgYXJtYW5kLmZvbnRlc0BzeXJsaW5rcy5jb20gd3JvdGU6DQo+
+DQo+IEhlbGxvLA0KPg0KPiBJJ20gdXNpbmcgdXNycCBlMzEyIGZvciBhY3F1aXNpdGlvbnMgb24g
+bW9kdWxhdGVkIHNpZ25hbHMgYW5kIGkgaGF2ZSANCj4gdW5kZXNpcmVkIHBvd2VyIHZhcmlhdGlv
+bnMgaW4gdGltZSBkb21haW4gKDIgdG8gMTAlKS4gVGhhbmtzIHRvIGFuYWxvZyANCj4gZGV2aWNl
+cyB0b29scywgaSBkaXNjb3ZlcmVkIHRoYXQgZGlzYWJsaW5nIGJiX2RjX29mZnNldCB0cmFja2lu
+ZyBvbiANCj4gQUQ5MzYxIHNldHRsZWQgdGhlIHByb2JsZW0uIEFzIGZhciBhcyBJIGtub3csIHVo
+ZCBvbmx5IHByb3ZpZGVzIA0KPiAicmZfZGNfb2Zmc2V0IiBhbmQgImlxX2ltYmFsYW5jZSIgY29u
+dHJvbCBhbmQgdGhpcyBkb2Vzbid0IHNldHRsZSB0aGUgDQo+IHByb2JsZW0uIE15IHF1ZXN0aW9u
+IGlzIGhvdywgb24gYW4gdXNwciBlMzEyLCBjYW4gSSBkaXNhYmxlIA0KPiBiYl9kY19vZmZzZXQg
+dHJhY2tpbmcgPyAoT3IgYXQgbGVhc3QgbW9kaWZ5IGJiX2RjX29mZnNldCBsb29wIHBhcmFtZXRl
+cnMpLg0KPg0KPiBUaGFua3MgZm9yIGFueSBoZWxwLA0KPg0KPiBBcm1hbmQNCj4NCj4NCkhhdmUg
+eW91IHRyaWVkIHVzaW5nIG9mZnNldCB0dW5pbmc/wqAgVGhpcyBtYXkgb3IgbWF5IG5vdCBtYWtl
+IGEgDQpkaWZmZXJlbmNlIGluIHlvdXIgY2FzZS7CoCBCdXQgaXQncyB3b3J0aCBhIHRyeS4NCg0K
+aHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfZ2VuZXJhbC5odG1sI2dlbmVyYWxf
+dHVuaW5nX3Byb2Nlc3MNCg0KSWYgeW91IHVzZSBhIHR1bmVfcmVxdWVzdCBzdHJ1Y3R1cmUsIHlv
+dSBjYW4gc3BlY2lmeSBib3RoIHRoZSBkZXNpcmVkIA0KImFpciIgZnJlcXVlbmN5IGFuZCB0aGUg
+b2Zmc2V0LCBhbmQgVUhEIHdpbGwgYXV0b21hdGljYWxseSB0YWtlIGNhcmUgb2YgDQpvZmZzZXR0
+aW5nIGV2ZXJ5dGhpbmcsDQogwqAgYnV0IHN0aWxsIGRlbGl2ZXJpbmcgdGhlIGRlc2lyZWQgZnJl
+cXVlbmN5IHdpdGhpbiB5b3VyIGJhc2ViYW5kLiBZb3UgDQp3aWxsIG5lZWQgdG8gc2V0IHRoZSBh
+bmFsb2cgYmFuZHdpZHRoIHdpZGUgZW5vdWdoIHRvIGFjY291bnQgZm9yIHRoZSBvZmZzZXQuDQoN
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2Ny
+aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
