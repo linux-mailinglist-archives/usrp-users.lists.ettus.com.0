@@ -2,380 +2,312 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE794DD637
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Mar 2022 09:32:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D86EC4DDAC1
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Mar 2022 14:43:13 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B7F7B384827
-	for <lists+usrp-users@lfdr.de>; Fri, 18 Mar 2022 04:32:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A720E385076
+	for <lists+usrp-users@lfdr.de>; Fri, 18 Mar 2022 09:43:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=airbus.com header.i=@airbus.com header.b="h7NyTOzp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="1X0vNsEE";
 	dkim-atps=neutral
-Received: from mo2.myeers.net (mo2.myeers.net [87.190.7.233])
-	by mm2.emwd.com (Postfix) with ESMTPS id B1D2638480C
-	for <usrp-users@lists.ettus.com>; Fri, 18 Mar 2022 04:31:23 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=airbus.com; i=@airbus.com; l=10836; q=dns/txt;
-  s=eers-ng2048; t=1647592283; x=1679128283;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=kDp3RK3/ujucYMrLitvIPx2watiBaD1Gh4e2MbK5dR0=;
-  b=h7NyTOzpgqoDy3RND3/Q1CAAxkxtqo5R+z+d/pCqZHd7UlSWcpC0OBw4
-   s+xLnJF3gZUGZJWfOygK0yj+vYG1eFzl6HSV+FV64eq6LA8NjlIkFn71o
-   CjEH+5jml42cwoqo+M4FWPbxidxRvHjrz7N2lH2HKnON0xtfgHtgyWhNY
-   rGT5uy7htyOSBfbjm5GpOWhddRTa3qsf++C2/SRw0YJBwvOWKHZzjegir
-   3f0ZOlV232n3R4xEj99SShzXSUR5Sp0rDEqXknasUFG5qvM6GOoMY/OkX
-   JL0cbuvzDUw7e9K+eauwrN9412EcLjUJuU1DfyE4c0esEPPqudOxZyvGw
-   Q==;
-IronPort-SDR: JPAoxRN9r1rO5JvCMMq4ildr3ajgl8KbEdrSX+WH8eTesMPiy8qpgi04P3Blud161fYsCgeRpx
- Y7HQoCct9B1w==
-X-IronPort-AV: E=Sophos;i="5.90,191,1643670000";
-   d="scan'208,217";a="318451671"
-Received: from ec2-44-225-67-30.us-west-2.compute.amazonaws.com (HELO DE0-44HUB-P01.central.mail.corp) ([44.225.67.30])
-  by de0-44iro-p03-out.myeers.net with ESMTP/TLS/ECDHE-RSA-AES256-SHA384; 18 Mar 2022 09:31:04 +0100
-Received: from esa2e.demail.de.airbusds.corp (10.67.144.34) by
- DE0-44HUB-P01.central.mail.corp (44.225.67.34) with Microsoft SMTP Server id
- 15.0.1497.32; Fri, 18 Mar 2022 09:31:02 +0100
-X-ADDIV-1: 1
-IronPort-Data: A9a23:S54AyaxaFhq4FW+0pwl6t+egxCrEfRIJ4+MujC+fZmUNrF6WrkUBy
- 2IZCGnVMvmJN2L8ftslO9y28kgAuMLVmtJjQAY5qy00HyNBpPSeCIXCJC8cHc8ywu4v7a5Dx
- 59DAjUVBJlsFhcwnj/0bv656yMUOZigHtIQMsacUsxKbVIiGX9JZS5LwbZj2NYz2IjhWmthh
- PupyyHhEA78s9JLGjJMg06zgEsHUCPa4W5wUvQWPJinjXeG/5UnJMt3yZKZdhMUdrJp8tuSH
- I4v+l0ZElTxpH/BAvv9+lryWhNSHu6KZWBigFIOM0SpqkAqSiDfTs/XOdJEAXq7hQllkPhWy
- /sXk4HsYD1yfYzKqO8SaTRSOHlhaPguFL/veRBTsOSWxkzCNWD0yv5jSkAqVWEa0r8vRzgWr
- 7pCcXZWMXhvhMruqF6/Yuxlm94iPsjsepgDt39pyzCfAOY6TIrFSqHi7N5C1iorwMtJGJ4yY
- uJDMmIyPUiRP3WjPH9KLK0axceo2UOvTAJTt3CN/PUZvGLqmVkZPL/FdYC9lsaxbdhOhF7du
- 3nL5X/RBhABKMfZxCaZ72nqjejK9R4XQ6pLTPvhrqQs2gTVnTN75AAqaGZXaMKR0iaWM++z4
- WRIksbyhcDeLHCWc+Q=
-IronPort-HdrOrdr: A9a23:yV+uSKvrgaM9dwqzZBUvZmAL7skCDIMji2hC6mlwRA09TyXGra
- 6TdaUguiMc1gx8ZJh3o6H7BEDyewK6yXcV2/h1AV7MZniFhILFFuFfBM7ZskTd8k7Fl9K1t5
- 0QFZSWYeeYZTMR4PoSojPIa+rIqOP3uJxA7t2utEuFIzsaCJ2JjG9Ce0ym+hIcfngKOXJdfK
- Dsrfav6gDQCUj+Ka+AdwY4dtmGg+eOuIPtYBYACRJiwhKJlymU5LnzFAXd9gsCUhtUqI1ShV
- Ttokjc3OGOovu7whjT2yv49JJNgubszdNFGYilltUVEDPxkQylDb4RLoFqhApF0t1HqWxa5+
- Ukmi1QTPiaohnqDwWISFXWqn/dOQYVmgLfIGCj8AfeSOzCNUwH4pl69PNkm7HimgNQ8O2Ulp
- g7kF6kiw==
-X-IronPort-AV: E=Sophos;i="5.90,191,1643670000";
-   d="scan'208,217";a="23059494"
-Received: from unknown (HELO mail.space.it) ([10.102.21.37])
-  by esa2e.demail.de.airbusds.corp with ESMTP; 18 Mar 2022 09:31:02 +0100
-Received: from localhost (unknown [127.0.0.1])
-	by IMSVA (Postfix) with SMTP id B9BDD2B80F4
-	for <usrp-users@lists.ettus.com>; Fri, 18 Mar 2022 09:31:18 +0100 (CET)
-X-IMSS-HAND-OFF-DIRECTIVE: 10.67.144.34:25
-Received: from SPROMMAIL02.spengtes.space (unknown [10.102.17.16])
-	by mail.space.it (Postfix) with ESMTP id DC63F2B80F4
-	for <usrp-users@lists.ettus.com>; Fri, 18 Mar 2022 09:31:08 +0100 (CET)
-Received: from SPROMMAIL03.spengtes.space ([::1]) by
- SPROMMAIL02.spengtes.space ([10.102.17.16]) with mapi id 14.03.0513.000; Fri,
- 18 Mar 2022 09:31:37 +0100
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Ettus X310
-Thread-Index: Adg6oVR84ovqrQfWRjO5UC0ZGIs1cQ==
-Date: Fri, 18 Mar 2022 08:31:36 +0000
-Message-ID: <E1188D158AA7A048AF99B6A05DA3D629DFE93663@SPROMMAIL03.spengtes.space>
-Accept-Language: fr-FR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-tm-as-product-ver: SMEX-11.0.0.4179-8.100.1062-24900.000
-x-tm-as-result: No--20.877900-8.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 78333384678
+	for <usrp-users@lists.ettus.com>; Fri, 18 Mar 2022 09:42:15 -0400 (EDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-2db2add4516so91753917b3.1
+        for <usrp-users@lists.ettus.com>; Fri, 18 Mar 2022 06:42:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=njuhXEZ+ICE8WoTwgs4Fq+RA0RwH3gmSa3j/hkVp4uo=;
+        b=1X0vNsEEI055AaTNyA13FrwuirTve8sUG+EkbAHYlZQMuJH/AcCHi6FlPcqCHLlnNh
+         H8z3eF63cUoXhnQoIN1ue+CCd/p9ISqp+EA6nEnbl/ZLgznCTag3uFCPUP0GQ8H9zREm
+         7dHatfMIxlbhXNcqfrOKcdgL1YtYVM7omKLfm2367cnx/uLxtl2oFmnDn+lcCzrWxEZx
+         9uGQaPGbdRHj55uiZ/TFBslIlRtYnZv2dHEElkEGvPpNdHAgcIitn09pWgU5agxsYMiU
+         zduw1iiu09jxIMvUo1MoIODzgPp5fJyEjtITucwBR20LMuvGtxdrEJyckJybbcoJVGBc
+         1aLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=njuhXEZ+ICE8WoTwgs4Fq+RA0RwH3gmSa3j/hkVp4uo=;
+        b=mvAAi1ucSDptBSLXz8tgfpHYKlsh55/ou+awDrsliAUHySGzR6nqW99JKK9WVs/Es7
+         /FL4b7t2XHCUCpUKk3e9GdIAmKjyWlbmRUj7GdV6fwjBRn3pSN6pxuMwPbX85W/0lcsr
+         hzz80pjZtgJNrLv/w0wmwpR4HmnVu4lCNXj5Y1aZi55VlhHp/c/9viibrvb01KGqmmxq
+         07Am1esKy9rqVog+Y59HvJKQMJKDS0wUAahYPcTk9yLSJJ/KUkz3vCKBv2M/DIDka1D5
+         3dm0ELJ6EgXHr8Z2zE7y7CJHQaT3OTSeM2q1v3btS4KxpDvYqlON1izeMbP2xFUu1p1t
+         rRYQ==
+X-Gm-Message-State: AOAM532/7ueC8n89YXT6hYOv37Nf/Oq2KlxrbS/6vgpXwj+zQsVs6win
+	JYEZIlFCrdyXvwQkHZZvec7DClEXodVP6HwhltF9Fb6U
+X-Google-Smtp-Source: ABdhPJwhmAtDzTzrGViA+fPUoUH2sQ0os4/ddkdN3tQfy1WAnTLG2FJFffcnQSp78pgZj78EaRMrFjQpRuhQSsHfQpM=
+X-Received: by 2002:a0d:c283:0:b0:2db:c5f9:b519 with SMTP id
+ e125-20020a0dc283000000b002dbc5f9b519mr10915620ywd.171.1647610934775; Fri, 18
+ Mar 2022 06:42:14 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-AS-MML: disable
-X-TM-SNTS-SMTP: EDBB0E3759457426A5E6DCC8DE5ED8601792E7AD63941D6B5B19F6ED01EB1DBB2000:8
-X-GM-Security: forwarded
-Message-ID-Hash: TRCWXC3HS5FJJUHWXDBQVJY2NGOQ5SWS
-X-Message-ID-Hash: TRCWXC3HS5FJJUHWXDBQVJY2NGOQ5SWS
-X-MailFrom: maurizio.stefani.external@airbus.com
+References: <E1188D158AA7A048AF99B6A05DA3D629DFE93663@SPROMMAIL03.spengtes.space>
+In-Reply-To: <E1188D158AA7A048AF99B6A05DA3D629DFE93663@SPROMMAIL03.spengtes.space>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Fri, 18 Mar 2022 09:41:58 -0400
+Message-ID: <CAFche=gZK5rdPjQxpwg9Kftw4-Uu_P0RxFHPbMArWEg1vqyveA@mail.gmail.com>
+To: "STEFANI, Maurizio (External)" <maurizio.stefani.external@airbus.com>
+Message-ID-Hash: CVL4YWW34BNKTBLANDNKTJGNGNLBVFLK
+X-Message-ID-Hash: CVL4YWW34BNKTBLANDNKTJGNGNLBVFLK
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Ettus X310
+Subject: [USRP-users] Re: Ettus X310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TRCWXC3HS5FJJUHWXDBQVJY2NGOQ5SWS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CVL4YWW34BNKTBLANDNKTJGNGNLBVFLK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "STEFANI, Maurizio (External) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "STEFANI, Maurizio (External)" <maurizio.stefani.external@airbus.com>
-Content-Type: multipart/mixed; boundary="===============3956562600908031841=="
+Content-Type: multipart/mixed; boundary="===============7018643007632431708=="
 
---===============3956562600908031841==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_E1188D158AA7A048AF99B6A05DA3D629DFE93663SPROMMAIL03spen_"
+--===============7018643007632431708==
+Content-Type: multipart/alternative; boundary="0000000000007ee6f105da7e5064"
 
---_000_E1188D158AA7A048AF99B6A05DA3D629DFE93663SPROMMAIL03spen_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
+--0000000000007ee6f105da7e5064
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Maurizio,
+
+Yes, building all the FPGAs from scratch in a single run takes a long time.
+But maybe that's not needed. Let's start with your questions:
+
+   - Are you referring to X3xx? I don't know how to build the FW for the
+   embedded CPU but you should not have to rebuild it unless you're changing
+   it. That would have no effect on the FPGA contents.
+   - If you change even one Verilog file that's used by the FPGA then you
+   need to rerun make and build them all. The actual compilation of the
+   Verilog files doesn't take very long. It's place and route that takes the
+   longest, and there's no way to reuse the place-and-route results from
+   previous runs. This is a big difference between software compilation and
+   FPGA compilation.
+   - We compile all the FPGAs regularly as part of our continuous
+   integration testing.
+      - We usually build several in parallel, and we will often reuse IP
+      build products, so it doesn't take as long. I don't have the numbers with
+      me, but there are so many variables that I don't think our CI build times
+      would be very meaningful. I would guess most images take about an hour.
+      - Sorry, I don't know what machine types.
+      - You can build under Windows, using Cygwin, but I don't usually
+      recommend it. Sometimes Vivado generates IP file paths that are too long
+      for Windows. For building under Windows, I would use WSL. But
+Ubuntu is the
+      best option because that's what we do most of our testing with.
+
+A few other thoughts that might be helpful:
+
+   - It's not needed to recompile the FPGA images unless you are
+   customizing the HDL or RFNoC contents. Use uhd_images_downloader to
+   download the latest shipping images from Ettus.
+   - The first part of the compile is building the IP, which takes maybe
+   1-2 hours. This only has to be done once and subsequent builds will re-use
+   the same IP output products.
+   - You only need to build the image you plan to use. For example, if
+   you're using X310_XG, then only build that one by running "make X310_XG".
+   - FPGA builds don't take advantage of multiple CPUs well, but you can
+   run multiple FPGA builds in parallel. RAM usually becomes the limiting
+   factor. With 16 GiB RAM you should be able to build at least two in
+   parallel (for X3xx images). It depends on which images you want to build.
+
+Thanks,
+
+Wade
+
+
+On Fri, Mar 18, 2022 at 4:32 AM STEFANI, Maurizio (External) via USRP-users
+<usrp-users@lists.ettus.com> wrote:
+
+> HI,
+>
+> thank you for your help on the past question, showing me the error due to
+> wrong Vivado release (I was using the 2019.2 instead of 2019.1).
+>
+>
+>
+> Now I tried to recompile all ettus fpga, but the recompile time was
+> greater than 6 hours on an Ubuntu virtual machine with 3GHz CPU and 16GB
+> RAM.
+>
+>
+>
+> Due to the high recompile time, I was thinking to:
+>
+> -          Compile the FW on the internal processors only and download
+> just it. Some one give me help about?
+>
+> -          If I need to change the Verilog files (one or more), is there
+> a way to compile and download just them or is it necessary to recompile all?
+>
+> -          Furthermore, someone tried to recompile all ettus FPGA (X3xx
+> family)?
+>
+> o   How long time to compile?
+>
+> o   Which PC was used?
+>
+> o   Is it possible to porting the FPGA environment under Windows OS?
+>
+>
+>
+> Thank you for your help in advance
+>
+>
+>
+> Maurizio Stefani
+>
+>
+> The information in this e-mail is confidential. The contents may not be
+> disclosed or used by anyone other than the addressee. Access to this e-mail
+> by anyone else is unauthorised.
+> If you are not the intended recipient, please notify Airbus immediately
+> and delete this e-mail.
+> Airbus cannot accept any responsibility for the accuracy or completeness
+> of this e-mail as it has been sent over public networks. If you have any
+> concerns over the content of this message or its Accuracy or Integrity,
+> please contact Airbus immediately.
+> All outgoing e-mails from Airbus are checked using regularly updated virus
+> scanning software but you should take whatever measures you deem to be
+> appropriate to ensure that this message and any attachments are virus free.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+
+--0000000000007ee6f105da7e5064
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-HI,
-thank you for your help on the past question, showing me the error due to w=
-rong Vivado release (I was using the 2019.2 instead of 2019.1).
+<div dir=3D"ltr"><div dir=3D"auto"><div dir=3D"ltr">Hi Maurizio,<div><div><=
+br></div></div><div>Yes, building all the FPGAs from scratch in a single ru=
+n takes a long time. But maybe that&#39;s not needed. Let&#39;s start with =
+your questions:</div><div><ul><li>Are you referring to X3xx? I don&#39;t kn=
+ow how to build the FW for the embedded CPU but you should not have to rebu=
+ild it unless you&#39;re changing it. That would have no effect on the FPGA=
+ contents.</li><li>If you change even one Verilog file that&#39;s used by t=
+he FPGA then you need to rerun make and build them all. The actual compilat=
+ion of the Verilog files doesn&#39;t take very long. It&#39;s place and rou=
+te that takes the longest, and there&#39;s no way to reuse the place-and-ro=
+ute results from previous runs. This is a big difference between software c=
+ompilation and FPGA compilation.</li><li>We compile all the FPGAs regularly=
+ as part of our continuous integration testing.</li><ul><li>We usually buil=
+d several in parallel, and we will often reuse IP build products, so it doe=
+sn&#39;t take as long. I don&#39;t have the numbers with me, but there are =
+so many variables that I don&#39;t think our CI build times would be very m=
+eaningful. I would guess most images take about an hour.</li><li>Sorry, I d=
+on&#39;t know what machine types.</li><li>You can build under Windows, usin=
+g Cygwin, but I don&#39;t usually recommend it. Sometimes Vivado generates =
+IP file=C2=A0paths that are too long for Windows. For building under Window=
+s, I would=C2=A0use WSL. But Ubuntu is the best option because that&#39;s w=
+hat we do most of our testing with.</li></ul></ul><div dir=3D"auto">A few o=
+ther thoughts that might be helpful:</div><div dir=3D"auto"><ul><li>It&#39;=
+s not needed to recompile the FPGA images unless you are customizing the HD=
+L or RFNoC contents. Use uhd_images_downloader to download the latest shipp=
+ing images from Ettus.</li><li>The first part of the compile is building th=
+e IP, which takes maybe 1-2 hours. This only has to be done once and subseq=
+uent builds will re-use the same IP output products.</li><li>You only need =
+to build the image you plan to use. For example, if you&#39;re using X310_X=
+G, then only build that one by running &quot;make X310_XG&quot;.</li><li>FP=
+GA builds don&#39;t take advantage of multiple CPUs well, but you can run m=
+ultiple FPGA builds in parallel. RAM usually becomes the limiting factor. W=
+ith 16 GiB RAM you should be able to build at least two in parallel (for X3=
+xx images). It depends on which images you want to build.</li></ul></div><d=
+iv>Thanks,</div><div><br></div><div>Wade</div></div></div><br><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Mar 18, 202=
+2 at 4:32 AM STEFANI, Maurizio (External) via USRP-users &lt;<a href=3D"mai=
+lto:usrp-users@lists.ettus.com" rel=3D"noreferrer" target=3D"_blank">usrp-u=
+sers@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">
 
-Now I tried to recompile all ettus fpga, but the recompile time was greater=
- than 6 hours on an Ubuntu virtual machine with 3GHz CPU and 16GB RAM.
 
-Due to the high recompile time, I was thinking to:
 
--          Compile the FW on the internal processors only and download just=
- it. Some one give me help about?
 
--          If I need to change the Verilog files (one or more), is there a =
-way to compile and download just them or is it necessary to recompile all?
 
--          Furthermore, someone tried to recompile all ettus FPGA (X3xx fam=
-ily)?
-
-o   How long time to compile?
-
-o   Which PC was used?
-
-o   Is it possible to porting the FPGA environment under Windows OS?
-
-Thank you for your help in advance
-
-Maurizio Stefani
-
-The information in this e-mail is confidential. The contents may not be dis=
-closed or used by anyone other than the addressee. Access to this e-mail by=
- anyone else is unauthorised.
-If you are not the intended recipient, please notify Airbus immediately and=
- delete this e-mail.
-Airbus cannot accept any responsibility for the accuracy or completeness of=
- this e-mail as it has been sent over public networks. If you have any conc=
-erns over the content of this message or its Accuracy or Integrity, please =
-contact Airbus immediately.
-All outgoing e-mails from Airbus are checked using regularly updated virus =
-scanning software but you should take whatever measures you deem to be appr=
-opriate to ensure that this message and any attachments are virus free.
-
---_000_E1188D158AA7A048AF99B6A05DA3D629DFE93663SPROMMAIL03spen_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1857958323;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-298139234 1423852696 68157443 68157445 68157441 681=
-57443 68157445 68157441 68157443 68157445;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"IT" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">HI,<o:p></o:p></span></p>
+<div lang=3D"IT">
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">HI,<u></u><u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">thank you for your help on the =
 past question, showing me the error due to wrong Vivado release (I was usin=
-g the 2019.2 instead of 2019.1).<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+g the 2019.2 instead of 2019.1).<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Now I tried to recompile all et=
 tus fpga, but the recompile time was greater than 6 hours on an Ubuntu virt=
-ual machine with 3GHz CPU and 16GB RAM.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+ual machine with 3GHz CPU and 16GB RAM.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Due to the high recompile time,=
- I was thinking to:<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span lang=3D"EN-US"><span style=3D"mso-list:=
-Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-US">Compile the FW on the i=
-nternal processors only and download just it. Some one give me help about?<=
-o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span lang=3D"EN-US"><span style=3D"mso-list:=
-Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-US">If I need to change the=
- Verilog files (one or more), is there a way to compile and download just t=
-hem or is it necessary to recompile all?<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span lang=3D"EN-US"><span style=3D"mso-list:=
-Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-US">Furthermore, someone tr=
-ied to recompile all ettus FPGA (X3xx family)?
-<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
-pt;mso-list:l0 level2 lfo1">
-<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
-r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
-ot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-US">How long time to compil=
-e? <o:p>
-</o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
-pt;mso-list:l0 level2 lfo1">
-<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
-r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
-ot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-US">Which PC was used?<o:p>=
-</o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:72.0pt;text-indent:-18.0=
-pt;mso-list:l0 level2 lfo1">
-<![if !supportLists]><span lang=3D"EN-US" style=3D"font-family:&quot;Courie=
-r New&quot;"><span style=3D"mso-list:Ignore">o<span style=3D"font:7.0pt &qu=
-ot;Times New Roman&quot;">&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-US">Is it possible to porti=
-ng the FPGA environment under Windows OS?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+ I was thinking to:<u></u><u></u></span></p>
+<p><u></u><span lang=3D"EN-US"><span>-<span style=3D"font:7pt &quot;Times N=
+ew Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-US">Compile the FW on the inte=
+rnal processors only and download just it. Some one give me help about?<u><=
+/u><u></u></span></p>
+<p><u></u><span lang=3D"EN-US"><span>-<span style=3D"font:7pt &quot;Times N=
+ew Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-US">If I need to change the Ve=
+rilog files (one or more), is there a way to compile and download just them=
+ or is it necessary to recompile all?<u></u><u></u></span></p>
+<p><u></u><span lang=3D"EN-US"><span>-<span style=3D"font:7pt &quot;Times N=
+ew Roman&quot;">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-US">Furthermore, someone tried=
+ to recompile all ettus FPGA (X3xx family)?
+<u></u><u></u></span></p>
+<p style=3D"margin-left:72pt">
+<u></u><span lang=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;"><=
+span>o<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-US">How long time to compile? =
+<u></u>
+<u></u></span></p>
+<p style=3D"margin-left:72pt">
+<u></u><span lang=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;"><=
+span>o<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-US">Which PC was used?<u></u><=
+u></u></span></p>
+<p style=3D"margin-left:72pt">
+<u></u><span lang=3D"EN-US" style=3D"font-family:&quot;Courier New&quot;"><=
+span>o<span style=3D"font:7pt &quot;Times New Roman&quot;">=C2=A0=C2=A0
+</span></span></span><u></u><span lang=3D"EN-US">Is it possible to porting =
+the FPGA environment under Windows OS?<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you for your help in adva=
-nce<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Maurizio Stefani<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+nce<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Maurizio Stefani<u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
 </div>
-<font style=3D"font-size: 9px;">The information in this e-mail is confident=
-ial. The contents may not be disclosed or used by anyone other than the add=
-ressee. Access to this e-mail by anyone else is unauthorised.<br>If you are=
- not the intended recipient, please notify Airbus immediately and delete th=
-is e-mail.<br>Airbus cannot accept any responsibility for the accuracy or c=
-ompleteness of this e-mail as it has been sent over public networks. If you=
- have any concerns over the content of this message or its Accuracy or Inte=
-grity, please contact Airbus immediately.<br>All outgoing e-mails from Airb=
-us are checked using regularly updated virus scanning software but you shou=
-ld take whatever measures you deem to be appropriate to ensure that this me=
-ssage and any attachments are virus free.</font></body>
-</html>
+<font style=3D"font-size:9px">The information in this e-mail is confidentia=
+l. The contents may not be disclosed or used by anyone other than the addre=
+ssee. Access to this e-mail by anyone else is unauthorised.<br>If you are n=
+ot the intended recipient, please notify Airbus immediately and delete this=
+ e-mail.<br>Airbus cannot accept any responsibility for the accuracy or com=
+pleteness of this e-mail as it has been sent over public networks. If you h=
+ave any concerns over the content of this message or its Accuracy or Integr=
+ity, please contact Airbus immediately.<br>All outgoing e-mails from Airbus=
+ are checked using regularly updated virus scanning software but you should=
+ take whatever measures you deem to be appropriate to ensure that this mess=
+age and any attachments are virus free.</font></div>
 
---_000_E1188D158AA7A048AF99B6A05DA3D629DFE93663SPROMMAIL03spen_--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
+l=3D"noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" rel=3D"noreferrer" target=3D"_blank">usrp-users-leave@lists.ettus.=
+com<br></a><br>
+</blockquote></div>
+</div>
+</div>
 
---===============3956562600908031841==
+--0000000000007ee6f105da7e5064--
+
+--===============7018643007632431708==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -385,4 +317,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3956562600908031841==--
+--===============7018643007632431708==--
