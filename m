@@ -2,219 +2,279 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCA324E305F
-	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 20:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3706A4E3073
+	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 20:04:53 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 233CE385460
-	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 15:00:55 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MuTe+7n3";
-	dkim-atps=neutral
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id D4EB43848D4
-	for <USRP-users@lists.ettus.com>; Mon, 21 Mar 2022 14:59:54 -0400 (EDT)
-Received: by mail-qk1-f179.google.com with SMTP id b189so12374320qkf.11
-        for <USRP-users@lists.ettus.com>; Mon, 21 Mar 2022 11:59:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=A76sYlkguZ1KEGSapEk4w0ZoEDm6qEAHH1We/nGCQZM=;
-        b=MuTe+7n3gcydonJyRA7O3lXi501xgGT9VomWIsFrZsAK3svA+E1YMphTgoEWaHCAgA
-         xyQzQ41etZaXu0irJyUAEHThAvB5RLF6WOtdYMmcroNDwXGdaselYj7PqsdqQwgTAVQ5
-         B9HRjRzrIRP0RoDXD981h2dJqmvH9bFtjRidINGe1V8Q6md897pebdY2qkdA5KpdAJDn
-         1xl/rGaiJXIJtbDzpoVImpECU/DeGHZ8lkf+6rLrQIZmfrNCxwvIBie/NT7zcB5pO6UF
-         qOXixtQuLrS2pRmTIPVMz+uarmGxFLKsCbYMj9J8ixnO/j/xSPLGccJcgaCkQtOhm+GB
-         HY1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=A76sYlkguZ1KEGSapEk4w0ZoEDm6qEAHH1We/nGCQZM=;
-        b=cSfZBkcFapI0ttOOsr4ozrUoWLEx0NMumfGa14eVIxDzikFzTUO/Q3uEcd232k2ouO
-         TaH1xTnDQVmVPkCK93dmsyRyLaGYrMSU/jsFBad2WqS3hHYDxcGBH2hR4dbnaUpsaAs2
-         W1OUrTtqlOZJE+jXM03hWAjtNbh6DVVoX/J9k6YceXNJULlpwjXQ1s+fQHe76qq4BIVx
-         vO4tRhao+WIljGg/pZGvUuq3LYEPuWzUkAF7+WGpUweYGHItuzvUnzkafCke6uw/qL0S
-         xHO9QO9d3BK4AR5aFOqnKXlR7MVO9zxwSsfyZm8sVUfCRokFu0xygQkUT/6r3K+qm9Da
-         cEwA==
-X-Gm-Message-State: AOAM530K+GqBzAKU74jnhJOK3kOyF6shB4qYO+5PCGP8yCte2f7F44ve
-	I8TQS36woqys1aYBXBbYAMhIVBGj/gg=
-X-Google-Smtp-Source: ABdhPJxwPN52c1rtRM2FGwB9uDJfv219b5WBrO91pEA6Jn6gVT5Lc1XVCtUq2k1teJVOQujl4ypWbg==
-X-Received: by 2002:a05:620a:298c:b0:67d:9779:7503 with SMTP id r12-20020a05620a298c00b0067d97797503mr13880964qkp.622.1647889194225;
-        Mon, 21 Mar 2022 11:59:54 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.gmail.com with ESMTPSA id p14-20020a05622a13ce00b002e1fd7e0e3bsm8974442qtk.14.2022.03.21.11.59.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Mar 2022 11:59:53 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Mon, 21 Mar 2022 14:59:52 -0400
-Message-Id: <E319DE84-E73B-49B3-9E70-A4EB2DE4056E@gmail.com>
-References: <BN6PR03MB3137F5CCAACE6824D0756891C8169@BN6PR03MB3137.namprd03.prod.outlook.com>
-In-Reply-To: <BN6PR03MB3137F5CCAACE6824D0756891C8169@BN6PR03MB3137.namprd03.prod.outlook.com>
-To: Abby Mize <abby@lunasonde.com>
-X-Mailer: iPhone Mail (19D52)
-Message-ID-Hash: KGATMRUNLZCQYQCOOJJD3BGOKFQ6FU5K
-X-Message-ID-Hash: KGATMRUNLZCQYQCOOJJD3BGOKFQ6FU5K
-X-MailFrom: patchvonbraun@gmail.com
+	by mm2.emwd.com (Postfix) with ESMTP id 79B77385601
+	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 15:04:52 -0400 (EDT)
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam08on2056.outbound.protection.outlook.com [40.107.101.56])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9BD2D3845F0
+	for <USRP-users@lists.ettus.com>; Mon, 21 Mar 2022 15:03:56 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cydS5MokgJk/SklS4OMOk7s7xQqK5AeB+RcW2VNWsBhlMKyElLdHwXvi6oAEdOrrGXfLdz/d1hF3Ju2XKjBY508T9/S4d/6gmXnpG/eL4e6vrFkuvCtZr3D1G62vWi7guREwP35ufi3wrBRBq+rPJHc1VrHYp22Im+6VoUEDxwm2Fr2v9Q/DioVFepD245V1Mku44FJvZr0pz97c/bpYU6McsuGHz6/I9hzc3bA0IF5RCPFs6MgczEaKanH71B0ZvdQDfs9hG9hhI8utZg5aCVWjVLbPOfQCwWaIiWQd2eX2kSfMKEKnFbZjoeFDTxD00kf185A5yPKbfuNotlCyFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=m5IpG+wYU9QOIwy7bc1v9ZyRp/fAWiJAcMVfodTubxU=;
+ b=jFFQDty4Q4bUD0I4kqsPJDKnlx1d+b8/6yQBb8sWf26wFN2Hmp9017pzKHPP50xYwPzEQo2va/4aIjTJsmMVGREsiyl3EOYM4TjmFUYTGYxYYHC8UhwU3b6BIEoL2wzuC9kmz9qy6ZVSdhD63H6B0pcpbIjm12zzfTAacmBLf1PdY/XlhL8DbuqqcG5c8qL1ZLko2piMIlfMn+DqiS+gt6t7EXoEAMhv5UmG9jPsWu440XLbQVGfCn1ENPLQaiToI26XAvmz/GXh8Td2pc2ZjGKKHz3z3uK78houN2hAiu4tO87aZZOunG+8yicYQufGgwlQnRI3kB7i5+wXB3Yy9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=lunasonde.com; dmarc=pass action=none
+ header.from=lunasonde.com; dkim=pass header.d=lunasonde.com; arc=none
+Received: from BN6PR03MB3137.namprd03.prod.outlook.com (2603:10b6:405:3e::25)
+ by DM6PR03MB4650.namprd03.prod.outlook.com (2603:10b6:5:181::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Mon, 21 Mar
+ 2022 19:03:53 +0000
+Received: from BN6PR03MB3137.namprd03.prod.outlook.com
+ ([fe80::5440:fe68:c97a:66cf]) by BN6PR03MB3137.namprd03.prod.outlook.com
+ ([fe80::5440:fe68:c97a:66cf%3]) with mapi id 15.20.5081.023; Mon, 21 Mar 2022
+ 19:03:53 +0000
+From: Abby Mize <abby@lunasonde.com>
+To: Marcus D Leech <patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] B200mini QPSK
+Thread-Index: Adg9VUxd79rkzXVSRTmcbeQAUouVwwAAIwQAAAANbbA=
+Date: Mon, 21 Mar 2022 19:03:53 +0000
+Message-ID: 
+ <BN6PR03MB31377AFA80B5870000923E19C8169@BN6PR03MB3137.namprd03.prod.outlook.com>
+References: 
+ <BN6PR03MB3137F5CCAACE6824D0756891C8169@BN6PR03MB3137.namprd03.prod.outlook.com>
+ <E319DE84-E73B-49B3-9E70-A4EB2DE4056E@gmail.com>
+In-Reply-To: <E319DE84-E73B-49B3-9E70-A4EB2DE4056E@gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=lunasonde.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 10f5c3ad-d001-405c-1524-08da0b6d8ac0
+x-ms-traffictypediagnostic: DM6PR03MB4650:EE_
+x-microsoft-antispam-prvs: 
+ <DM6PR03MB46508B833A518AA88B9A8AB0C8169@DM6PR03MB4650.namprd03.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ DV6JimpeXGJWGIPJg/rorCfkK76tzRNO4UHlMiH3P0b0UsaSKxmDCiwmP4SQUGiNAkmEd+AeeYP7/+rt7r33XB21LDqi1mWnDl2VjSAPQQV4g6eqA24OunRUyxqXQD5FZBKwHcIeV8tAS7lYwfH4aNtLmEQYfDskEoYz40dq87TH62BycSMD+cWLdzXDFRjeps4Jv7FcW3L5Se1rIhCnNgGV3LNgeKTPFhXjqlqPFSZSYf/IalJAbCDh6Eo6QyTkSr05m5rdNRpAc+n20Jqk8dxu5xaIqiD74zQ4ahcCVNtDHXd5sLJpBbj9sj7sfKlD72+vOf5evsSdbDM1Kq9SnuREXOGJN+2fLxM3ng783f5mZfXHx1O5fIi2LcjpmXKzQqF6Pa/mBo4zm1Nj8X05n/QewQ2KHKeJQnVUVpJHKiDCrix7MNidINOnbK0k3dZZuHKzmsVVwF/kq3RcMbjl5jiiV9XYmb+PgcnTicEHgVKIyLXuNBXC+bH91IK25TJqdI48QNqQYCYcXR7io1mJMVSv86aSwDmB2HyafJFg4mngQPeQziT8uBLJRFA0/5rfrxA+LB9Cn+uUg6zEkAr/z7qPu65SkgJh82yYWqDVvWnqH9uP7RpB33QjGZvHEG2QL7u9h+BYGYydSAxb+5m7Cili7a7bDaKpLH3aVQ7I5odYsYyI2QXJPpoZS9f2+6o6hK3crBJAK760Y1oD4H7HcNKHKJxi4Sqvk+SLIKhVHuyyEi3V0rTs3BCupdQJ/Q5dDhhvURqpjknDkAUQsOXxuJAPxC8BLHuL12RbxKZsr7A=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR03MB3137.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(136003)(376002)(346002)(39830400003)(396003)(366004)(55016003)(9686003)(86362001)(71200400001)(53546011)(6506007)(2906002)(38070700005)(99936003)(5660300002)(33656002)(52536014)(64756008)(316002)(8676002)(66446008)(8936002)(76116006)(66946007)(4326008)(166002)(40140700001)(7696005)(38100700002)(508600001)(6916009)(66476007)(66556008)(122000001)(186003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?T2l4TkQyYi9nWVNuUGhKL1NBZGZhQ01KL0FHUnczV2loSThTMkpmbkVPbkRs?=
+ =?utf-8?B?NUpWRGJaZmFHSmM1MXVLaTJxRHFvZVhwdHNPYnJHUEFBWlg0TnV2QnlDeC9n?=
+ =?utf-8?B?aUJsV0F0SlpwQWF3Q1FTZW0welI2ZWZMdFp0cU5Ddmx3VkhtcHJyY1BCbk5v?=
+ =?utf-8?B?ZllWbTF4ZDFTVTN3OFhpL09WNGZBOHFqb0I4SEdRWnduOC9FOTRFd2h4Yy9U?=
+ =?utf-8?B?SWwzbGJPSmN2WUova204NUkrbFVUZCswbXFCRG9sVmorNEllU3pHNUpzWjlv?=
+ =?utf-8?B?dnJZeDREZnBYNFZBb3BFOWhyY0ZkWGROMExCYStxcEpjZVgvWkFCb0xaU01T?=
+ =?utf-8?B?b1RHaUpabUhDUzlCNFNOd0NpMHFnNzUvRDZMZ0E3b0lIZUp1UDFxQ29DUXhr?=
+ =?utf-8?B?VmxaUnA0VVdLWDBJZjFZRkpBYWtsMU9xdXpFRFpFc2JqUFp3SktBVWxuNUhD?=
+ =?utf-8?B?a3VCVU5xWEZ6dk1BTXBnaUdGLzJTemVKL2cxK2szMnNLUVBqbkdrREVMemlh?=
+ =?utf-8?B?ODBRTXpyZGR4ZTBxamQzc0VWNUcvTmx6OHNCRWRSb2tmWGZUejZNVkJDNWpL?=
+ =?utf-8?B?THZxZjlaUm5yMUI2T3RWRTNsRFJyMnR6eFl4TmVON0tUTTNqNGpYb0NhYmZz?=
+ =?utf-8?B?Z1V3SjV1VjVPYUY2a2ZkQ05LZW55SzUxMkFhWHZQRUdLUlFBeVFERUdGdHhx?=
+ =?utf-8?B?Rm9YVFY2RmNaOVd6VVFIYk91WFNqQklSQlVGMXJRWVpIbzdVQ2JPcEVKUGhL?=
+ =?utf-8?B?bTRLUGg1Y3p4cGJ6K09yNmpKb1ZROFFjYlZZMG51bkduQVp6QS84bXRmV2My?=
+ =?utf-8?B?Q1pKSERCSnJiMkNvcm55aUwzazVXaHNKaTRlWmYzMjJFSmZRU1RDNXp4NjFa?=
+ =?utf-8?B?a3FOKzQrdDZOMWlNL0F3RTRlSjNVYmJjeXl5eXY0TFJrRm00ZzExSWc3ZCtU?=
+ =?utf-8?B?ZTZySWZiTmRuckUvYTlCNjl4RjExeFE0NVBuK3lhWUYzMkRheGEyYjRFZXhG?=
+ =?utf-8?B?L28zblVkMWJUc1VhTHlENFJod1Q0bG5xK1NNNU9JeUsvWHhhQ2xwK29aRGhJ?=
+ =?utf-8?B?L2ExYTNqWksxMVhucVhkeVRWd3Rsd1pLek9ZZjk4dGVTOW13Q1IzbWw1OURP?=
+ =?utf-8?B?VG9CZXBJN3NPTGlYcDhmbWRkNTczSEsrUE1KYnNsZ2sxb09pRXFJTFhBNERT?=
+ =?utf-8?B?dkN5RG5hN1ZrSWxwamdISUZhZlovaEtFNURGaTVXVWZXT3ZzdXJFcGU2SXBz?=
+ =?utf-8?B?bEQ3Y2NPb3NKVThnYTlhWDVKditvTVlzRTJEUmJINEhBb3BmOWhRS1hKcXR2?=
+ =?utf-8?B?Z0k2WjdlREJxWHNlUE1MMVNRQ05qQjIzcjI3WmxISE1RdENpM1NYUU9tbTNX?=
+ =?utf-8?B?NXh0ZUo0TVdUdk05cG9oaE01bmM2UTJTUG1UdTBUbDkyOW5SZG5tQk5zeUJU?=
+ =?utf-8?B?UG5vbFJ2eWFtQ1VxNUJvV1VLU3lSNU9EM01FOUpFa3Z5cFFZQksxZlg0V1N4?=
+ =?utf-8?B?YUprTW1URmR4ZVJVL1E0Ly80TUJRV0E1Zkljb0xvMWJkQlFxSml0OXROSmtw?=
+ =?utf-8?B?MWcwM3FtZytjMGRhYVlMR0ZTN0pMMks0a28yeTFNVXBoaFdpY2t5dEM3eE1D?=
+ =?utf-8?B?Vmx3bkJaSTdUcW93RlpPcnpLVHBwZkI1UHhqb1Nja0xIckZwME53QTdTTlFk?=
+ =?utf-8?B?UEhnVTl5RjY3ai9sUXhIRlZoU3FpTHZHQytZbnE3cCt0L0dhSHY5SUhhMFpD?=
+ =?utf-8?B?L2Y2MzZJZm9ha0lUYmk1bWVmWHM4bU5JY3RzMzc4d3ZsRTBqbm54MG9Id2tL?=
+ =?utf-8?B?TEttM09YWG1iNTBha3ovZFc5Z21nbHhiaFBkaXdJMStXNHJ0ejNCSkg0SGRB?=
+ =?utf-8?B?N2tBY0VpMTVRY2x5ci9nVGdvL0o4dDBWN1UwRmlOR0hsTnJmcm5CYzF2VDJl?=
+ =?utf-8?B?aVhncUFFeTBsaFRlLzVSK2ZvSW53UXMzUWUyTlZjY1Brc2xtcFNFWUlrcWNk?=
+ =?utf-8?B?Q2hXaE10aS9BRWQ0THhsRmxGVHJFMjYvUWFCUG53SU5NQmtDM3ppemlEek5y?=
+ =?utf-8?Q?wVLrLY?=
+MIME-Version: 1.0
+X-OriginatorOrg: lunasonde.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN6PR03MB3137.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10f5c3ad-d001-405c-1524-08da0b6d8ac0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2022 19:03:53.2437
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2a66b2ba-170b-4693-9d87-3bf53b3e5407
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZLspfukwzDkVQFozJbCYw5JHS53Z9G7Aj56SXFCohMl8SgHm+9QOrzDEIiJdBxtHmRYkc4AtA2VsQP8n7E4QYw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4650
+Message-ID-Hash: DI2JST2WTHTYT3BNTNL7OZ7F4FGLLGOM
+X-Message-ID-Hash: DI2JST2WTHTYT3BNTNL7OZ7F4FGLLGOM
+X-MailFrom: abby@lunasonde.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
+CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: B200mini QPSK
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KGATMRUNLZCQYQCOOJJD3BGOKFQ6FU5K/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MINQ7BBUFQLEWD6ENHOWRL75FXC6T5AV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8622534498884131320=="
+Content-Type: multipart/mixed; boundary="===============5538106736553218719=="
 
-
---===============8622534498884131320==
-Content-Type: multipart/alternative; boundary=Apple-Mail-3F693E20-753D-45EF-B322-61322F10DD42
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-3F693E20-753D-45EF-B322-61322F10DD42
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-The UHD API is strictly a device driver interface. It has no DSP functions.=20=
-
-
-You might consider GNu Radio but their are other DSP libraries out there lik=
-e liquid-dsp.=20
-
-Sent from my iPhone
-
-> On Mar 21, 2022, at 2:57 PM, Abby Mize <abby@lunasonde.com> wrote:
->=20
-> =EF=BB=BF
-> Hello,
-> =20
-> I am looking into using the B200mini-i for QPSK modulation, using Python a=
-nd a Raspberry Pi platform. Is that built-in to the API?  What other modulat=
-ion schemes are easiest to integrate?=20
-> =20
-> Thank you,
-> =20
-> Abby Mize
-> Senior Embedded Systems Engineer
->=20
-> +1 505 504 3611
-> www.lunasonde.com
-> =20
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-3F693E20-753D-45EF-B322-61322F10DD42
+--===============5538106736553218719==
+Content-Language: en-US
 Content-Type: multipart/related;
-	type="text/html";
-	boundary=Apple-Mail-6CD20134-8925-4B1D-A96A-18DA3F264329
-Content-Transfer-Encoding: 7bit
+	boundary="_004_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_";
+	type="multipart/alternative"
 
+--_004_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_"
 
---Apple-Mail-6CD20134-8925-4B1D-A96A-18DA3F264329
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">The UHD API is strictly a device driver int=
-erface. It has no DSP functions.&nbsp;<div><br></div><div>You might consider=
- GNu Radio but their are other DSP libraries out there like liquid-dsp.&nbsp=
-;<br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><blo=
-ckquote type=3D"cite">On Mar 21, 2022, at 2:57 PM, Abby Mize &lt;abby@lunaso=
-nde.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div d=
-ir=3D"ltr">=EF=BB=BF
-
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
-
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@Malgun Gothic";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-
-
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am looking into using the B200mini-i for QPSK modul=
-ation, using Python and a Raspberry Pi platform. Is that built-in to the API=
-?&nbsp; What other modulation schemes are easiest to integrate?&nbsp;
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><b>Abby Mize</b><o:p></o:p></p>
-<p class=3D"MsoNormal">Senior Embedded Systems Engineer<o:p></o:p></p>
-<p class=3D"MsoNormal"><img width=3D"130" height=3D"17" style=3D"width:1.354=
-1in;height:.177in" id=3D"Picture_x0020_1" alt=3D"Shape
-
-Description automatically generated with medium confidence" src=3D"cid:image=
-001.png@01D83D1A.CA67BD70"><o:p></o:p></p>
-<p class=3D"MsoNormal">+1 505 504 3611<o:p></o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://www.lunasonde.com"><span style=3D"c=
-olor:blue">www.lunasonde.com</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-
-
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></div></body></html>=
-
---Apple-Mail-6CD20134-8925-4B1D-A96A-18DA3F264329
-Content-Type: image/png;
-	name=image001.png;
-	x-apple-part-url="image001.png@01D83D1A.CA67BD70"
-Content-Disposition: inline;
-	filename=image001.png
+--_000_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-Content-Id: <image001.png@01D83D1A.CA67BD70>
+
+T0sgc28gd2hhdCB3aWxsIHRoZSBBUEkgcHJvdmlkZSwganVzdCByYXcgZGF0YSBpbnB1dD8gIFNv
+dW5kcyBsaWtlIEkgd2lsbCBuZWVkIHRvIGZpbmQgb3RoZXIgbGlicmFyaWVzIHRvIGNvbnZlcnQg
+dGhlIHJhdyBkYXRhDQoNClRoYW5rIHlvdSwNCg0KQWJieSBNaXplDQpTZW5pb3IgRW1iZWRkZWQg
+U3lzdGVtcyBFbmdpbmVlcg0KW1NoYXBlICBEZXNjcmlwdGlvbiBhdXRvbWF0aWNhbGx5IGdlbmVy
+YXRlZCB3aXRoIG1lZGl1bSBjb25maWRlbmNlXQ0KKzEgNTA1IDUwNCAzNjExDQp3d3cubHVuYXNv
+bmRlLmNvbTxodHRwOi8vd3d3Lmx1bmFzb25kZS5jb20+DQoNCkZyb206IE1hcmN1cyBEIExlZWNo
+IDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6IE1vbmRheSwgTWFyY2ggMjEsIDIwMjIg
+MTI6MDAgUE0NClRvOiBBYmJ5IE1pemUgPGFiYnlAbHVuYXNvbmRlLmNvbT4NCkNjOiBVU1JQLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQ0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBCMjAwbWluaSBR
+UFNLDQoNClRoZSBVSEQgQVBJIGlzIHN0cmljdGx5IGEgZGV2aWNlIGRyaXZlciBpbnRlcmZhY2Uu
+IEl0IGhhcyBubyBEU1AgZnVuY3Rpb25zLg0KDQpZb3UgbWlnaHQgY29uc2lkZXIgR051IFJhZGlv
+IGJ1dCB0aGVpciBhcmUgb3RoZXIgRFNQIGxpYnJhcmllcyBvdXQgdGhlcmUgbGlrZSBsaXF1aWQt
+ZHNwLg0KU2VudCBmcm9tIG15IGlQaG9uZQ0KDQoNCk9uIE1hciAyMSwgMjAyMiwgYXQgMjo1NyBQ
+TSwgQWJieSBNaXplIDxhYmJ5QGx1bmFzb25kZS5jb208bWFpbHRvOmFiYnlAbHVuYXNvbmRlLmNv
+bT4+IHdyb3RlOg0K77u/DQpIZWxsbywNCg0KSSBhbSBsb29raW5nIGludG8gdXNpbmcgdGhlIEIy
+MDBtaW5pLWkgZm9yIFFQU0sgbW9kdWxhdGlvbiwgdXNpbmcgUHl0aG9uIGFuZCBhIFJhc3BiZXJy
+eSBQaSBwbGF0Zm9ybS4gSXMgdGhhdCBidWlsdC1pbiB0byB0aGUgQVBJPyAgV2hhdCBvdGhlciBt
+b2R1bGF0aW9uIHNjaGVtZXMgYXJlIGVhc2llc3QgdG8gaW50ZWdyYXRlPw0KDQpUaGFuayB5b3Us
+DQoNCkFiYnkgTWl6ZQ0KU2VuaW9yIEVtYmVkZGVkIFN5c3RlbXMgRW5naW5lZXINCltTaGFwZSAg
+ICBEZXNjcmlwdGlvbiBhdXRvbWF0aWNhbGx5IGdlbmVyYXRlZCB3aXRoIG1lZGl1bSBjb25maWRl
+bmNlXQ0KKzEgNTA1IDUwNCAzNjExDQp3d3cubHVuYXNvbmRlLmNvbTxodHRwOi8vd3d3Lmx1bmFz
+b25kZS5jb20+DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBzZW5k
+IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3Jw
+LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg==
+
+--_000_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
+ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
+YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
+I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
+W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
+DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
+MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIg
+MTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Ik1hbGd1biBH
+b3RoaWMiOw0KCXBhbm9zZS0xOjIgMTEgNSAzIDIgMCAwIDIgMCA0O30NCkBmb250LWZhY2UNCgl7
+Zm9udC1mYW1pbHk6IlxATWFsZ3VuIEdvdGhpYyI7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
+Cglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNv
+bG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUy
+MA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJy
+aSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
+by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29y
+ZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBp
+biAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwv
+c3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJl
+ZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNv
+IDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0i
+ZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwv
+aGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHls
+ZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPk9LIHNvIHdoYXQgd2lsbCB0aGUgQVBJIHByb3ZpZGUsIGp1c3Qg
+cmF3IGRhdGEgaW5wdXQ/Jm5ic3A7IFNvdW5kcyBsaWtlIEkgd2lsbCBuZWVkIHRvIGZpbmQgb3Ro
+ZXIgbGlicmFyaWVzIHRvIGNvbnZlcnQgdGhlIHJhdyBkYXRhPG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPlRoYW5rIHlvdSw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkFiYnkgTWl6
+ZTwvYj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlNlbmlvciBFbWJlZGRl
+ZCBTeXN0ZW1zIEVuZ2luZWVyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+aW1nIHdpZHRoPSIxMzAiIGhlaWdodD0iMTciIHN0eWxlPSJ3aWR0aDoxLjM1NDFpbjtoZWlnaHQ6
+LjE3N2luIiBpZD0iUGljdHVyZV94MDAyMF8yIiBzcmM9ImNpZDppbWFnZTAwMS5wbmdAMDFEODNE
+MUIuQkIxRkUyQjAiIGFsdD0iU2hhcGUKCkRlc2NyaXB0aW9uIGF1dG9tYXRpY2FsbHkgZ2VuZXJh
+dGVkIHdpdGggbWVkaXVtIGNvbmZpZGVuY2UiPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+KzEgNTA1IDUwNCAzNjExPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48YSBocmVmPSJodHRwOi8vd3d3Lmx1bmFzb25kZS5jb20iPnd3dy5sdW5hc29uZGUuY29t
+PC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9w
+OnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48Yj5Gcm9tOjwvYj4gTWFyY3VzIEQgTGVlY2ggJmx0O3BhdGNodm9uYnJh
+dW5AZ21haWwuY29tJmd0OyA8YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBNYXJjaCAyMSwgMjAy
+MiAxMjowMCBQTTxicj4NCjxiPlRvOjwvYj4gQWJieSBNaXplICZsdDthYmJ5QGx1bmFzb25kZS5j
+b20mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiBVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4NCjxi
+PlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIEIyMDBtaW5pIFFQU0s8bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBVSEQgQVBJIGlzIHN0cmljdGx5IGEgZGV2
+aWNlIGRyaXZlciBpbnRlcmZhY2UuIEl0IGhhcyBubyBEU1AgZnVuY3Rpb25zLiZuYnNwOzxvOnA+
+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1i
+b3R0b206MTIuMHB0Ij5Zb3UgbWlnaHQgY29uc2lkZXIgR051IFJhZGlvIGJ1dCB0aGVpciBhcmUg
+b3RoZXIgRFNQIGxpYnJhcmllcyBvdXQgdGhlcmUgbGlrZSBsaXF1aWQtZHNwLiZuYnNwOzxvOnA+
+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlNlbnQgZnJvbSBteSBpUGhv
+bmU8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
+cj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6
+NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bWFyZ2luLWJvdHRvbToxMi4wcHQiPk9uIE1hciAyMSwgMjAyMiwgYXQgMjo1NyBQTSwgQWJieSBN
+aXplICZsdDs8YSBocmVmPSJtYWlsdG86YWJieUBsdW5hc29uZGUuY29tIj5hYmJ5QGx1bmFzb25k
+ZS5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2
+Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBw
+dCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+77u/IDxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+SGVsbG8sPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgYW0gbG9v
+a2luZyBpbnRvIHVzaW5nIHRoZSBCMjAwbWluaS1pIGZvciBRUFNLIG1vZHVsYXRpb24sIHVzaW5n
+IFB5dGhvbiBhbmQgYSBSYXNwYmVycnkgUGkgcGxhdGZvcm0uIElzIHRoYXQgYnVpbHQtaW4gdG8g
+dGhlIEFQST8mbmJzcDsgV2hhdCBvdGhlciBtb2R1bGF0aW9uIHNjaGVtZXMgYXJlIGVhc2llc3Qg
+dG8gaW50ZWdyYXRlPyZuYnNwOw0KPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rIHlvdSw8
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+QWJieSBNaXplPC9iPjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+U2VuaW9yIEVtYmVkZGVkIFN5c3RlbXMgRW5naW5lZXI8bzpw
+PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxpbWcgYm9yZGVyPSIwIiB3aWR0aD0i
+MTMwIiBoZWlnaHQ9IjE3IiBzdHlsZT0id2lkdGg6MS4zNTQxaW47aGVpZ2h0Oi4xNzdpbiIgaWQ9
+IlBpY3R1cmVfeDAwMjBfMSIgc3JjPSJjaWQ6aW1hZ2UwMDEucG5nQDAxRDgzRDFCLkJCMUZFMkIw
+IiBhbHQ9IlNoYXBlDQoNCkRlc2NyaXB0aW9uIGF1dG9tYXRpY2FsbHkgZ2VuZXJhdGVkIHdpdGgg
+bWVkaXVtIGNvbmZpZGVuY2UiPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+KzEgNTA1IDUwNCAzNjExPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBo
+cmVmPSJodHRwOi8vd3d3Lmx1bmFzb25kZS5jb20iPnd3dy5sdW5hc29uZGUuY29tPC9hPjxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
+L2E+PGJyPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86
+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0
+cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+
+--_000_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_--
+
+--_004_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_
+Content-Type: image/png; name="image001.png"
+Content-Description: image001.png
+Content-Disposition: inline; filename="image001.png"; size=1343;
+	creation-date="Mon, 21 Mar 2022 19:03:52 GMT";
+	modification-date="Mon, 21 Mar 2022 19:03:53 GMT"
+Content-ID: <image001.png@01D83D1B.BB1FE2B0>
+Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAIIAAAARCAYAAAAR8XQQAAAAAXNSR0ICQMB9xQAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAS/SURBVGje
@@ -241,11 +301,9 @@ NyR7uUh4QwztxxnqL5SFkIRMeQmuYD1STHfyfGziXIBYxzeJRB+H28BE7oDpSpieYcjuCyuSvGU8
 IyzvSMYpQl7NCqGPHLy1cm5gaK8hjonrEJcWjvVCMdZEh/6O1diicezl9y7H+BfgxrCCQx+qS/WX
 C+10/e//6RTgR74Dyf5pfsk8/dQAAAAASUVORK5CYII=
 
---Apple-Mail-6CD20134-8925-4B1D-A96A-18DA3F264329--
+--_004_BN6PR03MB31377AFA80B5870000923E19C8169BN6PR03MB3137namp_--
 
---Apple-Mail-3F693E20-753D-45EF-B322-61322F10DD42--
-
---===============8622534498884131320==
+--===============5538106736553218719==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -255,4 +313,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8622534498884131320==--
+--===============5538106736553218719==--
