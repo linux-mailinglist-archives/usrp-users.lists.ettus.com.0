@@ -2,300 +2,177 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 029AA4E2AEA
-	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 15:35:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F404E2B12
+	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 15:43:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CD6AB3852BC
-	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 10:35:05 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 646113853FA
+	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 10:43:05 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=barkhauseninstitut.onmicrosoft.com header.i=@barkhauseninstitut.onmicrosoft.com header.b="Mi7kf2uL";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aFkgl7m5";
 	dkim-atps=neutral
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2107.outbound.protection.outlook.com [40.107.22.107])
-	by mm2.emwd.com (Postfix) with ESMTPS id 593AE38445B
-	for <usrp-users@lists.ettus.com>; Mon, 21 Mar 2022 10:34:09 -0400 (EDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Obh2sXh4cXkf8aNnRgTe3YiAdKIKU4m9RzUcpIhRCzj55ZhhZY7z7tiru+odibtHwnaYFPMoaHjWvuEiOcyFUxrBCpKIaBcSVgIE8TEn5nuuazj8n4MSlUCQt7lSrJvW1kGGTkHDg6svVnEP7cP0hkrsEoofeVZ8fMSzLDQIJXIih0izmgazTv/v1bY1nTO0jv1O1l/5jVqClhJ2dOtJDqFrha2z9OYtSrrhlVNpNMBZF5RSVBthIEC/Hl9u0HzKiwwkCyDdWiGNnXDnctUSPHUK45etvuGRacQZ3fQEgpqPJMDGGZh0VE6rOt/2r1GvXINlJymvIv8iqyQABzZJhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kJ1Y/FNWe84dZC0UcI1pa8eEiOCUjU21694WRtJ5qtw=;
- b=l7t6Q4EyhfUFwZV6gNB81jBaYJeEfK00EwsnC3ohIJ0FxrQFxblMfnIcTd5HJyJXa8kEVm5n4xVANBWj2HnqROeMiU65MvXQoor1nbHc8UxDfS8P2m9dE26O28+f3SInX2Cb12S/ogyH1WKy5Dqr8iOHhpfYIThrKV3D6R3Z8evLAl977K9Ad87FbBtCHMxi6gws0lKjlaTe1gLUFyRu+ignJ2lCL3uP+/+Z6rQtZj6yxNx2cQ6eKOJp9sT6sbgvAWqxVqpLjcVI20lhAun/c8yqqHTu1EpZLimN8eYsab3eR9jYs5del/YFYTpWi/bmuZPjOg3VffaFs18YUPBvRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=barkhauseninstitut.org; dmarc=pass action=none
- header.from=barkhauseninstitut.org; dkim=pass
- header.d=barkhauseninstitut.org; arc=none
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id CBF243850C3
+	for <usrp-users@lists.ettus.com>; Mon, 21 Mar 2022 10:42:01 -0400 (EDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-2db2add4516so158308137b3.1
+        for <usrp-users@lists.ettus.com>; Mon, 21 Mar 2022 07:42:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=barkhauseninstitut.onmicrosoft.com;
- s=selector2-barkhauseninstitut-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kJ1Y/FNWe84dZC0UcI1pa8eEiOCUjU21694WRtJ5qtw=;
- b=Mi7kf2uLHMsrSf6zC1WOPcHgo5X4hFOeXnqKSWaMf72dyzJKhRP1okkmzCISftC4au/Qaivg2BXQCI922ycN4svqHNxJAJHL9rJN/l12s398LoUZgKmRKk+74aDO8xTubVbZ+eH/5CtGQv7h7QWMnYJ1mYHj+69ZfZEqmV09uiA=
-Received: from AM8P250MB0107.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:36e::5)
- by AM8P250MB0344.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:32b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.22; Mon, 21 Mar
- 2022 14:34:07 +0000
-Received: from AM8P250MB0107.EURP250.PROD.OUTLOOK.COM
- ([fe80::999a:3abe:8443:5658]) by AM8P250MB0107.EURP250.PROD.OUTLOOK.COM
- ([fe80::999a:3abe:8443:5658%9]) with mapi id 15.20.5081.022; Mon, 21 Mar 2022
- 14:34:07 +0000
-From: Tobias Kronauer <tobias.kronauer@barkhauseninstitut.org>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] Re: [X410] Change hostname
-Thread-Index: AQHYOeij3PDN49hXmECqR9UdF3o/pqzJiHEGgABeyQCAAAZXRA==
-Date: Mon, 21 Mar 2022 14:34:07 +0000
-Message-ID: 
- <AM8P250MB0107FE3596073DF1E741B7D89B169@AM8P250MB0107.EURP250.PROD.OUTLOOK.COM>
-References: 
- <AM8P250MB010775DAB5F976813E57AE599B169@AM8P250MB0107.EURP250.PROD.OUTLOOK.COM>
- <77C9127F-86E2-4BC0-9ED0-C477B0F4A586@gmail.com>
-In-Reply-To: <77C9127F-86E2-4BC0-9ED0-C477B0F4A586@gmail.com>
-Accept-Language: de-DE, en-150, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-suggested_attachment_session_id: aaaacc47-a1f9-2194-e9eb-295bb7dbe5f1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=barkhauseninstitut.org;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ea2348d0-f126-43a6-f0de-08da0b47db67
-x-ms-traffictypediagnostic: AM8P250MB0344:EE_
-x-microsoft-antispam-prvs: 
- <AM8P250MB034480A40D5E009AFCC5975A9B169@AM8P250MB0344.EURP250.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 4xUKg/3HDc56SZq/5yZIjzzoLGik43ya23JQ6GpdLQtGNW6xHvJLC6ZsLQEPva3ic+bzlDoc5zF4J6aU97v2qQRJIg3TTb4WTTVTDnHv0XD1icXXmHPmBh6v7z+Rj9P3DULgahKzFSFv6LtkzHNQ+4JgxWCeEo495dER46E6uCh1GeIo+C4rzbAHw2IN2Rha3hvz6N+BoLyg5eNOZel2d1X2v0Rr5hiU+iRFNfTDTcEMS/Y/9eXi2GjeYqimINf+ECLGCOZW8EBI0sf8Qe8/2AoD0kvWfn7CePwrPow20qIrB2NSkwuWMyRLZpU5A5o0M+k6LmCXtKWUGyP4SF9gNxOFAjqupEso/hBjYch6mTU4NPZmCbKJbLbRb4oKUl2e2pHlXKD0NOvTIR4b9kOUaQY/2HcPNd0hKBBMbyGSCNDF93nURCl/ZH3ILueRzSaOKTmSkEH2diX3bgLDBbTeZHAYYtXc11gzZpfTfkK3KBuVoKh4+aWe03AwzIm0DHdDT2zHTcyVl1xRZuyWTCgAlVd6sG83BQRiZLqWgc0P6GCdUkUeGqGkmtAWm0MNGPn/ZqI1u6cO68dvh0acOPl6xqRM/7WhmPvAovMW1utgh/JBcpPnHxMG/AaUMoHUyOgZxmEoF1lX+h7OnVltDILGmiJSyo+hmgIiWwNeo4RYVzV5APSJvau5N2xsA0vkHZDeGaOplI5OEXXXFH1qKG+N73Ra+aXNsAAXC7LEUgfkqI1jlK83sCVmFsMlW+JuoBAAhX5NCJkaq9pYm6ekbGDCaUMjhdWpv4E7Ey+iSFz+wwY=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8P250MB0107.EURP250.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(346002)(136003)(39830400003)(366004)(376002)(396003)(84040400005)(19627405001)(66574015)(55016003)(186003)(33656002)(26005)(83380400001)(2906002)(44832011)(7696005)(38100700002)(38070700005)(53546011)(6916009)(166002)(52536014)(15974865002)(8936002)(5660300002)(76116006)(91956017)(66946007)(122000001)(9686003)(316002)(4326008)(508600001)(966005)(71200400001)(8676002)(66446008)(64756008)(66556008)(66476007)(6506007)(86362001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?R3JlUTQ5S296bXV5U1pocTVhVGdwQW01Z3ZucFRFOHhEN0NwQ0tJTFRvdlVj?=
- =?utf-8?B?NURTN1drc2dCVjEyYW9UbGJsSk56TWp3Y1FrMHg0MTlnMkRpcXlnWlQzay9V?=
- =?utf-8?B?cGFhZlhJWU1zQWJ2MERjckxEdll0bXR2VGVRK2thZVJYbXU5dG9Peld0aGNk?=
- =?utf-8?B?QmFrN09yTjV4bzRQTU1UNGdkUHFqN1pROGw0ZEZoSnlDMnFyUGdHdWpHMmtN?=
- =?utf-8?B?a2Joc0NoTnd6cWJPNURBb2cvd2x6djlMekFrMC9DTkRBQXZnNW1UOVloTE5J?=
- =?utf-8?B?R1djcmQyUHN6NTFlWDJPQUZDclo1ejN2OThwSHpRUDI5dXRwQVExSktmS0lB?=
- =?utf-8?B?TGNqNmsveDFCMHA0Zy9Ja1ROc3pkNWp2cHJHcWlqSlZ1T0lPekZpelNDRWpX?=
- =?utf-8?B?eEw5T01PQTlMay9MdDUrdFVTb2lNK01tclZrc3FhQTFPVXpHK2RLOGlyN0hm?=
- =?utf-8?B?dWVXQnFUUjR4RGRTcFFjcEdkbVpPZThBVlNCM1V5ZzY5U2FscG8wcUpBVmZq?=
- =?utf-8?B?S3FxeitDNlZlSUNxaXEvWFphNHpGLzZOQUxVenJpM1ZxYmdxUEU1dGtOQVFh?=
- =?utf-8?B?QjAzWmxZS3J5Mno4RnZQSTgxT1c1enU0dDRCT2FPNnpLeDRoRlVndEc0MHNX?=
- =?utf-8?B?L0tobXFUNVhpLzF1WlpZcUdtUkRsc1ZrUndWS0VRVlpsU0xEMkgxQ0xYQU5k?=
- =?utf-8?B?SSs3TGY4VzJpdUVtZWl2Vnp5amJWR2ZzM29CRzJ1VHNCLzhBdkJCVmo3Mlh4?=
- =?utf-8?B?akloV2Z3TWpFM1MvL2VBWUtNVXo3VVRKdE5OZFF3OWQ0bjRNb3ZmUTlCOUVB?=
- =?utf-8?B?QWtNSkNiRW8zaXNFcnoyWXJWMThJMC9raHF6Y0lFQVRkdzNaOVZVcVJQaFJx?=
- =?utf-8?B?M1pXTUhod0huZ0tZTEJrVytoaEZWbjI1VHlVNXdZNFBDVXZxdlNubTNoeUxz?=
- =?utf-8?B?M2lkNms1KzgrTUZNWUEvREd5cHZOZm9hT3NpdlRoVmxCenZzUi9qK2M2MDRX?=
- =?utf-8?B?dmQ4VVNBcWZhdnpyTGNKcVlvaU9pNkg5MC95a2NndjVPL1N4OHd6bmpiRE5o?=
- =?utf-8?B?d2ZDWlJaVHAzY0t6K0Ezdi9keEFadGRzVHg1WWhKZ2NHOEg4RXBaaGJyVnJo?=
- =?utf-8?B?aFdYR3RWTno1ZFpUV1FScUJIYmNNNkxvT21zWHpHdmpTZmhrY1BNbzhmUzYx?=
- =?utf-8?B?cnk3aDdnanVNQzV2b0tPM2x2Ris0V2lSaVUzQWVjcnU3bnRZWUozdmphbmZN?=
- =?utf-8?B?dHFaUnR5NGc5YXFxaDJPd3cxVUJCSVZZNFJhcy9UdWV1aGRMVnA1eHJQYTlJ?=
- =?utf-8?B?d04yeDdLSEhDWUp4cnVURndoazFiYWVDNVFmRnc1MmdCS2FPVk8ycVJWQkl0?=
- =?utf-8?B?K1RqbGZ3V3V6encvRXJuSFkzaU1mMkl6NEM3d2tuT2FqQnRqdGdXZHAxWXZU?=
- =?utf-8?B?dTdiVHd5S3N3eVhkaG5NeFpqaVpVN29WdWR1YlR5MU9EQXU4Qnk4bDZQQzdP?=
- =?utf-8?B?SDVVekVwdlFRQ2c3TWlBZG84V2YvUVUwWnREU1BWU2VYNG15bFpZRStWY09H?=
- =?utf-8?B?WmR1TlBmTDNGRHJ1Q1dPQUJ3M01TcnpzNXk4YzRhcFQyNjQ2V0dPeVNhSnZn?=
- =?utf-8?B?VWN6UVBkMkgvN1JraERIUWVqV1hlRzN6cWdwTS9PN1U2eUVTMklGVksveFJE?=
- =?utf-8?B?YVJzMmFZeENIZ2VVejRvWk55SnR4RGc5TG5vN3BuQjBWeUt0eFZ4UFhsOVN4?=
- =?utf-8?B?Y3pGOFRFOW1nR3lCZkwrWnFFNEptci9Rc25EV0M0TEZNWnNpUDFaVU84Nkxa?=
- =?utf-8?B?d25vbllDN2RkOGkwS2pFZHI0akpPWHMwSEo1UzJDbEFUTklNYjhuRk5WRlI3?=
- =?utf-8?B?Y1RlcnJyOEt6dmhHZnlDVUZOWTIwSnFXTzJmM3hBR0Z4d0txV3NXRmRRWHhN?=
- =?utf-8?B?bm1LelY4cWloSW1zUXRoS1g3Vndxbm5EYVBSeHBUNzd6R3RzbUR6MlM3QWNG?=
- =?utf-8?Q?6UHFw9pCwo66O1iNFXptBKuYjrLRGc=3D?=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=h9RXZE+dcfBy+barsMnJYB3lI2ZaNI8k2Ef5Q0QrxmA=;
+        b=aFkgl7m5F0FzYuxLNRN6fCKsM/nDBYxeIg80AgqL+7/iCfNO1/HjIHEtudpwcv3nu4
+         g80po4l5QzUJv1WsYGTbZ5B8XlUzFC3ijWgGbAtiPAsJhwCnRUKEySF2F3TSl4SAB1qe
+         8Rl9ercyvItW68XpM5WBoEahcOzgZ/UpQ1zAuPzg+jKwloSv7wz+qXoT8+Ouwus03Fbg
+         25L+m3Utt6tkosVOrU5KqZMaPiTYJdLgPAqmexZy/oIAuk7NGHcSXtrDDUN5WeM2wVri
+         unFU0Ec47JVHYWY8e3SrbwA2HnUIp23X1vmbjJI8Em2+RypqEQDLVzV+1wgjAJrtaoK/
+         cQzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=h9RXZE+dcfBy+barsMnJYB3lI2ZaNI8k2Ef5Q0QrxmA=;
+        b=U2p51zW6vxxVYmZtf95LO+7o8vo1m/euE13Jz45D1ASILBKphH0GxNn1BGgL010Lab
+         42pYr2HNbNPQDLTK0b4jQHlefXeb8f3E5IUk4mL6fyYO2iqTpoDo8dkjKj6Evn7dpGIQ
+         C3Jgv9vqmJOZ9mSvDnJSBRjZgB59CuHMcVbYpvOm2SJe9p0r0tmyqZnEAMsfekGVZSnA
+         Gv7FOv/z1Ly289XpYvSU0hEr8mQcIOXgidmTLuGD8TRj5USMP07JyA2Bl6xJ2X2D+owp
+         9Ybr+zPm1MNfwy70CXfyDvK4LOYJb/aGqc86CbGS2qENYC4e5Lc9Eu6w20gmVxrwP1ct
+         39rQ==
+X-Gm-Message-State: AOAM531W3SOuXGRJrrmElXbYMS3vj6Oh6/IEuDqAxqZL2GweG/IEat2q
+	dOTsCxdcv5AJgcZsPWzi48k7EaBfWM1lx3xDHqQT/+qqPB6v+TtJSDM=
+X-Google-Smtp-Source: ABdhPJwwDTYHAxYfMibrbcsuKlI/XtOAmyCpxsOgsAI15hZGURCH8EI9ysC7ha9W4Wswx60CEjkV6E1wtmnmX0v3oD8=
+X-Received: by 2002:a81:140b:0:b0:2e6:650c:dd7b with SMTP id
+ 11-20020a81140b000000b002e6650cdd7bmr834596ywu.365.1647873717676; Mon, 21 Mar
+ 2022 07:41:57 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: barkhauseninstitut.org
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM8P250MB0107.EURP250.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: ea2348d0-f126-43a6-f0de-08da0b47db67
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Mar 2022 14:34:07.6858
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 00487172-018a-4fb0-b279-f756ac552ea7
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6p1pUmGdXUoLP3oa7nCngjfDZqkyXQkztXGs6UjJEnwBdLsSOXc19j6ZpDiFYA94pv79QXl3Dzcdtup8YOsGph8n3Q9WfQq04yAUIL/kVaPZOVKP0aiO4Nlve5RMMbLk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8P250MB0344
-Message-ID-Hash: YB2IWAYUE6Y3YPWSHVDEE6T3U4BDGHSN
-X-Message-ID-Hash: YB2IWAYUE6Y3YPWSHVDEE6T3U4BDGHSN
-X-MailFrom: tobias.kronauer@barkhauseninstitut.org
+References: <CAA=S3PsQ7758e5AzDEyNuAsgA6xwm1NQXMZHzAgzfgqDXVB8xQ@mail.gmail.com>
+ <8d8335b8-bf02-af1e-3493-b0f4063409c4@ettus.com> <CAA=S3PuRq4X17Ba0xKSoNZnheQ_YFsXGE7K4iFdm3yBM9AsMLA@mail.gmail.com>
+In-Reply-To: <CAA=S3PuRq4X17Ba0xKSoNZnheQ_YFsXGE7K4iFdm3yBM9AsMLA@mail.gmail.com>
+From: sp h <stackprogramer@gmail.com>
+Date: Mon, 21 Mar 2022 18:11:45 +0330
+Message-ID: <CAA=S3PtO-NgrrQVjQBtY5PAFDBYKb2qTB+X7jtZSObw+EA_VTA@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: XVUQX6M3T4OX6BIZEV46FSWF4GFY743T
+X-Message-ID-Hash: XVUQX6M3T4OX6BIZEV46FSWF4GFY743T
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [X410] Change hostname
+Subject: [USRP-users] Re: Default CHDR_W is 64 for a RFNOC blocks, How can increased samples buffer in RFNOC block to 4096...
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SBLZJOMTUB2Z2LZJD273AOJAMHIJOJTM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XVUQX6M3T4OX6BIZEV46FSWF4GFY743T/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2863722966709705787=="
+Content-Type: multipart/mixed; boundary="===============7802634275067969129=="
 
---===============2863722966709705787==
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_AM8P250MB0107FE3596073DF1E741B7D89B169AM8P250MB0107EURP_"
+--===============7802634275067969129==
+Content-Type: multipart/alternative; boundary="00000000000093b52105dabb7f26"
 
---_000_AM8P250MB0107FE3596073DF1E741B7D89B169AM8P250MB0107EURP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000093b52105dabb7f26
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-VGhlcmUgaXMgbm8gL2V0Yy9ob3N0bmFtZSBpbiAvZGF0YS4uLi4NCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fDQpWb246IE1hcmN1cyBEIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWls
-LmNvbT4NCkdlc2VuZGV0OiBNb250YWcsIDIxLiBNw6RyeiAyMDIyIDE1OjExDQpBbjogVG9iaWFz
-IEtyb25hdWVyIDx0b2JpYXMua3JvbmF1ZXJAYmFya2hhdXNlbmluc3RpdHV0Lm9yZz4NCkNjOiBV
-U1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8VVNSUC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpC
-ZXRyZWZmOiBSZTogW1VTUlAtdXNlcnNdIFJlOiBbWDQxMF0gQ2hhbmdlIGhvc3RuYW1lDQoNClRy
-eSBsb29raW5nIHVuZGVyIC9kYXRhL2V0Yy9ob3N0bmFtZQ0KDQpUaGF04oCZcyBzb21ldGhpbmcg
-dGhhdCBpcyBwZWN1bGlhciB0byBtZW5kZXItY29udHJvbGxlZCBmaWxlc3lzdGVtcy4NCg0KU2Vu
-dCBmcm9tIG15IGlQaG9uZQ0KDQpPbiBNYXIgMjEsIDIwMjIsIGF0IDQ6MzMgQU0sIFRvYmlhcyBL
-cm9uYXVlciA8dG9iaWFzLmtyb25hdWVyQGJhcmtoYXVzZW5pbnN0aXR1dC5vcmc+IHdyb3RlOg0K
-DQrvu78NCkkgYXNrZWQgb3VyIElUIGRlcGFydG1lbnQsIGFuZCB0aGV5IHNhaWQgbm8uLi4uDQoN
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpWb246IE1hcmN1cyBELiBMZWVjaCA8
-cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpHZXNlbmRldDogRG9ubmVyc3RhZywgMTcuIE3DpHJ6
-IDIwMjIgMTQ6NDENCkFuOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSA8dXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20+DQpCZXRyZWZmOiBbVVNSUC11c2Vyc10gUmU6IFtYNDEwXSBDaGFuZ2Ug
-aG9zdG5hbWUNCg0KT24gMjAyMi0wMy0xNyAwNjoyNCwgVG9iaWFzIEtyb25hdWVyIHdyb3RlOg0K
-SGkgYWx0b2dldGhlciwNCg0KSSBoYXZlIGEgcmF0aGVyIGR1bWIgcXVlc3Rpb246IGhvdyBjYW4g
-SSBjaGFuZ2UgdGhlIGhvc3RuYW1lIG9mIHRoZSBVU1JQPyBBY2NvcmRpbmcgdG8gdGhlIGRvY3Mg
-KGJlaW5nIHRoZSBzdGFuZGFyZCB3YXkgb2YgY2hhbmdpbmcgaG9zdCBuYW1lcyBpbiBnZW5lcmFs
-KSwgSSBjaGFuZ2VkIHRoZSBmaWxlIC9ldGMvaG9zdG5hbWUgYW5kIHJlYm9vdGVkLiBIb3dldmVy
-LCBhZnRlciByZWJvb3RpbmcsIHRoZSBjb250ZW50IG9mIC9ldGMvaG9zdG5hbWUgaXMgY2hhbmdl
-ZCB0byBpdHMgZGVmYXVsdHMuLi4uIFVzaW5nIGhvc3RuYW1lIG9yIGhvc3RuYW1lY3RsIGluIHRo
-ZSBjb21tYW5kIGxpbmUgZG9lcyBub3Qgd29yayBlaXRoZXIuIENhbiB5b3UgaGVscCBtZSBvbiB0
-aGF0Pw0KDQpJIGFtIHVzaW5nIGEgWDQxMC4NCg0KVGhhbmtzIGluIGFkdmFuY2UsDQpUb2JpYXMN
-Cg0KDQpCYXJraGF1c2VuIEluc3RpdHV0DQp3d3cuYmFya2hhdXNlbmluc3RpdHV0Lm9yZzxodHRw
-Oi8vd3d3LmJhcmtoYXVzZW5pbnN0aXR1dC5vcmc+DQoNCklGIGl0J3Mgc2V0dXAgZm9yIERIQ1As
-IGl0J3MgcHJvYmFibHkgdGhhdCB5b3UncmUgZ2V0dGluZyB5b3VyIGhvc3RuYW1lIGZyb20gdGhl
-IERIQ1Agc2VydmVyPw0KDQoNCg0KDQpCYXJraGF1c2VuIEluc3RpdHV0DQp3d3cuYmFya2hhdXNl
-bmluc3RpdHV0Lm9yZw0KDQoNCkJhcmtoYXVzZW4gSW5zdGl0dXQgZ0dtYkggfCBTaXR6OiBXw7xy
-emJ1cmdlciBTdHJhw59lIDQ2LCAwMTE4NyBEcmVzZGVuLCBHZXJtYW55IHwgUmVnaXN0ZXJnZXJp
-Y2h0OiBBbXRzZ2VyaWNodCBEcmVzZGVuLCBIUkIgMzcyNjcgfCBHZXNjaMOkZnRzZsO8aHJlcjog
-UHJvZi4gRHIuIEdlcmhhcmQgRmV0dHdlaXMsIERyLiBUaW0gSGVudHNjaGVsIHwgVm9yc2l0emVu
-ZGVyIGRlciBHZXNlbGxzY2hhZnRlcmRlbGVnYXRpb246IERyLiBBbmRyZWFzIEhhbmRzY2h1aA0K
-DQpIaW53ZWlzZSB6dW0gRGF0ZW5zY2h1dHogdW5kIHp1ciBWZXJhcmJlaXR1bmcgSWhyZXIgRGF0
-ZW4gZmluZGVuIFNpZSB1bnRlcjogaHR0cHM6Ly9iYXJraGF1c2VuaW5zdGl0dXQub3JnL2RhdGEt
-cHJpdmFjeQ0KDQpUaGlzIGVtYWlsIGFuZCBhbnkgYXR0YWNobWVudHMgYXJlIGludGVuZGVkIG9u
-bHkgZm9yIHRoZSBwZXJzb24gdG8gd2hvbSB0aGlzIGVtYWlsIGlzIGFkZHJlc3NlZCBhbmQgbWF5
-IGNvbnRhaW4gY29uZmlkZW50aWFsIGFuZC9vciBwcml2aWxlZ2VkIGluZm9ybWF0aW9uLiBJZiB5
-b3UgcmVjZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciwgcGxlYXNlIGRvIG5vdCBkaXNjbG9zZSB0
-aGUgY29udGVudHMgdG8gYW55b25lLCBidXQgbm90aWZ5IHRoZSBzZW5kZXIgYnkgcmV0dXJuIGVt
-YWlsIGFuZCBkZWxldGUgdGhpcyBlbWFpbCAoYW5kIGFueSBhdHRhY2htZW50cykgZnJvbSB5b3Vy
-IHN5c3RlbS4gSW5mb3JtYXRpb24gb24gZGF0YSBwcm90ZWN0aW9uIGFuZCBwcm9jZXNzaW5nIG9m
-IHlvdXIgcGVyc29uYWwgaW5mb3JtYXRpb246IGh0dHBzOi8vYmFya2hhdXNlbmluc3RpdHV0Lm9y
-Zy9kYXRhLXByaXZhY3kNCg0K
+But I need to add samples to a buffer. when 4096 sample is received for
+block, do an operation like correlate and convolution, and so on.
 
---_000_AM8P250MB0107FE3596073DF1E741B7D89B169AM8P250MB0107EURP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Can we use RAM in an RFNOC block that enables us to work with specific
+count samples??
+It is possible?
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7Ij4NClRoZXJlIGlzIG5vIC9ldGMvaG9zdG5hbWUgaW4gL2RhdGEu
-Li4uPGJyPg0KPC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHN0eWxl
-PSJkaXNwbGF5OmlubGluZS1ibG9jazt3aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2IGlk
-PSJkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJp
-ZiIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0IiBjb2xvcj0iIzAwMDAwMCI+PGI+Vm9uOjwvYj4gTWFy
-Y3VzIEQgTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ozxicj4NCjxiPkdlc2Vu
-ZGV0OjwvYj4gTW9udGFnLCAyMS4gTcOkcnogMjAyMiAxNToxMTxicj4NCjxiPkFuOjwvYj4gVG9i
-aWFzIEtyb25hdWVyICZsdDt0b2JpYXMua3JvbmF1ZXJAYmFya2hhdXNlbmluc3RpdHV0Lm9yZyZn
-dDs8YnI+DQo8Yj5DYzo8L2I+IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tICZsdDtVU1JQLXVz
-ZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8Yj5CZXRyZWZmOjwvYj4gUmU6IFtVU1JQLXVz
-ZXJzXSBSZTogW1g0MTBdIENoYW5nZSBob3N0bmFtZTwvZm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+
-DQo8L2Rpdj4NCjxkaXYgZGlyPSJhdXRvIj5UcnkgbG9va2luZyB1bmRlciAvZGF0YS9ldGMvaG9z
-dG5hbWUNCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PlRoYXTigJlzIHNvbWV0aGluZyB0aGF0IGlz
-IHBlY3VsaWFyIHRvIG1lbmRlci1jb250cm9sbGVkIGZpbGVzeXN0ZW1zLiZuYnNwOzxicj4NCjxk
-aXY+PGJyPg0KPGRpdiBkaXI9Imx0ciI+U2VudCBmcm9tIG15IGlQaG9uZTwvZGl2Pg0KPGRpdiBk
-aXI9Imx0ciI+PGJyPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+T24gTWFyIDIxLCAyMDIyLCBh
-dCA0OjMzIEFNLCBUb2JpYXMgS3JvbmF1ZXIgJmx0O3RvYmlhcy5rcm9uYXVlckBiYXJraGF1c2Vu
-aW5zdGl0dXQub3JnJmd0OyB3cm90ZTo8YnI+DQo8YnI+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4N
-CjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBkaXI9Imx0ciI+77u/DQo8ZGl2IGNsYXNz
-PSJ4X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2
-ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSSBh
-c2tlZCBvdXIgSVQgZGVwYXJ0bWVudCwgYW5kIHRoZXkgc2FpZCBuby4uLi48YnI+DQo8L2Rpdj4N
-CjxkaXY+DQo8ZGl2IGlkPSJ4X2FwcGVuZG9uc2VuZCI+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250
-LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJw
-dDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxociB0YWJpbmRleD0iLTEiIHN0
-eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9InhfZGl2UnBs
-eUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2VyaWYiIGNvbG9y
-PSIjMDAwMDAwIiBzdHlsZT0iZm9udC1zaXplOjExcHQiPjxiPlZvbjo8L2I+IE1hcmN1cyBELiBM
-ZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+R2VzZW5kZXQ6PC9i
-PiBEb25uZXJzdGFnLCAxNy4gTcOkcnogMjAyMiAxNDo0MTxicj4NCjxiPkFuOjwvYj4gdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxi
-cj4NCjxiPkJldHJlZmY6PC9iPiBbVVNSUC11c2Vyc10gUmU6IFtYNDEwXSBDaGFuZ2UgaG9zdG5h
-bWU8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBjbGFzcz0i
-eF94X21vei1jaXRlLXByZWZpeCI+T24gMjAyMi0wMy0xNyAwNjoyNCwgVG9iaWFzIEtyb25hdWVy
-IHdyb3RlOjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8ZGl2IGNsYXNz
-PSJ4X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhl
-bHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpI
-aSBhbHRvZ2V0aGVyLDwvZGl2Pg0KPGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIiBzdHls
-ZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1z
-aXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4
-X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpJIGhh
-dmUgYSByYXRoZXIgZHVtYiBxdWVzdGlvbjogaG93IGNhbiBJIGNoYW5nZSB0aGUgaG9zdG5hbWUg
-b2YgdGhlIFVTUlA/IEFjY29yZGluZyB0byB0aGUgZG9jcyAoYmVpbmcgdGhlIHN0YW5kYXJkIHdh
-eSBvZiBjaGFuZ2luZyBob3N0IG5hbWVzIGluIGdlbmVyYWwpLCBJIGNoYW5nZWQgdGhlIGZpbGUg
-L2V0Yy9ob3N0bmFtZSBhbmQgcmVib290ZWQuIEhvd2V2ZXIsIGFmdGVyIHJlYm9vdGluZywgdGhl
-IGNvbnRlbnQgb2YgL2V0Yy9ob3N0bmFtZQ0KIGlzIGNoYW5nZWQgdG8gaXRzIGRlZmF1bHRzLi4u
-LiBVc2luZyBob3N0bmFtZSBvciBob3N0bmFtZWN0bCBpbiB0aGUgY29tbWFuZCBsaW5lIGRvZXMg
-bm90IHdvcmsgZWl0aGVyLiBDYW4geW91IGhlbHAgbWUgb24gdGhhdD88L2Rpdj4NCjxkaXYgY2xh
-c3M9InhfeF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWws
-SGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4N
-Cjxicj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9u
-dC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEy
-cHQ7IGNvbG9yOnJnYigwLDAsMCkiPg0KSSBhbSB1c2luZyBhIFg0MTAuPGJyPg0KPC9kaXY+DQo8
-ZGl2IGNsYXNzPSJ4X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJp
-LEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAs
-MCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9lbGVtZW50VG9Qcm9vZiIgc3R5
-bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQt
-c2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NClRoYW5rcyBpbiBhZHZhbmNlLDwvZGl2Pg0K
-PGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJy
-aSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigw
-LDAsMCkiPg0KVG9iaWFzPGJyPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgc3R5bGU9Im1hcmdpbi10b3A6
-MHB4OyBtYXJnaW4tYm90dG9tOjBweDsgZm9udC1zaXplOjExcHQ7IGZvbnQtZmFtaWx5OkNhbGli
-cmksc2Fucy1zZXJpZixzZXJpZiwmcXVvdDtFbW9qaUZvbnQmcXVvdDs7IG1hcmdpbjowcHgiPg0K
-PGJyPg0KPGJyPg0KPGI+QmFya2hhdXNlbiBJbnN0aXR1dDwvYj4gPGJyPg0KPGEgY2xhc3M9Inhf
-eF9tb3otdHh0LWxpbmstYWJicmV2aWF0ZWQiIGhyZWY9Imh0dHA6Ly93d3cuYmFya2hhdXNlbmlu
-c3RpdHV0Lm9yZyI+d3d3LmJhcmtoYXVzZW5pbnN0aXR1dC5vcmc8L2E+DQo8YnI+DQo8L3A+DQo8
-L2Rpdj4NCjwvYmxvY2txdW90ZT4NCklGIGl0J3Mgc2V0dXAgZm9yIERIQ1AsIGl0J3MgcHJvYmFi
-bHkgdGhhdCB5b3UncmUgZ2V0dGluZyB5b3VyIGhvc3RuYW1lIGZyb20gdGhlIERIQ1Agc2VydmVy
-Pzxicj4NCjxicj4NCjxicj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgc3R5bGU9ImZvbnQt
-c2l6ZToxMXB0OyBmb250LWZhbWlseTpDYWxpYnJpLHNhbnMtc2VyaWYsc2VyaWYsJnF1b3Q7RW1v
-amlGb250JnF1b3Q7OyBtYXJnaW46MHB4Ij4NCjxicj4NCjxicj4NCjxiPkJhcmtoYXVzZW4gSW5z
-dGl0dXQ8L2I+IDxicj4NCnd3dy5iYXJraGF1c2VuaW5zdGl0dXQub3JnIDxicj4NCjxicj4NCjwv
-cD4NCjxwIHN0eWxlPSJmb250LXNpemU6MTFwdDsgZm9udC1mYW1pbHk6Q2FsaWJyaSxzYW5zLXNl
-cmlmLHNlcmlmLCZxdW90O0Vtb2ppRm9udCZxdW90OzsgbWFyZ2luOjBweCI+DQo8c3BhbiBsYW5n
-PSJkZS1ERSIgc3R5bGU9ImZvbnQtc2l6ZTo5cHQiPkJhcmtoYXVzZW4gSW5zdGl0dXQgZ0dtYkgg
-fCBTaXR6OiBXw7xyemJ1cmdlciBTdHJhw59lIDQ2LCAwMTE4NyBEcmVzZGVuLCBHZXJtYW55IHwg
-UmVnaXN0ZXJnZXJpY2h0OiBBbXRzZ2VyaWNodCBEcmVzZGVuLCBIUkIgMzcyNjcgfCBHZXNjaMOk
-ZnRzZsO8aHJlcjogUHJvZi4gRHIuIEdlcmhhcmQgRmV0dHdlaXMsIERyLiBUaW0gSGVudHNjaGVs
-IHwgVm9yc2l0emVuZGVyIGRlciBHZXNlbGxzY2hhZnRlcmRlbGVnYXRpb246DQogRHIuIEFuZHJl
-YXMgSGFuZHNjaHVoIDxicj4NCjxicj4NCkhpbndlaXNlIHp1bSBEYXRlbnNjaHV0eiB1bmQgenVy
-IFZlcmFyYmVpdHVuZyBJaHJlciBEYXRlbiBmaW5kZW4gU2llIHVudGVyOiBodHRwczovL2Jhcmto
-YXVzZW5pbnN0aXR1dC5vcmcvZGF0YS1wcml2YWN5DQo8YnI+DQo8YnI+DQo8L3NwYW4+PHNwYW4g
-bGFuZz0iZW4tVVMiIHN0eWxlPSJmb250LXNpemU6OXB0Ij5UaGlzIGVtYWlsIGFuZCBhbnkgYXR0
-YWNobWVudHMgYXJlIGludGVuZGVkIG9ubHkgZm9yIHRoZSBwZXJzb24gdG8gd2hvbSB0aGlzIGVt
-YWlsIGlzIGFkZHJlc3NlZCBhbmQgbWF5IGNvbnRhaW4gY29uZmlkZW50aWFsIGFuZC9vciBwcml2
-aWxlZ2VkIGluZm9ybWF0aW9uLiBJZiB5b3UgcmVjZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciwg
-cGxlYXNlIGRvIG5vdCBkaXNjbG9zZQ0KIHRoZSBjb250ZW50cyB0byBhbnlvbmUsIGJ1dCBub3Rp
-ZnkgdGhlIHNlbmRlciBieSByZXR1cm4gZW1haWwgYW5kIGRlbGV0ZSB0aGlzIGVtYWlsIChhbmQg
-YW55IGF0dGFjaG1lbnRzKSBmcm9tIHlvdXIgc3lzdGVtLiBJbmZvcm1hdGlvbiBvbiBkYXRhIHBy
-b3RlY3Rpb24gYW5kIHByb2Nlc3Npbmcgb2YgeW91ciBwZXJzb25hbCBpbmZvcm1hdGlvbjogaHR0
-cHM6Ly9iYXJraGF1c2VuaW5zdGl0dXQub3JnL2RhdGEtcHJpdmFjeQ0KPGJyPg0KPGJyPg0KPC9z
-cGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+any example or guide thanks
 
---_000_AM8P250MB0107FE3596073DF1E741B7D89B169AM8P250MB0107EURP_--
 
---===============2863722966709705787==
+On Mon, Mar 21, 2022 at 6:01 PM sp h <stackprogramer@gmail.com> wrote:
+
+> But I need to add samples to a buffer. when 4096 sample is received for
+> block, do an operation like correlate and convolution, and so on.
+>
+> Can we use RAM in an RFNOC block that enables us to work with specific
+> count samples??
+> It is possible?
+>
+> any example or guide thanks
+>
+> On Mon, Mar 21, 2022 at 1:16 PM Marcus M=C3=BCller <marcus.mueller@ettus.=
+com>
+> wrote:
+>
+>> Hi!
+>>
+>> > In Gnuradio when we want to work with samples buffer samples is 4096 .=
+..
+>>
+>> No, it's not! GNU Radio has a variable workload length approach, so you
+>> **must not**
+>> assume any fixed length buffer. Especially not 4096.
+>>
+>> > but for RFNOC we faced 32 samples........
+>> > How can increased samples buffer in RFNOC block to 4096...?
+>>
+>> You don't!
+>>
+>> Best regards,
+>>
+>> Marcus
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+
+--00000000000093b52105dabb7f26
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div>But I need to add samples to a =
+buffer. when 4096 sample is received for block, do an operation like correl=
+ate and convolution, and so on.<div><br></div><div>Can we use RAM in an RFN=
+OC block that enables us to work with specific count samples??</div><div>It=
+ is possible?</div><div><br></div><div>any example or guide thanks</div><di=
+v><br></div><div><br></div><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">On Mon, Mar 21, 2022 at 6:01 PM sp h &lt;<a href=3D"mailto=
+:stackprogramer@gmail.com">stackprogramer@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">But I n=
+eed to add samples to a buffer. when 4096 sample is received for block, do =
+an operation like correlate and convolution, and so on.<div><br></div><div>=
+Can we use RAM in an RFNOC block that enables us to work with specific coun=
+t samples??</div><div>It is possible?</div><div><br></div><div>any example =
+or guide thanks</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Mon, Mar 21, 2022 at 1:16 PM Marcus M=C3=BCller &lt=
+;<a href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blank">marcus.muell=
+er@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex">Hi!<br>
+<br>
+&gt; In Gnuradio when we want to work with samples buffer samples is 4096 .=
+..<br>
+<br>
+No, it&#39;s not! GNU Radio has a variable workload length approach, so you=
+ **must not** <br>
+assume any fixed length buffer. Especially not 4096.<br>
+<br>
+&gt; but for RFNOC we faced=C2=A032 samples........<br>
+&gt; How can increased samples=C2=A0buffer in RFNOC block to 4096...?<br>
+<br>
+You don&#39;t!<br>
+<br>
+Best regards,<br>
+<br>
+Marcus<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div></div>
+
+--00000000000093b52105dabb7f26--
+
+--===============7802634275067969129==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -305,4 +182,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2863722966709705787==--
+--===============7802634275067969129==--
