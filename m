@@ -2,349 +2,136 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD0B4E31D7
-	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 21:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D9C604E325D
+	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 22:43:53 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5E47A3855A8
-	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 16:32:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B1CDA384D44
+	for <lists+usrp-users@lfdr.de>; Mon, 21 Mar 2022 17:43:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Rujb8aM1";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="6HW0xlDJ";
 	dkim-atps=neutral
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 925A0384D98
-	for <USRP-users@lists.ettus.com>; Mon, 21 Mar 2022 16:31:25 -0400 (EDT)
-Received: by mail-qk1-f181.google.com with SMTP id s16so12596994qks.4
-        for <USRP-users@lists.ettus.com>; Mon, 21 Mar 2022 13:31:25 -0700 (PDT)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id A5178384AC5
+	for <usrp-users@lists.ettus.com>; Mon, 21 Mar 2022 17:42:51 -0400 (EDT)
+Received: by mail-ed1-f42.google.com with SMTP id w25so19469476edi.11
+        for <usrp-users@lists.ettus.com>; Mon, 21 Mar 2022 14:42:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to;
-        bh=LhwuOox/BegAWHC4ituL45+kwe7Qt+zCBTAIMUkutkY=;
-        b=Rujb8aM135CumC4plATson5Na7yfhFziNtvKQ9genzQWox03p9mDzpUTgQvqFNPMwv
-         w0LTAlGSl55af67IiJxRu9GAvaGcaRnhQsdZ6Renj8/ebly3pmN0r+BTJsZKy7Sskpba
-         LrxtMyzc3jaCOmStoNRlI9c9QbEeo4SviD+lzAJwDVzZiSiF/vqvgJAf48yi571Y01LL
-         waUOvBWWMrY0y0W69GL6Jt/GMGxeQznzf+RyJKLNTZIsxt3R2pnp7oE02s/KV0eLRe7H
-         tHqM++BDbjeDu6CrDn0RFiBk77LdHnjD6CxaZVN9eUtwQg+BzXGkZnaahd07LpLXdNNw
-         /RaA==
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=tqG8TQ0Su9aIsN6WFG9Ldgzcn+FunGlY3kyLydMp8Dc=;
+        b=6HW0xlDJewB5ajCCDvEi4lacAPrQKNBw+i6Wr9MtfJRsZqu9ADzZGdw5hbIAu58tNO
+         nG0A02KxQV/xXKB+ibi7DClhMG07jq4ea6SBksOtI216rrq0wAP5lhQYCBXeSGm2P/0B
+         5fAerDXaHHT226d7KUVeMaxr1l//5s5WW9tfUV/ou2n05Wr3md6hmenXeuY50/FzwaQt
+         /OG8ILT6Y6b/3PqH5QUG9GHz9ECpoTIyduH+tEmuWIK+eJShZuiNOPSiHG8WOB4OMhN7
+         l9un/be2tkzfx5cEUF1EYu/cKCXytUUy+6RfkJbI5phLmDIlS/vOHKc6cEi2xWSblGfI
+         RPCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to;
-        bh=LhwuOox/BegAWHC4ituL45+kwe7Qt+zCBTAIMUkutkY=;
-        b=pd4iyqpnND6/cW3N9e4eC1OjphQ7XTECB27pacLl/ZFYk14wUP2LqajCsna6spjqmj
-         e0vHxArWvpZCX+2G0zTt7ml+YFwIQ/TVh8UwrpfcMpaY18l8o7ffK4YozKVwOMSrsLgk
-         Cxq2kuwIYvqJgzkDhnomJgUbfYXpNVxRec5IrgEGXAg1Ry6kwQawZ73zEUuxVhT38jHL
-         SjD5Ue4VVQkCte0JiTekW5PyDvcS9ht9lvBvJMveZ8+xPf2QtKqLdQ9PECOwR5OCTAgu
-         9fsUQJP52oYRU/zggdDFKCcTK/m3zIjXQi42KxUZkRm4QGSLwun5LMBdH+heEjqo4LR2
-         Z5iQ==
-X-Gm-Message-State: AOAM533Q/m0sIHTEg7RtCov4IHfpHNPKy+RG3b4NJjsGcnTwyoTyrvbU
-	E3p+74s02LjllTV++YS5nBKlUZae6y4=
-X-Google-Smtp-Source: ABdhPJyxnHXx8mbrD1l6LcmwqRfjae2PS54Jy786754DL63v8fj5no34TNTRp5zw1BcmBc46qX1Wug==
-X-Received: by 2002:a05:620a:248c:b0:67d:b829:2570 with SMTP id i12-20020a05620a248c00b0067db8292570mr13572124qkn.429.1647894685002;
-        Mon, 21 Mar 2022 13:31:25 -0700 (PDT)
-Received: from [192.168.2.194] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
-        by smtp.googlemail.com with ESMTPSA id t19-20020ac85893000000b002e1afa26591sm13115688qta.52.2022.03.21.13.31.24
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=tqG8TQ0Su9aIsN6WFG9Ldgzcn+FunGlY3kyLydMp8Dc=;
+        b=ZnHGZyBTGgH7Frw+O/UW/2DG3HTstmRhnOAvHX0FTTqNAyV7OqeFw9xHe6EK1HVkik
+         IlcWeOgFS8MSW8qp1C62qUAcEW1/vDK6qadcKKPjMUrs/g7gr3sY5b1BlR8kNeECaIc6
+         3tb89gAathF2oJIuAfYsgrQ9DbWAAmcX4is/C6tRALpKLlublU5ZOatk23ayz1aKaGR3
+         5Cvpj5pyfil1PIsJ5LOiJskzJoW64v4ePubhAEsUj4zVDxIdzppsT5AjI5KNnfzH3JkY
+         GU3n9V7aCW+g1Fs0ddzgzcty/Gk5+eJRe8LI1PemhJYnLtFZtc1yKN3HG7GMyAxtJKuc
+         7iLA==
+X-Gm-Message-State: AOAM531s0FY/yIY9F+hxvH2MpG3e1HRO4+l1wjpq0b89hZUxZjRtM6+Z
+	6Y4CVisOtAstawGoUErBVQ3Cbevgc/N+67UD
+X-Google-Smtp-Source: ABdhPJz4m29+ar5uDLkuNnCDgLE6pktCMYv9EX5+zi0bS3Sh7Ta8TmzRzwv6rAJeFKBrrRYOpdSN4A==
+X-Received: by 2002:a05:6402:1e88:b0:416:9c06:9818 with SMTP id f8-20020a0564021e8800b004169c069818mr25552338edf.290.1647898970280;
+        Mon, 21 Mar 2022 14:42:50 -0700 (PDT)
+Received: from [192.168.178.39] ([87.123.247.135])
+        by smtp.gmail.com with ESMTPSA id kw3-20020a170907770300b006b2511ea97dsm7364606ejc.42.2022.03.21.14.42.49
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Mar 2022 13:31:24 -0700 (PDT)
-Message-ID: <b7c21a4b-2acb-50ec-7977-834335645658@gmail.com>
-Date: Mon, 21 Mar 2022 16:31:23 -0400
+        Mon, 21 Mar 2022 14:42:49 -0700 (PDT)
+Message-ID: <692cec7e-04ff-0b17-f7ef-ef5b0248b01f@ettus.com>
+Date: Mon, 21 Mar 2022 22:42:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
+ Thunderbird/91.6.2
 Content-Language: en-US
-To: Abby Mize <abby@lunasonde.com>
-References: <BN6PR03MB3137F5CCAACE6824D0756891C8169@BN6PR03MB3137.namprd03.prod.outlook.com>
- <E319DE84-E73B-49B3-9E70-A4EB2DE4056E@gmail.com>
- <BN6PR03MB31377AFA80B5870000923E19C8169@BN6PR03MB3137.namprd03.prod.outlook.com>
- <2a628637-4c9e-cb2c-9741-fe36ca6ca98e@gmail.com>
- <BN6PR03MB313742C54AC553D16633ADCAC8169@BN6PR03MB3137.namprd03.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <BN6PR03MB313742C54AC553D16633ADCAC8169@BN6PR03MB3137.namprd03.prod.outlook.com>
-Message-ID-Hash: JIW6K4FGNCXPG7BUIGHTS4GXO7F7XIB7
-X-Message-ID-Hash: JIW6K4FGNCXPG7BUIGHTS4GXO7F7XIB7
-X-MailFrom: patchvonbraun@gmail.com
+To: usrp-users@lists.ettus.com
+References: <CAA=S3PsQ7758e5AzDEyNuAsgA6xwm1NQXMZHzAgzfgqDXVB8xQ@mail.gmail.com>
+ <8d8335b8-bf02-af1e-3493-b0f4063409c4@ettus.com>
+ <CAA=S3PuRq4X17Ba0xKSoNZnheQ_YFsXGE7K4iFdm3yBM9AsMLA@mail.gmail.com>
+ <CAA=S3PtO-NgrrQVjQBtY5PAFDBYKb2qTB+X7jtZSObw+EA_VTA@mail.gmail.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+In-Reply-To: <CAA=S3PtO-NgrrQVjQBtY5PAFDBYKb2qTB+X7jtZSObw+EA_VTA@mail.gmail.com>
+Message-ID-Hash: JMHSRUYRDQYFCLA733VIOUA46PXP7K4D
+X-Message-ID-Hash: JMHSRUYRDQYFCLA733VIOUA46PXP7K4D
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B200mini QPSK
+Subject: [USRP-users] Re: Default CHDR_W is 64 for a RFNOC blocks, How can increased samples buffer in RFNOC block to 4096...
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JIW6K4FGNCXPG7BUIGHTS4GXO7F7XIB7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JMHSRUYRDQYFCLA733VIOUA46PXP7K4D/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6288917162806079922=="
-
-This is a multi-part message in MIME format.
---===============6288917162806079922==
-Content-Type: multipart/alternative;
- boundary="------------CLDDtxRQ97kuS6TtATsawa3Y"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------CLDDtxRQ97kuS6TtATsawa3Y
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-On 2022-03-21 16:29, Abby Mize wrote:
->
-> OK yes I appreciate that, SDRs are indeed a new area for me. I=E2=80=99=
-ll=20
-> check this page out and keep researching. Looks like numpy has a lot=20
-> of functions to use as well for conversions.
->
-> *Abby Mize*
->
-> Senior Embedded Systems Engineer
->
-> Shape Description automatically generated with medium confidence
->
-> +1 505 504 3611
->
-> www.lunasonde.com <http://www.lunasonde.com>
->
-Well, sure, but as you'll discover "conversion" doesn't really convey=20
-what *modulation* actually means in signal processing.
-
-
-> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Sent:* Monday, March 21, 2022 1:15 PM
-> *To:* Abby Mize <abby@lunasonde.com>
-> *Cc:* USRP-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] B200mini QPSK
->
-> On 2022-03-21 15:03, Abby Mize wrote:
->
->     OK so what will the API provide, just raw data input?=C2=A0 Sounds =
-like
->     I will need to find other libraries to convert the raw data
->
->     Thank you,
->
->     *Abby Mize*
->
->     Senior Embedded Systems Engineer
->
->     Shape Description automatically generated with medium confidence
->
->     +1 505 504 3611
->
->     www.lunasonde.com <http://www.lunasonde.com>
->
-> Sounds like you may want to start out by learning exactly what an SDR=20
-> is, and how they related to DSP work.
->
-> You should probably visit the basic tutorials page at gnuradio.org,=20
-> even if that's not the path you go down, it has pointers
-> =C2=A0 to a lot of basics.
->
-> The UHD library really is just about interfacing to the hardware, and=20
-> getting sample streams into and out-of it.
->
-
---------------CLDDtxRQ97kuS6TtATsawa3Y
-Content-Type: multipart/related;
- boundary="------------0SznQC7UqZNbYihNI1Mqx5iv"
-
---------------0SznQC7UqZNbYihNI1Mqx5iv
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-03-21 16:29, Abby Mize wrote:<=
-br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:BN6PR03MB313742C54AC553D16633ADCAC8169@BN6PR03MB3137.namprd03=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]-->
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}@font-face
-	{font-family:"\@Malgun Gothic";}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">OK yes I appreciate that, SDRs are indeed =
-a
-          new area for me. I=E2=80=99ll check this page out and keep
-          researching. Looks like numpy has a lot of functions to use as
-          well for conversions.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <p class=3D"MsoNormal"><b>Abby Mize</b><o:p></o:p></p>
-          <p class=3D"MsoNormal">Senior Embedded Systems Engineer<o:p></o=
-:p></p>
-          <p class=3D"MsoNormal"><img style=3D"width:1.3541in;height:.177=
-in"
-              id=3D"_x0000_i1026"
-              src=3D"cid:part1.kdL3Ycpj.IXOqOglw@gmail.com" alt=3D"Shape
-              Description automatically generated with medium
-              confidence" class=3D"" width=3D"130" height=3D"17"><o:p></o=
-:p></p>
-          <p class=3D"MsoNormal">+1 505 504 3611<o:p></o:p></p>
-          <p class=3D"MsoNormal"><a href=3D"http://www.lunasonde.com"
-              moz-do-not-send=3D"true">www.lunasonde.com</a></p>
-        </div>
-      </div>
-    </blockquote>
-    Well, sure, but as you'll discover "conversion" doesn't really
-    convey what *modulation* actually means in signal processing.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:BN6PR03MB313742C54AC553D16633ADCAC8169@BN6PR03MB3137.namprd03=
-.prod.outlook.com">
-      <div class=3D"WordSection1">
-        <div>
-          <p class=3D"MsoNormal"><o:p></o:p></p>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div style=3D"border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0in 0in 0in">
-            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
-raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
-              <b>Sent:</b> Monday, March 21, 2022 1:15 PM<br>
-              <b>To:</b> Abby Mize <a class=3D"moz-txt-link-rfc2396E" hre=
-f=3D"mailto:abby@lunasonde.com">&lt;abby@lunasonde.com&gt;</a><br>
-              <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"ma=
-ilto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
-              <b>Subject:</b> Re: [USRP-users] B200mini QPSK<o:p></o:p></=
-p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <p class=3D"MsoNormal">On 2022-03-21 15:03, Abby Mize wrote:<o:=
-p></o:p></p>
-        </div>
-        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class=3D"MsoNormal">OK so what will the API provide, just ra=
-w
-            data input?=C2=A0 Sounds like I will need to find other libra=
-ries
-            to convert the raw data<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">Thank you,<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <div>
-            <p class=3D"MsoNormal"><b>Abby Mize</b><o:p></o:p></p>
-            <p class=3D"MsoNormal">Senior Embedded Systems Engineer<o:p><=
-/o:p></p>
-            <p class=3D"MsoNormal"><img
-                style=3D"width:1.3541in;height:.177in"
-                id=3D"Picture_x0020_2"
-                src=3D"cid:part1.kdL3Ycpj.IXOqOglw@gmail.com" alt=3D"Shap=
-e
-                Description automatically generated with medium
-                confidence" class=3D"" width=3D"130" height=3D"17" border=
-=3D"0"><o:p></o:p></p>
-            <p class=3D"MsoNormal">+1 505 504 3611<o:p></o:p></p>
-            <p class=3D"MsoNormal"><a href=3D"http://www.lunasonde.com"
-                moz-do-not-send=3D"true">www.lunasonde.com</a><o:p></o:p>=
-</p>
-          </div>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        </blockquote>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Sounds like
-          you may want to start out by learning exactly what an SDR is,
-          and how they related to DSP work.<br>
-          <br>
-          You should probably visit the basic tutorials page at
-          gnuradio.org, even if that's not the path you go down, it has
-          pointers<br>
-          =C2=A0 to a lot of basics.<br>
-          <br>
-          The UHD library really is just about interfacing to the
-          hardware, and getting sample streams into and out-of it.<o:p></=
-o:p></p>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
---------------0SznQC7UqZNbYihNI1Mqx5iv
-Content-Type: image/png; name="image001.png"
-Content-Disposition: inline; filename="image001.png"
-Content-Id: <part1.kdL3Ycpj.IXOqOglw@gmail.com>
+Content-Type: text/plain; charset="utf-8"; format="flowed"
 Content-Transfer-Encoding: base64
 
-iVBORw0KGgoAAAANSUhEUgAAAIIAAAARCAYAAAAR8XQQAAAAAXNSR0ICQMB9xQAAAAlwSFlz
-AAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAS/
-SURBVGje7ZkHSJZBGMctszJtaFG2CBq2bdqiHRVStgcNGlgUldkkQSps72VLjAZERRERNGnR
-3pMGQZREQUZFRZGVac8D/xeu65bfFw36XviB3z3P3Xv3vP+7e+4MSk1NDQoQIBAEXwMXFFSD
-aB0QQkAIi4k3xHWiTUAI/+6HLORDnapEESIYv8sTS4gvRO9/Xgj07CXOEkUdgjEEs6CLxl4d
-9kka+3a8K9LwjmnERSLUcWaed/QtSCwlMolXxGNiNlHYUKctcYR4RnwjbhFRks9wIpuoJJWX
-IC4TOyz94phs0dhaIp4PiacCl4ipRDlL281Q/4FUn4mXhcCFuUSYQzBnEHksCI29AexrNPab
-sLMYSmp8NsAn3NKXKOIzfEc59D0NvgeIdHxg/t1Q4z8T9nvEXKK9GDzJl4O9VSqLxGrBbWw0
-9Os+C0xj64b63H6GwF2UvyXGGNruAr8HUn0mVhYCO70nijkEczIaHqix14d9qcZ+HnZPDMEK
-n1XEJ5sw6ZmDdr4Sd3jGG3xLwXeXYsZXVviPgP8sooBDXCYQx6WyCKw83njXaupeIy5obF11
-QqenA/ESdt0K3Qn2mS5bw+8UwhWoOB1+ab4IgZdzBPmQ0KfuFiHw8n3aYYzhRBaxJx/5A8/+
-4gohZGM270MfE3wUgm6rrYl43iZCDEKY97cJ4SqCw/v1Aviu9EEII1G3J68q6P81S98Xoc5J
-3XYAv47wa2BpLxRjaKexRyCvOAvhHlaJwR8hwGe9rr+CEFZCrCLBf1oI37yPLMyU8fkUAvf5
-oWI/jzXUCRG2kzzkDGGaBPSDQywKIG6rDULI8QQK4TzBu1v9QiH0k2OoEIKK+v4IYYpFCPUc
-hJDjnRqwZHt5Q38XIWBvzIOI4nhLIMahbK/DGJoQ5+B/Sj4tcUCRhEY4bCF8l5BkEcJVoawu
-8QLbWoyQaPojhIli/DRC4NVotESkP0JIQsO9NPbGsK+wCCFCKCuOYxnXa06kYPvQCeEAfHM1
-Sq/nuK9vgv9Qqbwayodb6veCXyNXIaC8Fq84EEMFbFUX/RDCDfiUNQhhlmuO8M4xeI1U+7pg
-H2RJbn4SAsprQ4x8lN1PvNYs21WxtezABxPpjHev18xe+fxfCf7bFP6HMdtLG/KD57yyGGKl
-FAJsfYV85ZYuiRWEME5jT4B9s+p0IwhhjosQ+Jz8ke/OiaYCMXLj2BdPoPEZngr5o2Gv+oQA
-lc6PEGBrigw4D3upSggZpllPzzGMJUrxUfgOYwDfDqIs2XA0K4O4ZELcIcKlVA9MHu5jFV+E
-APtgYRU7aBHCfFzW1UGcOKHdLSz74ZbjYzr+PxINaovfyHPO1CyxX1S3jRjgUWF5fo6lzru4
-aG4IziP4RVoy9s/y4OipCNsZQ/utVLMcJ4tTwiVMFv7eqTp2CUfC4/B7hXF65/bL8k2ipj77
-PjL4TIePbmuINyR7uUh4QwztxxnqL5SFkIRMeQmuYD1STHfyfGziXIBYxzeJRB+H28BE7oDp
-SpieYcjuCyuSvGU8IyzvSMYpQl7NCqGPHLy1cm5gaK8hjonrEJcWjvVCMdZEh/6O1diicezl
-9y7H+BfgxrCCQx+qS/WXC+10/e//6RTgR74Dyf5pfsk8/dQAAAAASUVORK5CYII=
-
---------------0SznQC7UqZNbYihNI1Mqx5iv--
-
---------------CLDDtxRQ97kuS6TtATsawa3Y--
-
---===============6288917162806079922==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6288917162806079922==--
+SGkhDQoNCkknbSBhIGJpdCBjb25mdXNlZCwgYmVjYXVzZSBpbiB5b3VyIG9yaWdpbmFsIGVtYWls
+IHlvdSB3cm90ZSB0aGF0ICoqaW4gR05VIFJhZGlvKiogeW91IA0KcHJvY2VzcyBibG9ja3Mgb2Yg
+NDA5NiBpdGVtcy4NCg0KU28sIHdoZXJlICpleGFjdGx5KiBkb2VzIHRoZSByZXF1aXJlbWVudCB0
+byBoYXZlIGJsb2NrcyBvZiA0MDk2IGl0ZW1zIGFyaXNlIGZyb20/IFdoYXQncyANCnRoZSByZWFz
+b24gZm9yIDQwOTY/IEknbSBhIHJlYWxseSB1bnN1cmUgd2hhdCB5b3UgbmVlZCENCg0KQmVzdCBy
+ZWdhcmRzLA0KDQpNYXJjdXMNCg0KRElTQ0xBSU1FUjogQW55IGF0dGFjaGVkIENvZGUgaXMgcHJv
+dmlkZWQgQXMgSXMuIEl0IGhhcyBub3QgYmVlbiB0ZXN0ZWQgb3IgdmFsaWRhdGVkIGFzIGEgcHJv
+ZHVjdCwgZm9yIHVzZSBpbiBhIGRlcGxveWVkIGFwcGxpY2F0aW9uIG9yIHN5c3RlbSwgb3IgZm9y
+IHVzZSBpbiBoYXphcmRvdXMgZW52aXJvbm1lbnRzLiBZb3UgYXNzdW1lIGFsbCByaXNrcyBmb3Ig
+dXNlIG9mIHRoZSBDb2RlLiBVc2Ugb2YgdGhlIENvZGUgaXMgc3ViamVjdCB0byB0ZXJtcyBvZiB0
+aGUgbGljZW5zZXMgdG8gdGhlIFVIRCBvciBSRk5vQyBjb2RlIHdpdGggd2hpY2ggdGhlIENvZGUg
+aXMgdXNlZC4gU3RhbmRhcmQgbGljZW5zZXMgdG8gVUhEIGFuZCBSRk5vQyBjYW4gYmUgZm91bmQg
+YXQgaHR0cHM6Ly93d3cuZXR0dXMuY29tL3Nkci1zb2Z0d2FyZS9saWNlbnNlcy8uDQoNCk5JIHdp
+bGwgb25seSBwZXJmb3JtIHNlcnZpY2VzIGJhc2VkIG9uIGl0cyB1bmRlcnN0YW5kaW5nIGFuZCBj
+b25kaXRpb24gdGhhdCB0aGUgZ29vZHMgb3Igc2VydmljZXMgKGkpIGFyZSBub3QgZm9yIHRoZSB1
+c2UgaW4gdGhlIHByb2R1Y3Rpb24gb3IgZGV2ZWxvcG1lbnQgb2YgYW55IGl0ZW0gcHJvZHVjZWQs
+IHB1cmNoYXNlZCwgb3Igb3JkZXJlZCBieSBhbnkgZW50aXR5IHdpdGggYSBmb290bm90ZSAxIGRl
+c2lnbmF0aW9uIGluIHRoZSBsaWNlbnNlIHJlcXVpcmVtZW50IGNvbHVtbiBvZiBTdXBwbGVtZW50
+IE5vLiA0IHRvIFBhcnQgNzQ0LCBVLlMuIEV4cG9ydCBBZG1pbmlzdHJhdGlvbiBSZWd1bGF0aW9u
+cyBhbmQgKGlpKSBzdWNoIGEgY29tcGFueSBpcyBub3QgYSBwYXJ0eSB0byB0aGUgdHJhbnNhY3Rp
+b24uICBJZiBvdXIgdW5kZXJzdGFuZGluZyBpcyBpbmNvcnJlY3QsIHBsZWFzZSBub3RpZnkgdXMg
+aW1tZWRpYXRlbHkgYmVjYXVzZSBhIHNwZWNpZmljIGF1dGhvcml6YXRpb24gbWF5IGJlIHJlcXVp
+cmVkIGZyb20gdGhlIFUuUy4gQ29tbWVyY2UgRGVwYXJ0bWVudCBiZWZvcmUgdGhlIHRyYW5zYWN0
+aW9uIG1heSBwcm9jZWVkIGZ1cnRoZXIuDQoNCk9uIDIxLjAzLjIyIDE1OjQxLCBzcCBoIHdyb3Rl
+Og0KPg0KPiBCdXQgSSBuZWVkIHRvIGFkZCBzYW1wbGVzIHRvIGEgYnVmZmVyLiB3aGVuIDQwOTYg
+c2FtcGxlIGlzIHJlY2VpdmVkIGZvciBibG9jaywgZG8gYW4gDQo+IG9wZXJhdGlvbiBsaWtlIGNv
+cnJlbGF0ZSBhbmQgY29udm9sdXRpb24sIGFuZCBzbyBvbi4NCj4NCj4gQ2FuIHdlIHVzZSBSQU0g
+aW4gYW4gUkZOT0MgYmxvY2sgdGhhdCBlbmFibGVzIHVzIHRvIHdvcmsgd2l0aCBzcGVjaWZpYyBj
+b3VudCBzYW1wbGVzPz8NCj4gSXQgaXMgcG9zc2libGU/DQo+DQo+IGFueSBleGFtcGxlIG9yIGd1
+aWRlIHRoYW5rcw0KPg0KPg0KPiBPbiBNb24sIE1hciAyMSwgMjAyMiBhdCA2OjAxIFBNIHNwIGgg
+PHN0YWNrcHJvZ3JhbWVyQGdtYWlsLmNvbT4gd3JvdGU6DQo+DQo+ICAgICBCdXQgSSBuZWVkIHRv
+IGFkZCBzYW1wbGVzIHRvIGEgYnVmZmVyLiB3aGVuIDQwOTYgc2FtcGxlIGlzIHJlY2VpdmVkIGZv
+ciBibG9jaywgZG8gYW4NCj4gICAgIG9wZXJhdGlvbiBsaWtlIGNvcnJlbGF0ZSBhbmQgY29udm9s
+dXRpb24sIGFuZCBzbyBvbi4NCj4NCj4gICAgIENhbiB3ZSB1c2UgUkFNIGluIGFuIFJGTk9DIGJs
+b2NrIHRoYXQgZW5hYmxlcyB1cyB0byB3b3JrIHdpdGggc3BlY2lmaWMgY291bnQgc2FtcGxlcz8/
+DQo+ICAgICBJdCBpcyBwb3NzaWJsZT8NCj4NCj4gICAgIGFueSBleGFtcGxlIG9yIGd1aWRlIHRo
+YW5rcw0KPg0KPiAgICAgT24gTW9uLCBNYXIgMjEsIDIwMjIgYXQgMToxNiBQTSBNYXJjdXMgTcO8
+bGxlciA8bWFyY3VzLm11ZWxsZXJAZXR0dXMuY29tPiB3cm90ZToNCj4NCj4gICAgICAgICBIaSEN
+Cj4NCj4gICAgICAgICA+IEluIEdudXJhZGlvIHdoZW4gd2Ugd2FudCB0byB3b3JrIHdpdGggc2Ft
+cGxlcyBidWZmZXIgc2FtcGxlcyBpcyA0MDk2IC4uLg0KPg0KPiAgICAgICAgIE5vLCBpdCdzIG5v
+dCEgR05VIFJhZGlvIGhhcyBhIHZhcmlhYmxlIHdvcmtsb2FkIGxlbmd0aCBhcHByb2FjaCwgc28g
+eW91ICoqbXVzdA0KPiAgICAgICAgIG5vdCoqDQo+ICAgICAgICAgYXNzdW1lIGFueSBmaXhlZCBs
+ZW5ndGggYnVmZmVyLiBFc3BlY2lhbGx5IG5vdCA0MDk2Lg0KPg0KPiAgICAgICAgID4gYnV0IGZv
+ciBSRk5PQyB3ZSBmYWNlZMKgMzIgc2FtcGxlcy4uLi4uLi4uDQo+ICAgICAgICAgPiBIb3cgY2Fu
+IGluY3JlYXNlZCBzYW1wbGVzwqBidWZmZXIgaW4gUkZOT0MgYmxvY2sgdG8gNDA5Ni4uLj8NCj4N
+Cj4gICAgICAgICBZb3UgZG9uJ3QhDQo+DQo+ICAgICAgICAgQmVzdCByZWdhcmRzLA0KPg0KPiAg
+ICAgICAgIE1hcmN1cw0KPiAgICAgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fDQo+ICAgICAgICAgVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNy
+cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gICAgICAgICBUbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+DQo+DQo+IF9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2Ny
+aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBt
+YWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUg
+c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
