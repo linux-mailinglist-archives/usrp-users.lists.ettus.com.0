@@ -2,43 +2,44 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B044E6583
-	for <lists+usrp-users@lfdr.de>; Thu, 24 Mar 2022 15:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F714E65AA
+	for <lists+usrp-users@lfdr.de>; Thu, 24 Mar 2022 15:51:19 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id AC21E38439B
-	for <lists+usrp-users@lfdr.de>; Thu, 24 Mar 2022 10:42:01 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 28ECA384A8E
+	for <lists+usrp-users@lfdr.de>; Thu, 24 Mar 2022 10:51:18 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1648132921; bh=AeFka61Q4iHGwFSA+M6oHZWdENujMhDrMxMjBC+Wx+c=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=PRXBkuyyVaRfQdgWp3VqWnX5rPwOlcUD5rCT8hMfW2CoKm7INY++/MOsANiVDJInS
-	 5hSp5XEt9EXp6f1OEBYpoI4gQnP3dPM9IDbIlfB9p70OQwtFk/AsfMEa6zEhjw9bv7
-	 tL6/ULcVG1w1N6qlOXVfbWEvw8DWMyzVWZzzxMa+saumKzeOp+YK9PepdLL3HuTTeq
-	 VSjtyOnbidEhqcTiHuLIav1HS+fYkzVu9SRBlh89z9AFxqo6UfLW2W9+G2pd99cSsb
-	 c2/LbyyfuqUWxf6xEXxuuEY3mHT7gdofGSmU/H8rwf8B7LFfAeKDauiBdAql449+yt
-	 bt0KD2a/WB2nA==
-Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [148.163.129.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id A7B08384A00
-	for <usrp-users@lists.ettus.com>; Thu, 24 Mar 2022 10:40:39 -0400 (EDT)
+	t=1648133478; bh=t6q+lNwzC0IsC3fUK8OeOOBqSHLhke1rnYJRJJe45gs=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=QFE/jC0ouLiygyFwOtsngagks0iVRdY+KynEUn4zy6l3pb0RnTc9jlLoXWCvryZSd
+	 1wIgvV5Tpg7UED1vm0Ni4CHGAbZVuai8vzEnC8AMBS1AUvBAeidEZmbdgmhrciVzBU
+	 o4bXHuRN/odukgLITm9ay7kNcCUF4GY/LAD0aPMNIjEcvenKAJZPujFXzLZKzmFfCn
+	 VhSNTFyRCBaceuM3VBjsnJi00TSgre0C6BVqE9xZehKOGU+YGwRjMgI28eX1nfPvEW
+	 MN8jocYhgS2tPUJLT9GCD0q1y9NbrfCG0gq0TKUfT0wgrktWvzb5afbe3t9hEHdJHH
+	 8jACEzPsB+Ong==
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [67.231.154.164])
+	by mm2.emwd.com (Postfix) with ESMTPS id C4576383D49
+	for <usrp-users@lists.ettus.com>; Thu, 24 Mar 2022 10:50:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="Gx8fLvbt";
+	dkim=pass (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="ROuBCCVf";
 	dkim-atps=neutral
 X-Virus-Scanned: Proofpoint Essentials engine
-Received: from mx1-us1.ppe-hosted.com (unknown [10.7.67.132])
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id AAE214009A
-	for <usrp-users@lists.ettus.com>; Thu, 24 Mar 2022 14:40:34 +0000 (UTC)
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2170.outbound.protection.outlook.com [104.47.57.170])
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.48.6])
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 004162C006F
+	for <usrp-users@lists.ettus.com>; Thu, 24 Mar 2022 14:50:12 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12lp2046.outbound.protection.outlook.com [104.47.66.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 841635000A0
-	for <usrp-users@lists.ettus.com>; Thu, 24 Mar 2022 14:40:34 +0000 (UTC)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id AE547900089
+	for <usrp-users@lists.ettus.com>; Thu, 24 Mar 2022 14:50:13 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jqWM3U6tz0NkSMEtM5yIAnungrB6IjAWgbe2vv4S2ux15HXYHk/TrPgZCwFA80XeP4qMy2PxInQT52QcFp0tUWTiGKPh1h6hluiQNp6EX+gHjSFzvT7rWt5M0MXww6ounivHOnyH3scBAEVv912M8XgCKa7sXDWeZlZhDki5zYm1IVeYdvCMzPL7RMkL16GdLOdaumh5iZOxnXMdSa+NbgBfRTKjrQgTZmN7YhD7CjrWHmQVm1xHmE2rtD7nJYfcFXjMZ9hwwl2OiFuMOWDGmg6BexH8XAIBRi60hUyE8zDCWV4oCsPL/6ZHBMhFmqRGTVpwlxat8YBxes/it5IpYA==
+ b=flOkezUlghbQWNJ01vYAeTLGzwodHPf34a60pNZLfkUkeZaDYLs08puAzBMHn6i/sW8saxiwnUX+jFZerv7+rX24JVEd/t7o5NjcIn9eaF0s1npCkw551q9qV1327SXlS1BSOIJv79Z2L82LTk6f5BwNOcNpY9feHuWpzQP1Flhb8ZEPjkn7B3wG0DGuHIM9nDE88OK/TAihfXSGNqLxwTWHjlpK8AYQOjZn8pxnV2yDLDguCMJPooetS8iy8FvME4UQV6whjRqYvxKZxXlWcP6hlhmJ2FbNXcSfDWNr+Y5yZnWtUSvAbEPOJHCqm6QtBbNU/3c9DjKpiM+OJSSETQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EhvGTLP+DZ4Ns1yf8W1Xh1DDOqucNZBvQKcqRzoqh/w=;
- b=EURdU4N0zlY/zIkyZvlgnuKlSJ/4LSFomp/TNPGayAHy1C+0Fh1JThSQxQbEwbCXPOfk5gD45UW0fIbvZHvGSDlOzonqDuLvBo8b+vkurgcsD31EdtG0ROrTOeD/g3VkXE34Xe8OxK9xHjgmbb2qfK3tRRCH2GPVvc+NE1sLnjSvTV+uKcKCd6otrKZ4tFchvAjwZ8Lsdnw4PMC+CXFAUOa6oYCGu95Wr/kRFY0ythf9W1JFUEVmv1cd0vvauEzeKLUkRmxUvY6gd2TKYwtQS8VHwza3vNOaPe9rFCodwuzRuorEdNfWvDu71O41+lzmM5PCldt6A7JuesuNO/i7fA==
+ bh=9BL9w3QmmxLltxe18pJAEEWe28aLw+J4iR5GpXYPEZQ=;
+ b=hFFZ1PfIacj4b9IEqQEhJ35OQq31GsF2ltHpKXZ0GqePSdyesntBunYNnpJ/DcAHO1tilrZSq7WcR1vs+ZHykuueccjW+0OX69aZG1dxUiWre4Bfr+sL7nKJgEDI67hBVuV3dNcjHXZKSMVR4KIUGHH+M37j5yJcbqGzcHM8Jv3cy3FrhY+VEVCFcLlngoDRcxIZMZ3kOJTnSMWLgPlZUkjZkiwnMV5FzhlK+yM7TMrJ0vpee1QrY3+gsp1Ar3acCSI20ASYQVGelj9XKXgOw6NdJv4N9HPkRLY1MXJIYw/eQxgks+1ynlBZLZLTO50ug7fKQ7nhlszPhypvIplL5Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
  header.from=gardettoengineering.com; dkim=pass
@@ -47,23 +48,27 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=gardettoengineering.onmicrosoft.com;
  s=selector2-gardettoengineering-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EhvGTLP+DZ4Ns1yf8W1Xh1DDOqucNZBvQKcqRzoqh/w=;
- b=Gx8fLvbtPI8TlJpJJErEm9ODlQhklWwSJ3vYUQiWTOMCNWz11wnd8mH7dcT7iQzY7Z4tYI2gDA3DpVn7HAd4+OcqHQt52LlUu3POPR8LR506AzAjDX3dYxa0XhNNXU5FVmZrBW1SM22qps+H/IwzCE9mzjxrJqTLrCtUo4tntkQ=
+ bh=9BL9w3QmmxLltxe18pJAEEWe28aLw+J4iR5GpXYPEZQ=;
+ b=ROuBCCVfnR3MTCaxuRKAEmlqbI1la38fCMwoUWG2jDSw2qddLHN2KWJBq/JZ8Y8MfsGOe2Zg05A9dQ2vzT8TxvOFrvVtFBUIZQ0LNDVoo+AfJO1R32LHByJ7G8HXTUZcd55iYQadSK1FtoCwrRTh2743h+BU/nV+1kqt9Ueg1WI=
 Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
- by MN0PR12MB5907.namprd12.prod.outlook.com (2603:10b6:208:37b::17) with
+ by MN0PR12MB5882.namprd12.prod.outlook.com (2603:10b6:208:37a::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.16; Thu, 24 Mar
- 2022 14:40:31 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.19; Thu, 24 Mar
+ 2022 14:50:11 +0000
 Received: from MN2PR12MB3312.namprd12.prod.outlook.com
  ([fe80::98c0:773c:d193:9504]) by MN2PR12MB3312.namprd12.prod.outlook.com
  ([fe80::98c0:773c:d193:9504%7]) with mapi id 15.20.5102.019; Thu, 24 Mar 2022
- 14:40:30 +0000
+ 14:50:11 +0000
 From: Jim Palladino <jim@gardettoengineering.com>
 To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Thread-Topic: rfnoc vs mult_usrp API question(s)
-Thread-Index: AQHYP4kyn43/yD/+p0+aicBl5i1xrA==
-Date: Thu, 24 Mar 2022 14:40:30 +0000
+Thread-Index: AQHYP4kyn43/yD/+p0+aicBl5i1xrKzOnQJE
+Date: Thu, 24 Mar 2022 14:50:11 +0000
 Message-ID: 
+ <MN2PR12MB3312931656671448116A815BB8199@MN2PR12MB3312.namprd12.prod.outlook.com>
+References: 
+ <MN2PR12MB3312BC29A0F365E1378DD71FB8199@MN2PR12MB3312.namprd12.prod.outlook.com>
+In-Reply-To: 
  <MN2PR12MB3312BC29A0F365E1378DD71FB8199@MN2PR12MB3312.namprd12.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
@@ -73,83 +78,102 @@ msip_labels:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=gardettoengineering.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 38470fb7-c84c-4b98-543b-08da0da43f07
-x-ms-traffictypediagnostic: MN0PR12MB5907:EE_
+x-ms-office365-filtering-correlation-id: 951c75d0-03a7-45ca-2594-08da0da598d8
+x-ms-traffictypediagnostic: MN0PR12MB5882:EE_
 x-microsoft-antispam-prvs: 
- <MN0PR12MB590738E2DFF65AA824EAE843B8199@MN0PR12MB5907.namprd12.prod.outlook.com>
+ <MN0PR12MB5882768D4EB5C5237558681AB8199@MN0PR12MB5882.namprd12.prod.outlook.com>
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- KTiKVwda/xsZGRwgkWt6CWAqLyudmlQNGtI9xW5jPVqdkVRXz7NedD9IJa1mlx6oirmJ78sDf060w3DfreZOJahcbc7hU+v9dMgKVlrMlBrX25Y+QOowfdmgdi21THOnsxuO7fEC/HndRjwKiw925LTYmrDgXDPB/o7uGRvlbti6Oo80YYgT61if+rQYxltEEoBNEMVEOueEQIGkiCsVZfYN9IAN2cYtIxkCXyAimCitO62ZgPiNfnBDr+osyW0+FPfUC10QkUkAsLHxQ3zE1v4QsOHzL1ZjFaqzhSiq034RqqcxipOPAu+kXED5ZrWwqNQZTy/8l60ow2YPQE12IWeutk5R7kEM5h5D+b2tvhuBpcDKUua29idGumMYPqswl/G0zZWXRLgCMQhfWWMRlz4THxg6i412mpY4Gfdkql8WTZ3ZYQfsSFJR/PzcaBLk3GjnO7hK6BiwWFJ2j6ijNULRrVyrkJiieC9QAAId5dTHlXON8hu0cZ60KV8UBRCXhQwPaKgpHbK4D3MGk2iYPbcMeBXfEqi4RpHFsK/EHN3mrILN6NXvWF79GvtEVXXZXA+PRskIfjkAU4RPalBlzWizuOqgIU3IaFsM0XR4RiL6a8cEBJeG/sUrlHAx8d1CRzxGNqcOZI/3S6SVyJlh+jpVIV5sYdsrYUv6wucMonJ6lXNxf6zKEAkRvWgTmvFEY8/E8EtyNIb//B1CqBUvfA==
+ JZQMg16/h0EchVTwDCNPOBqigmywz0oSPmHHAQg3B74zfKX+tjm18eGZONmKbLCcIOg2XeeP/pLnSV52IZar/iGeeh+wUnUXryUAZ786C/TDCUYub9afyvG3nVUnXaHPE5zVKK5P6GrTPxj4nZlDxcHxKAA53lQFzosq5elbZjd1rIgIIDOK/IBdrIK9TrMMq0YOztuDzsIRSI0Dnf2+z5dbYqEfPCw6/rqmvap63clyrIb2AO0BQKDVyUkzGygxMI0IY0YB202SbJ/8S+atEsa4CfFOLgYGIFUJMzoxBuD7rlrkRfb4jUEt0ZjpwaTX+S0y3Q7sBsqM8XkxuCiE1Zpv0dfwFMmra+FyC7YQBWGfBnumylKMkmQ4jwQISIQOSLCfoPlVsOjch3AHDflrrSdUaT3PBjAUf7rgMoyjd/YpeYHTyLpPpvLBcYy0cIpZuutjhCLY0Y9xALLwOQ0K52HUWG3/sLXG3XP1d9dcL4T682SHZSYlf5uvTismGzpEX3SHWNcrVz5Q9Gh2c9xLQ5AXxbZSd28EtT5M+Crq8Rh1VkPo8iGicYvoC28PYIQNHfDNWkhDc2PYfpkw/6NxlBSYUgj9l4aquowCXmGmwh+OhG3fNxNbBL22ckRQACfd4CcDwDaFUmxWVluvAY5LXQYxCR6lgB2umwOrm2kj2VA0aucT20Us3PxqFYCHj/y/yqP3Ajhj9374z35AVVVFdw==
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3312.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(136003)(346002)(376002)(39830400003)(396003)(366004)(38070700005)(66556008)(38100700002)(122000001)(2906002)(9686003)(33656002)(7696005)(6506007)(55016003)(66946007)(186003)(52536014)(83380400001)(71200400001)(26005)(6916009)(8676002)(86362001)(316002)(19627405001)(5660300002)(8936002)(508600001)(66446008)(76116006)(66476007)(64756008);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3312.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(396003)(136003)(366004)(39830400003)(346002)(376002)(71200400001)(6506007)(53546011)(7696005)(508600001)(38100700002)(316002)(5660300002)(38070700005)(2906002)(55016003)(8936002)(186003)(52536014)(26005)(66946007)(66556008)(64756008)(66476007)(76116006)(66446008)(9686003)(8676002)(122000001)(6916009)(86362001)(33656002)(83380400001)(19627405001)(2940100002);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?3IZvFhgE1Co3hCnm2W5OHtu4SJkxIA1YLqmh8jUIvAWRjoNo8sQ9P4hCkW?=
- =?iso-8859-1?Q?QW8I8YfHsp11gB2gBXEOUv8o1DvEEghdOq0jsWPZegnR2IPOMvBC3N/Nyi?=
- =?iso-8859-1?Q?hI4Guuc8HthXs9iyrt1FCGUQnzPyNRZyccF5X52SpbfT+C14Shry22LAn9?=
- =?iso-8859-1?Q?as5VH1vcOQHtiJLJvEK8TKk8R7vK4QPUG95/GgcfTACC4EkSC2qVY7uDiQ?=
- =?iso-8859-1?Q?CzbnjVt7l91NaB4TbAx9jBqZaKnqQIcKAcApQbL/fbfPTaTqb3hbNx4uGi?=
- =?iso-8859-1?Q?byvCPbO92aa6m+IXj8DGVloPZRq2bg/AfDhVILWxLkv6XeSGQ4CRITKIuh?=
- =?iso-8859-1?Q?AuyTfR9/HG+Mu1gq9bK7l5Ml5lmIsppc+I9hCOTDyPdQbY1VK4Ox984aR2?=
- =?iso-8859-1?Q?KpC/jBoS0qpGg5NfPwd8eI0vgRRQxawZspODu4jFKDBkwnHGGbGMM9Qfft?=
- =?iso-8859-1?Q?ENetIV//GX7bPs4mFl1t8+WLYDCpg24mXxt6skbByu/T9HXTgwtL/hsGUj?=
- =?iso-8859-1?Q?GIcne9pesIVz4OE3L4wb7/OnAP6UF+BM3NNHANYNtg71oDUncbMrPzdqMC?=
- =?iso-8859-1?Q?oszUTR61TX3GuF9JPU1j5Mm6aPg2Pki8U9xQ8qViHRMiA/CcpY3F3IQNcZ?=
- =?iso-8859-1?Q?0Jxr6P4t0CbEKG2ENftF3F9c4sKDt7cDLf3y1Cykyu2ya1LI8DVpJna86w?=
- =?iso-8859-1?Q?6xLZ+Htedj6CSx17Rwtg5kCzWmpLUlw0JMkmpyY0k84ZTgxNnCAg5Cxiub?=
- =?iso-8859-1?Q?OjA2h17E5bCo/NT2SHVh3b4kYeLR8Wd4ed2Ehgkv4rXMknIZnIwCX0jh1B?=
- =?iso-8859-1?Q?5qHCnHTqpPbgW5fcP9bmqsaySnbwHt7f+6vLImvS3T/jPzJR169vdIS+Hw?=
- =?iso-8859-1?Q?UWCH/1LOvJw3oYjd3C2BPxadHX1+WtWIq6GSxm/XJuupBZg015TsqsAj+C?=
- =?iso-8859-1?Q?wOwZxMNcD34i3j7eW9U5gNDqo8VsGNqN8Mw5m2brFS1vviD3Ec+VFQwjCd?=
- =?iso-8859-1?Q?SNWmtYPGUfFt7NY0SIV5WGcOxQ1MNwsijGBvbTlemv2Bmg5eFnv6Pj02UD?=
- =?iso-8859-1?Q?Qa9Wr0m7qbfgq/VRvUWQj4idG1VpgeCcW6G6K3/Eu61m1PGXrqwJ6CvAWC?=
- =?iso-8859-1?Q?UXC7Ecc8rkg8rVmkNKKEfoiqx61+zXSAjlIphcujxbwb8wd4uiOKEdl4Dn?=
- =?iso-8859-1?Q?NbEF5ChxjUixTSRIlBJM54xRualJ2TEtJr4ys7rpXde1+LpFCLtgTyxS77?=
- =?iso-8859-1?Q?9HrxKyC517h6fonwH5oSDDf79lugYWxtryTN4Vjb/MfZ1JyZONuMHkhNj1?=
- =?iso-8859-1?Q?WBJxABiYtsXmV5KUfl7xvZCIc43MxHj/Vz6et9vg4W67slVxcAV7fMH9Kt?=
- =?iso-8859-1?Q?w4K7jkLV+WOyd4A8RbYdX3WyYGke54TBkNIKEgarKiV+rYhNsZKoWAAi78?=
- =?iso-8859-1?Q?4c+lksXfZUvC0f3rCLNlcOIPeA6XC7AD76SRGjY4TVrfRjEC1VkoCofLP1?=
- =?iso-8859-1?Q?srQ77vLoV2OKAaeD833F4RMLypEplktilpmuMpuBsVKQ=3D=3D?=
+ =?us-ascii?Q?lKcPzHohzESKWtUvby4FeAAvyqTkiWJe/uvLejxYs6dTVRyOSQWz6hxNqbuX?=
+ =?us-ascii?Q?Mi5vshhYhTH+ZAtEjHF1q2sjzkPtYo4BAZorrwCYqjIYUuX2pAyXMJWprZK/?=
+ =?us-ascii?Q?9Xefd+1RdX9+OiaBIqbIQI/rN6Eh6C1YqIpVD4zOzl33PFiQ5vVQd4h0vNfB?=
+ =?us-ascii?Q?6X0BVScDmU6t8Kjxa4ah5evB3OZSmRFvdGRvTiwNcWt968SVXfnDPmM1Zigm?=
+ =?us-ascii?Q?GoJ+vcZ3B41PHdQPd3DRIig/LDdq/RSJHhz8tOq5GbkyDtKARDYtFVeEP82e?=
+ =?us-ascii?Q?I1KlB4LrJq0cr7sJgxE/4pEqjKCxAvOyzmqtWyw5GjJe7NVSxZsGieODuv6b?=
+ =?us-ascii?Q?EY5+sVxNq6GzD/K26WR3V41Gdn1B3Fa0x/3BwxqxA9P1xrUL6FcCcE7iQWyM?=
+ =?us-ascii?Q?VHvHi40lVBORfy8IuNG1aefqdIBBK1v4goFH+D499XNUPPqlEfut/m+JtDGl?=
+ =?us-ascii?Q?kt5JeIZqNvXsnYkGKkJKBGScQXy1YV7f3SCbPOVEYqYPOEHJhtqcNip9msbk?=
+ =?us-ascii?Q?kbgO5XXSo6c0zXRsPH+Mmy6L0kBBf9GMlEDowGJ2mZfaV1+4+KxbQ1SaPzZM?=
+ =?us-ascii?Q?LnKBfv3S0EenwBzgW+P/hcMYcA2vbDOegj5h9d+jAV8byy1FcabWIGiamQqQ?=
+ =?us-ascii?Q?UjxhRSPh+ckJFFUa9+ynhAsys7hglbE6COZFUhxrWqpF/ELeGE0QEbY9FZzr?=
+ =?us-ascii?Q?KlUJg4J92T7pjeBoNpCVKKrz0AOeRURuHJwLyN22VvQBvTiYOY0wXt0Jnb80?=
+ =?us-ascii?Q?xjoZmjf2rpLlQ7z6TIyBj7RnQcYr+I0k3JwjcvTI2Xmjox5FNc1p+AgQT1Ik?=
+ =?us-ascii?Q?qN/8j3+e5TFXHRtm8afeHBdT/2rby4eSF3byMTxW/m4Nr+xqSMBGad3B+veu?=
+ =?us-ascii?Q?5kEhIi1MoWoL1/PdZ1Ow8Uj7X5594nKCJndMcbuTSWEJn/YVZicijlGeztIr?=
+ =?us-ascii?Q?u9VhH2c1X24OkAPlsBOQoH1RfXD/w5HWG65NMVajbNCZy0tsPAsaoCnXBZjg?=
+ =?us-ascii?Q?ZSSg2GEUJmDR4amlcGAmJep5NXyS3B+XhC28X2EO4/f+Kct0zELUrtMzGouj?=
+ =?us-ascii?Q?cOq0CtuDNoYg2pepf46IrTQl9AYfmmNgeC1OcJvZigvRvtIBAx+XOFkCor8o?=
+ =?us-ascii?Q?UnmQ1PbOef4QZhDWO5j4tqaLX56Cdd8UW4+JiPL3XSE6j6rAVlgctFkdksa2?=
+ =?us-ascii?Q?ZTskOFmLP0f3Hy5GBsKKo3EYBQyH8GBSUblR2SQkSUpTYpxzGF9cIzzLRJOA?=
+ =?us-ascii?Q?m1bOtbvPPuHw62gIoyz3xqrx0zzbraKcwmkIwYEbJ5DR7B5xnWN3+MEZPgBS?=
+ =?us-ascii?Q?XpKLZ/brkHqwqXHsLdhg1w1CNjc4yV3GB1b5P/ykkg9nmqxP7xEhp1zIVuhP?=
+ =?us-ascii?Q?sA/jAFO1+HuXov2fbctvxYdktscTRGQQXNR3TclVOTmEDo1oTYYMMGe7U87h?=
+ =?us-ascii?Q?52eg9yzLndAQn15bATiM70PME3UW08Jf1IVODWcUyDEl/ij1gj4AuLTETQGA?=
+ =?us-ascii?Q?lbwHr0R1X9FvJCZ3cxSlBp06Q7U5otrusYkmEA4wtmcyGRllwQjnFPsGKhnG?=
+ =?us-ascii?Q?kEqZvcJvc2zdw3O48ykyF8MAtligUyePLxzHHI04UuDUz8ELjo1gK2HN8Qqx?=
+ =?us-ascii?Q?2oDTTN0DoSheENA6oCLAvc1xvjTkumCj2UI8Sn5IQOCup5HwwSp8cN9jGOrF?=
+ =?us-ascii?Q?js4FRpnqrnutPfMORzGu0QN57OlwNJQvk23MXsT24pPwD2rb1kmkLj3LpSX6?=
+ =?us-ascii?Q?jOn6kZ54WU3uX6GQBtx14Fk4EaNfRCU=3D?=
 MIME-Version: 1.0
 X-OriginatorOrg: gardettoengineering.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38470fb7-c84c-4b98-543b-08da0da43f07
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2022 14:40:30.7870
+X-MS-Exchange-CrossTenant-Network-Message-Id: 951c75d0-03a7-45ca-2594-08da0da598d8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Mar 2022 14:50:11.0476
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0TvS1hX2lGf5c+Ujr3NX4n1EVWE3dHNulYBD2+PMH6QPd01b6M49evrnw4iafduxCcEgUQlaYtmRdAzZ3GBfsuy289q36C7GsqR4wXTZ6X4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5907
-X-MDID: 1648132835-B3rsw19W3Qs4
-Message-ID-Hash: AMT53FDVSEH25JE77T5H2OLJBBXDP4PD
-X-Message-ID-Hash: AMT53FDVSEH25JE77T5H2OLJBBXDP4PD
+X-MS-Exchange-CrossTenant-userprincipalname: f9MgbsqW2cSZzZLkAfx8lVNZOivaHkpDwovywzpY50G8PyowuHT8nl3HmbHdG5CvrHABRcqrl/KLllsb3u+sPRiR5+dvQBY+YbOB1AMsB4E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5882
+X-MDID: 1648133414-ESIedxyvtL7e
+Message-ID-Hash: BDOAF4PKSUH2EXJUXUAXYWNUJUGMIUD3
+X-Message-ID-Hash: BDOAF4PKSUH2EXJUXUAXYWNUJUGMIUD3
 X-MailFrom: jim@gardettoengineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] rfnoc vs mult_usrp API question(s)
+Subject: [USRP-users] Re: rfnoc vs mult_usrp API question(s)
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/M6PMZSNY5FGJAKLBIVKZ2FOXC4S2VHLU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2RDQESLDIKW54T5F5RRDSBBMWSKZG4RH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4973314548162866681=="
+Content-Type: multipart/mixed; boundary="===============2259233829227066329=="
 
---===============4973314548162866681==
+--===============2259233829227066329==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB3312BC29A0F365E1378DD71FB8199MN2PR12MB3312namp_"
+	boundary="_000_MN2PR12MB3312931656671448116A815BB8199MN2PR12MB3312namp_"
 
---_000_MN2PR12MB3312BC29A0F365E1378DD71FB8199MN2PR12MB3312namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--_000_MN2PR12MB3312931656671448116A815BB8199MN2PR12MB3312namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I just noticed a typo in my original email. I meant to say "I'm wondering i=
+f I could/should be creating a multi_usrp_rfnoc object . . . ", not: "I'm w=
+ondering if I could/should be creating a multi_usrp_rfnoc class . . . "
+
+Just correcting that so I don't cause confusion.
+
+Thanks,
+Jim
+
+________________________________
+From: Jim Palladino
+Sent: Thursday, March 24, 2022 10:40 AM
+To: USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: rfnoc vs mult_usrp API question(s)
 
 Hello,
 
@@ -186,36 +210,87 @@ Thanks for any help,
 Jim
 
 
---_000_MN2PR12MB3312BC29A0F365E1378DD71FB8199MN2PR12MB3312namp_
-Content-Type: text/html; charset="iso-8859-1"
+--_000_MN2PR12MB3312931656671448116A815BB8199MN2PR12MB3312namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
 <style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
 ttom:0;} </style>
 </head>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
-Hello,</div>
+I just noticed a typo in my original email. I meant to say &quot;<span styl=
+e=3D"background-color:rgb(255, 255, 255);display:inline !important">I'm won=
+dering if I could/should be creating a multi_usrp_rfnoc object . . . &quot;=
+, not: &quot;<span style=3D"background-color:rgb(255, 255, 255);display:inl=
+ine !important">I'm
+ wondering if I could/should be creating a multi_usrp_rfnoc class . . . &qu=
+ot;<br>
+<br>
+Just correcting that so I don't cause confusion.</span></span></div>
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
+<span style=3D"background-color:rgb(255, 255, 255);display:inline !importan=
+t"><span style=3D"background-color:rgb(255, 255, 255);display:inline !impor=
+tant"><br>
+</span></span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"background-color:rgb(255, 255, 255);display:inline !importan=
+t"><span style=3D"background-color:rgb(255, 255, 255);display:inline !impor=
+tant">Thanks,</span></span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"background-color:rgb(255, 255, 255);display:inline !importan=
+t"><span style=3D"background-color:rgb(255, 255, 255);display:inline !impor=
+tant">Jim</span></span></div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<span style=3D"background-color:rgb(255, 255, 255);display:inline !importan=
+t"><span style=3D"background-color:rgb(255, 255, 255);display:inline !impor=
+tant"><br>
+</span></span></div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jim Palladino<br>
+<b>Sent:</b> Thursday, March 24, 2022 10:40 AM<br>
+<b>To:</b> USRP-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> rfnoc vs mult_usrp API question(s)</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+Hello,</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 I just want to make sure I understand the different API's and when to use t=
 hem. I've been using the multi_usrp API for most development using the stan=
 dard FPGA load on an N320.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 I recently added in an FFT RFNoC block into the FPGA load, and will soon ad=
 d 1 or more custom RFNoC blocks. I switched to the RFNoC API for my applica=
 tion code so that I can create my graph and directly interface with the blo=
@@ -230,12 +305,12 @@ t of pre-existing code using the multi_usrp API. If I add and start using d=
 ifferent RFNoC blocks, I want to
  be sure that I need to switch over to the RFNoC API before modifying all t=
 hat code.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 One thing that confuses me a bit is that I just found the multi_usrp_rfnoc.=
 cpp file, which contains the code for the multi_usrp_rfnoc class. I'm not c=
 lear if or how this class is used. I see that it is a subclass of multi_usr=
@@ -248,26 +323,27 @@ under the&nbsp;LIBUHD_APPEND_SOURCES in &quot;/lib/usrp/CMakeLists.txt&quot=
 srp API with an RFNoC-based radio. Again, I don't see where it's being used=
  at all, but I am far, far, far from a C++ expert and am likely not underst=
 anding something.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 Thanks for any help,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 Jim</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
+</div>
 </div>
 </body>
 </html>
 
---_000_MN2PR12MB3312BC29A0F365E1378DD71FB8199MN2PR12MB3312namp_--
+--_000_MN2PR12MB3312931656671448116A815BB8199MN2PR12MB3312namp_--
 
---===============4973314548162866681==
+--===============2259233829227066329==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -277,4 +353,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4973314548162866681==--
+--===============2259233829227066329==--
