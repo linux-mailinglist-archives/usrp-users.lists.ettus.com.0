@@ -2,175 +2,279 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E67F4F1107
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Apr 2022 10:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F0D84F15DD
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Apr 2022 15:29:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8DF4D3846B4
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Apr 2022 04:32:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F1A34384694
+	for <lists+usrp-users@lfdr.de>; Mon,  4 Apr 2022 09:29:57 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1649061158; bh=qeqJ5pRQ54HXMC1xodbnBudgGNHTCRZXGuyE7WerBUM=;
-	h=Date:To:References:In-Reply-To:CC:Subject:List-Id:List-Archive:
+	t=1649078997; bh=tEBHixaVb4/pUShx9QaqxYF+bXgvGag3Gb7F6a8rPi8=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=NElaB4tmGETRxXmF/AWLyawZpEAJjCZtRKXRRXQFaDr++KGbans8dr/fhDKY8Kpbv
-	 yOzWC0ZAYrk1ueHhIlwdD0TLmlb1ABFcengLgdDWZN+zDjxPoHtF/PL4M0BKVgAjq5
-	 nOOumceWvoJBUKPFpYhyropCuhac8hHCvUAHMF4eb27Us54p8yiQvDbHHQ5UGb+3Qo
-	 dFYzFeZ1yRIPtWGvN6Ge9CcETpe3xJxPBdJKO3WZjbmUh86WsVruqRl8PVrQ0xmYou
-	 CfmqHb6Q2U80O9bWmX3aDgTyGD8CQ2g3/rUdogLxq/HjyRoRrEEP/GZwjNFZOg0G4C
-	 GS4UBp+W+aU9Q==
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130090.outbound.protection.outlook.com [40.107.13.90])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7762F384642
-	for <usrp-users@lists.ettus.com>; Mon,  4 Apr 2022 04:31:45 -0400 (EDT)
+	 From;
+	b=lRZ47wJtLEyhX6P8WBCS6SRt0zxDq2oqz/9/DJkYfmAvoBQtduwaL5eubbPn9G/XJ
+	 AqW6VN8Huin6dEm7HqScr3buWfwkj8A4Pbues5F0lrIrmkfLm46vB11to9e3hoZtZc
+	 5N/cZrAhpcJsCu/kg2HWw9MJbLoPcixgahjVc2mZkzFF0aQZmarWPbyuJ2DHjGLq9x
+	 R8ZiT6A2Y0KEVaDzWHyz0wnaq0TuayptbZcCjH2Qkql/4/QzL2KGX6ho7+ZtdynAk2
+	 U19FoIxaaxyyzw9bXshvIJjL2gCF9BVNm1P0cCBcx45J56ahdlFDhtKnrsLpdeLrFz
+	 tyVHGhy0Vgwpg==
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 54653384616
+	for <usrp-users@lists.ettus.com>; Mon,  4 Apr 2022 09:28:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="YSJz4+tZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FHIjWoOr";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m/vUAdk1K7AZcIJPXUvwwWknCKDbkTpMJNcnMuM2BctFKuLcBR+zIoGcMzsvQlY6Q4zZbchuhBwWiZgJxlpH9vcPYx8uDL8GswfBJ67A2xKoq7ugSl+8nMWuyvXlLsJWsnsHLLBPVmjlq1hAS8KN4hWuZqxgjIeu7iAWkwv5BOa8RXmkWp94wDdyTAr2WHar2SbFmUmhTzQQmvZzjZNLiKOFnU0o8L/f8UZPk4/3/dgbUtDV7z5seI3dHyhicw7v1uJn7YBGLNMyXdVyNl3ZvRnWVYbE3eTcfYOL+hm5WOnkHN+0TKBOxPrC6pyfra0PssTuqw/Shty0wzCJpZWmjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ctzn+5jT7N9TMytVsR1VQYJs2C2uOf9T35lXtUYz59o=;
- b=QhxHFSvsYooRcRMe7WFgVnta4VGxzViBGPYISmzlPRuNlGwLdpEKzELV72VdzSCPTqudVvMxgyQQP9s+DzEviEAhYfJMP8IZvBiufMWrFAJhVap9EpjRnyfj8myAnqQH8NmvdVNA+qXc7DUEsbO/nC0l/XWi0/JqPg7N/hpfEPZF2QFrMBdy0ICZ+OMUdNjOIRCe5Sc/OHEXBAUFZyg5CBWF9Hd1RKPFhpKbO0JDsZ628eCjJjt5z936rQsOud/o9Ck78ASWW5TVDrr3uMec5nEaVvUEm2jQFkaXiX2KlAjCV6ld6T27CI0ydurkmuz39JotM6lqy4b3JfEcWPHLnw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ctzn+5jT7N9TMytVsR1VQYJs2C2uOf9T35lXtUYz59o=;
- b=YSJz4+tZDj07XqUwMH2IHLdGx2MIhpPYESf1z6gd1qCMEhV0DVi4NYyYxFwBkie8Fa5oTMNa2w4Z48+Z0xVj1nHR1bIdNdZ+YV9XAvTUkSjK7l6Rze14aXzqZ+HoHS7jmCyAMeYIeMwPqJy8MEKUuUa8pngZChsHIqmnNOb1wJ8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ulb.be;
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:11e::20)
- by AM9P190MB1588.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:3e1::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5123.31; Mon, 4 Apr
- 2022 08:31:43 +0000
-Received: from AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::4418:caf8:a00d:5931]) by AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- ([fe80::4418:caf8:a00d:5931%5]) with mapi id 15.20.5123.031; Mon, 4 Apr 2022
- 08:31:43 +0000
-Date: Mon, 4 Apr 2022 10:31:41 +0200
-To: Rob Kossler <rkossler@nd.edu>
-Message-ID: <20220404083141.rylumcponsws6npm@barbe>
-Mail-Followup-To: Rob Kossler <rkossler@nd.edu>,
-	usrp-users <usrp-users@lists.ettus.com>
-References: <CAB__hTSB8LGZSM2NzwmYXSZhSR_x4+dDWP=0VKizwMAJ+Y8_DA@mail.gmail.com>
- <20220401165020.kdzbyckz7xrxhk5o@barbe>
- <CAB__hTTF4xa=bdJ3QwOySCiNYDG_RZWaCebETCS7bvA=ORDwEQ@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAB__hTTF4xa=bdJ3QwOySCiNYDG_RZWaCebETCS7bvA=ORDwEQ@mail.gmail.com>
-X-ClientProxiedBy: PR3P189CA0015.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:102:52::20) To AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:11e::20)
+Received: by mail-qk1-f174.google.com with SMTP id g8so7582696qke.2
+        for <usrp-users@lists.ettus.com>; Mon, 04 Apr 2022 06:28:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=BZxXykubJrduT69fSglHyPWnbVfVi9XYGrTO4VEFUps=;
+        b=FHIjWoOrq1pWdW/qdFZQbZDtiASh0f57EqWHP/Xz3NXYHfhHTsvhC7fziWMfKuLtCK
+         w/O8j0m2EOPVc+PcCzp7CFAVPxfioBcVwEWiOH2ldwCcyZQHerfO9DhbZYPdTQcSyL0o
+         sfq8/fsbJI4Pck2KWX/K00y3/dUugOVg0BFJtD4pOk+UFFvEjLEPDBBnf9QNaSJ1zr/k
+         sRXHHE1UgNcFZ3ssYh4BIwVDEVO3OTqDsZWBielpiBDy1Ez44SLvCIDKB/EIb9oFbV6z
+         p9/klp3yw6GiKhh6R06yiRW9FzVw8atg+g1LIbiKAcE1wf14/xXguKtn6KJYc74a0UOS
+         nKig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=BZxXykubJrduT69fSglHyPWnbVfVi9XYGrTO4VEFUps=;
+        b=PMGGnfQgxzCrjKB4zTCvz4e+7cZalvAPjOwmJ1JPyxdF0sRFYTj5x6aZRYO+3s7eWv
+         7+jVBjXgu+D3C9OsjfZ2ZMiIpgYL5K4uO5mjZv92hTLD9tzyHUujzr8ZR13PoP3PHsqG
+         6wkkKRaXsdVNHacmIjU76WtAJObOftp+GIBRCEWK7VDWJsNxaIZ7bDrrjBf/EyIdZupe
+         p0lzkqKjTcBJ7EgvV37Nn/b9WrtxJfREH/pS8zSBBXNSyCvQU/gg21NKTAxKtl7/++XV
+         YscoFozDjuswIQQcNH92IxQ4LGgZpkvADhzwKE6sZX+TROVY6b0XI66FBFj/s/nivrq/
+         DFPg==
+X-Gm-Message-State: AOAM5307TEXaHeYBrUCEYAtDC7Kbto9WhFSaq1LNEC4eWUcZI48i3yoN
+	UFeHHZAq6RvPJzuIcKitXAl6nphQGgI=
+X-Google-Smtp-Source: ABdhPJw1oYXhcH9RLbUD1wUYrG2cX0k2sKMuEarJhyyiemvw/DXXAwpvE51tj4mBx46PC+TYRICBDQ==
+X-Received: by 2002:a37:c402:0:b0:67b:2ddd:f63d with SMTP id d2-20020a37c402000000b0067b2dddf63dmr13625359qki.398.1649078935441;
+        Mon, 04 Apr 2022 06:28:55 -0700 (PDT)
+Received: from [192.168.2.186] (bras-base-smflon1825w-grc-05-174-88-53-52.dsl.bell.ca. [174.88.53.52])
+        by smtp.googlemail.com with ESMTPSA id j188-20020a3755c5000000b0067d1c76a09fsm6442893qkb.74.2022.04.04.06.28.54
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Apr 2022 06:28:54 -0700 (PDT)
+Message-ID: <431675db-4751-1da1-8555-2ff7dfa4ed28@gmail.com>
+Date: Mon, 4 Apr 2022 09:28:53 -0400
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: e13d2a71-0258-46e4-b450-08da16158c3c
-X-MS-TrafficTypeDiagnostic: AM9P190MB1588:EE_
-X-Microsoft-Antispam-PRVS: 
-	<AM9P190MB158866755557D60C1305F4D0F0E59@AM9P190MB1588.EURP190.PROD.OUTLOOK.COM>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	zoXLeojtyMyG2wKZ4YAuMdwR3MsXsnPvWYSn0KvR3wVfmwVCv/uS8TVrQKZsHe+TGfMxRFDP9MUDnFCx1DOGlL20DM+lC69J2uQkrRp9Y/Q/HajGDrjzeJqoZ1sEzov3wisu1jaQzUqN0cNpn9wvGGESPC44GQdxuMhZ10M6HjEZ+xrfpZYwmyaBUtHS4O/o+aouQ2M8NuWEmd43PZnwm/5S2GHdfockm4Y/0N29R2dqMXXu2+VA1sDEuxKeujQBP2q0E5k2y8+OtGoFsNvhLt5lMnQp3YnouAPO6khOwjPnpeuqjo6vUuuVI/i+aKVEh6O2IzYA5C/vXCudKrskW/R96gkgYclnXaC4BSTwqy8hlysa3BaLjEkD7rorybYQtWOHtmTDIlSFi6bDJ519amRxUzS4vzVX02TUii+/Xy0L5ndvv8lvZrBPe6jY3xhT1Xe8mylFgHd2rOb6MvlgpA45FPm8zeb+YWqoCh8d2LsWYMSV3quq99SF2j/hXBPOZgP0Ui1X0/Fd5s5J7lI52bnI70q0iIE6Ug8m0ru/LQJD5T546LJlvJ8IHWy4b8tFSAXfluv3imuKtDC3COuU3+jtUpdCJrLKhYORp2SmMMtF1GM9qyvrM4kG6QWwoOdmYVsLUEmXnE2KdfENpYK01n5igyzNv5IXu9Z9zJj+m79fpCRe7UcUIrL2uJVX1DazYUB1+ADro6jp9QVycATY3z9ht80cNJ0YPS0/RVb4Mjg=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7P190MB0632.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(316002)(33716001)(508600001)(66476007)(66556008)(786003)(966005)(1076003)(6486002)(6916009)(4326008)(8676002)(186003)(66946007)(66574015)(83380400001)(38100700002)(5660300002)(52116002)(6506007)(53546011)(2906002)(6512007)(9686003)(8936002)(4744005)(86362001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?iso-8859-1?Q?6jvO4Fx2fQuL17CtQLNqqlMv9ns3DHL4GK/7950gsUJkiKL3XagFNZJq0H?=
- =?iso-8859-1?Q?+TF4CELAToT4kyJK1iBUck4xk5Gj03wPW+fwO1OMSPNhibUJ9Fd8djALJG?=
- =?iso-8859-1?Q?bhuUMBdI2A82PDJk1245wsiiNRwLFzjfIKHlvDl3A9HWd26YzAWW7qx5Mq?=
- =?iso-8859-1?Q?7XRwnV09PsGJICwkWSnaw0kkvCmu+BeYFFsKDDOQ9RWruzi7IdwYNkyx17?=
- =?iso-8859-1?Q?W7Jxg7Vu87uqoWAHD14S4d7JXUzh6zHetgWwV60yUT3qLcJNzVn9duZdy3?=
- =?iso-8859-1?Q?qeVt/+fBA2+KjOCn+U5kVxx8tbGcB7ykpspCF9euoHrcHMMTcodkkRoRLQ?=
- =?iso-8859-1?Q?zlFM4JC15OKMegc7V6fti8LLSjTytYJmkrcPiRlafLf4Zu/GuH+a87Uz/r?=
- =?iso-8859-1?Q?hWgwBwW9rGDg5rTxcguvDEFCV+wMpPbH4NkT0lTDufHxA5/chASU3sH5HK?=
- =?iso-8859-1?Q?p3v5p1Yc9w4phnjpgDe9q/NFhETFvlpe71cFc5yRGBkjXmUnHsbr6kmO10?=
- =?iso-8859-1?Q?KKQ+ETsjqQTsQ2Lol9vUxNwBNPhAmvuwE1dZfrwwEeIUfyoL4c2SfMm5Af?=
- =?iso-8859-1?Q?PTf3UPUrJtLry4dZbMTtwm2ItwEBibHPBpa3COB4YrGnr6KxvkyMb9iM/h?=
- =?iso-8859-1?Q?y6wwkYtwgMDL8ciE/qVYXjlw7ENWGi3shBxdGXb0S7TStmrgcyeq6a0nak?=
- =?iso-8859-1?Q?19LCrZtSNWz0aBv4h/49cKWdqZteF4jpHb9T5q302gWZO88tg9936kykbC?=
- =?iso-8859-1?Q?MkgIIbPmFZuDQbUwK/F6gXNcNVwLQDNWMj6SOheneKOF6/PB8bz+QGq0n4?=
- =?iso-8859-1?Q?DIEqgPaBx9UhiP6oWFFOiOc+QZyZEfvSkXtxbrG4wctRCWDuYLRPuqPWaz?=
- =?iso-8859-1?Q?XgHkujZ8UhqMCubzfFBblfezkiiItiDWO9mu3VuGcbqNfLi+gV8VFKIQTl?=
- =?iso-8859-1?Q?LTaajFFudV9qpo8ftu30Tm4T77tLgGjosDplONIDPdT+PIev/yAp/3T8oi?=
- =?iso-8859-1?Q?XxSwBLIH1wz3v+KSqw0QjbodJ5EaaklTftlTepKgLHzgMIVAp8kC+Axi1Y?=
- =?iso-8859-1?Q?3+g6QJSXKhd/GwW70b+VbH8vvXqfVOM1iZ2Tm4iScEmC3LdsJl43KuB71C?=
- =?iso-8859-1?Q?vLdMpgpRSl5oZyPPqaBHxxQtt0m3bTsePFyxZeMGTyLLldN0B4rpo9Z7g+?=
- =?iso-8859-1?Q?gPjyfZSrktHynTQZ7vTsXDcmHnOYHAvTzEQxEES+S92jsifjtRpq5QnbLq?=
- =?iso-8859-1?Q?bRtC0oXLFHDHtOqIJUidjxtG8BEN4dD2M4iM04RjeGbfnmsQhKde+Xyl1S?=
- =?iso-8859-1?Q?KZBT22Hv5Yn4Z3UiFJ7MM5LNQn3kN6YHGif/fmcN8sfiLRTfWAacH4I3oU?=
- =?iso-8859-1?Q?Q9sM+pgsfgWNY6imorvEyJciEmKOcUKFQHO5Z6FSruNDL7r/+yB+HiGcWp?=
- =?iso-8859-1?Q?ipHik3XcqbhpG+vqGjUcir4+ipVUBJm38vb2Vnpln1sXmNpHByJ+UpQ8Wt?=
- =?iso-8859-1?Q?3WQFVjG4eQiapnqWL0MQz8WTbggEHT/xYHdCmltkudWBoqfXfZqgO326+V?=
- =?iso-8859-1?Q?7fv4vMXiI2W+QotaxVr1/wwoiuAIfuHFFIWw8nxteiHil00jsNjoM6UbvP?=
- =?iso-8859-1?Q?joIwwXa8OCaXP/8eQNyq9s+exfpYnVEvXfdzwJ4vUpSWlO7oaI4BgIgVu8?=
- =?iso-8859-1?Q?MIKrVuMS+i/kZGSGPqZ1ihVRoj0h7j5trtTH4d37X9K+C+BlAaWdjLjPaU?=
- =?iso-8859-1?Q?+4jgtz9aqhjf4v9ntiUXArMK7RVVDyOIhDe/VFf+oSxXjPv4hc6a5BF6lZ?=
- =?iso-8859-1?Q?6Sg1oMD85wIL6Z8LrjurFgJpa2/PNR4A5m1f1bPSQOcIhFX3UJXk+9itIV?=
- =?iso-8859-1?Q?yc?=
-X-MS-Exchange-AntiSpam-MessageData-1: WvRh8Atxiba7yrMBXoM6DcAVuq2sUab00p0=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: e13d2a71-0258-46e4-b450-08da16158c3c
-X-MS-Exchange-CrossTenant-AuthSource: AM7P190MB0632.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Apr 2022 08:31:43.0977
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lC/m4NniVyNIY35EePDoQPEZbOVNL60kQr9FuedGBRiY2h/xA4zQYQUGKKD7OTYLVz+68fGGNKTyB1WkLoy78Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9P190MB1588
-Message-ID-Hash: YPSSHWGRGLZ7LJTM3VXZIDPU4FYDSVC7
-X-Message-ID-Hash: YPSSHWGRGLZ7LJTM3VXZIDPU4FYDSVC7
-X-MailFrom: cedric.hannotier@ulb.be
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <OL1P279MB008348E9ECCB13A1DEABCA68A0E59@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <OL1P279MB008348E9ECCB13A1DEABCA68A0E59@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
+Message-ID-Hash: SU22JLB2I5T25SVFD5IPBLPOQLG55ZO2
+X-Message-ID-Hash: SU22JLB2I5T25SVFD5IPBLPOQLG55ZO2
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Copy file from N310 to host, slow transfer rate
+Subject: [USRP-users] Re: E310 USB - serial problem
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YPSSHWGRGLZ7LJTM3VXZIDPU4FYDSVC7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SU22JLB2I5T25SVFD5IPBLPOQLG55ZO2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/mixed; boundary="===============4076071065733687188=="
+
+This is a multi-part message in MIME format.
+--===============4076071065733687188==
+Content-Type: multipart/alternative;
+ boundary="------------2Ww400lWF5xUR7kG9fNEfVGW"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------2Ww400lWF5xUR7kG9fNEfVGW
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+On 2022-04-04 03:47, Skorstad, J=C3=B8rn wrote:
+>
+> Hello,
+>
+> Currently using the E310 SDR together with UHD 4.1.0.4, original image=20
+> file downloaded using the tool uhd_images_downloader. I have tried to=20
+> connect two different USB-serial converters to the radio. Both returns=20
+> something like this in dmesg, and no /dev/tty*** is created:
+>
+> [ 1516.703188] usb 1-1-port3: attempt power cycle
+>
+> [ 1517.382889] usb 1-1.3: new full-speed USB device number 26 using=20
+> ci_hdrc
+>
+> [ 1517.822885] usb 1-1.3: device not accepting address 26, error -32
+>
+> [ 1517.922941] usb 1-1.3: new full-speed USB device number 27 using=20
+> ci_hdrc
+>
+> [ 1518.362912] usb 1-1.3: device not accepting address 27, error -32
+>
+> [ 1518.373791] usb 1-1-port3: unable to enumerate USB device
+>
+> lsusb shows this line: Bus 001 Device 023: ID 1a86:7523 QinHeng=20
+> Electronics HL-340 USB-Serial adapter (WeMos D1 in this case)
+>
+> This is probably caused by lack of drivers? Previously we used the old=20
+> 3.8 image, where USB serial converters were added without problems. Is=20
+> it possible to add support to the new image as well?
+>
+> lsb_release -a
+>
+> LSB Version:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 n/a
+>
+> Distributor ID:=C2=A0=C2=A0 Alchemy
+>
+> Description:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Alchemy 2021.04
+>
+> Release:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 2021.04
+>
+> Codename:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Alchemy-Zeus
+>
+> BR
+>
+> Jorn
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+I just tried this with a CP2101-based USB serial card, and got the same=20
+result.=C2=A0 Nothing in /dev/ttyUSB* or /dev/ttyACM*=C2=A0 and no hint t=
+hat any=20
+driver was loaded.
 
-On 01/04/22 16:27, Rob Kossler wrote:
-> Thanks C=E9dric,
-> Yes, the CPU is at 100%. I am unfortunately not fluent in python and so I=
-'m
-> confused about your suggested non-encrypted transfer.  What would I run on
-> the N310 and what on the host in order to transfer the file?
+I'll see if anyone in Ettus R&D can help.
 
-On N310, you run "python -m http.server" [1].
-It should printout that it is listening on any interface (0.0.0.0),
-on port 8000 (to use another port: "python -m http.server <port>").
 
-On the PC, you can open a web browser, go to http://<N310-IP>:8000,
-and should get an index of the directory
-where the python server has been started.
-wget seems to be a good candidate (e.g. [2])
-if you need some automation for downloading lots of files.
+--------------2Ww400lWF5xUR7kG9fNEfVGW
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Please note that the connection is unencrypted
-and is available to any device that can communicate with the N310.
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-04-04 03:47, Skorstad, J=C3=B8=
+rn
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:OL1P279MB008348E9ECCB13A1DEABCA68A0E59@OL1P279MB0083.NORP279.=
+PROD.OUTLOOK.COM">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Currently using the E310 SDR together with
+          UHD 4.1.0.4, original image file downloaded using the tool
+          uhd_images_downloader. I have tried to connect two different
+          USB-serial converters to the radio. Both returns something
+          like this in dmesg, and no /dev/tty*** is created:<o:p></o:p></=
+p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">[ 1516.703188] usb 1-1-port3: attempt powe=
+r
+          cycle<o:p></o:p></p>
+        <p class=3D"MsoNormal">[ 1517.382889] usb 1-1.3: new full-speed
+          USB device number 26 using ci_hdrc<o:p></o:p></p>
+        <p class=3D"MsoNormal">[ 1517.822885] usb 1-1.3: device not
+          accepting address 26, error -32<o:p></o:p></p>
+        <p class=3D"MsoNormal">[ 1517.922941] usb 1-1.3: new full-speed
+          USB device number 27 using ci_hdrc<o:p></o:p></p>
+        <p class=3D"MsoNormal">[ 1518.362912] usb 1-1.3: device not
+          accepting address 27, error -32<o:p></o:p></p>
+        <p class=3D"MsoNormal">[ 1518.373791] usb 1-1-port3: unable to
+          enumerate USB device<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">lsusb shows this line: Bus 001 Device 023:
+          ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter
+          (WeMos D1 in this case)<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">This is probably caused by lack of drivers=
+?
+          Previously we used the old 3.8 image, where USB serial
+          converters were added without problems. Is it possible to add
+          support to the new image as well?<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">lsb_release -a<o:p></o:p></p>
+        <p class=3D"MsoNormal">LSB Version:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ n/a<o:p></o:p></p>
+        <p class=3D"MsoNormal">Distributor ID:=C2=A0=C2=A0 Alchemy<o:p></=
+o:p></p>
+        <p class=3D"MsoNormal">Description:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Alchemy 2021.04<o:p></o:p></p>
+        <p class=3D"MsoNormal">Release:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2021.04<o:p></o:p></p>
+        <p class=3D"MsoNormal">Codename:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Alchemy-Zeus<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">BR<o:p></o:p></p>
+        <p class=3D"MsoNormal">Jorn<o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    I just tried this with a CP2101-based USB serial card, and got the
+    same result.=C2=A0 Nothing in /dev/ttyUSB* or /dev/ttyACM*=C2=A0 and =
+no hint
+    that any driver was loaded.<br>
+    <br>
+    I'll see if anyone in Ettus R&amp;D can help.<br>
+    <br>
+    <br>
+  </body>
+</html>
 
-[1] https://docs.python.org/3/library/http.server.html
-[2] https://apple.stackexchange.com/a/100573
+--------------2Ww400lWF5xUR7kG9fNEfVGW--
 
-Regards
---=20
+--===============4076071065733687188==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-C=E9dric Hannotier
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4076071065733687188==--
