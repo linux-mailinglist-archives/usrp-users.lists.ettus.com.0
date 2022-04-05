@@ -2,182 +2,203 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DED24F168C
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Apr 2022 15:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 222044F22A1
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Apr 2022 07:42:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7037F38480C
-	for <lists+usrp-users@lfdr.de>; Mon,  4 Apr 2022 09:52:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 08799384DF3
+	for <lists+usrp-users@lfdr.de>; Tue,  5 Apr 2022 01:42:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1649080371; bh=E7SOphvTnNFkJrA1ZTbEU21myW1S3zcda72Mw/6qeq8=;
-	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=FGTT/zx14hSKlIE9DE+Z1vJOFlNa2FQkLmadWRpeEQJY4nZGun0Quxchvi/DsyXlo
-	 BfPFj2+FvEGTDssytb35441Btpfan3VV9FwDCMWVE+yMlVWA/KXYpgy9XLzwXNhS+A
-	 mTIIeLvmafNRgWKW+zXYbj8Sxac7Als3Z90IKZj3ofVCHwLsYeWyjTg5E13hcNHTJB
-	 VTnmYOR/9y2OOLNuORPo0B89LdOKCBUBoqqxOoQ11cZrTUOIQXHqpV5piufb9SKZn/
-	 iWGPXwJrikLjNwcxEqv081ltZbQLISyJ9am0G3achOcULLKVRcG0xr5bEfMYcmwrLf
-	 mEDiGjhCWr/RQ==
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7D4A83846B2
-	for <usrp-users@lists.ettus.com>; Mon,  4 Apr 2022 09:51:58 -0400 (EDT)
+	t=1649137369; bh=Kua2y+SnIBv6709XLz0+UOTIm9+EoANCotKt+B68iyI=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=rYNeb/AGoMDGA8ZE9gMQBbstYS5Wncjpbo/26Zob81m1wHG7X64iPrLeJytjlf5WB
+	 gtEbumZqj5S7GmmMZ1UKip/g9lF+GDvATzcChk+bBBfstvioAGrj6s9k3gb7hFoBLh
+	 LceGxi++ZqLO+Rx3Z0DiK9gI9t1QsivoQnkRUbk0WWE4cNqJ+4XHC2PWPJJeh1DBX2
+	 nZado6xKJ85iDiwK3bUsiX8HSzAQIljB4dPtCgLEkWUyGH5yjob97TWjZEGCbbkK/n
+	 ygo+/jBX4BdJ8I0hQ7SUXP2Twt5zjeFA5fAcge/Ja6l+bT/FJzHT0ourRjFK735vRZ
+	 QZX68qKmbPmBA==
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id DE852384D81
+	for <usrp-users@lists.ettus.com>; Tue,  5 Apr 2022 01:41:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Z3Zwi9Xr";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AkpdYvDL";
 	dkim-atps=neutral
-Received: by mail-yb1-f179.google.com with SMTP id g9so8082475ybj.9
-        for <usrp-users@lists.ettus.com>; Mon, 04 Apr 2022 06:51:58 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-2eb543fe73eso64522207b3.5
+        for <usrp-users@lists.ettus.com>; Mon, 04 Apr 2022 22:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=KD3/YdlpTa3R+RE2hzvK32eOpV9zCOkhX5IfebkjPYM=;
-        b=Z3Zwi9XrnvLlfmfKqa38bh/WQ0Ii1OS0NoRRff5hzB6ILIlIEiPj2QZqsH/L29G6C3
-         nHJspFLo7YPgBEyzUMKqE/G0CdZ48j9/Srrm4O6jiuSLltzoqswUn73znfmTEB7pA2Id
-         H33KGA8fjlG64XdD90Uf4aqaP5miadhzKrGyV+iy+hgsqpqWcL1IK82fmut9DgWgb6Wj
-         y1HpX+yRqpMjtUqdegipR/oHpmCR+cnAaYKU+3gBUJfFHpsfOJ9QQb0pWVhspLDVt2Ox
-         fHhqwnf7pj09FW2FWnW8B6mFMG53tf2yahYsaqm6uYPuYFKjjIIFDEF5jk4H5VHI3Sx9
-         xIVA==
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=///jpX1MyX2dHB1TZ5FbsHhTAifVAI4Wxwa0pWLM20g=;
+        b=AkpdYvDLQtybER8aG/eMXZFzg3g1339MGc5rVTAuBXSt9yBD4ila0ZWoWtInmNr2t6
+         Pt303ji/Iiti6mSdcaQSGOI1LpaJg1i3+wHnHPvTqTR/yTcx0OEKF8HK6Yhq9TZDHd6g
+         vzNoi+2zKlt6r4S0U2tvmSo+9slVCRJQS9cWCM0p5LAO4IXchsMBQDjJHAJLfQ+JTUpU
+         wlmbyyBJmlXNBdh1blrqsngI12EXa9TbZCkmy4vPoC3ydyLgAc/tYYs8wHLENPSLh7Jv
+         0GBz0TWfR9R9fyoQODszbX2pnXmJ52ftp5N0yitPYgMNu3nSm6lmhvCZ9rv+rl1Sy7qE
+         xLuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=KD3/YdlpTa3R+RE2hzvK32eOpV9zCOkhX5IfebkjPYM=;
-        b=fqB6+zPezeB/NwQBa12kg0yirf5ZcGjZfE06ZOLXwG3+aMfDy4MwKUoaiJ8haWy0zA
-         P3r3znSwggJ6xGvLYU0lRTeK4NJp6wXy7aBC59aenW4PbJ85gPNP5HguRa0NeKmzInJk
-         cBOjaoUBfW05TKicQ67vSM6JfAshy+WGeZ/xTS0FMnR29vrQMcAQYlyDuncu1Kn9qjhr
-         hfBzR73Hdj5tTCLoVf36jkuZiXLcS2Acyr97cTft7+ReaG9x/MGWzQ9NP9+p+6qrbzhL
-         WOBmGeCb6/eIaPKB8sRj3EcWKyp5hDo7DI/G13TpZtTm/oeFZX3zI0wiYGjjg4ZhIfMc
-         OVuA==
-X-Gm-Message-State: AOAM532TwCUZFvkl0+zQ5f3zcazRHjWHWla0vt61BgL54IBCyW8e1ZNs
-	aBP69/cfRL23QFUYcFvY+oxLyzJ8UR9RuMzv65X2sA==
-X-Google-Smtp-Source: ABdhPJzILxHG9vgeAR9I39pYeL41qLre+OyrMNe1A8EfYWkpwKsH9OWWSc8qiFQU0icev26rGtx3FRCPJz26ryXdAJw=
-X-Received: by 2002:a25:b991:0:b0:610:bf4e:1b33 with SMTP id
- r17-20020a25b991000000b00610bf4e1b33mr20791983ybg.352.1649080317678; Mon, 04
- Apr 2022 06:51:57 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=///jpX1MyX2dHB1TZ5FbsHhTAifVAI4Wxwa0pWLM20g=;
+        b=Tst+SjblH2JMEoSxCXu3kLp0JDs1HkWWnWv7TqjfhqlCeDj+BAt/9T6MiCF1AUzFNJ
+         vyAJVJuSUg43e1PtXHKaI42obamTYt8fE86lEo2+PXZewNfyPlA38Gowv5Wz9F4k4Ory
+         yL6cwVHTVuV8mfif/yxy6jOtOSGfFThmFljzCJnhfOHh4x0V2AseAeLvTpcjr/tIP/tM
+         AAN4kdw9287Z2RJ2ZVwFGbTQKjHhALNBCVJ1KecqwQMoBz1e3a9jUyS4JEPeNGMi3DcY
+         ugovuVJgzR4CRhV5sHnm0FAK1UyBIwhK6F7/1VWUCThvioJv10B4zB2Tu2F1BPbytfrU
+         ukjQ==
+X-Gm-Message-State: AOAM533XJ4LhcHorlpOPmfOVB1qmoRvZcLCFnVt8K2TcwYPb/fzgOaDw
+	uNVzlWneagG2DyvppEPuXtnVJKWxlyA+wbWn4mUVW2uU71ZseMTLjCk=
+X-Google-Smtp-Source: ABdhPJx6Lh5bJKuUCJngDnik0kzqui/HLRJJ7M/ynKyTm6RxmesdQBbbnYpOZvbEyVU3Ean12SWR35kFU0j44Yox4OM=
+X-Received: by 2002:a81:538a:0:b0:2ea:9ba:e061 with SMTP id
+ h132-20020a81538a000000b002ea09bae061mr1315813ywb.97.1649137308504; Mon, 04
+ Apr 2022 22:41:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAB__hTSB8LGZSM2NzwmYXSZhSR_x4+dDWP=0VKizwMAJ+Y8_DA@mail.gmail.com>
- <20220401165020.kdzbyckz7xrxhk5o@barbe> <CAB__hTTF4xa=bdJ3QwOySCiNYDG_RZWaCebETCS7bvA=ORDwEQ@mail.gmail.com>
- <20220404083141.rylumcponsws6npm@barbe>
-In-Reply-To: <20220404083141.rylumcponsws6npm@barbe>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Mon, 4 Apr 2022 09:51:46 -0400
-Message-ID: <CAB__hTQ8ya2nWa4rEdZdx2qGEjXVMhrPAFREiqOb4V0wCG-njw@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>, usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: 6OR7GB3CZWXYLA25AYCBLXAC2W4SD4G2
-X-Message-ID-Hash: 6OR7GB3CZWXYLA25AYCBLXAC2W4SD4G2
-X-MailFrom: rkossler@nd.edu
+From: sp h <stackprogramer@gmail.com>
+Date: Tue, 5 Apr 2022 10:11:37 +0430
+Message-ID: <CAA=S3PsyGDRyUyRC_fYYhDXes8p7+z1Qazw7XxWL9_n1UxRUjg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: QMHJW3T5I4HUF65Q2BRQHSLBUVZP5OPB
+X-Message-ID-Hash: QMHJW3T5I4HUF65Q2BRQHSLBUVZP5OPB
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Copy file from N310 to host, slow transfer rate
+Subject: [USRP-users] When I run the gain example testbench file I am faced with errors.....
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6OR7GB3CZWXYLA25AYCBLXAC2W4SD4G2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QMHJW3T5I4HUF65Q2BRQHSLBUVZP5OPB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0068106155929943478=="
+Content-Type: multipart/mixed; boundary="===============3394228091289203452=="
 
---===============0068106155929943478==
-Content-Type: multipart/alternative; boundary="0000000000008ae31605dbd46e7a"
+--===============3394228091289203452==
+Content-Type: multipart/alternative; boundary="00000000000075973305dbe1b39b"
 
---0000000000008ae31605dbd46e7a
+--00000000000075973305dbe1b39b
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Thanks C=C3=A9dric,
-This was a big help.  On the N310, this improved the data rate from about
-12MB/s to 42MB/s.
-Rob
+When I run the gain example testbench file I am faced with errors.....How
+can I solve this?
 
-On Mon, Apr 4, 2022 at 4:31 AM C=C3=A9dric Hannotier <cedric.hannotier@ulb.=
-be>
-wrote:
 
-> Hi Rob,
->
-> On 01/04/22 16:27, Rob Kossler wrote:
-> > Thanks C=C3=A9dric,
-> > Yes, the CPU is at 100%. I am unfortunately not fluent in python and so
-> I'm
-> > confused about your suggested non-encrypted transfer.  What would I run
-> on
-> > the N310 and what on the host in order to transfer the file?
->
-> On N310, you run "python -m http.server" [1].
-> It should printout that it is listening on any interface (0.0.0.0),
-> on port 8000 (to use another port: "python -m http.server <port>").
->
-> On the PC, you can open a web browser, go to http://<N310-IP>:8000,
-> and should get an index of the directory
-> where the python server has been started.
-> wget seems to be a good candidate (e.g. [2])
-> if you need some automation for downloading lots of files.
->
-> Please note that the connection is unencrypted
-> and is available to any device that can communicate with the N310.
->
-> [1] https://docs.python.org/3/library/http.server.html
-> [2] https://apple.stackexchange.com/a/100573
->
-> Regards
-> --
->
-> C=C3=A9dric Hannotier
->
+Vivado Simulator does not support tracing of System Verilog Dynamic Type
+object.
+========================================================
+TESTBENCH STARTED: rfnoc_block_gain_tb
+========================================================
+[TEST CASE   1] (t =         0 ns) BEGIN: Flush block then reset it...
 
---0000000000008ae31605dbd46e7a
+*Fatal: Timeout: Test "Flush block then reset it" time limit exceeded*Time:
+10 us  Iteration: 0  Process:
+/PkgTestExec/TestExec::start_timeout/Block260_9/timeout  File:
+/home/sp/Documents/uhd-4.1.0.5/fpga/usrp3/sim/rfnoc/PkgTestExec.sv
+$finish called at time : 10 us : File
+"/home/sp/Documents/uhd-4.1.0.5/fpga/usrp3/sim/rfnoc/PkgTestExec.sv" Line
+235
+INFO: [USF-XSim-96] XSim completed. Design snapshot
+'rfnoc_block_gain_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000000000us
+launch_simulation: Time (s): cpu = 00:00:21 ; elapsed = 00:00:33 . Memory
+(MB): peak = 1462.531 ; gain = 80.324 ; free physical = 285 ; free virtual
+= 9898
+# if { [info exists ::env(VIV_SYNTH_TOP)] } {
+#    puts "BUILDER: Synthesizing"
+#    # Synthesize requested modules
+#    foreach synth_top "$::env(VIV_SYNTH_TOP)" {
+#       set_property top $synth_top [current_fileset]
+#       synth_design -mode out_of_context
+#       # Perform a simple regex-based search for all clock signals and
+constrain
+#       # them to 500 MHz for the timing report.
+#       set clk_regexp "(?i)^(?!.*en.*).*(clk|clock).*"
+#       foreach clk_inst [get_ports -regexp $clk_regexp] {
+#          create_clock -name $clk_inst -period 2.0 [get_ports $clk_inst]
+#       }
+#       report_utilization -no_primitives -file
+${working_dir}/${synth_top}_synth.rpt
+#       report_timing_summary -setup -max_paths 3 -unique_pins -no_header
+-append -file ${working_dir}/${synth_top}_synth.rpt
+#       write_checkpoint -force ${working_dir}/${synth_top}_synth.dcp
+#    }
+# } else {
+#    puts "BUILDER: Skipping resource report because VIV_SYNTH_TOP is not
+set"
+# }
+BUILDER: Synthesizing
+# if [string equal $vivado_mode "batch"] {
+#     puts "BUILDER: Closing project"
+#     close_project
+# } else {
+#     puts "BUILDER: In GUI mode. Leaving project open."
+# }
+BUILDER: Closing project
+INFO: [Common 17-206] Exiting Vivado at Thu Feb 10 10:02:45 2022...
+make[4]: warning:  Clock skew detected.  Your build may be incomplete.
+make[3]: warning:  Clock skew detected.  Your build may be incomplete.
+Built target rfnoc_block_gain_tb
+make[2]: warning:  Clock skew detected.  Your build may be incomplete.
+make[1]: warning:  Clock skew detected.  Your build may be incomplete.
+make: warning:  Clock skew detected.  Your build may be incomplete.
+
+--00000000000075973305dbe1b39b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Thanks=C2=A0C=C3=A9dric,</div><div>This w=
-as a big help.=C2=A0 On the N310, this improved the data rate from about 12=
-MB/s to 42MB/s.</div><div>Rob</div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Mon, Apr 4, 2022 at 4:31 AM C=C3=A9dric Ha=
-nnotier &lt;<a href=3D"mailto:cedric.hannotier@ulb.be">cedric.hannotier@ulb=
-.be</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x">Hi Rob,<br>
-<br>
-On 01/04/22 16:27, Rob Kossler wrote:<br>
-&gt; Thanks C=C3=A9dric,<br>
-&gt; Yes, the CPU is at 100%. I am unfortunately not fluent in python and s=
-o I&#39;m<br>
-&gt; confused about your suggested non-encrypted transfer.=C2=A0 What would=
- I run on<br>
-&gt; the N310 and what on the host in order to transfer the file?<br>
-<br>
-On N310, you run &quot;python -m http.server&quot; [1].<br>
-It should printout that it is listening on any interface (0.0.0.0),<br>
-on port 8000 (to use another port: &quot;python -m http.server &lt;port&gt;=
-&quot;).<br>
-<br>
-On the PC, you can open a web browser, go to http://&lt;N310-IP&gt;:8000,<b=
-r>
-and should get an index of the directory<br>
-where the python server has been started.<br>
-wget seems to be a good candidate (e.g. [2])<br>
-if you need some automation for downloading lots of files.<br>
-<br>
-Please note that the connection is unencrypted<br>
-and is available to any device that can communicate with the N310.<br>
-<br>
-[1] <a href=3D"https://docs.python.org/3/library/http.server.html" rel=3D"n=
-oreferrer" target=3D"_blank">https://docs.python.org/3/library/http.server.=
-html</a><br>
-[2] <a href=3D"https://apple.stackexchange.com/a/100573" rel=3D"noreferrer"=
- target=3D"_blank">https://apple.stackexchange.com/a/100573</a><br>
-<br>
-Regards<br>
--- <br>
-<br>
-C=C3=A9dric Hannotier<br>
-</blockquote></div></div>
+<div dir=3D"ltr">When I run the=C2=A0gain example testbench file I am=C2=A0=
+faced with errors.....How can I solve this?<br><div><br></div><div><br></di=
+v><div>Vivado Simulator does not support tracing of System Verilog Dynamic =
+Type object.<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>TESTBENCH STARTED: rfnoc_block_gain=
+_tb<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>[TEST CASE =C2=A0 1] (t =3D =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 0 ns) BEGIN: Flush block then reset it...<br><b>Fatal: Timeou=
+t: Test &quot;Flush block then reset it&quot; time limit exceeded<br></b>Ti=
+me: 10 us =C2=A0Iteration: 0 =C2=A0Process: /PkgTestExec/TestExec::start_ti=
+meout/Block260_9/timeout =C2=A0File: /home/sp/Documents/uhd-4.1.0.5/fpga/us=
+rp3/sim/rfnoc/PkgTestExec.sv<br>$finish called at time : 10 us : File &quot=
+;/home/sp/Documents/uhd-4.1.0.5/fpga/usrp3/sim/rfnoc/PkgTestExec.sv&quot; L=
+ine 235<br>INFO: [USF-XSim-96] XSim completed. Design snapshot &#39;rfnoc_b=
+lock_gain_tb_behav&#39; loaded.<br>INFO: [USF-XSim-97] XSim simulation ran =
+for 1000000000us<br>launch_simulation: Time (s): cpu =3D 00:00:21 ; elapsed=
+ =3D 00:00:33 . Memory (MB): peak =3D 1462.531 ; gain =3D 80.324 ; free phy=
+sical =3D 285 ; free virtual =3D 9898<br># if { [info exists ::env(VIV_SYNT=
+H_TOP)] } {<br># =C2=A0 =C2=A0puts &quot;BUILDER: Synthesizing&quot;<br># =
+=C2=A0 =C2=A0# Synthesize requested modules<br># =C2=A0 =C2=A0foreach synth=
+_top &quot;$::env(VIV_SYNTH_TOP)&quot; {<br># =C2=A0 =C2=A0 =C2=A0 set_prop=
+erty top $synth_top [current_fileset]<br># =C2=A0 =C2=A0 =C2=A0 synth_desig=
+n -mode out_of_context<br># =C2=A0 =C2=A0 =C2=A0 # Perform a simple regex-b=
+ased search for all clock signals and constrain<br># =C2=A0 =C2=A0 =C2=A0 #=
+ them to 500 MHz for the timing report.<br># =C2=A0 =C2=A0 =C2=A0 set clk_r=
+egexp &quot;(?i)^(?!.*en.*).*(clk|clock).*&quot;<br># =C2=A0 =C2=A0 =C2=A0 =
+foreach clk_inst [get_ports -regexp $clk_regexp] {<br># =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0create_clock -name $clk_inst -period 2.0 [get_ports $clk_i=
+nst]<br># =C2=A0 =C2=A0 =C2=A0 }<br># =C2=A0 =C2=A0 =C2=A0 report_utilizati=
+on -no_primitives -file ${working_dir}/${synth_top}_synth.rpt<br># =C2=A0 =
+=C2=A0 =C2=A0 report_timing_summary -setup -max_paths 3 -unique_pins -no_he=
+ader -append -file ${working_dir}/${synth_top}_synth.rpt<br># =C2=A0 =C2=A0=
+ =C2=A0 write_checkpoint -force ${working_dir}/${synth_top}_synth.dcp<br># =
+=C2=A0 =C2=A0}<br># } else {<br># =C2=A0 =C2=A0puts &quot;BUILDER: Skipping=
+ resource report because VIV_SYNTH_TOP is not set&quot;<br># }<br>BUILDER: =
+Synthesizing<br># if [string equal $vivado_mode &quot;batch&quot;] {<br># =
+=C2=A0 =C2=A0 puts &quot;BUILDER: Closing project&quot;<br># =C2=A0 =C2=A0 =
+close_project<br># } else {<br># =C2=A0 =C2=A0 puts &quot;BUILDER: In GUI m=
+ode. Leaving project open.&quot;<br># }<br>BUILDER: Closing project<br>INFO=
+: [Common 17-206] Exiting Vivado at Thu Feb 10 10:02:45 2022...<br>make[4]:=
+ warning: =C2=A0Clock skew detected.=C2=A0 Your build may be incomplete.<br=
+>make[3]: warning: =C2=A0Clock skew detected.=C2=A0 Your build may be incom=
+plete.<br>Built target rfnoc_block_gain_tb<br>make[2]: warning: =C2=A0Clock=
+ skew detected.=C2=A0 Your build may be incomplete.<br>make[1]: warning: =
+=C2=A0Clock skew detected.=C2=A0 Your build may be incomplete.<br>make: war=
+ning: =C2=A0Clock skew detected.=C2=A0 Your build may be incomplete.<br></d=
+iv></div>
 
---0000000000008ae31605dbd46e7a--
+--00000000000075973305dbe1b39b--
 
---===============0068106155929943478==
+--===============3394228091289203452==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -187,4 +208,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0068106155929943478==--
+--===============3394228091289203452==--
