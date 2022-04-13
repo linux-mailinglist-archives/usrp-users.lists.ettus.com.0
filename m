@@ -2,118 +2,159 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7692C4FF788
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 15:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 705464FFCD9
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 19:33:42 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 55F863847CE
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 09:21:42 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4946238449E
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 13:33:41 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1649856102; bh=e3yNt1DOXTUEDs1W25sEYCZ5eB/2E+T9BiBFR+1TEy8=;
+	t=1649871221; bh=6AcPQ0zc6t9dqpfF9g68VfbhFR038AEwg4BKAnCOSms=;
 	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=oqBKjLQZSqupXr8PsMcoTwmyjiyVdfF3Lzxf5XvoC7qF7vHwU5/r6hSjaDD0jCkfK
-	 CPQEwJHNEFKTzz9mVyJQ0x9/TBOHJt/Jcc8IifYLUsXtWo541Lcwd6jBa2EXlkFOzy
-	 ciUV+ceYyQ+5fZnIoQw0hWHiWIKPvkxQR7vKkirZTAs/qkq7IVheShUXPLGlyAyJ4x
-	 5She08rRoh5Al3Uux5Q4X/vT+ZxCwumDhwAB55ktzvvKMvaKhy9wd2QLlclOIS6v3F
-	 2Y1p4cs5BPVqwcPLzKoOoAp3B789Jd6Mvk3l3aRgDehcLtW8VNR3x0gcCEGbHiFXZJ
-	 mxLgvpN4GhDow==
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4E3D73847C0
-	for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 09:20:38 -0400 (EDT)
+	b=K/ltMYicDcGwvjPb1NVhzkX9JCnBW4iW0ELqugSbMEBiLyDlOoVVhOKyVPWDbbPq6
+	 v9VTeYqZs0TTOugknbbmaoLBpIu3cevEm1uNlKGzkFysULcogDLbz/+pMdbkHqqcvA
+	 7trigOnZaoPfBlnwDNJtigfea0IUjdQ7pwDzQVzYKs2m3pvzyaK+oozXgsd1DBhASz
+	 aALMf83y3O60v0Ou5DlSkA9kGs5ETHo9PxYMlGx4Nh/qAKZz1IsB+Nu2OJwTkPr1Di
+	 pFO8NEXKr6/dv9muXczo+h5aQMUjaedsKVcTOvv+o1pbXpfzLa8/nDQW+A+hXK81I6
+	 cE7ggVSdPy+FQ==
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 492C5384373
+	for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 13:32:36 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="iTbvJBAK";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fukmKrb6";
 	dkim-atps=neutral
-Received: by mail-io1-f47.google.com with SMTP id r2so1800966iod.9
-        for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 06:20:38 -0700 (PDT)
+Received: by mail-vs1-f51.google.com with SMTP id f32so2276138vsv.1
+        for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 10:32:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:from:date:message-id:subject:to;
-        bh=py6+yQ/tNqIo58cj9er+HXmr5Gilz7gBmyiper3N4aE=;
-        b=iTbvJBAKZB0Q8jk2IDFCOtPsQcmBaaNqcapvcea3qxiq4T+9B4baxwiDT2EyAsZjZj
-         FWnb4eSTeQvvoKCrVAFh3WfokSKZMvljeL7gfuQsFnmOijRbwwkyCke1Ff+R5HL9G+C5
-         2PujN5wClK6ckTz1mtdz1/2Qww0XOsb32P5XahxBFgKGNTOzbkwEVX90gV6VHMXV5GKu
-         te6SToqVnzXGgVylv0ujjQL18M4BCKZgs6bzeveaE6SWGcoD3xinU2Hq6sohdiftRHQ6
-         7BtI/evppbzbHuoA8V0eSVpqf8m4ci/W2zKNTvVp83bVCocNznD3k+sAYO3Oa2oVF5F7
-         0Mfw==
+        bh=hyjKpMT/91pZylkb6EK07FKdo3CPhmnBXOe6+GD5jDI=;
+        b=fukmKrb68rrVs6jVQIJRfpQYKTY9TQYkmetXdv5V9hdXhxdIOXIR2uf8+Oq5ofpkrc
+         5uXFD5lRBr2FbHpWzsTMA917ADKVtB66KWGkGcvvc9cWiyazvFuOtJ7WPWLDngC5ff9y
+         qSk3cG0+tGFgLkWbVwI3mWHqxE90iFEr6gV6udkz9lYlMjlSymlhC4pbxfI/LJv8R/a2
+         eSPgxwYTXPoYJF/kWnEU49hKuWKjtEZ/uLbrxOr4Lji30teMwCqjHjG+ZUEsWPqWT6I+
+         I+ySVUZF1/SjN6FV4dmiaK+I3mTY9OMFGx4tNFt64G/l4PAABUBfvcJl2OPDPrMO+92x
+         fTEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=py6+yQ/tNqIo58cj9er+HXmr5Gilz7gBmyiper3N4aE=;
-        b=MxuoUJg74NDdba/zTe/vqxoG/IwYIMuRTiUhTohnnFZNUpkP7QEUgccm0+sNZlvQ22
-         cpSuTY8ipYKeW+RfdeBLAKbk8pg3YvBy6UIjF1f6cxIl2dJGW22ctGmnnmtbCiaKt4an
-         vSCEAT24BOQBKF4eVxKK9WonDY64Ux0Zk+6gNJEPL/nwvW/BYEPZzZxr3Enmu6dXPvex
-         hdjtxxwc59vE2EadKDf3wflbA8yIjb8FHyzunvy/cPgg5XiYpMGi88DspyV74I8uC2rY
-         T3IDkFJQ5gHdYzY5AlRCgBwg3AOGDNt515nCOCHqt5LToXstxzgVl/O2xKAgjYsLTWxW
-         rajg==
-X-Gm-Message-State: AOAM532sbougXGazi3u6ljkpmq7Xd4wBMg6mJ5C6cz+vuNi74HoXaX3d
-	dX8jccUb8t+jKfDyqQiOydLQ0Gf6/fM5lSKVYnt2kOPS4C4JLh1y
-X-Google-Smtp-Source: ABdhPJy3+hlUEVXZWdDr1YIvKO0DTwis9RmZpeRx+xceurHSgJBylzM4whPXZjg+d1bf9rfrNLezcAa7rrWUHrCu6tY=
-X-Received: by 2002:a6b:f408:0:b0:64c:b4b4:9164 with SMTP id
- i8-20020a6bf408000000b0064cb4b49164mr17163452iog.24.1649856037420; Wed, 13
- Apr 2022 06:20:37 -0700 (PDT)
+        bh=hyjKpMT/91pZylkb6EK07FKdo3CPhmnBXOe6+GD5jDI=;
+        b=J3e0TOj+KWGbuCRj4c5lNrwQG8K2ayNtcebTN0oHHtL3Gq6ESBNHlUD4obAdvkSivL
+         wgVzd0wwN7FXaC6NKh/UlgAKfdx1oqGEJx18MlnwqqQ50wBfAEYVqMeS5Jg0afNXFJjL
+         NQEiH4MgDa07Wpt9TVHQmGrCWHWMPmwNEIaEt4RIDj+nkprwdcbRljTtXiU8/qGHN6Ui
+         p/rMg5raa4k8sK8UEbhUdgOSkPJmGxrEgpx0sV0CacWJF31WTOLXUTEtnhwgv3OFKoIR
+         mkV+4w42c4+V9IGFR11pTw85Biyv6PlVJvlAtCUy9kfPH323HVN032MRaRJWds8/o0k9
+         2tFA==
+X-Gm-Message-State: AOAM533D0QIbYz9IlbuPGnvkbnabBzgUVTOCKEMhAU1z5iNcZcGc2fiD
+	FA7aIzgVFWc6nQpDomHT3FXk4yOwneMaJd29y44SMMI+bk8=
+X-Google-Smtp-Source: ABdhPJx82jXUqazzmB+YMURW0e15wzvcVej3feBvN2xiaRJ2uXGu5l3104Siyqs8mkXrL+e8TSPQXi5yZKYVJesDjfQ=
+X-Received: by 2002:a67:ba10:0:b0:328:28e6:7066 with SMTP id
+ l16-20020a67ba10000000b0032828e67066mr7913009vsn.29.1649871155438; Wed, 13
+ Apr 2022 10:32:35 -0700 (PDT)
 MIME-Version: 1.0
-From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Wed, 13 Apr 2022 08:20:01 -0500
-Message-ID: <CACaXmv-DdJbLgsymtibYVP_V+YHn4rYUVoaMMFeqaJmgu6XCkw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: 5XD3C7FXXMF6X4QYLH5DVHYLG4I7UUDG
-X-Message-ID-Hash: 5XD3C7FXXMF6X4QYLH5DVHYLG4I7UUDG
-X-MailFrom: neel.pandeya@ettus.com
+From: Lautaro Lorenzen <lorenzen.lautaro@gmail.com>
+Date: Wed, 13 Apr 2022 14:32:24 -0300
+Message-ID: <CAOucfAOCAAvZ8GuirG15oZ30EPO1=ENs3teM8FKUhm3YyaptXQ@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: DTCIRRQ25P4YZRRHPQK7WRRTWDBGVKN6
+X-Message-ID-Hash: DTCIRRQ25P4YZRRHPQK7WRRTWDBGVKN6
+X-MailFrom: lorenzen.lautaro@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] NEWSDR 2022 -- Save the Date!! -- Friday June 3
+Subject: [USRP-users] Issue with TRX-B output
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5XD3C7FXXMF6X4QYLH5DVHYLG4I7UUDG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DTCIRRQ25P4YZRRHPQK7WRRTWDBGVKN6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1141974308362089661=="
+Content-Type: multipart/mixed; boundary="===============6000970299247980901=="
 
---===============1141974308362089661==
-Content-Type: multipart/alternative; boundary="0000000000000a920f05dc890b62"
+--===============6000970299247980901==
+Content-Type: multipart/alternative; boundary="000000000000252a8305dc8c9001"
 
---0000000000000a920f05dc890b62
+--000000000000252a8305dc8c9001
 Content-Type: text/plain; charset="UTF-8"
 
-Save-the-Date!!
+Hi everyone,
 
-NEWSDR 2022 will be held on Friday June 3.
+I'm trying to run a simple example on an Ettus E310.
+I'm using an E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5.
 
-The event is free and will be fully virtual, and within an interactive
-virtual environment.
+Everything seems to work okay, but I can not manage to get the second
+channel (TRX-B) to transmit anything. FYI: I can receive from both channels
+RX-A and RX-B.
+The problem came up when I tried to transmit something via gnu-radio,
+changing the "subdev" arg to "A:1" instead of leaving it blank as I
+normally do.
+When I pressed start, everything seemed to compile fine, but the GUI
+freezes (something that did not happen when using TRX-A).
 
-Please visit our website for updates on the agenda.
+To see if gnu-radio was the problem, I logged in the embedded linux and
+tried some uhd examples from usr/lib/uhd/examples.
+As expected, I ran ./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:0  and
+the tx light turned on and I could see something on my oscilloscope. Also,
+a few "LLLLL" appeared on the console.
 
-More information and registration instructions will be posted at the end of
-this week.
+When I ran:
+./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:1, everything looks the
+same but no light, no signal, and no "LLLLL" are displayed on the console.
+Just the message "press ctrl+C to stop streaming".
 
-https://newsdr.org/workshops/newsdr2022/
+Any help would be very much appreciated.
+Regards,
+Lautaro.
 
---0000000000000a920f05dc890b62
+--000000000000252a8305dc8c9001
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><font face=3D"verd=
-ana, sans-serif">Save-the-Date!!</font></div><font face=3D"verdana, sans-se=
-rif"><br>NEWSDR 2022 will be held on Friday June 3.<br><br>The event is fre=
-e and will be fully virtual, and within an interactive virtual environment.=
-<br><br>Please visit our website for updates on the agenda.<br><br>More inf=
-ormation and registration instructions will be posted at the end of this we=
-ek.<br><br></font><div class=3D"gmail_default" style=3D""><font face=3D"ver=
-dana, sans-serif"><a href=3D"https://newsdr.org/workshops/newsdr2022/">http=
-s://newsdr.org/workshops/newsdr2022/</a></font></div><div class=3D"gmail_de=
-fault" style=3D""><font face=3D"verdana, sans-serif"><br></font></div><div =
-class=3D"gmail_default" style=3D""><font face=3D"verdana, sans-serif"></fon=
-t></div><div class=3D"gmail_default" style=3D"font-family:verdana,sans-seri=
-f"><br clear=3D"all"></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi everyone,</div><div class=3D"gmail_default" style=3D=
+"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_defa=
+ult" style=3D"font-family:arial,helvetica,sans-serif">I&#39;m trying to run=
+ a simple example on an Ettus E310. <br><div class=3D"gmail_default" style=
+=3D"font-family:arial,helvetica,sans-serif">I&#39;m using an E312 with UHD =
+4.1.0.5 and gnuradio v3.8.0.5. <br></div><div class=3D"gmail_default" style=
+=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_d=
+efault" style=3D"font-family:arial,helvetica,sans-serif">Everything seems t=
+o work okay, but I can not manage to get the second channel (TRX-B) to tran=
+smit anything. FYI: I can receive from both channels RX-A and RX-B.<br></di=
+v><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-se=
+rif">The problem came up when I tried to transmit something via gnu-radio, =
+changing the &quot;subdev&quot; arg to &quot;A:1&quot; instead of leaving i=
+t blank as I normally do. <br></div><div class=3D"gmail_default" style=3D"f=
+ont-family:arial,helvetica,sans-serif">When I pressed start, everything see=
+med to compile fine, but the GUI freezes (something that did not happen whe=
+n using TRX-A).</div><div class=3D"gmail_default" style=3D"font-family:aria=
+l,helvetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"fon=
+t-family:arial,helvetica,sans-serif">To see if gnu-radio was the problem, I=
+ logged in the embedded linux and tried some uhd examples from usr/lib/uhd/=
+examples.</div><div class=3D"gmail_default" style=3D"font-family:arial,helv=
+etica,sans-serif">As expected, I ran ./tx_waveforms --rate 1e6 --freq 100e6=
+ --subdev A:0=C2=A0 and the tx light turned on and I could see something on=
+ my oscilloscope. Also, a few &quot;LLLLL&quot; appeared on the console.</d=
+iv><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-s=
+erif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,hel=
+vetica,sans-serif">When I ran: <br></div><div class=3D"gmail_default" style=
+=3D"font-family:arial,helvetica,sans-serif">./tx_waveforms --rate 1e6 --fre=
+q 100e6 --subdev A:1, everything looks the same but no light, no signal, an=
+d no &quot;LLLLL&quot; are displayed on the console. Just the message &quot=
+;press ctrl+C to stop streaming&quot;.</div><div class=3D"gmail_default" st=
+yle=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmai=
+l_default" style=3D"font-family:arial,helvetica,sans-serif">Any help would =
+be very much appreciated. <br></div><div class=3D"gmail_default" style=3D"f=
+ont-family:arial,helvetica,sans-serif">Regards,</div><div class=3D"gmail_de=
+fault" style=3D"font-family:arial,helvetica,sans-serif">Lautaro.<br> </div>=
+<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
+f"><br></div></div></div>
 
---0000000000000a920f05dc890b62--
+--000000000000252a8305dc8c9001--
 
---===============1141974308362089661==
+--===============6000970299247980901==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -123,4 +164,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1141974308362089661==--
+--===============6000970299247980901==--
