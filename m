@@ -2,159 +2,142 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 705464FFCD9
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 19:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F313D500227
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Apr 2022 00:56:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4946238449E
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 13:33:41 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DDBA73818E9
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 18:56:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1649871221; bh=6AcPQ0zc6t9dqpfF9g68VfbhFR038AEwg4BKAnCOSms=;
+	t=1649890567; bh=2fD/NlcHaAajdrUBSbf2711DdYoXd9ilU0rq8Zv35A8=;
 	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=K/ltMYicDcGwvjPb1NVhzkX9JCnBW4iW0ELqugSbMEBiLyDlOoVVhOKyVPWDbbPq6
-	 v9VTeYqZs0TTOugknbbmaoLBpIu3cevEm1uNlKGzkFysULcogDLbz/+pMdbkHqqcvA
-	 7trigOnZaoPfBlnwDNJtigfea0IUjdQ7pwDzQVzYKs2m3pvzyaK+oozXgsd1DBhASz
-	 aALMf83y3O60v0Ou5DlSkA9kGs5ETHo9PxYMlGx4Nh/qAKZz1IsB+Nu2OJwTkPr1Di
-	 pFO8NEXKr6/dv9muXczo+h5aQMUjaedsKVcTOvv+o1pbXpfzLa8/nDQW+A+hXK81I6
-	 cE7ggVSdPy+FQ==
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 492C5384373
-	for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 13:32:36 -0400 (EDT)
+	b=oWeo+29vC8OeZaMVoMI7sJsJF0vsRdIUVNEeirN1UTHyzqHrGbfp/00jDS/nP3UxM
+	 Ufve75ZBzO5McBwbEuGA0iPCxdecyhJeH3YBIv+w4wFaxS0DLa9zCJozzn20gCCYCM
+	 IbMeOU9S9/i0Ex/SEVk7tKXn7kosr3s+19RtO469kVo6JGaFp0Fkns4Znyisk5Gkyu
+	 CremN9ZI8ABKDFQURgIRqPVXNPrNpMcbnqSmEilwZegTYEW56DBp9FMSdTdE0hxJg3
+	 DgtvHM3P6Yt9uOw3rtqUIrDeqIgcT+UHJ4gNnl2mJGRbPufV9NuFUnPxqJABfjGU07
+	 jP8jayS4SvhQw==
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 43E443841CC
+	for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 18:54:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fukmKrb6";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Y74OYhku";
 	dkim-atps=neutral
-Received: by mail-vs1-f51.google.com with SMTP id f32so2276138vsv.1
-        for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 10:32:36 -0700 (PDT)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-e2a00f2cc8so3581581fac.4
+        for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 15:54:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:from:date:message-id:subject:to;
-        bh=hyjKpMT/91pZylkb6EK07FKdo3CPhmnBXOe6+GD5jDI=;
-        b=fukmKrb68rrVs6jVQIJRfpQYKTY9TQYkmetXdv5V9hdXhxdIOXIR2uf8+Oq5ofpkrc
-         5uXFD5lRBr2FbHpWzsTMA917ADKVtB66KWGkGcvvc9cWiyazvFuOtJ7WPWLDngC5ff9y
-         qSk3cG0+tGFgLkWbVwI3mWHqxE90iFEr6gV6udkz9lYlMjlSymlhC4pbxfI/LJv8R/a2
-         eSPgxwYTXPoYJF/kWnEU49hKuWKjtEZ/uLbrxOr4Lji30teMwCqjHjG+ZUEsWPqWT6I+
-         I+ySVUZF1/SjN6FV4dmiaK+I3mTY9OMFGx4tNFt64G/l4PAABUBfvcJl2OPDPrMO+92x
-         fTEA==
+        bh=1wowdCngcuRJSYXmGhZKN1U5Bl9ig0EQKbn/XA+3bwc=;
+        b=Y74OYhku6WOzJzHXqjMaz0cm0QFEZs52LD9BWf6CMTqvzkYzEAGG/fpaBQoiReNgvm
+         tSheCwufH1KatP+qgLaxp38/Hm8dNxU1TVvAbp7hG6MR8ghsIpjLblQnIxvQl5+uX2sB
+         FckOKMLX0mvh2f6N1YJkUvFxAL7M2WzXm1NWQGba2bHhIBKn9GVozJtqByTZntH3tLpJ
+         J7qe/gMzkS+dezMCrP4LMFwiatsKrD9uXSV31+QRgb7OH7S137rVVCaO5iYoCjnW3Ba/
+         fFH5DZ/OzCdnCaT1bX16Sb82b4HmOcfdnvzmCfPJDIGqSozl6tu5CUzRSdKh3IvZeCfx
+         RW3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=hyjKpMT/91pZylkb6EK07FKdo3CPhmnBXOe6+GD5jDI=;
-        b=J3e0TOj+KWGbuCRj4c5lNrwQG8K2ayNtcebTN0oHHtL3Gq6ESBNHlUD4obAdvkSivL
-         wgVzd0wwN7FXaC6NKh/UlgAKfdx1oqGEJx18MlnwqqQ50wBfAEYVqMeS5Jg0afNXFJjL
-         NQEiH4MgDa07Wpt9TVHQmGrCWHWMPmwNEIaEt4RIDj+nkprwdcbRljTtXiU8/qGHN6Ui
-         p/rMg5raa4k8sK8UEbhUdgOSkPJmGxrEgpx0sV0CacWJF31WTOLXUTEtnhwgv3OFKoIR
-         mkV+4w42c4+V9IGFR11pTw85Biyv6PlVJvlAtCUy9kfPH323HVN032MRaRJWds8/o0k9
-         2tFA==
-X-Gm-Message-State: AOAM533D0QIbYz9IlbuPGnvkbnabBzgUVTOCKEMhAU1z5iNcZcGc2fiD
-	FA7aIzgVFWc6nQpDomHT3FXk4yOwneMaJd29y44SMMI+bk8=
-X-Google-Smtp-Source: ABdhPJx82jXUqazzmB+YMURW0e15wzvcVej3feBvN2xiaRJ2uXGu5l3104Siyqs8mkXrL+e8TSPQXi5yZKYVJesDjfQ=
-X-Received: by 2002:a67:ba10:0:b0:328:28e6:7066 with SMTP id
- l16-20020a67ba10000000b0032828e67066mr7913009vsn.29.1649871155438; Wed, 13
- Apr 2022 10:32:35 -0700 (PDT)
+        bh=1wowdCngcuRJSYXmGhZKN1U5Bl9ig0EQKbn/XA+3bwc=;
+        b=TnFG7mQFTv9MD6/ZGKm0jlit18DHAGObH0l1CmNKwZ0/38oq/jTB4Zl0pITE9N3UaC
+         p3XXXqfE5GS803zdLpIZVpOVfTi+PQ102IRYmmVian7LTGWlaVvImRxKQTESMSI09PcN
+         wYZ2VXh4CF+FPdO3tszTwriJVmJNctH4DGNpC0uBNC7FcxN1g4T1L+FQN6nmlF6ghXSP
+         /64vBPBJFs/P8VFgNS4Uwxgtq+2UtCcCF42xcaXSHt3Tb2YnHNCbsjGP1N7MNIhS4M4m
+         CKB18+0tsN0UxkD6iPRM/z6WB5MwP2rl++Ap1QkiuloZOEWeGfT7bwXd2YaI8Db418fB
+         0rgA==
+X-Gm-Message-State: AOAM533bT7sVhDOUT06FODQaHL+xc20BdZrGMRMoxRveM4nH9KtGgJ7b
+	8lNrA0SMCBwMkL0liaO6iBWFTtIFcg4PGtiYNe/3qHCLAhIDCg==
+X-Google-Smtp-Source: ABdhPJyk8em95PoaMrScPN0JCJzljfz4Wsqf8U9SYRDik28W7KHkYuft8+MLCVkYOzPEpqrLVyLzpzRUh/7T4Jb12PY=
+X-Received: by 2002:a05:6870:d38e:b0:e2:f229:1a1d with SMTP id
+ k14-20020a056870d38e00b000e2f2291a1dmr444855oag.251.1649890496278; Wed, 13
+ Apr 2022 15:54:56 -0700 (PDT)
 MIME-Version: 1.0
-From: Lautaro Lorenzen <lorenzen.lautaro@gmail.com>
-Date: Wed, 13 Apr 2022 14:32:24 -0300
-Message-ID: <CAOucfAOCAAvZ8GuirG15oZ30EPO1=ENs3teM8FKUhm3YyaptXQ@mail.gmail.com>
+From: Dario Fertonani <dario.fertonani@gmail.com>
+Date: Wed, 13 Apr 2022 15:54:44 -0700
+Message-ID: <CAJGEdAiB2THbMiYaTDvFTeAcE-n_yf5ga5AA71kdwQXx5Ejw4w@mail.gmail.com>
 To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: DTCIRRQ25P4YZRRHPQK7WRRTWDBGVKN6
-X-Message-ID-Hash: DTCIRRQ25P4YZRRHPQK7WRRTWDBGVKN6
-X-MailFrom: lorenzen.lautaro@gmail.com
+Message-ID-Hash: HZDNVXRSY76HKKEU57YIWGDCFDBEFXL6
+X-Message-ID-Hash: HZDNVXRSY76HKKEU57YIWGDCFDBEFXL6
+X-MailFrom: dario.fertonani@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Issue with TRX-B output
+Subject: [USRP-users] B210 broken on UHD versions newer than 3.15.0?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DTCIRRQ25P4YZRRHPQK7WRRTWDBGVKN6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HZDNVXRSY76HKKEU57YIWGDCFDBEFXL6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6000970299247980901=="
+Content-Type: multipart/mixed; boundary="===============5705675340739286418=="
 
---===============6000970299247980901==
-Content-Type: multipart/alternative; boundary="000000000000252a8305dc8c9001"
+--===============5705675340739286418==
+Content-Type: multipart/alternative; boundary="000000000000f2f2d705dc911028"
 
---000000000000252a8305dc8c9001
+--000000000000f2f2d705dc911028
 Content-Type: text/plain; charset="UTF-8"
 
-Hi everyone,
+Hi,
 
-I'm trying to run a simple example on an Ettus E310.
-I'm using an E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5.
+I'm here to report that the "golden standard" for benchmarking the B210
+streaming performance is giving us issues with the latest UHD versions.
 
-Everything seems to work okay, but I can not manage to get the second
-channel (TRX-B) to transmit anything. FYI: I can receive from both channels
-RX-A and RX-B.
-The problem came up when I tried to transmit something via gnu-radio,
-changing the "subdev" arg to "A:1" instead of leaving it blank as I
-normally do.
-When I pressed start, everything seemed to compile fine, but the GUI
-freezes (something that did not happen when using TRX-A).
+The following command
 
-To see if gnu-radio was the problem, I logged in the embedded linux and
-tried some uhd examples from usr/lib/uhd/examples.
-As expected, I ran ./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:0  and
-the tx light turned on and I could see something on my oscilloscope. Also,
-a few "LLLLL" appeared on the console.
+./benchmark_rate --rx_channels "0,1" --rx_rate 30720000 --tx_channels "0,1"
+--tx_rate 30720000 --duration 120
 
-When I ran:
-./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:1, everything looks the
-same but no light, no signal, and no "LLLLL" are displayed on the console.
-Just the message "press ctrl+C to stop streaming".
+gives flawless output with UHD 3.10.3 and 3.15.0, but orrible output with
+UHD 4.1+, with everything else being equal. These results hold on several
+x86 machines (Intel i7, i9, Xeon, and AMD Ryzen and Epyc) and with at least
+five different B210 devices. In each case, for a given host machine, USB
+cable, and B210 device, we compiled UHD from source and saw the results
+degrade sharply simply by running the command from the newer folders.
 
-Any help would be very much appreciated.
-Regards,
-Lautaro.
+We typically run UHD from Ubuntu packages (3.10.3 for Ubuntu 18, 3.15.0 for
+Ubuntu 20, or whatever is in the latest Ubuntu PPA) rather than building it
+from source code. We went through the source code route because we saw
+issues and wanted to reproduce them with the official "benchmark_rate"
+utility, which unfortunately comes only with the source code version.
+However, I want to point out that the poor results seen
+with "benchmark_rate" are consistent with the poor results of our own code
+when built with newer UHD versions.
 
---000000000000252a8305dc8c9001
+Thanks,
+Dario
+
+--000000000000f2f2d705dc911028
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi everyone,</div><div class=3D"gmail_default" style=3D=
-"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_defa=
-ult" style=3D"font-family:arial,helvetica,sans-serif">I&#39;m trying to run=
- a simple example on an Ettus E310. <br><div class=3D"gmail_default" style=
-=3D"font-family:arial,helvetica,sans-serif">I&#39;m using an E312 with UHD =
-4.1.0.5 and gnuradio v3.8.0.5. <br></div><div class=3D"gmail_default" style=
-=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_d=
-efault" style=3D"font-family:arial,helvetica,sans-serif">Everything seems t=
-o work okay, but I can not manage to get the second channel (TRX-B) to tran=
-smit anything. FYI: I can receive from both channels RX-A and RX-B.<br></di=
-v><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-se=
-rif">The problem came up when I tried to transmit something via gnu-radio, =
-changing the &quot;subdev&quot; arg to &quot;A:1&quot; instead of leaving i=
-t blank as I normally do. <br></div><div class=3D"gmail_default" style=3D"f=
-ont-family:arial,helvetica,sans-serif">When I pressed start, everything see=
-med to compile fine, but the GUI freezes (something that did not happen whe=
-n using TRX-A).</div><div class=3D"gmail_default" style=3D"font-family:aria=
-l,helvetica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"fon=
-t-family:arial,helvetica,sans-serif">To see if gnu-radio was the problem, I=
- logged in the embedded linux and tried some uhd examples from usr/lib/uhd/=
-examples.</div><div class=3D"gmail_default" style=3D"font-family:arial,helv=
-etica,sans-serif">As expected, I ran ./tx_waveforms --rate 1e6 --freq 100e6=
- --subdev A:0=C2=A0 and the tx light turned on and I could see something on=
- my oscilloscope. Also, a few &quot;LLLLL&quot; appeared on the console.</d=
-iv><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-s=
-erif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,hel=
-vetica,sans-serif">When I ran: <br></div><div class=3D"gmail_default" style=
-=3D"font-family:arial,helvetica,sans-serif">./tx_waveforms --rate 1e6 --fre=
-q 100e6 --subdev A:1, everything looks the same but no light, no signal, an=
-d no &quot;LLLLL&quot; are displayed on the console. Just the message &quot=
-;press ctrl+C to stop streaming&quot;.</div><div class=3D"gmail_default" st=
-yle=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmai=
-l_default" style=3D"font-family:arial,helvetica,sans-serif">Any help would =
-be very much appreciated. <br></div><div class=3D"gmail_default" style=3D"f=
-ont-family:arial,helvetica,sans-serif">Regards,</div><div class=3D"gmail_de=
-fault" style=3D"font-family:arial,helvetica,sans-serif">Lautaro.<br> </div>=
-<div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-seri=
-f"><br></div></div></div>
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m here to report that the &qu=
+ot;golden standard&quot; for benchmarking the B210 streaming performance is=
+ giving us issues with the latest UHD versions.</div><div><br></div><div>Th=
+e following command</div><blockquote style=3D"margin:0 0 0 40px;border:none=
+;padding:0px"><div><font face=3D"monospace">./benchmark_rate --rx_channels =
+&quot;0,1&quot; --rx_rate 30720000 --tx_channels &quot;0,1&quot; --tx_rate =
+30720000 --duration 120</font></div></blockquote><div>gives flawless output=
+ with UHD 3.10.3 and 3.15.0, but orrible output with UHD 4.1+, with everyth=
+ing else being equal. These results hold on several x86 machines (Intel i7,=
+ i9, Xeon, and AMD Ryzen and Epyc) and with at least five different B210 de=
+vices. In each case, for a given host machine, USB cable, and B210 device, =
+we compiled UHD from source and saw the results degrade sharply simply by r=
+unning the command from the newer folders.</div><div><br></div><div>We typi=
+cally run UHD from Ubuntu packages (3.10.3 for Ubuntu 18, 3.15.0 for Ubuntu=
+ 20, or whatever is in the latest Ubuntu PPA) rather than building it from =
+source code. We went through the source code route because we saw issues an=
+d wanted to reproduce them with the official &quot;benchmark_rate&quot; uti=
+lity, which unfortunately comes only with the source code version. However,=
+ I want to point out that the poor results seen with=C2=A0&quot;benchmark_r=
+ate&quot; are consistent with the poor results of our own code when built w=
+ith newer UHD versions.</div><div><br></div><div>Thanks,</div><div>Dario</d=
+iv><div><br></div><div><br></div><div><br></div></div>
 
---000000000000252a8305dc8c9001--
+--000000000000f2f2d705dc911028--
 
---===============6000970299247980901==
+--===============5705675340739286418==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -164,4 +147,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6000970299247980901==--
+--===============5705675340739286418==--
