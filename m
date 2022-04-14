@@ -2,200 +2,116 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4384C50049B
-	for <lists+usrp-users@lfdr.de>; Thu, 14 Apr 2022 05:24:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5BA75004C1
+	for <lists+usrp-users@lfdr.de>; Thu, 14 Apr 2022 05:45:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0C4A4384D1F
-	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 23:24:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 15E4738448F
+	for <lists+usrp-users@lfdr.de>; Wed, 13 Apr 2022 23:45:33 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1649906640; bh=kq7PYV241uileNp4/iWOexojP/t447v/xW9o1Ht24g8=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=RgjTvxTivgJScMk47QIcKSWciag8NwdM8zbJo5PvO4rxjQhfT2y+7X868na6a/6tD
-	 OPl9q7sap21BggRUcwUeMfwjNbEGbgdEGcbY0vBCoQ5ffAokBq50H4jqONXA0UaaOf
-	 5Ok42kLQcgcHUsoGhfm/2YLbnI+e3YoZhMI9boJ4VDQ9YzutsmcfgYav3H7FQ3ez37
-	 aQ4wK7hVSBuWNcbToYZUQ22qOUke4fER/ddJma6D5C48AsXsZZrteQSUxAF4gKd2K5
-	 9RuLGW/G8Kj52P87ZbNl+MoFxMv/VEw2tihJaIkOThCZKdvMaBk2YFsGLVCq6lbhJf
-	 A0BKnGItCiKDQ==
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id 09FB9384869
-	for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 23:23:00 -0400 (EDT)
+	t=1649907933; bh=zeQhO0QHjA9RGKoqkqJqNEVRtDxacr+DkDu9oXRmdP0=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=RtEN2bVzzyzf3wsGiUOuwVFUNgUbxnSk17rwE79h4boL7279b6VNns6uWVD2siFlE
+	 2grIthWPueW6DksDDtojokb4Gxc3eEgB1u2Fxqzuj1QtBQ8EptxmlHltp1tth3w2su
+	 haS3b3QlrM5Md54Z2Y7Iyc5Yj8b4IuIqPF9Z8rJF6VRsY1FEjFK49rvbQVAMI36OB+
+	 4bAswohOpMkp4LsHsR7vv//ZZnSB78mt4i/DyNBxUV2/7rON/7XQoHa9JqYA7q7qQ2
+	 2Jh445qNF6lfHg9HURxXOla81932Go1Z0qdp7kmG2OH3UnPjTF7JrzF3LIbmqChxw9
+	 Oa7vZMkynwsjQ==
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2B76F384BDF
+	for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 23:44:27 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="fMxJOicD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nnGdTGWg";
 	dkim-atps=neutral
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-2ebebe631ccso42686407b3.4
-        for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 20:23:00 -0700 (PDT)
+Received: by mail-qt1-f178.google.com with SMTP id bb38so2797787qtb.3
+        for <usrp-users@lists.ettus.com>; Wed, 13 Apr 2022 20:44:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7Zn1uf/aWWo+K6RwM+5zPufLjhiq/asTMvJOAs9iv5U=;
-        b=fMxJOicD8lCnTSTZp2UZ1ySFeFodSpw0sn1JAMMJf8cFn6uvBuN6ryl/gKQsRemkof
-         I9YmoleIRq7gyMM4inx4vMKq9AY9zT0sdgI2Ojj7iPX7XiUGDx9XbmEy2GnR9wwkaQTQ
-         /dFDbc0LNwNJdzoSwwFPpqJ5YVIAvvPdpea63sYjAxEo6S+eVzy4XsY855LJT/BAHivu
-         LUcZfNhI4cmmuY3KC2rWpdgsxfpN87LeOkf/66MidLto9fMi8S0+CXzRWvqX9+cgDyR5
-         hgfROdoIVRKWgEU+L0jVhGZ6TNL0TxY6mhcIiwqLlwyRZt82EHzenkw8hqSY1FLGxWXm
-         lDug==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=gYvbMCCGBcO53qz9oMkuuBKJz5qh74c2dqE20has4SA=;
+        b=nnGdTGWghVUOD4u7QS0mL6OzeB2JLtO/DfJc9m9jb2mfQgIKz3zx1KRu6kR+oLZt/N
+         njut9hkHfyCac+kvgAnkGXNVmuJKKAvr+5e1nGhnnS3RKFAP8AtABaoLE6ju5ySI4BUr
+         CV74xeBlcI+jGJcLaxsMs4NqeBjCW0C9GnSo/fBWlfQ+4j5s2UwpTsI1On5NhjWqj3rP
+         QxWT2fBWJliwQd9ENYWkE+HZnt//glQbwwJl9I6/KjqtXlVNS8e4NY8AEvH3uX3DpQRK
+         8nKl2GX5ZcF+SimBiR4L9PAcK5P5/qH0n4p05x+4czZ+VD5ll2EPMHYO6gfv4epjoHgT
+         wl+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7Zn1uf/aWWo+K6RwM+5zPufLjhiq/asTMvJOAs9iv5U=;
-        b=W/EaI4fYMSDqTomBomzIe24EZPq/JFlTEvPr6BDJaYwrVYHDV+aztjPUAvG1ZKOK+O
-         QZ/WAB0zYLHM7rUWOVNketw4zOBER1fRylmHvtJLrW1N6JcR3/Kwp7GyDhB6q/uI7dpd
-         jcajIhG9XPMIpKviMyRv//T7Uf9x1rx+QAxo/qo9SsZPsfLaJ7VZOphMWJVPC+4nujIQ
-         E8WANhs0iy+t5zZjxYeUiSle0cYf7/Ggp3v+tTZe8drSjinABMY1sFFWscxA2ZaWQ6es
-         N9rWhI6oRpzIEjCbX/pQl0CHVcdxKvq/U7b8lKcyCEo/zTMGQ8B1YnxMX3QSgbbmuitp
-         t33g==
-X-Gm-Message-State: AOAM532vAiJZ4WW0HTQwKCSy38ZXxXYpOM9hq5zTaDf2WblGQX2T/usx
-	XwjzyylVUq6Mke9UHAJXce00mCRhbv5eHzqrX56yTQ==
-X-Google-Smtp-Source: ABdhPJwpfNGYzLbq2FT4VkmuETQxWLIJAdxtRXrQT4m1XU0BCnjRAC8nlvTEwei60XJ3aqVMT/Aanzmhy+7yrGOrXHg=
-X-Received: by 2002:a0d:d850:0:b0:2ec:26bb:3468 with SMTP id
- a77-20020a0dd850000000b002ec26bb3468mr509262ywe.369.1649906580176; Wed, 13
- Apr 2022 20:23:00 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gYvbMCCGBcO53qz9oMkuuBKJz5qh74c2dqE20has4SA=;
+        b=6fPAy79DdbStyDvJG3yaH51ACfW4vMHDvfIR+o9eEj9ZY7BgTnBDQB68xaeE074Rep
+         fhcYtCT5cfLu8xsDMzwYhDQKLRSNQrLngEzAEUS6H64XDEkSE+y4mtW1CqhqQD/RdE7+
+         coasZmRlaAhAp5K0FBWCImcnyFbWj3Oc7mlzhrlQBS64qzB+IqnqP9LurJr05THZWDrT
+         Uz7zFX5qkqYdAnhkWb4TbEbpcaQ4dwwZvn019hKKZi3sl5sxxrub+6QEBdgpyxlIp9MI
+         gN9JRWEGLnCZ/t7Vu/HiIaiG351/IMUKufRn80lpq+nzlQg4n+EEGI8KOXmwlrUKY++b
+         4pPQ==
+X-Gm-Message-State: AOAM532jxlICUrMRBui7QWjCbdy3ORl8LRwAo/OCLLb2eVoW3duAV4SC
+	0M+SudHeXV+uCqsfG8Xd6g+0GZTJYBg=
+X-Google-Smtp-Source: ABdhPJzhnXpMdcD/9U12icQnGrdBrPZXIIs/ysCnNROu1xUePd7Pe0rMIRjirMt4F0JjIauYC0aaIg==
+X-Received: by 2002:ac8:4f12:0:b0:2eb:de47:e30 with SMTP id b18-20020ac84f12000000b002ebde470e30mr427408qte.193.1649907866354;
+        Wed, 13 Apr 2022 20:44:26 -0700 (PDT)
+Received: from [192.168.2.201] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id z8-20020ac87f88000000b002e1cecad0e4sm542894qtj.33.2022.04.13.20.44.25
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Apr 2022 20:44:25 -0700 (PDT)
+Message-ID: <c7263000-294f-d506-f0e5-63c6e135795b@gmail.com>
+Date: Wed, 13 Apr 2022 23:44:24 -0400
 MIME-Version: 1.0
-References: <CAOucfAOCAAvZ8GuirG15oZ30EPO1=ENs3teM8FKUhm3YyaptXQ@mail.gmail.com>
-In-Reply-To: <CAOucfAOCAAvZ8GuirG15oZ30EPO1=ENs3teM8FKUhm3YyaptXQ@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Wed, 13 Apr 2022 22:22:49 -0500
-Message-ID: <CAB__hTQo=pnO8-TBvBJFK8AbFStqnzMz72fLWJ2bVOjTL3wpOg@mail.gmail.com>
-To: Lautaro Lorenzen <lorenzen.lautaro@gmail.com>
-Message-ID-Hash: PBRCQJFJTN3W35MB4E5IEU2OQIKJFLJN
-X-Message-ID-Hash: PBRCQJFJTN3W35MB4E5IEU2OQIKJFLJN
-X-MailFrom: rkossler@nd.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <f0df6216-554d-8f17-ceea-0688751b4a88@gmx.de>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <f0df6216-554d-8f17-ceea-0688751b4a88@gmx.de>
+Message-ID-Hash: KNORACOA4K7UZXYODWWM2QAGGQUQJVZ5
+X-Message-ID-Hash: KNORACOA4K7UZXYODWWM2QAGGQUQJVZ5
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Issue with TRX-B output
+Subject: [USRP-users] Re: USP B205mini-i with external clock using Leo Bodnar GPSDO on srsRan eNodeB
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PBRCQJFJTN3W35MB4E5IEU2OQIKJFLJN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KNORACOA4K7UZXYODWWM2QAGGQUQJVZ5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6653098369860784447=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============6653098369860784447==
-Content-Type: multipart/alternative; boundary="000000000000a007df05dc94cf47"
-
---000000000000a007df05dc94cf47
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Lautaro,
-When you run embedded, what is the version that runs? I am wondering if
-your embedded file system (and also MPM version) is old and does not match
-the UHD version 4.1.0.5 that you are using on a host workstation. If this
-is the case, perhaps reload the file system using "dd" (don't use
-bmaptool).  Another thought would be to try benchmark_rate with 2 channels
-tx and 2 channels rx (at a slow rate) and see if the lights come on.
-Rob
-
-On Wed, Apr 13, 2022 at 12:33 PM Lautaro Lorenzen <
-lorenzen.lautaro@gmail.com> wrote:
-
-> Hi everyone,
->
-> I'm trying to run a simple example on an Ettus E310.
-> I'm using an E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5.
->
-> Everything seems to work okay, but I can not manage to get the second
-> channel (TRX-B) to transmit anything. FYI: I can receive from both channels
-> RX-A and RX-B.
-> The problem came up when I tried to transmit something via gnu-radio,
-> changing the "subdev" arg to "A:1" instead of leaving it blank as I
-> normally do.
-> When I pressed start, everything seemed to compile fine, but the GUI
-> freezes (something that did not happen when using TRX-A).
->
-> To see if gnu-radio was the problem, I logged in the embedded linux and
-> tried some uhd examples from usr/lib/uhd/examples.
-> As expected, I ran ./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:0
-> and the tx light turned on and I could see something on my oscilloscope.
-> Also, a few "LLLLL" appeared on the console.
->
-> When I ran:
-> ./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:1, everything looks the
-> same but no light, no signal, and no "LLLLL" are displayed on the console.
-> Just the message "press ctrl+C to stop streaming".
->
-> Any help would be very much appreciated.
-> Regards,
-> Lautaro.
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000a007df05dc94cf47
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Lautaro,<div>When you run embedded, wh=
-at is the version that runs? I am wondering if your embedded file system (a=
-nd also MPM version) is old and does not match the UHD version 4.1.0.5 that=
- you are using on a host workstation. If this is the case, perhaps reload t=
-he file system using &quot;dd&quot; (don&#39;t use bmaptool).=C2=A0 Another=
- thought would be to try benchmark_rate with 2 channels tx and 2 channels r=
-x (at a slow rate) and see if the lights come on.</div><div>Rob</div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed=
-, Apr 13, 2022 at 12:33 PM Lautaro Lorenzen &lt;<a href=3D"mailto:lorenzen.=
-lautaro@gmail.com">lorenzen.lautaro@gmail.com</a>&gt; wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div style=3D=
-"font-family:arial,helvetica,sans-serif">Hi everyone,</div><div style=3D"fo=
-nt-family:arial,helvetica,sans-serif"><br></div><div style=3D"font-family:a=
-rial,helvetica,sans-serif">I&#39;m trying to run a simple example on an Ett=
-us E310. <br><div style=3D"font-family:arial,helvetica,sans-serif">I&#39;m =
-using an E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5. <br></div><div style=
-=3D"font-family:arial,helvetica,sans-serif"><br></div><div style=3D"font-fa=
-mily:arial,helvetica,sans-serif">Everything seems to work okay, but I can n=
-ot manage to get the second channel (TRX-B) to transmit anything. FYI: I ca=
-n receive from both channels RX-A and RX-B.<br></div><div style=3D"font-fam=
-ily:arial,helvetica,sans-serif">The problem came up when I tried to transmi=
-t something via gnu-radio, changing the &quot;subdev&quot; arg to &quot;A:1=
-&quot; instead of leaving it blank as I normally do. <br></div><div style=
-=3D"font-family:arial,helvetica,sans-serif">When I pressed start, everythin=
-g seemed to compile fine, but the GUI freezes (something that did not happe=
-n when using TRX-A).</div><div style=3D"font-family:arial,helvetica,sans-se=
-rif"><br></div><div style=3D"font-family:arial,helvetica,sans-serif">To see=
- if gnu-radio was the problem, I logged in the embedded linux and tried som=
-e uhd examples from usr/lib/uhd/examples.</div><div style=3D"font-family:ar=
-ial,helvetica,sans-serif">As expected, I ran ./tx_waveforms --rate 1e6 --fr=
-eq 100e6 --subdev A:0=C2=A0 and the tx light turned on and I could see some=
-thing on my oscilloscope. Also, a few &quot;LLLLL&quot; appeared on the con=
-sole.</div><div style=3D"font-family:arial,helvetica,sans-serif"><br></div>=
-<div style=3D"font-family:arial,helvetica,sans-serif">When I ran: <br></div=
-><div style=3D"font-family:arial,helvetica,sans-serif">./tx_waveforms --rat=
-e 1e6 --freq 100e6 --subdev A:1, everything looks the same but no light, no=
- signal, and no &quot;LLLLL&quot; are displayed on the console. Just the me=
-ssage &quot;press ctrl+C to stop streaming&quot;.</div><div style=3D"font-f=
-amily:arial,helvetica,sans-serif"><br></div><div style=3D"font-family:arial=
-,helvetica,sans-serif">Any help would be very much appreciated. <br></div><=
-div style=3D"font-family:arial,helvetica,sans-serif">Regards,</div><div sty=
-le=3D"font-family:arial,helvetica,sans-serif">Lautaro.<br> </div><div style=
-=3D"font-family:arial,helvetica,sans-serif"><br></div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
-
---000000000000a007df05dc94cf47--
-
---===============6653098369860784447==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6653098369860784447==--
+T24gMjAyMi0wNC0xMSAxMjoxNCwgS2Fyc3RlbiBPaG1lIHdyb3RlOg0KPiBIaSwNCj4NCj4NCj4g
+SSBoYXZlIHB1cmNoYXNlZCBhIFByZWNpc2lvbiBHUFMgUmVmZXJlbmNlIENsb2NrDQo+IChodHRw
+Oi8vd3d3Lmxlb2JvZG5hci5jb20vc2hvcC9pbmRleC5waHA/bWFpbl9wYWdlPWluZGV4JmNQYXRo
+PTEwNw0KPiApIGJ1dCBoYXZlIHRyb3VibGVzIHRvIG1ha2UgaXQgd29yayB3aXRoIGFuIEV0dHVz
+IFVTUlAgQjIwNW1pbmktaS4NCj4NCj4gSSBhc3N1bWUgZXZlcnl0aGluZyBpcyBjb25maWd1cmVk
+IGNvcnJlY3RseSwgMTAgTUh6LCBzcXVhcmUgd2F2ZSBpbnB1dCwNCj4gSSBoYXZlIGEgR1BTIHNp
+Z25hbCwgMy4zIFZvbHQsIDEzLjMgZEIgYXR0ZW51YXRpb24sIHRoZSBVU1JQIGlzDQo+IGNvbm5l
+Y3RlZCBvbiBvdXRwdXQgMSBvbiB0aGUgTGVvIEJvZG5hciBHUFNETywgYnV0IG5laXRoZXIgb24g
+VUhEDQo+IHZlcnNpb24gMy4xNS4wIG5vciBvbiB2ZXJzaW9uIDQgdGhlIGV4dGVybmFsIGNsb2Nr
+IGlzIHVzZWQuIEkgY29uZmlndXJlZA0KPiB0aGUgVVNSUCB0byB1c2UgdGhlIGV4dGVybmFsIGNs
+b2NrIHdpdGggImRldmljZV9hcmdzID0gY2xvY2s9ZXh0ZXJuYWwiDQo+IGluIHNyc1JBTiBlTm9k
+ZUIgYnV0IEkgZ2V0IGFzIGVycm9yOg0KPg0KPg0KPiBDb3VsZCBub3QgbG9jayByZWZlcmVuY2Ug
+Y2xvY2sgc291cmNlLiBTZW5zb3I6IHJlZl9sb2NrZWQ9ZmFsc2UNCj4NCj4NCj4gSSBjb3VsZCBu
+b3QgZmluZCBhbnkgdXNlZnVsIGluZm9ybWF0aW9uIGFib3V0IGEgcmVhc29uIGZvciB0aGlzIGVy
+cm9yLg0KPiBDb3VsZCB5b3UgcGxlYXNlIHByb3ZpZGUgc29tZSBpZGVhcyBhYm91dCBwb3NzaWJs
+ZSByZWFzb25zIGZvciB0aGlzDQo+IGJlaGF2aW9yPw0KPg0KPg0KPiBSZWdhcmRzLA0KPg0KPiBL
+YXJzdGVuDQo+DQpOb3Qgc3VyZSBob3cgc3JzUkFOIG1hcHMgdGhlIGNvbmZpZ3VyYXRpb24gZmls
+ZSBpdCB1c2VzIHRvIGFjdHVhbCBVSEQgDQpjYWxscywgYnV0IGEgInNldF9jbG9ja19zb3VyY2Uo
+ImV4dGVybmFsIikiIHNob3VsZCB3b3JrIGp1c3QgZmluZSANCmFjY29yZGluZyB0bw0KIMKgIGV4
+cGVyaW1lbnRzIEkndmUgZG9uZSBpbiB0aGUgcGFzdC4NCg0KQmUgd2FybmVkIHRoYXQgdGhlIGNs
+b2NrICJzZXJ2byIgaW4gdGhlIG1pbmkgc2VyaWVzIGRvZXNuJ3QgYWN0IGxpa2UgYSANCnNtb290
+aCBhbmFsb2cgUExMLCBzbyB0aGUgY2xvc2UtaW4gcGhhc2Utbm9pc2Ugd2lsbCBiZSBwb29yLg0K
+DQpJIGFwb2xvZ2l6ZSBmb3IgdGhlIGRlbGF5IGluIHJlc3BvbmRpbmctLW15IGUtbWFpbCBjbGll
+bnQgaGFzIHRha2VuIHRvIA0KbWFya2luZyBhIGxvdCBvZiB1c3JwLXVzZXJzIHRyYWZmaWMgYXMg
+InNwYW0iLCBhbmQgSSdtIG5vdCBzdXJlIHdoeS4NCg0KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3Jw
+LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
