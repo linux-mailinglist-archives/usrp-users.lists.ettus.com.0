@@ -2,651 +2,437 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42C08506D43
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 15:13:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC7F506D4E
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 15:15:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3730B384C7A
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 09:13:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0B6E4384C1A
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 09:15:53 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1650373994; bh=wf1xe8oKg2AGqTnQ1uJtCtxfrWcL6jYjga2nx9nrUb4=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	t=1650374153; bh=fpJTAzgTibUMGCjyVxoM5e2byg/E9EtkQPd9t6WvFP4=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=PudCD1NLmVKEZb24IxFxyYRKngyckBLW5MEKPCWqyuH2O15NVvjHhb4dI61zzHLZC
-	 WYFy3JoZ2IZhhlNADA/SQX+WzC7ghy/+kzY5Vn1V07Q02xFgicypWMA+WQ5YDQI2CI
-	 W+/kC4HDtkAzYy7zNIVqIZISblNGANs5LtIQfYt5MUd4NtPyz/omnznmTLkQCTOXci
-	 aMBXAf6+SJSC3RRSG2BAwtif8ijCkRjbdMsbpwqGWk7JnCyaFGSvT8nwJ9kWQa2zR9
-	 15U6hVUszCvg/4Txw510bzoxxSBjwXOAwZ4pMCPE5mI/YR0GttMbCGGtDja7WbWpnN
-	 0TVpOd/2Ivf3w==
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 02D683847CE
-	for <usrp-users@lists.ettus.com>; Tue, 19 Apr 2022 09:12:12 -0400 (EDT)
+	b=pnl7mahe7h6eYl/QvmaL3eNi0u6ZQJtYLb+nmVlBvffsRZgWsrUnmEWGS+30a+vU5
+	 1J59n4XZrWHWISlioTLDpHxDesvQpKqKWmdMR6iB7qpejqoX11XQ0Bat5ddA6tkSWk
+	 u1F1l4vt7w/ELwG7z0mCZZonCmA5J4gB5ytZU4yg9q1G1lumN0FqoJSOKvwLviHWOM
+	 hCwvEFhzxeDhn/dFjw0vLvFVXCtFyaJv9p8rjjHmORLmoKRkkWyBqLaBSY1RgZ16EB
+	 EHL8DnSYhqBlUdIuOnmbbNFS5kqOs0wo+2Jacpvc0kMn1p7vJ6jtC1jIA+juOtiLah
+	 yl7ol91yx3HLw==
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6F6E53848DD
+	for <usrp-users@lists.ettus.com>; Tue, 19 Apr 2022 09:14:50 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="K7aEpors";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iDfLvdwd";
 	dkim-atps=neutral
-Received: by mail-qv1-f42.google.com with SMTP id y19so13034667qvk.5
-        for <usrp-users@lists.ettus.com>; Tue, 19 Apr 2022 06:12:12 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id t202so2644963vst.8
+        for <usrp-users@lists.ettus.com>; Tue, 19 Apr 2022 06:14:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to;
-        bh=qxew8ncbffzx35dctNdIf6XVrQWgnmqnrPJD6T9cmmc=;
-        b=K7aEpors30K82fKEK38McKfugcvaIJQjeOcdwxJ4xtdT556T/0Nya+O33fIeMMeALs
-         OJGnHCX1PkTAOU1N+r/FPjo2jkdZ0weStjX0AAnDYBpf/7uJkoiYQk1SpKGmK9Kd/9kj
-         k9YakV6jnHIXm3s7w+v2N/6MT7qzhSK+fXUXFPwtsNNkaYL6F+1oDipkZkm8u0Nklmm+
-         /hep5zk13Ukhpdx5NCSSs4jzRQG3OwGYPWM+KGxr2nJcOCnauAtP5xHUTLAfaVOU1cOX
-         I3Mkmbsa0QOW4/gJbwpflrim3ol1CyqORIckVuaoqgtwwp/ch/hWn6QenysBzue8FFSp
-         Cmmg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qbmlRbMYjVpdYUsED6yT0d7qfQx4Ul8eM8Z0PL7o4AY=;
+        b=iDfLvdwd4NLf8wedpPm8CKRuPG4PqPUpehunjLBL7MF92b/T+tAkQIOpBP84XoONxG
+         EpclEq7YNPE0NE8hv7BsGBR3R/dPbn4+4blB1jSpvwZ2pXhtPtekORBAVZYjA/x8SCJ+
+         OjHiWnIm1lFxqEYD87N7WsAZN+e1hw7HHqgKVDrXEgSoji8RM3f+IkK1C5FYkw1+ou8H
+         ZwzMKesJxqyWDTW4vOxUeltpGtEfQ5YlURkMC9Nvhts29ld+kBE9VlKOZmXu5A2NK8vd
+         BnEDVk/Qv3rbn9lG9ou+N2HOOYJ7MrLh4SFEVqYfWubs7Ndo4xSD/0+orM9RLYGjCjGv
+         rhbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to;
-        bh=qxew8ncbffzx35dctNdIf6XVrQWgnmqnrPJD6T9cmmc=;
-        b=iJVdS44EMXhcxDippfAcCadNFOTJitVPCkE6XFRUAgNkrhraMRcXeWphmMyQoT/YyO
-         4j31mE1TGkFBiktqEdDPddpySBN6xvX8T9T3iPdgeYTc51fQRAE7p+nRGayJWjeANWtl
-         VHha63ciF4rydbNhT5rOSwoNIgJ3/R1zNzxMuqnEpHTzsJTgzds2eJNB5e8831eT3cDt
-         VdqmUdWaFiv6lOnZyD5H3wDGTkgloMRiTMmGxoZrCLUMvgRsBsA/poIScHsgAGLWVHJN
-         fd9IoaTarUmkZZNu0VebVd3ZceAiL5AbB0jygd7lDUxn2ockqszLJvuqnDjyTc9nm2DS
-         bI/g==
-X-Gm-Message-State: AOAM531CcNr4WP9gSyKK0Ry0ysWKY6hvV8GcqAYhc7ArLkE8HaV6Y0g+
-	rBOzJZQ+h5vAq2Twobhm7eJUUS0x49uv9w==
-X-Google-Smtp-Source: ABdhPJwhnVlG8XUl3p4RchDCGjXGdVzjiIA0L2CeJeTzIE2319Ez6eUrr39fbJh9jIyCJ3NzALsMWA==
-X-Received: by 2002:ad4:4eee:0:b0:446:7bea:a5c5 with SMTP id dv14-20020ad44eee000000b004467beaa5c5mr753829qvb.112.1650373931186;
-        Tue, 19 Apr 2022 06:12:11 -0700 (PDT)
-Received: from [192.168.2.188] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id e126-20020a376984000000b0069c86b28524sm7431112qkc.19.2022.04.19.06.12.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 19 Apr 2022 06:12:10 -0700 (PDT)
-Message-ID: <ae17dbe8-e3c4-4539-46f4-0cb30db81450@gmail.com>
-Date: Tue, 19 Apr 2022 09:12:09 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qbmlRbMYjVpdYUsED6yT0d7qfQx4Ul8eM8Z0PL7o4AY=;
+        b=BUkfkYtCBjEyhCP980LCpoCaejRErDZtHllKE+8cd3GNcFZfKuo+7hHFUCaUgpYC5x
+         50egPJ57XUct44i1m8o97DYh5BUe+S3znuU1G4bljLIvXH7h3iaf/O913nDQuNNGNIhZ
+         XAZPUjZAHj+sBSxvINcSgZ9ZzuQ57CYo0mfM5aYNX5A3cN9hvRX990ND0vjjLpLboKnE
+         U/DahHHI8AasbcwMRMkMcMcP0fsw4rfu/nvtrhd2lpgHA14jZbAqyV14LxnyjSt+0gdZ
+         gAWJDaWz3u3JXMd4wCUGly4VyvAiWQXUtEFwPj2+1Zz7o3e2e7dWL4hvxEfGRFMTx2Ke
+         CoEg==
+X-Gm-Message-State: AOAM533MajY1w7mXBScr0G+2k5XhRP4yk7nlatHpG3NAvThnwZq4oySj
+	dys9PsS3Zjmq3XlPK1ef0il3mpOx6qE85FL6w6vKIkTiiRs=
+X-Google-Smtp-Source: ABdhPJxovUsRmAbnqReUHyxUG0ibEiMIolAMIgYA/GTA2Hq5fkzhysezX5hGpCtE5LEcliAMkJPjIHUYvX2SYy/fUsY=
+X-Received: by 2002:a67:e30d:0:b0:32a:3a7e:6204 with SMTP id
+ j13-20020a67e30d000000b0032a3a7e6204mr4210468vsf.79.1650374089480; Tue, 19
+ Apr 2022 06:14:49 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: Lautaro Lorenzen <lorenzen.lautaro@gmail.com>
 References: <CAOucfAOCAAvZ8GuirG15oZ30EPO1=ENs3teM8FKUhm3YyaptXQ@mail.gmail.com>
- <d014f269-e776-baa3-0125-ad8e05b46d61@gmail.com>
- <CAOucfAM5s_4oWuUkui6VeoNUq7fuV=+=hHX-BfuqvDjCTCRhFA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAOucfAM5s_4oWuUkui6VeoNUq7fuV=+=hHX-BfuqvDjCTCRhFA@mail.gmail.com>
-Message-ID-Hash: 6QJHTVCWA543VBUEE4RSWTNLHEDDCAK5
-X-Message-ID-Hash: 6QJHTVCWA543VBUEE4RSWTNLHEDDCAK5
-X-MailFrom: patchvonbraun@gmail.com
+ <CAB__hTQo=pnO8-TBvBJFK8AbFStqnzMz72fLWJ2bVOjTL3wpOg@mail.gmail.com>
+In-Reply-To: <CAB__hTQo=pnO8-TBvBJFK8AbFStqnzMz72fLWJ2bVOjTL3wpOg@mail.gmail.com>
+From: Lautaro Lorenzen <lorenzen.lautaro@gmail.com>
+Date: Tue, 19 Apr 2022 10:14:38 -0300
+Message-ID: <CAOucfANc6BoeQNv==c8obv-hEdZiQ0gxrjhpZMs=v+FGF4yu=Q@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: TDNFEJ3OB5ONYICUJIT7TXQU3NSTMYW2
+X-Message-ID-Hash: TDNFEJ3OB5ONYICUJIT7TXQU3NSTMYW2
+X-MailFrom: lorenzen.lautaro@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Issue with TRX-B output
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6QJHTVCWA543VBUEE4RSWTNLHEDDCAK5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TDNFEJ3OB5ONYICUJIT7TXQU3NSTMYW2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0344213763190164094=="
+Content-Type: multipart/mixed; boundary="===============6876783375266189913=="
 
-This is a multi-part message in MIME format.
---===============0344213763190164094==
-Content-Type: multipart/alternative;
- boundary="------------Qp2sthh3BWJc6V4rUaMSqwsL"
-Content-Language: en-US
+--===============6876783375266189913==
+Content-Type: multipart/alternative; boundary="000000000000599b5505dd01a920"
 
-This is a multi-part message in MIME format.
---------------Qp2sthh3BWJc6V4rUaMSqwsL
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000599b5505dd01a920
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-04-19 08:40, Lautaro Lorenzen wrote:
-> Hi Marcus,
->
-> As Rob mentioned, it seems that I do not have the same uhd version on=20
-> the host and on the device. The version I'm running on the host is=20
-> 4.1.0.5, and on the device is 4.0.1.4. Anyhow, I assume that all=20
-> standalone uhd examples should run on the device. The command=20
-> uhd_usrp_probe gives me the following:
-I just tried this on my E310 directly, running UHD 4.1.0.2, and it=20
-worked straight away--the TX light came on, there were no "LLL".
+Hello Rob,
 
-The only difference is that you're running 4.1.0.4, and I specified a=20
---gain of 50
+You are right, the UHD version running on the embedded is 4.1.0.4. In any
+case, I don't quite get why the examples running on the ettus don't work
+either.
+
+If I run ./benchmark_rate --rx_rate 1e6 --tx_rate 1e6 --rx_channels 1
+--tx_channels 0, I get:
+
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
+UHD_4.1.0.4-0-g25d617ca
+[00:00:00.044121] Creating the usrp device with: ...
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D30E2D8B,fpga=
+=3Dn/a,claimed=3DFalse
+[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=3Dn/a,mgmt_addr=3D127.0.0.1,product=3De310_sg3'.
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
+[INFO] [0/Radio#0] CODEC loopback test passed
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
+[INFO] [0/Radio#0] CODEC loopback test passed
+Using Device: Single USRP:
+  Device: E300-Series Device
+  Mboard 0: e310_sg3
+  RX Channel: 0
+    RX DSP: n/a
+    RX Dboard: A
+    RX Subdev: E3xx
+  RX Channel: 1
+    RX DSP: n/a
+    RX Dboard: A
+    RX Subdev: E3xx
+  TX Channel: 0
+    TX DSP: n/a
+    TX Dboard: A
+    TX Subdev: E3xx
+  TX Channel: 1
+    TX DSP: n/a
+    TX Dboard: A
+    TX Subdev: E3xx
+
+[00:00:06.286834383] Setting device timestamp to 0...
+Setting TX spp to 364
+[00:00:10.136939135] Testing receive rate 1.000000 Msps on 1 channels
+[00:00:10.564365285] Testing transmit rate 1.000000 Msps on 1 channels
+[00:00:20.827293545] Benchmark complete.
 
 
+Benchmark rate summary:
+  Num received samples:     10248264
+  Num dropped samples:      0
+  Num overruns detected:    0
+  Num transmitted samples:  10257884
+  Num sequence errors (Tx): 0
+  Num sequence errors (Rx): 0
+  Num underruns detected:   0
+  Num late commands:        0
+  Num timeouts (Tx):        0
+  Num timeouts (Rx):        0
+
+
+Done!
+
+
+On the other hand, If I include tx channel "1" in any way (2Tx 2Rx or 1Tx
+1Rx) the test fails.
+
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
+UHD_4.1.0.4-0-g25d617ca
+[00:00:00.044036] Creating the usrp device with: ...
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D30E2D8B,fpga=
+=3Dn/a,claimed=3DFalse
+[WARNING] [MPM.RPCServer] A timeout event occured!
+[INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=3Dn/a,mgmt_addr=3D127.0.0.1,product=3De310_sg3'.
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
+[INFO] [0/Radio#0] CODEC loopback test passed
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
+[INFO] [0/Radio#0] CODEC loopback test passed
+Using Device: Single USRP:
+  Device: E300-Series Device
+  Mboard 0: e310_sg3
+  RX Channel: 0
+    RX DSP: n/a
+    RX Dboard: A
+    RX Subdev: E3xx
+  RX Channel: 1
+    RX DSP: n/a
+    RX Dboard: A
+    RX Subdev: E3xx
+  TX Channel: 0
+    TX DSP: n/a
+    TX Dboard: A
+    TX Subdev: E3xx
+  TX Channel: 1
+    TX DSP: n/a
+    TX Dboard: A
+    TX Subdev: E3xx
+
+[00:00:06.466089847] Setting device timestamp to 0...
+Setting TX spp to 364
+[00:00:10.313807747] Testing receive rate 1.000000 Msps on 1 channels
+[00:00:10.748820483] Testing transmit rate 1.000000 Msps on 1 channels
+[00:00:11.753567712] Tx timeouts: 1
+[00:00:21.857387286] Benchmark complete.
+
+
+Benchmark rate summary:
+  Num received samples:     10248286
+  Num dropped samples:      0
+  Num overruns detected:    0
+  Num transmitted samples:  0
+  Num sequence errors (Tx): 0
+  Num sequence errors (Rx): 0
+  Num underruns detected:   0
+  Num late commands:        0
+  Num timeouts (Tx):        11
+  Num timeouts (Rx):        0
+
+
+Done!
+
+The only message that is different between tests and calls my attention is:
+"[WARNING] [MPM.RPCServer] A timeout event occured!"
+
+Any ideas?
+
+In the meantime I'll try to reload the file system and the default FPGA
+image, I'll let you know if I've any news.
+
+Thank you,
+Lautaro.
+
+El jue, 14 abr 2022 a la(s) 00:23, Rob Kossler (rkossler@nd.edu) escribi=C3=
+=B3:
+
+> Hi Lautaro,
+> When you run embedded, what is the version that runs? I am wondering if
+> your embedded file system (and also MPM version) is old and does not matc=
+h
+> the UHD version 4.1.0.5 that you are using on a host workstation. If this
+> is the case, perhaps reload the file system using "dd" (don't use
+> bmaptool).  Another thought would be to try benchmark_rate with 2 channel=
+s
+> tx and 2 channels rx (at a slow rate) and see if the lights come on.
+> Rob
 >
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;=20
-> UHD_4.1.0.4-0-g25d617ca
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:=20
-> mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D30E2D8B,f=
-pga=3Dn/a,claimed=3DFalse
-> [INFO] [MPM.main] Launching USRP/MPM, version: 4.1.0.4-g25d617ca
-> [INFO] [MPM.main] Spawning RPC process...
-> [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility check!
-> [INFO] [MPM.PeriphManager] Device serial number: 30E2D8B
-> [WARNING] [MPM.PeriphManager] Found more EEPROM paths than=20
-> daughterboards. Ignoring some of them.
-> [INFO] [MPM.RPCServer] RPC server ready!
-> [INFO] [MPM.RPCServer] Spawning watchdog task...
-> [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).
-> [INFO] [MPM.PeriphManager] init() called with device args=20
-> `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,product=3De310_sg3'.
-> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
-> [INFO] [0/Radio#0] CODEC loopback test passed
-> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
-> [INFO] [0/Radio#0] CODEC loopback test passed
-> =C2=A0 _____________________________________________________
-> =C2=A0/
-> | =C2=A0 =C2=A0 =C2=A0 Device: E300-Series Device
-> | =C2=A0 =C2=A0 _____________________________________________________
-> | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mboard: ni-e31x-30E2D8B
-> | =C2=A0 | =C2=A0 dboard_0_pid: 272
-> | =C2=A0 | =C2=A0 dboard_0_serial: 30CB4AF
-> | =C2=A0 | =C2=A0 fs_version: 20210929150239
-> | =C2=A0 | =C2=A0 mender_artifact: v4.1.0.4_e310_sg3
-> | =C2=A0 | =C2=A0 mpm_sw_version: 4.1.0.4-g25d617ca
-> | =C2=A0 | =C2=A0 pid: 30675
-> | =C2=A0 | =C2=A0 product: e310_sg3
-> | =C2=A0 | =C2=A0 rev: 6
-> | =C2=A0 | =C2=A0 rpc_connection: local
-> | =C2=A0 | =C2=A0 serial: 30E2D8B
-> | =C2=A0 | =C2=A0 type: e3xx
-> | =C2=A0 | =C2=A0 MPM Version: 4.0
-> | =C2=A0 | =C2=A0 FPGA Version: 6.0
-> | =C2=A0 | =C2=A0 FPGA git hash: 6bd0be9.dirty
-> | =C2=A0 |
-> | =C2=A0 | =C2=A0 Time sources: =C2=A0internal, external, gpsdo
-> | =C2=A0 | =C2=A0 Clock sources: internal
-> | =C2=A0 | =C2=A0 Sensors: ref_locked, gps_locked, temp_fpga, temp_mb,=20
-> gps_gpgga, gps_sky, gps_time, gps_tpv
-> | =C2=A0 =C2=A0 _____________________________________________________
-> | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RFNoC blocks on this device:
-> | =C2=A0 |
-> | =C2=A0 | =C2=A0 * 0/Radio#0
-> | =C2=A0 =C2=A0 _____________________________________________________
-> | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Static connections on this device:
-> | =C2=A0 |
-> | =C2=A0 | =C2=A0 * 0/SEP#0:0=3D=3D>0/Radio#0:0
-> | =C2=A0 | =C2=A0 * 0/SEP#1:0=3D=3D>0/Radio#0:1
-> | =C2=A0 | =C2=A0 * 0/Radio#0:0=3D=3D>0/SEP#0:0
-> | =C2=A0 | =C2=A0 * 0/Radio#0:1=3D=3D>0/SEP#1:0
-> | =C2=A0 =C2=A0 _____________________________________________________
-> | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Dboard: 0/Radio#0
-> | =C2=A0 | _____________________________________________________
-> | =C2=A0 | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 0
-> | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx
-> | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX
-> | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 47.000 to 6000.000 MHz
-> | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 89.8 step 0.2 dB
-> | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 40000000.0 st=
-ep 0.0 Hz
-> | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ
-> | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No
-> | =C2=A0 | _____________________________________________________
-> | =C2=A0 | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 1
-> | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx
-> | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX
-> | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 47.000 to 6000.000 MHz
-> | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 89.8 step 0.2 dB
-> | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 40000000.0 st=
-ep 0.0 Hz
-> | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ
-> | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No
-> | =C2=A0 =C2=A0 _____________________________________________________
-> | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboard: 0/Radio#0
-> | =C2=A0 | _____________________________________________________
-> | =C2=A0 | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 0
-> | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx
-> | =C2=A0 | =C2=A0 | =C2=A0 Antennas: RX2, TX/RX
-> | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 70.000 to 6000.000 MHz
-> | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 76.0 step 1.0 dB
-> | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 40000000.0 st=
-ep 0.0 Hz
-> | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ
-> | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No
-> | =C2=A0 | _____________________________________________________
-> | =C2=A0 | =C2=A0 =C2=A0/
-> | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 1
-> | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx
-> | =C2=A0 | =C2=A0 | =C2=A0 Antennas: RX2, TX/RX
-> | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 70.000 to 6000.000 MHz
-> | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 76.0 step 1.0 dB
-> | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 40000000.0 st=
-ep 0.0 Hz
-> | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ
-> | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No
+> On Wed, Apr 13, 2022 at 12:33 PM Lautaro Lorenzen <
+> lorenzen.lautaro@gmail.com> wrote:
 >
-> I've loaded and changed the image a few times when doing some RFNoC=20
-> tests, but nothing seems off to me, do you notice something strange?
->
-> Thank you,
-> Lautaro.
->
-> El jue, 14 abr 2022 a la(s) 00:52, Marcus D. Leech=20
-> (patchvonbraun@gmail.com) escribi=C3=B3:
->
->     On 2022-04-13 13:32, Lautaro Lorenzen wrote:
->>     Hi everyone,
+>> Hi everyone,
 >>
->>     I'm trying to run a simple example on an Ettus E310.
->>     I'm using an E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5.
+>> I'm trying to run a simple example on an Ettus E310.
+>> I'm using an E312 with UHD 4.1.0.5 and gnuradio v3.8.0.5.
 >>
->>     Everything seems to work okay, but I can not manage to get the
->>     second channel (TRX-B) to transmit anything. FYI: I can receive
->>     from both channels RX-A and RX-B.
->>     The problem came up when I tried to transmit something via
->>     gnu-radio, changing the "subdev" arg to "A:1" instead of leaving
->>     it blank as I normally do.
->>     When I pressed start, everything seemed to compile fine, but the
->>     GUI freezes (something that did not happen when using TRX-A).
+>> Everything seems to work okay, but I can not manage to get the second
+>> channel (TRX-B) to transmit anything. FYI: I can receive from both chann=
+els
+>> RX-A and RX-B.
+>> The problem came up when I tried to transmit something via gnu-radio,
+>> changing the "subdev" arg to "A:1" instead of leaving it blank as I
+>> normally do.
+>> When I pressed start, everything seemed to compile fine, but the GUI
+>> freezes (something that did not happen when using TRX-A).
 >>
->>     To see if gnu-radio was the problem, I logged in the embedded
->>     linux and tried some uhd examples from usr/lib/uhd/examples.
->>     As expected, I ran ./tx_waveforms --rate 1e6 --freq 100e6
->>     --subdev A:0=C2=A0 and the tx light turned on and I could see
->>     something on my oscilloscope. Also, a few "LLLLL" appeared on the
->>     console.
+>> To see if gnu-radio was the problem, I logged in the embedded linux and
+>> tried some uhd examples from usr/lib/uhd/examples.
+>> As expected, I ran ./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:0
+>> and the tx light turned on and I could see something on my oscilloscope.
+>> Also, a few "LLLLL" appeared on the console.
 >>
->>     When I ran:
->>     ./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:1, everything
->>     looks the same but no light, no signal, and no "LLLLL" are
->>     displayed on the console. Just the message "press ctrl+C to stop
->>     streaming".
+>> When I ran:
+>> ./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:1, everything looks th=
+e
+>> same but no light, no signal, and no "LLLLL" are displayed on the consol=
+e.
+>> Just the message "press ctrl+C to stop streaming".
 >>
->>     Any help would be very much appreciated.
->>     Regards,
->>     Lautaro.
+>> Any help would be very much appreciated.
+>> Regards,
+>> Lautaro.
 >>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
->>     _______________________________________________
->>     USRP-users mailing list --usrp-users@lists.ettus.com
->>     To unsubscribe send an email tousrp-users-leave@lists.ettus.com
->     IF you run:
->
->     uhd_config_info --version
->
->     On the actual E312, what does it return?
->
->     Also, what does:
->
->     uhd_usrp_probe
->
->     Return (again, on the device itself).
->
->
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---------------Qp2sthh3BWJc6V4rUaMSqwsL
-Content-Type: text/html; charset=UTF-8
+--000000000000599b5505dd01a920
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-04-19 08:40, Lautaro Lorenzen
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAOucfAM5s_4oWuUkui6VeoNUq7fuV=3D+=3DhHX-BfuqvDjCTCRhFA@mail.=
-gmail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_default"
-          style=3D"font-family:arial,helvetica,sans-serif">Hi Marcus,</di=
-v>
-        <div class=3D"gmail_default"
-          style=3D"font-family:arial,helvetica,sans-serif"><br>
-        </div>
-        <div class=3D"gmail_default"
-          style=3D"font-family:arial,helvetica,sans-serif">As Rob
-          mentioned, it seems that I do not have the same uhd version on
-          the host and on the device. The version I'm running on the
-          host is 4.1.0.5, and on the device is 4.0.1.4. Anyhow, I
-          assume that all standalone uhd examples should run on the
-          device. The command uhd_usrp_probe gives me the following: <br>
-        </div>
-      </div>
-    </blockquote>
-    I just tried this on my E310 directly, running UHD 4.1.0.2, and it
-    worked straight away--the TX light came on, there were no "LLL".<br>
-    <br>
-    The only difference is that you're running 4.1.0.4, and I specified
-    a --gain of 50<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAOucfAM5s_4oWuUkui6VeoNUq7fuV=3D+=3DhHX-BfuqvDjCTCRhFA@mail.=
-gmail.com">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_default"
-          style=3D"font-family:arial,helvetica,sans-serif">
-          <div class=3D"gmail_default"
-            style=3D"font-family:arial,helvetica,sans-serif"><br>
-          </div>
-          <div class=3D"gmail_default"
-            style=3D"font-family:arial,helvetica,sans-serif">[INFO] [UHD]
-            linux; GNU C++ version 9.2.0; Boost_107100;
-            UHD_4.1.0.4-0-g25d617ca<br>
-            [INFO] [MPMD] Initializing 1 device(s) in parallel with
-            args:
-mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D30E2D8B,fpg=
-a=3Dn/a,claimed=3DFalse<br>
-            [INFO] [MPM.main] Launching USRP/MPM, version:
-            4.1.0.4-g25d617ca<br>
-            [INFO] [MPM.main] Spawning RPC process...<br>
-            [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility
-            check!<br>
-            [INFO] [MPM.PeriphManager] Device serial number: 30E2D8B<br>
-            [WARNING] [MPM.PeriphManager] Found more EEPROM paths than
-            daughterboards. Ignoring some of them.<br>
-            [INFO] [MPM.RPCServer] RPC server ready!<br>
-            [INFO] [MPM.RPCServer] Spawning watchdog task...<br>
-            [INFO] [MPM.PeriphManager] Found 1 daughterboard(s).<br>
-            [INFO] [MPM.PeriphManager] init() called with device args
-            `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,product=3De310_sg3'.<br>
-            [INFO] [0/Radio#0] Performing CODEC loopback test on channel
-            0 ... <br>
-            [INFO] [0/Radio#0] CODEC loopback test passed<br>
-            [INFO] [0/Radio#0] Performing CODEC loopback test on channel
-            1 ... <br>
-            [INFO] [0/Radio#0] CODEC loopback test passed<br>
-            =C2=A0 _____________________________________________________<=
-br>
-            =C2=A0/<br>
-            | =C2=A0 =C2=A0 =C2=A0 Device: E300-Series Device<br>
-            | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-            | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Mboard: ni-e31x-30E2D8B<br>
-            | =C2=A0 | =C2=A0 dboard_0_pid: 272<br>
-            | =C2=A0 | =C2=A0 dboard_0_serial: 30CB4AF<br>
-            | =C2=A0 | =C2=A0 fs_version: 20210929150239<br>
-            | =C2=A0 | =C2=A0 mender_artifact: v4.1.0.4_e310_sg3<br>
-            | =C2=A0 | =C2=A0 mpm_sw_version: 4.1.0.4-g25d617ca<br>
-            | =C2=A0 | =C2=A0 pid: 30675<br>
-            | =C2=A0 | =C2=A0 product: e310_sg3<br>
-            | =C2=A0 | =C2=A0 rev: 6<br>
-            | =C2=A0 | =C2=A0 rpc_connection: local<br>
-            | =C2=A0 | =C2=A0 serial: 30E2D8B<br>
-            | =C2=A0 | =C2=A0 type: e3xx<br>
-            | =C2=A0 | =C2=A0 MPM Version: 4.0<br>
-            | =C2=A0 | =C2=A0 FPGA Version: 6.0<br>
-            | =C2=A0 | =C2=A0 FPGA git hash: 6bd0be9.dirty<br>
-            | =C2=A0 | =C2=A0 <br>
-            | =C2=A0 | =C2=A0 Time sources: =C2=A0internal, external, gps=
-do<br>
-            | =C2=A0 | =C2=A0 Clock sources: internal<br>
-            | =C2=A0 | =C2=A0 Sensors: ref_locked, gps_locked, temp_fpga,=
- temp_mb,
-            gps_gpgga, gps_sky, gps_time, gps_tpv<br>
-            | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-            | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RFNoC blocks on this device:<=
-br>
-            | =C2=A0 | =C2=A0 <br>
-            | =C2=A0 | =C2=A0 * 0/Radio#0<br>
-            | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-            | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 Static connections on this de=
-vice:<br>
-            | =C2=A0 | =C2=A0 <br>
-            | =C2=A0 | =C2=A0 * 0/SEP#0:0=3D=3D&gt;0/Radio#0:0<br>
-            | =C2=A0 | =C2=A0 * 0/SEP#1:0=3D=3D&gt;0/Radio#0:1<br>
-            | =C2=A0 | =C2=A0 * 0/Radio#0:0=3D=3D&gt;0/SEP#0:0<br>
-            | =C2=A0 | =C2=A0 * 0/Radio#0:1=3D=3D&gt;0/SEP#1:0<br>
-            | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-            | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Dboard: 0/Radio#0<br>
-            | =C2=A0 | =C2=A0 =C2=A0
-            _____________________________________________________<br>
-            | =C2=A0 | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 0<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 47.000 to 6000.000 MHz=
-<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 89.8 step 0=
-.2 dB<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step
-            0.0 Hz<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-            | =C2=A0 | =C2=A0 =C2=A0
-            _____________________________________________________<br>
-            | =C2=A0 | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 TX Frontend: 1<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Antennas: TX/RX<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 47.000 to 6000.000 MHz=
-<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 89.8 step 0=
-.2 dB<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step
-            0.0 Hz<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-            | =C2=A0 =C2=A0 _____________________________________________=
-________<br>
-            | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Dboard: 0/Radio#0<br>
-            | =C2=A0 | =C2=A0 =C2=A0
-            _____________________________________________________<br>
-            | =C2=A0 | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 0<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Antennas: RX2, TX/RX<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 70.000 to 6000.000 MHz=
-<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 76.0 step 1=
-.0 dB<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step
-            0.0 Hz<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-            | =C2=A0 | =C2=A0 =C2=A0
-            _____________________________________________________<br>
-            | =C2=A0 | =C2=A0 =C2=A0/<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 =C2=A0 =C2=A0 RX Frontend: 1<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Name: E3xx<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Antennas: RX2, TX/RX<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Freq range: 70.000 to 6000.000 MHz=
-<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Gain range PGA: 0.0 to 76.0 step 1=
-.0 dB<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Bandwidth range: 20000000.0 to 400=
-00000.0 step
-            0.0 Hz<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Connection Type: IQ<br>
-            | =C2=A0 | =C2=A0 | =C2=A0 Uses LO offset: No<br>
-          </div>
-        </div>
-        <div class=3D"gmail_default"
-          style=3D"font-family:arial,helvetica,sans-serif"><br>
-        </div>
-        <div class=3D"gmail_default"
-          style=3D"font-family:arial,helvetica,sans-serif">
-          <div class=3D"gmail_default"
-            style=3D"font-family:arial,helvetica,sans-serif">I've loaded
-            and changed the image a few times when doing some RFNoC
-            tests, but nothing seems off to me, do you notice something
-            strange?<br>
-          </div>
-          <div class=3D"gmail_default"
-            style=3D"font-family:arial,helvetica,sans-serif"><br>
-          </div>
-          <div class=3D"gmail_default"
-            style=3D"font-family:arial,helvetica,sans-serif">Thank you, <=
-br>
-          </div>
-          <div class=3D"gmail_default"
-            style=3D"font-family:arial,helvetica,sans-serif">Lautaro.<br>
-          </div>
-        </div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">El jue, 14 abr 2022 a la(s)
-          00:52, Marcus D. Leech (<a
-            href=3D"mailto:patchvonbraun@gmail.com" moz-do-not-send=3D"tr=
-ue"
-            class=3D"moz-txt-link-freetext">patchvonbraun@gmail.com</a>)
-          escribi=C3=B3:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <div>On 2022-04-13 13:32, Lautaro Lorenzen wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">
-                <div class=3D"gmail_default"
-                  style=3D"font-family:arial,helvetica,sans-serif">Hi
-                  everyone,</div>
-                <div class=3D"gmail_default"
-                  style=3D"font-family:arial,helvetica,sans-serif"><br>
-                </div>
-                <div class=3D"gmail_default"
-                  style=3D"font-family:arial,helvetica,sans-serif">I'm
-                  trying to run a simple example on an Ettus E310. <br>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">I'm
-                    using an E312 with UHD 4.1.0.5 and gnuradio
-                    v3.8.0.5. <br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif"><br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">Ever=
-ything
-                    seems to work okay, but I can not manage to get the
-                    second channel (TRX-B) to transmit anything. FYI: I
-                    can receive from both channels RX-A and RX-B.<br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">The
-                    problem came up when I tried to transmit something
-                    via gnu-radio, changing the "subdev" arg to "A:1"
-                    instead of leaving it blank as I normally do. <br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">When
-                    I pressed start, everything seemed to compile fine,
-                    but the GUI freezes (something that did not happen
-                    when using TRX-A).</div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif"><br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">To
-                    see if gnu-radio was the problem, I logged in the
-                    embedded linux and tried some uhd examples from
-                    usr/lib/uhd/examples.</div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">As
-                    expected, I ran ./tx_waveforms --rate 1e6 --freq
-                    100e6 --subdev A:0=C2=A0 and the tx light turned on a=
-nd I
-                    could see something on my oscilloscope. Also, a few
-                    "LLLLL" appeared on the console.</div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif"><br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">When
-                    I ran: <br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">./tx=
-_waveforms
-                    --rate 1e6 --freq 100e6 --subdev A:1, everything
-                    looks the same but no light, no signal, and no
-                    "LLLLL" are displayed on the console. Just the
-                    message "press ctrl+C to stop streaming".</div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif"><br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">Any
-                    help would be very much appreciated. <br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">Rega=
-rds,</div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif">Laut=
-aro.<br>
-                  </div>
-                  <div class=3D"gmail_default"
-                    style=3D"font-family:arial,helvetica,sans-serif"><br>
-                  </div>
-                </div>
-              </div>
-              <br>
-              <fieldset></fieldset>
-              <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" =
-target=3D"_blank" moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.=
-ettus.com" target=3D"_blank" moz-do-not-send=3D"true" class=3D"moz-txt-li=
-nk-freetext">usrp-users-leave@lists.ettus.com</a>
-</pre>
-            </blockquote>
-            IF you run:<br>
-            <br>
-            uhd_config_info --version<br>
-            <br>
-            On the actual E312, what does it return?<br>
-            <br>
-            Also, what does:<br>
-            <br>
-            uhd_usrp_probe <br>
-            <br>
-            Return (again, on the device itself).<br>
-            <br>
-            <br>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list -- <a
-            href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
--users@lists.ettus.com</a><br>
-          To unsubscribe send an email to <a
-            href=3D"mailto:usrp-users-leave@lists.ettus.com"
-            target=3D"_blank" moz-do-not-send=3D"true"
-            class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.=
-com</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hello Rob,</div><div class=3D"gmail_default" style=3D"f=
+ont-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_defaul=
+t" style=3D"font-family:arial,helvetica,sans-serif">You are right, the UHD =
+version running on the embedded is 4.1.0.4. In any case, I don&#39;t quite =
+get why the examples running on the ettus don&#39;t work either.=C2=A0</div=
+><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-ser=
+if"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,helve=
+tica,sans-serif">If I run ./benchmark_rate --rx_rate 1e6 --tx_rate 1e6 --rx=
+_channels 1 --tx_channels 0, I get:<br></div><div class=3D"gmail_default" s=
+tyle=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gma=
+il_default" style=3D"font-family:arial,helvetica,sans-serif">[INFO] [UHD] l=
+inux; GNU C++ version 9.2.0; Boost_107100; UHD_4.1.0.4-0-g25d617ca<br>[00:0=
+0:00.044121] Creating the usrp device with: ...<br>[INFO] [MPMD] Initializi=
+ng 1 device(s) in parallel with args: mgmt_addr=3D127.0.0.1,type=3De3xx,pro=
+duct=3De310_sg3,serial=3D30E2D8B,fpga=3Dn/a,claimed=3DFalse<br>[INFO] [MPM.=
+PeriphManager] Found 1 daughterboard(s).<br>[INFO] [MPM.PeriphManager] init=
+() called with device args `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,product=3De310=
+_sg3&#39;.<br>[INFO] [0/Radio#0] Performing CODEC loopback test on channel =
+0 ... <br>[INFO] [0/Radio#0] CODEC loopback test passed<br>[INFO] [0/Radio#=
+0] Performing CODEC loopback test on channel 1 ... <br>[INFO] [0/Radio#0] C=
+ODEC loopback test passed<br>Using Device: Single USRP:<br>=C2=A0 Device: E=
+300-Series Device<br>=C2=A0 Mboard 0: e310_sg3<br>=C2=A0 RX Channel: 0<br>=
+=C2=A0 =C2=A0 RX DSP: n/a<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX=
+ Subdev: E3xx<br>=C2=A0 RX Channel: 1<br>=C2=A0 =C2=A0 RX DSP: n/a<br>=C2=
+=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: E3xx<br>=C2=A0 TX Chann=
+el: 0<br>=C2=A0 =C2=A0 TX DSP: n/a<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =
+=C2=A0 TX Subdev: E3xx<br>=C2=A0 TX Channel: 1<br>=C2=A0 =C2=A0 TX DSP: n/a=
+<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: E3xx<br><br>[00:=
+00:06.286834383] Setting device timestamp to 0...<br>Setting TX spp to 364<=
+br>[00:00:10.136939135] Testing receive rate 1.000000 Msps on 1 channels<br=
+>[00:00:10.564365285] Testing transmit rate 1.000000 Msps on 1 channels<br>=
+[00:00:20.827293545] Benchmark complete.<br><br><br>Benchmark rate summary:=
+<br>=C2=A0 Num received samples: =C2=A0 =C2=A0 10248264<br>=C2=A0 Num dropp=
+ed samples: =C2=A0 =C2=A0 =C2=A00<br>=C2=A0 Num overruns detected: =C2=A0 =
+=C2=A00<br>=C2=A0 Num transmitted samples: =C2=A010257884<br>=C2=A0 Num seq=
+uence errors (Tx): 0<br>=C2=A0 Num sequence errors (Rx): 0<br>=C2=A0 Num un=
+derruns detected: =C2=A0 0<br>=C2=A0 Num late commands: =C2=A0 =C2=A0 =C2=
+=A0 =C2=A00<br>=C2=A0 Num timeouts (Tx): =C2=A0 =C2=A0 =C2=A0 =C2=A00<br>=
+=C2=A0 Num timeouts (Rx): =C2=A0 =C2=A0 =C2=A0 =C2=A00<br><br><br>Done!</di=
+v><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-se=
+rif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,helv=
+etica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
+ly:arial,helvetica,sans-serif">On the other hand, If I include tx channel &=
+quot;1&quot; in any way (2Tx 2Rx or 1Tx 1Rx) the test fails. <br></div><div=
+ class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><=
+br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,=
+sans-serif">[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.=
+1.0.4-0-g25d617ca<br>[00:00:00.044036] Creating the usrp device with: ...<b=
+r>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=
+=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D30E2D8B,fpga=3Dn/a,cla=
+imed=3DFalse<br>[WARNING] [MPM.RPCServer] A timeout event occured!<br>[INFO=
+] [MPM.PeriphManager] Found 1 daughterboard(s).<br>[INFO] [MPM.PeriphManage=
+r] init() called with device args `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,product=
+=3De310_sg3&#39;.<br>[INFO] [0/Radio#0] Performing CODEC loopback test on c=
+hannel 0 ... <br>[INFO] [0/Radio#0] CODEC loopback test passed<br>[INFO] [0=
+/Radio#0] Performing CODEC loopback test on channel 1 ... <br>[INFO] [0/Rad=
+io#0] CODEC loopback test passed<br>Using Device: Single USRP:<br>=C2=A0 De=
+vice: E300-Series Device<br>=C2=A0 Mboard 0: e310_sg3<br>=C2=A0 RX Channel:=
+ 0<br>=C2=A0 =C2=A0 RX DSP: n/a<br>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=
+=A0 RX Subdev: E3xx<br>=C2=A0 RX Channel: 1<br>=C2=A0 =C2=A0 RX DSP: n/a<br=
+>=C2=A0 =C2=A0 RX Dboard: A<br>=C2=A0 =C2=A0 RX Subdev: E3xx<br>=C2=A0 TX C=
+hannel: 0<br>=C2=A0 =C2=A0 TX DSP: n/a<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=
+=A0 =C2=A0 TX Subdev: E3xx<br>=C2=A0 TX Channel: 1<br>=C2=A0 =C2=A0 TX DSP:=
+ n/a<br>=C2=A0 =C2=A0 TX Dboard: A<br>=C2=A0 =C2=A0 TX Subdev: E3xx<br><br>=
+[00:00:06.466089847] Setting device timestamp to 0...<br>Setting TX spp to =
+364<br>[00:00:10.313807747] Testing receive rate 1.000000 Msps on 1 channel=
+s<br>[00:00:10.748820483] Testing transmit rate 1.000000 Msps on 1 channels=
+<br>[00:00:11.753567712] Tx timeouts: 1<br>[00:00:21.857387286] Benchmark c=
+omplete.<br><br><br>Benchmark rate summary:<br>=C2=A0 Num received samples:=
+ =C2=A0 =C2=A0 10248286<br>=C2=A0 Num dropped samples: =C2=A0 =C2=A0 =C2=A0=
+0<br>=C2=A0 Num overruns detected: =C2=A0 =C2=A00<br>=C2=A0 Num transmitted=
+ samples: =C2=A00<br>=C2=A0 Num sequence errors (Tx): 0<br>=C2=A0 Num seque=
+nce errors (Rx): 0<br>=C2=A0 Num underruns detected: =C2=A0 0<br>=C2=A0 Num=
+ late commands: =C2=A0 =C2=A0 =C2=A0 =C2=A00<br>=C2=A0 Num timeouts (Tx): =
+=C2=A0 =C2=A0 =C2=A0 =C2=A011<br>=C2=A0 Num timeouts (Rx): =C2=A0 =C2=A0 =
+=C2=A0 =C2=A00<br><br><br>Done!</div><div class=3D"gmail_default" style=3D"=
+font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_defau=
+lt" style=3D"font-family:arial,helvetica,sans-serif">The only message that =
+is different between tests and calls my attention is: &quot;[WARNING] [MPM.=
+RPCServer] A timeout event occured!&quot;</div><div class=3D"gmail_default"=
+ style=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"g=
+mail_default" style=3D"font-family:arial,helvetica,sans-serif">Any ideas?</=
+div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-=
+serif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">In the meantime I&#39;ll try to reload the file system =
+and the default FPGA image, I&#39;ll let you know if I&#39;ve any news.</di=
+v><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-se=
+rif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,helv=
+etica,sans-serif">Thank you,</div><div class=3D"gmail_default" style=3D"fon=
+t-family:arial,helvetica,sans-serif">Lautaro.<br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El jue, 14 abr 2022 =
+a la(s) 00:23, Rob Kossler (<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.=
+edu</a>) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Lautaro,<div>When you run embe=
+dded, what is the version that runs? I am wondering if your embedded file s=
+ystem (and also MPM version) is old and does not match the UHD version 4.1.=
+0.5 that you are using on a host workstation. If this is the case, perhaps =
+reload the file system using &quot;dd&quot; (don&#39;t use bmaptool).=C2=A0=
+ Another thought would be to try benchmark_rate with 2 channels tx and 2 ch=
+annels rx (at a slow rate) and see if the lights come on.</div><div>Rob</di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Wed, Apr 13, 2022 at 12:33 PM Lautaro Lorenzen &lt;<a href=3D"mailto:l=
+orenzen.lautaro@gmail.com" target=3D"_blank">lorenzen.lautaro@gmail.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr"><div style=3D"font-family:arial,helvetica,sans-serif">Hi every=
+one,</div><div style=3D"font-family:arial,helvetica,sans-serif"><br></div><=
+div style=3D"font-family:arial,helvetica,sans-serif">I&#39;m trying to run =
+a simple example on an Ettus E310. <br><div style=3D"font-family:arial,helv=
+etica,sans-serif">I&#39;m using an E312 with UHD 4.1.0.5 and gnuradio v3.8.=
+0.5. <br></div><div style=3D"font-family:arial,helvetica,sans-serif"><br></=
+div><div style=3D"font-family:arial,helvetica,sans-serif">Everything seems =
+to work okay, but I can not manage to get the second channel (TRX-B) to tra=
+nsmit anything. FYI: I can receive from both channels RX-A and RX-B.<br></d=
+iv><div style=3D"font-family:arial,helvetica,sans-serif">The problem came u=
+p when I tried to transmit something via gnu-radio, changing the &quot;subd=
+ev&quot; arg to &quot;A:1&quot; instead of leaving it blank as I normally d=
+o. <br></div><div style=3D"font-family:arial,helvetica,sans-serif">When I p=
+ressed start, everything seemed to compile fine, but the GUI freezes (somet=
+hing that did not happen when using TRX-A).</div><div style=3D"font-family:=
+arial,helvetica,sans-serif"><br></div><div style=3D"font-family:arial,helve=
+tica,sans-serif">To see if gnu-radio was the problem, I logged in the embed=
+ded linux and tried some uhd examples from usr/lib/uhd/examples.</div><div =
+style=3D"font-family:arial,helvetica,sans-serif">As expected, I ran ./tx_wa=
+veforms --rate 1e6 --freq 100e6 --subdev A:0=C2=A0 and the tx light turned =
+on and I could see something on my oscilloscope. Also, a few &quot;LLLLL&qu=
+ot; appeared on the console.</div><div style=3D"font-family:arial,helvetica=
+,sans-serif"><br></div><div style=3D"font-family:arial,helvetica,sans-serif=
+">When I ran: <br></div><div style=3D"font-family:arial,helvetica,sans-seri=
+f">./tx_waveforms --rate 1e6 --freq 100e6 --subdev A:1, everything looks th=
+e same but no light, no signal, and no &quot;LLLLL&quot; are displayed on t=
+he console. Just the message &quot;press ctrl+C to stop streaming&quot;.</d=
+iv><div style=3D"font-family:arial,helvetica,sans-serif"><br></div><div sty=
+le=3D"font-family:arial,helvetica,sans-serif">Any help would be very much a=
+ppreciated. <br></div><div style=3D"font-family:arial,helvetica,sans-serif"=
+>Regards,</div><div style=3D"font-family:arial,helvetica,sans-serif">Lautar=
+o.<br> </div><div style=3D"font-family:arial,helvetica,sans-serif"><br></di=
+v></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
+</blockquote></div>
 
---------------Qp2sthh3BWJc6V4rUaMSqwsL--
+--000000000000599b5505dd01a920--
 
---===============0344213763190164094==
+--===============6876783375266189913==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -656,4 +442,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0344213763190164094==--
+--===============6876783375266189913==--
