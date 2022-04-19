@@ -2,290 +2,157 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8669F5064DA
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 08:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77FC15066FB
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 10:32:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4010D384BD1
-	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 02:51:35 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7270A384BB0
+	for <lists+usrp-users@lfdr.de>; Tue, 19 Apr 2022 04:32:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1650351095; bh=wxIbRBKQ+2DwgznVc3p+25Ya8m6nollTH6SifvVDZQo=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=Zx8KHiAv77IeYn2V8HDVbZp95M0dT1+b00ZeZtXeld9v9+d1HzPob+M++2stJgrzC
-	 ZCR7L6fdN2eSeIJk3zw0tcPOFQN/nAPxm6LUv8Fe1wN9hIxxlqeZ9jNvpsQlCLFLs/
-	 SOcrMV0gs9KTHYItICxuWUZX9K1g9W+lYzL8H0QhlxfhVRbGmLwY5ZZXB3t/gPU5fZ
-	 LwcwPvOsTGPPOIsPp/Ui1nRH5GftvCr2lE9cDvPUDFmiMF2ondVYxuLwhr4dgB7jz3
-	 1vuBGp1BrKSaRCL9Zz2i9lNozHixSHosKZW+TijfeFmVgPHDYcktxrezsWupx+cspk
-	 uNAa/UbfBbjlQ==
-Received: from NOR01-OL1-obe.outbound.protection.outlook.com (mail-ol1nor01on2095.outbound.protection.outlook.com [40.107.224.95])
-	by mm2.emwd.com (Postfix) with ESMTPS id 082DB38458C
-	for <usrp-users@lists.ettus.com>; Tue, 19 Apr 2022 02:50:25 -0400 (EDT)
+	t=1650357150; bh=4P1cWooiijiiAFblAqlN+WtwY6i68Y+4kGxeQJ3/MJM=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=EkSxc3i8QxnTbtl1QDEyrEKnkXYmjx4NONqN2sa1+Y6FHNkXOzTqtyv8PEsbgbu0N
+	 I9w0M/Ed7/E4T8XIq28N2NB9iNCwxXo+mrxmdLV5mCjxw67xuu4VxRLicD33ZxR0DV
+	 c5Y7TVXTxXdnokzaL2jMlgVUAAJ4YvNgP8VFg/Zg20VtdImCyUKxRTDQw3sUap42GJ
+	 HABoy5eVDu8yfGT4xYdlTf4oxxVFlf2TzNdMxetadxNKf7GpjGJ0mdzL0/y7stLDBC
+	 yUNN+Ob+KKutlhNfCWFuJJ+UYPA7Y0bdad23yn5sM3MOn1CZUZ00G2A75Jtn66a7qQ
+	 u2Z6xlpqbKvtQ==
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id D7D37384602
+	for <usrp-users@lists.ettus.com>; Tue, 19 Apr 2022 04:31:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nkom.no header.i=@nkom.no header.b="eZWrH5MI";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ITs6YTSe";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DtxZsSyC4eGzwsIzNt+wEDvgq+GarkS1OxBap2BPO1ZrCIf0fbvVwiJCN29hsByJHZGj7oSLnNv/1inBmE9yG8TJ1N9TqZsTXEcv/2At6C92eq+LsvcDD60kMNa6cvkk2xEDp1i6333ODdAWFo6HnUkwdDMX5+tIBLMgYanAstL0S9Z4921/yN5aSbNxH3hfyNEaO4/V296dSf+rKKys5htSMV655Svs2yZxzlGOnVWchPTUtvL/yaAavwr8NQvSrqNstkRubpwfH7vQrP+mTmDjsVZ7fGEMqgjjt/S5lq0D/ADxqxMNwM35NJuhchO5o30H2bY0PS+c/EWJcNwOYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4sP7aODAIQ3cr4hv6SOpj6DGl9gXmlFT4MTcAvXdTPY=;
- b=XClYAbU72uLMboPOS3J69ci5mGBNo0ow2EHGD1XoiMJG8A6Nlfbn6X93iSu9CcEoPjmTTrOabMJUk0T3s7Qm2DXebOXZR8ROeFvrPLJttT1BWQYFX/qnmkVks4ZzUHjgvhY9vVTdGDcef1H0y7bfUarDKBC8UqXY5dzfUFx5aBGZ+I/IM+NKU70Px8eY9+pXWLmRnAq1+TFAs3rX3FP4Dd1xdnxtFpBjNFD3efjbiMDf0nRdssw8OMW3z8Ovq8YtKdYwVkTFaZk5WpkT6TtVNaPLWOf3bTwv3y81j49EjAzwU9CggDr8rygKWj3cOF80Rt2u4emG9VpmEFo2fkrSzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nkom.no; dmarc=pass action=none header.from=nkom.no; dkim=pass
- header.d=nkom.no; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nkom.no; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4sP7aODAIQ3cr4hv6SOpj6DGl9gXmlFT4MTcAvXdTPY=;
- b=eZWrH5MIikLyY3M0kngXpzVGForEavWD9S0jrDJeKN15dyYU4N8fHzGfz9/0Kk5CmhyJEnHunHUfG138L5sOcf1A0rAGSvHMEX/VDZZwKbSMftoQEafOQm9DkprzGCiE/QdTz4qLy9yTg2/wBSz7a9vVQRxoManTAoJxHb5k38yAgj/87cYLoRHwcF4Pjq8/knAiJ3hNvK8sb5As2jsylrjyW253I422kMfA2z+925fx4uQBdBmOI59P1BxedT+AK2VwcFafUEeu+wQWxeA32syCr6pysBQ1az12gd+JkKgrMVq5JOyNbotGYLBlt+JMHCdBsFFtaujO6JYN79u+Ng==
-Received: from SV0P279MB0089.NORP279.PROD.OUTLOOK.COM (2603:10a6:f10:b::7) by
- SVAP279MB0125.NORP279.PROD.OUTLOOK.COM (2603:10a6:f10:4::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5164.20; Tue, 19 Apr 2022 06:50:23 +0000
-Received: from SV0P279MB0089.NORP279.PROD.OUTLOOK.COM
- ([fe80::c8d8:9994:396:7b3a]) by SV0P279MB0089.NORP279.PROD.OUTLOOK.COM
- ([fe80::c8d8:9994:396:7b3a%6]) with mapi id 15.20.5164.025; Tue, 19 Apr 2022
- 06:50:23 +0000
-From: =?utf-8?B?U2tvcnN0YWQsIErDuHJu?= <jsk@nkom.no>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: E310 USB - serial problem
-Thread-Index: AdhH9sfWDXFvJQC/RWuhgTAu+EymTQAMSV+AAuRb43A=
-Date: Tue, 19 Apr 2022 06:50:23 +0000
-Message-ID: 
- <SV0P279MB0089701D7A231B7DC0219966A0F29@SV0P279MB0089.NORP279.PROD.OUTLOOK.COM>
-References: 
- <OL1P279MB008348E9ECCB13A1DEABCA68A0E59@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
- <431675db-4751-1da1-8555-2ff7dfa4ed28@gmail.com>
-In-Reply-To: <431675db-4751-1da1-8555-2ff7dfa4ed28@gmail.com>
-Accept-Language: nb-NO, en-US
-Content-Language: nb-NO
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nkom.no;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 99d83076-16e8-457f-c234-08da21d0e0f1
-x-ms-traffictypediagnostic: SVAP279MB0125:EE_
-x-microsoft-antispam-prvs: 
- <SVAP279MB01257AE6BA1381DCF4A61DBEA0F29@SVAP279MB0125.NORP279.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- hH9+93R2uDjX8GxFX5e3PifTbGXcIPo7jn51UnxigmBDim7VAW4NfmX9ug8JaYfa8oUA7UxP9dEd8poDO8hKbxB+8jd4dZghvbOn+Z9/p8yGyMANkofLvGJ3+ih5tMh61YMqKK4z2J+meEXFmfwiUFAgZxYptavjwpkntgrrJgEzbva6YvWyDTN+3Ze/x6F30Syh7LiskT/jFB7ikPPhcxAA2+XXBo/VDV7bR3Xv1npidz05OwuuCjeRPdpJQwZJz7YSSTg2FMhyYwZTJAjEsPDiOhG0UJtdS9Xb644rq5iCCzY5RCu/fJpwclSPL4pbV1RVtUrzt6gA72VZR9GkW2Qev8fEzZITpVDKI23iMMKfAJdyLw4THWnjmDCicd/BtCIIJOTu7evd2aefnqT4MT3EB+K7XDa+InxlYfq+fPK4KiRNfZTcc8TNfERC5e8Pb3EcA1SGe9cKu5iI5NRFDC66z7px7nSyWN/k47c/3sZ8Hf2PVLLG5L5hVtL5ZBug3CFe7bY+wH/Ip2Vc/pesPf84rShd50sTnnY4TP1mq4KE/JTDW7VryB0KQ03haE2n+AkE18liaeKMBZSd3TnG5XNRFUDW6yyI+P/cb7psPhR3PXpNtAIVF0wEJClzKrfb7ng3YBCNwiXuuZWSjMNAf8hsOgQrDTFlHZNQlRglGhfVXFBUjaShvA/PpWnXC1Rhz6ynDYO4ud47/9Vv+Rnqog==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SV0P279MB0089.NORP279.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(396003)(39840400004)(136003)(346002)(376002)(366004)(83380400001)(2906002)(55016003)(66946007)(66556008)(66476007)(76116006)(5660300002)(186003)(86362001)(66446008)(26005)(64756008)(8676002)(33656002)(8936002)(52536014)(6506007)(7696005)(53546011)(9686003)(508600001)(66574015)(85182001)(38070700005)(122000001)(85202003)(71200400001)(316002)(38100700002)(110136005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?MTlkeWZnT1laNmtXV2J6bHA0cG1vb2Z0dHRMK0o3QTJwVjBaRFRPZisvUmtP?=
- =?utf-8?B?eHRJcHdHZktrallsOHFWeFc0cTRVTGxGd1ZZOEVCMURzRWFiN0NpU3pTK3hI?=
- =?utf-8?B?WWd5aEtEOS9JL1RYTVRudEg2TmViampqY0thUTY0eHIxNkRMY0E5VTBDWGpU?=
- =?utf-8?B?b01oQnd1T29vWDI4YlhOQTRDSTdMaEpZTEowb1NaOXU2UWRyWXlQTzBKaTlt?=
- =?utf-8?B?RVJSd29QRjdPMk9BNGxRQ0F5QmJFR2hzSmsxSnUwcDkvdmhyeDVQUTZwMWlp?=
- =?utf-8?B?YjJhSmZQbEkvN2xYTEpSQjBHenFFS1J4YlBGRmhuTS9xNTlLOUY0VWFhQ09G?=
- =?utf-8?B?MVdtUXY0eGhtQzhOUzNySDduSmRjVDZFQTJDOElxYllTaGQza1FMWWt0cHl6?=
- =?utf-8?B?RFlaODYrb242U0czeVJWUERkWUtHaGdPbGdKZjdzVFc3c2VqOEZ3aEdEN3RW?=
- =?utf-8?B?UStOUUcvZTNjZnJBNHluZzNTZjEwVlRuZFlJUnQ4cjBrQ3N4RHNpaUZCSzhH?=
- =?utf-8?B?eWRoZ1RqbzlMeC9iYVhUSk91SHd5RUZzNlBpVjNXZEc5SXF3RWtualQ3emFm?=
- =?utf-8?B?ZE9sQ1lvOTEyZlk3NGdLK2R2TCthQnBXbEljdHUva045YXZMMWYwTHc0S3FI?=
- =?utf-8?B?M25aN1UzNk43NE96UC9FMXgxdzRLYUlsZlIzaWVYTm0wNTlJU3VXOWFzd0Ew?=
- =?utf-8?B?UVh1RHhGd2ZoM21zRzJiMEZRVnk2c1BUVmZRUWVRbjlEVmlTNlVJRTFoYklw?=
- =?utf-8?B?WEp5MmVrdlNkTlVoWDVPTDFrS0V4UGNCMkFRUGZzTVo4OHBQc2VkQ25lOExK?=
- =?utf-8?B?ejFtQ1RjVUFMOTdrTXJVbmdKbFU0V25lZ1AydVFOMkpLSVhjUE1XMVVrdTJO?=
- =?utf-8?B?YllKYlVWU2NpVEZDNmJlSzVOaFpSTXBUc0N2bGxpRlc1QWp3MzB6aTVOZU92?=
- =?utf-8?B?eDdoOVpjYW9BbTd4WTVjSE4vWGNYbm54ZEFrODFldktzY1F2cktWMCtNUGVE?=
- =?utf-8?B?RnJYNE9XK2JnTzNKSjBZejdWVFRiaFJSMGc2WG5VMnpnQkxSOTNvdmZiNzdP?=
- =?utf-8?B?aXErNm9aVlpXU3RvNGhoTnhYUDNQYlUzTG1xNzBiYnRkTmRPUVdlNVdtVkc0?=
- =?utf-8?B?eDk5SkxvMjhWOVBDdkpCd05QNjFKQmRZZEdyNVpIaWlhYi9NRkN4NG96MDJJ?=
- =?utf-8?B?c3ZXanVHWm5yQWJTMHdaTmpKdlNPV0k4UEJLQ1FQd0N1blF1cUpKNkl0QkNO?=
- =?utf-8?B?UVF5aUNxdWdLN3BrZzAyWm0xeVoxUWtIbU1mNHBrL21ScFg2enczUVVIL21u?=
- =?utf-8?B?TS9uZkZvWkppaXR0T2FleERTY1c3TTdDTE5LdDFja1JaVlNWazBTZ2xnWDlM?=
- =?utf-8?B?K0RsWWQzSU9LSyszR2Z2a1RHc1ZHQmdkZGVUTkl6WmhaNm1rb0FnOTh3ZTZx?=
- =?utf-8?B?UUpXWmxxQndta1NKQVVLNi9GR0JqblQ1OG4rYVBleFlibDFJMGxwM21HZE8r?=
- =?utf-8?B?elNIcUlNeHZLbkFQNTF4dENwaFlvaE1lQ2w4ZktyakMxMTZnUWtaVFN3Wlp2?=
- =?utf-8?B?N2tJaWRoY3VuT0dNekJRUC9nUHc2MWk1TERGSlJxZWI0VDBhbzh0elBUUkVa?=
- =?utf-8?B?QkJYZUQwZ3lQbTJyWHZTUUs1ci90cERTaGlQdlplVmpnc1lJd3JVU2ZZQkho?=
- =?utf-8?B?RDYrLzExT1FoNkpFY2RXZEpPalcxaDlQZTBsU25lbUFMcU5ZN1ZUbXNDOXRT?=
- =?utf-8?B?NTZNeEFzWGlxSnp4Y1YxYzZPSmowdDdiKzlWZnlVSCtaNXlnTVdXa0NaUGFo?=
- =?utf-8?B?NWlSU1NQZTBqTVcxOHhkbDFmRjZPQlU5M2l4U1Uvc0w5dngyWE9SMHNTYUFN?=
- =?utf-8?B?bndaS3NwUFRzWUk3Vk54eTlkUy9UQmZMNG03Tkc5SWxOWlZPZXZkT0hqLytT?=
- =?utf-8?B?dTVQa3A3VXp5KzlBVkN3YXl0dzh1MFFoNWZRTkNiVjlQTEZqeTUweTVCbnpX?=
- =?utf-8?B?eEFTTU00YThWdEFHWnFyaUJmY3IxSmVxNTliMk5MSmhXTFQzemNGZGgzZTQr?=
- =?utf-8?B?Q1Q3UWNWQUlEVU5ub2VUWlphUUFkTnVYVnphakkvWk9wdm9sZ3JXVTZSKzZ1?=
- =?utf-8?B?VHZOWWRPMUtDY2FzbEpGQ2hTRDZsMWpBb1Y0QmgrK2RHVmJZU0FxenZwcWtG?=
- =?utf-8?B?RmVZQU1ka2dwREZMRGZ0ODd4N2ErRXZvcFN0Uy9kajFZSFFsaU0wczFJbzIx?=
- =?utf-8?Q?afpItm/LzZ46ujXqRgQZ5X0WUL9xsgLDSBJmgHYOSE=3D?=
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2f19fdba41fso38530647b3.3
+        for <usrp-users@lists.ettus.com>; Tue, 19 Apr 2022 01:31:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=130WFvPlbvTHGZxUkYTinFSKsGNvB9lnTwBY2cwROsA=;
+        b=ITs6YTSe0P6fF7+Tbx6cx4iCOvHvnGb7E9WJG19A84y3RTfz7Q0D6VwDOrP8OS97+E
+         axCdeiw0Sye4bSsyeinm/dailOF43EqMm+UYXkDUE/lpn8/xLkbuiSC1SYq9GMgdR7gt
+         sCOChvzxZBPE5FcGcgEQnxEPmsxDxxsdNB+PKV2MbWJLTlanSjlGB3BTw+X7A6LDfgUc
+         Yyn2gyN9q6LFIXmTu02fYKKYdMlTmuP3lyfwgSu1mx+EYru8Z39wqEOIYuOaEfjd0cH2
+         +BekLY6qT1no/RaHLWYvwMYfZBvjEQfKO+MIZWxsEoR+u1sMfKgsT08BuSGO9itSXwQp
+         24qA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=130WFvPlbvTHGZxUkYTinFSKsGNvB9lnTwBY2cwROsA=;
+        b=5UM5zJe9QBNk6qUQ5rcCnJrIdfW8jccAwIUqbJUJhAfb/PoT1xN9Pa+lou0kFe8hlC
+         cS4QMXcGsugegj19UMn6i8yUJyK59eQRn2m7ku338QLLtylbBgY18TObS3+3p2dVlyAx
+         DWSIuyLVQgP+L1ZN+0FpoAJ5vhWj12NdnybAVmnwCzzgIaOKWFv9oo/OSvJnhbYhwh0f
+         HtKCZA70rOamtCd1EWsAhAI+pr2/W9WB1Lhwi0i/Vk+PSn8JMmaKGRBbOJHsrr8mmpLy
+         tFG/t5qn93pghaFBKK6kELdp5i4NnvCGIIhtUSvSbVmY7Oi79CxiYNPUFAaStD8lqGsg
+         4rLA==
+X-Gm-Message-State: AOAM533Wf3QlQLZJjLHSbDjk504BZ9yjVMW/2So1GQ/gdPj3EBm3yJhS
+	MWbTs2OyUbWYMzFPUEFoxsvq4+BhRQEOVLhFtZpueJQGnIl6FN5f
+X-Google-Smtp-Source: ABdhPJwbnNexA3xbpsIXCTFxb5ur89boLoOy0KJgJr2p9qSETW0KyfWtxaSOM5PfC6xXj3E/JIMvag/Y1vJGDaH6Tx0=
+X-Received: by 2002:a0d:d683:0:b0:2eb:ed49:dde6 with SMTP id
+ y125-20020a0dd683000000b002ebed49dde6mr14300415ywd.363.1650357089700; Tue, 19
+ Apr 2022 01:31:29 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nkom.no
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SV0P279MB0089.NORP279.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 99d83076-16e8-457f-c234-08da21d0e0f1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Apr 2022 06:50:23.6888
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ad83e65c-03f6-4cfd-b799-47a2fafd7bce
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xzLKBsCb0rWPaJ96TekofC5Ca0cajQvs3wtGctCPcW2q4jLQZbDSZ7SrVNOL47XI
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SVAP279MB0125
-Message-ID-Hash: GHXPT5BA4K5BGIKZ6YUTHF2AW2ZUVDGU
-X-Message-ID-Hash: GHXPT5BA4K5BGIKZ6YUTHF2AW2ZUVDGU
-X-MailFrom: jsk@nkom.no
+References: <CAA=S3Ps2J3SrReyU9v2PODR26qeF5NN8AFQ1sSV8zdseSZKZHw@mail.gmail.com>
+ <CAFche=hJt3LVhU63kuToBgTiQS20S3sC8A44OK5Or2QtuiLqBw@mail.gmail.com>
+In-Reply-To: <CAFche=hJt3LVhU63kuToBgTiQS20S3sC8A44OK5Or2QtuiLqBw@mail.gmail.com>
+From: sp h <stackprogramer@gmail.com>
+Date: Tue, 19 Apr 2022 13:01:18 +0430
+Message-ID: <CAA=S3PvsQsJT7C-g68c3Qx1j6ECMqHTqo7qzc33VdgW1BK97fg@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Message-ID-Hash: WI722F2O2L7HAY6KBU7RNWF2YNGACETX
+X-Message-ID-Hash: WI722F2O2L7HAY6KBU7RNWF2YNGACETX
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E310 USB - serial problem
+Subject: [USRP-users] Re: Why include a Verilog file not work in the RFNOC block?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N6VXYTOTPOAR46XBSALUIM5STQCXKRDB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WI722F2O2L7HAY6KBU7RNWF2YNGACETX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0658230680701868002=="
+Content-Type: multipart/mixed; boundary="===============2920793503316273137=="
 
---===============0658230680701868002==
-Content-Language: nb-NO
-Content-Type: multipart/alternative;
-	boundary="_000_SV0P279MB0089701D7A231B7DC0219966A0F29SV0P279MB0089NORP_"
+--===============2920793503316273137==
+Content-Type: multipart/alternative; boundary="000000000000158e9105dcfdb4a3"
 
---_000_SV0P279MB0089701D7A231B7DC0219966A0F29SV0P279MB0089NORP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000158e9105dcfdb4a3
+Content-Type: text/plain; charset="UTF-8"
 
-RGlkIHlvdSBnZXQgYW55IGZlZWRiYWNrIGZyb20gUiZEIGFib3V0IHRoaXMgbWF0dGVyPyBTaG91
-bGQgSSByYWlzZSBhbiBpc3N1ZSBvbiBnaXRodWI/DQoNCkpvcm4NCg0KDQpPbiAyMDIyLTA0LTA0
-IDAzOjQ3LCBTa29yc3RhZCwgSsO4cm4gd3JvdGU6DQpIZWxsbywNCg0KQ3VycmVudGx5IHVzaW5n
-IHRoZSBFMzEwIFNEUiB0b2dldGhlciB3aXRoIFVIRCA0LjEuMC40LCBvcmlnaW5hbCBpbWFnZSBm
-aWxlIGRvd25sb2FkZWQgdXNpbmcgdGhlIHRvb2wgdWhkX2ltYWdlc19kb3dubG9hZGVyLiBJIGhh
-dmUgdHJpZWQgdG8gY29ubmVjdCB0d28gZGlmZmVyZW50IFVTQi1zZXJpYWwgY29udmVydGVycyB0
-byB0aGUgcmFkaW8uIEJvdGggcmV0dXJucyBzb21ldGhpbmcgbGlrZSB0aGlzIGluIGRtZXNnLCBh
-bmQgbm8gL2Rldi90dHkqKiogaXMgY3JlYXRlZDoNCg0KWyAxNTE2LjcwMzE4OF0gdXNiIDEtMS1w
-b3J0MzogYXR0ZW1wdCBwb3dlciBjeWNsZQ0KWyAxNTE3LjM4Mjg4OV0gdXNiIDEtMS4zOiBuZXcg
-ZnVsbC1zcGVlZCBVU0IgZGV2aWNlIG51bWJlciAyNiB1c2luZyBjaV9oZHJjDQpbIDE1MTcuODIy
-ODg1XSB1c2IgMS0xLjM6IGRldmljZSBub3QgYWNjZXB0aW5nIGFkZHJlc3MgMjYsIGVycm9yIC0z
-Mg0KWyAxNTE3LjkyMjk0MV0gdXNiIDEtMS4zOiBuZXcgZnVsbC1zcGVlZCBVU0IgZGV2aWNlIG51
-bWJlciAyNyB1c2luZyBjaV9oZHJjDQpbIDE1MTguMzYyOTEyXSB1c2IgMS0xLjM6IGRldmljZSBu
-b3QgYWNjZXB0aW5nIGFkZHJlc3MgMjcsIGVycm9yIC0zMg0KWyAxNTE4LjM3Mzc5MV0gdXNiIDEt
-MS1wb3J0MzogdW5hYmxlIHRvIGVudW1lcmF0ZSBVU0IgZGV2aWNlDQoNCmxzdXNiIHNob3dzIHRo
-aXMgbGluZTogQnVzIDAwMSBEZXZpY2UgMDIzOiBJRCAxYTg2Ojc1MjMgUWluSGVuZyBFbGVjdHJv
-bmljcyBITC0zNDAgVVNCLVNlcmlhbCBhZGFwdGVyIChXZU1vcyBEMSBpbiB0aGlzIGNhc2UpDQoN
-ClRoaXMgaXMgcHJvYmFibHkgY2F1c2VkIGJ5IGxhY2sgb2YgZHJpdmVycz8gUHJldmlvdXNseSB3
-ZSB1c2VkIHRoZSBvbGQgMy44IGltYWdlLCB3aGVyZSBVU0Igc2VyaWFsIGNvbnZlcnRlcnMgd2Vy
-ZSBhZGRlZCB3aXRob3V0IHByb2JsZW1zLiBJcyBpdCBwb3NzaWJsZSB0byBhZGQgc3VwcG9ydCB0
-byB0aGUgbmV3IGltYWdlIGFzIHdlbGw/DQoNCmxzYl9yZWxlYXNlIC1hDQpMU0IgVmVyc2lvbjog
-ICAgICBuL2ENCkRpc3RyaWJ1dG9yIElEOiAgIEFsY2hlbXkNCkRlc2NyaXB0aW9uOiAgICAgICBB
-bGNoZW15IDIwMjEuMDQNClJlbGVhc2U6ICAgICAgICAgICAgICAyMDIxLjA0DQpDb2RlbmFtZTog
-ICAgICAgIEFsY2hlbXktWmV1cw0KDQpCUg0KSm9ybg0KDQoNCg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPg0KDQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVh
-dmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
-bT4NCkkganVzdCB0cmllZCB0aGlzIHdpdGggYSBDUDIxMDEtYmFzZWQgVVNCIHNlcmlhbCBjYXJk
-LCBhbmQgZ290IHRoZSBzYW1lIHJlc3VsdC4gIE5vdGhpbmcgaW4gL2Rldi90dHlVU0IqIG9yIC9k
-ZXYvdHR5QUNNKiAgYW5kIG5vIGhpbnQgdGhhdCBhbnkgZHJpdmVyIHdhcyBsb2FkZWQuDQoNCkkn
-bGwgc2VlIGlmIGFueW9uZSBpbiBFdHR1cyBSJkQgY2FuIGhlbHAuDQoNCg==
+Ok, thanks. My problem is solved.
 
---_000_SV0P279MB0089701D7A231B7DC0219966A0F29SV0P279MB0089NORP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Tue, Apr 19, 2022 at 5:29 AM Wade Fife <wade.fife@ettus.com> wrote:
 
-PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
-bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
-dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
-dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
-dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
-bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
-IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
-IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
-Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
-ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
-Y207DQoJZm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
-ZjsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJs
-aW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3Jh
-dGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5
-bGUtbGluazoiSFRNTC1mb3Jow6VuZHNmb3JtYXRlcnQgVGVnbiI7DQoJbWFyZ2luOjBjbTsNCglt
-YXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToi
-Q291cmllciBOZXciLHNlcmlmO30NCnNwYW4uSFRNTC1mb3JobmRzZm9ybWF0ZXJ0VGVnbg0KCXtt
-c28tc3R5bGUtbmFtZToiSFRNTC1mb3Jow6VuZHNmb3JtYXRlcnQgVGVnbiI7DQoJbXNvLXN0eWxl
-LXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOkhUTUwtZm9yaMOlbmRzZm9ybWF0ZXJ0Ow0K
-CWZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCi5N
-c29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZTox
-MC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1h
-cmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjEN
-Cgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
-Ik5PLUJPSyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3JhcDpicmVh
-ay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5EaWQgeW91IGdldCBhbnkgZmVlZGJhY2sgZnJvbSBSJmFtcDtEIGFib3V0IHRoaXMgbWF0dGVy
-PyBTaG91bGQgSSByYWlzZSBhbiBpc3N1ZSBvbiBnaXRodWI/PG86cD48L286cD48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPkpvcm48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMjAyMi0wNC0wNCAwMzo0NywgU2tvcnN0YWQs
-IErDuHJuIHdyb3RlOjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpOTy1CT0siPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10
-b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IZWxs
-byw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Q3VycmVudGx5IHVzaW5nIHRoZSBFMzEwIFNEUiB0
-b2dldGhlciB3aXRoIFVIRCA0LjEuMC40LCBvcmlnaW5hbCBpbWFnZSBmaWxlIGRvd25sb2FkZWQg
-dXNpbmcgdGhlIHRvb2wgdWhkX2ltYWdlc19kb3dubG9hZGVyLiBJIGhhdmUgdHJpZWQgdG8gY29u
-bmVjdCB0d28gZGlmZmVyZW50IFVTQi1zZXJpYWwgY29udmVydGVycyB0byB0aGUgcmFkaW8uIEJv
-dGggcmV0dXJucyBzb21ldGhpbmcgbGlrZSB0aGlzIGluIGRtZXNnLA0KIGFuZCBubyAvZGV2L3R0
-eSoqKiBpcyBjcmVhdGVkOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5i
-c3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5bIDE1MTYuNzAzMTg4XSB1
-c2IgMS0xLXBvcnQzOiBhdHRlbXB0IHBvd2VyIGN5Y2xlPG86cD48L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5bIDE1MTcuMzgyODg5XSB1c2IgMS0xLjM6IG5ldyBmdWxsLXNwZWVkIFVT
-QiBkZXZpY2UgbnVtYmVyIDI2IHVzaW5nIGNpX2hkcmM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPlsgMTUxNy44MjI4ODVdIHVzYiAxLTEuMzogZGV2aWNlIG5vdCBhY2NlcHRp
-bmcgYWRkcmVzcyAyNiwgZXJyb3IgLTMyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj5bIDE1MTcuOTIyOTQxXSB1c2IgMS0xLjM6IG5ldyBmdWxsLXNwZWVkIFVTQiBkZXZpY2Ug
-bnVtYmVyIDI3IHVzaW5nIGNpX2hkcmM8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPlsgMTUxOC4zNjI5MTJdIHVzYiAxLTEuMzogZGV2aWNlIG5vdCBhY2NlcHRpbmcgYWRkcmVz
-cyAyNywgZXJyb3IgLTMyPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5bIDE1
-MTguMzczNzkxXSB1c2IgMS0xLXBvcnQzOiB1bmFibGUgdG8gZW51bWVyYXRlIFVTQiBkZXZpY2U8
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+bHN1c2Igc2hvd3MgdGhpcyBsaW5lOiBCdXMgMDAxIERl
-dmljZSAwMjM6IElEIDFhODY6NzUyMyBRaW5IZW5nIEVsZWN0cm9uaWNzIEhMLTM0MCBVU0ItU2Vy
-aWFsIGFkYXB0ZXIgKFdlTW9zIEQxIGluIHRoaXMgY2FzZSk8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+VGhpcyBpcyBwcm9iYWJseSBjYXVzZWQgYnkgbGFjayBvZiBkcml2ZXJzPyBQcmV2aW91c2x5
-IHdlIHVzZWQgdGhlIG9sZCAzLjggaW1hZ2UsIHdoZXJlIFVTQiBzZXJpYWwgY29udmVydGVycyB3
-ZXJlIGFkZGVkIHdpdGhvdXQgcHJvYmxlbXMuIElzIGl0IHBvc3NpYmxlIHRvIGFkZCBzdXBwb3J0
-IHRvIHRoZSBuZXcgaW1hZ2UgYXMgd2VsbD88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+bHNiX3Jl
-bGVhc2UgLWE8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkxTQiBWZXJzaW9u
-OiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBuL2E8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPkRpc3RyaWJ1dG9yIElEOiZuYnNwOyZuYnNwOyBBbGNoZW15PG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5EZXNjcmlwdGlvbjombmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgQWxjaGVteSAyMDIxLjA0PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj5SZWxlYXNlOiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyAyMDIxLjA0
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Db2RlbmFtZTombmJzcDsmbmJz
-cDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgQWxjaGVteS1aZXVzPG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPkJSPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Kb3Ju
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6Tk8tQk9LIj48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cHJlPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPG86
-cD48L286cD48L3ByZT4NCjxwcmU+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0i
-bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVz
-LmNvbTwvYT48bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5UbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSI+
-dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3ByZT4NCjwv
-YmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEy
-LjBwdCI+PHNwYW4gc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOk5PLUJPSyI+SSBqdXN0IHRy
-aWVkIHRoaXMgd2l0aCBhIENQMjEwMS1iYXNlZCBVU0Igc2VyaWFsIGNhcmQsIGFuZCBnb3QgdGhl
-IHNhbWUgcmVzdWx0LiZuYnNwOyBOb3RoaW5nIGluIC9kZXYvdHR5VVNCKiBvciAvZGV2L3R0eUFD
-TSombmJzcDsgYW5kIG5vIGhpbnQgdGhhdCBhbnkgZHJpdmVyIHdhcyBsb2FkZWQuPGJyPg0KPGJy
-Pg0KSSdsbCBzZWUgaWYgYW55b25lIGluIEV0dHVzIFImYW1wO0QgY2FuIGhlbHAuPGJyPg0KPGJy
-Pg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+> Hi sp,
+>
+> You can include files. It looks like you misspelled "correlate" (the error
+> says 'corrleate.vh'). Also, if the file is not in the same folder as
+> rfnoc_block_correlate.v, then you may need to provide a relative path to
+> the file.
+>
+> Thanks,
+>
+> Wade
+>
+> On Mon, Apr 18, 2022 at 4:56 AM sp h <stackprogramer@gmail.com> wrote:
+>
+>> Why include a Verilog file not work in the RFNOC block?
+>> In Verilog, we can include another file in the source Verilog file, but
+>> when I did in an RFNOC block I faced errors...
+>> can you any offers?
+>>
+>> ERROR: [VRFC 10-3195] cannot open include file 'corrleate.vh'
+>> [rfnoc/rfnoc/fpga/rfnoc_block_correlate/rfnoc_block_correlate.v:26]
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
 
---_000_SV0P279MB0089701D7A231B7DC0219966A0F29SV0P279MB0089NORP_--
+--000000000000158e9105dcfdb4a3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---===============0658230680701868002==
+<div dir=3D"ltr">Ok, thanks. My problem is solved.<br></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 19, 2022=
+ at 5:29 AM Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@=
+ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div>Hi sp,</div><div><br></div><div>You can in=
+clude files. It looks like you misspelled &quot;correlate&quot; (the error =
+says &#39;corrleate.vh&#39;). Also, if the file is not in the same folder a=
+s=20
+rfnoc_block_correlate.v, then you may need to provide a relative path to th=
+e file.</div><div><br></div><div>Thanks,</div><div><br></div><div>Wade<br><=
+/div><div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, Apr 18, 2022 at 4:56 AM sp h &lt;<a href=3D"mailto:=
+stackprogramer@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr">Why include a Verilog file not work in the RFNOC block?<br><div>I=
+n Verilog, we can include another file in the source Verilog file, but when=
+ I did in an RFNOC block I faced=C2=A0errors...</div><div>can you any offer=
+s?</div><div><br></div><div>ERROR: [VRFC 10-3195] cannot open include file =
+&#39;corrleate.vh&#39; [rfnoc/rfnoc/fpga/rfnoc_block_correlate/rfnoc_block_=
+correlate.v:26]<br></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000158e9105dcfdb4a3--
+
+--===============2920793503316273137==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -295,4 +162,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0658230680701868002==--
+--===============2920793503316273137==--
