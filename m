@@ -2,195 +2,340 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98DE3508735
-	for <lists+usrp-users@lfdr.de>; Wed, 20 Apr 2022 13:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CDF3508ADD
+	for <lists+usrp-users@lfdr.de>; Wed, 20 Apr 2022 16:36:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ED81F3844E4
-	for <lists+usrp-users@lfdr.de>; Wed, 20 Apr 2022 07:40:58 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2A9D2384810
+	for <lists+usrp-users@lfdr.de>; Wed, 20 Apr 2022 10:36:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1650454858; bh=6pM5vJhj4npBsGk/Dr5xH05LEb0Q51rdgykQuM0TC0Y=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=h7fRBLpEmvTVHbBB8duhRUwIc1HGd6jQhHuMZWWNnZUbSFdZDfbEAu9AYNF9FJ7WH
-	 b60+NE2af+C8bPpZbsf72hy5898s9RwqNIAi5VjvnyMtDgFNzZ9dMfqbK3mW5PiCty
-	 mfWZgRxYxXw6Q1Wcn8Qg+P8VWneHVJICQoPP00E/GK//GlWEeNZIOQeFGV2ooWErse
-	 LylwqM+Lk6D1xm+ct49EMwDMfS9NAN33mTWKMpkI63i8SkxAwg+6EHja90C/ivuybj
-	 pj6lG4K2itamZfUtnXe60Ao17/04kggy8e99VanrYMNiFmiT5k44XzF5OSK5SmBMD0
-	 B/TAvWk2fGV1A==
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0043.outbound.protection.office365.us [23.103.208.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 81A433844E4
-	for <usrp-users@lists.ettus.com>; Wed, 20 Apr 2022 07:39:44 -0400 (EDT)
+	t=1650465369; bh=pe3WuS9oic+miQkmJj0FJ6w4fH0dkqutshs4LQU4svY=;
+	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=Z3g9A2KSsa+hNzUha4MOLyk5m68zrVir9DB2az9tgLzag7KdrPzFXtB1XvzMUUngf
+	 /SyOFSWLUnK4i41CYS1/cqTP9oAYdWv26Xw2cVVEcdYLFEo0g5NniAma502GbiwWED
+	 HwtjvtXlUZxW3wyqnQ00LNcv/kSuP3PuXHNZtp5hjE54mG8zaKvqJvksIGX7dJPU1p
+	 C3vrN7d0BB/cP39RUFlVVjCrybLw+zP9MZKjDnieHFdYRplhkD2lgfAQBJ1cT7oDmP
+	 X2Av3782eZ0+hukAcmZzUwtaBFh032a6RHRN+jGHwEeOYVqwCLwqaA9Xw101qnw5xA
+	 eky8IVjYGtAuA==
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5947B3845D0
+	for <usrp-users@lists.ettus.com>; Wed, 20 Apr 2022 10:35:05 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="oCGQXCvx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RhRORhAV";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=Rd7dQoHrY2bcmoGCYuKheUYSedPrRJJDiQjTDx66YfsSVevyDz1a3oL201WDYL7sNMSWBH/P2o4AtzICEq5TPWTXesIoU7ttSS1IOzZNywDKyJq7f/UchkvutDoyfT9tukGLPmOCrOSV8XkVWD8wCl0wTJLrbxoWV4fZXihe2M0bUDSDdMbqcCCoXbOrwiS4V0Z7IVFSdRPWZ6JZ+TKFrFrLUW5f+gdjFUNpxKAFDSbM+H64by+Mdx/v07g4BFjPYcJUxWUytIQ4p7zYDyhZGK2zC3xOu9Rf7dkRYq+y8ODFQKGxQwrR1Dr5hX9FKl510+2/5v50Q6eeCW7K5ZXkNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CxmivMoZ/MpQ3Z6DbF7hsSRYEIbmq1dioQY7KIV0ZRw=;
- b=Ba7w5d4DT2yYNoMmGkwE+svPfpzNwjnFTt56xkjgWKqwWf7rxua8hgsl8pwgO7UaRdK2Z8mJ/L1CwtUiB15VK/9ntnmmpUBhqktUeLvkqhDs6gb+nqWUjhxHqbxlZklAJygkfkowKbWPAaYSoApTcBG8D6K3vDIphu2tpU8nmoDfiKCqKN9IemloLx61tS48ZehbmBWHyTfF54X/3NrbxrbEInUVNFSjgpQ7WeF3JglTnwa2At1Czav80OFtiVHD9JgVdI8Sv4T5VsYs8EvTS47wp5Vy+hG+urDr8h6bc9Ggkp3aPpdqy/ysRpGkbr26o1ZrKSQuIVgEoxCPPauYng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: by mail-qv1-f44.google.com with SMTP id a5so1456255qvx.1
+        for <usrp-users@lists.ettus.com>; Wed, 20 Apr 2022 07:35:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CxmivMoZ/MpQ3Z6DbF7hsSRYEIbmq1dioQY7KIV0ZRw=;
- b=oCGQXCvxVebiNuuWK4ZjT7rV4ZkEZTZG6iQzg/LFCUiFCeMZkt70DMvHWjG8weOXc6usC3JNbKtw3wDz1WY4HI+VOM6WYUkVLkOyGZH8fuKL5IQf8xxfJVKGuvozUa0q2FHyVE6kBEQGJpEm/k3Gk5x+DhlWoLcuX3MCDRdZDU5E9E5cqB0kCwk7xtEjj7nMhq8wLfA/o33ptiRCnPrHXYO7tM84+KwaVvCrsVNVRbMjRPjju2MBVoDy4GrihAzErGRZBoI/1TP6nvRj3taSFstnbY8VpfEKCLG0Rpt0268NjRpxJavQfKIMPr/Ejhkxr26KZVZ15kNJhLbRK4HwAg==
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
- by PH1P110MB1267.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5164.19; Wed, 20 Apr
- 2022 11:39:42 +0000
-Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::75f6:cf8e:ab07:b9ae]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
- ([fe80::75f6:cf8e:ab07:b9ae%6]) with mapi id 15.20.5186.014; Wed, 20 Apr 2022
- 11:39:42 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Substitute power plug part for USRP E320?
-Thread-Index: AdhUqZMd9Vw3eTZ5RIWopyDB+3NKwg==
-Date: Wed, 20 Apr 2022 11:39:41 +0000
-Message-ID: 
- <PH1P110MB1665E0B25C1A0673B385CE98B7F59@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0fb36501-836d-4bd1-ff1f-08da22c27598
-x-ms-traffictypediagnostic: PH1P110MB1267:EE_
-x-microsoft-antispam-prvs: 
- <PH1P110MB1267EB852333B1DE908796D9B7F59@PH1P110MB1267.NAMP110.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- o0gr4fy4ZboAIhdhf701cY9KEf6Qg29tTsdWV1Dqvw+tTN+pmUm23sHrsB+tqa/j1bILglZtiUaOcxKpUOMKngFAyCvQ1lix6Lr4atBpX4UruMa0KhYh7mZRoQ5iwpGrvnN/QT/jU5p/7ybR4v7Fd6khuPAKMVD/17N+SLqGaLaHTK6yoSRUb+lbhxzVNiJNljuTdxpDDPzNgfIW8oxYFCS6zZv4dyBh9O9g4M9sGH6KIUIXfrHk+0EQTmxmoJTpgFAOTy93iXs0XIzQOj4aJMtG+yCbIglfeWZg+EzUbK430xuHkGESaeYzI8UYEEzl85PpACvQBkknkL8wICH7TYyYL93m4UnUDdCHb3+IkApFgR0rm6fun9neYhrSI/dhmyhXX+czxCYImtXaXDlD10VgAOoeDlQP4EVQaomFYUgFzF9r9JEm0tQMeYxgBYj6a4SRBMIOlB6798hSFYEmE6q2djvl5/ccs/ZxtuhGglh8VFPw049dBLpDZNIVd6U+aOixvEAA/LMETvu+YEsRzizP6F2T/fo6e4RTo1HRCJwpWcSUPj2lpi13yXboMKxNCZZ5WLwqjIF06CCsgUd9RVwMOS1wkNa+79ugHwB8TAAJX6mAovA8dXh0jssTVixBBchoo5GJKViBpGMPjnBLWQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(136003)(39830400003)(376002)(346002)(396003)(366004)(38100700002)(122000001)(7696005)(55016003)(86362001)(38070700005)(6506007)(316002)(66476007)(66556008)(71200400001)(9686003)(66946007)(2906002)(6916009)(186003)(52536014)(64756008)(33656002)(66446008)(76116006)(8676002)(4744005)(508600001)(8936002)(5660300002)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- z5KSM+es9ZZRtb31I3XKU/EFl+9097Zj6kXL0qCu5g/D/ejjwRiqE0UH/meq0mQT043w4Eo5bYr3AcwO8ajH7WnGdQD9eHhV1ozmhsX6eEe9IACuEX+CEIAS23hjMybvt/AUW6xCmNej0nkzSYY4Aeol9ygrFqGA5mK+1lMN61HSNh2I5rkwss3hRxyEr5dL8HT62LL2b73TxqRN8aqD3z5AwYRujC5Gstm4bmvMdQw/GbItiPSYu9n4pXLgFjwvZu4Gzzj30NSt5M2law3nvz4fwWA/Hr6NpLOzRn7ZJnj+qDO9T0vwBla0aPonu/GfaDTggwZ/XnaYisGHBy3uth6rNHq4o1sbMiysM3KcrphkQagnfWLHZYe7ZwLz8rvrToWa8QLfxv2+uVjOD/Q05xqyNJwXNk2JLl5Glx13GQMGycCUvd/VBDLpmvsgreOYNEfG851m+iprU+zsLva8PmT5i7htflOfayUJNTqMfxs=
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to;
+        bh=WaMFm8Cs5EBnmjAdsSHaf+cS1GMb1VGTZAUYwaYJbIY=;
+        b=RhRORhAVzwk9kqE+TjSwjsXfdI/AajXDVxacczFXqt7oVJGksm3ioLX+eDGAckzaHE
+         oLM92GXCynuqPmqDQwBfFk23SOGdolPBT7fjL+cWI7TpLWktqiSUH6v3eATniTcTA4Ot
+         hs7KvEzQQi+VFq2uA2rRUnaO85W2uhRI6CEL1JAhGvj5SwW6huOMxo3pv2/GCnFARjaS
+         YkzzI+duoKwx9F8itlu1SJnUGuTgB0uxjOVTfS0qExf/q6lMJpecmVvDjeLSl5KCWukq
+         NqAXSpB4oSF4l9JwsUrecMYSRL6NMz0fKpmocx+KaqGZEuBF53p8zFAfE/pMWEz7EDqB
+         VERg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to;
+        bh=WaMFm8Cs5EBnmjAdsSHaf+cS1GMb1VGTZAUYwaYJbIY=;
+        b=fOtH/+VBTimUd0gCaRKeBhY43SdlNLjpZzpu1K1MjSW24qMan5Vw23Hzqr+UmHvN8n
+         C2bXsB59eMvs3/49GpYWG4zPPqBvmNIVtjP7t2MkyXf22OYLaFznTsMi4Px0QtAoPbnR
+         JAeTebf4JlEYvhudfgsY62SPrdfHNQpXJkGCkKMkLA5/j9jhzI3UpwgJL9S6Xuz13WRz
+         lVWGxpJkn8pKIlMxNQdUwnz3kJ8elHkq267AY8/iZgtype+prbCFXvznN7bVAM9RwSBZ
+         JebC0pbGYdNqI0HDO5S5+U3973B2UmxfDvM66rxCzKfa0DrlrXWJ9B6ehMkksXdpy2qM
+         uZvQ==
+X-Gm-Message-State: AOAM532hrX8NH4+WLcwwu7G16DshVbGbvnq+8VYZJp7CWNYVQuYVWgOZ
+	YJy5Eqk9ODVJ9BnNRmXhff8=
+X-Google-Smtp-Source: ABdhPJy+u/QPKG+sUeh1L5+ATfVKkyvZjMf/VbKd4dOotvZDL4CfBj6sXj0W4PqEMCu+fzCM2w7kPw==
+X-Received: by 2002:a05:6214:5007:b0:44b:dfe6:60d1 with SMTP id jo7-20020a056214500700b0044bdfe660d1mr425697qvb.30.1650465304683;
+        Wed, 20 Apr 2022 07:35:04 -0700 (PDT)
+Received: from [192.168.2.190] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id c131-20020a379a89000000b0069c903625absm1595140qke.102.2022.04.20.07.35.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 20 Apr 2022 07:35:04 -0700 (PDT)
+Message-ID: <1c1e7c17-ea14-086b-5013-54fb89abba61@gmail.com>
+Date: Wed, 20 Apr 2022 10:35:03 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0fb36501-836d-4bd1-ff1f-08da22c27598
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2022 11:39:41.7994
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1267
-Message-ID-Hash: CZZFSEDPPNJZBMHBDQVV4ATMN6MVHZZN
-X-Message-ID-Hash: CZZFSEDPPNJZBMHBDQVV4ATMN6MVHZZN
-X-MailFrom: david@SynopticEngineering.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
+References: <CAPT2EegX83McE_TznHb_vPcsgJSw46mBfE9O5mjnnGx8hrt3uw@mail.gmail.com>
+ <17c6ff8a-23d3-857d-cd9e-8c7481f5f225@gmail.com>
+ <CAL0m=NYwuKBAiyEj_-rdu2ypjsV+vjfrZfw3HQz_upLdd09+cA@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAL0m=NYwuKBAiyEj_-rdu2ypjsV+vjfrZfw3HQz_upLdd09+cA@mail.gmail.com>
+Message-ID-Hash: ACDUBJ55YGYOI22LNFDUMSVPYIYIYIOU
+X-Message-ID-Hash: ACDUBJ55YGYOI22LNFDUMSVPYIYIYIOU
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Substitute power plug part for USRP E320?
+Subject: [USRP-users] Re: Issue with connecting BasicRX Daughterboard with X310 RF B
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VLJGQMTKGZ4WOC4E3OSYNB6JQYQIJJD4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ACDUBJ55YGYOI22LNFDUMSVPYIYIYIOU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3989176501876612860=="
+Content-Type: multipart/mixed; boundary="===============0256679225506897305=="
 
---===============3989176501876612860==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============0256679225506897305==
 Content-Type: multipart/alternative;
-	boundary="_000_PH1P110MB1665E0B25C1A0673B385CE98B7F59PH1P110MB1665NAMP_"
+ boundary="------------M8bpPOCh2i2QyyFBQB0PDOFq"
+Content-Language: en-US
 
---_000_PH1P110MB1665E0B25C1A0673B385CE98B7F59PH1P110MB1665NAMP_
-Content-Type: text/plain; charset="us-ascii"
+This is a multi-part message in MIME format.
+--------------M8bpPOCh2i2QyyFBQB0PDOFq
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi all, I need to build a custom power cable to an E320. The radio's hardwa=
-re page lists the plug p/n as CUI PDP-40. Unfortunately, that part is out o=
-f stock at all distributers. Can anybody recommend a good substitute part? =
-I see in-stock options from Kycon that look promising, but I'd appreciate f=
-eedback on any known-good solutions here.
-
-Thanks!
-
---
-David Raeman
-Synoptic Engineering
-
-
---_000_PH1P110MB1665E0B25C1A0673B385CE98B7F59PH1P110MB1665NAMP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 2022-04-19 22:44, Zeng, Huacheng wrote:
+> Below is a more detailed description of our issue.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all, I need to build a custom power cable to an E=
-320. The radio&#8217;s hardware page lists the plug p/n as CUI PDP-40. Unfo=
-rtunately, that part is out of stock at all distributers. Can anybody recom=
-mend a good substitute part? I see in-stock
- options from Kycon that look promising, but I&#8217;d appreciate feedback =
-on any known-good solutions here.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">-- <o:p></o:p></p>
-<p class=3D"MsoNormal">David Raeman<o:p></o:p></p>
-<p class=3D"MsoNormal">Synoptic Engineering<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
+> 1. We have an X310 with two BasicRX boards installed (no BasicTX). We=20
+> tried to read the two data streams from X310 on a computer at a=20
+> sampling rate 5Msps. The computer displays "OOOOOOOOOOOO" overflow=20
+> constantly. We tried other sampling rates such as 1Msps and 10Msps,=20
+> the observation is the same.
+What version of UHD are you using?=C2=A0 BasicRX support on the X310 in=20
+earlier releases was broken.
+
+
+>
+> We found that the LED lights on the X310 panel are abnormal. When X310=20
+> works in RX mode, the two LED lights (RF A's RX2 LED and RF B's RX2=20
+> LED) should be on, but we observed they were flashing. Also, the LINK=20
+> LED should be on in RED, but we observed that it was flashing in ORANGE=
+.
+>
+> We reloaded the FPGA image, but the problem is consistent.
+>
+> 2. We removed BasicRX from X310's RF B channel, and tested one data=20
+> stream from X310 RF A's channel, it works (no overflow). We are sure=20
+> that the two BasicRX boards have no problem, as they are brand new.
+>
+> 3. We removed two BasicRX boards and installed two BasicTX boards on=20
+> the same X310. We used GNU RADIO to send two data streams to X310 for=20
+> signal transmission. It works well and has no overflow issue.
+>
+> We want to test X310's RF B channel, but we do not know how to set the=20
+> parameters so that GNU Radio can read the data stream from X310's RF B=20
+> channel. Would it be an argument like "subdev=3DB"? It looks like GNU=20
+> Radio always gets data stream from RF A channel if we set the channel=20
+> number to 1. Please suggest if it is possible.
+
+https://files.ettus.com/manual/page_configuration.html#config_subdev
+
+Also, this thread here, on a related topic (Basic_RX on X310) may help:
+
+https://usrp-users.ettus.narkive.com/Mbf3kutl/subdev-spec-for-two-channel=
+s-with-usrp-x310
+
+
+>
+> Any suggestion and help would be appreciated!
+>
+>
+> On Tue, Apr 19, 2022 at 6:03 PM Marcus D. Leech=20
+> <patchvonbraun@gmail.com> wrote:
+>
+>     On 2022-04-19 15:05, Shichen Zhang wrote:
+>     > Hello everyone,
+>     >
+>     > I am doing some experiments=C2=A0and I need to build the 2 by 2
+>     > communication using X310 with the=C2=A0BasicRX Daughterboard. I u=
+se the
+>     > X310 as both the transmitter and receiver. I can successfully
+>     test the
+>     > 1 by 1 case, however, when I test the 2 by 2 case, the overflow
+>     > happened and the program could not be stopped. The RF B channel
+>     seems
+>     > not to work ( LED light for RF B RX not flash).
+>     >
+>     > I have attached the flowchart for=C2=A0your reference.
+>     >
+>     > Best,
+>     > SZ
+>     >
+>     What is your complete hardware configuration?=C2=A0 I assume 2=C2=A0=
+ x
+>     BasicRX and
+>     2 x Basic TX?
+>
+>     It may just be the case that your computer simply isn't up to the
+>     task
+>     of moving 20Mssp of data in and out of the radio, along with doing
+>     2 x
+>     FFTs and computing the
+>     =C2=A0=C2=A0 noise sources.
+>
+>     _______________________________________________
+>     USRP-users mailing list -- usrp-users@lists.ettus.com
+>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--------------M8bpPOCh2i2QyyFBQB0PDOFq
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-04-19 22:44, Zeng, Huacheng
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAL0m=3DNYwuKBAiyEj_-rdu2ypjsV+vjfrZfw3HQz_upLdd09+cA@mail.gm=
+ail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">Below is a more detailed description of our issue.
+        <br>
+        <br>
+        1. We have an X310 with two BasicRX boards installed (no
+        BasicTX). We tried to read the two data streams from X310 on a
+        computer at a sampling rate 5Msps. The computer displays
+        "OOOOOOOOOOOO" overflow constantly. We tried other sampling
+        rates such as 1Msps and 10Msps, the observation is the same. <br>
+      </div>
+    </blockquote>
+    What version of UHD are you using?=C2=A0 BasicRX support on the X310 =
+in
+    earlier releases was broken.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAL0m=3DNYwuKBAiyEj_-rdu2ypjsV+vjfrZfw3HQz_upLdd09+cA@mail.gm=
+ail.com">
+      <div dir=3D"ltr"><br>
+        We found that the LED lights on the X310 panel are abnormal.
+        When X310 works in RX mode, the two LED lights (RF A's RX2 LED
+        and RF B's RX2 LED) should be on, but we observed they were
+        flashing. Also, the LINK LED should be on in RED, but we
+        observed that it was flashing in ORANGE. <br>
+        <br>
+        We reloaded the FPGA image, but the problem is consistent. <br>
+        <br>
+        2. We removed BasicRX from X310's RF B channel, and tested one
+        data stream from X310 RF A's channel, it works (no overflow). We
+        are sure that the two BasicRX boards have no problem, as they
+        are brand new. <br>
+        <br>
+        3. We removed two BasicRX boards and installed two BasicTX
+        boards on the same X310. We used GNU RADIO to send two data
+        streams to X310 for signal transmission. It works well and has
+        no overflow issue. <br>
+        <br>
+        We want to test X310's RF B channel, but we do not know how to
+        set the parameters so that GNU Radio can read the data stream
+        from X310's RF B channel. Would it be an argument like
+        "subdev=3DB"? It looks like GNU Radio always gets data stream fro=
+m
+        RF A channel if we set the channel number to 1. Please suggest
+        if it is possible. <br>
+      </div>
+    </blockquote>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://files.ettus.com/ma=
+nual/page_configuration.html#config_subdev">https://files.ettus.com/manua=
+l/page_configuration.html#config_subdev</a><br>
+    <br>
+    Also, this thread here, on a related topic (Basic_RX on X310) may
+    help:<br>
+    <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://usrp-users.ettus.narki=
+ve.com/Mbf3kutl/subdev-spec-for-two-channels-with-usrp-x310">https://usrp=
+-users.ettus.narkive.com/Mbf3kutl/subdev-spec-for-two-channels-with-usrp-=
+x310</a><br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAL0m=3DNYwuKBAiyEj_-rdu2ypjsV+vjfrZfw3HQz_upLdd09+cA@mail.gm=
+ail.com">
+      <div dir=3D"ltr"><br>
+        Any suggestion and help would be appreciated!<br>
+        <br>
+      </div>
+      <br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 19, 2022 at 6:0=
+3
+          PM Marcus D. Leech &lt;<a
+            href=3D"mailto:patchvonbraun@gmail.com" moz-do-not-send=3D"tr=
+ue"
+            class=3D"moz-txt-link-freetext">patchvonbraun@gmail.com</a>&g=
+t;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+On
+          2022-04-19 15:05, Shichen Zhang wrote:<br>
+          &gt; Hello everyone,<br>
+          &gt;<br>
+          &gt; I am doing some experiments=C2=A0and I need to build the 2=
+ by
+          2 <br>
+          &gt; communication using X310 with the=C2=A0BasicRX Daughterboa=
+rd.
+          I use the <br>
+          &gt; X310 as both the transmitter and receiver. I can
+          successfully test the <br>
+          &gt; 1 by 1 case, however, when I test the 2 by 2 case, the
+          overflow <br>
+          &gt; happened and the program could not be stopped. The RF B
+          channel seems <br>
+          &gt; not to work ( LED light for RF B RX not flash).<br>
+          &gt;<br>
+          &gt; I have attached the flowchart for=C2=A0your reference.<br>
+          &gt;<br>
+          &gt; Best,<br>
+          &gt; SZ<br>
+          &gt;<br>
+          What is your complete hardware configuration?=C2=A0 I assume 2=C2=
+=A0 x
+          BasicRX and <br>
+          2 x Basic TX?<br>
+          <br>
+          It may just be the case that your computer simply isn't up to
+          the task <br>
+          of moving 20Mssp of data in and out of the radio, along with
+          doing 2 x <br>
+          FFTs and computing the<br>
+          =C2=A0=C2=A0 noise sources.<br>
+          <br>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a
+            href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
+-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a
+            href=3D"mailto:usrp-users-leave@lists.ettus.com"
+            target=3D"_blank" moz-do-not-send=3D"true"
+            class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.=
+com</a><br>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_PH1P110MB1665E0B25C1A0673B385CE98B7F59PH1P110MB1665NAMP_--
+--------------M8bpPOCh2i2QyyFBQB0PDOFq--
 
---===============3989176501876612860==
+--===============0256679225506897305==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -200,4 +345,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3989176501876612860==--
+--===============0256679225506897305==--
