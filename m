@@ -2,127 +2,146 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4AE509C5F
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Apr 2022 11:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAEA850A2DF
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Apr 2022 16:42:33 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D1AC63849BF
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Apr 2022 05:34:50 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9B0E23841AB
+	for <lists+usrp-users@lfdr.de>; Thu, 21 Apr 2022 10:42:32 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1650533690; bh=VbV9EysZtIhLtUFdxJBBkDUH24LxUetSfvcCExwLSIA=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=lDCWJ93YOlc31Kph3lR9dkTQe+YKIFbXn4UpKBgz8YwbTk6lgluOYF4DJTQZxi82Z
-	 6JtZ9xHqPkeuO2tgV5KfCYCtxq8DK+2Eb98+PdjlXUODyl/7CPJGN930vzG6FnqTB8
-	 r+Il50bohxSvQuhfZ3gpzhZ/R98P6q5MxUYQPW4L++LUwDNbYmR0vlHkFks3iOKpLK
-	 qBn79bsuMfifFj+YyYUSjC6z5aqM9nXYZ1CG5kHHxMxj203ZmgWzKvWtsZ8oxo19TV
-	 FXsZqegOw9rEnRy4yzxZezUIO6XdTqcueBPYEvp7Ww8OXLQ6uaVTiMa0tps0OJ3RFe
-	 PNVdDlEStGxFA==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C441F3846A9
-	for <usrp-users@lists.ettus.com>; Thu, 21 Apr 2022 05:33:38 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1650533618; bh=XaNSOv45BVmQyWj8d3P9oufqjSe3KYH84VNp8KkB7lM=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=gpFIVBiJ+DHnkK/zEaAiRtntlKNmXRCwdUlM9Stch/+RiZK0/JjR4A+BpCYOEaSzq
-	 3v0Ow/abRr+xxotUju8L5/4Lw/5b710RQscOPiNQN8f0N2YePLGqcDia3vGNTgrJYn
-	 k/erjBoopEZ0ZTKHz/jd0F2cqhzc6JaCudrJyX+Dxu8YIdk5jvHbgaX5cf46rdCwLO
-	 hbuFdx5P5hkF7plxXdz3lnFT9Na2z7S3sADBWgQ4fyJ0VG/LxaJ7SOa7B42tOE3poH
-	 7R6kXLzajhqVttrn0mhzyy2QtHAKahipg5ES5Smxj398TqeznXUbYbDKHwM4Nmuxmr
-	 vqxjWBCqV0kuw==
-Date: Thu, 21 Apr 2022 09:33:38 +0000
-To: usrp-users@lists.ettus.com
-From: mathis.raemy@master.hes-so.ch
-Message-ID: <GlUmhntkQ1D70S8EvyVRZ3yNssmK7bF0i587YvBBPJI@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 7f0b56f1-a744-2b52-601a-62df63ddac31@master.hes-so.ch
+	t=1650552152; bh=BpOAb942NXt/q1VRya/3ISFvderHaRfDl0qEGwX+0lw=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=N0+nHNO6paFeBYKHJ/uwQt+TyTpANOkVZH7w96JXbbLVSnrvBWn00hlC/fs26aZgZ
+	 +pObX8IbEeuA61kkrOyMZyOXWhNC8YImsMT4ohKf7G5Fl86bR+M/yhQf4o6R6adD56
+	 qzn33ESUAoMTB2yTyUsCgi5ioqHX0GQrytbj/m4CpwajsCW1ToBA5kS8JwN9zsnufk
+	 Y7YiSLM49eIIyRVqFJWk3YbD66MTAzx1PyFncrsSd+B4181/pi/8YhAfiQyywyKPmG
+	 eJug7+iHR9amN09CMMHowT/+E157edlzrUMhl33bc324rOR+hZ4e9wAcoGpzEdS+XQ
+	 WmQyMMFFS6wwg==
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6CC3A38489B
+	for <usrp-users@lists.ettus.com>; Thu, 21 Apr 2022 10:41:27 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="YlVlx0h/";
+	dkim-atps=neutral
+Received: by mail-ed1-f47.google.com with SMTP id s25so6765224edi.13
+        for <usrp-users@lists.ettus.com>; Thu, 21 Apr 2022 07:41:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=MXeiQdDuC1SWAglZwNOXFNlnkV7KFZewv48qIBZGxRo=;
+        b=YlVlx0h/iEsuv+S70L/iapzJ3waGMo1TZG4L9Mkf4Ad9Y543+1G9/Tj2eEV/OueitR
+         H5GDjjujhyvjb1tpVCjjyZaeFoZt0kQ5M0dBfHuYEuW0N8eJZRCHzZ7SEXFzT9YnDihW
+         n2Q/78MwVrbDlAG6hD0quv6vuhf7wT7xie0OskeNYlmiDgu8xiphv6eqp9GUMsWsFZke
+         Wrwn0YDa68VsIqbLUiESjNOqFjPNB05e17qGSSp42Ne4SUToiUU37bMsTbGMi1K4jLDR
+         hpHafIlno6bSNImazy76qL+u2+Pv4C6XTISdo9vtVtsDEAYS3K/WKeWhQEkrHvZsIQ2N
+         NVhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=MXeiQdDuC1SWAglZwNOXFNlnkV7KFZewv48qIBZGxRo=;
+        b=Am4/p2+iH5fSUvMYw/O6iL2+19xNn9UImWpEMYePTyNPukytb1kuKGps+bhMZE2fTO
+         Yqf5kZ/cUNUUuZbWYlmxznWxFvHjPY5aAdhaUZNR/zdviLOOaoTwcfC9X8ThwsY9epg8
+         tb7/+16wwRcBMqR54OK0qcnb/vwqMw/N+F65z1CNemPahpuVfH6u8Mb99nCFXttxe0jM
+         xlBPI1ia8rdAKF9FzMyfsF07bKHvsVq+jXY3IEBsW5OWUkcfnBDeFTUsV4smoEyQMFta
+         t5SRAPZR8t8HNQ81KtVKMSbXDFTOjt+4D0UXQsMeAmcFwDpPsWpWDwlB410hkR0g+XNm
+         iQIA==
+X-Gm-Message-State: AOAM5329CHqtE8Gav7qw9VvMhbrH8aYqud7W+xGEpJBKECWdp2yS03rI
+	qq8MZPSYH6Fz9b8G4mTk8Wnbi3nptncW1VIoCoeEYuVRLRXtetiW
+X-Google-Smtp-Source: ABdhPJxgsd+MR/WjVQ/e5+HVJvo0jRZmJISnhZpx+ajUu/0FY5jHy+7RJaz0NUlxQzhkmsZZiRw/YoAESw6J0O2VtHg=
+X-Received: by 2002:a05:6402:190a:b0:424:890:e4e1 with SMTP id
+ e10-20020a056402190a00b004240890e4e1mr12487320edz.169.1650552081489; Thu, 21
+ Apr 2022 07:41:21 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: JBQTM4B7O7J4WVM5VHW5DFIPZ53KJCXM
-X-Message-ID-Hash: JBQTM4B7O7J4WVM5VHW5DFIPZ53KJCXM
-X-MailFrom: mathis.raemy@master.hes-so.ch
+From: Aaron Rossetto <aaron.rossetto@ettus.com>
+Date: Thu, 21 Apr 2022 09:41:10 -0500
+Message-ID: <CAAg5+MxN_xH+R6T8zcgpjHZ+eDwrU3NCmWtukuU2grbbXFqcog@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: BHLBBXO32P6RER6NC5USY4FC324T3SUP
+X-Message-ID-Hash: BHLBBXO32P6RER6NC5USY4FC324T3SUP
+X-MailFrom: aaron.rossetto@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Implementation of PTP in Ettus N320
+Subject: [USRP-users] UHD 4.2.0.0 released!
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JBQTM4B7O7J4WVM5VHW5DFIPZ53KJCXM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BHLBBXO32P6RER6NC5USY4FC324T3SUP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0253946095199548898=="
+Content-Type: multipart/mixed; boundary="===============8684908983607425398=="
 
-This is a multi-part message in MIME format.
+--===============8684908983607425398==
+Content-Type: multipart/alternative; boundary="00000000000080314305dd2b1a16"
 
---===============0253946095199548898==
-Content-Type: multipart/alternative;
- boundary="b1_GlUmhntkQ1D70S8EvyVRZ3yNssmK7bF0i587YvBBPJI"
-Content-Transfer-Encoding: 7bit
+--00000000000080314305dd2b1a16
+Content-Type: text/plain; charset="UTF-8"
 
-This is a multi-part message in MIME format.
+Hello friends of UHD,
 
---b1_GlUmhntkQ1D70S8EvyVRZ3yNssmK7bF0i587YvBBPJI
-Content-Type: text/plain; charset=UTF-8
+On behalf of everyone at NI/Ettus Research, I am pleased to announce the
+release of UHD 4.2[1], the latest version of the USRP Hardware Driver! UHD
+4.2 brings new enhancements to the USRP X410, notably:
+
+* A new shipping bitfile, X410_CG_400, enabling 100 GbE 4x4 streaming
+support at 491.52 MS/s. An app note detailing system setup and results is
+forthcoming.
+* X410 DRAM record/replay support. This allows the use of the DRAM in a
+custom RFNoC application design to capture data from the radio front end or
+for waveforms to be uploaded from the host to be generated by the radio.
+* X410 GPIO support, including timed commands.
+
+Of course, there are also many bug fixes and improvements across the entire
+range of supported USRP devices. Be sure to check out the changelog at [1]
+for the full list. And as with any release, let us know of any problems by
+filing an issue against UHD on the GitHub repo[2] or by posting to the
+USRP-users mailing list.
+
+With very best regards,
+Aaron
+
+[1] https://github.com/EttusResearch/uhd/releases/tag/v4.2.0.0
+[2] https://github.com/EttusResearch/uhd/issues/
+
+--00000000000080314305dd2b1a16
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Sorry for the terrible format of my message.
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,sa=
+ns-serif">
+<div style=3D"font-family:arial,sans-serif" class=3D"gmail_default"></div><=
+div class=3D"gmail_default" style=3D"font-family:arial,sans-serif">Hello fr=
+iends of UHD,</div><div class=3D"gmail_default" style=3D"font-family:arial,=
+sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:ari=
+al,sans-serif">On
+ behalf of everyone at NI/Ettus Research, I am pleased to announce the=20
+release of UHD 4.2[1], the latest version of the USRP Hardware Driver!=20
+UHD 4.2 brings new enhancements to the USRP X410, notably:<br><br>* A=20
+new shipping bitfile, X410_CG_400, enabling 100 GbE 4x4 streaming=20
+support at 491.52 MS/s. An app note detailing system setup and results=20
+is forthcoming.<br>* X410 DRAM record/replay support. This allows the=20
+use of the DRAM in a custom RFNoC application design to capture data=20
+from the radio front end or for waveforms to be uploaded from the host=20
+to be generated by the radio.<br>* X410 GPIO support, including timed comma=
+nds.<br><br>Of
+ course, there are also many bug fixes and improvements across the=20
+entire range of supported USRP devices. Be sure to check out the=20
+changelog at [1] for the full list. And as with any release, let us know
+ of any problems by filing an issue against UHD on the GitHub repo[2] or
+ by posting to the USRP-users mailing list.<br><br>With very best regards,<=
+br>Aaron<br><br>[1] <a href=3D"https://github.com/EttusResearch/uhd/release=
+s/tag/v4.2.0.0">https://github.com/EttusResearch/uhd/releases/tag/v4.2.0.0<=
+/a><br>[2] <a href=3D"https://github.com/EttusResearch/uhd/issues/">https:/=
+/github.com/EttusResearch/uhd/issues/</a></div><div class=3D"gmail_default"=
+ style=3D"font-family:arial,sans-serif"><br></div>
 
-Hi,\
-I'm currently working on a=C2=A0project=C2=A0about the=C2=A0protocol Whit=
-e Rabbit=C2=A0and=C2=A0PTP.=C2=A0To=C2=A0do=C2=A0this,=C2=A0I=C2=A0use=C2=
-=A0the=C2=A0USRP=C2=A0N320, and=C2=A0I'm able to=C2=A0start=C2=A0a=C2=A0m=
-aster/slave architecture and=C2=A0run=C2=A0a complete synchronization bet=
-ween two=C2=A0devices.=C2=A0For=C2=A0now, I=C2=A0have=C2=A0to redirect=C2=
-=A0PTP=C2=A0messages=C2=A0over=C2=A0radio=C2=A0instead of optical fiber.=C2=
-=A0So=C2=A0for the first=C2=A0step,=C2=A0I'm=C2=A0looking=C2=A0for the so=
-urce code that=C2=A0implement=C2=A0the=C2=A0PTP=C2=A0protocol.=C2=A0I did=
-n't=C2=A0found=C2=A0anything inside the hardware source code of [UHD](htt=
-ps://github.com/EttusResearch/uhd).=C2=A0So=C2=A0I=C2=A0thought=C2=A0it=C2=
-=A0was=C2=A0a software=C2=A0implementation=C2=A0of=C2=A0PTP, but=C2=A0I d=
-idn't found any daemon running in the=C2=A0Ettus=C2=A0N320=C2=A0during th=
-e synchronization.=C2=A0I=C2=A0also found=C2=A0the [wrpc-sw](https://gith=
-ub.com/EttusResearch/wrpc-sw) which=C2=A0include=C2=A0as a submodule the=C2=
-=A0new=C2=A0version=C2=A0PPSi which clearly implement PTP but it seems li=
-ke any of those two software are not=C2=A0running on=C2=A0my=C2=A0system.=
- \
-My=C2=A0question=C2=A0is:=C2=A0\
- Where is implemented=C2=A0the=C2=A0PTP=C2=A0protocol=C2=A0for the synchr=
-onization for the Ettus N320 between=C2=A0Master=C2=A0and Slave? \
- Is there any easier way to redirect PTP messages in radio instead of opt=
-ical output ?\
- \
- Best regards, Mathis
+</div></div>
 
---b1_GlUmhntkQ1D70S8EvyVRZ3yNssmK7bF0i587YvBBPJI
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+--00000000000080314305dd2b1a16--
 
-<p>Sorry for the terrible format of my message.</p><p>Hi,<br>I'm currently =
-working on a&nbsp;project&nbsp;about the&nbsp;protocol White Rabbit&nbsp;an=
-d&nbsp;PTP.&nbsp;To&nbsp;do&nbsp;this,&nbsp;I&nbsp;use&nbsp;the&nbsp;USRP&n=
-bsp;N320, and&nbsp;I'm able to&nbsp;start&nbsp;a&nbsp;master/slave architec=
-ture and&nbsp;run&nbsp;a complete synchronization between two&nbsp;devices.=
-&nbsp;For&nbsp;now, I&nbsp;have&nbsp;to redirect&nbsp;PTP&nbsp;messages&nbs=
-p;over&nbsp;radio&nbsp;instead of optical fiber.&nbsp;So&nbsp;for the first=
-&nbsp;step,&nbsp;I'm&nbsp;looking&nbsp;for the source code that&nbsp;implem=
-ent&nbsp;the&nbsp;PTP&nbsp;protocol.&nbsp;I didn't&nbsp;found&nbsp;anything=
- inside the hardware source code of <a href=3D"https://github.com/EttusRese=
-arch/uhd">UHD</a>.&nbsp;So&nbsp;I&nbsp;thought&nbsp;it&nbsp;was&nbsp;a soft=
-ware&nbsp;implementation&nbsp;of&nbsp;PTP, but&nbsp;I didn't found any daem=
-on running in the&nbsp;Ettus&nbsp;N320&nbsp;during the synchronization.&nbs=
-p;I&nbsp;also found&nbsp;the <a href=3D"https://github.com/EttusResearch/wr=
-pc-sw">wrpc-sw</a> which&nbsp;include&nbsp;as a submodule the&nbsp;new&nbsp=
-;version&nbsp;PPSi which clearly implement PTP but it seems like any of tho=
-se two software are not&nbsp;running on&nbsp;my&nbsp;system. <br>My&nbsp;qu=
-estion&nbsp;is:&nbsp;<br> Where is implemented&nbsp;the&nbsp;PTP&nbsp;proto=
-col&nbsp;for the synchronization for the Ettus N320 between&nbsp;Master&nbs=
-p;and Slave? <br> Is there any easier way to redirect PTP messages in radio=
- instead of optical output ?<br> <br> Best regards, Mathis</p>
-
---b1_GlUmhntkQ1D70S8EvyVRZ3yNssmK7bF0i587YvBBPJI--
-
---===============0253946095199548898==
+--===============8684908983607425398==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -132,4 +151,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0253946095199548898==--
+--===============8684908983607425398==--
