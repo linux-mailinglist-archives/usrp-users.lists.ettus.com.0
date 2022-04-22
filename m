@@ -2,134 +2,259 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6B150AD5B
-	for <lists+usrp-users@lfdr.de>; Fri, 22 Apr 2022 03:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 771DF50BD30
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Apr 2022 18:34:03 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 50072384CAD
-	for <lists+usrp-users@lfdr.de>; Thu, 21 Apr 2022 21:44:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1C978384E2F
+	for <lists+usrp-users@lfdr.de>; Fri, 22 Apr 2022 12:34:02 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1650591857; bh=28YITNPG2x9lHW9VfIGdLvzxM2ysIScAmoIy1dronVk=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=BfVoANPnhkYQYUNtx9B2fZkgDJ7BFdq6+SNa1WRQgTdP8Un+i29XHxFrgBgUwTKSz
-	 k3hY9YGFyAVglk1U5tbdlte9ejw8oiUTVayJI8iieqSgr0xnqqBWwN+t0QVWoE5Zp9
-	 50mQEcL/0cF+lrtEvym6H6bVoj6Mz9P5BE/gKAx5eEXXbpUchE/QFE9va/WnoBKChN
-	 +3X4hz+l1wR7u8iwgSc9vfkLe+hl3F+2EpNWoW5YI8qHZEiOrEaTrflVXDcrs3Sx6W
-	 B/z2dZtKaZmQoet3fHTolwfa0bgm52YMFwX2xvFRjiPXCUbpAC4uWd1ixhfqf/33j0
-	 JdbQINVpZCrng==
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 112A5384C5E
-	for <usrp-users@lists.ettus.com>; Thu, 21 Apr 2022 21:43:18 -0400 (EDT)
+	t=1650645242; bh=DZpIpYnSto8U2IxTRklNZ30rQAKErfTrpAIwX0id7gc=;
+	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=glZgWbme2xbd2vlxKPd29Y6DmtXkDsEZC83iD/Bvo+E26pyGogrVmZpa+U+oC1O4e
+	 gYo8k/mW6vwz9eCvlTEuR4xM7wnrRii9MR9iqjhW0qBXh1KIPzZ/rKbDPWlg7/2069
+	 lEpX5JI2l/X12AQFx5DdrqXkDxczbak9TMdNSu657cqEKQsBHOpSxbs/JEQ+dwkNK6
+	 VW1RUN3kGhCL0FWUidDPsodaaV+zevnHjH11Y+qh/mHLWvnRP63oXHAJmL3AsnWFpJ
+	 Y6Yz1z1aV4O4PXtHZU/kv48Rd80rO+d29k6dHV8//CjclKonatXfOlFfV6V7bDlHRh
+	 v16T8ugnygQSw==
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 16FEF384D3A
+	for <usrp-users@lists.ettus.com>; Fri, 22 Apr 2022 12:32:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CKVum4Cm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MP2sqTKA";
 	dkim-atps=neutral
-Received: by mail-wm1-f46.google.com with SMTP id n126-20020a1c2784000000b0038e8af3e788so4521867wmn.1
-        for <usrp-users@lists.ettus.com>; Thu, 21 Apr 2022 18:43:18 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-2edbd522c21so90696447b3.13
+        for <usrp-users@lists.ettus.com>; Fri, 22 Apr 2022 09:32:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=hOXcL5oOzJg+4QDfOuhz5+UTKNQriemaz8+/NRuGuA4=;
-        b=CKVum4CmKSFqBc1GakK4ZC1ZBvhWStFodWpptdRulB7+kJIWWWtBy/K5WTms3BzdDi
-         JrTk0fbYpc4L6N9SXtEYIRGz7Ttlg5vDxUBygkbeL74o83eIYR8PW28NcwX6wS6IQTfF
-         K5PbMCx4gLJVTFEESv2yEA6r03bekr3luSRcSCFEx9prnfBEMTw8KweEvwkeqNOnea65
-         dtqKlUuiIMm5HVp27y0t13BeXAcyHJi5D9eAqWmZYKnH4Qz0IEgBkRdWgdoCEmreEHvC
-         m9GEmsKgUiMSsasKJMqn1//rOlT83LghYbG8UDJ21wQO+jC6lh8L2E+Tmd4bJFQsaohi
-         flIw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=QZJA4nZsehwnZnRJqzT3zPzEdJw2yrIy1JZWmhpKlss=;
+        b=MP2sqTKAqBMkcj7a0ZBb1oE1hM6ut/eMigs6kYi9BL287CWqMwj/g/qjHQcr+Sj2Fx
+         JfimjLoqG37TgHFHYLmTDUZz62KpuOfZNVcVfhba9o0EvIZpznGYk1qc1mjnxW1wZyFM
+         L/xa/w/2dawPWeI5VX4VclyPKuRXxGggfeMyXmfDLmTvaAjhx9T/HYdnr0Z4aTq9TVTQ
+         +v1wnMee/ZEFuUeQYZYT0MpkwaFO+2WdVgYH8jdKsfYMLaZfobzounacx9cPAEPy2F7A
+         f8toWSa+CjdruRQLppi3Fn00voJvFMT2yoYJ7k8QklWVJ7qH5jhBU0O4bf79l6xOBvPF
+         V7bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=hOXcL5oOzJg+4QDfOuhz5+UTKNQriemaz8+/NRuGuA4=;
-        b=DgELRkGckbNvd7S0VRLULleciTSs4nyI/z2WfjeVtS4rKn72StvwR19bWDHxSYKmSn
-         tPT56FbyizZl6POWIXKRUVvTpEytr3680OHOqJAFTZFjlucZ7Uo9jZy0MmtmZMIqI8hr
-         cIBnoAprZi4mRZ8b1Q2Pu4DU7sy/RQ9+VnsochfCBPhnZtdyhRDO+0Fi4alR/9OYV6rk
-         3RU9AZL+6P4sEaIqGrXneCnCHJ/n39zeELH5A7+ttP0y28cL7y/v7bJ26xZHMVbKiPLv
-         5/gWZFW8YfCH11+me7VlJvMfAvt0pZOg/MqZOir2k13zL1ENjsZr5y8uZZTO4Ez3PWXN
-         qhNA==
-X-Gm-Message-State: AOAM533OHge54egHqGC0eAy0PjesWZAfQAbUtJgfOxwbN+zYMuflBL0f
-	CxaCCCH0PQk57pjBgEhs9h7HaBF9KlVseZhy7iE=
-X-Google-Smtp-Source: ABdhPJyb7iiXeEOxb7v3mUl9bAp+mf3gSOpzomJrwNYWoS0LS9j1sf+HCXkLfZCrXLMm/ZcxzkT7PqaB2rKiULuDrZ0=
-X-Received: by 2002:a1c:f415:0:b0:37f:ab4d:1df2 with SMTP id
- z21-20020a1cf415000000b0037fab4d1df2mr10680590wma.75.1650591797893; Thu, 21
- Apr 2022 18:43:17 -0700 (PDT)
+         :message-id:subject:to;
+        bh=QZJA4nZsehwnZnRJqzT3zPzEdJw2yrIy1JZWmhpKlss=;
+        b=FUNWPcXJ0nnvNhIXymzzd+moW90kWMOhHNfr3OUTAhfCnfVA/60SRQtRFNnj93WRIp
+         ClIoy0QUC3oF0hDJe+f7R0WRdBNtZUSqONIFI9hSNk/jZP9KshpliD1Gy7Z3cbNJKxa6
+         +ngcQVOM7FCD68jd1SoCFS2k0mbLoIjFSMFODsKfCqyRmxJEjivfoXqSPotCEHAUbxgf
+         z2oTvv2YSfHxtq1BzWFBr1Iqs44J0kjMhjCUgqHWTZM0QJwaaFxFVrGcpOeQDF/7MPh1
+         1kZ8GK7BZ2c1Xc7e6tD33hntIt6HqG+dALEkKKcLYmlNgBgRsMTQnYEEGAZKnpf/r2fc
+         JfQA==
+X-Gm-Message-State: AOAM531KX21A6Mj2u5jiJ5M+y4kSDKTiGnNMj7y+DpE8+Mydt9o84dlv
+	Mb/j7roWciSNy2pK+0grq56CxbVF7SDS/ca6krUi6ZWknKE=
+X-Google-Smtp-Source: ABdhPJxoZ9JyKEJdbp39smOWcGUg6fQd/44rKhRepT4ZOcVcuJHi5X64rltMdB079QL8LpmBvTlRPaPBcQ1i/PmuDHA=
+X-Received: by 2002:a0d:d78a:0:b0:2f7:c361:abf3 with SMTP id
+ z132-20020a0dd78a000000b002f7c361abf3mr111282ywd.498.1650645171939; Fri, 22
+ Apr 2022 09:32:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAxXO2HLcWstb43sCwUPQ=GjCd2VZTq3XEnJNemF4dZosxqk0Q@mail.gmail.com>
- <21b31060-a1eb-fba3-09f8-2adb30a21df1@gmail.com> <CAAxXO2HO2BvWV+hOafqg=+HG=ApAfgJEGtSgYbQvS4VXtfcxMQ@mail.gmail.com>
- <a724873a-926d-f01c-11b1-049560fe10b6@gmail.com>
-In-Reply-To: <a724873a-926d-f01c-11b1-049560fe10b6@gmail.com>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Fri, 22 Apr 2022 04:43:06 +0300
-Message-ID: <CAAxXO2Fwk-gR=wHVpWwC3qsN2dOYAeLuOUY7a5UBkA3UcV1p=A@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: PDHTH4WZ262R54ZA32V3Z2TXRSNUQ5MQ
-X-Message-ID-Hash: PDHTH4WZ262R54ZA32V3Z2TXRSNUQ5MQ
-X-MailFrom: nbalkanas@gmail.com
+References: <CAPT2EegX83McE_TznHb_vPcsgJSw46mBfE9O5mjnnGx8hrt3uw@mail.gmail.com>
+ <17c6ff8a-23d3-857d-cd9e-8c7481f5f225@gmail.com> <CAL0m=NYwuKBAiyEj_-rdu2ypjsV+vjfrZfw3HQz_upLdd09+cA@mail.gmail.com>
+In-Reply-To: <CAL0m=NYwuKBAiyEj_-rdu2ypjsV+vjfrZfw3HQz_upLdd09+cA@mail.gmail.com>
+From: "Zeng, Huacheng" <huacheng.zeng@gmail.com>
+Date: Fri, 22 Apr 2022 12:32:41 -0400
+Message-ID: <CAL0m=NbeN7fBXYHWkbCd60zVZjOWVntDjhzJrpGayb7O1Fwsnw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: A5GIWRDZFHXSPTHNERW6QHMDMLGD5B6V
+X-Message-ID-Hash: A5GIWRDZFHXSPTHNERW6QHMDMLGD5B6V
+X-MailFrom: huacheng.zeng@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD compilation in Ubuntu 20.04 (focal)
+Subject: [USRP-users] X310 with two BasicRX Daughterboards
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PDHTH4WZ262R54ZA32V3Z2TXRSNUQ5MQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A5GIWRDZFHXSPTHNERW6QHMDMLGD5B6V/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2064925708997065080=="
 
-bnAuIEkgd2FzIHdvbmRlcmluZyB3aGF0IHRoYXQgbWFpbCB3YXMgYWxsIGFib3V0Lg0KTm93IGF0
-IGxlYXN0IGkga25vdzstKQ0KDQpOaWtvcw0KDQpPbiBGcmksIEFwciAyMiwgMjAyMiBhdCAyOjE4
-IEFNIE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+IHdyb3RlOg0KPg0K
-PiBPbiAyMDIyLTA0LTIxIDE5OjEzLCBOaWtvcyBCYWxrYW5hcyB3cm90ZToNCj4gPiBZb3UgY2Fu
-IGNoZWNrIGJhY2sgeW91ciBhbnN3ZXIuDQo+ID4geW91IGFuc3dlcmVkIHRvIG1lLCBidXQgdGhl
-cmUgd2FzIG5vdGhpbmcgaW4geW91ciBtYWlsOigNCj4gPg0KPiA+IEJSDQo+ID4gTmlrb3MNCj4g
-V2VsbCwgSSBhcG9sb2dpemUuICBJJ20gZ29pbmcgdG8gYmxhbWUgdGhlIGNhdCwgYmVjYXVzZSBo
-ZSdzIHVuYWJsZSB0bw0KPiBkZWZlbmQgaGltc2VsZiBpbiBzdWNoIG1hdHRlcnMsIGFuZCBkb2Vz
-IG9jY2FzaW9uYWxseSBiYXQgYXQgbXkga2V5Ym9hcmQNCj4gd2hpbGUgSSdtDQo+ICAgIGRvaW5n
-IHRoaW5ncyB3aXRoIHRoZSBjb21wdXRlci4gICAgSSBkbyByZW1lbWJlciB0eXBpbmcgYSByZXBs
-eSBpbg0KPiB3aGljaCBJIGluZGljYXRlZCB0aGF0IDMuMTUgaXMgcGFja2FnZWQgd2l0aCBVYnVu
-dHUgMjAuMDQsIDIxLjA0LCAyMS4xMC4NCj4NCj4NCj4gPg0KPiA+IE9uIFdlZCwgQXByIDIwLCAy
-MDIyIGF0IDY6MDUgQU0gTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4g
-d3JvdGU6DQo+ID4+IE9uIDIwMjItMDQtMTkgMjI6NDUsIE5pa29zIEJhbGthbmFzIHdyb3RlOg0K
-PiA+Pj4gSGksDQo+ID4+Pg0KPiA+Pj4gSSB1c2VkIHRvIGhhdmUgVWJ1bnR1IDE0LjA0IGFuZCBo
-YWQgbm8gaXNzdWVzIHdpdGggdWhkLiBSZWNlbnRseSBpIGhhZA0KPiA+Pj4gdG8gdXBncmFkZSB0
-byBVYnVudHUgMjAuMDQsIGFuZCBJIGNhbid0IGZpbmQgKmFueSogdWhkIHZlcnNpb24gdGhhdA0K
-PiA+Pj4gY2FuIGNvbXBpbGUgaW4gaXQuIEkgaGF2ZSB0cmllZCBvdmVyIDIwIGZyb20gZ2l0IGZy
-b20gMy45LjAgdG8NCj4gPj4+IDMuMTEuNTooDQo+ID4+Pg0KPiA+Pj4gV2l0aCBlYXJsaWVyIHJl
-bGVhc2VzIGxpa2UgMy45LnggSSBnZXQgaW50byBib29zdCBwcm9ibGVtcywgYW5kDQo+ID4+PiBz
-b21ldGhpbmcgbGlrZSAibmF0aXZlIiBub3QgZGVmaW5lZC4NCj4gPj4+IEluIG1vcmUgcmVjZW50
-IHJlbGVhc2VzIGxpa2UgMy4xMS54IEkgZ2V0Og0KPiA+Pj4NCj4gPj4+IEluIGZpbGUgaW5jbHVk
-ZWQgZnJvbQ0KPiA+Pj4gL2hvbWUvbmlrb3Mvd29yay91aGQvaG9zdC9saWIvdXNycC9jb3Jlcy9n
-cGlvX2F0cl8zMDAwLmNwcDo4Og0KPiA+Pj4gL2hvbWUvbmlrb3Mvd29yay91aGQvaG9zdC9saWIv
-dXNycC9jb3Jlcy9ncGlvX2F0cl8zMDAwLmhwcDoyMDo0MjoNCj4gPj4+IGVycm9yOiBleHBlY3Rl
-ZCBjbGFzcy1uYW1lIGJlZm9yZSDigJh74oCZIHRva2VuDQo+ID4+PiAgICAgIDIwIHwgY2xhc3Mg
-Z3Bpb19hdHJfMzAwMCA6IGJvb3N0Ojpub25jb3B5YWJsZSB7DQo+ID4+PiAgICAgICAgIHwgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBeDQo+ID4+PiBtYWtlWzJdOiAq
-KiogW2xpYi9DTWFrZUZpbGVzL3VoZC5kaXIvYnVpbGQubWFrZToxMjM3Og0KPiA+Pj4gbGliL0NN
-YWtlRmlsZXMvdWhkLmRpci91c3JwL2NvcmVzL2dwaW9fYXRyXzMwMDAuY3BwLm9dIEVycm9yIDEN
-Cj4gPj4+IG1ha2VbMV06ICoqKiBbQ01ha2VGaWxlcy9NYWtlZmlsZTI6NjU1OiBsaWIvQ01ha2VG
-aWxlcy91aGQuZGlyL2FsbF0gRXJyb3IgMg0KPiA+Pj4gbWFrZTogKioqIFtNYWtlZmlsZToxNjM6
-IGFsbF0gRXJyb3IgMg0KPiA+Pj4NCj4gPj4+IFRoaXMgc2VlbXMgbGlrZSBhIGMrKyBpc3N1ZS4u
-Lg0KPiA+Pj4NCj4gPj4+IElzIHRoZXJlIGFueSBnaXQgcmVsZWFzZSB0aGF0IGNvbXBpbGVzIGlu
-IFVidW50dSAyMC4wND8NCj4gPj4+IEkga25vdyB0aGF0IHlvdSBsaXN0IGluIHN1cHBvcnRlZCB2
-ZXJzaW9ucywgb25seSBVYnVudHUgMTQuMDQgJiAxNi4wNCwNCj4gPj4+IGJ1dCBJIHN1c3BlY3Qg
-dGhpcyBpcyBvdXRkYXRlZCwgc2luY2UgVWJ1bnR1IGRvZXNuJ3Qgc3VwcG9ydCB0aGVtIGFueQ0K
-PiA+Pj4gbW9yZSwgYW5kIGluIHVoZCBpbnN0YWxsYXRpb24geW91IGRlc2NyaWJlIDIwLjA0IGJ1
-aWxkIGluc3RydWN0aW9ucy4NCj4gPj4+DQo+ID4+PiBUSUENCj4gPj4+IE5pa29zDQo+ID4+PiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+Pj4gVVNS
-UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gPj4+
-IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
-dHR1cy5jb20NCj4gPj4gRm9yIFVidW50dSAyMC4wNCwgeW91IGNhbiBqdXN0IGluc3RhbGwgaXQg
-ZnJvbSB0aGUgcGFja2FnZSByZXBvIHVzaW5nDQo+ID4+IEFQVC0tbm8gbmVlZCB0byBjb21waWxl
-IGl0Lg0KPiA+Pg0KPiA+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXw0KPiA+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbQ0KPiA+PiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNl
-cnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vy
-cy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============2064925708997065080==
+Content-Type: multipart/alternative; boundary="0000000000001facf705dd40c7ca"
+
+--0000000000001facf705dd40c7ca
+Content-Type: text/plain; charset="UTF-8"
+
+Hi All,
+
+Can anyone having successful experience with X310 + two BasicRX
+Daughterboards confirm that such a setup works? We can make it work for the
+following settings: i) X310 + one BasicRX, ii) X310 + two BasicTX, iii)
+X310 + two SBX for both TX and RX, iv) two N210 + MIMO cable + two BasicRX.
+But we are not able to make it work for X310 + two BasicRX. We tried
+different UHD versions (4.2, 3.15, etc.) and got no luck.
+
+Any suggestions would be appreciated!
+
+Hua
+
+
+
+On Tue, Apr 19, 2022 at 10:44 PM Zeng, Huacheng <huacheng.zeng@gmail.com>
+wrote:
+
+> Below is a more detailed description of our issue.
+>
+> 1. We have an X310 with two BasicRX boards installed (no BasicTX). We
+> tried to read the two data streams from X310 on a computer at a sampling
+> rate 5Msps. The computer displays "OOOOOOOOOOOO" overflow constantly. We
+> tried other sampling rates such as 1Msps and 10Msps, the observation is the
+> same.
+>
+> We found that the LED lights on the X310 panel are abnormal. When X310
+> works in RX mode, the two LED lights (RF A's RX2 LED and RF B's RX2 LED)
+> should be on, but we observed they were flashing. Also, the LINK LED should
+> be on in RED, but we observed that it was flashing in ORANGE.
+>
+> We reloaded the FPGA image, but the problem is consistent.
+>
+> 2. We removed BasicRX from X310's RF B channel, and tested one data stream
+> from X310 RF A's channel, it works (no overflow). We are sure that the two
+> BasicRX boards have no problem, as they are brand new.
+>
+> 3. We removed two BasicRX boards and installed two BasicTX boards on the
+> same X310. We used GNU RADIO to send two data streams to X310 for signal
+> transmission. It works well and has no overflow issue.
+>
+> We want to test X310's RF B channel, but we do not know how to set the
+> parameters so that GNU Radio can read the data stream from X310's RF B
+> channel. Would it be an argument like "subdev=B"? It looks like GNU Radio
+> always gets data stream from RF A channel if we set the channel number to
+> 1. Please suggest if it is possible.
+>
+> Any suggestion and help would be appreciated!
+>
+>
+> On Tue, Apr 19, 2022 at 6:03 PM Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
+>
+>> On 2022-04-19 15:05, Shichen Zhang wrote:
+>> > Hello everyone,
+>> >
+>> > I am doing some experiments and I need to build the 2 by 2
+>> > communication using X310 with the BasicRX Daughterboard. I use the
+>> > X310 as both the transmitter and receiver. I can successfully test the
+>> > 1 by 1 case, however, when I test the 2 by 2 case, the overflow
+>> > happened and the program could not be stopped. The RF B channel seems
+>> > not to work ( LED light for RF B RX not flash).
+>> >
+>> > I have attached the flowchart for your reference.
+>> >
+>> > Best,
+>> > SZ
+>> >
+>> What is your complete hardware configuration?  I assume 2  x BasicRX and
+>> 2 x Basic TX?
+>>
+>> It may just be the case that your computer simply isn't up to the task
+>> of moving 20Mssp of data in and out of the radio, along with doing 2 x
+>> FFTs and computing the
+>>    noise sources.
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+
+--0000000000001facf705dd40c7ca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi All,</div><div><br></div><div>Can anyone having su=
+ccessful experience with X310=C2=A0+=C2=A0two BasicRX Daughterboards confir=
+m that such a setup works? We can make it work for the following settings: =
+i) X310=C2=A0+ one BasicRX, ii) X310=C2=A0+ two BasicTX, iii) X310=C2=A0+ t=
+wo SBX for both TX and RX, iv) two N210=C2=A0+ MIMO cable=C2=A0+ two BasicR=
+X. But we are not able to make it work for X310=C2=A0+ two BasicRX. We trie=
+d different UHD versions (4.2, 3.15, etc.) and got no luck.=C2=A0</div><div=
+><br></div><div>Any=C2=A0suggestions would=C2=A0be appreciated!</div><div><=
+br></div><div>Hua</div><div><br></div><div><br></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 19, 2022 at 10:4=
+4 PM Zeng, Huacheng &lt;<a href=3D"mailto:huacheng.zeng@gmail.com">huacheng=
+.zeng@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr">Below is a more detailed description of our=
+ issue. <br><br>1. We have an X310 with two BasicRX boards installed (no Ba=
+sicTX). We tried to read the two data streams from X310 on a computer at a =
+sampling rate 5Msps. The computer displays &quot;OOOOOOOOOOOO&quot; overflo=
+w constantly. We tried other sampling rates such as 1Msps and 10Msps, the o=
+bservation is the same. <br><br>We found that the LED lights on the X310 pa=
+nel are abnormal. When X310 works in RX mode, the two LED lights (RF A&#39;=
+s RX2 LED and RF B&#39;s RX2 LED) should be on, but we observed they were f=
+lashing. Also, the LINK LED should be on in RED, but we observed that it wa=
+s flashing in ORANGE. <br><br>We reloaded the FPGA image, but the problem i=
+s consistent. <br><br>2. We removed BasicRX from X310&#39;s RF B channel, a=
+nd tested one data stream from X310 RF A&#39;s channel, it works (no overfl=
+ow). We are sure that the two BasicRX boards have no problem, as they are b=
+rand new. <br><br>3. We removed two BasicRX boards and installed two BasicT=
+X boards on the same X310. We used GNU RADIO to send two data streams to X3=
+10 for signal transmission. It works well and has no overflow issue. <br><b=
+r>We want to test X310&#39;s RF B channel, but we do not know how to set th=
+e parameters so that GNU Radio can read the data stream from X310&#39;s RF =
+B channel. Would it be an argument like &quot;subdev=3DB&quot;? It looks li=
+ke GNU Radio always gets data stream from RF A channel if we set the channe=
+l number to 1. Please suggest if it is possible. <br><br>Any suggestion and=
+ help would be appreciated!<br><br></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Tue, Apr 19, 2022 at 6:03 PM Marcus D=
+. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">pa=
+tchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">On 2022-04-19 15:05, Shichen Zhang wrote:<br>
+&gt; Hello everyone,<br>
+&gt;<br>
+&gt; I am doing some experiments=C2=A0and I need to build the 2 by 2 <br>
+&gt; communication using X310 with the=C2=A0BasicRX Daughterboard. I use th=
+e <br>
+&gt; X310 as both the transmitter and receiver. I can successfully test the=
+ <br>
+&gt; 1 by 1 case, however, when I test the 2 by 2 case, the overflow <br>
+&gt; happened and the program could not be stopped. The RF B channel seems =
+<br>
+&gt; not to work ( LED light for RF B RX not flash).<br>
+&gt;<br>
+&gt; I have attached the flowchart for=C2=A0your reference.<br>
+&gt;<br>
+&gt; Best,<br>
+&gt; SZ<br>
+&gt;<br>
+What is your complete hardware configuration?=C2=A0 I assume 2=C2=A0 x Basi=
+cRX and <br>
+2 x Basic TX?<br>
+<br>
+It may just be the case that your computer simply isn&#39;t up to the task =
+<br>
+of moving 20Mssp of data in and out of the radio, along with doing 2 x <br>
+FFTs and computing the<br>
+=C2=A0=C2=A0 noise sources.<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div></div>
+
+--0000000000001facf705dd40c7ca--
+
+--===============2064925708997065080==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2064925708997065080==--
