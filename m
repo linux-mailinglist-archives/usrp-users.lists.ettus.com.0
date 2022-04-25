@@ -2,204 +2,235 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 909BD50E189
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Apr 2022 15:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA32550E761
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Apr 2022 19:35:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CF71D385196
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Apr 2022 09:24:15 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id ACB8D384FCE
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Apr 2022 13:35:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1650893055; bh=8sjvoTv8C66REp3xxBYk9dfwSMy0b3r5TegBMg0mLME=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=yfSgAUNXWnOcyepxWZkK1HISVBi5UR5oT7G3VqHsTEWDQCjdS36Z0nI4YBFrkKsfq
-	 YP5DT+vS+irOr9O2ZdvxNgG61LOTFywdqTlg6KIiw+uPUwTXc34/EtoyA3Uko7BEYC
-	 sqEboTaIKwH7vnfDiMQpmM6lHf0zSFgfclvHuoN0NixNh3ve5h2qufQ5vMkGhXkXiF
-	 Rzh5dHncGeUbbrxDREo5ivBL7ay2YktDqQJebdysaPg2emloYNmfUG1gEmWjs39jLs
-	 dMg9QMWvzEOCUGzXiZYCABp49ZovCoiE+hG92chenbxQMRPyI7Ewjpi6c8P5+TeoXe
-	 /eu8s85Hd6LDQ==
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id CF6AA384DEA
-	for <usrp-users@lists.ettus.com>; Mon, 25 Apr 2022 09:22:13 -0400 (EDT)
+	t=1650908107; bh=7QdpH0kLhje6XYJ8c/gGX4XNHb6PI7fIkeJwRv2vhoA=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=qmjmmKS5urg9dKRM760J/u9FXn5nK6/ooWBY9dF20i+dI0N7pri6270tOEiTFXlFY
+	 vMho1kPeBQ5l0TJRJgQXCljFg7GTouhAivEgnA8KBFSvvChE5+4z2o7+ooFGdJ+OKm
+	 rchWy0YrvcPIlGnl4EvvYvzF6gw/PgwWJd/5VvddlqFwwKOsrHR0pIyfFXYeXXLFIZ
+	 zSy4igOF+I01enr6koHqpYCcYUwrkpv8RKb77A7NZmRjP2hL1jebMuNv5fV79uxGEt
+	 ohI7MA/lOf72a63APeYSAHhSxRHcipslsj+LLvxTnTpzkA7BfBnDrHoQLEgj6TF/na
+	 BLeTUol52Z8dw==
+Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0047.outbound.protection.office365.us [23.103.209.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2E4EB38525A
+	for <usrp-users@lists.ettus.com>; Mon, 25 Apr 2022 13:32:34 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PwVe1j9A";
+	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="IP+PZfdj";
 	dkim-atps=neutral
-Received: by mail-qt1-f170.google.com with SMTP id hh4so10218789qtb.10
-        for <usrp-users@lists.ettus.com>; Mon, 25 Apr 2022 06:22:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=zxlnZpT780ojpfc18fkSJo+d87xVohJLnf1yrXfCNj6DiDd5gBm/E9wxYKNf3H+KIBRhIiECbAgMZxH7f0xsB1QgVGN0K+kgNL2e/i0CGm23sq/6rj/xRzridvKGD9oR+ovn39nLy2PK70qf19YVCcjPZ8b3mWRz/nim8BduBrSIz/EmZdD+bevB3SE/UpTm4ewEhwyDA38diNTDta9zuw4nnBoF3E2pvLaj0PXwwFv24CYgMD4c56UgyaRKF9oa6SsR4kht0YWfLuacEarmQaGj2sB2j4LsjwAk17uypYG4FRkYDoLlfE6jBBxniVtTVa/wv5p9AaEVEcLTKavd6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ds/b6HUxVnbkgNpbCMQeTkDOXiKz8zIDDHVwUONCWEM=;
+ b=DqnSYWFB5Yjc5xQ+B55+CeXeDZK/WgN+bpCBxgvZOZKzirD+y2zB0p2TPuGZzfhp/FheRFdl11W+uJ7rUXHtVs4nBKSuu7+4pYJBwP/DVCaWFT4OkobZrFEEfb77wWpg0nZtIpmhilbeb+XYdZrb4mnQOUbd+1IWObEi5eWLEW2qeexc3MpmkBxCkMwYbsKISck6aTo8QhlCYwtFGwzM7DoOhVb9Be60ugOYaWgMu6ysTvmcPDn5553tavvQoMkbzKdhNfRpt+fRQIAtvssuWqli0bdiR3jkDuFA+cQYl/h5Dzi+EQvLo7gba6fUEuHiuZX2iQZsuLOreChbWnslOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
+ header.from=synopticengineering.com; dkim=pass
+ header.d=synopticengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=PGS8Ok8sbYoOiolaEGEGq5G6BrKavrUl6NdUjIt6lkg=;
-        b=PwVe1j9A7hyG6eGyiGRh/A6eJdZJaxDa+D2TkIrj3K3kgxXnuQDoOMWp58nkPFPuFo
-         lIUrWKF/sHYIEfKeb4Nu7+abkEFal7YvuS6C3KSsOIkVaTlB09P29B5ynLb2zspC8utq
-         DnmiCZ3JTc3AEQWtWvx/tlCR2G7lsEyKzQOajE0anouLtsg/aijMj5jVCY7D7oKQd4XH
-         wOuEWmxsSMZ9hzRXT2ua0QUURGj3CjYJ36UNVhTk/NPL5q2TDLTY6EQBYrNZ4lS6+hji
-         ZpK5ptkQtoR8Kjz/c45yhuPW7Z3KjaBpoq53fGQCIZqKWBJtArwDi5ox+l+PFCZyUAgH
-         QMIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=PGS8Ok8sbYoOiolaEGEGq5G6BrKavrUl6NdUjIt6lkg=;
-        b=ibJTKwZyYJ0d5oBOA+mF3Y7UYPBcpdyF+y3u93u5d9iv5/LkuF4GYdN4An+/Nfd//9
-         FHg2+PBgpGHOc237lI6Q6/ZG+c12dtpYmRzZsSACtZnYq0e41erx5sc3dc+hcqfvPN1f
-         fqlMrPBaBraH0YyQ2CmjS20zotTB1klQHxzKjYKjEFXQAQ5iy5qeeJ7VCJdtl26P43z3
-         FzQbN8FKVJ6DuTgVe5luJrWMWGYlYChHUoPF++1egFegKmIrq0W/xBPoSlp3CZOdy+6H
-         D8VCsNRWC34NbT9/zyAqh1ByrCQnnLulJcCCRrLEKSieccDW/HBg0tFsriL7wpTpn/HY
-         rnNA==
-X-Gm-Message-State: AOAM533qyXidQ+Z2cYR90/bfldJJ10bZ9YoLAsUJ2TmP0n8viHavcDXk
-	7OEhrc+Q6JFX3lltKKDbGe/KwnBzq6s=
-X-Google-Smtp-Source: ABdhPJwAwNRN20CfXoUoN6qlZVqJdQ8cDdl2VnqaeUn6CBAInQPitIN5kdPZNvvA4+PI+Ah0EDk1iw==
-X-Received: by 2002:a05:622a:18a3:b0:2f1:f958:38cc with SMTP id v35-20020a05622a18a300b002f1f95838ccmr11748171qtc.171.1650892933237;
-        Mon, 25 Apr 2022 06:22:13 -0700 (PDT)
-Received: from [192.168.2.199] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id o4-20020ae9f504000000b0069e75e7387fsm4856259qkg.43.2022.04.25.06.22.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Apr 2022 06:22:12 -0700 (PDT)
-Message-ID: <43af8d65-36f8-7cfb-f5d0-561fb647288b@gmail.com>
-Date: Mon, 25 Apr 2022 09:22:11 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
+ d=synopticengineering.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ds/b6HUxVnbkgNpbCMQeTkDOXiKz8zIDDHVwUONCWEM=;
+ b=IP+PZfdjtrhjYuN06R9dJ++jllrqJzPRbWVqdceWY3vfDxF0GA3UylaQMDrKBlngC+35VTa9dHL46sUKYhXPN94kIkCM7Q/UPoFP3senclzNhBSOyhQCpBhPoSuhNMj9Wn2d6jzm3lFQ3gln4CpqXrSbdIjX+h+GYudaliR1z6coC4CUrnJdWHapbZ6Q4jSyvvx3zJTN0Dur2FCuJokEETVW58DekfCHgJKDHNhob0MV7zyIG4eNjCCII+xXGg6FCVxKsHkzedx/XmjeDv9v/9W4ZeSHbxMPJta2l+6OlR3jsRjfPbrHErybMnmfmOtKmGkq56+Q0C1T+TgGMRUVRA==
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
+ by PH1P110MB1652.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.13; Mon, 25 Apr
+ 2022 17:32:30 +0000
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae%6]) with mapi id 15.20.5186.021; Mon, 25 Apr 2022
+ 17:32:30 +0000
+From: David Raeman <david@SynopticEngineering.com>
+To: Wade Fife <wade.fife@ettus.com>
+Thread-Topic: [USRP-users] Substitute power plug part for USRP E320?
+Thread-Index: AdhUqZMd9Vw3eTZ5RIWopyDB+3NKwgBDIqwAAMUSVZA=
+Date: Mon, 25 Apr 2022 17:32:30 +0000
+Message-ID: 
+ <PH1P110MB1665ACE4967B3765CEF26CDAB7F89@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+References: 
+ <PH1P110MB1665E0B25C1A0673B385CE98B7F59@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+ <CAFche=gB+NMWSLQHoPoVmkyCrrW1ANBbcxzGFSHhUuqdunrapQ@mail.gmail.com>
+In-Reply-To: 
+ <CAFche=gB+NMWSLQHoPoVmkyCrrW1ANBbcxzGFSHhUuqdunrapQ@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: =?UTF-8?B?U2tvcnN0YWQsIErDuHJu?= <jsk@nkom.no>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <OL1P279MB008348E9ECCB13A1DEABCA68A0E59@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
- <84e4af31-2c42-34c7-a918-dfdce959bf82@gmail.com>
- <OL1P279MB0083C96415D5C8DD456F99C9A0F89@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <OL1P279MB0083C96415D5C8DD456F99C9A0F89@OL1P279MB0083.NORP279.PROD.OUTLOOK.COM>
-Message-ID-Hash: 624HQQOI2CUXAJ7ZC4MXPKLQ2EVMV7FS
-X-Message-ID-Hash: 624HQQOI2CUXAJ7ZC4MXPKLQ2EVMV7FS
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e6d718fb-d778-4151-acaf-08da26e192ff
+x-ms-traffictypediagnostic: PH1P110MB1652:EE_
+x-microsoft-antispam-prvs: 
+ <PH1P110MB165278E2E4F911624B181C0AB7F89@PH1P110MB1652.NAMP110.PROD.OUTLOOK.COM>
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ Cs3npOYK5Oa7+t38eDK0V+ghHZQ81GvARSa45H4zGzxgZUZlcGPt9NjDb4qu3W4gd5e4EzH4mLW0ob6n8DjA/vJapAMfu4cNXJCDVP9K9SCbu2qTGZjaS8ymAtr8w/BiJpW9K19aKACwEUF3oRx8Cu2o2YGdwH+uQg3AVPWTFhr+RLQNN8BCMcJOJZTxJOmNpJuGlSpRaejV3123WPRGgKuPHpusP6DKGVaU31FQ2lXkeGxzozoAdscDZZ3vr91RjiThYMMo5B8kWxluyTvuZ6avWmzULrOSCk0Y/Zx6JKcJ6gcIHiX4aoBH/oK83xJEeeO4K1n9SvOUsbJydMbTO9yhMv+4S14P6rPKRSmIYN9aug12fBouzl3RLVvxvstb0TH099AD0j5IjlFTOkk1ZyJxLPRah5Dj+Xtc/jtAAwCkJeQDgJBI2cl4rRFHyJWNzGYNMfro5siGBf/VI2CrtXdWo5OLsc2E/060kqOFoHi0L8SHCVMvetqeoUYTCwJ0ab+cd4C3w8jbUIJtpkT8VXQ3MxQor57gYawQoVHeShGdzSDRTo6LjWYTpPqKDALnKSiQq0E7RH7w6lR4eoDbXY93DrryzQpx5B6gevyEZwJirMDb7tDTtuu9PGapaEpMMTyziAzOXNPoznROOV/2LA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(346002)(396003)(136003)(39830400003)(376002)(52536014)(8936002)(83380400001)(53546011)(7696005)(6506007)(5660300002)(186003)(2906002)(38100700002)(4326008)(33656002)(316002)(66476007)(66446008)(64756008)(8676002)(38070700005)(86362001)(508600001)(66556008)(76116006)(66946007)(122000001)(71200400001)(6916009)(55016003)(9686003)(85282002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ 5+m/VDWPbybAw5i+Qa9tXBhSFdI6XNKJoogH950vX84T+4cYSKAXM1Shy93pziC/8zgiL/DToLo0iGbLP2i6iTgYpZLUsVl1p4ZtWvVx0SzwYNXtFqzzn4xgdunEvb4vJMvFj89ScWgPmfUYzUHhRhDybY2r5SZj/0Y1NQGjy2JmFTs86tYy31CV93aN443wZI4q67vXy3cbTLee+8etS7x1jJE+SCHJ/7hcCEopJO8YY8nQwfMXXQauVxrXkQ5xUGMTE0PuzIu8GIAdgyMuEjfJ2IJmORTbyhtbYiwLI4NK1NvgCVtfwkZmOusw/b9OQTMXlWwMgKCKl8VCAJ6EWby2smc/HrcrheOlmwT4ecVl1oTVLH8HL2NqMNhzbIHrqCzrS7Uy1kV/is7RfRCWTfA8H/gf4Tm6rbpLlYv8gQSfweNSR4bqP+OoK8WmV+2yoSFVf1FP5TOeqvmVUzng1H1EP+Uo4DtD8Di0C7b4I2s=
+MIME-Version: 1.0
+X-OriginatorOrg: SynopticEngineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: e6d718fb-d778-4151-acaf-08da26e192ff
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Apr 2022 17:32:30.1760
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1652
+Message-ID-Hash: VCTSK4ZPNRSHL3VPXYVQVIT3CLPBKDUS
+X-Message-ID-Hash: VCTSK4ZPNRSHL3VPXYVQVIT3CLPBKDUS
+X-MailFrom: david@SynopticEngineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E310 USB - serial problem
+Subject: [USRP-users] Re: Substitute power plug part for USRP E320?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/624HQQOI2CUXAJ7ZC4MXPKLQ2EVMV7FS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TZDEXI3F2XWDL5CBY36IEBWUK6TQLGJO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7630730563026432789=="
+Content-Type: multipart/mixed; boundary="===============6877784399071497609=="
 
-This is a multi-part message in MIME format.
---===============7630730563026432789==
-Content-Type: multipart/alternative;
- boundary="------------eavqVVuXeQe0PUNA2vEUGAGG"
+--===============6877784399071497609==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PH1P110MB1665ACE4967B3765CEF26CDAB7F89PH1P110MB1665NAMP_"
 
-This is a multi-part message in MIME format.
---------------eavqVVuXeQe0PUNA2vEUGAGG
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_PH1P110MB1665ACE4967B3765CEF26CDAB7F89PH1P110MB1665NAMP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 2022-04-25 09:20, Skorstad, J=C3=B8rn wrote:
->
->     Tested now with two different chip types, both worked fine here. Th=
-anks for the quick response and solution!
->
-I can only take credit for raising the issue.=C2=A0 R&D at Ettus did the=20
-fix.=C2=A0 I'm happy that it works for you!
+VGhhbmtzIFdhZGUg4oCTIEkgY2FuIGNvbmZpcm0gdGhlc2Ugd29ya2VkLg0KDQpCZXN0LA0KRGF2
+aWQNCg0KRnJvbTogV2FkZSBGaWZlIDx3YWRlLmZpZmVAZXR0dXMuY29tPg0KU2VudDogVGh1cnNk
+YXksIEFwcmlsIDIxLCAyMDIyIDM6MjkgUE0NClRvOiBEYXZpZCBSYWVtYW4gPGRhdmlkQFN5bm9w
+dGljRW5naW5lZXJpbmcuY29tPg0KQ2M6IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJq
+ZWN0OiBSZTogW1VTUlAtdXNlcnNdIFN1YnN0aXR1dGUgcG93ZXIgcGx1ZyBwYXJ0IGZvciBVU1JQ
+IEUzMjA/DQoNCkhpIERhdmlkLA0KDQpJIHRoaW5rIHRoZSBLeWNvbiBLUFBYLTRQIGlzIGNvbXBh
+dGlibGUsIGJ1dCBJJ3ZlIG5ldmVyIHVzZWQgaXQgbXlzZWxmLiBMZXQgbWUga25vdyBpZiB0aGF0
+IHdvcmtzIGZvciB5b3UuDQoNCldhZGUNCg0KT24gV2VkLCBBcHIgMjAsIDIwMjIgYXQgNjo0MSBB
+TSBEYXZpZCBSYWVtYW4gPGRhdmlkQHN5bm9wdGljZW5naW5lZXJpbmcuY29tPG1haWx0bzpkYXZp
+ZEBzeW5vcHRpY2VuZ2luZWVyaW5nLmNvbT4+IHdyb3RlOg0KSGkgYWxsLCBJIG5lZWQgdG8gYnVp
+bGQgYSBjdXN0b20gcG93ZXIgY2FibGUgdG8gYW4gRTMyMC4gVGhlIHJhZGlv4oCZcyBoYXJkd2Fy
+ZSBwYWdlIGxpc3RzIHRoZSBwbHVnIHAvbiBhcyBDVUkgUERQLTQwLiBVbmZvcnR1bmF0ZWx5LCB0
+aGF0IHBhcnQgaXMgb3V0IG9mIHN0b2NrIGF0IGFsbCBkaXN0cmlidXRlcnMuIENhbiBhbnlib2R5
+IHJlY29tbWVuZCBhIGdvb2Qgc3Vic3RpdHV0ZSBwYXJ0PyBJIHNlZSBpbi1zdG9jayBvcHRpb25z
+IGZyb20gS3ljb24gdGhhdCBsb29rIHByb21pc2luZywgYnV0IEnigJlkIGFwcHJlY2lhdGUgZmVl
+ZGJhY2sgb24gYW55IGtub3duLWdvb2Qgc29sdXRpb25zIGhlcmUuDQoNClRoYW5rcyENCg0KLS0N
+CkRhdmlkIFJhZW1hbg0KU3lub3B0aWMgRW5naW5lZXJpbmcNCg0KX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVz
+LmNvbT4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBs
+aXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0K
 
+--_000_PH1P110MB1665ACE4967B3765CEF26CDAB7F89PH1P110MB1665NAMP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-> The latest UHD 4.2 image for the E310 now includes those drivers.=C2=A0=
-=20
-> Please try it out and let us know.=C2=A0 We did test two different type=
-s of=20
-> USB serial devices and they worked--
-> =C2=A0 the CP2101 and FTDI types.
->
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
+OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
+bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
+b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
+CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
+ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
+eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
+IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
+eSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3Jh
+cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5UaGFua3MgV2FkZSDigJMgSSBjYW4gY29uZmlybSB0aGVzZSB3b3JrZWQuPG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPkJlc3QsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5EYXZpZDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBi
+bHVlIDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9
+ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0
+IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiBXYWRlIEZp
+ZmUgJmx0O3dhZGUuZmlmZUBldHR1cy5jb20mZ3Q7IDxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2Rh
+eSwgQXByaWwgMjEsIDIwMjIgMzoyOSBQTTxicj4NCjxiPlRvOjwvYj4gRGF2aWQgUmFlbWFuICZs
+dDtkYXZpZEBTeW5vcHRpY0VuZ2luZWVyaW5nLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IFVTUlAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vy
+c10gU3Vic3RpdHV0ZSBwb3dlciBwbHVnIHBhcnQgZm9yIFVTUlAgRTMyMD88bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgRGF2aWQsPG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
+OzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgdGhpbmsg
+dGhlIEt5Y29uIEtQUFgtNFAgaXMgY29tcGF0aWJsZSwgYnV0IEkndmUgbmV2ZXIgdXNlZCBpdCBt
+eXNlbGYuIExldCBtZSBrbm93IGlmIHRoYXQgd29ya3MgZm9yIHlvdS48bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2FkZTxvOnA+PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gV2VkLCBB
+cHIgMjAsIDIwMjIgYXQgNjo0MSBBTSBEYXZpZCBSYWVtYW4gJmx0OzxhIGhyZWY9Im1haWx0bzpk
+YXZpZEBzeW5vcHRpY2VuZ2luZWVyaW5nLmNvbSI+ZGF2aWRAc3lub3B0aWNlbmdpbmVlcmluZy5j
+b208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5
+bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzow
+aW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4NCjxk
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFs
+dDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5IaSBhbGwsIEkgbmVlZCB0byBidWls
+ZCBhIGN1c3RvbSBwb3dlciBjYWJsZSB0byBhbiBFMzIwLiBUaGUgcmFkaW/igJlzIGhhcmR3YXJl
+IHBhZ2UgbGlzdHMgdGhlIHBsdWcgcC9uIGFzIENVSSBQRFAtNDAuIFVuZm9ydHVuYXRlbHksIHRo
+YXQgcGFydCBpcyBvdXQgb2Ygc3RvY2sgYXQgYWxsIGRpc3RyaWJ1dGVycy4NCiBDYW4gYW55Ym9k
+eSByZWNvbW1lbmQgYSBnb29kIHN1YnN0aXR1dGUgcGFydD8gSSBzZWUgaW4tc3RvY2sgb3B0aW9u
+cyBmcm9tIEt5Y29uIHRoYXQgbG9vayBwcm9taXNpbmcsIGJ1dCBJ4oCZZCBhcHByZWNpYXRlIGZl
+ZWRiYWNrIG9uIGFueSBrbm93bi1nb29kIHNvbHV0aW9ucyBoZXJlLjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRv
+bS1hbHQ6YXV0byI+VGhhbmtzITxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
+Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+LS0NCjxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFs
+dDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5EYXZpZCBSYWVtYW48bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+U3lub3B0aWMgRW5naW5lZXJpbmc8bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6
+YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+X19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
+LSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2Js
+YW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2NyaWJl
+IHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
+ZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
+LmNvbTwvYT48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---------------eavqVVuXeQe0PUNA2vEUGAGG
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_PH1P110MB1665ACE4967B3765CEF26CDAB7F89PH1P110MB1665NAMP_--
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-04-25 09:20, Skorstad, J=C3=B8=
-rn
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:OL1P279MB0083C96415D5C8DD456F99C9A0F89@OL1P279MB0083.NORP279.=
-PROD.OUTLOOK.COM">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML-forh=C3=A5ndsformatert Tegn";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}span.HTML-forhndsformatertTegn
-	{mso-style-name:"HTML-forh=C3=A5ndsformatert Tegn";
-	mso-style-priority:99;
-	mso-style-link:HTML-forh=C3=A5ndsformatert;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}</style>
-      <div class=3D"WordSection1">
-        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-          <pre>Tested now with two different chip types, both worked fine=
- here. Thanks for the quick response and solution!</pre>
-        </blockquote>
-      </div>
-    </blockquote>
-    I can only take credit for raising the issue.=C2=A0 R&amp;D at Ettus =
-did
-    the fix.=C2=A0 I'm happy that it works for you!<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:OL1P279MB0083C96415D5C8DD456F99C9A0F89@OL1P279MB0083.NORP279.=
-PROD.OUTLOOK.COM">
-      <div class=3D"WordSection1">
-        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-          <pre><o:p></o:p></pre>
-          <pre><o:p>=C2=A0</o:p></pre>
-        </blockquote>
-        <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span
-            style=3D"mso-fareast-language:NO-BOK">The latest UHD 4.2 imag=
-e
-            for the E310 now includes those drivers.=C2=A0 Please try it =
-out
-            and let us know.=C2=A0 We did test two different types of USB
-            serial devices and they worked--<br>
-            =C2=A0 the CP2101 and FTDI types.<br>
-            <br>
-            <o:p></o:p></span></p>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------eavqVVuXeQe0PUNA2vEUGAGG--
-
---===============7630730563026432789==
+--===============6877784399071497609==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -209,4 +240,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7630730563026432789==--
+--===============6877784399071497609==--
