@@ -2,242 +2,282 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5765511AE8
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 16:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2790511C8F
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 19:22:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E593438436C
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 10:57:31 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 897D7384882
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 13:22:16 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651071451; bh=ebDo+C4xICc1Xds6nokfnwLPOJLJqE1m+F731r8IWYs=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=TSvJlZuCxFsOMneqX6T4xo9ONx289qA6+1TVV0SjCvrSfjwo1E4xey4MoBIRpNnIX
-	 xDV4tDwnHiVcwPATgfpJUQwA4ml5fQgkRc+xMT7LzUyINCabH3c2JoxwwgGryZlNqI
-	 fm4lgO//9wX8XjVE1LjL8DAiUhGnSkuIxLuDbv81rO3rgZ9DULCvT5fe9pkNmVUSaI
-	 gbAYcdT89ol+BbKF3kefDweqf4CrJ23Ej3v3oJGOa8ajbFtNy9TW2iH9Gl02aixhjT
-	 PGoKkBXq5GMziUI9rj3x46CyvpOLX2NDFgJDdzhRv0Y4/wnh3I5AAFBCCJObbhDSzA
-	 IIZxfN5M8K24w==
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 24BE03845BF
-	for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 10:56:17 -0400 (EDT)
+	t=1651080136; bh=D+rVbK3KdQGJnyUGy2208gxX7wdf05Zrg/ut2/XuiEc=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=VlmBz2TQsEzSxq28Mm+mN/SX4y5IBQE3RcXZx/6pl5BcEACbgxbeoPN70tv1l6ns0
+	 55/NyxTWJ80JG10zLRDww0vHardIcO4vi5LLw1QUHdvuSrWi5EURWllOnZGrkj3Gkz
+	 2XfzmvbNWiD7f0sTVe7tvLJ9GM5Nqt3UrFsUp07YDyDiVtzOVAFr2yV+xqf0jVs88o
+	 3C3EBj46ElXHFT+wzsldJWcAEo6iCBni1nF8ALTzkAinY/GiR0Gs4OUpw5ME5DdawT
+	 +TJY+1LMpgeU8UJpOES8Hs5P4EB5F7j39nCu3UJdmZKUJ/dz7/5VCOODeQcrlgUXNN
+	 EqHx24asHiS0w==
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8E43A384551
+	for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 13:21:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Es46MM0J";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="HuTgzdhu";
 	dkim-atps=neutral
-Received: by mail-qv1-f47.google.com with SMTP id jt15so1193957qvb.13
-        for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 07:56:17 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2f7d19cac0bso26361097b3.13
+        for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 10:21:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=RyZUIZcC2oLJEhVFwZGFqOUVV2oTWJqCVItwWiZST5w=;
-        b=Es46MM0JDc2fZtuoE2ayOdEsvTiMxDTBiKr98Mgw8ULMfvTHoONC40/A9VfB98XNVQ
-         EsRV3GZCM8zwW+axclvtkun3JuySOeY5D2/BnmMNFECq43iceRAROec2y6kZoUYPUfhG
-         NkrlX9tuW4vi9wiKN7jt8lIuqq+Ut8UfY20GiYMevCWKyMD9Y2d+zgUhLpgp92ju/Oxo
-         FtMD07OmTykV+Ekt+fgssmyE8wgtIA2Fk+Sv1purdLnLPDkxTOr9NFgTNzGq7hRdHy2R
-         buL+wesJG2m/euRskBNUGKiETA7A1zxj53RRoMTs/tEu+GXI/mDJhN1w0CJfyhf3QBFX
-         yPMw==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dVhKj43YP52yfgrlnU7Ph0S3rkZY39M86uwDvNBu/Ec=;
+        b=HuTgzdhuH2c0i3WQFq6pc3LRrMbSmRclL6dJgzrFd73BUK3lzFnUeZyBhhopekYbtf
+         epVBvdka3uV6uiZYfm+HHADtYJ3PW/AJifZ/f8oT5TGIHU3KLRWwwAiXop/pfa8SC/3K
+         5uUyalbm0Go9Q1+fFRy5JdzVXBMlNrH5Fn10UAVeR8Z24qG0BaVZKJA8IpeW5oZ9h72f
+         IvY8eFf5IU6G/x1EyNnziqL6XdZzFwYo14NCuRDVNdUIpMeUWY8DrRYUtGhCoEaTV2g9
+         Mu9UTQjQKE/3sZ/u2RnEUnKaYn3rzOPqiyGiczYEY7py3VGOCjLHPu9cDd35orAW2ga8
+         9NVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=RyZUIZcC2oLJEhVFwZGFqOUVV2oTWJqCVItwWiZST5w=;
-        b=bdsyNcVKAZnj53c8qFkeMgp6v8iLQYkQfHgBV4MC/sMnF5pJA+JGauCa3Fs/nH7duV
-         VdQdAONElulK3Og+5tiV/pdObt2lwNDp64pjQEB5PS7vOSOinYSVflOegxd3KNbc6j6e
-         O+dCYgZY6srLooBTob5Oz+N+aJ7MWggj2WNeYKW0tb8FGg5Sn5Sy4jpPHkGUQpI5Zo6Z
-         aca2xDVbgrSv08QJFw/u+Pg2ZLvLeG0/Kpeffw1FxQSI96/BYhBfKYIxQ1o+SbrYL0ov
-         DzcxDCaklc1WOIjfwDBhD1lLRci2y3DBMYM5QjOAHPCT6QE0QmPA0T6CVW48p5JRWxlk
-         uyIQ==
-X-Gm-Message-State: AOAM5338M6rxMFIXtl+XDY4EWATAbrMJrYGgd1DviU2xhAmj+3JkB+bB
-	++m6S99UDB3SBtNdUiBlv+47SjE10bI=
-X-Google-Smtp-Source: ABdhPJxPI9VDjbBUcDP3WSM+fZtITkxOxL5ER2842raIWcboEqzdNdV2EPORUKMzQytAbn5kX9EtLw==
-X-Received: by 2002:ad4:5c6e:0:b0:443:be74:bf4f with SMTP id i14-20020ad45c6e000000b00443be74bf4fmr20092144qvh.56.1651071377268;
-        Wed, 27 Apr 2022 07:56:17 -0700 (PDT)
-Received: from [192.168.2.208] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id c27-20020ac84e1b000000b002f3851fcac0sm819016qtw.65.2022.04.27.07.56.16
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 07:56:16 -0700 (PDT)
-Message-ID: <e6405953-c2ca-8b73-edca-87ec9f0239a7@gmail.com>
-Date: Wed, 27 Apr 2022 10:56:15 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dVhKj43YP52yfgrlnU7Ph0S3rkZY39M86uwDvNBu/Ec=;
+        b=IsgC44k63nVzNYwhkLPekTULOV1jVidcjcFMqhc8x0q5TSHaas2Uj4esz38ffrdMl4
+         3qqJRR6vAJNVOOd0VBfTXxLmAJaEEpqqVXFvlJUDNvLXiTmb7g1NpADBzi+CMS4yxchs
+         iqtBJ3xZkT5xZehkFcFxw7CJKeYaWY3VbmuWCffP+0kIgFnJIRTNQadP0m4Il5KdtY0T
+         +hOw3IcTE07TWJRU+UGLWN4HEWYr/9Cz9zKXALEP7Cx/oc/dqgRTKoc5fFe28Zkn9fHV
+         ONHmiHOQw6TWezryJrjGIhy0d2lk0xDSU2uyYEMdXK9beQ2DLoRC8UfMXFFtQ2cG+yOF
+         1iCA==
+X-Gm-Message-State: AOAM530NVABDevOD3JW7wecmTlRSyo977tKkqKvMl3dNh+3eiu3mfbx1
+	r0ItpVD0WQ7ji3s0G6GJLqyTmf5m3OVWppDmEXc05Ul6h3ciICWS
+X-Google-Smtp-Source: ABdhPJwb2UZwo+VuMh7L8jHIilB2O5ok7hgt3/qnmK4ko8vyS/R3v8UjBkWPFe5tE0HAxMzjSzqk8aTUZ8+N9sRsoN0=
+X-Received: by 2002:a81:c4c:0:b0:2f7:e078:8cf6 with SMTP id
+ 73-20020a810c4c000000b002f7e0788cf6mr16824269ywm.171.1651080075936; Wed, 27
+ Apr 2022 10:21:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <PH1P110MB166525241D59E5FC42386591B7FA9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <PH1P110MB166525241D59E5FC42386591B7FA9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-Message-ID-Hash: ZR3A7JED5BGB6K67OJSQAAHXJTJVZCQF
-X-Message-ID-Hash: ZR3A7JED5BGB6K67OJSQAAHXJTJVZCQF
-X-MailFrom: patchvonbraun@gmail.com
+ <e6405953-c2ca-8b73-edca-87ec9f0239a7@gmail.com>
+In-Reply-To: <e6405953-c2ca-8b73-edca-87ec9f0239a7@gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Wed, 27 Apr 2022 12:20:59 -0500
+Message-ID: <CAFche=iOKXzO++VbRan3grn78abPA6P83Yq+ER_eac8-MU=U7A@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: 64TJPUE5QVMYDV55ZAINY4NL5HD4G72M
+X-Message-ID-Hash: 64TJPUE5QVMYDV55ZAINY4NL5HD4G72M
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Programmatic determine rfnoc_chdr_clk from UHD?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZR3A7JED5BGB6K67OJSQAAHXJTJVZCQF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/64TJPUE5QVMYDV55ZAINY4NL5HD4G72M/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6505753064095835743=="
+Content-Type: multipart/mixed; boundary="===============1830408788486936692=="
 
-This is a multi-part message in MIME format.
---===============6505753064095835743==
-Content-Type: multipart/alternative;
- boundary="------------pLC7TbkrIR2XbjtHZnQEwDRH"
-Content-Language: en-US
+--===============1830408788486936692==
+Content-Type: multipart/alternative; boundary="0000000000006c177a05dda609c9"
 
-This is a multi-part message in MIME format.
---------------pLC7TbkrIR2XbjtHZnQEwDRH
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000006c177a05dda609c9
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-04-27 09:53, David Raeman wrote:
+Hi David,
+
+I'm not super familiar with the software, but get_tick_rate() returning 0
+might be because something's not implemented in the block controller
+software. You could look at some other blocks to see how that's handled
+(maybe the DDC/DUC). But I would expect get_tick_rate() to return the
+sample rate, which isn't the same as the rfnoc_chdr_clk rate.
+
+The way we typically track time in an RFNoC block is by counting samples.
+Each sample corresponds to one master clock tick (or a ratio of that if
+there's a DDC/DUC). We aren't usually very concerned with the absolute
+time, we usually care about the time to which a sample corresponds, which
+you can get from the timestamp in the packet and the sample count.
+
+If you need the absolute time, you can connect the radio time to your
+block. Just keep in mind that crossing the radio time to the rfnoc_chdr_clk
+requires a clock crossing, with special logic to handle that and a bit of
+added delay. The rfnoc_chdr_clk can drift relative to the master clock over
+time, so we don't usually use it for tracking time.
+
+There is a BUS_CLK_RATE register on the FPGA that has this information, but
+I don't see it exposed anywhere in the API. So, as it is now, it might be
+easier to just do a lookup based on the type of USRP. I don't know if
+there's an easy way to get to that register.
+
+Wade
+
+On Wed, Apr 27, 2022 at 9:57 AM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 2022-04-27 09:53, David Raeman wrote:
 >
 > Hi all,
 >
-> Is it possible to programmatically determine the "rfnoc_chdr_clk" rate=20
-> from a UHD application? More specifically, I have a custom RFNoC block=20
-> clocked from rfnoc_chdr_clk, and I=E2=80=99d like to programmatically=20
-> determine its clock rate from the associated custom software driver so=20
-> I can convert tick rate to physical units of time. I know it varies by=20
-> radio model [1], and I=E2=80=99d like the driver code to be portable ac=
-ross a=20
-> few models.
+>
+>
+> Is it possible to programmatically determine the "rfnoc_chdr_clk" rate
+> from a UHD application? More specifically, I have a custom RFNoC block
+> clocked from rfnoc_chdr_clk, and I=E2=80=99d like to programmatically det=
+ermine its
+> clock rate from the associated custom software driver so I can convert ti=
+ck
+> rate to physical units of time. I know it varies by radio model [1], and
+> I=E2=80=99d like the driver code to be portable across a few models.
+>
+>
 >
 > I=E2=80=99ve poked around quite a bit in the docs and code, and I haven=
-=E2=80=99t=20
-> found an obvious solution in UHD 4. I guess I could dump it into a=20
-> register within my RFNoC block, but I wanted to make sure I=E2=80=99m n=
-ot=20
-> missing something in the existing framework. Calling get_tick_rate()=20
-> on the block control object just returns 0.
+=E2=80=99t found an
+> obvious solution in UHD 4. I guess I could dump it into a register within
+> my RFNoC block, but I wanted to make sure I=E2=80=99m not missing somethi=
+ng in the
+> existing framework. Calling get_tick_rate() on the block control object
+> just returns 0.
+>
+>
 >
 > Thanks!
 >
 > David
 >
-> [1]=20
-> https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_are_the_cloc=
-k_frequencies.3F
+>
+>
+> [1]
+> https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_are_the_clock_=
+frequencies.3F
+>
 >
 >
 > _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-Hmmm.=C2=A0 The docs do suggest that "get_tick_rate()" on the *block* obj=
-ect=20
-should work, since it exists in the block base class.=C2=A0 I'm not an RF=
-NOC=20
-programmer, so just
- =C2=A0 guessing...
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> Hmmm.  The docs do suggest that "get_tick_rate()" on the *block* object
+> should work, since it exists in the block base class.  I'm not an RFNOC
+> programmer, so just
+>   guessing...
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-
---------------pLC7TbkrIR2XbjtHZnQEwDRH
-Content-Type: text/html; charset=UTF-8
+--0000000000006c177a05dda609c9
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-04-27 09:53, David Raeman
+<div dir=3D"ltr"><div>Hi David,</div><div><br></div><div>I&#39;m not super =
+familiar with the software, but get_tick_rate() returning 0 might be becaus=
+e something&#39;s not implemented in the block controller software. You cou=
+ld look at some other blocks to see how that&#39;s handled (maybe the DDC/D=
+UC). But I would expect get_tick_rate() to return the sample rate, which is=
+n&#39;t the same as the rfnoc_chdr_clk rate.<br></div><div><br></div><div>T=
+he way we typically track time in an RFNoC block is by counting samples. Ea=
+ch sample corresponds to one master clock tick (or a ratio of that if there=
+&#39;s a DDC/DUC). We aren&#39;t usually very concerned with the absolute t=
+ime, we usually care about the time to which a sample corresponds, which yo=
+u can get from the timestamp in the packet and the sample count.</div><div>=
+<br></div><div>If you need the absolute time, you can connect the radio tim=
+e to your block. Just keep in mind that crossing the radio time to the rfno=
+c_chdr_clk requires a clock crossing, with special logic to handle that and=
+ a bit of added delay. The rfnoc_chdr_clk can drift relative to the master =
+clock over time, so we don&#39;t usually use it for tracking time.</div><di=
+v><br></div><div>
+There is a BUS_CLK_RATE register on the FPGA that has this information,=20
+but I don&#39;t see it exposed anywhere in the API. So, as it is now, it=20
+might be easier to just do a lookup based on the type of USRP. I don&#39;t=
+=20
+know if there&#39;s an easy way to get to that register.
+
+</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 27, 2022 at 9:57 AM Mar=
+cus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@g=
+mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 2022-04-27 09:53, David Raeman
       wrote:<br>
     </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:PH1P110MB166525241D59E5FC42386591B7FA9@PH1P110MB1665.NAMP110.=
-PROD.OUTLOOK.COM">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+    <blockquote type=3D"cite">
+     =20
+     =20
+     =20
+      <div>
+        <p class=3D"MsoNormal">Hi all,<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
         <p class=3D"MsoNormal">Is it possible to programmatically
-          determine the "rfnoc_chdr_clk" rate from a UHD application?
+          determine the &quot;rfnoc_chdr_clk&quot; rate from a UHD applicat=
+ion?
           More specifically, I have a custom RFNoC block clocked from
-          rfnoc_chdr_clk, and I=E2=80=99d like to programmatically determ=
-ine its
+          rfnoc_chdr_clk, and I=E2=80=99d like to programmatically determin=
+e its
           clock rate from the associated custom software driver so I can
           convert tick rate to physical units of time. I know it varies
           by radio model [1], and I=E2=80=99d like the driver code to be
-          portable across a few models.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">I=E2=80=99ve poked around quite a bit in t=
-he docs
-          and code, and I haven=E2=80=99t found an obvious solution in UH=
-D 4. I
+          portable across a few models.<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">I=E2=80=99ve poked around quite a bit in the=
+ docs
+          and code, and I haven=E2=80=99t found an obvious solution in UHD =
+4. I
           guess I could dump it into a register within my RFNoC block,
-          but I wanted to make sure I=E2=80=99m not missing something in =
-the
+          but I wanted to make sure I=E2=80=99m not missing something in th=
+e
           existing framework. Calling get_tick_rate() on the block
-          control object just returns 0.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks!<o:p></o:p></p>
-        <p class=3D"MsoNormal">David<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">[1] <a
-href=3D"https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_are_th=
-e_clock_frequencies.3F"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
-https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_are_the_clock_=
-frequencies.3F</a><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          control object just returns 0.<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">Thanks!<u></u><u></u></p>
+        <p class=3D"MsoNormal">David<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">[1] <a href=3D"https://kb.ettus.com/RFNoC_Fr=
+equently_Asked_Questions#What_are_the_clock_frequencies.3F" target=3D"_blan=
+k">
+https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_are_the_clock_fr=
+equencies.3F</a><u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
       </div>
       <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
 </pre>
     </blockquote>
-    Hmmm.=C2=A0 The docs do suggest that "get_tick_rate()" on the *block*
-    object should work, since it exists in the block base class.=C2=A0 I'=
-m
+    Hmmm.=C2=A0 The docs do suggest that &quot;get_tick_rate()&quot; on the=
+ *block*
+    object should work, since it exists in the block base class.=C2=A0 I&#3=
+9;m
     not an RFNOC programmer, so just<br>
     =C2=A0 guessing...<br>
     <br>
     <br>
-  </body>
-</html>
+  </div>
 
---------------pLC7TbkrIR2XbjtHZnQEwDRH--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============6505753064095835743==
+--0000000000006c177a05dda609c9--
+
+--===============1830408788486936692==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -247,4 +287,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6505753064095835743==--
+--===============1830408788486936692==--
