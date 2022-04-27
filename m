@@ -2,282 +2,343 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2790511C8F
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 19:22:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA338511CA2
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 19:34:04 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 897D7384882
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 13:22:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0D07B384696
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 13:34:04 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651080136; bh=D+rVbK3KdQGJnyUGy2208gxX7wdf05Zrg/ut2/XuiEc=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	t=1651080844; bh=0d68VrcmrLn96PaLX8o3BRnm4UheSaWx2staLOq9n8Y=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=VlmBz2TQsEzSxq28Mm+mN/SX4y5IBQE3RcXZx/6pl5BcEACbgxbeoPN70tv1l6ns0
-	 55/NyxTWJ80JG10zLRDww0vHardIcO4vi5LLw1QUHdvuSrWi5EURWllOnZGrkj3Gkz
-	 2XfzmvbNWiD7f0sTVe7tvLJ9GM5Nqt3UrFsUp07YDyDiVtzOVAFr2yV+xqf0jVs88o
-	 3C3EBj46ElXHFT+wzsldJWcAEo6iCBni1nF8ALTzkAinY/GiR0Gs4OUpw5ME5DdawT
-	 +TJY+1LMpgeU8UJpOES8Hs5P4EB5F7j39nCu3UJdmZKUJ/dz7/5VCOODeQcrlgUXNN
-	 EqHx24asHiS0w==
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8E43A384551
-	for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 13:21:16 -0400 (EDT)
+	b=av3sKr9F2SRRpCTYkO+GfA1PCy+OShnAc9D+dzee9Q/aUv8kd/a1QUsDZ+wqVpqKR
+	 cv09tUn2RrUzj2DCy6Ap++dfVfSIKrD8vEFkTJ7hGXdObXOB8zJiPS31uTZQ+rt45u
+	 JG655JPEsSGKD+2Vub1QGoqnmS1qrP+uALGQledHMpkPe5hLhm2h/GBORv5B8SV8Wd
+	 34CwLu8MCnPtOd26TEKN07rbx6lU1rIRyy4iaJWla0l8CUrtUBF5AXIQ26Z8568ci8
+	 Y0W94J+DkVRsAWoTcBzevHNYqi0WFfNeeMlrhvAE6ioBwQVleRpIJoogMhveF/bKoX
+	 71h4JnmdvOtxQ==
+Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0051.outbound.protection.office365.us [23.103.209.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id C297C384696
+	for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 13:32:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="HuTgzdhu";
+	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="glyG7JU1";
 	dkim-atps=neutral
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-2f7d19cac0bso26361097b3.13
-        for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 10:21:16 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=f2Gmzt6sU004RD0iZ9831Onpi12C2GlWIdQ8qDAhtl7G4bMRXDET6ki4yx/aCeGwdK+rAcBTq7F3gNL07wMUY/irDStjKUXeBm6+FLFKbipCwJnjtEYMmF7gKh1r4sG23TRIo1ccY+hXWvtuwueL9saWTjk4taI3xveBURi7KrF37lKwIBvAwPx3OMW18kKv3f4O6m+CnRlkr58r1/KQRN2dANM26ssT9ruTjDT5E/9k706gJNMXHCoPu/o5nORbeXE0KGgpvDkJ/fM+hRMTir6aydPqOwCSmAH29PVbGDcThfop3xUraKMMvBuUL1aak4TGBdR9LzLpgtIshrxL3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=j/rLOqz9xHIAAmmaZeAiHC+Xl8f1Mwbfhh4jsCEKwCg=;
+ b=maqjMBOtkeMRby4NDxSC0H4j7GKncaRtR9LFBpEX5NuAUnibPkjrYUjteixCsFNSoQXLPkiw7F2XY8PhEg7cyFtXxEJ4cO3bcVWCn5Bra4WxyIQjJe1UE/HpmbGrWilJfROviZlc3VafyF+ho6EpLQc6lZBiIzTNMTITHNiBGCjPgHanNU51VYZaR0zXQpPZP9yMpvu/MLBki/1IMsekjWdwBUio1QzKJNJZ+jn97MoLWNvQJPH62Y+/DIZhVwUzFWn2VbZfwbQ30DrqCd+NJLoYwZZoNkqqWAxAl16AyTFs3lQDB+6bwyS4K8vdFy42NwHopDgr9q/RO3mxE8pFwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
+ header.from=synopticengineering.com; dkim=pass
+ header.d=synopticengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dVhKj43YP52yfgrlnU7Ph0S3rkZY39M86uwDvNBu/Ec=;
-        b=HuTgzdhuH2c0i3WQFq6pc3LRrMbSmRclL6dJgzrFd73BUK3lzFnUeZyBhhopekYbtf
-         epVBvdka3uV6uiZYfm+HHADtYJ3PW/AJifZ/f8oT5TGIHU3KLRWwwAiXop/pfa8SC/3K
-         5uUyalbm0Go9Q1+fFRy5JdzVXBMlNrH5Fn10UAVeR8Z24qG0BaVZKJA8IpeW5oZ9h72f
-         IvY8eFf5IU6G/x1EyNnziqL6XdZzFwYo14NCuRDVNdUIpMeUWY8DrRYUtGhCoEaTV2g9
-         Mu9UTQjQKE/3sZ/u2RnEUnKaYn3rzOPqiyGiczYEY7py3VGOCjLHPu9cDd35orAW2ga8
-         9NVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dVhKj43YP52yfgrlnU7Ph0S3rkZY39M86uwDvNBu/Ec=;
-        b=IsgC44k63nVzNYwhkLPekTULOV1jVidcjcFMqhc8x0q5TSHaas2Uj4esz38ffrdMl4
-         3qqJRR6vAJNVOOd0VBfTXxLmAJaEEpqqVXFvlJUDNvLXiTmb7g1NpADBzi+CMS4yxchs
-         iqtBJ3xZkT5xZehkFcFxw7CJKeYaWY3VbmuWCffP+0kIgFnJIRTNQadP0m4Il5KdtY0T
-         +hOw3IcTE07TWJRU+UGLWN4HEWYr/9Cz9zKXALEP7Cx/oc/dqgRTKoc5fFe28Zkn9fHV
-         ONHmiHOQw6TWezryJrjGIhy0d2lk0xDSU2uyYEMdXK9beQ2DLoRC8UfMXFFtQ2cG+yOF
-         1iCA==
-X-Gm-Message-State: AOAM530NVABDevOD3JW7wecmTlRSyo977tKkqKvMl3dNh+3eiu3mfbx1
-	r0ItpVD0WQ7ji3s0G6GJLqyTmf5m3OVWppDmEXc05Ul6h3ciICWS
-X-Google-Smtp-Source: ABdhPJwb2UZwo+VuMh7L8jHIilB2O5ok7hgt3/qnmK4ko8vyS/R3v8UjBkWPFe5tE0HAxMzjSzqk8aTUZ8+N9sRsoN0=
-X-Received: by 2002:a81:c4c:0:b0:2f7:e078:8cf6 with SMTP id
- 73-20020a810c4c000000b002f7e0788cf6mr16824269ywm.171.1651080075936; Wed, 27
- Apr 2022 10:21:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <PH1P110MB166525241D59E5FC42386591B7FA9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+ d=synopticengineering.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=j/rLOqz9xHIAAmmaZeAiHC+Xl8f1Mwbfhh4jsCEKwCg=;
+ b=glyG7JU1da2/l7WfdjlsebXuwP0lV2CL6GP7DQaUxFkbYha9L0t5t5XAbLlyvjB+v7M1gMeJiKmYDzeyCE6WHbrZ/X9Xn3UGz6mAchJnn8P5+XSMU8mMyLGeyqiRbuf0Dj3vu+BG9ZRq47+snhUg67lRr/ON/Nfl8a3L7o3mCNd2wpAK5w4+Kd5jpags+1x8E34k5URYeD1XNxxsmeeHN9DqKVsHifJh/wG6uRE1KienzyRazOVmT0Rn4hjek5KgtbJG5STEBYuyJz5ifB57Etb8viWTFE36tN6FqXCAwMJcdwQuHVbY9C3VoFluW/RW39BfN7AZtzU7iln5s7/Bhw==
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
+ by PH1P110MB1051.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:177::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5186.14; Wed, 27 Apr
+ 2022 17:32:51 +0000
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae%6]) with mapi id 15.20.5186.021; Wed, 27 Apr 2022
+ 17:32:51 +0000
+From: David Raeman <david@SynopticEngineering.com>
+To: Wade Fife <wade.fife@ettus.com>, "Marcus D. Leech"
+	<patchvonbraun@gmail.com>
+Thread-Topic: [USRP-users] Re: Programmatic determine rfnoc_chdr_clk from UHD?
+Thread-Index: AdhZuCfXGH7vbomoQ768CqBzno+CpwAjsl2AAAUOBIAAAGNLwA==
+Date: Wed, 27 Apr 2022 17:32:50 +0000
+Message-ID: 
+ <PH1P110MB1665E94F2192E200042EE5F0B7FA9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+References: 
+ <PH1P110MB166525241D59E5FC42386591B7FA9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
  <e6405953-c2ca-8b73-edca-87ec9f0239a7@gmail.com>
-In-Reply-To: <e6405953-c2ca-8b73-edca-87ec9f0239a7@gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Wed, 27 Apr 2022 12:20:59 -0500
-Message-ID: <CAFche=iOKXzO++VbRan3grn78abPA6P83Yq+ER_eac8-MU=U7A@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: 64TJPUE5QVMYDV55ZAINY4NL5HD4G72M
-X-Message-ID-Hash: 64TJPUE5QVMYDV55ZAINY4NL5HD4G72M
-X-MailFrom: wade.fife@ettus.com
+ <CAFche=iOKXzO++VbRan3grn78abPA6P83Yq+ER_eac8-MU=U7A@mail.gmail.com>
+In-Reply-To: 
+ <CAFche=iOKXzO++VbRan3grn78abPA6P83Yq+ER_eac8-MU=U7A@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ca76c643-abe2-49a4-2066-08da2873f42d
+x-ms-traffictypediagnostic: PH1P110MB1051:EE_
+x-microsoft-antispam-prvs: 
+ <PH1P110MB1051CD43ABE4A23BA53F44E6B7FA9@PH1P110MB1051.NAMP110.PROD.OUTLOOK.COM>
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ Bb3YQFxrx02nDKr/0RlGVBrfJq2UxqmP5rnSjRhIsmQ+ERzhlo23gaE01fUQIFmJGFj/yNpS0NfyW4EePri+sHgMdWwNlNyP+vwyeMdQGYmTx2jPbctU2vDUgxo6dQ/e0JkXsAntLmNwzrfQgsh/9u6NR73BZcCRgKAqkweOO7j1V2kI2ZSxQClZ3/aekfFlivQfdQeThbK/Qlda0r9kvmpyYENSoHOxbhUh13CaSUXAQvY9OiNJtxEoi84R2rTPgkVXlwlGOa8sGbD0XwWGGX6m9PMseDcLOybXMmPTCQL6KCc7LJUt+URAf2kYgmnCT8Du6EtjR6X7inUi7fn6MDZqQ637KzRqlEGdiw35WnZaH4CSOXvDHhN65l0Y2G3Py91x4DI8Fqq8PglMEqg83L1ebXdQitbGiSn1UqdmZBjOPIRJH3FxvTj3/qg0lExXmOrbTOS9iMsjxqphn5FnyV5OBfQCdAJm/VhWgylGdW1Divouy/OrCA6tDEbHMYK8CaBobRK7902gm/bO002gKKtCtdDzf6nqEisqZsh0hNH6PU0Y4PoEubWB6wFDgIbO6ZxTODzNDxhhkgMKg7Rk5gudLFl6X8xcT2Vv9YEhZmJ679xcrMAjqrrVNzYZJ8eim7QQKcHR3KbLCCBnrAO05ACR2rCVeKjExw5dqHpZIoj90icUoriGtspqRp4LgH7rJnNSZVAdKwn3qNC6VR+PXzSb1/dr+vzqFFe4oUYfC4Y=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(346002)(110136005)(8936002)(186003)(508600001)(33656002)(55016003)(71200400001)(966005)(66556008)(66946007)(8676002)(4326008)(52536014)(66446008)(64756008)(66476007)(9686003)(53546011)(86362001)(5660300002)(6506007)(83380400001)(76116006)(122000001)(2906002)(7696005)(38070700005)(38100700002)(166002)(85282002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ uP5Zqw/MeezOqhzQJ1nN1LFbTNqO+35mXhNYkZNoaRSZS375S4d7gaw5UH5mQNkIVBdRQuqjgzfDtZ3jgMEWDRNfeFs2NiikYldJXVqGzVe2JrN+M44a+Lt2WfvIa1pRfQ/pNWXsCNu+F+mfogohFWsmi2/1nZEN0jhv2fNiuNadRtxxewDam4UhK4m1M/oW1FOD1p/j6rZbtASJM65eQR6BTQdIIv0M4uHxvHPV0tPqyXw4msssrroOBknrHuJpZHYoR24e6YtTQLmWjQRUwG4IxrRJACh3n84Hte024OymTs63Kn28ndb68rvF4LLI29EFc+ilL5qR6y3m/vUTDONLlrT8NXv2LErp1hGV7D85PFdeOUz3+kter94cVOQ7CyLZAVoue8YO4IjW934pdS/sbu+xjKo21VagFHTZp3gEW4mNsSCYNUwA3corAwkaiE+q5qWagNcFHrmUu8mVuDF3uGYK6TnblNUmSAXRviE=
+MIME-Version: 1.0
+X-OriginatorOrg: SynopticEngineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca76c643-abe2-49a4-2066-08da2873f42d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Apr 2022 17:32:50.8669
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1051
+Message-ID-Hash: 5H3FQ3WQUUO2OSUXOATBDOQLCWLKD6YD
+X-Message-ID-Hash: 5H3FQ3WQUUO2OSUXOATBDOQLCWLKD6YD
+X-MailFrom: david@SynopticEngineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Programmatic determine rfnoc_chdr_clk from UHD?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/64TJPUE5QVMYDV55ZAINY4NL5HD4G72M/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6CB52UNMPMP2ZMCE5NUHVETT4WRB2L2P/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1830408788486936692=="
+Content-Type: multipart/mixed; boundary="===============6267223862875914569=="
 
---===============1830408788486936692==
-Content-Type: multipart/alternative; boundary="0000000000006c177a05dda609c9"
+--===============6267223862875914569==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PH1P110MB1665E94F2192E200042EE5F0B7FA9PH1P110MB1665NAMP_"
 
---0000000000006c177a05dda609c9
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_PH1P110MB1665E94F2192E200042EE5F0B7FA9PH1P110MB1665NAMP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi David,
+VGhhbmtzIFdhZGUgYW5kIE1hcmN1cyDigJMgSSBhcHByZWNpYXRlIHRoZSBpbnNpZ2h0cyBhbmQg
+d2lsbCBtYWtlIHNvbWUgdHdlYWtzIG9uIG15IGVuZCBhcyBhIHdvcmthcm91bmQuDQoNCkJlc3Qs
+DQpEYXZpZA0KDQpGcm9tOiBXYWRlIEZpZmUgPHdhZGUuZmlmZUBldHR1cy5jb20+DQpTZW50OiBX
+ZWRuZXNkYXksIEFwcmlsIDI3LCAyMDIyIDE6MjEgUE0NClRvOiBNYXJjdXMgRC4gTGVlY2ggPHBh
+dGNodm9uYnJhdW5AZ21haWwuY29tPg0KQ2M6IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpT
+dWJqZWN0OiBbVVNSUC11c2Vyc10gUmU6IFByb2dyYW1tYXRpYyBkZXRlcm1pbmUgcmZub2NfY2hk
+cl9jbGsgZnJvbSBVSEQ/DQoNCkhpIERhdmlkLA0KDQpJJ20gbm90IHN1cGVyIGZhbWlsaWFyIHdp
+dGggdGhlIHNvZnR3YXJlLCBidXQgZ2V0X3RpY2tfcmF0ZSgpIHJldHVybmluZyAwIG1pZ2h0IGJl
+IGJlY2F1c2Ugc29tZXRoaW5nJ3Mgbm90IGltcGxlbWVudGVkIGluIHRoZSBibG9jayBjb250cm9s
+bGVyIHNvZnR3YXJlLiBZb3UgY291bGQgbG9vayBhdCBzb21lIG90aGVyIGJsb2NrcyB0byBzZWUg
+aG93IHRoYXQncyBoYW5kbGVkIChtYXliZSB0aGUgRERDL0RVQykuIEJ1dCBJIHdvdWxkIGV4cGVj
+dCBnZXRfdGlja19yYXRlKCkgdG8gcmV0dXJuIHRoZSBzYW1wbGUgcmF0ZSwgd2hpY2ggaXNuJ3Qg
+dGhlIHNhbWUgYXMgdGhlIHJmbm9jX2NoZHJfY2xrIHJhdGUuDQoNClRoZSB3YXkgd2UgdHlwaWNh
+bGx5IHRyYWNrIHRpbWUgaW4gYW4gUkZOb0MgYmxvY2sgaXMgYnkgY291bnRpbmcgc2FtcGxlcy4g
+RWFjaCBzYW1wbGUgY29ycmVzcG9uZHMgdG8gb25lIG1hc3RlciBjbG9jayB0aWNrIChvciBhIHJh
+dGlvIG9mIHRoYXQgaWYgdGhlcmUncyBhIEREQy9EVUMpLiBXZSBhcmVuJ3QgdXN1YWxseSB2ZXJ5
+IGNvbmNlcm5lZCB3aXRoIHRoZSBhYnNvbHV0ZSB0aW1lLCB3ZSB1c3VhbGx5IGNhcmUgYWJvdXQg
+dGhlIHRpbWUgdG8gd2hpY2ggYSBzYW1wbGUgY29ycmVzcG9uZHMsIHdoaWNoIHlvdSBjYW4gZ2V0
+IGZyb20gdGhlIHRpbWVzdGFtcCBpbiB0aGUgcGFja2V0IGFuZCB0aGUgc2FtcGxlIGNvdW50Lg0K
+DQpJZiB5b3UgbmVlZCB0aGUgYWJzb2x1dGUgdGltZSwgeW91IGNhbiBjb25uZWN0IHRoZSByYWRp
+byB0aW1lIHRvIHlvdXIgYmxvY2suIEp1c3Qga2VlcCBpbiBtaW5kIHRoYXQgY3Jvc3NpbmcgdGhl
+IHJhZGlvIHRpbWUgdG8gdGhlIHJmbm9jX2NoZHJfY2xrIHJlcXVpcmVzIGEgY2xvY2sgY3Jvc3Np
+bmcsIHdpdGggc3BlY2lhbCBsb2dpYyB0byBoYW5kbGUgdGhhdCBhbmQgYSBiaXQgb2YgYWRkZWQg
+ZGVsYXkuIFRoZSByZm5vY19jaGRyX2NsayBjYW4gZHJpZnQgcmVsYXRpdmUgdG8gdGhlIG1hc3Rl
+ciBjbG9jayBvdmVyIHRpbWUsIHNvIHdlIGRvbid0IHVzdWFsbHkgdXNlIGl0IGZvciB0cmFja2lu
+ZyB0aW1lLg0KDQpUaGVyZSBpcyBhIEJVU19DTEtfUkFURSByZWdpc3RlciBvbiB0aGUgRlBHQSB0
+aGF0IGhhcyB0aGlzIGluZm9ybWF0aW9uLCBidXQgSSBkb24ndCBzZWUgaXQgZXhwb3NlZCBhbnl3
+aGVyZSBpbiB0aGUgQVBJLiBTbywgYXMgaXQgaXMgbm93LCBpdCBtaWdodCBiZSBlYXNpZXIgdG8g
+anVzdCBkbyBhIGxvb2t1cCBiYXNlZCBvbiB0aGUgdHlwZSBvZiBVU1JQLiBJIGRvbid0IGtub3cg
+aWYgdGhlcmUncyBhbiBlYXN5IHdheSB0byBnZXQgdG8gdGhhdCByZWdpc3Rlci4NCg0KV2FkZQ0K
+DQpPbiBXZWQsIEFwciAyNywgMjAyMiBhdCA5OjU3IEFNIE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2
+b25icmF1bkBnbWFpbC5jb208bWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tPj4gd3JvdGU6
+DQpPbiAyMDIyLTA0LTI3IDA5OjUzLCBEYXZpZCBSYWVtYW4gd3JvdGU6DQpIaSBhbGwsDQoNCklz
+IGl0IHBvc3NpYmxlIHRvIHByb2dyYW1tYXRpY2FsbHkgZGV0ZXJtaW5lIHRoZSAicmZub2NfY2hk
+cl9jbGsiIHJhdGUgZnJvbSBhIFVIRCBhcHBsaWNhdGlvbj8gTW9yZSBzcGVjaWZpY2FsbHksIEkg
+aGF2ZSBhIGN1c3RvbSBSRk5vQyBibG9jayBjbG9ja2VkIGZyb20gcmZub2NfY2hkcl9jbGssIGFu
+ZCBJ4oCZZCBsaWtlIHRvIHByb2dyYW1tYXRpY2FsbHkgZGV0ZXJtaW5lIGl0cyBjbG9jayByYXRl
+IGZyb20gdGhlIGFzc29jaWF0ZWQgY3VzdG9tIHNvZnR3YXJlIGRyaXZlciBzbyBJIGNhbiBjb252
+ZXJ0IHRpY2sgcmF0ZSB0byBwaHlzaWNhbCB1bml0cyBvZiB0aW1lLiBJIGtub3cgaXQgdmFyaWVz
+IGJ5IHJhZGlvIG1vZGVsIFsxXSwgYW5kIEnigJlkIGxpa2UgdGhlIGRyaXZlciBjb2RlIHRvIGJl
+IHBvcnRhYmxlIGFjcm9zcyBhIGZldyBtb2RlbHMuDQoNCknigJl2ZSBwb2tlZCBhcm91bmQgcXVp
+dGUgYSBiaXQgaW4gdGhlIGRvY3MgYW5kIGNvZGUsIGFuZCBJIGhhdmVu4oCZdCBmb3VuZCBhbiBv
+YnZpb3VzIHNvbHV0aW9uIGluIFVIRCA0LiBJIGd1ZXNzIEkgY291bGQgZHVtcCBpdCBpbnRvIGEg
+cmVnaXN0ZXIgd2l0aGluIG15IFJGTm9DIGJsb2NrLCBidXQgSSB3YW50ZWQgdG8gbWFrZSBzdXJl
+IEnigJltIG5vdCBtaXNzaW5nIHNvbWV0aGluZyBpbiB0aGUgZXhpc3RpbmcgZnJhbWV3b3JrLiBD
+YWxsaW5nIGdldF90aWNrX3JhdGUoKSBvbiB0aGUgYmxvY2sgY29udHJvbCBvYmplY3QganVzdCBy
+ZXR1cm5zIDAuDQoNClRoYW5rcyENCkRhdmlkDQoNClsxXSBodHRwczovL2tiLmV0dHVzLmNvbS9S
+Rk5vQ19GcmVxdWVudGx5X0Fza2VkX1F1ZXN0aW9ucyNXaGF0X2FyZV90aGVfY2xvY2tfZnJlcXVl
+bmNpZXMuM0YNCg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fDQoNClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCg0KVG8gdW5zdWJzY3Jp
+YmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWls
+dG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQpIbW1tLiAgVGhlIGRvY3MgZG8g
+c3VnZ2VzdCB0aGF0ICJnZXRfdGlja19yYXRlKCkiIG9uIHRoZSAqYmxvY2sqIG9iamVjdCBzaG91
+bGQgd29yaywgc2luY2UgaXQgZXhpc3RzIGluIHRoZSBibG9jayBiYXNlIGNsYXNzLiAgSSdtIG5v
+dCBhbiBSRk5PQyBwcm9ncmFtbWVyLCBzbyBqdXN0DQogIGd1ZXNzaW5nLi4uDQoNCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxp
+bmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNl
+cnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0
+dHVzLmNvbT4NCg==
 
-I'm not super familiar with the software, but get_tick_rate() returning 0
-might be because something's not implemented in the block controller
-software. You could look at some other blocks to see how that's handled
-(maybe the DDC/DUC). But I would expect get_tick_rate() to return the
-sample rate, which isn't the same as the rfnoc_chdr_clk rate.
+--_000_PH1P110MB1665E94F2192E200042EE5F0B7FA9PH1P110MB1665NAMP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-The way we typically track time in an RFNoC block is by counting samples.
-Each sample corresponds to one master clock tick (or a ratio of that if
-there's a DDC/DUC). We aren't usually very concerned with the absolute
-time, we usually care about the time to which a sample corresponds, which
-you can get from the timestamp in the packet and the sample count.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCWZvbnQtc2l6ZTox
+MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFu
+Lk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0
+ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47
+DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1p
+bHk6IkNvdXJpZXIgTmV3Ijt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHls
+ZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseToiQ29u
+c29sYXMiLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndp
+bmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
+DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24x
+DQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9
+DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEt
+LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlk
+bWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0
+YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxi
+b2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13
+cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPlRoYW5rcyBXYWRlIGFuZCBNYXJjdXMg4oCTIEkgYXBwcmVjaWF0ZSB0aGUgaW5z
+aWdodHMgYW5kIHdpbGwgbWFrZSBzb21lIHR3ZWFrcyBvbiBteSBlbmQgYXMgYSB3b3JrYXJvdW5k
+LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5CZXN0LDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+RGF2aWQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6
+c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2
+IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGlu
+ZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9tOjwvYj4g
+V2FkZSBGaWZlICZsdDt3YWRlLmZpZmVAZXR0dXMuY29tJmd0OyA8YnI+DQo8Yj5TZW50OjwvYj4g
+V2VkbmVzZGF5LCBBcHJpbCAyNywgMjAyMiAxOjIxIFBNPGJyPg0KPGI+VG86PC9iPiBNYXJjdXMg
+RC4gTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4g
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW1VTUlAtdXNl
+cnNdIFJlOiBQcm9ncmFtbWF0aWMgZGV0ZXJtaW5lIHJmbm9jX2NoZHJfY2xrIGZyb20gVUhEPzxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBE
+YXZpZCw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+SSdtIG5vdCBzdXBlciBmYW1pbGlhciB3aXRoIHRoZSBzb2Z0d2FyZSwgYnV0IGdldF90aWNr
+X3JhdGUoKSByZXR1cm5pbmcgMCBtaWdodCBiZSBiZWNhdXNlIHNvbWV0aGluZydzIG5vdCBpbXBs
+ZW1lbnRlZCBpbiB0aGUgYmxvY2sgY29udHJvbGxlciBzb2Z0d2FyZS4gWW91IGNvdWxkIGxvb2sg
+YXQgc29tZSBvdGhlciBibG9ja3MgdG8gc2VlIGhvdyB0aGF0J3MgaGFuZGxlZCAobWF5YmUgdGhl
+IEREQy9EVUMpLg0KIEJ1dCBJIHdvdWxkIGV4cGVjdCBnZXRfdGlja19yYXRlKCkgdG8gcmV0dXJu
+IHRoZSBzYW1wbGUgcmF0ZSwgd2hpY2ggaXNuJ3QgdGhlIHNhbWUgYXMgdGhlIHJmbm9jX2NoZHJf
+Y2xrIHJhdGUuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPlRoZSB3YXkgd2UgdHlwaWNhbGx5IHRyYWNrIHRpbWUgaW4gYW4gUkZOb0MgYmxvY2sg
+aXMgYnkgY291bnRpbmcgc2FtcGxlcy4gRWFjaCBzYW1wbGUgY29ycmVzcG9uZHMgdG8gb25lIG1h
+c3RlciBjbG9jayB0aWNrIChvciBhIHJhdGlvIG9mIHRoYXQgaWYgdGhlcmUncyBhIEREQy9EVUMp
+LiBXZSBhcmVuJ3QgdXN1YWxseSB2ZXJ5IGNvbmNlcm5lZCB3aXRoIHRoZSBhYnNvbHV0ZSB0aW1l
+LCB3ZSB1c3VhbGx5IGNhcmUNCiBhYm91dCB0aGUgdGltZSB0byB3aGljaCBhIHNhbXBsZSBjb3Jy
+ZXNwb25kcywgd2hpY2ggeW91IGNhbiBnZXQgZnJvbSB0aGUgdGltZXN0YW1wIGluIHRoZSBwYWNr
+ZXQgYW5kIHRoZSBzYW1wbGUgY291bnQuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPklmIHlvdSBuZWVkIHRoZSBhYnNvbHV0ZSB0aW1lLCB5b3Ug
+Y2FuIGNvbm5lY3QgdGhlIHJhZGlvIHRpbWUgdG8geW91ciBibG9jay4gSnVzdCBrZWVwIGluIG1p
+bmQgdGhhdCBjcm9zc2luZyB0aGUgcmFkaW8gdGltZSB0byB0aGUgcmZub2NfY2hkcl9jbGsgcmVx
+dWlyZXMgYSBjbG9jayBjcm9zc2luZywgd2l0aCBzcGVjaWFsIGxvZ2ljIHRvIGhhbmRsZSB0aGF0
+IGFuZCBhIGJpdCBvZiBhZGRlZCBkZWxheS4gVGhlDQogcmZub2NfY2hkcl9jbGsgY2FuIGRyaWZ0
+IHJlbGF0aXZlIHRvIHRoZSBtYXN0ZXIgY2xvY2sgb3ZlciB0aW1lLCBzbyB3ZSBkb24ndCB1c3Vh
+bGx5IHVzZSBpdCBmb3IgdHJhY2tpbmcgdGltZS48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhlcmUgaXMgYSBCVVNfQ0xLX1JBVEUgcmVnaXN0
+ZXIgb24gdGhlIEZQR0EgdGhhdCBoYXMgdGhpcyBpbmZvcm1hdGlvbiwgYnV0IEkgZG9uJ3Qgc2Vl
+IGl0IGV4cG9zZWQgYW55d2hlcmUgaW4gdGhlIEFQSS4gU28sIGFzIGl0IGlzIG5vdywgaXQgbWln
+aHQgYmUgZWFzaWVyIHRvIGp1c3QgZG8gYSBsb29rdXAgYmFzZWQgb24gdGhlIHR5cGUgb2YgVVNS
+UC4gSSBkb24ndCBrbm93IGlmIHRoZXJlJ3MgYW4gZWFzeQ0KIHdheSB0byBnZXQgdG8gdGhhdCBy
+ZWdpc3Rlci4gPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPldhZGU8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+T24gV2VkLCBBcHIgMjcsIDIwMjIgYXQgOTo1NyBBTSBNYXJjdXMgRC4gTGVlY2gg
+Jmx0OzxhIGhyZWY9Im1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSI+cGF0Y2h2b25icmF1
+bkBnbWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2Nr
+cXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7
+cGFkZGluZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6
+MGluIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMjAyMi0wNC0yNyAw
+OTo1MywgRGF2aWQgUmFlbWFuIHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2tx
+dW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
+LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkhpIGFsbCw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPklzIGl0IHBvc3NpYmxlIHRvIHByb2dyYW1tYXRpY2FsbHkgZGV0ZXJtaW5lIHRoZSAmcXVv
+dDtyZm5vY19jaGRyX2NsayZxdW90OyByYXRlIGZyb20gYSBVSEQgYXBwbGljYXRpb24/IE1vcmUg
+c3BlY2lmaWNhbGx5LCBJIGhhdmUgYSBjdXN0b20gUkZOb0MgYmxvY2sgY2xvY2tlZCBmcm9tIHJm
+bm9jX2NoZHJfY2xrLCBhbmQgSeKAmWQNCiBsaWtlIHRvIHByb2dyYW1tYXRpY2FsbHkgZGV0ZXJt
+aW5lIGl0cyBjbG9jayByYXRlIGZyb20gdGhlIGFzc29jaWF0ZWQgY3VzdG9tIHNvZnR3YXJlIGRy
+aXZlciBzbyBJIGNhbiBjb252ZXJ0IHRpY2sgcmF0ZSB0byBwaHlzaWNhbCB1bml0cyBvZiB0aW1l
+LiBJIGtub3cgaXQgdmFyaWVzIGJ5IHJhZGlvIG1vZGVsIFsxXSwgYW5kIEnigJlkIGxpa2UgdGhl
+IGRyaXZlciBjb2RlIHRvIGJlIHBvcnRhYmxlIGFjcm9zcyBhIGZldyBtb2RlbHMuPG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvIj5J4oCZdmUgcG9rZWQgYXJvdW5kIHF1aXRlIGEgYml0IGluIHRo
+ZSBkb2NzIGFuZCBjb2RlLCBhbmQgSSBoYXZlbuKAmXQgZm91bmQgYW4gb2J2aW91cyBzb2x1dGlv
+biBpbiBVSEQgNC4gSSBndWVzcyBJIGNvdWxkIGR1bXAgaXQgaW50byBhIHJlZ2lzdGVyIHdpdGhp
+biBteSBSRk5vQyBibG9jaywgYnV0IEkgd2FudGVkDQogdG8gbWFrZSBzdXJlIEnigJltIG5vdCBt
+aXNzaW5nIHNvbWV0aGluZyBpbiB0aGUgZXhpc3RpbmcgZnJhbWV3b3JrLiBDYWxsaW5nIGdldF90
+aWNrX3JhdGUoKSBvbiB0aGUgYmxvY2sgY29udHJvbCBvYmplY3QganVzdCByZXR1cm5zIDAuPG86
+cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3At
+YWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21z
+by1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5UaGFua3MhPG86cD48L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
+b3R0b20tYWx0OmF1dG8iPkRhdmlkPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5bMV0NCjxh
+IGhyZWY9Imh0dHBzOi8va2IuZXR0dXMuY29tL1JGTm9DX0ZyZXF1ZW50bHlfQXNrZWRfUXVlc3Rp
+b25zI1doYXRfYXJlX3RoZV9jbG9ja19mcmVxdWVuY2llcy4zRiIgdGFyZ2V0PSJfYmxhbmsiPg0K
+aHR0cHM6Ly9rYi5ldHR1cy5jb20vUkZOb0NfRnJlcXVlbnRseV9Bc2tlZF9RdWVzdGlvbnMjV2hh
+dF9hcmVfdGhlX2Nsb2NrX2ZyZXF1ZW5jaWVzLjNGPC9hPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cHJlPl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPG86cD48L286cD48L3ByZT4NCjxwcmU+VVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+
+PG86cD48L286cD48L3ByZT4NCjxwcmU+VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8
+YSBocmVmPSJtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0i
+X2JsYW5rIj51c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwv
+cHJlPg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1i
+b3R0b206MTIuMHB0Ij5IbW1tLiZuYnNwOyBUaGUgZG9jcyBkbyBzdWdnZXN0IHRoYXQgJnF1b3Q7
+Z2V0X3RpY2tfcmF0ZSgpJnF1b3Q7IG9uIHRoZSAqYmxvY2sqIG9iamVjdCBzaG91bGQgd29yaywg
+c2luY2UgaXQgZXhpc3RzIGluIHRoZSBibG9jayBiYXNlIGNsYXNzLiZuYnNwOyBJJ20gbm90IGFu
+IFJGTk9DIHByb2dyYW1tZXIsIHNvIGp1c3Q8YnI+DQombmJzcDsgZ3Vlc3NpbmcuLi48YnI+DQo8
+YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+X19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188YnI+DQpVU1JQLXVzZXJz
+IG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4N
+ClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNl
+cnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxl
+YXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcD4NCjwvYmxvY2txdW90ZT4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-If you need the absolute time, you can connect the radio time to your
-block. Just keep in mind that crossing the radio time to the rfnoc_chdr_clk
-requires a clock crossing, with special logic to handle that and a bit of
-added delay. The rfnoc_chdr_clk can drift relative to the master clock over
-time, so we don't usually use it for tracking time.
+--_000_PH1P110MB1665E94F2192E200042EE5F0B7FA9PH1P110MB1665NAMP_--
 
-There is a BUS_CLK_RATE register on the FPGA that has this information, but
-I don't see it exposed anywhere in the API. So, as it is now, it might be
-easier to just do a lookup based on the type of USRP. I don't know if
-there's an easy way to get to that register.
-
-Wade
-
-On Wed, Apr 27, 2022 at 9:57 AM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 2022-04-27 09:53, David Raeman wrote:
->
-> Hi all,
->
->
->
-> Is it possible to programmatically determine the "rfnoc_chdr_clk" rate
-> from a UHD application? More specifically, I have a custom RFNoC block
-> clocked from rfnoc_chdr_clk, and I=E2=80=99d like to programmatically det=
-ermine its
-> clock rate from the associated custom software driver so I can convert ti=
-ck
-> rate to physical units of time. I know it varies by radio model [1], and
-> I=E2=80=99d like the driver code to be portable across a few models.
->
->
->
-> I=E2=80=99ve poked around quite a bit in the docs and code, and I haven=
-=E2=80=99t found an
-> obvious solution in UHD 4. I guess I could dump it into a register within
-> my RFNoC block, but I wanted to make sure I=E2=80=99m not missing somethi=
-ng in the
-> existing framework. Calling get_tick_rate() on the block control object
-> just returns 0.
->
->
->
-> Thanks!
->
-> David
->
->
->
-> [1]
-> https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_are_the_clock_=
-frequencies.3F
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> Hmmm.  The docs do suggest that "get_tick_rate()" on the *block* object
-> should work, since it exists in the block base class.  I'm not an RFNOC
-> programmer, so just
->   guessing...
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000006c177a05dda609c9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi David,</div><div><br></div><div>I&#39;m not super =
-familiar with the software, but get_tick_rate() returning 0 might be becaus=
-e something&#39;s not implemented in the block controller software. You cou=
-ld look at some other blocks to see how that&#39;s handled (maybe the DDC/D=
-UC). But I would expect get_tick_rate() to return the sample rate, which is=
-n&#39;t the same as the rfnoc_chdr_clk rate.<br></div><div><br></div><div>T=
-he way we typically track time in an RFNoC block is by counting samples. Ea=
-ch sample corresponds to one master clock tick (or a ratio of that if there=
-&#39;s a DDC/DUC). We aren&#39;t usually very concerned with the absolute t=
-ime, we usually care about the time to which a sample corresponds, which yo=
-u can get from the timestamp in the packet and the sample count.</div><div>=
-<br></div><div>If you need the absolute time, you can connect the radio tim=
-e to your block. Just keep in mind that crossing the radio time to the rfno=
-c_chdr_clk requires a clock crossing, with special logic to handle that and=
- a bit of added delay. The rfnoc_chdr_clk can drift relative to the master =
-clock over time, so we don&#39;t usually use it for tracking time.</div><di=
-v><br></div><div>
-There is a BUS_CLK_RATE register on the FPGA that has this information,=20
-but I don&#39;t see it exposed anywhere in the API. So, as it is now, it=20
-might be easier to just do a lookup based on the type of USRP. I don&#39;t=
-=20
-know if there&#39;s an easy way to get to that register.
-
-</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 27, 2022 at 9:57 AM Mar=
-cus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">
- =20
-   =20
- =20
-  <div>
-    <div>On 2022-04-27 09:53, David Raeman
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-     =20
-     =20
-      <div>
-        <p class=3D"MsoNormal">Hi all,<u></u><u></u></p>
-        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-        <p class=3D"MsoNormal">Is it possible to programmatically
-          determine the &quot;rfnoc_chdr_clk&quot; rate from a UHD applicat=
-ion?
-          More specifically, I have a custom RFNoC block clocked from
-          rfnoc_chdr_clk, and I=E2=80=99d like to programmatically determin=
-e its
-          clock rate from the associated custom software driver so I can
-          convert tick rate to physical units of time. I know it varies
-          by radio model [1], and I=E2=80=99d like the driver code to be
-          portable across a few models.<u></u><u></u></p>
-        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-        <p class=3D"MsoNormal">I=E2=80=99ve poked around quite a bit in the=
- docs
-          and code, and I haven=E2=80=99t found an obvious solution in UHD =
-4. I
-          guess I could dump it into a register within my RFNoC block,
-          but I wanted to make sure I=E2=80=99m not missing something in th=
-e
-          existing framework. Calling get_tick_rate() on the block
-          control object just returns 0.<u></u><u></u></p>
-        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-        <p class=3D"MsoNormal">Thanks!<u></u><u></u></p>
-        <p class=3D"MsoNormal">David<u></u><u></u></p>
-        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-        <p class=3D"MsoNormal">[1] <a href=3D"https://kb.ettus.com/RFNoC_Fr=
-equently_Asked_Questions#What_are_the_clock_frequencies.3F" target=3D"_blan=
-k">
-https://kb.ettus.com/RFNoC_Frequently_Asked_Questions#What_are_the_clock_fr=
-equencies.3F</a><u></u><u></u></p>
-        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    Hmmm.=C2=A0 The docs do suggest that &quot;get_tick_rate()&quot; on the=
- *block*
-    object should work, since it exists in the block base class.=C2=A0 I&#3=
-9;m
-    not an RFNOC programmer, so just<br>
-    =C2=A0 guessing...<br>
-    <br>
-    <br>
-  </div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000006c177a05dda609c9--
-
---===============1830408788486936692==
+--===============6267223862875914569==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -287,4 +348,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1830408788486936692==--
+--===============6267223862875914569==--
