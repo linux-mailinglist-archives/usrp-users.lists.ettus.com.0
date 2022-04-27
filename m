@@ -2,63 +2,63 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 196065122D4
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 21:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E81E512324
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 21:53:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5035E384AE1
-	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 15:35:41 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 66E78384B5D
+	for <lists+usrp-users@lfdr.de>; Wed, 27 Apr 2022 15:53:53 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651088141; bh=d5sx0zUo6A9SJ4cVmLUjIO4XC2N/zMZvmZME8Mbp4Ww=;
+	t=1651089233; bh=3smB3Cd/6EOvVoCE2x8UnnNSxgIgWZ7dJ/BAgdZQzFA=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=vkWAROeEwR7325/YKMZ+zvdDkiTCmjqDBvXwTQcylYBJWXJ0Y4l2SZs9zl2yNfAlu
-	 zaDHsqHBWP+8nZB/PvJCadInPgFihmyRHBJDbzI0zUds3votQEJt77TijqpoXIAMq6
-	 APCrAzvpxHKCXyELu4wub5hvm73dh8nypjm0pxlU7Ope92kPLp3VED7vSkdfxBRtf6
-	 enV7c3k1uMGmUH+8SbMQosXPguMeac3l5I071ENOvRs5+2T1VgQMAurhxR+2EIA1mh
-	 0Yz+ZreLOmdWDIkF3re+gnUsWyOkO1GaIHv0L6HAOb1l/uUWVf2SNCGr+fvbtpbhLb
-	 8lsCaPOJObcWQ==
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0E3D138417C
-	for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 15:34:36 -0400 (EDT)
+	b=ULG8sBH+3YpXpwHuHZYOwVHLrDja1z2tqemhBJrFLatHmoElJ4BIjWtwzzdKWVDvi
+	 8hJIwFRKenwvU++V/Vzc65htOL1XVVQrihCZVkItipyq1+stAKL9QsrYNiGEnwNyGs
+	 hiEdRvqglyKfvRVHgVE4VI+Al3Nv4kYmuJLeQQ2XMsRXYmYXCkvrTGvr78dNbz/eYs
+	 GcvPouFilXqfnXSZspy/LadEBQ/ufq0BB3Mckc7Go9xbZZVpxkd7hbL3jAYmgtLzGi
+	 kVE7lTBvmHJ/9mQlF+9KtWFX0QgwDkDB32ns/bUFXDE4X7BTBC+czFuIv5WiB9D9L4
+	 0d3fsP1qbCNLA==
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id A9B4D384785
+	for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 15:52:51 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="X0D3m4V2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lS0n0XUt";
 	dkim-atps=neutral
-Received: by mail-qk1-f170.google.com with SMTP id c1so2058879qkf.13
-        for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 12:34:36 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id 79so2107917qkk.10
+        for <usrp-users@lists.ettus.com>; Wed, 27 Apr 2022 12:52:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :references:from:in-reply-to;
-        bh=7d5jnNmmuE3V+mMc4YtxcdvJAAHW0uHtOc5dQSIFBCo=;
-        b=X0D3m4V27crT9mJE/7gesHqAnGwHljViuJKpP/IDzHw0SMZ8D7UjyJovhXDFZwAXg5
-         pKRJpOQ060bwdQ5m4keE1PMUIxNCqm4kXBWqAqgYKsvIU831b9DjQfTalLQurokNjMOj
-         zIBMRnUjchQhtdDKGbG3kMTFrhbPC9wOMh5a5LEpFRsWaAVzPPwOhUA24S/SQlf4dM2O
-         OGePEAQXnimabwc+nZlrS5H5HRiblEGasLcrBgFRZFIBsJDqerrzCy+3FAw/HC4gapAb
-         QRgLRvROrBLmU3Jr/hIja8FPRGpIcZ3uluWXIcAVAj0XA7fvvbZXPZgChYsjXPvATmXz
-         uLOg==
+        bh=H9/DJ1qg4Z29vcqZxSJYCTd2H7DB6I2WaFl+0PZpJJo=;
+        b=lS0n0XUtIujmyPM1djwFhoFgiSO4cWe1nWIXUiH27350k/0+RkotX/Dbq6DDMoMOPR
+         ZVm9PgyHRFhNCj+QcIUdaG0YblzWhNsQj/38svwC0SPjsJ2DUDxPa6kcGxD8rbykwU3A
+         2IkHqduYJY0Li0OHqaQO1KpwKTrn+EwcGzrGmsA65aP2H85wrj4FXTZNc/3qXLVh6fGT
+         skQW3Juj//7QwUEm6epjjIA4mkfEz3n5B/36HiRW6eNHK6EraNcADXFwTohT1GgMS8B3
+         rT5TIxljYPnv5r9+6TFH0oSyIVrGtZSBWeNLR0j+0TKfRZd3br010fcm2v+tN/3Gn7UP
+         UuGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:references:from:in-reply-to;
-        bh=7d5jnNmmuE3V+mMc4YtxcdvJAAHW0uHtOc5dQSIFBCo=;
-        b=aJoUWC6viDIpTfCfx5e6+heg9rlwFBEQakFesDQAhxu/UxJLzsDhVPVGsnxkXRxhIW
-         6Ft7K37yTGtBeXGzfLvsJXC7WLz/7AbosdNTxRNSIHlGD4PmziYo3FRbTaRcnseKJpZA
-         ANDi846x2w6LmrlUQcXCam8RoZafEStmwnWQFNOyb0gUhHehzKnKg9xQbea89Cgi2wLY
-         at47ZWYvJxCjhLRu26/B2UEx/gwZiLBIpDQO7tCYmacGyhKI3LEMlp/jDigcCvgbb1Ws
-         3Xput1nfT3B3TUW1kfR17/fLH7MIwJVWk4rs3KjpsMOn7c+8nBQ+LUHZUVRXl/F4MXsB
-         O1lA==
-X-Gm-Message-State: AOAM533jltwexKWv9IUAWMyYh3KKMgJEZTh04S4Oy32nSy1njjCAwPw/
-	eYe2xd9etjDaLECIEm8S4Y3Cz5P/Jm4=
-X-Google-Smtp-Source: ABdhPJy4LsGyEWnOH5RFC5Wq2y5GXHwfG6pBDzqJwXQM4sr8Lx/T5MqocKRFgLDfdz9MUAKGSlSyTA==
-X-Received: by 2002:a05:620a:1907:b0:69f:363b:401f with SMTP id bj7-20020a05620a190700b0069f363b401fmr12487544qkb.627.1651088076515;
-        Wed, 27 Apr 2022 12:34:36 -0700 (PDT)
+        bh=H9/DJ1qg4Z29vcqZxSJYCTd2H7DB6I2WaFl+0PZpJJo=;
+        b=gGU9tWu9tdC2bQ+2+2G7EjmzH2XPApT691xh65aYuxTmn8D5vBbSDD5flFqtEIvd2r
+         qs2PwZ9e4jcBjCLdoTHZGHVaUmgRS2zykeZ8BjvyoESP/bMtKim+RptSPtMYQVWZTHEa
+         ON/nQMF0bw+H0/KvhqF1gKeYhgf/Lf1DA0aVbgd+b9s+tZcER/U+AtmaXeTXJkGTbBkh
+         0HcTKKGVJDQj1goa9WSM22zajdCxpwn7BliQsSUlRHd8MHWu+3Wx43jAukof99BMfCY4
+         j+jBsuNzfW2/jAK/jeONQoPS64n4/ld/D+KWnLGePs4QPJ6mQ8/xhk//LPzFfpWveab4
+         WImg==
+X-Gm-Message-State: AOAM531CKcY6KmHnLo3IBATV6vpRgQFKJgwxTbIuHYL78TXFGkMvRWJi
+	jNqqY0MmCaZxD1IhuZHchgyBx5ufMrw=
+X-Google-Smtp-Source: ABdhPJxpI1uRJP80esziyl2iD1n4STmY3bVkmPa6G11lhd37KgAKWP+Y6PpLNwjSpcV7J3Abt5gp9g==
+X-Received: by 2002:a37:f516:0:b0:69f:83cd:f557 with SMTP id l22-20020a37f516000000b0069f83cdf557mr5076341qkk.555.1651089171111;
+        Wed, 27 Apr 2022 12:52:51 -0700 (PDT)
 Received: from [192.168.2.208] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id v23-20020ae9e317000000b0069ea555b54dsm8291109qkf.128.2022.04.27.12.34.35
+        by smtp.googlemail.com with ESMTPSA id d17-20020ac85d91000000b002f365edfd21sm6525037qtx.83.2022.04.27.12.52.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 27 Apr 2022 12:34:36 -0700 (PDT)
-Message-ID: <fe1186a3-1059-3f8e-60d8-2f62c8ee1c2b@gmail.com>
-Date: Wed, 27 Apr 2022 15:34:35 -0400
+        Wed, 27 Apr 2022 12:52:50 -0700 (PDT)
+Message-ID: <8f6380b7-1b50-fe2e-1588-71961f4cb29d@gmail.com>
+Date: Wed, 27 Apr 2022 15:52:49 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.7.0
@@ -72,31 +72,31 @@ References: <a10bc1673342466f9c2a166280d57643@lanl.gov>
  <da34f941c5794b9ba453e49fc35ab7c0@lanl.gov>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <da34f941c5794b9ba453e49fc35ab7c0@lanl.gov>
-Message-ID-Hash: WDPXJXRQ3TXSCXVYQJFXZXQRD4DWPOJ3
-X-Message-ID-Hash: WDPXJXRQ3TXSCXVYQJFXZXQRD4DWPOJ3
+Message-ID-Hash: NJ4G4EKZJHTUQN472GNLKJ6SGOUSSW5J
+X-Message-ID-Hash: NJ4G4EKZJHTUQN472GNLKJ6SGOUSSW5J
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: [EXTERNAL] Re: sychronous receiving from multiple e320's repeatedly results in ERROR_CODE_LATE_COMMAND
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WDPXJXRQ3TXSCXVYQJFXZXQRD4DWPOJ3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NJ4G4EKZJHTUQN472GNLKJ6SGOUSSW5J/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5934059682941277839=="
+Content-Type: multipart/mixed; boundary="===============2312910060484657758=="
 
 This is a multi-part message in MIME format.
---===============5934059682941277839==
+--===============2312910060484657758==
 Content-Type: multipart/alternative;
- boundary="------------8iIT5vGq2cbVNgx0u5qskQuQ"
+ boundary="------------nXlEm3XqYv5GSlyjmICD87q7"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------8iIT5vGq2cbVNgx0u5qskQuQ
+--------------nXlEm3XqYv5GSlyjmICD87q7
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -109,12 +109,6 @@ On 2022-04-27 15:31, Caffrey, Michael Paul wrote:
 > amount of data, anyway), while subsequent receives in the loop of the=20
 > program do not receive data and generate the LATE error.
 >
-Ah.=C2=A0 Thanks for clarification.=C2=A0=C2=A0 I was under the (incorrec=
-t) assumption=20
-that we were talking about subsequent runs of the entire program, not=20
-the internal "collect" loop.
-
-
 > *From:* Marcus D. Leech <patchvonbraun@gmail.com>
 > *Sent:* Wednesday, April 27, 2022 1:27 PM
 > *To:* usrp-users@lists.ettus.com
@@ -139,8 +133,11 @@ undary=20
 > condition is that causes it to start working again...
 >
 >
+Do you only get the "LLL" and timeouts when using multiple E320s, or=20
+does this code fail with a single device as well?
 
---------------8iIT5vGq2cbVNgx0u5qskQuQ
+
+--------------nXlEm3XqYv5GSlyjmICD87q7
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -185,19 +182,8 @@ TF-8">
 rogram,
           the first collects succeeds ( I receive the requested amount
           of data, anyway), while subsequent receives in the loop of the
-          program do not receive data and generate the LATE error.</p>
-      </div>
-    </blockquote>
-    Ah.=C2=A0 Thanks for clarification.=C2=A0=C2=A0 I was under the (inco=
-rrect)
-    assumption that we were talking about subsequent runs of the entire
-    program, not the internal "collect" loop.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:da34f941c5794b9ba453e49fc35ab7c0@lanl.gov">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
+          program do not receive data and generate the LATE error.<o:p></=
+o:p></p>
         <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
         <div>
           <div style=3D"border:none;border-top:solid #E1E1E1
@@ -244,13 +230,16 @@ t the boundary
           <o:p></o:p></p>
       </div>
     </blockquote>
+    Do you only get the "LLL" and timeouts when using multiple E320s, or
+    does this code fail with a single device as well?<br>
+    <br>
     <br>
   </body>
 </html>
 
---------------8iIT5vGq2cbVNgx0u5qskQuQ--
+--------------nXlEm3XqYv5GSlyjmICD87q7--
 
---===============5934059682941277839==
+--===============2312910060484657758==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -260,4 +249,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5934059682941277839==--
+--===============2312910060484657758==--
