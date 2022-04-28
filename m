@@ -2,166 +2,1248 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F07513083
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Apr 2022 12:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 094DF51356B
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Apr 2022 15:40:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CFFC6384700
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Apr 2022 06:00:13 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A6DE138421D
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Apr 2022 09:40:57 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651140013; bh=b5R3owla3gmdI5UPV49ZGBDgLenKaKQcieuKl6quz8I=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=BXVe7FTWosOmjGUWTHEvEsfT4DMh040fKa8KYV3FGxxVz2PmT6yrW0GcWHh05YhMW
-	 5wf60GxHYQdLwrvKRviPonFZxSONjV3insPzwsdRTqB9Rfn0xthji1z4IDCxrqCxGK
-	 7p7HLSTt5IVORUF3SRtSgLAEyziVMBtmLENfJsPw2xQv3il6+Bv+GDR8CiaTNg5Hpq
-	 jsIXq3e23HK4o4LbA0Vj46FiZXTRYhWH1g5PYgWH7VDJA6fPRTWkqEZcTy7GcFKXvU
-	 GsFH22NzHBXP+6U+lUWyBvnBtffqWbLVnDZuSryTLHZ/ahjL6U5zW5m7dqIpiQGZ2f
-	 aRy8xj2OX1NAw==
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id A45A63846BD
-	for <usrp-users@lists.ettus.com>; Thu, 28 Apr 2022 05:59:14 -0400 (EDT)
+	t=1651153257; bh=Cwa/1PzAsdQ+VgKI63Gg3g9hi45m48Gk65X8rH55xps=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=QCmK4FU9cYH9qHdH9ixPAn+KfkjoUtnp89nJ3edLUKlaN2LhNwlt8djzoL/NJC4kf
+	 OQbew/hXW7eDbjxJ38OcReG3PjT4F/v81eOmRc2oxLfkZwXfiSWwNjNH/IaOw2BF9o
+	 nMdAGmWJWYxdf2z3qpbSKBwmw4ASt2Nn4BdXpcor8mykUgSzNr8gTvgVRl66C4i06U
+	 6ia03bb03AFOOOT5ZxmNVBvOrhaGkMpstnmzEXLjY5RxP05/Pl2wybUIJrsYtN8lfj
+	 ySoUPJzGFE57YaA2rMOoLSpwTkxWDOgsvXSu1UROJn7I4YSHXz1wNhG2m0dGOLmGt2
+	 e/EXlddPDxiWg==
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id BDBA638477A
+	for <usrp-users@lists.ettus.com>; Thu, 28 Apr 2022 09:28:27 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LvbTReQh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XziqXIaB";
 	dkim-atps=neutral
-Received: by mail-yb1-f174.google.com with SMTP id v59so8010894ybi.12
-        for <usrp-users@lists.ettus.com>; Thu, 28 Apr 2022 02:59:14 -0700 (PDT)
+Received: by mail-qt1-f169.google.com with SMTP id fu47so3398375qtb.5
+        for <usrp-users@lists.ettus.com>; Thu, 28 Apr 2022 06:28:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ghwQIHqy/6316T5CdLnFYSKlAEtCIzuX6d+BWmyNrdI=;
-        b=LvbTReQhO6HQn8/SMFjUQzZoSctmS0fBD5IhUW4n+bQmzBdrCqC5RrDyftCo95hpND
-         M2kTwBRw06V8ge27x2nvhCgecKBITMWe3V/gYAZglsVPIrESmJm1AKJB50luTcoMkqXn
-         o9v80UU61ukcWJCHQxf2eshSNmJDpLoPrFBpQjEW9BBwBaW7fzhrZ0rPC5kd4T5GIklE
-         1cv/RSK2H6L8ts/j/kCF/JSuN3Y8zlirtGKZKpKiLP+l9Z12jQzqc0WSJyZnSj2qZIwU
-         S74E5reCsonAegDNlD9ZMZ9/6MeKYArSOComHP01fGK4RJVoBNdxzPaP9XHFRMVupHUe
-         tqOA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=19ADMFkJe8q4PJH0gdW1drNkZTX+HK6UvqdP2J0XXVg=;
+        b=XziqXIaBiVSLOjgTTmGppejp8SvUEsbQsgr1ymRDeT90lxYTv29LyckzBbYQrVPp7i
+         8mi9vjYzv9u5OPebx/Jkcg4m9PoRNXAg/i4ZA/4kU0xAKNliqx3QSuBnkSrxUAf+0ylZ
+         EuE6L0qBT7fyrcL8f2mJw3+0NFJHF8dwZHlogVCY8J61tuK2Oj5NxS4vA6Ta+JJsuvYi
+         P+N8H3AoflaZFD6os0YF8UyGrf4lP6whX2Yw7fJ9OGSTeYJN5TXOPzZvSjwidybbY2Ev
+         7X/bp1rXWtwE78dRxgw3W/BNILlyQ/Kf48rHg6JIUT2jmODp2pBk7YyUynI9ABd1w/5L
+         +MeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ghwQIHqy/6316T5CdLnFYSKlAEtCIzuX6d+BWmyNrdI=;
-        b=zlucTMqKu/yZ3NmGBmY2E4C8YHXHjwC0d6Al2taOM8dpxR2XRozk+RzvY5ZZFplD0n
-         OQHmknMhfXeNI4bpYGgsBTPmAJ1vwdZRylbG8wNQHeASXVs2NSiS/y23K708wJxS4cUk
-         NA1BwZbOyfZrgAQ2B5sh2qPr/KHjkbhTOpyGDiNj6sdnaXF33adWVgSMV/F5NbAOwChC
-         4pwGCOTLfYNWABVXdO+lwVzpKi93KQyRLlr1jZYGJh3aQOVfEk5z5AnalWxSUD+2nGam
-         VI3VEhtFZlIuL4Oyrqm+42ZslbxyqXiCaPM04W84lD6AS2XxiKtwIn8md2pQuHF9mxq/
-         55bQ==
-X-Gm-Message-State: AOAM5302r3SyxzvivAzBqqekqBS0SOTCOXbEoErhJiXZC0Q7Xnuv8DVP
-	6oggnn8Eerrh6WUZEkDEuScprFn5MR6O6fK8VPE=
-X-Google-Smtp-Source: ABdhPJwNTenxv1HrWdwX6XfttPGLRAUrel2afSKTRBwSTWp50UrhDVc95E+YWu6ZcoOoYeTOobPZk8FkIrb1RkrxpuE=
-X-Received: by 2002:a25:8f90:0:b0:648:84d1:1431 with SMTP id
- u16-20020a258f90000000b0064884d11431mr14686374ybl.483.1651139954031; Thu, 28
- Apr 2022 02:59:14 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=19ADMFkJe8q4PJH0gdW1drNkZTX+HK6UvqdP2J0XXVg=;
+        b=ZOcPO0XrAUQjsxo6a/BDOON8I8216XAt4TVPH09Rm6/I2rW/5rpMGgHmNuxMwcjw9r
+         KN+x1niQIb/eqef5260deD2pU25xcQwQVv/ALOmpYoWbJmtQknYKMXDY9bt/xOrO3Sf1
+         1GYw3kFUzCgk5J9gfiCG7iff6d+RGjOv3WDr0PjQFQuaYpFBsz5E1fU5BX/WEciOwb5F
+         hWOUCpN/IJqwX9suWzPjSY/I+OUrnLVRbGM1cKYfalt1X/jAD5Dce1xBnF9KVsxBb2mC
+         h2i8I1nJE63TtStjTpcSrO89ccQMbPT5q/eoWwA0/Dx/Akg8lovuOAFSALi+2Lw2Yase
+         8CPw==
+X-Gm-Message-State: AOAM531lGDyMgNJGpyfyksy1fqCKMfi7nmFKi3c7tQtEnN85JEmUBxhf
+	k4CrOva4btYi/CAKET8ZD43DEW/6OlI=
+X-Google-Smtp-Source: ABdhPJxN7r3fdqLXd/yGy6pxOQe3CbDW0mprTqHYTTvd2P3I3Ucta12LbgyDTvgSIW0YoTbEjKAXRg==
+X-Received: by 2002:ac8:7f02:0:b0:2f3:6d42:a50e with SMTP id f2-20020ac87f02000000b002f36d42a50emr12505138qtk.509.1651152506692;
+        Thu, 28 Apr 2022 06:28:26 -0700 (PDT)
+Received: from [192.168.2.208] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id x10-20020a37630a000000b0069ecbe5dd32sm9409142qkb.130.2022.04.28.06.28.25
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 28 Apr 2022 06:28:26 -0700 (PDT)
+Message-ID: <66372cdb-3286-dc23-16b1-2ff78ac02288@gmail.com>
+Date: Thu, 28 Apr 2022 09:28:25 -0400
 MIME-Version: 1.0
-References: <CANzM3hzZTO6wDcketH+6iXLyr6wFO0vZF8=YwGxoozbZhz0Vpw@mail.gmail.com>
- <01dc4628-97ff-f1d5-81e6-538bb06e80b8@gmail.com> <CANzM3hzTUXtT=-pnSdbXf-FfAJhLxVgU60BaB6-ZP3PUpz1TBw@mail.gmail.com>
- <fc08b2fd-86ce-ae60-0ff7-27f45b3f0752@gmail.com> <CANzM3hzEPUtXqqf-FvynCxJEbujBb_yiR4trxhF5-aU6=M1RBg@mail.gmail.com>
- <66069968-236e-a309-13dc-14577c2fa095@gmail.com> <CANzM3hxCfMTOGuAoZELo1Un6tsLOBNoA8YMLd11m_dQkjHBEyA@mail.gmail.com>
- <a28a0150-9e4d-4b49-d5fe-dc32065ea62b@gmail.com>
-In-Reply-To: <a28a0150-9e4d-4b49-d5fe-dc32065ea62b@gmail.com>
-From: Arash Jafari <arash.jafari.telecom@gmail.com>
-Date: Thu, 28 Apr 2022 11:59:02 +0200
-Message-ID: <CANzM3hwOALSu_XK=dxbwSNy5Je1=gOmQEyGLFUOfHn5_7zxocA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: G75YBQEHUSI37F5BHY2S55MXPTQZTBAR
-X-Message-ID-Hash: G75YBQEHUSI37F5BHY2S55MXPTQZTBAR
-X-MailFrom: arash.jafari.telecom@gmail.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <a10bc1673342466f9c2a166280d57643@lanl.gov>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <a10bc1673342466f9c2a166280d57643@lanl.gov>
+Message-ID-Hash: 7TOJQCIFE7WWKBS6O4DU5QHTQBLER65N
+X-Message-ID-Hash: 7TOJQCIFE7WWKBS6O4DU5QHTQBLER65N
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP-B200-Digital Down Conversion
+Subject: [USRP-users] Re: sychronous receiving from multiple e320's repeatedly results in ERROR_CODE_LATE_COMMAND
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G75YBQEHUSI37F5BHY2S55MXPTQZTBAR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7TOJQCIFE7WWKBS6O4DU5QHTQBLER65N/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1542170838614918834=="
+Content-Type: multipart/mixed; boundary="===============6061300945190146122=="
 
---===============1542170838614918834==
-Content-Type: multipart/alternative; boundary="0000000000006f3ed205ddb3fa9c"
+This is a multi-part message in MIME format.
+--===============6061300945190146122==
+Content-Type: multipart/alternative;
+ boundary="------------p5zUJB0uLUTX05Acm7KhyNpr"
+Content-Language: en-US
 
---0000000000006f3ed205ddb3fa9c
-Content-Type: text/plain; charset="UTF-8"
-
-Hello Marcus,
-
-The user can apply the LO with an offset relative to the incoming RF signal
-carrier frequency to get the IF signal at the output of the lowpass filter
-before ADC. After ADC since AD9364 has an internal NCO on the RX path, the
-user can either apply the DDC along with Halfband filters by activating
-them on AD9364 or bypass the NCO and get the IF signal at the output of the
-AD9364 and does the DDC on the FPGA platform.
-
-I just want to know in which condition the USRP uses the internal NCO on
-AD9364 and where it uses the DDC implemented on the FPGA side? What are the
-differences in these two scenarios?
-
-Thank you in advance!
-
-Kind regards
-
-Arash
-
-On Wed, Apr 27, 2022 at 8:03 PM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 2022-04-27 13:43, Arash Jafari wrote:
-> > Hello Marcus,
-> >
-> > You can consider A and C points.
-> >
-> > Kind regards
-> >
-> > Arash
-> OK, so what is it you want to accomplish that the standard setup doesn't
-> accomplish?
->
->
->
-
---0000000000006f3ed205ddb3fa9c
-Content-Type: text/html; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------p5zUJB0uLUTX05Acm7KhyNpr
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello Marcus,<br><br><div>The user can apply the LO with a=
-n offset relative to the incoming RF signal carrier frequency to get the IF=
- signal at the output of the lowpass filter before ADC. After ADC since AD9=
-364 has an internal NCO on the RX path, the user can either apply the DDC a=
-long with Halfband filters by activating them on AD9364 or bypass the NCO a=
-nd get the IF signal at the output of the AD9364 and does the DDC on the FP=
-GA platform.</div><div><br>I just want to know in which condition the USRP =
-uses the internal NCO on AD9364 and where it uses the DDC implemented on th=
-e FPGA side? What are the differences in these two scenarios?</div><div><br=
->Thank you in advance!<br><br>Kind=C2=A0regards</div><div><br>Arash</div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Wed, Apr 27, 2022 at 8:03 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvo=
-nbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">On 2022-04-27 13:43, Arash Jafari =
-wrote:<br>
-&gt; Hello=C2=A0Marcus,<br>
-&gt;<br>
-&gt; You can consider A and C points.<br>
-&gt;<br>
-&gt; Kind=C2=A0regards<br>
-&gt;<br>
-&gt; Arash<br>
-OK, so what is it you want to accomplish that the standard setup doesn&#39;=
-t <br>
-accomplish?<br>
-<br>
-<br>
-</blockquote></div>
+On 2022-04-27 13:52, Caffrey, Michael Paul via USRP-users wrote:
+>
+> Hi all,
+>
+> I am trying to use two e320=E2=80=99s to collect data at the same time =
+derived=20
+> from some examples. I would like to perform this repeatedly, however=20
+> it only succeeds on the=C2=A0 1^st attempt, subsequently I get mysterio=
+us=20
+> =E2=80=98LL=E2=80=A6=E2=80=9D and no data with an ERROR_CODE_LATE_COMMA=
+ND. The modified=20
+> example is below the output. Any suggestions are appreciated! -Mike
+>
+> [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;=20
+> UHD_4.1.0.5-0-g6bd0be9c
+>
+> [INFO] [MPMD] Initializing 2 device(s) in parallel with args:=20
+> mgmt_addr0=3D192.168.50.201,type0=3De3xx,product0=3De320,serial0=3D31DF=
+BB8,fpga0=3D1G,claimed0=3DFalse,mgmt_addr1=3D192.168.50.202,type1=3De3xx,=
+product1=3De320,serial1=3D31DE2CC,fpga1=3D1G,claimed1=3DFalse,addr0=3D192=
+.168.50.201,addr1=3D192.168.50.202
+>
+> [WARNING] [MPM.RPCServer] A timeout event occured!
+>
+> [WARNING] [MPM.RPCServer] A timeout event occured!
+>
+> [INFO] [MPM.PeriphManager] init() called with device args=20
+> `fpga=3D1G,mgmt_addr=3D192.168.50.201,product=3De320'.
+>
+> [INFO] [MPM.PeriphManager] init() called with device args=20
+> `fpga=3D1G,mgmt_addr=3D192.168.50.202,product=3De320'.
+>
+> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
+>
+> [INFO] [0/Radio#0] CODEC loopback test passed
+>
+> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
+>
+> [INFO] [0/Radio#0] CODEC loopback test passed
+>
+> [INFO] [0/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB=
+/s)
+>
+> [INFO] [0/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB=
+/s)
+>
+> [INFO] [1/Radio#0] Performing CODEC loopback test on channel 0 ...
+>
+> [INFO] [1/Radio#0] CODEC loopback test passed
+>
+> [INFO] [1/Radio#0] Performing CODEC loopback test on channel 1 ...
+>
+> [INFO] [1/Radio#0] CODEC loopback test passed
+>
+> [INFO] [1/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB=
+/s)
+>
+> [INFO] [1/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB=
+/s)
+>
+> [WARNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.
+>
+> [WARNING] [1/Radio#0] Attempting to set tick rate to 0. Skipping.
+>
+> Has timespec: No=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Time of firs=
+t sample: 0
+>
+> Fragmented: No=C2=A0 Fragmentation offset: 0
+>
+> Start of burst: No=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 End of burst: No
+>
+> Error Code: ERROR_CODE_TIMEOUT=C2=A0 Out of sequence: No
+>
+> 500000
+>
+> Backend TkAgg is interactive backend. Turning interactive mode on.
+>
+> LLHas timespec: No=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Time of first sample: =
+0
+>
+> Fragmented: No=C2=A0 Fragmentation offset: 0
+>
+> Start of burst: No=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 End of burst: No
+>
+> Error Code: ERROR_CODE_LATE_COMMAND=C2=A0=C2=A0=C2=A0=C2=A0 Out of sequ=
+ence: No
+>
+> 0
+>
+> Done!
+>
+> ----------------------------------------------------------------------=20
+> code
+>
+> #!/usr/bin/env python3
+>
+> #
+>
+> # Copyright 2017-2018 Ettus Research, a National Instruments Company
+>
+> #
+>
+> # SPDX-License-Identifier: GPL-3.0-or-later
+>
+> #
+>
+> """
+>
+> RX samples to file using Python API
+>
+> """
+>
+> import argparse
+>
+> from xml.etree.ElementTree import tostring
+>
+> import numpy as np
+>
+> import uhd
+>
+> import matplotlib.pyplot as plt
+>
+> import time
+>
+> #./rx_to_file.py -f 80.0e6 -o ./test1.dat -d 1.0 -r 1.0e6 -a=20
+> addr=3D192.168.50.201
+>
+> def parse_args():
+>
+> =C2=A0=C2=A0=C2=A0 """Parse the command line arguments"""
+>
+> =C2=A0=C2=A0=C2=A0 parser =3D argparse.ArgumentParser()
+>
+> =C2=A0=C2=A0=C2=A0 parser.add_argument("-a", "--args", default=3D"addr=3D=
+192.168.50.201",=20
+> type=3Dstr)
+>
+> =C2=A0=C2=A0=C2=A0 parser.add_argument("-o", "--output-file",=20
+> default=3D"./test.bin",type=3Dstr, required=3DFalse)
+>
+> =C2=A0=C2=A0=C2=A0 parser.add_argument("-f", "--freq", default=3D80e6, =
+type=3Dfloat,=20
+> required=3DFalse)
+>
+> =C2=A0=C2=A0=C2=A0 parser.add_argument("-r", "--rate", default=3D5e5, t=
+ype=3Dfloat)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0parser.add_argument("-d", "--duration", default=
+=3D1.0, type=3Dfloat)
+>
+> =C2=A0=C2=A0=C2=A0 parser.add_argument("-c", "--channels", default=3D0,=
+ nargs=3D"+",=20
+> type=3Dint)
+>
+> =C2=A0=C2=A0=C2=A0 parser.add_argument("-g", "--gain", type=3Dint, defa=
+ult=3D1) # range=20
+> is int supposedly 0 - 76db range,
+>
+> =C2=A0=C2=A0=C2=A0 parser.add_argument("-n", "--numpy", default=3DFalse=
+,=20
+> action=3D"store_true",
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 help=3D=
+"Save output file in NumPy format=20
+> (default: No)")
+>
+> =C2=A0=C2=A0=C2=A0 return parser.parse_args()
+>
+> timeStep =3D 10.0
+>
+> class multiRcvr:
+>
+> =C2=A0=C2=A0=C2=A0 def __init__(self, addr, args) :
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.usrp =3D uhd.usrp.Multi=
+USRP(addr)
+>
+> self.usrp.set_clock_source("gpsdo",0)
+>
+> self.usrp.set_time_source("gpsdo",0)
+>
+> self.usrp.set_clock_source("gpsdo",1)
+>
+> self.usrp.set_time_source("gpsdo",1)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for mboard in range(2):
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 t0 =3D=
+ time.time()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 whil=
+e=20
+> self.usrp.get_mboard_sensor("gps_locked",mboard).value =3D=3D 'false':
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 time.sleep(1.0)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 if time.time() - t0 > 30.0:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print("COULD NOT GET GPS LOCK =
+on " + str(mboard) +=20
+> " ********************************")
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #=20
+> https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_=
+UHD
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # https://files.ettus.com/ma=
+nual/page_sync.html
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0self.num_samps =3D int(=
+np.ceil(args.duration*args.rate))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if not isinstance(args.chann=
+els, list):
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 args=
+.channels =3D [args.channels]
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.channels =3D [0, 1]
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # time_at_last_pps =3D usrp.=
+get_time_last_pps().get_real_secs()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # print(time_at_last_pps)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # usrp.set_time_next_pps(uhd=
+.libpyuhd.types.time_spec(0.0))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0# time.sleep(1)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # To =3D usrp.get_time_now()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # print( To.get_real_secs() =
+)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # https://files.ettus.com/ma=
+nual/page_multiple.html#multiple_setup
+>
+> self.usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec("A:0"),0) # disable=20
+> other channels on 1st usrp
+>
+> self.usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec("A:0"),1) # disable=20
+> other channels on 2nd usrp
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # https://pysdr.org/content/=
+usrp.html
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # second arg is channel (int=
+); if not present channels=20
+> defaults to 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # gain can vary 0 - 76
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.usrp.set_rx_rate(args.r=
+ate,0)
+>
+> self.usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(args.freq),0)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.usrp.set_rx_gain(10,0)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.usrp.set_rx_rate(args.r=
+ate,1)
+>
+> self.usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(args.freq), 1)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.usrp.set_rx_gain(args.g=
+ain, 1)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Set up the stream and rece=
+ive buffer
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.st_args =3D uhd.usrp.St=
+reamArgs("fc32", "sc16")
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.st_args.channels =3D se=
+lf.channels
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.metadata =3D uhd.types.=
+RXMetadata()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.recv_buffer =3D np.zero=
+s((len(self.channels), 1000),=20
+> dtype=3Dnp.complex64)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0self.stream_cmd =3D=20
+> uhd.types.StreamCMD(uhd.types.StreamMode.num_more) # num_done
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.stream_cmd.num_samps =3D=
+ self.num_samps
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.stream_cmd.stream_now =3D=
+ False
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0self.stream_cmd.time_sp=
+ec =3D=20
+> uhd.libpyuhd.types.time_spec(timeStep) # set start time (try tweaking=20
+> this)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.streamer =3D self.usrp.=
+get_rx_stream(self.st_args)
+>
+> =C2=A0=C2=A0=C2=A0 def printMultiUsrpInfo(self):
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print('rx channels in multi =
+usrp : ' +=20
+> str(self.usrp.get_rx_num_channels()))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0for chan in self.channels:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mboa=
+rd =3D chan
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prin=
+t('clock_source ' + str(mboard) + ' : ' +=20
+> self.usrp.get_clock_source(mboard)) # really mboard
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prin=
+t('time_source ' + str(mboard) + ' : ' +=20
+> self.usrp.get_time_source(mboard)) # this isn't really channel , it is=20
+> mboard
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prin=
+t('rx_info ' + str(chan) + ' : ' +=20
+> str(self.usrp.get_usrp_rx_info(chan)))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rxfi=
+ltername =3D self.usrp.get_rx_filter_names(chan)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prin=
+t('rxfiltername ' + str(chan) + ' : '=C2=A0 +=20
+> str(rxfiltername)) # why doesn't this work?
+>
+> #print(self.usrp.get_rx_filter(rxfiltername,chan))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prin=
+t('rx_gain_range ' + str(chan) + ' : ' +=20
+> str(self.usrp.get_rx_gain_range(chan)))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prin=
+t('rx_gain ' + str(chan) + ' : ' +=20
+> str(self.usrp.get_rx_gain(chan)))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prin=
+t('rx_freq ' + str(chan) + ' : ' +=20
+> str(self.usrp.get_rx_freq(chan)))
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 rx_s=
+ensors =3D self.usrp.get_rx_sensor_names(chan)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for =
+rx_sensor in rx_sensors:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 print("\t" + rx_sensor + " : " +=20
+> self.usrp.get_rx_sensor(rx_sensor,mboard).value)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mboa=
+rd_sensors =3D self.usrp.get_mboard_sensor_names(mboard)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for =
+mboard_sensor in mboard_sensors:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 print("\t" + mboard_sensor + " : " +=20
+> self.usrp.get_mboard_sensor(mboard_sensor,mboard).value)
+>
+> =C2=A0=C2=A0=C2=A0 def wait4pps(self):
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Wait for 1 PPS to happen, =
+then set the time at next PPS to 0.0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 time_at_last_pps =3D self.us=
+rp.get_time_last_pps().get_real_secs()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 while time_at_last_pps =3D=3D=
+=20
+> self.usrp.get_time_last_pps().get_real_secs():
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 time=
+.sleep(0.05) # keep waiting till it happens- if this=20
+> while loop never finishes then the PPS signal isn't there
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 time.sleep(.01) # make sure =
+all devices are into the next second
+>
+> self.usrp.set_time_next_pps(uhd.libpyuhd.types.time_spec(0.0)) #=20
+> defaults to all devices
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Schedule Rx of num_samps s=
+amples exactly N seconds from last PPS
+>
+> self.streamer.issue_stream_cmd(self.stream_cmd)
+>
+> =C2=A0=C2=A0=C2=A0 def capture(self):
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Receive Samples.=C2=A0 rec=
+v() will return zeros, then our=20
+> samples, then more zeros, letting us know it's done
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 waiting_to_start =3D True # =
+keep track of where we are in the=20
+> cycle (see above comment)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nsamps =3D 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i =3D 0
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # re-initialize samples ever=
+y time so we don't see old data
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.samples =3D np.zeros([l=
+en(self.channels),self.num_samps],=20
+> dtype=3Dnp.complex64)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #while nsamps !=3D 0 or wait=
+ing_to_start:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 t0 =3D time.time()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 metadataLast =3D uhd.types.R=
+XMetadata()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 while i < self.num_samps:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 nsam=
+ps =3D self.streamer.recv(self.recv_buffer,=20
+> self.metadata, timeout=3DtimeStep)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if s=
+elf.metadata !=3D metadataLast:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 print(self.metadata)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 metadataLast =3D self.metadata
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # if=
+ nsamps and waiting_to_start:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #=C2=
+=A0=C2=A0=C2=A0=C2=A0 waiting_to_start =3D False
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # el=
+if nsamps:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if n=
+samps:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 self.samples[:,i:i+nsamps] =3D self.recv_buffer[:,0:ns=
+amps]
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i +=3D=
+ nsamps
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if t=
+ime.time() - t0 > 16.0:
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 break
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0print(i)
+>
+> def main():
+>
+> =C2=A0=C2=A0=C2=A0 """RX samples and write to file"""
+>
+> =C2=A0=C2=A0=C2=A0 args =3D parse_args()
+>
+> =C2=A0=C2=A0=C2=A0 usrp =3D multiRcvr ("addr0=3D192.168.50.201,addr1=3D=
+192.168.50.202",args)
+>
+> =C2=A0=C2=A0=C2=A0 for _ in range(2):
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp.wait4pps()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp.capture()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 timeIdx =3D np.arange(usrp.n=
+um_samps)/args.rate
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fig, ax =3D plt.subplots()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 l1 =3D ax.plot(usrp.samples[=
+0,:].real,label=3D'201 R')
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 l2 =3D ax.plot(usrp.samples[=
+0,:].imag,label=3D'201 I')
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 l3 =3D ax.plot(usrp.samples[=
+1,:].real,label=3D'202 R')
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 l4 =3D ax.plot(usrp.samples[=
+1,:].imag,label=3D'202 I')
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ax.legend( loc=3D'upper righ=
+t', shadow=3DTrue)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ax.grid()
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 plt.show(block=3DFalse)
+>
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 time.sleep(10.0)
+>
+> =C2=A0=C2=A0=C2=A0 print('Done!')
+>
+> =C2=A0=C2=A0=C2=A0 # with open(args.output_file, 'wb') as out_file:
+>
+> =C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0 if args.numpy:
+>
+> =C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 np=
+.save(out_file, samps, allow_pickle=3DFalse,=20
+> fix_imports=3DFalse)
+>
+> =C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0 else:
+>
+> =C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sa=
+mps.tofile(out_file)
+>
+> if __name__ =3D=3D "__main__":
+>
+> =C2=A0=C2=A0=C2=A0 main()
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+I wonder if you could try the rx_multi_samples example application in=20
+this scenario, just to see if this is a Python API issue, or something el=
+se.
 
---0000000000006f3ed205ddb3fa9c--
+I've been staring at your code, and nothing immediately pops out at me.=C2=
+=A0=20
+I don't have any E320 to try this with.
 
---===============1542170838614918834==
+
+--------------p5zUJB0uLUTX05Acm7KhyNpr
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-04-27 13:52, Caffrey, Michael
+      Paul via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:a10bc1673342466f9c2a166280d57643@lanl.gov">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Hi all, <o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">I am trying to use two e320=E2=80=99s to c=
+ollect
+          data at the same time derived from some examples. I would like
+          to perform this repeatedly, however it only succeeds on the=C2=A0=
+ 1<sup>st</sup>=C2=A0
+          attempt, subsequently I get mysterious =E2=80=98LL=E2=80=A6=E2=80=
+=9D and no data with
+          an ERROR_CODE_LATE_COMMAND. The modified example is below the
+          output. Any suggestions are appreciated! -Mike<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C++ version 9.4.0;
+          Boost_107100; UHD_4.1.0.5-0-g6bd0be9c<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [MPMD] Initializing 2 device(s) in
+          parallel with args:
+mgmt_addr0=3D192.168.50.201,type0=3De3xx,product0=3De320,serial0=3D31DFBB=
+8,fpga0=3D1G,claimed0=3DFalse,mgmt_addr1=3D192.168.50.202,type1=3De3xx,pr=
+oduct1=3De320,serial1=3D31DE2CC,fpga1=3D1G,claimed1=3DFalse,addr0=3D192.1=
+68.50.201,addr1=3D192.168.50.202<o:p></o:p></p>
+        <p class=3D"MsoNormal">[WARNING] [MPM.RPCServer] A timeout event
+          occured!<o:p></o:p></p>
+        <p class=3D"MsoNormal">[WARNING] [MPM.RPCServer] A timeout event
+          occured!<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] init() called
+          with device args
+          `fpga=3D1G,mgmt_addr=3D192.168.50.201,product=3De320'.<o:p></o:=
+p></p>
+        <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] init() called
+          with device args
+          `fpga=3D1G,mgmt_addr=3D192.168.50.202,product=3De320'.<o:p></o:=
+p></p>
+        <p class=3D"MsoNormal">[INFO] [0/Radio#0] Performing CODEC
+          loopback test on channel 0 ...
+          <o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [0/Radio#0] CODEC loopback test
+          passed<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [0/Radio#0] Performing CODEC
+          loopback test on channel 1 ...
+          <o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [0/Radio#0] CODEC loopback test
+          passed<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [0/DmaFIFO#0] BIST passed (Estimate=
+d
+          Minimum Throughput: 1361 MB/s)<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [0/DmaFIFO#0] BIST passed (Estimate=
+d
+          Minimum Throughput: 1361 MB/s)<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [1/Radio#0] Performing CODEC
+          loopback test on channel 0 ...
+          <o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [1/Radio#0] CODEC loopback test
+          passed<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [1/Radio#0] Performing CODEC
+          loopback test on channel 1 ...
+          <o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [1/Radio#0] CODEC loopback test
+          passed<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [1/DmaFIFO#0] BIST passed (Estimate=
+d
+          Minimum Throughput: 1361 MB/s)<o:p></o:p></p>
+        <p class=3D"MsoNormal">[INFO] [1/DmaFIFO#0] BIST passed (Estimate=
+d
+          Minimum Throughput: 1361 MB/s)<o:p></o:p></p>
+        <p class=3D"MsoNormal">[WARNING] [0/Radio#0] Attempting to set
+          tick rate to 0. Skipping.<o:p></o:p></p>
+        <p class=3D"MsoNormal">[WARNING] [1/Radio#0] Attempting to set
+          tick rate to 0. Skipping.<o:p></o:p></p>
+        <p class=3D"MsoNormal">Has timespec: No=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 Time of first
+          sample: 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">Fragmented: No=C2=A0 Fragmentation offset:=
+ 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">Start of burst: No=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 End of burst: No<o:p></o:p></p>
+        <p class=3D"MsoNormal">Error Code: ERROR_CODE_TIMEOUT=C2=A0 Out o=
+f
+          sequence: No<o:p></o:p></p>
+        <p class=3D"MsoNormal">500000<o:p></o:p></p>
+        <p class=3D"MsoNormal">Backend TkAgg is interactive backend.
+          Turning interactive mode on.<o:p></o:p></p>
+        <p class=3D"MsoNormal">LLHas timespec: No=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 Time of first
+          sample: 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">Fragmented: No=C2=A0 Fragmentation offset:=
+ 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">Start of burst: No=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 End of burst: No<o:p></o:p></p>
+        <p class=3D"MsoNormal">Error Code: ERROR_CODE_LATE_COMMAND=C2=A0=C2=
+=A0=C2=A0=C2=A0 Out
+          of sequence: No<o:p></o:p></p>
+        <p class=3D"MsoNormal">0<o:p></o:p></p>
+        <p class=3D"MsoNormal">Done!<o:p></o:p></p>
+        <p class=3D"MsoNormal">------------------------------------------=
+----------------------------
+          code<o:p></o:p></p>
+        <p class=3D"MsoNormal">#!/usr/bin/env python3<o:p></o:p></p>
+        <p class=3D"MsoNormal">#<o:p></o:p></p>
+        <p class=3D"MsoNormal"># Copyright 2017-2018 Ettus Research, a
+          National Instruments Company<o:p></o:p></p>
+        <p class=3D"MsoNormal">#<o:p></o:p></p>
+        <p class=3D"MsoNormal"># SPDX-License-Identifier: GPL-3.0-or-late=
+r<o:p></o:p></p>
+        <p class=3D"MsoNormal">#<o:p></o:p></p>
+        <p class=3D"MsoNormal">"""<o:p></o:p></p>
+        <p class=3D"MsoNormal">RX samples to file using Python API<o:p></=
+o:p></p>
+        <p class=3D"MsoNormal">"""<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">import argparse<o:p></o:p></p>
+        <p class=3D"MsoNormal">from xml.etree.ElementTree import tostring=
+<o:p></o:p></p>
+        <p class=3D"MsoNormal">import numpy as np<o:p></o:p></p>
+        <p class=3D"MsoNormal">import uhd<o:p></o:p></p>
+        <p class=3D"MsoNormal">import matplotlib.pyplot as plt<o:p></o:p>=
+</p>
+        <p class=3D"MsoNormal">import time<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">#./rx_to_file.py -f 80.0e6 -o ./test1.dat
+          -d 1.0 -r 1.0e6 -a addr=3D192.168.50.201<o:p></o:p></p>
+        <p class=3D"MsoNormal">def parse_args():<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 """Parse the command li=
+ne arguments"""<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser =3D argparse.Arg=
+umentParser()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser.add_argument("-a=
+", "--args",
+          default=3D"addr=3D192.168.50.201", type=3Dstr)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser.add_argument("-o=
+",
+          "--output-file", default=3D"./test.bin",type=3Dstr,
+          required=3DFalse)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser.add_argument("-f=
+", "--freq",
+          default=3D80e6, type=3Dfloat, required=3DFalse)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser.add_argument("-r=
+", "--rate",
+          default=3D5e5, type=3Dfloat)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 <o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0parser.add_argumen=
+t("-d", "--duration",
+          default=3D1.0, type=3Dfloat)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser.add_argument("-c=
+", "--channels",
+          default=3D0, nargs=3D"+", type=3Dint)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser.add_argument("-g=
+", "--gain",
+          type=3Dint, default=3D1) # range is int supposedly 0 - 76db ran=
+ge,<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 parser.add_argument("-n=
+", "--numpy",
+          default=3DFalse, action=3D"store_true",<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 help=3D"Save output
+          file in NumPy format (default: No)")<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 return parser.parse_arg=
+s()<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">timeStep =3D 10.0<o:p></o:p></p>
+        <p class=3D"MsoNormal">class multiRcvr:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 def __init__(self, addr=
+, args) :<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.usrp =3D
+          uhd.usrp.MultiUSRP(addr)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_clock_source("gpsdo",0)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_time_source("gpsdo",0)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_clock_source("gpsdo",1)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_time_source("gpsdo",1)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ for mboard in range(2):<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 t0 =3D time.time()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 while
+          self.usrp.get_mboard_sensor("gps_locked",mboard).value =3D=3D
+          'false':<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 time.sleep(1.0)<o:p></o:=
+p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if time.time() - t0 &gt;
+          30.0:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+print("COULD NOT GET
+          GPS LOCK on " + str(mboard) + "
+          ********************************")<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+break<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # <a
+href=3D"https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Comman=
+ds_in_UHD"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+https://kb.ettus.com/Synchronizing_USRP_Events_Using_Timed_Commands_in_UH=
+D</a><o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # <a
+            href=3D"https://files.ettus.com/manual/page_sync.html"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+            https://files.ettus.com/manual/page_sync.html</a> <o:p></o:p>=
+</p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0self.num_samps =3D
+          int(np.ceil(args.duration*args.rate))<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ if not isinstance(args.channels,
+          list):<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 args.channels =3D [args.channels]<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.channels =3D [0, 1]<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # time_at_last_pps =3D
+          usrp.get_time_last_pps().get_real_secs()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # print(time_at_last_pps)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ #
+          usrp.set_time_next_pps(uhd.libpyuhd.types.time_spec(0.0))<o:p><=
+/o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+# time.sleep(1)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # To =3D usrp.get_time_now()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # print( To.get_real_secs() )<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # <a
+            href=3D"https://files.ettus.com/manual/page_multiple.html#mul=
+tiple_setup"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+https://files.ettus.com/manual/page_multiple.html#multiple_setup</a><o:p>=
+</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec("A:0"),0) #
+          disable other channels on 1st usrp<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_rx_subdev_spec(uhd.usrp.SubdevSpec("A:0"),1) #
+          disable other channels on 2nd usrp<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # <a
+            href=3D"https://pysdr.org/content/usrp.html"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">http=
+s://pysdr.org/content/usrp.html</a><o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # second arg is channel (int); if
+          not present channels defaults to 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # gain can vary 0 - 76<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.usrp.set_rx_rate(args.rate,0)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(args.freq=
+),0)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.usrp.set_rx_gain(10,0)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.usrp.set_rx_rate(args.rate,1)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(args.freq=
+),
+          1)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.usrp.set_rx_gain(args.gain, 1)<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # Set up the stream and receive
+          buffer<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.st_args =3D
+          uhd.usrp.StreamArgs("fc32", "sc16")<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.st_args.channels =3D
+          self.channels<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.metadata =3D
+          uhd.types.RXMetadata()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.recv_buffer =3D
+          np.zeros((len(self.channels), 1000), dtype=3Dnp.complex64)=C2=A0=
+=C2=A0=C2=A0=C2=A0
+          <o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0self.stream_cmd =3D
+          uhd.types.StreamCMD(uhd.types.StreamMode.num_more) #=C2=A0=C2=A0
+          num_done<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.stream_cmd.num_samps =3D
+          self.num_samps<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.stream_cmd.stream_now =3D
+          False=C2=A0=C2=A0 <o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0self.stream_cmd.time_spec =3D
+          uhd.libpyuhd.types.time_spec(timeStep) # set start time (try
+          tweaking this)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.streamer =3D
+          self.usrp.get_rx_stream(self.st_args)<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 def printMultiUsrpInfo(=
+self):<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ print('rx channels in multi usrp :
+          ' + str(self.usrp.get_rx_num_channels()))<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=
+for chan in self.channels:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 mboard =3D chan<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 print('clock_source ' +
+          str(mboard) + ' : ' + self.usrp.get_clock_source(mboard)) #
+          really mboard<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 print('time_source ' +
+          str(mboard) + ' : ' + self.usrp.get_time_source(mboard)) #
+          this isn't really channel , it is mboard<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 print('rx_info ' + str(chan) +
+          ' : ' + str(self.usrp.get_usrp_rx_info(chan)))<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 rxfiltername =3D
+          self.usrp.get_rx_filter_names(chan)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 print('rxfiltername ' +
+          str(chan) + ' : '=C2=A0 + str(rxfiltername)) # why doesn't this
+          work?<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0
+          #print(self.usrp.get_rx_filter(rxfiltername,chan))<o:p></o:p></=
+p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 print('rx_gain_range ' +
+          str(chan) + ' : ' + str(self.usrp.get_rx_gain_range(chan)))<o:p=
+></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 print('rx_gain ' + str(chan) +
+          ' : ' + str(self.usrp.get_rx_gain(chan)))<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 print('rx_freq ' + str(chan) +
+          ' : ' + str(self.usrp.get_rx_freq(chan)))<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 rx_sensors =3D
+          self.usrp.get_rx_sensor_names(chan)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 for rx_sensor in rx_sensors:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print("\t" + rx_sensor +=
+ "
+          : " + self.usrp.get_rx_sensor(rx_sensor,mboard).value)<o:p></o:=
+p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 mboard_sensors =3D
+          self.usrp.get_mboard_sensor_names(mboard)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 for mboard_sensor in
+          mboard_sensors:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print("\t" + mboard_sens=
+or
+          + " : " +
+          self.usrp.get_mboard_sensor(mboard_sensor,mboard).value)<o:p></=
+o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 def wait4pps(self):<o:p=
+></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # Wait for 1 PPS to happen, then
+          set the time at next PPS to 0.0<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ time_at_last_pps =3D
+          self.usrp.get_time_last_pps().get_real_secs()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ while time_at_last_pps =3D=3D
+          self.usrp.get_time_last_pps().get_real_secs():<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 time.sleep(0.05) # keep waiting
+          till it happens- if this while loop never finishes then the
+          PPS signal isn't there<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ time.sleep(.01) # make sure all
+          devices are into the next second<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.usrp.set_time_next_pps(uhd.libpyuhd.types.time_spec(0.0))
+          # defaults to all devices<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # Schedule Rx of num_samps samples
+          exactly N seconds from last PPS<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+          self.streamer.issue_stream_cmd(self.stream_cmd)<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 def capture(self):<o:p>=
+</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # Receive Samples.=C2=A0 recv() will
+          return zeros, then our samples, then more zeros, letting us
+          know it's done<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ waiting_to_start =3D True # keep
+          track of where we are in the cycle (see above comment)<o:p></o:=
+p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ nsamps =3D 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ i =3D 0<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ # re-initialize samples every time
+          so we don't see old data<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ self.samples =3D
+          np.zeros([len(self.channels),self.num_samps],
+          dtype=3Dnp.complex64)<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ #while nsamps !=3D 0 or
+          waiting_to_start:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ t0 =3D time.time()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ metadataLast =3D
+          uhd.types.RXMetadata()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ while i &lt; self.num_samps:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 nsamps =3D
+          self.streamer.recv(self.recv_buffer, self.metadata,
+          timeout=3DtimeStep)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 if self.metadata !=3D
+          metadataLast:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 print(self.metadata)<o:p=
+></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 metadataLast =3D
+          self.metadata<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 # if nsamps and
+          waiting_to_start:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0 waiting_to_start =3D F=
+alse<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 # elif nsamps:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 if nsamps:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 self.samples[:,i:i+nsamp=
+s]
+          =3D self.recv_buffer[:,0:nsamps]<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 i +=3D nsamps<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 if time.time() - t0 &gt; 16.0:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 break=C2=A0 <o:p></o:p><=
+/p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0print(i)=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">def main():<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 """RX samples and write=
+ to file"""<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 args =3D parse_args()<o=
+:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 usrp =3D multiRcvr
+          ("addr0=3D192.168.50.201,addr1=3D192.168.50.202",args)<o:p></o:=
+p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 for _ in range(2):<o:p>=
+</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ usrp.wait4pps()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ usrp.capture()<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ timeIdx =3D
+          np.arange(usrp.num_samps)/args.rate<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ fig, ax =3D plt.subplots()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ l1 =3D
+          ax.plot(usrp.samples[0,:].real,label=3D'201 R')<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ l2 =3D
+          ax.plot(usrp.samples[0,:].imag,label=3D'201 I')<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ l3 =3D
+          ax.plot(usrp.samples[1,:].real,label=3D'202 R')<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ l4 =3D
+          ax.plot(usrp.samples[1,:].imag,label=3D'202 I')<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ ax.legend( loc=3D'upper right',
+          shadow=3DTrue)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ ax.grid()<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ plt.show(block=3DFalse)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ time.sleep(10.0)<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 print('Done!')<o:p></o:=
+p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 # with open(args.output=
+_file, 'wb') as
+          out_file:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=
+ if args.numpy:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 np.save(out_file, samps,
+          allow_pickle=3DFalse, fix_imports=3DFalse)<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=
+ else:<o:p></o:p></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 #=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 samps.tofile(out_file)<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">if __name__ =3D=3D "__main__":<o:p></o:p><=
+/p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0 main()<o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    I wonder if you could try the rx_multi_samples example application
+    in this scenario, just to see if this is a Python API issue, or
+    something else.<br>
+    <br>
+    I've been staring at your code, and nothing immediately pops out at
+    me.=C2=A0 I don't have any E320 to try this with.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------p5zUJB0uLUTX05Acm7KhyNpr--
+
+--===============6061300945190146122==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -171,4 +1253,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1542170838614918834==--
+--===============6061300945190146122==--
