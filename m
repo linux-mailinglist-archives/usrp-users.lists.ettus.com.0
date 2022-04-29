@@ -2,127 +2,133 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2475514825
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 13:29:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BFE514B0B
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 15:49:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 11B8F3847E1
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 07:29:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 64E3C384B99
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 09:49:11 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651231756; bh=QLmF/lzfqEGudBeaV4Lvn5DdgNH1HEu+0jd3PCfFqVY=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=dGJnnxwm5iA4nKjO+hU1tWdEzUg4XiiOGFwNAqEXjn0ImjeRIdMY1+ZudYKLvsoZE
-	 adu08aOIvlYfV3j2zO+jn2Mn/Fxik0ijEvw+nFtOp0xJE4jclxQAtV6hffAmsNE0iG
-	 XZjcmwc1zbX9YAcgxk0xcTnZPatp4pmP3MtZIzHvVhixx2piC/XR2Rh7b+9l3le2iu
-	 EOuR+UxIY57lLbyFb2Ft/shdKhqxuXC4wtssl6qKqpGGYtQcsuwsIegLnS4Nii3ORb
-	 OizivBHZ7sWFEiS1xOVz4q7vgg5/WUIDt7nl07u2HC27wr8NSNthFgo9SzaAbr/2kY
-	 5xMwXwGT176gg==
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id E074A38442F
-	for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 07:28:10 -0400 (EDT)
+	t=1651240151; bh=yyM3X2phK+/qTNhEZcSoKpj22JuKhg8VFUgkMrw6jAw=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=HRBccP/OVPU9WlMNRlLIAYiytqWoHurs6nd2fq08rVm6+x23iUbt5wORaP9o8+azj
+	 sv59hnk1heWaPEEJyH+TXtFhKmBM1/WHG1CD/3fMA9H/zgjde4EMYaCR1SVAiJEgLG
+	 O++SQS6rqGmaNot8QXD6QoegJxDZzI/g4DptC5vLY34jVRZXhGbmyOZ3a4bWR6rzWS
+	 uC6YKToSGn8evbMIXwlDeuj54+QK140DB99mDqYTzRmOQ5a98JHnqHrPq8x8dH3fcP
+	 mYl6FD2ykv8CyM3RXkcnWkJname4SW9h01pYVhjrGUPJPzEoG9utltiUxJ0UXG3w2Q
+	 R0exid7/iEb6A==
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 13CDE3848A9
+	for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 09:48:11 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="L1q2LRaV";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e+4PQHQT";
 	dkim-atps=neutral
-Received: by mail-wr1-f48.google.com with SMTP id q23so10392478wra.1
-        for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 04:28:10 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso7063221wme.5
+        for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 06:48:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=napv0AHb2mebzl/T8KYpmi8dxh/Az+0+kQ5CflxQVEU=;
-        b=L1q2LRaVe6vDn9VWa4fbEeFYI4WZPN8YvHUPHAsK7TpA0qv9AFpv5oHThkNf2DGses
-         /N1//Ec0rl4u6RIrKPPa19kEWfblSaP2Nn1v1rJobtvG+yPasHBg26I5mb7Q1hMJXxWT
-         KQ1UY+fVgjYqSbDlmey+VexrAMW+HlXAHMYH/8+iMzom+sH1Iz3drO4+LywhW37560tf
-         w3jZnI+2jUxFbjPtzYVtmR+7wFzttALBl2/P2GcwUbnqcKo85kNShzQkk20C06+YjpOk
-         HEJU1PoVPyc/h/4pCyFTJ3tt/7+lVq9aGur4sxU7QZfHiTgInTzKgZbPmfhQ1Lskc8Zf
-         DUvA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b7/idWhx2k9TPJiZEnS2YY2ysgR5vk8JxuHnhvlq5gM=;
+        b=e+4PQHQTTLWGJGCjBpcklTmVJe/RCellvhULip35s4pK5FqZawq+dWUrXD2BX6+Rx5
+         pubfOvgiLTt8vUww2ioVl85rpaMvwO+W+n0oX+QbfQzuN2XLvfZcuF6dV/BPFbq3YyoL
+         MyUAER+rmvRH+SSQy7zwcWEElPcKXBIZCtsH/SkRrbCAkif3at6YKXd/Sc4z59wnLV8X
+         bwsBeDtDi/Yxt97z+QavTGLBufYG5SN9D9Ld27giYxjRj4LxhxfPWN19RGeVCQO58zvu
+         6e7keh1icpTpHx5tsiuQWXi3k35rN09PqRIL25PF3VOwr6HwiwZgOusemgwBTQ4wJqTF
+         ZdTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=napv0AHb2mebzl/T8KYpmi8dxh/Az+0+kQ5CflxQVEU=;
-        b=PM838vL9+YOzouOdj3uVd+lcQhKh/bGomJs2W2hEX902n8GbIVnl/akINzLLUQuToU
-         LfZHawb8nNGcgE8ljnDdGgSfBuYD95o1NGS8Qk4I+kiWO1NKzytAg9feEYJNbnLQv0lL
-         L5R/HMCAwIrQOoowzCbXed4e3aJn6KnQRH+01yHNzXo14l5iZr4vkml6xQqO3l5qQMFg
-         2JVm+z68jpug5r46d6MZdk/qCxbysU6RHQwNEEyIprKphaV6mvGGXqfq1FqDuw6EVzlW
-         5KLMm7tgy5AH+7LePbGeRNYkAVdQ7K+zPoUTH1a30+fMERJroXnKfwwxlIHT6SpVcT0t
-         SW7A==
-X-Gm-Message-State: AOAM533/k+VD2BtGbFBfqr+CKDDdoX3dJY6sK3KspftSx0lGWKSXg3od
-	yjuGnadwk6jCEWoR9sgzKPzzMAST621IgFcF
-X-Google-Smtp-Source: ABdhPJyDSbwWClm3jKN+yv1vplo/Orunm4ml0hCHYNHtBe5xA23tCM5oSNqTS17qlVGiP4rg6UV9Wg==
-X-Received: by 2002:adf:f803:0:b0:20a:d4a9:b67e with SMTP id s3-20020adff803000000b0020ad4a9b67emr25199109wrp.171.1651231689364;
-        Fri, 29 Apr 2022 04:28:09 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:3860:e9fc::d8d? ([2001:9e8:3860:e9fc::d8d])
-        by smtp.gmail.com with ESMTPSA id g21-20020a1c4e15000000b0039419a269a2sm2794046wmh.39.2022.04.29.04.28.08
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 29 Apr 2022 04:28:09 -0700 (PDT)
-Message-ID: <42655882-6289-5755-9f79-b374c8ce70d3@ettus.com>
-Date: Fri, 29 Apr 2022 13:28:08 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b7/idWhx2k9TPJiZEnS2YY2ysgR5vk8JxuHnhvlq5gM=;
+        b=0jFso8iKu+BMIM5CRRKmGoHVf6exh1RWZBBZc0kGUkAPJe2xTc7b190A8owqXo5LNG
+         8ZQfHsFV94iGjXEPzXT5LKXbLDhgWzBOmP+VmPvJ2vh8mzFp6A7SpMKewbvErK171RPc
+         dWM+s1ON3ca+ajjUUH5hJqqieu0kjAO+HKv3Gab/YpNUh/0GQjgA08HV+oLyPs+fcS2N
+         MnR53HGq+IgePCrC4H/7GZAKx+3P61ePcBN92uRUFe9Ud7nKtOdmDi+KTOauRxOf8Jpa
+         Gi+mIcdXhViCDFoY5/+iOQwALKyGLPsbWcLpxr508kc0QatA8s+2tNHbiJ5dX6EyCLzB
+         hPrQ==
+X-Gm-Message-State: AOAM531dMp41ONzqhwXYjNdCB53O2BweLg1lFxuI8pGVkBiqGG3f3sLO
+	hdFbORvfVFSjcb1bpKubWKQfOzZG3DM2OzuX1p/GS7+q
+X-Google-Smtp-Source: ABdhPJy3WfiSYJt88/Prey6oFwuMogkCqIl+8nHSxzen8/NsUGTnaUQsx6sdWgraLVez8oahgypAkMJfOu0gPTRbduk=
+X-Received: by 2002:a05:600c:1548:b0:392:8e1a:18c3 with SMTP id
+ f8-20020a05600c154800b003928e1a18c3mr3383552wmg.102.1651240091009; Fri, 29
+ Apr 2022 06:48:11 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <CAAxXO2GOytYDEsqbSZXCaM-OXRpUco7SDxeKBkq7e5Z3RHOYPA@mail.gmail.com>
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-In-Reply-To: <CAAxXO2GOytYDEsqbSZXCaM-OXRpUco7SDxeKBkq7e5Z3RHOYPA@mail.gmail.com>
-Message-ID-Hash: JCVXR7E2HPXF3GEOEHW2SZYWPJRECOXF
-X-Message-ID-Hash: JCVXR7E2HPXF3GEOEHW2SZYWPJRECOXF
-X-MailFrom: marcus.mueller@ettus.com
+ <50feb07d-a18b-0a53-91e6-e86c5a032ecc@gmail.com>
+In-Reply-To: <50feb07d-a18b-0a53-91e6-e86c5a032ecc@gmail.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Fri, 29 Apr 2022 13:47:59 +0300
+Message-ID: <CAAxXO2F0oOB-JccRuGkbgMV4PAWCx+6v+OPGXKeD1t0-efnwUA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: 5CLQIQ62FXFXE2U6V2O4NOIKY5RG3IGC
+X-Message-ID-Hash: 5CLQIQ62FXFXE2U6V2O4NOIKY5RG3IGC
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Transport properties
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JCVXR7E2HPXF3GEOEHW2SZYWPJRECOXF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5CLQIQ62FXFXE2U6V2O4NOIKY5RG3IGC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-VGhleSdyZSBVSEQgc2V0dGluZ3MsIG5vdCBOSUMgc2V0dGluZ3MuIFNvLCB5b3UgY2Fubm90IGNo
-YW5nZSB0aGVtIGluIHRoZSBOSUMuDQoNCldoYXQgeW91ciBOSUMgbmVlZHMgdG8gc3VwcG9ydCBh
-cmUgdGhlIGxhcmdlIGV0aGVybmV0IGZyYW1lIHNpemVzICgianVtYm9mcmFtZXMiKSwgYnV0IEkg
-DQpkb3VidCB0aGF0J3Mgc29tZW9uZSB5b3VyIE5JQyBuZWVkcyBoZWxwIHdpdGgg4oCTIGl0J3Mg
-cHJvYmFibHkgYSBuZXR3b3JrIHN0YWNrIHByb2JsZW0gaWYgDQp0aGUgTVRVIGlzIHNldCB0b28g
-bG93Lg0KDQpCZXN0IHJlZ2FyZHMsDQpNYXJjdXMNCg0KRElTQ0xBSU1FUjogQW55IGF0dGFjaGVk
-IENvZGUgaXMgcHJvdmlkZWQgQXMgSXMuIEl0IGhhcyBub3QgYmVlbiB0ZXN0ZWQgb3IgdmFsaWRh
-dGVkIGFzIGEgcHJvZHVjdCwgZm9yIHVzZSBpbiBhIGRlcGxveWVkIGFwcGxpY2F0aW9uIG9yIHN5
-c3RlbSwgb3IgZm9yIHVzZSBpbiBoYXphcmRvdXMgZW52aXJvbm1lbnRzLiBZb3UgYXNzdW1lIGFs
-bCByaXNrcyBmb3IgdXNlIG9mIHRoZSBDb2RlLiBVc2Ugb2YgdGhlIENvZGUgaXMgc3ViamVjdCB0
-byB0ZXJtcyBvZiB0aGUgbGljZW5zZXMgdG8gdGhlIFVIRCBvciBSRk5vQyBjb2RlIHdpdGggd2hp
-Y2ggdGhlIENvZGUgaXMgdXNlZC4gU3RhbmRhcmQgbGljZW5zZXMgdG8gVUhEIGFuZCBSRk5vQyBj
-YW4gYmUgZm91bmQgYXQgaHR0cHM6Ly93d3cuZXR0dXMuY29tL3Nkci1zb2Z0d2FyZS9saWNlbnNl
-cy8uDQoNCk5JIHdpbGwgb25seSBwZXJmb3JtIHNlcnZpY2VzIGJhc2VkIG9uIGl0cyB1bmRlcnN0
-YW5kaW5nIGFuZCBjb25kaXRpb24gdGhhdCB0aGUgZ29vZHMgb3Igc2VydmljZXMgKGkpIGFyZSBu
-b3QgZm9yIHRoZSB1c2UgaW4gdGhlIHByb2R1Y3Rpb24gb3IgZGV2ZWxvcG1lbnQgb2YgYW55IGl0
-ZW0gcHJvZHVjZWQsIHB1cmNoYXNlZCwgb3Igb3JkZXJlZCBieSBhbnkgZW50aXR5IHdpdGggYSBm
-b290bm90ZSAxIGRlc2lnbmF0aW9uIGluIHRoZSBsaWNlbnNlIHJlcXVpcmVtZW50IGNvbHVtbiBv
-ZiBTdXBwbGVtZW50IE5vLiA0IHRvIFBhcnQgNzQ0LCBVLlMuIEV4cG9ydCBBZG1pbmlzdHJhdGlv
-biBSZWd1bGF0aW9ucyBhbmQgKGlpKSBzdWNoIGEgY29tcGFueSBpcyBub3QgYSBwYXJ0eSB0byB0
-aGUgdHJhbnNhY3Rpb24uICBJZiBvdXIgdW5kZXJzdGFuZGluZyBpcyBpbmNvcnJlY3QsIHBsZWFz
-ZSBub3RpZnkgdXMgaW1tZWRpYXRlbHkgYmVjYXVzZSBhIHNwZWNpZmljIGF1dGhvcml6YXRpb24g
-bWF5IGJlIHJlcXVpcmVkIGZyb20gdGhlIFUuUy4gQ29tbWVyY2UgRGVwYXJ0bWVudCBiZWZvcmUg
-dGhlIHRyYW5zYWN0aW9uIG1heSBwcm9jZWVkIGZ1cnRoZXIuDQoNCk9uIDI5LjA0LjIyIDA5OjUw
-LCBOaWtvcyBCYWxrYW5hcyB3cm90ZToNCj4gSGksDQo+DQo+IHVoZF91c3JwX3Byb2JlIHJlcG9y
-dHMgdGhhdCBJIHNob3VsZCByYWlzZSBteSBzZW5kX2ZyYW1lX3NpemUgJg0KPiByZWN2X2ZyYW1l
-X3NpemUgYXJndW1lbnRzLg0KPiBVU1JQIE1hbnVhbCwgdHJhbnNwb3J0IG5vdGVzLCByZXBvcnQg
-dG8gY2hhbmdlIHRoZW0gaW4gZGV2aWNlIG9yDQo+IHN0cmVhbSBhcmd1bWVudHMuDQo+IEFueW9u
-ZSBrbm93cyBob3cgdG8gY2hhbmdlIHRoZXNlIHNldHRpbmdzIGluIHRoZSBOSUM/DQo+IEkgaGF2
-ZSBhIDEwIEdiIE1MTlggTklDIGFuZCBqdXN0IHVwZ3JhZGVkIG15IFVidW50dSBmcm9tIDE0LjA0
-IHRvDQo+IDIwLjA0LiBJIGFtIHByZXR0eSBzdXJlIEkgaGFkIHNvbWUgb2YgdGhlc2Ugb3B0aW1p
-emF0aW9ucyBpbiB0aGUgTklDDQo+IHVzaW5nIGV0aHRvb2w/IEFueW9uZSByZW1lbWJlcnMgd2hh
-dCB0aGVzZSBvcHRpbWl6YXRpb25zIHdlcmU/DQo+DQo+IFRJQQ0KPiBOaWtvcw0KPiBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1h
-aWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmli
-ZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCl9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNl
-bmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+Thx,
+
+I remember a few years back I changed NIC properties and I got max
+samples to 1996.
+No changes in uhd calls. When I upgraded and reinstalled the NIC
+driver, I lost those settings,
+and now I am getting max samples 396:(
+I remember changing things like coalescense, but I don't remember what
+and by how much.
+Back then I got the advice from here. So, if anyone remembers...
+For now I will change my MTU and pass the sizes to the device...
+
+BR
+Nikos
+
+On Fri, Apr 29, 2022 at 3:39 PM Marcus D. Leech <patchvonbraun@gmail.com> wrote:
+>
+> On 2022-04-29 03:50, Nikos Balkanas wrote:
+> > Hi,
+> >
+> > uhd_usrp_probe reports that I should raise my send_frame_size &
+> > recv_frame_size arguments.
+> > USRP Manual, transport notes, report to change them in device or
+> > stream arguments.
+> > Anyone knows how to change these settings in the NIC?
+> > I have a 10 Gb MLNX NIC and just upgraded my Ubuntu from 14.04 to
+> > 20.04. I am pretty sure I had some of these optimizations in the NIC
+> > using ethtool? Anyone remembers what these optimizations were?
+> >
+> > TIA
+> > Nikos
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> These are device arguments -- part of UHD:
+>
+> https://files.ettus.com/manual/page_transport.html
+>
+>
+> Now, IN ADDITION, to actually support those, your NIC must have its MTU
+> changed to support the larger frame sizes -- you can just use the
+> Network device manager
+>    in the GUI to change this.   Normally, though, a 10GB NIC will have a
+> larger MTU by default.
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
