@@ -2,133 +2,109 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48BFE514B0B
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 15:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04A4051497E
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 14:36:28 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 64E3C384B99
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 09:49:11 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C8310384815
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Apr 2022 08:36:26 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651240151; bh=yyM3X2phK+/qTNhEZcSoKpj22JuKhg8VFUgkMrw6jAw=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=HRBccP/OVPU9WlMNRlLIAYiytqWoHurs6nd2fq08rVm6+x23iUbt5wORaP9o8+azj
-	 sv59hnk1heWaPEEJyH+TXtFhKmBM1/WHG1CD/3fMA9H/zgjde4EMYaCR1SVAiJEgLG
-	 O++SQS6rqGmaNot8QXD6QoegJxDZzI/g4DptC5vLY34jVRZXhGbmyOZ3a4bWR6rzWS
-	 uC6YKToSGn8evbMIXwlDeuj54+QK140DB99mDqYTzRmOQ5a98JHnqHrPq8x8dH3fcP
-	 mYl6FD2ykv8CyM3RXkcnWkJname4SW9h01pYVhjrGUPJPzEoG9utltiUxJ0UXG3w2Q
-	 R0exid7/iEb6A==
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 13CDE3848A9
-	for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 09:48:11 -0400 (EDT)
+	t=1651235786; bh=Jug0xs/LR3SUVAOIcSWwBMghWfGUko+ZvzRfJ9kee+o=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=LjzncHA6c3yy/goFOL2trUwndccs+TmKqiLICRvogNTsHUNAujMdQV1Jt0Or0EGSp
+	 Q4oiebnJ6tw83aONrryfHRSY3iF+VJCb670YB1kwa+R+9kqF3bzX3/nYu/4mCquaqt
+	 1SzJu2HRR0zRwew3Yu4Fqlf47DyuDvz0LT1MTNS8oVhMz/Vdq4fc2geZl4rlyYR6ns
+	 3dqPOiykuxR4yq3OlG8FAvK9oQM/LHn+PivIlwgJ2J2wNY4xjKB+ainJ48nAFo2KCD
+	 g152neee4rao7V9cPj9NDqe7mVdTeAnfACmIrVTPVV7a130Q/8Wotv4sWHJZJETUlm
+	 IPELWpFDGuo7g==
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id F291F384901
+	for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 08:35:22 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="e+4PQHQT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Luc7sh8t";
 	dkim-atps=neutral
-Received: by mail-wm1-f54.google.com with SMTP id v64-20020a1cac43000000b0038cfd1b3a6dso7063221wme.5
-        for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 06:48:11 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id fu47so5541134qtb.5
+        for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 05:35:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b7/idWhx2k9TPJiZEnS2YY2ysgR5vk8JxuHnhvlq5gM=;
-        b=e+4PQHQTTLWGJGCjBpcklTmVJe/RCellvhULip35s4pK5FqZawq+dWUrXD2BX6+Rx5
-         pubfOvgiLTt8vUww2ioVl85rpaMvwO+W+n0oX+QbfQzuN2XLvfZcuF6dV/BPFbq3YyoL
-         MyUAER+rmvRH+SSQy7zwcWEElPcKXBIZCtsH/SkRrbCAkif3at6YKXd/Sc4z59wnLV8X
-         bwsBeDtDi/Yxt97z+QavTGLBufYG5SN9D9Ld27giYxjRj4LxhxfPWN19RGeVCQO58zvu
-         6e7keh1icpTpHx5tsiuQWXi3k35rN09PqRIL25PF3VOwr6HwiwZgOusemgwBTQ4wJqTF
-         ZdTA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=FSJV28FdFSBEzFQHH9SouKa1zbE7Jk7KTabsmBdFmts=;
+        b=Luc7sh8twEp43qCDRnlCo/bVJlMVYgHMV8rV3CLNuWkTtM1mIHySYQLkzOOLTICQXp
+         FRDFG8/lzXu+3PkP+IZvqs+2H4BxSGqshm4mch8KxwpwX2CdvwClUg1XU+XPRQkAUN3y
+         LTrqNa2v+eEpVjbxHl8N/LXhoQKCxtB7xQdm5E2PkKPp/iUbd8p3pmGYsmRuRCKczbDi
+         nZrznGfCPEfekGBIb8ROEbWCQbyXovwM06qjCiYk5GDWVYd4yweJXfrKjJl/pQg6UY/t
+         HjqMR6nbBJpwBEIJ1dHOvxYA6QRsegsFH4SyuU+OO5hYW61zgwAOA7sm5vvR/E7rv+ch
+         At+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b7/idWhx2k9TPJiZEnS2YY2ysgR5vk8JxuHnhvlq5gM=;
-        b=0jFso8iKu+BMIM5CRRKmGoHVf6exh1RWZBBZc0kGUkAPJe2xTc7b190A8owqXo5LNG
-         8ZQfHsFV94iGjXEPzXT5LKXbLDhgWzBOmP+VmPvJ2vh8mzFp6A7SpMKewbvErK171RPc
-         dWM+s1ON3ca+ajjUUH5hJqqieu0kjAO+HKv3Gab/YpNUh/0GQjgA08HV+oLyPs+fcS2N
-         MnR53HGq+IgePCrC4H/7GZAKx+3P61ePcBN92uRUFe9Ud7nKtOdmDi+KTOauRxOf8Jpa
-         Gi+mIcdXhViCDFoY5/+iOQwALKyGLPsbWcLpxr508kc0QatA8s+2tNHbiJ5dX6EyCLzB
-         hPrQ==
-X-Gm-Message-State: AOAM531dMp41ONzqhwXYjNdCB53O2BweLg1lFxuI8pGVkBiqGG3f3sLO
-	hdFbORvfVFSjcb1bpKubWKQfOzZG3DM2OzuX1p/GS7+q
-X-Google-Smtp-Source: ABdhPJy3WfiSYJt88/Prey6oFwuMogkCqIl+8nHSxzen8/NsUGTnaUQsx6sdWgraLVez8oahgypAkMJfOu0gPTRbduk=
-X-Received: by 2002:a05:600c:1548:b0:392:8e1a:18c3 with SMTP id
- f8-20020a05600c154800b003928e1a18c3mr3383552wmg.102.1651240091009; Fri, 29
- Apr 2022 06:48:11 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=FSJV28FdFSBEzFQHH9SouKa1zbE7Jk7KTabsmBdFmts=;
+        b=I2ebRYe3hS2HucR8QYgkGm1/NgsFUAY06mjZP2sgQcR8adECtNT8UXaNbwOiuDpPAu
+         C3rL1K8C6OjD3BljW9SMKKDQUiMly0ifcjJkN0oIbk9Dub9BhXBi89Hoqok+2bNO3WI2
+         2xwYd0P476J01HlCKewPKSD5jvPZS+b9QU57xkpsVu3FasTs0ntGgMNuh/FFXBu9t2vz
+         WwqETfpUb0Rg/7WQSJn/ElLsRAXYB8c830/xTI0E4uZX8x/q70gwiGsxOB6lzYtrbdmu
+         ywPzP5/3Wc3B3UO/KYsZgs5PpT285rwFt7pPqgnX+ZGiBtHG7LFPgQPVxRzH5R4OXlDI
+         vJmA==
+X-Gm-Message-State: AOAM533VDB7zPSqOgfTzqOJbzL5+cgde4z1F0/tmXl9LaA1soneQzXN9
+	HcpL9pq0kgjuLdUemuz1+EhuYoGbXg4=
+X-Google-Smtp-Source: ABdhPJx3TYzdkXWmkUmRoIBF9sUO9RQfivuln5txd3XgxnfepG/LQLcjb8mICalQmwWZX7PuG15OWA==
+X-Received: by 2002:ac8:5d8a:0:b0:2f3:5f35:abfe with SMTP id d10-20020ac85d8a000000b002f35f35abfemr22769817qtx.517.1651235722245;
+        Fri, 29 Apr 2022 05:35:22 -0700 (PDT)
+Received: from [192.168.2.208] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id p12-20020a05622a00cc00b002ebdd6ef303sm1835486qtw.43.2022.04.29.05.35.21
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 29 Apr 2022 05:35:21 -0700 (PDT)
+Message-ID: <c2bd2001-0e9b-401e-c84b-29b8e9692f1e@gmail.com>
+Date: Fri, 29 Apr 2022 08:35:20 -0400
 MIME-Version: 1.0
-References: <CAAxXO2GOytYDEsqbSZXCaM-OXRpUco7SDxeKBkq7e5Z3RHOYPA@mail.gmail.com>
- <50feb07d-a18b-0a53-91e6-e86c5a032ecc@gmail.com>
-In-Reply-To: <50feb07d-a18b-0a53-91e6-e86c5a032ecc@gmail.com>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Fri, 29 Apr 2022 13:47:59 +0300
-Message-ID: <CAAxXO2F0oOB-JccRuGkbgMV4PAWCx+6v+OPGXKeD1t0-efnwUA@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: 5CLQIQ62FXFXE2U6V2O4NOIKY5RG3IGC
-X-Message-ID-Hash: 5CLQIQ62FXFXE2U6V2O4NOIKY5RG3IGC
-X-MailFrom: nbalkanas@gmail.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <CAFPzw1=vVh+cuxa5LvE7XD4HD-+sNbewsK6XsRf4PogtnThwjQ@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAFPzw1=vVh+cuxa5LvE7XD4HD-+sNbewsK6XsRf4PogtnThwjQ@mail.gmail.com>
+Message-ID-Hash: ZDKJWLQP3XMZRXDWAPBGX6MMY3MODSJE
+X-Message-ID-Hash: ZDKJWLQP3XMZRXDWAPBGX6MMY3MODSJE
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Transport properties
+Subject: [USRP-users] Re: X310 laptop conexion
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5CLQIQ62FXFXE2U6V2O4NOIKY5RG3IGC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZDKJWLQP3XMZRXDWAPBGX6MMY3MODSJE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Thx,
-
-I remember a few years back I changed NIC properties and I got max
-samples to 1996.
-No changes in uhd calls. When I upgraded and reinstalled the NIC
-driver, I lost those settings,
-and now I am getting max samples 396:(
-I remember changing things like coalescense, but I don't remember what
-and by how much.
-Back then I got the advice from here. So, if anyone remembers...
-For now I will change my MTU and pass the sizes to the device...
-
-BR
-Nikos
-
-On Fri, Apr 29, 2022 at 3:39 PM Marcus D. Leech <patchvonbraun@gmail.com> wrote:
->
-> On 2022-04-29 03:50, Nikos Balkanas wrote:
-> > Hi,
-> >
-> > uhd_usrp_probe reports that I should raise my send_frame_size &
-> > recv_frame_size arguments.
-> > USRP Manual, transport notes, report to change them in device or
-> > stream arguments.
-> > Anyone knows how to change these settings in the NIC?
-> > I have a 10 Gb MLNX NIC and just upgraded my Ubuntu from 14.04 to
-> > 20.04. I am pretty sure I had some of these optimizations in the NIC
-> > using ethtool? Anyone remembers what these optimizations were?
-> >
-> > TIA
-> > Nikos
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> These are device arguments -- part of UHD:
->
-> https://files.ettus.com/manual/page_transport.html
->
->
-> Now, IN ADDITION, to actually support those, your NIC must have its MTU
-> changed to support the larger frame sizes -- you can just use the
-> Network device manager
->    in the GUI to change this.   Normally, though, a 10GB NIC will have a
-> larger MTU by default.
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T24gMjAyMi0wNC0yOSAwNToyOCwgQW5hYmVsIEFsbW9kb3ZhciB3cm90ZToNCj4gR29vZCBtb3Ju
+aW5nLA0KPiBJIHdvdWxkIGxpa2UgdG8gY29ubmVjdCB0d28gVVNSUCB4MzEwIGNhcmRzIHRvIGEg
+SFAgWmJvb2sgMTUgRzMgDQo+IGxhcHRvcCwgd2hpY2ggaGFzIG9ubHkgb25lIFJKNDUgcG9ydC4g
+SSBuZWVkIGl0IHRvIG9wZXJhdGUgYXQgbWF4aW11bSANCj4gc3BlZWQgKDIwME1TL3MpLCB3aXRo
+IHR3byAxMEdCIGV0aGVybmV0IHBvcnRzLCBidXQgSSBjYW4ndCBmaW5kIGEgd2F5IA0KPiB0byBk
+byBpdCwgaXMgdGhpcyBjb25maWd1cmF0aW9uIHBvc3NpYmxlLCB3aGF0IHdvdWxkIGJlIHRoZSBy
+aWdodCANCj4gb3B0aW9uIHRvIGNvbm5lY3QgdGhlIHR3byB4MzEwIHRvIHRoZSBsYXB0b3AgYW5k
+IHdoYXQgd291bGQgYmUgaXRzIA0KPiBtYXhpbXVtIHNwZWVkPw0KPiBUaGFua3MgaW4gYWR2YW5j
+ZS4NCj4gUmVnYXJkcywNCj4gQW5hYmVsDQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NClRoYXQgbGFwdG9wIGhhcyBhIFRodW5k
+ZXJib2x0IDMgcG9ydCwgYW5kIHRoZXJlIGFyZSBUaHVuZGVyYm9sdCAzIDEwR2lnIA0KYWRhcHRl
+cnMgb24gdGhlIG1hcmtldCwgYnV0IG15IHN1c3BpY2lvbiBpcyB0aGF0IHRoZXJlJ3MgdmVyeSBs
+aXR0bGUgDQpleHBlcmllbmNlIHdpdGggdGhlbQ0KIMKgIGluIHRoaXMgYXBwbGljYXRpb24uDQoN
+ClF1aXRlIGFwYXJ0IGZyb20gdGhhdCwgaXQncyB1bmxpa2VseSB0aGF0IHlvdXIgbGFwdG9wIGhh
+cyBlbm91Z2ggQ1BVIA0KaG9yc2Vwb3dlciBhbmQgbWVtb3J5IGJhbmR3aWR0aCB0byBzdXBwb3J0
+IHR3byBzdHJlYW1zIGF0IDIwME1zcHMtLWV2ZW4gDQpqdXN0IHJlY29yZGluZyB0byBtZW1vcnku
+DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
