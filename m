@@ -2,144 +2,153 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E31A515AA0
-	for <lists+usrp-users@lfdr.de>; Sat, 30 Apr 2022 07:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C8E515D07
+	for <lists+usrp-users@lfdr.de>; Sat, 30 Apr 2022 14:45:24 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 71845384431
-	for <lists+usrp-users@lfdr.de>; Sat, 30 Apr 2022 01:35:36 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 29D4A384D41
+	for <lists+usrp-users@lfdr.de>; Sat, 30 Apr 2022 08:45:23 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651296936; bh=/EJope4l/+eJGokpnAAlG5QbkyjJ6dKaISPPPCp1cpg=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=CrCruUFQ6aU1x2oS1U21FU/OSQVO4Z3fTAosSBQdMkZ3hABDj0wAg3osHeGu+wAAS
-	 swL81Yyp4Wzl3xo0L/JYZtfvE34NStZiI94/5yGPoIN0PJaMFN2NECxIeHAXfs44O9
-	 JJQq+GQ9+QLiQFH9Tw4y+fu8O/qy9uaeR0KCCImSWQvQgUWDS/V6kIf2DXhI4uCa6f
-	 dPO2VBq3BIU1oGvpdUnj/wm7lXuvJp5dcycdkI7MM6tZkEE3Yk+zVJuVtJSk38TCP5
-	 l2L9PzS3ROuJYlc0CF3cguPUktxat6REr9a7mA2m6PZoyghnAvIOfTC6ywIR8Vm9Ih
-	 IFj6mkXlfF/cQ==
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9E962384431
-	for <usrp-users@lists.ettus.com>; Sat, 30 Apr 2022 01:34:30 -0400 (EDT)
+	t=1651322723; bh=dLABjMeesZSBDuXm2BpeZYCFoiJ/vvrDoU6m/Y6Gdfg=;
+	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=koiGhTaXQRUy7EzxsuCW4yeq3o/wmstAT88jR7Wri4+zS9R5chfhYLtrmf32bQDTL
+	 06oBv1IEiEzAtDNmj0fGu0BVZSE41O4ZE4gy2pEjXATxWtsfn8iH8ZqSL3KLwudPZz
+	 pT7OQ/Hxdea+r4UXWuIN0Kii+nOt4aoY+opN7Sh4rzeUSaUdbRLKvj8QkX3yAoAHMm
+	 klzKGpBo96PblvaAqfH6WNE+dHn+/wJnPb078UFSroPku7y384Dhyv9NfgB1x312jg
+	 4knb9IrOiaTZlpjmoG8olmFSZ4gNpU8X0CIREYZ6yx/ZQMeMNVH+F2DnXqVMnd2356
+	 Sad112jMNGDCg==
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2B8F038426C
+	for <usrp-users@lists.ettus.com>; Sat, 30 Apr 2022 08:44:17 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nR9U000y";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="l0nju3/I";
 	dkim-atps=neutral
-Received: by mail-yb1-f182.google.com with SMTP id v59so17760619ybi.12
-        for <usrp-users@lists.ettus.com>; Fri, 29 Apr 2022 22:34:30 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id m6so8057535iob.4
+        for <usrp-users@lists.ettus.com>; Sat, 30 Apr 2022 05:44:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=19qs6MRA2Hj/c+4hkb1DYMy7qsxXot8FbDKSxiKzpTc=;
-        b=nR9U000y/28CVpwUUGbNQALdI91evVX3TwV9KZJSm13uf25YCGk7uNFrXZGu6J61o/
-         5w8VCs8/DSigQ2+NZJ6jOW8N5FuKKwx9wi8kqODXy4v0xetQAazQQ8h5XYUBaoWyITPz
-         Wnwft1LlCTVQ7BLYeyFEttplhLuhKBT0RtPvIWMHbPSOrBh47BnilxdH5p9IWqq3+1+v
-         RUdRmuvWIlP0W5Cyrdm2VSBhLVbHwCNlb8NWwlpM2l6rlqGcXgaP6CdkCFK0nTiTP0mk
-         Po9F1wv2ApTeQTDrbFKcDkga+hibSPWfSFXuulHaI3DUFRaqJEnjsRD2uO16Lwhg8gbN
-         Mq/Q==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=j/bJ+M3bSoFZM8MZ9a+wx0uwYTlessNuDpIZwIoEQCE=;
+        b=l0nju3/IT4tQrwd7WvP5yyu0/7aZR0Ofn9Z3rraaBEecza9TjgK0ZtVmZ8JMk31yzD
+         H0x7+ccupHvz/oA4cM2kOrHydKzbVJkIR1lK8RDdjXzvsgXnWe+aLaFMwIaNNH21TEOC
+         /iHwyCfA+6ieqRPBkrpy5pFK/xA1CbRAIfiJaDHJ9BUWcjVi0U7V8ke7LH9FUcs3pM3A
+         mO7vv5lPEJH6CNCw0kHbBRrC5oinzWFzsveX5Q6rfIujGOXb3gP3+54V4VcWb7H0hUt7
+         YWbiARya/4lMykzq6rBhlYcNLffSkHSIsLlcwTtAA96mTYkIydrEtG8i/4Zm1NppsIGv
+         dOmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=19qs6MRA2Hj/c+4hkb1DYMy7qsxXot8FbDKSxiKzpTc=;
-        b=cgfKEmRMUoGX5k3Y5K//FBtanDJ/y9bAXbTSD0gDB4Rv1wkFI1OpjIkTXN8Bd6dtw2
-         7pSi8g09fVA6/gr40d0B/yaLyrDxZRoMKkpyJBYwDyFi2gLCRFu9D0MqFNkJIFeq0sRt
-         pvPLZhxs1sE9CmiuzbdGp/9wpT1FjB1Tb9ZxPVxbWWzrU8/gAUCZpQXrVj0GVzGYc0lZ
-         pqt0/97xN3PcGxPQWBiErHVooDn0TVUOo/5RLCHLvhChk5aG0eEXsuUVY696Sqg2RaUy
-         8nqOKSKYHcJ/OZBNvjfFNQglnRDNvMD7mSNnqcfLEcUVCd9VXdYvNoTtL0GNKxyVbCA2
-         /jLA==
-X-Gm-Message-State: AOAM532L+66OQQ/sIBkqKByPHK1NUGM5+TPuWjR11TIAjnRqF1csogX5
-	POeTSC9i6wOb3aCC8Uv2lWkp4coXcVORKNu4VWaOrgVGKKebJ1zNvZ4=
-X-Google-Smtp-Source: ABdhPJwN4oYG7WFp7sDxNohmreDXbz0oTJn49GzJ1sX4d5fFFuAta4uD+QmpuV+pUIi1cFmwgMRLtTHOo44IabKgLGE=
-X-Received: by 2002:a5b:c5:0:b0:648:d8fa:f7ea with SMTP id d5-20020a5b00c5000000b00648d8faf7eamr2610230ybp.132.1651296869352;
- Fri, 29 Apr 2022 22:34:29 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=j/bJ+M3bSoFZM8MZ9a+wx0uwYTlessNuDpIZwIoEQCE=;
+        b=P9vV3f+W1avd7I9mEh4KcGdPAsQS2os/pde5TmPvzvHeZ1GRyd3wPyg0Vi1I28ajXD
+         Ja3TXqbvL5QHn9R/l5WQ9qHQAE+b6leA0fR/QFFrI6k5ET6P00XUdEwRDKa3fMSQRFk1
+         g+DsOADWVAS3RxfbmjZrxtDIhmYBP7l4825JXDhDIDfE6nJKJVHZm3n9QF1FIvBNkq+Z
+         c6svkjaxZ8aSto8VIYwiFE+nz42yCm6lrhYvdJ9UczAutQXZma0qIRzKIxU5uPfugSvq
+         4Q8qqrsjKb2PPKr/WwLubnV9jRGJHBp2l+eDsPBZz7dic5tI0tJPl/txJan9bnqjDg9Q
+         emtw==
+X-Gm-Message-State: AOAM530wMrPw0jaeaTlBl1TqyQEt6LJoAz8EpgObVBPA32aj9qlf4S5F
+	USLnJQlKpfZI3uLbxmgn8kPxpbydEWRUBAeMbqSM1lRDTC2JQSgX
+X-Google-Smtp-Source: ABdhPJxHLOcEy8b6NdSHH/nTpHqnPn/xscqWjfN+3Va1KU1ZO+31vKb8aEQIlypCWDS4AcEfFKgfXqN0gUkh4GNKRKE=
+X-Received: by 2002:a05:6602:2dc4:b0:648:adac:bae8 with SMTP id
+ l4-20020a0566022dc400b00648adacbae8mr1541394iow.9.1651322656016; Sat, 30 Apr
+ 2022 05:44:16 -0700 (PDT)
 MIME-Version: 1.0
-From: sp h <stackprogramer@gmail.com>
-Date: Sat, 30 Apr 2022 10:04:18 +0430
-Message-ID: <CAA=S3PuRmRur7uAUietE-Co72kf9tBkGtnbJF_GsXg2v513LTg@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: 7HN6JMAO2SWWRUNE2YK7URWXUVMURP3Z
-X-Message-ID-Hash: 7HN6JMAO2SWWRUNE2YK7URWXUVMURP3Z
-X-MailFrom: stackprogramer@gmail.com
+References: <CACaXmv-RY9_BfxBdgEwmMzH7GnwdZK1-0ebLiUBb0+710d4DKg@mail.gmail.com>
+In-Reply-To: <CACaXmv-RY9_BfxBdgEwmMzH7GnwdZK1-0ebLiUBb0+710d4DKg@mail.gmail.com>
+From: Neel Pandeya <neel.pandeya@ettus.com>
+Date: Sat, 30 Apr 2022 07:43:40 -0500
+Message-ID: <CACaXmv_XOgPH3rB_7pVuMjpdVOH4okOh0iD+KbBUQq8OJ79w4A@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: 6HXRIAPZSGZMHGI4MQGJ6UG77CJTHNAG
+X-Message-ID-Hash: 6HXRIAPZSGZMHGI4MQGJ6UG77CJTHNAG
+X-MailFrom: neel.pandeya@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] What's means this warning, CRITICAL WARNING: [Constraints 18-1056] Clock 'FPGA_CLK' completely overrides clock 'FPGA_CLK_p'.
+Subject: [USRP-users] Re: SI-SDR-UG Event-3 on Saturday April 30
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7HN6JMAO2SWWRUNE2YK7URWXUVMURP3Z/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6HXRIAPZSGZMHGI4MQGJ6UG77CJTHNAG/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8754392243702504102=="
+Content-Type: multipart/mixed; boundary="===============7099037682109217274=="
 
---===============8754392243702504102==
-Content-Type: multipart/alternative; boundary="0000000000005106d405ddd883fe"
+--===============7099037682109217274==
+Content-Type: multipart/alternative; boundary="000000000000525e9105ddde8495"
 
---0000000000005106d405ddd883fe
+--000000000000525e9105ddde8495
 Content-Type: text/plain; charset="UTF-8"
 
-In the body of an RFNOC block code, I had a for in for and calculation but
-when I want to synthesize it I was faced with a clock warning in FPGA. When
-I comment on this section this error is disappeared...
-So when I used a delay with tag # in some cases warning is removed...
+The SI-SDR-UG Event-3 will begin in 45 minutes!
 
-I:Errors:
-[00:04:49] Current task: Synthesis +++ Current Phase: Starting
-CRITICAL WARNING: [Constraints 18-1056] Clock 'FPGA_CLK' completely
-overrides clock 'FPGA_CLK_p'.
+You can view the livestream at: https://youtu.be/jYFDseIDZdk
 
-II: Code section:
-for(i=0;i<32;i=i+1)
-begin
-d_i_buffer = d_i_buffer>>i;//shift samples buffer
-d_q_buffer = d_q_buffer>>i;//shift samples buffer
-for(j=0; j<96; j=j+1)
-begin
-temp_i_mult_result = temp_i_mult_result + d_i_buffer[j]*d_i_p_buffer[j];
-temp_q_mult_result = temp_q_mult_result + d_q_buffer[j]*d_q_p_buffer[j];
-end
-//#300
-c_td[i]=temp_i_mult_result+temp_q_mult_result;
 
-end
+On Fri, 29 Apr 2022 at 20:36, Neel Pandeya <neel.pandeya@ettus.com> wrote:
 
---0000000000005106d405ddd883fe
+> The 3rd event of the South Indian SDR User Group (SI-SDR-UG) will be held
+> tomorrow on Saturday April 30 at 19:00 (India time).
+>
+> https://www.softwaredefinedradio.in/
+>
+> The event is free and is fully virtual.
+>
+> 19:00 - 19:15 -- Opening Remarks, Introductions, Community Announcements
+>
+> 19:15 - 20:45 -- "Open Silicon Radio Design for Satellite Communication"
+> by Thomas Parry
+>
+> 20:45 - 21:30 -- "Introduction to Astrophotonics" by Yashodan Vivek
+>
+> 21:30 - 22:15 -- "Wyners Wiretap Model for Physical Layer Security" by
+> Tilak Marupila
+>
+> 22:15 - 23:45 -- "CaribouLite - Edge-SDR, the Low-Cost SDR for Edge
+> Devices" by David Michaeli
+>
+> 23:45 - 00:00 -- Closing Remarks
+>
+>
+
+--000000000000525e9105ddde8495
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">In the body of an RFNOC block code, I had a for in for and=
- calculation=C2=A0but when I want to synthesize it I was faced with=C2=A0a =
-clock warning in FPGA. When I comment on this section this error is disappe=
-ared...<div>So when I used a delay with tag # in some cases warning=C2=A0is=
- removed...<br><div><br><div>I:Errors:</div><div>[00:04:49] Current task: S=
-ynthesis +++ Current Phase: Starting<br>CRITICAL WARNING: [Constraints 18-1=
-056] Clock &#39;FPGA_CLK&#39; completely overrides clock &#39;FPGA_CLK_p&#3=
-9;.<br></div></div><div><br></div><div>II: Code section:</div><div><div sty=
-le=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monosp=
-ace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;line-hei=
-ght:19px;white-space:pre"><div>      <span style=3D"color:rgb(0,0,255)">for=
-</span>(i=3D<span style=3D"color:rgb(9,134,88)">0</span>;i&lt;<span style=
-=3D"color:rgb(9,134,88)">32</span>;i=3Di+<span style=3D"color:rgb(9,134,88)=
-">1</span>)</div><div>      <span style=3D"color:rgb(0,0,255)">begin</span>=
-</div><div>            d_i_buffer =3D d_i_buffer&gt;&gt;i;<span style=3D"co=
-lor:rgb(0,128,0)">//shift samples buffer</span></div><div>            d_q_b=
-uffer =3D d_q_buffer&gt;&gt;i;<span style=3D"color:rgb(0,128,0)">//shift sa=
-mples buffer</span></div><div>          </div><div>         <span style=3D"=
-color:rgb(0,0,255)">for</span>(j=3D<span style=3D"color:rgb(9,134,88)">0</s=
-pan>; j&lt;<span style=3D"color:rgb(9,134,88)">96</span>; j=3Dj+<span style=
-=3D"color:rgb(9,134,88)">1</span>)</div><div>          <span style=3D"color=
-:rgb(0,0,255)">begin</span></div><div>              temp_i_mult_result =3D =
-temp_i_mult_result + d_i_buffer[j]*d_i_p_buffer[j];</div><div>             =
- temp_q_mult_result =3D temp_q_mult_result + d_q_buffer[j]*d_q_p_buffer[j];=
-</div><div>      </div><div>          <span style=3D"color:rgb(0,0,255)">en=
-d</span></div><div>          <span style=3D"color:rgb(0,128,0)">//#300</spa=
-n></div><div>           c_td[i]=3Dtemp_i_mult_result+temp_q_mult_result;</d=
-iv><br><div>         </div><div>      <span style=3D"color:rgb(0,0,255)">en=
-d</span></div></div></div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><font face=3D"verd=
+ana, sans-serif"></font><font face=3D"monospace">The SI-SDR-UG Event-3 will=
+ begin in 45 minutes!</font></div><font face=3D"monospace"><br></font><div =
+class=3D"gmail_default" style=3D""><font face=3D"monospace">You can view th=
+e livestream at: <a href=3D"https://youtu.be/jYFDseIDZdk">https://youtu.be/=
+jYFDseIDZdk</a></font></div><br></div><br><div class=3D"gmail_quote"><div d=
+ir=3D"ltr" class=3D"gmail_attr">On Fri, 29 Apr 2022 at 20:36, Neel Pandeya =
+&lt;<a href=3D"mailto:neel.pandeya@ettus.com">neel.pandeya@ettus.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr"><div class=3D"gmail_default"><font face=3D"verdana, sans-serif"><=
+/font><font face=3D"monospace">The 3rd event of the South Indian SDR User G=
+roup (SI-SDR-UG) will be held tomorrow on Saturday April 30 at 19:00 (India=
+ time).</font></div><div class=3D"gmail_default"><font face=3D"monospace"><=
+br></font></div><div class=3D"gmail_default"><font face=3D"monospace"><span=
+ class=3D"gmail_default"></span><a href=3D"https://www.softwaredefinedradio=
+.in/" target=3D"_blank">https://www.softwaredefinedradio.in/</a><br></font>=
+</div><font face=3D"monospace"><br>The event is free and is fully virtual.<=
+br><br>19:00 - 19:15 -- Opening Remarks, Introductions, Community Announcem=
+ents<br><br>19:15 - 20:45 -- &quot;Open Silicon Radio Design for Satellite =
+Communication&quot; by Thomas Parry<br><br>20:45 - 21:30 -- &quot;Introduct=
+ion to Astrophotonics&quot; by Yashodan Vivek<br><br>21:30 - 22:15 -- &quot=
+;Wyners Wiretap Model for Physical Layer Security&quot; by Tilak Marupila<b=
+r><br>22:15 - 23:45 -- &quot;CaribouLite - Edge-SDR, the Low-Cost SDR for E=
+dge Devices&quot; by David Michaeli<br><br>23:45 - 00:00 -- Closing Remarks=
+<br></font><div><font face=3D"monospace"><br></font></div></div>
+</blockquote></div>
 
---0000000000005106d405ddd883fe--
+--000000000000525e9105ddde8495--
 
---===============8754392243702504102==
+--===============7099037682109217274==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +158,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8754392243702504102==--
+--===============7099037682109217274==--
