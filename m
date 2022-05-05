@@ -2,132 +2,113 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9BE251C242
-	for <lists+usrp-users@lfdr.de>; Thu,  5 May 2022 16:19:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 428D551C28D
+	for <lists+usrp-users@lfdr.de>; Thu,  5 May 2022 16:27:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B8BE7384B4A
-	for <lists+usrp-users@lfdr.de>; Thu,  5 May 2022 10:19:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7FB00384405
+	for <lists+usrp-users@lfdr.de>; Thu,  5 May 2022 10:27:12 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651760396; bh=XmMabTj9IFX6v9bX93L61uhg3cZ5UCtQgr4SRurKXfo=;
+	t=1651760832; bh=ytxlykhKFqYo0QL1Z0nQMfGvLCURT4t8Vysw3V2b8xE=;
 	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=MD0JCfACETek7wtI4zcEMQ4006+4RMKKVFzKv/HPOV+Du9d2CAq2JDVIfYCn03wKP
-	 y9oEKtTlSuQYh2/hbQjmOPgRHKGmMsSCO5WVVRViBnhoLSS06yqhkWwI25zYdFat9z
-	 plM/6I/Qht762WwAZcEUfWIRbJ5YZhKEThNraG9kf0rGL1bMxPX/QSvk2Q1EZoEYPN
-	 kZvFeEuGB67fkeTysmZD4M3yc9CK+2GFt7dLRzfdtYUKZebB9RUjHMOvqy3SHQV/ZH
-	 k0Qv6vorNPAGLaDUKetzoTGP3uewOBDwatbbVs/pggNUAFIIOFUA7UIPewLmnVImEr
-	 zhuaDC8wjQREw==
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 98FA638463A
-	for <usrp-users@lists.ettus.com>; Thu,  5 May 2022 10:18:47 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=bath-edu.20210112.gappssmtp.com header.i=@bath-edu.20210112.gappssmtp.com header.b="Zx6WroXO";
-	dkim-atps=neutral
-Received: by mail-wr1-f43.google.com with SMTP id d5so6316477wrb.6
-        for <usrp-users@lists.ettus.com>; Thu, 05 May 2022 07:18:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bath-edu.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:from
-         :subject:content-transfer-encoding;
-        bh=gVQhC3W++w6HZ+uaV04BOEyDdrMpmfs4ryq4ezGEqsI=;
-        b=Zx6WroXO/BQxVStbLTLhLv0/uPYBlEMHKiIxIxLIZptNcTypSbB81Xpj+nCCs/2GdM
-         Sl3UT8wrjayCpNt2DonBLzngs8PLihUwFSsLm0fLi8LilluocT+UrvH5zhlh8AJnL0QT
-         XYwJncZjCEZPYMCBAZ2P4xW2sR+liXq6yOIymJ97NWDH7sO8DAzMi3Rvw9/Gj8GP8pGF
-         DpwNKmwoy8Kh1eI0KxbUqtHvVjE07yrrhDrnUZQ2xoajzfnJAfQfz+joWafiNqC/urPL
-         x/H37UVes3urAxNBfvfpJaAkbO6eZE89BUxhbTCgm5M1rzjwlmaUsJ7pcXqroKriu6Ub
-         dlNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:from:subject:content-transfer-encoding;
-        bh=gVQhC3W++w6HZ+uaV04BOEyDdrMpmfs4ryq4ezGEqsI=;
-        b=FwDS91lLVd9flqtgXF9ZSD6H2MeP93p50RfpaxeVqUmX7E+oe+IDBHbXuTut0ypo+J
-         c3iHB/jF5zLGfUCE1DKKeIsxe6G7JWjnoSfQwp90Zta5if/w+JtyjNVj0XJoz+5o1LLA
-         X+vUsNCshQYUDR9sss2UB9WyDAzaV8ncvxeWgIx07E8jhiO28Ue5LDnhnyiUneFdNHt0
-         WqQopLPi6qS7K3m8tb84+wtwmO0/l6vW5YXTCxH46VsRbS6vrAsEMQkyeDq9NasAfyyE
-         1FYj3PqiUZ3fKGw9Z6YJB4reExj5mo8xvnT+J3z+YoU/Atl5vqnAjb/ZQ5O92V3SZwUW
-         FwHg==
-X-Gm-Message-State: AOAM531nZkQP+iXy7f50MLPQ2UKSNazjiGhjwWxNP0Ub7GBBU8tK394x
-	ytRlbKArb8UJw5RlhNGEQ96NVUMna8+phQ==
-X-Google-Smtp-Source: ABdhPJyNnSr+shvf0vw2tR2ddLofZEzt/apjpPC+HVWQijkblFPsZs1n2gPupsDMtiAg3jjY4DfnGg==
-X-Received: by 2002:a5d:6488:0:b0:203:b628:70d2 with SMTP id o8-20020a5d6488000000b00203b62870d2mr21162329wri.83.1651760326419;
-        Thu, 05 May 2022 07:18:46 -0700 (PDT)
-Received: from [192.168.100.144] (74.110-107-213.static.virginmediabusiness.co.uk. [213.107.110.74])
-        by smtp.gmail.com with ESMTPSA id o9-20020a5d62c9000000b0020c5253d903sm1295959wrv.79.2022.05.05.07.18.45
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 May 2022 07:18:45 -0700 (PDT)
-Message-ID: <a708bc85-d957-82a5-7556-cb030b973ef7@bath.edu>
-Date: Thu, 5 May 2022 15:18:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
+	b=VMhHC6lj1mubo/zMd0qMQJQPi/rI0APr+o1zSRlUNE/F3CikBLA70+tri+EMHoCLi
+	 KBI26Qax4nXGdxHBC84sXN2FOhHQzuEpE1hehEV+LRa0DXc5ysW1CgSMqkM89Js2rO
+	 GnbLWWh+RxnukPKrwm4ObDiB8BQDzIm7ti2unqK0QnKu6taw8natk6MecF/gd8sPfP
+	 Fhng6t0kUGZiPVyVQtsLXQKcRqAvZXoATmunay5NSBwzmIBYqklKM7AJDfQy7BYFS0
+	 11uFvgNs+YbcYcOqU7V5poId8yKJCKslIVZQU5mG6RS4NvUN9E+uIsltBAEXgDspT0
+	 cew1U8YMXFh0w==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id D80E8384BD6
+	for <usrp-users@lists.ettus.com>; Thu,  5 May 2022 10:26:07 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1651760767; bh=CNytOx3HmsRjQHdwQIaax+BNw4oZNFrtxzHvWfAZnJk=;
+	h=Date:To:From:Subject:From;
+	b=Eclr747SNn7gA8497C6n8Qub3/b+golf8LonEfSQHB/Bzf8wPU92+d9b7qq6GNILP
+	 gzL6RA7ONFz8P9a0T2W4VMGV6TvJfIIlBwsDfXCSx7yZ2tZQU4zfJooV4izEVSTnuT
+	 4A8l18jmV5nSPF5pb1DIPqjNQ1co12L7pXlp7BqU4TTFmLxPtyGuI5HF0An4ekZJOs
+	 D+GTt/QamEhsCVwMFIqU6ifUNgI/VnV5t4OmOab36F3vaMdzGIScWYBbbGJRdnjuRM
+	 qCooLo/O8TVVC1l99qUQqIeL+c4OhVDd4YzwnAVB9mlCNPS5vD6WhYdIdT9tmjSu7r
+	 5rSDqUpHn79lA==
+Date: Thu, 5 May 2022 14:26:07 +0000
 To: usrp-users@lists.ettus.com
-From: Peter Featherstone <peter.f.j.featherstone@bath.edu>
-Message-ID-Hash: 55EDMZA3C2GDJ7T436OCH3TAUFSSRUKY
-X-Message-ID-Hash: 55EDMZA3C2GDJ7T436OCH3TAUFSSRUKY
-X-MailFrom: peter.f.j.featherstone@bath.edu
+From: jason@gardettoengineering.com
+Message-ID: <JzMv7LC6STKbiZZnY4edY1dlA8xuLgAbuXH4WB1Zw@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: ASDIB5XJ22X6NK3GRMHVKVB3ZKLJUJ6Z
+X-Message-ID-Hash: ASDIB5XJ22X6NK3GRMHVKVB3ZKLJUJ6Z
+X-MailFrom: jason@gardettoengineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E320 : setting different frequencies on different channels
+Subject: [USRP-users] Dropped samples in sync across channels?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/55EDMZA3C2GDJ7T436OCH3TAUFSSRUKY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ASDIB5XJ22X6NK3GRMHVKVB3ZKLJUJ6Z/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Type: multipart/mixed; boundary="===============4250166257618651216=="
+
+This is a multi-part message in MIME format.
+
+--===============4250166257618651216==
+Content-Type: multipart/alternative;
+ boundary="b1_JzMv7LC6STKbiZZnY4edY1dlA8xuLgAbuXH4WB1Zw"
 Content-Transfer-Encoding: 7bit
 
-Hi all,
+This is a multi-part message in MIME format.
 
-Some help would be great.
+--b1_JzMv7LC6STKbiZZnY4edY1dlA8xuLgAbuXH4WB1Zw
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I have an E320 and would like to capture IQ samples on 2 different 
-channels at different frequencies.
+I wanted to verify something to make sure I understand how things work.  =
+It seems to me that when using an X310 or N320 (the two USRPs I happen to=
+ be messing with), that when I am using both RX channels, if I change fre=
+quencies on on one channel, both will produce time tags in Gnu Radio.  I=E2=
+=80=99ve looked through the uhd and FPGA source code and haven=E2=80=99t =
+seen anywhere where the two channels are linked together on a freq change=
+; but I suspect that I missed something and wanted to verify.
 
-Is this possible?
+Also, it seems like when I change frequencies, I may, or may not, drop sa=
+mples.  This makes sense and is more prevalent when I am using a higher s=
+ample rate.  What is weird to me is that it looks like when I again chang=
+e the freq on a single channel, both channels will drop (or not drop) the=
+ same number of samples.  I assume that this is to keep the streams in sy=
+nc, but again I wanted to verify that.
 
-When I run the following:
+--b1_JzMv7LC6STKbiZZnY4edY1dlA8xuLgAbuXH4WB1Zw
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-
-usrp->set_rx_freq(2.1e9, 0);
-
-printf("Channel 0 freq %f\n", usrp->get_rx_freq(0));
-
-printf("Channel 1 freq %f\n", usrp->get_rx_freq(1));
-
-usrp->set_rx_freq(3.2e9, 1);
-
-printf("Channel 0 freq %f\n", usrp->get_rx_freq(0));
-
-printf("Channel 1 freq %f\n", usrp->get_rx_freq(1));
-
-
-
-I get:
-
-
-
-Channel 0 freq 2.1e9
-
-Channel 1 freq 2.1e9
-
-Channel 0 freq 3.2e9
-
-Channel 1 freq 3.2e9
-
-
-Do you have to configure the channels or something?
+<p>I wanted to verify something to make sure I understand how things work=
+.  It seems to me that when using an X310 or N320 (the two USRPs I happen=
+ to be messing with), that when I am using both RX channels, if I change =
+frequencies on on one channel, both will produce time tags in Gnu Radio. =
+ I=E2=80=99ve looked through the uhd and FPGA source code and haven=E2=80=
+=99t seen anywhere where the two channels are linked together on a freq c=
+hange; but I suspect that I missed something and wanted to verify.</p><p>=
+Also, it seems like when I change frequencies, I may, or may not, drop sa=
+mples.  This makes sense and is more prevalent when I am using a higher s=
+ample rate.  What is weird to me is that it looks like when I again chang=
+e the freq on a single channel, both channels will drop (or not drop) the=
+ same number of samples.  I assume that this is to keep the streams in sy=
+nc, but again I wanted to verify that.</p>
 
 
-Thanks,
+--b1_JzMv7LC6STKbiZZnY4edY1dlA8xuLgAbuXH4WB1Zw--
 
-Pete
+--===============4250166257618651216==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4250166257618651216==--
