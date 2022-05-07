@@ -2,172 +2,161 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A356C51D6EA
-	for <lists+usrp-users@lfdr.de>; Fri,  6 May 2022 13:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B302051E6E4
+	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 14:23:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 67179384829
-	for <lists+usrp-users@lfdr.de>; Fri,  6 May 2022 07:43:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6262D384BA1
+	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 08:23:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651837389; bh=Ch4RHqZ5MAbt2cvFyJp9PEg8j+qsuxg4gqvqG/0FzQU=;
-	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=vz/x9i4CVOz8tuNYyNwyTwXfNycL4PEK7eucnw0/wKcqeOqwY5hROtiUMEzCE2WPl
-	 yCmLzPLTWN7edxUyyVQanNYAA0eYQWzOiMG+v+PUm4hEg4iVgcj07/3QyfAjC/010F
-	 y70D0/PGNJ44jxCH7FNULWVOsXJZc/nbuGkguvAcnK/pCn2cMEr5k3Fs+SS7UrZown
-	 lEo2l11gCUNXWJf0FObvfGQbqlmQLiCEnVnOgZpjHSZijBOlSTi8RFa60NdvV42Y5Y
-	 fLHyygvtA9NYLtJaxYP6eoq34wkGkSMQTXbajQueEAqq7JtruUB8M4QqBDEvF4NqNo
-	 5G2Wb5hZ/8UmA==
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2092.outbound.protection.outlook.com [40.107.104.92])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7EEE0384828
-	for <usrp-users@lists.ettus.com>; Fri,  6 May 2022 07:42:05 -0400 (EDT)
+	t=1651926201; bh=viJDuU3RSmibq0+lvnIxF6AwjMnuFfOmG5HjKWy/sPA=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=0dMcXGJQC/5ozZX29h/gd55i+U36utKhFCS3nVdo2S9kNl3BPMI0Cgi+l7djDBez6
+	 uESJGDXjOo1CNsyhoVF6ssdobFzqPU0YgLFTT1r4NZqZ19AjCL97ehXvnHzKt6vKvB
+	 Sftx2GSy8MzMXAG3c3FmdwAn8umb/r0yDlIIMpTWVGWN/9myEOPvn3p8x77AkarIJ+
+	 T4skDZp5dQjBixrrB5Y779PU+bPobS9OlNE43D/SBfR8fHGsU9YWX3cJ9f7GxcQ9Pr
+	 6EDZ189KlsgCszkYHNnQ6sqxSIiyAfTe3AIAPjmsb2QKq/yZMuD9FYh83dPoSFwY/2
+	 3GXpDAPyes6ZQ==
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com (mail-cwlgbr01olkn0147.outbound.protection.outlook.com [104.47.20.147])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4A7E538482D
+	for <usrp-users@lists.ettus.com>; Sat,  7 May 2022 08:22:11 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="OFlvKlFX";
+	dkim=pass (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="bAwNKO0I";
 	dkim-atps=neutral
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U7ylLvJ1awPvBzMJShhFLDUzGsqXr/pYA96hctEf1DZmt6gtJrw3CcLpSqKze63t6Ob0VikILg/NYD0vBNCbkBZMACS2uf72Q9TdpXz0/gXxC7iKQzUE3av2EkHjQCyTVdtxzxU1x3zyGG3wfSPO7u23gxE4BkPqpmutiHnKPgJKxRfXbISkES9kJ5csXK6d4T/y3Y8X8YhHeOeLd5cZVNRUxb/yQOk6NKsCuEM6+Hfs7ERS5FmvifhEpy2CP/QbFxQOCEmgbUyXW7bN8EU7hhH6fSlGLqW1eMMW/Yhl3YhBQyxbYF9ElWAHRAPoorRErAXCAn3Ua045anzAi7siDQ==
+ b=l25dMh+7lPfqoXhWFgM4v3ccwepRieNUbcxEZ2PwbqXORdOzG8F77CGFLhBv3tcCxuVDOdrzqjOTzKQFt16RqjmeXXhOSBla/C+nod7CA7sG+F2aEtSDMtLsN2mFsl/bh25Qhg1Pprn6mjXhyVE85Hwyxg4frMYYAsLbKJLdYxg7v9VGBau6KSUWP0n5vTkw616cS5QpfLrz02xj5ytCHhhJlvlipMD97c4xKtwJxNjFRiHPciKXki+55SdxPd2MFt8c3wnKYepMkk6PIjmfZomcjT5Av81VdEK9UValhVlTc1M0XownUh3CpdQ3wFulvSeDWAw5nKis35w6j9+yNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2ySKS0WoPrdOf94kPoj6Gwq0XA2Aze+mKqimHLZoxyA=;
- b=ivfoDy+8be0y3CYbWx/6DMoCL1+/XzYKovmpy+qnUWFMgpyvgjo0IJ9GJyAvNSnsKoswLQFQOSRw6w0+ZXv5jyZojUOV7JMEirhJ5wDoVkWy+z9r2I43WC7X0EW3AWaWH1t7BAh/yce79P3O1l3ALZqQV0TKDPgu4+oMZhndwC9ED8jzT1R/xVLyLrbV2mBPlUO2/AoClxTEeAzY+JTj+oXae8qzv1kdxJlGnbZxvxvgQNgwWGwsyP8fFr9E04BIbFdyJBTTpmt/3Uide3ky7ClZPEl4Y1bQaQgMGLOPINxd/vzeh8+nrih01Swqj7yWU0vU8w6FLW8nPBQxgA6isA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ bh=gLpGRXLhSUYodQDJE0EMmQidN1ZiSwbkbtNt3xZmWjY=;
+ b=OoES0OT3u92DdYXmh0kq6BMh5Q4dq+qO4ju6l0MxaZ0LmJoUYZ2gnIVVdP2lHoemZzVroj6BGYFV+VJgagmdgcVAVyUpDg2O5rS7sB4pQ9heHeR47o0CrQkHcgBEDaChAUPCPLbeG4zVMROCSA4TF+G9DEu1SoGmGO6xks5dU0nfbcoIz7jAk/agetAsth9B033yfYeSzkmjB5YBWpgunXODZxZZy6wMKcsNEC8RAaBhrXskkDSo35xHUxCb2Ny+wORrxGiDW2V8n69dcaJ/vs/dycqsO1XGYj7D6jI4Wg8HjVZe+PPFjy/u47lrpHjcGV6vjgrjXY9sTkVtfH8oCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2ySKS0WoPrdOf94kPoj6Gwq0XA2Aze+mKqimHLZoxyA=;
- b=OFlvKlFXPJsDdFTINTIGxjKUP4l33iRxqJHZRp5tL3YF+SFd0Lw6RhsWJqUoaxWmAU4dQ1juLNV+fUQ17e+JcXNSMY6oSMLcSwzWbKtTCmNElKZwgtCcaveM502qnx0O2ElbJgMvUzFgGe2PYCp6Wd1FpT0vz3tt2LkfofX2e8w=
-Received: from DU0P190MB2026.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:3b5::16)
- by PAXP190MB1583.EURP190.PROD.OUTLOOK.COM (2603:10a6:102:1bc::17) with
+ bh=gLpGRXLhSUYodQDJE0EMmQidN1ZiSwbkbtNt3xZmWjY=;
+ b=bAwNKO0IjIw97rnruwDB52SweuzwFJdvP4gMgcflhsk1Jx5JoXP9E5UQQXzX6SnrhdOGIrSM1CqcNizmTdhvSG6Y34KoekiczcS6s2hehqUkEiI30mYrFjSfvekmB1ThN/+wu32axPGEkfqZ3GSsqwGM8mOiwPInRb0j1hFXoHCUVmsyblrBqbFH+4PtAPb5MhM0+qSjyT3Viv+VE/clEjEbJnoykOVstZjZ0v2E9URQsTYPuNsQl2/6DrDa+4zRDtXk1zpmHysmfZ/jEBWXg7y6Lxtlza5MAaTanj4JrvZ9LhMBXZKcLLk1GASh/gT5arIefy18JlPVsAA3Kx6EBQ==
+Received: from LOYP265MB1887.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:f0::14)
+ by LO6P265MB6189.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2b6::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.18; Fri, 6 May
- 2022 11:42:04 +0000
-Received: from DU0P190MB2026.EURP190.PROD.OUTLOOK.COM
- ([fe80::b132:ee16:5e1:f02c]) by DU0P190MB2026.EURP190.PROD.OUTLOOK.COM
- ([fe80::b132:ee16:5e1:f02c%7]) with mapi id 15.20.5186.028; Fri, 6 May 2022
- 11:42:03 +0000
-To: "  usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: USRP X310 with GPSDO : clock source parameter
-Thread-Index: AQHYYS1qtsJsGZNqI0eblaoHJICwHA==
-Date: Fri, 6 May 2022 11:42:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.20; Sat, 7 May
+ 2022 12:22:09 +0000
+Received: from LOYP265MB1887.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::4095:ea73:feb:afc7]) by LOYP265MB1887.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::4095:ea73:feb:afc7%7]) with mapi id 15.20.5227.021; Sat, 7 May 2022
+ 12:22:09 +0000
+From: ?? WANG Cui <iucgnaw@msn.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: X300 simultaneously transmit 2 signals of different sample rate
+ and center frequency
+Thread-Index: AdhiDQ/yjHyFHg4pSxyutwSmBSIADA==
+Date: Sat, 7 May 2022 12:22:09 +0000
 Message-ID: 
- <DU0P190MB2026B4775C1C68097F2928BD94C59@DU0P190MB2026.EURP190.PROD.OUTLOOK.COM>
-Accept-Language: fr-FR, en-US
-Content-Language: fr-BE
+ <LOYP265MB1887CCC056B0637CA4A49C74A5C49@LOYP265MB1887.GBRP265.PROD.OUTLOOK.COM>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ulb.be;
+x-tmn: 
+ [TfBhteeTl+xHxQw2R9bPTHkNIT+Xp5EwX/6hayG5CHFnhOsAkE+JwF8GbcsGfclEeln/pP5tm3A=]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8d124e4f-61b8-4934-8cc0-08da2f5570e8
-x-ms-traffictypediagnostic: PAXP190MB1583:EE_
-x-microsoft-antispam-prvs: 
- <PAXP190MB1583AD8EFDFB18460B2F769F94C59@PAXP190MB1583.EURP190.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
+x-ms-office365-filtering-correlation-id: 457434a2-0ae4-46e9-9652-08da30243540
+x-ms-traffictypediagnostic: LO6P265MB6189:EE_
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- kHcIhhXQareHTkFez8knOWRvYOzLTdHMlAgeeTxCDap6co4X0jnVyqdB0VWKMOXMZ8HLlDJqQq+7NfAJ/lkDHxQ7OZChHgJtSZoT/LpJYOqq08H77n5wgKfOaqye6Sr7UzJVbYp+y+QjA82W2I8611gDZaSiDS/2ftlUjIcGvuB9gxjtOg+BJDNEuOEGzYRlr+SCcCN5cf/jVFtqK6XexmuvdZiA4V8ELYazgizFMbWs3Qb8YvQk/NsBa6cvf26p6TqgELj6+ipR0x3XOag9OiLwTnapiyrN7E/rdYQGsQY6bSOnI3AAp9+4XguBaoC23xEOka0+MBOCdTsIHVa5DNPTiojlAwWyv2skZ7FqynhUb9Ez8634UxCllwQb/SoMDrcDKeCvxzLBYuODdffyLTrqMdigWKOkwrA+kEOtFAhWM+GCsf0fxJaozRSdHGY5CuuswPHUMqq7lP/Jheliknyzv2ql5IzWR0wc13Ej35rEIRB9GMHz26OOAQaeBT4GN2gOpYLHxybXJsJZhpOojwb242dtCi2hgSu/QFW/nugPm1btjtzyQhK023DZqx9isPI6QxyxpMHjFiLKrspKDw07cptpypuqzfeNxulo0/rvC7STedZEjcp/h5Qf5NjfXBHA+egjoKS20mJIMcYaxi4uge1ZOscCzYk1QED9AMrVsOWRPJ6eWwgT4+GJhWx306pa8tmT2g/lq+EHA1nXKQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0P190MB2026.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(71200400001)(316002)(508600001)(786003)(6916009)(55016003)(83380400001)(5660300002)(91956017)(66446008)(76116006)(66946007)(66556008)(66476007)(64756008)(52536014)(8936002)(2906002)(8676002)(4744005)(33656002)(6506007)(9686003)(7696005)(26005)(186003)(38100700002)(86362001)(38070700005)(122000001);DIR:OUT;SFP:1102;
+ 20+CYbyUq/FJ6eHhqARvELmmfUNEq8ADZjCgK8T1+G140fEL05Y5r6U3ymJARfYaQ6D6SfRs7IRYR6vpteQF89M4ezDV/ChjesErV+028FtMP1rk23AfnwaYZe1Xzb4sKdU2eqn4zLLlnnTobuGU3FROeuVecOuCK0wEf7veEvC+0BSBDTWRAB9Mzsbm5LcpQ6PrflDLoaqaehonCFkvdDVzPvQIPxnEvqrswenoCoNNOSoNYo7tHa0L11hHxRX2LZIHD+pyz/YxyG+aMw+Hm0G+ct1y60SPQ7KCIDp5keFjSO0ENJgejXGI9cA3Q4Eig34Dos/aanqr5u2BMJCN+w6y6/dog9PhTBJYzwm4UNGq9+Zjlb+FI8VKFxGAdOxP3CrIYoI6ovnRa7wNkEfBiI/hgcT7ZihTX1aKs0YQOOhoIX5Qr757P+LV8z2nn6Mbn5RgFOyb6ZCWp0aNFmUjNN8HYDP/xhSPlvWd9g+qxUltekqieiHrf3es2tnTd/JPLlf30/p0fDNdEZnWJ0EezGKHXEXLZDbRVCi2gc8FpURRTyKHE96EDRGYUFJaf2bAVo0zdVoBxmB/sFhYmZ8+jPFvOXOb0yRHTUrd9xMi9JutDOLd0p3ZvBMuRVjeigUe0wEHmHDA9XWi2gX8UxA15A==
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?Windows-1252?Q?HvXBqfCI3znA+GCaaWLRxfaRRFbOQEIYTicyEjOzrCArcOi/fSHd4mr1?=
- =?Windows-1252?Q?YYQZoTRpOziXn8qnCcQse2UD7MRJzfIMZGG/ttvhN8EgO0FnEdv5h2JZ?=
- =?Windows-1252?Q?AUwJDgLlnm6S0TaAcL9PgntbTUsAfYhzrBHJnaK/C0fVGe8TaCUaz9nw?=
- =?Windows-1252?Q?1uXy5SU2Oam82Te0fldpOMnhSQuB0prlBNmP1D2ZRp0RTAiBP+kJ6R0I?=
- =?Windows-1252?Q?opG0L9NZBI1uEOBFKfU9bF7lhxiq74mJTxMz0c8GxO8CFuMj85OVb1qm?=
- =?Windows-1252?Q?U1bhME2akxMlNheLarA5MZN/a0K5YWF+4LCmhPDHPDd4tyb4fzKjnayN?=
- =?Windows-1252?Q?VkcBvm5LtZjG3jXyrJpeNbfq7MOUgJK8MWK3uwF9iBUYmqJeKFgwkt8K?=
- =?Windows-1252?Q?1e6Q3pCVIF9o6RTQveL3WY1uYOfrUicCciTDFIRdjOnyJYJ/+KoWO/jw?=
- =?Windows-1252?Q?fcAHmgd0FkVBoXFnyXNwvyKD3Tu4El49TnnCFCoxLI0Oaum5UfXpLuK2?=
- =?Windows-1252?Q?I9JyaeCu0JBC33jSrz61r0SfW8d5IXnE9JhcLsBQD182HVEpUXv/Ofru?=
- =?Windows-1252?Q?VfUlD4GBx+2uSs4PgcQNtkUGb9dhiQo7irr0sYgFRtx+2YYOQVqoJFwy?=
- =?Windows-1252?Q?bGA1zm+hSGN3pUpFSsACe5hi0JiWkBMOGhF83a5gNgP7H9yHjbXsezSw?=
- =?Windows-1252?Q?qdY6JbbrfV/t7LkwyoIVGUnHNr8A2LzyyTvhKGT9jQhCR6WDAthgLcsg?=
- =?Windows-1252?Q?hNvtI/RCbixtIHSv7RuLA83aEUSVoMw5T7YJdJckOrAfHatNfJuKlrgV?=
- =?Windows-1252?Q?axu9zsX2oXlSc8Gda/UQevBR+P4Wk+lAJInhIt2BF0ay5lEJ3Wqqbw/b?=
- =?Windows-1252?Q?a4qXwD0fBH1qsjpL1gc1ivju5CKLfXILAJtE3k/eILcc7vIOT4ZQltlv?=
- =?Windows-1252?Q?HyJIwnE86ifk7Mv8EH1agiv2D/T/hDlwnXfnvdS3ivRW+GJWDiqEnFs5?=
- =?Windows-1252?Q?rivlMFKrS4pDN6MnXtNDTr+HR2tNitZqdqbfnA81RYo1Wio7jQtth5Tq?=
- =?Windows-1252?Q?wzHF3VfMv6pSNqo/qZJrJGwfnz/QLhPETaMtvvChuyciylE+LO1TYW3Y?=
- =?Windows-1252?Q?okxvYkOiUjWQE72UQSat3HDC5i1zBjtvs6w1eFe0cj6H3dijorgwX0FD?=
- =?Windows-1252?Q?JFJTlZqgMd1xhKoydhPeQc10gtJ+qDep5wPYl87vnge5H3W6ln8Qo2Tv?=
- =?Windows-1252?Q?bgwUObZoIT6sRjHQDZFeUiIgrrBNWPKaLYtYoeRybG/Vq8NF0+Qgz0bG?=
- =?Windows-1252?Q?b7Xzv1G2S0NycggEs9JVgfnlNKvMs2M17g7OjXc7eMqro5nlPBV6d6Jx?=
- =?Windows-1252?Q?mCvmLvXRfMOTjTpy7kvl2W1r8ehKkvLjV1iSM1r1RFbRjFZNLNLFMKfL?=
- =?Windows-1252?Q?dtoWcYK1KhihqLVVdwx7qciluk7StyVXSkU3dtKuP5vlnjP1vMFP/fOP?=
- =?Windows-1252?Q?1iHcVSCID+DSljExWzHoT4J1Jy+wtRP5WYqcg9+0kCogg3G5msg22+DZ?=
- =?Windows-1252?Q?9i4U6lTBGM28IP49Rh7wEDuhvJDp+rvNIty4vzCTaeWEeo/EP5405kND?=
- =?Windows-1252?Q?/VgH2Mo+Pp4FimnTbhlIequyWpvndZfTAAs/np/zSkgp2NMPyjclE637?=
- =?Windows-1252?Q?WdqSekqRMEg3cn9ra8zD212PqLu2IXssOjLnwaqMd2vsiXPW07Ws4D2d?=
- =?Windows-1252?Q?6C9GYP1aXUPhw86T9sxnRQgBblaaejbsCLExgNoyFIF3JtenQRSzW166?=
- =?Windows-1252?Q?zFYK0jk0U+kJWPV+h/FN5Gvv1Fo0H8s7XN6u3GFYrLBJVsCSE93zBLRW?=
- =?Windows-1252?Q?CxUIbt/2zriQ+xkqtf1633honF+HTKkIINk=3D?=
+ =?us-ascii?Q?YC9LxfXd9yw5XWjEmixxGK28gY3Mjor3JTDFEPDkJ5f0PcSy4vADG87geCv/?=
+ =?us-ascii?Q?88d4nkEomc65nh01aG5mlO7MODuXkEGVRwKQnYxvcSBUh+XyQyMV2T8GvOCa?=
+ =?us-ascii?Q?BvI9ddeSWgMqmqIXdzbDOL6OR5IyiZr+c8f3dezEPNqYmsubhTLCSYlRMxaE?=
+ =?us-ascii?Q?h+8NUKLVo3HG+ciivk3whujqAjRv0fjF3Ndl8wMctTLA26UNIC8oL3RMDHmU?=
+ =?us-ascii?Q?dNRrNupSue1G7AwBnIR/gBjY4Pth2+dCMGXa8/J/VeQlg+3WH3RR3Ah5rO/e?=
+ =?us-ascii?Q?eriZfVFCn8UOEj1l6o3kfBnXGSxGT3w75nY2SXPQ0ZddP0ZwEEOot4xwFMdd?=
+ =?us-ascii?Q?rjaNOHK31P+3QFvDwpzGdSFN7wQWJSrlfxHFiNMLazICHYTZUPsaiJLdmGQa?=
+ =?us-ascii?Q?juRiMXgaoxoPh54ACarBHSz5Pos7EwhbMIAwcywtQHWAurddfgWX+72/g8cJ?=
+ =?us-ascii?Q?GxoGN3hUGiCJ5vJmhtWc8MGwf70Y7xXVkEuq6iSY1ydZLkGJGrs4QBI2wCq5?=
+ =?us-ascii?Q?7HZ16Ew36tyC8RM0ZCpZl29Ei3k5pNyHkBXi+l6DcD6aT2/lKMZzs/1hVN7m?=
+ =?us-ascii?Q?57RfxxRUIgOgavxq1pBgv/yL2NAF7HChHEMhe2cZiDwY7t5nClPXCFt4rt3u?=
+ =?us-ascii?Q?vms369QbwQGhCsMZD9z+7MuTfLifUS8INu2ZkOZRYcEPg76wt42CSMOtXlXK?=
+ =?us-ascii?Q?d/0KBItLc4htJF42TJT6aRh3ZJV01J3SQz5+1CWOv/cno2FdfwphlT4xkXnd?=
+ =?us-ascii?Q?cAghTUQqHTHdCWj4e5yZCsQjmXdeKCsJM7J+PfB6U92f8aX3gEF/SuCFetf3?=
+ =?us-ascii?Q?PvnUJlE6TbTpWGoI/BIATXIUFRbwFrJp3AHxbLkUQIXNU0GmYBx6afX91ucw?=
+ =?us-ascii?Q?VjRzj94Mz7LbTQ3KmPSzvYdZDi/iwaFVSGyb9IL8S+CI+Ara5qK2B3yz2ESU?=
+ =?us-ascii?Q?6e6yQRDSQqvDWiHej/rllYYOZnzDEIUmwH3ZD/fPJ3UhNEXkZm731TLNJ4/p?=
+ =?us-ascii?Q?jMWTuBatQY0AeMYssex0oXwjJitPopZ58MLBG5MpVRkCdcnKFJj+8WvSNeFT?=
+ =?us-ascii?Q?0c1I/KI/vNviXaJqQxaQ3P62MoMg7HdEhiEIbMts0C7oXSXT+gb6AhTrqBYP?=
+ =?us-ascii?Q?HKW2mOOv06SGOfa2lBvy56Zk6HBvJF2gTzyByQCTNt0n2Y1y9bZZ3AxtL/In?=
+ =?us-ascii?Q?gtQlg0wVUgA0mVdihQnFgM7DjiphEj9yJxLVtV+Jwu8lXMSX5Y6rlhrafwwv?=
+ =?us-ascii?Q?g5m1Bf25G2yKATELDh7mMH+OdLdSPIoQ8UD/seJeJ7JS0kL2YV/ZfE+VEWXT?=
+ =?us-ascii?Q?cYQ0cFFON2xHMvH1Ye1tXKbMjV3Jypdcqs8jok8Otdzze+IizUYBgVvLbCb4?=
+ =?us-ascii?Q?hwY2S6YDAlTfViFVbmI6GXmJSDpF5ysEfoQmhb5kETGYnwlfnny52BgR3Qt0?=
+ =?us-ascii?Q?2czv0ESDzmFsg/ggvkNll0T8bOJ1kY/jGUJxrXiD7vZV6wbxDX16/Q=3D=3D?=
 MIME-Version: 1.0
-X-OriginatorOrg: ulb.be
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-5e42a.templateTenant
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0P190MB2026.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d124e4f-61b8-4934-8cc0-08da2f5570e8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2022 11:42:03.9048
+X-MS-Exchange-CrossTenant-AuthSource: LOYP265MB1887.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 457434a2-0ae4-46e9-9652-08da30243540
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2022 12:22:09.6102
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1+i9KnwZwWXQph+izcTlJSEiWMt1Ds/vV5R7siVRq/DXgRxYQzetCquVDZunuUgSiQhQ9UGYP5ejz0TADVEVKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXP190MB1583
-Message-ID-Hash: RYSP56I54DRYKAZCDSMIDT63L5OKRZOK
-X-Message-ID-Hash: RYSP56I54DRYKAZCDSMIDT63L5OKRZOK
-X-MailFrom: amelia.struyf@ulb.be
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO6P265MB6189
+Message-ID-Hash: 2SGLEB7FHQL3Q6LRTFI2RWW5K3XA75T5
+X-Message-ID-Hash: 2SGLEB7FHQL3Q6LRTFI2RWW5K3XA75T5
+X-MailFrom: iucgnaw@msn.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] USRP X310 with GPSDO : clock source parameter
+Subject: [USRP-users] X300 simultaneously transmit 2 signals of different sample rate and center frequency
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TDN2NT5LUQUAQVZ4TZ5KDDI3WXUDBVKC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5WPPR735ZCQ3R6BEGZGPR45TDCYJ6OVQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?Struyf_Am=C3=A9lia_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?Windows-1252?Q?Struyf_Am=E9lia?= <amelia.struyf@ulb.be>
-Content-Type: multipart/mixed; boundary="===============4724309754330500921=="
+Content-Type: multipart/mixed; boundary="===============1898874522642942039=="
 
---===============4724309754330500921==
-Content-Language: fr-BE
+--===============1898874522642942039==
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_DU0P190MB2026B4775C1C68097F2928BD94C59DU0P190MB2026EURP_"
+	boundary="_000_LOYP265MB1887CCC056B0637CA4A49C74A5C49LOYP265MB1887GBRP_"
 
---_000_DU0P190MB2026B4775C1C68097F2928BD94C59DU0P190MB2026EURP_
-Content-Type: text/plain; charset="Windows-1252"
+--_000_LOYP265MB1887CCC056B0637CA4A49C74A5C49LOYP265MB1887GBRP_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Dear all,
+Hi,
+I searched around and still can't get clear answer, so I would seek help he=
+re.
+I want to simultaneously transmit 2 baseband files which are different samp=
+le rate (one is rate 2.5 MHz at freq 1.5 GHz, and the other is rate 8 MHz a=
+t freq 1.8 GHz), and would like to utilize 2 daughter boards of X300.
+I tried to configure it with 2 multi_usrp objects, but the call failed when=
+ get second tx_streamer (however, the first get call succeed.), with: Error=
+: RuntimeError: Multiple sampling rates downstream of TX terminator 0: ...
+I know X300 can transmit/receive 2 channels at 2 different sample rate, jus=
+t wonder is it possible to simultaneously transmit 2 channels as described =
+above? Or have to resample one file to the same sample rate of the other fi=
+le, then transmit together?
+Thanks in advance,
+WANG Cui
 
-I=92m using USRPs X310 with integrated GPSDO. My goal is to compare the qua=
-lity of different types of local oscillators but I=92m confused with the cl=
-ock reference source parameter.
-
-When the clock reference source is specified as =93internal=93 will my refe=
-rence be the internal TCXO or the GPSDO? Similarly, when the clock source i=
-s specified as =93external=93 which of these two clocks will be the referen=
-ce?
-
-Thank you for your answer,
-Am=E9lia
-
---_000_DU0P190MB2026B4775C1C68097F2928BD94C59DU0P190MB2026EURP_
-Content-Type: text/html; charset="Windows-1252"
+--_000_LOYP265MB1887CCC056B0637CA4A49C74A5C49LOYP265MB1887GBRP_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
-hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
-fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -175,53 +164,73 @@ fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
+	{margin:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
+	font-family:DengXian;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:DengXian;
+	color:windowtext;}
 .MsoChpDefault
-	{mso-style-type:export-only;}
+	{mso-style-type:export-only;
+	font-family:DengXian;}
 @page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
 div.WordSection1
 	{page:WordSection1;}
---></style>
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"FR-BE" style=3D"word-wrap:break-word">
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Dear all, </p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I=92m using USRPs X310 with integrated GPSDO. My goa=
-l is to compare the quality of different types of local oscillators but I=
-=92m confused with the clock reference source parameter.</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">When the clock reference source is specified as <spa=
-n style=3D"font-size:9.5pt;font-family:&quot;Arial&quot;,sans-serif;color:b=
-lack;background:#F9F9F9">
-=93</span>internal<span style=3D"font-size:9.5pt;font-family:&quot;Arial&qu=
-ot;,sans-serif;color:black;background:#F9F9F9">=93</span> will my reference=
- be the internal TCXO or the GPSDO? Similarly, when the clock source is spe=
-cified as
-<span style=3D"font-size:9.5pt;font-family:&quot;Arial&quot;,sans-serif;col=
-or:black;background:#F9F9F9">
-=93</span>external<span style=3D"font-size:9.5pt;font-family:&quot;Arial&qu=
-ot;,sans-serif;color:black;background:#F9F9F9">=93</span> which of these tw=
-o clocks will be the reference?
-</p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thank you for your answer,</p>
-<p class=3D"MsoNormal">Am=E9lia</p>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">I searched around and still can&#8217;t get clear an=
+swer, so I would seek help here.<o:p></o:p></p>
+<p class=3D"MsoNormal">I want to simultaneously transmit 2 baseband files w=
+hich are different sample rate (one is rate 2.5 MHz at freq 1.5 GHz, and th=
+e other is rate 8 MHz at freq 1.8 GHz), and would like to utilize 2 daughte=
+r boards of X300.<o:p></o:p></p>
+<p class=3D"MsoNormal">I tried to configure it with 2 multi_usrp objects, b=
+ut the call failed when get second tx_streamer (however, the first get call=
+ succeed.), with: Error: RuntimeError: Multiple sampling rates downstream o=
+f TX terminator 0: ...<o:p></o:p></p>
+<p class=3D"MsoNormal">I know X300 can transmit/receive 2 channels at 2 dif=
+ferent sample rate, just wonder is it possible to simultaneously transmit 2=
+ channels as described above? Or have to resample one file to the same samp=
+le rate of the other file, then transmit
+ together?<o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks in advance,<o:p></o:p></p>
+<p class=3D"MsoNormal">WANG Cui<o:p></o:p></p>
 </div>
 </body>
 </html>
 
---_000_DU0P190MB2026B4775C1C68097F2928BD94C59DU0P190MB2026EURP_--
+--_000_LOYP265MB1887CCC056B0637CA4A49C74A5C49LOYP265MB1887GBRP_--
 
---===============4724309754330500921==
+--===============1898874522642942039==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -231,4 +240,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4724309754330500921==--
+--===============1898874522642942039==--
