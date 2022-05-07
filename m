@@ -2,266 +2,238 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE04D51E79E
-	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 16:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7553751E7B0
+	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 16:11:05 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 235BE384B59
-	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 10:04:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 693B1384DB7
+	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 10:11:04 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651932278; bh=ZfcfI5rLX4T1x17nqQfOPW//9BKKPhtgRS4Q1iS1A2A=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=S9ndj8EDFjuR9X8V/j8FmVkwNPjo5WX6p3s7UswcRDP8KgXQ+gOnD7zHfIyDvewhX
-	 EmNE6pbBtPjPjBkPkR4ZcCGiRWFxD9eso6JI4yswPRCsSZpapsV6JYDzjun8Txz4LJ
-	 GX1oSuiGVwWUwDVRdz346WBCJr6JuCf5u/K3/mxjYsuQSPJMHMsaHQeFJQR4ZL5VqK
-	 ZFCtcoVfEtoTPRaHbXr0CS9FCg2/D5j8XfTrb9HRF0FyIRbP6ZXQ8pHTuGiYzdMI3L
-	 EYjCJznZGe7uTV1UNQPC60rduwqKq1TDN/9gbHtxtG/96MIOuSysvkVxvmuPdwrXR7
-	 wlXm+rwEcg29w==
-Received: from GBR01-LO2-obe.outbound.protection.outlook.com (mail-lo2gbr01olkn0180.outbound.protection.outlook.com [104.47.21.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 363D5384980
-	for <usrp-users@lists.ettus.com>; Sat,  7 May 2022 10:03:34 -0400 (EDT)
+	t=1651932664; bh=I6iBXXbke8bn4g8zTbmObMQcPceABSTShquz8K2lAOY=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=MfnSpUjpKoLreJwCo0ODrbtOF/0T3BfFw2nkAN6GmskrVnZ4EA7KAMnyXrm7dM/yr
+	 K7ivNGR3XhRUfb3eAf9qLpE37Izvn+wHghjmXEmLym3E89ho1pxi411Cox1Qav82TW
+	 xD3PC4nDJA/WVr7xzPjyytmZ0P/RGiswKKLAmI5V7M2UgcDhLKS1xZM8V+6Gt/Fukr
+	 I+UEjBnuovZETvwYSr215ZjhJdkuoWOaZYvVPc/YITjGwVefdx2AtgVWbynIy7WhGP
+	 gFU6By/smRU37Rgbwl0dsSxq8bhrXejSYYCrj1kRddiCO023YQl4dIn7wKHzrm/qR6
+	 Zh6vkkRj0Qjng==
+Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0089.outbound.protection.office365.us [23.103.209.89])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3C877384D82
+	for <usrp-users@lists.ettus.com>; Sat,  7 May 2022 10:09:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="U1Oc+Oei";
+	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="gVlKdBcN";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hNpsXD25NzbpGrMTCpzVx9WDHQpuVL+5yp8lFfYsaHJ4xo64du4UeuxIEbt4pGMoaSPATW2922Bn6uvkgXVQ6qbLdUu6I29Ms7l00EDKrtf5PT4ymkElQKnu/kNx+GCRy/Fmp8opxTFH+oHPmDVbAfjJYKnUlDp2Atnl/naQ9dgVK7aAZryGd3Xkk2iJs7NeOvLznwIoamDwfF9b3jdzRvG/AVf7O0Eq7HsodiG5fSSIcDPnJuHluxsVdMTd2KnSpyqUn5nu1jZAOVmHkcWiMUks7tEplUh/hVGTktP904qf867Qz+4Pd+mNdNzOSAPmsAh3QoiGHTWbN6NK0TEx6g==
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=m2H6ZbbYjyUt5sJf6gfEz+rrHoANouViuQO8wVDFLNMOnZD3VcOh2xCpEsjN+0tY9xDSjlT4YBi7DwbDe/+/gPhbc3GvZTDbkc1q8MWYFUYVxY1p2zc6Z54rXD+0Xq9/8uyTdcuZJMg13UdicHV3CEUm+7SRQSY0mzlZI6wVRWh4b6Ax6wl3jK74S7zMi9Gi7hDU5AepmriyRR1ZW32noePwOCnNmDzT1e+YbMW3bAgAggb2fDmJG6I6P7rxFPu4Mp7eUNcEAkfv2W2W0FkJREVTWmKtOagAFZHJh2yoCSJA8YKlklVgQWCIiToLEk+9WPBVoAcgwG/hJG5s/lcpjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
+ s=arcselector5401;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Qu4kTmkJdI5PVI9nQM7ZqevjxbEXtqqzrr9K8kgIQuk=;
- b=VzY/jSySBCqiZC36cqSXIJztIAx5Hv6Wc3FS+uFJcqLCKHV+5w4jXYD3tuCcVqJY3LSHb+GcQqwNbNmoJNRnkgKq5hLMbViNJ6NYJwCdi8kjKmiIoY0Zn5DMqg/HtmONUjIVkfv//dEMgaiDCKlLogyHh+DDcL3ACV+I7hBQC563+6S9Fw8uA2DYYDgoX7X5ujBZ01ikrnicRiRyiPn0Tw09B/4Sxc/GIYxUSBwGivsHFNRY9qTGsrlun5KWjWOM8UKFvNuzTc7Y1u+ZsXSDbr7LbmlTMAngbCD0CgX53MfSGsDtgk9Ovf1p6YEc+p/ZPdpsAJqsIPxWRvf1TvOlJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
+ bh=493WFStQCsXNDM4S73PHqCDGULY7o7wjs0HglS5/vVI=;
+ b=XL6iuf4wS91Pl/Ln5RCSExbFRUG5JjzQbMM8XyBB0IchAJ4UUABHgH+ZSAFKM25XeUfoO1LufbNMk4WMJ+59jxiY6tuEFR2qqzi/Kekb+ih28KCyXj1hcM8l6n7UNCQJboKRQqo68SpEkVg73Vz/5tZDKqwDfhkbBFpphBJab96rHjenE6JmHWND6kobJEJzfDxbAPCX1T2uOwQ/UkdVQPezpMmkvp5QJIpznKo+pyTQKKHqi4b8tAIiexnanq9LacNEexsn8WwXycQUOLLcVrf6mJjaha+5xexyW9fa7MNeUrkA9OHRweNQ63q5OdwhjIVvrLMZ3ZRFk/zolYtPJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
+ header.from=synopticengineering.com; dkim=pass
+ header.d=synopticengineering.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=synopticengineering.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qu4kTmkJdI5PVI9nQM7ZqevjxbEXtqqzrr9K8kgIQuk=;
- b=U1Oc+OeiTpR+FUQyrkCsR+vyNdbeu7i52l2hJIx8aFPfDlQ6A0Hl4HNY/rN9KucTn2L4/BJvaQDownJxGPFOIoOBfRYZVAA2UUvayHcONH3iX3HpjrT5WDxqT8AeNbP+OBhyYj8AuRs9dPb9RjYuXoegMmz6DhES0mQDb8uNCMiJANdHNCPCfJgGnzBOySxc93D7cMzfoieAUrU7W+olQiJGtQ6wKcSQp66lRz2yzLPh9LNCpiBxxJBS7j/dA9gXoTR14jncx4XlX6dmYF3rywbWx7ipEzSH7b0yKIEepzpgF2gO9MpXGb7r3DTNm0MmJiMPh79wka4WVlE2dKq7yA==
-Received: from CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:42::16)
- by LO6P265MB5901.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2a6::13) with
+ bh=493WFStQCsXNDM4S73PHqCDGULY7o7wjs0HglS5/vVI=;
+ b=gVlKdBcN+OOnkuwWCX2mSdmeYMGoZejKjPVUE2YU9/2yye8xp+P2NcWVO6Bqvm2C0gosh3kdvb7UvydwgPeDbTp1ezx3oF1huv7u2b1l35IQCzUiPYbIgCf0Ygy7ALTdLXduu/fp8enCS/Ml0as/A+lVJOccNp31ZTiLkX0RnSAnxngEGKDhDGvr4ubN7/cE8ncXurm7LACnKeERr8rQdwwNoMXWDy9hlpMZIeYSDNe9tnmq+jNOPaXUzVD7SXBVwx6Q6lD2KoUO4N3iA99m6CrUaKOcSI+FgR1Cu8Xjbo7va2ONWtRkx0KIp3DTJ0+h8TQ3kVU61J5Pr2h00hGYbw==
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
+ by PH1P110MB1066.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:176::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.20; Sat, 7 May
- 2022 14:03:32 +0000
-Received: from CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM
- ([fe80::5ccc:3888:4f66:9015]) by CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM
- ([fe80::5ccc:3888:4f66:9015%7]) with mapi id 15.20.5227.021; Sat, 7 May 2022
- 14:03:32 +0000
-From: =?utf-8?B?546L55KAIFdBTkcgQ3Vp?= <iucgnaw@msn.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: X300 simultaneously transmit 2 signals of
- different sample rate and center frequency
-Thread-Index: AdhiDQ/yjHyFHg4pSxyutwSmBSIADAADFS6AAABg5qA=
-Date: Sat, 7 May 2022 14:03:32 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5206.27; Sat, 7 May
+ 2022 14:08:11 +0000
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae%6]) with mapi id 15.20.5206.028; Sat, 7 May 2022
+ 14:08:10 +0000
+From: David Raeman <david@SynopticEngineering.com>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Supporting power calibration for USRP E320
+Thread-Index: AdhiG5RknkI28MIaQDWYQyGd9GIN3Q==
+Date: Sat, 7 May 2022 14:08:10 +0000
 Message-ID: 
- <CWXP265MB1880F19CEA40B96FF765D9C3A5C49@CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM>
-References: 
- <LOYP265MB1887CCC056B0637CA4A49C74A5C49@LOYP265MB1887.GBRP265.PROD.OUTLOOK.COM>
- <1afd5983-b34b-d054-cd1c-2bda53b76ec1@gmail.com>
-In-Reply-To: <1afd5983-b34b-d054-cd1c-2bda53b76ec1@gmail.com>
-Accept-Language: zh-CN, en-US
+ <PH1P110MB1665904EF23D3C169287D1CAB7C49@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-tmn: [L54NCNGyFCizJQDm21HonsIQQsgS9PkT]
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7c21663d-53e9-4b1b-f769-08da30325ee8
-x-ms-traffictypediagnostic: LO6P265MB5901:EE_
+x-ms-office365-filtering-correlation-id: 9c8b80e3-937a-4217-d1ca-08da303304ba
+x-ms-traffictypediagnostic: PH1P110MB1066:EE_
+x-microsoft-antispam-prvs: 
+ <PH1P110MB1066C0AAFB16A8631AA215F6B7C49@PH1P110MB1066.NAMP110.PROD.OUTLOOK.COM>
+x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- k5h9pm6dEY//SgQufzhsF8HODm/qHDJWo4eUzHhRrQ2DeDOALh9SjcF3PWRgG1W0wsy5CFnXmpuUnbeSN5OaKi/Np6sXr5jG8gwYLDYJQK81Izmk4NWy1XdzKupmT5s2oMaSUPU2z4s9QuL2cFCg3FijfYFKH0lr00RQuHoPrOrTmKOVU6WrV0rNw34wtB1OLKc3tD9vELysYasuuuxVTVZAcDSuibivUKZzhotXhbzOyPpm43RKoVaEb4OaG2LkFfTbE08iTLxX9YR1t3owZJKx7XJaLwaEwPri3w1lqpVqelfyF/QhldJzu4SLvxfH2FnoEMuplCV+Ecu9j4FZK3w6hB9m1pQg6nVmeopeRLxJ3y1rHFYgYCdnU/GehRSLb41/oShldQt24kiXvpZ4bw886XKnnTaEfESTQ0ZDuZbJXEgKhkazaNpsiKelnj9mDZD50JlWSjKkcS8thJv+8pb4ZYRd3rpZ+Z+N81wnbxBVoTK9d3PK+LYjxNFrC1WmlIPIhUTkS5KCPok37DK/DOFHgPEie9MgTlAkqn03GLpDA48OPAjtgwiUVfDBQ4kV5AasWDk0f9vUSAWpHrf9gpQ+HeKFXZFem8C8krx87IgyD760u9rl77p4tak/QwRGMtzGFcyzsnsVyuJki8+hSA==
+ u+GC7gfnL0xBr5D2etIglQu4OXDj+TnYpd3AChkpCyLnoDFyrX0+SJl9S8pMN/mYG0fZum+5u/sI1NUzseazUHISyfFhWg6Zq+nPxBu5XSIPVGIZCHngvVCeuNplGyQ7/e9GtDJ8zQx1lIymq581qPO6oHA5ZP52YO4E3o0FK7Fs/UgTJdj+YoeWIIyW7yNa+0J4VDyFUJ4LkPlzxjmoWyQ1OP/ErAQ7ljSuvjWbti0Sxk8wSYLnwA929eEd6LGTz4ImKDknxcjb/Vlao8spLXqReF7Ov/F7Uhkt3JStG9Z+09HOLvsxYiKafCfKQatUT4UxlBbDdoEsoYOUaWQV+b9XvAY7YhFdpiWkOsB9uRgxHy9qcYA1xmx3ngRvxXutm9PdxiJIrvYlQFaNcXwjSiIfovYS2md0Cgydgn6nw56l6zb0OqMZPhyUmhVDabh0JeHhMePJo/QXWnbAOTDDZxmrKwH8t8t9tjit8t1Bn0UC/1o+jpEgf9HeR125kzwYzyG1B3DmtY5NM7YNx4bd1frq0EVvOKaOhCy1BH4ktLdgcpXzJPwJyEwpZzgo+VLoZzP5rsnF9lFQ1GZS2zC2BU0odOO23JdiR8d5T8VqLHvaov/fZ3forI00nDCk58B27a6F30f2mu0IJUKBdRy1aosK7MQeWJuXP14Mf/pzLhudgMMNTSBS78BdlNfztiSuRG2XatX/3hQTMChjkn6BJwgK0e4F8nJARz8QIQgAjFg=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(346002)(9686003)(8676002)(6506007)(76116006)(2906002)(71200400001)(64756008)(66446008)(7696005)(33656002)(5660300002)(86362001)(66556008)(66476007)(4744005)(66946007)(8936002)(508600001)(52536014)(38070700005)(55016003)(38100700002)(122000001)(186003)(83380400001)(6916009)(85282002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?eTJwa0haZTZFWnBGNnJ3RXAxMVpYZ0Q4cGNxT0FBZWdWaE80REkvdkQvV0Nv?=
- =?utf-8?B?NW10c0RtSzE1Zlc2cHBYdlgwY1hyY09aK2RTV2VZQ21oS0ZDWHlLN0Nzem9Q?=
- =?utf-8?B?NHVFYmZkMEQyeXlJMTZ4MVA3d3lTbjNwQkNPSS9OL3I2QnJZaTlaZ2hrdHRV?=
- =?utf-8?B?STZETjQxR2lXUHIzTVVqMlFmSFNKYTRzK3I1TmJReHcyY0daVytWT0w5WVcr?=
- =?utf-8?B?bEY0dGJudzVqMFdOcEdGcjNadE4rOHBHZ0FNUzFyMWNTL1VSbTdkWUVHU1U3?=
- =?utf-8?B?MFMxSWx1eWJRbVdwK2I2WDVROEFmbmRTUVBvR014RWlELzhVQ3pHV1ZPdElX?=
- =?utf-8?B?dUJubGFqSEROSFNhcTlabTk2VERBNWVMdEE5TllOdG9Oem1LWS9Wei8xZ1hQ?=
- =?utf-8?B?L0JxNE9rUDBWRU15Z0cwK1Fhazc0MCtBamNXN2EyZHZ1WlRKTGNsSjd2NjE3?=
- =?utf-8?B?WFBrVTRoQ3VmRER0MGl3RXNDbWt6a3o3TjQzQ2ZqLytkUTlFUU0vbnk3V1Z0?=
- =?utf-8?B?NlUrUmNPT3RYOUFYYi80dzR3OGF5blphL0FrYUlKVjhHYUhQbFNwTjMzTkJK?=
- =?utf-8?B?ZHRGMFBEU09oNXEzbjFiaUJsTE1TRDA0cnc5b1UxN1Ntd2dxM0lnMGMxNjZE?=
- =?utf-8?B?ZERnaXdSY2RSbE1JNjBlU1N0cFNLSjB3WkY5OTIvRkZ0aGNDVHNKN0IrSjR5?=
- =?utf-8?B?Y3FDR1hzbEhHSjUybXI5M1ErMmlST1ZTY2F6enZabEtyL2Jvc09lZ2M5M2FO?=
- =?utf-8?B?YW1jNE1YdS9uT0ZLYU5ac0VpWDlxeFVUWVc4bFExRlFMMnZKNlpYcmFvdHVq?=
- =?utf-8?B?RHRSeXhnK3A3d2w5L1Nadkdxbk9IRE1EKzRsUDAvRDltS1oxREtZTDhCMzl5?=
- =?utf-8?B?U1IrTVh3cWQxQU14RW1XTkNiUVRMVnJmODdPSno0SDFpcGh4N1pnYjZJVjBK?=
- =?utf-8?B?ZmF5Um8rYkZMY05QYlFyTnZuREhVclNqUVVYSlhVSzI5cHdRMVBTOWJQUUpZ?=
- =?utf-8?B?RUhYOEpGa3Jqb2xOM00zckdmeGtvOHhzbS9MdTZ5VXhtWVlxS0ZobURVMHhS?=
- =?utf-8?B?dFZjekZTcmRXbjVPWm15SVV0d0h3U0F6RUtTNEZSYVNrTXdIWWNxUGhGdzVk?=
- =?utf-8?B?QjlHUXF1OFVCMzRoSmExNTV3KzhaYmNockVnc1F3SVlUR04xdythZkhQNlho?=
- =?utf-8?B?WXJ1eDNqazZoakFpaGVOYUhLRmg4VW5iSGNvbjFCSEhqMHNYZHc1VExWeXlx?=
- =?utf-8?B?Wml3SS8veVdaQUJSWjJqcE1ERVFDSHJqQ1EwdG9hYWI1bE9USUtPT3pxRG1Z?=
- =?utf-8?B?aU9rYVpKY0hlRmp4d3Y1d1dPQkNOeG5QOUxzVHhvNExLVmJ0UEoxaU9QbElK?=
- =?utf-8?B?U2ZnQUNPeStkbjN2dndiZ3RLOGdzcm5Ga09NMUd3bks0amthQ2lWaVlnVDJY?=
- =?utf-8?B?aEVKTVdMU2lJN204aVlqb2IvdkdSTk5FeVUzSFgvZFpjNVYyekNReUtrZTBv?=
- =?utf-8?B?TER6K1dFZUlKQlVJRWI3bVhZT0tHTWZQaE5SS0lYRE5NSXhvZERDM0ZqaDB5?=
- =?utf-8?B?ZFM4R0phSkxQVlpQbk05dXAyWksxc1dMaUFBaS9kOHFTQlFKMi9ENklCa0JO?=
- =?utf-8?B?ZllkUXRvMmh4MWRjbGh3aVpqU0p5alN4OFVUSURTejBvQ3ZFYXM4cmJEMDZk?=
- =?utf-8?B?c0Y5VUJET0VseUJSdCt1UVZlWjdmV0g0UGVaWXVmcVRuSzZQRWlUa1ZBMWRR?=
- =?utf-8?B?elo4eUcwUS9KMloxbEhSTUVpRTJFRFRydVVoVDVHRXRkVnd4SG5vZGlIclFh?=
- =?utf-8?B?NGVsdC9DYWIyOXdydit0MnJ0Ym9VMHNkVDVnNWE3SjhKSzJyQy92V1F2NGZh?=
- =?utf-8?B?cnhUTC9DQ0dnRWhHMTVxQ0l5UEI4bU5sdlVHRkxEU2YzT3c9PQ==?=
+ =?us-ascii?Q?ZDq0eEhhVzvjogQDglTUMO3h56WS5409ohU7VFy+LWrlQu9MeOtY7+g8Kb0B?=
+ =?us-ascii?Q?chYL2qqhDjO7YcCWEbIOPC/n9icqC5p7jIEO4lxn0F/uYHiuG7SGz+KD2ihs?=
+ =?us-ascii?Q?XNW+Em+h+v/8M4QV6XSAvXsikUHWeVSk2MDAg+XlpbwYidSXJG3iYvthPUpJ?=
+ =?us-ascii?Q?FfhzxMhnhC+FkguSDCcI2N3nEeqZrSVy15BkxAAdMR/5IeeId7v7yYoeuAxI?=
+ =?us-ascii?Q?PPcogp0aVHprptfBaM7PUqlRRZbAeqbmdEzVjGpfHCWbHybmGdrkDlvsY6iB?=
+ =?us-ascii?Q?Huqc0+vCedgZ2dTOqt46tsgrTagnVqCX+n+07E4keC+cKM1oH117yMX//TdU?=
+ =?us-ascii?Q?OQ6R79DTaUV8X82dS2AeGF6gnKSHloL1Fmbab7cYZFuM+1imH6khcdoUYluj?=
+ =?us-ascii?Q?7MDoIZj8+S5W/RSODc5hriY2bNthxzmhXO/pCEExdK8reJsEjRl1Iobkl+cm?=
+ =?us-ascii?Q?kZbiAuKAG2OwFllpTGNkN+EcnX+vcvexC1dLGA67VvbLrKSEGnZf2XK151sW?=
+ =?us-ascii?Q?66OmEmfe0cBZlpk43Opq7e8cUqF8nJtZEAdz0SmuWnCBLjtUAFvrGQ+Jssdg?=
+ =?us-ascii?Q?6RNYFjhgSfuBA6X6uqBzBvOtrFqt0RDCWxHVNW9zbFnDiiRQiwU3i+U4u6n1?=
+ =?us-ascii?Q?7ithCmnzwGVCWmmQL9PPaymcXeypSLCB3pLMj3ZfF+jKvWvKA8TwVcMa4xvp?=
+ =?us-ascii?Q?o7JW1THj6k5OmcHmdLKXW2u/bUJu+Q26vJtWgP1DrwVVT7hHJnDf2+VmxyG1?=
+ =?us-ascii?Q?J++U+2/Gd+LPkVZcuVXbGqT9TWSxxOeixOumLwExN/RTb/jikKN86ODD69yB?=
+ =?us-ascii?Q?nFErjnwtubVq1/GEYwnw+RTLDi4JeoupIOq8GD6JTdlr7xMyyOaRKsX1tBLL?=
+ =?us-ascii?Q?EBpLWuOkB8uUJ0ajT9IbcVLBfIpMGEv+Rwqfa/MUgz9VEFaRI1Il/Gx+ZgU+?=
+ =?us-ascii?Q?PTQoWxL0267Vst/7a1cj0B+sOL04CImB6uefabLBSAClBWqvuGx0i3FoxJhe?=
+ =?us-ascii?Q?Mgv+rD0YhV/edbtw6b4ya9gJzYTPMlXPvDva6pJaVnfgFyEOIWUed6oTMwFW?=
+ =?us-ascii?Q?zb/nUQHKmluYuPaYMZM5KYiV5RMPQjuvLTnMmYx0qsN5SVxjdKOCtmlxA0Sn?=
+ =?us-ascii?Q?BfJ1fl6XTXOH2wN/iFf4MsXZz+YNVeArB0BvMFF6qITA845RVdbbEOqxxx2R?=
+ =?us-ascii?Q?B8ckp2BH0Nky0oXpa0wWzogXjuezozixZCRVVgGJk6kNyY1IezSjYUs/7k27?=
+ =?us-ascii?Q?NdIZOyeYeRaHad3AEmbVO3/gikI8dfNbGxfNhbS/9Nfvj9LYqAu48bGdPhRT?=
+ =?us-ascii?Q?j5CemncIYISlaDZYqLaXlFmCJWwHYtHrnIIfy1ztJhilHUgEyewj7oW0BVZG?=
+ =?us-ascii?Q?p+xbkStgi2t0fBGBqfuocyDGTG2s1cUK8ZqVhOcR3dhFDxxUjndZr+Nf6Kym?=
+ =?us-ascii?Q?rjGa+f0oYc0wZ3h+8kDPatac66IhwBWJe5cK3mVwTAl0b0sUX/C+aPrKZBSm?=
+ =?us-ascii?Q?QY74hKmD96dA1EunMyUBf0BGkf18D8EyBKRmOL89nO1rexujKLcfoTRQHJda?=
+ =?us-ascii?Q?CqdBu+aCcBndzQMhQLYBUfjyyVkT0Pg0yWBA3R0IfCloWgdne7K+uWWoCs+8?=
+ =?us-ascii?Q?9cro2Dtj54s/yM8Jyi76eiotORIccaXbHlA5JqUz3fKuXNjebHXzUVFfQiM9?=
+ =?us-ascii?Q?WGiU+7VnrJx+OE7kPPiM4vOr/2MM3mn64vApCCYjS+OJWBwsLTmp9ABnwwxR?=
+ =?us-ascii?Q?88yeuxCdDnefB+AXgAa1pHKjkSlZTw8=3D?=
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-5e42a.templateTenant
+X-OriginatorOrg: SynopticEngineering.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c21663d-53e9-4b1b-f769-08da30325ee8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2022 14:03:32.4545
+X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c8b80e3-937a-4217-d1ca-08da303304ba
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2022 14:08:10.7007
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO6P265MB5901
-Message-ID-Hash: VIWEKQ7I2P6DD2KNGG24IEYUXSMJFXLF
-X-Message-ID-Hash: VIWEKQ7I2P6DD2KNGG24IEYUXSMJFXLF
-X-MailFrom: iucgnaw@msn.com
+X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1066
+Message-ID-Hash: VTBJITV5JBBB7EAB4QSLQLB4PTQYVBA3
+X-Message-ID-Hash: VTBJITV5JBBB7EAB4QSLQLB4PTQYVBA3
+X-MailFrom: david@SynopticEngineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X300 simultaneously transmit 2 signals of different sample rate and center frequency
+Subject: [USRP-users] Supporting power calibration for USRP E320
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QLV4RRMEMHUK2AAI72QIVAF56YP7JGOX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HVZO5CMP3ORAMDV73NKEZRWJ2PIN42UK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0569392587288566328=="
+Content-Type: multipart/mixed; boundary="===============0538585140752912911=="
 
---===============0569392587288566328==
+--===============0538585140752912911==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_CWXP265MB1880F19CEA40B96FF765D9C3A5C49CWXP265MB1880GBRP_"
+	boundary="_000_PH1P110MB1665904EF23D3C169287D1CAB7C49PH1P110MB1665NAMP_"
 
---_000_CWXP265MB1880F19CEA40B96FF765D9C3A5C49CWXP265MB1880GBRP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_PH1P110MB1665904EF23D3C169287D1CAB7C49PH1P110MB1665NAMP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-VW5kZXJzdG9vZCwgY2xhcmlmaWVkIHJlc2FtcGxlIGlzIHRoZSBzb2x1dGlvbi4gVGhhbmtzLA0K
-QlRXLCB3aGVuIEkgcmVhZCB0aGUgdHhyeF9sb29wYmFja190b19maWxlIGV4YW1wbGUsIGl0IGRv
-ZXMgbWFrZSAyIHVzcnAgb2JqZWN0cyAoMSB0eCwgMSByeCkgcG9pbnQgdG8gMSBkZXZpY2UsIGhv
-dyBjYW4gaXQgd29yaz8NCg0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVuQGdt
-YWlsLmNvbT4NClNlbnQ6IFNhdHVyZGF5LCBNYXkgNywgMjAyMiA5OjUwIFBNDQpUbzogdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFtVU1JQLXVzZXJzXSBSZTogWDMwMCBzaW11
-bHRhbmVvdXNseSB0cmFuc21pdCAyIHNpZ25hbHMgb2YgZGlmZmVyZW50IHNhbXBsZSByYXRlIGFu
-ZCBjZW50ZXIgZnJlcXVlbmN5DQoNCk9uIDIwMjItMDUtMDcgMDg6MjIsID8/IFdBTkcgQ3VpIHdy
-b3RlOg0KSGksDQpJIHNlYXJjaGVkIGFyb3VuZCBhbmQgc3RpbGwgY2Fu4oCZdCBnZXQgY2xlYXIg
-YW5zd2VyLCBzbyBJIHdvdWxkIHNlZWsgaGVscCBoZXJlLg0KSSB3YW50IHRvIHNpbXVsdGFuZW91
-c2x5IHRyYW5zbWl0IDIgYmFzZWJhbmQgZmlsZXMgd2hpY2ggYXJlIGRpZmZlcmVudCBzYW1wbGUg
-cmF0ZSAob25lIGlzIHJhdGUgMi41IE1IeiBhdCBmcmVxIDEuNSBHSHosIGFuZCB0aGUgb3RoZXIg
-aXMgcmF0ZSA4IE1IeiBhdCBmcmVxIDEuOCBHSHopLCBhbmQgd291bGQgbGlrZSB0byB1dGlsaXpl
-IDIgZGF1Z2h0ZXIgYm9hcmRzIG9mIFgzMDAuDQpJIHRyaWVkIHRvIGNvbmZpZ3VyZSBpdCB3aXRo
-IDIgbXVsdGlfdXNycCBvYmplY3RzLCBidXQgdGhlIGNhbGwgZmFpbGVkIHdoZW4gZ2V0IHNlY29u
-ZCB0eF9zdHJlYW1lciAoaG93ZXZlciwgdGhlIGZpcnN0IGdldCBjYWxsIHN1Y2NlZWQuKSwgd2l0
-aDogRXJyb3I6IFJ1bnRpbWVFcnJvcjogTXVsdGlwbGUgc2FtcGxpbmcgcmF0ZXMgZG93bnN0cmVh
-bSBvZiBUWCB0ZXJtaW5hdG9yIDA6IC4uLg0KSSBrbm93IFgzMDAgY2FuIHRyYW5zbWl0L3JlY2Vp
-dmUgMiBjaGFubmVscyBhdCAyIGRpZmZlcmVudCBzYW1wbGUgcmF0ZSwganVzdCB3b25kZXIgaXMg
-aXQgcG9zc2libGUgdG8gc2ltdWx0YW5lb3VzbHkgdHJhbnNtaXQgMiBjaGFubmVscyBhcyBkZXNj
-cmliZWQgYWJvdmU/IE9yIGhhdmUgdG8gcmVzYW1wbGUgb25lIGZpbGUgdG8gdGhlIHNhbWUgc2Ft
-cGxlIHJhdGUgb2YgdGhlIG90aGVyIGZpbGUsIHRoZW4gdHJhbnNtaXQgdG9nZXRoZXI/DQpUaGFu
-a3MgaW4gYWR2YW5jZSwNCldBTkcgQ3VpDQoNCllvdSBjYW4ndCBoYXZlIG11bHRpcGxlIG11bHRp
-X3VzcnAgb2JqZWN0cyBwb2ludGluZyB0byB0aGUgc2FtZSBkZXZpY2UsIHNvIHlvdSdsbCBoYXZl
-IHRvIHJlc2FtcGxlIG9uZSBvZiB5b3VyIHN0cmVhbXMgYW5kIHVzZSBhDQogIHNpbmdsZSBtdWx0
-aV91c3JwIG9iamVjdC4NCg0KDQo=
+Hi all,
 
---_000_CWXP265MB1880F19CEA40B96FF765D9C3A5C49CWXP265MB1880GBRP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+It looks like power calibration is supported by B200/X3xx/X410 radios, but =
+not E3xx radios. I'm interested in adding this support for E320 (and submit=
+ as a pull request).
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5Ouetiee6vzsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAx
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
-MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOetiee6vyI7DQoJ
-cGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0K
-cC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0K
-CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCgl0ZXh0LWFsaWduOmp1c3RpZnk7DQoJZm9udC1zaXpl
-OjExLjBwdDsNCglmb250LWZhbWlseTrnrYnnur87fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGlu
-aw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29y
-YXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0K
-CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRp
-b246dW5kZXJsaW5lO30NCnAubXNvbm9ybWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1zb25vcm1h
-bDANCgl7bXNvLXN0eWxlLW5hbWU6bXNvbm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRv
-Ow0KCW1hcmdpbi1yaWdodDowaW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFy
-Z2luLWxlZnQ6MGluOw0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
-LHNhbnMtc2VyaWY7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29u
-YWw7DQoJZm9udC1mYW1pbHk6562J57q/Ow0KCWNvbG9yOndpbmRvd3RleHQ7fQ0Kc3Bhbi5FbWFp
-bFN0eWxlMTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6
-562J57q/Ow0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxl
-LXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlv
-bjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMjVpbiAxLjBpbiAxLjI1
-aW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxl
-PjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIg
-c3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48
-eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQi
-IGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+
-DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iIzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRp
-diBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlVuZGVyc3Rvb2Qs
-IGNsYXJpZmllZCByZXNhbXBsZSBpcyB0aGUgc29sdXRpb24uIFRoYW5rcyw8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJUVywgd2hlbiBJIHJlYWQgdGhlIHR4cnhfbG9vcGJh
-Y2tfdG9fZmlsZSBleGFtcGxlLCBpdCBkb2VzIG1ha2UgMiB1c3JwIG9iamVjdHMgKDEgdHgsIDEg
-cngpIHBvaW50IHRvIDEgZGV2aWNlLCBob3cgY2FuIGl0IHdvcms/PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2IHN0
-eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzoz
-LjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5
-bGU9InRleHQtYWxpZ246bGVmdCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBNYXJjdXMgRC4gTGVlY2gg
-Jmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+IFNhdHVy
-ZGF5LCBNYXkgNywgMjAyMiA5OjUwIFBNPGJyPg0KPGI+VG86PC9iPiB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbTxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gUmU6IFgzMDAgc2lt
-dWx0YW5lb3VzbHkgdHJhbnNtaXQgMiBzaWduYWxzIG9mIGRpZmZlcmVudCBzYW1wbGUgcmF0ZSBh
-bmQgY2VudGVyIGZyZXF1ZW5jeTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVm
-dCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgYWxp
-Z249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPk9uIDIwMjItMDUtMDcgMDg6MjIsID8/
-IFdBTkcgQ3VpIHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHls
-ZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPkhpLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBzZWFyY2hl
-ZCBhcm91bmQgYW5kIHN0aWxsIGNhbjxzcGFuIGxhbmc9IlpILUNOIj7igJk8L3NwYW4+dCBnZXQg
-Y2xlYXIgYW5zd2VyLCBzbyBJIHdvdWxkIHNlZWsgaGVscCBoZXJlLjxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+SSB3YW50IHRvIHNpbXVsdGFuZW91c2x5IHRyYW5zbWl0IDIg
-YmFzZWJhbmQgZmlsZXMgd2hpY2ggYXJlIGRpZmZlcmVudCBzYW1wbGUgcmF0ZSAob25lIGlzIHJh
-dGUgMi41IE1IeiBhdCBmcmVxIDEuNSBHSHosIGFuZCB0aGUgb3RoZXIgaXMgcmF0ZSA4IE1IeiBh
-dCBmcmVxIDEuOCBHSHopLCBhbmQgd291bGQgbGlrZSB0byB1dGlsaXplIDIgZGF1Z2h0ZXIgYm9h
-cmRzIG9mIFgzMDAuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIHRyaWVk
-IHRvIGNvbmZpZ3VyZSBpdCB3aXRoIDIgbXVsdGlfdXNycCBvYmplY3RzLCBidXQgdGhlIGNhbGwg
-ZmFpbGVkIHdoZW4gZ2V0IHNlY29uZCB0eF9zdHJlYW1lciAoaG93ZXZlciwgdGhlIGZpcnN0IGdl
-dCBjYWxsIHN1Y2NlZWQuKSwgd2l0aDogRXJyb3I6IFJ1bnRpbWVFcnJvcjogTXVsdGlwbGUgc2Ft
-cGxpbmcgcmF0ZXMgZG93bnN0cmVhbSBvZiBUWCB0ZXJtaW5hdG9yIDA6IC4uLjxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBrbm93IFgzMDAgY2FuIHRyYW5zbWl0L3JlY2Vp
-dmUgMiBjaGFubmVscyBhdCAyIGRpZmZlcmVudCBzYW1wbGUgcmF0ZSwganVzdCB3b25kZXIgaXMg
-aXQgcG9zc2libGUgdG8gc2ltdWx0YW5lb3VzbHkgdHJhbnNtaXQgMiBjaGFubmVscyBhcyBkZXNj
-cmliZWQgYWJvdmU/IE9yIGhhdmUgdG8gcmVzYW1wbGUgb25lIGZpbGUgdG8gdGhlIHNhbWUgc2Ft
-cGxlIHJhdGUgb2YgdGhlIG90aGVyIGZpbGUsIHRoZW4gdHJhbnNtaXQNCiB0b2dldGhlcj88bzpw
-PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBpbiBhZHZhbmNlLDxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V0FORyBDdWk8bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0
-Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0O3RleHQt
-YWxpZ246bGVmdCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-c2Fucy1zZXJpZiI+WW91IGNhbid0IGhhdmUgbXVsdGlwbGUgbXVsdGlfdXNycCBvYmplY3RzIHBv
-aW50aW5nIHRvIHRoZSBzYW1lIGRldmljZSwgc28geW91J2xsIGhhdmUgdG8gcmVzYW1wbGUgb25l
-IG9mIHlvdXIgc3RyZWFtcyBhbmQgdXNlIGE8YnI+DQombmJzcDsgc2luZ2xlIG11bHRpX3VzcnAg
-b2JqZWN0Ljxicj4NCjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
-PC9ib2R5Pg0KPC9odG1sPg0K
+Before I move ahead, is there any reason it's infeasible or unsuitable for =
+the E3xx architecture? Since the B2xx models also use the AD9361 and alread=
+y support this, my inclination is to copy similar logic for E3xx. Just want=
+ed to make sure I'm not missing any hiccups that might explain why support =
+was excluded for these radios.
 
---_000_CWXP265MB1880F19CEA40B96FF765D9C3A5C49CWXP265MB1880GBRP_--
+Thanks,
+David
 
---===============0569392587288566328==
+--
+David Raeman
+Synoptic Engineering
+
+
+--_000_PH1P110MB1665904EF23D3C169287D1CAB7C49PH1P110MB1665NAMP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">It looks like power calibration is supported by B200=
+/X3xx/X410 radios, but not E3xx radios. I'm interested in adding this suppo=
+rt for E320 (and submit as a pull request).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Before I move ahead, is there any reason it's infeas=
+ible or unsuitable for the E3xx architecture? Since the B2xx models also us=
+e the AD9361 and already support this, my inclination is to copy similar lo=
+gic for E3xx. Just wanted to make
+ sure I'm not missing any hiccups that might explain why support was exclud=
+ed for these radios.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">David<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">-- <o:p></o:p></p>
+<p class=3D"MsoNormal">David Raeman<o:p></o:p></p>
+<p class=3D"MsoNormal">Synoptic Engineering<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_PH1P110MB1665904EF23D3C169287D1CAB7C49PH1P110MB1665NAMP_--
+
+--===============0538585140752912911==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -271,4 +243,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0569392587288566328==--
+--===============0538585140752912911==--
