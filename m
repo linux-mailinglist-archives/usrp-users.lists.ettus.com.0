@@ -2,310 +2,435 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F5E51E7B4
-	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 16:12:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A688520124
+	for <lists+usrp-users@lfdr.de>; Mon,  9 May 2022 17:33:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C89BD384A5E
-	for <lists+usrp-users@lfdr.de>; Sat,  7 May 2022 10:12:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1E4A5384599
+	for <lists+usrp-users@lfdr.de>; Mon,  9 May 2022 11:33:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1651932744; bh=9hGiSJhbiYg8zKgix30obrZEPRZvfh2ujaBx00zI7KQ=;
+	t=1652110410; bh=0BsvlMkyhW/o/4Qqm5IjgyGd8yO5ZMTp92mqq2pZ/k0=;
 	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=s6QgXPbzKSOvIymqkWZRpgdwYWYDXD98cEbFv88uq7bYQMuiuQwxJ6w8oo5Cg0heQ
-	 JucsEdWX3zRm9QopKv5LnKz0d5Feq34Z0qUdbvk9ZvLWPGeZ/3evZxPKaShLbwrBGZ
-	 MnCt2ELH9MFbOQ5BCxMgwOFcd9Toh0tvuvhVO6lM/1Lzf83inJbrWpDe4eXgz0zUKM
-	 ZZ0dZb1vStryKViAzcS7wNKOVcRwykE4FELJ6AMZHObzH5mkfWcpbhaz8N1oaTAyND
-	 Aw/9Yj6eoEsyy1Q/9X24FPsYfMJalAd+d9o0/I+uWNnIHLEST9ThFqCmJOS8DUAirT
-	 6u7N4JWkiFMvA==
-Received: from GBR01-LO2-obe.outbound.protection.outlook.com (mail-lo2gbr01olkn0147.outbound.protection.outlook.com [104.47.21.147])
-	by mm2.emwd.com (Postfix) with ESMTPS id 4A95D384D82
-	for <usrp-users@lists.ettus.com>; Sat,  7 May 2022 10:10:00 -0400 (EDT)
+	b=vSWRwY+qLmMgj5e/Yx1qjFwmkSk+SrFav7xMHtdw2kXnfnjg8JA8QnxrPSql857LX
+	 KTiJk281ckF9liaHv9UcpSf7KnHXaF+YSWVQUOF1NsxsZEq3B+SjbOeYFFw70hgJ2C
+	 hPQx5hq6huvBJx3vCheZ7eWPBoa9pUAGr+Xg8bY4P32x9v9mKpnPLj+a+mv/57Ki2h
+	 sbLH9HtATYpduHZ/no70N9N58oWvfslhpxiQIhxTArlAampDhnm2ATkq2jLwTfmP+9
+	 xW9uHYOvD+7DfpDcNNqh76iM1pB7t6CXNtTwxM1iSKZWKENKVI8vPzTSh/wJdXX5CW
+	 iVxsR6pP3giFA==
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [67.231.154.164])
+	by mm2.emwd.com (Postfix) with ESMTPS id BD85038430F
+	for <usrp-users@lists.ettus.com>; Mon,  9 May 2022 11:32:19 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=msn.com header.i=@msn.com header.b="lMxRekfw";
+	dkim=pass (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="RswzvI8u";
 	dkim-atps=neutral
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.110.48.61])
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 2F73C120074
+	for <usrp-users@lists.ettus.com>; Mon,  9 May 2022 15:32:18 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2107.outbound.protection.outlook.com [104.47.55.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id EF4A4C008E
+	for <usrp-users@lists.ettus.com>; Mon,  9 May 2022 15:32:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YNo6JuJKrrl83T+B2GHuLEs6lLUaTjxmCiJHaL6t5HeNLmso0cF+mKyVgDmrOux+Bt3Qv3oFhflOhnITxfAiG9d9Rm1k+D4PqXW8Xtkd9NfUPnmPWIzENguNevL9/tdzRIa6WLF/Jzz3g87o+muxE69uAa/FAUrRkhdgt63uhS/kwyFSmJXXyrFRcoV2eEBKB2RMC0N/90b44X/qntbPca39UwUAfSz4+4XeySQcPLwaI8sElc+1JnFRnQGYKlF0pviGv3QluilO/B8SoY1frCbTKaiW+/MF0fbNTyNX0Yz5mu9gi+PuPc1Q94gvl3QwpJTzNDlT3oT0NPtUNFzIjw==
+ b=GJzNMWuU9pQ7bLLVOgmunN2ZmT78ry3yPE1WmwLc1HwhVv3WA1/MNjKsL8tvy5x60iwocdP13orJ5ztoBhGQcAJUWqriwB1MeyVBCFJfRHIy10dH1CoER/S+hVlUBew2becetQLFZiCjM42nnmiRhy8zp05IdbkkMqwr4LR25Ux43n+WwhF91m3JieO7un99mfGeU2JX5fI2HAUJljMfIAXRlqrqEQ07cqohHxtBYz1UCKZqNdyxJJsHPxl5F23Mne5rySBtYo0DUI/CkoCiUIFpYedlt29XCyTM2gO1DCjPw4o3TOpeHjI87b3MTXRfrJp/9UhNdVl6BGa8CNm1xg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=79wW0Q3Kzs25M6npW2lnKakdC91C2l27dzBHynu8Gao=;
- b=XcQWCM7ez8gi0COX9zEEQlp2JlQjNxnYm4VEpp39SkUMqcBi57Meo30983LXeTQTfubA8Kq7qT2pYYdEcRsrmuOBieSJfZLLOH/X7FZE0EVuByHeS52gW6iYFZ/udmEjpGu6FiGzsNBUmJNZ/cS9YA7XJTRRpGNz1Z5tmu71HmEzhzOnVn5ZschKsK8hSOQNpNIiO9kN664+3nOyfgGyNTup8bbVr39OyF6/c9eYJbpZRzZiDZz8XrHXLW960NXf4ZY6oGZjUQzpo/ZFRkp15Yrh9lh5rGy3KToBfoiEixxp03u7uWqtdCU4C/e976KZrnan2NsJ1s6KVRzFehvTGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msn.com; s=selector1;
+ bh=a0JQpQjDF3/7yABT7MuyXxF8zqsgf4WB32OeZ3/AuWk=;
+ b=IpCwhlknl1LmymUESc7sodZgica/54OMSBs7/K15YSg/O/Zo914jSSh9B126YCjYGDBX+1baK6oHzY1EwPSMrfUSW124bpWZqPqNOBfb4nt4h0W5NKq4Io7er8wByFV+XGe6LMz7pLcjY0opUgD7gIGY5hrCrjg4DaWM5pZWVZRfSteroCTMr8iQ74y3/ixaLrwVyIdtpIxqSom4H3q8DA4CWtDEF7xzMgwcuqG65cJjSgtkwGt2Zzp+KaCEXXpfbJsLft1EC2lQ60cGotSSuJAT8GfCkvqZnLa8HvFzUO/8Nh/voYA9VLO36f2fM5nkt2FfrNlJBHfxJ35GCbykNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=79wW0Q3Kzs25M6npW2lnKakdC91C2l27dzBHynu8Gao=;
- b=lMxRekfwNfplaRCnfVkZU4HOSA2bqHE9x79SoE/o4C6jUtCq+KxIfxXW7lkrS780c5IWmiT099/ppuJGPcqYjPg9BhJID4k6Jx5eULq8+S2FgdmbrRWqMH1P3sLiZXsvooEgWbFxZ4QYenbTYc4VHsqyULgh03/mjZZhZKxSGwCLH8XgG1Jqgarp9evQZVHS0EWT5nEhWgvUwULuxyiVq9UFR0Zyr6/91OgQKOaFrkzJsuB0I7C7Mda2+GacN/WGl+bzp/KOZ2MOWgETQ6NNBENQXCBLTguPNcq5gj/nLnwum2ydHc5C4/9SXvIU983zf+ahswesLoVAcLNGLTKf6Q==
-Received: from CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:42::16)
- by LO6P265MB5901.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2a6::13) with
+ bh=a0JQpQjDF3/7yABT7MuyXxF8zqsgf4WB32OeZ3/AuWk=;
+ b=RswzvI8uId9bWfNOz8HnvgLYrLvv2oxKbwnZIrccE0km727rdGj4OwcSz+3M0lyEjlr+OyKk4V3j2MtydHy1nR5rq7RbzsSobVND9lAgrPF24bnH82c2KBE/sJr2tXq9N2d3tqc2bxsfhvxtYIXb1kxrsiVruNZLCQJWyMJCIQg=
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com (2603:10b6:208:ab::23)
+ by CY4PR12MB1736.namprd12.prod.outlook.com (2603:10b6:903:123::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.20; Sat, 7 May
- 2022 14:09:58 +0000
-Received: from CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM
- ([fe80::5ccc:3888:4f66:9015]) by CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM
- ([fe80::5ccc:3888:4f66:9015%7]) with mapi id 15.20.5227.021; Sat, 7 May 2022
- 14:09:58 +0000
-From: =?utf-8?B?546L55KAIFdBTkcgQ3Vp?= <iucgnaw@msn.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: X300 simultaneously transmit 2 signals of
- different sample rate and center frequency
-Thread-Index: AdhiDQ/yjHyFHg4pSxyutwSmBSIADAADFS6AAABg5qAAAEBVgAAADBXQ
-Date: Sat, 7 May 2022 14:09:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5227.23; Mon, 9 May
+ 2022 15:32:12 +0000
+Received: from MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::2476:1b13:7af3:29f6]) by MN2PR12MB3312.namprd12.prod.outlook.com
+ ([fe80::2476:1b13:7af3:29f6%7]) with mapi id 15.20.5227.023; Mon, 9 May 2022
+ 15:32:11 +0000
+From: Jim Palladino <jim@gardettoengineering.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: N320 TDC measurement errors
+Thread-Index: AQHYXkP+Y4fg2AyFmESoC+vAlJapH60Wthda
+Date: Mon, 9 May 2022 15:32:11 +0000
 Message-ID: 
- <CWXP265MB1880003EE7AB931152129091A5C49@CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM>
+ <MN2PR12MB331244B919FBB63ECE92630FB8C69@MN2PR12MB3312.namprd12.prod.outlook.com>
 References: 
- <LOYP265MB1887CCC056B0637CA4A49C74A5C49@LOYP265MB1887.GBRP265.PROD.OUTLOOK.COM>
- <1afd5983-b34b-d054-cd1c-2bda53b76ec1@gmail.com>
- <CWXP265MB1880F19CEA40B96FF765D9C3A5C49@CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM>
- <9e230f63-3d1a-f4ce-b35d-a0a0118515c8@gmail.com>
-In-Reply-To: <9e230f63-3d1a-f4ce-b35d-a0a0118515c8@gmail.com>
-Accept-Language: zh-CN, en-US
+ <MN2PR12MB33120210FE804565B1B42888B8C19@MN2PR12MB3312.namprd12.prod.outlook.com>
+In-Reply-To: 
+ <MN2PR12MB33120210FE804565B1B42888B8C19@MN2PR12MB3312.namprd12.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-tmn: [IPPZSjjw+f8tAl7ahuLDzQ8BvYZFi1GM]
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=gardettoengineering.com;
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 35caeb67-093e-4774-89e3-08da30334513
-x-ms-traffictypediagnostic: LO6P265MB5901:EE_
+x-ms-office365-filtering-correlation-id: 03dacfa1-4064-4f75-2363-08da31d11621
+x-ms-traffictypediagnostic: CY4PR12MB1736:EE_
+x-microsoft-antispam-prvs: 
+ <CY4PR12MB1736F6C7A256357CB8659A8DB8C69@CY4PR12MB1736.namprd12.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- /545zn8UEFJkm/W07yJOC+pGJlclF3ddrCCLbp7t/41GWhhcRxdq+fLJPM1ECVR6gI86i1mmugaG+cQKQS7DY2lr6bV2SnWI3JvHrVe/9nakmlktNhjpHTCgbYja9GBnErvbXKzxoVk6cHrUjg7mO+8ivs+sHCuE68VJw70SaaQDRaZ/s3RzAzTxH2P4F8P16agjlRSYrDl3WHlEf6keqMS47KY5yp+/5iaET2JMksdHeq4kWqGqPoT+rq9PSEKqP8LciGdicMVrcylg6n2n/bEED140N6cEJl0UDtIhNmnI5wCnF7o6oMkirBtRPgq6HbfTnHx6N9D51d6jAdhPBenI7fzTJ8tm5qJPpBnrrI+CrSVZ7cBFnKYzt3/6tt3iPSri1ZIPZlBQ8YSbcNZ119eVqGJW7dt5joQvyE8yBN2EQfwXuDjDc+4skWMchsdbY7IMnhqF7CRV35HTVzSoZfAl9hb5FJngV1mIIwjo+i/bNoLPt+kOCB0+DlZ5v0dMdquUkB/Fcvo3piEbNlWR2i1HBBMGT7VeqoGXLG00wLW7InFTN3/vPs36QYLr8PfNalcj9LLlEw6kEL8CU79MTovzuEYkATM7iH9+/fBLH+QUuOemBcgH+GWc7ifYqIa5szKy6uJD/N6ZUyS8K/C2vw==
+ SA5BVLSN7stNXtiAGAgyta+bZUPfw7u+cr7danE5WVX0vD5Nof/3uvllPNqiMiFAfjNIIGnhjl7+q0soVZQnjpJPLvUvAO83vmMvnu9d7G5XIV+nxjT7qGS6FBAS3s8ghGMfesJIlGWTE/tPDYgGNWCoP4emifDwSDCQRMJLsM5B8rhuzDSG1Qr4HrxP1SF/ozRUjBi4/Q5Nz9MO8C5Af57gkXzy8EQN/uXZnhvow75laEp2z0anaDOpNF6nGmjRcPoODv+EB+9awIPTlDvlNLuzT+YyR2CuPmJY6vzkAohIBLmXIonooYPohnthMsve0iiYKngK4rhFn98YXHIP0tNUFqWL0d+Lh9Qxsw+OTp9F5pNKvMLEMNZ3OL7HTu48cUcx8fMdS0+sJXqdjAmFbrqITg8NhAkInpd2dwMIDJlnM5W4s3/YVsbQaQX1ByXT9L6/omZ2RmbLOAcy/z2de6lVrbJsh3/CKrwe2ze9SpTsy4wpUSrhfybxS6CyLOFG/daboca72sDT9Ki70DrsSP2K3UCHnu6VR7Tq1RWGu1hwKXTJw8oDvcY9vOgzDiKTl42eKrn5LtjqGQJOpNVJ1xel/T0T2vjVM5RgZzOPoUX3moXev/oPonfVTbv5zDu/3KhUb6T+Q/I61J3/MrOiBXMBctVootnshvyrn12UZwXbhC95UqX/mMjnil9KADRWHLc4j5yHFuN8KQUMs3J5VQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3312.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(346002)(396003)(376002)(136003)(366004)(39830400003)(122000001)(9686003)(26005)(8936002)(71200400001)(86362001)(508600001)(5660300002)(66476007)(52536014)(8676002)(76116006)(55016003)(33656002)(66556008)(66946007)(66446008)(64756008)(316002)(2906002)(6506007)(6916009)(19627405001)(83380400001)(53546011)(7696005)(38100700002)(38070700005)(186003);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?SXV0OWk1VVJ2TlFYZDJkL01NVlBjazcwRTd2UGZZQm9PbVhSeGZNcHBaWmxK?=
- =?utf-8?B?cWs2bXJ6VWZ4UURJcVorV2dZbWhtbDJCa3FnNk0rZEhaQVpBakV6ZlFLUkRS?=
- =?utf-8?B?a3BxVTRuS09yQm9uemZUVXdCWTVHbWt0ZzRoQ2hzbXNMWGRkNjJWZDU3NDNw?=
- =?utf-8?B?R2k0TFlHQXpMYTFPTUo5MGpYQWZUUVdFMUtQRjBrNDRVdUtiVWg5QldHVjZB?=
- =?utf-8?B?cUhROXR3Y1hWN215ZWdYQkFncVlYVkN5SlhsZW4xMnh0bGlqTy9BNGRaWmVk?=
- =?utf-8?B?c3FDOUNXWlFCbWlxdzQwdEdaVm03ZDNIbEtPaUJtNzZqZm1SNzBGK0QxTnNO?=
- =?utf-8?B?TDYramYzejluWThSSWdSendYd1ZhZWN0NUo5QnM2a2dDcllQRnUxOFBLSG9t?=
- =?utf-8?B?RCsxKzl6RkxsRGVPUXh2UnJ5NTdyWGtxZmpoUjFua0dNYmJQUG5PTGZjOFVW?=
- =?utf-8?B?Y2I2TFhvSjlnRHlXaXNKNjg5RXdwZ0VZelNhbHpsTTZPSGwzWFhhVFhOZGUz?=
- =?utf-8?B?T25DTm5Nd0xyMkZoZ1hhMklGQjltcTVYdGxmYTBjbTBpWGlydVIrcGlrSEFB?=
- =?utf-8?B?NURIYUx2VmNIdHJ2RTBGZldjWHF4MDh1cSt5K3lDVnVQUm13T3p5T2dwajBz?=
- =?utf-8?B?Z1U5Z0xBMmF2UkhaTWVRUlRCTytKR0hSOEk4NnJRWWpqdE9KNVlpTkRGMGFE?=
- =?utf-8?B?R3UyZXl3S0hMQW9BVXV0T3NBeFhVUy95bURwOU9XaDgzU1U4QkZJK1VsK3VI?=
- =?utf-8?B?ejB4cmNqbUJBblJUbVZMRks5TXI2REtrV0ZoN243MmJqblpxbGhYVndRdEJk?=
- =?utf-8?B?MGxHRzk3V2JWSm5FemxQNHdialFJdENQYU54T1p5SFZvclhMdTg0NkNNN2k3?=
- =?utf-8?B?Zy8zVHBFQVFKb2NoeWwxU3FRdWQwaHo3ekVXdlZsK0lLMGdGOHltTlRyWnVD?=
- =?utf-8?B?Qk50a0Ezc3UxODdidDRaWlhZTFZtSExqdWl6RnFyZ2VTM3FmWG9HZ2NzWlgr?=
- =?utf-8?B?SVJqUHFZY0xxaGZzd1lESmVZM3F3SHdVTVdpQ1VXN284eU83dkZoMUFmeXoz?=
- =?utf-8?B?N3NxelAyTDNYdFBaWU85QUFsSEkrSjV4Y0toeVpDWUtVOWxFdkVPelllWVNI?=
- =?utf-8?B?cVNpREwrRm5LeWVjM292elRIczlwMnZLR0JKV241RUdqd0dmcVNmQkZ3bkpP?=
- =?utf-8?B?Z1RFOEh5OXh4S1ZiRG1Rbm9qV2hNNExxUURCb3krNmRWV0dlMk53OWh5Vk43?=
- =?utf-8?B?d0VWZm1TSzFvVG5mbnRldEgreTgwcEZuaVdCMmtIZDcyUisrc0pDR2VMT2Na?=
- =?utf-8?B?YXhBblZ1NmxkcXdWeUFlL0JjYWJDK1ZNREJxdVEyY1pYeTBaZlZybmc1VHQ1?=
- =?utf-8?B?MU01azRxQk9acGFnMmU0a25MUXBibEJhRFlRTTZ5dlJCV0dudjFEanIvcUFT?=
- =?utf-8?B?MGxIOSt0bHBHUVZkRjhEamloazRXUC9JdzU5QTI4SEZJTS9SRDU1ZW96YlZX?=
- =?utf-8?B?cm5RbThzQS85cmFPYVVsbTFlRVk0RGt2WDdkdEhMYzJCVkJXMUk3RVJWcmZK?=
- =?utf-8?B?ZFgxdHV3S0ZYT0pEdXBQR1A5WUlNU0JVMFZkcVp6TndicU80VEZYdTRMa1ZH?=
- =?utf-8?B?RjZ5M0FCNTNYak5iODFLemlrcFN1WjBoNFI5VENPNSs3VFZnQTB6cnA4K21h?=
- =?utf-8?B?MFI0bWFuZVV3QjV6emsvU1dkTElpbkZXTi9uODlqcjNBL2VPMTZOVElERElp?=
- =?utf-8?B?Qi9xYStEVjB6SUd1WTZ3R1JtWnRveVhsaEFEWDUwdW94QVBIbC9sZmJCZWt0?=
- =?utf-8?B?aXlkSzk2bXJSbVQwS3pIb0ZlUmd1S0VpQVlkM1M4RmI0dWpHdlNVL1JKT1Z0?=
- =?utf-8?B?U01KOWN6ajdROGs2Q2QvcTliaEVxZGE3eTdsSXJaSGo1ckE9PQ==?=
+ =?us-ascii?Q?tMsCQ843SIZxwtn785mTxVtw0QRy5JfFetuxz9RVcaAxRPDyLZFi6iHudA3C?=
+ =?us-ascii?Q?gXd1ZXkUv2vljZeMueg7LV+3c1FLXff0yeesTXMWJisIB5opKfHJXWyM+32F?=
+ =?us-ascii?Q?69kwJxuz3YXwynf00I7JJaD9+SgpUn//lhZ9Vk6GcLfDYwY4x93p73UtBxPx?=
+ =?us-ascii?Q?eXgobiiagt0wQT1BmmHoOjHn5RDr3OIW1r7a+QGIae7R6u0b/lYeRJm7WMkH?=
+ =?us-ascii?Q?CzxqUwCtWogj/5iVtsF2bdoTQpQLNDpHYQSgNoSjEbrnNILV32pWoN79T5tR?=
+ =?us-ascii?Q?eyAWVe64lpnI1X/qp69aD3esnZvlp1WAjRA9dYA1og37Mvc9PBiHygRjSxSm?=
+ =?us-ascii?Q?MD3UmtAIxxBktl+VZCImYUqRrKAzzX517HXsp4rTYQHKlIjJWwtMhzMfh7+0?=
+ =?us-ascii?Q?fhddlRwOBZX14Y+tW2HwbbhPY2mmo8doLqbKC0Ly6P2/UFHn1Ga5i+RRCyyS?=
+ =?us-ascii?Q?Zihphpio5b9s169+R5e30xpYMlFvP4qO8q9sk44FpjelwXuXTrRIyVUEHQK3?=
+ =?us-ascii?Q?Wl4tTi5tPv3fTpXTcBG9C/US7QHX3T3zKG93+fpYG2g2gSIjfEpIqhuuv2Y/?=
+ =?us-ascii?Q?ZKaRTCFlhsqAAxkaxpjP/wPLJS2yphVeu7xqeE+BZBRziObpOCfOrBFLF+Ez?=
+ =?us-ascii?Q?PjkjZJQUSefQYbjGNt1fsjIQ5YaAJbU4cQXDpV+W5D4Zqu3IiJ/g2HH+q2fM?=
+ =?us-ascii?Q?4/c9VZ4Dfs6wI98DeupxrG7k+LYCf0YoehD5RawyLC6H7I0akMsTsPqjnhbU?=
+ =?us-ascii?Q?SbGKeNWqSf66ZvVkWebHZGhI4dev/1SRsjhs8hrVY3xCeI8AB/NtfZ4XrlSU?=
+ =?us-ascii?Q?YrGXP9o/ngVOHfndGZmFlGCDVnOPBR9N36udVsg13pLkhW8xb0x2r3edcUdH?=
+ =?us-ascii?Q?x1EN2IVmXXflnnVgT/YXfH8ktGmc0uQxVWFyeoLERlroK+RqWadgVXwNoVn/?=
+ =?us-ascii?Q?2RKWsasGNcvBkA/n5p8V+6rEq8Vae1t1xtXEpQQGF79o5oBCBVHZMoz6a5Tu?=
+ =?us-ascii?Q?JyOjJdwQhVCkPQAvTgk01ph3taF1dOB9OQIW0WNfMhl3hK6JA6cwyaff5dCf?=
+ =?us-ascii?Q?8Cf+Ntvnv4Q3mP/zqS8X2EyRbQF5PwkxTFcOy4chmI7+vLLMy7mabrDFAyKZ?=
+ =?us-ascii?Q?9plN1UOf7uN2yvODnBjfSba/UU5kzYbJjHNF1g6rjPYHn3f2C4p/zCQ2dSyU?=
+ =?us-ascii?Q?+A2kifKrgHhcCKvhktElGFM76fojelzti3JFC8MHcUpbtC2m1PTn28zrDroI?=
+ =?us-ascii?Q?LNiBGjMqiW/UsP4IHTDSiVEJwXBFHHcx//LQn96bP682xuta4FZyHe18t8J9?=
+ =?us-ascii?Q?pHDk3jCnGJ3TWfQdpdHyOXyf7Yg86pButM+gCuRb1G8+x5XfGEFkaj2KJzXC?=
+ =?us-ascii?Q?j1W5NieGgqeRWoAvI6Vo6ZO9VffpwIlWwOvWws6tgbKKbDpdzThH8hVj33sd?=
+ =?us-ascii?Q?S/dA6e2sJ4x0f7EKpTXhzyY8JIiIVrmRqQ+zWwFSCJvs7tqN0L68R1Y2o0qQ?=
+ =?us-ascii?Q?lzhsnneQH4xT6Uglh8kgaFyTmeGaAPgd7k4E683xlV6K4rj94aHKoI/j708L?=
+ =?us-ascii?Q?5RUVZ2jag7NsOTNFvNA68K/+hUlodpHt+npG8mccozmnoavNInf1AdAn8Q63?=
+ =?us-ascii?Q?Z/UZprFSHidLaqVYMZFzqE5MWYci3QkWf50H1dUbsw5iWgbAgCxV4AVDZGv0?=
+ =?us-ascii?Q?yZPpVGuxi6HHbwYciLcv11VGi3enmZpjaIv1RbZUSB6WKHkX5odptzOti3QP?=
+ =?us-ascii?Q?oIpWlqxbNEPDIWbXy9cSLVpFSZ6omK0=3D?=
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-5e42a.templateTenant
+X-OriginatorOrg: gardettoengineering.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CWXP265MB1880.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35caeb67-093e-4774-89e3-08da30334513
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 May 2022 14:09:58.6564
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3312.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03dacfa1-4064-4f75-2363-08da31d11621
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2022 15:32:11.5230
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO6P265MB5901
-Message-ID-Hash: 5E3WYZ43ENMN3KXTJ3FVFL3HQ3KOMVMJ
-X-Message-ID-Hash: 5E3WYZ43ENMN3KXTJ3FVFL3HQ3KOMVMJ
-X-MailFrom: iucgnaw@msn.com
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jcjxGpKeEZ8j+p6NcbCJQUjyjBaSF/umiwWKZPQ2EjlWtv3tkR0kaXA3nspNniV7DNEiut35I22OTwpjPwtb/CwQ3V8xDWvwZnnS7J8R51U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR12MB1736
+X-MDID: 1652110338-H5Or4V9EQuPA
+Message-ID-Hash: VMPBQYVPB6MBCZBZC5DFHJVBRQAARNT2
+X-Message-ID-Hash: VMPBQYVPB6MBCZBZC5DFHJVBRQAARNT2
+X-MailFrom: jim@gardettoengineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X300 simultaneously transmit 2 signals of different sample rate and center frequency
+Subject: [USRP-users] Re: N320 TDC measurement errors
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TPOVDR5W62HLUPWEI7HVD235LT5D6LAW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IGOSSB4QVF3LNUZX2AXWF326DUZFEKQ2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3944273525161057963=="
+Content-Type: multipart/mixed; boundary="===============4519194053363878552=="
 
---===============3944273525161057963==
+--===============4519194053363878552==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_CWXP265MB1880003EE7AB931152129091A5C49CWXP265MB1880GBRP_"
+	boundary="_000_MN2PR12MB331244B919FBB63ECE92630FB8C69MN2PR12MB3312namp_"
 
---_000_CWXP265MB1880003EE7AB931152129091A5C49CWXP265MB1880GBRP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_MN2PR12MB331244B919FBB63ECE92630FB8C69MN2PR12MB3312namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-VGhhdCBtYWtlIHNlbnNlLCB0aGFuayB5b3UhDQoNCkZyb206IE1hcmN1cyBELiBMZWVjaCA8cGF0
-Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBTYXR1cmRheSwgTWF5IDcsIDIwMjIgMTA6MDgg
-UE0NClRvOiDnjovnkoAgV0FORyBDdWkgPGl1Y2duYXdAbXNuLmNvbT47IHVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFJlOiBYMzAwIHNpbXVsdGFu
-ZW91c2x5IHRyYW5zbWl0IDIgc2lnbmFscyBvZiBkaWZmZXJlbnQgc2FtcGxlIHJhdGUgYW5kIGNl
-bnRlciBmcmVxdWVuY3kNCg0KT24gMjAyMi0wNS0wNyAxMDowMywg546L55KAIFdBTkcgQ3VpIHdy
-b3RlOg0KVW5kZXJzdG9vZCwgY2xhcmlmaWVkIHJlc2FtcGxlIGlzIHRoZSBzb2x1dGlvbi4gVGhh
-bmtzLA0KQlRXLCB3aGVuIEkgcmVhZCB0aGUgdHhyeF9sb29wYmFja190b19maWxlIGV4YW1wbGUs
-IGl0IGRvZXMgbWFrZSAyIHVzcnAgb2JqZWN0cyAoMSB0eCwgMSByeCkgcG9pbnQgdG8gMSBkZXZp
-Y2UsIGhvdyBjYW4gaXQgd29yaz8NCkkgc2hvdWxkIGNsYXJpZnkgbXkgY29tbWVudC0tLWl0J3Mg
-InBlciBkaXJlY3Rpb24iLg0KDQoNCg0KDQpGcm9tOiBNYXJjdXMgRC4gTGVlY2ggPHBhdGNodm9u
-YnJhdW5AZ21haWwuY29tPjxtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBT
-YXR1cmRheSwgTWF5IDcsIDIwMjIgOTo1MCBQTQ0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMu
-Y29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFtVU1JQLXVz
-ZXJzXSBSZTogWDMwMCBzaW11bHRhbmVvdXNseSB0cmFuc21pdCAyIHNpZ25hbHMgb2YgZGlmZmVy
-ZW50IHNhbXBsZSByYXRlIGFuZCBjZW50ZXIgZnJlcXVlbmN5DQoNCk9uIDIwMjItMDUtMDcgMDg6
-MjIsID8/IFdBTkcgQ3VpIHdyb3RlOg0KSGksDQpJIHNlYXJjaGVkIGFyb3VuZCBhbmQgc3RpbGwg
-Y2Fu4oCZdCBnZXQgY2xlYXIgYW5zd2VyLCBzbyBJIHdvdWxkIHNlZWsgaGVscCBoZXJlLg0KSSB3
-YW50IHRvIHNpbXVsdGFuZW91c2x5IHRyYW5zbWl0IDIgYmFzZWJhbmQgZmlsZXMgd2hpY2ggYXJl
-IGRpZmZlcmVudCBzYW1wbGUgcmF0ZSAob25lIGlzIHJhdGUgMi41IE1IeiBhdCBmcmVxIDEuNSBH
-SHosIGFuZCB0aGUgb3RoZXIgaXMgcmF0ZSA4IE1IeiBhdCBmcmVxIDEuOCBHSHopLCBhbmQgd291
-bGQgbGlrZSB0byB1dGlsaXplIDIgZGF1Z2h0ZXIgYm9hcmRzIG9mIFgzMDAuDQpJIHRyaWVkIHRv
-IGNvbmZpZ3VyZSBpdCB3aXRoIDIgbXVsdGlfdXNycCBvYmplY3RzLCBidXQgdGhlIGNhbGwgZmFp
-bGVkIHdoZW4gZ2V0IHNlY29uZCB0eF9zdHJlYW1lciAoaG93ZXZlciwgdGhlIGZpcnN0IGdldCBj
-YWxsIHN1Y2NlZWQuKSwgd2l0aDogRXJyb3I6IFJ1bnRpbWVFcnJvcjogTXVsdGlwbGUgc2FtcGxp
-bmcgcmF0ZXMgZG93bnN0cmVhbSBvZiBUWCB0ZXJtaW5hdG9yIDA6IC4uLg0KSSBrbm93IFgzMDAg
-Y2FuIHRyYW5zbWl0L3JlY2VpdmUgMiBjaGFubmVscyBhdCAyIGRpZmZlcmVudCBzYW1wbGUgcmF0
-ZSwganVzdCB3b25kZXIgaXMgaXQgcG9zc2libGUgdG8gc2ltdWx0YW5lb3VzbHkgdHJhbnNtaXQg
-MiBjaGFubmVscyBhcyBkZXNjcmliZWQgYWJvdmU/IE9yIGhhdmUgdG8gcmVzYW1wbGUgb25lIGZp
-bGUgdG8gdGhlIHNhbWUgc2FtcGxlIHJhdGUgb2YgdGhlIG90aGVyIGZpbGUsIHRoZW4gdHJhbnNt
-aXQgdG9nZXRoZXI/DQpUaGFua3MgaW4gYWR2YW5jZSwNCldBTkcgQ3VpDQoNCllvdSBjYW4ndCBo
-YXZlIG11bHRpcGxlIG11bHRpX3VzcnAgb2JqZWN0cyBwb2ludGluZyB0byB0aGUgc2FtZSBkZXZp
-Y2UsIHNvIHlvdSdsbCBoYXZlIHRvIHJlc2FtcGxlIG9uZSBvZiB5b3VyIHN0cmVhbXMgYW5kIHVz
-ZSBhDQogIHNpbmdsZSBtdWx0aV91c3JwIG9iamVjdC4NCg0KDQoNCg0K
+Sorry to bring it up again, but this is really becoming an issue for us, in=
+ that we can't seem to use our N320 radios reliably with this TDC measureme=
+nt error issue. When the TDC error occurs, our program or even uhd_usrp_pro=
+be immediately errors out and exits. If anyone has seen this or has any tho=
+ughts on why this might be happening or how to fix it, that would be greatl=
+y appreciated.
 
---_000_CWXP265MB1880003EE7AB931152129091A5C49CWXP265MB1880GBRP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Thanks,
+Jim
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5Ouetiee6vzsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAx
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
-MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OuW+rui9r+mbhem7kTsN
-CglwYW5vc2UtMToyIDExIDUgMyAyIDIgNCAyIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
-aWx5OiJcQOW+rui9r+mbhem7kSI7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEDnrYnn
-ur8iOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KLyogU3R5bGUgRGVmaW5pdGlv
-bnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2lu
-OjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJdGV4dC1hbGlnbjpqdXN0aWZ5Ow0KCWZv
-bnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6562J57q/O30NCmE6bGluaywgc3Bhbi5Nc29I
-eXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4
-dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9s
-bG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1k
-ZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5t
-c29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1h
-bHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGluOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRv
-Ow0KCW1hcmdpbi1sZWZ0OjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJD
-YWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBl
-OnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5Ouetiee6vzsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNw
-YW4uRW1haWxTdHlsZTE5DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5
-Ouetiee6vzsNCgljb2xvcjp3aW5kb3d0ZXh0O30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1z
-dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5Ouetiee6vzsNCgljb2xvcjp3
-aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5
-Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4g
-MTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjI1aW4gMS4waW4gMS4yNWluO30NCmRpdi5Xb3JkU2Vj
-dGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28g
-OV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+
-DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5
-b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9v
-OnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4t
-VVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0
-aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGF0IG1ha2Ugc2Vuc2UsIHRoYW5rIHlvdSE8
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9w
-Pg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFF
-MSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48Yj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bhbj48L2I+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+
-IE1hcmN1cyBELiBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7DQo8YnI+DQo8
-Yj5TZW50OjwvYj4gU2F0dXJkYXksIE1heSA3LCAyMDIyIDEwOjA4IFBNPGJyPg0KPGI+VG86PC9i
-PiA8L3NwYW4+PHNwYW4gbGFuZz0iWkgtQ04iIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDvlvq7o
-va/pm4Xpu5EmcXVvdDssc2Fucy1zZXJpZiI+546L55KAPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBXQU5HIEN1aSAmbHQ7aXVj
-Z25hd0Btc24uY29tJmd0OzsgdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJq
-ZWN0OjwvYj4gUmU6IFtVU1JQLXVzZXJzXSBSZTogWDMwMCBzaW11bHRhbmVvdXNseSB0cmFuc21p
-dCAyIHNpZ25hbHMgb2YgZGlmZmVyZW50IHNhbXBsZSByYXRlIGFuZCBjZW50ZXIgZnJlcXVlbmN5
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRl
-eHQtYWxpZ246bGVmdCI+T24gMjAyMi0wNS0wNyAxMDowMywg546L55KAIFdBTkcgQ3VpIHdyb3Rl
-OjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1
-LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlVuZGVyc3Rv
-b2QsIGNsYXJpZmllZCByZXNhbXBsZSBpcyB0aGUgc29sdXRpb24uIFRoYW5rcyw8bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkJUVywgd2hlbiBJIHJlYWQgdGhlIHR4cnhfbG9v
-cGJhY2tfdG9fZmlsZSBleGFtcGxlLCBpdCBkb2VzIG1ha2UgMiB1c3JwIG9iamVjdHMgKDEgdHgs
-IDEgcngpIHBvaW50IHRvIDEgZGV2aWNlLCBob3cgY2FuIGl0IHdvcms/PG86cD48L286cD48L3A+
-DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9
-InRleHQtYWxpZ246bGVmdCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZiI+SSBzaG91bGQgY2xhcmlmeSBteSBjb21tZW50LS0taXQncyAmcXVv
-dDtwZXIgZGlyZWN0aW9uJnF1b3Q7LiZuYnNwOyZuYnNwOw0KPGJyPg0KPGJyPg0KPGJyPg0KPGJy
-Pg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6
-NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8
-bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9w
-OnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQtYWxpZ246bGVmdCI+PGI+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJv
-bTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWYiPiBNYXJjdXMgRC4gTGVlY2gNCjxhIGhyZWY9Im1haWx0bzpwYXRjaHZvbmJy
-YXVuQGdtYWlsLmNvbSI+Jmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0OzwvYT4gPGJyPg0K
-PGI+U2VudDo8L2I+IFNhdHVyZGF5LCBNYXkgNywgMjAyMiA5OjUwIFBNPGJyPg0KPGI+VG86PC9i
-PiA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnNA
-bGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10gUmU6
-IFgzMDAgc2ltdWx0YW5lb3VzbHkgdHJhbnNtaXQgMiBzaWduYWxzIG9mIGRpZmZlcmVudCBzYW1w
-bGUgcmF0ZSBhbmQgY2VudGVyIGZyZXF1ZW5jeTwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9InRleHQt
-YWxpZ246bGVmdCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCIgYWxpZ249ImxlZnQiIHN0eWxlPSJ0ZXh0LWFsaWduOmxlZnQiPk9uIDIwMjItMDUtMDcg
-MDg6MjIsID8/IFdBTkcgQ3VpIHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8YmxvY2tx
-dW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPkhpLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-SSBzZWFyY2hlZCBhcm91bmQgYW5kIHN0aWxsIGNhbjxzcGFuIGxhbmc9IlpILUNOIj7igJk8L3Nw
-YW4+dCBnZXQgY2xlYXIgYW5zd2VyLCBzbyBJIHdvdWxkIHNlZWsgaGVscCBoZXJlLjxvOnA+PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSB3YW50IHRvIHNpbXVsdGFuZW91c2x5IHRy
-YW5zbWl0IDIgYmFzZWJhbmQgZmlsZXMgd2hpY2ggYXJlIGRpZmZlcmVudCBzYW1wbGUgcmF0ZSAo
-b25lIGlzIHJhdGUgMi41IE1IeiBhdCBmcmVxIDEuNSBHSHosIGFuZCB0aGUgb3RoZXIgaXMgcmF0
-ZSA4IE1IeiBhdCBmcmVxIDEuOCBHSHopLCBhbmQgd291bGQgbGlrZSB0byB1dGlsaXplIDIgZGF1
-Z2h0ZXIgYm9hcmRzIG9mIFgzMDAuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5JIHRyaWVkIHRvIGNvbmZpZ3VyZSBpdCB3aXRoIDIgbXVsdGlfdXNycCBvYmplY3RzLCBidXQg
-dGhlIGNhbGwgZmFpbGVkIHdoZW4gZ2V0IHNlY29uZCB0eF9zdHJlYW1lciAoaG93ZXZlciwgdGhl
-IGZpcnN0IGdldCBjYWxsIHN1Y2NlZWQuKSwgd2l0aDogRXJyb3I6IFJ1bnRpbWVFcnJvcjogTXVs
-dGlwbGUgc2FtcGxpbmcgcmF0ZXMgZG93bnN0cmVhbSBvZiBUWCB0ZXJtaW5hdG9yIDA6IC4uLjxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBrbm93IFgzMDAgY2FuIHRyYW5z
-bWl0L3JlY2VpdmUgMiBjaGFubmVscyBhdCAyIGRpZmZlcmVudCBzYW1wbGUgcmF0ZSwganVzdCB3
-b25kZXIgaXMgaXQgcG9zc2libGUgdG8gc2ltdWx0YW5lb3VzbHkgdHJhbnNtaXQgMiBjaGFubmVs
-cyBhcyBkZXNjcmliZWQgYWJvdmU/IE9yIGhhdmUgdG8gcmVzYW1wbGUgb25lIGZpbGUgdG8gdGhl
-IHNhbWUgc2FtcGxlIHJhdGUgb2YgdGhlIG90aGVyIGZpbGUsIHRoZW4gdHJhbnNtaXQNCiB0b2dl
-dGhlcj88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5rcyBpbiBhZHZh
-bmNlLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V0FORyBDdWk8bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBzdHlsZT0idGV4dC1h
-bGlnbjpsZWZ0Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
-YW5zLXNlcmlmIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBhbGlnbj0ibGVmdCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIu
-MHB0O3RleHQtYWxpZ246bGVmdCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZiI+WW91IGNhbid0IGhhdmUgbXVsdGlwbGUgbXVsdGlfdXNycCBv
-YmplY3RzIHBvaW50aW5nIHRvIHRoZSBzYW1lIGRldmljZSwgc28geW91J2xsIGhhdmUgdG8gcmVz
-YW1wbGUgb25lIG9mIHlvdXIgc3RyZWFtcyBhbmQgdXNlIGE8YnI+DQombmJzcDsgc2luZ2xlIG11
-bHRpX3VzcnAgb2JqZWN0Ljxicj4NCjxicj4NCjxicj4NCjxicj4NCjwvc3Bhbj48bzpwPjwvbzpw
-PjwvcD4NCjwvYmxvY2txdW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIGFsaWduPSJsZWZ0IiBz
-dHlsZT0idGV4dC1hbGlnbjpsZWZ0Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
-dj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+________________________________
+From: Jim Palladino <jim@gardettoengineering.com>
+Sent: Monday, May 2, 2022 12:59 PM
+To: USRP-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: [USRP-users] N320 TDC measurement errors
 
---_000_CWXP265MB1880003EE7AB931152129091A5C49CWXP265MB1880GBRP_--
+Hello,
 
---===============3944273525161057963==
+Ever since updating to UHD 4.1.0.5 (including updating the filesystem and F=
+PGA image on our six N320 USRPs), we occasionally get TDC measurement error=
+s when trying to interact with the radio via UHD. It isn't easily reproduci=
+ble, but it does happen on different radios maybe once a day or so. I've se=
+en it when using either external time and clock sources or internal (doesn'=
+t seem to matter which).
+
+Here is an example of the output of a uhd_usrp_probe when this occurs.
+----------------------
+[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.1.0.HEAD-0-g=
+6bd0be9c
+[DEBUG] [MPMD] Discovering MPM devices on port 49600
+[DEBUG] [MPMD] Discovering MPM devices on port 49600
+[DEBUG] [MPMD] Discovering MPM devices on port 49600
+[DEBUG] [MPMD] Discovering MPM devices on port 49600
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.40.2,type=3Dn3xx,product=3Dn320,serial=3D31EDED4,fpga=3DXG,claimed=
+=3DFalse,addr=3D192.168.40.2
+[DEBUG] [MPMD] Claiming mboard 0
+[DEBUG] [MPMD] Device args: `mgmt_addr=3D192.168.40.2,type=3Dn3xx,product=
+=3Dn320,serial=3D31EDED4,fpga=3DXG,claimed=3DFalse,addr=3D192.168.40.2'. RP=
+C address: 192.168.40.2
+[DEBUG] [MPMD] MPM reports device info: addr=3D192.168.30.2,claimed=3DTrue,=
+connection=3Dremote,dboard_0_pid=3D338,dboard_0_serial=3D31EBB6F,dboard_1_p=
+id=3D338,dboard_1_serial=3D31EBB94,description=3DN300-Series Device,eeprom_=
+version=3D3,fpga=3DXG,fpga_version=3D8.0,fpga_version_hash=3D6bd0be9.clean,=
+fs_version=3D20211215135436,mender_artifact=3Dv4.1.0.5_n3xx,mpm_sw_version=
+=3D4.1.0.5-g6bd0be9c,mpm_version=3D4.0,name=3Dni-n3xx-31EDED4,pid=3D16962,p=
+roduct=3Dn320,rev=3D10,rpc_connection=3Dremote,second_addr=3D192.168.40.2,s=
+erial=3D31EDED4,type=3Dn3xx
+[DEBUG] [MPMD] Found 8 motherboard sensors.
+[DEBUG] [MPMD] Initializing mboard 0
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DXG,mgmt_a=
+ddr=3D192.168.40.2,product=3Dn320,clock_source=3Dinternal,time_source=3Dint=
+ernal'.
+[INFO] [MPM.Rhodium-0] init() called with args `fpga=3DXG,mgmt_addr=3D192.1=
+68.40.2,product=3Dn320,clock_source=3Dinternal,time_source=3Dinternal'
+[INFO] [MPM.Rhodium-1] init() called with args `fpga=3DXG,mgmt_addr=3D192.1=
+68.40.2,product=3Dn320,clock_source=3Dinternal,time_source=3Dinternal'
+[INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!
+[ERROR] [MPM.Sync-0] TDC measurements show a wide range of values! Check yo=
+ur clock rates for incompatibilities.
+[INFO] [MPM.Rhodium-1.init.LMK04828] LMK initialized and locked!
+[ERROR] [RPC] TDC measurement out of expected range!
+[INFO] [MPM.Rhodium-1.DAC37J82] DAC PLL Locked!
+[INFO] [MPM.Rhodium-1.AD9695] ADC PLL Locked!
+[INFO] [MPM.Rhodium-1.init] JESD204B Link Initialization & Training Complet=
+e
+[ERROR] [MPM.RPCServer] init() failed with error: TDC measurement out of ex=
+pected range!
+Error: RuntimeError: Error during RPC call to `init'. Error message: TDC me=
+asurement out of expected range!
+----------------------
+
+If I run uhd_usrp_probe again immediately, it always seems to work fine. I =
+don't think this is specific to any of the 3 valid master clock rates, but =
+I've seen this happen after a fresh reboot of an N320 with a uhd_usrp_probe=
+ -- so it should have been set to default parameters. I also feel like it h=
+appens after a radio hasn't been in use for a while, but I'm not sure if th=
+at is always the case.
+
+Does anyone have any idea what might cause this?
+
+Thanks,
+Jim
+
+
+--_000_MN2PR12MB331244B919FBB63ECE92630FB8C69MN2PR12MB3312namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Sorry to bring it up again, but this is really becoming an issue for us, in=
+ that we can't seem to use our N320 radios reliably with this TDC measureme=
+nt error issue. When the TDC error occurs, our program or even uhd_usrp_pro=
+be immediately errors out and exits.
+ If anyone has seen this or has any thoughts on why this might be happening=
+ or how to fix it, that would&nbsp;be&nbsp;greatly appreciated.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Jim</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Jim Palladino &lt;jim=
+@gardettoengineering.com&gt;<br>
+<b>Sent:</b> Monday, May 2, 2022 12:59 PM<br>
+<b>To:</b> USRP-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> [USRP-users] N320 TDC measurement errors</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Hello,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Ever since updating to UHD 4.1.0.5 (including updating the filesystem and F=
+PGA image on our six N320 USRPs), we occasionally get TDC measurement error=
+s when trying to interact with the radio via UHD. It isn't easily reproduci=
+ble, but it does happen on different
+ radios maybe once a day or so. I've seen it when using either external tim=
+e and clock sources or internal (doesn't seem to matter which).</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Here is an example of the output of a uhd_usrp_probe when this occurs.</div=
+>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+----------------------</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.1.0.HEAD-0-g=
+6bd0be9c
+<div>[DEBUG] [MPMD] Discovering MPM devices on port 49600</div>
+<div>[DEBUG] [MPMD] Discovering MPM devices on port 49600</div>
+<div>[DEBUG] [MPMD] Discovering MPM devices on port 49600</div>
+<div>[DEBUG] [MPMD] Discovering MPM devices on port 49600</div>
+<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
+r=3D192.168.40.2,type=3Dn3xx,product=3Dn320,serial=3D31EDED4,fpga=3DXG,clai=
+med=3DFalse,addr=3D192.168.40.2</div>
+<div>[DEBUG] [MPMD] Claiming mboard 0</div>
+<div>[DEBUG] [MPMD] Device args: `mgmt_addr=3D192.168.40.2,type=3Dn3xx,prod=
+uct=3Dn320,serial=3D31EDED4,fpga=3DXG,claimed=3DFalse,addr=3D192.168.40.2'.=
+ RPC address: 192.168.40.2</div>
+<div>[DEBUG] [MPMD] MPM reports device info: addr=3D192.168.30.2,claimed=3D=
+True,connection=3Dremote,dboard_0_pid=3D338,dboard_0_serial=3D31EBB6F,dboar=
+d_1_pid=3D338,dboard_1_serial=3D31EBB94,description=3DN300-Series Device,ee=
+prom_version=3D3,fpga=3DXG,fpga_version=3D8.0,fpga_version_hash=3D6bd0be9.c=
+lean,fs_version=3D20211215135436,mender_artifact=3Dv4.1.0.5_n3xx,mpm_sw_ver=
+sion=3D4.1.0.5-g6bd0be9c,mpm_version=3D4.0,name=3Dni-n3xx-31EDED4,pid=3D169=
+62,product=3Dn320,rev=3D10,rpc_connection=3Dremote,second_addr=3D192.168.40=
+.2,serial=3D31EDED4,type=3Dn3xx</div>
+<div>[DEBUG] [MPMD] Found 8 motherboard sensors.</div>
+<div>[DEBUG] [MPMD] Initializing mboard 0</div>
+<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DXG,m=
+gmt_addr=3D192.168.40.2,product=3Dn320,clock_source=3Dinternal,time_source=
+=3Dinternal'.</div>
+<div>[INFO] [MPM.Rhodium-0] init() called with args `fpga=3DXG,mgmt_addr=3D=
+192.168.40.2,product=3Dn320,clock_source=3Dinternal,time_source=3Dinternal'=
+</div>
+<div>[INFO] [MPM.Rhodium-1] init() called with args `fpga=3DXG,mgmt_addr=3D=
+192.168.40.2,product=3Dn320,clock_source=3Dinternal,time_source=3Dinternal'=
+</div>
+<div>[INFO] [MPM.Rhodium-0.init.LMK04828] LMK initialized and locked!</div>
+<div>[ERROR] [MPM.Sync-0] TDC measurements show a wide range of values! Che=
+ck your clock rates for incompatibilities.</div>
+<div>[INFO] [MPM.Rhodium-1.init.LMK04828] LMK initialized and locked!</div>
+<div>[ERROR] [RPC] TDC measurement out of expected range!</div>
+<div>[INFO] [MPM.Rhodium-1.DAC37J82] DAC PLL Locked!</div>
+<div>[INFO] [MPM.Rhodium-1.AD9695] ADC PLL Locked!</div>
+<div>[INFO] [MPM.Rhodium-1.init] JESD204B Link Initialization &amp; Trainin=
+g Complete</div>
+<div>[ERROR] [MPM.RPCServer] init() failed with error: TDC measurement out =
+of expected range!</div>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span>Error: RuntimeError: Error during RPC call to `init'. Error message: =
+TDC measurement out of expected range!</span><br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant">----------------------</span><br>
+</span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant"><br>
+</span></span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant">If I run uhd_usrp_probe again immediately, it always seems to work f=
+ine. I don't think this is specific to any of the 3 valid master clock rate=
+s, but I've seen this happen after
+ a fresh reboot of an N320 with a uhd_usrp_probe -- so it should have been =
+set to default parameters. I also feel like it happens after a radio hasn't=
+ been in use for a while, but I'm not sure if that is always the case.&nbsp=
+;</span></span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant"><br>
+</span></span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant"><span style=3D"background-color:rgb(255,255,255); display:inline!imp=
+ortant">Does anyone have any idea what might cause this?</span><br>
+</span></span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant"><br>
+</span></span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant">Thanks,</span></span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant">Jim</span></span></div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<span><span style=3D"background-color:rgb(255,255,255); display:inline!impo=
+rtant"><br>
+</span></span></div>
+</div>
+</body>
+</html>
+
+--_000_MN2PR12MB331244B919FBB63ECE92630FB8C69MN2PR12MB3312namp_--
+
+--===============4519194053363878552==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -315,4 +440,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3944273525161057963==--
+--===============4519194053363878552==--
