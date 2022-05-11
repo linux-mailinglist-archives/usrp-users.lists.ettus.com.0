@@ -2,100 +2,156 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90EE4523C56
-	for <lists+usrp-users@lfdr.de>; Wed, 11 May 2022 20:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E76523CA3
+	for <lists+usrp-users@lfdr.de>; Wed, 11 May 2022 20:36:04 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8793038433D
-	for <lists+usrp-users@lfdr.de>; Wed, 11 May 2022 14:18:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D79CE38445E
+	for <lists+usrp-users@lfdr.de>; Wed, 11 May 2022 14:36:02 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1652293132; bh=P8iu9BvkTujL6NU17+tRx/vEYJcVHtgyZqUFJSpVm2c=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=VdUpL7ZRx78mq/gMhtqMXd4aHEsGj79uNU/vQIl/7bQb/eEbmCvoMr1UG6Gnn6OWB
-	 KsijDAxMVN3ES3G9uVgQuWCM8T63x9+VeZeTyfb2ZkIHf7iUTxZByrW8uA6XeNeazi
-	 60C4aJXcouY6cD9NsuW7sRkleEoe83lfpNJBDoN8/4h6WRqgHiUGJe5QxHabUY9/f4
-	 5/yvNYlsS6iqGT7MWyXznnnq1wE/aFg4TUztjZE9WWkNLh3loY761kGDtldL4IgHHq
-	 3P6ul7seF4Leh6Y/XkUSHOv5fqTqurIBS2sffa1n0O3YD04EzjqfYRBXXIuL2/ws//
-	 FVsU+NruWzHEQ==
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id D22D9384328
-	for <usrp-users@lists.ettus.com>; Wed, 11 May 2022 14:17:26 -0400 (EDT)
+	t=1652294162; bh=uWN7qV/OWJzj1zSBXBxxhKE4e/+Gu7ln2HslOGAsslU=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=b5mPHHd7jLCywR3NcMYj8EtxSUaGxSsp/4uHd4Ynq4pVhtsCz5PrBwFvEJFgFnA/c
+	 QgRwy/jcRO0JTC8qeCoEfIbQcddaFWm/r1bP8HIhsa2loxUSJDKGp1U++jtWUXyFpX
+	 SudyYYj7DjCLwp7BRg4reL6Mql+sNlLWNERUWIxtZO26sX/8fpMGH53bk1J6YTPb3y
+	 2k0KYSR7jzzagtT+4bWm1T6LqRL4sSL3egB9kattZ5vVh4D6gqQgS+KgF9EghTLgWQ
+	 dZ9imqq5odbZ06UCSQKyrkAk2uFTayU2/lBj2+fdpqT0+1mY/5YZET48zHihlDPRRK
+	 LnfisM+LwCCZw==
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4EFCF3842FC
+	for <usrp-users@lists.ettus.com>; Wed, 11 May 2022 14:35:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jo2MejA8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iaE3VqXb";
 	dkim-atps=neutral
-Received: by mail-qt1-f177.google.com with SMTP id g3so1357427qtb.7
-        for <usrp-users@lists.ettus.com>; Wed, 11 May 2022 11:17:26 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id d25so2693954pfo.10
+        for <usrp-users@lists.ettus.com>; Wed, 11 May 2022 11:35:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=s+p6tT6BQCQ+/T63RyNhhXYFjj8SNaTnQ4CjzxhlWX8=;
-        b=jo2MejA8Xu+JRQq2BAPDLmls3TbmbXMrV25oie3U8gT/DHxdxdmeA5QrRlT0XGKo9Q
-         Lyd9a/7QiNNFSlAOcA+Bo8D2EeDzx6Wa4WPHob2I9e0JwzvweJaeCKptM9XTQIQpdfqx
-         T7bsfCyzdUuNHaoMfMxGAA4tjN3cgLwJ8j/QrHhNimOKu4C0n7DVCJTVvda6B32pJHyP
-         TNtM5Koi5GhS6MvrJSEMwT/JaAdwBEPeLv+EGvoQ+XpCdXg5YSIh7oHtgbTSIILBKqFa
-         z987xyaH5rnlGSnBXTRWCz7VouN7lEDVyRHhVAjVwYCG71TW5iAmwb/fnsd0zu9VJfBV
-         AA2Q==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kYsaNunrWAOjg4VfZrqKWCarFVaLqYdzFUPXPPeZoU8=;
+        b=iaE3VqXb7KM97kYiLnXtTIH9zg/2V6gYY78afPvDdJM8tMjEiYqiMLUyhyXxwcbxwE
+         RgKyzXMYzC3rKGurbZbMDoVlMTSJS0oi6ALhGwlEDqp4TMiOet9rXwcVHsN0SdBsybwC
+         oh+ToR8UElzMxcoRwAL15k0G/JMN8QYh7O+MoP5L+RooaC7WYTdUwAiJ4mzHtiU+XYRG
+         KSembDaDGRFdfMTePtD+SUAquQrz+nWhxuBDXbNGxdHVArBHSchjRqXIKregVAbXcTaO
+         pSkSrMlXz2Q7TQs7WruK/+5NrMY0lxB8ibLPBD41XEQDgmDi2geRFU0SXjsF3FLt4vnh
+         dW1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=s+p6tT6BQCQ+/T63RyNhhXYFjj8SNaTnQ4CjzxhlWX8=;
-        b=q59nQmOSbWKLP7K2raTw82jBtu2AibzThJfgb8B9Fgix5ZHl8/p0RbyL6zNULflOls
-         CRBIrzexXvNUNSTty3T+QhPWkrxHYoKe6Fbu1xHzIJPOBnr+Pco/BHAZaEWHrtO6usbd
-         FY+fUyLPuPqnFSwrlXEhkNLQFLLLMO6f+SH5+lfOBz5ZvwGyb4nwT5HnCdH7vh1r3pVU
-         KB5SEcOVY8pX++lYhm0qFDwuCzjKM94jAj5LCrVT8FKjhlXMLdlkOORqN0u/eYg/G3tn
-         AAZBuif1suWgRHc70zKDsMHl1CkTlVdIxNYEUa/61d4swc8gLecMMYT6DH14FRd+tQdv
-         X4OA==
-X-Gm-Message-State: AOAM533Y5DcFwbiz47KPm1niewZlFqSZoKjpRHBrZD0j312WH2myZV4y
-	GOM3ogyZQqgUQ1e/0Qrag8Ko2Sj80DY=
-X-Google-Smtp-Source: ABdhPJwm8nKGBIXw2hpi4DyWzCBHZzHn16PK8PlGi2ZwLNT+uV+FioTrBiibu/Z9KRSh2DfpK4gTmw==
-X-Received: by 2002:ac8:59d3:0:b0:2f3:d7ee:2b54 with SMTP id f19-20020ac859d3000000b002f3d7ee2b54mr16486663qtf.290.1652293046025;
-        Wed, 11 May 2022 11:17:26 -0700 (PDT)
-Received: from [192.168.2.184] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id bk29-20020a05620a1a1d00b0069fca79fa3asm1809537qkb.62.2022.05.11.11.17.25
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 May 2022 11:17:25 -0700 (PDT)
-Message-ID: <d6eeb5b3-f981-45e6-2397-85f5b9614903@gmail.com>
-Date: Wed, 11 May 2022 14:17:24 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kYsaNunrWAOjg4VfZrqKWCarFVaLqYdzFUPXPPeZoU8=;
+        b=ZAiDDbyi80NZfuhy1gqw8mzQVkqXUjwISZ1fg2KlCPAs8i2X3d5Rz8BSLtBetI9j/T
+         IEOiLFa6kCevbB7AiFDLusqEdDw/T9N5PyANUUCXjHISEe7MFj3iBeueMRK35G+u+zqj
+         1Ie3HT/YCHqhUW5S4NO95spZMoDNmKpF134n0+KF89Z/JWDHzd39TIzIfrQk7yVM+ED9
+         jpOUq+8Cvz8jvW7fbw7X11HaX+DuB2Rh+SpmRgrPkQDFrlp5GnxTwWJmvJGBOQqriLpT
+         M4+UlgTfL2vrEvvlOZO1izIFSpJ4Gi10UABn3EghdZ74RDsBHbVhmuhjAKXEO/pfcDWd
+         UKYQ==
+X-Gm-Message-State: AOAM533T5QsEyrt0NJRi6cub8zPxHZPA12853VyWiwGwlFqLxgvDVCrc
+	53GO9gkjJNuoiPkVEn7HO4CmIso83EiW+4Roej0=
+X-Google-Smtp-Source: ABdhPJzX9po1TqAarNV6N3FelUKmxtWispnSChVneqV3EnoewZWVAWsoICbLaEkFMwMGdANKEd8nTNZKIAhdvxDEtZ8=
+X-Received: by 2002:a63:5c50:0:b0:3db:11bc:8d71 with SMTP id
+ n16-20020a635c50000000b003db11bc8d71mr5264088pgm.363.1652294100950; Wed, 11
+ May 2022 11:35:00 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <wJnU0NzoU1ulUt2QW5uXOtwMHcw6At3XHw6A0Oc@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <wJnU0NzoU1ulUt2QW5uXOtwMHcw6At3XHw6A0Oc@lists.ettus.com>
-Message-ID-Hash: OPS6UTKKB42SDTPTL7XXRCVEG2ZSRQRC
-X-Message-ID-Hash: OPS6UTKKB42SDTPTL7XXRCVEG2ZSRQRC
-X-MailFrom: patchvonbraun@gmail.com
+References: <wJnU0NzoU1ulUt2QW5uXOtwMHcw6At3XHw6A0Oc@lists.ettus.com> <d6eeb5b3-f981-45e6-2397-85f5b9614903@gmail.com>
+In-Reply-To: <d6eeb5b3-f981-45e6-2397-85f5b9614903@gmail.com>
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Wed, 11 May 2022 14:34:48 -0400
+Message-ID: <CAEXYVK4gUcaCvP2R6J9pNfj++M+tjE3TNU9_wGAd3_uWoQUN+A@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: 4JK2OOM64TMEKTF7PGT64F5QQLWMSEK3
+X-Message-ID-Hash: 4JK2OOM64TMEKTF7PGT64F5QQLWMSEK3
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RFNoC DDC or DUC frequency change
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OPS6UTKKB42SDTPTL7XXRCVEG2ZSRQRC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4JK2OOM64TMEKTF7PGT64F5QQLWMSEK3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6844383281502863043=="
 
-T24gMjAyMi0wNS0xMSAxNDoxMCwgcmJsYWNrQHN3cmkub3JnIHdyb3RlOg0KPg0KPiBBIHF1ZXN0
-aW9uIGZvciBhbnlvbmU6IHdoZW4gY2hhbmdpbmcgdGhlIGZyZXF1ZW5jeSBvZiBhIERVQyAob3Ig
-RERDKSANCj4gd291bGQgeW91IGV4cGVjdCB0aGUgb3V0cHV0IG9mIHRoZSBibG9jayB0byBiZSBw
-aGFzZSBjb250aW51b3VzIA0KPiB0aHJvdWdoIHRoZSBjaGFuZ2U/IFBoYXNlLWNvbnRpbnVvdXMg
-YmVoYXZpb3Igd291bGQgYmUgdHlwaWNhbCBmb3IgDQo+IG1hbnkgRERDIGltcGxlbWVudGF0aW9u
-cywgYnV0IHdpdGggdGhlIFJGTm9jIGJsb2NrIEkgYW0gc2VlaW5nIGJpZywgDQo+IGFyYml0cmFy
-eSBwaGFzZSBqdW1wcyB3aXRoIHRoZSB0dW5lIGZyZXF1ZW5jeSBjaGFuZ2XigKYuLg0KPg0KPg0K
-SSBkb24ndCB0aGluayB0aGF0IHBoYXNlLWNvbnRpbnVpdHkgYWNyb3NzIERVQy9EREMgY29uZmln
-dXJhdGlvbiB3YXMgDQpldmVyIGEgZGVzaWduIGdvYWwsIGZyb20gd2hhdCBJIHJlY2FsbC4uLg0K
-DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
-dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vi
-c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============6844383281502863043==
+Content-Type: multipart/alternative; boundary="000000000000f3a44b05dec0b21f"
+
+--000000000000f3a44b05dec0b21f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, May 11, 2022 at 2:18 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 2022-05-11 14:10, rblack@swri.org wrote:
+> >
+> > A question for anyone: when changing the frequency of a DUC (or DDC)
+> > would you expect the output of the block to be phase continuous
+> > through the change? Phase-continuous behavior would be typical for
+> > many DDC implementations, but with the RFNoc block I am seeing big,
+> > arbitrary phase jumps with the tune frequency change=E2=80=A6..
+> >
+> >
+> I don't think that phase-continuity across DUC/DDC configuration was
+> ever a design goal, from what I recall...
+>
+
+Can be an easy fix since it's explicitly zeroized here when any new phase
+increment is valid:
+
+
+https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68=
+d82e57f/fpga/usrp3/lib/rfnoc/ddc.v#L205
+
+Brian
+
+--000000000000f3a44b05dec0b21f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, May 11, 2022 at 2:18 PM Marcus D.=
+ Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.c=
+om</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">On 2022-05-11 14:10, <a href=3D"mailto:rblack@=
+swri.org" target=3D"_blank">rblack@swri.org</a> wrote:<br>
+&gt;<br>
+&gt; A question for anyone: when changing the frequency of a DUC (or DDC) <=
+br>
+&gt; would you expect the output of the block to be phase continuous <br>
+&gt; through the change? Phase-continuous behavior would be typical for <br=
+>
+&gt; many DDC implementations, but with the RFNoc block I am seeing big, <b=
+r>
+&gt; arbitrary phase jumps with the tune frequency change=E2=80=A6..<br>
+&gt;<br>
+&gt;<br>
+I don&#39;t think that phase-continuity across DUC/DDC configuration was <b=
+r>
+ever a design goal, from what I recall...<br></blockquote><div><br></div><d=
+iv>Can be an easy fix since it&#39;s explicitly zeroized here when any new =
+phase increment is valid:</div><div><br></div><div>=C2=A0=C2=A0<a href=3D"h=
+ttps://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d=
+82e57f/fpga/usrp3/lib/rfnoc/ddc.v#L205">https://github.com/EttusResearch/uh=
+d/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/ddc.v#=
+L205</a></div><div><br></div><div>Brian</div></div></div>
+
+--000000000000f3a44b05dec0b21f--
+
+--===============6844383281502863043==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6844383281502863043==--
