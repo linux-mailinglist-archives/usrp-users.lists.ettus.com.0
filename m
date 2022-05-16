@@ -2,127 +2,112 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544A7527F72
-	for <lists+usrp-users@lfdr.de>; Mon, 16 May 2022 10:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9E465286A0
+	for <lists+usrp-users@lfdr.de>; Mon, 16 May 2022 16:12:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4C930384ABF
-	for <lists+usrp-users@lfdr.de>; Mon, 16 May 2022 04:19:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6CD473850B3
+	for <lists+usrp-users@lfdr.de>; Mon, 16 May 2022 10:12:12 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1652689173; bh=jqC55LYTiCDApjnTBEj7GNaRn66B6aPzvAdr3nW3f+Q=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=MGfCg9jp9GarwBFRV4428JqXAv9HZc3ja3ZGeBbP0wf9z3YHfmPX04mxsp6RVXZrr
-	 obUr66jc96F9ID8Dp2L8kNKfaaiyQ6ISU/NDJ8Bcwgb3ME0X1rZaPhwqkUHr8Pk61K
-	 MrF9GPJWeC1FhgNCbqb/Ni546eJJLfPat8eucsvuFu5uwxIIK5Q+VJt1y3VHX436/f
-	 1xFkwQZsym0bWqgKueNWMexQ+MlH6F9Cb7PO+9wpG3s/5lSZkAO4zxtB/oW4Qi1pCj
-	 LV++qsjAVGp9NTeaH1TEp5zthR01gga6MVg3kXQwrIQ9q/d6Of3nMLZ4jLdLWKuMgT
-	 jDpbfukbAfAvg==
-Received: from mail-yb1-f198.google.com (mail-yb1-f198.google.com [209.85.219.198])
-	by mm2.emwd.com (Postfix) with ESMTPS id D35DB384957
-	for <usrp-users@lists.ettus.com>; Mon, 16 May 2022 04:18:23 -0400 (EDT)
+	t=1652710332; bh=bT7Rv4+00Sc24RCrkRe56cnUeGQxypPXi2SsVOqnkA0=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=P3Q1VrFmgaHEnMKE0Gl6dJ+tNiM9GY1tuZc9MnvPATS3gmSkxyxKCKcovIQE1DRLd
+	 1gr/z71/eSrmrD3JNxwy+vnwzsQ08hVPSOAK2yUHgnL68FyBhX9r1DhnLZYpNzi3Zj
+	 jCKd1MFbO77yFiqlBmAJPPZyX4e0EroiB8v3JmoD9qYj52BVA/eGGKCcV1yKyqVpFE
+	 K3l9Dqt/dDqelzLInOK2Dd7GRNaaiR7+550NmnFDLT0XfbZMRKuHKw3NNNpXIVNbsK
+	 wywKzzz24HqlYkhQfIkYLG6wcLDdIfxLu6U8kkcPxs6NCHieuHQBParWuSkfFRmguH
+	 N7j/wyzroNaWQ==
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id EDE22385298
+	for <usrp-users@lists.ettus.com>; Mon, 16 May 2022 10:10:34 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=dolphinsystem-jp.20210112.gappssmtp.com header.i=@dolphinsystem-jp.20210112.gappssmtp.com header.b="YjPnNFc3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qHWM/jiH";
 	dkim-atps=neutral
-Received: by mail-yb1-f198.google.com with SMTP id z39-20020a25a12a000000b0064dbcd526ffso1081890ybh.15
-        for <usrp-users@lists.ettus.com>; Mon, 16 May 2022 01:18:23 -0700 (PDT)
+Received: by mail-qv1-f47.google.com with SMTP id ej7so120949qvb.13
+        for <usrp-users@lists.ettus.com>; Mon, 16 May 2022 07:10:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dolphinsystem-jp.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=fIVNTesEQupGVCz6vh8QiWWFvdg6zW9qSeZl9szooAY=;
-        b=YjPnNFc3OTg+ggCyfRL8Di5Y4G9dbAWaQqWP69ofVRWOACFlNkzjhYHxl0Y+huzePC
-         ICMrWzRAnAPEi3j1kOmxQK+vjy2wxVZGKqhDEUrvjmr7d0HeYoWsksH7EtEjTwHyonGO
-         9QrYTsOlr8Wfiw1ZvCr77MaN8FbIffMdyy009FvgQZjzsVaj28WxPyNUhhYfcjmDujqD
-         O9iGZicMZeWi767IlXRz5/V2Q4Wcawha1lejxoH0GpedDreLguyYdSWfoSXIQWqvknSR
-         8fj0vzaNDl559XkyG/SiPgJ9cLZkQ5v0GnEbtZ5yBsNis5BydThl+4M81ForNh5mboGt
-         hcMg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=hAaH8o2Rf21QlMl6gAZIx6TzxT2G2u1G4bOhP7ZFfO0=;
+        b=qHWM/jiHe97RbrVaBSZVEdruHchhf391hdbj1nPLyU70L9CXTv3MbyZtZM0uXXzZv9
+         RjxPWsAMbowRfZnf+6XuGQd9AQVoc+X5+VK9fao6YCExT1k9RuNuXN/HuXcAx3Z/nRnv
+         MJIJs0nApyKD0QUdZPt2UsilKO9sTGDtzK8WFSfDsgOJaT4ncBBeVmJlTr2fcDKKXbGN
+         5qlXOp3mVrXUFcOBVs3PzURoKpUrw4x3K0ysltTm5+rW8UjbQ8Pc59+QN9Py125p1n//
+         IaRBaeFuJFKlfy8mZUJQtySkO0Qw/PyG0aNppU5G94VvYRzxJwfp/GqURwGai0Bn8Nra
+         IaNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=fIVNTesEQupGVCz6vh8QiWWFvdg6zW9qSeZl9szooAY=;
-        b=dRHLyRWX+40EGmkZj3zJZv+nRJHBwflECnjuyJ6jgIdcK8fPOT5MRU7G7aP2IQE54h
-         TVmCpamcdm6Pe0y8UoVNDq5cWKu2zGPWyXqrqLoSB53WPYUi6qJ38eg7LF2C7zTz7irf
-         eB8sbIxWtSshUjK3ACQkH4VmD1kmwLKJG0ZCt1Gt2IA4TWu+41tZYBActBxPbstGTj7O
-         syYJ1iq2dyj8gLaUieBUOydI9ZWEAEckNB/a+gflJE3jsXci5Ko9Mw6Q0rT7i5WinQrj
-         Q2cqObawYmXUb9Q4LG7yBEK+5YJKYyVC3NT3qQ4uRZoGiNv5GmvkqFbtPlgfDUKi/TcO
-         CRxw==
-X-Gm-Message-State: AOAM532T7yG7hnfDgZEicFaam+5bZPrflC7UFF3Ei0kgpcBjKPqUP+GC
-	AiSsPEMlDxbH+rnqbFl9dC8oQd19/6hut9g6SKQ36HfFmNk6sQ==
-X-Google-Smtp-Source: ABdhPJxdAmK4uiD8GmoBAsi8DNiegfM0CEL6ZXLaKGibly3VtpUveA7cJ3KO6ql02zSRbkpIIToHuecElz7pYMBWgPE=
-X-Received: by 2002:a81:2684:0:b0:2f8:46f4:7c6d with SMTP id
- m126-20020a812684000000b002f846f47c6dmr19239426ywm.444.1652689102959; Mon, 16
- May 2022 01:18:22 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=hAaH8o2Rf21QlMl6gAZIx6TzxT2G2u1G4bOhP7ZFfO0=;
+        b=AS5p0nuY9kNdlULBCKOWI52in7ZpkZJK7tN55Lxr8+Kh6czqsMvToA0PCUzp49Qjyn
+         LtytVDhxW/fvCHRt0Uas82nOfGkIfxHsa/w4pbXVXSHn0J7ZznmYSNtgAMKg/pMNPwU/
+         9pou4KjocHTc+ei6h9WKv+FZE1MPjqfwmsgIIdWI8t6XMI5LyRTfeC0AB0SWb9Ug9nAL
+         f9vFlY614gf7XJBmY9ZD/LIRV8YtND5mMP8MEkJ/382qzci6eUEF67BeDbTrWFfObO+g
+         ha53fWKXBUQcxpor6UyR4JmSunCMRxBEMCtvIkgHwU7otenWvw+mKAQsn6ckCkzrfWYA
+         Xr8A==
+X-Gm-Message-State: AOAM530MJD8uzeZw2/jDYyxClakmQDHcDL8GEoNg9N4l0Dk4FxAJobBf
+	JRuGztXLzT7rvxKsS80ARgEdAeH+Fk8=
+X-Google-Smtp-Source: ABdhPJwBGahBJQ7C/32GIkpcNpRPmXDXoR25nJjGQH6BvEqske/6+z9gSDujFlLAC+zzQDq9lhRXXw==
+X-Received: by 2002:a05:6214:2504:b0:461:d310:c18e with SMTP id gf4-20020a056214250400b00461d310c18emr2206401qvb.98.1652710233969;
+        Mon, 16 May 2022 07:10:33 -0700 (PDT)
+Received: from [192.168.2.172] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id a18-20020ac844b2000000b002f39b99f6b6sm6141506qto.80.2022.05.16.07.10.33
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 May 2022 07:10:33 -0700 (PDT)
+Message-ID: <3bc7c4f4-eb0e-6273-e1ca-bd474272a996@gmail.com>
+Date: Mon, 16 May 2022 10:10:32 -0400
 MIME-Version: 1.0
-From: Mikio Fukushima <mikio@dolphinsystem.jp>
-Date: Mon, 16 May 2022 17:17:47 +0900
-Message-ID: <CABfZwceh1KzO9770-48_wod=D-aAqCuvA5HO+L4shJnbebdnOQ@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: NUI6PDIGVV2HJND4BI5Y6OBCMU4W42KW
-X-Message-ID-Hash: NUI6PDIGVV2HJND4BI5Y6OBCMU4W42KW
-X-MailFrom: mikio@dolphinsystem.jp
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <CABfZwceh1KzO9770-48_wod=D-aAqCuvA5HO+L4shJnbebdnOQ@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CABfZwceh1KzO9770-48_wod=D-aAqCuvA5HO+L4shJnbebdnOQ@mail.gmail.com>
+Message-ID-Hash: GUHJB5JYXG2UMYTSN5HUQWARJ5JPWC7G
+X-Message-ID-Hash: GUHJB5JYXG2UMYTSN5HUQWARJ5JPWC7G
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Does X410 support phase-aligned and phase-corent?
+Subject: [USRP-users] Re: Does X410 support phase-aligned and phase-corent?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NUI6PDIGVV2HJND4BI5Y6OBCMU4W42KW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GUHJB5JYXG2UMYTSN5HUQWARJ5JPWC7G/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2568400642356045414=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============2568400642356045414==
-Content-Type: multipart/alternative; boundary="000000000000e81f3605df1caa5c"
-
---000000000000e81f3605df1caa5c
-Content-Type: text/plain; charset="UTF-8"
-
-Hi all,
-I'm considering to purchase a USRP X410 for one of research projects. the
-objective of this project is MIMO operation, I have some questions.
-
-Q1.
-Does each channel on X410 support phase-aligned and phase-corent operation?
-
-Q2.
-Does each channel on multi X410s support phase-aligned and phase-corent
-operation?
-
-Q3.
-What is "Limited performance"?
-
-[3] Limited performance four-channel phase-coherent operation within a
-single radio is under investigation
-
-https://www.ettus.com/all-products/usrp-x410/
-
---000000000000e81f3605df1caa5c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all,=C2=A0<div><div>I&#39;m considering to purchase a U=
-SRP X410 for one of research projects. the objective of this project is MIM=
-O operation, I have some questions.<br><br>Q1. <br>Does each channel on X41=
-0 support phase-aligned and phase-corent operation?<br><br>Q2. <br>Does eac=
-h channel on multi X410s support phase-aligned and phase-corent operation?<=
-br><br>Q3.<br>What is &quot;Limited performance&quot;?<br><br>[3] Limited p=
-erformance four-channel phase-coherent operation within a single radio is u=
-nder investigation<br><br><a href=3D"https://www.ettus.com/all-products/usr=
-p-x410/">https://www.ettus.com/all-products/usrp-x410/</a><br></div></div><=
-/div>
-
---000000000000e81f3605df1caa5c--
-
---===============2568400642356045414==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2568400642356045414==--
+T24gMjAyMi0wNS0xNiAwNDoxNywgTWlraW8gRnVrdXNoaW1hIHdyb3RlOg0KPiBIaSBhbGwsDQo+
+IEknbSBjb25zaWRlcmluZyB0byBwdXJjaGFzZSBhIFVTUlAgWDQxMCBmb3Igb25lIG9mIHJlc2Vh
+cmNoIHByb2plY3RzLiANCj4gdGhlIG9iamVjdGl2ZSBvZiB0aGlzIHByb2plY3QgaXMgTUlNTyBv
+cGVyYXRpb24sIEkgaGF2ZSBzb21lIHF1ZXN0aW9ucy4NCj4NCj4gUTEuDQo+IERvZXMgZWFjaCBj
+aGFubmVsIG9uIFg0MTAgc3VwcG9ydCBwaGFzZS1hbGlnbmVkIGFuZCBwaGFzZS1jb3JlbnQgDQo+
+IG9wZXJhdGlvbj8NCkl0IGlzbid0IG1lYW5pbmdmdWwgdG8gY29uc2lkZXIgcGhhc2UtY29oZXJl
+bmNlIGFuZCBwaGFzZS1hbGlnbm1lbnQgb24gYSANCnNpbmdsZSBjaGFubmVsLiBUaGUgcGhhc2Ut
+Y29oZXJlbmNlIGFuZCBhbGlnbm1lbnQgaXMgYWx3YXlzIHdpdGggcmVzcGVjdCANCnRvIG90aGVy
+IGNoYW5uZWxzLg0KDQo+DQo+IFEyLg0KPiBEb2VzIGVhY2ggY2hhbm5lbCBvbiBtdWx0aSBYNDEw
+cyBzdXBwb3J0IHBoYXNlLWFsaWduZWQgYW5kIA0KPiBwaGFzZS1jb3JlbnQgb3BlcmF0aW9uPw0K
+Pg0KPiBRMy4NCj4gV2hhdCBpcyAiTGltaXRlZCBwZXJmb3JtYW5jZSI/DQo+DQo+IFszXSBMaW1p
+dGVkIHBlcmZvcm1hbmNlIGZvdXItY2hhbm5lbCBwaGFzZS1jb2hlcmVudCBvcGVyYXRpb24gd2l0
+aGluIGEgDQo+IHNpbmdsZSByYWRpbyBpcyB1bmRlciBpbnZlc3RpZ2F0aW9uDQpJJ20gbm90IHN1
+cmUgd2hhdCAibGltaXRlZCBwZXJmb3JtYW5jZSIgbWVhbnMsIG5vciB3aGF0IHRoZSBzY2hlZHVs
+ZSBmb3IgDQp0aGF0IGlzLCBidXQgSSBrbm93IHRoYXQgaW7CoCBpbml0aWFsIHJlbGVhc2UsIHRo
+ZSBYNDEwIGRvZXMgTk9UIHN1cHBvcnQNCiDCoCBtdXR1YWwgcGhhc2UtY29oZXJlbmNlIGV2ZW4g
+d2l0aGluIGEgc2luZ2xlIHJhZGlvLg0KDQoNCj4NCj4gaHR0cHM6Ly93d3cuZXR0dXMuY29tL2Fs
+bC1wcm9kdWN0cy91c3JwLXg0MTAvDQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNy
+cC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCl9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11
+c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
