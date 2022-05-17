@@ -2,469 +2,287 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55DF152A483
-	for <lists+usrp-users@lfdr.de>; Tue, 17 May 2022 16:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4F852A4E6
+	for <lists+usrp-users@lfdr.de>; Tue, 17 May 2022 16:31:55 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7094F38504C
-	for <lists+usrp-users@lfdr.de>; Tue, 17 May 2022 10:16:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DB18938520B
+	for <lists+usrp-users@lfdr.de>; Tue, 17 May 2022 10:31:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1652796967; bh=q8vIG+XVkdm0EHySdDPXbMHZ7rSHtw5Q0L8uGMsUFho=;
-	h=From:Date:References:In-Reply-To:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=RyR1665utvn9RAlfFJE1gx72FKUyXp5rMwI/4t/pCSZuk5W/4cmcLXjssNp8BvETS
-	 LGGq1UCXDVOKt3cCDhd4SWZ9BSFBRsUb1KdBiR3Trn3Pbdiha9mumZmFJ4J1GmhZrJ
-	 7lYWP7PmST+EkbvdGXPWg56tWyIgy8NAgxJkw7Lu9kAOOkwrbnI3jwUFc8CpnTXZJX
-	 +fmaYD+YMe1AFZ0c/No9/qzR8h31RJkvT/Na6adLYgPRXJ0+rdMPD8rPZZ8IaT3Qwz
-	 kQnrKTgQXcKn3VfNfQjk4gD6XakmSAtjUxjofA1nEYx8i0AQfdxYV6MWn+8ZmPuIiH
-	 Cc7Qx4OdYWdcQ==
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id ED23F3848A3
-	for <USRP-users@lists.ettus.com>; Tue, 17 May 2022 10:15:05 -0400 (EDT)
+	t=1652797912; bh=M8tlQGSa3ZSMDFQZdx8OK+Ap40bBNvqLZBwzoK0N5x4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=or99mwxmEu0fnojgPJ6M42k2Xo2tMRnezlI9izDjyLTM1gbD0rwGacYpMSRRL3Qis
+	 vO/bpARxkXmwGH3wD430slF8Jy1DmiL5iHGTBO63Ml/bnyJc2+HgwIIeasKHLgGMZR
+	 DiPL5b8yGFYyG4FJgKS+14GZMPYpSgvhFa3btEIrHjp2CSDlOjKDVi7sIWxaMBCb/g
+	 jlzsU3+RbKfgy1Kc4nMntRjd8JrGNSukK5yGuerKMGXDGs2wOaQPsSbFKLdRFMTsY9
+	 8HjmdK1SOLyAq3RoeGb0h1saLc5xjhhTWpy48fum76NdmVxvT1k4oWNMWlpvDZb22t
+	 OrsDp5YWCrr0g==
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 685AD384B0E
+	for <usrp-users@lists.ettus.com>; Tue, 17 May 2022 10:30:21 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bVJL7Fns";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HRMlmXU3";
 	dkim-atps=neutral
-Received: by mail-qk1-f171.google.com with SMTP id bs17so14683388qkb.0
-        for <USRP-users@lists.ettus.com>; Tue, 17 May 2022 07:15:05 -0700 (PDT)
+Received: by mail-qt1-f181.google.com with SMTP id s22so8723249qta.0
+        for <usrp-users@lists.ettus.com>; Tue, 17 May 2022 07:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=mxBDoKrELMSJj9IGnJ36Vk1OLsod0UXNugXrN4h82qo=;
-        b=bVJL7FnsbTKFckpmi7CraigJYoAC06vPKVkzeelHU7bzPlwDwwYy2ONdI5Rd9X0eXx
-         Kl/CsJKvrIfG8ZpZwg9shO+MGKhHSMrW5pCj61qPVXCofl8GVo9AHoVHvQIk/u/k1RCK
-         XeT0Wl1kYCtOnqN2vUSg+TY4ekHOfpt3G8O2F5QcQMOAIOCYlpZPRRkKgcGRx4rBCRFE
-         XabmZiRbhDBZhusC8uPXTVTj8Rh+XF8gWBc4fxf3LmLKD92UFRQQhUeLVve916yBpOqO
-         cyCjwNEv5PtQ67kf4+7EoMKR7iVvGNHtl1Ser+AWK33XU+Ptclp9jP5xoz5AqCIZ71+3
-         g4bg==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=lqARYfsl9DU6/bKUkvmIkN/zr4//YA9WD/GmxbQIzII=;
+        b=HRMlmXU36UoeFfQJfXmYXwficHveflV6sf7P8X+HPthwVxe24C0Gy0WWqXgYZ2q7oT
+         SEMxlbjJAxEVgFPPyvTy+nUS5a2YQiGLN3YT68OOSWr1iDNTRznWkKkqzaH/X/mayD2K
+         dbF+//UouN5zOGXMneuYxySt7DniZpmctaTCFIsF7+zMer1WjooqCSrq9VD/UYyaVHWw
+         Sz638PRk+nf6xEWfact5CQuGuto5whN+ezkimHnCPudtpqGR2Hzqsm8HB4EKlamRHtO5
+         fC5l9eH/Z7/j8B0oJxQe96DWxYpnqOjoh6kYWEf7hYbJn2Dz31jnwNQvwgGromSqer9h
+         9P/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=mxBDoKrELMSJj9IGnJ36Vk1OLsod0UXNugXrN4h82qo=;
-        b=iVXeOeBcwZMrNDAcWGJpEM7Y9NAX2aHAwbAtC726I8rlXwcqLauJ+y8OrH/8T+eYL3
-         +FxA+NogJa6YZsrOe/30fH5bAIP0zvnNyi9BqrASjwKnkKZn6nCknFVIRHb8z8ZmARQq
-         KQoAhOAZqMiKPWJFUDKMI6O/yfZiGeWQSil/BAAlgLzcIdDxzFeWYD9chveeP1xE0B7M
-         Psb+BgeZ+vgwRKjo0F3zLudCPF0kpeL2TZdfFFdJeg93MIYvbf8/L6LkWK6GuC41hM4H
-         odS+UCzshJ0ORSSZnDPRkVTKVrgHP/pqHQB1Yz9FAiX/WSSLaCnpzH5KAx2iPklfbNi/
-         SljQ==
-X-Gm-Message-State: AOAM532TWpXmQK7VdIwuNUXu/b/IqqgzAhPw8LBrsqKZAMY8LDoQBNCy
-	kKjk0qNyAGr3DuCvAXCy6l8=
-X-Google-Smtp-Source: ABdhPJxpap/M1mHOcCUJL9pT41ipPG3qbqfdnn0kGYpYUL8Q46+grk13Q6Vk8GQys+jtUdVCJwpm7A==
-X-Received: by 2002:a37:42d3:0:b0:69c:830d:6e51 with SMTP id p202-20020a3742d3000000b0069c830d6e51mr16666750qka.302.1652796905383;
-        Tue, 17 May 2022 07:15:05 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.gmail.com with ESMTPSA id s20-20020ac87594000000b002f39b99f6acsm7629438qtq.70.2022.05.17.07.15.04
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=lqARYfsl9DU6/bKUkvmIkN/zr4//YA9WD/GmxbQIzII=;
+        b=hFnaOVEEFx7tXUfI/jOmMUGKNPuz4uoT65PyjEsBjUYWMyyCFAN/+iW2TEOUqJEFRd
+         oFKnpOX4ROJ6j5VyNP2RGRpItl4SKb1Qmur2xuf6UrKWT/KVbbak9PTryphWKCsz6vHi
+         e/VhhVJ3103TpvVsyD1fzplSz/7NSNlmqSFJ+zTMWC0dCKDEM0pDqVFg9ZPGNEnvatcX
+         y/C4SkWJzywcFmO8V5MpiYw2R0V0PAnlEyRx+ZJ4/xr7QpGv6fOOZ9E45IrwwEYkNXmt
+         r8TK/kkdmVsd8ovwG1SDLV6Yl+CsM7Qan8xdnNl1nra2b2WtmfkZ7POVcGh3vIpuQKcu
+         hp+w==
+X-Gm-Message-State: AOAM532wHZICYsHy79N8stQ5P1P0IxHzbpBSQiPInTsY3nDKFmRzXhE/
+	eXyIU1P01lummP2TNV3JW+rOEJlK3NQ=
+X-Google-Smtp-Source: ABdhPJwVKRzNzgAX2LXCSSsLzO699rSAOvE+jgsleWpwun6dDQ7sT+kpJAsDeczuVM0o5WZutEnl/A==
+X-Received: by 2002:ac8:5e0b:0:b0:2f3:c8c6:da87 with SMTP id h11-20020ac85e0b000000b002f3c8c6da87mr20051206qtx.130.1652797820611;
+        Tue, 17 May 2022 07:30:20 -0700 (PDT)
+Received: from [192.168.2.203] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id a5-20020a05620a066500b0069fc13ce21csm7639408qkh.77.2022.05.17.07.30.19
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 May 2022 07:15:04 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Tue, 17 May 2022 10:15:03 -0400
-Message-Id: <05297835-DF89-4F40-ADDF-1FCB059EAC81@gmail.com>
-References: <CALER=b0-98SwN6fzT-1+KANF3o85e717dz0kFgAjgctf76Qu_A@mail.gmail.com>
-In-Reply-To: <CALER=b0-98SwN6fzT-1+KANF3o85e717dz0kFgAjgctf76Qu_A@mail.gmail.com>
-To: Shehla Amir <samir2@ncsu.edu>
-X-Mailer: iPhone Mail (19E258)
-Message-ID-Hash: EYV2QDI26AC7BKNDCMNYUPSWKRAIFM5Y
-X-Message-ID-Hash: EYV2QDI26AC7BKNDCMNYUPSWKRAIFM5Y
+        Tue, 17 May 2022 07:30:20 -0700 (PDT)
+Message-ID: <666db3c7-68ef-c9c3-d055-961371a67159@gmail.com>
+Date: Tue, 17 May 2022 10:30:19 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <c85ed6d9-f856-0e0b-2ef7-daa4e5226def@bath.edu>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <c85ed6d9-f856-0e0b-2ef7-daa4e5226def@bath.edu>
+Message-ID-Hash: JMTEFHBG2NDUEELZU35C3TYQTTU2IZOX
+X-Message-ID-Hash: JMTEFHBG2NDUEELZU35C3TYQTTU2IZOX
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problems with USRP X310 LibUHD error MATLAB
+Subject: [USRP-users] Re: E320 : uhd::rx_metadata_t::time_spec wrong when capturing with "sc8" otw format and cpu format
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EYV2QDI26AC7BKNDCMNYUPSWKRAIFM5Y/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JMTEFHBG2NDUEELZU35C3TYQTTU2IZOX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8781252150466540906=="
+Content-Type: multipart/mixed; boundary="===============2295202800364913875=="
 
+This is a multi-part message in MIME format.
+--===============2295202800364913875==
+Content-Type: multipart/alternative;
+ boundary="------------DejtmTWJb3adymfYMpnBsk4Q"
+Content-Language: en-US
 
---===============8781252150466540906==
-Content-Type: multipart/alternative; boundary=Apple-Mail-A94B1513-869B-4B52-BCDE-D11DCB87C71A
-Content-Transfer-Encoding: 7bit
-
-
---Apple-Mail-A94B1513-869B-4B52-BCDE-D11DCB87C71A
-Content-Type: text/plain;
-	charset=utf-8
+This is a multi-part message in MIME format.
+--------------DejtmTWJb3adymfYMpnBsk4Q
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Your Ubuntu system is set up for UHD 4.2 whereas your windows with MatLab is=
- setup for 4.1. You probably can just downgrade to 4.1 firmware when running=
- MatLab on windows. Unless they have a 4.2 compatible UHD build.=20
-
-Sent from my iPhone
-
-> On May 17, 2022, at 9:29 AM, Shehla Amir via USRP-users <usrp-users@lists.=
-ettus.com> wrote:
->=20
-> =EF=BB=BF
-> Hi,=20
->=20
-> I have been working with 2 USRP X310. Both have one daughter board install=
-ed. I am facing multiple errors and I can't find relevant documentation. The=
-y were working fine a week ago but now whenever I try to connect using MATLA=
-B I get the errors mentioned below. Can you please help me in debugging this=
- issue?
->=20
-> When I connect using MATLAB and use probesdru command I get the error 'Err=
-or: RuntimeError: Failure to create rfnoc_graph.'
-> and the probesdru command generate the following output:=20
->=20
-> '[INFO] [UHD] Win32; Microsoft Visual C++ version 14.2; Boost_107500; UHD_=
-4.1.0.4-vendor
->      [INFO] [X300] X300 initialization sequence...
->      [INFO] [X300] Maximum frame size: 1472 bytes.
->      [INFO] [GPS] No GPSDO found
->      [INFO] [X300] Radio 1x clock: 200 MHz
->      [ERROR] [RFNOC::GRAPH] IO Error during GSM initialization. Environmen=
-tError: IOError: Timed out getting recv buff for management transaction
->      [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Env=
-ironmentError: IOError: Timed out getting recv buff for management transacti=
-on
->      Error: RuntimeError: Failure to create rfnoc_graph.
->      '
-> Moreover, when I use the findsdru command I get the following error:=20
->=20
-> ---------- begin libuhd error output ----------
-> IO Error during GSM initialization. EnvironmentError: IOError: Timed out g=
-etting recv buff for management transaction
-> ---------- end libuhd error output ----------
-> ---------- begin libuhd error output ----------
-> Caught exception while initializing graph: EnvironmentError: IOError: Time=
-d out getting recv buff for management transaction
-> ---------- end libuhd error output ----------
-> ---------- begin libuhd error output ----------
-> Error during initialization of block 0/DUC#0!
-> ---------- end libuhd error output ----------
-> ---------- begin libuhd error output ----------
-> Caught exception while initializing graph: RfnocError: OpTimeout: Control o=
-peration timed out waiting for ACK
-> ---------- end libuhd error output ----------
-> ---------- begin libuhd error output ----------
-> Error during initialization of block 0/Radio#0!
-> ---------- end libuhd error output ----------
-> ---------- begin libuhd error output ----------
-> Caught exception while initializing graph: RfnocError: OpTimeout: Control o=
-peration timed out waiting for ACK
-> ---------- end libuhd error output ----------
-> ---------- begin libuhd error output ----------
-> Caught exception while initializing graph: RfnocError: OpTimeout: Control o=
-peration timed out waiting for ACK
-> ---------- end libuhd error output ----------
->=20
-> %%%%%%%%%%%%%%%%%%%%%%%%%
-> While connecting through ubuntu uhd and using the command ush_usrp_probe I=
- get the following message:=20
->=20
-> [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.0.0-0ubun=
-tu1~focal1
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 1472 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [WARNING] [UDP] The recv buffer could not be resized sufficiently.
-> Target sock buff size: 2453333 bytes.
-> Actual sock buff size: 163840 bytes.
-> See the transport application notes on buffer resizing.
-> Please run: sudo sysctl -w net.core.rmem_max=3D2453333
-> [WARNING] [UDP] The send buffer could not be resized sufficiently.
-> Target sock buff size: 2453333 bytes.
-> Actual sock buff size: 163840 bytes.
-> See the transport application notes on buffer resizing.
-> Please run: sudo sysctl -w net.core.wmem_max=3D2453333
-> [WARNING] [UDP] The current recv_buff_size of 163840 is less than the mini=
-mum recommended size of 816000 and may result in dropped packets on some NIC=
-s
-> [WARNING] [UDP] The current send_buff_size of 163840 is less than the mini=
-mum recommended size of 307200 and may result in dropped packets on some NIC=
-s
->   _____________________________________________________
->  /
-> |       Device: X-Series Device
-> |     _____________________________________________________
-> |    /
-> |   |       Mboard: X310
-> |   |   revision: 11
-> |   |   revision_compat: 7
-> |   |   product: 30818
-> |   |   mac-addr0: 00:80:2f:32:8e:52
-> |   |   mac-addr1: 00:80:2f:32:8e:53
-> |   |   gateway: 192.168.10.1
-> |   |   ip-addr0: 192.168.137.4
-> |   |   subnet0: 255.255.255.0
-> |   |   ip-addr1: 192.168.20.2
-> |   |   subnet1: 255.255.255.0
-> |   |   ip-addr2: 192.168.30.2
-> |   |   subnet2: 255.255.255.0
-> |   |   ip-addr3: 192.168.40.2
-> |   |   subnet3: 255.255.255.0
-> |   |   serial: 321741F
-> |   |   FW Version: 6.0
-> |   |   FPGA Version: 38.0
-> |   |   FPGA git hash: b1ca7f3
-> |   |   RFNoC capable: Yes
-> |   |
-> |   |   Time sources:  internal, external, gpsdo
-> |   |   Clock sources: internal, external, gpsdo
-> |   |   Sensors: ref_locked
-> |     _____________________________________________________
-> |    /
-> |   |       RFNoC blocks on this device:
-> |   |
-> |   |   * 0/DDC#0
-> |   |   * 0/DDC#1
-> |   |   * 0/DUC#0
-> |   |   * 0/DUC#1
-> |   |   * 0/Radio#0
-> |   |   * 0/Radio#1
-> |   |   * 0/Replay#0
-> |     _____________________________________________________
-> |    /
-> |   |       Static connections on this device:
-> |   |
-> |   |   * 0/SEP#0:0=3D=3D>0/DUC#0:0
-> |   |   * 0/DUC#0:0=3D=3D>0/Radio#0:0
-> |   |   * 0/Radio#0:0=3D=3D>0/DDC#0:0
-> |   |   * 0/DDC#0:0=3D=3D>0/SEP#0:0
-> |   |   * 0/Radio#0:1=3D=3D>0/DDC#0:1
-> |   |   * 0/DDC#0:1=3D=3D>0/SEP#1:0
-> |   |   * 0/SEP#2:0=3D=3D>0/DUC#1:0
-> |   |   * 0/DUC#1:0=3D=3D>0/Radio#1:0
-> |   |   * 0/Radio#1:0=3D=3D>0/DDC#1:0
-> |   |   * 0/DDC#1:0=3D=3D>0/SEP#2:0
-> |   |   * 0/Radio#1:1=3D=3D>0/DDC#1:1
-> |   |   * 0/DDC#1:1=3D=3D>0/SEP#3:0
-> |   |   * 0/SEP#4:0=3D=3D>0/Replay#0:0
-> |   |   * 0/Replay#0:0=3D=3D>0/SEP#4:0
-> |   |   * 0/SEP#5:0=3D=3D>0/Replay#0:1
-> |   |   * 0/Replay#0:1=3D=3D>0/SEP#5:0
-> |     _____________________________________________________
-> |    /
-> |   |       TX Dboard: 0/Radio#0
-> |   |   ID: UBX-160 v2 (0x007d)
-> |   |   Serial: 3208538
-> |   |     _____________________________________________________
-> |   |    /
-> |   |   |       TX Frontend: 0
-> |   |   |   Name: UBX TX
-> |   |   |   Antennas: TX/RX, CAL
-> |   |   |   Sensors: lo_locked
-> |   |   |   Freq range: 10.000 to 6000.000 MHz
-> |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
-> |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
-> |   |   |   Connection Type: QI
-> |   |   |   Uses LO offset: No
-> |     _____________________________________________________
-> |    /
-> |   |       RX Dboard: 0/Radio#0
-> |   |   ID: UBX-160 v2 (0x007e)
-> |   |   Serial: 3208538
-> |   |     _____________________________________________________
-> |   |    /
-> |   |   |       RX Frontend: 0
-> |   |   |   Name: UBX RX
-> |   |   |   Antennas: TX/RX, RX2, CAL
-> |   |   |   Sensors: lo_locked
-> |   |   |   Freq range: 10.000 to 6000.000 MHz
-> |   |   |   Gain range PGA0: 0.0 to 31.5 step 0.5 dB
-> |   |   |   Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz
-> |   |   |   Connection Type: IQ
-> |   |   |   Uses LO offset: No
-> |     _____________________________________________________
-> |    /
-> |   |       TX Dboard: 0/Radio#1
-> |   |     _____________________________________________________
-> |   |    /
-> |   |   |       TX Frontend: 0
-> |   |   |   Name: Unknown (0xffff) - 0
-> |   |   |   Antennas:
-> |   |   |   Sensors:
-> |   |   |   Freq range: 0.000 to 0.000 MHz
-> |   |   |   Gain Elements: None
-> |   |   |   Bandwidth range: 0.0 to 0.0 step 0.0 Hz
-> |   |   |   Connection Type: IQ
-> |   |   |   Uses LO offset: No
-> |     _____________________________________________________
-> |    /
-> |   |       RX Dboard: 0/Radio#1
-> |   |     _____________________________________________________
-> |   |    /
-> |   |   |       RX Frontend: 0
-> |   |   |   Name: Unknown (0xffff) - 0
-> |   |   |   Antennas:
-> |   |   |   Sensors:
-> |   |   |   Freq range: 0.000 to 0.000 MHz
-> |   |   |   Gain Elements: None
-> |   |   |   Bandwidth range: 0.0 to 0.0 step 0.0 Hz
-> |   |   |   Connection Type: IQ
-> |   |   |   Uses LO offset: No
->=20
-> Thanks,=20
->=20
->=20
+On 2022-05-17 09:02, Peter Featherstone wrote:
+>
+> Hello all,
+>
+> I am capturing samples on an E320 with cpu_format 'sc8' and otw_format=20
+> 'sc8'.
+>
+> When calling `uhd::rx_streamer::recv()`, I'm comparing the time_spec=20
+> given by 'uhd::rx_metadata_t' and the timestamp calculated by=20
+> integrating the sample rate with the received samples.
+>
+> So I have something like this:
+>
+> ... uint64_t total_samples =3D0; bool is_first_timestamp =3Dtrue; uhd::=
+time_spec_t first_timestamp; while (total_samples < requested_samples))
+> {
+>      uhd::rx_metadata_t md;const size_t nsamples =3D rx_stream->recv(pt=
+rs, 1024, md, 3, false); if (is_first_timestamp)
+>      {
+>          is_first_timestamp =3Dfalse; first_timestamp =3D md.time_spec;=
+ }
+>     =20
+>      printf("Timestamp %.8lf expected %.8lf\n",
+> 	(md.time_spec - first_timestamp).get_real_secs(), total_samples /  rat=
+e); total_samples +=3Dnsamples;}
+>
+> ...
+>
+> Now when both otw format and cpu format are 'sc8' I get an output like:
+>
+> Timestamp 0.00000000 expected 0.00000000
+> Timestamp 0.00047396 expected 0.00094792
+> Timestamp 0.00094792 expected 0.00189583
+> Timestamp 0.00142188 expected 0.00284375
+> Timestamp 0.00189583 expected 0.00379167
+> Timestamp 0.00236979 expected 0.00473958
+> Timestamp 0.00284375 expected 0.00568750
+> Timestamp 0.00331771 expected 0.00663542
+> Timestamp 0.00379167 expected 0.00758333
+> Timestamp 0.00426563 expected 0.00853125
+> Timestamp 0.00473958 expected 0.00947917
+> Timestamp 0.00521354 expected 0.01042708
+> Timestamp 0.00568750 expected 0.01137500
+>
+> ...
+>
+> Can anybody tell me what is going on?
+>
+>
+> Thanks,
+>
+>
+> Peter Featherstone
+>
+>
+>
 > _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+Does this only happen with sc8/sc8?=C2=A0=C2=A0 Do you get any startup wa=
+rnings=20
+about missing converters?
 
---Apple-Mail-A94B1513-869B-4B52-BCDE-D11DCB87C71A
-Content-Type: text/html;
-	charset=utf-8
+
+--------------DejtmTWJb3adymfYMpnBsk4Q
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Your Ubuntu system is set up for UHD 4.2 wh=
-ereas your windows with MatLab is setup for 4.1. You probably can just downg=
-rade to 4.1 firmware when running MatLab on windows. Unless they have a 4.2 c=
-ompatible UHD build.&nbsp;<br><br><div dir=3D"ltr">Sent from my iPhone</div>=
-<div dir=3D"ltr"><br><blockquote type=3D"cite">On May 17, 2022, at 9:29 AM, S=
-hehla Amir via USRP-users &lt;usrp-users@lists.ettus.com&gt; wrote:<br><br><=
-/blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div d=
-ir=3D"ltr">Hi,&nbsp;<br><br>I have been working with 2 USRP X310. Both have o=
-ne daughter board installed. I am facing multiple errors and I can't find re=
-levant documentation. They were working fine a week ago but now whenever I t=
-ry to connect using MATLAB I get the errors mentioned below. Can you please h=
-elp me in debugging this issue?<br><br>When I connect using MATLAB and use p=
-robesdru&nbsp;command I get the error 'Error: RuntimeError: Failure to creat=
-e rfnoc_graph.'<br>and the&nbsp;<i>probesdru&nbsp;</i>command&nbsp;generate t=
-he following output:&nbsp;<br><br><font size=3D"1">'[INFO] [UHD] Win32; Micr=
-osoft Visual C++ version 14.2; Boost_107500; UHD_4.1.0.4-vendor<br>&nbsp; &n=
-bsp; &nbsp;[INFO] [X300] X300 initialization sequence...<br>&nbsp; &nbsp; &n=
-bsp;[INFO] [X300] Maximum frame size: 1472 bytes.<br>&nbsp; &nbsp; &nbsp;[IN=
-FO] [GPS] No GPSDO found<br>&nbsp; &nbsp; &nbsp;[INFO] [X300] Radio 1x clock=
-: 200 MHz<br>&nbsp; &nbsp; &nbsp;[ERROR] [RFNOC::GRAPH] IO Error during GSM i=
-nitialization. EnvironmentError: IOError: Timed out getting recv buff for ma=
-nagement transaction<br>&nbsp; &nbsp; &nbsp;[ERROR] [RFNOC::GRAPH] Caught ex=
-ception while initializing graph: EnvironmentError: IOError: Timed out getti=
-ng recv buff for management transaction<br>&nbsp; &nbsp; &nbsp;Error: Runtim=
-eError: Failure to create rfnoc_graph.</font><br>&nbsp; &nbsp; &nbsp;'<br>Mo=
-reover, when I use the&nbsp;<i>findsdru&nbsp;</i>command I get the following=
- error:&nbsp;<div><br><font size=3D"1">---------- begin libuhd error output -=
----------<br>IO Error during GSM initialization. EnvironmentError: IOError: T=
-imed out getting recv buff for management transaction<br>---------- end libu=
-hd error output ----------<br>---------- begin libuhd error output ---------=
--<br>Caught exception while initializing graph: EnvironmentError: IOError: T=
-imed out getting recv buff for management transaction<br>---------- end libu=
-hd error output ----------<br>---------- begin libuhd error output ---------=
--<br>Error during initialization of block 0/DUC#0!<br>---------- end libuhd e=
-rror output ----------<br>---------- begin libuhd error output ----------<br=
->Caught exception while initializing graph: RfnocError: OpTimeout: Control o=
-peration timed out waiting for ACK<br>---------- end libuhd error output ---=
--------<br>---------- begin libuhd error output ----------<br>Error during i=
-nitialization of block 0/Radio#0!<br>---------- end libuhd error output ----=
-------<br>---------- begin libuhd error output ----------<br>Caught exceptio=
-n while initializing graph: RfnocError: OpTimeout: Control operation timed o=
-ut waiting for ACK<br>---------- end libuhd error output ----------<br>-----=
------ begin libuhd error output ----------<br>Caught exception while initial=
-izing graph: RfnocError: OpTimeout: Control operation timed out waiting for A=
-CK<br>---------- end libuhd error output ----------<br></font><br>%%%%%%%%%%=
-%%%%%%%%%%%%%%%<br>While connecting through ubuntu uhd and using the command=
- <i>ush_usrp_probe&nbsp;</i>I get the following message:&nbsp;<br><br>[<font=
- size=3D"1">INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.=
-0.0-0ubuntu1~focal1<br>[INFO] [X300] X300 initialization sequence...<br>[INFO=
-] [X300] Maximum frame size: 1472 bytes.<br>[INFO] [X300] Radio 1x clock: 20=
-0 MHz<br>[WARNING] [UDP] The recv buffer could not be resized sufficiently.<=
-br>Target sock buff size: 2453333 bytes.<br>Actual sock buff size: 163840 by=
-tes.<br>See the transport application notes on buffer resizing.<br>Please ru=
-n: sudo sysctl -w net.core.rmem_max=3D2453333<br>[WARNING] [UDP] The send bu=
-ffer could not be resized sufficiently.<br>Target sock buff size: 2453333 by=
-tes.<br>Actual sock buff size: 163840 bytes.<br>See the transport applicatio=
-n notes on buffer resizing.<br>Please run: sudo sysctl -w net.core.wmem_max=3D=
-2453333<br>[WARNING] [UDP] The current recv_buff_size of 163840 is less than=
- the minimum recommended size of 816000 and may result in dropped packets on=
- some NICs<br>[WARNING] [UDP] The current send_buff_size of 163840 is less t=
-han the minimum recommended size of 307200 and may result in dropped packets=
- on some NICs<br>&nbsp; ____________________________________________________=
-_<br>&nbsp;/<br>| &nbsp; &nbsp; &nbsp; Device: X-Series Device<br>| &nbsp; &=
-nbsp; _____________________________________________________<br>| &nbsp; &nbs=
-p;/<br>| &nbsp; | &nbsp; &nbsp; &nbsp; Mboard: X310<br>| &nbsp; | &nbsp; rev=
-ision: 11<br>| &nbsp; | &nbsp; revision_compat: 7<br>| &nbsp; | &nbsp; produ=
-ct: 30818<br>| &nbsp; | &nbsp; mac-addr0: 00:80:2f:32:8e:52<br>| &nbsp; | &n=
-bsp; mac-addr1: 00:80:2f:32:8e:53<br>| &nbsp; | &nbsp; gateway: 192.168.10.1=
-<br>| &nbsp; | &nbsp; ip-addr0: 192.168.137.4<br>| &nbsp; | &nbsp; subnet0: 2=
-55.255.255.0<br>| &nbsp; | &nbsp; ip-addr1: 192.168.20.2<br>| &nbsp; | &nbsp=
-; subnet1: 255.255.255.0<br>| &nbsp; | &nbsp; ip-addr2: 192.168.30.2<br>| &n=
-bsp; | &nbsp; subnet2: 255.255.255.0<br>| &nbsp; | &nbsp; ip-addr3: 192.168.=
-40.2<br>| &nbsp; | &nbsp; subnet3: 255.255.255.0<br>| &nbsp; | &nbsp; serial=
-: 321741F<br>| &nbsp; | &nbsp; FW Version: 6.0<br>| &nbsp; | &nbsp; FPGA Ver=
-sion: 38.0<br>| &nbsp; | &nbsp; FPGA git hash: b1ca7f3<br>| &nbsp; | &nbsp; R=
-FNoC capable: Yes<br>| &nbsp; |<br>| &nbsp; | &nbsp; Time sources: &nbsp;int=
-ernal, external, gpsdo<br>| &nbsp; | &nbsp; Clock sources: internal, externa=
-l, gpsdo<br>| &nbsp; | &nbsp; Sensors: ref_locked<br>| &nbsp; &nbsp; _______=
-______________________________________________<br>| &nbsp; &nbsp;/<br>| &nbs=
-p; | &nbsp; &nbsp; &nbsp; RFNoC blocks on this device:<br>| &nbsp; |<br>| &n=
-bsp; | &nbsp; * 0/DDC#0<br>| &nbsp; | &nbsp; * 0/DDC#1<br>| &nbsp; | &nbsp; *=
- 0/DUC#0<br>| &nbsp; | &nbsp; * 0/DUC#1<br>| &nbsp; | &nbsp; * 0/Radio#0<br>=
-| &nbsp; | &nbsp; * 0/Radio#1<br>| &nbsp; | &nbsp; * 0/Replay#0<br>| &nbsp; &=
-nbsp; _____________________________________________________<br>| &nbsp; &nbs=
-p;/<br>| &nbsp; | &nbsp; &nbsp; &nbsp; Static connections on this device:<br=
->| &nbsp; |<br>| &nbsp; | &nbsp; * 0/SEP#0:0=3D=3D&gt;0/DUC#0:0<br>| &nbsp; |=
- &nbsp; * 0/DUC#0:0=3D=3D&gt;0/Radio#0:0<br>| &nbsp; | &nbsp; * 0/Radio#0:0=3D=
-=3D&gt;0/DDC#0:0<br>| &nbsp; | &nbsp; * 0/DDC#0:0=3D=3D&gt;0/SEP#0:0<br>| &n=
-bsp; | &nbsp; * 0/Radio#0:1=3D=3D&gt;0/DDC#0:1<br>| &nbsp; | &nbsp; * 0/DDC#=
-0:1=3D=3D&gt;0/SEP#1:0<br>| &nbsp; | &nbsp; * 0/SEP#2:0=3D=3D&gt;0/DUC#1:0<b=
-r>| &nbsp; | &nbsp; * 0/DUC#1:0=3D=3D&gt;0/Radio#1:0<br>| &nbsp; | &nbsp; * 0=
-/Radio#1:0=3D=3D&gt;0/DDC#1:0<br>| &nbsp; | &nbsp; * 0/DDC#1:0=3D=3D&gt;0/SE=
-P#2:0<br>| &nbsp; | &nbsp; * 0/Radio#1:1=3D=3D&gt;0/DDC#1:1<br>| &nbsp; | &n=
-bsp; * 0/DDC#1:1=3D=3D&gt;0/SEP#3:0<br>| &nbsp; | &nbsp; * 0/SEP#4:0=3D=3D&g=
-t;0/Replay#0:0<br>| &nbsp; | &nbsp; * 0/Replay#0:0=3D=3D&gt;0/SEP#4:0<br>| &=
-nbsp; | &nbsp; * 0/SEP#5:0=3D=3D&gt;0/Replay#0:1<br>| &nbsp; | &nbsp; * 0/Re=
-play#0:1=3D=3D&gt;0/SEP#5:0<br>| &nbsp; &nbsp; _____________________________=
-________________________<br>| &nbsp; &nbsp;/<br>| &nbsp; | &nbsp; &nbsp; &nb=
-sp; TX Dboard: 0/Radio#0<br>| &nbsp; | &nbsp; ID: UBX-160 v2 (0x007d)<br>| &=
-nbsp; | &nbsp; Serial: 3208538<br>| &nbsp; | &nbsp; &nbsp; _________________=
-____________________________________<br>| &nbsp; | &nbsp; &nbsp;/<br>| &nbsp=
-; | &nbsp; | &nbsp; &nbsp; &nbsp; TX Frontend: 0<br>| &nbsp; | &nbsp; | &nbs=
-p; Name: UBX TX<br>| &nbsp; | &nbsp; | &nbsp; Antennas: TX/RX, CAL<br>| &nbs=
-p; | &nbsp; | &nbsp; Sensors: lo_locked<br>| &nbsp; | &nbsp; | &nbsp; Freq r=
-ange: 10.000 to 6000.000 MHz<br>| &nbsp; | &nbsp; | &nbsp; Gain range PGA0: 0=
-.0 to 31.5 step 0.5 dB<br>| &nbsp; | &nbsp; | &nbsp; Bandwidth range: 160000=
-000.0 to 160000000.0 step 0.0 Hz<br>| &nbsp; | &nbsp; | &nbsp; Connection Ty=
-pe: QI<br>| &nbsp; | &nbsp; | &nbsp; Uses LO offset: No<br>| &nbsp; &nbsp; _=
-____________________________________________________<br>| &nbsp; &nbsp;/<br>=
-| &nbsp; | &nbsp; &nbsp; &nbsp; RX Dboard: 0/Radio#0<br>| &nbsp; | &nbsp; ID=
-: UBX-160 v2 (0x007e)<br>| &nbsp; | &nbsp; Serial: 3208538<br>| &nbsp; | &nb=
-sp; &nbsp; _____________________________________________________<br>| &nbsp;=
- | &nbsp; &nbsp;/<br>| &nbsp; | &nbsp; | &nbsp; &nbsp; &nbsp; RX Frontend: 0=
-<br>| &nbsp; | &nbsp; | &nbsp; Name: UBX RX<br>| &nbsp; | &nbsp; | &nbsp; An=
-tennas: TX/RX, RX2, CAL<br>| &nbsp; | &nbsp; | &nbsp; Sensors: lo_locked<br>=
-| &nbsp; | &nbsp; | &nbsp; Freq range: 10.000 to 6000.000 MHz<br>| &nbsp; | &=
-nbsp; | &nbsp; Gain range PGA0: 0.0 to 31.5 step 0.5 dB<br>| &nbsp; | &nbsp;=
- | &nbsp; Bandwidth range: 160000000.0 to 160000000.0 step 0.0 Hz<br>| &nbsp=
-; | &nbsp; | &nbsp; Connection Type: IQ<br>| &nbsp; | &nbsp; | &nbsp; Uses L=
-O offset: No<br>| &nbsp; &nbsp; ____________________________________________=
-_________<br>| &nbsp; &nbsp;/<br>| &nbsp; | &nbsp; &nbsp; &nbsp; TX Dboard: 0=
-/Radio#1<br>| &nbsp; | &nbsp; &nbsp; _______________________________________=
-______________<br>| &nbsp; | &nbsp; &nbsp;/<br>| &nbsp; | &nbsp; | &nbsp; &n=
-bsp; &nbsp; TX Frontend: 0<br>| &nbsp; | &nbsp; | &nbsp; Name: Unknown (0xff=
-ff) - 0<br>| &nbsp; | &nbsp; | &nbsp; Antennas:<br>| &nbsp; | &nbsp; | &nbsp=
-; Sensors:<br>| &nbsp; | &nbsp; | &nbsp; Freq range: 0.000 to 0.000 MHz<br>|=
- &nbsp; | &nbsp; | &nbsp; Gain Elements: None<br>| &nbsp; | &nbsp; | &nbsp; B=
-andwidth range: 0.0 to 0.0 step 0.0 Hz<br>| &nbsp; | &nbsp; | &nbsp; Connect=
-ion Type: IQ<br>| &nbsp; | &nbsp; | &nbsp; Uses LO offset: No<br>| &nbsp; &n=
-bsp; _____________________________________________________<br>| &nbsp; &nbsp=
-;/<br>| &nbsp; | &nbsp; &nbsp; &nbsp; RX Dboard: 0/Radio#1<br>| &nbsp; | &nb=
-sp; &nbsp; _____________________________________________________<br>| &nbsp;=
- | &nbsp; &nbsp;/<br>| &nbsp; | &nbsp; | &nbsp; &nbsp; &nbsp; RX Frontend: 0=
-<br>| &nbsp; | &nbsp; | &nbsp; Name: Unknown (0xffff) - 0<br>| &nbsp; | &nbs=
-p; | &nbsp; Antennas:<br>| &nbsp; | &nbsp; | &nbsp; Sensors:<br>| &nbsp; | &=
-nbsp; | &nbsp; Freq range: 0.000 to 0.000 MHz<br>| &nbsp; | &nbsp; | &nbsp; G=
-ain Elements: None<br>| &nbsp; | &nbsp; | &nbsp; Bandwidth range: 0.0 to 0.0=
- step 0.0 Hz<br>| &nbsp; | &nbsp; | &nbsp; Connection Type: IQ<br>| &nbsp; |=
- &nbsp; | &nbsp; Uses LO offset: No</font><br><br>Thanks,&nbsp;<br><br><br><=
-/div></div>
-<span>_______________________________________________</span><br><span>USRP-u=
-sers mailing list -- usrp-users@lists.ettus.com</span><br><span>To unsubscri=
-be send an email to usrp-users-leave@lists.ettus.com</span><br></div></block=
-quote></body></html>=
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-05-17 09:02, Peter Featherston=
+e
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:c85ed6d9-f856-0e0b-2ef7-daa4e5226def@bath.edu">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <p>Hello all,</p>
+      <p>I am capturing samples on an E320 with cpu_format 'sc8' and
+        otw_format 'sc8'.</p>
+      <p>When calling `uhd::rx_streamer::recv()`, I'm comparing the
+        time_spec given by 'uhd::rx_metadata_t' and the timestamp
+        calculated by integrating the sample rate with the received
+        samples.</p>
+      <p>So I have something like this:</p>
+      <pre style=3D"background-color:#2b2b2b;color:#a9b7c6;font-family:'J=
+etBrains Mono',monospace;font-size:9.8pt;"><span style=3D"color:#b9bcd1;"=
+>...
 
---Apple-Mail-A94B1513-869B-4B52-BCDE-D11DCB87C71A--
+uint64_t </span>total_samples =3D <span style=3D"color:#6897bb;">0</span>=
+<span style=3D"color:#cc7832;">;
+</span><span style=3D"color:#cc7832;">
+</span><span style=3D"color:#cc7832;">bool </span>is_first_timestamp =3D =
+<span style=3D"color:#cc7832;">true;
+</span><span style=3D"color:#b5b6e3;">uhd</span>::<span style=3D"color:#b=
+5b6e3;">time_spec_t </span>first_timestamp<span style=3D"color:#cc7832;">=
+;
+</span><span style=3D"color:#cc7832;">
+</span><span style=3D"color:#cc7832;">while </span>(total_samples &lt; re=
+quested_samples))
+{
+    <span style=3D"color:#b5b6e3;">uhd</span>::<span style=3D"color:#b5b6=
+e3;">rx_metadata_t </span>md<span style=3D"color:#cc7832;">;</span><span =
+style=3D"color:#cc7832;">
+</span><span style=3D"color:#cc7832;">    const size_t nsamples </span>=3D=
+ rx_stream<span style=3D"color:#5f8c8a;">-&gt;</span>recv(ptrs<span style=
+=3D"color:#cc7832;">, 1024</span><span style=3D"color:#cc7832;">, </span>=
+md<span style=3D"color:#cc7832;">, </span><span style=3D"color:#6897bb;">=
+3</span><span style=3D"color:#cc7832;">, false</span>)<span style=3D"colo=
+r:#cc7832;">;
+</span><span style=3D"color:#cc7832;">=20
+    if </span>(is_first_timestamp)
+    {
+        is_first_timestamp =3D <span style=3D"color:#cc7832;">false;
+</span><span style=3D"color:#cc7832;">        </span>first_timestamp =3D =
+md.<span style=3D"color:#9373a5;">time_spec</span><span style=3D"color:#c=
+c7832;">;
+</span><span style=3D"color:#cc7832;">    </span>}
+   =20
+    printf(<span style=3D"color:#6a8759;">"Timestamp %.8lf expected %.8lf=
+</span><span style=3D"color:#cc7832;">\n</span><span style=3D"color:#6a87=
+59;">"</span><span style=3D"color:#cc7832;">, </span>
+	(md.<span style=3D"color:#9373a5;">time_spec </span><span style=3D"color=
+:#5f8c8a;">- </span>first_timestamp).get_real_secs()<span style=3D"color:=
+#cc7832;">,=20
+	</span>total_samples /<span style=3D"color:#9373a5;"></span> rate)<span =
+style=3D"color:#cc7832;">;
 
---===============8781252150466540906==
+</span><span style=3D"color:#cc7832;">    </span>total_samples +=3D <span=
+ style=3D"color:#cc7832;">nsamples</span>;<span style=3D"color:#cc7832;">=
+</span><span style=3D"color:#cc7832;">
+</span>}
+
+...
+</pre>
+      <p>Now when both otw format and cpu format are 'sc8' I get an
+        output like:</p>
+      <p>Timestamp 0.00000000 expected 0.00000000<br>
+        Timestamp 0.00047396 expected 0.00094792<br>
+        Timestamp 0.00094792 expected 0.00189583<br>
+        Timestamp 0.00142188 expected 0.00284375<br>
+        Timestamp 0.00189583 expected 0.00379167<br>
+        Timestamp 0.00236979 expected 0.00473958<br>
+        Timestamp 0.00284375 expected 0.00568750<br>
+        Timestamp 0.00331771 expected 0.00663542<br>
+        Timestamp 0.00379167 expected 0.00758333<br>
+        Timestamp 0.00426563 expected 0.00853125<br>
+        Timestamp 0.00473958 expected 0.00947917<br>
+        Timestamp 0.00521354 expected 0.01042708<br>
+        Timestamp 0.00568750 expected 0.01137500</p>
+      <p>...</p>
+      <p>Can anybody tell me what is going on?</p>
+      <p><br>
+      </p>
+      <p>Thanks,</p>
+      <p><br>
+      </p>
+      <p>Peter Featherstone</p>
+      <p><br>
+      </p>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    Does this only happen with sc8/sc8?=C2=A0=C2=A0 Do you get any startu=
+p
+    warnings about missing converters?<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------DejtmTWJb3adymfYMpnBsk4Q--
+
+--===============2295202800364913875==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -474,4 +292,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8781252150466540906==--
+--===============2295202800364913875==--
