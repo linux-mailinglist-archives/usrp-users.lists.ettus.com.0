@@ -2,107 +2,185 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8947352C40F
-	for <lists+usrp-users@lfdr.de>; Wed, 18 May 2022 22:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C841B52C455
+	for <lists+usrp-users@lfdr.de>; Wed, 18 May 2022 22:29:36 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6A8BC384998
-	for <lists+usrp-users@lfdr.de>; Wed, 18 May 2022 16:21:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 13997384A58
+	for <lists+usrp-users@lfdr.de>; Wed, 18 May 2022 16:29:36 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1652905276; bh=iEnS9Qj3NtHw1F1J7m3sQXo+2mRhdXAkIjiWH9Md8IU=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=smVszlHZeH2sYLs4ZKy7D+BBn7+kJGck+8iK8xmfDsUBOLzqcsmtAmILCGS8rb5jJ
-	 8FOmAWpUBT2A52ip7IqMT+RSpChLJs6YWmDkr0Ee5PLpK+mT3pVDcNWL/ovI/X7vRs
-	 vPDpndWgChhvA4oylFwYPGwK8D2Jtt3AskbIDq2/7z4w5sdnLGy5GwLUTaRnqCuQ/J
-	 ONme3Dho1IFqHyQwn7XbbdApcghko02w/nTvIVjbtILniLwuY5VSkFQEr6OxwXDhko
-	 ZaeCnxH5TjLywFcqFuCCJwt/K3qsqE7XpNlPJpG3g1EcNjHsJfOAsNgWIwJeJ3BHfl
-	 rG42ZlER0HXKw==
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id C548F3845F4
-	for <usrp-users@lists.ettus.com>; Wed, 18 May 2022 16:20:07 -0400 (EDT)
+	t=1652905776; bh=GGora5XBz5wcDP0JwDKOGEYWx3uv2J9XbQm5Q0lEwdQ=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=LVQ7H8DHm1+/GQfrnMybY/MWTh/BHe7XZvBQs3rPLjSpmGzWVrZ4A6ZQbMLpu8sOe
+	 SrUtXqUNuQQYy6dhk8CM/o0RK49Qe1sFHMeQQoYcDHYEcfampx5Hz2DmJiXCRR5Ds2
+	 owmSFxs4darHc0tqTGxR+iyxguewCE+u5AiqvMUuFpSdrls/lDuPNPo0TGV+eB27di
+	 LE3iHcLwhyJifr33OOf6ao8nFY7YfkiFW1Pt2sc1mMkVW3tPa55zOByqO6o67H3o4N
+	 wA2raXXWbQjuLt5LJHyNgxbfOOjOfgqD+tJMmPARl77p15Gkc8awOIVSuAxIOxdKy0
+	 CSzfPBxWwXfCA==
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8A4FF3847E2
+	for <usrp-users@lists.ettus.com>; Wed, 18 May 2022 16:28:38 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eFzh+qBI";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZHXlzOGM";
 	dkim-atps=neutral
-Received: by mail-qk1-f180.google.com with SMTP id b20so2431675qkc.6
-        for <usrp-users@lists.ettus.com>; Wed, 18 May 2022 13:20:07 -0700 (PDT)
+Received: by mail-pl1-f177.google.com with SMTP id m12so2854223plb.4
+        for <usrp-users@lists.ettus.com>; Wed, 18 May 2022 13:28:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=dIxgLXcoLnvegPkfjVBRrjohRAW2iPyb5qiryUxjeSs=;
-        b=eFzh+qBIJZDxtnhvyVYJM4FcaYK4UFaPgIPbgoPkQz4NyDAvtXEfzAxZ9sxx/PV/Uf
-         aUP8NrEJcBASbeJ1znZsPvxdNjIO7hU3hlV2qqR1fDW+EthbIv6Mx0o93PAH8LB+IFLL
-         INepY+WNi0Oadeodc0x3nyywxMGYZQpGOKnEnM8SuFYubc3Qv0/ayIGWpG0wGe1SGPus
-         2CYMqB+eUSETBuQDKkhgECgKnCWtOt2joZzVGJYJIl+Ojr8tvUnzmyN2IbOuqc5eUH8Q
-         P8vs7DqSIWh8ggNcWZ4me0rf32JZ3EpSx7+QBYvEjE5Y61C/qjwSNWMjx6aka0zfuPG0
-         QRcw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LlQ5faVr7FqxzFwbSKEaBl2lSjphlGx65CpFJVCRpks=;
+        b=ZHXlzOGMP3HWZEQmpvmGQ0TnEZ2/Jgs8UxC+/dvLwmHDSi2nSTkhqsonzoBcQZ1wKW
+         Rhus/2xRqmO6X/69MX6Ub5xHhKvgTbM6K6VAvf/2cXGtwhXVpF60VBy14gIIXy2veUNU
+         Z4OEasLtGAz0iTlmoT77CQQmN8bzYitK9iKndSbjZ/E9Kdl1PHLjXPEU9v8xmNYwPkFl
+         yzfpuSZ8fWC9vbSSfk5xqTCDh83K0jHB0XOm+ye4DaZ5FfgcDx4OE9BH5hTmSVZQhXsD
+         3MSvns+z17ylAaP4ina0DQUdGGXy4tmX2oYThLs6oSMqIJfLWzkSVdfd5RorTYjttwqC
+         e+UQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=dIxgLXcoLnvegPkfjVBRrjohRAW2iPyb5qiryUxjeSs=;
-        b=u8HaJwjXv0kKRTB9epwxg4TBIRJ3gkkKZNNe7+VO2s23P19tz1p7VfP3Pa65fNKoD8
-         0lFRj75+AaKjKDLCjeHAOChVQBsioBJ9kDTZzSyIa062YUqTO7D5WHyLluT2NjzCvGkl
-         1TXN3WPNFvOiineE8Scz2OFFE3fd9n511JqZCEeX8M4iD4piEyXvpwurny7hCCh8EMZw
-         j1PH7qJRdPNXbafvAK8FfkmNMmrB5y2bga7jsYBGuT0py2Gca9SQaSmBxrfQnSs+9f+0
-         dz1tzCxGJvtspOTGFsZkx0N9WMeyPlB6Up1pi/5KE3iQXMmj+vVAh9ZBXFG/5OfDdn69
-         p92A==
-X-Gm-Message-State: AOAM532Vc81ZOMVlcaqBffwbRd/M/Me6AQTNNqyVpeBYqz/2Nyiu6mM8
-	dB6w4hPrVBD7AmAkDVXLcnlAcjsu/5M=
-X-Google-Smtp-Source: ABdhPJyGFZaupmND3BhvNbMtXE+sqhMl4LU7Kk6+BOcTSBtwKuxglikFJcF44KEKFcYZBgU8AANQQQ==
-X-Received: by 2002:a05:620a:2949:b0:6a0:395f:c4b0 with SMTP id n9-20020a05620a294900b006a0395fc4b0mr896597qkp.3.1652905207072;
-        Wed, 18 May 2022 13:20:07 -0700 (PDT)
-Received: from [192.168.2.203] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id g17-20020ac84691000000b002f3e127be41sm139523qto.20.2022.05.18.13.20.06
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 May 2022 13:20:06 -0700 (PDT)
-Message-ID: <19dbac4c-acc4-3827-83d2-982d0fa83ddf@gmail.com>
-Date: Wed, 18 May 2022 16:20:05 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LlQ5faVr7FqxzFwbSKEaBl2lSjphlGx65CpFJVCRpks=;
+        b=mkRpjEZ8ArCu6Y7ZVPwDNlBTqyiyUmFBd0R+uK420BrlfuumahYXi9/Vt3BRrrAhiM
+         HeID5VkOipfZofFDtn9CnDxRjCbMSh8Cyw5WnmZg69MWPxbiVCxcvK9gaK1Eq+O5cpSa
+         SozNFywGeserPmHGZ7KJ7GJxUxTrl8rBIYvC4nDWrX2v07DwhPsqeqbwfpiBZc3jEftp
+         gqgjXef0Q2D6Vz+1mrct1Rt7tYM+Oq/363ImYS8Es34Ea6paH5FXxstD9MapgxYoFvOw
+         /8P6P4EHgD+TEnK2yNF7L52CxcGCB7Lp+AML76nxVsrImokfUBMZnucx1PIwGFRFwG1+
+         I6Lw==
+X-Gm-Message-State: AOAM532B+W4mOnt7PjKuZiV/R+3i2i8ldBygU0OLHyPuhZQHu7IqBjMe
+	fx6pNUe6NOKy275Qd6uTmbwr1G1xgzHg/qAA874=
+X-Google-Smtp-Source: ABdhPJwe2oxm6gcncHw6aB5xjI6gyR8WnjvsLyITMHAF5rSO9tkIJjP963Ee15BMBtDaLRYx8WqnxLLufz1IPY5i7kk=
+X-Received: by 2002:a17:90a:cc6:b0:1d2:9a04:d29e with SMTP id
+ 6-20020a17090a0cc600b001d29a04d29emr1244805pjt.136.1652905717401; Wed, 18 May
+ 2022 13:28:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <5MRZslBCn8543oJnh1vGlSlOw7dYQTzWCtpBw9jo@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <5MRZslBCn8543oJnh1vGlSlOw7dYQTzWCtpBw9jo@lists.ettus.com>
-Message-ID-Hash: PN7S53SEMEPBFKK3ROK227SDJMRKDJR3
-X-Message-ID-Hash: PN7S53SEMEPBFKK3ROK227SDJMRKDJR3
-X-MailFrom: patchvonbraun@gmail.com
+References: <5MRZslBCn8543oJnh1vGlSlOw7dYQTzWCtpBw9jo@lists.ettus.com> <19dbac4c-acc4-3827-83d2-982d0fa83ddf@gmail.com>
+In-Reply-To: <19dbac4c-acc4-3827-83d2-982d0fa83ddf@gmail.com>
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Wed, 18 May 2022 16:28:25 -0400
+Message-ID: <CAEXYVK4e6vn5r73UTpfbrdU4A31pKkgM0AuU2y+cEyTyfxQ5bg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: ZPCVL5IRBRONX2TVM2JPB4GAYZJNXOJ3
+X-Message-ID-Hash: ZPCVL5IRBRONX2TVM2JPB4GAYZJNXOJ3
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: b200 mini LVDS Vs CMOS
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PN7S53SEMEPBFKK3ROK227SDJMRKDJR3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZPCVL5IRBRONX2TVM2JPB4GAYZJNXOJ3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2081244684245655584=="
 
-T24gMjAyMi0wNS0xOCAxNTo0MiwgYWhhbXphMTk4MkBnbWFpbC5jb20gd3JvdGU6DQo+DQo+IEhp
-LA0KPg0KPg0KPiBJIGhhdmUgYjIwMCBtaW5pIGFuZCBieSByZWFkaW5nIHJlZ2lzdGVycyBJIGZp
-Z3VyZWQgb3V0IHRoYXQgaXQgaXMgDQo+IHVzaW5nIENNT1MgZm9yIGRpZ2l0YWwgaW50ZXJmYWNl
-IGJldHdlZW4gYWQ5MzYxIGFuZCBCQlAuDQo+DQo+IElzIHRoZXJlIGEgd2F5IHRvIG1ha2UgaXQg
-dXNlIExWRFM/DQo+DQo+IEZvciBleGFtcGxlLCBhbiBGUEdBIGltYWdlIHRoYXQgY291bGQgZG8g
-dGhpcz8NCj4NCj4gSSBhbSB1c2luZyBHTlUgcmFkaW8gYW5kIFVIRCB0byBwcm9ncmFtIHRoZSBi
-b2FyZCwgd2hhdCBvdGhlciANCj4gbW9kaWZpY2F0aW9ucyBpbiB0aGUgc29mdHdhcmUgSSB3aWxs
-IG5lZWQgdG8gc3VwcG9ydCBMVkRTIGlmIHBvc3NpYmxlPw0KPg0KPg0KPiBUaGFua3MsDQo+DQo+
-IEFobWVkDQo+DQo+DQpBIHZlcnkgc2ltaWxhciBxdWVzdGlvbiB3YXMgYXNrZWQgb24gdGhpcyBs
-aXN0IGFib3V0IG9uZSB3ZWVrIGFnby4gVGhlIA0KYmFzaWMgYW5zd2VyIGlzIHRoYXQgdGhpcyB3
-YXMgdHJpZWQsIHllYXJzIGFnbywgYW5kIHRoZSBGUEdBIGNvdWxkbid0IA0KbWVldCB0aGUgUy9I
-DQogwqB0aW1pbmcgZm9yIHRoZSBmYXN0ZXIgTFZEUyBpbnRlcmZhY2UuIFNvLHRoZSBDTU9TIGlu
-dGVyZmFjZSBpcyB1c2VkLg0KDQpOb3csIHdoaWxlIGl0IE1BWSBiZSB0aGUgY2FzZSB0aGF0ICJo
-YXZpbmcgYW5vdGhlciBsb29rIiBtaWdodCB5aWVsZCB0aGUgDQphYmlsaXR5IHRvIHVzZSB0aGUg
-TFZEUyBpbnRlcmZhY2UsIHRoZXJlIGlzIG5vdCBhbiBGUEdBIGltYWdlICJpbiB0aGUgd2lsZCIN
-CiDCoCB0aGF0IGFsbG93cyB0aGlzLg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMt
-bGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============2081244684245655584==
+Content-Type: multipart/alternative; boundary="00000000000022158d05df4f1a70"
+
+--00000000000022158d05df4f1a70
+Content-Type: text/plain; charset="UTF-8"
+
+On Wed, May 18, 2022 at 4:20 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 2022-05-18 15:42, ahamza1982@gmail.com wrote:
+> >
+> > Hi,
+> >
+> >
+> > I have b200 mini and by reading registers I figured out that it is
+> > using CMOS for digital interface between ad9361 and BBP.
+> >
+> > Is there a way to make it use LVDS?
+> >
+> > For example, an FPGA image that could do this?
+> >
+> > I am using GNU radio and UHD to program the board, what other
+> > modifications in the software I will need to support LVDS if possible?
+> >
+> >
+> > Thanks,
+> >
+> > Ahmed
+> >
+> >
+> A very similar question was asked on this list about one week ago. The
+> basic answer is that this was tried, years ago, and the FPGA couldn't
+> meet the S/H
+>   timing for the faster LVDS interface. So,the CMOS interface is used.
+>
+
+I believe this is a slightly different issue.  The previous issue was the
+LVDS interface is already used, but the faster 61.44 Msps was not supported
+for dual channel operations.  The FPGA used is a Zynq device on the E320.
+
+The interface here is CMOS and talking to a Spartan 6 device with a bank
+voltage of 1.8v.  This inherently makes it impossible to program the FPGA
+for those pins to utilize LVDS.
+
+Brian
+
+--00000000000022158d05df4f1a70
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, May 18, 2022 at 4:20 PM Marcus D.=
+ Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.c=
+om</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">On 2022-05-18 15:42, <a href=3D"mailto:ahamza1=
+982@gmail.com" target=3D"_blank">ahamza1982@gmail.com</a> wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt;<br>
+&gt; I have b200 mini and by reading registers I figured out that it is <br=
+>
+&gt; using CMOS for digital interface between ad9361 and BBP.<br>
+&gt;<br>
+&gt; Is there a way to make it use LVDS?<br>
+&gt;<br>
+&gt; For example, an FPGA image that could do this?<br>
+&gt;<br>
+&gt; I am using GNU radio and UHD to program the board, what other <br>
+&gt; modifications in the software I will need to support LVDS if possible?=
+<br>
+&gt;<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt;<br>
+&gt; Ahmed<br>
+&gt;<br>
+&gt;<br>
+A very similar question was asked on this list about one week ago. The <br>
+basic answer is that this was tried, years ago, and the FPGA couldn&#39;t <=
+br>
+meet the S/H<br>
+=C2=A0=C2=A0timing for the faster LVDS interface. So,the CMOS interface is =
+used.<br></blockquote><div><br></div><div>I believe this is a slightly diff=
+erent issue.=C2=A0 The previous issue was the LVDS interface is already use=
+d, but the faster 61.44 Msps was not supported for dual channel operations.=
+=C2=A0 The FPGA used is a Zynq device on the E320.</div><div><br></div><div=
+>The interface here is CMOS and talking to a Spartan 6 device with a bank v=
+oltage of 1.8v.=C2=A0 This inherently makes it impossible to program the FP=
+GA for those pins to utilize LVDS.</div><div><br></div><div>Brian</div></di=
+v></div>
+
+--00000000000022158d05df4f1a70--
+
+--===============2081244684245655584==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2081244684245655584==--
