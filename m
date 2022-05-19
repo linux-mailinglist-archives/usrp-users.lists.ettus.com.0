@@ -2,69 +2,70 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D542552DDE3
-	for <lists+usrp-users@lfdr.de>; Thu, 19 May 2022 21:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65A3052DFD7
+	for <lists+usrp-users@lfdr.de>; Fri, 20 May 2022 00:15:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1B991384CD5
-	for <lists+usrp-users@lfdr.de>; Thu, 19 May 2022 15:37:58 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 59721384D16
+	for <lists+usrp-users@lfdr.de>; Thu, 19 May 2022 18:15:00 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1652989078; bh=85Z6dCz0clvgQwRvZCEvqzzBtkxFQ1ItKvImD3vyHaU=;
+	t=1652998500; bh=w4KmotlqNqmRztRBfgHAlVm13raxfoHG0WUtrfiuXh8=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=vHml3vjdDvVkRBGkvX3OT1RXMUyJlWkZeO8N9XQl1usbi/Of1ZcMLjoKdZX/cxzvE
-	 ejezHE3y2fypfkotxQV7fMT9fbCIoAaFkMZuxQiqD/fgpheANYzXxUywJbvJLdvqKG
-	 i71MsvKmW3qkex/vkmoR1zILHcPwiZiedxC78tPq6Nvh61b8vlVg5Cr8KYHkAQNuZY
-	 pV3I6HT91ceH40jvtZfP41dUQRz4OrWSe9MSJcuLe4VEDm0VJVO9nroH9FrWu2PtPB
-	 uF63D09tzoTN8rUBK6WGf3crRtI7qLpYv2F1l28g0OaUVlA++V9NPvn4FCSROd0FzG
-	 cihRNjPaedelg==
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id 44C11384D02
-	for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 15:36:52 -0400 (EDT)
+	b=w2PG5ROneY676z0VP96azS24FY9xgqJ7jnDIhNzSWsTsnDtMVOsGNFQHDiKOelShs
+	 abSohHYnzeuh5qsHzHjMVVzKIoGrdp3UijMawXqAadnnK2uml9/FFkrKTtG5/TVg8V
+	 lCEFS1L+As5tCmur86IG2YYnJPHyHCot0XznI3tnujunI+KwA6rnmR/yPr7itoiIuc
+	 17yFFw2dlBStwA+BAfpDwxiHcDOMntBTdnN8qtM9aejXshTIuGm5o+yrcrNmgS1jIt
+	 VuKhVN+YFN3pA1dzfaqkDOfs6uWZ9Jho23q2kU6WQzNBb7ldqmqGroN2cASgH8TmzE
+	 gkGHGZ3rmptiw==
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 814AB3849A9
+	for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 18:13:56 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="Qbl161BX";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="RZ4QgwLG";
 	dkim-atps=neutral
-Received: by mail-yb1-f182.google.com with SMTP id j2so10851580ybu.0
-        for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 12:36:52 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-2f83983782fso70540197b3.6
+        for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 15:13:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ettus-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=CZN/9wquEq4+xVoC0Yhd3khoBo9zBFK9ox90+51HfNg=;
-        b=Qbl161BXGJJh9PLJVb1sDBdpon7jgR4ie0lSqhjRqockU8cB5PY+xkBbPa4yCC1oqy
-         15WbC5mh50cfz9/AXgFVznqTUy2qbxxNaVwmh3LHNwx2LynTxrDFI/w3Ck9uDkhrj2ml
-         RlPz6W+YzZ6SxkW1qa0Gr1u+LYL6ICsHDdQ/8cIx11WFRuKgtwl3f8kGQFkEGYKKsVq2
-         esdSA3Q3VS7WxBCBW/qbDC9KvPRur/D6mf1cFOeuBaZgCAKFJVZnCST2Lx5aRv85bSA+
-         oLbVRrjqplClMODTK1eKoZGvjR48eNWSGcWF/GWRNR6Y5FgY5XTAl5DBnycd5KRrrovm
-         /fvw==
+        bh=PtWaAuFTUuofVvDKTxvdoFsp0bbxILp4BIzeA6PVBVw=;
+        b=RZ4QgwLGPXK5z23AVp+1B294xgVIOErT+1NX4cQIZ9s+hX7fM/F20xlZwbW6SFX7/2
+         QbGVBjdjylrIumVdCZ9H64w/g5UMxpx/fQSFiT+7KO0r9LRau2VebAEMZyDGl3icTgze
+         mScJ2nktiIEidps4jXL0h9lUzbpK5SvPqIsEDV0DkZrYT2SuJhCzmt+gLQoAURDVmjry
+         KQSyYCKpwbhMb/mTvZOHz088/P66p17+ITxAo5wAo4UfIrmwgCo5HOzMfHrCOBR1/G55
+         Ic4OC26A+ZMxDc7erqvkKDMRBWg7UeqYfaHCxRbs434ofN+lRlWtFrHerChtRh3zLakt
+         Hntg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=CZN/9wquEq4+xVoC0Yhd3khoBo9zBFK9ox90+51HfNg=;
-        b=C7gHaX/VSLMAAE8V3gygt9UaT+evw/WQkhFzZXoZU9EjO/i5wVXRSQIzdQjWZZnKmC
-         o3DhsTTfsQS8rXChBcAiqTsxQAxXZ6VHQvxAfz6/0A6+bClk+t+15tndWr0VcBGM3HYW
-         ocUag62DFmKdr4mhccCvEkU/kpTuAa77peFkvqHMb5MZkqyvyy5cEOLLky0YYdkdeSbL
-         VwmZ7jeulds6n37zziJ+qNa71v0Jkak0CRM4ctvGd6S8vBtFAeJVhh/4mQAAJ0Tlcq74
-         gJMnHwvdOoduJv43FvJ1jfnYlgdDhxZTQFthI5LjLOnfDkCkkW30s5Fc12doDS7GiWFj
-         aOng==
-X-Gm-Message-State: AOAM530fXVcvUZnIFC8Rf/1qk70CK0Ei7M1ZiEl/PWSCphZgZDwri8dY
-	AI/ltCcO5dfKiF2W8lHpFzEM6nU1YwvcDnUtGopgtjqBxedl40J0
-X-Google-Smtp-Source: ABdhPJxicEXL8+url7W8xOcRGXr9YIZZxaTt9K3ngj4RYgWHeDHqlZ00qL/uqFvhlQahtUt1FcH2C6M5AVUAfv7kOYI=
-X-Received: by 2002:a25:2e06:0:b0:64d:b6a5:261a with SMTP id
- u6-20020a252e06000000b0064db6a5261amr5853707ybu.140.1652989011650; Thu, 19
- May 2022 12:36:51 -0700 (PDT)
+        bh=PtWaAuFTUuofVvDKTxvdoFsp0bbxILp4BIzeA6PVBVw=;
+        b=3ti8/tFUNQ7fQ2UZxCyAG10PHujgKMtSe7aqHhtPGoaHhvaEx92W2KdnNUOCEbJawQ
+         oWqzu8evIq57DJSqQ+Gm2D0/whSaHd2wCnHJi4x8/yJjvPgEQmZfym1fsDoQ7gEgeped
+         PBIGk/s1cm+5Fp4aqVw7gFt472+VKLpNj2X9+MCVGepCBRvQJAJDcVE8pzDjCMf9ORVI
+         WTUynkk2+qn17QEnQBD7dE7jitMR8Z84kCfKOzrLA7t3LUpzmsiQLXF8nfwHqP0NIPCy
+         JQja1aa1KHcF13hdv20mtVB5spwWx0c2+S3RlVM3wby0SHPy4fmu5t3CDCH7ox8v+ax7
+         oFJw==
+X-Gm-Message-State: AOAM531Bbq7AFZ8pfBtdnfj3G2skV0D3vn/RABHw3hhKjFwLFz5VvpoB
+	nIfhoiGNHQSjsrTUB7snj7Y98rxSWiYwyOMBUViGYGmY
+X-Google-Smtp-Source: ABdhPJx7iNaNXkMFJx0qemtzI+KiUk+2y+0JQKKaC4OCLHOUYrsg1K3g5GiNgjIs2tQu3aSD5HLnHzgE5PBrwBwd1I8=
+X-Received: by 2002:a0d:eb04:0:b0:2ff:1ed9:ecf3 with SMTP id
+ u4-20020a0deb04000000b002ff1ed9ecf3mr6966120ywe.77.1652998435426; Thu, 19 May
+ 2022 15:13:55 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAFche=jJyeqcaf5sPSkxA3qokEDXm=FfmaFmgxP784M4Ms2rOQ@mail.gmail.com>
  <4BC71671-9217-4411-9903-E2A2D9A537E5@gmail.com> <CAFche=igDnrw+9D5R=+QMkw22vrFRyFGQyNr68kD7XtseY9+iA@mail.gmail.com>
  <CA+GXwQAYJj=36OLJvupV3R=TTnEHpNH62UaA_z8rCXe9VGuEbA@mail.gmail.com>
-In-Reply-To: <CA+GXwQAYJj=36OLJvupV3R=TTnEHpNH62UaA_z8rCXe9VGuEbA@mail.gmail.com>
+ <CAFche=jwjqmrZO46m1-mdX=b2rSinBf7386fV939rw6vfe9vVw@mail.gmail.com> <CA+GXwQCDeEKyYL_c178dQC0dS=33yYLNvDoaQ=0e+z-ZBNB=uA@mail.gmail.com>
+In-Reply-To: <CA+GXwQCDeEKyYL_c178dQC0dS=33yYLNvDoaQ=0e+z-ZBNB=uA@mail.gmail.com>
 From: Wade Fife <wade.fife@ettus.com>
-Date: Thu, 19 May 2022 14:36:35 -0500
-Message-ID: <CAFche=jwjqmrZO46m1-mdX=b2rSinBf7386fV939rw6vfe9vVw@mail.gmail.com>
+Date: Thu, 19 May 2022 17:13:39 -0500
+Message-ID: <CAFche=jyVR5=ig2EEuZ8Z2FXMMEAqvAd_-rKX6HCTG1Y35MJQQ@mail.gmail.com>
 To: Jeffrey Cuenco <jeffrey.cuenco@gmail.com>
-Message-ID-Hash: LVIDXKH6ICFAR2CCWYVDMGQGFVBDP5QC
-X-Message-ID-Hash: LVIDXKH6ICFAR2CCWYVDMGQGFVBDP5QC
+Message-ID-Hash: FHGCUAGZBA5GLYY34HJEB65UKNQC5PJK
+X-Message-ID-Hash: FHGCUAGZBA5GLYY34HJEB65UKNQC5PJK
 X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Jeffrey Cuenco <jcuenco@ucsd.edu>, usrp-users@lists.ettus.com
@@ -72,510 +73,607 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RFNoC 4.0 OOT FPGA Testbench Writing Guidance?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LVIDXKH6ICFAR2CCWYVDMGQGFVBDP5QC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FHGCUAGZBA5GLYY34HJEB65UKNQC5PJK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4458070885939426462=="
+Content-Type: multipart/mixed; boundary="===============3452113226279383616=="
 
---===============4458070885939426462==
-Content-Type: multipart/alternative; boundary="000000000000db7dba05df627e2a"
+--===============3452113226279383616==
+Content-Type: multipart/alternative; boundary="0000000000008eec5605df64b025"
 
---000000000000db7dba05df627e2a
+--0000000000008eec5605df64b025
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-The testbench has start_test() and end_test() calls around each test.
-There's a timeout in the start_test() call, and there's also a global
-timeout (part of start_tb(), but I think 10 ms by default). If the
-end_test() doesn't occur within a certain amount of time of the
-start_test(), then the testbench assumes something went wrong. Otherwise,
-the simulation could just keep running forever.
-
-So you'll need to look at your simulation to see where things are getting
-stuck. Also, make sure what you're doing doesn't just need more time.
+Regarding the payload/context change, it looks like the modtool sets the
+fpga_iface to axis_pyld_ctxt, but in conv.yml you changed it to axis_data?
+So when you ran rfnoc_create_verilog, it changed the interface type used by
+the NoC shell. You can read about "AXI-Stream Payload Context" and
+"AXI-Stream Data" interface types in the RFNoC Specification
+<https://files.ettus.com/app_notes/RFNoC_Specification.pdf>. I think either
+could be used.
 
 Wade
 
-On Thu, May 19, 2022 at 2:29 PM Jeffrey Cuenco <jeffrey.cuenco@gmail.com>
+On Thu, May 19, 2022 at 4:18 PM Jeffrey Cuenco <jeffrey.cuenco@gmail.com>
 wrote:
 
-> Thanks Wade! I used the rfnoc_create_verilog and it generated code that
-> contained ce_clk and added
+> Thanks Wade! I just remembered that I forgot to set my output to input
+> ratio which may be explaining why the timeouts are happening even with th=
+e
+> extended delay.
 >
-> output wire ce_rst;
+> When I used the rfnoc_create_verilog, I noticed that the client interface
+> only has m_in_axis_* and s_out_axis_* connections and no separation betwe=
+en
+> context and payload for the template of noc shell used by the tool.
 >
-> following the ce_clk declaration around line 32 of rfnoc_block_conv.v in
-> the generated file, then plugged it into .ce_rst of noc_shell_conv later =
-in
-> the file and also used it in my axi_conv instantiation.
->
-> After doing that and building I was able to get the testbench to run but =
-I
-> now get a fatal timeout, something about time limit exceeded.
->
-> Is there something that needs to be wired in so that it knows when things
-> finish? Thanks!
+> As such the logpwr example you shared with me earlier isn't
+> straightforward to port over and the duc example appears to be most
+> compatible pin-out wise with axi_rate_change so I'm about to attempt to
+> hook it up it but wanted to clarify that there aren't any additional
+> changes I would need to do aside from adjusting MAX_M, MAX_N, and ensurin=
+g
+> the input/output wire names match what are in my signal declarations
+> section? Thanks!
 >
 > -Jeff
 >
-> On Thu, May 19, 2022 at 12:23 Wade Fife <wade.fife@ettus.com> wrote:
 >
->> I think those versions are fine, but your gr-ettus might be out of date.
->> I'm not very familiar with the GNU Radio integration. You could try
->> updating your gr-ettus then regenerate your block, or you could run the
->> rfnoc_create_verilog tool using the YML file as an input if you need to
->> customize the YAML to add the ce_clk/ce_rst signals. It's really up to y=
-ou
->> if you need those signals. But your IP needs to be clocked and probably
->> reset by something, and you need to make sure the generated noc_shell us=
-es
->> the same clock domains you're expecting to use.
+>
+>
+>
+>
+>
+> On Thu, May 19, 2022 at 12:36 PM Wade Fife <wade.fife@ettus.com> wrote:
+>
+>> The testbench has start_test() and end_test() calls around each test.
+>> There's a timeout in the start_test() call, and there's also a global
+>> timeout (part of start_tb(), but I think 10 ms by default). If the
+>> end_test() doesn't occur within a certain amount of time of the
+>> start_test(), then the testbench assumes something went wrong. Otherwise=
+,
+>> the simulation could just keep running forever.
 >>
+>> So you'll need to look at your simulation to see where things are gettin=
+g
+>> stuck. Also, make sure what you're doing doesn't just need more time.
 >>
 >> Wade
 >>
->> On Wed, May 18, 2022 at 10:10 PM Jeffrey Cuenco <jeffrey.cuenco@gmail.co=
-m>
+>> On Thu, May 19, 2022 at 2:29 PM Jeffrey Cuenco <jeffrey.cuenco@gmail.com=
+>
 >> wrote:
 >>
->>> Neel recommended I use UHD v4.1.0.5 and GRC v3.8.5.0 so that=E2=80=99s =
-what I=E2=80=99ve
->>> been using - does this version not generate the right items? If not whi=
-ch
->>> version of UHD should I update to, and which version of GRC works best =
-with
->>> it? Thanks!
+>>> Thanks Wade! I used the rfnoc_create_verilog and it generated code that
+>>> contained ce_clk and added
+>>>
+>>> output wire ce_rst;
+>>>
+>>> following the ce_clk declaration around line 32 of rfnoc_block_conv.v i=
+n
+>>> the generated file, then plugged it into .ce_rst of noc_shell_conv late=
+r in
+>>> the file and also used it in my axi_conv instantiation.
+>>>
+>>> After doing that and building I was able to get the testbench to run bu=
+t
+>>> I now get a fatal timeout, something about time limit exceeded.
+>>>
+>>> Is there something that needs to be wired in so that it knows when
+>>> things finish? Thanks!
 >>>
 >>> -Jeff
 >>>
->>> On May 18, 2022, at 19:59, Wade Fife <wade.fife@ettus.com> wrote:
+>>> On Thu, May 19, 2022 at 12:23 Wade Fife <wade.fife@ettus.com> wrote:
 >>>
->>> =EF=BB=BF
->>> If you want to customize the YAML and regenerate from your modified
->>> YAML, then I think you need to use rfnoc_create_verilog (part of UHD). =
-So
->>> you could do something like:
->>>
->>> python3 uhd/host/utils/rfnoc_blocktool/rfnoc_create_verilog.py -c
->>> conv.yml -d ./rfnoc_block_conv
->>>
->>> However, I see ce_rst in the modtool templates:
->>>
->>>
->>> https://github.com/EttusResearch/gr-ettus/blob/master/python/rfnoc_modt=
-ool/templates.py#L994
->>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_Ettu=
-sResearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_templates.py-23L994=
-&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08=
-QrmMzW9aeZY&m=3D1DdbigE2N0YgkBb5QwxGwLoaLzBicQiQrNdYgLIklkzVPw_RkRIL9bq4dIN=
-C9Cqd&s=3DfKouuct_wr3CdcChBQjBmaL6WDVq7l3U1zAVR7DcnDY&e=3D>
->>>
->>> https://github.com/EttusResearch/gr-ettus/blob/master/python/rfnoc_modt=
-ool/templates.py#L1384
->>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_Ettu=
-sResearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_templates.py-23L138=
-4&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD0=
-8QrmMzW9aeZY&m=3D1DdbigE2N0YgkBb5QwxGwLoaLzBicQiQrNdYgLIklkzVPw_RkRIL9bq4dI=
-NC9Cqd&s=3Dg8-XZVaLen6JS347_frcJqnHnCFTxWbAtw1WcLKrtzA&e=3D>
->>>
->>> Perhaps you're using an older version of modtool?
->>>
->>> Wade
->>>
->>>
->>>
->>>
->>> On Wed, May 18, 2022 at 12:33 PM Jeffrey Cuenco <
->>> jeffrey.cuenco@gmail.com> wrote:
->>>
->>>> Spoke too soon - sent last one out too fast so apologies for the
->>>> message clutter:
->>>>
->>>> What I see in rfnoc_block_conv.v is ce_clk as an input wire within the
->>>> rfnoc_block_conv module declaration.
->>>>
->>>> However, I don't see ce_rst anywhere in either the noc_shell_conv.v no=
-r
->>>> the rfnoc_block_conv.v files.
->>>>
->>>> Is this something I should be concerned about, or will I need to
->>>> manually add this wire in? Please advise - thanks!
->>>>
->>>> -Jeff
+>>>> I think those versions are fine, but your gr-ettus might be out of
+>>>> date. I'm not very familiar with the GNU Radio integration. You could =
+try
+>>>> updating your gr-ettus then regenerate your block, or you could run th=
+e
+>>>> rfnoc_create_verilog tool using the YML file as an input if you need t=
+o
+>>>> customize the YAML to add the ce_clk/ce_rst signals. It's really up to=
+ you
+>>>> if you need those signals. But your IP needs to be clocked and probabl=
+y
+>>>> reset by something, and you need to make sure the generated noc_shell =
+uses
+>>>> the same clock domains you're expecting to use.
 >>>>
 >>>>
->>>> On Wed, May 18, 2022 at 10:26 AM Jeffrey Cuenco <
+>>>> Wade
+>>>>
+>>>> On Wed, May 18, 2022 at 10:10 PM Jeffrey Cuenco <
 >>>> jeffrey.cuenco@gmail.com> wrote:
 >>>>
->>>>> To clarify - I see them in rfnoc_block_conv.v but not in
->>>>> noc_shell_conv.v - just want to ensure that is okay; I ended up
->>>>> regenerating from scratch as I had used the gain block as a base the =
-first
->>>>> time and it seems it was generated with an older RFNoC 3.x codegen.
+>>>>> Neel recommended I use UHD v4.1.0.5 and GRC v3.8.5.0 so that=E2=80=99=
+s what
+>>>>> I=E2=80=99ve been using - does this version not generate the right it=
+ems? If not
+>>>>> which version of UHD should I update to, and which version of GRC wor=
+ks
+>>>>> best with it? Thanks!
 >>>>>
->>>>> Will proceed with this and let you know my results. Thanks!
+>>>>> -Jeff
 >>>>>
->>>>> On Wed, May 18, 2022 at 7:55 AM Jeffrey Cuenco <
+>>>>> On May 18, 2022, at 19:59, Wade Fife <wade.fife@ettus.com> wrote:
+>>>>>
+>>>>> =EF=BB=BF
+>>>>> If you want to customize the YAML and regenerate from your modified
+>>>>> YAML, then I think you need to use rfnoc_create_verilog (part of UHD)=
+. So
+>>>>> you could do something like:
+>>>>>
+>>>>> python3 uhd/host/utils/rfnoc_blocktool/rfnoc_create_verilog.py -c
+>>>>> conv.yml -d ./rfnoc_block_conv
+>>>>>
+>>>>> However, I see ce_rst in the modtool templates:
+>>>>>
+>>>>>
+>>>>> https://github.com/EttusResearch/gr-ettus/blob/master/python/rfnoc_mo=
+dtool/templates.py#L994
+>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_Et=
+tusResearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_templates.py-23L9=
+94&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD=
+08QrmMzW9aeZY&m=3D1DdbigE2N0YgkBb5QwxGwLoaLzBicQiQrNdYgLIklkzVPw_RkRIL9bq4d=
+INC9Cqd&s=3DfKouuct_wr3CdcChBQjBmaL6WDVq7l3U1zAVR7DcnDY&e=3D>
+>>>>>
+>>>>> https://github.com/EttusResearch/gr-ettus/blob/master/python/rfnoc_mo=
+dtool/templates.py#L1384
+>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_Et=
+tusResearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_templates.py-23L1=
+384&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6y=
+D08QrmMzW9aeZY&m=3D1DdbigE2N0YgkBb5QwxGwLoaLzBicQiQrNdYgLIklkzVPw_RkRIL9bq4=
+dINC9Cqd&s=3Dg8-XZVaLen6JS347_frcJqnHnCFTxWbAtw1WcLKrtzA&e=3D>
+>>>>>
+>>>>> Perhaps you're using an older version of modtool?
+>>>>>
+>>>>> Wade
+>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>>> On Wed, May 18, 2022 at 12:33 PM Jeffrey Cuenco <
 >>>>> jeffrey.cuenco@gmail.com> wrote:
 >>>>>
->>>>>> Thanks Wade!
+>>>>>> Spoke too soon - sent last one out too fast so apologies for the
+>>>>>> message clutter:
 >>>>>>
->>>>>> I tried to regenerate using rfnocmodtool and noticed that the ce_clk
->>>>>> and ce_rst wires aren't present in the template code and the yaml fi=
-les get
->>>>>> overwritten - is there another command for rfnocmodtool that I shoul=
-d be
->>>>>> using to regenerate after customizing the yaml? Thanks!
+>>>>>> What I see in rfnoc_block_conv.v is ce_clk as an input wire within
+>>>>>> the rfnoc_block_conv module declaration.
+>>>>>>
+>>>>>> However, I don't see ce_rst anywhere in either the noc_shell_conv.v
+>>>>>> nor the rfnoc_block_conv.v files.
+>>>>>>
+>>>>>> Is this something I should be concerned about, or will I need to
+>>>>>> manually add this wire in? Please advise - thanks!
 >>>>>>
 >>>>>> -Jeff
 >>>>>>
->>>>>> On Mon, May 16, 2022 at 11:07 AM Wade Fife <wade.fife@ettus.com>
->>>>>> wrote:
 >>>>>>
->>>>>>> I was looking at your code to answer your question when I noticed
->>>>>>> that the noc_shell code doesn't seem to match your YAML, so I'm won=
-dering
->>>>>>> if the YAML was modified after you generated your noc_shell? The no=
-c_shell
->>>>>>> is missing the ce_clk declared in your YAML.
+>>>>>> On Wed, May 18, 2022 at 10:26 AM Jeffrey Cuenco <
+>>>>>> jeffrey.cuenco@gmail.com> wrote:
+>>>>>>
+>>>>>>> To clarify - I see them in rfnoc_block_conv.v but not in
+>>>>>>> noc_shell_conv.v - just want to ensure that is okay; I ended up
+>>>>>>> regenerating from scratch as I had used the gain block as a base th=
+e first
+>>>>>>> time and it seems it was generated with an older RFNoC 3.x codegen.
 >>>>>>>
->>>>>>> To answer your question, I'm going to assume you want a ce_clk
->>>>>>> that's different from rfnoc_chdr_clk and rfnoc_ctrl_clk and you wan=
-t your
->>>>>>> DSP and the registers to use ce_clk. In that case:
+>>>>>>> Will proceed with this and let you know my results. Thanks!
 >>>>>>>
->>>>>>>    1. Regenerate your block to get a new noc_shell_conv. This will
->>>>>>>    add a ce_clk input and a ce_rst output to noc_shell_conv. Again,=
- be careful
->>>>>>>    to not overwrite your existing code when regenerating your block=
-.
->>>>>>>    2. In rfnoc_block_conv, connect the ce_clk input port to the
->>>>>>>    ce_clk input port of noc_shell_conv.
->>>>>>>    3. In rfnoc_block_conv, declare a ce_rst wire at the top and
->>>>>>>    connect it to the ce_rst output port of your noc_shell.
->>>>>>>    4. Update your registers and custom logic to use ce_clk and
->>>>>>>    ce_rst.
->>>>>>>
->>>>>>> The answer is slightly different if you want to use the current
->>>>>>> noc_shell. But in general, you say what clocks you want to use in t=
-he YAML
->>>>>>> file. When the noc_shell is generated, it will take as inputs the c=
-locks
->>>>>>> you declared in the YAML, it will output resets that you can use fo=
-r those
->>>>>>> clock domains, and it will output on ctrlport_clk and axis_data_clk
->>>>>>> whatever clocks you said in the YAML that you wanted to use for tho=
-se
->>>>>>> interfaces. This can be a bit confusing because it means you can ha=
-ve
->>>>>>> multiple versions of the same clock under different names (e.g., ce=
-_clk,
->>>>>>> ctrlport_clk, and axis_data_clk might all be the same clock, just o=
-n
->>>>>>> different signal names).
->>>>>>>
->>>>>>> Wade
->>>>>>>
->>>>>>>
->>>>>>> On Fri, May 13, 2022 at 1:09 PM Jeffrey Cuenco <jcuenco@ucsd.edu>
->>>>>>> wrote:
+>>>>>>> On Wed, May 18, 2022 at 7:55 AM Jeffrey Cuenco <
+>>>>>>> jeffrey.cuenco@gmail.com> wrote:
 >>>>>>>
 >>>>>>>> Thanks Wade!
 >>>>>>>>
->>>>>>>> I went ahead and restored the signal sizes to 32-bit as you
->>>>>>>> suggested.
->>>>>>>>
->>>>>>>> For using ce_clk, does it suffice for me to create a wire for
->>>>>>>> ce_clk in the .v file and then reference it from the yaml? Is orde=
-ring
->>>>>>>> important or just ensuring the name matches the wire? Thanks!
+>>>>>>>> I tried to regenerate using rfnocmodtool and noticed that the
+>>>>>>>> ce_clk and ce_rst wires aren't present in the template code and th=
+e yaml
+>>>>>>>> files get overwritten - is there another command for rfnocmodtool =
+that I
+>>>>>>>> should be using to regenerate after customizing the yaml? Thanks!
 >>>>>>>>
 >>>>>>>> -Jeff
 >>>>>>>>
+>>>>>>>> On Mon, May 16, 2022 at 11:07 AM Wade Fife <wade.fife@ettus.com>
+>>>>>>>> wrote:
 >>>>>>>>
->>>>>>>> On May 12, 2022, at 10:29, Wade Fife <wade.fife@ettus.com> wrote:
->>>>>>>>
->>>>>>>> =EF=BB=BF
->>>>>>>> Hi Jeff,
->>>>>>>>
->>>>>>>> I took a look and noticed a couple things.
->>>>>>>>
->>>>>>>>    - There are some signal width mismatches in rfnoc_block_conv.v.
->>>>>>>>    Take a look at s_rfnoc_ctrl_tdata, m_rfnoc_ctrl_tdata, m_in_pay=
-load_tdata,
->>>>>>>>    s_out_payload_tdata. They have different widths than what the n=
-oc_shell
->>>>>>>>    expects. I think it's possible to change the payload_tdata widt=
-h to 8 on
->>>>>>>>    the noc_shell by changing the item_width in your YAML, but you'=
-ll want to
->>>>>>>>    regenerate the noc_shell to do that (be careful not to overwrit=
-e your other
->>>>>>>>    files if you do this). But the ctrl bus must be 32-bit.
->>>>>>>>    - The ctrlport_clk has no driver. It looks like you specified
->>>>>>>>    ce_clk as the clock domain in your YAML, so perhaps that's the =
-clock you
->>>>>>>>    want to use?
->>>>>>>>
->>>>>>>> Try resolving these issues and see where that gets you.
->>>>>>>>
->>>>>>>> Wade
->>>>>>>>
->>>>>>>> On Wed, May 11, 2022 at 2:19 PM Jeffrey Cuenco <
->>>>>>>> jeffrey.cuenco@gmail.com> wrote:
->>>>>>>>
->>>>>>>>> Hi Wade,
+>>>>>>>>> I was looking at your code to answer your question when I noticed
+>>>>>>>>> that the noc_shell code doesn't seem to match your YAML, so I'm w=
+ondering
+>>>>>>>>> if the YAML was modified after you generated your noc_shell? The =
+noc_shell
+>>>>>>>>> is missing the ce_clk declared in your YAML.
 >>>>>>>>>
->>>>>>>>> Please see attached. Thanks!
+>>>>>>>>> To answer your question, I'm going to assume you want a ce_clk
+>>>>>>>>> that's different from rfnoc_chdr_clk and rfnoc_ctrl_clk and you w=
+ant your
+>>>>>>>>> DSP and the registers to use ce_clk. In that case:
 >>>>>>>>>
->>>>>>>>> -Jeff
+>>>>>>>>>    1. Regenerate your block to get a new noc_shell_conv. This
+>>>>>>>>>    will add a ce_clk input and a ce_rst output to noc_shell_conv.=
+ Again, be
+>>>>>>>>>    careful to not overwrite your existing code when regenerating =
+your block.
+>>>>>>>>>    2. In rfnoc_block_conv, connect the ce_clk input port to the
+>>>>>>>>>    ce_clk input port of noc_shell_conv.
+>>>>>>>>>    3. In rfnoc_block_conv, declare a ce_rst wire at the top and
+>>>>>>>>>    connect it to the ce_rst output port of your noc_shell.
+>>>>>>>>>    4. Update your registers and custom logic to use ce_clk and
+>>>>>>>>>    ce_rst.
 >>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On May 11, 2022, at 08:42, Wade Fife <wade.fife@ettus.com> wrote:
->>>>>>>>>
->>>>>>>>> =EF=BB=BF
->>>>>>>>> Can you also share your block's YML and the noc_shell you
->>>>>>>>> generated?
+>>>>>>>>> The answer is slightly different if you want to use the current
+>>>>>>>>> noc_shell. But in general, you say what clocks you want to use in=
+ the YAML
+>>>>>>>>> file. When the noc_shell is generated, it will take as inputs the=
+ clocks
+>>>>>>>>> you declared in the YAML, it will output resets that you can use =
+for those
+>>>>>>>>> clock domains, and it will output on ctrlport_clk and axis_data_c=
+lk
+>>>>>>>>> whatever clocks you said in the YAML that you wanted to use for t=
+hose
+>>>>>>>>> interfaces. This can be a bit confusing because it means you can =
+have
+>>>>>>>>> multiple versions of the same clock under different names (e.g., =
+ce_clk,
+>>>>>>>>> ctrlport_clk, and axis_data_clk might all be the same clock, just=
+ on
+>>>>>>>>> different signal names).
 >>>>>>>>>
 >>>>>>>>> Wade
 >>>>>>>>>
->>>>>>>>> On Wed, May 11, 2022 at 4:27 AM Jeffrey Cuenco <jcuenco@ucsd.edu>
+>>>>>>>>>
+>>>>>>>>> On Fri, May 13, 2022 at 1:09 PM Jeffrey Cuenco <jcuenco@ucsd.edu>
 >>>>>>>>> wrote:
 >>>>>>>>>
->>>>>>>>>> Hi Wade,
+>>>>>>>>>> Thanks Wade!
 >>>>>>>>>>
->>>>>>>>>> Yes, I have the ctrlport:has_status set to False in the block
->>>>>>>>>> YAML... I ended up having to comment out that test sequence to m=
-ove onto
->>>>>>>>>> the part that sends samples into and out of the block; now I hav=
-e an error
->>>>>>>>>> that states
+>>>>>>>>>> I went ahead and restored the signal sizes to 32-bit as you
+>>>>>>>>>> suggested.
 >>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> *Fatal: Timeout: Test "Test passing through samples" time limit
->>>>>>>>>> exceeded*
->>>>>>>>>> so I must be doing something that it isn't liking :) I've
->>>>>>>>>> attached my updated .v and .sv files that I modified based on yo=
-ur guidance
->>>>>>>>>> in your first response, as well as the updated xsim.log. Please =
-let me know
->>>>>>>>>> if there are any additional things I may need to change such as =
-sizes and
->>>>>>>>>> what not - thanks!
+>>>>>>>>>> For using ce_clk, does it suffice for me to create a wire for
+>>>>>>>>>> ce_clk in the .v file and then reference it from the yaml? Is or=
+dering
+>>>>>>>>>> important or just ensuring the name matches the wire? Thanks!
 >>>>>>>>>>
 >>>>>>>>>> -Jeff
 >>>>>>>>>>
->>>>>>>>>> On Mon, May 9, 2022 at 3:12 PM Wade Fife <wade.fife@ettus.com>
->>>>>>>>>> wrote:
 >>>>>>>>>>
->>>>>>>>>>> Hi Jeffrey,
+>>>>>>>>>> On May 12, 2022, at 10:29, Wade Fife <wade.fife@ettus.com> wrote=
+:
+>>>>>>>>>>
+>>>>>>>>>> =EF=BB=BF
+>>>>>>>>>> Hi Jeff,
+>>>>>>>>>>
+>>>>>>>>>> I took a look and noticed a couple things.
+>>>>>>>>>>
+>>>>>>>>>>    - There are some signal width mismatches in
+>>>>>>>>>>    rfnoc_block_conv.v. Take a look at s_rfnoc_ctrl_tdata, m_rfno=
+c_ctrl_tdata,
+>>>>>>>>>>    m_in_payload_tdata, s_out_payload_tdata. They have different =
+widths than
+>>>>>>>>>>    what the noc_shell expects. I think it's possible to change t=
+he
+>>>>>>>>>>    payload_tdata width to 8 on the noc_shell by changing the ite=
+m_width in
+>>>>>>>>>>    your YAML, but you'll want to regenerate the noc_shell to do =
+that (be
+>>>>>>>>>>    careful not to overwrite your other files if you do this). Bu=
+t the ctrl bus
+>>>>>>>>>>    must be 32-bit.
+>>>>>>>>>>    - The ctrlport_clk has no driver. It looks like you specified
+>>>>>>>>>>    ce_clk as the clock domain in your YAML, so perhaps that's th=
+e clock you
+>>>>>>>>>>    want to use?
+>>>>>>>>>>
+>>>>>>>>>> Try resolving these issues and see where that gets you.
+>>>>>>>>>>
+>>>>>>>>>> Wade
+>>>>>>>>>>
+>>>>>>>>>> On Wed, May 11, 2022 at 2:19 PM Jeffrey Cuenco <
+>>>>>>>>>> jeffrey.cuenco@gmail.com> wrote:
+>>>>>>>>>>
+>>>>>>>>>>> Hi Wade,
 >>>>>>>>>>>
->>>>>>>>>>> Very curious that you're getting that CTRL_STS_OKAY error, sinc=
-e
->>>>>>>>>>> it looks like you're not using the status. I assume ctrlport:ha=
-s_status is
->>>>>>>>>>> set to False in your block's YAML? In that case the status shou=
-ld always be
->>>>>>>>>>> OK.
+>>>>>>>>>>> Please see attached. Thanks!
 >>>>>>>>>>>
->>>>>>>>>>> 1) For different input/output packet sizes, you need to modify
->>>>>>>>>>> the context to set the payload length of the outgoing packet. T=
-hat's the
->>>>>>>>>>> block of code starting on line 283 in the rfnoc_block_conv.v fi=
-le you sent.
->>>>>>>>>>> There's an example in rfnoc_block_logpower, in which the output=
- packet
->>>>>>>>>>> length is half the length of input packets. In your case you'll=
- need to set
->>>>>>>>>>> it to 3/2 instead of 1/2. See here:
+>>>>>>>>>>> -Jeff
 >>>>>>>>>>>
 >>>>>>>>>>>
->>>>>>>>>>> https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib=
-/rfnoc/blocks/rfnoc_block_logpwr/rfnoc_block_logpwr.v#L202
->>>>>>>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.=
-com_EttusResearch_uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock=
--5Flogpwr_rfnoc-5Fblock-5Flogpwr.v-23L202&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJ=
-POeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&m=3DGXbgyQxDz4yiy7ZI94=
-I9ia-1XvF2rdmrbxprVfQojmcljlWVOVrjE1Z7g7qsBL_a&s=3DWkFBbmpL8IpvF2oHp-4Vfhy7=
-3qA49jSJD2tHoTQ0anQ&e=3D>
 >>>>>>>>>>>
->>>>>>>>>>> 2) The testbenches typically have an ITEM_W constant that
->>>>>>>>>>> indicates the size of the data type you want to work with. The =
-ITEM_W is
->>>>>>>>>>> normally set to the sample size (e.g., 32 for sc16 samples). Si=
-nce you want
->>>>>>>>>>> to work with bytes, you could change that to 8 then create an i=
-tem_t array
->>>>>>>>>>> and send it as a single packet using blk_ctrl.send_items(). The=
-n you can
->>>>>>>>>>> call blk_ctrl.recv_items() to get the data output packet, and i=
-nspect the
->>>>>>>>>>> items array that is returned. Take a look at PkgRfnocBlockCtrlB=
-fm to see
->>>>>>>>>>> what other send/recv methods are available. Here's a quick exam=
-ple assuming
->>>>>>>>>>> the item size is 8-bit:
 >>>>>>>>>>>
->>>>>>>>>>> item_t sent[$], received[$];
->>>>>>>>>>> sent =3D { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };  // Whatever values =
-you
->>>>>>>>>>> want for the input packet, one byte per element
->>>>>>>>>>> blk_ctrl.send_items(0, sent);
+>>>>>>>>>>> On May 11, 2022, at 08:42, Wade Fife <wade.fife@ettus.com>
+>>>>>>>>>>> wrote:
 >>>>>>>>>>>
->>>>>>>>>>> blk_ctrl.recv_items(0, received);
->>>>>>>>>>> foreach(received[i]) begin
->>>>>>>>>>>   // Compare the expected value to the byte in received[i] and
->>>>>>>>>>> see if it matches
->>>>>>>>>>> end
+>>>>>>>>>>> =EF=BB=BF
+>>>>>>>>>>> Can you also share your block's YML and the noc_shell you
+>>>>>>>>>>> generated?
 >>>>>>>>>>>
 >>>>>>>>>>> Wade
 >>>>>>>>>>>
->>>>>>>>>>> On Mon, May 9, 2022 at 1:30 PM Jeffrey Cuenco via USRP-users <
->>>>>>>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>>>>>>> On Wed, May 11, 2022 at 4:27 AM Jeffrey Cuenco <jcuenco@ucsd.ed=
+u>
+>>>>>>>>>>> wrote:
 >>>>>>>>>>>
->>>>>>>>>>>> Hi all,
+>>>>>>>>>>>> Hi Wade,
 >>>>>>>>>>>>
->>>>>>>>>>>> Long time no see! I am currently on a final stretches of
->>>>>>>>>>>> completing a masters project for my wireless embedded systems =
-program that
->>>>>>>>>>>> involves a USRP X310 with RFNoC 4.0 and GNURadio that implemen=
-ts a
->>>>>>>>>>>> Hierarchical Modulation design using nested 4QAM / QPSK (final
->>>>>>>>>>>> constellation "appears" like 16QAM but has embedded high prior=
-ity and low
->>>>>>>>>>>> priority layers that can adapt based on SNR).
->>>>>>>>>>>>
->>>>>>>>>>>> I am currently attempting to integrate the Xilinx Convolutiona=
-l
->>>>>>>>>>>> Encoder v9.0 IP block into the template rfnoc_block_conv.v des=
-ign that was
->>>>>>>>>>>> created using rfnocmodtool and modeled after the Ettus FFT exa=
-mple. With a
->>>>>>>>>>>> bit of work I was able to get the .xci file loaded by Vivado w=
-hen the make
->>>>>>>>>>>> target is executed for the testbench, and the testbench appear=
-s to build
->>>>>>>>>>>> without much modification.
->>>>>>>>>>>>
->>>>>>>>>>>> When executing 'make rfnoc_block_conv_tb'  it appears to fully
->>>>>>>>>>>> execute the build process to the end, but I receive a fatal "D=
-id not
->>>>>>>>>>>> receive CTRL_STS_OKAY status" message in the process which I a=
-ttribute to
->>>>>>>>>>>> either something not being configured in the testbench file or=
- something
->>>>>>>>>>>> not being configured right in my verilog module file.
->>>>>>>>>>>>
->>>>>>>>>>>> I've attempted to summarize where I'm stuck and need help on i=
-n
->>>>>>>>>>>> the below three summary points / questions:
->>>>>>>>>>>> 1) I have configured the convolutional encoder with rate 1/2
->>>>>>>>>>>> and punctured (effective rate 2/3), which I assume will requir=
-e me
->>>>>>>>>>>> modifying the "axi_wrapper" so that the output to input ratios=
- are set
->>>>>>>>>>>> properly - are there additional examples that I can follow for=
- this?
->>>>>>>>>>>>
->>>>>>>>>>>> I've seen the axi_wrapper migration note but as I'm still a
->>>>>>>>>>>> novice at Verilog and System Verilog additional examples would=
- be helpful.
->>>>>>>>>>>> :)
+>>>>>>>>>>>> Yes, I have the ctrlport:has_status set to False in the block
+>>>>>>>>>>>> YAML... I ended up having to comment out that test sequence to=
+ move onto
+>>>>>>>>>>>> the part that sends samples into and out of the block; now I h=
+ave an error
+>>>>>>>>>>>> that states
 >>>>>>>>>>>>
 >>>>>>>>>>>>
->>>>>>>>>>>> 2) I would like to modify my testbench so that I send 10 bytes
->>>>>>>>>>>> (80 bits) of data, and read out the 15 bytes (120 bits) that g=
-et spit out
->>>>>>>>>>>> and verify that the encoded bytes coming out of the core match=
- ground truth
->>>>>>>>>>>> data I would generate using MATLAB.
+>>>>>>>>>>>> *Fatal: Timeout: Test "Test passing through samples" time limi=
+t
+>>>>>>>>>>>> exceeded*
+>>>>>>>>>>>> so I must be doing something that it isn't liking :) I've
+>>>>>>>>>>>> attached my updated .v and .sv files that I modified based on =
+your guidance
+>>>>>>>>>>>> in your first response, as well as the updated xsim.log. Pleas=
+e let me know
+>>>>>>>>>>>> if there are any additional things I may need to change such a=
+s sizes and
+>>>>>>>>>>>> what not - thanks!
 >>>>>>>>>>>>
->>>>>>>>>>>> Do we have any additional testbench examples or additional
->>>>>>>>>>>> documentation that show sending 1 or more bytes of data throug=
-h an IP core?
->>>>>>>>>>>> The IP core's *s_axis_data_tdata* and *m_axis_data_tdata *are
->>>>>>>>>>>> 8-bit while most of the examples show sending 32 bits.  Aside =
-from setting
->>>>>>>>>>>> the assignments to [7:0] are there any other adjustments that =
-need to be
->>>>>>>>>>>> made in any of the signal declarations and/or block definition=
- wires
->>>>>>>>>>>> earlier in the file?
->>>>>>>>>>>>
->>>>>>>>>>>> I've provided the IP core documentation for reference just in
->>>>>>>>>>>> case:
->>>>>>>>>>>> https://docs.xilinx.com/v/u/en-US/pg026_convolution
->>>>>>>>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__docs.x=
-ilinx.com_v_u_en-2DUS_pg026-5Fconvolution&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJ=
-POeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&m=3DGXbgyQxDz4yiy7ZI94=
-I9ia-1XvF2rdmrbxprVfQojmcljlWVOVrjE1Z7g7qsBL_a&s=3DVpTL0Eev0xGrPxywg6lGumMo=
-k1Lx8kj5t4uFefeMWNA&e=3D>
->>>>>>>>>>>>
->>>>>>>>>>>> I've also included the module and testbench files as well as
->>>>>>>>>>>> the xsim log.
->>>>>>>>>>>>
->>>>>>>>>>>> Thanks in advance!
 >>>>>>>>>>>> -Jeff
 >>>>>>>>>>>>
->>>>>>>>>>>> _______________________________________________
->>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>>>>>> To unsubscribe send an email to
->>>>>>>>>>>> usrp-users-leave@lists.ettus.com
+>>>>>>>>>>>> On Mon, May 9, 2022 at 3:12 PM Wade Fife <wade.fife@ettus.com>
+>>>>>>>>>>>> wrote:
 >>>>>>>>>>>>
->>>>>>>>>>> --
->
->
-> =E2=80=8B
-> Jeffrey Cuenco
-> Tech & Marketing Specialist | Cooperative Capitalist
-> (619) 840-4508
-> jeffrey.cuenco@gmail.com
->
-> LinkedIn:
-> https://www.linkedin.com/in/jeffrey-g-cuenco/
->
->
+>>>>>>>>>>>>> Hi Jeffrey,
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Very curious that you're getting that CTRL_STS_OKAY error,
+>>>>>>>>>>>>> since it looks like you're not using the status. I assume
+>>>>>>>>>>>>> ctrlport:has_status is set to False in your block's YAML? In =
+that case the
+>>>>>>>>>>>>> status should always be OK.
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> 1) For different input/output packet sizes, you need to modif=
+y
+>>>>>>>>>>>>> the context to set the payload length of the outgoing packet.=
+ That's the
+>>>>>>>>>>>>> block of code starting on line 283 in the rfnoc_block_conv.v =
+file you sent.
+>>>>>>>>>>>>> There's an example in rfnoc_block_logpower, in which the outp=
+ut packet
+>>>>>>>>>>>>> length is half the length of input packets. In your case you'=
+ll need to set
+>>>>>>>>>>>>> it to 3/2 instead of 1/2. See here:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/l=
+ib/rfnoc/blocks/rfnoc_block_logpwr/rfnoc_block_logpwr.v#L202
+>>>>>>>>>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__githu=
+b.com_EttusResearch_uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblo=
+ck-5Flogpwr_rfnoc-5Fblock-5Flogpwr.v-23L202&d=3DDwMFaQ&c=3D-35OiAkTchMrZOng=
+vJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&m=3DGXbgyQxDz4yiy7ZI=
+94I9ia-1XvF2rdmrbxprVfQojmcljlWVOVrjE1Z7g7qsBL_a&s=3DWkFBbmpL8IpvF2oHp-4Vfh=
+y73qA49jSJD2tHoTQ0anQ&e=3D>
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> 2) The testbenches typically have an ITEM_W constant that
+>>>>>>>>>>>>> indicates the size of the data type you want to work with. Th=
+e ITEM_W is
+>>>>>>>>>>>>> normally set to the sample size (e.g., 32 for sc16 samples). =
+Since you want
+>>>>>>>>>>>>> to work with bytes, you could change that to 8 then create an=
+ item_t array
+>>>>>>>>>>>>> and send it as a single packet using blk_ctrl.send_items(). T=
+hen you can
+>>>>>>>>>>>>> call blk_ctrl.recv_items() to get the data output packet, and=
+ inspect the
+>>>>>>>>>>>>> items array that is returned. Take a look at PkgRfnocBlockCtr=
+lBfm to see
+>>>>>>>>>>>>> what other send/recv methods are available. Here's a quick ex=
+ample assuming
+>>>>>>>>>>>>> the item size is 8-bit:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> item_t sent[$], received[$];
+>>>>>>>>>>>>> sent =3D { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };  // Whatever value=
+s
+>>>>>>>>>>>>> you want for the input packet, one byte per element
+>>>>>>>>>>>>> blk_ctrl.send_items(0, sent);
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> blk_ctrl.recv_items(0, received);
+>>>>>>>>>>>>> foreach(received[i]) begin
+>>>>>>>>>>>>>   // Compare the expected value to the byte in received[i] an=
+d
+>>>>>>>>>>>>> see if it matches
+>>>>>>>>>>>>> end
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> Wade
+>>>>>>>>>>>>>
+>>>>>>>>>>>>> On Mon, May 9, 2022 at 1:30 PM Jeffrey Cuenco via USRP-users =
+<
+>>>>>>>>>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Hi all,
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Long time no see! I am currently on a final stretches of
+>>>>>>>>>>>>>> completing a masters project for my wireless embedded system=
+s program that
+>>>>>>>>>>>>>> involves a USRP X310 with RFNoC 4.0 and GNURadio that implem=
+ents a
+>>>>>>>>>>>>>> Hierarchical Modulation design using nested 4QAM / QPSK (fin=
+al
+>>>>>>>>>>>>>> constellation "appears" like 16QAM but has embedded high pri=
+ority and low
+>>>>>>>>>>>>>> priority layers that can adapt based on SNR).
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I am currently attempting to integrate the Xilinx
+>>>>>>>>>>>>>> Convolutional Encoder v9.0 IP block into the template rfnoc_=
+block_conv.v
+>>>>>>>>>>>>>> design that was created using rfnocmodtool and modeled after=
+ the Ettus FFT
+>>>>>>>>>>>>>> example. With a bit of work I was able to get the .xci file =
+loaded by
+>>>>>>>>>>>>>> Vivado when the make target is executed for the testbench, a=
+nd the
+>>>>>>>>>>>>>> testbench appears to build without much modification.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> When executing 'make rfnoc_block_conv_tb'  it appears to
+>>>>>>>>>>>>>> fully execute the build process to the end, but I receive a =
+fatal "Did not
+>>>>>>>>>>>>>> receive CTRL_STS_OKAY status" message in the process which I=
+ attribute to
+>>>>>>>>>>>>>> either something not being configured in the testbench file =
+or something
+>>>>>>>>>>>>>> not being configured right in my verilog module file.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I've attempted to summarize where I'm stuck and need help on
+>>>>>>>>>>>>>> in the below three summary points / questions:
+>>>>>>>>>>>>>> 1) I have configured the convolutional encoder with rate 1/2
+>>>>>>>>>>>>>> and punctured (effective rate 2/3), which I assume will requ=
+ire me
+>>>>>>>>>>>>>> modifying the "axi_wrapper" so that the output to input rati=
+os are set
+>>>>>>>>>>>>>> properly - are there additional examples that I can follow f=
+or this?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I've seen the axi_wrapper migration note but as I'm still a
+>>>>>>>>>>>>>> novice at Verilog and System Verilog additional examples wou=
+ld be helpful.
+>>>>>>>>>>>>>> :)
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> 2) I would like to modify my testbench so that I send 10
+>>>>>>>>>>>>>> bytes (80 bits) of data, and read out the 15 bytes (120 bits=
+) that get spit
+>>>>>>>>>>>>>> out and verify that the encoded bytes coming out of the core=
+ match ground
+>>>>>>>>>>>>>> truth data I would generate using MATLAB.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Do we have any additional testbench examples or additional
+>>>>>>>>>>>>>> documentation that show sending 1 or more bytes of data thro=
+ugh an IP core?
+>>>>>>>>>>>>>> The IP core's *s_axis_data_tdata* and *m_axis_data_tdata *ar=
+e
+>>>>>>>>>>>>>> 8-bit while most of the examples show sending 32 bits.  Asid=
+e from setting
+>>>>>>>>>>>>>> the assignments to [7:0] are there any other adjustments tha=
+t need to be
+>>>>>>>>>>>>>> made in any of the signal declarations and/or block definiti=
+on wires
+>>>>>>>>>>>>>> earlier in the file?
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I've provided the IP core documentation for reference just i=
+n
+>>>>>>>>>>>>>> case:
+>>>>>>>>>>>>>> https://docs.xilinx.com/v/u/en-US/pg026_convolution
+>>>>>>>>>>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__docs=
+.xilinx.com_v_u_en-2DUS_pg026-5Fconvolution&d=3DDwMFaQ&c=3D-35OiAkTchMrZOng=
+vJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&m=3DGXbgyQxDz4yiy7ZI=
+94I9ia-1XvF2rdmrbxprVfQojmcljlWVOVrjE1Z7g7qsBL_a&s=3DVpTL0Eev0xGrPxywg6lGum=
+Mok1Lx8kj5t4uFefeMWNA&e=3D>
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> I've also included the module and testbench files as well as
+>>>>>>>>>>>>>> the xsim log.
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> Thanks in advance!
+>>>>>>>>>>>>>> -Jeff
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>>>>>> To unsubscribe send an email to
+>>>>>>>>>>>>>> usrp-users-leave@lists.ettus.com
+>>>>>>>>>>>>>>
+>>>>>>>>>>>>> --
+>>>
+>>>
+>>> =E2=80=8B
+>>> Jeffrey Cuenco
+>>> Tech & Marketing Specialist | Cooperative Capitalist
+>>> (619) 840-4508
+>>> jeffrey.cuenco@gmail.com
+>>>
+>>> LinkedIn:
+>>> https://www.linkedin.com/in/jeffrey-g-cuenco/
+>>>
+>>>
 
---000000000000db7dba05df627e2a
+--0000000000008eec5605df64b025
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>The testbench has start_test() and end_test() calls a=
-round each test. There&#39;s a timeout in the start_test() call, and there&=
-#39;s also a global timeout (part of start_tb(), but I think 10 ms by defau=
-lt). If the end_test() doesn&#39;t occur within a certain amount of time of=
- the start_test(), then the testbench assumes something went wrong. Otherwi=
-se, the simulation could just keep running forever.</div><div><br></div><di=
-v>So you&#39;ll need to look at your simulation to see where things are get=
-ting stuck. Also, make sure what you&#39;re doing doesn&#39;t just need mor=
-e time.<br></div><div><br></div><div>Wade<br></div></div><br><div class=3D"=
-gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 19, 2022 at =
-2:29 PM Jeffrey Cuenco &lt;<a href=3D"mailto:jeffrey.cuenco@gmail.com">jeff=
-rey.cuenco@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex"><div dir=3D"auto">Thanks Wade! I used the rfnoc_create_=
-verilog and it generated code that contained ce_clk and added=C2=A0</div><d=
-iv dir=3D"auto"><br></div><div dir=3D"auto">output wire ce_rst;</div><div d=
-ir=3D"auto"><br></div><div dir=3D"auto">following the ce_clk declaration ar=
-ound line 32 of rfnoc_block_conv.v in the generated file, then plugged it i=
-nto .ce_rst of noc_shell_conv later in the file and also used it in my axi_=
-conv instantiation.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Afte=
-r doing that and building I was able to get the testbench to run but I now =
-get a fatal timeout, something about time limit exceeded.</div><div dir=3D"=
-auto"><br></div><div dir=3D"auto">Is there something that needs to be wired=
- in so that it knows when things finish? Thanks!</div><div dir=3D"auto"><br=
-></div><div dir=3D"auto">-Jeff</div><div><br><div class=3D"gmail_quote"><di=
-v dir=3D"ltr" class=3D"gmail_attr">On Thu, May 19, 2022 at 12:23 Wade Fife =
-&lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettu=
-s.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex"><div dir=3D"ltr"><div>
+<div dir=3D"ltr"><div>Regarding the payload/context change, it looks like t=
+he modtool sets the fpga_iface to axis_pyld_ctxt, but in conv.yml you chang=
+ed it to axis_data? So when you ran rfnoc_create_verilog, it changed the in=
+terface type used by the NoC shell. You can read about &quot;AXI-Stream Pay=
+load Context&quot; and &quot;AXI-Stream Data&quot; interface types in the <=
+a href=3D"https://files.ettus.com/app_notes/RFNoC_Specification.pdf">RFNoC =
+Specification</a>. I think either could be used.</div><div><br></div><div>W=
+ade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Thu, May 19, 2022 at 4:18 PM Jeffrey Cuenco &lt;<a href=3D"=
+mailto:jeffrey.cuenco@gmail.com">jeffrey.cuenco@gmail.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
+div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Thanks =
+Wade! I just remembered that I forgot to set my output to input ratio which=
+ may be explaining why the timeouts are happening even with the extended de=
+lay.</div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-ser=
+if"><br></div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans=
+-serif">When I used the rfnoc_create_verilog, I noticed that the client int=
+erface only has m_in_axis_* and s_out_axis_* connections and no separation =
+between context and payload for the template of noc shell used by the tool.=
+</div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">=
+<br></div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-ser=
+if">As such the logpwr=C2=A0example you shared with me earlier isn&#39;t st=
+raightforward to port over and the duc example appears to be most compatibl=
+e pin-out wise with axi_rate_change so I&#39;m about to attempt to hook it =
+up it but wanted to clarify that there aren&#39;t any additional changes I =
+would need to do aside from adjusting MAX_M, MAX_N, and ensuring the input/=
+output wire names match what are in my signal declarations section? Thanks!=
+</div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">=
+<br></div><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-ser=
+if">-Jeff</div><div class=3D"gmail_default" style=3D"font-family:tahoma,san=
+s-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:tahoma=
+,sans-serif"><br></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v><br></div><div><div><br></div><div></div></div><div><br></div></div></div=
+></div></div></div></div></div></div><br></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 19, 2022 at 12:36 PM W=
+ade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.=
+fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"ltr"><div>The testbench has start_test() and end_=
+test() calls around each test. There&#39;s a timeout in the start_test() ca=
+ll, and there&#39;s also a global timeout (part of start_tb(), but I think =
+10 ms by default). If the end_test() doesn&#39;t occur within a certain amo=
+unt of time of the start_test(), then the testbench assumes something went =
+wrong. Otherwise, the simulation could just keep running forever.</div><div=
+><br></div><div>So you&#39;ll need to look at your simulation to see where =
+things are getting stuck. Also, make sure what you&#39;re doing doesn&#39;t=
+ just need more time.<br></div><div><br></div><div>Wade<br></div></div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Ma=
+y 19, 2022 at 2:29 PM Jeffrey Cuenco &lt;<a href=3D"mailto:jeffrey.cuenco@g=
+mail.com" target=3D"_blank">jeffrey.cuenco@gmail.com</a>&gt; wrote:<br></di=
+v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Thank=
+s Wade! I used the rfnoc_create_verilog and it generated code that containe=
+d ce_clk and added=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>output wire ce_rst;</div><div dir=3D"auto"><br></div><div dir=3D"auto">fol=
+lowing the ce_clk declaration around line 32 of rfnoc_block_conv.v in the g=
+enerated file, then plugged it into .ce_rst of noc_shell_conv later in the =
+file and also used it in my axi_conv instantiation.</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">After doing that and building I was able to get=
+ the testbench to run but I now get a fatal timeout, something about time l=
+imit exceeded.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Is there =
+something that needs to be wired in so that it knows when things finish? Th=
+anks!</div><div dir=3D"auto"><br></div><div dir=3D"auto">-Jeff</div><div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, =
+May 19, 2022 at 12:23 Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" =
+target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>
 I think those versions are fine, but your gr-ettus might be out of date. I&=
 #39;m not very familiar with the GNU Radio integration. You could try updat=
 ing your gr-ettus then regenerate your block, or you could run the rfnoc_cr=
@@ -901,10 +999,12 @@ y-g-cuenco/" target=3D"_blank">https://www.linkedin.com/in/jeffrey-g-cuenco=
 /</a></font></div></div></div><div><br></div></div></div></div></div></div>=
 </div></div></div>
 </blockquote></div>
+</blockquote></div>
+</blockquote></div>
 
---000000000000db7dba05df627e2a--
+--0000000000008eec5605df64b025--
 
---===============4458070885939426462==
+--===============3452113226279383616==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -914,4 +1014,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4458070885939426462==--
+--===============3452113226279383616==--
