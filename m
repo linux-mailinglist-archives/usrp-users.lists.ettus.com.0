@@ -2,486 +2,803 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1558252D909
-	for <lists+usrp-users@lfdr.de>; Thu, 19 May 2022 17:49:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93C4752DDC7
+	for <lists+usrp-users@lfdr.de>; Thu, 19 May 2022 21:24:49 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0AC7F384CAA
-	for <lists+usrp-users@lfdr.de>; Thu, 19 May 2022 11:49:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5A9C3384C03
+	for <lists+usrp-users@lfdr.de>; Thu, 19 May 2022 15:24:48 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1652975350; bh=sOUiFk09XA137W4HAdwa7eAQFwIqMpuZtisOH/QYkvs=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=dtvKh5e5d1KOdl/K3/toOCqmrGcak8mo592q6fRfsxDUllZHbWuFOV89TcYZJ4H3u
-	 dVSVu09sXHTI1t6hkI3uYgj/ikkKIPusnq19r5e3WuqB4rzv+rXLw7cltLBxizlG9D
-	 jfleGclgR1cAy+4EGup7vDuGCton+drakkhtv0jr/5S05U3P28Lx6jxlv4QSnZR3WD
-	 JavGQrEjl8OITvHsFEptvIfhXpnWIDaLKmnvcOy9fK8v58X2WtqHTYS+L7uovdctG8
-	 9NeFJA66uq6Fv4fnq0fRWjY8h9dU9I/T1JZUnGJ/M/dai1AUsvckC3FHafVfWq10G8
-	 SvU1KTi/dFn4g==
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2AB823846FF
-	for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 11:48:10 -0400 (EDT)
+	t=1652988288; bh=+EGaimW1YKuUfJLD7wCUlk70TOQ2uZP2rWuCSBj4JvM=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=P6MhvQFJ9NzqAMltBgUvPw9kHC9oiIyFo0KyG6hI8HB4nrFWg58A6JLWgj4g/XDWd
+	 56N+0CWrBCmOVfShimgrdNYr7xHumx+5D2KuYCPzx/y/tv3Trf4gEcveJhiAORknzA
+	 5fXbaThWs5LYeGaAxOQahDY9W+bV9IeHX3/QuagF2gFx2lIgrCvqbnmItkcbXE2FB6
+	 OouO+5qXty2ZMTt65aDsWLNbYFKqckL9ReQS8vpI28kT36t01tLCliqIiJOfEECDAC
+	 NpdDrgj9dHJI/ew37XdEHGth/wEsnqSfi9unbRyRwThx7z2ix2An8Mzu2fSheAV3+q
+	 FITz9LHYHWaSw==
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	by mm2.emwd.com (Postfix) with ESMTPS id 86B153846C5
+	for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 15:23:48 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vcb0QgaY";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="EPAIzejm";
 	dkim-atps=neutral
-Received: by mail-qk1-f176.google.com with SMTP id 135so2488539qkm.4
-        for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 08:48:10 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id d137so10649631ybc.13
+        for <usrp-users@lists.ettus.com>; Thu, 19 May 2022 12:23:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=bSJdX5pFPLSaT4aFz1e7Sd03cRKSV+3ZRqk/Gq8xChg=;
-        b=Vcb0QgaYHy8A6ghDCp616cfA9OtZBxJOu/wE49ko0KL/VVBsuto50GOqvbYpnph02f
-         ygwrcN3vFZa2cmLUc64wh8tiPttvYRE8OhUuaKNMdrxZPjVbYWmd76BcfT6vhVcg6Xov
-         Qpnurn4X7S/I5WFU4IMZF4cZKBNLJ4gK9j+K+xMGKojcHSuapoO0q9uEQdDduY55pThL
-         s78Sn6P7veHatZNmSjDN2SAcQ4jmZbJHSNbT5zOsoESZZwxtJCoOpKVlk//UPpfbcT5N
-         HUGCFYWa/3UnIMCttiGeQZ8sMjI00Gxl9kmQ2D0nAIOdUSDTZtF08VqU7Q73usvBQfag
-         eN2A==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/y2KXN0lS+cW8OqAsYlZeE+bY2PldCCYMiB1uKp8sYY=;
+        b=EPAIzejmvv/iyEzoVu/FcTb3PFnlA56V6KtqcljthAWM5Agp+cZeoUA7a0PGWwjVUy
+         T2JPewkd6pHaJIDzdZYHjqR4dqadf//eZFdyg2sF5ztmfysBu3dkw1l8mS0ghOCy6yC5
+         xDFzKMVbCMP873OGId+kOTeb+qu7ZVF3kWUuWTU1fqwdf3H74MYXPR4VaBVys4znQ2Kb
+         FJQZL8YZ3kqGInm+X5F4JqlgxU3BDaxx79jwBZQUJ2R22EG3nhbLhhWm3f04cfwTncRg
+         UOQ8ASXuMWDlajzOHlmjkbROohAPnDkVebBDHpov1tT/wxAukSgAym1sOw/H57Kwd5oP
+         iFMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=bSJdX5pFPLSaT4aFz1e7Sd03cRKSV+3ZRqk/Gq8xChg=;
-        b=JlxMZDDfyqjCs4Ax+SqHIi94Q5fnzUnivFHSc1eoP4lARwy9SgPR/4vhWDx/xEn7Nr
-         i52hAjm1SOn9KdqL9vT5g5vynQW61jpuQjnEJkEMUQJx9l+v1WQ1JvaP8Ydi0dXe6i90
-         GADXgz/4jrmxeKhuDP0apKzF88dlst5sAE3j+H56wM2r6qMF0CuGrQlVCfpcnY92Wpnj
-         4hBXrBSyN5dNKb4JmoJuVXbClVFC3BC1d0CWzM2iEcEvnV59KfHEpSNqwDam/xHcF19H
-         vzsnbt2JBBnocmh5vJLPB9JzhSDML1ffLoRjVcyQMdaP7YXLC34BWkwVuHkBDEt8aE8U
-         6zjw==
-X-Gm-Message-State: AOAM532hAS/SdKSqI9838GYbHESY1pFFTtAuCBKQ71HmUzM6oxpBVJbG
-	LdEVPF2M3ZpeCoXLelM8K4pIVYhQazM=
-X-Google-Smtp-Source: ABdhPJy69mhsyBxC10T+hzZYHzAkUPxdXTOnynu65XANQqlAUiiNx75KmdJ3nTNsqHRbzS1uANbrfA==
-X-Received: by 2002:a05:620a:25cb:b0:6a1:136:a7ed with SMTP id y11-20020a05620a25cb00b006a10136a7edmr3379243qko.531.1652975289526;
-        Thu, 19 May 2022 08:48:09 -0700 (PDT)
-Received: from [192.168.2.203] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id i2-20020ac813c2000000b002f39b99f689sm1420190qtj.35.2022.05.19.08.48.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 May 2022 08:48:08 -0700 (PDT)
-Message-ID: <8587863b-f429-eab3-c72d-cbb8bb956c43@gmail.com>
-Date: Thu, 19 May 2022 11:48:06 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/y2KXN0lS+cW8OqAsYlZeE+bY2PldCCYMiB1uKp8sYY=;
+        b=OzDmqifFQ01jccitlZVoRNDFcGuQOS5BTqesqZUxAn+QuGIGUurpLqsVyKMl/Lcelg
+         an+NNgj81zSro59An6AYLsg0OQj5Uohvhqu4CgHA5sibu5yhUJHPvLTKkfPDe/Nz5v6b
+         vvaJjpBHCMNnG2srslgZpom+3HHoGrz+tuw/t3FH2VzRak3EG0QgFUISQUHRcGubGVbP
+         o50ANiwfMG7gs3RijQTGaCVn+E96U2tMApbx1U1vT6cTWAxFLyG9A4nxdzcgoE9hxSNg
+         z4B3xN3dbus6KruRycx0WaCgEuAge+e9DmfOg5FgebCzynlgcL3PIM9KQEFwUsVdHMlL
+         /73w==
+X-Gm-Message-State: AOAM530aRSkubMx5Z3Okpcp9u6jq3n9ZXUhgLPVSsPx9QbTrChwQ79rD
+	7BIy8Say29RsRc7unsfbnngX7+8xcDBZbFXsJ3qcYgCdoalvbUup
+X-Google-Smtp-Source: ABdhPJwqP6zNPtG2ns9480Xa3/CGu1LXKky0bJvOCxmhZy88g3+Wu9Yx5eq030mLlmwreGhfyx9l6CzoQimCORd96v4=
+X-Received: by 2002:a05:6902:70c:b0:64f:4e29:a858 with SMTP id
+ k12-20020a056902070c00b0064f4e29a858mr2467641ybt.462.1652988227868; Thu, 19
+ May 2022 12:23:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Content-Language: en-US
-To: "Dobler, Anton" <anton.dobler@unibw.de>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <1652973983841.1075@unibw.de>
- <52ab522a-4a29-c027-8452-7566e50a9522@gmail.com>
- <1652974816863.29088@unibw.de>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <1652974816863.29088@unibw.de>
-Message-ID-Hash: CABMAFLP4MJ2RI5WN64QO22E7DVOEB6U
-X-Message-ID-Hash: CABMAFLP4MJ2RI5WN64QO22E7DVOEB6U
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAFche=jJyeqcaf5sPSkxA3qokEDXm=FfmaFmgxP784M4Ms2rOQ@mail.gmail.com>
+ <4BC71671-9217-4411-9903-E2A2D9A537E5@gmail.com>
+In-Reply-To: <4BC71671-9217-4411-9903-E2A2D9A537E5@gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 19 May 2022 14:23:31 -0500
+Message-ID: <CAFche=igDnrw+9D5R=+QMkw22vrFRyFGQyNr68kD7XtseY9+iA@mail.gmail.com>
+To: Jeffrey Cuenco <jeffrey.cuenco@gmail.com>
+Message-ID-Hash: RGBPUBSRZ4ON5IZGQSPC2GUCOOBGDJAP
+X-Message-ID-Hash: RGBPUBSRZ4ON5IZGQSPC2GUCOOBGDJAP
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Jeffrey Cuenco <jcuenco@ucsd.edu>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD4.2 & DPDK
+Subject: [USRP-users] Re: RFNoC 4.0 OOT FPGA Testbench Writing Guidance?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CABMAFLP4MJ2RI5WN64QO22E7DVOEB6U/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RGBPUBSRZ4ON5IZGQSPC2GUCOOBGDJAP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1681901574337244740=="
+Content-Type: multipart/mixed; boundary="===============2377776561479020409=="
 
-This is a multi-part message in MIME format.
---===============1681901574337244740==
-Content-Type: multipart/alternative;
- boundary="------------MaTDYkyTFhDCxM0B0TOpjjWr"
-Content-Language: en-US
+--===============2377776561479020409==
+Content-Type: multipart/alternative; boundary="00000000000023ef3e05df6250fd"
 
-This is a multi-part message in MIME format.
---------------MaTDYkyTFhDCxM0B0TOpjjWr
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--00000000000023ef3e05df6250fd
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-05-19 11:40, Dobler, Anton wrote:
-> Thank you for your answer! I actually considered that and set the=20
-> addresses of sfp0 and sfp1 to the respective addresses 1.0.1.2 and=20
-> 1.0.2.2=E2=80=A6 the interfaces even come up when I do the benchmark_ra=
-te test=20
-> so your guess should not be the problem=E2=80=A6
-> Do you have a working UHD4.2 with DPDK set up?
-> BR,
-> Anton
-> -----------------------------------------------------------------------=
--
-> *Von:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Gesendet:* Donnerstag, 19. Mai 2022 17:33:02
-> *An:* Dobler, Anton; usrp-users@lists.ettus.com
-> *Betreff:* Re: UHD4.2 & DPDK
-> On 2022-05-19 11:26, Dobler, Anton wrote:
->>
->> Dear community,
->>
->>
->> I try to use DPDK together with UHD4.2 but I get the following error:
->>
->>
->> ./benchmark_rate --args "mgmt_addr=3D169.254.2.13,addr=3D1.0.1.2,=20
->> second_addr=3D1.0.2.2,use_dpdk=3D1" --rx_rate=3D125e6
->>
->> [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; DPDK_19.11;=20
->> UHD_4.2.0.0-4-g04d14cd7
->> [DEBUG] [PREFS] Loaded user config file /root/.config/uhd.conf
->> EAL: Detected 16 lcore(s)
->> EAL: Detected 1 NUMA nodes
->> EAL: Multi-process socket /var/run/dpdk/rte/mp_socket
->> EAL: Selected IOVA mode 'VA'
->> EAL: No available hugepages reported in hugepages-1048576kB
->> EAL: Probing VFIO support...
->> EAL: VFIO support initialized
->> EAL: PCI device 0000:00:04.0 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:04.1 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:04.2 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:04.3 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:04.4 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:04.5 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:04.6 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:04.7 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat
->> EAL: PCI device 0000:00:1f.6 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:15b9 net_e1000_em
->> EAL: PCI device 0000:d5:00.0 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:10fb net_ixgbe
->> EAL:=C2=A0 =C2=A0using IOMMU type 1 (Type 1)
->> EAL: Ignore mapping IO port bar(2)
->> EAL: PCI device 0000:d5:00.1 on NUMA socket 0
->> EAL:=C2=A0 =C2=A0probe driver: 8086:10fb net_ixgbe
->> EAL: Ignore mapping IO port bar(2)
->> [DEBUG] [MPMD] Discovering MPM devices on port 49600
->> [ERROR] [DPDK] Could not find route to destination address 1.0.1.2
->> [ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: Could=20
->> not find route to destination address 1.0.1.2
->> [00:00:00.000503] Creating the usrp device with:=20
->> mgmt_addr=3D169.254.2.13,addr=3D1.0.1.2, second_addr=3D1.0.2.2,use_dpd=
-k=3D1...
->> [DEBUG] [MPMD] Discovering MPM devices on port 49600
->> [ERROR] [DPDK] Could not find route to destination address 1.0.1.2
->> [ERROR] [X300] X300 Network discovery error RuntimeError: DPDK: Could=20
->> not find route to destination address 1.0.1.2
->> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:=20
->> mgmt_addr=3D169.254.2.13,type=3Dn3xx,product=3Dn310,serial=3D3176E00,n=
-ame=3Dni-n3xx-3176E00,fpga=3DXG,claimed=3DFalse,addr=3D1.0.1.2,second_add=
-r=3D1.0.2.2,use_dpdk=3D1
->> [DEBUG] [MPMD] Claiming mboard 0
->> [DEBUG] [MPMD] Device args:=20
->> `mgmt_addr=3D169.254.2.13,type=3Dn3xx,product=3Dn310,serial=3D3176E00,=
-name=3Dni-n3xx-3176E00,fpga=3DXG,claimed=3DFalse,addr=3D1.0.1.2,second_ad=
-dr=3D1.0.2.2,use_dpdk=3D1'.=20
->> RPC address: 169.254.2.13
->> [DEBUG] [MPMD] MPM reports device info:=20
->> addr=3D1.0.1.2,claimed=3DTrue,connection=3Dremote,dboard_0_pid=3D336,d=
-board_0_serial=3D31732ED,dboard_1_pid=3D336,dboard_1_serial=3D31732F6,des=
-cription=3DN300-Series=20
->> Device,eeprom_version=3D2,fourth_addr=3D169.254.2.13,fpga=3DXG,fpga_ve=
-rsion=3D8.0,fpga_version_hash=3D8daa80c.clean,fs_version=3D20220419212711=
-,mender_artifact=3Dv4.2.0.0_n3xx,mpm_sw_version=3D4.2.0.0-g46a70d85,mpm_v=
-ersion=3D4.2,name=3Dni-n3xx-3176E00,pid=3D16962,product=3Dn310,rev=3D6,rp=
-c_connection=3Dremote,second_addr=3D1.0.2.2,serial=3D3176E00,type=3Dn3xx
->> [DEBUG] [MPMD] Found 8 motherboard sensors.
->> [DEBUG] [MPMD] Initializing mboard 0
->> [INFO] [MPM.PeriphManager] init() called with device args=20
->> `fpga=3DXG,mgmt_addr=3D169.254.2.13,name=3Dni-n3xx-3176E00,product=3Dn=
-310,second_addr=3D1.0.2.2,use_dpdk=3D1,clock_source=3Dinternal,time_sourc=
-e=3Dinternal'.
->> [DEBUG] [MPMD::MB_IFACE] Adding clock iface `radio_clk`, frequency:=20
->> 125 MHz, mutable: Yes
->> [DEBUG] [MPMD::MB_IFACE] Adding clock iface `bus_clk`, frequency: 200=20
->> MHz, mutable: No
->> [ERROR] [DPDK] Could not find route to destination address 1.0.1.2
->> [WARNING] [MPMD::XPORT::UDP] Error during MTU discovery on address=20
->> 1.0.1.2: RuntimeError: DPDK: Could not find route to destination=20
->> address 1.0.1.2
->> [ERROR] [DPDK] Could not find route to destination address 1.0.2.2
->> [WARNING] [MPMD::XPORT::UDP] Error during MTU discovery on address=20
->> 1.0.2.2: RuntimeError: DPDK: Could not find route to destination=20
->> address 1.0.2.2
->> [ERROR] [MPMD::MB_IFACE] No CHDR connection available!
->> Error: RuntimeError: No CHDR connection available!
->>
->> I use the uhd.conf as follows:
->>
->> [use_dpdk=3D1]
->> dpdk-mtu=3D9000
->> dpdk-driver=3D/usr/lib/x86_64-linux-gnu/dpdk/pmds-20.0/dpdk/
->> dpdk-corelist=3D0,9,10
->> dpdk-num-mbufs=3D4096
->> dpdk-mbufs-cache-size=3D315
->>
->> ;ens2f0
->> [dpdk-mac=3D90:e2:ba:f1:38:1c]
->> dpdk-lcore =3D 9
->> dpdk-ipv4 =3D 1.0.2.1/24
->>
->> ;ens2f1
->> [dpdk-mac=3D90:e2:ba:f1:38:1d]
->> dpdk-lcore =3D 10
->> dpdk-ipv4 =3D 1.0.1.1/24=E2=80=8B
->>
->>
->> Any help would be highly appreciated!
->>
->> Best regards,
->>
->> Anton
->>
->>
->>
->>
-> KInd of a weird address range to use, but my guess is that your USRP=20
-> device isn't programmed to those addresses.
+ I think those versions are fine, but your gr-ettus might be out of date.
+I'm not very familiar with the GNU Radio integration. You could try
+updating your gr-ettus then regenerate your block, or you could run the
+rfnoc_create_verilog tool using the YML file as an input if you need to
+customize the YAML to add the ce_clk/ce_rst signals. It's really up to you
+if you need those signals. But your IP needs to be clocked and probably
+reset by something, and you need to make sure the generated noc_shell uses
+the same clock domains you're expecting to use.
+
+Wade
+
+On Wed, May 18, 2022 at 10:10 PM Jeffrey Cuenco <jeffrey.cuenco@gmail.com>
+wrote:
+
+> Neel recommended I use UHD v4.1.0.5 and GRC v3.8.5.0 so that=E2=80=99s wh=
+at I=E2=80=99ve
+> been using - does this version not generate the right items? If not which
+> version of UHD should I update to, and which version of GRC works best wi=
+th
+> it? Thanks!
+>
+> -Jeff
+>
+> On May 18, 2022, at 19:59, Wade Fife <wade.fife@ettus.com> wrote:
+>
+> =EF=BB=BF
+> If you want to customize the YAML and regenerate from your modified YAML,
+> then I think you need to use rfnoc_create_verilog (part of UHD). So you
+> could do something like:
+>
+> python3 uhd/host/utils/rfnoc_blocktool/rfnoc_create_verilog.py -c conv.ym=
+l
+> -d ./rfnoc_block_conv
+>
+> However, I see ce_rst in the modtool templates:
 >
 >
-I don't use DPDK myself--no compatible NICs in my collection.
+> https://github.com/EttusResearch/gr-ettus/blob/master/python/rfnoc_modtoo=
+l/templates.py#L994
+> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_EttusR=
+esearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_templates.py-23L994&d=
+=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08Qr=
+mMzW9aeZY&m=3D1DdbigE2N0YgkBb5QwxGwLoaLzBicQiQrNdYgLIklkzVPw_RkRIL9bq4dINC9=
+Cqd&s=3DfKouuct_wr3CdcChBQjBmaL6WDVq7l3U1zAVR7DcnDY&e=3D>
+>
+> https://github.com/EttusResearch/gr-ettus/blob/master/python/rfnoc_modtoo=
+l/templates.py#L1384
+> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_EttusR=
+esearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_templates.py-23L1384&=
+d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPOeA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08Q=
+rmMzW9aeZY&m=3D1DdbigE2N0YgkBb5QwxGwLoaLzBicQiQrNdYgLIklkzVPw_RkRIL9bq4dINC=
+9Cqd&s=3Dg8-XZVaLen6JS347_frcJqnHnCFTxWbAtw1WcLKrtzA&e=3D>
+>
+> Perhaps you're using an older version of modtool?
+>
+> Wade
+>
+>
+>
+>
+> On Wed, May 18, 2022 at 12:33 PM Jeffrey Cuenco <jeffrey.cuenco@gmail.com=
+>
+> wrote:
+>
+>> Spoke too soon - sent last one out too fast so apologies for the message
+>> clutter:
+>>
+>> What I see in rfnoc_block_conv.v is ce_clk as an input wire within the
+>> rfnoc_block_conv module declaration.
+>>
+>> However, I don't see ce_rst anywhere in either the noc_shell_conv.v nor
+>> the rfnoc_block_conv.v files.
+>>
+>> Is this something I should be concerned about, or will I need to manuall=
+y
+>> add this wire in? Please advise - thanks!
+>>
+>> -Jeff
+>>
+>>
+>> On Wed, May 18, 2022 at 10:26 AM Jeffrey Cuenco <jeffrey.cuenco@gmail.co=
+m>
+>> wrote:
+>>
+>>> To clarify - I see them in rfnoc_block_conv.v but not in
+>>> noc_shell_conv.v - just want to ensure that is okay; I ended up
+>>> regenerating from scratch as I had used the gain block as a base the fi=
+rst
+>>> time and it seems it was generated with an older RFNoC 3.x codegen.
+>>>
+>>> Will proceed with this and let you know my results. Thanks!
+>>>
+>>> On Wed, May 18, 2022 at 7:55 AM Jeffrey Cuenco <jeffrey.cuenco@gmail.co=
+m>
+>>> wrote:
+>>>
+>>>> Thanks Wade!
+>>>>
+>>>> I tried to regenerate using rfnocmodtool and noticed that the ce_clk
+>>>> and ce_rst wires aren't present in the template code and the yaml file=
+s get
+>>>> overwritten - is there another command for rfnocmodtool that I should =
+be
+>>>> using to regenerate after customizing the yaml? Thanks!
+>>>>
+>>>> -Jeff
+>>>>
+>>>> On Mon, May 16, 2022 at 11:07 AM Wade Fife <wade.fife@ettus.com> wrote=
+:
+>>>>
+>>>>> I was looking at your code to answer your question when I noticed tha=
+t
+>>>>> the noc_shell code doesn't seem to match your YAML, so I'm wondering =
+if the
+>>>>> YAML was modified after you generated your noc_shell? The noc_shell i=
+s
+>>>>> missing the ce_clk declared in your YAML.
+>>>>>
+>>>>> To answer your question, I'm going to assume you want a ce_clk that's
+>>>>> different from rfnoc_chdr_clk and rfnoc_ctrl_clk and you want your DS=
+P and
+>>>>> the registers to use ce_clk. In that case:
+>>>>>
+>>>>>    1. Regenerate your block to get a new noc_shell_conv. This will
+>>>>>    add a ce_clk input and a ce_rst output to noc_shell_conv. Again, b=
+e careful
+>>>>>    to not overwrite your existing code when regenerating your block.
+>>>>>    2. In rfnoc_block_conv, connect the ce_clk input port to the
+>>>>>    ce_clk input port of noc_shell_conv.
+>>>>>    3. In rfnoc_block_conv, declare a ce_rst wire at the top and
+>>>>>    connect it to the ce_rst output port of your noc_shell.
+>>>>>    4. Update your registers and custom logic to use ce_clk and ce_rst=
+.
+>>>>>
+>>>>> The answer is slightly different if you want to use the current
+>>>>> noc_shell. But in general, you say what clocks you want to use in the=
+ YAML
+>>>>> file. When the noc_shell is generated, it will take as inputs the clo=
+cks
+>>>>> you declared in the YAML, it will output resets that you can use for =
+those
+>>>>> clock domains, and it will output on ctrlport_clk and axis_data_clk
+>>>>> whatever clocks you said in the YAML that you wanted to use for those
+>>>>> interfaces. This can be a bit confusing because it means you can have
+>>>>> multiple versions of the same clock under different names (e.g., ce_c=
+lk,
+>>>>> ctrlport_clk, and axis_data_clk might all be the same clock, just on
+>>>>> different signal names).
+>>>>>
+>>>>> Wade
+>>>>>
+>>>>>
+>>>>> On Fri, May 13, 2022 at 1:09 PM Jeffrey Cuenco <jcuenco@ucsd.edu>
+>>>>> wrote:
+>>>>>
+>>>>>> Thanks Wade!
+>>>>>>
+>>>>>> I went ahead and restored the signal sizes to 32-bit as you suggeste=
+d.
+>>>>>>
+>>>>>> For using ce_clk, does it suffice for me to create a wire for ce_clk
+>>>>>> in the .v file and then reference it from the yaml? Is ordering impo=
+rtant
+>>>>>> or just ensuring the name matches the wire? Thanks!
+>>>>>>
+>>>>>> -Jeff
+>>>>>>
+>>>>>>
+>>>>>> On May 12, 2022, at 10:29, Wade Fife <wade.fife@ettus.com> wrote:
+>>>>>>
+>>>>>> =EF=BB=BF
+>>>>>> Hi Jeff,
+>>>>>>
+>>>>>> I took a look and noticed a couple things.
+>>>>>>
+>>>>>>    - There are some signal width mismatches in rfnoc_block_conv.v.
+>>>>>>    Take a look at s_rfnoc_ctrl_tdata, m_rfnoc_ctrl_tdata, m_in_paylo=
+ad_tdata,
+>>>>>>    s_out_payload_tdata. They have different widths than what the noc=
+_shell
+>>>>>>    expects. I think it's possible to change the payload_tdata width =
+to 8 on
+>>>>>>    the noc_shell by changing the item_width in your YAML, but you'll=
+ want to
+>>>>>>    regenerate the noc_shell to do that (be careful not to overwrite =
+your other
+>>>>>>    files if you do this). But the ctrl bus must be 32-bit.
+>>>>>>    - The ctrlport_clk has no driver. It looks like you specified
+>>>>>>    ce_clk as the clock domain in your YAML, so perhaps that's the cl=
+ock you
+>>>>>>    want to use?
+>>>>>>
+>>>>>> Try resolving these issues and see where that gets you.
+>>>>>>
+>>>>>> Wade
+>>>>>>
+>>>>>> On Wed, May 11, 2022 at 2:19 PM Jeffrey Cuenco <
+>>>>>> jeffrey.cuenco@gmail.com> wrote:
+>>>>>>
+>>>>>>> Hi Wade,
+>>>>>>>
+>>>>>>> Please see attached. Thanks!
+>>>>>>>
+>>>>>>> -Jeff
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> On May 11, 2022, at 08:42, Wade Fife <wade.fife@ettus.com> wrote:
+>>>>>>>
+>>>>>>> =EF=BB=BF
+>>>>>>> Can you also share your block's YML and the noc_shell you generated=
+?
+>>>>>>>
+>>>>>>> Wade
+>>>>>>>
+>>>>>>> On Wed, May 11, 2022 at 4:27 AM Jeffrey Cuenco <jcuenco@ucsd.edu>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>> Hi Wade,
+>>>>>>>>
+>>>>>>>> Yes, I have the ctrlport:has_status set to False in the block
+>>>>>>>> YAML... I ended up having to comment out that test sequence to mov=
+e onto
+>>>>>>>> the part that sends samples into and out of the block; now I have =
+an error
+>>>>>>>> that states
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> *Fatal: Timeout: Test "Test passing through samples" time limit
+>>>>>>>> exceeded*
+>>>>>>>> so I must be doing something that it isn't liking :) I've attached
+>>>>>>>> my updated .v and .sv files that I modified based on your guidance=
+ in your
+>>>>>>>> first response, as well as the updated xsim.log. Please let me kno=
+w if
+>>>>>>>> there are any additional things I may need to change such as sizes=
+ and what
+>>>>>>>> not - thanks!
+>>>>>>>>
+>>>>>>>> -Jeff
+>>>>>>>>
+>>>>>>>> On Mon, May 9, 2022 at 3:12 PM Wade Fife <wade.fife@ettus.com>
+>>>>>>>> wrote:
+>>>>>>>>
+>>>>>>>>> Hi Jeffrey,
+>>>>>>>>>
+>>>>>>>>> Very curious that you're getting that CTRL_STS_OKAY error, since
+>>>>>>>>> it looks like you're not using the status. I assume ctrlport:has_=
+status is
+>>>>>>>>> set to False in your block's YAML? In that case the status should=
+ always be
+>>>>>>>>> OK.
+>>>>>>>>>
+>>>>>>>>> 1) For different input/output packet sizes, you need to modify th=
+e
+>>>>>>>>> context to set the payload length of the outgoing packet. That's =
+the block
+>>>>>>>>> of code starting on line 283 in the rfnoc_block_conv.v file you s=
+ent.
+>>>>>>>>> There's an example in rfnoc_block_logpower, in which the output p=
+acket
+>>>>>>>>> length is half the length of input packets. In your case you'll n=
+eed to set
+>>>>>>>>> it to 3/2 instead of 1/2. See here:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/lib/r=
+fnoc/blocks/rfnoc_block_logpwr/rfnoc_block_logpwr.v#L202
+>>>>>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.co=
+m_EttusResearch_uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock-5=
+Flogpwr_rfnoc-5Fblock-5Flogpwr.v-23L202&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPO=
+eA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&m=3DGXbgyQxDz4yiy7ZI94I9=
+ia-1XvF2rdmrbxprVfQojmcljlWVOVrjE1Z7g7qsBL_a&s=3DWkFBbmpL8IpvF2oHp-4Vfhy73q=
+A49jSJD2tHoTQ0anQ&e=3D>
+>>>>>>>>>
+>>>>>>>>> 2) The testbenches typically have an ITEM_W constant that
+>>>>>>>>> indicates the size of the data type you want to work with. The IT=
+EM_W is
+>>>>>>>>> normally set to the sample size (e.g., 32 for sc16 samples). Sinc=
+e you want
+>>>>>>>>> to work with bytes, you could change that to 8 then create an ite=
+m_t array
+>>>>>>>>> and send it as a single packet using blk_ctrl.send_items(). Then =
+you can
+>>>>>>>>> call blk_ctrl.recv_items() to get the data output packet, and ins=
+pect the
+>>>>>>>>> items array that is returned. Take a look at PkgRfnocBlockCtrlBfm=
+ to see
+>>>>>>>>> what other send/recv methods are available. Here's a quick exampl=
+e assuming
+>>>>>>>>> the item size is 8-bit:
+>>>>>>>>>
+>>>>>>>>> item_t sent[$], received[$];
+>>>>>>>>> sent =3D { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };  // Whatever values yo=
+u
+>>>>>>>>> want for the input packet, one byte per element
+>>>>>>>>> blk_ctrl.send_items(0, sent);
+>>>>>>>>>
+>>>>>>>>> blk_ctrl.recv_items(0, received);
+>>>>>>>>> foreach(received[i]) begin
+>>>>>>>>>   // Compare the expected value to the byte in received[i] and se=
+e
+>>>>>>>>> if it matches
+>>>>>>>>> end
+>>>>>>>>>
+>>>>>>>>> Wade
+>>>>>>>>>
+>>>>>>>>> On Mon, May 9, 2022 at 1:30 PM Jeffrey Cuenco via USRP-users <
+>>>>>>>>> usrp-users@lists.ettus.com> wrote:
+>>>>>>>>>
+>>>>>>>>>> Hi all,
+>>>>>>>>>>
+>>>>>>>>>> Long time no see! I am currently on a final stretches of
+>>>>>>>>>> completing a masters project for my wireless embedded systems pr=
+ogram that
+>>>>>>>>>> involves a USRP X310 with RFNoC 4.0 and GNURadio that implements=
+ a
+>>>>>>>>>> Hierarchical Modulation design using nested 4QAM / QPSK (final
+>>>>>>>>>> constellation "appears" like 16QAM but has embedded high priorit=
+y and low
+>>>>>>>>>> priority layers that can adapt based on SNR).
+>>>>>>>>>>
+>>>>>>>>>> I am currently attempting to integrate the Xilinx Convolutional
+>>>>>>>>>> Encoder v9.0 IP block into the template rfnoc_block_conv.v desig=
+n that was
+>>>>>>>>>> created using rfnocmodtool and modeled after the Ettus FFT examp=
+le. With a
+>>>>>>>>>> bit of work I was able to get the .xci file loaded by Vivado whe=
+n the make
+>>>>>>>>>> target is executed for the testbench, and the testbench appears =
+to build
+>>>>>>>>>> without much modification.
+>>>>>>>>>>
+>>>>>>>>>> When executing 'make rfnoc_block_conv_tb'  it appears to fully
+>>>>>>>>>> execute the build process to the end, but I receive a fatal "Did=
+ not
+>>>>>>>>>> receive CTRL_STS_OKAY status" message in the process which I att=
+ribute to
+>>>>>>>>>> either something not being configured in the testbench file or s=
+omething
+>>>>>>>>>> not being configured right in my verilog module file.
+>>>>>>>>>>
+>>>>>>>>>> I've attempted to summarize where I'm stuck and need help on in
+>>>>>>>>>> the below three summary points / questions:
+>>>>>>>>>> 1) I have configured the convolutional encoder with rate 1/2 and
+>>>>>>>>>> punctured (effective rate 2/3), which I assume will require me m=
+odifying
+>>>>>>>>>> the "axi_wrapper" so that the output to input ratios are set pro=
+perly - are
+>>>>>>>>>> there additional examples that I can follow for this?
+>>>>>>>>>>
+>>>>>>>>>> I've seen the axi_wrapper migration note but as I'm still a
+>>>>>>>>>> novice at Verilog and System Verilog additional examples would b=
+e helpful.
+>>>>>>>>>> :)
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> 2) I would like to modify my testbench so that I send 10 bytes
+>>>>>>>>>> (80 bits) of data, and read out the 15 bytes (120 bits) that get=
+ spit out
+>>>>>>>>>> and verify that the encoded bytes coming out of the core match g=
+round truth
+>>>>>>>>>> data I would generate using MATLAB.
+>>>>>>>>>>
+>>>>>>>>>> Do we have any additional testbench examples or additional
+>>>>>>>>>> documentation that show sending 1 or more bytes of data through =
+an IP core?
+>>>>>>>>>> The IP core's *s_axis_data_tdata* and *m_axis_data_tdata *are
+>>>>>>>>>> 8-bit while most of the examples show sending 32 bits.  Aside fr=
+om setting
+>>>>>>>>>> the assignments to [7:0] are there any other adjustments that ne=
+ed to be
+>>>>>>>>>> made in any of the signal declarations and/or block definition w=
+ires
+>>>>>>>>>> earlier in the file?
+>>>>>>>>>>
+>>>>>>>>>> I've provided the IP core documentation for reference just in
+>>>>>>>>>> case:
+>>>>>>>>>> https://docs.xilinx.com/v/u/en-US/pg026_convolution
+>>>>>>>>>> <https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__docs.xil=
+inx.com_v_u_en-2DUS_pg026-5Fconvolution&d=3DDwMFaQ&c=3D-35OiAkTchMrZOngvJPO=
+eA&r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&m=3DGXbgyQxDz4yiy7ZI94I9=
+ia-1XvF2rdmrbxprVfQojmcljlWVOVrjE1Z7g7qsBL_a&s=3DVpTL0Eev0xGrPxywg6lGumMok1=
+Lx8kj5t4uFefeMWNA&e=3D>
+>>>>>>>>>>
+>>>>>>>>>> I've also included the module and testbench files as well as the
+>>>>>>>>>> xsim log.
+>>>>>>>>>>
+>>>>>>>>>> Thanks in advance!
+>>>>>>>>>> -Jeff
+>>>>>>>>>>
+>>>>>>>>>> _______________________________________________
+>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>>>
+>>>>>>>>>
 
-
-But DPDK has a "pktgen-dpdk" that may be useful in debugging:
-
-https://pktgen-dpdk.readthedocs.io/en/latest/
-
-
---------------MaTDYkyTFhDCxM0B0TOpjjWr
-Content-Type: text/html; charset=UTF-8
+--00000000000023ef3e05df6250fd
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-05-19 11:40, Dobler, Anton
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite" cite=3D"mid:1652974816863.29088@unibw.de">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      Thank you for your answer! I actually considered that and set the
-      addresses of sfp0 and sfp1 to the respective addresses 1.0.1.2 and
-      1.0.2.2=E2=80=A6 the interfaces even come up when I do the benchmar=
-k_rate
-      test so your guess should not be the problem=E2=80=A6<br>
-      Do you have a working UHD4.2 with DPDK set up?<br>
-      BR,<br>
-      Anton
-      <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-      <div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt=
-"
-          face=3D"Calibri, sans-serif" color=3D"#000000"><b>Von:</b> Marc=
-us
-          D. Leech <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patc=
-hvonbraun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a><br>
-          <b>Gesendet:</b> Donnerstag, 19. Mai 2022 17:33:02<br>
-          <b>An:</b> Dobler, Anton; <a class=3D"moz-txt-link-abbreviated"=
- href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a=
-><br>
-          <b>Betreff:</b> Re: UHD4.2 &amp; DPDK</font>
-        <div>=C2=A0</div>
-      </div>
-      <div>
-        <div class=3D"moz-cite-prefix">On 2022-05-19 11:26, Dobler, Anton
-          wrote:<br>
-        </div>
-        <blockquote type=3D"cite" cite=3D"mid:1652973983841.1075@unibw.de=
-">
-          <style type=3D"text/css" style=3D"display:none">p { margin-top:=
- 0px; margin-bottom: 0px; }</style>
-          <p>Dear community,<br>
-          </p>
-          <p><br>
-          </p>
-          <p>I try to use DPDK together with UHD4.2 but I get the
-            following error:<br>
-          </p>
-          <p><br>
-          </p>
-          <div>./benchmark_rate --args
-            "mgmt_addr=3D169.254.2.13,addr=3D1.0.1.2,
-            second_addr=3D1.0.2.2,use_dpdk=3D1" --rx_rate=3D125e6</div>
-          <div><br>
-          </div>
-          <div>[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
-            DPDK_19.11; UHD_4.2.0.0-4-g04d14cd7</div>
-          <div>[DEBUG] [PREFS] Loaded user config file
-            /root/.config/uhd.conf</div>
-          <div>EAL: Detected 16 lcore(s)</div>
-          <div>EAL: Detected 1 NUMA nodes</div>
-          <div>EAL: Multi-process socket /var/run/dpdk/rte/mp_socket</div=
->
-          <div>EAL: Selected IOVA mode 'VA'</div>
-          <div>EAL: No available hugepages reported in
-            hugepages-1048576kB</div>
-          <div>EAL: Probing VFIO support...</div>
-          <div>EAL: VFIO support initialized</div>
-          <div>EAL: PCI device 0000:00:04.0 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:04.1 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:04.2 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:04.3 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:04.4 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:04.5 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:04.6 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:04.7 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:2021 rawdev_ioat</div>
-          <div>EAL: PCI device 0000:00:1f.6 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:15b9 net_e1000_em</div=
->
-          <div>EAL: PCI device 0000:d5:00.0 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:10fb net_ixgbe</div>
-          <div>EAL:=C2=A0 =C2=A0using IOMMU type 1 (Type 1)</div>
-          <div>EAL: Ignore mapping IO port bar(2)</div>
-          <div>EAL: PCI device 0000:d5:00.1 on NUMA socket 0</div>
-          <div>EAL:=C2=A0 =C2=A0probe driver: 8086:10fb net_ixgbe</div>
-          <div>EAL: Ignore mapping IO port bar(2)</div>
-          <div>[DEBUG] [MPMD] Discovering MPM devices on port 49600</div>
-          <div>[ERROR] [DPDK] Could not find route to destination
-            address 1.0.1.2</div>
-          <div>[ERROR] [X300] X300 Network discovery error RuntimeError:
-            DPDK: Could not find route to destination address 1.0.1.2</di=
-v>
-          <div>[00:00:00.000503] Creating the usrp device with:
-            mgmt_addr=3D169.254.2.13,addr=3D1.0.1.2,
-            second_addr=3D1.0.2.2,use_dpdk=3D1...</div>
-          <div>[DEBUG] [MPMD] Discovering MPM devices on port 49600</div>
-          <div>[ERROR] [DPDK] Could not find route to destination
-            address 1.0.1.2</div>
-          <div>[ERROR] [X300] X300 Network discovery error RuntimeError:
-            DPDK: Could not find route to destination address 1.0.1.2</di=
-v>
-          <div>[INFO] [MPMD] Initializing 1 device(s) in parallel with
-            args:
-mgmt_addr=3D169.254.2.13,type=3Dn3xx,product=3Dn310,serial=3D3176E00,name=
-=3Dni-n3xx-3176E00,fpga=3DXG,claimed=3DFalse,addr=3D1.0.1.2,second_addr=3D=
-1.0.2.2,use_dpdk=3D1</div>
-          <div>[DEBUG] [MPMD] Claiming mboard 0</div>
-          <div>[DEBUG] [MPMD] Device args:
-`mgmt_addr=3D169.254.2.13,type=3Dn3xx,product=3Dn310,serial=3D3176E00,nam=
-e=3Dni-n3xx-3176E00,fpga=3DXG,claimed=3DFalse,addr=3D1.0.1.2,second_addr=3D=
-1.0.2.2,use_dpdk=3D1'.
-            RPC address: 169.254.2.13</div>
-          <div>[DEBUG] [MPMD] MPM reports device info:
-addr=3D1.0.1.2,claimed=3DTrue,connection=3Dremote,dboard_0_pid=3D336,dboa=
-rd_0_serial=3D31732ED,dboard_1_pid=3D336,dboard_1_serial=3D31732F6,descri=
-ption=3DN300-Series
-Device,eeprom_version=3D2,fourth_addr=3D169.254.2.13,fpga=3DXG,fpga_versi=
-on=3D8.0,fpga_version_hash=3D8daa80c.clean,fs_version=3D20220419212711,me=
-nder_artifact=3Dv4.2.0.0_n3xx,mpm_sw_version=3D4.2.0.0-g46a70d85,mpm_vers=
-ion=3D4.2,name=3Dni-n3xx-3176E00,pid=3D16962,product=3Dn310,rev=3D6,rpc_c=
-onnection=3Dremote,second_addr=3D1.0.2.2,serial=3D3176E00,type=3Dn3xx</di=
-v>
-          <div>[DEBUG] [MPMD] Found 8 motherboard sensors.</div>
-          <div>[DEBUG] [MPMD] Initializing mboard 0</div>
-          <div>[INFO] [MPM.PeriphManager] init() called with device args
-`fpga=3DXG,mgmt_addr=3D169.254.2.13,name=3Dni-n3xx-3176E00,product=3Dn310=
-,second_addr=3D1.0.2.2,use_dpdk=3D1,clock_source=3Dinternal,time_source=3D=
-internal'.</div>
-          <div>[DEBUG] [MPMD::MB_IFACE] Adding clock iface `radio_clk`,
-            frequency: 125 MHz, mutable: Yes</div>
-          <div>[DEBUG] [MPMD::MB_IFACE] Adding clock iface `bus_clk`,
-            frequency: 200 MHz, mutable: No</div>
-          <div>[ERROR] [DPDK] Could not find route to destination
-            address 1.0.1.2</div>
-          <div>[WARNING] [MPMD::XPORT::UDP] Error during MTU discovery
-            on address 1.0.1.2: RuntimeError: DPDK: Could not find route
-            to destination address 1.0.1.2</div>
-          <div>[ERROR] [DPDK] Could not find route to destination
-            address 1.0.2.2</div>
-          <div>[WARNING] [MPMD::XPORT::UDP] Error during MTU discovery
-            on address 1.0.2.2: RuntimeError: DPDK: Could not find route
-            to destination address 1.0.2.2</div>
-          <div>[ERROR] [MPMD::MB_IFACE] No CHDR connection available!</di=
-v>
-          <div>Error: RuntimeError: No CHDR connection available!<br>
-          </div>
-          <div><br>
-          </div>
-          <div>I use the uhd.conf as follows:<br>
-          </div>
-          <div><br>
-          </div>
-          <div>
-            <div>[use_dpdk=3D1]</div>
-            <div>dpdk-mtu=3D9000</div>
-            <div>dpdk-driver=3D/usr/lib/x86_64-linux-gnu/dpdk/pmds-20.0/d=
-pdk/</div>
-            <div>dpdk-corelist=3D0,9,10</div>
-            <div>dpdk-num-mbufs=3D4096</div>
-            <div>dpdk-mbufs-cache-size=3D315</div>
-            <div><br>
-            </div>
-            <div>;ens2f0</div>
-            <div>[dpdk-mac=3D90:e2:ba:f1:38:1c]</div>
-            <div>dpdk-lcore =3D 9</div>
-            <div>dpdk-ipv4 =3D 1.0.2.1/24</div>
-            <div><br>
-            </div>
-            <div>;ens2f1</div>
-            <div>[dpdk-mac=3D90:e2:ba:f1:38:1d]</div>
-            <div>dpdk-lcore =3D 10</div>
-            <div>dpdk-ipv4 =3D 1.0.1.1/24=E2=80=8B<br>
-            </div>
-            <br>
-          </div>
-          <div><br>
-          </div>
-          <div>Any help would be highly appreciated!<br>
-          </div>
-          <div><br>
-          </div>
-          <div>Best regards,<br>
-          </div>
-          <div><br>
-          </div>
-          <div>Anton=C2=A0<br>
-          </div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <p><br>
-          </p>
-          <p><br>
-          </p>
-        </blockquote>
-        KInd of a weird address range to use, but my guess is that your
-        USRP device isn't programmed to those addresses.<br>
-        <br>
-        <br>
-      </div>
-    </blockquote>
-    I don't use DPDK myself--no compatible NICs in my collection.<br>
-    <br>
-    <br>
-    But DPDK has a "pktgen-dpdk" that may be useful in debugging:<br>
-    <br>
-    <a class=3D"moz-txt-link-freetext" href=3D"https://pktgen-dpdk.readth=
-edocs.io/en/latest/">https://pktgen-dpdk.readthedocs.io/en/latest/</a><br=
->
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div>
+I think those versions are fine, but your gr-ettus might be out of date. I&=
+#39;m not very familiar with the GNU Radio integration. You could try updat=
+ing your gr-ettus then regenerate your block, or you could run the rfnoc_cr=
+eate_verilog tool using the YML file as an input if you need to customize t=
+he YAML to add the ce_clk/ce_rst signals. It&#39;s really up to you if you =
+need those signals. But your IP needs to be clocked and probably reset by s=
+omething, and you need to make sure the generated noc_shell uses the same c=
+lock domains you&#39;re expecting to use.<br></div><div><br></div><div>Wade=
+<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Wed, May 18, 2022 at 10:10 PM Jeffrey Cuenco &lt;<a href=3D"ma=
+ilto:jeffrey.cuenco@gmail.com">jeffrey.cuenco@gmail.com</a>&gt; wrote:<br><=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Ne=
+el recommended I use UHD v4.1.0.5 and GRC v3.8.5.0 so that=E2=80=99s what I=
+=E2=80=99ve been using - does this version not generate the right items? If=
+ not which version of UHD should I update to, and which version of GRC work=
+s best with it? Thanks!<br><br>-Jeff<br><div dir=3D"ltr"><div><span style=
+=3D"background-color:rgba(255,255,255,0)"><br></span></div><div></div></div=
+><div dir=3D"ltr"><blockquote type=3D"cite">On May 18, 2022, at 19:59, Wade=
+ Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fif=
+e@ettus.com</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"ci=
+te"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div dir=3D"ltr"><div>If you=
+ want to customize the YAML and regenerate from your modified YAML, then I =
+think you need to use rfnoc_create_verilog (part of UHD). So you could do s=
+omething like:</div><div><br></div><div>python3 uhd/host/utils/rfnoc_blockt=
+ool/rfnoc_create_verilog.py -c conv.yml -d ./rfnoc_block_conv</div><div><br=
+></div><div>However, I see ce_rst in the modtool templates:</div><div><br><=
+/div><div><a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A_=
+_github.com_EttusResearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_tem=
+plates.py-23L994&amp;d=3DDwMFaQ&amp;c=3D-35OiAkTchMrZOngvJPOeA&amp;r=3DY3cO=
+HwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&amp;m=3D1DdbigE2N0YgkBb5QwxGwLoaLzB=
+icQiQrNdYgLIklkzVPw_RkRIL9bq4dINC9Cqd&amp;s=3DfKouuct_wr3CdcChBQjBmaL6WDVq7=
+l3U1zAVR7DcnDY&amp;e=3D" target=3D"_blank">https://github.com/EttusResearch=
+/gr-ettus/blob/master/python/rfnoc_modtool/templates.py#L994</a></div><div>=
+<a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.co=
+m_EttusResearch_gr-2Dettus_blob_master_python_rfnoc-5Fmodtool_templates.py-=
+23L1384&amp;d=3DDwMFaQ&amp;c=3D-35OiAkTchMrZOngvJPOeA&amp;r=3DY3cOHwFMBDXtt=
+sqnINKoCyXB-ta6yD08QrmMzW9aeZY&amp;m=3D1DdbigE2N0YgkBb5QwxGwLoaLzBicQiQrNdY=
+gLIklkzVPw_RkRIL9bq4dINC9Cqd&amp;s=3Dg8-XZVaLen6JS347_frcJqnHnCFTxWbAtw1WcL=
+KrtzA&amp;e=3D" target=3D"_blank">https://github.com/EttusResearch/gr-ettus=
+/blob/master/python/rfnoc_modtool/templates.py#L1384</a></div><div><br></di=
+v><div>Perhaps you&#39;re using an older version of modtool?<br></div><div>=
+<br></div><div>Wade<br></div><div><br></div><div><br></div><br></div></div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed=
+, May 18, 2022 at 12:33 PM Jeffrey Cuenco &lt;<a href=3D"mailto:jeffrey.cue=
+nco@gmail.com" target=3D"_blank">jeffrey.cuenco@gmail.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><=
+div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Spoke t=
+oo soon - sent last one out too fast so apologies for the message clutter:<=
+br><br>What I see in rfnoc_block_conv.v is ce_clk as an input wire within t=
+he rfnoc_block_conv module declaration.=C2=A0</div><div><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"></div></div></div></div></div></div></div><span class=3D"gmail_def=
+ault"><div style=3D"font-family:tahoma,sans-serif"><span class=3D"gmail_def=
+ault" style=3D"font-family:tahoma,sans-serif"><br></span></div>However, I d=
+on&#39;t see ce_rst anywhere in either the noc_shell_conv.v nor the rfnoc_b=
+lock_conv.v files.=C2=A0</span><div><span class=3D"gmail_default"><br></spa=
+n></div><div><span class=3D"gmail_default">Is this something I should be co=
+ncerned about, or will I need to manually add this wire in?</span><span cla=
+ss=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"> Please advise=
+ - thanks!</span></div><div><span class=3D"gmail_default" style=3D"font-fam=
+ily:tahoma,sans-serif"><br></span></div><div><div class=3D"gmail_default" s=
+tyle=3D"font-family:tahoma,sans-serif">-Jeff</div><br></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 18,=
+ 2022 at 10:26 AM Jeffrey Cuenco &lt;<a href=3D"mailto:jeffrey.cuenco@gmail=
+.com" target=3D"_blank">jeffrey.cuenco@gmail.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=
+=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">To clarify - I s=
+ee them in rfnoc_block_conv.v but not in noc_shell_conv.v - just want to en=
+sure that is okay; I ended up regenerating from scratch as I had used the g=
+ain block as a base the first time and it seems it was generated with an ol=
+der RFNoC 3.x codegen.</div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></=
+div><span class=3D"gmail_default"><div style=3D"font-family:tahoma,sans-ser=
+if"><span class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><=
+br></span></div>Will proceed with this and let you know my results. Thanks!=
+</span><span class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif=
+"></span></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Wed, May 18, 2022 at 7:55 AM Jeffrey Cuenco &lt;<a href=3D"mail=
+to:jeffrey.cuenco@gmail.com" target=3D"_blank">jeffrey.cuenco@gmail.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,sans-=
+serif">Thanks Wade!</div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></div=
+><span style=3D"font-family:tahoma,sans-serif"><div><span style=3D"font-fam=
+ily:tahoma,sans-serif"><br></span></div><span class=3D"gmail_default" style=
+=3D"font-family:tahoma,sans-serif">I tried to regenerate using rfnocmodtool=
+ and noticed that the ce_clk and ce_rst wires aren&#39;t present in the tem=
+plate code and the yaml files get overwritten - is there another command fo=
+r rfnocmodtool that I should be using to regenerate after customizing the y=
+aml? Thanks!</span></span><div><span style=3D"font-family:tahoma,sans-serif=
+"><br></span></div><div><span style=3D"font-family:tahoma,sans-serif"><span=
+ class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">-Jeff</spa=
+n></span></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, May 16, 2022 at 11:07 AM Wade Fife &lt;<a href=3D"m=
+ailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div>I was looking at your code to answer your question when I notice=
+d that the noc_shell code doesn&#39;t seem to match your YAML, so I&#39;m w=
+ondering if the YAML was modified after you generated your noc_shell? The n=
+oc_shell is missing the ce_clk declared in your YAML.</div><div><br></div><=
+div>To answer your question, I&#39;m going to assume you want a ce_clk that=
+&#39;s different from rfnoc_chdr_clk and rfnoc_ctrl_clk and you want your D=
+SP and the registers to use ce_clk. In that case:</div><div><ol><li>Regener=
+ate your block to get a new noc_shell_conv. This will add a ce_clk input an=
+d a ce_rst output to noc_shell_conv. Again, be careful to not overwrite you=
+r existing code when regenerating your block.<br></li><li>In rfnoc_block_co=
+nv, connect the ce_clk input port to the ce_clk input port of noc_shell_con=
+v.</li><li>In rfnoc_block_conv, declare a ce_rst wire at the top and connec=
+t it to the ce_rst output port of your noc_shell.</li><li>Update your regis=
+ters and custom logic to use ce_clk and ce_rst.</li></ol></div><div></div><=
+div>The answer is slightly different if you want to use the current noc_she=
+ll. But in general, you say what clocks you want to use in the YAML file. W=
+hen the noc_shell is generated, it will take as inputs the clocks you decla=
+red in the YAML, it will output resets=20
+that you can use
 
---------------MaTDYkyTFhDCxM0B0TOpjjWr--
+for those clock domains, and it will output on ctrlport_clk and axis_data_c=
+lk whatever clocks you said in the YAML that you wanted to use for those in=
+terfaces. This can be a bit confusing because it means you can have multipl=
+e versions of the same clock under different names (e.g., ce_clk, ctrlport_=
+clk, and axis_data_clk might all be the same clock, just on different signa=
+l names).<br></div><div><br></div><div>Wade<br></div><br></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, May 13, 20=
+22 at 1:09 PM Jeffrey Cuenco &lt;<a href=3D"mailto:jcuenco@ucsd.edu" target=
+=3D"_blank">jcuenco@ucsd.edu</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"auto">Thanks Wade!<br><br><div dir=
+=3D"ltr"><div><span style=3D"background-color:rgba(255,255,255,0)">I went a=
+head and restored the signal sizes to 32-bit as you suggested.</span></div>=
+<div><span style=3D"background-color:rgba(255,255,255,0)"><br></span></div>=
+<div><span style=3D"background-color:rgba(255,255,255,0)">For using ce_clk,=
+ does it suffice for me to create a wire for ce_clk in the .v file and then=
+ reference it from the yaml? Is ordering important or just ensuring the nam=
+e matches the wire? Thanks!</span></div><div><span style=3D"background-colo=
+r:rgba(255,255,255,0)"><br></span></div><div><span style=3D"background-colo=
+r:rgba(255,255,255,0)">-Jeff</span></div><div><span style=3D"background-col=
+or:rgba(255,255,255,0)"><br></span></div><div><span style=3D"background-col=
+or:rgba(255,255,255,0)"><br></span></div></div><div dir=3D"ltr"><blockquote=
+ type=3D"cite">On May 12, 2022, at 10:29, Wade Fife &lt;<a href=3D"mailto:w=
+ade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br=
+><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
+=BF<div dir=3D"ltr"><div>Hi Jeff,</div><div><br></div><div>I took a look an=
+d noticed a couple things.<br></div><div><ul><li>There are some signal widt=
+h mismatches in rfnoc_block_conv.v. Take a look at s_rfnoc_ctrl_tdata, m_rf=
+noc_ctrl_tdata, m_in_payload_tdata, s_out_payload_tdata. They have differen=
+t widths than what the noc_shell expects. I think it&#39;s possible to chan=
+ge the payload_tdata width to 8 on the noc_shell by changing the item_width=
+ in your YAML, but you&#39;ll want to regenerate the noc_shell to do that (=
+be careful not to overwrite your other files if you do this). But the ctrl =
+bus must be 32-bit.<br></li><li>The ctrlport_clk has no driver. It looks li=
+ke you specified ce_clk as the clock domain in your YAML, so perhaps that&#=
+39;s the clock you want to use?</li></ul><div>Try resolving these issues an=
+d see where that gets you.<br></div><div><br></div><div>Wade<br></div></div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>On Wed, May 11, 2022 at 2:19 PM Jeffrey Cuenco &lt;<a href=3D"mailto:jeffr=
+ey.cuenco@gmail.com" target=3D"_blank">jeffrey.cuenco@gmail.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
+auto">Hi Wade,<div><br></div><div>Please see attached. Thanks!</div><div><b=
+r></div><div>-Jeff</div><div><br></div></div><div dir=3D"auto" role=3D"text=
+box" aria-label=3D"Message Body"><div></div><div><br></div><div><font color=
+=3D"#0a84ff"><span></span></font></div></div><div dir=3D"auto"><div><font c=
+olor=3D"#0a84ff"><span><br></span></font><div dir=3D"ltr"><div><span style=
+=3D"background-color:rgba(255,255,255,0)"><br></span></div><div></div></div=
+><div dir=3D"ltr"><blockquote type=3D"cite">On May 11, 2022, at 08:42, Wade=
+ Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fif=
+e@ettus.com</a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"ci=
+te"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Can you also share your=
+ block&#39;s YML and the noc_shell you generated?</div><div><br></div><div>=
+Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Wed, May 11, 2022 at 4:27 AM Jeffrey Cuenco &lt;<a href=
+=3D"mailto:jcuenco@ucsd.edu" target=3D"_blank">jcuenco@ucsd.edu</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
+ltr">Hi Wade,<div><br></div><div>Yes, I have the ctrlport:has_status set to=
+ False in the block YAML... I ended up having to comment out that test sequ=
+ence to move onto the part that sends samples into and out of the block; no=
+w I have an error that states=C2=A0<br><br><b>Fatal: Timeout: Test &quot;Te=
+st passing through samples&quot; time limit exceeded<br></b><br>so I must b=
+e doing something that it isn&#39;t liking :) I&#39;ve attached my updated =
+.v and .sv files that I modified based on your guidance in your first respo=
+nse, as well as the updated xsim.log. Please let me know if there are any a=
+dditional things I may need to change such as sizes and what not - thanks!<=
+/div><div><br></div><div>-Jeff</div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Mon, May 9, 2022 at 3:12 PM Wade Fif=
+e &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife@et=
+tus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr"><div>Hi Jeffrey,</div><div><br></div><div>Very curi=
+ous that you&#39;re getting=20
+that CTRL_STS_OKAY error, since it looks like you&#39;re not using the stat=
+us. I assume ctrlport:has_status is set to False in your block&#39;s YAML? =
+In that case the status should always be OK.<br></div><div><br></div><div>1=
+) For different input/output packet sizes, you need to modify the context t=
+o set the payload length of the outgoing packet. That&#39;s the block of co=
+de starting on line 283 in the rfnoc_block_conv.v file you sent. There&#39;=
+s an example in rfnoc_block_logpower, in which the output packet length is =
+half the length of input packets. In your case you&#39;ll need to set it to=
+ 3/2 instead of 1/2. See here:<br></div><div><br></div><div><a href=3D"http=
+s://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_EttusResearch=
+_uhd_blob_master_fpga_usrp3_lib_rfnoc_blocks_rfnoc-5Fblock-5Flogpwr_rfnoc-5=
+Fblock-5Flogpwr.v-23L202&amp;d=3DDwMFaQ&amp;c=3D-35OiAkTchMrZOngvJPOeA&amp;=
+r=3DY3cOHwFMBDXttsqnINKoCyXB-ta6yD08QrmMzW9aeZY&amp;m=3DGXbgyQxDz4yiy7ZI94I=
+9ia-1XvF2rdmrbxprVfQojmcljlWVOVrjE1Z7g7qsBL_a&amp;s=3DWkFBbmpL8IpvF2oHp-4Vf=
+hy73qA49jSJD2tHoTQ0anQ&amp;e=3D" target=3D"_blank">https://github.com/Ettus=
+Research/uhd/blob/master/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_logpwr/rfn=
+oc_block_logpwr.v#L202</a> <br></div><div><br></div><div>2) The testbenches=
+ typically have an ITEM_W constant that indicates the size of the data type=
+ you want to work with. The ITEM_W is normally set to the sample size (e.g.=
+, 32 for sc16 samples). Since you want to work with bytes, you could change=
+ that to 8 then create an item_t array and send it as a single packet using=
+ blk_ctrl.send_items(). Then you can call blk_ctrl.recv_items() to get the =
+data output packet, and inspect the items array that is returned. Take a lo=
+ok at PkgRfnocBlockCtrlBfm to see what other send/recv methods are availabl=
+e. Here&#39;s a quick example assuming the item size is 8-bit:</div><div><b=
+r></div><div></div><div>item_t sent[$], received[$];</div><div>sent =3D { 0=
+, 1, 2, 3, 4, 5, 6, 7, 8, 9 };=C2=A0 // Whatever values you want for the in=
+put packet, one byte per element<br></div><div>blk_ctrl.send_items(0, sent)=
+;</div><div><br></div><div>blk_ctrl.recv_items(0, received);</div><div>fore=
+ach(received[i]) begin<br></div><div>=C2=A0 // Compare the expected value t=
+o the byte in received[i] and see if it matches<br></div><div>end</div><div=
+><br></div><div>Wade</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Mon, May 9, 2022 at 1:30 PM Jeffrey Cuenco via=
+ USRP-users &lt;<a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bl=
+ank">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote=
+"><div dir=3D"ltr"><div style=3D"font-family:tahoma,sans-serif">Hi all,</di=
+v><div style=3D"font-family:tahoma,sans-serif"><br>Long time no see!=C2=A0I=
+ am currently on a final stretches of completing a masters project for my w=
+ireless embedded systems program that involves a USRP X310 with RFNoC 4.0 a=
+nd GNURadio that implements a Hierarchical Modulation design using nested 4=
+QAM / QPSK (final constellation &quot;appears&quot; like 16QAM but has embe=
+dded high priority and low priority layers that can adapt based on SNR).</d=
+iv><div style=3D"font-family:tahoma,sans-serif"><br></div><div style=3D"fon=
+t-family:tahoma,sans-serif">I am currently attempting to integrate the Xili=
+nx Convolutional Encoder v9.0 IP block into the template rfnoc_block_conv.v=
+ design that was created using rfnocmodtool and modeled after the Ettus FFT=
+ example. With a bit of work I was able to get the .xci file loaded by Viva=
+do when the make target is executed for the testbench, and the testbench ap=
+pears to build without much modification.</div><div style=3D"font-family:ta=
+homa,sans-serif"><br>When executing &#39;make rfnoc_block_conv_tb&#39;=C2=
+=A0 it appears to fully execute the build process to the end, but I receive=
+ a fatal &quot;Did not receive CTRL_STS_OKAY status&quot; message in the pr=
+ocess which I attribute to either something not being configured in the tes=
+tbench file or something not being configured right in my verilog module fi=
+le.=C2=A0</div><div style=3D"font-family:tahoma,sans-serif"><br></div><div =
+style=3D"font-family:tahoma,sans-serif">I&#39;ve attempted to summarize whe=
+re I&#39;m stuck and need help on in the below three summary points / quest=
+ions:</div><div style=3D"font-family:tahoma,sans-serif">1) I have configure=
+d the convolutional encoder with rate 1/2 and punctured (effective rate 2/3=
+), which I assume will require me modifying the &quot;axi_wrapper&quot; so =
+that the output to input ratios are set properly - are there additional exa=
+mples that I can follow for this?=C2=A0</div><div style=3D"font-family:taho=
+ma,sans-serif"><br></div><div style=3D"font-family:tahoma,sans-serif">I&#39=
+;ve seen the axi_wrapper migration note but as I&#39;m still a novice at Ve=
+rilog and System Verilog additional examples would be helpful. :)=C2=A0</di=
+v><div style=3D"font-family:tahoma,sans-serif"><br></div><div style=3D"font=
+-family:tahoma,sans-serif"><br>2) I would like to modify my testbench so th=
+at I send 10 bytes (80 bits) of data, and read out the 15 bytes (120 bits) =
+that get spit out and verify that the encoded bytes coming out of the core =
+match ground truth data I would generate using MATLAB.=C2=A0</div><div styl=
+e=3D"font-family:tahoma,sans-serif"><br></div><div style=3D"font-family:tah=
+oma,sans-serif">Do we have any additional testbench examples or additional =
+documentation that show sending 1 or more bytes of data through an IP core?=
+ The IP core&#39;s=C2=A0<b>s_axis_data_tdata</b> and=C2=A0<b>m_axis_data_td=
+ata </b>are 8-bit while most of the examples show sending 32 bits.=C2=A0 As=
+ide from setting the assignments to [7:0] are there any other adjustments t=
+hat need to be made in any of the signal declarations and/or block definiti=
+on wires earlier in the file?</div><div style=3D"font-family:tahoma,sans-se=
+rif"><br></div><div style=3D"font-family:tahoma,sans-serif">I&#39;ve provid=
+ed the IP core documentation for reference just in case:</div><div style=3D=
+"font-family:tahoma,sans-serif"><a href=3D"https://urldefense.proofpoint.co=
+m/v2/url?u=3Dhttps-3A__docs.xilinx.com_v_u_en-2DUS_pg026-5Fconvolution&amp;=
+d=3DDwMFaQ&amp;c=3D-35OiAkTchMrZOngvJPOeA&amp;r=3DY3cOHwFMBDXttsqnINKoCyXB-=
+ta6yD08QrmMzW9aeZY&amp;m=3DGXbgyQxDz4yiy7ZI94I9ia-1XvF2rdmrbxprVfQojmcljlWV=
+OVrjE1Z7g7qsBL_a&amp;s=3DVpTL0Eev0xGrPxywg6lGumMok1Lx8kj5t4uFefeMWNA&amp;e=
+=3D" target=3D"_blank">https://docs.xilinx.com/v/u/en-US/pg026_convolution<=
+/a></div><div style=3D"font-family:tahoma,sans-serif"><br></div><div style=
+=3D"font-family:tahoma,sans-serif">I&#39;ve also included the=C2=A0module a=
+nd testbench files as well as the xsim log.<br></div><div style=3D"font-fam=
+ily:tahoma,sans-serif"><br></div><div style=3D"font-family:tahoma,sans-seri=
+f">Thanks in advance!</div><div style=3D"font-family:tahoma,sans-serif">-Je=
+ff</div><div style=3D"font-family:tahoma,sans-serif"><br></div></div>
+</div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</div></blockquote></div></div></blockquote></div>
+</div></blockquote></div></blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</div></blockquote></div></blockquote></div>
 
---===============1681901574337244740==
+--00000000000023ef3e05df6250fd--
+
+--===============2377776561479020409==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -491,4 +808,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1681901574337244740==--
+--===============2377776561479020409==--
