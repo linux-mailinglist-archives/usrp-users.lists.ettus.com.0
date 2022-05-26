@@ -2,236 +2,204 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6464C53510E
-	for <lists+usrp-users@lfdr.de>; Thu, 26 May 2022 16:55:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E30535152
+	for <lists+usrp-users@lfdr.de>; Thu, 26 May 2022 17:22:34 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 57147384C43
-	for <lists+usrp-users@lfdr.de>; Thu, 26 May 2022 10:55:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C1868384E00
+	for <lists+usrp-users@lfdr.de>; Thu, 26 May 2022 11:22:33 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1653576906; bh=rUEpDe7yovHHOPKjk2hWcmNP9jraWl/BWs63UR3DdaI=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=QA9WnQGVqIvQf+xRR74tySGlZxMEFDUG+oS81uOKX+FrkesosOxcb4vuOP06GQOGT
-	 2xT14wXphuBFjtr0b7FHnT/e7a4k9IfMCTJzZUgesZwHPUCSOrV0EpnecjVRBeIsj5
-	 eYD/gBVOqaSK5b02f6btkpzL6hJgaREBSMfTs7se9IDvQpc4IVM+lYgQwhLQl1DvdW
-	 4QSBawHXLyh5b5GUAciOzEcL8DpewNjQNN0QUx3LqaS6MAeL7setZgPIM1DaQG4Cr3
-	 URUCFQlKEPcAXikUIjAlbb9TM5Y2mDfYSq2U3rcqtCMYr1E7WEhUtb7K2MFAepF8nW
-	 dlfpzkGHGZY6A==
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 40F57384610
-	for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 10:53:51 -0400 (EDT)
+	t=1653578553; bh=msGXFPVMFjM6HSYleH50gGlu6p/xVIlsIz5pJn8+g5s=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=MN9SbS3U1OJrEpos6li1OMfc59l/0Zo6a9JpwB9VPAwf9hT9DRnc0yayuhUlO6WmM
+	 oyH3BnLUBQKLINfedpYniK+oRRgpMONugIQEyZYUFpKSWo5+fOSUKdA4iFxipHGqN1
+	 ZyoaFPGWtlEKx44YH5sH8UAmgTkMTnFwOn6QO9AMvWraB2fElIxLXWkT1IvXsKKe3K
+	 /VOwUYm82GyRihH980+jMlPwZldoAf1azeixYHvf7+B2l8EqGgMWbCPZd1SFXOHZNF
+	 A4l4cnZ+Eda1Ok7T63cGEyL/aORmpigaObajQYS3SFyw6rob4FYUABeuR7R8JZEshm
+	 EQ9IQ8PyPMTBA==
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 33E8138475F
+	for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 10:54:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BKvPN4Q4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q6ZgZjHc";
 	dkim-atps=neutral
-Received: by mail-qk1-f171.google.com with SMTP id p63so1785234qkf.0
-        for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 07:53:51 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id i18so1878878pfk.7
+        for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 07:54:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=RLJ530VPUtWl6PgFvcpAdRfLPfk0TJvBvuOzk5uUqa4=;
-        b=BKvPN4Q4oAOllq4/RQ7D4pif2bnZUKXoTucB7Du5c4tGD1u2hyYTovyljEx5h9LEQ+
-         mRI0r9L+3F9RGOI/hL6taNcm1LfR/IL9ajsC2Ejyu9fx4xMe2Ho9eriNAuijKvwzNZgX
-         yfEjvwgoFQ1xDevNQXxvweYMpPF1PKq2WQYFmKSq9AGIYZkZroGcecqt7AAklId/cD2j
-         bKlG0+UNsAreh3/eHJ7uyvCYaVHSC/Bzn5mQMIBLNc7BAWUsvPVnhK7kQ2S/aNG1yW7T
-         q8RcKxSO/fvcyYMGtoGA4DvmjIVwaZkR7QO4i+9T7roZRbl7Z4BpxO2ETVn/PnimJYMN
-         elXg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rFFXc6mBixiiHoVcFzJbOBqDMU4vGW6QTwd9XbeSAEc=;
+        b=Q6ZgZjHccY935Ah4+SBxmFGbiuZUkeFFeOxyN4aBhrgklm8CdrnFUXINaOQPP1UPOL
+         laOJr+dIre+wN2ZkxC9Oaye6ESor6Xp9rs9czENwhxAE+tSCd/J30JgqfyWcQ+KE7vmO
+         qHm8Vog5vXmgKmqCo+bsL0x/E5Tj3aKbyNLgVMewEuZaOCnYWJfkQ5BLCZSb199sWXak
+         qDAtxuXSvi/ozdpNw207EwRrQlIJLILV/Mj7RmTfjooYQQIFUoK2+8WgUbsffzzuNdgY
+         +lOh0LfepDtf/jp6mV8/SNblOwHr6X1hTAez6bIV3ZLIsgnS26zgEt421BPZNEK9y12P
+         /k9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=RLJ530VPUtWl6PgFvcpAdRfLPfk0TJvBvuOzk5uUqa4=;
-        b=rkDyYkWuuS+twjUj8sFY77SIwPQg+fWsMqQaPnZMy7TxBE3/PehfcqdOsrkYDaD+Sj
-         O6+MN41C5fQOt0AQudYCx9nE32QLDgav8Sdf1/0z/MPaLyG52kME0RFCu4Od8E0rvzwL
-         ncTleWSKNTtlKDSJihq/ekGC23qQKFx+Ppsyz1+3NFRkVybJ6dIib7dMJHA3oOq7+JiY
-         LAGLZ5HBsHE2NCP1R+BOs7KCE9keWDBGXz7pds0jm/ytoxlkRojDGFjYSFLWUV6k4Ghq
-         uIPMrLJ+cR8616DJZ74yBe6hKVpd3v06dQaH5reSOskM3K80OTKjGUOdl8UjhjXOqdIB
-         oSOA==
-X-Gm-Message-State: AOAM533UUubuPiXvtzKzeXHIyD/Vptcya7NzWCAsouZFzjKOCmL5nUKl
-	/Dj4bD38QXBj3Z0lZg8iuOk2mnSETM4=
-X-Google-Smtp-Source: ABdhPJzAANpXPNN9rM7KS3S3xH28T+TbY0voiVM4KJkmpagtZJpNIetP8GNENCQKthsoBiQhHHEhoQ==
-X-Received: by 2002:a05:620a:f05:b0:67e:1a49:363a with SMTP id v5-20020a05620a0f0500b0067e1a49363amr24817811qkl.364.1653576830395;
-        Thu, 26 May 2022 07:53:50 -0700 (PDT)
-Received: from [192.168.2.200] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id v10-20020ac8728a000000b002f8f406338fsm1060428qto.42.2022.05.26.07.53.49
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 May 2022 07:53:49 -0700 (PDT)
-Message-ID: <5436640c-3154-9dda-1572-6db34dcb3749@gmail.com>
-Date: Thu, 26 May 2022 10:53:48 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rFFXc6mBixiiHoVcFzJbOBqDMU4vGW6QTwd9XbeSAEc=;
+        b=SZCTjOZdO9eBWvmo3+tR1lmxc3l6t0iWbRRnQBWMNsr92LIlx8B0VLxCcj/8I8wuTt
+         Dl2IStl7DLQK7GI+foinkigb9oyJwuP1tZZaydZkkDHg2CubKgkC4IPdNpcIFQpP8moZ
+         6bocxrdrL+B/HJGg8Q9s95mz9evbgBdyuU3rwWxV+BxJaA5w3W3ll9/mK4Z3FapR1Ush
+         w+zySZBJnsmKLSf+64Asprl5ytc4bwnrSFsWc06l7QcWrAGTB9Ddhylsy+dH8cb3VxBs
+         fiTYfP2xgLxrkmppa0w3baEhQTCvjBYl77Wa++DbREkuV1WUtzG3syVA8JviZL4+ytzb
+         tHyQ==
+X-Gm-Message-State: AOAM532Cq0PwD5I2o9cUIGttKhDYJha2Raxz8uj5Q529V02Pjy5tWqcB
+	jWSLGDwz7MFVffXQtfkIZYpY5wbzWj8H2cV47E9gqsCz56I=
+X-Google-Smtp-Source: ABdhPJzmGQPDh4/MRTEO22M6beyV+N5QhqdetNIAKMDPKZqsbpQFdQ326x4GTw02uOWX1S4IpW9pS5FFQXe7+IAeE0I=
+X-Received: by 2002:a63:2117:0:b0:3c2:85f9:1b6f with SMTP id
+ h23-20020a632117000000b003c285f91b6fmr33188965pgh.66.1653576855006; Thu, 26
+ May 2022 07:54:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <lrlDTDkE2cGyZDMRJrwkVF4KpHaPluLMUnA3u3qNqg@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <lrlDTDkE2cGyZDMRJrwkVF4KpHaPluLMUnA3u3qNqg@lists.ettus.com>
-Message-ID-Hash: FRPPJQ7MCXS4IQAUBXQBEMWGJXRVVED6
-X-Message-ID-Hash: FRPPJQ7MCXS4IQAUBXQBEMWGJXRVVED6
-X-MailFrom: patchvonbraun@gmail.com
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Thu, 26 May 2022 10:54:03 -0400
+Message-ID: <CAEXYVK4SbAmwHdL8pkrb=5izfG=xsmPQRqggGbDPgpnxWeeEUw@mail.gmail.com>
+To: luca.vigna@argotecgroup.com
+Message-ID-Hash: A3RUGXFLRXJ4PUFN5ICSU4KGYXIS2H76
+X-Message-ID-Hash: A3RUGXFLRXJ4PUFN5ICSU4KGYXIS2H76
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X300 DDC - Filter Taps
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FRPPJQ7MCXS4IQAUBXQBEMWGJXRVVED6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A3RUGXFLRXJ4PUFN5ICSU4KGYXIS2H76/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4599788523831592612=="
+Content-Type: multipart/mixed; boundary="===============6439224034251228643=="
 
-This is a multi-part message in MIME format.
---===============4599788523831592612==
-Content-Type: multipart/alternative;
- boundary="------------gyY0XdB7RhS7aoKWv05F2ZRk"
-Content-Language: en-US
+--===============6439224034251228643==
+Content-Type: multipart/alternative; boundary="0000000000000dc8b705dfeb5d3a"
 
-This is a multi-part message in MIME format.
---------------gyY0XdB7RhS7aoKWv05F2ZRk
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--0000000000000dc8b705dfeb5d3a
+Content-Type: text/plain; charset="UTF-8"
 
-On 2022-05-26 10:31, luca.vigna@argotecgroup.com wrote:
->
+On Thu, May 26, 2022 at 10:43 AM <luca.vigna@argotecgroup.com> wrote:
+
 > Hi all!
 >
 >
-> I am starting to look through some of the FPGA code of the USRP X300=20
-> in order to understand which is the DDC chain configuration in the=20
-> default image.
+> I am starting to look through some of the FPGA code of the USRP X300 in
+> order to understand which is the DDC chain configuration in the default
+> image.
 >
 >
-> I have understood that in the DDC chain there is 1 CIC filter + 3=20
-> Halfband filters. Since I want to characterize the DDC chain I have=20
-> the following questions:
+> I have understood that in the DDC chain there is 1 CIC filter + 3 Halfband
+> filters. Since I want to characterize the DDC chain I have the following
+> questions:
 >
-> 1.
+>    1.
 >
->     How are they used? I suppose that the halfband filters are used
->     based on the decimation factor we need (max. 1024)
+>    How are they used? I suppose that the halfband filters are used based
+>    on the decimation factor we need (max. 1024)
+>    2.
 >
-> 2.
+>    Which is the order of the CIC filter?
+>    3.
 >
->     Which is the order of the CIC filter?
->
-> 3.
->
->     How many taps each halfband filters have? Which are the taps?
+>    How many taps each halfband filters have? Which are the taps?
 >
 >
-> Thank you in advance,
->
-> Luca
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-Some of that is configured on the *HOST* side, in=20
-host/lib/usrp/cores/rx_dsp_core_3000.cpp=C2=A0=C2=A0 In fact a lot of the=
- DSP=20
-setup and configuration is
- =C2=A0 "orchestrated" on the host side, with the host setting registers =
-on=20
-the FPGA.=C2=A0 The FPGA doesn't really "know" how to configure the DDC c=
-hain=20
-itself--that
- =C2=A0 is determined by the host library.
-
-The filter coefficients and order of the CIC filter is determined in the=20
-FPGA code *somewhere*, but I'm not sure where.=C2=A0 It has literally bee=
-n=20
-nearly a decade since I
- =C2=A0 had all of that in my head.
+Taking a look at the ddc.v file is the best insight.  The cic_decimate has
+an N which is the order it's given:
 
 
---------------gyY0XdB7RhS7aoKWv05F2ZRk
-Content-Type: text/html; charset=UTF-8
+https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/ddc.v#L283
+
+Here it's listed as 4.
+
+In general, the CIC is used for bulk decimation up to 2, 4, or 8x
+oversampled - ideally 8x.  The hbdec1 is the first, hbdec2 is the next, and
+hbdec3 is the last.  Their coefficients can be found here:
+
+
+https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec1.mif
+
+https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec2.mif
+
+https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec3.mif
+
+If the desired decimation rate is divisible by 8, then all 3 halfbands are
+used.  If not, a division by 4 is checked, and 2 are used.  If not, a
+division by 2 is checked and 1 is used.  If not, only the CIC is used.
+
+If you want to test your model against the HDL itself, a testbench is
+located here:
+
+
+https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_ddc/rfnoc_block_ddc_tb.sv
+
+But it's probably easier and much faster to pass samples through the actual
+RFNoC block in a custom graph that just exercises the DDC.
+
+Brian
+
+--0000000000000dc8b705dfeb5d3a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-05-26 10:31,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:luca.vigna@arg=
-otecgroup.com">luca.vigna@argotecgroup.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:lrlDTDkE2cGyZDMRJrwkVF4KpHaPluLMUnA3u3qNqg@lists.ettus.=
-com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Hi all!</p>
-      <p><br>
-      </p>
-      <p>I am starting to look through some of the FPGA code of the USRP
-        X300 in order to understand which is the DDC chain configuration
-        in the default image.</p>
-      <p><br>
-      </p>
-      <p>I have understood that in the DDC chain there is 1 CIC filter +
-        3 Halfband filters. Since I want to characterize the DDC chain I
-        have the following questions:</p>
-      <ol>
-        <li>
-          <p>How are they used? I suppose that the halfband filters are
-            used based on the decimation factor we need (max. 1024)</p>
-        </li>
-        <li>
-          <p>Which is the order of the CIC filter?</p>
-        </li>
-        <li>
-          <p>How many taps each halfband filters have? Which are the
-            taps?</p>
-        </li>
-      </ol>
-      <p><br>
-      </p>
-      <p>Thank you in advance,</p>
-      <p>Luca</p>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    Some of that is configured on the *HOST* side, in=C2=A0
-    host/lib/usrp/cores/rx_dsp_core_3000.cpp=C2=A0=C2=A0 In fact a lot of=
- the DSP
-    setup and configuration is<br>
-    =C2=A0 "orchestrated" on the host side, with the host setting registe=
-rs
-    on the FPGA.=C2=A0 The FPGA doesn't really "know" how to configure th=
-e
-    DDC chain itself--that<br>
-    =C2=A0 is determined by the host library.<br>
-    <br>
-    The filter coefficients and order of the CIC filter is determined in
-    the FPGA code *somewhere*, but I'm not sure where.=C2=A0 It has liter=
-ally
-    been nearly a decade since I<br>
-    =C2=A0 had all of that in my head.<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div dir=3D"ltr">On Thu, May 26, 2022 at 10:43 AM &lt;<a h=
+ref=3D"mailto:luca.vigna@argotecgroup.com">luca.vigna@argotecgroup.com</a>&=
+gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><p>Hi all!</p><p><br></p><p>I am starting to look thr=
+ough some of the FPGA code of the USRP X300 in order to understand which is=
+ the DDC chain configuration in the default image.</p><p><br></p><p>I have =
+understood that in the DDC chain there is 1 CIC filter + 3 Halfband filters=
+. Since I want to characterize the DDC chain I have the following questions=
+:</p><ol><li><p>How are they used? I suppose that the halfband filters are =
+used based on the decimation factor we need (max. 1024)</p></li><li><p>Whic=
+h is the order of the CIC filter?</p></li><li><p>How many taps each halfban=
+d filters have? Which are the taps?</p></li></ol></blockquote><div><br></di=
+v><div>Taking a look at the ddc.v file is the best insight.=C2=A0 The cic_d=
+ecimate has an N which is the order it&#39;s given:</div><div><br></div><di=
+v>=C2=A0=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/blob/5333d3d1=
+2ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/ddc.v#L283">https://g=
+ithub.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/f=
+pga/usrp3/lib/rfnoc/ddc.v#L283</a></div><div><br></div><div>Here it&#39;s l=
+isted as 4.</div><div><br></div><div>In general, the CIC is used for bulk d=
+ecimation up to 2, 4, or 8x oversampled - ideally 8x.=C2=A0 The hbdec1 is t=
+he first, hbdec2 is the next, and hbdec3 is the last.=C2=A0 Their coefficie=
+nts can be found here:</div><div><br></div><div>=C2=A0=C2=A0<a href=3D"http=
+s://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e=
+57f/fpga/usrp3/top/x300/coregen_dsp/hbdec1.mif">https://github.com/EttusRes=
+earch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300=
+/coregen_dsp/hbdec1.mif</a></div><div>=C2=A0=C2=A0<a href=3D"https://github=
+.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/u=
+srp3/top/x300/coregen_dsp/hbdec2.mif">https://github.com/EttusResearch/uhd/=
+blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_d=
+sp/hbdec2.mif</a></div><div>=C2=A0=C2=A0<a href=3D"https://github.com/Ettus=
+Research/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x=
+300/coregen_dsp/hbdec3.mif">https://github.com/EttusResearch/uhd/blob/5333d=
+3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec3.=
+mif</a></div><div><br></div><div>If the desired decimation rate is divisibl=
+e by 8, then all 3 halfbands are used.=C2=A0 If not, a division by 4 is che=
+cked, and 2 are used.=C2=A0 If not, a division by 2 is checked and 1 is use=
+d.=C2=A0 If not, only the CIC is used.</div><div><br></div><div>If you want=
+ to test your model against the HDL itself, a testbench is located here:</d=
+iv><div><br></div><div>=C2=A0=C2=A0<a href=3D"https://github.com/EttusResea=
+rch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/=
+blocks/rfnoc_block_ddc/rfnoc_block_ddc_tb.sv">https://github.com/EttusResea=
+rch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/=
+blocks/rfnoc_block_ddc/rfnoc_block_ddc_tb.sv</a></div><div><br></div><div>B=
+ut it&#39;s probably easier and much faster to pass samples through the act=
+ual RFNoC block in a custom graph that just exercises the DDC.</div><div><b=
+r></div><div>Brian</div></div></div>
 
---------------gyY0XdB7RhS7aoKWv05F2ZRk--
+--0000000000000dc8b705dfeb5d3a--
 
---===============4599788523831592612==
+--===============6439224034251228643==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -241,4 +209,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4599788523831592612==--
+--===============6439224034251228643==--
