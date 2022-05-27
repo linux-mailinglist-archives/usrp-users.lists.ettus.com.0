@@ -2,262 +2,330 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B92153518C
-	for <lists+usrp-users@lfdr.de>; Thu, 26 May 2022 17:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34BB9535726
+	for <lists+usrp-users@lfdr.de>; Fri, 27 May 2022 02:37:52 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 79263384B3E
-	for <lists+usrp-users@lfdr.de>; Thu, 26 May 2022 11:38:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A479B3845EC
+	for <lists+usrp-users@lfdr.de>; Thu, 26 May 2022 20:37:50 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1653579527; bh=+p5jWcp7/pfORepGtDKygDn/+zzmT9a45jMYC8cEM8Y=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=IEttIbqOlVY2TTsWbusx/7xWX/emlppzz6BJ/VnvhXMU5H1/uXVEKFyuovkWlxG4X
-	 H2HzEaph6QJvyBldZI9OC1D4qz6eYxIn9OHSXvxPK5EGErMdP9j+ZSl0nD6x0m0zGu
-	 0XM8GCIuyOxQm8WTVSuetbFfhDi0nLz5Pni0JLk8oKg7fl7g3WAjylQuoTDJPPR59q
-	 ioIqs6M4GPoSNtWg0gS/xRvrIWQOeigbonlHLeSwHoFvUsRquwXUeABFSdiCGs3You
-	 oRVaPgZu8dcHwKTdttU/YvRB8WFtmbJICZfzUIVfscVPPesRLRuZ93tA88rf87qaaR
-	 icLE0wHzLpvMQ==
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id B5CB63849E3
-	for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 11:37:49 -0400 (EDT)
+	t=1653611870; bh=DucHAI++ZEl0nGQD4QP1Vi8ukHKlCoZ8z72U7L0kEC4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=RrVzyg7YpM+fPuUa4ywJVt2wKf3e1JlEFC+chBrCM6LxuGq1FGyWXjYU0ZS4/+iBU
+	 Z1qJbFfxNULN1YsNkz5hCghQ6Pw7oBBz+kTlxYZXzfGUbHzJ0G8X/PCDKeNTh4FZOa
+	 mUG47DpcEt6JFFbGbyVbhV3tV+a0XXj5v/j0momxBYQro2nfrSir/0mr9IMILkxyib
+	 f3r75Kl2Fb/ZThutBEVd3amdxLs3ah5S0rTD5SCHFJzmJIcYdnxGrb1hP9euJ+jAMO
+	 DYjKrobkLRnDpavAosooWwZpqcwN/2CmrREGIz7+u+ic+vzC/8fuzzoNW5XLVFO1PR
+	 TxU1pLEbOHjMg==
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3B79B3847FE
+	for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 20:36:50 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="wVHrFBh7";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qfs+QNBj";
 	dkim-atps=neutral
-Received: by mail-yb1-f180.google.com with SMTP id o80so3564700ybg.1
-        for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 08:37:49 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id j3so2779053qvn.0
+        for <usrp-users@lists.ettus.com>; Thu, 26 May 2022 17:36:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ArWZXu7A/85uWXkMKGO+OKW8TxFnBW5tU7gP5by3xSQ=;
-        b=wVHrFBh7VeHNvc+8HeHA6ZsEXNXok1fx8NcyV0hMAn3aMJp56AgsXLlSFJUeAiaoQ1
-         Pio+cD3taTVJyMO1blBq66bqv7WI00ckQE+tOMMCgDE3rvAWfUUKLGI4OQtUr5JjMKyT
-         /aYBy20LdDcePkJSywkDH4O76BTsCzp9vzwhgVvASWHO6nNzVjyjKKFzbXQkZKTVFvqz
-         0DeZv0jGSAr2+WV4ZnT2WDo0zfVGWO6gdIV0Ld2UYLwZ46uW6s58CPhbtfTQtM6DuRj1
-         ddouVOgcLuD0r0I+p0Ls/r8r8snyf0znoFDgRSwju9evgomsGZAkRLFAGLxLV/Qjy21D
-         q13g==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=DC8Lf/7AaMv7k9M2/zhH2VPKsbAJeFlQgNMVr1wQE1o=;
+        b=qfs+QNBjwM4P9dWC3VL4U/qe1LCFlS7Wd5q62Be08li796UNdB80JXUy7MuCAZgZKX
+         CjnY2e7uKksIaLTn2T48lBS6BngYD4GY6gvPn5J8Fk4HAzN/8w7sGHwTzL32hATlyE1s
+         An81a6RDZZWDMi8RncNYoKqjw9aTeEep0JDCd4JDlv8oUJrTgsZxmDxgiIhjS0ePxpcM
+         UUqj12KjYuBi2UKFySGacMir7pRN13NwQnk0+pRgpvXs2rgcwttGXDlShb1MhNRDdW0u
+         pFk6BtZSPfu/2Vo8SpzLMELOM7KP2Wc5UpNurEjmGzEZJt/5BGAZBAdROSQh50UAv5KJ
+         43Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ArWZXu7A/85uWXkMKGO+OKW8TxFnBW5tU7gP5by3xSQ=;
-        b=XC+7CsNiRgCKhOs3TQX6g5ilSajzBBGjYYE1NlKHb7uwsCMNtOejg6XArqHT8cJz/W
-         OSfEF6Tc+duJ7oDsdksRHaSddMuRRKa6d0kWxNDG1x7vaLjEXp2I6EQ4LL8fuHSEMVe0
-         FJd30RPx99eZlU16ZNke9DBiljFELoEIhlXBZ43pHiDSNV7f5GZmkpcRuSAGFxkATIMG
-         mCvvZ21TrHsHc1Xd8EMcr7I+nua1QeJsL1PtO2YsTaSo+52r3u1yRTanY38MLW4PYO8X
-         qkmDV1x6PE0kKSZsGdbob63QNZz0yh0KlVB6QftGBxaMa3hid2caKIE0Qa2wq5poJLXj
-         LM7Q==
-X-Gm-Message-State: AOAM530CPyK9J3EvGFjubgtNElkCn8l7Sz9vuQWTjTnurgfL8xlDShYA
-	SiqjZxeGRsbuUfPEKSlKaF1cnjKJh+bSrqTcBWjjS+g/vk2JxNfB
-X-Google-Smtp-Source: ABdhPJyHtsmwiaCo5XQjEpILjzQF4vMhYtZrMjEqcv/E3k+vkHSE0dUqnko0m8xyI+w3Ew1RF/huoeTeb/xEz+Zbru8=
-X-Received: by 2002:a25:2583:0:b0:657:952e:e9aa with SMTP id
- l125-20020a252583000000b00657952ee9aamr1784669ybl.476.1653579468973; Thu, 26
- May 2022 08:37:48 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=DC8Lf/7AaMv7k9M2/zhH2VPKsbAJeFlQgNMVr1wQE1o=;
+        b=FZuCAdKwRsMo/OVSvbTlll90TwMgwnKjtWgEVznX0j2P51nRjADmZTANVkoZxnAUSN
+         2IcGNEO81SL4Cydz12VH4c9FBqmUGLaZkrildcwhwVRiZayjD10Pa6jXhwrNGEO+Q8/s
+         sB8gup2+XM7b3fKBVQLDZFBkyjYm4uNLU0r/g+CUD+IJjFEh3zqy2nxxl1DarftVaqLi
+         ioURqOtj9Etj/q9uY3qjxYon7Y6gkhng8lSGvQoycU5rR0CN5DMoGMYKjNOSUP6Tx+kg
+         ez+IfOKWu42DDB9nmWnOlxQOARQHhalf5wcbbgANyGD7QCZGXFeHODZM7/IRwZasjWxu
+         rAIg==
+X-Gm-Message-State: AOAM5333GOYX/Nb8PPKTOKknp+iVcOCo4plpW0pr1N8AGD4NimmJe+OP
+	bDcnhva1jhciEdUOR8d254YNlZhZThI=
+X-Google-Smtp-Source: ABdhPJy1jl4APE6d4UXb7N+1KAedTpjQWRlDSgnrgawfJh/apOUmHJQEzsdpiOKAsUskytoWNlweEw==
+X-Received: by 2002:a05:6214:887:b0:462:5da8:ad42 with SMTP id cz7-20020a056214088700b004625da8ad42mr12893101qvb.69.1653611809615;
+        Thu, 26 May 2022 17:36:49 -0700 (PDT)
+Received: from [192.168.2.237] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id p1-20020a37bf01000000b0069fc13ce1e3sm2060263qkf.20.2022.05.26.17.36.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 May 2022 17:36:49 -0700 (PDT)
+Message-ID: <b47df687-ef8c-f21e-bc28-cb675c982d23@gmail.com>
+Date: Thu, 26 May 2022 20:36:48 -0400
 MIME-Version: 1.0
-References: <lrlDTDkE2cGyZDMRJrwkVF4KpHaPluLMUnA3u3qNqg@lists.ettus.com> <CAEXYVK4SbAmwHdL8pkrb=5izfG=xsmPQRqggGbDPgpnxWeeEUw@mail.gmail.com>
-In-Reply-To: <CAEXYVK4SbAmwHdL8pkrb=5izfG=xsmPQRqggGbDPgpnxWeeEUw@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Thu, 26 May 2022 10:37:33 -0500
-Message-ID: <CAFche=j7a3TpJcqM1aufQCnSOMRm1sL4Xux8Xf1kBDvoYzc1zw@mail.gmail.com>
-To: Brian Padalino <bpadalino@gmail.com>
-Message-ID-Hash: VU232WDSC7BUM5IKUET6ILG6OGUGCFLK
-X-Message-ID-Hash: VU232WDSC7BUM5IKUET6ILG6OGUGCFLK
-X-MailFrom: wade.fife@ettus.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: en-US
+To: rouba zeitoun <roubazeitoun@gmail.com>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <CAHqKquykntg2BXbxMoZd21KPjmF1w_KZ7ahtghdj=MkbDHGdRQ@mail.gmail.com>
+ <f276da5b-aff2-2bea-6a49-a86b372cf08f@gmail.com>
+ <CAHqKquwxtYRHdaX503VP-eRwo+p9NU9Eu-fLi85vzjagW1y9AQ@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAHqKquwxtYRHdaX503VP-eRwo+p9NU9Eu-fLi85vzjagW1y9AQ@mail.gmail.com>
+Message-ID-Hash: 7OLMRP5YJPS6MXJS2BVGKXPEAAZLGAA2
+X-Message-ID-Hash: 7OLMRP5YJPS6MXJS2BVGKXPEAAZLGAA2
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: luca.vigna@argotecgroup.com, "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X300 DDC - Filter Taps
+Subject: [USRP-users] Re: unmet dependencies libuhd4.2.0
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VU232WDSC7BUM5IKUET6ILG6OGUGCFLK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7OLMRP5YJPS6MXJS2BVGKXPEAAZLGAA2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6323475747850585808=="
+Content-Type: multipart/mixed; boundary="===============3979255507279926797=="
 
---===============6323475747850585808==
-Content-Type: multipart/alternative; boundary="000000000000db3fad05dfebf85d"
+This is a multi-part message in MIME format.
+--===============3979255507279926797==
+Content-Type: multipart/alternative;
+ boundary="------------uxOgb7HzNxsSlaOV2UaWKGdJ"
+Content-Language: en-US
 
---000000000000db3fad05dfebf85d
-Content-Type: text/plain; charset="UTF-8"
-
- If you prefer the coefficients in decimal, they are pulled from this file
-for the first and second stage:
-
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hb47.coe
-
-And this file for the third stage:
-
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hb63.coe
-
-Those COE files are referenced in the CoreGen IP files for these filters.
-You can see all the IP settings here:
-
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hbdec1.xco
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hbdec2.xco
-https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hbdec3.xco
-
-Wade
-
-On Thu, May 26, 2022 at 10:22 AM Brian Padalino <bpadalino@gmail.com> wrote:
-
-> On Thu, May 26, 2022 at 10:43 AM <luca.vigna@argotecgroup.com> wrote:
->
->> Hi all!
->>
->>
->> I am starting to look through some of the FPGA code of the USRP X300 in
->> order to understand which is the DDC chain configuration in the default
->> image.
->>
->>
->> I have understood that in the DDC chain there is 1 CIC filter + 3
->> Halfband filters. Since I want to characterize the DDC chain I have the
->> following questions:
->>
->>    1.
->>
->>    How are they used? I suppose that the halfband filters are used based
->>    on the decimation factor we need (max. 1024)
->>    2.
->>
->>    Which is the order of the CIC filter?
->>    3.
->>
->>    How many taps each halfband filters have? Which are the taps?
->>
->>
-> Taking a look at the ddc.v file is the best insight.  The cic_decimate has
-> an N which is the order it's given:
->
->
-> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/ddc.v#L283
->
-> Here it's listed as 4.
->
-> In general, the CIC is used for bulk decimation up to 2, 4, or 8x
-> oversampled - ideally 8x.  The hbdec1 is the first, hbdec2 is the next, and
-> hbdec3 is the last.  Their coefficients can be found here:
->
->
-> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec1.mif
->
-> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec2.mif
->
-> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec3.mif
->
-> If the desired decimation rate is divisible by 8, then all 3 halfbands are
-> used.  If not, a division by 4 is checked, and 2 are used.  If not, a
-> division by 2 is checked and 1 is used.  If not, only the CIC is used.
->
-> If you want to test your model against the HDL itself, a testbench is
-> located here:
->
->
-> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_ddc/rfnoc_block_ddc_tb.sv
->
-> But it's probably easier and much faster to pass samples through the
-> actual RFNoC block in a custom graph that just exercises the DDC.
->
-> Brian
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000db3fad05dfebf85d
-Content-Type: text/html; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------uxOgb7HzNxsSlaOV2UaWKGdJ
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">
-<div>If you prefer the coefficients in decimal, they are pulled from this f=
-ile for the first and second stage:</div><div><br></div><div><a href=3D"htt=
-ps://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_d=
-sp/hb47.coe">https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/to=
-p/x300/coregen_dsp/hb47.coe</a></div><div><br></div><div>And this file for =
-the third stage:</div><div><br></div><div><a href=3D"https://github.com/Ett=
-usResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hb63.coe">https:=
-//github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/=
-hb63.coe</a></div><div><br></div><div>Those COE files are referenced in the=
- CoreGen IP files for these filters. You can see all the IP settings here:<=
-br></div><div><br></div><div><a href=3D"https://github.com/EttusResearch/uh=
-d/blob/master/fpga/usrp3/top/x300/coregen_dsp/hbdec1.xco">https://github.co=
-m/EttusResearch/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hbdec1.xco<=
-/a></div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/master/f=
-pga/usrp3/top/x300/coregen_dsp/hbdec2.xco">https://github.com/EttusResearch=
-/uhd/blob/master/fpga/usrp3/top/x300/coregen_dsp/hbdec2.xco</a></div><div><=
-a href=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/x=
-300/coregen_dsp/hbdec3.xco">https://github.com/EttusResearch/uhd/blob/maste=
-r/fpga/usrp3/top/x300/coregen_dsp/hbdec3.xco</a></div><div><br></div><div>W=
-ade</div>
+On 2022-05-26 02:56, rouba zeitoun wrote:
+> Hello=C2=A0Marcus,
+>
+> I had installed it a couple of months ago, it was a general upgrade=20
+> through the terminal (using "sudo apt upgrade"), also i checked my=20
+> ubuntu version and yes it is bionic.
+>
+> thank you for your support
+>
+> Kind Regards
+> Rouba
+What I would try to do is to completely uninstall UHD first, then try to=20
+do a 4.2 install from the PPA.=C2=A0=C2=A0=C2=A0 But, to be honest, I'm a=
+ bit surprised=20
+that sometime
+ =C2=A0 as modern as UHD 4.2 will even build for Ubuntu 18.04.=C2=A0 The =
+current=20
+LTS release of Ubuntu is 22.04, and I've been running 21.10 for over a ye=
+ar.
 
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Thu, May 26, 2022 at 10:22 AM Brian Padalino &lt;<a href=3D"mailto:bpada=
-lino@gmail.com">bpadalino@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Thu=
-, May 26, 2022 at 10:43 AM &lt;<a href=3D"mailto:luca.vigna@argotecgroup.co=
-m" target=3D"_blank">luca.vigna@argotecgroup.com</a>&gt; wrote:<br></div><d=
-iv class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<p>Hi all!</p><p><br></p><p>I am starting to look through some of the FPGA =
-code of the USRP X300 in order to understand which is the DDC chain configu=
-ration in the default image.</p><p><br></p><p>I have understood that in the=
- DDC chain there is 1 CIC filter + 3 Halfband filters. Since I want to char=
-acterize the DDC chain I have the following questions:</p><ol><li><p>How ar=
-e they used? I suppose that the halfband filters are used based on the deci=
-mation factor we need (max. 1024)</p></li><li><p>Which is the order of the =
-CIC filter?</p></li><li><p>How many taps each halfband filters have? Which =
-are the taps?</p></li></ol></blockquote><div><br></div><div>Taking a look a=
-t the ddc.v file is the best insight.=C2=A0 The cic_decimate has an N which=
- is the order it&#39;s given:</div><div><br></div><div>=C2=A0=C2=A0<a href=
-=3D"https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c=
-7f68d82e57f/fpga/usrp3/lib/rfnoc/ddc.v#L283" target=3D"_blank">https://gith=
-ub.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga=
-/usrp3/lib/rfnoc/ddc.v#L283</a></div><div><br></div><div>Here it&#39;s list=
-ed as 4.</div><div><br></div><div>In general, the CIC is used for bulk deci=
-mation up to 2, 4, or 8x oversampled - ideally 8x.=C2=A0 The hbdec1 is the =
-first, hbdec2 is the next, and hbdec3 is the last.=C2=A0 Their coefficients=
- can be found here:</div><div><br></div><div>=C2=A0=C2=A0<a href=3D"https:/=
-/github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f=
-/fpga/usrp3/top/x300/coregen_dsp/hbdec1.mif" target=3D"_blank">https://gith=
-ub.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga=
-/usrp3/top/x300/coregen_dsp/hbdec1.mif</a></div><div>=C2=A0=C2=A0<a href=3D=
-"https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f6=
-8d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec2.mif" target=3D"_blank">http=
-s://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e=
-57f/fpga/usrp3/top/x300/coregen_dsp/hbdec2.mif</a></div><div>=C2=A0=C2=A0<a=
- href=3D"https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a=
-9ea1c7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec3.mif" target=3D"_bla=
-nk">https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c=
-7f68d82e57f/fpga/usrp3/top/x300/coregen_dsp/hbdec3.mif</a></div><div><br></=
-div><div>If the desired decimation rate is divisible by 8, then all 3 halfb=
-ands are used.=C2=A0 If not, a division by 4 is checked, and 2 are used.=C2=
-=A0 If not, a division by 2 is checked and 1 is used.=C2=A0 If not, only th=
-e CIC is used.</div><div><br></div><div>If you want to test your model agai=
-nst the HDL itself, a testbench is located here:</div><div><br></div><div>=
-=C2=A0=C2=A0<a href=3D"https://github.com/EttusResearch/uhd/blob/5333d3d12f=
-fc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/blocks/rfnoc_block_ddc/=
-rfnoc_block_ddc_tb.sv" target=3D"_blank">https://github.com/EttusResearch/u=
-hd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/fpga/usrp3/lib/rfnoc/block=
-s/rfnoc_block_ddc/rfnoc_block_ddc_tb.sv</a></div><div><br></div><div>But it=
-&#39;s probably easier and much faster to pass samples through the actual R=
-FNoC block in a custom graph that just exercises the DDC.</div><div><br></d=
-iv><div>Brian</div></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+sudo apt remove uhd uhd-host
 
---000000000000db3fad05dfebf85d--
 
---===============6323475747850585808==
+>
+> On Wed, May 25, 2022 at 7:23 PM Marcus D. Leech=20
+> <patchvonbraun@gmail.com> wrote:
+>
+>     On 2022-05-25 04:27, rouba zeitoun wrote:
+>>     Hello USRP Support
+>>
+>>     Hope you have a nice day.
+>>
+>>     I was trying to upgrade my system and i got this message
+>>
+>>     *You might want to run 'apt --fix-broken install' to correct these=
+.
+>>     The following packages have unmet dependencies:
+>>     =C2=A0libuhd-dev : Depends: libuhd4.2.0 (=3D 4.2.0.0-0ubuntu1~bion=
+ic1)
+>>     but it is not installed
+>>     =C2=A0uhd-host : Depends: libuhd4.2.0 (=3D 4.2.0.0-0ubuntu1~bionic=
+1) but
+>>     it is not installed
+>>     E: Unmet dependencies. Try 'apt --fix-broken install' with no
+>>     packages (or specify a solution).*
+>>
+>>     after i tried *' sudo apt --fix-broken install' *i got this=C2=A0e=
+rror
+>>
+>>     *dpkg: error processing archive
+>>     /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~bionic1_amd64=
+.deb
+>>     (--unpack):
+>>     =C2=A0trying to overwrite '/usr/share/uhd/cal/cal_metadata.fbs', w=
+hich
+>>     is also in package libuhd4.1.0:amd64 4.1.0.4-0ubuntu1~bionic1
+>>     Errors were encountered while processing:
+>>     =C2=A0/var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~bionic1=
+_amd64.deb
+>>     E: Sub-process /usr/bin/dpkg returned an error code (1)*
+>>     *
+>>     *
+>>     How may I solve this=C2=A0problem?
+>>
+>>     Kind Regards
+>>     Rouba
+>>
+>     How did you install UHD initially?=C2=A0 What did you do to try to
+>     upgrade?=C2=A0=C2=A0 I'll note that "Bionic" is a version of Ubuntu=
+ that is
+>     quite out-of-date at this point, but there do
+>     =C2=A0 appear=C2=A0 to be PPA for UHD 4.2 for bionic.
+>
+>
+>
+>
+>     _______________________________________________
+>     USRP-users mailing list -- usrp-users@lists.ettus.com
+>     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--------------uxOgb7HzNxsSlaOV2UaWKGdJ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-05-26 02:56, rouba zeitoun
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAHqKquwxtYRHdaX503VP-eRwo+p9NU9Eu-fLi85vzjagW1y9AQ@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">Hello=C2=A0Marcus,
+        <div><br>
+        </div>
+        <div>I had installed it a couple of months ago, it was a general
+          upgrade through the terminal (using "sudo apt upgrade"), also
+          i checked my ubuntu version and yes it is bionic.</div>
+        <div><br>
+        </div>
+        <div>thank you for your support</div>
+        <div><br>
+        </div>
+        <div>Kind Regards</div>
+        <div>Rouba</div>
+      </div>
+    </blockquote>
+    What I would try to do is to completely uninstall UHD first, then
+    try to do a 4.2 install from the PPA.=C2=A0=C2=A0=C2=A0 But, to be ho=
+nest, I'm a
+    bit surprised that sometime<br>
+    =C2=A0 as modern as UHD 4.2 will even build for Ubuntu 18.04.=C2=A0 T=
+he
+    current LTS release of Ubuntu is 22.04, and I've been running 21.10
+    for over a year.<br>
+    <br>
+    sudo apt remove uhd uhd-host<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAHqKquwxtYRHdaX503VP-eRwo+p9NU9Eu-fLi85vzjagW1y9AQ@mail.gmai=
+l.com"><br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 25, 2022 at 7:2=
+3
+          PM Marcus D. Leech &lt;<a
+            href=3D"mailto:patchvonbraun@gmail.com" moz-do-not-send=3D"tr=
+ue"
+            class=3D"moz-txt-link-freetext">patchvonbraun@gmail.com</a>&g=
+t;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <div>On 2022-05-25 04:27, rouba zeitoun wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">Hello USRP Support
+                <div><br>
+                </div>
+                <div>Hope you have a nice day.</div>
+                <div><br>
+                </div>
+                <div>I was trying to upgrade my system and i got this
+                  message=C2=A0=C2=A0</div>
+                <div><br>
+                </div>
+                <div><b>You might want to run 'apt --fix-broken install'
+                    to correct these.<br>
+                    The following packages have unmet dependencies:<br>
+                    =C2=A0libuhd-dev : Depends: libuhd4.2.0 (=3D
+                    4.2.0.0-0ubuntu1~bionic1) but it is not installed<br>
+                    =C2=A0uhd-host : Depends: libuhd4.2.0 (=3D
+                    4.2.0.0-0ubuntu1~bionic1) but it is not installed<br>
+                    E: Unmet dependencies. Try 'apt --fix-broken
+                    install' with no packages (or specify a solution).</b=
+><br>
+                </div>
+                <div><br>
+                </div>
+                <div>after i tried=C2=A0<b>' sudo apt --fix-broken instal=
+l' </b>i
+                  got this=C2=A0error</div>
+                <div><br>
+                </div>
+                <div><b>dpkg: error processing archive
+                    /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~=
+bionic1_amd64.deb
+                    (--unpack):<br>
+                    =C2=A0trying to overwrite
+                    '/usr/share/uhd/cal/cal_metadata.fbs', which is also
+                    in package libuhd4.1.0:amd64
+                    4.1.0.4-0ubuntu1~bionic1<br>
+                    Errors were encountered while processing:<br>
+=C2=A0/var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~bionic1_amd64.=
+deb<br>
+                    E: Sub-process /usr/bin/dpkg returned an error code
+                    (1)</b><br>
+                </div>
+                <div><b><br>
+                  </b></div>
+                <div>How may I solve this=C2=A0problem?</div>
+                <div><br>
+                </div>
+                <div>Kind Regards</div>
+                <div>Rouba</div>
+              </div>
+              <br>
+            </blockquote>
+            How did you install UHD initially?=C2=A0 What did you do to t=
+ry
+            to upgrade?=C2=A0=C2=A0 I'll note that "Bionic" is a version =
+of Ubuntu
+            that is quite out-of-date at this point, but there do<br>
+            =C2=A0 appear=C2=A0 to be PPA for UHD 4.2 for bionic.<br>
+            <br>
+            <br>
+            <br>
+            <br>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a
+            href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">usrp=
+-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a
+            href=3D"mailto:usrp-users-leave@lists.ettus.com"
+            target=3D"_blank" moz-do-not-send=3D"true"
+            class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.=
+com</a><br>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------uxOgb7HzNxsSlaOV2UaWKGdJ--
+
+--===============3979255507279926797==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -267,4 +335,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6323475747850585808==--
+--===============3979255507279926797==--
