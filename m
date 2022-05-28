@@ -2,359 +2,272 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 095165363B4
-	for <lists+usrp-users@lfdr.de>; Fri, 27 May 2022 16:04:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA7E536B10
+	for <lists+usrp-users@lfdr.de>; Sat, 28 May 2022 08:16:21 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 46F2C384A33
-	for <lists+usrp-users@lfdr.de>; Fri, 27 May 2022 10:04:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8F5F038459F
+	for <lists+usrp-users@lfdr.de>; Sat, 28 May 2022 02:16:20 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1653660257; bh=f/jn99Qz1zVVZ+3j+PmhwJ8YB4eTyenjfKwbIjJ0R2k=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=aCV919duZd4uWKntzDmoQpEBV7F+OptdGIahbRtc6M2REOZ+5duw94JmvUOMjNxQa
-	 lo1nciWT460h6bDcWY52Zw4ZZGqTdJgEx6SvDiXpJxGfqTF6sZ1iZHx0jeNsYzCqiC
-	 uuPH2DI9EKVGB0fIZ76i/DsincJgUurPAirM/T/4H8mCmvvE7VBIancpfKf46EdNpF
-	 tMGgwaX77ik9EoF1qRItRVH8iyiuTSiYaojCMUmd/TL99sPig9yocDAkI8WGOMqoaQ
-	 iyKQGaq5MNCGAptyclkDEEaB3asWBx9zA8scPswXW3KLfBahkQyrpuwlfms5cSbiGe
-	 EwzloM/Jbv+8w==
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id EE17A3845AC
-	for <usrp-users@lists.ettus.com>; Fri, 27 May 2022 10:03:15 -0400 (EDT)
+	t=1653718580; bh=SmArc/2qZM22pfzaktau0hAKIzuICR2dCdpdtImJRo0=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=ucH+VWA3JgJr+M6O75GtJ3pSep4bYoNKy59x48/3TtaTQn1PAAjJikC9RFi1I9Ysm
+	 k+teIB3Sm6sQM3AFImU2yXSuB9JqN1HJkjLXQ+Qtc8LCKDaOTq0pjX8RChBZuxUW9F
+	 OpGVAJkUk0px6U+emVKs/PKunqLqXrgLMwB7TfJRZX9Yb0lSoYxgT55redbxncBHeD
+	 dOP83P27GFywZOxlyKsyt7UrkESChq1uL5eOrsZBQchaarUrbFkNUePdtX1r2Kbd8E
+	 AdPy6EHm+GKvBJx98DkG3hEtv+12DHXAEJpQLUctAlXdfueZV7cx9iXPPMlPeyiFRF
+	 SMSYWYlX+J8xA==
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id D2089384538
+	for <usrp-users@lists.ettus.com>; Sat, 28 May 2022 02:15:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="zgtuJdjE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="efdrsDFj";
 	dkim-atps=neutral
-Received: by mail-oi1-f169.google.com with SMTP id i66so5744996oia.11
-        for <usrp-users@lists.ettus.com>; Fri, 27 May 2022 07:03:15 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id l204so403631ybf.10
+        for <usrp-users@lists.ettus.com>; Fri, 27 May 2022 23:15:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=euZwBfBxUdulRa4M+W3ovNg/FkUMWhJqNzG+5RXQgPA=;
-        b=zgtuJdjEBTfuVgxY4lLBvFJGVQKTf6dQw6ZsiOSFTdho6vqVFluKybojFgBizM5xFZ
-         AiHetTNr9UHsCRZBN0v9L0QmydkuaE2qlzqNXcoXqpRnUr/5QGv66/tSW4GUUR/VRFCv
-         m0fuwZTGHhA+ANaBEMwStDJxTAzk1gIQpv3AYbIQVHW52oUY/md8uoL/gnvUiUfMf3Jk
-         gNfxWlYh0P5CO0abDdrP4RJ5al0D5238RPSbYv+PHl7CcuG3f8tHz1DZ5DepiKGWO1K5
-         nrxSNatvUc6z345LBjg1Lrcwzo1vsCpo7LxldchQYD7I7wQnHmmLibeShAlBXg9obh70
-         pNmg==
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=CQ7g4GVobd7G5VxwAi+75BuJ67pJ5eLoP8AmVjdRV68=;
+        b=efdrsDFj4tqF8vbKAozLarzxRQL4w0UET/IBnFI9pSJbCF4p3TqvCxpqhGMxLYsjW2
+         fcOGbdykueqOMIQz7QB4ybMRb6ei2f/O3/JqiOuBdndgmDRZpv3W+uPPxqLbGJAdIkMq
+         srWYVZMpSxcZHqxrjUJ1TN/fZFx37Jh4h0Qtt3ABRMUBmwVhQ30z7UWXHfmmsQfQtsfI
+         mz6n+vcC1DmfpIhFUdymfA+yYJqIPljkTa1/bC1clEByBJEyAlMXStkFKmkwWeQyfBx4
+         JstbxtrBDY4bvdzkQp0pEuAvAXPCWt7724emPET3g2Vgy/ZTROGWBdkyXB/3ZkbvEISa
+         VmXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=euZwBfBxUdulRa4M+W3ovNg/FkUMWhJqNzG+5RXQgPA=;
-        b=dkdhKVUuh9QQKfJYvwmwHCeiu/T2znsk3JemVsTUl9YThN7y/p1rwGkuRqdYpX7QnW
-         hSAVvAncq0xgel4ewxfpRiW6gHAOm0w/Zx+PQ8RmQvaHRpCPHhkQ8N7Er+BccbqH+jDP
-         EcTJ1gLOZowwaNeqWdHdGqLI0o0TpF5yZlCRg831rp2lM71umYkEWX5rtN/Z5Pty5e/x
-         mBgjfXk0jo+xE1blPkUWybCB8TgKrXtCZgf7JmsRKbMZB/oMlRFo6tHIgD1VzPtMoxg6
-         2HVtxzPi2AECkFbLa2aU5iQrG3Y0wyC6OSebfO1VrOIq42/ZB+1ao39LEhZuAjEefJEi
-         C/cA==
-X-Gm-Message-State: AOAM533XrdYqcSLcRpVczMAAvBnKvgXftZ6Rio7HpvHg2cHqywp+ZlBs
-	ca+aqvaA0NBf8cVU5UNsRQfhFTNaHxn9o6na9n7Rr+l3PTAuWzSD
-X-Google-Smtp-Source: ABdhPJwdhJUm/HTSmk5rQPzbNvDDMrBrgoXetSnYAXSh7oXUSEmewcZVxpeKp9q7HO5UIfzr1y/b2Ck5tJmQGudiors=
-X-Received: by 2002:aca:2314:0:b0:32b:6ea3:70a5 with SMTP id
- e20-20020aca2314000000b0032b6ea370a5mr3972863oie.157.1653660193574; Fri, 27
- May 2022 07:03:13 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=CQ7g4GVobd7G5VxwAi+75BuJ67pJ5eLoP8AmVjdRV68=;
+        b=iN4NFBwlcS+jAoklbAQkVHZGrAPREMsF9hZ4zja9RboveCwAchLvg6yCCtyrdOgGX4
+         Rg/Xf6SXLsbd3PsIRZRZOcPlOo72qTF7e9HSFOzpdpcGYD4262ZSO9vJP4tLGuGTQfU5
+         PcFn8lVqSISKR3icVZNUgjWT9cDjkO85l/Kvn+CQvYVweBfGb0LRFJilcr+f6/0QKm78
+         wd+gzrb+850+9/DCzPOpy1KoZ5URJgrr3lphVQlnPUMA4dwqDdzgZg47XLRF7uVlsIP7
+         oBiv2CSF7N1Sn+g34tHV/2JmHNBkMxR0USbucyKg69wpbQXjGEy4WCbNJ/2qIfwkOC/L
+         VRgw==
+X-Gm-Message-State: AOAM531nv9WeIilctXrbaxZBvfxDxcEXJ+jBuLjGcvrVSeorDvG3TEJB
+	7N9PDQ3NiMuO4zaIdmjBa2kH3kiBgivL7IqvDMMmeDrTFq3Bq7bDxbY=
+X-Google-Smtp-Source: ABdhPJxO4vpYBDyxpp0JcoWZqpB7t20kXC1lwh09Eh7ro9eFlJ0TGDHhuy7merlAQeUpA4pMKs8rlkh8wjnZFQjzR1g=
+X-Received: by 2002:a25:47c1:0:b0:64a:9f13:61c7 with SMTP id
+ u184-20020a2547c1000000b0064a9f1361c7mr45179110yba.464.1653718511251; Fri, 27
+ May 2022 23:15:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAHqKquykntg2BXbxMoZd21KPjmF1w_KZ7ahtghdj=MkbDHGdRQ@mail.gmail.com>
- <f276da5b-aff2-2bea-6a49-a86b372cf08f@gmail.com> <CAHqKquwxtYRHdaX503VP-eRwo+p9NU9Eu-fLi85vzjagW1y9AQ@mail.gmail.com>
- <b47df687-ef8c-f21e-bc28-cb675c982d23@gmail.com>
-In-Reply-To: <b47df687-ef8c-f21e-bc28-cb675c982d23@gmail.com>
-From: Michael Dickens <michael.dickens@ettus.com>
-Date: Fri, 27 May 2022 10:03:02 -0400
-Message-ID: <CAGNhwTOg+-AGFkKh6ZNwpx5USvNiSP+P70rz8iChP7JrcNs2-A@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: YRP4B5SRB6AQTGJ23BLURBQHPSMVFBZI
-X-Message-ID-Hash: YRP4B5SRB6AQTGJ23BLURBQHPSMVFBZI
-X-MailFrom: michael.dickens@ettus.com
+From: sp h <stackprogramer@gmail.com>
+Date: Sat, 28 May 2022 10:44:59 +0430
+Message-ID: <CAA=S3PtvLBB=K7MxcCYGgayD3x9jOhhLV2i767dPfLWP84T++g@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Content-Type: multipart/mixed; boundary="0000000000006c0d4605e00c5804"
+Message-ID-Hash: VJB7A53C6X77JN7DPP3ATASYO4MAH7GH
+X-Message-ID-Hash: VJB7A53C6X77JN7DPP3ATASYO4MAH7GH
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: rouba zeitoun <roubazeitoun@gmail.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: unmet dependencies libuhd4.2.0
+Subject: [USRP-users] When I want to customize RFNOC blocks, like adding FFT block in Gnuradio generate OOOOOOOOOOO?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YRP4B5SRB6AQTGJ23BLURBQHPSMVFBZI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VJB7A53C6X77JN7DPP3ATASYO4MAH7GH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6791148096810757318=="
 
---===============6791148096810757318==
-Content-Type: multipart/alternative; boundary="0000000000006ae63205dffec48a"
+--0000000000006c0d4605e00c5804
+Content-Type: multipart/alternative; boundary="0000000000006c0d4105e00c5802"
 
---0000000000006ae63205dffec48a
+--0000000000006c0d4105e00c5802
 Content-Type: text/plain; charset="UTF-8"
 
-I also had this issue on Ubuntu 20.04, which was up to date as of a week or
-2 ago before I noticed this issue (it might have been around for quite some
-time; I hadn't updated this specific computer in ~6 months). Here's what I
-did to resolve it, allowing "apt" to work again for me. I'm pretty sure the
-issue is with the UHD PPA info. I will push this info to Ettus R&D and
-hopefully they can shed some light on this issue -- and hopefully fix it! -
-MLD
+When I  want to customize RFNOC blocks, like adding an FFT block in
+Gnuradio generate OOOOOOOOOOO?
+When I change the RFNOC image core in USRP from the below link, the FFT
+block does not work in Gnuradio, For the Gain block same problem...
+https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
 
-1) Either via some commandline / file editing or in the "Software &
-Updates" app ("Other Software" tab):
+My environment is Ubuntu 20.04 ,Gnuradio 3.8.1, UHD 4.1.0.5, gr-ettus,
+(I build all Gnuadio, UHD, and.... from source, Original RFNOC block works
+but the custom block that I added does not work correctly?
 
-disable all entries for "ppa.launchpad.net/ettusresearch". save files /
-Close the app & it should update the local cache of software.
+My question is when I rebuild and synthesize bitstream FPGA I should
+compile all Gnuradio, UHD, and ....from scratch?
+What work should I do? I study all links and videos but my problem still
+remains...
 
-2) run "sudo apt update" just in case.
+I saw these links that they had my problem...
+https://www.mail-archive.com/usrp-users@lists.ettus.com/msg11087.html
+https://lists.gnu.org/archive/html/discuss-gnuradio/2020-11/msg00077.html
 
-3) run "sudo apt --fix-broken install" and the apt-installed UHD packages
-should be removed.
+I to describe the problem in this mail.....
+https://lists.ettus.com/empathy/thread/76SR2TPUUXQPBWUXIWVGVIIHHHWTFRJF
 
-Yes, I know that UHD PPA is now disabled, and hence installing UHD will be
-less simple. That said, at least "apt" is working again!
+I shared the RFNOC image core that I added FFT but it doesn't work...
+Can anyone guide me? Thanks in advance
 
-On Thu, May 26, 2022 at 8:37 PM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 2022-05-26 02:56, rouba zeitoun wrote:
->
-> Hello Marcus,
->
-> I had installed it a couple of months ago, it was a general upgrade
-> through the terminal (using "sudo apt upgrade"), also i checked my ubuntu
-> version and yes it is bionic.
->
-> thank you for your support
->
-> Kind Regards
-> Rouba
->
-> What I would try to do is to completely uninstall UHD first, then try to
-> do a 4.2 install from the PPA.    But, to be honest, I'm a bit surprised
-> that sometime
->   as modern as UHD 4.2 will even build for Ubuntu 18.04.  The current LTS
-> release of Ubuntu is 22.04, and I've been running 21.10 for over a year.
->
-> sudo apt remove uhd uhd-host
->
->
->
-> On Wed, May 25, 2022 at 7:23 PM Marcus D. Leech <patchvonbraun@gmail.com>
-> wrote:
->
->> On 2022-05-25 04:27, rouba zeitoun wrote:
->>
->> Hello USRP Support
->>
->> Hope you have a nice day.
->>
->> I was trying to upgrade my system and i got this message
->>
->>
->>
->>
->>
->> *You might want to run 'apt --fix-broken install' to correct these. The
->> following packages have unmet dependencies:  libuhd-dev : Depends:
->> libuhd4.2.0 (= 4.2.0.0-0ubuntu1~bionic1) but it is not installed  uhd-host
->> : Depends: libuhd4.2.0 (= 4.2.0.0-0ubuntu1~bionic1) but it is not installed
->> E: Unmet dependencies. Try 'apt --fix-broken install' with no packages (or
->> specify a solution).*
->>
->> after i tried *' sudo apt --fix-broken install' *i got this error
->>
->>
->>
->>
->>
->> *dpkg: error processing archive
->> /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~bionic1_amd64.deb
->> (--unpack):  trying to overwrite '/usr/share/uhd/cal/cal_metadata.fbs',
->> which is also in package libuhd4.1.0:amd64 4.1.0.4-0ubuntu1~bionic1 Errors
->> were encountered while processing:
->>  /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~bionic1_amd64.deb E:
->> Sub-process /usr/bin/dpkg returned an error code (1)*
->>
->> How may I solve this problem?
->>
->> Kind Regards
->> Rouba
->>
->> How did you install UHD initially?  What did you do to try to upgrade?
->> I'll note that "Bionic" is a version of Ubuntu that is quite out-of-date at
->> this point, but there do
->>   appear  to be PPA for UHD 4.2 for bionic.
->>
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000006ae63205dffec48a
+--0000000000006c0d4105e00c5802
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I also had this issue on Ubuntu 20.04, which was up to dat=
-e as of a week or 2 ago before I noticed this issue (it might have been aro=
-und for quite some time; I hadn&#39;t updated this specific computer in ~6 =
-months). Here&#39;s what I did to resolve it, allowing &quot;apt&quot; to w=
-ork again for me. I&#39;m pretty sure the issue is with the UHD PPA info. I=
- will push this info to Ettus R&amp;D and hopefully they can shed some=C2=
-=A0light on this issue -- and hopefully fix it! - MLD<div><br></div><div>1)=
- Either via some commandline / file editing or in the &quot;Software &amp; =
-Updates&quot; app (&quot;Other Software&quot; tab):</div><div><br></div><di=
-v>disable all entries for &quot;<a href=3D"http://ppa.launchpad.net/ettusre=
-search">ppa.launchpad.net/ettusresearch</a>&quot;. save files / Close the a=
-pp &amp; it should update the local cache of software.</div><div><br></div>=
-<div>2) run &quot;sudo apt update&quot; just in case.</div><div><br></div><=
-div>3) run &quot;sudo=C2=A0apt --fix-broken install&quot; and the apt-insta=
-lled UHD packages should be removed.</div><div><br></div><div>Yes, I know t=
-hat UHD PPA is now disabled, and hence installing UHD will be less simple. =
-That said, at least &quot;apt&quot; is working=C2=A0again!</div></div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May=
- 26, 2022 at 8:37 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gm=
-ail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    <div>On 2022-05-26 02:56, rouba zeitoun
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">Hello=C2=A0Marcus,
-        <div><br>
-        </div>
-        <div>I had installed it a couple of months ago, it was a general
-          upgrade through the terminal (using &quot;sudo apt upgrade&quot;)=
-, also
-          i checked my ubuntu version and yes it is bionic.</div>
-        <div><br>
-        </div>
-        <div>thank you for your support</div>
-        <div><br>
-        </div>
-        <div>Kind Regards</div>
-        <div>Rouba</div>
-      </div>
-    </blockquote>
-    What I would try to do is to completely uninstall UHD first, then
-    try to do a 4.2 install from the PPA.=C2=A0=C2=A0=C2=A0 But, to be hone=
-st, I&#39;m a
-    bit surprised that sometime<br>
-    =C2=A0 as modern as UHD 4.2 will even build for Ubuntu 18.04.=C2=A0 The
-    current LTS release of Ubuntu is 22.04, and I&#39;ve been running 21.10
-    for over a year.<br>
-    <br>
-    sudo apt remove uhd uhd-host<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, May 25, 2022 at 7:23
-          PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"=
- target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div>
-            <div>On 2022-05-25 04:27, rouba zeitoun wrote:<br>
-            </div>
-            <blockquote type=3D"cite">
-              <div dir=3D"ltr">Hello USRP Support
-                <div><br>
-                </div>
-                <div>Hope you have a nice day.</div>
-                <div><br>
-                </div>
-                <div>I was trying to upgrade my system and i got this
-                  message=C2=A0=C2=A0</div>
-                <div><br>
-                </div>
-                <div><b>You might want to run &#39;apt --fix-broken install=
-&#39;
-                    to correct these.<br>
-                    The following packages have unmet dependencies:<br>
-                    =C2=A0libuhd-dev : Depends: libuhd4.2.0 (=3D
-                    4.2.0.0-0ubuntu1~bionic1) but it is not installed<br>
-                    =C2=A0uhd-host : Depends: libuhd4.2.0 (=3D
-                    4.2.0.0-0ubuntu1~bionic1) but it is not installed<br>
-                    E: Unmet dependencies. Try &#39;apt --fix-broken
-                    install&#39; with no packages (or specify a solution).<=
-/b><br>
-                </div>
-                <div><br>
-                </div>
-                <div>after i tried=C2=A0<b>&#39; sudo apt --fix-broken inst=
-all&#39; </b>i
-                  got this=C2=A0error</div>
-                <div><br>
-                </div>
-                <div><b>dpkg: error processing archive
-                    /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~bi=
-onic1_amd64.deb
-                    (--unpack):<br>
-                    =C2=A0trying to overwrite
-                    &#39;/usr/share/uhd/cal/cal_metadata.fbs&#39;, which is=
- also
-                    in package libuhd4.1.0:amd64
-                    4.1.0.4-0ubuntu1~bionic1<br>
-                    Errors were encountered while processing:<br>
-=C2=A0/var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~bionic1_amd64.de=
-b<br>
-                    E: Sub-process /usr/bin/dpkg returned an error code
-                    (1)</b><br>
-                </div>
-                <div><b><br>
-                  </b></div>
-                <div>How may I solve this=C2=A0problem?</div>
-                <div><br>
-                </div>
-                <div>Kind Regards</div>
-                <div>Rouba</div>
-              </div>
-              <br>
-            </blockquote>
-            How did you install UHD initially?=C2=A0 What did you do to try
-            to upgrade?=C2=A0=C2=A0 I&#39;ll note that &quot;Bionic&quot; i=
-s a version of Ubuntu
-            that is quite out-of-date at this point, but there do<br>
-            =C2=A0 appear=C2=A0 to be PPA for UHD 4.2 for bionic.<br>
-            <br>
-            <br>
-            <br>
-            <br>
-          </div>
-          _______________________________________________<br>
-          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
-us.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
-e@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><b=
-r>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </div>
+<div dir=3D"ltr">When I=C2=A0 want to customize RFNOC blocks, like adding a=
+n FFT block in Gnuradio generate OOOOOOOOOOO?<br><div>When I change the RFN=
+OC image core in USRP from the=C2=A0below link, the=C2=A0FFT block does not=
+ work in Gnuradio, For the Gain block same problem...</div><div><a href=3D"=
+https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0">https://kb.ettu=
+s.com/Getting_Started_with_RFNoC_in_UHD_4.0</a><br></div><div><br></div><di=
+v>My environment is Ubuntu 20.04 ,Gnuradio 3.8.1, UHD 4.1.0.5, gr-ettus,</d=
+iv><div>(I build all Gnuadio, UHD, and.... from source, Original=C2=A0RFNOC=
+ block works but the custom block that I added does not work correctly?</di=
+v><div><br></div><div>My question is when I rebuild and synthesize bitstrea=
+m FPGA I should compile all Gnuradio, UHD, and ....from scratch?</div><div>=
+What work should I do? I study all links and videos but my problem still re=
+mains...</div><div><br></div><div>I saw these links that they=C2=A0had my p=
+roblem...</div><div><a href=3D"https://www.mail-archive.com/usrp-users@list=
+s.ettus.com/msg11087.html">https://www.mail-archive.com/usrp-users@lists.et=
+tus.com/msg11087.html</a><br></div><div><a href=3D"https://lists.gnu.org/ar=
+chive/html/discuss-gnuradio/2020-11/msg00077.html">https://lists.gnu.org/ar=
+chive/html/discuss-gnuradio/2020-11/msg00077.html</a><br></div><div><br></d=
+iv><div>I to describe the problem in this mail.....</div><div><a href=3D"ht=
+tps://lists.ettus.com/empathy/thread/76SR2TPUUXQPBWUXIWVGVIIHHHWTFRJF">http=
+s://lists.ettus.com/empathy/thread/76SR2TPUUXQPBWUXIWVGVIIHHHWTFRJF</a><br>=
+</div><div><br></div><div>I shared the RFNOC image core that I added FFT bu=
+t it doesn&#39;t work...</div><div>Can anyone guide me? Thanks in advance</=
+div><div><br></div></div>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+--0000000000006c0d4105e00c5802--
 
---0000000000006ae63205dffec48a--
+--0000000000006c0d4605e00c5804
+Content-Type: application/x-yaml; name="x300_with_fft.yml"
+Content-Disposition: attachment; filename="x300_with_fft.yml"
+Content-Transfer-Encoding: base64
+Content-ID: <f_l3ph4vk40>
+X-Attachment-Id: f_l3ph4vk40
 
---===============6791148096810757318==
+IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRlcl9hcmdzICAgICAgICAgIyBJZGVudGlm
+aWVyIGZvciB0aGUgc2NoZW1hIHVzZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNvcHlyaWdodDog
+J0V0dHVzIFJlc2VhcmNoLCBBIE5hdGlvbmFsIEluc3RydW1lbnRzIEJyYW5kJyAjIENvcHlyaWdo
+dCBpbmZvcm1hdGlvbiB1c2VkIGluIGZpbGUgaGVhZGVycwpsaWNlbnNlOiAnU1BEWC1MaWNlbnNl
+LUlkZW50aWZpZXI6IExHUEwtMy4wLW9yLWxhdGVyJyAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNl
+ZCBpbiBmaWxlIGhlYWRlcnMKdmVyc2lvbjogJzEuMCcgICAgICAgICAgICAgICAgICAgICAgICAg
+ICMgRmlsZSB2ZXJzaW9uCnJmbm9jX3ZlcnNpb246ICcxLjAnICAgICAgICAgICAgICAgICAgICAj
+IFJGTm9DIHByb3RvY29sIHZlcnNpb24KY2hkcl93aWR0aDogNjQgICAgICAgICAgICAgICAgICAg
+ICAgICAgICMgQml0IHdpZHRoIG9mIHRoZSBDSERSIGJ1cyBmb3IgdGhpcyBpbWFnZQpkZXZpY2U6
+ICd4MzAwJwpkZWZhdWx0X3RhcmdldDogJ1gzMDBfSEcnCgojIEEgbGlzdCBvZiBhbGwgc3RyZWFt
+IGVuZHBvaW50cyBpbiBkZXNpZ24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tCnN0cmVhbV9lbmRwb2ludHM6CiAgZXAwOiAgICAgICAgICAgICAgICAgICAgICAgIyBT
+dHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAj
+IEVuZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAg
+ICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6
+IDMyNzY4ICAgICAgICAgICAgICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVw
+MTogICAgICAgICAgICAgICAgICAgICAgICMgU3RyZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6
+IEZhbHNlICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFm
+ZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2Vz
+IGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiAwICAgICAgICAgICAgICAgICAgICAjIEluZ3Jl
+c3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDI6ICAgICAgICAgICAgICAgICAgICAgICAjIFN0
+cmVhbSBlbmRwb2ludCBuYW1lCiAgICBjdHJsOiBGYWxzZSAgICAgICAgICAgICAgICAgICAgICMg
+RW5kcG9pbnQgcGFzc2VzIGNvbnRyb2wgdHJhZmZpYwogICAgZGF0YTogVHJ1ZSAgICAgICAgICAg
+ICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBkYXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTog
+MzI3NjggICAgICAgICAgICAgICAgIyBJbmdyZXNzIGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXAz
+OiAgICAgICAgICAgICAgICAgICAgICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDog
+RmFsc2UgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZm
+aWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMg
+ZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6IDAgICAgICAgICAgICAgICAgICAgICMgSW5ncmVz
+cyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVwNDogICAgICAgICAgICAgICAgICAgICAgICMgU3Ry
+ZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6IEZhbHNlICAgICAgICAgICAgICAgICAgICAgIyBF
+bmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmljCiAgICBkYXRhOiBUcnVlICAgICAgICAgICAg
+ICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9zaXplOiA0
+MDk2ICAgICAgICAgICAgICAgICAjIEluZ3Jlc3MgYnVmZmVyIHNpemUgZm9yIGRhdGEKICBlcDU6
+ICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2ludCBuYW1lCiAgICBjdHJsOiBG
+YWxzZSAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGNvbnRyb2wgdHJhZmZp
+YwogICAgZGF0YTogVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBk
+YXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTogNDA5NiAgICAgICAgICAgICAgICAgIyBJbmdyZXNz
+IGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXBfZmZ0OiAgICAgICAgICAgICAgICAjIFRoZSBuYW1l
+IGNhbiBiZSBpbmNyZW1lbnRlZCBmcm9tIHByZXZpb3VzIFNFUAogICAgY3RybDogRmFsc2UgICAg
+ICAgICAgIyBPbmx5IHRoZSBmaXJzdCBTRVAgbmVlZHMgY29udHJvbCB0cmFmZmljCiAgICBkYXRh
+OiBUcnVlICAgICAgICAgICAjIFdlIGRvIHdhbnQgdG8gcGFzcyBkYXRhIHRocm91Z2ggdGhpcyBT
+RVAKICAgIGJ1ZmZfc2l6ZTogMzI3NjggICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0
+YQoKIyBBIGxpc3Qgb2YgYWxsIE5vQyBibG9ja3MgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLQpub2NfYmxvY2tzOgogIGR1YzA6ICAgICAgICAgICAgICAgICAg
+ICAgICMgTm9DIGJsb2NrIG5hbWUKICAgIGJsb2NrX2Rlc2M6ICdkdWMueW1sJyAgICAjIEJsb2Nr
+IGRldmljZSBkZXNjcmlwdG9yIGZpbGUKICAgIHBhcmFtZXRlcnM6CiAgICAgIE5VTV9QT1JUUzog
+MQogIGRkYzA6CiAgICBibG9ja19kZXNjOiAnZGRjLnltbCcKICAgIHBhcmFtZXRlcnM6CiAgICAg
+IE5VTV9QT1JUUzogMgogIHJhZGlvMDoKICAgIGJsb2NrX2Rlc2M6ICdyYWRpb18yeDY0LnltbCcK
+ICBkdWMxOgogICAgYmxvY2tfZGVzYzogJ2R1Yy55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBO
+VU1fUE9SVFM6IDEKICBkZGMxOgogICAgYmxvY2tfZGVzYzogJ2RkYy55bWwnCiAgICBwYXJhbWV0
+ZXJzOgogICAgICBOVU1fUE9SVFM6IDIKICByYWRpbzE6CiAgICBibG9ja19kZXNjOiAncmFkaW9f
+Mng2NC55bWwnCiAgcmVwbGF5MDoKICAgIGJsb2NrX2Rlc2M6ICdyZXBsYXkueW1sJwogICAgcGFy
+YW1ldGVyczoKICAgICAgTlVNX1BPUlRTOiAyCiAgICAgIE1FTV9BRERSX1c6IDMwCiAgZmZ0MDog
+ICAgICAgICAgICAgICAgICAgICAgICAgICMgRkZUIGJsb2NrIG5hbWUKICAgIGJsb2NrX2Rlc2M6
+ICdmZnRfMXg2NC55bWwnICAgIyBCbG9jayBZQU1MIGRlc2NyaXB0b3IgZmlsZQogICAgcGFyYW1l
+dGVyczogICAgICAgICAgICAgICAgICAjIFNwZWNpZnkgYW55IFZlcmlsb2cgbW9kdWxlIHBhcmFt
+ZXRlcnMgKG9wdGlvbmFsKQogICAgICBFTl9GRlRfU0hJRlQ6IDEgCgojIEEgbGlzdCBvZiBhbGwg
+c3RhdGljIGNvbm5lY3Rpb25zIGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQojIEZvcm1hdDogQSBsaXN0IG9mIGNvbm5lY3Rpb24gbWFwcyAobGlz
+dCBvZiBrZXktdmFsdWUgcGFpcnMpIHdpdGggdGhlIGZvbGxvd2luZyBrZXlzCiMgICAgICAgICAt
+IHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdAojICAgICAgICAgLSBzcmNwb3J0ID0g
+UG9ydCBvbiB0aGUgc291cmNlIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0YmxrICA9
+IERlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0cG9ydCA9IFBvcnQg
+b24gdGhlIGRlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKY29ubmVjdGlvbnM6CiAgIyBlcDAg
+dG8gcmFkaW8wKDApIC0gUkZBIFRYCiAgLSB7IHNyY2JsazogZXAwLCAgICBzcmNwb3J0OiBvdXQw
+LCAgZHN0YmxrOiBkdWMwLCAgIGRzdHBvcnQ6IGluXzAgfQogIC0geyBzcmNibGs6IGR1YzAsICAg
+c3JjcG9ydDogb3V0XzAsIGRzdGJsazogcmFkaW8wLCBkc3Rwb3J0OiBpbl8wIH0KICAjIHJhZGlv
+KDApIHRvIGVwMCAtIFJGQSBSWAogIC0geyBzcmNibGs6IHJhZGlvMCwgc3JjcG9ydDogb3V0XzAs
+IGRzdGJsazogZGRjMCwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBkZGMwLCAgIHNy
+Y3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwMCwgICAgZHN0cG9ydDogaW4wICB9CiAgIyByYWRpbzAo
+MSkgdG8gZXAxIC0gUkZBIFJYCiAgLSB7IHNyY2JsazogcmFkaW8wLCBzcmNwb3J0OiBvdXRfMSwg
+ZHN0YmxrOiBkZGMwLCAgIGRzdHBvcnQ6IGluXzEgfQogIC0geyBzcmNibGs6IGRkYzAsICAgc3Jj
+cG9ydDogb3V0XzEsIGRzdGJsazogZXAxLCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIGVwMiB0byBy
+YWRpbzEoMCkgLSBSRkEgVFgKICAtIHsgc3JjYmxrOiBlcDIsICAgIHNyY3BvcnQ6IG91dDAsICBk
+c3RibGs6IGR1YzEsICAgZHN0cG9ydDogaW5fMCB9CiAgLSB7IHNyY2JsazogZHVjMSwgICBzcmNw
+b3J0OiBvdXRfMCwgZHN0YmxrOiByYWRpbzEsIGRzdHBvcnQ6IGluXzAgfQogICMgcmFkaW8xKDAp
+IHRvIGVwMiAtIFJGQSBSWAogIC0geyBzcmNibGs6IHJhZGlvMSwgc3JjcG9ydDogb3V0XzAsIGRz
+dGJsazogZGRjMSwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBkZGMxLCAgIHNyY3Bv
+cnQ6IG91dF8wLCBkc3RibGs6IGVwMiwgICAgZHN0cG9ydDogaW4wICB9CiAgIyByYWRpbzAoMSkg
+dG8gZXAzIC0gUkZBIFJYCiAgLSB7IHNyY2JsazogcmFkaW8xLCBzcmNwb3J0OiBvdXRfMSwgZHN0
+YmxrOiBkZGMxLCAgIGRzdHBvcnQ6IGluXzEgfQogIC0geyBzcmNibGs6IGRkYzEsICAgc3JjcG9y
+dDogb3V0XzEsIGRzdGJsazogZXAzLCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjIGVwNCB0byByZXBs
+YXkwKDApCiAgLSB7IHNyY2JsazogZXA0LCAgICAgc3JjcG9ydDogb3V0MCwgIGRzdGJsazogcmVw
+bGF5MCwgZHN0cG9ydDogaW5fMCB9CiAgIyByZXBsYXkwKDApIHRvIGVwNAogIC0geyBzcmNibGs6
+IHJlcGxheTAsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwNCwgICAgIGRzdHBvcnQ6IGluMCAg
+fQogICMgZXA1IHRvIHJlcGxheTAoMSkKICAtIHsgc3JjYmxrOiBlcDUsICAgICBzcmNwb3J0OiBv
+dXQwLCAgZHN0YmxrOiByZXBsYXkwLCBkc3Rwb3J0OiBpbl8xIH0KICAjIHJlcGxheTAoMSkgdG8g
+ZXA1CiAgLSB7IHNyY2JsazogcmVwbGF5MCwgc3JjcG9ydDogb3V0XzEsIGRzdGJsazogZXA1LCAg
+ICAgZHN0cG9ydDogaW4wICB9CiAgIyBlcF9mZnQgdG8gZmZ0MAogIC0geyBzcmNibGs6IGVwX2Zm
+dCwgc3JjcG9ydDogb3V0MCwgIGRzdGJsazogZmZ0MCwgICBkc3Rwb3J0OiBpbl8wIH0KICAjIGZm
+dDAgdG8gZXBfZmZ0CiAgLSB7IHNyY2JsazogZmZ0MCwgICBzcmNwb3J0OiBvdXRfMCwgZHN0Ymxr
+OiBlcF9mZnQsIGRzdHBvcnQ6IGluMCAgfQoKICAjIEJTUCBDb25uZWN0aW9ucwogIC0geyBzcmNi
+bGs6IHJhZGlvMCwgc3JjcG9ydDogY3RybF9wb3J0LCBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0
+OiBjdHJscG9ydF9yYWRpbzAgfQogIC0geyBzcmNibGs6IHJhZGlvMSwgc3JjcG9ydDogY3RybF9w
+b3J0LCBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0OiBjdHJscG9ydF9yYWRpbzEgfQogIC0geyBz
+cmNibGs6IHJlcGxheTAsIHNyY3BvcnQ6IGF4aV9yYW0sIGRzdGJsazogX2RldmljZV8sIGRzdHBv
+cnQ6IGRyYW0gfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiB4MzAwX3JhZGlvMCwg
+ZHN0YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHgzMDBfcmFkaW8gfQogIC0geyBzcmNibGs6IF9kZXZp
+Y2VfLCBzcmNwb3J0OiB4MzAwX3JhZGlvMSwgZHN0YmxrOiByYWRpbzEsIGRzdHBvcnQ6IHgzMDBf
+cmFkaW8gfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiB0aW1lX2tlZXBlciwgZHN0
+YmxrOiByYWRpbzAsIGRzdHBvcnQ6IHRpbWVfa2VlcGVyIH0KICAtIHsgc3JjYmxrOiBfZGV2aWNl
+Xywgc3JjcG9ydDogdGltZV9rZWVwZXIsIGRzdGJsazogcmFkaW8xLCBkc3Rwb3J0OiB0aW1lX2tl
+ZXBlciB9CiAgCiMgQSBsaXN0IG9mIGFsbCBjbG9jayBkb21haW4gY29ubmVjdGlvbnMgaW4gZGVz
+aWduCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgRm9ybWF0
+OiBBIGxpc3Qgb2YgY29ubmVjdGlvbiBtYXBzIChsaXN0IG9mIGtleS12YWx1ZSBwYWlycykgd2l0
+aCB0aGUgZm9sbG93aW5nIGtleXMKIyAgICAgICAgIC0gc3JjYmxrICA9IFNvdXJjZSBibG9jayB0
+byBjb25uZWN0IChBbHdheXMgIl9kZXZpY2UiXykKIyAgICAgICAgIC0gc3JjcG9ydCA9IENsb2Nr
+IGRvbWFpbiBvbiB0aGUgc291cmNlIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0Ymxr
+ICA9IERlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKIyAgICAgICAgIC0gZHN0cG9ydCA9IENs
+b2NrIGRvbWFpbiBvbiB0aGUgZGVzdGluYXRpb24gYmxvY2sgdG8gY29ubmVjdApjbGtfZG9tYWlu
+czoKICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8w
+LCBkc3Rwb3J0OiByYWRpbyB9CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAg
+ICBkc3RibGs6IGRkYzAsICAgZHN0cG9ydDogY2UgICAgfQogIC0geyBzcmNibGs6IF9kZXZpY2Vf
+LCBzcmNwb3J0OiBjZSwgICAgZHN0YmxrOiBkdWMwLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAtIHsg
+c3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFkaW8sIGRzdGJsazogcmFkaW8xLCBkc3Rwb3J0
+OiByYWRpbyB9CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCAgICBkc3RibGs6
+IGRkYzEsICAgZHN0cG9ydDogY2UgICAgfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0
+OiBjZSwgICAgZHN0YmxrOiBkdWMxLCAgIGRzdHBvcnQ6IGNlICAgIH0KICAtIHsgc3JjYmxrOiBf
+ZGV2aWNlXywgc3JjcG9ydDogZHJhbSwgIGRzdGJsazogcmVwbGF5MCwgZHN0cG9ydDogbWVtICB9
+CiAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGNlLCBkc3RibGs6IGZmdDAsIGRzdHBv
+cnQ6IGNlIH0KICAjLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IHJmbm9jX2NoZHIsIGRz
+dGJsazogZmZ0MCwgZHN0cG9ydDogY2UgfQogICMtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9y
+dDogcmFkaW8sIGRzdGJsazogZmZ0MCwgZHN0cG9ydDogY2UgfQoKCg==
+--0000000000006c0d4605e00c5804
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -364,4 +277,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6791148096810757318==--
+--0000000000006c0d4605e00c5804--
