@@ -2,139 +2,192 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0683A5370EA
-	for <lists+usrp-users@lfdr.de>; Sun, 29 May 2022 14:21:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 591395371B0
+	for <lists+usrp-users@lfdr.de>; Sun, 29 May 2022 17:49:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7F7E9384381
-	for <lists+usrp-users@lfdr.de>; Sun, 29 May 2022 08:21:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 00C5B384286
+	for <lists+usrp-users@lfdr.de>; Sun, 29 May 2022 11:49:46 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1653826913; bh=KUbmDRKj0CsdiO0hGHLwHWDsnEv754QqGO59g7CMO1M=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=eXKXR8xEgMbDOyuTWCsAf1P1Ejnsp81nBIu0PnGj4z+hBoqQ4c0aKgJZiXRtaoEbU
-	 3cdUM4KeK2uqAhvfSFT3DHfD+oXJdabL+U90bG7BLV7q4L/Ofp6/hc//mdG/8l/U1G
-	 BGtmz6Z70OkA2Jc+5sdCSlRa/uYn/W321spp0+vTzZcXb16j4JZmnGIv5fYISkUSKh
-	 Lk+zBIxF6SA6slPNHS9ADyJ5gzJ8/18Zdp813hAMlDFArUq2gvn18sPjss+/uS81BI
-	 UrtJeEwcrNOxdxMvhut/ELrvvzlszo/8nHFCIHwhiECgiUSjkOKYU75Ws/SWnZvVYY
-	 usb2aMGOGHsag==
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 961063840EB
-	for <usrp-users@lists.ettus.com>; Sun, 29 May 2022 08:20:55 -0400 (EDT)
+	t=1653839385; bh=5U99C/cnw3VntIsLTN2/JemXhY0ays12PBkpsKX632w=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=nShjnYEu/9qRWt41GDeWEBfH3bZRENx6qQlbPhthOQ3UgSdaq+2FaP3k7WCNHFrkt
+	 +AOrildBAMk2zoYc6r8iUDWYQVyC5cNu5cRYGF+GhNLLgw+0GTljyPQm99H+MRB4pd
+	 P6d4r4hvXON4hPdRsbI6ywfdNIf8Ye88oOGcjovPHeWDw9IT7qKeALFDeTKxI0qhMs
+	 IZyfoo4j9nOGIiqdBJUTjTYWulzHq+KnCjljSwAFsXto3mLupE8y1sC8Y+77qs4Bn4
+	 IURcWooqchRS+DZGkr/Bm7U67sie5meQ1XP5tVdK4wLfCtWlMqQ221M84Tz89R0PPz
+	 m9MNoABuBx+1w==
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6D0173840E2
+	for <usrp-users@lists.ettus.com>; Sun, 29 May 2022 11:48:48 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="KtP9DmCR";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="pJ3XZ6ti";
 	dkim-atps=neutral
-Received: by mail-ej1-f50.google.com with SMTP id jx22so16160735ejb.12
-        for <usrp-users@lists.ettus.com>; Sun, 29 May 2022 05:20:55 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-2ff7b90e635so88376747b3.5
+        for <usrp-users@lists.ettus.com>; Sun, 29 May 2022 08:48:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=Wdd4ydNmw2+N5sJHzsuC6B4KKiK3cr9tFhyL3jWJsmQ=;
-        b=KtP9DmCRQuePp+8B7ia+I9c65NnkLOArJHiiIVurryakOlxe/lNAbqkaBMKwCv19ow
-         oNZGXx3ttXQ4fOF3NiwHB+/ix4V2+AI9JndR5pbCuhkMFBUjG52qwVCeBDFtGtTAkVhY
-         +Ekcn1puitaFnv9HaEi4lX6055GjGzvM1bxL1tnWVmLCgaPfEQirS/xNna+ka84zpaMh
-         jKqcR0T71PRota5pHj4oRZhalV3KSyr4Vu964leRzTIARfV/KXrRKcvsoBz3eV0EE/6K
-         QStpLAosNGuEtJsVf/NOEkxYwilJRwdwH9MX9ql6Xo/jHd0Ggk7prO5R17XxHEofYRi4
-         aEew==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Z7vuiNOD7gS43Tlg9Zemu9aVchSOnG60//G4Rzfv+JE=;
+        b=pJ3XZ6tipI8iQXuI1mi+5LxLh5GxwpGTSamh9WpiOErUVlrq5m+m+WxBrZSBFv/5oZ
+         VB+IuqDQv2LVhUHEdmAvZLsDsMsM6Y+YGEFp5rjb47t9jGqRt+/tyTfu/eaicczeCG7z
+         Y7Wi/l5GSU/+kTi2C2e5WN4YNT/j0gCmID/e6DxFKbshxw4VX5LwxmVXpEAuUz/aTzsI
+         CR6N9ybt1zaHq/yQ3drQZAqvS530ceFwlD9Zf++BLnTqHfCbW9snyzk8P79/nFVjHK4d
+         x6e3M5BowdJYsGYXaGBcURNDcHs3QqQk7hC/Uxr7wd2PTzRL4oWsqccaIiV6SJFaXqST
+         ML/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Wdd4ydNmw2+N5sJHzsuC6B4KKiK3cr9tFhyL3jWJsmQ=;
-        b=Sj43RNzuQrkKo83QF1X+fK5uEwDiOkmqAuAI+1JfjvZlSFC+ttzOb3U/773+VXI1oM
-         fJjiv7axdyE9NHLAbALoodEOrRy6OP7JSziK1dzS4kEOeGrweNc8Bgaj+BZE4afkPcx0
-         nxluV74k+qzzPxxV9kDP/MojK91krcj2S7VC4p+LLS2XUdaKAkuzzmP/0dOML3CcbiU/
-         Cfeu8J79uymtx2YdYRugKg+F1JvC+o6QSwATs3zp9wGk8d9LYtY6lVfPFCm+Do0AE02T
-         DjrvB/epy7RHmCdKyDbmBPZ9N5KNLfPwdEHxatjXl4NuH9cw33grmROEHCPCo3Iv5Nho
-         Tn3A==
-X-Gm-Message-State: AOAM532+9CgFl6Vfb2pANaMMznE5YQ6XZ03BKYN16UzooCnw8WGpvf7P
-	Yaz/tVrWY+xK7XCevhr6NAkWT21e+qRRAaeV
-X-Google-Smtp-Source: ABdhPJyE5xa++QyLe59QwGruy4yK1T6J5FoblNYCYQN4mGDF1ho0WpeMnrWBgPenweLy7xx1RfdBfg==
-X-Received: by 2002:a17:907:9621:b0:6fe:c661:b300 with SMTP id gb33-20020a170907962100b006fec661b300mr33922013ejc.294.1653826854550;
-        Sun, 29 May 2022 05:20:54 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:3846:61fc::d8d? ([2001:9e8:3846:61fc::d8d])
-        by smtp.gmail.com with ESMTPSA id d12-20020a170906040c00b006f3ef214db5sm3086901eja.27.2022.05.29.05.20.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 May 2022 05:20:54 -0700 (PDT)
-Message-ID: <b222fefa-959e-1ce1-308c-ce5b969d84c2@ettus.com>
-Date: Sun, 29 May 2022 14:20:53 +0200
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Z7vuiNOD7gS43Tlg9Zemu9aVchSOnG60//G4Rzfv+JE=;
+        b=ux6Erbz2mcg2OItl88/3K3LtsMI2BVrIJF0L07ttayFbdYegckZWHtQ6bA+eJDjsYp
+         Xvwh4Rjc/atk2N7TAKf4xfH1IK7gQ0gtwaT1GxXEljU9/ctEREhiiSNzPj+bXUHoqM3t
+         4eR1IyB0dsKNWeLNNvphA5Dyfff/6wGZQ8woV/k/5VFUnJ4epSSZYlFggXYM3aNKhhhX
+         jf5CRl2xJTQItZ4SmLm0RbO7sUQ4WMhKxjCJo0602Lc6SvO+SyQ3MQENXR8S4JuH5mQn
+         FAPcalR/nL1DRfFmSdmIeNHYRXNJ77yvPAE4uTXbrOj9EnaZhzVL3vtgl5zckpw1QsgM
+         pVUw==
+X-Gm-Message-State: AOAM533h238+GAZ+cu05pgcE792t5T99E5GdaImaDKVOlNZ48ijya9qo
+	5vgVtV/vIohrboBzZe0u6To+vY7khH7pcSysDVhtoiwW9STsmA==
+X-Google-Smtp-Source: ABdhPJzktqO5I6aooabJWckelE6XYucFNIBBfH+WRJ6fq/Lj5qsawRrqVY582DWyHtknYOVHKsjftTGE+kO7AglkGBY=
+X-Received: by 2002:a81:649:0:b0:2f1:9fcc:58c3 with SMTP id
+ 70-20020a810649000000b002f19fcc58c3mr52984035ywg.488.1653839327843; Sun, 29
+ May 2022 08:48:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Content-Language: en-US
-To: sp h <stackprogramer@gmail.com>, usrp-users <usrp-users@lists.ettus.com>
-References: <CAA=S3PtTWd58=86uj1n-Ac7WJ6zftigHEw+nkZqJtvyz9t+9tA@mail.gmail.com>
- <5995527a-8d4b-90c0-a335-11a026e520f3@ettus.com>
- <CAA=S3Pt2gA_J4RnxxLS7_vrJw8xBADrgD5uQNEiwHyq0Rg_Dog@mail.gmail.com>
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-In-Reply-To: <CAA=S3Pt2gA_J4RnxxLS7_vrJw8xBADrgD5uQNEiwHyq0Rg_Dog@mail.gmail.com>
-Message-ID-Hash: DKCLE6S3SI7Z22FO2SCYQLGRG2Q65NLU
-X-Message-ID-Hash: DKCLE6S3SI7Z22FO2SCYQLGRG2Q65NLU
-X-MailFrom: marcus.mueller@ettus.com
+References: <CAA=S3PtvLBB=K7MxcCYGgayD3x9jOhhLV2i767dPfLWP84T++g@mail.gmail.com>
+In-Reply-To: <CAA=S3PtvLBB=K7MxcCYGgayD3x9jOhhLV2i767dPfLWP84T++g@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Sun, 29 May 2022 10:48:32 -0500
+Message-ID: <CAFche=gRrb5mLnCcbiHGRMZA5acQMPtFp6VkAv3uc5YiE8B20Q@mail.gmail.com>
+To: sp h <stackprogramer@gmail.com>
+Message-ID-Hash: ZGMFZFXRTF4D5TEDSIR4H75Q26QYXKAT
+X-Message-ID-Hash: ZGMFZFXRTF4D5TEDSIR4H75Q26QYXKAT
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: What's RFNOC image builder Unit in gr-ettus and Gnuradio?
+Subject: [USRP-users] Re: When I want to customize RFNOC blocks, like adding FFT block in Gnuradio generate OOOOOOOOOOO?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DKCLE6S3SI7Z22FO2SCYQLGRG2Q65NLU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZGMFZFXRTF4D5TEDSIR4H75Q26QYXKAT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7557775001679433165=="
 
-UGxlYXNlIHJlcGx5IHRvIHRoZSBsaXN0ISBTb3JyeSwgeW91ciBlbWFpbCBzYWlkIG5vdGhpbmcg
-YWJvdXQgYSBidWcuIENhbiB5b3UgcGxlYXNlIA0KZGVzY3JpYmUgaW4gZGV0YWlsIHdoYXQgeW91
-IGFyZSBkb2luZywgd2hhdCB5b3UgKmV4cGVjdCogdG8gaGFwcGVuLCBhbmQgd2hhdCBoYXBwZW5z
-IA0KKmluc3RlYWQqPw0KDQpCZXN0IHJlZ2FyZHMsDQpNYXJjdXMNCg0KT24gMjkuMDUuMjIgMTQ6
-MTYsIHNwIGggd3JvdGU6DQo+IFllcywgSSByZWFkIGFsbCBVSEQgNCBEb2NzIGFuZCBHUkNPTiB2
-aWRlb3MgYnV0IGRvIHRoZXNlIGJsb2NrcyBpbiBpbWFnZSBidWlsZGVyIHJlYWxseSANCj4gd29y
-az8gSSB0aGluayB0aGV5IGFyZSBub3Qgc3RhYmxlIGFuZCBoYXZlwqBhwqBidWcgLi4uDQo+IERv
-ZXMgYW55b25lIHdvcmsgd2l0aCB0aGVtPyAuLi4gU28gSSBtYW51YWxseSBjaGFuZ2UgdGhlIFVT
-UlAgaW1hZ2UgY29yZS4gQnV0IGluIEdVSSBJIA0KPiBoYWTCoGFtYmlndWl0eS4uLiBTbyBJIGFz
-ay4NCj4gVGhhbmtzIHZlcnkgbXVjaA0KPg0KPiBPbiBTdW4sIE1heSAyOSwgMjAyMiBhdCA0OjMz
-IFBNIE1hcmN1cyBNw7xsbGVyIDxtYXJjdXMubXVlbGxlckBldHR1cy5jb20+IHdyb3RlOg0KPg0K
-PiAgICAgSGkgU3RhY2twcm9ncmFtbWVyLA0KPg0KPiAgICAgaGF2ZSB5b3UgcmVhZA0KPiAgICAg
-aHR0cHM6Ly9rYi5ldHR1cy5jb20vR2V0dGluZ19TdGFydGVkX3dpdGhfUkZOb0NfaW5fVUhEXzQu
-MCNSdW5uaW5nX3RoZV9JbWFnZV9CdWlsZGVyID8NCj4NCj4gICAgIEJlc3QgcmVnYXJkcywNCj4g
-ICAgIE1hcmN1cw0KPg0KPiAgICAgRElTQ0xBSU1FUjogQW55IGF0dGFjaGVkIENvZGUgaXMgcHJv
-dmlkZWQgQXMgSXMuIEl0IGhhcyBub3QgYmVlbiB0ZXN0ZWQgb3IgdmFsaWRhdGVkDQo+ICAgICBh
-cyBhIHByb2R1Y3QsIGZvciB1c2UgaW4gYSBkZXBsb3llZCBhcHBsaWNhdGlvbiBvciBzeXN0ZW0s
-IG9yIGZvciB1c2UgaW4gaGF6YXJkb3VzDQo+ICAgICBlbnZpcm9ubWVudHMuIFlvdSBhc3N1bWUg
-YWxsIHJpc2tzIGZvciB1c2Ugb2YgdGhlIENvZGUuIFVzZSBvZiB0aGUgQ29kZSBpcyBzdWJqZWN0
-DQo+ICAgICB0byB0ZXJtcyBvZiB0aGUgbGljZW5zZXMgdG8gdGhlIFVIRCBvciBSRk5vQyBjb2Rl
-IHdpdGggd2hpY2ggdGhlIENvZGUgaXMgdXNlZC4NCj4gICAgIFN0YW5kYXJkIGxpY2Vuc2VzIHRv
-IFVIRCBhbmQgUkZOb0MgY2FuIGJlIGZvdW5kIGF0DQo+ICAgICBodHRwczovL3d3dy5ldHR1cy5j
-b20vc2RyLXNvZnR3YXJlL2xpY2Vuc2VzLy4NCj4NCj4gICAgIE5JIHdpbGwgb25seSBwZXJmb3Jt
-IHNlcnZpY2VzIGJhc2VkIG9uIGl0cyB1bmRlcnN0YW5kaW5nIGFuZCBjb25kaXRpb24gdGhhdCB0
-aGUNCj4gICAgIGdvb2RzIG9yIHNlcnZpY2VzIChpKSBhcmUgbm90IGZvciB0aGUgdXNlIGluIHRo
-ZSBwcm9kdWN0aW9uIG9yIGRldmVsb3BtZW50IG9mIGFueQ0KPiAgICAgaXRlbSBwcm9kdWNlZCwg
-cHVyY2hhc2VkLCBvciBvcmRlcmVkIGJ5IGFueSBlbnRpdHkgd2l0aCBhIGZvb3Rub3RlIDEgZGVz
-aWduYXRpb24gaW4NCj4gICAgIHRoZSBsaWNlbnNlIHJlcXVpcmVtZW50IGNvbHVtbiBvZiBTdXBw
-bGVtZW50IE5vLiA0IHRvIFBhcnQgNzQ0LCBVLlMuIEV4cG9ydA0KPiAgICAgQWRtaW5pc3RyYXRp
-b24gUmVndWxhdGlvbnMgYW5kIChpaSkgc3VjaCBhIGNvbXBhbnkgaXMgbm90IGEgcGFydHkgdG8g
-dGhlDQo+ICAgICB0cmFuc2FjdGlvbi7CoCBJZiBvdXIgdW5kZXJzdGFuZGluZyBpcyBpbmNvcnJl
-Y3QsIHBsZWFzZSBub3RpZnkgdXMgaW1tZWRpYXRlbHkNCj4gICAgIGJlY2F1c2UgYSBzcGVjaWZp
-YyBhdXRob3JpemF0aW9uIG1heSBiZSByZXF1aXJlZCBmcm9tIHRoZSBVLlMuIENvbW1lcmNlIERl
-cGFydG1lbnQNCj4gICAgIGJlZm9yZSB0aGUgdHJhbnNhY3Rpb24gbWF5IHByb2NlZWQgZnVydGhl
-ci4NCj4NCj4gICAgIE9uIDI5LjA1LjIyIDEwOjQ4LCBzcCBoIHdyb3RlOg0KPiAgICAgPiBXaGF0
-J3MgUkZOT0MgaW1hZ2UgYnVpbGRlciBVbml0IGluIGdyLWV0dHVzIGFuZCBHbnVyYWRpbz8NCj4g
-ICAgID4gSSBjYW4gd29yayB3aXRoIFJGTk9DIGJsb2NrcyBidXQgSSBjYW4gbm90IHVuZGVyc3Rh
-bmQgdGhlIGFwcGxpY2F0aW9uIFJGTk9DIGltYWdlDQo+ICAgICA+IGJ1aWxkZXIgVW5pdCBjYW4g
-YW55b25lIGhhcyBhbnkga25vd2xlZGdlPw0KPiAgICAgPiBTY3JlZW5zaG90IGZyb20gMjAyMi0w
-NS0yOSAxMy0xNS00MS5wbmcNCj4gICAgID4NCj4gICAgID4gX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gICAgID4gVVNSUC11c2VycyBtYWlsaW5nIGxp
-c3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gICAgID4gVG8gdW5zdWJzY3JpYmUg
-c2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KPiAgICAg
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gICAgIFVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+ICAg
-ICBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
-ZXR0dXMuY29tDQo+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-ClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
-dHR1cy5jb20K
+--===============7557775001679433165==
+Content-Type: multipart/alternative; boundary="000000000000a6edbc05e02879f4"
+
+--000000000000a6edbc05e02879f4
+Content-Type: text/plain; charset="UTF-8"
+
+You do not need to recompile GNURadio and UHD from scratch each time you
+build an FPGA bitstream.
+
+'O' means overflow (the data is coming in from the radio faster than you
+are streaming it to the host). Did you also test that it still works
+without FFT block in the RFNoC graph while keeping everything else the same
+(including using the same bitfile)?
+
+Did you configure the SPP setting to match the FFT size? This is a
+requirement of the FFT block.
+
+Wade
+
+On Sat, May 28, 2022 at 1:16 AM sp h <stackprogramer@gmail.com> wrote:
+
+> When I  want to customize RFNOC blocks, like adding an FFT block in
+> Gnuradio generate OOOOOOOOOOO?
+> When I change the RFNOC image core in USRP from the below link, the FFT
+> block does not work in Gnuradio, For the Gain block same problem...
+> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
+>
+> My environment is Ubuntu 20.04 ,Gnuradio 3.8.1, UHD 4.1.0.5, gr-ettus,
+> (I build all Gnuadio, UHD, and.... from source, Original RFNOC block works
+> but the custom block that I added does not work correctly?
+>
+> My question is when I rebuild and synthesize bitstream FPGA I should
+> compile all Gnuradio, UHD, and ....from scratch?
+> What work should I do? I study all links and videos but my problem still
+> remains...
+>
+> I saw these links that they had my problem...
+> https://www.mail-archive.com/usrp-users@lists.ettus.com/msg11087.html
+> https://lists.gnu.org/archive/html/discuss-gnuradio/2020-11/msg00077.html
+>
+> I to describe the problem in this mail.....
+> https://lists.ettus.com/empathy/thread/76SR2TPUUXQPBWUXIWVGVIIHHHWTFRJF
+>
+> I shared the RFNOC image core that I added FFT but it doesn't work...
+> Can anyone guide me? Thanks in advance
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000a6edbc05e02879f4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div></div><div>You do not need to recompile GNURadio and =
+UHD from scratch each time you build an FPGA bitstream.</div><div><br></div=
+><div>&#39;O&#39; means overflow (the data is coming in from the radio fast=
+er than you are streaming it to the host). Did you also test that it still =
+works without FFT block in the RFNoC graph while keeping everything else th=
+e same (including using the same bitfile)?</div><div><br></div><div>Did you=
+ configure the SPP setting to match the FFT size? This is a requirement of =
+the FFT block.</div><div><br></div><div>Wade<br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat, May 28, 2022=
+ at 1:16 AM sp h &lt;<a href=3D"mailto:stackprogramer@gmail.com">stackprogr=
+amer@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"ltr">When I=C2=A0 want to customize RFNOC blocks,=
+ like adding an FFT block in Gnuradio generate OOOOOOOOOOO?<br><div>When I =
+change the RFNOC image core in USRP from the=C2=A0below link, the=C2=A0FFT =
+block does not work in Gnuradio, For the Gain block same problem...</div><d=
+iv><a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0" t=
+arget=3D"_blank">https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0=
+</a><br></div><div><br></div><div>My environment is Ubuntu 20.04 ,Gnuradio =
+3.8.1, UHD 4.1.0.5, gr-ettus,</div><div>(I build all Gnuadio, UHD, and.... =
+from source, Original=C2=A0RFNOC block works but the custom block that I ad=
+ded does not work correctly?</div><div><br></div><div>My question is when I=
+ rebuild and synthesize bitstream FPGA I should compile all Gnuradio, UHD, =
+and ....from scratch?</div><div>What work should I do? I study all links an=
+d videos but my problem still remains...</div><div><br></div><div>I saw the=
+se links that they=C2=A0had my problem...</div><div><a href=3D"https://www.=
+mail-archive.com/usrp-users@lists.ettus.com/msg11087.html" target=3D"_blank=
+">https://www.mail-archive.com/usrp-users@lists.ettus.com/msg11087.html</a>=
+<br></div><div><a href=3D"https://lists.gnu.org/archive/html/discuss-gnurad=
+io/2020-11/msg00077.html" target=3D"_blank">https://lists.gnu.org/archive/h=
+tml/discuss-gnuradio/2020-11/msg00077.html</a><br></div><div><br></div><div=
+>I to describe the problem in this mail.....</div><div><a href=3D"https://l=
+ists.ettus.com/empathy/thread/76SR2TPUUXQPBWUXIWVGVIIHHHWTFRJF" target=3D"_=
+blank">https://lists.ettus.com/empathy/thread/76SR2TPUUXQPBWUXIWVGVIIHHHWTF=
+RJF</a><br></div><div><br></div><div>I shared the RFNOC image core that I a=
+dded FFT but it doesn&#39;t work...</div><div>Can anyone guide me? Thanks i=
+n advance</div><div><br></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000a6edbc05e02879f4--
+
+--===============7557775001679433165==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7557775001679433165==--
