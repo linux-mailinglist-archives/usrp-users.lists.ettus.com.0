@@ -2,138 +2,124 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97447537ACA
-	for <lists+usrp-users@lfdr.de>; Mon, 30 May 2022 14:49:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2ACF537AEC
+	for <lists+usrp-users@lfdr.de>; Mon, 30 May 2022 14:59:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1353138410D
-	for <lists+usrp-users@lfdr.de>; Mon, 30 May 2022 08:49:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BAB5A383EB5
+	for <lists+usrp-users@lfdr.de>; Mon, 30 May 2022 08:59:14 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1653914983; bh=BMvB+s3Y9iMd8FwCW1cgjwPqSzxKPU6gC73nsuIX2Lo=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=hQ8xQ4i5y5b+zsfp7NkpcpUGMSshxE7kwrmzwYaJvYMd4WUhtlcbWRMolLJFKW3Fb
-	 tj0MvoeiP/y3ksJZH+jk1honVMErb3XwsOjcvBJmlsYUv0drpzkbv0WJW9uR+sZalV
-	 kj1XrTXL9Ke+Rf3XrEF4u6u22SKPxF+XivVgXxcbfimQDT6m2QAs1fl6j4g29NGIGe
-	 Ht9UOFQo5mulwZUr6ufLk121t37JqG+70jQBwJAc510+YurFcl8K2RAvFdqUc88pHn
-	 gSiyUif4WpaAcyYV6ajQhOh0Dcrnlcn6IRO+rIwUFhVRcMe0kjcUS0V3G4Gx21lada
-	 dSvRWDlKqlsFg==
-Received: from mailrelay.tu-berlin.de (mailrelay.tu-berlin.de [130.149.7.70])
-	by mm2.emwd.com (Postfix) with ESMTPS id 750BD383C3B
-	for <usrp-users@lists.ettus.com>; Mon, 30 May 2022 08:48:34 -0400 (EDT)
+	t=1653915554; bh=Q9qBq2Btvkqjnoiv4peh13vZZ7DBSkJxb2fc4WULy94=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=HD0BbTnZTWs1ps+tA1APAPfBQw3w2mX7TFfP7usir9AT4jR2s0+/BK1jQUudwPLar
+	 OYlNB/mN321U58HnKx/tgp6KuvOPE4sA1xtOkGgyORXPvDGH6GmlmtZVOsDVaUi+X1
+	 KcawGxJLuBbnB+YmAzjdmtzlGI/cGK0gyVW6Ojzz7j3I8qKCDx8Zajd7rIC8ctJRsl
+	 EyLYBTIdTjkXufsf5B8aveoh4ZegKC3M59ckfxdm2oaqTIU9ry8mH7P8YA6VZos2to
+	 oPxVLzgz57V8siTtH9yqIM96sl0hnWvrxLx2yMShS7uikilsYrnhpvxS/aspfiLLVQ
+	 IGtrYr50Rqwpw==
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2EAC4383EB0
+	for <usrp-users@lists.ettus.com>; Mon, 30 May 2022 08:58:10 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=campus.tu-berlin.de header.i=@campus.tu-berlin.de header.b="hxjNwo5x";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="mnWQ7Axp";
 	dkim-atps=neutral
-Received: from SPMA-03.tubit.win.tu-berlin.de (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id C4B596E656_294BD20B
-	for <usrp-users@lists.ettus.com>; Mon, 30 May 2022 12:48:32 +0000 (GMT)
-Received: from mail.tu-berlin.de (postcard.tu-berlin.de [141.23.12.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(Client CN "exchange.tu-berlin.de", Issuer "DFN-Verein Global Issuing CA" (verified OK))
-	by SPMA-03.tubit.win.tu-berlin.de (Sophos Email Appliance) with ESMTPS id 9330D93CE8_294BD20F
-	for <usrp-users@lists.ettus.com>; Mon, 30 May 2022 12:48:32 +0000 (GMT)
-Received: from ex-03.svc.tu-berlin.de (10.150.18.7) by ex-04.svc.tu-berlin.de
- (10.150.18.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Mon, 30 May
- 2022 14:48:32 +0200
-Received: from ex-03.svc.tu-berlin.de ([fe80::90c2:55f5:8c3d:e95d]) by
- ex-03.svc.tu-berlin.de ([fe80::90c2:55f5:8c3d:e95d%7]) with mapi id
- 15.02.0986.022; Mon, 30 May 2022 14:48:32 +0200
-From: "Chang, Kaixin" <k.chang@campus.tu-berlin.de>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: power level control
-Thread-Index: AQHYdCLr47MyRk/FM0yvyvN3wZ6i0Q==
-Date: Mon, 30 May 2022 12:48:32 +0000
-Message-ID: <dadaad2586274afaa98554722cd79a2f@campus.tu-berlin.de>
-Accept-Language: en-CA, de-DE, en-US
-Content-Language: en-CA
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [193.174.67.81]
+Received: by mail-wm1-f42.google.com with SMTP id l188-20020a1c25c5000000b003978df8a1e2so4308716wml.1
+        for <usrp-users@lists.ettus.com>; Mon, 30 May 2022 05:58:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to:content-transfer-encoding;
+        bh=QIEw4awBNmL4hsH0CoT27dvuPSgvZOWDyZ+OfLO4SxI=;
+        b=mnWQ7AxpjUI9E/32HvjkLz/3Ug5+qQqwWXVqDNVVsboyVHhTq67R+nP2zjtE0gLKda
+         J7H/YLA6iCb3/YTIHND1nhGEPwj6k+S1iL+6drkEVVm497sP4pUfAOx+49RGT15jC/UU
+         Qiak0FxJ6eTrNxOQJogjkPh27jCU4yFMTL+uahjpRnVpZpNGDwQE6s83IJFMGkFbEh7d
+         5FwRLkY111rLKrDkotGyiTPYgnRuqm+eImQS9ZaIJ9tvS6e4n2JZX8QbWD0aFfbXvAk+
+         XIHoEXxSxKiEu+SvwkCeDudVdoNrDBEmiLK2DTfZbSS+50TZqTORDMUCXEfOqLAHP7X9
+         IWrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QIEw4awBNmL4hsH0CoT27dvuPSgvZOWDyZ+OfLO4SxI=;
+        b=XznTyHCZLfUO9QUkBVkNUvA8o0Cg/VixVJ98G7Ci9SLbrTRvtVWg0oeDFklerp8fza
+         ficyXWpzSt7NCXYBNL+0swnKG40+b4kWlV53kJc75EtGRFepdknqRGBr9wslIiFYGwZv
+         zW5LB19PrM9teuaebQGDXBNd1tq13iOAFYKNoj25iaN48SQuMMMPE2+kxCkQMPR0xaPC
+         RL5mFhzpzPZ6pwauiv3Plp0TeMoW6BYdH/UM9579HU47EOae5ZE/UttKP2ODfrEnAfGx
+         zq3i5lpCxvnxJMw32SZYKOwKCtmcQbebY3/MOs4QU4qvKm+aC1t3On6ooYR+VyDcAI/b
+         FwkA==
+X-Gm-Message-State: AOAM532oJrnYcEeZZ+bgdDBMIw2+yekcENNpY5bsUmXVKnmNlCB6LNDo
+	O7U2p63I1vJ1OyUzdtkaRjADPXIVMvRWsBDQ
+X-Google-Smtp-Source: ABdhPJz370WfVvIuIbgfeR8qMt3HKEaslGDA6a34DQ9QNkHTmCrYQSVmxT/tEOTTKjDcefO/Dt74uA==
+X-Received: by 2002:a05:600c:1993:b0:394:8ae3:e28d with SMTP id t19-20020a05600c199300b003948ae3e28dmr19331307wmq.49.1653915488953;
+        Mon, 30 May 2022 05:58:08 -0700 (PDT)
+Received: from ?IPV6:2001:9e8:3855:fcfc::d8d? ([2001:9e8:3855:fcfc::d8d])
+        by smtp.gmail.com with ESMTPSA id o15-20020a5d58cf000000b0020d02ddf4d0sm8833882wrf.69.2022.05.30.05.58.08
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 May 2022 05:58:08 -0700 (PDT)
+Message-ID: <e6efb3b5-d727-1ccf-619f-4a572b3d4c21@ettus.com>
+Date: Mon, 30 May 2022 14:58:07 +0200
 MIME-Version: 1.0
-X-SASI-RCODE: 200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=campus.tu-berlin.de; h=from:to:subject:date:message-id:content-type:mime-version; s=dkim-tub; bh=y4hYm5cGgu7DlfwMY+XPZwaKrcweOW3QgbQRwWRpycg=; b=hxjNwo5x0owF9HNNgrm2o8SAsu1TeT11sjHGlzYbvyOTPusbROxuu9w3z587OKCbgAGXoRPwjcUHruWd9copc7gHAT1ZXthOxTheP3hkEj5DelFjrk67XdEDLqRXM2xOAuM8+awMNk1/HsBMSPinjmeEu3MxbgAd1JnVUMDTTzQ=
-Message-ID-Hash: Q2CWL27FTKCBZF26OKWLNWPLE2WE4IHT
-X-Message-ID-Hash: Q2CWL27FTKCBZF26OKWLNWPLE2WE4IHT
-X-MailFrom: k.chang@campus.tu-berlin.de
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <dadaad2586274afaa98554722cd79a2f@campus.tu-berlin.de>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+In-Reply-To: <dadaad2586274afaa98554722cd79a2f@campus.tu-berlin.de>
+Message-ID-Hash: X3TBA727AMIGXZTLL2V4MML7O3T6HFTU
+X-Message-ID-Hash: X3TBA727AMIGXZTLL2V4MML7O3T6HFTU
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] power level control
+Subject: [USRP-users] Re: power level control
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q2CWL27FTKCBZF26OKWLNWPLE2WE4IHT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/X3TBA727AMIGXZTLL2V4MML7O3T6HFTU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0899254056155685851=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============0899254056155685851==
-Content-Language: en-CA
-Content-Type: multipart/alternative;
-	boundary="_000_dadaad2586274afaa98554722cd79a2fcampustuberlinde_"
-
---_000_dadaad2586274afaa98554722cd79a2fcampustuberlinde_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Dear all,
-
-
-I have read the article https://files.ettus.com/manual/page_power.html of p=
-ower level control. I wonder what is the default value of RX reference leve=
-l? I didn't find some information about that. Does anyone have idea?
-
-
-sincerely
-
-
-Qasim
-
---_000_dadaad2586274afaa98554722cd79a2fcampustuberlinde_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
-n-bottom:0;} --></style>
-</head>
-<body dir=3D"ltr">
-<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
--family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
-<p>Dear all,</p>
-<p><br>
-</p>
-<p>I have read the article&nbsp;<a href=3D"https://files.ettus.com/manual/p=
-age_power.html" class=3D"OWAAutoLink" id=3D"LPlnk537113" previewremoved=3D"=
-true">https://files.ettus.com/manual/page_power.html</a>&nbsp;of power leve=
-l control. I wonder what is the default value of RX
- reference level? I didn't find some information about that. Does anyone ha=
-ve idea?</p>
-<p><br>
-</p>
-<p>sincerely</p>
-<p><br>
-</p>
-<p>Qasim</p>
-</div>
-</body>
-</html>
-
---_000_dadaad2586274afaa98554722cd79a2fcampustuberlinde_--
-
---===============0899254056155685851==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============0899254056155685851==--
+VGhhdCdzIHdoYXQgKnlvdSogbmVlZCB0byBkZXRlcm1pbmUsIHRocm91Z2ggY2FsaWJyYXRpb24h
+IEFwcGx5IGEgc2F5LCAtNTAgZEJtIHBvd2VyIA0Kc2lnbmFsIHRvIHRoZSBVU1JQJ3MgaW5wdXQu
+IE5vdGUgZG93biB0aGUgZGlnaXRhbCBwb3dlci4gQ2hvb3NlIHRoZSByZWZlcmVuY2UgbGV2ZWwg
+YXMgdGhlIA0KZGlmZmVyZW5jZSBiZXR3ZWVuIC01MCBkQm0gYW5kIHdoYXQgeW91IG9ic2VydmVk
+Lg0KDQoNCkJlc3QgcmVnYXJkcywNCg0KTWFyY3VzDQoNCkRJU0NMQUlNRVI6IEFueSBhdHRhY2hl
+ZCBDb2RlIGlzIHByb3ZpZGVkIEFzIElzLiBJdCBoYXMgbm90IGJlZW4gdGVzdGVkIG9yIHZhbGlk
+YXRlZCBhcyBhIHByb2R1Y3QsIGZvciB1c2UgaW4gYSBkZXBsb3llZCBhcHBsaWNhdGlvbiBvciBz
+eXN0ZW0sIG9yIGZvciB1c2UgaW4gaGF6YXJkb3VzIGVudmlyb25tZW50cy4gWW91IGFzc3VtZSBh
+bGwgcmlza3MgZm9yIHVzZSBvZiB0aGUgQ29kZS4gVXNlIG9mIHRoZSBDb2RlIGlzIHN1YmplY3Qg
+dG8gdGVybXMgb2YgdGhlIGxpY2Vuc2VzIHRvIHRoZSBVSEQgb3IgUkZOb0MgY29kZSB3aXRoIHdo
+aWNoIHRoZSBDb2RlIGlzIHVzZWQuIFN0YW5kYXJkIGxpY2Vuc2VzIHRvIFVIRCBhbmQgUkZOb0Mg
+Y2FuIGJlIGZvdW5kIGF0IGh0dHBzOi8vd3d3LmV0dHVzLmNvbS9zZHItc29mdHdhcmUvbGljZW5z
+ZXMvLg0KDQpOSSB3aWxsIG9ubHkgcGVyZm9ybSBzZXJ2aWNlcyBiYXNlZCBvbiBpdHMgdW5kZXJz
+dGFuZGluZyBhbmQgY29uZGl0aW9uIHRoYXQgdGhlIGdvb2RzIG9yIHNlcnZpY2VzIChpKSBhcmUg
+bm90IGZvciB0aGUgdXNlIGluIHRoZSBwcm9kdWN0aW9uIG9yIGRldmVsb3BtZW50IG9mIGFueSBp
+dGVtIHByb2R1Y2VkLCBwdXJjaGFzZWQsIG9yIG9yZGVyZWQgYnkgYW55IGVudGl0eSB3aXRoIGEg
+Zm9vdG5vdGUgMSBkZXNpZ25hdGlvbiBpbiB0aGUgbGljZW5zZSByZXF1aXJlbWVudCBjb2x1bW4g
+b2YgU3VwcGxlbWVudCBOby4gNCB0byBQYXJ0IDc0NCwgVS5TLiBFeHBvcnQgQWRtaW5pc3RyYXRp
+b24gUmVndWxhdGlvbnMgYW5kIChpaSkgc3VjaCBhIGNvbXBhbnkgaXMgbm90IGEgcGFydHkgdG8g
+dGhlIHRyYW5zYWN0aW9uLiAgSWYgb3VyIHVuZGVyc3RhbmRpbmcgaXMgaW5jb3JyZWN0LCBwbGVh
+c2Ugbm90aWZ5IHVzIGltbWVkaWF0ZWx5IGJlY2F1c2UgYSBzcGVjaWZpYyBhdXRob3JpemF0aW9u
+IG1heSBiZSByZXF1aXJlZCBmcm9tIHRoZSBVLlMuIENvbW1lcmNlIERlcGFydG1lbnQgYmVmb3Jl
+IHRoZSB0cmFuc2FjdGlvbiBtYXkgcHJvY2VlZCBmdXJ0aGVyLg0KDQpPbiAzMC4wNS4yMiAxNDo0
+OCwgQ2hhbmcsIEthaXhpbiB3cm90ZToNCj4NCj4gRGVhciBhbGwsDQo+DQo+DQo+IEkgaGF2ZSBy
+ZWFkIHRoZSBhcnRpY2xlIGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3Bvd2Vy
+Lmh0bWwgDQo+IDxodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV9wb3dlci5odG1s
+PsKgb2YgcG93ZXIgbGV2ZWwgY29udHJvbC4gSSB3b25kZXIgd2hhdCANCj4gaXMgdGhlIGRlZmF1
+bHQgdmFsdWUgb2YgUlggcmVmZXJlbmNlIGxldmVsPyBJIGRpZG4ndCBmaW5kIHNvbWUgaW5mb3Jt
+YXRpb24gYWJvdXQgdGhhdC4gDQo+IERvZXMgYW55b25lIGhhdmUgaWRlYT8NCj4NCj4NCj4gc2lu
+Y2VyZWx5DQo+DQo+DQo+IFFhc2ltDQo+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
+dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11
+c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3Jw
+LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
