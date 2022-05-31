@@ -2,124 +2,217 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2ACF537AEC
-	for <lists+usrp-users@lfdr.de>; Mon, 30 May 2022 14:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94DBD538BDE
+	for <lists+usrp-users@lfdr.de>; Tue, 31 May 2022 09:16:27 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BAB5A383EB5
-	for <lists+usrp-users@lfdr.de>; Mon, 30 May 2022 08:59:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 23F2238409D
+	for <lists+usrp-users@lfdr.de>; Tue, 31 May 2022 03:16:26 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1653915554; bh=Q9qBq2Btvkqjnoiv4peh13vZZ7DBSkJxb2fc4WULy94=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=HD0BbTnZTWs1ps+tA1APAPfBQw3w2mX7TFfP7usir9AT4jR2s0+/BK1jQUudwPLar
-	 OYlNB/mN321U58HnKx/tgp6KuvOPE4sA1xtOkGgyORXPvDGH6GmlmtZVOsDVaUi+X1
-	 KcawGxJLuBbnB+YmAzjdmtzlGI/cGK0gyVW6Ojzz7j3I8qKCDx8Zajd7rIC8ctJRsl
-	 EyLYBTIdTjkXufsf5B8aveoh4ZegKC3M59ckfxdm2oaqTIU9ry8mH7P8YA6VZos2to
-	 oPxVLzgz57V8siTtH9yqIM96sl0hnWvrxLx2yMShS7uikilsYrnhpvxS/aspfiLLVQ
-	 IGtrYr50Rqwpw==
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2EAC4383EB0
-	for <usrp-users@lists.ettus.com>; Mon, 30 May 2022 08:58:10 -0400 (EDT)
+	t=1653981386; bh=liKNfwxpNq+Q7Hs77wlaxb1ghMHlskrBHuVxIx64+j4=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=FVjH38Pe4xu/Yipqk342+7Ys3MPwbjmhvsqi5CF+MQu8EMurM04R6RyvQFNUH226C
+	 6KbPQNmFg3VUSGXXrQa2o2tjr6aUaLHY4GkclR85f1v8eKgmdq1OS4kLZA/+fEZy2w
+	 BNNTiH4l8YQtF1HXnQ8jaL6I+p1Rc7TXS2red7WGhywKtw6ZSija43PI89w5+5yLtT
+	 vqd66/+ObxMEvKHEK0s5oeNWCQ+m6P/NmG6BZ1zY4LZcW9a4oNGLrKI+BJysQvmugm
+	 z6M5VQrgmxEd4Mut2fYxZoGOklaD6nLqVLbNRN2tJ++ggBkCHQD4jg7r4+wPL0LggZ
+	 gZQzkvqo2oaVw==
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id AD833383E15
+	for <usrp-users@lists.ettus.com>; Tue, 31 May 2022 03:15:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="mnWQ7Axp";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="MmE+9Nir";
 	dkim-atps=neutral
-Received: by mail-wm1-f42.google.com with SMTP id l188-20020a1c25c5000000b003978df8a1e2so4308716wml.1
-        for <usrp-users@lists.ettus.com>; Mon, 30 May 2022 05:58:10 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-2fee010f509so129408847b3.11
+        for <usrp-users@lists.ettus.com>; Tue, 31 May 2022 00:15:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=QIEw4awBNmL4hsH0CoT27dvuPSgvZOWDyZ+OfLO4SxI=;
-        b=mnWQ7AxpjUI9E/32HvjkLz/3Ug5+qQqwWXVqDNVVsboyVHhTq67R+nP2zjtE0gLKda
-         J7H/YLA6iCb3/YTIHND1nhGEPwj6k+S1iL+6drkEVVm497sP4pUfAOx+49RGT15jC/UU
-         Qiak0FxJ6eTrNxOQJogjkPh27jCU4yFMTL+uahjpRnVpZpNGDwQE6s83IJFMGkFbEh7d
-         5FwRLkY111rLKrDkotGyiTPYgnRuqm+eImQS9ZaIJ9tvS6e4n2JZX8QbWD0aFfbXvAk+
-         XIHoEXxSxKiEu+SvwkCeDudVdoNrDBEmiLK2DTfZbSS+50TZqTORDMUCXEfOqLAHP7X9
-         IWrA==
+        d=gmail.com; s=20210112;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=gBJIFRIHXtDuZMl5RIKMF66SglvBLm4G8wwshwYA1Zg=;
+        b=MmE+9NirWq+sOnuWDomGswsT/BMPNhu+V5s43c05mxFJBHu2Du8eqVJBQWOyZ4L+Hg
+         XbrDMD74sA93S3l+UoLV8CLNzxN4Fc3RCqfZqbCe2aSKtDOK8vodxd6hAleb2Ve02Ea3
+         iie5Wof/WClz7Rh/YQKOi1smITNYpN9BBL69q2zIIvKRZC8IMHWa1UjF15YJd6UHluqW
+         XFm1k3w5PP5BbVPozYtDcz75I9QbAOhi2iGaNRIKV5d7ASaMKxiZAKpXvE3em5C7oNsD
+         hCHVJqTlRPyngrhQlBWcrc1qnDpusWCNgyZNIkByb4oKe74y/u2HW49L1snR4qX2t4aj
+         m8TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=QIEw4awBNmL4hsH0CoT27dvuPSgvZOWDyZ+OfLO4SxI=;
-        b=XznTyHCZLfUO9QUkBVkNUvA8o0Cg/VixVJ98G7Ci9SLbrTRvtVWg0oeDFklerp8fza
-         ficyXWpzSt7NCXYBNL+0swnKG40+b4kWlV53kJc75EtGRFepdknqRGBr9wslIiFYGwZv
-         zW5LB19PrM9teuaebQGDXBNd1tq13iOAFYKNoj25iaN48SQuMMMPE2+kxCkQMPR0xaPC
-         RL5mFhzpzPZ6pwauiv3Plp0TeMoW6BYdH/UM9579HU47EOae5ZE/UttKP2ODfrEnAfGx
-         zq3i5lpCxvnxJMw32SZYKOwKCtmcQbebY3/MOs4QU4qvKm+aC1t3On6ooYR+VyDcAI/b
-         FwkA==
-X-Gm-Message-State: AOAM532oJrnYcEeZZ+bgdDBMIw2+yekcENNpY5bsUmXVKnmNlCB6LNDo
-	O7U2p63I1vJ1OyUzdtkaRjADPXIVMvRWsBDQ
-X-Google-Smtp-Source: ABdhPJz370WfVvIuIbgfeR8qMt3HKEaslGDA6a34DQ9QNkHTmCrYQSVmxT/tEOTTKjDcefO/Dt74uA==
-X-Received: by 2002:a05:600c:1993:b0:394:8ae3:e28d with SMTP id t19-20020a05600c199300b003948ae3e28dmr19331307wmq.49.1653915488953;
-        Mon, 30 May 2022 05:58:08 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:3855:fcfc::d8d? ([2001:9e8:3855:fcfc::d8d])
-        by smtp.gmail.com with ESMTPSA id o15-20020a5d58cf000000b0020d02ddf4d0sm8833882wrf.69.2022.05.30.05.58.08
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 May 2022 05:58:08 -0700 (PDT)
-Message-ID: <e6efb3b5-d727-1ccf-619f-4a572b3d4c21@ettus.com>
-Date: Mon, 30 May 2022 14:58:07 +0200
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=gBJIFRIHXtDuZMl5RIKMF66SglvBLm4G8wwshwYA1Zg=;
+        b=F9wIt7lMiiLAm87jaLCBIFPHNXyZ8OTn4A716jJ6QSnpisIm0ev7JOVuwUJGOkIs9R
+         jcPbC5/WW7Ka0QpDJYJnxGemx5eFRMC+9d0/gF1cxHV//x563Q35gXD3PIcTN+cxdu0A
+         /g2koVe1wjaCABHXeh3aaYt0+E5sQtJCjZU+NPSKOazMwSt3mfSoZ7JO1vWHta0ibGYs
+         eeUNFd1zCIU/hFyc9lYNZvoDtgDblDcDzrqCrz/A62QeWUxxDqxaDkBXoCk6SaYWArzf
+         mo9qbev8gZksle9aETQkAGgN7LU1sfeBVgkNKq2N4E0TbGePft/GHlfYioQO19ox6mQI
+         pZDA==
+X-Gm-Message-State: AOAM532Ys8MBgJFhg8bob4uvnmoANBCrqJ26BXmKufL3F73AsgWfGGWC
+	doxNjQm8cbBaMjYj4r0JiKlW5wxTsnO2c7lIa0shiUc92H8=
+X-Google-Smtp-Source: ABdhPJyMnPnrZny23ujepYq5wkJSeSQjkQ4kZ2eUCFUO3FILRKEubGg60OFDAlNTiN52kFtacdjVMHdx1cr7FqMJ984=
+X-Received: by 2002:a81:4688:0:b0:300:3205:ff1e with SMTP id
+ t130-20020a814688000000b003003205ff1emr36837198ywa.162.1653981315742; Tue, 31
+ May 2022 00:15:15 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.0
-Content-Language: en-US
+From: rouba zeitoun <roubazeitoun@gmail.com>
+Date: Tue, 31 May 2022 10:15:04 +0300
+Message-ID: <CAHqKquxc8D6TRz0XHwyP5+6qw47qT_iunVDBGBPfEJ4UT=HwtQ@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <dadaad2586274afaa98554722cd79a2f@campus.tu-berlin.de>
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-In-Reply-To: <dadaad2586274afaa98554722cd79a2f@campus.tu-berlin.de>
-Message-ID-Hash: X3TBA727AMIGXZTLL2V4MML7O3T6HFTU
-X-Message-ID-Hash: X3TBA727AMIGXZTLL2V4MML7O3T6HFTU
-X-MailFrom: marcus.mueller@ettus.com
+Message-ID-Hash: 2ISXMQWSDRIQH32HBZQORP3VCBBWVDDW
+X-Message-ID-Hash: 2ISXMQWSDRIQH32HBZQORP3VCBBWVDDW
+X-MailFrom: roubazeitoun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: power level control
+Subject: [USRP-users] errors while installing uhd
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/X3TBA727AMIGXZTLL2V4MML7O3T6HFTU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2ISXMQWSDRIQH32HBZQORP3VCBBWVDDW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1364145298636994821=="
 
-VGhhdCdzIHdoYXQgKnlvdSogbmVlZCB0byBkZXRlcm1pbmUsIHRocm91Z2ggY2FsaWJyYXRpb24h
-IEFwcGx5IGEgc2F5LCAtNTAgZEJtIHBvd2VyIA0Kc2lnbmFsIHRvIHRoZSBVU1JQJ3MgaW5wdXQu
-IE5vdGUgZG93biB0aGUgZGlnaXRhbCBwb3dlci4gQ2hvb3NlIHRoZSByZWZlcmVuY2UgbGV2ZWwg
-YXMgdGhlIA0KZGlmZmVyZW5jZSBiZXR3ZWVuIC01MCBkQm0gYW5kIHdoYXQgeW91IG9ic2VydmVk
-Lg0KDQoNCkJlc3QgcmVnYXJkcywNCg0KTWFyY3VzDQoNCkRJU0NMQUlNRVI6IEFueSBhdHRhY2hl
-ZCBDb2RlIGlzIHByb3ZpZGVkIEFzIElzLiBJdCBoYXMgbm90IGJlZW4gdGVzdGVkIG9yIHZhbGlk
-YXRlZCBhcyBhIHByb2R1Y3QsIGZvciB1c2UgaW4gYSBkZXBsb3llZCBhcHBsaWNhdGlvbiBvciBz
-eXN0ZW0sIG9yIGZvciB1c2UgaW4gaGF6YXJkb3VzIGVudmlyb25tZW50cy4gWW91IGFzc3VtZSBh
-bGwgcmlza3MgZm9yIHVzZSBvZiB0aGUgQ29kZS4gVXNlIG9mIHRoZSBDb2RlIGlzIHN1YmplY3Qg
-dG8gdGVybXMgb2YgdGhlIGxpY2Vuc2VzIHRvIHRoZSBVSEQgb3IgUkZOb0MgY29kZSB3aXRoIHdo
-aWNoIHRoZSBDb2RlIGlzIHVzZWQuIFN0YW5kYXJkIGxpY2Vuc2VzIHRvIFVIRCBhbmQgUkZOb0Mg
-Y2FuIGJlIGZvdW5kIGF0IGh0dHBzOi8vd3d3LmV0dHVzLmNvbS9zZHItc29mdHdhcmUvbGljZW5z
-ZXMvLg0KDQpOSSB3aWxsIG9ubHkgcGVyZm9ybSBzZXJ2aWNlcyBiYXNlZCBvbiBpdHMgdW5kZXJz
-dGFuZGluZyBhbmQgY29uZGl0aW9uIHRoYXQgdGhlIGdvb2RzIG9yIHNlcnZpY2VzIChpKSBhcmUg
-bm90IGZvciB0aGUgdXNlIGluIHRoZSBwcm9kdWN0aW9uIG9yIGRldmVsb3BtZW50IG9mIGFueSBp
-dGVtIHByb2R1Y2VkLCBwdXJjaGFzZWQsIG9yIG9yZGVyZWQgYnkgYW55IGVudGl0eSB3aXRoIGEg
-Zm9vdG5vdGUgMSBkZXNpZ25hdGlvbiBpbiB0aGUgbGljZW5zZSByZXF1aXJlbWVudCBjb2x1bW4g
-b2YgU3VwcGxlbWVudCBOby4gNCB0byBQYXJ0IDc0NCwgVS5TLiBFeHBvcnQgQWRtaW5pc3RyYXRp
-b24gUmVndWxhdGlvbnMgYW5kIChpaSkgc3VjaCBhIGNvbXBhbnkgaXMgbm90IGEgcGFydHkgdG8g
-dGhlIHRyYW5zYWN0aW9uLiAgSWYgb3VyIHVuZGVyc3RhbmRpbmcgaXMgaW5jb3JyZWN0LCBwbGVh
-c2Ugbm90aWZ5IHVzIGltbWVkaWF0ZWx5IGJlY2F1c2UgYSBzcGVjaWZpYyBhdXRob3JpemF0aW9u
-IG1heSBiZSByZXF1aXJlZCBmcm9tIHRoZSBVLlMuIENvbW1lcmNlIERlcGFydG1lbnQgYmVmb3Jl
-IHRoZSB0cmFuc2FjdGlvbiBtYXkgcHJvY2VlZCBmdXJ0aGVyLg0KDQpPbiAzMC4wNS4yMiAxNDo0
-OCwgQ2hhbmcsIEthaXhpbiB3cm90ZToNCj4NCj4gRGVhciBhbGwsDQo+DQo+DQo+IEkgaGF2ZSBy
-ZWFkIHRoZSBhcnRpY2xlIGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9wYWdlX3Bvd2Vy
-Lmh0bWwgDQo+IDxodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV9wb3dlci5odG1s
-PsKgb2YgcG93ZXIgbGV2ZWwgY29udHJvbC4gSSB3b25kZXIgd2hhdCANCj4gaXMgdGhlIGRlZmF1
-bHQgdmFsdWUgb2YgUlggcmVmZXJlbmNlIGxldmVsPyBJIGRpZG4ndCBmaW5kIHNvbWUgaW5mb3Jt
-YXRpb24gYWJvdXQgdGhhdC4gDQo+IERvZXMgYW55b25lIGhhdmUgaWRlYT8NCj4NCj4NCj4gc2lu
-Y2VyZWx5DQo+DQo+DQo+IFFhc2ltDQo+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8g
-dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3Jw
-LXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============1364145298636994821==
+Content-Type: multipart/alternative; boundary="000000000000ca3ea405e0498899"
+
+--000000000000ca3ea405e0498899
+Content-Type: text/plain; charset="UTF-8"
+
+Hello USRP experts
+
+I am re-installing UHD on my laptop from this site "
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux
+"
+
+But when i try to execute the command cmake ../ i get an error, i fixed it
+by changing
+
+"Boost_FOUND;HAVE_PYTHON_PLAT_MIN_VERSION;HAVE_PYTHON_MODULE_MAKO" OFF ON)
+to this
+
+"Boost_FOUND;HAVE_PYTHON_PLAT_MIN_VERSION;HAVE_PYTHON_MODULE_MAKO" ON ON)
+
+
+and it works fine, but now i got an error after executing the command make
+
+
+the error is :
+
+
+Traceback (most recent call last):
+  File "/home/qw/workarea/uhd/host/lib/transport/gen_vrt_if_packet.py",
+line 361, in <module>
+    eob_p = 0b1000000,
+  File "/home/qw/workarea/uhd/host/lib/transport/gen_vrt_if_packet.py",
+line 347, in parse_tmpl
+    from mako.template import Template
+ImportError: No module named mako.template
+make[2]: *** [lib/CMakeFiles/uhd.dir/build.make:219:
+lib/transport/vrt_if_packet.cpp] Error 1
+make[2]: *** Deleting file 'lib/transport/vrt_if_packet.cpp'
+make[1]: *** [CMakeFiles/Makefile2:686: lib/CMakeFiles/uhd.dir/all] Error 2
+make: *** [Makefile:163: all] Error 2
+
+
+
+How may I solve it?
+
+
+Regards
+
+Rouba
+
+--000000000000ca3ea405e0498899
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello USRP experts=C2=A0<div><br></div><div>I am re-instal=
+ling UHD on my laptop from this site &quot;<a href=3D"https://kb.ettus.com/=
+Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_=
+on_Linux">https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source=
+_Toolchain_(UHD_and_GNU_Radio)_on_Linux</a>&quot;</div><div><br></div><div>=
+But=C2=A0<span style=3D"color:rgb(36,41,47);font-family:-apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px">when i try to e=
+xecute the command cmake ../ i get an error, i fixed it by changing=C2=A0</=
+span></div><div><span style=3D"color:rgb(36,41,47);font-family:-apple-syste=
+m,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;=
+Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px"><br></sp=
+an></div><div><p dir=3D"auto" style=3D"box-sizing:border-box;margin-top:0px=
+;margin-bottom:16px;color:rgb(36,41,47);font-family:-apple-system,BlinkMacS=
+ystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color=
+ Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px">&quot;Boost_FOUND;H=
+AVE_PYTHON_PLAT_MIN_VERSION;HAVE_PYTHON_MODULE_MAKO&quot; OFF ON)<br style=
+=3D"box-sizing:border-box">to this</p><p dir=3D"auto" style=3D"box-sizing:b=
+order-box;margin-top:0px;color:rgb(36,41,47);font-family:-apple-system,Blin=
+kMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px;margin-bottom:0=
+px">&quot;Boost_FOUND;HAVE_PYTHON_PLAT_MIN_VERSION;HAVE_PYTHON_MODULE_MAKO&=
+quot; ON ON)</p><p dir=3D"auto" style=3D"box-sizing:border-box;margin-top:0=
+px;color:rgb(36,41,47);font-family:-apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quo=
+t;Segoe UI Emoji&quot;;font-size:14px;margin-bottom:0px"><br></p><p style=
+=3D"box-sizing:border-box;margin-top:0px;color:rgb(36,41,47);font-family:-a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-se=
+rif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px=
+;margin-bottom:0px">and it works fine, but now i got an error after executi=
+ng the command make</p><p style=3D"box-sizing:border-box;margin-top:0px;col=
+or:rgb(36,41,47);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe U=
+I&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Sego=
+e UI Emoji&quot;;font-size:14px;margin-bottom:0px"><br></p><p style=3D"box-=
+sizing:border-box;margin-top:0px;color:rgb(36,41,47);font-family:-apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quo=
+t;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px;margin-=
+bottom:0px">the error is :</p><p style=3D"box-sizing:border-box;margin-top:=
+0px;color:rgb(36,41,47);font-family:-apple-system,BlinkMacSystemFont,&quot;=
+Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&qu=
+ot;Segoe UI Emoji&quot;;font-size:14px;margin-bottom:0px"><br></p><p style=
+=3D"box-sizing:border-box;margin-top:0px;color:rgb(36,41,47);font-family:-a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-se=
+rif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px=
+;margin-bottom:0px">Traceback (most recent call last):<br>=C2=A0 File &quot=
+;/home/qw/workarea/uhd/host/lib/transport/gen_vrt_if_packet.py&quot;, line =
+361, in &lt;module&gt;<br>=C2=A0 =C2=A0 eob_p =3D 0b1000000,<br>=C2=A0 File=
+ &quot;/home/qw/workarea/uhd/host/lib/transport/gen_vrt_if_packet.py&quot;,=
+ line 347, in parse_tmpl<br>=C2=A0 =C2=A0 from mako.template import Templat=
+e<br>ImportError: No module named mako.template<br>make[2]: *** [lib/CMakeF=
+iles/uhd.dir/build.make:219: lib/transport/vrt_if_packet.cpp] Error 1<br>ma=
+ke[2]: *** Deleting file &#39;lib/transport/vrt_if_packet.cpp&#39;<br>make[=
+1]: *** [CMakeFiles/Makefile2:686: lib/CMakeFiles/uhd.dir/all] Error 2<br>m=
+ake: *** [Makefile:163: all] Error 2<br></p><p style=3D"box-sizing:border-b=
+ox;margin-top:0px;color:rgb(36,41,47);font-family:-apple-system,BlinkMacSys=
+temFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color E=
+moji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px;margin-bottom:0px"><br=
+></p><p style=3D"box-sizing:border-box;margin-top:0px;color:rgb(36,41,47);f=
+ont-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,=
+Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;f=
+ont-size:14px;margin-bottom:0px"><br></p><p style=3D"box-sizing:border-box;=
+margin-top:0px;color:rgb(36,41,47);font-family:-apple-system,BlinkMacSystem=
+Font,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoj=
+i&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px;margin-bottom:0px">How ma=
+y I solve it?</p><p style=3D"box-sizing:border-box;margin-top:0px;color:rgb=
+(36,41,47);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot=
+;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI E=
+moji&quot;;font-size:14px;margin-bottom:0px"><br></p><p style=3D"box-sizing=
+:border-box;margin-top:0px;color:rgb(36,41,47);font-family:-apple-system,Bl=
+inkMacSystemFont,&quot;Segoe UI&quot;,Helvetica,Arial,sans-serif,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-size:14px;margin-bottom=
+:0px">Regards</p><p style=3D"box-sizing:border-box;margin-top:0px;color:rgb=
+(36,41,47);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot=
+;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI E=
+moji&quot;;font-size:14px;margin-bottom:0px">Rouba</p></div></div>
+
+--000000000000ca3ea405e0498899--
+
+--===============1364145298636994821==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1364145298636994821==--
