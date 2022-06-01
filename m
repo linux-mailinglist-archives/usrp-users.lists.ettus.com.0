@@ -2,827 +2,282 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B5B53AB4B
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Jun 2022 18:50:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F8553AB4F
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Jun 2022 18:51:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B2DC5384690
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Jun 2022 12:50:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 01BB5384592
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Jun 2022 12:51:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1654102256; bh=46np/OTlF8D9GbsmZPRct6PPcwz99AFUg6y747KsQe4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1654102319; bh=Wm+WIp4/wtk1CZDUsDraRamAhG6FcqQdEjUKDHo0bBk=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=bkq1pmbvEJ5LugqwfkZJ1SLGkZOPYk5SN92QvKEsAzLEBbGcIl38wabwYzAlxDALH
-	 PglPgf5+T8Bim7g9gi7h41cZoW/4X1fh5+Uz8fp4y8gXmP954TbwTjMorfp1rW9m3R
-	 QIRRhSvGXLlAaV45lKYZliPd9M/pcdN1bUiy2kXj9yGhaj96jjI3M+SY4h5zTILPve
-	 AxWo8EtV4glvhbIU73hOb4mf4CA5xCfYWqTkPfE0IYW99SafVzzBfLQDV3p+d9czM4
-	 dr3qT5i978Zh6euGl9BsbSaupS5EO2Dzm1TU3nou27wb914/09uOdMrIMG64rw2px8
-	 dng+BA4Fx/ZFQ==
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9A79438422A
-	for <usrp-users@lists.ettus.com>; Wed,  1 Jun 2022 12:49:42 -0400 (EDT)
+	b=lTeS2isyR49Ztjq0OWclRHKTv6mvxFq8ettKuoCoOyV74nB41LseN+rya6HSYP4CX
+	 qONIEpiBR4N1017tAjgAKig0Wi+XctHDsOAesBpxJOQD4byw4KyDQhpJpcfmdeB9W3
+	 dDfyvQWu4qS+cpbPRHGqUbGAwtVhdRULiWsx5cCnsCOTceK9xrV+96MK/2FPKT/vvD
+	 OICzlW7LPVMraw1Z9AHI/gFaV4ChREvaYUxeyVgLFL8gL9GoPc97WjpMBGAy371pal
+	 nYPtrKupi8BgAJ5r6FT045bOub7lSH5TWFAweqLctt3HCl6FJP7YoWZcaRoTPUaLhZ
+	 0ucUa7CI239Lw==
+Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0083.outbound.protection.office365.us [23.103.208.83])
+	by mm2.emwd.com (Postfix) with ESMTPS id DB1A838468B
+	for <usrp-users@lists.ettus.com>; Wed,  1 Jun 2022 12:50:51 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EidYigIH";
+	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="EVH+NxF4";
 	dkim-atps=neutral
-Received: by mail-qv1-f43.google.com with SMTP id v5so1853301qvs.10
-        for <usrp-users@lists.ettus.com>; Wed, 01 Jun 2022 09:49:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=eBPbXVfGgf+qYhJIe652Jczv69qnjm7+iG2nIC30qRbw7wssd2IJFPYrLLgk7RuGcrJpbfVoUCwwSO6rVfnrVE93O/D4pC5HXXpGNyb39xOgJEahiGSfGqR5XWcLU1KPtHfsAh5oWmcn1XynAqZr+JvVOgxRKZs7Prkf7phiSRUwFCOOBOzQhHk8D1o3u3lrTcqVLDQ7NojZzVseGv3ZKPS3H+f6paTVJGxmmpwTx+OvYSoKBvZcda+zrtNuP/lTuU0JTNsZMZaZ5S9eH4ucBfoMSopd4W+OZGLTE7vfFXQLx64kbChS9MuZCitEyGF0XQ1u+S4j8ByA+JF00uCuqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BL9jxR86hJ8j0j9i9uHg8MGoquo+q+AkpQ/HVjaXs1o=;
+ b=p7qdTgzhqL9RCf+UhWeW7TlFOxf0p6m1E+fm9gx5fyIaeSZ4kzY1J4jiJ/YSOfsvg3iUJ1uAKb+G9tTTgDqr1U68KiCbW/lrjgM0w2QMh+6IhbcvwIac5XeyVBreqw3vX/DhvZkKCSCgYru3tac4m7dD3RvGNEB0M/mlav/AGQEeUeX4xfuOJ6n9gbWW2DRUyHvH7jzl12yqqar4/aedNXnUHaYfUyBbNns2I2/b28WwMeZ8+dW19845b0B0XkMVB49OJ3eTN8Zooz+uto5nKoKfHEmnspmeF4gZ1Rq1AxMPfy4CZ7MkJ3yN6bHX9VxO3mkPYKuaYzNh0oyE8VQcUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
+ header.from=synopticengineering.com; dkim=pass
+ header.d=synopticengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=2R1tnhSwsaveSRIDWNdB6PSmoFdb/013z4eh6zMDYBE=;
-        b=EidYigIHVfQ1QGcD5VPIR6b+NBAqM8HN7eWvhvaiIwEBD3a7zTsdIuiVP43BAgHCCG
-         xRgS4uXmj/9JMqOSpFvi+hqZgrKzT/UtcIuSFzxOwOgqxQxIP3gSbFr71wTgoJKtQBHQ
-         b2d9UajiS3CVomHdny+4VC8/fvIEHyT0E0LBXWpq8ujMay5NHRThd3l0pJly5zrMeMkd
-         WLULs5O9Ujq3CEaGCrFCC74dKdVxK3hGJseq/LpM5K8Pf0zvbNLF7SJYVdS3P4OemxYQ
-         sWAq99J28t/TzerB5eL5jJY6wgLc20pr5RtPdqW/wS/6Wa9xe5AToKbEUDxnCRvWyNXM
-         IvbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=2R1tnhSwsaveSRIDWNdB6PSmoFdb/013z4eh6zMDYBE=;
-        b=pxzNHChYSHiHBPVyyJjfkEZFmg7HLpYdirzB0EM96+uokVEhHhuGAhyTFz5N69EQvD
-         LYx2TTHOMhJAj2XfcplOfPKftHDiNI1H06BCeGpfLyd1RajZ8oCfqavIGcIHxwbqHFk0
-         2ZM02oxckLPeKAEKzzp7LbYtIngsOLvNHSDopIx6XOn74Gw2JjUj1pB0p+y8rJEWHPWt
-         t1mUPkUZaR4N/bfx66ZSUHhDqaYlkk9MNqwG0Lv0MUMJkdH9tsMkaXC/kHmpwYvDSTZs
-         C+dBtSxnmB7Ctbg7bu22z8j3swSv/N45vMEj8JVnb9jQG3nv6IBFcP7hA+ZBiXXC/jQi
-         OZtg==
-X-Gm-Message-State: AOAM531/J4gSiv6sEsP9eG9qYb5T8n2T99IrdhN/c6S0xnUHubBa57Jx
-	qwf1y1sNyGVtxHY9wCWrJUswLV9+UPU=
-X-Google-Smtp-Source: ABdhPJzJKwMJoBdTgPfwuQ7oanCTFYFGnOctOtpQMFDGcuw8KJMsohgjmlcvpUjOwqYGk9TVkypiQQ==
-X-Received: by 2002:a0c:fa81:0:b0:461:e391:820b with SMTP id o1-20020a0cfa81000000b00461e391820bmr55456219qvn.6.1654102181595;
-        Wed, 01 Jun 2022 09:49:41 -0700 (PDT)
-Received: from [192.168.2.196] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id y203-20020a3764d4000000b0069fc13ce202sm1519704qkb.51.2022.06.01.09.49.40
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Jun 2022 09:49:41 -0700 (PDT)
-Message-ID: <c2d5fab7-03cf-958a-9896-7487f1e296a2@gmail.com>
-Date: Wed, 1 Jun 2022 12:49:40 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
+ d=synopticengineering.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BL9jxR86hJ8j0j9i9uHg8MGoquo+q+AkpQ/HVjaXs1o=;
+ b=EVH+NxF4z3tcRux2hHLVRiFD8Fn9R8POk9nGbVRlnM3dgjRvA4TZBHyzD9g3pGKBu9I1wD1tiIo5VURhl2ik4Oe7+ZL1J1vHBCa3QQLoj9uk5Z3MZatfGrS1sXVa1X6f976R39OoXNX6sxagscmF9L0WvrGkcHHsUsxT2K9BMhkuXKquS6DujpLlxHHrpGu1cWLuZh5FXzSUGMOQa43BoIacExLct1Q7zAYruxl35Y7defUq/0tJ6FF9Z3BUwIoyoeWbM3PTttHk/LhUtO9kCXpn7ovq8SBFpN3P1eFa2/i8zJRPPvIbvxUBHEHmvsptZBOD122gDRmzJwfRNulgdw==
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18a::22)
+ by PH1P110MB1426.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:18d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5273.19; Wed, 1 Jun
+ 2022 16:50:48 +0000
+Received: from PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae]) by PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::75f6:cf8e:ab07:b9ae%6]) with mapi id 15.20.5293.019; Wed, 1 Jun 2022
+ 16:50:48 +0000
+From: David Raeman <david@SynopticEngineering.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: GPS invalid reply
+Thread-Index: AQHYddbicOpRwlKYBUOjGXHS/mZjMK06wxXQ
+Date: Wed, 1 Jun 2022 16:50:48 +0000
+Message-ID: 
+ <PH1P110MB1665FC32BA7507798FE37A2AB7DF9@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+References: 
+ <CAJ28uHF+da1ghihZpZty73+VGq+8KB3cxFZQJFAoC1=5HAUcZw@mail.gmail.com>
+ <64c3344d-6e3e-3242-eaab-f42c2c10870c@gmail.com>
+In-Reply-To: <64c3344d-6e3e-3242-eaab-f42c2c10870c@gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAErymBhzsCT=X3u-=iYf0iqzRgEc5fDtH0v4Ap6e7-EYYrSpmQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAErymBhzsCT=X3u-=iYf0iqzRgEc5fDtH0v4Ap6e7-EYYrSpmQ@mail.gmail.com>
-Message-ID-Hash: F7FYOVNQ5AFAKIJ7V45OEAQHLKHVHDRD
-X-Message-ID-Hash: F7FYOVNQ5AFAKIJ7V45OEAQHLKHVHDRD
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7ea47e16-c5ae-457d-2ff4-08da43eee0f2
+x-ms-traffictypediagnostic: PH1P110MB1426:EE_
+x-microsoft-antispam-prvs: 
+ <PH1P110MB14261432372497675736CB69B7DF9@PH1P110MB1426.NAMP110.PROD.OUTLOOK.COM>
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ gotRGtfJcWAJMELToYX+c8x17DRS8TGqTHGOX7CR5I1cWnIxXHM48b6ChgQsJIhtFNHpkEg/uowZAR2KgZkm5g7gwx6uNBaRSG1WhkroaTKJ83oWFGJA/WUj0WP/802EGkXYvC3Y+HXKIYdIz8gfR9LongNEZcLItyySSlLQNQMSnJDohTSn4CpRt9Pitfvgyji8e8vrTVXhWUHExTj9a+gVL3GaBqag7iGs7icrOqRK+ckRAifHJF/ecN//8zQ7qLpoGxfPsciWZxpTsIKigH28TynrMrBoSMsdcldixkoxXTMFezPeU79ZXjy1/Glzz1oQJ4drlUMGipJhhhPuHN84m1wG0uHoGD9x5KeIF+vDZMo2E+a1BvS1gy4pIyEUiab0+FqEBUhtYUU56sGtDfFNcfP7rrgTKfxy3czoxf3XwbJGbna+PeKVY4yCeyQLwpolfEp8xJl2wTubvfoO9JX1S/E6dUmWC4hjTzso4gz6vK4KAP4W1ulyBxoFSILXVn/8mm/qkQv1GaCrEUwQ5NmgLkS9FO8GVrlwXr4IwZ7beKnaQ2q5+g/sFbZjokOwqmIjiXMzC5U9dbIM2KKv/GDjP3QyRf8HHxY+gXaW4fLO3CjQG+1ZsXkUx7kh6xYn0tqLdjRnnhzkAGuOBWCzIA==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(346002)(136003)(376002)(396003)(366004)(39830400003)(122000001)(38070700005)(55016003)(52536014)(83380400001)(33656002)(508600001)(316002)(5660300002)(110136005)(66446008)(8936002)(26005)(7696005)(6506007)(9686003)(53546011)(66556008)(8676002)(66476007)(66946007)(41300700001)(38100700002)(2906002)(76116006)(64756008)(186003)(86362001)(71200400001)(85282002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ dNLkDUUVdjEPB0RPhls5JLqmFelkyu+fp+FQTF2JeNyhBQckLCTgFeNzqV88FbWy5U0U+Tfjddw9qxtrcD0g7en7S5Hb8ckKq8RQ2tN8MXwgLLVm61grmK2X/YEEJr3UkjzdtAP3rjq8+wBMepg/2aqGzdGXZRk/fxmtqTzvd4gVTwMg8PrmO9RoLJNSsIvZ5aQaND/l33efzcltV0LCVimpiTzrkelham9U2ELgpDk1CMOIV+szp6NoJ0N/abc3DEYTH4vFfTFp1xjht5QOoPfubOONPlgHacmngQYgJo3J6qtOkOVNGtXVkopmq90AKNsusdkCkRIZ6jenY7zH/mKeY+mYcbYsq8euP+dhDhwFg21yAjuh/lWGDj943CZov0j/gkp6H2vEEKIpxgwiXg5+wo02Mbku34q9pc6o2l4=
+MIME-Version: 1.0
+X-OriginatorOrg: SynopticEngineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ea47e16-c5ae-457d-2ff4-08da43eee0f2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jun 2022 16:50:48.1279
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH1P110MB1426
+Message-ID-Hash: WJ5UQWJ4FHFOMFXE4CWQZQEXFOR76XII
+X-Message-ID-Hash: WJ5UQWJ4FHFOMFXE4CWQZQEXFOR76XII
+X-MailFrom: david@SynopticEngineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problem updating uhd library on Ubuntu 20.04
+Subject: [USRP-users] Re: GPS invalid reply
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/F7FYOVNQ5AFAKIJ7V45OEAQHLKHVHDRD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DEXDXYGMTH5QXCPPBOBWDGG6QL5JNCZV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2801091076953219178=="
+Content-Type: multipart/mixed; boundary="===============4089091688872711319=="
 
-This is a multi-part message in MIME format.
---===============2801091076953219178==
-Content-Type: multipart/alternative;
- boundary="------------FHU5GrmCMYqd0qwlJwDJqF09"
+--===============4089091688872711319==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_PH1P110MB1665FC32BA7507798FE37A2AB7DF9PH1P110MB1665NAMP_"
 
-This is a multi-part message in MIME format.
---------------FHU5GrmCMYqd0qwlJwDJqF09
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_PH1P110MB1665FC32BA7507798FE37A2AB7DF9PH1P110MB1665NAMP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 2022-06-01 12:31, Achilleas Anastasopoulos wrote:
-> Hi all,
->
-> I am working with gnuradio and usrps on an ubuntu 20.04
->
-> $ lsb_release -a
-> No LSB modules are available.
-> Distributor ID: Ubuntu
-> Description: =C2=A0 =C2=A0Ubuntu 20.04.4 LTS
-> Release: =C2=A0 =C2=A0 =C2=A0 =C2=A020.04
-> Codename: =C2=A0 =C2=A0 =C2=A0 focal
->
-> I usually update my uhd libraries from ettus binaries as described here=
-:
-> https://files.ettus.com/manual/page_install.html
->
-> $ sudo add-apt-repository ppa:ettusresearch/uhd
-> $ sudo apt-get update
-> $ sudo apt-get install libuhd-dev libuhd4.1.0 uhd-host
->
-> Then I usually=C2=A0build gnuradio from source (I am currently in v3.8)=
-.
-> I DO NOT install gnuradio from repositories!
->
-> Today I tried to update the uhd libraries.
-> First I cleaned up all previous versions:
->
-> $ sudo apt-get remove libuhd-dev libuhd4.1.0 uhd-host
-> $ sudo apt autoremove
-> $ ldconfig -p | grep uhd
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so.3.8.5git (libc6,x86-64) =
-=3D>=20
-> /usr/local/lib/libgnuradio-uhd.so.3.8.5git
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so.3.8.4 (libc6,x86-64) =3D=
->=20
-> /usr/local/lib/libgnuradio-uhd.so.3.8.4
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so.3.8.3git (libc6,x86-64) =
-=3D>=20
-> /usr/local/lib/libgnuradio-uhd.so.3.8.3git
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so (libc6,x86-64) =3D>=20
-> /usr/local/lib/libgnuradio-uhd.so
->
-> Then I tried to install the uhd libraries:
->
-> $ sudo add-apt-repository -y ppa:ettusresearch/uhd
-> Hit:1 http://dl.google.com/linux/chrome/deb stable InRelease
-> Hit:2 http://us.archive.ubuntu.com/ubuntu focal InRelease
-> Hit:3 http://us.archive.ubuntu.com/ubuntu focal-updates InRelease
-> Hit:4 http://us.archive.ubuntu.com/ubuntu focal-backports InRelease
-> Hit:5 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal InRelease
-> Get:6 http://security.ubuntu.com/ubuntu focal-security InRelease [114 k=
-B]
-> Fetched 114 kB in 1s (118 kB/s)
-> Reading package lists... Done
->
-> $ sudo apt-get update
-> Hit:1 http://dl.google.com/linux/chrome/deb stable InRelease
-> Hit:2 http://us.archive.ubuntu.com/ubuntu focal InRelease
-> Hit:3 http://us.archive.ubuntu.com/ubuntu focal-updates InRelease
-> Hit:4 http://us.archive.ubuntu.com/ubuntu focal-backports InRelease
-> Hit:5 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu focal InRelease
-> Get:6 http://security.ubuntu.com/ubuntu focal-security InRelease [114 k=
-B]
-> Fetched 114 kB in 1s (174 kB/s)
-> Reading package lists... Done
->
-> $ sudo apt-get install libuhd4.1.0
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> Suggested packages:
-> =C2=A0 gnuradio
-> The following NEW packages will be installed:
-> =C2=A0 libuhd4.1.0
-> 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-> Need to get 0 B/3,375 kB of archives.
-> After this operation, 14.6 MB of additional disk space will be used.
-> Selecting previously unselected package libuhd4.1.0:amd64.
-> (Reading database ... 269419 files and directories currently installed.=
-)
-> Preparing to unpack .../libuhd4.1.0_4.1.0.4-0ubuntu1~focal1_amd64.deb .=
-..
-> Unpacking libuhd4.1.0:amd64 (4.1.0.4-0ubuntu1~focal1) ...
-> Setting up libuhd4.1.0:amd64 (4.1.0.4-0ubuntu1~focal1) ...
-> Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
->
-> Now I am trying to install the "uhd-host" library:
->
-> $ sudo apt-get install uhd-host
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> *The following additional packages will be installed:
-> =C2=A0 libuhd4.2.0 python3-ruamel.yaml*
-> Suggested packages:
-> =C2=A0 gnuradio
-> The following NEW packages will be installed:
-> =C2=A0 libuhd4.2.0 python3-ruamel.yaml uhd-host
-> 0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
-> Need to get 0 B/7,502 kB of archives.
-> After this operation, 41.0 MB of additional disk space will be used.
-> Do you want to continue? [Y/n]
->
->
-> *******I do not understand why it asks to install also the=20
-> libuhd4.2.0=C2=A0library.
-> If I do that, then I get the following errors:
->
-> =C2=A0Y
-> Selecting previously unselected package libuhd4.2.0:amd64.
-> (Reading database ... 269464 files and directories currently installed.=
-)
-> Preparing to unpack .../libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb .=
-..
-> Unpacking libuhd4.2.0:amd64 (4.2.0.0-0ubuntu1~focal1) ...
-> dpkg: error processing archive=20
-> /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb=20
-> (--unpack):
-> =C2=A0trying to overwrite '/usr/share/uhd/cal/cal_metadata.fbs', which =
-is=20
-> also in package libuhd4.1.0:amd64 4.1.0.4-0ubuntu1~focal1
-> Selecting previously unselected package python3-ruamel.yaml.
-> Preparing to unpack .../python3-ruamel.yaml_0.15.89-3build1_amd64.deb .=
-..
-> Unpacking python3-ruamel.yaml (0.15.89-3build1) ...
-> Selecting previously unselected package uhd-host.
-> Preparing to unpack .../uhd-host_4.2.0.0-0ubuntu1~focal1_amd64.deb ...
-> Unpacking uhd-host (4.2.0.0-0ubuntu1~focal1) ...
-> Errors were encountered while processing:
-> =C2=A0/var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64=
-.deb
-> E: Sub-process /usr/bin/dpkg returned an error code (1)
->
->
-> Alternatively if I try to remove "libuhd4.1.0" and install the latest=20
-> "libuhd4.2.0"
->
-> $ sudo apt remove libuhd4.1.0
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> The following packages will be REMOVED:
-> =C2=A0 libuhd4.1.0
-> 0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
-> After this operation, 14.6 MB disk space will be freed.
-> Do you want to continue? [Y/n] Y
-> (Reading database ... 269464 files and directories currently installed.=
-)
-> Removing libuhd4.1.0:amd64 (4.1.0.4-0ubuntu1~focal1) ...
-> dpkg: warning: while removing libuhd4.1.0:amd64, directory=20
-> '/usr/share/uhd' not empty so not removed
-> Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
->
-> $ sudo apt autoremove
->
-> $ sudo apt install libuhd4.2.0
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> Suggested packages:
-> =C2=A0 gnuradio
-> The following NEW packages will be installed:
-> =C2=A0 libuhd4.2.0
-> 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-> Need to get 0 B/3,453 kB of archives.
-> After this operation, 15.0 MB of additional disk space will be used.
-> (Reading database ... 269419 files and directories currently installed.=
-)
-> Preparing to unpack .../libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb .=
-..
-> Unpacking libuhd4.2.0:amd64 (4.2.0.0-0ubuntu1~focal1) ...
-> Setting up libuhd4.2.0:amd64 (4.2.0.0-0ubuntu1~focal1) ...
-> Processing triggers for libc-bin (2.31-0ubuntu9.9) ...
->
-> Now I can easily=C2=A0install the "uhd-host" library
->
-> $ sudo apt install uhd-host
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> The following additional packages will be installed:
-> =C2=A0 python3-ruamel.yaml
-> Suggested packages:
-> =C2=A0 gnuradio
-> The following NEW packages will be installed:
-> =C2=A0 python3-ruamel.yaml uhd-host
-> 0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
-> Need to get 0 B/4,049 kB of archives.
-> After this operation, 26.0 MB of additional disk space will be used.
-> Do you want to continue? [Y/n] Y
-> Selecting previously unselected package python3-ruamel.yaml.
-> (Reading database ... 269460 files and directories currently installed.=
-)
-> Preparing to unpack .../python3-ruamel.yaml_0.15.89-3build1_amd64.deb .=
-..
-> Unpacking python3-ruamel.yaml (0.15.89-3build1) ...
-> Selecting previously unselected package uhd-host.
-> Preparing to unpack .../uhd-host_4.2.0.0-0ubuntu1~focal1_amd64.deb ...
-> Unpacking uhd-host (4.2.0.0-0ubuntu1~focal1) ...
-> Setting up python3-ruamel.yaml (0.15.89-3build1) ...
-> Setting up uhd-host (4.2.0.0-0ubuntu1~focal1) ...
-> sysctl: cannot open "/etc/sysctl.d/uhd-usrp2.conf": No such file or=20
-> directory
-> Warning: Could not update sysctl settings for network devices.
-> Processing triggers for man-db (2.9.1-1) ...
->
-> I check that everything works with uhd:
->
-> $ uhd_find_devices
-> [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;=20
-> UHD_4.2.0.0-0ubuntu1~focal1
-> --------------------------------------------------
-> -- UHD Device 0
-> --------------------------------------------------
-> Device Address:
-> =C2=A0 =C2=A0 serial: 315C6B2
-> =C2=A0 =C2=A0 addr: 192.168.40.2
-> =C2=A0 =C2=A0 fpga: HG
-> =C2=A0 =C2=A0 name:
-> =C2=A0 =C2=A0 product: X310
-> =C2=A0 =C2=A0 type: x300
->
-> BUT, when I try to install the "libuhd-dev" library I get the=20
-> following which
-> I suspect wants to install the entire gnuradio system from the=20
-> repository, which as I said in the beginning=C2=A0I do not want, since =
-I=C2=A0am=20
-> usually building it from source.
->
-> $ sudo apt-get install libuhd-dev
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> The following additional packages will be installed:
-> =C2=A0 freeglut3 gnuradio gnuradio-dev libgnuradio-analog3.8.1=20
-> libgnuradio-audio3.8.1 libgnuradio-blocks3.8.1
-> =C2=A0 libgnuradio-channels3.8.1 libgnuradio-digital3.8.1=20
-> libgnuradio-dtv3.8.1 libgnuradio-fec3.8.1
-> =C2=A0 libgnuradio-fft3.8.1 libgnuradio-filter3.8.1 libgnuradio-pmt3.8.=
-1=20
-> libgnuradio-qtgui3.8.1
-> =C2=A0 libgnuradio-runtime3.8.1 libgnuradio-trellis3.8.1=20
-> libgnuradio-uhd3.8.1 libgnuradio-video-sdl3.8.1
-> =C2=A0 libgnuradio-vocoder3.8.1 libgnuradio-wavelet3.8.1=20
-> libgnuradio-zeromq3.8.1 libjs-jquery-ui librtlsdr0
-> =C2=A0 libuhd3.15.0 libvolk2-bin libvolk2-dev libvolk2.2=20
-> python-matplotlib-data python3-cycler python3-kiwisolver
-> =C2=A0 python3-matplotlib python3-networkx python3-opengl=20
-> python3-pyqt5.qtopengl python3-pyqtgraph rtl-sdr
-> Suggested packages:
-> =C2=A0 gr-fosphor gr-osmosdr libjs-jquery-ui-docs uhd-doc libvolk2-doc=20
-> python-cycler-doc dvipng ffmpeg inkscape
-> =C2=A0 ipython3 python-matplotlib-doc python3-cairocffi python3-gobject=
-=20
-> python3-nose python3-tornado
-> =C2=A0 texlive-extra-utils texlive-latex-extra ttf-staypuft=20
-> python-networkx-doc python3-gdal python3-pygraphviz
-> =C2=A0 | python3-pydot libgle3 python-pyqtgraph-doc
-> Recommended packages:
-> =C2=A0 python3-qwt-qt5
-> The following NEW packages will be installed:
-> =C2=A0 freeglut3 gnuradio gnuradio-dev libgnuradio-analog3.8.1=20
-> libgnuradio-audio3.8.1 libgnuradio-blocks3.8.1
-> =C2=A0 libgnuradio-channels3.8.1 libgnuradio-digital3.8.1=20
-> libgnuradio-dtv3.8.1 libgnuradio-fec3.8.1
-> =C2=A0 libgnuradio-fft3.8.1 libgnuradio-filter3.8.1 libgnuradio-pmt3.8.=
-1=20
-> libgnuradio-qtgui3.8.1
-> =C2=A0 libgnuradio-runtime3.8.1 libgnuradio-trellis3.8.1=20
-> libgnuradio-uhd3.8.1 libgnuradio-video-sdl3.8.1
-> =C2=A0 libgnuradio-vocoder3.8.1 libgnuradio-wavelet3.8.1=20
-> libgnuradio-zeromq3.8.1 libjs-jquery-ui librtlsdr0
-> =C2=A0 libuhd-dev libuhd3.15.0 libvolk2-bin libvolk2-dev libvolk2.2=20
-> python-matplotlib-data python3-cycler
-> =C2=A0 python3-kiwisolver python3-matplotlib python3-networkx=20
-> python3-opengl python3-pyqt5.qtopengl
-> =C2=A0 python3-pyqtgraph rtl-sdr
-> 0 upgraded, 37 newly installed, 0 to remove and 0 not upgraded.
-> Need to get 138 MB of archives.
-> After this operation, 493 MB of additional disk space will be used.
-> Do you want to continue? [Y/n]
->
->
-> Can anyone help with this?
-> I want to just update my uhd to the latest version from ETTUS=20
-> repositories and then build gnuradio from source as I used to do.
->
-> thanks in advance,
-> Achilleas
-YOu could perhaps just install the .deb file from here:
+VGhlIGVycm9yIHN0cmluZyBpcyBhbHNvIHN1c3BpY2lvdXMuLiAqSUROPyBpcyBhIGNvbW1hbmQg
+dXNlZCB0byBpZGVudGlmeSBsYWIgaW5zdHJ1bWVudHMgdGhhdCBpbXBsZW1lbnQgU0NQSSBwcm90
+b2NvbHMsIGFuZCBJ4oCZbSBub3QgZmFtaWxpYXIgd2l0aCBhbnkgR1BTIHJlY2VpdmVyIHRoYXQg
+aW50ZXJmYWNlcyB1c2luZyBTQ1BJLiBJcyBpdCBwb3NzaWJsZSB5b3UgaGF2ZSBzb21lIGtpbmQg
+b2YgaW5zdHJ1bWVudC1jb250cm9sIHNlcnZpY2Ugb24geW91ciBjb21wdXRlciAoTGFiVmlldywg
+S2V5c2lnaHQgSU8sIGV0Yykgd2hpY2ggaXMgdHJ5aW5nIHRvIHRhbGsgdG8gdGhlIFVTUlAgYXMg
+aWYgaXQgd2VyZSBhIGxhYiBpbnN0cnVtZW50Pw0KDQoNCkZyb206IE1hcmN1cyBELiBMZWVjaCA8
+cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBXZWRuZXNkYXksIEp1bmUgMSwgMjAyMiAx
+Mjo0MyBQTQ0KVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbVVNSUC11
+c2Vyc10gUmU6IEdQUyBpbnZhbGlkIHJlcGx5DQoNCk9uIDIwMjItMDYtMDEgMTE6MTksIGdva3Vs
+IHNhbmkgd3JvdGU6DQpEZWFyIFVTUlAgQ29tbXVuaXR5LA0KDQpJIGFtIHVzaW5nIHVzcnAgYjIx
+MCB3aXRoIGdwc2RvLiBCdXQgInVoZF91c3JwX3Byb2JlIiBnYXZlIG1lIGFuIGVycm9yLg0KLS1b
+RVJST1JdIFtHUFNdIEdQUyBpbnZhbGlkIHJlcGx5ICJzY3BpID4gKklETj8NClRoZSBncHMgYW50
+ZW5uYSBpcyB0ZXN0ZWQgd2l0aCBhIGRpZmZlcmVudCBiMjEwIGFuZCByZWNlaXZlZCB0aGUgbG9j
+ay4NCmxhc3Qgd2VlaywgaXQgd2FzIHdvcmtpbmcgZmluZS4gTm8gYXBwYXJlbnQgY2hhbmdlcyB3
+ZXJlIG1hZGUuISBQbGVhc2UgcHJvdmlkZSBhbnkgaW5zaWdodHMgb2YgeW91cnMuDQoNCg0KdWhk
+X3VzcnBfcHJvYmUNCltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDUuNC4wIDIw
+MTYwNjA5OyBCb29zdF8xMDU4MDA7IFVIRF8zLjE1LjAuSEVBRC0wLWdhZWEwZTJkZQ0KW0lORk9d
+IFtCMjAwXSBMb2FkaW5nIGZpcm13YXJlIGltYWdlOiAvdXNyL2xvY2FsL3NoYXJlL3VoZC9pbWFn
+ZXMvdXNycF9iMjAwX2Z3LmhleC4uLg0KW0lORk9dIFtCMjAwXSBEZXRlY3RlZCBEZXZpY2U6IEIy
+MTANCltJTkZPXSBbQjIwMF0gTG9hZGluZyBGUEdBIGltYWdlOiAvdXNyL2xvY2FsL3NoYXJlL3Vo
+ZC9pbWFnZXMvdXNycF9iMjEwX2ZwZ2EuYmluLi4uDQpbSU5GT10gW0IyMDBdIE9wZXJhdGluZyBv
+dmVyIFVTQiAzLg0KW0lORk9dIFtCMjAwXSBEZXRlY3RpbmcgaW50ZXJuYWwgR1BTRE8uLi4uDQpb
+RVJST1JdIFtHUFNdIEdQUyBpbnZhbGlkIHJlcGx5ICJzY3BpID4gKklETj8NCiIsIGFzc3VtaW5n
+IG5vbmUgYXZhaWxhYmxlDQpbSU5GT10gW0dQU10gTm8gR1BTRE8gZm91bmQNCltJTkZPXSBbQjIw
+MF0gSW5pdGlhbGl6ZSBDT0RFQyBjb250cm9sLi4uDQpbSU5GT10gW0IyMDBdIEluaXRpYWxpemUg
+UmFkaW8gY29udHJvbC4uLg0KW0lORk9dIFtCMjAwXSBQZXJmb3JtaW5nIHJlZ2lzdGVyIGxvb3Bi
+YWNrIHRlc3QuLi4NCltJTkZPXSBbQjIwMF0gUmVnaXN0ZXIgbG9vcGJhY2sgdGVzdCBwYXNzZWQN
+CltJTkZPXSBbQjIwMF0gUGVyZm9ybWluZyByZWdpc3RlciBsb29wYmFjayB0ZXN0Li4uDQpbSU5G
+T10gW0IyMDBdIFJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QgcGFzc2VkDQpbSU5GT10gW0IyMDBdIFNl
+dHRpbmcgbWFzdGVyIGNsb2NrIHJhdGUgc2VsZWN0aW9uIHRvICdhdXRvbWF0aWMnLg0KW0lORk9d
+IFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJhdGUgMTYuMDAwMDAwIE1Iei4uLg0KW0lORk9dIFtC
+MjAwXSBBY3R1YWxseSBnb3QgY2xvY2sgcmF0ZSAxNi4wMDAwMDAgTUh6Lg0KICBfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KIC8NCnwgICAgICAg
+RGV2aWNlOiBCLVNlcmllcyBEZXZpY2UNCnwgICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQp8ICAgIC8NCg0KLi4NCi4NCi4uDQoNCg0KVGhh
+bmsgeW91LA0KR29rdWwNCg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQoNClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NCg0KVG8gdW5z
+dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
+bTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQpZb3UgY291bGQgdHJ5
+IGNhcmVmdWxseSByZS1zZWF0aW5nIHlvdXIgR1BTRE8gbW9kdWxlLiAgSXMgdGhpcyBtb2R1bGUg
+b25lIHN1cHBsaWVkIGJ5IEV0dHVzIG9yIGFuIGFmdGVyLW1hcmtldCBvbmU/DQoNCg==
 
-https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd/+packages?field.=
-name_filter=3Duhd&field.status_filter=3Dpublished&field.series_filter=3D
+--_000_PH1P110MB1665FC32BA7507798FE37A2AB7DF9PH1P110MB1665NAMP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCWZvbnQtc2l6ZTox
+MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFu
+Lk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0
+ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47
+DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1p
+bHk6IkNvdXJpZXIgTmV3Ijt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHls
+ZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7
+DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseToiQ29u
+c29sYXMiLHNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndp
+bmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
+DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAx
+MS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlv
+bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+
+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8
+L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0
+IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNo
+YXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMi
+IGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiIHN0eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+
+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhlIGVy
+cm9yIHN0cmluZyBpcyBhbHNvIHN1c3BpY2lvdXMuLiAqSUROPyBpcyBhIGNvbW1hbmQgdXNlZCB0
+byBpZGVudGlmeSBsYWIgaW5zdHJ1bWVudHMgdGhhdCBpbXBsZW1lbnQgU0NQSSBwcm90b2NvbHMs
+IGFuZCBJ4oCZbSBub3QgZmFtaWxpYXIgd2l0aCBhbnkgR1BTIHJlY2VpdmVyIHRoYXQgaW50ZXJm
+YWNlcyB1c2luZyBTQ1BJLiBJcyBpdCBwb3NzaWJsZSB5b3UgaGF2ZSBzb21lIGtpbmQgb2YgaW5z
+dHJ1bWVudC1jb250cm9sDQogc2VydmljZSBvbiB5b3VyIGNvbXB1dGVyIChMYWJWaWV3LCBLZXlz
+aWdodCBJTywgZXRjKSB3aGljaCBpcyB0cnlpbmcgdG8gdGFsayB0byB0aGUgVVNSUCBhcyBpZiBp
+dCB3ZXJlIGEgbGFiIGluc3RydW1lbnQ/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQg
+Ymx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxl
+PSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBw
+dCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9tOjwvYj4gTWFyY3Vz
+IEQuIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsgPGJyPg0KPGI+U2VudDo8
+L2I+IFdlZG5lc2RheSwgSnVuZSAxLCAyMDIyIDEyOjQzIFBNPGJyPg0KPGI+VG86PC9iPiB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vyc10g
+UmU6IEdQUyBpbnZhbGlkIHJlcGx5PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+T24gMjAyMi0wNi0wMSAxMToxOSwgZ29rdWwgc2FuaSB3cm90ZTo8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFy
+Z2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRl
+YXIgVVNSUCBDb21tdW5pdHksPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPkkgYW0gdXNpbmcgdXNycCBiMjEwIHdpdGggZ3BzZG8uIEJ1dCAmcXVv
+dDt1aGRfdXNycF9wcm9iZSZxdW90OyBnYXZlIG1lIGFuIGVycm9yLg0KPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4tPGI+LVtFUlJPUl0gW0dQU10g
+R1BTIGludmFsaWQgcmVwbHkgJnF1b3Q7c2NwaSAmZ3Q7ICpJRE4/PC9iPjxvOnA+PC9vOnA+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhlIGdwcyBhbnRlbm5hIGlz
+IHRlc3RlZCB3aXRoIGEgZGlmZmVyZW50IGIyMTAgYW5kIHJlY2VpdmVkIHRoZSBsb2NrLjxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmxh
+c3Qgd2VlaywgaXQgd2FzIHdvcmtpbmcgZmluZS4gTm8gYXBwYXJlbnQgY2hhbmdlcyB3ZXJlIG1h
+ZGUuISBQbGVhc2UgcHJvdmlkZSBhbnkgaW5zaWdodHMgb2YgeW91cnMuPG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj51aGRfdXNycF9wcm9iZSA8YnI+DQpb
+SU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA1LjQuMCAyMDE2MDYwOTsgQm9vc3Rf
+MTA1ODAwOyBVSERfMy4xNS4wLkhFQUQtMC1nYWVhMGUyZGU8YnI+DQpbSU5GT10gW0IyMDBdIExv
+YWRpbmcgZmlybXdhcmUgaW1hZ2U6IC91c3IvbG9jYWwvc2hhcmUvdWhkL2ltYWdlcy91c3JwX2Iy
+MDBfZncuaGV4Li4uPGJyPg0KW0lORk9dIFtCMjAwXSBEZXRlY3RlZCBEZXZpY2U6IEIyMTA8YnI+
+DQpbSU5GT10gW0IyMDBdIExvYWRpbmcgRlBHQSBpbWFnZTogL3Vzci9sb2NhbC9zaGFyZS91aGQv
+aW1hZ2VzL3VzcnBfYjIxMF9mcGdhLmJpbi4uLjxicj4NCltJTkZPXSBbQjIwMF0gT3BlcmF0aW5n
+IG92ZXIgVVNCIDMuPGJyPg0KW0lORk9dIFtCMjAwXSBEZXRlY3RpbmcgaW50ZXJuYWwgR1BTRE8u
+Li4uIDxicj4NCjxiPltFUlJPUl0gW0dQU10gR1BTIGludmFsaWQgcmVwbHkgJnF1b3Q7c2NwaSAm
+Z3Q7ICpJRE4/PGJyPg0KJnF1b3Q7LCBhc3N1bWluZyBub25lIGF2YWlsYWJsZTwvYj48YnI+DQpb
+SU5GT10gW0dQU10gTm8gR1BTRE8gZm91bmQ8YnI+DQpbSU5GT10gW0IyMDBdIEluaXRpYWxpemUg
+Q09ERUMgY29udHJvbC4uLjxicj4NCltJTkZPXSBbQjIwMF0gSW5pdGlhbGl6ZSBSYWRpbyBjb250
+cm9sLi4uPGJyPg0KW0lORk9dIFtCMjAwXSBQZXJmb3JtaW5nIHJlZ2lzdGVyIGxvb3BiYWNrIHRl
+c3QuLi4gPGJyPg0KW0lORk9dIFtCMjAwXSBSZWdpc3RlciBsb29wYmFjayB0ZXN0IHBhc3NlZDxi
+cj4NCltJTkZPXSBbQjIwMF0gUGVyZm9ybWluZyByZWdpc3RlciBsb29wYmFjayB0ZXN0Li4uIDxi
+cj4NCltJTkZPXSBbQjIwMF0gUmVnaXN0ZXIgbG9vcGJhY2sgdGVzdCBwYXNzZWQ8YnI+DQpbSU5G
+T10gW0IyMDBdIFNldHRpbmcgbWFzdGVyIGNsb2NrIHJhdGUgc2VsZWN0aW9uIHRvICdhdXRvbWF0
+aWMnLjxicj4NCltJTkZPXSBbQjIwMF0gQXNraW5nIGZvciBjbG9jayByYXRlIDE2LjAwMDAwMCBN
+SHouLi4gPGJyPg0KW0lORk9dIFtCMjAwXSBBY3R1YWxseSBnb3QgY2xvY2sgcmF0ZSAxNi4wMDAw
+MDAgTUh6Ljxicj4NCiZuYnNwOyBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXzxicj4NCiZuYnNwOy88YnI+DQp8ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+IERldmljZTogQi1TZXJpZXMgRGV2aWNlPGJyPg0KfCAmbmJzcDsgJm5ic3A7IF9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KfCAmbmJzcDsg
+Jm5ic3A7LzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj4uLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+LjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+Li48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5UaGFuayB5b3UsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj5Hb2t1bDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPHByZT5fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJl
+PlVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48
+L3ByZT4NCjxwcmU+VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWls
+dG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnMtbGVhdmVAbGlz
+dHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPllvdSBjb3VsZCB0cnkg
+Y2FyZWZ1bGx5IHJlLXNlYXRpbmcgeW91ciBHUFNETyBtb2R1bGUuJm5ic3A7IElzIHRoaXMgbW9k
+dWxlIG9uZSBzdXBwbGllZCBieSBFdHR1cyBvciBhbiBhZnRlci1tYXJrZXQgb25lPzxicj4NCjxi
+cj4NCjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-I guess APT is satisfying your request from the main repo in preference=20
-to the PPA.=C2=A0=C2=A0=C2=A0 Not sure why, but installing the .deb direc=
-tly might help?
+--_000_PH1P110MB1665FC32BA7507798FE37A2AB7DF9PH1P110MB1665NAMP_--
 
-
---------------FHU5GrmCMYqd0qwlJwDJqF09
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-06-01 12:31, Achilleas
-      Anastasopoulos wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAErymBhzsCT=3DX3u-=3DiYf0iqzRgEc5fDtH0v4Ap6e7-EYYrSpmQ@mail.=
-gmail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Hi all,
-        <div><br>
-        </div>
-        <div>I am working with gnuradio and usrps on an ubuntu 20.04=C2=A0=
-=C2=A0<br>
-          <br>
-          $ lsb_release -a<br>
-          No LSB modules are available.<br>
-          Distributor ID: Ubuntu<br>
-          Description: =C2=A0 =C2=A0Ubuntu 20.04.4 LTS<br>
-          Release: =C2=A0 =C2=A0 =C2=A0 =C2=A020.04<br>
-          Codename: =C2=A0 =C2=A0 =C2=A0 focal<br>
-          <br>
-          I usually update my uhd libraries from ettus binaries as
-          described here:<br>
-          <a href=3D"https://files.ettus.com/manual/page_install.html"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">http=
-s://files.ettus.com/manual/page_install.html</a><br>
-          <br>
-          $ sudo add-apt-repository ppa:ettusresearch/uhd<br>
-          $ sudo apt-get update<br>
-          $ sudo apt-get install libuhd-dev libuhd4.1.0 uhd-host<br>
-          <div><br>
-          </div>
-          <div>Then I usually=C2=A0build gnuradio from source (I am curre=
-ntly
-            in v3.8).</div>
-          <div>I DO NOT install gnuradio from repositories!</div>
-          <div><br>
-          </div>
-          <div>Today I tried to update the uhd libraries.</div>
-          <div>First I cleaned up all previous versions:</div>
-          <div><br>
-          </div>
-          <div>$ sudo apt-get remove libuhd-dev libuhd4.1.0 uhd-host<br>
-            $ sudo apt autoremove</div>
-          <div>$ ldconfig -p | grep uhd</div>
-          <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so.3.8.5git (l=
-ibc6,x86-64) =3D&gt;
-            /usr/local/lib/libgnuradio-uhd.so.3.8.5git<br>
-            =C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so.3.8.4 (libc6,x=
-86-64) =3D&gt;
-            /usr/local/lib/libgnuradio-uhd.so.3.8.4<br>
-            =C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so.3.8.3git (libc=
-6,x86-64) =3D&gt;
-            /usr/local/lib/libgnuradio-uhd.so.3.8.3git<br>
-            =C2=A0 =C2=A0 =C2=A0 =C2=A0 libgnuradio-uhd.so (libc6,x86-64)=
- =3D&gt;
-            /usr/local/lib/libgnuradio-uhd.so<br>
-            <br>
-            Then I tried to install the uhd libraries:<br>
-            <br>
-          </div>
-          <div>$ sudo add-apt-repository -y ppa:ettusresearch/uhd<br>
-            Hit:1 <a href=3D"http://dl.google.com/linux/chrome/deb"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://dl.google.com/linux/chrome/deb</a>
-            stable InRelease<br>
-            Hit:2 <a href=3D"http://us.archive.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://us.archive.ubuntu.com/ubuntu</a>
-            focal InRelease<br>
-            Hit:3 <a href=3D"http://us.archive.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://us.archive.ubuntu.com/ubuntu</a>
-            focal-updates InRelease<br>
-            Hit:4 <a href=3D"http://us.archive.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://us.archive.ubuntu.com/ubuntu</a>
-            focal-backports InRelease<br>
-            Hit:5 <a
-              href=3D"http://ppa.launchpad.net/ettusresearch/uhd/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://ppa.launchpad.net/ettusresearch/uhd/ubuntu</a>
-            focal InRelease<br>
-            Get:6 <a href=3D"http://security.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://security.ubuntu.com/ubuntu</a>
-            focal-security InRelease [114 kB]<br>
-            Fetched 114 kB in 1s (118 kB/s)<br>
-            Reading package lists... Done<br>
-          </div>
-          <div><br>
-          </div>
-          <div>$ sudo apt-get update<br>
-            Hit:1 <a href=3D"http://dl.google.com/linux/chrome/deb"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://dl.google.com/linux/chrome/deb</a>
-            stable InRelease<br>
-            Hit:2 <a href=3D"http://us.archive.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://us.archive.ubuntu.com/ubuntu</a>
-            focal InRelease<br>
-            Hit:3 <a href=3D"http://us.archive.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://us.archive.ubuntu.com/ubuntu</a>
-            focal-updates InRelease<br>
-            Hit:4 <a href=3D"http://us.archive.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://us.archive.ubuntu.com/ubuntu</a>
-            focal-backports InRelease<br>
-            Hit:5 <a
-              href=3D"http://ppa.launchpad.net/ettusresearch/uhd/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://ppa.launchpad.net/ettusresearch/uhd/ubuntu</a>
-            focal InRelease<br>
-            Get:6 <a href=3D"http://security.ubuntu.com/ubuntu"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tp://security.ubuntu.com/ubuntu</a>
-            focal-security InRelease [114 kB]<br>
-            Fetched 114 kB in 1s (174 kB/s)<br>
-            Reading package lists... Done<br>
-            <br>
-            $ sudo apt-get install libuhd4.1.0<br>
-            Reading package lists... Done<br>
-            Building dependency tree<br>
-            Reading state information... Done<br>
-            Suggested packages:<br>
-            =C2=A0 gnuradio<br>
-            The following NEW packages will be installed:<br>
-            =C2=A0 libuhd4.1.0<br>
-            0 upgraded, 1 newly installed, 0 to remove and 0 not
-            upgraded.<br>
-            Need to get 0 B/3,375 kB of archives.<br>
-            After this operation, 14.6 MB of additional disk space will
-            be used.<br>
-            Selecting previously unselected package libuhd4.1.0:amd64.<br=
->
-            (Reading database ... 269419 files and directories currently
-            installed.)<br>
-            Preparing to unpack
-            .../libuhd4.1.0_4.1.0.4-0ubuntu1~focal1_amd64.deb ...<br>
-            Unpacking libuhd4.1.0:amd64 (4.1.0.4-0ubuntu1~focal1) ...<br>
-            Setting up libuhd4.1.0:amd64 (4.1.0.4-0ubuntu1~focal1) ...<br=
->
-            Processing triggers for libc-bin (2.31-0ubuntu9.9) ...<br>
-          </div>
-          <div><br>
-          </div>
-          <div>Now I am trying to install the "uhd-host" library:</div>
-          <div><br>
-          </div>
-          <div>$ sudo apt-get install uhd-host<br>
-            Reading package lists... Done<br>
-            Building dependency tree<br>
-            Reading state information... Done<br>
-            <b>The following additional packages will be installed:<br>
-              =C2=A0 libuhd4.2.0 python3-ruamel.yaml</b><br>
-            Suggested packages:<br>
-            =C2=A0 gnuradio<br>
-            The following NEW packages will be installed:<br>
-            =C2=A0 libuhd4.2.0 python3-ruamel.yaml uhd-host<br>
-            0 upgraded, 3 newly installed, 0 to remove and 0 not
-            upgraded.<br>
-            Need to get 0 B/7,502 kB of archives.<br>
-            After this operation, 41.0 MB of additional disk space will
-            be used.<br>
-            Do you want to continue? [Y/n]<br>
-          </div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>*******I do not understand why it asks to install also
-            the libuhd4.2.0=C2=A0library.</div>
-          <div>If I do that, then I get the following errors:</div>
-          <div><br>
-          </div>
-          <div>=C2=A0Y<br>
-            Selecting previously unselected package libuhd4.2.0:amd64.<br=
->
-            (Reading database ... 269464 files and directories currently
-            installed.)<br>
-            Preparing to unpack
-            .../libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb ...<br>
-            Unpacking libuhd4.2.0:amd64 (4.2.0.0-0ubuntu1~focal1) ...<br>
-            dpkg: error processing archive
-            /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_a=
-md64.deb
-            (--unpack):<br>
-            =C2=A0trying to overwrite '/usr/share/uhd/cal/cal_metadata.fb=
-s',
-            which is also in package libuhd4.1.0:amd64
-            4.1.0.4-0ubuntu1~focal1<br>
-            Selecting previously unselected package python3-ruamel.yaml.<=
-br>
-            Preparing to unpack
-            .../python3-ruamel.yaml_0.15.89-3build1_amd64.deb ...<br>
-            Unpacking python3-ruamel.yaml (0.15.89-3build1) ...<br>
-            Selecting previously unselected package uhd-host.<br>
-            Preparing to unpack
-            .../uhd-host_4.2.0.0-0ubuntu1~focal1_amd64.deb ...<br>
-            Unpacking uhd-host (4.2.0.0-0ubuntu1~focal1) ...<br>
-            Errors were encountered while processing:<br>
-=C2=A0/var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.d=
-eb<br>
-            E: Sub-process /usr/bin/dpkg returned an error code (1)<br>
-          </div>
-          <div><br>
-          </div>
-          <div><br>
-          </div>
-          <div>Alternatively if I try to remove "libuhd4.1.0" and
-            install the latest "libuhd4.2.0"</div>
-          <div><br>
-          </div>
-          <div>$ sudo apt remove libuhd4.1.0<br>
-            Reading package lists... Done<br>
-            Building dependency tree<br>
-            Reading state information... Done<br>
-            The following packages will be REMOVED:<br>
-            =C2=A0 libuhd4.1.0<br>
-            0 upgraded, 0 newly installed, 1 to remove and 0 not
-            upgraded.<br>
-            After this operation, 14.6 MB disk space will be freed.<br>
-            Do you want to continue? [Y/n] Y<br>
-            (Reading database ... 269464 files and directories currently
-            installed.)<br>
-            Removing libuhd4.1.0:amd64 (4.1.0.4-0ubuntu1~focal1) ...<br>
-            dpkg: warning: while removing libuhd4.1.0:amd64, directory
-            '/usr/share/uhd' not empty so not removed<br>
-            Processing triggers for libc-bin (2.31-0ubuntu9.9) ...<br>
-          </div>
-          <div><br>
-          </div>
-          <div>$ sudo apt autoremove</div>
-          <div><br>
-          </div>
-          <div>$ sudo apt install libuhd4.2.0<br>
-            Reading package lists... Done<br>
-            Building dependency tree<br>
-            Reading state information... Done<br>
-            Suggested packages:<br>
-            =C2=A0 gnuradio<br>
-            The following NEW packages will be installed:<br>
-            =C2=A0 libuhd4.2.0<br>
-            0 upgraded, 1 newly installed, 0 to remove and 0 not
-            upgraded.<br>
-            Need to get 0 B/3,453 kB of archives.<br>
-            After this operation, 15.0 MB of additional disk space will
-            be used.<br>
-            (Reading database ... 269419 files and directories currently
-            installed.)<br>
-            Preparing to unpack
-            .../libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb ...<br>
-            Unpacking libuhd4.2.0:amd64 (4.2.0.0-0ubuntu1~focal1) ...<br>
-            Setting up libuhd4.2.0:amd64 (4.2.0.0-0ubuntu1~focal1) ...<br=
->
-            Processing triggers for libc-bin (2.31-0ubuntu9.9) ...<br>
-          </div>
-          <div><br>
-          </div>
-          <div>Now I can easily=C2=A0install the "uhd-host" library</div>
-          <div><br>
-          </div>
-          <div>$ sudo apt install uhd-host<br>
-            Reading package lists... Done<br>
-            Building dependency tree<br>
-            Reading state information... Done<br>
-            The following additional packages will be installed:<br>
-            =C2=A0 python3-ruamel.yaml<br>
-            Suggested packages:<br>
-            =C2=A0 gnuradio<br>
-            The following NEW packages will be installed:<br>
-            =C2=A0 python3-ruamel.yaml uhd-host<br>
-            0 upgraded, 2 newly installed, 0 to remove and 0 not
-            upgraded.<br>
-            Need to get 0 B/4,049 kB of archives.<br>
-            After this operation, 26.0 MB of additional disk space will
-            be used.<br>
-            Do you want to continue? [Y/n] Y<br>
-            Selecting previously unselected package python3-ruamel.yaml.<=
-br>
-            (Reading database ... 269460 files and directories currently
-            installed.)<br>
-            Preparing to unpack
-            .../python3-ruamel.yaml_0.15.89-3build1_amd64.deb ...<br>
-            Unpacking python3-ruamel.yaml (0.15.89-3build1) ...<br>
-            Selecting previously unselected package uhd-host.<br>
-            Preparing to unpack
-            .../uhd-host_4.2.0.0-0ubuntu1~focal1_amd64.deb ...<br>
-            Unpacking uhd-host (4.2.0.0-0ubuntu1~focal1) ...<br>
-            Setting up python3-ruamel.yaml (0.15.89-3build1) ...<br>
-            Setting up uhd-host (4.2.0.0-0ubuntu1~focal1) ...<br>
-            sysctl: cannot open "/etc/sysctl.d/uhd-usrp2.conf": No such
-            file or directory<br>
-            Warning: Could not update sysctl settings for network
-            devices.<br>
-            Processing triggers for man-db (2.9.1-1) ...<br>
-          </div>
-          <div><br>
-          </div>
-          <div>I check that everything works with uhd:</div>
-          <div><br>
-          </div>
-          <div>$ uhd_find_devices<br>
-            [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
-            UHD_4.2.0.0-0ubuntu1~focal1<br>
-            --------------------------------------------------<br>
-            -- UHD Device 0<br>
-            --------------------------------------------------<br>
-            Device Address:<br>
-            =C2=A0 =C2=A0 serial: 315C6B2<br>
-            =C2=A0 =C2=A0 addr: 192.168.40.2<br>
-            =C2=A0 =C2=A0 fpga: HG<br>
-            =C2=A0 =C2=A0 name:<br>
-            =C2=A0 =C2=A0 product: X310<br>
-            =C2=A0 =C2=A0 type: x300<br>
-          </div>
-          <div><br>
-          </div>
-          <div>BUT, when I try to install the "libuhd-dev" library I get
-            the following which=C2=A0</div>
-          <div>I suspect wants to install the entire gnuradio system
-            from the repository, which as I said in the beginning=C2=A0I =
-do
-            not want, since I=C2=A0am usually building it from source.</d=
-iv>
-          <div><br>
-          </div>
-          <div>$ sudo apt-get install libuhd-dev<br>
-            Reading package lists... Done<br>
-            Building dependency tree<br>
-            Reading state information... Done<br>
-            The following additional packages will be installed:<br>
-            =C2=A0 freeglut3 gnuradio gnuradio-dev libgnuradio-analog3.8.=
-1
-            libgnuradio-audio3.8.1 libgnuradio-blocks3.8.1<br>
-            =C2=A0 libgnuradio-channels3.8.1 libgnuradio-digital3.8.1
-            libgnuradio-dtv3.8.1 libgnuradio-fec3.8.1<br>
-            =C2=A0 libgnuradio-fft3.8.1 libgnuradio-filter3.8.1
-            libgnuradio-pmt3.8.1 libgnuradio-qtgui3.8.1<br>
-            =C2=A0 libgnuradio-runtime3.8.1 libgnuradio-trellis3.8.1
-            libgnuradio-uhd3.8.1 libgnuradio-video-sdl3.8.1<br>
-            =C2=A0 libgnuradio-vocoder3.8.1 libgnuradio-wavelet3.8.1
-            libgnuradio-zeromq3.8.1 libjs-jquery-ui librtlsdr0<br>
-            =C2=A0 libuhd3.15.0 libvolk2-bin libvolk2-dev libvolk2.2
-            python-matplotlib-data python3-cycler python3-kiwisolver<br>
-            =C2=A0 python3-matplotlib python3-networkx python3-opengl
-            python3-pyqt5.qtopengl python3-pyqtgraph rtl-sdr<br>
-            Suggested packages:<br>
-            =C2=A0 gr-fosphor gr-osmosdr libjs-jquery-ui-docs uhd-doc
-            libvolk2-doc python-cycler-doc dvipng ffmpeg inkscape<br>
-            =C2=A0 ipython3 python-matplotlib-doc python3-cairocffi
-            python3-gobject python3-nose python3-tornado<br>
-            =C2=A0 texlive-extra-utils texlive-latex-extra ttf-staypuft
-            python-networkx-doc python3-gdal python3-pygraphviz<br>
-            =C2=A0 | python3-pydot libgle3 python-pyqtgraph-doc<br>
-            Recommended packages:<br>
-            =C2=A0 python3-qwt-qt5<br>
-            The following NEW packages will be installed:<br>
-            =C2=A0 freeglut3 gnuradio gnuradio-dev libgnuradio-analog3.8.=
-1
-            libgnuradio-audio3.8.1 libgnuradio-blocks3.8.1<br>
-            =C2=A0 libgnuradio-channels3.8.1 libgnuradio-digital3.8.1
-            libgnuradio-dtv3.8.1 libgnuradio-fec3.8.1<br>
-            =C2=A0 libgnuradio-fft3.8.1 libgnuradio-filter3.8.1
-            libgnuradio-pmt3.8.1 libgnuradio-qtgui3.8.1<br>
-            =C2=A0 libgnuradio-runtime3.8.1 libgnuradio-trellis3.8.1
-            libgnuradio-uhd3.8.1 libgnuradio-video-sdl3.8.1<br>
-            =C2=A0 libgnuradio-vocoder3.8.1 libgnuradio-wavelet3.8.1
-            libgnuradio-zeromq3.8.1 libjs-jquery-ui librtlsdr0<br>
-            =C2=A0 libuhd-dev libuhd3.15.0 libvolk2-bin libvolk2-dev
-            libvolk2.2 python-matplotlib-data python3-cycler<br>
-            =C2=A0 python3-kiwisolver python3-matplotlib python3-networkx
-            python3-opengl python3-pyqt5.qtopengl<br>
-            =C2=A0 python3-pyqtgraph rtl-sdr<br>
-            0 upgraded, 37 newly installed, 0 to remove and 0 not
-            upgraded.<br>
-            Need to get 138 MB of archives.<br>
-            After this operation, 493 MB of additional disk space will
-            be used.<br>
-            Do you want to continue? [Y/n]<br>
-          </div>
-          <div><br>
-            <br>
-            Can anyone help with this?</div>
-          <div>I want to just update my uhd to the latest version from
-            ETTUS repositories and then build gnuradio from source as I
-            used to do.</div>
-          <div><br>
-          </div>
-          <div>thanks in advance,</div>
-          <div>Achilleas<br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    YOu could perhaps just install the .deb file from here:<br>
-    <br>
-<a class=3D"moz-txt-link-freetext" href=3D"https://launchpad.net/~ettusre=
-search/+archive/ubuntu/uhd/+packages?field.name_filter=3Duhd&amp;field.st=
-atus_filter=3Dpublished&amp;field.series_filter=3D">https://launchpad.net=
-/~ettusresearch/+archive/ubuntu/uhd/+packages?field.name_filter=3Duhd&amp=
-;field.status_filter=3Dpublished&amp;field.series_filter=3D</a><br>
-    <br>
-    <br>
-    I guess APT is satisfying your request from the main repo in
-    preference to the PPA.=C2=A0=C2=A0=C2=A0 Not sure why, but installing=
- the .deb
-    directly might help?<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------FHU5GrmCMYqd0qwlJwDJqF09--
-
---===============2801091076953219178==
+--===============4089091688872711319==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -832,4 +287,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2801091076953219178==--
+--===============4089091688872711319==--
