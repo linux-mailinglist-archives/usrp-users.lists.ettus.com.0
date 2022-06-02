@@ -2,251 +2,417 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8926453B793
-	for <lists+usrp-users@lfdr.de>; Thu,  2 Jun 2022 13:02:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D773253B9D6
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Jun 2022 15:36:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 11EA63847D0
-	for <lists+usrp-users@lfdr.de>; Thu,  2 Jun 2022 07:02:02 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3528C3848AF
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Jun 2022 09:36:19 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1654167722; bh=VUcuad0MQdBhcr6zOIPbTVCRK7N/k3yVfAl/xQO9u9g=;
-	h=Date:To:References:In-Reply-To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=LZ0+WD7k2cCsmod8wepCvHzOGSm22BP4dZ3W4JQr2poVxHDmwBC3kT0lNtSuRmZUu
-	 pbXfcg1x9DhF2r7wOuBFXcQIHKhiU52Ysf/9qQ5N9CW4Sdhn+X2tsMzVtBj84ftk/r
-	 9zciZvBegO+L1WV8fYSFeUsJaBPeK4sF0xOKeJGEMuVmW+fGgd4Z99Hc+r2XKXIjGu
-	 jrkymckKhmaeDrdf0V7u7zaBAAytxadA+42DRnir4ZKsd95JiM2ZdmQV+AwNsvR/W2
-	 KQ7dSzvyB9vHyY5acJqYjEovHM/f3wnHXxckdR6hUCi1XdCiHt4ELuDAy/lulXxIUS
-	 aghfwm6QAtW6g==
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-eopbgr140097.outbound.protection.outlook.com [40.107.14.97])
-	by mm2.emwd.com (Postfix) with ESMTPS id E3C4738460F
-	for <usrp-users@lists.ettus.com>; Thu,  2 Jun 2022 07:00:58 -0400 (EDT)
+	t=1654176979; bh=uJ63wtZQSCfsXzgHcKXq/+PLX7MsjhvuPWvTCYXtIfQ=;
+	h=From:Date:References:In-Reply-To:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=fmgjMWiPXQ1ixuo9U7d68nOthcPTyx2rmc+SX3opcq2/ax+FvBtMjBD/XxbsgNCn3
+	 4HRe0JNHNoftJOP14zTJseD44I97cTf5HjdwDpRSQHKnSuDpfV4FNz+F5HFwxCJEtC
+	 aXWa2wYVVaaFEsorMCyn2I0WFQFPYgsZoA7KDQoNzb2mABrmqfI16S5nXIcbtVAxAg
+	 K7pkTR0zkqirGj84ofuh/Gl2XIDXFfixz1PgttUXmMXeGRfW/Ni1fyGQbB1I4rH3z5
+	 +ChRxkDpSkhk1shomQ9fiE0YRP4BxDfpOTLKCWT6kp92tMfpncBMJCiSmq1WOxOB/O
+	 A8WmxhQt/qG/Q==
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id 168A33847AF
+	for <USRP-users@lists.ettus.com>; Thu,  2 Jun 2022 09:35:17 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="qOp2gj/L";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="T69SCZJg";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TnSnIVTE6fM4d+V1WvCZM84cwyhpxRWx9FZh4wx2ylkjCXdLFkYZGsJmeEDuI1IHkZQEz6Wyh8pvPomyAsrcZpuvu2hgr+gO7Lrbf3HSF7EOmrAorInyLqtWmxFtJll0eUNgnOg16Sfo8crG6dnB6Q6ug1kSFgTN19gkMXOoS6ZFUYONEuCS8FFubiWj6pfRaPrebZrP9rnjoureEm8tlpPLNbq+UJSXOISZXReZSWJmBsmO7sWSwQDolnGyNtz1EuwJp8aInypUR9M90U6RrPgQtT+MWrcvyqZOCqRvzr76MWZa0AUvzEC4PeEQ3PxIX3HFkmMC4Gzn1kG0FQxk9A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TqGd4qe9x082WLEboCRBh7nLG3GEAcxoTNlF5GL3MvQ=;
- b=jLm3sWIlwxNY5id6X1DiYcrYVXZnJv8b6KVOUa+zZKtGIN7r4fK7rp1CaClE8uEklnKjKLISy2ZQFQByDiNgZ6oY33iB+gjx/zssZv1U464VrpYhFcA6Fv5MAefea/HB2FzAwuoM+tTTTzF15OQCc5cPNMcyQTFvHNRI4jEKJcezgnirCPwqr7yAuES2n0NHA8ri0YWlGf1YfbX/A3q6ha2ZMMuIK1B431UjAqR883/yi/2EVJZVu0VTj1FeeRqMdZ2+H3W+JlfOXoDL198Qd3yFbtfrWTLSIzx4DIekcdzLi+gRM5C+I+MHTVV8jDX2tVd6QpWel9mrXG95r2vHuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TqGd4qe9x082WLEboCRBh7nLG3GEAcxoTNlF5GL3MvQ=;
- b=qOp2gj/L+MbXwxsYO5KBp4Ulr9SV6fJQr4KGA2u1pAKpGdzUnkxNo7bGWMJXGvLEFZYgm7Fq5uK2fhDSxqLSOpM+Zcd5hy598Hh78j3tmCwDA5Xx0ECcFkiXffuLUKRHrNDNbmj7eBgmxW79uDfqSDEXd7EPSPa7AEh8AMfGXH0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ulb.be;
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
- AS4P190MB1806.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:4b5::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5314.13; Thu, 2 Jun 2022 11:00:56 +0000
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::698c:52f:302:314d]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::698c:52f:302:314d%5]) with mapi id 15.20.5293.019; Thu, 2 Jun 2022
- 11:00:56 +0000
-Date: Thu, 2 Jun 2022 13:00:54 +0200
-To: Achilleas Anastasopoulos <anastas@umich.edu>
-Message-ID: <20220602110054.7p3tj3sxz23bp5cw@barbe>
-Mail-Followup-To: Achilleas Anastasopoulos <anastas@umich.edu>,
-	usrp-users@lists.ettus.com
-References: <CAErymBhzsCT=X3u-=iYf0iqzRgEc5fDtH0v4Ap6e7-EYYrSpmQ@mail.gmail.com>
-Content-Disposition: inline
-In-Reply-To: <CAErymBhzsCT=X3u-=iYf0iqzRgEc5fDtH0v4Ap6e7-EYYrSpmQ@mail.gmail.com>
-X-ClientProxiedBy: PAZP264CA0037.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:1fc::7) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:150:6e::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2cc17420-2346-4ff1-eb8c-08da44872b1c
-X-MS-TrafficTypeDiagnostic: AS4P190MB1806:EE_
-X-Microsoft-Antispam-PRVS: 
-	<AS4P190MB1806AD45A89C95F636818F9EF0DE9@AS4P190MB1806.EURP190.PROD.OUTLOOK.COM>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	XhcPRUyD1E2jk2YzCiV6A2chddR+tIwK1kVXEKyOqSNDBdOWMl4lFMZnsJEHILdar4Ry6nlBgINWXZYnJTRmG/tUDXElLxIGhyIaMrofUCirFaxeVd0wVHCuzRwGRoixYG2LzBFMgXDtw1kVvSOCT3t+XrwWf0W3mV8SQSQS2FJP8z4iayOUQrebgD4cIZFcm/7YmiZnfPac7NwPSvpiTXTbaSCqW2fk1Oa9frAo63UcQv/D2yYjqAWVS7gsmXZBVGkW7RilxP+beQPQhDMT/x8iepNRYE5ZcV/9oyHPZuQ+qb54M5YRR0BH51GtwQcn4vP7x/qSNh2abFasj6Ou0T8w/wStIXKTA3zuqvvxqGn4zmalPEGxmwYlDaYSJ4WIdeHHvVCHPyokvvxPxbGhbQvcN7UZwmRcWB4S0BM+iNerINBJVSUQjLCJVEVtTDvdacvskmMHBzWpM1oE32gM9C3UudLno2Plnyu4zQ6SDZAZV/8/tJ6YxR3aZZhuqyYIsqOdHABlz+f6MperCJcKWCreYGJvSFD6QSb2tkKUQGRAkvPXyNhbU0MoVCpCDYumfk+MS84dmW0X8PFWJJ/1FzEYg62/4PWEzy+MrvA06fjGeos3Py+anb8RXd6sXP4b62zOaUwyTfe032pPjcQcAcrueK7XEj6bMmr51l3IqAFOp8oHwll6nKBgIse1g9vJHvZC4Qe6Dh4xEdEHt37LHLcjnX6N5ywU+jOrpZAYAF8=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(5660300002)(186003)(66946007)(8676002)(4326008)(2906002)(66574015)(66476007)(66556008)(1076003)(38100700002)(8936002)(83380400001)(33716001)(6512007)(6506007)(9686003)(86362001)(966005)(6486002)(508600001)(52116002)(6916009)(316002)(53546011)(786003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?iso-8859-1?Q?vYephQJE3GN9ldaXdItJbW+GTVMMbjwnsPZSA65x/bjUCYhJAo8MYSqgX/?=
- =?iso-8859-1?Q?WxlppLXCMunlaCUqU5rXjyrlyop0UGISQpbYEfEyT1tkDwTWkLSbXOb7ie?=
- =?iso-8859-1?Q?6G7cY2Bokll+Tn8s/4NiC5/Otozxpx8Uhd2M2zWqZMACD0uRKYsmMgRtlR?=
- =?iso-8859-1?Q?QGFWIz4ID8decwau1X1PEh1ZlE+17v6tDta+Zp4BRum4umk6H/VSsK4XkK?=
- =?iso-8859-1?Q?t7mDo/1c89owzjYG/u589PTHEeF/C2OAl1qbB0VXi4vySWHHaSYdRax8fm?=
- =?iso-8859-1?Q?Wmwlo4eWudQ9rCLVJQqFysSCs9lBS7ycf3tPLXFMOCsPiBbGeVkf7YNfGK?=
- =?iso-8859-1?Q?oiUlZ3R66OenK0A1jhJzhle9frXd4rw3af2NR+TTeHbdcXCxfKz28OYZnw?=
- =?iso-8859-1?Q?IB1+0ujPL8DwpFb3YeD6H5/PIJaKjaOgaeaV1xjZl1Vd7c4hikyGkYyGKo?=
- =?iso-8859-1?Q?zOyWYrzfqmkL3d/f3AouvzHIEtENylvAezTLSXq2+kx1BgY0Og2WTl0KJh?=
- =?iso-8859-1?Q?P8nlz3zffJR4n3DNK+5+3l07cfooVf63zrcizxoX3fh2K6QfPfbEQmhV8x?=
- =?iso-8859-1?Q?VOkBrWmxiclXzvC+/d7qtzNK0pH30uCB6ICGlg/Aot7bTEaocBdiwcouSe?=
- =?iso-8859-1?Q?nGGUaw6093i/bUoxidIY1D39KqUHZE3h/tNz2BtH5YfcYWtie4/bA7xyV6?=
- =?iso-8859-1?Q?2qoigyagiKYjELw9dS90EkbQGWJJPPNGMGIHJSOp4ge/GhwfR9NH964MDt?=
- =?iso-8859-1?Q?rw3MAp5bQrgof6sOkaJmtCpFRF0Y3z1QNB7qY8NoHOqIMRca8EOZfrUWPa?=
- =?iso-8859-1?Q?TaldAKsIILCgiPezvYh0cxYl3CmoCEemNNYLsL/J0JpbIo6NlJlkErPbwh?=
- =?iso-8859-1?Q?CAlD1sqslI8FuA1mGHBxc02fc92fZTwT/c5NF4JixSukyeAz4JSsajeQzi?=
- =?iso-8859-1?Q?Yys6KJ14EYQa+Eq91zu9opkOaTo5GJoHp4FSR0Bba+MaGlwWs8j699GSTY?=
- =?iso-8859-1?Q?gtgMUAnO06Frl0dbgjlMhLFA2llqJfxJdiaeWb6zzOwb3JHopQdn5boqvx?=
- =?iso-8859-1?Q?UbNpwIhkp9YTsrReRp1OeTIZkg5YTWmDG3gAHY64NCseTlzjDDZgwr/NS6?=
- =?iso-8859-1?Q?ylXUx4LXrsg9vmbjfYXM3tkdtBNnhuB//HTbEcOSFoGLakYUgzyuednOU4?=
- =?iso-8859-1?Q?9jZhJ7KQkhXFiiMEDFDIVoegHZ+SEL4BnWoc+cxnlIgtu9EV+1JvYbnrB4?=
- =?iso-8859-1?Q?bw7c28L68Sx/8jAhU9ZI4jGC6loj9yVf0CPPXExVJiLblicGmOl3i+Iux7?=
- =?iso-8859-1?Q?bJFUKo/JfWuIS0ZWBpuHpwhehgW14TqWGdr+PuBHEvf7tW+Scu3sqW1jIr?=
- =?iso-8859-1?Q?5U8oqDSj0rOPQxWVr92BOTMzUlsFKJ1PcWYQba1LQ2feEPDPUeD87KNa6B?=
- =?iso-8859-1?Q?nOSycabTfD2EoW6RUUTfOquDTCXQrlfRtQtm7jV4ShM5LUux15EZt05Eo2?=
- =?iso-8859-1?Q?f5cWv7/ZrzLJvr22cMSc97SyrTnYrygWAfswuEuUvCMklJHMhEDtCSH9US?=
- =?iso-8859-1?Q?1eu9h6wPiro/f2u/rMy8sNFtF6MVOFkBqZ/g3oX7tAmhAbiLVQSKsY3Hmt?=
- =?iso-8859-1?Q?yBJXVp10uYTBz5BbIgz15rQtjGUGH1WaIECRiRmb+ssnb3mseDUgnPlOUx?=
- =?iso-8859-1?Q?Gyufe8lYLhoqA8YZX66mTw5gOBig5pRlXUzJc5Y0euVGk2MgM5udZAcIO+?=
- =?iso-8859-1?Q?QHKr1Yld4DbiRm+CtVAHSmKKuk5P4bngtSDL9x3/2/7ybnjhwfxcVye9qC?=
- =?iso-8859-1?Q?eUXv7Qcokdme1BjS2eRYAg6qCbkQNlyGJBjN3yEMlV/rxKARKo6LX5e2Tj?=
- =?iso-8859-1?Q?4d?=
-X-MS-Exchange-AntiSpam-MessageData-1: q2ohCx17BzyWEoPal34hsoH+6cEroEyR8ZE=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2cc17420-2346-4ff1-eb8c-08da44872b1c
-X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Jun 2022 11:00:56.2654
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1Nm1dTcS3gxj96yRg3ZACFjSDTyfj65+WscfEZBoeFmnjvtGuL+0teHqygiLeYyBcZQghZjtQucyor2azCZJpQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4P190MB1806
-Message-ID-Hash: KCDTSRULB3RNQMOQPMGNNTURFV7BL4Q3
-X-Message-ID-Hash: KCDTSRULB3RNQMOQPMGNNTURFV7BL4Q3
-X-MailFrom: cedric.hannotier@ulb.be
+Received: by mail-qk1-f180.google.com with SMTP id o68so3608262qkf.13
+        for <USRP-users@lists.ettus.com>; Thu, 02 Jun 2022 06:35:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=Pq6k4O2sE8v2HbLGGEa1GJ3DyrhLzkOhlBiYap0M24Q=;
+        b=T69SCZJg846YVK9Z0D3Og7bAKGy0kSCS6hquRSrdkXIBWisRhe+XTG/ZlCZ/0steAy
+         8obvnA1LO9bK8N23e+Q3qBLWl3b8RSd2ydin32VoECpW4tQyYaYy9SeZcjaQTWjyztlp
+         tnJgxfvg3eB4SJ5ay/4L25/VzJrjL+lMbb7BT2xZPVtzxL6U1JUFJcWkT1n9UDj0tEsA
+         lUvliraJK0QPITTnO39lDuAznQn7ttIjj8TBLkDdECENSRUYpvHeN+zVO7JNmT0LyPAM
+         XV2QiMlhbjYSmA9RjRZxruPMZAIgrT4aNPTPijP4gyCTQKtotDhw7gQycmxKbbS8Pjrx
+         apGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=Pq6k4O2sE8v2HbLGGEa1GJ3DyrhLzkOhlBiYap0M24Q=;
+        b=Ygomvlbi0PfnYTTNkcTmqiEXMNtJrC7XT84Ln0+eJmSmULykYrC1kD+PqT88viG6A2
+         dA+UddedGFqfWzsU5soFXZK+iujPT5V4TOmw5T7odAuxsrIQ11B64kBfI3gRnux3W+BA
+         w4SirGmyygB756cQBWP+ZWb1cbQuvhMvkD3Nilfiy9gjTJzB/2pYiVPAfDexomAX0pE7
+         eCJic1rbyJqrR/SZ04Ns5ic1kdGKlOH78MyV7yjEdZ6x1VpNuehW8LL5T1flxMSrYmPS
+         uNGHW54xH//Irre+KHlWlRdC13fDfe/pHq9Y2cm911pt9T6kdyrkNmf/2V9Zr1Yshrwk
+         19pQ==
+X-Gm-Message-State: AOAM533GaXueTVe8ukeJ0PGufSEJMJ/99t0CCqiN+nkUrv2ieW91rrg4
+	O+SZsYaJwWYmjIp2TFk1v0A=
+X-Google-Smtp-Source: ABdhPJy20RUrAwpOtHT4HFJpP+t4fRpr+Ln3YDIk1lkRkM3mN5AnNDaMldPWWk13VzEQbfSYmEp5zQ==
+X-Received: by 2002:a05:620a:2586:b0:680:f3c1:9d4a with SMTP id x6-20020a05620a258600b00680f3c19d4amr2986915qko.619.1654176917312;
+        Thu, 02 Jun 2022 06:35:17 -0700 (PDT)
+Received: from smtpclient.apple (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.gmail.com with ESMTPSA id b5-20020a05622a020500b003010fe8debesm3152067qtx.42.2022.06.02.06.35.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Jun 2022 06:35:16 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Thu, 2 Jun 2022 09:35:15 -0400
+Message-Id: <CD7AB0E0-6BDB-454F-B7F7-1EF7F24CBC16@gmail.com>
+References: <CAJ28uHGt92rQHVPU0OxNBKKzBh1PoNaxSHf2YMT6jGxEF5aCmA@mail.gmail.com>
+In-Reply-To: <CAJ28uHGt92rQHVPU0OxNBKKzBh1PoNaxSHf2YMT6jGxEF5aCmA@mail.gmail.com>
+To: gokul sani <cnsgokul@gmail.com>
+X-Mailer: iPhone Mail (19F77)
+Message-ID-Hash: ZE5BCK64OWUYPT4UB2QJN2C2W4LXJ3Q5
+X-Message-ID-Hash: ZE5BCK64OWUYPT4UB2QJN2C2W4LXJ3Q5
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: David Raeman <david@synopticengineering.com>, USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problem updating uhd library on Ubuntu 20.04
+Subject: [USRP-users] Re: GPS invalid reply
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KCDTSRULB3RNQMOQPMGNNTURFV7BL4Q3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZE5BCK64OWUYPT4UB2QJN2C2W4LXJ3Q5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/mixed; boundary="===============2669202588642178284=="
+
+
+--===============2669202588642178284==
+Content-Type: multipart/alternative; boundary=Apple-Mail-F52734D5-8278-4292-BDFE-E578718AAE88
+Content-Transfer-Encoding: 7bit
+
+
+--Apple-Mail-F52734D5-8278-4292-BDFE-E578718AAE88
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Achilleas,
+If the unit is less than 1yo you can start the warranty process by sending a=
+ message to support@ettus.com
 
-On 01/06/22 12:31, Achilleas Anastasopoulos wrote:
-> I am working with gnuradio and usrps on an ubuntu 20.04
+
+
+Sent from my iPhone
+
+> On Jun 2, 2022, at 4:50 AM, gokul sani <cnsgokul@gmail.com> wrote:
 >=20
-> $ lsb_release -a
-> No LSB modules are available.
-> Distributor ID: Ubuntu
-> Description:    Ubuntu 20.04.4 LTS
-> Release:        20.04
-> Codename:       focal
+> =EF=BB=BF
+> Hi all,
 >=20
-> I usually update my uhd libraries from ettus binaries as described here:
-> https://files.ettus.com/manual/page_install.html
+> Thank you for your comments.=20
+> Markus, I reseated the module, still get the same error. Yes, It is the on=
+e supplied by ettus.
 >=20
-> $ sudo add-apt-repository ppa:ettusresearch/uhd
-> $ sudo apt-get update
-> $ sudo apt-get install libuhd-dev libuhd4.1.0 uhd-host
+> WR,
+> Gokul
 >=20
-> Then I usually build gnuradio from source (I am currently in v3.8).
-> I DO NOT install gnuradio from repositories!
->=20
-> Today I tried to update the uhd libraries.
-> [...]
-> $ sudo apt-get install libuhd4.1.0
-> [...]
-> Now I am trying to install the "uhd-host" library:
->=20
-> $ sudo apt-get install uhd-host
-> [...]
-> *The following additional packages will be installed:  libuhd4.2.0
-> [...]
-> *******I do not understand why it asks to install also the
-> libuhd4.2.0 library.
+>> On Wed, Jun 1, 2022 at 6:55 PM David Raeman <david@synopticengineering.co=
+m> wrote:
+>> .. Sorry, just realized the GPSDO apparently does use SCPI-99 commands. :=
+)
+>>=20
+>> =20
+>>=20
+>> From: David Raeman=20
+>> Sent: Wednesday, June 1, 2022 12:51 PM
+>> To: Marcus D. Leech <patchvonbraun@gmail.com>; usrp-users@lists.ettus.com=
 
-The UHD version from the PPA for focal is 4.2, not 4.1.
-The issue here is that you first installed an outdated version
-of the library before installing uhd-host (libuhd4.1.0).
-You should have installed libuhd4.2.0 instead.
+>> Subject: RE: [USRP-users] Re: GPS invalid reply
+>>=20
+>> =20
+>>=20
+>> The error string is also suspicious.. *IDN? is a command used to identify=
+ lab instruments that implement SCPI protocols, and I=E2=80=99m not familiar=
+ with any GPS receiver that interfaces using SCPI. Is it possible you have s=
+ome kind of instrument-control service on your computer (LabView, Keysight I=
+O, etc) which is trying to talk to the USRP as if it were a lab instrument?
+>>=20
+>> =20
+>>=20
+>> =20
+>>=20
+>> From: Marcus D. Leech <patchvonbraun@gmail.com>=20
+>> Sent: Wednesday, June 1, 2022 12:43 PM
+>> To: usrp-users@lists.ettus.com
+>> Subject: [USRP-users] Re: GPS invalid reply
+>>=20
+>> =20
+>>=20
+>> On 2022-06-01 11:19, gokul sani wrote:
+>>=20
+>> Dear USRP Community,
+>>=20
+>> =20
+>>=20
+>> I am using usrp b210 with gpsdo. But "uhd_usrp_probe" gave me an error.
+>>=20
+>> --[ERROR] [GPS] GPS invalid reply "scpi > *IDN?
+>>=20
+>> The gps antenna is tested with a different b210 and received the lock.
+>>=20
+>> last week, it was working fine. No apparent changes were made.! Please pr=
+ovide any insights of yours.
+>>=20
+>> =20
+>>=20
+>> =20
+>>=20
+>> uhd_usrp_probe=20
+>> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.1=
+5.0.HEAD-0-gaea0e2de
+>> [INFO] [B200] Loading firmware image: /usr/local/share/uhd/images/usrp_b2=
+00_fw.hex...
+>> [INFO] [B200] Detected Device: B210
+>> [INFO] [B200] Loading FPGA image: /usr/local/share/uhd/images/usrp_b210_f=
+pga.bin...
+>> [INFO] [B200] Operating over USB 3.
+>> [INFO] [B200] Detecting internal GPSDO....=20
+>> [ERROR] [GPS] GPS invalid reply "scpi > *IDN?
+>> ", assuming none available
+>> [INFO] [GPS] No GPSDO found
+>> [INFO] [B200] Initialize CODEC control...
+>> [INFO] [B200] Initialize Radio control...
+>> [INFO] [B200] Performing register loopback test...=20
+>> [INFO] [B200] Register loopback test passed
+>> [INFO] [B200] Performing register loopback test...=20
+>> [INFO] [B200] Register loopback test passed
+>> [INFO] [B200] Setting master clock rate selection to 'automatic'.
+>> [INFO] [B200] Asking for clock rate 16.000000 MHz...=20
+>> [INFO] [B200] Actually got clock rate 16.000000 MHz.
+>>   _____________________________________________________
+>>  /
+>> |       Device: B-Series Device
+>> |     _____________________________________________________
+>> |    /
+>>=20
+>> =20
+>>=20
+>> ..
+>>=20
+>> .
+>>=20
+>> ..
+>>=20
+>> =20
+>>=20
+>> =20
+>>=20
+>> Thank you,
+>>=20
+>> Gokul
+>>=20
+>> =20
+>>=20
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> You could try carefully re-seating your GPSDO module.  Is this module one=
+ supplied by Ettus or an after-market one?
+>>=20
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
-> If I do that, then I get the following errors:
->=20
->  Y
-> Selecting previously unselected package libuhd4.2.0:amd64.
-> (Reading database ... 269464 files and directories currently installed.)
-> Preparing to unpack .../libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb ...
-> Unpacking libuhd4.2.0:amd64 (4.2.0.0-0ubuntu1~focal1) ...
-> dpkg: error processing archive
-> /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb
-> (--unpack):
->  trying to overwrite '/usr/share/uhd/cal/cal_metadata.fbs', which is also
-> in package libuhd4.1.0:amd64 4.1.0.4-0ubuntu1~focal1
-> Selecting previously unselected package python3-ruamel.yaml.
-> Preparing to unpack .../python3-ruamel.yaml_0.15.89-3build1_amd64.deb ...
-> Unpacking python3-ruamel.yaml (0.15.89-3build1) ...
-> Selecting previously unselected package uhd-host.
-> Preparing to unpack .../uhd-host_4.2.0.0-0ubuntu1~focal1_amd64.deb ...
-> Unpacking uhd-host (4.2.0.0-0ubuntu1~focal1) ...
-> Errors were encountered while processing:
->  /var/cache/apt/archives/libuhd4.2.0_4.2.0.0-0ubuntu1~focal1_amd64.deb
-> E: Sub-process /usr/bin/dpkg returned an error code (1)
+--Apple-Mail-F52734D5-8278-4292-BDFE-E578718AAE88
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Yeah, for some reason,
-dpkg/apt does not consider libuhd4.1.0 and libuhd4.2.0 being
-two version of the same package (libuhd).
-I think that a known issue (or feature?) on Ettus side.
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">If the unit is less than 1yo you can start t=
+he warranty process by sending a message to support@ettus.com<div><br></div>=
+<div><br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br>=
+<blockquote type=3D"cite">On Jun 2, 2022, at 4:50 AM, gokul sani &lt;cnsgoku=
+l@gmail.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><=
+div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Hi all,</div><div><br></div><=
+div>Thank you for your comments. <br></div><div>Markus, I reseated the modul=
+e, still get the same error. Yes, It is the one supplied by ettus.</div><div=
+><br></div><div>WR,</div><div>Gokul<br></div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 1, 2022 at 6:55 PM D=
+avid Raeman &lt;<a href=3D"mailto:david@synopticengineering.com">david@synop=
+ticengineering.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex">
 
-> Alternatively if I try to remove "libuhd4.1.0" and install the latest
-> "libuhd4.2.0"
-> [...]
-> Now I can easily install the "uhd-host" library
-> [...]
-> BUT, when I try to install the "libuhd-dev" library I get the following
-> which
-> I suspect wants to install the entire gnuradio system from the repository,
-> which as I said in the beginning I do not want, since I am usually buildi=
-ng
-> it from source.
->=20
-> $ sudo apt-get install libuhd-dev
-> Reading package lists... Done
-> Building dependency tree
-> Reading state information... Done
-> The following additional packages will be installed:
->   freeglut3 gnuradio gnuradio-dev
-> [...]
->   libuhd3.15.0
-> [...]
-> Can anyone help with this?
 
-IMO, that's a dependency issue.
-libuhd-dev has gnuradio-dev as recommended package,
-and AFAIR, apt installs recommended package by default.
-Apt tries to solve the deps+recommend for libuhd-dev_4.2 (from the PPA),
-but it cannot find a compatible gnuradio-dev package
-(the only gnuradio-dev package it can find is from the Ubuntu focal repo,
-which is built upon UHD 3.15.0).
-So apt tries the libuhd-dev package with a lower priority,
-i.e. the one from Ubuntu focal repo.
 
-Maybe this will work:
-sudo apt-get install --no-install-recommends libuhd-dev
-or
-sudo apt-get isntall libuhd-dev gnuradio-dev-
 
---=20
 
-C=E9dric Hannotier
+<div style=3D"overflow-wrap: break-word;" lang=3D"EN-US">
+<div class=3D"gmail-m_-5107720077984029054WordSection1">
+<p class=3D"MsoNormal">.. Sorry, just realized the GPSDO apparently does use=
+ SCPI-99 commands. :)<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+<div style=3D"border-color:currentcolor currentcolor currentcolor blue;borde=
+r-style:none none none solid;border-width:medium medium medium 1.5pt;padding=
+:0in 0in 0in 4pt">
+<div>
+<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;border=
+-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> David Raeman <br>
+<b>Sent:</b> Wednesday, June 1, 2022 12:51 PM<br>
+<b>To:</b> Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" ta=
+rget=3D"_blank">patchvonbraun@gmail.com</a>&gt;; <a href=3D"mailto:usrp-user=
+s@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> RE: [USRP-users] Re: GPS invalid reply<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+<p class=3D"MsoNormal">The error string is also suspicious.. *IDN? is a comm=
+and used to identify lab instruments that implement SCPI protocols, and I=E2=
+=80=99m not familiar with any GPS receiver that interfaces using SCPI. Is it=
+ possible you have some kind of instrument-control
+ service on your computer (LabView, Keysight IO, etc) which is trying to tal=
+k to the USRP as if it were a lab instrument?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+<div style=3D"border-color:currentcolor currentcolor currentcolor blue;borde=
+r-style:none none none solid;border-width:medium medium medium 1.5pt;padding=
+:0in 0in 0in 4pt">
+<div>
+<div style=3D"border-color:rgb(225,225,225) currentcolor currentcolor;border=
+-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech &lt;<a href=3D"mailto:pa=
+tchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+<br>
+<b>Sent:</b> Wednesday, June 1, 2022 12:43 PM<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">u=
+srp-users@lists.ettus.com</a><br>
+<b>Subject:</b> [USRP-users] Re: GPS invalid reply<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+<div>
+<p class=3D"MsoNormal">On 2022-06-01 11:19, gokul sani wrote:<u></u><u></u><=
+/p>
+</div>
+<blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+<div>
+<div>
+<p class=3D"MsoNormal">Dear USRP Community,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I am using usrp b210 with gpsdo. But "uhd_usrp_probe"=
+ gave me an error.
+<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">-<b>-[ERROR] [GPS] GPS invalid reply "scpi &gt; *IDN?=
+</b><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">The gps antenna is tested with a different b210 and r=
+eceived the lock.<u></u><u></u></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">last week, it was working fine. No apparent changes w=
+ere made.! Please provide any insights of yours.<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">uhd_usrp_probe <br>
+[INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800; UHD_3.15.0=
+.HEAD-0-gaea0e2de<br>
+[INFO] [B200] Loading firmware image: /usr/local/share/uhd/images/usrp_b200_=
+fw.hex...<br>
+[INFO] [B200] Detected Device: B210<br>
+[INFO] [B200] Loading FPGA image: /usr/local/share/uhd/images/usrp_b210_fpga=
+.bin...<br>
+[INFO] [B200] Operating over USB 3.<br>
+[INFO] [B200] Detecting internal GPSDO.... <br>
+<b>[ERROR] [GPS] GPS invalid reply "scpi &gt; *IDN?<br>
+", assuming none available</b><br>
+[INFO] [GPS] No GPSDO found<br>
+[INFO] [B200] Initialize CODEC control...<br>
+[INFO] [B200] Initialize Radio control...<br>
+[INFO] [B200] Performing register loopback test... <br>
+[INFO] [B200] Register loopback test passed<br>
+[INFO] [B200] Performing register loopback test... <br>
+[INFO] [B200] Register loopback test passed<br>
+[INFO] [B200] Setting master clock rate selection to 'automatic'.<br>
+[INFO] [B200] Asking for clock rate 16.000000 MHz... <br>
+[INFO] [B200] Actually got clock rate 16.000000 MHz.<br>
+&nbsp; _____________________________________________________<br>
+&nbsp;/<br>
+| &nbsp; &nbsp; &nbsp; Device: B-Series Device<br>
+| &nbsp; &nbsp; _____________________________________________________<br>
+| &nbsp; &nbsp;/<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">..<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">..<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Thank you,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Gokul<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><u></u>&nbsp;<u></u></p>=
+
+<pre>_______________________________________________<u></u><u></u></pre>
+<pre>USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com=
+" target=3D"_blank">usrp-users@lists.ettus.com</a><u></u><u></u></pre>
+<pre>To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@list=
+s.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><u></u><u=
+></u></pre>
+</blockquote>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12pt">You could try carefully r=
+e-seating your GPSDO module.&nbsp; Is this module one supplied by Ettus or a=
+n after-market one?<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" tar=
+get=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.ett=
+us.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-F52734D5-8278-4292-BDFE-E578718AAE88--
+
+--===============2669202588642178284==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2669202588642178284==--
