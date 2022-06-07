@@ -2,135 +2,152 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65DC753F319
-	for <lists+usrp-users@lfdr.de>; Tue,  7 Jun 2022 02:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1443453F5A8
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Jun 2022 07:52:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2671B384105
-	for <lists+usrp-users@lfdr.de>; Mon,  6 Jun 2022 20:54:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8C16338417A
+	for <lists+usrp-users@lfdr.de>; Tue,  7 Jun 2022 01:52:05 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1654563269; bh=2J92cjOVcSgKfojM0VpiYUhhAjtTXmJTHqAiIFMQ8fM=;
-	h=From:Date:References:In-Reply-To:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=LV1N74ADGzYQ0RIcg95Z8zztiXSMenF721v81FmkO/72KhNDFxkH+mybVedswznqK
-	 OUmjjwvDWleWtHDapWB1XrPvrk3ynm7CLDISDq5MOexexZpbPEoEXgxH6m5pPe4Hk1
-	 nOXWrwzWnz9rcMSOcpzj6GlhQxkSAhHQexhMXpcq0t0k6z0883lEImN9/sDYdrtKdA
-	 WE1aU8VXTVue1tQB/izslQqeaBBKppexEuPfYukTj8yr948D0gXErbLnW0cQ/IWUHB
-	 ZSL1UrkwdviD87PdY20HK0CleWeVb7/CieEgYt32pIzgJQVAIiL6xjE99CBIAFBKmt
-	 ReYUc5JqEnP0A==
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id 077A7383DB6
-	for <USRP-users@lists.ettus.com>; Mon,  6 Jun 2022 20:53:27 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RhiabiyK";
-	dkim-atps=neutral
-Received: by mail-qk1-f172.google.com with SMTP id n197so5110494qke.1
-        for <USRP-users@lists.ettus.com>; Mon, 06 Jun 2022 17:53:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=qoH98sntK5sNCO85T+j/GAH5scNnq/UsddaYeqhxzGk=;
-        b=RhiabiyKcLI3n97J6P+e/lHS0ELq1MH9QnqGu37H+D8iVWKTo4A/0Z+VDu2cNQ2Vgp
-         MyLX+3vwyO8aNzp1JcTt7O9DzpRa8RdyThilU30f6hN2QM6lt28Jg1C2JMAtxkFM/cCC
-         0aDggxDZjiyQmbYanzuI/bYW1VADTcjz//6uAf51OVhr261GVolcP6YCKzTYxA0Qjj81
-         IElZn3X+9Cwqd2oCJGfHEVSItJq47CHV+xiq/HydAM0feTr9jKLaKF6IrUM7eLdgfTMi
-         dWiih1Xlo5QBDQuq8sDwoYXgckwq4Kv6LOWoZ0rnccpgCTqjrZ6w5heYETYP5e/qd4fK
-         ab8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=qoH98sntK5sNCO85T+j/GAH5scNnq/UsddaYeqhxzGk=;
-        b=xN3QzIdRB155QD+BJSYWw5YFQGi2YBi62AIFDqJDIARxHYyjCDEHT0FCQdudwyl6lp
-         dxrYXU6b+AlnUDs0b1f8+tGiMHOrwuH7vKCOYj4VNyW10+dtQ18OcPsdD7ccFfqaibOT
-         OA3d3YvlKr1GVWxu+/SVBDbPArNJ92C1ebjORhXG9Ol3DFtwx5BBQ3uTC19pwIVpyilP
-         hQ9c9E6lsLV/Wv5ZR4nZnBodLSolvnZfBKVtJViMMiHttq1to0jbELGNmMk00oZhdnAl
-         C+X0i30XWoG/UN4cv4bMWR806mZaIf10zD0h7bBnEUJI7CLEm/Qlj6xVueGEhohxHwqV
-         bnDw==
-X-Gm-Message-State: AOAM532B8Ik4butTQnud+JbOqj9hmAWfAPYcRWuD9OQi2l90J53e67qh
-	vzXMvdK2hKaFl9kiIFDj1i+P3h/s6NrwgQ==
-X-Google-Smtp-Source: ABdhPJwIvGF0JWV9XX9GG7KcYeIOScFErUuCWLPqqBOL6a4RBiCucyNxAEgpFd1CiOAeMaATV4N38w==
-X-Received: by 2002:a05:620a:1a98:b0:6a5:cdb:a918 with SMTP id bl24-20020a05620a1a9800b006a50cdba918mr17883639qkb.532.1654563207520;
-        Mon, 06 Jun 2022 17:53:27 -0700 (PDT)
-Received: from smtpclient.apple (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.gmail.com with ESMTPSA id y123-20020a379681000000b006a648cdd3dasm12597063qkd.48.2022.06.06.17.53.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Jun 2022 17:53:27 -0700 (PDT)
-From: Marcus D Leech <patchvonbraun@gmail.com>
-Mime-Version: 1.0 (1.0)
-Date: Mon, 6 Jun 2022 20:53:26 -0400
-Message-Id: <9FD32434-722E-4B79-8BE9-D009BF88E87B@gmail.com>
-References: <PH1P110MB16655B5C9FE3A2DF4EE550F3B7A29@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
+	t=1654581125; bh=tyYxtGJneVjoQotFQJjnPDjo1eNLZjfsOoT+bQWWkT4=;
+	h=From:To:References:In-Reply-To:Date:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=CNbLrSC1L5BDy8tt6B9HxVT8Yc7p4Ce0VDDcUc2uVua+/Wr10+KLdWqeltI/RR2yr
+	 TLXxHSHN24H68XjRuJOII81LazcyEtD1bVaEe3hvorlDI9zpbNbw7siEL1PmUGv5J7
+	 SqR34JJ+1YSGNM59gwGsGbj76q4a8S7RHT46tUSVV95TA+NolKBakGWQQ2GoiIQkzX
+	 SD/dX+Qj0HAlegumuIBvA/OXXa3GnErH+DTSBk4fKjyNDTTzoeERWVtyWp1VZ/s0lb
+	 XQ/c4fED0PtQJVLj4OGZdWj0zZDH5c37rCv3RRJiygw4qJLlFGhsnULJbKmQNFXKsb
+	 NBJO6DN/kUCnw==
+Received: from relay.hostedemail.com (smtprelay0016.hostedemail.com [216.40.44.16])
+	by mm2.emwd.com (Postfix) with ESMTPS id CA08E383EC2
+	for <usrp-users@lists.ettus.com>; Tue,  7 Jun 2022 01:51:04 -0400 (EDT)
+Received: from omf11.hostedemail.com (a10.router.float.18 [10.200.18.1])
+	by unirelay06.hostedemail.com (Postfix) with ESMTP id 1726935303;
+	Tue,  7 Jun 2022 05:51:04 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: jon@beniston.com) by omf11.hostedemail.com (Postfix) with ESMTPA id 11F5C20038;
+	Tue,  7 Jun 2022 05:51:02 +0000 (UTC)
+From: "Jon Beniston" <jon@beniston.com>
+To: "'David Raeman'" <david@SynopticEngineering.com>,
+	"'Marcus D. Leech'" <patchvonbraun@gmail.com>,
+	<usrp-users@lists.ettus.com>
+References: <0a7201d879c4$18b47460$4a1d5d20$@beniston.com> <7e9c6643-bffb-8a5b-915a-ff4524770449@gmail.com> <0a8a01d879c7$3bf7fbb0$b3e7f310$@beniston.com> <503463d6-879b-82b9-dfc5-6980f35f635b@gmail.com> <0a9901d879cb$7bcb4270$7361c750$@beniston.com> <2379689d-7bac-b90c-9cc8-1ff25fac9e67@gmail.com> <0acc01d879f7$429da3e0$c7d8eba0$@beniston.com>  <PH1P110MB16655B5C9FE3A2DF4EE550F3B7A29@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
 In-Reply-To: <PH1P110MB16655B5C9FE3A2DF4EE550F3B7A29@PH1P110MB1665.NAMP110.PROD.OUTLOOK.COM>
-To: David Raeman <david@synopticengineering.com>
-X-Mailer: iPhone Mail (19F77)
-Message-ID-Hash: EZJXYRYGTP4B5ZLPXPT2JYP2D4JY3JWE
-X-Message-ID-Hash: EZJXYRYGTP4B5ZLPXPT2JYP2D4JY3JWE
-X-MailFrom: patchvonbraun@gmail.com
+Date: Tue, 7 Jun 2022 06:51:02 +0100
+Message-ID: <0ada01d87a32$933d4810$b9b7d830$@beniston.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQI+YnAXmM94U0s+mLR5vjW3De6oVQIwXGJkAsE1bssB782kfQKg/W3GAbhrefkCKxqXFgLYzKQPq/Wp+eA=
+Content-Language: en-gb
+X-Rspamd-Queue-Id: 11F5C20038
+X-Spam-Status: No, score=-4.01
+X-Stat-Signature: btxk5gyrf1t3uapo69ewq4fkhcy9ne1z
+X-Rspamd-Server: rspamout01
+X-Session-Marker: 6A6F6E4062656E6973746F6E2E636F6D
+X-Session-ID: U2FsdGVkX18u+UfJdaaEqaNBT0axhEF0oDA4oWYLxrA=
+X-HE-Tag: 1654581062-946930
+Message-ID-Hash: 6U2BAZWAK6K6OSHBZ2C7P7REI4RWRCZ6
+X-Message-ID-Hash: 6U2BAZWAK6K6OSHBZ2C7P7REI4RWRCZ6
+X-MailFrom: jon@beniston.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Jon Beniston <jon@beniston.com>, USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: E320 Automatic master clock
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EZJXYRYGTP4B5ZLPXPT2JYP2D4JY3JWE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6U2BAZWAK6K6OSHBZ2C7P7REI4RWRCZ6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-VGhlcmUgY291bGQgYWxzbyBiZSBGUEdBIGNvbnN0cmFpbnRzIHRoYXQgbWFrZSB0aGUgY2xvY2sg
-YXJjaGl0ZWN0dXJlIG9uIHRoZSBFMzIwIG5lY2Vzc2FyeS4gDQoNClNlbnQgZnJvbSBteSBpUGhv
-bmUNCg0KPiBPbiBKdW4gNiwgMjAyMiwgYXQgNzo1NyBQTSwgRGF2aWQgUmFlbWFuIDxkYXZpZEBz
-eW5vcHRpY2VuZ2luZWVyaW5nLmNvbT4gd3JvdGU6DQo+IA0KPiDvu79IaSBKb24sIEkgZGlkIHNv
-bWUgcG9raW5nIGFyb3VuZCBpbiB0aGUgY29kZSwgYW5kIEkgZG9uJ3QgYmVsaWV2ZSB0aGUgRTMy
-MCBzdXBwb3J0cyB0aGF0IGZlYXR1cmUuIE9uIEIyeHggcmFkaW9zLCBpZiB5b3UgZG9uJ3Qgc3Bl
-Y2lmeSBhbiBleHBsaWNpdCBtYXN0ZXIgY2xvY2sgcmF0ZSBpdCBoYXMgbG9naWMgdG8gZGV0ZXJt
-aW5lIGFuIGlkZWFsIHJhdGUgYmFzZWQgb24gdGhlIHNhbXBsaW5nIHJhdGUsIGFuZCBpdCBleHBv
-c2VzIGFuIGF1dG9fdGlja19yYXRlIHByb3BlcnR5IHRvIHRvZ2dsZSB0aGF0IGJlaGF2aW9yIGZy
-b20gdGhlIGFwcGxpY2F0aW9uLiBDb252ZXJzZWx5LCBvbiB0aGUgRTMyMCByYWRpbyBpZiB5b3Ug
-ZG9uJ3Qgc3BlY2lmeSBhbiBleHBsaWNpdCBtYXN0ZXIgY2xvY2sgcmF0ZSBpdCBhbHdheXMgdXNl
-cyBhIGZpeGVkIHZhbHVlIG9mIDE2IE1IeiwgYW5kIHRoZSBpbXBsZW1lbnRhdGlvbiBoYXMgbm8g
-bG9naWMgdGhhdCBJIHNlZSB0byBwZXJmb3JtIHRoZSBkeW5hbWljIHRpY2sgcmF0ZSBjYWxjdWxh
-dGlvbnMuDQo+IA0KPiBTaW5jZSB0aGUgQjJ4eCBhbmQgRTMyMCByYWRpb3MgYXJlIGJvdGggYmFz
-ZWQgb24gdGhlIEFEOTM2MSBSRklDLCB0aGVvcmV0aWNhbGx5IEkgdGhpbmsgdGhlIGxvZ2ljIGNv
-dWxkIGJlIHBsYWNlZCBzb21ld2hlcmUgc3VjaCB0aGF0IHRoZSBFMzIwIGFuZCBCMnh4IHJhZGlv
-cyBjb3VsZCBib3RoIHByb3ZpZGUgdGhlIGZlYXR1cmUuIEhvd2V2ZXIsIHRoZSBpbXBsZW1lbnRh
-dGlvbnMgYXJlIHByZXR0eSBkaXZlcmdlZCAtIHRoZSBFMzIwIGlzIGJhc2VkIG9uIHRoZSBuZXdl
-ciBNUE0gY29kZSBhcmNoaXRlY3R1cmUgYW5kIHRoZSBCMnh4IGlzIG5vdC4NCj4gDQo+IFNob3J0
-IHN0b3J5IGlzIHRoZSBFMzIwIGRvZXNuJ3Qgc2VlbSB0byBzdXBwb3J0IHRoaXMsIGJ1dCBJIHRo
-aW5rIGl0J3MganVzdCBhIG1hdHRlciBvZiBtaXNzaW5nIGJpdHMgaW4gdGhlIHNvZnR3YXJlLg0K
-PiANCj4gQmVzdCwNCj4gLURhdmlkDQo+IA0KPiANCj4+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
-LS0tDQo+PiBGcm9tOiBKb24gQmVuaXN0b24gPGpvbkBiZW5pc3Rvbi5jb20+DQo+PiBTZW50OiBN
-b25kYXksIEp1bmUgNiwgMjAyMiA2OjQ2IFBNDQo+PiBUbzogJ01hcmN1cyBELiBMZWVjaCcgPHBh
-dGNodm9uYnJhdW5AZ21haWwuY29tPjsgdXNycC0NCj4+IHVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
-Pj4gU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBFMzIwIEF1dG9tYXRpYyBtYXN0ZXIgY2xvY2sN
-Cj4+IA0KPj4gSGkgTWFyY3VzLA0KPj4gDQo+Pj4+IElmIEkganVzdCB0cnkgdG8gcmUtbWFrZSB0
-aGUgZGV2aWNlLCBJIGdldCBhbiBleGNlcHRpb24uIEVnOg0KPj4+PiANCj4+Pj4gICAgICAgICAg
-ICAgICAgbV9kZXYgPSB1aGQ6OnVzcnA6Om11bHRpX3VzcnA6Om1ha2UoZGV2aWNlX2FyZ3MpOw0K
-Pj4+PiAgICAgICAgICAgICAgIG1fZGV2LT5zZXRfbWFzdGVyX2Nsb2NrX3JhdGUoNjEuNDRlNik7
-DQo+Pj4+ICAgICAgICAgICAgIC8vIEhvdyB0byByZXN0YXJ0IGEgc2Vzc2lvbiBoZXJlPw0KPj4+
-PiAgICAgICAgICAgICAgICAgbV9kZXYgPSB1aGQ6OnVzcnA6Om11bHRpX3VzcnA6Om1ha2UoZGV2
-aWNlX2FyZ3MpOw0KPj4+PiANCj4+Pj4gLi4uDQo+PiANCj4+PiBIb3dldmVyLCB0aGVyZSBpcyBh
-IHNldF9tYXN0ZXJfY2xvY2tfcmF0ZSgpIEFQSSBjYWxsOg0KPj4+IA0KPj4+IGh0dHBzOi8vZmls
-ZXMuZXR0dXMuY29tL21hbnVhbC9jbGFzc3VoZF8xXzF1c3JwXzFfMW11bHRpX191c3JwLmh0bWwj
-YQ0KPj4gOTkNCj4+PiAyNTRhYmZhNTI1OWI3MGEwMjBlNjY3ZWVlNjE5YjkNCj4+IA0KPj4gWWVz
-LCB0aGF0J3Mgd2hhdCBJJ20gY2FsbGluZyBhYm92ZS4NCj4+IA0KPj4+IFdoYXQgdGhlIGNvbnNl
-cXVlbmNlcyBhcmUgZm9yIGNoYW5naW5nIHRoaXMgd2l0aGluIGEgc2Vzc2lvbg0KPj4+IGlzIG5l
-Y2Vzc2FyaWx5IGRldmljZSBkZXBlbmRlbnQuICAgSWYgSSB3ZXJlIGdvaW5nIHRvIGRvIHRoaXMs
-IEknZCB0ZWFyIGRvd24NCj4+IHRoZSBzdHJlYW1lcnMsIHNldCB0aGUNCj4+PiAgbWFzdGVyX2Ns
-b2NrIHRvIHRoZSBuZXcgcmF0ZSwgYW5kIHRoZW4gcmUtY3JlYXRlIHRoZSBzdHJlYW1lcnMuDQo+
-PiANCj4+IFRoZSBwcm9ibGVtIGlzLCB0aGF0IG1ldGhvZCBkb2Vzbid0IGFwcGVhciB0byBzdXBw
-b3J0IGFuICJhdXRvbWF0aWMiIHJhdGUsDQo+PiB1bmxlc3MgSSdtIG1pc3Npbmcgc29tZXRoaW5n
-Lg0KPj4gDQo+PiBUaGFua3MsDQo+PiBKb24NCj4+IA0KPj4gDQo+PiANCj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+PiBVU1JQLXVzZXJzIG1haWxp
-bmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSBUbyB1bnN1YnNjcmliZSBzZW5k
-IGFuDQo+PiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxp
-bmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5k
-IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+Hi David,
+
+Ok, thanks. I was just going by
+https://files.ettus.com/manual/page_general.html "Automatic master-clock
+selection" which said it does. I'll add some code that assumes it is manual
+only, unless the /mboards/0/auto_tick_rate property exists.
+
+Cheers,
+Jon
+
+-----Original Message-----
+From: David Raeman <david@SynopticEngineering.com> 
+Sent: 07 June 2022 00:57
+To: Jon Beniston <jon@beniston.com>; 'Marcus D. Leech'
+<patchvonbraun@gmail.com>; usrp-users@lists.ettus.com
+Subject: [USRP-users] Re: E320 Automatic master clock
+
+Hi Jon, I did some poking around in the code, and I don't believe the E320
+supports that feature. On B2xx radios, if you don't specify an explicit
+master clock rate it has logic to determine an ideal rate based on the
+sampling rate, and it exposes an auto_tick_rate property to toggle that
+behavior from the application. Conversely, on the E320 radio if you don't
+specify an explicit master clock rate it always uses a fixed value of 16
+MHz, and the implementation has no logic that I see to perform the dynamic
+tick rate calculations.
+
+Since the B2xx and E320 radios are both based on the AD9361 RFIC,
+theoretically I think the logic could be placed somewhere such that the E320
+and B2xx radios could both provide the feature. However, the implementations
+are pretty diverged - the E320 is based on the newer MPM code architecture
+and the B2xx is not.
+
+Short story is the E320 doesn't seem to support this, but I think it's just
+a matter of missing bits in the software.
+
+Best,
+-David
+
+
+> -----Original Message-----
+> From: Jon Beniston <jon@beniston.com>
+> Sent: Monday, June 6, 2022 6:46 PM
+> To: 'Marcus D. Leech' <patchvonbraun@gmail.com>; usrp- 
+> users@lists.ettus.com
+> Subject: [USRP-users] Re: E320 Automatic master clock
+> 
+> Hi Marcus,
+> 
+> >> If I just try to re-make the device, I get an exception. Eg:
+> >>
+> > >                 m_dev = uhd::usrp::multi_usrp::make(device_args);
+> > >                m_dev->set_master_clock_rate(61.44e6);
+> > >              // How to restart a session here?
+> >>                  m_dev = uhd::usrp::multi_usrp::make(device_args);
+> >>
+> >> ...
+> 
+> >However, there is a set_master_clock_rate() API call:
+> >
+> >https://files.ettus.com/manual/classuhd_1_1usrp_1_1multi__usrp.html#a
+> 99
+> >254abfa5259b70a020e667eee619b9
+> 
+> Yes, that's what I'm calling above.
+> 
+> >What the consequences are for changing this within a session
+> > is necessarily device dependent.   If I were going to do this, I'd tear
+down
+> the streamers, set the
+> >   master_clock to the new rate, and then re-create the streamers.
+> 
+> The problem is, that method doesn't appear to support an "automatic" 
+> rate, unless I'm missing something.
+> 
+> Thanks,
+> Jon
+> 
+> 
+> 
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe 
+> send an email to usrp-users-leave@lists.ettus.com
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com To unsubscribe send an
+email to usrp-users-leave@lists.ettus.com
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
