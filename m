@@ -2,251 +2,220 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57F6B543D54
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jun 2022 22:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E32CB543D5D
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jun 2022 22:09:17 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 05D6D3845AA
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Jun 2022 16:06:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2B3103844AE
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Jun 2022 16:09:17 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1654718785; bh=rOQ2MX899G5UFmpx5h0Iz0CCTlz5d6391nqhOs7D9gU=;
-	h=To:Date:CC:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=CRX/QCyWlsBmjGY8ryOEtf7h8R8JwFYAxu3N/WET3hW8tejLqgLPe7hXOpVzM548X
-	 DP4wOS0vEaGLMw9r0WhXzyFwvPZ2JhRkyEOUdMDfVLdKoq6JacoZ12RYihQHrVb9Vb
-	 xhvUXb91sEGkP/1AYOuq10xhV321aQED5ZaKrhJLiwKWjWq83Dg00BVW/yh6qDbdVo
-	 39XBQHR6AnRv8u6XTw9bYYIgkuA6E+Y9PwiHwxz4f24RExkk7EDejpfJ55eeVHPAsS
-	 KGi89QmymD0lB68m4u9zk3Q7nKqIVxQsW4AqC85GWK48UPZGhA8WW0ZE/0hPbRd7QK
-	 4CBCtQR6v5y5A==
-Received: from dmzms99801.na.baesystems.com (dmzsmtprelay-tx.us.baesystems.com [149.32.232.65])
-	by mm2.emwd.com (Postfix) with ESMTPS id AF55638431D
-	for <usrp-users@lists.ettus.com>; Wed,  8 Jun 2022 16:05:17 -0400 (EDT)
+	t=1654718957; bh=h/hBb8YyXqz2TsS6/enRvy/5IusviEPxB9dDZN5n5kw=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=Qy+gCLSoAZbjzvvIGi7lV/b5ImNYrABg2AxL3N/1PlV3QXMSBcTHgEAZiDZtPO8Tz
+	 wt0j+BuMbej7667X93pNpV5DwxhxxwnZBtym0ezCpyL/HVUw1s54sYN7rWRcMSL5nV
+	 KxdOyhzNlj4hF3TlFgWC0LDAUjKQikGeptCPOtoMyEqgNhFvHvFChDvLLfk3HHbjlm
+	 IQVETstlVfr/RXQlSILJrZuAROJ+3mA+85SeSCMAPnj0FPFlDnnseGIFeJKV+s9OA8
+	 X1UteXQWlDOkO5jh+dP14q6ox7aFzgcdqmR0xk1rfg5Tw1XanyaMZxa4yNNUNeFmyc
+	 HW7nZjuBDOs3Q==
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id 911BD3841AB
+	for <usrp-users@lists.ettus.com>; Wed,  8 Jun 2022 16:08:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=baesystems.com header.i=@baesystems.com header.b="LzyXmcAp";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fpTR3LOw";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=baesystems.com; i=@baesystems.com; q=dns/txt;
-  s=trusted01; t=1654718717; x=1812398717;
-  h=from:to:cc:subject:date:mime-version;
-  bh=sZd9jnPIIzIUvH88qtzDX3qf4PossJ5OKjXTwXzzzn4=;
-  b=LzyXmcApmm1Y4GhZe94GQF0tC8logJLHkrDRPUv868Q0AQs7me+1bfy6
-   DHZ+ihF/7+jpLGT8/kJoo7b0wNy6EkI8C/+M68WHrXA+n9TnZr5wQVi2y
-   +7eCTu6o4o8A1ewDDtprJ+kbFmb3kovVpl1HyOccJd+VSS7HCJigL0Lzq
-   U=;
-IronPort-SDR: gM27Aa0eyu0QHquis2cBXEAObXNmvWWBe35DTcULwCTV3Azq2D0v5DnHgIq32xhmyyO+VGKK41
- I5NZxvtKwPvw==
-IronPort-PHdr: =?us-ascii?q?A9a23=3AMLUaKBeOjzqUkTIgFB3wAvmilGM+wtnLVj580?=
- =?us-ascii?q?XLHo4xHfqnrxZn+JkuXvawr0AWSG9iGoKIYw8Pt8InYEVQa5piAtH1QOLdtb?=
- =?us-ascii?q?DQizfssogo7HcSeAlf6JvO5JwYzHcBFSUM3tyrjaRsdF8nxfUDdrWOv5jAOB?=
- =?us-ascii?q?Br/KRB1JuPoEYLOksi7ze+/94PdbglShDewYbx+IRa5oA7MqsQYnIxuJ7orx?=
- =?us-ascii?q?BDUuHVIYeNWxW1pJVKXgRnx49q78YBg/SpNpf8v7tZMXqrmcas2S7xYFykmP?=
- =?us-ascii?q?Hsu5ML3rxnDTBCA6WUaX24LjxdHGQnF7BX9Xpfsriv3s/d21SeGMcHqS70/R?=
- =?us-ascii?q?C+v5Ll3RhD2lCgHNiY58GDJhcx2kKJbuw+qqxhmz4LJfI2ZKP9yc6XAdt0YW?=
- =?us-ascii?q?GVBRN5cWSxfDI6icoUPE+QPM+VZr4bhqFQDtgGxCRWuBO711jNEmmH60Ksn2?=
- =?us-ascii?q?OohCwHG2wkgEsoAvHrKrdX1MKMSUfuyzKnO1TnIcu5b2TDm54PVdhwur+yCU?=
- =?us-ascii?q?bd+fcHMzkQvDQTFgU6Opoz/IzOZzPgNs2mf7+pkTuKvjGgnphpqrTe12Mgsk?=
- =?us-ascii?q?YnIhpkJyl/a8CV525w5KsG/SE5+eNOpFoZbuC6GOYVsWMwiX31otzggyr0Ao?=
- =?us-ascii?q?ZO2fTUGxIglyhPCa/KKb5SE7xDgWeuMPzp1mW5pdry/ihus7USt1+zxW8203?=
- =?us-ascii?q?VpWoCRLnN3Bum0N2RHR5caKVuVw80G80jiMzwDe8vxILVwumafVKZMt2KM8m?=
- =?us-ascii?q?54dvEjZHyL7mV36gLKKekk+9eWk9f7rbqv4qpKdLYN4lx/yP6ool8eiG+o3K?=
- =?us-ascii?q?BIOUHKe+emk0b3j+lD2T6tSg/0tl6nZrIjaJcMGpq6lGwNV0pgs6xK4Dzq+1?=
- =?us-ascii?q?tQYnX8HI0hAeBKcjIXkO03CLOzlAfulhVSjii1nyOvcMbL/GZXMLmPDkKv/c?=
- =?us-ascii?q?rZ48E5Q0hY8zdda555MC7EBJuz8WlPpudDFEhM1KQK5zuT9BNlg0o4TV3iDD?=
- =?us-ascii?q?66YPa/KtF+H/OMvI+2CZI8Pvzb9LuAo5+TpjXAih1AdZ7Wp0YELaHC5GvRmJ?=
- =?us-ascii?q?16ZYX3qgtoaCmgFpBQxTPfqiV2ZTT5ceXOyX7km6j4nD4KmCJ/PRoa2j7OZx?=
- =?us-ascii?q?ie0AoVWZnxaClCLCXrkap2IW+0QZyKKPs9hjjsEWKC8S486zxGurBb2y6d8L?=
- =?us-ascii?q?uXK4C0Yronu1Nx05+3IiREy7iZ4ANqB02GRUmF0hXkESCMx3KB68gRBzQLJz?=
- =?us-ascii?q?LNim7lFDtFJ/NtNUxwmLtjR0/BnEJb5XQeLNoOUU0y+B8i9DCsqZtYw2MMVJ?=
- =?us-ascii?q?UthB8i5yBvE2nz5LaUSkunBOJ0w9rnb2Ty5DcF3gzb77+hrxw08RcFCL3Hgm?=
- =?us-ascii?q?q978xPUAabDmkiChr22eKEHmiXK8THQniK1oEhEXVsoAu3+VncFax6T9Iyhj?=
- =?us-ascii?q?n4=3D?=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2BQAwB2bIJi/0LBJQpagQkJgUaBIYF?=
- =?us-ascii?q?/AoFrsimBfAsBAQEBAQEBAQEIAUIEAQGFAoVBJjYHDgECBAEBARIBAQYBAQE?=
- =?us-ascii?q?BAQcEAYEbhWkMgjUpAYQXTBIBDAlrJgEEDg2CdoIMrVmBMxoCZYRthRGBPIF?=
- =?us-ascii?q?mhVWDCIZtj3wElV0HOgNUgQUSgSFxAQgGBgcKBTIGAgwYFAQCAxASUx4CEww?=
- =?us-ascii?q?KHA5UGQwPAxIDEQEHAgsSCBUsCAMCAwgDAgMjCwIDGAkHCgMdCAocEhAUAgQ?=
- =?us-ascii?q?THwsIAxofLQkCBA4DQwgLCgMRBAMTGAsWCBAEBgMJLw0oCwMFDw8BBgMGAgU?=
- =?us-ascii?q?FAQMgAxQDBScHAyEHCyYNDQQjHQMDBSYDAgIbBwICAwIGFwYCAnEKKA0IBAg?=
- =?us-ascii?q?EHB4lEwUCBzEFBC8CHgQFBhEJAhYCBgQFAgQEFgICEggCCCcbBxY2GQEFXQY?=
- =?us-ascii?q?LCSMcHBARBQYWAyZSBgIBmXiiOqEDBwODTJ94LhWWdwORXYVwjiOCUyChbAG?=
- =?us-ascii?q?EcQIEAgQFAhaBaAmCBXCDOVAXApx/gTACBgsBAQMJkAiBEgEB?=
-X-IPAS-Result: =?us-ascii?q?A2BQAwB2bIJi/0LBJQpagQkJgUaBIYF/AoFrsimBfAsBA?=
- =?us-ascii?q?QEBAQEBAQEIAUIEAQGFAoVBJjYHDgECBAEBARIBAQYBAQEBAQcEAYEbhWkMg?=
- =?us-ascii?q?jUpAYQXTBIBDAlrJgEEDg2CdoIMrVmBMxoCZYRthRGBPIFmhVWDCIZtj3wEl?=
- =?us-ascii?q?V0HOgNUgQUSgSFxAQgGBgcKBTIGAgwYFAQCAxASUx4CEwwKHA5UGQwPAxIDE?=
- =?us-ascii?q?QEHAgsSCBUsCAMCAwgDAgMjCwIDGAkHCgMdCAocEhAUAgQTHwsIAxofLQkCB?=
- =?us-ascii?q?A4DQwgLCgMRBAMTGAsWCBAEBgMJLw0oCwMFDw8BBgMGAgUFAQMgAxQDBScHA?=
- =?us-ascii?q?yEHCyYNDQQjHQMDBSYDAgIbBwICAwIGFwYCAnEKKA0IBAgEHB4lEwUCBzEFB?=
- =?us-ascii?q?C8CHgQFBhEJAhYCBgQFAgQEFgICEggCCCcbBxY2GQEFXQYLCSMcHBARBQYWA?=
- =?us-ascii?q?yZSBgIBmXiiOqEDBwODTJ94LhWWdwORXYVwjiOCUyChbAGEcQIEAgQFAhaBa?=
- =?us-ascii?q?AmCBXCDOVAXApx/gTACBgsBAQMJkAiBEgEB?=
-X-IronPort-AV: E=Sophos;i="5.91,230,1647302400";
-   d="scan'208,217";a="479580560"
-IronPort-SDR: BDX5ozPLq8slwIRBbM5cGk3PbzsAc+EHwSaHPPesGDi5prvaFuC6ayIJSdcp8Rl3Fb3KTSndQY
- 6tb7YBacHoWucUaHgHOA5GiKj7rtYnvntHPfDOgDans3TpwEpcgL8deacdagsWR1AAcrA/ZJN+
- dg/oWRmIK41wEEsq0cSaAZF1AsJ/nGrPYY5gRZvo3YiQ9YokZMVwQlJzp40PVIvwPIfA3uf52K
- MjpzYDfoVH0s+oYhUatfZfeAdVL6UvUq+nvEOf1hOpKYSciKoadD4lqz0hKSnOCGBxhTRkTvsz
- 2DA=
-IronPort-Data: =?us-ascii?q?A9a23=3AcgxGjax796c0+7emKHZ6t+fWxCrEfRIJ4+Muj?=
- =?us-ascii?q?C+fZmUNrF6WrkUHm2saWD+AOv2LNGqnftsgaduw8RlUucCEzdVmTAJu/3w8F?=
- =?us-ascii?q?HgiRejtXI/AdhiqV8+xwmwvdK/shiknQoGowPscEzmN/39BDpC79SMmjf/QF?=
- =?us-ascii?q?uKmYAL5EnsZqTFMGX5JZS1Ly7ZRbr5A2bBVMivV0T/Ai5S31GyNh1aYBlkpB?=
- =?us-ascii?q?5er83uDihhTVAQw5TTSbdgT1LPXeuJ84Jg3fcldJFOgKmVY83LTq08uEdiEE?=
- =?us-ascii?q?m3lExcFUrtJk57UVmEvee6PZVXfzHVRX6SmhBsEvCs1zqI9N/Nab0pL49mLt?=
- =?us-ascii?q?4kpjo4S88XuEEFwYvSkdOc1CnG0FwlkOqdL4qOBPXm7tdeUyWXMenb30u5yA?=
- =?us-ascii?q?UQte4Yf/46bBEkVr6NIc2xWNUrra+WehejTpvNXrtk4NtGuIZgSoGpIyTDCE?=
- =?us-ascii?q?e1gTIzfXr6M7thdtB88i8pJB/+YecMDbDNHahWGaBpKUmr7orpWcPyAiX3zd?=
- =?us-ascii?q?iYI9QrI9Ow45GzfyApylqLqN8bRfN+DA8NYgi6lSqv91zyRKnkn2Ba3kGDbm?=
- =?us-ascii?q?p50utLyoA=3D=3D?=
-IronPort-HdrOrdr: =?us-ascii?q?A9a23=3AcwfKdqx6aocTdAQU+KxSKrPw/b1zdoMgy1?=
- =?us-ascii?q?knxilNoH1uA6mlfqWV95gmPHDP5wr5NEtPpTn4Atj/fZq+z+8W3WByB9eftV?=
- =?us-ascii?q?LdyQ+VxehZhOOJrgEIcBeOldK1u50AT0F1MqyWMbBc5fyKmXjBYq1QuuWvwe?=
- =?us-ascii?q?SKoe/fynt3JDsaF52Ilz0JdzpyzCVNNW977aJQLuvi2iPtnUvQRUgq?=
-X-IronPort-AV: E=Sophos;i="5.91,286,1647302400";
-   d="scan'208,217";a="327834332"
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Potential X410 issue
-Thread-Index: Adh7cjQ/OVGFcAWvQP+dtpOO1n+ykQ==
-Date: Wed, 8 Jun 2022 20:03:46 +0000
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.42.226.123]
+Received: by mail-qk1-f179.google.com with SMTP id x75so12924485qkb.12
+        for <usrp-users@lists.ettus.com>; Wed, 08 Jun 2022 13:08:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :references:from:in-reply-to;
+        bh=3jHwlCfT7tDRxxhFcvLJBtpeblU0DoXiiac3z6S5hP8=;
+        b=fpTR3LOwjKquilpaQ/qjJgPtqL/3iv1zWhs0epFBZretulK6KLvQLfFS4HEbTs8YXB
+         dXOyUMXTG/sK9JHR5tz2Dg2sSx5yBXzLz8SiJ3P2Zv88OrAOhP7g0wnZTEmt1UN1Exow
+         l7zygXOOe25ieow/B9ScaXn6sypIkCJEF6jP1poKkV/vk2o2f54t+H9wVHwVoSLGL3GK
+         AHpwmRDm9V3ryPXJpheKdCRdpovke9piFkeIBfkzN22bWJmKPy7j38ATg6pS4mpxSpif
+         vOvAZ7c6hqzWq9S2Ilp+Q54yFTZOQYs7JNHDZPe1kFZyIyqk3pq0b3rldT5f6C/sXJxL
+         KlHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to;
+        bh=3jHwlCfT7tDRxxhFcvLJBtpeblU0DoXiiac3z6S5hP8=;
+        b=xyozfCtv9kTFU4w0KHcytd2GgrXWnwqonzTaKnuxjDrZK6rqzsHJRvAUaES+XP7BDb
+         hCd9B6F1+HQfn/SnJrWzQZIRdHMPFBVbVXg2Skh2WotSEJ+0tzGr5z5qIyh4AVqe4FBO
+         3VdLzvd32IPZ+V+lThB2VFh4L+QbypTidUOVnKkpJm9cWvPeExUm64PjGS4DQeydmmSX
+         V5I9KbUKVOFQmLC5EPiRrakjNOmx3oIqxLo7hYd7Ie7QWdPGQf9Cl6fMHhWNtQ9AC698
+         m+4hPZ96eJquBIELGVAW7e9KlA+9mE2KMk1fiE4zFLqdVD6WLKRRsBClNtxUawvHukRI
+         rzIw==
+X-Gm-Message-State: AOAM532PZLkowzEpzo8wyqrhLHIkmFtNbcm27oqI+9iy6raprIp3P4kb
+	H6jcV0U5d7daMNsahGGUC3/yGhYj6VoVE+ye
+X-Google-Smtp-Source: ABdhPJwKPmiJ7TmCmhDYC7Iu/sdAjYY1AOTcYcP5AF4SuCQpkzdkTQozuKbKJHEBsNweoUpEhfNe/Q==
+X-Received: by 2002:a05:620a:3714:b0:6a5:564b:222f with SMTP id de20-20020a05620a371400b006a5564b222fmr24351477qkb.648.1654718886536;
+        Wed, 08 Jun 2022 13:08:06 -0700 (PDT)
+Received: from [192.168.2.210] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.googlemail.com with ESMTPSA id i16-20020ac87650000000b00304e688189fsm8498502qtr.37.2022.06.08.13.08.05
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jun 2022 13:08:06 -0700 (PDT)
+Message-ID: <068c8a75-3f81-2367-efde-68deb6410877@gmail.com>
+Date: Wed, 8 Jun 2022 16:08:05 -0400
 MIME-Version: 1.0
-Message-ID: <165471871793.11266.8640979229099732140@mm2.emwd.com>
-Message-ID-Hash: RXLYJAYRKF25LBUZW5EC3GLD22M7VJP6
-X-Message-ID-Hash: RXLYJAYRKF25LBUZW5EC3GLD22M7VJP6
-X-MailFrom: robert.tillson@baesystems.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <165471871793.11266.8640979229099732140@mm2.emwd.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <165471871793.11266.8640979229099732140@mm2.emwd.com>
+Message-ID-Hash: HHQGJ7244Q4ZEJL2KKZF3MZOMA4SEC4Z
+X-Message-ID-Hash: HHQGJ7244Q4ZEJL2KKZF3MZOMA4SEC4Z
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Debora Varma <debora.varma@ni.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Potential X410 issue
+Subject: [USRP-users] Re: Potential X410 issue
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RXLYJAYRKF25LBUZW5EC3GLD22M7VJP6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HHQGJ7244Q4ZEJL2KKZF3MZOMA4SEC4Z/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: "Tillson, Bob (US) via USRP-users" <usrp-users@lists.ettus.com>
-Reply-To: "Tillson, Bob (US)" <robert.tillson@baesystems.com>
-Content-Type: multipart/mixed; boundary="===============5892457776445371476=="
+Content-Type: multipart/mixed; boundary="===============7719916927206567651=="
 
---===============5892457776445371476==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============7719916927206567651==
 Content-Type: multipart/alternative;
-	boundary="_000_4c9f824346c949b08f0dbd135a95a9f9baesystemscom_"
+ boundary="------------9XMV0ztM8XbHIW4HO1V8fDDU"
+Content-Language: en-US
 
---_000_4c9f824346c949b08f0dbd135a95a9f9baesystemscom_
-Content-Type: text/plain; charset="us-ascii"
+This is a multi-part message in MIME format.
+--------------9XMV0ztM8XbHIW4HO1V8fDDU
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Peeps,
-
-So I have been working on the X410, UHD 4.2.0.0, Ubuntu 20.04, CG_400 firmw=
-are revision...
-
-No matter what Rx sampling rate I request, the device wants to supply 500 M=
-sps :)
-
-So then I decided to try rx_samples_to_file, requested 5 Msps, and got 500 =
-Msps as well...
-
-Is there something different with the X410 when configuring the sampling ra=
-te that is different from other devices?
-
-If not, something seems to be amiss, any suggestions?
-
-Thanks,
-
---_000_4c9f824346c949b08f0dbd135a95a9f9baesystemscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 2022-06-08 16:03, Tillson, Bob (US) via USRP-users wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
+> Peeps,
+>
+> So I have been working on the X410, UHD 4.2.0.0, Ubuntu 20.04, CG_400=20
+> firmware revision=E2=80=A6
+>
+> No matter what Rx sampling rate I request, the device wants to supply=20
+> 500 Msps J
+>
+> So then I decided to try rx_samples_to_file, requested 5 Msps, and got=20
+> 500 Msps as well=E2=80=A6
+>
+> Is there something different with the X410 when configuring the=20
+> sampling rate that is different from other devices?
+>
+> If not, something seems to be amiss, any suggestions?
+>
+> Thanks,
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+Could you share with us the command-line parameters you used for=20
+rx_samples_to_file, and the "chat" that it produces at startup?
+
+
+--------------9XMV0ztM8XbHIW4HO1V8fDDU
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-06-08 16:03, Tillson, Bob (US)
+      via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:165471871793.11266.8640979229099732140@mm2.emwd.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
 	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
+	panose-1:5 0 0 0 0 0 0 0 0 0;}@font-face
 	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
 	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
+	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
+	text-decoration:underline;}a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
+	text-decoration:underline;}span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
+	color:windowtext;}.MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
+	font-family:"Calibri",sans-serif;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Peeps,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So I have been working on the X410, UHD 4.2.0.0, Ubu=
-ntu 20.04, CG_400 firmware revision&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">No matter what Rx sampling rate I request, the devic=
-e wants to supply 500 Msps
-<span style=3D"font-family:Wingdings">J</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So then I decided to try rx_samples_to_file, request=
-ed 5 Msps, and got 500 Msps as well&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is there something different with the X410 when conf=
-iguring the sampling rate that is different from other devices?<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">If not, something seems to be amiss, any suggestions=
-?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-</div>
-</body>
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Peeps,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">So I have been working on the X410, UHD
+          4.2.0.0, Ubuntu 20.04, CG_400 firmware revision=E2=80=A6<o:p></=
+o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">No matter what Rx sampling rate I request,
+          the device wants to supply 500 Msps
+          <span style=3D"font-family:Wingdings">J</span><o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">So then I decided to try
+          rx_samples_to_file, requested 5 Msps, and got 500 Msps as
+          well=E2=80=A6<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Is there something different with the X410
+          when configuring the sampling rate that is different from
+          other devices?<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">If not, something seems to be amiss, any
+          suggestions?<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    Could you share with us the command-line parameters you used for
+    rx_samples_to_file, and the "chat" that it produces at startup?<br>
+    <br>
+    <br>
+  </body>
 </html>
 
---_000_4c9f824346c949b08f0dbd135a95a9f9baesystemscom_--
+--------------9XMV0ztM8XbHIW4HO1V8fDDU--
 
---===============5892457776445371476==
+--===============7719916927206567651==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -256,4 +225,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5892457776445371476==--
+--===============7719916927206567651==--
