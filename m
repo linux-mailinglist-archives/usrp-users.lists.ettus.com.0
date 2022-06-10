@@ -2,151 +2,168 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A089545998
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Jun 2022 03:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DE5E545A09
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Jun 2022 04:27:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B7C01384967
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Jun 2022 21:32:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4D887384A21
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Jun 2022 22:27:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1654824737; bh=lyY9fZN6ZcU8V2RjGXSwBgAnYr/4Lv+eRaNBvvNqz6k=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=vWtukCkECByPi3vr8tT0Se/BklWA/E9nMRq1c9E3GLOcIO1wk5y7VQS1FhkoT+FIr
-	 OdlLNjK0XO9SLgblUnxBxQToIbNvoqa6JvsVS+Sn6Dt0QvN+/riGaNfOSMIdM2hOaq
-	 AcYsnwTGgSwkKTcP8mfxtvP7HmGsAT1WjgJo/v/0Pc1MJ5WLVtWgMxdhH0NNIyEjBh
-	 ePfpnOo6h9ab1Fp85ziDHL4oKSXrBwExz2KtsJG4Y//NEsd3ENGCpuAdbiNPfbhJTA
-	 9urJBBa89cLlVpT998HvpXKbl24Mf1u7ZmSRsY1vOKGSuBYAb9w90Kp9nfLdYWoFeh
-	 uG0NqduxfWFEg==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id BC8E9384A2A
-	for <usrp-users@lists.ettus.com>; Thu,  9 Jun 2022 21:29:21 -0400 (EDT)
+	t=1654828029; bh=fbnsxVxYao+hTOf24g8MQxviWtvZX5dGC+3eubNZ6GA=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=ledFcUw2DUby4YqBoTx5q8jhDOnZ1u2Dy/tZF9M0BLqqfBB/zOLXr5/bf5ADTUCul
+	 qsi6BS3J8TbsgVboIbyuWkAUt9JEPrMPxASxfq8UEy8zk9yQAEf359PMFeu8n3JjkN
+	 dtgllWhl2ZiaxEyn5w4WHYDopitZ+qkXt4Mfz9SxQ2QAU/axMOPHfMToWSGL4kTZUw
+	 zPldDc7Z7pCllwwI2UiyOB+MTdgVNJjkYL/Q+2Rm94Zk7futIpVBtKvEW93T57MGHR
+	 +tu0XiW3jv21JkFJwYG9ks+j3pUhEIrL0vc2ik4BSPId5FsbaLCT8GLoxbrQUr4kjJ
+	 u2qH3dPupefJA==
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4CD1E3848E4
+	for <usrp-users@lists.ettus.com>; Thu,  9 Jun 2022 22:26:10 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Jf3HsF5F";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="bYGMOpKL";
 	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id c8so18456016qtj.1
-        for <usrp-users@lists.ettus.com>; Thu, 09 Jun 2022 18:29:21 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-30fdbe7467cso224202047b3.1
+        for <usrp-users@lists.ettus.com>; Thu, 09 Jun 2022 19:26:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to;
-        bh=fIhtmBB1jXuRz+lEVkLuvALspqfXf1IrcPUh8HAzk3s=;
-        b=Jf3HsF5FbFt986GGZEyF7kbCgIf+aIEbymJgIrHmkM/wivsaQbLX7NggYwt9+rOqZa
-         Yh6oS8MMIWYYU0NSmXv6e9+iaIKQB7S3t85Z09BKVwXpu9oTo4DZ9Qk+mmEZ0nNoQG05
-         SFsXWM8e/y94s1Va42Yiha+20y6wvi2HFG8qLOPV039xKkaiv/LDqHZ9nXcKO4TViqQ2
-         n2r5MqIDFT1/O+psVk3f88TlBp5Plc0UevtmJtezNMCYfO5QNgo7kWE2pS15vF6xC7x+
-         ORImIFKf8hKVQNX8xgVZ/saku/aCfAdnI273v0p7PFkaQ1QbH02x2WBw64nvNkZt/2Th
-         Hj4Q==
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CN/whpzjm1yjOYm+DB8iEPlWl+XAqQnm9fz1RuUVPS8=;
+        b=bYGMOpKL4hI3RcKcNnbzYNqlxeDnvFlFcsPnp9J1bMhIm82jH7pkaOTpdI+7wJ2xfw
+         f0RVKD255DCHtGDg/A8xz+t3DZQZx/Ra5Xp9a91zaZntLbWdjUFI3N5GF0I8btONv9+5
+         ZOS/302d9+ozpHTZzYzduUbZNuB4UuZE/8I/Iz4NmPFKvrOmQkgGn5OPkJi60/fqb29D
+         vd/WXAhvBh5wZwxadI/LkSvvd6wv7O3jMUlOPxaBbX1/SHNHzj5UnGRLUqEgOe6pSNja
+         4hSpWBROl+2h+No68r1fcfQZeTqiJgCCo4mQ7RJYO+S09Cn3JEHgjARqUJkhYMjHfMhO
+         YwfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to;
-        bh=fIhtmBB1jXuRz+lEVkLuvALspqfXf1IrcPUh8HAzk3s=;
-        b=FxCNkrub+e4o1/uZm/B3yhIoJJJ4KJsyrTANbGlUTKxw6J7UOxLLESXpfFuZikCKh0
-         fLU7NrSSNjRc41kDb4N+a7c99Il4YLS5uHy0Qipk5L34BhCS/2s7naNhiBd62udllDGJ
-         kPNneOil8XL9+z7NBz97Ul6MZC/w9c2n65TcyQcWNRYJyA8jdYpqSQWCujKsll5wQZHm
-         nulUm8A3YuwvYmjeuNsYI/rzHVGdhLFM6UHO5iEDNu0EDM+AA4cIdEZV5OlCL9OX5Mq9
-         10bS1U6d+XOJCPMrfhEh30NGbBqEsLQLugpW6MFgfSLlJVmyMSNpHCg68GENx62OVftC
-         xTNg==
-X-Gm-Message-State: AOAM532OAt/xZX5W6FGyocdvg5qACdYRSRSykkzY/RaatNzUp3FjYlDr
-	p85TGTy6Xv4gLWy1Rs7kzjx6LZGuUCEtTXDO
-X-Google-Smtp-Source: ABdhPJwLvv/O16NM3TBm/QawDDHWoWLkgQc6Dub9ifCnGqWUvrUliHv+4LJsaSjqxGJwVstkAywx6A==
-X-Received: by 2002:ac8:594e:0:b0:304:d914:2ef8 with SMTP id 14-20020ac8594e000000b00304d9142ef8mr31791989qtz.149.1654824560857;
-        Thu, 09 Jun 2022 18:29:20 -0700 (PDT)
-Received: from [192.168.2.198] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id k11-20020a05620a414b00b0069fc13ce235sm12807277qko.102.2022.06.09.18.29.20
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jun 2022 18:29:20 -0700 (PDT)
-Message-ID: <2211cddd-4e05-17ca-bad3-96361926feca@gmail.com>
-Date: Thu, 9 Jun 2022 21:29:19 -0400
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CN/whpzjm1yjOYm+DB8iEPlWl+XAqQnm9fz1RuUVPS8=;
+        b=Csv3ZPQeTi3HXSPMUtbZmiiRVkozNit3oA+DUcBPRXks+r4rduQI/CN+pa+qgOcIfj
+         VIDFXJpWaKnWgD5/bPsyIbTzWK+BuSCOly8Noy2S5dXP1Xg/wpZsPbk1ekMeDO71u+U6
+         386vr1QUX9TGl/WgwWrEP3gmefDpOg1Nth/4ze7xoKcAeL30ATtXkmCgQb5wnK+kgmEc
+         QLOTFCkEhYWXTz9gBD5WVdexuz1FKZhv8u5tNPOqrnrtx5YFdmxApirzsg6WpNvdtzco
+         BdB6V53N6dk20IoBW5Ja8MGeb1xKdtdADofK+XBMhUw2rFef0Q0CqCYH+wjILodT2uBU
+         iv0w==
+X-Gm-Message-State: AOAM533zwUC+31p/5mIxOJrdB42VKMkttiyLmu8BCRC47EDI69j8n2tZ
+	p0/gKqxXZR6YjQTIkG835/qNuMtiIL5XDtIzXwEA9v+hZ1k=
+X-Google-Smtp-Source: ABdhPJynE83qojlgPI7iFWd3JSlTK/cqCzPVh8yQws1whVLGcWyPWve0g2j9YGnGLB0J/IFq2a+BQy/ZMm5450X9gyU=
+X-Received: by 2002:a81:9895:0:b0:310:57a1:5c09 with SMTP id
+ p143-20020a819895000000b0031057a15c09mr39854194ywg.38.1654827969466; Thu, 09
+ Jun 2022 19:26:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <BYAPR03MB4678FD7625EC090FBDA33CB4D3A79@BYAPR03MB4678.namprd03.prod.outlook.com>
  <MN2PR03MB4685CC11694062B7A6499B0CD3A69@MN2PR03MB4685.namprd03.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <MN2PR03MB4685CC11694062B7A6499B0CD3A69@MN2PR03MB4685.namprd03.prod.outlook.com>
-Message-ID-Hash: ZJ7ONOWDNERYF44HTRAVGBNO7MG5PDJC
-X-Message-ID-Hash: ZJ7ONOWDNERYF44HTRAVGBNO7MG5PDJC
-X-MailFrom: patchvonbraun@gmail.com
+ <2211cddd-4e05-17ca-bad3-96361926feca@gmail.com>
+In-Reply-To: <2211cddd-4e05-17ca-bad3-96361926feca@gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Thu, 9 Jun 2022 22:25:58 -0400
+Message-ID: <CAB__hTS--qr3za2Cfd1oSdmyGormCCTKN2gqNt4UYKPc+aoZWw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: XB2EZ46GA4TPGUNJGTXFERZFJPP3UG2P
+X-Message-ID-Hash: XB2EZ46GA4TPGUNJGTXFERZFJPP3UG2P
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N321 GPIO
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZJ7ONOWDNERYF44HTRAVGBNO7MG5PDJC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XB2EZ46GA4TPGUNJGTXFERZFJPP3UG2P/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9158173134674537835=="
+Content-Type: multipart/mixed; boundary="===============1339777223582026647=="
 
-This is a multi-part message in MIME format.
---===============9158173134674537835==
-Content-Type: multipart/alternative;
- boundary="------------kenRWCP4jhs5BJgnjU32VXlW"
-Content-Language: en-US
+--===============1339777223582026647==
+Content-Type: multipart/alternative; boundary="000000000000490ef005e10ea974"
 
-This is a multi-part message in MIME format.
---------------kenRWCP4jhs5BJgnjU32VXlW
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000490ef005e10ea974
+Content-Type: text/plain; charset="UTF-8"
 
-On 2022-06-09 20:22, Minutolo, Lorenzo wrote:
+You might check multi_usrp_rfnoc.cpp to see how ettus does it under the
+hood. Could be necessary to call one of the set_gpio functions.
+
+On Thu, Jun 9, 2022 at 9:31 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 2022-06-09 20:22, Minutolo, Lorenzo wrote:
+>
 > Update,
-> I found an error in my wiring and now shorting a data pin and GPIO GND 
+> I found an error in my wiring and now shorting a data pin and GPIO GND
 > makes the bit flip from 1 to 0.
-> Still sounds like a weird behavior for a floating pin to be stuck at 1 
-> but that's not an issue for me.
-https://learn.sparkfun.com/tutorials/pull-up-resistors/all
+> Still sounds like a weird behavior for a floating pin to be stuck at 1 but
+> that's not an issue for me.
+>
+> https://learn.sparkfun.com/tutorials/pull-up-resistors/all
+>
+> Having built-in pull-ups on I/O lines is not that uncommon.
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-Having built-in pull-ups on I/O lines is not that uncommon.
+--000000000000490ef005e10ea974
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
---------------kenRWCP4jhs5BJgnjU32VXlW
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 2022-06-09 20:22, Minutolo, Lorenzo
+<div dir=3D"auto">You might check multi_usrp_rfnoc.cpp to see how ettus doe=
+s it under the hood. Could be necessary to call one of the set_gpio functio=
+ns.=C2=A0</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Jun 9, 2022 at 9:31 PM Marcus D. Leech &lt;<a href=
+=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left-width:1px;border-left-style:solid;padding-left:1ex;border-lef=
+t-color:rgb(204,204,204)">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 2022-06-09 20:22, Minutolo, Lorenzo
       wrote:<br>
     </div>
-    <blockquote type="cite"
-cite="mid:MN2PR03MB4685CC11694062B7A6499B0CD3A69@MN2PR03MB4685.namprd03.prod.outlook.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <style type="text/css" style="display:none;">P {margin-top:0;margin-bottom:0;}</style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
+    <blockquote type=3D"cite">
+     =20
+     =20
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
         Update,</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
         I found an error in my wiring and now shorting a data pin and
         GPIO GND makes the bit flip from 1 to 0.</div>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);">
+      <div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-siz=
+e:12pt;color:rgb(0,0,0)">
         Still sounds like a weird behavior for a floating pin to be
-        stuck at 1 but that's not an issue for me.</div>
+        stuck at 1 but that&#39;s not an issue for me.</div>
     </blockquote>
-    <a class="moz-txt-link-freetext" href="https://learn.sparkfun.com/tutorials/pull-up-resistors/all">https://learn.sparkfun.com/tutorials/pull-up-resistors/all</a><br>
+    <a href=3D"https://learn.sparkfun.com/tutorials/pull-up-resistors/all" =
+target=3D"_blank">https://learn.sparkfun.com/tutorials/pull-up-resistors/al=
+l</a><br>
     <br>
     Having built-in pull-ups on I/O lines is not that uncommon.<br>
     <br>
     <br>
-  </body>
-</html>
+  </div>
 
---------------kenRWCP4jhs5BJgnjU32VXlW--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>
 
---===============9158173134674537835==
+--000000000000490ef005e10ea974--
+
+--===============1339777223582026647==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -156,4 +173,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9158173134674537835==--
+--===============1339777223582026647==--
