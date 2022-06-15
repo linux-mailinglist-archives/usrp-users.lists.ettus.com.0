@@ -2,58 +2,58 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DAB054B969
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Jun 2022 20:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6614654C16D
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Jun 2022 08:04:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 496D1383E19
-	for <lists+usrp-users@lfdr.de>; Tue, 14 Jun 2022 14:48:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 12D55383E9C
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Jun 2022 02:04:19 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1655232496; bh=ecTp7Rm5IjWqm6k0dNC1wLYO+DvJVVtaaNx6oo3kW6E=;
+	t=1655273059; bh=zNuXzPoimvA9Vpl9PFNzl++sPmEPXIqJDU7WqjMgZ+E=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=ZR58jngCAzidwSQL4eSnyL2MRp/R6YLVmUnkOQUUxLqaOy3U1HJXlwlUbS+L1KpMA
-	 S01F/g0B2qOYq8GbDtNAwAlD4MrZHAbdupE7ZsuZzdnPmP+WG9sZNAoGBJuZFzgPU2
-	 pN/6SX9Eqn4C7eMFya2KrNr7kDNmSx3s3bVJia7i5tU+9ay0AuhYZWCybh3UtbLBdJ
-	 Kh3vr89i5uroO8TIpjCZ+zCkDqvHvReXadaiNIk63aw4KOCg/I3zRMgnczdAZKwTU4
-	 JJmmnWlraOz8460xKnXBXEIsofgovflqclJ3ZQWn/hCpY1baoIgLJlzZOvH8SriX5q
-	 wpaUARtcI9Pkg==
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id C3ACC384409
-	for <usrp-users@lists.ettus.com>; Tue, 14 Jun 2022 14:47:04 -0400 (EDT)
+	b=tT9OOC9CSB1+Nt+o05l8b+3R2dMfs5uLiUek6YdsLvD0OJMRHDt1Y/dz4ZrPRM42P
+	 nUc4ruKKjcoXw3nMFMKYiSbf435K8ibSaTZuYUZmsCXOgGkUT9sEamElNOn/BzwvrW
+	 zjXJozcmhsPY3PHMMz5vUnwbxEgSkNzU4A/Qxj+lk/4zyhyFXCQ2T6GEaISI0n0wig
+	 Y8tgZNAdV3kRUw/E0V6coXG6YzfEyoaQC3zJ03Da6JDrkzjq69e4HnyZbfvlvm+S+a
+	 FSNh4MNADx3+O+2y3AIAZNxBURxzUjIN1sELmlPGUMXb1ANwgnpFdusClBPjjNW0bw
+	 upTTq8dqMkclw==
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id F0ABE383E85
+	for <usrp-users@lists.ettus.com>; Wed, 15 Jun 2022 02:03:11 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="m7M7jC+i";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Xlyc+FOU";
 	dkim-atps=neutral
-Received: by mail-yb1-f178.google.com with SMTP id e184so16635778ybf.8
-        for <usrp-users@lists.ettus.com>; Tue, 14 Jun 2022 11:47:04 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id w27so14541742edl.7
+        for <usrp-users@lists.ettus.com>; Tue, 14 Jun 2022 23:03:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=kJGHRMHqDVUgULktZEYAvYhAQZUtcfUoJhJ6FR6nzZc=;
-        b=m7M7jC+iEYDkB7I6p3Mm9+YBKlVFBYjLtxRsBObe9O+oMbjIPvongFanV4GrFodz6c
-         e3YhBK5bkHgkwt2ql2LIBR45XFXyX9Br1WZvp40uUSL793SXahrwt9+rR8u3klvZRGx3
-         THPIDIWm6CJ1bXq8LrbDtfxaFiH9yJOjmfczqyfiqOEmzmS32U5nKMlHGy06nMtd8kFC
-         3yqsOCKDbqyvVJZSAyK1VtCaOyPngDh08LiLukA35V3bSPypHiM5N9aRjPL/lnxUbYa3
-         NgNj23fLOC2P7uKoGSVUYyuL7yJgEsH9UxDKvFrzz++8qWLGWuK+5ERwzlBu+BMFHQNR
-         S/jw==
+        bh=hWW6H9IhFQNH64bWNYwcf1TryForKWQ1/1iFauPiyMI=;
+        b=Xlyc+FOUdq3uPwoIQc//MTzMYbDxp0nvdP8Q+52B4OgJI1um269dRNzrLZDA1/jXez
+         hz5ax2+z4yfJoCxJnYadNPXezKDNy8DeW4qo3Vdw5XbwYFXDyg8vuOTG16qi1FSvJZky
+         HelmhXyQVwJ+k7uUCQf/+EXYwIOHcFgD1hDgYTqqXmJYi9p37eOZ53HLSM99o7jIEH9e
+         1eZnKDfwFf4Nj66mFGR51nUoxqG+SJKwF+bVaaWQYS2oI0vBKSwkpopgEYXFyXrucWeG
+         sjZNxYXnDYSUd7y7kgNSLAJz6Xi2WtDh01U/fPCidhEo3k4LzGvgHohuShYYaPlfMcn+
+         P9zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=kJGHRMHqDVUgULktZEYAvYhAQZUtcfUoJhJ6FR6nzZc=;
-        b=0JflsSGrDZyL6ZalF6EbveUaF4eJ4au/8ojYGr6mwOn1dFp8b3DNg2KIp6v912smQs
-         iGT7ePWEAf9Fjv+gKEMa8xvHvtN4n8sddxyN7XBEB6RN0fMp/R2oSjw+DgMyqZFIw3+y
-         NQPTGdaMrA8fUlrBz0E3UjmwGFRq6vsFj0AaXNY0ZAGTpS++R48/uQ8shZSR1gEEhSoX
-         ixP/vth0nSZZd0yJoCIFG1t/exyRaMLNyFfKNKKqx8hcQXZ3FM8Tmjf9INE2iWxqCCbU
-         TneOFM969YSc7XU8SyuPIh6JxhEeIq/l0iKTWg3gtmhO2n3buDtmf0PxHkHiK79VzD/d
-         78+Q==
-X-Gm-Message-State: AJIora/mb00dFIqt1LqjO5yczlJ0MYvNsvLv1/AVbWwamIboMqeNJB0L
-	p0nzoGGg9qWOq6ZlSesbIqJxLAEaIwlEP/PfXK+tRenwGkH5Kg==
-X-Google-Smtp-Source: AGRyM1sIOyByRghSq2Gxdg2TTZv1K4Wc40kJ4tk7aJVyeqXYIImTspDYi3F0kqk2zdC6F/KNce8ikRzUgtmNfuA8ls8=
-X-Received: by 2002:a05:6902:1142:b0:660:9278:6116 with SMTP id
- p2-20020a056902114200b0066092786116mr6291768ybu.477.1655232423509; Tue, 14
- Jun 2022 11:47:03 -0700 (PDT)
+        bh=hWW6H9IhFQNH64bWNYwcf1TryForKWQ1/1iFauPiyMI=;
+        b=UR+PNdK0wjyi32gdPCiORQGQ2dj9L+S4bxuvaA/bG+axNxdGRPDqfesfxCe9O4z16U
+         2uc0M78jGFJFNdwGDiOwj3szxgp1gjwE4KDEgFOVCcKiCeHCi1KVN9rNDK0lZ35UmQuY
+         DYUsMkwyoTA04yjSNbG709yNnCa6I9SQtOVS1+p6W8bTlZbrs/uZH8kop9A9Bi+Fzpkx
+         tDUlVP1zig1WchaelQS73Mmiat6ba5yxFrnLL0fNsf4J+dUBTXeRqvertVCpbawwLaMf
+         GDZoyMg73VU09YIWz6wDF1BOYeDPvZkNSFBR0U5SAp1NDGkY77iMTIToCIprXG4ure1e
+         I1AA==
+X-Gm-Message-State: AJIora/NWJlqp6y8KXjrWpCkkHLS7lGvKpe1i7bbkHyuex3Rj+MQzvUw
+	sseZL3KARTLJDCNK0jiMdK61/rm5FtYGqS1dZpcku4fA
+X-Google-Smtp-Source: ABdhPJyvlmiDX1XiVNAd3EA3jFEftWmtuza7GzYYWhXEPuTXOtWk6UAQUE+7KJsEwDKnI1oi0bgdVL9UcYIoB69/U5c=
+X-Received: by 2002:a05:6402:3681:b0:433:2b63:4866 with SMTP id
+ ej1-20020a056402368100b004332b634866mr10715064edb.295.1655272990092; Tue, 14
+ Jun 2022 23:03:10 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAG16vQXYKCytT_8vzQwrJw=mRpNOfEyP93iHBVMfU59VtHEUZQ@mail.gmail.com>
  <CAB__hTSXdzfq2CDVJQOeEFoej_oPr6L=2H7Qr8n6PYX4f6fnTw@mail.gmail.com>
@@ -64,539 +64,568 @@ References: <CAG16vQXYKCytT_8vzQwrJw=mRpNOfEyP93iHBVMfU59VtHEUZQ@mail.gmail.com>
  <CAA=S3Ps-BZziEa8uaym9k1KEV+0_RAWNmjNUNYrnpw5uu5v6-w@mail.gmail.com>
  <CAFche=jA_vRpW-pAWpv02C7sRajwxXV4RqpCEnR=z3hKzadh5g@mail.gmail.com>
  <CAG16vQX67OnmYCkYvw5T8+6vWPBh9i=Ckwjw4nq0VvR2mbtJGw@mail.gmail.com>
- <CAFche=jJD1+MmNzF83EHKQs51qYdV80u7xSANi44yjzxHi9Kaw@mail.gmail.com> <CAG16vQURnj3Lkf=W-kv+MKMXd1Lo+3EpFtAHarixJ5_BD+s-Ng@mail.gmail.com>
-In-Reply-To: <CAG16vQURnj3Lkf=W-kv+MKMXd1Lo+3EpFtAHarixJ5_BD+s-Ng@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Tue, 14 Jun 2022 13:46:46 -0500
-Message-ID: <CAFche=gehviqLX2f68v4yiXB3Tt-jUzC3ZCuZOVUWRC0sYMpDg@mail.gmail.com>
-To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
-Message-ID-Hash: YDU7WHHZWCY2UCY6XCBOQVUG6G6LWSWU
-X-Message-ID-Hash: YDU7WHHZWCY2UCY6XCBOQVUG6G6LWSWU
-X-MailFrom: wade.fife@ettus.com
+ <CAFche=jJD1+MmNzF83EHKQs51qYdV80u7xSANi44yjzxHi9Kaw@mail.gmail.com>
+ <CAG16vQURnj3Lkf=W-kv+MKMXd1Lo+3EpFtAHarixJ5_BD+s-Ng@mail.gmail.com> <CAFche=gehviqLX2f68v4yiXB3Tt-jUzC3ZCuZOVUWRC0sYMpDg@mail.gmail.com>
+In-Reply-To: <CAFche=gehviqLX2f68v4yiXB3Tt-jUzC3ZCuZOVUWRC0sYMpDg@mail.gmail.com>
+From: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Date: Wed, 15 Jun 2022 08:02:57 +0200
+Message-ID: <CAG16vQVr--LF=Of-guuMr+wJK4VYrqAgsr1D8ec6dVsTJm4R0w@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Message-ID-Hash: B6W2Y5OJXEY4W7VPPSBF5QSZHENEA27R
+X-Message-ID-Hash: B6W2Y5OJXEY4W7VPPSBF5QSZHENEA27R
+X-MailFrom: mamuki92@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: How to add an ip core to rfnoc OOT block
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YDU7WHHZWCY2UCY6XCBOQVUG6G6LWSWU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/B6W2Y5OJXEY4W7VPPSBF5QSZHENEA27R/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0843807826632650172=="
+Content-Type: multipart/mixed; boundary="===============0729842846286623405=="
 
---===============0843807826632650172==
-Content-Type: multipart/related; boundary="000000000000a0006a05e16cd41e"
+--===============0729842846286623405==
+Content-Type: multipart/related; boundary="00000000000095569205e1764677"
 
---000000000000a0006a05e16cd41e
-Content-Type: multipart/alternative; boundary="000000000000a0006905e16cd41d"
+--00000000000095569205e1764677
+Content-Type: multipart/alternative; boundary="00000000000095569105e1764676"
 
---000000000000a0006905e16cd41d
+--00000000000095569105e1764676
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Maria,
+Thanks Wade, then I'll check my clock domain  crossings, guess I need a
+fifo between them.
 
-In the timing paths, take a look at the source clock and destination clock.
-Are they the same clock? If not, then maybe you haven't handled the clock
-domain crossings correctly. If you lowered the clock frequency, the number
-of failing paths should go down, but if there are clock crossings being
-analyzed by the tool then the number can go up.
+Kind Regards,
+Maria
 
-The constraint file for the clock generator IP isn't usually needed because
-we create all the base clocks and Vivado will automatically infer the
-derived clocks generated by the clock wizard IP. You should be able to look
-at the clock report to confirm that all the clocks are being constrained
-the way you expect.
+El mar., 14 jun. 2022 20:47, Wade Fife <wade.fife@ettus.com> escribi=C3=B3:
 
-Wade
-
-On Tue, Jun 14, 2022 at 12:27 PM Maria Mu=C3=B1oz <mamuki92@gmail.com> wrot=
-e:
-
-> Hi again Wade,
+> Hi Maria,
 >
-> After making some synthesis with and without the clock wizard ip, I have
-> observed that there is higher timing paths for those which use the ip
-> rather than the ones which don't.
-> I am lowing the clock for the design so I would expect the opposite
-> behaviour. Alongside with the verilog files generated in Vivado, there is=
- a
-> constraint file for the clocking wizard which I think I should include.
-> Do you include this file on the rfnoc framework when using this ip? Where
-> should I include this file?
->
-> Kind Regards,
->
-> Maria
->
-> El lun., 6 jun. 2022 21:50, Wade Fife <wade.fife@ettus.com> escribi=C3=B3=
-:
->
->> You're right. It really depends on the IP. Some are very complicated
->> (hundreds of files) and it makes sense to try to use the XCI and let Viv=
-ado
->> do the work of figuring out all the dependencies. For the clk_wiz, I thi=
-nk
->> it makes more sense to just reference the .v files generated by Vivado, =
-or
->> just copy/paste the generated code you need and paste it into your desig=
-n.
->>
->> Wade
->>
->> On Mon, Jun 6, 2022 at 9:40 AM Maria Mu=C3=B1oz <mamuki92@gmail.com> wro=
-te:
->>
->>> Hi all,
->>>
->>> Thanks for your answers.
->>>
->>> Wade, you are correct, I am trying to instance a clock wizard for an
->>> x310 project. In my VHDL/Verilog Makefile.srcs, I have included the
->>> clk_wiz_0.v and clk_wiz_0_clk_wiz.v files as you said and, for now,
->>> synthesis is not complaining, so it seems to work (I guess I do not hav=
-e to
->>> include the "vh" files that Vivado use, do I?)
->>> I had tried to do this in the past with other IP but there were so many
->>> missing sources... So I will also check the other way you propose to
->>> include the .xci source.
->>> Again many thanks for your answer!
->>>
->>> Kind Regards,
->>> Maria
->>>
->>> El lun, 6 jun 2022 a las 15:45, Wade Fife (<wade.fife@ettus.com>)
->>> escribi=C3=B3:
->>>
->>>> Hi Maria,
->>>>
->>>> Which IP are you trying to include? And is it failing when trying to
->>>> simulate or only when building the FPGA? Some IP are easier to include=
- than
->>>> others. From your examples, it looked like you were trying to include =
-the
->>>> clock wizard. For that IP I usually just copy the MMCM or PLL code tha=
-t
->>>> Vivado generates rather than including the XCI, since the generated co=
-de is
->>>> mostly just a single primitive, but I think referencing the XCI should=
- also
->>>> work.
->>>>
->>>> So this is not the only way to do it, but the example we have for how
->>>> to include IP in an OOT block is here:
->>>>
->>>> https://github.com/EttusResearch/uhd/tree/master/host/examples/rfnoc-e=
-xample/fpga/ip/cmplx_mul
->>>>
->>>> To use this IP example, you need to include these lines in your OOT
->>>> block's makefile (which is used for simulation):
->>>>
->>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1=
-c7f68d82e57f/host/examples/rfnoc-example/fpga/rfnoc_block_gain/Makefile#L28
->>>>
->>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1=
-c7f68d82e57f/host/examples/rfnoc-example/fpga/rfnoc_block_gain/Makefile#L29
->>>>
->>>> And add it to the Makefile.srcs for your block:
->>>>
->>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1=
-c7f68d82e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#L15
->>>>
->>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1=
-c7f68d82e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#L16
->>>>
->>>> Note also how it gets added to LIB_IP_XCI_SRCS. This is already includ=
+> In the timing paths, take a look at the source clock and destination
+> clock. Are they the same clock? If not, then maybe you haven't handled th=
 e
->>>> in the examles FPGA (X310):
+> clock domain crossings correctly. If you lowered the clock frequency, the
+> number of failing paths should go down, but if there are clock crossings
+> being analyzed by the tool then the number can go up.
+>
+> The constraint file for the clock generator IP isn't usually needed
+> because we create all the base clocks and Vivado will automatically infer
+> the derived clocks generated by the clock wizard IP. You should be able t=
+o
+> look at the clock report to confirm that all the clocks are being
+> constrained the way you expect.
+>
+> Wade
+>
+> On Tue, Jun 14, 2022 at 12:27 PM Maria Mu=C3=B1oz <mamuki92@gmail.com> wr=
+ote:
+>
+>> Hi again Wade,
+>>
+>> After making some synthesis with and without the clock wizard ip, I have
+>> observed that there is higher timing paths for those which use the ip
+>> rather than the ones which don't.
+>> I am lowing the clock for the design so I would expect the opposite
+>> behaviour. Alongside with the verilog files generated in Vivado, there i=
+s a
+>> constraint file for the clocking wizard which I think I should include.
+>> Do you include this file on the rfnoc framework when using this ip? Wher=
+e
+>> should I include this file?
+>>
+>> Kind Regards,
+>>
+>> Maria
+>>
+>> El lun., 6 jun. 2022 21:50, Wade Fife <wade.fife@ettus.com> escribi=C3=
+=B3:
+>>
+>>> You're right. It really depends on the IP. Some are very complicated
+>>> (hundreds of files) and it makes sense to try to use the XCI and let Vi=
+vado
+>>> do the work of figuring out all the dependencies. For the clk_wiz, I th=
+ink
+>>> it makes more sense to just reference the .v files generated by Vivado,=
+ or
+>>> just copy/paste the generated code you need and paste it into your desi=
+gn.
+>>>
+>>> Wade
+>>>
+>>> On Mon, Jun 6, 2022 at 9:40 AM Maria Mu=C3=B1oz <mamuki92@gmail.com> wr=
+ote:
+>>>
+>>>> Hi all,
 >>>>
->>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1=
-c7f68d82e57f/fpga/usrp3/top/x300/Makefile.x300.inc#L109
+>>>> Thanks for your answers.
 >>>>
->>>> Make sure that line exists for the FPGA you are trying to build. But i=
-t
->>>> looked like you were building an x300 variant, so it should be there.
+>>>> Wade, you are correct, I am trying to instance a clock wizard for an
+>>>> x310 project. In my VHDL/Verilog Makefile.srcs, I have included the
+>>>> clk_wiz_0.v and clk_wiz_0_clk_wiz.v files as you said and, for now,
+>>>> synthesis is not complaining, so it seems to work (I guess I do not ha=
+ve to
+>>>> include the "vh" files that Vivado use, do I?)
+>>>> I had tried to do this in the past with other IP but there were so man=
+y
+>>>> missing sources... So I will also check the other way you propose to
+>>>> include the .xci source.
+>>>> Again many thanks for your answer!
 >>>>
->>>> Wade
+>>>> Kind Regards,
+>>>> Maria
 >>>>
+>>>> El lun, 6 jun 2022 a las 15:45, Wade Fife (<wade.fife@ettus.com>)
+>>>> escribi=C3=B3:
 >>>>
->>>> On Mon, Jun 6, 2022 at 3:21 AM sp h <stackprogramer@gmail.com> wrote:
->>>>
->>>>> Ok, I'll take a look. I had a question for creating your custom RFNOC
->>>>> block do you use rfnocmodtool creator?
->>>>> I think for using an IP core from Xilinx in your
->>>>> rfnoc_rfnocblock_blockname.v, you should see a folder in the UHD driv=
-er?
->>>>> I worked with x300 series RFNOC block, In a folder on this path
->>>>> (/home/sp/Documents/uhd-4.2.0.0/fpga/usrp3/lib
->>>>> ) exist a folder as name ip..
->>>>> IP cores that we need should be defined in the UHD driver folder...
->>>>> Your IP list should be added to this folder and changed makefiles
->>>>> carefully!!!!
+>>>>> Hi Maria,
 >>>>>
->>>>> Before you complete your development may be useful this info that we
->>>>> follow...
->>>>> 1)Do you make the default  UHD FPGA image successfully? Does it work?
->>>>> For me, the default UHD FPGA that I make bitstream myself works fine.
+>>>>> Which IP are you trying to include? And is it failing when trying to
+>>>>> simulate or only when building the FPGA? Some IP are easier to includ=
+e than
+>>>>> others. From your examples, it looked like you were trying to include=
+ the
+>>>>> clock wizard. For that IP I usually just copy the MMCM or PLL code th=
+at
+>>>>> Vivado generates rather than including the XCI, since the generated c=
+ode is
+>>>>> mostly just a single primitive, but I think referencing the XCI shoul=
+d also
+>>>>> work.
 >>>>>
->>>>> 2)But !!! When I want to change RFNOC blocks for example Added an FFT
->>>>> block, Radiocores, DDC, and DUC work but
->>>>> for FFT and new blocks that I added it does not work.
->>>>> It generates OOOOO I described it in the below link
->>>>> https://lists.ettus.com/empathy/thread/VJB7A53C6X77JN7DPP3ATASYO4MAH7=
-GH
+>>>>> So this is not the only way to do it, but the example we have for how
+>>>>> to include IP in an OOT block is here:
 >>>>>
->>>>> 3)When I created a custom RFNOC block, Testbench and generate
->>>>> bitstream is ok but for working RFNOC block in GNURadio I faced with =
-error
->>>>> section 2. Generate OOOOOO in Gnuradio
+>>>>> https://github.com/EttusResearch/uhd/tree/master/host/examples/rfnoc-=
+example/fpga/ip/cmplx_mul
+>>>>>
+>>>>> To use this IP example, you need to include these lines in your OOT
+>>>>> block's makefile (which is used for simulation):
+>>>>>
+>>>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea=
+1c7f68d82e57f/host/examples/rfnoc-example/fpga/rfnoc_block_gain/Makefile#L2=
+8
+>>>>>
+>>>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea=
+1c7f68d82e57f/host/examples/rfnoc-example/fpga/rfnoc_block_gain/Makefile#L2=
+9
+>>>>>
+>>>>> And add it to the Makefile.srcs for your block:
+>>>>>
+>>>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea=
+1c7f68d82e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#L15
+>>>>>
+>>>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea=
+1c7f68d82e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#L16
+>>>>>
+>>>>> Note also how it gets added to LIB_IP_XCI_SRCS. This is already
+>>>>> include in the examles FPGA (X310):
+>>>>>
+>>>>> https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea=
+1c7f68d82e57f/fpga/usrp3/top/x300/Makefile.x300.inc#L109
+>>>>>
+>>>>> Make sure that line exists for the FPGA you are trying to build. But
+>>>>> it looked like you were building an x300 variant, so it should be the=
+re.
+>>>>>
+>>>>> Wade
 >>>>>
 >>>>>
->>>>> [image: Screenshot from 2022-06-06 12-34-22.png]
+>>>>> On Mon, Jun 6, 2022 at 3:21 AM sp h <stackprogramer@gmail.com> wrote:
 >>>>>
->>>>> For using IP core directly I think you are not familiar with noc_shel=
-l
->>>>> and RFNOC module structure...
->>>>>
->>>>> On Sun, Jun 5, 2022 at 10:12 PM Maria Mu=C3=B1oz <mamuki92@gmail.com>
->>>>> wrote:
->>>>>
->>>>>> Hi,
->>>>>>
->>>>>> Thanks for the answer.
->>>>>> I think that what I'm trying to do should be possible since the
->>>>>> addsub example has an option for a hls instance. Maybe I have not ex=
-plain
->>>>>> myself well.
->>>>>> I have a top level module which includes several .vhd sources
->>>>>> alongside with an ip from xilinx. I can instance this top level enti=
-ty in
->>>>>> the rfnoc_rfnocblock_blockname.v and I can synthesize it if my top_l=
-evel
->>>>>> hasn't include any ip core. But when I have this IP instanced inside=
- my
->>>>>> top_level, the makefile chain can't read or regenerate the ip core f=
-rom the
->>>>>> source file (which is an .xci file).
->>>>>> What I do not know is how to add the .xci source to the Makefiles so
->>>>>> the vivado scripts (which are called when I do "rfnoc_image_builder"=
-)
->>>>>> synthesize it.
->>>>>>
->>>>>> Kind Regards,
->>>>>> Maria
->>>>>>
->>>>>>
->>>>>> El dom., 5 jun. 2022 18:50, sp h <stackprogramer@gmail.com> escribi=
-=C3=B3:
->>>>>>
->>>>>>> Hi, You should not expect that integrate or add Xilinx IP core
->>>>>>> directly to RFNOC blocks, Even If you be a master in Verilog...
->>>>>>> If you see the UHD source code you will realize that UHD is an RFNO=
+>>>>>> Ok, I'll take a look. I had a question for creating your custom RFNO=
 C
->>>>>>> framework for USRP ...
->>>>>>> For working with the RFNOC UHD framework you should know more
->>>>>>> details:
->>>>>>> 1)Please see this link
->>>>>>> https://files.ettus.com/app_notes/RFNoC_Specification.pdf
->>>>>>> 2)Any RFNOC block has two files, noc_shell_blockname.v  and
->>>>>>> rfnoc_block_blockname.v  these two file are very important
->>>>>>> the first file is a low-level definition for the RFNOC block and th=
-e
->>>>>>> second file is the high-level definition for the block. I mention t=
-hat we
->>>>>>> should use IP core in the second file ...
->>>>>>> And more details that you should study UHD source code till getting
->>>>>>> them...
+>>>>>> block do you use rfnocmodtool creator?
+>>>>>> I think for using an IP core from Xilinx in your
+>>>>>> rfnoc_rfnocblock_blockname.v, you should see a folder in the UHD dri=
+ver?
+>>>>>> I worked with x300 series RFNOC block, In a folder on this path
+>>>>>> (/home/sp/Documents/uhd-4.2.0.0/fpga/usrp3/lib
+>>>>>> ) exist a folder as name ip..
+>>>>>> IP cores that we need should be defined in the UHD driver folder...
+>>>>>> Your IP list should be added to this folder and changed makefiles
+>>>>>> carefully!!!!
+>>>>>>
+>>>>>> Before you complete your development may be useful this info that we
+>>>>>> follow...
+>>>>>> 1)Do you make the default  UHD FPGA image successfully? Does it work=
+?
+>>>>>> For me, the default UHD FPGA that I make bitstream myself works fine=
+.
+>>>>>>
+>>>>>> 2)But !!! When I want to change RFNOC blocks for example Added an FF=
+T
+>>>>>> block, Radiocores, DDC, and DUC work but
+>>>>>> for FFT and new blocks that I added it does not work.
+>>>>>> It generates OOOOO I described it in the below link
+>>>>>>
+>>>>>> https://lists.ettus.com/empathy/thread/VJB7A53C6X77JN7DPP3ATASYO4MAH=
+7GH
+>>>>>>
+>>>>>> 3)When I created a custom RFNOC block, Testbench and generate
+>>>>>> bitstream is ok but for working RFNOC block in GNURadio I faced with=
+ error
+>>>>>> section 2. Generate OOOOOO in Gnuradio
+>>>>>>
+>>>>>>
+>>>>>> [image: Screenshot from 2022-06-06 12-34-22.png]
+>>>>>>
+>>>>>> For using IP core directly I think you are not familiar with
+>>>>>> noc_shell and RFNOC module structure...
+>>>>>>
+>>>>>> On Sun, Jun 5, 2022 at 10:12 PM Maria Mu=C3=B1oz <mamuki92@gmail.com=
+>
+>>>>>> wrote:
+>>>>>>
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> Thanks for the answer.
+>>>>>>> I think that what I'm trying to do should be possible since the
+>>>>>>> addsub example has an option for a hls instance. Maybe I have not e=
+xplain
+>>>>>>> myself well.
+>>>>>>> I have a top level module which includes several .vhd sources
+>>>>>>> alongside with an ip from xilinx. I can instance this top level ent=
+ity in
+>>>>>>> the rfnoc_rfnocblock_blockname.v and I can synthesize it if my top_=
+level
+>>>>>>> hasn't include any ip core. But when I have this IP instanced insid=
+e my
+>>>>>>> top_level, the makefile chain can't read or regenerate the ip core =
+from the
+>>>>>>> source file (which is an .xci file).
+>>>>>>> What I do not know is how to add the .xci source to the Makefiles s=
+o
+>>>>>>> the vivado scripts (which are called when I do "rfnoc_image_builder=
+")
+>>>>>>> synthesize it.
+>>>>>>>
+>>>>>>> Kind Regards,
+>>>>>>> Maria
 >>>>>>>
 >>>>>>>
->>>>>>> On Fri, Jun 3, 2022 at 6:03 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>>>> El dom., 5 jun. 2022 18:50, sp h <stackprogramer@gmail.com>
+>>>>>>> escribi=C3=B3:
 >>>>>>>
->>>>>>>> Hi Maria,
->>>>>>>> I apologize but I am not very experienced with these matters. I am
->>>>>>>> able to copy the rfnoc-example folder to an OOT location and build=
- it and I
->>>>>>>> know it has both OOT and in-tree IP options.  In the past I have
->>>>>>>> successfully run the 'make <testbench>' and also built an image su=
-ch as
->>>>>>>> "make <x300_core>". But, outside of that, I don't really know what=
- I'm
->>>>>>>> doing....
->>>>>>>> Rob
+>>>>>>>> Hi, You should not expect that integrate or add Xilinx IP core
+>>>>>>>> directly to RFNOC blocks, Even If you be a master in Verilog...
+>>>>>>>> If you see the UHD source code you will realize that UHD is an
+>>>>>>>> RFNOC framework for USRP ...
+>>>>>>>> For working with the RFNOC UHD framework you should know more
+>>>>>>>> details:
+>>>>>>>> 1)Please see this link
+>>>>>>>> https://files.ettus.com/app_notes/RFNoC_Specification.pdf
+>>>>>>>> 2)Any RFNOC block has two files, noc_shell_blockname.v  and
+>>>>>>>> rfnoc_block_blockname.v  these two file are very important
+>>>>>>>> the first file is a low-level definition for the RFNOC block and
+>>>>>>>> the second file is the high-level definition for the block. I ment=
+ion that
+>>>>>>>> we should use IP core in the second file ...
+>>>>>>>> And more details that you should study UHD source code till gettin=
+g
+>>>>>>>> them...
 >>>>>>>>
->>>>>>>> On Fri, Jun 3, 2022 at 9:05 AM Maria Mu=C3=B1oz <mamuki92@gmail.co=
-m>
->>>>>>>> wrote:
 >>>>>>>>
->>>>>>>>> Hi Rob,
->>>>>>>>>
->>>>>>>>> I try to put these lines in the makefile.srcs inside my_block/fpg=
-a
->>>>>>>>> folder as in the rfnoc example:
->>>>>>>>>
->>>>>>>>> #RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR},
->>>>>>>>> #my_other_module.v \
->>>>>>>>> #ip/my_ip_core/my_ip_core.xci \
->>>>>>>>> #))
->>>>>>>>>
->>>>>>>>> I add my .xci IP to this folder and give the name of the IP as a
->>>>>>>>> rfnoc_oot_src. I can compile the block but when I try to perform =
-synthesis
->>>>>>>>> it gives me this error:
->>>>>>>>>
->>>>>>>>> ERROR: [DRC INBB-3] Black Box Instances: Cell
->>>>>>>>> 'x300_core/bus_int_i/rfnoc_sandbox_i/b_3/top_i/my_clk' of type 'c=
-lk_wiz_0'
->>>>>>>>> has undefined contents and is considered a black box.  The conten=
-ts of this
->>>>>>>>> cell must be defined for opt_design to complete successfully.
->>>>>>>>> ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design no=
-t
->>>>>>>>> run.
->>>>>>>>> ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
->>>>>>>>>
->>>>>>>>> So I think I am missing something. I do not see anything else
->>>>>>>>> related to IP core. Is there something else I have to do?
->>>>>>>>>
->>>>>>>>> Kind regards,
->>>>>>>>> Maria
->>>>>>>>>
->>>>>>>>> El mi=C3=A9, 1 jun 2022 a las 17:48, Rob Kossler (<rkossler@nd.ed=
-u>)
->>>>>>>>> escribi=C3=B3:
->>>>>>>>>
->>>>>>>>>> Hi Maria,
->>>>>>>>>> The rfnoc-example folder within the UHD tree shows an example of
->>>>>>>>>> how to add an out-of-tree IP block. Did you look at this yet?
->>>>>>>>>> Rob
->>>>>>>>>>
->>>>>>>>>> On Wed, Jun 1, 2022 at 5:12 AM Maria Mu=C3=B1oz <mamuki92@gmail.=
-com>
->>>>>>>>>> wrote:
->>>>>>>>>>
->>>>>>>>>>> Hi all,
->>>>>>>>>>>
->>>>>>>>>>> I'm trying to synthesize a design that includes a vivado ip cor=
-e
->>>>>>>>>>> inside.
->>>>>>>>>>> Normally, I add my .vhd/.v source files to the Makefile.srcs
->>>>>>>>>>> inside my block like this:
->>>>>>>>>>>
->>>>>>>>>>> RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword
->>>>>>>>>>> $(MAKEFILE_LIST)))), \
->>>>>>>>>>> source1.vhd \
->>>>>>>>>>> source2.v \
->>>>>>>>>>> source3.v \
->>>>>>>>>>> )
->>>>>>>>>>>
->>>>>>>>>>> But adding the .xci file of my IP core does not work.
->>>>>>>>>>>
->>>>>>>>>>> What is the process to include this file in the makefile chain
->>>>>>>>>>> to compile it?
->>>>>>>>>>>
->>>>>>>>>>> Kind Regards,
->>>>>>>>>>>
->>>>>>>>>>> Maria.
->>>>>>>>>>> _______________________________________________
->>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.co=
+>>>>>>>> On Fri, Jun 3, 2022 at 6:03 PM Rob Kossler <rkossler@nd.edu> wrote=
+:
+>>>>>>>>
+>>>>>>>>> Hi Maria,
+>>>>>>>>> I apologize but I am not very experienced with these matters. I a=
 m
+>>>>>>>>> able to copy the rfnoc-example folder to an OOT location and buil=
+d it and I
+>>>>>>>>> know it has both OOT and in-tree IP options.  In the past I have
+>>>>>>>>> successfully run the 'make <testbench>' and also built an image s=
+uch as
+>>>>>>>>> "make <x300_core>". But, outside of that, I don't really know wha=
+t I'm
+>>>>>>>>> doing....
+>>>>>>>>> Rob
+>>>>>>>>>
+>>>>>>>>> On Fri, Jun 3, 2022 at 9:05 AM Maria Mu=C3=B1oz <mamuki92@gmail.c=
+om>
+>>>>>>>>> wrote:
+>>>>>>>>>
+>>>>>>>>>> Hi Rob,
+>>>>>>>>>>
+>>>>>>>>>> I try to put these lines in the makefile.srcs inside
+>>>>>>>>>> my_block/fpga folder as in the rfnoc example:
+>>>>>>>>>>
+>>>>>>>>>> #RFNOC_OOT_SRCS +=3D $(abspath $(addprefix ${RFNOC_EXAMPLE_DIR},
+>>>>>>>>>> #my_other_module.v \
+>>>>>>>>>> #ip/my_ip_core/my_ip_core.xci \
+>>>>>>>>>> #))
+>>>>>>>>>>
+>>>>>>>>>> I add my .xci IP to this folder and give the name of the IP as a
+>>>>>>>>>> rfnoc_oot_src. I can compile the block but when I try to perform=
+ synthesis
+>>>>>>>>>> it gives me this error:
+>>>>>>>>>>
+>>>>>>>>>> ERROR: [DRC INBB-3] Black Box Instances: Cell
+>>>>>>>>>> 'x300_core/bus_int_i/rfnoc_sandbox_i/b_3/top_i/my_clk' of type '=
+clk_wiz_0'
+>>>>>>>>>> has undefined contents and is considered a black box.  The conte=
+nts of this
+>>>>>>>>>> cell must be defined for opt_design to complete successfully.
+>>>>>>>>>> ERROR: [Vivado_Tcl 4-78] Error(s) found during DRC. Opt_design
+>>>>>>>>>> not run.
+>>>>>>>>>> ERROR: [Common 17-39] 'opt_design' failed due to earlier errors.
+>>>>>>>>>>
+>>>>>>>>>> So I think I am missing something. I do not see anything else
+>>>>>>>>>> related to IP core. Is there something else I have to do?
+>>>>>>>>>>
+>>>>>>>>>> Kind regards,
+>>>>>>>>>> Maria
+>>>>>>>>>>
+>>>>>>>>>> El mi=C3=A9, 1 jun 2022 a las 17:48, Rob Kossler (<rkossler@nd.e=
+du>)
+>>>>>>>>>> escribi=C3=B3:
+>>>>>>>>>>
+>>>>>>>>>>> Hi Maria,
+>>>>>>>>>>> The rfnoc-example folder within the UHD tree shows an example o=
+f
+>>>>>>>>>>> how to add an out-of-tree IP block. Did you look at this yet?
+>>>>>>>>>>> Rob
 >>>>>>>>>>>
->>>>>>>>>> _______________________________________________
->>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>>
->>>>>>> _______________________________________________
->>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>>>> On Wed, Jun 1, 2022 at 5:12 AM Maria Mu=C3=B1oz <mamuki92@gmail=
+.com>
+>>>>>>>>>>> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>> Hi all,
+>>>>>>>>>>>>
+>>>>>>>>>>>> I'm trying to synthesize a design that includes a vivado ip
+>>>>>>>>>>>> core inside.
+>>>>>>>>>>>> Normally, I add my .vhd/.v source files to the Makefile.srcs
+>>>>>>>>>>>> inside my block like this:
+>>>>>>>>>>>>
+>>>>>>>>>>>> RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword
+>>>>>>>>>>>> $(MAKEFILE_LIST)))), \
+>>>>>>>>>>>> source1.vhd \
+>>>>>>>>>>>> source2.v \
+>>>>>>>>>>>> source3.v \
+>>>>>>>>>>>> )
+>>>>>>>>>>>>
+>>>>>>>>>>>> But adding the .xci file of my IP core does not work.
+>>>>>>>>>>>>
+>>>>>>>>>>>> What is the process to include this file in the makefile chain
+>>>>>>>>>>>> to compile it?
+>>>>>>>>>>>>
+>>>>>>>>>>>> Kind Regards,
+>>>>>>>>>>>>
+>>>>>>>>>>>> Maria.
+>>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>>>> To unsubscribe send an email to
+>>>>>>>>>>>> usrp-users-leave@lists.ettus.com
+>>>>>>>>>>>>
+>>>>>>>>>>> _______________________________________________
+>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>>
+>>>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>
 >>>>>
->>>>
 
---000000000000a0006905e16cd41d
+--00000000000095569105e1764676
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Maria,</div><div><br></div><div>In the timing path=
-s, take a look at the source clock and destination clock. Are they the same=
- clock? If not, then maybe you haven&#39;t handled the clock domain crossin=
-gs correctly. If you lowered the clock frequency, the number of failing pat=
-hs should go down, but if there are clock crossings being analyzed by the t=
-ool then the number can go up.</div><div><br></div><div>The constraint file=
- for the clock generator IP isn&#39;t usually needed because we create all =
-the base clocks and Vivado will automatically infer the derived clocks gene=
-rated by the clock wizard IP. You should be able to look at the clock repor=
-t to confirm that all the clocks are being constrained the way you expect.<=
-/div><div><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 14, 2022 at 12:27 PM Mar=
-ia Mu=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com">mamuki92@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"auto">Hi again Wade,<div dir=3D"auto"><br></div><div dir=3D"auto=
-">After making some synthesis with and without the clock wizard ip, I have =
-observed that there is higher timing paths for those which use the ip rathe=
-r than the ones which don&#39;t.=C2=A0</div><div dir=3D"auto">I am lowing t=
-he clock for the design so I would expect the opposite behaviour. Alongside=
- with the verilog files generated in Vivado, there is a constraint file for=
- the clocking wizard which I think I should include.=C2=A0</div><div dir=3D=
-"auto">Do you include this file on the rfnoc framework when using this ip? =
-Where should I include this file?</div><div dir=3D"auto"><br></div><div dir=
-=3D"auto">Kind Regards,</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
-Maria</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">El lun., 6 jun. 2022 21:50, Wade Fife &lt;<a href=3D"mailto:wade=
-.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; escribi=C3=
-=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr"><div>You&#39;re right. It really depends on the IP. Some are very com=
-plicated (hundreds of files) and it makes sense to try to use the XCI and l=
-et Vivado do the work of figuring out all the dependencies. For the clk_wiz=
-, I think it makes more sense to just reference the .v files generated by V=
-ivado, or just copy/paste the generated code you need and paste it into you=
-r design.<br></div><div><br></div><div>Wade<br></div></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 6, 2022 =
-at 9:40 AM Maria Mu=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com" rel=
-=3D"noreferrer" target=3D"_blank">mamuki92@gmail.com</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi all=
-,<div><br></div><div>Thanks for your answers.</div><div><br></div><div>Wade=
-, you are correct, I am trying to instance a clock wizard for an x310 proje=
-ct. In my VHDL/Verilog Makefile.srcs, I have included the clk_wiz_0.v and c=
-lk_wiz_0_clk_wiz.v files as you said and, for now, synthesis is not complai=
-ning, so it seems to work (I guess I do not have to include the &quot;vh&qu=
-ot; files that Vivado use, do I?)<br>I had tried to do this in the past wit=
-h other IP but there were so many missing sources... So I will also check t=
-he other way you propose to include the .xci source.</div><div>Again many t=
-hanks for your answer!</div><div><br></div><div>Kind Regards,</div><div>Mar=
-ia</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">El lun, 6 jun 2022 a las 15:45, Wade Fife (&lt;<a href=3D"mailto:wa=
-de.fife@ettus.com" rel=3D"noreferrer" target=3D"_blank">wade.fife@ettus.com=
-</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><div>Hi Maria,</div><div><br></div><div>Which I=
-P are you trying to include? And is it failing when trying to simulate or o=
-nly when building the FPGA? Some IP are easier to include than others. From=
- your examples, it looked like you were trying to include the clock wizard.=
- For that IP I usually just copy the MMCM or PLL code that Vivado generates=
- rather than including the XCI, since the generated code is mostly just a s=
-ingle primitive, but I think referencing the XCI should also work.</div><di=
-v><br></div><div>So this is not the only way to do it, but the example we h=
-ave for how to include IP in an OOT block is here:</div><div><a href=3D"htt=
-ps://github.com/EttusResearch/uhd/tree/master/host/examples/rfnoc-example/f=
-pga/ip/cmplx_mul" rel=3D"noreferrer" target=3D"_blank">https://github.com/E=
-ttusResearch/uhd/tree/master/host/examples/rfnoc-example/fpga/ip/cmplx_mul<=
-/a></div><div><br></div><div>To use this IP example, you need to include th=
-ese lines in your OOT block&#39;s makefile (which is used for simulation):<=
-/div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/5333d3d12ffc=
-21229ec4203a9ea1c7f68d82e57f/host/examples/rfnoc-example/fpga/rfnoc_block_g=
-ain/Makefile#L28" rel=3D"noreferrer" target=3D"_blank">https://github.com/E=
+<div dir=3D"auto"><div>Thanks Wade, then I&#39;ll check my clock domain=C2=
+=A0 crossings, guess I need a fifo between them.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">Kind Regards,</div><div dir=3D"auto">Maria<br><br>=
+<div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_att=
+r">El mar., 14 jun. 2022 20:47, Wade Fife &lt;<a href=3D"mailto:wade.fife@e=
+ttus.com">wade.fife@ettus.com</a>&gt; escribi=C3=B3:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex"><div dir=3D"ltr"><div>Hi Maria,</div><div><br></div><div>=
+In the timing paths, take a look at the source clock and destination clock.=
+ Are they the same clock? If not, then maybe you haven&#39;t handled the cl=
+ock domain crossings correctly. If you lowered the clock frequency, the num=
+ber of failing paths should go down, but if there are clock crossings being=
+ analyzed by the tool then the number can go up.</div><div><br></div><div>T=
+he constraint file for the clock generator IP isn&#39;t usually needed beca=
+use we create all the base clocks and Vivado will automatically infer the d=
+erived clocks generated by the clock wizard IP. You should be able to look =
+at the clock report to confirm that all the clocks are being constrained th=
+e way you expect.</div><div><br></div><div>Wade<br></div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 14, 20=
+22 at 12:27 PM Maria Mu=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com" t=
+arget=3D"_blank" rel=3D"noreferrer">mamuki92@gmail.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Hi =
+again Wade,<div dir=3D"auto"><br></div><div dir=3D"auto">After making some =
+synthesis with and without the clock wizard ip, I have observed that there =
+is higher timing paths for those which use the ip rather than the ones whic=
+h don&#39;t.=C2=A0</div><div dir=3D"auto">I am lowing the clock for the des=
+ign so I would expect the opposite behaviour. Alongside with the verilog fi=
+les generated in Vivado, there is a constraint file for the clocking wizard=
+ which I think I should include.=C2=A0</div><div dir=3D"auto">Do you includ=
+e this file on the rfnoc framework when using this ip? Where should I inclu=
+de this file?</div><div dir=3D"auto"><br></div><div dir=3D"auto">Kind Regar=
+ds,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Maria</div></div><br=
+><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El lun., =
+6 jun. 2022 21:50, Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" tar=
+get=3D"_blank" rel=3D"noreferrer">wade.fife@ettus.com</a>&gt; escribi=C3=B3=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
+r"><div>You&#39;re right. It really depends on the IP. Some are very compli=
+cated (hundreds of files) and it makes sense to try to use the XCI and let =
+Vivado do the work of figuring out all the dependencies. For the clk_wiz, I=
+ think it makes more sense to just reference the .v files generated by Viva=
+do, or just copy/paste the generated code you need and paste it into your d=
+esign.<br></div><div><br></div><div>Wade<br></div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 6, 2022 at 9:=
+40 AM Maria Mu=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com" rel=3D"nor=
+eferrer noreferrer" target=3D"_blank">mamuki92@gmail.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi=
+ all,<div><br></div><div>Thanks for your answers.</div><div><br></div><div>=
+Wade, you are correct, I am trying to instance a clock wizard for an x310 p=
+roject. In my VHDL/Verilog Makefile.srcs, I have included the clk_wiz_0.v a=
+nd clk_wiz_0_clk_wiz.v files as you said and, for now, synthesis is not com=
+plaining, so it seems to work (I guess I do not have to include the &quot;v=
+h&quot; files that Vivado use, do I?)<br>I had tried to do this in the past=
+ with other IP but there were so many missing sources... So I will also che=
+ck the other way you propose to include the .xci source.</div><div>Again ma=
+ny thanks for your answer!</div><div><br></div><div>Kind Regards,</div><div=
+>Maria</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">El lun, 6 jun 2022 a las 15:45, Wade Fife (&lt;<a href=3D"mailt=
+o:wade.fife@ettus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">wade=
+.fife@ettus.com</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Maria,</div><div><br></div=
+><div>Which IP are you trying to include? And is it failing when trying to =
+simulate or only when building the FPGA? Some IP are easier to include than=
+ others. From your examples, it looked like you were trying to include the =
+clock wizard. For that IP I usually just copy the MMCM or PLL code that Viv=
+ado generates rather than including the XCI, since the generated code is mo=
+stly just a single primitive, but I think referencing the XCI should also w=
+ork.</div><div><br></div><div>So this is not the only way to do it, but the=
+ example we have for how to include IP in an OOT block is here:</div><div><=
+a href=3D"https://github.com/EttusResearch/uhd/tree/master/host/examples/rf=
+noc-example/fpga/ip/cmplx_mul" rel=3D"noreferrer noreferrer" target=3D"_bla=
+nk">https://github.com/EttusResearch/uhd/tree/master/host/examples/rfnoc-ex=
+ample/fpga/ip/cmplx_mul</a></div><div><br></div><div>To use this IP example=
+, you need to include these lines in your OOT block&#39;s makefile (which i=
+s used for simulation):</div><div><a href=3D"https://github.com/EttusResear=
+ch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/host/examples/rfnoc-ex=
+ample/fpga/rfnoc_block_gain/Makefile#L28" rel=3D"noreferrer noreferrer" tar=
+get=3D"_blank">https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229e=
+c4203a9ea1c7f68d82e57f/host/examples/rfnoc-example/fpga/rfnoc_block_gain/Ma=
+kefile#L28</a></div><a href=3D"https://github.com/EttusResearch/uhd/blob/53=
+33d3d12ffc21229ec4203a9ea1c7f68d82e57f/host/examples/rfnoc-example/fpga/rfn=
+oc_block_gain/Makefile#L29" rel=3D"noreferrer noreferrer" target=3D"_blank"=
+>https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f6=
+8d82e57f/host/examples/rfnoc-example/fpga/rfnoc_block_gain/Makefile#L29</a>=
+<div><br></div><div>And add it to the Makefile.srcs for your block:<br></di=
+v><div><a href=3D"https://github.com/EttusResearch/uhd/blob/5333d3d12ffc212=
+29ec4203a9ea1c7f68d82e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#L1=
+5" rel=3D"noreferrer noreferrer" target=3D"_blank">https://github.com/Ettus=
+Research/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/host/examples/rf=
+noc-example/fpga/Makefile.srcs#L15</a></div><a href=3D"https://github.com/E=
 ttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/host/example=
-s/rfnoc-example/fpga/rfnoc_block_gain/Makefile#L28</a></div><a href=3D"http=
-s://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e=
-57f/host/examples/rfnoc-example/fpga/rfnoc_block_gain/Makefile#L29" rel=3D"=
-noreferrer" target=3D"_blank">https://github.com/EttusResearch/uhd/blob/533=
-3d3d12ffc21229ec4203a9ea1c7f68d82e57f/host/examples/rfnoc-example/fpga/rfno=
-c_block_gain/Makefile#L29</a><div><br></div><div>And add it to the Makefile=
-.srcs for your block:<br></div><div><a href=3D"https://github.com/EttusRese=
-arch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/host/examples/rfnoc-=
-example/fpga/Makefile.srcs#L15" rel=3D"noreferrer" target=3D"_blank">https:=
-//github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57=
-f/host/examples/rfnoc-example/fpga/Makefile.srcs#L15</a></div><a href=3D"ht=
-tps://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d8=
-2e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#L16" rel=3D"noreferrer=
-" target=3D"_blank">https://github.com/EttusResearch/uhd/blob/5333d3d12ffc2=
-1229ec4203a9ea1c7f68d82e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#=
-L16</a><div><br></div><div>Note also how it gets added to LIB_IP_XCI_SRCS. =
-This is already include in the examles FPGA (X310):</div><div><a href=3D"ht=
-tps://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d8=
-2e57f/fpga/usrp3/top/x300/Makefile.x300.inc#L109" rel=3D"noreferrer" target=
-=3D"_blank">https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec42=
-03a9ea1c7f68d82e57f/fpga/usrp3/top/x300/Makefile.x300.inc#L109</a></div><di=
-v><br></div><div>Make sure that line exists for the FPGA you are trying to =
-build. But it looked like you were building an x300 variant, so it should b=
-e there.</div><div><br></div><div>Wade<br></div><div><br></div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun =
-6, 2022 at 3:21 AM sp h &lt;<a href=3D"mailto:stackprogramer@gmail.com" rel=
-=3D"noreferrer" target=3D"_blank">stackprogramer@gmail.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
-Ok, I&#39;ll take a look. I had a question for creating your custom RFNOC b=
-lock do you use rfnocmodtool creator?<div>I think for using an IP core from=
- Xilinx in your rfnoc_rfnocblock_blockname.v, you should see a folder in th=
-e UHD driver?</div><div>I worked with x300 series=C2=A0RFNOC block, In a fo=
-lder on this path (/home/sp/Documents/uhd-4.2.0.0/fpga/usrp3/lib</div><div>=
-) exist a folder as name ip..</div><div>IP cores that we need should be def=
-ined in the UHD driver folder...</div><div>Your IP list should be added to =
-this folder and changed makefiles carefully!!!!</div><div><br></div><div>Be=
-fore you complete your development may be useful=C2=A0this info=C2=A0that w=
-e follow...</div><div>1)Do you make the default=C2=A0 UHD FPGA image=C2=A0s=
-uccessfully? Does it work?</div><div>For me, the=C2=A0default UHD FPGA that=
- I make bitstream myself works fine.</div><div><br></div><div>2)But !!! Whe=
-n I want to change RFNOC blocks for example=C2=A0Added an FFT block, Radioc=
-ores,=C2=A0DDC, and DUC work but</div><div>for FFT and new blocks that I ad=
-ded it does not work.</div><div>It generates OOOOO I described it in the be=
-low link</div><div><a href=3D"https://lists.ettus.com/empathy/thread/VJB7A5=
-3C6X77JN7DPP3ATASYO4MAH7GH" rel=3D"noreferrer" target=3D"_blank">https://li=
-sts.ettus.com/empathy/thread/VJB7A53C6X77JN7DPP3ATASYO4MAH7GH</a><br></div>=
-<div><br></div><div>3)When I created a custom RFNOC block, Testbench and ge=
-nerate bitstream is ok but for working RFNOC block in GNURadio I faced with=
- error section 2. Generate=C2=A0OOOOOO in Gnuradio</div><div><br></div><div=
-><br></div><div><img src=3D"cid:ii_l42gb22a0" alt=3D"Screenshot from 2022-0=
-6-06 12-34-22.png" width=3D"472" height=3D"270"><br></div><div><br></div><d=
-iv>For using IP core directly I think you are not familiar with noc_shell a=
-nd RFNOC module structure...</div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Sun, Jun 5, 2022 at 10:12 PM Maria Mu=
-=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com" rel=3D"noreferrer" targe=
-t=3D"_blank">mamuki92@gmail.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"auto">Hi,<div dir=3D"auto"><br=
-><div dir=3D"auto">Thanks for the answer.</div><div dir=3D"auto">I think th=
-at what I&#39;m trying to do should be possible since the addsub example ha=
-s an option for a hls instance. Maybe I have not explain myself well.</div>=
-<div dir=3D"auto">I have a top level module which includes several .vhd sou=
-rces alongside with an ip from xilinx. I can instance this top level entity=
- in the rfnoc_rfnocblock_blockname.v and I can synthesize it if my top_leve=
-l hasn&#39;t include any ip core. But when I have this IP instanced inside =
-my top_level, the makefile chain can&#39;t read or regenerate the ip core f=
-rom the source file (which is an .xci file).=C2=A0</div><div dir=3D"auto">W=
-hat I do not know is how to add the .xci source to the Makefiles so the viv=
-ado scripts (which are called when I do &quot;rfnoc_image_builder&quot;) sy=
-nthesize it.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Kind Regard=
-s,</div><div dir=3D"auto">Maria</div><br><br><div class=3D"gmail_quote" dir=
-=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">El dom., 5 jun. 2022 18:50,=
- sp h &lt;<a href=3D"mailto:stackprogramer@gmail.com" rel=3D"noreferrer" ta=
-rget=3D"_blank">stackprogramer@gmail.com</a>&gt; escribi=C3=B3:<br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=
-=3D"ltr">Hi, You should not expect that integrate or add Xilinx IP core dir=
-ectly to RFNOC blocks, Even If you be a master in Verilog...<div>If you see=
- the UHD source code you will realize that UHD is an RFNOC framework for US=
-RP ...</div><div>For working with the RFNOC UHD framework you should know m=
-ore details:</div><div>1)Please see this link</div><div><a href=3D"https://=
-files.ettus.com/app_notes/RFNoC_Specification.pdf" rel=3D"noreferrer norefe=
-rrer" target=3D"_blank">https://files.ettus.com/app_notes/RFNoC_Specificati=
-on.pdf</a><br></div><div>2)Any RFNOC block has two files, noc_shell_blockna=
-me.v=C2=A0 and=C2=A0 rfnoc_block_blockname.v=C2=A0 these two file are very =
-important</div><div>the first file is a low-level definition for the RFNOC =
-block and the second file is the high-level definition=C2=A0for the block. =
-I mention that we should use IP core in the second file ...</div><div>And m=
-ore details that you should study UHD source code till getting them...</div=
-><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Fri, Jun 3, 2022 at 6:03 PM Rob Kossler &lt;<a href=3D"m=
-ailto:rkossler@nd.edu" rel=3D"noreferrer noreferrer" target=3D"_blank">rkos=
-sler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr">Hi Maria,<div>I apologize but I am not very exp=
-erienced with these matters. I am able to copy the rfnoc-example folder to =
-an OOT location and build it and I know it has both OOT and in-tree IP opti=
-ons.=C2=A0 In the past I have successfully run the &#39;make &lt;testbench&=
-gt;&#39; and also built an image such as &quot;make &lt;x300_core&gt;&quot;=
-. But, outside of that, I don&#39;t really know what I&#39;m doing....</div=
-><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Fri, Jun 3, 2022 at 9:05 AM Maria Mu=C3=B1oz &lt;<a href=
-=3D"mailto:mamuki92@gmail.com" rel=3D"noreferrer noreferrer" target=3D"_bla=
+s/rfnoc-example/fpga/Makefile.srcs#L16" rel=3D"noreferrer noreferrer" targe=
+t=3D"_blank">https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4=
+203a9ea1c7f68d82e57f/host/examples/rfnoc-example/fpga/Makefile.srcs#L16</a>=
+<div><br></div><div>Note also how it gets added to LIB_IP_XCI_SRCS. This is=
+ already include in the examles FPGA (X310):</div><div><a href=3D"https://g=
+ithub.com/EttusResearch/uhd/blob/5333d3d12ffc21229ec4203a9ea1c7f68d82e57f/f=
+pga/usrp3/top/x300/Makefile.x300.inc#L109" rel=3D"noreferrer noreferrer" ta=
+rget=3D"_blank">https://github.com/EttusResearch/uhd/blob/5333d3d12ffc21229=
+ec4203a9ea1c7f68d82e57f/fpga/usrp3/top/x300/Makefile.x300.inc#L109</a></div=
+><div><br></div><div>Make sure that line exists for the FPGA you are trying=
+ to build. But it looked like you were building an x300 variant, so it shou=
+ld be there.</div><div><br></div><div>Wade<br></div><div><br></div></div><b=
+r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, =
+Jun 6, 2022 at 3:21 AM sp h &lt;<a href=3D"mailto:stackprogramer@gmail.com"=
+ rel=3D"noreferrer noreferrer" target=3D"_blank">stackprogramer@gmail.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"ltr">Ok, I&#39;ll take a look. I had a question for creating your=
+ custom RFNOC block do you use rfnocmodtool creator?<div>I think for using =
+an IP core from Xilinx in your rfnoc_rfnocblock_blockname.v, you should see=
+ a folder in the UHD driver?</div><div>I worked with x300 series=C2=A0RFNOC=
+ block, In a folder on this path (/home/sp/Documents/uhd-4.2.0.0/fpga/usrp3=
+/lib</div><div>) exist a folder as name ip..</div><div>IP cores that we nee=
+d should be defined in the UHD driver folder...</div><div>Your IP list shou=
+ld be added to this folder and changed makefiles carefully!!!!</div><div><b=
+r></div><div>Before you complete your development may be useful=C2=A0this i=
+nfo=C2=A0that we follow...</div><div>1)Do you make the default=C2=A0 UHD FP=
+GA image=C2=A0successfully? Does it work?</div><div>For me, the=C2=A0defaul=
+t UHD FPGA that I make bitstream myself works fine.</div><div><br></div><di=
+v>2)But !!! When I want to change RFNOC blocks for example=C2=A0Added an FF=
+T block, Radiocores,=C2=A0DDC, and DUC work but</div><div>for FFT and new b=
+locks that I added it does not work.</div><div>It generates OOOOO I describ=
+ed it in the below link</div><div><a href=3D"https://lists.ettus.com/empath=
+y/thread/VJB7A53C6X77JN7DPP3ATASYO4MAH7GH" rel=3D"noreferrer noreferrer" ta=
+rget=3D"_blank">https://lists.ettus.com/empathy/thread/VJB7A53C6X77JN7DPP3A=
+TASYO4MAH7GH</a><br></div><div><br></div><div>3)When I created a custom RFN=
+OC block, Testbench and generate bitstream is ok but for working RFNOC bloc=
+k in GNURadio I faced with error section 2. Generate=C2=A0OOOOOO in Gnuradi=
+o</div><div><br></div><div><br></div><div><img src=3D"cid:ii_l42gb22a0" alt=
+=3D"Screenshot from 2022-06-06 12-34-22.png" width=3D"472" height=3D"270"><=
+br></div><div><br></div><div>For using IP core directly I think you are not=
+ familiar with noc_shell and RFNOC module structure...</div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jun 5, =
+2022 at 10:12 PM Maria Mu=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com"=
+ rel=3D"noreferrer noreferrer" target=3D"_blank">mamuki92@gmail.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"auto">Hi,<div dir=3D"auto"><br><div dir=3D"auto">Thanks for the answer.=
+</div><div dir=3D"auto">I think that what I&#39;m trying to do should be po=
+ssible since the addsub example has an option for a hls instance. Maybe I h=
+ave not explain myself well.</div><div dir=3D"auto">I have a top level modu=
+le which includes several .vhd sources alongside with an ip from xilinx. I =
+can instance this top level entity in the rfnoc_rfnocblock_blockname.v and =
+I can synthesize it if my top_level hasn&#39;t include any ip core. But whe=
+n I have this IP instanced inside my top_level, the makefile chain can&#39;=
+t read or regenerate the ip core from the source file (which is an .xci fil=
+e).=C2=A0</div><div dir=3D"auto">What I do not know is how to add the .xci =
+source to the Makefiles so the vivado scripts (which are called when I do &=
+quot;rfnoc_image_builder&quot;) synthesize it.</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Kind Regards,</div><div dir=3D"auto">Maria</div><br>=
+<br><div class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail=
+_attr">El dom., 5 jun. 2022 18:50, sp h &lt;<a href=3D"mailto:stackprograme=
+r@gmail.com" rel=3D"noreferrer noreferrer" target=3D"_blank">stackprogramer=
+@gmail.com</a>&gt; escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi, You should not expe=
+ct that integrate or add Xilinx IP core directly to RFNOC blocks, Even If y=
+ou be a master in Verilog...<div>If you see the UHD source code you will re=
+alize that UHD is an RFNOC framework for USRP ...</div><div>For working wit=
+h the RFNOC UHD framework you should know more details:</div><div>1)Please =
+see this link</div><div><a href=3D"https://files.ettus.com/app_notes/RFNoC_=
+Specification.pdf" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blan=
+k">https://files.ettus.com/app_notes/RFNoC_Specification.pdf</a><br></div><=
+div>2)Any RFNOC block has two files, noc_shell_blockname.v=C2=A0 and=C2=A0 =
+rfnoc_block_blockname.v=C2=A0 these two file are very important</div><div>t=
+he first file is a low-level definition for the RFNOC block and the second =
+file is the high-level definition=C2=A0for the block. I mention that we sho=
+uld use IP core in the second file ...</div><div>And more details that you =
+should study UHD source code till getting them...</div><div><br></div></div=
+><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fr=
+i, Jun 3, 2022 at 6:03 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu=
+" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">rkossler@nd.ed=
+u</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr">Hi Maria,<div>I apologize but I am not very experienced w=
+ith these matters. I am able to copy the rfnoc-example folder to an OOT loc=
+ation and build it and I know it has both OOT and in-tree IP options.=C2=A0=
+ In the past I have successfully run the &#39;make &lt;testbench&gt;&#39; a=
+nd also built an image such as &quot;make &lt;x300_core&gt;&quot;. But, out=
+side of that, I don&#39;t really know what I&#39;m doing....</div><div>Rob<=
+/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Fri, Jun 3, 2022 at 9:05 AM Maria Mu=C3=B1oz &lt;<a href=3D"mailto:=
+mamuki92@gmail.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"_bla=
 nk">mamuki92@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
 uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
 04);padding-left:1ex"><div dir=3D"ltr">Hi Rob,<div><br></div><div>I try to =
@@ -618,61 +647,63 @@ nything=C2=A0else related to IP core. Is there something else I have to do?=
 </div><div><br></div><div>Kind regards,</div><div>Maria=C2=A0</div></div><b=
 r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El mi=C3=
 =A9, 1 jun 2022 a las 17:48, Rob Kossler (&lt;<a href=3D"mailto:rkossler@nd=
-.edu" rel=3D"noreferrer noreferrer" target=3D"_blank">rkossler@nd.edu</a>&g=
-t;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div dir=3D"ltr"><div>Hi Maria,</div><div>The rfnoc-example folder withi=
-n the UHD tree shows an example of how to add an out-of-tree IP block. Did =
-you look at this yet?</div><div>Rob<br></div></div><br><div class=3D"gmail_=
-quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 1, 2022 at 5:12 AM=
- Maria Mu=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com" rel=3D"noreferr=
-er noreferrer" target=3D"_blank">mamuki92@gmail.com</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi all,=
-<br><div><br></div><div>I&#39;m trying to synthesize a design that includes=
- a vivado ip core inside.=C2=A0</div><div>Normally, I add my .vhd/.v source=
- files to the Makefile.srcs inside my block like this:</div><div><br></div>=
-<div>RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath $(lastword $(MAKEFILE_=
-LIST)))), \<br>source1.vhd \<br></div><div>source2.v \<br>source3.v \<br>)<=
-br></div><div><br></div><div>But adding the .xci file of my IP core does no=
-t work.</div><div><br></div><div>What is the process to include this file i=
-n the makefile chain to compile it?</div><div><br></div><div>Kind Regards,<=
-/div><div><br></div><div>Maria.</div></div>
+.edu" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">rkossler@n=
+d.edu</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"ltr"><div>Hi Maria,</div><div>The rfnoc-example f=
+older within the UHD tree shows an example of how to add an out-of-tree IP =
+block. Did you look at this yet?</div><div>Rob<br></div></div><br><div clas=
+s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 1, 2022=
+ at 5:12 AM Maria Mu=C3=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com" rel=
+=3D"noreferrer noreferrer noreferrer" target=3D"_blank">mamuki92@gmail.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"ltr">Hi all,<br><div><br></div><div>I&#39;m trying to synthesize=
+ a design that includes a vivado ip core inside.=C2=A0</div><div>Normally, =
+I add my .vhd/.v source files to the Makefile.srcs inside my block like thi=
+s:</div><div><br></div><div>RFNOC_OOT_SRCS +=3D $(addprefix $(dir $(abspath=
+ $(lastword $(MAKEFILE_LIST)))), \<br>source1.vhd \<br></div><div>source2.v=
+ \<br>source3.v \<br>)<br></div><div><br></div><div>But adding the .xci fil=
+e of my IP core does not work.</div><div><br></div><div>What is the process=
+ to include this file in the makefile chain to compile it?</div><div><br></=
+div><div>Kind Regards,</div><div><br></div><div>Maria.</div></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
-l=3D"noreferrer noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a=
-><br>
+l=3D"noreferrer noreferrer noreferrer" target=3D"_blank">usrp-users@lists.e=
+ttus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">usrp-users-leave@l=
-ists.ettus.com</a><br>
+tus.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">usrp-us=
+ers-leave@lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
-l=3D"noreferrer noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a=
-><br>
+l=3D"noreferrer noreferrer noreferrer" target=3D"_blank">usrp-users@lists.e=
+ttus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">usrp-users-leave@l=
-ists.ettus.com</a><br>
+tus.com" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">usrp-us=
+ers-leave@lists.ettus.com</a><br>
 </blockquote></div></div>
 </blockquote></div></div></div>
 </blockquote></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
-l=3D"noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+l=3D"noreferrer noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a=
+><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">usrp-users-leave@lists.ettus.=
-com</a><br>
+tus.com" rel=3D"noreferrer noreferrer" target=3D"_blank">usrp-users-leave@l=
+ists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div></div></div>
 
---000000000000a0006905e16cd41d--
+--00000000000095569105e1764676--
 
---000000000000a0006a05e16cd41e
+--00000000000095569205e1764677
 Content-Type: image/png; name="Screenshot from 2022-06-06 12-34-22.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2022-06-06 12-34-22.png"
@@ -1772,9 +1803,9 @@ bgv8W4V+4xAAAADgy6qqQ761y5C0uueSjHh4Tk/n/aqozwv/uC63/v3feWjM43n0vj/lwt9elxc6
 fT3r9/yKRcPMzLPXXpg/1W+UXYassFDx76t25gAAAAD+qzRbefsctGclTzQpH9nylVF5J68+cXdG
 3fV8Jkyelkrzduk+cNMcdtCO6bfgDxX+kqpPTYfVs/2Pt85ayyzcElS3KgNLJLcqAwDAkmGR3qoM
 LNHcqgwAAAAAFIRDAAAAAKDw/wGVQk0BQwoF7AAAAABJRU5ErkJggg==
---000000000000a0006a05e16cd41e--
+--00000000000095569205e1764677--
 
---===============0843807826632650172==
+--===============0729842846286623405==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -1784,4 +1815,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0843807826632650172==--
+--===============0729842846286623405==--
