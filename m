@@ -2,109 +2,122 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF9054E0E5
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Jun 2022 14:34:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72AC454E1A3
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Jun 2022 15:15:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2048438418C
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Jun 2022 08:34:49 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1E76F384480
+	for <lists+usrp-users@lfdr.de>; Thu, 16 Jun 2022 09:15:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1655382889; bh=6HC8BuckV8ebcpDk4vnnCEoFoe4cUowpAFF36MtmSrQ=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=K4xrcsTNvyg5F7NlPV8AC0PxTs3P0nO7ORI/hfnBHh/rPndbtF/dKQ6ZDEL05UMWL
-	 h7AVgPZswQ/wugy1m+gZYIasjo20DJgvuRyRLpJlDMkLkMy3KRm1DUVnlS9TNyv8td
-	 DVH61+DLEy3XTdto6ouCQAGi3iMrX+jFo6msJSfl0ZTn1EzQptVs3QdGTk9e0x2EEG
-	 XDKaYjC19eyImHVnbaHGyNeIiZrB+UaVKc6IgAPFjt1tbesQCZ9/EbXcK3L4tvadfm
-	 vG/nRbPhFWhyAkPMEANOzXtBm+MzB8+l6Bo88XujDF9DbBt68Pv2sIiNPMULknOAIN
-	 sVGjpATa/om8A==
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id DA695383DBC
-	for <usrp-users@lists.ettus.com>; Thu, 16 Jun 2022 08:33:26 -0400 (EDT)
+	t=1655385309; bh=Vfz2nHOdvApdOQ6SoAvyAic7v0L+cmC//zDEW4ARWbQ=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=hAlGnCtZl6kaN/qqwAhk/qR4Cp2pTj3xJ9/dhuuE0zJMHuJLjadj2Xe7mQOXvaG7H
+	 1Rov+LFt3tmt9blf0tNb/dX5TPfdK/bUpFKWTWtmotRsVSOZr/JMu4ZdGJMC5WQr71
+	 A0EvEiQfhCsgmGK7r27pFwaXhw/wwnDfmgojBz9QkcufHQbJp/6OuR1O1MjvIs3Wc1
+	 1yx1og5qt1R3txJUmwx4QHlgzotp2aMa53wY0VsARQbz4xB7TtwmkPrMPn9aja1vi0
+	 F6VPOvd4YJzbm6NQGL7okMsF9tlXMIOqf5GGXbMqe8e7xsyeezJOw1NOi2exSBMMxO
+	 AnpPTjJ4cXiqw==
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0846838425C
+	for <usrp-users@lists.ettus.com>; Thu, 16 Jun 2022 09:13:54 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Lz7TP9Xv";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hQqSBGLl";
 	dkim-atps=neutral
-Received: by mail-qk1-f170.google.com with SMTP id c144so844860qkg.11
-        for <usrp-users@lists.ettus.com>; Thu, 16 Jun 2022 05:33:26 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-31756c8143aso13249007b3.12
+        for <usrp-users@lists.ettus.com>; Thu, 16 Jun 2022 06:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=a4qhk0aT4Aj69L8Vo0vf79i/kwdXliU6QPpSjctqjx0=;
-        b=Lz7TP9XvzEv11hyJQe0MDb6NVwORfY58axAQF/EA8B5bKEYCr+JnshkhkD0/DIkR5X
-         v2NR5oIXUufo1fNmdfvbHU7InzHjDA26xv+jzcq6hioBFiuiDDCVsd6tv+ukZrxZsnfR
-         4Fq/WVBngQacupE4A6lQIOVF59RXW87f+2txGpenmnkyEvlbO3OSdefYUtAWI1fFG88A
-         JFShEyoFH2YTy1S0LlbMfUjccYALdvehYDg4j2MRsG+6fxKeCyAq7x9GkbfBda205P3J
-         NjaSss/gPCfNOJCI2rDu+cYn8aPv7yCtvSwR8/cX/rZW8KlEBmVpxR/6mK/H3zsRVXxU
-         bbjg==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=fiKEhLViyIiA7eNXkUiQhPAZwdaIHmyCi44EU3yD51g=;
+        b=hQqSBGLlJ1ltjAyYY+UwkNIZb/GnYetL7EcxDovzUPKf/vvBSN4zu0kpzAjTF7OWY0
+         gA4rzc+znISv5davzO29JRmsNkWQy9QtppVq236t2oCcXR5B1d78j65YAqSgXbZiNfyt
+         +vfVYn0zPSY4GWpSRvqk2cLJdfb8zPlc7R7qrrToYQzU6ws1JhUT02b01xhaNZjCwRXx
+         R1qNSm/d3SFkycxSIi5U0hitYvYB9/RC3SXQ5qm7/Dpusb/+2T9NxbkbIQtcMGVKxJ2U
+         WGNhrPHQodjt/t3McNVFweH/Cyoa9K/PROhizreQ2QcW70L0QlKhuNdLsBjgWbLg6ofW
+         nWJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=a4qhk0aT4Aj69L8Vo0vf79i/kwdXliU6QPpSjctqjx0=;
-        b=RhCKYBwlshNF/QOw0ihnZ8SFZ85RW3yjeMyMe1lLF25zDXIihXWzsDzi36qcWAdnQR
-         aToO2UjQb3UMnLRaARy9rume0qQIBrm1pXAioS6jxUBs6NM9SpPZ9TrglwkicEwvFrc7
-         ubKPWPhLPO04eCceXLZJwRoVOwyimt2wPQQuqpazdQMNmUjELymd77DJEEEmZrdRuUUe
-         ivmbYSo91NmAjpHl/JrCX/QMMAEEr5g4aj5r1tTTaJF4jsOLHzGf9TzxozbDFJMHSZhj
-         adBCMiUs/+YmCs74Y5rIw5vyBMMaR39nO/Emku+Wftyo8dlDaJVefO2KwlXK1YafNn+f
-         XrXg==
-X-Gm-Message-State: AJIora8L7aD1dAtQmRgzMPmQUPXNjBrL54gyaPeTiFeGsfnlL/+6+Xux
-	+M7MFPY9Yp4ldNvc9wqH8pSVH/fWKjlwlQOb
-X-Google-Smtp-Source: AGRyM1vTxUbZ6OM0CLUC8Q2inLkSaLjTCHV/OPR9bjJizpEM7EtZPGvjHd9ndtagWhhYRbMpvnqxTw==
-X-Received: by 2002:a05:620a:318a:b0:6a7:4d95:3526 with SMTP id bi10-20020a05620a318a00b006a74d953526mr3183881qkb.648.1655382805914;
-        Thu, 16 Jun 2022 05:33:25 -0700 (PDT)
-Received: from [192.168.2.210] (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
-        by smtp.googlemail.com with ESMTPSA id z13-20020a05622a060d00b00304eb8e880dsm1876669qta.23.2022.06.16.05.33.25
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jun 2022 05:33:25 -0700 (PDT)
-Message-ID: <b7a7531e-ab1b-3fe0-b5d5-6297d4492b0e@gmail.com>
-Date: Thu, 16 Jun 2022 08:33:24 -0400
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=fiKEhLViyIiA7eNXkUiQhPAZwdaIHmyCi44EU3yD51g=;
+        b=Vs4MogGrpIaaJXrVyJG0InrHr9Mcs1mGbJAdnKZQ4VsJfT60TsU6UIml3pfvAYWw4O
+         t0I2Baut0LCvO21nQdZt0i5PJtU7DlBCKAV1eV5vIaT03A264PG3EB90gaOi6/IQD5v7
+         ABLuj4XHvv0CGwJ9PBnT/dygn4L3qp3q5thLUwbmhpgvrp6KZMmGBoVd+tJLqSa16UQC
+         dN30JJYqH8qkUmPxZqoDinMApKadibkpYIasbq1W7PpNHUHb/e0OXFkHa/Ag9lh3ZCYB
+         7G18xLMXvnjYjsAJ4elDzGR6i/ewqyRWFXWiFG1CQUQYRc7o3ervISxBwW1JWTivrvgu
+         Mzug==
+X-Gm-Message-State: AJIora+OEzwZaqV8wq3GO1F83TibX7vWPmIqlrxiHvwPfi4G1LUBbLdm
+	K/6qz9rU6TwdEm6qF35AXjq3OvjoZBk6nhIF0SKuHBaqxvEo6g1kq2U=
+X-Google-Smtp-Source: AGRyM1sxUc25RySPKJKGSbkVOdvUFhH5kLYKm/mtBpB9WL8pbk1YF5I00wXTcvN5449M04Xe+y+zfFwrb4wo/yVTJmo=
+X-Received: by 2002:a0d:ea88:0:b0:30f:cd93:fddb with SMTP id
+ t130-20020a0dea88000000b0030fcd93fddbmr5527515ywe.365.1655385233641; Thu, 16
+ Jun 2022 06:13:53 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <22d579be-d594-698b-fc5d-576aceb3eab5@discreteintegration.ca>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <22d579be-d594-698b-fc5d-576aceb3eab5@discreteintegration.ca>
-Message-ID-Hash: TUGJDZ7AHHNUZGD57KM47N56KWAH5VJ3
-X-Message-ID-Hash: TUGJDZ7AHHNUZGD57KM47N56KWAH5VJ3
-X-MailFrom: patchvonbraun@gmail.com
+From: sp h <stackprogramer@gmail.com>
+Date: Thu, 16 Jun 2022 17:43:42 +0430
+Message-ID: <CAA=S3Ps1f5MsEsvVwr2j=GpcfSRm4zzb5J3t5-ycBX7Le0mRFw@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: MVOHCXFLIOA4KBZRLGA65SMNCGVUYU65
+X-Message-ID-Hash: MVOHCXFLIOA4KBZRLGA65SMNCGVUYU65
+X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: TX port return loss limits? (USRP-2974)
+Subject: [USRP-users] IP license key 'ten_gig_eth_pcs_pma_basekr@2015.04' is enabled with a Design_Linking license In building FPGA UHD 4.2.0.0
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TUGJDZ7AHHNUZGD57KM47N56KWAH5VJ3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MVOHCXFLIOA4KBZRLGA65SMNCGVUYU65/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2004447282906627010=="
 
-T24gMjAyMi0wNi0xNiAwMTowMywgRG9taW5pYyBTY2hhdWIgdmlhIFVTUlAtdXNlcnMgd3JvdGU6
-DQo+IFBsZWFzZSBmb3JnaXZlIG1lIGlmIHRoaXMgaW5mb3JtYXRpb24gaXMgb3V0IHRoZXJlIGFu
-ZCBJIGp1c3QgaGFwcGVuZWQgDQo+IHRvIG1pc3MgaXQuIEkgaGF2ZSBhbiBhcHBsaWNhdGlvbiB3
-aGVyZSBJIHdvbid0IGhhdmUgYSBnb29kIG1hdGNoIA0KPiBiZXR3ZWVuIG9uZSBvZiB0aGUgb3V0
-cHV0IFRYIHBvcnRzIG9uIHRoZSBVU1JQIDI5NzQgYW5kIHRoZSBjb25uZWN0ZWQgDQo+IGxvYWQg
-LiBXaGF0IGlzIHRoZSBtYXhpbXVtIHBlcm1pdHRlZCByZWZsZWN0ZWQgcG93ZXI/IENhbiBJIGdv
-IGFsbCB0aGUgDQo+IHdheSB0byAyMCBkQm0gVFggb3V0IHdpdGggYSBzaG9ydCBvciBubyBsb2Fk
-PyBUaGUgUlggcG9ydHMgb24gdGhlIA0KPiBvdGhlciBoYW5kIHNlZW0gdG8gaGF2ZSB0aGVpciBt
-YXhpbXVtIGlucHV0IHBvd2VycyBzcGVjaWZpZWQgKDEwIGRCbSkgDQo+IGluIHRoZSBVU1JQIDI5
-NzQncyBkYXRhc2hlZXQuIEEgcG9pbnRlciB0byB0aGUgcmlnaHQgcGxhY2UgaW4gdGhlIA0KPiBk
-b2N1bWVudGF0aW9uIHdvdWxkIGJlIG11Y2ggYXBwcmVjaWF0ZWQhDQo+DQo+IERvbWluaWMNCj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11
-c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5z
-dWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
-bQ0KVGhlIG91dHB1dCBzdGFnZSBvZiB0aGUgVUJYLTE2MCBpcyBhIG1pbmljaXJjdWl0cyBQSEEt
-MSsgTU1JQyANCmFtcGxpZmllci7CoMKgwqAgSSB3b3VsZCBhYnNvbHV0ZWx5IE5PVCBydW4gdGhp
-cyBhbXBsaWZpZXIgaW50byBhIA0Kc2hvcnQtY2lyY3VpdCBvciBhbiBvcGVuIGF0IGZ1bGwgcG93
-ZXIgZm9yIG1vcmUNCiDCoCB0aGFuIG1pbGxpc2Vjb25kcyBhdCBhIHRpbWUuCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBs
-aXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4g
-ZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============2004447282906627010==
+Content-Type: multipart/alternative; boundary="000000000000d1565705e19068bc"
+
+--000000000000d1565705e19068bc
+Content-Type: text/plain; charset="UTF-8"
+
+When I want to build UHD 4.2.0.0 I faced with below warning.
+
+> IP license key 'ten_gig_eth_pcs_pma_basekr@2015.04' is enabled with a
+> Design_Linking license.
+
+
+Building FPGA process cannot go to compile other IP cores and stays in
+ten_gig_eth_pcs_pma IP and repeats...
+
+For UHD v4.1.0.5 I had no problem with all IP cores built successfully...
+I mention that I used a trial license version of Vivado 2019.1 in Ubuntu
+20.04. Can anyone guide me to overcome this IP core problem?
+
+--000000000000d1565705e19068bc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">When I want to build UHD 4.2.0.0 I faced with below warnin=
+g.<div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex">IP license key &#3=
+9;ten_gig_eth_pcs_pma_basekr@2015.04&#39; is enabled with a Design_Linking =
+license.</blockquote><div><br></div><div><div><div>Building FPGA process ca=
+nnot go to compile other IP cores and stays in ten_gig_eth_pcs_pma IP and r=
+epeats...</div><div><br></div><div>For UHD v4.1.0.5 I had no problem with a=
+ll IP cores built successfully...</div><div>I mention that I used a trial l=
+icense version of Vivado 2019.1 in Ubuntu 20.04. Can anyone guide me to ove=
+rcome this IP core problem?<br><div><br></div></div></div></div></div></div=
+>
+
+--000000000000d1565705e19068bc--
+
+--===============2004447282906627010==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2004447282906627010==--
