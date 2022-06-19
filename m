@@ -2,180 +2,133 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A527A5506A4
-	for <lists+usrp-users@lfdr.de>; Sat, 18 Jun 2022 22:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF6D5507DE
+	for <lists+usrp-users@lfdr.de>; Sun, 19 Jun 2022 03:27:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 260E2384281
-	for <lists+usrp-users@lfdr.de>; Sat, 18 Jun 2022 16:16:55 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 61E463841C6
+	for <lists+usrp-users@lfdr.de>; Sat, 18 Jun 2022 21:27:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1655583415; bh=knG28SIP8DEA4Q6FYHPBg9a2nouazjgAR6Z7UVEBkdk=;
+	t=1655602067; bh=3o6J/yhxBApOW5K4KVYum+k0xye7IBeoiO888X+fbqw=;
 	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=vl39YY8mPzAL9swBLjSYHdOJpin6eRAOUnZx3cvSnKHr7sSz2ZdPjzJu+2PpbJ36e
-	 ElEOBMaGBTeuUbPDgQkwaScTNtOzG0at1vwAXEq1gMh8p6duYIma+zNWltRpYyJ22J
-	 m7tlPNHrrIDMJ1gmq00WgALbKRSpX7xRAS3Od+pydzVS9SlySS/xCDdvLwZ3qVq5/A
-	 Mvx0yl/Ri2n51NDT1dzRTpzwx+xlb3KgBYejvqs8zcbo26rXXaS/j9nf9VeDrYzeU2
-	 P1fTgwUuECBXwikOmC2JhYqwv9UCzC7ijQDjT3vCpivf9p2TDZZzgIAQ2pF7S01X92
-	 iLWcQaJCz9atA==
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3788B3841DC
-	for <usrp-users@lists.ettus.com>; Sat, 18 Jun 2022 16:15:46 -0400 (EDT)
+	b=Ua8/U1+oabqen2E0kVNKvWXzlZw8HH6xd97TyJPo7PDHXurGTBi6OQ17kTK1/zXVf
+	 qaEHniiLB1RjSPMnhQEOt/JIxeaCN1JpvlrlqIGxIGRWE9AXKbhPdp42Q17AGmq+pA
+	 jJrDKjE6oMUTLfHXORLwLLHm85qmcD/jUzLTMjG0XQJ1/eHZ9UtdgfscT1EZHsNgmA
+	 QMrmvL4B1VhCC9oKf25JhuVPk9vQI8w0VwlmhEOV/52sjOgSRxuv8B8DC9TDjOGhof
+	 KqjkGU12JhpGeHQDlSm6kdj5Z18RohAoOgdCEXpXqRyVf6xtIyV86pbeF+I1Bs/RTq
+	 T3QuHKRrR62yA==
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id 425E73841BB
+	for <usrp-users@lists.ettus.com>; Sat, 18 Jun 2022 21:26:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="BCgodF/m";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="e103SqMg";
 	dkim-atps=neutral
-Received: by mail-il1-f169.google.com with SMTP id h7so5060726ila.10
-        for <usrp-users@lists.ettus.com>; Sat, 18 Jun 2022 13:15:46 -0700 (PDT)
+Received: by mail-yb1-f170.google.com with SMTP id p69so1604162ybc.5
+        for <usrp-users@lists.ettus.com>; Sat, 18 Jun 2022 18:26:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        d=nd.edu; s=google;
         h=mime-version:from:date:message-id:subject:to;
-        bh=wiJ+YZZ/kdxtf1B55SEsJiZ3p/I9ge4y6bHVHiNXOag=;
-        b=BCgodF/mMP9aBIwGzvk2ZIbrHmdXZkEHjVLX0eKATwWOhvAofZ+v7z7BLw/k+hlN2w
-         t6pFth2I/i1ALdb/ZG2Yn08OBfOt7SctldTwrmGo5lrjwDVcmC3l5EMnHcLu5J1hKq5j
-         Soiwcwcn6VJX54909po4bwvG6E+iaAVgZsJd+CXhOfeV+yq1Qa9djTcpFBbfBw9X6EnG
-         aYIr0iSUqcWGeBvLd5qsfds9I3ta4rxctFGiiOUL1hfiGGM58MsjzO7Q/I0fNMFe1dUr
-         vn362CH01zJyOwJGvJbCAKkQ2XyDWzZBLhrVhYCipFkUjG5/TpgIkmIKVV+H3KZra/20
-         dxGQ==
+        bh=nCKJFsylDt6A/WYB83j+JEkvM0BpqntGqGYc0U2FrLI=;
+        b=e103SqMgCw7EpoxyX8wIyfdydNs/4Z7ZJorUXmtl32tLpRwiCHJvu0RTKrdXH9pGCC
+         4aqn9uat55cWSJbD5/Fe2NnOR5wNCcFSKvUHe3tkzL0DvmUnPMRQtgMbNqybMM4FPOQ7
+         kND8K5cGA7Z/aCtM3iW3Tk0Ib04F7HowcA3nXCZswIAOH58x2Z/Yj/7KH7MDN3MZWm1D
+         4lZcLsDhiclLgJbz40u25+ANfyvxeX0qVUJXbsbHfmXJFyH3yQmCpNcUXZgrzopUmA2f
+         TdOfhKQQIYnqpr01quuNGVehIluvvOl9PotoACk/ElVoLjpWKZDwBdbqzUJ90P2x6WTl
+         cbrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=wiJ+YZZ/kdxtf1B55SEsJiZ3p/I9ge4y6bHVHiNXOag=;
-        b=JKIAuBFtfEPV7GZfiVi7W/8cN0gXz+HrOvvB/Ydv0r8lm+fbMKCu1Sq3YZldHEKtSM
-         GVTI9Z2/L6nUuCROwteFg5lLAZAfDfZ0nqj05NDSc4hrsfP2qibM5ok/5xjztep0ixJK
-         kuLTypR5T7zwee38KicJ6yjPr6uFlIHgR39C/IIN2UQnC8W6R8lbPjEnXLTfOjYsRMw3
-         boP1NWUUN+b0AGYspGCW512AjV7nQI4a2R0dL90JppEa9AeWvgLG4WJ4QA7sjsPj3/2Q
-         FvWQg5bKaviy0cOJn6Yp2AmzO/LNOtI5MUQnLqmYDRdW4Grx+s0DHBbjhuscDImpxC55
-         FFgQ==
-X-Gm-Message-State: AJIora/BpmEVZXN6ia/ZTXULdJDiUHEL6jQEGtHCaVA8Y+EyKldbXPBX
-	Xds2HwwJFyb3AYvx7cECx9LWtLuwfJoGvBEWx86hhQDY8NQi+XiG
-X-Google-Smtp-Source: AGRyM1skAGrtfH0eWiVeOPZZNkH9oxj2Iw+NRpSCeiNNZpNnVWBkU+L0nte6eCSo/gWrJmyX3PgdwF5+IqHjiJ3/63w=
-X-Received: by 2002:a05:6e02:b25:b0:2d8:eef1:ccd1 with SMTP id
- e5-20020a056e020b2500b002d8eef1ccd1mr3866663ilu.180.1655583344959; Sat, 18
- Jun 2022 13:15:44 -0700 (PDT)
+        bh=nCKJFsylDt6A/WYB83j+JEkvM0BpqntGqGYc0U2FrLI=;
+        b=SgKRxZQbotH7q/Sb5WLrpBLxh8h1Qc0jPSl8h+CMXD6F38sL4JGYT5F2ape2OZBDrD
+         +VYiIt5IgaTsbOcnmZuGtJnahB/uUVCCVMtZiuaszoECk6dF7GCcAOY52HiVxg9ScOq0
+         tsvqIIRyiBzssyoFxrsTdTtgEKonwawU5MW+3QuoQ1pAGb5h0SqAWE4M+P2OA9YMrWfi
+         2LmmMUeCMZLwJMM8v7UEXB7ODX8LE+YWfkgftiapZn4kELThg1N9l88vnCwDRQXNY5TH
+         dheXJvS8wO6IHl5I9OoMY2l9E+FvX44My8/gBNRPQWMFe5a3ReeZ+pbL95gdLkWZ7DAQ
+         1zzg==
+X-Gm-Message-State: AJIora+m+/l7tr5aM1E6F4aWd3w7MtRf9WpPd6p6ykWKWgVxUKrc3SK0
+	rSHdavMaEMieT/vBoZcoKqXonm2OHrroNg9uG8GegWhaD/c=
+X-Google-Smtp-Source: AGRyM1vcnHUxKIRZcXXlACR2WZsUD/bmMYPWV+g095USwY9dY5a5npjTaMGmS/WNQPTLUaIDh5E64nyRW+yF4lBg+l8=
+X-Received: by 2002:a25:9947:0:b0:663:ec43:61eb with SMTP id
+ n7-20020a259947000000b00663ec4361ebmr18067686ybo.115.1655602003319; Sat, 18
+ Jun 2022 18:26:43 -0700 (PDT)
 MIME-Version: 1.0
-From: Neel Pandeya <neel.pandeya@ettus.com>
-Date: Sat, 18 Jun 2022 15:15:09 -0500
-Message-ID: <CACaXmv97C=0NzBCH7nJH_7zYsP6KNXjkTSpeE_HyWgfbHkVP3w@mail.gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Sat, 18 Jun 2022 21:26:32 -0400
+Message-ID: <CAB__hTR1UvNgy85dc77qnrq4ku3XuYQnGpLvBMvy-YkrTB7rdg@mail.gmail.com>
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: 4JLVQSSIEZEDTA6YMFJFGLHDDDPWDRHJ
-X-Message-ID-Hash: 4JLVQSSIEZEDTA6YMFJFGLHDDDPWDRHJ
-X-MailFrom: neel.pandeya@ettus.com
+Message-ID-Hash: OUBNWQASD4KV2SAMY746IWYT6OACMUV3
+X-Message-ID-Hash: OUBNWQASD4KV2SAMY746IWYT6OACMUV3
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] GRCon22 needs your abstracts soon!!
+Subject: [USRP-users] B2xx custom FPGA
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4JLVQSSIEZEDTA6YMFJFGLHDDDPWDRHJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OUBNWQASD4KV2SAMY746IWYT6OACMUV3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0740396306234378325=="
+Content-Type: multipart/mixed; boundary="===============6862505122212789966=="
 
---===============0740396306234378325==
-Content-Type: multipart/alternative; boundary="0000000000002c417805e1be8993"
+--===============6862505122212789966==
+Content-Type: multipart/alternative; boundary="0000000000004c75f105e1c2e1de"
 
---0000000000002c417805e1be8993
+--0000000000004c75f105e1c2e1de
 Content-Type: text/plain; charset="UTF-8"
 
-GRCon22 needs your abstracts soon!!
+Hi,
+Has anyone modified the B2xx module "new_tx_control" in the following way
+so that it would be straightforward to insert a custom dsp module (32-bit
+AXI in/out)?
 
-The GNU Radio Conference 2022 (GRCon22) is just three months away! This
-year we've set an earlier abstract submission date of June 27.  To submit a
-short abstract of your proposed talk, paper, or other participation option,
-please check out our Call for Participation page for more details:
+The existing logic takes as input an AXI stream with 64-bit samples and
+converts this to 32-bit samples (non AXI, strobe/run) that are sent to the
+DUC.  Additionally, it checks for errors on the incoming stream and handles
+Underrun / Late for the outgoing 32 bit samples.
 
-https://events.gnuradio.org/event/18/abstracts/
+I would like to divorce the input from the output logic by adding an output
+AXI 32-bit stream and an input AXI 32-bit stream for the purpose of sending
+to (& retrieving from) a "custom DSP block (32 bit AXI)". With this
+divorce, the logic on the existing 64-bit AXI input stream (looking for
+sequence errors & responding to EOB Ack) can remain largely the same, but
+the logic for detecting Late/Underrun would be moved to validating the new
+32-bit input AXI stream coming from the "custom DSP" output.  In the event
+that there is no custom DSP block, the output could be routed straight back
+to the input.
 
-We know many of our community members have a special project they'd like to
-share. So we encourage you to write a summary of it and submit your
-abstract. We'd love to hear about all the awesome projects involving GNU
-Radio, SDR, etc. Talks and papers at GRCon don't have to directly use GNU
-Radio, they just have to be of interest to the general SDR community.
+In any case, before I embark on this (which will be a challenge for me), I
+wanted to see if someone had tried this.
+Rob
 
-Registration for GRCon22 is open. Go to
-https://tickets.gnuradio.org/grcon22/ for details. There are several levels
-of registration, depending on your situation. Let us know if you have
-questions or need more information by contacting tickets@gnuradio.org.
-
-As with past GRCons, we have a reduced cost for Student Registration, and
-Student Presenters can get FREE registration. Please see our Student
-Registration page for more details:
-
-https://events.gnuradio.org/event/18/page/58-student-registration
-
-This year, GRCon will be held in Washington D.C. at the Capital Hilton,
-just two blocks from the National Mall. We have special room rates for the
-event which are comparable to other hotels in the area. Using the GRCon
-room block directly supports our conference this year and is greatly
-appreciated. Please use this link to book your room at the venue:
-
-https://book.passkey.com/go/GNU2022
-
-If you have any questions, including ideas for how to improve GRCon, or if
-you'd like to get involved with organizing, please reach out to
-grcon@gnuradio.org.  Our all-volunteer organizing team would love to hear
-from you!
-
-Key Dates:
-* June 27 - Call for Participation Abstract Submissions Close
-* August 26 - Initial Main Track Schedule Posted
-* September 26 - Conference Begins
-
-We look forward to seeing you at GRCon22!
-
---0000000000002c417805e1be8993
+--0000000000004c75f105e1c2e1de
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><font face=3D"verd=
-ana, sans-serif">GRCon22 needs your abstracts soon!!</font></div><font face=
-=3D"verdana, sans-serif"><br>The GNU Radio Conference 2022 (GRCon22) is jus=
-t three months away! This year we&#39;ve set an earlier abstract submission=
- date of June 27.=C2=A0 To submit a short abstract of your proposed talk, p=
-aper, or other participation option, please check out our Call for Particip=
-ation page for more details:<br><br><a href=3D"https://events.gnuradio.org/=
-event/18/abstracts/">https://events.gnuradio.org/event/18/abstracts/</a><br=
-><br>We know many of our community members have a special project they&#39;=
-d like to share. So we encourage you to write a summary of it and submit yo=
-ur abstract. We&#39;d love to hear about all the awesome projects involving=
- GNU Radio, SDR, etc. Talks and papers at GRCon don&#39;t have to directly =
-use GNU Radio, they just have to be of interest to the general SDR communit=
-y.<br><br>Registration for GRCon22 is open. Go to <a href=3D"https://ticket=
-s.gnuradio.org/grcon22/">https://tickets.gnuradio.org/grcon22/</a> for deta=
-ils. There are several levels of registration, depending on your situation.=
- Let us know if you have questions or need more information by contacting <=
-a href=3D"mailto:tickets@gnuradio.org">tickets@gnuradio.org</a>.<br><br>As =
-with past GRCons, we have a reduced cost for Student Registration, and Stud=
-ent Presenters can get FREE registration. Please see our Student Registrati=
-on page for more details:<br><br><a href=3D"https://events.gnuradio.org/eve=
-nt/18/page/58-student-registration">https://events.gnuradio.org/event/18/pa=
-ge/58-student-registration</a><br><br>This year, GRCon will be held <span c=
-lass=3D"gmail_default" style=3D"font-family:verdana,sans-serif"></span></fo=
-nt><span class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"><=
-/span><span style=3D"font-family:verdana,sans-serif">in Washington D.C.<spa=
-n class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"> </span>=
-</span><font face=3D"verdana, sans-serif"><span class=3D"gmail_default" sty=
-le=3D"font-family:verdana,sans-serif"></span>at the Capital Hilton, just tw=
-o blocks from the National Mall. We have special room rates for the event w=
-hich are comparable to other hotels in the area. Using the GRCon room block=
- directly supports our conference this year and is greatly appreciated. Ple=
-ase use this link to book your room at the venue:<br><br><a href=3D"https:/=
-/book.passkey.com/go/GNU2022">https://book.passkey.com/go/GNU2022</a><br><b=
-r>If you have any questions, including ideas for how to improve GRCon, or i=
-f you&#39;d like to get involved with organizing, please reach out to <a hr=
-ef=3D"mailto:grcon@gnuradio.org">grcon@gnuradio.org</a>.=C2=A0 Our all-volu=
-nteer organizing team would love to hear from you!<br><br>Key Dates:<br>* J=
-une 27 - Call for Participation Abstract Submissions Close<br>* August 26 -=
- Initial Main Track Schedule Posted<br>* September 26 - Conference Begins<b=
-r><br>We look forward to seeing you at GRCon22!</font><div><font face=3D"ve=
-rdana, sans-serif"><br></font></div><div><font face=3D"verdana, sans-serif"=
-><br></font></div></div>
+<div dir=3D"ltr">Hi,<div>Has anyone modified the B2xx module &quot;new_tx_c=
+ontrol&quot; in the following way so that it would be straightforward to in=
+sert a custom dsp module (32-bit AXI in/out)?</div><div><br></div><div>The =
+existing logic takes as input an AXI stream with 64-bit samples and convert=
+s this to 32-bit samples (non AXI, strobe/run) that are sent to the DUC.=C2=
+=A0 Additionally, it checks for errors on the incoming stream and handles U=
+nderrun / Late for the outgoing=C2=A032 bit samples.</div><div><br></div><d=
+iv>I would like to divorce the input from the output logic by adding an out=
+put AXI 32-bit stream and an input AXI 32-bit stream for the purpose of sen=
+ding to (&amp; retrieving from) a &quot;custom DSP block (32 bit AXI)&quot;=
+. With this divorce, the logic on the existing 64-bit AXI input stream (loo=
+king for sequence errors &amp; responding to EOB Ack) can remain largely th=
+e same, but the logic for detecting Late/Underrun would be moved to validat=
+ing the new 32-bit input AXI stream coming from the &quot;custom DSP&quot; =
+output.=C2=A0 In the event that there is no custom=C2=A0DSP block, the outp=
+ut could be routed straight back to the input.</div><div><br></div><div>In =
+any case, before I embark on this (which will be a challenge for me), I wan=
+ted to see if someone had tried this.</div><div>Rob</div></div>
 
---0000000000002c417805e1be8993--
+--0000000000004c75f105e1c2e1de--
 
---===============0740396306234378325==
+--===============6862505122212789966==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -185,4 +138,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0740396306234378325==--
+--===============6862505122212789966==--
