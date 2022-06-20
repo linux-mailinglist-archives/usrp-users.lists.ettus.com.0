@@ -2,163 +2,109 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D831E552196
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Jun 2022 17:50:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75FD755248B
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Jun 2022 21:24:51 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 87815383C20
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Jun 2022 11:50:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 773BC383B5D
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Jun 2022 15:24:50 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1655740219; bh=fxgGxkzNpGozYlBUe1W8kFCgg2+bSvT0JYzD2E+XvGY=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=nI0UFeuaHV8hDVL5Uc1fAO8GdEpmeBwPLCrvbZIhwvxFZUpxXfR33LDDA91bBw0fy
-	 6ltCWcwLy7Jd+nBTLIldbHal3DQ4d0PkGNS8CIMI4p41Z1IdhG9jtT7qH0voyPV5dB
-	 Bo8FsLHbVh/HyLiGRC3ohDf2iB2t4/N/6vi+b7nGimJBtFYx9Xrwl/WeMgdSvvaTUB
-	 L54Q6RyuCBFCGt687OS5y8AeLtoMWId7wYmF1epaUsEaRQG5b6A6nJ5O4o0Uvtauq5
-	 imL3BqX2YML1dynpWroaRK47fV1hyAZWsj9XfOmrWNA5sTJ+mSYhlBZKQEmlEs5lA+
-	 dY4BmwVTqC44g==
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id 21E8E383BF3
-	for <usrp-users@lists.ettus.com>; Mon, 20 Jun 2022 11:49:25 -0400 (EDT)
+	t=1655753090; bh=56hZ1KPjKYz519FtoDDZ9CEh0DcQQoe3ZjTS7+v6nxY=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=pA2vBgHAOtiyv6cLcLBLufs1SFizDzFZRbmFAgPYZpb+EiyC8d/FbkA/9nKMjJCFE
+	 NopJ1iQLI5wBgZgFTfxyvIbGy0qMVyX2iGIIPzluISk1WD4egEkafhdye3dLe5NnAX
+	 5XCGivxZsIu0k42pSnHni3xS7/Y0mw1ICPG+R3pdyPkQdmahDgN63oLxMh2SXt5IWe
+	 RxXSb42bRHxg+HFhuxmgfdfDpmaGrCrbAmrOi174mmq99zqpaatq0wXnsYgyfkqdDi
+	 HxSc7IBD+U3TqpSyZX03MEsfdksywBBZjBy1YS6Z8/RGGK5yZ+zyCI4p6MS/uHgHN1
+	 JQuxv8AQ3scHA==
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id D5015383B39
+	for <usrp-users@lists.ettus.com>; Mon, 20 Jun 2022 15:22:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NwLRjW5L";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="my3ddlmg";
 	dkim-atps=neutral
-Received: by mail-yb1-f179.google.com with SMTP id p69so8007567ybc.5
-        for <usrp-users@lists.ettus.com>; Mon, 20 Jun 2022 08:49:25 -0700 (PDT)
+Received: by mail-qv1-f43.google.com with SMTP id c1so16895094qvi.11
+        for <usrp-users@lists.ettus.com>; Mon, 20 Jun 2022 12:22:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KCREcbsRBKdK3dCGmwg7hNyRwC373CjsK9mhM0rI0WA=;
-        b=NwLRjW5L0tre28vmM/GU7kPZ+do25NUgOoAmAaqaB0N/Tbsmp6dQjJHm/LuW48hxrJ
-         CbDhgCVuP2S+F/2Kb4PrtZYrgt6hHso6C5f+vXk/0p+QfVpdprLBmWssgLiyqg/+m9tO
-         ST6kzkiM9ujowh7WeqT75/ri22rXmEvnWDtewmskRA8v1FGusMBTXjqZmEQtTb81i9D8
-         h64p5J2U4FSEsERi22LVonL7yecjx0CbIU8PBZ+6VWoWxWCWHAQLy6XHK2V8pLuba5bk
-         6H2t2+DjCDdimvNNFoqUECtr91zpzUmAo+xm5P5a3W91o62TmHK+gvO8Q7yhKxvWC2Nl
-         v1AQ==
+        h=content-transfer-encoding:from:mime-version:date:subject:message-id
+         :to;
+        bh=vg7fBn6uzcvM2m5lF5O7Lbp7cKRhR3r3mkVrHo8Ejtc=;
+        b=my3ddlmgFGnY5KJTLFcNds8WHAlguaXykH+h3JfxTGZ2D7iClFG7QSgd3bNz5lGgYR
+         jzVbiM/SG1fjtPqghxfK+V/CkOKnIZKqAprxi/MYa9BGjkNzVi7V534U2MyskcD4FWB1
+         UhZIjCLUyO0Vw7SDY6Hmnt1yrjZIYTYzjG/yllzaTUoTm2O/iCBxA3XFjtjimkwr16R0
+         SqhbbeBXebiuJJHR8HnwCKQMRTDnxGUrq/sk0ypcA9JCqj5BKOmq8I/mPTLZ3Wl4psYL
+         r0uKYKHIkYB9HBe9kMVwS1tjuEEZvNvyEPvPCmKX8mIbgvxoOGXDSZQ9ZTcAIQA2ioE6
+         sSuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KCREcbsRBKdK3dCGmwg7hNyRwC373CjsK9mhM0rI0WA=;
-        b=XsVkTvF/fQsJVhKx4iSq4pq/iEp5NCneoIE2iGM6jpUYUqKpQFQlh6tlhRnDfeyBsG
-         zggIyRtm0LMYOU1xn5pjoVC0oz7PH8wB3ldV9JKQNfYTKUbO3HhYklhtF5rkkPBV/qF4
-         LbZWWEyBZkOLpjcW2Tvxc02YQRZlDpvdPPTun/xei2eABVT2zROrbDgnjav8du8cYa/L
-         w/tbVJv1aWbwUPKjmh5nJLMYiOwENyR1932crUEDQCVoXEYjsozItBrhculf7+tDR6H6
-         d/UM9LOvLWIHlt6Zc4CvXDZ/5bPtIiOlIUyR1tM4uHMiIDNbY36/LE/xWHbPDJUfaKJk
-         PoLg==
-X-Gm-Message-State: AJIora9zvZSsZuVrJNMY5yynYDdChN0OPsgr40yr4kekiFHFGWFWM1nP
-	INLxzWiRqVVLuXx5yJ+WnBmqyWlsHW9h6ULqrEs=
-X-Google-Smtp-Source: AGRyM1t/HVAyLeI56uA2eX92Ax7ReiXVWpUy417fTlWYpwz/B7gyFjBmwzyH8l1F0enFk9XMVjQIv7cqs6hyVXkBdWo=
-X-Received: by 2002:a25:a2c7:0:b0:668:aea3:4caa with SMTP id
- c7-20020a25a2c7000000b00668aea34caamr21310898ybn.148.1655740163912; Mon, 20
- Jun 2022 08:49:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAA=S3Pv_wiP9bE62=0N5WKNTa_-+02dDtB0pcD2O5GSMV76Q7w@mail.gmail.com>
- <682DBC37-FC29-4EE3-94FA-29A15D4CC03C@gmail.com>
-In-Reply-To: <682DBC37-FC29-4EE3-94FA-29A15D4CC03C@gmail.com>
-From: sp h <stackprogramer@gmail.com>
-Date: Mon, 20 Jun 2022 20:19:12 +0430
-Message-ID: <CAA=S3PtSKwJwwX_bhM88m2cznxYfynyfGJYd_LEMqwen1hZ1vw@mail.gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Message-ID-Hash: RLQTYHKP54DAZ3AE3YMNUGITU3GZ2IQC
-X-Message-ID-Hash: RLQTYHKP54DAZ3AE3YMNUGITU3GZ2IQC
-X-MailFrom: stackprogramer@gmail.com
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version:date
+         :subject:message-id:to;
+        bh=vg7fBn6uzcvM2m5lF5O7Lbp7cKRhR3r3mkVrHo8Ejtc=;
+        b=Xvu7/5XYF4kEHRgWVG1ip2yEVtp94nMbrOaisVmyjhK700PuWzDQqF+FIefFhymh4E
+         WoERqfjgGXW8yisIiiv/B5GzCKCOcXpQAsQNESQ/elEI+i+ewsDeTOLhVBl5C5gqrAZL
+         gpFzYvrD1/yS05IMLv3QxvpAA1iUPvi1PcfNAWm1yPTOGsorC2CBHrysggVCXRujNK0l
+         2vc9NU/4MrmlQWERxNCTY4bruFio+edVslq8gNkDJXlbfZV65Wu3v/ptZOAkcwd7E2m3
+         tXzfyUCywSqaQhkB4f9eh6aJ57yN9nue8KB7q3ifGvyLKrc8TjzM1lOtsVyUHSASJsXh
+         VpEg==
+X-Gm-Message-State: AJIora+DJxxVZN8keVvMDbmJM7y6huDSbeD0ienSse1DKdZz8az0DuRN
+	jYGqWhr8X5vtQGzSmaP4Q8Q=
+X-Google-Smtp-Source: AGRyM1stIkTvn820TgQHAq5OZmLyF9tgIUwA1zHfPveKhoKuA7kEXM0VhqtBid1HycW7ya/B/V/Nbg==
+X-Received: by 2002:ac8:7d88:0:b0:304:ec4a:91b5 with SMTP id c8-20020ac87d88000000b00304ec4a91b5mr21235179qtd.500.1655752977263;
+        Mon, 20 Jun 2022 12:22:57 -0700 (PDT)
+Received: from smtpclient.apple ([69.85.98.46])
+        by smtp.gmail.com with ESMTPSA id b64-20020a376743000000b006a5d4f32e5dsm12141716qkc.128.2022.06.20.12.22.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jun 2022 12:22:57 -0700 (PDT)
+From: Larry Dodd <101science@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Mon, 20 Jun 2022 15:22:55 -0400
+Message-Id: <9FA630C9-DCBE-409E-9E54-AF3AC8D7B9BD@gmail.com>
+To: usrp-users@lists.ettus.com
+X-Mailer: iPhone Mail (19F77)
+Message-ID-Hash: V77CLDCGLT4UZO5WWD7YBHHK6SVJJ34Q
+X-Message-ID-Hash: V77CLDCGLT4UZO5WWD7YBHHK6SVJJ34Q
+X-MailFrom: 101science@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: TwinRX daughterboard is the only a receiver...but for it Transmit mode works and led red is on, is it a bug???!!!!!
+Subject: [USRP-users] BasicRF Daughter Card
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RLQTYHKP54DAZ3AE3YMNUGITU3GZ2IQC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/V77CLDCGLT4UZO5WWD7YBHHK6SVJJ34Q/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6605980232124212490=="
+Content-Type: multipart/mixed; boundary="===============8598180412120049164=="
 
---===============6605980232124212490==
-Content-Type: multipart/alternative; boundary="0000000000004f769a05e1e30c2c"
 
---0000000000004f769a05e1e30c2c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============8598180412120049164==
+Content-Type: multipart/alternative; boundary=Apple-Mail-7EB53286-EE11-4BAF-BB0C-E47035CC7F32
+Content-Transfer-Encoding: 7bit
 
-Ok, thanks for the clarification. I was worried this would hurt my
-Dutterboard so it would not be a problem for my Dutterboard anyway.
 
-On Mon, Jun 20, 2022 at 5:06 PM Marcus D Leech <patchvonbraun@gmail.com>
-wrote:
+--Apple-Mail-7EB53286-EE11-4BAF-BB0C-E47035CC7F32
+Content-Type: text/plain;
+	charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-> Those LEDs are controlled by the FPGA not by the daughtercard. There=E2=
-=80=99s no
-> connection from the DAC to the TwinRx.
->
-> Sent from my iPhone
->
-> > On Jun 19, 2022, at 9:44 PM, sp h <stackprogramer@gmail.com> wrote:
-> >
-> > =EF=BB=BF
-> > I have a daughterboard TwinRX in RF B in x300. When I use UHD and set
-> the stream channel to 1 .....
-> > as TwinRX daughterboard is the only receiver...but  Transmit mode works
-> and led red is on???!!!!!
-> > It should not transmit with a TwinRX but the led TX/RX is red and it's
-> on...
-> > Why transmit led for TwinRX should be on for TwinRX? I expect that a
-> return an error?
-> > Thanks in advance
-> >
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Can a BasicRF daughter card be used with an Ettus N210?
+Thanks,
+Larry K4LED 
 
---0000000000004f769a05e1e30c2c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+_______________________
+Click for K4LED Reference Links:
+--Apple-Mail-7EB53286-EE11-4BAF-BB0C-E47035CC7F32
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-<div dir=3D"ltr">Ok, thanks for the clarification.=C2=A0I was worried this =
-would hurt my Dutterboard so it would not be a problem for my Dutterboard a=
-nyway.<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Mon, Jun 20, 2022 at 5:06 PM Marcus D Leech &lt;<a href=3D"mai=
-lto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&=
-gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Those=
- LEDs are controlled by the FPGA not by the daughtercard. There=E2=80=99s n=
-o connection from the DAC to the TwinRx. <br>
-<br>
-Sent from my iPhone<br>
-<br>
-&gt; On Jun 19, 2022, at 9:44 PM, sp h &lt;<a href=3D"mailto:stackprogramer=
-@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a>&gt; wrote:<br>
-&gt; <br>
-&gt; =EF=BB=BF<br>
-&gt; I have a daughterboard TwinRX in RF B in x300. When I use UHD and set =
-the stream channel to 1 .....<br>
-&gt; as TwinRX daughterboard is the only receiver...but=C2=A0 Transmit mode=
- works and led red is on???!!!!!<br>
-&gt; It should not transmit with a TwinRX but the led TX/RX is red and it&#=
-39;s on...<br>
-&gt; Why transmit led for TwinRX should be on for TwinRX? I expect that a r=
-eturn an error?<br>
-&gt; Thanks in advance<br>
-&gt; <br>
-&gt; <br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body dir="auto">Can a BasicRF daughter card be used with an Ettus N210?<div>Thanks,</div><div>Larry K4LED&nbsp;<br><br><div dir="ltr"><div><span style="background-color: rgba(255, 255, 255, 0);">_______________________</span></div><div><a href="https://101science.com/Reference%20Links.pdf" style="caret-color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 0);"><font color="#000000">Click for K4LED Reference Links:</font></a></div></div></div></body></html>
+--Apple-Mail-7EB53286-EE11-4BAF-BB0C-E47035CC7F32--
 
---0000000000004f769a05e1e30c2c--
-
---===============6605980232124212490==
+--===============8598180412120049164==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -168,4 +114,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6605980232124212490==--
+--===============8598180412120049164==--
