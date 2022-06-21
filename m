@@ -2,158 +2,163 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80C6555269D
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Jun 2022 23:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 077E8552A5E
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jun 2022 06:50:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5A944383BAF
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Jun 2022 17:39:26 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 96C59383C2C
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Jun 2022 00:50:18 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1655761166; bh=PC1uCa8kJmE1dDpH9Y54eu2zyHTT/ZNTi05XpaalMXo=;
-	h=From:In-Reply-To:Date:References:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=XmE5yOIVl+slqvdtTUVju96URIcxxoS3pd8m5/ApV/wOvkHq/t9a8F6E7vEyxjCz3
-	 CVTA2+8WaCaSWOY4WaysAIyiXllTgdBSZHJJzDK3pZctbt5CgBG8zVbiRqRJ2VLgI9
-	 Ki+KSdNwpsE4/uETK0kjVWI5Ong0MB4mheZ6QLJ6mJbG+N/ggU5+yXOGETqPrZF7Uw
-	 FPBLubfKTTffpG3+KYrgNZwjGuRUkZpG/X3g8iBGL+iz9Fz0jdMRa6U2GZXw5Wjh53
-	 /2ZiCRaPlAPbD67sLxVXhfE0OnLZgvDxtfzUV1IWX0zUnH7O3yWSh4cQMnAxO4t52c
-	 E6kIIesaFLsPA==
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id BEB3D383BB8
-	for <usrp-users@lists.ettus.com>; Mon, 20 Jun 2022 17:38:21 -0400 (EDT)
+	t=1655787018; bh=s3qzJYcK4jv6YQ3sOxr9H2naMn4TEkgSMwj99yOA5Xc=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=y5665o/OQLwKeNoUUmBhUXVVwIglPooxEeNOSpnvM3XSbxWT9hncfp9x/sr4Vinzx
+	 72KrkBf4UJ2lD4kf5kkPDILpORbOYETFn3hHAGusxKWCJV/7XI5C8Yj1sDGBhCfDLr
+	 6HLQh/LVcTnrYQI9EoVdxMaREfkDy+6pObV5B3y1LnajgtJOJFsCz2KQvvLBoJ8mAR
+	 DlbWu5hwXIHdUN6o/VCAmuH3r2O3mSeu+HGVdarNMhVzlIUPoEADw3VDI5YGQ9CQzU
+	 AzO0hvNUtdLrlEok2cUJ1cmHjMZLeTD6Rhe2R3beTiVYHyxgtMNkoCckbYRISJPp+s
+	 2x7ZUr2+2YIxg==
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 927DC383B9C
+	for <usrp-users@lists.ettus.com>; Tue, 21 Jun 2022 00:49:13 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BNq8Y2f2";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ay1eqqhZ";
 	dkim-atps=neutral
-Received: by mail-qv1-f41.google.com with SMTP id p31so17726211qvp.5
-        for <usrp-users@lists.ettus.com>; Mon, 20 Jun 2022 14:38:21 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id w19-20020a17090a8a1300b001ec79064d8dso9246489pjn.2
+        for <usrp-users@lists.ettus.com>; Mon, 20 Jun 2022 21:49:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:subject:from:in-reply-to
-         :date:cc:message-id:references:to;
-        bh=L5Tp5aqsk4cK8sQTkD3RINgaU5a/qOk3beB/jTgHIl8=;
-        b=BNq8Y2f2PatZs6l4fTxDjYHLyry1R3XUAyuRCrSSnQYLD/zGdHiW7hwoOoVZD7OvFH
-         FHOMYIcG5wVZ6FXyTGw+3f5dgBmxb+GkGxY5y/8ho8942INvdnzMsOqZ971EEnTl9HeS
-         cXjKVCsq+MLiDCXu/AsH02akwsTNq3eKNpjBdP+W1QeFb7duQQRkijPS/OCDEr7S6M6R
-         jP0VsOPUFmsHL3PObJK7feA8P4o0/+cw9c0w1gUGSCvmiCDKFehYU3zWMRfMtYoZFFkd
-         RiKL5mzkZSwsWFStrWalwIxv+oLaw2WLwTOOwA0QZOXIbB0Lnf5ymz28g9LPAt61wtVJ
-         bZnw==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=AhDKXPHtW1GiS99AYEK5HxbuU6Ufw/hqW+/vJsUtZ08=;
+        b=ay1eqqhZ1MrM6TgxfGpxQoVwf9RTvUfgPPYtWfE+vcFts+aQUyCxtuUZeTTavPG0YK
+         HGnK6HEJGudfcpdxL8x3xFskfmzwZSPH13Mp/G/XMbxVsfgx8TR1PNgD/JKCbIcQiDuh
+         d1I/f9mmJkFSX0f7JLqpPFCubN8Rc4rLjSOGzXayiIBJsdnvLccbEFYHtL4Xw1B49afe
+         K89S4SNnovWzqvxZVKiB/TCaJkcsqqHY2OMGMPZYiq7Qr9p92LNKTZH4sa2dY5EbdZ6v
+         /IsqigVeGNyxD8ZygppUqn1Gg9CCxWhw4GC0kpelXXVTEymVq8XnPOW7Cp8QkTvfv+Oq
+         koeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:content-transfer-encoding:mime-version:subject
-         :from:in-reply-to:date:cc:message-id:references:to;
-        bh=L5Tp5aqsk4cK8sQTkD3RINgaU5a/qOk3beB/jTgHIl8=;
-        b=UqcRwTLVm16gS8it3Xdi6GZcQnLewHUb6e7pM362OFeIx5KMbzmEMkoa0138rsYMm+
-         OYWORAuydo8M2FbP3gDx/m3B00hJxFPHblEk2iknnRjwXJvO6oWfF7aOP7u/2HvxM8zu
-         Ah4nvCcpsyDR7tinvD/ghcAJuOA6jtwLvsti/Jef0K2BwnMybc9TU4am5vzaQM100jDb
-         K5vnshZiP6V0g2HsxihxGbHNaEBJC/9cCngrWzRnUDJ2+75UFmpaf16Po1JU1S3crkPx
-         5spFBfGg/Oj1OngaLRK2qh4BcIT0TI5K0ri2a0KlSC6YvGCE46YDRonlzo5vRO70lOVp
-         SNpA==
-X-Gm-Message-State: AJIora9jgd+s+XBTai0Cw1NAU0amqGBoOdJhRNWVU9Gt/4wR3LlP/b9S
-	J3CrDnEFTYNApGTBYtu70bbxK2v9BN4hng==
-X-Google-Smtp-Source: AGRyM1uEyowZQb4/e8UHJi2o78b984JF2w9f3UOs4Fg814dDBQVBrxEWPWYoyoaA7XBVGdVyhNohiQ==
-X-Received: by 2002:ad4:5d4d:0:b0:464:eed3:4e14 with SMTP id jk13-20020ad45d4d000000b00464eed34e14mr20464052qvb.112.1655761101016;
-        Mon, 20 Jun 2022 14:38:21 -0700 (PDT)
-Received: from smtpclient.apple ([69.85.98.46])
-        by smtp.gmail.com with ESMTPSA id u12-20020a05620a0c4c00b006a760640118sm12670268qki.27.2022.06.20.14.38.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jun 2022 14:38:19 -0700 (PDT)
-Mime-Version: 1.0 (1.0)
-From: Larry Dodd <101science@gmail.com>
-In-Reply-To: <15A05459-116A-4297-98E0-0E95D6DF3FAF@gmail.com>
-Date: Mon, 20 Jun 2022 17:38:18 -0400
-Message-Id: <5CAA83FB-0214-42CD-99B9-7F59D94F30CA@gmail.com>
-References: <15A05459-116A-4297-98E0-0E95D6DF3FAF@gmail.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-X-Mailer: iPhone Mail (19F77)
-Message-ID-Hash: MB6NGOUVAGKMATZHHHBH6SIBHM3CWIDK
-X-Message-ID-Hash: MB6NGOUVAGKMATZHHHBH6SIBHM3CWIDK
-X-MailFrom: 101science@gmail.com
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=AhDKXPHtW1GiS99AYEK5HxbuU6Ufw/hqW+/vJsUtZ08=;
+        b=KBxgIMsgQZftqJZaCJ77r/eE6S2WoOaiB4xa9lWHR19fxeTIemGmhOK3wxHOT/bOn9
+         Wnigv5OnjMonp0RC7kXLy7sF/YcQE3Mi1SfLILY31j3OZxbPxrF4zI0l/i2X5Jcm6/OR
+         XRbImXuLDyERzRFz0wXUPaZ30fH1o5Whf6wdBWLCCb8Q7Y1TNkn2nMoVP7dtL7YeHlVk
+         gMF31viECnjIYi0bUEmvhDKZqbv+ICGmrBBLlGUWsPUNTfQEwj3c95hNjd+AOwP0kdwB
+         FHiWw5cUnYwUVmmMJZ07dUf0WjvcHT43XCGzygBSamc6s9PAhLRfO25IuoeSwzXqhbBI
+         nolw==
+X-Gm-Message-State: AJIora+OJyLFuvQx41z2fbvQFOlVwiaGycaAM6jBz+dWo+W0IJGXAlAv
+	Eoria6F2INGifPyiBu0Usn08dR7YNg63W4XKbmCjz1Z2dHk=
+X-Google-Smtp-Source: AGRyM1t2Cfa1PtWywj8zIVyxV6YM4n8Qi5kPfBn2i5+3ud5CjKAKobgzjNA/uYPxoeTvGc8EDhRU4cHOPZLKJ4Fk92E=
+X-Received: by 2002:a17:903:11d2:b0:167:8a0f:8d33 with SMTP id
+ q18-20020a17090311d200b001678a0f8d33mr27303949plh.95.1655786952223; Mon, 20
+ Jun 2022 21:49:12 -0700 (PDT)
+MIME-Version: 1.0
+From: Stefan Orosco <oroscogold@gmail.com>
+Date: Mon, 20 Jun 2022 21:49:01 -0700
+Message-ID: <CAMCCzRYyoKsnuVW-yz_0XWq3sxNTQ0bxw9snoGsanrJmzdBMtg@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: QL6DIAGWX7FFEAKVJGVZCRRHS35ZLUR7
+X-Message-ID-Hash: QL6DIAGWX7FFEAKVJGVZCRRHS35ZLUR7
+X-MailFrom: oroscogold@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: BasicRF Daughter Card
+Subject: [USRP-users] Error when attempting to install dependencies for Ubuntu 20.04 "E: Unable to locate package python3-numpy-dbg"
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MB6NGOUVAGKMATZHHHBH6SIBHM3CWIDK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QL6DIAGWX7FFEAKVJGVZCRRHS35ZLUR7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2397589638279983555=="
+Content-Type: multipart/mixed; boundary="===============4848186253336437823=="
 
+--===============4848186253336437823==
+Content-Type: multipart/alternative; boundary="0000000000001c725905e1edf1f5"
 
---===============2397589638279983555==
-Content-Type: multipart/alternative; boundary=Apple-Mail-1D22606A-379E-46F8-AFFF-7CE6832D0896
-Content-Transfer-Encoding: 7bit
+--0000000000001c725905e1edf1f5
+Content-Type: text/plain; charset="UTF-8"
 
+Hi There,
 
---Apple-Mail-1D22606A-379E-46F8-AFFF-7CE6832D0896
-Content-Type: text/plain;
-	charset=utf-8
+I was following these instructions for Ubuntu 20.04:
+https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux
+
+Here is my version of Linux.
+Distributor ID: Ubuntu
+Description: Ubuntu 22.04 LTS
+Release: 22.04
+Codename: jammy
+
+Hardware: B210
+
+All other dependencies install correctly. Only error is the following:
+*E: Unable to locate package python3-numpy-dbg*
+
+I have searched for the package here: https://packages.ubuntu.com/
+and could not find it.
+
+Seems like this is a debug package, is it required for runtime? Thanks so
+much!
+
+Best,
+
+--0000000000001c725905e1edf1f5
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Marcus ,
-Great. Thanks.=20
-Larry K4LED=20
+<div dir=3D"ltr"><div class=3D"gmail-h7" role=3D"listitem" aria-expanded=3D=
+"true" tabindex=3D"-1"><div class=3D"gmail-Bk"><div class=3D"gmail-G3 gmail=
+-G2"><div><div id=3D"gmail-:pm"><div><div class=3D"gmail-adn gmail-ads"><di=
+v class=3D"gmail-gs"><div class=3D"gmail-"><div id=3D"gmail-:r0" class=3D"g=
+mail-ii gmail-gt"><div id=3D"gmail-:pp" class=3D"gmail-a3s gmail-aiL"><div =
+dir=3D"ltr"><div><font size=3D"2"><span style=3D"font-family:arial,sans-ser=
+if">Hi There,</span></font></div><div><font size=3D"2"><span style=3D"font-=
+family:arial,sans-serif"><br></span></font></div><div><font size=3D"2"><spa=
+n style=3D"font-family:arial,sans-serif">I was following these instructions=
+ for Ubuntu 20.04:</span></font></div><div><font size=3D"2"><span style=3D"=
+font-family:arial,sans-serif"><a href=3D"https://kb.ettus.com/Building_and_=
+Installing_the_USRP_Open-Source_Toolchain_(UHD_and_GNU_Radio)_on_Linux" tar=
+get=3D"_blank">https://kb.ettus.com/Building_and_Installing_the_USRP_Open-S=
+ource_Toolchain_(UHD_and_GNU_Radio)_on_Linux</a></span></font></div><div><f=
+ont size=3D"2"><span style=3D"font-family:arial,sans-serif"><br></span></fo=
+nt></div><div><font size=3D"2"><span style=3D"font-family:arial,sans-serif"=
+>Here is my version of Linux. </span></font><font size=3D"2"><span style=3D=
+"font-family:arial,sans-serif"><br></span></font></div><div><font size=3D"2=
+"><span style=3D"font-family:arial,sans-serif">Distributor ID:	Ubuntu</span=
+></font></div><font size=3D"2"><span style=3D"font-family:arial,sans-serif"=
+>Description:	Ubuntu 22.04 LTS<br>Release:	22.04<br></span></font><div><fon=
+t size=3D"2"><span style=3D"font-family:arial,sans-serif">Codename:	jammy</=
+span></font></div><div><font size=3D"2"><span style=3D"font-family:arial,sa=
+ns-serif"><br></span></font></div><div><font size=3D"2"><span style=3D"font=
+-family:arial,sans-serif">Hardware: B210<br></span></font></div><div><font =
+size=3D"2"><span style=3D"font-family:arial,sans-serif"><br></span></font><=
+/div><div><font size=3D"2"><span style=3D"font-family:arial,sans-serif">All=
+ other dependencies install correctly. Only error is the following:</span><=
+/font></div><div><font size=3D"2"><span style=3D"font-family:arial,sans-ser=
+if"><b>E: Unable to locate package python3-numpy-dbg</b><br></span></font><=
+/div><div><font size=3D"2"><span style=3D"font-family:arial,sans-serif"><br=
+></span></font></div><div><font size=3D"2"><span style=3D"font-family:arial=
+,sans-serif">I have searched for the package here: <a href=3D"https://packa=
+ges.ubuntu.com/" target=3D"_blank">https://packages.ubuntu.com/</a></span><=
+/font></div><div><font size=3D"2"><span style=3D"font-family:arial,sans-ser=
+if">and could not find it. <br></span></font></div><div><font size=3D"2"><s=
+pan style=3D"font-family:arial,sans-serif"><br></span></font></div><div><fo=
+nt size=3D"2"><span style=3D"font-family:arial,sans-serif">Seems like this =
+is a debug package, is it required for runtime? Thanks so much! <br></span>=
+</font></div><div><font size=3D"2"><span style=3D"font-family:arial,sans-se=
+rif"><br></span></font></div><div><font size=3D"2"><span style=3D"font-fami=
+ly:arial,sans-serif">Best,</span></font></div><div><font size=3D"2"><span s=
+tyle=3D"font-family:arial,sans-serif"><br></span></font></div></div><div cl=
+ass=3D"gmail-yj6qo"></div><div class=3D"gmail-adL">
+</div></div></div><div class=3D"gmail-hi"></div></div></div><div class=3D"g=
+mail-ajx"></div></div><div class=3D"gmail-gA gmail-gt gmail-acV"><div class=
+=3D"gmail-gB gmail-xu"><div class=3D"gmail-ip gmail-iq"><br></div></div></d=
+iv></div></div></div></div></div></div></div>
 
-_______________________
-Click for K4LED Reference Links:
+--0000000000001c725905e1edf1f5--
 
-> On Jun 20, 2022, at 4:37 PM, Marcus D Leech <patchvonbraun@gmail.com> wrot=
-e:
->=20
-> =EF=BB=BFYes.=20
->=20
-> Sent from my iPhone
->=20
->>> On Jun 20, 2022, at 3:24 PM, Larry Dodd <101science@gmail.com> wrote:
->>>=20
->> =EF=BB=BFCan a BasicRF daughter card be used with an Ettus N210?
->> Thanks,
->> Larry K4LED=20
->>=20
->> _______________________
->> Click for K4LED Reference Links:
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---Apple-Mail-1D22606A-379E-46F8-AFFF-7CE6832D0896
-Content-Type: text/html;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
-utf-8"></head><body dir=3D"auto">Marcus ,<div>Great. Thanks.&nbsp;</div><div=
->Larry K4LED&nbsp;<br><br><div dir=3D"ltr"><div><span style=3D"background-co=
-lor: rgba(255, 255, 255, 0);">_______________________</span></div><div><a hr=
-ef=3D"https://101science.com/Reference%20Links.pdf" style=3D"caret-color: rg=
-b(0, 0, 0); background-color: rgba(255, 255, 255, 0);"><font color=3D"#00000=
-0">Click for K4LED Reference Links:</font></a></div></div><div dir=3D"ltr"><=
-br><blockquote type=3D"cite">On Jun 20, 2022, at 4:37 PM, Marcus D Leech &lt=
-;patchvonbraun@gmail.com&gt; wrote:<br><br></blockquote></div><blockquote ty=
-pe=3D"cite"><div dir=3D"ltr">=EF=BB=BF<meta http-equiv=3D"content-type" cont=
-ent=3D"text/html; charset=3Dutf-8">Yes.&nbsp;<br><br><div dir=3D"ltr">Sent f=
-rom my iPhone</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Jun 20,=
- 2022, at 3:24 PM, Larry Dodd &lt;101science@gmail.com&gt; wrote:<br><br></b=
-lockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<meta ht=
-tp-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8">Can a Basic=
-RF daughter card be used with an Ettus N210?<div>Thanks,</div><div>Larry K4L=
-ED&nbsp;<br><br><div dir=3D"ltr"><div><span style=3D"background-color: rgba(=
-255, 255, 255, 0);">_______________________</span></div><div><a href=3D"http=
-s://101science.com/Reference%20Links.pdf" style=3D"caret-color: rgb(0, 0, 0)=
-; background-color: rgba(255, 255, 255, 0);"><font color=3D"#000000">Click f=
-or K4LED Reference Links:</font></a></div></div></div><span>________________=
-_______________________________</span><br><span>USRP-users mailing list -- u=
-srp-users@lists.ettus.com</span><br><span>To unsubscribe send an email to us=
-rp-users-leave@lists.ettus.com</span><br></div></blockquote></div></blockquo=
-te></div></body></html>=
-
---Apple-Mail-1D22606A-379E-46F8-AFFF-7CE6832D0896--
-
---===============2397589638279983555==
+--===============4848186253336437823==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -163,4 +168,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2397589638279983555==--
+--===============4848186253336437823==--
