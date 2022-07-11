@@ -2,308 +2,372 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59B9E570AE8
-	for <lists+usrp-users@lfdr.de>; Mon, 11 Jul 2022 21:47:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF4B570B83
+	for <lists+usrp-users@lfdr.de>; Mon, 11 Jul 2022 22:26:42 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A5EF5383A96
-	for <lists+usrp-users@lfdr.de>; Mon, 11 Jul 2022 15:47:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7D5483812BE
+	for <lists+usrp-users@lfdr.de>; Mon, 11 Jul 2022 16:26:41 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1657568839; bh=DUqIPUJJuD1DOLp4yCT7UDhiR+5gi9tLNJVE39xQC1k=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	t=1657571201; bh=GdwhNSG35yxWnPe5lh2sM3neI4Y7ahRa8I0pB1wqLXA=;
+	h=From:Date:References:In-Reply-To:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=HrS3/TMK4IjSwWYAnIjr+luYoVHDKPKeWbs5ba/Q0ZAsNfwi44cVKOoJvV01VUwNP
-	 gsHeVwVN+YegD3s33GjB50Wmw+XQOVuw+MyRvKnnDOD58tca0lk7KQM7MNKaRjylDa
-	 n4BtamLg1TLDZmsOFGFH8xlD0WAURtrciLOL9B0vKwN8Gmn7eN53yAEqU8EK1mTkax
-	 1Zj3jc/tEz0AXzhY8WvK8jghndmL7p+b/7VNKXUd4EyNnIP3naH+0wxufcTo8Q26Li
-	 j8AmkVvxa3Z4JEQKHcm/X+94/+xXdBUIaFsN7IfYKxpw82A1OpvL6iDs5dqXj4Obbh
-	 Ji9VuCvxmU7iQ==
-Received: from JPN01-OS0-obe.outbound.protection.outlook.com (mail-os0jpn01olkn2083.outbound.protection.outlook.com [40.92.98.83])
-	by mm2.emwd.com (Postfix) with ESMTPS id 14F5738392E
-	for <USRP-users@lists.ettus.com>; Mon, 11 Jul 2022 15:44:58 -0400 (EDT)
+	b=fNm7ZuellILV8ihI7YK/Nlx0V4ANwxyyj2dN6/+ZAa8MthH9Log+r3CMsQo0UFoaC
+	 84ItqsWj7CgIB0dk2ntZe07DQk4PQYckjMiTEhuFMyzmct+huRcPtkH7b553g5HwMt
+	 OBPXcetM4BpxXTCWqCJQCJElkzG1THA8gRPCslUUTVlj7DOb5FKZ3F8iB7OM1gT6aQ
+	 riBjQbgZy/SbZkn2HbSxguRnCHMjwRUcOwV3fCVXSwELcHgy3riaNYmXY3jZekSmab
+	 JcuXsKdqtXD2V/bBsgapdzKyX4e4FEneus40BrXcvV/gvVFZl3bJ+G36T+HW6PAvCd
+	 nvna8sjrTEa0g==
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 92486380E9A
+	for <USRP-users@lists.ettus.com>; Mon, 11 Jul 2022 16:23:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=outlook.com header.i=@outlook.com header.b="cbCOlUtZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hNd1bYwP";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R24musERkFs/6/7sgL1ewr7iBVAPB8fFgCQSuwlt/VRNnC56yDVpjmLd4z3syt8alj1OqZ6uaYw2uU+KSwF4VDTgAsuOfDbf94njF7yNU8kSrluJ/oBIpZDWm4bofclfNcIhy28ytOBK3/pcRIupEnGJPH5Ccr2th3Qnmnz/EZbbbDmOPAxyuigr2KtoNDDxyvSqOZCHP2JpGtZpfbGqyFI3knPIg95N6O3DZeDXs/MCoD7Gd4wUpXeMtUmw9t3uVWFdD6yDltFDcgxWhzzOZ6cPQKx0zcc7gMopMy2q83HzE6X2kIYMrwcPN1mpbWMafrIoloQLZj0wmQUAoXG6og==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KAsrFgfOkPTgYi4JCh5SjmRhGODijB329WdyiG2u0lA=;
- b=M0O7Wq0+nDW4snJutGJrcUUTv8C6m7N0eW7iYEhxtcwDGCgA+sQoovKim2r4ZFEENtJ8rj8WJb7aT8q7fkbD4DHGisNsrDRFaQ0MStG06G8l/ESb2wz5wES0kWJw7dNxtvaAvjtrIBaYeCF/ITxSDVrnKkvN2npK4uPJCxjqeMP8xvew+ZEVdkkklCVQ2sPBa2WUNFLMlOLXScUD0tsgsZVCHTAndsdedCu5CHIr4D2HzNBuszi5x8U6hqxKkNgaZR7PXMseRjyr7eC38lqPw2xeYQuRPcmUB9EASNwCnN6QXeyB54NUb6acI56SnCNF8LvuRGtijZlNdEh70FRfgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KAsrFgfOkPTgYi4JCh5SjmRhGODijB329WdyiG2u0lA=;
- b=cbCOlUtZgzX22N4bqSpUQj/a0AUn82vFpiOEWXdKImBTUsLlQPFPNtQrRW0VQ3XiWRQKTptI16nNFvc0OzKWcKy+t1RYBJrXZBA+LWOTAprYojSVjJEvkuIKaACns+AcwPPGV00RdvH0giJyQMRuNZ/6fuAd5KOqUOcI/Wehpe0YaK+e1GZNC1JTdWCcJNjjMIcEh90YgST9j92B2zAO+5PhMPkNW509uISerNBpc2qPG8E0m6rqDb2J1vVHzlAam9WHwzYjOAoONG+1YLjBWEQdFuiyW4osPTb2Nlv4XQTeJ7ZShL0Q1Qys2w/gtA5pehFnsccYURgzLZUak92tSA==
-Received: from TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:9c::5) by
- TYCP286MB0766.JPNP286.PROD.OUTLOOK.COM (2603:1096:400:78::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5417.15; Mon, 11 Jul 2022 19:44:55 +0000
-Received: from TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM
- ([fe80::3d46:b088:968d:3333]) by TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM
- ([fe80::3d46:b088:968d:3333%9]) with mapi id 15.20.5417.026; Mon, 11 Jul 2022
- 19:44:55 +0000
-From: pro jason <jason_proj@outlook.com>
-To: Marcus D Leech <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] RuntimeError: fx3 is in state 5
-Thread-Index: AQHYfbdWBVDQmiQon0O82rzH/iMhtK1KioSAgC8v7jWAAAMeAIAAAeXP
-Date: Mon, 11 Jul 2022 19:44:55 +0000
-Message-ID: 
- <TYCP286MB099141AF47E0F2810A1C279BFD879@TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM>
-References: 
- <TYCP286MB0991EFFAC0D4E288F4EA3C97FD879@TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM>
- <A5177C84-C60A-4614-A9F3-C71ED7A49489@gmail.com>
-In-Reply-To: <A5177C84-C60A-4614-A9F3-C71ED7A49489@gmail.com>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-suggested_attachment_session_id: 6e210988-92f6-695a-8bef-a982d0571f48
-x-tmn: [+Wrd67MojZ3V1IJJDChM3lVSA+XzkOHY]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 79cc1e89-afd0-46f8-b2d0-08da6375d4a2
-x-ms-traffictypediagnostic: TYCP286MB0766:EE_
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- HVeqk/xaXiIy9ljYANwtkv56zLDVJTY5odi5oZQJOcF+KzNul1kM5TS4dyaRIvIRBIR8yuyMLSI3hZIGAc1MheuGOzWwBzqL4zCXInT5Ce16a50YtV5LGIbRBDgbxDzY9dS4ScPu2oZzQ+eg8LPyDdcJG9/uERbvfm+pMNQtKL57v4fBGsFl5y6zoxRXrCeNsNKCM4y4k3HDsWR2i2D2ie6LDEiWIFP7s1hcKMgWfSmuuOxFK81IIrrB+JQxgvwghkjNzMX5H+67Uv4I3c+UmCDkwtyr+1E2NT2qxXEY6Y2diY6si8VjxM6vfBeb4rYSDM+PwB2ZYpS6l2ZOoZcRz1NUR6F03o4QDNy0EOx/+BC3rNu9YAidtFhHLzMna32M/tfDQf8qReZKPV+C4qVmllJbGbg9iwdRUJBRiIS519A57ZkFkpIUNspPiq4qx6va063K7O3+sF2C4tfzmbssld317O3eVWcEaqZFbTFrjuf+mdWUCyCBzeJT0scVipod/HdLF/0tLeJRcFwl1wyQozfiBsGF6ceFilpq6/UDt7AXvFc4wUhdjG16kI41X635S/E/Xozs68xau97I+0UsgIrSUdmtIFM9JB9a95gV9dYY+ouRNpluYsjy4hyrSLKeKnPC5HblE9M5rE0VSDq1tbnTXo3THoawDyqgbGdWVLvzbcVSpZUZThzupmxodq8dQc3jdKlFxkr7wUWJo5LJtcArBnP3+j3+CKV5Bm5EkS0=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?K2gycGFSYUV4WEpwK0ZiSnJFNk83R20yZCszYVRRMlhhMkFrNmJ0NU9kbk5I?=
- =?utf-8?B?eTZpNmw1bytvMU5MYUYrUGM5R0VLQkljcEtCV2lTYjcrMXdQY0lwcFBqbnMz?=
- =?utf-8?B?WkRRbWJ6aklXV0p0YnZLbTNFWndmc01VVjc4S0NtR1c4dHorN0c4WldmV2tz?=
- =?utf-8?B?N2xhOUg0L29uUEV4S3BDOUQ5SjZUVEZJNnpiR0dKYjZTOEkvejU4Zm5MVDV6?=
- =?utf-8?B?N28rdTFEc0Z1eGhXSXhCN2RaVHJaKzRBSVYvNHVHWlFVUm5BdXNwQlhoK3Vk?=
- =?utf-8?B?dmk0Mzc1cEFiUGNHM3BRT1FLUVFNSnZZcDY4UGVpQ0NOblpoMk9FekdXNWM1?=
- =?utf-8?B?Q0NNR3ZMdnYzWUV0REVkSDVnaUtjY29ZR2d0MGVwUGRhWFk2Qzd2eUpTNVla?=
- =?utf-8?B?NlZPck5uUzVhaGRvSk9MQzNtWGFGekpmQmliOXVlK1dENXVUOUZyMjF5Q281?=
- =?utf-8?B?d25Ga1d3L0pVeWpOQWNWQkN3NDFjWVhqVHBRVXZ2ZVNNVlJWRzBYNUkxMTNC?=
- =?utf-8?B?UlFJMmpxcmUvb1pVT1lQT3dVOHNqaEFYbUp4N2dzS1J2dStjaVJTODg3d3B1?=
- =?utf-8?B?aUVJUXpFMjBmTEZNU0o4ZkN0QmM4OGdlTmc4YXhGZGpiSWlyTEVDclo2bXhh?=
- =?utf-8?B?UlpvZFl0dnEvM1pPUXovSXZ5SUR2RkhGUWdVTGtjMTZSc3BmYmR0TUttS2lB?=
- =?utf-8?B?dmtRRGxidlY4eVRtbDVPSnRKQnlOM014dEllMjVDa0dzcHRSVGFvb0phNkFJ?=
- =?utf-8?B?WDFNSW5pM0pqSXFjaGN6K1hoaUl1SzBFVHFuVW5JOHc3Z1JseE9hclc2TC9q?=
- =?utf-8?B?bXdNeWJLRUk0UDVvb1N5N2RHellpREQrSDVGMTU3RmZ4RElsZXM1by9FYmpx?=
- =?utf-8?B?UFdNcFlVOWhNTFZzUndjR0xsRVc5NWw5WXg1QmVZY2p1WlU3Zlg4U2tOMXJk?=
- =?utf-8?B?WWxrUHRSMG5jNHJoaU12S1VjaVNTeitnRms1bzJlOHBTZFhCT1ZSQms4TTNR?=
- =?utf-8?B?QkRkZVdqcXZFeno2UW0xenRUUlkzaW5wdFdRVzZPeHppM0dyUElvOG83cllp?=
- =?utf-8?B?RGJ4d0hSTm1tY1NkZjNlMy9vaDMxMTdVSmYwNjV5WFdmdmN3L0ljeVVEWVdi?=
- =?utf-8?B?OVdaT0x1UkRwRDgrZ2Z4TVhsNkNmWktKdTNGOTFKVTk1SEplRGJEWGpoMlRy?=
- =?utf-8?B?MTVQU2tyNFhxUWhTVjNSODZZcVNHYmRLMVVQc1E4bnZ1MktiUTFmbkdXbTJC?=
- =?utf-8?B?RHJjcy9rSXBWaFVCWHIyQSt5anI4U1hCRWZjN0N0OFVBSHAyOWorNkJPWjZo?=
- =?utf-8?B?VWFpY1VXWHlZRHhqbEc0bEVCNG40U3lyaGlXRVpDT25YNng5NUVSYm9tMGRP?=
- =?utf-8?B?WGVROUNob2UvZzJlV1gvc25FVmJWb2xXR0NVamFPd1BQbkhjclFTM0Q4SGc2?=
- =?utf-8?B?TzlLblNoT0Q3ZFoxd1BrZTVDQ1VYOGpmSjhxS1Q5K0hJL2ZxVGdOVXNGdHRW?=
- =?utf-8?B?L0VCWjBDQnByRkdIbk4rTy9oNGhJcFJXZ1pwdUxUNTNrUmxMVnpnL3JHQ1VW?=
- =?utf-8?B?U0dnK2x5UWVOU3hqRWUwTm9pbVV1elluNUJVa0tkTThoZm1oVXU4RTV3UWpL?=
- =?utf-8?B?RS9jUHpwcjNqVFV4K2NiblBRNmtOUGN4ZGNZSGFZdzJLTm91VW9ZOGZkUFVG?=
- =?utf-8?Q?LhJ/I+h42K5iXxPaqBZ1?=
-MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79cc1e89-afd0-46f8-b2d0-08da6375d4a2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jul 2022 19:44:55.5476
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCP286MB0766
-Message-ID-Hash: H7JNDBZMQRYSCXQPAQLV6M7KLUYVNVUU
-X-Message-ID-Hash: H7JNDBZMQRYSCXQPAQLV6M7KLUYVNVUU
-X-MailFrom: jason_proj@outlook.com
+Received: by mail-qt1-f171.google.com with SMTP id i21so6665928qtw.12
+        for <USRP-users@lists.ettus.com>; Mon, 11 Jul 2022 13:23:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:from:mime-version:subject:date:message-id
+         :references:cc:in-reply-to:to;
+        bh=iVju4FxCskKncgKkT5SMBbgla97dB1LTrTy+pj8QrSA=;
+        b=hNd1bYwPTn3YoBnUEItxNIzFikcrBO9Sf2o8cNoQ+iyTGMGUmHioEwzmpLZ4tEV2K0
+         88E96a4aW83GXhXK/jMYEjFQhgAfWu2Nksf0taFCOjLTiJB4kRDlpBgh7VryOK91ocQS
+         GgmEq8gN3u/vHA6uiDWK8XNZRYLrX8GX4yjZw7hZGXYysH43AoFgTMuYKNiqxkl42i93
+         5einC2zFg6OD3ymoX9QFa5B0eylWbSkD0oielK4VOxgE7gISweXKlcU8JtRDOOD/ncVu
+         berxJWumNjHHae+OBJqJySsRb6isfVTGo+Ioopf3QA3j10TLW5stu0NQyOPIe6dCGH20
+         NAYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:content-transfer-encoding:from:mime-version
+         :subject:date:message-id:references:cc:in-reply-to:to;
+        bh=iVju4FxCskKncgKkT5SMBbgla97dB1LTrTy+pj8QrSA=;
+        b=v1orFJyT3C/H6La8hBq8xA6w+GPNx1a7MA+fsX5DVnNGSWZ0T0ly97BJd8WSQ5FTOI
+         RsBDlQS1vp1ANl7WSOhRCcpsLg0YVi0VVuIHlgLfChCZUWPTuzRiChAswXPjtleSkW+C
+         dMY5F6Gb1AP5SGSupPtxDcRyvrwZqtzPOayxe79WnsouBgNXMv8dkWCnwc7dbiaIei4Q
+         j2uog1miytP6yvwobpkAps9QulDrnVQ1qlmgGfZFqq3ooXVtFZvnnDNqO8olqJk5gPV6
+         GEmcuwahcCvhGVjWBsaDUeKrumpDcGUE4FTLs/Nr/FtM0tinpLHd4DJxLQStnN2DITAi
+         LHJQ==
+X-Gm-Message-State: AJIora8lcT2w1d5mG5bd1L1K5Tcj1qVjKEyfvHmj7cKDEPDxUMyhvamv
+	Ci2MxEEspiByubE/E7Fs0HVJyUE6Djo=
+X-Google-Smtp-Source: AGRyM1stWzwcJQbhDMt1ki1f5j7QoYbb7R8IbEGvdraLUfzom/+6pB5FckvHQm1zbIfFO7YAAc1sTQ==
+X-Received: by 2002:a05:622a:1014:b0:319:7601:c22 with SMTP id d20-20020a05622a101400b0031976010c22mr15227337qte.509.1657571031943;
+        Mon, 11 Jul 2022 13:23:51 -0700 (PDT)
+Received: from smtpclient.apple (bras-base-smflon1825w-grc-19-76-68-79-178.dsl.bell.ca. [76.68.79.178])
+        by smtp.gmail.com with ESMTPSA id bs16-20020a05620a471000b006af34a1a897sm7368520qkb.65.2022.07.11.13.23.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Jul 2022 13:23:51 -0700 (PDT)
+From: Marcus D Leech <patchvonbraun@gmail.com>
+Mime-Version: 1.0 (1.0)
+Date: Mon, 11 Jul 2022 16:23:50 -0400
+Message-Id: <06B6154B-295E-4BF1-82F9-9C8CD17D46B7@gmail.com>
+References: <TYCP286MB099141AF47E0F2810A1C279BFD879@TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM>
+In-Reply-To: <TYCP286MB099141AF47E0F2810A1C279BFD879@TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM>
+To: pro jason <jason_proj@outlook.com>
+X-Mailer: iPhone Mail (19F77)
+Message-ID-Hash: A2AGP6RZRDNZOBHVLNYTT7X3OZ2JOUON
+X-Message-ID-Hash: A2AGP6RZRDNZOBHVLNYTT7X3OZ2JOUON
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
+CC: USRP-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: RuntimeError: fx3 is in state 5
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EFOG7O3FOPN7FPQ5C6XIN5ZUKPRNZPT2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A2AGP6RZRDNZOBHVLNYTT7X3OZ2JOUON/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2454381769277515646=="
+Content-Type: multipart/mixed; boundary="===============2540683500220163759=="
 
---===============2454381769277515646==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_TYCP286MB099141AF47E0F2810A1C279BFD879TYCP286MB0991JPNP_"
 
---_000_TYCP286MB099141AF47E0F2810A1C279BFD879TYCP286MB0991JPNP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--===============2540683500220163759==
+Content-Type: multipart/alternative; boundary=Apple-Mail-8D88E1EF-056E-486A-8474-CBE89B3DAE5A
+Content-Transfer-Encoding: 7bit
 
-SGkgTWFyY3VzLA0KDQpUaGlzIGJvYXJkIHdhcyBib3VnaHQgYSB5ZWFyIGFnbywgc28gaXQgaXMg
-b3V0IG9mIHdhcnJhbnR5Lg0KSXMgdGhlIEZQR0EgY2hpcCBicm9rZW4/DQoNCkJlc3QgcmVnYXJk
-cywNCkphc29uDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogTWFyY3Vz
-IEQgTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KU2VudDogVHVlc2RheSwgSnVseSAx
-MiwgMjAyMiAzOjI5IEFNDQpUbzogcHJvIGphc29uIDxqYXNvbl9wcm9qQG91dGxvb2suY29tPg0K
-Q2M6IFVTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIDxVU1JQLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bT4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gUnVudGltZUVycm9yOiBmeDMgaXMgaW4gc3Rh
-dGUgNQ0KDQpVbmZvcnR1bmF0ZWx5IHRoaXMgbGlrZWx5DQpNZWFucyB5b3UgaGF2ZSBicm9rZW4g
-aGFyZHdhcmUuDQoNCklmIGl0IHdhcyBQdXJjaGFzZWQgbGVzcyB0aGFuIG9uZSB5ZWFyIGFnbywg
-c2VuZCBhIG5vdGUgdG8gc3VwcG9ydEBldHR1cy5jb20gZm9yIHdhcnJhbnR5IHN1cHBvcnQuDQoN
-ClNlbnQgZnJvbSBteSBpUGhvbmUNCg0KT24gSnVsIDExLCAyMDIyLCBhdCAzOjI2IFBNLCBwcm8g
-amFzb24gPGphc29uX3Byb2pAb3V0bG9vay5jb20+IHdyb3RlOg0KDQrvu78NCkhpIE1hcmN1cywN
-Cg0KVGhhbmsgeW91IGZvciB5b3VyIHJlcGx5Lg0KVGhlIGltYWdlIGZpbGUgd2UgdXNlIGlzIGEg
-c3RhbmRhcmQgaW1hZ2UgZmlsZSBmcm9tIEV0dHVzIFJlc2VhcmNoLCB3aGljaCBoYXMgbm90IGJl
-ZW4gbW9kaWZpZWQuDQpXZSBoYXZlIHNldmVyYWwgcGNzIG9mIEIyMDBtaW5pLWksIGFuZCBvbmx5
-IG9uZSBkZXZpY2UgcmVwb3J0cyB0aGlzIGVycm9yLg0KDQpCZXN0IHJlZ2FyZHMsDQpKYXNvbg0K
-DQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCkZyb206IE1hcmN1cyBELiBM
-ZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBTdW5kYXksIEp1bmUgMTIsIDIw
-MjIgMjo0MiBBTQ0KVG86IHBybyBqYXNvbiA8amFzb25fcHJvakBvdXRsb29rLmNvbT4NClN1Ympl
-Y3Q6IFJlOiBbVVNSUC11c2Vyc10gUnVudGltZUVycm9yOiBmeDMgaXMgaW4gc3RhdGUgNQ0KDQpP
-biAyMDIyLTA2LTExIDEzOjI0LCBwcm8gamFzb24gd3JvdGU6DQpIaSBhbGwsDQoNCk9uZSBvZiBv
-dXIgYjIwMG1pbmktaSBpcyBub3Qgd29ya2luZyBwcm9wZXJseS4gVGhlIGZhdWx0cyBhcmUgYXMg
-Zm9sbG93czoNCg0KdWhkX3VzcnBfcHJvYmUNCltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2
-ZXJzaW9uIDcuNS4wOyBCb29zdF8xMDY1MDE7IFVIRF80LjIuMC5IRUFELTAtZzQ2YTcwZDg1DQpb
-SU5GT10gW0IyMDBdIExvYWRpbmcgZmlybXdhcmUgaW1hZ2U6IC91c3IvbG9jYWwvc2hhcmUvdWhk
-L2ltYWdlcy91c3JwX2IyMDBfZncuaGV4Li4uDQpbSU5GT10gW0IyMDBdIERldGVjdGVkIERldmlj
-ZTogQjIwMG1pbmkNCltJTkZPXSBbQjIwMF0gTG9hZGluZyBGUEdBIGltYWdlOiAvdXNyL2xvY2Fs
-L3NoYXJlL3VoZC9pbWFnZXMvdXNycF9iMjAwbWluaV9mcGdhLmJpbi4uLg0KRXJyb3I6IFJ1bnRp
-bWVFcnJvcjogZngzIGlzIGluIHN0YXRlIDUNCg0KV2UgdHJpZWQgdG8gcmVwbGFjZSB0aGUgY29t
-cHV0ZXIgb3IgVVNCIGNhYmxlLCBidXQgdGhlIGZhdWx0IHN0aWxsIGV4aXN0cy4gSXMgdGhlcmUg
-YSBzb2x1dGlvbj8gSWYgdGhlIGhhcmR3YXJlIGlzIGRhbWFnZWQsIHdoaWNoIGNoaXAgaXMgbGlr
-ZWx5IHRvIGZhaWw/DQoNCkJlc3QgcmVnYXJkcywNCkphc29uDQoNCg0KDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNSUC11c2VycyBtYWlsaW5nIGxp
-c3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
-ZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
-b20+DQoNCg0KTWFrZSBzdXJlIHlvdXIgRlBHQSBpbWFnZSBpcyBjb3JyZWN0LS1pcyBpdCB0aGUg
-c2FtZSBhcyBvbiBvdGhlciB3b3JraW5nIHN5c3RlbXM/DQoNClRoYXQgZXJyb3IgbWVzc2FnZSBp
-bmRpY2F0ZXMgdGhhdCB0aGUgRlgzIGNoaXAgKFVTQiBpbnRlcmZhY2UpIHdhcyB1bmFibGUgdG8g
-bG9hZCB0aGUgRlBHQSBpbWFnZS0tZWl0aGVyIGJlY2F1c2UNCiAgdGhlIEZQR0EgaXNuJ3QgcmVz
-cG9uZGluZyBjb3JyZWN0bHksIG9yIHRoZXJlJ3Mgc29tZXRoaW5nIHdyb25nIHdpdGggdGhlIGlt
-YWdlLg0KDQoNCg==
 
---_000_TYCP286MB099141AF47E0F2810A1C279BFD879TYCP286MB0991JPNP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail-8D88E1EF-056E-486A-8474-CBE89B3DAE5A
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiPg0KSGkgTWFyY3VzLDwv
-ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2Es
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiIGNsYXNz
-PSJlbGVtZW50VG9Qcm9vZiI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5
-OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7
-IGNvbG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRvUHJvb2YiPg0KVGhpcyBib2Fy
-ZCZuYnNwO3dhcyBib3VnaHQgYSB5ZWFyIGFnbywgc28gaXQgaXMgb3V0IG9mIHdhcnJhbnR5Ljwv
-ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGlicmksIEFyaWFsLCBIZWx2ZXRpY2Es
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiIGNsYXNz
-PSJlbGVtZW50VG9Qcm9vZiI+DQpJcyB0aGUgRlBHQSBjaGlwIGJyb2tlbj88L2Rpdj4NCjxkaXYg
-c3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlm
-OyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IiBjbGFzcz0iZWxlbWVudFRv
-UHJvb2YiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQ2FsaWJyaSwg
-QXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdi
-KDAsIDAsIDApOyIgY2xhc3M9ImVsZW1lbnRUb1Byb29mIj4NCkJlc3QgcmVnYXJkcyw8YnI+DQpK
-YXNvbjxicj4NCjwvZGl2Pg0KPGRpdiBpZD0iYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHls
-ZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7d2lkdGg6OTglIiB0YWJpbmRleD0iLTEiPg0KPGRpdiBp
-ZD0iZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPjxmb250IGZhY2U9IkNhbGlicmksIHNhbnMtc2Vy
-aWYiIHN0eWxlPSJmb250LXNpemU6MTFwdCIgY29sb3I9IiMwMDAwMDAiPjxiPkZyb206PC9iPiBN
-YXJjdXMgRCBMZWVjaCAmbHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+U2Vu
-dDo8L2I+IFR1ZXNkYXksIEp1bHkgMTIsIDIwMjIgMzoyOSBBTTxicj4NCjxiPlRvOjwvYj4gcHJv
-IGphc29uICZsdDtqYXNvbl9wcm9qQG91dGxvb2suY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gVVNS
-UC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O1VTUlAtdXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0
-Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFJ1bnRpbWVFcnJvcjogZngz
-IGlzIGluIHN0YXRlIDU8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGRp
-cj0iYXV0byI+VW5mb3J0dW5hdGVseSB0aGlzIGxpa2VseQ0KPGRpdj5NZWFucyB5b3UgaGF2ZSBi
-cm9rZW4gaGFyZHdhcmUuJm5ic3A7PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5JZiBp
-dCB3YXMgUHVyY2hhc2VkIGxlc3MgdGhhbiBvbmUgeWVhciBhZ28sIHNlbmQgYSBub3RlIHRvIHN1
-cHBvcnRAZXR0dXMuY29tIGZvciB3YXJyYW50eSBzdXBwb3J0LiZuYnNwOzxicj4NCjxicj4NCjxk
-aXYgZGlyPSJsdHIiPlNlbnQgZnJvbSBteSBpUGhvbmU8L2Rpdj4NCjxkaXYgZGlyPSJsdHIiPjxi
-cj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPk9uIEp1bCAxMSwgMjAyMiwgYXQgMzoyNiBQTSwg
-cHJvIGphc29uICZsdDtqYXNvbl9wcm9qQG91dGxvb2suY29tJmd0OyB3cm90ZTo8YnI+DQo8YnI+
-DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPGRpdiBk
-aXI9Imx0ciI+77u/DQo8ZGl2IGNsYXNzPSJ4X2VsZW1lbnRUb1Byb29mIiBzdHlsZT0iZm9udC1m
-YW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7
-IGNvbG9yOnJnYigwLDAsMCkiPg0KSGkgTWFyY3VzLDwvZGl2Pg0KPGRpdiBjbGFzcz0ieF9lbGVt
-ZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2
-Pg0KPGRpdiBjbGFzcz0ieF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGli
-cmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2Io
-MCwwLDApIj4NClRoYW5rIHlvdSBmb3IgeW91ciByZXBseS48L2Rpdj4NCjxkaXYgY2xhc3M9Inhf
-ZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGlj
-YSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpUaGUgaW1h
-Z2UgZmlsZSB3ZSB1c2UgaXMgYSBzdGFuZGFyZCBpbWFnZSBmaWxlIGZyb20gRXR0dXMgUmVzZWFy
-Y2gsIHdoaWNoIGhhcyBub3QgYmVlbiBtb2RpZmllZC4mbmJzcDs8L2Rpdj4NCjxkaXYgY2xhc3M9
-InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpXZSBo
-YXZlIHNldmVyYWwgcGNzIG9mIEIyMDBtaW5pLWksIGFuZCBvbmx5IG9uZSBkZXZpY2UgcmVwb3J0
-cyB0aGlzIGVycm9yLiZuYnNwOw0KPGRpdj48YnI+DQo8L2Rpdj4NCkJlc3QgcmVnYXJkcyw8L2Rp
-dj4NCjxkaXYgY2xhc3M9InhfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxp
-YnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdi
-KDAsMCwwKSI+DQpKYXNvbjxicj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8YnI+DQo8L2Rpdj4NCjxk
-aXYgaWQ9InhfYXBwZW5kb25zZW5kIj48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNh
-bGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpy
-Z2IoMCwwLDApIj4NCjxicj4NCjwvZGl2Pg0KPGhyIHRhYmluZGV4PSItMSIgc3R5bGU9ImRpc3Bs
-YXk6aW5saW5lLWJsb2NrOyB3aWR0aDo5OCUiPg0KPGRpdiBpZD0ieF9kaXZScGx5RndkTXNnIiBk
-aXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAi
-IHN0eWxlPSJmb250LXNpemU6MTFwdCI+PGI+RnJvbTo8L2I+IE1hcmN1cyBELiBMZWVjaCAmbHQ7
-cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFN1bmRheSwgSnVu
-ZSAxMiwgMjAyMiAyOjQyIEFNPGJyPg0KPGI+VG86PC9iPiBwcm8gamFzb24gJmx0O2phc29uX3By
-b2pAb3V0bG9vay5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10g
-UnVudGltZUVycm9yOiBmeDMgaXMgaW4gc3RhdGUgNTwvZm9udD4NCjxkaXY+Jm5ic3A7PC9kaXY+
-DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2IGNsYXNzPSJ4X3hfbW96LWNpdGUtcHJlZml4Ij5PbiAyMDIy
-LTA2LTExIDEzOjI0LCBwcm8gamFzb24gd3JvdGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSB0
-eXBlPSJjaXRlIj4NCjxkaXYgY2xhc3M9InhfeF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQt
-ZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0
-OyBjb2xvcjpyZ2IoMCwwLDApIj4NCkhpIGFsbCw8L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9lbGVt
-ZW50VG9Qcm9vZiIgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNh
-bnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2
-Pg0KPGRpdiBjbGFzcz0ieF94X2VsZW1lbnRUb1Byb29mIHhfZWxlbWVudFRvUHJvb2YiIHN0eWxl
-PSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
-emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpPbmUgb2Ygb3VyIGIyMDBtaW5pLWkgaXMgbm90
-IHdvcmtpbmcgcHJvcGVybHkuIFRoZSBmYXVsdHMgYXJlIGFzIGZvbGxvd3M6PC9kaXY+DQo8ZGl2
-IGNsYXNzPSJ4X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFy
-aWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCww
-KSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9InhfeF9lbGVtZW50VG9Qcm9vZiIgc3R5bGU9
-ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6
-ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCnVoZF91c3JwX3Byb2JlDQo8ZGl2PltJTkZPXSBb
-VUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDcuNS4wOyBCb29zdF8xMDY1MDE7IFVIRF80LjIu
-MC5IRUFELTAtZzQ2YTcwZDg1PC9kaXY+DQo8ZGl2PltJTkZPXSBbQjIwMF0gTG9hZGluZyBmaXJt
-d2FyZSBpbWFnZTogL3Vzci9sb2NhbC9zaGFyZS91aGQvaW1hZ2VzL3VzcnBfYjIwMF9mdy5oZXgu
-Li48L2Rpdj4NCjxkaXY+W0lORk9dIFtCMjAwXSBEZXRlY3RlZCBEZXZpY2U6IEIyMDBtaW5pPGJy
-Pg0KPC9kaXY+DQo8ZGl2PltJTkZPXSBbQjIwMF0gTG9hZGluZyBGUEdBIGltYWdlOiAvdXNyL2xv
-Y2FsL3NoYXJlL3VoZC9pbWFnZXMvdXNycF9iMjAwbWluaV9mcGdhLmJpbi4uLjwvZGl2Pg0KPGRp
-dj5FcnJvcjogUnVudGltZUVycm9yOiBmeDMgaXMgaW4gc3RhdGUgNTwvZGl2Pg0KPGJyPg0KPC9k
-aXY+DQo8ZGl2IGNsYXNzPSJ4X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpD
-YWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6
-cmdiKDAsMCwwKSI+DQpXZSB0cmllZCB0byByZXBsYWNlIHRoZSBjb21wdXRlciBvciBVU0IgY2Fi
-bGUsIGJ1dCB0aGUgZmF1bHQgc3RpbGwgZXhpc3RzLiBJcyB0aGVyZSBhIHNvbHV0aW9uPyBJZiB0
-aGUgaGFyZHdhcmUgaXMgZGFtYWdlZCwgd2hpY2ggY2hpcCBpcyBsaWtlbHkgdG8gZmFpbD8NCjxk
-aXY+PGJyPg0KPC9kaXY+DQpCZXN0IHJlZ2FyZHMsPGJyPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSJ4
-X3hfZWxlbWVudFRvUHJvb2YiIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZl
-dGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQpKYXNv
-bjwvZGl2Pg0KPGJyPg0KPGZpZWxkc2V0IGNsYXNzPSJ4X3hfbW96LW1pbWUtYXR0YWNobWVudC1o
-ZWFkZXIiPjwvZmllbGRzZXQ+DQo8cHJlIGNsYXNzPSJ4X3hfbW96LXF1b3RlLXByZSI+X19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIg
-Y2xhc3M9InhfeF9tb3otdHh0LWxpbmstYWJicmV2aWF0ZWQiPnVzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tPC9hPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWls
-dG86dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iIGNsYXNzPSJ4X3hfbW96LXR4dC1s
-aW5rLWFiYnJldmlhdGVkIj51c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT4NCjwv
-cHJlPg0KPC9ibG9ja3F1b3RlPg0KTWFrZSBzdXJlIHlvdXIgRlBHQSBpbWFnZSBpcyBjb3JyZWN0
-LS1pcyBpdCB0aGUgc2FtZSBhcyBvbiBvdGhlciB3b3JraW5nIHN5c3RlbXM/PGJyPg0KPGJyPg0K
-VGhhdCBlcnJvciBtZXNzYWdlIGluZGljYXRlcyB0aGF0IHRoZSBGWDMgY2hpcCAoVVNCIGludGVy
-ZmFjZSkgd2FzIHVuYWJsZSB0byBsb2FkIHRoZSBGUEdBIGltYWdlLS1laXRoZXIgYmVjYXVzZTxi
-cj4NCiZuYnNwOyB0aGUgRlBHQSBpc24ndCByZXNwb25kaW5nIGNvcnJlY3RseSwgb3IgdGhlcmUn
-cyBzb21ldGhpbmcgd3Jvbmcgd2l0aCB0aGUgaW1hZ2UuPGJyPg0KPGJyPg0KPGJyPg0KPC9kaXY+
-DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+
-DQo=
+Hard to tell exactly. Interface between FX3 and FPGA could be the culprit. FX=
+3 could be the culprit or the FPGA.=20
 
---_000_TYCP286MB099141AF47E0F2810A1C279BFD879TYCP286MB0991JPNP_--
+Sent from my iPhone
 
---===============2454381769277515646==
+> On Jul 11, 2022, at 3:44 PM, pro jason <jason_proj@outlook.com> wrote:
+>=20
+> =EF=BB=BF
+> Hi Marcus,
+>=20
+> This board was bought a year ago, so it is out of warranty.
+> Is the FPGA chip broken?
+>=20
+> Best regards,
+> Jason
+> From: Marcus D Leech <patchvonbraun@gmail.com>
+> Sent: Tuesday, July 12, 2022 3:29 AM
+> To: pro jason <jason_proj@outlook.com>
+> Cc: USRP-users@lists.ettus.com <USRP-users@lists.ettus.com>
+> Subject: Re: [USRP-users] RuntimeError: fx3 is in state 5
+> =20
+> Unfortunately this likely
+> Means you have broken hardware.=20
+>=20
+> If it was Purchased less than one year ago, send a note to support@ettus.c=
+om for warranty support.=20
+>=20
+> Sent from my iPhone
+>=20
+>>> On Jul 11, 2022, at 3:26 PM, pro jason <jason_proj@outlook.com> wrote:
+>>>=20
+>> =EF=BB=BF
+>> Hi Marcus,
+>>=20
+>> Thank you for your reply.
+>> The image file we use is a standard image file from Ettus Research, which=
+ has not been modified.=20
+>> We have several pcs of B200mini-i, and only one device reports this error=
+.=20
+>>=20
+>> Best regards,
+>> Jason
+>>=20
+>>=20
+>>=20
+>> From: Marcus D. Leech <patchvonbraun@gmail.com>
+>> Sent: Sunday, June 12, 2022 2:42 AM
+>> To: pro jason <jason_proj@outlook.com>
+>> Subject: Re: [USRP-users] RuntimeError: fx3 is in state 5
+>> =20
+>>> On 2022-06-11 13:24, pro jason wrote:
+>>> Hi all,
+>>>=20
+>>> One of our b200mini-i is not working properly. The faults are as follows=
+:
+>>>=20
+>>> uhd_usrp_probe
+>>> [INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.2.0.HEAD-=
+0-g46a70d85
+>>> [INFO] [B200] Loading firmware image: /usr/local/share/uhd/images/usrp_b=
+200_fw.hex...
+>>> [INFO] [B200] Detected Device: B200mini
+>>> [INFO] [B200] Loading FPGA image: /usr/local/share/uhd/images/usrp_b200m=
+ini_fpga.bin...
+>>> Error: RuntimeError: fx3 is in state 5
+>>>=20
+>>> We tried to replace the computer or USB cable, but the fault still exist=
+s. Is there a solution? If the hardware is damaged, which chip is likely to f=
+ail?
+>>>=20
+>>> Best regards,
+>>> Jason
+>>>=20
+>>>=20
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> Make sure your FPGA image is correct--is it the same as on other working s=
+ystems?
+>>=20
+>> That error message indicates that the FX3 chip (USB interface) was unable=
+ to load the FPGA image--either because
+>>   the FPGA isn't responding correctly, or there's something wrong with th=
+e image.
+>>=20
+>>=20
+
+--Apple-Mail-8D88E1EF-056E-486A-8474-CBE89B3DAE5A
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Hard to tell exactly. Interface between FX3=
+ and FPGA could be the culprit. FX3 could be the culprit or the FPGA.&nbsp;<=
+br><br><div dir=3D"ltr">Sent from my iPhone</div><div dir=3D"ltr"><br><block=
+quote type=3D"cite">On Jul 11, 2022, at 3:44 PM, pro jason &lt;jason_proj@ou=
+tlook.com&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><di=
+v dir=3D"ltr">=EF=BB=BF
+
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8">
+
+
+
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Hi Marcus,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+This board&nbsp;was bought a year ago, so it is out of warranty.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Is the FPGA chip broken?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size:=
+ 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Best regards,<br>
+Jason<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" sty=
+le=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Marcus D Leech &lt;patc=
+hvonbraun@gmail.com&gt;<br>
+<b>Sent:</b> Tuesday, July 12, 2022 3:29 AM<br>
+<b>To:</b> pro jason &lt;jason_proj@outlook.com&gt;<br>
+<b>Cc:</b> USRP-users@lists.ettus.com &lt;USRP-users@lists.ettus.com&gt;<br>=
+
+<b>Subject:</b> Re: [USRP-users] RuntimeError: fx3 is in state 5</font>
+<div>&nbsp;</div>
+</div>
+<div dir=3D"auto">Unfortunately this likely
+<div>Means you have broken hardware.&nbsp;</div>
+<div><br>
+</div>
+<div>If it was Purchased less than one year ago, send a note to support@ettu=
+s.com for warranty support.&nbsp;<br>
+<br>
+<div dir=3D"ltr">Sent from my iPhone</div>
+<div dir=3D"ltr"><br>
+<blockquote type=3D"cite">On Jul 11, 2022, at 3:26 PM, pro jason &lt;jason_p=
+roj@outlook.com&gt; wrote:<br>
+<br>
+</blockquote>
+</div>
+<blockquote type=3D"cite">
+<div dir=3D"ltr">=EF=BB=BF
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetica=
+,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Hi Marcus,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetica=
+,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetica=
+,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Thank you for your reply.</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetica=
+,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+The image file we use is a standard image file from Ettus Research, which ha=
+s not been modified.&nbsp;</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetica=
+,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+We have several pcs of B200mini-i, and only one device reports this error.&n=
+bsp;
+<div><br>
+</div>
+Best regards,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetica=
+,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Jason<br>
+<div><br>
+</div>
+<br>
+</div>
+<div id=3D"x_appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt=
+; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" c=
+olor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Marcus D. Leech &lt;p=
+atchvonbraun@gmail.com&gt;<br>
+<b>Sent:</b> Sunday, June 12, 2022 2:42 AM<br>
+<b>To:</b> pro jason &lt;jason_proj@outlook.com&gt;<br>
+<b>Subject:</b> Re: [USRP-users] RuntimeError: fx3 is in state 5</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div class=3D"x_x_moz-cite-prefix">On 2022-06-11 13:24, pro jason wrote:<br>=
+
+</div>
+<blockquote type=3D"cite">
+<div class=3D"x_x_elementToProof" style=3D"font-family:Calibri,Arial,Helveti=
+ca,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Hi all,</div>
+<div class=3D"x_x_elementToProof" style=3D"font-family:Calibri,Arial,Helveti=
+ca,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_x_elementToProof x_elementToProof" style=3D"font-family:Cali=
+bri,Arial,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+One of our b200mini-i is not working properly. The faults are as follows:</d=
+iv>
+<div class=3D"x_x_elementToProof" style=3D"font-family:Calibri,Arial,Helveti=
+ca,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_x_elementToProof" style=3D"font-family:Calibri,Arial,Helveti=
+ca,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+uhd_usrp_probe
+<div>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.2.0.HEAD=
+-0-g46a70d85</div>
+<div>[INFO] [B200] Loading firmware image: /usr/local/share/uhd/images/usrp_=
+b200_fw.hex...</div>
+<div>[INFO] [B200] Detected Device: B200mini<br>
+</div>
+<div>[INFO] [B200] Loading FPGA image: /usr/local/share/uhd/images/usrp_b200=
+mini_fpga.bin...</div>
+<div>Error: RuntimeError: fx3 is in state 5</div>
+<br>
+</div>
+<div class=3D"x_x_elementToProof" style=3D"font-family:Calibri,Arial,Helveti=
+ca,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+We tried to replace the computer or USB cable, but the fault still exists. I=
+s there a solution? If the hardware is damaged, which chip is likely to fail=
+?
+<div><br>
+</div>
+Best regards,<br>
+</div>
+<div class=3D"x_x_elementToProof" style=3D"font-family:Calibri,Arial,Helveti=
+ca,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Jason</div>
+<br>
+<fieldset class=3D"x_x_moz-mime-attachment-header"></fieldset>
+<pre class=3D"x_x_moz-quote-pre">___________________________________________=
+____
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" cla=
+ss=3D"x_x_moz-txt-link-abbreviated">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.ett=
+us.com" class=3D"x_x_moz-txt-link-abbreviated">usrp-users-leave@lists.ettus.=
+com</a>
+</pre>
+</blockquote>
+Make sure your FPGA image is correct--is it the same as on other working sys=
+tems?<br>
+<br>
+That error message indicates that the FX3 chip (USB interface) was unable to=
+ load the FPGA image--either because<br>
+&nbsp; the FPGA isn't responding correctly, or there's something wrong with t=
+he image.<br>
+<br>
+<br>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+
+
+</div></blockquote></body></html>=
+
+--Apple-Mail-8D88E1EF-056E-486A-8474-CBE89B3DAE5A--
+
+--===============2540683500220163759==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -313,4 +377,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2454381769277515646==--
+--===============2540683500220163759==--
