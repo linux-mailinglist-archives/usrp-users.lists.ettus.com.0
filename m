@@ -2,125 +2,126 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F28885715E3
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Jul 2022 11:39:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B54571825
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Jul 2022 13:12:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 68DD33837AC
-	for <lists+usrp-users@lfdr.de>; Tue, 12 Jul 2022 05:39:23 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5B49B383B97
+	for <lists+usrp-users@lfdr.de>; Tue, 12 Jul 2022 07:11:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1657618763; bh=987sAQ/6P2SQLbZwOx7epfX7egQEBh8DfXxFgHzUSAU=;
+	t=1657624319; bh=CSJ30aecYALPaZNYzkP7e8jBCk3AcU8do4w27tsXsDM=;
 	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=Qzs3K1el6q3KsSYR8jBC2ZfX8l9RBt5KAmcG0B1Nq1nrXMvb0pivI529xQHT/KPjg
-	 Fgzm8VaJRs0UbxuqFLk4Waqq3+ToGmcyuajoipArdvN3MM8c9bu5ATNaW2T2qrko7X
-	 gTYB+BRO9cYsVD4NR23FXHf/MC8XrPL7vfybDLcID1APWZJ+we4BwZzPTyAe+piMrV
-	 dm3xt/ne0Y0ZRQDw63MJnhGPuw4gG3N2xYyTcAa2530lXa+N27D433eeGcKRdtmFbh
-	 rwmKXqlJFWx4zAr6qwPFWKdH/HOCRczWjTL2Gt30D2SndH/Berfj3oETkqzl12yXv8
-	 zBMWPBfnW05zA==
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80117.outbound.protection.outlook.com [40.107.8.117])
-	by mm2.emwd.com (Postfix) with ESMTPS id E2535383683
-	for <usrp-users@lists.ettus.com>; Tue, 12 Jul 2022 05:38:12 -0400 (EDT)
+	b=XY57zgi+kGPaSTVh1GIJnYYoLNLOeDdnFCO42ha6rLeciA9YkKawF10PL2rePpg62
+	 rUMc8b3EugQWm8Q9CD/bSad4vpMvWXxQvxzk9Vmf0hhoXTe3KRQ/hUQyKNL5oHL7yD
+	 30EC//RneGKI4aA90U0Z5ocHF6/B9IQwWSAJHDVQzWZQF83gbFbFpijy9N/r85+s0i
+	 353gXgtrzoU31eNE7BMgCACQzWexi6DPPFGFUHB9QVUyvpty+4lts1nN+Y+xueMtqJ
+	 Z1sg+y3bkCZK6O68skn6yTRrvCuBnV8Dr7HwXNxtnT0ksZRU9YmptPv1AouI5D3amk
+	 tueb5QlQlN6cQ==
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150113.outbound.protection.outlook.com [40.107.15.113])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0F0D0383A2B
+	for <usrp-users@lists.ettus.com>; Tue, 12 Jul 2022 07:09:57 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="p9K5QS4I";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="Bqg8SpqJ";
 	dkim-atps=neutral
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y/UvKwqBELtyWutdJCJQ4CMvak4KoT1tZpM5Ry+RpcAMhdhDfuGv91110rSxdZQHy77CQ2reBTbdnoJUITzTkmBFORha+c8FmOY1eyve9rMXl3HsEY1gu0Hl40N9S2SompEPmurw3RsMFZcGQBcF1BmMXWTHClarBPlyyUl92OwWwW+6X77HfZAWps72gnmVh1zBf96YFJh+ggzfDrK5SYX/BIcu4jwarG2ATq0wUPaDHIMG6AEHPedn2w+5Jlvi9i1MgDUN7x/DPomlpScmFESEQsApr7d0DVXASPyxEg+2++92tzSzbNTqDbL/jK9kcJ/DOrGCZ/tj5mi3e/y2AQ==
+ b=FH6IhAFZG1WnytJX3fLjwr1dDURmL+ilW9W7mKB5ud/dZh0iwaP34Mkx7RnyicuaUOBvb3LNWc+M7ITg4pMAgwPmr0XG/iOQtrOEPlSZiQoeUCij2hHuNzuRPVSe27Sr1YzzMoF9NZg+n7OV3mNJhvoBSUXdlQuaiEe6x/sCzvP+iiZhnw9GezYcmhxQiRy63urZMTsz2oPSbrEYHZ2MAD/LbjurGlI/bN9xmkfVfDoNygZ0G21yl+tg1qbQUtWY3PyLmjhkzpnmPq62LYNDo9LBPW/masHGBjpnPHYfb383/dHubFt6hW/7QkAYhNSFa5ADw9es9pxNhDy5nHmBgw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tVu4ORL2o89DBxYoRsOGRAr5Um0fnRN70sOx+DyIAxU=;
- b=I2bi+Ejff+4Y434A8n8kxaE5STVH6op026mO43y9asN+r/5TkiqnGXU2TdSwYj6o6qt8LMetVuRApxG6V5fv26Zx84nYVgm36JI2i3mCYzm2wUHYYANyPxp7H5nKRiyv8Zv+jQWKQDZGHaZD8y31HTw4ozT6NMPnz9vrSXBIBfMSa6pwtV1M5Miy2/P6QJt8YmIgOV6ta8XFncd2qJs83fRIPX0ReZfo/iCCrQJsiY8/so2eNedhqQEX7/3s2Ku3ZlQ0lPOd+PZPzdPk/ip9ULhnMDbPiBO74w6bEqGOdEmH5JYV5SgmI2V7iJUKfEv+Q6h5nbI9wCu/IjaFYSWQGw==
+ bh=lh5ie4998jnvaXvYru/fu2r0yFGjP9UoRFQbGB7bygg=;
+ b=mAmNcVtSJpQ0hTR2CIwMQiYDaVbZSEiqEcBUehbzd3UMQjhuOkmBnU0CzYoh9BU3UR6GfHX3ZfgLA0dbR/ImK7kfy7akBcZnmSyF1p4CRa/ANGTJwlynAG0FkNe2zFRam3J3KlkJp1zuVge32jW+5IcpwWNl6IWvYN9OtZ+6H3Q7mB+1fr/NB/ayof0xzEgKmyd3y5Or1p9FFGt8n+hdKzBvMyGyC9fF70+cqXQtAZusVVusFPcn96q8KNxt7ACJoyr9/YYoaKzOfmshsLa/0uxTc4FYKGhM1F8GchoDWnBSNxsBjoUbS2pK0zVq2giE5W/SDTwEAyrjeCmFY1MzlA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
  header.d=ulb.be; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tVu4ORL2o89DBxYoRsOGRAr5Um0fnRN70sOx+DyIAxU=;
- b=p9K5QS4IICS0z0VNC+CXVpsZfEvOUy33f8e7+W5UsEx5G1ZHaptqJKj7KKZL9fm7CqChfG3MENpZtEsDHmFuXMF9IrutQzJ8AI9FrwSIKo3j9FLXXjO9M1925WUy+TwkozPzpH045sTKGKDwrH0b9vb2iSVlbktTHagXtz0JuKA=
+ bh=lh5ie4998jnvaXvYru/fu2r0yFGjP9UoRFQbGB7bygg=;
+ b=Bqg8SpqJfSQo6RqwGrARKD0l7MJDEpOEli3p9iMHcI3DLPGko1NXc4OAs/4laZN1jIYcPzlSA24AjYF0DKS8AVBu29P8OoayeGc+N5jS8TeSMNQyK5VpnZWm4Fr5hzIF/2na+iOo2uMn8McKd+5geonmagUiO4nzCz9CSfM3Hh8=
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=ulb.be;
 Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
- VI1P190MB0685.EURP190.PROD.OUTLOOK.COM (2603:10a6:800:127::20) with Microsoft
+ AM9P190MB1252.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:262::13) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5417.16; Tue, 12 Jul 2022 09:38:10 +0000
+ 15.20.5417.15; Tue, 12 Jul 2022 11:09:56 +0000
 Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
  ([fe80::960:5271:b057:b4a8]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
  ([fe80::960:5271:b057:b4a8%9]) with mapi id 15.20.5417.026; Tue, 12 Jul 2022
- 09:38:10 +0000
-Date: Tue, 12 Jul 2022 11:38:08 +0200
+ 11:09:56 +0000
+Date: Tue, 12 Jul 2022 13:09:54 +0200
 To: usrp-users@lists.ettus.com
-Message-ID: <20220712093808.dog33qimva7ipyjo@barbe>
+Message-ID: <20220712110954.kuctc2ohvpec3bau@barbe>
 Mail-Followup-To: usrp-users@lists.ettus.com
-References: <m5FQ7PJuZCFN5wwWxMDd8xvXsySCyh5kHX53asf2A@lists.ettus.com>
+References: <TYCP286MB0991EFFAC0D4E288F4EA3C97FD879@TYCP286MB0991.JPNP286.PROD.OUTLOOK.COM>
+ <A5177C84-C60A-4614-A9F3-C71ED7A49489@gmail.com>
 Content-Disposition: inline
-In-Reply-To: <m5FQ7PJuZCFN5wwWxMDd8xvXsySCyh5kHX53asf2A@lists.ettus.com>
-X-ClientProxiedBy: PR3P250CA0028.EURP250.PROD.OUTLOOK.COM
- (2603:10a6:102:57::33) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+In-Reply-To: <A5177C84-C60A-4614-A9F3-C71ED7A49489@gmail.com>
+X-ClientProxiedBy: FR0P281CA0069.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:49::22) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
  (2603:10a6:150:6e::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6aea8d76-a1ce-443e-ab7b-08da63ea3bb7
-X-MS-TrafficTypeDiagnostic: VI1P190MB0685:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8563620b-36cd-4526-bdd8-08da63f70d70
+X-MS-TrafficTypeDiagnostic: AM9P190MB1252:EE_
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	uFE8uJpzOI2yoGBWiDI2HTtSCFbNGC/iQEDzlq+XItJP4IrBu3KRmvuI8tLsWZY6HVBvWGy/2C2tWhISsMbVpNSw7ipiKw3sP3BhDc/c931VjgTOyQy2+Z+Kv+JvHLuC5vaw0cQOG5FKTsGgjiFE4ClTFyLDQ4HZpqkTSFiw+/DZ95/F94ZZe8r9hPyKPkQP2CDSOk4volFJ8kHtbswRGqGbIEJ8LHyvZx3TLg0evj1LNWdz8pOE7Xu292MVm/I8MnD8SuNT+XWx8HMKUTOIylzu64Mxq1CBeeNR9bzSjRR8nmpc4ZjYbxQx4q3pP1aWrhAy4fSMTz3S2VhaOfh/Lzi5UCmUzaL2ACVcaW2XWCFqBLtLXUm4nQdsXs6JUHlJJ0U1mRjgS3SstUl50Fo18fVvX49Spc3FEU5/gROE+TfutVBP1LcWDqCwsMHoXn0EbuRjH9K7+HooIvNDhL1MkTqTQ40NUdTz6/eBMY3aNF/PP92/v8rHaqg2fdBS2QWIamuMquu6BGfKe4cd8R/BXZGv3tf8IEa5qn2sDwZQEwU5c6qR5PvAhSs09//QA/VUaYYKt8+QXJNRRrah3zgpqQGhuxETOW6I/1RDbxr58eCHNmmeHXyoBPi56ZkZeZXjTEgVfsWmDr7OnOItoQ6OZc/psmNodVRdHUqV59RrR89vRBxSSlgMvAFJXjZiqOKFHnsaOWsZqBxpK/Ju84Kdb/eVTuN8CtHgAL7+Q/Ph9rAaKF+kEwyRYk7o5Wv63kRs3rcpAdgsRNUqHfOyP7NxeBPgZW/UOID3lXAicy5dvcuam49QnggKtTPMl+C5PZLuK6aVs2rtxvqAjJ83sHohxg==
+	PsXnvBCUaWBkrhq5p+MVrPNqf5ED5Z/slVylUJ+8FDPSK2Fu/GH92oNarR/lTf70eJD9WoBGvjZe6lLL/bnKA6LV+oc/iSSVcfxHXxmxDiiZUpEBVes+gjmXjpSHHGZIT+FNVVGWviBtUsLe1OQvM6ZugnAHtAKU9FqGcjqOSY19OsTFOJJe8UBiRNajjFSypofhGBk2MZx5EsAbIqYc1e5AtWdZVx6nYHp/j7kRGOSQ5kUCl+VYpmdPbxgKhsEIWnk3HXraXb4/oz/Mx+KbXsXCJsDGbf8QLkqh+usYmcS8AgM/g4Y1uLo47XNaqYl4z98CUijGZKreR88qOktUweflHb0tfzvoWb6+Vdlo0vqH2y8VcnkfF+7z8r8uzhGKSdR2jL2aBKwknepEvozRzVemL4IexxdUHJDn8ypuz1FINcTNL/9XmB2jHlyAbv2266on5+no89oUPYAcLoy8z40ogLN8+JOgb7EI/SPb/wWBWkplcVSP8Ncaz8S/Uu1VGbG8z89GB7EXanbAXe5+ivBUAUbtL5dBw8Tt1j6Z58U5qu9ctqSWozy2D8qejY6Bl8g/DlWrYU9XQ62EeUD1maCnhKIP9HVnzkLtPkKi9fwjrcmgLio/v8ogaqnw/oxdbHfhjtFU66xR0nQsbLe2bIKJduuTtriCSm9yaz8dZc30dolioyOX2J7tNR1wmN7JNAzgB/Omkvkcz0c4hoIFT8JKUvgFhotWHgU7mEdDCi73TNWgfFHzWL25JOZEh5vq1DXKp2THOkkAk0X4JpW212f84PCHw563IpD3VWOEUpE=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(7916004)(376002)(136003)(396003)(366004)(346002)(39860400002)(6512007)(38100700002)(9686003)(6506007)(33716001)(52116002)(86362001)(5660300002)(8936002)(41300700001)(2906002)(53546011)(41320700001)(6916009)(8676002)(966005)(66946007)(6486002)(66556008)(66476007)(1076003)(316002)(478600001)(3480700007)(186003)(786003)(83380400001)(414714003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(7916004)(39860400002)(376002)(136003)(346002)(396003)(366004)(38100700002)(186003)(33716001)(786003)(83380400001)(5660300002)(66556008)(316002)(6916009)(66946007)(66476007)(8676002)(4744005)(966005)(86362001)(6512007)(53546011)(9686003)(478600001)(8936002)(41300700001)(6486002)(41320700001)(1076003)(52116002)(6506007)(2906002);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?iso-8859-1?Q?wFFYn/qtkjPGPRM6muziqc+Gg2TfNFE5BB0yubyP8rOOlMJN0inhEVCslA?=
- =?iso-8859-1?Q?BzAAEW8KAKlJZ+GeBPBRZfwhfpnamSutZ+fWfyXiKM+YhCttvAqQfGlNw4?=
- =?iso-8859-1?Q?25U/sKnUZSfAiD5s5/NPqGDaye7tHS29DDNEJUCke8Y19QNerkB6v2rmtT?=
- =?iso-8859-1?Q?4FljQl/hqL5O9bdlP4RHvB4Zao2g8IhmOgOr+dMVzVr9LajwdhcnQypQVP?=
- =?iso-8859-1?Q?JCZYHXSy4TvcxKw91tKnrUvgB2YZkCqi1WOh66x6h7YmPQukGMy+YQwfPJ?=
- =?iso-8859-1?Q?XyBS4JJADq7IiWlJMbQKSyU7ym5yaHkuxiCOqQLV3cqzb8uOHqwDDYSdfm?=
- =?iso-8859-1?Q?0Pzsycl+NxPQPPYloeuZ7sSxdQ2VGgn9V8L5cR+lZ4z3MKHQZzzw9Wf2lj?=
- =?iso-8859-1?Q?uI93+OCW0oIejzuNZrlVHKVJ9fFsHmbqFQ/WRuzjzybbZaL56EcAMF+W4H?=
- =?iso-8859-1?Q?qQeuSh5Cz2dCFyExa4GlQoRRp2qelEVN2jj6zMDp3nEFffqnmIwx6UODyy?=
- =?iso-8859-1?Q?0f7OizgJE0Vz/z8FigDNl6OJ+Q3ar5Apnv5La/05QC9NCZEXopiMMtGOyS?=
- =?iso-8859-1?Q?iM1+VVM5KGPlbR1a+JmhPScKYT1PDr4u7T0m1uayGRp3H51mJnrJlW4OgM?=
- =?iso-8859-1?Q?xl7aCUKvE09WKz0FS+gNnQXeS/xo2w1H72TUCQHM0FZW8cSoHb1HH1PG7C?=
- =?iso-8859-1?Q?bL+xA5oMSaNNmDJ8Wyt3fbyLNYB9vMkJfMKO4hJzk55FxGk5XbSoERTIlT?=
- =?iso-8859-1?Q?ggm7VtVboZseB6lr6CkINKl2pA2NweqXA6GKuWxhTCUO9tmcT8Mcf0YIo7?=
- =?iso-8859-1?Q?kaPnCUi8SOij2O+7mluVhIIFXJYqL+lG1BJa8eV007Q09fy4sDxZbZOoAn?=
- =?iso-8859-1?Q?7km4PKz850+OFkc7r1cWYgqhOcsi3kFIkQAFImG1Fy+c2VL+izw1JGS0ur?=
- =?iso-8859-1?Q?pmKzU/+akK/loBGZtIe9O8A1JLq3g66/guIIjEeMXCkHDRCTifouwK0ZOb?=
- =?iso-8859-1?Q?cG/ja8qtLostc7wbOb3c30N6WwfhrQST5wWDlZ5nozXJrjureL/BNlDP+Q?=
- =?iso-8859-1?Q?WvU6HgW05/kS92HozFpCkt4dJ5ic7ffM+HlNN44HTqeH4H4Y919MaR+YuX?=
- =?iso-8859-1?Q?qi0opP157irtsrzzOuNmOdprWXXxW7ROavuwbs+EHhGyxINYtHsEzJo/Fs?=
- =?iso-8859-1?Q?E9kQbAwVc44fwzMYOHfxWpr8bQg9c4l0ZQF647DSi2L6zkITu0AagjmUUe?=
- =?iso-8859-1?Q?rTGkd0vEi/OOs0ODirLjb8E5kQb1uZGFe2BOWf32CIDcmllnepKtKnKxuF?=
- =?iso-8859-1?Q?oMEJQ5RcxS0y1Nk9iYTm1xwVyTxVDH9JkADarNOBez2SUeOTXHNC27PEnO?=
- =?iso-8859-1?Q?5r8AruD9TpKx+p19IXrJuJ7c27Hw89bcTPTZhzqFEvgUiXIw/fEgWEu8Q4?=
- =?iso-8859-1?Q?Od9MW+gmeUYADC5GxbPexivDy+r2GNEt38A1kupztpaJiPqYVi60t6Mstt?=
- =?iso-8859-1?Q?eu4JPOofUzvsN/S4x2q5QqZnHiLlrl7cja8mt2gooTO0Q6NzXula+rGhej?=
- =?iso-8859-1?Q?evDoN0sizj49LIyxGRgDIEzZbfKh7fqGYhRa3JO1xF+lGZlDzSKoArILt5?=
- =?iso-8859-1?Q?KYt1ac4K7mWb6jw4zhSmyUMxQVQYW6Axo729yrYdy3bQFLnsr8cDqp8vJl?=
- =?iso-8859-1?Q?GDulW4KqdY3/kkq2cIO9/0nxdZ8e6feNJ+xFt1aUjzN0/SPvsfx1Ks0bb1?=
- =?iso-8859-1?Q?bGrg=3D=3D?=
+	=?iso-8859-1?Q?wxbLaDXlFjvstQSkQ8IeiQA7+ypXKXXCDAVMTSFtSujuwf+pk8O/VFuO5o?=
+ =?iso-8859-1?Q?eS9x7lL/PRtIN3aQWhZRtBS1WXL8Hm6rNXI2ZWl07GxfIrBPHEWBOg8o6i?=
+ =?iso-8859-1?Q?adfY/3YxLbQuHZeI5ZKR1pZvm+lNiAeA6HvaSEvRLpI3I1oKyZ7dI8pSka?=
+ =?iso-8859-1?Q?dkV2D6SWDu6w+/8xo+DlbJR0IRMb8IOhgwza1QLt2F3B44iGx6F05IB43j?=
+ =?iso-8859-1?Q?RvAOqEkZyr1l7bUuYcOcjmU9cpibHBXx/YTUhfiylCFIrjxGW643Abv+ES?=
+ =?iso-8859-1?Q?Haqy5rUntMmEJW58OVI7+MecYfKY32M0veKFWl5U8MdrQ+hqis+ZmpK7j4?=
+ =?iso-8859-1?Q?Yg08UiP+ELM0Zy+LmM0SiFqaXQ+NuNGSIPL//3yuWuzZ25woQj/Q/i/6ab?=
+ =?iso-8859-1?Q?0+IpAJ+/rTkT8ff3jBwTzPhy61/C98Di6Anx0pEYS0kqv3LxudnCGZcCF2?=
+ =?iso-8859-1?Q?TdiOpGOGiOhOfnjMBjiwBdAMR2u0ImWUzCBSqsYcZABWGxeeiiLS4/Pz/e?=
+ =?iso-8859-1?Q?f7ajNUgEHdpgakZ1TlK/vHXLfTuDkktE7s1iz+II/OgA1Ru28zISR1r/bi?=
+ =?iso-8859-1?Q?Q6N5EN+pLIAnJXQA7Eaiqz79dnBNdX10i2bZovA7r87+YZQgij0CxAj4UW?=
+ =?iso-8859-1?Q?SAZN0bf6xyK3quOAlBgVoM3l85RxQz/CNPVIZpPou2m+A/CIOvaKATCfEp?=
+ =?iso-8859-1?Q?+ToL5Ku3cqXV4X8rhiCJagPjGvDARHB6l2Ws3HkMyMykZX3B+sZh2S2RXP?=
+ =?iso-8859-1?Q?t1CpoN4xZGeu7LCGgIF8e7w93S8vSyrOTu2UBB6mALj9149gOC+cXCJF6m?=
+ =?iso-8859-1?Q?xHY7cVQ08HA/QPl5Fc9mZC2aZ0HiZxP8jP/k/h+GyyRHX1llAEfpxi0SWo?=
+ =?iso-8859-1?Q?SBfu02sFmLHteK+iOVS7EjlS9PP7XNM5/Zu3eNjhj6XJHa8YOe4ewrYbub?=
+ =?iso-8859-1?Q?HoWdLH1alp1meqzLa9Ug7SkE6liwvC/ERhn9RkFuWGveAYchtmIwixM9y6?=
+ =?iso-8859-1?Q?KemkmKQxTedjxDvWyqMIpMnJ9qheN48ytXhYZFOZ+h0qrx1c7HhnHW9jQJ?=
+ =?iso-8859-1?Q?n0L9XFig5V2D7o6RhAtlw1jQr4/c+4EEq/MW1II/IZKmKkJrg4/DxG5kck?=
+ =?iso-8859-1?Q?oqNvFV//gsMoYM/D7nFif4rnUfy9OWnHNIDSLXgxo4PxfS90eQGBv8qrMa?=
+ =?iso-8859-1?Q?ZEmvJzRhSYIhoI8Yk//Z/d2UmbPBuxzWJll5RJ7fSb+g/o1s9+nIPOMZtZ?=
+ =?iso-8859-1?Q?MY7TArvrbd965myO0UmmZAac35+o9ZLs03egDu+N0XEsibVlvxDqNaZ+iZ?=
+ =?iso-8859-1?Q?RHiefX/vP/FkdxuMKCIc7RooW3po60i9AEIdVK6eughXQk8IP/kmvnFQoU?=
+ =?iso-8859-1?Q?1FvvicdxBOK+0023EysZyfrLZ/unIbN+mnfXbRZ9SIbMSclP9kfd0u+o8B?=
+ =?iso-8859-1?Q?BB8F/nSPT4lxtpW4t4OjU7Q3KyfT68Ywd1cn8z8IS+oh8QylZ8W+I8atK3?=
+ =?iso-8859-1?Q?tsY9ccfdTCpqQqkQq1adOVcDQA0F0wfuY457aTRqlqlSLg/+o++6iiIyGH?=
+ =?iso-8859-1?Q?GmZm/i7kaE47eSlwejdi/Ujg6wwFonXMyClnsUFMLSL1o2H8W7vSZhwnLg?=
+ =?iso-8859-1?Q?yJkV080Hob/9tbTCqtIg4c4ZtUMBbcPjFNFAJFsxz0acs7YoyfDWqJJVV8?=
+ =?iso-8859-1?Q?ZwsSK7NtSU8X0L4xGiGiFfoVbm14k7TqkqxW8ipWlc9IxbI5aDNQmkJnsV?=
+ =?iso-8859-1?Q?zsvw=3D=3D?=
 X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6aea8d76-a1ce-443e-ab7b-08da63ea3bb7
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8563620b-36cd-4526-bdd8-08da63f70d70
 X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 09:38:10.3779
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Jul 2022 11:09:56.1955
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Pd2isUtT5Dx0+I/NMqHFTwWVfDMlHcUziCNBlfASiczDPkyJqm7aC5W2MlBDM2GLce68Fx6nXw6/BH4aPPYo1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1P190MB0685
-Message-ID-Hash: QCEPBA3UDVE34ZJ7C2UX3BJLGBLFIUSJ
-X-Message-ID-Hash: QCEPBA3UDVE34ZJ7C2UX3BJLGBLFIUSJ
+X-MS-Exchange-CrossTenant-UserPrincipalName: EdUBMk4T/2FFAiC9ympmGB/fFRjLfK0s41d0cD14bOdaEDxme7gqWUBCIJfZj6+GhwkEz4AenFp17tus3Yumuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9P190MB1252
+Message-ID-Hash: N4O6EOBPRIRRNECKLLL7OUH2JKXZQ3VL
+X-Message-ID-Hash: N4O6EOBPRIRRNECKLLL7OUH2JKXZQ3VL
 X-MailFrom: cedric.hannotier@ulb.be
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Problem installing UHD dependencies
+Subject: [USRP-users] Re: RuntimeError: fx3 is in state 5
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QCEPBA3UDVE34ZJ7C2UX3BJLGBLFIUSJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/N4O6EOBPRIRRNECKLLL7OUH2JKXZQ3VL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -132,40 +133,25 @@ Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi k1barrett,
+Hi Marcus,
 
-On 2022-07-11 21:44 +0000, k1barrett--- via USRP-users wrote:
-> I am running ubuntu 22.04. I am trying to build UHD from source using thi=
-s guide here.
+On 2022-07-11 15:29 -0400, Marcus D Leech wrote:
+> Unfortunately this likely
+> Means you have broken hardware.=20
 >=20
->  https://kb.ettus.com/Building_and_Installing_the_USRP_Open-Source_Toolch=
-ain_(UHD_and_GNU_Radio)_on_Linux
->=20
-> However, when I run the following command:
->=20
->  sudo apt-get -y install autoconf automake build-essential ccache cmake c=
-pufrequtils doxygen ethtool fort77 g++ gir1.2-gtk-3.0 git gobject-introspec=
-tion gpsd gpsd-clients inetutils-tools libasound2-dev libboost-all-dev libc=
-omedi-dev libcppunit-dev libfftw3-bin libfftw3-dev libfftw3-doc libfontconf=
-ig1-dev libgmp-dev libgps-dev libgsl-dev liblog4cpp5-dev libncurses5 libncu=
-rses5-dev libpulse-dev libqt5opengl5-dev libqwt-qt5-dev libsdl1.2-dev libto=
-ol libudev-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev libxi-dev libxrende=
-r-dev libzmq3-dev libzmq5 ncurses-bin python3-cheetah python3-click python3=
--click-plugins python3-click-threading python3-dev python3-docutils python3=
--gi python3-gi-cairo python3-gps python3-lxml python3-mako python3-numpy py=
-thon3-numpy-dbg python3-opengl python3-pyqt5 python3-requests python3-scipy=
- python3-setuptools python3-six python3-sphinx python3-yaml python3-zmq pyt=
-hon3-ruamel.yaml swig wget
->=20
-> I get the error E: Unable to locate package python3-numpy-dbg
+> If it was Purchased less than one year ago, send a note to
+> support@ettus.com for warranty support.=20
 
-I don't know if someone is updating/correcting information on
-this kb page (why pulling NumPy debugging symbols?).
-You can find the necessary dependencies for UHD 4.2 for Ubuntu in [1].
+Sorry if I am mistaken,
+but the Ettus "Terms and Conditions of Sale" [1]
+redirects to NI terms [2] which, from my understanding,
+seems to be 3 years-warranty in some (all?) countries.
+What am I misinterpreting/missing?
 
-[1] https://files.ettus.com/manual/page_build_guide.html#build_dependencies=
-_ubuntu
+[1] https://www.ettus.com/legal/terms-and-conditions-of-sale/
+[2] https://www.ni.com/nl-be/about-ni/legal/terms-and-conditions.html
 
+Regards
 --=20
 
 C=E9dric Hannotier
