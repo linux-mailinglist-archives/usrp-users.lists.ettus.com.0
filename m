@@ -2,169 +2,212 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0796957B410
-	for <lists+usrp-users@lfdr.de>; Wed, 20 Jul 2022 11:42:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D21BA57BD81
+	for <lists+usrp-users@lfdr.de>; Wed, 20 Jul 2022 20:14:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 91D363832D7
-	for <lists+usrp-users@lfdr.de>; Wed, 20 Jul 2022 05:42:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 68206383F3E
+	for <lists+usrp-users@lfdr.de>; Wed, 20 Jul 2022 14:13:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1658310145; bh=zQmKr7dBUfMjwWYIPJV2mu/zWAnVE0IVAzalZ4v8mqw=;
-	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=CQPnJPsSuyOEjHju0Dt1qDl2zCuXeDhJjy67msqVZ3jga6tidrNaSm7IA19LDp+I5
-	 eUv7rC0fkY5x6xuardh+zM0lB8vigCH3/I0l8L+1pbTLCm9JKCl47X31LVg33d+e+e
-	 ltErJlr41SpTXrnswl7+RdNCR16RV5tSLeKF1JEPABmUcfbJ5fVt/jjtW16yiBmki6
-	 +FCpeYyhg41UcmeH3ox7jIMwLjvX49/avFZELjOaQJPLitcdSFTqjxy1oh0WkRifct
-	 iWc2ZmBUoeu0lULienw99x+uKbPwTKt4WYA6o0GmMqAqYi9kpZsIaGCnM98+tomCSQ
-	 Z+8VPvpvJVH/Q==
-Received: from mail-40138.protonmail.ch (mail-40138.protonmail.ch [185.70.40.138])
-	by mm2.emwd.com (Postfix) with ESMTPS id DA5413839C9
-	for <usrp-users@lists.ettus.com>; Wed, 20 Jul 2022 05:41:22 -0400 (EDT)
+	t=1658340839; bh=lkF4bft71rriNyUrkWHtvHLJyxHWCcUQTlnIONT0ilU=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=Ip4Om2ciY32G4pScWi9RUCI2l/7a3JNmHbQspR+1k5qXDZr+AFAwFmHZfa+NzvqC5
+	 aZMn4OhaLfzy0cx68gGhuU4nlMaOzzDTvYYUIg8nI8WtLmhUs0Fa4nNDGRtQQgcFXq
+	 0CvT42USeNc2LVS6Ae5Q7rLxiIuKwz/tl9FYUG7QDcJEv1pUpG0VkIGc44R7uIhNmP
+	 8YWEhzY+nRTEMhvZKjotrIsBTym+IrA/rZBbKtrUZizx4PjtWTLR6Ucdhij/s2e/7E
+	 liFF3iRnq5qR6/CHI0ljsErOnCTPrGfhYprPw299fI7f5IzhvOFIGpN+cdl8JaHrZc
+	 P22IwS4pCidTw==
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 72028380EDD
+	for <usrp-users@lists.ettus.com>; Wed, 20 Jul 2022 14:11:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="U3dd7Re5";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="BlbtkyTx";
 	dkim-atps=neutral
-Date: Wed, 20 Jul 2022 09:41:09 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1658310080; x=1658569280;
-	bh=dnyGNyRnWKd+UHRfeGus6rZ/IU/KYBvwzdHdE03KCQ4=;
-	h=Date:To:From:Reply-To:Subject:Message-ID:Feedback-ID:From:To:Cc:
-	 Date:Subject:Reply-To:Feedback-ID:Message-ID;
-	b=U3dd7Re50CP+CtEqwN2qliCeLh+EuNh6WVU1IPMI0Egx9nGk0OkFVWHpLEhrjnlHV
-	 OgcRGoUkD2o6D6YcULt4cT4843c2FeR/K5Kl/U8jxDGfWZTpT6gff1z4scc7L1wmf2
-	 DH8IqBzGLB88PIDyicac+o3n2Q1ZDEEFvdx8D4oB1uHkKV3BwWQX+SatSMoqUyYwCX
-	 ++B+jU83mOQl0jGjNgZwSR/HruaGceePFltwLdlBrYQi1f9qRnE/eMLi3YSXYjoJRK
-	 GrhEJv1P5N3+d6F3MpTtIxo6a7E/YVY/73KXg0/AZyZ8NiEH1CgAXuHlW5PA+sixS2
-	 Ppwqc/Zs4vpew==
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <846iD_gX0_aTZU2Dd-rf0Eo4EIdcHOOOSBPiH_oQBPZA4gIeUnRMqs81PkKWVmI3k893kjOJZCnPJ93lwtDiXVNt80-ToI9gAl-5cWkCCPU=@protonmail.com>
-Feedback-ID: 4856445:user:proton
+Received: by mail-yb1-f173.google.com with SMTP id 6so33470511ybc.8
+        for <usrp-users@lists.ettus.com>; Wed, 20 Jul 2022 11:11:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nd.edu; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Vf1ot48OQkYLYh1YL6DA869qGmdTBejrpjN2LaM+ePY=;
+        b=BlbtkyTxZVsaLhNVdxwN0D2xEkbQjRcMSfW2cw4y4bGHYx6m/b/r/USYcPTOo/28DW
+         Sbiz3qrBxgRPk2CKNdUUhgV8sUrK1N7o4lXLD4xT/0wFBr5ktIID+BrVRD4TOlx8vxTs
+         N1JonpAcBpEFbAQf0JyUpr8JPLGSBdy2O2LV2JEvhZPNpS3CTvA0A0QE8+9HcZXOYYcO
+         8lNmPBWANYV22JB3GShTc8MO5DKEIUMFzPELBqzALv8YNALqwETxUCkdNbnW0cajYYCq
+         9+GSivfLOCBkDDl2M/0HqcDFGGNRRWVOPE3JtDT83XLEN1tanHHOmAg0JwVgZpO/xWrD
+         u5Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Vf1ot48OQkYLYh1YL6DA869qGmdTBejrpjN2LaM+ePY=;
+        b=W5JLS6G5jMyZ2PftEoDWdhNZEBcGmJI0k8v7ppXANmaWlpVTN8UH2bELTBMP+ZTwMw
+         bKWTKAgVS6RszkhaLVbeP4AjpV/I2ZcqLhTSKIMygOYpNJGbTPXkjTyMV4wt6sUJcixh
+         xwTD7euSPdywhnW6jBZ9Da8Wv52vJYbOevE+hMVLUwm9vzLGx23H+NzvFKbdwN+EzhN0
+         655fCmrWv82AuCxMbzUfCnLoYLGUwBVQI8GdwUKzOn03egwe4zlERm1hzyGfpneYfAAi
+         wqzDhtaSskLTkHaNX0ZOtXdl5pK6CtkPGE8VCfE1T+yjHqDohsmtOKi9nwr0OZ17Kj1b
+         RQ0w==
+X-Gm-Message-State: AJIora/wvRv1SEq1IGLiz9FwdCfXmJE17Tt7H6UVfNm8NWZdyokSAhZ4
+	FXq+Ynf2VreWThJVCmV8u6adqjyTgpXFkmkYCUwAWQ==
+X-Google-Smtp-Source: AGRyM1vSPdAhLXKIZasouOWBx0v7QTwlNVllQLzMBOowmDB7rINJ97GDUG9zMIqbX+3MucoyDONmvKBPehUKt8458Fc=
+X-Received: by 2002:a25:a86:0:b0:670:ef0:3159 with SMTP id 128-20020a250a86000000b006700ef03159mr19319851ybk.563.1658340703590;
+ Wed, 20 Jul 2022 11:11:43 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: MCRRCBACL5LK34HZDN4LZ33EYALZIGCO
-X-Message-ID-Hash: MCRRCBACL5LK34HZDN4LZ33EYALZIGCO
-X-MailFrom: kosinov@protonmail.com
+References: <846iD_gX0_aTZU2Dd-rf0Eo4EIdcHOOOSBPiH_oQBPZA4gIeUnRMqs81PkKWVmI3k893kjOJZCnPJ93lwtDiXVNt80-ToI9gAl-5cWkCCPU=@protonmail.com>
+In-Reply-To: <846iD_gX0_aTZU2Dd-rf0Eo4EIdcHOOOSBPiH_oQBPZA4gIeUnRMqs81PkKWVmI3k893kjOJZCnPJ93lwtDiXVNt80-ToI9gAl-5cWkCCPU=@protonmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Wed, 20 Jul 2022 14:11:32 -0400
+Message-ID: <CAB__hTTTBsm90Uz3g5c6C-BNKAwMPY7HgrSheBuYVUm9U94xXg@mail.gmail.com>
+To: Alexey Kosinov <kosinov@protonmail.com>
+Message-ID-Hash: CI7AST5XGZ4U4BTPPIBTNJQV2RHIG2E7
+X-Message-ID-Hash: CI7AST5XGZ4U4BTPPIBTNJQV2RHIG2E7
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Accessing to the OOT-module using multi_usrp class
+Subject: [USRP-users] Re: Accessing to the OOT-module using multi_usrp class
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MCRRCBACL5LK34HZDN4LZ33EYALZIGCO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CI7AST5XGZ4U4BTPPIBTNJQV2RHIG2E7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Alexey Kosinov via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Alexey Kosinov <kosinov@protonmail.com>
-Content-Type: multipart/mixed; boundary="===============3691627127870811661=="
+Content-Type: multipart/mixed; boundary="===============5839842821380530221=="
 
-This is a multi-part message in MIME format.
+--===============5839842821380530221==
+Content-Type: multipart/alternative; boundary="0000000000008e23b805e4408864"
 
---===============3691627127870811661==
-Content-Type: multipart/alternative;
- boundary="b1_tQANifs0tZMa91YTnpEUlJXtvuwdhtu8G3Ee9IPfZic"
+--0000000000008e23b805e4408864
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This is a multi-part message in MIME format.
+Hi Alexey,
+Your initial testing with rfnoc_graph::make() is the way to connect in
+UHD4.  You cannot use multi_usrp (in UHD 3 or UHD 4) because this class
+creates a fixed rfnoc_graph that does not include your OOT block.
+Therefore, in order to use your OOT block, you need to use the
+rfnoc_graph::make() and the various controllers (Radio / DDC / DUC / etc)
+to control the streaming. You can look at the Ettus "multi_usrp_rfnoc"
+class source code to see how Ettus handles an RFNoC graph from within
+multi_usrp for inspiration.
+Rob
 
---b1_tQANifs0tZMa91YTnpEUlJXtvuwdhtu8G3Ee9IPfZic
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+On Wed, Jul 20, 2022 at 5:42 AM Alexey Kosinov via USRP-users <
+usrp-users@lists.ettus.com> wrote:
 
-SGVsbG8hCgpJIGNyZWF0ZWQgb290LW1vZHVsZSB0aGF0IGhhdmUgc29tZSByZWdpc3RlcnMgYW5k
-IHN0dWZmLgpJIHRlc3RlZCBpdCAodGhyb3VnaCB1aGQ6OnJmbm9jOjpyZm5vY19ncmFwaDo6bWFr
-ZSgpIGFuZCBzbyBvbiDigKYgKSB3b3JrcyBmaW5lIQpOb3cgaSB3YW50IHRvIGluY2x1ZGUgdGhh
-dCBtb2R1bGUgaW50byB0aGUgb3BlbiBzb3VyY2UgcHJvamVjdCB0aGF0IHVzZQp1aGQ6OnVzcnA6
-Om11bHRpX3VzcnA6Om1ha2UoKSBpbnN0ZWFkIG9mIHVoZDo6cmZub2M6OnJmbm9jX2dyYXBoOjpt
-YWtlKCkgdG8gY3JlYXRlIHRoZSBkZXZpY2Ugb2JqZWN0IGFuZCB0aGF0IHdhcyBpIHBhcnQgd2hl
-cmUgaSBjb21wbGV0ZWx5IGxvc3QuCkkgY2Fubm90IGNyZWF0ZSBib3RoIG9iamVjdHMuCkkgc2F3
-IHNvbWUgcGVvcGxlIHVzZWQgZGV2aWNlMyBsaWJyYXJ5IHRoYXQgZGlzc2FwZWFyZWQgaW4gdGhl
-IHVoZCA0LgpNeSBxdWVzdGlvbiBpcyBob3cgY2FuIGkgZ2V0IGFjY2VzcyB0byBvb3QtbW9kdWxl
-IChmaW5kX2Jsb2NrcywgZ2V0X2Jsb2NrcyBhbmQgZXZlbnR1YWx5IHJlYWQvd3JpdGUgc29tZSBk
-YXRhIHRvIGl0KSBsaWtlIGkgZGlkIGl0IGJlZm9yZSwgdXNpbmcgc3RhbmRhbG9uZSBhcHAgKHJm
-bm9jLWV4YW1wbGUvYXBwcy9pbml0X2dhaW5fYmxvY2suY3BwIGZvciBleGFtcGxlKT8KSXMgdGhl
-cmUgaXMgcG9zc2libGUgaW4gdGhlIHVoZCA0PwpJZiB0aGVyZSBpcyBzbyBjYW4geW91IHByb3Zp
-ZGUgc2ltcGxlIGV4YW1wbGXigIsKVVNSUCBOMzAwCnVoZCA0LjEuMC40CgpUaGFua3MhCgpCZXN0
-IHJlZ2FyZHMsCkFsZXhleSBLb3Npbm92
+> Hello!
+>
+> I created oot-module that have some registers and stuff.
+> I tested it (through *uhd::rfnoc::rfnoc_graph::make()* and so on =E2=80=
+=A6 )
+> works fine!
+> Now i want to include that module into the open source project that use
+> *uhd::usrp::multi_usrp::make(**)* instead of
+> *uhd::rfnoc::rfnoc_graph::make()* to create the device object and that
+> was i part where i completely lost.
+> I cannot create both objects.
+> I saw some people used device3 library that dissapeared in the uhd 4.
+> My question is how can i get access to oot-module (find_blocks, get_block=
+s
+> and eventualy read/write some data to it) like i did it before, using
+> standalone app (rfnoc-example/apps/init_gain_block.cpp for example)?
+> Is there is possible in the uhd 4?
+> If there is so can you provide simple example
+> =E2=80=8B
+> USRP N300
+> uhd 4.1.0.4
+>
+> Thanks!
+>
+>
+> Best regards,
+> Alexey Kosinov
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
---b1_tQANifs0tZMa91YTnpEUlJXtvuwdhtu8G3Ee9IPfZic
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+--0000000000008e23b805e4408864
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij5IZWxsbyE8
-L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTRweDsiPjxi
-cj48L2Rpdj48ZGl2IHN0eWxlPSIiPjxmb250IGZhY2U9IkFyaWFsIj5JIGNyZWF0ZWQgb290LW1v
-ZHVsZSB0aGF0IGhhdmUgc29tZSByZWdpc3RlcnMgYW5kIHN0dWZmLiZuYnNwOzwvZm9udD48L2Rp
-dj48ZGl2IHN0eWxlPSIiPjxmb250IGZhY2U9IkFyaWFsIj5JIHRlc3RlZCBpdCAodGhyb3VnaCZu
-YnNwOzwvZm9udD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBsaW5lLWhlaWdodDog
-bm9ybWFsOyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+PGI+PGk+dWhkOjpyZm5vYzo6cmZub2Nf
-Z3JhcGg6Om1ha2UoKTwvaT48L2I+IGFuZCBzbyBvbiDigKYmbmJzcDs8L3NwYW4+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZTogMC44NzVyZW07IGNvbG9yOiByZ2IoMzQsIDM0LCAzNCk7IGZvbnQtZmFt
-aWx5OiBBcmlhbDsiPikgd29ya3MgZmluZSE8L3NwYW4+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6
-IDE5cHg7Ij48Zm9udCBjb2xvcj0iIzIyMjIyMiIgZmFjZT0iQXJpYWwiPk5vdyBpIHdhbnQgdG8g
-aW5jbHVkZSB0aGF0IG1vZHVsZSBpbnRvIHRoZSBvcGVuIHNvdXJjZSBwcm9qZWN0IHRoYXQgdXNl
-Jm5ic3A7PC9mb250PjxkaXYgc3R5bGU9IiI+PGI+PGk+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
-OiBBcmlhbDsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdodDogbm9ybWFsOyBjb2xvcjogcmdi
-KDM0LCAzNCwgMzQpOyI+dWhkPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7
-IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgY29sb3I6IHJnYigzNCwgMzQs
-IDM0KTsiPjo6PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6
-ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgY29sb3I6IHJnYigzNCwgMzQsIDM0KTsiPnVz
-cnA8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxNHB4
-OyBsaW5lLWhlaWdodDogbm9ybWFsOyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+Ojo8L3NwYW4+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhl
-aWdodDogbm9ybWFsOyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+bXVsdGlfdXNycDwvc3Bhbj48
-c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVp
-Z2h0OiBub3JtYWw7IGNvbG9yOiByZ2IoMzQsIDM0LCAzNCk7Ij46Ojwvc3Bhbj48c3BhbiBzdHls
-ZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3Jt
-YWw7IGNvbG9yOiByZ2IoMzQsIDM0LCAzNCk7Ij5tYWtlPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTRweDsgbGluZS1oZWlnaHQ6IG5vcm1hbDsgY29s
-b3I6IHJnYigzNCwgMzQsIDM0KTsiPig8L3NwYW4+PC9pPjwvYj48c3BhbiBzdHlsZT0iZm9udC1m
-YW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGNvbG9y
-OiByZ2IoMzQsIDM0LCAzNCk7Ij48Yj48aT4pPC9pPjwvYj4gaW5zdGVhZCBvZiZuYnNwOzxzcGFu
-IHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsIDI1NSwgMjU1KTtkaXNwbGF5OmlubGlu
-ZSAhaW1wb3J0YW50Ij48Yj48aT51aGQ6OnJmbm9jOjpyZm5vY19ncmFwaDo6bWFrZSgpPC9pPjwv
-Yj4mbmJzcDt0byBjcmVhdGUgdGhlIGRldmljZSBvYmplY3QgYW5kIHRoYXQgd2FzIGkgcGFydCB3
-aGVyZSBpIGNvbXBsZXRlbHkgbG9zdC48L3NwYW4+PC9zcGFuPjwvZGl2PjxkaXYgc3R5bGU9IiI+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhl
-aWdodDogbm9ybWFsOyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+PHNwYW4gc3R5bGU9ImJhY2tn
-cm91bmQtY29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpO2Rpc3BsYXk6aW5saW5lICFpbXBvcnRhbnQi
-PkkgY2Fubm90IGNyZWF0ZSBib3RoIG9iamVjdHMuPC9zcGFuPjwvc3Bhbj48L2Rpdj48ZGl2IHN0
-eWxlPSIiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTRweDsg
-bGluZS1oZWlnaHQ6IG5vcm1hbDsgY29sb3I6IHJnYigzNCwgMzQsIDM0KTsiPjxzcGFuIHN0eWxl
-PSJiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsIDI1NSwgMjU1KTtkaXNwbGF5OmlubGluZSAhaW1w
-b3J0YW50Ij5JIHNhdyBzb21lIHBlb3BsZSB1c2VkIGRldmljZTMgbGlicmFyeSB0aGF0IGRpc3Nh
-cGVhcmVkIGluIHRoZSB1aGQgNC48L3NwYW4+PC9zcGFuPjwvZGl2PjxkaXYgc3R5bGU9IiI+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBBcmlhbDsgZm9udC1zaXplOiAxNHB4OyBsaW5lLWhlaWdo
-dDogbm9ybWFsOyBjb2xvcjogcmdiKDM0LCAzNCwgMzQpOyI+PHNwYW4gc3R5bGU9ImJhY2tncm91
-bmQtY29sb3I6cmdiKDI1NSwgMjU1LCAyNTUpO2Rpc3BsYXk6aW5saW5lICFpbXBvcnRhbnQiPk15
-IHF1ZXN0aW9uIGlzIGhvdyBjYW4gaSBnZXQgYWNjZXNzIHRvIG9vdC1tb2R1bGUgKGZpbmRfYmxv
-Y2tzLCBnZXRfYmxvY2tzIGFuZCBldmVudHVhbHkgcmVhZC93cml0ZSBzb21lIGRhdGEgdG8gaXQp
-IGxpa2UgaSBkaWQgaXQgYmVmb3JlLCB1c2luZyBzdGFuZGFsb25lIGFwcCAocmZub2MtZXhhbXBs
-ZS9hcHBzL2luaXRfZ2Fpbl9ibG9jay5jcHAgZm9yIGV4YW1wbGUpPyZuYnNwOzwvc3Bhbj48L3Nw
-YW4+PC9kaXY+PGRpdiBzdHlsZT0iIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBm
-b250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGNvbG9yOiByZ2IoMzQsIDM0LCAz
-NCk7Ij48c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LCAyNTUsIDI1NSk7ZGlz
-cGxheTppbmxpbmUgIWltcG9ydGFudCI+SXMgdGhlcmUgaXMgcG9zc2libGUgaW4gdGhlIHVoZCA0
-PyZuYnNwOzwvc3Bhbj48L3NwYW4+PC9kaXY+PGRpdiBzdHlsZT0iIj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBub3JtYWw7IGNv
-bG9yOiByZ2IoMzQsIDM0LCAzNCk7Ij48c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjpyZ2Io
-MjU1LCAyNTUsIDI1NSk7ZGlzcGxheTppbmxpbmUgIWltcG9ydGFudCI+SWYgdGhlcmUgaXMgc28g
-Y2FuIHlvdSBwcm92aWRlIHNpbXBsZSBleGFtcGxlPC9zcGFuPjwvc3Bhbj48L2Rpdj48c3BhbiBz
-dHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7IGxpbmUtaGVpZ2h0OiBu
-b3JtYWw7IGNvbG9yOiByZ2IoMzQsIDM0LCAzNCk7Ij7igIs8L3NwYW4+PC9kaXY+PGRpdiBzdHls
-ZT0ibGluZS1oZWlnaHQ6IDE5cHg7Ij5VU1JQIE4zMDA8L2Rpdj48ZGl2IHN0eWxlPSJsaW5lLWhl
-aWdodDogMTlweDsiPjxzcGFuPnVoZCA0LjEuMC40PC9zcGFuPjxicj48L2Rpdj48L2Rpdj48ZGl2
-IHN0eWxlPSIiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSIiPlRoYW5rcyE8L2Rpdj48ZGl2IHN0eWxl
-PSIiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTog
-MTRweDsiPjxicj48L2Rpdj4NCjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2Nr
-IiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDE0cHg7Ij4NCiAgICA8ZGl2
-IGNsYXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay11c2VyIj4NCiAgICAgICAgPGRpdj5C
-ZXN0Jm5ic3A7cmVnYXJkcyw8YnI+PC9kaXY+PGRpdj5BbGV4ZXkgS29zaW5vdjwvZGl2PjwvZGl2
-Pg0KPC9kaXY+DQo=
+<div dir=3D"ltr">Hi Alexey,<div>Your initial testing with rfnoc_graph::make=
+() is the way to connect in UHD4.=C2=A0 You cannot use multi_usrp (in UHD 3=
+ or UHD 4) because this class creates a fixed rfnoc_graph that does not inc=
+lude your OOT block.=C2=A0 Therefore, in order to use your OOT block, you n=
+eed to use the rfnoc_graph::make() and the various controllers (Radio / DDC=
+ / DUC / etc) to control the streaming. You can look at the Ettus &quot;mul=
+ti_usrp_rfnoc&quot; class source code to see how Ettus handles an RFNoC gra=
+ph from within multi_usrp for inspiration.</div><div>Rob</div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 2=
+0, 2022 at 5:42 AM Alexey Kosinov via USRP-users &lt;<a href=3D"mailto:usrp=
+-users@lists.ettus.com">usrp-users@lists.ettus.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div style=3D"font-family=
+:Arial;font-size:14px">Hello!</div><div style=3D"font-family:Arial;font-siz=
+e:14px"><br></div><div><font face=3D"Arial">I created oot-module that have =
+some registers and stuff.=C2=A0</font></div><div><font face=3D"Arial">I tes=
+ted it (through=C2=A0</font><span style=3D"font-family:Arial;line-height:no=
+rmal;color:rgb(34,34,34)"><b><i>uhd::rfnoc::rfnoc_graph::make()</i></b> and=
+ so on =E2=80=A6=C2=A0</span><span style=3D"font-size:0.875rem;color:rgb(34=
+,34,34);font-family:Arial">) works fine!</span><div style=3D"line-height:19=
+px"><font color=3D"#222222" face=3D"Arial">Now i want to include that modul=
+e into the open source project that use=C2=A0</font><div><b><i><span style=
+=3D"font-family:Arial;font-size:14px;line-height:normal;color:rgb(34,34,34)=
+">uhd</span><span style=3D"font-family:Arial;font-size:14px;line-height:nor=
+mal;color:rgb(34,34,34)">::</span><span style=3D"font-family:Arial;font-siz=
+e:14px;line-height:normal;color:rgb(34,34,34)">usrp</span><span style=3D"fo=
+nt-family:Arial;font-size:14px;line-height:normal;color:rgb(34,34,34)">::</=
+span><span style=3D"font-family:Arial;font-size:14px;line-height:normal;col=
+or:rgb(34,34,34)">multi_usrp</span><span style=3D"font-family:Arial;font-si=
+ze:14px;line-height:normal;color:rgb(34,34,34)">::</span><span style=3D"fon=
+t-family:Arial;font-size:14px;line-height:normal;color:rgb(34,34,34)">make<=
+/span><span style=3D"font-family:Arial;font-size:14px;line-height:normal;co=
+lor:rgb(34,34,34)">(</span></i></b><span style=3D"font-family:Arial;font-si=
+ze:14px;line-height:normal;color:rgb(34,34,34)"><b><i>)</i></b> instead of=
+=C2=A0<span style=3D"background-color:rgb(255,255,255);display:inline"><b><=
+i>uhd::rfnoc::rfnoc_graph::make()</i></b>=C2=A0to create the device object =
+and that was i part where i completely lost.</span></span></div><div><span =
+style=3D"font-family:Arial;font-size:14px;line-height:normal;color:rgb(34,3=
+4,34)"><span style=3D"background-color:rgb(255,255,255);display:inline">I c=
+annot create both objects.</span></span></div><div><span style=3D"font-fami=
+ly:Arial;font-size:14px;line-height:normal;color:rgb(34,34,34)"><span style=
+=3D"background-color:rgb(255,255,255);display:inline">I saw some people use=
+d device3 library that dissapeared in the uhd 4.</span></span></div><div><s=
+pan style=3D"font-family:Arial;font-size:14px;line-height:normal;color:rgb(=
+34,34,34)"><span style=3D"background-color:rgb(255,255,255);display:inline"=
+>My question is how can i get access to oot-module (find_blocks, get_blocks=
+ and eventualy read/write some data to it) like i did it before, using stan=
+dalone app (rfnoc-example/apps/init_gain_block.cpp for example)?=C2=A0</spa=
+n></span></div><div><span style=3D"font-family:Arial;font-size:14px;line-he=
+ight:normal;color:rgb(34,34,34)"><span style=3D"background-color:rgb(255,25=
+5,255);display:inline">Is there is possible in the uhd 4?=C2=A0</span></spa=
+n></div><div><span style=3D"font-family:Arial;font-size:14px;line-height:no=
+rmal;color:rgb(34,34,34)"><span style=3D"background-color:rgb(255,255,255);=
+display:inline">If there is so can you provide simple example</span></span>=
+</div><span style=3D"font-family:Arial;font-size:14px;line-height:normal;co=
+lor:rgb(34,34,34)">=E2=80=8B</span></div><div style=3D"line-height:19px">US=
+RP N300</div><div style=3D"line-height:19px"><span>uhd 4.1.0.4</span><br></=
+div></div><div><br></div><div>Thanks!</div><div><br></div><div style=3D"fon=
+t-family:Arial;font-size:14px"><br></div>
+<div style=3D"font-family:Arial;font-size:14px">
+    <div>
+        <div>Best=C2=A0regards,<br></div><div>Alexey Kosinov</div></div>
+</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
+--0000000000008e23b805e4408864--
 
---b1_tQANifs0tZMa91YTnpEUlJXtvuwdhtu8G3Ee9IPfZic--
-
---===============3691627127870811661==
+--===============5839842821380530221==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -174,4 +217,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3691627127870811661==--
+--===============5839842821380530221==--
