@@ -2,94 +2,90 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 510C357FA89
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Jul 2022 09:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4463A5803F6
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Jul 2022 20:25:35 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F316A380C58
-	for <lists+usrp-users@lfdr.de>; Mon, 25 Jul 2022 03:54:12 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B300E380D96
+	for <lists+usrp-users@lfdr.de>; Mon, 25 Jul 2022 14:25:33 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1658735652; bh=ksPkLAGboZ+9/xEGN9/vMcNZ2aNMyWr8Dj0ueiALuiU=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=e8SfWGFfU+7QT/8RlU8P0zywsNLxKg+rjA3MZhOdNl81pc7owORkfaQtazT/iRSib
-	 4yOJaJsV7uS8UCrfrUPC1cOzeBxvR9HA199uBpjFNNT62U3cWqykxdABSJkPZTWs8d
-	 B/ZHTOjZ4lWKtPu7vxKs/N8XVYvib16XUtyAsWchrnlfLoBfhJFHwjhJVgAaODi1dy
-	 lbj0bdd6WJK5MqjJ9ENhaDOkWhskRChbNE3GVtk+2oFQA2IvWaNOETa+Z3HnRNG+YQ
-	 TWDtIj2FmrghmKPmX3VfkSjZbaQgGqwHnIIN6IQtkCafnDCAiX8iy7hTSpGmp9h6qC
-	 9pFB60Q8JkVZg==
+	t=1658773533; bh=CtwbeHFdSHdZ+TfLOBcQDw9l4LQD+whL4k7Vt5nd4PE=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=qFk7ppyna1vn+cyLbzyLgMKxSfkcmkWJvsm5tdAtppaeJN7XJGi/O0xiByc4Gvvwt
+	 LJcarmePVrWqLrM2hmp60990mj1eE6ErCfW0crh8DIAl8Q994x3EGrNk3q/MmlIWnS
+	 nnbDSxQWhLqautt88BcQ7TFAM90JIQUBnfJxWvZYlJBMCk7mN8Sq7mBb2cQmNnffVJ
+	 BD7bFzPfPwLmVB+W4996ghU90138kLU60MenMeIrNBAXaZ88pANh/DC6WE9Dwx7vvU
+	 2p1jY+LEQNBPDDzTSBzz3GdqjOxrVThUgwcAy1GYDfTqINMflz4OG+lCCkcpsUezXN
+	 ThtVcxqDMtVjg==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0C480380C19
-	for <usrp-users@lists.ettus.com>; Mon, 25 Jul 2022 03:52:26 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8F933380B5E
+	for <usrp-users@lists.ettus.com>; Mon, 25 Jul 2022 14:23:41 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1658735546; bh=WkA2Ne8wDE8YuqoQvIVVtuZ2XaGjsnrcUynvgnwhzmA=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=Ctlfy5yKMFa9RWDSLiR3FgxNHkqRuCvHd64/e9EMTTxaC5muPTjO6ctenlWgJL8Ap
-	 mIT/lrbG3+lT4a5BxdDb5ukKtTaTw+7CwXl/RHKSrg5+CqFIreqn3APH3/FGDzCiz5
-	 5/HcRWwDrQxn4SxovuGkobTt+IHxZIiP+l+CWY72EjpEkDYPpFzX5jGcU03KTB8Tdy
-	 PL1/txk1dVUevNq96EswYR265ZAq2K/YWUvQxAILFjxRNEDEIejugDaEOqYFwm46TO
-	 SeihyxSpzRDMGHgGKbn7Im7EdwCwrj5so8FlHSqrdh1eBQAa8VM53tXn10FnwObZTI
-	 C6rcIS/wbM+nA==
-Date: Mon, 25 Jul 2022 07:52:26 +0000
+	t=1658773421; bh=yugYCOCzAF/BKQSlBlILWzuxG3VSDxdLU6SgYxPT7Ck=;
+	h=Date:To:From:Subject:From;
+	b=QVMnYh9yI60+SiT9Hs4g31/AlJCW2eHLXzaZYjawPq8yu9Z1GVJr7OYntmgdJxC7t
+	 fI2e0IK5D7zxAnigdcFT+A1EbyqF+vkHSmNfyjZolEI1YTegztptOw2zbarJvX9fgR
+	 YjGJ2w6EajWq8bydFhw/O1eiHc+iixXi3W6ahxOfUPsNuigTNWTfo2fWt92cDXSnGU
+	 /+0MbPZlnY5drmY+ei28Qgb5E+uUQYnQmAvgAUJPZuDjTj8Cp7CNQOQK1NC/Ryugdk
+	 7hP588uTOwp4umMAr/uCqR+W+utEz/lxATBPHMQgRosm6YuNGAnHV45zERE0vEy4j9
+	 ShzzwWH6CmE0A==
+Date: Mon, 25 Jul 2022 18:23:41 +0000
 To: usrp-users@lists.ettus.com
-From: ouzan_ts@hotmail.com
-Message-ID: <hQFWKXwm334qvipMOneubexO9WHuPa75TTF95BOySY@lists.ettus.com>
+Message-ID: <IBd5cchcf6Xr0pvxKToetQk1ZwJwrhv3dWR3IVvIM@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 8176a1e7-31eb-efe7-ed35-fa3fa947acdc@virginia.edu
 MIME-Version: 1.0
-Message-ID-Hash: KUJGNR2VUGTSM4GBADBGTIFOZ3W65XBH
-X-Message-ID-Hash: KUJGNR2VUGTSM4GBADBGTIFOZ3W65XBH
-X-MailFrom: ouzan_ts@hotmail.com
+Message-ID-Hash: K63FDIIDUZMLGWGA7K7PGM47CPFQIQEQ
+X-Message-ID-Hash: K63FDIIDUZMLGWGA7K7PGM47CPFQIQEQ
+X-MailFrom: skyung@nrel.gov
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Frequency Switch with USRP B200
+Subject: [USRP-users] Getting low number of samples (USRP N310)
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KUJGNR2VUGTSM4GBADBGTIFOZ3W65XBH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K63FDIIDUZMLGWGA7K7PGM47CPFQIQEQ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4874177600953363803=="
+From: skyung--- via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: skyung@nrel.gov
+Content-Type: multipart/mixed; boundary="===============8216672313536692999=="
 
 This is a multi-part message in MIME format.
 
---===============4874177600953363803==
+--===============8216672313536692999==
 Content-Type: multipart/alternative;
- boundary="b1_hQFWKXwm334qvipMOneubexO9WHuPa75TTF95BOySY"
+ boundary="b1_IBd5cchcf6Xr0pvxKToetQk1ZwJwrhv3dWR3IVvIM"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_hQFWKXwm334qvipMOneubexO9WHuPa75TTF95BOySY
+--b1_IBd5cchcf6Xr0pvxKToetQk1ZwJwrhv3dWR3IVvIM
 Content-Type: text/plain; charset=us-ascii
 
-Hello, sir. Sorry for late answer.
+Hi, I am using USRP N310 connected via a switch with 10Gbps interface.
 
-I connected with USB3.0.
+I am using it to set up OAI 5G RAN but I keep getting the following message:
 
-If I run benchmark_rate for rx_rate=16e6, tx_rate=16e6 no error occurs.
+\[HW\]   reived 16384 samples out of 23040
 
-This is the limit in bechmark_rate after 16MHz error occurs. but in my program, errors starting after 4MHz
+\[HW\]   ERROR_CODE_TIMEOUT (or ERROR_CODE_OVERFLOW)
 
-If I select rx_rate=25e6, num overruns detected = 641
+I wonder if it is a sync problem or something else. 
 
-for rx_rate=25e6, tx_rate=25e6, tx_otw=sc8 and rx_otw=sc8 no error occurs.
+Has anyone had this problem? What is the cause of this problem and how do I resolve the issue?
 
-the limit for over-the-wire format is 32MHz. then, errors occur.
-
-for rx_rate=40e6 and rx_otw=sc8, num overruns detected=629.
-
---b1_hQFWKXwm334qvipMOneubexO9WHuPa75TTF95BOySY
+--b1_IBd5cchcf6Xr0pvxKToetQk1ZwJwrhv3dWR3IVvIM
 Content-Type: text/html; charset=us-ascii
 
-<p>Hello, sir. Sorry for late answer.</p><p>I connected with USB3.0.</p><p>If I run benchmark_rate for rx_rate=16e6, tx_rate=16e6 no error occurs.</p><p>This is the limit in bechmark_rate after 16MHz error occurs. but in my program, errors starting after 4MHz</p><p>If I select rx_rate=25e6, num overruns detected = 641</p><p>for rx_rate=25e6, tx_rate=25e6, tx_otw=sc8 and rx_otw=sc8 no error occurs.</p><p>the limit for over-the-wire format is 32MHz. then, errors occur.</p><p>for rx_rate=40e6 and rx_otw=sc8, num overruns detected=629.</p><p><br></p><p><br></p>
+<p>Hi, I am using USRP N310 connected via a switch with 10Gbps interface.</p><p>I am using it to set up OAI 5G RAN but I keep getting the following message:</p><p><br></p><p>[HW]   reived 16384 samples out of 23040</p><p>[HW]   ERROR_CODE_TIMEOUT (or ERROR_CODE_OVERFLOW)</p><p><br></p><p>I wonder if it is a sync problem or something else. </p><p>Has anyone had this problem? What is the cause of this problem and how do I resolve the issue?</p>
 
 
---b1_hQFWKXwm334qvipMOneubexO9WHuPa75TTF95BOySY--
+--b1_IBd5cchcf6Xr0pvxKToetQk1ZwJwrhv3dWR3IVvIM--
 
---===============4874177600953363803==
+--===============8216672313536692999==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -99,4 +95,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4874177600953363803==--
+--===============8216672313536692999==--
