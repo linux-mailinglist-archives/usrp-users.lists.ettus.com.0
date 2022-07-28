@@ -2,161 +2,376 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 467845840EA
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 16:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DFB05845D1
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 20:28:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C81D0383758
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 10:19:27 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4A5FC383FEA
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 14:28:19 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659017967; bh=AV9s9JmLTOwcggEs8ZoB/RcuH9MtLo3pgq9b08+2KQY=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=oaXGCCdUaE/GY0LwJGqgmWRTOYbOu4YWnLBEZhqXHj6vqNJ7GZ0+iNOvY2Ph9EL9Q
-	 +5efZ2lbE2nsikg72XmE73Ho6oBoZeIG/xwrj+xFa0PX+uGfpyZH2ixWr7e+lPJlmi
-	 uxTtYJAiyxsxUAVZp3llSYj3NxRJ7a225SsRHgnOMEWdpZCXgR7K4RkFv0XbdQKkTV
-	 ubU2fNzzvZtqkOET3GvPRHjeZ3GhL9yVEZJRsUqzK6DsLC3OCijHSIGaq76W31RK8B
-	 lUDyDn4KR1td0zlDG0GQt84DONcdW1NENNAO9zjfwqF6GNUD9R38cku1CEb2uTBq2B
-	 Q7QCqnYSnnq0g==
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5D3BA383267
-	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 10:17:14 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Eei49Mdb";
-	dkim-atps=neutral
-Received: by mail-wr1-f42.google.com with SMTP id bn9so2358538wrb.9
-        for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 07:17:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :references:from:in-reply-to:content-transfer-encoding;
-        bh=xkn0jozleoKesAJUhURo2BSu7XkR1daDhJ+HzfVk/6g=;
-        b=Eei49MdbTN6icWFVV2k0o7rFIfDjDqI0wU9kDc/X9PRG1oVrBqtL77kI9P77HFleeN
-         uOLgLir97Oa8xwmaaTOHypSdaBgnShZBl22ELZalYpfY4YGeoTyQkyNuC/qG5I99g+xl
-         Fk4Gt3UEsn4lJPwyVqiI875zxgId3t2JR4RPzK3mr3fwXcajAoX9CItW8NLwd4IIT/DB
-         YkbdD1dCHROqKacJAFkn0mK2oBzXQa4ebujhY3IfZ/vBFua15mw/y52FhCnbghiVTwut
-         dN9KhhFXfr0eQLWcJ3bwh3vrxRccbIO0JAxRA1zfA90MemEcDM4i9WBVgS7RXgo3PRf2
-         uYjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xkn0jozleoKesAJUhURo2BSu7XkR1daDhJ+HzfVk/6g=;
-        b=5LH/9Yy1GvOWl4TuduxhlhnOpxDAm800GzzqUFOz+CkamJejuudQQNH0uD68Yff+Px
-         LUWqSr07Oz2gSVnw6jVTJs851GHeKJpiptrCefGeVkzGCk0c4vWIrPDftOPA5aaLk2Rk
-         1GSQneLvBjo4oYqVjsZbhI5f9mlh4ShwbddE62y6OK5M6yZlTAsYk2uXWmb914cerqZx
-         pbj/m0pUhFv3aWiIN2MpgZ549fZVgIu5NJVUUsl+eeCN1mS2DKC+N20fsIDeXKcERESn
-         2LEtRajIIIYsSio7sKVSflTXnfdDV8da5BO7/bf6KDyZ/JUOdSx5NOH+hIol/67wWGtf
-         jGYg==
-X-Gm-Message-State: AJIora8iFOuFjLq7lA1MRQIUQIR1pGQDJb+On6jmXTGPgQir8s5IaD1E
-	6+cBUTEc1rM0UzLZpAugp00=
-X-Google-Smtp-Source: AGRyM1sNnU8kvbjg71F6khZEhLkKZgus/OBS29ebeSs4SdVeysnZe5gzJfSaAqFjAwS9j94LpWwMSA==
-X-Received: by 2002:a5d:4d41:0:b0:21e:a5e3:cb9b with SMTP id a1-20020a5d4d41000000b0021ea5e3cb9bmr8316487wru.523.1659017833077;
-        Thu, 28 Jul 2022 07:17:13 -0700 (PDT)
-Received: from [10.33.0.214] ([193.145.14.195])
-        by smtp.gmail.com with ESMTPSA id s16-20020a5d4250000000b0021edf1c18b5sm1080510wrr.93.2022.07.28.07.17.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 07:17:12 -0700 (PDT)
-Message-ID: <4fe95de3-ea01-0c59-04ce-a2d635f5dd2f@gmail.com>
-Date: Thu, 28 Jul 2022 16:17:11 +0200
+	t=1659032899; bh=IhJ9fz3Rv9J7Dl43OyI7aM9aaJYBgEuC2MUzeqewlVs=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=p8ZJaeaab7kErJ3nBbfKeE358by+16Re7mOwF7geFHQRTuUKYOgbytzPbkKuCDlVr
+	 IjTPWL1TnBfUICgFx7uzOadLedTScZV4qmA3MBWK/2PeS/7HSYtb682ZK8RjHBqsy/
+	 OrXaKtw/5THCy/PJ/BAM+7S7NkPYiz7ns3ODeEWHNRoHayohALiZtXZj3S+DsVmkaV
+	 eSRoSH5hMyM+qt+TcbJb1GyJ0GY67AsmFCpd+Ur7vQgccqOVCv9QL+KX6gRpSvrPJN
+	 j0LBqrS0/aAvNsllBsCmkub0zsiNuAf0Sd0EgDP1kDD2N5tFQW0m8v3G/KKG9pur04
+	 KhSRc7HL1pOXQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 7FA32383F8B
+	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 14:26:17 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1659032777; bh=FaYgVWmTfexffHdCWBkn1PGcO+e2OMMhvep5Huqd37E=;
+	h=Date:To:From:Subject:From;
+	b=H52MkzPuKy0pz5VWzOgStfsMay2/FeI0guI/UoCvQseExigaW2ii/1n0HZGvXulLE
+	 oauNjqPgmvNd5C87etg1Km9XDYIeK5HNT3HDT+DK9uz6L9Z1qtlcTuizF9aKCDtFni
+	 9JT7KEAM0gOPpL3P2so3uHlvmd8rHI6P4WY08ou+rZhDm8G77682ZAr1RMLWAXXx60
+	 IUbsNOyE6vmfPxCkOxsUlkxvrUyPJiDz9tjoNonY5rjR1UhbvJLKBznPg0hSBQJG1Y
+	 O6l9JTCR7QMI4IHFSt2RkQ9hloEukrp3lzDHWtNI70tzWV2K2U+Kd5v1h48yhNz7rE
+	 nrFiVS9hZJNmQ==
+Date: Thu, 28 Jul 2022 18:26:17 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <3ozPjdcKVHphIfQR4oZjUTnrAZKFygMucHsBPoEhg10@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
-References: <dcdd176b-83bc-e4e4-0108-c0764738e0fb@gmail.com>
- <c9dd3975-7fc0-13f3-8cea-6591bc6ad687@gmail.com>
-From: Giuseppe Santaromita <giuseppe.santaromita1@gmail.com>
-In-Reply-To: <c9dd3975-7fc0-13f3-8cea-6591bc6ad687@gmail.com>
-Message-ID-Hash: Z3OC2Y4WNSUN446JFR5CQKDS6UFOH3GF
-X-Message-ID-Hash: Z3OC2Y4WNSUN446JFR5CQKDS6UFOH3GF
-X-MailFrom: giuseppe.santaromita1@gmail.com
+Message-ID-Hash: GJ6YOORF6QNB6572JJAXHGVZFEBCY5UY
+X-Message-ID-Hash: GJ6YOORF6QNB6572JJAXHGVZFEBCY5UY
+X-MailFrom: k19033844@kcl.ac.uk
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [WARNING] [MPM.RPCServer] A timeout event occured!
+Subject: [USRP-users] Error Build uhd
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z3OC2Y4WNSUN446JFR5CQKDS6UFOH3GF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GJ6YOORF6QNB6572JJAXHGVZFEBCY5UY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+From: k19033844--- via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: k19033844@kcl.ac.uk
+Content-Type: multipart/mixed; boundary="===============1626674794598531454=="
 
-WWVzLCBidXQgdGhlIGxpbmsgc3RpbGwgZG9lc24ndCB3b3JrLCBhbmQgSSB0aGluayBpdCdzIGEg
-VVNSUCBwcm9ibGVtLg0KDQpUbyBjaGVjayB3aGV0aGVyIHRoZSBVU1JQIGlzIHdvcmtpbmcsIEkg
-dGhvdWdodCBJIHdvdWxkIGRvIHRoaXM6DQoNCk4zMTA6IC4vdHhfd2F2ZWZvcm1zIC0tZnJlcSA5
-MTVlNiAtLXJhdGUgMTUuMzZlNiAtLWdhaW4gNDAgLS13YXZlLXR5cGUgDQpSQU1QIC0td2F2ZS1m
-cmVxIDVlNg0KDQpCMjEwOiBzdWRvIC4vcnhfYXNjaWlfYXJ0X2RmdCAtLWZyZXEgOThlNiAtLXJh
-dGUgMTUuMzZlNiAtLWdhaW4gMjAgLS1idyANCjVlNiAtLXJlZi1sdmwgLTYwIC0tYXJncyAic2Vy
-aWFsPTMxNzIyQ0YiDQoNCkkgZG9uJ3Qgc2VlIGFueXRoaW5nIGluIHRoZSBzcGVjdHJ1bS4NCg0K
-SWwgMjcvNy8yMiAxNDozOSwgTWFyY3VzIEQuIExlZWNoIGhhIHNjcml0dG86DQo+IE9uIDIwMjIt
-MDctMjYgMTk6MzUsIEdpdXNlcHBlIFNhbnRhcm9taXRhIHdyb3RlOg0KPj4gRGVhciBjb21tdW5p
-dHksDQo+Pg0KPj4gSSBhbSB0cnlpbmcgdG8gdXNlIE9wZW5BaXJJbnRlcmZhY2Ugd2l0aCBhbiBO
-MzEwIGFzIGdOQi4gSSBhbSB3cml0aW5nIA0KPj4gb24gdGhpcyBtYWlsIGxpc3QgYmVjYXVzZSBJ
-IHRoaW5rIG15IHByb2JsZW0gaXMgY2F1c2VkIGJ5IHRoZSANCj4+IGNvbmZpZ3VyYXRpb24gb2Yg
-dGhlIE4zMTAuDQo+Pg0KPj4gV2hlbiBJIHJ1biB0aGUgTjMxMCBJIGdldCB2YXJpYWJsZSBlcnJv
-cnMuIFdoZW4gSSBydW4gaXQgZm9yIHRoZSANCj4+IGZpcnN0IHRpbWUgYWZ0ZXIgYSBsb25nIHRp
-bWUgSSBnZXQgbm8gZXJyb3JzLg0KPj4NCj4+IEJ1dCB3aGVuIEkgcnVuIGl0IGFmdGVyIGEgc2hv
-cnQgdGltZSBJIGdldCB0aGVzZSB3YXJuaW5ncyBhbmQgZXJyb3JzIA0KPj4gKG5vdCBhbHdheXMg
-YWxsIG9mIHRoZW0pOg0KPj4NCj4+IFtXQVJOSU5HXSBbTVBNLlJQQ1NlcnZlcl0gU29tZW9uZSB0
-cmllZCB0byBjbGFpbSB0aGlzIGRldmljZSBhZ2FpbiANCj4+IChGcm9tOiAxOTIuMTY4LjIwLjEp
-DQo+PiBbV0FSTklOR10gW01QTS5SUENTZXJ2ZXJdIEEgdGltZW91dCBldmVudCBvY2N1cmVkIQ0K
-Pj4gW1dBUk5JTkddIFtSRk5PQzo6R1JBUEhdIE9uZSBvciBtb3JlIGJsb2NrcyB0aW1lZCBvdXQg
-ZHVyaW5nIGZsdXNoIQ0KPj4NCj4+IHRlcm1pbmF0ZSBjYWxsZWQgYWZ0ZXIgdGhyb3dpbmcgYW4g
-aW5zdGFuY2Ugb2YgJ3VoZDo6cnVudGltZV9lcnJvcicNCj4+IMKgIHdoYXQoKTrCoCBSdW50aW1l
-RXJyb3I6IHJ4IHhwb3J0IHRpbWVkIG91dCBnZXR0aW5nIGEgcmVzcG9uc2UgZnJvbSANCj4+IG1n
-bXRfcG9ydGFsDQo+PiBBYm9ydGVkDQo+Pg0KPj4gQW5kIHRoZXNlIGFyZSBqdXN0IGEgZmV3IGV4
-YW1wbGVzLg0KPj4NCj4+IEkgY291bGQgdGhpbmsgb2YgaWdub3JpbmcgdGhlbSwgdXNpbmcgdGhl
-IE4zMTAgb25seSBhIGZldyBtaW51dGVzIA0KPj4gYWZ0ZXIgdGhlIHByZXZpb3VzIHVzZS4gVGhl
-IHByb2JsZW0gaXMgdGhhdCB0aGUgZGV2aWNlIGRvZXMgbm90IHNlZW0gDQo+PiB0byB0cmFuc21p
-dCBhbnl0aGluZyBvdmVyIHRoZSBhaXIsIGV2ZW4gb24gdGhlIGZpcnN0IHRyeS4gSSBzYXkgdGhp
-cyANCj4+IGJlY2F1c2UgdXNpbmcgdGhlIHNhbWUgY29uZmlndXJhdGlvbiBmaWxlIHRoYXQgSSB1
-c2Ugd2l0aCBhIEIyMTAgdGhlIA0KPj4gZ05CIGRvZXMgbm90IHdvcmssIHdoaWxlIHdpdGggdGhl
-IEIyMTAgaXQgd29ya3MgYW5kIEkgY2FuIGNvbm5lY3QgdGhlIA0KPj4gc21hdGhwaG9uZS4NCj4+
-DQo+PiBJIGF0dGFjaCB0aGUgbG9nIGZpbGUgb2YgT3BlckFpckludGVyZmFjZS4NCj4+DQo+PiBB
-bHNvLCBJIGZyZXF1ZW50bHkgZ2V0IHRoZSBjbGFzc2ljICJMIiBpbmRpY2F0aW5nIG92ZXJmbG93
-IGFmdGVyIA0KPj4gYWJvdXQgdGVuIHNlY29uZHMuDQo+Pg0KPj4gSSBoYXZlIHNvbHZlZCBhIHNp
-bWlsYXIgcHJvYmxlbSBiZWZvcmUgKEkgcmVwb3J0IGEgcHJldmlvdXMgbWFpbCk6DQo+PiAtLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0gDQo+Pg0KPj4gSSBpbnN0YWxsZWQgdGhlIFVIRCA0LjEgdmVyc2lv
-biBhbmQgZm9sbG93ZWQgdGhpcyB0dXRvcmlhbDogDQo+PiBodHRwczovL2tiLmV0dHVzLmNvbS9V
-U1JQX04zMDAvTjMxMC9OMzIwL04zMjFfR2V0dGluZ19TdGFydGVkX0d1aWRlIA0KPj4gZm9yIHVw
-ZGF0aW5nIHRoZSBMaW51eCBGaWxlIFN5c3RlbSBhbmQgdXBkYXRpbmcgdGhlIEZQR0EgSW1hZ2Uu
-DQo+PiBXaGVuIEkgdHJ5IGEgc2ltcGxlIGV4YW1wbGUgZmlsZToNCj4+IC4vcnhfYXNjaWlfYXJ0
-X2RmdCAtLWZyZXEgOThlNiAtLXJhdGUgNWU2IC0tZ2FpbiAyMCAtLWJ3IDVlNiANCj4+IC0tcmVm
-LWx2bCAtMzANCj4+IEkgZ2V0IHRoZSBmb2xsb3dpbmcgZXJyb3I6DQo+PiBbV0FSTklOR10gWzAv
-UmFkaW8jMF0gc2V0X3J4X2JhbmR3aWR0aCB0YWtlIG5vIGVmZmVjdCBvbiBBRDkzNzEuIA0KPj4g
-RGVmYXVsdCBhbmFsb2cgYmFuZHdpZHRoIGlzIDEwME1Ieg0KPj4gSSBjYW5ub3QgZmluZCBhbnkg
-dXNlZnVsIGluZm9ybWF0aW9uIG9ubGluZSwgYXBhcnQgZnJvbSB0aGlzIA0KPj4gZGlzY3Vzc2lv
-bjogDQo+PiBodHRwczovL3d3dy5tYWlsLWFyY2hpdmUuY29tL3VzcnAtdXNlcnNAbGlzdHMuZXR0
-dXMuY29tL21zZzA1NzM1Lmh0bWwgDQo+PiB3aGljaCBkaWQgbm90IGhlbHAgbWUuDQo+PiAtLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0gDQo+Pg0KPj4NCj4+IEFsdGhvdWdoIGluIHRoZSBmb3J1bSBpdCB3
-YXMgdG9sZCB0byBtZSB0aGF0IHRoaXMgd2FzIGp1c3QgYSB3YXJuaW5nLCANCj4+IEkgZml4ZWQg
-aXQgYnkgdXBncmFkaW5nIHRoZSB2ZXJzaW9uIG9mIFVIRCB0byA0LjMuDQo+Pg0KPj4gQWxsIHRo
-aXMgc3VnZ2VzdHMgdG8gbWUgdGhhdCB0aGVyZSBpcyBzb21ldGhpbmcgbWVzc2VkIHVwIGluIHRo
-ZSANCj4+IGluaXRpYWwgc2V0dXAuDQo+Pg0KPj4gRG9lcyBhbnlvbmUgaGF2ZSBhbnkgaWRlYXMg
-YW5kIGNhbiBoZWxwIG1lPw0KPj4NCj4gV2hlbiBhbiBhcHBsaWNhdGlvbiB0ZXJtaW5hdGVzIGFi
-bm9ybWFsbHksIHRoZSBOMzEwIGRvZXNuJ3QgImtub3ciIA0KPiB0aGF0IHRoZSBhcHBsaWNhdGlv
-biBoYXMgImdvbmUgYXdheSIsIGFuZCB0YWtlcyBpdCBhIHdoaWxlIHRvIG5vdGljZSwgDQo+IGFu
-ZCByZXNldCBpdHMgaW50ZXJuYWwgc3RhdGUuDQo+IMKgwqAgTWFueSBuZXR3b3JrLWJhc2VkIGFw
-cGxpY2F0aW9ucyB0aGF0IHVzZSBjb25uZWN0aW9ubGVzcyBwcm90b2NvbHMgDQo+IGxpa2UgVURQ
-IGhhdmUgdGhlIHNhbWUgaXNzdWUsIGV2ZW4gb3V0c2lkZSBvZiB0aGUgU0RSIHVuaXZlcnNlLg0K
-Pg0KPiBUaGUgYmFuZHdpZHRoIHdhcm5pbmcgaXMganVzdCBhIHdhcm5pbmcuwqDCoCBJdCB3aWxs
-IGhhdmUgbGl0dGxlIHRvIG5vIA0KPiBlZmZlY3Qgb24geW91ciBhcHBsaWNhdGlvbi7CoCBUaGlz
-IGhhcyBiZWVuIGV4cGxhaW5lZCBpbiBwcmV2aW91cyBwb3N0cy4NCj4NCj4gX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5n
-IGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2Vu
-ZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcg
-bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
-IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+This is a multi-part message in MIME format.
+
+--===============1626674794598531454==
+Content-Type: multipart/alternative;
+ boundary="b1_3ozPjdcKVHphIfQR4oZjUTnrAZKFygMucHsBPoEhg10"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_3ozPjdcKVHphIfQR4oZjUTnrAZKFygMucHsBPoEhg10
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear All,
+
+I use Cmake to compile uhd v4.0.0.0, I=E2=80=99m building uhd on a Ubuntu=
+ 16.04 lts machine. My gcc and g++ are above minimum requirement, but I g=
+ot following error.
+
+\[ 57%\] Linking CXX executable rx_samples_c
+
+\[ 57%\] Linking CXX executable test_dboard_coercion
+
+\[ 57%\] Linking CXX executable rx_ascii_art_dft
+
+\[ 57%\] Linking CXX executable test_clock_synch
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::features::discovera=
+ble_feature_registry::enumerate_features\[abi:cxx11\]()'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`nirio_driver_iface::rio_=
+open(std::__cxx11::basic_string<char, std::char_traits<char>, std::alloca=
+tor<char> > const&, int&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::value_error::value_=
+error(std::string const&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::not_implemented_err=
+or::not_implemented_error(std::string const&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::convert::register_b=
+ytes_per_item(std::string const&, unsigned long)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::path_expandvars(std=
+::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char=
+> > const&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::csv::to_rows\[abi:c=
+xx11\](std::istream&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::utils::serial_numbe=
+rs_match(std::__cxx11::basic_string<char, std::char_traits<char>, std::al=
+locator<char> > const&, std::__cxx11::basic_string<char, std::char_traits=
+<char>, std::allocator<char> > const&)'
+
+collect2: error: ld returned 1 exit status
+
+examples/CMakeFiles/rx_samples_c.dir/build.make:109: recipe for target 'e=
+xamples/rx_samples_c' failed
+
+make\[2\]: \*\*\* \[examples/rx_samples_c\] Error 1
+
+CMakeFiles/Makefile2:956: recipe for target 'examples/CMakeFiles/rx_sampl=
+es_c.dir/all' failed
+
+make\[1\]: \*\*\* \[examples/CMakeFiles/rx_samples_c.dir/all\] Error 2
+
+make\[1\]: \*\*\* Waiting for unfinished jobs....
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::features::discovera=
+ble_feature_registry::enumerate_features\[abi:cxx11\]()'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`nirio_driver_iface::rio_=
+open(std::__cxx11::basic_string<char, std::char_traits<char>, std::alloca=
+tor<char> > const&, int&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::value_error::value_=
+error(std::string const&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::not_implemented_err=
+or::not_implemented_error(std::string const&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::convert::register_b=
+ytes_per_item(std::string const&, unsigned long)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::path_expandvars(std=
+::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char=
+> > const&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::csv::to_rows\[abi:c=
+xx11\](std::istream&)'
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::utils::serial_numbe=
+rs_match(std::__cxx11::basic_string<char, std::char_traits<char>, std::al=
+locator<char> > const&, std::__cxx11::basic_string<char, std::char_traits=
+<char>, std::allocator<char> > const&)'
+
+collect2: error: ld returned 1 exit status
+
+examples/CMakeFiles/test_dboard_coercion.dir/build.make:108: recipe for t=
+arget 'examples/test_dboard_coercion' failed
+
+make\[2\]: \*\*\* \[examples/test_dboard_coercion\] Error 1
+
+CMakeFiles/Makefile2:1037: recipe for target 'examples/CMakeFiles/test_db=
+oard_coercion.dir/all' failed
+
+make\[1\]: \*\*\* \[examples/CMakeFiles/test_dboard_coercion.dir/all\] Er=
+ror 2
+
+../lib/libuhd.so.4.0.0: undefined reference to \`uhd::features::.discover=
+able_feature_registry:.:/enumerate_featureslib\[/abilibuhd.so.4.0.0::cxx1=
+1 \]undefined( )reference'=20
+
+to. .\`/uhdlib:/:libuhd.so.4.0.0features:: :undefineddiscoverable_feature=
+_registry :reference: enumerate_featuresto\[ abi\`:nirio_driver_ifacecxx1=
+1:\]:(rio_open)('std
+
+\:.:.__cxx11/:lib:/basic_stringlibuhd.so.4.0.0<:char ,undefined  stdrefer=
+ence: :tochar_traits <\`charnirio_driver_iface>:,: rio_openstd(:std::allo=
+cator:<__cxx11char:>: basic_string>< charconst,& ,std :int:&char_traits)<=
+'char
+
+>.,. /stdlib:/:libuhd.so.4.0.0allocator:< charundefined>  reference>  toc=
+onst &\`,uhd :int:&value_error):':
+
+value_error.(.std/:lib:/stringlibuhd.so.4.0.0 :const &undefined) 'referen=
+ce
+
+ .to. /\`libuhd/:libuhd.so.4.0.0::value_error :undefined: value_errorrefe=
+rence( stdto: :\`stringuhd :const:&not_implemented_error):':
+
+not_implemented_error.(.std/:lib:/stringlibuhd.so.4.0.0 :const &undefined=
+) 'reference
+
+ .to. /\`libuhd/:libuhd.so.4.0.0::not_implemented_error :undefined: not_i=
+mplemented_errorreference( stdto: :\`stringuhd :const:&convert):':
+
+register_bytes_per_item.(.std/:lib:/stringlibuhd.so.4.0.0 :const &undefin=
+ed,  referenceunsigned  tolong )\`'uhd
+
+\:.:.convert/:lib:/register_bytes_per_item(libuhd.so.4.0.0std:: :undefine=
+dstring  referenceconst &to,  \`unsigneduhd :long:)path_expandvars'(
+
+std.:.:/__cxx11lib:/:libuhd.so.4.0.0basic_string:< charundefined,  refere=
+ncestd :to: char_traits\`<uhdchar:>:,path_expandvars (stdstd::::allocator=
+__cxx11<:char:>basic_string <>char ,const &std):':
+
+char_traits.<.char/>lib,/ libuhd.so.4.0.0std:: :undefinedallocator <refer=
+encechar >to  >\` uhdconst:&:)csv':
+
+\:.to_rows.\[/abilib:/cxx11libuhd.so.4.0.0\]:( stdundefined: :referenceis=
+tream &to) '\`
+
+uhd.:.:/csvlib:/:libuhd.so.4.0.0to_rows:\[ abiundefined: cxx11reference\]=
+ (tostd :\`:uhdistream:&:)utils':
+
+\:.serial_numbers_match.(/stdlib:/:libuhd.so.4.0.0__cxx11:: :undefinedbas=
+ic_string <referencechar ,to  std\`:uhd::char_traits:<utilschar:>:,serial=
+_numbers_match (stdstd::::allocator__cxx11<:char:>basic_string <>char ,co=
+nst &std,: :stdchar_traits:<:char__cxx11>:,: basic_stringstd<:char:,alloc=
+ator <stdchar:>: char_traits>< charconst>&,,  stdstd::::allocator__cxx11<=
+:char:>basic_string <>char ,const &std):':
+
+char_traits<char>, std::allocator<char> > const&)'
+
+collect2: error: ld returned 1 exit status
+
+collect2: error: ld returned 1 exit status
+
+examples/CMakeFiles/test_clock_synch.dir/build.make:108: recipe for targe=
+t 'examples/test_clock_synch' failed
+
+examples/CMakeFiles/rx_ascii_art_dft.dir/build.make:110: recipe for targe=
+t 'examples/rx_ascii_art_dft' failed
+
+make\[2\]: \*\*\* \[examples/test_clock_synch\] Error 1
+
+make\[2\]: \*\*\* \[examples/rx_ascii_art_dft\] Error 1
+
+CMakeFiles/Makefile2:983: recipe for target 'examples/CMakeFiles/rx_ascii=
+_art_dft.dir/all' failed
+
+make\[1\]: \*\*\* \[examples/CMakeFiles/rx_ascii_art_dft.dir/all\] Error =
+2
+
+CMakeFiles/Makefile2:1010: recipe for target 'examples/CMakeFiles/test_cl=
+ock_synch.dir/all' failed
+
+make\[1\]: \*\*\* \[examples/CMakeFiles/test_clock_synch.dir/all\] Error =
+2
+
+Makefile:165: recipe for target 'all' failed
+
+make: \*\*\* \[all\] Error 2
+
+Can any one help me solve this issue?
+
+Thank you so much.
+
+Regards,
+
+Guang
+
+--b1_3ozPjdcKVHphIfQR4oZjUTnrAZKFygMucHsBPoEhg10
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Dear All,</p><p><br></p><p>I use Cmake to compile uhd v4.0.0.0, I=
+=E2=80=99m building uhd on a Ubuntu 16.04 lts machine. My gcc and g++ are a=
+bove minimum requirement, but I got following error.</p><p>[ 57%] Linking C=
+XX executable rx_samples_c</p><p>[ 57%] Linking CXX executable test_dboard_=
+coercion</p><p>[ 57%] Linking CXX executable rx_ascii_art_dft</p><p>[ 57%] =
+Linking CXX executable test_clock_synch</p><p>../lib/libuhd.so.4.0.0: undef=
+ined reference to `uhd::features::discoverable_feature_registry::enumerate_=
+features[abi:cxx11]()'</p><p>../lib/libuhd.so.4.0.0: undefined reference to=
+ `nirio_driver_iface::rio_open(std::__cxx11::basic_string&lt;char, std::cha=
+r_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, int&amp;)=
+'</p><p>../lib/libuhd.so.4.0.0: undefined reference to `uhd::value_error::v=
+alue_error(std::string const&amp;)'</p><p>../lib/libuhd.so.4.0.0: undefined=
+ reference to `uhd::not_implemented_error::not_implemented_error(std::strin=
+g const&amp;)'</p><p>../lib/libuhd.so.4.0.0: undefined reference to `uhd::c=
+onvert::register_bytes_per_item(std::string const&amp;, unsigned long)'</p>=
+<p>../lib/libuhd.so.4.0.0: undefined reference to `uhd::path_expandvars(std=
+::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocat=
+or&lt;char&gt; &gt; const&amp;)'</p><p>../lib/libuhd.so.4.0.0: undefined re=
+ference to `uhd::csv::to_rows[abi:cxx11](std::istream&amp;)'</p><p>../lib/l=
+ibuhd.so.4.0.0: undefined reference to `uhd::utils::serial_numbers_match(st=
+d::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std::alloca=
+tor&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char, std::c=
+har_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)'</p><p>=
+collect2: error: ld returned 1 exit status</p><p>examples/CMakeFiles/rx_sam=
+ples_c.dir/build.make:109: recipe for target 'examples/rx_samples_c' failed=
+</p><p>make[2]: *** [examples/rx_samples_c] Error 1</p><p>CMakeFiles/Makefi=
+le2:956: recipe for target 'examples/CMakeFiles/rx_samples_c.dir/all' faile=
+d</p><p>make[1]: *** [examples/CMakeFiles/rx_samples_c.dir/all] Error 2</p>=
+<p>make[1]: *** Waiting for unfinished jobs....</p><p>../lib/libuhd.so.4.0.=
+0: undefined reference to `uhd::features::discoverable_feature_registry::en=
+umerate_features[abi:cxx11]()'</p><p>../lib/libuhd.so.4.0.0: undefined refe=
+rence to `nirio_driver_iface::rio_open(std::__cxx11::basic_string&lt;char, =
+std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;, i=
+nt&amp;)'</p><p>../lib/libuhd.so.4.0.0: undefined reference to `uhd::value_=
+error::value_error(std::string const&amp;)'</p><p>../lib/libuhd.so.4.0.0: u=
+ndefined reference to `uhd::not_implemented_error::not_implemented_error(st=
+d::string const&amp;)'</p><p>../lib/libuhd.so.4.0.0: undefined reference to=
+ `uhd::convert::register_bytes_per_item(std::string const&amp;, unsigned lo=
+ng)'</p><p>../lib/libuhd.so.4.0.0: undefined reference to `uhd::path_expand=
+vars(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std:=
+:allocator&lt;char&gt; &gt; const&amp;)'</p><p>../lib/libuhd.so.4.0.0: unde=
+fined reference to `uhd::csv::to_rows[abi:cxx11](std::istream&amp;)'</p><p>=
+../lib/libuhd.so.4.0.0: undefined reference to `uhd::utils::serial_numbers_=
+match(std::__cxx11::basic_string&lt;char, std::char_traits&lt;char&gt;, std=
+::allocator&lt;char&gt; &gt; const&amp;, std::__cxx11::basic_string&lt;char=
+, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; const&amp;)=
+'</p><p>collect2: error: ld returned 1 exit status</p><p>examples/CMakeFile=
+s/test_dboard_coercion.dir/build.make:108: recipe for target 'examples/test=
+_dboard_coercion' failed</p><p>make[2]: *** [examples/test_dboard_coercion]=
+ Error 1</p><p>CMakeFiles/Makefile2:1037: recipe for target 'examples/CMake=
+Files/test_dboard_coercion.dir/all' failed</p><p>make[1]: *** [examples/CMa=
+keFiles/test_dboard_coercion.dir/all] Error 2</p><p>../lib/libuhd.so.4.0.0:=
+ undefined reference to `uhd::features::.discoverable_feature_registry:.:/e=
+numerate_featureslib[/abilibuhd.so.4.0.0::cxx11 ]undefined( )reference' </p=
+><p>to. .`/uhdlib:/:libuhd.so.4.0.0features:: :undefineddiscoverable_featur=
+e_registry :reference: enumerate_featuresto[ abi`:nirio_driver_ifacecxx11:]=
+:(rio_open)('std</p><p>:.:.__cxx11/:lib:/basic_stringlibuhd.so.4.0.0&lt;:ch=
+ar ,undefined  stdreference: :tochar_traits &lt;`charnirio_driver_iface&gt;=
+:,: rio_openstd(:std::allocator:&lt;__cxx11char:&gt;: basic_string&gt;&lt; =
+charconst,&amp; ,std :int:&amp;char_traits)&lt;'char</p><p>&gt;.,. /stdlib:=
+/:libuhd.so.4.0.0allocator:&lt; charundefined&gt;  reference&gt;  toconst &=
+amp;`,uhd :int:&amp;value_error):':</p><p>value_error.(.std/:lib:/stringlib=
+uhd.so.4.0.0 :const &amp;undefined) 'reference</p><p> .to. /`libuhd/:libuhd=
+.so.4.0.0::value_error :undefined: value_errorreference( stdto: :`stringuhd=
+ :const:&amp;not_implemented_error):':</p><p>not_implemented_error.(.std/:l=
+ib:/stringlibuhd.so.4.0.0 :const &amp;undefined) 'reference</p><p> .to. /`l=
+ibuhd/:libuhd.so.4.0.0::not_implemented_error :undefined: not_implemented_e=
+rrorreference( stdto: :`stringuhd :const:&amp;convert):':</p><p>register_by=
+tes_per_item.(.std/:lib:/stringlibuhd.so.4.0.0 :const &amp;undefined,  refe=
+renceunsigned  tolong )`'uhd</p><p>:.:.convert/:lib:/register_bytes_per_ite=
+m(libuhd.so.4.0.0std:: :undefinedstring  referenceconst &amp;to,  `unsigned=
+uhd :long:)path_expandvars'(</p><p>std.:.:/__cxx11lib:/:libuhd.so.4.0.0basi=
+c_string:&lt; charundefined,  referencestd :to: char_traits`&lt;uhdchar:&gt=
+;:,path_expandvars (stdstd::::allocator__cxx11&lt;:char:&gt;basic_string &l=
+t;&gt;char ,const &amp;std):':</p><p>char_traits.&lt;.char/&gt;lib,/ libuhd=
+.so.4.0.0std:: :undefinedallocator &lt;referencechar &gt;to  &gt;` uhdconst=
+:&amp;:)csv':</p><p>:.to_rows.[/abilib:/cxx11libuhd.so.4.0.0]:( stdundefine=
+d: :referenceistream &amp;to) '`</p><p>uhd.:.:/csvlib:/:libuhd.so.4.0.0to_r=
+ows:[ abiundefined: cxx11reference] (tostd :`:uhdistream:&amp;:)utils':</p>=
+<p>:.serial_numbers_match.(/stdlib:/:libuhd.so.4.0.0__cxx11:: :undefinedbas=
+ic_string &lt;referencechar ,to  std`:uhd::char_traits:&lt;utilschar:&gt;:,=
+serial_numbers_match (stdstd::::allocator__cxx11&lt;:char:&gt;basic_string =
+&lt;&gt;char ,const &amp;std,: :stdchar_traits:&lt;:char__cxx11&gt;:,: basi=
+c_stringstd&lt;:char:,allocator &lt;stdchar:&gt;: char_traits&gt;&lt; charc=
+onst&gt;&amp;,,  stdstd::::allocator__cxx11&lt;:char:&gt;basic_string &lt;&=
+gt;char ,const &amp;std):':</p><p>char_traits&lt;char&gt;, std::allocator&l=
+t;char&gt; &gt; const&amp;)'</p><p>collect2: error: ld returned 1 exit stat=
+us</p><p>collect2: error: ld returned 1 exit status</p><p>examples/CMakeFil=
+es/test_clock_synch.dir/build.make:108: recipe for target 'examples/test_cl=
+ock_synch' failed</p><p>examples/CMakeFiles/rx_ascii_art_dft.dir/build.make=
+:110: recipe for target 'examples/rx_ascii_art_dft' failed</p><p>make[2]: *=
+** [examples/test_clock_synch] Error 1</p><p>make[2]: *** [examples/rx_asci=
+i_art_dft] Error 1</p><p>CMakeFiles/Makefile2:983: recipe for target 'examp=
+les/CMakeFiles/rx_ascii_art_dft.dir/all' failed</p><p>make[1]: *** [example=
+s/CMakeFiles/rx_ascii_art_dft.dir/all] Error 2</p><p>CMakeFiles/Makefile2:1=
+010: recipe for target 'examples/CMakeFiles/test_clock_synch.dir/all' faile=
+d</p><p>make[1]: *** [examples/CMakeFiles/test_clock_synch.dir/all] Error 2=
+</p><p>Makefile:165: recipe for target 'all' failed</p><p>make: *** [all] E=
+rror 2</p><p><br></p><p>Can any one help me solve this issue?</p><p><br></p=
+><p>Thank you so much.</p><p><br></p><p>Regards,</p><p>Guang</p>
+
+--b1_3ozPjdcKVHphIfQR4oZjUTnrAZKFygMucHsBPoEhg10--
+
+--===============1626674794598531454==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1626674794598531454==--
