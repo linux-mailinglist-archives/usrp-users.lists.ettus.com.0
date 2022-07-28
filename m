@@ -2,535 +2,214 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A5A584620
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 20:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E979584627
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 21:15:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 43C49383FD8
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 14:55:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A5D0F383BCE
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 15:15:17 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659034509; bh=nvowFdUvydKxPqTTSJswjx7oKa2S/kVQCmMvfpgWJDI=;
-	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
-	 From;
-	b=aoFLAhI1K0kqhCfqqs/Osq/ROybzCCt3UoEFbcyZqP25PuNyqDbEQlyDq280/7gFc
-	 5yOg548RD+5QRRN3N6GI9OEyHSDpVATlUqvpjhHfFGLi4vVVdJn6WjpBxyPqacYHYa
-	 7P4DITPGU9vigKymk/3u7ATEEWqskN/4sCo4XHeIHyc7l7zHuRsAIhpPat0WY7l+O3
-	 bZm2QSngbgvcnb58O7n78GOb2cd4sM9TqXmB8c9AdnkKks129t7HQQv9DkTk/7LqeX
-	 HJZSw4rLUJ07s5GqOiAcKh8pbBUujaS81cH1aRc9ctnNuxJ3wTxZp7pemjH+/vjg2T
-	 PUd9dCjF7d4+A==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 48191383FA8
-	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 14:53:11 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659034391; bh=XkU+KKsqB3H41CtzJtIN9hmPF580ZNjNXcbvtsXYPoI=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=unbcsk9XK/gMjRZaTYF0tpeTKzgCsIteAz1BemojFqCbfl1UT61nAzZ60zrzUZlKf
-	 JslIRH0yHM0dk8q0iG5yIdlbUEBnmPiNMK14vk0nbPB41zMjCTX7gkheYIDVkbMXa/
-	 xqEpyliuSpta3Euw0Jc10Wnz28a1QHod4YndEbgv4wOoqJJE7a7Gby0xOIXLOj8ZkK
-	 UvcpnFlQC3OIEF5ncfoY/Khcvum5xTlE7W8jQHz4MDYUrtEr7116M0i51AEbN9skOV
-	 3ZIubsUd730mgRr0eijil8IZOgiAuN2qaCN/5qGDQzRPqSGooQJgvgUCmN1jQ2ArRK
-	 jPjME8I06Eb9w==
-Date: Thu, 28 Jul 2022 18:53:11 +0000
-To: usrp-users@lists.ettus.com
-Message-ID: <3mJzhI7U8ITf6pqi68prmM3VNTb290VGY4rCrQzOZHg@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: CAKhiL6WGETfh+w08WgHsrMk_fHhpA5QAnMLMOZaVdgogN6JM4g@mail.gmail.com
+	t=1659035717; bh=mC5WSIoXw7jlw8u3J0F6GUHUpl0qDubSrvCm5QUG704=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=Xy9F8okEP7RBDlyS1cyhOkDzkTi5TNlB2TYR1PcGjY8F/JyGfclp72MamRvug3Bu2
+	 RX8u5fH6O/Hlkre/TzYR5owSXH+x/IBuBYOlHqKgWNTZnnAvnn9ZjFclqLz5Os7v5V
+	 1+ULxHInUlKEXIn7YUWGizREBk7yhZS0hFASdHx4vf/ZAAdaG5osuCEgHmTDw2equb
+	 dJCzrUxuEJ8bPBFMmOUI6B7//ee8Lcm0DBelJRPaXnGa5NYQO4yPkI7d0r+MdbCHB+
+	 dF/SHnQucFA5EISA7b6kcpA0eg0+B1ghGv1C99TV2Mr3CnzjvBb0aZircw/9YSetl7
+	 PmCJUuEQEGLWw==
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5BE003818DF
+	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 15:13:06 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bEaiMcGb";
+	dkim-atps=neutral
+Received: by mail-ej1-f43.google.com with SMTP id sz17so4719511ejc.9
+        for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 12:13:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=zOWcoWPnxhYrGozHAajBS5gchn0hBncb/qWtjqTSRWw=;
+        b=bEaiMcGbx6iPU4mRakG3DYhXF2L5WIYNLyzeAOvjGcZLLHAjanb9VZttzCYHVGt4fR
+         4PF8vuadPmbhpOkvUmDS6Mqfs2GrAryXNrH/gCBsCu+Ml6M2zZCVeM/Gsn6hoP8FBk2Z
+         mFd3gp8nYneXVHM1YN8aHtaxbexXmoO2UDeH74UW8i5/HImV7/0/OuaWhOTdHm6aVfy/
+         u4CqncgFv6JFX6k0c6gA923NbltVaMq6c6PYRtFtpPEBCQ+XmfqCmR6uk7/jgqjIfaRQ
+         WJKVrls2DHAnKZ0uta5nTFRMXrlE1Z5IEvSo+MqHDtJkr4LqYoA/s85OCwqRVft4D1xF
+         Y51w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=zOWcoWPnxhYrGozHAajBS5gchn0hBncb/qWtjqTSRWw=;
+        b=2Dxx4Kfv8aywDkRwHB4Y/X+ALiaYFtsNjKSfSwo7QR1jYcmER2GKcrj+WOFF0HmIAB
+         bkN/Ve3OPku62yJZFieCvGgmBWwLdTZVG9aEjkmdN68y2nZTp2O7GzUTk5ehtUNZ5b2e
+         r7B0Q9DR2jhjOm1vvmavdBt2Fuof67+HyVlq+jawQGIkUmHEqEODqLlm3r2t5pc75Sib
+         GduwS6rFpepa6KL/pg+DDo08IeJKN7GhCOfqEFAxVROAXrMd70eQY7UzfEHIayhKUNvK
+         DY5W2mSfZC3MFItXyMWjciuEdC1Z5PBfPR9YRiDsDakynzTZpb64KPVZCSx8e/22ND0g
+         rueQ==
+X-Gm-Message-State: AJIora8HCxJLRUDE0lbfkjONMbGQYPZZBCKxe4LMUPTD4J5yjcLal+3C
+	dVoRuvST+ExDov4su8lA/gIMsaZ6XwfVtXA2d1AQDi+M
+X-Google-Smtp-Source: AGRyM1uwLCzDLQTBRNdHUN+O/361aqkT+V4gVluZyoi4HJE3PV0KKurBBE/yITe8U03miaQzrTcqN3lkbTJYxz22jOY=
+X-Received: by 2002:a17:907:d07:b0:72e:ec79:ad0f with SMTP id
+ gn7-20020a1709070d0700b0072eec79ad0fmr287764ejc.296.1659035584991; Thu, 28
+ Jul 2022 12:13:04 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: FDQQWG2XGGQJZZML5EH4TJSRZIIM2DEV
-X-Message-ID-Hash: FDQQWG2XGGQJZZML5EH4TJSRZIIM2DEV
-X-MailFrom: skyung@nrel.gov
+References: <3ozPjdcKVHphIfQR4oZjUTnrAZKFygMucHsBPoEhg10@lists.ettus.com>
+In-Reply-To: <3ozPjdcKVHphIfQR4oZjUTnrAZKFygMucHsBPoEhg10@lists.ettus.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Thu, 28 Jul 2022 22:12:53 +0300
+Message-ID: <CAAxXO2Fwc-FrhYQQEj9HvQ7CbL87ygLhm9RVoe25VrFt1=ooyw@mail.gmail.com>
+To: k19033844@kcl.ac.uk
+Message-ID-Hash: CHHLNVAFBNNMKZG2FWILE7GDIW44AZN4
+X-Message-ID-Hash: CHHLNVAFBNNMKZG2FWILE7GDIW44AZN4
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP x310 ERROR_CODE_OVERFLOW issue
+Subject: [USRP-users] Re: Error Build uhd
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FDQQWG2XGGQJZZML5EH4TJSRZIIM2DEV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CHHLNVAFBNNMKZG2FWILE7GDIW44AZN4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: skyung--- via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: skyung@nrel.gov
-Content-Type: multipart/mixed; boundary="===============4953105556845948235=="
-
-This is a multi-part message in MIME format.
-
---===============4953105556845948235==
-Content-Type: multipart/alternative;
- boundary="b1_3mJzhI7U8ITf6pqi68prmM3VNTb290VGY4rCrQzOZHg"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_3mJzhI7U8ITf6pqi68prmM3VNTb290VGY4rCrQzOZHg
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi Loy,
-
-I have a similar problem to yours.
-
-I am trying to run the OAI 5G nr-UE binary with=20
-
-```
-./nr-uesoftmodem --sa --usrp-args "type=3Dn3xx, addr=3D192.168.99.114" --=
-numerology 1 -r 106 --band 78 -s 516 -C 3619200000 -d --ue-fo-compensatio=
-n -E --ue-rxgain 65
-```
-
-and getting the following error:
-
-```
-[HW]   Found USRP n3xx
-```
-
-```
-Found USRP n310
-```
-
-```
-net.core.rmem_max =3D 62500000
-```
-
-```
-net.core.wmem_max =3D 62500000
-```
-
-```
-[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D=
-192.168.99.114,type=3Dn3xx,product=3Dn310,serial=3D3240243,name=3Dni-n3xx=
--3240243,fpga=3DHG,claimed=3DFalse,addr=3D192.168.99.114,master_clock_rat=
-e=3D122880000.000000
-```
-
-```
-[WARNING] [MPM.RPCServer] A timeout event occured!
-```
-
-```
-[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DHG,mast=
-er_clock_rate=3D122880000.000000,mgmt_addr=3D192.168.99.114,name=3Dni-n3x=
-x-3240243,product=3Dn310,clock_source=3Dinternal,time_source=3Dinternal'.
-```
-
-```
-[HW]   Setting clock source to internal
-```
-
-```
-[HW]   Setting time source to internal
-```
-
-```
--- Using calibration table: calib_table_n310
-```
-
-```
-[HW]   device_init() sample_rate:46080000
-```
-
-```
-[WARNING] [0/DDC#0] The requested decimation is odd; the user should expe=
-ct passband CIC rolloff.
-```
-
-```
-Select an even decimation to ensure that a halfband filter is enabled.
-```
-
-```
-Decimations factorable by 4 will enable 2 halfbands, those factorable by =
-8 will enable 3 halfbands.
-```
-
-```
-decimation =3D dsp_rate/samp_rate -> 3
-```
-
-```
-[WARNING] [0/DDC#0] The requested decimation is odd; the user should expe=
-ct passband CIC rolloff.
-```
-
-```
-Select an even decimation to ensure that a halfband filter is enabled.
-```
-
-```
-Decimations factorable by 4 will enable 2 halfbands, those factorable by =
-8 will enable 3 halfbands.
-```
-
-```
-decimation =3D dsp_rate/samp_rate -> 3
-```
-
-```
-[WARNING] [MULTI_USRP] Could not set RX rate to 46.080 MHz. Actual rate i=
-s 40.960 MHz
-```
-
-```
-[HW]   cal 0: freq 3500000000.000000, offset 0.000000, diff 119200000.000=
-000
-```
-
-```
-[HW]   cal 1: freq 2660000000.000000, offset 0.000000, diff 959200000.000=
-000
-```
-
-```
-[HW]   cal 2: freq 2300000000.000000, offset 0.000000, diff 1319200000.00=
-0000
-```
-
-```
-[HW]   cal 3: freq 1880000000.000000, offset 0.000000, diff 1739200000.00=
-0000
-```
-
-```
-[HW]   cal 4: freq 816000000.000000, offset 0.000000, diff 2803200000.000=
-000
-```
-
-```
-[HW]   RX Gain 0 65.000000 (0.000000) =3D> 65.000000 (max 75.000000)
-```
-
-```
-[WARNING] [0/DUC#0] The requested interpolation is odd; the user should e=
-xpect passband CIC rolloff.
-```
-
-```
-Select an even interpolation to ensure that a halfband filter is enabled.
-```
-
-```
-[WARNING] [MULTI_USRP] Could not set TX rate to 46.080 MHz. Actual rate i=
-s 40.960 MHz
-```
-
-```
-[HW]   USRP TX_GAIN:65.00 gain_range:65.00 tx_gain:0.00
-```
-
-```
-[HW]   Actual master clock: 122.880000MHz...
-```
-
-```
-[HW]   Actual clock source internal...
-```
-
-```
-[HW]   Actual time source internal...
-```
-
-```
-[HW]   RF board max packet size 364, size for 100=C2=B5s jitter 4608
-```
-
-```
-[HW]   rx_max_num_samps 364
-```
-
-```
-[HW]   setting rx channel 0
-```
-
-```
-[INFO] [0/Radio#0] Re-initializing dboard to apply bandwidth settings. Th=
-is may take some time.
-```
-
-```
-[INFO] [0/Radio#0] Bandwidth settings applied: 40000000.000000
-```
-
-```
-[INFO] [0/Radio#0] Re-initializing dboard to apply bandwidth settings. Th=
-is may take some time.
-```
-
-```
-[INFO] [0/Radio#0] Bandwidth settings applied: 40000000.000000
-```
-
-```
-[HW]   RX Channel 0
-```
-
-```
-[HW]     Actual RX sample rate: 40.960000MSps...
-```
-
-```
-[HW]     Actual RX frequency: 3.619200GHz...
-```
-
-```
-[HW]     Actual RX gain: 65.000000...
-```
-
-```
-[HW]     Actual RX bandwidth: 40.000000M...
-```
-
-```
-[HW]     Actual RX antenna: RX2...
-```
-
-```
-[HW]   TX Channel 0
-```
-
-```
-[HW]     Actual TX sample rate: 40.960000MSps...
-```
-
-```
-[HW]     Actual TX frequency: 3.619200GHz...
-```
-
-```
-[HW]     Actual TX gain: 65.000000...
-```
-
-```
-[HW]     Actual TX bandwidth: 40.000000M...
-```
-
-```
-[HW]     Actual TX antenna: TX/RX...
-```
-
-```
-[HW]     Actual TX packet size: 364
-```
-
-```
-[HW]   Device timestamp: 1.650939...
-```
-
-```
-[HW]   [RRU] has loaded USRP N300 device.
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-sleep...
-```
-
-```
-[PHY]   [SCHED][UE] Check absolute frequency DL 3619200000.000000, UL 361=
-9200000.000000 (RF card 0, oai_exit 0, channel 0, rx_num_channels 1)
-```
-
-```
-[PHY]   Starting sync detection
-```
-
-```
-[PHY]   [UE thread Synch] Running Initial Synch (mode 6)
-```
-
-```
-[PHY]   [UE] nr_synchro_time: Sync source =3D 1, Peak found at pos 53888,=
- val =3D 977850 (59 dB) avg 58 dB, ffo 0.059037
-```
-
-```
-PSS execution duration 162148 microseconds
-```
-
-```
-[PHY]   [UE0] Initial sync : Estimated PSS position -1, Nid2 1
-```
-
-```
-[PHY]   sync_pos -1 ssb_offset 460691
-```
-
-```
-[PHY]   TDD Normal prefix: SSS error condition: sync_pos -1
-```
-
-```
-[HW]   [recv] received 13248 samples out of 23040
-```
-
-```
-D[HW]   Time: 1.22139 s
-```
-
-```
-ERROR_CODE_OVERFLOW (Out of sequence error)
-```
-
-```
-Assertion (UE->frame_parms.get_samples_per_slot(slot,&UE->frame_parms) =3D=
-=3D UE->rfdevice.trx_read_func(&UE->rfdevice, timestamp, rxp, UE->frame_p=
-arms.get_samples_per_slot(slot,&UE->frame_parms), UE->frame_parms.nb_ante=
-nnas_rx)) failed!
-```
-
-```
-In readFrame() /home/ubuntu/openairinterface5g/executables/nr-ue.c:767
-```
-
-```
-Exiting execution
-```
-
-```
-Aborted
-```
-
-Could you please let me know which source code you modified to accept the=
- lowered sample rate?
-
---b1_3mJzhI7U8ITf6pqi68prmM3VNTb290VGY4rCrQzOZHg
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Loy,</p><p><br></p><p>I have a similar problem to yours.</p><p>I am t=
-rying to run the OAI 5G nr-UE binary with </p><pre><code>./nr-uesoftmodem -=
--sa --usrp-args "type=3Dn3xx, addr=3D192.168.99.114" --numerology 1 -r 106 =
---band 78 -s 516 -C 3619200000 -d --ue-fo-compensation -E --ue-rxgain 65</c=
-ode></pre><p>and getting the following error:</p><p><br></p><pre><code>[HW]=
-   Found USRP n3xx</code></pre><pre><code>Found USRP n310</code></pre><pre>=
-<code>net.core.rmem_max =3D 62500000</code></pre><pre><code>net.core.wmem_m=
-ax =3D 62500000</code></pre><pre><code>[INFO] [MPMD] Initializing 1 device(=
-s) in parallel with args: mgmt_addr=3D192.168.99.114,type=3Dn3xx,product=3D=
-n310,serial=3D3240243,name=3Dni-n3xx-3240243,fpga=3DHG,claimed=3DFalse,addr=
-=3D192.168.99.114,master_clock_rate=3D122880000.000000</code></pre><pre><co=
-de>[WARNING] [MPM.RPCServer] A timeout event occured!</code></pre><pre><cod=
-e>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DHG,mast=
-er_clock_rate=3D122880000.000000,mgmt_addr=3D192.168.99.114,name=3Dni-n3xx-=
-3240243,product=3Dn310,clock_source=3Dinternal,time_source=3Dinternal'.</co=
-de></pre><pre><code>[HW]   Setting clock source to internal</code></pre><pr=
-e><code>[HW]   Setting time source to internal</code></pre><pre><code>-- Us=
-ing calibration table: calib_table_n310</code></pre><pre><code>[HW]   devic=
-e_init() sample_rate:46080000</code></pre><pre><code>[WARNING] [0/DDC#0] Th=
-e requested decimation is odd; the user should expect passband CIC rolloff.=
-</code></pre><pre><code>Select an even decimation to ensure that a halfband=
- filter is enabled.</code></pre><pre><code>Decimations factorable by 4 will=
- enable 2 halfbands, those factorable by 8 will enable 3 halfbands.</code><=
-/pre><pre><code>decimation =3D dsp_rate/samp_rate -&gt; 3</code></pre><pre>=
-<code>[WARNING] [0/DDC#0] The requested decimation is odd; the user should =
-expect passband CIC rolloff.</code></pre><pre><code>Select an even decimati=
-on to ensure that a halfband filter is enabled.</code></pre><pre><code>Deci=
-mations factorable by 4 will enable 2 halfbands, those factorable by 8 will=
- enable 3 halfbands.</code></pre><pre><code>decimation =3D dsp_rate/samp_ra=
-te -&gt; 3</code></pre><pre><code>[WARNING] [MULTI_USRP] Could not set RX r=
-ate to 46.080 MHz. Actual rate is 40.960 MHz</code></pre><pre><code>[HW]   =
-cal 0: freq 3500000000.000000, offset 0.000000, diff 119200000.000000</code=
-></pre><pre><code>[HW]   cal 1: freq 2660000000.000000, offset 0.000000, di=
-ff 959200000.000000</code></pre><pre><code>[HW]   cal 2: freq 2300000000.00=
-0000, offset 0.000000, diff 1319200000.000000</code></pre><pre><code>[HW]  =
- cal 3: freq 1880000000.000000, offset 0.000000, diff 1739200000.000000</co=
-de></pre><pre><code>[HW]   cal 4: freq 816000000.000000, offset 0.000000, d=
-iff 2803200000.000000</code></pre><pre><code>[HW]   RX Gain 0 65.000000 (0.=
-000000) =3D&gt; 65.000000 (max 75.000000)</code></pre><pre><code>[WARNING] =
-[0/DUC#0] The requested interpolation is odd; the user should expect passba=
-nd CIC rolloff.</code></pre><pre><code>Select an even interpolation to ensu=
-re that a halfband filter is enabled.</code></pre><pre><code>[WARNING] [MUL=
-TI_USRP] Could not set TX rate to 46.080 MHz. Actual rate is 40.960 MHz</co=
-de></pre><pre><code>[HW]   USRP TX_GAIN:65.00 gain_range:65.00 tx_gain:0.00=
-</code></pre><pre><code>[HW]   Actual master clock: 122.880000MHz...</code>=
-</pre><pre><code>[HW]   Actual clock source internal...</code></pre><pre><c=
-ode>[HW]   Actual time source internal...</code></pre><pre><code>[HW]   RF =
-board max packet size 364, size for 100=C2=B5s jitter 4608</code></pre><pre=
-><code>[HW]   rx_max_num_samps 364</code></pre><pre><code>[HW]   setting rx=
- channel 0</code></pre><pre><code>[INFO] [0/Radio#0] Re-initializing dboard=
- to apply bandwidth settings. This may take some time.</code></pre><pre><co=
-de>[INFO] [0/Radio#0] Bandwidth settings applied: 40000000.000000</code></p=
-re><pre><code>[INFO] [0/Radio#0] Re-initializing dboard to apply bandwidth =
-settings. This may take some time.</code></pre><pre><code>[INFO] [0/Radio#0=
-] Bandwidth settings applied: 40000000.000000</code></pre><pre><code>[HW]  =
- RX Channel 0</code></pre><pre><code>[HW]     Actual RX sample rate: 40.960=
-000MSps...</code></pre><pre><code>[HW]     Actual RX frequency: 3.619200GHz=
-...</code></pre><pre><code>[HW]     Actual RX gain: 65.000000...</code></pr=
-e><pre><code>[HW]     Actual RX bandwidth: 40.000000M...</code></pre><pre><=
-code>[HW]     Actual RX antenna: RX2...</code></pre><pre><code>[HW]   TX Ch=
-annel 0</code></pre><pre><code>[HW]     Actual TX sample rate: 40.960000MSp=
-s...</code></pre><pre><code>[HW]     Actual TX frequency: 3.619200GHz...</c=
-ode></pre><pre><code>[HW]     Actual TX gain: 65.000000...</code></pre><pre=
-><code>[HW]     Actual TX bandwidth: 40.000000M...</code></pre><pre><code>[=
-HW]     Actual TX antenna: TX/RX...</code></pre><pre><code>[HW]     Actual =
-TX packet size: 364</code></pre><pre><code>[HW]   Device timestamp: 1.65093=
-9...</code></pre><pre><code>[HW]   [RRU] has loaded USRP N300 device.</code=
-></pre><pre><code>sleep...</code></pre><pre><code>sleep...</code></pre><pre=
-><code>sleep...</code></pre><pre><code>sleep...</code></pre><pre><code>slee=
-p...</code></pre><pre><code>sleep...</code></pre><pre><code>sleep...</code>=
-</pre><pre><code>sleep...</code></pre><pre><code>sleep...</code></pre><pre>=
-<code>[PHY]   [SCHED][UE] Check absolute frequency DL 3619200000.000000, UL=
- 3619200000.000000 (RF card 0, oai_exit 0, channel 0, rx_num_channels 1)</c=
-ode></pre><pre><code>[PHY]   Starting sync detection</code></pre><pre><code=
->[PHY]   [UE thread Synch] Running Initial Synch (mode 6)</code></pre><pre>=
-<code>[PHY]   [UE] nr_synchro_time: Sync source =3D 1, Peak found at pos 53=
-888, val =3D 977850 (59 dB) avg 58 dB, ffo 0.059037</code></pre><pre><code>=
-PSS execution duration 162148 microseconds</code></pre><pre><code>[PHY]   [=
-UE0] Initial sync : Estimated PSS position -1, Nid2 1</code></pre><pre><cod=
-e>[PHY]   sync_pos -1 ssb_offset 460691</code></pre><pre><code>[PHY]   TDD =
-Normal prefix: SSS error condition: sync_pos -1</code></pre><pre><code>[HW]=
-   [recv] received 13248 samples out of 23040</code></pre><pre><code>D[HW] =
-  Time: 1.22139 s</code></pre><pre><code>ERROR_CODE_OVERFLOW (Out of sequen=
-ce error)</code></pre><pre><code>Assertion (UE-&gt;frame_parms.get_samples_=
-per_slot(slot,&amp;UE-&gt;frame_parms) =3D=3D UE-&gt;rfdevice.trx_read_func=
-(&amp;UE-&gt;rfdevice, timestamp, rxp, UE-&gt;frame_parms.get_samples_per_s=
-lot(slot,&amp;UE-&gt;frame_parms), UE-&gt;frame_parms.nb_antennas_rx)) fail=
-ed!</code></pre><pre><code>In readFrame() /home/ubuntu/openairinterface5g/e=
-xecutables/nr-ue.c:767</code></pre><pre><code>Exiting execution</code></pre=
-><pre><code>Aborted</code></pre><p><br></p><p>Could you please let me know =
-which source code you modified to accept the lowered sample rate?</p>
-
---b1_3mJzhI7U8ITf6pqi68prmM3VNTb290VGY4rCrQzOZHg--
-
---===============4953105556845948235==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4953105556845948235==--
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+SSB0aGluayB5b3UgYXJlIG92ZXJyZWFjaGluZzooDQpVSEQgMy4xNS4wIGlzIHRoZSBzdGFuZGFy
+ZCBmb3IgVWJ1bnR1IDIwLjA0Li4uDQpEbyB5b3UgcmVhbGx5IG5lZWQgVUhEIDQuMD8NCg0KTmlr
+b3MNCg0KT24gVGh1LCBKdWwgMjgsIDIwMjIgYXQgOToyOCBQTSBrMTkwMzM4NDQtLS0gdmlhIFVT
+UlAtdXNlcnMNCjx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6DQo+DQo+IERlYXIg
+QWxsLA0KPg0KPg0KPiBJIHVzZSBDbWFrZSB0byBjb21waWxlIHVoZCB2NC4wLjAuMCwgSeKAmW0g
+YnVpbGRpbmcgdWhkIG9uIGEgVWJ1bnR1IDE2LjA0IGx0cyBtYWNoaW5lLiBNeSBnY2MgYW5kIGcr
+KyBhcmUgYWJvdmUgbWluaW11bSByZXF1aXJlbWVudCwgYnV0IEkgZ290IGZvbGxvd2luZyBlcnJv
+ci4NCj4NCj4gWyA1NyVdIExpbmtpbmcgQ1hYIGV4ZWN1dGFibGUgcnhfc2FtcGxlc19jDQo+DQo+
+IFsgNTclXSBMaW5raW5nIENYWCBleGVjdXRhYmxlIHRlc3RfZGJvYXJkX2NvZXJjaW9uDQo+DQo+
+IFsgNTclXSBMaW5raW5nIENYWCBleGVjdXRhYmxlIHJ4X2FzY2lpX2FydF9kZnQNCj4NCj4gWyA1
+NyVdIExpbmtpbmcgQ1hYIGV4ZWN1dGFibGUgdGVzdF9jbG9ja19zeW5jaA0KPg0KPiAuLi9saWIv
+bGlidWhkLnNvLjQuMC4wOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB1aGQ6OmZlYXR1cmVzOjpk
+aXNjb3ZlcmFibGVfZmVhdHVyZV9yZWdpc3RyeTo6ZW51bWVyYXRlX2ZlYXR1cmVzW2FiaTpjeHgx
+MV0oKScNCj4NCj4gLi4vbGliL2xpYnVoZC5zby40LjAuMDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0
+byBgbmlyaW9fZHJpdmVyX2lmYWNlOjpyaW9fb3BlbihzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmlu
+ZzxjaGFyLCBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+LCBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+IGNv
+bnN0JiwgaW50JiknDQo+DQo+IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6IHVuZGVmaW5lZCByZWZl
+cmVuY2UgdG8gYHVoZDo6dmFsdWVfZXJyb3I6OnZhbHVlX2Vycm9yKHN0ZDo6c3RyaW5nIGNvbnN0
+JiknDQo+DQo+IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8g
+YHVoZDo6bm90X2ltcGxlbWVudGVkX2Vycm9yOjpub3RfaW1wbGVtZW50ZWRfZXJyb3Ioc3RkOjpz
+dHJpbmcgY29uc3QmKScNCj4NCj4gLi4vbGliL2xpYnVoZC5zby40LjAuMDogdW5kZWZpbmVkIHJl
+ZmVyZW5jZSB0byBgdWhkOjpjb252ZXJ0OjpyZWdpc3Rlcl9ieXRlc19wZXJfaXRlbShzdGQ6OnN0
+cmluZyBjb25zdCYsIHVuc2lnbmVkIGxvbmcpJw0KPg0KPiAuLi9saWIvbGlidWhkLnNvLjQuMC4w
+OiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB1aGQ6OnBhdGhfZXhwYW5kdmFycyhzdGQ6Ol9fY3h4
+MTE6OmJhc2ljX3N0cmluZzxjaGFyLCBzdGQ6OmNoYXJfdHJhaXRzPGNoYXI+LCBzdGQ6OmFsbG9j
+YXRvcjxjaGFyPiA+IGNvbnN0JiknDQo+DQo+IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6IHVuZGVm
+aW5lZCByZWZlcmVuY2UgdG8gYHVoZDo6Y3N2Ojp0b19yb3dzW2FiaTpjeHgxMV0oc3RkOjppc3Ry
+ZWFtJiknDQo+DQo+IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6IHVuZGVmaW5lZCByZWZlcmVuY2Ug
+dG8gYHVoZDo6dXRpbHM6OnNlcmlhbF9udW1iZXJzX21hdGNoKHN0ZDo6X19jeHgxMTo6YmFzaWNf
+c3RyaW5nPGNoYXIsIHN0ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+
+ID4gY29uc3QmLCBzdGQ6Ol9fY3h4MTE6OmJhc2ljX3N0cmluZzxjaGFyLCBzdGQ6OmNoYXJfdHJh
+aXRzPGNoYXI+LCBzdGQ6OmFsbG9jYXRvcjxjaGFyPiA+IGNvbnN0JiknDQo+DQo+IGNvbGxlY3Qy
+OiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1cw0KPg0KPiBleGFtcGxlcy9DTWFrZUZp
+bGVzL3J4X3NhbXBsZXNfYy5kaXIvYnVpbGQubWFrZToxMDk6IHJlY2lwZSBmb3IgdGFyZ2V0ICdl
+eGFtcGxlcy9yeF9zYW1wbGVzX2MnIGZhaWxlZA0KPg0KPiBtYWtlWzJdOiAqKiogW2V4YW1wbGVz
+L3J4X3NhbXBsZXNfY10gRXJyb3IgMQ0KPg0KPiBDTWFrZUZpbGVzL01ha2VmaWxlMjo5NTY6IHJl
+Y2lwZSBmb3IgdGFyZ2V0ICdleGFtcGxlcy9DTWFrZUZpbGVzL3J4X3NhbXBsZXNfYy5kaXIvYWxs
+JyBmYWlsZWQNCj4NCj4gbWFrZVsxXTogKioqIFtleGFtcGxlcy9DTWFrZUZpbGVzL3J4X3NhbXBs
+ZXNfYy5kaXIvYWxsXSBFcnJvciAyDQo+DQo+IG1ha2VbMV06ICoqKiBXYWl0aW5nIGZvciB1bmZp
+bmlzaGVkIGpvYnMuLi4uDQo+DQo+IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6IHVuZGVmaW5lZCBy
+ZWZlcmVuY2UgdG8gYHVoZDo6ZmVhdHVyZXM6OmRpc2NvdmVyYWJsZV9mZWF0dXJlX3JlZ2lzdHJ5
+OjplbnVtZXJhdGVfZmVhdHVyZXNbYWJpOmN4eDExXSgpJw0KPg0KPiAuLi9saWIvbGlidWhkLnNv
+LjQuMC4wOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBuaXJpb19kcml2ZXJfaWZhY2U6OnJpb19v
+cGVuKHN0ZDo6X19jeHgxMTo6YmFzaWNfc3RyaW5nPGNoYXIsIHN0ZDo6Y2hhcl90cmFpdHM8Y2hh
+cj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4gY29uc3QmLCBpbnQmKScNCj4NCj4gLi4vbGliL2xp
+YnVoZC5zby40LjAuMDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgdWhkOjp2YWx1ZV9lcnJvcjo6
+dmFsdWVfZXJyb3Ioc3RkOjpzdHJpbmcgY29uc3QmKScNCj4NCj4gLi4vbGliL2xpYnVoZC5zby40
+LjAuMDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgdWhkOjpub3RfaW1wbGVtZW50ZWRfZXJyb3I6
+Om5vdF9pbXBsZW1lbnRlZF9lcnJvcihzdGQ6OnN0cmluZyBjb25zdCYpJw0KPg0KPiAuLi9saWIv
+bGlidWhkLnNvLjQuMC4wOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB1aGQ6OmNvbnZlcnQ6OnJl
+Z2lzdGVyX2J5dGVzX3Blcl9pdGVtKHN0ZDo6c3RyaW5nIGNvbnN0JiwgdW5zaWduZWQgbG9uZykn
+DQo+DQo+IC4uL2xpYi9saWJ1aGQuc28uNC4wLjA6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYHVo
+ZDo6cGF0aF9leHBhbmR2YXJzKHN0ZDo6X19jeHgxMTo6YmFzaWNfc3RyaW5nPGNoYXIsIHN0ZDo6
+Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNoYXI+ID4gY29uc3QmKScNCj4NCj4g
+Li4vbGliL2xpYnVoZC5zby40LjAuMDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgdWhkOjpjc3Y6
+OnRvX3Jvd3NbYWJpOmN4eDExXShzdGQ6OmlzdHJlYW0mKScNCj4NCj4gLi4vbGliL2xpYnVoZC5z
+by40LjAuMDogdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgdWhkOjp1dGlsczo6c2VyaWFsX251bWJl
+cnNfbWF0Y2goc3RkOjpfX2N4eDExOjpiYXNpY19zdHJpbmc8Y2hhciwgc3RkOjpjaGFyX3RyYWl0
+czxjaGFyPiwgc3RkOjphbGxvY2F0b3I8Y2hhcj4gPiBjb25zdCYsIHN0ZDo6X19jeHgxMTo6YmFz
+aWNfc3RyaW5nPGNoYXIsIHN0ZDo6Y2hhcl90cmFpdHM8Y2hhcj4sIHN0ZDo6YWxsb2NhdG9yPGNo
+YXI+ID4gY29uc3QmKScNCj4NCj4gY29sbGVjdDI6IGVycm9yOiBsZCByZXR1cm5lZCAxIGV4aXQg
+c3RhdHVzDQo+DQo+IGV4YW1wbGVzL0NNYWtlRmlsZXMvdGVzdF9kYm9hcmRfY29lcmNpb24uZGly
+L2J1aWxkLm1ha2U6MTA4OiByZWNpcGUgZm9yIHRhcmdldCAnZXhhbXBsZXMvdGVzdF9kYm9hcmRf
+Y29lcmNpb24nIGZhaWxlZA0KPg0KPiBtYWtlWzJdOiAqKiogW2V4YW1wbGVzL3Rlc3RfZGJvYXJk
+X2NvZXJjaW9uXSBFcnJvciAxDQo+DQo+IENNYWtlRmlsZXMvTWFrZWZpbGUyOjEwMzc6IHJlY2lw
+ZSBmb3IgdGFyZ2V0ICdleGFtcGxlcy9DTWFrZUZpbGVzL3Rlc3RfZGJvYXJkX2NvZXJjaW9uLmRp
+ci9hbGwnIGZhaWxlZA0KPg0KPiBtYWtlWzFdOiAqKiogW2V4YW1wbGVzL0NNYWtlRmlsZXMvdGVz
+dF9kYm9hcmRfY29lcmNpb24uZGlyL2FsbF0gRXJyb3IgMg0KPg0KPiAuLi9saWIvbGlidWhkLnNv
+LjQuMC4wOiB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGB1aGQ6OmZlYXR1cmVzOjouZGlzY292ZXJh
+YmxlX2ZlYXR1cmVfcmVnaXN0cnk6LjovZW51bWVyYXRlX2ZlYXR1cmVzbGliWy9hYmlsaWJ1aGQu
+c28uNC4wLjA6OmN4eDExIF11bmRlZmluZWQoIClyZWZlcmVuY2UnDQo+DQo+IHRvLiAuYC91aGRs
+aWI6LzpsaWJ1aGQuc28uNC4wLjBmZWF0dXJlczo6IDp1bmRlZmluZWRkaXNjb3ZlcmFibGVfZmVh
+dHVyZV9yZWdpc3RyeSA6cmVmZXJlbmNlOiBlbnVtZXJhdGVfZmVhdHVyZXN0b1sgYWJpYDpuaXJp
+b19kcml2ZXJfaWZhY2VjeHgxMTpdOihyaW9fb3BlbikoJ3N0ZA0KPg0KPiA6LjouX19jeHgxMS86
+bGliOi9iYXNpY19zdHJpbmdsaWJ1aGQuc28uNC4wLjA8OmNoYXIgLHVuZGVmaW5lZCBzdGRyZWZl
+cmVuY2U6IDp0b2NoYXJfdHJhaXRzIDxgY2hhcm5pcmlvX2RyaXZlcl9pZmFjZT46LDogcmlvX29w
+ZW5zdGQoOnN0ZDo6YWxsb2NhdG9yOjxfX2N4eDExY2hhcjo+OiBiYXNpY19zdHJpbmc+PCBjaGFy
+Y29uc3QsJiAsc3RkIDppbnQ6JmNoYXJfdHJhaXRzKTwnY2hhcg0KPg0KPiA+LiwuIC9zdGRsaWI6
+LzpsaWJ1aGQuc28uNC4wLjBhbGxvY2F0b3I6PCBjaGFydW5kZWZpbmVkPiByZWZlcmVuY2U+IHRv
+Y29uc3QgJmAsdWhkIDppbnQ6JnZhbHVlX2Vycm9yKTonOg0KPg0KPiB2YWx1ZV9lcnJvci4oLnN0
+ZC86bGliOi9zdHJpbmdsaWJ1aGQuc28uNC4wLjAgOmNvbnN0ICZ1bmRlZmluZWQpICdyZWZlcmVu
+Y2UNCj4NCj4gLnRvLiAvYGxpYnVoZC86bGlidWhkLnNvLjQuMC4wOjp2YWx1ZV9lcnJvciA6dW5k
+ZWZpbmVkOiB2YWx1ZV9lcnJvcnJlZmVyZW5jZSggc3RkdG86IDpgc3RyaW5ndWhkIDpjb25zdDom
+bm90X2ltcGxlbWVudGVkX2Vycm9yKTonOg0KPg0KPiBub3RfaW1wbGVtZW50ZWRfZXJyb3IuKC5z
+dGQvOmxpYjovc3RyaW5nbGlidWhkLnNvLjQuMC4wIDpjb25zdCAmdW5kZWZpbmVkKSAncmVmZXJl
+bmNlDQo+DQo+IC50by4gL2BsaWJ1aGQvOmxpYnVoZC5zby40LjAuMDo6bm90X2ltcGxlbWVudGVk
+X2Vycm9yIDp1bmRlZmluZWQ6IG5vdF9pbXBsZW1lbnRlZF9lcnJvcnJlZmVyZW5jZSggc3RkdG86
+IDpgc3RyaW5ndWhkIDpjb25zdDomY29udmVydCk6JzoNCj4NCj4gcmVnaXN0ZXJfYnl0ZXNfcGVy
+X2l0ZW0uKC5zdGQvOmxpYjovc3RyaW5nbGlidWhkLnNvLjQuMC4wIDpjb25zdCAmdW5kZWZpbmVk
+LCByZWZlcmVuY2V1bnNpZ25lZCB0b2xvbmcgKWAndWhkDQo+DQo+IDouOi5jb252ZXJ0LzpsaWI6
+L3JlZ2lzdGVyX2J5dGVzX3Blcl9pdGVtKGxpYnVoZC5zby40LjAuMHN0ZDo6IDp1bmRlZmluZWRz
+dHJpbmcgcmVmZXJlbmNlY29uc3QgJnRvLCBgdW5zaWduZWR1aGQgOmxvbmc6KXBhdGhfZXhwYW5k
+dmFycycoDQo+DQo+IHN0ZC46LjovX19jeHgxMWxpYjovOmxpYnVoZC5zby40LjAuMGJhc2ljX3N0
+cmluZzo8IGNoYXJ1bmRlZmluZWQsIHJlZmVyZW5jZXN0ZCA6dG86IGNoYXJfdHJhaXRzYDx1aGRj
+aGFyOj46LHBhdGhfZXhwYW5kdmFycyAoc3Rkc3RkOjo6OmFsbG9jYXRvcl9fY3h4MTE8OmNoYXI6
+PmJhc2ljX3N0cmluZyA8PmNoYXIgLGNvbnN0ICZzdGQpOic6DQo+DQo+IGNoYXJfdHJhaXRzLjwu
+Y2hhci8+bGliLC8gbGlidWhkLnNvLjQuMC4wc3RkOjogOnVuZGVmaW5lZGFsbG9jYXRvciA8cmVm
+ZXJlbmNlY2hhciA+dG8gPmAgdWhkY29uc3Q6JjopY3N2JzoNCj4NCj4gOi50b19yb3dzLlsvYWJp
+bGliOi9jeHgxMWxpYnVoZC5zby40LjAuMF06KCBzdGR1bmRlZmluZWQ6IDpyZWZlcmVuY2Vpc3Ry
+ZWFtICZ0bykgJ2ANCj4NCj4gdWhkLjouOi9jc3ZsaWI6LzpsaWJ1aGQuc28uNC4wLjB0b19yb3dz
+OlsgYWJpdW5kZWZpbmVkOiBjeHgxMXJlZmVyZW5jZV0gKHRvc3RkIDpgOnVoZGlzdHJlYW06Jjop
+dXRpbHMnOg0KPg0KPiA6LnNlcmlhbF9udW1iZXJzX21hdGNoLigvc3RkbGliOi86bGlidWhkLnNv
+LjQuMC4wX19jeHgxMTo6IDp1bmRlZmluZWRiYXNpY19zdHJpbmcgPHJlZmVyZW5jZWNoYXIgLHRv
+IHN0ZGA6dWhkOjpjaGFyX3RyYWl0czo8dXRpbHNjaGFyOj46LHNlcmlhbF9udW1iZXJzX21hdGNo
+IChzdGRzdGQ6Ojo6YWxsb2NhdG9yX19jeHgxMTw6Y2hhcjo+YmFzaWNfc3RyaW5nIDw+Y2hhciAs
+Y29uc3QgJnN0ZCw6IDpzdGRjaGFyX3RyYWl0czo8OmNoYXJfX2N4eDExPjosOiBiYXNpY19zdHJp
+bmdzdGQ8OmNoYXI6LGFsbG9jYXRvciA8c3RkY2hhcjo+OiBjaGFyX3RyYWl0cz48IGNoYXJjb25z
+dD4mLCwgc3Rkc3RkOjo6OmFsbG9jYXRvcl9fY3h4MTE8OmNoYXI6PmJhc2ljX3N0cmluZyA8PmNo
+YXIgLGNvbnN0ICZzdGQpOic6DQo+DQo+IGNoYXJfdHJhaXRzPGNoYXI+LCBzdGQ6OmFsbG9jYXRv
+cjxjaGFyPiA+IGNvbnN0JiknDQo+DQo+IGNvbGxlY3QyOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBl
+eGl0IHN0YXR1cw0KPg0KPiBjb2xsZWN0MjogZXJyb3I6IGxkIHJldHVybmVkIDEgZXhpdCBzdGF0
+dXMNCj4NCj4gZXhhbXBsZXMvQ01ha2VGaWxlcy90ZXN0X2Nsb2NrX3N5bmNoLmRpci9idWlsZC5t
+YWtlOjEwODogcmVjaXBlIGZvciB0YXJnZXQgJ2V4YW1wbGVzL3Rlc3RfY2xvY2tfc3luY2gnIGZh
+aWxlZA0KPg0KPiBleGFtcGxlcy9DTWFrZUZpbGVzL3J4X2FzY2lpX2FydF9kZnQuZGlyL2J1aWxk
+Lm1ha2U6MTEwOiByZWNpcGUgZm9yIHRhcmdldCAnZXhhbXBsZXMvcnhfYXNjaWlfYXJ0X2RmdCcg
+ZmFpbGVkDQo+DQo+IG1ha2VbMl06ICoqKiBbZXhhbXBsZXMvdGVzdF9jbG9ja19zeW5jaF0gRXJy
+b3IgMQ0KPg0KPiBtYWtlWzJdOiAqKiogW2V4YW1wbGVzL3J4X2FzY2lpX2FydF9kZnRdIEVycm9y
+IDENCj4NCj4gQ01ha2VGaWxlcy9NYWtlZmlsZTI6OTgzOiByZWNpcGUgZm9yIHRhcmdldCAnZXhh
+bXBsZXMvQ01ha2VGaWxlcy9yeF9hc2NpaV9hcnRfZGZ0LmRpci9hbGwnIGZhaWxlZA0KPg0KPiBt
+YWtlWzFdOiAqKiogW2V4YW1wbGVzL0NNYWtlRmlsZXMvcnhfYXNjaWlfYXJ0X2RmdC5kaXIvYWxs
+XSBFcnJvciAyDQo+DQo+IENNYWtlRmlsZXMvTWFrZWZpbGUyOjEwMTA6IHJlY2lwZSBmb3IgdGFy
+Z2V0ICdleGFtcGxlcy9DTWFrZUZpbGVzL3Rlc3RfY2xvY2tfc3luY2guZGlyL2FsbCcgZmFpbGVk
+DQo+DQo+IG1ha2VbMV06ICoqKiBbZXhhbXBsZXMvQ01ha2VGaWxlcy90ZXN0X2Nsb2NrX3N5bmNo
+LmRpci9hbGxdIEVycm9yIDINCj4NCj4gTWFrZWZpbGU6MTY1OiByZWNpcGUgZm9yIHRhcmdldCAn
+YWxsJyBmYWlsZWQNCj4NCj4gbWFrZTogKioqIFthbGxdIEVycm9yIDINCj4NCj4NCj4gQ2FuIGFu
+eSBvbmUgaGVscCBtZSBzb2x2ZSB0aGlzIGlzc3VlPw0KPg0KPg0KPiBUaGFuayB5b3Ugc28gbXVj
+aC4NCj4NCj4NCj4gUmVnYXJkcywNCj4NCj4gR3VhbmcNCj4NCj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
+LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBl
+bWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
+LSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWls
+IHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
