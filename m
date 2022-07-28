@@ -2,217 +2,211 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49A7E584637
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 21:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D96D858469E
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 21:42:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6E4EB383FFB
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 15:33:21 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EC5FF38404F
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 15:42:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659036801; bh=qr7HA1MMgYThBckEE2od+mQUBYk+Sj6ozQxBLHqj7M8=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=ny3U5HHaKywpsJppemmdCqn85Omq5GSPffC29b2cnAmuUoHWJMqv7aM+aWCP0rl99
-	 PiMnh7iBFBMszZHYUqWNeml2MmcXi4vUMenXGJyXZ65jEQYCYQvvloiWQgrC/769vn
-	 g0GwMcI6E8Gad5fmYxG3gFx1W/7kKr9dS5v9zllC3JJuwz7Bd4639SHxwkF6crn1PF
-	 wwcbA85eP3aEZEreZsgn6YVD/srvOX/G6IY6M/7wmq8ZQKoUgrn3NZx+x71VXVvEQQ
-	 +bGnyGg2lvUcGtuX7k5Al1XIj3UrwRBdoKA/9m42vLX/wdSDi+DO2b1OcouRbvzPeX
-	 RfilGkO7Ousog==
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id E8C5F383EDD
-	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 15:31:22 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gF/VCIwP";
-	dkim-atps=neutral
-Received: by mail-qv1-f46.google.com with SMTP id mn11so2124309qvb.9
-        for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 12:31:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc;
-        bh=Kk5vt+n6DQfI6cdluTbeGHgXGQAoeQmYNdIBNVvOJXw=;
-        b=gF/VCIwP3z3TYQhZ1mH7TT3G+7ZASb57AeA6Z76PfkWnh6EgyB63ZvYWCAl6nix+7q
-         /e14tCVDeeNK2MGer77QryHRRqiJBZ3c9H5/bejoeeARPxbCXVMvfsM8wuDfCBW9uJ20
-         9/qg8kKjd2Gv9iqC+hf/8GvTPZ+O9v+L1MjUAQCjacPMyRcIdwXe6yYhH/5iVU/H6C+Y
-         i4Dd3fOFyawT7CB7dNZ901GvDl2eOyRr26GhBw3vGkKfWi0KOzVXqQ2Vp7WRl0Tu5mZu
-         ik/RIX6psmVk6czB3YbFUOFg527g8QInbAmzxhsElY/ozc63UIr+j67fruIyTrjOBjnd
-         WG6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc;
-        bh=Kk5vt+n6DQfI6cdluTbeGHgXGQAoeQmYNdIBNVvOJXw=;
-        b=gerNhZqK5Z9DUbrqYw6KxPqdLdDt6CDZ8ae0aWWnD3Z70K2BYtnm6Ybh+oHTRHDqoJ
-         0d21+wVpSt3iPT5P46o7K7WNP8IaL4S2dnIaTeepMM8H778GbLqQ602/MBZGv6HjPmzo
-         f8KZLcIYbMlUFxSIwREwf4TkuFeo0cxmqQ7uaWDXdt63UJNrzacKJPtN5xZj4RL73/aZ
-         8M58cxvKSOuvdZ8yk+Q5VoxpqwTIyckZ/EcMHtg7nfCqwmtR69vO6yLUKmaKGZs3ZSYE
-         okC9ZAzSlybpRNuSP90h7AA4LIokHifNRQN2iAc93BFiNH3ZtYP7ScLBxQM+OGs2qgZP
-         porQ==
-X-Gm-Message-State: ACgBeo36Ba+sukFrtUdubjhAEz4ulguhq/xFSpPAkiwjUn1a3/f83g/K
-	SiQwAz9CXB7aDlM9xkeYX9SAQ0jkv/g=
-X-Google-Smtp-Source: AA6agR6+WtlsyFjjOOSkovOQJJFFzC1FPKbPSrAcGd4jrsh7UFJ7ZrmOaKMitLEJ0SmoikylFtbmbg==
-X-Received: by 2002:a05:6214:21a6:b0:474:83ca:9e10 with SMTP id t6-20020a05621421a600b0047483ca9e10mr454245qvc.87.1659036681876;
-        Thu, 28 Jul 2022 12:31:21 -0700 (PDT)
-Received: from [192.168.2.194] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id q8-20020ac87348000000b0031a4c717413sm902572qtp.61.2022.07.28.12.31.21
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 28 Jul 2022 12:31:21 -0700 (PDT)
-Message-ID: <1aa2bf89-67d5-ed16-2b44-74c11e362ee0@gmail.com>
-Date: Thu, 28 Jul 2022 15:31:20 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
+	t=1659037367; bh=uklwVMDkwUBxOr+JyUnsw8EiAfkdekuYhvenzZOEHbI=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=rJftlPeXoTj24NrrlFJPn5JlxoLgeBLGBvZs2fC+MKncbUQTTU8nXT5RkmbSmWpCb
+	 Hfqo/mfxqMaBhzQRQ5++vfee6MIDxFiQ5bbL4iKwtX3JYfj4xJNhIWqX9NzLLoLGY2
+	 Hye/ya/QCPIpFsC5Zj4LaGMUevy5Dh6JCAqFXQuAk3Xj43/03HEj23VoyR26l+TAes
+	 3KylIrBsx28NWrXCSNJVTTEL9S/xlPyyH+RHC1GRg/+K/kNews/qQEtbsIi1iJIquZ
+	 5Lr0CEQiyZ8ZDBlb5pqpbuIdsmXCQzVdEcT9sxH18rWvONji7rs2l/MYrBrDGvzjTW
+	 5+p640cLjCByg==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id A60A4383FA6
+	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 15:40:52 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1659037252; bh=8XVYR7p5tN57+n3srQF45tJ31oh+Suo+VCxV+mN+jY4=;
+	h=Date:To:From:Subject:From;
+	b=sfXtk91SzwFHST3o6U572gef/vkqeydeFsxjUrBy6CTYge5duBeUSPobBELEtOorL
+	 xW0G9gWudp29qY0G8oUmmff5XnlvWwRQymyLFbwPZCxULvIpGZSMltN8BfEFVzH5dY
+	 eL2pohmT4uSot9N+phMzKzd0DljzxDpwGn8sAZJE8Y9N+wiXxbWUh/OzPR3whTTGOC
+	 exSfE0bAz7xLTqXvpy9GfQCU1oM2/pTHk/jdM2/boZWGpXBE3YwhF2uMPJwyu4yTub
+	 6bl4jqpylDWkDRLXTJ4hyjfnk8suzS7HSbkMRFwh2vX4BFMXdsJ9n+a8/4HdtMyE+m
+	 8D98shU97T6Xg==
+Date: Thu, 28 Jul 2022 19:40:52 +0000
 To: usrp-users@lists.ettus.com
-References: <HcVv5CBMbAkYj1H1fY3fvJbMQ7maeAVmgiYpSuuk@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <HcVv5CBMbAkYj1H1fY3fvJbMQ7maeAVmgiYpSuuk@lists.ettus.com>
-Message-ID-Hash: YC3A2M55J3F2KLUU24RIJW3WK5WQLFEC
-X-Message-ID-Hash: YC3A2M55J3F2KLUU24RIJW3WK5WQLFEC
-X-MailFrom: patchvonbraun@gmail.com
+From: yanzhanggc@gmail.com
+Message-ID: <WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: ACUKZY2A3TEOMNZFJYNNOI3WGJHXJA2N
+X-Message-ID-Hash: ACUKZY2A3TEOMNZFJYNNOI3WGJHXJA2N
+X-MailFrom: yanzhanggc@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: meta-ettus build errors out (undefined reference to 'stime')
+Subject: [USRP-users] E312 low level access to control AD9361
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YC3A2M55J3F2KLUU24RIJW3WK5WQLFEC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ACUKZY2A3TEOMNZFJYNNOI3WGJHXJA2N/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8114337430923502269=="
+Content-Type: multipart/mixed; boundary="===============7697421295195492762=="
 
 This is a multi-part message in MIME format.
---===============8114337430923502269==
+
+--===============7697421295195492762==
 Content-Type: multipart/alternative;
- boundary="------------RuZGUo00PJA7fuGOADKLUsoh"
-Content-Language: en-US
+ boundary="b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U"
+Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
---------------RuZGUo00PJA7fuGOADKLUsoh
-Content-Type: text/plain; charset=UTF-8; format=flowed
+
+--b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-07-28 08:25, kevin.macknight--- via USRP-users wrote:
->
-> I continue to fail in building the meta-ettus embedded image. Very=20
-> straightforward build process, /*has anyone successfully built=20
-> meta-ettus?*/
->
-> -----------------------------------------------------------------------=
--
->
-> I have Ubuntu 20.04 setup on VirtualBox and cloned the KAS=20
-> <https://github.com/siemens/kas> tool and META-ETTUS=20
-> <https://github.com/EttusResearch/meta-ettus/tree/uhd-4.2/zeus> branch=20
-> =E2=80=9Cuhd-4.2/zeus=E2=80=9D
->
-> Issued the command =E2=80=9C./contrib/kas_build_imgs_package.sh x4xx v4=
-.2=E2=80=9D and=20
-> get this error:
->
->  *
->
->     */meta-ettus/build/tmp-glibc/work/x86_64-linux/qemu-native/4.1.0-r0=
-/qemu-4.1.0/linux-user/syscall.c:7657:
->     undefined reference to `stime'
->
->  *
->
->     Here is the patch
->     https://stackoverflow.com/questions/61367173/core-image-minimal-fai=
-ls
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-This looks like a problem with QEMU on some systems, which is required=20
-for the cross-tools to work, but looks like has a problem on some=20
-systems.=C2=A0 I've not done this
- =C2=A0 build myself, but just looking at that thread, seems like a QEMU =
-problem.
+Hi, all,
 
+=C2=A0
 
---------------RuZGUo00PJA7fuGOADKLUsoh
-Content-Type: text/html; charset=UTF-8
+I have a E312 device and I just find that the tuning speed of E312 is ver=
+y slow (\~150ms) for each tuning. Thus I would like to modify the underly=
+ing tuning source code in the uhd software architecture.
+
+=C2=A0
+
+Here is what I found:
+
+=C2=A0
+
+I first create a multi_usrp object:
+
+uhd::usrp::multi_usrp::sptr usrp =3D uhd::usrp::multi_usrp::make(device_a=
+rgs);
+
+=C2=A0
+
+=C2=A0
+
+then I tune the usrp by running a loop:
+
+=C2=A0
+
+int count =3D 200;\
+for(int a =3D 0; a < count; a++) {\
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd::tune_request_t tune_reque=
+st(600e6 + a\*10e6);\
+\
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp->set_rx_freq(tune_request=
+, 0);\
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp->set_tx_freq(tune_request=
+, 0);\
+}
+
+=C2=A0
+
+Basically, the loop tunes the frequency from 600MHz to 2.6 GHz with a ste=
+p size of 10 MHz. The 200 tunings take 52 seconds, which is pretty slow.
+
+=C2=A0
+
+Thus, I traced the call stack from=C2=A0usrp->set_rx_freq(tune_request, 0=
+). Here is what I found:
+
+1. usrp->set_rx_freq(tune_request, 0);=C2=A0 calls the method set_tx_freq=
+uency() in uhd/host/lib/usrp/dboard/e3xx/e3xx_radio_control_impl.cpp
+
+2. then=C2=A0the method set_tx_frequency() in uhd/host/lib/usrp/dboard/e3=
+xx/e3xx_radio_control_impl.cpp calls the tune() method in=C2=A0uhd/host/l=
+ib/usrp/dboard/e3xx/e3xx_ad9361_iface.cpp
+
+3. then=C2=A0the tune() method in=C2=A0uhd/host/lib/usrp/dboard/e3xx/e3xx=
+_ad9361_iface.cpp=C2=A0calls the method set_tx_frequency() in uhd/host/li=
+b/rfnoc/radio_control_impl.cpp. =C2=A0
+
+=C2=A0
+
+The conclusion I have reached so far is the underlying tuning method is i=
+n=C2=A0=C2=A0uhd/host/lib/rfnoc/radio_control_impl.cpp:
+
+=C2=A0
+
+double radio_control_impl::set_tx_frequency(const double freq, const size=
+_t chan)\
+{\
+=C2=A0=C2=A0=C2=A0 std::lock_guard<std::mutex> l(_cache_mutex);\
+=C2=A0=C2=A0=C2=A0 return _tx_freq\[chan\] =3D freq;\
+}
+
+=C2=A0
+
+Then I just got stuck here, what is the _tx_freq\[chan\] ? I just can not=
+ find more.
+
+=C2=A0
+
+=C2=A0
+
+What I want to do is to modify the underlying ad9361 driver, so that when=
+ tuning a frequency, I can bypass the calibration in the ad9361 to speed =
+up the tuning speed.
+
+=C2=A0
+
+Can anyone point me to 1.where I can find the source code for tuning for =
+the E312 with uhd 4.0 or 2. how to use mpm to get low-level access to ad9=
+361 so that I can write my own tuning method for ad9361 ?
+
+=C2=A0
+
+Thanks,
+
+Yan
+
+--b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-07-28 08:25, kevin.macknight--=
--
-      via USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:HcVv5CBMbAkYj1H1fY3fvJbMQ7maeAVmgiYpSuuk@lists.ettus.co=
-m">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>I continue to fail in building the meta-ettus embedded image.
-        Very straightforward build process, <em><strong>has anyone
-            successfully built meta-ettus?</strong></em></p>
-      <div class=3D"" contenteditable=3D"false">
-        <hr></div>
-      <p>I have Ubuntu 20.04 setup on VirtualBox and cloned the <a
-          href=3D"https://github.com/siemens/kas" title=3D"KAS"
-          moz-do-not-send=3D"true">KAS</a> tool and <a
-          href=3D"https://github.com/EttusResearch/meta-ettus/tree/uhd-4.=
-2/zeus"
-          title=3D"META-ETTUS" moz-do-not-send=3D"true">META-ETTUS</a>
-        branch =E2=80=9Cuhd-4.2/zeus=E2=80=9D</p>
-      <p>Issued the command =E2=80=9C./contrib/kas_build_imgs_package.sh =
-x4xx
-        v4.2=E2=80=9D and get this error:</p>
-      <ul>
-        <li>
-          <p>*/meta-ettus/build/tmp-glibc/work/x86_64-linux/qemu-native/4=
-.1.0-r0/qemu-4.1.0/linux-user/syscall.c:7657:
-            undefined reference to `stime'</p>
-        </li>
-        <li>
-          <p>Here is the patch <a
-href=3D"https://stackoverflow.com/questions/61367173/core-image-minimal-f=
-ails"
-title=3D"https://stackoverflow.com/questions/61367173/core-image-minimal-=
-fails"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">ht=
-tps://stackoverflow.com/questions/61367173/core-image-minimal-fails</a></=
-p>
-        </li>
-      </ul>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    This looks like a problem with QEMU on some systems, which is
-    required for the cross-tools to work, but looks like has a problem
-    on some systems.=C2=A0 I've not done this<br>
-    =C2=A0 build myself, but just looking at that thread, seems like a QE=
-MU
-    problem.<br>
-    <br>
-    <br>
-  </body>
-</html>
+<p>Hi, all,</p><p>&nbsp;</p><p>I have a E312 device and I just find that th=
+e tuning speed of E312 is very slow (~150ms) for each tuning. Thus I would =
+like to modify the underlying tuning source code in the uhd software archit=
+ecture.</p><p>&nbsp;</p><p>Here is what I found:</p><p>&nbsp;</p><p>I first=
+ create a multi_usrp object:</p><p>uhd::usrp::multi_usrp::sptr usrp =3D uhd=
+::usrp::multi_usrp::make(device_args);</p><p>&nbsp;</p><p>&nbsp;</p><p>then=
+ I tune the usrp by running a loop:</p><p>&nbsp;</p><p>int count =3D 200;<b=
+r>for(int a =3D 0; a &lt; count; a++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; uhd::tune_request_t tune_request(600e6 + a*10e6);<br><br>&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp-&gt;set_rx_freq(tune_request, 0);<=
+br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp-&gt;set_tx_freq(tune_req=
+uest, 0);<br>}</p><p>&nbsp;</p><p>Basically, the loop tunes the frequency f=
+rom 600MHz to 2.6 GHz with a step size of 10 MHz. The 200 tunings take 52 s=
+econds, which is pretty slow.</p><p>&nbsp;</p><p>Thus, I traced the call st=
+ack from&nbsp;usrp-&gt;set_rx_freq(tune_request, 0). Here is what I found:<=
+/p><ol><li><p>usrp-&gt;set_rx_freq(tune_request, 0);&nbsp; calls the method=
+ set_tx_frequency() in uhd/host/lib/usrp/dboard/e3xx/e3xx_radio_control_imp=
+l.cpp</p></li><li><p>then&nbsp;the method set_tx_frequency() in uhd/host/li=
+b/usrp/dboard/e3xx/e3xx_radio_control_impl.cpp calls the tune() method in&n=
+bsp;uhd/host/lib/usrp/dboard/e3xx/e3xx_ad9361_iface.cpp</p></li><li><p>then=
+&nbsp;the tune() method in&nbsp;uhd/host/lib/usrp/dboard/e3xx/e3xx_ad9361_i=
+face.cpp&nbsp;calls the method set_tx_frequency() in uhd/host/lib/rfnoc/rad=
+io_control_impl.cpp. &nbsp;</p></li></ol><p>&nbsp;</p><p>The conclusion I h=
+ave reached so far is the underlying tuning method is in&nbsp;&nbsp;uhd/hos=
+t/lib/rfnoc/radio_control_impl.cpp:</p><p>&nbsp;</p><p>double radio_control=
+_impl::set_tx_frequency(const double freq, const size_t chan)<br>{<br>&nbsp=
+;&nbsp;&nbsp; std::lock_guard&lt;std::mutex&gt; l(_cache_mutex);<br>&nbsp;&=
+nbsp;&nbsp; return _tx_freq[chan] =3D freq;<br>}</p><p>&nbsp;</p><p>Then I =
+just got stuck here, what is the _tx_freq[chan] ? I just can not find more.=
+</p><p>&nbsp;</p><p>&nbsp;</p><p>What I want to do is to modify the underly=
+ing ad9361 driver, so that when tuning a frequency, I can bypass the calibr=
+ation in the ad9361 to speed up the tuning speed.</p><p>&nbsp;</p><p>Can an=
+yone point me to 1.where I can find the source code for tuning for the E312=
+ with uhd 4.0 or 2. how to use mpm to get low-level access to ad9361 so tha=
+t I can write my own tuning method for ad9361 ?</p><p>&nbsp;</p><p>Thanks,<=
+/p><p>Yan</p>
 
---------------RuZGUo00PJA7fuGOADKLUsoh--
+--b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U--
 
---===============8114337430923502269==
+--===============7697421295195492762==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -222,4 +216,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8114337430923502269==--
+--===============7697421295195492762==--
