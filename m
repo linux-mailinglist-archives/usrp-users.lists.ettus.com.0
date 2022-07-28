@@ -2,218 +2,100 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D96D858469E
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 21:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DB05846F7
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 22:21:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EC5FF38404F
-	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 15:42:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 917A7383FD5
+	for <lists+usrp-users@lfdr.de>; Thu, 28 Jul 2022 16:21:45 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659037367; bh=uklwVMDkwUBxOr+JyUnsw8EiAfkdekuYhvenzZOEHbI=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=rJftlPeXoTj24NrrlFJPn5JlxoLgeBLGBvZs2fC+MKncbUQTTU8nXT5RkmbSmWpCb
-	 Hfqo/mfxqMaBhzQRQ5++vfee6MIDxFiQ5bbL4iKwtX3JYfj4xJNhIWqX9NzLLoLGY2
-	 Hye/ya/QCPIpFsC5Zj4LaGMUevy5Dh6JCAqFXQuAk3Xj43/03HEj23VoyR26l+TAes
-	 3KylIrBsx28NWrXCSNJVTTEL9S/xlPyyH+RHC1GRg/+K/kNews/qQEtbsIi1iJIquZ
-	 5Lr0CEQiyZ8ZDBlb5pqpbuIdsmXCQzVdEcT9sxH18rWvONji7rs2l/MYrBrDGvzjTW
-	 5+p640cLjCByg==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A60A4383FA6
-	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 15:40:52 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659037252; bh=8XVYR7p5tN57+n3srQF45tJ31oh+Suo+VCxV+mN+jY4=;
-	h=Date:To:From:Subject:From;
-	b=sfXtk91SzwFHST3o6U572gef/vkqeydeFsxjUrBy6CTYge5duBeUSPobBELEtOorL
-	 xW0G9gWudp29qY0G8oUmmff5XnlvWwRQymyLFbwPZCxULvIpGZSMltN8BfEFVzH5dY
-	 eL2pohmT4uSot9N+phMzKzd0DljzxDpwGn8sAZJE8Y9N+wiXxbWUh/OzPR3whTTGOC
-	 exSfE0bAz7xLTqXvpy9GfQCU1oM2/pTHk/jdM2/boZWGpXBE3YwhF2uMPJwyu4yTub
-	 6bl4jqpylDWkDRLXTJ4hyjfnk8suzS7HSbkMRFwh2vX4BFMXdsJ9n+a8/4HdtMyE+m
-	 8D98shU97T6Xg==
-Date: Thu, 28 Jul 2022 19:40:52 +0000
-To: usrp-users@lists.ettus.com
-From: yanzhanggc@gmail.com
-Message-ID: <WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1659039705; bh=MIVfQoQfr1WKSXVEWFZmNPOZeB62U0kfXV2Nu1MxGc4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=mtEJlciVZEGFMAHVmS0gdLOEPlxjtfTSQJJDSbasTsqkcCH6KvLB0SO2agnkceDuK
+	 nyWKCFvEh4iTk5ZREh2R5JCoYBat+/teQOzirg4aSIzjH9CXm/DbcBf0X86pDGsOoD
+	 Y6mGkiYG+yuJwA52cyxXqVqy7x4eZbb10uwUDFzLck3Zid40X+D45W1PldCMMExA38
+	 jBLg5HsG/L20Yh1BcMCq8XJ8oOTfnHC3d9rB0ZTdXvAcStej1rh7FhQ92RcWBwQXFe
+	 xHiw5F4v7+N8xwumeKts+3YbThGIESQis6bGk1NtHgIo+dPVoLQ9heSXDCt4d0ihun
+	 N6YF5zZzoUFVg==
+Received: from smtp5.emailarray.com (smtp5.emailarray.com [65.39.216.39])
+	by mm2.emwd.com (Postfix) with ESMTPS id E3919381066
+	for <usrp-users@lists.ettus.com>; Thu, 28 Jul 2022 16:19:29 -0400 (EDT)
+Received: (qmail 33858 invoked by uid 89); 28 Jul 2022 20:19:28 -0000
+Received: from unknown (HELO ?192.168.1.80?) (cGhpbGlwQG9wZW5zZHIuY29tQDc3LjE1MC4yMTEuNDA=) (POLARISLOCAL)  
+  by smtp5.emailarray.com with SMTP; 28 Jul 2022 20:19:28 -0000
+Message-ID: <95bdfd74-a00b-a141-6618-d69c946503fe@balister.org>
+Date: Thu, 28 Jul 2022 22:19:24 +0200
 MIME-Version: 1.0
-Message-ID-Hash: ACUKZY2A3TEOMNZFJYNNOI3WGJHXJA2N
-X-Message-ID-Hash: ACUKZY2A3TEOMNZFJYNNOI3WGJHXJA2N
-X-MailFrom: yanzhanggc@gmail.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
+References: <HcVv5CBMbAkYj1H1fY3fvJbMQ7maeAVmgiYpSuuk@lists.ettus.com>
+ <1aa2bf89-67d5-ed16-2b44-74c11e362ee0@gmail.com>
+From: Philip Balister <philip@balister.org>
+In-Reply-To: <1aa2bf89-67d5-ed16-2b44-74c11e362ee0@gmail.com>
+Message-ID-Hash: 4BCCK7UT2YXE7UKHW42MTW5ZSNF6RII3
+X-Message-ID-Hash: 4BCCK7UT2YXE7UKHW42MTW5ZSNF6RII3
+X-MailFrom: philip@balister.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] E312 low level access to control AD9361
+Subject: [USRP-users] Re: meta-ettus build errors out (undefined reference to 'stime')
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ACUKZY2A3TEOMNZFJYNNOI3WGJHXJA2N/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4BCCK7UT2YXE7UKHW42MTW5ZSNF6RII3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7697421295195492762=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============7697421295195492762==
-Content-Type: multipart/alternative;
- boundary="b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi, all,
-
-=C2=A0
-
-I have a E312 device and I just find that the tuning speed of E312 is ver=
-y slow (\~150ms) for each tuning. Thus I would like to modify the underly=
-ing tuning source code in the uhd software architecture.
-
-=C2=A0
-
-Here is what I found:
-
-=C2=A0
-
-I first create a multi_usrp object:
-
-uhd::usrp::multi_usrp::sptr usrp =3D uhd::usrp::multi_usrp::make(device_a=
-rgs);
-
-=C2=A0
-
-=C2=A0
-
-then I tune the usrp by running a loop:
-
-=C2=A0
-
-int count =3D 200;\
-for(int a =3D 0; a < count; a++) {\
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uhd::tune_request_t tune_reque=
-st(600e6 + a\*10e6);\
-\
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp->set_rx_freq(tune_request=
-, 0);\
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp->set_tx_freq(tune_request=
-, 0);\
-}
-
-=C2=A0
-
-Basically, the loop tunes the frequency from 600MHz to 2.6 GHz with a ste=
-p size of 10 MHz. The 200 tunings take 52 seconds, which is pretty slow.
-
-=C2=A0
-
-Thus, I traced the call stack from=C2=A0usrp->set_rx_freq(tune_request, 0=
-). Here is what I found:
-
-1. usrp->set_rx_freq(tune_request, 0);=C2=A0 calls the method set_tx_freq=
-uency() in uhd/host/lib/usrp/dboard/e3xx/e3xx_radio_control_impl.cpp
-
-2. then=C2=A0the method set_tx_frequency() in uhd/host/lib/usrp/dboard/e3=
-xx/e3xx_radio_control_impl.cpp calls the tune() method in=C2=A0uhd/host/l=
-ib/usrp/dboard/e3xx/e3xx_ad9361_iface.cpp
-
-3. then=C2=A0the tune() method in=C2=A0uhd/host/lib/usrp/dboard/e3xx/e3xx=
-_ad9361_iface.cpp=C2=A0calls the method set_tx_frequency() in uhd/host/li=
-b/rfnoc/radio_control_impl.cpp. =C2=A0
-
-=C2=A0
-
-The conclusion I have reached so far is the underlying tuning method is i=
-n=C2=A0=C2=A0uhd/host/lib/rfnoc/radio_control_impl.cpp:
-
-=C2=A0
-
-double radio_control_impl::set_tx_frequency(const double freq, const size=
-_t chan)\
-{\
-=C2=A0=C2=A0=C2=A0 std::lock_guard<std::mutex> l(_cache_mutex);\
-=C2=A0=C2=A0=C2=A0 return _tx_freq\[chan\] =3D freq;\
-}
-
-=C2=A0
-
-Then I just got stuck here, what is the _tx_freq\[chan\] ? I just can not=
- find more.
-
-=C2=A0
-
-=C2=A0
-
-What I want to do is to modify the underlying ad9361 driver, so that when=
- tuning a frequency, I can bypass the calibration in the ad9361 to speed =
-up the tuning speed.
-
-=C2=A0
-
-Can anyone point me to 1.where I can find the source code for tuning for =
-the E312 with uhd 4.0 or 2. how to use mpm to get low-level access to ad9=
-361 so that I can write my own tuning method for ad9361 ?
-
-=C2=A0
-
-Thanks,
-
-Yan
-
---b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi, all,</p><p>&nbsp;</p><p>I have a E312 device and I just find that th=
-e tuning speed of E312 is very slow (~150ms) for each tuning. Thus I would =
-like to modify the underlying tuning source code in the uhd software archit=
-ecture.</p><p>&nbsp;</p><p>Here is what I found:</p><p>&nbsp;</p><p>I first=
- create a multi_usrp object:</p><p>uhd::usrp::multi_usrp::sptr usrp =3D uhd=
-::usrp::multi_usrp::make(device_args);</p><p>&nbsp;</p><p>&nbsp;</p><p>then=
- I tune the usrp by running a loop:</p><p>&nbsp;</p><p>int count =3D 200;<b=
-r>for(int a =3D 0; a &lt; count; a++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; uhd::tune_request_t tune_request(600e6 + a*10e6);<br><br>&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp-&gt;set_rx_freq(tune_request, 0);<=
-br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; usrp-&gt;set_tx_freq(tune_req=
-uest, 0);<br>}</p><p>&nbsp;</p><p>Basically, the loop tunes the frequency f=
-rom 600MHz to 2.6 GHz with a step size of 10 MHz. The 200 tunings take 52 s=
-econds, which is pretty slow.</p><p>&nbsp;</p><p>Thus, I traced the call st=
-ack from&nbsp;usrp-&gt;set_rx_freq(tune_request, 0). Here is what I found:<=
-/p><ol><li><p>usrp-&gt;set_rx_freq(tune_request, 0);&nbsp; calls the method=
- set_tx_frequency() in uhd/host/lib/usrp/dboard/e3xx/e3xx_radio_control_imp=
-l.cpp</p></li><li><p>then&nbsp;the method set_tx_frequency() in uhd/host/li=
-b/usrp/dboard/e3xx/e3xx_radio_control_impl.cpp calls the tune() method in&n=
-bsp;uhd/host/lib/usrp/dboard/e3xx/e3xx_ad9361_iface.cpp</p></li><li><p>then=
-&nbsp;the tune() method in&nbsp;uhd/host/lib/usrp/dboard/e3xx/e3xx_ad9361_i=
-face.cpp&nbsp;calls the method set_tx_frequency() in uhd/host/lib/rfnoc/rad=
-io_control_impl.cpp. &nbsp;</p></li></ol><p>&nbsp;</p><p>The conclusion I h=
-ave reached so far is the underlying tuning method is in&nbsp;&nbsp;uhd/hos=
-t/lib/rfnoc/radio_control_impl.cpp:</p><p>&nbsp;</p><p>double radio_control=
-_impl::set_tx_frequency(const double freq, const size_t chan)<br>{<br>&nbsp=
-;&nbsp;&nbsp; std::lock_guard&lt;std::mutex&gt; l(_cache_mutex);<br>&nbsp;&=
-nbsp;&nbsp; return _tx_freq[chan] =3D freq;<br>}</p><p>&nbsp;</p><p>Then I =
-just got stuck here, what is the _tx_freq[chan] ? I just can not find more.=
-</p><p>&nbsp;</p><p>&nbsp;</p><p>What I want to do is to modify the underly=
-ing ad9361 driver, so that when tuning a frequency, I can bypass the calibr=
-ation in the ad9361 to speed up the tuning speed.</p><p>&nbsp;</p><p>Can an=
-yone point me to 1.where I can find the source code for tuning for the E312=
- with uhd 4.0 or 2. how to use mpm to get low-level access to ad9361 so tha=
-t I can write my own tuning method for ad9361 ?</p><p>&nbsp;</p><p>Thanks,<=
-/p><p>Yan</p>
-
---b1_WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U--
-
---===============7697421295195492762==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============7697421295195492762==--
+T24gNy8yOC8yMiAyMTozMSwgTWFyY3VzIEQuIExlZWNoIHdyb3RlOg0KPiBPbiAyMDIyLTA3LTI4
+IDA4OjI1LCBrZXZpbi5tYWNrbmlnaHQtLS0gdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQo+Pg0KPj4g
+SSBjb250aW51ZSB0byBmYWlsIGluIGJ1aWxkaW5nIHRoZSBtZXRhLWV0dHVzIGVtYmVkZGVkIGlt
+YWdlLiBWZXJ5IA0KPj4gc3RyYWlnaHRmb3J3YXJkIGJ1aWxkIHByb2Nlc3MsIC8qaGFzIGFueW9u
+ZSBzdWNjZXNzZnVsbHkgYnVpbHQgDQo+PiBtZXRhLWV0dHVzPyovDQo+Pg0KPj4gLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tDQo+Pg0KPj4gSSBoYXZlIFVidW50dSAyMC4wNCBzZXR1cCBvbiBWaXJ0dWFsQm94IGFu
+ZCBjbG9uZWQgdGhlIEtBUyANCj4+IDxodHRwczovL2dpdGh1Yi5jb20vc2llbWVucy9rYXM+IHRv
+b2wgYW5kIE1FVEEtRVRUVVMgDQo+PiA8aHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gv
+bWV0YS1ldHR1cy90cmVlL3VoZC00LjIvemV1cz4gYnJhbmNoIA0KPj4g4oCcdWhkLTQuMi96ZXVz
+4oCdDQo+Pg0KPj4gSXNzdWVkIHRoZSBjb21tYW5kIOKAnC4vY29udHJpYi9rYXNfYnVpbGRfaW1n
+c19wYWNrYWdlLnNoIHg0eHggdjQuMuKAnSBhbmQgDQo+PiBnZXQgdGhpcyBlcnJvcjoNCj4+DQo+
+PiAgKg0KPj4NCj4+ICAgICAqL21ldGEtZXR0dXMvYnVpbGQvdG1wLWdsaWJjL3dvcmsveDg2XzY0
+LWxpbnV4L3FlbXUtbmF0aXZlLzQuMS4wLXIwL3FlbXUtNC4xLjAvbGludXgtdXNlci9zeXNjYWxs
+LmM6NzY1NzoNCj4+ICAgICB1bmRlZmluZWQgcmVmZXJlbmNlIHRvIGBzdGltZScNCj4+DQo+PiAg
+Kg0KPj4NCj4+ICAgICBIZXJlIGlzIHRoZSBwYXRjaA0KPj4gICAgIGh0dHBzOi8vc3RhY2tvdmVy
+Zmxvdy5jb20vcXVlc3Rpb25zLzYxMzY3MTczL2NvcmUtaW1hZ2UtbWluaW1hbC1mYWlscw0KPj4N
+Cj4+DQo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
+Pj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS11c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0K
+Pj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0b3VzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
+ZXR0dXMuY29tDQo+IFRoaXMgbG9va3MgbGlrZSBhIHByb2JsZW0gd2l0aCBRRU1VIG9uIHNvbWUg
+c3lzdGVtcywgd2hpY2ggaXMgcmVxdWlyZWQgDQo+IGZvciB0aGUgY3Jvc3MtdG9vbHMgdG8gd29y
+aywgYnV0IGxvb2tzIGxpa2UgaGFzIGEgcHJvYmxlbSBvbiBzb21lIA0KPiBzeXN0ZW1zLsKgIEkn
+dmUgbm90IGRvbmUgdGhpcw0KPiAgwqAgYnVpbGQgbXlzZWxmLCBidXQganVzdCBsb29raW5nIGF0
+IHRoYXQgdGhyZWFkLCBzZWVtcyBsaWtlIGEgUUVNVSBwcm9ibGVtLg0KDQpJIGNhbid0IGNvbmZp
+cm0gdGhpcyB3aXRob3V0IGJpbGxpbmcgc29tZW9uZSwgYnV0IEkgdmVyeSBzdHJvbmdseSANCnN1
+c3BlY3QgdGhlIGlzc3VlIGlzIHRoYXQgRXR0dXMgaXMgdXNpbmcgYW4gWW9jdG8gUG9yamVjdCBy
+ZWxlYXNlIGJyYW5jaCANCih6ZXVzKSB0aGF0IGhhcyBub3QgYmVlbiBzdXBwb3J0ZWQgc2luY2Ug
+YXJvdW5kIEF1Z3VzdCAyMDIwIFsxXQ0KDQpCYXNpY2FsbHkgdGhpcyByZWxlYXNlIGxpa2VseSBk
+b2VzIG5vdCBidWlsZCBvbiBhIG5ld2VyIExpbnV4IGRpc3Ryby4gDQpXaGVuIHN1cHBvcnRpbmcg
+Y3VzdG9tZXJzIGluIHRoaXMgcG9zaXRpb24sIGNvbnN1bHRhbnRzIHR5cGljYWwgY3JlYXRlIGEg
+DQpjb250YWluZXIgYmFzZWQgc29sdXRpb24uIEkgdGVuZCB0byB1c2UgbWV0YS1weXJleCBiZWNh
+dXNlIEkgbGlrZSB0aGUgDQphcHByb2FjaC4gSSB0aG91Z2h0IHRoZSBtZXRhLWV0dHVzIGluc3Ry
+dWN0aW9ucyBhbHNvIHBvaW50ZWQgYXQgYSANCmNvbnRhaW5lciBzb2x1dGlvbi4NCg0KQXMgYWx3
+YXlzLCBwbGVhc2UgZG8gbm90IHNoaXAgYWN0dWFsIHByb2R1Y3QgYmFzZWQgb24gdGhpcyByZWxl
+YXNlIA0KdW5sZXNzIHlvdSBoYXZlIGNvbnRyYWN0ZWQgd2l0aCBzb21lb25lIHRvIHN1cHBvcnQg
+aXQuIEFuZCBpbnNlcnQgbXkgDQpzdGFuZGFyZCBwbGVhIHRvIHN0b3Agc2hpcHBpbmcgb3V0IG9m
+IGRhdGUgc29mdHdhcmUgc28gSSBkb24ndCBnZXQgd29yayANCmRvaW5nIGJhbmRhaWRzLg0KDQpQ
+aGlsaXANCg0KWzFdIGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvUmVsZWFzZXMN
+Cg0KPiANCj4gDQo+IA0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVh
+dmVAbGlzdHMuZXR0dXMuY29tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBs
+aXN0cy5ldHR1cy5jb20K
