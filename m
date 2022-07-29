@@ -2,459 +2,1301 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECFB1585563
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 21:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 194655855EC
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 22:09:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 83C8E380C7E
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 15:04:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B0B33383C52
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 16:09:26 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659121459; bh=Ohd26gKOKkgIdSWoDiGH4F5EAoYSiqnrkRLRQB+Ukx8=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=DmrYsaknMJikGtfZ/6+7HyCrSzi10MvYKNlt97+dZArL33+v/WgQAdC6wj1EKzBZz
-	 3Q9FMjB7pwaoMlh/+r0nhJiXdvQjZYp6N2CadBKYnea/jNrmA4rw4vCCNKNn/zNDYm
-	 DtsezKTtCPpde38xpg1isEd8Gf6JNnuLgJOnzQffGXKG+7rMnoww/zOLvhAPGO694y
-	 67VX3DUtdn0prRYKo3gby/G3v9A/KdV7fBRBZEH4APb9vOAeEtomIFj4usyCfpZfBs
-	 UnZpT75jC7RxDzwM3SNXIxJmb12iu/NDi1nkPfbD7PqjxL9uCCAwogGaiRUWm3stGE
-	 k9Mau42mGlRog==
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6D74C38408D
-	for <usrp-users@lists.ettus.com>; Fri, 29 Jul 2022 15:02:03 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="oGmTiPsO";
-	dkim-atps=neutral
-Received: by mail-pj1-f49.google.com with SMTP id w63-20020a17090a6bc500b001f3160a6011so7352119pjj.5
-        for <usrp-users@lists.ettus.com>; Fri, 29 Jul 2022 12:02:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LDHd+P36kaMLUtibu+Yj+BpXYMYxaUNoh1uKxsJjF3M=;
-        b=oGmTiPsOPPU0NKV3LyDtfinDkpEMdWovsunQbpfaSRruZfN6g7pV81eJxaa6gj/2S8
-         OSpAz34v+SgDdKKEAWuNuJropE1rIQByzSLEQu9KksfBNPRGVdfGOdC5PiHJb0X7Vj80
-         Yet2/Pc+NkEz1bGBxsC2RXQkYv8GwfNycTm6AhC7RJSBGDQWVWRXPCtv++EahywjeS0D
-         L4aZRYxtWW60R5CSXRp7pscZvwB1wOaPmUS1hPAg4ko9Tjca5T3wMYoniBsIdb4M1boM
-         K4KWMqV4EJSOiADoJFUfjivbdWS4+WWE51pXZSrMZ8BCgK1tHMmdf8VkFtiVnfsKCmfr
-         Gz4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LDHd+P36kaMLUtibu+Yj+BpXYMYxaUNoh1uKxsJjF3M=;
-        b=0Ro4TypSTmavmhzMhp86+iuqM1DNH4vPyuDEUiWPusvuw/ufVk3seNlv4A6ewoKMnM
-         T3B4scqCB4ay0MM/gLfclWfmwaDWNDHxK0VZ097gc+d/7RQ0B+VNm7cITu5tXsUwJuGy
-         C/s0DTkFtWu1Xcu/Z7Jmr1fS6YsUdnWlMizP9labuib0OznZdhN4O45NM9MSZlQhZIuU
-         TBINZD+9TolJsQtqme18yh54kpEdHvoCwcGpS0X6TaDTd1xwjY1dmrHpYd79TFqfiVx3
-         XobEav9xUFoQEUw9rOK/Bbh9HwohPv7JwhrHJG2+eAqQTfL/NMcCDTE7bzjnpDxDT0OI
-         k6uw==
-X-Gm-Message-State: ACgBeo2gVgvqubXJYj2oilzZWA+k2msHcu+ioT1bWiS3XeWuCpzZRe76
-	gtRhtRAefwURMzgceQTw+HMm7GJ8gcF9UuxlJjI=
-X-Google-Smtp-Source: AA6agR5IWULW3/b6SVipTjw3qdhPJMnv7kUvEmfp8ZILJNZyrJzoSWMvx2kxdNgExzPuvMPWNghukdy6qtUq5+Q/VDM=
-X-Received: by 2002:a17:902:cf09:b0:16d:69ad:e496 with SMTP id
- i9-20020a170902cf0900b0016d69ade496mr5236995plg.6.1659121322217; Fri, 29 Jul
- 2022 12:02:02 -0700 (PDT)
+	t=1659125366; bh=M7p4Ik1wgn6cNKkyMTm2DYz0NTvs72sElaJLZXymoJs=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=GgTY9/G5KV/MxMQeE4s5mveIfY31Z1LWuJ7P6hDBfW7CzzjSotWgHExMEdJ72wQ+H
+	 I3JTdb6kfdrWhHa9gaXd/0ZyUiiEParmltl5OkQwB6YeWUN0n1rVA7F//0/mmEdPAG
+	 C5E7UXumEqq9n35IlyQG+bBIHcqBOYdV8xS/NjxJ+XoO9wjSFxyWazHN65jJ84c/nc
+	 eYqLRDIA6zwry5pB3R79tqK5vRH7zlsGPgMqY+wAgS0xzDavpWI6GCgOWtMwicnCIu
+	 reweF4suRIWIKwozQaILe81fIK3t0KFqBzId8Yw+ACLyGDYBGLbpnV42HlnAYRs22D
+	 c0k9HiHdbuHXw==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id A0F153800B4
+	for <usrp-users@lists.ettus.com>; Fri, 29 Jul 2022 16:08:12 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1659125292; bh=jQ8JQh2vE/bfcS/lcYZRgNfL9A6K5mR0KdzGLlkSfOY=;
+	h=Date:To:From:Subject:From;
+	b=m71hoZF6zALyJmz7QL/h5u0jsTjfkHIYNnilEgdD7kvXSI+NmmVg2aj9ApEQXP/Ru
+	 kiusF9pH8knIK5YNibWyW0w3rdacMpai2cJfcUItc4w+QtySgZaXvVWhXluoAKcBiT
+	 P+jV4hhWoanTkO4TPIDVZ02FPM/bnmgQdETbvaDF2tnypngg62MbrL/x5DkHNeDh1Y
+	 uYxAYZomhr0Vh9D6VWj14rZlLXvDs/8TL04jiIkbsvHcJ9WZV5AeHe7HA1+Yskk1J7
+	 AM16FzYaN0CsOdC1ld4MciEiEnFPsPEYgTm5HPSDzQOWwT4XEr2NGEomCLYNurO8/j
+	 n0tMcpw317L6w==
+Date: Fri, 29 Jul 2022 20:08:12 +0000
+To: usrp-users@lists.ettus.com
+Message-ID: <DGTT1gkdzjUFIP5Jril9sRDzclNJARs6DBQLGzpsgoM@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <WNuX1RAxDMoc9fWPv8LiDBJv5z5W2Y4T6qJKxpcDZ0U@lists.ettus.com>
- <CAAxXO2Hh7vns3bnQgbcAWEDr=Uo9ju+FSXEzhutpFqLRx5+25Q@mail.gmail.com>
- <CAJPBMpV1HMoK1c3MP-eB+geApi865UQ0s0nVWhopw6X99sSz6A@mail.gmail.com> <CAAxXO2H5X6x3kH5XoC__Sn=bHbDPCFQ0bS8V1+Hstjifc=O7VA@mail.gmail.com>
-In-Reply-To: <CAAxXO2H5X6x3kH5XoC__Sn=bHbDPCFQ0bS8V1+Hstjifc=O7VA@mail.gmail.com>
-From: yan zhang <yanzhanggc@gmail.com>
-Date: Fri, 29 Jul 2022 15:01:50 -0400
-Message-ID: <CAJPBMpU6mzq9p_+VvcFEbRw7uGLdUegb+GgK7mv7XjZBLWEsUQ@mail.gmail.com>
-To: Nikos Balkanas <nbalkanas@gmail.com>
-Message-ID-Hash: S47SYEJTVIBGQJRS3PNQGHIY5YH3CT4T
-X-Message-ID-Hash: S47SYEJTVIBGQJRS3PNQGHIY5YH3CT4T
-X-MailFrom: yanzhanggc@gmail.com
+Message-ID-Hash: DUZWG42QCYSMOBMB3LVW2JN2BJ2GGYXH
+X-Message-ID-Hash: DUZWG42QCYSMOBMB3LVW2JN2BJ2GGYXH
+X-MailFrom: skyung@nrel.gov
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E312 low level access to control AD9361
+Subject: [USRP-users] N310 Sample Rate
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S47SYEJTVIBGQJRS3PNQGHIY5YH3CT4T/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DUZWG42QCYSMOBMB3LVW2JN2BJ2GGYXH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0891595888541163039=="
+From: skyung--- via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: skyung@nrel.gov
+Content-Type: multipart/mixed; boundary="===============2975893133027182488=="
 
---===============0891595888541163039==
-Content-Type: multipart/alternative; boundary="0000000000000cd57905e4f649ee"
+This is a multi-part message in MIME format.
 
---0000000000000cd57905e4f649ee
-Content-Type: text/plain; charset="UTF-8"
+--===============2975893133027182488==
+Content-Type: multipart/alternative;
+ boundary="b1_DGTT1gkdzjUFIP5Jril9sRDzclNJARs6DBQLGzpsgoM"
+Content-Transfer-Encoding: 7bit
 
-Hi, Nikos,
+This is a multi-part message in MIME format.
 
-I am using a E312 device with ad9361 frontend and I am sure the frontend is
-ad9361. I have searched for like two weeks and can not find the source code
-for tuning.
-
-The most possible code is in the ad9361 driver folder, but that does not
-work ... (with printf())
-
-Yan
-
-On Fri, Jul 29, 2022 at 11:03 AM Nikos Balkanas <nbalkanas@gmail.com> wrote:
-
-> Hi Yan,
->
-> Throwing an error (exception?) is a bit drastic. A simple printf or
-> cout should be sufficient...
-> Yup. That seems to be controlling the VCO. That should be in your
-> daugtherboard.
-> What daugtherboard are you using?
-> If you are using it and it doesn;t print/err then you should be
-> looking elsewhere...
-> Are you sure you are using the ad9361 driver?
->
-> HTH
-> Nikos
->
-> On Fri, Jul 29, 2022 at 4:41 PM yan zhang <yanzhanggc@gmail.com> wrote:
-> >
-> > Hi, Nikos,
-> >
-> > Thanks for your reply! I will try to learn and install ctag. Here is
-> what I further find:
-> >
-> > Following your directions, I can find the _tx_freq variable in
-> "uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.h".
-> > I assume that the " _tune_helper() " function implemented in
-> "uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp" is the
-> underlying function that tunes the ad9361 front end.
-> > The problem is that I modify the _tune_helper()  by throwing a uhd error
-> at the beginning of the function, however after I re-compile the modified
-> uhd and re-install it and then re-run my tuning loop, I didn't find the
-> error message I throw in the  _tune_helper() .
-> >
-> > Does that mean the E312 uhd does not run the  _tune_helper() function
-> in  "uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp"?
-> > I really would like to find where the underlying tuning source code is
-> and I need to turn off the calibration procedure in the tuning code to
-> speed up the tuning.
-> >
-> > Thanks,
-> > Yan
-> >
-> >
-> >
-> >
-> >
-> >
-> >
-> > On Thu, Jul 28, 2022 at 6:48 PM Nikos Balkanas <nbalkanas@gmail.com>
-> wrote:
-> >>
-> >> Hi,
-> >>
-> >> _tx_freq is an intermediate frequency.
-> >> It is defined in:
-> >> uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.h
-> >> If you need to modify uhd, you really need to install ctags, and grep
-> >> the sources...
-> >>
-> >> HTH
-> >> Nikos
-> >>
-> >> On Thu, Jul 28, 2022 at 10:42 PM <yanzhanggc@gmail.com> wrote:
-> >> >
-> >> > Hi, all,
-> >> >
-> >> >
-> >> >
-> >> > I have a E312 device and I just find that the tuning speed of E312 is
-> very slow (~150ms) for each tuning. Thus I would like to modify the
-> underlying tuning source code in the uhd software architecture.
-> >> >
-> >> >
-> >> >
-> >> > Here is what I found:
-> >> >
-> >> >
-> >> >
-> >> > I first create a multi_usrp object:
-> >> >
-> >> > uhd::usrp::multi_usrp::sptr usrp =
-> uhd::usrp::multi_usrp::make(device_args);
-> >> >
-> >> >
-> >> >
-> >> >
-> >> >
-> >> > then I tune the usrp by running a loop:
-> >> >
-> >> >
-> >> >
-> >> > int count = 200;
-> >> > for(int a = 0; a < count; a++) {
-> >> >         uhd::tune_request_t tune_request(600e6 + a*10e6);
-> >> >
-> >> >         usrp->set_rx_freq(tune_request, 0);
-> >> >         usrp->set_tx_freq(tune_request, 0);
-> >> > }
-> >> >
-> >> >
-> >> >
-> >> > Basically, the loop tunes the frequency from 600MHz to 2.6 GHz with a
-> step size of 10 MHz. The 200 tunings take 52 seconds, which is pretty slow.
-> >> >
-> >> >
-> >> >
-> >> > Thus, I traced the call stack from usrp->set_rx_freq(tune_request,
-> 0). Here is what I found:
-> >> >
-> >> > usrp->set_rx_freq(tune_request, 0);  calls the method
-> set_tx_frequency() in
-> uhd/host/lib/usrp/dboard/e3xx/e3xx_radio_control_impl.cpp
-> >> >
-> >> > then the method set_tx_frequency() in
-> uhd/host/lib/usrp/dboard/e3xx/e3xx_radio_control_impl.cpp calls the tune()
-> method in uhd/host/lib/usrp/dboard/e3xx/e3xx_ad9361_iface.cpp
-> >> >
-> >> > then the tune() method in
-> uhd/host/lib/usrp/dboard/e3xx/e3xx_ad9361_iface.cpp calls the method
-> set_tx_frequency() in uhd/host/lib/rfnoc/radio_control_impl.cpp.
-> >> >
-> >> >
-> >> >
-> >> > The conclusion I have reached so far is the underlying tuning method
-> is in  uhd/host/lib/rfnoc/radio_control_impl.cpp:
-> >> >
-> >> >
-> >> >
-> >> > double radio_control_impl::set_tx_frequency(const double freq, const
-> size_t chan)
-> >> > {
-> >> >     std::lock_guard<std::mutex> l(_cache_mutex);
-> >> >     return _tx_freq[chan] = freq;
-> >> > }
-> >> >
-> >> >
-> >> >
-> >> > Then I just got stuck here, what is the _tx_freq[chan] ? I just can
-> not find more.
-> >> >
-> >> >
-> >> >
-> >> >
-> >> >
-> >> > What I want to do is to modify the underlying ad9361 driver, so that
-> when tuning a frequency, I can bypass the calibration in the ad9361 to
-> speed up the tuning speed.
-> >> >
-> >> >
-> >> >
-> >> > Can anyone point me to 1.where I can find the source code for tuning
-> for the E312 with uhd 4.0 or 2. how to use mpm to get low-level access to
-> ad9361 so that I can write my own tuning method for ad9361 ?
-> >> >
-> >> >
-> >> >
-> >> > Thanks,
-> >> >
-> >> > Yan
-> >> >
-> >> > _______________________________________________
-> >> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> >> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000000cd57905e4f649ee
-Content-Type: text/html; charset="UTF-8"
+--b1_DGTT1gkdzjUFIP5Jril9sRDzclNJARs6DBQLGzpsgoM
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi, Nikos,<div><br></div><div>I am using a E312 device wit=
-h ad9361 frontend and I am sure the frontend is ad9361. I have searched for=
- like two weeks and can not find the source code for tuning.=C2=A0</div><di=
-v><br></div><div>The most possible code is in the ad9361 driver folder, but=
- that does not work ... (with printf())</div><div><br></div><div>Yan</div><=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Fri, Jul 29, 2022 at 11:03 AM Nikos Balkanas &lt;<a href=3D"mailto:nbalka=
-nas@gmail.com">nbalkanas@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">Hi Yan,<br>
-<br>
-Throwing an error (exception?) is a bit drastic. A simple printf or<br>
-cout should be sufficient...<br>
-Yup. That seems to be controlling the VCO. That should be in your daugtherb=
-oard.<br>
-What daugtherboard are you using?<br>
-If you are using it and it doesn;t print/err then you should be<br>
-looking elsewhere...<br>
-Are you sure you are using the ad9361 driver?<br>
-<br>
-HTH<br>
-Nikos<br>
-<br>
-On Fri, Jul 29, 2022 at 4:41 PM yan zhang &lt;<a href=3D"mailto:yanzhanggc@=
-gmail.com" target=3D"_blank">yanzhanggc@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi, Nikos,<br>
-&gt;<br>
-&gt; Thanks for your reply! I will try to learn and install ctag. Here is w=
-hat I further find:<br>
-&gt;<br>
-&gt; Following your directions, I can find the _tx_freq variable in &quot;u=
-hd/host/lib/usrp/common/ad9361_driver/ad9361_device.h&quot;.<br>
-&gt; I assume that the &quot; _tune_helper() &quot; function implemented in=
- &quot;uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.cpp&quot; is th=
-e underlying function that tunes the ad9361 front end.<br>
-&gt; The problem is that I modify the _tune_helper()=C2=A0 by throwing a uh=
-d error at the beginning of the function, however after I re-compile the mo=
-dified uhd and re-install it and then re-run my tuning loop, I didn&#39;t f=
-ind the error message I throw in the=C2=A0 _tune_helper() .<br>
-&gt;<br>
-&gt; Does that mean the E312 uhd does not run the=C2=A0 _tune_helper() func=
-tion in=C2=A0 &quot;uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.cp=
-p&quot;?<br>
-&gt; I really would like to find where the underlying tuning source code is=
- and I need to turn off the calibration procedure in the tuning code to spe=
-ed up the tuning.<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Yan<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; On Thu, Jul 28, 2022 at 6:48 PM Nikos Balkanas &lt;<a href=3D"mailto:n=
-balkanas@gmail.com" target=3D"_blank">nbalkanas@gmail.com</a>&gt; wrote:<br=
->
-&gt;&gt;<br>
-&gt;&gt; Hi,<br>
-&gt;&gt;<br>
-&gt;&gt; _tx_freq is an intermediate frequency.<br>
-&gt;&gt; It is defined in:<br>
-&gt;&gt; uhd/host/lib/usrp/common/ad9361_driver/ad9361_device.h<br>
-&gt;&gt; If you need to modify uhd, you really need to install ctags, and g=
-rep<br>
-&gt;&gt; the sources...<br>
-&gt;&gt;<br>
-&gt;&gt; HTH<br>
-&gt;&gt; Nikos<br>
-&gt;&gt;<br>
-&gt;&gt; On Thu, Jul 28, 2022 at 10:42 PM &lt;<a href=3D"mailto:yanzhanggc@=
-gmail.com" target=3D"_blank">yanzhanggc@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Hi, all,<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; I have a E312 device and I just find that the tuning speed of=
- E312 is very slow (~150ms) for each tuning. Thus I would like to modify th=
-e underlying tuning source code in the uhd software architecture.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Here is what I found:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; I first create a multi_usrp object:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; uhd::usrp::multi_usrp::sptr usrp =3D uhd::usrp::multi_usrp::m=
-ake(device_args);<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; then I tune the usrp by running a loop:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; int count =3D 200;<br>
-&gt;&gt; &gt; for(int a =3D 0; a &lt; count; a++) {<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0uhd::tune_request_t tune_req=
-uest(600e6 + a*10e6);<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0usrp-&gt;set_rx_freq(tune_re=
-quest, 0);<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0usrp-&gt;set_tx_freq(tune_re=
-quest, 0);<br>
-&gt;&gt; &gt; }<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Basically, the loop tunes the frequency from 600MHz to 2.6 GH=
-z with a step size of 10 MHz. The 200 tunings take 52 seconds, which is pre=
-tty slow.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Thus, I traced the call stack from usrp-&gt;set_rx_freq(tune_=
-request, 0). Here is what I found:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; usrp-&gt;set_rx_freq(tune_request, 0);=C2=A0 calls the method=
- set_tx_frequency() in uhd/host/lib/usrp/dboard/e3xx/e3xx_radio_control_imp=
-l.cpp<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; then the method set_tx_frequency() in uhd/host/lib/usrp/dboar=
-d/e3xx/e3xx_radio_control_impl.cpp calls the tune() method in uhd/host/lib/=
-usrp/dboard/e3xx/e3xx_ad9361_iface.cpp<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; then the tune() method in uhd/host/lib/usrp/dboard/e3xx/e3xx_=
-ad9361_iface.cpp calls the method set_tx_frequency() in uhd/host/lib/rfnoc/=
-radio_control_impl.cpp.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; The conclusion I have reached so far is the underlying tuning=
- method is in=C2=A0 uhd/host/lib/rfnoc/radio_control_impl.cpp:<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; double radio_control_impl::set_tx_frequency(const double freq=
-, const size_t chan)<br>
-&gt;&gt; &gt; {<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0std::lock_guard&lt;std::mutex&gt; l(_cache=
-_mutex);<br>
-&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0return _tx_freq[chan] =3D freq;<br>
-&gt;&gt; &gt; }<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Then I just got stuck here, what is the _tx_freq[chan] ? I ju=
-st can not find more.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; What I want to do is to modify the underlying ad9361 driver, =
-so that when tuning a frequency, I can bypass the calibration in the ad9361=
- to speed up the tuning speed.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Can anyone point me to 1.where I can find the source code for=
- tuning for the E312 with uhd 4.0 or 2. how to use mpm to get low-level acc=
-ess to ad9361 so that I can write my own tuning method for ad9361 ?<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Thanks,<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Yan<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; _______________________________________________<br>
-&gt;&gt; &gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists=
-.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt;&gt; &gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-=
-leave@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</=
-a><br>
-</blockquote></div>
+Hi,
 
---0000000000000cd57905e4f649ee--
+I am setting up OAI 5G gNB and UE with USRP N310 (connected through 1GbE =
+to a desktop with the following CPU:
 
---===============0891595888541163039==
+\- Intel(R) Core(TM) i9-7900X CPU @ 3.30GHz
+
+and when I tried to run the UE with
+
+```
+sudo ./nr-uesoftmodem --sa --usrp-args "type=3Dn3xx, addr=3D10.0.0.10" --=
+numerology 1 -r 106 --band 78 -s 516 -C 3619200000 --ue-fo-compensation -=
+E --ue-rxgain 110 -d
+```
+
+it stopped with ERROR_CODE_OVERFLOW (OVERFLOW).
+
+I tried running a benchmark with uhd (rx/tx_rate 41.667MHz) and found tha=
+t it was dropping the packets, meaning the CPU clock rate is not enough f=
+or handling the transmission.
+
+The output of=20
+
+```
+./benchmark_rate --rx_rate 41.667e6 --tx_rate 41.667e6 --args "addr=3D10.=
+0.0.10=E2=80=9D=20
+```
+
+is as follows:
+
+```
+```
+
+```
+[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.2.0.0-0ubu=
+ntu1~bionic1
+```
+
+```
+[00:00:00.000350] Creating the usrp device with: addr=3D10.0.0.10...
+```
+
+```
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D=
+10.0.0.10,type=3Dn3xx,product=3Dn310,serial=3D3240243,name=3Dni-n3xx-3240=
+243,fpga=3DHG,claimed=3DFalse,addr=3D10.0.0.10
+```
+
+```
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DHG,mgmt=
+_addr=3D10.0.0.10,name=3Dni-n3xx-3240243,product=3Dn310,clock_source=3Din=
+ternal,time_source=3Dinternal'.
+```
+
+```
+Using Device: Single USRP:
+```
+
+```
+  Device: N300-Series Device
+```
+
+```
+  Mboard 0: n310
+```
+
+```
+  RX Channel: 0
+```
+
+```
+    RX DSP: 0
+```
+
+```
+    RX Dboard: A
+```
+
+```
+    RX Subdev: Magnesium
+```
+
+```
+  RX Channel: 1
+```
+
+```
+    RX DSP: 1
+```
+
+```
+    RX Dboard: A
+```
+
+```
+    RX Subdev: Magnesium
+```
+
+```
+  RX Channel: 2
+```
+
+```
+    RX DSP: 2
+```
+
+```
+    RX Dboard: B
+```
+
+```
+    RX Subdev: Magnesium
+```
+
+```
+  RX Channel: 3
+```
+
+```
+    RX DSP: 3
+```
+
+```
+    RX Dboard: B
+```
+
+```
+    RX Subdev: Magnesium
+```
+
+```
+  TX Channel: 0
+```
+
+```
+    TX DSP: 0
+```
+
+```
+    TX Dboard: A
+```
+
+```
+    TX Subdev: Magnesium
+```
+
+```
+  TX Channel: 1
+```
+
+```
+    TX DSP: 1
+```
+
+```
+    TX Dboard: A
+```
+
+```
+    TX Subdev: Magnesium
+```
+
+```
+  TX Channel: 2
+```
+
+```
+    TX DSP: 2
+```
+
+```
+    TX Dboard: B
+```
+
+```
+    TX Subdev: Magnesium
+```
+
+```
+  TX Channel: 3
+```
+
+```
+    TX DSP: 3
+```
+
+```
+    TX Dboard: B
+```
+
+```
+    TX Subdev: Magnesium
+```
+
+```
+[00:00:02.218344682] Setting device timestamp to 0...
+```
+
+```
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set RX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [0/DDC#0] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set RX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set RX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [0/DDC#1] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.
+```
+
+```
+Select an even decimation to ensure that a halfband filter is enabled.
+```
+
+```
+Decimations factorable by 4 will enable 2 halfbands, those factorable by =
+8 will enable 3 halfbands.
+```
+
+```
+decimation =3D dsp_rate/samp_rate -> 3
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set RX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+[WARNING] [0/DUC#0] The requested interpolation is odd; the user should e=
+xpect passband CIC rolloff.
+```
+
+```
+Select an even interpolation to ensure that a halfband filter is enabled.
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set TX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+[WARNING] [0/DUC#0] The requested interpolation is odd; the user should e=
+xpect passband CIC rolloff.
+```
+
+```
+Select an even interpolation to ensure that a halfband filter is enabled.
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set TX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+[WARNING] [0/DUC#1] The requested interpolation is odd; the user should e=
+xpect passband CIC rolloff.
+```
+
+```
+Select an even interpolation to ensure that a halfband filter is enabled.
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set TX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+[WARNING] [0/DUC#1] The requested interpolation is odd; the user should e=
+xpect passband CIC rolloff.
+```
+
+```
+Select an even interpolation to ensure that a halfband filter is enabled.
+```
+
+```
+[WARNING] [MULTI_USRP] Could not set TX rate to 41.667 MHz. Actual rate i=
+s 41.667 MHz
+```
+
+```
+Setting TX spp to 364
+```
+
+```
+[00:00:02.222267169] Testing receive rate 41.666667 Msps on 1 channels
+```
+
+```
+[00:00:02.224390064] Testing transmit rate 41.666667 Msps on 1 channels
+```
+
+```
+UUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUO
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+```
+
+```
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU[00:00:12.387201078=
+] Benchmark complete.
+```
+
+```
+Benchmark rate summary:
+```
+
+```
+  Num received samples:     2427436
+```
+
+```
+  Num dropped samples:      399414926
+```
+
+```
+  Num overruns detected:    75
+```
+
+```
+  Num transmitted samples:  295401652
+```
+
+```
+  Num sequence errors (Tx): 0
+```
+
+```
+  Num sequence errors (Rx): 0
+```
+
+```
+  Num underruns detected:   14669
+```
+
+```
+  Num late commands:        0
+```
+
+```
+  Num timeouts (Tx):        0
+```
+
+```
+  Num timeouts (Rx):        0
+```
+
+```
+Done!
+```
+
+
+
+Could you help me resolve this problem? the benchmark at lower rate (such=
+ as 15.624 MHz) worked fine.
+
+--b1_DGTT1gkdzjUFIP5Jril9sRDzclNJARs6DBQLGzpsgoM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi,</p><p>I am setting up OAI 5G gNB and UE with USRP N310 (connected th=
+rough 1GbE to a desktop with the following CPU:</p><p>- Intel(R) Core(TM) i=
+9-7900X CPU @ 3.30GHz</p><p>and when I tried to run the UE with</p><pre><co=
+de>sudo ./nr-uesoftmodem --sa --usrp-args "type=3Dn3xx, addr=3D10.0.0.10" -=
+-numerology 1 -r 106 --band 78 -s 516 -C 3619200000 --ue-fo-compensation -E=
+ --ue-rxgain 110 -d</code></pre><p>it stopped with ERROR_CODE_OVERFLOW (OVE=
+RFLOW).</p><p>I tried running a benchmark with uhd (rx/tx_rate 41.667MHz) a=
+nd found that it was dropping the packets, meaning the CPU clock rate is no=
+t enough for handling the transmission.</p><p>The output of </p><pre><code>=
+./benchmark_rate --rx_rate 41.667e6 --tx_rate 41.667e6 --args "addr=3D10.0.=
+0.10=E2=80=9D </code></pre><p>is as follows:</p><pre><code><br></code></pre=
+><pre><code>[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.=
+2.0.0-0ubuntu1~bionic1</code></pre><pre><code>[00:00:00.000350] Creating th=
+e usrp device with: addr=3D10.0.0.10...</code></pre><pre><code>[INFO] [MPMD=
+] Initializing 1 device(s) in parallel with args: mgmt_addr=3D10.0.0.10,typ=
+e=3Dn3xx,product=3Dn310,serial=3D3240243,name=3Dni-n3xx-3240243,fpga=3DHG,c=
+laimed=3DFalse,addr=3D10.0.0.10</code></pre><pre><code>[INFO] [MPM.PeriphMa=
+nager] init() called with device args `fpga=3DHG,mgmt_addr=3D10.0.0.10,name=
+=3Dni-n3xx-3240243,product=3Dn310,clock_source=3Dinternal,time_source=3Dint=
+ernal'.</code></pre><pre><code>Using Device: Single USRP:</code></pre><pre>=
+<code>  Device: N300-Series Device</code></pre><pre><code>  Mboard 0: n310<=
+/code></pre><pre><code>  RX Channel: 0</code></pre><pre><code>    RX DSP: 0=
+</code></pre><pre><code>    RX Dboard: A</code></pre><pre><code>    RX Subd=
+ev: Magnesium</code></pre><pre><code>  RX Channel: 1</code></pre><pre><code=
+>    RX DSP: 1</code></pre><pre><code>    RX Dboard: A</code></pre><pre><co=
+de>    RX Subdev: Magnesium</code></pre><pre><code>  RX Channel: 2</code></=
+pre><pre><code>    RX DSP: 2</code></pre><pre><code>    RX Dboard: B</code>=
+</pre><pre><code>    RX Subdev: Magnesium</code></pre><pre><code>  RX Chann=
+el: 3</code></pre><pre><code>    RX DSP: 3</code></pre><pre><code>    RX Db=
+oard: B</code></pre><pre><code>    RX Subdev: Magnesium</code></pre><pre><c=
+ode>  TX Channel: 0</code></pre><pre><code>    TX DSP: 0</code></pre><pre><=
+code>    TX Dboard: A</code></pre><pre><code>    TX Subdev: Magnesium</code=
+></pre><pre><code>  TX Channel: 1</code></pre><pre><code>    TX DSP: 1</cod=
+e></pre><pre><code>    TX Dboard: A</code></pre><pre><code>    TX Subdev: M=
+agnesium</code></pre><pre><code>  TX Channel: 2</code></pre><pre><code>    =
+TX DSP: 2</code></pre><pre><code>    TX Dboard: B</code></pre><pre><code>  =
+  TX Subdev: Magnesium</code></pre><pre><code>  TX Channel: 3</code></pre><=
+pre><code>    TX DSP: 3</code></pre><pre><code>    TX Dboard: B</code></pre=
+><pre><code>    TX Subdev: Magnesium</code></pre><pre><code>[00:00:02.21834=
+4682] Setting device timestamp to 0...</code></pre><pre><code>[WARNING] [0/=
+DDC#0] The requested decimation is odd; the user should expect passband CIC=
+ rolloff.</code></pre><pre><code>Select an even decimation to ensure that a=
+ halfband filter is enabled.</code></pre><pre><code>Decimations factorable =
+by 4 will enable 2 halfbands, those factorable by 8 will enable 3 halfbands=
+.</code></pre><pre><code>decimation =3D dsp_rate/samp_rate -&gt; 3</code></=
+pre><pre><code>[WARNING] [0/DDC#0] The requested decimation is odd; the use=
+r should expect passband CIC rolloff.</code></pre><pre><code>Select an even=
+ decimation to ensure that a halfband filter is enabled.</code></pre><pre><=
+code>Decimations factorable by 4 will enable 2 halfbands, those factorable =
+by 8 will enable 3 halfbands.</code></pre><pre><code>decimation =3D dsp_rat=
+e/samp_rate -&gt; 3</code></pre><pre><code>[WARNING] [MULTI_USRP] Could not=
+ set RX rate to 41.667 MHz. Actual rate is 41.667 MHz</code></pre><pre><cod=
+e>[WARNING] [0/DDC#0] The requested decimation is odd; the user should expe=
+ct passband CIC rolloff.</code></pre><pre><code>Select an even decimation t=
+o ensure that a halfband filter is enabled.</code></pre><pre><code>Decimati=
+ons factorable by 4 will enable 2 halfbands, those factorable by 8 will ena=
+ble 3 halfbands.</code></pre><pre><code>decimation =3D dsp_rate/samp_rate -=
+&gt; 3</code></pre><pre><code>[WARNING] [0/DDC#0] The requested decimation =
+is odd; the user should expect passband CIC rolloff.</code></pre><pre><code=
+>Select an even decimation to ensure that a halfband filter is enabled.</co=
+de></pre><pre><code>Decimations factorable by 4 will enable 2 halfbands, th=
+ose factorable by 8 will enable 3 halfbands.</code></pre><pre><code>decimat=
+ion =3D dsp_rate/samp_rate -&gt; 3</code></pre><pre><code>[WARNING] [MULTI_=
+USRP] Could not set RX rate to 41.667 MHz. Actual rate is 41.667 MHz</code>=
+</pre><pre><code>[WARNING] [0/DDC#1] The requested decimation is odd; the u=
+ser should expect passband CIC rolloff.</code></pre><pre><code>Select an ev=
+en decimation to ensure that a halfband filter is enabled.</code></pre><pre=
+><code>Decimations factorable by 4 will enable 2 halfbands, those factorabl=
+e by 8 will enable 3 halfbands.</code></pre><pre><code>decimation =3D dsp_r=
+ate/samp_rate -&gt; 3</code></pre><pre><code>[WARNING] [0/DDC#1] The reques=
+ted decimation is odd; the user should expect passband CIC rolloff.</code><=
+/pre><pre><code>Select an even decimation to ensure that a halfband filter =
+is enabled.</code></pre><pre><code>Decimations factorable by 4 will enable =
+2 halfbands, those factorable by 8 will enable 3 halfbands.</code></pre><pr=
+e><code>decimation =3D dsp_rate/samp_rate -&gt; 3</code></pre><pre><code>[W=
+ARNING] [MULTI_USRP] Could not set RX rate to 41.667 MHz. Actual rate is 41=
+.667 MHz</code></pre><pre><code>[WARNING] [0/DDC#1] The requested decimatio=
+n is odd; the user should expect passband CIC rolloff.</code></pre><pre><co=
+de>Select an even decimation to ensure that a halfband filter is enabled.</=
+code></pre><pre><code>Decimations factorable by 4 will enable 2 halfbands, =
+those factorable by 8 will enable 3 halfbands.</code></pre><pre><code>decim=
+ation =3D dsp_rate/samp_rate -&gt; 3</code></pre><pre><code>[WARNING] [0/DD=
+C#1] The requested decimation is odd; the user should expect passband CIC r=
+olloff.</code></pre><pre><code>Select an even decimation to ensure that a h=
+alfband filter is enabled.</code></pre><pre><code>Decimations factorable by=
+ 4 will enable 2 halfbands, those factorable by 8 will enable 3 halfbands.<=
+/code></pre><pre><code>decimation =3D dsp_rate/samp_rate -&gt; 3</code></pr=
+e><pre><code>[WARNING] [MULTI_USRP] Could not set RX rate to 41.667 MHz. Ac=
+tual rate is 41.667 MHz</code></pre><pre><code>[WARNING] [0/DUC#0] The requ=
+ested interpolation is odd; the user should expect passband CIC rolloff.</c=
+ode></pre><pre><code>Select an even interpolation to ensure that a halfband=
+ filter is enabled.</code></pre><pre><code>[WARNING] [MULTI_USRP] Could not=
+ set TX rate to 41.667 MHz. Actual rate is 41.667 MHz</code></pre><pre><cod=
+e>[WARNING] [0/DUC#0] The requested interpolation is odd; the user should e=
+xpect passband CIC rolloff.</code></pre><pre><code>Select an even interpola=
+tion to ensure that a halfband filter is enabled.</code></pre><pre><code>[W=
+ARNING] [MULTI_USRP] Could not set TX rate to 41.667 MHz. Actual rate is 41=
+.667 MHz</code></pre><pre><code>[WARNING] [0/DUC#1] The requested interpola=
+tion is odd; the user should expect passband CIC rolloff.</code></pre><pre>=
+<code>Select an even interpolation to ensure that a halfband filter is enab=
+led.</code></pre><pre><code>[WARNING] [MULTI_USRP] Could not set TX rate to=
+ 41.667 MHz. Actual rate is 41.667 MHz</code></pre><pre><code>[WARNING] [0/=
+DUC#1] The requested interpolation is odd; the user should expect passband =
+CIC rolloff.</code></pre><pre><code>Select an even interpolation to ensure =
+that a halfband filter is enabled.</code></pre><pre><code>[WARNING] [MULTI_=
+USRP] Could not set TX rate to 41.667 MHz. Actual rate is 41.667 MHz</code>=
+</pre><pre><code>Setting TX spp to 364</code></pre><pre><code>[00:00:02.222=
+267169] Testing receive rate 41.666667 Msps on 1 channels</code></pre><pre>=
+<code>[00:00:02.224390064] Testing transmit rate 41.666667 Msps on 1 channe=
+ls</code></pre><pre><code>UUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><c=
+ode>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><=
+code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre>=
+<code>UUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre=
+><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pr=
+e><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUU</code></pre><p=
+re><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><=
+pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre>=
+<pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre=
+><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pr=
+e><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUU</code></p=
+re><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></=
+pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code><=
+/pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code>=
+</pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code=
+></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</cod=
+e></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</co=
+de></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</c=
+ode></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</=
+code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU<=
+/code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+U</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+OUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUOUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUOUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUOUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUU</code></pre><pre><code>UOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUO</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</cod=
+e></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</co=
+de></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>U=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code=
+>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><cod=
+e>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+OUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+OUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+OUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+OUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU</code=
+></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUU</cod=
+e></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUUU</code></pre><pre><code>UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUOUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUOUUU=
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU=
+UUUUUUUUUU[00:00:12.387201078] Benchmark complete.</code></pre><pre><code>B=
+enchmark rate summary:</code></pre><pre><code>  Num received samples:     2=
+427436</code></pre><pre><code>  Num dropped samples:      399414926</code><=
+/pre><pre><code>  Num overruns detected:    75</code></pre><pre><code>  Num=
+ transmitted samples:  295401652</code></pre><pre><code>  Num sequence erro=
+rs (Tx): 0</code></pre><pre><code>  Num sequence errors (Rx): 0</code></pre=
+><pre><code>  Num underruns detected:   14669</code></pre><pre><code>  Num =
+late commands:        0</code></pre><pre><code>  Num timeouts (Tx):        =
+0</code></pre><pre><code>  Num timeouts (Rx):        0</code></pre><pre><co=
+de>Done!</code></pre><p>
+<br></p><p>Could you help me resolve this problem? the benchmark at lower r=
+ate (such as 15.624 MHz) worked fine.</p>
+
+--b1_DGTT1gkdzjUFIP5Jril9sRDzclNJARs6DBQLGzpsgoM--
+
+--===============2975893133027182488==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -464,4 +1306,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0891595888541163039==--
+--===============2975893133027182488==--
