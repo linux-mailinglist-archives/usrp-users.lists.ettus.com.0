@@ -2,143 +2,149 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CABD58521E
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 17:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 488B258531C
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 17:52:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5C95F383236
-	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 11:10:56 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C5DF2383FB9
+	for <lists+usrp-users@lfdr.de>; Fri, 29 Jul 2022 11:52:51 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1659107456; bh=0psnehwno7OgUJRRNhOqWS/+HjaCXZCbHKmON2XbA2U=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=P04jF21xJPTRUkx4fw4ivdFu5Ndd2I/kQztRjAuyc0xsc0H2LZGYBE2fcJ5RGiBnP
-	 WEM3BC5IUZuSPn7cOAtixNWEyM4Jw1Ik57ZqwNNuDMukOpGoddusZ9YgeIRikrL6AL
-	 PxBdLR/FEpg/lCsIN1yDZlKOHwMRevBWARv+gInXy8gYvqVL/Z4n3Y8Y/haedZb+8k
-	 2YuRXZSC5/RELt+VHYty0xGBgZ/2KSaMmLLRUWgCJqB8BYItEnhz/dQKvPTD4gGL1r
-	 IsJonaOLAE026le7W9ZGUxgAPWn4k5+sJd2RjWOACEMeKqh74x+K0tIWbmef+6Z2pd
-	 Vz51j0PjQCF0A==
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id D6D07380A1E
-	for <usrp-users@lists.ettus.com>; Fri, 29 Jul 2022 11:08:41 -0400 (EDT)
+	t=1659109971; bh=OGVieIhhPI2oBq2PC88mLerTnKZVk0LFspz8mDQ/vkM=;
+	h=Date:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=lD7XLB+uEuTSCbiYRjf6713DoqueW03XBvWTUdvKcaSdD1zSUsk9EX5WwmZC6zn+a
+	 n0+Hk/ZQx9cZ0NfUtWUuNcc3vc26GpFiVwrMeom8nIKWGQl1I+48v4tDNYBiBBauRq
+	 vqBft49WCVdHI0FwK7H+ssv6Sf+a7H4VXBhp0WuOIh6p4wSily6dg608CVrq7Krn1P
+	 T23yrhZooXDNLY4kxxAqP7ufkywzhfAxJqcZ2mgp/Ojgn7dj1VSsv19fJC2Y44R5de
+	 s9NUrPeaQrLOZJLhp2KtI9VMj4xIMUwjkoo0ISYxFJ3u1utx8attoAn7kRoeTh1W1u
+	 ubflKY7dl3c+g==
+Received: from EUR03-VE1-obe.outbound.protection.outlook.com (mail-eopbgr50092.outbound.protection.outlook.com [40.107.5.92])
+	by mm2.emwd.com (Postfix) with ESMTPS id 190B9383E14
+	for <usrp-users@lists.ettus.com>; Fri, 29 Jul 2022 11:51:00 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HiWIEVEc";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="tsm7/R+A";
 	dkim-atps=neutral
-Received: by mail-ej1-f51.google.com with SMTP id os14so9048010ejb.4
-        for <usrp-users@lists.ettus.com>; Fri, 29 Jul 2022 08:08:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9Cl6hhXZxT2ly8JAyqa1ElczQOS/LNdFKGbYle5v/u4=;
-        b=HiWIEVEca1iztLcGieANe7xvHWdcMtTjzvnN9qlvzKXKaPM8M4EMzHHzrlhGJR9Yx1
-         fvA0u7xgN3djn7XVt5poAWET3vnxFFyEjUei8VTyhA6AH+5SresDo/fQGS5By6wb30cZ
-         rG/b/pgLn3Z+W5aTh2a6EbQ4kMZKnpNAnqTHoFmsPC0Ll/yLc2Bt/AQDfRqxOMbjam/F
-         KX/SrnwyTe3qcy50I5BS+/kc5LUkiyj78pGx1wjj5ox6r5W3HEy6NaPYmSEo+GZ9ch1F
-         fXCUB+vB93KTlQQv43z0Hw9iOwT5MD9ENW+wbWGXHAY/E/HCOZRxBVo5KxCvFLiSQfaA
-         CzJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9Cl6hhXZxT2ly8JAyqa1ElczQOS/LNdFKGbYle5v/u4=;
-        b=gM33SvYYQE6CabO4XAKao/oSSa5mb+vCEJKloiufnR7ujqXVySPehrLxejaEonFCGa
-         94suG/0yih/XWJnHWAfRgfnKeP5TDMlzpatyXRKOiXr3DgNs5toI1m5hP8cz7xAn4Les
-         x+kBYZD+tM/7A1G4pgActEt+glXrUuGSnglZx2KlnLz5CmVFQWjFidGTe9J9B4cnWu6m
-         riVKi/e9SaO2L03Y/U3lTEl9Lx/R5iT0I3uZ1m+plT0WFOeWHeo9kvcyZkbp9lw5cGD5
-         byX/1fH++EFrTzfbUlHv8Q18+BbprFC1T39//A1JXr5wL8NLPYKoWXRKao+6W1EJmRv8
-         ZkKA==
-X-Gm-Message-State: AJIora/au4qOVxDsoKcrnKk/HU4yFN/qjIWAwFwZTZmEDCN7Zq6Xwi2J
-	+7DZkOOu5M5Ajyi6A0oVbnIfw57e0EFRM1G/el8=
-X-Google-Smtp-Source: AGRyM1sXviao9U2HZ76e7ivd84fkUY/rXXHjp+NE5iuGPnqmKnbXHBsKrBm/phveHZ27/Ymu6OeD6hhmCMB4Fx+8rG8=
-X-Received: by 2002:a17:906:8479:b0:72b:83cf:4cf3 with SMTP id
- hx25-20020a170906847900b0072b83cf4cf3mr3132181ejc.90.1659107320349; Fri, 29
- Jul 2022 08:08:40 -0700 (PDT)
-MIME-Version: 1.0
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SKCHzgm3unCrjx+GTJLX1NcDUEULHc4Lysg6X3hIDeIivI8GppJ09ZrU/ukMHjej9dPAkIJoOuckYKQuxJ9trm8XWXZt18jfriYza9W02wLCfSq1dYMQo0mABwAgbZ8aJ0HO90PNz88RFQQLYgSusAF3IcHV0HLVbm3tvjeyizXIMSJdlVyak3POiiEtvjRaAveHXcNp7ztW/g/rFtvGDvcRsT771gcNhlEu1NyDBL1oPp9igsQnSVL3u2PNrcOOUshXaNoQxdB1vKaLaiyn43UgM1zypcnz5tkhyB/IQy7I5YpCkjqxaR8otNU2JWHK7K3k7dy661mtEW5K4MmqLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gBtbRpQDt8yNwtUiVfmyFTytjxIyc/kbitvS2WT8ONg=;
+ b=CWtUG39jqJ/F6w4xrnhqbiVrSjHUsHhwJ+p3C4oUEcI2yp5uQ6V4GNlOJflWciFowr+WRDnNSvPlupv/n9CUWGHPuR/WRZyLT4IccP+TFTIW9BCiTv2NdYWnGnJBNm0EMHTPaZ1kdRc0NuMBq7Khk5BC3b7U7H63FOz+INyIh0xE0VASdEM0ukAWIsHgPLMHeCQe14OSnqkzTrTkWs1vNg0sem1v6z5SWw2kq8Na0l8yIuyP1VUC41oqJG0qc83Kh8r/P8OESsuCTdzq/cakqaYxGbHiwQxuBEnsKgH9hVTq8IK6iT090m69Spe75CeVW5kDbPNu3TyvApFPNss0MQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
+ header.d=ulb.be; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gBtbRpQDt8yNwtUiVfmyFTytjxIyc/kbitvS2WT8ONg=;
+ b=tsm7/R+Azu722SrDdFB0BRoNtcOGRFZIcxG1X5QX2pvSp9Y9sz+ONkyIwl8D9BJ/woSxzRBEaqn/AWYOow5Nprkht3oimjMZJLxZ87KmQ2ouHp6ZiS3MUOl9rEa4NRBJZ8QyNNXJ127e71isctGlHWuXOE/KPkqbq3BzlN9eMeM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=ulb.be;
+Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
+ GV1P190MB1995.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:5a::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5482.10; Fri, 29 Jul 2022 15:50:58 +0000
+Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+ ([fe80::3d8a:cf3c:ebfb:aa18]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+ ([fe80::3d8a:cf3c:ebfb:aa18%6]) with mapi id 15.20.5482.011; Fri, 29 Jul 2022
+ 15:50:58 +0000
+Date: Fri, 29 Jul 2022 17:50:57 +0200
+To: usrp-users@lists.ettus.com
+Message-ID: <20220729155057.icprheru33lq3wam@barbe>
+Mail-Followup-To: usrp-users@lists.ettus.com
 References: <MAXPR01MB43596E4778E0A0DA838DFAF489969@MAXPR01MB4359.INDPRD01.PROD.OUTLOOK.COM>
  <BN0P110MB101544FAD777E6C1534B1D66B1999@BN0P110MB1015.NAMP110.PROD.OUTLOOK.COM>
-In-Reply-To: <BN0P110MB101544FAD777E6C1534B1D66B1999@BN0P110MB1015.NAMP110.PROD.OUTLOOK.COM>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Fri, 29 Jul 2022 18:08:28 +0300
-Message-ID: <CAAxXO2GnCde1eEcitAwMP1T-mZvk_WjRSVo-a+5sGn+z7P1K3g@mail.gmail.com>
-To: "White, Joshua J" <jjwhite@riversideresearch.org>
-Message-ID-Hash: H46DVT7SS5CP5DEC3U5QNWXWS4RTSHIB
-X-Message-ID-Hash: H46DVT7SS5CP5DEC3U5QNWXWS4RTSHIB
-X-MailFrom: nbalkanas@gmail.com
+ <MAXPR01MB43594CC488C6EBD2C92798A289999@MAXPR01MB4359.INDPRD01.PROD.OUTLOOK.COM>
+Content-Disposition: inline
+In-Reply-To: <MAXPR01MB43594CC488C6EBD2C92798A289999@MAXPR01MB4359.INDPRD01.PROD.OUTLOOK.COM>
+X-ClientProxiedBy: AM0PR04CA0046.eurprd04.prod.outlook.com
+ (2603:10a6:208:1::23) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:150:6e::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e14f07fc-8b01-4305-d04e-08da717a2106
+X-MS-TrafficTypeDiagnostic: GV1P190MB1995:EE_
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	gxWf7qeg+xgIqSbNymUd1Ta5BS0MBLlVo8v0mjaSik3Lj3R0StJj+DjHV+553j57RPl+XzpxtE4uOAthaVcRb9lXWIdL8P2KbKoRNvVGNnEL9/rD/WQ9MvF9pR/w/SHO/D1E71/qgCXPN2vnB91uI1rCzFp7MrKWHcEkE9fDpFPUwzPiiENCxIboUUVhfMNZbMC/dEHSinE6b6DBixjRylE9UQ2TundrcB0xD7RJqcrdeAHKM2CIATDIJ5oH8El4xTmPD16MysEE8D5TLklZCN/ja2TDZ1ltOcwJF/cW0HMjkAvQMjoFvTbZEKtq/5br6vuGisMwgyAI4bkdH1CUUok6B89X5xmm0hcIlSvsFfKnIyPV9Sqr3TNMS/eh4iKpr0OCDcSvb+TkDGNSUdisdQrR7FfEDAUCM2JMvuWfghmbaiGShBj3rkiXVwh/IHXzz06iaGc/ErCOwAbDVkG4S3EIxZsnG7AgX06LD+XR2Yq5q1jTdiQ0WX1yO9d4qWR+d+C/wxRbDJWys9uvhmUGskbCVvS6Vb7QE1VtOqiAHW1IURTFR1hVX9pSdo6lN7+HaMIJsZ1Bjq7dGvvd1z4m1MZoTxW5KEfjt1iEg7JG3l32I/mQhb5+yBabRkFHrqvAIaGLwKMPKP7BG3gxSnAW+i7H8oko04VFADXLeUDDmVYbiVog610nHr0hRw1E9zKFAUyw/no3UcTeEU5JXUhG8f5sJxc+NOfHGbC3ww4ehW7bRab+cClt8y4UwkS+uQ9qEkIaNhuOpMAiaMg/qpkSUWr2knc8BA+eVtoRjwHvuXs=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(7916004)(366004)(39860400002)(376002)(346002)(136003)(396003)(33716001)(1076003)(5660300002)(26005)(9686003)(6512007)(186003)(2906002)(4744005)(41300700001)(83380400001)(786003)(316002)(38350700002)(41320700001)(6916009)(8936002)(478600001)(6486002)(38100700002)(6506007)(53546011)(66946007)(86362001)(66476007)(8676002)(66556008)(52116002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?iso-8859-1?Q?2VfiXCcfm4Fwf6h4uVmWbHA0WsKHn1Rtkj1kNIr9SiQXwzlmw8Ntw7ebag?=
+ =?iso-8859-1?Q?3rj2BEmf49uj3RSfFcpnXtp4kr9kOpFxFDSwSvdfa5zW4IrQSOUtm5nqCo?=
+ =?iso-8859-1?Q?R7VuRY2EFvkA5DV3yiEmerOsWSNI1PLasj2U2nnEk/hFaWOJBCAiqnHewR?=
+ =?iso-8859-1?Q?eBtQmrQf5JaRVM+Byo4ZjbdV82eILw4L/ojhrzBuq0YUKHt9WS9NIbySyE?=
+ =?iso-8859-1?Q?M+KDesv43VzZd5MEX6JWRBBruxm0IOPVQkQgASdzQqb7mU7IjeViPTsgYx?=
+ =?iso-8859-1?Q?jH/MzWQ/4CQIToldsLqrLKRzZamN4USP73Gckvab6M0jQARLsaSuqVtA9v?=
+ =?iso-8859-1?Q?Z584md9Jvv3fjH7G/HsPI/S6/bigigDZ3AE/AXqlwiaOaa4nsmvIW0D2UA?=
+ =?iso-8859-1?Q?fjFgLRfRn1f5r4BE7MVIrNK0P7NvxYeCfflQG/skKAyojtCi7hv8O6hNhF?=
+ =?iso-8859-1?Q?Nk4BILjKTrqoqFKXcy7ChsQhsoc0g395Y9MaERQ50A44yiAmZQwHr+0Bnc?=
+ =?iso-8859-1?Q?jnuYImIZUGs6IJVda7NJefqzaEUOZaTfubxLNv+iB7Q2kf8Y2FwwFTSgNH?=
+ =?iso-8859-1?Q?lHGEM9DtJnkcrZGn0Fxr9xno/s5XevP2QSj32LNAeptz+v/lvqI4O/HhCt?=
+ =?iso-8859-1?Q?GQi/UAyPpcxJ09pUBl2CgZBznbXmH7EVXQoE2R2ni2gMlS1yW1P/yrQBa1?=
+ =?iso-8859-1?Q?SoOCEFo0ALXJwODgaYM+vSY7otPWa9Ol1zkvcXsymY/thDjdgP17KtKk2b?=
+ =?iso-8859-1?Q?uy+pTiA5ZlmyLVokINfn2QGBNs244eAojKks0ueW0zpP+J/dcCbR7Wgzpr?=
+ =?iso-8859-1?Q?2zOWPMfnDWJA9uURlp0JG3ThpxrWtEDF+oW5/yXayyr7SajoP5Ez94v1ob?=
+ =?iso-8859-1?Q?yXVhJ5Cfri2lQMQVNZDUHsi++dZ900EpSjGAmwMJL1lTVeGq3NVh/Hmt/l?=
+ =?iso-8859-1?Q?H8nUlH38ec9VhudbSAKsxiN2/3UAEAOc5E675IbQrXRsakgJgYGsi5MwPc?=
+ =?iso-8859-1?Q?dp3eAPLgefD5Jp6D2JB4zQGo5r93IMEm8TvT6n04k0kYCEpR6DAxlJhwYz?=
+ =?iso-8859-1?Q?bbJrsAH+PUG7JMzVhBHBHS8aE2AykXjV/uzT0zZGOGmzFMVRlmOhBWRTO1?=
+ =?iso-8859-1?Q?M7fsG5TuYqinEjQ/yD5YNwC6mykNeFjyLUkgkkhtrV9Ig8khHZoY/BJ+rC?=
+ =?iso-8859-1?Q?GMfpvnPJ2jZKONhB1k3NBa349y67mqo4p14sHtWNxbpJO/8S+QLLH+jT08?=
+ =?iso-8859-1?Q?KYi6iVtXgL5gv9qTX1/ujrn7qqLX7UOtNDRTa3L24yxyqI9J09KYmxqPRY?=
+ =?iso-8859-1?Q?ytSk7NlmpKhA9srQ9TxZO7J7RwhMyRGsYfvtpJv/s4ENyEqX9fX1RIn1w9?=
+ =?iso-8859-1?Q?6kWCYqiXnS0lxnO53Iy/C4TZQL1tcEuX3BBRFU4lPMBqsRdKReq7gZ18mw?=
+ =?iso-8859-1?Q?q7GMFCNCijPpXCFbG5/zfNQVeCrujvT44s4vpHNbZIadJSYuVQro4ASOLu?=
+ =?iso-8859-1?Q?8VtndNHksnAMOmqHks7Bv8WRetaWonzxN/I4MSu7PA2LcIRJfVjY1Y61sR?=
+ =?iso-8859-1?Q?jD6wWIZknMMyxdfWzSfICWMya1uPuA+SAYqGo9jqvaxdJkmwfGnFwIccew?=
+ =?iso-8859-1?Q?8BbhueL7iSOBBW7l2eis9fMqOpcrFqjkPj?=
+X-OriginatorOrg: ulb.be
+X-MS-Exchange-CrossTenant-Network-Message-Id: e14f07fc-8b01-4305-d04e-08da717a2106
+X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jul 2022 15:50:58.1952
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hEUH0OiOQnRcOE2r18RlbYFHvG1H7b2F/TX5UVMjWtFbTT7zTZVDsTsAfO4j7hlIWey6qRWgEa+bk8AFChH+Pg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1P190MB1995
+Message-ID-Hash: YAWAGENQQJERHEIYTU3J4AL5YX2FV2LE
+X-Message-ID-Hash: YAWAGENQQJERHEIYTU3J4AL5YX2FV2LE
+X-MailFrom: cedric.hannotier@ulb.be
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Saurav Roy <sauravroy@iisc.ac.in>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: UHD Python API on windows
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/H46DVT7SS5CP5DEC3U5QNWXWS4RTSHIB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YAWAGENQQJERHEIYTU3J4AL5YX2FV2LE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
+Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-U2luY2UgYnVpbGQgaXMgYSB1c2VyIGRpcmVjdG9yeSwgSSBqdXN0IHNhdmUgbXkgQ21ha2UgY29u
-ZmlndXJhdGlvbg0KZWxzZXdoZXJlIGFuZCBybS1yZiAqIGluIGJ1aWxkLi4uDQpDbGVhbiBsZWF2
-ZSBsb3RzIG9mIHN0dWZmIGJlaGluZDooDQoNCkhUSA0KTmlrb3MNCg0KT24gRnJpLCBKdWwgMjks
-IDIwMjIgYXQgNDo0OCBQTSBXaGl0ZSwgSm9zaHVhIEoNCjxqandoaXRlQHJpdmVyc2lkZXJlc2Vh
-cmNoLm9yZz4gd3JvdGU6DQo+DQo+IEkganVzdCB3ZW50IHRocm91Z2ggdGhpcyBteXNlbGYsIHNv
-IEnigJlsbCB0cnkgdG8gaW5jbHVkZSBteSBleHBlcmllbmNlIGZvciB5b3UuDQo+DQo+DQo+DQo+
-IEZpcnN0LCBtYWtlIHN1cmUgaWYgeW914oCZdmUgYWxyZWFkeSBidWlsdCBhbmQgaW5zdGFsbGVk
-IFVIRCwgdW5pbnN0YWxsIGl0IGFuZCBydW4g4oCcbWFrZSBjbGVhbuKAnSBpbiB0aGUgYnVpbGQg
-ZGlyZWN0b3J5LiBJZiB5b3XigJl2ZSBhbHJlYWR5IGJ1aWx0IGl0IGJ1dCBoYXZlbuKAmXQgaW5z
-dGFsbGVkIGl0LCBydW5uaW5nIOKAnG1ha2UgY2xlYW7igJ0gc2hvdWxkIGJlIHN1ZmZpY2llbnQu
-IE1ha2Ugc3VyZSB5b3UgaGF2ZSB0aGUg4oCYbWFzdGVy4oCZIGJyYW5jaCBvZiBVSEQgY2hlY2tl
-ZCBvdXQsIGFuZCB3aGVuIHlvdSBydW4gY21ha2UsIG1ha2Ugc3VyZSB5b3UgaW5jbHVkZSB0aGUg
-YXJndW1lbnQg4oCcLURFTkFCTEVfUFlUSE9OX0FQST1PTuKAnS4gWW91IHNob3VsZCBnZXQgYW4g
-b3V0cHV0IGZyb20gY21ha2UgdGhhdCBsb29rcyBzb21ldGhpbmcgbGlrZSB0aGlzOg0KPg0KPg0K
-Pg0KPiAtLSAjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyMNCj4NCj4gLS0gIyBVSEQgZW5hYmxlZCBjb21wb25lbnRzDQo+DQo+IC0tICMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw0KPg0KPiAtLSAg
-ICogTGliVUhEDQo+DQo+IC0tICAgKiBMaWJVSEQgLSBDIEFQSQ0KPg0KPiAtLSAgICogTGliVUhE
-IC0gUHl0aG9uIEFQSQ0KPg0KPiDigKYgb3RoZXIgc3R1ZmYg4oCmDQo+DQo+DQo+DQo+IFRoZSDi
-gJxQeXRob24gQVBJ4oCdIGxpbmUgaXMgdGhlIG9uZSB5b3XigJlyZSBsb29raW5nIGZvci4gT25j
-ZSB0aGF04oCZcyBkb25lIHJ1biDigJhtYWtl4oCZIGFuZCB0aGVuIOKAmHN1ZG8gbWFrZSBpbnN0
-YWxs4oCZIGFuZCDigJhzdWRvIGxkY29uZmln4oCZIGFzIG5vcm1hbC4gT25jZSBpdOKAmXMgaW5z
-dGFsbGVkLCB0ZXN0IHRoYXQgaXQgd29ya2VkIGNvcnJlY3RseSBieSBydW5uaW5nIOKAmHB5dGhv
-bjPigJkgYW5kIHR5cGluZyDigJxpbXBvcnQgdWhk4oCdLiBJZiB5b3XigJlyZSBub3QgYWJsZSB0
-byBpbXBvcnQgdGhlIHVoZCBtb2R1bGUsIG1ha2Ugc3VyZSB0aGF0IHRoZSB1aGQgZGlyZWN0b3J5
-IGlzIGxvY2F0ZWQgaW4gdGhlIC91c3IvbG9jYWwvbGliL3B5dGhvbjMvZGlzdC1wYWNrYWdlcy8g
-ZGlyZWN0b3J5LiBJZiBub3QsIHRyeSB0aGUgaW5zdGFsbGF0aW9uIHByb2Nlc3MgYWdhaW4uDQo+
-DQo+DQo+DQo+IEkgaG9wZSB0aGlzIGhlbHBzLg0KPg0KPg0KPg0KPiBWZXJ5IHJlc3BlY3RmdWxs
-eSwNCj4NCj4NCj4NCj4gSm9zaHVhIFdoaXRlDQo+DQo+IFByZWNpc2lvbiBUaW1pbmcgU3lzdGVt
-cyBFbmdpbmVlcg0KPg0KPiBFbmdpbmVlcmluZyAmIFN1cHBvcnQgU29sdXRpb25zIERpcmVjdG9y
-YXRlDQo+DQo+IHd3dy5yaXZlcnNpZGVyZXNlYXJjaC5vcmcNCj4NCj4gVDogOTM3Ljk4Ni4zMTUz
-IHwgRjogOTM3LjQzMS4zODExDQo+DQo+DQo+DQo+IFRoaXMgZS1tYWlsIG1lc3NhZ2UsIGluY2x1
-ZGluZyBhbnkgYXR0YWNobWVudHMsIGlzIGZvciB0aGUgc29sZSB1c2Ugb2YgdGhlIGludGVuZGVk
-IHJlY2lwaWVudChzKSBhbmQgbWF5IGNvbnRhaW4gcHJvcHJpZXRhcnksIGNvbmZpZGVudGlhbCBv
-ciBwcml2aWxlZ2VkIGluZm9ybWF0aW9uIG9yIG90aGVyd2lzZSBiZSBwcm90ZWN0ZWQgYnkgbGF3
-LiBBbnkgdW5hdXRob3JpemVkIHJldmlldywgdXNlLCBkaXNjbG9zdXJlIG9yIGRpc3RyaWJ1dGlv
-biBpcyBwcm9oaWJpdGVkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBw
-bGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgYW5kIGRlc3Ryb3kgYWxsIGNvcGllcyBhbmQgdGhlIG9y
-aWdpbmFsIG1lc3NhZ2UuDQo+DQo+DQo+DQo+IEZyb206IFNhdXJhdiBSb3kgdmlhIFVTUlAtdXNl
-cnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KPiBTZW50OiBUaHVyc2RheSwgSnVseSAy
-OCwgMjAyMiA5OjI1IEFNDQo+IFRvOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBTdWJq
-ZWN0OiBbVVNSUC11c2Vyc10gUmU6IFVIRCBQeXRob24gQVBJIG9uIHdpbmRvd3MNCj4NCj4NCj4N
-Cj4gIENBVVRJT046IFRoaXMgZW1haWwgaXMgZnJvbSBvdXRzaWRlIG9mIFJpdmVyc2lkZSBSZXNl
-YXJjaC4gQmUgY2FyZWZ1bCB3aGVuIGNsaWNraW5nIGxpbmtzIG9yIG9wZW5pbmcgYXR0YWNobWVu
-dHMgdW5sZXNzIHlvdSBrbm93IHRoZSBjb250ZW50IGlzIHNhZmUuDQo+DQo+DQo+DQo+IERlYXIg
-c2lyL21hZGFtLA0KPg0KPiB3ZSBhcmUgdHJ5aW5nIHRvIGluc3RhbGwgVUhEIGFuZCBweXRob24g
-QVBJIGZvciBCMjEwIGluIHdpbmRvd3MgMTEuIFdlIGFyZSBmb2xsb3dpbmcgYmluYXJ5IGluc3Rh
-bGxhdGlvbiBmb3IgVUhELiBCdXQgYWZ0ZXIgdGhpcywgd2UgZG8gbm90IGtub3cgaG93IHRvIHBy
-b2NlZWQgdG8gY3JlYXRlIHRoZSBweXRob24gQVBJLiBPbiB0aGlzIHBhZ2UsICBodHRwczovL2Zp
-bGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV9weXRob24uaHRtbCBpbnN0cnVjdGlvbnMgYXJlIHJl
-bGF0ZWQgdG8gJ2luc3RhbGwgdGhlIFB5dGhvbiBBUEkgd2hlbiBidWlsZGluZyBVSEQgZnJvbSBz
-b3VyY2UuJyBDb3VsZCB5b3UgcGxlYXNlIHByb3ZpZGUgdGhlIFB5dGhvbiBBUEkgYnVpbGRpbmcg
-c3RlcHMgZm9yIGJpbmFyeSBpbnN0YWxsYXRpb24gb2YgVUhEPyAgVGhhbmsgeW91IHZlcnkgbXVj
-aC4NCj4NCj4NCj4gV2l0aCByZWdhcmRzDQo+DQo+IFNhdXJhdiBSb3kNCj4NCj4NCj4NCj4gU2Vu
-dCBmcm9tIE1haWwgZm9yIFdpbmRvd3MNCj4NCj4NCj4NCj4gX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0g
-dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFp
-bCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1
-c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRv
-IHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+Dear Saurav Roy,
+
+On 2022-07-29 14:26 +0000, Saurav Roy via USRP-users wrote:
+> However, I am stuck at binary installation in Windows.
+
+The binary executable does not seem to provide the Python API.
+I think you will have to compile the UHD library
+with the python binding enabled on Windows yourself.
+
+Regards
+--=20
+
+C=E9dric Hannotier
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
