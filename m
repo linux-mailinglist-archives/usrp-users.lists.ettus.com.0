@@ -2,842 +2,294 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3F9358E4F2
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Aug 2022 04:42:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26F2258EBD3
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Aug 2022 14:15:29 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 42971383C3A
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Aug 2022 22:42:49 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C29083810AA
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Aug 2022 08:15:27 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660099369; bh=Z+QJNT3iXM6fhdo8k3wZa0bMwDfYrc05XY1AvcotuFo=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=C5uF9H3hcbJFGVdhaOvLdzGtizredc1u50/7qd6xYG7jFjRXTq543eXAbIuFQ9zQu
-	 7QiifwtOR371s8L08iRNEfa38a/YgbwgWfy5FaDWHT9x2UwwY4GsALC1e6+f2BdoYf
-	 X9CP6+EAX+G9H1V86ytZigSjRLQ6fAU8bTTE7Of2Sq3yCBtbd/eyzk4hToQw6zjrK3
-	 +lzu3MiDUtAt1Xjh7TwxlR9nCTpQYeBDm4nC2jeYv7AOuGxfYRC87jHnKqQGkiLsCn
-	 5JYJmKzD3ZHvTDSkw6mDxCPV3lOG4wmJMtWUBI7Net8OEOvKBqKluFQyX3SqWX8vei
-	 wa5mo3s72Z+wA==
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id 55D6C383B75
-	for <usrp-users@lists.ettus.com>; Tue,  9 Aug 2022 22:40:21 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="eM17iQss";
-	dkim-atps=neutral
-Received: by mail-qt1-f174.google.com with SMTP id c20so393609qtw.8
-        for <usrp-users@lists.ettus.com>; Tue, 09 Aug 2022 19:40:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc;
-        bh=C4kRjB3VjKnKnUMeZWgPST6W4KA2uT7MOu5L11Dat5s=;
-        b=eM17iQssVoFiHCDU/AgNtf35Aab0CEpaVlVb2XEBzzZNr5zWuB+/2X8V8te36ZMhjA
-         PCKNVGd237WFcjT0MOLV719yD6OK5ySrobfFDcB0jJ3pUQ+hOPzYRNzbCPVwDqKXtVF7
-         dFLunih+0mZ1vY+3FTYRzBadzWW9oAZy23psClQMFPkPTMWlPg/NWkM3KjjKkVTP4m+r
-         HfgmD3sjJMa4lINwG8xC/7FX4Qk5KLpGhjLmpIC+IsVn/GLOkcnmBoBmL5ePUUe502gN
-         +93C+pdBruixoBtEB3s7cI9I/IT8dQNtXXzsmHZCdqp0UHiFCEAtIJcWnwhOZODEeYg6
-         i1Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc;
-        bh=C4kRjB3VjKnKnUMeZWgPST6W4KA2uT7MOu5L11Dat5s=;
-        b=3b8A6iC5yO9puamP/16+VFUzE1Ke46MjC7zP0IEHZy163X4Fqodj92k37/+fIOAWzI
-         CBlFRIGb5sZvqzW01Ccd2bYAgB5uNXz3bIMXeVB3DmNLRd5VlsdSgTN9qqgcFuE2ekw7
-         rbGIdnm3V95TA5Zic4HKCKWkG+TqMBYYmKSZFRTykMCbTAXjbmVyGCbI8ug/VdpwjfG+
-         uceNRHu0khqhW2AmSIQ8vB2P2fwr3HJTeMohav2V1XbKzxbOyCqqmC+7TGFRPRrBaVqa
-         5FFvBgY7gV0+GozS6RINBJ1WmZLGtldSZP41lPYultp4lJmXhZmUXxrA2pI02X8xZSyc
-         iiDA==
-X-Gm-Message-State: ACgBeo1TcSTCRDhbWl8LIsbu8pRUFCFTP0NvXx4v22K3gsZJmkVL6tgn
-	8HJa7UOQJjiiKsvnqsbJG4i8vJIH4pBR45FUNJczvtc7
-X-Google-Smtp-Source: AA6agR6PKaVO4j0ATQuMKHx27RUdC5uhivJLAIMt9j/kLxFpYpQ4+8LmU7nvkCBM3B+HTBrSX1gkN1VoT2Raxj7x/aE=
-X-Received: by 2002:ac8:5aca:0:b0:342:f363:dc83 with SMTP id
- d10-20020ac85aca000000b00342f363dc83mr13887297qtd.276.1660099220558; Tue, 09
- Aug 2022 19:40:20 -0700 (PDT)
+	t=1660133727; bh=177UZHePwZiGQ/UD3a3SQaMazY/u/mIv1LToYSTs8yI=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=eMTNUGIK+tHM1uNQnVl7kUaJk2v2A7lE8d10DrL0i8Cs1bReuWTkkJCLXZ+GR323V
+	 qBw55LZEJ9ES0B51kA0pC1OTB3Bu/1dJ+3Curqg5YrK3/QVMw/4+xlx0Wq7RBLrGcc
+	 31pg/PpVSA4+1pIuyTg2ksYXU1Ue3q2yKnk61LFf+TxXWm1JLR6qR4iajchQGqL0Vw
+	 F25YogJBOdfbObMf6AGx9cUmVycM35HjnaNcv7bA6THdZoLRf+5rgueNV6Ut9z5w/b
+	 FRAzhus81LK7CXaX7JYAZ7vitwSLPmaFzm83gtU3CQJFNyuDOkWUiI1SwTV44rM86e
+	 o5WlGfts1pTVA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 339E3380FD1
+	for <usrp-users@lists.ettus.com>; Wed, 10 Aug 2022 08:14:12 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1660133652; bh=RadIpMAN84Ik/WLHvP+8nxNcBSvvqaZokvDCc/aAqrs=;
+	h=Date:To:From:Subject:From;
+	b=opOo858j2w7/c7mjRMkC3raNvuVclqjimN1qokxNtSO8eSiR2S0xq5xfRcCPjhvB5
+	 s+EfMopT/556tx8ghB8cYiESPT8+xFXF76LwiMl64QYKKcZgNm1uxb1QxOGBHI31sP
+	 c0Stofm/hSGNrbsFI84g739PeE+Qs9kvPexTJsMWQRYdxFtzdaTbe36tE9f5t6X3Iu
+	 /CYumQc7k6s3PyNTnUYjQlqG/Qiz3eJLaxpjPCY/nYtXQN72KpOSz1qHvk7dr4U261
+	 2qiw/OJUU94eqQPohs2Kp7/9T1WOQoit9/GxG6CWIpuu0TShfsb9xHmxoIw54Q9AjM
+	 W0/HLA4ddRL/A==
+Date: Wed, 10 Aug 2022 12:14:12 +0000
+To: usrp-users@lists.ettus.com
+From: horvlint@gmail.com
+Message-ID: <UKKxAGHthpLRTag9ODf2yNCvnyZf5brQxVBkqbN5tn4@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <pZFvIpYIX8SxSrSPZc7VqE4UpmtL6oj4D4UsfL0H4s@lists.ettus.com>
-In-Reply-To: <pZFvIpYIX8SxSrSPZc7VqE4UpmtL6oj4D4UsfL0H4s@lists.ettus.com>
-From: Wan Liu <wan.liu@ettus.com>
-Date: Tue, 9 Aug 2022 22:40:09 -0400
-Message-ID: <CAOcXSJwdhzgVmDOT=oLBjXJCAfg2dGEM38Jut4EwJ5RyyKu94g@mail.gmail.com>
-To: balinfd3@gmail.com
-Message-ID-Hash: J54SUAAZWAWBUVDWIINDTBH7RBUN2C5T
-X-Message-ID-Hash: J54SUAAZWAWBUVDWIINDTBH7RBUN2C5T
-X-MailFrom: wan.liu@ettus.com
+Message-ID-Hash: XKLEMON7U3EGD4X4OZTQFLFIRU6GO75Q
+X-Message-ID-Hash: XKLEMON7U3EGD4X4OZTQFLFIRU6GO75Q
+X-MailFrom: horvlint@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: get_rx_dboard_iface: "Path not found in tree" in UHD v4.2.0 but works OK on UHD v3.15.0
+Subject: [USRP-users] x310 with WBX-120 LO: unlocked
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/J54SUAAZWAWBUVDWIINDTBH7RBUN2C5T/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XKLEMON7U3EGD4X4OZTQFLFIRU6GO75Q/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7415686902309369077=="
+Content-Type: multipart/mixed; boundary="===============1179872766296816580=="
 
---===============7415686902309369077==
-Content-Type: multipart/alternative; boundary="00000000000055674905e5d9f8f6"
+This is a multi-part message in MIME format.
 
---00000000000055674905e5d9f8f6
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--===============1179872766296816580==
+Content-Type: multipart/alternative;
+ boundary="b1_UKKxAGHthpLRTag9ODf2yNCvnyZf5brQxVBkqbN5tn4"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_UKKxAGHthpLRTag9ODf2yNCvnyZf5brQxVBkqbN5tn4
+Content-Type: text/plain; charset=us-ascii
 
 Hello,
 
-Please also share the output from uhd_usrp_probe --tree on v3.15.0.0. I'm
-curious what the fs_path to the iface property in the tree looks like with
-v3.15.0.0.
+I'm trying to create a simple loopback application (using the same DB for TX and RX) with my X310, but I'm having problems. The setup is an X310 with WBX120 (TX/RX for transmission and RX2 for receiving). I traced the issue back to running the "txrx_loopback_to_file"  uhd example with following parameters:
 
-As you can see from your output from uhd_usrp_probe --tree on v4.2.0.0, the
-correct fs_path to iface is supposed to be /blocks/0/Radio#1/dboard/iface,
-so the iface property is in the tree. Yet get_rx_dboard_iface stripped
-"dboard" when evaluating the path.
+./txrx_loopback_to_file --tx-rate 1e6 --rx-rate 1e6 --tx-freq 1e9 --rx-freq 1e9
 
-Can you also call the function get_usrp_rx_info() from multi_usrp.cpp on
-both versions? This function evaluates the path to some properties in a
-similar manner to get_rx_dboard_iface, so if the problem is related to
-evaluating the fs_path, then we should see the issue in both functions.
+I get the following error:
 
-In the meantime, I will investigate further on my end and try to reproduce
-the problem on my end
+Creating the transmit usrp device with: ...
 
-Regards,
+\[INFO\] \[UHD\] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.0.1-0-g321295fb
 
-Wan Liu
+\[INFO\] \[X300\] X300 initialization sequence...
 
-On Mon, Aug 8, 2022 at 1:10 PM <balinfd3@gmail.com> wrote:
+\[INFO\] \[X300\] Maximum frame size: 8000 bytes.
 
-> Hello Everyone,
->
-> I have an X300 flashed to match the host UHD ver (4.2.0). I am trying to
-> use the command =E2=80=9Cget_rx_dboard_iface=E2=80=9D to access GPIO pin =
-settings=E2=80=A6.but I am
-> gettting error: *=E2=80=9CPath not found in tree: /blocks/0/Radio#1/iface=
-=E2=80=9D*
->
-> If I go back to UHD ver 3.15.0 then the command runs successfully
->
-> Below is a simple code that fails on UHD v4.2.0 but works OK on v.3.15.0
->
-> #=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
-> #include <uhd/utils/thread.hpp>
->
-> #include <uhd/utils/safe_main.hpp>
->
-> #include <uhd/usrp/multi_usrp.hpp>
->
-> #include <uhd/exception.hpp>
->
-> #include <uhd/types/tune_request.hpp>
->
-> #include <boost/program_options.hpp>
->
-> #include <boost/format.hpp>
->
-> #include <boost/thread.hpp>
->
-> #include <iostream>
->
-> int main()
->
-> {
->
-> // Initialize USRP receiver and Rx stream--------------------------------=
---
->
-> uhd::usrp::multi_usrp::sptr usrp;
->
-> uhd::rx_streamer::sptr rxStream;
->
-> // Setup USRP x300s
->
-> uhd::device_addr_t devAddr;
->
-> devAddr["addr0"] =3D "192.168.130.2";
->
-> usrp =3D uhd::usrp::multi_usrp::make(devAddr);
->
->
-> // Setup channels
->
-> uhd::usrp::subdev_spec_t rxSpec("A:0 B:0");
->
-> usrp->set_rx_subdev_spec(rxSpec);
->
->
-> //Get dBoard info:
->
-> uhd::usrp::dboard_iface::sptr dBoard;
->
-> dBoard =3D usrp->get_rx_dboard_iface(0); // < =E2=80=94=E2=80=94- FAILS h=
-ere
->
-> #std::cout << dBoard << std::endl;
->
-> return EXIT_SUCCESS;
->
-> }
->
-> #=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
-> The =E2=80=9Cuhd_usrp_probe =E2=80=94tree =E2=80=9D output for V4.2.0 is:
->
-> /mboards
->
-> /mboards/0
->
-> /mboards/0/fpga_version
->
-> /mboards/0/fpga_version_hash
->
-> /mboards/0/fw_version
->
-> /mboards/0/eeprom
->
-> /mboards/0/name
->
-> /mboards/0/codename
->
-> /mboards/0/master_clock_rate
->
-> /mboards/0/time_source
->
-> /mboards/0/time_source/value
->
-> /mboards/0/time_source/options
->
-> /mboards/0/time_source/output
->
-> /mboards/0/clock_source
->
-> /mboards/0/clock_source/value
->
-> /mboards/0/clock_source/options
->
-> /mboards/0/clock_source/external
->
-> /mboards/0/clock_source/external/freq
->
-> /mboards/0/clock_source/external/freq/options
->
-> /mboards/0/clock_source/external/value
->
-> /mboards/0/clock_source/output
->
-> /mboards/0/tick_rate
->
-> /mboards/0/sensors
->
-> /mboards/0/sensors/ref_locked
->
-> /name
->
-> /blocks
->
-> /blocks/0
->
-> /blocks/0/DUC#0
->
-> /blocks/0/DUC#0/noc_id
->
-> /blocks/0/DDC#0
->
-> /blocks/0/DDC#0/noc_id
->
-> /blocks/0/Radio#0
->
-> /blocks/0/Radio#0/noc_id
->
-> /blocks/0/Radio#0/tx_codec
->
-> /blocks/0/Radio#0/tx_codec/gains
->
-> /blocks/0/Radio#0/tx_codec/name
->
-> /blocks/0/Radio#0/rx_codec
->
-> /blocks/0/Radio#0/rx_codec/name
->
-> /blocks/0/Radio#0/rx_codec/gains
->
-> /blocks/0/Radio#0/rx_codec/gains/digital
->
-> /blocks/0/Radio#0/rx_codec/gains/digital/range
->
-> /blocks/0/Radio#0/rx_codec/gains/digital/value
->
-> /blocks/0/Radio#0/dboard
->
-> /blocks/0/Radio#0/dboard/rx_eeprom
->
-> /blocks/0/Radio#0/dboard/tx_eeprom
->
-> /blocks/0/Radio#0/dboard/gdb_eeprom
->
-> /blocks/0/Radio#0/dboard/iface
->
-> /blocks/0/Radio#0/dboard/rx_frontends
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/name
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/id
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/gains
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/freq
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/freq/value
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/freq/range
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/antenna
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/antenna/value
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/antenna/options
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/sensors
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/connection
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/enabled
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/use_lo_offset
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/bandwidth
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/bandwidth/value
->
-> /blocks/0/Radio#0/dboard/rx_frontends/0/bandwidth/range
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/name
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/id
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/gains
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/freq
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/freq/value
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/freq/range
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/antenna
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/antenna/value
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/antenna/options
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/sensors
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/connection
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/enabled
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/use_lo_offset
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/value
->
-> /blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/range
->
-> /blocks/0/Radio#0/dboard/tx_frontends
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/name
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/gains
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/freq
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/freq/value
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/freq/range
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/antenna
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/antenna/value
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/antenna/options
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/sensors
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/connection
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/enabled
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/use_lo_offset
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth/value
->
-> /blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth/range
->
-> /blocks/0/Radio#0/frontends
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/0
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/range
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/value
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/enable
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/iq_balance
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/iq_balance/value
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/1
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/range
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/value
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/enable
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance
->
-> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance/value
->
-> /blocks/0/Radio#0/frontends/tx_fe_corrections
->
-> /blocks/0/Radio#0/frontends/tx_fe_corrections/0
->
-> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset
->
-> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/range
->
-> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/value
->
-> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance
->
-> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance/value
->
-> /blocks/0/DUC#1
->
-> /blocks/0/DUC#1/noc_id
->
-> /blocks/0/DDC#1
->
-> /blocks/0/DDC#1/noc_id
->
-> /blocks/0/Radio#1
->
-> /blocks/0/Radio#1/noc_id
->
-> /blocks/0/Radio#1/tx_codec
->
-> /blocks/0/Radio#1/tx_codec/gains
->
-> /blocks/0/Radio#1/tx_codec/name
->
-> /blocks/0/Radio#1/rx_codec
->
-> /blocks/0/Radio#1/rx_codec/name
->
-> /blocks/0/Radio#1/rx_codec/gains
->
-> /blocks/0/Radio#1/rx_codec/gains/digital
->
-> /blocks/0/Radio#1/rx_codec/gains/digital/range
->
-> /blocks/0/Radio#1/rx_codec/gains/digital/value
->
-> /blocks/0/Radio#1/dboard
->
-> /blocks/0/Radio#1/dboard/rx_eeprom
->
-> /blocks/0/Radio#1/dboard/tx_eeprom
->
-> /blocks/0/Radio#1/dboard/gdb_eeprom
->
-> /blocks/0/Radio#1/dboard/iface
->
-> /blocks/0/Radio#1/dboard/rx_frontends
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/name
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/id
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/gains
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/freq
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/freq/value
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/freq/range
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/antenna
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/antenna/value
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/antenna/options
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/sensors
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/connection
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/enabled
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/use_lo_offset
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth/value
->
-> /blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth/range
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/name
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/id
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/gains
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/freq
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/freq/value
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/freq/range
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/antenna
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/antenna/value
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/antenna/options
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/sensors
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/connection
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/enabled
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/use_lo_offset
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/bandwidth
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/bandwidth/value
->
-> /blocks/0/Radio#1/dboard/rx_frontends/1/bandwidth/range
->
-> /blocks/0/Radio#1/dboard/tx_frontends
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/name
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/gains
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/freq
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/freq/value
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/freq/range
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/antenna
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/antenna/value
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/antenna/options
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/sensors
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/connection
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/enabled
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/use_lo_offset
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth/value
->
-> /blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth/range
->
-> /blocks/0/Radio#1/frontends
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/0
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset/range
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset/value
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset/enable
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq_balance
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq_balance/value
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/1
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset/range
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset/value
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset/enable
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/iq_balance
->
-> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/iq_balance/value
->
-> /blocks/0/Radio#1/frontends/tx_fe_corrections
->
-> /blocks/0/Radio#1/frontends/tx_fe_corrections/0
->
-> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/dc_offset
->
-> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/dc_offset/range
->
-> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/dc_offset/value
->
-> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/iq_balance
->
-> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/iq_balance/value
->
-> /blocks/0/Replay#0
->
-> /blocks/0/Replay#0/noc_id
->
->
-> Thank you for any assistance!
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+\[INFO\] \[X300\] Radio 1x clock: 200 MHz
 
---00000000000055674905e5d9f8f6
-Content-Type: text/html; charset="UTF-8"
+Creating the receive usrp device with: ...
+
+Using TX Device: Single USRP:
+
+  Device: X-Series Device
+
+  Mboard 0: X310
+
+  RX Channel: 0
+
+    RX DSP: 0
+
+    RX Dboard: A
+
+    RX Subdev: WBX-120 RX+GDB
+
+  RX Channel: 1
+
+    RX DSP: 1
+
+    RX Dboard: B
+
+    RX Subdev: WBX-120 RX+GDB
+
+  TX Channel: 0
+
+    TX DSP: 0
+
+    TX Dboard: A
+
+    TX Subdev: WBX-120 TX+GDB
+
+  TX Channel: 1
+
+    TX DSP: 1
+
+    TX Dboard: B
+
+    TX Subdev: WBX-120 TX+GDB
+
+Using RX Device: Single USRP:
+
+  Device: X-Series Device
+
+  Mboard 0: X310
+
+  RX Channel: 0
+
+    RX DSP: 0
+
+    RX Dboard: A
+
+    RX Subdev: WBX-120 RX+GDB
+
+  RX Channel: 1
+
+    RX DSP: 1
+
+    RX Dboard: B
+
+    RX Subdev: WBX-120 RX+GDB
+
+  TX Channel: 0
+
+    TX DSP: 0
+
+    TX Dboard: A
+
+    TX Subdev: WBX-120 TX+GDB
+
+  TX Channel: 1
+
+    TX DSP: 1
+
+    TX Dboard: B
+
+    TX Subdev: WBX-120 TX+GDB
+
+Setting TX Rate: 1.000000 Msps...
+
+Actual TX Rate: 1.000000 Msps...
+
+Setting RX Rate: 1.000000 Msps...
+
+Actual RX Rate: 1.000000 Msps...
+
+Setting TX Freq: 1000.000000 MHz...
+
+Actual TX Freq: 1000.000000 MHz...
+
+Setting RX Freq: 1000.000000 MHz...
+
+Actual RX Freq: 1000.000000 MHz...
+
+\[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
+
+Checking TX: LO: locked ...
+
+Checking RX: LO: unlocked ...
+
+Error: AssertionError: lo_locked.to_bool()
+
+  in _main
+
+  at /home/hp/uhd-4.2/host/examples/txrx_loopback_to_file.cpp:483
+
+I have another WBX120 in slot B which returns with the same error.
+
+However, if I transmit with the one in slot A and receive with the one on slot B (or vice-versa) both TX and RX locks:
+
+./txrx_loopback_to_file --tx-rate 1e6 --rx-rate 1e6 --tx-freq 1e9 --rx-freq 1e9 --tx-subdev A:0 --rx-subdev B:0 --rx-ant RX2
+
+...
+
+\[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
+
+Checking TX: LO: locked ...
+
+Checking RX: LO: locked ...
+
+Press Ctrl + C to stop streaming...
+
+Setting device timestamp to 0...
+
+\[WARNING\] \[0/Radio#1\] Attempting to set tick rate to 0. Skipping.
+
+^C
+
+Done!
+
+I also have an SBX for which the test with the same parameters work:
+
+./txrx_loopback_to_file --tx-rate 1e6 --rx-rate 1e6 --tx-freq 1e9 --rx-freq 1e9
+
+\[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
+
+Checking TX: LO: locked ...
+
+Checking RX: LO: locked ...
+
+Press Ctrl + C to stop streaming...
+
+Setting device timestamp to 0...
+
+UHD version is: UHD_4.2.0.1-0-g321295fb
+
+Any help to resolve the issue would be appreciated!
+
+Thanks,
+
+Balint
+
+--b1_UKKxAGHthpLRTag9ODf2yNCvnyZf5brQxVBkqbN5tn4
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,<br><br></div><div>Please also share the output=
- from uhd_usrp_probe --tree on v3.15.0.0. I&#39;m curious what the fs_path =
-to the iface property in the tree looks like with v3.15.0.0.<br><br></div><=
-div>As you can see from your output from uhd_usrp_probe --tree on v4.2.0.0,=
- the correct fs_path to iface is supposed to be /blocks/0/Radio#1/dboard/if=
-ace, so the iface property is in the tree. Yet get_rx_dboard_iface stripped=
- &quot;dboard&quot; when evaluating the path. <br><br></div><div>Can you al=
-so call the function get_usrp_rx_info() from multi_usrp.cpp on both version=
-s? This function evaluates the path to some properties in a similar manner =
-to get_rx_dboard_iface, so if the problem is related to evaluating the fs_p=
-ath, then we should see the issue in both functions. <br><br></div><div>In =
-the meantime, I will investigate further on my end and try to reproduce the=
- problem on my end<br><br></div><div>Regards,<br><br></div><div>Wan Liu<br>=
-</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
-attr">On Mon, Aug 8, 2022 at 1:10 PM &lt;<a href=3D"mailto:balinfd3@gmail.c=
-om">balinfd3@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><p>Hello Everyone,</p><p>I have an X300 flashed to ma=
-tch the host UHD ver (4.2.0). I am trying to use the command =E2=80=9Cget_r=
-x_dboard_iface=E2=80=9D to access GPIO pin settings=E2=80=A6.but I am gettt=
-ing error:  <strong>=E2=80=9CPath not found in tree:  /blocks/0/Radio#1/ifa=
-ce=E2=80=9D</strong></p><p>If I go back to UHD ver 3.15.0 then the command =
-runs successfully</p><p>Below is a simple code that fails on UHD v4.2.0 but=
- works OK on v.3.15.0</p><p>#=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D</p><p>#include &lt;uhd/utils/thread.hpp&gt;</p><p>#include &lt=
-;uhd/utils/safe_main.hpp&gt;</p><p>#include &lt;uhd/usrp/multi_usrp.hpp&gt;=
-</p><p>#include &lt;uhd/exception.hpp&gt;</p><p>#include &lt;uhd/types/tune=
-_request.hpp&gt;</p><p>#include &lt;boost/program_options.hpp&gt;</p><p>#in=
-clude &lt;boost/format.hpp&gt;</p><p>#include &lt;boost/thread.hpp&gt;</p><=
-p>#include &lt;iostream&gt;</p><p>int main()</p><p>{</p><p>// Initialize US=
-RP receiver and Rx stream----------------------------------</p><p>    uhd::=
-usrp::multi_usrp::sptr usrp;</p><p>    uhd::rx_streamer::sptr rxStream;</p>=
-<p>  </p><p>    // Setup USRP x300s</p><p>    uhd::device_addr_t devAddr;</=
-p><p>    devAddr[&quot;addr0&quot;] =3D &quot;192.168.130.2&quot;;</p><p>  =
-  usrp =3D uhd::usrp::multi_usrp::make(devAddr);</p><p><br></p><p>    // Se=
-tup channels</p><p>    uhd::usrp::subdev_spec_t rxSpec(&quot;A:0 B:0&quot;)=
-; </p><p>    usrp-&gt;set_rx_subdev_spec(rxSpec);</p><p><br></p><p>   //Get=
- dBoard info:</p><p>    uhd::usrp::dboard_iface::sptr dBoard;</p><p>    dBo=
-ard =3D usrp-&gt;get_rx_dboard_iface(0); // &lt; =E2=80=94=E2=80=94- FAILS =
-here</p><p>    </p><p>    #std::cout &lt;&lt; dBoard &lt;&lt; std::endl;</p=
-><p>    return EXIT_SUCCESS;</p><p>}</p><p>#=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</p><p>The =E2=80=9Cuhd_usrp_probe =E2=80=94t=
-ree =E2=80=9D output for V4.2.0 is:</p><p>/mboards</p><p>/mboards/0</p><p>/=
-mboards/0/fpga_version</p><p>/mboards/0/fpga_version_hash</p><p>/mboards/0/=
-fw_version</p><p>/mboards/0/eeprom</p><p>/mboards/0/name</p><p>/mboards/0/c=
-odename</p><p>/mboards/0/master_clock_rate</p><p>/mboards/0/time_source</p>=
-<p>/mboards/0/time_source/value</p><p>/mboards/0/time_source/options</p><p>=
-/mboards/0/time_source/output</p><p>/mboards/0/clock_source</p><p>/mboards/=
-0/clock_source/value</p><p>/mboards/0/clock_source/options</p><p>/mboards/0=
-/clock_source/external</p><p>/mboards/0/clock_source/external/freq</p><p>/m=
-boards/0/clock_source/external/freq/options</p><p>/mboards/0/clock_source/e=
-xternal/value</p><p>/mboards/0/clock_source/output</p><p>/mboards/0/tick_ra=
-te</p><p>/mboards/0/sensors</p><p>/mboards/0/sensors/ref_locked</p><p>/name=
-</p><p>/blocks</p><p>/blocks/0</p><p>/blocks/0/DUC#0</p><p>/blocks/0/DUC#0/=
-noc_id</p><p>/blocks/0/DDC#0</p><p>/blocks/0/DDC#0/noc_id</p><p>/blocks/0/R=
-adio#0</p><p>/blocks/0/Radio#0/noc_id</p><p>/blocks/0/Radio#0/tx_codec</p><=
-p>/blocks/0/Radio#0/tx_codec/gains</p><p>/blocks/0/Radio#0/tx_codec/name</p=
-><p>/blocks/0/Radio#0/rx_codec</p><p>/blocks/0/Radio#0/rx_codec/name</p><p>=
-/blocks/0/Radio#0/rx_codec/gains</p><p>/blocks/0/Radio#0/rx_codec/gains/dig=
-ital</p><p>/blocks/0/Radio#0/rx_codec/gains/digital/range</p><p>/blocks/0/R=
-adio#0/rx_codec/gains/digital/value</p><p>/blocks/0/Radio#0/dboard</p><p>/b=
-locks/0/Radio#0/dboard/rx_eeprom</p><p>/blocks/0/Radio#0/dboard/tx_eeprom</=
-p><p>/blocks/0/Radio#0/dboard/gdb_eeprom</p><p>/blocks/0/Radio#0/dboard/ifa=
-ce</p><p>/blocks/0/Radio#0/dboard/rx_frontends</p><p>/blocks/0/Radio#0/dboa=
-rd/rx_frontends/0</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/name</p><p>=
-/blocks/0/Radio#0/dboard/rx_frontends/0/id</p><p>/blocks/0/Radio#0/dboard/r=
-x_frontends/0/gains</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/freq</p><=
-p>/blocks/0/Radio#0/dboard/rx_frontends/0/freq/value</p><p>/blocks/0/Radio#=
-0/dboard/rx_frontends/0/freq/range</p><p>/blocks/0/Radio#0/dboard/rx_fronte=
-nds/0/antenna</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/antenna/value</=
-p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/antenna/options</p><p>/blocks/=
-0/Radio#0/dboard/rx_frontends/0/sensors</p><p>/blocks/0/Radio#0/dboard/rx_f=
-rontends/0/connection</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/enabled=
-</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/use_lo_offset</p><p>/blocks/=
-0/Radio#0/dboard/rx_frontends/0/bandwidth</p><p>/blocks/0/Radio#0/dboard/rx=
-_frontends/0/bandwidth/value</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/=
-bandwidth/range</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1</p><p>/blocks=
-/0/Radio#0/dboard/rx_frontends/1/name</p><p>/blocks/0/Radio#0/dboard/rx_fro=
-ntends/1/id</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/gains</p><p>/bloc=
-ks/0/Radio#0/dboard/rx_frontends/1/freq</p><p>/blocks/0/Radio#0/dboard/rx_f=
-rontends/1/freq/value</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/freq/ra=
-nge</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/antenna</p><p>/blocks/0/R=
-adio#0/dboard/rx_frontends/1/antenna/value</p><p>/blocks/0/Radio#0/dboard/r=
-x_frontends/1/antenna/options</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1=
-/sensors</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/connection</p><p>/bl=
-ocks/0/Radio#0/dboard/rx_frontends/1/enabled</p><p>/blocks/0/Radio#0/dboard=
-/rx_frontends/1/use_lo_offset</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1=
-/bandwidth</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/value</p=
-><p>/blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/range</p><p>/blocks/0=
-/Radio#0/dboard/tx_frontends</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0<=
-/p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/name</p><p>/blocks/0/Radio#0/=
-dboard/tx_frontends/0/gains</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/f=
-req</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/freq/value</p><p>/blocks/=
-0/Radio#0/dboard/tx_frontends/0/freq/range</p><p>/blocks/0/Radio#0/dboard/t=
-x_frontends/0/antenna</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/antenna=
-/value</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/antenna/options</p><p>=
-/blocks/0/Radio#0/dboard/tx_frontends/0/sensors</p><p>/blocks/0/Radio#0/dbo=
-ard/tx_frontends/0/connection</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0=
-/enabled</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/use_lo_offset</p><p>=
-/blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth</p><p>/blocks/0/Radio#0/d=
-board/tx_frontends/0/bandwidth/value</p><p>/blocks/0/Radio#0/dboard/tx_fron=
-tends/0/bandwidth/range</p><p>/blocks/0/Radio#0/frontends</p><p>/blocks/0/R=
-adio#0/frontends/rx_fe_corrections</p><p>/blocks/0/Radio#0/frontends/rx_fe_=
-corrections/0</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offs=
-et</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/range</p=
-><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/value</p><p>/=
-blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/enable</p><p>/bloc=
-ks/0/Radio#0/frontends/rx_fe_corrections/0/iq_balance</p><p>/blocks/0/Radio=
-#0/frontends/rx_fe_corrections/0/iq_balance/value</p><p>/blocks/0/Radio#0/f=
-rontends/rx_fe_corrections/1</p><p>/blocks/0/Radio#0/frontends/rx_fe_correc=
-tions/1/dc_offset</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_=
-offset/range</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offse=
-t/value</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/ena=
-ble</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance</p><p>=
-/blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance/value</p><p>/blo=
-cks/0/Radio#0/frontends/tx_fe_corrections</p><p>/blocks/0/Radio#0/frontends=
-/tx_fe_corrections/0</p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/=
-dc_offset</p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/r=
-ange</p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/value<=
-/p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance</p><p>/blo=
-cks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance/value</p><p>/blocks/=
-0/DUC#1</p><p>/blocks/0/DUC#1/noc_id</p><p>/blocks/0/DDC#1</p><p>/blocks/0/=
-DDC#1/noc_id</p><p>/blocks/0/Radio#1</p><p>/blocks/0/Radio#1/noc_id</p><p>/=
-blocks/0/Radio#1/tx_codec</p><p>/blocks/0/Radio#1/tx_codec/gains</p><p>/blo=
-cks/0/Radio#1/tx_codec/name</p><p>/blocks/0/Radio#1/rx_codec</p><p>/blocks/=
-0/Radio#1/rx_codec/name</p><p>/blocks/0/Radio#1/rx_codec/gains</p><p>/block=
-s/0/Radio#1/rx_codec/gains/digital</p><p>/blocks/0/Radio#1/rx_codec/gains/d=
-igital/range</p><p>/blocks/0/Radio#1/rx_codec/gains/digital/value</p><p>/bl=
-ocks/0/Radio#1/dboard</p><p>/blocks/0/Radio#1/dboard/rx_eeprom</p><p>/block=
-s/0/Radio#1/dboard/tx_eeprom</p><p>/blocks/0/Radio#1/dboard/gdb_eeprom</p><=
-p>/blocks/0/Radio#1/dboard/iface</p><p>/blocks/0/Radio#1/dboard/rx_frontend=
-s</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0</p><p>/blocks/0/Radio#1/dbo=
-ard/rx_frontends/0/name</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/id</p=
-><p>/blocks/0/Radio#1/dboard/rx_frontends/0/gains</p><p>/blocks/0/Radio#1/d=
-board/rx_frontends/0/freq</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/fre=
-q/value</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/freq/range</p><p>/blo=
-cks/0/Radio#1/dboard/rx_frontends/0/antenna</p><p>/blocks/0/Radio#1/dboard/=
-rx_frontends/0/antenna/value</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/=
-antenna/options</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/sensors</p><p=
->/blocks/0/Radio#1/dboard/rx_frontends/0/connection</p><p>/blocks/0/Radio#1=
-/dboard/rx_frontends/0/enabled</p><p>/blocks/0/Radio#1/dboard/rx_frontends/=
-0/use_lo_offset</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth</p>=
-<p>/blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth/value</p><p>/blocks/0/=
-Radio#1/dboard/rx_frontends/0/bandwidth/range</p><p>/blocks/0/Radio#1/dboar=
-d/rx_frontends/1</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/name</p><p>/=
-blocks/0/Radio#1/dboard/rx_frontends/1/id</p><p>/blocks/0/Radio#1/dboard/rx=
-_frontends/1/gains</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/freq</p><p=
->/blocks/0/Radio#1/dboard/rx_frontends/1/freq/value</p><p>/blocks/0/Radio#1=
-/dboard/rx_frontends/1/freq/range</p><p>/blocks/0/Radio#1/dboard/rx_fronten=
-ds/1/antenna</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/antenna/value</p=
-><p>/blocks/0/Radio#1/dboard/rx_frontends/1/antenna/options</p><p>/blocks/0=
-/Radio#1/dboard/rx_frontends/1/sensors</p><p>/blocks/0/Radio#1/dboard/rx_fr=
-ontends/1/connection</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/enabled<=
-/p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/use_lo_offset</p><p>/blocks/0=
-/Radio#1/dboard/rx_frontends/1/bandwidth</p><p>/blocks/0/Radio#1/dboard/rx_=
-frontends/1/bandwidth/value</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/b=
-andwidth/range</p><p>/blocks/0/Radio#1/dboard/tx_frontends</p><p>/blocks/0/=
-Radio#1/dboard/tx_frontends/0</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0=
-/name</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/gains</p><p>/blocks/0/R=
-adio#1/dboard/tx_frontends/0/freq</p><p>/blocks/0/Radio#1/dboard/tx_fronten=
-ds/0/freq/value</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/freq/range</p=
-><p>/blocks/0/Radio#1/dboard/tx_frontends/0/antenna</p><p>/blocks/0/Radio#1=
-/dboard/tx_frontends/0/antenna/value</p><p>/blocks/0/Radio#1/dboard/tx_fron=
-tends/0/antenna/options</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/senso=
-rs</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/connection</p><p>/blocks/0=
-/Radio#1/dboard/tx_frontends/0/enabled</p><p>/blocks/0/Radio#1/dboard/tx_fr=
-ontends/0/use_lo_offset</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/bandw=
-idth</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth/value</p><p>/b=
-locks/0/Radio#1/dboard/tx_frontends/0/bandwidth/range</p><p>/blocks/0/Radio=
-#1/frontends</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections</p><p>/blo=
-cks/0/Radio#1/frontends/rx_fe_corrections/0</p><p>/blocks/0/Radio#1/fronten=
-ds/rx_fe_corrections/0/dc_offset</p><p>/blocks/0/Radio#1/frontends/rx_fe_co=
-rrections/0/dc_offset/range</p><p>/blocks/0/Radio#1/frontends/rx_fe_correct=
-ions/0/dc_offset/value</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/=
-0/dc_offset/enable</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq=
-_balance</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq_balance/v=
-alue</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/1</p><p>/blocks/0/=
-Radio#1/frontends/rx_fe_corrections/1/dc_offset</p><p>/blocks/0/Radio#1/fro=
-ntends/rx_fe_corrections/1/dc_offset/range</p><p>/blocks/0/Radio#1/frontend=
-s/rx_fe_corrections/1/dc_offset/value</p><p>/blocks/0/Radio#1/frontends/rx_=
-fe_corrections/1/dc_offset/enable</p><p>/blocks/0/Radio#1/frontends/rx_fe_c=
-orrections/1/iq_balance</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections=
-/1/iq_balance/value</p><p>/blocks/0/Radio#1/frontends/tx_fe_corrections</p>=
-<p>/blocks/0/Radio#1/frontends/tx_fe_corrections/0</p><p>/blocks/0/Radio#1/=
-frontends/tx_fe_corrections/0/dc_offset</p><p>/blocks/0/Radio#1/frontends/t=
-x_fe_corrections/0/dc_offset/range</p><p>/blocks/0/Radio#1/frontends/tx_fe_=
-corrections/0/dc_offset/value</p><p>/blocks/0/Radio#1/frontends/tx_fe_corre=
-ctions/0/iq_balance</p><p>/blocks/0/Radio#1/frontends/tx_fe_corrections/0/i=
-q_balance/value</p><p>/blocks/0/Replay#0</p><p>/blocks/0/Replay#0/noc_id</p=
-><p><br></p><p>Thank you for any assistance!</p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<p>Hello,</p><p>I'm trying to create a simple loopback application (using t=
+he same DB for TX and RX) with my X310, but I'm having problems. The setup =
+is an X310 with WBX120 (TX/RX for transmission and RX2 for receiving). I tr=
+aced the issue back to running the "txrx_loopback_to_file"  uhd example wit=
+h following parameters:</p><p>./txrx_loopback_to_file --tx-rate 1e6 --rx-ra=
+te 1e6 --tx-freq 1e9 --rx-freq 1e9</p><p>I get the following error:</p><p>C=
+reating the transmit usrp device with: ...</p><p>[INFO] [UHD] linux; GNU C+=
++ version 9.4.0; Boost_107100; UHD_4.2.0.1-0-g321295fb</p><p>[INFO] [X300] =
+X300 initialization sequence...</p><p>[INFO] [X300] Maximum frame size: 800=
+0 bytes.</p><p>[INFO] [X300] Radio 1x clock: 200 MHz</p><p>Creating the rec=
+eive usrp device with: ...</p><p>Using TX Device: Single USRP:</p><p>  Devi=
+ce: X-Series Device</p><p>  Mboard 0: X310</p><p>  RX Channel: 0</p><p>    =
+RX DSP: 0</p><p>    RX Dboard: A</p><p>    RX Subdev: WBX-120 RX+GDB</p><p>=
+  RX Channel: 1</p><p>    RX DSP: 1</p><p>    RX Dboard: B</p><p>    RX Sub=
+dev: WBX-120 RX+GDB</p><p>  TX Channel: 0</p><p>    TX DSP: 0</p><p>    TX =
+Dboard: A</p><p>    TX Subdev: WBX-120 TX+GDB</p><p>  TX Channel: 1</p><p> =
+   TX DSP: 1</p><p>    TX Dboard: B</p><p>    TX Subdev: WBX-120 TX+GDB</p>=
+<p>Using RX Device: Single USRP:</p><p>  Device: X-Series Device</p><p>  Mb=
+oard 0: X310</p><p>  RX Channel: 0</p><p>    RX DSP: 0</p><p>    RX Dboard:=
+ A</p><p>    RX Subdev: WBX-120 RX+GDB</p><p>  RX Channel: 1</p><p>    RX D=
+SP: 1</p><p>    RX Dboard: B</p><p>    RX Subdev: WBX-120 RX+GDB</p><p>  TX=
+ Channel: 0</p><p>    TX DSP: 0</p><p>    TX Dboard: A</p><p>    TX Subdev:=
+ WBX-120 TX+GDB</p><p>  TX Channel: 1</p><p>    TX DSP: 1</p><p>    TX Dboa=
+rd: B</p><p>    TX Subdev: WBX-120 TX+GDB</p><p>Setting TX Rate: 1.000000 M=
+sps...</p><p>Actual TX Rate: 1.000000 Msps...</p><p>Setting RX Rate: 1.0000=
+00 Msps...</p><p>Actual RX Rate: 1.000000 Msps...</p><p>Setting TX Freq: 10=
+00.000000 MHz...</p><p>Actual TX Freq: 1000.000000 MHz...</p><p>Setting RX =
+Freq: 1000.000000 MHz...</p><p>Actual RX Freq: 1000.000000 MHz...</p><p>[WA=
+RNING] [0/Radio#0] Attempting to set tick rate to 0. Skipping.</p><p>Checki=
+ng TX: LO: locked ...</p><p>Checking RX: LO: unlocked ...</p><p>Error: Asse=
+rtionError: lo_locked.to_bool()</p><p>  in _main</p><p>  at /home/hp/uhd-4.=
+2/host/examples/txrx_loopback_to_file.cpp:483</p><p>I have another WBX120 i=
+n slot B which returns with the same error.</p><p>However, if I transmit wi=
+th the one in slot A and receive with the one on slot B (or vice-versa) bot=
+h TX and RX locks:</p><p>./txrx_loopback_to_file --tx-rate 1e6 --rx-rate 1e=
+6 --tx-freq 1e9 --rx-freq 1e9 --tx-subdev A:0 --rx-subdev B:0 --rx-ant RX2<=
+/p><p>...</p><p>[WARNING] [0/Radio#0] Attempting to set tick rate to 0. Ski=
+pping.</p><p>Checking TX: LO: locked ...</p><p>Checking RX: LO: locked ...<=
+/p><p>Press Ctrl + C to stop streaming...</p><p>Setting device timestamp to=
+ 0...</p><p>[WARNING] [0/Radio#1] Attempting to set tick rate to 0. Skippin=
+g.</p><p>^C</p><p>Done!</p><p>I also have an SBX for which the test with th=
+e same parameters work:</p><p>./txrx_loopback_to_file --tx-rate 1e6 --rx-ra=
+te 1e6 --tx-freq 1e9 --rx-freq 1e9</p><p>[WARNING] [0/Radio#0] Attempting t=
+o set tick rate to 0. Skipping.</p><p>Checking TX: LO: locked ...</p><p>Che=
+cking RX: LO: locked ...</p><p>Press Ctrl + C to stop streaming...</p><p>Se=
+tting device timestamp to 0...</p><p>UHD version is: UHD_4.2.0.1-0-g321295f=
+b</p><p>Any help to resolve the issue would be appreciated!</p><p>Thanks,</=
+p><p>Balint</p>
 
---00000000000055674905e5d9f8f6--
+--b1_UKKxAGHthpLRTag9ODf2yNCvnyZf5brQxVBkqbN5tn4--
 
---===============7415686902309369077==
+--===============1179872766296816580==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -847,4 +299,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7415686902309369077==--
+--===============1179872766296816580==--
