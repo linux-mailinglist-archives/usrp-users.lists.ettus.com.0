@@ -2,373 +2,842 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E54B258D983
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Aug 2022 15:41:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F9358E4F2
+	for <lists+usrp-users@lfdr.de>; Wed, 10 Aug 2022 04:42:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 24D3E383F98
-	for <lists+usrp-users@lfdr.de>; Tue,  9 Aug 2022 09:41:08 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 42971383C3A
+	for <lists+usrp-users@lfdr.de>; Tue,  9 Aug 2022 22:42:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660052468; bh=XIQxJXBPK9Od6nyU66SaKAH/GTJ7+0qVF2RAOZppJn8=;
+	t=1660099369; bh=Z+QJNT3iXM6fhdo8k3wZa0bMwDfYrc05XY1AvcotuFo=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=DUeKDtmkPpw6UVQH/HouA4MkNlWlwVhuWK9Ldra/royJVx/ZXBg6qGnUaglOMmb8O
-	 3xzPml1ERqhCQHPJkOGa5rNq1q3XrQjWncnGs0l6wTBjNXjTGnFDTwzWU1fxs81tlS
-	 fWup3ffvny7QtKTsdevYqz+X6JAKYC61RlGbmQY5VDYFdCeCZTL9aToXSzmsu/ZEDv
-	 bEUJqvVyUC6QCg0v5ibqhDKiSqAK0+DjXN0g0PVfC4coQhSUCrpc0Abu9swww9qeF1
-	 cdw4dAl9G2/OuqnryULMMQtN3zfSc0fc7dJ05BPmpHG2BzDRmkQYvIGeq7D0hKCwc0
-	 rP+US+j8wF6rg==
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id 622CF383D63
-	for <usrp-users@lists.ettus.com>; Tue,  9 Aug 2022 09:38:33 -0400 (EDT)
+	b=C5uF9H3hcbJFGVdhaOvLdzGtizredc1u50/7qd6xYG7jFjRXTq543eXAbIuFQ9zQu
+	 7QiifwtOR371s8L08iRNEfa38a/YgbwgWfy5FaDWHT9x2UwwY4GsALC1e6+f2BdoYf
+	 X9CP6+EAX+G9H1V86ytZigSjRLQ6fAU8bTTE7Of2Sq3yCBtbd/eyzk4hToQw6zjrK3
+	 +lzu3MiDUtAt1Xjh7TwxlR9nCTpQYeBDm4nC2jeYv7AOuGxfYRC87jHnKqQGkiLsCn
+	 5JYJmKzD3ZHvTDSkw6mDxCPV3lOG4wmJMtWUBI7Net8OEOvKBqKluFQyX3SqWX8vei
+	 wa5mo3s72Z+wA==
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 55D6C383B75
+	for <usrp-users@lists.ettus.com>; Tue,  9 Aug 2022 22:40:21 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="WhGhT63u";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="eM17iQss";
 	dkim-atps=neutral
-Received: by mail-yb1-f179.google.com with SMTP id 199so18340516ybl.9
-        for <usrp-users@lists.ettus.com>; Tue, 09 Aug 2022 06:38:33 -0700 (PDT)
+Received: by mail-qt1-f174.google.com with SMTP id c20so393609qtw.8
+        for <usrp-users@lists.ettus.com>; Tue, 09 Aug 2022 19:40:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc;
-        bh=z+zU9n43bGF3tzO+zAIr3emkJ0UnTBlVyXS5TgCI5V4=;
-        b=WhGhT63uQE412Tuw4sQlX//cXFqbQhhkme0dNyXEAQmQJuiXCNC21hvA7Gdcbk/eWV
-         qZbdJgCwrP4qDzb+2cQ7rMDx6MdtHAcBlq0BNi1Ojix63U5WLitcoeJVb+Fn18gUMfb7
-         wu4Lw92GTRVY6epmw6YGT+CjUGynABpU5SZRdO+CzA1gvqbN/AMHCwT/PAR5KnpQid3C
-         4PwKP6fMTi/6MTX0lu4fwJJ40W6qU7DjzsyEUWvcgLMMKBpU3ChanO8cjljQL4ecjTPM
-         2qH7nIEyL8sRqvTOC8S1FCnZg0FY9peZpSgmu8sNLjoWIV88VIJoVso3+ScqV+rD1gbD
-         lN3Q==
+        bh=C4kRjB3VjKnKnUMeZWgPST6W4KA2uT7MOu5L11Dat5s=;
+        b=eM17iQssVoFiHCDU/AgNtf35Aab0CEpaVlVb2XEBzzZNr5zWuB+/2X8V8te36ZMhjA
+         PCKNVGd237WFcjT0MOLV719yD6OK5ySrobfFDcB0jJ3pUQ+hOPzYRNzbCPVwDqKXtVF7
+         dFLunih+0mZ1vY+3FTYRzBadzWW9oAZy23psClQMFPkPTMWlPg/NWkM3KjjKkVTP4m+r
+         HfgmD3sjJMa4lINwG8xC/7FX4Qk5KLpGhjLmpIC+IsVn/GLOkcnmBoBmL5ePUUe502gN
+         +93C+pdBruixoBtEB3s7cI9I/IT8dQNtXXzsmHZCdqp0UHiFCEAtIJcWnwhOZODEeYg6
+         i1Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc;
-        bh=z+zU9n43bGF3tzO+zAIr3emkJ0UnTBlVyXS5TgCI5V4=;
-        b=DQQOZqX7LBfVr/PfFYKtdD2Ocdxo0BFAxwrmtCgTHDiV3DTZEJPfQTP+1MH/Y1I4Go
-         qvNUb3n5zQNb1TrUYNqRXNtX2bnHSTNBN8BfNZpBimewOQwxR5wcbs8RJGd+BafnaI7O
-         Il3OOKHft4AUjtri5f/1Og4dVqpkM4RO6GocDu9tOffJK63xXgz83nUcOqdmUnPZjE0q
-         1kRtx5b6ghCsliAQyU8VfLAjoEjF6+8cnkScVO3auJ8tXinKiL83pPpPEA5NaiaJnqdO
-         JO1cOY3CyppJN02HYO/xH+b65tkMb4SQ+wvIcY0EB/Uvaq5jjEr1M33QnojzwmnlOOTV
-         MGVQ==
-X-Gm-Message-State: ACgBeo3WZbXxPviWk8wxURTtgJ98U260t/beqg0OB0vwVlZUNM832o0B
-	DpDDRf4ixN5e0YVFR1TR1YhEKka30z6dJq+UryFFEQ==
-X-Google-Smtp-Source: AA6agR6THmzJU3KdygMLqqmKd6AkWmCrAwmSXBx1vRBwDJtbBs5sPcVRLB3hTj/4m7P3wNNXTM3y3USLcp6dnf85AeM=
-X-Received: by 2002:a25:6612:0:b0:670:7c81:3aa6 with SMTP id
- a18-20020a256612000000b006707c813aa6mr21042735ybc.530.1660052312367; Tue, 09
- Aug 2022 06:38:32 -0700 (PDT)
+        bh=C4kRjB3VjKnKnUMeZWgPST6W4KA2uT7MOu5L11Dat5s=;
+        b=3b8A6iC5yO9puamP/16+VFUzE1Ke46MjC7zP0IEHZy163X4Fqodj92k37/+fIOAWzI
+         CBlFRIGb5sZvqzW01Ccd2bYAgB5uNXz3bIMXeVB3DmNLRd5VlsdSgTN9qqgcFuE2ekw7
+         rbGIdnm3V95TA5Zic4HKCKWkG+TqMBYYmKSZFRTykMCbTAXjbmVyGCbI8ug/VdpwjfG+
+         uceNRHu0khqhW2AmSIQ8vB2P2fwr3HJTeMohav2V1XbKzxbOyCqqmC+7TGFRPRrBaVqa
+         5FFvBgY7gV0+GozS6RINBJ1WmZLGtldSZP41lPYultp4lJmXhZmUXxrA2pI02X8xZSyc
+         iiDA==
+X-Gm-Message-State: ACgBeo1TcSTCRDhbWl8LIsbu8pRUFCFTP0NvXx4v22K3gsZJmkVL6tgn
+	8HJa7UOQJjiiKsvnqsbJG4i8vJIH4pBR45FUNJczvtc7
+X-Google-Smtp-Source: AA6agR6PKaVO4j0ATQuMKHx27RUdC5uhivJLAIMt9j/kLxFpYpQ4+8LmU7nvkCBM3B+HTBrSX1gkN1VoT2Raxj7x/aE=
+X-Received: by 2002:ac8:5aca:0:b0:342:f363:dc83 with SMTP id
+ d10-20020ac85aca000000b00342f363dc83mr13887297qtd.276.1660099220558; Tue, 09
+ Aug 2022 19:40:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALooG3-tGbHmBpZUvb8z3daaB61QW=w1-SrOKx5LuryiL4i-HA@mail.gmail.com>
- <CAL7q81uunsoLn00fzCLdVqWPNssurXfoBw7pqyLL6DoaNHfT6A@mail.gmail.com>
- <CALooG39hAmOTaXhb8Vh2siJx6mu7U-ydX-Ktvfk1yQmLfEtiGw@mail.gmail.com> <CAB__hTQeQvoC9viTfoMMDibfqt1sUSUUgnPCakW+mU4f0ZKo9w@mail.gmail.com>
-In-Reply-To: <CAB__hTQeQvoC9viTfoMMDibfqt1sUSUUgnPCakW+mU4f0ZKo9w@mail.gmail.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 9 Aug 2022 09:38:21 -0400
-Message-ID: <CAB__hTQG6=LUBPheWvTTXU=ZWbRRNb27da14M8BRMN10qO+NwA@mail.gmail.com>
-To: =?UTF-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>
-Message-ID-Hash: FYGAQDUIGQ4BHUAJAKGP7HH5EVCGWNLY
-X-Message-ID-Hash: FYGAQDUIGQ4BHUAJAKGP7HH5EVCGWNLY
-X-MailFrom: rkossler@nd.edu
+References: <pZFvIpYIX8SxSrSPZc7VqE4UpmtL6oj4D4UsfL0H4s@lists.ettus.com>
+In-Reply-To: <pZFvIpYIX8SxSrSPZc7VqE4UpmtL6oj4D4UsfL0H4s@lists.ettus.com>
+From: Wan Liu <wan.liu@ettus.com>
+Date: Tue, 9 Aug 2022 22:40:09 -0400
+Message-ID: <CAOcXSJwdhzgVmDOT=oLBjXJCAfg2dGEM38Jut4EwJ5RyyKu94g@mail.gmail.com>
+To: balinfd3@gmail.com
+Message-ID-Hash: J54SUAAZWAWBUVDWIINDTBH7RBUN2C5T
+X-Message-ID-Hash: J54SUAAZWAWBUVDWIINDTBH7RBUN2C5T
+X-MailFrom: wan.liu@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E320 Building Custom IP and Working it via UHD
+Subject: [USRP-users] Re: get_rx_dboard_iface: "Path not found in tree" in UHD v4.2.0 but works OK on UHD v3.15.0
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FYGAQDUIGQ4BHUAJAKGP7HH5EVCGWNLY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/J54SUAAZWAWBUVDWIINDTBH7RBUN2C5T/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9134782678146049977=="
+Content-Type: multipart/mixed; boundary="===============7415686902309369077=="
 
---===============9134782678146049977==
-Content-Type: multipart/alternative; boundary="000000000000635cec05e5cf0c70"
+--===============7415686902309369077==
+Content-Type: multipart/alternative; boundary="00000000000055674905e5d9f8f6"
 
---000000000000635cec05e5cf0c70
+--00000000000055674905e5d9f8f6
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Also, have you tried your IP in a testbench?  If not, this is the first
-place to start.
+Hello,
 
-On Tue, Aug 9, 2022 at 9:34 AM Rob Kossler <rkossler@nd.edu> wrote:
+Please also share the output from uhd_usrp_probe --tree on v3.15.0.0. I'm
+curious what the fs_path to the iface property in the tree looks like with
+v3.15.0.0.
 
-> Hi Yasir,
-> One of the nice things about RFNoC graphs is the ability to connect at
-> runtime (at least for dynamically linked blocks). So, one test you can tr=
-y
-> is to change your RFNoC graph as follows: DDS_block =3D> rx_streamer (rat=
-her
-> than your existing DDS_block =3D> DUC =3D> Radio-Tx).  In this case you s=
-hould
-> see your samples stream to the host.  If this works then you can add the
-> DUC/Radio and try other experiments. But, if not, then at least your
-> problem has been simplified. As a comparison you could build the siggen
-> block and try the graph siggen =3D> rx_streamer, which I expect will work=
-.
+As you can see from your output from uhd_usrp_probe --tree on v4.2.0.0, the
+correct fs_path to iface is supposed to be /blocks/0/Radio#1/dboard/iface,
+so the iface property is in the tree. Yet get_rx_dboard_iface stripped
+"dboard" when evaluating the path.
+
+Can you also call the function get_usrp_rx_info() from multi_usrp.cpp on
+both versions? This function evaluates the path to some properties in a
+similar manner to get_rx_dboard_iface, so if the problem is related to
+evaluating the fs_path, then we should see the issue in both functions.
+
+In the meantime, I will investigate further on my end and try to reproduce
+the problem on my end
+
+Regards,
+
+Wan Liu
+
+On Mon, Aug 8, 2022 at 1:10 PM <balinfd3@gmail.com> wrote:
+
+> Hello Everyone,
 >
-> Another relevant example that you might investigate is the Replay block.
-> This block has more functionality than yours because it can act as both a
-> sink and a source. But, when it is acting as a source, it is similar to
-> your block.  One test I tried with the Replay block was to send samples
-> from host (tx_streamer =3D> Replay) and then later to send them back to h=
-ost
-> (Replay =3D> rx_streamer) to verify that the samples were equal.
-> Rob
+> I have an X300 flashed to match the host UHD ver (4.2.0). I am trying to
+> use the command =E2=80=9Cget_rx_dboard_iface=E2=80=9D to access GPIO pin =
+settings=E2=80=A6.but I am
+> gettting error: *=E2=80=9CPath not found in tree: /blocks/0/Radio#1/iface=
+=E2=80=9D*
 >
-> On Tue, Aug 9, 2022 at 4:53 AM Yasir =C3=96z=C3=A7al=C4=B1k <simultaneous=
-11@gmail.com>
-> wrote:
+> If I go back to UHD ver 3.15.0 then the command runs successfully
 >
->> Hi Jonathon,
->> Thank you for the answer. For complex multiplier IP, I have already
->> looked at it and used it as a reference point for my DDS IP. I have chan=
-ged
->> complex multiplier IP files with DDS IP files and implemented it. That's
->> how I generated my bitstream. For Cpp file  rfnoc_siggen_example.cpp is
->> what I was looking for. I changed my cpp code according to the siggen
->> example. After that, I tried it on E320. The Error message is gone now, =
-but
->> the signal is still not generated. I expect at least a red light on TX/R=
-X
->> channel even if my DDS Block doesn't work properly, but this is not the
->> case. There is no light on Radio channels. I don't know if this is becau=
-se
->> of my DDS block or because of the CPP file. I will try to make some chan=
-ges
->> on Verilog and generate new bitstream. After that, I will post the resul=
-ts
->> here.
->>
->> While doing that, I will be glad for any more help.
->>
->> Sorry for the late answer, there is a 10 hours time zone difference
->> between where I live and the US.
->>
->> Kind regards,
->> Yasir
->>
->> Jonathon Pendlum <jonathon.pendlum@ettus.com>, 8 A=C4=9Fu 2022 Pzt, 19:2=
-9
->> tarihinde =C5=9Funu yazd=C4=B1:
->>
->>> Hi Yasir,
->>>
->>> I suggest taking a look at this example using the Siggen block:
->>> https://github.com/EttusResearch/rfnoc-apps/blob/testing/master/apps/rf=
-noc_siggen_example.cpp.
->>> As for adding IP, rfnoc-example has an example using a complex multipli=
-er:
->>> https://github.com/EttusResearch/uhd/tree/master/host/examples/rfnoc-ex=
-ample/fpga/ip/.
->>> I also suggest updating your E320 and Host UHD version to 4.2 as there =
-have
->>> been several bug fixes since UHD 4.0.
->>>
->>> Jonathon
->>>
->>>
->>> On Mon, Aug 8, 2022 at 2:50 AM Yasir =C3=96z=C3=A7al=C4=B1k <simultaneo=
-us11@gmail.com>
->>> wrote:
->>>
->>>> Hi everyone,
->>>>
->>>>   I have a E320 device and I am trying to learn how to build my own
->>>> custom IPs. The thing is that the IPs which were implemented by Ettus =
-were
->>>> not enough for me. Therefore; I need to build my own custom IPs. I hav=
-e all
->>>> the HDL codes that I need to build on E320, but I am having a problem =
-with
->>>> E320 development flow.
->>>>
->>>>   To learn how to add my custom IPs, I have analyzed the Rfnoc-example
->>>> in the uhd repository. In that example, they showed basic Gain IP (whi=
-ch
->>>> uses multiply IP). Firstly, I have synthesized and implemented that
->>>> example. After that, I loaded the bit file into USRP and tested it
->>>> with a init_gain_block C++ file. I tried to write a value to register =
-and
->>>> read back from the same register. It worked fine. I also changed the
->>>> default UHD C++ code and wrote a basic UHD C++ code to amplify a signa=
-l by
->>>> looking at example UHD C++ codes. That worked fine, too. The Signal gi=
-ven
->>>> from ADC is amplified and given back to DAC. After that I changed the
->>>> multiply IP with DDS IP and tried to build it to generate a signal. Th=
-e
->>>> thing is that I implemented it successfully and the bit file was gener=
-ated,
->>>> but it did not work after loading it into the device.
->>>>
->>>> There are 2 problems:
->>>> 1 -) Since all the example UHD C++ codes are meant to transfer data
->>>> between host and device, I do not know how to make it work. Because, m=
-y DDS
->>>> IP does not need to transfer data between host and device. I just need=
- to
->>>> write a frequency value to register and DDS will generate a signal. Af=
-ter
->>>> that, I expect it to work fine. To do that, in UHD C++ code I have use=
-d
->>>> rfnoc_graph and connected my block with the DUC block. Also I connecte=
-d the
->>>> DUC block with the Radio block. I expect this to work seamlessly, but =
-it
->>>> did not. I could not figure out how to write a C++ code to make this w=
-ork.
->>>> The code gives an error which is "[ERROR] [RFNOC::GRAPH] Caught
->>>> exception while initializing graph: Environment Error: IOError: Timed =
-out
->>>> getting recv buff for management transaction"
->>>>
->>>> 2 -) While building DDS IP, I have opened a Vivado 2019.1 and generate=
-d
->>>> a DDS IP. Then, I used the .xci file in uhd. I do not know if this is =
-the
->>>> right way, but UHD gives no error while implementing it.
->>>>
->>>>
->>>>
->>>> USRP Device :E320
->>>> UHD Version : 4.0.0.0
->>>> Host OS : Ubuntu 20.04.4
->>>>
->>>> Kind Regards,
->>>> Yasir
->>>>
->>>>
->>>>
->>>> _______________________________________________
->>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>
->>> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
+> Below is a simple code that fails on UHD v4.2.0 but works OK on v.3.15.0
+>
+> #=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+> #include <uhd/utils/thread.hpp>
+>
+> #include <uhd/utils/safe_main.hpp>
+>
+> #include <uhd/usrp/multi_usrp.hpp>
+>
+> #include <uhd/exception.hpp>
+>
+> #include <uhd/types/tune_request.hpp>
+>
+> #include <boost/program_options.hpp>
+>
+> #include <boost/format.hpp>
+>
+> #include <boost/thread.hpp>
+>
+> #include <iostream>
+>
+> int main()
+>
+> {
+>
+> // Initialize USRP receiver and Rx stream--------------------------------=
+--
+>
+> uhd::usrp::multi_usrp::sptr usrp;
+>
+> uhd::rx_streamer::sptr rxStream;
+>
+> // Setup USRP x300s
+>
+> uhd::device_addr_t devAddr;
+>
+> devAddr["addr0"] =3D "192.168.130.2";
+>
+> usrp =3D uhd::usrp::multi_usrp::make(devAddr);
+>
+>
+> // Setup channels
+>
+> uhd::usrp::subdev_spec_t rxSpec("A:0 B:0");
+>
+> usrp->set_rx_subdev_spec(rxSpec);
+>
+>
+> //Get dBoard info:
+>
+> uhd::usrp::dboard_iface::sptr dBoard;
+>
+> dBoard =3D usrp->get_rx_dboard_iface(0); // < =E2=80=94=E2=80=94- FAILS h=
+ere
+>
+> #std::cout << dBoard << std::endl;
+>
+> return EXIT_SUCCESS;
+>
+> }
+>
+> #=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+> The =E2=80=9Cuhd_usrp_probe =E2=80=94tree =E2=80=9D output for V4.2.0 is:
+>
+> /mboards
+>
+> /mboards/0
+>
+> /mboards/0/fpga_version
+>
+> /mboards/0/fpga_version_hash
+>
+> /mboards/0/fw_version
+>
+> /mboards/0/eeprom
+>
+> /mboards/0/name
+>
+> /mboards/0/codename
+>
+> /mboards/0/master_clock_rate
+>
+> /mboards/0/time_source
+>
+> /mboards/0/time_source/value
+>
+> /mboards/0/time_source/options
+>
+> /mboards/0/time_source/output
+>
+> /mboards/0/clock_source
+>
+> /mboards/0/clock_source/value
+>
+> /mboards/0/clock_source/options
+>
+> /mboards/0/clock_source/external
+>
+> /mboards/0/clock_source/external/freq
+>
+> /mboards/0/clock_source/external/freq/options
+>
+> /mboards/0/clock_source/external/value
+>
+> /mboards/0/clock_source/output
+>
+> /mboards/0/tick_rate
+>
+> /mboards/0/sensors
+>
+> /mboards/0/sensors/ref_locked
+>
+> /name
+>
+> /blocks
+>
+> /blocks/0
+>
+> /blocks/0/DUC#0
+>
+> /blocks/0/DUC#0/noc_id
+>
+> /blocks/0/DDC#0
+>
+> /blocks/0/DDC#0/noc_id
+>
+> /blocks/0/Radio#0
+>
+> /blocks/0/Radio#0/noc_id
+>
+> /blocks/0/Radio#0/tx_codec
+>
+> /blocks/0/Radio#0/tx_codec/gains
+>
+> /blocks/0/Radio#0/tx_codec/name
+>
+> /blocks/0/Radio#0/rx_codec
+>
+> /blocks/0/Radio#0/rx_codec/name
+>
+> /blocks/0/Radio#0/rx_codec/gains
+>
+> /blocks/0/Radio#0/rx_codec/gains/digital
+>
+> /blocks/0/Radio#0/rx_codec/gains/digital/range
+>
+> /blocks/0/Radio#0/rx_codec/gains/digital/value
+>
+> /blocks/0/Radio#0/dboard
+>
+> /blocks/0/Radio#0/dboard/rx_eeprom
+>
+> /blocks/0/Radio#0/dboard/tx_eeprom
+>
+> /blocks/0/Radio#0/dboard/gdb_eeprom
+>
+> /blocks/0/Radio#0/dboard/iface
+>
+> /blocks/0/Radio#0/dboard/rx_frontends
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/name
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/id
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/gains
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/freq
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/freq/value
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/freq/range
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/antenna
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/antenna/value
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/antenna/options
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/sensors
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/connection
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/enabled
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/use_lo_offset
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/bandwidth
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/bandwidth/value
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/0/bandwidth/range
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/name
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/id
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/gains
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/freq
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/freq/value
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/freq/range
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/antenna
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/antenna/value
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/antenna/options
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/sensors
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/connection
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/enabled
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/use_lo_offset
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/value
+>
+> /blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/range
+>
+> /blocks/0/Radio#0/dboard/tx_frontends
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/name
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/gains
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/freq
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/freq/value
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/freq/range
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/antenna
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/antenna/value
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/antenna/options
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/sensors
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/connection
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/enabled
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/use_lo_offset
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth/value
+>
+> /blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth/range
+>
+> /blocks/0/Radio#0/frontends
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/0
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/range
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/value
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/enable
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/iq_balance
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/0/iq_balance/value
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/1
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/range
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/value
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/enable
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance
+>
+> /blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance/value
+>
+> /blocks/0/Radio#0/frontends/tx_fe_corrections
+>
+> /blocks/0/Radio#0/frontends/tx_fe_corrections/0
+>
+> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset
+>
+> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/range
+>
+> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/value
+>
+> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance
+>
+> /blocks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance/value
+>
+> /blocks/0/DUC#1
+>
+> /blocks/0/DUC#1/noc_id
+>
+> /blocks/0/DDC#1
+>
+> /blocks/0/DDC#1/noc_id
+>
+> /blocks/0/Radio#1
+>
+> /blocks/0/Radio#1/noc_id
+>
+> /blocks/0/Radio#1/tx_codec
+>
+> /blocks/0/Radio#1/tx_codec/gains
+>
+> /blocks/0/Radio#1/tx_codec/name
+>
+> /blocks/0/Radio#1/rx_codec
+>
+> /blocks/0/Radio#1/rx_codec/name
+>
+> /blocks/0/Radio#1/rx_codec/gains
+>
+> /blocks/0/Radio#1/rx_codec/gains/digital
+>
+> /blocks/0/Radio#1/rx_codec/gains/digital/range
+>
+> /blocks/0/Radio#1/rx_codec/gains/digital/value
+>
+> /blocks/0/Radio#1/dboard
+>
+> /blocks/0/Radio#1/dboard/rx_eeprom
+>
+> /blocks/0/Radio#1/dboard/tx_eeprom
+>
+> /blocks/0/Radio#1/dboard/gdb_eeprom
+>
+> /blocks/0/Radio#1/dboard/iface
+>
+> /blocks/0/Radio#1/dboard/rx_frontends
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/name
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/id
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/gains
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/freq
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/freq/value
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/freq/range
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/antenna
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/antenna/value
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/antenna/options
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/sensors
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/connection
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/enabled
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/use_lo_offset
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth/value
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth/range
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/name
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/id
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/gains
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/freq
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/freq/value
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/freq/range
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/antenna
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/antenna/value
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/antenna/options
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/sensors
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/connection
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/enabled
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/use_lo_offset
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/bandwidth
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/bandwidth/value
+>
+> /blocks/0/Radio#1/dboard/rx_frontends/1/bandwidth/range
+>
+> /blocks/0/Radio#1/dboard/tx_frontends
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/name
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/gains
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/freq
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/freq/value
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/freq/range
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/antenna
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/antenna/value
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/antenna/options
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/sensors
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/connection
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/enabled
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/use_lo_offset
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth/value
+>
+> /blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth/range
+>
+> /blocks/0/Radio#1/frontends
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/0
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset/range
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset/value
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/dc_offset/enable
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq_balance
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq_balance/value
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/1
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset/range
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset/value
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/dc_offset/enable
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/iq_balance
+>
+> /blocks/0/Radio#1/frontends/rx_fe_corrections/1/iq_balance/value
+>
+> /blocks/0/Radio#1/frontends/tx_fe_corrections
+>
+> /blocks/0/Radio#1/frontends/tx_fe_corrections/0
+>
+> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/dc_offset
+>
+> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/dc_offset/range
+>
+> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/dc_offset/value
+>
+> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/iq_balance
+>
+> /blocks/0/Radio#1/frontends/tx_fe_corrections/0/iq_balance/value
+>
+> /blocks/0/Replay#0
+>
+> /blocks/0/Replay#0/noc_id
+>
+>
+> Thank you for any assistance!
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---000000000000635cec05e5cf0c70
+--00000000000055674905e5d9f8f6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Also, have you tried your IP in a testbench?=C2=A0 If not,=
- this is the first place to start.</div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 9, 2022 at 9:34 AM Rob Kossle=
-r &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi=
- Yasir,<div>One of the nice things about RFNoC graphs is the ability to con=
-nect at runtime (at least for dynamically linked blocks). So, one test you =
-can try is to change your RFNoC graph as follows: DDS_block =3D&gt; rx_stre=
-amer (rather than your existing DDS_block =3D&gt; DUC =3D&gt; Radio-Tx).=C2=
-=A0 In this case you should see your samples stream to the host.=C2=A0 If t=
-his works then you can add the DUC/Radio and try other experiments. But, if=
- not, then at least your problem has been simplified. As a comparison you c=
-ould build the siggen block and try the graph siggen =3D&gt; rx_streamer, w=
-hich I expect will work.</div><div><br></div><div>Another relevant example =
-that you might investigate is the Replay block.=C2=A0 This block has more f=
-unctionality than yours because it can act as both a sink and a source. But=
-, when it is acting as a source, it is similar to your block.=C2=A0 One tes=
-t I tried with=C2=A0the Replay block was to send samples from host (tx_stre=
-amer =3D&gt; Replay) and then later to send them back to host (Replay =3D&g=
-t; rx_streamer) to verify that the samples were equal.</div><div>Rob</div><=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Tue, Aug 9, 2022 at 4:53 AM Yasir =C3=96z=C3=A7al=C4=B1k &lt;<a href=3D"m=
-ailto:simultaneous11@gmail.com" target=3D"_blank">simultaneous11@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr">Hi Jonathon,=C2=A0<div>Thank you for the answer. For comple=
-x multiplier IP, I have already looked at it and used it as a reference poi=
-nt for my DDS IP. I have changed complex multiplier IP files with DDS IP fi=
-les and implemented it. That&#39;s how I generated my bitstream. For Cpp fi=
-le=C2=A0 rfnoc_siggen_example.cpp is what I was looking for. I changed my c=
-pp code according to the siggen example. After that, I tried it on E320. Th=
-e Error message is gone now, but the signal is still not generated. I expec=
-t at least a red light on TX/RX channel even if my DDS Block doesn&#39;t wo=
-rk properly, but this is not the case. There is no light on Radio channels.=
- I don&#39;t know if this is because of my DDS block or because of the CPP =
-file. I will try to make some changes on Verilog and generate new bitstream=
-. After that, I will post the=C2=A0results here.</div><div><br></div><div>W=
-hile doing that, I will be glad for any more help.</div><div><br></div><div=
->Sorry for the late answer, there is a 10 hours time zone difference betwee=
-n where I live and the US.</div><div><br></div><div>Kind regards,</div><div=
->Yasir</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
-gmail_attr">Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.c=
-om" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt;, 8 A=C4=9Fu 2022 P=
-zt, 19:29 tarihinde =C5=9Funu yazd=C4=B1:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div dir=3D"ltr">Hi=C2=A0Yasir,<div><br></div><di=
-v>I suggest taking a look at this example using the Siggen block:=C2=A0<a h=
-ref=3D"https://github.com/EttusResearch/rfnoc-apps/blob/testing/master/apps=
-/rfnoc_siggen_example.cpp" target=3D"_blank">https://github.com/EttusResear=
-ch/rfnoc-apps/blob/testing/master/apps/rfnoc_siggen_example.cpp</a>. As for=
- adding IP, rfnoc-example has an example using a complex multiplier:=C2=A0<=
-a href=3D"https://github.com/EttusResearch/uhd/tree/master/host/examples/rf=
-noc-example/fpga/ip/" target=3D"_blank">https://github.com/EttusResearch/uh=
-d/tree/master/host/examples/rfnoc-example/fpga/ip/</a>. I also suggest upda=
-ting your E320 and Host UHD version to 4.2 as there have been several bug f=
-ixes since UHD 4.0.</div><div><br></div><div>Jonathon</div><div><br></div><=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Mon, Aug 8, 2022 at 2:50 AM Yasir =C3=96z=C3=A7al=C4=B1k &lt;<a href=3D"m=
-ailto:simultaneous11@gmail.com" target=3D"_blank">simultaneous11@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr">Hi everyone,<div><br><div>=C2=A0 I have a E320 device and I=
- am trying to learn how to build my own custom IPs. The thing is that the I=
-Ps which were implemented by Ettus were not enough for me. Therefore; I nee=
-d to build my own custom IPs. I have all the HDL codes that I need to build=
- on E320, but I am having a problem with E320 development flow.</div><div><=
-br></div><div>=C2=A0 To learn how to add my custom IPs, I have analyzed the=
- Rfnoc-example in the uhd repository. In that example, they showed basic Ga=
-in IP (which uses multiply IP). Firstly, I have synthesized and implemented=
- that example. After that, I loaded the bit file into USRP and tested it wi=
-th=C2=A0a=C2=A0init_gain_block C++ file. I tried to write a value to regist=
-er and read back from the same=C2=A0register. It worked fine. I also change=
-d the default UHD C++ code and wrote a basic UHD C++ code to amplify a sign=
-al by looking at example=C2=A0UHD C++ codes. That worked fine, too. The Sig=
-nal given from ADC is amplified and given back to DAC. After that I changed=
- the multiply IP with DDS IP and tried to build it to generate a signal. Th=
-e thing is that I implemented it successfully and the bit file was generate=
-d, but it did not work after loading it into the device.=C2=A0</div><div><b=
-r></div><div>There are 2 problems:</div><div>1 -) Since all the example UHD=
- C++ codes are meant to transfer data between host and device, I do not kno=
-w how to make it work. Because, my DDS IP does not need to transfer data be=
-tween host and device. I just need to write a frequency value to register a=
-nd DDS will generate a signal. After that, I expect it to work fine. To do =
-that, in UHD C++ code I have used rfnoc_graph and connected my block with t=
-he DUC block. Also I connected the DUC block with the Radio block. I expect=
- this to work seamlessly, but it did not.=C2=A0I could=C2=A0not figure out =
-how to write a C++ code to make this work.</div><div>The code gives an erro=
-r which is &quot;[ERROR] [RFNOC::GRAPH] Caught exception while initializing=
- graph: Environment Error: IOError: Timed out getting recv buff for managem=
-ent transaction&quot;</div><div><br></div><div>2 -) While building DDS IP, =
-I have opened a Vivado 2019.1 and generated a DDS IP. Then, I used the .xci=
- file in uhd. I do not know if this is the right way, but UHD gives no erro=
-r while implementing it.</div><div><br></div><div><br></div><div><br></div>=
-<div>USRP Device :E320</div><div>UHD Version : 4.0.0.0</div><div>Host OS : =
-Ubuntu 20.04.4</div></div><div><br></div><div>Kind Regards,</div><div>Yasir=
-</div><div><br></div><div><br></div><div><br></div></div>
+<div dir=3D"ltr"><div>Hello,<br><br></div><div>Please also share the output=
+ from uhd_usrp_probe --tree on v3.15.0.0. I&#39;m curious what the fs_path =
+to the iface property in the tree looks like with v3.15.0.0.<br><br></div><=
+div>As you can see from your output from uhd_usrp_probe --tree on v4.2.0.0,=
+ the correct fs_path to iface is supposed to be /blocks/0/Radio#1/dboard/if=
+ace, so the iface property is in the tree. Yet get_rx_dboard_iface stripped=
+ &quot;dboard&quot; when evaluating the path. <br><br></div><div>Can you al=
+so call the function get_usrp_rx_info() from multi_usrp.cpp on both version=
+s? This function evaluates the path to some properties in a similar manner =
+to get_rx_dboard_iface, so if the problem is related to evaluating the fs_p=
+ath, then we should see the issue in both functions. <br><br></div><div>In =
+the meantime, I will investigate further on my end and try to reproduce the=
+ problem on my end<br><br></div><div>Regards,<br><br></div><div>Wan Liu<br>=
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Mon, Aug 8, 2022 at 1:10 PM &lt;<a href=3D"mailto:balinfd3@gmail.c=
+om">balinfd3@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><p>Hello Everyone,</p><p>I have an X300 flashed to ma=
+tch the host UHD ver (4.2.0). I am trying to use the command =E2=80=9Cget_r=
+x_dboard_iface=E2=80=9D to access GPIO pin settings=E2=80=A6.but I am gettt=
+ing error:  <strong>=E2=80=9CPath not found in tree:  /blocks/0/Radio#1/ifa=
+ce=E2=80=9D</strong></p><p>If I go back to UHD ver 3.15.0 then the command =
+runs successfully</p><p>Below is a simple code that fails on UHD v4.2.0 but=
+ works OK on v.3.15.0</p><p>#=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D</p><p>#include &lt;uhd/utils/thread.hpp&gt;</p><p>#include &lt=
+;uhd/utils/safe_main.hpp&gt;</p><p>#include &lt;uhd/usrp/multi_usrp.hpp&gt;=
+</p><p>#include &lt;uhd/exception.hpp&gt;</p><p>#include &lt;uhd/types/tune=
+_request.hpp&gt;</p><p>#include &lt;boost/program_options.hpp&gt;</p><p>#in=
+clude &lt;boost/format.hpp&gt;</p><p>#include &lt;boost/thread.hpp&gt;</p><=
+p>#include &lt;iostream&gt;</p><p>int main()</p><p>{</p><p>// Initialize US=
+RP receiver and Rx stream----------------------------------</p><p>    uhd::=
+usrp::multi_usrp::sptr usrp;</p><p>    uhd::rx_streamer::sptr rxStream;</p>=
+<p>  </p><p>    // Setup USRP x300s</p><p>    uhd::device_addr_t devAddr;</=
+p><p>    devAddr[&quot;addr0&quot;] =3D &quot;192.168.130.2&quot;;</p><p>  =
+  usrp =3D uhd::usrp::multi_usrp::make(devAddr);</p><p><br></p><p>    // Se=
+tup channels</p><p>    uhd::usrp::subdev_spec_t rxSpec(&quot;A:0 B:0&quot;)=
+; </p><p>    usrp-&gt;set_rx_subdev_spec(rxSpec);</p><p><br></p><p>   //Get=
+ dBoard info:</p><p>    uhd::usrp::dboard_iface::sptr dBoard;</p><p>    dBo=
+ard =3D usrp-&gt;get_rx_dboard_iface(0); // &lt; =E2=80=94=E2=80=94- FAILS =
+here</p><p>    </p><p>    #std::cout &lt;&lt; dBoard &lt;&lt; std::endl;</p=
+><p>    return EXIT_SUCCESS;</p><p>}</p><p>#=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</p><p>The =E2=80=9Cuhd_usrp_probe =E2=80=94t=
+ree =E2=80=9D output for V4.2.0 is:</p><p>/mboards</p><p>/mboards/0</p><p>/=
+mboards/0/fpga_version</p><p>/mboards/0/fpga_version_hash</p><p>/mboards/0/=
+fw_version</p><p>/mboards/0/eeprom</p><p>/mboards/0/name</p><p>/mboards/0/c=
+odename</p><p>/mboards/0/master_clock_rate</p><p>/mboards/0/time_source</p>=
+<p>/mboards/0/time_source/value</p><p>/mboards/0/time_source/options</p><p>=
+/mboards/0/time_source/output</p><p>/mboards/0/clock_source</p><p>/mboards/=
+0/clock_source/value</p><p>/mboards/0/clock_source/options</p><p>/mboards/0=
+/clock_source/external</p><p>/mboards/0/clock_source/external/freq</p><p>/m=
+boards/0/clock_source/external/freq/options</p><p>/mboards/0/clock_source/e=
+xternal/value</p><p>/mboards/0/clock_source/output</p><p>/mboards/0/tick_ra=
+te</p><p>/mboards/0/sensors</p><p>/mboards/0/sensors/ref_locked</p><p>/name=
+</p><p>/blocks</p><p>/blocks/0</p><p>/blocks/0/DUC#0</p><p>/blocks/0/DUC#0/=
+noc_id</p><p>/blocks/0/DDC#0</p><p>/blocks/0/DDC#0/noc_id</p><p>/blocks/0/R=
+adio#0</p><p>/blocks/0/Radio#0/noc_id</p><p>/blocks/0/Radio#0/tx_codec</p><=
+p>/blocks/0/Radio#0/tx_codec/gains</p><p>/blocks/0/Radio#0/tx_codec/name</p=
+><p>/blocks/0/Radio#0/rx_codec</p><p>/blocks/0/Radio#0/rx_codec/name</p><p>=
+/blocks/0/Radio#0/rx_codec/gains</p><p>/blocks/0/Radio#0/rx_codec/gains/dig=
+ital</p><p>/blocks/0/Radio#0/rx_codec/gains/digital/range</p><p>/blocks/0/R=
+adio#0/rx_codec/gains/digital/value</p><p>/blocks/0/Radio#0/dboard</p><p>/b=
+locks/0/Radio#0/dboard/rx_eeprom</p><p>/blocks/0/Radio#0/dboard/tx_eeprom</=
+p><p>/blocks/0/Radio#0/dboard/gdb_eeprom</p><p>/blocks/0/Radio#0/dboard/ifa=
+ce</p><p>/blocks/0/Radio#0/dboard/rx_frontends</p><p>/blocks/0/Radio#0/dboa=
+rd/rx_frontends/0</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/name</p><p>=
+/blocks/0/Radio#0/dboard/rx_frontends/0/id</p><p>/blocks/0/Radio#0/dboard/r=
+x_frontends/0/gains</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/freq</p><=
+p>/blocks/0/Radio#0/dboard/rx_frontends/0/freq/value</p><p>/blocks/0/Radio#=
+0/dboard/rx_frontends/0/freq/range</p><p>/blocks/0/Radio#0/dboard/rx_fronte=
+nds/0/antenna</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/antenna/value</=
+p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/antenna/options</p><p>/blocks/=
+0/Radio#0/dboard/rx_frontends/0/sensors</p><p>/blocks/0/Radio#0/dboard/rx_f=
+rontends/0/connection</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/enabled=
+</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/use_lo_offset</p><p>/blocks/=
+0/Radio#0/dboard/rx_frontends/0/bandwidth</p><p>/blocks/0/Radio#0/dboard/rx=
+_frontends/0/bandwidth/value</p><p>/blocks/0/Radio#0/dboard/rx_frontends/0/=
+bandwidth/range</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1</p><p>/blocks=
+/0/Radio#0/dboard/rx_frontends/1/name</p><p>/blocks/0/Radio#0/dboard/rx_fro=
+ntends/1/id</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/gains</p><p>/bloc=
+ks/0/Radio#0/dboard/rx_frontends/1/freq</p><p>/blocks/0/Radio#0/dboard/rx_f=
+rontends/1/freq/value</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/freq/ra=
+nge</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/antenna</p><p>/blocks/0/R=
+adio#0/dboard/rx_frontends/1/antenna/value</p><p>/blocks/0/Radio#0/dboard/r=
+x_frontends/1/antenna/options</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1=
+/sensors</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/connection</p><p>/bl=
+ocks/0/Radio#0/dboard/rx_frontends/1/enabled</p><p>/blocks/0/Radio#0/dboard=
+/rx_frontends/1/use_lo_offset</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1=
+/bandwidth</p><p>/blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/value</p=
+><p>/blocks/0/Radio#0/dboard/rx_frontends/1/bandwidth/range</p><p>/blocks/0=
+/Radio#0/dboard/tx_frontends</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0<=
+/p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/name</p><p>/blocks/0/Radio#0/=
+dboard/tx_frontends/0/gains</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/f=
+req</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/freq/value</p><p>/blocks/=
+0/Radio#0/dboard/tx_frontends/0/freq/range</p><p>/blocks/0/Radio#0/dboard/t=
+x_frontends/0/antenna</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/antenna=
+/value</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/antenna/options</p><p>=
+/blocks/0/Radio#0/dboard/tx_frontends/0/sensors</p><p>/blocks/0/Radio#0/dbo=
+ard/tx_frontends/0/connection</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0=
+/enabled</p><p>/blocks/0/Radio#0/dboard/tx_frontends/0/use_lo_offset</p><p>=
+/blocks/0/Radio#0/dboard/tx_frontends/0/bandwidth</p><p>/blocks/0/Radio#0/d=
+board/tx_frontends/0/bandwidth/value</p><p>/blocks/0/Radio#0/dboard/tx_fron=
+tends/0/bandwidth/range</p><p>/blocks/0/Radio#0/frontends</p><p>/blocks/0/R=
+adio#0/frontends/rx_fe_corrections</p><p>/blocks/0/Radio#0/frontends/rx_fe_=
+corrections/0</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offs=
+et</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/range</p=
+><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/value</p><p>/=
+blocks/0/Radio#0/frontends/rx_fe_corrections/0/dc_offset/enable</p><p>/bloc=
+ks/0/Radio#0/frontends/rx_fe_corrections/0/iq_balance</p><p>/blocks/0/Radio=
+#0/frontends/rx_fe_corrections/0/iq_balance/value</p><p>/blocks/0/Radio#0/f=
+rontends/rx_fe_corrections/1</p><p>/blocks/0/Radio#0/frontends/rx_fe_correc=
+tions/1/dc_offset</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_=
+offset/range</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offse=
+t/value</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/dc_offset/ena=
+ble</p><p>/blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance</p><p>=
+/blocks/0/Radio#0/frontends/rx_fe_corrections/1/iq_balance/value</p><p>/blo=
+cks/0/Radio#0/frontends/tx_fe_corrections</p><p>/blocks/0/Radio#0/frontends=
+/tx_fe_corrections/0</p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/=
+dc_offset</p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/r=
+ange</p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/dc_offset/value<=
+/p><p>/blocks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance</p><p>/blo=
+cks/0/Radio#0/frontends/tx_fe_corrections/0/iq_balance/value</p><p>/blocks/=
+0/DUC#1</p><p>/blocks/0/DUC#1/noc_id</p><p>/blocks/0/DDC#1</p><p>/blocks/0/=
+DDC#1/noc_id</p><p>/blocks/0/Radio#1</p><p>/blocks/0/Radio#1/noc_id</p><p>/=
+blocks/0/Radio#1/tx_codec</p><p>/blocks/0/Radio#1/tx_codec/gains</p><p>/blo=
+cks/0/Radio#1/tx_codec/name</p><p>/blocks/0/Radio#1/rx_codec</p><p>/blocks/=
+0/Radio#1/rx_codec/name</p><p>/blocks/0/Radio#1/rx_codec/gains</p><p>/block=
+s/0/Radio#1/rx_codec/gains/digital</p><p>/blocks/0/Radio#1/rx_codec/gains/d=
+igital/range</p><p>/blocks/0/Radio#1/rx_codec/gains/digital/value</p><p>/bl=
+ocks/0/Radio#1/dboard</p><p>/blocks/0/Radio#1/dboard/rx_eeprom</p><p>/block=
+s/0/Radio#1/dboard/tx_eeprom</p><p>/blocks/0/Radio#1/dboard/gdb_eeprom</p><=
+p>/blocks/0/Radio#1/dboard/iface</p><p>/blocks/0/Radio#1/dboard/rx_frontend=
+s</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0</p><p>/blocks/0/Radio#1/dbo=
+ard/rx_frontends/0/name</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/id</p=
+><p>/blocks/0/Radio#1/dboard/rx_frontends/0/gains</p><p>/blocks/0/Radio#1/d=
+board/rx_frontends/0/freq</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/fre=
+q/value</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/freq/range</p><p>/blo=
+cks/0/Radio#1/dboard/rx_frontends/0/antenna</p><p>/blocks/0/Radio#1/dboard/=
+rx_frontends/0/antenna/value</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/=
+antenna/options</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/sensors</p><p=
+>/blocks/0/Radio#1/dboard/rx_frontends/0/connection</p><p>/blocks/0/Radio#1=
+/dboard/rx_frontends/0/enabled</p><p>/blocks/0/Radio#1/dboard/rx_frontends/=
+0/use_lo_offset</p><p>/blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth</p>=
+<p>/blocks/0/Radio#1/dboard/rx_frontends/0/bandwidth/value</p><p>/blocks/0/=
+Radio#1/dboard/rx_frontends/0/bandwidth/range</p><p>/blocks/0/Radio#1/dboar=
+d/rx_frontends/1</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/name</p><p>/=
+blocks/0/Radio#1/dboard/rx_frontends/1/id</p><p>/blocks/0/Radio#1/dboard/rx=
+_frontends/1/gains</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/freq</p><p=
+>/blocks/0/Radio#1/dboard/rx_frontends/1/freq/value</p><p>/blocks/0/Radio#1=
+/dboard/rx_frontends/1/freq/range</p><p>/blocks/0/Radio#1/dboard/rx_fronten=
+ds/1/antenna</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/antenna/value</p=
+><p>/blocks/0/Radio#1/dboard/rx_frontends/1/antenna/options</p><p>/blocks/0=
+/Radio#1/dboard/rx_frontends/1/sensors</p><p>/blocks/0/Radio#1/dboard/rx_fr=
+ontends/1/connection</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/enabled<=
+/p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/use_lo_offset</p><p>/blocks/0=
+/Radio#1/dboard/rx_frontends/1/bandwidth</p><p>/blocks/0/Radio#1/dboard/rx_=
+frontends/1/bandwidth/value</p><p>/blocks/0/Radio#1/dboard/rx_frontends/1/b=
+andwidth/range</p><p>/blocks/0/Radio#1/dboard/tx_frontends</p><p>/blocks/0/=
+Radio#1/dboard/tx_frontends/0</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0=
+/name</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/gains</p><p>/blocks/0/R=
+adio#1/dboard/tx_frontends/0/freq</p><p>/blocks/0/Radio#1/dboard/tx_fronten=
+ds/0/freq/value</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/freq/range</p=
+><p>/blocks/0/Radio#1/dboard/tx_frontends/0/antenna</p><p>/blocks/0/Radio#1=
+/dboard/tx_frontends/0/antenna/value</p><p>/blocks/0/Radio#1/dboard/tx_fron=
+tends/0/antenna/options</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/senso=
+rs</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/connection</p><p>/blocks/0=
+/Radio#1/dboard/tx_frontends/0/enabled</p><p>/blocks/0/Radio#1/dboard/tx_fr=
+ontends/0/use_lo_offset</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/bandw=
+idth</p><p>/blocks/0/Radio#1/dboard/tx_frontends/0/bandwidth/value</p><p>/b=
+locks/0/Radio#1/dboard/tx_frontends/0/bandwidth/range</p><p>/blocks/0/Radio=
+#1/frontends</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections</p><p>/blo=
+cks/0/Radio#1/frontends/rx_fe_corrections/0</p><p>/blocks/0/Radio#1/fronten=
+ds/rx_fe_corrections/0/dc_offset</p><p>/blocks/0/Radio#1/frontends/rx_fe_co=
+rrections/0/dc_offset/range</p><p>/blocks/0/Radio#1/frontends/rx_fe_correct=
+ions/0/dc_offset/value</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/=
+0/dc_offset/enable</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq=
+_balance</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/0/iq_balance/v=
+alue</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections/1</p><p>/blocks/0/=
+Radio#1/frontends/rx_fe_corrections/1/dc_offset</p><p>/blocks/0/Radio#1/fro=
+ntends/rx_fe_corrections/1/dc_offset/range</p><p>/blocks/0/Radio#1/frontend=
+s/rx_fe_corrections/1/dc_offset/value</p><p>/blocks/0/Radio#1/frontends/rx_=
+fe_corrections/1/dc_offset/enable</p><p>/blocks/0/Radio#1/frontends/rx_fe_c=
+orrections/1/iq_balance</p><p>/blocks/0/Radio#1/frontends/rx_fe_corrections=
+/1/iq_balance/value</p><p>/blocks/0/Radio#1/frontends/tx_fe_corrections</p>=
+<p>/blocks/0/Radio#1/frontends/tx_fe_corrections/0</p><p>/blocks/0/Radio#1/=
+frontends/tx_fe_corrections/0/dc_offset</p><p>/blocks/0/Radio#1/frontends/t=
+x_fe_corrections/0/dc_offset/range</p><p>/blocks/0/Radio#1/frontends/tx_fe_=
+corrections/0/dc_offset/value</p><p>/blocks/0/Radio#1/frontends/tx_fe_corre=
+ctions/0/iq_balance</p><p>/blocks/0/Radio#1/frontends/tx_fe_corrections/0/i=
+q_balance/value</p><p>/blocks/0/Replay#0</p><p>/blocks/0/Replay#0/noc_id</p=
+><p><br></p><p>Thank you for any assistance!</p>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-</blockquote></div>
 
---000000000000635cec05e5cf0c70--
+--00000000000055674905e5d9f8f6--
 
---===============9134782678146049977==
+--===============7415686902309369077==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -378,4 +847,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9134782678146049977==--
+--===============7415686902309369077==--
