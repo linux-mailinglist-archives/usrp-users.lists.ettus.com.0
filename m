@@ -2,82 +2,86 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CE6158F4A3
-	for <lists+usrp-users@lfdr.de>; Thu, 11 Aug 2022 01:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66409590695
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Aug 2022 21:05:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DDB12383FBA
-	for <lists+usrp-users@lfdr.de>; Wed, 10 Aug 2022 19:05:51 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 07B78383FD1
+	for <lists+usrp-users@lfdr.de>; Thu, 11 Aug 2022 15:05:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660172751; bh=3kccLLFekgYrxh7L8vq9dwCRMFpWr2mz5E9eUQKcHRI=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=0PGFYHizQAq5V6X0vLLGE01lyi7jTy1Wvz3rTXsqrxzeIra9IN9fnqOLB5K+075Lv
-	 seipIl+I71y//3e2EgZLph4LFr2ZXep3FRbO/2Fn226U6BBNSzDZRwYOnItjE61RL/
-	 xPicUeE4kle0RYj1ufchzTiiVK5d0MCjFY49ukJtVoJL/t6BRGAvFWv1GNoL2lh9YA
-	 eJ/4DDaPnrGOpNzWwOZlM1ZEsbtvR6CRSby/nj/annbzPNy/a+aWuoIoArfBDnwxR9
-	 NDN2fbwduRt7vUDjzz7AO/ailRN2sH+NWnWdpzh/rJgsmjE4L82XBra0MG5NoJNHFk
-	 sD6r54paSaM3A==
+	t=1660244749; bh=ZPhJaYDoSLpMAaOrQ8AVvI8AAQjw5Vbo/FJxu8TQM/o=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=z7efYbcg+8jZjDdnXRzR2bjm1b3ISVpcqW0LVM6xumUtow/GomQd6iP1B6CIOKtD7
+	 33s/fIxFX1x+1pdsZsT96Nzp3nVotzlqPx6HieAjmGD5rF1CCVQTHG2CWupoYjWpXg
+	 QMyBtNOxh2BycTI8a+iZjYQROqwZpjAaOElwrbT2PfMiETJb6SPhjTqMcxSdlPz94e
+	 V+VIUAEBPv0r9KP5LGYajcRYLjgQcYazWZ3Fjae+F1wIDwJ3YpKitT51+9NKSC8s6g
+	 LdLE5CdlTJmKejax6Fg/p2Dnx3C/0llKh0ETzk1g8jzWin1VQ/z2pY0LX7bl8mGWyS
+	 nQH1FTG4u2EoQ==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9DD81383EA1
-	for <usrp-users@lists.ettus.com>; Wed, 10 Aug 2022 19:04:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 95D5A380054
+	for <usrp-users@lists.ettus.com>; Thu, 11 Aug 2022 15:03:42 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660172680; bh=S0zBaEwQpRD6udRp9kpnWBcnDl772kyJJcDNmuxeamc=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=TmaTkWtaN6bKZzhylbaMKHJnxq9Iu6e8xnBkNbLA2SOQ1NTGvi/HjhheJchbul38Z
-	 BDL2oZK2D3IIgkimBpoCnfDCHmyh62bwgzekQdwGLtXIH3GwxG11+352k/gjinjC5B
-	 VAkUsxn50Rehz0IfMZJnskIeX4nfZCHUMARr7iFokcpvHe6m+cnYANMlx+sTwNfBYM
-	 7YW8rXOOHxqfal2UVTLbUp3Hrxli64NNqXK5zneEOyoJcpIirUmNo+axt83OqbXhl7
-	 WuAGl3dqpz0RwLsgnWuflmquGIAcWyQyYu3n8XURHwnxf9MpdSffRFrOyW9UL9IIpE
-	 wi1dtCjw228cA==
-Date: Wed, 10 Aug 2022 23:04:40 +0000
+	t=1660244622; bh=R5FQ4fKDc9qEnv6u5sDC5+79UFSsuK2l3wARHGkIbz8=;
+	h=Date:To:From:Subject:From;
+	b=HNlUtjLpBWMOpIeKU/8H4kZhHWOD1XUAsedQumzcaF81J9OkzgutpmhDpPY9Q6IUC
+	 D1PGH3PfIlRfwRrAnPPvOVNJwgj60hN0A+EGv0R1O6ZPw8QneynVFlFT3q8IuUkmKz
+	 gFQFZAlnkvKu00PKu406FaWiEEotdoR3aZ2FhphveA7ezNaFYUJR+bt3V73bfJKK7g
+	 teCr9EQbZXoIR4BUsckxTu+ytx/LrYJjKTM0QIPmqxedu7j1EtHWy3+QEWSkx8C41X
+	 L0ycyxNv0ypn7zQm6wQ7O2/27wubkzenrl/sym4wTpqyBkPAk2E0xABV5bqrTGWeAP
+	 IJBp7jbXur6yg==
+Date: Thu, 11 Aug 2022 19:03:42 +0000
 To: usrp-users@lists.ettus.com
-From: horvlint@gmail.com
-Message-ID: <OgU8w28tGFOzSePdxlMR9kEQ7Jfn8bNiKeZJycRKA@lists.ettus.com>
+Message-ID: <mtr81IbAxeWOaSum8S1wMmtW4TQZJ0Wju7QPxw2RQ@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 8e3d9401-2ba1-c0d8-6a74-e00b65904e3b@gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: 4L6SOICHYEWYZ6QAVBLPMEUOIZDBHFXP
-X-Message-ID-Hash: 4L6SOICHYEWYZ6QAVBLPMEUOIZDBHFXP
-X-MailFrom: horvlint@gmail.com
+Message-ID-Hash: YTWPDFC6FUMZB5KXWLMDTKONRF3KAZWL
+X-Message-ID-Hash: YTWPDFC6FUMZB5KXWLMDTKONRF3KAZWL
+X-MailFrom: skyung@nrel.gov
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x310 with WBX-120 LO: unlocked
+Subject: [USRP-users] TDD with N310
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4L6SOICHYEWYZ6QAVBLPMEUOIZDBHFXP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YTWPDFC6FUMZB5KXWLMDTKONRF3KAZWL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9185349414719279689=="
+From: skyung--- via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: skyung@nrel.gov
+Content-Type: multipart/mixed; boundary="===============7925944039775693139=="
 
 This is a multi-part message in MIME format.
 
---===============9185349414719279689==
+--===============7925944039775693139==
 Content-Type: multipart/alternative;
- boundary="b1_OgU8w28tGFOzSePdxlMR9kEQ7Jfn8bNiKeZJycRKA"
+ boundary="b1_mtr81IbAxeWOaSum8S1wMmtW4TQZJ0Wju7QPxw2RQ"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_OgU8w28tGFOzSePdxlMR9kEQ7Jfn8bNiKeZJycRKA
+--b1_mtr81IbAxeWOaSum8S1wMmtW4TQZJ0Wju7QPxw2RQ
 Content-Type: text/plain; charset=us-ascii
 
-Thanks for the suggestion, both LO locks on the same WBX in the txrx_loopback_to_file example with UHD version 3.15-LTS. 
+Hi all,
 
-It seems that this solves the problem.
+I am deploying Open Air Interface 5G with USRP n310s and just want to verify something.
 
---b1_OgU8w28tGFOzSePdxlMR9kEQ7Jfn8bNiKeZJycRKA
+So the question is - for the communication using FDD between a base station and UE, two n310s should be synced through an external time source (such as NTP), right?
+
+Or should the internal clock source suffice?
+
+--b1_mtr81IbAxeWOaSum8S1wMmtW4TQZJ0Wju7QPxw2RQ
 Content-Type: text/html; charset=us-ascii
 
-<p>Thanks for the suggestion, both LO locks on the same WBX in the txrx_loopback_to_file example with UHD version 3.15-LTS. </p><p>It seems that this solves the problem.</p>
+<p>Hi all,</p><p><br></p><p>I am deploying Open Air Interface 5G with USRP n310s and just want to verify something.</p><p>So the question is - for the communication using FDD between a base station and UE, two n310s should be synced through an external time source (such as NTP), right?</p><p>Or should the internal clock source suffice?</p>
 
 
---b1_OgU8w28tGFOzSePdxlMR9kEQ7Jfn8bNiKeZJycRKA--
+--b1_mtr81IbAxeWOaSum8S1wMmtW4TQZJ0Wju7QPxw2RQ--
 
---===============9185349414719279689==
+--===============7925944039775693139==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +91,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9185349414719279689==--
+--===============7925944039775693139==--
