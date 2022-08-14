@@ -2,399 +2,178 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09EFC591DC2
-	for <lists+usrp-users@lfdr.de>; Sun, 14 Aug 2022 05:44:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C344D591E22
+	for <lists+usrp-users@lfdr.de>; Sun, 14 Aug 2022 06:44:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8D6053830B7
-	for <lists+usrp-users@lfdr.de>; Sat, 13 Aug 2022 23:44:26 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id A7B8C381405
+	for <lists+usrp-users@lfdr.de>; Sun, 14 Aug 2022 00:44:19 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660448666; bh=/LSehEuoJ/ApSE0Y3XxOpKHFcsImekH/y87kqeghXgg=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=MkB9rOZHEMCvxxGyKFmidU1WTVj8tED9RTr9D6qVjhpg1qpEs7NUC3m8GBXld3143
-	 +1Gi4cssOZzjKL4F2tgUupYfg2gMamwttfQd6I7hkPro/ygUSh9op9qD2Px8oQCfuB
-	 Kfzp+IFqPG1xFW9UqpywT9WHJWp5nDiQaN40shRem87JD9BtBeai6V2LAoLeBdrT5q
-	 9myYIyHiaWBJ0AfgzBl97X2YMY5ruRZXnQCmqxX0clVHkZv+D5HuJrsWTKBOU4DSY/
-	 3Cg8Haw00GqfYgKwI8TBOq75FMUlb+ECXYj+f3znRY8r1BaUfxUlmib/zPLf0mBxwo
-	 kg2jk/vM0uf/w==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 851EE3812DB
-	for <usrp-users@lists.ettus.com>; Sat, 13 Aug 2022 23:42:29 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660448549; bh=x+OU5BS8aSIHoeXR/OSTQ29N6h9JhcnKnNL96i7BOb0=;
-	h=Date:To:From:Subject:From;
-	b=V53/ZMPWL3rloHMILIgYiiy/dTxCVAo14qLNorinzt05XI7qRGLkuF/3n1FB7wUUb
-	 k7t6R1B4oXIfHFin6qX39uWQot8o3SqMzQda0DLJXQ4/wVMFiO75PGJ1+m6RXAw1f+
-	 kUz0jEPV8nDbDWuVFw5Es9FyFW/JDzjhc6TPm9E89ljt0Wem7FClpB6jiW6adq2nq5
-	 q251YyY8d6mTnURbg29GSckE/hIxn/vJgOZiWvrdi9La8VaqPEhav198whxTgx1Ap9
-	 7GNTw/d+hTiv6p+QNoZySsWgc51UIUEg9e3EEiIBvjz9U91t7APJHN8jjr1jEsYvJr
-	 gNf12JsP3F27A==
-Date: Sun, 14 Aug 2022 03:42:29 +0000
-To: usrp-users@lists.ettus.com
-From: woznych@gmail.com
-Message-ID: <hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1660452259; bh=khnSPdQWXJRBk3kEoe5Lx40te4dADwen8BIb671e8zk=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=QazRQZXIQDdZu8d4asioW5Sb7ZN3HmkzUO2sBwCDeJcBE8vjD0n7V3m24RZ6i5eXU
+	 ZUsw9ZFAZeokfmzSnfm2jFEOhk+VrpVB4egLyZU2UKdOTvgwIk6Vwj2+v8pqapFERD
+	 Su29+B23dcxtE8GLq1WkKQTaVTevKe7G9DRivDvcbEMHWV5jabYdMtwyF+s+CCXhT0
+	 tTpaNI6gACxGf6MJgBoRE6vZtM/lOQILZ+MmxmCLAw0kmmrUx26Q8coGABP9UCxG5/
+	 pAnDiQTGGGWCGE1NsgO/ivvqMJhDKcu1UmYQtrL+QzR3gTA491VWtuaVuuq01PWiWc
+	 G4lz82aK4Q+WQ==
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 366513813D6
+	for <usrp-users@lists.ettus.com>; Sun, 14 Aug 2022 00:43:03 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qpflv7Wd";
+	dkim-atps=neutral
+Received: by mail-ed1-f54.google.com with SMTP id z2so5887427edc.1
+        for <usrp-users@lists.ettus.com>; Sat, 13 Aug 2022 21:43:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc;
+        bh=QUBbG9BEKzYK4Iw897sJPMD8JnO/WSwlWptdpbICcH4=;
+        b=qpflv7WdTvDTQkn1k3y/upuMF6buLpd0RqrlvuWulqculzdzoaY265OShek7hvN8gQ
+         NoyzyhMZcTkJurWGo2b7u8dV7nGGcokwjuEq50FYKVTpdqoB1XSW/B/jXqt7iqp9tlox
+         kje3vrSZn7QK9IhKksDJ57irFa5lYD3plrvXOrgCUc96HBeVGvhfmhdOsLV0Nl4TRf0Y
+         23BMoxUDdvZ/1of4r2jNImZk59N6gdXv9+xFP1eCyA+KrcFtmHf1gSXBVXtFGoXL6Nva
+         dqU79qIN+q117UqAQqXan7bsVHlwhghnOkuD/V+fPv3TuiZ/9llw1EafQthgij8zw+3O
+         yT5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
+        bh=QUBbG9BEKzYK4Iw897sJPMD8JnO/WSwlWptdpbICcH4=;
+        b=nZc7gkKlWzZ8yrYeTujkyXBERravwq5oJ8Emd8tKPShiIm+9rM0ZDERuT8c06uucaT
+         lsMsHpMbda6MNVHNL1IE1loSMqe+RypGNCmmEzqUqhlLH3y6HQ8gZmmdaE1AIvtDbAZL
+         ove0JXDHqc0wluWDfxB8MadD1QttFYqUs9yiQv9E5wHJjH2wNPgmx07FThm6N8eifbz4
+         EICqhQGGrzUXNGrWUnYYHwsM+FwNm1F+FtX/MJnDiEhazy0qJMaoHlSoULzvj1DJDORN
+         xoMJKWmkxFbGG2+1b5zYJ/g5u9xhiMCtoT9mHD7ipJHScJcJqzwL3DL+Tqfb4VtraBrp
+         xfFQ==
+X-Gm-Message-State: ACgBeo1g0Fzm2p5CtMNtOaON5d5kXl4A16S8fg/2fP4mnQaJlx0TshiP
+	bUajQQGyh7appWmUzZHGExijIOhiGbwbq7r2xnI=
+X-Google-Smtp-Source: AA6agR5PmddeSLZGtrDPrSP6hKc0wkEOXcq3Y98jZP2zjmiCqZts82ETi+Qxw4Li3ZiaT8B0Ql7fqkAdPrMigO5Xt8E=
+X-Received: by 2002:a05:6402:32a8:b0:43e:5490:295f with SMTP id
+ f40-20020a05640232a800b0043e5490295fmr9547874eda.193.1660452182113; Sat, 13
+ Aug 2022 21:43:02 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID-Hash: TUWUS5M2C7BBNGA7CYITQFZU4XSKP5ZT
-X-Message-ID-Hash: TUWUS5M2C7BBNGA7CYITQFZU4XSKP5ZT
-X-MailFrom: woznych@gmail.com
+References: <hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w@lists.ettus.com>
+In-Reply-To: <hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w@lists.ettus.com>
+From: Nikos Balkanas <nbalkanas@gmail.com>
+Date: Sun, 14 Aug 2022 00:42:50 -0400
+Message-ID: <CAAxXO2E4+JP77swc7Z01GJCOrL3UpwTM_GbKM5=voN9Q_h5fCA@mail.gmail.com>
+To: woznych@gmail.com
+Message-ID-Hash: NZNM2QFXYSMP2VKQD4OESXELV36A4ZKB
+X-Message-ID-Hash: NZNM2QFXYSMP2VKQD4OESXELV36A4ZKB
+X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Bus errors and UHD exceptions with simple I/Q recorder
+Subject: [USRP-users] Re: Bus errors and UHD exceptions with simple I/Q recorder
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TUWUS5M2C7BBNGA7CYITQFZU4XSKP5ZT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NZNM2QFXYSMP2VKQD4OESXELV36A4ZKB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4572872211958079583=="
-
-This is a multi-part message in MIME format.
-
---===============4572872211958079583==
-Content-Type: multipart/alternative;
- boundary="b1_hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Looked around on this mailing list and couldn=E2=80=99t find an explanati=
-on, but I=E2=80=99m running in to random exceptions being thrown sometime=
-s in my C++ I/Q recorder application. I can=E2=80=99t seem to replicate i=
-t with the example code found in =E2=80=9Crx_samples_to_file=E2=80=9D. Us=
-ing g++ (Ubuntu 9.4.0-1ubuntu1\~20.04.1) 9.4.0.
-
-Code can be found here:
-
-https://github.com/cwozny/sdr_channelizer/blob/b3d96675e79b0e9d1e469c51dd=
-45b1396432829b/cpp/record_iq_usrp.cpp
-
-Here is the output which happens sometimes, but not all of the time (cmd =
-line arguments are specifying to record 152.6 MHz at 60 Msps, 60 dB gain,=
- 56 MHz IF bandwidth, with a buffer size of 0.5 seconds and to run for 10=
- seconds):
-
-`XXXXX:~/workarea/sdr_channelizer/cpp$ ./a.out 152.6 56 60 60 0.5 10`
-
-`[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.0.HEAD-=
-0-g321295fb`
-
-`[INFO] [B200] Detected Device: B200mini`
-
-`[INFO] [B200] Operating over USB 3.`
-
-`[INFO] [B200] Initialize CODEC control...`
-
-`[INFO] [B200] Initialize Radio control...`
-
-`[INFO] [B200] Performing register loopback test... `
-
-`[INFO] [B200] Register loopback test passed`
-
-`[INFO] [B200] Setting master clock rate selection to 'automatic'.`
-
-`[INFO] [B200] Asking for clock rate 16.000000 MHz... `
-
-`[INFO] [B200] Actually got clock rate 16.000000 MHz.`
-
-`FPGA version: `
-
-`Firmware version: pp=EF=BF=BD0=EF=BF=BD`
-
-`Using B200mini serial number `
-
-`Frequency =3D 152.6 MHz`
-
-`[INFO] [B200] Asking for clock rate 60.000000 MHz... `
-
-`[INFO] [B200] Actually got clock rate 60.000000 MHz.`
-
-`Sample Rate =3D 60 Msps`
-
-`Bandwidth =3D 56 MHz`
-
-`Disabled automatic gain control`
-
-`Gain =3D 60 dB`
-
-`[ERROR] [UHD] Exception caught in safe-call.`
-
-`  in ~tx_vita_core_3000_impl`
-
-`  at XXXXX/workarea/uhd/host/lib/usrp/cores/tx_vita_core_3000.cpp:49`
-
-`this->clear(); -> AssertionError: accum_timeout < _timeout`
-
-`  in wait_for_ack`
-
-`  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.cpp:227`
-
-`[ERROR] [UHD] Exception caught in safe-call.`
-
-`  in ~b200_radio_ctrl_core_impl`
-
-`  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.cpp:65`
-
-`this->peek32(0); _async_task.reset(); -> AssertionError: accum_timeout <=
- _timeout`
-
-`  in wait_for_ack`
-
-`  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.cpp:227`
-
-`[ERROR] [UHD] Exception caught in safe-call.`
-
-`  in ~b200_radio_ctrl_core_impl`
-
-`  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.cpp:65`
-
-`this->peek32(0); _async_task.reset(); -> AssertionError: accum_timeout <=
- _timeout`
-
-`  in wait_for_ack`
-
-`  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.cpp:227`
-
-When the application doesn=E2=80=99t throw this error and runs to executi=
-on, it will **always** display =E2=80=9CBus error (core dumped)=E2=80=9D =
-after it prints out the number of overruns that occurred. Unsure if that =
-is related or not. Here is an example of it running to completion, but th=
-rowing the bus error at the end:
-
-`XXXXX:~/workarea/sdr_channelizer/cpp$ ./a.out 152.6 56 60 60 0.3 10`
-
-`[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.0.HEAD-=
-0-g321295fb`
-
-`[INFO] [B200] Detected Device: B200mini`
-
-`[INFO] [B200] Operating over USB 3.`
-
-`[INFO] [B200] Initialize CODEC control...`
-
-`[INFO] [B200] Initialize Radio control...`
-
-`[INFO] [B200] Performing register loopback test... `
-
-`[INFO] [B200] Register loopback test passed`
-
-`[INFO] [B200] Setting master clock rate selection to 'automatic'.`
-
-`[INFO] [B200] Asking for clock rate 16.000000 MHz... `
-
-`[INFO] [B200] Actually got clock rate 16.000000 MHz.`
-
-`FPGA version: `
-
-`Firmware version: =EF=BF=BD`
-
-`Using B200mini serial number `
-
-`Frequency =3D 152.6 MHz`
-
-`[INFO] [B200] Asking for clock rate 60.000000 MHz... `
-
-`[INFO] [B200] Actually got clock rate 60.000000 MHz.`
-
-`Sample Rate =3D 60 Msps`
-
-`Bandwidth =3D 56 MHz`
-
-`Disabled automatic gain control`
-
-`Gain =3D 60 dB`
-
-`Received 18000960`
-
-`Gain =3D 59 dB`
-
-`Received 18000570`
-
-`Gain =3D 58 dB`
-
-`Received 18000525`
-
-`Received 18000206`
-
-`Received 18000475`
-
-`Received 18000848`
-
-`Received 18000572`
-
-`Received 18000386`
-
-`Received 18001343`
-
-`Received 18000548`
-
-`Received 18000222`
-
-`Received 18000420`
-
-`Received 18000553`
-
-`Received 18000247`
-
-`Received 18000365`
-
-`Received 18000567`
-
-`Received 18000261`
-
-`Received 18000336`
-
-`Received 18000582`
-
-`Received 18000305`
-
-`Gain =3D 57 dB`
-
-`Received 18000874`
-
-`Received 18000711`
-
-`Received 18000311`
-
-`Received 18000868`
-
-`Received 18000378`
-
-`Received 18000096`
-
-`Received 18000653`
-
-`Received 18000582`
-
-`Received 18000450`
-
-`Received 18000517`
-
-`Received 18001303`
-
-`Received 18000844`
-
-`Received 18000571`
-
-`Received 18001314`
-
-`Disabled RX`
-
-`There were 0 overruns.`
-
-`Bus error (core dumped)`
-
-Has anyone run in to this before?
-
---b1_hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Looked around on this mailing list and couldn=E2=80=99t find an explanat=
-ion, but I=E2=80=99m running in to random exceptions being thrown sometimes=
- in my C++ I/Q recorder application. I can=E2=80=99t seem to replicate it w=
-ith the example code found in =E2=80=9Crx_samples_to_file=E2=80=9D. Using g=
-++ (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0.</p><p>Code can be found here:</p>=
-<p>https://github.com/cwozny/sdr_channelizer/blob/b3d96675e79b0e9d1e469c51d=
-d45b1396432829b/cpp/record_iq_usrp.cpp</p><p>Here is the output which happe=
-ns sometimes, but not all of the time (cmd line arguments are specifying to=
- record 152.6 MHz at 60 Msps, 60 dB gain, 56 MHz IF bandwidth, with a buffe=
-r size of 0.5 seconds and to run for 10 seconds):</p><p><code>XXXXX:~/worka=
-rea/sdr_channelizer/cpp$ ./a.out 152.6 56 60 60 0.5 10</code></p><p><code>[=
-INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.0.HEAD-0-g3=
-21295fb</code></p><p><code>[INFO] [B200] Detected Device: B200mini</code></=
-p><p><code>[INFO] [B200] Operating over USB 3.</code></p><p><code>[INFO] [B=
-200] Initialize CODEC control...</code></p><p><code>[INFO] [B200] Initializ=
-e Radio control...</code></p><p><code>[INFO] [B200] Performing register loo=
-pback test... </code></p><p><code>[INFO] [B200] Register loopback test pass=
-ed</code></p><p><code>[INFO] [B200] Setting master clock rate selection to =
-'automatic'.</code></p><p><code>[INFO] [B200] Asking for clock rate 16.0000=
-00 MHz... </code></p><p><code>[INFO] [B200] Actually got clock rate 16.0000=
-00 MHz.</code></p><p><code>FPGA version: </code></p><p><code>Firmware versi=
-on: pp=EF=BF=BD0=EF=BF=BD</code></p><p><code>Using B200mini serial number <=
-/code></p><p><code>Frequency =3D 152.6 MHz</code></p><p><code>[INFO] [B200]=
- Asking for clock rate 60.000000 MHz... </code></p><p><code>[INFO] [B200] A=
-ctually got clock rate 60.000000 MHz.</code></p><p><code>Sample Rate =3D 60=
- Msps</code></p><p><code>Bandwidth =3D 56 MHz</code></p><p><code>Disabled a=
-utomatic gain control</code></p><p><code>Gain =3D 60 dB</code></p><p><code>=
-[ERROR] [UHD] Exception caught in safe-call.</code></p><p><code>  in ~tx_vi=
-ta_core_3000_impl</code></p><p><code>  at XXXXX/workarea/uhd/host/lib/usrp/=
-cores/tx_vita_core_3000.cpp:49</code></p><p><code>this-&gt;clear(); -&gt; A=
-ssertionError: accum_timeout &lt; _timeout</code></p><p><code>  in wait_for=
-_ack</code></p><p><code>  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_rad=
-io_ctrl_core.cpp:227</code></p><p><code>[ERROR] [UHD] Exception caught in s=
-afe-call.</code></p><p><code>  in ~b200_radio_ctrl_core_impl</code></p><p><=
-code>  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.cpp:65=
-</code></p><p><code>this-&gt;peek32(0); _async_task.reset(); -&gt; Assertio=
-nError: accum_timeout &lt; _timeout</code></p><p><code>  in wait_for_ack</c=
-ode></p><p><code>  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl=
-_core.cpp:227</code></p><p><code>[ERROR] [UHD] Exception caught in safe-cal=
-l.</code></p><p><code>  in ~b200_radio_ctrl_core_impl</code></p><p><code>  =
-at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.cpp:65</code>=
-</p><p><code>this-&gt;peek32(0); _async_task.reset(); -&gt; AssertionError:=
- accum_timeout &lt; _timeout</code></p><p><code>  in wait_for_ack</code></p=
-><p><code>  at XXXXX/workarea/uhd/host/lib/usrp/b200/b200_radio_ctrl_core.c=
-pp:227</code></p><p>When the application doesn=E2=80=99t throw this error a=
-nd runs to execution, it will <strong>always</strong> display =E2=80=9CBus =
-error (core dumped)=E2=80=9D after it prints out the number of overruns tha=
-t occurred. Unsure if that is related or not. Here is an example of it runn=
-ing to completion, but throwing the bus error at the end:</p><p><code>XXXXX=
-:~/workarea/sdr_channelizer/cpp$ ./a.out 152.6 56 60 60 0.3 10</code></p><p=
-><code>[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.2.0.H=
-EAD-0-g321295fb</code></p><p><code>[INFO] [B200] Detected Device: B200mini<=
-/code></p><p><code>[INFO] [B200] Operating over USB 3.</code></p><p><code>[=
-INFO] [B200] Initialize CODEC control...</code></p><p><code>[INFO] [B200] I=
-nitialize Radio control...</code></p><p><code>[INFO] [B200] Performing regi=
-ster loopback test... </code></p><p><code>[INFO] [B200] Register loopback t=
-est passed</code></p><p><code>[INFO] [B200] Setting master clock rate selec=
-tion to 'automatic'.</code></p><p><code>[INFO] [B200] Asking for clock rate=
- 16.000000 MHz... </code></p><p><code>[INFO] [B200] Actually got clock rate=
- 16.000000 MHz.</code></p><p><code>FPGA version: </code></p><p><code>Firmwa=
-re version: =EF=BF=BD</code></p><p><code>Using B200mini serial number </cod=
-e></p><p><code>Frequency =3D 152.6 MHz</code></p><p><code>[INFO] [B200] Ask=
-ing for clock rate 60.000000 MHz... </code></p><p><code>[INFO] [B200] Actua=
-lly got clock rate 60.000000 MHz.</code></p><p><code>Sample Rate =3D 60 Msp=
-s</code></p><p><code>Bandwidth =3D 56 MHz</code></p><p><code>Disabled autom=
-atic gain control</code></p><p><code>Gain =3D 60 dB</code></p><p><code>Rece=
-ived 18000960</code></p><p><code>Gain =3D 59 dB</code></p><p><code>Received=
- 18000570</code></p><p><code>Gain =3D 58 dB</code></p><p><code>Received 180=
-00525</code></p><p><code>Received 18000206</code></p><p><code>Received 1800=
-0475</code></p><p><code>Received 18000848</code></p><p><code>Received 18000=
-572</code></p><p><code>Received 18000386</code></p><p><code>Received 180013=
-43</code></p><p><code>Received 18000548</code></p><p><code>Received 1800022=
-2</code></p><p><code>Received 18000420</code></p><p><code>Received 18000553=
-</code></p><p><code>Received 18000247</code></p><p><code>Received 18000365<=
-/code></p><p><code>Received 18000567</code></p><p><code>Received 18000261</=
-code></p><p><code>Received 18000336</code></p><p><code>Received 18000582</c=
-ode></p><p><code>Received 18000305</code></p><p><code>Gain =3D 57 dB</code>=
-</p><p><code>Received 18000874</code></p><p><code>Received 18000711</code><=
-/p><p><code>Received 18000311</code></p><p><code>Received 18000868</code></=
-p><p><code>Received 18000378</code></p><p><code>Received 18000096</code></p=
-><p><code>Received 18000653</code></p><p><code>Received 18000582</code></p>=
-<p><code>Received 18000450</code></p><p><code>Received 18000517</code></p><=
-p><code>Received 18001303</code></p><p><code>Received 18000844</code></p><p=
-><code>Received 18000571</code></p><p><code>Received 18001314</code></p><p>=
-<code>Disabled RX</code></p><p><code>There were 0 overruns.</code></p><p><c=
-ode>Bus error (core dumped)</code></p><p>Has anyone run in to this before?<=
-/p>
-
---b1_hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w--
-
---===============4572872211958079583==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4572872211958079583==--
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+SGksDQoNClRoYXQncyB5b3VyIGNvZGUgYW5kIHlvdXIgbWVtb3J5Lg0KSGF2ZSB5b3UgdHJpZWQg
+cnVubmluZyBpdCB1bmRlciB2YWxncmluZD8NCg0KSFRIDQpOaWtvcw0KDQpPbiBTYXQsIEF1ZyAx
+MywgMjAyMiBhdCAxMTo0MyBQTSA8d296bnljaEBnbWFpbC5jb20+IHdyb3RlOg0KPg0KPiBMb29r
+ZWQgYXJvdW5kIG9uIHRoaXMgbWFpbGluZyBsaXN0IGFuZCBjb3VsZG7igJl0IGZpbmQgYW4gZXhw
+bGFuYXRpb24sIGJ1dCBJ4oCZbSBydW5uaW5nIGluIHRvIHJhbmRvbSBleGNlcHRpb25zIGJlaW5n
+IHRocm93biBzb21ldGltZXMgaW4gbXkgQysrIEkvUSByZWNvcmRlciBhcHBsaWNhdGlvbi4gSSBj
+YW7igJl0IHNlZW0gdG8gcmVwbGljYXRlIGl0IHdpdGggdGhlIGV4YW1wbGUgY29kZSBmb3VuZCBp
+biDigJxyeF9zYW1wbGVzX3RvX2ZpbGXigJ0uIFVzaW5nIGcrKyAoVWJ1bnR1IDkuNC4wLTF1YnVu
+dHUxfjIwLjA0LjEpIDkuNC4wLg0KPg0KPiBDb2RlIGNhbiBiZSBmb3VuZCBoZXJlOg0KPg0KPiBo
+dHRwczovL2dpdGh1Yi5jb20vY3dvem55L3Nkcl9jaGFubmVsaXplci9ibG9iL2IzZDk2Njc1ZTc5
+YjBlOWQxZTQ2OWM1MWRkNDViMTM5NjQzMjgyOWIvY3BwL3JlY29yZF9pcV91c3JwLmNwcA0KPg0K
+PiBIZXJlIGlzIHRoZSBvdXRwdXQgd2hpY2ggaGFwcGVucyBzb21ldGltZXMsIGJ1dCBub3QgYWxs
+IG9mIHRoZSB0aW1lIChjbWQgbGluZSBhcmd1bWVudHMgYXJlIHNwZWNpZnlpbmcgdG8gcmVjb3Jk
+IDE1Mi42IE1IeiBhdCA2MCBNc3BzLCA2MCBkQiBnYWluLCA1NiBNSHogSUYgYmFuZHdpZHRoLCB3
+aXRoIGEgYnVmZmVyIHNpemUgb2YgMC41IHNlY29uZHMgYW5kIHRvIHJ1biBmb3IgMTAgc2Vjb25k
+cyk6DQo+DQo+IFhYWFhYOn4vd29ya2FyZWEvc2RyX2NoYW5uZWxpemVyL2NwcCQgLi9hLm91dCAx
+NTIuNiA1NiA2MCA2MCAwLjUgMTANCj4NCj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZl
+cnNpb24gOS40LjA7IEJvb3N0XzEwNzEwMDsgVUhEXzQuMi4wLkhFQUQtMC1nMzIxMjk1ZmINCj4N
+Cj4gW0lORk9dIFtCMjAwXSBEZXRlY3RlZCBEZXZpY2U6IEIyMDBtaW5pDQo+DQo+IFtJTkZPXSBb
+QjIwMF0gT3BlcmF0aW5nIG92ZXIgVVNCIDMuDQo+DQo+IFtJTkZPXSBbQjIwMF0gSW5pdGlhbGl6
+ZSBDT0RFQyBjb250cm9sLi4uDQo+DQo+IFtJTkZPXSBbQjIwMF0gSW5pdGlhbGl6ZSBSYWRpbyBj
+b250cm9sLi4uDQo+DQo+IFtJTkZPXSBbQjIwMF0gUGVyZm9ybWluZyByZWdpc3RlciBsb29wYmFj
+ayB0ZXN0Li4uDQo+DQo+IFtJTkZPXSBbQjIwMF0gUmVnaXN0ZXIgbG9vcGJhY2sgdGVzdCBwYXNz
+ZWQNCj4NCj4gW0lORk9dIFtCMjAwXSBTZXR0aW5nIG1hc3RlciBjbG9jayByYXRlIHNlbGVjdGlv
+biB0byAnYXV0b21hdGljJy4NCj4NCj4gW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJh
+dGUgMTYuMDAwMDAwIE1Iei4uLg0KPg0KPiBbSU5GT10gW0IyMDBdIEFjdHVhbGx5IGdvdCBjbG9j
+ayByYXRlIDE2LjAwMDAwMCBNSHouDQo+DQo+IEZQR0EgdmVyc2lvbjoNCj4NCj4gRmlybXdhcmUg
+dmVyc2lvbjogcHDvv70w77+9DQo+DQo+IFVzaW5nIEIyMDBtaW5pIHNlcmlhbCBudW1iZXINCj4N
+Cj4gRnJlcXVlbmN5ID0gMTUyLjYgTUh6DQo+DQo+IFtJTkZPXSBbQjIwMF0gQXNraW5nIGZvciBj
+bG9jayByYXRlIDYwLjAwMDAwMCBNSHouLi4NCj4NCj4gW0lORk9dIFtCMjAwXSBBY3R1YWxseSBn
+b3QgY2xvY2sgcmF0ZSA2MC4wMDAwMDAgTUh6Lg0KPg0KPiBTYW1wbGUgUmF0ZSA9IDYwIE1zcHMN
+Cj4NCj4gQmFuZHdpZHRoID0gNTYgTUh6DQo+DQo+IERpc2FibGVkIGF1dG9tYXRpYyBnYWluIGNv
+bnRyb2wNCj4NCj4gR2FpbiA9IDYwIGRCDQo+DQo+IFtFUlJPUl0gW1VIRF0gRXhjZXB0aW9uIGNh
+dWdodCBpbiBzYWZlLWNhbGwuDQo+DQo+IGluIH50eF92aXRhX2NvcmVfMzAwMF9pbXBsDQo+DQo+
+IGF0IFhYWFhYL3dvcmthcmVhL3VoZC9ob3N0L2xpYi91c3JwL2NvcmVzL3R4X3ZpdGFfY29yZV8z
+MDAwLmNwcDo0OQ0KPg0KPiB0aGlzLT5jbGVhcigpOyAtPiBBc3NlcnRpb25FcnJvcjogYWNjdW1f
+dGltZW91dCA8IF90aW1lb3V0DQo+DQo+IGluIHdhaXRfZm9yX2Fjaw0KPg0KPiBhdCBYWFhYWC93
+b3JrYXJlYS91aGQvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBfcmFkaW9fY3RybF9jb3JlLmNwcDoy
+MjcNCj4NCj4gW0VSUk9SXSBbVUhEXSBFeGNlcHRpb24gY2F1Z2h0IGluIHNhZmUtY2FsbC4NCj4N
+Cj4gaW4gfmIyMDBfcmFkaW9fY3RybF9jb3JlX2ltcGwNCj4NCj4gYXQgWFhYWFgvd29ya2FyZWEv
+dWhkL2hvc3QvbGliL3VzcnAvYjIwMC9iMjAwX3JhZGlvX2N0cmxfY29yZS5jcHA6NjUNCj4NCj4g
+dGhpcy0+cGVlazMyKDApOyBfYXN5bmNfdGFzay5yZXNldCgpOyAtPiBBc3NlcnRpb25FcnJvcjog
+YWNjdW1fdGltZW91dCA8IF90aW1lb3V0DQo+DQo+IGluIHdhaXRfZm9yX2Fjaw0KPg0KPiBhdCBY
+WFhYWC93b3JrYXJlYS91aGQvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBfcmFkaW9fY3RybF9jb3Jl
+LmNwcDoyMjcNCj4NCj4gW0VSUk9SXSBbVUhEXSBFeGNlcHRpb24gY2F1Z2h0IGluIHNhZmUtY2Fs
+bC4NCj4NCj4gaW4gfmIyMDBfcmFkaW9fY3RybF9jb3JlX2ltcGwNCj4NCj4gYXQgWFhYWFgvd29y
+a2FyZWEvdWhkL2hvc3QvbGliL3VzcnAvYjIwMC9iMjAwX3JhZGlvX2N0cmxfY29yZS5jcHA6NjUN
+Cj4NCj4gdGhpcy0+cGVlazMyKDApOyBfYXN5bmNfdGFzay5yZXNldCgpOyAtPiBBc3NlcnRpb25F
+cnJvcjogYWNjdW1fdGltZW91dCA8IF90aW1lb3V0DQo+DQo+IGluIHdhaXRfZm9yX2Fjaw0KPg0K
+PiBhdCBYWFhYWC93b3JrYXJlYS91aGQvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBfcmFkaW9fY3Ry
+bF9jb3JlLmNwcDoyMjcNCj4NCj4gV2hlbiB0aGUgYXBwbGljYXRpb24gZG9lc27igJl0IHRocm93
+IHRoaXMgZXJyb3IgYW5kIHJ1bnMgdG8gZXhlY3V0aW9uLCBpdCB3aWxsIGFsd2F5cyBkaXNwbGF5
+IOKAnEJ1cyBlcnJvciAoY29yZSBkdW1wZWQp4oCdIGFmdGVyIGl0IHByaW50cyBvdXQgdGhlIG51
+bWJlciBvZiBvdmVycnVucyB0aGF0IG9jY3VycmVkLiBVbnN1cmUgaWYgdGhhdCBpcyByZWxhdGVk
+IG9yIG5vdC4gSGVyZSBpcyBhbiBleGFtcGxlIG9mIGl0IHJ1bm5pbmcgdG8gY29tcGxldGlvbiwg
+YnV0IHRocm93aW5nIHRoZSBidXMgZXJyb3IgYXQgdGhlIGVuZDoNCj4NCj4gWFhYWFg6fi93b3Jr
+YXJlYS9zZHJfY2hhbm5lbGl6ZXIvY3BwJCAuL2Eub3V0IDE1Mi42IDU2IDYwIDYwIDAuMyAxMA0K
+Pg0KPiBbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA5LjQuMDsgQm9vc3RfMTA3
+MTAwOyBVSERfNC4yLjAuSEVBRC0wLWczMjEyOTVmYg0KPg0KPiBbSU5GT10gW0IyMDBdIERldGVj
+dGVkIERldmljZTogQjIwMG1pbmkNCj4NCj4gW0lORk9dIFtCMjAwXSBPcGVyYXRpbmcgb3ZlciBV
+U0IgMy4NCj4NCj4gW0lORk9dIFtCMjAwXSBJbml0aWFsaXplIENPREVDIGNvbnRyb2wuLi4NCj4N
+Cj4gW0lORk9dIFtCMjAwXSBJbml0aWFsaXplIFJhZGlvIGNvbnRyb2wuLi4NCj4NCj4gW0lORk9d
+IFtCMjAwXSBQZXJmb3JtaW5nIHJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QuLi4NCj4NCj4gW0lORk9d
+IFtCMjAwXSBSZWdpc3RlciBsb29wYmFjayB0ZXN0IHBhc3NlZA0KPg0KPiBbSU5GT10gW0IyMDBd
+IFNldHRpbmcgbWFzdGVyIGNsb2NrIHJhdGUgc2VsZWN0aW9uIHRvICdhdXRvbWF0aWMnLg0KPg0K
+PiBbSU5GT10gW0IyMDBdIEFza2luZyBmb3IgY2xvY2sgcmF0ZSAxNi4wMDAwMDAgTUh6Li4uDQo+
+DQo+IFtJTkZPXSBbQjIwMF0gQWN0dWFsbHkgZ290IGNsb2NrIHJhdGUgMTYuMDAwMDAwIE1Iei4N
+Cj4NCj4gRlBHQSB2ZXJzaW9uOg0KPg0KPiBGaXJtd2FyZSB2ZXJzaW9uOiDvv70NCj4NCj4gVXNp
+bmcgQjIwMG1pbmkgc2VyaWFsIG51bWJlcg0KPg0KPiBGcmVxdWVuY3kgPSAxNTIuNiBNSHoNCj4N
+Cj4gW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJhdGUgNjAuMDAwMDAwIE1Iei4uLg0K
+Pg0KPiBbSU5GT10gW0IyMDBdIEFjdHVhbGx5IGdvdCBjbG9jayByYXRlIDYwLjAwMDAwMCBNSHou
+DQo+DQo+IFNhbXBsZSBSYXRlID0gNjAgTXNwcw0KPg0KPiBCYW5kd2lkdGggPSA1NiBNSHoNCj4N
+Cj4gRGlzYWJsZWQgYXV0b21hdGljIGdhaW4gY29udHJvbA0KPg0KPiBHYWluID0gNjAgZEINCj4N
+Cj4gUmVjZWl2ZWQgMTgwMDA5NjANCj4NCj4gR2FpbiA9IDU5IGRCDQo+DQo+IFJlY2VpdmVkIDE4
+MDAwNTcwDQo+DQo+IEdhaW4gPSA1OCBkQg0KPg0KPiBSZWNlaXZlZCAxODAwMDUyNQ0KPg0KPiBS
+ZWNlaXZlZCAxODAwMDIwNg0KPg0KPiBSZWNlaXZlZCAxODAwMDQ3NQ0KPg0KPiBSZWNlaXZlZCAx
+ODAwMDg0OA0KPg0KPiBSZWNlaXZlZCAxODAwMDU3Mg0KPg0KPiBSZWNlaXZlZCAxODAwMDM4Ng0K
+Pg0KPiBSZWNlaXZlZCAxODAwMTM0Mw0KPg0KPiBSZWNlaXZlZCAxODAwMDU0OA0KPg0KPiBSZWNl
+aXZlZCAxODAwMDIyMg0KPg0KPiBSZWNlaXZlZCAxODAwMDQyMA0KPg0KPiBSZWNlaXZlZCAxODAw
+MDU1Mw0KPg0KPiBSZWNlaXZlZCAxODAwMDI0Nw0KPg0KPiBSZWNlaXZlZCAxODAwMDM2NQ0KPg0K
+PiBSZWNlaXZlZCAxODAwMDU2Nw0KPg0KPiBSZWNlaXZlZCAxODAwMDI2MQ0KPg0KPiBSZWNlaXZl
+ZCAxODAwMDMzNg0KPg0KPiBSZWNlaXZlZCAxODAwMDU4Mg0KPg0KPiBSZWNlaXZlZCAxODAwMDMw
+NQ0KPg0KPiBHYWluID0gNTcgZEINCj4NCj4gUmVjZWl2ZWQgMTgwMDA4NzQNCj4NCj4gUmVjZWl2
+ZWQgMTgwMDA3MTENCj4NCj4gUmVjZWl2ZWQgMTgwMDAzMTENCj4NCj4gUmVjZWl2ZWQgMTgwMDA4
+NjgNCj4NCj4gUmVjZWl2ZWQgMTgwMDAzNzgNCj4NCj4gUmVjZWl2ZWQgMTgwMDAwOTYNCj4NCj4g
+UmVjZWl2ZWQgMTgwMDA2NTMNCj4NCj4gUmVjZWl2ZWQgMTgwMDA1ODINCj4NCj4gUmVjZWl2ZWQg
+MTgwMDA0NTANCj4NCj4gUmVjZWl2ZWQgMTgwMDA1MTcNCj4NCj4gUmVjZWl2ZWQgMTgwMDEzMDMN
+Cj4NCj4gUmVjZWl2ZWQgMTgwMDA4NDQNCj4NCj4gUmVjZWl2ZWQgMTgwMDA1NzENCj4NCj4gUmVj
+ZWl2ZWQgMTgwMDEzMTQNCj4NCj4gRGlzYWJsZWQgUlgNCj4NCj4gVGhlcmUgd2VyZSAwIG92ZXJy
+dW5zLg0KPg0KPiBCdXMgZXJyb3IgKGNvcmUgZHVtcGVkKQ0KPg0KPiBIYXMgYW55b25lIHJ1biBp
+biB0byB0aGlzIGJlZm9yZT8NCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVz
+ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMt
+bGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
