@@ -2,178 +2,172 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C344D591E22
-	for <lists+usrp-users@lfdr.de>; Sun, 14 Aug 2022 06:44:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 797235925F1
+	for <lists+usrp-users@lfdr.de>; Sun, 14 Aug 2022 20:25:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A7B8C381405
-	for <lists+usrp-users@lfdr.de>; Sun, 14 Aug 2022 00:44:19 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EB0E3380F84
+	for <lists+usrp-users@lfdr.de>; Sun, 14 Aug 2022 14:24:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660452259; bh=khnSPdQWXJRBk3kEoe5Lx40te4dADwen8BIb671e8zk=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=QazRQZXIQDdZu8d4asioW5Sb7ZN3HmkzUO2sBwCDeJcBE8vjD0n7V3m24RZ6i5eXU
-	 ZUsw9ZFAZeokfmzSnfm2jFEOhk+VrpVB4egLyZU2UKdOTvgwIk6Vwj2+v8pqapFERD
-	 Su29+B23dcxtE8GLq1WkKQTaVTevKe7G9DRivDvcbEMHWV5jabYdMtwyF+s+CCXhT0
-	 tTpaNI6gACxGf6MJgBoRE6vZtM/lOQILZ+MmxmCLAw0kmmrUx26Q8coGABP9UCxG5/
-	 pAnDiQTGGGWCGE1NsgO/ivvqMJhDKcu1UmYQtrL+QzR3gTA491VWtuaVuuq01PWiWc
-	 G4lz82aK4Q+WQ==
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 366513813D6
-	for <usrp-users@lists.ettus.com>; Sun, 14 Aug 2022 00:43:03 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qpflv7Wd";
-	dkim-atps=neutral
-Received: by mail-ed1-f54.google.com with SMTP id z2so5887427edc.1
-        for <usrp-users@lists.ettus.com>; Sat, 13 Aug 2022 21:43:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc;
-        bh=QUBbG9BEKzYK4Iw897sJPMD8JnO/WSwlWptdpbICcH4=;
-        b=qpflv7WdTvDTQkn1k3y/upuMF6buLpd0RqrlvuWulqculzdzoaY265OShek7hvN8gQ
-         NoyzyhMZcTkJurWGo2b7u8dV7nGGcokwjuEq50FYKVTpdqoB1XSW/B/jXqt7iqp9tlox
-         kje3vrSZn7QK9IhKksDJ57irFa5lYD3plrvXOrgCUc96HBeVGvhfmhdOsLV0Nl4TRf0Y
-         23BMoxUDdvZ/1of4r2jNImZk59N6gdXv9+xFP1eCyA+KrcFtmHf1gSXBVXtFGoXL6Nva
-         dqU79qIN+q117UqAQqXan7bsVHlwhghnOkuD/V+fPv3TuiZ/9llw1EafQthgij8zw+3O
-         yT5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc;
-        bh=QUBbG9BEKzYK4Iw897sJPMD8JnO/WSwlWptdpbICcH4=;
-        b=nZc7gkKlWzZ8yrYeTujkyXBERravwq5oJ8Emd8tKPShiIm+9rM0ZDERuT8c06uucaT
-         lsMsHpMbda6MNVHNL1IE1loSMqe+RypGNCmmEzqUqhlLH3y6HQ8gZmmdaE1AIvtDbAZL
-         ove0JXDHqc0wluWDfxB8MadD1QttFYqUs9yiQv9E5wHJjH2wNPgmx07FThm6N8eifbz4
-         EICqhQGGrzUXNGrWUnYYHwsM+FwNm1F+FtX/MJnDiEhazy0qJMaoHlSoULzvj1DJDORN
-         xoMJKWmkxFbGG2+1b5zYJ/g5u9xhiMCtoT9mHD7ipJHScJcJqzwL3DL+Tqfb4VtraBrp
-         xfFQ==
-X-Gm-Message-State: ACgBeo1g0Fzm2p5CtMNtOaON5d5kXl4A16S8fg/2fP4mnQaJlx0TshiP
-	bUajQQGyh7appWmUzZHGExijIOhiGbwbq7r2xnI=
-X-Google-Smtp-Source: AA6agR5PmddeSLZGtrDPrSP6hKc0wkEOXcq3Y98jZP2zjmiCqZts82ETi+Qxw4Li3ZiaT8B0Ql7fqkAdPrMigO5Xt8E=
-X-Received: by 2002:a05:6402:32a8:b0:43e:5490:295f with SMTP id
- f40-20020a05640232a800b0043e5490295fmr9547874eda.193.1660452182113; Sat, 13
- Aug 2022 21:43:02 -0700 (PDT)
+	t=1660501498; bh=7b6mKfr8YIdRoYjYRS+y10Lggxw+5XQ0nDDpj+Y/kVs=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=Kcmr5iXefcUFYzKCDB7mqSEehBIOxWyco9E8N70SY8Uqx2flCK22Vc+XTP415c6TU
+	 f/KiALMGERL82uh0tX4EYx9PDMwO23jRA8lBxbpPSf5y4vz26xmy3Mb/NjJ85c9LAy
+	 rEI0f+p4VZcaVa+q9XLxUp2hFrwO4GnS+KNch3HphsE0YyT78y8oss/VT03BDp540t
+	 JlMdXktzhX8T4VWbD2CG60Zq9n7Ckg6MsUQNRrjmbL94VmHgzoaXGCxQJdnIsAI1Nc
+	 sz1qGFzjIs4trPFoGOV3H7c3Aik7YBWh98WFzqCSAyuehL97MSOUWsajA20VguVb7M
+	 I9nAeiM3X66EQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id F28AB380F80
+	for <usrp-users@lists.ettus.com>; Sun, 14 Aug 2022 14:24:05 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1660501446; bh=1D09gWsrn07SR3myregWuqesTl6ybnnfKjVqr8EVFfU=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=HS7ew/r7m5Q7rJoVyIP+cK4KeUdaIukP3wu9U8lMIB6AyRr+YI4uBem32G6Y/Y93e
+	 K8hpwLtu0hrj99xhdVhFiTQciQV5Kb8Mh0vAPHk/imysWQGa+Bm/XRT8HOZYDgavBW
+	 c9w6qsnX69U3ITcGUZYTrowEoVfy2HehpbbR0J6Tx+o4rV5VXHNtqdNMdUu3kTd+z0
+	 yE3hsAtIWJC4PhXk03Q+XjuUNXt14WTnWBoW/3q8ed9LlYnGz6qc9MT7U6l9W60R1t
+	 PENOprQ5Badnh2A0tJkmt7JYTsKez0lAQ1TOiqoRvtz2L+0TMGPBim8L6vLZ41nkN9
+	 qooDPzPssh9+Q==
+Date: Sun, 14 Aug 2022 18:24:05 +0000
+To: usrp-users@lists.ettus.com
+From: woznych@gmail.com
+Message-ID: <B72xaKaRIC2UxRuWOmwCJi86KWNRsedQa7pmUfpHkg@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: CAAxXO2E4+JP77swc7Z01GJCOrL3UpwTM_GbKM5=voN9Q_h5fCA@mail.gmail.com
 MIME-Version: 1.0
-References: <hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w@lists.ettus.com>
-In-Reply-To: <hzWs3qF6xxBCBGcGPFmnJ1YsRfa3ViNGYjOzgGH9w@lists.ettus.com>
-From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Sun, 14 Aug 2022 00:42:50 -0400
-Message-ID: <CAAxXO2E4+JP77swc7Z01GJCOrL3UpwTM_GbKM5=voN9Q_h5fCA@mail.gmail.com>
-To: woznych@gmail.com
-Message-ID-Hash: NZNM2QFXYSMP2VKQD4OESXELV36A4ZKB
-X-Message-ID-Hash: NZNM2QFXYSMP2VKQD4OESXELV36A4ZKB
-X-MailFrom: nbalkanas@gmail.com
+Message-ID-Hash: S6UJFNM6Q3NO2EO7FRXSKFMHCPCXG7PR
+X-Message-ID-Hash: S6UJFNM6Q3NO2EO7FRXSKFMHCPCXG7PR
+X-MailFrom: woznych@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Bus errors and UHD exceptions with simple I/Q recorder
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NZNM2QFXYSMP2VKQD4OESXELV36A4ZKB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S6UJFNM6Q3NO2EO7FRXSKFMHCPCXG7PR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============2020971212621538766=="
 
-SGksDQoNClRoYXQncyB5b3VyIGNvZGUgYW5kIHlvdXIgbWVtb3J5Lg0KSGF2ZSB5b3UgdHJpZWQg
-cnVubmluZyBpdCB1bmRlciB2YWxncmluZD8NCg0KSFRIDQpOaWtvcw0KDQpPbiBTYXQsIEF1ZyAx
-MywgMjAyMiBhdCAxMTo0MyBQTSA8d296bnljaEBnbWFpbC5jb20+IHdyb3RlOg0KPg0KPiBMb29r
-ZWQgYXJvdW5kIG9uIHRoaXMgbWFpbGluZyBsaXN0IGFuZCBjb3VsZG7igJl0IGZpbmQgYW4gZXhw
-bGFuYXRpb24sIGJ1dCBJ4oCZbSBydW5uaW5nIGluIHRvIHJhbmRvbSBleGNlcHRpb25zIGJlaW5n
-IHRocm93biBzb21ldGltZXMgaW4gbXkgQysrIEkvUSByZWNvcmRlciBhcHBsaWNhdGlvbi4gSSBj
-YW7igJl0IHNlZW0gdG8gcmVwbGljYXRlIGl0IHdpdGggdGhlIGV4YW1wbGUgY29kZSBmb3VuZCBp
-biDigJxyeF9zYW1wbGVzX3RvX2ZpbGXigJ0uIFVzaW5nIGcrKyAoVWJ1bnR1IDkuNC4wLTF1YnVu
-dHUxfjIwLjA0LjEpIDkuNC4wLg0KPg0KPiBDb2RlIGNhbiBiZSBmb3VuZCBoZXJlOg0KPg0KPiBo
-dHRwczovL2dpdGh1Yi5jb20vY3dvem55L3Nkcl9jaGFubmVsaXplci9ibG9iL2IzZDk2Njc1ZTc5
-YjBlOWQxZTQ2OWM1MWRkNDViMTM5NjQzMjgyOWIvY3BwL3JlY29yZF9pcV91c3JwLmNwcA0KPg0K
-PiBIZXJlIGlzIHRoZSBvdXRwdXQgd2hpY2ggaGFwcGVucyBzb21ldGltZXMsIGJ1dCBub3QgYWxs
-IG9mIHRoZSB0aW1lIChjbWQgbGluZSBhcmd1bWVudHMgYXJlIHNwZWNpZnlpbmcgdG8gcmVjb3Jk
-IDE1Mi42IE1IeiBhdCA2MCBNc3BzLCA2MCBkQiBnYWluLCA1NiBNSHogSUYgYmFuZHdpZHRoLCB3
-aXRoIGEgYnVmZmVyIHNpemUgb2YgMC41IHNlY29uZHMgYW5kIHRvIHJ1biBmb3IgMTAgc2Vjb25k
-cyk6DQo+DQo+IFhYWFhYOn4vd29ya2FyZWEvc2RyX2NoYW5uZWxpemVyL2NwcCQgLi9hLm91dCAx
-NTIuNiA1NiA2MCA2MCAwLjUgMTANCj4NCj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZl
-cnNpb24gOS40LjA7IEJvb3N0XzEwNzEwMDsgVUhEXzQuMi4wLkhFQUQtMC1nMzIxMjk1ZmINCj4N
-Cj4gW0lORk9dIFtCMjAwXSBEZXRlY3RlZCBEZXZpY2U6IEIyMDBtaW5pDQo+DQo+IFtJTkZPXSBb
-QjIwMF0gT3BlcmF0aW5nIG92ZXIgVVNCIDMuDQo+DQo+IFtJTkZPXSBbQjIwMF0gSW5pdGlhbGl6
-ZSBDT0RFQyBjb250cm9sLi4uDQo+DQo+IFtJTkZPXSBbQjIwMF0gSW5pdGlhbGl6ZSBSYWRpbyBj
-b250cm9sLi4uDQo+DQo+IFtJTkZPXSBbQjIwMF0gUGVyZm9ybWluZyByZWdpc3RlciBsb29wYmFj
-ayB0ZXN0Li4uDQo+DQo+IFtJTkZPXSBbQjIwMF0gUmVnaXN0ZXIgbG9vcGJhY2sgdGVzdCBwYXNz
-ZWQNCj4NCj4gW0lORk9dIFtCMjAwXSBTZXR0aW5nIG1hc3RlciBjbG9jayByYXRlIHNlbGVjdGlv
-biB0byAnYXV0b21hdGljJy4NCj4NCj4gW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJh
-dGUgMTYuMDAwMDAwIE1Iei4uLg0KPg0KPiBbSU5GT10gW0IyMDBdIEFjdHVhbGx5IGdvdCBjbG9j
-ayByYXRlIDE2LjAwMDAwMCBNSHouDQo+DQo+IEZQR0EgdmVyc2lvbjoNCj4NCj4gRmlybXdhcmUg
-dmVyc2lvbjogcHDvv70w77+9DQo+DQo+IFVzaW5nIEIyMDBtaW5pIHNlcmlhbCBudW1iZXINCj4N
-Cj4gRnJlcXVlbmN5ID0gMTUyLjYgTUh6DQo+DQo+IFtJTkZPXSBbQjIwMF0gQXNraW5nIGZvciBj
-bG9jayByYXRlIDYwLjAwMDAwMCBNSHouLi4NCj4NCj4gW0lORk9dIFtCMjAwXSBBY3R1YWxseSBn
-b3QgY2xvY2sgcmF0ZSA2MC4wMDAwMDAgTUh6Lg0KPg0KPiBTYW1wbGUgUmF0ZSA9IDYwIE1zcHMN
-Cj4NCj4gQmFuZHdpZHRoID0gNTYgTUh6DQo+DQo+IERpc2FibGVkIGF1dG9tYXRpYyBnYWluIGNv
-bnRyb2wNCj4NCj4gR2FpbiA9IDYwIGRCDQo+DQo+IFtFUlJPUl0gW1VIRF0gRXhjZXB0aW9uIGNh
-dWdodCBpbiBzYWZlLWNhbGwuDQo+DQo+IGluIH50eF92aXRhX2NvcmVfMzAwMF9pbXBsDQo+DQo+
-IGF0IFhYWFhYL3dvcmthcmVhL3VoZC9ob3N0L2xpYi91c3JwL2NvcmVzL3R4X3ZpdGFfY29yZV8z
-MDAwLmNwcDo0OQ0KPg0KPiB0aGlzLT5jbGVhcigpOyAtPiBBc3NlcnRpb25FcnJvcjogYWNjdW1f
-dGltZW91dCA8IF90aW1lb3V0DQo+DQo+IGluIHdhaXRfZm9yX2Fjaw0KPg0KPiBhdCBYWFhYWC93
-b3JrYXJlYS91aGQvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBfcmFkaW9fY3RybF9jb3JlLmNwcDoy
-MjcNCj4NCj4gW0VSUk9SXSBbVUhEXSBFeGNlcHRpb24gY2F1Z2h0IGluIHNhZmUtY2FsbC4NCj4N
-Cj4gaW4gfmIyMDBfcmFkaW9fY3RybF9jb3JlX2ltcGwNCj4NCj4gYXQgWFhYWFgvd29ya2FyZWEv
-dWhkL2hvc3QvbGliL3VzcnAvYjIwMC9iMjAwX3JhZGlvX2N0cmxfY29yZS5jcHA6NjUNCj4NCj4g
-dGhpcy0+cGVlazMyKDApOyBfYXN5bmNfdGFzay5yZXNldCgpOyAtPiBBc3NlcnRpb25FcnJvcjog
-YWNjdW1fdGltZW91dCA8IF90aW1lb3V0DQo+DQo+IGluIHdhaXRfZm9yX2Fjaw0KPg0KPiBhdCBY
-WFhYWC93b3JrYXJlYS91aGQvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBfcmFkaW9fY3RybF9jb3Jl
-LmNwcDoyMjcNCj4NCj4gW0VSUk9SXSBbVUhEXSBFeGNlcHRpb24gY2F1Z2h0IGluIHNhZmUtY2Fs
-bC4NCj4NCj4gaW4gfmIyMDBfcmFkaW9fY3RybF9jb3JlX2ltcGwNCj4NCj4gYXQgWFhYWFgvd29y
-a2FyZWEvdWhkL2hvc3QvbGliL3VzcnAvYjIwMC9iMjAwX3JhZGlvX2N0cmxfY29yZS5jcHA6NjUN
-Cj4NCj4gdGhpcy0+cGVlazMyKDApOyBfYXN5bmNfdGFzay5yZXNldCgpOyAtPiBBc3NlcnRpb25F
-cnJvcjogYWNjdW1fdGltZW91dCA8IF90aW1lb3V0DQo+DQo+IGluIHdhaXRfZm9yX2Fjaw0KPg0K
-PiBhdCBYWFhYWC93b3JrYXJlYS91aGQvaG9zdC9saWIvdXNycC9iMjAwL2IyMDBfcmFkaW9fY3Ry
-bF9jb3JlLmNwcDoyMjcNCj4NCj4gV2hlbiB0aGUgYXBwbGljYXRpb24gZG9lc27igJl0IHRocm93
-IHRoaXMgZXJyb3IgYW5kIHJ1bnMgdG8gZXhlY3V0aW9uLCBpdCB3aWxsIGFsd2F5cyBkaXNwbGF5
-IOKAnEJ1cyBlcnJvciAoY29yZSBkdW1wZWQp4oCdIGFmdGVyIGl0IHByaW50cyBvdXQgdGhlIG51
-bWJlciBvZiBvdmVycnVucyB0aGF0IG9jY3VycmVkLiBVbnN1cmUgaWYgdGhhdCBpcyByZWxhdGVk
-IG9yIG5vdC4gSGVyZSBpcyBhbiBleGFtcGxlIG9mIGl0IHJ1bm5pbmcgdG8gY29tcGxldGlvbiwg
-YnV0IHRocm93aW5nIHRoZSBidXMgZXJyb3IgYXQgdGhlIGVuZDoNCj4NCj4gWFhYWFg6fi93b3Jr
-YXJlYS9zZHJfY2hhbm5lbGl6ZXIvY3BwJCAuL2Eub3V0IDE1Mi42IDU2IDYwIDYwIDAuMyAxMA0K
-Pg0KPiBbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiA5LjQuMDsgQm9vc3RfMTA3
-MTAwOyBVSERfNC4yLjAuSEVBRC0wLWczMjEyOTVmYg0KPg0KPiBbSU5GT10gW0IyMDBdIERldGVj
-dGVkIERldmljZTogQjIwMG1pbmkNCj4NCj4gW0lORk9dIFtCMjAwXSBPcGVyYXRpbmcgb3ZlciBV
-U0IgMy4NCj4NCj4gW0lORk9dIFtCMjAwXSBJbml0aWFsaXplIENPREVDIGNvbnRyb2wuLi4NCj4N
-Cj4gW0lORk9dIFtCMjAwXSBJbml0aWFsaXplIFJhZGlvIGNvbnRyb2wuLi4NCj4NCj4gW0lORk9d
-IFtCMjAwXSBQZXJmb3JtaW5nIHJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QuLi4NCj4NCj4gW0lORk9d
-IFtCMjAwXSBSZWdpc3RlciBsb29wYmFjayB0ZXN0IHBhc3NlZA0KPg0KPiBbSU5GT10gW0IyMDBd
-IFNldHRpbmcgbWFzdGVyIGNsb2NrIHJhdGUgc2VsZWN0aW9uIHRvICdhdXRvbWF0aWMnLg0KPg0K
-PiBbSU5GT10gW0IyMDBdIEFza2luZyBmb3IgY2xvY2sgcmF0ZSAxNi4wMDAwMDAgTUh6Li4uDQo+
-DQo+IFtJTkZPXSBbQjIwMF0gQWN0dWFsbHkgZ290IGNsb2NrIHJhdGUgMTYuMDAwMDAwIE1Iei4N
-Cj4NCj4gRlBHQSB2ZXJzaW9uOg0KPg0KPiBGaXJtd2FyZSB2ZXJzaW9uOiDvv70NCj4NCj4gVXNp
-bmcgQjIwMG1pbmkgc2VyaWFsIG51bWJlcg0KPg0KPiBGcmVxdWVuY3kgPSAxNTIuNiBNSHoNCj4N
-Cj4gW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJhdGUgNjAuMDAwMDAwIE1Iei4uLg0K
-Pg0KPiBbSU5GT10gW0IyMDBdIEFjdHVhbGx5IGdvdCBjbG9jayByYXRlIDYwLjAwMDAwMCBNSHou
-DQo+DQo+IFNhbXBsZSBSYXRlID0gNjAgTXNwcw0KPg0KPiBCYW5kd2lkdGggPSA1NiBNSHoNCj4N
-Cj4gRGlzYWJsZWQgYXV0b21hdGljIGdhaW4gY29udHJvbA0KPg0KPiBHYWluID0gNjAgZEINCj4N
-Cj4gUmVjZWl2ZWQgMTgwMDA5NjANCj4NCj4gR2FpbiA9IDU5IGRCDQo+DQo+IFJlY2VpdmVkIDE4
-MDAwNTcwDQo+DQo+IEdhaW4gPSA1OCBkQg0KPg0KPiBSZWNlaXZlZCAxODAwMDUyNQ0KPg0KPiBS
-ZWNlaXZlZCAxODAwMDIwNg0KPg0KPiBSZWNlaXZlZCAxODAwMDQ3NQ0KPg0KPiBSZWNlaXZlZCAx
-ODAwMDg0OA0KPg0KPiBSZWNlaXZlZCAxODAwMDU3Mg0KPg0KPiBSZWNlaXZlZCAxODAwMDM4Ng0K
-Pg0KPiBSZWNlaXZlZCAxODAwMTM0Mw0KPg0KPiBSZWNlaXZlZCAxODAwMDU0OA0KPg0KPiBSZWNl
-aXZlZCAxODAwMDIyMg0KPg0KPiBSZWNlaXZlZCAxODAwMDQyMA0KPg0KPiBSZWNlaXZlZCAxODAw
-MDU1Mw0KPg0KPiBSZWNlaXZlZCAxODAwMDI0Nw0KPg0KPiBSZWNlaXZlZCAxODAwMDM2NQ0KPg0K
-PiBSZWNlaXZlZCAxODAwMDU2Nw0KPg0KPiBSZWNlaXZlZCAxODAwMDI2MQ0KPg0KPiBSZWNlaXZl
-ZCAxODAwMDMzNg0KPg0KPiBSZWNlaXZlZCAxODAwMDU4Mg0KPg0KPiBSZWNlaXZlZCAxODAwMDMw
-NQ0KPg0KPiBHYWluID0gNTcgZEINCj4NCj4gUmVjZWl2ZWQgMTgwMDA4NzQNCj4NCj4gUmVjZWl2
-ZWQgMTgwMDA3MTENCj4NCj4gUmVjZWl2ZWQgMTgwMDAzMTENCj4NCj4gUmVjZWl2ZWQgMTgwMDA4
-NjgNCj4NCj4gUmVjZWl2ZWQgMTgwMDAzNzgNCj4NCj4gUmVjZWl2ZWQgMTgwMDAwOTYNCj4NCj4g
-UmVjZWl2ZWQgMTgwMDA2NTMNCj4NCj4gUmVjZWl2ZWQgMTgwMDA1ODINCj4NCj4gUmVjZWl2ZWQg
-MTgwMDA0NTANCj4NCj4gUmVjZWl2ZWQgMTgwMDA1MTcNCj4NCj4gUmVjZWl2ZWQgMTgwMDEzMDMN
-Cj4NCj4gUmVjZWl2ZWQgMTgwMDA4NDQNCj4NCj4gUmVjZWl2ZWQgMTgwMDA1NzENCj4NCj4gUmVj
-ZWl2ZWQgMTgwMDEzMTQNCj4NCj4gRGlzYWJsZWQgUlgNCj4NCj4gVGhlcmUgd2VyZSAwIG92ZXJy
-dW5zLg0KPg0KPiBCdXMgZXJyb3IgKGNvcmUgZHVtcGVkKQ0KPg0KPiBIYXMgYW55b25lIHJ1biBp
-biB0byB0aGlzIGJlZm9yZT8NCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVz
-ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
-c3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMt
-bGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+This is a multi-part message in MIME format.
+
+--===============2020971212621538766==
+Content-Type: multipart/alternative;
+ boundary="b1_B72xaKaRIC2UxRuWOmwCJi86KWNRsedQa7pmUfpHkg"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_B72xaKaRIC2UxRuWOmwCJi86KWNRsedQa7pmUfpHkg
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Nikos,
+
+Thanks for the reply. I traced it to the =E2=80=9Crecv=E2=80=9D call whic=
+h has left me puzzled. I added a bunch of instrumentation to see if I was=
+ walking off the end of my memory that was allocated to the 16-bit I/Q bu=
+ffer.
+
+`const std::int32_t startIndex =3D 2*num_accum_samps;`
+
+`const std::int32_t remainingSize =3D 2*sampleLength-(2*num_accum_samps);=
+`
+
+`std::cout << "iq[" << startIndex << "] =3D " << iq[startIndex];`
+
+`std::cout << "\t" << remainingSize;`
+
+`std::cout << "\t" << startIndex + remainingSize;`
+
+`std::cout << "\t" << bufferSize << std::endl;`
+
+`num_accum_samps +=3D rx_stream->recv(&iq[startIndex], remainingSize, met=
+a, 5.0, true);`
+
+And I can get it to faithfully crash every single time when I don=E2=80=99=
+t pad my array of 16-bit integers by an additional 2165 int16s. I include=
+d some output indicating where I=E2=80=99ve specified as the start of the=
+ buffer for it to write to, followed by the remaining size, followed by t=
+he sum of the two just to make sure I can math, and finally the actual re=
+served buffer size plus the pad of 2164 int16s.
+
+`=E2=80=A6`
+
+`iq[1180480] =3D 0	19520	1200000	1202164`
+
+`iq[1185920] =3D 0	14080	1200000	1202164`
+
+`iq[1191360] =3D 0	8640	1200000	1202164`
+
+`iq[1196800] =3D 0	3200	1200000	1202164`
+
+`Segmentation fault (core dumped)`
+
+If you=E2=80=99ll notice, I=E2=80=99ve specified for it to start at index=
+ 1196800 and that the number of samples per buffer being passed to recv()=
+ is 3200. I think I=E2=80=99m just being dense / misinterpreting the *nsa=
+mps_per_buff* (the second parameter of the =E2=80=9Crecv=E2=80=9D call) b=
+ecause it seems as if it is not respecting the remaining buffer size that=
+ I am specifying and attempting to write beyond the bounds of the memory =
+I=E2=80=99ve allocated for the buffer.
+
+Is there some alignment or minimum buffer size that I=E2=80=99m not aware=
+ of?
+
+Thanks,
+
+Chris
+
+--b1_B72xaKaRIC2UxRuWOmwCJi86KWNRsedQa7pmUfpHkg
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Nikos,</p><p>Thanks for the reply. I traced it to the =E2=80=9Crecv=
+=E2=80=9D call which has left me puzzled. I added a bunch of instrumentatio=
+n to see if I was walking off the end of my memory that was allocated to th=
+e 16-bit I/Q buffer.</p><p><code>const std::int32_t startIndex =3D 2*num_ac=
+cum_samps;</code></p><p><code>const std::int32_t remainingSize =3D 2*sample=
+Length-(2*num_accum_samps);</code></p><p><code>std::cout &lt;&lt; "iq[" &lt=
+;&lt; startIndex &lt;&lt; "] =3D " &lt;&lt; iq[startIndex];</code></p><p><c=
+ode>std::cout &lt;&lt; "\t" &lt;&lt; remainingSize;</code></p><p><code>std:=
+:cout &lt;&lt; "\t" &lt;&lt; startIndex + remainingSize;</code></p><p><code=
+>std::cout &lt;&lt; "\t" &lt;&lt; bufferSize &lt;&lt; std::endl;</code></p>=
+<p><code>num_accum_samps +=3D rx_stream-&gt;recv(&amp;iq[startIndex], remai=
+ningSize, meta, 5.0, true);</code></p><p>And I can get it to faithfully cra=
+sh every single time when I don=E2=80=99t pad my array of 16-bit integers b=
+y an additional 2165 int16s. I included some output indicating where I=
+=E2=80=99ve specified as the start of the buffer for it to write to, follow=
+ed by the remaining size, followed by the sum of the two just to make sure =
+I can math, and finally the actual reserved buffer size plus the pad of 216=
+4 int16s.</p><p><code>=E2=80=A6</code></p><p><code>iq[1180480] =3D 0=091952=
+0=091200000=091202164</code></p><p><code>iq[1185920] =3D 0=0914080=09120000=
+0=091202164</code></p><p><code>iq[1191360] =3D 0=098640=091200000=091202164=
+</code></p><p><code>iq[1196800] =3D 0=093200=091200000=091202164</code></p>=
+<p><code>Segmentation fault (core dumped)</code></p><p>If you=E2=80=99ll no=
+tice, I=E2=80=99ve specified for it to start at index 1196800 and that the =
+number of samples per buffer being passed to recv() is 3200. I think I=
+=E2=80=99m just being dense / misinterpreting the <em>nsamps_per_buff</em> =
+(the second parameter of the =E2=80=9Crecv=E2=80=9D call) because it seems =
+as if it is not respecting the remaining buffer size that I am specifying a=
+nd attempting to write beyond the bounds of the memory I=E2=80=99ve allocat=
+ed for the buffer.</p><p>Is there some alignment or minimum buffer size tha=
+t I=E2=80=99m not aware of?</p><p>Thanks,</p><p>Chris</p>
+
+--b1_B72xaKaRIC2UxRuWOmwCJi86KWNRsedQa7pmUfpHkg--
+
+--===============2020971212621538766==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============2020971212621538766==--
