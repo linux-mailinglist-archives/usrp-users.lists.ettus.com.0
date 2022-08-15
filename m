@@ -2,140 +2,131 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 550315930AE
-	for <lists+usrp-users@lfdr.de>; Mon, 15 Aug 2022 16:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29FB65930DE
+	for <lists+usrp-users@lfdr.de>; Mon, 15 Aug 2022 16:37:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0CB973812FB
-	for <lists+usrp-users@lfdr.de>; Mon, 15 Aug 2022 10:26:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6E12E381405
+	for <lists+usrp-users@lfdr.de>; Mon, 15 Aug 2022 10:36:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660573598; bh=sZ48MUTUEjNQlnsry5G79XBT3phlzbkTh1VYhHDcayU=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=LMwFekYgi5VpVWDcafNufHQqgK1sKFZRQjVzs9nkVd5y0iu8dVZ8C+EuBj3qc03m/
-	 1z17krPa4Xahgr3JDe8OLxQ1IyF0SJTmwbt/EVXqaxhaGMeLEmCZXeyqIQheg02BEH
-	 n91b/vZrDavxhVqBniXO2fSqgXMYpH3/zopZuEDA+oXR4p8K1v5xtCIAYvhVdHv14X
-	 SrTuzzHK8qfukJnaky7s4fgCMg/ZVMPDfhLwIt6mYMx1xH5XSB6KcZC7OEGGke8ZV/
-	 RTrozrC5VHmKhNUmbXtG6WrVvqnoGQfsjsnzIExQeHwHto+GZLa8q1ljbhqVR2Fr05
-	 PtRQzwBVn9puw==
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	by mm2.emwd.com (Postfix) with ESMTPS id DE01F380F5F
-	for <usrp-users@lists.ettus.com>; Mon, 15 Aug 2022 10:24:37 -0400 (EDT)
+	t=1660574219; bh=SLU4thrqhgicAFm5zad3wCa73nWZs5CiH2zUus2S7mc=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=xLFq7CetoiZS+0gjE4su+UnkeKpS7VvURPCSMaExaiYt+2SVRIASZuQox8oUxMogC
+	 3jV9JhOtY8j12xMuqnOaG1AxsY5edTr9ytPLqA/1WLr5BSRRXTAD7N3LMau+cVbAjM
+	 qF+I1e5gkZDE/4xROWX7DgbKOt0Y/sATZ80/ERkLDZTSmyNfrRLWv8Hs4bfnEaFmxu
+	 xu5s1uPLMaBFE/GubigCDZnDYAHxdC0okQr/FWyukhyomJGxa1Xo9oOuGy8rA5bTAQ
+	 rVsr0zvtBZTlbgqmAKSr94dn+V6bi/8FQxvG5rc8xD0bjvMCx3ZVUYHqiz0Ym+km25
+	 XSUsrXbOuaaKw==
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4ABB33813BC
+	for <usrp-users@lists.ettus.com>; Mon, 15 Aug 2022 10:34:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="oC4h4cq6";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HP6E61vB";
 	dkim-atps=neutral
-Received: by mail-qk1-f172.google.com with SMTP id f14so5625752qkm.0
-        for <usrp-users@lists.ettus.com>; Mon, 15 Aug 2022 07:24:37 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id x64so5965801iof.1
+        for <usrp-users@lists.ettus.com>; Mon, 15 Aug 2022 07:34:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc;
-        bh=TB1tYTHeM5qh3U4Z521keJXz3NvdFIIwzY9XdpqrVWo=;
-        b=oC4h4cq6HEV30EPknGGKG3qFnBOVDwc5RBqClzi6xpqSdCJvOJerbnzdciamBxGdM5
-         86bR4/TTMWFM0EQ9umXfrxF2uErZd8CddNZJs1oRNoM/tpjwb/h/IB3tJ6Imj7Z9SepB
-         x/EVGS1f4CYu4roZG2usLYfCcTA7l39MB6ZkQW9esfddJulEmwTBo2FsKyTidwfp+KhL
-         wFh616KRq6FzT96ALkAAy6UixwBJTbr4+8xYYaEcGEWkYL2N2Jv1cIO/89rvRhC80AyG
-         PKYLKoDUVUcERA9A1wfRcnMp1KMrM6k0MsJnnEMPgrpRbm/u5GKEa3Bl5ekxHg0YKlt/
-         LpsA==
+        h=to:subject:message-id:date:from:mime-version:from:to:cc;
+        bh=me3KUfkSnyqCr3Q//oB6GDdRJSXwuDLPiqshD1PNolY=;
+        b=HP6E61vBM7otumfGK5oXkJ6VJbflvo6yf743T27tnaA+9oTJWi5P/l/UhgJAHwCOs9
+         uf7T370tqaODiWb32m+3E/ptjiLS2qsouk13RiYhuzwhTjsIZbzTyaEay3Zb/+pe2HK5
+         bv90hT/7pW75+JhC3Lx482mR0TGWusn8HsVbfgwzz7XdzSzNtgLPAC4S9vQ+HnT3wWL7
+         YVvt3ikq+IWrSZ77Dtz17/38Dvy+7UMKjbyNK1alchyEAjlCwl3V12+Mp5aXr1U27lH1
+         akp+78gBV/dMY5KXYVexsPjdYYwBS7lp5XhGQMgcXuYfd9OjIVDCVxqE1wZdXvzUAr5h
+         ygMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc;
-        bh=TB1tYTHeM5qh3U4Z521keJXz3NvdFIIwzY9XdpqrVWo=;
-        b=Vjp7UO4zTrWxCK6e2NWDkf3j/u6AzU6khXQ4sRubTeMoKrSIqqFLs+2AVnVCMnZmvO
-         CY3nZhXmlRmyVOK98O/dQ8pAtJsI7IvFEKQt3LQGNgL3ltgv9kN79oxao61aRYHj4jDq
-         2gzS0BPsCcwYHhAKuVcCLaEDgAf3SQbY/f7OW8ekOCeyzuxbHVV/wVUYe9zwhnDYuPeW
-         vXlAWdFOdOIkQjh1lo38RSYRLuBaRRrrhLPOCQSXdRtrj3cUGLSwa6WzkWgFpQ/vlRqX
-         kEycpaCLMeMKSUsYjq50JBzgf02Y6kMaY8L2/k3vVOmujHRl1W2kW0aEZnr0WbRyVX0T
-         VedA==
-X-Gm-Message-State: ACgBeo03NTuP3PZDNJrwhbZAghcHgOZw6+i7u7IK8pCdt99xFBvVkVSC
-	YqZ4yiPE5oOJnIjodpqB23IXLZf0GKA=
-X-Google-Smtp-Source: AA6agR4MkvB+JmX3UpSHx+yFY9BCyDgFzrASvKjDksXiJQISpPIuFQ6YF0KrUMdJ0V91AKYIB7NbTA==
-X-Received: by 2002:a37:2f03:0:b0:6b5:f8d9:7eab with SMTP id v3-20020a372f03000000b006b5f8d97eabmr11827151qkh.79.1660573476795;
-        Mon, 15 Aug 2022 07:24:36 -0700 (PDT)
-Received: from [192.168.2.163] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id o3-20020ac85a43000000b00342f8d4d0basm8606924qta.43.2022.08.15.07.24.35
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Aug 2022 07:24:36 -0700 (PDT)
-Message-ID: <6f08d94a-a9bc-d2b0-3d6a-a429a16ca674@gmail.com>
-Date: Mon, 15 Aug 2022 10:24:35 -0400
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc;
+        bh=me3KUfkSnyqCr3Q//oB6GDdRJSXwuDLPiqshD1PNolY=;
+        b=3FuUoID6kL9vmAhaRhaqWZXjnX2/CKzGvk0GXzSz3HXPL8R8NGnkEqjMAcRKt2oqzJ
+         O2OweNewqwqRcXIJGIyrQ6XdDttN8paMZwGx4QBuddq+ryLXHcjKCWBs7AsoUNDRyzbO
+         KzMAt+Ybfj6tAfqqjCp5Rut7jydxJUCtAQxTxAOZtBY+TZIrWr9zE7VXPN9jpmSCvr6Y
+         Np3lIGSvjJpcGNb/C1BjhH1jDrIMD+vIcEomkIomiQH7Afj9AGDYq2VVAJPrHMFSxs98
+         +tO6ZZpVJVlDuZVY2MCYm6xAwW/aUsH79bQW7rlxeVy1msCCZYahoHbsOGf4w5qEkC2/
+         Ektw==
+X-Gm-Message-State: ACgBeo0wUD67wDPICq1BD0megP8DvZ5vROASFJLkjuwNoN4KtyQ1iffB
+	M5WwFiESeRQ7siKja2Fm3ZA/CI6qysqJEeCGRw3F6d16uhY=
+X-Google-Smtp-Source: AA6agR5j7oaW1dNpoQdvZrTG2Lbq6bwkwk6ILkeq9pWMSY0TfKSiTjwZ16yZ8eyV25OW/sNfe4YgEI/3sMkfTcg3pxQ=
+X-Received: by 2002:a6b:190:0:b0:688:60b7:3174 with SMTP id
+ 138-20020a6b0190000000b0068860b73174mr1630043iob.76.1660574088215; Mon, 15
+ Aug 2022 07:34:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
+From: Dave NotTelling <dmp250net@gmail.com>
+Date: Mon, 15 Aug 2022 10:34:37 -0400
+Message-ID: <CAK6GVuO8pZJf2QG6JajE4y30-dhMQC7RTsAG1CVi7Dx8CcnZ4A@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <B72xaKaRIC2UxRuWOmwCJi86KWNRsedQa7pmUfpHkg@lists.ettus.com>
- <CAAxXO2Gty2mtQD4sEEN7d5JUyCXocE=-2bKrV+_Lk=Ls48Ux-w@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAAxXO2Gty2mtQD4sEEN7d5JUyCXocE=-2bKrV+_Lk=Ls48Ux-w@mail.gmail.com>
-Message-ID-Hash: KDEX23AJVJS23OMCC5C3BZJKIYFXWBTD
-X-Message-ID-Hash: KDEX23AJVJS23OMCC5C3BZJKIYFXWBTD
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: KOAD7AMFBE74CGMMY67ZS6N2BMPNVDP7
+X-Message-ID-Hash: KOAD7AMFBE74CGMMY67ZS6N2BMPNVDP7
+X-MailFrom: dmp250net@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Bus errors and UHD exceptions with simple I/Q recorder
+Subject: [USRP-users] X310 won't boot without reflash
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KDEX23AJVJS23OMCC5C3BZJKIYFXWBTD/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KOAD7AMFBE74CGMMY67ZS6N2BMPNVDP7/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1918740053109535444=="
 
-T24gMjAyMi0wOC0xNCAyMDo1NywgTmlrb3MgQmFsa2FuYXMgd3JvdGU6DQo+IEFhYWFoLCBpdCdz
-IHRoZSBkcmVhZGVkIG1heF9zYW1wc19wZXJfYnVmZmVyOigNCj4gWXVwLCB5b3UgbmVlZCB0byBt
-YWtlIHlvdXIgcmVhZCBidWZmZXIgYWxpZ25lZCB0byBtYXhfc2FtcHNfcGVyX2J1ZmZlci4uLg0K
-Pg0KPiBIVEgNCj4gTmlrb3MNCkFsc28sIGNvdWxkIHdlIGNvbmZpcm0gdGhhdCB0aGUgc3RyZWFt
-IGlzIGJlaW5nIHNldC11cCBmb3Igc2MxNiBvbiB0aGUgDQoqaG9zdCogc2lkZSBhcyB3ZWxsP8Kg
-IFRoZSBkZWZhdWx0DQogwqAgaXMsIEFGQUlSLCAiZmMzMiIgZm9yIHRoZSAqaG9zdCogc2lkZS4u
-Lg0KDQoNCj4NCj4gT24gU3VuLCBBdWcgMTQsIDIwMjIgYXQgOToyNCBQTSA8d296bnljaEBnbWFp
-bC5jb20+IHdyb3RlOg0KPj4gTmlrb3MsDQo+Pg0KPj4gVGhhbmtzIGZvciB0aGUgcmVwbHkuIEkg
-dHJhY2VkIGl0IHRvIHRoZSDigJxyZWN24oCdIGNhbGwgd2hpY2ggaGFzIGxlZnQgbWUgcHV6emxl
-ZC4gSSBhZGRlZCBhIGJ1bmNoIG9mIGluc3RydW1lbnRhdGlvbiB0byBzZWUgaWYgSSB3YXMgd2Fs
-a2luZyBvZmYgdGhlIGVuZCBvZiBteSBtZW1vcnkgdGhhdCB3YXMgYWxsb2NhdGVkIHRvIHRoZSAx
-Ni1iaXQgSS9RIGJ1ZmZlci4NCj4+DQo+PiBjb25zdCBzdGQ6OmludDMyX3Qgc3RhcnRJbmRleCA9
-IDIqbnVtX2FjY3VtX3NhbXBzOw0KPj4NCj4+IGNvbnN0IHN0ZDo6aW50MzJfdCByZW1haW5pbmdT
-aXplID0gMipzYW1wbGVMZW5ndGgtKDIqbnVtX2FjY3VtX3NhbXBzKTsNCj4+DQo+PiBzdGQ6OmNv
-dXQgPDwgImlxWyIgPDwgc3RhcnRJbmRleCA8PCAiXSA9ICIgPDwgaXFbc3RhcnRJbmRleF07DQo+
-Pg0KPj4gc3RkOjpjb3V0IDw8ICJcdCIgPDwgcmVtYWluaW5nU2l6ZTsNCj4+DQo+PiBzdGQ6OmNv
-dXQgPDwgIlx0IiA8PCBzdGFydEluZGV4ICsgcmVtYWluaW5nU2l6ZTsNCj4+DQo+PiBzdGQ6OmNv
-dXQgPDwgIlx0IiA8PCBidWZmZXJTaXplIDw8IHN0ZDo6ZW5kbDsNCj4+DQo+PiBudW1fYWNjdW1f
-c2FtcHMgKz0gcnhfc3RyZWFtLT5yZWN2KCZpcVtzdGFydEluZGV4XSwgcmVtYWluaW5nU2l6ZSwg
-bWV0YSwgNS4wLCB0cnVlKTsNCj4+DQo+PiBBbmQgSSBjYW4gZ2V0IGl0IHRvIGZhaXRoZnVsbHkg
-Y3Jhc2ggZXZlcnkgc2luZ2xlIHRpbWUgd2hlbiBJIGRvbuKAmXQgcGFkIG15IGFycmF5IG9mIDE2
-LWJpdCBpbnRlZ2VycyBieSBhbiBhZGRpdGlvbmFsIDIxNjUgaW50MTZzLiBJIGluY2x1ZGVkIHNv
-bWUgb3V0cHV0IGluZGljYXRpbmcgd2hlcmUgSeKAmXZlIHNwZWNpZmllZCBhcyB0aGUgc3RhcnQg
-b2YgdGhlIGJ1ZmZlciBmb3IgaXQgdG8gd3JpdGUgdG8sIGZvbGxvd2VkIGJ5IHRoZSByZW1haW5p
-bmcgc2l6ZSwgZm9sbG93ZWQgYnkgdGhlIHN1bSBvZiB0aGUgdHdvIGp1c3QgdG8gbWFrZSBzdXJl
-IEkgY2FuIG1hdGgsIGFuZCBmaW5hbGx5IHRoZSBhY3R1YWwgcmVzZXJ2ZWQgYnVmZmVyIHNpemUg
-cGx1cyB0aGUgcGFkIG9mIDIxNjQgaW50MTZzLg0KPj4NCj4+IOKApg0KPj4NCj4+IGlxWzExODA0
-ODBdID0gMCAxOTUyMCAxMjAwMDAwIDEyMDIxNjQNCj4+DQo+PiBpcVsxMTg1OTIwXSA9IDAgMTQw
-ODAgMTIwMDAwMCAxMjAyMTY0DQo+Pg0KPj4gaXFbMTE5MTM2MF0gPSAwIDg2NDAgMTIwMDAwMCAx
-MjAyMTY0DQo+Pg0KPj4gaXFbMTE5NjgwMF0gPSAwIDMyMDAgMTIwMDAwMCAxMjAyMTY0DQo+Pg0K
-Pj4gU2VnbWVudGF0aW9uIGZhdWx0IChjb3JlIGR1bXBlZCkNCj4+DQo+PiBJZiB5b3XigJlsbCBu
-b3RpY2UsIEnigJl2ZSBzcGVjaWZpZWQgZm9yIGl0IHRvIHN0YXJ0IGF0IGluZGV4IDExOTY4MDAg
-YW5kIHRoYXQgdGhlIG51bWJlciBvZiBzYW1wbGVzIHBlciBidWZmZXIgYmVpbmcgcGFzc2VkIHRv
-IHJlY3YoKSBpcyAzMjAwLiBJIHRoaW5rIEnigJltIGp1c3QgYmVpbmcgZGVuc2UgLyBtaXNpbnRl
-cnByZXRpbmcgdGhlIG5zYW1wc19wZXJfYnVmZiAodGhlIHNlY29uZCBwYXJhbWV0ZXIgb2YgdGhl
-IOKAnHJlY3bigJ0gY2FsbCkgYmVjYXVzZSBpdCBzZWVtcyBhcyBpZiBpdCBpcyBub3QgcmVzcGVj
-dGluZyB0aGUgcmVtYWluaW5nIGJ1ZmZlciBzaXplIHRoYXQgSSBhbSBzcGVjaWZ5aW5nIGFuZCBh
-dHRlbXB0aW5nIHRvIHdyaXRlIGJleW9uZCB0aGUgYm91bmRzIG9mIHRoZSBtZW1vcnkgSeKAmXZl
-IGFsbG9jYXRlZCBmb3IgdGhlIGJ1ZmZlci4NCj4+DQo+PiBJcyB0aGVyZSBzb21lIGFsaWdubWVu
-dCBvciBtaW5pbXVtIGJ1ZmZlciBzaXplIHRoYXQgSeKAmW0gbm90IGF3YXJlIG9mPw0KPj4NCj4+
-IFRoYW5rcywNCj4+DQo+PiBDaHJpcw0KPj4NCj4+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQo+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3Jw
-LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
-byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
-LSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVt
-YWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
-LSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWls
-IHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============1918740053109535444==
+Content-Type: multipart/alternative; boundary="000000000000a6c0f505e64888ee"
+
+--000000000000a6c0f505e64888ee
+Content-Type: text/plain; charset="UTF-8"
+
+Apologies if this is a repost.  I don't think my original message made it
+to the list for some reason.
+
+I recently got my hands on a used x310.  It seems to work well, but for
+some reason will not boot on its own.  Vivado hardware manager shows the
+device as not being programmed, and the network interfaces don't come up
+(no lights on the SFPs).  If I reflash the device with Vivado it will come
+up and work as expected.  Is there a way to test the flash chip to see if
+it's alive?  Running uhd_image_loader seems to work fine, but the device
+still will not come up automatically.
+
+Thanks!
+
+-Dave
+
+--000000000000a6c0f505e64888ee
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Apologies if this is a repost.=C2=A0 I don&#39;t thin=
+k my original message made it to the list for some reason.<br></div><div><b=
+r></div><div>I recently got my hands on a used x310.=C2=A0 It seems to work=
+ well, but for=20
+some reason will not boot on its own.=C2=A0 Vivado hardware manager shows t=
+he
+ device as not being programmed, and the network interfaces don&#39;t come=
+=20
+up (no lights on the SFPs).=C2=A0 If I reflash the device with Vivado it wi=
+ll
+ come up and work as expected.=C2=A0 Is there a way to test the flash chip =
+to
+ see if it&#39;s alive?=C2=A0 Running uhd_image_loader seems to work fine, =
+but=20
+the device still will not come up automatically.</div><div dir=3D"auto"><br=
+></div><div dir=3D"auto">Thanks!</div><div dir=3D"auto"><br></div><div>-Dav=
+e<br></div></div>
+
+--000000000000a6c0f505e64888ee--
+
+--===============1918740053109535444==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1918740053109535444==--
