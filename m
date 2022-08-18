@@ -2,205 +2,172 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD47598604
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Aug 2022 16:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BE2A598A73
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Aug 2022 19:30:35 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7479E383BAE
-	for <lists+usrp-users@lfdr.de>; Thu, 18 Aug 2022 10:36:20 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CD357385806
+	for <lists+usrp-users@lfdr.de>; Thu, 18 Aug 2022 13:30:32 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1660833380; bh=B60hzj8JiQip0qxg2PN9rzUbHAsdjalGCuAe2H7RcYY=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=pDvlfG6kJ9eKYY3NCJv9AtsUhHfEWtPQNdZH1IfJV42uV0WBZgyKtQfIN0GHSnTNq
-	 v150vTJUIUydcBAXImQFPNu+Hvl65ZCgKT2E+xMwxAAPnWgcMV062Be1FVu+xZ/xvh
-	 Ya+doAP7SnlGKZpLoKv6KZ8PkeJ/xe+JmklWTbiiU5dSqPurTkOjcgxu5uLiPmgfMT
-	 XNADufNMbJlY/Au6WerL7pm4K/Wz2cf+7F4jK/ZsfMpQHbNXu4z51RWOLDe0cze8QA
-	 sZHcZT5aW77XVIsefCYc+npT5UjY3lCZb8ryhLJ6/m0rcvwV08WdKa6iTcGKoHeKHb
-	 teqRxdCI1Ov0w==
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id CF5C0380AB4
-	for <usrp-users@lists.ettus.com>; Thu, 18 Aug 2022 10:34:50 -0400 (EDT)
+	t=1660843832; bh=44HlIZocc0jiuNjmn6O+cH7QrrflF65hM+NFYNTR0H0=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=vC09XvGao1iYhbdQzGY+CDSqZxTibIKBWiFIBJ1YHfmJLudA/UhHdc57GgMAiucWi
+	 IY7ue35ZrWAiQtsr96jwky95dQ/D8jDGiIPoxCpeoxo+K1jsW8YHNP55B8IiUORo0s
+	 zN/sWUahtFEDEne9oL6lRmhhO5n9rwzrlk4fjVd0dpjXBsATR/ZGUTD79dnNS4p4gE
+	 6Z1WqHjBWyfVWetpNrlX4Z6rD2JEdooxmETzYkfbUb0iOqhZIGfGGQ95NGidGstSX8
+	 33N5w6M7962saAyR4PDTjOCDPIqsIJUzXRjbXs9pQrBE4zVmkcS/cKKye3RmHEOnCe
+	 OVNhH9qtkwmDg==
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 33C753851CF
+	for <usrp-users@lists.ettus.com>; Thu, 18 Aug 2022 13:29:03 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="W3BH48KX";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="HfWEavcR";
 	dkim-atps=neutral
-Received: by mail-qt1-f171.google.com with SMTP id c20so1219513qtw.8
-        for <usrp-users@lists.ettus.com>; Thu, 18 Aug 2022 07:34:50 -0700 (PDT)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-3321c2a8d4cso59805357b3.5
+        for <usrp-users@lists.ettus.com>; Thu, 18 Aug 2022 10:29:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc;
-        bh=fDl0N/o5VMqWykjWjDezJyCWVDQ7jJvVNtUZc7HM9IQ=;
-        b=W3BH48KXoqrdRharWx6iGjV6TK3hAslaeOytX97zSJhMEsiOZFZhR5QDS9vSFFS2MI
-         hSdnC/Z0cRU/DTkIO7X6EQ06Uklc56FGh8LTpW7W6Rua/oNMo1M9PWQ5EheQP0klLy60
-         o4H9uG6QR/WOmtpPMmP0o7+mKRKLPvOmBcmfB+oXm6AyD0QcXcWkwBJCY1HRvmknuQfB
-         QOBx18U6DhTO1lUzi/tmuMB7/3HVMJYo8c34uZNPBiPn0acOkAihLgNz83z64ndIsiSd
-         xFgr9YHZYcSy9XUap8hhy3914Cz+XHkAu6PQ8oDyBnlDy57eS8zBSiDHq3MRWDfZ5WXR
-         BMfg==
+        d=nd.edu; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=Q3/IAGsuoX3eVmD+mcmavFQVdocaxsYNLI7YafDhbDk=;
+        b=HfWEavcRo8BhEbuE3QfUDKb+MSH1cY+StgLvmOsZNuRTxA4jpCJv8pATSSPjmzYitu
+         b0RxDi0Z+uQNf/y4a8Oiw0AhTvNXCqCromgJgZhxoRvbgvETmKGQ7fdvJykDtDaTFYnj
+         SsPnhUz8NdVicIXyp5ipFb0mtAuZyNz8sJdE9BjLVM4veMfOJnYs0YZoJooOcFcDLv/r
+         Rr4WakM0Q2YSXc0k++ZDKBLP00E064O2omJ6lFNdFxUWr1AfUbDpHAMHmtfqFrqYnfeI
+         P6wqqeFy/zHG8H2mKIFYEi2cHe/UEkoyW1ic1qPiq7907oXD61W6xHWnKP7PmcDFNEw/
+         iFRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc;
-        bh=fDl0N/o5VMqWykjWjDezJyCWVDQ7jJvVNtUZc7HM9IQ=;
-        b=rr1t77XiD1g/j7MoYusJ1aNR5xla6eMfLkt9SpnOO0TVcbfJ9Vk/JYRFgy+Xcmab93
-         Zp5KqLLOlFXSk6dIBAQk8d6FX3QmGBZ+ooHpzSAMZqjLtP0Bp3erp8xSztpYqz8Acuq1
-         ZNeq0kZYCGDs/XRyhwiU6Ij3WT8pLIGVlIpkQau83AaoRMVwGUiMGxM1+56UUqbKs1WZ
-         4s8l01+LEXcF49FD8HTYuuUQtsa256D6aiglEoXq3jDJotiX7siHtdWIpTwxKVZGFXFf
-         h9ylWYVVk0/vsU8TKCEbLTvay+LXxFuO4CddpHO1ZbG3ve7p2ci6ZcZCF1SoH0Cr9ndD
-         Js9w==
-X-Gm-Message-State: ACgBeo3jlt34oudt4a39rNZh5a3Unbgo4qtB1EvwZHdH8zcwFeiJQ8t1
-	eiKZccc4G+7LQHJ0s04nf5POrYHn5AM=
-X-Google-Smtp-Source: AA6agR5iSF1drlByUiJWAVLMg9TZq1DXRcs9xBuCalsQkHhUF+iFMrcRbQCJoN/cdwbkZ5k/uw03Cw==
-X-Received: by 2002:a05:622a:198c:b0:342:fd20:239c with SMTP id u12-20020a05622a198c00b00342fd20239cmr2839757qtc.358.1660833290279;
-        Thu, 18 Aug 2022 07:34:50 -0700 (PDT)
-Received: from [192.168.2.170] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id z13-20020ac87f8d000000b0031eeecd21d6sm1144008qtj.69.2022.08.18.07.34.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Aug 2022 07:34:49 -0700 (PDT)
-Message-ID: <832adf9f-0e16-7acb-186a-22014ff33d47@gmail.com>
-Date: Thu, 18 Aug 2022 10:34:48 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=Q3/IAGsuoX3eVmD+mcmavFQVdocaxsYNLI7YafDhbDk=;
+        b=okbE/4n0EyWv3K5ZATbwxKzFG+Zf+FXeVLNuhcY6gJcWu/9jqrdaAFW6IpkhIPU2lP
+         q6lc5cpj6ohJMROgQqOMoAG/TmfMPZDf/xuzk1hfkUw5yCkcV4ESWS+up7Fcwwk7IFlZ
+         +Ox9t1ULW93NoRZHE7Tk008aLNT4FO1aJiX2I2K3ZUhbzVk14UaLkLn5vEMJqC9EFlKq
+         gcPvXgavHpjfuG5r2rsyry5JilM2isL3jHk5D5IEVpmzqRKm8sFeCR3FLycHZ0bvhXJ2
+         ejXt5tuwI+5oREfsnN1DIsLF1+kPymvu7pJQHGqsSQ+/4NfNUGsisEHNIidAD634Qq/F
+         Qb8A==
+X-Gm-Message-State: ACgBeo2NDnAlEy7LzMgHMOg/dsncoQHMiF0R+addXBJYRbhXllIBu0BZ
+	9imsKHxIU6KhLHxN5omAbgAaKCq6ZD6fRyibMS2uGYo17YI=
+X-Google-Smtp-Source: AA6agR4Ujf5MyRSwJrsuwk0Jha7jH8DWfeiJx9NHeJRDXsoSOMef9xb27WpOdPRyX6I7dVNUlj3BGiY1Otzorsysbsw=
+X-Received: by 2002:a0d:df50:0:b0:337:b00b:d12b with SMTP id
+ i77-20020a0ddf50000000b00337b00bd12bmr316845ywe.82.1660843742326; Thu, 18 Aug
+ 2022 10:29:02 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: Andrea Valori <andrea.valori@innovatrieste.it>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <PA4PR01MB9066C97A442469DC24AF24B28C6D9@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <PA4PR01MB9066C97A442469DC24AF24B28C6D9@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
-Message-ID-Hash: X2IYEEW4TCEHQCOC5XPXJWE25TJQ7UZC
-X-Message-ID-Hash: X2IYEEW4TCEHQCOC5XPXJWE25TJQ7UZC
-X-MailFrom: patchvonbraun@gmail.com
+References: <YMFp481oKWLKHn6Gld6NW6T7ruuXTKrHxl9wgxfhLM8@lists.ettus.com>
+In-Reply-To: <YMFp481oKWLKHn6Gld6NW6T7ruuXTKrHxl9wgxfhLM8@lists.ettus.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Thu, 18 Aug 2022 13:28:51 -0400
+Message-ID: <CAB__hTSx=35DRBFwSuhTP54M-+yOXGpvJCouEu1q0iUAa82cpg@mail.gmail.com>
+To: adrian.campos@integrasys-sa.com
+Message-ID-Hash: LATTCIZ2RMOTYFFVNXZG7VBTNOKWDL6Z
+X-Message-ID-Hash: LATTCIZ2RMOTYFFVNXZG7VBTNOKWDL6Z
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Wide spectrum
+Subject: [USRP-users] Re: AXI_RAM_FIFO Controller
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/X2IYEEW4TCEHQCOC5XPXJWE25TJQ7UZC/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LATTCIZ2RMOTYFFVNXZG7VBTNOKWDL6Z/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5487481967982455813=="
+Content-Type: multipart/mixed; boundary="===============4588356952546607066=="
 
-This is a multi-part message in MIME format.
---===============5487481967982455813==
-Content-Type: multipart/alternative;
- boundary="------------UQTIekOPOJhXuqgJGQtWTFd5"
-Content-Language: en-US
+--===============4588356952546607066==
+Content-Type: multipart/alternative; boundary="0000000000004a62f905e68751da"
 
-This is a multi-part message in MIME format.
---------------UQTIekOPOJhXuqgJGQtWTFd5
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000004a62f905e68751da
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Adrian,
+As you indicated, the RFNoC blocks axi_ram_fifo and Relay both use the FPGA
+RAM.  axi_ram_fifo doesn't need any registers for control because it just
+accepts an AXI stream on the input and forwards that exact stream on the
+output.  The "control" is in the AXI tvalid/tready handshaking. Thus, if
+the upstream block is not ready, the FIFO starts filling up but does not
+empty until the upstream block is ready.  But, for the Replay block, this
+block stores the incoming stream to RAM until you later decide to play it
+out.  It can be used in the transmit path to load a waveform into RAM such
+that it can be played out to the Tx Radio without any help from the host
+PC.  Or, it can be used in the receive path to store receive samples as
+they arrive (up to the given RAM memory depth) and then later downloaded
+(played out) to the host PC in non-realtime.
+
+While I don't know your specific application, I wondered if the Replay
+block (or the axi_ram_fifo) can already implement your desired
+functionality such that a custom block is not needed.
+Rob
+
+On Thu, Aug 18, 2022 at 8:25 AM <adrian.campos@integrasys-sa.com> wrote:
+
+> I am making a custom block which has to start storing data to be read
+> later, in other words store the data in a FIFO. I am interested in using
+> the RAM provided by the E320 so I want to take advantage of the
+> axi_ram_fifo code. However, I don't really understand the control of that
+> block, how can I control when to start writing data to memory and when to
+> start reading it? I have checked the registers in case it could be
+> controlled from there like the replay block that has two registers to start
+> reading and another one to do a restart but I haven't seen anything like
+> that.
+>
+> I hope you can help me. Thank you very much in advance
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000004a62f905e68751da
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-08-18 10:18, Andrea Valori via USRP-users wrote:
->
-> Dear all,
->
-> I am trying to acquire a =E2=80=9Cwide=E2=80=9D spectrum with the B200 =
-and B200 mini.=20
-> For wide I mean wider than the bandwidth of the board, and therefore=20
-> some way of fast multiple acquisitions with =E2=80=9Cfrequency hopping=E2=
-=80=9D and=20
-> =E2=80=9Cstitching=E2=80=9D.
->
-> Do you have a good solution to recommend? I tried soapy_power (which=20
-> seems working but it is not maintained) and GNURadio (with it, I did=20
-> not manage to have a =E2=80=9Cfast frequency hopping=E2=80=9D, and ther=
-efore the=20
-> acquisition is very time consuming, with several seconds delay at each=20
-> tuning).
->
-> Thanks and best regards,
->
-> Andrea
->
->
-How fast do you need to go?=C2=A0 The B2xx chip, the AD9361 isn't known f=
-or=20
-its ability to rapidly tune at timescales below about
- =C2=A0 100ms.
+<div dir=3D"ltr">Hi Adrian,<div>As you indicated, the RFNoC blocks axi_ram_=
+fifo and Relay both use the FPGA RAM.=C2=A0 axi_ram_fifo doesn&#39;t need a=
+ny registers for control because it just accepts an AXI stream on the input=
+ and forwards that exact stream on the output.=C2=A0 The &quot;control&quot=
+; is in the AXI tvalid/tready handshaking. Thus, if the upstream block is n=
+ot ready, the FIFO starts filling up but does not empty until the upstream =
+block is ready.=C2=A0 But, for the Replay block, this block stores the inco=
+ming stream to RAM until you later decide to play it out.=C2=A0 It can be u=
+sed in the transmit path to load a waveform into RAM such that it can be pl=
+ayed out to the Tx Radio without any help from the host PC.=C2=A0 Or, it ca=
+n be used in the receive path to store receive samples as they arrive (up t=
+o the given RAM memory depth) and then later downloaded (played out) to the=
+ host PC in non-realtime.</div><div><br></div><div>While I don&#39;t know y=
+our specific application, I wondered if the Replay block (or the axi_ram_fi=
+fo) can already implement your desired functionality such that a custom blo=
+ck is not needed.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 18, 2022 at 8:25 AM &lt;<a=
+ href=3D"mailto:adrian.campos@integrasys-sa.com">adrian.campos@integrasys-s=
+a.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><p>I am making a custom block which has to start storing data to be re=
+ad later, in other words store the data in a FIFO. I am interested in using=
+ the RAM provided by the E320 so I want to take advantage of the axi_ram_fi=
+fo code. However, I don&#39;t really understand the control of that block, =
+how can I control when to start writing data to memory and when to start re=
+ading it? I have checked the registers in case it could be controlled from =
+there like the replay block that has two registers to start reading and ano=
+ther one to do a restart but I haven&#39;t seen anything like that.</p><p>I=
+ hope you can help me. Thank you very much in advance</p><p><br></p>
 
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---------------UQTIekOPOJhXuqgJGQtWTFd5
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--0000000000004a62f905e68751da--
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-08-18 10:18, Andrea Valori via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:PA4PR01MB9066C97A442469DC24AF24B28C6D9@PA4PR01MB9066.eurprd01=
-.prod.exchangelabs.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Dear all,<o:p></o:p></p>
-        <p class=3D"MsoNormal">I am trying to acquire a =E2=80=9Cwide=E2=80=
-=9D spectrum
-          with the B200 and B200 mini. For wide I mean wider than the
-          bandwidth of the board, and therefore some way of fast
-          multiple acquisitions with =E2=80=9Cfrequency hopping=E2=80=9D =
-and
-          =E2=80=9Cstitching=E2=80=9D.<o:p></o:p></p>
-        <p class=3D"MsoNormal">Do you have a good solution to recommend? =
-I
-          tried soapy_power (which seems working but it is not
-          maintained) and GNURadio (with it, I did not manage to have a
-          =E2=80=9Cfast frequency hopping=E2=80=9D, and therefore the acq=
-uisition is
-          very time consuming, with several seconds delay at each
-          tuning).<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks and best regards,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Andrea<o:p></o:p></p>
-      </div>
-      <br>
-    </blockquote>
-    How fast do you need to go?=C2=A0 The B2xx chip, the AD9361 isn't kno=
-wn
-    for its ability to rapidly tune at timescales below about<br>
-    =C2=A0 100ms.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------UQTIekOPOJhXuqgJGQtWTFd5--
-
---===============5487481967982455813==
+--===============4588356952546607066==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -210,4 +177,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5487481967982455813==--
+--===============4588356952546607066==--
