@@ -2,551 +2,262 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92DA59FD83
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 16:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9B6E5A04C7
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Aug 2022 01:40:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 421DA38D700
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 10:46:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4A49938E1C7
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 19:40:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1661352413; bh=YC7QZ1FbxPc2vRF8ATV1K1TEuln6I/AcQm++AB0RUz4=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=TGg4Dn7b+y/adk9T/z7x1uEn3XgrvzQ232bW/33UVkvaOyFkjyVsPZnssmQlgnnCj
-	 sDpPwPGyZn3htaAuTchPEZcmxsv4aC48/90r0jL+2cgpTtvtU/VIRUyr11zjHOplmY
-	 CGMYV50wQND669RglK8g3CoJQdzL8Lew2/9TXhc98bvxT09Qznf8ix36tDmYTQt/SE
-	 9s00BysP+5N9ILcK6MKkvgmmwTJLxbmz55K44Bngmb6aPW0BtmKzX0yTrjVTmEJc/c
-	 7fyS0BgVUOzV1xK+fFZrmMocmmzaNyjcnaYR/3/LBsPp6qHXNO6dBm6ZjGmybqUkuX
-	 NNnQC4/m5vtuQ==
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id B9FDF38491B
-	for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 09:35:11 -0400 (EDT)
+	t=1661384447; bh=kotjoFFOtV27LD5SEkWfQtn19/+BDNgM1NsbwM4XJ2E=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=F8KpEkM9c1VbsfgoRsxWRtKSNHcsMRfxOkiYTcHcL8/5Vi6PC30hem5l4kR3+0jEM
+	 luBI5/K8qFQQDxBBup6gQewryd9EYt9YPjTAwqoS/KittVd7XFe3+xN/+CwZzPOwpO
+	 DtzvMvv5WNiUwehK1y0N3MkvECWhLBBsdfVfksGwqaKTveuj1rsZOXvFTsHCZ9uBfC
+	 2+FTDp1mbqVOWDY8DKDj/j5g0wHWui7owqdgSKfI3p3Bnv1i1RN5uVJ7sIw5HQfoH3
+	 ngqaovXqRy7Bk4rUPzLt3+ql0JeSWp5xFftwNZJPKMz9QrXBaPWr0qDrhYWikE0Fy5
+	 KFPYEOZ5gbUeQ==
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
+	by mm2.emwd.com (Postfix) with ESMTPS id 051B038E5FA
+	for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 19:38:36 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IEBE3fkj";
+	dkim=pass (1024-bit key; unprotected) header.d=ohio.edu header.i=@ohio.edu header.b="ghEQ2irf";
 	dkim-atps=neutral
-Received: by mail-qk1-f181.google.com with SMTP id a15so12631851qko.4
-        for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 06:35:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc;
-        bh=+Tr+epow/aoPcfk4ulq5PMv1PcDpCiHfyHu8CRZ1WmU=;
-        b=IEBE3fkjiy/eOHnCdkouedjTISNfb/dqVf59w6x/tl1FFEKBLPQvHNroWb9R6YmbhE
-         zCB4n8PZbfx4kAN0/8QqHpbJpuke1EFqpzAlzKwOFpCKrkXMvRrGwNLjYXtYN2YieCHQ
-         UeF515HI79W1ujI3ueTtZ4rMDz1cy9a8xQ9nR/2sTrzCLs8kEoFFl4Z/7Z8R1t1fEgQD
-         6LjS8Hon1xP+AnhoqW45UiHhveXaTsSHN3/hYLNgkOuDtbMPxKRykD4L5TOuc5r4A+oM
-         qWM6hiJeXUObROIywWluwiKyfPZ52S1O1e/3iIQ4OLM+HaQDh8mM5wRxCZldXmSOMZPy
-         uGtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc;
-        bh=+Tr+epow/aoPcfk4ulq5PMv1PcDpCiHfyHu8CRZ1WmU=;
-        b=pM4Coch7Mkmk9YcN4qPu2dWFrpuZA9UUB/UOX5n3pmjO72RE9g+ccfygKLeUDbomkz
-         LArES+bWkz5aJegQI2yXqa0JpGWJGmwv/c6jubCj4KTYR8P+2P9llukbz6Hh1ag2fmIB
-         vicYsvllbQ/iXSi4SIho8lP7IeId+AP2whCiXmBHb/0pnBVQbDxu0hBWLuaHOAPLETDV
-         ObU+uBqFMvlDNWdyfVf3lLL71Z5bBH2CIAJEsJpAbS+II8Yd5TGGcQOExoAmxMKhn17g
-         nhWAD2LFPoxwsA7UJNYpJHt7YZekZpHSEcj2x9Bvxdv+geh4avAEGz+vFhIo7ChsPFro
-         ELRA==
-X-Gm-Message-State: ACgBeo3wHT0YPcpppSn73dEorJ64a7gR9ZaVDQWX98nQLjP1bxWNPHD7
-	QwHn7B3W9LFb01DBiE45sAAnsYzWusA=
-X-Google-Smtp-Source: AA6agR5gWKPp2ENGyWrQIWt6tjQXvk6I64YZ3zaYxO6joNL5ZE2caXww8O7HStyeTZsa/CdqfQgTmA==
-X-Received: by 2002:a05:620a:4154:b0:6bb:822c:ccd3 with SMTP id k20-20020a05620a415400b006bb822cccd3mr19906551qko.1.1661348109668;
-        Wed, 24 Aug 2022 06:35:09 -0700 (PDT)
-Received: from [192.168.2.210] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id fb24-20020a05622a481800b003434d1a7a14sm12579363qtb.62.2022.08.24.06.35.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Aug 2022 06:35:08 -0700 (PDT)
-Message-ID: <ae2899fc-3aa4-8a77-c65b-91c1ad0ae487@gmail.com>
-Date: Wed, 24 Aug 2022 09:35:07 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X6UKQZCJaaltlCU4Rcmqm4iRNf4ydAh2++6nmNWWAb6Jqb39AZU5qq7JIINTsIQslQtGbyD12wuAbYNnOFOLoBFe/b4gQunh8dzaU3kCCaUO/KflArCTm7nYFMdnMh5w85XIVYODttcpKEqsN4WGUn0MGx/n0sciyGyx0G1ws5IT7YrPim9y+uR9UlkRhH9TY8hIuGe+0sVkEuVYrMjW7GpnY8FSsN2i/3wVrTt8Ve940mREIj/Koct7qbhkf7+d1ep6uPOfMmq70ddrhcHGwdFn53c83BbPxhvxqaj139+cOpPLOnAPSQKL6qswUlTCle83u7lgw/0KNR6m9wur7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EOl9+aQls3pvImHiNtPNBDDeaR3quhmlXgXeI7AeYaA=;
+ b=lps/poxpC9XT4KcC/eeLm3GCQbu2Mx3MPKnPPjTCi/T+Izp3F8FatLa29shfeByfe+yS5Iatoj7BpwglFXgxz3G4ngO572LORoPc87v995j99wKZ1JJM9xQSEnimd2VHp3jw6SCw9Bq9RTEB4nfiqwkbwYN6A//9e4NKHNHOPo54iexPm8LgUOfCemMtu0JIQB5YX9ekm8E0torscHGSY4rHsaHBPEKMe/CZTlVc28G1gL14vyUfqz+Pg9wwzFmqOrM9MvQ8Qsx1AHAvR3PZlXDwm6wXOtP86Mdlmt+eEC7kzXQeH4XQXRoCvE2f2hWEeUMz4kcddIEPE401+jBEHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ohio.edu; dmarc=pass action=none header.from=ohio.edu;
+ dkim=pass header.d=ohio.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ohio.edu; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EOl9+aQls3pvImHiNtPNBDDeaR3quhmlXgXeI7AeYaA=;
+ b=ghEQ2irf9yj4zhQ0y43P2mF/vIro2qKTAVWfgIX20dYXSnB3KCV63Fg2tmeX9QKIyji8NNmVNOcLnsGR5KNT+dEP0FySGBvU1rtNzZnGdnORW/UzdjwV2WhJ+xUE5FJejQh7bF3COt1DsPXYO3FuxJEKpiHHDe6z1K4bhtIHz18=
+Received: from CH0PR01MB7050.prod.exchangelabs.com (2603:10b6:610:10b::24) by
+ BN0PR01MB7088.prod.exchangelabs.com (2603:10b6:408:16a::16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5566.15; Wed, 24 Aug 2022 23:38:35 +0000
+Received: from CH0PR01MB7050.prod.exchangelabs.com
+ ([fe80::a464:6abf:dab6:37d2]) by CH0PR01MB7050.prod.exchangelabs.com
+ ([fe80::a464:6abf:dab6:37d2%6]) with mapi id 15.20.5566.015; Wed, 24 Aug 2022
+ 23:38:35 +0000
+From: "McKnight, Ryan" <rm249114@ohio.edu>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: N210 GPSDO time synchronization issues
+Thread-Index: Adi4EXwcZJDRFb6KQBOBgWcFy7n7Ag==
+Date: Wed, 24 Aug 2022 23:38:34 +0000
+Message-ID: 
+ <CH0PR01MB7050582855A91C6BFD950630B5739@CH0PR01MB7050.prod.exchangelabs.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: Andrea Valori <andrea.valori@innovatrieste.it>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-References: <PA4PR01MB9066C97A442469DC24AF24B28C6D9@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
- <832adf9f-0e16-7acb-186a-22014ff33d47@gmail.com>
- <PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
-Message-ID-Hash: ZSVG56AR4XEEPQIH2OBMJOU5TSWBGLKV
-X-Message-ID-Hash: ZSVG56AR4XEEPQIH2OBMJOU5TSWBGLKV
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=ohio.edu;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9751a2f0-7ee4-437a-e970-08da8629c311
+x-ms-traffictypediagnostic: BN0PR01MB7088:EE_
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ iDesy/jLBkZl+FOdFQsYYnXQEr5cedlMYa1vAcK/YYDrIkEQLtRJcyVBdXEXbgiu9B42bqTW8Zq5rpq+P+JGNuSxFu+icifyjg0Yw0ZjghN1IotAser7NXolVxvRkX5rFpAp/8m0xa2Htff1g0Vi+XGWr339GXZX7pf4S3JIqrXWR5b0C0wwe4nRAs+eQhzCIhXOs03DNFX1bvY1LvVUPQ2FeGbCoJIVBwlYVtKrAumUmOKKj5Pt3q9+wBJ9XYoRagrXVW5uUOxG4fsdciv2bF1GSTLeGOo67puBbbWm63J2Dss5Kx10smaqb5+k/QCCfl8yNqMPHpSW+51nIH0gcQlLnOMlO/4AHBWknTEWTVAWY+aHmAM4N1V0fuFyrQjKuyfsbgzgs0+6f/ywz4bLZM1cODQtfUyjYJbxNJqHNu26MecHehZ1MZVJkigtJ0yLG3SM3za76SSf04VCk2rFi7TmNkaaOrMphV6/qIx/cC/HRrfiSf//huryxwngUZTIYFwx+eNdoGr7LFMx2bXyljiDhd7MN8gDA2jnDjwsfKKOWbk4BmDJMmSBy1Ykz8ktxVQB1mFx3I/8++MmqxhNS2qV+cN8wZ6F1A9yScxXnYMYi27QgEAMmrBHyf6EfKARHWG7jw2xKz3LBx4qLumvqJtcb/zQeb7zPS9FEZA1sTK7uxE5PwgH/1lsq7iGjiSrShND0g2DrYBOTWv+tin1HQ+EM+KZ8s6It/ZOwwM1nSFReURftsLAtLrEsTG8aubmul7HOes0/yQFY7bCIY72sI+aaNfmCeau4+YnjAUotUo=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR01MB7050.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(346002)(396003)(39860400002)(366004)(66556008)(66446008)(8676002)(66476007)(64756008)(6916009)(786003)(316002)(76116006)(66946007)(52536014)(55016003)(75432002)(8936002)(122000001)(2906002)(5660300002)(38100700002)(33656002)(86362001)(41300700001)(6506007)(26005)(9686003)(7696005)(38070700005)(966005)(71200400001)(478600001)(83380400001)(186003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?5JFCNyApq6sKUABMxlMxIWlXxeaALLJ8WhGKEnD9zr3M8UCLkRV5l0IKf0fu?=
+ =?us-ascii?Q?WGtCggoRQIwcZqRIKrt+uhipJa8Pp3FnV2GO+srbXne8BQxLEZ4HClGmWDVx?=
+ =?us-ascii?Q?PhcGKx2ySQzuFDcEjiKf1IuH4zwayZGBAX/3VH3TD6lDGNENmULPKkjt2fDT?=
+ =?us-ascii?Q?tPOPbV270U0Vp7lqX9y+ZKKVwcmRYL1lUwm6dN7+lL9WhSs7hl6O+ZAiD8rp?=
+ =?us-ascii?Q?8yQtGrIPQhX98WdUgd2qSyer3CLzZG26wdkdsrxVpMTiKaLHVbCTltO5Vc27?=
+ =?us-ascii?Q?4tUaFYSDqJbH5pqiRU375MBAdqZKRtxX70+T7gWiNyS2fBJaGMw8DFeYu9Nn?=
+ =?us-ascii?Q?0OkE8uwlSEKV1yGQBd5UvRGgjGpYqvIr+/Ts7EP7ehjHVs674x8thqKl8fPt?=
+ =?us-ascii?Q?RNgVlP/XUlfabpJW6CWFrqq+AIH1gaCG6lq/xsDgAglHvYa9zRefEm7yBEHM?=
+ =?us-ascii?Q?farIgEKBJpSf8ilLLmwcCUONqZB/N/0qMQnxenqDnSLIxYb2dvEJ1j4Y6Wg3?=
+ =?us-ascii?Q?9jE/KQ6o8YR69QxcN1FgHSVeH2K3TxdKsOThSrb480r4dOMllfubFKJAiXi1?=
+ =?us-ascii?Q?6zEWoTj6Ebl6w7vgknKTZzXYWY/RYLMuOrYBYZocrOFZoQCRZKhysRGhPdsC?=
+ =?us-ascii?Q?pROhtiVB9EpJUY1GiuympVEGsnTNvn1Og2BTfiYpmz5o/zIE9ztxhBLRe0OQ?=
+ =?us-ascii?Q?AzP3cQoHSgaKD4ahQ1peOVdPZLp/cnccOtBGjH0o6saSIIUtRDqgRQ8Q7vwl?=
+ =?us-ascii?Q?j1a3dWqjx4xbgV8/6CfdqTu6WBcKaqBZP8jgkc+wiVXpjmFbzY/IT+w7sWwO?=
+ =?us-ascii?Q?BbyfUFImLqqyuRif/iVvdJEH/SkBvGX/CKNYXzHPRMdiOUhMt2MKIV7NAc9q?=
+ =?us-ascii?Q?RQ4SYnM1LuaWPLjihlhL6rRKfBcxd0Y+sNPtAtZA0YQeDcWj8LVWYytw1ZTM?=
+ =?us-ascii?Q?Y982tLg48K8VTH9GHgaq24H3crhK30XV81wEfhJ+3P1FZgqRZeYZ8khhuXiX?=
+ =?us-ascii?Q?Dh5hFVrtY/m6P96zuitMaHaQbKlMFQadDhCWnGGxwE/3XcYDp+NhjNaW6anS?=
+ =?us-ascii?Q?jev3kWREpLr2TsZss7ze2NqD2uEvr2kzIJSs/e1wGIBv4xCkv4eg9KCT8qFC?=
+ =?us-ascii?Q?ji7WSNa/u2IKWIUSVkESu2qlW2pa+VrHldZie9MVk/tum88LXSlt9Mm98Nw9?=
+ =?us-ascii?Q?5W1SD2BZDqQ+/aCx/PrBBDb0R+WYUkB+7d8x6ku1mYehKKTCV+Jgw1tOzeQ8?=
+ =?us-ascii?Q?3N29kyZ9v8EGzMw07hEXf+8uVbh2h2aYYECovVxBQHbbfefXYOZ4+LnTUyhc?=
+ =?us-ascii?Q?9sef2m+er6cYB+W+J6tpW269bmeUtN49Erarn8Hm1SvCdgeVh8k7TlLMaO+T?=
+ =?us-ascii?Q?giqt05a5J2oazrF1GoFb+6aaiDVIcubv3YZEQmFWs2qq5q2sRSEYYIg5PvZe?=
+ =?us-ascii?Q?xJlwUEgV+pHfuWLYP3xpXSg/DVm2o0uBii0cpyIi/YoR9nb9xTMKbaO6XOzG?=
+ =?us-ascii?Q?1bLB1fx5Nu+huwsOQlnXpoYxs9JBVGCdCFKVfX50a661fpEAIukXsGSxp96o?=
+ =?us-ascii?Q?X/zh2QI1WVhg+Wm/dModwirvh3A7YkI4IDDgLAtN?=
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+X-OriginatorOrg: ohio.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR01MB7050.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9751a2f0-7ee4-437a-e970-08da8629c311
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2022 23:38:35.0233
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f3308007-477c-4a70-8889-34611817c55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +IOfdWMbyQ/+m5k0NznyAhm2RGnWknGJVYi26f2pR4Afv9f9eS7tZyPRe8JuX15iFn/rB7F2PeX2EtvqhNNuEA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR01MB7088
+Message-ID-Hash: GOAUQVMKPJAGI56KLHPHTFXWOWZDQK35
+X-Message-ID-Hash: GOAUQVMKPJAGI56KLHPHTFXWOWZDQK35
+X-MailFrom: rm249114@ohio.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Wide spectrum
+Subject: [USRP-users] N210 GPSDO time synchronization issues
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZSVG56AR4XEEPQIH2OBMJOU5TSWBGLKV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OP5O4GWJDSGRMZD5H74GV6IHSHTMFBFM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9014428457593578226=="
-
-This is a multi-part message in MIME format.
---===============9014428457593578226==
-Content-Type: multipart/alternative;
- boundary="------------AqiAWsyvggKmGB656Lpyjesu"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------AqiAWsyvggKmGB656Lpyjesu
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-On 2022-08-24 07:31, Andrea Valori wrote:
->
-> Dear Marcus,
->
-> Thanks for your reply.
->
-> To put some numbers into perspective:
->
-> I am looking at acquiring something in the order of 300 MHz of LTE=20
-> spectrum (about 6 times the bandwidth of the B200. Even if I think to=20
-> use half of the bandwidth, that brings the factor to 12).
->
-> I would like to repeat the measurement at least 5-10 times, to be able=20
-> to have an estimation of the variability of the signal. Of course,=20
-> this opens a whole pandora vase on the combined effect of: duration of=20
-> the measurement, syncing of the measurement rate with the signal and=20
-> so on, leading to the fact that is possible to miss signals if they=20
-> are rare and in short bursts (typica of LTE)=E2=80=A6 but let=E2=80=99s=
- park this=20
-> issue for the moment.
->
-> Taking the limit you mentioned and doubling it to stay conservative, I=20
-> should be able to acquire the 120 spectrums in 120*0.2=3D2.4 seconds=E2=
-=80=A6=20
-> that is way faster than what I was hoping!
->
-> When I used GNURadio, I created a script that run at a specific=20
-> central frequency, saving the data on a file, called the script=20
-> recursively with different central frequencies, and then loaded and=20
-> =E2=80=9Cstitched=E2=80=9D the data. The most consuming time, was possi=
-bly the=20
-> saving-loading procedure.
->
-By "calling the script recursively" I assume you mean iteratively? So=20
-re-starting the entire Gnu Radio framework every time?
- =C2=A0 That would take a LONG time.
-
-I'd post on the discuss-gnuradio mailng list.=C2=A0 Someone has probably=20
-already done this--in fact I did one many many years ago
- =C2=A0 with GR 3.6, which is now horribly obsolete.
-
-With stream tags, you should be able to know precisely which samples go=20
-with which frequency, and use that to direct your logging.
- =C2=A0 Indeed, the "File Meta Sink" records all the tags along with the=20
-samples....
-
-
-
-> I did expect that for such a =E2=80=9Cstandard=E2=80=9D application (ac=
-quire a=20
-> wideband signal) there was something ready made in GNURadio, but could=20
-> not find it.
->
-> As said, soapy_power does exactly this, but being not actively=20
-> developed, I was hoping in finding something else=E2=80=A6
->
-> Thanks and regards,
->
-> Andrea
->
-> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Sent:* Thursday, August 18, 2022 4:35 PM
-> *To:* Andrea Valori <andrea.valori@innovatrieste.it>;=20
-> usrp-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Wide spectrum
->
->
-> =09
->
-> You don't often get email from patchvonbraun@gmail.com=20
-> <mailto:patchvonbraun@gmail.com>. Learn why this is important=20
-> <https://aka.ms/LearnAboutSenderIdentification>
->
-> =09
->
-> On 2022-08-18 10:18, Andrea Valori via USRP-users wrote:
->
->     Dear all,
->
->     I am trying to acquire a =E2=80=9Cwide=E2=80=9D spectrum with the B=
-200 and B200
->     mini. For wide I mean wider than the bandwidth of the board, and
->     therefore some way of fast multiple acquisitions with =E2=80=9Cfreq=
-uency
->     hopping=E2=80=9D and =E2=80=9Cstitching=E2=80=9D.
->
->     Do you have a good solution to recommend? I tried soapy_power
->     (which seems working but it is not maintained) and GNURadio (with
->     it, I did not manage to have a =E2=80=9Cfast frequency hopping=E2=80=
-=9D, and
->     therefore the acquisition is very time consuming, with several
->     seconds delay at each tuning).
->
->     Thanks and best regards,
->
->     Andrea
->
-> How fast do you need to go?=C2=A0 The B2xx chip, the AD9361 isn't known=
- for=20
-> its ability to rapidly tune at timescales below about
-> =C2=A0 100ms.
->
-> ________________________________________
->
-> *Informativa sulla privacy e sulla sicurezza*
->
-> Questo messaggio pu=C3=B2 contenere informazioni confidenziali ed =C3=A8=
-=20
-> destinato esclusivamente all'indirizzo in intestazione. Il materiale e=20
-> le informazioni contenuti e/o collegati a questo messaggio sono=20
-> riservati e non divulgabili a terzi. Ai sensi della legge sul diritto=20
-> d'autore e del codice civile, sono vietate la riproduzione o la=20
-> modifica non espressamente autorizzata di questo materiale, o di parte=20
-> di esso, con qualsiasi mezzo, in quanto di esclusiva propriet=C3=A0 di=20
-> Innova S.p.A. o dei suoi danti causa. Persone diverse dal destinatario=20
-> di questo messaggio non possono copiare o distribuire il messaggio=20
-> stesso a terzi. Punti di vista od opinioni personali presenti in=20
-> questo messaggio sono riconducibili direttamente al solo mittente del=20
-> messaggio, e non rappresentano necessariamente il punto di vista o=20
-> l'opinione di Innova S.p.A., salvo altrimenti specificato. Essendo=20
-> Internet un canale di comunicazione non sicuro, Innova S.p.A. non =C3=A8=
-=20
-> responsabile di eventuali modifiche, n=C3=A9 della violazione, sottrazi=
-one=20
-> o soppressione, occorse al messaggio dopo la spedizione da parte del=20
-> mittente. Si raccomanda al destinatario di effettuare un controllo=20
-> antivirus prima di aprire qualsiasi allegato alla presente. Innova=20
-> S.p.A. non =C3=A8 responsabile di eventuali danni occorsi a seguito di=20
-> virus informatici accidentalmente trasmessi tramite i contenuti del=20
-> presente messaggio. Chiunque riceva questo messaggio per errore, =C3=A8=
-=20
-> pregato di distruggerlo e di informare immediatamente il mittente con=20
-> lo stesso mezzo e cancellarlo dai propri sistemi. Quanto precede ai=20
-> fini del rispetto del Regolamento UE 2016/679 in materia di protezione=20
-> dei dati personali. Per l'informativa estesa consultare il sito=20
-> Internet di Innova S.p.A. sezione Privacy.
->
-> *Disclaimer and confidentiality notice*
->
-> This e-mail may contain confidential information and is intended only=20
-> for the addressee named above and the contents should not be disclosed=20
-> to any other person nor copies taken or forwarded. Any views or=20
-> opinions presented are solely those of the sender and do not=20
-> necessarily represent the views of Innova S.p.A. unless otherwise=20
-> specifically stated. As not all internet communications are secure=20
-> Innova S.p.A. does not accept legal responsibility for the contents of=20
-> this message nor responsibility for any change or breach or=20
-> subtraction or suppression of this message after it was sent by the=20
-> original sender. We advise you to carry out your own virus check=20
-> before opening any attachments as we cannot accept liability for any=20
-> damage sustained as a result of any software viruses. Please notify=20
-> the sender immediately if you have received this e-mail by mistake and=20
-> delete it from your systems. This disclaimer according to GDPR=20
-> Regulation EU 2016/679. Privacy-related information is available on=20
-> the company website, Privacy section.=20
-
---------------AqiAWsyvggKmGB656Lpyjesu
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-08-24 07:31, Andrea Valori
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01=
-.prod.exchangelabs.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Dear Marcus,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks for your reply.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">To put some numbers into perspective:<o:p>=
-</o:p></p>
-        <p class=3D"MsoNormal">I am looking at acquiring something in the
-          order of 300 MHz of LTE spectrum (about 6 times the bandwidth
-          of the B200. Even if I think to use half of the bandwidth,
-          that brings the factor to 12).<o:p></o:p></p>
-        <p class=3D"MsoNormal">I would like to repeat the measurement at
-          least 5-10 times, to be able to have an estimation of the
-          variability of the signal. Of course, this opens a whole
-          pandora vase on the combined effect of: duration of the
-          measurement, syncing of the measurement rate with the signal
-          and so on, leading to the fact that is possible to miss
-          signals if they are rare and in short bursts (typica of LTE)=E2=
-=80=A6
-          but let=E2=80=99s park this issue for the moment.<o:p></o:p></p=
->
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Taking the limit you mentioned and doublin=
-g
-          it to stay conservative, I should be able to acquire the 120
-          spectrums in 120*0.2=3D2.4 seconds=E2=80=A6 that is way faster =
-than what
-          I was hoping!<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">When I used GNURadio, I created a script
-          that run at a specific central frequency, saving the data on a
-          file, called the script recursively with different central
-          frequencies, and then loaded and =E2=80=9Cstitched=E2=80=9D the=
- data. The most
-          consuming time, was possibly the saving-loading procedure.</p>
-      </div>
-    </blockquote>
-    By "calling the script recursively" I assume you mean iteratively?=C2=
-=A0=C2=A0
-    So re-starting the entire Gnu Radio framework every time?<br>
-    =C2=A0 That would take a LONG time.<br>
-    <br>
-    I'd post on the discuss-gnuradio mailng list.=C2=A0 Someone has proba=
-bly
-    already done this--in fact I did one many many years ago<br>
-    =C2=A0 with GR 3.6, which is now horribly obsolete.<br>
-    <br>
-    With stream tags, you should be able to know precisely which samples
-    go with which frequency, and use that to direct your logging.<br>
-    =C2=A0 Indeed, the "File Meta Sink" records all the tags along with t=
-he
-    samples....<br>
-    <br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01=
-.prod.exchangelabs.com">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">I did expect that for such a =E2=80=9Cstan=
-dard=E2=80=9D
-          application (acquire a wideband signal) there was something
-          ready made in GNURadio, but could not find it.<o:p></o:p></p>
-        <p class=3D"MsoNormal">As said, soapy_power does exactly this, bu=
-t
-          being not actively developed, I was hoping in finding
-          something else=E2=80=A6<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks and regards,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Andrea<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div style=3D"border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0cm 0cm 0cm">
-            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
-raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
-              <b>Sent:</b> Thursday, August 18, 2022 4:35 PM<br>
-              <b>To:</b> Andrea Valori
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:andrea.va=
-lori@innovatrieste.it">&lt;andrea.valori@innovatrieste.it&gt;</a>;
-              <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:usrp-u=
-sers@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
-              <b>Subject:</b> Re: [USRP-users] Wide spectrum<o:p></o:p></=
-p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <table class=3D"MsoNormalTable" style=3D"width:100.0%" width=3D"1=
-00%"
-          cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left"=
->
-          <tbody>
-            <tr>
-              <td style=3D"background:#A6A6A6;padding:5.25pt 1.5pt 5.25pt
-                1.5pt"><br>
-              </td>
-              <td style=3D"width:100.0%;background:#EAEAEA;padding:5.25pt
-                3.75pt 5.25pt 11.25pt" width=3D"100%">
-                <div>
-                  <p class=3D"MsoNormal"
-style=3D"mso-element:frame;mso-element-frame-hspace:2.25pt;mso-element-wr=
-ap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizo=
-ntal:column;mso-height-rule:exactly"><span
-                      style=3D"font-size:9.0pt;font-family:&quot;Segoe
-                      UI&quot;,sans-serif;color:#212121">You don't often
-                      get email from
-                    </span><span style=3D"color:black"><a
-                        href=3D"mailto:patchvonbraun@gmail.com"
-                        moz-do-not-send=3D"true"><span
-                          style=3D"font-size:9.0pt;font-family:&quot;Sego=
-e
-                          UI&quot;,sans-serif">patchvonbraun@gmail.com</s=
-pan></a></span><span
-                      style=3D"font-size:9.0pt;font-family:&quot;Segoe
-                      UI&quot;,sans-serif;color:#212121">.
-                    </span><span style=3D"color:black"><a
-                        href=3D"https://aka.ms/LearnAboutSenderIdentifica=
-tion"
-                        moz-do-not-send=3D"true"><span
-                          style=3D"font-size:9.0pt;font-family:&quot;Sego=
-e
-                          UI&quot;,sans-serif">Learn why this is
-                          important</span></a></span><span
-                      style=3D"font-size:9.0pt;font-family:&quot;Segoe
-                      UI&quot;,sans-serif;color:#212121"><o:p></o:p></spa=
-n></p>
-                </div>
-              </td>
-              <td style=3D"width:56.25pt;background:#EAEAEA;padding:5.25p=
-t
-                3.75pt 5.25pt 3.75pt;align:left" width=3D"75">
-                <br>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div>
-          <div>
-            <p class=3D"MsoNormal">On 2022-08-18 10:18, Andrea Valori via
-              USRP-users wrote:<o:p></o:p></p>
-          </div>
-          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-            <p class=3D"MsoNormal">Dear all,<o:p></o:p></p>
-            <p class=3D"MsoNormal">I am trying to acquire a =E2=80=9Cwide=
-=E2=80=9D
-              spectrum with the B200 and B200 mini. For wide I mean
-              wider than the bandwidth of the board, and therefore some
-              way of fast multiple acquisitions with =E2=80=9Cfrequency h=
-opping=E2=80=9D
-              and =E2=80=9Cstitching=E2=80=9D.<o:p></o:p></p>
-            <p class=3D"MsoNormal">Do you have a good solution to
-              recommend? I tried soapy_power (which seems working but it
-              is not maintained) and GNURadio (with it, I did not manage
-              to have a =E2=80=9Cfast frequency hopping=E2=80=9D, and the=
-refore the
-              acquisition is very time consuming, with several seconds
-              delay at each tuning).<o:p></o:p></p>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <p class=3D"MsoNormal">Thanks and best regards,<o:p></o:p></p=
->
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <p class=3D"MsoNormal">Andrea<o:p></o:p></p>
-            <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-          </blockquote>
-          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">How fast =
-do
-            you need to go?=C2=A0 The B2xx chip, the AD9361 isn't known f=
-or
-            its ability to rapidly tune at timescales below about<br>
-            =C2=A0 100ms.<br>
-            <br>
-            <o:p></o:p></p>
-        </div>
-      </div>
-      ________________________________________<br>
-      <br>
-      <b>Informativa sulla privacy e sulla sicurezza</b> <br>
-      <br>
-      Questo messaggio pu=C3=B2 contenere informazioni confidenziali ed =C3=
-=A8
-      destinato esclusivamente all'indirizzo in intestazione. Il
-      materiale e le informazioni contenuti e/o collegati a questo
-      messaggio sono riservati e non divulgabili a terzi. Ai sensi della
-      legge sul diritto d'autore e del codice civile, sono vietate la
-      riproduzione o la modifica non espressamente autorizzata di questo
-      materiale, o di parte di esso, con qualsiasi mezzo, in quanto di
-      esclusiva propriet=C3=A0 di Innova S.p.A. o dei suoi danti causa.
-      Persone diverse dal destinatario di questo messaggio non possono
-      copiare o distribuire il messaggio stesso a terzi. Punti di vista
-      od opinioni personali presenti in questo messaggio sono
-      riconducibili direttamente al solo mittente del messaggio, e non
-      rappresentano necessariamente il punto di vista o l'opinione di
-      Innova S.p.A., salvo altrimenti specificato. Essendo Internet un
-      canale di comunicazione non sicuro, Innova S.p.A. non =C3=A8
-      responsabile di eventuali modifiche, n=C3=A9 della violazione,
-      sottrazione o soppressione, occorse al messaggio dopo la
-      spedizione da parte del mittente. Si raccomanda al destinatario di
-      effettuare un controllo antivirus prima di aprire qualsiasi
-      allegato alla presente. Innova S.p.A. non =C3=A8 responsabile di
-      eventuali danni occorsi a seguito di virus informatici
-      accidentalmente trasmessi tramite i contenuti del presente
-      messaggio. Chiunque riceva questo messaggio per errore, =C3=A8 preg=
-ato
-      di distruggerlo e di informare immediatamente il mittente con lo
-      stesso mezzo e cancellarlo dai propri sistemi. Quanto precede ai
-      fini del rispetto del Regolamento UE 2016/679 in materia di
-      protezione dei dati personali. Per l'informativa estesa consultare
-      il sito Internet di Innova S.p.A. sezione Privacy.
-      <br>
-      <br>
-      <b>Disclaimer and confidentiality notice</b> <br>
-      <br>
-      This e-mail may contain confidential information and is intended
-      only for the addressee named above and the contents should not be
-      disclosed to any other person nor copies taken or forwarded. Any
-      views or opinions presented are solely those of the sender and do
-      not necessarily represent the views of Innova S.p.A. unless
-      otherwise specifically stated. As not all internet communications
-      are secure Innova S.p.A. does not accept legal responsibility for
-      the contents of this message nor responsibility for any change or
-      breach or subtraction or suppression of this message after it was
-      sent by the original sender. We advise you to carry out your own
-      virus check before opening any attachments as we cannot accept
-      liability for any damage sustained as a result of any software
-      viruses. Please notify the sender immediately if you have received
-      this e-mail by mistake and delete it from your systems. This
-      disclaimer according to GDPR Regulation EU 2016/679.
-      Privacy-related information is available on the company website,
-      Privacy section.
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------AqiAWsyvggKmGB656Lpyjesu--
-
---===============9014428457593578226==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
+I am learning to use the GPSDO capability on the N210 and I am having a strange issue, seemingly related to this previous thread:
+
+https://www.mail-archive.com/usrp-users@lists.ettus.com/msg05997.html
+
+Here is a Python snippet that demonstrates the issue:
+
+import sys
+import time
+import uhd
+
+usrp = uhd.usrp.MultiUSRP("serial=30AB08E")
+usrp.set_rx_rate(50e6, 0)
+usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(91.3e6), 0)
+usrp.set_rx_gain(31.5, 0)
+usrp.set_rx_antenna("RX2", 0)
+usrp.set_clock_source("gpsdo")
+usrp.set_time_source("gpsdo")
+
+tries = 0
+while tries < 5:
+    gpsdo_lock = usrp.get_mboard_sensor("gps_locked").to_bool()
+    if gpsdo_lock:
+        print('GPSDO locked')
+        break
+    else:
+        time.sleep(1)
+        tries += 1
+
+if not gpsdo_lock:
+    print('[ERROR] gpsdo failed to lock within 5 seconds')
+    sys.exit(1)
+
+tries = 0
+while tries < 5:
+    ref_lock = usrp.get_mboard_sensor("ref_locked").to_bool()
+    if ref_lock:
+        print('ref locked')
+        break
+    else:
+        time.sleep(1)
+        tries += 1
+
+if not ref_lock:
+    print('[ERROR] USRP failed to lock on to gpsdo reference within 5 seconds')
+    sys.exit(1)
+
+usrp.set_time_next_pps(uhd.libpyuhd.types.time_spec(0.0))
+
+while True:
+    print(usrp.get_time_last_pps().get_real_secs())
+    time.sleep(1)
+
+I would expect this to print out 0, 1, 2, 3 etc. without drifting at all, but I am actually seeing pps times that slowly drift. Here is an example output:
+
+[INFO] [UHD] linux; GNU C++ version 10.3.0; Boost_107400; UHD_4.2.0.HEAD-release
+[INFO] [USRP2] Opening a USRP2/N-Series device...
+[INFO] [USRP2] Current recv frame size: 1472 bytes
+[INFO] [USRP2] Current send frame size: 1472 bytes
+[INFO] [USRP2] Detecting internal GPSDO.... 
+[INFO] [GPS] Found an internal GPSDO: Jackson-Labs, FireFly , Firmware Rev 0.929
+[INFO] [USRP2] Setting references to the internal GPSDO
+GPSDO locked
+ref locked
+55.99999568
+56.99999568
+0.99999998
+1.9999999800000001
+2.99999998
+3.99999998
+4.99999998
+5.99999998
+6.99999998
+7.99999998
+8.99999998
+9.99999998
+10.99999998
+11.99999998
+12.99999998
+13.99999998
+14.99999998
+15.99999998
+16.99999998
+17.99999998
+18.99999998
+19.99999998
+20.99999998
+21.99999998
+22.99999998
+23.99999998
+24.99999998
+25.99999998
+26.99999998
+27.99999998
+28.99999998
+29.99999998
+30.99999998
+31.99999998
+32.99999998
+33.99999998
+34.99999998
+35.99999998
+36.99999998
+37.99999998
+38.99999998
+39.99999998
+40.99999998
+41.99999998
+42.99999998
+43.99999998
+44.99999998
+45.99999998
+46.99999998
+47.99999998
+48.99999998
+49.99999998
+50.99999998
+51.99999998
+52.99999998
+53.99999998
+54.99999998
+55.99999998
+56.99999998
+57.99999843
+58.99999843
+59.99999843
+...
+
+Any ideas as to what I'm doing wrong, or if this is a bug in UHD related to the bug in the other thread that I linked? I am using UHD version 4.2.0.
+
+Thanks,
+Ryan
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============9014428457593578226==--
