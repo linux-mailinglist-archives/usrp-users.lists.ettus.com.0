@@ -2,440 +2,544 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E222859F8A1
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 13:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C92DA59FD83
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 16:46:54 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 54DAD388D91
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 07:32:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 421DA38D700
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 10:46:53 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1661340757; bh=uJ91Wj6EW4gETVNaoN3E/Np9uHDH7V2aVHaUhKEeX04=;
-	h=To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1661352413; bh=YC7QZ1FbxPc2vRF8ATV1K1TEuln6I/AcQm++AB0RUz4=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=yqaT7M0farCCEDkukWGi/224wAnCQn5ALBwoVcEzFOe0hWQRSliUSz76aO9FMEZAb
-	 yM1qSEuIk2E5fHKCJk8yZoViMyyy9TJjJ1A7QTPAOYfzkTUlk9ftzDXhbqJXCCZkC1
-	 qxZTSjSKmacjIBfTOg9Dlxdjq5PMXZD5hjs3VMBIJSXzkaOB3ksI/E5usSsZVt44ST
-	 +JVeqHmHeo4JtWiQSvuKCVdPO8qXgq8ogcH3tS7GGfxgj5cztXIvr44HesYrwyibkg
-	 LGh/SR6Rr6hZDSw9I7YU1m37umlH7zSXKjaHPxLyLmjlGjTe0Wi45Yqd5COoY/Oj+S
-	 /OD/JFkBB199Q==
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60112.outbound.protection.outlook.com [40.107.6.112])
-	by mm2.emwd.com (Postfix) with ESMTPS id 86E8E388CF7
-	for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 07:31:08 -0400 (EDT)
+	 From;
+	b=TGg4Dn7b+y/adk9T/z7x1uEn3XgrvzQ232bW/33UVkvaOyFkjyVsPZnssmQlgnnCj
+	 sDpPwPGyZn3htaAuTchPEZcmxsv4aC48/90r0jL+2cgpTtvtU/VIRUyr11zjHOplmY
+	 CGMYV50wQND669RglK8g3CoJQdzL8Lew2/9TXhc98bvxT09Qznf8ix36tDmYTQt/SE
+	 9s00BysP+5N9ILcK6MKkvgmmwTJLxbmz55K44Bngmb6aPW0BtmKzX0yTrjVTmEJc/c
+	 7fyS0BgVUOzV1xK+fFZrmMocmmzaNyjcnaYR/3/LBsPp6qHXNO6dBm6ZjGmybqUkuX
+	 NNnQC4/m5vtuQ==
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id B9FDF38491B
+	for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 09:35:11 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=innovatrieste.it header.i=@innovatrieste.it header.b="ae2NSM3i";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IEBE3fkj";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CHsTAQb4L5lok7iPnBeYZj70Eq9fqzmTasvkG57wjW+XFL7ht9jEm/jS4NAxSax+4COu7iwkqcIzS0dkbjPxErigkIjYMyyykoKlgAhMVftSgFzLb2U1ug4hauqNKPrN26mBuEvwc320ImA8Y9cOrVKzgOs4ia078leYDiWCdC5Pb4tu6I4HUgN64+sY9Y5eJv9GmhR2xqHAsz4gDmV7SUSyohwqqG+jYr9MTg5+Fb9NdZmuAO9MgDy/PpfY21ApFzLxUbCeKDMWAAUayz3hHj3bi/pyMdYFq9IOXxI4ggKbdddodEnzBfXfjm2HoZ4K/0tjdxE2wePgQvkDxTsDcA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dn5iRK2NhrXF2SU2dyMKDqnVwk7I/KEL8waRqT7wes0=;
- b=ZIj53FQo+F72qtZpyxTqQV8GXveO6ZzFnVrDU2yH2XsLsVM4K8bzs/mPEg311PPQR7ZLqTGDLtHTggONFk3EoWjd5iCqZ8IIFFZuGxGB/mEi7AOGBsZW5hVIm/+Pl4Qfj2Doz6xSoi1SgcTxabQFtao+bGKPxva170TIIKQCVuGhKtfQLaEXZ+2Afz8FQyW7o24vRRFt7mxdsaZYTS3j9zjdKChqc56NzXNj1l1XblFeQHO3trI/RrUKG9QVlZZNFNDlje8PtO47kx7XfKWvABotaxCxuuwoEeQXbbtkQtMBiMAWr1ziRvQLoVEtXiJrn3bKGya1IjIP7vuluwHUNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=innovatrieste.it; dmarc=pass action=none
- header.from=innovatrieste.it; dkim=pass header.d=innovatrieste.it; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=innovatrieste.it;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dn5iRK2NhrXF2SU2dyMKDqnVwk7I/KEL8waRqT7wes0=;
- b=ae2NSM3iGbQ5bd1D3zGgHfHAkpr/oO/83ol1zrtnHBeFGObUoofegEG04kl+72dc4IgHoEbC1TIQe0R8ZR3RvgZ0ykcc3TmNQ0m73kIIlyoAPlyqKh5J6y906pZOR5BXdKNlC8C6OmDD2o7A2CxZV1AdtEoJAXRpxr+ikfmZXIQMYrPZMItUsegf67F4csnuYVg7NhR2wan2fFoxPFcanu25fS4j3/cZgfqMhkX59IBB4+tp7OBlXwWYJOirlbtbNBMrnP4skUwIRZ38B4VMlv/D9CgIbEXLTNUwFMK49uh3NzbRATzWcdSoLxeJfP5FXWa+miex8TUW1kwY3W4m9g==
-Received: from PA4PR01MB9066.eurprd01.prod.exchangelabs.com
- (2603:10a6:102:2a9::14) by PR3PR01MB6554.eurprd01.prod.exchangelabs.com
- (2603:10a6:102:62::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5546.16; Wed, 24 Aug
- 2022 11:31:06 +0000
-Received: from PA4PR01MB9066.eurprd01.prod.exchangelabs.com
- ([fe80::f479:b4f8:c519:29a6]) by PA4PR01MB9066.eurprd01.prod.exchangelabs.com
- ([fe80::f479:b4f8:c519:29a6%7]) with mapi id 15.20.5566.014; Wed, 24 Aug 2022
- 11:31:06 +0000
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Wide spectrum
-Thread-Index: AdiyNmWPjT0MnxyqT7uDZPgtiRKbVQA2UVMAACFuLyA=
-Date: Wed, 24 Aug 2022 11:31:05 +0000
-Message-ID: 
- <PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
-References: 
- <PA4PR01MB9066C97A442469DC24AF24B28C6D9@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
- <832adf9f-0e16-7acb-186a-22014ff33d47@gmail.com>
-In-Reply-To: <832adf9f-0e16-7acb-186a-22014ff33d47@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=innovatrieste.it;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f2140c5d-7b6a-48e5-cc2c-08da85c42238
-x-ms-traffictypediagnostic: PR3PR01MB6554:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- RfKevEjsKABaubTpM9kY59D075L/5T6wxUT6toER9mFBRA3DOncLJNReYeBR4HClOFxWFiAEsxw4J/EdunmFossSYEiJqWfTk125Gy214OmEv/35agFipR2cxZHT0dfypAneNrwiUs0nSnT1GgprolEKSCKwtza+WPU6Tf0wAqTT4Ux31gGsVooFxgB/sytmAfYV5oBTN3vEN42YUec53yEkoiXbaHObMqjBI+l50YcI8rvIRKKWBq1RyiidoP3RLJNLtGbd8bifqgV59wd8raKeXoX9UX2HzckPNjTczDyJgUL2SXLMMay64n8Cg7w12xvjaHTBLV4hJkfoqW0QQm+MA+l9Hle6+pJeAHxaqgjtK5H6kX1iid0fXI4Iwv83Y2kzHSg/oU704ZX4RIuZor3p6YqhOA+mGUPJGlRVqqCabo2faLuac4ADKBVaaJxsqUdSy4ZONvkowXNTZ5kUu0wpr+wh6UnQWYYvIttjzmB27Mbi7oEgPhtqoCE0/HHFyFZt8wQkcFKVsKCNA/Xpc6y36U2sJOhTI9scfv6w/LTV+GfFx5hOcLvUt1wneCnsj0Ln8BTkK0h+bVlNrw0OCp72nuW1hklbQNTCiVjkdKzH9rxdO2L4n/natknjKpI4aigYnl7G02bTzJGqL4yorIyrUjHUfH2XOPOuEwkv96IhteH7LlnV5M+7TKRmY+IUE0GOYC0Qot4Q9B3+NYl6Jt2K/MgjROL2nj7HWd1fDH75InxYf/hypoa3oeEcJ21lPLtiLm5C1fEJFDKGdMV1ow==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR01MB9066.eurprd01.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(366004)(346002)(136003)(396003)(39850400004)(478600001)(7696005)(55236004)(33656002)(8676002)(64756008)(76116006)(66446008)(38070700005)(66476007)(66556008)(66946007)(66574015)(44832011)(41300700001)(2906002)(9686003)(26005)(86362001)(53546011)(5660300002)(186003)(52536014)(6506007)(8936002)(55016003)(166002)(122000001)(83380400001)(316002)(110136005)(38100700002)(71200400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?R1hTUlJ2ci9ETGs4SnJIU3R3THNXcXI0ZkxmcERyenU1c3hENjFVNEFnQUl4?=
- =?utf-8?B?cHFIc0JWV0FqdXc0V0NudWd4MUNoUGdoWmtDZGw0aXVsWWE2OGdKV09zVlRa?=
- =?utf-8?B?cEt3OXFmdlNSdDkzaVE0TUp3NEh5djR4bXhOUDVvdFVSV1NwVDF2aEJVTTVZ?=
- =?utf-8?B?T2JZOERMNzFxVVR1REVFakp0S3VHa004R0FFQXJOWkxSdmdLcUFMcGU2N3JI?=
- =?utf-8?B?Q2J4QWJTN01OUnBYOGxCVDNLN3NqTW45SjhKNUlvOEdCc3plYmRORDY0eVd1?=
- =?utf-8?B?NStHQ1I4UXQzQU5lYzlPOGRxTlI2M05VcS9MeTQxNEI5aElZdmFuejlkVG9E?=
- =?utf-8?B?aGU0MzJUMHZlWFUxV0VuVXpEb1JZRmJBWkJOTXprem84ZDcwMTlOVi94RFdZ?=
- =?utf-8?B?c3BYcWZzaVdzZ0N0MW16RHJlMjhFekVCRk9Tb0x4ZE1yWHhjWld2M0J3SDA0?=
- =?utf-8?B?QVBnS1VvU2VXTU5oRW9SUGFjdGpZMWNjUThQcUtlZmsrdjVMQ3V5djg2L0RZ?=
- =?utf-8?B?L0tBbmhHWkJXTFBoYUc0RXRDeUFia012ZGQwZFd2S211OU8wMjhWTlRaSXZ3?=
- =?utf-8?B?M2wrMkt3eGFXSDdaRTFQVDljN1hBNWtsTVdmdTVLamlNYjVZcDZKaVdIa3Yw?=
- =?utf-8?B?VllHRlBxTjJnTFpWYk9HV3EzWHZURitpb1AxckJOTVFHZHM3YTJSdDlxdmhx?=
- =?utf-8?B?V1dscFVoMDFtL2k3UWV5S09rNVVkcHpGMmcraHdWV0NHNVJCdExnNUlzREI2?=
- =?utf-8?B?QjNsSmJYZVBYSlRHekJWZFJoNzBZYVo2Unk4Y1R3YVo3TEhCQU5EYS9TQm9i?=
- =?utf-8?B?UmhQMGdWVHlLd3ovQllmdkl1OXFQZjh5Vm9kelhsSENCM2NiZXZWaUlRL203?=
- =?utf-8?B?UXRXQlp0ZVdVeGE5OFg2OHZYSUlSTEk3N01QWVAvME9wTlE5MW9OUXZuN2c3?=
- =?utf-8?B?dzUxRnJDM3Joc1E5RVhFcjNPVGZYMHBrZWprY2t1MEN0YnY1NU1ZT29ZRkha?=
- =?utf-8?B?M1lCM1dYODRXeGdlbHZ4WS81S20yTTBQbS8zMU9GNlFBcjB4V1JvVE5IMFho?=
- =?utf-8?B?MXM2eEhvdVdWWEI2SkRuWU1NMlVRZ2hpVnpUUzB3THNkV0xpWGIzNWMzQy9w?=
- =?utf-8?B?cm1PS0ZNTjdPTThRZUtQL0NyY0JPRTFuaHBwVmFyUDhsZHlnNmRySU1zM1Z5?=
- =?utf-8?B?R0MrdS8zcGxlc1FVaXlkanhiSnRNRHdEekJXWm8zQithR2tIYWYzWUV0OGZn?=
- =?utf-8?B?dy8xNVQzVWZaMnZ1ZGl0Ymg3WXY3VVI1djVsYzJJMjdoeXBTQlIwNXNOVDlO?=
- =?utf-8?B?NVJLWnJrTWt0QUQ3NUljSVFZZW1ENFVoVnc3QW9KWE5rMGhLKyt1OEQ1and0?=
- =?utf-8?B?dG5XY3VYODc3WTh3bVIvaHYzQnh6NDkwNnNjVzh5Nyt4eVVZR3pmM3hjSitl?=
- =?utf-8?B?WTZ3a2JhdWE5Ti9zZm96UzFwTG8xTENySDhvQzFwazNzbHk5bGdBdEFUaWxi?=
- =?utf-8?B?d3h1ZzBuNmdOYm16WDdMdk52Zk5mR09BZkhpeFdydDk4b2hiZ3VjQ0czMm9q?=
- =?utf-8?B?QytKYUw2T2IrSnBXT01rVm5FWEdTSGllZmZVUlB2N0w5OUJjdStWQkl2QUll?=
- =?utf-8?B?a1dMSkNISzBhQ3pKZlVzbjIyczF5aSt0Z3hjMjFNcFNQTkR1VkFoUWZmZHN3?=
- =?utf-8?B?L01ON1ZDTWlGR0ZRQ1hSYzg3RjN0Q2g3aXdHeFU2cUsvOTUyTTQ2ZW9XV2Y2?=
- =?utf-8?B?dEtNZFdraHBxdmpnM3hhdkt5T093SjF3SjZBamRuREpHNUJoSFRaUHdkVEl1?=
- =?utf-8?B?NElzZytlbmlqTEpnaHUxWGJ5WjFLVUVGVWpWdGQ2REJkUEhENXhhS3pPb1Mz?=
- =?utf-8?B?MzVGcjFtRHhiMDlvVml5VGJYdzgreEhObVZDUnh5c3owVTFwenczSlRYMzlP?=
- =?utf-8?B?OVVjTER5UnIyU1U4ZTZ5VlJZSDdMVy91ZUFiR0d0b01NbzI4UmpkQ1FZY0U4?=
- =?utf-8?B?TUwzZ1VHWHZGRDNZOWJ6WFYzNCtNZUx1dTVtdDdQZ1pZS1lSU0phL2dUc2d1?=
- =?utf-8?B?WkJaTzdPaXN0Nm14YjFPV0xFQTNtUUx6WnR3MmtxSGVkSnluZTZQbUhKMytk?=
- =?utf-8?B?djRvU2ROM1NTbXFHRFB1a2QzcVdWMnh4SGJWbUVVenU4ZXVzVkUxdzVUd1FK?=
- =?utf-8?B?ZUE9PQ==?=
+Received: by mail-qk1-f181.google.com with SMTP id a15so12631851qko.4
+        for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 06:35:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc;
+        bh=+Tr+epow/aoPcfk4ulq5PMv1PcDpCiHfyHu8CRZ1WmU=;
+        b=IEBE3fkjiy/eOHnCdkouedjTISNfb/dqVf59w6x/tl1FFEKBLPQvHNroWb9R6YmbhE
+         zCB4n8PZbfx4kAN0/8QqHpbJpuke1EFqpzAlzKwOFpCKrkXMvRrGwNLjYXtYN2YieCHQ
+         UeF515HI79W1ujI3ueTtZ4rMDz1cy9a8xQ9nR/2sTrzCLs8kEoFFl4Z/7Z8R1t1fEgQD
+         6LjS8Hon1xP+AnhoqW45UiHhveXaTsSHN3/hYLNgkOuDtbMPxKRykD4L5TOuc5r4A+oM
+         qWM6hiJeXUObROIywWluwiKyfPZ52S1O1e/3iIQ4OLM+HaQDh8mM5wRxCZldXmSOMZPy
+         uGtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc;
+        bh=+Tr+epow/aoPcfk4ulq5PMv1PcDpCiHfyHu8CRZ1WmU=;
+        b=pM4Coch7Mkmk9YcN4qPu2dWFrpuZA9UUB/UOX5n3pmjO72RE9g+ccfygKLeUDbomkz
+         LArES+bWkz5aJegQI2yXqa0JpGWJGmwv/c6jubCj4KTYR8P+2P9llukbz6Hh1ag2fmIB
+         vicYsvllbQ/iXSi4SIho8lP7IeId+AP2whCiXmBHb/0pnBVQbDxu0hBWLuaHOAPLETDV
+         ObU+uBqFMvlDNWdyfVf3lLL71Z5bBH2CIAJEsJpAbS+II8Yd5TGGcQOExoAmxMKhn17g
+         nhWAD2LFPoxwsA7UJNYpJHt7YZekZpHSEcj2x9Bvxdv+geh4avAEGz+vFhIo7ChsPFro
+         ELRA==
+X-Gm-Message-State: ACgBeo3wHT0YPcpppSn73dEorJ64a7gR9ZaVDQWX98nQLjP1bxWNPHD7
+	QwHn7B3W9LFb01DBiE45sAAnsYzWusA=
+X-Google-Smtp-Source: AA6agR5gWKPp2ENGyWrQIWt6tjQXvk6I64YZ3zaYxO6joNL5ZE2caXww8O7HStyeTZsa/CdqfQgTmA==
+X-Received: by 2002:a05:620a:4154:b0:6bb:822c:ccd3 with SMTP id k20-20020a05620a415400b006bb822cccd3mr19906551qko.1.1661348109668;
+        Wed, 24 Aug 2022 06:35:09 -0700 (PDT)
+Received: from [192.168.2.210] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
+        by smtp.googlemail.com with ESMTPSA id fb24-20020a05622a481800b003434d1a7a14sm12579363qtb.62.2022.08.24.06.35.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 06:35:08 -0700 (PDT)
+Message-ID: <ae2899fc-3aa4-8a77-c65b-91c1ad0ae487@gmail.com>
+Date: Wed, 24 Aug 2022 09:35:07 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: innovatrieste.it
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR01MB9066.eurprd01.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2140c5d-7b6a-48e5-cc2c-08da85c42238
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2022 11:31:06.0422
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d14ee41c-5b96-418d-9741-14210e856f06
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: h5ic96Hw17d0cEqT9i1Bm1Wc+aQQJ7ZPm+/aZ5W33PJrEI1U45mDlWHwZXifZWR6HA6f8zuCORwTfOW6sjkIWHh5gUN9M4SC2l2asdwzp+0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR01MB6554
-Message-ID-Hash: 7A3BIDHUW27U22GSWXJX3ZVOBU3K2JGS
-X-Message-ID-Hash: 7A3BIDHUW27U22GSWXJX3ZVOBU3K2JGS
-X-MailFrom: andrea.valori@innovatrieste.it
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: Andrea Valori <andrea.valori@innovatrieste.it>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <PA4PR01MB9066C97A442469DC24AF24B28C6D9@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
+ <832adf9f-0e16-7acb-186a-22014ff33d47@gmail.com>
+ <PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01.prod.exchangelabs.com>
+Message-ID-Hash: ZSVG56AR4XEEPQIH2OBMJOU5TSWBGLKV
+X-Message-ID-Hash: ZSVG56AR4XEEPQIH2OBMJOU5TSWBGLKV
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Wide spectrum
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RVX7YXMHLOAOICC6HYL53SDE32TD43HM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZSVG56AR4XEEPQIH2OBMJOU5TSWBGLKV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Andrea Valori via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Andrea Valori <andrea.valori@innovatrieste.it>
-Content-Type: multipart/mixed; boundary="===============1759568244461502747=="
+Content-Type: multipart/mixed; boundary="===============9014428457593578226=="
 
---===============1759568244461502747==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============9014428457593578226==
 Content-Type: multipart/alternative;
-	boundary="_000_PA4PR01MB9066FBD4D41341BC5C1913368C739PA4PR01MB9066eurp_"
+ boundary="------------AqiAWsyvggKmGB656Lpyjesu"
+Content-Language: en-US
 
---_000_PA4PR01MB9066FBD4D41341BC5C1913368C739PA4PR01MB9066eurp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------AqiAWsyvggKmGB656Lpyjesu
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-RGVhciBNYXJjdXMsDQoNClRoYW5rcyBmb3IgeW91ciByZXBseS4NCg0KVG8gcHV0IHNvbWUgbnVt
-YmVycyBpbnRvIHBlcnNwZWN0aXZlOg0KSSBhbSBsb29raW5nIGF0IGFjcXVpcmluZyBzb21ldGhp
-bmcgaW4gdGhlIG9yZGVyIG9mIDMwMCBNSHogb2YgTFRFIHNwZWN0cnVtIChhYm91dCA2IHRpbWVz
-IHRoZSBiYW5kd2lkdGggb2YgdGhlIEIyMDAuIEV2ZW4gaWYgSSB0aGluayB0byB1c2UgaGFsZiBv
-ZiB0aGUgYmFuZHdpZHRoLCB0aGF0IGJyaW5ncyB0aGUgZmFjdG9yIHRvIDEyKS4NCkkgd291bGQg
-bGlrZSB0byByZXBlYXQgdGhlIG1lYXN1cmVtZW50IGF0IGxlYXN0IDUtMTAgdGltZXMsIHRvIGJl
-IGFibGUgdG8gaGF2ZSBhbiBlc3RpbWF0aW9uIG9mIHRoZSB2YXJpYWJpbGl0eSBvZiB0aGUgc2ln
-bmFsLiBPZiBjb3Vyc2UsIHRoaXMgb3BlbnMgYSB3aG9sZSBwYW5kb3JhIHZhc2Ugb24gdGhlIGNv
-bWJpbmVkIGVmZmVjdCBvZjogZHVyYXRpb24gb2YgdGhlIG1lYXN1cmVtZW50LCBzeW5jaW5nIG9m
-IHRoZSBtZWFzdXJlbWVudCByYXRlIHdpdGggdGhlIHNpZ25hbCBhbmQgc28gb24sIGxlYWRpbmcg
-dG8gdGhlIGZhY3QgdGhhdCBpcyBwb3NzaWJsZSB0byBtaXNzIHNpZ25hbHMgaWYgdGhleSBhcmUg
-cmFyZSBhbmQgaW4gc2hvcnQgYnVyc3RzICh0eXBpY2Egb2YgTFRFKeKApiBidXQgbGV04oCZcyBw
-YXJrIHRoaXMgaXNzdWUgZm9yIHRoZSBtb21lbnQuDQoNClRha2luZyB0aGUgbGltaXQgeW91IG1l
-bnRpb25lZCBhbmQgZG91YmxpbmcgaXQgdG8gc3RheSBjb25zZXJ2YXRpdmUsIEkgc2hvdWxkIGJl
-IGFibGUgdG8gYWNxdWlyZSB0aGUgMTIwIHNwZWN0cnVtcyBpbiAxMjAqMC4yPTIuNCBzZWNvbmRz
-4oCmIHRoYXQgaXMgd2F5IGZhc3RlciB0aGFuIHdoYXQgSSB3YXMgaG9waW5nIQ0KDQpXaGVuIEkg
-dXNlZCBHTlVSYWRpbywgSSBjcmVhdGVkIGEgc2NyaXB0IHRoYXQgcnVuIGF0IGEgc3BlY2lmaWMg
-Y2VudHJhbCBmcmVxdWVuY3ksIHNhdmluZyB0aGUgZGF0YSBvbiBhIGZpbGUsIGNhbGxlZCB0aGUg
-c2NyaXB0IHJlY3Vyc2l2ZWx5IHdpdGggZGlmZmVyZW50IGNlbnRyYWwgZnJlcXVlbmNpZXMsIGFu
-ZCB0aGVuIGxvYWRlZCBhbmQg4oCcc3RpdGNoZWTigJ0gdGhlIGRhdGEuIFRoZSBtb3N0IGNvbnN1
-bWluZyB0aW1lLCB3YXMgcG9zc2libHkgdGhlIHNhdmluZy1sb2FkaW5nIHByb2NlZHVyZS4NCg0K
-SSBkaWQgZXhwZWN0IHRoYXQgZm9yIHN1Y2ggYSDigJxzdGFuZGFyZOKAnSBhcHBsaWNhdGlvbiAo
-YWNxdWlyZSBhIHdpZGViYW5kIHNpZ25hbCkgdGhlcmUgd2FzIHNvbWV0aGluZyByZWFkeSBtYWRl
-IGluIEdOVVJhZGlvLCBidXQgY291bGQgbm90IGZpbmQgaXQuDQpBcyBzYWlkLCBzb2FweV9wb3dl
-ciBkb2VzIGV4YWN0bHkgdGhpcywgYnV0IGJlaW5nIG5vdCBhY3RpdmVseSBkZXZlbG9wZWQsIEkg
-d2FzIGhvcGluZyBpbiBmaW5kaW5nIHNvbWV0aGluZyBlbHNl4oCmDQoNClRoYW5rcyBhbmQgcmVn
-YXJkcywNCg0KQW5kcmVhDQoNCg0KRnJvbTogTWFyY3VzIEQuIExlZWNoIDxwYXRjaHZvbmJyYXVu
-QGdtYWlsLmNvbT4NClNlbnQ6IFRodXJzZGF5LCBBdWd1c3QgMTgsIDIwMjIgNDozNSBQTQ0KVG86
-IEFuZHJlYSBWYWxvcmkgPGFuZHJlYS52YWxvcmlAaW5ub3ZhdHJpZXN0ZS5pdD47IHVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFdpZGUgc3BlY3Ry
-dW0NCg0KWW91IGRvbid0IG9mdGVuIGdldCBlbWFpbCBmcm9tIHBhdGNodm9uYnJhdW5AZ21haWwu
-Y29tPG1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4uIExlYXJuIHdoeSB0aGlzIGlzIGlt
-cG9ydGFudDxodHRwczovL2FrYS5tcy9MZWFybkFib3V0U2VuZGVySWRlbnRpZmljYXRpb24+DQpP
-biAyMDIyLTA4LTE4IDEwOjE4LCBBbmRyZWEgVmFsb3JpIHZpYSBVU1JQLXVzZXJzIHdyb3RlOg0K
-RGVhciBhbGwsDQpJIGFtIHRyeWluZyB0byBhY3F1aXJlIGEg4oCcd2lkZeKAnSBzcGVjdHJ1bSB3
-aXRoIHRoZSBCMjAwIGFuZCBCMjAwIG1pbmkuIEZvciB3aWRlIEkgbWVhbiB3aWRlciB0aGFuIHRo
-ZSBiYW5kd2lkdGggb2YgdGhlIGJvYXJkLCBhbmQgdGhlcmVmb3JlIHNvbWUgd2F5IG9mIGZhc3Qg
-bXVsdGlwbGUgYWNxdWlzaXRpb25zIHdpdGgg4oCcZnJlcXVlbmN5IGhvcHBpbmfigJ0gYW5kIOKA
-nHN0aXRjaGluZ+KAnS4NCkRvIHlvdSBoYXZlIGEgZ29vZCBzb2x1dGlvbiB0byByZWNvbW1lbmQ/
-IEkgdHJpZWQgc29hcHlfcG93ZXIgKHdoaWNoIHNlZW1zIHdvcmtpbmcgYnV0IGl0IGlzIG5vdCBt
-YWludGFpbmVkKSBhbmQgR05VUmFkaW8gKHdpdGggaXQsIEkgZGlkIG5vdCBtYW5hZ2UgdG8gaGF2
-ZSBhIOKAnGZhc3QgZnJlcXVlbmN5IGhvcHBpbmfigJ0sIGFuZCB0aGVyZWZvcmUgdGhlIGFjcXVp
-c2l0aW9uIGlzIHZlcnkgdGltZSBjb25zdW1pbmcsIHdpdGggc2V2ZXJhbCBzZWNvbmRzIGRlbGF5
-IGF0IGVhY2ggdHVuaW5nKS4NCg0KVGhhbmtzIGFuZCBiZXN0IHJlZ2FyZHMsDQoNCkFuZHJlYQ0K
-DQpIb3cgZmFzdCBkbyB5b3UgbmVlZCB0byBnbz8gIFRoZSBCMnh4IGNoaXAsIHRoZSBBRDkzNjEg
-aXNuJ3Qga25vd24gZm9yIGl0cyBhYmlsaXR5IHRvIHJhcGlkbHkgdHVuZSBhdCB0aW1lc2NhbGVz
-IGJlbG93IGFib3V0DQogIDEwMG1zLg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fDQoNCkluZm9ybWF0aXZhIHN1bGxhIHByaXZhY3kgZSBzdWxsYSBzaWN1cmV6emEN
-Cg0KUXVlc3RvIG1lc3NhZ2dpbyBwdcOyIGNvbnRlbmVyZSBpbmZvcm1hemlvbmkgY29uZmlkZW56
-aWFsaSBlZCDDqCBkZXN0aW5hdG8gZXNjbHVzaXZhbWVudGUgYWxsJ2luZGlyaXp6byBpbiBpbnRl
-c3RhemlvbmUuIElsIG1hdGVyaWFsZSBlIGxlIGluZm9ybWF6aW9uaSBjb250ZW51dGkgZS9vIGNv
-bGxlZ2F0aSBhIHF1ZXN0byBtZXNzYWdnaW8gc29ubyByaXNlcnZhdGkgZSBub24gZGl2dWxnYWJp
-bGkgYSB0ZXJ6aS4gQWkgc2Vuc2kgZGVsbGEgbGVnZ2Ugc3VsIGRpcml0dG8gZCdhdXRvcmUgZSBk
-ZWwgY29kaWNlIGNpdmlsZSwgc29ubyB2aWV0YXRlIGxhIHJpcHJvZHV6aW9uZSBvIGxhIG1vZGlm
-aWNhIG5vbiBlc3ByZXNzYW1lbnRlIGF1dG9yaXp6YXRhIGRpIHF1ZXN0byBtYXRlcmlhbGUsIG8g
-ZGkgcGFydGUgZGkgZXNzbywgY29uIHF1YWxzaWFzaSBtZXp6bywgaW4gcXVhbnRvIGRpIGVzY2x1
-c2l2YSBwcm9wcmlldMOgIGRpIElubm92YSBTLnAuQS4gbyBkZWkgc3VvaSBkYW50aSBjYXVzYS4g
-UGVyc29uZSBkaXZlcnNlIGRhbCBkZXN0aW5hdGFyaW8gZGkgcXVlc3RvIG1lc3NhZ2dpbyBub24g
-cG9zc29ubyBjb3BpYXJlIG8gZGlzdHJpYnVpcmUgaWwgbWVzc2FnZ2lvIHN0ZXNzbyBhIHRlcnpp
-LiBQdW50aSBkaSB2aXN0YSBvZCBvcGluaW9uaSBwZXJzb25hbGkgcHJlc2VudGkgaW4gcXVlc3Rv
-IG1lc3NhZ2dpbyBzb25vIHJpY29uZHVjaWJpbGkgZGlyZXR0YW1lbnRlIGFsIHNvbG8gbWl0dGVu
-dGUgZGVsIG1lc3NhZ2dpbywgZSBub24gcmFwcHJlc2VudGFubyBuZWNlc3NhcmlhbWVudGUgaWwg
-cHVudG8gZGkgdmlzdGEgbyBsJ29waW5pb25lIGRpIElubm92YSBTLnAuQS4sIHNhbHZvIGFsdHJp
-bWVudGkgc3BlY2lmaWNhdG8uIEVzc2VuZG8gSW50ZXJuZXQgdW4gY2FuYWxlIGRpIGNvbXVuaWNh
-emlvbmUgbm9uIHNpY3VybywgSW5ub3ZhIFMucC5BLiBub24gw6ggcmVzcG9uc2FiaWxlIGRpIGV2
-ZW50dWFsaSBtb2RpZmljaGUsIG7DqSBkZWxsYSB2aW9sYXppb25lLCBzb3R0cmF6aW9uZSBvIHNv
-cHByZXNzaW9uZSwgb2Njb3JzZSBhbCBtZXNzYWdnaW8gZG9wbyBsYSBzcGVkaXppb25lIGRhIHBh
-cnRlIGRlbCBtaXR0ZW50ZS4gU2kgcmFjY29tYW5kYSBhbCBkZXN0aW5hdGFyaW8gZGkgZWZmZXR0
-dWFyZSB1biBjb250cm9sbG8gYW50aXZpcnVzIHByaW1hIGRpIGFwcmlyZSBxdWFsc2lhc2kgYWxs
-ZWdhdG8gYWxsYSBwcmVzZW50ZS4gSW5ub3ZhIFMucC5BLiBub24gw6ggcmVzcG9uc2FiaWxlIGRp
-IGV2ZW50dWFsaSBkYW5uaSBvY2NvcnNpIGEgc2VndWl0byBkaSB2aXJ1cyBpbmZvcm1hdGljaSBh
-Y2NpZGVudGFsbWVudGUgdHJhc21lc3NpIHRyYW1pdGUgaSBjb250ZW51dGkgZGVsIHByZXNlbnRl
-IG1lc3NhZ2dpby4gQ2hpdW5xdWUgcmljZXZhIHF1ZXN0byBtZXNzYWdnaW8gcGVyIGVycm9yZSwg
-w6ggcHJlZ2F0byBkaSBkaXN0cnVnZ2VybG8gZSBkaSBpbmZvcm1hcmUgaW1tZWRpYXRhbWVudGUg
-aWwgbWl0dGVudGUgY29uIGxvIHN0ZXNzbyBtZXp6byBlIGNhbmNlbGxhcmxvIGRhaSBwcm9wcmkg
-c2lzdGVtaS4gUXVhbnRvIHByZWNlZGUgYWkgZmluaSBkZWwgcmlzcGV0dG8gZGVsIFJlZ29sYW1l
-bnRvIFVFIDIwMTYvNjc5IGluIG1hdGVyaWEgZGkgcHJvdGV6aW9uZSBkZWkgZGF0aSBwZXJzb25h
-bGkuIFBlciBsJ2luZm9ybWF0aXZhIGVzdGVzYSBjb25zdWx0YXJlIGlsIHNpdG8gSW50ZXJuZXQg
-ZGkgSW5ub3ZhIFMucC5BLiBzZXppb25lIFByaXZhY3kuDQoNCkRpc2NsYWltZXIgYW5kIGNvbmZp
-ZGVudGlhbGl0eSBub3RpY2UNCg0KVGhpcyBlLW1haWwgbWF5IGNvbnRhaW4gY29uZmlkZW50aWFs
-IGluZm9ybWF0aW9uIGFuZCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUgYWRkcmVzc2VlIG5hbWVk
-IGFib3ZlIGFuZCB0aGUgY29udGVudHMgc2hvdWxkIG5vdCBiZSBkaXNjbG9zZWQgdG8gYW55IG90
-aGVyIHBlcnNvbiBub3IgY29waWVzIHRha2VuIG9yIGZvcndhcmRlZC4gQW55IHZpZXdzIG9yIG9w
-aW5pb25zIHByZXNlbnRlZCBhcmUgc29sZWx5IHRob3NlIG9mIHRoZSBzZW5kZXIgYW5kIGRvIG5v
-dCBuZWNlc3NhcmlseSByZXByZXNlbnQgdGhlIHZpZXdzIG9mIElubm92YSBTLnAuQS4gdW5sZXNz
-IG90aGVyd2lzZSBzcGVjaWZpY2FsbHkgc3RhdGVkLiBBcyBub3QgYWxsIGludGVybmV0IGNvbW11
-bmljYXRpb25zIGFyZSBzZWN1cmUgSW5ub3ZhIFMucC5BLiBkb2VzIG5vdCBhY2NlcHQgbGVnYWwg
-cmVzcG9uc2liaWxpdHkgZm9yIHRoZSBjb250ZW50cyBvZiB0aGlzIG1lc3NhZ2Ugbm9yIHJlc3Bv
-bnNpYmlsaXR5IGZvciBhbnkgY2hhbmdlIG9yIGJyZWFjaCBvciBzdWJ0cmFjdGlvbiBvciBzdXBw
-cmVzc2lvbiBvZiB0aGlzIG1lc3NhZ2UgYWZ0ZXIgaXQgd2FzIHNlbnQgYnkgdGhlIG9yaWdpbmFs
-IHNlbmRlci4gV2UgYWR2aXNlIHlvdSB0byBjYXJyeSBvdXQgeW91ciBvd24gdmlydXMgY2hlY2sg
-YmVmb3JlIG9wZW5pbmcgYW55IGF0dGFjaG1lbnRzIGFzIHdlIGNhbm5vdCBhY2NlcHQgbGlhYmls
-aXR5IGZvciBhbnkgZGFtYWdlIHN1c3RhaW5lZCBhcyBhIHJlc3VsdCBvZiBhbnkgc29mdHdhcmUg
-dmlydXNlcy4gUGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGlmIHlvdSBoYXZl
-IHJlY2VpdmVkIHRoaXMgZS1tYWlsIGJ5IG1pc3Rha2UgYW5kIGRlbGV0ZSBpdCBmcm9tIHlvdXIg
-c3lzdGVtcy4gVGhpcyBkaXNjbGFpbWVyIGFjY29yZGluZyB0byBHRFBSIFJlZ3VsYXRpb24gRVUg
-MjAxNi82NzkuIFByaXZhY3ktcmVsYXRlZCBpbmZvcm1hdGlvbiBpcyBhdmFpbGFibGUgb24gdGhl
-IGNvbXBhbnkgd2Vic2l0ZSwgUHJpdmFjeSBzZWN0aW9uLg0K
+On 2022-08-24 07:31, Andrea Valori wrote:
+>
+> Dear Marcus,
+>
+> Thanks for your reply.
+>
+> To put some numbers into perspective:
+>
+> I am looking at acquiring something in the order of 300 MHz of LTE=20
+> spectrum (about 6 times the bandwidth of the B200. Even if I think to=20
+> use half of the bandwidth, that brings the factor to 12).
+>
+> I would like to repeat the measurement at least 5-10 times, to be able=20
+> to have an estimation of the variability of the signal. Of course,=20
+> this opens a whole pandora vase on the combined effect of: duration of=20
+> the measurement, syncing of the measurement rate with the signal and=20
+> so on, leading to the fact that is possible to miss signals if they=20
+> are rare and in short bursts (typica of LTE)=E2=80=A6 but let=E2=80=99s=
+ park this=20
+> issue for the moment.
+>
+> Taking the limit you mentioned and doubling it to stay conservative, I=20
+> should be able to acquire the 120 spectrums in 120*0.2=3D2.4 seconds=E2=
+=80=A6=20
+> that is way faster than what I was hoping!
+>
+> When I used GNURadio, I created a script that run at a specific=20
+> central frequency, saving the data on a file, called the script=20
+> recursively with different central frequencies, and then loaded and=20
+> =E2=80=9Cstitched=E2=80=9D the data. The most consuming time, was possi=
+bly the=20
+> saving-loading procedure.
+>
+By "calling the script recursively" I assume you mean iteratively? So=20
+re-starting the entire Gnu Radio framework every time?
+ =C2=A0 That would take a LONG time.
 
---_000_PA4PR01MB9066FBD4D41341BC5C1913368C739PA4PR01MB9066eurp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I'd post on the discuss-gnuradio mailng list.=C2=A0 Someone has probably=20
+already done this--in fact I did one many many years ago
+ =C2=A0 with GR 3.6, which is now horribly obsolete.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiU2Vnb2UgVUkiOw0KCXBhbm9zZS0xOjIg
-MTEgNSAyIDQgMiA0IDIgMiAzO30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1h
-bCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowY207DQoJZm9udC1zaXpl
-OjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNw
-YW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0K
-CXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTkNCgl7bXNvLXN0
-eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2Vy
-aWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlw
-ZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
-CXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIu
-MHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHls
-ZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQi
-IHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0
-IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFk
-Pg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiIHN0eWxlPSJ3
-b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+RGVhciBNYXJjdXMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoYW5r
-cyBmb3IgeW91ciByZXBseS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VG8gcHV0IHNvbWUgbnVt
-YmVycyBpbnRvIHBlcnNwZWN0aXZlOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+SSBhbSBsb29raW5nIGF0IGFjcXVpcmluZyBzb21ldGhpbmcgaW4gdGhlIG9yZGVyIG9mIDMw
-MCBNSHogb2YgTFRFIHNwZWN0cnVtIChhYm91dCA2IHRpbWVzIHRoZSBiYW5kd2lkdGggb2YgdGhl
-IEIyMDAuIEV2ZW4gaWYgSSB0aGluayB0byB1c2UgaGFsZiBvZiB0aGUgYmFuZHdpZHRoLCB0aGF0
-IGJyaW5ncyB0aGUgZmFjdG9yIHRvIDEyKS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPkkgd291bGQgbGlrZSB0byByZXBlYXQgdGhlIG1lYXN1cmVtZW50IGF0IGxlYXN0IDUt
-MTAgdGltZXMsIHRvIGJlIGFibGUgdG8gaGF2ZSBhbiBlc3RpbWF0aW9uIG9mIHRoZSB2YXJpYWJp
-bGl0eSBvZiB0aGUgc2lnbmFsLiBPZiBjb3Vyc2UsIHRoaXMgb3BlbnMgYSB3aG9sZSBwYW5kb3Jh
-IHZhc2Ugb24gdGhlIGNvbWJpbmVkIGVmZmVjdCBvZjogZHVyYXRpb24gb2YgdGhlIG1lYXN1cmVt
-ZW50LCBzeW5jaW5nIG9mDQogdGhlIG1lYXN1cmVtZW50IHJhdGUgd2l0aCB0aGUgc2lnbmFsIGFu
-ZCBzbyBvbiwgbGVhZGluZyB0byB0aGUgZmFjdCB0aGF0IGlzIHBvc3NpYmxlIHRvIG1pc3Mgc2ln
-bmFscyBpZiB0aGV5IGFyZSByYXJlIGFuZCBpbiBzaG9ydCBidXJzdHMgKHR5cGljYSBvZiBMVEUp
-4oCmIGJ1dCBsZXTigJlzIHBhcmsgdGhpcyBpc3N1ZSBmb3IgdGhlIG1vbWVudC48bzpwPjwvbzpw
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+VGFraW5nIHRoZSBsaW1pdCB5b3UgbWVudGlvbmVkIGFuZCBkb3VibGlu
-ZyBpdCB0byBzdGF5IGNvbnNlcnZhdGl2ZSwgSSBzaG91bGQgYmUgYWJsZSB0byBhY3F1aXJlIHRo
-ZSAxMjAgc3BlY3RydW1zIGluIDEyMCowLjI9Mi40IHNlY29uZHPigKYgdGhhdCBpcyB3YXkgZmFz
-dGVyIHRoYW4gd2hhdCBJIHdhcyBob3BpbmchPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldoZW4g
-SSB1c2VkIEdOVVJhZGlvLCBJIGNyZWF0ZWQgYSBzY3JpcHQgdGhhdCBydW4gYXQgYSBzcGVjaWZp
-YyBjZW50cmFsIGZyZXF1ZW5jeSwgc2F2aW5nIHRoZSBkYXRhIG9uIGEgZmlsZSwgY2FsbGVkIHRo
-ZSBzY3JpcHQgcmVjdXJzaXZlbHkgd2l0aCBkaWZmZXJlbnQgY2VudHJhbCBmcmVxdWVuY2llcywg
-YW5kIHRoZW4gbG9hZGVkIGFuZCDigJxzdGl0Y2hlZOKAnSB0aGUgZGF0YS4gVGhlIG1vc3QgY29u
-c3VtaW5nDQogdGltZSwgd2FzIHBvc3NpYmx5IHRoZSBzYXZpbmctbG9hZGluZyBwcm9jZWR1cmUu
-PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgZGlkIGV4cGVjdCB0aGF0IGZvciBzdWNoIGEg4oCc
-c3RhbmRhcmTigJ0gYXBwbGljYXRpb24gKGFjcXVpcmUgYSB3aWRlYmFuZCBzaWduYWwpIHRoZXJl
-IHdhcyBzb21ldGhpbmcgcmVhZHkgbWFkZSBpbiBHTlVSYWRpbywgYnV0IGNvdWxkIG5vdCBmaW5k
-IGl0LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QXMgc2FpZCwgc29hcHlf
-cG93ZXIgZG9lcyBleGFjdGx5IHRoaXMsIGJ1dCBiZWluZyBub3QgYWN0aXZlbHkgZGV2ZWxvcGVk
-LCBJIHdhcyBob3BpbmcgaW4gZmluZGluZyBzb21ldGhpbmcgZWxzZeKApjxvOnA+PC9vOnA+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5UaGFua3MgYW5kIHJlZ2FyZHMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFu
-ZHJlYTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+
-DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7
-cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9t
-OjwvYj4gTWFyY3VzIEQuIExlZWNoICZsdDtwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSZndDsgPGJy
-Pg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBBdWd1c3QgMTgsIDIwMjIgNDozNSBQTTxicj4NCjxi
-PlRvOjwvYj4gQW5kcmVhIFZhbG9yaSAmbHQ7YW5kcmVhLnZhbG9yaUBpbm5vdmF0cmllc3RlLml0
-Jmd0OzsgdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6
-IFtVU1JQLXVzZXJzXSBXaWRlIHNwZWN0cnVtPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8dGFibGUgY2xh
-c3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9IjAiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGlu
-Zz0iMCIgYWxpZ249ImxlZnQiIHdpZHRoPSIxMDAlIiBzdHlsZT0id2lkdGg6MTAwLjAlIj4NCjx0
-Ym9keT4NCjx0cj4NCjx0ZCBzdHlsZT0iYmFja2dyb3VuZDojQTZBNkE2O3BhZGRpbmc6NS4yNXB0
-IDEuNXB0IDUuMjVwdCAxLjVwdCI+PC90ZD4NCjx0ZCB3aWR0aD0iMTAwJSIgc3R5bGU9IndpZHRo
-OjEwMC4wJTtiYWNrZ3JvdW5kOiNFQUVBRUE7cGFkZGluZzo1LjI1cHQgMy43NXB0IDUuMjVwdCAx
-MS4yNXB0Ij4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLWVsZW1lbnQ6
-ZnJhbWU7bXNvLWVsZW1lbnQtZnJhbWUtaHNwYWNlOjIuMjVwdDttc28tZWxlbWVudC13cmFwOmFy
-b3VuZDttc28tZWxlbWVudC1hbmNob3ItdmVydGljYWw6cGFyYWdyYXBoO21zby1lbGVtZW50LWFu
-Y2hvci1ob3Jpem9udGFsOmNvbHVtbjttc28taGVpZ2h0LXJ1bGU6ZXhhY3RseSI+DQo8c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1NlZ29lIFVJJnF1b3Q7LHNh
-bnMtc2VyaWY7Y29sb3I6IzIxMjEyMSI+WW91IGRvbid0IG9mdGVuIGdldCBlbWFpbCBmcm9tDQo8
-L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrIj48YSBocmVmPSJtYWlsdG86cGF0Y2h2b25i
-cmF1bkBnbWFpbC5jb20iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7U2Vnb2UgVUkmcXVvdDssc2Fucy1zZXJpZiI+cGF0Y2h2b25icmF1bkBnbWFpbC5jb208
-L3NwYW4+PC9hPjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O1NlZ29lIFVJJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzIxMjEyMSI+Lg0KPC9zcGFu
-PjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PGEgaHJlZj0iaHR0cHM6Ly9ha2EubXMvTGVhcm5B
-Ym91dFNlbmRlcklkZW50aWZpY2F0aW9uIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O1NlZ29lIFVJJnF1b3Q7LHNhbnMtc2VyaWYiPkxlYXJuIHdoeSB0aGlz
-IGlzIGltcG9ydGFudDwvc3Bhbj48L2E+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7U2Vnb2UgVUkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMjEy
-MTIxIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvdGQ+DQo8dGQgd2lkdGg9Ijc1
-IiBzdHlsZT0id2lkdGg6NTYuMjVwdDtiYWNrZ3JvdW5kOiNFQUVBRUE7cGFkZGluZzo1LjI1cHQg
-My43NXB0IDUuMjVwdCAzLjc1cHQ7YWxpZ246bGVmdCI+DQo8L3RkPg0KPC90cj4NCjwvdGJvZHk+
-DQo8L3RhYmxlPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAyMDIyLTA4
-LTE4IDEwOjE4LCBBbmRyZWEgVmFsb3JpIHZpYSBVU1JQLXVzZXJzIHdyb3RlOjxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4t
-Ym90dG9tOjUuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRlYXIgYWxsLDxvOnA+PC9vOnA+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBhbSB0cnlpbmcgdG8gYWNxdWlyZSBhIOKAnHdp
-ZGXigJ0gc3BlY3RydW0gd2l0aCB0aGUgQjIwMCBhbmQgQjIwMCBtaW5pLiBGb3Igd2lkZSBJIG1l
-YW4gd2lkZXIgdGhhbiB0aGUgYmFuZHdpZHRoIG9mIHRoZSBib2FyZCwgYW5kIHRoZXJlZm9yZSBz
-b21lIHdheSBvZiBmYXN0IG11bHRpcGxlIGFjcXVpc2l0aW9ucyB3aXRoIOKAnGZyZXF1ZW5jeSBo
-b3BwaW5n4oCdIGFuZCDigJxzdGl0Y2hpbmfigJ0uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5EbyB5b3UgaGF2ZSBhIGdvb2Qgc29sdXRpb24gdG8gcmVjb21tZW5kPyBJIHRy
-aWVkIHNvYXB5X3Bvd2VyICh3aGljaCBzZWVtcyB3b3JraW5nIGJ1dCBpdCBpcyBub3QgbWFpbnRh
-aW5lZCkgYW5kIEdOVVJhZGlvICh3aXRoIGl0LCBJIGRpZCBub3QgbWFuYWdlIHRvIGhhdmUgYSDi
-gJxmYXN0IGZyZXF1ZW5jeSBob3BwaW5n4oCdLCBhbmQgdGhlcmVmb3JlIHRoZSBhY3F1aXNpdGlv
-biBpcyB2ZXJ5IHRpbWUgY29uc3VtaW5nLA0KIHdpdGggc2V2ZXJhbCBzZWNvbmRzIGRlbGF5IGF0
-IGVhY2ggdHVuaW5nKS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNw
-OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhhbmtzIGFuZCBiZXN0IHJl
-Z2FyZHMsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFuZHJlYTxvOnA+PC9vOnA+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkhvdyBmYXN0
-IGRvIHlvdSBuZWVkIHRvIGdvPyZuYnNwOyBUaGUgQjJ4eCBjaGlwLCB0aGUgQUQ5MzYxIGlzbid0
-IGtub3duIGZvciBpdHMgYWJpbGl0eSB0byByYXBpZGx5IHR1bmUgYXQgdGltZXNjYWxlcyBiZWxv
-dyBhYm91dDxicj4NCiZuYnNwOyAxMDBtcy48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjwv
-ZGl2Pg0KPC9kaXY+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJy
-Pg0KPGJyPg0KPGI+SW5mb3JtYXRpdmEgc3VsbGEgcHJpdmFjeSBlIHN1bGxhIHNpY3VyZXp6YTwv
-Yj4gPGJyPg0KPGJyPg0KUXVlc3RvIG1lc3NhZ2dpbyBwdcOyIGNvbnRlbmVyZSBpbmZvcm1hemlv
-bmkgY29uZmlkZW56aWFsaSBlZCDDqCBkZXN0aW5hdG8gZXNjbHVzaXZhbWVudGUgYWxsJ2luZGly
-aXp6byBpbiBpbnRlc3RhemlvbmUuIElsIG1hdGVyaWFsZSBlIGxlIGluZm9ybWF6aW9uaSBjb250
-ZW51dGkgZS9vIGNvbGxlZ2F0aSBhIHF1ZXN0byBtZXNzYWdnaW8gc29ubyByaXNlcnZhdGkgZSBu
-b24gZGl2dWxnYWJpbGkgYSB0ZXJ6aS4gQWkgc2Vuc2kgZGVsbGEgbGVnZ2Ugc3VsDQogZGlyaXR0
-byBkJ2F1dG9yZSBlIGRlbCBjb2RpY2UgY2l2aWxlLCBzb25vIHZpZXRhdGUgbGEgcmlwcm9kdXpp
-b25lIG8gbGEgbW9kaWZpY2Egbm9uIGVzcHJlc3NhbWVudGUgYXV0b3JpenphdGEgZGkgcXVlc3Rv
-IG1hdGVyaWFsZSwgbyBkaSBwYXJ0ZSBkaSBlc3NvLCBjb24gcXVhbHNpYXNpIG1lenpvLCBpbiBx
-dWFudG8gZGkgZXNjbHVzaXZhIHByb3ByaWV0w6AgZGkgSW5ub3ZhIFMucC5BLiBvIGRlaSBzdW9p
-IGRhbnRpIGNhdXNhLiBQZXJzb25lIGRpdmVyc2UNCiBkYWwgZGVzdGluYXRhcmlvIGRpIHF1ZXN0
-byBtZXNzYWdnaW8gbm9uIHBvc3Nvbm8gY29waWFyZSBvIGRpc3RyaWJ1aXJlIGlsIG1lc3NhZ2dp
-byBzdGVzc28gYSB0ZXJ6aS4gUHVudGkgZGkgdmlzdGEgb2Qgb3BpbmlvbmkgcGVyc29uYWxpIHBy
-ZXNlbnRpIGluIHF1ZXN0byBtZXNzYWdnaW8gc29ubyByaWNvbmR1Y2liaWxpIGRpcmV0dGFtZW50
-ZSBhbCBzb2xvIG1pdHRlbnRlIGRlbCBtZXNzYWdnaW8sIGUgbm9uIHJhcHByZXNlbnRhbm8gbmVj
-ZXNzYXJpYW1lbnRlDQogaWwgcHVudG8gZGkgdmlzdGEgbyBsJ29waW5pb25lIGRpIElubm92YSBT
-LnAuQS4sIHNhbHZvIGFsdHJpbWVudGkgc3BlY2lmaWNhdG8uIEVzc2VuZG8gSW50ZXJuZXQgdW4g
-Y2FuYWxlIGRpIGNvbXVuaWNhemlvbmUgbm9uIHNpY3VybywgSW5ub3ZhIFMucC5BLiBub24gw6gg
-cmVzcG9uc2FiaWxlIGRpIGV2ZW50dWFsaSBtb2RpZmljaGUsIG7DqSBkZWxsYSB2aW9sYXppb25l
-LCBzb3R0cmF6aW9uZSBvIHNvcHByZXNzaW9uZSwgb2Njb3JzZSBhbCBtZXNzYWdnaW8NCiBkb3Bv
-IGxhIHNwZWRpemlvbmUgZGEgcGFydGUgZGVsIG1pdHRlbnRlLiBTaSByYWNjb21hbmRhIGFsIGRl
-c3RpbmF0YXJpbyBkaSBlZmZldHR1YXJlIHVuIGNvbnRyb2xsbyBhbnRpdmlydXMgcHJpbWEgZGkg
-YXByaXJlIHF1YWxzaWFzaSBhbGxlZ2F0byBhbGxhIHByZXNlbnRlLiBJbm5vdmEgUy5wLkEuIG5v
-biDDqCByZXNwb25zYWJpbGUgZGkgZXZlbnR1YWxpIGRhbm5pIG9jY29yc2kgYSBzZWd1aXRvIGRp
-IHZpcnVzIGluZm9ybWF0aWNpIGFjY2lkZW50YWxtZW50ZQ0KIHRyYXNtZXNzaSB0cmFtaXRlIGkg
-Y29udGVudXRpIGRlbCBwcmVzZW50ZSBtZXNzYWdnaW8uIENoaXVucXVlIHJpY2V2YSBxdWVzdG8g
-bWVzc2FnZ2lvIHBlciBlcnJvcmUsIMOoIHByZWdhdG8gZGkgZGlzdHJ1Z2dlcmxvIGUgZGkgaW5m
-b3JtYXJlIGltbWVkaWF0YW1lbnRlIGlsIG1pdHRlbnRlIGNvbiBsbyBzdGVzc28gbWV6em8gZSBj
-YW5jZWxsYXJsbyBkYWkgcHJvcHJpIHNpc3RlbWkuIFF1YW50byBwcmVjZWRlIGFpIGZpbmkgZGVs
-IHJpc3BldHRvDQogZGVsIFJlZ29sYW1lbnRvIFVFIDIwMTYvNjc5IGluIG1hdGVyaWEgZGkgcHJv
-dGV6aW9uZSBkZWkgZGF0aSBwZXJzb25hbGkuIFBlciBsJ2luZm9ybWF0aXZhIGVzdGVzYSBjb25z
-dWx0YXJlIGlsIHNpdG8gSW50ZXJuZXQgZGkgSW5ub3ZhIFMucC5BLiBzZXppb25lIFByaXZhY3ku
-DQo8YnI+DQo8YnI+DQo8Yj5EaXNjbGFpbWVyIGFuZCBjb25maWRlbnRpYWxpdHkgbm90aWNlPC9i
-PiA8YnI+DQo8YnI+DQpUaGlzIGUtbWFpbCBtYXkgY29udGFpbiBjb25maWRlbnRpYWwgaW5mb3Jt
-YXRpb24gYW5kIGlzIGludGVuZGVkIG9ubHkgZm9yIHRoZSBhZGRyZXNzZWUgbmFtZWQgYWJvdmUg
-YW5kIHRoZSBjb250ZW50cyBzaG91bGQgbm90IGJlIGRpc2Nsb3NlZCB0byBhbnkgb3RoZXIgcGVy
-c29uIG5vciBjb3BpZXMgdGFrZW4gb3IgZm9yd2FyZGVkLiBBbnkgdmlld3Mgb3Igb3BpbmlvbnMg
-cHJlc2VudGVkIGFyZSBzb2xlbHkgdGhvc2Ugb2YgdGhlIHNlbmRlciBhbmQNCiBkbyBub3QgbmVj
-ZXNzYXJpbHkgcmVwcmVzZW50IHRoZSB2aWV3cyBvZiBJbm5vdmEgUy5wLkEuIHVubGVzcyBvdGhl
-cndpc2Ugc3BlY2lmaWNhbGx5IHN0YXRlZC4gQXMgbm90IGFsbCBpbnRlcm5ldCBjb21tdW5pY2F0
-aW9ucyBhcmUgc2VjdXJlIElubm92YSBTLnAuQS4gZG9lcyBub3QgYWNjZXB0IGxlZ2FsIHJlc3Bv
-bnNpYmlsaXR5IGZvciB0aGUgY29udGVudHMgb2YgdGhpcyBtZXNzYWdlIG5vciByZXNwb25zaWJp
-bGl0eSBmb3IgYW55IGNoYW5nZQ0KIG9yIGJyZWFjaCBvciBzdWJ0cmFjdGlvbiBvciBzdXBwcmVz
-c2lvbiBvZiB0aGlzIG1lc3NhZ2UgYWZ0ZXIgaXQgd2FzIHNlbnQgYnkgdGhlIG9yaWdpbmFsIHNl
-bmRlci4gV2UgYWR2aXNlIHlvdSB0byBjYXJyeSBvdXQgeW91ciBvd24gdmlydXMgY2hlY2sgYmVm
-b3JlIG9wZW5pbmcgYW55IGF0dGFjaG1lbnRzIGFzIHdlIGNhbm5vdCBhY2NlcHQgbGlhYmlsaXR5
-IGZvciBhbnkgZGFtYWdlIHN1c3RhaW5lZCBhcyBhIHJlc3VsdCBvZiBhbnkgc29mdHdhcmUNCiB2
-aXJ1c2VzLiBQbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkgaWYgeW91IGhhdmUg
-cmVjZWl2ZWQgdGhpcyBlLW1haWwgYnkgbWlzdGFrZSBhbmQgZGVsZXRlIGl0IGZyb20geW91ciBz
-eXN0ZW1zLiBUaGlzIGRpc2NsYWltZXIgYWNjb3JkaW5nIHRvIEdEUFIgUmVndWxhdGlvbiBFVSAy
-MDE2LzY3OS4gUHJpdmFjeS1yZWxhdGVkIGluZm9ybWF0aW9uIGlzIGF2YWlsYWJsZSBvbiB0aGUg
-Y29tcGFueSB3ZWJzaXRlLCBQcml2YWN5IHNlY3Rpb24uDQo8L2JvZHk+DQo8L2h0bWw+DQo=
+With stream tags, you should be able to know precisely which samples go=20
+with which frequency, and use that to direct your logging.
+ =C2=A0 Indeed, the "File Meta Sink" records all the tags along with the=20
+samples....
 
---_000_PA4PR01MB9066FBD4D41341BC5C1913368C739PA4PR01MB9066eurp_--
 
---===============1759568244461502747==
+
+> I did expect that for such a =E2=80=9Cstandard=E2=80=9D application (ac=
+quire a=20
+> wideband signal) there was something ready made in GNURadio, but could=20
+> not find it.
+>
+> As said, soapy_power does exactly this, but being not actively=20
+> developed, I was hoping in finding something else=E2=80=A6
+>
+> Thanks and regards,
+>
+> Andrea
+>
+> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+> *Sent:* Thursday, August 18, 2022 4:35 PM
+> *To:* Andrea Valori <andrea.valori@innovatrieste.it>;=20
+> usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Wide spectrum
+>
+>
+> =09
+>
+> You don't often get email from patchvonbraun@gmail.com=20
+> <mailto:patchvonbraun@gmail.com>. Learn why this is important=20
+> <https://aka.ms/LearnAboutSenderIdentification>
+>
+> =09
+>
+> On 2022-08-18 10:18, Andrea Valori via USRP-users wrote:
+>
+>     Dear all,
+>
+>     I am trying to acquire a =E2=80=9Cwide=E2=80=9D spectrum with the B=
+200 and B200
+>     mini. For wide I mean wider than the bandwidth of the board, and
+>     therefore some way of fast multiple acquisitions with =E2=80=9Cfreq=
+uency
+>     hopping=E2=80=9D and =E2=80=9Cstitching=E2=80=9D.
+>
+>     Do you have a good solution to recommend? I tried soapy_power
+>     (which seems working but it is not maintained) and GNURadio (with
+>     it, I did not manage to have a =E2=80=9Cfast frequency hopping=E2=80=
+=9D, and
+>     therefore the acquisition is very time consuming, with several
+>     seconds delay at each tuning).
+>
+>     Thanks and best regards,
+>
+>     Andrea
+>
+> How fast do you need to go?=C2=A0 The B2xx chip, the AD9361 isn't known=
+ for=20
+> its ability to rapidly tune at timescales below about
+> =C2=A0 100ms.
+>
+> ________________________________________
+>
+> *Informativa sulla privacy e sulla sicurezza*
+>
+> Questo messaggio pu=C3=B2 contenere informazioni confidenziali ed =C3=A8=
+=20
+> destinato esclusivamente all'indirizzo in intestazione. Il materiale e=20
+> le informazioni contenuti e/o collegati a questo messaggio sono=20
+> riservati e non divulgabili a terzi. Ai sensi della legge sul diritto=20
+> d'autore e del codice civile, sono vietate la riproduzione o la=20
+> modifica non espressamente autorizzata di questo materiale, o di parte=20
+> di esso, con qualsiasi mezzo, in quanto di esclusiva propriet=C3=A0 di=20
+> Innova S.p.A. o dei suoi danti causa. Persone diverse dal destinatario=20
+> di questo messaggio non possono copiare o distribuire il messaggio=20
+> stesso a terzi. Punti di vista od opinioni personali presenti in=20
+> questo messaggio sono riconducibili direttamente al solo mittente del=20
+> messaggio, e non rappresentano necessariamente il punto di vista o=20
+> l'opinione di Innova S.p.A., salvo altrimenti specificato. Essendo=20
+> Internet un canale di comunicazione non sicuro, Innova S.p.A. non =C3=A8=
+=20
+> responsabile di eventuali modifiche, n=C3=A9 della violazione, sottrazi=
+one=20
+> o soppressione, occorse al messaggio dopo la spedizione da parte del=20
+> mittente. Si raccomanda al destinatario di effettuare un controllo=20
+> antivirus prima di aprire qualsiasi allegato alla presente. Innova=20
+> S.p.A. non =C3=A8 responsabile di eventuali danni occorsi a seguito di=20
+> virus informatici accidentalmente trasmessi tramite i contenuti del=20
+> presente messaggio. Chiunque riceva questo messaggio per errore, =C3=A8=
+=20
+> pregato di distruggerlo e di informare immediatamente il mittente con=20
+> lo stesso mezzo e cancellarlo dai propri sistemi. Quanto precede ai=20
+> fini del rispetto del Regolamento UE 2016/679 in materia di protezione=20
+> dei dati personali. Per l'informativa estesa consultare il sito=20
+> Internet di Innova S.p.A. sezione Privacy.
+>
+> *Disclaimer and confidentiality notice*
+>
+> This e-mail may contain confidential information and is intended only=20
+> for the addressee named above and the contents should not be disclosed=20
+> to any other person nor copies taken or forwarded. Any views or=20
+> opinions presented are solely those of the sender and do not=20
+> necessarily represent the views of Innova S.p.A. unless otherwise=20
+> specifically stated. As not all internet communications are secure=20
+> Innova S.p.A. does not accept legal responsibility for the contents of=20
+> this message nor responsibility for any change or breach or=20
+> subtraction or suppression of this message after it was sent by the=20
+> original sender. We advise you to carry out your own virus check=20
+> before opening any attachments as we cannot accept liability for any=20
+> damage sustained as a result of any software viruses. Please notify=20
+> the sender immediately if you have received this e-mail by mistake and=20
+> delete it from your systems. This disclaimer according to GDPR=20
+> Regulation EU 2016/679. Privacy-related information is available on=20
+> the company website, Privacy section.=20
+
+--------------AqiAWsyvggKmGB656Lpyjesu
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-08-24 07:31, Andrea Valori
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01=
+.prod.exchangelabs.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Dear Marcus,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thanks for your reply.<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">To put some numbers into perspective:<o:p>=
+</o:p></p>
+        <p class=3D"MsoNormal">I am looking at acquiring something in the
+          order of 300 MHz of LTE spectrum (about 6 times the bandwidth
+          of the B200. Even if I think to use half of the bandwidth,
+          that brings the factor to 12).<o:p></o:p></p>
+        <p class=3D"MsoNormal">I would like to repeat the measurement at
+          least 5-10 times, to be able to have an estimation of the
+          variability of the signal. Of course, this opens a whole
+          pandora vase on the combined effect of: duration of the
+          measurement, syncing of the measurement rate with the signal
+          and so on, leading to the fact that is possible to miss
+          signals if they are rare and in short bursts (typica of LTE)=E2=
+=80=A6
+          but let=E2=80=99s park this issue for the moment.<o:p></o:p></p=
+>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Taking the limit you mentioned and doublin=
+g
+          it to stay conservative, I should be able to acquire the 120
+          spectrums in 120*0.2=3D2.4 seconds=E2=80=A6 that is way faster =
+than what
+          I was hoping!<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">When I used GNURadio, I created a script
+          that run at a specific central frequency, saving the data on a
+          file, called the script recursively with different central
+          frequencies, and then loaded and =E2=80=9Cstitched=E2=80=9D the=
+ data. The most
+          consuming time, was possibly the saving-loading procedure.</p>
+      </div>
+    </blockquote>
+    By "calling the script recursively" I assume you mean iteratively?=C2=
+=A0=C2=A0
+    So re-starting the entire Gnu Radio framework every time?<br>
+    =C2=A0 That would take a LONG time.<br>
+    <br>
+    I'd post on the discuss-gnuradio mailng list.=C2=A0 Someone has proba=
+bly
+    already done this--in fact I did one many many years ago<br>
+    =C2=A0 with GR 3.6, which is now horribly obsolete.<br>
+    <br>
+    With stream tags, you should be able to know precisely which samples
+    go with which frequency, and use that to direct your logging.<br>
+    =C2=A0 Indeed, the "File Meta Sink" records all the tags along with t=
+he
+    samples....<br>
+    <br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:PA4PR01MB9066FBD4D41341BC5C1913368C739@PA4PR01MB9066.eurprd01=
+.prod.exchangelabs.com">
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">I did expect that for such a =E2=80=9Cstan=
+dard=E2=80=9D
+          application (acquire a wideband signal) there was something
+          ready made in GNURadio, but could not find it.<o:p></o:p></p>
+        <p class=3D"MsoNormal">As said, soapy_power does exactly this, bu=
+t
+          being not actively developed, I was hoping in finding
+          something else=E2=80=A6<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thanks and regards,<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Andrea<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <div style=3D"border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0cm 0cm 0cm">
+            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
+raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
+              <b>Sent:</b> Thursday, August 18, 2022 4:35 PM<br>
+              <b>To:</b> Andrea Valori
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:andrea.va=
+lori@innovatrieste.it">&lt;andrea.valori@innovatrieste.it&gt;</a>;
+              <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:usrp-u=
+sers@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+              <b>Subject:</b> Re: [USRP-users] Wide spectrum<o:p></o:p></=
+p>
+          </div>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <table class=3D"MsoNormalTable" style=3D"width:100.0%" width=3D"1=
+00%"
+          cellspacing=3D"0" cellpadding=3D"0" border=3D"0" align=3D"left"=
+>
+          <tbody>
+            <tr>
+              <td style=3D"background:#A6A6A6;padding:5.25pt 1.5pt 5.25pt
+                1.5pt"><br>
+              </td>
+              <td style=3D"width:100.0%;background:#EAEAEA;padding:5.25pt
+                3.75pt 5.25pt 11.25pt" width=3D"100%">
+                <div>
+                  <p class=3D"MsoNormal"
+style=3D"mso-element:frame;mso-element-frame-hspace:2.25pt;mso-element-wr=
+ap:around;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizo=
+ntal:column;mso-height-rule:exactly"><span
+                      style=3D"font-size:9.0pt;font-family:&quot;Segoe
+                      UI&quot;,sans-serif;color:#212121">You don't often
+                      get email from
+                    </span><span style=3D"color:black"><a
+                        href=3D"mailto:patchvonbraun@gmail.com"
+                        moz-do-not-send=3D"true"><span
+                          style=3D"font-size:9.0pt;font-family:&quot;Sego=
+e
+                          UI&quot;,sans-serif">patchvonbraun@gmail.com</s=
+pan></a></span><span
+                      style=3D"font-size:9.0pt;font-family:&quot;Segoe
+                      UI&quot;,sans-serif;color:#212121">.
+                    </span><span style=3D"color:black"><a
+                        href=3D"https://aka.ms/LearnAboutSenderIdentifica=
+tion"
+                        moz-do-not-send=3D"true"><span
+                          style=3D"font-size:9.0pt;font-family:&quot;Sego=
+e
+                          UI&quot;,sans-serif">Learn why this is
+                          important</span></a></span><span
+                      style=3D"font-size:9.0pt;font-family:&quot;Segoe
+                      UI&quot;,sans-serif;color:#212121"><o:p></o:p></spa=
+n></p>
+                </div>
+              </td>
+              <td style=3D"width:56.25pt;background:#EAEAEA;padding:5.25p=
+t
+                3.75pt 5.25pt 3.75pt;align:left" width=3D"75">
+                <br>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <div>
+            <p class=3D"MsoNormal">On 2022-08-18 10:18, Andrea Valori via
+              USRP-users wrote:<o:p></o:p></p>
+          </div>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class=3D"MsoNormal">Dear all,<o:p></o:p></p>
+            <p class=3D"MsoNormal">I am trying to acquire a =E2=80=9Cwide=
+=E2=80=9D
+              spectrum with the B200 and B200 mini. For wide I mean
+              wider than the bandwidth of the board, and therefore some
+              way of fast multiple acquisitions with =E2=80=9Cfrequency h=
+opping=E2=80=9D
+              and =E2=80=9Cstitching=E2=80=9D.<o:p></o:p></p>
+            <p class=3D"MsoNormal">Do you have a good solution to
+              recommend? I tried soapy_power (which seems working but it
+              is not maintained) and GNURadio (with it, I did not manage
+              to have a =E2=80=9Cfast frequency hopping=E2=80=9D, and the=
+refore the
+              acquisition is very time consuming, with several seconds
+              delay at each tuning).<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Thanks and best regards,<o:p></o:p></p=
+>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Andrea<o:p></o:p></p>
+            <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          </blockquote>
+          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">How fast =
+do
+            you need to go?=C2=A0 The B2xx chip, the AD9361 isn't known f=
+or
+            its ability to rapidly tune at timescales below about<br>
+            =C2=A0 100ms.<br>
+            <br>
+            <o:p></o:p></p>
+        </div>
+      </div>
+      ________________________________________<br>
+      <br>
+      <b>Informativa sulla privacy e sulla sicurezza</b> <br>
+      <br>
+      Questo messaggio pu=C3=B2 contenere informazioni confidenziali ed =C3=
+=A8
+      destinato esclusivamente all'indirizzo in intestazione. Il
+      materiale e le informazioni contenuti e/o collegati a questo
+      messaggio sono riservati e non divulgabili a terzi. Ai sensi della
+      legge sul diritto d'autore e del codice civile, sono vietate la
+      riproduzione o la modifica non espressamente autorizzata di questo
+      materiale, o di parte di esso, con qualsiasi mezzo, in quanto di
+      esclusiva propriet=C3=A0 di Innova S.p.A. o dei suoi danti causa.
+      Persone diverse dal destinatario di questo messaggio non possono
+      copiare o distribuire il messaggio stesso a terzi. Punti di vista
+      od opinioni personali presenti in questo messaggio sono
+      riconducibili direttamente al solo mittente del messaggio, e non
+      rappresentano necessariamente il punto di vista o l'opinione di
+      Innova S.p.A., salvo altrimenti specificato. Essendo Internet un
+      canale di comunicazione non sicuro, Innova S.p.A. non =C3=A8
+      responsabile di eventuali modifiche, n=C3=A9 della violazione,
+      sottrazione o soppressione, occorse al messaggio dopo la
+      spedizione da parte del mittente. Si raccomanda al destinatario di
+      effettuare un controllo antivirus prima di aprire qualsiasi
+      allegato alla presente. Innova S.p.A. non =C3=A8 responsabile di
+      eventuali danni occorsi a seguito di virus informatici
+      accidentalmente trasmessi tramite i contenuti del presente
+      messaggio. Chiunque riceva questo messaggio per errore, =C3=A8 preg=
+ato
+      di distruggerlo e di informare immediatamente il mittente con lo
+      stesso mezzo e cancellarlo dai propri sistemi. Quanto precede ai
+      fini del rispetto del Regolamento UE 2016/679 in materia di
+      protezione dei dati personali. Per l'informativa estesa consultare
+      il sito Internet di Innova S.p.A. sezione Privacy.
+      <br>
+      <br>
+      <b>Disclaimer and confidentiality notice</b> <br>
+      <br>
+      This e-mail may contain confidential information and is intended
+      only for the addressee named above and the contents should not be
+      disclosed to any other person nor copies taken or forwarded. Any
+      views or opinions presented are solely those of the sender and do
+      not necessarily represent the views of Innova S.p.A. unless
+      otherwise specifically stated. As not all internet communications
+      are secure Innova S.p.A. does not accept legal responsibility for
+      the contents of this message nor responsibility for any change or
+      breach or subtraction or suppression of this message after it was
+      sent by the original sender. We advise you to carry out your own
+      virus check before opening any attachments as we cannot accept
+      liability for any damage sustained as a result of any software
+      viruses. Please notify the sender immediately if you have received
+      this e-mail by mistake and delete it from your systems. This
+      disclaimer according to GDPR Regulation EU 2016/679.
+      Privacy-related information is available on the company website,
+      Privacy section.
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------AqiAWsyvggKmGB656Lpyjesu--
+
+--===============9014428457593578226==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -445,4 +549,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1759568244461502747==--
+--===============9014428457593578226==--
