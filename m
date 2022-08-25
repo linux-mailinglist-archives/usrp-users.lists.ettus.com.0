@@ -2,262 +2,163 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9B6E5A04C7
-	for <lists+usrp-users@lfdr.de>; Thu, 25 Aug 2022 01:40:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB0785A0577
+	for <lists+usrp-users@lfdr.de>; Thu, 25 Aug 2022 03:01:40 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4A49938E1C7
-	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 19:40:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 589BB38EDC9
+	for <lists+usrp-users@lfdr.de>; Wed, 24 Aug 2022 21:01:39 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1661384447; bh=kotjoFFOtV27LD5SEkWfQtn19/+BDNgM1NsbwM4XJ2E=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=F8KpEkM9c1VbsfgoRsxWRtKSNHcsMRfxOkiYTcHcL8/5Vi6PC30hem5l4kR3+0jEM
-	 luBI5/K8qFQQDxBBup6gQewryd9EYt9YPjTAwqoS/KittVd7XFe3+xN/+CwZzPOwpO
-	 DtzvMvv5WNiUwehK1y0N3MkvECWhLBBsdfVfksGwqaKTveuj1rsZOXvFTsHCZ9uBfC
-	 2+FTDp1mbqVOWDY8DKDj/j5g0wHWui7owqdgSKfI3p3Bnv1i1RN5uVJ7sIw5HQfoH3
-	 ngqaovXqRy7Bk4rUPzLt3+ql0JeSWp5xFftwNZJPKMz9QrXBaPWr0qDrhYWikE0Fy5
-	 KFPYEOZ5gbUeQ==
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
-	by mm2.emwd.com (Postfix) with ESMTPS id 051B038E5FA
-	for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 19:38:36 -0400 (EDT)
+	t=1661389299; bh=PIYw28fGNmfU9Oak2waifsGDfFfhD+vbb7ymAKanG30=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=Z1PuXLGC2YSYP/JcYoA2iaBm7Q9YqPjigJIrNL6v9Nctw1MovP8DAQ5SKxXQuDuwb
+	 Vi0BhLVtZEaluIo+7AhvpKGQH6MIf1GrLmIfgm3YZIiunLPV0RRaw05pxxjYsxzNAB
+	 sFTWCAzVXkVimOWbHwklapP4xf82GDiRkZFc6HKb0ZvF4DE8hDiBV7cj4Lc+Z4LMt0
+	 dGGbVjOgJ2rG6km6vro76xSwEeh+ezgF+rMGGXJaZYEdiDraRYLNjsHyXnk/5Gvsb8
+	 esdkDz8tN/CkTTXTZZaTdG/AqSWxc4fAVnYQLCq2ZtS8oR1fiEMMPGcl8mcY5FILXb
+	 e9xyctVGKuCAQ==
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4A25D38EDB2
+	for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 21:00:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=ohio.edu header.i=@ohio.edu header.b="ghEQ2irf";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="nYS2o3Uk";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X6UKQZCJaaltlCU4Rcmqm4iRNf4ydAh2++6nmNWWAb6Jqb39AZU5qq7JIINTsIQslQtGbyD12wuAbYNnOFOLoBFe/b4gQunh8dzaU3kCCaUO/KflArCTm7nYFMdnMh5w85XIVYODttcpKEqsN4WGUn0MGx/n0sciyGyx0G1ws5IT7YrPim9y+uR9UlkRhH9TY8hIuGe+0sVkEuVYrMjW7GpnY8FSsN2i/3wVrTt8Ve940mREIj/Koct7qbhkf7+d1ep6uPOfMmq70ddrhcHGwdFn53c83BbPxhvxqaj139+cOpPLOnAPSQKL6qswUlTCle83u7lgw/0KNR6m9wur7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EOl9+aQls3pvImHiNtPNBDDeaR3quhmlXgXeI7AeYaA=;
- b=lps/poxpC9XT4KcC/eeLm3GCQbu2Mx3MPKnPPjTCi/T+Izp3F8FatLa29shfeByfe+yS5Iatoj7BpwglFXgxz3G4ngO572LORoPc87v995j99wKZ1JJM9xQSEnimd2VHp3jw6SCw9Bq9RTEB4nfiqwkbwYN6A//9e4NKHNHOPo54iexPm8LgUOfCemMtu0JIQB5YX9ekm8E0torscHGSY4rHsaHBPEKMe/CZTlVc28G1gL14vyUfqz+Pg9wwzFmqOrM9MvQ8Qsx1AHAvR3PZlXDwm6wXOtP86Mdlmt+eEC7kzXQeH4XQXRoCvE2f2hWEeUMz4kcddIEPE401+jBEHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ohio.edu; dmarc=pass action=none header.from=ohio.edu;
- dkim=pass header.d=ohio.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ohio.edu; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EOl9+aQls3pvImHiNtPNBDDeaR3quhmlXgXeI7AeYaA=;
- b=ghEQ2irf9yj4zhQ0y43P2mF/vIro2qKTAVWfgIX20dYXSnB3KCV63Fg2tmeX9QKIyji8NNmVNOcLnsGR5KNT+dEP0FySGBvU1rtNzZnGdnORW/UzdjwV2WhJ+xUE5FJejQh7bF3COt1DsPXYO3FuxJEKpiHHDe6z1K4bhtIHz18=
-Received: from CH0PR01MB7050.prod.exchangelabs.com (2603:10b6:610:10b::24) by
- BN0PR01MB7088.prod.exchangelabs.com (2603:10b6:408:16a::16) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5566.15; Wed, 24 Aug 2022 23:38:35 +0000
-Received: from CH0PR01MB7050.prod.exchangelabs.com
- ([fe80::a464:6abf:dab6:37d2]) by CH0PR01MB7050.prod.exchangelabs.com
- ([fe80::a464:6abf:dab6:37d2%6]) with mapi id 15.20.5566.015; Wed, 24 Aug 2022
- 23:38:35 +0000
-From: "McKnight, Ryan" <rm249114@ohio.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: N210 GPSDO time synchronization issues
-Thread-Index: Adi4EXwcZJDRFb6KQBOBgWcFy7n7Ag==
-Date: Wed, 24 Aug 2022 23:38:34 +0000
-Message-ID: 
- <CH0PR01MB7050582855A91C6BFD950630B5739@CH0PR01MB7050.prod.exchangelabs.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ohio.edu;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9751a2f0-7ee4-437a-e970-08da8629c311
-x-ms-traffictypediagnostic: BN0PR01MB7088:EE_
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- iDesy/jLBkZl+FOdFQsYYnXQEr5cedlMYa1vAcK/YYDrIkEQLtRJcyVBdXEXbgiu9B42bqTW8Zq5rpq+P+JGNuSxFu+icifyjg0Yw0ZjghN1IotAser7NXolVxvRkX5rFpAp/8m0xa2Htff1g0Vi+XGWr339GXZX7pf4S3JIqrXWR5b0C0wwe4nRAs+eQhzCIhXOs03DNFX1bvY1LvVUPQ2FeGbCoJIVBwlYVtKrAumUmOKKj5Pt3q9+wBJ9XYoRagrXVW5uUOxG4fsdciv2bF1GSTLeGOo67puBbbWm63J2Dss5Kx10smaqb5+k/QCCfl8yNqMPHpSW+51nIH0gcQlLnOMlO/4AHBWknTEWTVAWY+aHmAM4N1V0fuFyrQjKuyfsbgzgs0+6f/ywz4bLZM1cODQtfUyjYJbxNJqHNu26MecHehZ1MZVJkigtJ0yLG3SM3za76SSf04VCk2rFi7TmNkaaOrMphV6/qIx/cC/HRrfiSf//huryxwngUZTIYFwx+eNdoGr7LFMx2bXyljiDhd7MN8gDA2jnDjwsfKKOWbk4BmDJMmSBy1Ykz8ktxVQB1mFx3I/8++MmqxhNS2qV+cN8wZ6F1A9yScxXnYMYi27QgEAMmrBHyf6EfKARHWG7jw2xKz3LBx4qLumvqJtcb/zQeb7zPS9FEZA1sTK7uxE5PwgH/1lsq7iGjiSrShND0g2DrYBOTWv+tin1HQ+EM+KZ8s6It/ZOwwM1nSFReURftsLAtLrEsTG8aubmul7HOes0/yQFY7bCIY72sI+aaNfmCeau4+YnjAUotUo=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH0PR01MB7050.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230016)(4636009)(376002)(136003)(346002)(396003)(39860400002)(366004)(66556008)(66446008)(8676002)(66476007)(64756008)(6916009)(786003)(316002)(76116006)(66946007)(52536014)(55016003)(75432002)(8936002)(122000001)(2906002)(5660300002)(38100700002)(33656002)(86362001)(41300700001)(6506007)(26005)(9686003)(7696005)(38070700005)(966005)(71200400001)(478600001)(83380400001)(186003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?5JFCNyApq6sKUABMxlMxIWlXxeaALLJ8WhGKEnD9zr3M8UCLkRV5l0IKf0fu?=
- =?us-ascii?Q?WGtCggoRQIwcZqRIKrt+uhipJa8Pp3FnV2GO+srbXne8BQxLEZ4HClGmWDVx?=
- =?us-ascii?Q?PhcGKx2ySQzuFDcEjiKf1IuH4zwayZGBAX/3VH3TD6lDGNENmULPKkjt2fDT?=
- =?us-ascii?Q?tPOPbV270U0Vp7lqX9y+ZKKVwcmRYL1lUwm6dN7+lL9WhSs7hl6O+ZAiD8rp?=
- =?us-ascii?Q?8yQtGrIPQhX98WdUgd2qSyer3CLzZG26wdkdsrxVpMTiKaLHVbCTltO5Vc27?=
- =?us-ascii?Q?4tUaFYSDqJbH5pqiRU375MBAdqZKRtxX70+T7gWiNyS2fBJaGMw8DFeYu9Nn?=
- =?us-ascii?Q?0OkE8uwlSEKV1yGQBd5UvRGgjGpYqvIr+/Ts7EP7ehjHVs674x8thqKl8fPt?=
- =?us-ascii?Q?RNgVlP/XUlfabpJW6CWFrqq+AIH1gaCG6lq/xsDgAglHvYa9zRefEm7yBEHM?=
- =?us-ascii?Q?farIgEKBJpSf8ilLLmwcCUONqZB/N/0qMQnxenqDnSLIxYb2dvEJ1j4Y6Wg3?=
- =?us-ascii?Q?9jE/KQ6o8YR69QxcN1FgHSVeH2K3TxdKsOThSrb480r4dOMllfubFKJAiXi1?=
- =?us-ascii?Q?6zEWoTj6Ebl6w7vgknKTZzXYWY/RYLMuOrYBYZocrOFZoQCRZKhysRGhPdsC?=
- =?us-ascii?Q?pROhtiVB9EpJUY1GiuympVEGsnTNvn1Og2BTfiYpmz5o/zIE9ztxhBLRe0OQ?=
- =?us-ascii?Q?AzP3cQoHSgaKD4ahQ1peOVdPZLp/cnccOtBGjH0o6saSIIUtRDqgRQ8Q7vwl?=
- =?us-ascii?Q?j1a3dWqjx4xbgV8/6CfdqTu6WBcKaqBZP8jgkc+wiVXpjmFbzY/IT+w7sWwO?=
- =?us-ascii?Q?BbyfUFImLqqyuRif/iVvdJEH/SkBvGX/CKNYXzHPRMdiOUhMt2MKIV7NAc9q?=
- =?us-ascii?Q?RQ4SYnM1LuaWPLjihlhL6rRKfBcxd0Y+sNPtAtZA0YQeDcWj8LVWYytw1ZTM?=
- =?us-ascii?Q?Y982tLg48K8VTH9GHgaq24H3crhK30XV81wEfhJ+3P1FZgqRZeYZ8khhuXiX?=
- =?us-ascii?Q?Dh5hFVrtY/m6P96zuitMaHaQbKlMFQadDhCWnGGxwE/3XcYDp+NhjNaW6anS?=
- =?us-ascii?Q?jev3kWREpLr2TsZss7ze2NqD2uEvr2kzIJSs/e1wGIBv4xCkv4eg9KCT8qFC?=
- =?us-ascii?Q?ji7WSNa/u2IKWIUSVkESu2qlW2pa+VrHldZie9MVk/tum88LXSlt9Mm98Nw9?=
- =?us-ascii?Q?5W1SD2BZDqQ+/aCx/PrBBDb0R+WYUkB+7d8x6ku1mYehKKTCV+Jgw1tOzeQ8?=
- =?us-ascii?Q?3N29kyZ9v8EGzMw07hEXf+8uVbh2h2aYYECovVxBQHbbfefXYOZ4+LnTUyhc?=
- =?us-ascii?Q?9sef2m+er6cYB+W+J6tpW269bmeUtN49Erarn8Hm1SvCdgeVh8k7TlLMaO+T?=
- =?us-ascii?Q?giqt05a5J2oazrF1GoFb+6aaiDVIcubv3YZEQmFWs2qq5q2sRSEYYIg5PvZe?=
- =?us-ascii?Q?xJlwUEgV+pHfuWLYP3xpXSg/DVm2o0uBii0cpyIi/YoR9nb9xTMKbaO6XOzG?=
- =?us-ascii?Q?1bLB1fx5Nu+huwsOQlnXpoYxs9JBVGCdCFKVfX50a661fpEAIukXsGSxp96o?=
- =?us-ascii?Q?X/zh2QI1WVhg+Wm/dModwirvh3A7YkI4IDDgLAtN?=
-Content-Type: text/plain; charset="us-ascii"
+Received: by mail-qt1-f182.google.com with SMTP id h22so14148617qtu.2
+        for <usrp-users@lists.ettus.com>; Wed, 24 Aug 2022 18:00:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc;
+        bh=TIAFc/geaXsIepAQkqQNt9kqzHCHQHPDq/8cB3gtlCQ=;
+        b=nYS2o3Uk6O7htQMYFQVE335Mwo1DifIcBx1QabjQRPlU818rzULCHr35RvExZemwts
+         7s4mTHu9CX6F3eDXTXVnHbknotcGQ+TYjj+cD08FoZrKzuoUkLUImDEcy2Im2zQxAhPP
+         DSZm6qj+6wAq0x3fTGftFUvKk2BrUxbDHVqSBHcX/H+DJWt9Hh56aawFhxTjYYT/Vzq7
+         X5JkYhUeECJAfQRx+fwIt9dqmjuW1nuvbncGVE38SDCbVg/OrralGJ7AtPZkbtNaHUAm
+         FtTpZyNd76JTHWVYzN2U8UJ1/b5rXCMHslqfkQQ64/LHMGvGe/OmT3S9Aj0pkI2R5yQj
+         T0HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc;
+        bh=TIAFc/geaXsIepAQkqQNt9kqzHCHQHPDq/8cB3gtlCQ=;
+        b=bdvrhDhUVXcT9OeDPvf0WSXJj/Z51WHKG4FJaKVR31lItl4ULVivQm3+YrhpH5Xrjz
+         hRMlGEcHu8wkTeU5Y0/Q1mAImMpwrQuzOg5w1zE/IyrI00yQi+ZVKpmVV4X67YxlfxXl
+         zAbM3EhOztctJWJbzl9l0fDjwNB4xIAqYS9haOA+QQ/5O6Aie+m3tNH+e9X8P4X5brjh
+         lR7gTEbGZZv1QO6wVcyCrDdSyR2uZMxksGQBqVrFndbjTxVTwwnayEIqSUQub7RxnzZ3
+         OL7UpupcC/SV2y4bsCmq/bToUMSKkG3RcqoM+IQtFLtoYG2xbchWrGYf1tBf7oShVeEl
+         QznQ==
+X-Gm-Message-State: ACgBeo2Yr6CrYcVvdQTucnln5RP0/oiHPxAUHdcX95B8yevNyhNhBsJX
+	VBblYAazbKgsWycTQz/thSqbbumHaLc=
+X-Google-Smtp-Source: AA6agR747YjD4Hv5J1Uvd27aiiL6YlL6YFLEZISYjEpTPQvARIShteEmsx9kKI/EA+mQ0OIssUv/cg==
+X-Received: by 2002:a05:622a:30d:b0:343:63d1:3751 with SMTP id q13-20020a05622a030d00b0034363d13751mr1692845qtw.679.1661389240245;
+        Wed, 24 Aug 2022 18:00:40 -0700 (PDT)
+Received: from [192.168.2.210] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
+        by smtp.googlemail.com with ESMTPSA id t13-20020a05620a450d00b006bb6c63114fsm17716228qkp.110.2022.08.24.18.00.39
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Aug 2022 18:00:39 -0700 (PDT)
+Message-ID: <561e8c98-42b9-8059-e1d8-84e8695cdd60@gmail.com>
+Date: Wed, 24 Aug 2022 21:00:38 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: ohio.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR01MB7050.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9751a2f0-7ee4-437a-e970-08da8629c311
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2022 23:38:35.0233
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f3308007-477c-4a70-8889-34611817c55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +IOfdWMbyQ/+m5k0NznyAhm2RGnWknGJVYi26f2pR4Afv9f9eS7tZyPRe8JuX15iFn/rB7F2PeX2EtvqhNNuEA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR01MB7088
-Message-ID-Hash: GOAUQVMKPJAGI56KLHPHTFXWOWZDQK35
-X-Message-ID-Hash: GOAUQVMKPJAGI56KLHPHTFXWOWZDQK35
-X-MailFrom: rm249114@ohio.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <CH0PR01MB7050582855A91C6BFD950630B5739@CH0PR01MB7050.prod.exchangelabs.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CH0PR01MB7050582855A91C6BFD950630B5739@CH0PR01MB7050.prod.exchangelabs.com>
+Message-ID-Hash: 5N4DUICAJCQNMLPYNLKMKEOXWRLTYXHV
+X-Message-ID-Hash: 5N4DUICAJCQNMLPYNLKMKEOXWRLTYXHV
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] N210 GPSDO time synchronization issues
+Subject: [USRP-users] Re: N210 GPSDO time synchronization issues
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OP5O4GWJDSGRMZD5H74GV6IHSHTMFBFM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5N4DUICAJCQNMLPYNLKMKEOXWRLTYXHV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-I am learning to use the GPSDO capability on the N210 and I am having a strange issue, seemingly related to this previous thread:
-
-https://www.mail-archive.com/usrp-users@lists.ettus.com/msg05997.html
-
-Here is a Python snippet that demonstrates the issue:
-
-import sys
-import time
-import uhd
-
-usrp = uhd.usrp.MultiUSRP("serial=30AB08E")
-usrp.set_rx_rate(50e6, 0)
-usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(91.3e6), 0)
-usrp.set_rx_gain(31.5, 0)
-usrp.set_rx_antenna("RX2", 0)
-usrp.set_clock_source("gpsdo")
-usrp.set_time_source("gpsdo")
-
-tries = 0
-while tries < 5:
-    gpsdo_lock = usrp.get_mboard_sensor("gps_locked").to_bool()
-    if gpsdo_lock:
-        print('GPSDO locked')
-        break
-    else:
-        time.sleep(1)
-        tries += 1
-
-if not gpsdo_lock:
-    print('[ERROR] gpsdo failed to lock within 5 seconds')
-    sys.exit(1)
-
-tries = 0
-while tries < 5:
-    ref_lock = usrp.get_mboard_sensor("ref_locked").to_bool()
-    if ref_lock:
-        print('ref locked')
-        break
-    else:
-        time.sleep(1)
-        tries += 1
-
-if not ref_lock:
-    print('[ERROR] USRP failed to lock on to gpsdo reference within 5 seconds')
-    sys.exit(1)
-
-usrp.set_time_next_pps(uhd.libpyuhd.types.time_spec(0.0))
-
-while True:
-    print(usrp.get_time_last_pps().get_real_secs())
-    time.sleep(1)
-
-I would expect this to print out 0, 1, 2, 3 etc. without drifting at all, but I am actually seeing pps times that slowly drift. Here is an example output:
-
-[INFO] [UHD] linux; GNU C++ version 10.3.0; Boost_107400; UHD_4.2.0.HEAD-release
-[INFO] [USRP2] Opening a USRP2/N-Series device...
-[INFO] [USRP2] Current recv frame size: 1472 bytes
-[INFO] [USRP2] Current send frame size: 1472 bytes
-[INFO] [USRP2] Detecting internal GPSDO.... 
-[INFO] [GPS] Found an internal GPSDO: Jackson-Labs, FireFly , Firmware Rev 0.929
-[INFO] [USRP2] Setting references to the internal GPSDO
-GPSDO locked
-ref locked
-55.99999568
-56.99999568
-0.99999998
-1.9999999800000001
-2.99999998
-3.99999998
-4.99999998
-5.99999998
-6.99999998
-7.99999998
-8.99999998
-9.99999998
-10.99999998
-11.99999998
-12.99999998
-13.99999998
-14.99999998
-15.99999998
-16.99999998
-17.99999998
-18.99999998
-19.99999998
-20.99999998
-21.99999998
-22.99999998
-23.99999998
-24.99999998
-25.99999998
-26.99999998
-27.99999998
-28.99999998
-29.99999998
-30.99999998
-31.99999998
-32.99999998
-33.99999998
-34.99999998
-35.99999998
-36.99999998
-37.99999998
-38.99999998
-39.99999998
-40.99999998
-41.99999998
-42.99999998
-43.99999998
-44.99999998
-45.99999998
-46.99999998
-47.99999998
-48.99999998
-49.99999998
-50.99999998
-51.99999998
-52.99999998
-53.99999998
-54.99999998
-55.99999998
-56.99999998
-57.99999843
-58.99999843
-59.99999843
-...
-
-Any ideas as to what I'm doing wrong, or if this is a bug in UHD related to the bug in the other thread that I linked? I am using UHD version 4.2.0.
-
-Thanks,
-Ryan
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T24gMjAyMi0wOC0yNCAxOTozOCwgTWNLbmlnaHQsIFJ5YW4gd3JvdGU6DQo+IEkgYW0gbGVhcm5p
+bmcgdG8gdXNlIHRoZSBHUFNETyBjYXBhYmlsaXR5IG9uIHRoZSBOMjEwIGFuZCBJIGFtIGhhdmlu
+ZyBhIHN0cmFuZ2UgaXNzdWUsIHNlZW1pbmdseSByZWxhdGVkIHRvIHRoaXMgcHJldmlvdXMgdGhy
+ZWFkOg0KPg0KPiBodHRwczovL3d3dy5tYWlsLWFyY2hpdmUuY29tL3VzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tL21zZzA1OTk3Lmh0bWwNCj4NCj4gSGVyZSBpcyBhIFB5dGhvbiBzbmlwcGV0IHRo
+YXQgZGVtb25zdHJhdGVzIHRoZSBpc3N1ZToNCj4NCj4gaW1wb3J0IHN5cw0KPiBpbXBvcnQgdGlt
+ZQ0KPiBpbXBvcnQgdWhkDQo+DQo+IHVzcnAgPSB1aGQudXNycC5NdWx0aVVTUlAoInNlcmlhbD0z
+MEFCMDhFIikNCj4gdXNycC5zZXRfcnhfcmF0ZSg1MGU2LCAwKQ0KPiB1c3JwLnNldF9yeF9mcmVx
+KHVoZC5saWJweXVoZC50eXBlcy50dW5lX3JlcXVlc3QoOTEuM2U2KSwgMCkNCj4gdXNycC5zZXRf
+cnhfZ2FpbigzMS41LCAwKQ0KPiB1c3JwLnNldF9yeF9hbnRlbm5hKCJSWDIiLCAwKQ0KPiB1c3Jw
+LnNldF9jbG9ja19zb3VyY2UoImdwc2RvIikNCj4gdXNycC5zZXRfdGltZV9zb3VyY2UoImdwc2Rv
+IikNCj4NCj4gdHJpZXMgPSAwDQo+IHdoaWxlIHRyaWVzIDwgNToNCj4gICAgICBncHNkb19sb2Nr
+ID0gdXNycC5nZXRfbWJvYXJkX3NlbnNvcigiZ3BzX2xvY2tlZCIpLnRvX2Jvb2woKQ0KPiAgICAg
+IGlmIGdwc2RvX2xvY2s6DQo+ICAgICAgICAgIHByaW50KCdHUFNETyBsb2NrZWQnKQ0KPiAgICAg
+ICAgICBicmVhaw0KPiAgICAgIGVsc2U6DQo+ICAgICAgICAgIHRpbWUuc2xlZXAoMSkNCj4gICAg
+ICAgICAgdHJpZXMgKz0gMQ0KPg0KPiBpZiBub3QgZ3BzZG9fbG9jazoNCj4gICAgICBwcmludCgn
+W0VSUk9SXSBncHNkbyBmYWlsZWQgdG8gbG9jayB3aXRoaW4gNSBzZWNvbmRzJykNCj4gICAgICBz
+eXMuZXhpdCgxKQ0KPg0KPiB0cmllcyA9IDANCj4gd2hpbGUgdHJpZXMgPCA1Og0KPiAgICAgIHJl
+Zl9sb2NrID0gdXNycC5nZXRfbWJvYXJkX3NlbnNvcigicmVmX2xvY2tlZCIpLnRvX2Jvb2woKQ0K
+PiAgICAgIGlmIHJlZl9sb2NrOg0KPiAgICAgICAgICBwcmludCgncmVmIGxvY2tlZCcpDQo+ICAg
+ICAgICAgIGJyZWFrDQo+ICAgICAgZWxzZToNCj4gICAgICAgICAgdGltZS5zbGVlcCgxKQ0KPiAg
+ICAgICAgICB0cmllcyArPSAxDQo+DQo+IGlmIG5vdCByZWZfbG9jazoNCj4gICAgICBwcmludCgn
+W0VSUk9SXSBVU1JQIGZhaWxlZCB0byBsb2NrIG9uIHRvIGdwc2RvIHJlZmVyZW5jZSB3aXRoaW4g
+NSBzZWNvbmRzJykNCj4gICAgICBzeXMuZXhpdCgxKQ0KPg0KPiB1c3JwLnNldF90aW1lX25leHRf
+cHBzKHVoZC5saWJweXVoZC50eXBlcy50aW1lX3NwZWMoMC4wKSkNCj4NCj4gd2hpbGUgVHJ1ZToN
+Cj4gICAgICBwcmludCh1c3JwLmdldF90aW1lX2xhc3RfcHBzKCkuZ2V0X3JlYWxfc2VjcygpKQ0K
+PiAgICAgIHRpbWUuc2xlZXAoMSkNCj4NCj4gSSB3b3VsZCBleHBlY3QgdGhpcyB0byBwcmludCBv
+dXQgMCwgMSwgMiwgMyBldGMuIHdpdGhvdXQgZHJpZnRpbmcgYXQgYWxsLCBidXQgSSBhbSBhY3R1
+YWxseSBzZWVpbmcgcHBzIHRpbWVzIHRoYXQgc2xvd2x5IGRyaWZ0LiBIZXJlIGlzIGFuIGV4YW1w
+bGUgb3V0cHV0Og0KPg0KPiBbSU5GT10gW1VIRF0gbGludXg7IEdOVSBDKysgdmVyc2lvbiAxMC4z
+LjA7IEJvb3N0XzEwNzQwMDsgVUhEXzQuMi4wLkhFQUQtcmVsZWFzZQ0KPiBbSU5GT10gW1VTUlAy
+XSBPcGVuaW5nIGEgVVNSUDIvTi1TZXJpZXMgZGV2aWNlLi4uDQo+IFtJTkZPXSBbVVNSUDJdIEN1
+cnJlbnQgcmVjdiBmcmFtZSBzaXplOiAxNDcyIGJ5dGVzDQo+IFtJTkZPXSBbVVNSUDJdIEN1cnJl
+bnQgc2VuZCBmcmFtZSBzaXplOiAxNDcyIGJ5dGVzDQo+IFtJTkZPXSBbVVNSUDJdIERldGVjdGlu
+ZyBpbnRlcm5hbCBHUFNETy4uLi4NCj4gW0lORk9dIFtHUFNdIEZvdW5kIGFuIGludGVybmFsIEdQ
+U0RPOiBKYWNrc29uLUxhYnMsIEZpcmVGbHkgLCBGaXJtd2FyZSBSZXYgMC45MjkNCj4gW0lORk9d
+IFtVU1JQMl0gU2V0dGluZyByZWZlcmVuY2VzIHRvIHRoZSBpbnRlcm5hbCBHUFNETw0KPiBHUFNE
+TyBsb2NrZWQNCj4gcmVmIGxvY2tlZA0KPiA1NS45OTk5OTU2OA0KPiA1Ni45OTk5OTU2OA0KPiAw
+Ljk5OTk5OTk4DQo+IDEuOTk5OTk5OTgwMDAwMDAwMQ0KPiAyLjk5OTk5OTk4DQo+IDMuOTk5OTk5
+OTgNCj4gNC45OTk5OTk5OA0KPiA1Ljk5OTk5OTk4DQo+IDYuOTk5OTk5OTgNCj4gNy45OTk5OTk5
+OA0KPiA4Ljk5OTk5OTk4DQo+IDkuOTk5OTk5OTgNCj4gMTAuOTk5OTk5OTgNCj4gMTEuOTk5OTk5
+OTgNCj4gMTIuOTk5OTk5OTgNCj4gMTMuOTk5OTk5OTgNCj4gMTQuOTk5OTk5OTgNCj4gMTUuOTk5
+OTk5OTgNCj4gMTYuOTk5OTk5OTgNCj4gMTcuOTk5OTk5OTgNCj4gMTguOTk5OTk5OTgNCj4gMTku
+OTk5OTk5OTgNCj4gMjAuOTk5OTk5OTgNCj4gMjEuOTk5OTk5OTgNCj4gMjIuOTk5OTk5OTgNCj4g
+MjMuOTk5OTk5OTgNCj4gMjQuOTk5OTk5OTgNCj4gMjUuOTk5OTk5OTgNCj4gMjYuOTk5OTk5OTgN
+Cj4gMjcuOTk5OTk5OTgNCj4gMjguOTk5OTk5OTgNCj4gMjkuOTk5OTk5OTgNCj4gMzAuOTk5OTk5
+OTgNCj4gMzEuOTk5OTk5OTgNCj4gMzIuOTk5OTk5OTgNCj4gMzMuOTk5OTk5OTgNCj4gMzQuOTk5
+OTk5OTgNCj4gMzUuOTk5OTk5OTgNCj4gMzYuOTk5OTk5OTgNCj4gMzcuOTk5OTk5OTgNCj4gMzgu
+OTk5OTk5OTgNCj4gMzkuOTk5OTk5OTgNCj4gNDAuOTk5OTk5OTgNCj4gNDEuOTk5OTk5OTgNCj4g
+NDIuOTk5OTk5OTgNCj4gNDMuOTk5OTk5OTgNCj4gNDQuOTk5OTk5OTgNCj4gNDUuOTk5OTk5OTgN
+Cj4gNDYuOTk5OTk5OTgNCj4gNDcuOTk5OTk5OTgNCj4gNDguOTk5OTk5OTgNCj4gNDkuOTk5OTk5
+OTgNCj4gNTAuOTk5OTk5OTgNCj4gNTEuOTk5OTk5OTgNCj4gNTIuOTk5OTk5OTgNCj4gNTMuOTk5
+OTk5OTgNCj4gNTQuOTk5OTk5OTgNCj4gNTUuOTk5OTk5OTgNCj4gNTYuOTk5OTk5OTgNCj4gNTcu
+OTk5OTk4NDMNCj4gNTguOTk5OTk4NDMNCj4gNTkuOTk5OTk4NDMNCj4gLi4uDQo+DQo+IEFueSBp
+ZGVhcyBhcyB0byB3aGF0IEknbSBkb2luZyB3cm9uZywgb3IgaWYgdGhpcyBpcyBhIGJ1ZyBpbiBV
+SEQgcmVsYXRlZCB0byB0aGUgYnVnIGluIHRoZSBvdGhlciB0aHJlYWQgdGhhdCBJIGxpbmtlZD8g
+SSBhbSB1c2luZyBVSEQgdmVyc2lvbiA0LjIuMC4NCj4NCj4gVGhhbmtzLA0KPiBSeWFuDQo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20N
+CkkgY2FuJ3QgaW1tZWRpYXRlbHkgdGVsbCB3aGF0J3MgZ29pbmcgb24gaGVyZSwgYnV0IGEgY291
+cGxlIG9mIGNvbW1lbnRzOg0KDQpFeHBlY3RpbmcgdG8gZ2V0ICJncHNfbG9ja2VkIiB3aXRoaW4g
+NSBzZWNvbmRzIGlmIHRoZSBkZXZpY2UgaGFzIA0KcmVjZW50bHkgcG93ZXJlZC11cCBpcyBub3Qg
+cmVhbGlzdGljLsKgIEl0IGNhbiB0YWtlIDEwcyBvZiBtaW51dGVzDQogwqAgZm9yIGl0IHRvIGFj
+aGlldmUgbG9jayBmcm9tIGEgY29sZCBzdGFydC4NCg0KVGhlIGNvZGUgZm9yIHRoZSBOMjEwIGhh
+c24ndCBjaGFuZ2VkIGluIHNldmVyYWwgeWVhcnMgYXMgZmFyIGFzIEkga25vdy7CoCANCllvdSBt
+aWdodCB0cnkgcmV2ZXJ0ZWQgdG8gMy4xNSB0byBzZWUgaWYgdGhpcyBjaGFuZ2VzDQogwqAgYW55
+dGhpbmcsIGJ1dCBJIHJhdGhlciBkb3VidCBpdC7CoCBJcyB0aGlzIGEgbmV3IE4yMTAsIG9yIG9u
+ZSB0aGF0IGhhcyANCmJlZW4gYXJvdW5kIGZvciBhIGZldyB5ZWFycz/CoCBbSnVzdCB0cnlpbmcg
+dG8gc2VlIGlmIG1heWJlDQogwqAgdGhlcmUncyBhIGJhdGNoIG9mIHJlY2VudCBGaXJlRmx5IEdQ
+U0RPcyB0aGF0IGFyZSB3b25reS4uLl0NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0Bs
+aXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJz
+LWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
