@@ -2,149 +2,113 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108A05A5EB3
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Aug 2022 10:55:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47ECD5A5ED3
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Aug 2022 11:02:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ECC7138623E
-	for <lists+usrp-users@lfdr.de>; Tue, 30 Aug 2022 04:55:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8E1043880F9
+	for <lists+usrp-users@lfdr.de>; Tue, 30 Aug 2022 05:02:17 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1661849722; bh=JggBnQjIH+TPWRa4jnlbZ173qe2s9LdI0Xp1gpibw6k=;
+	t=1661850137; bh=H7IU4H+8z60KEFx9t1/2OQVQjcZPQD8KMl1p/Cfe4rk=;
 	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=zG1zXGUnen0jFzN9t9QjWpIXw7ZFTS4gjzgEUWVpAM1NSXn+QOlwGvc+m0NH1cSGH
-	 S8U8YOBh7GcaiK76D1Ii5K7bZg5jmoCyveZuiy7/Yyvjed7fsF6AFXB7lhyIuRS55i
-	 vV+zOnIXwpWtWzG7gnwQrOMh9VwfoPKCGGHtrJjifPYP6ISG1gRKim+Ml+LLBuQJIM
-	 C4YnpVeZ6JhLQAi6uCHwItKaSAMumFlA3SepKhtLEcAFQnKpEqCT2OCi5lfKfhQTEu
-	 20e2r/BckX6fB4nv90LAHKHWRW1zInUqqkQqcC7Wt+FgMEx2GNUncdKvqFUlcpFD4r
-	 hFLhRNV39jj4Q==
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id EDE29388093
-	for <usrp-users@lists.ettus.com>; Tue, 30 Aug 2022 04:54:20 -0400 (EDT)
+	b=VGnI1Vx1HH7ZEyWR/13ZkImXqHJQpSzxCMvM5lGs1cGgt4l/zTmwcNXJ4XtQDE+N8
+	 IzOJeQ79rQqLPD0kgXpEUwn1WWOf/u4RuQDfcr4dNZRi7FkZnazqkCdOvV5HxMwmcT
+	 KQaHOFa2OxKiGVC2AZTL/Tl5eQUSO7EIqui6CXg109tMbxr3chellfaPNNcRtcYoh4
+	 0yj2bF8S7tZLM91ng4FJMplQjlul44jJx9CkPCZ3MEDo7GvxnP4jJiDtfsDcNrMw78
+	 5ReUmJvzd2KQJbm30NcTt2FtEU+mqr1JBlBqqpiEZkmmE1f2LWLJv9KVI8B0nMMGAO
+	 AKKHLtulkK0kQ==
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id A2308387FF4
+	for <usrp-users@lists.ettus.com>; Tue, 30 Aug 2022 05:00:08 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NWZ+23bG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="L+edjO3/";
 	dkim-atps=neutral
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-11f34610d4aso4383291fac.9
-        for <usrp-users@lists.ettus.com>; Tue, 30 Aug 2022 01:54:20 -0700 (PDT)
+Received: by mail-ed1-f44.google.com with SMTP id z41so5877005ede.0
+        for <usrp-users@lists.ettus.com>; Tue, 30 Aug 2022 02:00:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=to:subject:message-id:date:from:mime-version:from:to:cc;
-        bh=J8ErJgBJCLAcANHpbSYQj9jgzffn+kfUPjxwxredAAI=;
-        b=NWZ+23bGzzzx5oR0jF9wBIyUPRmW3inv+tnNJjP9MA8lVCQKtTLRtFcoHjSGF6koUj
-         V150RQCjITcs0eKVY4Br8G8YeZjRvtYMLYKL2QhwfYKu5pM3ByKCVwhbl5Vi3EFd9Qgf
-         QJkI71Ts4U1VAIWxZlM4oqkzuPb8IeuG4HV4rP7KOaVmh3nGx2J3HkXwvf8jrT2J3ktb
-         WBLttnAUKD75CGJoJJu1K6ZZlfBUHFMo2DFK3Lk4Z6NRCFFo1dfGvqLmhr8/3k9xU66R
-         EGYbi+LPv4qm9xgU9TVn7c+K+S00XjM9rXnBas/dKd7aQaAGofPI9/1wWcYqx5BLr51y
-         nzsg==
+        bh=+Yh/1ZrbLZow+YYYHiprbBbXx5AUnWXb7MYJts5XlYg=;
+        b=L+edjO3/byJpMoY/3z+Je70VD63NkO1dbpORfUZILwrDmLH/RdUYoP4EMz7znfHt5O
+         xYIK+qVkCRL4oflK50n1LTWPb/nk6z3SXWP8Qc3LX2CovITaLGUvTerSZYgZ4xaeJvos
+         GR28WIQ26mujqQqJtu5yiI5abHAI+rTslPn10DvYDQZsr7XXCXd2S11k7+u3azN+8fID
+         ZvSy6O/0wXOBO/+43jmnCUKj/K6HdyZx7yVeK9IPZA2Jipg7Qi2dKeIk0V++dBUH7JyK
+         yCpVEH93xwyGeufmeaN4oYEkh6W/r89b4t3fbfnRy38nx77gvwpb3NwJxZUkx9mU4J/q
+         df6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=to:subject:message-id:date:from:mime-version:x-gm-message-state
          :from:to:cc;
-        bh=J8ErJgBJCLAcANHpbSYQj9jgzffn+kfUPjxwxredAAI=;
-        b=WGtR0GwN+Eba7lBvVzIsWV7tUZg9cKGz3mK6ZfeYV+EsVKOiLjicrwt/0pZ3oZCm9b
-         pJ3D2ZzuO2BytCnzSmKZgp/dNSyqhz1D+lGlOWGEeFAulC3LnRGSxH9fui2KaTr9fnlf
-         0gThEbclVYOU8QMyyZruL2ovKAtD7BzS1X5fE5WOFWdqyY9sLpUNVHMtik4WliYxlylH
-         AcInPQu4Y2cDNjycZSlgZkfinNRdIV/jxkofsPMEiy0UnSG/m1ps3KehHtPfJ4C79zk3
-         eXX3OcZjP/knImXxdD+vLQQInCWW+h6GZex3OUMnrB3cbhkKby3PgV3TQHWXtUa+xGpC
-         lU6g==
-X-Gm-Message-State: ACgBeo31R3ADxk2fCavtrCVoiKCiPqQhCKenBBTpnMVzK8styiFm+65T
-	9BWgXl+NRCEWtdd3wNfQDYO42QHhW9QoTgE7CXjYuFM0MJWfaQ==
-X-Google-Smtp-Source: AA6agR4FcnF8T8YdDfMwEagYca3JMTQKi8slICUB/NVfa+Yv5H+0nnSNJqokwAt/WikFOz2K7wMopnvXlvW9TDBmxnY=
-X-Received: by 2002:a05:6808:2382:b0:344:90f9:b79 with SMTP id
- bp2-20020a056808238200b0034490f90b79mr8976537oib.137.1661849659861; Tue, 30
- Aug 2022 01:54:19 -0700 (PDT)
+        bh=+Yh/1ZrbLZow+YYYHiprbBbXx5AUnWXb7MYJts5XlYg=;
+        b=gM14Mhw32gmPbmuTXIGy3QON7f4DGhm4Es65vfxlUCXG6BjAcAkPkBcRmty8AfkDoo
+         C9hAqDuddehTUUJWRAuTLUBXq0XlwBLehZVAeS6CAeKMdXHg2WBqwpQN+axIaAawV2/T
+         qK0Z94bREBQQz7d+T3Z+8zC2RzhR7OhjJllcf8WhVqp3uBhO98YxWJaH68iBVFi7dVNy
+         5dNnAI8LNMaMCG7aXor7nTdI8TWNMaFoScfzz7gdL7bL0DzNQZVTIfShzgt+jk5rfteG
+         cvwLx56VTaZOWmRMHHgCRerxSordjvlyjGif7PLEYbxWqVtFi4Kf/OACKhbGcCq0/+RP
+         ZnUg==
+X-Gm-Message-State: ACgBeo1LGvQU58kBjF9vMh0U9JdOg+TcZTwFMzamMhWolT0Y9NKqJMRc
+	zQgua6b560qIDqQDitGRIXkiahyDCPgXFAHoICMC4aK5shw=
+X-Google-Smtp-Source: AA6agR7I+wn+nV7ZNa73glrXQeZymFLKALD1dVY6gdrVWI5SUII4Tu5L9Fecoh20/5GSvTyswut5XQwrsLUWxZsHS6Q=
+X-Received: by 2002:aa7:c70f:0:b0:447:cf74:9d2f with SMTP id
+ i15-20020aa7c70f000000b00447cf749d2fmr16895504edq.229.1661850007250; Tue, 30
+ Aug 2022 02:00:07 -0700 (PDT)
 MIME-Version: 1.0
-From: Kevin Williams <zs1kwa@gmail.com>
-Date: Tue, 30 Aug 2022 10:53:44 +0200
-Message-ID: <CAJhOL6fjN+VXFDDj6_NvfT3C=EMo7PdZOi6cV1z-L_u186SnNQ@mail.gmail.com>
-To: usrp-users@lists.ettus.com
-Message-ID-Hash: JTKRM4UGZSOXPPZ7EJXX5LRKNTOUXUMA
-X-Message-ID-Hash: JTKRM4UGZSOXPPZ7EJXX5LRKNTOUXUMA
-X-MailFrom: zs1kwa@gmail.com
+From: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Date: Tue, 30 Aug 2022 10:59:55 +0200
+Message-ID: <CAG16vQVW+wbwHyHy=dOxB_7x5DhcQb-dTh0WWrjM=KY49OpReA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: D234CGYZPGVVOGNOKIC3CQKGKO7HBEZ2
+X-Message-ID-Hash: D234CGYZPGVVOGNOKIC3CQKGKO7HBEZ2
+X-MailFrom: mamuki92@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] importing ip cores generated by Simulink
+Subject: [USRP-users] Bitstream encryption
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JTKRM4UGZSOXPPZ7EJXX5LRKNTOUXUMA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/D234CGYZPGVVOGNOKIC3CQKGKO7HBEZ2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5417017081274139758=="
+Content-Type: multipart/mixed; boundary="===============2210777427993529789=="
 
---===============5417017081274139758==
-Content-Type: multipart/alternative; boundary="000000000000a5724c05e771866d"
+--===============2210777427993529789==
+Content-Type: multipart/alternative; boundary="0000000000005a332905e7719bb9"
 
---000000000000a5724c05e771866d
+--0000000000005a332905e7719bb9
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Everyone,
+Hi all,
 
+I am using USRP E320. I was wondering if the RFNoC framework allows some
+kind of bitstream protection/authentication like the bitstream encryption
+option that offers vivado (
+https://docs.xilinx.com/v/u/en-US/xapp1239-fpga-bitstream-encryption).
+In that case, how can I load the encrypted bitstream using the framework
+tools?
 
+Kind Regards,
 
-I=E2=80=99m a model-based firmware designer generating IP cores from Matlab=
- and
-Simulink.
+Maria
 
-
-
-I see from one of the Ettus tutorials that it is easy to include a core
-defined by an =E2=80=9Cxci=E2=80=9D file, but not the =E2=80=9Cxml=E2=80=9D=
- descriptions from Simulink.
-(This was the rfnoc_block_gain exercise.)
-
-
-The folder in which those xml files live can be added as user repo's in
-Vivado, and the core is recognised, but I have issues trying to use that IP
-in the main design.
-
-
-
-Is this possible using the existing Ettus scripts?
-
-
-Many thanks, Kevin
-
---000000000000a5724c05e771866d
+--0000000000005a332905e7719bb9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"MsoNormal">Hi Everyone,<span>=
-</span></p>
+<div dir=3D"ltr">Hi all,<div><br></div><div>I am using USRP E320. I was won=
+dering if the RFNoC framework allows some kind of bitstream protection/auth=
+entication like the bitstream encryption option that offers vivado (<a href=
+=3D"https://docs.xilinx.com/v/u/en-US/xapp1239-fpga-bitstream-encryption">h=
+ttps://docs.xilinx.com/v/u/en-US/xapp1239-fpga-bitstream-encryption</a>).=
+=C2=A0</div><div>In that case, how can I load the encrypted bitstream using=
+ the framework tools?</div><div><br></div><div>Kind Regards,</div><div><br>=
+</div><div>Maria</div></div>
 
-<p class=3D"MsoNormal"><span>=C2=A0</span></p>
+--0000000000005a332905e7719bb9--
 
-<p class=3D"MsoNormal">I=E2=80=99m a model-based firmware designer generati=
-ng IP cores from
-Matlab and Simulink.<span></span></p>
-
-<p class=3D"MsoNormal"><span>=C2=A0</span></p>
-
-<p class=3D"MsoNormal">I see from one of the Ettus tutorials that it is eas=
-y to
-include a core defined by an =E2=80=9Cxci=E2=80=9D file, but not the =E2=80=
-=9Cxml=E2=80=9D descriptions from
-Simulink. (This was the rfnoc_block_gain exercise.)<span></span></p><p clas=
-s=3D"MsoNormal"><br></p><p class=3D"MsoNormal">The folder in which those xm=
-l files live can be added as user repo&#39;s in Vivado, and the core is rec=
-ognised, but I have issues trying to use that IP in the main design.</p>
-
-<p class=3D"MsoNormal"><span>=C2=A0</span></p>
-
-<p class=3D"MsoNormal">Is this possible using the existing
-Ettus scripts?<span></span></p>
-
-<p class=3D"MsoNormal"><span>=C2=A0</span></p>
-
-<span style=3D"font-size:11pt;font-family:Calibri,sans-serif">Many thanks, =
-Kevin</span><br clear=3D"all"><div><br></div></div></div>
-
---000000000000a5724c05e771866d--
-
---===============5417017081274139758==
+--===============2210777427993529789==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -154,4 +118,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5417017081274139758==--
+--===============2210777427993529789==--
