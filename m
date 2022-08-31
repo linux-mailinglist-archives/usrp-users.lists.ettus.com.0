@@ -2,269 +2,316 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A88875A7A68
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Aug 2022 11:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E257F5A8005
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Aug 2022 16:23:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 463E3383BEF
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Aug 2022 05:43:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 639A5385B79
+	for <lists+usrp-users@lfdr.de>; Wed, 31 Aug 2022 10:23:55 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1661939023; bh=M1zJQUVDFSe00bUhiEU783bwnIxasKINcYcm1qM2i0I=;
+	t=1661955835; bh=/dJFdXNeTMgawyCRQoUM2hns5rT370ot2d9ewm9A9vQ=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=LH//q58k1o2VNwV5HRm/z/wxS1T59AWKnPqy5s90G9PxoZM06EnJq92x4AnuT/drZ
-	 uJf0Asft8+7diSbK+qCfXk25d1WwIjdZ7vKSNLP/Ar2AcseMZQDhBekmgjJEU3hgFk
-	 5xOTDAu2baMZ1uav8eOx8PSF/LaZ+SHpiOcWTgUJkPMpLueae/YhQeGqOzM/orlrc2
-	 IaSEbgw5sgnsjBaZnTWKhMVqOYeRKklQ7tyU/UxguKwADAJVzQ7IxaySRL2mmRl8Zu
-	 OlzqDpjDv6aqONkuIgctnnem3qaOPSzKuB08gRpwFVkMKZYFUS0lOMf0HK1LfvoPNq
-	 KjZEIdoiSVQ7w==
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 611353800A9
-	for <usrp-users@lists.ettus.com>; Wed, 31 Aug 2022 05:42:16 -0400 (EDT)
+	b=b7MYG+0/MeE9z9KwqUKQkA9biVtQ3shYoCxkSjWG/y77G2bTgssUzlWXq/NI9+iNv
+	 Q58ujLlVWRUn/ToR9/2uVo905iQW6dtYxTv0+8sPqe85xXao/6dskoFzN5sVTuuPCc
+	 3AKfsArVj5MlJwwBShjXJXEz2MKLwLIZwy0DZa7DfYpcirdSLdGi30jCh/fYCnbYgA
+	 c3uwXEV3WhinJUHUVBRMxOm1sEcqJmMy2cerKUMCX7S9u4iT9J0p45BMJTONr3ctp/
+	 vD/AKqpSamR+S9t30GQVGsqZjmJYxTRlaK2qUZBNXiyE9r5vAlwm8lY3letb2Q7Q3n
+	 5sfhyI0ZV3TaA==
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1B3AE385B20
+	for <usrp-users@lists.ettus.com>; Wed, 31 Aug 2022 10:22:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=integrasys-sa-com.20210112.gappssmtp.com header.i=@integrasys-sa-com.20210112.gappssmtp.com header.b="JG4kymDO";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="lfTqWHDW";
 	dkim-atps=neutral
-Received: by mail-ed1-f54.google.com with SMTP id s11so17572348edd.13
-        for <usrp-users@lists.ettus.com>; Wed, 31 Aug 2022 02:42:16 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id l16so7677552ilj.2
+        for <usrp-users@lists.ettus.com>; Wed, 31 Aug 2022 07:22:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=integrasys-sa-com.20210112.gappssmtp.com; s=20210112;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=vuKG8+QD5pirxm1ssvu8F8oE1YBeF+mQIF7aG/XHJgM=;
-        b=JG4kymDO+zcZ3no5Z/ZSBHR72BDnXpaC9jKk39yUnQrlQ1/N/vNqgikUgTf2PhIx4t
-         CulqorZHL7+0LytSqpPAjofC6eKrTgCzqHr1IXNuijfYgOK3PMni4pkvCQOMFqvLotDd
-         LdTEGkuy8E5e+UQW/mWx/h7XE4YMhCybSc8pck6bKvKs/hFOtbOxKnAMP3bwKltIBK8F
-         VcbnwVcQuUbfu09DAyc5BTohLSL8loSBMbQk1nBsOywpetEK+gTuD5BopiXNR2vR4g3o
-         EYvxYZ6DfqAX6ZdqcgzVYAjy+jSb9HPLWXfaZqEIJ1fse1I4KQwlDefMW/zNVgLNC6Cv
-         3ceQ==
+         :mime-version:from:to:cc;
+        bh=13UDn7tdzUl/yUzBrUGvsHrc3uDzFqnh3ut3k59ddg8=;
+        b=lfTqWHDWPamOjGNZypNqqP/E6FBf2oJVQ66USfMPqKyC2SHWIz7ftCM4nTqe3oc+Zm
+         rEg/GuCmzVcTFj5jthqDp0oe6hTDzZZX11SiNISKhxobQ6US3ZqSGXoP/TjvYAQVRBLy
+         40xQ1bq69S6GjzwPnwV2pzWCsA0jO8kuofjBUDxdj98YfnA+EAKWY1J2QUkfMLApi/gr
+         ZCrin2B8pkMdIj3OjCek0wpFcovJl01gsaQwmmIb5GEc0SSzHlXDwIidQ/n203AkTdlf
+         OhBWDHzeAlar1qK8Lsb/G9Oc0CRFoPxdzTz37A1YY7VeTLnjN++JYmx16KRTWZaBIgdY
+         ZPew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=vuKG8+QD5pirxm1ssvu8F8oE1YBeF+mQIF7aG/XHJgM=;
-        b=M9c5giXHcjD/QvUlfBjyAPpZinJTmJwaLWgB2N5NOOeDS/kNDghRfFD4SbhgKAyk+g
-         poSKL8W1TavnNJxn8Z6BTrP1tQU1Xqd/8h6cGGK5OXodIBVrJETxmtTcQQKskbdZ/n2O
-         8q/ROqpU7gyafKaSABxWrs89LzKeyYgZzlc+qEP39eGPKsAaOSWqs/y1lvC0sFGhnmzQ
-         ujTPVPyN788VdOBSLx2VvDiOVj/X26K7CcGqmYXRgdGZAS5rd4LBVO2D37RpKGbE2ZQ4
-         JohqCrbqySxH+zJmUiB9CmvPlivNsf4h09zL2EOshgyyRyoWN8rnoUm/nLbXKAFbWHh+
-         IErQ==
-X-Gm-Message-State: ACgBeo0ZihB9HVvidhiS8G5GcFad+7boxOCXwaS1kXl+N88V6QyjPccX
-	j/a4U1p7noihB8/HBdAoXwPFWuw7oLavAiUNwVOzOA6jsW0M7g==
-X-Google-Smtp-Source: AA6agR6Ap5pLbFkUbTt4hJn1lkO5IqWVN6d01nYxPONuQAZpxXQ1417YgY69UVSy/dhYmEvz+DTBrVF3EGqxLiponaA=
-X-Received: by 2002:a05:6402:1388:b0:447:a3a4:6152 with SMTP id
- b8-20020a056402138800b00447a3a46152mr23865600edv.13.1661938934961; Wed, 31
- Aug 2022 02:42:14 -0700 (PDT)
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=13UDn7tdzUl/yUzBrUGvsHrc3uDzFqnh3ut3k59ddg8=;
+        b=sLvZeGmvI6b8ujLwjJCNlAre1AA8k79feybdOI+rMGk5y+cbSw+s+6nmtpxDnDUdrJ
+         y1ccE3nRx3d8DUYmUc3B8Zr9D9No8uGXaYiYebN3IZbz0c1dKbMOOHK6qlmIDEqdCsN5
+         DVX/9EQKc3+aOHp6mTPe0ksP24NjcUMlBRYfcGWHanAhL7rg7u8Ai4FgXejeZdWRkSyb
+         ZdGPvIj5Uttqhg+YDupvFMzJQsGndd4Ty7maZl+Nhj1iOGgqHEkT9+aZL8520c78cro3
+         Ej+2UWoRNLQmjttXyBm7iFJY6XoBzzRx1jCJKMJ+saqKaFxV7plWpTkww8dKGpgkjMrW
+         VCcw==
+X-Gm-Message-State: ACgBeo1L4BaGZ9hE815kbuyrpQj+M9OlXHHOn2cBNf+dEs9F/JdEEH0P
+	RQIhKAd4vTTXWgo8JfLoGsXlOKmPtt3o6JuQrolRn0Ow
+X-Google-Smtp-Source: AA6agR5JwkPV2RubWYrZ3DHjQn4ic1YPpnMhrQjrSLmiGtnTiSp5fxIiHl3V5u/ocxqS1ljgBnQmujLvQPVXAkIyjPc=
+X-Received: by 2002:a05:6e02:1102:b0:2ea:da70:efea with SMTP id
+ u2-20020a056e02110200b002eada70efeamr9556134ilk.70.1661955731641; Wed, 31 Aug
+ 2022 07:22:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <YMFp481oKWLKHn6Gld6NW6T7ruuXTKrHxl9wgxfhLM8@lists.ettus.com>
  <CAB__hTSx=35DRBFwSuhTP54M-+yOXGpvJCouEu1q0iUAa82cpg@mail.gmail.com>
  <CAB__hTQj71KwcgLjOBYQdPLZ1K0L_JrRTh-CHp-JpG3OorhfxQ@mail.gmail.com>
- <CAP0o2sxysF4arBUXbf7-TUWv2gmsvc0nZ99e1g8XgQgJTqxhhA@mail.gmail.com> <CAFche=hpgCdrAs8OiWdcfqiubXt7NiNXtn3bVhfF8Fs=BAXhiw@mail.gmail.com>
-In-Reply-To: <CAFche=hpgCdrAs8OiWdcfqiubXt7NiNXtn3bVhfF8Fs=BAXhiw@mail.gmail.com>
-From: =?UTF-8?Q?Adri=C3=A1n_Campos_Ramos?= <adrian.campos@integrasys-sa.com>
-Date: Wed, 31 Aug 2022 11:42:04 +0200
-Message-ID: <CAP0o2szT7DJYWR_+CHeWLNRWhTPyZnM7y+7mVSHk93AHhAkrVg@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Message-ID-Hash: TU2HTCS4YVGA34BOZAQZ3PMC5MJO7JIQ
-X-Message-ID-Hash: TU2HTCS4YVGA34BOZAQZ3PMC5MJO7JIQ
-X-MailFrom: adrian.campos@integrasys-sa.com
+ <CAP0o2sxysF4arBUXbf7-TUWv2gmsvc0nZ99e1g8XgQgJTqxhhA@mail.gmail.com>
+ <CAFche=hpgCdrAs8OiWdcfqiubXt7NiNXtn3bVhfF8Fs=BAXhiw@mail.gmail.com> <CAP0o2szT7DJYWR_+CHeWLNRWhTPyZnM7y+7mVSHk93AHhAkrVg@mail.gmail.com>
+In-Reply-To: <CAP0o2szT7DJYWR_+CHeWLNRWhTPyZnM7y+7mVSHk93AHhAkrVg@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Wed, 31 Aug 2022 09:21:55 -0500
+Message-ID: <CAFche=gcMcxK6-4vMpS9n7k-eV8JUZZacj=FRryOu=kd+ACywg@mail.gmail.com>
+To: =?UTF-8?Q?Adri=C3=A1n_Campos_Ramos?= <adrian.campos@integrasys-sa.com>
+Message-ID-Hash: 4XMZ76Y5KODIQ56CVW52B4BRJYJINU3C
+X-Message-ID-Hash: 4XMZ76Y5KODIQ56CVW52B4BRJYJINU3C
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Rob Kossler <rkossler@nd.edu>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: AXI_RAM_FIFO Controller
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TU2HTCS4YVGA34BOZAQZ3PMC5MJO7JIQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4XMZ76Y5KODIQ56CVW52B4BRJYJINU3C/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0667183577704570041=="
+Content-Type: multipart/mixed; boundary="===============3263018597625233840=="
 
---===============0667183577704570041==
-Content-Type: multipart/related; boundary="000000000000dba67405e7864f69"
+--===============3263018597625233840==
+Content-Type: multipart/related; boundary="0000000000000488c005e78a3950"
 
---000000000000dba67405e7864f69
-Content-Type: multipart/alternative; boundary="000000000000dba67205e7864f68"
+--0000000000000488c005e78a3950
+Content-Type: multipart/alternative; boundary="0000000000000488be05e78a394f"
 
---000000000000dba67205e7864f68
+--0000000000000488be05e78a394f
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+OUT_FIFO_SIZE sets the size of the FIFO used to buffer data read from the
+external DRAM. But the unit for this parameter is log base 2 of the size.
+So, setting it to 20 means the output FIFO will be 2^20 words or 8 MiB
+implemented in BRAM, which is too big for the FPGA to support. You should
+probably leave it at the default value. The amount of DRAM to use for the
+FIFO can be set by the FIFO_ADDR_MASK parameter.
 
-Thank you very much, now I understand how it works and it runs perfectly.
-However, it's not what I expected since it does not FIFO behaviour, or I'm
-doing something wrong. What I need is a FIFO that stores the data of a
-signal when I activate a flag and reads when I activate another flag
-continuously and constantly. Currently, I have the FIFO implemented in the
-FPGA but it takes too much resources  so I want to take advantage of the
-E320 RAM. I think the axi_ram_fifo would be perfect for my project but as
-far i can see, when space =3D 0 and occupied is full, it starts to lose the
-continuity. On the other hand, I don't know why but I can't  increase the
-FIFO_OUT_SIZE. With 10 there are outputs but if i increase, for example, to
-20 it doesn't.
+It should behave like a true FIFO. So anything you write to the input will
+come out on the output, but you can buffer up to the size of the memory you
+have configured. I'm not sure I understand your application exactly, but if
+you only want to capture at a specific time, then you should add logic to
+only write the data to the input of the FIFO during those times and take
+care to handle overflow when the FIFO fills. And add logic on the output to
+only read when you want, taking care to handle underflow when the FIFO
+empties.
 
-I attached a photo of the behavior of the input_fifo/fifo_ram/ram.
-[image: p1.png]
+Wade
 
-El mar, 30 ago 2022 a las 19:54, Wade Fife (<wade.fife@ettus.com>) escribi=
-=C3=B3:
+On Wed, Aug 31, 2022 at 4:42 AM Adri=C3=A1n Campos Ramos <
+adrian.campos@integrasys-sa.com> wrote:
 
-> Hello Adri=C3=A1n,
+> Hi,
 >
-> REG_FIFO_FULLNESS is the number of bytes currently stored in the RAM of
-> the FIFO.
->
-> FIFO_ADDR_W is a testbench parameter that defines the amount of memory
-> address space to use for the simulated FIFOs. The unmodified testbench us=
-es
-> a single memory to test two FIFOs. So the sum of the memory used by both
-> FIFOs must be less than the size of the memory being simulated in order f=
-or
-> the testbench to work (i.e., 2 * 2**FIFO_ADDR_W must not exceed
-> 2**MEM_ADDR_W).
->
-> IN_FIFO_SIZE and OUT_FIFO_SIZE control the size of the input/output
-> buffers used by the block. They can affect the performance of the FIFO, b=
-ut
-> must be large enough to hold two of the expected burst memory transfer
-> size, which I think is 512 words.
->
-> The testbench is failing because it expects the FIFO to be empty when the
-> simulation begins. Perhaps you have started inputting values before it wa=
-s
-> expecting you to?
->
-> Wade
->
-> On Tue, Aug 30, 2022 at 3:13 AM Adri=C3=A1n Campos Ramos <
-> adrian.campos@integrasys-sa.com> wrote:
->
->> Hi everyone,
->>
->> First of all, thank you very much Rob Kossler for the explanation. I mad=
+> Thank you very much, now I understand how it works and it runs perfectly.
+> However, it's not what I expected since it does not FIFO behaviour, or I'=
+m
+> doing something wrong. What I need is a FIFO that stores the data of a
+> signal when I activate a flag and reads when I activate another flag
+> continuously and constantly. Currently, I have the FIFO implemented in th=
 e
->> a "controller" that sends and receives information at certain points in
->> time. However, I am facing problems in relation to REG_FIFO_FULLNESS. I'=
-ve
->> been changing the values of FIFO_ADDR_W, IN_FIFO_SIZE and OUT_FIFO_SIZE =
-but
->> it didn't work. Furthermore, I don't understand the problem at all, is t=
+> FPGA but it takes too much resources  so I want to take advantage of the
+> E320 RAM. I think the axi_ram_fifo would be perfect for my project but as
+> far i can see, when space =3D 0 and occupied is full, it starts to lose t=
 he
->> input fifo or the output fifo? or the ram?. The controller mentioned bef=
-ore
->> has only two counters, one to activate the valid flag to send informatio=
-n
->> and another to activate the ready flag to receive the information and, a=
-s
->> far i could see, it was working until the assert.
->>
->> This is the error that returns me the simulation (the number that appear=
-s
->> in the image is for: `ASSERT_ERROR(val64 =3D=3D 0, $sformatf("Incorrect
->> REG_FIFO_FULLNESS value! %d",val64));
->>
->> [image: Screenshot from 2022-08-30 10-10-52.png]
->> On the other hand, the data that I send to RAM is the value of a counter=
-.
->>
->> I hope you can help me. Thanks in advance.
->>
->> Adri=C3=A1n Campos
->>
->> El jue, 18 ago 2022 a las 22:49, Rob Kossler (<rkossler@nd.edu>)
->> escribi=C3=B3:
->>
->>> Replace "upstream" with "downstream" below.
->>>
->>> On Thu, Aug 18, 2022 at 1:28 PM Rob Kossler <rkossler@nd.edu> wrote:
->>>
->>>> Hi Adrian,
->>>> As you indicated, the RFNoC blocks axi_ram_fifo and Relay both use the
->>>> FPGA RAM.  axi_ram_fifo doesn't need any registers for control because=
- it
->>>> just accepts an AXI stream on the input and forwards that exact stream=
- on
->>>> the output.  The "control" is in the AXI tvalid/tready handshaking. Th=
-us,
->>>> if the upstream block is not ready, the FIFO starts filling up but doe=
-s not
->>>> empty until the upstream block is ready.  But, for the Replay block, t=
-his
->>>> block stores the incoming stream to RAM until you later decide to play=
- it
->>>> out.  It can be used in the transmit path to load a waveform into RAM =
-such
->>>> that it can be played out to the Tx Radio without any help from the ho=
-st
->>>> PC.  Or, it can be used in the receive path to store receive samples a=
-s
->>>> they arrive (up to the given RAM memory depth) and then later download=
-ed
->>>> (played out) to the host PC in non-realtime.
->>>>
->>>> While I don't know your specific application, I wondered if the Replay
->>>> block (or the axi_ram_fifo) can already implement your desired
->>>> functionality such that a custom block is not needed.
->>>> Rob
->>>>
->>>> On Thu, Aug 18, 2022 at 8:25 AM <adrian.campos@integrasys-sa.com>
->>>> wrote:
->>>>
->>>>> I am making a custom block which has to start storing data to be read
->>>>> later, in other words store the data in a FIFO. I am interested in us=
-ing
->>>>> the RAM provided by the E320 so I want to take advantage of the
->>>>> axi_ram_fifo code. However, I don't really understand the control of =
-that
->>>>> block, how can I control when to start writing data to memory and whe=
-n to
->>>>> start reading it? I have checked the registers in case it could be
->>>>> controlled from there like the replay block that has two registers to=
- start
->>>>> reading and another one to do a restart but I haven't seen anything l=
-ike
->>>>> that.
->>>>>
->>>>> I hope you can help me. Thank you very much in advance
->>>>>
->>>>>
->>>>> _______________________________________________
->>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>
->>>> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>
+> continuity. On the other hand, I don't know why but I can't  increase the
+> FIFO_OUT_SIZE. With 10 there are outputs but if i increase, for example, =
+to
+> 20 it doesn't.
 >
+> I attached a photo of the behavior of the input_fifo/fifo_ram/ram.
+> [image: p1.png]
+>
+> El mar, 30 ago 2022 a las 19:54, Wade Fife (<wade.fife@ettus.com>)
+> escribi=C3=B3:
+>
+>> Hello Adri=C3=A1n,
+>>
+>> REG_FIFO_FULLNESS is the number of bytes currently stored in the RAM of
+>> the FIFO.
+>>
+>> FIFO_ADDR_W is a testbench parameter that defines the amount of memory
+>> address space to use for the simulated FIFOs. The unmodified testbench u=
+ses
+>> a single memory to test two FIFOs. So the sum of the memory used by both
+>> FIFOs must be less than the size of the memory being simulated in order =
+for
+>> the testbench to work (i.e., 2 * 2**FIFO_ADDR_W must not exceed
+>> 2**MEM_ADDR_W).
+>>
+>> IN_FIFO_SIZE and OUT_FIFO_SIZE control the size of the input/output
+>> buffers used by the block. They can affect the performance of the FIFO, =
+but
+>> must be large enough to hold two of the expected burst memory transfer
+>> size, which I think is 512 words.
+>>
+>> The testbench is failing because it expects the FIFO to be empty when th=
+e
+>> simulation begins. Perhaps you have started inputting values before it w=
+as
+>> expecting you to?
+>>
+>> Wade
+>>
+>> On Tue, Aug 30, 2022 at 3:13 AM Adri=C3=A1n Campos Ramos <
+>> adrian.campos@integrasys-sa.com> wrote:
+>>
+>>> Hi everyone,
+>>>
+>>> First of all, thank you very much Rob Kossler for the explanation. I
+>>> made a "controller" that sends and receives information at certain poin=
+ts
+>>> in time. However, I am facing problems in relation to REG_FIFO_FULLNESS=
+.
+>>> I've been changing the values of FIFO_ADDR_W, IN_FIFO_SIZE and
+>>> OUT_FIFO_SIZE but it didn't work. Furthermore, I don't understand the
+>>> problem at all, is the input fifo or the output fifo? or the ram?. The
+>>> controller mentioned before has only two counters, one to activate the
+>>> valid flag to send information and another to activate the ready flag t=
+o
+>>> receive the information and, as far i could see, it was working until t=
+he
+>>> assert.
+>>>
+>>> This is the error that returns me the simulation (the number that
+>>> appears in the image is for: `ASSERT_ERROR(val64 =3D=3D 0, $sformatf("I=
+ncorrect
+>>> REG_FIFO_FULLNESS value! %d",val64));
+>>>
+>>> [image: Screenshot from 2022-08-30 10-10-52.png]
+>>> On the other hand, the data that I send to RAM is the value of a counte=
+r.
+>>>
+>>> I hope you can help me. Thanks in advance.
+>>>
+>>> Adri=C3=A1n Campos
+>>>
+>>> El jue, 18 ago 2022 a las 22:49, Rob Kossler (<rkossler@nd.edu>)
+>>> escribi=C3=B3:
+>>>
+>>>> Replace "upstream" with "downstream" below.
+>>>>
+>>>> On Thu, Aug 18, 2022 at 1:28 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>
+>>>>> Hi Adrian,
+>>>>> As you indicated, the RFNoC blocks axi_ram_fifo and Relay both use th=
+e
+>>>>> FPGA RAM.  axi_ram_fifo doesn't need any registers for control becaus=
+e it
+>>>>> just accepts an AXI stream on the input and forwards that exact strea=
+m on
+>>>>> the output.  The "control" is in the AXI tvalid/tready handshaking. T=
+hus,
+>>>>> if the upstream block is not ready, the FIFO starts filling up but do=
+es not
+>>>>> empty until the upstream block is ready.  But, for the Replay block, =
+this
+>>>>> block stores the incoming stream to RAM until you later decide to pla=
+y it
+>>>>> out.  It can be used in the transmit path to load a waveform into RAM=
+ such
+>>>>> that it can be played out to the Tx Radio without any help from the h=
+ost
+>>>>> PC.  Or, it can be used in the receive path to store receive samples =
+as
+>>>>> they arrive (up to the given RAM memory depth) and then later downloa=
+ded
+>>>>> (played out) to the host PC in non-realtime.
+>>>>>
+>>>>> While I don't know your specific application, I wondered if the Repla=
+y
+>>>>> block (or the axi_ram_fifo) can already implement your desired
+>>>>> functionality such that a custom block is not needed.
+>>>>> Rob
+>>>>>
+>>>>> On Thu, Aug 18, 2022 at 8:25 AM <adrian.campos@integrasys-sa.com>
+>>>>> wrote:
+>>>>>
+>>>>>> I am making a custom block which has to start storing data to be rea=
+d
+>>>>>> later, in other words store the data in a FIFO. I am interested in u=
+sing
+>>>>>> the RAM provided by the E320 so I want to take advantage of the
+>>>>>> axi_ram_fifo code. However, I don't really understand the control of=
+ that
+>>>>>> block, how can I control when to start writing data to memory and wh=
+en to
+>>>>>> start reading it? I have checked the registers in case it could be
+>>>>>> controlled from there like the replay block that has two registers t=
+o start
+>>>>>> reading and another one to do a restart but I haven't seen anything =
+like
+>>>>>> that.
+>>>>>>
+>>>>>> I hope you can help me. Thank you very much in advance
+>>>>>>
+>>>>>>
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>
+>>>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
 
---000000000000dba67205e7864f68
+--0000000000000488be05e78a394f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>Thank you very much, now I un=
-derstand how it works and it runs perfectly. However, it&#39;s not what I e=
-xpected since it does not FIFO behaviour, or I&#39;m doing=C2=A0something w=
-rong. What I need is a FIFO that stores the data of a signal when I activat=
-e a flag and reads when I activate another flag continuously and constantly=
-. Currently, I have the FIFO implemented in the FPGA but it takes too much =
-resources <span style=3D"color:rgb(60,60,60);font-family:Arial,sans-serif;f=
-ont-size:12px">=C2=A0so I want to take advantage of the E320 RAM. I think t=
-he axi_ram_fifo would be perfect for my project but as far i can see, when =
-space =3D 0 and occupied is full, it starts to lose the continuity. On=C2=
-=A0the other hand, I don&#39;t know why but I can&#39;t=C2=A0 increase the =
-FIFO_OUT_SIZE. With 10 there are outputs but if i increase, for example, to=
- 20 it doesn&#39;t.=C2=A0</span></div><div><span style=3D"color:rgb(60,60,6=
-0);font-family:Arial,sans-serif;font-size:12px"><br></span></div><div><span=
- style=3D"color:rgb(60,60,60);font-family:Arial,sans-serif;font-size:12px">=
-I attached a photo of the behavior of=C2=A0the input_fifo/fifo_ram/ram.</sp=
-an></div><div><img src=3D"cid:ii_l7hfi1tl2" alt=3D"p1.png" width=3D"562" he=
-ight=3D"535"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">El mar, 30 ago 2022 a las 19:54, Wade Fife (&lt;<a h=
-ref=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt;) escribi=C3=
+<div dir=3D"ltr"><div>OUT_FIFO_SIZE sets the size of the FIFO used to buffe=
+r data read from the external DRAM. But the unit for this parameter is log =
+base 2 of the size. So, setting it to 20 means the output FIFO will be 2^20=
+ words or 8 MiB implemented in BRAM, which is too big for the FPGA to suppo=
+rt. You should probably leave it at the default value. The amount of DRAM t=
+o use for the FIFO can be set by the FIFO_ADDR_MASK parameter.</div><div><b=
+r></div><div>It should behave like a true FIFO. So anything you write to th=
+e input will come out on the output, but you can buffer up to the size of t=
+he memory you have configured. I&#39;m not sure I understand your applicati=
+on exactly, but if you only want to capture at a specific time, then you sh=
+ould add logic to only write the data to the input of the FIFO during those=
+ times and take care to handle overflow when the FIFO fills. And add logic =
+on the output to only read when you want, taking care to handle underflow w=
+hen the FIFO empties.</div><div><br></div><div>Wade<br></div></div><br><div=
+ class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Aug 31=
+, 2022 at 4:42 AM Adri=C3=A1n Campos Ramos &lt;<a href=3D"mailto:adrian.cam=
+pos@integrasys-sa.com">adrian.campos@integrasys-sa.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi,=
+=C2=A0<div><br></div><div>Thank you very much, now I understand how it work=
+s and it runs perfectly. However, it&#39;s not what I expected since it doe=
+s not FIFO behaviour, or I&#39;m doing=C2=A0something wrong. What I need is=
+ a FIFO that stores the data of a signal when I activate a flag and reads w=
+hen I activate another flag continuously and constantly. Currently, I have =
+the FIFO implemented in the FPGA but it takes too much resources <span styl=
+e=3D"color:rgb(60,60,60);font-family:Arial,sans-serif;font-size:12px">=C2=
+=A0so I want to take advantage of the E320 RAM. I think the axi_ram_fifo wo=
+uld be perfect for my project but as far i can see, when space =3D 0 and oc=
+cupied is full, it starts to lose the continuity. On=C2=A0the other hand, I=
+ don&#39;t know why but I can&#39;t=C2=A0 increase the FIFO_OUT_SIZE. With =
+10 there are outputs but if i increase, for example, to 20 it doesn&#39;t.=
+=C2=A0</span></div><div><span style=3D"color:rgb(60,60,60);font-family:Aria=
+l,sans-serif;font-size:12px"><br></span></div><div><span style=3D"color:rgb=
+(60,60,60);font-family:Arial,sans-serif;font-size:12px">I attached a photo =
+of the behavior of=C2=A0the input_fifo/fifo_ram/ram.</span></div><div><img =
+src=3D"cid:ii_l7hfi1tl2" alt=3D"p1.png" width=3D"562" height=3D"535"><br></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">El mar, 30 ago 2022 a las 19:54, Wade Fife (&lt;<a href=3D"mailto:wade.=
+fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt;) escribi=C3=
 =B3:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
  0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
 "ltr"><div>Hello Adri=C3=A1n,</div><div><br> </div><div>REG_FIFO_FULLNESS i=
@@ -359,10 +406,11 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
 
---000000000000dba67205e7864f68--
+--0000000000000488be05e78a394f--
 
---000000000000dba67405e7864f69
+--0000000000000488c005e78a3950
 Content-Type: image/png; name="Screenshot from 2022-08-30 10-10-52.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2022-08-30 10-10-52.png"
@@ -3423,7 +3471,7 @@ gUkJ+Etwm62cFYAX/9iL8YtvuQjPevYzMT+3H7d/9Rv4/auvxezsXi97iYBbvvw3OOnkk6IWeP3P
 XYi77rwLZAhFqXHxWy7CT/3nV2HrCVtxz1134+or343v/L9v+6BLmSZMGpzHJ9y4C8HTwnpFeMN/
 ewN+/e2/Xsvuhg/+Ef7gvde57OL5ma4Je/fM4hknnwMQ4TNf/OxIOtkg+v+otA6i1uyG0gAAAABJ
 RU5ErkJggg==
---000000000000dba67405e7864f69
+--0000000000000488c005e78a3950
 Content-Type: image/png; name="p1.png"
 Content-Disposition: inline; filename="p1.png"
 Content-Transfer-Encoding: base64
@@ -4375,9 +4423,9 @@ NDSgsbFRKl+5ciV2794Nm82G48eP4+jRo07zj/QSYjKZcOHCBbS0tARtHYkocDU1NWhpacH58+eh
 1+vR2tqKmpqacIdFREQUs0Jy55y1R8CJ5w8DANpTPoXRcBXq1DTI5TLoL17AvvfehtA34HZemUzm
 dnpFRQUqKircln3wwQeYOXOm07Rdu3Zdj8dqxZo1a7BmzRpp2iuvvBLQOhFRcJWUlKCkpCTcYRAR
 EU0K/z8O4/aVJG0C6wAAAABJRU5ErkJggg==
---000000000000dba67405e7864f69--
+--0000000000000488c005e78a3950--
 
---===============0667183577704570041==
+--===============3263018597625233840==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4387,4 +4435,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0667183577704570041==--
+--===============3263018597625233840==--
