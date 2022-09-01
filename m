@@ -2,111 +2,249 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499B85A889A
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Aug 2022 23:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B516A5A8E5C
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Sep 2022 08:37:42 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E6DC03868EB
-	for <lists+usrp-users@lfdr.de>; Wed, 31 Aug 2022 17:55:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5938E385A45
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Sep 2022 02:37:41 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1661982925; bh=+bElX1q8oGwkxIYDzXaa1paXxJaq4Od56ZFTC28Ci8Y=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=hNFnvzbNP7HGqa9Cv7qdXfRB8Z+EV/sdyVQz2bAqcR71qGTlowttqlBjkVih0p2ze
-	 vHcfH0IwGpmU1xiZCvDxUF+SsxVpftzD7ZpHtTxBPtbYR6+dM6ItuQhQw7dJ8JWd1m
-	 m6ceISe+LQhefBD3gPBLgUOxlhTeSsaVZlL283G1PW5cj8vKu1yKzvF7XWq18goDhN
-	 2WYdjaniIKhTsYyg5PGkCPd6UV2jSLyDZf+nemA51oDSH9ac2Q99NLQLG845evWNSf
-	 gmNuRbXvNafdbsSGAeSQ8q/LZhB5gwaAe0hLbLbZa2XY+imCc4BI4qO39z7VcMjU1T
-	 Qr4UhUgN+Mhyw==
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6AEBA380C7E
-	for <usrp-users@lists.ettus.com>; Wed, 31 Aug 2022 17:54:29 -0400 (EDT)
+	t=1662014261; bh=3xdRSQkKKak/KwgumT6+8CWVVcJMx810QCevTw7BgjM=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=lnkBA5YIOsuZnoDDUu/yI3IZOgYf6y/dhV1kVP/Wlgo9QACVRD+pp3xjtohlbImar
+	 tXSDCLhOoRAdXjIog4uiYgwHU849f5QuOns/ZILZyTX2brrXghKpl+6qKKfc9L9Iyf
+	 T38Ap0PZIif9fgaxiwl1JbTijgBWJmROffqqjmNoax+7rzSx0RuSl6sDqR5VJy29Pi
+	 RrlqnnHlUnRwl/OhV31/B5Uabwr9bFZiDhLku3KCpQZ4IkJpaU9BtrKOpeCERSAMz7
+	 GHUQ1bK68wWnFbGjPT5cgbVI6x5bGF6+c7iDni0YXA8Cxyaja9ZeknT8toh5ak1f8f
+	 cI07q9VsxWKnQ==
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 01BB3385A45
+	for <usrp-users@lists.ettus.com>; Thu,  1 Sep 2022 02:36:22 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PnaYrg2e";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JovI9+2z";
 	dkim-atps=neutral
-Received: by mail-qv1-f47.google.com with SMTP id y15so8828903qvn.2
-        for <usrp-users@lists.ettus.com>; Wed, 31 Aug 2022 14:54:29 -0700 (PDT)
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-11f0fa892aeso21163195fac.7
+        for <usrp-users@lists.ettus.com>; Wed, 31 Aug 2022 23:36:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=qJqUloEg6CUteNkipS5NL47zQGUoNPxL9CDzuCanzqg=;
-        b=PnaYrg2e+BlAxVchWEu4XTgE0KL5x8+rDDXdgmobrbMB3fWsXffgP/k1SrwKsMwvAj
-         cj56j8wfHNiqttgDWIceX7fN+qlJBvP7s6ZoI95Axpja+TTiFSGbtlf4TV5E2IGSMkUc
-         AV2w6nxoI+5dhlavDr7zybBxUJ0UHPVdv+MJgq76g/eNdUTleM4K+17h8i0Yttuf1ePv
-         bZ380WUGYbFiBSCpaeHEKf+ZjfmvqYL/SeGGo5xE3xgAqxV7siATFn1D+JDGVMU3VJLB
-         eYfuXHIwFQ+0T/jgih1jrBSWBBWI+gPRwQE8P295RYvUiCnbzDA3UKCXTKecitTxocHe
-         RjJA==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc;
+        bh=LrZoI669WgeXJDWpjmb5SEtKVbn6b9hg0YeACoPhtoY=;
+        b=JovI9+2zbTh16u3w74kdTIRwZQG57ZnvMsgmaA7uV0rkGd6UUd0T90Dq5Hv5AdfPHR
+         LKQcE/SKJShynem6ugcWxTxv8QOmPnhzxzpBQKoLN9/cCphiwjmKpn+nOioSr0Qycx7D
+         o1sF0xYe10/IuFtzIxGaMskoU8G6aivrTac13DAqUdU2TJFBVyWILVxP1LtkV0xh0UX5
+         sn6HWWfT/dsFBquEPP30zk3iOvBR8sgW5PR8oo9BmM+hmypp7AEVgjURzNgOZn642p33
+         LLoKY0Yj3TkR82LIyTzdHhu7051okpdxTYRy57B1QFKDKplfzgsqlU2bAPDpUOxTYKNl
+         bYfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=qJqUloEg6CUteNkipS5NL47zQGUoNPxL9CDzuCanzqg=;
-        b=7v7Y6XvpndSIbh2VR9PM0z7OK2mi1NVBxpB53FwxPkV0GR74nel4a4baPafLeN4sq5
-         nQCWPBXzZWjddRM08yTR0xqaO9Tnwib+y84zGepQKWncab0YauXthuXavmdExGsgDvpk
-         kB/7Uf7hKkp6rqvzfdb6sZeCDsnt8hOPqIunbDrKJqr+3bg2BC0p9PDpUrcBj0ThnwKN
-         BZjOeLsq/bfrR+dQY8GmAiJ+7Ra41j4D7h21wT8D52wVRqINbXpL26wYLIHl6w00xBWu
-         0LznKgy7DUn7GxVylAszcy7mqQf2sg65+nhrRY5m6P1zR7lq8w7JYWHYHUxMcsiMdeie
-         I3Vw==
-X-Gm-Message-State: ACgBeo2zms1LQtUYD/6kV+avmvtcAhzT7s2M8suPijDwu80Bg1j9Ao4G
-	i+5jLUO1zhnSCmEb+sw8P0AvqYgPppA=
-X-Google-Smtp-Source: AA6agR4YpG4ZCJl/yz37IgWcqewYgii1XqC1IyfrvXKUmjXSANEvAztiZjzq8GpUZEqMYo5LezsrPA==
-X-Received: by 2002:ad4:5de7:0:b0:496:d0f8:7000 with SMTP id jn7-20020ad45de7000000b00496d0f87000mr21868234qvb.12.1661982868736;
-        Wed, 31 Aug 2022 14:54:28 -0700 (PDT)
-Received: from [192.168.2.208] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id n3-20020a05620a294300b006b97151d2b3sm11030689qkp.67.2022.08.31.14.54.27
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 31 Aug 2022 14:54:28 -0700 (PDT)
-Message-ID: <97625c6b-2b8b-61b6-290d-b572828b4462@gmail.com>
-Date: Wed, 31 Aug 2022 17:54:27 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc;
+        bh=LrZoI669WgeXJDWpjmb5SEtKVbn6b9hg0YeACoPhtoY=;
+        b=EqL09mQ+gpA2CqTBMZ+f7aCeQfsyZ5q9alHR59PJOLqD/7IA0K3A12Mzzd7ZSKSXTB
+         XiWwKrauQ5Qxir3Kcr06c54pUyOn+2KXsRWmLVqX6GFhPe/lWFA3k27ozy6vaF6J7anZ
+         D8XQmeAAThtOUjVapedNzAA9b5wcsgCZ7G4b1vvWjnpsu6/cDSyH92wYKlWObeXTPvk3
+         lwk/5M5QgOYbbHm+cEG+BRptxUSLi+D1rghXOgpQoVCIrNaZeNrmEaIozSbm0btTIIg5
+         ypm3k8rsqwdCOrvRqX6C2zblvkCP427xjLCLXv6pDkE5eQi3cy6RAGq5fNcPUF4LLRuh
+         Ncyg==
+X-Gm-Message-State: ACgBeo25FU0xBJKA5nQKiEVhNvfP44/HBqHh44ZbOBchqAnc0WkR848G
+	GqWvVJbZWuAIH/9+9x51JnqTDYHuXtBYUdrn5bM=
+X-Google-Smtp-Source: AA6agR5X/JilM0NXCK0SoSwo9c5Z4NaH86s8+i2uyjBCySa71gX21Of/55ou6GAgjUgapSf0y0ovgVi4H97nvff/geg=
+X-Received: by 2002:a05:6870:c1cd:b0:fe:1295:6e34 with SMTP id
+ i13-20020a056870c1cd00b000fe12956e34mr3207801oad.137.1662014182116; Wed, 31
+ Aug 2022 23:36:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <alpN7X6VU8mje4VA8MnFusAzyOE85TuwoNDJDIFBAY@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <alpN7X6VU8mje4VA8MnFusAzyOE85TuwoNDJDIFBAY@lists.ettus.com>
-Message-ID-Hash: W7IRLK2K2E773NTDG55I7JYQMNSFYDBG
-X-Message-ID-Hash: W7IRLK2K2E773NTDG55I7JYQMNSFYDBG
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAJhOL6fjN+VXFDDj6_NvfT3C=EMo7PdZOi6cV1z-L_u186SnNQ@mail.gmail.com>
+ <CAFche=gbGfT+rGPvFt9iP7GAdUFG9Xfn20VJuh1kH7fbCNYm8g@mail.gmail.com>
+In-Reply-To: <CAFche=gbGfT+rGPvFt9iP7GAdUFG9Xfn20VJuh1kH7fbCNYm8g@mail.gmail.com>
+From: Kevin Williams <zs1kwa@gmail.com>
+Date: Thu, 1 Sep 2022 08:35:46 +0200
+Message-ID: <CAJhOL6c+O7YS3FVLokMnkPGkTaOCOdkpykvDf8HORRAO+gJ6-A@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Message-ID-Hash: BK5T5RBPYNNH4RFTD73FRQ57IQLE5XSA
+X-Message-ID-Hash: BK5T5RBPYNNH4RFTD73FRQ57IQLE5XSA
+X-MailFrom: zs1kwa@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: set_command_time() question
+Subject: [USRP-users] Re: importing ip cores generated by Simulink
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/W7IRLK2K2E773NTDG55I7JYQMNSFYDBG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BK5T5RBPYNNH4RFTD73FRQ57IQLE5XSA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1102588539024111311=="
 
-T24gMjAyMi0wOC0zMSAxNDo0OSwgcmkyODg1NkBtaXQuZWR1IHdyb3RlOg0KPg0KPiBUaGlzIGlz
-IGEgVVNSUCB4MzEwLCBhbmQgSeKAmW0gaXNzdWluZyBhIGNvbW1hbmQgZXZlcnkgfjE1MCB1cy4g
-SSANCj4gaW5jcmVhc2VkIHRoZSBzaXplIG9mIHRoZSB0aW1lZCBjb21tYW5kIEZJRk8gaW4gdGhl
-IEZQR0EgdG8gNjQuDQo+DQpUaGF0IG1heSBiZSBhIGZhaXJseSBhbWJpdG91cyBjYWRlbmNlIGZv
-ciB0aGUgUkYgUExMIG9uIHRoZSANCmRhdWdodGVyY2FyZCwgZGVwZW5kaW5nIG9uIHRoZSBjYXJk
-LsKgwqAgQ2VydGFpbmx5IExpbnV4IHN1c3RhaW5pbmcNCiDCoCB0aGF0IGtpbmQgb2YgY2FkZW5j
-ZSBpbiBzY2hlZHVsaW5nIGlzIHVubGlrZWx5IHRvIGJlIGxvbmctdGVybSANCnN1c3RhaW5hYmxl
-Lg0KDQo+IE92ZXIgbG9uZyBwZXJpb2RzIG9mIHRpbWUsIEkgaGF2ZSBoaWNjdXBzIGxpa2Ugc2hv
-d24gYWJvdmUgb24gdGhlIA0KPiBvcmRlciBvZiBldmVyeSAyMCBtcyBvciBzby4gSSB0aGluayB3
-aGF04oCZcyBoYXBwZW5pbmcgaXMgSeKAmW0gbm90IHF1aXRlIA0KPiBrZWVwaW5nIHRoZSBVU1JQ
-IHF1ZXVlIGZ1bGwgd2hlbiB0aGUgT1MgaW50ZXJydXB0cyB0aGUgdGhyZWFkLCBidXQgSeKAmW0g
-DQo+IGhhdmluZyB0cm91YmxlIGRpYWdub3NpbmcuIFRoZXJlIGRvZXNu4oCZdCBhcHBlYXIgdG8g
-YmUgYSBiYWNrIHByZXNzdXJlIA0KPiBtZWNoYW5pc20gZm9yIHRpbWVkIGNvbW1hbmRzIGluIHRo
-ZSBzYW1lIHdheSB0aGVyZSBpcyBmb3IgdGhlIA0KPiB0eF9zdHJlYW1lciwgc28gSSBoYXZlIHRv
-IHRyYWNrIGJ5IGVsYXBzZWQgdGltZSBob3cgZnVsbCBJIHRoaW5rIHRoZSANCj4gVVNSUCBxdWV1
-ZSBpcy4NCj4NCj4NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZl
-QGxpc3RzLmV0dHVzLmNvbQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1
-cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxp
-c3RzLmV0dHVzLmNvbQo=
+--===============1102588539024111311==
+Content-Type: multipart/alternative; boundary="000000000000efd26005e797d48f"
+
+--000000000000efd26005e797d48f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Wade,
+
+Thanks! I came right by including the generated files but did struggle with
+the folder structures and makefiles. However, it is working nicely now,
+with a complete RFNoC OOT module in bitbucket which gets mounted as a user
+folder in a docker container which holds all the UHD sources, Vivado, and
+so on. HDL is generated in the appropriate place, with all makefiles
+configured for that.
+
+I think the rfnoc-example and the template folder tree created by
+rfnocmodtool differ, especially in the way the makefiles are set up.
+
+My next step is to extract data types, IO registers, etc. from the Simulink
+models, and generate the YAML files for the IP core.
+
+Kind regards, Kevin
+
+
+On Tue, 30 Aug 2022 at 18:02, Wade Fife <wade.fife@ettus.com> wrote:
+
+> Hi Kevin,
+>
+> I assume the xml you're referring to is the component description so that
+> it can be recognized by Vivado IP integrator. In that case, you need to
+> create an instance of the IP in Vivado, which will create an XCI file for
+> it. You can then include that in the design similar to how other xci file=
+s
+> are included in the build. Ettus has several IP components that get used
+> this way (usually as part of a BD) which are located in
+> fpga/usrp3/lib/vivado_ipi. This might serve as a reference.
+>
+> If the code generated includes standard HDL (Verilog or VHDL) then you
+> might also be able to include those as source in the design as another
+> option.
+>
+> Wade
+>
+> On Tue, Aug 30, 2022 at 3:55 AM Kevin Williams <zs1kwa@gmail.com> wrote:
+>
+>> Hi Everyone,
+>>
+>>
+>>
+>> I=E2=80=99m a model-based firmware designer generating IP cores from Mat=
+lab and
+>> Simulink.
+>>
+>>
+>>
+>> I see from one of the Ettus tutorials that it is easy to include a core
+>> defined by an =E2=80=9Cxci=E2=80=9D file, but not the =E2=80=9Cxml=E2=80=
+=9D descriptions from Simulink.
+>> (This was the rfnoc_block_gain exercise.)
+>>
+>>
+>> The folder in which those xml files live can be added as user repo's in
+>> Vivado, and the core is recognised, but I have issues trying to use that=
+ IP
+>> in the main design.
+>>
+>>
+>>
+>> Is this possible using the existing Ettus scripts?
+>>
+>>
+>> Many thanks, Kevin
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+
+--=20
+Kevin Williams
+
+--000000000000efd26005e797d48f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Wade,<div><br></div><div>Thanks! I cam=
+e right by including the generated files but did struggle with the folder s=
+tructures and makefiles. However, it is working nicely now, with a complete=
+ RFNoC OOT module in bitbucket which gets mounted as a user folder in a doc=
+ker=C2=A0container which holds all the UHD sources, Vivado, and so on. HDL =
+is generated in the appropriate place, with all makefiles configured for th=
+at.</div><div><br></div><div>I think the rfnoc-example and the template fol=
+der tree created by rfnocmodtool differ, especially in the way the makefile=
+s are set up.</div><div><br></div><div>My next step is to extract data type=
+s, IO registers, etc. from the Simulink models, and generate the YAML files=
+ for the IP core.</div><div><br></div><div>Kind regards, Kevin</div><div><b=
+r></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, 30 Aug 2022 at 18:02, Wade Fife &lt;<a href=3D"mail=
+to:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Kevin,<=
+/div><div><br></div><div>I assume the xml you&#39;re referring to is the co=
+mponent description so that it can be recognized by Vivado IP integrator. I=
+n that case, you need to create an instance of the IP in Vivado, which will=
+ create an XCI file for it. You can then include that in the design similar=
+ to how other xci files are included in the build. Ettus has several IP com=
+ponents that get used this way (usually as part of a BD) which are located =
+in fpga/usrp3/lib/vivado_ipi. This might serve as a reference.</div><div><b=
+r></div><div>If the code generated includes standard HDL (Verilog or VHDL) =
+then you might also be able to include those as source in the design as ano=
+ther option.<br></div><div><br></div><div>Wade<br> </div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Aug 30, 20=
+22 at 3:55 AM Kevin Williams &lt;<a href=3D"mailto:zs1kwa@gmail.com" target=
+=3D"_blank">zs1kwa@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><p class=3D"M=
+soNormal">Hi Everyone,<span></span></p>
+
+<p class=3D"MsoNormal"><span>=C2=A0</span></p>
+
+<p class=3D"MsoNormal">I=E2=80=99m a model-based firmware designer generati=
+ng IP cores from
+Matlab and Simulink.<span></span></p>
+
+<p class=3D"MsoNormal"><span>=C2=A0</span></p>
+
+<p class=3D"MsoNormal">I see from one of the Ettus tutorials that it is eas=
+y to
+include a core defined by an =E2=80=9Cxci=E2=80=9D file, but not the =E2=80=
+=9Cxml=E2=80=9D descriptions from
+Simulink. (This was the rfnoc_block_gain exercise.)<span></span></p><p clas=
+s=3D"MsoNormal"><br></p><p class=3D"MsoNormal">The folder in which those xm=
+l files live can be added as user repo&#39;s in Vivado, and the core is rec=
+ognised, but I have issues trying to use that IP in the main design.</p>
+
+<p class=3D"MsoNormal"><span>=C2=A0</span></p>
+
+<p class=3D"MsoNormal">Is this possible using the existing
+Ettus scripts?<span></span></p>
+
+<p class=3D"MsoNormal"><span>=C2=A0</span></p>
+
+<span style=3D"font-size:11pt;font-family:Calibri,sans-serif">Many thanks, =
+Kevin</span><br clear=3D"all"><div><br></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">Kevin Williams</div>
+
+--000000000000efd26005e797d48f--
+
+--===============1102588539024111311==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1102588539024111311==--
