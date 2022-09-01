@@ -2,138 +2,120 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4B05A9AC7
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Sep 2022 16:47:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B2B25A9CF1
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Sep 2022 18:20:06 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5BADB387C03
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Sep 2022 10:47:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F2DCA383E32
+	for <lists+usrp-users@lfdr.de>; Thu,  1 Sep 2022 12:20:04 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1662043629; bh=fZ8VmIBaVne+1OtTp3GfGLfICa9ILiamYAclVFdotyA=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=sPE7nuvyCnJvj2I7GXmHubF4T+5UKAAY8/VOz++pxcRvogh+Gfamn6iNjKxSB34wZ
-	 Xxy42VWnVegkQWT7fK8Qy3j/kr/o6hA4uQ8c8UavKZ3DHj0EXH437/pkxa04QZa0mJ
-	 GP0QlhcDZIC/cCNWAHimv2v+uQh6s1h8+6jV61KyoDgX0VvCxmaAtR0SrDKSWQ/axH
-	 6ua9ed7JWf9YTfPuxq+5sm9CDNT4tB8OOsPXaFbuKWmiBP1UHPZOOYCf22y1oWlv8a
-	 MmsYvPEa17mJkc1BG8zFqh+lmoI/HG+kgvT4JR1i1u/zyi5i9kn0Y1ERhrSqGvK0DV
-	 fCbk92o1Wh5Ng==
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id 66E45387BFA
-	for <usrp-users@lists.ettus.com>; Thu,  1 Sep 2022 10:46:15 -0400 (EDT)
+	t=1662049204; bh=YgQ+mAt06Ym7U0wrtNI14Ebdc8t/DXoEJbDcT3HN3H0=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=O6E2jvBTjj9d84JwWGNsKYt0Xbw/vF/8yJBMUMxIh6quTQ0pz5KnO12c+wQfe3Vy7
+	 eVDahdHJ4MlBJeSDrTjHs+SFyh5f+gQ8motLKMhFL3CnUlyV86VtBcAFhq8GHys3wR
+	 u/dJm8bRPOr/L1tkPz4ZaYkeyCP6yV+/xgjQdgw50JYzX8WoS1fDoXAUytmWOY57j5
+	 BKsNikWM77sQPNn+xO2d5xReERvQLO2ozkkBTwNkz/B4+2G5baiup7XEEPBtpPKraa
+	 WtXXntBL5QHIbB9qJ+O71SlWdaHC7v31ZZebN+l0Kv+A9spcDFD78Fg7EfjpQQNK8i
+	 +SAFnVaw8ivAQ==
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4B117387CFE
+	for <usrp-users@lists.ettus.com>; Thu,  1 Sep 2022 12:19:08 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="SN5blFx/";
+	dkim=pass (2048-bit key; unprotected) header.d=sma-rty-com.20210112.gappssmtp.com header.i=@sma-rty-com.20210112.gappssmtp.com header.b="X4aTzT/8";
 	dkim-atps=neutral
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-33da3a391d8so339412697b3.2
-        for <usrp-users@lists.ettus.com>; Thu, 01 Sep 2022 07:46:15 -0700 (PDT)
+Received: by mail-ej1-f42.google.com with SMTP id se27so28037105ejb.8
+        for <usrp-users@lists.ettus.com>; Thu, 01 Sep 2022 09:19:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date;
-        bh=MdatzVy0reX1SPpawbB5OZgAc83eJ1aejPhGRsymKqU=;
-        b=SN5blFx/A2/vP10FNREfIksg0ZRumPwDNGv1YT2Qx3Rs02JhweKrwtm5CehrYxkl88
-         xKrcJOiOqMEk/5yVVplCyLkPGFGfMJnaMA5UA4TPdb7SeaJUoRvZEjlLMH2Eptc7BJch
-         MFnOZYKycEdqogneKqhN9CFGVWnhYGrlEMMf4OFRiFTSOTr2UQCbGxIahnCRlOD4qRM9
-         CLvyE4yolp9WY4XQvINyNHENq9dkWadMXIK66Ni4xphNNaigqzlYNMAAQcvW9Kj4WKU+
-         ThiXZYPlVb36kxlNkoeABWm3ajTYcwBMoCvDssGxppA5C/N71fc4cfkV30PmMWjjnNCr
-         f/qw==
+        d=sma-rty-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date;
+        bh=h1Xwo1kvXcIwsa0S8cfJq8dfbdcowT7SNlJSiwvZ+VI=;
+        b=X4aTzT/8CKSN5EL76gLRD/ghpPGBH/mSUzAkF2A3qNQm+dxWJQKKrheq2gOECA85vE
+         EdUBHoDO2KvhmZE2qOMbdHUEs7iFDL46x8hzmmLA4K+zYYLMCPiqJ4oXKgmCvOGjJTcn
+         3rF6XEkmdFpOAqsFS3NxHZsXUliJay1Ak2Ehs5OhqdTsU4OYwRN36PH0K6h0/pwzuSqp
+         hLNg33j8PmVA/UyDXJgBXcOvEf9pqVTVnUFDq54NSUcKqKdVcdx1oVIy3KW+4amWN6VI
+         GCOgmAeMBOEhsrXvPP8/JmJkQqDx1XLBb3p2sZPSL3ZM1B4poXeEfi5V93rV5Cse6CyM
+         JeKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date;
-        bh=MdatzVy0reX1SPpawbB5OZgAc83eJ1aejPhGRsymKqU=;
-        b=pAUndwFS4J5jyy4k0b0LrrR8Bt8ZOWZcM8N/eq0zCDys8SZj8PAw0LaRtiDaTd6wkG
-         5WrnExKazy5hA0Tq3Xc5FEmVMehVXFlDimV71qztKk599QurxA+yXForMmfCGeqvIyYp
-         w1MM9a/bti6fSGBDNrMuvKwuRDZOmPstn72a+uE+UonUeRpdG4WflR3OT96gXoq6kKCY
-         UE7pO2mqGTT4Hn8mk5CiTYQum+FIbfX+0rTs98Ej0Z1SOdTzF7z3Kfb8qity4S4ykX0A
-         Ukvc+xxX8mV8EXp7oVovJKM3Fprl7krFM90cj9/DG8n6rxq8egdMytZOtoxqX/7svCD0
-         WSuA==
-X-Gm-Message-State: ACgBeo3AA1IOuB4lLPneInBBmZbGXF0IvErHNOj6+DCKsaSNaQy84nor
-	/oNG1lUb6cgzRvLBl0pTo7kNbYYDhJE+K2gDgGLrRfe5t/8=
-X-Google-Smtp-Source: AA6agR697my0d/w9dap3kYr9cDGDKHY+vLhjlO92i90tx0nLWMXmj6skjRNy4e/TxUeA1KDbbn5G1O+IoHib+fQSkL0=
-X-Received: by 2002:a81:1095:0:b0:340:f1b9:10b1 with SMTP id
- 143-20020a811095000000b00340f1b910b1mr18104765ywq.369.1662043574181; Thu, 01
- Sep 2022 07:46:14 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:subject:from:references:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=h1Xwo1kvXcIwsa0S8cfJq8dfbdcowT7SNlJSiwvZ+VI=;
+        b=F25UOESQl8vJm1yxCD+P4zOI0ptrie5q2+m1GyT2aYCUbAD9qqU/zWQNuERaJQFPHA
+         No2zHvFs1gH5ahWsNHV7mGOL/thfdjPwZ7M4CbIZhJyKrMI6PKAtOrAtJsEjw38R5a1j
+         jNRYICntcEnTBbeD9ZWvSjl//9NuAVgnDhcRFx8/2D4tj8WM0CmS+KsartwB46qC92la
+         N3Hs/cO2Ifjedivdq0/k8X1gRA4SJJ/wQM2d8668171rk6lbVlaQNoF9zs9PaAt8O3Zw
+         LcbYjfGa7YiCuwcnVt5TvKUxbQTfb6Tj9kBTYcHCKb1/YrK9U+SSGq64sOBatbP67lLq
+         fImA==
+X-Gm-Message-State: ACgBeo34h1KwOme/3GMDDTrrf5eCIfwtRWqU7xx+UBbAYb+yUYBM2Jam
+	ywTCg4fdcS4w5znoUPuDIpq9Pn4j6D2zUVTW
+X-Google-Smtp-Source: AA6agR6u07zYQn61TmmHeNdtJYdkKw3JR/xl+YDWI6QPOF5UipxCmnwWYGzeetuxesc6526Ws4cK5A==
+X-Received: by 2002:a17:907:7204:b0:749:7839:4dd2 with SMTP id dr4-20020a170907720400b0074978394dd2mr1563478ejc.714.1662049146747;
+        Thu, 01 Sep 2022 09:19:06 -0700 (PDT)
+Received: from [192.168.1.21] ([151.21.50.101])
+        by smtp.gmail.com with ESMTPSA id cq12-20020a056402220c00b0043bea0a48d0sm1530167edb.22.2022.09.01.09.19.06
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Sep 2022 09:19:06 -0700 (PDT)
+Message-ID: <3b8286de-d562-b5f8-8c59-7e1b0b073880@sma-rty.com>
+Date: Thu, 1 Sep 2022 18:19:05 +0200
 MIME-Version: 1.0
-From: Rob Kossler <rkossler@nd.edu>
-Date: Thu, 1 Sep 2022 09:46:03 -0500
-Message-ID: <CAB__hTRxCVCibZ9ugK+LZ0D4jQccRyeD4=iObboo_0QXJmwNDA@mail.gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
 To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: 2KLSO3ZNGKJ27HRKEOH7F7IIJGQHSNRW
-X-Message-ID-Hash: 2KLSO3ZNGKJ27HRKEOH7F7IIJGQHSNRW
-X-MailFrom: rkossler@nd.edu
+References: <CAB__hTRxCVCibZ9ugK+LZ0D4jQccRyeD4=iObboo_0QXJmwNDA@mail.gmail.com>
+From: Federico Civerchia <federico.civerchia@sma-rty.com>
+In-Reply-To: <CAB__hTRxCVCibZ9ugK+LZ0D4jQccRyeD4=iObboo_0QXJmwNDA@mail.gmail.com>
+Message-ID-Hash: 5XTIOTCE6VQBVKMHMLO7B6EUC3SRE7WP
+X-Message-ID-Hash: 5XTIOTCE6VQBVKMHMLO7B6EUC3SRE7WP
+X-MailFrom: federico.civerchia@sma-rty.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] rfnoc_radio_loopback
+Subject: [USRP-users] USRP N310 Exception errors
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2KLSO3ZNGKJ27HRKEOH7F7IIJGQHSNRW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5XTIOTCE6VQBVKMHMLO7B6EUC3SRE7WP/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7451005896286458376=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============7451005896286458376==
-Content-Type: multipart/alternative; boundary="000000000000d7614005e79eaca3"
-
---000000000000d7614005e79eaca3
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-I am interested in implementing a relatively simple repeater application on
-the X310 and E310. I ran the Ettus rfnoc_radio_loopback example and this is
-nearly a perfect fit for the functionality I want. However, I am wondering
-how my application can intelligently set the Rx Gain & Tx Gain. Actually,
-the Tx gain is easy: I can leave it fixed or I can change it inversely with
-the Rx gain to maintain constant loop gain.  But, the Rx Gain I would like
-to set based on input signal power.
-
-I'm not thinking of a fast AGC or even logic residing on the FPGA at all.
-I'm thinking more along the lines of the host PC occasionally querying an
-"rssi" or other digital power estimate and then changing the Rx gain in
-response.  I don't care about actual power levels - I just want to maximize
-the digital dynamic range.
-
-I know that I can implement a custom RFNoC block that simply passes samples
-through while computing this estimate such that it can be queried with a
-register read. But, before doing so, I'm wondering if something already
-exists such that I wouldn't have to do so.
-Rob
-
---000000000000d7614005e79eaca3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div>I am interested in implementing a relatively simpl=
-e repeater application on the X310 and E310. I ran the Ettus rfnoc_radio_lo=
-opback example and this is nearly a perfect fit for the functionality I wan=
-t. However, I am wondering how my application can intelligently set the Rx =
-Gain &amp; Tx Gain. Actually, the Tx gain is easy: I can leave it fixed or =
-I can change it inversely with the Rx gain to maintain constant loop gain.=
-=C2=A0 But, the Rx Gain I would like to set based on input signal power.=C2=
-=A0=C2=A0</div><div><br></div><div>I&#39;m not thinking of a fast AGC or ev=
-en logic residing on the FPGA at all. I&#39;m thinking more along the lines=
- of the host PC occasionally querying an &quot;rssi&quot; or other digital =
-power estimate and then changing the Rx gain in response.=C2=A0 I don&#39;t=
- care about=C2=A0actual power levels - I just want to maximize the digital =
-dynamic range.</div><div><br></div><div>I know that I can implement a custo=
-m RFNoC block that simply passes samples through while computing this estim=
-ate such that it=C2=A0can be queried with a register read. But, before doin=
-g so, I&#39;m wondering if something already exists such that I wouldn&#39;=
-t have to do so.=C2=A0</div><div>Rob</div></div>
-
---000000000000d7614005e79eaca3--
-
---===============7451005896286458376==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============7451005896286458376==--
+RGVhciBDb21tdW5pdHksDQoNCkkgYW0gZmFjaW5nIGFuIGlzc3VlIHdpdGggVUhEIDMuMTUuMCBh
+bmQgVVNSUCBOMzEwIHNpbmNlLCBzb21ldGltZXMsIHRoZSANCmFwcGxpY2F0aW9uIChPQUkgZ05C
+KSBkb2VzIG5vdCBzdGFydCBhbmQgcmV0dXJucyB0aGlzIGVycm9yOg0KDQpbRVJST1JdIFtVSERd
+IEV4Y2VwdGlvbiBjYXVnaHQgaW4gc2FmZS1jYWxsLg0KaW4gY3RybF9pZmFjZV9pbXBsPF9lbmRp
+YW5uZXNzPjo6fmN0cmxfaWZhY2VfaW1wbCgpIFt3aXRoIA0KdWhkOjplbmRpYW5uZXNzX3QgX2Vu
+ZGlhbm5lc3MgPSB1aGQ6OkVORElBTk5FU1NfQklHXQ0KYXQgL2hvbWUvc21hcnR5L3JlcG8vdWhk
+L2hvc3QvbGliL3Jmbm9jL2N0cmxfaWZhY2UuY3BwOjUwDQp0aGlzLT5zZW5kX2NtZF9wa3QoMCwg
+MCwgdHJ1ZSk7IC0+IEVudmlyb25tZW50RXJyb3I6IElPRXJyb3I6IEJsb2NrIGN0cmwgDQooQ0Vf
+MDBfUG9ydF8zMCkgbm8gcmVzcG9uc2UgcGFja2V0IC0NCkFzc2VydGlvbkVycm9yOiBib29sKGJ1
+ZmYpDQppbiB1aW50NjRfdCBjdHJsX2lmYWNlX2ltcGw8X2VuZGlhbm5lc3M+Ojp3YWl0X2Zvcl9h
+Y2soYm9vbCwgZG91YmxlKSANClt3aXRoIHVoZDo6ZW5kaWFubmVzc190IF9lbmRpYW5uZXNzID0g
+dWhkOjpFTkRJQU5ORVNTX0JJRzsgdWludDY0X3QgPSANCmxvbmcgdW5zaWduZWQgaW50XQ0KYXQg
+L2hvbWUvc21hcnR5L3JlcG8vdWhkL2hvc3QvbGliL3Jmbm9jL2N0cmxfaWZhY2UuY3BwOjE1MQ0K
+DQpbRVJST1JdIFtNUE1EXSBGYWlsdXJlIGR1cmluZyBibG9jayBlbnVtZXJhdGlvbjogRW52aXJv
+bm1lbnRFcnJvcjogDQpJT0Vycm9yOiBCbG9jayBjdHJsIChDRV8wMF9Qb3J0XzMwKSBubyByZXNw
+b25zZSBwYWNrZXQgLSBBc3NlcnRpb25FcnJvcjogDQpib29sKGJ1ZmYpDQppbiB1aW50NjRfdCBj
+dHJsX2lmYWNlX2ltcGw8X2VuZGlhbm5lc3M+Ojp3YWl0X2Zvcl9hY2soYm9vbCwgZG91YmxlKSAN
+Clt3aXRoIHVoZDo6ZW5kaWFubmVzc190IF9lbmRpYW5uZXNzID0gdWhkOjpFTkRJQU5ORVNTX0JJ
+RzsgdWludDY0X3QgPSANCmxvbmcgdW5zaWduZWQgaW50XQ0KYXQgL2hvbWUvc21hcnR5L3JlcG8v
+dWhkL2hvc3QvbGliL3Jmbm9jL2N0cmxfaWZhY2UuY3BwOjE1MSB0ZXJtaW5hdGUgDQpjYWxsZWQg
+YWZ0ZXIgdGhyb3dpbmcgYW4gaW5zdGFuY2Ugb2YgJ3VoZDo6cnVudGltZV9lcnJvcicgwqAgd2hh
+dCgpOiANCiDCoFJ1bnRpbWVFcnJvcjogRmFpbGVkIHRvIHJ1biBlbnVtZXJhdGVfcmZub2NfYmxv
+Y2tzKCkNCg0KSSBoYXZlIG5vdGljZWQgdGhpcyBlcnJvciBhZnRlciBJIHN0YXJ0ZWQgdGhlIGRl
+dmVsb3BtZW50IHdpdGggTUlNTy4gDQpSZWJvb3RpbmcgdGhlIFVTUlAgcmVzb2x2ZXMgdGhlIGlz
+c3VlIGJ1dCBJIHdvdWxkIGxpa2UgdG8gcnVuIHRoZSANCmFwcGxpY2F0aW9uIHdpdGhvdXQgcmVi
+b290aW5nIHRoZSBVU1JQIGV2ZXJ5IHRpbWUuDQoNCkNvdWxkIHlvdSBwbGVhc2UgcHJvdmlkZSBt
+ZSBtb3JlIGluZm8gYWJvdXQgdGhpcyBiZWhhdmlvcj8NCg0KVGhhbmsgeW91Lg0KDQpCZXN0IFJl
+Z2FyZHMsDQoNCkZlZGVyaWNvIENpdmVyY2hpYQ0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNy
+cC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
