@@ -2,238 +2,128 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E79015AB7F9
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Sep 2022 20:08:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7572D5ABE96
+	for <lists+usrp-users@lfdr.de>; Sat,  3 Sep 2022 12:49:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4F56C386454
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Sep 2022 14:08:45 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id E94333847E8
+	for <lists+usrp-users@lfdr.de>; Sat,  3 Sep 2022 06:49:36 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1662142125; bh=Hy4Wmgf3p1p+d5QnkSkqwbZWu92VGdoCq9uekJhoypA=;
+	t=1662202176; bh=OGGLXlMsxVGQMsJbGsyJSQeEzkNJOjxZ2/fKCJnw25o=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=GmYoFe2hsCAd2unCFw3qMyt6ZWVW3WVy/v/e/TnO4OCAi5Uis0bYuV/Vs7Q7WH1Ja
-	 pwGbdoxrr8U4GMtArf6iWVJYy5jEGBgqyJusdyneBFNSasNg1PKdGgqYTLe9axYIpM
-	 Ljp64iLw4XAyA12J9ALJIUED8ypBtHEM5Ca8auJChlpNrprq7woujROphSR+AR9yoo
-	 l/CVJIzHyYoyOl12F04wThNBbjp3WBAeVJSea3PPHGAjnci684P2UR8ObTNd4upSRM
-	 hqjercM5irGT7sTGjsYXAjik6QMNDFvbpdpDXP3I09qd1lbubqg7IRuGqFTZ8Jpp75
-	 YcOUuM7ameJ/Q==
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 038F638640F
-	for <usrp-users@lists.ettus.com>; Fri,  2 Sep 2022 14:07:49 -0400 (EDT)
+	b=BJF2XjTT5K/62Q7uVrSuSS/HpT+XVrhWtSfxMvbMIPmAayGYps7dDnpkYsM93w4uJ
+	 rbavjlX6Qihlq49XSQ8k+/uVx5zYoleef1TpxIwYrYRGQSoAnk1x3lq1YoUxdL7I08
+	 1ujnaroPc3WN2RRiz84Xm/isACjSsG09bsJUcCVH5V24wnJTpBeIjzAQ+/WrG0V+Cs
+	 zXZXLM4nhugQL75kuqi7J1h1Kw2Fxz5g1lqYCzeejY0QA6jlFYkg5Mt/ppY9vwULOC
+	 su1jivZLCkrdDY+eA1oHkkYSrX4OWHxP7JAiPggqrxgK9/cdSuUqvK76zPcWFqPF/w
+	 cKKCm/NVAIMNQ==
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1B046385AC4
+	for <usrp-users@lists.ettus.com>; Sat,  3 Sep 2022 06:48:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VDc0o5mL";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="Sx6yidsk";
 	dkim-atps=neutral
-Received: by mail-qv1-f51.google.com with SMTP id j1so2003926qvv.8
-        for <usrp-users@lists.ettus.com>; Fri, 02 Sep 2022 11:07:49 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id bp20so4721127wrb.9
+        for <usrp-users@lists.ettus.com>; Sat, 03 Sep 2022 03:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date;
-        bh=R9uoPvqnEi1+KY88ZXubWXlhsCldlU2fPotvDkQ2b28=;
-        b=VDc0o5mLFFE3Oy3hSsquEJo8mcoSnzQMurQUH7QlKdYpur3R/RX4F44wSxuXvi7Up/
-         bxs6IVZIEBzTM5GGZUF+b3HL2FSfFvD4m8NgBQUKdpqb2vFxvGSNyyQ8aVoUA/AHivRW
-         StVliMqZ28QOlQeHnXypVUqcBU4OBo3f/VrCWQhevYOeVgyljJQtF3O8ipwsoH1qEP4N
-         DLkCVR8KVD3zKFyf7+EppbMkd7J1VKm8WMTHu2f6tKBI7lo0F+pQKNkTPEHjLal/w7o2
-         aMewkvdo/0mM8emiw2CAraOm80hX3wTVsh8ZMAKPpxek5V6Rt3nvyehvBxb3I3hQnr5S
-         9zcg==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date;
+        bh=uQIDI8BdqXukGvP8Ywz4xL2FuNltJrV7nsr5knP/M8g=;
+        b=Sx6yidskdQf5TJkrU7xfQh/mlxubenMuu1dUJVZJsBr5Nclvz/A2KiBXB9xrGgmScn
+         DLmtzFWEjDY3gHmmFTGTraKRW/4TtcqLHiuT5yX8p68fJT556qNdOvtedhYITpbE0lXA
+         X+xMNj8g6RtJt/IppVZA2E1VPU6uqHaCv8wfjWEZEb2eevUYZcSiSdPB+P2Z6LyqL5Tk
+         d8ksKzKegMaWdJ5Kj9nKhRSBHMeKzmXircssKMv9o9Tj3FBdEfeenkNsQKs5Dengz7Wq
+         96RTKAi9b6P/9ArUoFKCs8xDZfZOeDtndXozXiBsS2OlUh+p76y9kE8Taz1spEvYSCHw
+         i1rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date;
-        bh=R9uoPvqnEi1+KY88ZXubWXlhsCldlU2fPotvDkQ2b28=;
-        b=hWeqz910JPv+/YKeM1AHUq+2jNtQnNciNG/D/Lzwv/safk/EDzS1jXic4yPNivPWmP
-         6+89N71qWoOjRHHaxDRGScrrNVj1nw7aL5EUyXNEIb/4UCHtCfJMIVK9iKHuYK3mWxjw
-         UkKki5ECMc9Mjs+ZFAbg0DCKi1oAfPg0Sot8uSPvPiXPvqqhKkwi2oPDPzeD+Wds7jVb
-         Lj/GFiZpqH1O75Sz84BZZ9XzoPYISKgfF+Z+7OwYoV82W/wbzByiemO6xg8iCmFRhO4Q
-         sjVjsVqDKc1dIllek98BMGTDEl1USPc88pojAWgBF6rqGlv58HDSuy4mas3spGuuPbiV
-         e8pg==
-X-Gm-Message-State: ACgBeo1uV696A25bhZDnZEeXjtrMQj6tBxf51vIODkzCqfAJy/JfmxU6
-	GMzrbgKjB0s893GpXv4rMxVEiuujLng=
-X-Google-Smtp-Source: AA6agR6S9L+124U6pLDvvK8JAMc+PJa02Timafpq3PNudCdxBcHpB3NGkawyBaJfuiQjv5Q3WnSFKQ==
-X-Received: by 2002:a0c:f084:0:b0:499:207:de74 with SMTP id g4-20020a0cf084000000b004990207de74mr23591359qvk.21.1662142069354;
-        Fri, 02 Sep 2022 11:07:49 -0700 (PDT)
-Received: from [192.168.2.199] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id l27-20020ac84cdb000000b003438a8e842fsm1386519qtv.44.2022.09.02.11.07.48
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date;
+        bh=uQIDI8BdqXukGvP8Ywz4xL2FuNltJrV7nsr5knP/M8g=;
+        b=J+IemUw8BMsyAJD+4QSSpYkBxq2AEYvjw3ka+GKtQS3rlr72lZtbwIIPoILilV+p7m
+         vs6UjQPmK1B++IWZicv3vxmVqPsiV4lZP3GTAc4ORA/6F3ui3jD3W8EB0Q+cae3idFBO
+         enbI9o1NLrpzxCpMdPieL3VELkIShvkKtYUwiOq8euuZYuaiqg+klqpAXrPTQAITlVlp
+         2vE+ZEf/nAzDppTvvAW5AgYCIbEEoV64ju1MocXF27ile43AM0zCEoElFP8T68Umptpl
+         UrEll/2OxipYpAfzC+AkeBuoRP3dkeqCJavzuT2AnSvxFPBM368napvAwMqwLC6fvhge
+         COKA==
+X-Gm-Message-State: ACgBeo1/k4we9kZ62YbraAIXOg9VZxvZtgzW2QZ82EbLEU8GPkJHmS94
+	eN9Ds+FHtN8+LZeWGVD7uyrAJLsvXD/0Xpv3
+X-Google-Smtp-Source: AA6agR47WgyO/qEABgwJNxwY8i/rQvmsoRwSU2D2OAFRkucJ1jaTwH0aEijZmQitF3tdvKKoMi1qcQ==
+X-Received: by 2002:a05:6000:144a:b0:220:7181:9283 with SMTP id v10-20020a056000144a00b0022071819283mr18848003wrx.158.1662202121739;
+        Sat, 03 Sep 2022 03:48:41 -0700 (PDT)
+Received: from ?IPV6:2001:9e8:3840:8000:5bc8:3cc3:e10b:748e? ([2001:9e8:3840:8000:5bc8:3cc3:e10b:748e])
+        by smtp.gmail.com with ESMTPSA id ay19-20020a05600c1e1300b003a682354f63sm12389341wmb.11.2022.09.03.03.48.40
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Sep 2022 11:07:48 -0700 (PDT)
-Message-ID: <61fb1c43-53b8-232b-1546-b4daf5331c76@gmail.com>
-Date: Fri, 2 Sep 2022 14:07:47 -0400
+        Sat, 03 Sep 2022 03:48:41 -0700 (PDT)
+Message-ID: <8715ed08-fce7-390d-ef16-6a390104eb7c@ettus.com>
+Date: Sat, 3 Sep 2022 12:48:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.11.0
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
 References: <01a901d8beeb$e0240a80$a06c1f80$@googlemail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <01a901d8beeb$e0240a80$a06c1f80$@googlemail.com>
-Message-ID-Hash: S7IRXQ7ZJEDAEXTPPB66QEK7BHXJ5L7R
-X-Message-ID-Hash: S7IRXQ7ZJEDAEXTPPB66QEK7BHXJ5L7R
-X-MailFrom: patchvonbraun@gmail.com
+ <61fb1c43-53b8-232b-1546-b4daf5331c76@gmail.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+In-Reply-To: <61fb1c43-53b8-232b-1546-b4daf5331c76@gmail.com>
+Message-ID-Hash: PTTDZR43YBGLT4K3AWG576P2OCLETFY2
+X-Message-ID-Hash: PTTDZR43YBGLT4K3AWG576P2OCLETFY2
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: 2.5G Ethernet
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S7IRXQ7ZJEDAEXTPPB66QEK7BHXJ5L7R/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PTTDZR43YBGLT4K3AWG576P2OCLETFY2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2435887521226944783=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
---===============2435887521226944783==
-Content-Type: multipart/alternative;
- boundary="------------NpeuL7ACLzH5QSDNtov6uspL"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------NpeuL7ACLzH5QSDNtov6uspL
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-On 2022-09-02 12:48, Matthias Schraml wrote:
->
-> Hi all,
->
-> I=E2=80=99m currently wondering, if it is possible to use 2.5G ethernet=
- with=20
-> an USRP X310.
->
-> Background:
->
-> I own a brand new small but powerful computer. The PCIe slot is=20
-> occupied by a GPU and there is no Thunderbolt port. So there is no=20
-> chance for 10G ethernet.
->
-> However, the computer has a 2.5G ethernet port.
->
-> The Xilinx IP used for 1G ethernet in the USRPs also supports 2.5G. In=20
-> theory, this should be sufficient for 2x 30.72 MSps which would be a=20
-> great improvement compared to the 25 MSps over 1G ethernet.
->
-> Is it possible to modify the FPGA image to support 2.5G ethernet?
->
-> Has anybody already done this modification?
->
-> Kind regards
->
-> Matthias
->
->
-The PHY implementation, as I recall, is fixed-rate.=C2=A0=C2=A0 It's=20
-almost-certainly possible to modify it to support it, but that wouldn't
- =C2=A0 be a configuration support by NI/Ettus.
-
-
---------------NpeuL7ACLzH5QSDNtov6uspL
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-09-02 12:48, Matthias Schraml
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:01a901d8beeb$e0240a80$a06c1f80$@googlemail.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">I=E2=80=99m currently=
- wondering,
-            if it is possible to use 2.5G ethernet with an USRP X310.<o:p=
-></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</o:p></sp=
-an></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Background:<o:p></o:p=
-></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">I own a brand new sma=
-ll
-            but powerful computer. The PCIe slot is occupied by a GPU
-            and there is no Thunderbolt port. So there is no chance for
-            10G ethernet.<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">However, the computer
-            has a 2.5G ethernet port. <o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</o:p></sp=
-an></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">The Xilinx IP used fo=
-r
-            1G ethernet in the USRPs also supports 2.5G. In theory, this
-            should be sufficient for 2x 30.72 MSps which would be a
-            great improvement compared to the 25 MSps over 1G ethernet.<o=
-:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</o:p></sp=
-an></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Is it possible to mod=
-ify
-            the FPGA image to support 2.5G ethernet?<o:p></o:p></span></p=
->
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Has anybody already d=
-one
-            this modification?<o:p></o:p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>=C2=A0</o:p></sp=
-an></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards<o:p></o:=
-p></span></p>
-        <p class=3D"MsoNormal"><span lang=3D"EN-US">Matthias<o:p></o:p></=
-span></p>
-      </div>
-      <br>
-    </blockquote>
-    The PHY implementation, as I recall, is fixed-rate.=C2=A0=C2=A0 It's
-    almost-certainly possible to modify it to support it, but that
-    wouldn't<br>
-    =C2=A0 be a configuration support by NI/Ettus.<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------NpeuL7ACLzH5QSDNtov6uspL--
-
---===============2435887521226944783==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2435887521226944783==--
+U2Vjb25kaW5nIHRoYXQuDQoNCk5vdywgYXJtY2hhaXIgbmV0d29yayBzdGFuZGFyZGlzdCBoZXJl
+LCBidXQgaWYgSSByZW1lbWJlciBjb3JyZWN0bHksIDIuNSBHYi9zIEV0aGVybmV0IGlzIA0KYSBy
+ZWR1Y2VkLXJhdGUgMTAgR0Jhc2UtVCAoc28sIHByZXR0eSBtdWNoIElFRUU4MDIuM2FuLTIwMDYs
+IHdpdGggcmVkdWNlZCBjbG9ja3MpLiBJJ20gbm90IA0Kc3VyZSB3aGV0aGVyIHRoZXJlJ3MgYW55
+IG90aGVyIGluY29tcGF0aWJpbGl0eSBiZXR3ZWVuIDgwMi4zYW4tMjAwNiBhbmQgODAyLjNiei4g
+QnV0IA0KaG9uZXN0bHksIHRoZSAxMCBHQmFzZS1UIElQIGNvcmUgaXMgdXNlZCBpbiB4MzAwX3Nm
+cHBfaW9fY29yZS52LCBpdCdzIHdyYXBwZWQgaW4gdGhlIA0Kb21pbm91c2x5LW5hbWVkIHhnZV9t
+YXhfd3JhcHBlci52LCBzbyBnbyBhaGVhZCBhbmQganVzdCBkcm9wLWluIHJlcGxhY2UgaXQsIGlm
+IGl0IGNhbiB3b3JrIA0KYXQgdGhlIHNhbWUgMTU2LjI1IE1IeiBzeW1ib2wgY2xvY2sgdGhhdC4g
+RG9uJ3Qga25vdyB3aGV0aGVyIHRoYXQgd29ya3Mgb3V0LW9mLXRoZS1ib3gsIA0KYnV0IGFzIGxv
+bmcgYXMgeW91IG5ldmVyIHJlbW92ZSB0aGUgY2hpbmNoIC8gUENJZSBhc2ljIGludGVyZmFjZSwg
+eW91IGNhbiBhbHdheXMgbG9hZCBhIA0Kd29ya2luZyBGUEdBIGltYWdlIHZpYSB0aGUgSlRBRyBp
+bnRlcmZhY2UsIHNvIHN0YWtlcyBhcmUgcXVpdGUgbG93Lg0KDQpDaGVlcnMsDQoNCk1hcmN1cyAo
+dGhlIG90aGVyISkNCg0KT24gMDIuMDkuMjIgMjA6MDcsIE1hcmN1cyBELiBMZWVjaCB3cm90ZToN
+Cg0KPiBPbiAyMDIyLTA5LTAyIDEyOjQ4LCBNYXR0aGlhcyBTY2hyYW1sIHdyb3RlOg0KPj4NCj4+
+IEhpIGFsbCwNCj4+DQo+PiBJ4oCZbSBjdXJyZW50bHkgd29uZGVyaW5nLCBpZiBpdCBpcyBwb3Nz
+aWJsZSB0byB1c2UgMi41RyBldGhlcm5ldCB3aXRoIGFuIFVTUlAgWDMxMC4NCj4+DQo+PiBCYWNr
+Z3JvdW5kOg0KPj4NCj4+IEkgb3duIGEgYnJhbmQgbmV3IHNtYWxsIGJ1dCBwb3dlcmZ1bCBjb21w
+dXRlci4gVGhlIFBDSWUgc2xvdCBpcyBvY2N1cGllZCBieSBhIEdQVSBhbmQgDQo+PiB0aGVyZSBp
+cyBubyBUaHVuZGVyYm9sdCBwb3J0LiBTbyB0aGVyZSBpcyBubyBjaGFuY2UgZm9yIDEwRyBldGhl
+cm5ldC4NCj4+DQo+PiBIb3dldmVyLCB0aGUgY29tcHV0ZXIgaGFzIGEgMi41RyBldGhlcm5ldCBw
+b3J0Lg0KPj4NCj4+IFRoZSBYaWxpbnggSVAgdXNlZCBmb3IgMUcgZXRoZXJuZXQgaW4gdGhlIFVT
+UlBzIGFsc28gc3VwcG9ydHMgMi41Ry4gSW4gdGhlb3J5LCB0aGlzIA0KPj4gc2hvdWxkIGJlIHN1
+ZmZpY2llbnQgZm9yIDJ4IDMwLjcyIE1TcHMgd2hpY2ggd291bGQgYmUgYSBncmVhdCBpbXByb3Zl
+bWVudCBjb21wYXJlZCB0byANCj4+IHRoZSAyNSBNU3BzIG92ZXIgMUcgZXRoZXJuZXQuDQo+Pg0K
+Pj4gSXMgaXQgcG9zc2libGUgdG8gbW9kaWZ5IHRoZSBGUEdBIGltYWdlIHRvIHN1cHBvcnQgMi41
+RyBldGhlcm5ldD8NCj4+DQo+PiBIYXMgYW55Ym9keSBhbHJlYWR5IGRvbmUgdGhpcyBtb2RpZmlj
+YXRpb24/DQo+Pg0KPj4gS2luZCByZWdhcmRzDQo+Pg0KPj4gTWF0dGhpYXMNCj4+DQo+Pg0KPiBU
+aGUgUEhZIGltcGxlbWVudGF0aW9uLCBhcyBJIHJlY2FsbCwgaXMgZml4ZWQtcmF0ZS7CoMKgIEl0
+J3MgYWxtb3N0LWNlcnRhaW5seSBwb3NzaWJsZSB0byANCj4gbW9kaWZ5IGl0IHRvIHN1cHBvcnQg
+aXQsIGJ1dCB0aGF0IHdvdWxkbid0DQo+IMKgIGJlIGEgY29uZmlndXJhdGlvbiBzdXBwb3J0IGJ5
+IE5JL0V0dHVzLg0KPg0KPg0KPg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNl
+cnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlz
+dHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1s
+ZWF2ZUBsaXN0cy5ldHR1cy5jb20K
