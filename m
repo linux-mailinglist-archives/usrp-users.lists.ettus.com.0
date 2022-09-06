@@ -2,58 +2,58 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D0655AE8F2
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Sep 2022 15:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A284A5AE944
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Sep 2022 15:18:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E39A738367F
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Sep 2022 09:01:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5A772383879
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Sep 2022 09:18:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1662469267; bh=koKBnOmpeeTtHHuCv2C+XmsHjeBn9AwH3hKlq5sBrfM=;
+	t=1662470329; bh=lZvUJGuB3s9qz1dmLPPo9kzGadtZOG88TrqUVvV8l3k=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=GGlz4NHHRi2ZXafwRjyaAsntW8jUq/ERtiiZzo+zwvXWbi8R7gqh67XOPbdslI6pl
-	 MY0a2XwzGY1RWTBRm6pikcfiV0/QBJPQNGSp8G5v9Wjo7Pgjvk3CnD3yhY+nSDj3Yn
-	 7mK7i3kItMqkNiF1WeODPSyT1jahum7vwT42DQrbiRoKktsfHP4crOIeNgbbs4M3yA
-	 El+fhjMe2TjaR5nJ8QVkU9ytLqCZDYYqbFcFS7TdvS9SwtCY68qecm+20IcBXu9Ieq
-	 b8ELqc3R+OLdeekE5uHF9Gwy4xUpoeWW983qWuukAxY0T6oF7jxw0XKb/ZEQjfwA0C
-	 HawEOuA0LDKmA==
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id 471A0380CD8
-	for <usrp-users@lists.ettus.com>; Tue,  6 Sep 2022 08:59:36 -0400 (EDT)
+	b=ghbGyCmi5GQmDhCabKDxKv4VcKRh6q9kxkM9S5+WPFjfMpInp8p0tiFFg+67e1L2E
+	 rDBquTZkyRIVuQ8f54Aohqo+fmr7dZgHJjoGt9O+5PwUy1eIE8Kcjx6Nr8FRAgkavE
+	 2hWPzP+xVMInFlBmHNN5+AbZtoZNUYNU1XAFtnk4RkZ/cqFzbwd2Vnrd2WZPNuOTZ1
+	 AlA499SOYfycVAmt3/XQymX7k84r5wURM73OnWs/ED+LkYaIEWI/D6R8zUQ4Thg+3Q
+	 xyYEyrn7L2rGdz23RNvC/1o9TqN5dWlB8Y2uGxWmavROh2WNNBkYtBPt0qU1rSDm7G
+	 aYoQyKHyTkFFQ==
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id E1630381435
+	for <usrp-users@lists.ettus.com>; Tue,  6 Sep 2022 09:17:20 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=integrasys-sa-com.20210112.gappssmtp.com header.i=@integrasys-sa-com.20210112.gappssmtp.com header.b="IKc1iG2F";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="bvBE4tSk";
 	dkim-atps=neutral
-Received: by mail-pl1-f173.google.com with SMTP id v5so11210655plo.9
-        for <usrp-users@lists.ettus.com>; Tue, 06 Sep 2022 05:59:36 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 130so16745297ybw.8
+        for <usrp-users@lists.ettus.com>; Tue, 06 Sep 2022 06:17:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=integrasys-sa-com.20210112.gappssmtp.com; s=20210112;
+        d=nd.edu; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=3Xb2VmDYkNnErcA9D7jhYhsNokZcccSrqCrp6Jabzmg=;
-        b=IKc1iG2FK0YzMEXCM6GZ5J6VmGxeNBqlOIHDqTjWBL2Go2VMkQ4SWENa+s/2XJW4/Z
-         WMalP80rDsXLavWgdA0sLAv1cSvQRT1MKUcMk+MOTXtOgpmZ9cT384OKp4WYU9ZTrV5z
-         X8xd96LinF+KBWgUO022JJx0sdrygmMXhK4J8ThxeyTkumRin/2bC0/fAC9H9SUMd9oF
-         TMgHcdhvGl2yeVjwUsxxWXDPYkacJEPTtWJGCYw15vIha3+y8jbTcJFubLFhqcelFnAg
-         dJDN+Dh63sYlot9szCpwN/9ZeNad0FjDQqj6PDulyOMsI0RINvQrTaHJfqds4sYICQw4
-         K9dg==
+        bh=act7jJEdxUqcUcDSGQ5sH0YFGstmg3ky9uv4FNjZi5g=;
+        b=bvBE4tSkOXZwT5bGLWP1mHSOrFY9ROBpTM/eNKNq5SuZtM4a3BBVSsivevnbMsnz49
+         PSQw2L1kRxpR99f6LhEEF2JMozbHa9EAbEXpDHwqdiknZgJ1bN7ht8d1xfQ2dfXfWeFZ
+         QPnBEuHueJzcgWlMMU/f8nluAe8VTmSIxVr5QyutIZTUspkK3QBrtZT7cv5BmKhLk9Wd
+         DiHK2KGYc6x3c96RSSevkczS2YmElqlDGHAjdr5uD5PvO+eUGnMRsTCKwk17bmlAg450
+         /aWR77pCFEXc7bddr0iDxy1UEsXRmypp00d9GgE2Lg0Yu4HoXnonHfAUMIlwGqtiIS8V
+         /mPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=3Xb2VmDYkNnErcA9D7jhYhsNokZcccSrqCrp6Jabzmg=;
-        b=SDxZPTEkcZ1k4uycYIIkoUlLrFbdkKOWuHFrXZ4fHbO+2EibAuY275gOSrLnNyHt8W
-         vDH+FmfyRzPgtXVPev1GhmrjTJYBMpozicFn4yYJOkhntaEh38+odXl0sQqZrC3q5EVy
-         yOFSny4pxasOs2lzXVoH/GBLo4xRyE4hx3SbdqdHXO+aWCFjDQHydVcmrobFfgfcmq2X
-         OXqdNgxfpC5BQrQXttgJNUpI+bABgZdrWutSA4wIgZXGiLcu2mlLHfdwgw2buqMZM92M
-         DqwhjXlMNSxLWF2ej7w1vFf2KY24aQNKFh3TVpFkKVNzOnIUvGr66KFoI01jHoUFnY4X
-         7xkQ==
-X-Gm-Message-State: ACgBeo3H9pGouBz8MXrDJrwpBYFZfDZuWZYzKjtrPWSJAfuzMKE8RJ8E
-	HB0/uES05S8v9IxjhBvs5+L99TGIisGoRqDjWU/tPw==
-X-Google-Smtp-Source: AA6agR5gy05y+KEFIj9NODCk4wnCyTzfswPjyESKJkbiqizrqRi2MjdpkZRQ4tRG7Cgjm/CJcDf3jMNFQfd4fLkw3K8=
-X-Received: by 2002:a17:902:b106:b0:176:70e2:df21 with SMTP id
- q6-20020a170902b10600b0017670e2df21mr20047516plr.127.1662469173039; Tue, 06
- Sep 2022 05:59:33 -0700 (PDT)
+        bh=act7jJEdxUqcUcDSGQ5sH0YFGstmg3ky9uv4FNjZi5g=;
+        b=uA+lG8fSoTjw/Q1YXTkrL3GGHMygKifrv2NujpgquY1jKi7U3LiyOPsyC1dGzmK5IK
+         aze1UwN4uHWuaiIqNvrjDyx72mZ/VVsvORhc7YYVuqmBrXJzWQA7AHp4bV5gU7bShMmS
+         i2j7kRUc6tbdWGkKlFl7PWfdPt1vd8IflScdQ8AVVvz5zQ4Zub7uxQwbU1MYrwtFBaCl
+         6b/ZFfTNO15HS7usox3AB3P2kcIjTYCKgJ6Ob1uky8NTCDPm4TAPkFhOwIzZNcSghtNW
+         g6oDN5+wdZRvUuzWVRZWvzagsuMkN+jiJZprmmawBd4unZcA+JXrdBWXgrOklKEhEtdi
+         Mbeg==
+X-Gm-Message-State: ACgBeo3WrFUlBYBhJibvyq/ovAtxjdmSLyOkF9q/DMjmpTmuyCmYTsRS
+	5bmR58GCKA1/rEgHu7WMfzerb+r2kk0hK5mQvQRDbpaST4Y=
+X-Google-Smtp-Source: AA6agR6qQWCzDqhGiCIqCWWb0XcT1KUrnlznZ75ggvhircn0k2Rh8I7UJRMb2BV8eel5y2LCxrgyTA2f9Aiw4Jx4v20=
+X-Received: by 2002:a25:94b:0:b0:68f:4e05:e8f0 with SMTP id
+ u11-20020a25094b000000b0068f4e05e8f0mr36062513ybm.115.1662470239216; Tue, 06
+ Sep 2022 06:17:19 -0700 (PDT)
 MIME-Version: 1.0
 References: <YMFp481oKWLKHn6Gld6NW6T7ruuXTKrHxl9wgxfhLM8@lists.ettus.com>
  <CAB__hTSx=35DRBFwSuhTP54M-+yOXGpvJCouEu1q0iUAa82cpg@mail.gmail.com>
@@ -62,334 +62,359 @@ References: <YMFp481oKWLKHn6Gld6NW6T7ruuXTKrHxl9wgxfhLM8@lists.ettus.com>
  <CAFche=hpgCdrAs8OiWdcfqiubXt7NiNXtn3bVhfF8Fs=BAXhiw@mail.gmail.com>
  <CAP0o2szT7DJYWR_+CHeWLNRWhTPyZnM7y+7mVSHk93AHhAkrVg@mail.gmail.com>
  <CAFche=gcMcxK6-4vMpS9n7k-eV8JUZZacj=FRryOu=kd+ACywg@mail.gmail.com>
- <CAP0o2swJKe3SuHGtnZV12u0-G00TvTE5Ds5Peb7Em911qT5yUg@mail.gmail.com> <CAFche=jPOUCx+KjqfQHHxpiVMdqxdX_Xc7-4TgPiYE1jzsWs7g@mail.gmail.com>
-In-Reply-To: <CAFche=jPOUCx+KjqfQHHxpiVMdqxdX_Xc7-4TgPiYE1jzsWs7g@mail.gmail.com>
-From: =?UTF-8?Q?Adri=C3=A1n_Campos_Ramos?= <adrian.campos@integrasys-sa.com>
-Date: Tue, 6 Sep 2022 14:59:21 +0200
-Message-ID: <CAP0o2syAqrQJtZrtHdfi9bbgn+VmpbZ_4cVzPgwXRPD6rcEyOw@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Content-Type: multipart/mixed; boundary="0000000000008387fe05e801c461"
-Message-ID-Hash: A3KFRN2OTS7ZCW5YZCSQFT7E2LZ6TCX6
-X-Message-ID-Hash: A3KFRN2OTS7ZCW5YZCSQFT7E2LZ6TCX6
-X-MailFrom: adrian.campos@integrasys-sa.com
+ <CAP0o2swJKe3SuHGtnZV12u0-G00TvTE5Ds5Peb7Em911qT5yUg@mail.gmail.com>
+ <CAFche=jPOUCx+KjqfQHHxpiVMdqxdX_Xc7-4TgPiYE1jzsWs7g@mail.gmail.com> <CAP0o2syAqrQJtZrtHdfi9bbgn+VmpbZ_4cVzPgwXRPD6rcEyOw@mail.gmail.com>
+In-Reply-To: <CAP0o2syAqrQJtZrtHdfi9bbgn+VmpbZ_4cVzPgwXRPD6rcEyOw@mail.gmail.com>
+From: Rob Kossler <rkossler@nd.edu>
+Date: Tue, 6 Sep 2022 08:17:08 -0500
+Message-ID: <CAB__hTQ4JDyn2zKYv8rnnYAW+Zns=FaraMka-YJHer1f7f6ZSw@mail.gmail.com>
+To: =?UTF-8?Q?Adri=C3=A1n_Campos_Ramos?= <adrian.campos@integrasys-sa.com>
+Message-ID-Hash: WTT36DI4EP47V65VWQVLVXNGBXOQBWB6
+X-Message-ID-Hash: WTT36DI4EP47V65VWQVLVXNGBXOQBWB6
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Rob Kossler <rkossler@nd.edu>, usrp-users@lists.ettus.com
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: AXI_RAM_FIFO Controller
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A3KFRN2OTS7ZCW5YZCSQFT7E2LZ6TCX6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WTT36DI4EP47V65VWQVLVXNGBXOQBWB6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
+Content-Type: multipart/mixed; boundary="===============8245617484031806690=="
 
---0000000000008387fe05e801c461
-Content-Type: multipart/related; boundary="0000000000008387fe05e801c460"
+--===============8245617484031806690==
+Content-Type: multipart/related; boundary="000000000000112ade05e80204b1"
 
---0000000000008387fe05e801c460
-Content-Type: multipart/alternative; boundary="0000000000008387fd05e801c45f"
+--000000000000112ade05e80204b1
+Content-Type: multipart/alternative; boundary="000000000000112add05e80204af"
 
---0000000000008387fd05e801c45f
+--000000000000112add05e80204af
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-HI everyone
+Hi Adri=C3=A1n,
+The yml includes only a single block, but no radio block.  I don't know if
+this is a problem or not, but I have never tried it. If the FPGA has room,
+you may want to add the Radio block back in.
+Rob
 
-Thank you very much. I made a controller and, according to the simulation,
-it's working fine, at least as I wanted. However, I am facing problems to
-implementate in the fpga. There is not problem when i generate the .bit buf
-when i call in gnuradio, this error appears:
+On Tue, Sep 6, 2022 at 7:59 AM Adri=C3=A1n Campos Ramos <
+adrian.campos@integrasys-sa.com> wrote:
 
-WARNING] [UDP] The current send_buff_size of 212992 is less than the
-minimum recommended size of 307200 and may result in dropped packets on
-some NICs
-[ERROR] [RFNOC::GRAPH] Error during initialization of block 0/DmaFIFO#0!
-[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
-RfnocError: OpTimeout: Control operation timed out waiting for ACK
-Traceback (most recent call last):
-  File
-"/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py",
-line 181, in <module>
-    main()
-  File
-"/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py",
-line 157, in main
-    tb =3D top_block_cls()
-  File
-"/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py",
-line 76, in __init__
-    self.rfnoc_graph =3D ettus_rfnoc_graph_0 =3D
-ettus.rfnoc_graph(uhd.device_addr(",".join(("addr=3D192.168.1.23", ''))))
-  File "/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line
-1153, in make
-    return _ettus_swig.rfnoc_graph_make(dev_addr)
-RuntimeError: RuntimeError: Failure to create rfnoc_grap
-
-I attached my image.yml:
-
-
-Thanks in advance.
-
-El jue, 1 sept 2022 a las 22:24, Wade Fife (<wade.fife@ettus.com>) escribi=
-=C3=B3:
-
-> The DRAM on USRPs is half duplex, but the AXI bus is full duplex, which
-> makes the real world behavior more complicated. If you want to simulate
-> accurately for a specific USRP, you could pull in its AXI interconnect, t=
-he
-> Xilinx memory interface IP, and a DRAM simulation model, then connect it
-> together and match the USRP design exactly, but this is a lot of work.
-> There are examples that are similar to this in
-> fpga/usrp3/top/x300/sim/dram_fifo and fpga/usrp3/top/n3xx/sim/dram_fifo.
-> There's no example for E320, but the idea is similar.
+> HI everyone
 >
-> Wade
+> Thank you very much. I made a controller and, according to the simulation=
+,
+> it's working fine, at least as I wanted. However, I am facing problems to
+> implementate in the fpga. There is not problem when i generate the .bit b=
+uf
+> when i call in gnuradio, this error appears:
 >
-> On Thu, Sep 1, 2022 at 5:38 AM Adri=C3=A1n Campos Ramos <
-> adrian.campos@integrasys-sa.com> wrote:
+> WARNING] [UDP] The current send_buff_size of 212992 is less than the
+> minimum recommended size of 307200 and may result in dropped packets on
+> some NICs
+> [ERROR] [RFNOC::GRAPH] Error during initialization of block 0/DmaFIFO#0!
+> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
+> RfnocError: OpTimeout: Control operation timed out waiting for ACK
+> Traceback (most recent call last):
+>   File
+> "/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py",
+> line 181, in <module>
+>     main()
+>   File
+> "/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py",
+> line 157, in main
+>     tb =3D top_block_cls()
+>   File
+> "/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py",
+> line 76, in __init__
+>     self.rfnoc_graph =3D ettus_rfnoc_graph_0 =3D
+> ettus.rfnoc_graph(uhd.device_addr(",".join(("addr=3D192.168.1.23", ''))))
+>   File "/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py", line
+> 1153, in make
+>     return _ettus_swig.rfnoc_graph_make(dev_addr)
+> RuntimeError: RuntimeError: Failure to create rfnoc_grap
 >
->> Thank you very much! I was testing the code and I got something similar
->> to what I wanted. However, in the simulation the sim_ram is half duplex =
-and
->> my question is if the implementation in the FPGA is also half or full
->> duplex. And if it is full, is there any way to simulate?
+> I attached my image.yml:
+>
+>
+> Thanks in advance.
+>
+> El jue, 1 sept 2022 a las 22:24, Wade Fife (<wade.fife@ettus.com>)
+> escribi=C3=B3:
+>
+>> The DRAM on USRPs is half duplex, but the AXI bus is full duplex, which
+>> makes the real world behavior more complicated. If you want to simulate
+>> accurately for a specific USRP, you could pull in its AXI interconnect, =
+the
+>> Xilinx memory interface IP, and a DRAM simulation model, then connect it
+>> together and match the USRP design exactly, but this is a lot of work.
+>> There are examples that are similar to this in
+>> fpga/usrp3/top/x300/sim/dram_fifo and fpga/usrp3/top/n3xx/sim/dram_fifo.
+>> There's no example for E320, but the idea is similar.
 >>
->> Thanks in advance.
+>> Wade
 >>
->> Adri=C3=A1n
+>> On Thu, Sep 1, 2022 at 5:38 AM Adri=C3=A1n Campos Ramos <
+>> adrian.campos@integrasys-sa.com> wrote:
 >>
->> El mi=C3=A9, 31 ago 2022 a las 16:22, Wade Fife (<wade.fife@ettus.com>)
->> escribi=C3=B3:
->>
->>> OUT_FIFO_SIZE sets the size of the FIFO used to buffer data read from
->>> the external DRAM. But the unit for this parameter is log base 2 of the
->>> size. So, setting it to 20 means the output FIFO will be 2^20 words or =
-8
->>> MiB implemented in BRAM, which is too big for the FPGA to support. You
->>> should probably leave it at the default value. The amount of DRAM to us=
+>>> Thank you very much! I was testing the code and I got something similar
+>>> to what I wanted. However, in the simulation the sim_ram is half duplex=
+ and
+>>> my question is if the implementation in the FPGA is also half or full
+>>> duplex. And if it is full, is there any way to simulate?
+>>>
+>>> Thanks in advance.
+>>>
+>>> Adri=C3=A1n
+>>>
+>>> El mi=C3=A9, 31 ago 2022 a las 16:22, Wade Fife (<wade.fife@ettus.com>)
+>>> escribi=C3=B3:
+>>>
+>>>> OUT_FIFO_SIZE sets the size of the FIFO used to buffer data read from
+>>>> the external DRAM. But the unit for this parameter is log base 2 of th=
 e
->>> for the FIFO can be set by the FIFO_ADDR_MASK parameter.
->>>
->>> It should behave like a true FIFO. So anything you write to the input
->>> will come out on the output, but you can buffer up to the size of the
->>> memory you have configured. I'm not sure I understand your application
->>> exactly, but if you only want to capture at a specific time, then you
->>> should add logic to only write the data to the input of the FIFO during
->>> those times and take care to handle overflow when the FIFO fills. And a=
-dd
->>> logic on the output to only read when you want, taking care to handle
->>> underflow when the FIFO empties.
->>>
->>> Wade
->>>
->>> On Wed, Aug 31, 2022 at 4:42 AM Adri=C3=A1n Campos Ramos <
->>> adrian.campos@integrasys-sa.com> wrote:
->>>
->>>> Hi,
+>>>> size. So, setting it to 20 means the output FIFO will be 2^20 words or=
+ 8
+>>>> MiB implemented in BRAM, which is too big for the FPGA to support. You
+>>>> should probably leave it at the default value. The amount of DRAM to u=
+se
+>>>> for the FIFO can be set by the FIFO_ADDR_MASK parameter.
 >>>>
->>>> Thank you very much, now I understand how it works and it runs
->>>> perfectly. However, it's not what I expected since it does not FIFO
->>>> behaviour, or I'm doing something wrong. What I need is a FIFO that st=
-ores
->>>> the data of a signal when I activate a flag and reads when I activate
->>>> another flag continuously and constantly. Currently, I have the FIFO
->>>> implemented in the FPGA but it takes too much resources  so I want to
->>>> take advantage of the E320 RAM. I think the axi_ram_fifo would be perf=
-ect
->>>> for my project but as far i can see, when space =3D 0 and occupied is =
-full,
->>>> it starts to lose the continuity. On the other hand, I don't know why =
-but I
->>>> can't  increase the FIFO_OUT_SIZE. With 10 there are outputs but if i
->>>> increase, for example, to 20 it doesn't.
+>>>> It should behave like a true FIFO. So anything you write to the input
+>>>> will come out on the output, but you can buffer up to the size of the
+>>>> memory you have configured. I'm not sure I understand your application
+>>>> exactly, but if you only want to capture at a specific time, then you
+>>>> should add logic to only write the data to the input of the FIFO durin=
+g
+>>>> those times and take care to handle overflow when the FIFO fills. And =
+add
+>>>> logic on the output to only read when you want, taking care to handle
+>>>> underflow when the FIFO empties.
 >>>>
->>>> I attached a photo of the behavior of the input_fifo/fifo_ram/ram.
->>>> [image: p1.png]
+>>>> Wade
 >>>>
->>>> El mar, 30 ago 2022 a las 19:54, Wade Fife (<wade.fife@ettus.com>)
->>>> escribi=C3=B3:
+>>>> On Wed, Aug 31, 2022 at 4:42 AM Adri=C3=A1n Campos Ramos <
+>>>> adrian.campos@integrasys-sa.com> wrote:
 >>>>
->>>>> Hello Adri=C3=A1n,
+>>>>> Hi,
 >>>>>
->>>>> REG_FIFO_FULLNESS is the number of bytes currently stored in the RAM
->>>>> of the FIFO.
+>>>>> Thank you very much, now I understand how it works and it runs
+>>>>> perfectly. However, it's not what I expected since it does not FIFO
+>>>>> behaviour, or I'm doing something wrong. What I need is a FIFO that s=
+tores
+>>>>> the data of a signal when I activate a flag and reads when I activate
+>>>>> another flag continuously and constantly. Currently, I have the FIFO
+>>>>> implemented in the FPGA but it takes too much resources  so I want to
+>>>>> take advantage of the E320 RAM. I think the axi_ram_fifo would be per=
+fect
+>>>>> for my project but as far i can see, when space =3D 0 and occupied is=
+ full,
+>>>>> it starts to lose the continuity. On the other hand, I don't know why=
+ but I
+>>>>> can't  increase the FIFO_OUT_SIZE. With 10 there are outputs but if i
+>>>>> increase, for example, to 20 it doesn't.
 >>>>>
->>>>> FIFO_ADDR_W is a testbench parameter that defines the amount of memor=
-y
->>>>> address space to use for the simulated FIFOs. The unmodified testbenc=
-h uses
->>>>> a single memory to test two FIFOs. So the sum of the memory used by b=
-oth
->>>>> FIFOs must be less than the size of the memory being simulated in ord=
-er for
->>>>> the testbench to work (i.e., 2 * 2**FIFO_ADDR_W must not exceed
->>>>> 2**MEM_ADDR_W).
+>>>>> I attached a photo of the behavior of the input_fifo/fifo_ram/ram.
+>>>>> [image: p1.png]
 >>>>>
->>>>> IN_FIFO_SIZE and OUT_FIFO_SIZE control the size of the input/output
->>>>> buffers used by the block. They can affect the performance of the FIF=
-O, but
->>>>> must be large enough to hold two of the expected burst memory transfe=
-r
->>>>> size, which I think is 512 words.
+>>>>> El mar, 30 ago 2022 a las 19:54, Wade Fife (<wade.fife@ettus.com>)
+>>>>> escribi=C3=B3:
 >>>>>
->>>>> The testbench is failing because it expects the FIFO to be empty when
->>>>> the simulation begins. Perhaps you have started inputting values befo=
-re it
->>>>> was expecting you to?
->>>>>
->>>>> Wade
->>>>>
->>>>> On Tue, Aug 30, 2022 at 3:13 AM Adri=C3=A1n Campos Ramos <
->>>>> adrian.campos@integrasys-sa.com> wrote:
->>>>>
->>>>>> Hi everyone,
+>>>>>> Hello Adri=C3=A1n,
 >>>>>>
->>>>>> First of all, thank you very much Rob Kossler for the explanation. I
->>>>>> made a "controller" that sends and receives information at certain p=
-oints
->>>>>> in time. However, I am facing problems in relation to REG_FIFO_FULLN=
-ESS.
->>>>>> I've been changing the values of FIFO_ADDR_W, IN_FIFO_SIZE and
->>>>>> OUT_FIFO_SIZE but it didn't work. Furthermore, I don't understand th=
-e
->>>>>> problem at all, is the input fifo or the output fifo? or the ram?. T=
-he
->>>>>> controller mentioned before has only two counters, one to activate t=
-he
->>>>>> valid flag to send information and another to activate the ready fla=
-g to
->>>>>> receive the information and, as far i could see, it was working unti=
-l the
->>>>>> assert.
+>>>>>> REG_FIFO_FULLNESS is the number of bytes currently stored in the RAM
+>>>>>> of the FIFO.
 >>>>>>
->>>>>> This is the error that returns me the simulation (the number that
->>>>>> appears in the image is for: `ASSERT_ERROR(val64 =3D=3D 0, $sformatf=
-("Incorrect
->>>>>> REG_FIFO_FULLNESS value! %d",val64));
+>>>>>> FIFO_ADDR_W is a testbench parameter that defines the amount of
+>>>>>> memory address space to use for the simulated FIFOs. The unmodified
+>>>>>> testbench uses a single memory to test two FIFOs. So the sum of the =
+memory
+>>>>>> used by both FIFOs must be less than the size of the memory being si=
+mulated
+>>>>>> in order for the testbench to work (i.e., 2 * 2**FIFO_ADDR_W must no=
+t
+>>>>>> exceed 2**MEM_ADDR_W).
 >>>>>>
->>>>>> [image: Screenshot from 2022-08-30 10-10-52.png]
->>>>>> On the other hand, the data that I send to RAM is the value of a
->>>>>> counter.
+>>>>>> IN_FIFO_SIZE and OUT_FIFO_SIZE control the size of the input/output
+>>>>>> buffers used by the block. They can affect the performance of the FI=
+FO, but
+>>>>>> must be large enough to hold two of the expected burst memory transf=
+er
+>>>>>> size, which I think is 512 words.
 >>>>>>
->>>>>> I hope you can help me. Thanks in advance.
+>>>>>> The testbench is failing because it expects the FIFO to be empty whe=
+n
+>>>>>> the simulation begins. Perhaps you have started inputting values bef=
+ore it
+>>>>>> was expecting you to?
 >>>>>>
->>>>>> Adri=C3=A1n Campos
+>>>>>> Wade
 >>>>>>
->>>>>> El jue, 18 ago 2022 a las 22:49, Rob Kossler (<rkossler@nd.edu>)
->>>>>> escribi=C3=B3:
+>>>>>> On Tue, Aug 30, 2022 at 3:13 AM Adri=C3=A1n Campos Ramos <
+>>>>>> adrian.campos@integrasys-sa.com> wrote:
 >>>>>>
->>>>>>> Replace "upstream" with "downstream" below.
+>>>>>>> Hi everyone,
 >>>>>>>
->>>>>>> On Thu, Aug 18, 2022 at 1:28 PM Rob Kossler <rkossler@nd.edu> wrote=
-:
+>>>>>>> First of all, thank you very much Rob Kossler for the explanation. =
+I
+>>>>>>> made a "controller" that sends and receives information at certain =
+points
+>>>>>>> in time. However, I am facing problems in relation to REG_FIFO_FULL=
+NESS.
+>>>>>>> I've been changing the values of FIFO_ADDR_W, IN_FIFO_SIZE and
+>>>>>>> OUT_FIFO_SIZE but it didn't work. Furthermore, I don't understand t=
+he
+>>>>>>> problem at all, is the input fifo or the output fifo? or the ram?. =
+The
+>>>>>>> controller mentioned before has only two counters, one to activate =
+the
+>>>>>>> valid flag to send information and another to activate the ready fl=
+ag to
+>>>>>>> receive the information and, as far i could see, it was working unt=
+il the
+>>>>>>> assert.
 >>>>>>>
->>>>>>>> Hi Adrian,
->>>>>>>> As you indicated, the RFNoC blocks axi_ram_fifo and Relay both use
->>>>>>>> the FPGA RAM.  axi_ram_fifo doesn't need any registers for control=
- because
->>>>>>>> it just accepts an AXI stream on the input and forwards that exact=
- stream
->>>>>>>> on the output.  The "control" is in the AXI tvalid/tready handshak=
-ing.
->>>>>>>> Thus, if the upstream block is not ready, the FIFO starts filling =
-up but
->>>>>>>> does not empty until the upstream block is ready.  But, for the Re=
-play
->>>>>>>> block, this block stores the incoming stream to RAM until you late=
-r decide
->>>>>>>> to play it out.  It can be used in the transmit path to load a wav=
-eform
->>>>>>>> into RAM such that it can be played out to the Tx Radio without an=
-y help
->>>>>>>> from the host PC.  Or, it can be used in the receive path to store=
- receive
->>>>>>>> samples as they arrive (up to the given RAM memory depth) and then=
- later
->>>>>>>> downloaded (played out) to the host PC in non-realtime.
+>>>>>>> This is the error that returns me the simulation (the number that
+>>>>>>> appears in the image is for: `ASSERT_ERROR(val64 =3D=3D 0, $sformat=
+f("Incorrect
+>>>>>>> REG_FIFO_FULLNESS value! %d",val64));
+>>>>>>>
+>>>>>>> [image: Screenshot from 2022-08-30 10-10-52.png]
+>>>>>>> On the other hand, the data that I send to RAM is the value of a
+>>>>>>> counter.
+>>>>>>>
+>>>>>>> I hope you can help me. Thanks in advance.
+>>>>>>>
+>>>>>>> Adri=C3=A1n Campos
+>>>>>>>
+>>>>>>> El jue, 18 ago 2022 a las 22:49, Rob Kossler (<rkossler@nd.edu>)
+>>>>>>> escribi=C3=B3:
+>>>>>>>
+>>>>>>>> Replace "upstream" with "downstream" below.
 >>>>>>>>
->>>>>>>> While I don't know your specific application, I wondered if the
->>>>>>>> Replay block (or the axi_ram_fifo) can already implement your desi=
-red
->>>>>>>> functionality such that a custom block is not needed.
->>>>>>>> Rob
->>>>>>>>
->>>>>>>> On Thu, Aug 18, 2022 at 8:25 AM <adrian.campos@integrasys-sa.com>
+>>>>>>>> On Thu, Aug 18, 2022 at 1:28 PM Rob Kossler <rkossler@nd.edu>
 >>>>>>>> wrote:
 >>>>>>>>
->>>>>>>>> I am making a custom block which has to start storing data to be
->>>>>>>>> read later, in other words store the data in a FIFO. I am interes=
-ted in
->>>>>>>>> using the RAM provided by the E320 so I want to take advantage of=
- the
->>>>>>>>> axi_ram_fifo code. However, I don't really understand the control=
- of that
->>>>>>>>> block, how can I control when to start writing data to memory and=
- when to
->>>>>>>>> start reading it? I have checked the registers in case it could b=
+>>>>>>>>> Hi Adrian,
+>>>>>>>>> As you indicated, the RFNoC blocks axi_ram_fifo and Relay both us=
 e
->>>>>>>>> controlled from there like the replay block that has two register=
-s to start
->>>>>>>>> reading and another one to do a restart but I haven't seen anythi=
-ng like
->>>>>>>>> that.
+>>>>>>>>> the FPGA RAM.  axi_ram_fifo doesn't need any registers for contro=
+l because
+>>>>>>>>> it just accepts an AXI stream on the input and forwards that exac=
+t stream
+>>>>>>>>> on the output.  The "control" is in the AXI tvalid/tready handsha=
+king.
+>>>>>>>>> Thus, if the upstream block is not ready, the FIFO starts filling=
+ up but
+>>>>>>>>> does not empty until the upstream block is ready.  But, for the R=
+eplay
+>>>>>>>>> block, this block stores the incoming stream to RAM until you lat=
+er decide
+>>>>>>>>> to play it out.  It can be used in the transmit path to load a wa=
+veform
+>>>>>>>>> into RAM such that it can be played out to the Tx Radio without a=
+ny help
+>>>>>>>>> from the host PC.  Or, it can be used in the receive path to stor=
+e receive
+>>>>>>>>> samples as they arrive (up to the given RAM memory depth) and the=
+n later
+>>>>>>>>> downloaded (played out) to the host PC in non-realtime.
 >>>>>>>>>
->>>>>>>>> I hope you can help me. Thank you very much in advance
+>>>>>>>>> While I don't know your specific application, I wondered if the
+>>>>>>>>> Replay block (or the axi_ram_fifo) can already implement your des=
+ired
+>>>>>>>>> functionality such that a custom block is not needed.
+>>>>>>>>> Rob
 >>>>>>>>>
+>>>>>>>>> On Thu, Aug 18, 2022 at 8:25 AM <adrian.campos@integrasys-sa.com>
+>>>>>>>>> wrote:
 >>>>>>>>>
+>>>>>>>>>> I am making a custom block which has to start storing data to be
+>>>>>>>>>> read later, in other words store the data in a FIFO. I am intere=
+sted in
+>>>>>>>>>> using the RAM provided by the E320 so I want to take advantage o=
+f the
+>>>>>>>>>> axi_ram_fifo code. However, I don't really understand the contro=
+l of that
+>>>>>>>>>> block, how can I control when to start writing data to memory an=
+d when to
+>>>>>>>>>> start reading it? I have checked the registers in case it could =
+be
+>>>>>>>>>> controlled from there like the replay block that has two registe=
+rs to start
+>>>>>>>>>> reading and another one to do a restart but I haven't seen anyth=
+ing like
+>>>>>>>>>> that.
+>>>>>>>>>>
+>>>>>>>>>> I hope you can help me. Thank you very much in advance
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> _______________________________________________
+>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>>>
 >>>>>>>>> _______________________________________________
->>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>>>>>>
->>>>>>>> _______________________________________________
->>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>
 >>>>>>
->>>>>
 
---0000000000008387fd05e801c45f
+--000000000000112add05e80204af
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">HI everyone<div><br></div><div>Thank you very much. I made=
- a controller and, according to the simulation, it&#39;s working fine,=C2=
-=A0at least as I wanted. However, I am facing problems to implementate in t=
-he fpga. There is not problem when i generate the .bit buf when i call in g=
-nuradio, this error appears:</div><div><br></div><div>WARNING] [UDP] The cu=
-rrent send_buff_size of 212992 is less than the minimum recommended size of=
- 307200 and may result in dropped packets on some NICs<br>[ERROR] [RFNOC::G=
-RAPH] Error during initialization of block 0/DmaFIFO#0!<br>[ERROR] [RFNOC::=
-GRAPH] Caught exception while initializing graph: RfnocError: OpTimeout: Co=
-ntrol operation timed out waiting for ACK<br>Traceback (most recent call la=
-st):<br>=C2=A0 File &quot;/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e32=
-0/build/untitled.py&quot;, line 181, in &lt;module&gt;<br>=C2=A0 =C2=A0 mai=
-n()<br>=C2=A0 File &quot;/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top/e320=
-/build/untitled.py&quot;, line 157, in main<br>=C2=A0 =C2=A0 tb =3D top_blo=
-ck_cls()<br>=C2=A0 File &quot;/home/integrasys/rfnoc/src/uhd/fpga/usrp3/top=
-/e320/build/untitled.py&quot;, line 76, in __init__<br>=C2=A0 =C2=A0 self.r=
-fnoc_graph =3D ettus_rfnoc_graph_0 =3D ettus.rfnoc_graph(uhd.device_addr(&q=
-uot;,&quot;.join((&quot;addr=3D192.168.1.23&quot;, &#39;&#39;))))<br>=C2=A0=
- File &quot;/usr/local/lib/python3/dist-packages/ettus/ettus_swig.py&quot;,=
- line 1153, in make<br>=C2=A0 =C2=A0 return _ettus_swig.rfnoc_graph_make(de=
-v_addr)<br>RuntimeError: RuntimeError: Failure to create rfnoc_grap<br></di=
-v><div><br></div><div>I attached my image.yml:</div><div><br></div><div><br=
-></div><div>Thanks in advance.=C2=A0</div></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">El jue, 1 sept 2022 a las 22:24, =
-Wade Fife (&lt;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</=
-a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div>The DRAM on USRPs is half duplex, but the AXI =
-bus is full duplex, which makes the real world behavior more complicated. I=
-f you want to simulate accurately for a specific USRP, you could pull in it=
-s AXI interconnect, the Xilinx memory interface IP, and a DRAM simulation m=
-odel, then connect it together and match the USRP design exactly, but this =
-is a lot of work. There are examples that are similar to this in fpga/usrp3=
-/top/x300/sim/dram_fifo and fpga/usrp3/top/n3xx/sim/dram_fifo. There&#39;s =
-no example for E320, but the idea is similar.</div><div><br></div><div>Wade=
-<br></div><div><span><span><span><span><span><span><span><span><span><span>=
-<span><span><span><span><span></span></span></span></span></span>
+<div dir=3D"ltr">Hi=C2=A0Adri=C3=A1n,<div>The yml includes only a single bl=
+ock, but no radio block.=C2=A0 I don&#39;t know if this is a problem or not=
+, but I have never tried it. If the FPGA has room, you may want to add the =
+Radio block back in.</div><div>Rob</div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 6, 2022 at 7:59 AM Adri=
+=C3=A1n Campos Ramos &lt;<a href=3D"mailto:adrian.campos@integrasys-sa.com"=
+>adrian.campos@integrasys-sa.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr">HI everyone<div><br></div=
+><div>Thank you very much. I made a controller and, according to the simula=
+tion, it&#39;s working fine,=C2=A0at least as I wanted. However, I am facin=
+g problems to implementate in the fpga. There is not problem when i generat=
+e the .bit buf when i call in gnuradio, this error appears:</div><div><br><=
+/div><div>WARNING] [UDP] The current send_buff_size of 212992 is less than =
+the minimum recommended size of 307200 and may result in dropped packets on=
+ some NICs<br>[ERROR] [RFNOC::GRAPH] Error during initialization of block 0=
+/DmaFIFO#0!<br>[ERROR] [RFNOC::GRAPH] Caught exception while initializing g=
+raph: RfnocError: OpTimeout: Control operation timed out waiting for ACK<br=
+>Traceback (most recent call last):<br>=C2=A0 File &quot;/home/integrasys/r=
+fnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py&quot;, line 181, in &lt;=
+module&gt;<br>=C2=A0 =C2=A0 main()<br>=C2=A0 File &quot;/home/integrasys/rf=
+noc/src/uhd/fpga/usrp3/top/e320/build/untitled.py&quot;, line 157, in main<=
+br>=C2=A0 =C2=A0 tb =3D top_block_cls()<br>=C2=A0 File &quot;/home/integras=
+ys/rfnoc/src/uhd/fpga/usrp3/top/e320/build/untitled.py&quot;, line 76, in _=
+_init__<br>=C2=A0 =C2=A0 self.rfnoc_graph =3D ettus_rfnoc_graph_0 =3D ettus=
+.rfnoc_graph(uhd.device_addr(&quot;,&quot;.join((&quot;addr=3D192.168.1.23&=
+quot;, &#39;&#39;))))<br>=C2=A0 File &quot;/usr/local/lib/python3/dist-pack=
+ages/ettus/ettus_swig.py&quot;, line 1153, in make<br>=C2=A0 =C2=A0 return =
+_ettus_swig.rfnoc_graph_make(dev_addr)<br>RuntimeError: RuntimeError: Failu=
+re to create rfnoc_grap<br></div><div><br></div><div>I attached my image.ym=
+l:</div><div><br></div><div><br></div><div>Thanks in advance.=C2=A0</div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El=
+ jue, 1 sept 2022 a las 22:24, Wade Fife (&lt;<a href=3D"mailto:wade.fife@e=
+ttus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt;) escribi=C3=B3:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
+iv>The DRAM on USRPs is half duplex, but the AXI bus is full duplex, which =
+makes the real world behavior more complicated. If you want to simulate acc=
+urately for a specific USRP, you could pull in its AXI interconnect, the Xi=
+linx memory interface IP, and a DRAM simulation model, then connect it toge=
+ther and match the USRP design exactly, but this is a lot of work. There ar=
+e examples that are similar to this in fpga/usrp3/top/x300/sim/dram_fifo an=
+d fpga/usrp3/top/n3xx/sim/dram_fifo. There&#39;s no example for E320, but t=
+he idea is similar.</div><div><br></div><div>Wade<br></div><div><span><span=
+><span><span><span><span><span><span><span><span><span><span><span><span><s=
+pan></span></span></span></span></span>
 
 </span></span></span></span></span>
 
@@ -548,10 +573,11 @@ tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
 </blockquote></div>
+</blockquote></div>
 
---0000000000008387fd05e801c45f--
+--000000000000112add05e80204af--
 
---0000000000008387fe05e801c460
+--000000000000112ade05e80204b1
 Content-Type: image/png; name="Screenshot from 2022-08-30 10-10-52.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2022-08-30 10-10-52.png"
@@ -3612,7 +3638,7 @@ gUkJ+Etwm62cFYAX/9iL8YtvuQjPevYzMT+3H7d/9Rv4/auvxezsXi97iYBbvvw3OOnkk6IWeP3P
 XYi77rwLZAhFqXHxWy7CT/3nV2HrCVtxz1134+or343v/L9v+6BLmSZMGpzHJ9y4C8HTwnpFeMN/
 ewN+/e2/Xsvuhg/+Ef7gvde57OL5ma4Je/fM4hknnwMQ4TNf/OxIOtkg+v+otA6i1uyG0gAAAABJ
 RU5ErkJggg==
---0000000000008387fe05e801c460
+--000000000000112ade05e80204b1
 Content-Type: image/png; name="p1.png"
 Content-Disposition: inline; filename="p1.png"
 Content-Transfer-Encoding: base64
@@ -4564,73 +4590,9 @@ NDSgsbFRKl+5ciV2794Nm82G48eP4+jRo07zj/QSYjKZcOHCBbS0tARtHYkocDU1NWhpacH58+eh
 1+vR2tqKmpqacIdFREQUs0Jy55y1R8CJ5w8DANpTPoXRcBXq1DTI5TLoL17AvvfehtA34HZemUzm
 dnpFRQUqKircln3wwQeYOXOm07Rdu3Zdj8dqxZo1a7BmzRpp2iuvvBLQOhFRcJWUlKCkpCTcYRAR
 EU0K/z8O4/aVJG0C6wAAAABJRU5ErkJggg==
---0000000000008387fe05e801c460--
+--000000000000112ade05e80204b1--
 
---0000000000008387fe05e801c461
-Content-Type: application/x-yaml; name="ramfifo_e320_rfnoc_image_core.yml"
-Content-Disposition: attachment;
-	filename="ramfifo_e320_rfnoc_image_core.yml"
-Content-Transfer-Encoding: base64
-Content-ID: <f_l7q770a32>
-X-Attachment-Id: f_l7q770a32
-
-CiMgR2VuZXJhbCBwYXJhbWV0ZXJzCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0Kc2NoZW1hOiByZm5vY19pbWFnZWJ1aWxkZXJfYXJncyAgICAgICAgICMgSWRlbnRp
-ZmllciBmb3IgdGhlIHNjaGVtYSB1c2VkIHRvIHZhbGlkYXRlIHRoaXMgZmlsZQpjb3B5cmlnaHQ6
-ICcnICAgICAgICAgICAgICAgICAgICAgICAgICAgIyBDb3B5cmlnaHQgaW5mb3JtYXRpb24gdXNl
-ZCBpbiBmaWxlIGhlYWRlcnMKbGljZW5zZTogJ1NQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBMR1BM
-LTMuMC1vci1sYXRlcicgIyBMaWNlbnNlIGluZm9ybWF0aW9uIHVzZWQgaW4gZmlsZSBoZWFkZXJz
-CnZlcnNpb246IDEuMCAgICAgICAgICAgICAgICAgICAgICAgICAgIyBGaWxlIHZlcnNpb24KcmZu
-b2NfdmVyc2lvbjogMS4wICAgICAgICAgICAgICAgICAgICAjIFJGTm9DIHByb3RvY29sIHZlcnNp
-b24KY2hkcl93aWR0aDogNjQgICAgICAgICAgICAgICAgICAgICAgICAgICMgQml0IHdpZHRoIG9m
-IHRoZSBDSERSIGJ1cyBmb3IgdGhpcyBpbWFnZQpkZXZpY2U6ICdlMzIwJwpkZWZhdWx0X3Rhcmdl
-dDogJ0UzMjBfMUcnCgojIEEgbGlzdCBvZiBhbGwgc3RyZWFtIGVuZHBvaW50cyBpbiBkZXNpZ24K
-IyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCnN0cmVhbV9lbmRwb2lu
-dHM6CiAgZXAxOiAgICAgICAgICAgICAgICAgICAgICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQog
-ICAgY3RybDogRmFsc2UgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50IHBhc3NlcyBjb250
-cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAgICAgICAgICAgIyBFbmRwb2lu
-dCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZmX3NpemU6IDAgICAgICAgICAgICAgICAgICAg
-ICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQogIGVwMjogICAgICAgICAgICAgICAgICAg
-ICAgICMgU3RyZWFtIGVuZHBvaW50IG5hbWUKICAgIGN0cmw6IEZhbHNlICAgICAgICAgICAgICAg
-ICAgICAgIyBFbmRwb2ludCBwYXNzZXMgY29udHJvbCB0cmFmZmljCiAgICBkYXRhOiBUcnVlICAg
-ICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVm
-Zl9zaXplOiAzMjc2OCAgICAgICAgICAgICAgICAjIEluZ3Jlc3MgYnVmZmVyIHNpemUgZm9yIGRh
-dGEKICBlcDM6ICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2ludCBuYW1lCiAg
-ICBjdHJsOiBGYWxzZSAgICAgICAgICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGNvbnRy
-b2wgdHJhZmZpYwogICAgZGF0YTogVHJ1ZSAgICAgICAgICAgICAgICAgICAgICAjIEVuZHBvaW50
-IHBhc3NlcyBkYXRhIHRyYWZmaWMKICAgIGJ1ZmZfc2l6ZTogMCAgICAgICAgICAgICAgICAgICAg
-IyBJbmdyZXNzIGJ1ZmZlciBzaXplIGZvciBkYXRhCiAgZXA0OiAgICAgICAgICAgICAgICAgICAg
-ICAgIyBTdHJlYW0gZW5kcG9pbnQgbmFtZQogICAgY3RybDogRmFsc2UgICAgICAgICAgICAgICAg
-ICAgICAjIEVuZHBvaW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAg
-ICAgICAgICAgICAgICAgICAgIyBFbmRwb2ludCBwYXNzZXMgZGF0YSB0cmFmZmljCiAgICBidWZm
-X3NpemU6IDMyNzY4ICAgICAgICAgICAgICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0
-YQogICAgICMgSW5ncmVzcyBidWZmZXIgc2l6ZSBmb3IgZGF0YQoKCiMgQSBsaXN0IG9mIGFsbCBO
-b0MgYmxvY2tzIGluIGRlc2lnbgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0K
-bm9jX2Jsb2NrczoKICByYW1maWZvMDoKICAgIGJsb2NrX2Rlc2M6ICdyYW1maWZvLnltbCcKIAoK
-CiMgQSBsaXN0IG9mIGFsbCBzdGF0aWMgY29ubmVjdGlvbnMgaW4gZGVzaWduCiMgLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgRm9ybWF0OiBBIGxpc3Qgb2YgY29u
-bmVjdGlvbiBtYXBzIChsaXN0IG9mIGtleS12YWx1ZSBwYWlycykgd2l0aCB0aGUgZm9sbG93aW5n
-IGtleXMKIyAgICAgICAgIC0gc3JjYmxrICA9IFNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAg
-ICAgICAtIHNyY3BvcnQgPSBQb3J0IG9uIHRoZSBzb3VyY2UgYmxvY2sgdG8gY29ubmVjdAojICAg
-ICAgICAgLSBkc3RibGsgID0gRGVzdGluYXRpb24gYmxvY2sgdG8gY29ubmVjdAojICAgICAgICAg
-LSBkc3Rwb3J0ID0gUG9ydCBvbiB0aGUgZGVzdGluYXRpb24gYmxvY2sgdG8gY29ubmVjdApjb25u
-ZWN0aW9uczoKICAjIGVwMiB0byBmaWZvMCgwKQogIC0geyBzcmNibGs6IGVwMSwgICAgc3JjcG9y
-dDogb3V0MCwgIGRzdGJsazogcmFtZmlmbzAsICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxr
-OiByYW1maWZvMCwgIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwMSwgICAgZHN0cG9ydDogaW4w
-ICB9CiAgIyBCU1AgQ29ubmVjdGlvbnMKICAtIHsgc3JjYmxrOiBmaWZvMCwgICAgc3JjcG9ydDog
-YXhpX3JhbSwgICAgIGRzdGJsazogX2RldmljZV8sIGRzdHBvcnQ6IGRyYW0gICAgICAgIH0KCiMg
-QSBsaXN0IG9mIGFsbCBjbG9jayBkb21haW4gY29ubmVjdGlvbnMgaW4gZGVzaWduCiMgLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tcwojIEZvcm1hdDogQSBsaXN0IG9m
-IGNvbm5lY3Rpb24gbWFwcyAobGlzdCBvZiBrZXktdmFsdWUgcGFpcnMpIHdpdGggdGhlIGZvbGxv
-d2luZyBrZXlzCiMgICAgICAgICAtIHNyY2JsayAgPSBTb3VyY2UgYmxvY2sgdG8gY29ubmVjdCAo
-QWx3YXlzICJfZGV2aWNlIl8pCiMgICAgICAgICAtIHNyY3BvcnQgPSBDbG9jayBkb21haW4gb24g
-dGhlIHNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAgICAgICAtIGRzdGJsayAgPSBEZXN0aW5h
-dGlvbiBibG9jayB0byBjb25uZWN0CiMgICAgICAgICAtIGRzdHBvcnQgPSBDbG9jayBkb21haW4g
-b24gdGhlIGRlc3RpbmF0aW9uIGJsb2NrIHRvIGNvbm5lY3QKY2xrX2RvbWFpbnM6CiAgICAtIHsg
-c3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogZHJhbSwgICAgICAgZHN0YmxrOiByYW1maWZvMCwg
-IGRzdHBvcnQ6IGNlICAgfQogICAjIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiBkcmFt
-LCAgICAgICBkc3RibGs6IHJhbWZpZm8wLCAgZHN0cG9ydDogbWVtICAgfQo=
---0000000000008387fe05e801c461
+--===============8245617484031806690==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4640,4 +4602,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---0000000000008387fe05e801c461--
+--===============8245617484031806690==--
