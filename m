@@ -2,118 +2,204 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6E35B075C
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Sep 2022 16:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CECA5B073A
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Sep 2022 16:42:18 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 47780385F16
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Sep 2022 10:46:27 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CDA3D385E8A
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Sep 2022 10:42:17 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1662561987; bh=UXGnWaA8BoIq61ZDgxlK52Igj8lt1Pq8ftom6vrVpt8=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=zz5j65swWKi2bg4ykQ+Tc9b1Vkfp60/lji1bITT0AcwuPtGNKZeMLak56wAcS6K5p
-	 +qcMlEDpfnCbAz3EO1FSvsYAPirlwnGvY2PtkM2DHMLjdddjB9mU2lfZ+EPMBKaX4L
-	 WhWhBazULTW9kLWJ/CgpXB8dEy4XNvPjdlIUzt27Ppqb/8unlD75uW1kHpD7bdz8a7
-	 jYYsS7bKpt48Rx8Vhp7FRxLuSzXX58vMgzueiDbzPju4Df97qN2WPH1GHRnTQhfDJd
-	 UyHH0bSYFWIA6wNDn1XlCkaUFxHrAA3zw5jlcYH/szMj910N8t09f9me7XIWiKYlq4
-	 Lq0xrltHEVfGw==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 645043859B0
-	for <usrp-users@lists.ettus.com>; Wed,  7 Sep 2022 10:31:09 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1662561069; bh=JhH5N4BTn2pr34StxQME8hnyb6pn06RuIr2HdjfREx8=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=B2QxdajiDeQm3KTXhAGWNgnC0x0X2sHaLbO4fnMVc4yIsLvDcF2gtboGPb5/9jawA
-	 CQQ5LHjximd0pto5Y22HGGj5z0UfKI1T357dB/x60vh7hHYhNAePvuiK8QefwZBU4V
-	 YP49L5fwMr8i9ombcOyCqM0L0+zKpfQh6GTlPajztr4q4LjDb8Kdj6IVjNSOBaYfik
-	 882pU6H58gKmTkgX8m+1adTEM3GmKjo/g244pncTtrR3spEju9EdDIgVoJzj+tMFhE
-	 MecCNSLxr8wa4oR8bgS2wu5Pf/pZx8pMebN6/OKYiGEfyjcdg6lBtC22LKTioOElVo
-	 NUwNx6I2PiARg==
-Date: Wed, 7 Sep 2022 14:31:09 +0000
-To: usrp-users@lists.ettus.com
-From: perper@o2.pl
-Message-ID: <1Hm1rldjLwi6DwGdCNSyE1y532Znn4wDTXq11ctA@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 5CPOCsCjADnqip4sl8BepUaxi1pEfA85HInaxPKEM8@lists.ettus.com
+	t=1662561737; bh=WURSNUNCf8Gc+zleA2OLwi6iBSWNBeE+8JtVaFB44IU=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=XorZ0oEs9IAXsM3H4bKOaaQepA4tuQ0XOlolvHYmCg4crMpQB6Bj3eytB3yeXTLzp
+	 Ub+ZtKT5r8nARMThJnMyZcLfLtMey9B9/brdrLrFIRBxC9YFaVyuEMravIKwxkRYxw
+	 J0cevgbYIAejDde3TZ6BJX3qaqSANdUYDLQeo1wm+wwPJntlGlmMHyR3AGFyHsV7gA
+	 djGoi4hZDyZKC1gDjHU2GZ5anBz+gE8QP8D3z0SvFJaMtwW3pjKpSxRLCAamCSU7V9
+	 xtCyMi/rtrnalZB0ffQ1+lZNfJ7p4Vru9HEeq92xrAbaYqppEFlVl9XngSJL+mMGou
+	 JqHHj0lkWXh8A==
+Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0042.outbound.protection.office365.us [23.103.208.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9256A385E7C
+	for <usrp-users@lists.ettus.com>; Wed,  7 Sep 2022 10:40:40 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="Mur0GMws";
+	dkim-atps=neutral
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
+ b=yigoAlJMuewqPmmGP/Jsf/MxCysfzmzMvCdLg5xjRgHM+HjyO2R5wOKewHfZhoVdz0vK7KTv0FWMlr+Lm74Upns19lf03CXavzIdxwxY9fXb/1lPshelm7vHeJmjf4XqZxHcqq4kvS+tcTT8hvXjkh+5/ZFxRuOCxCXOmAQDnYeQsVxhPOmu+nCz4g8aDaQSDo7CEGc7mv8GOeFoMsP9MLqHrS4RG2lupLzGNBdXf5+90NRmjoVwr/2Iiq5VdIq9M34iUDQHwXRWiNa9zXjxpphACGIbXPxKcH2e2NiTlKiivYxynH8pCpxntBxwBX0zpzvO/daWHdg/MTcpKQsY0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector5401;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=71rKF+ieLZMuRIPWhqUaB7k2csg005ZzoaGS96rMCek=;
+ b=OlfsBRfmQYLk4iCoJfX1eiThDy4lJ1+Ud8TyVZio7Uhs5i3OBNX+ug19/b53pIvguow0BAnh9CwaYSPJgDfEZ8fFza5GiK91EvApRRw+FtC4K8OJTyZoizNWxr4D5c4ASHhd6Ta7rHzklALPpkS8ECsqQmzduhFg5LR2vNLSN6OFGfBacBU0Q9GbcnFfKaMZFKfPGyQp4h/xh7/2Ju+lwXummPcoV3UQRVIiySCq+dPA6lhYhsmyx+4xr3zWvqH/pcmCCLKjo4CPfYcxz6kvrI+ziJ1wPW5VdnRFgYLyVjGz7rMbE0IG3AExwXYkibd3qRXMB5B2aLchUn7p1qna9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
+ header.from=synopticengineering.com; dkim=pass
+ header.d=synopticengineering.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=synopticengineering.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=71rKF+ieLZMuRIPWhqUaB7k2csg005ZzoaGS96rMCek=;
+ b=Mur0GMws2tKBXklGudibfDTwaPclAT8qgrRY1W/9ePp5Avz3egmN6jWZ4ZpcCVwf6mXGVDV7znmA5O42+YjNZaCz3T20AArVFaSgAMJdGJTPyCVrbj7J1gqxorH4VGQRYccTtXE1btDxNRxdikTnU4JaSu4KmJGWAeUGJLRHFXahu53V4Vrd3rvwtv7IPiu3eIhsiKn7POt7awJFAhH+mBYXH4fwC+rqKbci3A2YTIBDNZmhkx9x/OlSd9NKEnCgeouOVCabFi0hkExSaJizTWSZbl+cCuzt+XvCzIGzUrA9RWd6uVyw/lDz/vtxuwlW4/sYrz2UGesAr6LBvGWaQA==
+Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:168::14)
+ by BN2P110MB1672.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:17e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5588.17; Wed, 7 Sep
+ 2022 14:40:33 +0000
+Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::2837:9cf2:fc77:842d]) by BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+ ([fe80::2837:9cf2:fc77:842d%7]) with mapi id 15.20.5588.018; Wed, 7 Sep 2022
+ 14:40:33 +0000
+From: David Raeman <david@SynopticEngineering.com>
+To: Piotr Krysik <perper@o2.pl>, "usrp-users@lists.ettus.com"
+	<usrp-users@lists.ettus.com>
+Thread-Topic: [USRP-users] Re: E320: Periodic phase jumps w/ any external
+ clock?
+Thread-Index: Adi+3cvTSS9n8BBcRzmQcMckzjX06gD4DYkAAAI8w4A=
+Date: Wed, 7 Sep 2022 14:40:33 +0000
+Message-ID: 
+ <BN2P110MB174714BFC58D11A99F1AA99EB7419@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+References: 
+ <BN2P110MB17472B06A089D9138D6E8575B77A9@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+ <741c2fbc-dd07-c36d-54a7-f10e637ebe96@o2.pl>
+In-Reply-To: <741c2fbc-dd07-c36d-54a7-f10e637ebe96@o2.pl>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 87f82bfe-288d-4520-81d7-08da90deeb5c
+x-ms-traffictypediagnostic: BN2P110MB1672:EE_
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ cGOYOkyTZAqB+6RbtCiD4330VyhaTuAqymV2wAY+ImdcFazKyMfAJT6Xd3d5xe87BIcrmFWjAgBgXjRI91kvx5Uta3/rw49jA1Mn+gS7u6bA2N00ScDT9cqHniwQ5Aa1j6h2yEPypI59zLAfiIJaIvNoTee7X83VcPYS+pz4j9NWZDUe+TGvDcYeU0BmbGZ7s8LE9zFGU2bUvRUvWH4aJIpVhgS8rOUUcIQTFYc3YeNZ698OUt4TLBU7Ph7aPhI3iowNon4hROvpFnCTUVrhKQuUI6cYZc8XPR1txwtY0AnsSCH2vuUftGG1Z5QBivEmXwsCgL4EXXotOB1rWR/p5EO7pZXKMr+KKoA1etSNtfVuP3PcbMTyTXWD4F/yuG0pSQgoIG3RDdowlJKGA84+S5dmO/7lXZbFupUfpiz3msfsdZPJmiu8DvDVY0q4YlaDav8mmVtLEF5goKIc/wqRvoGGfUQQX/+uaDwhh833T2u8AG3hjKF+x1zqUL76ehx2ILSL2JiowbAP3Ao55WVXUFI80S+PBlkDxM35Ui4snCblZxvTLgKo0bFf0m57qvKqtlNpzFZ7mGEdGDYhHz0pfFojlp2gbeKLhtD/RXLjYJ8/jseNbC0o35plKb6RdbpvQdo0zEgcmvx/Qv2emzpBWO7f2YVyf277+w1Q1XZRM1aOkaqxv6DfdwMluHjMjX2KdI6bb2PwP+9ozOjU2+WM7q7saYzmlxkyeOHVu2+2hTQ=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230016)(4636009)(396003)(39830400003)(136003)(366004)(122000001)(66556008)(76116006)(8676002)(64756008)(66476007)(66946007)(38100700002)(186003)(66446008)(71200400001)(966005)(41300700001)(110136005)(6506007)(7696005)(53546011)(9686003)(83380400001)(55016003)(508600001)(8936002)(33656002)(86362001)(2906002)(5660300002)(41320700001)(38070700005)(52536014)(85282002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ deUSSsAN1HUH3Zb1Z8c9XOlCW4rEVKMzI3bjSQ6DcIpzZolHbmEJArJMNw4b4YPjNgH92MDjzvPGtquG3G/0rBAc3BaIMv9NIfjRDf4KhNhnxqMysc0e+MQr9BeROYWW7i8+pom7krSXm3bTILUxaZ8MoCh/Bk6+TtPa7P20LhjhljTpmWnjZkko21bWr/V1pQJWhgyf/OpqVaJvpDbIauQGkMvippNCq7gxNkuY7z3Wf/aDVHL7aPLfC8huJe4Oo9XvGTf0rqPReYokxYqRdrOMo/hwf4CZjomT0Z8RIdaZcSYLUKk+8KdKYUOi2poHKbAdcxGd9Rhw1BLbRpgVvNDfCjMwjM3VNnwGJ9vCU4OOkk6eAGAv5CvWfBWC5qI+MX3Dwc1cia3jo7g9YBn5kbJsF4/+1uYZ+ijSol5T38zN/h9kfTwv4Tj8+k0sD2LDjd3yBN3BatQXqgmuRcdQyg3CEDeOkVJs2ykgbUP7SWc=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Message-ID-Hash: 6AMFR5VBPUIGLAZ6JDEMGYAAXN2RBW2G
-X-Message-ID-Hash: 6AMFR5VBPUIGLAZ6JDEMGYAAXN2RBW2G
-X-MailFrom: perper@o2.pl
+X-OriginatorOrg: SynopticEngineering.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87f82bfe-288d-4520-81d7-08da90deeb5c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2022 14:40:33.1726
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN2P110MB1672
+Message-ID-Hash: BCPIKG7SABUVG7AN22YMLGXPAV4YAZ2Y
+X-Message-ID-Hash: BCPIKG7SABUVG7AN22YMLGXPAV4YAZ2Y
+X-MailFrom: david@SynopticEngineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B210 reporting U/O on Ubuntu 22.04
+Subject: [USRP-users] Re: E320: Periodic phase jumps w/ any external clock?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6AMFR5VBPUIGLAZ6JDEMGYAAXN2RBW2G/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/O4QK5LLNUXAZVMN2OCBJWWAPTTMBJQ77/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2913900217322677021=="
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============2913900217322677021==
-Content-Type: multipart/alternative;
- boundary="b1_1Hm1rldjLwi6DwGdCNSyE1y532Znn4wDTXq11ctA"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_1Hm1rldjLwi6DwGdCNSyE1y532Znn4wDTXq11ctA
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-perper@o2.pl wrote:
-
-> perper@o2.pl wrote:
->
-> > Hi,
-> >
-> > I can only confirm that I see the same result: 24MHz is working, star=
-ting from about 24.5MHz there=E2=80=99s a lot of underruns.
-> >
-> > My CPU: AMD Ryzen Threadripper 2990WX, 128GB RAM, motherboard Asus X3=
-99.
->
-> =E2=80=A6 and the system is Ubuntu 20.04 with UHD 4.2.0.1.
-
-But with UHD 4.1.0.6 there situation is exactly the same (not working for=
- >=3D 24.5M), so if you=E2=80=99ve got it somewhere working it would be w=
-orth sharing:\
-\- your exact UHD revision,\
-\- specs of your PC.
-
-Best Regards,\
-Piotr Krysik
-
---b1_1Hm1rldjLwi6DwGdCNSyE1y532Znn4wDTXq11ctA
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>perper@o2.pl wrote:</p><blockquote><p>perper@o2.pl wrote:</p><blockquo=
-te><p>Hi,</p><p>I can only confirm that I see the same result: 24MHz is w=
-orking, starting from about 24.5MHz there=E2=80=99s a lot of underruns.</=
-p><p>My CPU: AMD Ryzen Threadripper 2990WX, 128GB RAM, motherboard Asus X=
-399.</p></blockquote><p>=E2=80=A6 and the system is Ubuntu 20.04 with UHD=
- 4.2.0.1.</p></blockquote><p>But with UHD 4.1.0.6 there situation is exac=
-tly the same (not working for &gt;=3D 24.5M), so if you=E2=80=99ve got it=
- somewhere working it would be worth sharing:<br>- your exact UHD revisio=
-n,<br>- specs of your PC.</p><p>Best Regards,<br>Piotr Krysik</p>
-
-
---b1_1Hm1rldjLwi6DwGdCNSyE1y532Znn4wDTXq11ctA--
-
---===============2913900217322677021==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============2913900217322677021==--
+VGhpcyBpcyB2ZXJ5IGhlbHBmdWwsIHRoYW5rcyBmb3IgdGhlIHJlc3BvbnNlIFBpb3RyISAgSSB3
+YXMgc3RhcnRpbmcgdG8gc3BlY3VsYXRlIHRoYXQgbWF5YmUgdGhlcmUgaXMgc29tZSBjcm9zcy10
+YWxrIGluIHRoZSBjbG9ja2luZyBmcm9udC1lbmQgc3dpdGNoIChVNTUpLCBlbm91Z2ggdG8gcXVh
+c2ktcGVyaW9kaWNhbGx5IHBlcnR1cmIgdGhlIFBMTC4gSSBkb24ndCBiZWxpZXZlIFVIRCB0dXJu
+cyBvZmYgdGhlIEdQU0RPJ3MgVENYTyB3aGVuIHRoZSBleHRlcm5hbCBjbG9jayBpcyBzZWxlY3Rl
+ZCwgc28gdGhleSdkIGJvdGggYmUgY29taW5nIGludG8gdGhlIHN3aXRjaCBwb3J0cy4gVGhpcyBp
+cyBjb21wbGV0ZSBzcGVjdWxhdGlvbiwgYnV0IEkgZG9uJ3Qgc2VlIG1hbnkgYXZlbnVlcyBmb3Ig
+aG93IHRoZSBpbnRlcm5hbCBhbmQgZXh0ZXJuYWwgY2xvY2tpbmcgcGF0aHMgZGlmZmVyLg0KDQpF
+dmVuIHRob3VnaCB0aGUgRTMyMCdzIEdQU0RPIGNhbm5vdCBiZSByZW1vdmVkLCBJIGNhbiBleHBl
+cmltZW50IHdpdGggZXhwbGljaXRseSBwb3dlcmluZyBpdCBkb3duLiBUaGFua3MgZm9yIHRoZSBz
+dWdnZXN0aW9uIQ0KDQpDaGVlcnMsDQpEYXZpZA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
+LS0tDQo+IEZyb206IFBpb3RyIEtyeXNpayA8cGVycGVyQG8yLnBsPg0KPiBTZW50OiBXZWRuZXNk
+YXksIFNlcHRlbWJlciA3LCAyMDIyIDk6MzEgQU0NCj4gVG86IHVzcnAtdXNlcnNAbGlzdHMuZXR0
+dXMuY29tDQo+IFN1YmplY3Q6IFtVU1JQLXVzZXJzXSBSZTogRTMyMDogUGVyaW9kaWMgcGhhc2Ug
+anVtcHMgdy8gYW55IGV4dGVybmFsIGNsb2NrPw0KPiANCj4gSGkgRGF2aWQsDQo+IA0KPiBJJ3Zl
+IHNlZW4gc29tZXRoaW5nIHNpbWlsYXIgb24gVVNSUCBCMjEwIHdoZW4gSSB0cmllZCB0byB1c2Ug
+ZXh0ZXJuYWwgMTBNSHoNCj4gcmVmZXJlbmNlIGNsb2NrIGFuZCB0aGVyZSB3YXMgR1BTRE8gaW5z
+aWRlIG9mIHRoZSBkZXZpY2UuIFRoZXJlIHdhcyBsb25nZXINCj4gdGltZSBiZXR3ZWVuIHBoYXNl
+IGp1bXBzOg0KPiBodHRwczovL2xpc3RzLmV0dHVzLmNvbS9lbXBhdGh5L2F0dGFjaG1lbnQvMjc3
+OTQ5DQo+IA0KPiBMb29rIGF0IHRoZSAiUGhhc2UganVtcHMgaW4gVVNSUCBCMjEwIHdpdGggR1BT
+RE8iIHRvcGljIGZyb20gMjAxNyBmb3INCj4gbW9yZToNCj4gaHR0cHM6Ly9saXN0cy5ldHR1cy5j
+b20vZW1wYXRoeS90aHJlYWQvNU42UlVUS1NGUENMM0M0N1dRTUFBWktURDYNCj4gRk1TV0FUP2hh
+c2g9NlJNUE9QTFdQWlhTQktYTVVWN1lBUDVETEdENldHR00jNlJNUE9QTFcNCj4gUFpYU0JLWE1V
+VjdZQVA1RExHRDZXR0dNDQo+IA0KPiBSZW1vdmluZyBHUFNETyBtb2R1bGUgc29sdmVkIHRoZSBp
+c3N1ZSBmb3IgbWUuIERpc2FibGluZyBHUFNETyBvbiBFMzIwDQo+IG1pZ2h0IGJlIG11Y2ggaGFy
+ZGVyIGFzIGl0IGlzIGJ1aWx0LWluIHRvIHRoZSBkZXZpY2UuDQo+IA0KPiBCZXN0IFJlZ2FyZHMs
+DQo+IFBpb3RyIEtyeXNpaw0KPiANCj4gVyBkbml1IDAyLjA5LjIwMjIgb8KgMTc6MjEsIERhdmlk
+IFJhZW1hbiBwaXN6ZToNCj4gPg0KPiA+IEhpIGFsbCwNCj4gPg0KPiA+IEknbSB3b3JraW5nIG9u
+IGEgcHJvamVjdCB0aGF0IGludm9sdmVzIG1vZGVsaW5nIGFuIGluY29taW5nIHNpZ25hbCdzDQo+
+ID4gcGhhc2UgYXMgYSBzdG9jaGFzdGljIHByb2Nlc3MsIGFuZCBJJ20gc2VlaW5nIGEgd2VpcmQg
+cGhhc2UgYXJ0aWZhY3QNCj4gPiBvbiB0aGUgRTMyMC4gSXQgbG9va3MgbGlrZSBhIHNsb3cgcGVy
+aW9kaWMgcGhhc2UgcGVydHVyYmF0aW9uIOKAkyBteQ0KPiA+IGJlc3QgZ3Vlc3MgaXMgc29tZXRo
+aW5nIHB1bGxpbmcgYSBQTEwsIGJlY2F1c2UgaXQgYWx3YXlzIHJldHVybnMgYmFjaw0KPiA+IHRv
+IGEgc2V0dGxlZCBzdGF0ZS4gSXQgb2NjdXJzIHdpdGggYW55IGV4dGVybmFsIGNsb2NrLCBidXQg
+bm90IHdoZW4NCj4gPiB1c2luZyB0aGUgaW50ZXJuYWwgY2xvY2suIEkgZWl0aGVyIG5lZWQgdG8g
+ZmluZCBhIHdheSB0byBjb3JyZWN0IHRoZQ0KPiA+IGJlaGF2aW9yLCBvciB0byB1bmRlcnN0YW5k
+IHRoZSByb290IGNhdXNlIHNvIEkgY2FuIGNvbmZpZGVudGx5DQo+ID4gY29uc2lkZXIgYSBkaWZm
+ZXJlbnQgVVNSUCB0aGF0IHdvbuKAmXQgZXhoaWJpdCB0aGlzIGJlaGF2aW9yLg0KPiA+DQo+ID4g
+SSBjb25maXJtZWQgdGhlIHNhbWUgYmVoYXZpb3Igb24gMyBkaWZmZXJlbnQgRTMyMCByYWRpb3Ms
+IGZpcnN0IHVzaW5nDQo+ID4gYW4gZXh0ZXJuYWwgT0NYTyAoM1ZwcCBiaXBvbGFyIHNpbmV3YXZl
+KSBhbmQgdGhlbiB1c2luZyBhIGJlbmNodG9wDQo+ID4gZnVuY3Rpb24gZ2VuZXJhdG9yIHRvIGNy
+ZWF0ZSAxME1IeiBzcXVhcmUgb3Igc2luZXdhdmUgY2xvY2tzLiBJbiBhbGwNCj4gPiBjYXNlcyB3
+aXRoIGV4dGVybmFsIGNsb2NrLCB0aGUgcGhhc2UgYXJ0aWZhY3QgY2FuIGJlIG9ic2VydmVkLg0K
+PiA+DQo+ID4gSSBhbSB1c2luZyBvbmx5IFVIRCB1dGlsaXRpZXMsIHR3byByYWRpb3MsIGFuZCBz
+aW1wbGUgb2ZmbGluZQ0KPiA+IHByb2Nlc3Npbmcgb2YgdGhlIHNhbXBsZXM6DQo+ID4NCj4gPiAo
+MSkgQ2FibGUgcmFkaW8gQSAodHJhbnNtaXR0ZXIsIGFuIEUzMjApIHRvIHJhZGlvIEIgKHJlY2Vp
+dmVyLCBhbnkNCj4gPiBVU1JQKSB3aXRoIDMwZEIgaW5saW5lIGF0dGVudWF0aW9uLiBEZXRlcm1p
+bmUgYXBwcm9wcmlhdGUgZ2FpbnMgb24NCj4gPiBib3RoIHJhZGlvcyB0byBlbnN1cmUgdGhlIHJl
+Y2VpdmVyIHdpbGwgcmVjZWl2ZSBhIHJvYnVzdCwgdW5zYXR1cmF0ZWQNCj4gPiBzaWduYWwgbGV2
+ZWwuDQo+ID4NCj4gPiAoMikgUmFkaW8gQSB1c2VzIFVIROKAmXMgdHhfd2F2ZWZvcm1zIHV0aWxp
+dHkgdG8gc2VuZCBhIDE1MGtIeiBzaW5lIHdhdmUNCj4gPiB3aXRoIDQwME1IeiBjYXJyaWVyIGZy
+ZXF1ZW5jeSBhbmQgNTAwa0h6IHNhbXBsaW5nIHJhdGUsIHdoZXJlDQo+ID4gcmVmZXJlbmNlIGNs
+b2NrIGNhbiBiZSBpbnRlcm5hbCAobm8gcHJvYmxlbSkgb3IgZXh0ZXJuYWwgKHByb2JsZW0pLg0K
+PiA+DQo+ID4gKDMpIFJhZGlvIEIgdXNlcyBVSETigJlzIHJ4X3NhbXBsZXNfdG9fZmlsZSB1dGls
+aXR5IHRvIGNhcHR1cmUgMTANCj4gPiBzZWNvbmRzIG9mIGRhdGEgYXQgdGhlIHNhbWUgZnJlcXVl
+bmN5IGFuZCBzYW1wbGluZyByYXRlLCBhbHdheXMgdXNpbmcNCj4gPiBpbnRlcm5hbCBjbG9jay4N
+Cj4gPg0KPiA+IFRoaXMgaXMgcmVwZWF0ZWQgZm9yIHZhcmlvdXMgY2xvY2sgb3B0aW9ucyBvbiB0
+aGUgdHJhbnNtaXR0ZXIsDQo+ID4gZXZlcnl0aGluZyBlbHNlIGhlbGQgY29uc3RhbnQuIEluIGEg
+dGhlb3JldGljYWxseSBpZGVhbCBzeXN0ZW0sIHRoZQ0KPiA+IHVud3JhcHBlZCBwaGFzZSBvZiB0
+aGUgcmVjZWl2ZWQgYmFzZWJhbmQgc2luZXdhdmUgc2hvdWxkIGJlIGEgbGluZSwNCj4gPiBidXQg
+aW4gcmVhbGl0eSBpdCdsbCB3YW5kZXIgZHVlIHRvIGltcGVyZmVjdCBjbG9ja3MsIG5vaXNlLCBh
+bmQgb3RoZXINCj4gPiBzeXN0ZW1zIGVmZmVjdHMuIEkgd2FudCB0byBzZWUgdGhlIHdhbmRlciwg
+c28gbXkgcHJvY2Vzc2luZyBpczoNCj4gPg0KPiA+ICgxKSBDb21wdXRlIHRoZSB1bndyYXBwZWQg
+cGhhc2Ugb3ZlciB0aGUgMTAgc2Vjb25kcyBvZiB0aGUgY2FwdHVyZWQNCj4gPiBJL1Egc2FtcGxl
+cy4NCj4gPg0KPiA+ICgyKSBDb21wdXRlIHRoZSBiZXN0LWZpdCBsaW5lYXIgdHJlbmQgbGluZSBv
+ZiB0aGUgdW53cmFwcGVkIHBoYXNlLCBhbmQNCj4gPiBzdWJ0cmFjdCBpdA0KPiA+DQo+ID4gKDMp
+IFBsb3QgdGhlIHVud3JhcHBlZCBwaGFzZSByZXNpZHVhbHMNCj4gPg0KPiA+IEhlcmUgYXJlIHNv
+bWUgaW1hZ2VzIHNob3dpbmcgaW50ZXJuYWwgY2xvY2ssIGV4dGVybmFsIE9DWE8sIGFuZA0KPiA+
+IGV4dGVybmFsIGZ1bmN0aW9uIGdlbmVyYXRvciBzcXVhcmUgd2F2ZTogPA0KPiA+IGh0dHBzOi8v
+aW1hZ2VzaGFjay5jb20vYS91MVlXNy8xID4uIEZvciBhbGwgdGhyZWUgY2FzZXMgSeKAmW0gc2hv
+d2luZw0KPiA+IHRoZSB1bndyYXBwZWQgcGhhc2UgcmVzaWR1YWxzIG92ZXIgdGhlIGZ1bGwgMTAg
+c2Vjb25kcywgYW5kIHRoZW4gcGxvdA0KPiA+IHpvb21lZCBpbnRvIHR3byBzZWNvbmRzIHRvIHNo
+b3cgbW9yZSBkZXRhaWwuIFlvdSBjYW4gY2xlYXJseSBzZWUgdGhlDQo+ID4gcGVyaW9kaWMgcGhh
+c2UgaXNzdWVzIG9uIGJvdGggdGhlIGV4dGVybmFsIGNsb2NrIGNhc2VzLCBidXQgbm90IHRoZQ0K
+PiA+IGludGVybmFsIGNsb2NrIGNhc2UuDQo+ID4NCj4gPiBJcyB0aGlzIGEga25vd24gaXNzdWU/
+IEFueSBzcGVjdWxhdGlvbiBvbiB3aGF0IG1pZ2h0IGNhdXNlIHRoaXMgZWZmZWN0DQo+ID4gd2hl
+biB1c2luZyBhbiBleHRlcm5hbCBjbG9jaz8gSSBjYW4ndCBmaWd1cmUgb3V0IHdoYXQgdGhlIGlu
+dGVybmFsDQo+ID4gVFhDTyBkb2VzIHRoYXQgaXMgZGlzdGluY3QgaGVyZS0tIHRoZXkgYm90aCBm
+ZWVkIGludG8gdGhlIHNhbWUgQURGNDAwMg0KPiA+IFBMTC4gVGhlIGludGVybmFsIGNsb2NrIHJ1
+bnMgYXQgMjBNSHosIGJ1dCBJIHdhcyBhYmxlIHRvIHRyeSBhbg0KPiA+IGV4dGVybmFsIGNsb2Nr
+IGF0IHRoYXQgcmF0ZSAocmVxdWlyZWQgYSAyLWxpbmUgcGF0Y2ggdG8gVUhEKSBhbmQgaXQNCj4g
+PiBkaWRuJ3QgbWFrZSBhIGRpZmZlcmVuY2UuIFRoZSBvbmx5IG90aGVyIFVTUlAgSSBoYXZlIG9u
+IGhhbmQgaXMgYW4NCj4gPiBOMzIwLCBhbmQgdGhpcyBpc3N1ZSBkb2VzIG5vdCBzZWVtIHRvIGhh
+cHBlbiBvbiB0aGF0IHJhZGlvIG1vZGVsIHdoZW4NCj4gPiBJIHVzZSB0aGUgc2FtZSBPQ1hPLg0K
+PiA+DQo+ID4gVGhhbmsgeW91LA0KPiA+DQo+ID4gLS0NCj4gPg0KPiA+IERhdmlkIFJhZW1hbg0K
+PiA+DQo+ID4gU3lub3B0aWMgRW5naW5lZXJpbmcNCj4gPg0KPiA+DQo+ID4gX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiBVU1JQLXVzZXJzIG1haWxp
+bmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSBUbyB1bnN1YnNjcmliZQ0KPiA+
+IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4gDQo+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIFRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4NCj4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
+b20NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
