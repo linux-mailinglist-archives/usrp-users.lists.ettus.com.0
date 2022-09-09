@@ -2,232 +2,269 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A11C5B3F3D
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Sep 2022 21:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6B55B4133
+	for <lists+usrp-users@lfdr.de>; Fri,  9 Sep 2022 23:03:34 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2F18C383F4F
-	for <lists+usrp-users@lfdr.de>; Fri,  9 Sep 2022 15:11:30 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id ACD27383FE8
+	for <lists+usrp-users@lfdr.de>; Fri,  9 Sep 2022 17:03:32 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1662750690; bh=AZizenj7XNjmbFD5PaCoYs1MHedIGgFthLOdtag4Pdc=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=cczVc4E2cR7GA1rLKgzB/7dognY97cNJQfNP6sys3kmoSnmBEcXn9DBoos09ZRSK/
-	 J1R1s70TFxvEV/iGh6qVqmWxK6fuungPpcVkFkYfr3QxHPDW32z1eMEcfVbC0DjnY6
-	 VRpNKRt+RV4RXgXbX9jS/KFEdicBFzdpxa8iR1bIEdNyj6RdzAaN+zKJgiHCuqgX/H
-	 gSoPhJln8S02URJFl5GNQ8KhH/4j9bPIBSv8z1yiJCfvvVLnlk36raG9gax0+NTY61
-	 kSNeaVmXC5h73TN+nPHS+jhG5YU+BIqyKwYjvmNv1+SjOpx0V5kG+VivJtmXAIBX0e
-	 fQHW3Gw9ILsSA==
-Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [67.231.154.184])
-	by mm2.emwd.com (Postfix) with ESMTPS id E24C4383B4F
-	for <usrp-users@lists.ettus.com>; Fri,  9 Sep 2022 15:09:35 -0400 (EDT)
+	t=1662757412; bh=Crx2IuYztiU3s4dvHFgqV0pduQChKPwzsZ4VgqpGka8=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=C8NLa46duvk1qTx7Auv9IW3j4/aq3BUIJVfoLRXY914/fm9f33qKmCJp5pARSor6T
+	 SNujsznSDIfuJGbiMvkNaaLNdSnlizpNfWyRNKV7Na7cuqX+8hpOyqQ296tXizhQ8y
+	 ye6ao8FWc2InR3SlpnbXlrFI9mOE8vv/g0UsbfkPREhBGNZNgNfVN4RsYHyQSZyVy3
+	 V9klWXgzD6oRSTIirBmUjoFfgMRX5K33QpBDApXWzu6fQ6b+234IJ5OyEPTRhIjKV+
+	 eicS31jCBWsH6uvmyTlAWcxGxOsEPvhR/1RIGJkvBqJCAJHL24iZcrqJuHX0/ZQRRN
+	 aT/h5vOOWQbgw==
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id D1EE7380A90
+	for <usrp-users@lists.ettus.com>; Fri,  9 Sep 2022 17:02:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="Xr75pWsL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AgqyCf/8";
 	dkim-atps=neutral
-X-Virus-Scanned: Proofpoint Essentials engine
-Received: from mx1-us1.ppe-hosted.com (unknown [10.110.51.175])
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 96F562C0070
-	for <usrp-users@lists.ettus.com>; Fri,  9 Sep 2022 19:09:34 +0000 (UTC)
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02lp2043.outbound.protection.outlook.com [104.47.56.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 7897D8C0078
-	for <usrp-users@lists.ettus.com>; Fri,  9 Sep 2022 19:09:34 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lrfOZuliSO0vJh0q/KML1GN2drfKnqxCWADjEKh/72G3XIepbjld61NzxKlemWi6SzEyEDPRHlDN375zNwJrU7XC1K3/PaotAeNmzAepfpv4M9TSHWTHtuGeiCL7wMO6hgPF0pHGpeQLUNCd+8+JhNZx9ZPSKiT6HcIqN9iKbfu1nbyWvLX90SLBSKB019YmJMkJytjoTRu+DWv9qs+VjxaWixNh+J98Yzs9UsMliQqG0wcPAq85repM8IG0PBze7w0kZ4sYITALIJBoXWGG7t3WyChAUMv6ci20A5kwUXw41j3ZwrdEVfSGMypWDZZUMgeqwnCpJd/f3m0U3d3fNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VsBADQhUl84EdnuleXL0IvuMJQAIugFGP6zRvDUVdB4=;
- b=KHU8fJUTFCWo0M39dalwa2k+VNoTAZi1lNhLZt4ZO0PPnNhGdWWFnqILy+QzAGyeN6GrBCpfer55h0Ax9PVPuZM6EbdVsCBkWIG2fhdhpoVUWpDhW0tDsiDr0MIETwhBzgHvF7iamGFaOBd/VvzYL7hFyNyVqe5z0YKKPNx/0ToZOKB26lGjrlK2W/STmRiBmiph65sUUQTbyppdMzEfwOrDz34d6xczK+KOmAJEbsWMxlS732dzngkT9+yKCMm52Hzw9OxEkrfRz4kpokoHV02rm7cDBiF6hyRXOjJ5pYdKYDRqNQLvWXwo1UOaBaTVZoXfrXNRInF91H0xWsruyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
- header.from=gardettoengineering.com; dkim=pass
- header.d=gardettoengineering.com; arc=none
+Received: by mail-qk1-f172.google.com with SMTP id d17so1362795qko.13
+        for <usrp-users@lists.ettus.com>; Fri, 09 Sep 2022 14:02:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gardettoengineering.onmicrosoft.com;
- s=selector2-gardettoengineering-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VsBADQhUl84EdnuleXL0IvuMJQAIugFGP6zRvDUVdB4=;
- b=Xr75pWsLRoVXw36AeP68c3LlqG7HJj1hj+eksl+H09H1FJGWe6Ha09qvh/vfpuUeI+VIwT4DGAJP0ZqQ4R+TxfE1ij7ksHQsu7Frqzw1AYpeJTAl+QyVijl7ktYBjFRtJJZhhWIWs/rTEoSYcsrE3QQ6nArUsR7XQbFsKhZmp3A=
-Received: from MN2PR12MB3871.namprd12.prod.outlook.com (2603:10b6:208:16a::17)
- by SJ0PR12MB7006.namprd12.prod.outlook.com (2603:10b6:a03:486::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.19; Fri, 9 Sep
- 2022 19:09:31 +0000
-Received: from MN2PR12MB3871.namprd12.prod.outlook.com
- ([fe80::513c:7088:b9ee:d217]) by MN2PR12MB3871.namprd12.prod.outlook.com
- ([fe80::513c:7088:b9ee:d217%7]) with mapi id 15.20.5612.019; Fri, 9 Sep 2022
- 19:09:31 +0000
-From: Jason Matusiak <jason@gardettoengineering.com>
-To: Ettus Mail List <usrp-users@lists.ettus.com>
-Thread-Topic: N320 sample rate change locking-up
-Thread-Index: AQHYxH59mMVkMcT+BUyPtZLFU1VQdg==
-Date: Fri, 9 Sep 2022 19:09:31 +0000
-Message-ID: 
- <MN2PR12MB3871623AB664F6C1063167E5AF439@MN2PR12MB3871.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=gardettoengineering.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MN2PR12MB3871:EE_|SJ0PR12MB7006:EE_
-x-ms-office365-filtering-correlation-id: 8bd4da3a-6fd8-4686-16ca-08da9296d348
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- OldKZTKBC42K5imtzOgT+tH2dMCwxXuxzJOShiiLK1HGZjl0ZAWuD+jlyVSLnWs6WtGyv6MbZp9iLfS+9+ivJIVO2yt9HP9RQi724Ch3O77biwzo0QAffzggJNVD0/3/QdzZUPrbkP+Y1eQEce11Cno+O6Bk//bY5bTo72/q1LquybGjU0i81bSjEOQCS0eJu+s7b2lJXae3cM5e+KIc/1oQlnPVTAS1i1J5nJpgS3UW8n8u47KuHyEtaRXm+AW15KvPOx+6Bmgn8uGplXR12UTzwz3QRG2Skx/rPcC9lUiJrimk6EOXcFnyWH5F/O/g4NgKrMhcAxXdJpfPIyGFMzwFPQkLUSYGK/NpjS0h/s2vBgU7d74PiPm77NI2zmDVE/HSDxI4Fv3pJWOCq7fjJpA2IKLdzGNDWyYR5WMqw6iF9EPTHyNjLUidTZhxvnDsaVER01O7Va6wbL366hAXy17wHZz4+XV+Y2+vcOjNxEMXTPAZjN8yIgRkOS7E1bKZ6lFge3ry1blzrVSRUIOHmMRb9l3nePe/vufs6I4lK/63C3HSHWa/6NpBvn5F+IpWsLQ6xgC9mR3UVOOtgshRQlPxlr4sSMT9oZizY5TwiPGeoLMomvrsQcElUsnM9smqzG9G4olVXiwx1cWsCTcmZAw5zCkLe/dXTnKqhOd/Xq8MqTGm9AJ8MKJ7KnJ+R2KsWxN2Abwv6qEwwrmL6Yy4sCsxj5dNQKYab7Bs1kRGNNs2aYTDqbM1dIirKfhSLz98BDrcHtl6sCjvlr0Xk3dovw==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3871.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230016)(366004)(39830400003)(346002)(376002)(136003)(396003)(38070700005)(86362001)(38100700002)(6916009)(316002)(122000001)(71200400001)(2906002)(5660300002)(66946007)(66556008)(66476007)(66446008)(64756008)(8676002)(52536014)(76116006)(8936002)(186003)(26005)(83380400001)(41300700001)(478600001)(55016003)(7696005)(9686003)(6506007)(19627405001)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?LQVQHI6jNMB1sSiAZaAYGuz5Na2uieqCCx0R9JLRCKDm8CMajAsPWwd0MT?=
- =?iso-8859-1?Q?rMqQ0LPH6Umpnq9YcdfB5oPLwdZiEzig/VdthaYzTbIGNBfHpD9Sl/w2dB?=
- =?iso-8859-1?Q?Zw7tZXb63w2arS2/rCem48Y37QPYDyQ+G+WWW+t/Xm4MvbHtwyEJ+bhGKT?=
- =?iso-8859-1?Q?KP6VDhuEiUgWz2bJBWMvXZfc14ZT6923+laS1COAc0aonizD6vrRD1mDVV?=
- =?iso-8859-1?Q?qAaUSuBIaGiLa2MJuXUdeEk8u4BJopt+TNlZBjP7pXlyg7JqloqZL5tgB2?=
- =?iso-8859-1?Q?4Ja1/PseDCgxWdxr55ImGBux0GbXO37PZqQr80meniNmlNvcHehhe+QIy7?=
- =?iso-8859-1?Q?LycuZbyV6Y4tBQpnygSoPOAiWwcb19bivGWhfed4rdxUdCvXHUoBmXLh83?=
- =?iso-8859-1?Q?py9u0y7DcZNq7e6Tkhr2RF0HvmrWpUxJLFHeCrGKzunVYra29Trrs2H+Hf?=
- =?iso-8859-1?Q?W2EPhxJH6rCT4wUrCruh2HS03ApXtj8m2fMjkJyPMMfvmNJkY6vcoyEb+r?=
- =?iso-8859-1?Q?9Tx0yRH5QWsh1pIuHcrzs7meySAIb4fgDvdjgCkSt0wG0SXq5bPZwnYBPi?=
- =?iso-8859-1?Q?clXJIbS4l4MGR8+vhhWY5XBPRDl5cuxWhRJ7MwNBBdXwK5KBV/Y7xbCrBm?=
- =?iso-8859-1?Q?G+NANT6euA4ULWz4Pour9/mxXaIUBTcjdXsU7gZve14WWXqoLgSsd+v0MN?=
- =?iso-8859-1?Q?IADunE2Th+dqh6TnxK+h4qbHXDyBgm+LaBFi1bp5NTVJf6wgIQkH/PYlbq?=
- =?iso-8859-1?Q?LD6kSnwPVbLTa95GV8kUur/nQC69B8JngecU+3BYdTWGRw1as86DlfW2by?=
- =?iso-8859-1?Q?bX0UF0jtUc9b0HtkcicWeMARocbedmIg9SBlhkbiS7eNbWHSqpm/jbFcaG?=
- =?iso-8859-1?Q?wLQ2ZNohNZYwpThtMdzkWUcDXEwGkDioFC4p7L+mzyiED221VWUIp9WAXu?=
- =?iso-8859-1?Q?FYZi+T/3gmp75WgE2DQiMk1Lo6e/0vhioTzf+MGi5LCtAU/q501jEslp5o?=
- =?iso-8859-1?Q?mzXaswU91Ugf3uzXulg3VefFI2ocDcSKHciHsWcYwotc0aRPOYNhEPYPXu?=
- =?iso-8859-1?Q?8WylMHgcZThIICM4ZntbaCd2S9lG51hrlP1HBJx+/kf2D1XJI0FqhjGunK?=
- =?iso-8859-1?Q?CZY69xY7YjjMoTDevaPDkrQZtbvzMGUzTa/SXNPdR7IF0x2ulaKGAqXumU?=
- =?iso-8859-1?Q?+EWQ3jHZX3dDeFhHSBc5LBL3fFEndavXa/R5D7mIRdkh2RWuyw2a9zO8dK?=
- =?iso-8859-1?Q?ZCjs82a882rs8nbHMAAodZn48R9wAndmJdr61/4kuyuy8ajdEH5lznvXYm?=
- =?iso-8859-1?Q?rFEAeVIsW3TOE5wjOTMypirmORNFlFoBdflT3GRSHGXmTAZtZii7QaDb+a?=
- =?iso-8859-1?Q?TcFXqYkU3Li9BsaNFuDeIrgzw2+dJminBcIQj0I3TUHzQJnweXhlY3rreV?=
- =?iso-8859-1?Q?jMWa0bRNDJGfGc2FzSBx/GR/ltrso8HjLxlYusbF/zxPL2gJ8Yq2aEg078?=
- =?iso-8859-1?Q?qLblRbw5p/TvdIcLiGBBXYQGrM9vRtUYyXFYqAk2LSsA+QLbOGiLdL21zs?=
- =?iso-8859-1?Q?yr3pTUbkDeUkNK6OXjwBkj9W4aRUjdCHKpKqoxhMNLpalrdoDwkH12YgVu?=
- =?iso-8859-1?Q?CRvXXYphvimm8ErG3IL8MlrTTRH5dBLijw+3aFJp+HyjGsCUGi31KtIQ?=
- =?iso-8859-1?Q?=3D=3D?=
+        d=gmail.com; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date;
+        bh=zk3VROaW6gZ256gwTQtaaxwMTm2ah1/EhqJbEEm331E=;
+        b=AgqyCf/8EVbWSICteNa7il/IhZrQbYZMhJ/o95lNvHB8UytoPwA/AcC+mdoaGHEm5v
+         KL6S/AP3D/W9m+RGlzgxYSWXw8ZQWfWL3NqQ+4XwUHFMKBakSlYO9xALM80dkmYioBO4
+         RY4KNJffWYaRco0bv9cSQHa0eaAxRvA4IPNXXtM5onsn4+YEL8wEpEuIFYNDefnU1ytj
+         7UtMDH50IrdhNDU7tXEbZ4Sv1BbRBZQQ5KtjvJLj8IeJhOhe7fjsD9TaU/9mRJjW8UNS
+         CsI8ij9b1z4RNEGt2ylpyGHVT+V1nWngTd4M4qFfxRZT8cYUJ+WVcNnHM4K0BQ04OYg9
+         WdqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date;
+        bh=zk3VROaW6gZ256gwTQtaaxwMTm2ah1/EhqJbEEm331E=;
+        b=MeeRI4fB8n/0oURdqwwRjS67WoOo+eBwLKYRXNTxhlOl5jRe2xAraGa5QPpfg05RfR
+         WK7XiHC7gWd2rSFi3l6+Om5hODDwVh9ujfAdMw4rUKv8EzEx1ibD8wkG5ciyAvOoMztZ
+         wcblOrSq3wBVu1XChmOkwCDB5ivkKQCfWZbQhP+W6bINo7g+WFBdosNqtI6ok1W42ngk
+         jQUo2ssHz6IBG4ioAV0Dypn8GVMQhod+Bp9ws9MMFOxNitVQ0V2iXdkQWEbCtoCh1/46
+         7O+9OnpxjCdxyneJsOBqqLdb20nazcEC4qexmtg+QUfD8pfVi/5rzMYrlyZYutNpHPMU
+         otNA==
+X-Gm-Message-State: ACgBeo04bfiGvKcg+rSvHo/KpxgtANZUa3zUqGhAnb/1tqKAN6GdEaRi
+	dw3PgBsh7+dOuIBFPUS62irU8kULBrw=
+X-Google-Smtp-Source: AA6agR7YN9Gxuuzya8qr2bEZsRfxCb6Bjj5Zrtt9PYCr6owRfiKhOYXYFfKKUu4JsvBu/0tbudZICw==
+X-Received: by 2002:a05:620a:134f:b0:6bb:ffc4:d5b3 with SMTP id c15-20020a05620a134f00b006bbffc4d5b3mr11394550qkl.327.1662757361872;
+        Fri, 09 Sep 2022 14:02:41 -0700 (PDT)
+Received: from [192.168.2.190] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
+        by smtp.googlemail.com with ESMTPSA id j25-20020ac84c99000000b0031eb393aa45sm1041892qtv.40.2022.09.09.14.02.40
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 09 Sep 2022 14:02:41 -0700 (PDT)
+Message-ID: <29a62891-c39f-5fe0-1b8b-6a57f2fb4c9a@gmail.com>
+Date: Fri, 9 Sep 2022 17:02:40 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: gardettoengineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3871.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bd4da3a-6fd8-4686-16ca-08da9296d348
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2022 19:09:31.3656
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HATWQx2ixaif97f2MHQxR1ZGjInIjYq8WDFfX4kidSEpUaB90pp1irDyDe/WQ1BnoQ2Pr/NAk9lBBV3oW+GcnRtbNcG7c2VurcGhhsSAIts=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7006
-X-MDID: 1662750575-HeCn-4NbFWKv
-Message-ID-Hash: IH6JQRESPMOZ6K6QC25E3SKTVKZANBIC
-X-Message-ID-Hash: IH6JQRESPMOZ6K6QC25E3SKTVKZANBIC
-X-MailFrom: jason@gardettoengineering.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <u4HHGTVa5Hqj39nTNDiBDX01T3CQ5cslzAWc9k02cjM@lists.ettus.com>
+ <BN2P110MB1747706C0DC81186F4442A64B7439@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <BN2P110MB1747706C0DC81186F4442A64B7439@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+Message-ID-Hash: 33JJYZ5EAOPFHJGVGFP4MLVAU57ZRWHN
+X-Message-ID-Hash: 33JJYZ5EAOPFHJGVGFP4MLVAU57ZRWHN
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] N320 sample rate change locking-up
+Subject: [USRP-users] Re: E320: Periodic phase jumps w/ any external clock?
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3HOTE5RZK2A2JSVELTIX4GH3RQDU62RI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/33JJYZ5EAOPFHJGVGFP4MLVAU57ZRWHN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5711451412264166134=="
+Content-Type: multipart/mixed; boundary="===============7435741212510278745=="
 
---===============5711451412264166134==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============7435741212510278745==
 Content-Type: multipart/alternative;
-	boundary="_000_MN2PR12MB3871623AB664F6C1063167E5AF439MN2PR12MB3871namp_"
+ boundary="------------7st0FMYRsglxl0iy8eyP0ACT"
+Content-Language: en-US
 
---_000_MN2PR12MB3871623AB664F6C1063167E5AF439MN2PR12MB3871namp_
-Content-Type: text/plain; charset="iso-8859-1"
+This is a multi-part message in MIME format.
+--------------7st0FMYRsglxl0iy8eyP0ACT
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Are there any restrictions, or known issues, with changing the sample rate =
-on an N320 while it is running?  While debugging an issue in our applicatio=
-n, we noticed that we can toggle between two sample rates and get the n320 =
-to lock up.  What I mean is that the N320 is still responsive to commands, =
-and seems to continuously accept the new sample rate changes, but nothing i=
-s streaming out (just the ~62B UDP packets).  At that point the only thing =
-I can do is to close down the software for the N320 and start it back up ag=
-ain (a reboot isn't needed).  If I only toggle once every 5s, I can get it =
-to occur, so I don't think it is a matter of issuing the commands to rapidl=
-y.  It also seems random in that one time it can occur on the 10th transiti=
-on, and then the 148th transition the next time.
+On 2022-09-09 14:33, David Raeman wrote:
+>
+> > In case you try turning off GPSDO on E320 please share info if it hel=
+ps.
+>
+> Hi Piotr,
+>
+> I was able to disable the power rail for the GPSDO and confirmed it=20
+> resolves this issue. So the problem is correlated with GPSDO activity=20
+> in some way, even though its TCXO net is de-selected at the clock=20
+> selection switch (U55). I=E2=80=99d be curious to probe some pins on th=
+e board=20
+> to observe the clock signal as it moves through the clocking=20
+> front-end. Unfortunately my E320 cannot be removed from its chassis at=20
+> the moment, but perhaps I=E2=80=99ll take a look when I get an opportun=
+ity later.
+>
+> Unfortunately the enable_gps arg is not honored upon connection to an=20
+> MPM device =E2=80=93 the power state of the GPSDO on the E320 is establ=
+ished=20
+> when the MPM daemon is started on the radio at power-on, and (as far=20
+> as I can see) it cannot be changed on a per-session basis. I=E2=80=99ve=
+=20
+> prepared a small UHD patch that allows the enable_gps arg to be used=20
+> at session initialization. Then an application (such as mine) could=20
+> choose to disable the GPSDO at run-time when using an external clock,=20
+> or leave it powered up otherwise.
+>
+> One final observation, this problem is alluded to as a known issue on=20
+> the B2xx radios [1], but is not documented for the E320.
+>
+> -David
+>
+> [1] https://files.ettus.com/manual/page_usrp_b200.html#b200_known_issue=
+s
+>
+>
+I had totally forgotten about that restriction, and it has to do (AFAIR)=20
+with how the refclock line is shared between the two inputs.
 
-The really odd thing to me is that is if I do something like toggle between=
- 3.125Msps and 100Msps, the lock-up ALWAYS (like 100/100) occurs when the c=
-ommand is issued to transition from the lower sample rate to the higher one=
-. It also seems to be more prevalent when doing a larger jump (like the exa=
-mple above) vs a smaller just (like 3.125 to 6.5), but I might be fooling m=
-yself on that one.
 
-These are N320 with master clocks of 200MHz.  UHD 4.1.0.5 and XG images.
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 
---_000_MN2PR12MB3871623AB664F6C1063167E5AF439MN2PR12MB3871namp_
-Content-Type: text/html; charset="iso-8859-1"
+--------------7st0FMYRsglxl0iy8eyP0ACT
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-Are there any restrictions, or known issues, with changing the sample rate =
-on an N320 while it is running?&nbsp; While debugging an issue in our appli=
-cation, we noticed that we can toggle between two sample rates and get the =
-n320 to lock up.&nbsp; What I mean is that
- the N320 is still responsive to commands, and seems to continuously accept=
- the new sample rate changes, but nothing is streaming out (just the ~62B U=
-DP packets).&nbsp; At that point the only thing I can do is to close down t=
-he software for the N320 and start it
- back up again (a reboot isn't needed).&nbsp; If I only toggle once every 5=
-s, I can get it to occur, so I don't think it is a matter of issuing the co=
-mmands to rapidly.&nbsp; It also seems random in that one time it can occur=
- on the 10<span><sup>th</sup>&nbsp;transition,
- and then the 148<span><sup>th</sup>&nbsp;transition the next time.</span><=
-/span></div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-The really odd thing to me is that is if I do something like toggle between=
- 3.125Msps and 100Msps, the lock-up ALWAYS (like 100/100) occurs when the c=
-ommand is issued to transition from the lower sample rate to the higher one=
-. It also seems to be more prevalent
- when doing a larger jump (like the example above) vs a smaller just (like =
-3.125 to 6.5), but I might be fooling myself on that one.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-<br>
-These are N320 with master clocks of 200MHz.&nbsp; UHD 4.1.0.5 and XG image=
-s.&nbsp;</div>
-</body>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-09-09 14:33, David Raeman
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:BN2P110MB1747706C0DC81186F4442A64B7439@BN2P110MB1747.NAMP110.=
+PROD.OUTLOOK.COM">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}p.MsoPlainText, li.MsoPlainText, div.MsoPlain=
+Text
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoPlainText">&gt; In case you try turning off GPSDO
+          on E320 please share info if it helps.<o:p></o:p></p>
+        <p class=3D"MsoPlainText"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoPlainText">Hi Piotr,<o:p></o:p></p>
+        <p class=3D"MsoPlainText"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoPlainText">I was able to disable the power rail fo=
+r
+          the GPSDO and confirmed it resolves this issue. So the problem
+          is correlated with GPSDO activity in some way, even though its
+          TCXO net is de-selected at the clock selection switch (U55).
+          I=E2=80=99d be curious to probe some pins on the board to obser=
+ve the
+          clock signal as it moves through the clocking front-end.
+          Unfortunately my E320 cannot be removed from its chassis at
+          the moment, but perhaps I=E2=80=99ll take a look when I get an
+          opportunity later.<o:p></o:p></p>
+        <p class=3D"MsoPlainText"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoPlainText">Unfortunately the enable_gps arg is not
+          honored upon connection to an MPM device =E2=80=93 the power st=
+ate of
+          the GPSDO on the E320 is established when the MPM daemon is
+          started on the radio at power-on, and (as far as I can see) it
+          cannot be changed on a per-session basis. I=E2=80=99ve prepared=
+ a
+          small UHD patch that allows the enable_gps arg to be used at
+          session initialization. Then an application (such as mine)
+          could choose to disable the GPSDO at run-time when using an
+          external clock, or leave it powered up otherwise.<o:p></o:p></p=
+>
+        <p class=3D"MsoPlainText"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoPlainText">One final observation, this problem is
+          alluded to as a known issue on the B2xx radios [1], but is not
+          documented for the E320.<o:p></o:p></p>
+        <p class=3D"MsoPlainText"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoPlainText">-David<o:p></o:p></p>
+        <p class=3D"MsoPlainText"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoPlainText">[1] <a
+href=3D"https://files.ettus.com/manual/page_usrp_b200.html#b200_known_iss=
+ues"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">
+https://files.ettus.com/manual/page_usrp_b200.html#b200_known_issues</a><=
+o:p></o:p></p>
+        <p class=3D"MsoPlainText"><o:p>=C2=A0</o:p></p>
+      </div>
+      <br>
+    </blockquote>
+    I had totally forgotten about that restriction, and it has to do
+    (AFAIR) with how the refclock line is shared between the two inputs.<=
+br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:BN2P110MB1747706C0DC81186F4442A64B7439@BN2P110MB1747.NAMP110.=
+PROD.OUTLOOK.COM">
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_MN2PR12MB3871623AB664F6C1063167E5AF439MN2PR12MB3871namp_--
+--------------7st0FMYRsglxl0iy8eyP0ACT--
 
---===============5711451412264166134==
+--===============7435741212510278745==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -237,4 +274,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5711451412264166134==--
+--===============7435741212510278745==--
