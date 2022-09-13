@@ -2,614 +2,175 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B7B5B79BA
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Sep 2022 20:38:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10B445B7C49
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Sep 2022 22:46:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CB3B7383BA9
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Sep 2022 14:38:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AABE5383E9F
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Sep 2022 16:46:54 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1663094287; bh=+caQ29eOMO0ntzLd5e1PnHuNRdSboiL67jrU/N3QjNM=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=EaHO1Stb8aR7WLDOK3csBKe7EJUK2iqBiX/riFOmGQETXYVS4RQ9EAuHEtIIyZaAH
-	 XoewAIGeaEAINd3DPFysO9QQA6F5k0m08+Znpu6RFUbIKfwHr+5cZ/OVPAmnj97wa8
-	 ZESNJGtvOQhPw8/ydFFCtrjSP0CCiBi3WZ8Z4V0mSH8ZAKUBcK+GlMkFasLWc9i3RG
-	 p2vlCaztLb233Qo9+rVwDNE+Do0ycEZmLFcPj82GyEYF3QpBR+Dvf015HW5z7FDT/k
-	 9G2Hu6jTA5amYAhE0/DZC3GuNOn89xK/sl2sNN2aHFeIPlnQwmzxllMXX/Vk8HnK5d
-	 Mnco6UFqjdYhw==
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2085.outbound.protection.outlook.com [40.107.94.85])
-	by mm2.emwd.com (Postfix) with ESMTPS id DD893383BAE
-	for <usrp-users@lists.ettus.com>; Tue, 13 Sep 2022 14:35:43 -0400 (EDT)
+	t=1663102014; bh=2qIlmFbaIVMIGUXcv3yII56vQ8tHa8DkN1z3rYzU3bg=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=RNKa4lHB8ZFRM73vCBGO+coFBAsKlv9CimcLy3cWIdKei8T7yASCiaCL7j9ZMBR9z
+	 Q4rV3Sr7RylTjwYNjQSMx43+9nVe2ztHyKfkwAGaB1tOG0mJmG2vOqY4uJtPOF1xCS
+	 yNA55aOloPD2JtOQkRnFbKP5s0o8w7nH6oQqINaFPsRDU/LbRxhsQo2JDGZEhjUqhU
+	 S8Njs8Y2V/1ZCWToacHb5rrEB8cf08c9n1eaF8HzmNWgwLW9DON9ZWeb3H8+3gbRuH
+	 tzhwR5G0BazTw3msOS6OkcCArhbN5ZnC8nGk0LyDuuWmVnfn/jKIIEG+ad5TL8KBoG
+	 7MxlGz5K4akbg==
+Received: from na01-obe.outbound.protection.outlook.com (mail-westcentralusazon11010005.outbound.protection.outlook.com [40.93.198.5])
+	by mm2.emwd.com (Postfix) with ESMTPS id B591F383823
+	for <usrp-users@lists.ettus.com>; Tue, 13 Sep 2022 16:46:06 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=caltech.edu header.i=@caltech.edu header.b="JYI8YEil";
+	dkim=pass (1024-bit key; unprotected) header.d=minersutep.onmicrosoft.com header.i=@minersutep.onmicrosoft.com header.b="o1odHbPP";
 	dkim-atps=neutral
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MQsTZ5QbUZs1u0+rIcRHVCjHdtVeQNiCM4/+SvK5VBc/FjHDRQz0I3y2xz5oQt4xpnbjd5vrbiask5DN3vO7vLYZf8fqFRsh67fDx7VwybqO2cKA3HGj1L7Yc5EDbRC1dk2kmuqpCYpUal3bsNHXEOFD9PEI/O+bIJWvMokK/ZofCcD00qosrZYg/D2ZyZtWguq3tnF3NpbYzUa+4EnTO3+5llffwI9ge4/fGXJXMZfJFlGFICoetVQo2QJXTp9VUTA1PyXMYJrZku4pxBmNdvZSeZtD0cY2CwHnoEEGKvKvevW+Vy1bVVbalqYlMRMiGq9pryddi/JgDSlLZBsKkg==
+ b=crU8wRnN9zMftHvcNshLKwhZgIK4GDxx9/IqYskeq/3Zpy5QdMjgKIbanx3i8A7zNfjuq8a6yytzTeEgiPY+hJKRUh6UuArJFrvHRfqmEUOxxyRV7+k+0/pYnZieINQDlUlV05ur7DY1an0Eb1pNvaw7/3l3V/v5JeAZPjMFmauf976R4yuJT6HAlSEeqHc92mP5lwfaHfnuV1p004H9RGQ68QCDhVgKBL0bStwlZ8pgESiNfxpMLuDlchME49lHgai73XKf/qezfMf/EENtlRASRTpRQzHzQlh6LkPKbpY5i6yvUtxF6FFmx1Qvg4p2AOVrlogh7yRl2TAIbVxLlg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZI07kEpbP6ao8mrsEiJUbAlOvtLHRnUH5oVl6HqDvXk=;
- b=fRoRZw+7vNCp6Zac/9vGA2nhdNV8yJaKuilM2e+80QSzvW6l9aN2luLGsoIWzBXjFaZxrz8APrgYFv2Z3jeebWtHUfNY1ng+XxqsaaOQqj/E2zQJEZ1AXZEKvcU8Jmb50lzT7onXGMW6TsD2LJa5wDpPueHQuvUIrOOpS/kgMPdYK2Ktw74P6MIaF0C21Kj7zP4bfC/oYQI2wU8BuojyKEj+XWrjs4/dwKOG+Za5pCz0X308FH0Q0ZCpQDXoRtLJCqxKRNB9C2zxtX/cPsjCIboEANkRtdOpPeEjP1cBDZgFSy7U2HX6Qx7AVIoBp8bFRNZ4ADugdYkQx/p1CYDBAA==
+ bh=9R9OIzdRGNbVcAB4xVefcvxqmht64KIh3IH2ANDhQY4=;
+ b=jOw+QHC91BqcnVOo9dXK/H41I5NKuJ2Tb/y+TIExe4OawVAlGAjrGIzpq0t51ClKP3a5jxwY+d3j7hrAqDa+BxVFTs2uj1hELxQF6IVm+6DZ0gFCzJfOjT7ZAxm9qwOeqsqGOauGffFrFilrse0chWKP0glixHPOksFnGlDB1Ks7/kz1BJ/yKEcerp7C7WtN4z3AWDRz0ljQu5ZwZ1iuea9ehtQAyDm97AE4BxSDDCl2SOUz885OCjIAinJtCvgUK8t9fJt2WXJRYXcisDU0uZq3wlkG03Qgc6/ti+0Fwr3yu0ryeQKs7nXUTlTHUJ0hDxWlswC5vVf7nD6+smjCkw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
- dkim=pass header.d=caltech.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caltech.edu;
- s=selector1;
+ smtp.mailfrom=miners.utep.edu; dmarc=pass action=none
+ header.from=miners.utep.edu; dkim=pass header.d=miners.utep.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=minersutep.onmicrosoft.com; s=selector2-minersutep-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZI07kEpbP6ao8mrsEiJUbAlOvtLHRnUH5oVl6HqDvXk=;
- b=JYI8YEilCaCtE00ejfrhWSBwMNkuz+nYW3ryEjYLwU8JL1fUGgC4AYO+9vlaFUKlb2ArsyUwGkKxt4bw8fTJirllXONNhQsVmEHTjQRvsUwuISxQ1E3ouBazajsB0VJXBgk52G8ciDXsTtFNJAX64495fzQ+YT1iGBnBOG+jA1KByZw97CFCLYbgM8iZghfTMQoqOMVcNfGPF4EOA7YkdJenIYulwYQVHlI83YYqYNyzIDwEgZ0GKpHqaGz4BjJ4ngoB68uaqiswA/nGpwtqRXRqkZ71PipcCdVF8GpS4vh0G4Xg+Cg7G4Qa1RHxhi8P62eX0Dc2/PeERIdctBGdtg==
-Received: from BYAPR03MB4678.namprd03.prod.outlook.com (2603:10b6:a03:137::21)
- by PH0PR03MB6462.namprd03.prod.outlook.com (2603:10b6:510:a9::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.14; Tue, 13 Sep
- 2022 18:35:41 +0000
-Received: from BYAPR03MB4678.namprd03.prod.outlook.com
- ([fe80::ebd5:115e:465b:f692]) by BYAPR03MB4678.namprd03.prod.outlook.com
- ([fe80::ebd5:115e:465b:f692%3]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
- 18:35:41 +0000
-From: "Minutolo, Lorenzo" <minutolo@caltech.edu>
-To: Rob Kossler <rkossler@nd.edu>, Paul Atreides <maud.dib1984@gmail.com>
-Thread-Topic: [USRP-users] Re: RFNOC4, FFT Block, Python
-Thread-Index: AQHYx5sZrkL8Ihisa0inOnzz+QmQTa3dq5uAgAADv0M=
-Date: Tue, 13 Sep 2022 18:35:40 +0000
+ bh=9R9OIzdRGNbVcAB4xVefcvxqmht64KIh3IH2ANDhQY4=;
+ b=o1odHbPPhRoBcDDdox5G7fz/v+NPNINa2Vn75ICazNkRDTHSlR6xSEPGUUAz8qAq6AQf9i4kx+Vcj0izsi0H4zlh1PLHyBeSEW9Gq1RLkc57K7OzANLYIBQYjKHVlEsGDmkfKTWDUut8iD0r2vH/xOWomaXc8FjWnCcURoVGKgE=
+Received: from SN4PR0501MB3919.namprd05.prod.outlook.com
+ (2603:10b6:803:4a::25) by MN2PR05MB7135.namprd05.prod.outlook.com
+ (2603:10b6:208:193::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5632.10; Tue, 13 Sep
+ 2022 20:46:03 +0000
+Received: from SN4PR0501MB3919.namprd05.prod.outlook.com
+ ([fe80::9:e275:61a1:9f47]) by SN4PR0501MB3919.namprd05.prod.outlook.com
+ ([fe80::9:e275:61a1:9f47%3]) with mapi id 15.20.5632.012; Tue, 13 Sep 2022
+ 20:46:03 +0000
+From: "Avila, Jose A" <jaavila5@miners.utep.edu>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Companion issue
+Thread-Index: AQHYx7C1gqykDzG39ECtz9GZ4EWPYg==
+Date: Tue, 13 Sep 2022 20:46:02 +0000
 Message-ID: 
- <BYAPR03MB467887B3F176E61D100C406BD3479@BYAPR03MB4678.namprd03.prod.outlook.com>
-References: 
- <BYAPR03MB46780CFCA3FB71E223471337D3479@BYAPR03MB4678.namprd03.prod.outlook.com>
- <CAB__hTTGkkNKhVvau+gRAqsSaYypLpoatEZWm0Jrm-bH-3HnKA@mail.gmail.com>
- <DM6PR03MB370599116ECE3A17C98DB900AF479@DM6PR03MB3705.namprd03.prod.outlook.com>
- <CAB__hTQiHKPbeY-1EzfK1fPW6ERuMSD48wgL4Xu4sMqG75s6tQ@mail.gmail.com>
-In-Reply-To: 
- <CAB__hTQiHKPbeY-1EzfK1fPW6ERuMSD48wgL4Xu4sMqG75s6tQ@mail.gmail.com>
+ <SN4PR0501MB3919B694DACDED2A6BAE0C61D9479@SN4PR0501MB3919.namprd05.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=caltech.edu;
+ header.d=none;dmarc=none action=none header.from=miners.utep.edu;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR03MB4678:EE_|PH0PR03MB6462:EE_
-x-ms-office365-filtering-correlation-id: 5a14fc4c-b169-480f-833b-08da95b6c2b2
+x-ms-traffictypediagnostic: SN4PR0501MB3919:EE_|MN2PR05MB7135:EE_
+x-ms-office365-filtering-correlation-id: 3bdafc6c-6cae-48aa-df95-08da95c8f903
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- guZkJc6QOlJsgQ0ffW/1sa1q4JcLuPZoEOLTx1FM6XOTd6RpA6laFwFkWbUDoaDGIDGA1+OnsjHY5ebV/1WlXPaMLXJz294v9udwELZhgtAkB+xn4DKKztc+u5o1tm/OopTQjr1DfuKjLV09uo6gdb+5lPDiBuq2glCzRH9eitStMohPxZb9x8CtkhxA8GxXpwWmfX1mSYVTLM//Vm1+v9HVHCwtYyKsPfNzznawHYWNUHasnTvuzulUwemnWnC5fipXh0g4i5T/gMB1OXIq9Q9nPZoiE/Lu9iPS/oOUIq2khaPL5uLKlqHfuqy5UNrT9YwFwrzvzZEuvfpj2DD/+BhZjI6qAxC//194RdlcHRncaopXehl7U2cp7E87TMcJ0jCgT2V36h1S0U+MlOZxJzBY5gWhgPrb9JGlP+p5pryoXXAb/yUKiKb2XtF7wRnDPxvmxgZqiMuBFnvSwJfgk9dxvSrSRoxxrqy/16JN0bv10tDXtVBYoDLzmY3BpISsNyOeGtBRW9YsVISdF9+4xEFx99DZ36VtiAS/2WiTpXUeylDy9zNINUweWmrFUwy9LMMF1+EuXXxCK4ud1Pfd985LTLta8jLZYyhOG3Q1CAI3PNhlgFIpPHeis5omDdsQ7fsn3JuKoyJpeGPApNRxOKJzlihAfhu8CmWledqf7f0QOdXUGEy3Apd/pCKr2dDL5B5qfki1/Al0qDQKdI78UdiaPxZF11Tvu1WMADNUHfYjtWBiuH2mJ4nN46G+d4tuLGZAoVYrPah/jQ9RjlwS3KerN+Zr++6fQb1FeXOUq3M=
+ M/ZiGkLt/k0v8Hh9PrTBThJRHid8BDgEnq5Ac695Vu0UDcoJxAclgyuUrzjoFHWy9PPhQVZpHb10gCvHjPQHGmMgOQCbfVNcjDn0W0rdPQ2KOsnVYwe3dnnr/2HABp1SXSk+xCza7SqfEDmV7ER3h6KUXjH0jWtblc6g+3AC5ZQQ4XnZSUyC3I/Nd2U8NuuPjCWsFLF4BRxSLIY3lh1rRN0HvL96Fq3yJLIGbWr07E+H2Eh3X2LGpIVMeyU2KvN+44VkSN8guaIXI1chKDB38aBrqHpv0bvaJFmSdvWP1IJC/AGbLfoGPoGhZ8nc0SD6kr8huyHgWCfAYKPNs/Qv9NWhKmOJDpqQlDvTn9bMpxCnym03DWViUJj3mJcqfXIthbgEBwnuLQUh2JDOJyr0WCO3+ZEx0v/gDz7SriKpyfp9FfhKpYkRxKSrEr07f+0hdWG+hZbt0wgGH6QMtbBfcgRMIvt9SM7WFwGbUtFj2/3BQG7mM3VoIK9eykMO/gMzfdO/dfFGoL1mWEmfDx0IaRdLHMITbpbUEVFVKSAC7pX3IctputjSuVA7beFoiLDpVSKMxvV4yFPNsXmd6bc8rEYIXVsYVZsbVK4pYTSYJsAXeniWak83EzeH1Q/e1WMJeZRAU+uErptwndY9bXJZhZiC6RFKUYsNtmt00R9bE9GSZoy01R3p3okkqNlSdQPSUj4BdkELFPPcnqCoRn9/l0ZpEUxj2JhWzF8vLz7EiG9lZPe6bVf5YJhFymUBMSQo
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB4678.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(376002)(346002)(39860400002)(396003)(366004)(451199015)(38070700005)(166002)(8936002)(52536014)(66446008)(75432002)(66556008)(55016003)(86362001)(66476007)(64756008)(26005)(41300700001)(110136005)(76116006)(38100700002)(8676002)(186003)(66946007)(478600001)(122000001)(786003)(316002)(41320700001)(19627405001)(83380400001)(33656002)(6506007)(4326008)(9686003)(91956017)(5660300002)(71200400001)(2906002)(45080400002)(53546011)(7696005);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0501MB3919.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(366004)(136003)(39860400002)(376002)(396003)(451199015)(52536014)(55016003)(316002)(786003)(76116006)(5660300002)(86362001)(66556008)(33656002)(3480700007)(66946007)(478600001)(38070700005)(8676002)(66446008)(122000001)(66476007)(7696005)(38100700002)(6506007)(64756008)(91956017)(8936002)(186003)(71200400001)(83380400001)(41320700001)(4744005)(41300700001)(9686003)(75432002)(6916009)(7116003)(2906002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?Windows-1252?Q?yisf/DYDzRIgwR5Ni4JRUqZlXydCN/3hvvfWzp5ehW0H8kaHihbGT9zY?=
- =?Windows-1252?Q?zxTHDHqO3shDQ5fnm0IZAVu+pJwsHWy9Bcspf78NmBPvuVvGVkUbvdhc?=
- =?Windows-1252?Q?EzxZnYwF4TUslCJvzXm6qlSJ1BbZmqWhET3KzqLXBy8o0pGeDuE+gXpK?=
- =?Windows-1252?Q?qTAlApTzyp3M+maP7jSdiD4ltEVypOUCLAkRupVGtpmnKWjnIb6RHYw2?=
- =?Windows-1252?Q?TFe4S+Jx01cJlygHuiQCin35p7hvJ+Paarw/fcKJOTQp8DHSmPDoHBy4?=
- =?Windows-1252?Q?T9siURTKiZJlYSc0SuGfeGh9IkAD+qYU+q1kyKGhHQaLYhqFQFm4jIKj?=
- =?Windows-1252?Q?N9eS23zQXamuwU+dHufYSbvzWxv0NxGOCt7y6z1tseP+uSX6n6L397lt?=
- =?Windows-1252?Q?Xq7dHnccAuRw+bBh1lGxQC087MdzsqM9UhpYsPnmTjgTCp0wvHIEsvcb?=
- =?Windows-1252?Q?bbQxNK3gT3cEcZROPRfkKD1yWow3y149U87FNH3TlA6eKxr4G38uJj8O?=
- =?Windows-1252?Q?ltUJn6VWAHDj0QYeOCfHyj/J+qa/qwsfL4ssvqqnVNDZz5fSRVVkFasW?=
- =?Windows-1252?Q?fWCjnwqozE8pxsGcEBYNf+PNjtDMM4I2aFFD0SBLDfrFiW2bf4ZucSvP?=
- =?Windows-1252?Q?GpQPOXEu6zfUkBTtihUgV53Wq3vX33K+89CQbRSUfnx5/sdzVB5VJJsk?=
- =?Windows-1252?Q?2t7TVeh0psKmlgOGvLFDQlYJAc1TgxyGs1FIrT9kH94swS9hPwnxees2?=
- =?Windows-1252?Q?ejFBDSP66v/b47hnF1sHBbS3DgVTbWuXGN6j1LJ2XLZdmj+oHdOZhud0?=
- =?Windows-1252?Q?y0+SjnRASrncIrIpsLGsjggVf6LubLymFwlgQcAM4XCz1tFdfAjn0M4x?=
- =?Windows-1252?Q?c9L+sUqhyjhm8cxDBLCRcOgAWQEag6ReYQGsnN1o82P+PBOA4gPpUF6N?=
- =?Windows-1252?Q?qFEFmPsGlDegFrZXFq1OOJsG9tv5D30syBasCMRexein5Uvj1eIqwFsm?=
- =?Windows-1252?Q?P7exRGYW7JcaUe3tB+ZliFt/fyiENBmg67omfXq2HbsPcvIta/yNe7e7?=
- =?Windows-1252?Q?yku/nzNEIh4eMb4/0iHllaiVs3WHNK3FmEnMkE8NZNPQi70MbDpdpl9Y?=
- =?Windows-1252?Q?Fki14ZBZqXdIabevTCw/Q2rBBxaxnb+L7hwh6060MT9296h6dwiOxgC/?=
- =?Windows-1252?Q?Q6fbWk/YekPAaJItU2gimpg1a1YjrAVzxAWSkl11JQHRT4qq/+W/QXzR?=
- =?Windows-1252?Q?vfws3fpBLgRnY6NC39A6bdv+f+y3MjbOdM4qjsUw6Nlqk5n5ZSts6ROU?=
- =?Windows-1252?Q?71MjGiT1MwL2LlRiTBrZ3yRYCueF50O2R/zq4I4coONU2V8BkXvBpdMq?=
- =?Windows-1252?Q?EOq5sNIG/IL8WhodJgFvKh1tME3Is6aOOmjkOYuAJmKPgHxPF8guCtBL?=
- =?Windows-1252?Q?k8sZ3220xgzK0B7dAHJlBfCCxYUThtsXZvtC/u3v4zWlaYthOdklHgkJ?=
- =?Windows-1252?Q?7lM5fQyiJdlJNfGwGRZAFsQ9Ckm2uXg3VXQBjHGLRzXEDKbEFWsGKNmT?=
- =?Windows-1252?Q?hMPPfGXMaQKZnUMJKuMfuC4Ff1UnQ4aZ0rdhnWip7a+34rWLLpDCAItj?=
- =?Windows-1252?Q?Cgz4TwiCjaTrOFyBVxdNuBam5qtdb4e86Yk3Z2RrDQOFROXzYcHiU7Vr?=
- =?Windows-1252?Q?hvZBnbQSv/5D4Jtukr+vcnACxFUmSjd/?=
+ =?us-ascii?Q?/MVq1Pz09NoEIwqzeHZ2bHurXz8zPh699lgeFbQ6q0Ax9+q1Nngj+TR+qILc?=
+ =?us-ascii?Q?90WHFOmPl7wcTRgUDvUNqegFDjLTtUFHMdQAb+A42GQRm/EYQqXYUm57AfIi?=
+ =?us-ascii?Q?BKiFeBpzrnUEs0231Ru5xMbyYVdtx8tqX6ZkDhx9078evVW1swngEcyOYTAR?=
+ =?us-ascii?Q?K2EN2uJKrmUjXomq2KobcQPrMADISBtBHiXvGcIGPiPN6ivT/3lWJcGX84uD?=
+ =?us-ascii?Q?CDu/v9YYRvkjqxjuo4aPO+wJSg0j5NdsAZI2Lsbh8gbto7Zkvj6NK/rgNWzl?=
+ =?us-ascii?Q?uljhcqAS79R8z/AAZ4dZLH4nYMPUP38sKfJ7g69jBsapdq25ZxGvIxyYx2Vj?=
+ =?us-ascii?Q?JAj1n3IvfRakS74m/mtEFqPEhpYwqXkKuVN0V/q3aL0NfBK5fYgQsZqmqmuD?=
+ =?us-ascii?Q?2AMUptiLCA06DDNEhXm87MEEsY5MVy7h18lpnuy6ZY7kvbotfqP3iuwImxpS?=
+ =?us-ascii?Q?9j3oquQ7d7OpaX4y7BQfy2wsZjT4QZxFQKGvKLz8J1HduhqMrGrcyE81W9SW?=
+ =?us-ascii?Q?Sv2+ggL4oiTKGsbxjCt21gHpi90q/dlp6FWoYI7flNR/pA0GcPzcgMPxuguC?=
+ =?us-ascii?Q?JqKw+a3TA+yADm2x03Sp0HrE6HzuPqT/DSLKdylpLK1LcqOpwFfg5QTwlm3M?=
+ =?us-ascii?Q?+9NRlrpFC7TARzH2xwHi+GiNHJpdyQnKeOLCnnF3a80/vAzIACbdSHQ+OKd2?=
+ =?us-ascii?Q?4CwB+VR3UFVmGx1YyJJCs7jZCtQywDl5Kat3NKm6Ag5vIo7QfrQA8SNPXv+W?=
+ =?us-ascii?Q?0fPMZrAPuZxOb6pq5jumnHk7zpejZQAhwcyMEoPTcUKsN+Nf+wOBL/Z9a+hR?=
+ =?us-ascii?Q?lYfB5ko0wcgNQtQfunYGfNKxTOIS9VzngJNl8FJCxWHJgJ/tVRgEOSelx6bu?=
+ =?us-ascii?Q?9UA29VJ4vR6Yf3sVfJC7cLVlf3h9STXk2WvPTsA99DiuxlQfg0OIA7ajICdq?=
+ =?us-ascii?Q?EHrGWMSOIu1xLhEbmXEUjQuH3DicdvoGV2yKdERdcuBkpCDDGdOmpYzr6OcP?=
+ =?us-ascii?Q?+VNhqka3J0oFxxxqXg5Bjmdq5VHMvQkxNInNsQ8xFHd7c+VkxXlStFZnzxst?=
+ =?us-ascii?Q?uAF9QomIXGqqU9dHb8QVgbGmS61CnEVguZO5J0f7WmsrD+jz4Qrdn1lf46ce?=
+ =?us-ascii?Q?2lBpTJWL+18BhVloTYX/2Cpn44hanlVhhDYUq7xIIaUKCO7Cg8dkrOJ0adjz?=
+ =?us-ascii?Q?nOYuRQZIPWNSwldiI8OwKoonIz6176vDR8DilIHq6BrYt8oEGrwJfOwBT/Lw?=
+ =?us-ascii?Q?nfQoKlT03xgdgO7Wt/hEmyXxX6YLpxfRPVpgJvrZZxWneRr1OFbIwzbp34hV?=
+ =?us-ascii?Q?8VGQylJ3f7fovHWh8p3IbhQseM9GfO0YwpTkfAztJCC5FSQ5qZWsBYioDyjg?=
+ =?us-ascii?Q?XMOz77eVv+QNDvizAGP3UlteA13qKz0706oy41ghbvAcbvvy6JlsbR2+1Fzx?=
+ =?us-ascii?Q?iRekVlVfza2kRXDEMTBZquifDuiAhTKPDPk+CA2Kx5Zgys1XcmTMCoWxoiOP?=
+ =?us-ascii?Q?fqbrVo5/rHyNeUbgA5wO9AkdQeiaKS9bv3CAPOU7aTFTO2ySVpwufp++SnA9?=
+ =?us-ascii?Q?+nxJszY2eFpPXi/X7cebGJ/hE73do28MU7Vqgz6MLYoon76lAHG3FY85fqL2?=
+ =?us-ascii?Q?V9hO/tIkmAPrgvEhfGggGF2EtBa6WTOF+YFPAmLVgQGQKBOuKo5lkjlgBLwc?=
+ =?us-ascii?Q?taQyRyG4/pCFtM8SZIFpD2Udz9Q=3D?=
 MIME-Version: 1.0
-X-OriginatorOrg: caltech.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB4678.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a14fc4c-b169-480f-833b-08da95b6c2b2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2022 18:35:40.8786
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F5KwtFAXPUTGD+IH2m8DbSVLIQvv5ibiJJBwOoElrSXxtiIFTG+bbDUS6MxuoCc4oyh9I2MQVNPC84mjaPPXLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR03MB6462
-Message-ID-Hash: SC4RIOD54LSUGZU7S4U33MHORMJY6YPB
-X-Message-ID-Hash: SC4RIOD54LSUGZU7S4U33MHORMJY6YPB
-X-MailFrom: minutolo@caltech.edu
+X-OriginatorOrg: miners.utep.edu
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR05MB7135
+Message-ID-Hash: OEQFR55PKO4GWVFFZSPMPI6WAI25NCS4
+X-Message-ID-Hash: OEQFR55PKO4GWVFFZSPMPI6WAI25NCS4
+X-MailFrom: jaavila5@miners.utep.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNOC4, FFT Block, Python
+Subject: [USRP-users] Companion issue
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RJLQ5B3GNOFNRBHB7DYLD5VZ4ASMD4DK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S4CIQQU3PIGTQCA64OLHRUPJV67VMCBA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9152814649798371732=="
+Content-Type: multipart/mixed; boundary="===============8990821819731319380=="
 
---===============9152814649798371732==
+--===============8990821819731319380==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BYAPR03MB467887B3F176E61D100C406BD3479BYAPR03MB4678namp_"
+	boundary="_000_SN4PR0501MB3919B694DACDED2A6BAE0C61D9479SN4PR0501MB3919_"
 
---_000_BYAPR03MB467887B3F176E61D100C406BD3479BYAPR03MB4678namp_
-Content-Type: text/plain; charset="Windows-1252"
+--_000_SN4PR0501MB3919B694DACDED2A6BAE0C61D9479SN4PR0501MB3919_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-In the code I set the spp at the beginning and use it to configure every bl=
-ock. I tried 128,512 and 1024 and I still receive the same error. Am I miss=
-ing some configuration?
-I'll try and reproduce the test in C++, just to confirm this is not a Pytho=
-n implementation thing.
-
-Thanks,
-Lorenzo
-________________________________
-From: Rob Kossler <rkossler@nd.edu>
-Sent: Tuesday, September 13, 2022 11:19 AM
-To: Paul Atreides <maud.dib1984@gmail.com>
-Cc: Minutolo, Lorenzo <minutolo@caltech.edu>; USRP-users@lists.ettus.com <u=
-srp-users@lists.ettus.com>
-Subject: Re: [USRP-users] Re: RFNOC4, FFT Block, Python
-
-Yes, the spp needs to be the same. I don't use gnuradio much so I don't kno=
-w if it may be manually configuring something, but in recent versions of UH=
-D, the graph connection process will automatically try to set the SPP appro=
-priately for all blocks using the "atomic item size" property of each block=
-. In the case of the FFT block, this size is the FFT length I think and so =
-other blocks would have to conform to that SPP.
-
-On Tue, Sep 13, 2022 at 2:03 PM Paul Atreides <maud.dib1984@gmail.com<mailt=
-o:maud.dib1984@gmail.com>> wrote:
-If I recall correctly, the app has to be the same in all blocks when you us=
-e the FFT, that=92s the case for the Fosphor graph anyways.
-Does that track with your understanding Rob?
-
-Get Outlook for iOS<https://aka.ms/o0ukef>
-________________________________
-From: Rob Kossler <rkossler@nd.edu<mailto:rkossler@nd.edu>>
-Sent: Tuesday, September 13, 2022 9:54:02 AM
-To: Minutolo, Lorenzo <minutolo@caltech.edu<mailto:minutolo@caltech.edu>>
-Cc: USRP-users@lists.ettus.com<mailto:USRP-users@lists.ettus.com> <usrp-use=
-rs@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
-Subject: [USRP-users] Re: RFNOC4, FFT Block, Python
-
-Hi Lorenzo,
-The FFT block requires the number of samples per packet to exactly equal th=
-e FFT size.  When the graph commits, UHD will try to resolve a packet size =
-that all of the blocks are happy with.  Perhaps if the FFT size is 2^11, th=
-is packet size may be bigger than the radio wants to deliver (or bigger tha=
-n the SPP you specified in the rx_streamer, I don't really know).
-
-In my opinion, this is a really unnecessary limitation of the stock FFT blo=
-ck. With relatively minor changes, this block would not need any linkage be=
-tween packet size and FFT length.
-Rob
-
-On Mon, Sep 12, 2022 at 8:20 PM Minutolo, Lorenzo <minutolo@caltech.edu<mai=
-lto:minutolo@caltech.edu>> wrote:
-Hi All,
-I'm using UHD 4.2 to play around with RFNOC4. I successfully added an FFT b=
-lock to the XG image of an X300, no static connections. uhd_usrp_probe retu=
-rns as expected. I use the attached code to test it out.
-When I commit the graph I get the following error:
-
-Traceback (most recent call last):
-  File "/home/lorenzo/test_rfnoc_fft.py", line 71, in <module>
-    graph.commit()
-RuntimeError: ValueError: samples per package must not be smaller than atom=
-ic item size
-
-Digging a bit in the libraries I see that it originates from rfnoc_streamer=
-.cpp, specifically:
-[...]
-  if (ais.is_valid()) {
-                const auto spp =3D this->rx_streamer_impl::get_max_num_samp=
-s();
-                if (spp < ais.get()) {
-                    throw uhd::value_error("samples per package must not be=
- smaller than atomic item size");
-                }
-[...]
-
-Has someone encountered this error before?
-
-Thenks,
-Lorenzo
+Im trying to downgrade from gnuradio 3.9 to 3.8 both from source. I install=
+ed 3.8 and deleted as much as I found of 3.9. When I check gnuradio-config-=
+info --version it shows the right 3.8 version. However when I run gnuradio-=
+companion it tries to grab version 3.9 and errors out trying to find libgnu=
+radio-runtime.so.3.9
 
 
 
-
-
-Attached code:
-
-    args =3D "addr=3D192.168.30.2"
-    graph =3D uhd.rfnoc.RfnocGraph(args)
-
-    radio_ID_A =3D uhd.rfnoc.BlockID(0, "Radio", 0);
-    radio_block_A =3D graph.get_block(radio_ID_A);
-    radio_ctrl_A =3D uhd.rfnoc.RadioControl(radio_block_A)
-
-    set_freq =3D 300e6
-    spp =3D 512
-    radio_ctrl_A.set_tx_frequency(set_freq, 0)
-    tx_freq =3D radio_ctrl_A.get_tx_frequency(0)
-    radio_ctrl_A.set_rx_frequency(set_freq, 0)
-    rx_freq =3D radio_ctrl_A.get_rx_frequency(0)
-    print("Tuning is TX %.1f, RX: %.1f MHz" % (tx_freq/1e6,rx_freq/1e6 ) )
-
-    radio_ctrl_A.set_properties(f'spp=3D{spp}', 0)
-    radio_ctrl_A.set_rx_antenna('RX2',0)
-    radio_ctrl_A.set_rate(200e6)
-
-
-    DDC_ID =3D graph.find_blocks("DDC")[0]
-    DDC_block =3D graph.get_block(DDC_ID)
-    DDC_control =3D uhd.rfnoc.DdcBlockControl(DDC_block)
-    DDC_control.set_input_rate(200e6, 0)
-    DDC_control.set_output_rate(5e6, 0)
-
-    FFT_ID =3D graph.find_blocks("FFT")[0]
-    FFT_block =3D graph.get_block(FFT_ID)
-    FFT_control =3D uhd.rfnoc.FftBlockControl(FFT_block)
-    FFT_control.set_length(spp)
-    FFT_control.set_magnitude(uhd.libpyuhd.rfnoc.fft_magnitude.COMPLEX)
-    FFT_control.set_direction(uhd.libpyuhd.rfnoc.fft_direction.FORWARD)
-    FFT_control.set_shift_config(uhd.libpyuhd.rfnoc.fft_shift.REVERSE)
-
-    stream_args =3D uhd.usrp.StreamArgs('fc32','sc16')
-    stream_args.args =3D 'spp=3D'+str(spp)
-    rx_stream =3D graph.create_rx_streamer(1, stream_args)
-
-    graph.connect(
-        radio_ID_A,0,
-        DDC_ID,0,
-        False
-    )
-    graph.connect(
-        DDC_ID,0,
-        FFT_ID,0,
-        False
-    )
-
-    graph.connect(
-        FFT_ID,0,
-        rx_stream,0
-    )
-
-    graph.commit()
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com<mailto:usrp-users@lis=
-ts.ettus.com>
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usr=
-p-users-leave@lists.ettus.com>
-
---_000_BYAPR03MB467887B3F176E61D100C406BD3479BYAPR03MB4678namp_
-Content-Type: text/html; charset="Windows-1252"
+--_000_SN4PR0501MB3919B694DACDED2A6BAE0C61D9479SN4PR0501MB3919_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
 </head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Hi,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-In the code I set the spp at the beginning and use it to configure every bl=
-ock. I tried 128,512 and 1024 and I still receive the same error. Am I miss=
-ing some configuration?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-I'll try and reproduce the test in C++, just to confirm this is not a Pytho=
-n implementation thing.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Thanks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Lorenzo</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
-yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Rob Kossler &lt;rkoss=
-ler@nd.edu&gt;<br>
-<b>Sent:</b> Tuesday, September 13, 2022 11:19 AM<br>
-<b>To:</b> Paul Atreides &lt;maud.dib1984@gmail.com&gt;<br>
-<b>Cc:</b> Minutolo, Lorenzo &lt;minutolo@caltech.edu&gt;; USRP-users@lists=
-.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br>
-<b>Subject:</b> Re: [USRP-users] Re: RFNOC4, FFT Block, Python</font>
-<div>&nbsp;</div>
-</div>
-<div>
+<body>
 <div dir=3D"ltr">
-<div dir=3D"ltr">Yes, the spp needs to be the same. I don't use gnuradio mu=
-ch so I don't know if it may be manually configuring something, but in rece=
-nt versions of UHD, the graph connection process will automatically try to =
-set the SPP appropriately for all
- blocks using the &quot;atomic item size&quot; property of each block. In t=
-he case of the FFT block, this size is the FFT length I think and so other =
-blocks would have to conform to that SPP.</div>
-<br>
-<div class=3D"x_gmail_quote">
-<div dir=3D"ltr" class=3D"x_gmail_attr">On Tue, Sep 13, 2022 at 2:03 PM Pau=
-l Atreides &lt;<a href=3D"mailto:maud.dib1984@gmail.com">maud.dib1984@gmail=
-.com</a>&gt; wrote:<br>
-</div>
-<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
-er-left:1px solid rgb(204,204,204); padding-left:1ex">
-<div>
-<div>
-<div>
-<div dir=3D"ltr">
-<div dir=3D"ltr">If I recall correctly, the app has to be the same in all b=
-locks when you use the FFT, that=92s the case for the Fosphor graph anyways=
-.&nbsp;</div>
-<div dir=3D"ltr">Does that track with your understanding Rob?</div>
-</div>
-</div>
-<div id=3D"x_m_-1942680106436659030ms-outlook-mobile-signature">
+<div></div>
+<div style=3D"">
+<div>Im trying to downgrade from gnuradio 3.9 to 3.8 both from source. I in=
+stalled 3.8 and deleted as much as I found of 3.9. When I check gnuradio-co=
+nfig-info --version it shows the right 3.8 version. However when I run gnur=
+adio-companion it tries to grab
+ version 3.9 and errors out trying to find libgnuradio-runtime.so.3.9<span>=
+</span></div>
+<div id=3D"ms-outlook-mobile-signature">
 <div><br>
 </div>
-Get <a href=3D"https://aka.ms/o0ukef" target=3D"_blank">Outlook for iOS</a>=
+<div style=3D"direction:ltr" dir=3D"ltr"><br>
 </div>
-</div>
-<hr style=3D"display:inline-block; width:98%">
-<div id=3D"x_m_-1942680106436659030divRplyFwdMsg" dir=3D"ltr"><font face=3D=
-"Calibri, sans-serif" color=3D"#000000" style=3D"font-size:11pt"><b>From:</=
-b> Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rko=
-ssler@nd.edu</a>&gt;<br>
-<b>Sent:</b> Tuesday, September 13, 2022 9:54:02 AM<br>
-<b>To:</b> Minutolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu" ta=
-rget=3D"_blank">minutolo@caltech.edu</a>&gt;<br>
-<b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com" target=3D"_blank">=
-USRP-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
-.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
-<b>Subject:</b> [USRP-users] Re: RFNOC4, FFT Block, Python</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<div dir=3D"ltr">Hi Lorenzo,
-<div>The FFT block requires the number of samples per packet to exactly equ=
-al the FFT size.&nbsp; When the graph commits, UHD will try to resolve a pa=
-cket size that all of the blocks are happy with.&nbsp; Perhaps if the FFT s=
-ize is 2^11, this packet size may be bigger
- than the radio wants to deliver (or bigger than the SPP you specified in t=
-he rx_streamer, I don't really know).</div>
-<div><br>
-</div>
-<div>In my opinion, this is a really unnecessary limitation of the stock FF=
-T block. With relatively minor changes, this block would not need any linka=
-ge between packet size and FFT length.</div>
-<div>Rob</div>
-</div>
-<br>
-<div>
-<div dir=3D"ltr">On Mon, Sep 12, 2022 at 8:20 PM Minutolo, Lorenzo &lt;<a h=
-ref=3D"mailto:minutolo@caltech.edu" target=3D"_blank">minutolo@caltech.edu<=
-/a>&gt; wrote:<br>
-</div>
-<blockquote style=3D"margin:0px 0px 0px 0.8ex; border-left:1px solid rgb(20=
-4,204,204); padding-left:1ex">
-<div>
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Hi All,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-I'm using UHD 4.2 to play around with RFNOC4. I successfully added an FFT b=
-lock to the XG image of an X300, no static connections. uhd_usrp_probe retu=
-rns as expected. I use the attached code to test it out.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-When I commit the graph I get the following error:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Traceback (most recent call last):
-<div>&nbsp; File &quot;/home/lorenzo/test_rfnoc_fft.py&quot;, line 71, in &=
-lt;module&gt;</div>
-<div>&nbsp; &nbsp; graph.commit()</div>
-<div>RuntimeError: ValueError: samples per package must not be smaller than=
- atomic item size</div>
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Digging a bit in the libraries I see that it originates from rfnoc_streamer=
-.cpp, specifically:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-[...]</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-&nbsp; if (ais.is_valid()) {
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const auto spp=
- =3D this-&gt;rx_streamer_impl::get_max_num_samps();</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (spp &lt; a=
-is.get()) {</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-throw uhd::value_error(&quot;samples per package must not be smaller than a=
-tomic item size&quot;);</div>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-[...]</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Has someone encountered this error before?</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Thenks,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Lorenzo</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-Attached code:</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
-t; color:rgb(0,0,0)">
-&nbsp; &nbsp; args =3D &quot;addr=3D192.168.30.2&quot;
-<div>&nbsp; &nbsp; graph =3D uhd.rfnoc.RfnocGraph(args)</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; radio_ID_A =3D uhd.rfnoc.BlockID(0, &quot;Radio&quot;, 0=
-);</div>
-<div>&nbsp; &nbsp; radio_block_A =3D graph.get_block(radio_ID_A);</div>
-<div>&nbsp; &nbsp; radio_ctrl_A =3D uhd.rfnoc.RadioControl(radio_block_A)</=
-div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; set_freq =3D 300e6</div>
-<div>&nbsp; &nbsp; spp =3D 512</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_tx_frequency(set_freq, 0)</div>
-<div>&nbsp; &nbsp; tx_freq =3D radio_ctrl_A.get_tx_frequency(0)</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_rx_frequency(set_freq, 0)</div>
-<div>&nbsp; &nbsp; rx_freq =3D radio_ctrl_A.get_rx_frequency(0)</div>
-<div>&nbsp; &nbsp; print(&quot;Tuning is TX %.1f, RX: %.1f MHz&quot; % (tx_=
-freq/1e6,rx_freq/1e6 ) )</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_properties(f'spp=3D{spp}', 0)</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_rx_antenna('RX2',0)</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_rate(200e6)</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; DDC_ID =3D graph.find_blocks(&quot;DDC&quot;)[0]</div>
-<div>&nbsp; &nbsp; DDC_block =3D graph.get_block(DDC_ID)</div>
-<div>&nbsp; &nbsp; DDC_control =3D uhd.rfnoc.DdcBlockControl(DDC_block)</di=
-v>
-<div>&nbsp; &nbsp; DDC_control.set_input_rate(200e6, 0)</div>
-<div>&nbsp; &nbsp; DDC_control.set_output_rate(5e6, 0)</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; FFT_ID =3D graph.find_blocks(&quot;FFT&quot;)[0]</div>
-<div>&nbsp; &nbsp; FFT_block =3D graph.get_block(FFT_ID)</div>
-<div>&nbsp; &nbsp; FFT_control =3D uhd.rfnoc.FftBlockControl(FFT_block)</di=
-v>
-<div>&nbsp; &nbsp; FFT_control.set_length(spp)</div>
-<div>&nbsp; &nbsp; FFT_control.set_magnitude(uhd.libpyuhd.rfnoc.fft_magnitu=
-de.COMPLEX)</div>
-<div>&nbsp; &nbsp; FFT_control.set_direction(uhd.libpyuhd.rfnoc.fft_directi=
-on.FORWARD)</div>
-<div>&nbsp; &nbsp; FFT_control.set_shift_config(uhd.libpyuhd.rfnoc.fft_shif=
-t.REVERSE)</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; stream_args =3D uhd.usrp.StreamArgs('fc32','sc16')</div>
-<div>&nbsp; &nbsp; stream_args.args =3D 'spp=3D'+str(spp)</div>
-<div>&nbsp; &nbsp; rx_stream =3D graph.create_rx_streamer(1, stream_args)</=
-div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; graph.connect(</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; radio_ID_A,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; DDC_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; False</div>
-<div>&nbsp; &nbsp; )</div>
-<div>&nbsp; &nbsp; graph.connect(</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; DDC_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; FFT_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; False</div>
-<div>&nbsp; &nbsp; )</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; graph.connect(</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; FFT_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; rx_stream,0</div>
-<div>&nbsp; &nbsp; )</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; graph.commit()</div>
-<div><br>
-</div>
-</div>
-</div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">
-usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">
-usrp-users-leave@lists.ettus.com</a><br>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
-</blockquote>
 </div>
 </div>
 </div>
 </body>
 </html>
 
---_000_BYAPR03MB467887B3F176E61D100C406BD3479BYAPR03MB4678namp_--
+--_000_SN4PR0501MB3919B694DACDED2A6BAE0C61D9479SN4PR0501MB3919_--
 
---===============9152814649798371732==
+--===============8990821819731319380==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -619,4 +180,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9152814649798371732==--
+--===============8990821819731319380==--
