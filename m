@@ -2,423 +2,520 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA555B647F
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Sep 2022 02:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87DA45B6BC2
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Sep 2022 12:38:02 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D83A4380CD3
-	for <lists+usrp-users@lfdr.de>; Mon, 12 Sep 2022 20:22:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2014E3813F4
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Sep 2022 06:38:01 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1663028529; bh=c9PnCL5I3B/2psAHXQ5hws4rMzqof0ljX3oXcejYjcQ=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=jyfFVcgL6JhyrVfh2kTid+hgpyRGTx4S6O3x0/kQ7wJltMqefNO4znPL+yCj6wZ2l
-	 jCLxW6CA2QyZuYgV8yJKcyobfc0F4XivD26Huk2+n4l0zdJ/aJyJhof17gqdZmVz0f
-	 kC/59Cf9V5t0DSYO57OaEIFztDRWL+M7l9V7TJGpASZ+/uX4wE0lGrbA7W8fsqlTHj
-	 6Y+HF8Gx/ELKi6bvFpGSKgz69In8p5rxnVx2DFfapu0JVNnHfIeLROqu8+Mfi+Aa3n
-	 gvat5CN+BsDgoWxE7FxvzhQHAOz1WmjopKLGHSrHvAskmYKOLYz2vJq1KEpFtiF+CF
-	 ibhchaOcFwSxA==
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
-	by mm2.emwd.com (Postfix) with ESMTPS id BA7D7380AF8
-	for <usrp-users@lists.ettus.com>; Mon, 12 Sep 2022 20:20:20 -0400 (EDT)
+	t=1663065481; bh=1jt61ar7BVQSxXPIop7QkHyokR5ND6VnyKyr9NFT9BI=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=qRyNRR90DzMISZBbgz3oSQOk0f+eZeKq1dmRjreh1ZNBvNKRWqqaCTMAc543opNvd
+	 8ityowp8BSzhETF/nqUN0OO838E1FtWCK91lksVuJu3uMUWaF72BvBL402dVK8Qeim
+	 zxsm1/KVah9gzuL2T9cFBHG/BFUhLG3E17IQi3z44kDbBhCJvFjmhCwyg0RTxk8nCj
+	 Xt3atrgkEWLLzHfdm3Eit/R5+tb4P0QUAekt/af/XYwPtr9aDM5/+ogsWxJcHPwJIX
+	 XCynAnzrt8gNmW9oHQ5uD6Jlxf01p82Nwu02iXMiS076xRlg6BVwM+uV0cBwlJQvP7
+	 3r8lv06Ma67iA==
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 64D39380D17
+	for <usrp-users@lists.ettus.com>; Tue, 13 Sep 2022 06:36:51 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=caltech.edu header.i=@caltech.edu header.b="Hs7ckkOj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GJNfH3Sn";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G4ItJvB384rNaMm+ZfMI7g9PuiPYTQzp5FFdeHDxIPuH1MCbIr6FOOtebGozubexhDENxxKQ8b5v9O1gdv4SE4q2c4aS/ykTWdwDUFoWj0XqwoSGjc+qyvc2UyoppRphl1roQQ+3s0PdYe946QVy3Ub+8qX1JcdF6YDmtrx0Ovs8s+XeQyq5tsPb4dsacvfoSARIBWHhG6MvZAocgdXrUOMSJ3y8w1tAeLhVpQBaozlyN3xi9282Pv2fnjEiNuB5/BLFniV5uIgG6rolZOJpAsuT/Z8hj6uZvFvJ8aav+qWTVn2wQBO27R8LjdLfpm7LALvUBYUeqZktrptgfMHrug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M5Xxz3B6amdbWluZ12OLyfu9piQKbjB1EkRmcdRR0tQ=;
- b=Z/AaRGLMQjw8c8alPEaNaSnvwqiCRCPB9W6nkAvm32ZegPRs6T70E6Nh5epAzJJaFH4bBSe2TuxRxNu8VWYi3gzbUsYkqK03zIj1TZSXg1fZJZy5OsT8haWx2D7gSN5f5WokdnYrWvoXameG/QcgtGK4uC3bKxEIGaAAfNzFsZt1ntCKvusyEBkCE7xFhiC2UMTAf1r9c93c8ScYHVHCujcjihOpBtngxBxF2nCgJWvXakqz1WWQ5Zuoirg5vrgXgnJcrVCqpZNsnYb3Q638BoTvTgwreWt+rywKrJ9lVSpwLHJz3jnoiCWBzxOseDGKTCa5bkmgeS899RVcUpL+Lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=caltech.edu; dmarc=pass action=none header.from=caltech.edu;
- dkim=pass header.d=caltech.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=caltech.edu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M5Xxz3B6amdbWluZ12OLyfu9piQKbjB1EkRmcdRR0tQ=;
- b=Hs7ckkOjH4Fp8ACILoYVGCBRtNs9dH4z51a5o7rZmn36tCPOeRRcb5r0E49Fyx5muj4IrX51vN0AS2xGzNCcSi5ZDtf8X1FgzSbOf8xQ08s386+bS9qurIme5gMpL2IEESZikAT2X3y2McNIDHR6v/tyWLNPdq9bOF6SX2ADvfx4axBjzcF5rK93z8ttAMBTGinG7gaTs+sU4WfAk7yj+zYoZYBQFuV/42LurIruZUTIaTYiUdWdti9/554qb5PQCxlzm1xxvAzLcgPzjDztZgqe0Vu4k3XJxIv3LSN9Dzld0nJ60fn94HuqLtkFKnrAWjKSR1drCeWyIM2L0d51eQ==
-Received: from BYAPR03MB4678.namprd03.prod.outlook.com (2603:10b6:a03:137::21)
- by SJ0PR03MB5582.namprd03.prod.outlook.com (2603:10b6:a03:281::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.12; Tue, 13 Sep
- 2022 00:20:19 +0000
-Received: from BYAPR03MB4678.namprd03.prod.outlook.com
- ([fe80::ebd5:115e:465b:f692]) by BYAPR03MB4678.namprd03.prod.outlook.com
- ([fe80::ebd5:115e:465b:f692%3]) with mapi id 15.20.5612.022; Tue, 13 Sep 2022
- 00:20:19 +0000
-From: "Minutolo, Lorenzo" <minutolo@caltech.edu>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: RFNOC4, FFT Block, Python
-Thread-Index: AQHYxwT+eGu9EQU6FEy301ESNYYr1w==
-Date: Tue, 13 Sep 2022 00:20:18 +0000
-Message-ID: 
- <BYAPR03MB46780CFCA3FB71E223471337D3479@BYAPR03MB4678.namprd03.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=caltech.edu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR03MB4678:EE_|SJ0PR03MB5582:EE_
-x-ms-office365-filtering-correlation-id: d28c08a4-5d75-4ff6-cbdb-08da951dbd5b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- cF20vUfT5lGrU81kS4ABKPmY4fUEQ1bO+SY6uiQQnSU5xN9YkZRklk65iSOMCiy0AJ/0qEcBVELkG/Z1RT/q8yhoI3eobUkLYPR7PE3zOb4p/wgmEzCRBm4Forzm1nc19CQyBsM5/wOt7Y88Y1s+G6JBgl0avE1JSYX8tWJUoVIRYs2HoK1uedMOCGqhisNujPMUZLUoJkJFrFVBLXKdWuX8tEEe5zKBqr0ZSaNkPNuxqkBeNKaFjMpsjMycrlSSttV8wkTi7SbN/UtjcffmzjQWxBnwYT2NOhgPMFTzkGtIe6RCFBisW81IyO8WIYYJhAl+Vtu7FBirLmk0J1QVEbLa63Bz8jD2PHJfwiR6mxbt/23B6+E4ScaYDvHys+XWZcNK+uhpURZbtj8nS4ia2F3ZuH3vxNgL5izdZe5MwcAQaUyk3ua9MhHAcqS8+pmvl7nY71kxjHX6uXxBwgoC/d5LSuyH4z4pqpEjsiznLz19jKCo3dv8jcFIBTrs+uWNUJIG1MmrTVbfzr6rfKX2KOe8NDQNo7AAdpgYkr/MbjPphkMior2x8CuanTZimyNJdPbf2aldK0vGtFHhLEcFKI5RYtXn2L0kukcslH33FbKlWw8he/isqyzmgHOaJiJwcniPCElakxbCvMld0hAyPJwqFR2OfSju6pP49OgBvFBmOlXDfHzqZKnloDdtp8jEjhcDr4rjV8tqgTie52JXdFXjp+hXD3RxIjhX9ht5XBugxqPsvSKtpyzeA1QNX38fs9nwuRSdyC8Lh0kx9uK4DQ==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR03MB4678.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(396003)(39860400002)(376002)(346002)(136003)(366004)(451199015)(86362001)(41320700001)(75432002)(41300700001)(478600001)(55016003)(9686003)(71200400001)(33656002)(64756008)(5660300002)(52536014)(91956017)(786003)(38070700005)(6506007)(66446008)(8936002)(19627405001)(66946007)(66556008)(122000001)(76116006)(316002)(66476007)(6916009)(7696005)(2906002)(8676002)(38100700002)(83380400001)(186003)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?tUsm2LzDiYdbZTgSaSLxUoc6vY5dcnqrRzeMsRH3j+RtpzSmmg21wy060c?=
- =?iso-8859-1?Q?qbxsEtsItIZCO0oh1cjNAECm+bfdhw2DjfX2EpXKA1nI34cYZbmYRwbGOh?=
- =?iso-8859-1?Q?4AeWLrmjkioMKBtRzEEW0RUMZQClkb5y0kBodO9MThZMDiRKIT1vjY0F1p?=
- =?iso-8859-1?Q?FqQsBOeeAl61jaI5n2ssHgjDyNHbKIhKKdhtYrYlcfFdR1FW1CZjXhGwWC?=
- =?iso-8859-1?Q?REBVl7TPY8x8Vp/E9TTdjA5JjP2AwFGRvFSdYcUMtZkCKAHp9xmRZLvLJ9?=
- =?iso-8859-1?Q?j+16F7Kgml07SUF+9pEk4pA+MJNO98Fa7/ENmLJfsZdhzRUrA1s8n7LEbR?=
- =?iso-8859-1?Q?czoEPvBrrK1o5B3leM//MuMzxf6TU5gX+lZKye3Gr++noDeWuaVcznuHrq?=
- =?iso-8859-1?Q?lMJ+Uj/SyVITEW/29kWAxwJtZkMU1gHE6mzc2NQpMAahFe4q+cqoiEOTac?=
- =?iso-8859-1?Q?6oQD+SqLEye7uqkDlddBr78zgGd04/09P0kxXDgyDlD16UWln7+2set3Da?=
- =?iso-8859-1?Q?AaPIOVV2XktDoeculGza87/lNMLMXNMKEiXG0EDIDHog40wKDiou8hMI6O?=
- =?iso-8859-1?Q?dDld6J1VhyiFk4QzPPEC4ril6r35WX0MQP0d1hcJ6+ixEP7Z8iMm/FYxEu?=
- =?iso-8859-1?Q?ldeMrZGiiE0Lt5baxoxTLEtr43s0IZArj7mWLuxBhA4jgmEcljVNoMdT/s?=
- =?iso-8859-1?Q?E3hPYoelwr2cw0i5MhEsMxtpUWPo5mxNBLYvZlQJHClvU4qQpJd9AGDR07?=
- =?iso-8859-1?Q?cGYAfjoWsL7q8Sk57Qw1jeSN2+++8DTyro0kkX4auVO175al9Gb+fyxkI7?=
- =?iso-8859-1?Q?gRxUrmFPk+FCs+Ok5vMqANuptpbcbIiUqO72CKT8bPV3Pa4sBugHFEdiz/?=
- =?iso-8859-1?Q?OzgRFmTMSW9jFHFNcRcGH2cARy18waQ97uRk3Rrqvj3E7WwpqGDuFhgQeb?=
- =?iso-8859-1?Q?k+W9sOKBuZ0SnMAH4dXREQ6xOCjAfICyOLNoBq7ydVvQmTgIDHRQYU1Uhp?=
- =?iso-8859-1?Q?ynR6L/AFk22qqKzZliLwGdiW6nhfOqFgGa/RsX/1OAk+ZLq0GhPIs6Sekv?=
- =?iso-8859-1?Q?/xOmsWAcGARs0nWenXmJV1NHGtUvnn4gIzvDUBaPZDceSUQUnvG/lZ+nM2?=
- =?iso-8859-1?Q?ZcQzzgwWJ3vgCVkFo0y+srhMdcwxqzHkqEjZs9RPiS/yMF3vKjDibWc3Tj?=
- =?iso-8859-1?Q?bKHnS4p188X32GQqGn/lQTpy/1PvoT17ixvsthGR/FcUv56nTlHL0I46S6?=
- =?iso-8859-1?Q?MPndwADB1Yt/7QvbRLgduMMvsqnRWzGw0YLl8oVCOwjliRVZaEoX8KeRYU?=
- =?iso-8859-1?Q?/PSITW8x1d7KzpYHveq37AE1yxOmsj3xsTAINezdBjG5dIDrdnhIng20dp?=
- =?iso-8859-1?Q?DiL1CnP4FkFQ9MjjpqdFXBciQJAcdChMP5zLW1t1Ojn3v0FC/wc2gLpj+z?=
- =?iso-8859-1?Q?seF51mGMDdP/yxjGRBA9qzFX6HCv0qYXnvkKEq5UpXd8+iqYYPMCDx925C?=
- =?iso-8859-1?Q?QRbSXumnfHIaNv8t3ZgCMdMPgBaoH6ySy0e1Vz8PTWWYqLfqXOJ44dXDc8?=
- =?iso-8859-1?Q?uOvzmH23H3ZWnpZF0tAJcFMlv6LM6za8kBXojBpXRa8C5DYP6zih11ZT/5?=
- =?iso-8859-1?Q?Mefho2Z5W9GPaxW+O6HXpqve0GJ8j0/Rx3?=
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-127f5411b9cso30898588fac.4
+        for <usrp-users@lists.ettus.com>; Tue, 13 Sep 2022 03:36:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=wPcVh20/o77SxreLGYJCtM1gc8rVZq90aXmi8TYZrHg=;
+        b=GJNfH3Sn+iRV0XxJGkao97MUZiJMXPcFtY2maJgEOSNTX22zJfkAeZmmCV3nFo5OS/
+         /gEn/55z4WVFCPuea3EqtDF7ESLXvihh4jwyDVLFk2fdTVXn48m0QtgT15W6sqFSZq2D
+         I3meZT9WmaIJlW/A2omaMBvzuCTxtZ8T65g4Ss7crM3bk5MBBmgTnyElwrZu7gyvWZKP
+         tfSAuWlJ9MbfTl5qatu1hth389RKBgzhp5e6Vo5vnWX+yhFegcoPGs6oQTjftnpo+FTz
+         fSfhjtQm2VHd0tEWHueoS/s6bTx13wP7hLj47a9Q47Zd88ckyad9+YhYMM+mUXNLypcq
+         80Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=wPcVh20/o77SxreLGYJCtM1gc8rVZq90aXmi8TYZrHg=;
+        b=EjtjcgLeyIIEYPRGCzL3KGG00urM1AK5uMw5OCp64CIO71scbTzewOIG3zNhWZLm7h
+         qa/xma87qrwdrj9iqfuoO1zi80AiZckQCljujFN8vyYb7n6RcWKBbnZUNm08JRC3FKw8
+         hzSnG3uxQyK88gJz+y0Sdb0jhvsuUDPjikEU8gmB4N6MDYf0G/fGD4K0228phiT41wdn
+         u0Bx7pGAa1ct4iEQt7+JxIAZZU5VvfgjgkYeBVtMvjoBt7oTye10SIF60bZZEYaFiwIz
+         0PN9rVSoQYdBMVf5gi+0YTj0ADHVmf2C8qSoJO6ndIXOv7WQk+h5Po7bBIMEEl5LMugZ
+         PE7A==
+X-Gm-Message-State: ACgBeo3N/Tm3ecQi211SVC5VbQpQQYkw4V79rBBdI0m1EncY8IXsPrLN
+	Xc7xIBkWG+pWOH5a25nt8x1EcLIFeRensQibVF4=
+X-Google-Smtp-Source: AA6agR4EatFaN2oVvB5lgR9Wtn/SHKPNaA3OUvLHhtZW4/xx7tMgxYDyiX458KObLJv3ckc1nAyS3+0NcuZwJgdiInY=
+X-Received: by 2002:a05:6870:2189:b0:127:50a6:14b2 with SMTP id
+ l9-20020a056870218900b0012750a614b2mr1472545oae.178.1663065410422; Tue, 13
+ Sep 2022 03:36:50 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: caltech.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR03MB4678.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d28c08a4-5d75-4ff6-cbdb-08da951dbd5b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2022 00:20:18.9221
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: fd5be9d9-7b72-4df9-830e-b1f9cc5b44bd
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hItZ/Th/qfTI93Plbfu93ndieqVoLl3+COfyBjPidHqiHFWHW2+hFU2IBOZNYmIdacBfOebSyY9QPmJHqBkV7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB5582
-Message-ID-Hash: UMLM6TA7WIHQ3ZFVJWNVVF6E2ZFFRB5O
-X-Message-ID-Hash: UMLM6TA7WIHQ3ZFVJWNVVF6E2ZFFRB5O
-X-MailFrom: minutolo@caltech.edu
+References: <CAJhOL6cAL19bq0dk+sToy-ADUaZNomCWU+sdgL46meCu94P3Xw@mail.gmail.com>
+ <CAL7q81tqggKk4-MdGTsuQzGiLa2HThLdG99NQNynV863UAY4Gg@mail.gmail.com>
+ <CAJhOL6cdPSjjTq4ryt=59Moq=t2SJxK7Eqd-_kNC+wJuV40asA@mail.gmail.com>
+ <CAL7q81vU-WgEmrF0z8P-kQq3TJa=WSCtUwf-ftd1+a30EPZSdQ@mail.gmail.com>
+ <CAJhOL6e7FFTrvXmUZmcmRjzFeHfo3_OTVR0_=hb7T5Tgtb4dqQ@mail.gmail.com>
+ <CAL7q81s9KwfTnerWYdOt1fDrG9FDPv5qF743TYqBBSqG1LCNnA@mail.gmail.com>
+ <CAJhOL6cTzeJRP8EFS_HjQR2VZP84w+6j8RiRPMczuniQUwcO3w@mail.gmail.com>
+ <CAB__hTSe5M-BL4FFaAi=gA3O4AV=jxgBRbENpxGdnHe340ZptA@mail.gmail.com>
+ <CAB__hTTsg9LsRScFUmYOywBp9eSg7iYixjLZULa119B+fnO2WQ@mail.gmail.com> <CAB__hTQp1SOfvNa6E=qZaV6ORqVHU5MJFTv_vzU0KXZ5Gy9Eww@mail.gmail.com>
+In-Reply-To: <CAB__hTQp1SOfvNa6E=qZaV6ORqVHU5MJFTv_vzU0KXZ5Gy9Eww@mail.gmail.com>
+From: Kevin Williams <zs1kwa@gmail.com>
+Date: Tue, 13 Sep 2022 12:36:14 +0200
+Message-ID: <CAJhOL6etMLth3S6pj-ghemXv18PXz-M0nS=S3Sg0Z3-i6Pq4Yg@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: BUAD33FFYENRC25CQZ36QZRME33J5RG6
+X-Message-ID-Hash: BUAD33FFYENRC25CQZ36QZRME33J5RG6
+X-MailFrom: zs1kwa@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] RFNOC4, FFT Block, Python
+Subject: [USRP-users] Re: tracing an overflow error
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3L2UJ5TRUHIYZPHYHEHRFAUT3VUTRC2J/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BUAD33FFYENRC25CQZ36QZRME33J5RG6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8338561499386614337=="
+Content-Type: multipart/mixed; boundary="===============3207932521261064597=="
 
---===============8338561499386614337==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BYAPR03MB46780CFCA3FB71E223471337D3479BYAPR03MB4678namp_"
+--===============3207932521261064597==
+Content-Type: multipart/alternative; boundary="00000000000006cebb05e88c97cc"
 
---_000_BYAPR03MB46780CFCA3FB71E223471337D3479BYAPR03MB4678namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--00000000000006cebb05e88c97cc
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Rob,
+
+I can confirm the radio streams correctly.
+
+I have also tried tx_streamer => multiDDC => rx_streamer which successfully
+sends a number of samples, but none are received. (The script is below.)
+
+Just to summarize, the IP core seems to be behaving correctly when
+simulated in Vivado where I apply AXI handshaking, reset the core, and
+clock it.
+
+I have set all endpoints in the design as follows:
+
+  ep0:                       # Stream endpoint name
+    ctrl: True                      # Endpoint passes control traffic
+    data: True                      # Endpoint passes data traffic
+    buff_size: 32768                # Ingress buffer size for data
+
+Regards, Kevin
+
+
+graph = uhd.rfnoc.RfnocGraph("type=x300,addr=192.168.30.2")
+
+tx_streamer = graph.create_tx_streamer(1, uhd.usrp.StreamArgs("sc16",
+"sc16"))
+rx_streamer = graph.create_rx_streamer(1, uhd.usrp.StreamArgs("sc16",
+"sc16"))
+
+gb = graph.get_block("0/multiddc#0")
+graph.connect(tx_streamer, 0, gb.get_unique_id(), 0)
+graph.connect(gb.get_unique_id(), 0, rx_streamer, 0)
+graph.commit()
+
+num_samps = 4 * tx_streamer.get_max_num_samps()
+send_samps = np.array([[0x40004000] * num_samps], dtype="int32")
+
+tx_md = uhd.types.TXMetadata()
+tx_md.start_of_burst = True
+tx_md.end_of_burst = True
+
+recv_samps = np.zeros((1, num_samps), dtype="int32")
+
+rx_md = uhd.types.RXMetadata()
+
+num_sent = tx_streamer.send(send_samps, uhd.types.TXMetadata())
+num_recv = rx_streamer.recv(recv_samps, rx_md, 0.1)
+
+
+On Tue, 13 Sept 2022 at 00:36, Rob Kossler <rkossler@nd.edu> wrote:
+
+> One more thought. If the FPGA version that you built with dynamic linking,
+> you should be able to create an RFNoC Graph as follows:
+>   tx_streamer => multiDDC => rx_streamer(s)
+> This way you can eliminate the radio from the equation and test in a very
+> similar fashion to the way it is tested in a testbench.
+>
+> Rob
+>
+> On Mon, Sep 12, 2022 at 6:33 PM Rob Kossler <rkossler@nd.edu> wrote:
+>
+>> Oops. Ignore what I said. I now realize you stated you were getting an
+>> Overflow which of course you would never get if streaming hadn't started.
+>> Rob
+>>
+>> On Mon, Sep 12, 2022 at 6:32 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>
+>>> Are you sure that the radio is even streaming?  The typical method for
+>>> starting streaming is to tell the rx_streamer to start streaming.  Then, in
+>>> UHD-land, the rx_streamer ctrl tells the next upstring block to start
+>>> streaming such that this streaming command propagates up the chain until
+>>> the radio receives it and starts streaming.  So, if your custom block does
+>>> not forward the streaming command from the rx_streamer to the radio, then
+>>> the radio never even starts streaming.  You can verify by simply monitoring
+>>> the LEDs.
+>>>
+>>> If this is the problem, you can go-around the intended use by simply
+>>> telling the radio to start streaming rather than the rx_streamer.  Or, of
+>>> course, you can modify your custom block controller to propagate the
+>>> streaming command.
+>>> Rob
+>>>
+>>> On Mon, Sep 12, 2022 at 4:18 PM Kevin Williams <zs1kwa@gmail.com> wrote:
+>>>
+>>>> Yes, of course. But I don't get 1 sample from the ddc's, even with just
+>>>> one channel of a 2:1 decimated channel connected to the rx streamer.
+>>>>
+>>>> On Mon, 12 Sept 2022 at 22:13, Jonathon Pendlum <
+>>>> jonathon.pendlum@ettus.com> wrote:
+>>>>
+>>>>> The aggregate output rate of the 5 streams could require more
+>>>>> bandwidth than the 10 GigE interface can sustain. What are the exact output
+>>>>> rates?
+>>>>>
+>>>>> On Mon, Sep 12, 2022 at 3:53 PM Kevin Williams <zs1kwa@gmail.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Those rates vary from a 2:1 decimation down to other rates.
+>>>>>>
+>>>>>> The host has 10 Gbe interfaces to the USRP.
+>>>>>>
+>>>>>> I get samples if i connect the radio to the rx streamer, just nothing
+>>>>>> from the ddc's.
+>>>>>>
+>>>>>> On Mon, 12 Sept 2022 at 21:48, Jonathon Pendlum <
+>>>>>> jonathon.pendlum@ettus.com> wrote:
+>>>>>>
+>>>>>>> Hi Kevin,
+>>>>>>>
+>>>>>>> What are the sample rates for the 5 outputs? What connection are you
+>>>>>>> using to your host PC, 1 GigE or 10 GigE?
+>>>>>>>
+>>>>>>> Jonathon
+>>>>>>>
+>>>>>>> On Mon, Sep 12, 2022 at 3:38 PM Kevin Williams <zs1kwa@gmail.com>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>> Hi Jonathon,
+>>>>>>>>
+>>>>>>>> I've got an x310. The flowgraph is a simple radio->multiddc->(to 5x
+>>>>>>>> outputs). I've tried both static and dynamic routing from the radio block.
+>>>>>>>> I.e. the static route version:
+>>>>>>>>
+>>>>>>>> |    /
+>>>>>>>> |   |       Static connections on this device:
+>>>>>>>> |   |
+>>>>>>>> |   |   * 0/Radio#0:0==>0/multiddc#0:0
+>>>>>>>> |   |   * 0/multiddc#0:0==>0/SEP#2:0
+>>>>>>>> |   |   * 0/multiddc#0:1==>0/SEP#3:0
+>>>>>>>> |   |   * 0/multiddc#0:2==>0/SEP#4:0
+>>>>>>>> |   |   * 0/multiddc#0:3==>0/SEP#5:0
+>>>>>>>> |   |   * 0/multiddc#0:4==>0/SEP#6:0
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On the input side it is all at the radio rate, but I hope my core
+>>>>>>>> is being clocked at 214 MHz.
+>>>>>>>>
+>>>>>>>> When I simulate my IP core (which includes the AXI streaming
+>>>>>>>> interfaces) it looks ok.
+>>>>>>>>
+>>>>>>>> Regards, Kevin
+>>>>>>>>
+>>>>>>>> On Mon, 12 Sept 2022 at 21:29, Jonathon Pendlum <
+>>>>>>>> jonathon.pendlum@ettus.com> wrote:
+>>>>>>>>
+>>>>>>>>> Hello Kevin,
+>>>>>>>>>
+>>>>>>>>> What device are you using and what does your flowgraph look like?
+>>>>>>>>> What sample rate are you running at? If your block is running at the radio
+>>>>>>>>> sample rate (e.g. 200 MSPS on a X310), your block will need to process one
+>>>>>>>>> input sample every clock cycle on average.
+>>>>>>>>>
+>>>>>>>>> Jonathon
+>>>>>>>>>
+>>>>>>>>> On Mon, Sep 12, 2022 at 9:09 AM Kevin Williams <zs1kwa@gmail.com>
+>>>>>>>>> wrote:
+>>>>>>>>>
+>>>>>>>>>> Hi All,
+>>>>>>>>>>
+>>>>>>>>>> I've got an IP core that is causing an "ERROR_CODE_OVERFLOW" when
+>>>>>>>>>> used in an RFNoC project.
+>>>>>>>>>>
+>>>>>>>>>> The core responds correctly when simulated outside the RFNoC
+>>>>>>>>>> environment. (I can see correct output, the AXI streaming signalling,
+>>>>>>>>>> back-pressure when required, etc.)
+>>>>>>>>>>
+>>>>>>>>>> I'm not sure how to go about debugging this, and am not yet
+>>>>>>>>>> familiar enough with RFNoC to know what to ask.
+>>>>>>>>>>
+>>>>>>>>>> I have been thinking it was the core not being reset or clocked
+>>>>>>>>>> correctly, but this is how it gets instantiated:
+>>>>>>>>>>
+>>>>>>>>>>   multiddc multiddc_i (
+>>>>>>>>>>     //   - Using different clocks for the IP core and the AXI
+>>>>>>>>>> interface. The IPCore_Clk and AXILite_ACLK must be
+>>>>>>>>>>     //     synchronous and connected to the same clock source.
+>>>>>>>>>> The IPCore_RESETN and AXILite_ARESETN must be
+>>>>>>>>>>     //     connected to the same reset source. See
+>>>>>>>>>> Synchronization of Global Reset Signal to IP Core Clock Domain.
+>>>>>>>>>>     .IPCORE_CLK                (axis_data_clk),
+>>>>>>>>>>     .IPCORE_RESETN             (~axis_data_rst),
+>>>>>>>>>>
+>>>>>>>>>>     .AXI4_Lite_ACLK            (axis_data_clk),
+>>>>>>>>>>     .AXI4_Lite_ARESETN         (~axis_data_rst),
+>>>>>>>>>>
+>>>>>>>>>> The core YAML file describes the clock as:
+>>>>>>>>>>
+>>>>>>>>>> data:
+>>>>>>>>>>   fpga_iface: axis_chdr
+>>>>>>>>>>   clk_domain: ce
+>>>>>>>>>>
+>>>>>>>>>> In the project YAML file:
+>>>>>>>>>>
+>>>>>>>>>> clk_domains:
+>>>>>>>>>>     - { srcblk: _device_, srcport: radio, dstblk: radio0,
+>>>>>>>>>> dstport: radio }
+>>>>>>>>>>     - { srcblk: _device_, srcport: ce,    dstblk: multiddc0,
+>>>>>>>>>> dstport: ce }
+>>>>>>>>>>
+>>>>>>>>>> Is there something that might be an obvious first place to check?
+>>>>>>>>>>
+>>>>>>>>>> Many thanks, Kevin
+>>>>>>>>>>
+>>>>>>>>>> --
+>>>>>>>>>> Kevin Williams
+>>>>>>>>>> _______________________________________________
+>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>> --
+>>>>>>>> Kevin Williams
+>>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>> --
+>>>>>> Kevin Williams
+>>>>>>
+>>>>>
+>>>>
+>>>> --
+>>>> Kevin Williams
+>>>> _______________________________________________
+>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>
+>>>
+
+-- 
+Kevin Williams
+
+--00000000000006cebb05e88c97cc
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
-I'm using UHD 4.2 to play around with RFNOC4. I successfully added an FFT b=
-lock to the XG image of an X300, no static connections. uhd_usrp_probe retu=
-rns as expected. I use the attached code to test it out.
-When I commit the graph I get the following error:
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi Rob,=
+<div><br></div><div>I can confirm the radio streams correctly.</div><div><b=
+r></div><div>I have also tried tx_streamer =3D&gt; multiDDC =3D&gt; rx_stre=
+amer which successfully sends a number of samples, but none are received. (=
+The script is below.)</div><div><br></div><div>Just to summarize, the IP co=
+re seems to be behaving correctly when simulated in Vivado where I apply AX=
+I handshaking, reset the core, and clock it.</div><div><br></div><div>I hav=
+e set all endpoints in the design as follows:<br></div><div><div><br></div>=
+<div>=C2=A0 ep0:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0# Stream endpoint name</div><div>=C2=A0 =C2=A0 ctrl=
+: True=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 # Endpoint passes control traffic</div><div>=C2=A0 =C2=A0 data: Tru=
+e=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 # Endpoint passes data traffic</div><div>=C2=A0 =C2=A0 buff_size: 32768=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Ingress buffer si=
+ze for data</div></div><div><br></div><div>Regards, Kevin</div><div><br></d=
+iv><div><br></div><div><div>graph =3D uhd.rfnoc.RfnocGraph(&quot;type=3Dx30=
+0,addr=3D192.168.30.2&quot;)</div><div><br></div><div>tx_streamer =3D graph=
+.create_tx_streamer(1, uhd.usrp.StreamArgs(&quot;sc16&quot;, &quot;sc16&quo=
+t;))</div><div>rx_streamer =3D graph.create_rx_streamer(1, uhd.usrp.StreamA=
+rgs(&quot;sc16&quot;, &quot;sc16&quot;))</div><div><br></div><div>gb =3D gr=
+aph.get_block(&quot;0/multiddc#0&quot;)</div><div>graph.connect(tx_streamer=
+, 0, gb.get_unique_id(), 0)<br></div><div>graph.connect(gb.get_unique_id(),=
+ 0, rx_streamer, 0)</div><div>graph.commit()</div><div><br></div><div>num_s=
+amps =3D 4 * tx_streamer.get_max_num_samps()</div><div>send_samps =3D np.ar=
+ray([[0x40004000] * num_samps], dtype=3D&quot;int32&quot;)</div><div><br></=
+div><div>tx_md =3D uhd.types.TXMetadata()</div><div>tx_md.start_of_burst =
+=3D True</div><div>tx_md.end_of_burst =3D True</div><div><br></div><div>rec=
+v_samps =3D np.zeros((1, num_samps), dtype=3D&quot;int32&quot;)</div><div><=
+br></div><div>rx_md =3D uhd.types.RXMetadata()</div><div><br></div><div>num=
+_sent =3D tx_streamer.send(send_samps, uhd.types.TXMetadata())</div><div>nu=
+m_recv =3D rx_streamer.recv(recv_samps, rx_md, 0.1)<br></div></div><div><br=
+></div></div></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Tue, 13 Sept 2022 at 00:36, Rob Kossler &lt;<a =
+href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">One more th=
+ought. If the FPGA version that you built with dynamic linking, you should =
+be able to create an RFNoC Graph as follows:<div>=C2=A0 tx_streamer =3D&gt;=
+ multiDDC =3D&gt; rx_streamer(s)</div><div>This way you can eliminate the r=
+adio from the equation and test in a very similar fashion to the way it is =
+tested in a testbench.</div><div><br></div><div>Rob</div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 12, 20=
+22 at 6:33 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"=
+_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr">Oops. Ignore what I said. I now rea=
+lize you stated you were getting an Overflow which of course you would neve=
+r get if streaming hadn&#39;t started.<div>Rob</div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 12, 2022 at=
+ 6:32 PM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blan=
+k">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr">Are you sure that the radio is even stre=
+aming?=C2=A0 The typical method for starting streaming is to tell the rx_st=
+reamer to start streaming.=C2=A0 Then, in UHD-land, the rx_streamer ctrl te=
+lls the next upstring block to start streaming such that this streaming com=
+mand propagates up the chain until the radio receives it and starts streami=
+ng.=C2=A0 So, if your custom block does not forward the streaming command f=
+rom the rx_streamer to the radio, then the radio never even starts streamin=
+g.=C2=A0 You can verify by simply monitoring the LEDs.<div><br></div><div>I=
+f this is the problem, you can go-around the intended use by simply telling=
+ the radio to start streaming rather than the rx_streamer.=C2=A0 Or, of cou=
+rse, you can modify your custom block controller to propagate the streaming=
+ command.<br><div>Rob</div></div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 12, 2022 at 4:18 PM Kevin Will=
+iams &lt;<a href=3D"mailto:zs1kwa@gmail.com" target=3D"_blank">zs1kwa@gmail=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex"><div dir=3D"ltr">Yes, of course. But I don&#39;t get 1 sample from the =
+ddc&#39;s, even with just one channel of a 2:1 decimated channel connected =
+to the rx streamer.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Mon, 12 Sept 2022 at 22:13, Jonathon Pendlum &lt;<a h=
+ref=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jonathon.pendlu=
+m@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr">The aggregate output rate of the 5 streams coul=
+d require more bandwidth than the 10 GigE interface can sustain. What are t=
+he exact output rates?</div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
+ class=3D"gmail_attr">On Mon, Sep 12, 2022 at 3:53 PM Kevin Williams &lt;<a=
+ href=3D"mailto:zs1kwa@gmail.com" target=3D"_blank">zs1kwa@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"ltr">Those rates vary from a 2:1 decimation down to other rates.<div><=
+br></div><div>The host has 10 Gbe interfaces to the USRP.</div><div><br></d=
+iv><div>I get samples if i connect the radio to the rx streamer, just nothi=
+ng from the ddc&#39;s.</div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, 12 Sept 2022 at 21:48, Jonathon Pendl=
+um &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jona=
+thon.pendlum@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div dir=3D"ltr">Hi Kevin,<div><br></div><div>What ar=
+e the sample rates for the 5 outputs? What connection are you using to your=
+ host PC, 1 GigE or 10 GigE?</div><div><br></div><div>Jonathon</div></div><=
+br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon,=
+ Sep 12, 2022 at 3:38 PM Kevin Williams &lt;<a href=3D"mailto:zs1kwa@gmail.=
+com" target=3D"_blank">zs1kwa@gmail.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi=
+ Jonathon,<div><br></div><div>I&#39;ve got an x310. The flowgraph is a simp=
+le radio-&gt;multiddc-&gt;(to 5x outputs). I&#39;ve tried both static and d=
+ynamic routing from the radio block. I.e. the static route version:</div><d=
+iv><br></div><div><div>|=C2=A0 =C2=A0 /</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0Static connections on this device:</div><div>|=C2=A0 =C2=
+=A0|</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/Radio#0:0=3D=3D&gt;0/multidd=
+c#0:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/multiddc#0:0=3D=3D&gt;0/SEP=
+#2:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/multiddc#0:1=3D=3D&gt;0/SEP#=
+3:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/multiddc#0:2=3D=3D&gt;0/SEP#4=
+:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/multiddc#0:3=3D=3D&gt;0/SEP#5:=
+0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/multiddc#0:4=3D=3D&gt;0/SEP#6:0=
+</div></div><div><br></div><div><br></div><div>On the input side it is all =
+at the radio rate, but I hope my core is being clocked at 214 MHz.</div><di=
+v><br></div><div>When I simulate my IP core (which includes the AXI streami=
+ng interfaces) it looks ok.</div><div><br></div><div>Regards, Kevin</div></=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Mon, 12 Sept 2022 at 21:29, Jonathon Pendlum &lt;<a href=3D"mailto:j=
+onathon.pendlum@ettus.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+ dir=3D"ltr">Hello Kevin,<div><br></div><div>What device are you using and =
+what does your flowgraph look like? What sample rate are you running at? If=
+ your block is running at the radio sample rate (e.g. 200 MSPS on a X310), =
+your block will need to process one input sample every clock cycle on avera=
+ge.</div><div><br></div><div>Jonathon</div></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 12, 2022 at 9:09 AM =
+Kevin Williams &lt;<a href=3D"mailto:zs1kwa@gmail.com" target=3D"_blank">zs=
+1kwa@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr">Hi All,<div><br></div><div>I&#39;ve got an IP cor=
+e that is causing an &quot;ERROR_CODE_OVERFLOW&quot; when used in an RFNoC =
+project.</div><div><br></div><div>The core responds correctly when simulate=
+d outside the RFNoC environment. (I can see correct output, the AXI streami=
+ng signalling, back-pressure when required, etc.)</div><div><br></div><div>=
+I&#39;m not sure how to go about debugging this, and am not yet familiar en=
+ough with RFNoC to know what to ask.</div><div><br></div><div>I have been t=
+hinking it was the core not being reset or clocked correctly, but this is h=
+ow it gets instantiated:</div><div><br></div><div><div>=C2=A0 multiddc mult=
+iddc_i (</div><div>=C2=A0 =C2=A0 //=C2=A0 =C2=A0- Using different clocks fo=
+r the IP core and the AXI interface. The IPCore_Clk and AXILite_ACLK must b=
+e=C2=A0<br></div><div>=C2=A0 =C2=A0 //=C2=A0 =C2=A0 =C2=A0synchronous and c=
+onnected to the same clock source. The IPCore_RESETN and AXILite_ARESETN mu=
+st be=C2=A0</div><div>=C2=A0 =C2=A0 //=C2=A0 =C2=A0 =C2=A0connected to the =
+same reset source. See Synchronization of Global Reset Signal to IP Core Cl=
+ock Domain.</div><div>=C2=A0 =C2=A0 .IPCORE_CLK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 (axis_data_clk),</div><div>=C2=A0 =C2=A0 .IPCOR=
+E_RESETN=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(~axis_data_rst),</=
+div><div><br></div><div>=C2=A0 =C2=A0 .AXI4_Lite_ACLK=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 (axis_data_clk),</div><div>=C2=A0 =C2=A0 .AXI4_Lite_AR=
+ESETN=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(~axis_data_rst),</div></div><div><b=
+r></div><div>The core YAML file describes the clock as:</div><div><br></div=
+><div><div>data:</div><div>=C2=A0 fpga_iface: axis_chdr</div><div>=C2=A0 cl=
+k_domain: ce</div></div><div><br></div><div>In the project YAML file:</div>=
+<div><br></div><div><div>clk_domains:</div><div>=C2=A0 =C2=A0 - { srcblk: _=
+device_, srcport: radio, dstblk: radio0,=C2=A0 =C2=A0 dstport: radio }</div=
+><div>=C2=A0 =C2=A0 - { srcblk: _device_, srcport: ce,=C2=A0 =C2=A0 dstblk:=
+ multiddc0, dstport: ce }</div></div><div><br></div><div>Is there something=
+ that might be an obvious first place to check?</div><div><br></div><div>Ma=
+ny thanks, Kevin<br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr">Ke=
+vin Williams</div></div></div></div></div></div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>Kevin Williams</div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>Kevin Williams</div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>Kevin Williams</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">Kevin Williams</div>
 
-Traceback (most recent call last):
-  File "/home/lorenzo/test_rfnoc_fft.py", line 71, in <module>
-    graph.commit()
-RuntimeError: ValueError: samples per package must not be smaller than atom=
-ic item size
+--00000000000006cebb05e88c97cc--
 
-Digging a bit in the libraries I see that it originates from rfnoc_streamer=
-.cpp, specifically:
-[...]
-  if (ais.is_valid()) {
-                const auto spp =3D this->rx_streamer_impl::get_max_num_samp=
-s();
-                if (spp < ais.get()) {
-                    throw uhd::value_error("samples per package must not be=
- smaller than atomic item size");
-                }
-[...]
-
-Has someone encountered this error before?
-
-Thenks,
-Lorenzo
-
-
-
-
-
-Attached code:
-
-    args =3D "addr=3D192.168.30.2"
-    graph =3D uhd.rfnoc.RfnocGraph(args)
-
-    radio_ID_A =3D uhd.rfnoc.BlockID(0, "Radio", 0);
-    radio_block_A =3D graph.get_block(radio_ID_A);
-    radio_ctrl_A =3D uhd.rfnoc.RadioControl(radio_block_A)
-
-    set_freq =3D 300e6
-    spp =3D 512
-    radio_ctrl_A.set_tx_frequency(set_freq, 0)
-    tx_freq =3D radio_ctrl_A.get_tx_frequency(0)
-    radio_ctrl_A.set_rx_frequency(set_freq, 0)
-    rx_freq =3D radio_ctrl_A.get_rx_frequency(0)
-    print("Tuning is TX %.1f, RX: %.1f MHz" % (tx_freq/1e6,rx_freq/1e6 ) )
-
-    radio_ctrl_A.set_properties(f'spp=3D{spp}', 0)
-    radio_ctrl_A.set_rx_antenna('RX2',0)
-    radio_ctrl_A.set_rate(200e6)
-
-
-    DDC_ID =3D graph.find_blocks("DDC")[0]
-    DDC_block =3D graph.get_block(DDC_ID)
-    DDC_control =3D uhd.rfnoc.DdcBlockControl(DDC_block)
-    DDC_control.set_input_rate(200e6, 0)
-    DDC_control.set_output_rate(5e6, 0)
-
-    FFT_ID =3D graph.find_blocks("FFT")[0]
-    FFT_block =3D graph.get_block(FFT_ID)
-    FFT_control =3D uhd.rfnoc.FftBlockControl(FFT_block)
-    FFT_control.set_length(spp)
-    FFT_control.set_magnitude(uhd.libpyuhd.rfnoc.fft_magnitude.COMPLEX)
-    FFT_control.set_direction(uhd.libpyuhd.rfnoc.fft_direction.FORWARD)
-    FFT_control.set_shift_config(uhd.libpyuhd.rfnoc.fft_shift.REVERSE)
-
-    stream_args =3D uhd.usrp.StreamArgs('fc32','sc16')
-    stream_args.args =3D 'spp=3D'+str(spp)
-    rx_stream =3D graph.create_rx_streamer(1, stream_args)
-
-    graph.connect(
-        radio_ID_A,0,
-        DDC_ID,0,
-        False
-    )
-    graph.connect(
-        DDC_ID,0,
-        FFT_ID,0,
-        False
-    )
-
-    graph.connect(
-        FFT_ID,0,
-        rx_stream,0
-    )
-
-    graph.commit()
-
-
---_000_BYAPR03MB46780CFCA3FB71E223471337D3479BYAPR03MB4678namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Hi All,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-I'm using UHD 4.2 to play around with RFNOC4. I successfully added an FFT b=
-lock to the XG image of an X300, no static connections. uhd_usrp_probe retu=
-rns as expected. I use the attached code to test it out.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-When I commit the graph I get the following error:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Traceback (most recent call last):
-<div>&nbsp; File &quot;/home/lorenzo/test_rfnoc_fft.py&quot;, line 71, in &=
-lt;module&gt;</div>
-<div>&nbsp; &nbsp; graph.commit()</div>
-<div>RuntimeError: ValueError: samples per package must not be smaller than=
- atomic item size</div>
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Digging a bit in the libraries I see that it originates from rfnoc_streamer=
-.cpp, specifically:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-[...]</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-&nbsp; if (ais.is_valid()) {
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; const auto spp=
- =3D this-&gt;rx_streamer_impl::get_max_num_samps();</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (spp &lt; a=
-is.get()) {</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-throw uhd::value_error(&quot;samples per package must not be smaller than a=
-tomic item size&quot;);</div>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-[...]</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Has someone encountered this error before?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Thenks,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Lorenzo</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Attached code:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-&nbsp; &nbsp; args =3D &quot;addr=3D192.168.30.2&quot;
-<div>&nbsp; &nbsp; graph =3D uhd.rfnoc.RfnocGraph(args)</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; radio_ID_A =3D uhd.rfnoc.BlockID(0, &quot;Radio&quot;, 0=
-);</div>
-<div>&nbsp; &nbsp; radio_block_A =3D graph.get_block(radio_ID_A);</div>
-<div>&nbsp; &nbsp; radio_ctrl_A =3D uhd.rfnoc.RadioControl(radio_block_A)</=
-div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; set_freq =3D 300e6</div>
-<div>&nbsp; &nbsp; spp =3D 512</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_tx_frequency(set_freq, 0)</div>
-<div>&nbsp; &nbsp; tx_freq =3D radio_ctrl_A.get_tx_frequency(0)</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_rx_frequency(set_freq, 0)</div>
-<div>&nbsp; &nbsp; rx_freq =3D radio_ctrl_A.get_rx_frequency(0)</div>
-<div>&nbsp; &nbsp; print(&quot;Tuning is TX %.1f, RX: %.1f MHz&quot; % (tx_=
-freq/1e6,rx_freq/1e6 ) )</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_properties(f'spp=3D{spp}', 0)</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_rx_antenna('RX2',0)</div>
-<div>&nbsp; &nbsp; radio_ctrl_A.set_rate(200e6)</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; DDC_ID =3D graph.find_blocks(&quot;DDC&quot;)[0]</div>
-<div>&nbsp; &nbsp; DDC_block =3D graph.get_block(DDC_ID)</div>
-<div>&nbsp; &nbsp; DDC_control =3D uhd.rfnoc.DdcBlockControl(DDC_block)</di=
-v>
-<div>&nbsp; &nbsp; DDC_control.set_input_rate(200e6, 0)</div>
-<div>&nbsp; &nbsp; DDC_control.set_output_rate(5e6, 0)</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; FFT_ID =3D graph.find_blocks(&quot;FFT&quot;)[0]</div>
-<div>&nbsp; &nbsp; FFT_block =3D graph.get_block(FFT_ID)</div>
-<div>&nbsp; &nbsp; FFT_control =3D uhd.rfnoc.FftBlockControl(FFT_block)</di=
-v>
-<div>&nbsp; &nbsp; FFT_control.set_length(spp)</div>
-<div>&nbsp; &nbsp; FFT_control.set_magnitude(uhd.libpyuhd.rfnoc.fft_magnitu=
-de.COMPLEX)</div>
-<div>&nbsp; &nbsp; FFT_control.set_direction(uhd.libpyuhd.rfnoc.fft_directi=
-on.FORWARD)</div>
-<div>&nbsp; &nbsp; FFT_control.set_shift_config(uhd.libpyuhd.rfnoc.fft_shif=
-t.REVERSE)</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; stream_args =3D uhd.usrp.StreamArgs('fc32','sc16')</div>
-<div>&nbsp; &nbsp; stream_args.args =3D 'spp=3D'+str(spp)</div>
-<div>&nbsp; &nbsp; rx_stream =3D graph.create_rx_streamer(1, stream_args)</=
-div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; graph.connect(</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; radio_ID_A,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; DDC_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; False</div>
-<div>&nbsp; &nbsp; )</div>
-<div>&nbsp; &nbsp; graph.connect(</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; DDC_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; FFT_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; False</div>
-<div>&nbsp; &nbsp; )</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; graph.connect(</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; FFT_ID,0,</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; rx_stream,0</div>
-<div>&nbsp; &nbsp; )</div>
-<div><br>
-</div>
-<div>&nbsp; &nbsp; graph.commit()</div>
-<div><br>
-</div>
-</div>
-</body>
-</html>
-
---_000_BYAPR03MB46780CFCA3FB71E223471337D3479BYAPR03MB4678namp_--
-
---===============8338561499386614337==
+--===============3207932521261064597==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -428,4 +525,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8338561499386614337==--
+--===============3207932521261064597==--
