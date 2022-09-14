@@ -2,136 +2,434 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 311015B901B
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Sep 2022 23:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E675B907E
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Sep 2022 00:23:17 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D117E383BC0
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Sep 2022 17:30:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3A6283812DB
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Sep 2022 18:23:16 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1663191016; bh=Eo0VxPr9ul9q20IFvb+MKkMSPs//aBJS7Autv4mJrqE=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=n1NfsNDvexWNHWrdKgRwee65m7nsAMwdr3D5PszIpxRXrNhiZphz0xdOpPs342D0F
-	 zUyz9sm335gFMIaqrZ3bEFi92JdBAbcl1AnWP+6nP63XuunHcEeFooXmSReiCKHm1N
-	 cBpc2936nkNwHcESqmkRMrBV7mFzuWesUgRvaip4JCM6XApv0Iwl8Eps4fsy0Rz245
-	 NWC+jmAyiVMo+Rc+ldNvkoXkAgXlRKy07x+RrjlMcYHA1U6ytoq55KWB8ar5oBb7jx
-	 CeJvr2VgsVdA1fExIQSVIggaoV4svVHzUKPFl7lafnSYv9ghvneARb/gZZAT646mwQ
-	 m9/j10mq/pY4g==
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
-	by mm2.emwd.com (Postfix) with ESMTPS id C1922383A1F
-	for <usrp-users@lists.ettus.com>; Wed, 14 Sep 2022 17:29:03 -0400 (EDT)
+	t=1663194196; bh=NKfRtUSeOt4BE90OOEzyi6bP8fndwsEunaHF26ZNDhw=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=ki8qb5jabJ9Owcg9tjpUBWKyKps8VpEyOzuTA3WkbHJujxKuYw7WZZ9lsW7hMRCQY
+	 KqPowrAW2e54e4Gmw1CTDpxZvnUjV9uOALyoG52YVPmLFQdxSC+AU+xSbP0CQcGKwr
+	 BX97UR+hI6/LeugK8rCdjy16gqPhiaPcuG0e+AxXirZDRodyISuEKHbnYuziL0r4Ht
+	 U6BLDGyxnZdNYsLkG6+RgtAo1SeM5bWwkLrbvoP9epoAqPyYZEKjf4HknCrrxHQvSd
+	 6LdlKnV8Q/OuCdpKu8GxpFA3Ma52fRMh+2W4XmI3tf2OXoXaU/OalywNvHz66qpw4K
+	 8uNsPLkzd9oxA==
+Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com [148.163.156.75])
+	by mm2.emwd.com (Postfix) with ESMTPS id 778B1380DE5
+	for <usrp-users@lists.ettus.com>; Wed, 14 Sep 2022 18:21:59 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VF85+BRv";
+	dkim=pass (2048-bit key; unprotected) header.d=ni.com header.i=@ni.com header.b="ylz5ZyXR";
+	dkim=pass (1024-bit key; unprotected) header.d=nio365.onmicrosoft.com header.i=@nio365.onmicrosoft.com header.b="Zvjlsw8g";
 	dkim-atps=neutral
-Received: by mail-pj1-f45.google.com with SMTP id m10-20020a17090a730a00b001fa986fd8eeso20389900pjk.0
-        for <usrp-users@lists.ettus.com>; Wed, 14 Sep 2022 14:29:03 -0700 (PDT)
+Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
+	by mx0a-00010702.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 28ELLKZf015021;
+	Wed, 14 Sep 2022 17:21:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ni.com; h=from : to : subject :
+ date : message-id : content-type : mime-version; s=PPS11062020;
+ bh=4D91pmHv5P2kyqrfnTikAIW9cLVA2XY0/jbOiSn3FHI=;
+ b=ylz5ZyXR64tC95FQ9fpl6hfEV1qj/ggdc7NJVBk5+Ban0qCgLxuOlNbueK5dtDLt6+Yy
+ llrKdXwfElF/6WI+77yHxGdFe0Y18bMzyKrLOXJGfOy+kF8EwY/t0Url0Jjok/75+Dfo
+ LT9rAjk+o5tKNUYcoudbcwyt/2LkwbekJfDSol3665d/q/mJvHT4w7Rz4i6I6l4eW6Vd
+ 4nD/cOIpzZgKcG0jfaySIIMtwiYpiUs9RHMnMUaEQtkMstpfi9CK8dZ9FAezLXR/DGMR
+ CaLwWxWRUQwnfEq3gI29Tn6W2dsV02WnyQq07TryQfdscWLARg//6P1KjbLzedZD96Vk bQ==
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2170.outbound.protection.outlook.com [104.47.55.170])
+	by mx0a-00010702.pphosted.com (PPS) with ESMTPS id 3jjyfcjrvy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 14 Sep 2022 17:21:52 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QyXcjIgHSpBPbCq3jJ1/6y0udY7CfwkKfb2D/zBM9wKVMbAK1L5mCuF7Qd7JAePfYaGvighBS0l8atF3qvuvRzomubsuqkDQTpcyrAQiMn/dJDh68a9D2fVZWgrvG2psSd46apZBkBwOhNG5w+Os0513V7fWdNJUSGEzD/ijxrSJ9pQPbbG84VEefFJiIV+zW1lniWPe5y1UOeu9xshkZvfp19FM8OmwApbiLaP8wxW+VQKHoyGou3ibqi35oBnGrbpaIXGkVp+QfRN1p0/Uh2H8qW+BC1bWqRCgvUmMD9T+UWMRQ846rhUR7LWW++RxZOoFE+YawDyee7tUJiF8iw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4D91pmHv5P2kyqrfnTikAIW9cLVA2XY0/jbOiSn3FHI=;
+ b=lIvI6SGAzgQB2Qzj7cfvrK5pILjS4/SSjaDF5Gqvmfde4M/kXixodtizflNGdMYrZxL9H3iiMbhSZB/0FrBZLMyx3LvrYPAJJndS/mc4Sg7EJkrZEKWkTqbPoHtX8GRAf6p3ijVukpaw7jaTlMFYPNu1fbrgx6J9QKMbGLAbtv5M2AzDwEop3eepUPUtqIPbLVQfijVqWDqi7s9kXKutpGf7hKTqRRkij+VCOR8iWSA0kGetK4LD4YtfVEJhz+bKOiazxGIkWo5RBSZLzeenl5ywlSvH2IZKGyc/w2QpTn++1G7+KxpOv1CU+3O9PEJbl+fdjL6k+15xsNUnXG3SUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
+ header.d=ni.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=Tz25T3MBVyLfiEi1g7lM5uNayA/dbjMRx1hZIR0+Vyw=;
-        b=VF85+BRvC05gZFDz5NZZYs8NylcDH6QnePXdmJg7khl15kmDo7I2nUyZ89erxG1jrg
-         TbtBHk+BiVEZRr8kNfyHm5bkTUZujzwtBnrS61xiVWpFd3kTgO6gGm24UQtrzHZoWd7i
-         PYktxwvE6g9eb9oMAxmvvBgQ+caSfwq+8z3HmmDs/fl5kMloROP+asdu+Pk4+/DsOUyb
-         quQ1RtohjAzXErWaPE/iB3NY39ebQGWz4fDxshXXleoZTpuLqz8TyaTAJGiIOhIYiZbY
-         veN+u8Fn6bUGo9tsZhBS5eQc1cUSrAUIBV0Tm+S+9JYK4nwnWlaPUcJw5bnsOQtFobsS
-         9Dww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=Tz25T3MBVyLfiEi1g7lM5uNayA/dbjMRx1hZIR0+Vyw=;
-        b=QbywSIz0yg/8rwDtDDpbYpyfTOH7yBHhvfxBjx43NOjEbP90/tULoeIXJHoo3K+8I2
-         XFEELHI8Lb1LrpEHMA3TpyMAM4eUCmMjokX5X1B7kLn9piymFzlKtXIGgR5eoOrFjk2r
-         c4QRrgU2Nx9tNIBTHVt8meg9fgFIJ52MNSKKTCpiRm67hq3gfiCh88vNqIUroK0kAU4E
-         oNowPHgCRtbyu6H9npK/YO/OcF6jfTxrskqyH73qlNmZIX9k/QCGP2g9NPtIIFmcelz2
-         DwHCLwC2S6sxQgC6Fd/DQWXffSTL6aJ4LPPWO2DZkugE4k/urIdKUXTZwmwm1VqpJYQt
-         nQYw==
-X-Gm-Message-State: ACrzQf35UsaUJTSyz6xFiPQdTEsrUn/UjFktcCxYpxKuBel98kZImzPj
-	SXPhMEpPHekPTQdnawJDx/NtjjwVwm9uwR3Emso=
-X-Google-Smtp-Source: AMsMyM4J/s2l6NOsxJypEq3MadGazvig313krua0bTTuFRT25iMwe8MbxVmwqyyxVw/fYkPGhNJVMq5GxWxEXWupSgY=
-X-Received: by 2002:a17:902:d2c7:b0:176:c8a4:2f2 with SMTP id
- n7-20020a170902d2c700b00176c8a402f2mr937482plc.119.1663190942665; Wed, 14 Sep
- 2022 14:29:02 -0700 (PDT)
+ d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4D91pmHv5P2kyqrfnTikAIW9cLVA2XY0/jbOiSn3FHI=;
+ b=Zvjlsw8gSv4DtG4X2Y+M6/X9xMaWgknywAdzek7vQjsWPsgLxZJ1I8oTj9m7tTf+nPjzZLSU2i45EIVN6tImRyguRyrEZ/MJ/5XdosEQGke6hbaMuLcm9IxKbQvScbcG2X3/hGOOd1L5fA07EBcVWkjwroE7ZOaEVAPDWB3FDbc=
+Received: from SN6PR04MB3870.namprd04.prod.outlook.com (2603:10b6:805:43::15)
+ by DM6PR04MB4074.namprd04.prod.outlook.com (2603:10b6:5:b9::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
+ 2022 22:21:46 +0000
+Received: from SN6PR04MB3870.namprd04.prod.outlook.com
+ ([fe80::b428:21a7:32c4:e881]) by SN6PR04MB3870.namprd04.prod.outlook.com
+ ([fe80::b428:21a7:32c4:e881%5]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
+ 22:21:46 +0000
+From: Steven Koo <steven.koo@ni.com>
+To: "discuss-gnuradio@gnu.org" <discuss-gnuradio@gnu.org>,
+        "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: UHD 4.3.0.0 released!
+Thread-Index: AQHYyIXyU2z3NkT/OEG74ff1AyHQqg==
+Date: Wed, 14 Sep 2022 22:21:46 +0000
+Message-ID: 
+ <SN6PR04MB3870C53A01D40869FAA91219E8469@SN6PR04MB3870.namprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+ MSIP_Label_99647686-916c-42a1-98d6-743a581ebab3_Enabled=True;MSIP_Label_99647686-916c-42a1-98d6-743a581ebab3_SiteId=87ba1f9a-44cd-43a6-b008-6fdb45a5204e;MSIP_Label_99647686-916c-42a1-98d6-743a581ebab3_SetDate=2022-09-14T22:07:27.0594752Z;MSIP_Label_99647686-916c-42a1-98d6-743a581ebab3_ContentBits=0;MSIP_Label_99647686-916c-42a1-98d6-743a581ebab3_Method=Privileged
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN6PR04MB3870:EE_|DM6PR04MB4074:EE_
+x-ms-office365-filtering-correlation-id: 31bc91fc-2c89-4af4-9222-08da969f82bf
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ kAiE+mXyDvnMlGKoBYTLc8zW7NN6BzJ9gt8pL2yPHR9dYMxoVq1YgoN/g5HM3qNEAxQ6Op8DVmlfe2/CS36OT7nXy+LBXkx0ZXJocwAzsyNYyRS5wW4S7HSYAMPFiFU0aROHoqs1jTRUCML26fhsMAyAvDh/6lfgiJFPv09E7m/5LLHrSq5vHamd9TA6E4I86xr+QE/xUVi65eJinHSouHJ1jx/Ryajwph+4P1oeiDWdzV4PtYe8gBk7Grkg2p0XI90rhvTJ+bfZ0hQfmNwLIPm7ROl4dUm+V1rXbF8Nubypq9GnulQkoNBKpic/7ED0IfxEC2EH/IrkIHf8NzLptB2AZzCEGKHgea/zdq4pBEc+gpMkYZ+x7phnnYn0zL60p897dC6m3gOm+2TY5mlHzDOirwxoto9qynlq6L/SbLKkLbsv0byUqbFfgwms8RdLzQ9Yvk9Y9LuKcYGIg/abt+7qxVyY/ijWh0rHmfd5agYOw7xCC5Jv67PY3WQPObkxLQR9XEtu5d2BQjOXWWiLofRGdje18TC+RARtWZLu7n3DIOF20LhTvMPMf3FdaCLsO6k6Rt4BYwjITSiamFnDQJQ9LCTy/2YsxHln/h3ah2I+rbtkwl/WXrzYRPgey7DsBeqZCvkhBoe5aBQnBf4E58h85qCQqmyxC5UcGCNYq7091quS/CtbLQy4IYXvzwz2GKBwcta/q4p/9ivNbbDtRd+5ejt5l6z4YWzpClf56ExdpU3duy56ueFfxtn6oPREVbE/e2st+7pgDpRuHi4tglUD3JNXZz7GIjGvSNZqsIso+z/U4C3tH24J+gYBFoCRV4P/I32OU/riji7VUdLA9w==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR04MB3870.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(136003)(376002)(39860400002)(396003)(346002)(366004)(451199015)(9686003)(8936002)(44832011)(71200400001)(110136005)(38100700002)(8676002)(55016003)(966005)(26005)(38070700005)(478600001)(7696005)(66946007)(6506007)(86362001)(66476007)(66446008)(64756008)(186003)(76116006)(66556008)(122000001)(5660300002)(52536014)(4744005)(33656002)(7116003)(2906002)(316002)(41300700001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?Id+bqeZJycbxsqYTtvAqV7l5qrCfGuVDOuBBEY+1SEv1RywgNq2ipumv8Sjg?=
+ =?us-ascii?Q?Lbe2J9ZLpvytBvLGLuzxr4uvPoBzIrbt5v1RekTpyCJV1cr7nOB1F/AI9KZz?=
+ =?us-ascii?Q?gL16q90wk0XxYanK++oDrFfEzyQVFUKXqlkH1EBvYRQs/sFKzSz652pTWcv+?=
+ =?us-ascii?Q?zcy3ajALZa/3vuqOYw07+YlR/Ik9q5xR+eF2tiTSQWgc33Dudta44lWTbiIC?=
+ =?us-ascii?Q?ag4hWmu2kDQmUper4BnL0hENlHxFvqjKx7TuePuHxkAYHe5V0LjJn4zb+Hem?=
+ =?us-ascii?Q?AxyL1ury7r5wNBJsBIc1QSV9p1D5DHLr2rr3Ky4Ufdg4CsdL8CfhTi+nvvTI?=
+ =?us-ascii?Q?bINeVVIGl1jqSwF+v5+aSsXcisFY7zPIV2w6NJ6hrz4EgqVDzaC6aR2LKEcB?=
+ =?us-ascii?Q?GnO4vH0yViB2sqaXdHbyTyOWVEciRKI2orKHUG+LPTbECYQpLLhPs5BvDbiu?=
+ =?us-ascii?Q?TGko6UY7QOegRJn/aSmcc7Qstu9uUlvOmj1pA2RvCzQOPVASYN63MIglDcEN?=
+ =?us-ascii?Q?RxqQ9z0e6tUZWWQU33BvnGrIsLkk2wiotVoMjp7l2dwPUT4oZyNNIwLVKOth?=
+ =?us-ascii?Q?hArJRCUbvb6O9F/ZKa/oSz1usr14MwNeaKEXtaz1Wp1IMzK0TH0atrAoieCL?=
+ =?us-ascii?Q?7BETJCSixojHU1nPlTR/xH1+yakSiZPNrYqBWt/l2iMQT5SZMnfWo4ma5LPW?=
+ =?us-ascii?Q?PbjeTgBW2uXbVFa5VGeZkYdUGhSJoHCKMUaGO/EmIrkDIb4POjN4EiPqYgb0?=
+ =?us-ascii?Q?NRQTSGTxaKb4HZOor/bo7Oz1EZXWjynArYiS+sG0AxhKXpBFKjH/YN38zFuJ?=
+ =?us-ascii?Q?dsVWKl3wlvYajjALIZBXwHnYY2xtnDiDJFf1wTV/PTCgXJYZy3T1uskT+WGv?=
+ =?us-ascii?Q?3N5wXr/aPf2pvn5FNdmT5xhtyCPZ4kwqJgmPinXOFXafUe0+xudDGJQlFH3v?=
+ =?us-ascii?Q?VxjszEE3GzxsugE+EQ8vwM8ZhiBtuRfgUk9UaB8rpMyUU4i1Y9/45WVa1ueg?=
+ =?us-ascii?Q?uaDa+iiX9NynxiZdthUF3N5HYJfa/ReBlFrQp4ZPqXWoMU/u4dh5AHqxPien?=
+ =?us-ascii?Q?bbaYHCSMa2G5wULFJhIu4aAlVqyc5iAjH3GWrk2Nee4wf0fNmqtYfd2dObp6?=
+ =?us-ascii?Q?jCRVQ5RFjS3XueLFVQWrhIARJHCQ3LSQn3ZReOOh+XU8OfkJ2rePKtUySCbN?=
+ =?us-ascii?Q?1nvZ0VKL2GKHXOQ2yyjsd2ousEr98ipBXyMp+1qh3yiyhVhgcaY96I4YO65l?=
+ =?us-ascii?Q?oe2n/QDy3JnJ2FraTYhv3W3zICHm7fIx25YQ6y81R/xK40EYpAPREU7rTTXE?=
+ =?us-ascii?Q?Wfl5lakpdR3arIVxUthztevvWjP/eGwtdfwFviqfUnLSe8T2E+CtsP2lMibq?=
+ =?us-ascii?Q?zl1onsQjHmNkuwjWA+u8kvuzWAnl3ZQF4jTR2FgyN5LGINEiOixqyOL9j2MI?=
+ =?us-ascii?Q?Sc5LjDac0LxPG3cpjzhWg5wwQLt+h2vl/K/W2vHSuzo82uAonPtkGe1Vvu9g?=
+ =?us-ascii?Q?gQ+htyLVB/RpA/akTn83YGb8KpbTMPD2C4uvth3B0f1tKitPupR0eRK5Vrd0?=
+ =?us-ascii?Q?CjDBtlAVI2Cw/Nb+E4u8DbL3k2YP1ZUxjbQGKUw+tAUY3iBc/WQt1vyOsxXi?=
+ =?us-ascii?Q?WQ=3D=3D?=
 MIME-Version: 1.0
-References: <KrQPMifKSF0coFKMQej2bH2vaF7jbszkyw2xMsXA0ZA@lists.ettus.com>
-In-Reply-To: <KrQPMifKSF0coFKMQej2bH2vaF7jbszkyw2xMsXA0ZA@lists.ettus.com>
-From: Richard Bell <richard.bell4@gmail.com>
-Date: Wed, 14 Sep 2022 14:28:52 -0700
-Message-ID: <CAMMoi3tLd7c7QkufZbRQdn1WjEn2KUO8QTTLxhHHWn4+x7Nubw@mail.gmail.com>
-To: eduard.sivolenko@ni.com
-Message-ID-Hash: XSLTUHQKNX6DDRHU7GJCJM6ADUNHMTII
-X-Message-ID-Hash: XSLTUHQKNX6DDRHU7GJCJM6ADUNHMTII
-X-MailFrom: richard.bell4@gmail.com
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR04MB3870.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31bc91fc-2c89-4af4-9222-08da969f82bf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2022 22:21:46.3437
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 96SkHzRHADN6XzBtdDX6tJoNzKwsCbkw9f7KJGaFAwE/UwbD/PdexsL5lwRPvaNuR3fcwCbDnKEDgtLPxCGZQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR04MB4074
+X-Proofpoint-GUID: sySELs6dBagpmZANGCONCuaqX_5BMziy
+X-Proofpoint-ORIG-GUID: sySELs6dBagpmZANGCONCuaqX_5BMziy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.895,Hydra:6.0.528,FMLib:17.11.122.1
+ definitions=2022-09-14_09,2022-09-14_04,2022-06-22_01
+X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30
+ lowpriorityscore=0 suspectscore=0 spamscore=0 malwarescore=0
+ priorityscore=1501 clxscore=1011 phishscore=0 bulkscore=0 adultscore=0
+ mlxlogscore=773 impostorscore=0 mlxscore=0 classifier=spam adjust=30
+ reason=mlx scancount=1 engine=8.12.0-2208220000
+ definitions=main-2209140108
+Message-ID-Hash: BJ7KP57N2N7YVKSVVVJKKSA6NTQ5FW22
+X-Message-ID-Hash: BJ7KP57N2N7YVKSVVVJKKSA6NTQ5FW22
+X-MailFrom: prvs=6256b4402c=steven.koo@ni.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N310 Multi-channel Transmit
+Subject: [USRP-users] UHD 4.3.0.0 released!
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XSLTUHQKNX6DDRHU7GJCJM6ADUNHMTII/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5UDAPWYDGN7RKOHLT5CRF2OR3IVCRPU2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0678703055902192896=="
+Content-Type: multipart/mixed; boundary="===============8112208096490286917=="
 
---===============0678703055902192896==
-Content-Type: multipart/alternative; boundary="00000000000054d39d05e8a9d1b4"
+--===============8112208096490286917==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN6PR04MB3870C53A01D40869FAA91219E8469SN6PR04MB3870namp_"
 
---00000000000054d39d05e8a9d1b4
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Eduard,
-
-Yes that was my mistake. I am talking about the N310 family.
-
-Richard
-
-On Wed, Sep 14, 2022 at 1:13 AM <eduard.sivolenko@ni.com> wrote:
-
-> Hello Richard,
->
-> In the title, you mentioned N310. However, the description is about E310.
->
-> Could you please clarify the USRP family, i.e. N or E?
->
->
-> Thanks,
->
-> Eduard
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000054d39d05e8a9d1b4
-Content-Type: text/html; charset="UTF-8"
+--_000_SN6PR04MB3870C53A01D40869FAA91219E8469SN6PR04MB3870namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Eduard,<div><br></div><div>Yes that was my mistake. I a=
-m talking about the N310 family.</div><div><br></div><div>Richard</div></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On W=
-ed, Sep 14, 2022 at 1:13 AM &lt;<a href=3D"mailto:eduard.sivolenko@ni.com">=
-eduard.sivolenko@ni.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><p>Hello Richard,</p><p>In the title, you mentioned =
-N310. However, the description is about E310.</p><p>Could you please clarif=
-y the USRP family, i.e. N or E?</p><p><br></p><p>Thanks,</p><p>Eduard</p>
+UHD 4.3.0.0 is now available [1]! This release includes:
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+  *   Extension framework support
+  *   FPGA builds using Xilinx Vivado 2021.1 (B2xx, E3xx, N3xx, X3xx, and X=
+4xx devices)
+  *   Bug fixes and improvements for USRP devices. See the changelog. [1]
 
---00000000000054d39d05e8a9d1b4--
+We'd like to thank all the USRP users that have filed issues or directly co=
+ntributed to
+UHD and meta-ettus. You contributions have helped the continued improvement=
+ of UHD.
+As always, please file issues to our GitHub repo [2], by posting in the USR=
+P-users mailing list, or
+contacting support@ettus.com.
 
---===============0678703055902192896==
+Thanks!
+Steven
+
+[1] https://github.com/EttusResearch/uhd/releases/tag/v4.3.0.0
+[2] https://github.com/EttusResearch/uhd/issues/
+
+
+--_000_SN6PR04MB3870C53A01D40869FAA91219E8469SN6PR04MB3870namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:o=3D"urn:schemas-microsoft-com:office:office" xmlns:w=3D"urn:sc=
+hemas-microsoft-com:office:word" xmlns:m=3D"http://schemas.microsoft.com/of=
+fice/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1665356004;
+	mso-list-template-ids:150255980;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1
+	{mso-list-id:1994678530;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1993907720 67698689 67698691 67698693 67698689 67698=
+691 67698693 67698689 67698691 67698693;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7 ;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7 ;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7 ;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7 ;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style>
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:black">UHD 4.3.0.0 is now avail=
+able [1]! This release includes:<o:p></o:p></span></p>
+<ul style=3D"margin-top:0in" type=3D"disc">
+<li class=3D"MsoListParagraph" style=3D"color:black;margin-left:0in;mso-lis=
+t:l1 level1 lfo3">
+Extension framework support<o:p></o:p></li><li class=3D"MsoListParagraph" s=
+tyle=3D"color:black;margin-left:0in;mso-list:l1 level1 lfo3">
+FPGA builds using Xilinx Vivado 2021.1 (B2xx, E3xx, N3xx, X3xx, and X4xx de=
+vices)<o:p></o:p></li><li class=3D"MsoListParagraph" style=3D"color:black;m=
+argin-left:0in;mso-list:l1 level1 lfo3">
+Bug fixes and improvements for USRP devices. See the changelog. [1]<o:p></o=
+:p></li></ul>
+<p class=3D"MsoNormal"><span style=3D"color:black"><o:p>&nbsp;</o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:black">We'd like to thank all t=
+he USRP users that have filed issues or directly contributed to<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">UHD and meta-ettus. You =
+contributions have helped the continued improvement of UHD.<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">As always, please file i=
+ssues to our GitHub repo [2], by posting in the USRP-users mailing list, or=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">contacting support@ettus=
+.com.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black"><o:p>&nbsp;</o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:black">Thanks!<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">Steven<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:black"><o:p>&nbsp;</o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:black">[1] https://github.com/E=
+ttusResearch/uhd/releases/tag/v4.3.0.0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">[2] https://github.com/E=
+ttusResearch/uhd/issues/<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_SN6PR04MB3870C53A01D40869FAA91219E8469SN6PR04MB3870namp_--
+
+--===============8112208096490286917==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -141,4 +439,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0678703055902192896==--
+--===============8112208096490286917==--
