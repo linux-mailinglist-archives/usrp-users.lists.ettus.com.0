@@ -2,473 +2,582 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA305B8662
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Sep 2022 12:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B06255B866E
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Sep 2022 12:32:06 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 20A06383E66
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Sep 2022 06:30:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AF15A383E01
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Sep 2022 06:32:05 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1663151407; bh=dpkS8pSgha/84NCLwDGfpIyIoV6y1+wb+GqfoAcWDoI=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=nlB8AOk5tgtxOuYl1lHRUOZEoutDz12oua6ibvyebbEf4FPluUZ2N+GF9gBI8Bmip
-	 u3ZHlBCFIegYaETA9iILzxKr8vGizr9HpvhIGYMcOhNIRd4bA6yLClzb8NwfFKwM6B
-	 2evRyz2Cymrp95v83JdBR6hqUZLfVZA4HupxB7fo1DnASAB7Fj5peDYFTy7V89pXXS
-	 Lh7LwDRc5Yx/yoB6E5anMiXtCkRnYZiX47/IZ9xmjTqw/GUZ51jlUSVtfkpQg3c3Jw
-	 +S7hpWskaA9JtgbZjocnMhVWu5ACRCydYqgPQ51JiaiUaiW1N+uuvFizvYHT6IRYRm
-	 lhB4z1cU3WFaw==
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80105.outbound.protection.outlook.com [40.107.8.105])
-	by mm2.emwd.com (Postfix) with ESMTPS id 72D9E383C7F
-	for <usrp-users@lists.ettus.com>; Wed, 14 Sep 2022 06:29:13 -0400 (EDT)
+	t=1663151525; bh=a+909vsmPGdgtfCCVGOOqmR59ZxPVF8+L+nhU5weBzI=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=cJxQvqIbIVhzr9C/Nv7gfNG2coccotZz+zmNPTgyaRhjZ4X62QWrGkb/cLS1Y62a/
+	 4R/chbOO/p9cPwW1GdzrNuq6vASeEEzRuIqRfbzwR79uazXFRxH9cHNwKN1EhVD+M8
+	 KWvyVZKHw6OPIdEOPdVbEj9avpE0mSJIofM6fQRdhPycMulfOIOjKSLrLWIIKQTGZt
+	 nGWfI+pMqQ8m+xTxi7DfY8TsXjbi0LqUiMk03LAPrqmHrt6UTOw8X+jqNXHGPxIlat
+	 qNPhWGMrFU3W07eYXxpZnr0IhpUr1pv9MXSb0OzNoEcm9dexyeokGkTNOBoxeCjWjy
+	 sW/6troWeUQ1g==
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id A3EAA383DD4
+	for <usrp-users@lists.ettus.com>; Wed, 14 Sep 2022 06:30:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=antunibremen.onmicrosoft.com header.i=@antunibremen.onmicrosoft.com header.b="vlC18gQ9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UmO0laIu";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nMwXs99D04Y2stC8/EAgwIRBRY7cjKh6SLM97ipyOs+cMLw1l51a+4W49cY+8d1lt9QBJE5UnVF6VAUMRfGz1WtBxcT5F/Z4nnTG+mrVSMoDG+DDXowdXknOylRiEOtAzU4LKcCV948T8dUVpYXqbp9OMx82vmFpOlgNBRnFSFsUwqSJVmRUy1TD6E4kVtAkj6hDJaajqYX+Tjw/De2Wz3yvsIV41K2j/LWV/E0/nnPigxXMrYagoZSqwyshIDIdGaD9PSqAuksB+k2jIxixXsiHu6mSXmo4T7vnp6GDz9+Fc0teEK7qdIMMUGthMaOrSVGcRqyz1a8LzVfFTIo1yQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RDibTJf/2l3RBwsLVDg0ep5K0VpC8blgK2zftdsgr1Y=;
- b=ZNwx0rLW+r7VObz6IwaGhcz4MpDSCW/HyIazMOrVxwPEYWNT/dgPRxvgkMgzW/JkevK1thRfriQnP3X6d5KroJuiEYDxODKBVCoYQtiCvbEfmYFSUQxc3L/LQwMdaRtXkof2CFduzKex9VhxBCiuDwZacqIf5Gbo7aT6u9jUTh5cjmUr452YQpj9WgK7VsJiECJDEOOWgdCSeS6Qr8UpKIXPd5AnEGqMJnghOPHvawYRW0jpvBIdPnWNl//WatqfMbTx6kAvJkPaiI/MT15qwMD7bTqxVYQoiiaQ3+FgadVRecYgQpUG1YfrFK2VsucMVk9DS5NR6fSFxmlZ9NiFDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ant.uni-bremen.de; dmarc=pass action=none
- header.from=ant.uni-bremen.de; dkim=pass header.d=ant.uni-bremen.de; arc=none
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-127ba06d03fso39743763fac.3
+        for <usrp-users@lists.ettus.com>; Wed, 14 Sep 2022 03:30:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=antunibremen.onmicrosoft.com; s=selector2-antunibremen-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RDibTJf/2l3RBwsLVDg0ep5K0VpC8blgK2zftdsgr1Y=;
- b=vlC18gQ92wuh8NC6Xw1SDoAWwe+JGDIUKj8apdBICM1FRRHN4OovY8NsuhkAMMt63Xmd6H6ErOSTAXP3av8WnDu/BLqEd5qQUNAXKbpvk1AihVtvI1ANp5406zuyGnUh7H5Iob8JYLEfFxY0YmhD+d5Z5HcDXbV80n+jw/rHlXE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ant.uni-bremen.de;
-Received: from AM8P250MB0294.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:329::7)
- by DU0P250MB0866.EURP250.PROD.OUTLOOK.COM (2603:10a6:10:3e9::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5612.22; Wed, 14 Sep
- 2022 10:29:10 +0000
-Received: from AM8P250MB0294.EURP250.PROD.OUTLOOK.COM
- ([fe80::709d:a13:716d:3ae0]) by AM8P250MB0294.EURP250.PROD.OUTLOOK.COM
- ([fe80::709d:a13:716d:3ae0%4]) with mapi id 15.20.5612.022; Wed, 14 Sep 2022
- 10:29:10 +0000
-Message-ID: <d5713f3e-aba2-69ee-cf38-7db901990d54@ant.uni-bremen.de>
-Date: Wed, 14 Sep 2022 12:29:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <MNPagOuctsByX8yExSc0I7PRDFDuhS7atXUyjJPnE@lists.ettus.com>
- <71a13fb1-9c46-b596-caa6-397e672d71f4@ant.uni-bremen.de>
-From: Johannes Demel <demel@ant.uni-bremen.de>
-In-Reply-To: <71a13fb1-9c46-b596-caa6-397e672d71f4@ant.uni-bremen.de>
-X-ClientProxiedBy: AM0PR03CA0104.eurprd03.prod.outlook.com
- (2603:10a6:208:69::45) To AM8P250MB0294.EURP250.PROD.OUTLOOK.COM
- (2603:10a6:20b:329::7)
+        d=gmail.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date;
+        bh=eZ2TTa09zYQhUQweizXXLxYUdL62bO5L+viKr9FNjjg=;
+        b=UmO0laIupbga2rlZT8u8JOqOjHN16PvIQYXilTOJU5tgqfb5k1tjbjQWOePb19++Je
+         OLKhbTOWd0QjG9w365h7U70GT0zuXlEaG01CJELZY0aO3jwQLcsDrmrtjyQRAoJbTouV
+         2xtregsCzWgeNyUcmNEzY53FxvFkDGNUf1Zmk+vSwpkPtzm5cyOCqnKWpruqWMp8tyr1
+         s+3TB8apqD1yuvCCZW+Tw4kl8KUPPae1jZxvq0F7e8SbgfySvIsgjP/6k+Pg8Q95XDBT
+         k2cSM2cqOUQ8+LxDIZeZVpFEAjCZy8qnvFgVl+B68X8Pap1aNoPB7Wxy4zYl30rxLWn2
+         POuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date;
+        bh=eZ2TTa09zYQhUQweizXXLxYUdL62bO5L+viKr9FNjjg=;
+        b=SAq3/V2QqULyI3lo93xUvS2wy0hok8xmGa13vNz+r/CBPwd5Gy9qHBDYjycdN2KUcy
+         LRE0/K1e5HxOvUdLRJUndnM5XBKGNln/2dXNRqe4D1R8j6w5AwpSd6TngcgZZbAWmu/D
+         x6H0BVteX9+cwnoskSlzbnrZlplW24GIAb0QpDWTqw/dn4jj1a93gPCAu7EFWRgABDXf
+         6KIpjbnPlZeUjSV2HsmMtTQhcTxsDXQfBl4GKYFteoOE7t/t+zslw2slbhJBNIF/K6ky
+         ere4PdulncmEMKVQ7pZXdNPnBXrZOAqljbTsADrpPrY1mjOy/c1KFA+EFh/M4aGkLvCO
+         MYNw==
+X-Gm-Message-State: ACgBeo0H+FNpGCLnB5kjvOKLWsZtGiHIt50gIgzqEi9VeD04Q5xscoKK
+	1IhVVIeax0msNdem1X9V1k7fSDBcsE/hMIbvgjQ=
+X-Google-Smtp-Source: AA6agR5LZyG8Cm+GX41UHNuvd9eIu89Y3Lbxnz0RTtTi82wFFFtOxyWLAJXd0NU36HLv5IvmKzAhGFUk998SNfrZo5g=
+X-Received: by 2002:aca:ad83:0:b0:34f:bc24:5317 with SMTP id
+ w125-20020acaad83000000b0034fbc245317mr1600580oie.178.1663151443676; Wed, 14
+ Sep 2022 03:30:43 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM8P250MB0294:EE_|DU0P250MB0866:EE_
-X-MS-Office365-Filtering-Correlation-Id: b29a4a5e-9a21-4c95-c2cf-08da963bf5e3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	FTEPa/8xr6jjr5xPg8hk/y+0twhLuOw2c2q0Of/K5TE99m5J5k9XzBN2SO7RzVA79ywpiCzgooje5/5E4HrlOXz0Gk/Z9mKJYNxBNDDsL5JCLqfJo69D/7nSlxSAO5xfVQGalQrS4w0bcheEMLeGrQFRB7vQ45zRzmXrS2jAS1SwOyveAkkqnZAQ51khyyVBNbxlOJqK/6oZAKOJiddDA2FXrbiP6kkcB9besZYymoYzQGIJwM76Gyij4YQd/l7ztajfJ9JwIt0o9Vb1x1nNALPfdbuI0YRBBKSmjSF7WOY15vdm1anDnExgMm0Cgv4uA/aPtEJN7sfi60r6o7AimhI8E+MmLMTWVUL+stKHdEI11gRVgxTlJEfyyzH9W4KKLcWoleNRQxOch5Evq6ptmZk00J801wMxmfdxy+NqhiaiqoW3uVMvrTXEmeE4EZOL/SuTL/hnmTSW6MJXUgHNxeHmj0rxxs+pkMTn2pgQZUWPq+5J9TN3vEJsmHKJQa5jhg+qTOnf2MEMOPcdzTZxU72aQnUfVfTr4HsxNIdMrVjNI+64XrdMnbeOs/KA8M05inC8E3Ctuey9FLDdIXExb6Vd2xjaWOsfs0iLB8uozZcV3HyYbevOAtkiYuYsOlDl4GdMGq3TwYbFg4zOMwSQOoN4uFgH5G2ouApOOlFm3+FGBEpPuGmsmgGO1s/MdW2HhfR0n8K//1UV5LORMXSuA15dHV+pXsNaJkJdaeUAcWijTYMtAS8NEPGFQE2A9uyR3NX7QPizR4cnSH0mD+mxJVGtRa6ygd60oipJ1Z3JxYO8GLd1GXB7ggS3EFK7AVtIiuW/LRiqpj7qcr0p/301bTspkfk6ZvWWFbsGQ6qSAVxNHsLeq5hmntpp03oIriQr
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8P250MB0294.EURP250.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(39840400004)(396003)(376002)(136003)(346002)(366004)(451199015)(6506007)(41300700001)(966005)(8676002)(86362001)(66476007)(52116002)(31696002)(38100700002)(38350700002)(66946007)(66556008)(316002)(33964004)(186003)(31686004)(83380400001)(53546011)(41320700001)(6512007)(2616005)(2906002)(235185007)(26005)(8936002)(478600001)(786003)(6486002)(6916009)(5660300002)(21314003)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?czZNUTlmMElkVlczVjY4aFR6SXJTMFB3Nk9KUXFwN0dKVGhLSU5WSzBiTkJC?=
- =?utf-8?B?TEtwcE9HVHU2cm1pVXUzWXd3ZVNNRVNZdmtVL2ZlaEJuQmw1RUFLY2Ruekw0?=
- =?utf-8?B?R3VSdUVXTGFvNDhOdHJzQU11SGdwN3l0bHQvcUFEVVlIUk9OLzhVY2UxVHl1?=
- =?utf-8?B?emc5U1RFYVdUQUE1VHhRTTdzRHlaVkFuc3ZYQzRFTXhLMWRiK01lWTZxZjNx?=
- =?utf-8?B?d0FWbW44K0Juc1VaNnJ0eHdwQUh1K0ZXRnk1L2JNdDlxUE5xNXJKN0RPUXYv?=
- =?utf-8?B?aE10cTZZdFZYSTR5eUR5V3VMTjRTUGFSZlk4M0VHaFp4U3pFSHdjK1p5ci84?=
- =?utf-8?B?ZmpVb2lZbnc2NmdvMHBxSVR3ekh5UUJ4T09XUEpXMCtsWDFENitidG9ic1hJ?=
- =?utf-8?B?azRxKzlXaXk1VjJjTHF5L0tzMEc1THc4akNGc2U0MC85azVkeFQ4Z0NWUys5?=
- =?utf-8?B?VnlJVWU5VklKL0l3bFI5QWNuZENhMDRrcWt1QkFudnZLRWhIb0xkbVRrRkRz?=
- =?utf-8?B?cldMbzlXNGdFRy9BV0sxSThqOE1qVVpNUjB6YlhFRjluQ2FqZUJVMjc2eTRH?=
- =?utf-8?B?ZzdaOTNGMGl1VWgrN2M2c2dBRFI0eHZoZHBlaTlqenBBS2tUTHNXNU9LM0RL?=
- =?utf-8?B?Q2lIa3dJcXhwNUw1TDJONGFzZFY1MmdiNzUrdy9ZaXhVZC9ud3g4cUZnNkN1?=
- =?utf-8?B?dkNnWk9TVTd0dzlPYjhuL3c0c0RoL1ZrV2dxOTAxc3prTkpsQVhZMVIwbHB1?=
- =?utf-8?B?RTRQOUJSNExUc291YkZvWWZmbTdBZ3hKTlo2Sy9uallWWWRoZCtKR25KZVlv?=
- =?utf-8?B?NUpSUDNUWHNwbVRISitvL0N3ek1LQzNlWU5ST2lOMkgzeElGODdFZGI3VWE2?=
- =?utf-8?B?OFJBQnVzZmZSdSsrRGZhZ3MveE13c1A4T2lVcTVJcGtlRG9wc25IaFAycmhW?=
- =?utf-8?B?MjJjdHpOWStybHNhdFZwK2RCcUE4bU5GQXppdlB6Y2dqQndBMTlBdWVPanlv?=
- =?utf-8?B?VFJ4US9xNDY5YWx3aXhvZi9GUEdBdE1uZnBwVTl3WEFkSjR2VEFRcWxyQTZW?=
- =?utf-8?B?bzlwampWdFVJYzFhd1hFZFpUclpuRWxkR1hzcUVtSnNDa0V3Z1pPb2h4bnNW?=
- =?utf-8?B?bFMxOHlLeDNadFJvL1VHWmRtVVBEVkgwaWJyNGQ2QXd1RE11QU91N2g3Q3Rs?=
- =?utf-8?B?TEZtbEdYTXhnQVhZdVVHOVY0KzlncU8vSVBwY1hVU1RxUHF3cSsvOTlrUVZW?=
- =?utf-8?B?d3NrK3lIZmtuQkhZZC9IMXVXS0NROWgxdk90dlNGclpRSDkvcDJXTUtHOEFu?=
- =?utf-8?B?VndvT2taTGp0a0MvaHFNbTY0MjM0VVNjSDZJQXR2eUNwL1dnNEVML1NNOTI3?=
- =?utf-8?B?NWhXd2FhdEtORnAybFZwTDZyU2hjTkpCWndENTVTVzJ1Q0ZGMEhJK09NL25R?=
- =?utf-8?B?M2FOVXE0UWdiVHV3OG0xbUpLakhNelRHNGlSRWI1cklEbWdCOFdiNlg4L1VH?=
- =?utf-8?B?azFLNXNHKy9tTmU5THBleFFlZUJMY1h2dUt6TzZYcUVPWWdRUGZtYy84bStl?=
- =?utf-8?B?Ni9Sc0trRk90NFFhRTlUOFNIMjNCalYyaThnNmo0SFRKZ25waCtMbThWcTJY?=
- =?utf-8?B?UDlCMEFMbThiRStPZkJaaEJwQlppWm5aRDVhU2NOQy9aWExrUWwxTmpTR0Jm?=
- =?utf-8?B?OEptRkN1VUo2NVVEZnd4NytjaWUzbkRtOHVDY2wxeHVEWUlhMkF6S0pVVDNv?=
- =?utf-8?B?eG1TT00vclZtNkhLU1lPSXZGa2phUXBSZ211aTV2RlRJSml1R1I2UHBYcndp?=
- =?utf-8?B?UEVXQ04vTVZ0Z3czZnNQZVFoaTFHM0hTUzQxUzkxTjB6UDcxN2ZiS2FnVE9P?=
- =?utf-8?B?UmhNSVdQcGVjcW5LMG1NS1NWb0J5YTVvNDU5T1Y2VGE2VVo3NEY2UWxvdFY4?=
- =?utf-8?B?THdQa2VYUDBPSG9YUlhaWlk1QnRMWC9MN28wbm9xa2lDQkR3VjAzcC9vMEMz?=
- =?utf-8?B?U1R0MEZ5aVYrSGVhdCtDTk9KWkg0NlFqTlA1bUR6bXNXOWsxVWhTakZ0NE8w?=
- =?utf-8?B?eW8wL3V1bWxIVzgxUVNqbTBJdXVvU2VISkoxcnVraUM3WUIzOU9MaUtxZzFU?=
- =?utf-8?B?azFLTWQyU1B1RGJ4TjdPa01LMzJmWHlzL0ZCOEFMNVFoZENleGlMaVNOUVFx?=
- =?utf-8?B?NkE9PQ==?=
-X-OriginatorOrg: ant.uni-bremen.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: b29a4a5e-9a21-4c95-c2cf-08da963bf5e3
-X-MS-Exchange-CrossTenant-AuthSource: AM8P250MB0294.EURP250.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2022 10:29:09.9865
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: f018440b-2792-4fa0-b2bd-233acaf88ad2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TU9uwlxCuHZKQuWZXP87FQDnb9lFbxBEghAUKHKXpu10ABHtynloTFVgKwLkYx0SMfU0RwxUZJriZWClX+TdMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0P250MB0866
-Message-ID-Hash: OL7QFE76A7HWA72ETHUHNCVUDS7GMJ6Z
-X-Message-ID-Hash: OL7QFE76A7HWA72ETHUHNCVUDS7GMJ6Z
-X-MailFrom: demel@ant.uni-bremen.de
+References: <CAJhOL6cAL19bq0dk+sToy-ADUaZNomCWU+sdgL46meCu94P3Xw@mail.gmail.com>
+ <CAL7q81tqggKk4-MdGTsuQzGiLa2HThLdG99NQNynV863UAY4Gg@mail.gmail.com>
+ <CAJhOL6cdPSjjTq4ryt=59Moq=t2SJxK7Eqd-_kNC+wJuV40asA@mail.gmail.com>
+ <CAL7q81vU-WgEmrF0z8P-kQq3TJa=WSCtUwf-ftd1+a30EPZSdQ@mail.gmail.com>
+ <CAJhOL6e7FFTrvXmUZmcmRjzFeHfo3_OTVR0_=hb7T5Tgtb4dqQ@mail.gmail.com>
+ <CAL7q81s9KwfTnerWYdOt1fDrG9FDPv5qF743TYqBBSqG1LCNnA@mail.gmail.com>
+ <CAJhOL6cTzeJRP8EFS_HjQR2VZP84w+6j8RiRPMczuniQUwcO3w@mail.gmail.com>
+ <CAB__hTSe5M-BL4FFaAi=gA3O4AV=jxgBRbENpxGdnHe340ZptA@mail.gmail.com>
+ <CAB__hTTsg9LsRScFUmYOywBp9eSg7iYixjLZULa119B+fnO2WQ@mail.gmail.com>
+ <CAB__hTQp1SOfvNa6E=qZaV6ORqVHU5MJFTv_vzU0KXZ5Gy9Eww@mail.gmail.com>
+ <CAJhOL6etMLth3S6pj-ghemXv18PXz-M0nS=S3Sg0Z3-i6Pq4Yg@mail.gmail.com> <CAB__hTQ8Ln5ktvkmx1ThQVQVX1mga0qCX=49YbXJtasG7emYjw@mail.gmail.com>
+In-Reply-To: <CAB__hTQ8Ln5ktvkmx1ThQVQVX1mga0qCX=49YbXJtasG7emYjw@mail.gmail.com>
+From: Kevin Williams <zs1kwa@gmail.com>
+Date: Wed, 14 Sep 2022 12:30:07 +0200
+Message-ID: <CAJhOL6dLdSL2bWPjdgcfnXL+ednwRQ1QX9tRG3mxgm3+O=486Q@mail.gmail.com>
+To: Rob Kossler <rkossler@nd.edu>
+Message-ID-Hash: EGZ5OBZBWSEIC7IAS5XULVEU44NXES2B
+X-Message-ID-Hash: EGZ5OBZBWSEIC7IAS5XULVEU44NXES2B
+X-MailFrom: zs1kwa@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Jonathon Pendlum <jonathon.pendlum@ettus.com>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B210 reporting U/O on Ubuntu 22.04
+Subject: [USRP-users] Re: tracing an overflow error
 List-Id: USRP-related discussion and support <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OL7QFE76A7HWA72ETHUHNCVUDS7GMJ6Z/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EGZ5OBZBWSEIC7IAS5XULVEU44NXES2B/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1388035450580464273=="
+Content-Type: multipart/mixed; boundary="===============3546540441924957851=="
 
---===============1388035450580464273==
-Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-512; boundary="------------ms060702040607090702030409"
+--===============3546540441924957851==
+Content-Type: multipart/alternative; boundary="0000000000000213c005e8a09f81"
 
---------------ms060702040607090702030409
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000000213c005e8a09f81
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Rob, thanks for that testbench advice.
+
+My core will not provide output if it does not see TREADY on its master
+interfaces. (Which I have verified by simulating the core on its own.)
+
+I have used the rfnoc-example testbench for reference, and issue a
+"blk_ctrl.send_items(0, send_samples)".
+
+Monitoring the rfnoc signal "m_rfnoc_chdr_tready" in the testbench shows
+that it never transitions from zero's at the beginning of the simulation.
+
+Should I see the BFM slave asserting these signals? (I cannot drive them
+from my testbench - I get a warning about multiple drivers.)
+
+On Tue, 13 Sept 2022 at 15:49, Rob Kossler <rkossler@nd.edu> wrote:
+
+> Have you tried to run an rfnoc-style testbench such as in the
+> rfnoc-example?  If not, this may be useful.  If you try this, it may be
+> easier to follow the example if you change your output number of ports to
+> be 1 so that it is a simple 1-to-1 block.
+> Rob
+>
+> On Tue, Sep 13, 2022 at 6:36 AM Kevin Williams <zs1kwa@gmail.com> wrote:
+>
+>> Hi Rob,
+>>
+>> I can confirm the radio streams correctly.
+>>
+>> I have also tried tx_streamer => multiDDC => rx_streamer which
+>> successfully sends a number of samples, but none are received. (The script
+>> is below.)
+>>
+>> Just to summarize, the IP core seems to be behaving correctly when
+>> simulated in Vivado where I apply AXI handshaking, reset the core, and
+>> clock it.
+>>
+>> I have set all endpoints in the design as follows:
+>>
+>>   ep0:                       # Stream endpoint name
+>>     ctrl: True                      # Endpoint passes control traffic
+>>     data: True                      # Endpoint passes data traffic
+>>     buff_size: 32768                # Ingress buffer size for data
+>>
+>> Regards, Kevin
+>>
+>>
+>> graph = uhd.rfnoc.RfnocGraph("type=x300,addr=192.168.30.2")
+>>
+>> tx_streamer = graph.create_tx_streamer(1, uhd.usrp.StreamArgs("sc16",
+>> "sc16"))
+>> rx_streamer = graph.create_rx_streamer(1, uhd.usrp.StreamArgs("sc16",
+>> "sc16"))
+>>
+>> gb = graph.get_block("0/multiddc#0")
+>> graph.connect(tx_streamer, 0, gb.get_unique_id(), 0)
+>> graph.connect(gb.get_unique_id(), 0, rx_streamer, 0)
+>> graph.commit()
+>>
+>> num_samps = 4 * tx_streamer.get_max_num_samps()
+>> send_samps = np.array([[0x40004000] * num_samps], dtype="int32")
+>>
+>> tx_md = uhd.types.TXMetadata()
+>> tx_md.start_of_burst = True
+>> tx_md.end_of_burst = True
+>>
+>> recv_samps = np.zeros((1, num_samps), dtype="int32")
+>>
+>> rx_md = uhd.types.RXMetadata()
+>>
+>> num_sent = tx_streamer.send(send_samps, uhd.types.TXMetadata())
+>> num_recv = rx_streamer.recv(recv_samps, rx_md, 0.1)
+>>
+>>
+>> On Tue, 13 Sept 2022 at 00:36, Rob Kossler <rkossler@nd.edu> wrote:
+>>
+>>> One more thought. If the FPGA version that you built with dynamic
+>>> linking, you should be able to create an RFNoC Graph as follows:
+>>>   tx_streamer => multiDDC => rx_streamer(s)
+>>> This way you can eliminate the radio from the equation and test in a
+>>> very similar fashion to the way it is tested in a testbench.
+>>>
+>>> Rob
+>>>
+>>> On Mon, Sep 12, 2022 at 6:33 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>
+>>>> Oops. Ignore what I said. I now realize you stated you were getting an
+>>>> Overflow which of course you would never get if streaming hadn't started.
+>>>> Rob
+>>>>
+>>>> On Mon, Sep 12, 2022 at 6:32 PM Rob Kossler <rkossler@nd.edu> wrote:
+>>>>
+>>>>> Are you sure that the radio is even streaming?  The typical method for
+>>>>> starting streaming is to tell the rx_streamer to start streaming.  Then, in
+>>>>> UHD-land, the rx_streamer ctrl tells the next upstring block to start
+>>>>> streaming such that this streaming command propagates up the chain until
+>>>>> the radio receives it and starts streaming.  So, if your custom block does
+>>>>> not forward the streaming command from the rx_streamer to the radio, then
+>>>>> the radio never even starts streaming.  You can verify by simply monitoring
+>>>>> the LEDs.
+>>>>>
+>>>>> If this is the problem, you can go-around the intended use by simply
+>>>>> telling the radio to start streaming rather than the rx_streamer.  Or, of
+>>>>> course, you can modify your custom block controller to propagate the
+>>>>> streaming command.
+>>>>> Rob
+>>>>>
+>>>>> On Mon, Sep 12, 2022 at 4:18 PM Kevin Williams <zs1kwa@gmail.com>
+>>>>> wrote:
+>>>>>
+>>>>>> Yes, of course. But I don't get 1 sample from the ddc's, even with
+>>>>>> just one channel of a 2:1 decimated channel connected to the rx streamer.
+>>>>>>
+>>>>>> On Mon, 12 Sept 2022 at 22:13, Jonathon Pendlum <
+>>>>>> jonathon.pendlum@ettus.com> wrote:
+>>>>>>
+>>>>>>> The aggregate output rate of the 5 streams could require more
+>>>>>>> bandwidth than the 10 GigE interface can sustain. What are the exact output
+>>>>>>> rates?
+>>>>>>>
+>>>>>>> On Mon, Sep 12, 2022 at 3:53 PM Kevin Williams <zs1kwa@gmail.com>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>> Those rates vary from a 2:1 decimation down to other rates.
+>>>>>>>>
+>>>>>>>> The host has 10 Gbe interfaces to the USRP.
+>>>>>>>>
+>>>>>>>> I get samples if i connect the radio to the rx streamer, just
+>>>>>>>> nothing from the ddc's.
+>>>>>>>>
+>>>>>>>> On Mon, 12 Sept 2022 at 21:48, Jonathon Pendlum <
+>>>>>>>> jonathon.pendlum@ettus.com> wrote:
+>>>>>>>>
+>>>>>>>>> Hi Kevin,
+>>>>>>>>>
+>>>>>>>>> What are the sample rates for the 5 outputs? What connection are
+>>>>>>>>> you using to your host PC, 1 GigE or 10 GigE?
+>>>>>>>>>
+>>>>>>>>> Jonathon
+>>>>>>>>>
+>>>>>>>>> On Mon, Sep 12, 2022 at 3:38 PM Kevin Williams <zs1kwa@gmail.com>
+>>>>>>>>> wrote:
+>>>>>>>>>
+>>>>>>>>>> Hi Jonathon,
+>>>>>>>>>>
+>>>>>>>>>> I've got an x310. The flowgraph is a simple radio->multiddc->(to
+>>>>>>>>>> 5x outputs). I've tried both static and dynamic routing from the radio
+>>>>>>>>>> block. I.e. the static route version:
+>>>>>>>>>>
+>>>>>>>>>> |    /
+>>>>>>>>>> |   |       Static connections on this device:
+>>>>>>>>>> |   |
+>>>>>>>>>> |   |   * 0/Radio#0:0==>0/multiddc#0:0
+>>>>>>>>>> |   |   * 0/multiddc#0:0==>0/SEP#2:0
+>>>>>>>>>> |   |   * 0/multiddc#0:1==>0/SEP#3:0
+>>>>>>>>>> |   |   * 0/multiddc#0:2==>0/SEP#4:0
+>>>>>>>>>> |   |   * 0/multiddc#0:3==>0/SEP#5:0
+>>>>>>>>>> |   |   * 0/multiddc#0:4==>0/SEP#6:0
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> On the input side it is all at the radio rate, but I hope my core
+>>>>>>>>>> is being clocked at 214 MHz.
+>>>>>>>>>>
+>>>>>>>>>> When I simulate my IP core (which includes the AXI streaming
+>>>>>>>>>> interfaces) it looks ok.
+>>>>>>>>>>
+>>>>>>>>>> Regards, Kevin
+>>>>>>>>>>
+>>>>>>>>>> On Mon, 12 Sept 2022 at 21:29, Jonathon Pendlum <
+>>>>>>>>>> jonathon.pendlum@ettus.com> wrote:
+>>>>>>>>>>
+>>>>>>>>>>> Hello Kevin,
+>>>>>>>>>>>
+>>>>>>>>>>> What device are you using and what does your flowgraph look
+>>>>>>>>>>> like? What sample rate are you running at? If your block is running at the
+>>>>>>>>>>> radio sample rate (e.g. 200 MSPS on a X310), your block will need to
+>>>>>>>>>>> process one input sample every clock cycle on average.
+>>>>>>>>>>>
+>>>>>>>>>>> Jonathon
+>>>>>>>>>>>
+>>>>>>>>>>> On Mon, Sep 12, 2022 at 9:09 AM Kevin Williams <zs1kwa@gmail.com>
+>>>>>>>>>>> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>> Hi All,
+>>>>>>>>>>>>
+>>>>>>>>>>>> I've got an IP core that is causing an "ERROR_CODE_OVERFLOW"
+>>>>>>>>>>>> when used in an RFNoC project.
+>>>>>>>>>>>>
+>>>>>>>>>>>> The core responds correctly when simulated outside the RFNoC
+>>>>>>>>>>>> environment. (I can see correct output, the AXI streaming signalling,
+>>>>>>>>>>>> back-pressure when required, etc.)
+>>>>>>>>>>>>
+>>>>>>>>>>>> I'm not sure how to go about debugging this, and am not yet
+>>>>>>>>>>>> familiar enough with RFNoC to know what to ask.
+>>>>>>>>>>>>
+>>>>>>>>>>>> I have been thinking it was the core not being reset or clocked
+>>>>>>>>>>>> correctly, but this is how it gets instantiated:
+>>>>>>>>>>>>
+>>>>>>>>>>>>   multiddc multiddc_i (
+>>>>>>>>>>>>     //   - Using different clocks for the IP core and the AXI
+>>>>>>>>>>>> interface. The IPCore_Clk and AXILite_ACLK must be
+>>>>>>>>>>>>     //     synchronous and connected to the same clock source.
+>>>>>>>>>>>> The IPCore_RESETN and AXILite_ARESETN must be
+>>>>>>>>>>>>     //     connected to the same reset source. See
+>>>>>>>>>>>> Synchronization of Global Reset Signal to IP Core Clock Domain.
+>>>>>>>>>>>>     .IPCORE_CLK                (axis_data_clk),
+>>>>>>>>>>>>     .IPCORE_RESETN             (~axis_data_rst),
+>>>>>>>>>>>>
+>>>>>>>>>>>>     .AXI4_Lite_ACLK            (axis_data_clk),
+>>>>>>>>>>>>     .AXI4_Lite_ARESETN         (~axis_data_rst),
+>>>>>>>>>>>>
+>>>>>>>>>>>> The core YAML file describes the clock as:
+>>>>>>>>>>>>
+>>>>>>>>>>>> data:
+>>>>>>>>>>>>   fpga_iface: axis_chdr
+>>>>>>>>>>>>   clk_domain: ce
+>>>>>>>>>>>>
+>>>>>>>>>>>> In the project YAML file:
+>>>>>>>>>>>>
+>>>>>>>>>>>> clk_domains:
+>>>>>>>>>>>>     - { srcblk: _device_, srcport: radio, dstblk: radio0,
+>>>>>>>>>>>> dstport: radio }
+>>>>>>>>>>>>     - { srcblk: _device_, srcport: ce,    dstblk: multiddc0,
+>>>>>>>>>>>> dstport: ce }
+>>>>>>>>>>>>
+>>>>>>>>>>>> Is there something that might be an obvious first place to
+>>>>>>>>>>>> check?
+>>>>>>>>>>>>
+>>>>>>>>>>>> Many thanks, Kevin
+>>>>>>>>>>>>
+>>>>>>>>>>>> --
+>>>>>>>>>>>> Kevin Williams
+>>>>>>>>>>>> _______________________________________________
+>>>>>>>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>>>>>>>> To unsubscribe send an email to
+>>>>>>>>>>>> usrp-users-leave@lists.ettus.com
+>>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> --
+>>>>>>>>>> Kevin Williams
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>> --
+>>>>>>>> Kevin Williams
+>>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>> --
+>>>>>> Kevin Williams
+>>>>>> _______________________________________________
+>>>>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>>>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>>>>
+>>>>>
+>>
+>> --
+>> Kevin Williams
+>>
+>
+
+-- 
+Kevin Williams
+
+--0000000000000213c005e8a09f81
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi Rob, thanks for that =
+testbench advice.<div><br></div><div>My core will not provide output if it =
+does not see TREADY on its master interfaces. (Which I have verified by sim=
+ulating the core on its own.)</div><div><br></div><div>I have used the rfno=
+c-example testbench for reference, and issue a &quot;blk_ctrl.send_items(0,=
+ send_samples)&quot;.</div><div><br></div><div>Monitoring the rfnoc signal =
+&quot;m_rfnoc_chdr_tready&quot; in the testbench shows that it never transi=
+tions from zero&#39;s at the beginning of the simulation.</div><div><br></d=
+iv><div>Should I see the BFM slave asserting these signals? (I cannot drive=
+ them from my testbench - I get a warning about multiple drivers.)</div></d=
+iv></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Tue, 13 Sept 2022 at 15:49, Rob Kossler &lt;<a href=3D"mailto:r=
+kossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Have you=
+ tried to run an rfnoc-style testbench such as in the rfnoc-example?=C2=A0 =
+If not, this may be useful.=C2=A0 If you try this, it may be easier to foll=
+ow the example if you change your output number of ports to be 1 so that it=
+ is a simple 1-to-1 block.<div>Rob</div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Sep 13, 2022 at 6:36 AM Kev=
+in Williams &lt;<a href=3D"mailto:zs1kwa@gmail.com" target=3D"_blank">zs1kw=
+a@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr">Hi Rob,<div><br></div><div>I can confirm the radio streams correctly.</=
+div><div><br></div><div>I have also tried tx_streamer =3D&gt; multiDDC =3D&=
+gt; rx_streamer which successfully sends a number of samples, but none are =
+received. (The script is below.)</div><div><br></div><div>Just to summarize=
+, the IP core seems to be behaving correctly when simulated in Vivado where=
+ I apply AXI handshaking, reset the core, and clock it.</div><div><br></div=
+><div>I have set all endpoints in the design as follows:<br></div><div><div=
+><br></div><div>=C2=A0 ep0:=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Stream endpoint name</div><div>=C2=A0 =
+=C2=A0 ctrl: True=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 # Endpoint passes control traffic</div><div>=C2=A0 =C2=
+=A0 data: True=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 # Endpoint passes data traffic</div><div>=C2=A0 =C2=A0 bu=
+ff_size: 32768=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Ing=
+ress buffer size for data</div></div><div><br></div><div>Regards, Kevin</di=
+v><div><br></div><div><br></div><div><div>graph =3D uhd.rfnoc.RfnocGraph(&q=
+uot;type=3Dx300,addr=3D192.168.30.2&quot;)</div><div><br></div><div>tx_stre=
+amer =3D graph.create_tx_streamer(1, uhd.usrp.StreamArgs(&quot;sc16&quot;, =
+&quot;sc16&quot;))</div><div>rx_streamer =3D graph.create_rx_streamer(1, uh=
+d.usrp.StreamArgs(&quot;sc16&quot;, &quot;sc16&quot;))</div><div><br></div>=
+<div>gb =3D graph.get_block(&quot;0/multiddc#0&quot;)</div><div>graph.conne=
+ct(tx_streamer, 0, gb.get_unique_id(), 0)<br></div><div>graph.connect(gb.ge=
+t_unique_id(), 0, rx_streamer, 0)</div><div>graph.commit()</div><div><br></=
+div><div>num_samps =3D 4 * tx_streamer.get_max_num_samps()</div><div>send_s=
+amps =3D np.array([[0x40004000] * num_samps], dtype=3D&quot;int32&quot;)</d=
+iv><div><br></div><div>tx_md =3D uhd.types.TXMetadata()</div><div>tx_md.sta=
+rt_of_burst =3D True</div><div>tx_md.end_of_burst =3D True</div><div><br></=
+div><div>recv_samps =3D np.zeros((1, num_samps), dtype=3D&quot;int32&quot;)=
+</div><div><br></div><div>rx_md =3D uhd.types.RXMetadata()</div><div><br></=
+div><div>num_sent =3D tx_streamer.send(send_samps, uhd.types.TXMetadata())<=
+/div><div>num_recv =3D rx_streamer.recv(recv_samps, rx_md, 0.1)<br></div></=
+div><div><br></div></div></div></div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Tue, 13 Sept 2022 at 00:36, Rob Kos=
+sler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.e=
+du</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div dir=3D"ltr">One more thought. If the FPGA version that you built wit=
+h dynamic linking, you should be able to create an RFNoC Graph as follows:<=
+div>=C2=A0 tx_streamer =3D&gt; multiDDC =3D&gt; rx_streamer(s)</div><div>Th=
+is way you can eliminate the radio from the equation and test in a very sim=
+ilar fashion to the way it is tested in a testbench.</div><div><br></div><d=
+iv>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Mon, Sep 12, 2022 at 6:33 PM Rob Kossler &lt;<a href=3D"mail=
+to:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Oops.=
+ Ignore what I said. I now realize you stated you were getting an Overflow =
+which of course you would never get if streaming hadn&#39;t started.<div>Ro=
+b</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, Sep 12, 2022 at 6:32 PM Rob Kossler &lt;<a href=3D"mailto:rk=
+ossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Are you su=
+re that the radio is even streaming?=C2=A0 The typical method for starting =
+streaming is to tell the rx_streamer to start streaming.=C2=A0 Then, in UHD=
+-land, the rx_streamer ctrl tells the next upstring block to start streamin=
+g such that this streaming command propagates up the chain until the radio =
+receives it and starts streaming.=C2=A0 So, if your custom block does not f=
+orward the streaming command from the rx_streamer to the radio, then the ra=
+dio never even starts streaming.=C2=A0 You can verify by simply monitoring =
+the LEDs.<div><br></div><div>If this is the problem, you can go-around the =
+intended use by simply telling the radio to start streaming rather than the=
+ rx_streamer.=C2=A0 Or, of course, you can modify your custom block control=
+ler to propagate the streaming command.<br><div>Rob</div></div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep =
+12, 2022 at 4:18 PM Kevin Williams &lt;<a href=3D"mailto:zs1kwa@gmail.com" =
+target=3D"_blank">zs1kwa@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Yes, of course. But I do=
+n&#39;t get 1 sample from the ddc&#39;s, even with just one channel of a 2:=
+1 decimated channel connected to the rx streamer.</div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 12 Sept 2022 at 22=
+:13, Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" tar=
+get=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">The aggregate out=
+put rate of the 5 streams could require more bandwidth than the 10 GigE int=
+erface can sustain. What are the exact output rates?</div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 12, 2022 at=
+ 3:53 PM Kevin Williams &lt;<a href=3D"mailto:zs1kwa@gmail.com" target=3D"_=
+blank">zs1kwa@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr">Those rates vary from a 2:1 decimat=
+ion down to other rates.<div><br></div><div>The host has 10 Gbe interfaces =
+to the USRP.</div><div><br></div><div>I get samples if i connect the radio =
+to the rx streamer, just nothing from the ddc&#39;s.</div></div><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 12 Sept 2=
+022 at 21:48, Jonathon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus=
+.com" target=3D"_blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Kevin=
+,<div><br></div><div>What are the sample rates for the 5 outputs? What conn=
+ection are you using to your host PC, 1 GigE or 10 GigE?</div><div><br></di=
+v><div>Jonathon</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
+class=3D"gmail_attr">On Mon, Sep 12, 2022 at 3:38 PM Kevin Williams &lt;<a =
+href=3D"mailto:zs1kwa@gmail.com" target=3D"_blank">zs1kwa@gmail.com</a>&gt;=
+ wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div dir=3D"ltr">Hi Jonathon,<div><br></div><div>I&#39;ve got an x=
+310. The flowgraph is a simple radio-&gt;multiddc-&gt;(to 5x outputs). I&#3=
+9;ve tried both static and dynamic routing from the radio block. I.e. the s=
+tatic route version:</div><div><br></div><div><div>|=C2=A0 =C2=A0 /</div><d=
+iv>|=C2=A0 =C2=A0|=C2=A0 =C2=A0 =C2=A0 =C2=A0Static connections on this dev=
+ice:</div><div>|=C2=A0 =C2=A0|</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/Ra=
+dio#0:0=3D=3D&gt;0/multiddc#0:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/m=
+ultiddc#0:0=3D=3D&gt;0/SEP#2:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/mu=
+ltiddc#0:1=3D=3D&gt;0/SEP#3:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/mul=
+tiddc#0:2=3D=3D&gt;0/SEP#4:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/mult=
+iddc#0:3=3D=3D&gt;0/SEP#5:0</div><div>|=C2=A0 =C2=A0|=C2=A0 =C2=A0* 0/multi=
+ddc#0:4=3D=3D&gt;0/SEP#6:0</div></div><div><br></div><div><br></div><div>On=
+ the input side it is all at the radio rate, but I hope my core is being cl=
+ocked at 214 MHz.</div><div><br></div><div>When I simulate my IP core (whic=
+h includes the AXI streaming interfaces) it looks ok.</div><div><br></div><=
+div>Regards, Kevin</div></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, 12 Sept 2022 at 21:29, Jonathon Pendl=
+um &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_blank">jona=
+thon.pendlum@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div dir=3D"ltr">Hello Kevin,<div><br></div><div>What=
+ device are you using and what does your flowgraph look like? What sample r=
+ate are you running at? If your block is running at the radio sample rate (=
+e.g. 200 MSPS on a X310), your block will need to process one input sample =
+every clock cycle on average.</div><div><br></div><div>Jonathon</div></div>=
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon=
+, Sep 12, 2022 at 9:09 AM Kevin Williams &lt;<a href=3D"mailto:zs1kwa@gmail=
+.com" target=3D"_blank">zs1kwa@gmail.com</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi All,<div><br></div><di=
+v>I&#39;ve got an IP core that is causing an &quot;ERROR_CODE_OVERFLOW&quot=
+; when used in an RFNoC project.</div><div><br></div><div>The core responds=
+ correctly when simulated outside the RFNoC environment. (I can see correct=
+ output, the AXI streaming signalling, back-pressure when required, etc.)</=
+div><div><br></div><div>I&#39;m not sure how to go about debugging this, an=
+d am not yet familiar enough with RFNoC to know what to ask.</div><div><br>=
+</div><div>I have been thinking it was the core not being reset or clocked =
+correctly, but this is how it gets instantiated:</div><div><br></div><div><=
+div>=C2=A0 multiddc multiddc_i (</div><div>=C2=A0 =C2=A0 //=C2=A0 =C2=A0- U=
+sing different clocks for the IP core and the AXI interface. The IPCore_Clk=
+ and AXILite_ACLK must be=C2=A0<br></div><div>=C2=A0 =C2=A0 //=C2=A0 =C2=A0=
+ =C2=A0synchronous and connected to the same clock source. The IPCore_RESET=
+N and AXILite_ARESETN must be=C2=A0</div><div>=C2=A0 =C2=A0 //=C2=A0 =C2=A0=
+ =C2=A0connected to the same reset source. See Synchronization of Global Re=
+set Signal to IP Core Clock Domain.</div><div>=C2=A0 =C2=A0 .IPCORE_CLK=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (axis_data_clk),</div>=
+<div>=C2=A0 =C2=A0 .IPCORE_RESETN=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0(~axis_data_rst),</div><div><br></div><div>=C2=A0 =C2=A0 .AXI4_Lite_A=
+CLK=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (axis_data_clk),</div><div>=C2=
+=A0 =C2=A0 .AXI4_Lite_ARESETN=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(~axis_data_=
+rst),</div></div><div><br></div><div>The core YAML file describes the clock=
+ as:</div><div><br></div><div><div>data:</div><div>=C2=A0 fpga_iface: axis_=
+chdr</div><div>=C2=A0 clk_domain: ce</div></div><div><br></div><div>In the =
+project YAML file:</div><div><br></div><div><div>clk_domains:</div><div>=C2=
+=A0 =C2=A0 - { srcblk: _device_, srcport: radio, dstblk: radio0,=C2=A0 =C2=
+=A0 dstport: radio }</div><div>=C2=A0 =C2=A0 - { srcblk: _device_, srcport:=
+ ce,=C2=A0 =C2=A0 dstblk: multiddc0, dstport: ce }</div></div><div><br></di=
+v><div>Is there something that might be an obvious first place to check?</d=
+iv><div><br></div><div>Many thanks, Kevin<br clear=3D"all"><div><br></div>-=
+- <br><div dir=3D"ltr">Kevin Williams</div></div></div></div></div></div></=
+div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>Kevin Williams</div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>Kevin Williams</div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>Kevin Williams</div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+>Kevin Williams</div>
+</blockquote></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">Kevin Williams</div>
 
-I'm still trying to figure out what the causes these problems.
+--0000000000000213c005e8a09f81--
 
-I tried different B210s on multiple computers now.
-
-It works with 2x2 up to 24.4MSps. And breaks with 24.5MSps.
-However, 2x TX+RX @30.72MSps does not work.
-Also, 2x RX @30.72MSps and 2x TX @15.36MSps works.
-
-I'm sure things use USB3. UHD reports it and the "working rates" are=20
-beyond USB2.
-
-I tried 3 different computers with 3 different B210s. I tried=20
-UHD3.15-LTS, UHD4.1, and UHD4.2. All seem to show the same behavior.=20
-Also, I tried Ubuntu 20.04 as well. I was under the impression that 2x2=20
-@30.72MSps should be possible.
-
-One of those computers has a 10Gig Ethernet card and I'm able to run an=20
-N310 with 2x2 61.44MSps and more. Also, `htop` shows benchmark_rate at a=20
-maximum CPU load below 60%.
-
-My application runs continuously with 2RX streams at 30.72MSps. However,=20
-it only transmits occasionally. I use burst transmissions in GR with=20
-length tags. The aggregate rate would be below 15.36MSps. This=20
-configuration works on all devices except for the computer with Ubuntu=20
-22.04 and UHD4.2.
-Moreover, in this case I can see an "O" reported whenever the=20
-application transmits. Thus, I assume after a burst is transmitted, smth=20
-fails.
-
-Cheers
-Johannes
-
-
-
-On 09.09.22 11:55, Johannes Demel wrote:
-> Hi all,
->=20
-> there's smth else going on. I tried the UHD-4.1 and UHD-4.1.0.6 branche=
-s=20
-> and all cause these errors. I will investigate this further.
-> I need to switch USRPs and hosts and see how the errors appear/disappea=
-r.
->=20
-> Cheers
-> Johannes
->=20
-> On 07.09.22 19:29, perper@o2.pl wrote:
->> Johannes Demel wrote:
->>
->> =C2=A0=C2=A0=C2=A0 Hi all,
->>
->> =C2=A0=C2=A0=C2=A0 thanks for your suggestions.
->>
->> =C2=A0=C2=A0=C2=A0 A few more details:
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ryzen 5900X CPU
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 UHD reports USB 3. With USB=
-2 it would probably fail above ~8MSps.
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Ubuntu 22.04 with GCC 11.2,=
- Python3.10
->>
->> =C2=A0=C2=A0=C2=A0 I tried 2TX streams alone at 30.72MSps. works. chec=
-k. I tried 2RX
->> =C2=A0=C2=A0=C2=A0 streams alone at 30.72MSps. works. check.
->>
->> =C2=A0=C2=A0=C2=A0 I tried configurations with
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_recv_frames=3Dnum_send_=
-frames=3D256
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_recv_frames=3Dnum_send_=
-frames=3D512 Doesn't help.
->>
->> =C2=A0=C2=A0=C2=A0 The error pattern looks like this: UUUUUUUUO[D00:00=
-:07.60063828]
->> =C2=A0=C2=A0=C2=A0 Detected Rx sequence error.
->>
->> =C2=A0=C2=A0=C2=A0 I tried
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 send_frame_size=3Drecv_fram=
-e_size=3D8000 also in conjuntion with the
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 num_xxx_frames configuratio=
-ns. But that didn't help either.
->>
->> =C2=A0=C2=A0=C2=A0 I will try to use UHD 4.1 on that machine. If that =
-works, I'll just
->> =C2=A0=C2=A0=C2=A0 switch back. Otherwise, I'd get suspicious of Ubunt=
-u and the=20
->> hardware.
->>
->> =C2=A0=C2=A0=C2=A0 Cheers Johannes
->>
->> =C2=A0=C2=A0=C2=A0 On 07.09.22 17:17, McKnight, Ryan wrote:
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 I have found after much tri=
-al and error that adding the
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 arguments =E2=80=9Crecv_fra=
-me_size=3D8000,num_recv_frames=3D512=E2=80=9D to the
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device string allows for me=
- to sample at the full 56 Msps rate
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 on the B series devices wit=
-hout any overruns (tested using UHD
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 4.2.0.1 on both Debian 11 a=
-nd Arch Linux on various computers).
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 I haven=E2=80=99t tried tra=
-nsmitting at all though so not sure if there
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 are better arguments for th=
-at. One additional thing to double
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 check for is that your devi=
-ce is actually connecting using USB
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 3.0, I have found a surpris=
-ing amount of bad USB3 cables that
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 would only link up at USB2 =
-speeds (check using =E2=80=9Csudo lsusb -tv=E2=80=9D
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 after running uhd_usrp_prob=
-e to load firmware onto the device,
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 should show speed of 5000M)=
-.
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /From:/ perper@o2.pl perper=
-@o2.pl <mailto:perper@o2.pl> /Sent:/
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Wednesday, September 7, 202=
-2 10:31 AM /To:/
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 usrp-users@lists.ettus.com =
-/Subject:/ [External] [USRP-users]
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Re: B210 reporting U/O on U=
-buntu 22.04
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /Use caution with links and=
- attachments./
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 perper@o2.pl mailto:perper@=
-o2.pl <mailto:perper@o2.pl> wrote:
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |perper@o2.pl <mailto:perpe=
-r@o2.pl> wrote: Hi, I can only
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 confirm that I see the same=
- result: 24MHz is working, starting
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from about 24.5MHz there=E2=
-=80=99s a lot of underruns. My CPU: AMD Ryzen
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Threadripper 2990WX, 128GB =
-RAM, motherboard Asus X399. =E2=80=A6 and the
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 system is Ubuntu 20.04 with=
- UHD 4.2.0.1.|
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 But with UHD 4.1.0.6 there =
-situation is exactly the same (not
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 working for >=3D 24.5M), so=
- if you=E2=80=99ve got it somewhere working it
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 would be worth sharing:
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 you=
-r exact UHD revision,
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 *
->>
->> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spe=
-cs of your PC.
->>
->> If you could capture situation where it worked and stopped working on=20
->> the same machine that would get you much closer to solving the issue.
->>
->> You could write a test and use it for automatic git bisect (git bisect=
-=20
->> run): https://lwn.net/Articles/317154/
->>
->> If it=E2=80=99s UHD fault this can show you first commit that worsened=
- maximum=20
->> transfer rate.
->>
->> Best Regards,
->> Piotr Krysik
->>
->>
->> _______________________________________________
->> USRP-users mailing list -- usrp-users@lists.ettus.com
->> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->=20
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---------------ms060702040607090702030409
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExDzANBglghkgBZQMEAgMFADCABgkqhkiG9w0BBwEAAKCC
-EaUwggUSMIID+qADAgECAgkA4wvV+K8l2YEwDQYJKoZIhvcNAQELBQAwgYIxCzAJBgNVBAYT
-AkRFMSswKQYDVQQKDCJULVN5c3RlbXMgRW50ZXJwcmlzZSBTZXJ2aWNlcyBHbWJIMR8wHQYD
-VQQLDBZULVN5c3RlbXMgVHJ1c3QgQ2VudGVyMSUwIwYDVQQDDBxULVRlbGVTZWMgR2xvYmFs
-Um9vdCBDbGFzcyAyMB4XDTE2MDIyMjEzMzgyMloXDTMxMDIyMjIzNTk1OVowgZUxCzAJBgNV
-BAYTAkRFMUUwQwYDVQQKEzxWZXJlaW4genVyIEZvZXJkZXJ1bmcgZWluZXMgRGV1dHNjaGVu
-IEZvcnNjaHVuZ3NuZXR6ZXMgZS4gVi4xEDAOBgNVBAsTB0RGTi1QS0kxLTArBgNVBAMTJERG
-Ti1WZXJlaW4gQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkgMjCCASIwDQYJKoZIhvcNAQEBBQAD
-ggEPADCCAQoCggEBAMtg1/9moUHN0vqHl4pzq5lN6mc5WqFggEcVToyVsuXPztNXS43O+FZs
-FVV2B+pG/cgDRWM+cNSrVICxI5y+NyipCf8FXRgPxJiZN7Mg9mZ4F4fCnQ7MSjLnFp2uDo0p
-eQcAIFTcFV9Kltd4tjTTwXS1nem/wHdN6r1ZB+BaL2w8pQDcNb1lDY9/Mm3yWmpLYgHurDg0
-WUU2SQXaeMpqbVvAgWsRzNI8qIv4cRrKO+KA3Ra0Z3qLNupOkSk9s1FcragMvp0049ENF4N1
-xDkesJQLEvHVaY4l9Lg9K7/AjsMeO6W/VRCrKq4Xl14zzsjz9AkH4wKGMUZrAcUQDBHHWekC
-AwEAAaOCAXQwggFwMA4GA1UdDwEB/wQEAwIBBjAdBgNVHQ4EFgQUk+PYMiba1fFKpZFK4OpL
-4qIMz+EwHwYDVR0jBBgwFoAUv1kgNgB5oKAia4zV8mHSuCzLgkowEgYDVR0TAQH/BAgwBgEB
-/wIBAjAzBgNVHSAELDAqMA8GDSsGAQQBga0hgiwBAQQwDQYLKwYBBAGBrSGCLB4wCAYGZ4EM
-AQICMEwGA1UdHwRFMEMwQaA/oD2GO2h0dHA6Ly9wa2kwMzM2LnRlbGVzZWMuZGUvcmwvVGVs
-ZVNlY19HbG9iYWxSb290X0NsYXNzXzIuY3JsMIGGBggrBgEFBQcBAQR6MHgwLAYIKwYBBQUH
-MAGGIGh0dHA6Ly9vY3NwMDMzNi50ZWxlc2VjLmRlL29jc3ByMEgGCCsGAQUFBzAChjxodHRw
-Oi8vcGtpMDMzNi50ZWxlc2VjLmRlL2NydC9UZWxlU2VjX0dsb2JhbFJvb3RfQ2xhc3NfMi5j
-ZXIwDQYJKoZIhvcNAQELBQADggEBAIcL/z4Cm2XIVi3WO5qYi3FP2ropqiH5Ri71sqQPrhE4
-eTizDnS6dl2e6BiClmLbTDPo3flq3zK9LExHYFV/53RrtCyD2HlrtrdNUAtmB7Xts5et6u5/
-MOaZ/SLick0+hFvu+c+Z6n/XUjkurJgARH5pO7917tALOxrN5fcPImxHhPalR6D90Bo0fa3S
-PXez7vTXTf/D6OWST1k+kEcQSrCFWMBvf/iu7QhCnh7U3xQuTY+8npTD5+32GPg8SecmqKc2
-2CzeIs2LgtjZeOJVEqM7h0S2EQvVDFKvaYwPBt/QolOLV5h7z/0HJPT8vcP9SpIClxvyt7bP
-ZYoaorVyGTkwggWsMIIElKADAgECAgcbY7rQHiw9MA0GCSqGSIb3DQEBCwUAMIGVMQswCQYD
-VQQGEwJERTFFMEMGA1UEChM8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVzIERldXRzY2hl
-biBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLEwdERk4tUEtJMS0wKwYDVQQDEyRE
-Rk4tVmVyZWluIENlcnRpZmljYXRpb24gQXV0aG9yaXR5IDIwHhcNMTYwNTI0MTEzODQwWhcN
-MzEwMjIyMjM1OTU5WjCBjTELMAkGA1UEBhMCREUxRTBDBgNVBAoMPFZlcmVpbiB6dXIgRm9l
-cmRlcnVuZyBlaW5lcyBEZXV0c2NoZW4gRm9yc2NodW5nc25ldHplcyBlLiBWLjEQMA4GA1UE
-CwwHREZOLVBLSTElMCMGA1UEAwwcREZOLVZlcmVpbiBHbG9iYWwgSXNzdWluZyBDQTCCASIw
-DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJ07eRxH3h+Gy8Zp1xCeOdfZojDbchwFfylf
-S2jxrRnWTOFrG7ELf6Gr4HuLi9gtzm6IOhDuV+UefwRRNuu6cG1joL6WLkDh0YNMZj0cZGnl
-m6Stcq5oOVGHecwX064vXWNxSzl660Knl5BpBb+Q/6RAcL0D57+eGIgfn5mITQ5HjUhfZZkQ
-0tkqSe3BuS0dnxLLFdM/fx5ULzquk1enfnjK1UriGuXtQX1TX8izKvWKMKztFwUkP7agCwf9
-TRqaA1KgNpzeJIdl5Of6x5ZzJBTN0OgbaJ4YWa52fvfRCng8h0uwN89Tyjo4EPPLR22MZD08
-WkVKusqAfLjz56dMTM0CAwEAAaOCAgUwggIBMBIGA1UdEwEB/wQIMAYBAf8CAQEwDgYDVR0P
-AQH/BAQDAgEGMCkGA1UdIAQiMCAwDQYLKwYBBAGBrSGCLB4wDwYNKwYBBAGBrSGCLAEBBDAd
-BgNVHQ4EFgQUazqYi/nyU4na4K2yMh4JH+iqO3QwHwYDVR0jBBgwFoAUk+PYMiba1fFKpZFK
-4OpL4qIMz+EwgY8GA1UdHwSBhzCBhDBAoD6gPIY6aHR0cDovL2NkcDEucGNhLmRmbi5kZS9n
-bG9iYWwtcm9vdC1nMi1jYS9wdWIvY3JsL2NhY3JsLmNybDBAoD6gPIY6aHR0cDovL2NkcDIu
-cGNhLmRmbi5kZS9nbG9iYWwtcm9vdC1nMi1jYS9wdWIvY3JsL2NhY3JsLmNybDCB3QYIKwYB
-BQUHAQEEgdAwgc0wMwYIKwYBBQUHMAGGJ2h0dHA6Ly9vY3NwLnBjYS5kZm4uZGUvT0NTUC1T
-ZXJ2ZXIvT0NTUDBKBggrBgEFBQcwAoY+aHR0cDovL2NkcDEucGNhLmRmbi5kZS9nbG9iYWwt
-cm9vdC1nMi1jYS9wdWIvY2FjZXJ0L2NhY2VydC5jcnQwSgYIKwYBBQUHMAKGPmh0dHA6Ly9j
-ZHAyLnBjYS5kZm4uZGUvZ2xvYmFsLXJvb3QtZzItY2EvcHViL2NhY2VydC9jYWNlcnQuY3J0
-MA0GCSqGSIb3DQEBCwUAA4IBAQCBeEWkTqR/DlXwCbFqPnjMaDWpHPOVnj/z+N9rOHeJLI21
-rT7H8pTNoAauusyosa0zCLYkhmI2THhuUPDVbmCNT1IxQ5dGdfBi5G5mUcFCMWdQ5UnnOR7L
-n8qGSN4IFP8VSytmm6A4nwDO/afr0X9XLchMX9wQEZc+lgQCXISoKTlslPwQkgZ7nu7YRrQb
-tQMMONncsKk/cQYLsgMHM8KNSGMlJTx6e1du94oFOO+4oK4v9NsH1VuEGMGpuEvObJAaguS5
-Pfp38dIfMwK/U+d2+dwmJUFvL6Yb+qQTkPp8ftkLYF3sv8pBoGH7EUkp2KgtdRXYShjqFu9V
-NCIaE40GMIIG2zCCBcOgAwIBAgIMJu9jPmW/Y3B2GzQvMA0GCSqGSIb3DQEBCwUAMIGNMQsw
-CQYDVQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVzIERldXRz
-Y2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdERk4tUEtJMSUwIwYDVQQD
-DBxERk4tVmVyZWluIEdsb2JhbCBJc3N1aW5nIENBMB4XDTIyMDcxNDA5NDUyNFoXDTI1MDcx
-MzA5NDUyNFowdTELMAkGA1UEBhMCREUxHDAaBgNVBAoME1VuaXZlcnNpdGFldCBCcmVtZW4x
-DDAKBgNVBAsMA0FOVDEOMAwGA1UEBAwFRGVtZWwxETAPBgNVBCoMCEpvaGFubmVzMRcwFQYD
-VQQDDA5Kb2hhbm5lcyBEZW1lbDCCAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAPLK
-kKSvj22LQSFvw4RSL6cwNiA+kJ2kQPRxCGF/Z8lJGbA9HJR+5rAa+1Jv6r00OfRPzSmToUL9
-zJuDKdeZpmxDidBB0Upi47VFTVQP42/re5skc6kUAPsSXcK4CAxCVDxzxOdTSIAOYIS0f903
-evw6bJUoY9zpBLyuZVE+P53vo4ZzaTA4GDIqn1jrD5jMcs+r+oAAR0wkvudYmB87rTxdk96z
-WHGEv13gRnyOt68U7t0p4ICLFcFI/7t/6iJqDm2mVFcFRQkqJS+EtFg0k3/p2sxnygGJWk4o
-1khxYUecHIBoIWSCtJNegHX2ubLj6+TGFn2+wufhmbiarvYmHGfO0RVDCWUbUGLZ8SUCv5rh
-ed5YH2XBp6SuhcsGRnUHxb2DxfmZagBNcqfGejfy5iTON+d4K2PmEIX1HkQrMgJkRhPhf7AY
-AI4XsyaJQlTI3j/BVprCORF1/TuQUnNkio96lFSMGVsY0V6VMzAnm2ZLCxobGWBNsZvSE0Oz
-LxQyenv68K87xK6O/tYHSC1r3NOrnqr2o0+nnH4H0Qx4jeA4QtiedPQXog33PJI/isQhnKmR
-i6lgVnR7i6k3jKjUsxQ1LBhMthg0me+n6y8qU6QJNUZpzgLi3qa1InXE9pjl9vhOE4jiDx3S
-tSY9nKeC9qs48oufSQyRFdxD70SHGwNFAgMBAAGjggJQMIICTDA+BgNVHSAENzA1MA8GDSsG
-AQQBga0hgiwBAQQwEAYOKwYBBAGBrSGCLAEBBAowEAYOKwYBBAGBrSGCLAIBBAowCQYDVR0T
-BAIwADAOBgNVHQ8BAf8EBAMCBeAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMB0G
-A1UdDgQWBBSDSIZCmtILeESKwIUu+QqBy82DIDAfBgNVHSMEGDAWgBRrOpiL+fJTidrgrbIy
-Hgkf6Ko7dDAiBgNVHREEGzAZgRdkZW1lbEBhbnQudW5pLWJyZW1lbi5kZTCBjQYDVR0fBIGF
-MIGCMD+gPaA7hjlodHRwOi8vY2RwMS5wY2EuZGZuLmRlL2Rmbi1jYS1nbG9iYWwtZzIvcHVi
-L2NybC9jYWNybC5jcmwwP6A9oDuGOWh0dHA6Ly9jZHAyLnBjYS5kZm4uZGUvZGZuLWNhLWds
-b2JhbC1nMi9wdWIvY3JsL2NhY3JsLmNybDCB2wYIKwYBBQUHAQEEgc4wgcswMwYIKwYBBQUH
-MAGGJ2h0dHA6Ly9vY3NwLnBjYS5kZm4uZGUvT0NTUC1TZXJ2ZXIvT0NTUDBJBggrBgEFBQcw
-AoY9aHR0cDovL2NkcDEucGNhLmRmbi5kZS9kZm4tY2EtZ2xvYmFsLWcyL3B1Yi9jYWNlcnQv
-Y2FjZXJ0LmNydDBJBggrBgEFBQcwAoY9aHR0cDovL2NkcDIucGNhLmRmbi5kZS9kZm4tY2Et
-Z2xvYmFsLWcyL3B1Yi9jYWNlcnQvY2FjZXJ0LmNydDANBgkqhkiG9w0BAQsFAAOCAQEAcFco
-hB8HTgETnX2eBmEF49U2ECKsg/u/NRogUPziHtAEH7JhmQ31gmmV+E7bVDPKHtljckl1aaDZ
-1umf0RiOsxPLTgypvjYMfUTZ+dXMwxwxw1tkXrHvHiwiFCkFVDY9uXDdcXgMDLO2WvF8yHsk
-2Hz0IZqDvHK+aL85fDWl33DcI2FYxg3InEboy7RrV5pBps3MlDy8cyn2B2WJmOe0kxuND8sh
-2TRhyaO9eo8YyyFDNHMBoFi0V4KKBc1cfJP6FgcWmEki0SQIzz0LcK/MGpBtOI360idOL7n7
-HcTMrVPLviBrWp/F3DGRyZZxnzVCtg2h41pk9oacM4BXWJFjxTGCBSswggUnAgEBMIGeMIGN
-MQswCQYDVQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVzIERl
-dXRzY2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdERk4tUEtJMSUwIwYD
-VQQDDBxERk4tVmVyZWluIEdsb2JhbCBJc3N1aW5nIENBAgwm72M+Zb9jcHYbNC8wDQYJYIZI
-AWUDBAIDBQCgggJdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8X
-DTIyMDkxNDEwMjkwOFowTwYJKoZIhvcNAQkEMUIEQE+j36/ccjVOT5WZYoKIHy55QQXKC1DK
-QVPrP/lheAUS81p+hm8ln5BscxG+pNEokGMFJCSmb+AqDYrQMOWk8bowbAYJKoZIhvcNAQkP
-MV8wXTALBglghkgBZQMEASowCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMC
-AgIAgDANBggqhkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDCBrwYJKwYBBAGC
-NxAEMYGhMIGeMIGNMQswCQYDVQQGEwJERTFFMEMGA1UECgw8VmVyZWluIHp1ciBGb2VyZGVy
-dW5nIGVpbmVzIERldXRzY2hlbiBGb3JzY2h1bmdzbmV0emVzIGUuIFYuMRAwDgYDVQQLDAdE
-Rk4tUEtJMSUwIwYDVQQDDBxERk4tVmVyZWluIEdsb2JhbCBJc3N1aW5nIENBAgwm72M+Zb9j
-cHYbNC8wgbEGCyqGSIb3DQEJEAILMYGhoIGeMIGNMQswCQYDVQQGEwJERTFFMEMGA1UECgw8
-VmVyZWluIHp1ciBGb2VyZGVydW5nIGVpbmVzIERldXRzY2hlbiBGb3JzY2h1bmdzbmV0emVz
-IGUuIFYuMRAwDgYDVQQLDAdERk4tUEtJMSUwIwYDVQQDDBxERk4tVmVyZWluIEdsb2JhbCBJ
-c3N1aW5nIENBAgwm72M+Zb9jcHYbNC8wDQYJKoZIhvcNAQEBBQAEggIA5RJQGkgudRz0SwrE
-VFTQwS6fbd7j9fPt/D91PUHIFTzpUx+GLUnbS8HOY6njkS4Hqm492w2NfYvx4uLGH33cADMj
-qg8jgfqNvsfdswusynDSaPNq/hHEDM0GAaQtv36yavBFR9nUdawZaTd3XAuKRQJROFTIVT5M
-863dplxdWKoCy9s44atwVu9EXfEa3TKtFc1sn4dvzBXw9uIk+U9Oc8+MHa/2WhXOaxb8uhUw
-WtecfbJh1IefN/idwVdvBXjRilssiG5H+3jOjPTRFzRq6TmHvW/ukW0YAf0N5+iLPSyZou9q
-KD9s6VeuJ+Yy7soFUI8KEndGmo60oi1vKkyOrOi+b106Gjf5U6CaT1kGrIShmLxM8fZl3m/P
-TnRwL39PBYqIBkvqAPijw1M0LWORVhDfVRgXir7Cq6G6dSJs0F+RgZjYtrMgk48w3l8up5Jl
-0ntSCA5XXW6JvOOytE6paA6Wp4h4Zp0D+0P+5+vDFnOtH24sIi4koRLkdjp7kgzMkLzMynBt
-e0HPbBHJhVK0yheSI1VuWdOx7lhuu2rbWv0Xf7oseI0DSr68fKViK37cUocDtaUwGBPqQGJU
-x83D3v8SdLLKa4IaqU7kAt/6w54hOUV/YYAZhny1ZE3NIiMxsQTOVHMqa1uL5VaReKcnWx7q
-3Lk0HApc5yBWmd4NlmMAAAAAAAA=
-
---------------ms060702040607090702030409--
-
---===============1388035450580464273==
+--===============3546540441924957851==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -478,4 +587,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1388035450580464273==--
+--===============3546540441924957851==--
