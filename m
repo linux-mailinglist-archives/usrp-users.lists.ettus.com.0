@@ -2,107 +2,149 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B655B9C4A
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Sep 2022 15:49:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 817A25BA652
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Sep 2022 07:24:03 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D6C8B38448F
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Sep 2022 09:49:13 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3AED4381331
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Sep 2022 01:24:02 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1663249753; bh=Qa7Fo/ogORh/eTC0TXl6gQGnf1fbqk5Ecejk9D8/R2s=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=01cHXTQjFzQGoLqqqerCHRQhEGx6OvBniUnUv1BRVjVl5cGnO67jxQ6T0Z2Y20G4G
-	 n0PyyG7usi29G9cNCA2vz1cj1vCJ0p52+uGUZrnHQd8evluCtO6pYL/hzuSy0UuzwT
-	 lRWDW/R4cJC4E9kVxsO8AMjLKVbfmqImxuUQvn1NsdKaNd8IF+8TgOW40DEqRZ8fGu
-	 0X2MnxHd3EVVnGW2JJiMsidzAbuzmupLYg6ieuLo6IhOUEptDuq0vaVDqXu/hQDdLs
-	 oVT75vCkrFV/iSkK9jXcU46CaNVtqMeS0Su4jb1l+uG5nNPFP9Ok1dUNf3f3yycnuQ
-	 1ag49gXoRij1Q==
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id D8D8D3842AD
-	for <usrp-users@lists.ettus.com>; Thu, 15 Sep 2022 09:48:22 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FxMeAz6p";
-	dkim-atps=neutral
-Received: by mail-qt1-f177.google.com with SMTP id j10so10713103qtv.4
-        for <usrp-users@lists.ettus.com>; Thu, 15 Sep 2022 06:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date;
-        bh=AbFY4Qx5NiC3IMahg/9YN1eZlGnjUv6w6egb0H6HeXk=;
-        b=FxMeAz6p9AhQw+5K+sBR2tf5LSTRlG38Bm4kSRgUI8hy2ct3X6OYVbRLAUlXjRjGAh
-         Ianyf1aIsMD6cnra5fI4EluHoThyjkk5mJx8ifY8Yrb0oBe4JAPckoqS65ZibpJuo4r7
-         cbuaaPUZlGWWuwaSkGAzV7tQVX6azaaG8HV8K8JQpGFgy4olQKiJGrAkGYIKqCLwdpZJ
-         mPRa/X/TGB10CDIKcozpWGsYz+UYGwjrMXxJg37fvPZMOLEmGqIDDms5WF9SZ7+p/Jt6
-         P/OoR+kuzfK+ObtHxXVmtgzS5OGluWCPS1985l1kjZeiab6RJt7xqNCzvwI7lsvcjd3V
-         mRDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date;
-        bh=AbFY4Qx5NiC3IMahg/9YN1eZlGnjUv6w6egb0H6HeXk=;
-        b=gCcLrGt2ooL/cKwPRWCXq9vWTohhuMP8zPU/HvVxKwy+kmv5U3WQuOVQEo3lC0Bwyb
-         iXEzjdvPdmed/Mk5AHRbhVP+39AAVI1uYO5f/6N9VxNJV+XjaxZBzFgf7wtcYnphp5Dk
-         9yq0vNiZqQPGHrPUD3N3oHB/1onMUzMecAgRcVctB59RwkZcg0mwY2foE5EtpXrcGp79
-         k+QQegN280UPA/3Z3VtY89Emje+o3hu4whCkgayhZ/Y3n5PiBuLesvtJo/vRC19ZEDjj
-         +wGMPX/yAUaH8hbg7SL1Bvrv6kKPZ88cbrg/cpbKBOEh/YLTJFWsfa/4WtTvFse7PnvX
-         wdNw==
-X-Gm-Message-State: ACgBeo2uorZVzoEJwHOh7OacyOOLYxg+NEjsifuSyIw/cyInGGoG/zw7
-	mBm4rLF+gvOq/WPYzAol70sZ8QNKxNg=
-X-Google-Smtp-Source: AA6agR5z/NUu1HTHLg7sqjZhjuljT7I3euaKqz9UhdwL83pU68FAt+/Yhw+65gQpLTMd+zo7c7tkCQ==
-X-Received: by 2002:a05:622a:106:b0:344:8b6f:23d8 with SMTP id u6-20020a05622a010600b003448b6f23d8mr37644540qtw.668.1663249702120;
-        Thu, 15 Sep 2022 06:48:22 -0700 (PDT)
-Received: from [192.168.2.159] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id q26-20020ac8451a000000b003445b83de67sm3528491qtn.3.2022.09.15.06.48.21
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Sep 2022 06:48:21 -0700 (PDT)
-Message-ID: <594df3d0-60f4-4846-bcfe-c99a14dd0915@gmail.com>
-Date: Thu, 15 Sep 2022 09:48:21 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Content-Language: en-US
+	t=1663305842; bh=zeiHA63LGaftWUJtJZqKTAJb17T3hOe3ft0xSYrbRwM=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=eaSXa/1o63N6whJIk4M17mFmSHlTz/BVPpJ+22iaZ3aEeMHxHM6ZBcvsFxVu+b26r
+	 NahogucXimQDHrsvgoU4JSpJAIf8i1UdLFnVOaxI73K87jEkXdNhy7prOmKoVFMQj3
+	 QS/UNZlAxfRIIGCe6jbfiXRenjXuC8ZjDvWAiagNFIcdj1oXWwhnGPwqYTcl0miOQX
+	 hMVYUvvMn7bUJVCqBrXLCsfiIJWPFucaOGHCcmXg3E1zt4gnxARCWHF9FTgDn1WV+p
+	 M2mg/HnBjukBnxasCxmMcTrHaWLVALI9I0+1TvIcJ0ew/AUP4UTmVF2t8vX5Oewy+N
+	 rQX9kQHc/UFng==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 0DA15380A91
+	for <usrp-users@lists.ettus.com>; Fri, 16 Sep 2022 01:22:14 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1663305734; bh=hSWj6b87RTAgFqX+vMkZLzTXzvBNtxGbHAWsd4lUC+M=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=PFB1P8rWnHM4HkOOc/ByxTIXVwr49VO2iBvWJ1XOiJ1OSt/xJnI5Bs326JSXAR2YA
+	 SYcTT2JNxTpxD4S40F5xy7v9rewQZOs6EPDT62OSKw3l1/go271SFo7XzmoojQc1Yq
+	 cyWNZ2MQ1Zj/67LvdeIwjoO4tPEoQ7fcHI4pl+gglUvdbOfLNZzQSgXSdYL5zgOUyk
+	 2cBj4WdFSyCoO7JMUlEIK1rsFOMB3FFwJCaE8Js897iWJAMmj2hNw9Fi2dcDBC8+2p
+	 HDowB908PIQQp9kzQ1hXBRQ0Y671PwU6uaHLVQatp5xpcCeqOCFPkzljjUDaAyjguL
+	 aVPCRRkirPrlQ==
+Date: Fri, 16 Sep 2022 05:22:14 +0000
 To: usrp-users@lists.ettus.com
-References: <KrQPMifKSF0coFKMQej2bH2vaF7jbszkyw2xMsXA0ZA@lists.ettus.com>
- <CAMMoi3tLd7c7QkufZbRQdn1WjEn2KUO8QTTLxhHHWn4+x7Nubw@mail.gmail.com>
- <CACaXmv_fBnm0uMRPfTiDx34yEpLtsb437coQP+V4AihFcvf0ew@mail.gmail.com>
- <CACaXmv9bGeOK3YsUcHnDVB6bGSh0pneqTXNc4TxmRLxV+A5pww@mail.gmail.com>
- <CAB__hTTN_YjVeRvSaWVYpPcsLECc2Hz-1-qXDwZM_Rxn9VyTCQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTTN_YjVeRvSaWVYpPcsLECc2Hz-1-qXDwZM_Rxn9VyTCQ@mail.gmail.com>
-Message-ID-Hash: S62MBDSEFUDAUTIMD5TBHVAU6JZUX2QK
-X-Message-ID-Hash: S62MBDSEFUDAUTIMD5TBHVAU6JZUX2QK
-X-MailFrom: patchvonbraun@gmail.com
+From: perper@o2.pl
+Message-ID: <13qsOerI6jHz2OlmpY4bc222iuf8NuBH0f0pNLUKf8@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: b82354ee-8c70-4c2c-c667-832027419d38@o2.pl
+MIME-Version: 1.0
+Message-ID-Hash: 7FWXAHPNGHKMZTMV4YJOGOS5ZDE2Q3JE
+X-Message-ID-Hash: 7FWXAHPNGHKMZTMV4YJOGOS5ZDE2Q3JE
+X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N310 Multi-channel Transmit
+Subject: [USRP-users] Re: DPDK 21.11
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S62MBDSEFUDAUTIMD5TBHVAU6JZUX2QK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7FWXAHPNGHKMZTMV4YJOGOS5ZDE2Q3JE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============9216869816270544648=="
 
-T24gMjAyMi0wOS0xNSAwOTozMCwgUm9iIEtvc3NsZXIgd3JvdGU6DQo+IEFkZGluZyB0byBOZWVs
-J3MgY29tbWVudCwgd2hpbGUgeW91IGhhdmUgb25seSBvbmUgUkYgTE8gdG8gc3VwcG9ydCANCj4g
-ZWFjaCBwYWlyIG9mIGNoYW5uZWxzLCB5b3UgY2FuIG1vdmUgdGhlIGNlbnRlciBmcmVxdWVuY3kg
-b2Ygb25lIA0KPiByZWxhdGl2ZSB0byB0aGUgb3RoZXIgdXNpbmcgZGlnaXRhbCB0dW5pbmcgd2l0
-aGluIHRoZSAxMjUgTUh6IGRpZ2l0YWwgDQo+IGJhbmR3aWR0aC7CoCBTbywgaWYgeW91ciBzaWdu
-YWwgYmFuZHdpZHRoIGlzIHNheSAxMCBNSHosIHlvdSBjb3VsZCANCj4gZGlnaXRhbGx5IHR1bmUg
-b25lIG9mIHRoZW0gdG8gLTUwTUh6IGFuZCB0aGUgb3RoZXIgdG/CoCs1ME1IeiBzdWNoIHRoYXQg
-DQo+IHRoZSBzaWduYWwgY2VudGVyIGZyZXF1ZW5jaWVzIHdlcmUgMTAwIE1IeiBhcGFydC4NCj4N
-ClRoYW5rcyBmb3IgdGhlIGlucHV0LCBOZWVsIGFuZCBSb2IuwqAgQnV0IEkgKnRoaW5rKiBJIGFs
-cmVhZHkgc2FpZCBhbGwgb2YgDQp0aGF0IHByZXZpb3VzbHkgaW4gdGhpcyB0aHJlYWQsIHVubGVz
-cyB0aGlzIGlzIGEgc2xpZ2h0bHkNCiDCoCBkaWZmZXJlbnQgdGhyZWFkLi4uDQoNCjopIDopDQoN
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+This is a multi-part message in MIME format.
+
+--===============9216869816270544648==
+Content-Type: multipart/alternative;
+ boundary="b1_13qsOerI6jHz2OlmpY4bc222iuf8NuBH0f0pNLUKf8"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_13qsOerI6jHz2OlmpY4bc222iuf8NuBH0f0pNLUKf8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I just got the same error as you Meni. The reason was I had remainings of=
+ old installation of DPDK, so I was mixing two versions.
+
+As I wanted to use DPDK installed from packages I had to remove all trace=
+s of DPDK from /usr/local directory.
+
+The most important were headers (files with names rte_\*) from /usr/local=
+/include directory.
+
+So my advice: clean all traces of DPDK installations on your side and ins=
+tall DPDK again.
+
+=E2=80=94\
+Best Regards,\
+Piotr Krysik
+
+> W dniu 28.07.2022 o=C2=A014:05, meni.dali@sabra-microsystems.com pisze:
+>
+> > I use UHD version 4.2 and x410.
+> >
+> > So far, I have been using DPDK version 18.11. Now I'm trying to
+> > upgrade the DPDK to version 21.11.
+> >
+> > I have successfully installed the DPDK, However, when I compile the
+> > UHD library I get the following error:
+> >
+> > 53%\] Linking CXX executable test_pps_input
+> >
+> > /usr/bin/ld: ../lib/libuhd.so.4.2.0: undefined reference to \`lcore_c=
+onfig'
+> >
+> > /usr/bin/ld: ../lib/libuhd.so.4.2.0: undefined reference to
+> > \`rte_eal_get_configuration'
+> >
+> > collect2: error: ld returned 1 exit status
+> >
+> > Does anyone have a clue what could be causing the error?
+> >
+> > Best regards
+> >
+> > Meni
+
+--b1_13qsOerI6jHz2OlmpY4bc222iuf8NuBH0f0pNLUKf8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello,</p><p>I just got the same error as you Meni. The reason was I h=
+ad remainings of old installation of DPDK, so I was mixing two versions.<=
+/p><p>As I wanted to use DPDK installed from packages I had to remove all=
+ traces of DPDK from /usr/local directory.</p><p>The most important were =
+headers (files with names rte_*) from /usr/local/include directory.</p><p=
+>So my advice: clean all traces of DPDK installations on your side and in=
+stall DPDK again.</p><p>=E2=80=94<br>Best Regards,<br>Piotr Krysik</p><bl=
+ockquote><p>W dniu 28.07.2022 o&nbsp;14:05, meni.dali@sabra-microsystems.=
+com pisze:</p><blockquote><p>I use UHD version 4.2 and x410.</p><p>So far=
+, I have been using DPDK version 18.11. Now I'm trying to
+upgrade the DPDK to version 21.11.</p><p>I have successfully installed th=
+e DPDK, However, when I compile the
+UHD library I get the following error:</p><p>53%] Linking CXX executable =
+test_pps_input</p><p>/usr/bin/ld: ../lib/libuhd.so.4.2.0: undefined refer=
+ence to `lcore_config'</p><p>/usr/bin/ld: ../lib/libuhd.so.4.2.0: undefin=
+ed reference to
+`rte_eal_get_configuration'</p><p>collect2: error: ld returned 1 exit sta=
+tus</p><p>Does anyone have a clue what could be causing the error?</p><p>=
+Best regards</p><p>Meni</p></blockquote></blockquote>
+
+
+--b1_13qsOerI6jHz2OlmpY4bc222iuf8NuBH0f0pNLUKf8--
+
+--===============9216869816270544648==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============9216869816270544648==--
