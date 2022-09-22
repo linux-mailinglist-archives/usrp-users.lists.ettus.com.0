@@ -2,574 +2,834 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33DF5BFCE6
-	for <lists+usrp-users@lfdr.de>; Wed, 21 Sep 2022 13:24:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA7D65E64F1
+	for <lists+usrp-users@lfdr.de>; Thu, 22 Sep 2022 16:18:26 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 84680384102
-	for <lists+usrp-users@lfdr.de>; Wed, 21 Sep 2022 07:24:16 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 526CE383C7D
+	for <lists+usrp-users@lfdr.de>; Thu, 22 Sep 2022 10:18:25 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1663759456; bh=N134MgLVmi29k3wGUj3h6caPcPUozEXz7U7E3sKdsiE=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=GnaGa0+gzHTt8eaZPqA/hfiLjaEX1stQy5DK6zeFdfNTBmpylLH1gVrf7DM2ngW+w
-	 JMDtoXTZaETQu4T/Wb7zk7I408lP4VSjRBS5476H4ln5MKTmY43FLrMzvLN7F9mDcX
-	 4qBwLkvKBakVdD4V5VlFE468C+IcrgzYi8iAp6nG6QwZRT63M2yWZyAPFa0fkJrTH6
-	 5ruz/C6QAMbQSgm6z4tlYi01vIWqvJgOv/JlPjYXrn4vrPiKl5r7UH4vZVQ8QkfwBr
-	 pgnkWk2imoANF1Ynt/Y9HjnaETHbrDRkXWvAV0VJWGTPrzvjVBZNS4CDBoS/M8K3/N
-	 29/rzR/MilDOw==
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id B52EA3818B1
-	for <usrp-users@lists.ettus.com>; Wed, 21 Sep 2022 07:23:07 -0400 (EDT)
+	t=1663856305; bh=LCV7o1dltHt6EiAC9/V28oLbNBe8prs3NEPMFjt1Gek=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=04amy/I5MEvFsC9+Di4tTqdjUJE/A/YOguL/D0qApgDUvU/peanC8G2GuIUktu+mp
+	 qbQuoMdIXbZ+3ojECfXh95MhBkTlgUn8gIDHHwKmQvii6vukOOvRnubREUb1dE1e/M
+	 wjQB0wKVdhJPftUEYdxHqpIE0KzXrUCuBPbFEWKFZnvEdA+Hgb7Knel7o5Nhir2wsB
+	 Kxlwt6LVqKttUqMYN/21iPbkGDl3Y4yeK1+84Koflp1B/8n3JmxB1sOIxyXD+W8TGY
+	 dpDX+/RFZ7G8qVQ0jF4zBJOCzM1kRqeVHTc8o83wAUxRq2SYB9s3o+x68Ock9tDFSc
+	 TzUXS+SGQZatw==
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150114.outbound.protection.outlook.com [40.107.15.114])
+	by mm2.emwd.com (Postfix) with ESMTPS id F39B13818B9
+	for <usrp-users@lists.ettus.com>; Thu, 22 Sep 2022 10:16:30 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YGV01tkA";
+	dkim=pass (1024-bit key; unprotected) header.d=barkhauseninstitut.onmicrosoft.com header.i=@barkhauseninstitut.onmicrosoft.com header.b="ggaNm98M";
 	dkim-atps=neutral
-Received: by mail-ej1-f47.google.com with SMTP id y3so12926696ejc.1
-        for <usrp-users@lists.ettus.com>; Wed, 21 Sep 2022 04:23:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ULKyHD6odYNaNO6Zku/GQCcvtUsFK3CVDazgWUSJzRHhSkItxEWKeYvz3xqMKXMAWjFeTzfRHXSzNpOsA6WJx4JcP+mBKMCMHL3goY0H9wZM26LiFmfZJq5y33PjqWtE2aW/LLCNiWH4ENyI9yPvn1bTKNtb0VisaYFII1ObKTSMy/9gx+yTd0hl1+HKr+wt9gzuFKvpqoPktZN21YB6XnRbx5LulrfZCC+eDdeHvvK1uu9iEpkZu4Gjr4aSr2xPsMlPuBmYi3aQcRbg0gdfgDrdNH3iTI4as1IqOO0Q/OofxPI8qcLxlgJ19TJDd5k9cKJty2pcgtkDKpus4b8HIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=K4XZOSKE1IfUrmbljsI6sWZbEvjI1OKPbTzCIkepA04=;
+ b=iuT47ZzCi68BP6f5KeW2gokQJ+7yZSxEYURzqLMETguePy3KiiCaMw9xfOVD3/+XMhypTKNtTf7/ysh7VfQ6XDKCU1jOn8nuW7ZOfGtAt3rPhA+z9DAFyQp5n4y+QKtzdSGNdx2Zr/muR4+5Kl9mpGLHI2IAw7wJGx3vUmVme6AMbZOBPdJeY7e/nth+Ara6V86N4GNfwBTcyWxxrxtBzF2oDw3zmAjv81OSNLNh6ADdc5yqda66FkSer/ipHc8eU1WA8UPdEGbwR3NXkMATdN85ueKfgUUPYaDOLoOQYRwv2NzA4br9xzgnoXetU+5h5JuVapx++HUmBm/wEq7kwA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=barkhauseninstitut.org; dmarc=pass action=none
+ header.from=barkhauseninstitut.org; dkim=pass
+ header.d=barkhauseninstitut.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date;
-        bh=y8jLFqyiiObwjPV49hOXGnS9AocKZ/FE6/rO4jA85OQ=;
-        b=YGV01tkAmWQ4+Z6kxH89iBLvGo7hXNxjdPJHZL/lRES8Bqv2Mgjt3H2+a5qIjeaDYK
-         WGZlEL4HQdlAWDxyp3bEiCKhvjAyn1vBo3pyWPj/fyDH8iagKNyHFeImcBY8SpCDkopi
-         +OySAPWupmD3qaPH29c/TYODpmYkWziOhCugU+v5HD2tZjo4LG7HgI/S/G00NOfIPJAn
-         oDMBAV58SpPITYxmYvLEXcIsS2wOGfopkjbcJHhSVvlZ2rn+ufTJkiaKJJlYrGt8SHmO
-         TMf3uR0q7bJPJZ2PZR5mjp4zSNslG9xE1bdkk/Qg9d/dRRjU2CYwkLxO550kkDStaT2z
-         3BSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=y8jLFqyiiObwjPV49hOXGnS9AocKZ/FE6/rO4jA85OQ=;
-        b=fwZXTnExusOoD6X5HKmS4sy6do8LtmmorrbLnKPDzbzTs7TKD+vU3fD+Fj0YYDRjAu
-         4Xk3EPYNN0HSDCuDfZqFF8MtsEGXHsq1AsuDb7imtKzPtkWfWinnk/zTYhBMt/66AmHo
-         UmQxdNQu473r5kJGFUr2CEv8aYjtjgxgiu9xnlDGN5DpDmHA8RwV95B7urbzkTX6y1jB
-         DmPw1RM+Z0TGvVsru97ywSzTi3athPr7aaIWfXIfh79F71rM0PsDxBaIH0+6E2LSlUx8
-         ozdrJITnoy/RljelcooYFgLQx8OqnCWDKuvpM+uDEdx3EfbeZIoxlez2w30y5M+IgsQJ
-         siHA==
-X-Gm-Message-State: ACrzQf0M0qIEdi7kduV1R3nVN5Zl9z/MV8/ladd6gxSgEajS/mbbZu1X
-	ZyHTafghLJ4z0rvkdAmsubCXV0+joS2BqxIX1MU=
-X-Google-Smtp-Source: AMsMyM5IAteYlCq6XvBsbezo7uDRMKcQdUEeJdzKLdFa2U5pwHNp/Nro1TJnho7uy3hgCzU2cpIC9F/f6oQE/E50sgA=
-X-Received: by 2002:a17:907:6285:b0:781:cdfe:a1e with SMTP id
- nd5-20020a170907628500b00781cdfe0a1emr5515606ejc.158.1663759386285; Wed, 21
- Sep 2022 04:23:06 -0700 (PDT)
+ d=barkhauseninstitut.onmicrosoft.com;
+ s=selector2-barkhauseninstitut-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K4XZOSKE1IfUrmbljsI6sWZbEvjI1OKPbTzCIkepA04=;
+ b=ggaNm98MjXVlCTiJr1KzGrHc34CClF1plrDTq5WP7pWlvL93MVHYT7lB83zveWyRuHc6E61PPQtqWSHp0OQ9GgsfA1jSawsHj5OVDnGqfjG39hvczkkrau5Fosjuik7qd0QcvZha/1Q+7A7ww1PbxwZJq7RajgSvGcsuuFZlgSA=
+Received: from GV1P250MB0785.EURP250.PROD.OUTLOOK.COM (2603:10a6:150:9f::17)
+ by AS1P250MB0477.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:4a6::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5654.16; Thu, 22 Sep
+ 2022 14:16:28 +0000
+Received: from GV1P250MB0785.EURP250.PROD.OUTLOOK.COM
+ ([fe80::acc8:df95:ad6b:380a]) by GV1P250MB0785.EURP250.PROD.OUTLOOK.COM
+ ([fe80::acc8:df95:ad6b:380a%7]) with mapi id 15.20.5654.016; Thu, 22 Sep 2022
+ 14:16:28 +0000
+From: =?iso-8859-1?Q?Maximilian_Matth=E9?=
+	<maximilian.matthe@barkhauseninstitut.org>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: RFNoC Disconnect Streamer
+Thread-Index: AQHYzAkIjGe1lv6ZOkK+DkQygQO/Oq3rgnE6
+Date: Thu, 22 Sep 2022 14:16:28 +0000
+Message-ID: 
+ <GV1P250MB078547F105A7673F14E43959904E9@GV1P250MB0785.EURP250.PROD.OUTLOOK.COM>
+References: 
+ <GV1P250MB078581BDBAE53674592445AB904D9@GV1P250MB0785.EURP250.PROD.OUTLOOK.COM>
+In-Reply-To: 
+ <GV1P250MB078581BDBAE53674592445AB904D9@GV1P250MB0785.EURP250.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=barkhauseninstitut.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GV1P250MB0785:EE_|AS1P250MB0477:EE_
+x-ms-office365-filtering-correlation-id: 22d83af3-bf61-4043-d65f-08da9ca50a59
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ LBBtfJuYu43aJvWHpjOXRA2eYUvwFS8KNBbbSnueeXQ20eCFlYFBxCRNnduBZGVMTT7ashcR1reE1kk9o68/Qi/xACmJbQhhhk0SMREmnbr9o/QXVxoMpJwjtPqvkHWYNUca6sqGhvjIwch/EwCfk89doQdMSKt7eqUoz8t/UYmPP7odoSvIzhy/dg+BckPwfWAa4Zfs4scoyf6sDI8vP+ALzdojF6Xrn4zPfr1wG8sTnsmUykhU0VslU4ft1QPPIFhkuhQvUTTNHlHiOOvjbG+JL3WmyswS8CVlrKsb+3/CSAesIC6xfSjtLMraMH6G6WqXY+xgc5HQcJLN7Tfz3uL4UlMo3mlYLR3Gdvv5abMINVFNMldVWoUk+C8Kv+sT1wwNiCaQaoZxpF8cE2QjWNKtEU765/cWoucr29QxA/gwEOGZ9fDi8xlytyG+Gdaounp8DiXTt2obEgZ5A3UJ+E7z0glBwfTgxUzTnEGlFZVhyb7U6ZlR3EvGWO+b/baCgoAlL6O2gnkv6ZrNUX/XGIBbJFTUaMqJcQjphHQ0RCYGpQD62eL7pfAbtjRYt8r/5IeENA3Gz1VXrl7rGvmkOgcIOEBDOnDMxs/CjytnHRuSE2e9mqmEpUPuXXfVdfjcIRs+EgvSU8lkZR+bhiHigsEbBm6PZpN8tXgo9zgRUH3T0/NE6HZykeEWIDk5SFB9f+6kIxF9Y2KYYqp20qDqz8rl9XuUA2Ut8MV6YjXAqlWOfLa2aYVtCKbfNXEU9DQ0ZNKZ9MfBjqFcaVBoAzyiJcusQR2MjdL6STHqoU4lMegBiwOJxC8r+k2shrMi0XsI6+85ps7FBQPCmB0SESyCrQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1P250MB0785.EURP250.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(39830400003)(376002)(346002)(366004)(396003)(136003)(451199015)(66574015)(19627405001)(7116003)(33656002)(122000001)(38100700002)(99936003)(41300700001)(478600001)(71200400001)(966005)(2906002)(86362001)(3480700007)(15974865002)(38070700005)(186003)(66946007)(7696005)(5660300002)(53546011)(9686003)(6506007)(8936002)(52536014)(26005)(6916009)(76116006)(83380400001)(316002)(66556008)(66446008)(91956017)(55016003)(8676002)(66476007)(64756008);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?/Bluc9RwIXE6KGW4OBLvJk6myF/LlpHnN9ulNf7fUGnHZqwa2CyTrUSGIX?=
+ =?iso-8859-1?Q?hbACpUZdw8FGXdjmwZymuKUvuV/9/+a2JF7DxyvaqiXcZBcAYyY4DfCEpe?=
+ =?iso-8859-1?Q?60Ghvp9V2T26H5SpOmecm08caJ8ZlUfvlFHdZ9JChD3YEzCqk9ZYX4/az5?=
+ =?iso-8859-1?Q?vAkQ197x/S3bbnovfBXzU7HtMV+z1ZfT8etgPge/4/nr1Yf9skAkECIM+d?=
+ =?iso-8859-1?Q?xJLYbu+54Vipchg18oOekexz/XVUEGnS6PQGTJb5w/QkF/yt5CkeMPC8Fp?=
+ =?iso-8859-1?Q?1F0epKfPM510S1QF9trXoIBh7poD6ii363l0fD4ybh3EpjAa+F2iZFNUPu?=
+ =?iso-8859-1?Q?2+rdEH4Yc144siBVZfv69wjC8yc3kPQBYE8b8diTGzkziDtfL7XGAL4SUg?=
+ =?iso-8859-1?Q?381n2AHf5lx0qEUDbScf35O3f7aB6M7qlBIXLH/Ejiny8P2VNfy5GhuWsz?=
+ =?iso-8859-1?Q?NlC/n2Ve1P35V1FC/PD5/rsoo5IriketptxrevACTUYmU00pPATEQCwSVL?=
+ =?iso-8859-1?Q?RDCukL9YYweoWgEmINGpI9pB7gcsjzcfE+2PvPeE8vzEWLRBwd/+TO1nsE?=
+ =?iso-8859-1?Q?WcRq/lSB2QvxiTmuVJdxUR+Mop1ymbFoZpwAIDxYnE3RY7kYb52T+mMPEd?=
+ =?iso-8859-1?Q?HDBBb92GnFV4CYL8oheJOKFgS3Titz7zQWnOvpy4LNk++1r703K+J8nBmf?=
+ =?iso-8859-1?Q?pb720Naz+XcJg6NWkoCDNv8FoHMn1KMf/XuEz4ckIgMUb10eRuy+Ffz6EI?=
+ =?iso-8859-1?Q?DEC0DFCJFmsyWjFc4hacQKhB8ZI0+f8jdCjwbJ4XC3i3vd3VBO5+yC/bIl?=
+ =?iso-8859-1?Q?RCaDx9lTSbuD6Vmvvg+rHWfGN/oWF7yn1+G5pp2XuV9Xgcy7llqv9X9Vbu?=
+ =?iso-8859-1?Q?zNjC5opmztChuQDIXMNF3yzcqhh2E1Wn3LSOhErR+GYuARxBWHse6aFd1d?=
+ =?iso-8859-1?Q?Kcr7dyLjkj1O+oUlUaYoXelp+Ii8TbQfhNsUUNg51iORQ5do9sNL8miqFk?=
+ =?iso-8859-1?Q?Nqs3RzbhrtQ4lQApSAtQr4wC+TX/74P8dpM5KLG0dhORAYn+rBpT/dBE38?=
+ =?iso-8859-1?Q?rHTLywKKY7LaD0kTXA8Zrb/Ikkg2Td8V2k69YcNeQlZ2XVVoS6aLzVzj2n?=
+ =?iso-8859-1?Q?qWraLuGQi9G8ZT7zbEq2Rs4IyxUZbi7voC+pZCezg56kNd4+z2q3jOyNIN?=
+ =?iso-8859-1?Q?aSIXidp+2Q1BMbIJXd3cGmvsHI4EZj8/Npya6HlH6TNPxg9p1Y9Sdr7hYL?=
+ =?iso-8859-1?Q?UWySqyenR41aCdlT8fEBBE1htqg74f9+F1I9Bp7CgaPsCMwyKP2SiYgjAB?=
+ =?iso-8859-1?Q?xTNMQjAYnVCWDKkFYzh8uDL27ARAXkLsnXx9AxGbSNQif+Vz5naYJb+BLW?=
+ =?iso-8859-1?Q?dG1MBmj7tYuTJV/naK8zxixvpyoCiImeC1IMkW5TKC6hkvv5l3WZ5MgKdz?=
+ =?iso-8859-1?Q?SDHa54/pJr7O07rq5jSJs+IVtyoFu9Wjm3a78ccSb259NCHJN9eDhDQkBy?=
+ =?iso-8859-1?Q?N0tksdzoVnfk9fDYQjjKwX96n7aMH56jvOp7AkfG/V8u8wdZALZxvJSFku?=
+ =?iso-8859-1?Q?R9i/1vBQO5GS1Svivtnqn7ThdDmYG8AgL1vuz+nSXtMTZb6/ZnfGVomDJF?=
+ =?iso-8859-1?Q?6310I10Gy7XX2rbwaGiCEIUjExRRv4N4ryObNSWsgk2h4c4uz7IjGVsuqn?=
+ =?iso-8859-1?Q?SXaN4s1HHVzsllbZV7U=3D?=
+Content-Type: multipart/mixed;
+	boundary="_004_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_"
 MIME-Version: 1.0
-References: <CAJhOL6cAL19bq0dk+sToy-ADUaZNomCWU+sdgL46meCu94P3Xw@mail.gmail.com>
- <CAL7q81tqggKk4-MdGTsuQzGiLa2HThLdG99NQNynV863UAY4Gg@mail.gmail.com>
- <CAJhOL6cdPSjjTq4ryt=59Moq=t2SJxK7Eqd-_kNC+wJuV40asA@mail.gmail.com>
- <CAL7q81vU-WgEmrF0z8P-kQq3TJa=WSCtUwf-ftd1+a30EPZSdQ@mail.gmail.com>
- <CAJhOL6e7FFTrvXmUZmcmRjzFeHfo3_OTVR0_=hb7T5Tgtb4dqQ@mail.gmail.com>
- <CAL7q81s9KwfTnerWYdOt1fDrG9FDPv5qF743TYqBBSqG1LCNnA@mail.gmail.com>
- <CAJhOL6cTzeJRP8EFS_HjQR2VZP84w+6j8RiRPMczuniQUwcO3w@mail.gmail.com>
- <CAB__hTSe5M-BL4FFaAi=gA3O4AV=jxgBRbENpxGdnHe340ZptA@mail.gmail.com>
- <CAB__hTTsg9LsRScFUmYOywBp9eSg7iYixjLZULa119B+fnO2WQ@mail.gmail.com>
- <CAB__hTQp1SOfvNa6E=qZaV6ORqVHU5MJFTv_vzU0KXZ5Gy9Eww@mail.gmail.com>
- <CAJhOL6etMLth3S6pj-ghemXv18PXz-M0nS=S3Sg0Z3-i6Pq4Yg@mail.gmail.com>
- <CAB__hTQ8Ln5ktvkmx1ThQVQVX1mga0qCX=49YbXJtasG7emYjw@mail.gmail.com>
- <CAJhOL6dLdSL2bWPjdgcfnXL+ednwRQ1QX9tRG3mxgm3+O=486Q@mail.gmail.com>
- <CAJhOL6dUL3S-CJJHLOJTkaj86V-4axM8Ah=4_aKvAcB6WHEHyg@mail.gmail.com>
- <CAEXYVK6MeWsG3CF0LXYaOE0w5RGzAiksG1j-54kNOWYg2ZOfDg@mail.gmail.com>
- <28515f65-c0e2-4489-8563-1887cfac4265@Spark> <CAEXYVK4_xW0rgOKS1vz7R=iZkh_mg4qADnPF0uLALBhxGd71Ng@mail.gmail.com>
- <CAB__hTQ=00nz9Zyh+yfkG_V=h1yzfEDT4Rc+8=d5fxbD-sTrQw@mail.gmail.com>
- <CAL7q81u+G+W-wA18xUhFGUsQAigCWbn7MYCXvdPv7BxssYGVaA@mail.gmail.com> <CAJhOL6ftJ9H6b5E_Jd3EYUZ55Q+_LuaNBCmifScq_cPGYK0wDw@mail.gmail.com>
-In-Reply-To: <CAJhOL6ftJ9H6b5E_Jd3EYUZ55Q+_LuaNBCmifScq_cPGYK0wDw@mail.gmail.com>
-From: Kevin Williams <zs1kwa@gmail.com>
-Date: Wed, 21 Sep 2022 13:22:28 +0200
-Message-ID: <CAJhOL6d1V1YZrF6g5Y=tGFgMSE8-g3hm55yywZTEqDnHJz1=ZQ@mail.gmail.com>
-To: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Message-ID-Hash: ZBQOUCWDIHLO5XHPASYC6XTMM7TOCJKS
-X-Message-ID-Hash: ZBQOUCWDIHLO5XHPASYC6XTMM7TOCJKS
-X-MailFrom: zs1kwa@gmail.com
+X-OriginatorOrg: barkhauseninstitut.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GV1P250MB0785.EURP250.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22d83af3-bf61-4043-d65f-08da9ca50a59
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2022 14:16:28.3230
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 00487172-018a-4fb0-b279-f756ac552ea7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h5dWsTgRxc5MgTbj1cuCiySsj572c0mV6A+9rktXtjvEIPAwb6ascrXHToud6OdPC7Z2vcgKm4t5HEeN588EcrLU2fG5Ukmhyb0OMPo3su5hIZWJBc0d3iQX2EcdYCn1auxoFmW/MnFFjBfE3blXGw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1P250MB0477
+Message-ID-Hash: BII3FT2L2WGRZ24VLXJBET3VB4BSPSJB
+X-Message-ID-Hash: BII3FT2L2WGRZ24VLXJBET3VB4BSPSJB
+X-MailFrom: maximilian.matthe@barkhauseninstitut.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Rob Kossler <rkossler@nd.edu>, "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: tracing an overflow error
+Subject: [USRP-users] Re: RFNoC Disconnect Streamer
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZBQOUCWDIHLO5XHPASYC6XTMM7TOCJKS/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AVUCLRMURHJQVY3LBNB6YDML5XFRGPI5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4512668975363837364=="
 
---===============4512668975363837364==
-Content-Type: multipart/alternative; boundary="000000000000361bb805e92e2b8a"
+--_004_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_
+Content-Type: multipart/alternative;
+	boundary="_000_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_"
 
---000000000000361bb805e92e2b8a
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Everyone,
-
-I've got the i/o to registers in my core working - so the various layers of
-logic from testbench through the rfnoc wrapper, control channel, my core,
-and back, appear fine.
-
-However, moving back to the chdr channel ("client interface" as per the
-module created by rfnocmodtool) I see that:
-
--  the output
-"/rfnoc_block_multiddc_tb/dut/noc_shell_multiddc_i/s_out_payload_tready" is
-always 5'b00000
--  the input
-"/rfnoc_block_multiddc_tb/dut/noc_shell_multiddc_i/s_out_payload_tvalid" is
-driven by my core as appropriate, and happens to start at 5'b11111
--  if I manually assert the TREADY's on my core, it generates output with
-correct TVALID's, TLAST's, etc.
-
-However, I never see TREADY on
-"/rfnoc_block_multiddc_tb/dut/noc_shell_multiddc_i/m_rfnoc_chdr_tready",
-which I guess explains why
-"/rfnoc_block_multiddc_tb/dut/noc_shell_multiddc_i/s_out_payload_tready"
-remains 5'b00000.
-
-In the testbench I issue the commands:
-
-         blk_ctrl.send_items(0, send_samples);
-//         blk_ctrl.wait_complete(0);
-         $display($time, "Send complete");
-         $display($time, " TX Size='%d", send_samples.size());
-
-         // Receive the output packet
-         blk_ctrl.recv_items(0, recv_samples);
-
-The correct number of samples are sent (verified by the waveforms in the
-sim).
-
-However, the "recv_items()" call blocks.
-
-I'm not sure what could be causing this? (Seems like back to square 1.)
-
-Regards, Kevin
-
-
-On Fri, 16 Sept 2022 at 17:04, Kevin Williams <zs1kwa@gmail.com> wrote:
-
-> Hi Guys,
->
-> No solution yet, so to summarize:
->
-> My IP core generates TVALID's after a reset.
->
-> These TVALID's are seen in the "client interface" of the RFNoC wrapper.
->
-> They are not propagated to the master interface of the "framework
-> interface"?
->
-> The IP core gets the correct input data after a "send_items()" in the
-> testbench, and its internal AXI signals indicate internal TVALID's over
-> valid inputs etc.
->
-> Somewhat out of ideas.
->
-> Regards, Kevin
->
->
->
-> On Wed, 14 Sept 2022 at 22:32, Jonathon Pendlum <
-> jonathon.pendlum@ettus.com> wrote:
->
->> Hi Kevin,
->>
->> To expand on Brian's and Rob's comments, one issue that often comes up is
->> user logic bugs related to AXI stream's tvalid / tready signaling. The
->> user's logic will pass their test bench but behave strangely or lock up
->> when running on hardware. I've found that before running on hardware, you
->> should at least test your block with randomized assertion of noc_shell's
->> tvalids / treadys. Here is one way to do it based on the rfnoc-example gain
->> block (
->> https://github.com/EttusResearch/uhd/blob/master/host/examples/rfnoc-example/fpga/rfnoc_block_gain/rfnoc_block_gain.v
->> ):
->>
->>
->>   wire m_in_payload_tvalid_int, m_in_payload_tready_int;
->>   wire s_out_payload_tvalid_int, s_out_payload_tready_int;
->>
->>   noc_shell_gain #(
->>     .CHDR_W      (CHDR_W),
->>     .THIS_PORTID (THIS_PORTID),
->>     .MTU         (MTU)
->>   ) noc_shell_gain_i (
->>     .rfnoc_chdr_clk      (rfnoc_chdr_clk),
->>     .rfnoc_ctrl_clk      (rfnoc_ctrl_clk),
->>     .rfnoc_chdr_rst      (),
->>     .rfnoc_ctrl_rst      (),
->>     .rfnoc_core_config   (rfnoc_core_config),
->>     .rfnoc_core_status   (rfnoc_core_status),
->>     .s_rfnoc_chdr_tdata  (s_rfnoc_chdr_tdata),
->>     .s_rfnoc_chdr_tlast  (s_rfnoc_chdr_tlast),
->>     .s_rfnoc_chdr_tvalid (s_rfnoc_chdr_tvalid),
->>     .s_rfnoc_chdr_tready (s_rfnoc_chdr_tready),
->>     .m_rfnoc_chdr_tdata  (m_rfnoc_chdr_tdata),
->>     .m_rfnoc_chdr_tlast  (m_rfnoc_chdr_tlast),
->>     .m_rfnoc_chdr_tvalid (m_rfnoc_chdr_tvalid),
->>     .m_rfnoc_chdr_tready (m_rfnoc_chdr_tready),
->>     .s_rfnoc_ctrl_tdata  (s_rfnoc_ctrl_tdata),
->>     .s_rfnoc_ctrl_tlast  (s_rfnoc_ctrl_tlast),
->>     .s_rfnoc_ctrl_tvalid (s_rfnoc_ctrl_tvalid),
->>     .s_rfnoc_ctrl_tready (s_rfnoc_ctrl_tready),
->>     .m_rfnoc_ctrl_tdata  (m_rfnoc_ctrl_tdata),
->>     .m_rfnoc_ctrl_tlast  (m_rfnoc_ctrl_tlast),
->>     .m_rfnoc_ctrl_tvalid (m_rfnoc_ctrl_tvalid),
->>     .m_rfnoc_ctrl_tready (m_rfnoc_ctrl_tready),
->>     .ctrlport_clk              (ctrlport_clk),
->>     .ctrlport_rst              (ctrlport_rst),
->>     .m_ctrlport_req_wr         (m_ctrlport_req_wr),
->>     .m_ctrlport_req_rd         (m_ctrlport_req_rd),
->>     .m_ctrlport_req_addr       (m_ctrlport_req_addr),
->>     .m_ctrlport_req_data       (m_ctrlport_req_data),
->>     .m_ctrlport_resp_ack       (m_ctrlport_resp_ack),
->>     .m_ctrlport_resp_data      (m_ctrlport_resp_data),
->>     .axis_data_clk (axis_data_clk),
->>     .axis_data_rst (axis_data_rst),
->>     .m_in_payload_tdata  (m_in_payload_tdata),
->>     .m_in_payload_tkeep  (m_in_payload_tkeep),
->>     .m_in_payload_tlast  (m_in_payload_tlast),
->>
->> *    .m_in_payload_tvalid (m_in_payload_tvalid_int),
->> .m_in_payload_tready (m_in_payload_tready_int),*
->>     .m_in_context_tdata  (m_in_context_tdata),
->>     .m_in_context_tuser  (m_in_context_tuser),
->>     .m_in_context_tlast  (m_in_context_tlast),
->>     .m_in_context_tvalid (m_in_context_tvalid),
->>     .m_in_context_tready (m_in_context_tready),
->>     .s_out_payload_tdata  (s_out_payload_tdata),
->>     .s_out_payload_tkeep  (s_out_payload_tkeep),
->>     .s_out_payload_tlast  (s_out_payload_tlast),
->>
->> *    .s_out_payload_tvalid (s_out_payload_tvalid_int),
->> .s_out_payload_tready (s_out_payload_tready_int),*
->>     .s_out_context_tdata  (s_out_context_tdata),
->>     .s_out_context_tuser  (s_out_context_tuser),
->>     .s_out_context_tlast  (s_out_context_tlast),
->>     .s_out_context_tvalid (s_out_context_tvalid),
->>     .s_out_context_tready (s_out_context_tready)
->>   );
->>
->>   wire [31:0] rnd;
->>   rng rng (
->>     .clk(axis_data_clk),
->>     .rst(axis_data_rst),
->>     .out(rnd));
->>
->>   assign m_in_payload_tvalid      = m_in_payload_tvalid_int  & rnd[0];
->>   assign m_in_payload_tready_int  = m_in_payload_tready      & rnd[0];
->>
->>   assign s_out_payload_tvalid_int = s_out_payload_tvalid     & rnd[8];
->>   assign s_out_payload_tready     = s_out_payload_tready_int & rnd[8];
->>
->>
->> I suggest doing something similar with your block and see if it still
->> passes your test bench.
->>
->> Jonathon
->>
->> On Wed, Sep 14, 2022 at 3:33 PM Rob Kossler <rkossler@nd.edu> wrote:
->>
->>> Hi Kevin,
->>> If you run the rfnoc-example gain testbench, it should demonstrate that
->>> the testbench is providing a suitable environment for testing your custom
->>> logic or core.  Maybe see what is different between that and your
->>> testbench.
->>>
->>> If the problem turns out to be related to the "waiting for TREADY before
->>> asserting TVALID" issue presently discussed, it seems this can be solved by
->>> adding a buffer stage (register or FIFO) between your logic and the noc
->>> shell.
->>> Rob
->>>
->>> On Wed, Sep 14, 2022 at 2:11 PM Brian Padalino <bpadalino@gmail.com>
->>> wrote:
->>>
->>>> On Wed, Sep 14, 2022 at 1:55 PM Kevin Williams <zs1kwa@gmail.com>
->>>> wrote:
->>>>
->>>>> Thanks Brian. I think the core gets generated in a way which respects
->>>>> back-pressure, so unless a TREADY is seen the core does not generate output
->>>>> samples. I have observed this by simulating the core in isolation.
->>>>>
->>>> On 14 Sep 2022, 17:49 +0200, Brian Padalino <bpadalino@gmail.com>,
->>>>> wrote:
->>>>>
->>>>> I believe the AXI spec says that data should be presented when valid,
->>>>> and the tready signal just accepts that data.  You can't rely on tready to
->>>>> be asserted before asserting tvalid.
->>>>>
->>>>> With that being said, I have no idea if this is the source of any of
->>>>> your issues.
->>>>>
->>>>> Brian
->>>>>
->>>>>
->>>> I don't quite understand what you said.  To copy from the AXI protocol
->>>> spec (
->>>> https://documentation-service.arm.com/static/60d5b244677cf7536a55c23e?token=)
->>>> section 2.2:
->>>>
->>>>   "A Transmitter is not permitted to wait until TREADY is asserted
->>>> before asserting TVALID. Once TVALID is
->>>> asserted, it must remain asserted until the handshake occurs.
->>>>
->>>>   A Receiver is permitted to wait for TVALID to be asserted before
->>>> asserting TREADY. It is permitted that a
->>>> Receiver asserts and deasserts TREADY without TVALID being asserted."
->>>>
->>>> Waiting for TREADY to be asserted is invalid as a transmitter.
->>>>
->>>> Is something not compliant and causing deadlock?
->>>>
->>>> Brian
->>>>
->>>
->
-> --
-> Kevin Williams
->
-
-
--- 
-Kevin Williams
-
---000000000000361bb805e92e2b8a
-Content-Type: text/html; charset="UTF-8"
+--_000_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
-r">Hi Everyone,<div><br></div><div>I&#39;ve got the i/o to registers in my =
-core working - so the various layers of logic from testbench through the rf=
-noc wrapper, control channel, my core, and back, appear fine.</div><div><br=
-></div><div>However, moving back to the chdr channel (&quot;client interfac=
-e&quot; as per the module created by rfnocmodtool) I see that:=C2=A0</div><=
-div><br></div><div>-=C2=A0 the output &quot;/rfnoc_block_multiddc_tb/dut/no=
-c_shell_multiddc_i/s_out_payload_tready&quot; is always 5&#39;b00000</div><=
-div>-=C2=A0 the input &quot;/rfnoc_block_multiddc_tb/dut/noc_shell_multiddc=
-_i/s_out_payload_tvalid&quot; is driven by my core as appropriate, and happ=
-ens to start at 5&#39;b11111</div><div>-=C2=A0 if I manually assert the TRE=
-ADY&#39;s on my core, it generates output with correct TVALID&#39;s, TLAST&=
-#39;s, etc.</div><div><br></div><div>However, I never see TREADY=C2=A0on &q=
-uot;/rfnoc_block_multiddc_tb/dut/noc_shell_multiddc_i/m_rfnoc_chdr_tready&q=
-uot;, which I guess explains why &quot;/rfnoc_block_multiddc_tb/dut/noc_she=
-ll_multiddc_i/s_out_payload_tready&quot; remains 5&#39;b00000.</div><div><b=
-r></div><div>In the testbench I issue the commands:</div><div><br></div><di=
-v><div style=3D"color:rgb(212,212,212);background-color:rgb(30,30,30);font-=
-family:Consolas,&quot;Courier New&quot;,monospace;font-size:14px;line-heigh=
-t:19px;white-space:pre"><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0blk_ctrl.<sp=
-an style=3D"color:rgb(220,220,170)">send_items</span>(<span style=3D"color:=
-rgb(181,206,168)">0</span>, send_samples);</div><div><span style=3D"color:r=
-gb(106,153,85)">// =C2=A0 =C2=A0 =C2=A0 =C2=A0 blk_ctrl.wait_complete(0);</=
-span></div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<span style=3D"color:rgb(=
-220,220,170)">$display</span>(<span style=3D"color:rgb(220,220,170)">$time<=
-/span>, <span style=3D"color:rgb(206,145,120)">&quot;Send complete&quot;</s=
-pan>);</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<span style=3D"color:rgb=
-(220,220,170)">$display</span>(<span style=3D"color:rgb(220,220,170)">$time=
-</span>, <span style=3D"color:rgb(206,145,120)">&quot; TX Size=3D&#39;</spa=
-n><span style=3D"color:rgb(156,220,254)">%d</span><span style=3D"color:rgb(=
-206,145,120)">&quot;</span>, send_samples.<span style=3D"color:rgb(220,220,=
-170)">size</span>());</div><br><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<span=
- style=3D"color:rgb(106,153,85)">// Receive the output packet</span></div><=
-div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0blk_ctrl.<span style=3D"color:rgb(220=
-,220,170)">recv_items</span>(<span style=3D"color:rgb(181,206,168)">0</span=
->, recv_samples);</div></div></div></div></div></div></div></div></div></di=
-v></div><div><br></div><div>The correct number of samples are sent (verifie=
-d by the waveforms in the sim).</div><div><br></div><div>However, the &quot=
-;recv_items()&quot; call blocks.<br></div><div><br></div><div>I&#39;m not s=
-ure what could be causing this? (Seems like back to square 1.)</div><div><b=
-r></div><div>Regards, Kevin</div><div><br></div><br><div class=3D"gmail_quo=
-te"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 16 Sept 2022 at 17:04, Ke=
-vin Williams &lt;<a href=3D"mailto:zs1kwa@gmail.com" target=3D"_blank">zs1k=
-wa@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
-g-left:1ex"><div dir=3D"ltr">Hi Guys,<div><br></div><div>No solution yet, s=
-o to summarize:</div><div><br></div><div>My IP core generates TVALID&#39;s =
-after a reset.</div><div><br></div><div>These TVALID&#39;s are seen in the =
-&quot;client interface&quot; of the RFNoC wrapper.</div><div><br></div><div=
->They are not propagated=C2=A0to the master interface of the &quot;framewor=
-k interface&quot;?</div><div><br></div><div>The IP core gets the correct in=
-put data after a &quot;send_items()&quot; in the testbench, and its interna=
-l AXI signals indicate internal TVALID&#39;s over valid inputs etc.</div><d=
-iv><br></div><div>Somewhat out of ideas.</div><div><br></div><div>Regards, =
-Kevin</div><div><br></div><div><br></div></div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 14 Sept 2022 at 22:32, Jon=
-athon Pendlum &lt;<a href=3D"mailto:jonathon.pendlum@ettus.com" target=3D"_=
-blank">jonathon.pendlum@ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Kevin,<div><br></div><=
-div>To expand on Brian&#39;s and Rob&#39;s comments, one issue that often c=
-omes up is user logic bugs related to AXI stream&#39;s tvalid / tready sign=
-aling. The user&#39;s logic will pass their test bench but behave strangely=
- or lock up when running on hardware. I&#39;ve found that before running on=
- hardware, you should at least test your block with randomized=C2=A0asserti=
-on of noc_shell&#39;s tvalids / treadys. Here is one way to do it based on =
-the rfnoc-example gain block (<a href=3D"https://github.com/EttusResearch/u=
-hd/blob/master/host/examples/rfnoc-example/fpga/rfnoc_block_gain/rfnoc_bloc=
-k_gain.v" target=3D"_blank">https://github.com/EttusResearch/uhd/blob/maste=
-r/host/examples/rfnoc-example/fpga/rfnoc_block_gain/rfnoc_block_gain.v</a>)=
-:<br><br><br><font face=3D"monospace">=C2=A0 wire=C2=A0</font><span style=
-=3D"font-family:monospace">m_in_payload_tvalid_int,=C2=A0</span><span style=
-=3D"font-family:monospace">m_in_payload_tready_int</span><span style=3D"fon=
-t-family:monospace">;</span></div><div><font face=3D"monospace">=C2=A0 wire=
-=C2=A0</font><span style=3D"font-family:monospace">s_out_payload_tvalid_int=
-</span><span style=3D"font-family:monospace">,=C2=A0</span><span style=3D"f=
-ont-family:monospace">s_out_payload_tready_int;</span><span style=3D"font-f=
-amily:monospace"><br></span></div><div><span style=3D"font-family:monospace=
-"><br></span></div><div><font face=3D"monospace">=C2=A0 noc_shell_gain #(<b=
-r>=C2=A0 =C2=A0 .CHDR_W =C2=A0 =C2=A0 =C2=A0(CHDR_W),<br>=C2=A0 =C2=A0 .THI=
-S_PORTID (THIS_PORTID),<br>=C2=A0 =C2=A0 .MTU =C2=A0 =C2=A0 =C2=A0 =C2=A0 (=
-MTU)<br>=C2=A0 ) noc_shell_gain_i (<br>=C2=A0 =C2=A0 .rfnoc_chdr_clk =C2=A0=
- =C2=A0 =C2=A0(rfnoc_chdr_clk),<br>=C2=A0 =C2=A0 .rfnoc_ctrl_clk =C2=A0 =C2=
-=A0 =C2=A0(rfnoc_ctrl_clk),<br>=C2=A0 =C2=A0 .rfnoc_chdr_rst =C2=A0 =C2=A0 =
-=C2=A0(),<br>=C2=A0 =C2=A0 .rfnoc_ctrl_rst =C2=A0 =C2=A0 =C2=A0(),<br>=C2=
-=A0 =C2=A0 .rfnoc_core_config =C2=A0 (rfnoc_core_config),<br>=C2=A0 =C2=A0 =
-.rfnoc_core_status =C2=A0 (rfnoc_core_status),<br>=C2=A0 =C2=A0 .s_rfnoc_ch=
-dr_tdata =C2=A0(s_rfnoc_chdr_tdata),<br>=C2=A0 =C2=A0 .s_rfnoc_chdr_tlast =
-=C2=A0(s_rfnoc_chdr_tlast),<br>=C2=A0 =C2=A0 .s_rfnoc_chdr_tvalid (s_rfnoc_=
-chdr_tvalid),<br>=C2=A0 =C2=A0 .s_rfnoc_chdr_tready (s_rfnoc_chdr_tready),<=
-br>=C2=A0 =C2=A0 .m_rfnoc_chdr_tdata =C2=A0(m_rfnoc_chdr_tdata),<br>=C2=A0 =
-=C2=A0 .m_rfnoc_chdr_tlast =C2=A0(m_rfnoc_chdr_tlast),<br>=C2=A0 =C2=A0 .m_=
-rfnoc_chdr_tvalid (m_rfnoc_chdr_tvalid),<br>=C2=A0 =C2=A0 .m_rfnoc_chdr_tre=
-ady (m_rfnoc_chdr_tready),<br>=C2=A0 =C2=A0 .s_rfnoc_ctrl_tdata =C2=A0(s_rf=
-noc_ctrl_tdata),<br>=C2=A0 =C2=A0 .s_rfnoc_ctrl_tlast =C2=A0(s_rfnoc_ctrl_t=
-last),<br>=C2=A0 =C2=A0 .s_rfnoc_ctrl_tvalid (s_rfnoc_ctrl_tvalid),<br>=C2=
-=A0 =C2=A0 .s_rfnoc_ctrl_tready (s_rfnoc_ctrl_tready),<br>=C2=A0 =C2=A0 .m_=
-rfnoc_ctrl_tdata =C2=A0(m_rfnoc_ctrl_tdata),<br>=C2=A0 =C2=A0 .m_rfnoc_ctrl=
-_tlast =C2=A0(m_rfnoc_ctrl_tlast),<br>=C2=A0 =C2=A0 .m_rfnoc_ctrl_tvalid (m=
-_rfnoc_ctrl_tvalid),<br>=C2=A0 =C2=A0 .m_rfnoc_ctrl_tready (m_rfnoc_ctrl_tr=
-eady),<br>=C2=A0 =C2=A0 .ctrlport_clk =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0(ctrlport_clk),<br>=C2=A0 =C2=A0 .ctrlport_rst =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(ctrlport_rst),<br>=C2=A0 =C2=A0 .m_ctrlp=
-ort_req_wr =C2=A0 =C2=A0 =C2=A0 =C2=A0 (m_ctrlport_req_wr),<br>=C2=A0 =C2=
-=A0 .m_ctrlport_req_rd =C2=A0 =C2=A0 =C2=A0 =C2=A0 (m_ctrlport_req_rd),<br>=
-=C2=A0 =C2=A0 .m_ctrlport_req_addr =C2=A0 =C2=A0 =C2=A0 (m_ctrlport_req_add=
-r),<br>=C2=A0 =C2=A0 .m_ctrlport_req_data =C2=A0 =C2=A0 =C2=A0 (m_ctrlport_=
-req_data),<br>=C2=A0 =C2=A0 .m_ctrlport_resp_ack =C2=A0 =C2=A0 =C2=A0 (m_ct=
-rlport_resp_ack),<br>=C2=A0 =C2=A0 .m_ctrlport_resp_data =C2=A0 =C2=A0 =C2=
-=A0(m_ctrlport_resp_data),<br>=C2=A0 =C2=A0 .axis_data_clk (axis_data_clk),=
-<br>=C2=A0 =C2=A0 .axis_data_rst (axis_data_rst),<br>=C2=A0 =C2=A0 .m_in_pa=
-yload_tdata =C2=A0(m_in_payload_tdata),<br>=C2=A0 =C2=A0 .m_in_payload_tkee=
-p =C2=A0(m_in_payload_tkeep),<br>=C2=A0 =C2=A0 .m_in_payload_tlast =C2=A0(m=
-_in_payload_tlast),<br><b>=C2=A0 =C2=A0 .m_in_payload_tvalid (m_in_payload_=
-tvalid_int),<br>=C2=A0 =C2=A0 .m_in_payload_tready (m_in_payload_tready_int=
-),</b><br>=C2=A0 =C2=A0 .m_in_context_tdata =C2=A0(m_in_context_tdata),<br>=
-=C2=A0 =C2=A0 .m_in_context_tuser =C2=A0(m_in_context_tuser),<br>=C2=A0 =C2=
-=A0 .m_in_context_tlast =C2=A0(m_in_context_tlast),<br>=C2=A0 =C2=A0 .m_in_=
-context_tvalid (m_in_context_tvalid),<br>=C2=A0 =C2=A0 .m_in_context_tready=
- (m_in_context_tready),<br>=C2=A0 =C2=A0 .s_out_payload_tdata =C2=A0(s_out_=
-payload_tdata),<br>=C2=A0 =C2=A0 .s_out_payload_tkeep =C2=A0(s_out_payload_=
-tkeep),<br>=C2=A0 =C2=A0 .s_out_payload_tlast =C2=A0(s_out_payload_tlast),<=
-br><b>=C2=A0 =C2=A0 .s_out_payload_tvalid (s_out_payload_tvalid_int),<br>=
-=C2=A0 =C2=A0 .s_out_payload_tready (s_out_payload_tready_int),</b><br>=C2=
-=A0 =C2=A0 .s_out_context_tdata =C2=A0(s_out_context_tdata),<br>=C2=A0 =C2=
-=A0 .s_out_context_tuser =C2=A0(s_out_context_tuser),<br>=C2=A0 =C2=A0 .s_o=
-ut_context_tlast =C2=A0(s_out_context_tlast),<br>=C2=A0 =C2=A0 .s_out_conte=
-xt_tvalid (s_out_context_tvalid),<br>=C2=A0 =C2=A0 .s_out_context_tready (s=
-_out_context_tready)<br>=C2=A0 );</font></div><div><span style=3D"font-fami=
-ly:monospace"><br></span></div><div><span style=3D"font-family:monospace">=
-=C2=A0 wire [31:0] rnd;</span></div><div><span style=3D"font-family:monospa=
-ce">=C2=A0 rng rng (</span></div><div><font face=3D"monospace">=C2=A0 =C2=
-=A0 .clk(</font><span style=3D"font-family:monospace">axis_data_clk</span><=
-span style=3D"font-family:monospace">),</span></div><div><font face=3D"mono=
-space">=C2=A0 =C2=A0 .rst(</font><span style=3D"font-family:monospace">axis=
-_data_rst</span><span style=3D"font-family:monospace">),</span></div><div><=
-span style=3D"font-family:monospace">=C2=A0 =C2=A0 .out(rnd)</span><font fa=
-ce=3D"monospace">);</font><br></div><div><br></div><div><font face=3D"monos=
-pace">=C2=A0 assign=C2=A0</font><span style=3D"font-family:monospace">m_in_=
-payload_tvalid=C2=A0 =C2=A0 =C2=A0 =3D=C2=A0</span><span style=3D"font-fami=
-ly:monospace">m_in_payload_tvalid_int=C2=A0 &amp; rnd[0];</span></div><div>=
-<font face=3D"monospace">=C2=A0 assign=C2=A0</font><span style=3D"font-fami=
-ly:monospace">m_in_payload_tready_int=C2=A0 =3D=C2=A0</span><span style=3D"=
-font-family:monospace">m_in_payload_tready=C2=A0 =C2=A0 =C2=A0 &amp; rnd[0]=
-;</span><span style=3D"font-family:monospace"><br></span></div><div><span s=
-tyle=3D"font-family:monospace"><br></span></div><div><div><font face=3D"mon=
-ospace">=C2=A0 assign=C2=A0</font><span style=3D"font-family:monospace">s_o=
-ut_payload_tvalid_int</span><span style=3D"font-family:monospace">=C2=A0=3D=
-=C2=A0</span><span style=3D"font-family:monospace">s_out_payload_tvalid</sp=
-an><span style=3D"font-family:monospace">=C2=A0 =C2=A0 =C2=A0&amp; rnd[8];<=
-/span></div><div><font face=3D"monospace">=C2=A0 assign=C2=A0</font><span s=
-tyle=3D"font-family:monospace">s_out_payload_tready=C2=A0 =C2=A0=C2=A0</spa=
-n><span style=3D"font-family:monospace">=C2=A0=3D=C2=A0</span><span style=
-=3D"font-family:monospace">s_out_payload_tready_int</span><span style=3D"fo=
-nt-family:monospace">=C2=A0&amp; rnd[8];</span></div></div><div><font face=
-=3D"monospace"><br></font></div><div><br></div><div><font face=3D"arial, sa=
-ns-serif">I suggest doing something similar with your block and see if it s=
-till passes your test bench.</font></div><div><font face=3D"arial, sans-ser=
-if"><br></font></div><div><font face=3D"arial, sans-serif">Jonathon</font><=
-/div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Wed, Sep 14, 2022 at 3:33 PM Rob Kossler &lt;<a href=3D"mailto:rkos=
-sler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi Kevin,<di=
-v>If you run the rfnoc-example gain testbench, it should demonstrate that t=
-he testbench is providing a suitable environment for testing your custom lo=
-gic or core.=C2=A0 Maybe see what is different between that and your testbe=
-nch.=C2=A0=C2=A0</div><div><br></div><div>If the problem turns out to be re=
-lated to the &quot;waiting for TREADY=C2=A0before asserting TVALID&quot; is=
-sue presently discussed, it seems this can be solved by adding a buffer sta=
-ge (register or FIFO) between your logic and the noc shell.</div><div>Rob</=
-div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
-tr">On Wed, Sep 14, 2022 at 2:11 PM Brian Padalino &lt;<a href=3D"mailto:bp=
-adalino@gmail.com" target=3D"_blank">bpadalino@gmail.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
-iv dir=3D"ltr"></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Wed, Sep 14, 2022 at 1:55 PM Kevin Williams &lt;<a href=3D"ma=
-ilto:zs1kwa@gmail.com" target=3D"_blank">zs1kwa@gmail.com</a>&gt; wrote:<br=
-></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
-border-left:1px solid rgb(204,204,204);padding-left:1ex">
+Dear all,
+
+I have tried the C++ version and am still struggling. I have figured out, t=
+hat the correct name for the streamer Id seems to be "RxStreamer#0" and not=
+ "0/RxStreamer#0". This way, the connection is kind-of deleted between a st=
+reamer and the replay block (it does not show up anymore in  graph::enumera=
+te_active_connections(). However, I still cannot reconnect the streamer aga=
+in.
+
+Can somebody reproduce the problem and indicate what is wrong with my appro=
+ach?
+
+Thank you,
+Max
+
+Find attached the MWE which produces the following output:
+
+$ g++ full_duplex_rfnoc.cpp -o full_duplex_rfnoc -luhd
+$ full_duplex_rfnoc
+[INFO] [UHD] linux; GNU C++ version 7.5.0; Boost_106501; UHD_4.2.0.0-0ubunt=
+u1~bionic1
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+92.168.189.131,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X4=
+10-01,fpga=3DX4_400,claimed=3DFalse,addr=3D192.168.189.131
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D192.168.189.131,name=3DNE-LAB-X410-01,product=3Dx410,clock_source=
+=3Dinternal,time_source=3Dinternal'.
+0/Radio#0 --> 0/SEP#0
+0/SEP#4 --> 0/Replay#0
+Connections replay block/radio established!
+Connections in graph:
+0/Radio#0 --> 0/Replay#0
+Connecting streamer
+[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to 1472
+Connection established!
+Connections in graph:
+0/Radio#0 --> 0/Replay#0
+0/Replay#0 --> RxStreamer#0
+Disconnecting...
+Connections in graph:
+0/Radio#0 --> 0/Replay#0
+0/Replay#0 --> RxStreamer#0
+Connections in graph:
+0/Radio#0 --> 0/Replay#0
+Trying to connect the streamer again...
+Error: RuntimeError: Streamer port number is already connected to a port
+corola@PC-LAB-LINUX-001:~/max/playground$
 
 
 
+Maximilian Matthe
+
+Head of Engineering Lab
+
+maximilian.matthe@barkhauseninstitut.org
+
+Tel.: +49 173 4509667
+
+________________________________
+From: Maximilian Matth=E9 <maximilian.matthe@barkhauseninstitut.org>
+Sent: Monday, September 19, 2022 11:34 AM
+To: usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: [USRP-users] RFNoC Disconnect Streamer
+
+Dear all,
+
+I'm working on a project where I have to connect and disconnect different s=
+treamers from an RFNoC replay block. (I need to switch back and forth betwe=
+en TX and RX Streamers and 4 Radios in TX/RX mode connected to the Replay b=
+lock for using 4x4 MIMO configuration). I'm running on a USRP X410 with UHD=
+ 4.2
+
+Here's the setup:
+
+        self._graph =3D uhd.rfnoc.RfnocGraph('addr=3Dlocalhost')
+        self._replay =3D uhd.rfnoc.ReplayBlockControl(self._graph.get_block=
+("0/Replay#0"))
+        for channel in range(NUM_CHANS):
+            self._replay.set_play_type("sc16", channel)
+            self._replay.set_record_type("sc16", channel)
+
+        self._rxStreamer =3D self._graph.create_rx_streamer(NUM_CHANS, uhd.=
+usrp.StreamArgs("sc16", "sc16"))
+        self._txStreamer =3D self._graph.create_tx_streamer(NUM_CHANS, uhd.=
+usrp.StreamArgs("sc16", "sc16"))
+
+Here's the connection:
+
+        for channel in range(NUM_CHANS):
+            self._graph.connect(self._replay.get_unique_id(), channel, self=
+._rxStreamer, channel)
+        self._graph.commit()
+
+Then, when I want to disconnect:
+        self._graph.release()
+        print("DISCONNECTING!")
+        try:
+            for port in range(NUM_CHANS):
+                self._graph.disconnect("0/RxStreamer#0", port)
+            self._graph.disconnect("0/RxStreamer#0")
+        except Exception as E:
+            print(E, type(E))
+
+        for conn in self._graph.enumerate_active_connections():
+            print("Disconnecting ", conn, "...")
+            try:
+                self._graph.disconnect(conn.src_blockid, conn.src_port,
+                                    conn.dst_blockid, conn.dst_port)
+            except Exception as E:
+                print("Cannot disconnect ", E)
+        self._graph.commit()
+
+The connection works well, but upon disconnection I get
+DISCONNECTING!
+Disconnecting  0/Radio#0:0-->0/Replay#0:0 ...
+Disconnecting  0/Radio#0:1-->0/Replay#0:1 ...
+Disconnecting  0/Radio#1:0-->0/Replay#0:2 ...
+Disconnecting  0/Radio#1:1-->0/Replay#0:3 ...
+Disconnecting  0/Replay#0:0-->RxStreamer#0:0 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+Disconnecting  0/Replay#0:1-->RxStreamer#0:1 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+Disconnecting  0/Replay#0:2-->RxStreamer#0:2 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+Disconnecting  0/Replay#0:3-->RxStreamer#0:3 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+
+To me, this indicates that the calls to disconnect("0/RxStreamer#0") have n=
+o effect (they have no return value as well).
+
+Then, if I just ignore these errors and try to reconnect the streamer, I ge=
+t
+RuntimeError: RuntimeError: Streamer port number is already connected to a =
+port
+
+indicating that the streamer has not been disconnected. Can you let me know=
+, what the correct way is to disconnect the streamer from the graph and ope=
+n up the port for subsequent connections?
+
+Thank you,
+Max
+
+Please find attached a MWE which shows the problems, with the following out=
+puts
+
+$ python3 disconnect.py
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X410-01,=
+fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_source=3Dint=
+ernal,time_source=3Dinternal'.
+DISCONNECTING!
+['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', =
+'__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_sub=
+class__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce_=
+_', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '_=
+_subclasshook__', 'get_max_num_samps', 'get_num_channels', 'issue_stream_cm=
+d', 'recv']
+[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to 8016
+[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to 8016
+[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to 8016
+[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to 8016
+DISCONNECTING!
+['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', =
+'__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_sub=
+class__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce_=
+_', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '_=
+_subclasshook__', 'get_max_num_samps', 'get_num_channels', 'issue_stream_cm=
+d', 'recv']
+Disconnecting  0/Replay#0:0-->RxStreamer#0:0 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+Disconnecting  0/Replay#0:1-->RxStreamer#0:1 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+Disconnecting  0/Replay#0:2-->RxStreamer#0:2 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+Disconnecting  0/Replay#0:3-->RxStreamer#0:3 ...
+Cannot disconnect  LookupError: Cannot disconnect blocks, destination block=
+ not found: 0/RxStreamer#0
+Releasing graph...
+Traceback (most recent call last):
+  File "disconnect.py", line 81, in <module>
+    main()
+  File "disconnect.py", line 67, in main
+    app.connectForDownload()
+  File "disconnect.py", line 54, in connectForDownload
+    self._graph.connect(self._replay.get_unique_id(), channel, self._rxStre=
+amer, channel)
+RuntimeError: RuntimeError: Streamer port number is already connected to a =
+port
+
+
+
+
+
+Maximilian Matthe
+
+Head of Engineering Lab
+
+maximilian.matthe@barkhauseninstitut.org
+
+Tel.: +49 173 4509667
+
+
+Barkhausen Institut
+www.barkhauseninstitut.org
+
+
+Barkhausen Institut gGmbH | Sitz: W=FCrzburger Stra=DFe 46, 01187 Dresden, =
+Germany | Registergericht: Amtsgericht Dresden, HRB 37267 | Gesch=E4ftsf=FC=
+hrer: Prof. Dr. Gerhard Fettweis, Dr. Tim Hentschel | Vorsitzender der Gese=
+llschafterdelegation: Dr. Andreas Handschuh
+
+Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie unter:=
+ https://barkhauseninstitut.org/data-privacy
+
+This email and any attachments are intended only for the person to whom thi=
+s email is addressed and may contain confidential and/or privileged informa=
+tion. If you received this email in error, please do not disclose the conte=
+nts to anyone, but notify the sender by return email and delete this email =
+(and any attachments) from your system. Information on data protection and =
+processing of your personal information: https://barkhauseninstitut.org/dat=
+a-privacy
+
+
+--_000_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Dear all,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+I have tried the C++ version and am still struggling. I have figured out, t=
+hat the correct name for the streamer Id seems to be &quot;RxStreamer#0&quo=
+t; and not &quot;0/RxStreamer#0&quot;. This way, the connection is kind-of =
+deleted between a streamer and the replay block (it
+ does not show up anymore in&nbsp; graph::enumerate_active_connections(). H=
+owever, I still cannot reconnect the streamer again.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Can somebody reproduce the problem and indicate what is wrong with my appro=
+ach?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Thank you,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Max<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Find attached the MWE which produces the following output:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof ContentPasted0">
+$ g++ full_duplex_rfnoc.cpp -o full_duplex_rfnoc -luhd</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof ContentPasted0">
+$ full_duplex_rfnoc<br>
+<div class=3D"ContentPasted0">[INFO] [UHD] linux; GNU C++ version 7.5.0; Bo=
+ost_106501; UHD_4.2.0.0-0ubuntu1~bionic1</div>
+<div class=3D"ContentPasted0">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D192.168.189.131,type=3Dx4xx,product=3Dx410,ser=
+ial=3D323F754,name=3DNE-LAB-X410-01,fpga=3DX4_400,claimed=3DFalse,addr=3D19=
+2.168.189.131</div>
+<div class=3D"ContentPasted0">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D192.168.189.131,name=3DNE-LAB-X410-=
+01,product=3Dx410,clock_source=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted0">0/Radio#0 --&gt; 0/SEP#0</div>
+<div class=3D"ContentPasted0">0/SEP#4 --&gt; 0/Replay#0</div>
+<div class=3D"ContentPasted0">Connections replay block/radio established!</=
+div>
+<div class=3D"ContentPasted0">Connections in graph: </div>
+<div class=3D"ContentPasted0">0/Radio#0 --&gt; 0/Replay#0</div>
+<div class=3D"ContentPasted0">Connecting streamer</div>
+<div class=3D"ContentPasted0">[WARNING] [0/Replay#0] Requested packet size =
+exceeds MTU! Coercing to 1472</div>
+<div class=3D"ContentPasted0">Connection established!</div>
+<div class=3D"ContentPasted0">Connections in graph: </div>
+<div class=3D"ContentPasted0">0/Radio#0 --&gt; 0/Replay#0</div>
+<div class=3D"ContentPasted0">0/Replay#0 --&gt; RxStreamer#0</div>
+<div class=3D"ContentPasted0">Disconnecting...</div>
+<div class=3D"ContentPasted0">Connections in graph: </div>
+<div class=3D"ContentPasted0">0/Radio#0 --&gt; 0/Replay#0</div>
+<div class=3D"ContentPasted0">0/Replay#0 --&gt; RxStreamer#0</div>
+<div class=3D"ContentPasted0">Connections in graph: </div>
+<div class=3D"ContentPasted0">0/Radio#0 --&gt; 0/Replay#0</div>
+<div class=3D"ContentPasted0">Trying to connect the streamer again...</div>
+<div class=3D"ContentPasted0">Error: RuntimeError: Streamer port number is =
+already connected to a port</div>
+<div class=3D"ContentPasted0">corola@PC-LAB-LINUX-001:~/max/playground$ </d=
+iv>
+<br>
+</div>
 <div>
-<div name=3D"messageBodySection">
-<div dir=3D"auto">Thanks Brian. I think the core gets generated in a way wh=
-ich respects back-pressure, so unless a TREADY is seen the core does not ge=
-nerate output samples. I have observed this by simulating the core in isola=
-tion.</div></div></div></blockquote><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div><div name=3D"messageBodySection">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
 </div>
-<div name=3D"messageReplySection">On 14 Sep 2022, 17:49 +0200, Brian Padali=
-no &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@g=
-mail.com</a>&gt;, wrote:<br>
-<blockquote type=3D"cite" style=3D"border-left:thin solid grey;margin:5px;p=
-adding-left:10px">
-<div dir=3D"ltr">I believe the AXI spec says that data should be presented =
-when valid, and the tready signal just accepts that data.=C2=A0 You can&#39=
-;t rely on tready to be asserted before asserting tvalid.
-<div><br></div>
-<div>With that being said, I have no idea if this is the source of any of y=
-our issues.</div>
-<div><br></div>
-<div>Brian</div></div></blockquote></div></div></blockquote><div><br></div>=
-<div>I don&#39;t quite understand what you said.=C2=A0 To copy from the AXI=
- protocol spec (<a href=3D"https://documentation-service.arm.com/static/60d=
-5b244677cf7536a55c23e?token=3D" target=3D"_blank">https://documentation-ser=
-vice.arm.com/static/60d5b244677cf7536a55c23e?token=3D</a>) section 2.2:</di=
-v><div><br></div><div>=C2=A0 &quot;A Transmitter is not permitted to wait u=
-ntil TREADY is asserted before asserting TVALID. Once TVALID is</div>assert=
-ed, it must remain asserted until the handshake occurs.</div><div class=3D"=
-gmail_quote"><br>=C2=A0 A Receiver is permitted to wait for TVALID to be as=
-serted before asserting TREADY. It is permitted that a<br>Receiver asserts =
-and deasserts TREADY without TVALID being asserted.&quot;</div><div class=
-=3D"gmail_quote"><br></div><div class=3D"gmail_quote">Waiting for TREADY to=
- be asserted is invalid as a transmitter.</div><div class=3D"gmail_quote"><=
-br></div><div class=3D"gmail_quote">Is something not compliant and causing =
-deadlock?</div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_quo=
-te">Brian</div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
->Kevin Williams</div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
->Kevin Williams</div>
+<div id=3D"Signature">
+<div>
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
+:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top:0; margin-bottom:0">Maximilian Matthe</p>
+<p style=3D"margin-top:0; margin-bottom:0">Head of Engineering Lab</p>
+<p style=3D"margin-top:0; margin-bottom:0">maximilian.matthe@barkhauseninst=
+itut.org</p>
+<p style=3D"margin-top:0; margin-bottom:0">Tel.: +49 173 4509667<br>
+</p>
 </div>
+</div>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Maximilian Matth=E9 &=
+lt;maximilian.matthe@barkhauseninstitut.org&gt;<br>
+<b>Sent:</b> Monday, September 19, 2022 11:34 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com &lt;usrp-users@lists.ettus.com&gt;<br=
+>
+<b>Subject:</b> [USRP-users] RFNoC Disconnect Streamer</font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Dear all,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+I'm working on a project where I have to connect and disconnect different s=
+treamers from an RFNoC replay block. (I need to switch back and forth betwe=
+en TX and RX Streamers and 4 Radios in TX/RX mode connected to the Replay b=
+lock for using 4x4 MIMO configuration).
+ I'm running on a USRP X410 with UHD 4.2<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Here's the setup:</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+&nbsp; &nbsp; &nbsp; &nbsp; self._graph =3D uhd.rfnoc.RfnocGraph('addr=3Dlo=
+calhost')
+<div>&nbsp; &nbsp; &nbsp; &nbsp; self._replay =3D uhd.rfnoc.ReplayBlockCont=
+rol(self._graph.get_block(&quot;0/Replay#0&quot;))</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; for channel in range(NUM_CHANS):</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._replay.set_play_type(&=
+quot;sc16&quot;, channel)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._replay.set_record_type=
+(&quot;sc16&quot;, channel)</div>
+<div><br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; self._rxStreamer =3D self._graph.create_rx=
+_streamer(NUM_CHANS, uhd.usrp.StreamArgs(&quot;sc16&quot;, &quot;sc16&quot;=
+))</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; self._txStreamer =3D self._graph.create_tx=
+_streamer(NUM_CHANS, uhd.usrp.StreamArgs(&quot;sc16&quot;, &quot;sc16&quot;=
+))</div>
+<div><br>
+</div>
+<div>Here's the connection:</div>
+<div><br>
+</div>
+&nbsp; &nbsp; &nbsp; &nbsp; for channel in range(NUM_CHANS):
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._graph.connect(self._re=
+play.get_unique_id(), channel, self._rxStreamer, channel)</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self._graph.commit()<br>
+</div>
+<div><br>
+</div>
+<div>Then, when I want to disconnect:</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self._graph.release()<br>
+</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; print(&quot;DISCONNECTING!&quot;)
+<div>&nbsp; &nbsp; &nbsp; &nbsp; try:</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for port in range(NUM_CHANS)=
+:</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._graph.di=
+sconnect(&quot;0/RxStreamer#0&quot;, port)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._graph.disconnect(&quot=
+;0/RxStreamer#0&quot;)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; except Exception as E:</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(E, type(E))</div>
+<br>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; for conn in self._graph.enumerate_active_c=
+onnections():</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(&quot;Disconnecting &q=
+uot;, conn, &quot;...&quot;)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; try:</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; self._graph.di=
+sconnect(conn.src_blockid, conn.src_port,</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; conn.dst_blockid, c=
+onn.dst_port)</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; except Exception as E:</div>
+<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(&quot;Ca=
+nnot disconnect &quot;, E)</div>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; self._graph.commit()</div>
+<div><br>
+</div>
+<div>The connection works well, but upon disconnection I get <br>
+</div>
+<div>DISCONNECTING!</div>
+<div>Disconnecting &nbsp;0/Radio#0:0--&gt;0/Replay#0:0 ...
+<div>Disconnecting &nbsp;0/Radio#0:1--&gt;0/Replay#0:1 ...</div>
+<div>Disconnecting &nbsp;0/Radio#1:0--&gt;0/Replay#0:2 ...</div>
+<div>Disconnecting &nbsp;0/Radio#1:1--&gt;0/Replay#0:3 ...</div>
+<div>Disconnecting &nbsp;0/Replay#0:0--&gt;RxStreamer#0:0 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+<div>Disconnecting &nbsp;0/Replay#0:1--&gt;RxStreamer#0:1 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+<div>Disconnecting &nbsp;0/Replay#0:2--&gt;RxStreamer#0:2 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+<div>Disconnecting &nbsp;0/Replay#0:3--&gt;RxStreamer#0:3 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+</div>
+<div><br>
+</div>
+<div>To me, this indicates that the calls to disconnect(&quot;0/RxStreamer#=
+0&quot;) have no effect (they have no return value as well).
+<br>
+</div>
+<div><br>
+</div>
+<div>Then, if I just ignore these errors and try to reconnect the streamer,=
+ I get</div>
+<div>RuntimeError: RuntimeError: Streamer port number is already connected =
+to a port<br>
+</div>
+<div><br>
+</div>
+<div>indicating that the streamer has not been disconnected. Can you let me=
+ know, what the correct way is to disconnect the streamer from the graph an=
+d open up the port for subsequent connections?</div>
+<div><br>
+</div>
+<div>Thank you,</div>
+<div>Max<br>
+</div>
+<div><br>
+</div>
+<div>Please find attached a MWE which shows the problems, with the followin=
+g outputs</div>
+<div><br>
+</div>
+<div>$ python3 disconnect.py
+<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
+-g46a70d85</div>
+<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
+r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X41=
+0-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
+<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
+00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_source=
+=3Dinternal,time_source=3Dinternal'.</div>
+<div>DISCONNECTING!</div>
+<div>['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format=
+__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__ini=
+t_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__re=
+duce__', '__reduce_ex__', '__repr__',
+ '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'get_max_num_s=
+amps', 'get_num_channels', 'issue_stream_cmd', 'recv']</div>
+<div>[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to =
+8016</div>
+<div>[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to =
+8016</div>
+<div>[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to =
+8016</div>
+<div>[WARNING] [0/Replay#0] Requested packet size exceeds MTU! Coercing to =
+8016</div>
+<div>DISCONNECTING!</div>
+<div>['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format=
+__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__ini=
+t_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__re=
+duce__', '__reduce_ex__', '__repr__',
+ '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'get_max_num_s=
+amps', 'get_num_channels', 'issue_stream_cmd', 'recv']</div>
+<div>Disconnecting &nbsp;0/Replay#0:0--&gt;RxStreamer#0:0 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+<div>Disconnecting &nbsp;0/Replay#0:1--&gt;RxStreamer#0:1 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+<div>Disconnecting &nbsp;0/Replay#0:2--&gt;RxStreamer#0:2 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+<div>Disconnecting &nbsp;0/Replay#0:3--&gt;RxStreamer#0:3 ...</div>
+<div>Cannot disconnect &nbsp;LookupError: Cannot disconnect blocks, destina=
+tion block not found: 0/RxStreamer#0</div>
+<div>Releasing graph...</div>
+<div>Traceback (most recent call last):</div>
+<div>&nbsp; File &quot;disconnect.py&quot;, line 81, in &lt;module&gt;</div=
+>
+<div>&nbsp; &nbsp; main()</div>
+<div>&nbsp; File &quot;disconnect.py&quot;, line 67, in main</div>
+<div>&nbsp; &nbsp; app.connectForDownload()</div>
+<div>&nbsp; File &quot;disconnect.py&quot;, line 54, in connectForDownload<=
+/div>
+<div>&nbsp; &nbsp; self._graph.connect(self._replay.get_unique_id(), channe=
+l, self._rxStreamer, channel)</div>
+<div>RuntimeError: RuntimeError: Streamer port number is already connected =
+to a port</div>
+<br>
+</div>
+<div><br>
+</div>
+<br>
+</div>
+<div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"x_Signature">
+<div>
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top:0; margin-bottom:0">Maximilian Matthe</p>
+<p style=3D"margin-top:0; margin-bottom:0">Head of Engineering Lab</p>
+<p style=3D"margin-top:0; margin-bottom:0">maximilian.matthe@barkhauseninst=
+itut.org</p>
+<p style=3D"margin-top:0; margin-bottom:0">Tel.: +49 173 4509667<br>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p style=3D"font-size:11pt; font-family:Calibri,sans-serif,serif,&quot;Emoj=
+iFont&quot;; margin:0px">
+<br>
+<br>
+<b>Barkhausen Institut</b> <br>
+www.barkhauseninstitut.org <br>
+<br>
+</p>
+<p style=3D"font-size:11pt; font-family:Calibri,sans-serif,serif,&quot;Emoj=
+iFont&quot;; margin:0px">
+<span lang=3D"de-DE" style=3D"font-size:9pt">Barkhausen Institut gGmbH | Si=
+tz: W=FCrzburger Stra=DFe 46, 01187 Dresden, Germany | Registergericht: Amt=
+sgericht Dresden, HRB 37267 | Gesch=E4ftsf=FChrer: Prof. Dr. Gerhard Fettwe=
+is, Dr. Tim Hentschel | Vorsitzender der Gesellschafterdelegation:
+ Dr. Andreas Handschuh <br>
+<br>
+Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie unter:=
+ https://barkhauseninstitut.org/data-privacy
+<br>
+<br>
+</span><span lang=3D"en-US" style=3D"font-size:9pt">This email and any atta=
+chments are intended only for the person to whom this email is addressed an=
+d may contain confidential and/or privileged information. If you received t=
+his email in error, please do not disclose
+ the contents to anyone, but notify the sender by return email and delete t=
+his email (and any attachments) from your system. Information on data prote=
+ction and processing of your personal information: https://barkhauseninstit=
+ut.org/data-privacy
+<br>
+<br>
+</span></p>
+</div>
+</div>
+</body>
+</html>
 
---000000000000361bb805e92e2b8a--
+--_000_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_--
 
---===============4512668975363837364==
+--_004_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_
+Content-Type: text/x-c++src; name="full_duplex_rfnoc.cpp"
+Content-Description: full_duplex_rfnoc.cpp
+Content-Disposition: attachment; filename="full_duplex_rfnoc.cpp"; size=2598;
+	creation-date="Thu, 22 Sep 2022 14:14:00 GMT";
+	modification-date="Thu, 22 Sep 2022 14:14:19 GMT"
+Content-Transfer-Encoding: base64
+
+I2luY2x1ZGUgPHVoZC92ZXJzaW9uLmg+CiNpbmNsdWRlIDx1aGQvcmZub2MvYmxvY2tfaWQuaHBw
+PgojaW5jbHVkZSA8dWhkL3Jmbm9jL2R1Y19ibG9ja19jb250cm9sLmhwcD4KI2luY2x1ZGUgPHVo
+ZC9yZm5vYy9tYl9jb250cm9sbGVyLmhwcD4KI2luY2x1ZGUgPHVoZC9yZm5vYy9yYWRpb19jb250
+cm9sLmhwcD4KI2luY2x1ZGUgPHVoZC9yZm5vYy9yZXBsYXlfYmxvY2tfY29udHJvbC5ocHA+CiNp
+bmNsdWRlIDx1aGQvcmZub2NfZ3JhcGguaHBwPgojaW5jbHVkZSA8dWhkL3R5cGVzL3R1bmVfcmVx
+dWVzdC5ocHA+CiNpbmNsdWRlIDx1aGQvdXRpbHMvZ3JhcGhfdXRpbHMuaHBwPgojaW5jbHVkZSA8
+dWhkL3V0aWxzL21hdGguaHBwPgojaW5jbHVkZSA8dWhkL3V0aWxzL3NhZmVfbWFpbi5ocHA+CiNp
+bmNsdWRlIDxib29zdC9wcm9ncmFtX29wdGlvbnMuaHBwPgojaW5jbHVkZSA8Y2hyb25vPgojaW5j
+bHVkZSA8Y3NpZ25hbD4KI2luY2x1ZGUgPGZzdHJlYW0+CiNpbmNsdWRlIDxpb3N0cmVhbT4KI2lu
+Y2x1ZGUgPHRocmVhZD4KCnVzaW5nIG5hbWVzcGFjZSBzdGQ6OmxpdGVyYWxzOjpjaHJvbm9fbGl0
+ZXJhbHM7Cgp2b2lkIHNob3dDb25uZWN0aW9ucyh1aGQ6OnJmbm9jOjpyZm5vY19ncmFwaDo6c3B0
+ciBncmFwaCkgewogICAgYXV0byBlZGdlcyA9IGdyYXBoLT5lbnVtZXJhdGVfYWN0aXZlX2Nvbm5l
+Y3Rpb25zKCk7CiAgICBzdGQ6OmNvdXQgPDwgIkNvbm5lY3Rpb25zIGluIGdyYXBoOiAiIDw8IHN0
+ZDo6ZW5kbDsKICAgIGZvciAoYXV0byYgZWRnZSA6IGVkZ2VzKQogICAgICAgIHN0ZDo6Y291dCA8
+PCBlZGdlLnNyY19ibG9ja2lkIDw8ICIgLS0+ICIgPDwgZWRnZS5kc3RfYmxvY2tpZCA8PCBzdGQ6
+OmVuZGw7Cn0KCmludCBVSERfU0FGRV9NQUlOKGludCBhcmdjLCBjaGFyKiogYXJndikgewogICAg
+YXV0byBncmFwaCA9IHVoZDo6cmZub2M6OnJmbm9jX2dyYXBoOjptYWtlKCJhZGRyPTE5Mi4xNjgu
+MTg5LjEzMSIpOwoKICAgIHVzaW5nIHVoZDo6cmZub2M6OmJsb2NrX2lkX3Q7CiAgICBibG9ja19p
+ZF90IHJhZGlvSWQoIjAvUmFkaW8jMCIpOwogICAgYmxvY2tfaWRfdCByZXBsYXlJZCgiMC9SZXBs
+YXkjMCIpOwoKICAgIGF1dG8gcmFkaW9fY3RybCA9IGdyYXBoLT5nZXRfYmxvY2s8dWhkOjpyZm5v
+Yzo6cmFkaW9fY29udHJvbD4ocmFkaW9JZCk7CiAgICBhdXRvIHJlcGxheV9jdHJsID0gZ3JhcGgt
+PmdldF9ibG9jazx1aGQ6OnJmbm9jOjpyZXBsYXlfYmxvY2tfY29udHJvbD4ocmVwbGF5SWQpOwoK
+ICAgIGF1dG8gZWRnZXMgPSB1aGQ6OnJmbm9jOjpjb25uZWN0X3Rocm91Z2hfYmxvY2tzKGdyYXBo
+LCByYWRpb0lkLCAwLCByZXBsYXlJZCwgMCk7CiAgICBmb3IgKGF1dG8mIGVkZ2UgOiBlZGdlcykK
+ICAgICAgICBzdGQ6OmNvdXQgPDwgZWRnZS5zcmNfYmxvY2tpZCA8PCAiIC0tPiAiIDw8IGVkZ2Uu
+ZHN0X2Jsb2NraWQgPDwgc3RkOjplbmRsOwogICAgc3RkOjpjb3V0IDw8ICJDb25uZWN0aW9ucyBy
+ZXBsYXkgYmxvY2svcmFkaW8gZXN0YWJsaXNoZWQhIiA8PCBzdGQ6OmVuZGw7CiAgICBzaG93Q29u
+bmVjdGlvbnMoZ3JhcGgpOwoKICAgIHVoZDo6c3RyZWFtX2FyZ3NfdCBzdHJlYW1BcmdzKCJzYzE2
+IiwgInNjMTYiKTsKICAgIHVoZDo6cnhfc3RyZWFtZXI6OnNwdHIgcnhTdHJlYW1lciA9IGdyYXBo
+LT5jcmVhdGVfcnhfc3RyZWFtZXIoMSwgc3RyZWFtQXJncyk7CgogICAgc3RkOjpjb3V0IDw8ICJD
+b25uZWN0aW5nIHN0cmVhbWVyIiA8PCBzdGQ6OmVuZGw7CiAgICBncmFwaC0+Y29ubmVjdChyZXBs
+YXlJZCwgMCwgcnhTdHJlYW1lciwgMCk7CgogICAgZ3JhcGgtPmNvbW1pdCgpOwogICAgc3RkOjpj
+b3V0IDw8ICJDb25uZWN0aW9uIGVzdGFibGlzaGVkISIgPDwgc3RkOjplbmRsOwogICAgc2hvd0Nv
+bm5lY3Rpb25zKGdyYXBoKTsKCiAgICBzdGQ6OnRoaXNfdGhyZWFkOjpzbGVlcF9mb3IoNTAwbXMp
+OwogICAgc3RkOjpjb3V0IDw8ICJEaXNjb25uZWN0aW5nLi4uIiA8PCBzdGQ6OmVuZGw7CiAgICBz
+aG93Q29ubmVjdGlvbnMoZ3JhcGgpOwoKICAgIGdyYXBoLT5yZWxlYXNlKCk7CiAgICBncmFwaC0+
+ZGlzY29ubmVjdCgiUnhTdHJlYW1lciMwIiwgMCk7CiAgICBncmFwaC0+ZGlzY29ubmVjdCgiUnhT
+dHJlYW1lciMwIik7CiAgICBncmFwaC0+ZGlzY29ubmVjdCgiUnhTdHJlYW1lciMwOjAiKTsKICAg
+IGdyYXBoLT5jb21taXQoKTsKCiAgICBzdGQ6OnRoaXNfdGhyZWFkOjpzbGVlcF9mb3IoNTAwbXMp
+OwoKICAgIHNob3dDb25uZWN0aW9ucyhncmFwaCk7CgogICAgc3RkOjpjb3V0IDw8ICJUcnlpbmcg
+dG8gY29ubmVjdCB0aGUgc3RyZWFtZXIgYWdhaW4uLi4iIDw8IHN0ZDo6ZW5kbDsKICAgIHN0ZDo6
+dGhpc190aHJlYWQ6OnNsZWVwX2Zvcig1MDBtcyk7CiAgICBncmFwaC0+cmVsZWFzZSgpOwogICAg
+Z3JhcGgtPmNvbm5lY3QocmVwbGF5SWQsIDAsIHJ4U3RyZWFtZXIsIDApOwogICAgZ3JhcGgtPmNv
+bW1pdCgpOwoKICAgIHN0ZDo6dGhpc190aHJlYWQ6OnNsZWVwX2Zvcig1MDBtcyk7CiAgICBzdGQ6
+OmNvdXQgPDwgIkNvbm5lY3Rpb24gZG9uZToiIDw8IHN0ZDo6ZW5kbDsKICAgIHNob3dDb25uZWN0
+aW9ucyhncmFwaCk7CgoKCgogICAgcmV0dXJuIDA7Cn0K
+
+--_004_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -579,4 +839,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4512668975363837364==--
+--_004_GV1P250MB078547F105A7673F14E43959904E9GV1P250MB0785EURP_--
