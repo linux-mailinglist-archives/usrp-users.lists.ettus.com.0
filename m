@@ -2,426 +2,171 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2BC35E7F1F
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Sep 2022 17:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3675E80F6
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Sep 2022 19:38:32 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A10433841CE
-	for <lists+usrp-users@lfdr.de>; Fri, 23 Sep 2022 11:57:52 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 33DEF3841E1
+	for <lists+usrp-users@lfdr.de>; Fri, 23 Sep 2022 13:38:31 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1663948672; bh=ZtvGvF7Z7RbnIv4MneD4D6Es+FyoBWWF3RbBc6THVQ8=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=Wvi319Dlif85Do/T+oToGjQorI0O8Ll4PcQYFen3GG87rL8oTsN8rM7iOmsGdkcyV
-	 yzLlEYMmFNOuIOvZaxDAy9tlAs0TYtqJGQxjgwSvw2tgDp4in3E2PkG8WcCLVFl/HQ
-	 6Jp1ZdaZsS42S5w0deKsYunTOAbu1SjstVsqwCz9g3o0hoeNTvzPNRzEcuwpIdE6Mr
-	 pRSQmuQntcBYXpirmHd7eyHKtzZkW68TSVMrJ0miDju1w1anqhO/b8ZKN7UKalPOEQ
-	 g1Mc+9nQYSsJFENSnZV5vOh4qhu/qTFn7dDUZdmXqS1jw+jklljiXB7gTQbqUhDfyH
-	 smA0RxQuKbFbA==
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id 850A5383C68
-	for <usrp-users@lists.ettus.com>; Fri, 23 Sep 2022 11:57:04 -0400 (EDT)
+	t=1663954711; bh=bIItLGJaOYRn/hNeVLAqBTYHbp7bCOHWWME7f/VZpTc=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=iuUgZkpBeMNRCgZSkglYmS30Wn2U9AH8UHx5ceTNK4juDkwIO6ZZySeyvgpMG+6D3
+	 Lh9399vNRpjFTZ5D1CDgrdxoFQmkF0W/AG3WTnkwq0bA/69gAjTY8G3o7TxnO+l2c+
+	 BzTkXYIWrZnWst9BKEATqagOXw26qU9YamFyix/ufo5KACNquBG4/Dp1NsaV6Tclsv
+	 HGfmOkiU1eQlgjzxn1uGIdTqulXfbBacwPtQq5crCTtoqIwkzdCE0Nae1YwW49pBf3
+	 j4eOOltkR/vjqHJ6MxlawpReTi7N5ferx0ZM0HW682VMxT3X46MOo/9JHyloIFOr3r
+	 BtHm/vMbiOlcQ==
+Received: from na01-obe.outbound.protection.outlook.com (mail-eastusazon11011013.outbound.protection.outlook.com [52.101.52.13])
+	by mm2.emwd.com (Postfix) with ESMTPS id C15043841AF
+	for <usrp-users@lists.ettus.com>; Fri, 23 Sep 2022 13:36:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LTGky2Hh";
+	dkim=pass (1024-bit key; unprotected) header.d=minersutep.onmicrosoft.com header.i=@minersutep.onmicrosoft.com header.b="PGHu2kL+";
 	dkim-atps=neutral
-Received: by mail-qv1-f44.google.com with SMTP id m9so179724qvv.7
-        for <usrp-users@lists.ettus.com>; Fri, 23 Sep 2022 08:57:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bT4FfTrngBJMf7+mpYlufNRkDtZEUmPXtsOWfdtK1Chzr/8k9bsR+j07q91fBkLCJdcSUUp8TNNzv90zNw+2HbMZkj+jLeaPS9I27SfcCxgXOxvSmxtFbflKbSsbi6eNXpVbh3HqOpKEbop9QOJk+AtOkBA7WDOR6zKDddX/flTRbr0mBdYRdHh7W0Qk0JH8guB1EsGEwTpwTAI3QWlkIlrHILOR1LQWDmUD0ChzL1BPpXkHW9MyToVTcwu0+9wFchqh5YHHLIeQN3xLCLpMNKf/h8TbWqLL7IBauwlHTP2D62BBk1Ofd5o3u4uBmoeenzwqD3OTSxtoSK05WBpUqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=KgTDUXLUtI+Tv8hDYJ6LskOrXR/ysobwaOtJnNY0Wyw=;
+ b=IfuiERtnvLYN9gJEtp6Pctk8MKjPxPDcVXkyuS22rMMtO0LgXQf9wiMJeOquem9wQBTkmvqsdot06GBcozeLZibf8ppCC1bGntAy7l3ygougRhOc6k1VHr/pTb12Phf5KubmMHLKunosnaF6HKZ6vDvFZhVI2iLQIQHSWS1mOOPediq6GYpgPhQLQ8lodqAbpZIo7FE2VRN55TRS8YS9v8We8MqH3cBtDI44upU/R6ECHNnUkSw+di1TDcI5SG82MAPVXE6o0fWThd3wy4ACfyJhIx6P8N3J1J/WW5EXlXsOZ6iYXNScngl5TZA4MvBEiBfhRKY9Rt2FYnTTcWavxA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=miners.utep.edu; dmarc=pass action=none
+ header.from=miners.utep.edu; dkim=pass header.d=miners.utep.edu; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date;
-        bh=KTSWyqpTvm7O4xetYH+ZusCSQ4VLLO4baJKjrob3M+A=;
-        b=LTGky2Hhm+G6W5NXDIZosFn6SArCTz61xr/xMctGfubb7677m7Tx5AAMvILwZoBWuU
-         4Ndt9NPyMrVhXPNfyjjPr/LK2j+i6rdMwbl8gnU9RUgmdfEq8QYTjCLacOINjKWI4w4x
-         aJRr9A7GwWcI7q/FpiCkQ9FnvWveaLkJEH5E+6xa7rzRNeu5cW4Lww8vwUK8tMyeKzcO
-         fD23h/TvtHGgo7F05dmFIOcyqD12nfVVRTLnX9keLuD4w3Qli0SSFacfdWITdrfJkHPy
-         tatRdTvHIq93w6AL55EWTg8vfOLVA3iC3mje/b90oVbOUzrNOCaSOLXC3jFSbPyT9WE6
-         rDRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date;
-        bh=KTSWyqpTvm7O4xetYH+ZusCSQ4VLLO4baJKjrob3M+A=;
-        b=wD5z1si2DnBQRA98W64maEKwExp5iQERhcduPpdPcLWEOYy9ubF1gtkcamLEfaxzLM
-         IXdyr1exqioodhPz7KvNYUD7ypZ3wLy3apdA3NEUVLFUDzMl3hrlCBjPPhtv1tcqrOkL
-         UFGmRmygEOACJWtdDB5m3O0Xn15TQmV3WXlFvv5QA//jlV1yEwadNK4Bs/yEoxX66X8p
-         elnxcsqYfIGaduDfUBYhcY+Nd6XPSSVNjnd6vRuGQHTHpv9j55xN1rQG5d9mac/xUI3N
-         g9GuxkZrmCfRKErNPfoAgbwkbZM5entG4Ibhn3XwyYIZLN8Eao/UEqrsZzqY1I0IxxLf
-         DS0g==
-X-Gm-Message-State: ACrzQf0IHqubpa4dSu5X1WhMNE2MlQsMg8ZkXRx6Ld5vMihdatwuoQj5
-	THtGGjKvTCY4MvGBvzs+fKldGL6hpFw=
-X-Google-Smtp-Source: AMsMyM4YQ4sAbBZNEpWHGmhdy2tz2OxSMiIkiiisi4n1AP5a5hxdRY8qnhW4KBkip3J2/UnGMK4RtA==
-X-Received: by 2002:a05:6214:5007:b0:4ad:7835:a80a with SMTP id jo7-20020a056214500700b004ad7835a80amr7178213qvb.41.1663948623721;
-        Fri, 23 Sep 2022 08:57:03 -0700 (PDT)
-Received: from [192.168.2.195] (bras-base-smflon1825w-grc-09-174-93-2-254.dsl.bell.ca. [174.93.2.254])
-        by smtp.googlemail.com with ESMTPSA id s4-20020a05620a254400b006cf43968db6sm5965316qko.76.2022.09.23.08.57.03
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Sep 2022 08:57:03 -0700 (PDT)
-Message-ID: <a3a35f45-4d35-70eb-134a-5629ed5e2f87@gmail.com>
-Date: Fri, 23 Sep 2022 11:57:02 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
+ d=minersutep.onmicrosoft.com; s=selector2-minersutep-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=KgTDUXLUtI+Tv8hDYJ6LskOrXR/ysobwaOtJnNY0Wyw=;
+ b=PGHu2kL+BRBUoXLriOlKTx5rHNYRhIfKCkoQk9YTqnrTdpf+oKFpn7K+/IbErzO02WUkRbT7zYpGHePFHNSlCcXQBgFMqojxPg7wQATf/Y4KkFjru52t7OSkqnQChc9LcjPxPbjoRMOZwfPndzlNPSqIBnFfKBYvM2DSwJAoaZA=
+Received: from SN4PR0501MB3919.namprd05.prod.outlook.com
+ (2603:10b6:803:4a::25) by BLAPR05MB7331.namprd05.prod.outlook.com
+ (2603:10b6:208:292::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5676.9; Fri, 23 Sep
+ 2022 17:36:38 +0000
+Received: from SN4PR0501MB3919.namprd05.prod.outlook.com
+ ([fe80::9:e275:61a1:9f47]) by SN4PR0501MB3919.namprd05.prod.outlook.com
+ ([fe80::9:e275:61a1:9f47%3]) with mapi id 15.20.5654.014; Fri, 23 Sep 2022
+ 17:36:37 +0000
+From: "Avila, Jose A" <jaavila5@miners.utep.edu>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: X310 calibration
+Thread-Index: AQHYz3IPn2d6heZq5USKOX9pPDQfSg==
+Date: Fri, 23 Sep 2022 17:36:37 +0000
+Message-ID: 
+ <SN4PR0501MB391923D92DB5B6B7A2F84EE5D9519@SN4PR0501MB3919.namprd05.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <4o9FjRTD5uVD9qQuuPAzwpsL0qJb6wIJwGwNJmk4A@lists.ettus.com>
- <MN2PR12MB331250CF83D30EF32CA248CBB8519@MN2PR12MB3312.namprd12.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <MN2PR12MB331250CF83D30EF32CA248CBB8519@MN2PR12MB3312.namprd12.prod.outlook.com>
-Message-ID-Hash: HRXD3RB7QI5T676ACCRVQ4SUEWQ6LBMA
-X-Message-ID-Hash: HRXD3RB7QI5T676ACCRVQ4SUEWQ6LBMA
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=miners.utep.edu;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN4PR0501MB3919:EE_|BLAPR05MB7331:EE_
+x-ms-office365-filtering-correlation-id: 5b7e1f58-5127-4f50-baff-08da9d8a2acb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ uSXYXzqOg7aAb/zAc1iHWeJPfSFrYE0uAyXRQe7xowNCAcGMJu9nhicGOFlS4N11FXc+e7ELqL0WJsmFGZrsK4vKM6qyZ+HHPcs2tUI5e1kg4l4i7DiBJtKMNjmfl6fvyKWh/fsgr2GM/WhpWJ5AsgJXcmWHgoMXo20DKuvH1UpDbishtEWK1E4iyyCkIbn7bxLsnQoVXI+y8eF/NxVwrAytyFl8EA9O7Oz7gDjWBp6Yb9hBdjV7874zDkIx1p+/m0t939nGuSRAnDSAwH++xuDpO1juLw1zMV95F0b7xo/NltAqSbt7Auoe8L73M4QMmeL4vPwrzDbFp2B6DTz5Jy7cObIjQOD76kd/WPBn4xC5G7Y9nyAE7mWh7m0yQp1uWyWsG2ztZG3uFq9+L4qWob05o4BcGtvPK/w1fLvSpGLqZvXghxTi+6Pqb/o7zPCH0wKIl0DOf+pLroYTC6bzpu+nwW6IWTeU9NGaSbS6Q+4CxjO83vzUAYIBrhctEE3awcOifwwNynvkePPkOWTwqqbFUM8MA4YQPljaxCMDN3e8VPH787trkupWe0D3hBNwnP5ZKQTqyTjj90lPE/pkOuvnFIL9csnelexEP/6Q2jAJVYpPx96alxFtSJ75/5EjO8IQ/TYSDgpoe/oyy0LWPyA/E6HzCeXCx7/YC+hN7kHpK5GmpgkL6Gi5AiaMIk56fMEgKKxbCBcUCh6UsPhFPpAoiBfTANgFUxOvkSHVoHl+06YVaE+UfGU37do68g0K1z0C7KU7QD4SiXFDq4Mbl0Q2JHX/nW1941vdoRyCEhCdsM6POQ9qKDW+MQvA7QlO
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0501MB3919.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(376002)(396003)(39860400002)(346002)(451199015)(33656002)(86362001)(38070700005)(38100700002)(786003)(41300700001)(91956017)(316002)(6916009)(66946007)(66446008)(64756008)(5660300002)(8676002)(7116003)(76116006)(66476007)(66556008)(2906002)(4744005)(122000001)(83380400001)(71200400001)(478600001)(41320700001)(52536014)(75432002)(55016003)(186003)(7696005)(9686003)(6506007)(8936002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?CyQwLpSS+h2O1G8SdoSqIY+Ryx2JYheynOAlwwBT8JnM9rvLN0oNdXiRmLB+?=
+ =?us-ascii?Q?r1Ba+DOlv8xUDXz0FCu74PFsDxPZJHgEs3ISi140S6wBeztn1JMLCxuLdYNx?=
+ =?us-ascii?Q?7fJNk9NZr41mhR8pnJB54mGJbYz3FwzvmQdAE2rOQL7SVx+tAWYWREOjjWjM?=
+ =?us-ascii?Q?Xcuag2WwkcrCKKvLsofdvtJJShi1Cg9RYTo1zhvHpDdVyg/5hbDeddNS6VgT?=
+ =?us-ascii?Q?StNaB7gmT692NW1QeJvKtUEaj7/KGsjfhp9I9Hl2hnjcYr9V5lvsEajHzyvG?=
+ =?us-ascii?Q?HjAO9YNaaG9rXxfmye1YUhH7xWUyHQ8pMdw7PtoojOxS17eKlt9SCGYa0oPH?=
+ =?us-ascii?Q?9xs5GnoNyjKcGLFyir+kb8mi2LxGvVr7WYw9YYm/QzGeOIAqgyWDIM9RB3Qu?=
+ =?us-ascii?Q?Rpch3QgnbRj34wZydulrvgG3RorfKZleJYiZTXSso1ghrnNbJZMlqmI51dAS?=
+ =?us-ascii?Q?CSX7lNANOeeyccLoaqy1oYepkccIF4DVua6Qx5agsBDKUJY1jmt/DqLi+z/n?=
+ =?us-ascii?Q?719GX6uKqEcRGcvJZDAil1aCVm9EWNFWM+RnQknzThkL+MiwE4R02++oU17j?=
+ =?us-ascii?Q?k3/BmztnMZfEbTlDSqRTcOoVqfUuMbs5eGVGHflBmGjRxMuc0I74C9s1KDiB?=
+ =?us-ascii?Q?RRaVNxqYu3tZa+F7A/NLnR0ZUaou8+EWSVjei4G0BRHU4sHNDzYPO5A6ewVQ?=
+ =?us-ascii?Q?HLsZsv2Ae0tMPeVgqrRW+HyyBVl+on33O0LRP0eXCpj93CHq1wny6tV7zDN3?=
+ =?us-ascii?Q?hqQoNUCAeGMtOJuy+SCpBq36G8/NA/W5GcVtuVO3ASed6EK+6KcNBfC7wKiv?=
+ =?us-ascii?Q?RJuYCD6yQ4bA61PhSJKh3LC53VZrEYyfnPVX2FatbOymzehdaF6I/XcIOw6f?=
+ =?us-ascii?Q?RL3UxDRQ9ruOLeA3snDt0+RRJlcuiGHTBnSnnjKKbDMDSEGFj0pPjX/3hRHn?=
+ =?us-ascii?Q?metAdneg0K5yYexgbn923uOdCF5HIm3YAOj+I9A/+ZpihQl9AbCG7u3fKS2I?=
+ =?us-ascii?Q?Ivdp+l1Lx+C8CXLC7x6RI3ihPLPut2YKA8i5WoLVXFq2K8jePt00e2rEIKQS?=
+ =?us-ascii?Q?Xhu9F50GmpvVOVdShEi9I1L3iwS4z1C/BNMuW99vFOYVfzYqqzKbToCQzoV+?=
+ =?us-ascii?Q?Qszn8Okmw8R2tiPi5zg7OIPLr80b2QHCl3GOV1KTLpyzLVtTZveJsvYeSb/k?=
+ =?us-ascii?Q?ip9tMsz8O1tTjzw383aEGUNhcuUNDxSZ/xAMszj+Sn4XLaRPht5KhIis8v8G?=
+ =?us-ascii?Q?4WaeEk5YPny/LdETJ8DUeWQ1SsOtNVsMBVbZ5Yx952byPLMjI9sc4vPNCh0j?=
+ =?us-ascii?Q?LUEsVxNnCutACx0EpjLv76Vx4Sj+9DQsufJwlOKl4UDeiYYG16vsV6gSZ18M?=
+ =?us-ascii?Q?Po1cvVoE+L0Hq3j5JVA6GvalYW0nX3SeTQBEV+dzqTo6Ge9cg9t1YLnm6dIW?=
+ =?us-ascii?Q?4/vc4k8lset95+ui9LL28BY3+IL/V+UcfhXdTJWfSmrmhWFzVyHh3cbNtrYL?=
+ =?us-ascii?Q?HMvBjEqnFfg4ugalykSNjnxqSdJCqTgN+O0/d6/zhmQbQW2xl9Xd9NEXuOuE?=
+ =?us-ascii?Q?ZHLs0hzy36lHVuYZYEpHvTQjdD9eMoOPFQZpy22MnYDmrJzV2vMjdZ4BHu2H?=
+ =?us-ascii?Q?7lk1qwTmv9rt3hNwllM/FYCkWVUh2+1wLKHsLy7dehI7mMahC4hYt+UBU4AS?=
+ =?us-ascii?Q?9AmyjA=3D=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: miners.utep.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0501MB3919.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b7e1f58-5127-4f50-baff-08da9d8a2acb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Sep 2022 17:36:37.5076
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 857c21d2-1a16-43a4-90cf-d57f3fab9d2f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: uaLcs/CeVXDgeAcyZmAE/z8K4ks7Dh6R/ZS1NORdArTa+5AOMd9f5SBPYANz7KcjjGTKs0l0jhoXa43PUdzfq9y4xv9M9N9AUAtEqfA0rKs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR05MB7331
+Message-ID-Hash: CXTCECQA4WBZ4AOXG6UXMDW33MKYR4I4
+X-Message-ID-Hash: CXTCECQA4WBZ4AOXG6UXMDW33MKYR4I4
+X-MailFrom: jaavila5@miners.utep.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 sample rate change locking-up
+Subject: [USRP-users] X310 calibration
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HRXD3RB7QI5T676ACCRVQ4SUEWQ6LBMA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T2NOXULYJBLUG7QZQMOLZ7QGQOMJGILV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3926384367917454061=="
+Content-Type: multipart/mixed; boundary="===============4698856389353236197=="
 
-This is a multi-part message in MIME format.
---===============3926384367917454061==
-Content-Type: multipart/alternative;
- boundary="------------AfOm0KlS0RcJRBYpp0P0knFA"
+--===============4698856389353236197==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SN4PR0501MB391923D92DB5B6B7A2F84EE5D9519SN4PR0501MB3919_"
 
-This is a multi-part message in MIME format.
---------------AfOm0KlS0RcJRBYpp0P0knFA
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_SN4PR0501MB391923D92DB5B6B7A2F84EE5D9519SN4PR0501MB3919_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-09-23 11:50, Jim Palladino wrote:
-> I spent a fair amount of time trying to debug this. I wrote a custom=20
-> app using the RFNoC API and tried continuously changing the sample=20
-> rate (while streaming). I mostly bounced back and forth between=20
-> 100Msps and 200Msps, with a master clock of 200MHz. To do this, I=20
-> would change the sample rate like this:
->
-> =C2=A0 =C2=A0 =C2=A0 ddc_ctrl->set_output_rate(200000000, ACTIVE_CHAN);
->
-> I could always get it stop working after a certain amount of time.=20
-> Depending on my setup (adding sleeps in different parts of my or UHDs=20
-> code), that time could vary from seconds to more than a day. When it=20
-> stops working, UHD returns:
->
-> Error: RfnocError: OpTimeout: Control operation timed out waiting for=20
-> space in command buffer
->
-> I tried issuing other commands to the DDC controller, like changing=20
-> frequency. I could loop through those and other commands without ever=20
-> running into this issue. It seems specific to the set_output_rate=20
-> command. Adding time delays into the infinite loop, doesn't seem to=20
-> help -- I still run into the issue, eventually. I debugged enough to=20
-> find that where things get "stuck" is in the set_decim() method in=20
-> ddc_block_control.cpp. Part of the code looks like:
->
-> =C2=A0 =C2=A0 void set_decim(int decim, const size_t chan)
-> =C2=A0 =C2=A0 {
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 RFNOC_LOG_TRACE("Set decim to " << decim);
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 // Step 1: Calculate number of halfbands
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 uint32_t hb_enable =3D 0;
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 uint32_t cic_decim =3D decim;
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 while ((cic_decim % 2 =3D=3D 0) and hb_enab=
-le < _num_halfbands) {
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 hb_enable++;
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cic_decim /=3D 2;
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 }
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 // Step 2: Make sure we can handle the rest=
- with the CIC
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 UHD_ASSERT_THROW(hb_enable <=3D _num_halfba=
-nds);
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 UHD_ASSERT_THROW(cic_decim > 0 and cic_deci=
-m <=3D _cic_max_decim);
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 const uint32_t decim_word =3D (hb_enable <<=
- 8) | cic_decim;
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_DECIM_ADDR, decim_=
-word, chan); =C2=A0 =C2=A0 =C2=A0=20
-> // Rate change =3D M/N
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_N_ADDR, decim, cha=
-n);
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_M_ADDR, 1, chan);
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 // Configure time increment in ticks per M =
-output samples
-> =C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_TIME_INCR_ADDR,
-> uint32_t(get_tick_rate()/get_output_rate(chan)), chan);
->
-> You can see a series of register pokes. I added debug statements in=20
-> between the pokes and found that the command buffer error occurs=20
-> almost always after:
->
-> =C2=A0 =C2=A0=C2=A0 _ddc_reg_iface.poke32(SR_N_ADDR, decim, chan);
->
-> Meaning that line will return, and I can see the debug statement I=20
-> print out after that line. So, it seems there isn't room for the SR_M=20
-> poke. Every once in a while, it would fail right after the SR_M poke=20
-> instead, but that is rare. Adding sleeps in the right place (like=20
-> after the SR_N poke) never seemed to fix the problem, although putting=20
-> a 1s sleep after the SR_N poke greatly extended the time before failure=
-.
->
-> In ctrlport_endpoint.cpp, I tried changing DEFAULT_TIMEOUT from 1.0 to=20
-> 10.0. The same issue still occurred, but I would see the code get=20
-> stuck right after the SR_N poke and then just sit there for 10 seconds=20
-> before outputting the "command buffer full" error.
->
-> In the FPGA, I tried a few things like increasing some buffer sizes,=20
-> watching some of the DDC related signals with an ILA, etc, but didn't=20
-> make any notable progress. I don't have time to go too far with that=20
-> right now.
->
-> Anyhow, it looks like, every once in a while, a DDC decimation change=20
-> puts something in a state where it stops working (no more data samples=20
-> are streaming) and the command buffer is full.
->
-> My setup is identical to Jason's from the original post (UHD 4.1.0.2,=20
-> Ubuntu 18.04, N320 with XG load.
->
-> If anyone has any more thoughts after reading this, it would be=20
-> appreciated.
->
-> Thanks,
-> Jim
->
-> -----------------------------------------------------------------------=
--
->
-Thanks for all your work on this, Jim.
+I have noticeable lo leakage when running the cpp rfnoc replay samples from=
+ file. So I ran the calibration functions but it doesn't seem to be using t=
+he created files since I did not notice a difference. Is there a function c=
+all or setting in cpp I need to add? I thought it would be automatic. Using=
+ uhd 4.2 with X310.
 
-I've poked some Ettus/NI R&D folks on this, and hopefully can get a bit=20
-more educated insight than I can provide--I don't
- =C2=A0 have an N320 myself, so I'd be guessing...
-
-
---------------AfOm0KlS0RcJRBYpp0P0knFA
-Content-Type: text/html; charset=UTF-8
+--_000_SN4PR0501MB391923D92DB5B6B7A2F84EE5D9519SN4PR0501MB3919_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-09-23 11:50, Jim Palladino
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:MN2PR12MB331250CF83D30EF32CA248CBB8519@MN2PR12MB3312.namprd12=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        I spent a fair amount of time trying to debug this. I wrote a
-        custom app using the RFNoC API and tried continuously changing
-        the sample rate (while streaming). I mostly bounced back and
-        forth between 100Msps and 200Msps, with a master clock of
-        200MHz. To do this, I would change the sample rate like this:<br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        =C2=A0 =C2=A0 =C2=A0 ddc_ctrl-&gt;set_output_rate(200000000, ACTI=
-VE_CHAN);</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        I could always get it stop working after a certain amount of
-        time. Depending on my setup (adding sleeps in different parts of
-        my or UHDs code), that time could vary from seconds to more than
-        a day. When it stops working, UHD returns:</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Error: RfnocError: OpTimeout: Control operation timed out
-        waiting for space in command buffer<br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        I tried issuing other commands to the DDC controller, like
-        changing frequency. I could loop through those and other
-        commands without ever running into this issue. It seems specific
-        to the set_output_rate command. Adding time delays into the
-        infinite loop, doesn't seem to help -- I still run into the
-        issue, eventually. I debugged enough to find that where things
-        get "stuck" is in the set_decim() method in
-        ddc_block_control.cpp. Part of the code looks like:</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        =C2=A0 =C2=A0 void set_decim(int decim, const size_t chan)
-        <div>=C2=A0 =C2=A0 {</div>
-        =C2=A0 =C2=A0 =C2=A0 =C2=A0 RFNOC_LOG_TRACE("Set decim to " &lt;&=
-lt; decim);
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 // Step 1: Calculate number of h=
-alfbands</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 uint32_t hb_enable =3D 0;</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 uint32_t cic_decim =3D decim;</d=
-iv>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 while ((cic_decim % 2 =3D=3D 0) =
-and hb_enable &lt;
-          _num_halfbands) {</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 hb_enable++;</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cic_decim /=3D 2;<=
-/div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 }</div>
-        =C2=A0 =C2=A0 =C2=A0 =C2=A0 // Step 2: Make sure we can handle th=
-e rest with the CIC
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 UHD_ASSERT_THROW(hb_enable &lt;=3D=
- _num_halfbands);</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 UHD_ASSERT_THROW(cic_decim &gt; =
-0 and cic_decim
-          &lt;=3D _cic_max_decim);</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 const uint32_t decim_word =3D (h=
-b_enable &lt;&lt; 8)
-          | cic_decim;</div>
-        =C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_DECIM_ADDR, =
-decim_word, chan);=C2=A0
-        =C2=A0 =C2=A0 =C2=A0 // Rate change =3D M/N
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_N_ADDR,=
- decim, chan);</div>
-        =C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_M_ADDR, 1, c=
-han);
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 // Configure time increment in t=
-icks per M output
-          samples</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 _ddc_reg_iface.poke32(SR_TIME_IN=
-CR_ADDR,</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-          uint32_t(get_tick_rate()/get_output_rate(chan)), chan);</div>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        You can see a series of register pokes. I added debug statements
-        in between the pokes and found that the command buffer error
-        occurs almost always after:</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <span>=C2=A0 =C2=A0=C2=A0 _ddc_reg_iface.poke32(SR_N_ADDR, decim,=
- chan);</span><br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Meaning that line will return, and I can see the debug statement
-        I print out after that line. So, it seems there isn't room for
-        the SR_M poke. Every once in a while, it would fail right after
-        the SR_M poke instead, but that is rare. Adding sleeps in the
-        right place (like after the SR_N poke) never seemed to fix the
-        problem, although putting a 1s sleep after the SR_N poke greatly
-        extended the time before failure.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        In ctrlport_endpoint.cpp, I tried changing DEFAULT_TIMEOUT from
-        1.0 to 10.0. The same issue still occurred, but I would see the
-        code get stuck right after the SR_N poke and then just sit there
-        for 10 seconds before outputting the "command buffer full"
-        error.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        In the FPGA, I tried a few things like increasing some buffer
-        sizes, watching some of the DDC related signals with an ILA,
-        etc, but didn't make any notable progress. I don't have time to
-        go too far with that right now.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Anyhow, it looks like, every once in a while, a DDC decimation
-        change puts something in a state where it stops working (no more
-        data samples are streaming) and the command buffer is full.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        My setup is identical to Jason's from the original post (UHD
-        4.1.0.2, Ubuntu 18.04, N320 with XG load.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        If anyone has any more thoughts after reading this, it would be
-        appreciated.</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Thanks,</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        Jim</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-        <br>
-      </div>
-      <hr style=3D"display:inline-block;width:98%" tabindex=3D"-1"><br>
-    </blockquote>
-    Thanks for all your work on this, Jim.<br>
-    <br>
-    I've poked some Ettus/NI R&amp;D folks on this, and hopefully can
-    get a bit more educated insight than I can provide--I don't<br>
-    =C2=A0 have an N320 myself, so I'd be guessing...<br>
-    <br>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"ltr">I have noticeable lo leakage when running the cpp rfnoc re=
+play samples from file. So I ran the calibration functions but it doesn't s=
+eem to be using the created files since I did not notice a difference. Is t=
+here a function call or setting in
+ cpp I need to add? I thought it would be automatic. Using uhd 4.2 with X31=
+0.&nbsp;<span></span></div>
+</body>
 </html>
 
---------------AfOm0KlS0RcJRBYpp0P0knFA--
+--_000_SN4PR0501MB391923D92DB5B6B7A2F84EE5D9519SN4PR0501MB3919_--
 
---===============3926384367917454061==
+--===============4698856389353236197==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -431,4 +176,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3926384367917454061==--
+--===============4698856389353236197==--
