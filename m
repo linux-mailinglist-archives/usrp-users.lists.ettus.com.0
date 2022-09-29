@@ -2,205 +2,190 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE5B5EF229
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Sep 2022 11:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBD1D5EF39F
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Sep 2022 12:40:25 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4DDB0384062
-	for <lists+usrp-users@lfdr.de>; Thu, 29 Sep 2022 05:35:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 49D2438408F
+	for <lists+usrp-users@lfdr.de>; Thu, 29 Sep 2022 06:40:24 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1664444137; bh=F5wSqdr0CcqJlZqYIeUIoHg2RnSfjJ87ZW+6qHaEOYI=;
+	t=1664448024; bh=8NdFR7poveX1cCQewK+LAe40ElMzikhsgfmVc4idFxg=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=WbJVP7qmmZyL3f7NtiibMxaeKzrbaxZaH7c99Z6iQz4xKfHQ0o92BwLfpagpL+Q7/
-	 +keWTboyBDvalp5GYW9dArwQdus+WHo4uQFTwabg/r4voikWw0Rj18wfSrRtQrzMCq
-	 RkIr6xpFipHORLMRS45FAz4WojvEyzdsjrEvUMzgA9AfSy3B1EhFbwRbJ7gMrr3U3Y
-	 9RfCN55novSl8zO01kMV2BoMa1bc1Zy/dxAIrI/m8/FIo6hGJNBwKhxc1YfmsoXUeo
-	 /LlqJN87gpbkq8Kcl3ibBdl+YJcOVyXwydIZ8IMquQ0hLbfMK8clC/TWHQD7+EPRBY
-	 wZ+xmPVEIljVA==
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9BAED38405A
-	for <usrp-users@lists.ettus.com>; Thu, 29 Sep 2022 05:34:28 -0400 (EDT)
+	b=YXTDji8zc4rEwR3Gmz3DjCFg+JBVK0h1Ti5O8mHDLTR4K6Df3D+FsTTV9FUCsAvc2
+	 66gJgtqvmmtN5yqyFL0TDx0P/npIskPpIZ2HYoRc0ZIjDiX05IPn5ialPObul10psH
+	 G3Q1K/v+IsK11I7UW3DlHG6nrZZVBN/grvZIN2mPxpWcfkhiwhGiIs4A3IW1kIzMdm
+	 Rq/fr4H9cqdj3ZvChA4Eush8W39ogu2bQ2dN0YRo7k8IJ6rb4jA5TMwmwwggNX7JDl
+	 J3+5rWOjO3QKQm10HQ/mUm15Wz5PzRW4mFjaKs5tsSHH3Uu2yhWwV8gveiU/TPhU0F
+	 E1GnRt7SO6Qpw==
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	by mm2.emwd.com (Postfix) with ESMTPS id 24595383064
+	for <usrp-users@lists.ettus.com>; Thu, 29 Sep 2022 06:39:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ikzGmeYi";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="FucdPrgd";
 	dkim-atps=neutral
-Received: by mail-ot1-f47.google.com with SMTP id cy15-20020a056830698f00b0065c530585afso544143otb.2
-        for <usrp-users@lists.ettus.com>; Thu, 29 Sep 2022 02:34:28 -0700 (PDT)
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-131de9fddbaso260573fac.5
+        for <usrp-users@lists.ettus.com>; Thu, 29 Sep 2022 03:39:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date;
-        bh=dLzFJyBKEF/K3PK/FQy/GNZ5ArUOlA6p+RgQvwA/8IE=;
-        b=ikzGmeYi9fglgBJvabaz9fa2fMQaRTp3+slxPywmNsX/+GokD7raRgYUKuLLnc+FqV
-         NIjvD7eK5VkOMHMatpL3mEvdkyjy+sUQn9asihimmjuuJE0pi1prTGeucHPBGyQ0LPl9
-         Wr2+4lfEH8iUrsKeMbXu9HjKDPxm/7SXJa0iguJhDgITI1gN2ranTm2OKVdJHZw+wYUe
-         bLwFsW4KjTHu+rcle/23aq0SoWIjk53AqI06l5wAhcIffgD9L/ybYjZsL5UyxdaD0oL6
-         S6OeCgjwDzoKoqM9YKOHk65XRUtxwUZrlAPg0bOdaXoFyUr7KaVaShoPS3X4qDu1N1B/
-         R5lw==
+        bh=s+LRYITv4sg5nK+YgmC+PJmisxSRwXtFYOrFr34FCv8=;
+        b=FucdPrgdbNEp/XiLlrZqMZnTl7MoUylREGZMZl/wgpQlLTl1ZrVffOHI7ZIwo0wEDK
+         oZ7EzrS8Qymlg9z/sxqjiMObW2vRHJB/pc5zZE7jV6CfrPHEUJYqAqXZujmzZTxkEOZA
+         Paoe5KEvjhjB55GN1TSLBFGcjCSPJUNZqwogeccrEHAInkiiVEcCJsVwOdL4CqD7134A
+         R8rdw1sI5UpMrQjIGdqorHvu3e0ySoV22pwjJTBnjgVda3R465nXElfYOiNM2rvxDl9y
+         M4MGg3sXbI3/uJDiD44SZpNJ+AqSrpsyPti/MJxMrHzoMA95gLp7RnijowodVlg2FVd7
+         MYtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date;
-        bh=dLzFJyBKEF/K3PK/FQy/GNZ5ArUOlA6p+RgQvwA/8IE=;
-        b=TAG9IRJR+ljCyYn/SU63mDJ0Z1qs8U+vbdmo51rrStf3WGveY2TcMRp+5ovf/mfdVh
-         kHZkKzGNL3ZD6xalvNNGQ4F/3mVGgl7CukH6FB991nuyPNYykJRiRKjiStc5KsD8Mz42
-         OA5rt2Rltp+OY8b3SZQfEZOM+PVvTyKVr26qLSfGvB1H/7kPE8tKT6Srcd+L/Y/O7YhR
-         6KdtDw3vqS8+YfKNhte+0B2Wcxv2BDyPpUzp6LqIWihDpUPpwwOusTItPlxg8uac0tpn
-         MIsM5eSmSBSSvx41dJ64Y7BIgOlzzT6qPkmadni5s7fEw/uM4+tOPYBMe8IbX5v2Spxy
-         WYFg==
-X-Gm-Message-State: ACrzQf3hDPWnTNa4l9T4BWfe+65y2XVGHgeEaHUbOJUwsubA4BZBHeKb
-	RKsxdTgKIaJAvEj6SbPhUZ0Hf5UTbwNt8R7tprwxfvm3V7A=
-X-Google-Smtp-Source: AMsMyM5zb+fJKFQQzKJsZW6SzfSUaD4PLpJQplvuS4nyPFLUfb/O/pGbqazE0/Iy8SzSu+xnylKe+lEL7j9LJtd/Amw=
-X-Received: by 2002:a9d:4047:0:b0:659:738a:95a3 with SMTP id
- o7-20020a9d4047000000b00659738a95a3mr944252oti.134.1664444067235; Thu, 29 Sep
- 2022 02:34:27 -0700 (PDT)
+        bh=s+LRYITv4sg5nK+YgmC+PJmisxSRwXtFYOrFr34FCv8=;
+        b=PqrAsejomq1KvdL5yDUktHXsau+9Azkl2VmqxlpFs4c/Vu/XIFt9qGRYwdlV7VX2VB
+         Mc/3GV7zXSMXfi41aKFyiL6+dNJjBN2GdHBoDpf+uLGPGcGAF0HsqQcS+derXp/qGl64
+         eu79GA7eDXyS6LGhEP0BriWgf2G0hyqcdOpwQkdhMyaRAhxHYuwEVVPNCMd0hn1NxIeq
+         tAF6r6XccDiaepSFkZCJ0h3mhUfq/0Xr0xPkiREbIA4StNeTfyXwIUx9kI9VTqRjEG13
+         2KmDl2hfl7GoNGqClKR3eb2ieVotGPUVS0dZZiLXPme8Ngqj4uIoUPgrjhk+ipOeW9YA
+         ljoA==
+X-Gm-Message-State: ACrzQf2kbWatEODNjJnKwe7RC9dZ2asbiC1KB3R4EGAvtvwlnQQqx72E
+	pJY0bSk2zfEIXrLrAdu5rgH7aMpecYwIq/X3uwQ=
+X-Google-Smtp-Source: AMsMyM6arEUrbAk28Z4rEgsjlA5rIxP4OUJMj44tW2vpLmRCXoXapBHPHzVcb9DpQG21kXbRdRhWV/LMqp24rCzNgBk=
+X-Received: by 2002:a05:6870:96a0:b0:127:c03b:39c1 with SMTP id
+ o32-20020a05687096a000b00127c03b39c1mr1375095oaq.78.1664447955220; Thu, 29
+ Sep 2022 03:39:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAJhOL6fAK6Qv7b+0_uLBNmZnO8eV4YZ4YS=-ACE34jDjrXVatg@mail.gmail.com>
- <CAFche=j0ckmfFsx2U=YMLm4M=2SUfQYqwaSvibrS+v9BzDZoDg@mail.gmail.com>
-In-Reply-To: <CAFche=j0ckmfFsx2U=YMLm4M=2SUfQYqwaSvibrS+v9BzDZoDg@mail.gmail.com>
-From: Kevin Williams <zs1kwa@gmail.com>
-Date: Thu, 29 Sep 2022 11:33:50 +0200
-Message-ID: <CAJhOL6cjs89UntVhdiX_omMx_56PdwdN+xcxF8oagO93CkMDRg@mail.gmail.com>
+References: <bFBy3jWM1DzU7ow6eKGnqIAMT4zW4he9qBkwhU9fro@lists.ettus.com>
+ <CAEXYVK7f-nyQXPDo6WkVm3SCYM2EvzNVuDeQ4+k-7wqc7Oa=bQ@mail.gmail.com> <CAFche=hVgtfh8+ThZT23p1DdRM+3MRiNX2W-jYwgC1TAHJYqPg@mail.gmail.com>
+In-Reply-To: <CAFche=hVgtfh8+ThZT23p1DdRM+3MRiNX2W-jYwgC1TAHJYqPg@mail.gmail.com>
+From: Adrian CR <adri96roll@gmail.com>
+Date: Thu, 29 Sep 2022 12:39:04 +0200
+Message-ID: <CALq0fFyroYYvrvwHBxj=L3=nBzm+R-VU_fhtQ65uQ2NGLPNBTg@mail.gmail.com>
 To: Wade Fife <wade.fife@ettus.com>
-Message-ID-Hash: KTEENFRGFZJXM7TCENT7E7XYSWHWZCIY
-X-Message-ID-Hash: KTEENFRGFZJXM7TCENT7E7XYSWHWZCIY
-X-MailFrom: zs1kwa@gmail.com
+Message-ID-Hash: W6N64EYV35QYADCGXRGNVFPE3VSCZYP4
+X-Message-ID-Hash: W6N64EYV35QYADCGXRGNVFPE3VSCZYP4
+X-MailFrom: adri96roll@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: ChdrPacket and ChdrData errors and warnings
+Subject: [USRP-users] Re: Reset Timing Violation
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KTEENFRGFZJXM7TCENT7E7XYSWHWZCIY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/W6N64EYV35QYADCGXRGNVFPE3VSCZYP4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7700957347617875066=="
+Content-Type: multipart/mixed; boundary="===============8297523718650296307=="
 
---===============7700957347617875066==
-Content-Type: multipart/alternative; boundary="000000000000604bee05e9cd950f"
+--===============8297523718650296307==
+Content-Type: multipart/alternative; boundary="0000000000001e3ebb05e9ce7d3e"
 
---000000000000604bee05e9cd950f
+--0000000000001e3ebb05e9ce7d3e
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Wade,
+Thank you very much! You were right. I made a mistake with the clock in my
+module.
 
-Thanks, that has made things a lot clearer now! (I see context header
-manipulations being done in other rfnoc blocks, of which I hadn't realized
-the importance.)
 
-Regards, Kevin
 
-On Wed, 28 Sept 2022 at 21:11, Wade Fife <wade.fife@ettus.com> wrote:
+El mi=C3=A9, 28 sept 2022 a las 4:19, Wade Fife (<wade.fife@ettus.com>) esc=
+ribi=C3=B3:
 
-> Hi Kevin,
+> There's not enough information in the screen shot, but I think the output
+> of the double synchronizer is on a different clock domain than flop flop
+> (dato_entrada) being reset by it.
 >
-> The BFM for CHDR does some checks to make sure packets are formatted
-> correctly. The error message means the "Length" field in the CHDR header
-> doesn't match the length of the AXI-Stream packet.
+> The reset signal needs to be driven by the same clock as the flip flop
+> being reset, otherwise Vivado can't ensure that the requirements of the F=
+F
+> will be met, resulting in this timing violation.
 >
-> The chdr_to_item call is giving a warning because it's expecting a
-> multiple of 32-bits (ITEM_W = 32, or 4 bytes per item) but num_bytes is not
-> a multiple of 4.
+> Make sure you're using the right clock and reset signal for your
+> dato_entrada register.
 >
 > Wade
 >
-> On Wed, Sep 28, 2022 at 5:24 AM Kevin Williams <zs1kwa@gmail.com> wrote:
+> On Tue, Sep 27, 2022 at 9:10 AM Brian Padalino <bpadalino@gmail.com>
+> wrote:
 >
->> Hi Guys,
+>> On Tue, Sep 27, 2022 at 7:21 AM <adri96roll@gmail.com> wrote:
 >>
->> What does the following mean?
+>>> Hi every one!
+>>>
+>>>
+>>> I am facing some problems with reset timing violations. This is is one
+>>> for example, and i have a fews. I tried to instantiate the reset signal=
+ but
+>>> it didn work. I don know how to fix it. On the other side, i have seen =
+a
+>>> reset generation in a noc shell and i was wondering if i have to genera=
+te a
+>>> new one from a previous one.
+>>>
+>> I can't see much other than the names of the signals and the negative
+>> slack, but the hierarchy seems to indicate it's part of a synchronizer
+>> that's been double flopped, so maybe there should be a false path
+>> associated with it in your constraints?
 >>
->> I am getting packets sent to an IP core I generated, and this is the
->> result of a blk_ctrl.recv_items() in my testbench.
->>
->> The first few packets are correct.
->>
->> I can see that 64-bit CHDR words are correctly unpacked, and 2 x 16-bit
->> I/Q samples are injected into the core, and vice-versa, which leads me to
->> believe I have the buses mapped correctly etc.
->>
->> Regards, Kevin
->>
->>
->> Error: ChdrPacket::axis_to_chdr: Incorrect CHDR length
->>
->> Time: 2445 ns  Iteration: 0  Process:
->> /PkgChdrBfm/ChdrBfm(CHDR_W=64,USER_WIDTH=1)::get_chdr  File:
->> /home/kwilliams/rfnoc/uhd/fpga/usrp3/sim/rfnoc/PkgChdrBfm.sv
->>
->> Warning: ChdrData::chdr_to_item: num_bytes is not a multiple of items
->>
->> Time: 2445 ns  Iteration: 0  Process:
->> /PkgChdrIfaceBfm/ChdrIfaceBfm(CHDR_W=64,ITEM_W=32)::recv_items  File:
->> /home/kwilliams/rfnoc/uhd/fpga/usrp3/sim/rfnoc/PkgChdrIfaceBfm.sv
->>
->> --
->> Kevin Williams
+>> Brian
 >> _______________________________________________
 >> USRP-users mailing list -- usrp-users@lists.ettus.com
 >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
 >
 
--- 
-Kevin Williams
-
---000000000000604bee05e9cd950f
+--0000000000001e3ebb05e9ce7d3e
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Wade,<div><br></div><div>Thanks, that has made things a=
- lot clearer now! (I see context header manipulations being done in other r=
-fnoc blocks, of which I hadn&#39;t realized the importance.)</div><div><br>=
-</div><div>Regards, Kevin</div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Wed, 28 Sept 2022 at 21:11, Wade Fife &lt=
-;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
-><div>Hi Kevin,</div><div><br></div><div>The BFM for CHDR does some checks =
-to make sure packets are formatted correctly. The error message means the &=
-quot;Length&quot; field in the CHDR header doesn&#39;t match the length of =
-the AXI-Stream packet.</div><div><br></div><div>The chdr_to_item call is gi=
-ving a warning because it&#39;s expecting a multiple of 32-bits (ITEM_W =3D=
- 32, or 4 bytes per item) but num_bytes is not a multiple of 4. <br></div><=
-div><br></div><div>Wade</div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Wed, Sep 28, 2022 at 5:24 AM Kevin William=
-s &lt;<a href=3D"mailto:zs1kwa@gmail.com" target=3D"_blank">zs1kwa@gmail.co=
-m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
-><div dir=3D"ltr"><div dir=3D"ltr">Hi Guys,<div><br></div><div>What does th=
-e following mean?</div><div><br></div><div>I am getting packets sent to an =
-IP core=C2=A0I generated, and this is the result of a blk_ctrl.recv_items()=
- in my testbench.</div><div><br></div><div>The=C2=A0first few=C2=A0packets =
-are correct.</div><div><br></div><div>I can see that 64-bit CHDR words are =
-correctly unpacked, and 2 x 16-bit I/Q samples are injected into the core, =
-and vice-versa, which leads me to believe I have the buses mapped correctly=
- etc.</div><div><br></div><div>Regards,=C2=A0Kevin</div><div><br></div><div=
-><br></div><div><div>Error: ChdrPacket::axis_to_chdr: Incorrect CHDR length=
-</div><div><br></div><div>Time: 2445 ns=C2=A0 Iteration: 0=C2=A0 Process: /=
-PkgChdrBfm/ChdrBfm(CHDR_W=3D64,USER_WIDTH=3D1)::get_chdr=C2=A0 File: /home/=
-kwilliams/rfnoc/uhd/fpga/usrp3/sim/rfnoc/PkgChdrBfm.sv</div><div><br></div>=
-<div>Warning: ChdrData::chdr_to_item: num_bytes is not a multiple of items<=
-/div><div><br></div><div>Time: 2445 ns=C2=A0 Iteration: 0=C2=A0 Process: /P=
-kgChdrIfaceBfm/ChdrIfaceBfm(CHDR_W=3D64,ITEM_W=3D32)::recv_items=C2=A0 File=
-: /home/kwilliams/rfnoc/uhd/fpga/usrp3/sim/rfnoc/PkgChdrIfaceBfm.sv</div><d=
-iv><br></div>-- <br><div dir=3D"ltr">Kevin Williams</div></div></div></div>
+<div dir=3D"ltr">Thank you very much! You were right. I made a mistake with=
+ the clock in my module.<div><br></div><div><br></div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El mi=C3=A9, 28 sept=
+ 2022 a las 4:19, Wade Fife (&lt;<a href=3D"mailto:wade.fife@ettus.com">wad=
+e.fife@ettus.com</a>&gt;) escribi=C3=B3:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"ltr"><div>There&#39;s not enough infor=
+mation in the screen shot, but I think the output of the double synchronize=
+r is on a different clock domain than flop flop (dato_entrada) being reset =
+by it.<br></div><div><br></div><div>The reset signal needs to be driven by =
+the same clock as the flip flop being reset, otherwise Vivado can&#39;t ens=
+ure that the requirements of the FF will be met, resulting in this timing v=
+iolation.</div><div><br></div><div>Make sure you&#39;re using the right clo=
+ck and reset signal for your dato_entrada register.<br></div><div><br></div=
+><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Tue, Sep 27, 2022 at 9:10 AM Brian Padalino &lt;<a h=
+ref=3D"mailto:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.com</a=
+>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr"><div dir=3D"ltr">On Tue, Sep 27, 2022 at 7:21 AM &lt;<a href=
+=3D"mailto:adri96roll@gmail.com" target=3D"_blank">adri96roll@gmail.com</a>=
+&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><p>Hi every one!</p><p><br></p><p>I am facing some p=
+roblems with reset timing violations. This is is one for example, and i hav=
+e a fews. I tried to instantiate the reset signal but it didn work. I don k=
+now how to fix it. On the other side, i have seen a reset generation in a n=
+oc shell and i was wondering if i have to generate a new one from a previou=
+s one.</p></blockquote><div>I can&#39;t see much other than the names of th=
+e signals and the negative slack, but the hierarchy seems to indicate it&#3=
+9;s part of a synchronizer that&#39;s been double flopped, so maybe there s=
+hould be a false path associated with it in your constraints?</div><div><br=
+></div><div>Brian</div></div></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature">Kevin Williams</div>
+</blockquote></div>
 
---000000000000604bee05e9cd950f--
+--0000000000001e3ebb05e9ce7d3e--
 
---===============7700957347617875066==
+--===============8297523718650296307==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -210,4 +195,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7700957347617875066==--
+--===============8297523718650296307==--
