@@ -2,341 +2,141 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 662AE5F9F78
-	for <lists+usrp-users@lfdr.de>; Mon, 10 Oct 2022 15:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A3D5FB816
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Oct 2022 18:16:15 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 26910383D84
-	for <lists+usrp-users@lfdr.de>; Mon, 10 Oct 2022 09:34:06 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F17E6380B29
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Oct 2022 12:16:13 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1665408846; bh=1VmK6bIpuvC+AbNkJT7Jeb6HvPrOBSwfG6cvhrPRP+Y=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=i4n0Jq71qm72eBQol44DPzJGOK3/BZGjcR7K6e9lA1xpktpfneLnhzOTfXGFLbMnF
-	 zzM6pwAwV02AUUJAe8VCNMj3FpdZsw8JTIR9Ga1QN/cadipPDak/Na0e9Cka8Aw8s6
-	 PEk/4nAHpC7jn8t2ryWOjUIgSgZzP5YtCbSZhl7H/hJNO5J5t5Vxi7NobCj0+arkW7
-	 OtxdnciFAlOAhgSA3p4tNzz3GzZ3AInIwqbTBgBvWf82JB0c26vVmgEwbsueyVZxCh
-	 CFItYU5TMSjwlyk8EgAEaPXYSzi90qM9jTTaXAz5tdMY6KeljjO+7P7y0gZAIfTvSi
-	 hZJU5XtThohGQ==
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 117A7383E62
-	for <usrp-users@lists.ettus.com>; Mon, 10 Oct 2022 09:27:54 -0400 (EDT)
+	t=1665504973; bh=Ru/SuHbp5YXq2QEEhKcrScl+227eNW7rtXz0mZ68YuU=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=uFKAbFyg8FPJ4yzd91nGdkTTA1QZbD3QxzdL67JmyoOnzcDInyGI8meBCiP0ls5PY
+	 PNIAWAZiZIw5qN6389I3lc6hyHyzeei5b8s9ye1SIgPESeZ5/njt+SX0bHilU6NCXG
+	 OSsq1oejzXUP983cJRIdo/sRfec77wW6CjTDcI7tJ5U7u3f3v2wh6OVkW3Z6FzdDFv
+	 fNZrzdPzVzy9PmqicPfIrGyy2UCNU+liJVyC8l8L4fLQ60y9vQEuztcjl74xdmE3YZ
+	 +j7u+Ut+ZxU/uGkKzNtuMRg4ZzsxZx3Oln6WUBOkGIhlksWB769kn4vIhgE+uBFKAw
+	 cczUMfaQbP6ew==
+Received: from sonic304-9.consmr.mail.bf2.yahoo.com (sonic304-9.consmr.mail.bf2.yahoo.com [74.6.128.32])
+	by mm2.emwd.com (Postfix) with ESMTPS id C7A8D380AF3
+	for <usrp-users@lists.ettus.com>; Tue, 11 Oct 2022 12:15:24 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="kxzH7nRk";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="rVqAxTa7";
 	dkim-atps=neutral
-Received: by mail-ej1-f42.google.com with SMTP id r17so24869256eja.7
-        for <usrp-users@lists.ettus.com>; Mon, 10 Oct 2022 06:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=pgcjHBqcJGoJPviDcHFCfq+9gPisXomGKY1M8vq8mu8=;
-        b=kxzH7nRk6uvbMlPMw4+ZDa65eOHhw3mZGbyD74QGCYcrmCFZSp3fPVygXIiD76PHIe
-         RHIfEw/GTgcttiqH3HAFQM1UB9ZW44l6mwtXYfEh/nBCpRBKeYzUXp8OCDv1+pa4zO73
-         ce6SIW+x5qNbgKIS/kXT+/W8E7tOyVBITq1iaL4RdXk1lNQZwdRHM6LxssO6H45M6Td7
-         LL9WgBdP9jJZ4DzHC66iQLDU+AT6ar0E5286iDFfqZNa5bBA19qX+A9sZL8nfbpEfM+9
-         B1WDeGDBEbRVVsieINlAgupgl1+4zJtW0v96vHGNynjmXP+w5KPBEKEJEgEwrvDMV5OP
-         Iw/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pgcjHBqcJGoJPviDcHFCfq+9gPisXomGKY1M8vq8mu8=;
-        b=HMfXfhgtWktQkdSu93SIZUUo7+3xSBkA1laq5EXSjbp6yxeq7BlJDtvXdJbEcN0rfz
-         2YUSopQD7UjBRRla3RxGk+3HmR5NkHLHCVBwCyynDXT8G/Fp5W9+dI/pHJsdjwjDBFVf
-         zLwwJHadJGJxvTBZR815vN/Q3NzLjIXFE5JrftrEUnrTz+NEuurvxhnF/FvqAJqkv/XS
-         t/qQVp/GhiaLlGxijab+yBpci2lkJ6tnj8GaOlGaZJdCNPiIS3ORMaKUO6Aus5mT81+7
-         e6eyWYargVoG0sxpTqRrsniGSDoCJXazM/WHdo8sk5RHDea320LHbZ8fUon4gCSt3H4L
-         BBWA==
-X-Gm-Message-State: ACrzQf1xUBtBCY9h/eX3vpn+KlZnVlkdTrx8nv9+ND4OO12wtOIJbGRT
-	HD50Fp9yp2MgoWgd3FWH2TYB+ia5Vk3tHpririuYEFqhClhxOWYo
-X-Google-Smtp-Source: AMsMyM6AY8xSoByVU7lSXb8Q8wEu8rRwlCbtLERK0ZfqIQBSuYonPjAt94CW2nUQfgk79f+971tu0fxRVc/qQDYJvsw=
-X-Received: by 2002:a17:906:c14f:b0:78d:105b:e57f with SMTP id
- dp15-20020a170906c14f00b0078d105be57fmr14856619ejc.672.1665408473905; Mon, 10
- Oct 2022 06:27:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <DB6PR02MB2981930195E78445C7C9AAB3E7209@DB6PR02MB2981.eurprd02.prod.outlook.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1665504924; bh=lK5gsaZKQEBjZuLLkgvFgsBLEO491DqBX6vN3MJgw7s=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=rVqAxTa7h+YzWLoZJy2AyHrRPrUM5xJJhrVT5fFhmPEXntUAP7P1K3jxXosphGNGRFkKfcwbh5gFjwmjn1dLHodyk1GuXEfkjtoaXdzzuUUUWQ2fT4q3qDJ4ioW9+bCkB0nGe4xbNEVd4zMkzAxuStjdV8bQcuP+ZCyB5b9HbGeh9vTrjMjmTrHJfp10J0rfsCVrcxWMtbfSXx21Q392N/YjACVJm+Q3v/1IkQWNePzoY4SqTmqkmRFaWLZ7vBUGRNXV8ZW3t4YcESdN1612PUmykyAEDLwRTyAfHpkFvUvGUwNuLpSB3fa6D3lf18FZU02arF9PoZI3GOX9AizIpA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1665504924; bh=0209+PuHN8TJBQ8LGI1vRQah1D6ZOJckNU32M9OzPni=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=aeNT21TA8SYZuGagxvQAIPQ/RXjAtQBkl9CBGr4OWObvFJ+gH9pQSYNER16fj5EC0cg/czIt/d8Yhnu80/OQwZuZv4en3sGcXy0FnoFbuQkDcRiP/3WQFU1Aqe1czG5RTp1EmmrienHvcCu7J8LrFegmQbfVXcwq8+NS3GJyLHQENg3enOYUb9zyms037Wp1PsmHLPLCY0yVB7ZOex6QPUm45ruh4sTf5blgczuXyxmvzrdcZNnU/LQUhAZT4FCUbSQpUihn5FHLBM59EkxhX2zCZWlTI3UyVIPwMANPN3h6MDXmSEdNqnTNKtIbTnoc6bcCD0W72pXcMm7S+ZYrog==
+X-YMail-OSG: W54nZhoVM1maHuwawaeIITHrq0cPF6qVurxbF3QqLX2F8hUcROhBbexJdgOs8zd
+ 35JBh8y8xT7ez6kIvf81ElczSHLem91fIxW8kKzehxi8jnZJYWGpWpFvv7HSIEmQYVCTZJOKaSLe
+ bxKXpSnNAG94XZVGGNfd3PIsYP8AmWYxd175i.VrZapQpBTBNh6yGs1vERYVpGNQb_s0upIXv8eE
+ 5ZVxl6f22BIsS8uTQEjK1yFsef1LvoLdC.Uy0RrG41Ea2SkXWsuTTLcQ1hc70BoN_8fmF3uYum85
+ XU9kqieUhBU1qFIMBpdtbKLAIKdS7_B_84X0lbfW5bO70bMsuPlI06C0iTSy5XYEREmRC6ymO59T
+ PdG_JNAZ8sRcFWF2Mzgmn0EZq9wFxgMANmm1N_iTVQqQ_B6H.Vbjyyh2pMcwHZ2yS25mpSF.K7q_
+ 7JgAYkqTo4bYLbDPNM05Ax09PUrusYLZZ4ZY.A4rm01yJhdvCaDaS9n8fQuMU.L77NBBQOyciSWG
+ p2tXbTj0_yDQxMZEZwhzs8j1aa.YwYCXD4oGxY_1Dt7UXzVTLFljcVLxcYe7CElAb6XiaBz9oMbs
+ G6ySG.6mTb3i8QM60NrMCrrXVwC.uY5Mf7tWggEUMqpXTAY_X9g.O67VOcOmSa_gBL8f6SrwwtCT
+ hIpvMUv8yvrGYwfl7PPOFCPxm5cesvyiiPfcePJ6xlJAyP6eHSK_RL7PQ6g_KHGxLBGt.TdvuFQR
+ VyzqaJNK1rzWQIyqOdHZLfEuizp3577oFud5n8q9_UbNSR5Lc8tb_VONb_xoVyzl2USDCldJBsyQ
+ YiB2WwxnoGJH.CHx2P4w7LZE2VWRhkdwXAFNopdEIHntFpDNSwXDA1EGx08r62JYDCDfwTedd1dL
+ 9HCSGDXEyoE9X7GEh4opCVkrA4tmt0I7wP0Jn1PWLEl6azQ6RKJyA8EVUKONs2EIOueND2XL4GLO
+ Yl8mQw50psiJSq5.npTrylpTehb.zwtP56WqfW.cruNO8KIZB0QadNZ1VgcltCXxUXB8aiMp8dZ1
+ sYj6KLH5VL9slIJTb5UU4WmffJhLr_TkK1Ru45Ewz.JbSw1q.PGfzjMk6qBH1OMo9qBdYcnwaG9E
+ KtHOf9Yto0vt0I78BdhildH7cdYFi9PBT_jPmYw5Y0irb.bw28irCJDqBgvpYuGESrvoPf9kFuh_
+ eSPJmXmYo3wyMBZ8TVE3xehr2OWoVFjPNC2YiUA0bYWJyJ9iq9AK1jyN9E_of3a3EPXxvR9.U9Sl
+ 5YuzkAOsoTke629q_VkktMOpLxk_phVUAjlmtDIZCjUiQ.nfq0pcp5xvHBd8_7sz3pBRB1Yy.Wv5
+ i40IA8LXO0FWkkIeSV.gPScTG4v3Jb8l0S7Azeo9fWnOiEKZp_oDOaJ7xgCSmMYTvrpLq0Tltvsq
+ 2qZGXV5AVMOKBiYEHz7a161vWvoejov_LKPOiW2qXLKZMXVfSLBLmDfMCMlvbWYzvabILzepaloo
+ NXY1sINpKpCWzzN92FSSjMz6sPszQMylRIAnkG32RPH1OCXW8gayyd.P3mnTdbaSGjysEl2gSjZx
+ eyx85h8lAy8VjZNZgME5t7l_lv5ZUAwoLTDBhZsWaxUmkCRW8IyVRwLQEXnV1u.7ihP.OfXciTi2
+ 4lQlqJlbWq1HnkisuTPzfInntrN1AdrcHI74xZdBrB9ykEtu5tuQQZLmbgZkLvZ_sX__EeEKxLEB
+ 0yZej_qoZZjKYiHzBaKVLF5R1enC_RAni4dx5iw25Kgv9WrPNOXNOwouhgOTQSGMrDO5ia_kLiCG
+ q1URObto3d0CRsjJeoEhkEy6GEoLCAZ8h6dGJYOkD.Nj_4BDNqnKcCYABuVEidLPq_1BTwZ1FTuG
+ W_JM2bpqkbu7z1Awy3T3DRJSM5CRulhA6gr.w83A3SNz1p9lu92PC7zsB9_vrftxkkhXoDsxhDk6
+ Xx8.oRD0hUTuQfFYQ8MFK_ycjnx62Dg9X72qv7P0YhM0eTIzkr05mwqbREtC74QZM0jETv7LFHDN
+ YluCfEiIR7uPkf4XT6A6xHAgJgEs9aYk1RT5Y_5YiYUxiLpuy4tyQFfO1zwUzD8vpn_0Ex51GxPx
+ flnnvz5kSM1RB2sXEH0RX8cXAN83KwXQHyJu5nk1ROKSglAMnfYRd.EhtEieDNBMAcOTgA42aNLX
+ 635HX7L7AZE9gjMFffw4BCvJllgWmp_9pwO.uLWCQ1i56SvarKEdaHd0ULNjJ7d6uQtDIyw.NH1T
+ luyruGA5U7hndlTzCoNiv3OD5plKj4vA-
+X-Sonic-MF: <hwzhou@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.bf2.yahoo.com with HTTP; Tue, 11 Oct 2022 16:15:24 +0000
+Date: Tue, 11 Oct 2022 16:15:20 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1567317201.188112.1665504920071@mail.yahoo.com>
 In-Reply-To: <DB6PR02MB2981930195E78445C7C9AAB3E7209@DB6PR02MB2981.eurprd02.prod.outlook.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Mon, 10 Oct 2022 08:27:37 -0500
-Message-ID: <CAFche=j-ocCOPm8E1o+72KQAGaGEBLw33qm+s=jsdAN1pECeWg@mail.gmail.com>
-To: "Peter Featherstone (XENINT)" <peter.featherstone@xenint.com>
-Message-ID-Hash: 22J3G2ETO7EYJTLXNITDZVSSYV3GUCYL
-X-Message-ID-Hash: 22J3G2ETO7EYJTLXNITDZVSSYV3GUCYL
-X-MailFrom: wade.fife@ettus.com
+References: <DB6PR02MB2981930195E78445C7C9AAB3E7209@DB6PR02MB2981.eurprd02.prod.outlook.com>
+MIME-Version: 1.0
+X-Mailer: WebService/1.1.20740 YMailNorrin
+Message-ID-Hash: T6GY2YIRVFOJBW4GPLETZVJRNB2WK3XC
+X-Message-ID-Hash: T6GY2YIRVFOJBW4GPLETZVJRNB2WK3XC
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E320 - loopback test error
+Subject: [USRP-users] UHD 4.1.0 speed
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/22J3G2ETO7EYJTLXNITDZVSSYV3GUCYL/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T6GY2YIRVFOJBW4GPLETZVJRNB2WK3XC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1725050783237280862=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============1923179150692849415=="
 
---===============1725050783237280862==
-Content-Type: multipart/alternative; boundary="0000000000007e53f905eaae20eb"
+--===============1923179150692849415==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_188111_1323867602.1665504920070"
 
---0000000000007e53f905eaae20eb
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_188111_1323867602.1665504920070
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I believe the CODEC loopback tests the connection between the FPGA and the
-AD3961. Maybe the device is damaged? I would try putting a clean SD card
-image on there and see if it's still happening. If so, I would try
-different cables, power supplies, and host Ethernet device to rule those
-out. If that still doesn't work then maybe you need to RMA.
+ Hi,
+Some of our USRPs are using UHD 3.10 because they are in old systems. and I=
+ am also using UHD 4.1.0 in some other USRPs in new system. The USRP produc=
+ts are all NI USRP 2944 (X310).In my applications, I need to use PPS signal=
+ to synchronize multiple USRPs. After applying PPS signals, I read back the=
+ time in USRPs one by one. Because of network delay, there is some differen=
+ce between the readings. However, the difference is much bigger in UHD 4.1.=
+0.=C2=A0
+The interval between two USRPs using UHD 3.10 is about 0.2ms while it is ab=
+out 1.4ms in UHD 4.1.0
+Does this mean that UHD 4.1.0 is slower than UHD 3.10?
+Thanks for any suggestion,
+=C2=A0Hongwei
 
-You might get more insight by turning on verbose logging (debug or trace
-levels) and looking at e3xx_radio_control_impl::loopback_self_test(). See
-also https://kb.ettus.com/The_UHD_logging_facility and
-https://files.ettus.com/manual/page_logging.html.
 
-Wade
 
-On Mon, Oct 10, 2022 at 5:42 AM Peter Featherstone (XENINT) <
-peter.featherstone@xenint.com> wrote:
-
-> Hi,
->
->
->
-> I=E2=80=99m using an E320 with libuhd 4.2.0.1.
->
-> I regularly get this error when running `uhd_usrp_probe` or starting a
-> capture with libuhd where the CODEC loopback tests hangs for ever.
->
-> The log is as follows:
->
->
->
-> [INFO] [UHD] linux; GNU C++ version 11.2.0; Boost_107400; UHD_
->
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D192.168.10.1,type=3De3xx,product=3De320,serial=3D31C8CC7,name=
-=3Dni-e320-31C8CC7,fpga=3D1G,claimed=3DFalse,skip_init=3D1
->
-> [INFO] [MPM.main] Launching USRP/MPM, version: 4.2.0.1-g321295fb
->
-> [INFO] [MPM.main] Spawning RPC process...
->
-> [INFO] [MPM.PeriphManager] Device serial number: 31C8CC7
->
-> [INFO] [MPM.RPCServer] RPC server ready!
->
-> [INFO] [MPM.RPCServer] Spawning watchdog task...
->
-> [INFO] [MPMD] Claimed device without full initialization.
->
-> [INFO] [MPMD IMAGE LOADER] Starting update. This may take a while.
->
-> [INFO] [MPM.PeriphManager] Installing component `fpga'
->
-> [INFO] [MPM.PeriphManager] Installing component `dts'
->
-> [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
->
-> [INFO] [MPM.RPCServer] Resetting peripheral manager.
->
-> [INFO] [MPM.PeriphManager] Device serial number: 31C8CC7
->
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D192.168.10.1,type=3De3xx,product=3De320,serial=3D31C8CC7,name=
-=3Dni-e320-31C8CC7,fpga=3D1G,claimed=3DFalse,find_all=3D1
->
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `find_all=3D1,fpga=3D1G,mgmt_addr=3D192.168.10.1,name=3Dni-e320-31C8CC7,p=
-roduct=3De320'.
->
-> [WARNING] [UDP] The recv buffer could not be resized sufficiently.
->
-> Target sock buff size: 2500000 bytes.
->
-> Actual sock buff size: 212992 bytes.
->
-> See the transport application notes on buffer resizing.
->
-> Please run: sudo sysctl -w net.core.rmem_max=3D2500000
->
-> [WARNING] [UDP] The send buffer could not be resized sufficiently.
->
-> Target sock buff size: 2500000 bytes.
->
-> Actual sock buff size: 212992 bytes.
->
-> See the transport application notes on buffer resizing.
->
-> Please run: sudo sysctl -w net.core.wmem_max=3D2500000
->
-> [WARNING] [UDP] The current recv_buff_size of 212992 is less than the
-> minimum recommended size of 816000 and may result in dropped packets on
-> some NICs
->
-> [WARNING] [UDP] The current send_buff_size of 212992 is less than the
-> minimum recommended size of 307200 and may result in dropped packets on
-> some NICs
->
-> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
->
->
->
-> At which point it hangs for ever.
->
-> The only way I can get out of this is continuously power cycle it and
-> reload the image until it succeeds.
->
-> Anybody seen this before and know how to fix it?
->
-> Many thanks,
->
->
->
->
->
-> *Peter Featherstone *
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000007e53f905eaae20eb
-Content-Type: text/html; charset="UTF-8"
+------=_Part_188111_1323867602.1665504920070
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I believe the CODEC loopback tests the connection bet=
-ween the FPGA and the AD3961. Maybe the device is damaged? I would try putt=
-ing a clean SD card image on there and see if it&#39;s still happening. If =
-so, I would try different cables, power supplies, and host Ethernet device =
-to rule those out. If that still doesn&#39;t work then maybe you need to RM=
-A.</div><div><br></div><div>You might get more insight by turning on verbos=
-e logging (debug or trace levels) and looking at
-<span class=3D"gmail-pl-en">e3xx_radio_control_impl::loopback_self_test</sp=
-an>(). See also <a href=3D"https://kb.ettus.com/The_UHD_logging_facility">h=
-ttps://kb.ettus.com/The_UHD_logging_facility</a> and <a href=3D"https://fil=
-es.ettus.com/manual/page_logging.html">https://files.ettus.com/manual/page_=
-logging.html</a>.</div><div><br></div><div>Wade<br></div></div><br><div cla=
-ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Oct 10, 20=
-22 at 5:42 AM Peter Featherstone (XENINT) &lt;<a href=3D"mailto:peter.feath=
-erstone@xenint.com">peter.featherstone@xenint.com</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg-27031855=
-47812681748">
+<html><head></head><body><div class=3D"ydpf0592c6fyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi,</div><div dir=3D"ltr" da=
+ta-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Some o=
+f our USRPs are using UHD 3.10 because they are in old systems. and I am al=
+so using UHD 4.1.0 in some other USRPs in new system. The USRP products are=
+ all NI USRP 2944 (X310).</div><div dir=3D"ltr" data-setdir=3D"false">In my=
+ applications, I need to use PPS signal to synchronize multiple USRPs. Afte=
+r applying PPS signals, I read back the time in USRPs one by one. Because o=
+f network delay, there is some difference between the readings. However, th=
+e difference is much bigger in UHD 4.1.0.&nbsp;</div><div dir=3D"ltr" data-=
+setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">The inter=
+val between two USRPs using UHD 3.10 is about 0.2ms while it is about 1.4ms=
+ in UHD 4.1.0</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div di=
+r=3D"ltr" data-setdir=3D"false">Does this mean that UHD 4.1.0 is slower tha=
+n UHD 3.10?</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">Thanks for any suggestion,</div><div dir=3D"=
+ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"=
+>&nbsp;Hongwei<br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><d=
+iv dir=3D"ltr" data-setdir=3D"false"><br></div></div></body></html>
+------=_Part_188111_1323867602.1665504920070--
 
-
-
-
-
-<div style=3D"overflow-wrap: break-word;" lang=3D"EN-GB">
-<div class=3D"m_-2703185547812681748WordSection1">
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I=E2=80=99m using an E320 with libuhd 4.2.0.1.<u></u=
-><u></u></p>
-<p class=3D"MsoNormal">I regularly get this error when running `uhd_usrp_pr=
-obe` or starting a capture with libuhd where the CODEC loopback tests hangs=
- for ever.<u></u><u></u></p>
-<p class=3D"MsoNormal">The log is as follows:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C++ version 11.2.0; Boost_10=
-7400; UHD_<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s) in parallel w=
-ith args: mgmt_addr=3D192.168.10.1,type=3De3xx,product=3De320,serial=3D31C8=
-CC7,name=3Dni-e320-31C8CC7,fpga=3D1G,claimed=3DFalse,skip_init=3D1<u></u><u=
-></u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.main] Launching USRP/MPM, version: 4.2.0=
-.1-g321295fb<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.main] Spawning RPC process...<u></u><u><=
-/u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Device serial number: 31C=
-8CC7<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.RPCServer] RPC server ready!<u></u><u></=
-u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.RPCServer] Spawning watchdog task...<u><=
-/u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPMD] Claimed device without full initializa=
-tion.<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPMD IMAGE LOADER] Starting update. This may=
- take a while.<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Installing component `fpg=
-a&#39;<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Installing component `dts=
-&#39;<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPMD IMAGE LOADER] Update component function=
- succeeded.<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.RPCServer] Resetting peripheral manager.=
-<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Device serial number: 31C=
-8CC7<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s) in parallel w=
-ith args: mgmt_addr=3D192.168.10.1,type=3De3xx,product=3De320,serial=3D31C8=
-CC7,name=3Dni-e320-31C8CC7,fpga=3D1G,claimed=3DFalse,find_all=3D1<u></u><u>=
-</u></p>
-<p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] init() called with device=
- args `find_all=3D1,fpga=3D1G,mgmt_addr=3D192.168.10.1,name=3Dni-e320-31C8C=
-C7,product=3De320&#39;.<u></u><u></u></p>
-<p class=3D"MsoNormal">[WARNING] [UDP] The recv buffer could not be resized=
- sufficiently.<u></u><u></u></p>
-<p class=3D"MsoNormal">Target sock buff size: 2500000 bytes.<u></u><u></u><=
-/p>
-<p class=3D"MsoNormal">Actual sock buff size: 212992 bytes.<u></u><u></u></=
-p>
-<p class=3D"MsoNormal">See the transport application notes on buffer resizi=
-ng.<u></u><u></u></p>
-<p class=3D"MsoNormal">Please run: sudo sysctl -w net.core.rmem_max=3D25000=
-00<u></u><u></u></p>
-<p class=3D"MsoNormal">[WARNING] [UDP] The send buffer could not be resized=
- sufficiently.<u></u><u></u></p>
-<p class=3D"MsoNormal">Target sock buff size: 2500000 bytes.<u></u><u></u><=
-/p>
-<p class=3D"MsoNormal">Actual sock buff size: 212992 bytes.<u></u><u></u></=
-p>
-<p class=3D"MsoNormal">See the transport application notes on buffer resizi=
-ng.<u></u><u></u></p>
-<p class=3D"MsoNormal">Please run: sudo sysctl -w net.core.wmem_max=3D25000=
-00<u></u><u></u></p>
-<p class=3D"MsoNormal">[WARNING] [UDP] The current recv_buff_size of 212992=
- is less than the minimum recommended size of 816000 and may result in drop=
-ped packets on some NICs<u></u><u></u></p>
-<p class=3D"MsoNormal">[WARNING] [UDP] The current send_buff_size of 212992=
- is less than the minimum recommended size of 307200 and may result in drop=
-ped packets on some NICs<u></u><u></u></p>
-<p class=3D"MsoNormal">[INFO] [0/Radio#0] Performing CODEC loopback test on=
- channel 0 ...<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">At which point it hangs for ever.<u></u><u></u></p>
-<p class=3D"MsoNormal">The only way I can get out of this is continuously p=
-ower cycle it and reload the image until it succeeds.<u></u><u></u></p>
-<p class=3D"MsoNormal">Anybody seen this before and know how to fix it?<u><=
-/u><u></u></p>
-<p class=3D"MsoNormal">Many thanks,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10pt;color:rgb(13,13,13)=
-">Peter Featherstone
-<br>
-<br>
-</span></b><span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-</div>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div>
-
---0000000000007e53f905eaae20eb--
-
---===============1725050783237280862==
+--===============1923179150692849415==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -346,4 +146,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1725050783237280862==--
+--===============1923179150692849415==--
