@@ -2,112 +2,193 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08815FBB60
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Oct 2022 21:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 766265FBB7C
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Oct 2022 21:46:06 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 62476381924
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Oct 2022 15:33:12 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 04D0438113E
+	for <lists+usrp-users@lfdr.de>; Tue, 11 Oct 2022 15:46:05 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1665516792; bh=8sQ/rbTjwR3E29ddL20IDeGs2OrkbUgNbSixc5lvyok=;
-	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	t=1665517565; bh=TxfDpUaGLghKbbdXXydtCQ4fJktV4kgPFlxmJysOZqo=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=N0Y1RfIUwzP9n8earOHI2jGqhp1XBZPTQCDtcDeNPHtxGpamXGUKAT6ZxcLyTAFb/
-	 kJN6vINcRmeLlhWITsEUOZwIJYf0SYMeauKNf3zVcg93uEBFNX8T+BG8JrW77yqjlo
-	 E8Uzb2Ga8EcQOb1zO5/OqmPr4PFhqPO1uDYW1IZ09l83EvmY/pP4Aul8oHOo8kgQAd
-	 XmUjIQEeITOBNOCozLWV0QTstTxfbpMkkI6vsZXn0gWho4KYN/47f58N/1f7vAmJkM
-	 RQJvmJNITVqcK7WWPwRNF7pUDNL4/Z+RB7Zw3xwhAZrwB8qES13IbiUla4pYgr2rsK
-	 NxQaPM4r5oHfw==
-Received: from sonic317-26.consmr.mail.bf2.yahoo.com (sonic317-26.consmr.mail.bf2.yahoo.com [74.6.129.81])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2A554380D8E
-	for <usrp-users@lists.ettus.com>; Tue, 11 Oct 2022 15:31:24 -0400 (EDT)
+	 From;
+	b=JU82luvFOShMAi/8YDGMlPVKXfTNa9PmO5kDweVG2Xi7Wm3T3VmjkhlV89rd7lNo2
+	 Rx9N3v+UDNbbbS2TQuqVHib7zlzMmpfgo0YYL2TUMCDH3NSVGA2T9zKNe2xIfpu49x
+	 cFMtOOzxgy7/cb2JMq9f0HW+SalQ+D6F0d5iQcOqF7eA6UHoSANOFns1uze/T+VKqc
+	 73cv4eG5IUoup26wGJV5yA/Ic4ayEjXwpYhW4RdI11iBnD5aa6Cc089DwudlyCERpd
+	 0pgl4trfNVGFocit73F/w40eesYwOiwyhpQvVt3lYsvMjAe66c9OrZRHm/ZkT1lK7s
+	 JLNnhAq8qx6fw==
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0F1F6380D8E
+	for <usrp-users@lists.ettus.com>; Tue, 11 Oct 2022 15:45:16 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="OP8RqzFa";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fd09npp0";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1665516683; bh=0Kky8gTRhEhwdSr2dT3LhJ3lheQYLomZHkyZTENG7Mo=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=OP8RqzFaw/UGrTQxZ9wclJdgl0/+L3QQezmtSilfbye6/diLPSCsNApKvZe6sJspzbtlQ6ltt44CmUT3Ln5wh1B8SPRWtjCfLYx2TxkKfr0xKxhhURqyzlF4dLmG0LNKyzriWa8PRm9wMVWZxyYmkwTd/gt6phf9DWmbp3v2NF++sP6tSmrZsnTZdasRkC82uqpu5nRgjzk5iDWSx2gmMjayFkcldqHo4rLoj9DhtxE8sQwdNjvjR1OY1wl+aGPNRxRq3SRQpt7dPhwAeOsqxYyx4bKYsKe1oNZaRy/UhkTaWvy3b+qsexFGQzAZljWj+j3ndIJVsMK4S0Btoab7hg==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1665516683; bh=S1chH8BvWpnMJJn+Loly/rk7do2HHfHyX5E198RL2Pw=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=obfcVkz/bxbrGpTpn5xxH/JteQPuZS0YFHDutBZczFXLO6zwHN7K8SPdfrzObayZAbwmf7+ccjyJGvST6HekhE6RiIpOSgE/vhWwzyrsmIRZ2igEvkpqdAVI4KGrC2++wwIHC2moqULTjm4SojQU4Ccib18/iSpd6obTZy8KEIqzEPsKt+keGqSvp+tdvEH4c7styByJ7Kg8Ra6qiDram4ZXVlXnE+I6eL4A3pO1k7Tne4pVLR2S0wPrdxBHfOT1Tl3kRkPD+LuH6P4gbR4YvuaeX1oz6aH3sEerpT8HzSjotYeANINNQwv13ok1rM3k94jFDH7iKjD1SWIqeKZO/A==
-X-YMail-OSG: D4YEeXMVM1k.0Xd.ODU__11jgFXPGZy0daWkp94pOPFT8KmuiQH1JSETFzUI21X
- V87W6cBUyPWI31L_scrcjjjbNjSuZ8kOHBZbLV3gBbuD.bKqWR8gmjh7qiWLifvHVt6n1jJ6cYIt
- lluY7DrS5Qi2M0b3enq_9FmN02tLSJLGGBTyC75ZDSeuULjrgsDtsvRkws_OTGT.vmr6wbHaip_K
- Z5qgPfCvz9TcKAeYt5dPh1OqAepr95NPajpopT0BQ8_bTxBeeFeNunHX_TbDvtIYbXCVnTuvm.v9
- kKHpYEyKcioWRkgqUUrGf3ZXuAiEkg7k_aLfulzGS4DuRkNMUlfTGowztQ6tZokhtNk657XfMKlp
- pMMgZZwIdTlVzNv2rOTtxdHi5Y5GabRquYdMwdycY8w1YCydlmepFbbF_7CaJVnIYKsY7Tw.L39R
- aA3GQXcKa1u_IIsofS2dXxjxF9WojakGLIhQWhL7lClCkHAV8Perfx64c1W8wYobhEcAR.2pb7ns
- ls1cQBperbwxWqfJ1jEnzkqXAHBw4MdNAdfko5vgsagJDc2EeEVaP1gqV2cNE3rMLeTOEHIh6yFI
- v9gDuoUGwr.4gv4dZ.hVnqamcCGLK06XPQYdA1FdjsUEHalMjZV8ZNfLMq4JL04tLkJ9INN4oXTn
- Xfh5ZehnAvNX1BweKsFXx7X_qXZ5itrVl60Kq_Y0H0hihvJ62.yCxPMFmA98vQZyGp4wY8tRK6kB
- _FBdil_ANQDJ_vTz016JGqGrbTdwM4ulYcfp2ogs8DAIJHjkrfoYrGtDA7AE6sgxbaAMLYXM3N6j
- PL6mDa31ljZh5i7J8ewMpJbtTIW8Y9Z2saNGHDtTdc9iwEi0M4x6clNzyxOcTG7hO2jMXlUnwXaw
- KVlrHcBDrSModEW5_aXJ2HWBYvPeNXg2BLHyt..TnmJK1qI.UtKixsJMIcNJUGNPyFkoIUKhew5G
- kn6XkVi8vjdpZ5lyjbxGGenhhYtpYQ9s0uKIf6Gu9ZH.dVu9ziBKs.Rkt1PBtzpgvcvfpRRi61Rf
- lyfeB..5.c8H9Rura6YECyBOssdSNA5oJ7VtF4W_Tjv_tkAzkFEDwqqC_hvouaPkM5i7uMJqPxGK
- HEtQdGRK1GSqwHA5mRC8jQ7W9TKkcr.OOr1LY68mE8TdcpKtf6lDvF4TQw6btxLWvwOVZNFp9SFi
- sEgxNR8HslXSfPCvMFBtGWobiyWM_iIpK_WfdCtHNEY0FtiG_0tLL78SA6XFJZ7XE4nZRWIuEIzr
- IVb3uzZHhFYaCZxhmcWde5ywEoKb77PqnrqituKJFRsC8PQVR.WPZF3HTeEK4HWALiRn6xnGYy_V
- WtKJsjKD49iOvrJAIG0Rg5rFR1hxfr9vGlBYrSoXSvk2vnL5SsV0uBDkcU1b5lo_cuJqOML4LVw4
- Y0.bHfT_4YI9mxQCEVd_4voihJPP_I5n9IzhTUYs7IHID5N6t12nUcCKK9yWhDY0JWRAun7j5rsP
- iOQp7cgcEV3Qcsbkd7vMObsS2dQecqpoJ5R.NBpL.5W_0OzRC2obwMlKl1L1SFpS_N07aaJ_vb.S
- r_D19Xm.3x53HpffySbgMfGphzFCHrxJKXkvcE9ASSRyvfaKZdaA8R8275FGUxo57NBpsdVXA9JE
- 17kAHdIMM1oF.L5BAArPcaNIwm6XyRzV1UoUUx5_W.zvfG3ISPWumag3lgU7IVRJRASS.SEwmap3
- m8OgvDYZyVhnfogUKtIdXdNcEX4u.Jj4tJl.HEh7ZVLxzxVvgQH0G2.LogUKWRYh8tZkylat3FSc
- laAsOROBvqUiFt42DDX.86dovhUMrvEJyoNl1418Q4DN60Xk_oH3MnMwIBT4g7RfWrvBTE3Xhyjw
- L8FUlC1GjNqHOafBnPrnqGLNB3fiMtPWscvqsxoDU05z6T_DcdJaBcBLIBNmjUPU6kDHmRFwq8EC
- krNcHbQ18repQyIzNIi0KvoaUT_JKjrXU911hSlSIdLbIvriSlY2792Hy.R.K5zueOAtpA5YUuil
- yl3b44QeMQGy.yOl.xov22RSEWQoW_ZBsa3Aw28dkjCR3FkpArwWDWExw0kfJY.UKmhnllK.1qCy
- o.eSEouGGjbSzYCBNBn.qEFlsMS3quSMPobJETr6M4ZqiHjpTumwcHJeAPlNYBNqz3_GA5DoBo_P
- wQDTNIPKiTggd53nksw6Qp22pVw8ageoOgN6qztGAKkhkXsIYNSpIkhoWFqLHUf5Mof4U4JtrHgX
- PXGr3MS9xtHbPnTDwrhvRsiKgQCEAoXhW
-X-Sonic-MF: <hwzhou@yahoo.com>
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic317.consmr.mail.bf2.yahoo.com with HTTP; Tue, 11 Oct 2022 19:31:23 +0000
-Date: Tue, 11 Oct 2022 19:31:21 +0000 (UTC)
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID: <1416319753.252891.1665516681592@mail.yahoo.com>
-In-Reply-To: <1567317201.188112.1665504920071@mail.yahoo.com>
-References: <DB6PR02MB2981930195E78445C7C9AAB3E7209@DB6PR02MB2981.eurprd02.prod.outlook.com> <1567317201.188112.1665504920071@mail.yahoo.com>
+Received: by mail-qv1-f43.google.com with SMTP id de14so9629382qvb.5
+        for <usrp-users@lists.ettus.com>; Tue, 11 Oct 2022 12:45:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8IyLpUsXb/9zwFLwD2qJyXFYi4foZgVZflbHra0TOjw=;
+        b=Fd09npp0qnKye1QvfXsFeo9qGMUN07osvFpWvnkUpsuyYqoIWneu63OrBKvdf053iy
+         xx6/S52FWK7fJYda6L9WYG/l06WoGmO7hBG336OrzlSfSKVuCP42B0LLXHHfwoXmkovB
+         r3rApMnIy5xuTzQrh3lMQVg8ZPH8smLaWMz8RgivrjKELeSPJJzDrXXt4I9GqO1yf7IA
+         9YqAxYpuGfbysyeR8IV+9SjvjN6gVXPIoU4VKCZoliqwcWYr1n9Bo+KvOThl2EjUXywO
+         kuN4g5h9VykQdnhY4gmhor9lndoQlvnVMCTLth4F4m8NcuQcmBKaC/0oTyJDMQcxxLV+
+         9jfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8IyLpUsXb/9zwFLwD2qJyXFYi4foZgVZflbHra0TOjw=;
+        b=khCpQuoDfBpdMvpACfYut9YTV9IKoVFy4tR9vk5DdRNC7aTig1klrJFRmozp/szi5Y
+         varF8+kFHM+F1S6EVYew78Z/xpQokei0JrorTRYbttd74I2GGq/FHZpVjpUNaqkG9lok
+         2PTj2RlHY+iVN9wIZP2I2ty3aK7VbPKyAR7A7KFFQ0PQN0c8Y4HHsSR3o85BA0vEMPpg
+         6iCMtMVjaRx6xCCsCzomG1TAQXETT6etItZZgrifqOK2OherkVCvywsLkYoPIGpNfCkq
+         f06WLoPJY9lSItg0G8T77ChkxGSPmJib5I7R2Qz+j01J9hA+U+mQ4hJGFKRDNLJbBvwD
+         r9jA==
+X-Gm-Message-State: ACrzQf0TfUvbr9W/WAcKMBEit2ExdmYX0NlByMgUXAN5wWqsLShfSD9z
+	qJ2xoyTF5n16ObkHLntvn2GZ15919UM=
+X-Google-Smtp-Source: AMsMyM5CKFZq/6QtP2P4rk45iBl1c1pL2wjt9uyuH7uhFfqlAS3zBoJInel2otxTJSE8I8NLI4tGCw==
+X-Received: by 2002:a05:6214:4114:b0:4b1:c7b1:6fad with SMTP id kc20-20020a056214411400b004b1c7b16fadmr21111635qvb.76.1665517516391;
+        Tue, 11 Oct 2022 12:45:16 -0700 (PDT)
+Received: from [192.168.2.188] (bras-base-smflon1825w-grc-09-174-93-2-50.dsl.bell.ca. [174.93.2.50])
+        by smtp.googlemail.com with ESMTPSA id ew6-20020a05622a514600b0039c72bb51f3sm1703703qtb.86.2022.10.11.12.45.15
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Oct 2022 12:45:16 -0700 (PDT)
+Message-ID: <c427adf4-441e-cacc-b4c9-e0dcb1f3ab6b@gmail.com>
+Date: Tue, 11 Oct 2022 15:45:15 -0400
 MIME-Version: 1.0
-X-Mailer: WebService/1.1.20740 YMailNorrin
-Message-ID-Hash: TY7QDBUVVPNAWT3HRBMNSFXEKOFNE4J2
-X-Message-ID-Hash: TY7QDBUVVPNAWT3HRBMNSFXEKOFNE4J2
-X-MailFrom: hwzhou@yahoo.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <DB6PR02MB2981930195E78445C7C9AAB3E7209@DB6PR02MB2981.eurprd02.prod.outlook.com>
+ <1567317201.188112.1665504920071@mail.yahoo.com>
+ <1416319753.252891.1665516681592@mail.yahoo.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <1416319753.252891.1665516681592@mail.yahoo.com>
+Message-ID-Hash: ZJHNHOBLDES2FZAKARG66LKXZ4AK7L22
+X-Message-ID-Hash: ZJHNHOBLDES2FZAKARG66LKXZ4AK7L22
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] UHD and NUMA
+Subject: [USRP-users] Re: UHD and NUMA
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TY7QDBUVVPNAWT3HRBMNSFXEKOFNE4J2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZJHNHOBLDES2FZAKARG66LKXZ4AK7L22/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: zhou via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: zhou <hwzhou@yahoo.com>
-Content-Type: multipart/mixed; boundary="===============2435102126189766224=="
+Content-Type: multipart/mixed; boundary="===============4460121478634801523=="
 
---===============2435102126189766224==
+This is a multi-part message in MIME format.
+--===============4460121478634801523==
 Content-Type: multipart/alternative;
-	boundary="----=_Part_252890_1374878734.1665516681591"
+ boundary="------------0YVd0BZfNrnl9YqrWWM9E7oN"
+Content-Language: en-US
 
-------=_Part_252890_1374878734.1665516681591
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+This is a multi-part message in MIME format.
+--------------0YVd0BZfNrnl9YqrWWM9E7oN
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
- Hello,
-I am using R730 server to drive multiple USRPs. In my application code, I assign different Tx/Rx threads to different NUMA nodes, but how can I make the underlying UHD to use the same NUMA nodes?
-Thanks,Hongwei
+On 2022-10-11 15:31, zhou via USRP-users wrote:
+> Hello,
+>
+> I am using R730 server to drive multiple USRPs. In my application=20
+> code, I assign different Tx/Rx threads to different NUMA nodes, but=20
+> how can I make the underlying UHD to use the same NUMA nodes?
+>
+> Thanks,
+> Hongwei
+>
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+UHD uses std::thread=C2=A0 for any thread-based task operations.=C2=A0 Se=
+e:
+
+uhd/host/lib/utils/tasks.cpp and uhd/host/lib/utils/thread.cpp
+
+You'd have to modify the underlying library code, I think, to implement=20
+CPU affinity.
 
 
-
-------=_Part_252890_1374878734.1665516681591
+--------------0YVd0BZfNrnl9YqrWWM9E7oN
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div class="ydpeb0eb4d4yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px;"><div></div>
-        <div dir="ltr" data-setdir="false">Hello,</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">I am using R730 server to drive multiple USRPs. In my application code, I assign different Tx/Rx threads to different NUMA nodes, but how can I make the underlying UHD to use the same NUMA nodes?</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">Thanks,</div><div dir="ltr" data-setdir="false">Hongwei</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false"><br></div></div></body></html>
-------=_Part_252890_1374878734.1665516681591--
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-10-11 15:31, zhou via
+      USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:1416319753.252891.1665516681592@mail.yahoo.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div class=3D"ydpeb0eb4d4yahoo-style-wrap"
+        style=3D"font-family:Helvetica Neue, Helvetica, Arial,
+        sans-serif;font-size:13px;">
+        <div dir=3D"ltr" data-setdir=3D"false">Hello,</div>
+        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        </div>
+        <div dir=3D"ltr" data-setdir=3D"false">I am using R730 server to
+          drive multiple USRPs. In my application code, I assign
+          different Tx/Rx threads to different NUMA nodes, but how can I
+          make the underlying UHD to use the same NUMA nodes?</div>
+        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        </div>
+        <div dir=3D"ltr" data-setdir=3D"false">Thanks,</div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hongwei</div>
+        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        </div>
+        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        </div>
+        <div dir=3D"ltr" data-setdir=3D"false"><br>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    UHD uses std::thread=C2=A0 for any thread-based task operations.=C2=A0=
+ See:<br>
+    <br>
+    uhd/host/lib/utils/tasks.cpp and uhd/host/lib/utils/thread.cpp<br>
+    <br>
+    You'd have to modify the underlying library code, I think, to
+    implement CPU affinity.<br>
+    <br>
+    <br>
+  </body>
+</html>
 
---===============2435102126189766224==
+--------------0YVd0BZfNrnl9YqrWWM9E7oN--
+
+--===============4460121478634801523==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -117,4 +198,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2435102126189766224==--
+--===============4460121478634801523==--
