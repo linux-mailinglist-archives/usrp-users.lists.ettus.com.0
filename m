@@ -2,106 +2,192 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C4F25FDB51
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 15:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FF9A5FDB79
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 15:49:53 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4F258380A71
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 09:44:21 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B4B68383E62
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 09:49:52 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1665668661; bh=4HchPdrGx5i4Rha6atMX78E8LHH0747bxIWFGN3+M5c=;
+	t=1665668992; bh=2ql+opwKFsnx0zWOyTQVcylS/OWl30BSmwMzm9Xn6rM=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=mmWnKyhwczZBjrdxB20Q2E1RaiNzAqf5c7ikmEw775S/vlH+C0UXJfUP/pyEDOXKv
-	 qrMFJzFm2T51fdb9i3H0vVnDsvu15Oqy96aeQ4BlIdv6bh9NmwOEY61lfB6dsHzFgt
-	 qxrcP5WtxVq3RL/E2Cu7CAMYZEPB/1chTY7pVVDnyYiOkETcLuldr8drhBEMtjR0G8
-	 SZkiWvONcwlIJbIjWs+hqNQA5fS4498JteOlm4hRJf9WLJBNiuYRnbeD4aw0EjmTBQ
-	 7pwjxu0v2wIWaAmJjuW0CTdPAgJwN0nmZT3SRBQo0GbLy5ONM3Esq+gxgtZ51CdSdc
-	 AHNVG9foGsVaQ==
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 743EF383D9D
-	for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 09:43:30 -0400 (EDT)
+	b=mycJ85sV83Si9F34EkZwqS/Wksegnf3k8eWI/WhzSMcm3pkfbvlgKREfvwDLbw9wB
+	 4iCmTrav1pSXDrYLqtCZRpqbKerF/QYdZWRV9yg/dDIQ4ywFqdz/KjOZQdehGqA0LR
+	 B7yFzZWvgkjK/SyzaAKsktKH2LJMPwoT21YP8AURMwqk4rUSr2WjIDnUiaidtL+BHs
+	 Q0Aw7V/iHAlKsIUqIbizX6za3JTHCnoFqgO3KbRZCjaDuqAqbVpThh8F1e9Eo26cu4
+	 caMjXf1JhVHwIFFAXlD2vJth8ZvNhJtrjLobykoEpzMnqwVxSwW6kvLXh/M+1ibaes
+	 gQsYX5SoqRaxg==
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id CA07D380937
+	for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 09:48:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="H5IVB/32";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Xdbyhiuk";
 	dkim-atps=neutral
-Received: by mail-qv1-f52.google.com with SMTP id de14so1288109qvb.5
-        for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 06:43:30 -0700 (PDT)
+Received: by mail-qv1-f54.google.com with SMTP id mx8so1285013qvb.8
+        for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 06:48:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QVhLkXlS34Oe/wxDcxNJlGuFY5vdQzZDxSGdjvODJJU=;
-        b=H5IVB/32ZPgrchubqtmlu+8D0V0EJcLn5K54OXRL9eirLxRJHpM+r7FrabmWPSJAc8
-         b2Ti7Z95HawqavtMzmrM29yPz7qdaY3cD7+zhsU/m/SVCzHE85XncX2LpkZXCJ/oMltc
-         nCB7GWiv7hnnWVHBk49LSilWS2P+YlNJIbpV8Q5iEq07DWMstktB9YCG1hziQoQ744gS
-         W9sA5ekk9tgoUp+z72HtapfshE1GWFzg7cttxIs5ySWDOnkYi/M6juvKvUmsAfj0qAIW
-         v6G9qp3nzt0v7LVKBpbpN0mLFMJEoLINMwhQhnkBNcTBtLlNIbilFDlcN+bVeemx8t7+
-         mJCg==
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jQQRhBfjw88LHNN9Qsp/CCUh7XETLhvtTLQiZHwSTAc=;
+        b=XdbyhiukZ+4mTGf64j34nI5+8+0ux2LC/Asg+M7bdn155o9lzXqC298vGBkH3Bl6wZ
+         MWEugW3S7JOaQSbhjwrEcZ1v1LJmDhGJ4x4sSCis2JozwRhxphpdOrC8Lge/undK+7rL
+         KIxmBdS+xMYslAQzcWpM4Ho5TBMiFwmIOv+YIG1Q+daDhI6lXq5Fmj5adAQYNRQBsN7p
+         KOnhcJicqHMMTMFkTIToUNuQWIlAmsn96OnMKo61lOJq3dAbPJ5uno/C+Bl7Upaneeib
+         mYaSupQnoF98pS3b6NmSucc6dmzCfokGgPI6yT9FIaQHYYiMTVUylKZ2kinlAu+n82kg
+         zMvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QVhLkXlS34Oe/wxDcxNJlGuFY5vdQzZDxSGdjvODJJU=;
-        b=tIWAOdIKjWtfaEamGMht7bItyg83+Bs+cUPlOYZZ7z7OVRfBS2M7oodTR0fcSvMBBS
-         MBFu+vOyfi55kTP58OhbhJV759tPPF39Q2v9b5/nzU3wX8Yt/g8OWlquH4OebZi6F/3C
-         OzzjwltrM1iPdy3lNXm70XU3fK7BvLdY4+4ltPTCP1iluLK4pOK16ZA1dg0OC+ikbL42
-         sy7nPztosOjUPGTB9osVwsrx8s0Vh2BKT8D9ehhdQfaUdOhy+JWLHELbf1EyFSgAsZ9j
-         dpYtSCy1PlVOUw7a5akA6xyPTJq5NBt1EG/XH9OTPzOOYofFYduL/L57yJFoUp6EjBTc
-         oOuQ==
-X-Gm-Message-State: ACrzQf2j2MefceuZ7uFy3AFkjmoLomM5sMVppqiBzvGjy1cL0OSCu3lA
-	TO37NDM/npFvVMzn/oWpRY9VaaAzJVQ=
-X-Google-Smtp-Source: AMsMyM7MpGD4471ohp4mTIsYoSkuSyglR3RUw2dHNBm6KuVpA7FtSnyIZY+/y7GzG1MAA68gOUd9ZA==
-X-Received: by 2002:a05:6214:d6b:b0:4b1:c4de:5b3e with SMTP id 11-20020a0562140d6b00b004b1c4de5b3emr27866333qvs.128.1665668609643;
-        Thu, 13 Oct 2022 06:43:29 -0700 (PDT)
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=jQQRhBfjw88LHNN9Qsp/CCUh7XETLhvtTLQiZHwSTAc=;
+        b=jIb1uzJ8/qkiM+2F7wTwVVZRQrvrZT5dShDhvF2+4WzcM2qEc9hUTBP8MTbVhvsQyD
+         x5q7fNygW33YvbCURAq2fPq7IYDaVnRS1k3fg+b4thXEiJODciqVq11PzJp/TuM4WXyz
+         VKu4rTcA32imRQbh/RRlXJ6FiDNaVHXBQH6LxcIB/DIun0orDKm8ElDx2TRnfdAmrQlA
+         oSFspUwkwQ1F3DfbApMc7g1e+o2CrcdEEpO2PaE7Or+2ywIE5gYVC+wMvKDL0sO2msg7
+         VqqKuQfBb/+aFq9nZ4SRknIG/TTbVi1nKYRiLh2tATmfVCKAl8VM5qF8bs0s1UKHqOEN
+         s8Rw==
+X-Gm-Message-State: ACrzQf2Xdix5k+ZgrfC5LhafAGR+um1ito7ztqbccQmQ+FK5Vnxr7w6A
+	Gepk3vZw8YBbSh9WwW4DFcsgb1FSX7Y=
+X-Google-Smtp-Source: AMsMyM6enV4qPjTjJLCW7609zQ+IABJyT0LATfs7f+2N/Af8XncMJ3C/C/RXPSEc5f3w9wEuHz7zCA==
+X-Received: by 2002:a0c:aa04:0:b0:4b4:525e:c98a with SMTP id d4-20020a0caa04000000b004b4525ec98amr10393531qvb.95.1665668882050;
+        Thu, 13 Oct 2022 06:48:02 -0700 (PDT)
 Received: from [192.168.2.186] (bras-base-smflon1825w-grc-09-174-93-2-50.dsl.bell.ca. [174.93.2.50])
-        by smtp.googlemail.com with ESMTPSA id y9-20020a37f609000000b006cea2984c9bsm9055447qkj.100.2022.10.13.06.43.28
+        by smtp.googlemail.com with ESMTPSA id 126-20020a370684000000b006ec5238eb97sm13976359qkg.83.2022.10.13.06.48.01
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Oct 2022 06:43:28 -0700 (PDT)
-Message-ID: <60771baa-588b-7c7e-e642-c13f449310e7@gmail.com>
-Date: Thu, 13 Oct 2022 09:43:27 -0400
+        Thu, 13 Oct 2022 06:48:01 -0700 (PDT)
+Message-ID: <6c889a47-626f-7e3d-2186-67bee6eefe4d@gmail.com>
+Date: Thu, 13 Oct 2022 09:48:00 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
-References: <QzuK2hVi5lZhI9sSwIOdI5nIaOC03TmgussiB9WS3s@lists.ettus.com>
+References: <CAJhOL6cgJEweaMDkZJ0PKe2aSjpoC52cib_e4VaWZD9_01ogmw@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <QzuK2hVi5lZhI9sSwIOdI5nIaOC03TmgussiB9WS3s@lists.ettus.com>
-Message-ID-Hash: 7DAFYXAUINXBBR7JWCRPBZRYXA4WFLHG
-X-Message-ID-Hash: 7DAFYXAUINXBBR7JWCRPBZRYXA4WFLHG
+In-Reply-To: <CAJhOL6cgJEweaMDkZJ0PKe2aSjpoC52cib_e4VaWZD9_01ogmw@mail.gmail.com>
+Message-ID-Hash: L6FJ366PI5YXKX2ASRPNZ2HVUOABBHMK
+X-Message-ID-Hash: L6FJ366PI5YXKX2ASRPNZ2HVUOABBHMK
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD_IMAGE_LOADER load another .bit
+Subject: [USRP-users] Re: commercial support
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7DAFYXAUINXBBR7JWCRPBZRYXA4WFLHG/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/L6FJ366PI5YXKX2ASRPNZ2HVUOABBHMK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============6253321484809820546=="
 
-T24gMjAyMi0xMC0xMyAwOTowNCwgYWRyaTk2cm9sbEBnbWFpbC5jb20gd3JvdGU6DQo+DQo+IEhh
-cmR3YXJlOiBlMzIwDQo+DQo+IENvbW1hbmQ6IHVoZF9pbWFnZV9sb2FkZXIgLS1hcmdzICJ0eXBl
-PWUzeHgsbWdtdF9hZGRyPWlwLGZwZ2E9MUciIA0KPiAtLWZwZ2EtcGF0aCB1c3JwX2UzMjBfZnBn
-YV8xRy5iaXQNCj4NCj4gQW5kIHllcywgaSByZXN0YXJ0ZWQuDQo+DQo+DQo+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGlu
-ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNl
-bmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCkxvb2tpbmcg
-aGVyZToNCg0KVXBkYXRpbmdfdGhlX0ZQR0FfSW1hZ2UNCg0KSSdkIHNheSBETyBOT1Qgc3BlY2lm
-eSBmcGdhPSBpbiB0aGUgZGV2aWNlIGFyZ3MsIGFuZCBtYWtlIHN1cmUgeW91ciANCi0tZnBnYS1w
-YXRowqAgaXMgYW4gYWJzb2x1dGUgcGF0aCwgb3RoZXJ3aXNlLCBpdCBtYXkNCiDCoCBqdXN0IHNl
-YXJjaCBmb3IgdGhlIGdpdmVuIC5iaXQgZmlsZSBpbiB0aGUgZGVmYXVsdCBzeXN0ZW0td2lkZSBk
-aXJlY3RvcnkuDQoNCkFsc28sIGFwcGFyZW50bHkgd2l0aCBFMzIwLCByZXN0YXJ0aW5nIGlzIG5v
-dCBuZWNlc3NhcnkgKEkgZG9uJ3QgaGF2ZSBhbiANCkUzMjAgbXlzZWxmLCBzbyBqdXN0IGFzc3Vt
-ZWQgInRoZSB1c3VhbCIpLg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVA
-bGlzdHMuZXR0dXMuY29tCg==
+This is a multi-part message in MIME format.
+--===============6253321484809820546==
+Content-Type: multipart/alternative;
+ boundary="------------80wPgO9WfqGBSmsOTpBgY34Q"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------80wPgO9WfqGBSmsOTpBgY34Q
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+On 2022-10-13 07:48, Kevin Williams wrote:
+> Hi Guys,
+>
+> Is it possible to buy commercial=C2=A0support for the usrp/rfnoc ip?
+>
+> I have a fairly complex project which=C2=A0is not easy to break down in=
+to=20
+> specific, single, questions on a mailing list.
+>
+> Kind regards, Kevin
+>
+> --=20
+> Kevin Williams
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+I would contact sales to see about a commercial support contract. My=20
+understanding is that NI-branded USRPs can be covered
+ =C2=A0 under NI's standard support contracts.
+
+
+--------------80wPgO9WfqGBSmsOTpBgY34Q
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-10-13 07:48, Kevin Williams
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAJhOL6cgJEweaMDkZJ0PKe2aSjpoC52cib_e4VaWZD9_01ogmw@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">Hi Guys,
+        <div><br>
+        </div>
+        <div>Is it possible to buy commercial=C2=A0support for the usrp/r=
+fnoc
+          ip?</div>
+        <div><br>
+        </div>
+        <div>I have a fairly complex project which=C2=A0is not easy to br=
+eak
+          down into specific, single, questions on a mailing list.</div>
+        <div><br>
+        </div>
+        <div>Kind regards, Kevin<br clear=3D"all">
+          <div><br>
+          </div>
+          -- <br>
+          <div dir=3D"ltr" class=3D"gmail_signature"
+            data-smartmail=3D"gmail_signature">Kevin Williams</div>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    I would contact sales to see about a commercial support contract.=C2=A0
+    My understanding is that NI-branded USRPs can be covered<br>
+    =C2=A0 under NI's standard support contracts.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------80wPgO9WfqGBSmsOTpBgY34Q--
+
+--===============6253321484809820546==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6253321484809820546==--
