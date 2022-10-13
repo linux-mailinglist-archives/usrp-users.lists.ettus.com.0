@@ -2,122 +2,102 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD7D65FD94C
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 14:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F7DB5FD9C3
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 15:01:32 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DA2C93808F7
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 08:39:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9A755380D86
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Oct 2022 09:01:31 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1665664757; bh=xT3AO/sjzamZG7eIeAhzFT/six4EyKQ67mH7eVfbSJc=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=SNBuruGnJQ6bD8Yrd9jKdgJ0jyonlLLd4V/hQDJuoXXKhuZQDDe5VVnYLd4tkUN/a
-	 1IW/XAdFas3qdl/Uw5TV5l3XxjRtOPiQmTLE35AM/sy6Z/dbkV8sAIbW/Pm5kA9tId
-	 tuXfgDJmzI49OgIAJ4sicX8IA928xozGC8thXQyyhmOtm3fEj4AFRLeBdum4iC8Wue
-	 FZRCVBu12ZeDMuwgKy5B82A/jCIm8P/3RLN5GVfF94ykLaNeq7I4rlMOxW+BLhjJdV
-	 qsCL8dvfykBuJ7e9SgvkTy6YTtYao6Pc0z+6knY8VAStLbY066aQdBDpR4sovCeB7c
-	 Oz8cB5aPIHtTw==
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6618738373B
-	for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 08:38:30 -0400 (EDT)
+	t=1665666091; bh=PPZan4fqy/n8NFBLvsrVRqs2a4TSKYsBVoROAJpYBOc=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=fdfRO82MU7AChQG1e3ucqIoZ1S2SYefRg+LmwAY5EYgUPkMzAyBIOe91WTZtRavKL
+	 UMRtFbi7c0O0BxoC9UdHUQfV0gw7+OYUfM5ZhF/EGGjl5UI2Bqn993rmVB5wUIsh8g
+	 uBwmccjSIH0KiEBa0TUGRCwyJAi8YHQ48C63CM36ZAy3MoMPkPk/sJt1wZFWGzuuv2
+	 sliQVT4BlApQ5T3z4PbDol6Vdr/Qt17sydPl9sERrcrnW8ZIM6V8yisQIjF6eN9B/L
+	 qrwP5I2h6gKm8zBQvTFeKWXqH2Qwo1V1vHUCyvJ7dz3KSSPZxPj+fjyoj2KrfcESTW
+	 UmxdyKM9XwbVA==
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id DA04D3808F7
+	for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 09:00:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ShFVregD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LrehBs44";
 	dkim-atps=neutral
-Received: by mail-yb1-f178.google.com with SMTP id n74so1846099yba.11
-        for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 05:38:30 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id t25so1009772qkm.2
+        for <usrp-users@lists.ettus.com>; Thu, 13 Oct 2022 06:00:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=tUdnFkRcaE+PeL6ivfY7Q+TshdzEaLZWr2R4LcYfBz4=;
-        b=ShFVregDQJxXXhSez4LoSsWLvaoO0p7JbjhwFMkf/UiguMpwmehpBdG/kL14MuLEx3
-         f36keF4sR0VxICtxd3RrVnTj22iF6IpLXSXFhm4zk+loueqPp+cU5XzDtBFt4W2u8uV4
-         bxeO8TtHZkotYdbUsWYLXdYf+/LH1OK8/UrJgojJ/CcJSvbbobBj8aM02Js7ISFHXkgX
-         taLcEENIZ4pMohjUbaoF4z6yu2LElfX40CzPJfJWrpCdC3R6s/u913ABgJFSGG0CSxSf
-         Q6U3srfwzXLXHbM4bwLQ009Z0jq7fUxZS5pG7gONhH/9SqUaoxv8ybt3uCL3gQlbw6Q2
-         C6ng==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yKjnBWs8K6NbMD72epBmvXam/mqmf4MgqNDn38bUUVA=;
+        b=LrehBs44DYJGE4G6kLPzzQ3IWLkIxMqYs6s/Ud5z3kJnhYCDNImqx6QXDolfsGsJ1/
+         zmNlW684zvFYkYh9Q+5T1UuHsmwRu/2bRbR0vQa+R2m1450M0LsGEs9bbRV1l9HqZVUI
+         6xngWvAVr24AkaNGizlgQdf8PKHHqLqF8IhZn/vAwzJ6i3wnHxoEkkkPuKXwUf3BJqCw
+         FgY3Ug94LwncevoIlPtpTHq/54Mn7xqoDGLWbLANpnKvwDXpwCX7q6bFYoyTcWePdLaz
+         GzI/II2E4dQlasroTmHVYzyPllPSa/UBNjrQEaaZWbHDJA8zynH7DEioMouvqFnXOi6M
+         9+9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tUdnFkRcaE+PeL6ivfY7Q+TshdzEaLZWr2R4LcYfBz4=;
-        b=h2PU167ZLtPQZzjyWp3FbYO8yXPsXMFrYQHJcuQaKCV0eOq95ugBiQv3vmjWodChWE
-         ZUULSIO1tmeZmpdZ8iD38+69edbEny+P8pCPsqVA+13HYybbUJKq8TKRdylQzpxorFVD
-         H0ngZACMXV4OKwz24rqFh8IHhPVsjX6wcHK1/2qMFbRjU4Rjw64N5B8gewSlA9Qje7vL
-         OLS5ZWzN5L8UupZd13bA1/6vgTFBPMskOFrIUg49r6XF2cCDvy2r+XLdNL4rdz7VDOSc
-         6pq9uHmiv7hDoC1EYuWbKse2nKnWZ/NC9H64oDRFXP1iob0n3nrdIm1D+DOmJ0DTk9K+
-         gwRw==
-X-Gm-Message-State: ACrzQf3uxlt8I1TV19kFD/CZ69fMenNqOVzLswak06YMwYgX5qqr0RFb
-	RxrQh+TobNDHSZTLPCb1yzFST8320W2T86rU1f5r00i4xg3AG5zp
-X-Google-Smtp-Source: AMsMyM4Wqaq86PGFGl7cVVPhsYblxU0wxvuYs58wOvlVciCDLYjVJkdgSycPbfrFDAsxFME4M8Lo17F+2YAq2A8XqHE=
-X-Received: by 2002:a25:4257:0:b0:6be:6224:5d5a with SMTP id
- p84-20020a254257000000b006be62245d5amr30881384yba.148.1665664709389; Thu, 13
- Oct 2022 05:38:29 -0700 (PDT)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yKjnBWs8K6NbMD72epBmvXam/mqmf4MgqNDn38bUUVA=;
+        b=CD/eNQQoBwg9lSEQTJ2NXCoQwLHKDS3Bs3VYPnXWoQriXwuWTDvshP1qk4aZPOu2BR
+         kjaNNvYiGn41LZEcrJa2ShR8Iy5fVXFN9QDe1jgUVGNe29nydRmmsM0zjU+n/Yd3XVFO
+         UuDPtV0JSOWI1NVuNzr73Skgd6fwghcPv47SrUZSt05pmsKygQAHBiPuTivTS4Ic9OwI
+         CN2YRMU9W1iHjZsON9P5OawPfWW/YSQSbHEp6X2RRWiwu0GChU62YIsgz1Hy91JcD2W8
+         s68YyxSUKxcO6B67vZ5ur59QNwOcaSFc7ealj7Lw199XqBJQ9b3T0Li3VVr9Lhu8f7KU
+         PVaA==
+X-Gm-Message-State: ACrzQf3TZ0W8Yu7Edi66bHl5hSyW82EHjr6RJCQyyvznMbljKoUluzYF
+	AKgSyLFvgUAcJQ8UyMz7bAJDtff/OmM=
+X-Google-Smtp-Source: AMsMyM61hyUxjBZPRWMT+XY1taH8Dqvtydlf3/joaxpy9Ig5/BMPSWQUzWENDfr2lA8Bc9uBmr75ug==
+X-Received: by 2002:a37:658b:0:b0:6ee:7998:d694 with SMTP id z133-20020a37658b000000b006ee7998d694mr10109565qkb.777.1665666032341;
+        Thu, 13 Oct 2022 06:00:32 -0700 (PDT)
+Received: from [192.168.2.186] (bras-base-smflon1825w-grc-09-174-93-2-50.dsl.bell.ca. [174.93.2.50])
+        by smtp.googlemail.com with ESMTPSA id c7-20020ac85a87000000b00304fe5247bfsm15592685qtc.36.2022.10.13.06.00.31
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Oct 2022 06:00:31 -0700 (PDT)
+Message-ID: <948601e2-432e-53ff-08cc-a43a7486efdf@gmail.com>
+Date: Thu, 13 Oct 2022 09:00:30 -0400
 MIME-Version: 1.0
-From: sp <stackprogramer@gmail.com>
-Date: Thu, 13 Oct 2022 16:08:18 +0330
-Message-ID: <CAA=S3PtNSw1qOgaKJbRRnUpTfn4A-zK_10frYCk7CoCo93Drhw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: KSNLQ4E5HF5VFT4DNBCSX2H5H7E26PYM
-X-Message-ID-Hash: KSNLQ4E5HF5VFT4DNBCSX2H5H7E26PYM
-X-MailFrom: stackprogramer@gmail.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <Qhg3X7cDOIazDEN3xdtQDNRYf5Q06u9Dv8ECofHc@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <Qhg3X7cDOIazDEN3xdtQDNRYf5Q06u9Dv8ECofHc@lists.ettus.com>
+Message-ID-Hash: WZQ36NMVTL2AFIZS5ZB2VGONYABVGSQD
+X-Message-ID-Hash: WZQ36NMVTL2AFIZS5ZB2VGONYABVGSQD
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Why initialize large array in Verilog is not successfully in RFNOC blocks...
+Subject: [USRP-users] Re: UHD_IMAGE_LOADER load another .bit
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KSNLQ4E5HF5VFT4DNBCSX2H5H7E26PYM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WZQ36NMVTL2AFIZS5ZB2VGONYABVGSQD/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0202582929991079598=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============0202582929991079598==
-Content-Type: multipart/alternative; boundary="0000000000005171bc05eae9c902"
-
---0000000000005171bc05eae9c902
-Content-Type: text/plain; charset="UTF-8"
-
-Why initialize large array in Verilog is not successfully. When size of
-array is 255 it work like charm but for other number more than 255 like
-1024 and ....
-we observe all array is filled with zero? why large array in FPGA can not
-initailize correctly????
-
-
-Code:
- reg signed  [15:0]  data_i_pattern_buffer [1024:0];
- reg signed  [15:0]  data_q_pattern_buffer [1024:0];
-  $readmemh("out_i.txt",data_i_pattern_buffer,0,1024);
- $readmemh("out_q.txt",data_q_pattern_buffer,0,1024);
-
---0000000000005171bc05eae9c902
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Why initialize large array in Verilog is not successfully.=
- When size of array is 255 it work like charm but for other number more tha=
-n 255 like 1024 and ....<br>we observe all array is filled with zero? why l=
-arge array in FPGA can not initailize correctly????<div><br></div><div><br>=
-Code:<br>=C2=A0reg signed =C2=A0[15:0] =C2=A0data_i_pattern_buffer [1024:0]=
-;<br>=C2=A0reg signed =C2=A0[15:0] =C2=A0data_q_pattern_buffer [1024:0];<br=
->=C2=A0 $readmemh(&quot;out_i.txt&quot;,data_i_pattern_buffer,0,1024);<br>=
-=C2=A0$readmemh(&quot;out_q.txt&quot;,data_q_pattern_buffer,0,1024);<br></d=
-iv></div>
-
---0000000000005171bc05eae9c902--
-
---===============0202582929991079598==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============0202582929991079598==--
+T24gMjAyMi0xMC0xMyAwODozNSwgYWRyaTk2cm9sbEBnbWFpbC5jb20gd3JvdGU6DQo+DQo+IEhp
+IGV2ZXJ5IG9uZSwNCj4NCj4gSSBkb27CtHQga25vdyBob3cgdG8gZGVzY3JpYmUgbXkgcHJvYmxl
+bSBwcm9wZXJseS4gSSBoYXZlIGEgcHJveWVjdCANCj4gdGhhdCBoYXZlIGEgYWNjZXNzIHRvIHRo
+ZSBleHRlcm5hbCBtZW1vcnkgUkFNIHdpdGggYSBjb250cm9sbGVyLiBJIA0KPiBoYXZlIGJlZW4g
+ZmFjaW5nIHByb2JsZW1zIHRvIHN5dGhldGl6ZSBidXQgYXQgdGhlIGVuZCBpIGdvdCBpdC4gDQo+
+IEhvd2V2ZXIsIHdoZW4gaSBjaGVja2VkIHdpdGggdWhkX3VzcnBfcHJvdmUgaSByZWFsaXplZCB0
+aGF0IGl0IHdhcyBubyANCj4gbXkgcHJvamVjdC4gTXkg4oCcYmxvY2vigJ0gZGlkbsK0dCBhcHBl
+YXIuDQo+DQo+DQpXaGF0IGhhcmR3YXJlPw0KDQpXaGF0IHVoZF9pbWFnZV9sb2FkZXIgY29tbWFu
+ZCBkaWQgeW91IHVzZT8gRGlkIHlvdSByZXN0YXJ0IHRoZSBkZXZpY2UgDQphZnRlciBsb2FkaW5n
+IHRoZSBpbWFnZT8NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
+LmV0dHVzLmNvbQo=
