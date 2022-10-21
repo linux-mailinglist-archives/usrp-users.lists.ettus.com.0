@@ -2,330 +2,178 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 876BF6078EA
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 15:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C592607D84
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 19:29:32 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 81A683808E8
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 09:55:39 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F1DA238097E
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 13:29:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666360539; bh=JFa3W20scf/UoGLUPgK1vhcWeZJUZTSjlm4VJ87HZU8=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=LRaPpFGBMsrp8QFsVzs71HyYoF4qUwM1CacsqZMGVOb3XWyBFavnEuQyZOhZGiRpI
-	 nP7xoBkPPd+IQ+g+9wTEBQSEuJ3aFuHohlcHuhRZrSYJKrujMqvaip1aCX9tyrbf4I
-	 iShoYycWLtZpWVrSxnutY6XMMt2PzGJC3eq8Ety00zEuwhqXsPmrXNHFIKrm9xKw6Y
-	 HFJ/bguY2MJkHdL3nsk9K8snPog2sgrmZH3TQVbnST/YXvuwoO4Mh5dzIBzptZ3ma1
-	 QOPFK4q6lWiS6xHg58eD4QfQPAMBFEChP6100tDXcfQ8OXbkZXRushBcSrBBJ8k+wP
-	 Ajs1k6nRciojg==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id E557C3808E8
-	for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 09:53:53 -0400 (EDT)
+	t=1666373370; bh=Qq8toIrX8GyN59Y+zTNS41D3O25KqBmoNxo1VAYyrBc=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=WwPJuMYmtq4fM7WAwKDFtztbjvuYmNN4TG+xfgiq9jv5cc3VadhrGFLzQdn3YGZkf
+	 uy2//OCJy7greUbvkSV5JCilcv74ukG7F2C9rogiA4qgF7ognr9XUW82vqDyi4TPCl
+	 DwTe8mQMIUn7mHS0G51HCDB+cPrDDQaxCTbCTQEsKYIf41hnK9eyZywxDyaLinYUxi
+	 jlV1FNt6PP20cH+SGSHgbH38nPF57SfKRRtY0HBcxmKZt83VEn3YdRHdIfjKJeyQc2
+	 3+sawQ3J9IqsXMZ0pINNYojjXJVaW//A2LL81LSb2SZ8PlAcq4s/TIykXJziI0HtDz
+	 T/Qj07/RYuNLA==
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 712CC38097E
+	for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 13:28:26 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vh0PmE/W";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="tDTfFWtp";
 	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id bb5so1628838qtb.11
-        for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 06:53:53 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id a67so8446664edf.12
+        for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 10:28:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MszWjIZYy1PfSlsmF4Ey93WHjq5oXP9Q6HM7s4Vzc9Y=;
-        b=Vh0PmE/WfB+qQUkxQH0R2uSznfWu4/X2H6rTsHJyabAM8Yp+pucYZjYxlTpMyRTcsi
-         gj5VIFaWgoNozVnVtD7pfZDHNqokYKKqo6K6zMvlBYbO+08P9QZe/VOPXCqiwRsGkCpH
-         luSUQu7WgHAnrHH2wYC+VuORqS2eVGTR8WBdkeTmqqBX6K/iov3o8qhFy6rMFWFnyTtj
-         yA6fzWAMg1x+QID2b2+bkm+d7Am6FLCO374DmNWeVyvln2tp8O6sPHrR3G/IbYn3JG1g
-         AoaDDDGGWs9Zc6d7bbdX+BRYoc4H7lnhCuqTtTJ36A6O/C1UNibYEfrRBo3ICT+1szE0
-         PoZw==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZICWK8z8uVqbd1jX5k+qzXpJMYG+nmOr0um+cFe4abU=;
+        b=tDTfFWtp1RuyQ7CUT+8RlKlKb9iThpC/slWeBp7yRsBuTh/rvZn0ssTW5GHn8iwMBl
+         UAQXvMtPFsnqCmhMnHp6EPKEN1dP90ydAhvEatUuBbR0xzgTf4Cjzu780VlgGVSzUq5L
+         DDjqBLmy4ltcq/113HjfCQUhkDVOXnip1d+zyeMlKB5EHzciGnJPm4+PVd+NUeOIDDXn
+         dO8d77kDvpDj0mijcvnHxO/hain8dxgKLDG7ReK0CS/ktbcFgjsVRKUQotVp1dWrZJaM
+         XJbl28Z16TcNrKLmhglsN9YWOZOB7zen2cgJIN6glBpS42Oa0hKKw2P3M+jjqsKer049
+         Bv1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=MszWjIZYy1PfSlsmF4Ey93WHjq5oXP9Q6HM7s4Vzc9Y=;
-        b=ILMXo2p83aXR/55E22w/XON1KGC0EjdhdZekouFRceCKS2ryNWLDhIYCOuJLL7vqpA
-         ppGNBRp/Z4n4F/F8cBksnsziRZF2CwdsYAhjRA+Ty5hwEA4yW1HEIRESawM5JPo1hZOE
-         jWJu97UP2C7CX68gAHTPFwI0GUp9m7SHMkARKqtSofLamdOCkuY3J0AN74Rxao08XV04
-         yhiKi1tDhcbzqjBRn1xDcIOgZqksxZqtu+mNFGU8SvojNT6MEeXdY5Ib3hMkHE6JsvOc
-         wgxjEkCEjXNiS89jPfric402Azr3vJbOxcSARoKM686/SB+0hSE/AaBc/lWM3ioC19gC
-         A4wA==
-X-Gm-Message-State: ACrzQf1rq6vf3aTeKA7OYDkzsIoQALUsr1BvacrlHOK5lRTktiG6KLjj
-	N7jCrFj67o5pxvnsrecjX22WrPWF3vM=
-X-Google-Smtp-Source: AMsMyM4zarI7Ez/JeJYgITOlfRcapwu6otEX9vGINCipPsAHtacFVq0cB4fXXx4pTVk+K19FUoMjGg==
-X-Received: by 2002:ac8:5894:0:b0:39d:13b5:1afd with SMTP id t20-20020ac85894000000b0039d13b51afdmr6228278qta.127.1666360433237;
-        Fri, 21 Oct 2022 06:53:53 -0700 (PDT)
-Received: from [192.168.2.182] (bras-base-smflon1825w-grc-09-174-93-2-222.dsl.bell.ca. [174.93.2.222])
-        by smtp.googlemail.com with ESMTPSA id bq8-20020a05622a1c0800b00394fce5fa64sm8036781qtb.9.2022.10.21.06.53.52
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 21 Oct 2022 06:53:52 -0700 (PDT)
-Message-ID: <a50a95da-de77-472e-6b92-fd696703fa50@gmail.com>
-Date: Fri, 21 Oct 2022 09:53:52 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZICWK8z8uVqbd1jX5k+qzXpJMYG+nmOr0um+cFe4abU=;
+        b=X+6DXzMPjMsgJBaOkRIrJQk38Uw2wDb05sbh+QYYvzLe5J2X9IvROrpEZFDyjB3OoZ
+         lnc1OEYaXtbCQYC73pQyLW0Epl3P+16RI5y4D+amdWYHtQPnuwTbE8xn6TP3VYG/8AQa
+         p09ErTpTfy5LXnaxEcAk0fOGatOOPvIlj5ZkOOQHnCHwQIpvY5PlOm7chtt1WVohJyQ6
+         HcK/+jfVVJBDr3a5C4NaTinGVRDhltkLHm9RD8rfwIG2/9aSToBlJbeLb9mjOAoZ6Rtt
+         ox7hdYIGmmWZ0szEnli286YpdTR41VrJHKqrw3kBn2VGPA37DV/o0xvlx4qSF6RSwRf4
+         7giw==
+X-Gm-Message-State: ACrzQf3TAOBuA9P2Rc6fSCRVqbcRsImfaHdi4XEg/wSjyr6HmzWLfz02
+	ioKMGQC4NNZzIV7fKBFlORIvZ3YtqnHpKHe7Vx4g8lkrXKXwsJXW
+X-Google-Smtp-Source: AMsMyM5jzlSiMSor4dEUmTTHMQxh+3qK0vpoePciHJGTYi5e4qi/jergvNe2E68a45d9Be5S0zjpSolbkSfrBlWTE9g=
+X-Received: by 2002:a05:6402:501b:b0:459:df91:983 with SMTP id
+ p27-20020a056402501b00b00459df910983mr17717346eda.85.1666373305360; Fri, 21
+ Oct 2022 10:28:25 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAFPzw1m8+T8ApDoskGitdvJJq5QKprG9cWWWPi=DNf8RM0f++g@mail.gmail.com>
- <CAFPzw1kqEJkZk3vNhBstYwEwvmrJ0BdqNjC_JHpAw5t4_MDwzg@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAFPzw1kqEJkZk3vNhBstYwEwvmrJ0BdqNjC_JHpAw5t4_MDwzg@mail.gmail.com>
-Message-ID-Hash: XJGLEOPF77PYB2HDCWW7LFA4F36BJ56D
-X-Message-ID-Hash: XJGLEOPF77PYB2HDCWW7LFA4F36BJ56D
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAG16vQUZdQCE8UvxQgb3_cZ+6W-YsL-DLGNvd0VVdOBzF-irUQ@mail.gmail.com>
+In-Reply-To: <CAG16vQUZdQCE8UvxQgb3_cZ+6W-YsL-DLGNvd0VVdOBzF-irUQ@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Fri, 21 Oct 2022 12:28:08 -0500
+Message-ID: <CAFche=igeFLR8XLE+Q3H_0UOTYbBbbqig10K1Atn-HJxhYOAWg@mail.gmail.com>
+To: =?UTF-8?B?TWFyaWEgTXXDsW96?= <mamuki92@gmail.com>
+Message-ID-Hash: P6WACCMFIE7LI2QHBBT5VIZJYKTCGCV2
+X-Message-ID-Hash: P6WACCMFIE7LI2QHBBT5VIZJYKTCGCV2
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Fwd: Initializing block control DmaFIFO_0 module error
+Subject: [USRP-users] Re: AXI-RAM memory width
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XJGLEOPF77PYB2HDCWW7LFA4F36BJ56D/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/P6WACCMFIE7LI2QHBBT5VIZJYKTCGCV2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5625976612305374501=="
+Content-Type: multipart/mixed; boundary="===============6751640296118944398=="
 
-This is a multi-part message in MIME format.
---===============5625976612305374501==
-Content-Type: multipart/alternative;
- boundary="------------rGNq0vzUmNxk9AtJpUoML01d"
-Content-Language: en-US
+--===============6751640296118944398==
+Content-Type: multipart/alternative; boundary="000000000000edf8b805eb8ec419"
 
-This is a multi-part message in MIME format.
---------------rGNq0vzUmNxk9AtJpUoML01d
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000edf8b805eb8ec419
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-10-21 09:04, Anabel Almodovar wrote:
-> Hello,
+Right, it needs to be 64 bits to work without other changes. That's the
+width of the AXI Interconnect to which the axi_ram block connects. However,
+the connection to the DRAM is 256 bits. That gets shared across 4 ports by
+the AXI Interconnect, and each port could potentially be reading and
+writing simultaneously. This is why the default is to provide four 64-bit
+ports.
+
+It would be unusual to need more than 64 bits per port, since you're
+limited to 64-bits per port by RFNoC on E320. However, you could make it
+wider if you modify the AXI Interconnect appropriately and update the IO
+signatures.
+
+https://github.com/EttusResearch/uhddev/tree/UHD-4.0/fpga/usrp3/top/e320/ip=
+/axi_intercon_4x64_256_bd
+https://github.com/EttusResearch/uhddev/blob/UHD-4.0/fpga/usrp3/top/e320/e3=
+20_core.v#L610
+
+Wade
+
+On Thu, Oct 20, 2022 at 5:27 AM Maria Mu=C3=B1oz <mamuki92@gmail.com> wrote=
+:
+
+> Hi all,
 >
-> I am working with two X310 and TwinRx in both, Ubuntu 16.04 LTE and=20
-> UHD 3.12.
-> I am trying to execute any code and I get an error in the=20
-> initialization of the cards in the DmaFIFO_0 module. This is my output=20
-> from running the /uhd_usrp_probe/ command for each individual card and=20
-> for the set.
+> I am using UHD 4.0 in an E320 USRP.
+> I would like to use the axi_ram_fifo block to communicate with the DMA,
+> but I have some doubts about it.
+> I notice that the maximum width I can test is 64, if I try 128 or 256 it
+> fails. The io_signatures.yml file has this line:
 >
-> Before the modification of one of my codes the cards worked perfectly.=20
-> Due to the malfunction of the code tests that I have carried out, I=20
-> have had to cut the operation of the cards by force (ctrl + z), is it=20
-> possible that this has caused the error in the cards? How can I solve=20
-> this error?
+> Axi_ram:
+> Type: axi4_mm_4x64_4g
 >
-> Thanks in advance.
+> Does this mean it only supports 64-bit width? Is there any way to increas=
+e
+> the width?
 >
-> All the best
-> Anabel Almodovar
->
-> /*rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/uhd/host/examples/b=
-uild$=20
-> uhd_usrp_probe
-> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800;=20
-> UHD_3.12.0.0-69-g46ab88b4
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [INFO] [GPS] No GPSDO found
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:=20
-> 0xF1F0D00000000000)
-> [ERROR] [UHD] Exception caught in safe-call.
-> =C2=A0 in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with=20
-> uhd::endianness_t _endianness =3D (uhd::endianness_t)0u]
-> =C2=A0 at /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.cpp:6=
-0
-> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block=20
-> ctrl (CE_00_Port_30) packet parse error - EnvironmentError: IOError:=20
-> Expected packet index: 18 Received index: 20
-> Error: EnvironmentError: IOError: Block ctrl (CE_00_Port_30) packet=20
-> parse error - EnvironmentError: IOError: Expected packet index: 17=20
-> Received index: 19
-> rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/uhd/host/examples/bui=
-ld$=20
-> sudo uhd_usrp_probe
-> [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609; Boost_105800;=20
-> UHD_3.12.0.0-69-g46ab88b4
-> [INFO] [X300] X300 initialization sequence...
-> [INFO] [X300] Maximum frame size: 8000 bytes.
-> [INFO] [X300] Radio 1x clock: 200 MHz
-> [INFO] [0/DmaFIFO_0] Initializing block control (NOC ID:=20
-> 0xF1F0D00000000000)
-> [ERROR] [UHD] Exception caught in safe-call.
-> =C2=A0 in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with=20
-> uhd::endianness_t _endianness =3D (uhd::endianness_t)0u]
-> =C2=A0 at /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.cpp:6=
-0
-> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block=20
-> ctrl (CE_00_Port_30) packet parse error - EnvironmentError: IOError:=20
-> Expected packet index: 17 Received index: 20
-> Error: EnvironmentError: IOError: Block ctrl (CE_00_Port_30) no=20
-> response packet - AssertionError: bool(buff)
-> =C2=A0 in uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, dou=
-ble)=20
-> [with uhd::endianness_t _endianness =3D (uhd::endianness_t)0u; uint64_t=
-=20
-> =3D long unsigned int]
-> =C2=A0 at /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.cpp:1=
-54*/
->
->
+> Kind Regards,
+> Maria
 > _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-Have you power-cycled the X310?=C2=A0 Can you ping your devices, and is i=
-t=20
-reliable?=C2=A0=C2=A0 The error you're seeing implies
- =C2=A0 a problem with network communications during command packets.
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
 
-I'll note that both Ubuntu 16.04 and UHD 3.12 are both *ancient*=20
-releases of the respective software.=C2=A0 X310 has had MANY
- =C2=A0 bug fixes since UHD 3.12, as has Ubuntu.
-
-The current version of Ubuntu is 22.04, with UHD 4.1.0.5
-
-
---------------rGNq0vzUmNxk9AtJpUoML01d
-Content-Type: text/html; charset=UTF-8
+--000000000000edf8b805eb8ec419
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-10-21 09:04, Anabel Almodovar
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAFPzw1kqEJkZk3vNhBstYwEwvmrJ0BdqNjC_JHpAw5t4_MDwzg@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr">
-            <div>Hello,</div>
-            <div><br>
-            </div>
-            <div>I am working with two X310 and TwinRx in both, Ubuntu
-              16.04 LTE and UHD 3.12.</div>
-            I am trying to execute any code and I get an error in the
-            initialization of the cards in the DmaFIFO_0 module. This is
-            my output from running the <i>uhd_usrp_probe</i> command
-            for each individual card and for the set.<br>
-            <br>
-            Before the modification of one of my codes the cards worked
-            perfectly. Due to the malfunction of the code tests that I
-            have carried out, I have had to cut the operation of the
-            cards by force (ctrl + z), is it possible that this has
-            caused the error in the cards? How can I solve this error?<br=
->
-            <br>
-            Thanks in advance.<br>
-            <br>
-            <div>All the best</div>
-            <div>Anabel Almodovar<br>
-            </div>
-            <div><br>
-            </div>
-            <div><i><b>rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/=
-uhd/host/examples/build$
-                  uhd_usrp_probe<br>
-                  [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
-                  Boost_105800; UHD_3.12.0.0-69-g46ab88b4<br>
-                  [INFO] [X300] X300 initialization sequence...<br>
-                  [INFO] [X300] Maximum frame size: 8000 bytes.<br>
-                  [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                  [INFO] [GPS] No GPSDO found<br>
-                  [INFO] [0/DmaFIFO_0] Initializing block control (NOC
-                  ID: 0xF1F0D00000000000)<br>
-                  [ERROR] [UHD] Exception caught in safe-call.<br>
-                  =C2=A0 in
-                  ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl()
-                  [with uhd::endianness_t _endianness =3D
-                  (uhd::endianness_t)0u]<br>
-                  =C2=A0 at
-                  /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface=
-.cpp:60<br>
-                  this-&gt;send_cmd_pkt(0, 0, true); -&gt;
-                  EnvironmentError: IOError: Block ctrl (CE_00_Port_30)
-                  packet parse error - EnvironmentError: IOError:
-                  Expected packet index: 18 Received index: 20<br>
-                  Error: EnvironmentError: IOError: Block ctrl
-                  (CE_00_Port_30) packet parse error - EnvironmentError:
-                  IOError: Expected packet index: 17 Received index: 19<b=
-r>
-rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/uhd/host/examples/build=
-$
-                  sudo uhd_usrp_probe<br>
-                  [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
-                  Boost_105800; UHD_3.12.0.0-69-g46ab88b4<br>
-                  [INFO] [X300] X300 initialization sequence...<br>
-                  [INFO] [X300] Maximum frame size: 8000 bytes.<br>
-                  [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                  [INFO] [0/DmaFIFO_0] Initializing block control (NOC
-                  ID: 0xF1F0D00000000000)<br>
-                  [ERROR] [UHD] Exception caught in safe-call.<br>
-                  =C2=A0 in
-                  ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl()
-                  [with uhd::endianness_t _endianness =3D
-                  (uhd::endianness_t)0u]<br>
-                  =C2=A0 at
-                  /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface=
-.cpp:60<br>
-                  this-&gt;send_cmd_pkt(0, 0, true); -&gt;
-                  EnvironmentError: IOError: Block ctrl (CE_00_Port_30)
-                  packet parse error - EnvironmentError: IOError:
-                  Expected packet index: 17 Received index: 20<br>
-                  Error: EnvironmentError: IOError: Block ctrl
-                  (CE_00_Port_30) no response packet - AssertionError:
-                  bool(buff)<br>
-                  =C2=A0 in uint64_t
-                  ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool,
-                  double) [with uhd::endianness_t _endianness =3D
-                  (uhd::endianness_t)0u; uint64_t =3D long unsigned int]<=
-br>
-                  =C2=A0 at
-                  /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface=
-.cpp:154</b></i><br>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    Have you power-cycled the X310?=C2=A0 Can you ping your devices, and =
-is
-    it reliable?=C2=A0=C2=A0 The error you're seeing implies<br>
-    =C2=A0 a problem with network communications during command packets.<=
-br>
-    <br>
-    I'll note that both Ubuntu 16.04 and UHD 3.12 are both *ancient*
-    releases of the respective software.=C2=A0 X310 has had MANY<br>
-    =C2=A0 bug fixes since UHD 3.12, as has Ubuntu.<br>
-    <br>
-    The current version of Ubuntu is 22.04, with UHD 4.1.0.5<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div>Right, it needs to be 64 bits to work without other c=
+hanges. That&#39;s the width of the AXI Interconnect to which the axi_ram b=
+lock connects. However, the connection to the DRAM is 256 bits. That gets s=
+hared across 4 ports by the AXI Interconnect, and each port could potential=
+ly be reading and writing simultaneously. This is why the default is to pro=
+vide four 64-bit ports.<br></div><div><br></div><div></div><div>It would be=
+ unusual to need more than 64 bits per port, since you&#39;re limited to 64=
+-bits per port by RFNoC on E320. However, you could make it wider if you mo=
+dify the AXI Interconnect appropriately and update the IO signatures.</div>=
+<div><br></div><div>
 
---------------rGNq0vzUmNxk9AtJpUoML01d--
+<a href=3D"https://github.com/EttusResearch/uhddev/tree/UHD-4.0/fpga/usrp3/=
+top/e320/ip/axi_intercon_4x64_256_bd">https://github.com/EttusResearch/uhdd=
+ev/tree/UHD-4.0/fpga/usrp3/top/e320/ip/axi_intercon_4x64_256_bd</a> <br></d=
+iv><div><a href=3D"https://github.com/EttusResearch/uhddev/blob/UHD-4.0/fpg=
+a/usrp3/top/e320/e320_core.v#L610">https://github.com/EttusResearch/uhddev/=
+blob/UHD-4.0/fpga/usrp3/top/e320/e320_core.v#L610</a></div><div></div><div>=
+<br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Thu, Oct 20, 2022 at 5:27 AM Maria Mu=C3=
+=B1oz &lt;<a href=3D"mailto:mamuki92@gmail.com">mamuki92@gmail.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr">Hi all,<br><br>I am using UHD 4.0 in an E320 USRP.<br>I would like=
+ to use the axi_ram_fifo block to communicate with the DMA, but I have some=
+ doubts about it.<br>I notice that the maximum width I can test is 64, if I=
+ try 128 or 256 it fails. The io_signatures.yml file has this line:<br><br>=
+Axi_ram:<br>Type: axi4_mm_4x64_4g<br><br>Does this mean it only supports 64=
+-bit width? Is there any way to increase the width?<br><br>Kind Regards,<br=
+>Maria<br></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============5625976612305374501==
+--000000000000edf8b805eb8ec419--
+
+--===============6751640296118944398==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -335,4 +183,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5625976612305374501==--
+--===============6751640296118944398==--
