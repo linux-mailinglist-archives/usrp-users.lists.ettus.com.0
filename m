@@ -2,164 +2,204 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C085A607D9E
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 19:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6BCD607DF1
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 19:50:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id BDB4B38151A
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 13:35:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CE2EC38151A
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Oct 2022 13:50:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666373724; bh=E/pNrleEKqvnYPf3K1Mv1r2IvObwMGMe9EvRrFjx374=;
+	t=1666374630; bh=NrK+3AIWBl4qY+mgI2JNYQ17fON+55o/jiGEhXz/02A=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=TWidmX+Wc1C9961e8IMSYKNQXFq4yloByRddo9kp+aiXDtSgkVd5wI3TZvo7K7T65
-	 N32aTU5SNQefczi7EI5bK0gXsQ3JI165+TwD/zJsLSXrtMkvLpKUdzfDbnPbV79rrg
-	 ct2cdJVIfmVq+O4/PAyG7v2wRqTTB0t7EcdBuGQIs3DyPOc2lF3W2HVdg4DgObUVYv
-	 64j9XfPgwpd+lZTEZ4tVtMX6+XD2Flkk0hLf9TMUdOZjPvbad6gVrniu9qdAD4XMu5
-	 zEuSrzczgvn6qmXVRO56bktGw90AgN13f3bXDQikLzrrg8g2Wz/Kf5h6ry4T6Mh3ws
-	 CrI8u1aWvcgrA==
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3E103380785
-	for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 13:34:19 -0400 (EDT)
+	b=Go79J2P8VfdNHsataWMNpVBnkdXGqLxZnZH/StAuP5UgftqLrr9gONkGM88mniCu9
+	 KBkxFKP/nr+wEBAsnZP36eIgIuM7s4Q5ddu8u2l7tp4YRfx9bshUzatFn6ak6U0Ber
+	 6PC5+JEl7edcHr9nzqNrrYnUdEmtjFPG3KE921TPEJ9WF+wjssT8GjqzhQK4nz7Lyf
+	 Xrl346SgwcDntde26+63KQ8XaZPG8Nlussvfjqqck5uK/0csc5z5TX6UPIPdmGVwed
+	 D880Li9OB68AGBjbf+h30ANSFLyCJlZmH+0ogrQQ+sBcYfpiE80DrmClTRa1Owgv5x
+	 4a97ktlowA6uQ==
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 77ADA3810D7
+	for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 13:49:22 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="Veq4uDr4";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="q3ss2hy1";
 	dkim-atps=neutral
-Received: by mail-ed1-f47.google.com with SMTP id g27so8510252edf.11
-        for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 10:34:19 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id l22so8681638edj.5
+        for <usrp-users@lists.ettus.com>; Fri, 21 Oct 2022 10:49:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ettus-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eebUuxSzT9kyh5o7z7KeShH00k3OWZD2KcYshGSbfn4=;
-        b=Veq4uDr4eGhF8KGO5Ed3PTHIHmPIdIO/3zh/nXMSo9WpptwXaB+q1fSILxyWLSDSXW
-         7hmAl/1esF1toXvaz+CK++BszFGF/0xaYzwU+yc11ducgyIeMhW5WRuV7zCTHTtFx+Dl
-         XvifG6UJlE9NCLzl6aKh49ZW16P5sao/S4CVylB4DVWxvnRJvWjV09hnmdMv30EdOTY0
-         3WlCD5ox7IY936UsAq5Vuz3HjYiDb2mCpgBFlCVtCFTOq1iKrypg1i3BwnevaG5YoE3F
-         GbIAKeDlYRHaREWKYSMvmAk7lzPer3Fb9ZJWqOESbZynVIF+rT47Hohv1u/yhB5qc8zS
-         gBww==
+        bh=ECIl2+kybFXgTdac+Nb7VIPfyfaNdXCv9FxcTbKM1Os=;
+        b=q3ss2hy1IYrOHe9lIdoJDGa2Q/xt8HrYxSX4CS9GANvXcAjv1BgYifXZIiNDZsnmLy
+         H/duDQojVhnAAdoiTpjZoTGr0nL/LgQwgLtT5uzUNUrfXI+iX9FNexCImljquf0ZJxHt
+         WW4YlFpe7xpNCxIye2c6KMRQCFgTi9A+QQUXezJOPao2RxxN/gli3n7s+bVo8CsDB2qg
+         f2/lPTV4m8/UvPF3hq24fU8tMR8kzZD3tImrJxzPk19Gvw+DonvaN6CrWHEjOBJqGXbW
+         4XpnYGqNdYRCKztDRiis41PWXg/ZMu8foF+BzKz/N4I6JloFvrVkpcQsI1LCCXIM4WxD
+         9/+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eebUuxSzT9kyh5o7z7KeShH00k3OWZD2KcYshGSbfn4=;
-        b=TTxcbRkpanmDOdZz/5LJEPNFIQGkQKPAkheoJYPHCrvqE0K0Ocq3QkVQqwh/IsxuRQ
-         zaesEFSiMQztchaJP/BNhHEVp1c2cNn+umxgsjnt6vfXR/LFnA5BWA1ApWl+IGEdRCXm
-         OA7/zVSgvGjR23tsPyOnbr755jLo4WgzvsU6Qyv7qT7SDzf8enAk8nn268avpI4yMCqi
-         YAB/lqzS0SXVd9MT4goKQPxpm7y+TSr9FYQfNeCWjx2D7CGJmiHvb7ntk8G6QHRR/bVA
-         uJw2vv7/szM+tnB9IUpUYPvDKZRz53C7dZgaFZpLtf1lBuZZAjQdxe08icJdWSQDdwBL
-         H+LA==
-X-Gm-Message-State: ACrzQf1Kb63MA9IFHgC5RWn71ChkTykINMeatgx2S2Wnf3IZQDAxv7XR
-	BHFyKB+TYZ9RlWkDQho7nat1G6I/MxbBKqFlxZnlZCefakR7PA==
-X-Google-Smtp-Source: AMsMyM61FWM12PkD+xNKqmsAqaDbZpn5oQe4A7rmjSF0OJkA3/cN/TAeoys6UBthOWk/Xa/Asw7kZeQtPyG1/HigXaE=
-X-Received: by 2002:a17:907:1c10:b0:791:a716:5089 with SMTP id
- nc16-20020a1709071c1000b00791a7165089mr12827140ejc.672.1666373658081; Fri, 21
- Oct 2022 10:34:18 -0700 (PDT)
+        bh=ECIl2+kybFXgTdac+Nb7VIPfyfaNdXCv9FxcTbKM1Os=;
+        b=XV4XhTODt7Iq1Q6L/zu22zLCeB5/bhIbahFyzc1BWTaW5z9yv/sDhA0KLoCnbc5H4i
+         I2TAUUPx22vECa1xwU1aQeUY5+aR3q+A7m1AeKjBTn39aWPFSovJF645HxeH7YGS1Wa0
+         CvnxqdVIDPhxVM1vnpFT1duSQTthkRJoCDVUGmid8sYSK+CI4yPP+5gLNSOCiNfYsAEd
+         3fsbhLODE0abgQU3tdeRCwM21mIjSgeFHqHdbiKdi9r2DK5tfWAKBnTHruujVLjCqi+z
+         mNinyQNZzjrOrLXW/WXj6usPfTQ6eey4nAuX0jYyUkExL8yP/1uA7eW+tDZKKlas8Qp2
+         fuEA==
+X-Gm-Message-State: ACrzQf00rq9nOZAlTP4JwnTyLP/gzdO7Lr8A/8UNBQ1Uux7+YSyQi5SN
+	vSVQsvU7a+pJfXoPZZLReFJ26Co0x0WoA9IdkxVDIFlGKZqyag==
+X-Google-Smtp-Source: AMsMyM62c+O3EdIiHStaQlHVvtpxkfPooOCd25hThVqK1KhBCZOxXZLcuVOlg2NPCxyZAYn0FcWdq/dH6OT5QU5p3Rg=
+X-Received: by 2002:a05:6402:27c6:b0:45d:ba4d:c9cf with SMTP id
+ c6-20020a05640227c600b0045dba4dc9cfmr18812699ede.17.1666374561306; Fri, 21
+ Oct 2022 10:49:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALooG3-PGwwXgn5_Q0T_nSXPYm5vXfV+XsNx+i6k=7UCSEnCCQ@mail.gmail.com>
-In-Reply-To: <CALooG3-PGwwXgn5_Q0T_nSXPYm5vXfV+XsNx+i6k=7UCSEnCCQ@mail.gmail.com>
+References: <CAA=S3PtNSw1qOgaKJbRRnUpTfn4A-zK_10frYCk7CoCo93Drhw@mail.gmail.com>
+ <CAFche=hOWymQFaD9KkAjX9WSuLAPkmqJBWytMnU5+hu_-fPzEQ@mail.gmail.com> <CAA=S3PtF8Qm=FXbqzO2h-0Fazy+Gp8VL7HNbYCpHg74XjSffyg@mail.gmail.com>
+In-Reply-To: <CAA=S3PtF8Qm=FXbqzO2h-0Fazy+Gp8VL7HNbYCpHg74XjSffyg@mail.gmail.com>
 From: Wade Fife <wade.fife@ettus.com>
-Date: Fri, 21 Oct 2022 12:34:01 -0500
-Message-ID: <CAFche=hGqYWBwGMAhcNbNzcOhC5Uez0WNvu4n59aLZjyestFCg@mail.gmail.com>
-To: =?UTF-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>
-Message-ID-Hash: QJJRV3LMMEVFPJIIWH2XICZKGU4522Z3
-X-Message-ID-Hash: QJJRV3LMMEVFPJIIWH2XICZKGU4522Z3
+Date: Fri, 21 Oct 2022 12:49:04 -0500
+Message-ID: <CAFche=i=r+vgvYCZxNySF9a7fV92RUNRXfZ6bOL2HF=3FixzaQ@mail.gmail.com>
+To: sp <stackprogramer@gmail.com>
+Message-ID-Hash: TGEEP5PA4LZE7ZR2KCXLLOYAYC3NZDZS
+X-Message-ID-Hash: TGEEP5PA4LZE7ZR2KCXLLOYAYC3NZDZS
 X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Debugging E320 with JTAG causes a problem
+Subject: [USRP-users] Re: Why initialize large array in Verilog is not successfully in RFNOC blocks...
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QJJRV3LMMEVFPJIIWH2XICZKGU4522Z3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TGEEP5PA4LZE7ZR2KCXLLOYAYC3NZDZS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7971676049237755886=="
+Content-Type: multipart/mixed; boundary="===============3570944297939810951=="
 
---===============7971676049237755886==
-Content-Type: multipart/alternative; boundary="000000000000f416c805eb8ed934"
+--===============3570944297939810951==
+Content-Type: multipart/alternative; boundary="000000000000ca30c005eb8f0fd0"
 
---000000000000f416c805eb8ed934
+--000000000000ca30c005eb8f0fd0
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Yasir,
-
-The E320 runs Linux on the SoC of FPGA. There are devices in the FPGA which
-are visible to the Linux kernel, so updating the FPGA without first
-bringing down those devices causes problems. uhd_image_loader takes care of
-all this for you. You can use uhd_image_loader to first load your bitstream
-(the one you want to debug over JTAG), then use the Vivado hardware manager
-to connect to that bitstream via JTAG after it is already loaded.
+I'm curious if it works if you change the memory size to 1024 instead of
+1025 like you have now, or if you use increasing addresses instead of
+decreasing. A 1025-word memory with a reversed range is unusual. But
+regardless, this warning comes from Vivado, not UHD/RFNoC, so you should
+probably post your question on the Vivado forum.
 
 Wade
 
-On Thu, Oct 20, 2022 at 3:31 AM Yasir =C3=96z=C3=A7al=C4=B1k <simultaneous1=
-1@gmail.com>
-wrote:
+On Sat, Oct 15, 2022 at 10:03 AM sp <stackprogramer@gmail.com> wrote:
 
-> Hi everyone,
-> I am trying to debug E320 with JTAG. I connected to the E320 JTAG console
-> with Vivado 2019.1 hardware manager. Vivado successfully recognized E320.
-> Then, I loaded my custom bitfile. The problem is E320 started to give me
-> errors saying that "IO Error during GSM initialization." I thought that
-> might be because of the bit file. Therefore; I tried to load the default
-> bit file, but the same problem occurred again. When I use uhd_image_loade=
-r,
-> bitfiles work without problem. But when I wanted to debug it with JTAG an=
-d
-> loaded the bit file with jtag, uhd_usrp_probe gave me an error message. C=
-an
-> anyone help me with this, please? What might be the problem?
+> Yes, it is. I attached some example file. I changed name of them in code
+> but I am faced with a warning.........
+> WARNING: [Synth 8-2898] ignoring malformed $readmem task: invalid memory
+> name [file.sv:50]
+> WARNING: [Synth 8-2898] ignoring malformed $readmem task: invalid memory
+> name [file.sv:51]
+> In simulation it works but i synthesis I am faced with top
+> warning..........
+> why in RFNOC block I faced with this error for mem files.........can any
+> one guide me?
 >
-> Kind Regards,
-> Yasir.
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> On Fri, Oct 14, 2022 at 7:36 PM Wade Fife <wade.fife@ettus.com> wrote:
 >
+>> Does the file you're reading from have enough data in it?
+>>
+>> Wade
+>>
+>>
+>> On Thu, Oct 13, 2022, 7:39 AM sp <stackprogramer@gmail.com> wrote:
+>>
+>>> Why initialize large array in Verilog is not successfully. When size of
+>>> array is 255 it work like charm but for other number more than 255 like
+>>> 1024 and ....
+>>> we observe all array is filled with zero? why large array in FPGA can
+>>> not initailize correctly????
+>>>
+>>>
+>>> Code:
+>>>  reg signed  [15:0]  data_i_pattern_buffer [1024:0];
+>>>  reg signed  [15:0]  data_q_pattern_buffer [1024:0];
+>>>   $readmemh("out_i.txt",data_i_pattern_buffer,0,1024);
+>>>  $readmemh("out_q.txt",data_q_pattern_buffer,0,1024);
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
 
---000000000000f416c805eb8ed934
+--000000000000ca30c005eb8f0fd0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Yasir,</div><div><br></div><div>The E320 runs Linu=
-x on the SoC of FPGA. There are devices in the FPGA which are visible to th=
-e Linux kernel, so updating the FPGA without first bringing down those devi=
-ces causes problems. uhd_image_loader takes care of all this for you. You c=
-an use uhd_image_loader to first load your bitstream (the one you want to d=
-ebug over JTAG), then use the Vivado hardware manager to connect to that bi=
-tstream via JTAG after it is already loaded.<br></div><div><br></div><div>W=
-ade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Thu, Oct 20, 2022 at 3:31 AM Yasir =C3=96z=C3=A7al=C4=B1k &=
-lt;<a href=3D"mailto:simultaneous11@gmail.com">simultaneous11@gmail.com</a>=
-&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
- dir=3D"ltr">Hi everyone,=C2=A0<div>I am trying=C2=A0to debug E320 with JTA=
-G. I connected to the E320 JTAG console with Vivado 2019.1=C2=A0hardware ma=
-nager. Vivado successfully recognized=C2=A0E320. Then, I loaded my custom b=
-itfile. The problem is E320 started to give me errors saying that &quot;IO =
-Error during GSM initialization.&quot; I thought that might be because=C2=
-=A0of the bit file. Therefore; I tried to load the default bit file, but th=
-e same problem occurred=C2=A0again. When I use uhd_image_loader, bitfiles w=
-ork without problem. But when I wanted to debug it with JTAG and loaded the=
- bit file with jtag, uhd_usrp_probe gave me an error message. Can anyone he=
-lp me with this, please? What might be the problem?</div><div><br></div><di=
-v>Kind Regards,</div><div>Yasir.</div></div>
+<div dir=3D"ltr"><div>I&#39;m curious if it works if you change the memory =
+size to 1024 instead of 1025 like you have now, or if you use increasing ad=
+dresses instead of decreasing. A 1025-word memory with a reversed range is =
+unusual. But regardless, this warning comes from Vivado, not UHD/RFNoC, so =
+you should probably post your question on the Vivado forum.</div><div><br><=
+/div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Sat, Oct 15, 2022 at 10:03 AM sp &lt;<a href=3D"=
+mailto:stackprogramer@gmail.com">stackprogramer@gmail.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Y=
+es, it is. I attached some example file. I changed name of them in code but=
+ I am faced with a warning.........<br><div><span style=3D"color:rgb(29,29,=
+29);font-family:&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvetica,R=
+oboto,Oxygen,Ubuntu,Cantarell,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,=
+sans-serif;font-size:15px;background-color:rgb(234,232,207)">WARNING: [Synt=
+h 8-2898] ignoring malformed $readmem task: invalid memory name [<a href=3D=
+"http://file.sv:50" target=3D"_blank">file.sv:50</a>]</span><br style=3D"bo=
+x-sizing:border-box;color:rgb(29,29,29);font-family:&quot;Segoe UI&quot;,&q=
+uot;Helvetica Neue&quot;,Helvetica,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Fir=
+a Sans&quot;,&quot;Droid Sans&quot;,sans-serif;font-size:15px;background-co=
+lor:rgb(234,232,207)"><span style=3D"color:rgb(29,29,29);font-family:&quot;=
+Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvetica,Roboto,Oxygen,Ubuntu,Ca=
+ntarell,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,sans-serif;font-size:1=
+5px;background-color:rgb(234,232,207)">WARNING: [Synth 8-2898] ignoring mal=
+formed $readmem task: invalid memory name [<a href=3D"http://file.sv:51" ta=
+rget=3D"_blank">file.sv:51</a>]</span><br></div><div>In simulation it works=
+ but i synthesis I am faced with top warning..........</div><div>why in RFN=
+OC block I faced with this error for mem files.........can any one guide me=
+?</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Fri, Oct 14, 2022 at 7:36 PM Wade Fife &lt;<a href=3D"mailto:wade=
+.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><di=
+v>Does the file you&#39;re reading from have enough data in it?<div dir=3D"=
+auto"><br></div><div dir=3D"auto">Wade</div><br><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 13, 2022, 7:39 AM sp =
+&lt;<a href=3D"mailto:stackprogramer@gmail.com" target=3D"_blank">stackprog=
+ramer@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr">Why initialize large array in Verilog is no=
+t successfully. When size of array is 255 it work like charm but for other =
+number more than 255 like 1024 and ....<br>we observe all array is filled w=
+ith zero? why large array in FPGA can not initailize correctly????<div><br>=
+</div><div><br>Code:<br>=C2=A0reg signed =C2=A0[15:0] =C2=A0data_i_pattern_=
+buffer [1024:0];<br>=C2=A0reg signed =C2=A0[15:0] =C2=A0data_q_pattern_buff=
+er [1024:0];<br>=C2=A0 $readmemh(&quot;out_i.txt&quot;,data_i_pattern_buffe=
+r,0,1024);<br>=C2=A0$readmemh(&quot;out_q.txt&quot;,data_q_pattern_buffer,0=
+,1024);<br></div></div>
 _______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
+l=3D"noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+tus.com" rel=3D"noreferrer" target=3D"_blank">usrp-users-leave@lists.ettus.=
+com</a><br>
+</blockquote></div></div></div>
+</blockquote></div>
 </blockquote></div>
 
---000000000000f416c805eb8ed934--
+--000000000000ca30c005eb8f0fd0--
 
---===============7971676049237755886==
+--===============3570944297939810951==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -169,4 +209,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7971676049237755886==--
+--===============3570944297939810951==--
