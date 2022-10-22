@@ -2,95 +2,94 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 968FE608D9B
-	for <lists+usrp-users@lfdr.de>; Sat, 22 Oct 2022 16:10:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD55608ED3
+	for <lists+usrp-users@lfdr.de>; Sat, 22 Oct 2022 19:38:38 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DD63D383978
-	for <lists+usrp-users@lfdr.de>; Sat, 22 Oct 2022 10:10:20 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 503BA383BB7
+	for <lists+usrp-users@lfdr.de>; Sat, 22 Oct 2022 13:38:37 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666447820; bh=wMO5N+HPaTl2lD5bIb8+Zr7XlYqrUD1qiKl/tXJlSNE=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=ekrAMroo2mStvFMvGfjHYdefrMI0m4UrUymPHI4/+YndigXimLi/16+F2tOwqJ0sk
-	 HdEM4UIH0Nzp56Srr31nKdEA7vyAWCUXUQmACNS6CQFOYRVFZJ65Re3LcSAGzQXZMF
-	 Gt6dlGg/em4pZiDCGlKHlnXK/T4/4UXiAgPVEj9yi7Hpvnexv1ocFW4XV4fpsFS0ES
-	 xjOaNBL2MF/LXX3lb4mzvM+ie7/qwfYd6eg/hNTDLuE/uPyQ6QR57h375FCaO7J8nY
-	 JikAA/048u8xguDqW7vley+s4kcKTHrDZykPDhReudd9piUH6eAhRx71eYVAtlPtE0
-	 thTZ+NxwgeBjA==
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id 878F53809F6
-	for <usrp-users@lists.ettus.com>; Sat, 22 Oct 2022 10:09:14 -0400 (EDT)
+	t=1666460317; bh=Nwj4DK2mNePPlvQgcNmkJ/hFO2BQ+wtTUt8Gujm01vA=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=bZOkzojwKzheNiqy9P2PC//9QuNY1joikpkHWnkNU5mbkyBLZHu5Ga017zt/8Rxan
+	 7rv6tiDScFfnt07W1YxQ8rudLAogdCpjB6dUnpMfbvwgaWw/D68EMln8PGX4A8wO2V
+	 Z4eutFMztaCPhnM77VPTppvvOHA9UmuvjUxECDzanzD9BemCKzEuucYGCmWrRh2PJP
+	 dpQNDKciO5cItDKAt9pGjIbr9Co9FzGmXfx0KClrgBHXBfRBjI3r8SedTKJsSQ9IXp
+	 UhASgmVcrDv94Noky8fjMM8miuynOvjrUPWp+JgXwhnkn9kfXQpsO3Jq7uNAGwkTkK
+	 e2O/yjwww6LYA==
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id CF9EC3839A1
+	for <usrp-users@lists.ettus.com>; Sat, 22 Oct 2022 13:37:49 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="L6eT40jq";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AjK8oxhq";
 	dkim-atps=neutral
-Received: by mail-yb1-f171.google.com with SMTP id 63so6390466ybq.4
-        for <usrp-users@lists.ettus.com>; Sat, 22 Oct 2022 07:09:14 -0700 (PDT)
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-367cd2807f2so51676847b3.1
+        for <usrp-users@lists.ettus.com>; Sat, 22 Oct 2022 10:37:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jWaHeCbNe3W8LIXGx1fPpPUfuNYVQOvK2bkOPd7VMB8=;
-        b=L6eT40jqERZInpByzZmTrRmGkfTLDM2XW+8hp5cpoLYbC8iiC6ibz2+IYugmO914aC
-         FqrcuKV/QPwhfGwiVGsjoiFzEXz1PeSohWeViscyOvrR2QM0e2WbRGKPG0NlXGiArcHH
-         0bH7fvi5wuSrdjxo8KkgJPJmtaCN7teZxb2DKiXsFIjeQcmVG+ID/phYvhk/MWA8NrqN
-         SM0tn1mWcB6zkyUY+G2s9/dwD1OoQGn3BZFPnFZ4L+rwH1psnDiE6xWR1rtDV2IAGOmc
-         83NZTo4zxb+X5Jf6vsjUsfzBJ/fXn8u4ueCcyprvxZ6w5f6u0RreGiPo7QXHG9/3NUYu
-         cBKQ==
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=bm/RDefS2anEfHSo55at/D2FeYJJTat7G7Zowv+HmTU=;
+        b=AjK8oxhqXaHpGFWSEg1Lea8s5Z7jhOQR+7dzewRfMvvLSOzMFvDXKeOwI7BL+mO6GY
+         kNe0iRd904PA7OSbOP7+4QYbdB3IyFcgmsKmL2NensGOMgjEtoAfLWAiEE4lYO/qxKo+
+         06O7nXAi9q6HwhBpu2/pNJyRk61VrT4WdHaTEoU13Se4Et2GhHHCaBfdCaPDE21pxDu0
+         kSkkoejGvmTgGzduDSzucXluw7pcwLc4NjGlG5SNeUSLCA0apdZfhuef9mr8bLs7Jt15
+         DiBRs+oGjhDkrBjB12XUCZGXYrHi/JkbhL6o9iONpQ+AlLpqFatVXKT+MHn7yr7s2omr
+         5VvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jWaHeCbNe3W8LIXGx1fPpPUfuNYVQOvK2bkOPd7VMB8=;
-        b=65HwA19HC7Sdq5K5IzpHPmNP2e7CR3yVgXkvuX6fN9JHF1kF4ZpMSlw9reheQK1GdS
-         thAGjXSb71J+Hd9yEL1P0difjXcPy0H/zWU8aWgxuZzpj6wqQ+V5ZdeOzJ6BUISm0yrf
-         u9Wi80INF+fsG6sFaX7J0i1duykpH7/cP5YVTaLKX4VpKnaEjtBG1wp9oaRhEfBoNcZF
-         xEJLKmdkWMi7suoG43ftYs5a4ZUxQm1h9HM7xvbHHBbGCP0khmuae4WzwC1rj1T2ycmg
-         7hGjkjXCRPVBL6bCHGIzli73vf74LJSkSrJdUYdJVg6jccunJrr+qAeIH/AjDh+Zz/jN
-         6Gxw==
-X-Gm-Message-State: ACrzQf0xQjOz9Zj80VD4H2cHOgulxaDz3Uctp+87jipeVq2YbocJ4R+O
-	vdzLgepS+/DJOith/IDeMfJI7Lm6on6z6mPYvy8sopZCVMvU+7VG
-X-Google-Smtp-Source: AMsMyM4PFzaRXnkUq/cpnYQEI4BUePHbNCdowgwAQVKeYepDSR+ygk7Mj3XKmBvuDeHCwZX1mbGuG+6o8SrP/fGIRdE=
-X-Received: by 2002:a25:c1c2:0:b0:6c4:318:642f with SMTP id
- r185-20020a25c1c2000000b006c40318642fmr19960407ybf.561.1666447753444; Sat, 22
- Oct 2022 07:09:13 -0700 (PDT)
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bm/RDefS2anEfHSo55at/D2FeYJJTat7G7Zowv+HmTU=;
+        b=71DqTRgGAQ+aXgo9sjNX/c38GZJW+NL5x98dpC7JLu9fmqvrFL33uV9Hm9d02lUZPT
+         Vl2bvw9bwujwfUiuKmkYRgRCToidalB+AYT5zFXpASAPx/tzyXCgDrPc5fT8wWNEQUgC
+         oTLwbTEjSD0acrAIDRYd9TcF0dnnMNMWs47WSHxFCGcgS+Sqnuqwnq8SLHYbM0ASfpD4
+         hYDIJScdt+8/YpX4HFD+s85mQz/wXkWk+3Kr5EbSvOU2sSfYhKGMRDijhPSKEGJGPHsE
+         jSwl05LkZVBrlT74YgR/7GyzLi3b1qIy7qvzmSE6J7ozXXneAvDTW7RXzECrd5t34Pcx
+         4ilQ==
+X-Gm-Message-State: ACrzQf1+zey9+a4Jmk9aRI9EXM2DCOwfNPviVaiDxNeOwxcm6Hcj1Rtk
+	enZLEX/f0wa27mVOs/qiWvgjp5YuF6MLyi+qUz/Ak1kBlihz9ts4
+X-Google-Smtp-Source: AMsMyM6/oRNW8MRSK1NMc4qJ+TPrObRqmFnWYNrCNMAODZwT7YFnoXKpV7ud9AYnI59jXL3kCzwEFQm8QtUZw9o4X5Q=
+X-Received: by 2002:a81:a109:0:b0:367:efbe:e1f0 with SMTP id
+ y9-20020a81a109000000b00367efbee1f0mr15391894ywg.365.1666460268829; Sat, 22
+ Oct 2022 10:37:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAA=S3PtNSw1qOgaKJbRRnUpTfn4A-zK_10frYCk7CoCo93Drhw@mail.gmail.com>
- <CAFche=hOWymQFaD9KkAjX9WSuLAPkmqJBWytMnU5+hu_-fPzEQ@mail.gmail.com>
- <CAA=S3PtF8Qm=FXbqzO2h-0Fazy+Gp8VL7HNbYCpHg74XjSffyg@mail.gmail.com> <CAFche=i=r+vgvYCZxNySF9a7fV92RUNRXfZ6bOL2HF=3FixzaQ@mail.gmail.com>
-In-Reply-To: <CAFche=i=r+vgvYCZxNySF9a7fV92RUNRXfZ6bOL2HF=3FixzaQ@mail.gmail.com>
 From: sp <stackprogramer@gmail.com>
-Date: Sat, 22 Oct 2022 17:39:01 +0330
-Message-ID: <CAA=S3PtD4_8Dtybg6ux8+4UkwRpgJpr9v7Yso2kDqfRV3A65_g@mail.gmail.com>
-To: Wade Fife <wade.fife@ettus.com>
-Message-ID-Hash: YXXFZRBYQKANWDVSYNKCYFVYM6R6RK5O
-X-Message-ID-Hash: YXXFZRBYQKANWDVSYNKCYFVYM6R6RK5O
+Date: Sat, 22 Oct 2022 21:07:37 +0330
+Message-ID: <CAA=S3PvFmb-7AMsfuSSBurMj7BZFoRY8f-pBLL4PiX=nSfXCGA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: U4RPFCL373PLNNFSGCHPBKWTAFVQTCW6
+X-Message-ID-Hash: U4RPFCL373PLNNFSGCHPBKWTAFVQTCW6
 X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Why initialize large array in Verilog is not successfully in RFNOC blocks...
+Subject: [USRP-users] when I intialize block RAM and I want to use block RAM in a FOR I faced with this invalid memory name?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YXXFZRBYQKANWDVSYNKCYFVYM6R6RK5O/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/U4RPFCL373PLNNFSGCHPBKWTAFVQTCW6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============9045560056443688744=="
+Content-Type: multipart/mixed; boundary="===============8967777746067547909=="
 
---===============9045560056443688744==
-Content-Type: multipart/alternative; boundary="00000000000061818105eba01a93"
+--===============8967777746067547909==
+Content-Type: multipart/alternative; boundary="0000000000005b200005eba30473"
 
---00000000000061818105eba01a93
+--0000000000005b200005eba30473
 Content-Type: text/plain; charset="UTF-8"
 
-Thanks for the tip! But for usual cases it works.....$readmemhex works like
-charm....when I use a for or loop and I used ROM in for I faced with these
-errors.....see the source code an RFNOC block code
+when I initialize block RAM and I want to use block RAM in a FOR I am faced
+with this invalid memory name.
+When I don't use RAM block array in For loop I have not any warning and
+readmemh works correctly...
+WARNING: [Synth 8-2898] ignoring malformed $readmem task: invalid memory
+name [file.sv:50]
+WARNING: [Synth 8-2898] ignoring malformed $readmem task: invalid memory
+name [file.sv:51]
+
 
 module multiplier_core
 #(parameter WIDTH=64)
@@ -156,224 +155,285 @@ assign o_tvalid = config_tvalid;
 assign config_tready = o_tready;
 endmodule
 
-On Fri, Oct 21, 2022 at 9:19 PM Wade Fife <wade.fife@ettus.com> wrote:
-
-> I'm curious if it works if you change the memory size to 1024 instead of
-> 1025 like you have now, or if you use increasing addresses instead of
-> decreasing. A 1025-word memory with a reversed range is unusual. But
-> regardless, this warning comes from Vivado, not UHD/RFNoC, so you should
-> probably post your question on the Vivado forum.
->
-> Wade
->
-> On Sat, Oct 15, 2022 at 10:03 AM sp <stackprogramer@gmail.com> wrote:
->
->> Yes, it is. I attached some example file. I changed name of them in code
->> but I am faced with a warning.........
->> WARNING: [Synth 8-2898] ignoring malformed $readmem task: invalid memory
->> name [file.sv:50]
->> WARNING: [Synth 8-2898] ignoring malformed $readmem task: invalid memory
->> name [file.sv:51]
->> In simulation it works but i synthesis I am faced with top
->> warning..........
->> why in RFNOC block I faced with this error for mem files.........can any
->> one guide me?
->>
->> On Fri, Oct 14, 2022 at 7:36 PM Wade Fife <wade.fife@ettus.com> wrote:
->>
->>> Does the file you're reading from have enough data in it?
->>>
->>> Wade
->>>
->>>
->>> On Thu, Oct 13, 2022, 7:39 AM sp <stackprogramer@gmail.com> wrote:
->>>
->>>> Why initialize large array in Verilog is not successfully. When size of
->>>> array is 255 it work like charm but for other number more than 255 like
->>>> 1024 and ....
->>>> we observe all array is filled with zero? why large array in FPGA can
->>>> not initailize correctly????
->>>>
->>>>
->>>> Code:
->>>>  reg signed  [15:0]  data_i_pattern_buffer [1024:0];
->>>>  reg signed  [15:0]  data_q_pattern_buffer [1024:0];
->>>>   $readmemh("out_i.txt",data_i_pattern_buffer,0,1024);
->>>>  $readmemh("out_q.txt",data_q_pattern_buffer,0,1024);
->>>> _______________________________________________
->>>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->>>>
->>>
-
---00000000000061818105eba01a93
+--0000000000005b200005eba30473
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for the tip! But for usual cases it works.....$read=
-memhex works like charm....when I use a for or loop and I used ROM in for I=
- faced with these errors.....see the source code an RFNOC block code=C2=A0<=
-br><div><br></div><div><div style=3D"color:rgb(0,0,0);font-family:&quot;Dro=
-id Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallbac=
-k&quot;;font-size:14px;line-height:19px;white-space:pre"><div><span style=
-=3D"color:rgb(0,0,255)">module</span> multiplier_core</div><div>  #(<span s=
-tyle=3D"color:rgb(0,0,255)">parameter</span> WIDTH=3D<span style=3D"color:r=
-gb(9,134,88)">64</span>)</div><div>   (<span style=3D"color:rgb(0,0,255)">i=
-nput</span> clk, <span style=3D"color:rgb(0,0,255)">input</span> reset,<spa=
-n style=3D"color:rgb(0,0,255)">input</span> [<span style=3D"color:rgb(9,134=
-,88)">31</span>:<span style=3D"color:rgb(9,134,88)">0</span>] reg_user,</di=
-v><div>    <span style=3D"color:rgb(0,0,255)">input</span> [<span style=3D"=
-color:rgb(9,134,88)">32</span>-<span style=3D"color:rgb(9,134,88)">1</span>=
-:<span style=3D"color:rgb(9,134,88)">0</span>] config_tdata, <span style=3D=
-"color:rgb(0,0,255)">input</span> config_tlast, <span style=3D"color:rgb(0,=
-0,255)">input</span> config_tvalid, <span style=3D"color:rgb(0,0,255)">outp=
-ut</span> config_tready,</div><div>    <span style=3D"color:rgb(0,0,255)">o=
-utput</span> [<span style=3D"color:rgb(9,134,88)">63</span>:<span style=3D"=
-color:rgb(9,134,88)">0</span>] o_tdata, <span style=3D"color:rgb(0,0,255)">=
-output</span> o_tlast, <span style=3D"color:rgb(0,0,255)">output</span> o_t=
-valid, <span style=3D"color:rgb(0,0,255)">input</span> o_tready);</div><br>=
-<div>     <span style=3D"color:rgb(0,0,255)">reg</span> <span style=3D"colo=
-r:rgb(0,0,255)">signed</span> [<span style=3D"color:rgb(9,134,88)">15</span=
->:<span style=3D"color:rgb(9,134,88)">0</span>] data_samples_i_buffer [<spa=
-n style=3D"color:rgb(9,134,88)">1024</span>:<span style=3D"color:rgb(9,134,=
-88)">0</span>];</div><div>     <span style=3D"color:rgb(0,0,255)">reg</span=
-> <span style=3D"color:rgb(0,0,255)">signed</span> [<span style=3D"color:rg=
-b(9,134,88)">15</span>:<span style=3D"color:rgb(9,134,88)">0</span>] data_s=
-amples_q_buffer [<span style=3D"color:rgb(9,134,88)">1024</span>:<span styl=
-e=3D"color:rgb(9,134,88)">0</span>];</div><br><div>     <span style=3D"colo=
-r:rgb(0,0,255)">reg</span> [<span style=3D"color:rgb(9,134,88)">31</span>:<=
-span style=3D"color:rgb(9,134,88)">0</span>] edgei_tbl_rom[<span style=3D"c=
-olor:rgb(9,134,88)">0</span>:<span style=3D"color:rgb(9,134,88)">1024</span=
->];</div><div>     <span style=3D"color:rgb(0,0,255)">reg</span> [<span sty=
+<div dir=3D"ltr"><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid San=
+s Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot=
+;;font-size:14px;white-space:pre-wrap">when I initialize block RAM and I wa=
+nt to use block RAM in a FOR I am faced with this invalid memory name.<span=
+ style=3D"color:rgb(0,0,255)"><br></span></div><div style=3D"color:rgb(0,0,=
+0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,=
+&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">When I=
+ don&#39;t use RAM block array in For loop I have not any warning and readm=
+emh works correctly...</div><div style=3D"color:rgb(0,0,0);font-family:&quo=
+t;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fa=
+llback&quot;;font-size:14px;white-space:pre-wrap">WARNING: [Synth 8-2898] i=
+gnoring malformed $readmem task: invalid memory name [<a href=3D"http://fil=
+e.sv:50">file.sv:50</a>]<br>WARNING: [Synth 8-2898] ignoring malformed $rea=
+dmem task: invalid memory name [<a href=3D"http://file.sv:51">file.sv:51</a=
+>]<br></div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mon=
+o&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;fon=
+t-size:14px;white-space:pre-wrap"><br></div><div style=3D"color:rgb(0,0,0);=
+font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&qu=
+ot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap"><br></div=
+><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&qu=
+ot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px=
+;white-space:pre-wrap"><span style=3D"color:rgb(0,0,255)">module</span> mul=
+tiplier_core</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sa=
+ns Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quo=
+t;;font-size:14px;white-space:pre-wrap">  #(<span style=3D"color:rgb(0,0,25=
+5)">parameter</span> WIDTH=3D<span style=3D"color:rgb(9,134,88)">64</span>)=
+</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot=
+;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size=
+:14px;white-space:pre-wrap">   (<span style=3D"color:rgb(0,0,255)">input</s=
+pan> clk, <span style=3D"color:rgb(0,0,255)">input</span> reset,<span style=
+=3D"color:rgb(0,0,255)">input</span> [<span style=3D"color:rgb(9,134,88)">3=
+1</span>:<span style=3D"color:rgb(9,134,88)">0</span>] reg_user,</div><div =
+style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;mon=
+ospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white=
+-space:pre-wrap">    <span style=3D"color:rgb(0,0,255)">input</span> [<span=
+ style=3D"color:rgb(9,134,88)">32</span>-<span style=3D"color:rgb(9,134,88)=
+">1</span>:<span style=3D"color:rgb(9,134,88)">0</span>] config_tdata, <spa=
+n style=3D"color:rgb(0,0,255)">input</span> config_tlast, <span style=3D"co=
+lor:rgb(0,0,255)">input</span> config_tvalid, <span style=3D"color:rgb(0,0,=
+255)">output</span> config_tready,</div><div style=3D"color:rgb(0,0,0);font=
+-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;D=
+roid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">    <span sty=
+le=3D"color:rgb(0,0,255)">output</span> [<span style=3D"color:rgb(9,134,88)=
+">63</span>:<span style=3D"color:rgb(9,134,88)">0</span>] o_tdata, <span st=
+yle=3D"color:rgb(0,0,255)">output</span> o_tlast, <span style=3D"color:rgb(=
+0,0,255)">output</span> o_tvalid, <span style=3D"color:rgb(0,0,255)">input<=
+/span> o_tready);</div><br style=3D"color:rgb(0,0,0);font-family:&quot;Droi=
+d Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback=
+&quot;;font-size:14px;white-space:pre-wrap"><div style=3D"color:rgb(0,0,0);=
+font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&qu=
+ot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">     <spa=
+n style=3D"color:rgb(0,0,255)">reg</span> <span style=3D"color:rgb(0,0,255)=
+">signed</span> [<span style=3D"color:rgb(9,134,88)">15</span>:<span style=
+=3D"color:rgb(9,134,88)">0</span>] data_samples_i_buffer [<span style=3D"co=
+lor:rgb(9,134,88)">1024</span>:<span style=3D"color:rgb(9,134,88)">0</span>=
+];</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&qu=
+ot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-si=
+ze:14px;white-space:pre-wrap">     <span style=3D"color:rgb(0,0,255)">reg</=
+span> <span style=3D"color:rgb(0,0,255)">signed</span> [<span style=3D"colo=
+r:rgb(9,134,88)">15</span>:<span style=3D"color:rgb(9,134,88)">0</span>] da=
+ta_samples_q_buffer [<span style=3D"color:rgb(9,134,88)">1024</span>:<span =
+style=3D"color:rgb(9,134,88)">0</span>];</div><br style=3D"color:rgb(0,0,0)=
+;font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&q=
+uot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap"><div sty=
+le=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monosp=
+ace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-sp=
+ace:pre-wrap">     <span style=3D"color:rgb(0,0,255)">reg</span> [<span sty=
 le=3D"color:rgb(9,134,88)">31</span>:<span style=3D"color:rgb(9,134,88)">0<=
-/span>] edgeq_tbl_rom[<span style=3D"color:rgb(9,134,88)">0</span>:<span st=
-yle=3D"color:rgb(9,134,88)">1024</span>];</div><br><br><br><div>     <span =
-style=3D"color:rgb(0,0,255)">initial</span> <span style=3D"color:rgb(0,0,25=
-5)">begin</span> </div><div>          <span style=3D"color:rgb(0,128,0)">//=
-Initial </span></div><br><div>            $readmemh(<span style=3D"color:rg=
-b(163,21,21)">&quot;/home/sp/rfnoc-test/rfnoc/fpga/rfnoc_block_multiplier/1=
-.hex&quot;</span>,edgei_tbl_rom,<span style=3D"color:rgb(9,134,88)">0</span=
->,<span style=3D"color:rgb(9,134,88)">1024</span>);</div><div>            $=
-readmemh(<span style=3D"color:rgb(163,21,21)">&quot;/home/sp/rfnoc-test/rfn=
-oc/fpga/rfnoc_block_multiplier/1.hex&quot;</span>,edgeq_tbl_rom,<span style=
-=3D"color:rgb(9,134,88)">0</span>,<span style=3D"color:rgb(9,134,88)">1024<=
-/span>);</div><div>    ebd</div><br><br><div>     <span style=3D"color:rgb(=
-0,0,255)">always</span> @(<span style=3D"color:rgb(0,0,255)">posedge</span>=
- config_tvalid ) <span style=3D"color:rgb(0,0,255)">begin</span></div><div>=
-        <span style=3D"color:rgb(0,0,255)">if</span>(state=3D=3D<span style=
-=3D"color:rgb(9,134,88)">1</span>)</div><div>        <span style=3D"color:r=
-gb(0,0,255)">begin</span></div><div>           $display(<span style=3D"colo=
-r:rgb(163,21,21)">&quot;-------Clock is triggerted...%0d ----&quot;</span>,=
-m);</div><br><div>            <span style=3D"color:rgb(0,128,0)">//Save sam=
-ples in samples buffer </span></div><div>            data_samples_i_buffer[=
-m]=3Dconfig_tdata[<span style=3D"color:rgb(9,134,88)">15</span>:<span style=
-=3D"color:rgb(9,134,88)">0</span>];</div><div>            data_samples_q_bu=
-ffer[m]=3Dconfig_tdata[<span style=3D"color:rgb(9,134,88)">31</span>:<span =
-style=3D"color:rgb(9,134,88)">16</span>];</div><div>         </div><div>   =
-         $display(<span style=3D"color:rgb(163,21,21)">&quot;Sample %0d =3D=
- %0d +i %0d&quot;</span>,m,data_samples_i_buffer[m],data_samples_q_buffer[m=
-]);</div><br><br><div>            <span style=3D"color:rgb(0,0,255)">if</sp=
-an>(m=3D=3D<span style=3D"color:rgb(9,134,88)">1024</span>) <span style=3D"=
-color:rgb(0,0,255)">begin</span></div><div>            </div><div>         =
-     m=3D<span style=3D"color:rgb(9,134,88)">0</span>;</div><div>          =
-  </div><div>            <span style=3D"color:rgb(0,0,255)">end</span> <spa=
-n style=3D"color:rgb(0,0,255)">else</span> <span style=3D"color:rgb(0,0,255=
-)">begin</span></div><div>            </div><div>              m=3Dm+<span =
-style=3D"color:rgb(9,134,88)">1</span>;</div><div>            </div><div>  =
-          <span style=3D"color:rgb(0,0,255)">end</span></div><div>         =
-     <span style=3D"color:rgb(0,128,0)">// temp_i_mult_result_sum=3D edge_t=
-bl_rom[j];</span></div><div>            <span style=3D"color:rgb(0,0,255)">=
-for</span>(j=3D<span style=3D"color:rgb(9,134,88)">0</span>; j&lt;<span sty=
-le=3D"color:rgb(9,134,88)">1000</span>; j=3Dj+<span style=3D"color:rgb(9,13=
-4,88)">1</span>)</div><div>                <span style=3D"color:rgb(0,0,255=
-)">begin</span></div><div>            </div><div>              temp_i_mult_=
-result_sum=3D edgei_tbl_rom[j];<span style=3D"color:rgb(0,128,0)">//(temp_i=
-_mult_result_sum+data_samples_i_buffer[j]*edgei_tbl_rom[j]+data_samples_q_b=
-uffer[j]*edgeq_tbl_rom[j]);</span></div><br><div>              </div><div> =
-              </div><div>                <span style=3D"color:rgb(0,0,255)"=
->end</span></div><div>             </div><div>          </div><div>        =
-          </div><div>               <span style=3D"color:rgb(0,128,0)">// e=
-nergy_factor=3Dreg_user;//65536*20;</span></div><div>                multip=
-lier_tdata=3Dtemp_i_mult_result_sum;</div><div>          temp_i_mult_result=
-_sum=3D<span style=3D"color:rgb(9,134,88)">0</span>;</div><div>        </di=
-v><div>        <span style=3D"color:rgb(0,0,255)">end</span></div><div>    =
-    <span style=3D"color:rgb(0,0,255)">else</span> <span style=3D"color:rgb=
-(0,0,255)">begin</span></div><br><br><div>        <span style=3D"color:rgb(=
-0,0,255)">end</span></div><div> </div><div>       </div><div>  <span style=
-=3D"color:rgb(0,0,255)">end</span></div><div>        <span style=3D"color:r=
-gb(0,0,255)">assign</span> o_tdata =3D { <span style=3D"color:rgb(9,134,88)=
-">32&#39;h00000000</span>, multiplier_tdata};</div><div>        <span style=
-=3D"color:rgb(0,0,255)">assign</span> o_tlast =3D config_tlast;</div><div> =
-       <span style=3D"color:rgb(0,0,255)">assign</span> o_tvalid =3D config=
-_tvalid;</div><div>        <span style=3D"color:rgb(0,0,255)">assign</span>=
- config_tready =3D o_tready;</div><div><span style=3D"color:rgb(0,0,255)">e=
-ndmodule</span></div></div></div></div><br><div class=3D"gmail_quote"><div =
-dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 21, 2022 at 9:19 PM Wade Fife =
-&lt;<a href=3D"mailto:wade.fife@ettus.com">wade.fife@ettus.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr"><div>I&#39;m curious if it works if you change the memory size to 1024 =
-instead of 1025 like you have now, or if you use increasing addresses inste=
-ad of decreasing. A 1025-word memory with a reversed range is unusual. But =
-regardless, this warning comes from Vivado, not UHD/RFNoC, so you should pr=
-obably post your question on the Vivado forum.</div><div><br></div><div>Wad=
-e<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Sat, Oct 15, 2022 at 10:03 AM sp &lt;<a href=3D"mailto:stackp=
-rogramer@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"l=
-tr">Yes, it is. I attached some example file. I changed name of them in cod=
-e but I am faced with a warning.........<br><div><span style=3D"color:rgb(2=
-9,29,29);font-family:&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvet=
-ica,Roboto,Oxygen,Ubuntu,Cantarell,&quot;Fira Sans&quot;,&quot;Droid Sans&q=
-uot;,sans-serif;font-size:15px;background-color:rgb(234,232,207)">WARNING: =
-[Synth 8-2898] ignoring malformed $readmem task: invalid memory name [<a hr=
-ef=3D"http://file.sv:50" target=3D"_blank">file.sv:50</a>]</span><br style=
-=3D"box-sizing:border-box;color:rgb(29,29,29);font-family:&quot;Segoe UI&qu=
-ot;,&quot;Helvetica Neue&quot;,Helvetica,Roboto,Oxygen,Ubuntu,Cantarell,&qu=
-ot;Fira Sans&quot;,&quot;Droid Sans&quot;,sans-serif;font-size:15px;backgro=
-und-color:rgb(234,232,207)"><span style=3D"color:rgb(29,29,29);font-family:=
-&quot;Segoe UI&quot;,&quot;Helvetica Neue&quot;,Helvetica,Roboto,Oxygen,Ubu=
-ntu,Cantarell,&quot;Fira Sans&quot;,&quot;Droid Sans&quot;,sans-serif;font-=
-size:15px;background-color:rgb(234,232,207)">WARNING: [Synth 8-2898] ignori=
-ng malformed $readmem task: invalid memory name [<a href=3D"http://file.sv:=
-51" target=3D"_blank">file.sv:51</a>]</span><br></div><div>In simulation it=
- works but i synthesis I am faced with top warning..........</div><div>why =
-in RFNOC block I faced with this error for mem files.........can any one gu=
-ide me?</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
-"gmail_attr">On Fri, Oct 14, 2022 at 7:36 PM Wade Fife &lt;<a href=3D"mailt=
-o:wade.fife@ettus.com" target=3D"_blank">wade.fife@ettus.com</a>&gt; wrote:=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"aut=
-o"><div>Does the file you&#39;re reading from have enough data in it?<div d=
-ir=3D"auto"><br></div><div dir=3D"auto">Wade</div><br><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 13, 2022, 7:39 =
-AM sp &lt;<a href=3D"mailto:stackprogramer@gmail.com" target=3D"_blank">sta=
-ckprogramer@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><div dir=3D"ltr">Why initialize large array in Verilog=
- is not successfully. When size of array is 255 it work like charm but for =
-other number more than 255 like 1024 and ....<br>we observe all array is fi=
-lled with zero? why large array in FPGA can not initailize correctly????<di=
-v><br></div><div><br>Code:<br>=C2=A0reg signed =C2=A0[15:0] =C2=A0data_i_pa=
-ttern_buffer [1024:0];<br>=C2=A0reg signed =C2=A0[15:0] =C2=A0data_q_patter=
-n_buffer [1024:0];<br>=C2=A0 $readmemh(&quot;out_i.txt&quot;,data_i_pattern=
-_buffer,0,1024);<br>=C2=A0$readmemh(&quot;out_q.txt&quot;,data_q_pattern_bu=
-ffer,0,1024);<br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" re=
-l=3D"noreferrer" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" rel=3D"noreferrer" target=3D"_blank">usrp-users-leave@lists.ettus.=
-com</a><br>
-</blockquote></div></div></div>
-</blockquote></div>
-</blockquote></div>
-</blockquote></div>
+/span>] edgei_tbl_rom[<span style=3D"color:rgb(9,134,88)">0</span>:<span st=
+yle=3D"color:rgb(9,134,88)">1024</span>];</div><div style=3D"color:rgb(0,0,=
+0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,=
+&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">     <=
+span style=3D"color:rgb(0,0,255)">reg</span> [<span style=3D"color:rgb(9,13=
+4,88)">31</span>:<span style=3D"color:rgb(9,134,88)">0</span>] edgeq_tbl_ro=
+m[<span style=3D"color:rgb(9,134,88)">0</span>:<span style=3D"color:rgb(9,1=
+34,88)">1024</span>];</div><br style=3D"color:rgb(0,0,0);font-family:&quot;=
+Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fall=
+back&quot;;font-size:14px;white-space:pre-wrap"><br style=3D"color:rgb(0,0,=
+0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,=
+&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap"><br st=
+yle=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monos=
+pace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-s=
+pace:pre-wrap"><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans =
+Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;=
+font-size:14px;white-space:pre-wrap">     <span style=3D"color:rgb(0,0,255)=
+">initial</span> <span style=3D"color:rgb(0,0,255)">begin</span> </div><div=
+ style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;mo=
+nospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;whit=
+e-space:pre-wrap">          <span style=3D"color:rgb(0,128,0)">//Initial </=
+span></div><br style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&=
+quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-=
+size:14px;white-space:pre-wrap"><div style=3D"color:rgb(0,0,0);font-family:=
+&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid San=
+s Fallback&quot;;font-size:14px;white-space:pre-wrap">            $readmemh=
+(<span style=3D"color:rgb(163,21,21)">&quot;/home/sp/rfnoc-test/rfnoc/fpga/=
+rfnoc_block_multiplier/1.hex&quot;</span>,edgei_tbl_rom,<span style=3D"colo=
+r:rgb(9,134,88)">0</span>,<span style=3D"color:rgb(9,134,88)">1024</span>);=
+</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot=
+;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size=
+:14px;white-space:pre-wrap">            $readmemh(<span style=3D"color:rgb(=
+163,21,21)">&quot;/home/sp/rfnoc-test/rfnoc/fpga/rfnoc_block_multiplier/1.h=
+ex&quot;</span>,edgeq_tbl_rom,<span style=3D"color:rgb(9,134,88)">0</span>,=
+<span style=3D"color:rgb(9,134,88)">1024</span>);</div><div style=3D"color:=
+rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,mo=
+nospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap=
+">    ebd</div><br style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans M=
+ono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;f=
+ont-size:14px;white-space:pre-wrap"><br style=3D"color:rgb(0,0,0);font-fami=
+ly:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid =
+Sans Fallback&quot;;font-size:14px;white-space:pre-wrap"><div style=3D"colo=
+r:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,=
+monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wr=
+ap">     <span style=3D"color:rgb(0,0,255)">always</span> @(<span style=3D"=
+color:rgb(0,0,255)">posedge</span> config_tvalid ) <span style=3D"color:rgb=
+(0,0,255)">begin</span></div><div style=3D"color:rgb(0,0,0);font-family:&qu=
+ot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans F=
+allback&quot;;font-size:14px;white-space:pre-wrap">        <span style=3D"c=
+olor:rgb(0,0,255)">if</span>(state=3D=3D<span style=3D"color:rgb(9,134,88)"=
+>1</span>)</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans=
+ Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;=
+;font-size:14px;white-space:pre-wrap">        <span style=3D"color:rgb(0,0,=
+255)">begin</span></div><div style=3D"color:rgb(0,0,0);font-family:&quot;Dr=
+oid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallba=
+ck&quot;;font-size:14px;white-space:pre-wrap">           $display(<span sty=
+le=3D"color:rgb(163,21,21)">&quot;-------Clock is triggerted...%0d ----&quo=
+t;</span>,m);</div><br style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sa=
+ns Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quo=
+t;;font-size:14px;white-space:pre-wrap"><div style=3D"color:rgb(0,0,0);font=
+-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;D=
+roid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">            <=
+span style=3D"color:rgb(0,128,0)">//Save samples in samples buffer </span><=
+/div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;=
+,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:=
+14px;white-space:pre-wrap">            data_samples_i_buffer[m]=3Dconfig_td=
+ata[<span style=3D"color:rgb(9,134,88)">15</span>:<span style=3D"color:rgb(=
+9,134,88)">0</span>];</div><div style=3D"color:rgb(0,0,0);font-family:&quot=
+;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fal=
+lback&quot;;font-size:14px;white-space:pre-wrap">            data_samples_q=
+_buffer[m]=3Dconfig_tdata[<span style=3D"color:rgb(9,134,88)">31</span>:<sp=
+an style=3D"color:rgb(9,134,88)">16</span>];</div><div style=3D"color:rgb(0=
+,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospa=
+ce,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">   =
+      </div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mon=
+o&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;fon=
+t-size:14px;white-space:pre-wrap">            $display(<span style=3D"color=
+:rgb(163,21,21)">&quot;Sample %0d =3D %0d +i %0d&quot;</span>,m,data_sample=
+s_i_buffer[m],data_samples_q_buffer[m]);</div><br style=3D"color:rgb(0,0,0)=
+;font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&q=
+uot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap"><br styl=
+e=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospa=
+ce&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-spa=
+ce:pre-wrap"><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mo=
+no&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;fo=
+nt-size:14px;white-space:pre-wrap">            <span style=3D"color:rgb(0,0=
+,255)">if</span>(m=3D=3D<span style=3D"color:rgb(9,134,88)">1024</span>) <s=
+pan style=3D"color:rgb(0,0,255)">begin</span></div><div style=3D"color:rgb(=
+0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monosp=
+ace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">  =
+          </div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans=
+ Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;=
+;font-size:14px;white-space:pre-wrap">              m=3D<span style=3D"colo=
+r:rgb(9,134,88)">0</span>;</div><div style=3D"color:rgb(0,0,0);font-family:=
+&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid San=
+s Fallback&quot;;font-size:14px;white-space:pre-wrap">            </div><di=
+v style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;m=
+onospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;whi=
+te-space:pre-wrap">            <span style=3D"color:rgb(0,0,255)">end</span=
+> <span style=3D"color:rgb(0,0,255)">else</span> <span style=3D"color:rgb(0=
+,0,255)">begin</span></div><div style=3D"color:rgb(0,0,0);font-family:&quot=
+;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fal=
+lback&quot;;font-size:14px;white-space:pre-wrap">            </div><div sty=
+le=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monosp=
+ace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-sp=
+ace:pre-wrap">              m=3Dm+<span style=3D"color:rgb(9,134,88)">1</sp=
+an>;</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&=
+quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-=
+size:14px;white-space:pre-wrap">            </div><div style=3D"color:rgb(0=
+,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospa=
+ce,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">   =
+         <span style=3D"color:rgb(0,0,255)">end</span></div><div style=3D"c=
+olor:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quo=
+t;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre=
+-wrap">              <span style=3D"color:rgb(0,128,0)">// temp_i_mult_resu=
+lt_sum=3D edge_tbl_rom[j];</span></div><div style=3D"color:rgb(0,0,0);font-=
+family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Dr=
+oid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">            <s=
+pan style=3D"color:rgb(0,0,255)">for</span>(j=3D<span style=3D"color:rgb(9,=
+134,88)">0</span>; j&lt;<span style=3D"color:rgb(9,134,88)">1000</span>; j=
+=3Dj+<span style=3D"color:rgb(9,134,88)">1</span>)</div><div style=3D"color=
+:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,m=
+onospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wra=
+p">                <span style=3D"color:rgb(0,0,255)">begin</span></div><di=
+v style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;m=
+onospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;whi=
+te-space:pre-wrap">            </div><div style=3D"color:rgb(0,0,0);font-fa=
+mily:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droi=
+d Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">              te=
+mp_i_mult_result_sum=3D edgei_tbl_rom[j];<span style=3D"color:rgb(0,128,0)"=
+>//(temp_i_mult_result_sum+data_samples_i_buffer[j]*edgei_tbl_rom[j]+data_s=
+amples_q_buffer[j]*edgeq_tbl_rom[j]);</span></div><br style=3D"color:rgb(0,=
+0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospac=
+e,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap"><div=
+ style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;mo=
+nospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;whit=
+e-space:pre-wrap">              </div><div style=3D"color:rgb(0,0,0);font-f=
+amily:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Dro=
+id Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">               =
+</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot=
+;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size=
+:14px;white-space:pre-wrap">                <span style=3D"color:rgb(0,0,25=
+5)">end</span></div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid =
+Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&q=
+uot;;font-size:14px;white-space:pre-wrap">             </div><div style=3D"=
+color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&qu=
+ot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pr=
+e-wrap">          </div><div style=3D"color:rgb(0,0,0);font-family:&quot;Dr=
+oid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallba=
+ck&quot;;font-size:14px;white-space:pre-wrap">                  </div><div =
+style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;mon=
+ospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white=
+-space:pre-wrap">               <span style=3D"color:rgb(0,128,0)">// energ=
+y_factor=3Dreg_user;//65536*20;</span></div><div style=3D"color:rgb(0,0,0);=
+font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&qu=
+ot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">         =
+       multiplier_tdata=3Dtemp_i_mult_result_sum;</div><div style=3D"color:=
+rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,mo=
+nospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap=
+">          temp_i_mult_result_sum=3D<span style=3D"color:rgb(9,134,88)">0<=
+/span>;</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mo=
+no&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;fo=
+nt-size:14px;white-space:pre-wrap">        </div><div style=3D"color:rgb(0,=
+0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospac=
+e,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">    =
+    <span style=3D"color:rgb(0,0,255)">end</span></div><div style=3D"color:=
+rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,mo=
+nospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap=
+">        <span style=3D"color:rgb(0,0,255)">else</span> <span style=3D"col=
+or:rgb(0,0,255)">begin</span></div><br style=3D"color:rgb(0,0,0);font-famil=
+y:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid S=
+ans Fallback&quot;;font-size:14px;white-space:pre-wrap"><br style=3D"color:=
+rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,mo=
+nospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre-wrap=
+"><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&q=
+uot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14p=
+x;white-space:pre-wrap">        <span style=3D"color:rgb(0,0,255)">end</spa=
+n></div><div style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&qu=
+ot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-si=
+ze:14px;white-space:pre-wrap"> </div><div style=3D"color:rgb(0,0,0);font-fa=
+mily:&quot;Droid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droi=
+d Sans Fallback&quot;;font-size:14px;white-space:pre-wrap">       </div><di=
+v style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;m=
+onospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;whi=
+te-space:pre-wrap">  <span style=3D"color:rgb(0,0,255)">end</span></div><di=
+v style=3D"color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;m=
+onospace&quot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;whi=
+te-space:pre-wrap">        <span style=3D"color:rgb(0,0,255)">assign</span>=
+ o_tdata =3D { <span style=3D"color:rgb(9,134,88)">32&#39;h00000000</span>,=
+ multiplier_tdata};</div><div style=3D"color:rgb(0,0,0);font-family:&quot;D=
+roid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallb=
+ack&quot;;font-size:14px;white-space:pre-wrap">        <span style=3D"color=
+:rgb(0,0,255)">assign</span> o_tlast =3D config_tlast;</div><div style=3D"c=
+olor:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&quo=
+t;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pre=
+-wrap">        <span style=3D"color:rgb(0,0,255)">assign</span> o_tvalid =
+=3D config_tvalid;</div><div style=3D"color:rgb(0,0,0);font-family:&quot;Dr=
+oid Sans Mono&quot;,&quot;monospace&quot;,monospace,&quot;Droid Sans Fallba=
+ck&quot;;font-size:14px;white-space:pre-wrap">        <span style=3D"color:=
+rgb(0,0,255)">assign</span> config_tready =3D o_tready;</div><div style=3D"=
+color:rgb(0,0,0);font-family:&quot;Droid Sans Mono&quot;,&quot;monospace&qu=
+ot;,monospace,&quot;Droid Sans Fallback&quot;;font-size:14px;white-space:pr=
+e-wrap"><span style=3D"color:rgb(0,0,255)">endmodule</span></div></div>
 
---00000000000061818105eba01a93--
+--0000000000005b200005eba30473--
 
---===============9045560056443688744==
+--===============8967777746067547909==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -383,4 +443,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============9045560056443688744==--
+--===============8967777746067547909==--
