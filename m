@@ -2,369 +2,287 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D6560AE9E
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 17:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA6C60AEDD
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 17:20:00 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EA552383F87
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 11:10:36 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9B7DF383F54
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 11:19:59 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666624236; bh=YpTIdxYG0KejS2YJw+PGDbPM69GNEihWu7wMmQL93Os=;
+	t=1666624799; bh=o9TYXTxFgTDBa3h09I663Wmlpbw3goklpntHSQSRdPQ=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=EJ+GCHo3wK7+jDOiYPX7/NGpu+4TvBpJ+ol+dC9DM/flJqZVYcmwzzBzz1XRs41iC
-	 Ric15OMpnVWoDfVrHESqmsAs5ROqT+bUhCjOOIKU6u4z9CM2Ur+ddDb2AUYkAQgTEt
-	 jaF+SnLrrAiXjpYKENhlj8eTj/kCyXLZ9uB6wSnHwLoSB44wbKk6k7oU2qDSPfpsmO
-	 aslDFdKWkqsLJlP7Y5V7kokPboUJiEIFLXmjZUTev7f7mEw5d75OIrjdnwS5OgSvQG
-	 PTg3nnlzuSlfPG0JxcVMFnXifS+3fy6ldx/JpY8IlgEAf0E7P/u5zQPOOZ7WGmaAr3
-	 pCbHqdjlaQCFg==
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9E54F380989
-	for <usrp-users@lists.ettus.com>; Mon, 24 Oct 2022 11:09:27 -0400 (EDT)
+	b=n+zb5RegDi9x1Flv0ofawagMFrqu3Hq5acVHIUvABFgZ7nAWCmVc34W+KnY8kIzo5
+	 Sqd8UqVPpdNJbYEyf9OoWPNyoJEVxX37S3Hts1hBVuy2Sa7Fdoa1lVMte4TUcKeeqd
+	 05TdxtMTd7pavyn6fiKX6gpITbZAgAJtsIECzK1LKJA0PwoBmVT2yHVLY3eQGquojW
+	 8DY2KL6mlYRFwwdFvHh4aAAix8jzyz6jMBo0tkyNzHcBlh4Dgh1ivR4kYO6Z/479Uy
+	 oNkzh8uCM8JTwl+jpkN0+tU24frMosWI3eaK8JRsWADdxXYWHs9Qxd83aRO+0p1708
+	 +yec42As1JCVQ==
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3DDF2380964
+	for <usrp-users@lists.ettus.com>; Mon, 24 Oct 2022 11:18:51 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DFiOik6j";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="QS59+Gx3";
 	dkim-atps=neutral
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-13ae8117023so12167631fac.9
-        for <usrp-users@lists.ettus.com>; Mon, 24 Oct 2022 08:09:27 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id 13so5821134ejn.3
+        for <usrp-users@lists.ettus.com>; Mon, 24 Oct 2022 08:18:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZRFME/9bA1e55E33fFCF7iagBUEWiWgyd+C7TFYN9HA=;
-        b=DFiOik6j1MH+D65UIEgKbwpvZhwqcT8eLhLvKtJ0lxdSXt7qIGVBmk4oZu1NNOcq/A
-         359veYcwMcjGKF0VZHvgGWWm2KIVTWNA6K7JumLzRcXwLOizwUxenWHYZoUeNbWmmAXl
-         hzup6GTIjEXdFTkdeybJebli7OrqDIVMSL1ql47CMQq2xT4J+Aj7bqCPC0+2XEYJEh73
-         qFDc1SusRRgpbYOsdCyzYcloE5IOgfaWeRZoUZMIYpIh3LU4uizIZcCQVozak5p5DrNa
-         NRtdjRJSwk6HjvGgPhVziWLYlnR0U4gbfxm01+kTFrC3hClKmbDGSAhgZF6MkAO/B7Of
-         7/kA==
+        bh=X7xlEjakhCqEHjmxqZWuJ9KvJ1aMit9aD4LAb22ZeBI=;
+        b=QS59+Gx32H/cohbnZi4w5/FZX6vECp8/l5chGWQJX6UPJcw8XRjvdNFzUAo7xe8DgU
+         NHl9kVGBNhusENWhhdehRL2tlhoS0SntjGC6F/PqV68rSgsBes/cLEkK1tBqeLepd74n
+         qnQ5+zN5RtMBWUaixIF8XfBmEJv6lrG5HH5XzO/5owH3JD2F5wVGRnCOPQFUCd8ORisL
+         /CvsdYHivpl02Qn1YbeGxf+z00bBte1QL0RuLCmiZKjStc1GPBk5dD97Vj0GpZKpM/jk
+         UNo0YQS+pJOp2w5l2ZdAta9t2alAkmp1aKf3gmU9O7cQmh3vjAhRLoo+aV4Q9zCHGkKt
+         iz5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZRFME/9bA1e55E33fFCF7iagBUEWiWgyd+C7TFYN9HA=;
-        b=QUOPM/6F03y6+IC0WgAx4mR4jOSF41M6Rz+i4nHKEl0td1bel122qGN2fgAcFDUSaG
-         Kzc33dF8+irVvf3HhrRXdLhdN4jqS1Y03W/2aD5PLxJ126fKzVMeT3CSPBQXqodGERSX
-         45xfAA49/eR3QoA9/q6coltaPQoaY2PRgfYG/ULKfV/Smr9X9qB/ScGlnOGHcr6JzZ0U
-         6FlfEXeVMYeq+93llO/ZKam8fcpjDTMkM0OTm/gbe5WFjma0hvaBNRtZcU4xnZ5M19Zy
-         HYe/G59uENb1srskGVcTR302v8G8luZVBmchL8EQK0GlKOuAdIMvd1CGt+csGeV3Htz0
-         qV1A==
-X-Gm-Message-State: ACrzQf3PUNbObKWpLEw433ohC4m80npdJE7CeIu6y9Ae5DlyLvck49nl
-	3IBqO88toJN836Eqm9kPzmKqYf7KlDI7iHaoczg=
-X-Google-Smtp-Source: AMsMyM6ZTnd30/QLopeu1zFbf/w5GUeZOgAWGcMj6ojb/lAgz++NbStE3FFDw6PaTUCJgssn7W7VEl7rYkv3rTJ2Tfs=
-X-Received: by 2002:a05:6870:c084:b0:132:f48a:b488 with SMTP id
- c4-20020a056870c08400b00132f48ab488mr37868590oad.94.1666624166781; Mon, 24
- Oct 2022 08:09:26 -0700 (PDT)
+        bh=X7xlEjakhCqEHjmxqZWuJ9KvJ1aMit9aD4LAb22ZeBI=;
+        b=tYAVKEXLa6aymeN9wgQqznltD004zBzhpxm7A2daZCmgZaJAItwi2sKa+Un80dI4hJ
+         b//eELvxhIBHP9X2oMG2vf/A1Bg9hAvd1MmeBmSlp+9Sfzqek/C6Yu55bWE4CWvGi/wg
+         3npgK9KKojJnxW6tzKYkc9Js5ftBlBTdB8EcKm8eBMw+0S7Q4BFqTWyphKKDE9nzROTA
+         zWLd+OVsbjBmbkAcoZlwTKhV5tytPLh/EIk/E1seZfXP/OYIteBQCT3hS+1ynZjZ6oAc
+         yhOVWx1xlXsLSKH8YZwHMn5It1WBRwqSFuEiqJacF/1PQgwiuI5BinA1Jk442aF1cSyV
+         eXKg==
+X-Gm-Message-State: ACrzQf2SmwfECEHlGaRa26DpaWdM0XtzlnTILLQ7WRavFDzBhrrnljwx
+	cbgOGNBj+mNQhhuxcF4kIMLdKDZZnAOEdfneNBEf9T/1S3YL0THJ
+X-Google-Smtp-Source: AMsMyM6KuJX0XFe5rC1ITq5gL/ViXDzhthE++f+cKEMyUPFm6nPVCNIBoGEc5Q9DQbzZKXquRStCsq2ha/+Qz7i/024=
+X-Received: by 2002:a17:907:a042:b0:7a0:3323:2883 with SMTP id
+ gz2-20020a170907a04200b007a033232883mr11906407ejc.37.1666624730104; Mon, 24
+ Oct 2022 08:18:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAFPzw1m8+T8ApDoskGitdvJJq5QKprG9cWWWPi=DNf8RM0f++g@mail.gmail.com>
- <CAFPzw1kqEJkZk3vNhBstYwEwvmrJ0BdqNjC_JHpAw5t4_MDwzg@mail.gmail.com> <a50a95da-de77-472e-6b92-fd696703fa50@gmail.com>
-In-Reply-To: <a50a95da-de77-472e-6b92-fd696703fa50@gmail.com>
-From: Anabel Almodovar <anabel.almodovar@gmail.com>
-Date: Mon, 24 Oct 2022 17:09:15 +0200
-Message-ID: <CAFPzw1=nJAjCjN+4VYMFa4We-ZD9x+qLHx7A6+MMsvpSOxtJSg@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: BW2QREW6CBLW6GMJRAL44QNPRFQHKWTR
-X-Message-ID-Hash: BW2QREW6CBLW6GMJRAL44QNPRFQHKWTR
-X-MailFrom: anabel.almodovar@gmail.com
+References: <CALooG3-PGwwXgn5_Q0T_nSXPYm5vXfV+XsNx+i6k=7UCSEnCCQ@mail.gmail.com>
+ <CAFche=hGqYWBwGMAhcNbNzcOhC5Uez0WNvu4n59aLZjyestFCg@mail.gmail.com> <CALooG39+1kJ8wY0ExgDRnRa0oHv-CsO3MSuSAyfOJW2USe1iWw@mail.gmail.com>
+In-Reply-To: <CALooG39+1kJ8wY0ExgDRnRa0oHv-CsO3MSuSAyfOJW2USe1iWw@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Mon, 24 Oct 2022 10:18:33 -0500
+Message-ID: <CAFche=ju+DH0aN-mX5YNgpVud7nQ3pa94AU5w7FVdFC19H+XBw@mail.gmail.com>
+To: =?UTF-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>
+Message-ID-Hash: GLQX2DSEO46HYLLWXD6BUXSAB3VNYIME
+X-Message-ID-Hash: GLQX2DSEO46HYLLWXD6BUXSAB3VNYIME
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Fwd: Initializing block control DmaFIFO_0 module error
+Subject: [USRP-users] Re: Debugging E320 with JTAG causes a problem
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BW2QREW6CBLW6GMJRAL44QNPRFQHKWTR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GLQX2DSEO46HYLLWXD6BUXSAB3VNYIME/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1814239376201223126=="
+Content-Type: multipart/mixed; boundary="===============7254259066788923499=="
 
---===============1814239376201223126==
-Content-Type: multipart/alternative; boundary="0000000000006f655b05ebc92d40"
+--===============7254259066788923499==
+Content-Type: multipart/alternative; boundary="0000000000000324c505ebc94f47"
 
---0000000000006f655b05ebc92d40
+--0000000000000324c505ebc94f47
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Dear Marcus,
+The NoC Shell is configurable for different use cases. You can read about
+the differences in the RFNoC Specification.
+https://files.ettus.com/app_notes/RFNoC_Specification.pdf
 
-Thank you very much for your answer.
-Yes, I have power-cycled the X310 and then burned the FPGA image again. It
-seems that after this and restarting both the X310 and the computer, after
-letting them rest a bit, I have managed to solve the problem.
+I suppose in your case, I would use the axis_data interface type (what the
+DDC block uses).
 
-I have tried to update the system to both Ubuntu 18 and Ubuntu 20 with UHD
-4.0, however I have not been able to get my system to work correctly
-without errors in the acquisition or compatibility of packages, that is why
-I continue to use Ubuntu 16 where I'm insured at the moment the performance=
+What is the source of your trigger? How important is it that you sample at
+the time your trigger occurs? If the timing of the trigger is important,
+then you might need to look at the radio_time to figure out at what time
+the trigger occurred, then put logic in your block to capture two samples
+starting at that time. Otherwise, your trigger will be off due to the delay
+for the transfer of data from the radio to your block. But maybe the
+precision of the trigger isn't important and you can ignore that delay.
+
+In an RFNoC block, the data will come in on AXI-Stream (tdata, tlast,
+tavlid, tready). You need to follow the protocol of that bus to capture the
+data. The data won't be valid on every clock cycle because the data bus
+runs on a different clock rate from the ADC. It will only be valid when
+tvalid is high, and you must acknowledge the data by asserting tready. If
+this isn't clear, then I suggest you read up on how AXI-Stream works.
+
+Wade
+
+On Mon, Oct 24, 2022 at 12:35 AM Yasir =C3=96z=C3=A7al=C4=B1k <simultaneous=
+11@gmail.com>
+wrote:
+
+> Hi Wade,
+> thank you very much for your answer. I have successfully debugged it. Can
+> you also help me with my original problem?
+> I am using the E320 and UHD 4.0 version. I want to save 2 ADC samples int=
+o
+> block ram and read them later. For that reason, I have a trigger which
+> starts the saving process. When I saved 2 ADC samples into block ram and
+> read them later, I realized that some samples are zero. I debugged it and=
+ I
+> saw that valid signals of ADCs are not always 1. They sometimes switch ba=
+ck
+> to 0. While doing that, I have used the RFNoC-example as a starting point=
 .
+> I don't know what the real problem is, but I examined different examples
+> and I realized that they used different files in their noc_shell files. F=
+or
+> example, the gain example used chdr_to_axis_pyld_ctxt which generates
+> payload and context data. But, ddc example used chdr_to_axis_data which
+> generates only axis datas. Therefore; I have tried different files in
+> noc_shell, but none of them worked as  I expected. I don't want to take a=
+ll
+> the examples to the host or anywhere else. I just want all ADC samples to
+> go into my custom RFNoC-block. I don't want any other datas such as
+> metadatas or anything else, but only ADC samples.
+>
+> My System:
+> Device : E320
+> OS : Ubuntu 20.04.4
+> UHD: 4.0
+>
+> Kind Regards,
+> Yasir.
+>
+> Wade Fife <wade.fife@ettus.com>, 21 Eki 2022 Cum, 20:34 tarihinde =C5=9Fu=
+nu
+> yazd=C4=B1:
+>
+>> Hi Yasir,
+>>
+>> The E320 runs Linux on the SoC of FPGA. There are devices in the FPGA
+>> which are visible to the Linux kernel, so updating the FPGA without firs=
+t
+>> bringing down those devices causes problems. uhd_image_loader takes care=
+ of
+>> all this for you. You can use uhd_image_loader to first load your bitstr=
+eam
+>> (the one you want to debug over JTAG), then use the Vivado hardware mana=
+ger
+>> to connect to that bitstream via JTAG after it is already loaded.
+>>
+>> Wade
+>>
+>> On Thu, Oct 20, 2022 at 3:31 AM Yasir =C3=96z=C3=A7al=C4=B1k <simultaneo=
+us11@gmail.com>
+>> wrote:
+>>
+>>> Hi everyone,
+>>> I am trying to debug E320 with JTAG. I connected to the E320 JTAG
+>>> console with Vivado 2019.1 hardware manager. Vivado successfully
+>>> recognized E320. Then, I loaded my custom bitfile. The problem is E320
+>>> started to give me errors saying that "IO Error during GSM initializati=
+on."
+>>> I thought that might be because of the bit file. Therefore; I tried to =
+load
+>>> the default bit file, but the same problem occurred again. When I use
+>>> uhd_image_loader, bitfiles work without problem. But when I wanted to d=
+ebug
+>>> it with JTAG and loaded the bit file with jtag, uhd_usrp_probe gave me =
+an
+>>> error message. Can anyone help me with this, please? What might be the
+>>> problem?
+>>>
+>>> Kind Regards,
+>>> Yasir.
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
+>>
 
-Thanks again.
-
-All the best,
-Anabel
-
-El vie, 21 oct 2022 a las 15:55, Marcus D. Leech (<patchvonbraun@gmail.com>=
-)
-escribi=C3=B3:
-
-> On 2022-10-21 09:04, Anabel Almodovar wrote:
->
-> Hello,
->
-> I am working with two X310 and TwinRx in both, Ubuntu 16.04 LTE and UHD
-> 3.12.
-> I am trying to execute any code and I get an error in the initialization
-> of the cards in the DmaFIFO_0 module. This is my output from running the
-> *uhd_usrp_probe* command for each individual card and for the set.
->
-> Before the modification of one of my codes the cards worked perfectly. Du=
-e
-> to the malfunction of the code tests that I have carried out, I have had =
-to
-> cut the operation of the cards by force (ctrl + z), is it possible that
-> this has caused the error in the cards? How can I solve this error?
->
-> Thanks in advance.
->
-> All the best
-> Anabel Almodovar
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
-> *rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/uhd/host/examples/buil=
-d$
-> uhd_usrp_probe [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
-> Boost_105800; UHD_3.12.0.0-69-g46ab88b4 [INFO] [X300] X300 initialization
-> sequence... [INFO] [X300] Maximum frame size: 8000 bytes. [INFO] [X300]
-> Radio 1x clock: 200 MHz [INFO] [GPS] No GPSDO found [INFO] [0/DmaFIFO_0]
-> Initializing block control (NOC ID: 0xF1F0D00000000000) [ERROR] [UHD]
-> Exception caught in safe-call.   in
-> ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with uhd::endianness_t
-> _endianness =3D (uhd::endianness_t)0u]   at
-> /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.cpp:60
-> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl
-> (CE_00_Port_30) packet parse error - EnvironmentError: IOError: Expected
-> packet index: 18 Received index: 20 Error: EnvironmentError: IOError: Blo=
-ck
-> ctrl (CE_00_Port_30) packet parse error - EnvironmentError: IOError:
-> Expected packet index: 17 Received index: 19
-> rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/uhd/host/examples/build=
-$
-> sudo uhd_usrp_probe [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
-> Boost_105800; UHD_3.12.0.0-69-g46ab88b4 [INFO] [X300] X300 initialization
-> sequence... [INFO] [X300] Maximum frame size: 8000 bytes. [INFO] [X300]
-> Radio 1x clock: 200 MHz [INFO] [0/DmaFIFO_0] Initializing block control
-> (NOC ID: 0xF1F0D00000000000) [ERROR] [UHD] Exception caught in safe-call.
-> in ctrl_iface_impl<_endianness>::~ctrl_iface_impl() [with uhd::endianness=
-_t
-> _endianness =3D (uhd::endianness_t)0u]   at
-> /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.cpp:60
-> this->send_cmd_pkt(0, 0, true); -> EnvironmentError: IOError: Block ctrl
-> (CE_00_Port_30) packet parse error - EnvironmentError: IOError: Expected
-> packet index: 17 Received index: 20 Error: EnvironmentError: IOError: Blo=
-ck
-> ctrl (CE_00_Port_30) no response packet - AssertionError: bool(buff)   in
-> uint64_t ctrl_iface_impl<_endianness>::wait_for_ack(bool, double) [with
-> uhd::endianness_t _endianness =3D (uhd::endianness_t)0u; uint64_t =3D lon=
-g
-> unsigned int]   at
-> /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.cpp:154*
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> Have you power-cycled the X310?  Can you ping your devices, and is it
-> reliable?   The error you're seeing implies
->   a problem with network communications during command packets.
->
-> I'll note that both Ubuntu 16.04 and UHD 3.12 are both *ancient* releases
-> of the respective software.  X310 has had MANY
->   bug fixes since UHD 3.12, as has Ubuntu.
->
-> The current version of Ubuntu is 22.04, with UHD 4.1.0.5
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000006f655b05ebc92d40
+--0000000000000324c505ebc94f47
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Dear Marcus,</div><div><br></div><div>Thank you very =
-much for your answer.<br>Yes, I have power-cycled the X310 and then burned =
-the FPGA image again. It seems that after this and restarting both the X310=
- and the computer, after letting them rest a bit, I have managed to solve t=
-he problem.<br><br>I have tried to update the system to both Ubuntu 18 and =
-Ubuntu 20 with UHD 4.0, however I have not been able to get my system to wo=
-rk correctly without errors in the acquisition or compatibility of packages=
-, that is why I continue to use Ubuntu 16 where I&#39;m insured at the mome=
-nt the performance.<br><br>Thanks again.<br><br>All the best,<br>Anabel</di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">El vie, 21 oct 2022 a las 15:55, Marcus D. Leech (&lt;<a href=3D"mailto:p=
-atchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;) escribi=C3=B3:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div>
-    <div>On 2022-10-21 09:04, Anabel Almodovar
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr">
-            <div>Hello,</div>
-            <div><br>
-            </div>
-            <div>I am working with two X310 and TwinRx in both, Ubuntu
-              16.04 LTE and UHD 3.12.</div>
-            I am trying to execute any code and I get an error in the
-            initialization of the cards in the DmaFIFO_0 module. This is
-            my output from running the <i>uhd_usrp_probe</i> command
-            for each individual card and for the set.<br>
-            <br>
-            Before the modification of one of my codes the cards worked
-            perfectly. Due to the malfunction of the code tests that I
-            have carried out, I have had to cut the operation of the
-            cards by force (ctrl + z), is it possible that this has
-            caused the error in the cards? How can I solve this error?<br>
-            <br>
-            Thanks in advance.<br>
-            <br>
-            <div>All the best</div>
-            <div>Anabel Almodovar<br>
-            </div>
-            <div><br>
-            </div>
-            <div><i><b>rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/uh=
-d/host/examples/build$
-                  uhd_usrp_probe<br>
-                  [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
-                  Boost_105800; UHD_3.12.0.0-69-g46ab88b4<br>
-                  [INFO] [X300] X300 initialization sequence...<br>
-                  [INFO] [X300] Maximum frame size: 8000 bytes.<br>
-                  [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                  [INFO] [GPS] No GPSDO found<br>
-                  [INFO] [0/DmaFIFO_0] Initializing block control (NOC
-                  ID: 0xF1F0D00000000000)<br>
-                  [ERROR] [UHD] Exception caught in safe-call.<br>
-                  =C2=A0 in
-                  ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl()
-                  [with uhd::endianness_t _endianness =3D
-                  (uhd::endianness_t)0u]<br>
-                  =C2=A0 at
-                  /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.c=
-pp:60<br>
-                  this-&gt;send_cmd_pkt(0, 0, true); -&gt;
-                  EnvironmentError: IOError: Block ctrl (CE_00_Port_30)
-                  packet parse error - EnvironmentError: IOError:
-                  Expected packet index: 18 Received index: 20<br>
-                  Error: EnvironmentError: IOError: Block ctrl
-                  (CE_00_Port_30) packet parse error - EnvironmentError:
-                  IOError: Expected packet index: 17 Received index: 19<br>
-rs3lab@rs3lab-HP-Z8-G4-Workstation:~/workarea-uhd/uhd/host/examples/build$
-                  sudo uhd_usrp_probe<br>
-                  [INFO] [UHD] linux; GNU C++ version 5.4.0 20160609;
-                  Boost_105800; UHD_3.12.0.0-69-g46ab88b4<br>
-                  [INFO] [X300] X300 initialization sequence...<br>
-                  [INFO] [X300] Maximum frame size: 8000 bytes.<br>
-                  [INFO] [X300] Radio 1x clock: 200 MHz<br>
-                  [INFO] [0/DmaFIFO_0] Initializing block control (NOC
-                  ID: 0xF1F0D00000000000)<br>
-                  [ERROR] [UHD] Exception caught in safe-call.<br>
-                  =C2=A0 in
-                  ctrl_iface_impl&lt;_endianness&gt;::~ctrl_iface_impl()
-                  [with uhd::endianness_t _endianness =3D
-                  (uhd::endianness_t)0u]<br>
-                  =C2=A0 at
-                  /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.c=
-pp:60<br>
-                  this-&gt;send_cmd_pkt(0, 0, true); -&gt;
-                  EnvironmentError: IOError: Block ctrl (CE_00_Port_30)
-                  packet parse error - EnvironmentError: IOError:
-                  Expected packet index: 17 Received index: 20<br>
-                  Error: EnvironmentError: IOError: Block ctrl
-                  (CE_00_Port_30) no response packet - AssertionError:
-                  bool(buff)<br>
-                  =C2=A0 in uint64_t
-                  ctrl_iface_impl&lt;_endianness&gt;::wait_for_ack(bool,
-                  double) [with uhd::endianness_t _endianness =3D
-                  (uhd::endianness_t)0u; uint64_t =3D long unsigned int]<br=
->
-                  =C2=A0 at
-                  /home/rs3lab/workarea-uhd/uhd/host/lib/rfnoc/ctrl_iface.c=
-pp:154</b></i><br>
-              <br>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>_______________________________________________
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
-</pre>
-    </blockquote>
-    Have you power-cycled the X310?=C2=A0 Can you ping your devices, and is
-    it reliable?=C2=A0=C2=A0 The error you&#39;re seeing implies<br>
-    =C2=A0 a problem with network communications during command packets.<br=
->
-    <br>
-    I&#39;ll note that both Ubuntu 16.04 and UHD 3.12 are both *ancient*
-    releases of the respective software.=C2=A0 X310 has had MANY<br>
-    =C2=A0 bug fixes since UHD 3.12, as has Ubuntu.<br>
-    <br>
-    The current version of Ubuntu is 22.04, with UHD 4.1.0.5<br>
-    <br>
-    <br>
-  </div>
-
+<div dir=3D"ltr"><div>The NoC Shell is configurable for different use cases=
+. You can read about the differences in the RFNoC Specification. <a href=3D=
+"https://files.ettus.com/app_notes/RFNoC_Specification.pdf">https://files.e=
+ttus.com/app_notes/RFNoC_Specification.pdf</a></div><div><br></div><div>I s=
+uppose in your case, I would use the axis_data interface type (what the DDC=
+ block uses).</div><div><br></div><div>What is the source of your trigger? =
+How important is it that you sample at the time your trigger occurs? If the=
+ timing of the trigger is important, then  you might need to look at the ra=
+dio_time to figure out at what time the trigger occurred, then put logic in=
+ your block to capture two samples starting at that time. Otherwise, your t=
+rigger will be off due to the delay for the transfer of data from the radio=
+ to your block. But maybe the precision of the trigger isn&#39;t important =
+and you can ignore that delay.</div><div><br></div><div>In an RFNoC block, =
+the data will come in on AXI-Stream (tdata, tlast, tavlid, tready). You nee=
+d to follow the protocol of that bus to capture the data. The data won&#39;=
+t be valid on every clock cycle because the data bus runs on a different cl=
+ock rate from the ADC. It will only be valid when tvalid is high, and you m=
+ust acknowledge the data by asserting tready. If this isn&#39;t clear, then=
+ I suggest you read up on how AXI-Stream works.<br></div><div><br></div><di=
+v>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, Oct 24, 2022 at 12:35 AM Yasir =C3=96z=C3=A7al=C4=
+=B1k &lt;<a href=3D"mailto:simultaneous11@gmail.com">simultaneous11@gmail.c=
+om</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div dir=3D"ltr">Hi Wade,<div>thank you very much for your answer. I have=
+ successfully debugged it. Can you also help me with my original problem?</=
+div><div>I am using the E320 and UHD 4.0 version. I want to save 2 ADC samp=
+les into block ram and read them later. For that reason, I have a trigger w=
+hich starts the saving process. When I saved 2 ADC samples into block ram a=
+nd read them later, I realized that some samples are zero. I debugged it an=
+d I saw that valid signals of ADCs are not always 1. They sometimes switch =
+back to 0. While doing=C2=A0that, I have used the RFNoC-example as a starti=
+ng point. I don&#39;t know what the real problem is, but I examined differe=
+nt examples and I realized that they used different files in their noc_shel=
+l files. For example, the gain example used chdr_to_axis_pyld_ctxt which ge=
+nerates payload and context data. But, ddc example used chdr_to_axis_data w=
+hich=C2=A0 generates=C2=A0only axis datas. Therefore; I have tried differen=
+t files in noc_shell, but none of them worked as=C2=A0 I expected. I don&#3=
+9;t want to take all the examples to the host or anywhere else. I just want=
+ all ADC samples to go into my custom RFNoC-block. I don&#39;t want any oth=
+er datas such as metadatas or anything else, but only ADC samples.</div><di=
+v><br></div><div>My System:</div><div>Device : E320</div><div>OS : Ubuntu 2=
+0.04.4</div><div>UHD: 4.0</div><div><br></div><div>Kind Regards,</div><div>=
+Yasir.</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">Wade Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"=
+_blank">wade.fife@ettus.com</a>&gt;, 21 Eki 2022 Cum, 20:34 tarihinde =C5=
+=9Funu yazd=C4=B1:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"ltr"><div>Hi Yasir,</div><div><br></div><div>The E320 runs L=
+inux on the SoC of FPGA. There are devices in the FPGA which are visible to=
+ the Linux kernel, so updating the FPGA without first bringing down those d=
+evices causes problems. uhd_image_loader takes care of all this for you. Yo=
+u can use uhd_image_loader to first load your bitstream (the one you want t=
+o debug over JTAG), then use the Vivado hardware manager to connect to that=
+ bitstream via JTAG after it is already loaded.<br></div><div><br></div><di=
+v>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Thu, Oct 20, 2022 at 3:31 AM Yasir =C3=96z=C3=A7al=C4=B1=
+k &lt;<a href=3D"mailto:simultaneous11@gmail.com" target=3D"_blank">simulta=
+neous11@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex"><div dir=3D"ltr">Hi everyone,=C2=A0<div>I am trying=C2=A0t=
+o debug E320 with JTAG. I connected to the E320 JTAG console with Vivado 20=
+19.1=C2=A0hardware manager. Vivado successfully recognized=C2=A0E320. Then,=
+ I loaded my custom bitfile. The problem is E320 started to give me errors =
+saying that &quot;IO Error during GSM initialization.&quot; I thought that =
+might be because=C2=A0of the bit file. Therefore; I tried to load the defau=
+lt bit file, but the same problem occurred=C2=A0again. When I use uhd_image=
+_loader, bitfiles work without problem. But when I wanted to debug it with =
+JTAG and loaded the bit file with jtag, uhd_usrp_probe gave me an error mes=
+sage. Can anyone help me with this, please? What might be the problem?</div=
+><div><br></div><div>Kind Regards,</div><div>Yasir.</div></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
+</blockquote></div>
 
---0000000000006f655b05ebc92d40--
+--0000000000000324c505ebc94f47--
 
---===============1814239376201223126==
+--===============7254259066788923499==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -374,4 +292,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1814239376201223126==--
+--===============7254259066788923499==--
