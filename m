@@ -2,226 +2,658 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E004060B624
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 20:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D48360B613
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 20:47:45 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2BE3A383C57
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 14:48:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BABD3383BEC
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Oct 2022 14:47:44 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666637302; bh=adhtAPTOFfckyi4uBcPD1pDlVjqWC+GQoWq0JmCKaJg=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=EvBVpxe4cI+c9cb9K3hgdPcr300a/KacJfmdmz0IB7hIYKrqalz9rRB2Eg3Lq8IYH
-	 Jtn/UaMPm8Sj+RUPXzuaU2bDH2qFOHtw7vGhKK8GPeqRTc70VfVZ3xTejeDxW+aFmi
-	 u11g4uEBxg6Rar+TqgLButZZ/hBLMvUlvUiblNF0MtQdhBe6pXQzbIZGCcr1oRInII
-	 uZCYsMtjDM3NHJZ1jOV1O13gTBcSrrYInTdmRZTj4jDdsxHktjgAyaN/I+djw58kZH
-	 yiuEE0Ul2mrE5DjvMhu8EQasJGuKIqsniYBbiThJEsRircxBoCxZIpRsW+wYUbptx4
-	 lCeg439zuuxAQ==
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2BAD5380787
-	for <usrp-users@lists.ettus.com>; Mon, 24 Oct 2022 14:46:26 -0400 (EDT)
+	t=1666637264; bh=8GjnyG7Vb+t4qJpyk19FZ600lhMVB+mcKHSpsftApbA=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=Gly6v/GH+gslOpf+SWGopsKLBceh6y2iQJzhsTQIdMYTX+P2xFiwpuhj8gIYxaQOJ
+	 wVPkKiUA5ZJDjxGF7G+BXFK/YORaaBR9wkIArd6M02kjSth03gpM6rEA/yx4vHSskO
+	 TnZdGmPN4LaXmSfiRlFM1iuw8TrGB65ErbtzcDDehhjUOQzpTuDNfsDUU4qMy7jHQA
+	 xEaxQZtF+RjeCiQfzBS9gGX7IArHsusIZu6jcUQyeBU+ln2wvL9BGiwFFpe/5zFHAl
+	 DaLJ1nrD8O2DsETmKhcLVjGAO0Y8c0vBrLN+TAheyuAVyzPodeJcqH5xZ5c8wOTtY4
+	 AHgNbpqbqn5CQ==
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	by mm2.emwd.com (Postfix) with ESMTPS id E25DF380787
+	for <usrp-users@lists.ettus.com>; Mon, 24 Oct 2022 14:46:29 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=cpp.edu header.i=@cpp.edu header.b="rZE5n5o3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZUJ0f7wJ";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=btaY6PxAet7VMgPisC/XNb401WHdjMheGVtEExgOHZbTo3O4qOXeLZyo1OaCKxoQDi2uC0g0fyI3ChW/IT0R2MCo+ZtbIhu4Ir42XoxCOBOjnhtevqdUByw3ABdybOFnrXhEczCynzgj2fNfQ0owi/dZX2FIclMh2FgNTR90tvLfnpHbNpbXqyAH/1Eue5mccohBD9eJNzOcM0Y/K2zsaSeTkkOgU3jd+XiW5qjT2yN1Zpn2v3meMTSh18/CcDGa0cr7MSvTVigv2AhWK0XM9ATKjKBOmC210CzM1lrDptuQ8P+VxRS4+IDQjXFJyO6DVoz6xIEiQXRu4FK25RN/Eg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4KOGvGgUNsRfaxd1sOzey78bJ9WrjZ87msycXtuFhm0=;
- b=R5tJLxlWQU32vritnYiAX+mNyzgUdgRDyPoFM+Lh+zinPmDML1rXW92+jIdCsaMsEQu+ICtA7h50eyRotcIlSSBaAMpuSCpfiUKAB/5zOf2Wzyu77QzDe3QLNiGVg2tFs8IijpEF1KjHKldsSSAoPzw2fOvpIzB8eYj86QpDlB5wavSGgy/qsbR81n84fUCWfFWHwidYjHEkXEJrjACMNqECoqoOmoZvaqCaB3T9KnytADXNSpKYE6bmQCK4VX3M6CIAvh697dGodMitQr65jSC0phwlzForKT7bVYKCWTeun1/EwvHHSEjHtRTqEOSDsQATWsLzY0sdehG515sCRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cpp.edu; dmarc=pass action=none header.from=cpp.edu; dkim=pass
- header.d=cpp.edu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cpp.edu; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4KOGvGgUNsRfaxd1sOzey78bJ9WrjZ87msycXtuFhm0=;
- b=rZE5n5o3ZD+gYp6MZS+HjvXF0K9XPmp9dgv8XV0KXsrOyBpru9dNLPFTImc0LRxTtz1oDdUOlw6AfeHYLxrpQSehh7zB2xDx5r4Vo/wNrm901i8O1EI3YgfuVTSAOiOJn3/rGiW85xsxxOu4LEdqNy0PWm/oA9ZzWodEqo0Y+9M6DvQXuRZo4HYVGn+D7Ic0MhDuf1XoekjbHU9bWL+JKjo8ZdLaWwXvW3Wnu1fH1xIiABrruPsxh2n3+gifXVwrWnDHm/fBt0VkjmKYTE+JIC7eH2Kh2bjufg+WGR8S5hRD3/BIdwHgJlx15axeQiyXAv69wfaRfBNq3PANQ+njTQ==
-Received: from BYAPR01MB4104.prod.exchangelabs.com (2603:10b6:a03:58::13) by
- DM8PR01MB6949.prod.exchangelabs.com (2603:10b6:8:16::15) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5746.21; Mon, 24 Oct 2022 18:46:22 +0000
-Received: from BYAPR01MB4104.prod.exchangelabs.com
- ([fe80::c1f5:99c3:d2cc:4a75]) by BYAPR01MB4104.prod.exchangelabs.com
- ([fe80::c1f5:99c3:d2cc:4a75%4]) with mapi id 15.20.5723.033; Mon, 24 Oct 2022
- 18:46:22 +0000
-From: "Juan L. Delgado" <juandelgado@cpp.edu>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: USRP X410 Setup
-Thread-Index: AQHY59fG2AXsKP6aIEa9bSdo9thr7g==
-Date: Mon, 24 Oct 2022 18:46:22 +0000
-Message-ID: 
- <BYAPR01MB4104FACB4FA7636B15CA5BBCB32E9@BYAPR01MB4104.prod.exchangelabs.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cpp.edu;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR01MB4104:EE_|DM8PR01MB6949:EE_
-x-ms-office365-filtering-correlation-id: c86ac36b-fde2-4a34-be01-08dab5f00bd0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- S68Ps6P15f3NDAZI1+9NiEYBfuXtahqg2pAsLBlTITXBW49avkMn15K6VSJkDJcgttpEjL8cK0rAyD4gnuVeh+V7eFzPni5yfHIBHG/hcWGOHug4KnjlcMUfSEnJuD0P1s29YAhsY9flXrFCDahpAYod7FeJinXhCYOPCzcXbHJk8LLbdVECo+hpu4g5EcZrFkBsdzPI82o5UqOav26yqdv9+jlnd/+NpBlascBt49M0b1YJP0etXRlkoNpifH6Fq5+zdrHNvgc0+vuG1IDmhreQlt/zRfDiKiiATucFu7vHjIi9d4JM0WQHh6NQ066dlffQ8LGMBOLyEKIpHqcdU8rC7cA2ARXcUa+irOw5C1OPl+yxwvAM+l8sihWX+C7N7X3thYc1b8LF0dWc8avDgtFYAuUi2P71ssRysXKa7wzwgH/GL8TEMtN4sqvvYRZmFiqKoVidZ/ASs6eWqE6BA4W8xgPdbaP7iyFmPtQwx6vxQ0N+CMy+p7lKrmh8U/LgTFRbJurKdtTrFC6HzhK4tE3+eQYp0Rcv3Uuknll/qwtcS8d8ziBl3mwlldY7Z145XMQz/Gje3e0MPwC073cwSYb8s8XFbomaoteGdR7DfI7c0dk43jSvrajKHZ4/4kb0bdB+xUUp7tTvcfLnW+fuMqMexAgSRr78sE3Xn7DuSeHznI4xJ6YJSWNqNbCgfwN4rJh71mOldtm8+n+3UH1ayniLlfTO1qm6to8yqBl1QvjmwdAgy2XzG/NhucHnXy59XL7mqzjETzcMombDHigCyg==
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR01MB4104.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(346002)(376002)(136003)(366004)(396003)(39850400004)(451199015)(64756008)(38070700005)(6506007)(55016003)(33656002)(41300700001)(86362001)(9686003)(7116003)(66446008)(8676002)(7696005)(91956017)(66946007)(4744005)(5660300002)(66476007)(66556008)(478600001)(71200400001)(8936002)(76116006)(6916009)(316002)(786003)(75432002)(52536014)(122000001)(38100700002)(186003)(2906002)(83380400001)(19627405001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?GzBCn1OOw5jW6C7qZuIpyeE37cdIxLFZEuso9qXDnSnUtBB4v6TS3gO10K?=
- =?iso-8859-1?Q?LcsLL8eON7R4b8qtohD90ljXnDxaYVSNfYgEUSx6thfeeQY++207LWs4Xn?=
- =?iso-8859-1?Q?Cuu6rCI82tmrSwAREud5CvNnIx1n68qsutDHYkpX18/IPm/XKTN7bQVqcm?=
- =?iso-8859-1?Q?md9A3p54rP2e/SXID2IMxovh1l+xO4o7zlYv0ZMLMn25sN2txOa0jof2c8?=
- =?iso-8859-1?Q?kRmEfsBjb3aEzOl08dsbMr6o0eQA50LbZlyEbalfWjs3YaRPr0xWGNZJlf?=
- =?iso-8859-1?Q?Kv36+GP6nUIfEfQK8dr7aVyX7jiXZZOX+7JPO8niOQOShH6i41DZ16fvTV?=
- =?iso-8859-1?Q?E+R+Ptg+6gU8KiJDG4e/suuW9E/zxW/VL9DM0ZrGLJdKo0h+asfKrqzZdC?=
- =?iso-8859-1?Q?TQS5OvI+sjZcJGTiyhAeobGGMApdM+BXjs8s2SfSiOD7VnpksCM6WXNHYR?=
- =?iso-8859-1?Q?SFHhnQkEAbV0kGvPBGfQ1jOVdT3c+SGdboLF/HTV4fqa5mC1U29GkJJ3Q3?=
- =?iso-8859-1?Q?JzOrUHu7D1prBj4SFlf4oFM7iFFZF21PWFYOIOe1EUQT3qms78RoWyLEyz?=
- =?iso-8859-1?Q?5OGEce2eUqF63RqYBrgFjpJ3To0QGWrfFuJWRwcnlyv2Y+pt/k+jLq9IyD?=
- =?iso-8859-1?Q?CsgLDZt5f6FKzjmLAEIuovNb84vrJHVeIOwmzwNcHRZnIFNJvJFYLT3aQZ?=
- =?iso-8859-1?Q?XFQRN8kZ0yMWMZQqm/GEQGvsEjcN57LPCClQ67vHh8zPyvdYh38/SR2eY+?=
- =?iso-8859-1?Q?wYUKEI2OiL2Tp1eiiyHLQ8ZqHAKM2+9ptDMqCz4fVR22NF5dHIBZQZrrsv?=
- =?iso-8859-1?Q?1OZk87dE1Wrdvy3sTnNYXHMwmOym5TQxlPclby7q66oe6CtwwKXHinRBje?=
- =?iso-8859-1?Q?SkB9zVMnQkgSDsuvRC6Sz+0s8h9P6G7z+IrNpx7Mp+81rial44GB4z/PnB?=
- =?iso-8859-1?Q?ktS9WIkkuagarwIQxUjfIJ+HtKfN8Z+y7w4JT33AwwKHhLVTHHL0G0hQBa?=
- =?iso-8859-1?Q?nMTn8149+95lOXZkIZ3hm/S3RYxAeIFQztVPYsW35jyeeIKj+zu1qQk51n?=
- =?iso-8859-1?Q?4BUQpmuMIGcSKQ/ylF9wNEnW6BLEth3U2YyUrwcbepM/ge24rNVw4Q2CKr?=
- =?iso-8859-1?Q?sgu6Qb0lbo8SUXgYU/DhvO1GM4qp+WetX+ytKywzRUdVM6SubfRghqDu38?=
- =?iso-8859-1?Q?xtto/60bzEWifFOJNCi2Tc6Vp+BslC6rD+wlk0/558IDOIk3aF1lnDwFkI?=
- =?iso-8859-1?Q?cW30wLNubmOtYaC+InsC90ZFcGoArDS/FSKHxSlezzSgcHmnFVTj5Ect9S?=
- =?iso-8859-1?Q?0SkAvP7auaxp/eQ2qZVIPS6guYaJL4INM/lFjeKZylJ9W53rGF5RCee7dl?=
- =?iso-8859-1?Q?vv0N+juM1mRWeBN//KHrA2jCafvewVd5Zyy3qjM9nsdEUOEX97JNA3CaE3?=
- =?iso-8859-1?Q?gp2ywg93xHIAQTWUmY+WmRLcEcNS5WZd4smfNo1kQviPcl41WoOWH0Y4uj?=
- =?iso-8859-1?Q?Ke/ucXPtLZrKzdDcNCU+LPBqJvYi/IQHTBnnkkUXgqXESbzWBe3lzkKBX5?=
- =?iso-8859-1?Q?KKefH+DhRRXb3/AZKR9CoaIJnQflFM7jdWeNzgglI6Qg6t6GrQkDkXgf73?=
- =?iso-8859-1?Q?Zbed9IjyJab3PatGbtVm+/9XEn3q+MC7Jp+jJgOh6ye5wrOKdduIEqQeNr?=
- =?iso-8859-1?Q?ukeOXptgbY+YTE/XqV8=3D?=
+Received: by mail-qt1-f169.google.com with SMTP id a24so6138715qto.10
+        for <usrp-users@lists.ettus.com>; Mon, 24 Oct 2022 11:46:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nn1z19v4fZh0Jbcp/Fh5mHPxEtnejcOtErLaQbqIu3Y=;
+        b=ZUJ0f7wJ3SULTTc8DpE6m27sermfJ8rL/755fwKH2vg5NuxLhb+InhkXim4rBPB7v/
+         NwBjtTA3RHqNdFRBBfMyH3HIW9eUHZAaf5Sac8FKN9q1wbEY++0ll91y56IAWqspo4i5
+         0PpmmNv3GyeklRrBtB1c3Q6uSiFBIy4zIlrhkRxUkvmn6hfWYWnUE5iBLChkAF6WJnMw
+         0yHhVas1y63f03YdMcO8vAAitP8b/NGB0iUBmcIdtyIxRtCUCYpiyqIkxf7udd4cFtwB
+         8sAIb6SfN7hgYuAUmwHfzwHe1OWinPMdfNw9a9G6OTZV3Ym/Sz+8ryL9/KnaAvmc5BOU
+         TsAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=nn1z19v4fZh0Jbcp/Fh5mHPxEtnejcOtErLaQbqIu3Y=;
+        b=fcyEwLsRmnxrOoashVv0zYi3oAF3Byt/iIvtjX6Mp8sR/oiROOg2OgbX0w298qA12x
+         SFlOTSnxmBnuWLVLW3I/nXdS5Bx7mmALnAxqaJlUJghYdX7EPbnXjb/NZTru32i8tCGN
+         NIjwqQHJXMbNudni444WAf/PadYO+4lSuRgZmIs+Xx4TxzQFou6ACLyVOyks7JxfKDFI
+         a8yt/NrulwlggKieC9fSzk0c24BhO3/nxHSKFUURjoQoFXAGAEu2YU2E+oNHSQ+9yYQi
+         UjfH/OdbR2pVewAK3levA1sWf+Gf4cE7K4108jlnR8bTpXVEtD1icP70CGgbXCS52thH
+         YSpg==
+X-Gm-Message-State: ACrzQf01e4T/i/1Id2LUo+pDl6a746DcHeITIsTIh2txNcP04uagtGzK
+	Lwn6s+c44hKS3uYVi187IV8=
+X-Google-Smtp-Source: AMsMyM6gDRFe/L5kn2gjf8xvwK1CCKXxFTavE4oqoHK5AM+Wy23M97RlZsS0whYfw9alAiHnCoCtuw==
+X-Received: by 2002:ac8:5c93:0:b0:39c:c88b:4897 with SMTP id r19-20020ac85c93000000b0039cc88b4897mr28410538qta.6.1666637189341;
+        Mon, 24 Oct 2022 11:46:29 -0700 (PDT)
+Received: from [192.168.2.171] (bras-base-smflon1825w-grc-09-174-93-2-222.dsl.bell.ca. [174.93.2.222])
+        by smtp.googlemail.com with ESMTPSA id j22-20020a05620a411600b006eef13ef4c8sm437492qko.94.2022.10.24.11.46.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Oct 2022 11:46:29 -0700 (PDT)
+Message-ID: <e828262f-8154-30ec-9251-98e598ecd712@gmail.com>
+Date: Mon, 24 Oct 2022 14:46:28 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: cpp.edu
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR01MB4104.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c86ac36b-fde2-4a34-be01-08dab5f00bd0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2022 18:46:22.1042
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 164ba61e-39ec-4f5d-89ff-aa1f00a521b4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eArjkLenIHXTHqKWbhFR7UNIrSq2p3S8VGjORtnvlilTSjxbvT46dMS3YGauTGmm1wMDCxDtjICBHEmZ/FhcwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR01MB6949
-Message-ID-Hash: LYEAHRDGM6BJJ4FZ2SGT6OE3I4KLUBPO
-X-Message-ID-Hash: LYEAHRDGM6BJJ4FZ2SGT6OE3I4KLUBPO
-X-MailFrom: juandelgado@cpp.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+To: "White, Joshua J" <jjwhite@RiversideResearch.org>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <BN0P110MB1015C5E6363AAD78C7D303A7B12E9@BN0P110MB1015.NAMP110.PROD.OUTLOOK.COM>
+ <2417c33c-83d2-0cff-85c7-c34bab60c85b@gmail.com>
+ <BN0P110MB1015F22E32FF8751559CC6F2B12E9@BN0P110MB1015.NAMP110.PROD.OUTLOOK.COM>
+ <83daad56-0ef9-32d0-2760-902138dd9a48@gmail.com>
+ <BN0P110MB1015656206E11898E25D522CB12E9@BN0P110MB1015.NAMP110.PROD.OUTLOOK.COM>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <BN0P110MB1015656206E11898E25D522CB12E9@BN0P110MB1015.NAMP110.PROD.OUTLOOK.COM>
+Message-ID-Hash: 566BIXIVOJT2MZN4INMF4WQUHWBQ4HVZ
+X-Message-ID-Hash: 566BIXIVOJT2MZN4INMF4WQUHWBQ4HVZ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] USRP X410 Setup
+Subject: [USRP-users] Re: MPM compat number mismatch error with E312
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HBXECCHVTDKAJRSIBWJ5HTJ53W432MQF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/566BIXIVOJT2MZN4INMF4WQUHWBQ4HVZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6831343668341414885=="
+Content-Type: multipart/mixed; boundary="===============1441470888635987424=="
 
---===============6831343668341414885==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============1441470888635987424==
 Content-Type: multipart/alternative;
-	boundary="_000_BYAPR01MB4104FACB4FA7636B15CA5BBCB32E9BYAPR01MB4104prod_"
+ boundary="------------DCbbf6nPkuJ4VPnghunR6fbe"
+Content-Language: en-US
 
---_000_BYAPR01MB4104FACB4FA7636B15CA5BBCB32E9BYAPR01MB4104prod_
-Content-Type: text/plain; charset="iso-8859-1"
+This is a multi-part message in MIME format.
+--------------DCbbf6nPkuJ4VPnghunR6fbe
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Can I use the USRP X410 in a windows environment with Labview or GNU Radio =
-through windows? Or would it be a simpler install to use Linux in a virtual=
- environment?
+On 2022-10-24 14:43, White, Joshua J wrote:
+>
+> How should I go about fixing it?
+>
+> Very respectfully,
+>
+> **
+>
+> *Joshua White*
+>
+> Precision Timing Systems Engineer
+>
+> Engineering & Support Solutions Directorate
+>
+> www.riversideresearch.org <http://www.riversideresearch.org/>
+>
+> T: 937.986.3153 | F: 937.431.3811
+>
+It looks like on the host-side, you're using a HEAD version of UHD,=20
+rather than a tagged version.
 
-I attempted to use the executable download for Windows for UHD 4.3 but i be=
-lieve my USRP needs to be updated to 4.3 as well ( I believe it has 4.1.05 =
-installed but im not 100% sure).  The instructions in the manual to update =
-the USRP software is in Linux only.
+The current "HEAD" looks for a different compat number.
 
-My worries are that if I am able to download 4.1 by source onto my computer=
-, or if I am able to upgrade the USRP to 4.3, I still will not be able to u=
-se it in windows.
+I'd recommend building from a tagged release.=C2=A0 This came to light af=
+ter=20
+I chatted briefly with Ettus R&D.
 
-FYI I need to use the USRP to examine and transmit frequencies in the 2.4 g=
-Hz frequency for a school project.
+So:
 
-Thank You
+git checkout v4.3.0.0
 
---_000_BYAPR01MB4104FACB4FA7636B15CA5BBCB32E9BYAPR01MB4104prod_
-Content-Type: text/html; charset="iso-8859-1"
+And rebuild on the host side
+
+
+
+
+
+
+> This e-mail message, including any attachments, is for the sole use of=20
+> the intended recipient(s) and may contain proprietary, confidential or=20
+> privileged information or otherwise be protected by law. Any=20
+> unauthorized review, use, disclosure or distribution is prohibited. If=20
+> you are not the intended recipient, please notify the sender and=20
+> destroy all copies and the original message.
+>
+> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+> *Sent:* Monday, October 24, 2022 2:18 PM
+> *To:* White, Joshua J <jjwhite@RiversideResearch.org>;=20
+> usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] Re: MPM compat number mismatch error with E=
+312
+>
+> On 2022-10-24 14:14, White, Joshua J wrote:
+>
+>     Marcus,
+>
+>     This is the response I get from it.
+>
+>     root@ni-e31x-3248EB5:~# uhd_config_info --version
+>
+>     UHD 4.3.0.0-0-g1f8fd345
+>
+>     Very respectfully,
+>
+>     **
+>
+>     *Joshua White*
+>
+>     Precision Timing Systems Engineer
+>
+>     Engineering & Support Solutions Directorate
+>
+>     www.riversideresearch.org <http://www.riversideresearch.org/>
+>
+>     T: 937.986.3153 | F: 937.431.3811
+>
+> Thanks.
+>
+> This looks like a possible packaging error, then.
+>
+>
+>
+>
+>
+>     This e-mail message, including any attachments, is for the sole
+>     use of the intended recipient(s) and may contain proprietary,
+>     confidential or privileged information or otherwise be protected
+>     by law. Any unauthorized review, use, disclosure or distribution
+>     is prohibited. If you are not the intended recipient, please
+>     notify the sender and destroy all copies and the original message.
+>
+>     *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+>     <mailto:patchvonbraun@gmail.com>
+>     *Sent:* Monday, October 24, 2022 2:10 PM
+>     *To:* usrp-users@lists.ettus.com
+>     *Subject:* [USRP-users] Re: MPM compat number mismatch error with E=
+312
+>
+>     On 2022-10-24 12:55, White, Joshua J wrote:
+>
+>         All,
+>
+>         My company recently purchased an E312, which I have been
+>         attempting to set up and test. I have UHD 4.3.0.0-6-g5aa6bc44
+>         on my host PC and downloaded and flashed the most recent sdimg
+>         from https://files.ettus.com/binaries/cache/e3xx/ onto the
+>         E312, which is UHD 4.3.0.0-0-g1f8fd345. Running uhd_usrp_probe
+>         on the E312 itself over an SSH connection works as expected,
+>         but when I try to run uhd_usrp_probe from the host PC, I get
+>         the following error:
+>
+>         jjwhite@5cd01378zc:~$ uhd_usrp_probe
+>
+>         [INFO] [UHD] linux; GNU C++ version 11.2.0; Boost_107400;
+>         UHD_4.3.0.0-6-g5aa6bc44
+>
+>         [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>         mgmt_addr=3D192.168.1.174,type=3De3xx,product=3De310_sg3,serial=
+=3D3248EB5,name=3Dni-e31x-3248EB5,fpga=3Dn/a,claimed=3DFalse,addr=3D192.1=
+68.1.174
+>
+>         [INFO] [MPM.main] Launching USRP/MPM, version: 4.3.0.0-g1f8fd34=
+5
+>
+>         [INFO] [MPM.main] Spawning RPC process...
+>
+>         [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility chec=
+k!
+>
+>         [INFO] [MPM.PeriphManager] Device serial number: 3248EB5
+>
+>         [WARNING] [MPM.PeriphManager] Found more EEPROM paths than
+>         daughterboards. Ignoring some of them.
+>
+>         [INFO] [MPM.RPCServer] RPC server ready!
+>
+>         [INFO] [MPM.RPCServer] Spawning watchdog task...
+>
+>         [ERROR] [MPMD] MPM minor compat number mismatch. Expected: 4.3
+>         Actual: 4.2. Please update the version of MPM on your USRP devi=
+ce.
+>
+>         Error: RuntimeError: MPM minor compat number mismatch.
+>         Expected: 4.3 Actual: 4.2. Please update the version of MPM on
+>         your USRP device.
+>
+>         Thinking it might be related to the FPGA image, I attempted to
+>         update it using uhd_image_loader, which produced a similar erro=
+r:
+>
+>         jjwhite@5cd01378zc:~$ uhd_image_loader --args
+>         type=3De3xx,addr=3D192.168.1.174
+>
+>         [INFO] [UHD] linux; GNU C++ version 11.2.0; Boost_107400;
+>         UHD_4.3.0.0-6-g5aa6bc44
+>
+>         [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>         mgmt_addr=3D192.168.1.174,type=3De3xx,product=3De310_sg3,serial=
+=3D3248EB5,name=3Dni-e31x-3248EB5,fpga=3Dn/a,claimed=3DFalse,skip_init=3D=
+1
+>
+>         [INFO] [MPMD] Claimed device without full initialization.
+>
+>         [INFO] [MPMD IMAGE LOADER] Starting update. This may take a whi=
+le.
+>
+>         [INFO] [MPM.PeriphManager] Installing component `fpga'
+>
+>         [INFO] [MPM.PeriphManager] Installing component `dts'
+>
+>         [INFO] [MPMD IMAGE LOADER] Update component function succeeded.
+>
+>         [INFO] [MPM.RPCServer] Resetting peripheral manager.
+>
+>         [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility chec=
+k!
+>
+>         [INFO] [MPM.PeriphManager] Device serial number: 3248EB5
+>
+>         [WARNING] [MPM.PeriphManager] Found more EEPROM paths than
+>         daughterboards. Ignoring some of them.
+>
+>         [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>         mgmt_addr=3D192.168.1.174,type=3De3xx,product=3De310_sg3,serial=
+=3D3248EB5,name=3Dni-e31x-3248EB5,fpga=3Dn/a,claimed=3DFalse,addr=3D192.1=
+68.1.174,find_all=3D1
+>
+>         [WARNING] [MPM.PeriphManager] Cannot run deinit(), device was
+>         never fully initialized!
+>
+>         [ERROR] [MPMD] MPM minor compat number mismatch. Expected: 4.3
+>         Actual: 4.2. Please update the version of MPM on your USRP devi=
+ce.
+>
+>         Error: RuntimeError: MPM minor compat number mismatch.
+>         Expected: 4.3 Actual: 4.2. Please update the version of MPM on
+>         your USRP device.
+>
+>         Is there a reason that my host PC thinks the E312 has MPM
+>         v.4.2 installed instead of 4.3? Does the UHD 4.3 image for the
+>         E312 come with MPM 4.2? If so, is there a way to update it? Is
+>         there some other reason for the error, and if so, is there a
+>         way to correct it? Thank you in advance for your time and
+>         assistance.
+>
+>         Very respectfully,
+>
+>     Josh:
+>
+>     Could you get on to the E312 itself, and:
+>
+>     uhd_config_info --version
+>
+>     And share with us what it says?
+>
+
+--------------DCbbf6nPkuJ4VPnghunR6fbe
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-Can I use the USRP X410 in a windows environment with Labview or GNU Radio =
-through windows? Or would it be a simpler install to use Linux in a virtual=
- environment?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-I attempted to use the executable download for Windows for UHD 4.3 but i be=
-lieve my USRP needs to be updated to 4.3 as well ( I believe it has 4.1.05 =
-installed but im not 100% sure).&nbsp; The instructions in the manual to up=
-date the USRP software is in Linux only.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-My worries are that if I am able to download 4.1 by source onto my computer=
-, or if I am able to upgrade the USRP to 4.3, I still will not be able to u=
-se it in windows.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-FYI I need to use the USRP to examine and transmit frequencies in the 2.4 g=
-Hz frequency for a school project.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
-=3D"elementToProof">
-Thank You</div>
-</body>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2022-10-24 14:43, White, Joshua J
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:BN0P110MB1015656206E11898E25D522CB12E9@BN0P110MB1015.NAMP110.=
+PROD.OUTLOOK.COM">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:"Yu Gothic";
+	panose-1:2 11 4 0 0 0 0 0 0 0;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:"\@Yu Gothic";
+	panose-1:2 11 4 0 0 0 0 0 0 0;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">How should I go about fixing it?<o:p></o:p=
+></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Very
+              respectfully,<o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><b><span style=3D"color:#1F497D"><o:p>=C2=
+=A0</o:p></span></b></p>
+          <p class=3D"MsoNormal"><b><span style=3D"color:#1F497D">Joshua
+                White<o:p></o:p></span></b></p>
+          <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Precision
+              Timing Systems Engineer<o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Engineerin=
+g
+              &amp; Support Solutions Directorate<o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><a
+                href=3D"http://www.riversideresearch.org/"
+                moz-do-not-send=3D"true"><span style=3D"color:blue">www.r=
+iversideresearch.org</span></a>
+              <o:p></o:p></span></p>
+          <p class=3D"MsoNormal"><span style=3D"color:#1F497D">T:
+              937.986.3153 | F: 937.431.3811</span></p>
+        </div>
+      </div>
+    </blockquote>
+    It looks like on the host-side, you're using a HEAD version of UHD,
+    rather than a tagged version.<br>
+    <br>
+    The current "HEAD" looks for a different compat number.<br>
+    <br>
+    I'd recommend building from a tagged release.=C2=A0 This came to ligh=
+t
+    after I chatted briefly with Ettus R&amp;D.<br>
+    <br>
+    So:<br>
+    <br>
+    git checkout v4.3.0.0<br>
+    <br>
+    And rebuild on the host side<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:BN0P110MB1015656206E11898E25D522CB12E9@BN0P110MB1015.NAMP110.=
+PROD.OUTLOOK.COM">
+      <div class=3D"WordSection1">
+        <div>
+          <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p></o:p=
+></span></p>
+          <p class=3D"MsoNormal"><span style=3D"color:black"><o:p>=C2=A0<=
+/o:p></span></p>
+          <p class=3D"MsoNormal"><span
+              style=3D"font-size:9.0pt;color:#1F497D">This e-mail message=
+,
+              including any attachments, is for the sole use of the
+              intended recipient(s) and may contain proprietary,
+              confidential or privileged information or otherwise be
+              protected by law. Any unauthorized review, use, disclosure
+              or distribution is prohibited. If you are not the intended
+              recipient, please notify the sender and destroy all copies
+              and the original message.</span><span
+              style=3D"color:#1F497D"><o:p></o:p></span></p>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <div style=3D"border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0in 0in 0in">
+            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
+raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
+              <b>Sent:</b> Monday, October 24, 2022 2:18 PM<br>
+              <b>To:</b> White, Joshua J
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:jjwhite@R=
+iversideResearch.org">&lt;jjwhite@RiversideResearch.org&gt;</a>;
+              <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:usrp-u=
+sers@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+              <b>Subject:</b> Re: [USRP-users] Re: MPM compat number
+              mismatch error with E312<o:p></o:p></p>
+          </div>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <p class=3D"MsoNormal">On 2022-10-24 14:14, White, Joshua J
+            wrote:<o:p></o:p></p>
+        </div>
+        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+          <p class=3D"MsoNormal">Marcus,<o:p></o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <p class=3D"MsoNormal">This is the response I get from it.<o:p>=
+</o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <p class=3D"MsoNormal">root@ni-e31x-3248EB5:~# uhd_config_info
+            --version<o:p></o:p></p>
+          <p class=3D"MsoNormal">UHD 4.3.0.0-0-g1f8fd345<o:p></o:p></p>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <div>
+            <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Very
+                respectfully,</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><b><span style=3D"color:#1F497D">=C2=A0=
+</span></b><o:p></o:p></p>
+            <p class=3D"MsoNormal"><b><span style=3D"color:#1F497D">Joshu=
+a
+                  White</span></b><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Precisio=
+n
+                Timing Systems Engineer</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span style=3D"color:#1F497D">Engineer=
+ing
+                &amp; Support Solutions Directorate</span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span style=3D"color:#1F497D"><a
+                  href=3D"http://www.riversideresearch.org/"
+                  moz-do-not-send=3D"true"><span style=3D"color:blue">www=
+.riversideresearch.org</span></a>
+              </span><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span style=3D"color:#1F497D">T:
+                937.986.3153 | F: 937.431.3811</span><o:p></o:p></p>
+          </div>
+        </blockquote>
+        <p class=3D"MsoNormal">Thanks.<br>
+          <br>
+          This looks like a possible packaging error, then.<br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <o:p></o:p></p>
+        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+          <div>
+            <p class=3D"MsoNormal"><span style=3D"color:black">=C2=A0</sp=
+an><o:p></o:p></p>
+            <p class=3D"MsoNormal"><span
+                style=3D"font-size:9.0pt;color:#1F497D">This e-mail
+                message, including any attachments, is for the sole use
+                of the intended recipient(s) and may contain
+                proprietary, confidential or privileged information or
+                otherwise be protected by law. Any unauthorized review,
+                use, disclosure or distribution is prohibited. If you
+                are not the intended recipient, please notify the sender
+                and destroy all copies and the original message.</span><o=
+:p></o:p></p>
+          </div>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <div>
+            <div style=3D"border:none;border-top:solid #E1E1E1
+              1.0pt;padding:3.0pt 0in 0in 0in">
+              <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech <a
+                  href=3D"mailto:patchvonbraun@gmail.com"
+                  moz-do-not-send=3D"true">&lt;patchvonbraun@gmail.com&gt=
+;</a>
+                <br>
+                <b>Sent:</b> Monday, October 24, 2022 2:10 PM<br>
+                <b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com"
+                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
+">usrp-users@lists.ettus.com</a><br>
+                <b>Subject:</b> [USRP-users] Re: MPM compat number
+                mismatch error with E312<o:p></o:p></p>
+            </div>
+          </div>
+          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <div>
+            <p class=3D"MsoNormal">On 2022-10-24 12:55, White, Joshua J
+              wrote:<o:p></o:p></p>
+          </div>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class=3D"MsoNormal">All,<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">My company recently purchased an E312,
+              which I have been attempting to set up and test. I have
+              UHD 4.3.0.0-6-g5aa6bc44 on my host PC and downloaded and
+              flashed the most recent sdimg from <a
+                href=3D"https://files.ettus.com/binaries/cache/e3xx/"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+https://files.ettus.com/binaries/cache/e3xx/</a>
+              onto the E312, which is UHD 4.3.0.0-0-g1f8fd345. Running
+              uhd_usrp_probe on the E312 itself over an SSH connection
+              works as expected, but when I try to run uhd_usrp_probe
+              from the host PC, I get the following error:<br>
+              <br>
+              jjwhite@5cd01378zc:~$ uhd_usrp_probe<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C++ version
+              11.2.0; Boost_107400; UHD_4.3.0.0-6-g5aa6bc44<o:p></o:p></p=
+>
+            <p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s)
+              in parallel with args:
+mgmt_addr=3D192.168.1.174,type=3De3xx,product=3De310_sg3,serial=3D3248EB5=
+,name=3Dni-e31x-3248EB5,fpga=3Dn/a,claimed=3DFalse,addr=3D192.168.1.174<o=
+:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.main] Launching USRP/MPM,
+              version: 4.3.0.0-g1f8fd345<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.main] Spawning RPC
+              process...<o:p></o:p></p>
+            <p class=3D"MsoNormal">[WARNING] [MPM.PeriphManager] Skipping
+              HW/SW compatibility check!<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Device
+              serial number: 3248EB5<o:p></o:p></p>
+            <p class=3D"MsoNormal">[WARNING] [MPM.PeriphManager] Found
+              more EEPROM paths than daughterboards. Ignoring some of
+              them.<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.RPCServer] RPC server
+              ready!<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.RPCServer] Spawning
+              watchdog task...<o:p></o:p></p>
+            <p class=3D"MsoNormal">[ERROR] [MPMD] MPM minor compat number
+              mismatch. Expected: 4.3 Actual: 4.2. Please update the
+              version of MPM on your USRP device.<o:p></o:p></p>
+            <p class=3D"MsoNormal">Error: RuntimeError: MPM minor compat
+              number mismatch. Expected: 4.3 Actual: 4.2. Please update
+              the version of MPM on your USRP device.<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Thinking it might be related to the
+              FPGA image, I attempted to update it using
+              uhd_image_loader, which produced a similar error:<br>
+              <br>
+              jjwhite@5cd01378zc:~$ uhd_image_loader --args
+              type=3De3xx,addr=3D192.168.1.174<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [UHD] linux; GNU C++ version
+              11.2.0; Boost_107400; UHD_4.3.0.0-6-g5aa6bc44<o:p></o:p></p=
+>
+            <p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s)
+              in parallel with args:
+mgmt_addr=3D192.168.1.174,type=3De3xx,product=3De310_sg3,serial=3D3248EB5=
+,name=3Dni-e31x-3248EB5,fpga=3Dn/a,claimed=3DFalse,skip_init=3D1<o:p></o:=
+p></p>
+            <p class=3D"MsoNormal">[INFO] [MPMD] Claimed device without
+              full initialization.<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPMD IMAGE LOADER] Starting
+              update. This may take a while.<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Installing
+              component `fpga'<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Installing
+              component `dts'<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPMD IMAGE LOADER] Update
+              component function succeeded.<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.RPCServer] Resetting
+              peripheral manager.<o:p></o:p></p>
+            <p class=3D"MsoNormal">[WARNING] [MPM.PeriphManager] Skipping
+              HW/SW compatibility check!<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPM.PeriphManager] Device
+              serial number: 3248EB5<o:p></o:p></p>
+            <p class=3D"MsoNormal">[WARNING] [MPM.PeriphManager] Found
+              more EEPROM paths than daughterboards. Ignoring some of
+              them.<o:p></o:p></p>
+            <p class=3D"MsoNormal">[INFO] [MPMD] Initializing 1 device(s)
+              in parallel with args:
+mgmt_addr=3D192.168.1.174,type=3De3xx,product=3De310_sg3,serial=3D3248EB5=
+,name=3Dni-e31x-3248EB5,fpga=3Dn/a,claimed=3DFalse,addr=3D192.168.1.174,f=
+ind_all=3D1<o:p></o:p></p>
+            <p class=3D"MsoNormal">[WARNING] [MPM.PeriphManager] Cannot
+              run deinit(), device was never fully initialized!<o:p></o:p=
+></p>
+            <p class=3D"MsoNormal">[ERROR] [MPMD] MPM minor compat number
+              mismatch. Expected: 4.3 Actual: 4.2. Please update the
+              version of MPM on your USRP device.<o:p></o:p></p>
+            <p class=3D"MsoNormal">Error: RuntimeError: MPM minor compat
+              number mismatch. Expected: 4.3 Actual: 4.2. Please update
+              the version of MPM on your USRP device.<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Is there a reason that my host PC
+              thinks the E312 has MPM v.4.2 installed instead of 4.3?
+              Does the UHD 4.3 image for the E312 come with MPM 4.2? If
+              so, is there a way to update it? Is there some other
+              reason for the error, and if so, is there a way to correct
+              it? Thank you in advance for your time and assistance.<o:p>=
+</o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Very respectfully,<o:p></o:p></p>
+          </blockquote>
+          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Josh:<br>
+            <br>
+            Could you get on to the E312 itself, and:<br>
+            <br>
+            uhd_config_info --version<br>
+            <br>
+            And share with us what it says?<o:p></o:p></p>
+        </blockquote>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+      </div>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_BYAPR01MB4104FACB4FA7636B15CA5BBCB32E9BYAPR01MB4104prod_--
+--------------DCbbf6nPkuJ4VPnghunR6fbe--
 
---===============6831343668341414885==
+--===============1441470888635987424==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -231,4 +663,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6831343668341414885==--
+--===============1441470888635987424==--
