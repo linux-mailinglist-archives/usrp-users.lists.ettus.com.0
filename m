@@ -2,140 +2,277 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DCC060D859
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 02:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBD9F60D883
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 02:37:30 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 258D8383BD3
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Oct 2022 20:12:00 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3DCE4383BA8
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Oct 2022 20:37:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666743120; bh=Gu1o9xUc9RyLjCxZbf3o7EioFWQG8SZfW/S1AVMIURk=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=DDZKu2GEdYMCPKXN7pM1Vt5s88qRKMFOi3chSVyyEY5Zqy+3WYnJninoDPVppAcEd
-	 vpDDjg02EsBibO8cEjbVEm1Nt83d1HVqliHX8AsKRwRpnFIAR5ehUbQ6J/B5QoPDoP
-	 D8Kx8r+ViIYHSRMJ+OZR8VVWb4B56Z89xsFOGwopBrv3qDKr63YWDT+lQRiZbNRYJ/
-	 i/2snoQKJno4REGyo3XYThl2N+p3N3EjKXVjNzt1k/ytN69XmAaf+0kRXGeLOvl0aP
-	 1ZcAezGaATboWjb7ySY93J6zdzJg6ta9Bv9c79jb7SsgebAHzxXvLG8QFkcAQ+iFWW
-	 jZnJplCCsvzyg==
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id C22F63837DB
-	for <usrp-users@lists.ettus.com>; Tue, 25 Oct 2022 20:10:22 -0400 (EDT)
+	t=1666744650; bh=EbqI55XeQohMs79nwU+a9F5kMfr/AiKUXDGDkN29VU4=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=NMJL+WldDGh7+B4QdVEwY2qazJJGZuUsAYjfXlbRajNd+L4kfRrLjNv0hFHNBjHiR
+	 Ed+McLRNwmd/6uumOJVBwxr6h43zU4BF7X/ia5HYPmuu6yLk0NArfMvROgWzOjA7ni
+	 ypN2IKwZn2jcWLbyaxQ33ljjqJMlfsqPGiRWFKIhXBboFMX8MRj9w11AbUGlVNJb1N
+	 b3/X5BuXJX/oebuNBogMSwwJYdSWhVG4J1hOYHhV2A6G4tuAig9VUTo8lg9CP8LrU6
+	 RIdRmzZjDz3OiAi9bNNq820PapU6Z46Lq23tX+wykUye0TARzjRbEPDEsHDzbD0Qce
+	 6pwZNUH9kJvUA==
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id DD221380DE5
+	for <usrp-users@lists.ettus.com>; Tue, 25 Oct 2022 20:36:23 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PzVdex1W";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="EUxQDsCD";
 	dkim-atps=neutral
-Received: by mail-qk1-f170.google.com with SMTP id 8so9466266qka.1
-        for <usrp-users@lists.ettus.com>; Tue, 25 Oct 2022 17:10:22 -0700 (PDT)
+Received: by mail-oi1-f174.google.com with SMTP id w196so16638041oiw.8
+        for <usrp-users@lists.ettus.com>; Tue, 25 Oct 2022 17:36:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LEhwWYLHRfxF4Qxn0SOsMnVZxw39TWqCSUbyZqWKEvM=;
-        b=PzVdex1WkGBgQoeTulHWr042mQNsJTYWrshazmbHqsIycTguNtOFHcJSpdAtY3y1Ik
-         z075QhDsOxo1VT1wjPxirnKui+rSm213fT+KrKgPevcbEC8xSAkuRHjTDomPtzmak2yv
-         0leylGZe4ycjuxvqNcP+JZe3ebYkzLLMVt7QEm8tBI2oBnBovVKuWnT+OhQuw/FgQifw
-         PMPO2c+m4dFJYQzW5VQKnrGNwoeTFMvnvHLS388vGuvlHqnPn94CJQnnk/b7QegETuJe
-         VaFI4/CmcNmujqP6KKLbIa4Cn/rgr3AENBplnrQZBQrv7YGYiT3ejFEKWgW1qBLOAJ4e
-         +3Lg==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JgvAMO+ZHmo+DTx9oh1sQXqfjdaah9Z6JJUC/cSYh0s=;
+        b=EUxQDsCDSnpCcbt+Yqigdvde3ArzdqSvCOKMPCOdxQE0VtpX28egcWz+tK0dVSYgpC
+         NMa99/D/ftpIMaSkXjvCdYgYhJkfqn8bPN/0N6kjIh9X6q9+qe5NGlfK9ppLs2h+USvO
+         CwtIXeGMRh8TIn2Tk8xbdfSNqiZipZX1PkijqPvkwBIJHgCoSFgUrdvJgqhNimfa+SpA
+         47j6c0XRDILZqHcWR/503FTSCv5sfPzf3XFCszgt7Kntr8Yc0vFv1kgfVzaCIpzbp1pl
+         TlyDif4ZJHGHbVSkaRotshR3Gw6PJf6fAWZqvVB9dVf303jhNaD6WI5eOtFWn3QZLta1
+         XeBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LEhwWYLHRfxF4Qxn0SOsMnVZxw39TWqCSUbyZqWKEvM=;
-        b=tjd5iOkedKfDdBHZZcIn6SuAH39l9uQG3+b4Die9iM9BiKwylyGGOrsIHd3DyA+oId
-         gqzfrz5NX+oJdCZkUs3/VjLg9LPHZZw1RDSj28EBorOpxH76vDY6h9r1zw5raLIRZWMv
-         NP7ZEggp7Jj1GhP7iIyrDt4TcJLU6vzp9wV5H17g+EG9AYm2k5MkIgxygjOjRBj9UU+Y
-         TWbK1IpnCmAttTQuj2ny/LhZ1fYmTp0NGNJUkSQgfgIf14Ay+kO88ifvT9gXTYT9ck46
-         c2QSbwzgUdmU5Mk+u2RDrmQ4pzpaD7p+uWIcbDDcGqsZoVBAZnCcOb3jKdc/Gs3bntnB
-         pjOQ==
-X-Gm-Message-State: ACrzQf225Wa5x5i2gn2bCM9vVsTvxACnUnU5Sx8qs1QA462RMftW3EV6
-	3kFDU5vP42odo+i2TzP3u8F2g9NjUDY=
-X-Google-Smtp-Source: AMsMyM5wHESXghsyAqSBhi3d4HFE0ju+Rn+2NoOicWt3DlRHKjbTX6TJdGlyx06EeDcmxYOMZYaoww==
-X-Received: by 2002:a05:620a:6011:b0:6ee:b2c1:686b with SMTP id dw17-20020a05620a601100b006eeb2c1686bmr28669678qkb.492.1666743022043;
-        Tue, 25 Oct 2022 17:10:22 -0700 (PDT)
-Received: from [192.168.2.173] (bras-base-smflon1825w-grc-09-174-93-2-222.dsl.bell.ca. [174.93.2.222])
-        by smtp.googlemail.com with ESMTPSA id i8-20020a05620a248800b006bb0f9b89cfsm3001578qkn.87.2022.10.25.17.10.21
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 25 Oct 2022 17:10:21 -0700 (PDT)
-Message-ID: <c530bd1a-e46c-cc59-f121-7a8e1d90db58@gmail.com>
-Date: Tue, 25 Oct 2022 20:10:21 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JgvAMO+ZHmo+DTx9oh1sQXqfjdaah9Z6JJUC/cSYh0s=;
+        b=lC+tqQdT8zCmnA9g0P1aCZhjUaidiLeWzsGy/+/oYxNevSzTr7vMreh5u+/MYg/ks/
+         enSX45qrC24wDR/W1JblGNzjO7PfW6hk4DQqAcjOID3aD2fuKpUgNDv4+MYbkXOUBOrl
+         hPrc71lcH9xEiZbd7EFEir+sGMfXhfVAnu30K0PKqc1zvuIVZ9FZNpnys4JIL2dDxAB4
+         zWnk6Hag1YU0mCAcynL0uHs2PsmMu22mXKK/2dpKeqsEJ4lFbsnOdruXkNdpqSaclao1
+         FB8Nz0O4hOU6SMZ9E6vvE/nTvikAnL1KCBkqBxwzkEJ+2ucpatC8tnycZJglc1f0tR2y
+         D1eg==
+X-Gm-Message-State: ACrzQf2Nuoz6vbV/dmmqeuyiwhOHY81dmvy9cfTkIh3TuyTJ2SEWMLgL
+	KgMdRiHnWe2z/fkt6NWtc4JD+xdCUfBVlkXUR/g=
+X-Google-Smtp-Source: AMsMyM5vvg3cWmRZnExkVG/KkMLzX2yM/p2lbqx9lv1E7EekyGx1I/lTzXOIlrr9a+384nAXx7Y7LaHBnnMq8WOQFEk=
+X-Received: by 2002:a05:6808:1486:b0:355:3cb7:b51 with SMTP id
+ e6-20020a056808148600b003553cb70b51mr526997oiw.19.1666744582933; Tue, 25 Oct
+ 2022 17:36:22 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <CAEXYVK4siP3O0-qP24bpp=Phjj0JRt1rB9n0R=9CxDOyTCiyTQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAEXYVK4siP3O0-qP24bpp=Phjj0JRt1rB9n0R=9CxDOyTCiyTQ@mail.gmail.com>
-Message-ID-Hash: 6I2PRHXXT2UD34YWOTR7QTYQQAR5BW6G
-X-Message-ID-Hash: 6I2PRHXXT2UD34YWOTR7QTYQQAR5BW6G
-X-MailFrom: patchvonbraun@gmail.com
+ <CAOcXSJyEbqEUD+3+yyFQ=AJk-kzse==UVDfoy75+AqiHD758aw@mail.gmail.com>
+In-Reply-To: <CAOcXSJyEbqEUD+3+yyFQ=AJk-kzse==UVDfoy75+AqiHD758aw@mail.gmail.com>
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Tue, 25 Oct 2022 20:36:11 -0400
+Message-ID: <CAEXYVK4id_J-D+2mGHUhOc1QXkwtZNgxU=5vG3Q9YHmgM0SPeA@mail.gmail.com>
+To: Wan Liu <wan.liu@ettus.com>
+Message-ID-Hash: QRXMAW2BUOBFPPUN6N7S5235APBBCF72
+X-Message-ID-Hash: QRXMAW2BUOBFPPUN6N7S5235APBBCF72
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: TwinRX Channel Isolation
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6I2PRHXXT2UD34YWOTR7QTYQQAR5BW6G/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QRXMAW2BUOBFPPUN6N7S5235APBBCF72/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5165744459847038871=="
 
-T24gMjAyMi0xMC0yNSAxODoxNSwgQnJpYW4gUGFkYWxpbm8gd3JvdGU6DQo+IEkgaGF2ZSBhbiBh
-cHBsaWNhdGlvbiB3aGVyZSBJIGFtIHVzaW5nIGJvdGggY2hhbm5lbHMgb2YgdGhlIFR3aW5SWCAN
-Cj4gd2l0aG91dCB1c2luZyBMTyBzaGFyaW5nLsKgIEkgYW0gdXNpbmcgY2hhbm5lbCAwIGFzIGEg
-c2luZ2xlIGZyZXF1ZW5jeSANCj4gY2hhbm5lbCwgYW5kIEkgYW0gdXNpbmcgY2hhbm5lbCAxIHRv
-IHR1bmUgdG8gZGlmZmVyZW50IGZyZXF1ZW5jaWVzLg0KPg0KPiBJIGFtIG5vdGljaW5nIHRoYXQg
-c29tZSB0cmFuc2llbnRzIGhhcHBlbiBvbiBjaGFubmVsIDAgLSB0aGUgZml4ZWQgDQo+IGZyZXF1
-ZW5jeSBjaGFubmVsIC0gYXMgSSBhbSBjaGFuZ2luZyBjaGFubmVsIDEuIFRoaXMgaGFwcGVucyB3
-aXRoIGV2ZW4gDQo+IHRlcm1pbmF0ZWQgaW5wdXRzIG9uIGJvdGggY2hhbm5lbHMuwqAgSSBhbHNv
-IG5vdGljZSB0aGF0IGlmIEkgY2hhbmdlIA0KPiB0aGUgcmF0ZSBhdCB3aGljaCBJIGFtIGNoYW5n
-aW5nIGNoYW5uZWwgMSwgdGhlIHNwZWN0cnVtLCBvbiBhdmVyYWdlLCANCj4gaXMgbXVjaCBjbGVh
-bmVyIGJ1dCB0aGUgdHJhbnNpZW50cyBzdGF5IHRoZXJlIGZyb20gYSAibWF4IGhvbGQiIA0KPiBw
-ZXJzcGVjdGl2ZS7CoCBTbyBvbmNlIHRoZSBMTyBoYXMgc2V0dGxlZCwgdGhpbmdzIGRvbid0IHNl
-ZW0gdG8gYmUgYXMgDQo+IG5vaXN5Lg0KPg0KPiBNeSBzZXR1cCBkb2VzIG5vdCBpbnN0YWxsIHRo
-ZSBMTyBzaGFyaW5nIGNhYmxlcywgc28gdGhvc2UgTU1DWCANCj4gY29ubmVjdG9ycyBhcmUgbGVm
-dCBmbG9hdGluZy9vcGVuLg0KPg0KPiBNeSBxdWVzdGlvbiBpcyBpZiBFdHR1cyBoYXMgc2VlbiB0
-aGlzIG9yIGtub3dzIGFib3V0IHRoaXM/IEFzIEkgc3RhdGVkIA0KPiBwcmV2aW91c2x5LCBJIGRv
-bid0IG5lZWQgdGhlIExPIHNoYXJpbmcgZmVhdHVyZSBvZiB0aGUgVHdpblJYIGFuZCBJIGFtIA0K
-PiB3b3JyaWVkIHRoYXQgY29uc3RhbnRseSByZXR1bmluZ8KgdGhlIFBMTHMgbWlnaHQgYmUgY2F1
-c2luZyB0aGUgbm9pc2UgDQo+IGFuZCBkaXN0cmlidXRpbmcgaXQgdG8gdGhlIGZpeGVkIGZyZXF1
-ZW5jeSBjaGFubmVsP8KgIElmIHRoYXQgaXMgdGhlIA0KPiBjYXNlLCBhcmUgdGhlcmUgc29tZSBy
-ZXNpc3RvcnMgb3IgbW9kaWZpY2F0aW9ucyBJIG1pZ2h0IGJlIGFibGUgdG8gDQo+IG1ha2UgdG8g
-dGhlIFR3aW5SWCB0aGF0IGNvdWxkIHJlbW92ZSB0aGlzIGFzIGEgc291cmNlIG9mIG5vaXNlIGtu
-b3dpbmcgDQo+IEkgbmV2ZXIgd2FudCB0byBwZXJmb3JtIHRoZSBMTyBzaGFyaW5nP8KgIElmIEkg
-ZGlkbid0IGNvbm5lY3QgdGhlIE1NQ1ggDQo+IExPIHNoYXJpbmcgcG9ydHMsIGFtIEkgYWxyZWFk
-eSByZW1vdmluZyB0aGlzIGFzIGEgcG9zc2libGUgbm9pc2Ugc291cmNlPw0KPg0KPiBMYXN0bHks
-IGEgdGhvdWdodCBpcyB0aGF0IHRoZSBub2lzZSBtaWdodCBiZSBjb21pbmcgZnJvbSBkaWdpdGFs
-IA0KPiBzd2l0Y2hpbmcgbm9pc2UgdG8gcmVwcm9ncmFtIHRoZSBMT3MuwqAgSG93IGZlYXNpYmxl
-IGlzIHRoaXM/DQo+DQo+IFRoYW5rcywNCj4gQnJpYW4NCj4NCj4NCkkgd29uZGVyIGlmIHRoaXMg
-aXMgYSByYWRpYXRpdmUgY291cGxpbmcgdGhpbmc/wqAgTGlrZSB0aGUgc3ludGhlc2l6ZXIgDQpm
-b3IgdGhlIG90aGVyIGNoYW5uZWwgYnJpZWZseSBzd2VlcHMgYWNyb3NzIHRoZSBzdGFibGUgdHVu
-ZWQNCiDCoCBmcmVxdWVuY3kgb24gdGhlIG90aGVyIGNoYW5uZWwsIGFuZCBhIHNtYWxsIGFtb3Vu
-dCBvZiBlbmVyZ3kgaXMgDQpib3VuY2luZyBhcm91bmQgaW5zaWRlIHRoZSBib3ggYW5kIGNvdXBs
-ZXMgdG8gdGhlIGlucHV0Lg0KIMKgIFRoZSBUd2luUnggaGFzIGFuIGludGVybmFsIGhlYXRzaW5r
-L3NoaWVsZCwgYW5kIEkgd291bGQgZXhwZWN0IHZlcnkgDQpmZXcgaW5zdGFuY2VzIHdoZXJlIHRo
-YXQgc2hpZWxkIGlzICJ3YXZlZ3VpZGluZyIuDQoNCkl0IGlzIGFic29sdXRlbHkgdGhlIGNhc2Ug
-dGhhdCB3aXRoIG1vZGVybiBlbGVjdHJvbmljcyB3aXRoIGxvdHMgb2YgDQpoaWdoLXNwZWVkIGRp
-Z2l0YWwgbG9naWMsIGl0J3MgbmVhcmx5IGltcG9zc2libGUgdG8gbWFrZQ0KIMKgIGFsbCB5b3Vy
-IHNwdXJzIGdvIGF3YXkuwqAgVGhpcyBpcyBjb21wb3VuZGVkIGJ5IHRoZSBmYWN0IHRoYXQgDQpm
-cm9udC1lbmRzIGluIHJlY2VpdmVycyBoYXZlIGJlY29tZSBhYm91dCAxMGRCIG1vcmUNCiDCoCBz
-ZW5zaXRpdmUgaW4gdGVybXMgb2YgYXZlcmFnZSBub2lzZSBmaWd1cmUgb3ZlciB0aGUgbGFzdCBk
-ZWNhZGUgb3IgDQp0d28uwqDCoCBTbyBpbnRlcm5hbCAic3B1cnMiIHRoYXQgd291bGQgcHJldmlv
-dXNseSBuZXZlcg0KIMKgIGJlIHNlZW4gYXJlIG5vdyBzaG93aW5nIHVwIHdlbGwgYWJvdmUgdGhl
-IG5vaXNlIGZsb29yLg0KDQpNeSBvd24gYXBwcm9hY2ggdG8gaW50ZXJuYWwgc3B1cnMgaXMgdG8g
-bWFrZSBzdXJlIHRoZSBvdXRzaWRlLXdvcmxkIA0Kc2lnbmFsIGlzIHN0cm9uZyBlbm91Z2ggdG8g
-b3ZlcndoZWxtIHRoZW0uwqAgVGhpcw0KIMKgIGlzbid0IGFsd2F5cyBwcmFjdGljYWwsIG9mIGNv
-dXJzZS4NCg0KSSBoYXZlIGFuIFgzMTAgSSBjYW4gZG8gc29tZSBleHBlcmltZW50cyB3aXRoIGFs
-c28uwqAgQnV0IEkgd29uJ3QgYmUgYWJsZSANCnRvIGdldCB0byBpdCB1bnRpbCBlbmQgb2YgdGhl
-IHdlZWsgb3IgbWF5YmUgZXZlbg0KIMKgIG5leHQgd2Vlay4NCg0KDQoNCg0KX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxp
-c3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBl
-bWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============5165744459847038871==
+Content-Type: multipart/alternative; boundary="000000000000cc123305ebe5361f"
+
+--000000000000cc123305ebe5361f
+Content-Type: text/plain; charset="UTF-8"
+
+Hey Wan,
+
+Thanks for the quick response.
+
+On Tue, Oct 25, 2022 at 7:59 PM Wan Liu <wan.liu@ettus.com> wrote:
+
+> Hello Brian,
+>
+> I'll see if  I can reproduce with my TwinRX. Please provide some more
+> information to help me reproduce...
+>
+> 1. Center Frequency of fixed channel 0
+>
+
+I tested at 915 MHz, but also 400 MHz.  It seems to show up wherever I
+happen to tune the fixed channel.
+
+
+> 2. Tuning range on channel 1
+>
+
+I have tried with just 2 frequencies (200 MHz, 500 MHz) or the full
+frequency range.  Tuning the full frequency range seems to provide more
+noise in different areas of the spectrum.
+
+
+> 3. What tuning rate have you tried and what's the threshold between a
+> clean spectrum and a bad one?
+>
+
+I always get bad spectrum regardless of my dwell time on any particular
+frequency.  The "max hold" will always show approximately the same spectral
+image.  The "average" spectrum will obviously be quieter if I dwell for
+longer.
+
+
+> 4. Please share screenshots of what you are seeing
+>
+
+This Google Drive folder has a 10 ms capture of what I see often.  It's
+only one particular case, but you can see what is going on.  I have
+included time vs. freq, amplitude vs. freq, and amplitude vs. time plots.
+
+
+https://drive.google.com/drive/folders/1lm6WiH39XV-Hwl42Myi3DiSiN170D92i?usp=sharing
+
+
+> 5. Please share uhd_usrp_probe output so I know your serial, revision, uhd
+> version, etc
+>
+
+Included in the drive as uhd_probe.txt.
+
+
+> 6. Can you reproduce this problem when it's two channels on different
+> daughterboards? In other words, ch 0 and ch 1 on the same TwinRX, and ch 0
+> and ch 1 across each DB slot.
+>
+
+I am unsure exactly what you're asking for here.  My current setup has a
+UBX in DB0 and a TwinRX in DB1.  If you can be more specific about what you
+want me to try, I can give it a shot?
+
+I will note 2 more observations I made:
+
+  - When trying to read the lo_locked sensor continuously, generating SPI
+traffic I presume going to the PLLs, I get clean spectrum.  This suggests
+to me that digital noise isn't the culprit here.
+  - The IQ file I saved and looked at (which generated the attached
+figures) shows some analog PLL-style locking for around 10 ms of time, then
+goes away.
+
+
+>
+>
+> There's several switchable routes before and after each stage LO going
+> across channels, so it's possible there are some isolation problems between
+> channels. My first thought is also to remove LO sharing cables, but as you
+> said, it doesn't improve.
+>
+> Maybe switching the switches that are not used might help give better
+> isolation. From schematic, if channel 1 uses its own LO, then only switch
+> 16 is needed, and switch 14 which routes LO 1 to the sister channel 2 isn't
+> used. So I'm wondering if the state of switch 14 makes a difference in
+> terms of isolation. I'd have to check the software to see if you can
+> independently flip these switches, and if it's recommended, to test this
+> hypothesis. I will also check internally if similar issue is reported and
+> get back to you.
+>
+
+Let me know if there's anything else I can provide to try to help out.  I
+have a very long IQ capture I took (both inputs terminated, recording fixed
+channel while retuning the other channel) but it's obviously too big to
+share here.
+
+Thanks,
+Brian
+
+--000000000000cc123305ebe5361f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hey Wan,<br><br>Thanks for the quick resp=
+onse.<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Tue, Oct 25, 2022 at 7:59 PM Wan Liu &lt;<a href=3D"mailto:wan.=
+liu@ettus.com">wan.liu@ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello Brian,<br><br>=
+</div><div>I&#39;ll see if=C2=A0 I can reproduce with my TwinRX. Please pro=
+vide some more information to help me reproduce...<br><br></div><div>1. Cen=
+ter Frequency of fixed channel 0<br></div></div></blockquote><div><br></div=
+><div><div>I tested at 915 MHz, but also 400 MHz.=C2=A0 It seems to show up=
+ wherever=C2=A0I happen to tune the fixed channel.</div></div><div>=C2=A0</=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div=
+></div><div>2. Tuning range on channel 1<br></div></div></blockquote><div><=
+br></div><div><div>I have tried with just 2 frequencies (200 MHz, 500 MHz) =
+or the full frequency range.=C2=A0 Tuning the full frequency=C2=A0range see=
+ms to provide more noise in different areas of the spectrum.</div></div><di=
+v>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div></div><div>3. What tuning rate have you tried and what&#39;s the=
+ threshold between a clean spectrum and a bad one?<br></div></div></blockqu=
+ote><div><br></div><div>I always get bad spectrum regardless of my dwell ti=
+me on any particular frequency.=C2=A0 The &quot;max hold&quot; will always =
+show approximately the same spectral image.=C2=A0 The &quot;average&quot; s=
+pectrum will obviously be quieter if I dwell for longer.<br></div><div>=C2=
+=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
+><div></div><div>4. Please share screenshots of what you are seeing<br></di=
+v></div></blockquote><div><br></div><div>This Google Drive folder has a 10 =
+ms capture of what I see often.=C2=A0 It&#39;s only one particular case, bu=
+t you can see what is going on.=C2=A0 I have included time vs. freq, amplit=
+ude vs. freq, and amplitude vs. time plots.<br></div><div><br></div><div>=
+=C2=A0=C2=A0<a href=3D"https://drive.google.com/drive/folders/1lm6WiH39XV-H=
+wl42Myi3DiSiN170D92i?usp=3Dsharing">https://drive.google.com/drive/folders/=
+1lm6WiH39XV-Hwl42Myi3DiSiN170D92i?usp=3Dsharing</a></div><div>=C2=A0</div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div></di=
+v><div>5. Please share uhd_usrp_probe output so I know your serial, revisio=
+n, uhd version, etc</div></div></blockquote><div><br></div><div>Included in=
+ the drive as uhd_probe.txt.</div><div>=C2=A0</div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div dir=3D"ltr"><div>6. Can you reproduce this p=
+roblem when it&#39;s two channels on different daughterboards? In other wor=
+ds, ch 0 and ch 1 on the same TwinRX, and ch 0 and ch 1 across each DB slot=
+.</div></div></blockquote><div><br></div><div>I am unsure exactly what you&=
+#39;re asking for here.=C2=A0 My current setup has a UBX in DB0 and a TwinR=
+X in DB1.=C2=A0 If you can be more specific about what you want me to try, =
+I can give it a shot?</div><div><br></div><div>I will note 2 more observati=
+ons I made:</div><div><br></div><div>=C2=A0 - When trying to read the lo_lo=
+cked sensor continuously, generating SPI traffic I presume going to the PLL=
+s, I get clean spectrum.=C2=A0 This suggests to me that digital noise isn&#=
+39;t the culprit here.</div><div>=C2=A0 - The IQ file I saved and looked at=
+ (which generated the attached figures) shows some analog PLL-style locking=
+ for around 10 ms of time, then goes away.</div><div><span style=3D"color:r=
+gb(80,0,80)">=C2=A0</span>=C2=A0</div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex"><div dir=3D"ltr"><div> <br></div><div><br></div><div>There&#39=
+;s several switchable routes before and after each stage LO going across ch=
+annels, so it&#39;s possible there are some isolation problems between chan=
+nels. My first thought is also to remove LO sharing cables, but as you said=
+, it doesn&#39;t improve. <br></div><div><br></div><div>Maybe switching the=
+ switches that are not used might help give better isolation. From schemati=
+c, if channel 1 uses its own LO, then only switch 16 is needed, and switch =
+14 which routes LO 1 to the sister channel 2 isn&#39;t used. So I&#39;m won=
+dering if the state of switch 14 makes a difference in terms of isolation. =
+I&#39;d have to check the software to see if you can independently flip the=
+se switches, and if it&#39;s recommended, to test this hypothesis. I will a=
+lso check internally if similar issue is reported and get back to you.</div=
+></div></blockquote><div><br></div><div>Let me know if there&#39;s anything=
+ else I can provide to try to help out.=C2=A0 I have a very long IQ capture=
+ I took (both inputs terminated, recording fixed channel while retuning the=
+ other channel) but it&#39;s obviously too big to share here.<br><br>Thanks=
+,<br>Brian</div></div></div>
+
+--000000000000cc123305ebe5361f--
+
+--===============5165744459847038871==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5165744459847038871==--
