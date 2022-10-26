@@ -2,538 +2,230 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9E2E60E07D
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 14:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2A5160E254
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 15:40:19 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 54738383E41
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 08:17:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2FC9C383F9D
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 09:40:18 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666786667; bh=f/tsrvRY1yZ9jy7JUL3u5/BRn45yAXDTSNgNKUckirk=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=NLTEwOPXdUtcf8zyudI/9R55lJYi2FBkRkGD7bOOFOgjm6cIByQfix7/fky8w+5Vb
-	 C8mytn7/80vt3GEM5vqWH5eSN4tY79FsB1HSMhzfhJJdl+tjQQY5a1lJK5rH3Lkg11
-	 knM7aOC87UIN/lPXIgdd8KY5b+s4uHN+2wu6teF2mFg2hh0OII2VV+jjxALO9dt387
-	 pxsgEL/KWQ0NTrfvu2HdJzWcsuihrfLWp4SEkYMKttbADVDMWVkYjDfDeZM0mu+6bD
-	 MM/lxkGTwUTpAlXXmocojE1DuhJpXO2SVBApjITRwYQ0U0AWQC+dK+1Mpo2CIHjjAh
-	 EJNsZaAexAdmQ==
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id 10AA63813E4
-	for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 08:15:52 -0400 (EDT)
+	t=1666791618; bh=s7gD4c7Mh0jGiANmI/vKdQ/6QwjRiFUZ1ARO5hP1VyQ=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=d6Utuf3s/mP6wSH6V1kVjP5dJBce7MxEPoasGiLoFFAXJU1w3MhaqOA/gTUvEYYD2
+	 +zCMR+9azfRJkKhFNmzRdQHdSQAnmbSRHRm0J37QyM2m40K/UnEdItiQRgaViK9fVN
+	 Fe4nzgi7wL8GhffIq/v27P4jZ1GTeLQtkLbUlYF5qp91UK9Fd+brrr010ETOqL6oNp
+	 fmkMPVcR1mZwJWXKrf1FW/pn9q7022o0Ha+BorCARx4MJ2FKJ/TLNIJ8T2PT8OnZwh
+	 HcnymeMzlmb+J523BWLvi5iot557o9kMeNJJw2QoVYQcNKQQMnVE5+cmkEiumFDt5a
+	 tzN8iPLRsFpkQ==
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id E9953380D5C
+	for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 09:38:58 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Vidofsk5";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BWVFdwPg";
 	dkim-atps=neutral
-Received: by mail-qt1-f175.google.com with SMTP id w29so2582062qtv.9
-        for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 05:15:52 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id d18-20020a056830005200b0066a3a429d2dso792070otp.11
+        for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 06:38:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AC4eJvx8v8Sys3P5Dpta4/cFu28osOBU2At0B1GXyOs=;
-        b=Vidofsk5C7cFSDSDX4tkui+eRwLnLNoD7dyZGmbSXuy79Zp/jZF2t2oTXsRMmfomsS
-         0OCoeSw3Qt8Qixb6ktfd6MdrBHNaRJwOlSgnX/BMMZqoJnga5Ldvofo0Bmh3vIvKyODY
-         UO109whM+Lnvn1LKWZbTxMsd/4qsNzSeAsM/JZwOblMvVk5PBWPDTfGw4Dgrj7Hp9/gp
-         OjUZJJbreCpWqvzoHX90StGSGXSV08HjusOHiT9B978J7E7dvfZ+UzcXZ1fcGsJv2D/h
-         Payn/KFEsyBTo/928BqGRTcrBV6uzJ3tKuT89juyKFc9Uiy8x1AzSn8Vf968p0Nq6IZl
-         mBjw==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/eGWcTS22gn0vEa2QXqBSlguJYtDDHyODaXH3N/77Ak=;
+        b=BWVFdwPg2YyyAhLk0Uqi8YzbiNe0g5wP04HP31OUTPQ4SABmy6zmUjzrd+CmZMolof
+         K07vsjioUXs2/XppC06ACX4cWVLVdF1eme/aHN78b5UpopuJaCcuY4ZUDa0IQXoDpJu9
+         esFOgH+TDBNHCzmOgvci6dhZHjlL/aOyb7x5hD9s0TFQAMIPboHROZjn4zjJkeny4zgt
+         jDZAJJ7NCo6/PgL05aApoQfpKBB8lVZ0eNHA/wxggJRbOh1Fqni60IahD4XIgAyh7c6L
+         WOvwWNMqI9vEcdy8o144mS77DAmGqEcDBUJqjuUKO26uBB00m+b4gvXCeczsNc1EIeSY
+         ov2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=AC4eJvx8v8Sys3P5Dpta4/cFu28osOBU2At0B1GXyOs=;
-        b=QvZKdyyrG76XdXYi0sv6HHFRgF/qxgdM/UDpG3bwOj1bYhF8NphTt+80x3RrpuWubJ
-         7Qn3ZT3IqzxR/bny+9wS7WN4e7kSY/IGmOA0x11wapgjMiQ6n1itz12J8lst0SXf3V4R
-         EC0vFq4owAZY9AwDxh4Vst5DK1GoGAsmtiYH00DgLgQ6FqDtVGy6MAlQElOzbsVmhpWu
-         7OTfUc7qAkPFocZyIHvwOFyQckhPeWwdauWay+4IR9vbc7eL9HxtTrucsKSmHz7/igeM
-         0mYMzzF5oNKuX1V7NveB27IWJNr5Nh8AfC21HnnSOPTnB+e1vBzhs21EM6nDcUaGu0NI
-         SemQ==
-X-Gm-Message-State: ACrzQf2rJdcHZ26DUQGkhguBqccI9Ju0TkP00P8BN2gNRDX/z5kfLIaI
-	M3CjMMyBgP4Qnzd34I/FhvdgE333c6s=
-X-Google-Smtp-Source: AMsMyM5KD5JAUZZnUkV69XguE/HvEBo9fbP6yUkNBNqm1s3fTHEeWfTtJeouwKQ0OvVQND84AXnYWw==
-X-Received: by 2002:ac8:58d2:0:b0:39d:ac0:b5da with SMTP id u18-20020ac858d2000000b0039d0ac0b5damr27080555qta.631.1666786552216;
-        Wed, 26 Oct 2022 05:15:52 -0700 (PDT)
-Received: from [192.168.2.174] (bras-base-smflon1825w-grc-09-174-93-2-222.dsl.bell.ca. [174.93.2.222])
-        by smtp.googlemail.com with ESMTPSA id r5-20020a05620a298500b006ee7e223bb8sm3883811qkp.39.2022.10.26.05.15.51
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 05:15:51 -0700 (PDT)
-Message-ID: <860b77c7-433c-bbd7-4b47-e84394058a95@gmail.com>
-Date: Wed, 26 Oct 2022 08:15:51 -0400
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/eGWcTS22gn0vEa2QXqBSlguJYtDDHyODaXH3N/77Ak=;
+        b=YbvVxgQ2wJD976tMPaLw786PZ2KW8ngJYFwtcO5dRhan3jr4XzUTR6hF0C4rJQEqID
+         oavLcwRgq4ihrseE/2MQ/ojq74ZvDg2mFNKV1tII4G6lc+n4+w3m+/rUKjAWGKkb9/v8
+         Iv6iUokv69NhSPdLFtJD0OQeakdEJth/2YEcYimR1kogZdTeZCXZ645IOquRVYzs8oGF
+         bt+7PVg/RjCw3gJB33uDgp0mCG2G0W6BxBb4f+D7crRqfx/pgwYqLV11WuM/IL60WYED
+         hqQf4/GjWWxqa8pWDZEIjibBbapkq2gWBY5+mAHCW55u9rAl5vG8NBam/eCqFP7pXPYP
+         84VQ==
+X-Gm-Message-State: ACrzQf1xvbY3hR/rQc5q4yWE53zTeUmMRVIGBu3BfVxlfmYixlKB5GOA
+	mwljiU2EMEyGK5QKoLCkDPZ6oZhK6+YKV9FgqL0FpQoI42c=
+X-Google-Smtp-Source: AMsMyM5BgMombfGMjJ/RmvpUSdI7VkhlYTaDxRL5WRBssPJ14RGs7VhzvtuO2xCkl2bMm+MW/BIgFfFY86dzKFVKFEY=
+X-Received: by 2002:a05:6830:4486:b0:661:9f14:9b45 with SMTP id
+ r6-20020a056830448600b006619f149b45mr21637622otv.227.1666791537891; Wed, 26
+ Oct 2022 06:38:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <665f49e9.5052.18412cbb604.Coremail.xdcple@163.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <665f49e9.5052.18412cbb604.Coremail.xdcple@163.com>
-Message-ID-Hash: QMHVCHBZVUCWFQND4GYRV4LSGR6PBBXW
-X-Message-ID-Hash: QMHVCHBZVUCWFQND4GYRV4LSGR6PBBXW
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAEXYVK4siP3O0-qP24bpp=Phjj0JRt1rB9n0R=9CxDOyTCiyTQ@mail.gmail.com>
+ <CAOcXSJyEbqEUD+3+yyFQ=AJk-kzse==UVDfoy75+AqiHD758aw@mail.gmail.com>
+ <CAEXYVK5nnW0xt=EOpMT-G_13FkWZSPs4d9w29J+RVgdtBDS4SQ@mail.gmail.com> <CAOcXSJxfY+_0RmMWri6Zxg_pd0MHe-TMPY1iLdgprKw_g0pXpA@mail.gmail.com>
+In-Reply-To: <CAOcXSJxfY+_0RmMWri6Zxg_pd0MHe-TMPY1iLdgprKw_g0pXpA@mail.gmail.com>
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Wed, 26 Oct 2022 09:38:46 -0400
+Message-ID: <CAEXYVK7j70E=3R+kLuuhKVOTa39S+ra_Ux4aUb4QgqwR-+cLDQ@mail.gmail.com>
+To: Wan Liu <wan.liu@ettus.com>
+Message-ID-Hash: DLF4N5KLXVEZB6WHOOHDUMIEFQGG5RLG
+X-Message-ID-Hash: DLF4N5KLXVEZB6WHOOHDUMIEFQGG5RLG
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: The signal received by B205mini is unstable
+Subject: [USRP-users] Re: TwinRX Channel Isolation
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QMHVCHBZVUCWFQND4GYRV4LSGR6PBBXW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DLF4N5KLXVEZB6WHOOHDUMIEFQGG5RLG/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5011350051727121460=="
+Content-Type: multipart/mixed; boundary="===============1817279996093859211=="
 
-This is a multi-part message in MIME format.
---===============5011350051727121460==
-Content-Type: multipart/alternative;
- boundary="------------nMFvZwa0xMcglxGrmYXmGzyE"
-Content-Language: en-US
+--===============1817279996093859211==
+Content-Type: multipart/alternative; boundary="00000000000087de3805ebf02520"
 
-This is a multi-part message in MIME format.
---------------nMFvZwa0xMcglxGrmYXmGzyE
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--00000000000087de3805ebf02520
+Content-Type: text/plain; charset="UTF-8"
+
+Hey Wan,
+
+On Tue, Oct 25, 2022 at 10:53 PM Wan Liu <wan.liu@ettus.com> wrote:
+
+> Hello Brian,
+>
+> Thank you for the additional information.
+>
+> Regarding  #6, I meant that if you have two TwinRX daughterboards, see if
+> you get this problem when the fixed channel is on one daughterboard, and
+> the tuned channel is on the other.
+>
+
+Ah, I see.  Unfortunately my setup is a mixed USB/TwinRX setup so maybe it
+isn't exactly testing what you're asking for, but I did use the subdev spec
+to target the UBX RX2 for hopping around, and the TwinRX Channel 0 was
+fixed.  In this case, the fixed spectrum stayed nice and clean the whole
+time.
+
+
+>
+> Regarding screenshots, are you referring to any particular frequency and
+> time region, or is everything above the noise floor associated with the
+> tuning? In other words, is the clean spectrum where there is nothing above
+> the noise floor in both time and frequency plots?
+>
+
+The captures were taken with terminated RF inputs.  Channel 0 of the TwinRX
+was fixed at some frequency (I believe 400 MHz) and Channel 1 was hopping
+around.  The recording was observing Channel 0 - the fixed frequency
+channel.  When no hopping happens, there is clean spectrum with just a
+noise floor which is what I expected to see.  When hopping is happening,
+every so often we will see these sweeping signals show up.  They last
+around 10 ms or so and then the spectrum is back to being clean.
+
+
+>
+> Also can you explain what you mean by "shows some analog PLL-style locking
+> for around 10 ms of time, then goes away"? Are you referring to the burst
+> from 3 ms to 13 ms, or something specifically at 10 ms?
+>
+
+I meant the phenomenon that starts at around 3 ms and lasts until around 13
+ms.  It looks like an analog PLL settling to me.  Here is a zoomed in
+version:
+
+
+https://drive.google.com/file/d/1NDax78i3UQh7X_R4g8SHBkBLibI1ICQZ/view?usp=sharing
+
+
+>
+> Lastly, what are your spectrogram parameters to generate the waterfall?
+>
+
+I am using an FFT size of 2048 with a blackmanharris window of the same
+size, and overlapping by 1024.  My MATLAB command is:
+
+  spectrogram(slice, blackmanharris(2048), 1024, 2048, 50e6, 'centered');
+
+
+>
+> I'll reach out again after I attempt to reproduce.
+>
+
+Sounds good.  Let me know if you need any other data or clarifications on
+what I am seeing.
+
+Thanks,
+Brian
+
+>
+
+--00000000000087de3805ebf02520
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-10-26 01:37, luteo wrote:
->
-> When testing the B205mini, we found that the SMA connector was=20
-> tightened to the most tight, but there may be no signal or the signal=20
-> is weak.
->
->
-> Of course not always. Sometimes it is better to loosen the SMA=20
-> connector a little.
->
->
-> In short, the reception effect requires repeated adjustment of the sma=20
-> connector. Even after the sma is tightened, applying an external force=20
-> on the plug position may change the quality of the received signal.
->
->
-> There is no similar problem on other types of USRP boards. It is=20
-> determined that it is not an antenna problem.
->
->
-> We used B210 and B205mini for comparison. See the attachment for video=20
-> results. =E2=80=9CB205-antenna.mp4=E2=80=9D & =E2=80=9CB210-antenna.mp4=
-=E2=80=9D
->
->
-> We used another B205mini for comparison. The phenomenon is the same.=20
-> See the attachment for video results. =E2=80=9CB205-DuPont line.mp4=E2=80=
-=9D &=20
-> =E2=80=9CB205-DuPont line-Acrylic.mp4=E2=80=9D
->
->
-> We are not sure whether this phenomenon is caused by the absence of a=20
-> shielded enclosure. But we don't think it will have such a big impact.
->
->
-> I want to ask if there is any way to solve this problem.
->
-I haven't seen this problem with the several B205-mini that I have.
+<div dir=3D"ltr"><div dir=3D"ltr">Hey Wan,</div><br><div class=3D"gmail_quo=
+te"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 25, 2022 at 10:53 PM =
+Wan Liu &lt;<a href=3D"mailto:wan.liu@ettus.com">wan.liu@ettus.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div><div><div>Hello Brian,<br><br></div>Thank you for the additio=
+nal information. <br><br></div>Regarding=C2=A0 #6, I meant that if you have=
+ two TwinRX daughterboards, see if you get this problem when the fixed chan=
+nel is on one daughterboard, and the tuned channel is on the other.</div></=
+div></blockquote><div><br></div><div>Ah, I see.=C2=A0 Unfortunately my setu=
+p is a mixed USB/TwinRX setup so maybe it isn&#39;t exactly testing what yo=
+u&#39;re asking for, but I did use the subdev spec to target the UBX RX2 fo=
+r hopping around, and the TwinRX Channel 0 was fixed.=C2=A0 In this case, t=
+he fixed spectrum stayed nice and clean the whole time.</div><div>=C2=A0</d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>=
+<br></div>Regarding screenshots, are you referring to any particular freque=
+ncy and time region, or is everything above the noise floor associated with=
+ the tuning? In other words, is the clean spectrum where there is nothing a=
+bove the noise floor in both time and frequency plots?<br></div></blockquot=
+e><div><br></div><div>The captures were taken with terminated RF inputs.=C2=
+=A0 Channel 0 of the TwinRX was fixed at some frequency (I believe 400 MHz)=
+ and Channel 1 was hopping around.=C2=A0 The recording was observing Channe=
+l 0 - the fixed frequency channel.=C2=A0 When no hopping happens, there is =
+clean spectrum with just a noise floor which is what I expected to see.=C2=
+=A0 When hopping is happening, every so often we will see these sweeping si=
+gnals show up.=C2=A0 They last around 10 ms or so and then the spectrum is =
+back to being clean.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr"><div><br></div><div>Also can you explain=
+ what you mean by &quot;shows some analog PLL-style locking for around 10 m=
+s of time, then goes away&quot;? Are you referring to the burst from 3 ms t=
+o 13 ms, or something specifically at 10 ms?<br></div></div></blockquote><d=
+iv><br></div><div>I meant the phenomenon that starts at around 3 ms and las=
+ts until around 13 ms.=C2=A0 It looks like an analog PLL settling to me.=C2=
+=A0 Here is a zoomed in version:</div><div><br></div><div>=C2=A0=C2=A0<a hr=
+ef=3D"https://drive.google.com/file/d/1NDax78i3UQh7X_R4g8SHBkBLibI1ICQZ/vie=
+w?usp=3Dsharing">https://drive.google.com/file/d/1NDax78i3UQh7X_R4g8SHBkBLi=
+bI1ICQZ/view?usp=3Dsharing</a></div><div>=C2=A0</div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr"><div><br></div><div>Lastly, wh=
+at are your spectrogram parameters to generate the waterfall?<br></div></di=
+v></blockquote><div><br></div><div>I am using an FFT size of 2048 with a bl=
+ackmanharris window of the same size, and overlapping by 1024.=C2=A0 My MAT=
+LAB command is:</div><div><br></div><div>=C2=A0=C2=A0spectrogram(slice, bla=
+ckmanharris(2048), 1024, 2048, 50e6, &#39;centered&#39;);</div><div>=C2=A0<=
+/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
+rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
+v><br></div><div>I&#39;ll reach out again after I attempt to reproduce.<br>=
+</div></div></blockquote><div><br></div><div>Sounds good.=C2=A0 Let me know=
+ if you need any other data or clarifications on what I am seeing.</div><di=
+v><br></div><div>Thanks,</div><div>Brian</div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex"><div class=3D"gmail_quote"><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex">
+</blockquote></div>
+</blockquote></div></div>
 
-Check your cables.
+--00000000000087de3805ebf02520--
 
-Make sure that you aren't *over* tightening the SMA connector and=20
-breaking it at the shield.
-
-Make sure that your source is well matched to 50 ohms.=C2=A0 Impedance=20
-mismatches (significant ones can cause high shield
- =C2=A0 currents, making the performance inconsistent, and even subject t=
-o=20
-placement of the input cable.
-
-
-> *=E4=BB=8E=E7=BD=91=E6=98=93163=E9=82=AE=E7=AE=B1=E5=8F=91=E6=9D=A5=E7=9A=
-=84=E8=B6=85=E5=A4=A7=E9=99=84=E4=BB=B6*
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5EhEj3dMzeTYbDfSr3=
-lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
-> B205-antenna.mp4=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5EhEj3dMzeTYbDfSr3=
-lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>(3.61M,=20
-> 2022=E5=B9=B411=E6=9C=8825=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)
-> =E5=9C=A8=E7=BA=BF=E9=A2=84=E8=A7=88=20
-> <http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5Eh=
-Ej3dMzeTYbDfSr3lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&title=3DThe%20signa=
-l%20received%20by%20B205mini%20is%20unstable>=20
-> | =E4=B8=8B=E8=BD=BD=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5EhEj3dMzeTYbDfSr3=
-lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3QvLDq8jg3SyyUkX=
-84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
-> B205-DuPont line.mp4=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3QvLDq8jg3SyyUkX=
-84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>(2.75M,=20
-> 2022=E5=B9=B411=E6=9C=8825=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)
-> =E5=9C=A8=E7=BA=BF=E9=A2=84=E8=A7=88=20
-> <http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3=
-QvLDq8jg3SyyUkX84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&title=3DThe%20signa=
-l%20received%20by%20B205mini%20is%20unstable>=20
-> | =E4=B8=8B=E8=BD=BD=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3QvLDq8jg3SyyUkX=
-84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8S8TDiQCPyA3VeV6=
-FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
-> B205-DuPont line-Acrylic.mp4=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8S8TDiQCPyA3VeV6=
-FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>(17.49M,=20
-> 2022=E5=B9=B411=E6=9C=8825=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)
-> =E5=9C=A8=E7=BA=BF=E9=A2=84=E8=A7=88=20
-> <http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8=
-S8TDiQCPyA3VeV6FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&title=3DThe%20signa=
-l%20received%20by%20B205mini%20is%20unstable>=20
-> | =E4=B8=8B=E8=BD=BD=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8S8TDiQCPyA3VeV6=
-FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5pltUyAgi5fQ2rtJ=
-aqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
-> B210-antenna.mp4=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5pltUyAgi5fQ2rtJ=
-aqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>(4.56M,=20
-> 2022=E5=B9=B411=E6=9C=8825=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)
-> =E5=9C=A8=E7=BA=BF=E9=A2=84=E8=A7=88=20
-> <http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5=
-pltUyAgi5fQ2rtJaqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&title=3DThe%20signa=
-l%20received%20by%20B205mini%20is%20unstable>=20
-> | =E4=B8=8B=E8=BD=BD=20
-> <https://mail.163.com/large-attachment-download/index.html?p=3DX-NETEAS=
-E-HUGE-ATTACHMENT&file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5pltUyAgi5fQ2rtJ=
-aqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&title=3DThe%20signal%20received%20=
-by%20B205mini%20is%20unstable>
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-
---------------nMFvZwa0xMcglxGrmYXmGzyE
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-10-26 01:37, luteo wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:665f49e9.5052.18412cbb604.Coremail.xdcple@163.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div
-        style=3D"line-height:1.7;color:#000000;font-size:14px;font-family=
-:Arial">
-        <div style=3D"line-height: 1.7;">
-          <p style=3D"margin: 0px;">When testing the B205mini, we found
-            that the SMA connector was tightened to the most tight, but
-            there may be no signal or the signal is weak.</p>
-          <p style=3D"margin: 0px;"><br>
-          </p>
-          <p style=3D"margin: 0px;">Of course not always. Sometimes it is
-            better to loosen the SMA connector a little.</p>
-          <p style=3D"margin: 0px;"><br>
-          </p>
-          <p style=3D"margin: 0px;">In short, the reception effect
-            requires repeated adjustment of the sma connector. Even
-            after the sma is tightened, applying an external force on
-            the plug position may change the quality of the received
-            signal.</p>
-          <p style=3D"margin: 0px;"><br>
-          </p>
-          <p style=3D"margin: 0px;">There is no similar problem on other
-            types of USRP boards. It is determined that it is not an
-            antenna problem.</p>
-          <p style=3D"margin: 0px;"><br>
-          </p>
-          <p style=3D"margin: 0px;">We used B210 and B205mini for
-            comparison. See the attachment for video results. =E2=80=9C<s=
-pan
-              style=3D"background-color: rgb(227, 234, 244); color:
-              rgb(102, 102, 102); font-family: &quot;Microsoft
-              Yahei&quot;, verdana; font-size: 12px; white-space:
-              nowrap;">B205-antenna.mp4</span>=E2=80=9D &amp; =E2=80=9C<s=
-pan
-              style=3D"background-color: rgb(227, 234, 244); color:
-              rgb(102, 102, 102); font-family: &quot;Microsoft
-              Yahei&quot;, verdana; font-size: 12px; white-space:
-              nowrap;">B210-antenna.mp4</span>=E2=80=9D</p>
-          <p style=3D"margin: 0px;"><br>
-          </p>
-          <p style=3D"margin: 0px;">We used another B205mini for
-            comparison. The phenomenon is the same. See the attachment
-            for video results. =E2=80=9C<span style=3D"background-color: =
-rgb(227,
-              234, 244); color: rgb(102, 102, 102); font-family:
-              &quot;Microsoft Yahei&quot;, verdana; font-size: 12px;
-              white-space: nowrap;">B205-DuPont line.mp4</span>=E2=80=9D =
-&amp; =E2=80=9C<span
-              style=3D"background-color: rgb(227, 234, 244); color:
-              rgb(102, 102, 102); font-family: &quot;Microsoft
-              Yahei&quot;, verdana; font-size: 12px; white-space:
-              nowrap;">B205-DuPont line-Acrylic.mp4</span>=E2=80=9D</p>
-          <p style=3D"margin: 0px;"><br>
-          </p>
-          <p style=3D"margin: 0px;">We are not sure whether this
-            phenomenon is caused by the absence of a shielded enclosure.
-            But we don't think it will have such a big impact.</p>
-          <p style=3D"margin: 0px;"><br>
-          </p>
-          <p style=3D"margin: 0px;">I want to ask if there is any way to
-            solve this problem.</p>
-        </div>
-      </div>
-    </blockquote>
-    I haven't seen this problem with the several B205-mini that I have.<b=
-r>
-    <br>
-    Check your cables.<br>
-    <br>
-    Make sure that you aren't *over* tightening the SMA connector and
-    breaking it at the shield.<br>
-    <br>
-    Make sure that your source is well matched to 50 ohms.=C2=A0 Impedanc=
-e
-    mismatches (significant ones can cause high shield<br>
-    =C2=A0 currents, making the performance inconsistent, and even subjec=
-t to
-    placement of the input cable.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:665f49e9.5052.18412cbb604.Coremail.xdcple@163.com">
-      <div id=3D"divNeteaseBigAttach"
-style=3D"clear:both;margin-top:10px;margin-bottom:15px;background:#DEE8F2=
-;padding:4px;font-family:verdana,Arial,Helvetica,sans-serif">
-        <div style=3D"font-size:14px;padding:4px 8px 8px
-          8px;line-height:16px"><b>=E4=BB=8E=E7=BD=91=E6=98=93163=E9=82=AE=
-=E7=AE=B1=E5=8F=91=E6=9D=A5=E7=9A=84=E8=B6=85=E5=A4=A7=E9=99=84=E4=BB=B6<=
-/b></div>
-        <div style=3D"background:#fff;padding:4px">
-          <div style=3D"clear:both;height:36px;padding:6px 4px">
-            <div style=3D"float:left;width:36px"><a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5EhEj3dMz=
-eTYbDfSr3lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                moz-do-not-send=3D"true"><img
-                  src=3D"https://mimg.127.net/xm/all/fj/ico-bfile-28.gif"
-                  moz-do-not-send=3D"true" border=3D"0"></a></div>
-            <div>
-              <div style=3D"padding:0px;font-size:12px;line-height:14px">=
-<a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5EhEj3dMz=
-eTYbDfSr3lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-download=3D"https://mail.163.com/large-attachment-download/index.html?p=3D=
-X-NETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5EhEj3=
-dMzeTYbDfSr3lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&amp;title=3DThe%20sign=
-al%20received%20by%20B205mini%20is%20unstable"
-preview=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpokrr=
-FG4wg5EhEj3dMzeTYbDfSr3lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&amp;title=3D=
-The%20signal%20received%20by%20B205mini%20is%20unstable"
-                  fileid=3D"undefined" filename=3D"B205-antenna.mp4"
-                  filesize=3D"3781934" expiretime=3D"1669354526418"
-                  target=3D"_blank"
-                  style=3D"color:#000;text-decoration:none"
-                  moz-do-not-send=3D"true">B205-antenna.mp4</a><span
-                  style=3D"color:#bbb"> (3.61M, 2022=E5=B9=B411=E6=9C=882=
-5=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)</span></div>
-              <div style=3D"padding:4px
-                0px;font-size:12px;line-height:14px"><a
-href=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4=
-wg5EhEj3dMzeTYbDfSr3lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&amp;title=3DTh=
-e%20signal%20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E5=9C=A8=E7=BA=BF=E9=A2=84=E8=
-=A7=88</a> | <a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpokrrFG4wg5EhEj3dMz=
-eTYbDfSr3lygA3p9yWJTf8RpsEiHvF7oIAGV5j9A5bObShQ&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E4=B8=8B=E8=BD=BD</a></div>
-            </div>
-          </div>
-          <div style=3D"clear:both;height:36px;padding:6px 4px">
-            <div style=3D"float:left;width:36px"><a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3QvLDq8=
-jg3SyyUkX84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                moz-do-not-send=3D"true"><img
-                  src=3D"https://mimg.127.net/xm/all/fj/ico-bfile-28.gif"
-                  moz-do-not-send=3D"true" border=3D"0"></a></div>
-            <div>
-              <div style=3D"padding:0px;font-size:12px;line-height:14px">=
-<a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3QvLDq8=
-jg3SyyUkX84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-download=3D"https://mail.163.com/large-attachment-download/index.html?p=3D=
-X-NETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3QvL=
-Dq8jg3SyyUkX84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&amp;title=3DThe%20sign=
-al%20received%20by%20B205mini%20is%20unstable"
-preview=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpiA1l=
-NE2Ud3W3QvLDq8jg3SyyUkX84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&amp;title=3D=
-The%20signal%20received%20by%20B205mini%20is%20unstable"
-                  fileid=3D"undefined" filename=3D"B205-DuPont line.mp4"
-                  filesize=3D"2881646" expiretime=3D"1669354528730"
-                  target=3D"_blank"
-                  style=3D"color:#000;text-decoration:none"
-                  moz-do-not-send=3D"true">B205-DuPont line.mp4</a><span
-                  style=3D"color:#bbb"> (2.75M, 2022=E5=B9=B411=E6=9C=882=
-5=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)</span></div>
-              <div style=3D"padding:4px
-                0px;font-size:12px;line-height:14px"><a
-href=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2=
-Ud3W3QvLDq8jg3SyyUkX84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&amp;title=3DTh=
-e%20signal%20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E5=9C=A8=E7=BA=BF=E9=A2=84=E8=
-=A7=88</a> | <a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpiA1lNE2Ud3W3QvLDq8=
-jg3SyyUkX84aeua9IwvDNKuSyBwBnqjWHYmxI8meJOpD52w&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E4=B8=8B=E8=BD=BD</a></div>
-            </div>
-          </div>
-          <div style=3D"clear:both;height:36px;padding:6px 4px">
-            <div style=3D"float:left;width:36px"><a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8S8TDiQ=
-CPyA3VeV6FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                moz-do-not-send=3D"true"><img
-                  src=3D"https://mimg.127.net/xm/all/fj/ico-bfile-28.gif"
-                  moz-do-not-send=3D"true" border=3D"0"></a></div>
-            <div>
-              <div style=3D"padding:0px;font-size:12px;line-height:14px">=
-<a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8S8TDiQ=
-CPyA3VeV6FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-download=3D"https://mail.163.com/large-attachment-download/index.html?p=3D=
-X-NETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8S8T=
-DiQCPyA3VeV6FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&amp;title=3DThe%20sign=
-al%20received%20by%20B205mini%20is%20unstable"
-preview=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpnK9W=
-W409V6W8S8TDiQCPyA3VeV6FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&amp;title=3D=
-The%20signal%20received%20by%20B205mini%20is%20unstable"
-                  fileid=3D"undefined" filename=3D"B205-DuPont
-                  line-Acrylic.mp4" filesize=3D"18342554"
-                  expiretime=3D"1669354530303" target=3D"_blank"
-                  style=3D"color:#000;text-decoration:none"
-                  moz-do-not-send=3D"true">B205-DuPont line-Acrylic.mp4</=
-a><span
-                  style=3D"color:#bbb"> (17.49M, 2022=E5=B9=B411=E6=9C=88=
-25=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)</span></div>
-              <div style=3D"padding:4px
-                0px;font-size:12px;line-height:14px"><a
-href=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpnK9WW40=
-9V6W8S8TDiQCPyA3VeV6FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&amp;title=3DTh=
-e%20signal%20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E5=9C=A8=E7=BA=BF=E9=A2=84=E8=
-=A7=88</a> | <a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpnK9WW409V6W8S8TDiQ=
-CPyA3VeV6FYSWlC7OJsCFwBCqLvbG56A7iheLpntgQeC5TQ&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E4=B8=8B=E8=BD=BD</a></div>
-            </div>
-          </div>
-          <div style=3D"clear:both;height:36px;padding:6px 4px">
-            <div style=3D"float:left;width:36px"><a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5pltUyA=
-gi5fQ2rtJaqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                moz-do-not-send=3D"true"><img
-                  src=3D"https://mimg.127.net/xm/all/fj/ico-bfile-28.gif"
-                  moz-do-not-send=3D"true" border=3D"0"></a></div>
-            <div>
-              <div style=3D"padding:0px;font-size:12px;line-height:14px">=
-<a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5pltUyA=
-gi5fQ2rtJaqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-download=3D"https://mail.163.com/large-attachment-download/index.html?p=3D=
-X-NETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5plt=
-UyAgi5fQ2rtJaqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&amp;title=3DThe%20sign=
-al%20received%20by%20B205mini%20is%20unstable"
-preview=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpp2k2=
-utmexby5pltUyAgi5fQ2rtJaqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&amp;title=3D=
-The%20signal%20received%20by%20B205mini%20is%20unstable"
-                  fileid=3D"undefined" filename=3D"B210-antenna.mp4"
-                  filesize=3D"4779643" expiretime=3D"1669354539896"
-                  target=3D"_blank"
-                  style=3D"color:#000;text-decoration:none"
-                  moz-do-not-send=3D"true">B210-antenna.mp4</a><span
-                  style=3D"color:#bbb"> (4.56M, 2022=E5=B9=B411=E6=9C=882=
-5=E6=97=A5 13:35 =E5=88=B0=E6=9C=9F)</span></div>
-              <div style=3D"padding:4px
-                0px;font-size:12px;line-height:14px"><a
-href=3D"http://fs.163.com/fs/preview/?file=3DSy2W9lTU-w7vguqZrlWFpp2k2utm=
-exby5pltUyAgi5fQ2rtJaqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&amp;title=3DTh=
-e%20signal%20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E5=9C=A8=E7=BA=BF=E9=A2=84=E8=
-=A7=88</a> | <a
-href=3D"https://mail.163.com/large-attachment-download/index.html?p=3DX-N=
-ETEASE-HUGE-ATTACHMENT&amp;file=3DSy2W9lTU-w7vguqZrlWFpp2k2utmexby5pltUyA=
-gi5fQ2rtJaqIl00803xa-rfjWzJBwQaU-iS4kQWfkEF12fA&amp;title=3DThe%20signal%=
-20received%20by%20B205mini%20is%20unstable"
-                  moz-do-not-send=3D"true">=E4=B8=8B=E8=BD=BD</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------nMFvZwa0xMcglxGrmYXmGzyE--
-
---===============5011350051727121460==
+--===============1817279996093859211==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -543,4 +235,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5011350051727121460==--
+--===============1817279996093859211==--
