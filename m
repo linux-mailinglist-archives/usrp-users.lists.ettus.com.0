@@ -2,311 +2,295 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 501F860D96F
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 04:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5FB60DAAA
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 07:38:24 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E72B8383FBC
-	for <lists+usrp-users@lfdr.de>; Tue, 25 Oct 2022 22:54:28 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 05893383D4C
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 01:38:23 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666752868; bh=n9BskaL2I1AVTn2Ik6fUXfRZxKsrdtDu7BahdGuqoJQ=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=w/Y2R7hPkUJSiAwGQZ5CyZfVEkRtnWFEJt+ogTOL8FvsH6Buo5hmWbN3/Qf51yN9m
-	 sYoWHw4jPPaZFXQcxy95mLyvpokwFzJYd+8AZlRudWRD0z5lyptbMkau3+r/KXOVSP
-	 GVU5eWiPKQmXVJY1zssjl2pZIeMOR8F+aYiGRcIvMs7hhFguBS2iNoM0Mt6R/Xw0O3
-	 7c1t4lQJRwfHba6qzUPHvNdENQ+KxSQ2G5eMymRDIeu64DG+KddyW//Cwl/EhN7/Bh
-	 +o5T5fgWEvYWe5QCIIs9lkrZXxxcePTnXjvUQUsImisiGMBtpjrkUbOssnlChM7Rcw
-	 JdxNSY5eFaFJQ==
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id D1371383F38
-	for <usrp-users@lists.ettus.com>; Tue, 25 Oct 2022 22:53:22 -0400 (EDT)
+	t=1666762703; bh=/ig7k8sVXHVGJ3/f2UUagSRosLMrA7gFRz1YZy1SLjk=;
+	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=Koclkjh79EQPj3Mw9S0eEAb7LKhTGGJi9Mmk2pY0WxKD8IIcHQ0ocL66VoYetEDDM
+	 SVBkxk+wdD4WIQ70f08mc/QzsiofC5mbBi4sMaZfz6azj1uKa75VXvqMhFNA7WP717
+	 lZ/Lqk/G2f65idaiR6cP3ntQ/YGoaBwd+luhf0oXcZ6hIe1IN5ayV8ztDIIk3hpI7V
+	 sIhu0fTzhmuxyZPZpzQ0qWyLnKNTSemS05nJZL+TKxh+Y8ik7Gic+7I2gOf03+kywh
+	 l1is/urGzDGi95AM9aYLG95ameP4Es3+zM4bom5thS+a4fWwY4NtmFjBY6P5BBL6d9
+	 YfSM8nQfgqFIA==
+Received: from m133.mail.163.com (m133.mail.163.com [220.181.13.3])
+	by mm2.emwd.com (Postfix) with ESMTP id F26CF381063
+	for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 01:37:33 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="Bn7bjGIv";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="arMtCITX";
 	dkim-atps=neutral
-Received: by mail-pj1-f54.google.com with SMTP id d13-20020a17090a3b0d00b00213519dfe4aso916483pjc.2
-        for <usrp-users@lists.ettus.com>; Tue, 25 Oct 2022 19:53:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=FunsTsCXGew9N/PSd0glKF+EWW5oMsgmToflOtbYmf0=;
-        b=Bn7bjGIvbyTCUzg2OsHJisq2Ty8QRssjotcxBiJiigttYKShgNUq4vRjZUZGXw4Wxj
-         Swlnqd1HseNNZjetld8rd4zGr3I8cXHIsc2ToQorp5f3TCF4l1Z6+BKZH++RBe/60sBl
-         Nw8dNKmH1emE8v5Up0NPWDkT9fD1cG9qM5GIpcjzEcf9ELJKnrJLJtPLaZjU58mYvwjv
-         5tY5S5JY9PE0aSU0gb0nHMZ4vXjJxgGhEboIAelKzuvAWR33M5SkEJTguttCsb8PqcAC
-         enmbQuB2S9RwElvfWk0fafZpbr/4ZVLkgIFipl2MGUUtWQFRQJFAqHWDiGNXfXk25Zhv
-         S4fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FunsTsCXGew9N/PSd0glKF+EWW5oMsgmToflOtbYmf0=;
-        b=EhX2rehj+yivA1oMaPLR86fMnwCTBJbYOb0ABoZgb4G5QGLSalp8yOCp3hGOFkbDdA
-         /GgEBeyInmegPJTTkLk4pB9cW4ufeF10ewT50Vsiz7hroSaNWpXKp9On1fnopr2JfWew
-         vpeqEB5LrBVOJ8mZo+6n1Xpbqhw/TX2JxWdTYpMpG7SADFIwL5ww6A0ksqPD8y/V8erU
-         LOhU45Xenzp+ViwK95dTN4IE56Yae2Zc/nDaaBL6mEl9oZQs3H8aHb3eZyFHrtYWX1bj
-         pa5zsF3z7dxFOBjxFk6seN0AG1TSzoNf3qXXjoBUf/y+FWNxMbvonNa0LUDNzYKkXUR+
-         rJkg==
-X-Gm-Message-State: ACrzQf0C14QybQaYaxonc0B1EqVF2A+NFA5+oedByuASEKg/h7ojdPvM
-	iSSDf7Yqflgw8xswHulrlgmqjPB5PH2ipBeCplq66+LFeheZQ+H8
-X-Google-Smtp-Source: AMsMyM6ISSHHySIJs5LC8D7lb7zgX5S6qNyH0MfJW4guAm5KDtFVhWgpacXJpt45tXKyAvp9aQb65oj1kC+HZYM6/xk=
-X-Received: by 2002:a17:90b:3446:b0:213:4990:fa2 with SMTP id
- lj6-20020a17090b344600b0021349900fa2mr1704531pjb.73.1666752801745; Tue, 25
- Oct 2022 19:53:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=ZDHOV
+	cN4eOJqfWeW5cwX+URyMfE/X5jxOHPdvJmU62E=; b=arMtCITX8u20ZY3gUogXi
+	MgnjMBCuug5h9PvqyrDMIippsrGWOieOFdJQ75HnmtXQHQEM/itDRx/kNOUIyGyj
+	BLtGYEodOJRp9oYDsrSlbGpct1aNDHWHIVxCYVrNIB/7xWEMQj5V2OcTu5mWL9Md
+	OEgTMd7LIJxN96Gfovbb+A=
+Received: from xdcple$163.com ( [101.229.172.182] ) by ajax-webmail-wmsvr3
+ (Coremail) ; Wed, 26 Oct 2022 13:37:31 +0800 (CST)
+X-Originating-IP: [101.229.172.182]
+Date: Wed, 26 Oct 2022 13:37:31 +0800 (CST)
+From: luteo  <xdcple@163.com>
+To: usrp-users@lists.ettus.com
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.13 build 20220113(9671e152)
+ Copyright (c) 2002-2022 www.mailtech.cn 163com
+X-NTES-SC: AL_QuydBPudvU4u5yGbYekZnEcage07UMaxvPgu2YFXPp80tinHyywyY2RkBnL66OGQDz6DqwOTYQpy1OZgYK5Jb5mxG7riu3flmejnkJl8Cpf7
+X-CM-CTRLDATA: o/Nt1GxpbmtBdHRhY2hlZD0x
 MIME-Version: 1.0
-References: <CAEXYVK4siP3O0-qP24bpp=Phjj0JRt1rB9n0R=9CxDOyTCiyTQ@mail.gmail.com>
- <CAOcXSJyEbqEUD+3+yyFQ=AJk-kzse==UVDfoy75+AqiHD758aw@mail.gmail.com> <CAEXYVK5nnW0xt=EOpMT-G_13FkWZSPs4d9w29J+RVgdtBDS4SQ@mail.gmail.com>
-In-Reply-To: <CAEXYVK5nnW0xt=EOpMT-G_13FkWZSPs4d9w29J+RVgdtBDS4SQ@mail.gmail.com>
-From: Wan Liu <wan.liu@ettus.com>
-Date: Tue, 25 Oct 2022 22:53:10 -0400
-Message-ID: <CAOcXSJxfY+_0RmMWri6Zxg_pd0MHe-TMPY1iLdgprKw_g0pXpA@mail.gmail.com>
-To: Brian Padalino <bpadalino@gmail.com>
-Message-ID-Hash: MQIIKO4Z3XM2D4H5C62RMFBIWSMHB5TA
-X-Message-ID-Hash: MQIIKO4Z3XM2D4H5C62RMFBIWSMHB5TA
-X-MailFrom: wan.liu@ettus.com
+Message-ID: <665f49e9.5052.18412cbb604.Coremail.xdcple@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: A8GowAD3wi2bx1hjT7O+AA--.23284W
+X-CM-SenderInfo: h0gf1zrh6rljoofrz/1tbiEwOmaGE156oSTwABsb
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Message-ID-Hash: ZY5JNJF4YCDNFTMSDP4QNFORB6CGK6YK
+X-Message-ID-Hash: ZY5JNJF4YCDNFTMSDP4QNFORB6CGK6YK
+X-MailFrom: xdcple@163.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: TwinRX Channel Isolation
+Subject: [USRP-users] The signal received by B205mini is unstable
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MQIIKO4Z3XM2D4H5C62RMFBIWSMHB5TA/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZY5JNJF4YCDNFTMSDP4QNFORB6CGK6YK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4818158500907783551=="
+Content-Type: multipart/mixed; boundary="===============6072679261954319263=="
 
---===============4818158500907783551==
-Content-Type: multipart/alternative; boundary="000000000000ad47f605ebe72041"
+--===============6072679261954319263==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_75962_1425022848.1666762651140"
 
---000000000000ad47f605ebe72041
-Content-Type: text/plain; charset="UTF-8"
+------=_Part_75962_1425022848.1666762651140
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-Hello Brian,
+V2hlbiB0ZXN0aW5nIHRoZSBCMjA1bWluaSwgd2UgZm91bmQgdGhhdCB0aGUgU01BIGNvbm5lY3Rv
+ciB3YXMgdGlnaHRlbmVkIHRvIHRoZSBtb3N0IHRpZ2h0LCBidXQgdGhlcmUgbWF5IGJlIG5vIHNp
+Z25hbCBvciB0aGUgc2lnbmFsIGlzIHdlYWsuCgoKCgpPZiBjb3Vyc2Ugbm90IGFsd2F5cy4gU29t
+ZXRpbWVzIGl0IGlzIGJldHRlciB0byBsb29zZW4gdGhlIFNNQSBjb25uZWN0b3IgYSBsaXR0bGUu
+CgoKCgpJbiBzaG9ydCwgdGhlIHJlY2VwdGlvbiBlZmZlY3QgcmVxdWlyZXMgcmVwZWF0ZWQgYWRq
+dXN0bWVudCBvZiB0aGUgc21hIGNvbm5lY3Rvci4gRXZlbiBhZnRlciB0aGUgc21hIGlzIHRpZ2h0
+ZW5lZCwgYXBwbHlpbmcgYW4gZXh0ZXJuYWwgZm9yY2Ugb24gdGhlIHBsdWcgcG9zaXRpb24gbWF5
+IGNoYW5nZSB0aGUgcXVhbGl0eSBvZiB0aGUgcmVjZWl2ZWQgc2lnbmFsLgoKCgoKVGhlcmUgaXMg
+bm8gc2ltaWxhciBwcm9ibGVtIG9uIG90aGVyIHR5cGVzIG9mIFVTUlAgYm9hcmRzLiBJdCBpcyBk
+ZXRlcm1pbmVkIHRoYXQgaXQgaXMgbm90IGFuIGFudGVubmEgcHJvYmxlbS4KCgoKCldlIHVzZWQg
+QjIxMCBhbmQgQjIwNW1pbmkgZm9yIGNvbXBhcmlzb24uIFNlZSB0aGUgYXR0YWNobWVudCBmb3Ig
+dmlkZW8gcmVzdWx0cy4gobBCMjA1LWFudGVubmEubXA0obEgJiChsEIyMTAtYW50ZW5uYS5tcDSh
+sQoKCgoKV2UgdXNlZCBhbm90aGVyIEIyMDVtaW5pIGZvciBjb21wYXJpc29uLiBUaGUgcGhlbm9t
+ZW5vbiBpcyB0aGUgc2FtZS4gU2VlIHRoZSBhdHRhY2htZW50IGZvciB2aWRlbyByZXN1bHRzLiCh
+sEIyMDUtRHVQb250IGxpbmUubXA0obEgJiChsEIyMDUtRHVQb250IGxpbmUtQWNyeWxpYy5tcDSh
+sQoKCgoKV2UgYXJlIG5vdCBzdXJlIHdoZXRoZXIgdGhpcyBwaGVub21lbm9uIGlzIGNhdXNlZCBi
+eSB0aGUgYWJzZW5jZSBvZiBhIHNoaWVsZGVkIGVuY2xvc3VyZS4gQnV0IHdlIGRvbid0IHRoaW5r
+IGl0IHdpbGwgaGF2ZSBzdWNoIGEgYmlnIGltcGFjdC4KCgoKCkkgd2FudCB0byBhc2sgaWYgdGhl
+cmUgaXMgYW55IHdheSB0byBzb2x2ZSB0aGlzIHByb2JsZW0uCgq008340tcxNjPTys/kt6LAtLXE
+s6y087i9vP4KQjIwNS1hbnRlbm5hLm1wNCAoMy42MU0sIDIwMjLE6jEx1MIyNcjVIDEzOjM1ILW9
+xtopCtTaz9/UpMDAIHwgz8LU2ApCMjA1LUR1UG9udCBsaW5lLm1wNCAoMi43NU0sIDIwMjLE6jEx
+1MIyNcjVIDEzOjM1ILW9xtopCtTaz9/UpMDAIHwgz8LU2ApCMjA1LUR1UG9udCBsaW5lLUFjcnls
+aWMubXA0ICgxNy40OU0sIDIwMjLE6jEx1MIyNcjVIDEzOjM1ILW9xtopCtTaz9/UpMDAIHwgz8LU
+2ApCMjEwLWFudGVubmEubXA0ICg0LjU2TSwgMjAyMsTqMTHUwjI1yNUgMTM6MzUgtb3G2ikK1NrP
+39SkwMAgfCDPwtTY
+------=_Part_75962_1425022848.1666762651140
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-Thank you for the additional information.
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXYgc3R5bGU9ImxpbmUtaGVpZ2h0OiAxLjc7Ij48cCBzdHls
+ZT0ibWFyZ2luOiAwcHg7Ij5XaGVuIHRlc3RpbmcgdGhlIEIyMDVtaW5pLCB3ZSBmb3VuZCB0aGF0
+IHRoZSBTTUEgY29ubmVjdG9yIHdhcyB0aWdodGVuZWQgdG8gdGhlIG1vc3QgdGlnaHQsIGJ1dCB0
+aGVyZSBtYXkgYmUgbm8gc2lnbmFsIG9yIHRoZSBzaWduYWwgaXMgd2Vhay48L3A+PHAgc3R5bGU9
+Im1hcmdpbjogMHB4OyI+PGJyPjwvcD48cCBzdHlsZT0ibWFyZ2luOiAwcHg7Ij5PZiBjb3Vyc2Ug
+bm90IGFsd2F5cy4gU29tZXRpbWVzIGl0IGlzIGJldHRlciB0byBsb29zZW4gdGhlIFNNQSBjb25u
+ZWN0b3IgYSBsaXR0bGUuPC9wPjxwIHN0eWxlPSJtYXJnaW46IDBweDsiPjxicj48L3A+PHAgc3R5
+bGU9Im1hcmdpbjogMHB4OyI+SW4gc2hvcnQsIHRoZSByZWNlcHRpb24gZWZmZWN0IHJlcXVpcmVz
+IHJlcGVhdGVkIGFkanVzdG1lbnQgb2YgdGhlIHNtYSBjb25uZWN0b3IuIEV2ZW4gYWZ0ZXIgdGhl
+IHNtYSBpcyB0aWdodGVuZWQsIGFwcGx5aW5nIGFuIGV4dGVybmFsIGZvcmNlIG9uIHRoZSBwbHVn
+IHBvc2l0aW9uIG1heSBjaGFuZ2UgdGhlIHF1YWxpdHkgb2YgdGhlIHJlY2VpdmVkIHNpZ25hbC48
+L3A+PHAgc3R5bGU9Im1hcmdpbjogMHB4OyI+PGJyPjwvcD48cCBzdHlsZT0ibWFyZ2luOiAwcHg7
+Ij5UaGVyZSBpcyBubyBzaW1pbGFyIHByb2JsZW0gb24gb3RoZXIgdHlwZXMgb2YgVVNSUCBib2Fy
+ZHMuIEl0IGlzIGRldGVybWluZWQgdGhhdCBpdCBpcyBub3QgYW4gYW50ZW5uYSBwcm9ibGVtLjwv
+cD48cCBzdHlsZT0ibWFyZ2luOiAwcHg7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46IDBweDsi
+PldlIHVzZWQgQjIxMCBhbmQgQjIwNW1pbmkgZm9yIGNvbXBhcmlzb24uIFNlZSB0aGUgYXR0YWNo
+bWVudCBmb3IgdmlkZW8gcmVzdWx0cy4gobA8c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjog
+cmdiKDIyNywgMjM0LCAyNDQpOyBjb2xvcjogcmdiKDEwMiwgMTAyLCAxMDIpOyBmb250LWZhbWls
+eTogJnF1b3Q7TWljcm9zb2Z0IFlhaGVpJnF1b3Q7LCB2ZXJkYW5hOyBmb250LXNpemU6IDEycHg7
+IHdoaXRlLXNwYWNlOiBub3dyYXA7Ij5CMjA1LWFudGVubmEubXA0PC9zcGFuPqGxICZhbXA7IKGw
+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYigyMjcsIDIzNCwgMjQ0KTsgY29sb3I6
+IHJnYigxMDIsIDEwMiwgMTAyKTsgZm9udC1mYW1pbHk6ICZxdW90O01pY3Jvc29mdCBZYWhlaSZx
+dW90OywgdmVyZGFuYTsgZm9udC1zaXplOiAxMnB4OyB3aGl0ZS1zcGFjZTogbm93cmFwOyI+QjIx
+MC1hbnRlbm5hLm1wNDwvc3Bhbj6hsTwvcD48cCBzdHlsZT0ibWFyZ2luOiAwcHg7Ij48YnI+PC9w
+PjxwIHN0eWxlPSJtYXJnaW46IDBweDsiPldlIHVzZWQgYW5vdGhlciBCMjA1bWluaSBmb3IgY29t
+cGFyaXNvbi4gVGhlIHBoZW5vbWVub24gaXMgdGhlIHNhbWUuIFNlZSB0aGUgYXR0YWNobWVudCBm
+b3IgdmlkZW8gcmVzdWx0cy4gobA8c3BhbiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogcmdiKDIy
+NywgMjM0LCAyNDQpOyBjb2xvcjogcmdiKDEwMiwgMTAyLCAxMDIpOyBmb250LWZhbWlseTogJnF1
+b3Q7TWljcm9zb2Z0IFlhaGVpJnF1b3Q7LCB2ZXJkYW5hOyBmb250LXNpemU6IDEycHg7IHdoaXRl
+LXNwYWNlOiBub3dyYXA7Ij5CMjA1LUR1UG9udCBsaW5lLm1wNDwvc3Bhbj6hsSAmYW1wOyChsDxz
+cGFuIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjI3LCAyMzQsIDI0NCk7IGNvbG9yOiBy
+Z2IoMTAyLCAxMDIsIDEwMik7IGZvbnQtZmFtaWx5OiAmcXVvdDtNaWNyb3NvZnQgWWFoZWkmcXVv
+dDssIHZlcmRhbmE7IGZvbnQtc2l6ZTogMTJweDsgd2hpdGUtc3BhY2U6IG5vd3JhcDsiPkIyMDUt
+RHVQb250IGxpbmUtQWNyeWxpYy5tcDQ8L3NwYW4+obE8L3A+PHAgc3R5bGU9Im1hcmdpbjogMHB4
+OyI+PGJyPjwvcD48cCBzdHlsZT0ibWFyZ2luOiAwcHg7Ij5XZSBhcmUgbm90IHN1cmUgd2hldGhl
+ciB0aGlzIHBoZW5vbWVub24gaXMgY2F1c2VkIGJ5IHRoZSBhYnNlbmNlIG9mIGEgc2hpZWxkZWQg
+ZW5jbG9zdXJlLiBCdXQgd2UgZG9uJ3QgdGhpbmsgaXQgd2lsbCBoYXZlIHN1Y2ggYSBiaWcgaW1w
+YWN0LjwvcD48cCBzdHlsZT0ibWFyZ2luOiAwcHg7Ij48YnI+PC9wPjxwIHN0eWxlPSJtYXJnaW46
+IDBweDsiPkkgd2FudCB0byBhc2sgaWYgdGhlcmUgaXMgYW55IHdheSB0byBzb2x2ZSB0aGlzIHBy
+b2JsZW0uPC9wPjwvZGl2PjwvZGl2PjxkaXYgaWQ9ImRpdk5ldGVhc2VCaWdBdHRhY2giIHN0eWxl
+PSJjbGVhcjpib3RoO21hcmdpbi10b3A6MTBweDttYXJnaW4tYm90dG9tOjE1cHg7YmFja2dyb3Vu
+ZDojREVFOEYyO3BhZGRpbmc6NHB4O2ZvbnQtZmFtaWx5OnZlcmRhbmEsQXJpYWwsSGVsdmV0aWNh
+LHNhbnMtc2VyaWYiPjxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxNHB4O3BhZGRpbmc6NHB4IDhweCA4
+cHggOHB4O2xpbmUtaGVpZ2h0OjE2cHgiPjxiPrTTzfjS1zE2M9PKz+S3osC0tcSzrLTzuL28/jwv
+Yj48L2Rpdj48ZGl2IHN0eWxlPSJiYWNrZ3JvdW5kOiNmZmY7cGFkZGluZzo0cHgiPjxkaXYgc3R5
+bGU9ImNsZWFyOmJvdGg7aGVpZ2h0OjM2cHg7cGFkZGluZzo2cHggNHB4Ij48ZGl2IHN0eWxlPSJm
+bG9hdDpsZWZ0O3dpZHRoOjM2cHgiPjxhIGhyZWY9Imh0dHBzOi8vbWFpbC4xNjMuY29tL2xhcmdl
+LWF0dGFjaG1lbnQtZG93bmxvYWQvaW5kZXguaHRtbD9wPVgtTkVURUFTRS1IVUdFLUFUVEFDSE1F
+TlQmYW1wO2ZpbGU9U3kyVzlsVFUtdzd2Z3VxWnJsV0Zwb2tyckZHNHdnNUVoRWozZE16ZVRZYkRm
+U3IzbHlnQTNwOXlXSlRmOFJwc0VpSHZGN29JQUdWNWo5QTViT2JTaFEmYW1wO3RpdGxlPVRoZSUy
+MHNpZ25hbCUyMHJlY2VpdmVkJTIwYnklMjBCMjA1bWluaSUyMGlzJTIwdW5zdGFibGUiPjxpbWcg
+Ym9yZGVyPSIwIiBzcmM9Imh0dHBzOi8vbWltZy4xMjcubmV0L3htL2FsbC9mai9pY28tYmZpbGUt
+MjguZ2lmIj48L2E+PC9kaXY+PGRpdj48ZGl2IHN0eWxlPSJwYWRkaW5nOjBweDtmb250LXNpemU6
+MTJweDtsaW5lLWhlaWdodDoxNHB4Ij48YSBocmVmPSJodHRwczovL21haWwuMTYzLmNvbS9sYXJn
+ZS1hdHRhY2htZW50LWRvd25sb2FkL2luZGV4Lmh0bWw/cD1YLU5FVEVBU0UtSFVHRS1BVFRBQ0hN
+RU5UJmFtcDtmaWxlPVN5Mlc5bFRVLXc3dmd1cVpybFdGcG9rcnJGRzR3ZzVFaEVqM2RNemVUWWJE
+ZlNyM2x5Z0EzcDl5V0pUZjhScHNFaUh2RjdvSUFHVjVqOUE1Yk9iU2hRJmFtcDt0aXRsZT1UaGUl
+MjBzaWduYWwlMjByZWNlaXZlZCUyMGJ5JTIwQjIwNW1pbmklMjBpcyUyMHVuc3RhYmxlIiBkb3du
+bG9hZD0iaHR0cHM6Ly9tYWlsLjE2My5jb20vbGFyZ2UtYXR0YWNobWVudC1kb3dubG9hZC9pbmRl
+eC5odG1sP3A9WC1ORVRFQVNFLUhVR0UtQVRUQUNITUVOVCZhbXA7ZmlsZT1TeTJXOWxUVS13N3Zn
+dXFacmxXRnBva3JyRkc0d2c1RWhFajNkTXplVFliRGZTcjNseWdBM3A5eVdKVGY4UnBzRWlIdkY3
+b0lBR1Y1ajlBNWJPYlNoUSZhbXA7dGl0bGU9VGhlJTIwc2lnbmFsJTIwcmVjZWl2ZWQlMjBieSUy
+MEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSIgcHJldmlldz0iaHR0cDovL2ZzLjE2My5jb20vZnMv
+cHJldmlldy8/ZmlsZT1TeTJXOWxUVS13N3ZndXFacmxXRnBva3JyRkc0d2c1RWhFajNkTXplVFli
+RGZTcjNseWdBM3A5eVdKVGY4UnBzRWlIdkY3b0lBR1Y1ajlBNWJPYlNoUSZhbXA7dGl0bGU9VGhl
+JTIwc2lnbmFsJTIwcmVjZWl2ZWQlMjBieSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSIgZmls
+ZWlkPSJ1bmRlZmluZWQiIGZpbGVuYW1lPSJCMjA1LWFudGVubmEubXA0IiBmaWxlc2l6ZT0iMzc4
+MTkzNCIgZXhwaXJldGltZT0iMTY2OTM1NDUyNjQxOCIgdGFyZ2V0PSJfYmxhbmsiIHN0eWxlPSJj
+b2xvcjojMDAwO3RleHQtZGVjb3JhdGlvbjpub25lIj5CMjA1LWFudGVubmEubXA0PC9hPjxzcGFu
+IHN0eWxlPSJjb2xvcjojYmJiIj4gKDMuNjFNLCAyMDIyxOoxMdTCMjXI1SAxMzozNSC1vcbaKTwv
+c3Bhbj48L2Rpdj48ZGl2IHN0eWxlPSJwYWRkaW5nOjRweCAwcHg7Zm9udC1zaXplOjEycHg7bGlu
+ZS1oZWlnaHQ6MTRweCI+PGEgaHJlZj0iaHR0cDovL2ZzLjE2My5jb20vZnMvcHJldmlldy8/Zmls
+ZT1TeTJXOWxUVS13N3ZndXFacmxXRnBva3JyRkc0d2c1RWhFajNkTXplVFliRGZTcjNseWdBM3A5
+eVdKVGY4UnBzRWlIdkY3b0lBR1Y1ajlBNWJPYlNoUSZhbXA7dGl0bGU9VGhlJTIwc2lnbmFsJTIw
+cmVjZWl2ZWQlMjBieSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSI+1NrP39SkwMA8L2E+IHwg
+PGEgaHJlZj0iaHR0cHM6Ly9tYWlsLjE2My5jb20vbGFyZ2UtYXR0YWNobWVudC1kb3dubG9hZC9p
+bmRleC5odG1sP3A9WC1ORVRFQVNFLUhVR0UtQVRUQUNITUVOVCZhbXA7ZmlsZT1TeTJXOWxUVS13
+N3ZndXFacmxXRnBva3JyRkc0d2c1RWhFajNkTXplVFliRGZTcjNseWdBM3A5eVdKVGY4UnBzRWlI
+dkY3b0lBR1Y1ajlBNWJPYlNoUSZhbXA7dGl0bGU9VGhlJTIwc2lnbmFsJTIwcmVjZWl2ZWQlMjBi
+eSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSI+z8LU2DwvYT48L2Rpdj48L2Rpdj48L2Rpdj48
+ZGl2IHN0eWxlPSJjbGVhcjpib3RoO2hlaWdodDozNnB4O3BhZGRpbmc6NnB4IDRweCI+PGRpdiBz
+dHlsZT0iZmxvYXQ6bGVmdDt3aWR0aDozNnB4Ij48YSBocmVmPSJodHRwczovL21haWwuMTYzLmNv
+bS9sYXJnZS1hdHRhY2htZW50LWRvd25sb2FkL2luZGV4Lmh0bWw/cD1YLU5FVEVBU0UtSFVHRS1B
+VFRBQ0hNRU5UJmFtcDtmaWxlPVN5Mlc5bFRVLXc3dmd1cVpybFdGcGlBMWxORTJVZDNXM1F2TERx
+OGpnM1N5eVVrWDg0YWV1YTlJd3ZETkt1U3lCd0JucWpXSFlteEk4bWVKT3BENTJ3JmFtcDt0aXRs
+ZT1UaGUlMjBzaWduYWwlMjByZWNlaXZlZCUyMGJ5JTIwQjIwNW1pbmklMjBpcyUyMHVuc3RhYmxl
+Ij48aW1nIGJvcmRlcj0iMCIgc3JjPSJodHRwczovL21pbWcuMTI3Lm5ldC94bS9hbGwvZmovaWNv
+LWJmaWxlLTI4LmdpZiI+PC9hPjwvZGl2PjxkaXY+PGRpdiBzdHlsZT0icGFkZGluZzowcHg7Zm9u
+dC1zaXplOjEycHg7bGluZS1oZWlnaHQ6MTRweCI+PGEgaHJlZj0iaHR0cHM6Ly9tYWlsLjE2My5j
+b20vbGFyZ2UtYXR0YWNobWVudC1kb3dubG9hZC9pbmRleC5odG1sP3A9WC1ORVRFQVNFLUhVR0Ut
+QVRUQUNITUVOVCZhbXA7ZmlsZT1TeTJXOWxUVS13N3ZndXFacmxXRnBpQTFsTkUyVWQzVzNRdkxE
+cThqZzNTeXlVa1g4NGFldWE5SXd2RE5LdVN5QndCbnFqV0hZbXhJOG1lSk9wRDUydyZhbXA7dGl0
+bGU9VGhlJTIwc2lnbmFsJTIwcmVjZWl2ZWQlMjBieSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJs
+ZSIgZG93bmxvYWQ9Imh0dHBzOi8vbWFpbC4xNjMuY29tL2xhcmdlLWF0dGFjaG1lbnQtZG93bmxv
+YWQvaW5kZXguaHRtbD9wPVgtTkVURUFTRS1IVUdFLUFUVEFDSE1FTlQmYW1wO2ZpbGU9U3kyVzls
+VFUtdzd2Z3VxWnJsV0ZwaUExbE5FMlVkM1czUXZMRHE4amczU3l5VWtYODRhZXVhOUl3dkROS3VT
+eUJ3Qm5xaldIWW14SThtZUpPcEQ1MncmYW1wO3RpdGxlPVRoZSUyMHNpZ25hbCUyMHJlY2VpdmVk
+JTIwYnklMjBCMjA1bWluaSUyMGlzJTIwdW5zdGFibGUiIHByZXZpZXc9Imh0dHA6Ly9mcy4xNjMu
+Y29tL2ZzL3ByZXZpZXcvP2ZpbGU9U3kyVzlsVFUtdzd2Z3VxWnJsV0ZwaUExbE5FMlVkM1czUXZM
+RHE4amczU3l5VWtYODRhZXVhOUl3dkROS3VTeUJ3Qm5xaldIWW14SThtZUpPcEQ1MncmYW1wO3Rp
+dGxlPVRoZSUyMHNpZ25hbCUyMHJlY2VpdmVkJTIwYnklMjBCMjA1bWluaSUyMGlzJTIwdW5zdGFi
+bGUiIGZpbGVpZD0idW5kZWZpbmVkIiBmaWxlbmFtZT0iQjIwNS1EdVBvbnQgbGluZS5tcDQiIGZp
+bGVzaXplPSIyODgxNjQ2IiBleHBpcmV0aW1lPSIxNjY5MzU0NTI4NzMwIiB0YXJnZXQ9Il9ibGFu
+ayIgc3R5bGU9ImNvbG9yOiMwMDA7dGV4dC1kZWNvcmF0aW9uOm5vbmUiPkIyMDUtRHVQb250IGxp
+bmUubXA0PC9hPjxzcGFuIHN0eWxlPSJjb2xvcjojYmJiIj4gKDIuNzVNLCAyMDIyxOoxMdTCMjXI
+1SAxMzozNSC1vcbaKTwvc3Bhbj48L2Rpdj48ZGl2IHN0eWxlPSJwYWRkaW5nOjRweCAwcHg7Zm9u
+dC1zaXplOjEycHg7bGluZS1oZWlnaHQ6MTRweCI+PGEgaHJlZj0iaHR0cDovL2ZzLjE2My5jb20v
+ZnMvcHJldmlldy8/ZmlsZT1TeTJXOWxUVS13N3ZndXFacmxXRnBpQTFsTkUyVWQzVzNRdkxEcThq
+ZzNTeXlVa1g4NGFldWE5SXd2RE5LdVN5QndCbnFqV0hZbXhJOG1lSk9wRDUydyZhbXA7dGl0bGU9
+VGhlJTIwc2lnbmFsJTIwcmVjZWl2ZWQlMjBieSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSI+
+1NrP39SkwMA8L2E+IHwgPGEgaHJlZj0iaHR0cHM6Ly9tYWlsLjE2My5jb20vbGFyZ2UtYXR0YWNo
+bWVudC1kb3dubG9hZC9pbmRleC5odG1sP3A9WC1ORVRFQVNFLUhVR0UtQVRUQUNITUVOVCZhbXA7
+ZmlsZT1TeTJXOWxUVS13N3ZndXFacmxXRnBpQTFsTkUyVWQzVzNRdkxEcThqZzNTeXlVa1g4NGFl
+dWE5SXd2RE5LdVN5QndCbnFqV0hZbXhJOG1lSk9wRDUydyZhbXA7dGl0bGU9VGhlJTIwc2lnbmFs
+JTIwcmVjZWl2ZWQlMjBieSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSI+z8LU2DwvYT48L2Rp
+dj48L2Rpdj48L2Rpdj48ZGl2IHN0eWxlPSJjbGVhcjpib3RoO2hlaWdodDozNnB4O3BhZGRpbmc6
+NnB4IDRweCI+PGRpdiBzdHlsZT0iZmxvYXQ6bGVmdDt3aWR0aDozNnB4Ij48YSBocmVmPSJodHRw
+czovL21haWwuMTYzLmNvbS9sYXJnZS1hdHRhY2htZW50LWRvd25sb2FkL2luZGV4Lmh0bWw/cD1Y
+LU5FVEVBU0UtSFVHRS1BVFRBQ0hNRU5UJmFtcDtmaWxlPVN5Mlc5bFRVLXc3dmd1cVpybFdGcG5L
+OVdXNDA5VjZXOFM4VERpUUNQeUEzVmVWNkZZU1dsQzdPSnNDRndCQ3FMdmJHNTZBN2loZUxwbnRn
+UWVDNVRRJmFtcDt0aXRsZT1UaGUlMjBzaWduYWwlMjByZWNlaXZlZCUyMGJ5JTIwQjIwNW1pbmkl
+MjBpcyUyMHVuc3RhYmxlIj48aW1nIGJvcmRlcj0iMCIgc3JjPSJodHRwczovL21pbWcuMTI3Lm5l
+dC94bS9hbGwvZmovaWNvLWJmaWxlLTI4LmdpZiI+PC9hPjwvZGl2PjxkaXY+PGRpdiBzdHlsZT0i
+cGFkZGluZzowcHg7Zm9udC1zaXplOjEycHg7bGluZS1oZWlnaHQ6MTRweCI+PGEgaHJlZj0iaHR0
+cHM6Ly9tYWlsLjE2My5jb20vbGFyZ2UtYXR0YWNobWVudC1kb3dubG9hZC9pbmRleC5odG1sP3A9
+WC1ORVRFQVNFLUhVR0UtQVRUQUNITUVOVCZhbXA7ZmlsZT1TeTJXOWxUVS13N3ZndXFacmxXRnBu
+SzlXVzQwOVY2VzhTOFREaVFDUHlBM1ZlVjZGWVNXbEM3T0pzQ0Z3QkNxTHZiRzU2QTdpaGVMcG50
+Z1FlQzVUUSZhbXA7dGl0bGU9VGhlJTIwc2lnbmFsJTIwcmVjZWl2ZWQlMjBieSUyMEIyMDVtaW5p
+JTIwaXMlMjB1bnN0YWJsZSIgZG93bmxvYWQ9Imh0dHBzOi8vbWFpbC4xNjMuY29tL2xhcmdlLWF0
+dGFjaG1lbnQtZG93bmxvYWQvaW5kZXguaHRtbD9wPVgtTkVURUFTRS1IVUdFLUFUVEFDSE1FTlQm
+YW1wO2ZpbGU9U3kyVzlsVFUtdzd2Z3VxWnJsV0Zwbks5V1c0MDlWNlc4UzhURGlRQ1B5QTNWZVY2
+RllTV2xDN09Kc0NGd0JDcUx2Ykc1NkE3aWhlTHBudGdRZUM1VFEmYW1wO3RpdGxlPVRoZSUyMHNp
+Z25hbCUyMHJlY2VpdmVkJTIwYnklMjBCMjA1bWluaSUyMGlzJTIwdW5zdGFibGUiIHByZXZpZXc9
+Imh0dHA6Ly9mcy4xNjMuY29tL2ZzL3ByZXZpZXcvP2ZpbGU9U3kyVzlsVFUtdzd2Z3VxWnJsV0Zw
+bks5V1c0MDlWNlc4UzhURGlRQ1B5QTNWZVY2RllTV2xDN09Kc0NGd0JDcUx2Ykc1NkE3aWhlTHBu
+dGdRZUM1VFEmYW1wO3RpdGxlPVRoZSUyMHNpZ25hbCUyMHJlY2VpdmVkJTIwYnklMjBCMjA1bWlu
+aSUyMGlzJTIwdW5zdGFibGUiIGZpbGVpZD0idW5kZWZpbmVkIiBmaWxlbmFtZT0iQjIwNS1EdVBv
+bnQgbGluZS1BY3J5bGljLm1wNCIgZmlsZXNpemU9IjE4MzQyNTU0IiBleHBpcmV0aW1lPSIxNjY5
+MzU0NTMwMzAzIiB0YXJnZXQ9Il9ibGFuayIgc3R5bGU9ImNvbG9yOiMwMDA7dGV4dC1kZWNvcmF0
+aW9uOm5vbmUiPkIyMDUtRHVQb250IGxpbmUtQWNyeWxpYy5tcDQ8L2E+PHNwYW4gc3R5bGU9ImNv
+bG9yOiNiYmIiPiAoMTcuNDlNLCAyMDIyxOoxMdTCMjXI1SAxMzozNSC1vcbaKTwvc3Bhbj48L2Rp
+dj48ZGl2IHN0eWxlPSJwYWRkaW5nOjRweCAwcHg7Zm9udC1zaXplOjEycHg7bGluZS1oZWlnaHQ6
+MTRweCI+PGEgaHJlZj0iaHR0cDovL2ZzLjE2My5jb20vZnMvcHJldmlldy8/ZmlsZT1TeTJXOWxU
+VS13N3ZndXFacmxXRnBuSzlXVzQwOVY2VzhTOFREaVFDUHlBM1ZlVjZGWVNXbEM3T0pzQ0Z3QkNx
+THZiRzU2QTdpaGVMcG50Z1FlQzVUUSZhbXA7dGl0bGU9VGhlJTIwc2lnbmFsJTIwcmVjZWl2ZWQl
+MjBieSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSI+1NrP39SkwMA8L2E+IHwgPGEgaHJlZj0i
+aHR0cHM6Ly9tYWlsLjE2My5jb20vbGFyZ2UtYXR0YWNobWVudC1kb3dubG9hZC9pbmRleC5odG1s
+P3A9WC1ORVRFQVNFLUhVR0UtQVRUQUNITUVOVCZhbXA7ZmlsZT1TeTJXOWxUVS13N3ZndXFacmxX
+RnBuSzlXVzQwOVY2VzhTOFREaVFDUHlBM1ZlVjZGWVNXbEM3T0pzQ0Z3QkNxTHZiRzU2QTdpaGVM
+cG50Z1FlQzVUUSZhbXA7dGl0bGU9VGhlJTIwc2lnbmFsJTIwcmVjZWl2ZWQlMjBieSUyMEIyMDVt
+aW5pJTIwaXMlMjB1bnN0YWJsZSI+z8LU2DwvYT48L2Rpdj48L2Rpdj48L2Rpdj48ZGl2IHN0eWxl
+PSJjbGVhcjpib3RoO2hlaWdodDozNnB4O3BhZGRpbmc6NnB4IDRweCI+PGRpdiBzdHlsZT0iZmxv
+YXQ6bGVmdDt3aWR0aDozNnB4Ij48YSBocmVmPSJodHRwczovL21haWwuMTYzLmNvbS9sYXJnZS1h
+dHRhY2htZW50LWRvd25sb2FkL2luZGV4Lmh0bWw/cD1YLU5FVEVBU0UtSFVHRS1BVFRBQ0hNRU5U
+JmFtcDtmaWxlPVN5Mlc5bFRVLXc3dmd1cVpybFdGcHAyazJ1dG1leGJ5NXBsdFV5QWdpNWZRMnJ0
+SmFxSWwwMDgwM3hhLXJmald6SkJ3UWFVLWlTNGtRV2ZrRUYxMmZBJmFtcDt0aXRsZT1UaGUlMjBz
+aWduYWwlMjByZWNlaXZlZCUyMGJ5JTIwQjIwNW1pbmklMjBpcyUyMHVuc3RhYmxlIj48aW1nIGJv
+cmRlcj0iMCIgc3JjPSJodHRwczovL21pbWcuMTI3Lm5ldC94bS9hbGwvZmovaWNvLWJmaWxlLTI4
+LmdpZiI+PC9hPjwvZGl2PjxkaXY+PGRpdiBzdHlsZT0icGFkZGluZzowcHg7Zm9udC1zaXplOjEy
+cHg7bGluZS1oZWlnaHQ6MTRweCI+PGEgaHJlZj0iaHR0cHM6Ly9tYWlsLjE2My5jb20vbGFyZ2Ut
+YXR0YWNobWVudC1kb3dubG9hZC9pbmRleC5odG1sP3A9WC1ORVRFQVNFLUhVR0UtQVRUQUNITUVO
+VCZhbXA7ZmlsZT1TeTJXOWxUVS13N3ZndXFacmxXRnBwMmsydXRtZXhieTVwbHRVeUFnaTVmUTJy
+dEphcUlsMDA4MDN4YS1yZmpXekpCd1FhVS1pUzRrUVdma0VGMTJmQSZhbXA7dGl0bGU9VGhlJTIw
+c2lnbmFsJTIwcmVjZWl2ZWQlMjBieSUyMEIyMDVtaW5pJTIwaXMlMjB1bnN0YWJsZSIgZG93bmxv
+YWQ9Imh0dHBzOi8vbWFpbC4xNjMuY29tL2xhcmdlLWF0dGFjaG1lbnQtZG93bmxvYWQvaW5kZXgu
+aHRtbD9wPVgtTkVURUFTRS1IVUdFLUFUVEFDSE1FTlQmYW1wO2ZpbGU9U3kyVzlsVFUtdzd2Z3Vx
+WnJsV0ZwcDJrMnV0bWV4Ynk1cGx0VXlBZ2k1ZlEycnRKYXFJbDAwODAzeGEtcmZqV3pKQndRYVUt
+aVM0a1FXZmtFRjEyZkEmYW1wO3RpdGxlPVRoZSUyMHNpZ25hbCUyMHJlY2VpdmVkJTIwYnklMjBC
+MjA1bWluaSUyMGlzJTIwdW5zdGFibGUiIHByZXZpZXc9Imh0dHA6Ly9mcy4xNjMuY29tL2ZzL3By
+ZXZpZXcvP2ZpbGU9U3kyVzlsVFUtdzd2Z3VxWnJsV0ZwcDJrMnV0bWV4Ynk1cGx0VXlBZ2k1ZlEy
+cnRKYXFJbDAwODAzeGEtcmZqV3pKQndRYVUtaVM0a1FXZmtFRjEyZkEmYW1wO3RpdGxlPVRoZSUy
+MHNpZ25hbCUyMHJlY2VpdmVkJTIwYnklMjBCMjA1bWluaSUyMGlzJTIwdW5zdGFibGUiIGZpbGVp
+ZD0idW5kZWZpbmVkIiBmaWxlbmFtZT0iQjIxMC1hbnRlbm5hLm1wNCIgZmlsZXNpemU9IjQ3Nzk2
+NDMiIGV4cGlyZXRpbWU9IjE2NjkzNTQ1Mzk4OTYiIHRhcmdldD0iX2JsYW5rIiBzdHlsZT0iY29s
+b3I6IzAwMDt0ZXh0LWRlY29yYXRpb246bm9uZSI+QjIxMC1hbnRlbm5hLm1wNDwvYT48c3BhbiBz
+dHlsZT0iY29sb3I6I2JiYiI+ICg0LjU2TSwgMjAyMsTqMTHUwjI1yNUgMTM6MzUgtb3G2ik8L3Nw
+YW4+PC9kaXY+PGRpdiBzdHlsZT0icGFkZGluZzo0cHggMHB4O2ZvbnQtc2l6ZToxMnB4O2xpbmUt
+aGVpZ2h0OjE0cHgiPjxhIGhyZWY9Imh0dHA6Ly9mcy4xNjMuY29tL2ZzL3ByZXZpZXcvP2ZpbGU9
+U3kyVzlsVFUtdzd2Z3VxWnJsV0ZwcDJrMnV0bWV4Ynk1cGx0VXlBZ2k1ZlEycnRKYXFJbDAwODAz
+eGEtcmZqV3pKQndRYVUtaVM0a1FXZmtFRjEyZkEmYW1wO3RpdGxlPVRoZSUyMHNpZ25hbCUyMHJl
+Y2VpdmVkJTIwYnklMjBCMjA1bWluaSUyMGlzJTIwdW5zdGFibGUiPtTaz9/UpMDAPC9hPiB8IDxh
+IGhyZWY9Imh0dHBzOi8vbWFpbC4xNjMuY29tL2xhcmdlLWF0dGFjaG1lbnQtZG93bmxvYWQvaW5k
+ZXguaHRtbD9wPVgtTkVURUFTRS1IVUdFLUFUVEFDSE1FTlQmYW1wO2ZpbGU9U3kyVzlsVFUtdzd2
+Z3VxWnJsV0ZwcDJrMnV0bWV4Ynk1cGx0VXlBZ2k1ZlEycnRKYXFJbDAwODAzeGEtcmZqV3pKQndR
+YVUtaVM0a1FXZmtFRjEyZkEmYW1wO3RpdGxlPVRoZSUyMHNpZ25hbCUyMHJlY2VpdmVkJTIwYnkl
+MjBCMjA1bWluaSUyMGlzJTIwdW5zdGFibGUiPs/C1Ng8L2E+PC9kaXY+PC9kaXY+PC9kaXY+PC9k
+aXY+PC9kaXY+
+------=_Part_75962_1425022848.1666762651140--
 
-Regarding  #6, I meant that if you have two TwinRX daughterboards, see if
-you get this problem when the fixed channel is on one daughterboard, and
-the tuned channel is on the other.
-
-Regarding screenshots, are you referring to any particular frequency and
-time region, or is everything above the noise floor associated with the
-tuning? In other words, is the clean spectrum where there is nothing above
-the noise floor in both time and frequency plots?
-
-Also can you explain what you mean by "shows some analog PLL-style locking
-for around 10 ms of time, then goes away"? Are you referring to the burst
-from 3 ms to 13 ms, or something specifically at 10 ms?
-
-Lastly, what are your spectrogram parameters to generate the waterfall?
-
-I'll reach out again after I attempt to reproduce.
-
-Regards,
-
-Wan
-
-
-On Tue, Oct 25, 2022 at 8:29 PM Brian Padalino <bpadalino@gmail.com> wrote:
-
-> Hey Wan,
->
-> Thanks for the quick response.
->
-> On Tue, Oct 25, 2022 at 7:59 PM Wan Liu <wan.liu@ettus.com> wrote:
->
->> Hello Brian,
->>
->> I'll see if  I can reproduce with my TwinRX. Please provide some more
->> information to help me reproduce...
->>
->> 1. Center Frequency of fixed channel 0
->>
->
-> I tested at 915 MHz, but also 400 MHz.  It seems to show up wherever I
-> happen to tune the fixed channel.
->
->
->> 2. Tuning range on channel 1
->>
->
-> I have tried with just 2 frequencies (200 MHz, 500 MHz) or the full
-> frequency range.  Tuning the full frequency range seems to provide more
-> noise in different areas of the spectrum.
->
->
->> 3. What tuning rate have you tried and what's the threshold between a
->> clean spectrum and a bad one?
->>
->
-> I always get bad spectrum regardless of my dwell time on any particular
-> frequency.  The "max hold" will always show approximately the same spectral
-> image.  The "average" spectrum will obviously be quieter if I dwell for
-> longer.
->
->
->> 4. Please share screenshots of what you are seeing
->>
->
-> Attached is a 10 ms capture of what I see often.  It's only one particular
-> case, but you can see what is going on.  I have included time vs. freq,
-> amplitude vs. freq, and amplitude vs. time plots.
->
->
->> 5. Please share uhd_usrp_probe output so I know your serial, revision,
->> uhd version, etc
->>
->
-> Attached as uhd_probe.txt.
->
->
->> 6. Can you reproduce this problem when it's two channels on different
->> daughterboards? In other words, ch 0 and ch 1 on the same TwinRX, and ch 0
->> and ch 1 across each DB slot.
->>
->
-> I am unsure exactly what you're asking for here.  My current setup has a
-> UBX in DB0 and a TwinRX in DB1.  If you can be more specific about what you
-> want me to try, I can give it a shot?
->
-> I will note 2 more observations I made:
->
->   - When trying to read the lo_locked sensor continuously, generating SPI
-> traffic I presume going to the PLLs, I get clean spectrum.  This suggests
-> to me that digital noise isn't the culprit here.
->   - The IQ file I saved and looked at (which generated the attached
-> figures) shows some analog PLL-style locking for around 10 ms of time, then
-> goes away.
->
->
->>
->> There's several switchable routes before and after each stage LO going
->> across channels, so it's possible there are some isolation problems between
->> channels. My first thought is also to remove LO sharing cables, but as you
->> said, it doesn't improve.
->>
->> Maybe switching the switches that are not used might help give better
->> isolation. From schematic, if channel 1 uses its own LO, then only switch
->> 16 is needed, and switch 14 which routes LO 1 to the sister channel 2 isn't
->> used. So I'm wondering if the state of switch 14 makes a difference in
->> terms of isolation. I'd have to check the software to see if you can
->> independently flip these switches, and if it's recommended, to test this
->> hypothesis. I will also check internally if similar issue is reported and
->> get back to you.
->>
->
-> Let me know if there's anything else I can provide to try to help out.  I
-> have a very long IQ capture I took (both inputs terminated, recording fixed
-> channel while retuning the other channel) but it's obviously too big to
-> share here.
->
-> Thanks,
-> Brian
->
-
---000000000000ad47f605ebe72041
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>Hello Brian,<br><br></div>Thank you for the=
- additional information. <br><br></div>Regarding=C2=A0 #6, I meant that if =
-you have two TwinRX daughterboards, see if you get this problem when the fi=
-xed channel is on one daughterboard, and the tuned channel is on the other.=
- <br><br></div>Regarding screenshots, are you referring to any particular f=
-requency and time region, or is everything above the noise floor associated=
- with the tuning? In other words, is the clean spectrum where there is noth=
-ing above the noise floor in both time and frequency plots?<br><div><br></d=
-iv><div>Also can you explain what you mean by &quot;shows some analog PLL-s=
-tyle locking for around 10 ms of time, then goes away&quot;? Are you referr=
-ing to the burst from 3 ms to 13 ms, or something specifically at 10 ms?<br=
-><br></div><div>Lastly, what are your spectrogram parameters to generate th=
-e waterfall?<br><br></div><div>I&#39;ll reach out again after I attempt to =
-reproduce.<br><br></div><div>Regards,<br><br></div><div>Wan<br></div><div><=
-br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Tue, Oct 25, 2022 at 8:29 PM Brian Padalino &lt;<a href=3D"mail=
-to:bpadalino@gmail.com">bpadalino@gmail.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr=
-">Hey Wan,<div><br></div><div>Thanks for the quick response.</div></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, O=
-ct 25, 2022 at 7:59 PM Wan Liu &lt;<a href=3D"mailto:wan.liu@ettus.com" tar=
-get=3D"_blank">wan.liu@ettus.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello Brian,<br><br>=
-</div><div>I&#39;ll see if=C2=A0 I can reproduce with my TwinRX. Please pro=
-vide some more information to help me reproduce...<br><br></div><div>1. Cen=
-ter Frequency of fixed channel 0<br></div></div></blockquote><div><br></div=
-><div>I tested at 915 MHz, but also 400 MHz.=C2=A0 It seems to show up wher=
-ever=C2=A0I happen to tune the fixed channel.</div><div>=C2=A0</div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div></div><div=
->2. Tuning range on channel 1<br></div></div></blockquote><div><br></div><d=
-iv>I have tried with just 2 frequencies (200 MHz, 500 MHz) or the full freq=
-uency range.=C2=A0 Tuning the full frequency=C2=A0range seems to provide mo=
-re noise in different areas of the spectrum.</div><div>=C2=A0</div><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div></div><div>=
-3. What tuning rate have you tried and what&#39;s the threshold between a c=
-lean spectrum and a bad one?<br></div></div></blockquote><div><br></div><di=
-v>I always get bad spectrum regardless of my dwell time on any particular f=
-requency.=C2=A0 The &quot;max hold&quot; will always show approximately the=
- same spectral image.=C2=A0 The &quot;average&quot; spectrum=C2=A0will obvi=
-ously be quieter if I dwell for longer.</div><div>=C2=A0</div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div></div><div>4. Pl=
-ease share screenshots of what you are seeing<br></div></div></blockquote><=
-div><br></div><div>Attached is a 10 ms capture of what I see often.=C2=A0 I=
-t&#39;s only one particular case, but you can see what is going on.=C2=A0 I=
- have included time vs. freq, amplitude vs. freq, and amplitude vs. time pl=
-ots.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div dir=3D"ltr"><div></div><div>5. Please share uhd_usrp_probe output so=
- I know your serial, revision, uhd version, etc</div></div></blockquote><di=
-v><br></div><div>Attached as uhd_probe.txt.</div><div>=C2=A0</div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>6. Can you r=
-eproduce this problem when it&#39;s two channels on different daughterboard=
-s? In other words, ch 0 and ch 1 on the same TwinRX, and ch 0 and ch 1 acro=
-ss each DB slot.</div></div></blockquote><div><br></div><div>I am unsure ex=
-actly what you&#39;re asking for here.=C2=A0 My current setup has a UBX in =
-DB0 and a TwinRX in DB1.=C2=A0 If you can be more specific about what you w=
-ant me to try, I can give it a shot?</div><div><br></div><div>I will note 2=
- more observations I made:</div><div><br></div><div>=C2=A0 - When trying to=
- read the lo_locked sensor continuously, generating SPI traffic I presume g=
-oing to the PLLs, I get clean spectrum.=C2=A0 This suggests to me that digi=
-tal noise isn&#39;t the culprit here.</div><div>=C2=A0 - The IQ file I save=
-d and looked at (which generated the attached figures) shows some analog PL=
-L-style locking for around 10 ms of time, then goes away.</div><div>=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
-v><br></div><div>There&#39;s several switchable routes before and after eac=
-h stage LO going across channels, so it&#39;s possible there are some isola=
-tion problems between channels. My first thought is also to remove LO shari=
-ng cables, but as you said, it doesn&#39;t improve. <br></div><div><br></di=
-v><div>Maybe switching the switches that are not used might help give bette=
-r isolation. From schematic, if channel 1 uses its own LO, then only switch=
- 16 is needed, and switch 14 which routes LO 1 to the sister channel 2 isn&=
-#39;t used. So I&#39;m wondering if the state of switch 14 makes a differen=
-ce in terms of isolation. I&#39;d have to check the software to see if you =
-can independently flip these switches, and if it&#39;s recommended, to test=
- this hypothesis. I will also check internally if similar issue is reported=
- and get back to you.</div></div></blockquote><div><br></div><div>Let me kn=
-ow if there&#39;s anything else I can provide to try to help out.=C2=A0 I h=
-ave a very long IQ capture I took (both inputs terminated, recording fixed =
-channel while retuning the other channel) but it&#39;s obviously too big to=
- share here.</div><div><br></div><div>Thanks,</div><div>Brian</div></div></=
-div>
-</blockquote></div>
-
---000000000000ad47f605ebe72041--
-
---===============4818158500907783551==
+--===============6072679261954319263==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -316,4 +300,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4818158500907783551==--
+--===============6072679261954319263==--
