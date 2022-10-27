@@ -2,478 +2,180 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7325560EA55
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 22:38:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E84060EE0A
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Oct 2022 04:42:49 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 834FE3812C5
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 16:38:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 919CD383BEC
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Oct 2022 22:42:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1666816727; bh=5PQQLdZFkU7ssRUQR5k9xziDaOq+uXRdRU1NBxLZICg=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=t4xO3RfVEXDdmwDJHWvpEeXW2erDjul5TrTKY8g+O6BiuK+bB2mnUMzM3k9r7DGAW
-	 kf0YFR+xcjKaGPeyrCSI1MQcElqiQABiDSV1JYVhfhd8GmcJ8XPQm6SJNW9U2p1/1k
-	 3/BcOsS5rmuIRTAgkh+VE0snPnDjUcvTts7NGhtbwxCDEQqR2rgIlUZEaFijOfT0Qo
-	 jUvumyb+XhOKMtXedZx5QMlUP9mMKdmcWqU66f72iO/2+XYaYDTNvkmVWo7znBtJ3r
-	 rn7oaerBX9WohEW6PFSUnIzEcRUsV7z3xX1pK4v2H9RiP7zprIe7WSSbDNQ8xkXw+9
-	 sgfBUr+zm1j1w==
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 30291380EDD
-	for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 16:37:01 -0400 (EDT)
+	t=1666838567; bh=k0AvhrVwFzCDWbHNATgTGQt50LR6Nh9E1sRZHvwEsSI=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=XbldDqo5m/73fgOGutN00cXrrttKJiacBIEgWWT2W9RhMsiqBJrbF47n63RqY95Tf
+	 i/C8MV5L0rL62AiLCP9Y8r0EVk2f6aOhbltONIdw4zuBXIEeZR/JDB0hCC6Y6Ueaew
+	 EV9zYetoNMjKPXkmQo55UfX7vPdUvA9MHqF/HoqtgOgdssUAHaiL5DQ/gBPgndROkD
+	 gqEpRublRCv0t/GmzMIoQHWOfs1rfQr2SiZma2hPJik/O5eBYFWFV1IrgMW8XiM2SI
+	 0sugZR/SfhuiG3KSrBGDshEPeRi153CyHUXRcvRznkZIimaEAgniY82ltIuTY6+YrD
+	 q+Vi7VEdOEo9Q==
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2126.outbound.protection.outlook.com [40.107.244.126])
+	by mm2.emwd.com (Postfix) with ESMTPS id AC9EE38192B
+	for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 22:41:05 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XFZZciiB";
+	dkim=pass (1024-bit key; unprotected) header.d=umass.onmicrosoft.com header.i=@umass.onmicrosoft.com header.b="cgv44gjM";
 	dkim-atps=neutral
-Received: by mail-qt1-f181.google.com with SMTP id z6so3047351qtv.5
-        for <usrp-users@lists.ettus.com>; Wed, 26 Oct 2022 13:37:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w25Hdwsf2oWEAJVnsU31ncuaxMCo7cukGnOk2YqUJjw=;
-        b=XFZZciiBA2NGos3AsL4qNnPtQxQhNqAaQWOBGqNkiPr8HzvhtvLlibO4WTw03NZ2AG
-         5NPl2nSd15EHu9TkGbdcH4jgDMQC0gq7PQkrXEcxqvpIS4Ye4GElna2OJ9SSDAJRi53a
-         sEwjh+gdocgzaZEpYZxpRd/bTAN9zluPhGx59L5BdcEEjurCvI3AH6YpIMQfutNpOUv/
-         m9y4nRdA3aaGOIVjzTi+4TMtPYg42svkccjzyNhf4UOwMizNwmw+R61ixLN8IixT4dOq
-         s+2bSWueS5yZVRqYgIF0hDHa2TlbreYOrNf/JXOp4BCpCVZGC0MppcC56b2+x0ireKdb
-         xBhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=w25Hdwsf2oWEAJVnsU31ncuaxMCo7cukGnOk2YqUJjw=;
-        b=mBf8Ec9JfDZ8T2YrZSHg3syk5exQs+p1XEXBUdZMuk0SZYxonbdD0zFuSYGT4H+cfk
-         pznZ++NawB93r7/1HXDFO7XRD8cr7ksG/9plQUNHH1ZfS55Sd4njFg4v1SwaK4dKgWjm
-         QC0WO0/1R4lGcd3ufzSA2YsnFRoiI52xLjeyD0i7NSJ/5NXDNZSA4VJ4WCvrQskBp6to
-         s6BoxP7Jvx7M28feSD3/NZe/shG9484UWz2V2fVhJQoB1qxxeULabcb/Rwp0b4asZp5c
-         4MQDPqK0g/M3X289tMKk7AXGD/eiciGfYHcXi+6H+ll4Z8A3DNUj9mZvUIQf4Sp3bbEG
-         QZNQ==
-X-Gm-Message-State: ACrzQf1mbm6vMlu/gQ/efSWbcQILR2EjZTp2hAxi8wZVkUGqGqy8lQR3
-	ZN4kf7RrSrD6CBlWW13PsMBlOWseDXw=
-X-Google-Smtp-Source: AMsMyM7DZUvpN1bETTfn2gF81dEZckLO/17IM5eYM5jpx0Y0vk1DJjFTzZhCR0xbGnDxYVhNyO5PBQ==
-X-Received: by 2002:a05:622a:14d:b0:39c:c531:2506 with SMTP id v13-20020a05622a014d00b0039cc5312506mr38199294qtw.13.1666816620343;
-        Wed, 26 Oct 2022 13:37:00 -0700 (PDT)
-Received: from [192.168.2.174] (bras-base-smflon1825w-grc-09-174-93-2-222.dsl.bell.ca. [174.93.2.222])
-        by smtp.googlemail.com with ESMTPSA id f14-20020a05620a280e00b006eec09eed39sm4556837qkp.40.2022.10.26.13.36.59
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Oct 2022 13:36:59 -0700 (PDT)
-Message-ID: <9dd49f51-866e-fcf6-d64f-669cbda32c33@gmail.com>
-Date: Wed, 26 Oct 2022 16:36:58 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KXhQ0O3rBJU3Eh/YcuWQ0zHPcJCw/V7j5jvRtK9BHLJTdDU/NJvZun+1OoD01ib2S0hRS8NoZxREHh6wvKFOVSubb73V4Mn55jvzD9RJJkQpXwvRvMRUDHTLi9wxayXQcFqDuhy3LG49Wjzpa1rdEjqTP7/J7VkiPRispWk3YfugbX/18AYw1qv+VGVgvFM9QM3okqs+9+YzZfEw6bpPts3PsAURoqLIOESgHLVMg5WFjM5AbNB8x9MwYvNljdFg8CxgeKsrtFtqdVesaiYbJYWkcL3R+IvTT6g07svNYTHa5VSca8q7AKG8FSmrYXcRz+YMv+jkzDjph4g9CKt83Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=//YRl0dJCoAApexDar9RI4WmjAh28MKktz7E7Jdf7k8=;
+ b=Z+elvhDTko9o2vhMinU+r/5kVudj/cuJsraKZ/UUYqFyS+ZoxJJyfw9yXx9UhOSWOmc1hnZvKHPUsHJ5Ih23y8Xv8peKAyUOYl/BhUSbophTxIY2rEsLerWw93MnPqkFqs02rLPKg34X7bGvU4p405x3OqaoTwUJesilLWO751KGcJE3gZ76dvbZb9rA/YAXDahwPsfhWuh2517JjdJLj2e1d5gu5uiiUQSXYdhILjamj96BKm/BAeQtDvvJxZwtTY1G5yjrQT7EfGfbjJAGYxhwVDdhbE1lVXwQxqD/IIQX8cCIjHiOLry/MSyI4QhvGSSgYhFMSB8NJvWwLvFnaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=umass.edu; dmarc=pass action=none header.from=umass.edu;
+ dkim=pass header.d=umass.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=umass.onmicrosoft.com;
+ s=selector2-umass-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=//YRl0dJCoAApexDar9RI4WmjAh28MKktz7E7Jdf7k8=;
+ b=cgv44gjMdSALxxaI8yHl0TulL/5/MQXFQ85zFHKracWuDwhnEJpoi7m615xgZiqMFgw9ZXVrck5lttK/P6AoEcvfb3nAM/eylMjfY/OH1U5BjX/u1ZEHPUglzqNY8aWtIdyTBeijNdrniWS/Zx/rz9OeOnpTkcE5S7MCcjc/uMg=
+Received: from MN2PR14MB4192.namprd14.prod.outlook.com (2603:10b6:208:1dd::12)
+ by MN2PR14MB3358.namprd14.prod.outlook.com (2603:10b6:208:1a8::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.28; Thu, 27 Oct
+ 2022 02:41:03 +0000
+Received: from MN2PR14MB4192.namprd14.prod.outlook.com
+ ([fe80::238b:b050:b399:b11b]) by MN2PR14MB4192.namprd14.prod.outlook.com
+ ([fe80::238b:b050:b399:b11b%6]) with mapi id 15.20.5746.028; Thu, 27 Oct 2022
+ 02:41:02 +0000
+From: Xingjian Chen <xingjian@umass.edu>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Simulation for RFNoC block input signal
+Thread-Index: AQHY6aw6KA299YraD0+bpuGCBLD/Ug==
+Date: Thu, 27 Oct 2022 02:41:02 +0000
+Message-ID: 
+ <MN2PR14MB4192D5D8287383AEE1985AE7CD339@MN2PR14MB4192.namprd14.prod.outlook.com>
+Accept-Language: en-US, zh-CN
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAEXYVK4siP3O0-qP24bpp=Phjj0JRt1rB9n0R=9CxDOyTCiyTQ@mail.gmail.com>
- <CAOcXSJyEbqEUD+3+yyFQ=AJk-kzse==UVDfoy75+AqiHD758aw@mail.gmail.com>
- <CAEXYVK5nnW0xt=EOpMT-G_13FkWZSPs4d9w29J+RVgdtBDS4SQ@mail.gmail.com>
- <CAOcXSJxfY+_0RmMWri6Zxg_pd0MHe-TMPY1iLdgprKw_g0pXpA@mail.gmail.com>
- <CAEXYVK7j70E=3R+kLuuhKVOTa39S+ra_Ux4aUb4QgqwR-+cLDQ@mail.gmail.com>
- <CAEXYVK4qwCaMdx+qhdTo8m_rPzJMeQfuRxUxSgczTEC_i6jJTw@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAEXYVK4qwCaMdx+qhdTo8m_rPzJMeQfuRxUxSgczTEC_i6jJTw@mail.gmail.com>
-Message-ID-Hash: FONCPTNN3JJ4Q4HNCDKSVWDM4C2RYC4H
-X-Message-ID-Hash: FONCPTNN3JJ4Q4HNCDKSVWDM4C2RYC4H
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=umass.edu;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN2PR14MB4192:EE_|MN2PR14MB3358:EE_
+x-ms-office365-filtering-correlation-id: e8ea804e-53af-4277-4b8b-08dab7c4b06d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 32PRI17gmo3ur3fKZwY8XgagFdceFYqouz5mH/YqF8eYTlhstH8KPmJqhcp06F13CaMWoS7yPNsmLo8oKXixxB+IIS7YCAX9fN0vjtfTkJ4AumNqjRRc6IECYows90svhbwOx7XuLQs9MUsHYRObQmSwt26AwQ/YSBJd1U8wj6h1xEQna2Wbda0losM7PPOJWKgjkD1oj6e0rUMAzWus2+gG9WRug4/jxifbhnFqeUsS4ZVtNx6NesuKb3hl4EIyWgVMnMPl7i8jc8OzbMxPw5Gz2Ra0Bcw6I3Wt0J3D5WK0jUPwzU6o/a75fnbTC9nLivvGQtuJa3QQM0Hir6QD0oZriLU5PW893sY3BUKcvSdhnYgD0aAzmt/rRkeRg2ZusvFwseByZwkEAdJdYnoY9FwDJYEI6lMBwN8c8TfmxwFIgoV3p2+eIuysalQodKje6oS+SEix0DSnEQnVfD3RZnSwcC7QPKtD7LguaZ/IzvufekQPziggT4vji/wAEy4v46I8IUI9/gC5DfH5yod+pMTXjCCbOtC7hG2inC8iyZ0w68IFn8fG8OarSRQZxv+NTvE+1wObNioe4mW6mpsJptj3i1UZNX4VuJskLJjKTzrmi2d68CqVXvv2+v2lNZTNgbd6+Y4JOTDsPHLuGgQ3+DxdN+f6wUHbD1cMWXLiHmi7YZ+HwKZqHSXxNWVbpXmXIJJLqip9WniH9p7yaZHYpwBOeYUNrIXu0OzGZWrHQk8MiqZ0DzBfZvDYWmCs0tDLvHJx2o8sb3kiH5YZbFQNtQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR14MB4192.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(376002)(346002)(396003)(39860400002)(136003)(451199015)(38070700005)(86362001)(38100700002)(55016003)(33656002)(558084003)(71200400001)(2906002)(6916009)(66556008)(478600001)(316002)(8676002)(786003)(26005)(66446008)(66476007)(76116006)(64756008)(52536014)(8936002)(66946007)(41300700001)(5660300002)(7696005)(6506007)(83380400001)(122000001)(9686003)(75432002)(186003)(19627405001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?4zNKV+P4qJCGJIbQcNZOWDzIJAqr9/zADyH7srCIvcu5JQ14VjFgMbg3q+?=
+ =?iso-8859-1?Q?GvOClIj9F7GQwAsngSp6zAnf2wCPyG5Et/eaVQj3S+K6/4jNV8Frfv7Hz5?=
+ =?iso-8859-1?Q?S3tO4JK2D2Atxf9wXb0eZ3dm7MPNV+5huRyo2hVTKmSiSVjHROKqfsgl0o?=
+ =?iso-8859-1?Q?YUMs28H9iNcnvk0xPrgxz0n14pq336Y5g+wVdLPHcNWb93wpieYQmoWYoN?=
+ =?iso-8859-1?Q?NpqhKlfkhQCPB9epIUk2QNQQfyKpR+TfEx0fxA+daFII72JlEphT1lWclW?=
+ =?iso-8859-1?Q?slkl51NQQS4v2R05okMWGT6C2Hr5e/SkDraYpwaqdVwXeAci5UFU+KH8Rh?=
+ =?iso-8859-1?Q?SW0cIKv3nQM0/uGpKroNDV+jc3b4s7dXnfh3/ZmE5Nna3K3Cw8cV8KtLF9?=
+ =?iso-8859-1?Q?C7VxmfEh480UDUc1vrAfd9smaIPmRjNij5K7sbH/CEUa9L9o6kgPFFzDNd?=
+ =?iso-8859-1?Q?fU0vSfowLHGS7+ZEUmEZOAN5ja4YhWW/3QRUI1lISHP4u+d3RoSbj4YgRS?=
+ =?iso-8859-1?Q?GIleGEJAkN/OIF8Ub5bapxyayERIfTa+hNqJ87a5X/wXCQ6ar0DZG7aYTs?=
+ =?iso-8859-1?Q?XBq2HtD5Z1mjh0c6L98Ui/mruanr4aJqzCm1RIqXy1r9hwevgFG7xJ8Vza?=
+ =?iso-8859-1?Q?GHPW+yx1+/V8FVCZI1ZKomkdt4p1fObGBe3RBkk5BJsIMfmmYcBN6zoKQe?=
+ =?iso-8859-1?Q?H5NVSvPRJo/Kh3OnzrC111krFo5Rjt8M3lHggMTlbHxgmCZvefg2sOTK/c?=
+ =?iso-8859-1?Q?moraYbOwe9kjahH1HMQAZfOyWSBHOMrBno6lLhSXaUPz3RINn7u5k2Mx2p?=
+ =?iso-8859-1?Q?KJh3gYPQ+fwRtZw8ZDiBHoS17pZ5ZJOFdWaigS4MZFEosVEBbVhQlhPQpv?=
+ =?iso-8859-1?Q?5uur+qO/GS7wNleQKxMEUq+vKjg7mMj4VRAoxUhQ4ddq2ewE1YohfzXIR/?=
+ =?iso-8859-1?Q?ulUN6CDjgIN5xlTJfKY8/PYWbz4YWAQi/S05gsm3+DWo7cYB/EGv36KZun?=
+ =?iso-8859-1?Q?G5ZlDfI8giKFGy9YOJa9c3QIJ7vAEOvUdjAelV5yTwsZSZBBvmgZlXq3lQ?=
+ =?iso-8859-1?Q?eiumPTKJEmYN3PgoXLNEAjsPO5lKZ2aT90VopEZBe3s9nq7CUuQSKd4EDI?=
+ =?iso-8859-1?Q?zkRjKVNpUWYIPHMNtgWsZIcfq8lE3nQOM+rnIMltPFw6IQT13JO+57vMCx?=
+ =?iso-8859-1?Q?lPSLA2uGLQDWR8/0MMnldmGA26Fqgm+bAhx/ys/6aGgIetcRpNoQoNO85L?=
+ =?iso-8859-1?Q?qsTHs0n6HvRxD1uiJaVwH4aGnZXOyowd/AChrUfv1BcgPiexeNkdd+Hx9B?=
+ =?iso-8859-1?Q?c02QXERet+v5IX9URolkTRck5Qm797KRmRXkluHPzFtA8qYsnBMTLBrvnZ?=
+ =?iso-8859-1?Q?Y0Bb5ibCXH0YzQP27uSGCV/DYdSLW16zVXpx0EN3sF5gHBojxCNthptvqZ?=
+ =?iso-8859-1?Q?wSoojd4bo0MBK3mxIism57Fn3ZfTc1/1J88saCEinWwA4G4CEFSIU5OA7R?=
+ =?iso-8859-1?Q?kygaeUmXxSECp+X08kcZj8kJXU7jH+kf+QLFO35cWVIB1LlEXvrEIE3Fyu?=
+ =?iso-8859-1?Q?D8VZqki5oCEiJaAbPhEQnP7bKvrtxRSUBv7KwVXf/I7yTfwrGnse1QMDqU?=
+ =?iso-8859-1?Q?bbr5PgJlROYlU=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: umass.edu
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR14MB4192.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e8ea804e-53af-4277-4b8b-08dab7c4b06d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Oct 2022 02:41:02.7147
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7bd08b0b-3395-4dc1-94bb-d0b2e56a497f
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yZKoZB/zRdAVeAmLb9lvOsS7VC6ITLe4vGN6ROjVBGmLk+1Tf0j30t9DFWEmz/qMa72ILRO6PLq0FHM4tOKw7g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR14MB3358
+Message-ID-Hash: SWNLXVKEKT5GNN5OPIDJA2ZJOQLZLZKC
+X-Message-ID-Hash: SWNLXVKEKT5GNN5OPIDJA2ZJOQLZLZKC
+X-MailFrom: xingjian@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: TwinRX Channel Isolation
+Subject: [USRP-users] Simulation for RFNoC block input signal
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FONCPTNN3JJ4Q4HNCDKSVWDM4C2RYC4H/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/K3HTMNE2FGXJ57UG2KF6TMGSKBFCYR5V/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5098708398329664403=="
+Content-Type: multipart/mixed; boundary="===============3527555688480851294=="
 
-This is a multi-part message in MIME format.
---===============5098708398329664403==
-Content-Type: multipart/alternative;
- boundary="------------5ZUf9EThfJbSpxd8oUrkhjKn"
+--===============3527555688480851294==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MN2PR14MB4192D5D8287383AEE1985AE7CD339MN2PR14MB4192namp_"
 
-This is a multi-part message in MIME format.
---------------5ZUf9EThfJbSpxd8oUrkhjKn
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_MN2PR14MB4192D5D8287383AEE1985AE7CD339MN2PR14MB4192namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On 2022-10-26 16:03, Brian Padalino wrote:
-> After a bunch of testing, I ended up with the following solution which=20
-> seems to have fixed the vast majority of the issue.=C2=A0 There's still=
-=20
-> extra noise, but not nearly as bad as it was previously so I'd=20
-> appreciate it if Ettus still looked into a more complete solution.
->
-> For now, I just enabled the "mute till lock detect" feature of the=20
-> ADF5356 and ADF4351 PLLs.=C2=A0 I modified gen_adf5356_regs.py and=20
-> gen_adf4351_regs.py to default it to be on, and the ld_cyc_count to be=20
-> the longest possible.
->
-> Brian
-Hmm, interesting.=C2=A0 This is basically a "smoking gun" that it's the=20
-actual synthesizer outputs, rather than some digital signalling--
- =C2=A0 which you'd previously all-but-eliminated.
+Hi there,
+I am creating an OOT RFNoC block that does pulse average for X310. In a sim=
+ulation, can you generate and manipulate input payload stream data? Could a=
+nyone point a direction about which file can feed the RFNoC simulation a cu=
+stomized waveform? Thank you.
 
-Interestingly, the switches used on the synthesizer outputs are=20
-high-isolation, non-reflective switches, providing about
- =C2=A0 60dB of port-to-port isolation, and terminating the=20
-switched-away-from port to reduce tendency for lines to radiate.
- =C2=A0 I'm kind of getting lost in the schematic, but I wonder if there'=
-s a=20
-case where the switches are actually in the wrong state?
-
-My guess is that if this is a "sneak path" issue, it will require a=20
-hardware rev to fix, but if it's just a combination of
- =C2=A0 muting the synthesizers during tuning, combined, perhaps, with a=20
-slightly-wrong truth table for the various RF switches
- =C2=A0 in the design, that's just software.
-
-
->
-> On Wed, Oct 26, 2022 at 9:38 AM Brian Padalino <bpadalino@gmail.com>=20
-> wrote:
->
->     Hey Wan,
->
->     On Tue, Oct 25, 2022 at 10:53 PM Wan Liu <wan.liu@ettus.com> wrote:
->
->         Hello Brian,
->
->         Thank you for the additional information.
->
->         Regarding=C2=A0 #6, I meant that if you have two TwinRX
->         daughterboards, see if you get this problem when the fixed
->         channel is on one daughterboard, and the tuned channel is on
->         the other.
->
->
->     Ah, I see.=C2=A0 Unfortunately my setup is a mixed USB/TwinRX setup=
- so
->     maybe it isn't exactly testing what you're asking for, but I did
->     use the subdev spec to target the UBX RX2 for hopping around, and
->     the TwinRX Channel 0 was fixed.=C2=A0 In this case, the fixed spect=
-rum
->     stayed nice and clean the whole time.
->
->
->         Regarding screenshots, are you referring to any particular
->         frequency and time region, or is everything above the noise
->         floor associated with the tuning? In other words, is the clean
->         spectrum where there is nothing above the noise floor in both
->         time and frequency plots?
->
->
->     The captures were taken with terminated RF inputs. Channel 0 of
->     the TwinRX was fixed at some frequency (I believe 400 MHz) and
->     Channel 1 was hopping around.=C2=A0 The recording was observing Cha=
-nnel
->     0 - the fixed frequency channel.=C2=A0 When no hopping happens, the=
-re
->     is clean spectrum with just a noise floor which is what I expected
->     to see.=C2=A0 When hopping is happening, every so often we will see
->     these sweeping signals show up.=C2=A0 They last around 10 ms or so =
-and
->     then the spectrum is back to being clean.
->
->
->         Also can you explain what you mean by "shows some analog
->         PLL-style locking for around 10 ms of time, then goes away"?
->         Are you referring to the burst from 3 ms to 13 ms, or
->         something specifically at 10 ms?
->
->
->     I meant the phenomenon that starts at around 3 ms and lasts until
->     around 13 ms.=C2=A0 It looks like an analog PLL settling to me.=C2=A0=
- Here
->     is a zoomed in version:
->
->     https://drive.google.com/file/d/1NDax78i3UQh7X_R4g8SHBkBLibI1ICQZ/v=
-iew?usp=3Dsharing
->
->
->         Lastly, what are your spectrogram parameters to generate the
->         waterfall?
->
->
->     I am using an FFT size of 2048 with a blackmanharris window of the
->     same size, and overlapping by 1024.=C2=A0 My MATLAB command is:
->
->     =C2=A0=C2=A0spectrogram(slice, blackmanharris(2048), 1024, 2048, 50=
-e6,
->     'centered');
->
->
->         I'll reach out again after I attempt to reproduce.
->
->
->     Sounds good.=C2=A0 Let me know if you need any other data or
->     clarifications on what I am seeing.
->
->     Thanks,
->     Brian
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-
---------------5ZUf9EThfJbSpxd8oUrkhjKn
-Content-Type: text/html; charset=UTF-8
+--_000_MN2PR14MB4192D5D8287383AEE1985AE7CD339MN2PR14MB4192namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 2022-10-26 16:03, Brian Padalino
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAEXYVK4qwCaMdx+qhdTo8m_rPzJMeQfuRxUxSgczTEC_i6jJTw@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">After a bunch of testing, I ended up with the
-        following solution which seems to have fixed the vast majority
-        of the issue.=C2=A0 There's still extra noise, but not nearly as =
-bad
-        as it was previously so I'd appreciate it if Ettus still looked
-        into a more complete solution.
-        <div><br>
-        </div>
-        <div>For now, I just enabled the "mute till lock detect" feature
-          of the ADF5356 and ADF4351 PLLs.=C2=A0 I modified
-          gen_adf5356_regs.py and gen_adf4351_regs.py to default it to
-          be on, and the ld_cyc_count to be the longest possible.</div>
-        <div><br>
-        </div>
-        <div>Brian</div>
-      </div>
-    </blockquote>
-    Hmm, interesting.=C2=A0 This is basically a "smoking gun" that it's t=
-he
-    actual synthesizer outputs, rather than some digital signalling--<br>
-    =C2=A0 which you'd previously all-but-eliminated.<br>
-    <br>
-    Interestingly, the switches used on the synthesizer outputs are
-    high-isolation, non-reflective switches, providing about<br>
-    =C2=A0 60dB of port-to-port isolation, and terminating the
-    switched-away-from port to reduce tendency for lines to radiate.<br>
-    =C2=A0 I'm kind of getting lost in the schematic, but I wonder if the=
-re's
-    a case where the switches are actually in the wrong state?<br>
-    <br>
-    My guess is that if this is a "sneak path" issue, it will require a
-    hardware rev to fix, but if it's just a combination of<br>
-    =C2=A0 muting the synthesizers during tuning, combined, perhaps, with=
- a
-    slightly-wrong truth table for the various RF switches<br>
-    =C2=A0 in the design, that's just software.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAEXYVK4qwCaMdx+qhdTo8m_rPzJMeQfuRxUxSgczTEC_i6jJTw@mail.gmai=
-l.com"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Oct 26, 2022 at 9:3=
-8
-          AM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">bpad=
-alino@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir=3D"ltr">
-            <div dir=3D"ltr">Hey Wan,</div>
-            <br>
-            <div class=3D"gmail_quote">
-              <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 25, 2022 =
-at
-                10:53 PM Wan Liu &lt;<a href=3D"mailto:wan.liu@ettus.com"
-                  target=3D"_blank" moz-do-not-send=3D"true"
-                  class=3D"moz-txt-link-freetext">wan.liu@ettus.com</a>&g=
-t;
-                wrote:<br>
-              </div>
-              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px
-                0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div dir=3D"ltr">
-                  <div>
-                    <div>
-                      <div>Hello Brian,<br>
-                        <br>
-                      </div>
-                      Thank you for the additional information. <br>
-                      <br>
-                    </div>
-                    Regarding=C2=A0 #6, I meant that if you have two Twin=
-RX
-                    daughterboards, see if you get this problem when the
-                    fixed channel is on one daughterboard, and the tuned
-                    channel is on the other.</div>
-                </div>
-              </blockquote>
-              <div><br>
-              </div>
-              <div>Ah, I see.=C2=A0 Unfortunately my setup is a mixed
-                USB/TwinRX setup so maybe it isn't exactly testing what
-                you're asking for, but I did use the subdev spec to
-                target the UBX RX2 for hopping around, and the TwinRX
-                Channel 0 was fixed.=C2=A0 In this case, the fixed spectr=
-um
-                stayed nice and clean the whole time.</div>
-              <div>=C2=A0</div>
-              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px
-                0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div dir=3D"ltr">
-                  <div><br>
-                  </div>
-                  Regarding screenshots, are you referring to any
-                  particular frequency and time region, or is everything
-                  above the noise floor associated with the tuning? In
-                  other words, is the clean spectrum where there is
-                  nothing above the noise floor in both time and
-                  frequency plots?<br>
-                </div>
-              </blockquote>
-              <div><br>
-              </div>
-              <div>The captures were taken with terminated RF inputs.=C2=A0
-                Channel 0 of the TwinRX was fixed at some frequency (I
-                believe 400 MHz) and Channel 1 was hopping around.=C2=A0 =
-The
-                recording was observing Channel 0 - the fixed frequency
-                channel.=C2=A0 When no hopping happens, there is clean
-                spectrum with just a noise floor which is what I
-                expected to see.=C2=A0 When hopping is happening, every s=
-o
-                often we will see these sweeping signals show up.=C2=A0 T=
-hey
-                last around 10 ms or so and then the spectrum is back to
-                being clean.</div>
-              <div>=C2=A0</div>
-              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px
-                0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div dir=3D"ltr">
-                  <div><br>
-                  </div>
-                  <div>Also can you explain what you mean by "shows some
-                    analog PLL-style locking for around 10 ms of time,
-                    then goes away"? Are you referring to the burst from
-                    3 ms to 13 ms, or something specifically at 10 ms?<br=
->
-                  </div>
-                </div>
-              </blockquote>
-              <div><br>
-              </div>
-              <div>I meant the phenomenon that starts at around 3 ms and
-                lasts until around 13 ms.=C2=A0 It looks like an analog P=
-LL
-                settling to me.=C2=A0 Here is a zoomed in version:</div>
-              <div><br>
-              </div>
-              <div>=C2=A0=C2=A0<a
-href=3D"https://drive.google.com/file/d/1NDax78i3UQh7X_R4g8SHBkBLibI1ICQZ=
-/view?usp=3Dsharing"
-                  target=3D"_blank" moz-do-not-send=3D"true"
-                  class=3D"moz-txt-link-freetext">https://drive.google.co=
-m/file/d/1NDax78i3UQh7X_R4g8SHBkBLibI1ICQZ/view?usp=3Dsharing</a></div>
-              <div>=C2=A0</div>
-              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px
-                0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div dir=3D"ltr">
-                  <div><br>
-                  </div>
-                  <div>Lastly, what are your spectrogram parameters to
-                    generate the waterfall?<br>
-                  </div>
-                </div>
-              </blockquote>
-              <div><br>
-              </div>
-              <div>I am using an FFT size of 2048 with a blackmanharris
-                window of the same size, and overlapping by 1024.=C2=A0 M=
-y
-                MATLAB command is:</div>
-              <div><br>
-              </div>
-              <div>=C2=A0=C2=A0spectrogram(slice, blackmanharris(2048), 1=
-024,
-                2048, 50e6, 'centered');</div>
-              <div>=C2=A0</div>
-              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px
-                0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div dir=3D"ltr">
-                  <div><br>
-                  </div>
-                  <div>I'll reach out again after I attempt to
-                    reproduce.<br>
-                  </div>
-                </div>
-              </blockquote>
-              <div><br>
-              </div>
-              <div>Sounds good.=C2=A0 Let me know if you need any other d=
-ata
-                or clarifications on what I am seeing.</div>
-              <div><br>
-              </div>
-              <div>Thanks,</div>
-              <div>Brian</div>
-              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px
-                0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div class=3D"gmail_quote">
-                  <blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px
-                    0px 0.8ex;border-left:1px solid
-                    rgb(204,204,204);padding-left:1ex">
-                  </blockquote>
-                </div>
-              </blockquote>
-            </div>
-          </div>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+Hi there,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+I am creating an OOT RFNoC block that does pulse average for X310. I<span s=
+tyle=3D"background-color:rgb(255, 255, 255);display:inline !important" clas=
+s=3D"ContentPasted0">n a simulation,</span>&nbsp;can you generate and manip=
+ulate input payload stream data? Could anyone
+ point a direction about which file can feed the RFNoC simulation a customi=
+zed waveform? Thank you.</div>
+</body>
 </html>
 
---------------5ZUf9EThfJbSpxd8oUrkhjKn--
+--_000_MN2PR14MB4192D5D8287383AEE1985AE7CD339MN2PR14MB4192namp_--
 
---===============5098708398329664403==
+--===============3527555688480851294==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -483,4 +185,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5098708398329664403==--
+--===============3527555688480851294==--
