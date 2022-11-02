@@ -2,158 +2,242 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3AD361630B
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Nov 2022 13:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 855D2616318
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Nov 2022 13:54:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F349A384063
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Nov 2022 08:50:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C1562384032
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Nov 2022 08:54:05 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667393459; bh=FQZIgb0vZX4CrBMpy1SbtQCk6/HeqfwWxoYxTzNgXBg=;
+	t=1667393645; bh=QzVP44nqqysFgNffr7GvueTSY8Sgu8zb804KzIhxZz0=;
 	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=KkdGvlLySrZKtD+Jdz0GKt4UKrmlN1kSfbIhuVtC3DCmTfKxpgr5O8QQhnHIg3Cu/
-	 BOIlwiwZwFG9QeaBED116dvpqHWp/whpK/PqjGHNCpPbfdnHvYALFBhIpyxgNZ7wxs
-	 bZfikZrKOfZpIP9Ix0aFDmxW/1gaSdEmKy7fDrqhha0jI3qB+uz3CHcS2k5M3OO9S7
-	 1rZHJgD2Wc/K0KRznLIiGoAq46DaXIsjOt9E9ccB98bs8EHTeAFnj2qyWiq4x4Ysew
-	 PrJgQpm9aoybWvpQGLcUi0Z/hYCME/aFImMEVbg2J1kf3u+8TB03CDcpBoP2/5yGII
-	 z+8iZF5GeDi+A==
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0087.outbound.protection.office365.us [23.103.208.87])
-	by mm2.emwd.com (Postfix) with ESMTPS id 78DD4383D54
-	for <usrp-users@lists.ettus.com>; Wed,  2 Nov 2022 08:49:43 -0400 (EDT)
+	b=OAoPA+p35hT57VSz1s1hoKrR1ooppFpHhwIhdxsjCu4bFrW5txa4qax38oS0kv6A1
+	 bgRbQePEs95aeMW6HSAb/HNLHTb3SCtDDArHdTU+lAx8evEBJMEw7QnLYwQTC6QwNZ
+	 e9Qc7jbD8EjAFu64hsrIDeQUJiZHVORCp2bht2hjWfTPpdf5fCyFxJj4z9LuOFnRGR
+	 o/DtOWckv3wyTTtdZJasXjzsi+1L2DwJYHWS1pCTZ4/RGwZNVa58DbiXHNQGM8PGzm
+	 zcPF5RHx87lU1vpjaPl6c75rTYQCJH6PkVNjsbG2KjRGmqHMzf1yGoxMhM8m6JcXb8
+	 j0HPnByNSQumA==
+Received: from dispatch1-us1.ppe-hosted.com (dispatch1-us1.ppe-hosted.com [148.163.129.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id A61873837E1
+	for <usrp-users@lists.ettus.com>; Wed,  2 Nov 2022 08:52:50 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="SnNXrCRJ";
+	dkim=pass (1024-bit key; unprotected) header.d=gardettoengineering.onmicrosoft.com header.i=@gardettoengineering.onmicrosoft.com header.b="lSXCJLhC";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=XIEbfPkSaQAt1JbHcGpRv2BT8yJ4NnSadZb+KOYBzfrov9/KEjxpz4O6uaK+U0/T7YXv1MaCHJnlrD7XoldXfU7kFMTfWOSAJORD8hcV+/HFygjD3H1zFCt3tKCKbQRNisA6eTTjtdbhJY0ijeWeFz8V/idF9iLNsa+SIV/g533Kl9vt9q13jOhmYbeoQ8sSh/HZtO3wzjhlgT/h/qdk48nozhGcrV9WeW23473rOB7JA5t6liI7XgMzLZvXOFsnFgPAmlnyFYhJNjeT4irE3Qsu1wfcPq2Gu77FYmE6LPbqbUvuki2NJZspVYzlo6t2qPo+vDDM6CDj0Di9HFwaag==
+X-Virus-Scanned: Proofpoint Essentials engine
+Received: from mx1-us1.ppe-hosted.com (unknown [10.7.67.122])
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 66A0226008A;
+	Wed,  2 Nov 2022 12:52:48 +0000 (UTC)
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02lp2046.outbound.protection.outlook.com [104.47.56.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1-us1.ppe-hosted.com (PPE Hosted ESMTP Server) with ESMTPS id 3E89940086;
+	Wed,  2 Nov 2022 12:52:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=anppmgTCop+ZKrLjSb6TX4MdnLwjQ1KHB52aKvKwZgNPzblrFhdPsPNg79zdZGZZyyF9QmiMU4I/lkn9wVRZM/3T/EE/8Lmcu3BewcyGBk4EhYmLzR63BPnI+z+sEewK0z8pswX3FG4UWh0ZuTpDpCHlv/nj50kAaWFBef+jQX784dYTWl4KuuKzCQtnphgyry7bJQ2VC5JhyAJuWitSOm8+Ew8+QepaaX+w7DS6Qq/6K/szxycf30bkhzAPWc73cyiAxUHSy9/HMqgpYSzBxsdNaeH2adbR3k2YdL4wmqr3yRhsepifIdNAX1UYN3m+iD7oZGda1f/z26Ms6xvMig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
+ s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DQ/9BlV2c52q4pZyAMRKdFqS1O6h2knB5JMJNx2IYWA=;
- b=C3zqM5DoBRgiHzrPsmXJl8yKQVtYp6y5ih9pKPlbHpfvRUeIKDL8QhOyPGXHBsR9uPM+n5UCRRNizq5mjFGS2hZVRvulj4pmkCgy/yOfsskKvcDVWA9Vw0w7pFBqcgNmFNegRKc6AaC4FZtuRU2KNuaCh4XQ79u2p3zOtRrITwBN7Ur0jEZOTsnptfKI41qqq9rA6B1QxWqHF85IRIsJ15yVHmd2FYmnhlY+ZlfypvcOUe+QcgZmWTAfrK/k7xNl9O55uuARUIaYIxQETWhvxn/xpMLMDUi5VSOmnO/GNHLVUNhvafpbPcK1drYFKyOCJ4HxP3/qqpnEdMxALIyR4w==
+ bh=0OraBgxFIorgoYEhcyDfwz1xPgPK2Bc74yoMQjrEox4=;
+ b=JRzhZIojJZZXZqFo9bO2pktQ1wbDNcYLFNu2EIR0zvbMbrm4FOzt7vI6jY5SYISyNHrkmvsob1p2iDUX9KTZmwxTIFgu2K/j+GYe+16wjlpBP2Sv96xAeKXfUHbGHBUEoiJWsc/iWSSd/asAG18Cu6SM/O3Y272Ws+4aPhLuy272OwaVQ4A/UVaTtp85iL+vUGEYucq5CL4BITun+UdUNR/+Vl03S5tj8/JMum45FYU97tqE6p5l6BqL/Hsb68eiseojqeRAcnLngZ2QJHkGPDtBLXFMN/tLitLfuI4ApPrBqzAqE+Wql2yHlQyLzOWRy+jXxwiWuN0+lb6vWTpFKA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+ smtp.mailfrom=gardettoengineering.com; dmarc=pass action=none
+ header.from=gardettoengineering.com; dkim=pass
+ header.d=gardettoengineering.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
+ d=gardettoengineering.onmicrosoft.com;
+ s=selector2-gardettoengineering-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DQ/9BlV2c52q4pZyAMRKdFqS1O6h2knB5JMJNx2IYWA=;
- b=SnNXrCRJXEi1R4n3MLvHcObbHOcb3W/0IbkqMx07R0rIoPm1KwpmyEDcF7fV3HHYdWnIsHBDW2nNmszYCc9AZW2RHdBtYmM64BmRuw862JdBd0bX4bukZ4gl7sQpenfSjTsjJ49DoklLR+00l9QsECi3Xq32ddv/zkM1357z7yByfCdC486o0szxhypoF13bzpBlQTcKHBMSRRlruCH2S7m0ACsLSO8Ianw+o1H7DF+2D48aFSihRwAHcAqIP/AurD8HR5pbTK+HTx6K6sqt0kZvGsICFQZcO7bZeHWnuAhyWIZWgQDr/YjoIyPBNwE+K6vP3z6RA9iconFs5h0qVQ==
-Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:168::14)
- by BN2P110MB1221.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:179::9) with
+ bh=0OraBgxFIorgoYEhcyDfwz1xPgPK2Bc74yoMQjrEox4=;
+ b=lSXCJLhCVMkzMuSh1ZOAD0adwUqKMdj7dDIfmVpfBbcdD3odzmyE4IZNNycuFmBY8uXUywBB6KHjWzT/XNE/FFK1PnxW6snA+M6tJohSDfHma7rrQ2GvO3GkamIIgyiXJrjgk8DNekv6vFVUR/FqxU5Wg5uxLkLdp+26QFyk22c=
+Received: from BYAPR12MB3301.namprd12.prod.outlook.com (2603:10b6:a03:130::29)
+ by MN2PR12MB4454.namprd12.prod.outlook.com (2603:10b6:208:26c::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5746.21; Wed, 2 Nov
- 2022 12:49:40 +0000
-Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
- ([fe80::dd99:586:4130:6ca3]) by BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
- ([fe80::dd99:586:4130:6ca3%6]) with mapi id 15.20.5746.034; Wed, 2 Nov 2022
- 12:49:40 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: Jim Palladino <jim@gardettoengineering.com>, "Marcus D. Leech"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5791.22; Wed, 2 Nov
+ 2022 12:52:45 +0000
+Received: from BYAPR12MB3301.namprd12.prod.outlook.com
+ ([fe80::8f72:aea4:ec1b:508]) by BYAPR12MB3301.namprd12.prod.outlook.com
+ ([fe80::8f72:aea4:ec1b:508%7]) with mapi id 15.20.5769.019; Wed, 2 Nov 2022
+ 12:52:45 +0000
+From: Jim Palladino <jim@gardettoengineering.com>
+To: David Raeman <david@SynopticEngineering.com>, "Marcus D. Leech"
 	<patchvonbraun@gmail.com>, "usrp-users@lists.ettus.com"
 	<usrp-users@lists.ettus.com>
 Thread-Topic: [USRP-users] Re: N320 LO stability problem
-Thread-Index: AQHY7rAbGMBhLfKBpkKklSXlG+QYJ64rkK2AgAAA9kqAAALFMA==
-Date: Wed, 2 Nov 2022 12:49:40 +0000
+Thread-Index: AQHY7rAbGMBhLfKBpkKklSXlG+QYJ64rkK2AgAAA9kqAAALFMIAAAbTx
+Date: Wed, 2 Nov 2022 12:52:44 +0000
 Message-ID: 
- <BN2P110MB1747DA483336FD90E553122AB7399@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
+ <BYAPR12MB3301632013DEC60995030EB0B8399@BYAPR12MB3301.namprd12.prod.outlook.com>
 References: 
  <BYAPR12MB33010775AE76FAB552039CF8B8399@BYAPR12MB3301.namprd12.prod.outlook.com>
  <bc238838-4f69-b676-79b7-955751d6a628@gmail.com>
  <BYAPR12MB33013BD6E3BE1D6065E79830B8399@BYAPR12MB3301.namprd12.prod.outlook.com>
+ <BN2P110MB1747DA483336FD90E553122AB7399@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
 In-Reply-To: 
- <BYAPR12MB33013BD6E3BE1D6065E79830B8399@BYAPR12MB3301.namprd12.prod.outlook.com>
+ <BN2P110MB1747DA483336FD90E553122AB7399@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
+ header.d=none;dmarc=none action=none header.from=gardettoengineering.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN2P110MB1747:EE_|BN2P110MB1221:EE_
-x-ms-office365-filtering-correlation-id: 6613f9f3-38e5-4b17-018b-08dabcd0b540
+x-ms-traffictypediagnostic: BYAPR12MB3301:EE_|MN2PR12MB4454:EE_
+x-ms-office365-filtering-correlation-id: beadb4e6-f02b-4627-7964-08dabcd12328
 x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- eg17CY00LqdI57suyhYbbpmJ9lxLwzhcrgUD4qFnu/3zLtMMOnwhft7CHYhhsk6ZECZMtaaDVeamcjjfqAR6a60M3efQpIr3tdvWNxMDD5mpeQmJlFcjqn9F6bcnY16BJiszT0kFWV0o/zwj9EHWeGMiN4LIcOSZK64XF+8P1gAPJ1GdtnrmXF+ZhR2FjA3HW+dBqkdg1KTQ+AGy2Q/hHUNpCcRam+1jRM5/fPcG3PZ6cUKQWQw1d+mREsncB3pnz+vWev+mns39+K4scnYoFw5Gg05CesogDLmVBBfRM32pskaFj3i9dIT4r8h7ANQ8wg04HQ/e2KNpsi41jqzMG2BrQEi9JkT5DWFbS37GSzMzxqteNOiaH+STHw4u4wXq0jK3QtZVaioKgIpT0jUyyYUUISNaU2uFyyxe7a4pouJb5TXPKmDQ3awVzIEgM0JHuzdUE7nxIMeu06+EMiK1g5Gn7IqCyvfWEsTohxrCcrf62S3wurJAcOdDGDl6prHyVvXHh83cuzDv4bxJOD/V6nVv1X9Jw96ANVXvgOSWR6fwGrC2Z7fdPrOCRmYyJ4HNZd/x2M18d7jvyGTPUyAc2pTSGgTUoEZ6F9XXqpQsocx2WSdDXQZyWrTB9HrEQsmbww1F6cLHu4U2Dta+D+hzdsa2FHXUssH5YCeKqvLWm/JpcFOeA4kTsFJ0nZVMRs6Bq7FhwQlZRO2Oj6BjGfb8bVQA17xx1NjUrgY6yMtRcL+LIQtqrwsg30F1mEmubxPL
+ XLINfRA6nHMFVhxSKERrwZ77dMsMRrSkGadfDRfEeW4SQS7+GatLyCArp2DYnSFUY1iErlSfrgBezfQoQWiUDkPvYGeKxmhkN46lTNHDbujCOqV7lsfhrcIi0G6KYyfBrIoQq8EIx/3fk63MLEh1s9rhoBMhzDTXw7cw9EXpeFgDXaUUURRDlmiUt0U3b4DRX5MVU770VROgndZ51g4qhWGYIIkMGjAkmX7Ok9r2Pr21n9GItoX8DDKvlemjgVgj8JkL6SIpq6seTIkZZlGjabwEzHm1FO+J78v0zaA+zfHbOhqY7yHVFAZ0cJTv3KTlokR1JOvJz/KrYaGbz2JUS3qF0rirrLJgBtS3kbGRijBAftt3Lhp/aqoh0zpDqrprqs2yr5SnidlFW2+cBMIsIIRYfSq1o7AB3qLl3J/EaqWRWjfUMTJkVmXbN2ohwq0wTFc0OS1O0L1whMIc1pFo9/hS4BqJcgdAa+zGFmdLppkCtQUSOiW8nUcZMsXcf5ECGnJS5g5baVvqtXWBDQ3TR5PJ+Q6AF9h9m7lqIma5DnkmTISk0NXmePdjePk+zzxX1BtG19esXof3KuZmV/shN7gN5RaQTeJynpXxn4NsRpHDj4wfQ0TBRbLUI2MOqo2kpn401HhevIDCIZORT4hNeQcmGVJMXefQ+PUgB7mh8fCEah6WrrdBDFVKLyZEb8JXZroxpKqDSV5OpT/5aTevj2vgtUMC3DUImLElUjcRpefZvjvE2BWDV3BLt1wpAy2gMRuJzUetEtqM91AmwlEBjlPmHpNWseratJIvR59C1Fs=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(39830400003)(396003)(451199015)(71200400001)(66446008)(66476007)(66556008)(41320700001)(64756008)(8676002)(6506007)(76116006)(41300700001)(7696005)(9686003)(33656002)(66946007)(55016003)(110136005)(53546011)(86362001)(38100700002)(5660300002)(52536014)(122000001)(38070700005)(166002)(8936002)(9326002)(66899015)(83380400001)(2906002)(186003)(508600001)(85282002);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB3301.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230022)(346002)(366004)(39830400003)(376002)(396003)(136003)(451199015)(66899015)(19627405001)(2906002)(86362001)(91956017)(76116006)(66946007)(9686003)(26005)(6506007)(7696005)(66476007)(41300700001)(66556008)(66446008)(8936002)(52536014)(5660300002)(33656002)(19627235002)(316002)(38070700005)(110136005)(8676002)(64756008)(122000001)(478600001)(38100700002)(83380400001)(53546011)(55016003)(71200400001)(166002)(186003);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- ZLu2/GX/4JkwKm4n+S3CLL6hZV0Tv7Gc3czu1bIvdgC+DUXDEiYv9E8KcItCkYxOZbDbpNjq+Y0euLIwUAldotbLPC6mxX8gpXmx+28IY00gOxjughfKyhaOx0Pt1+B8qvf9GUw4ugyUx18/TFA6EiIP4oeI3p0YxvyPPYu8CmXfRQ7Lwi26TAijhO5POsQQsHZy/TKdcExgKhJiahjwz7MCZ5JU+AuyvX6VkTOKF3ZtPNvBVGekdLkZsiX6I0M2fI2QWHdgMm79nsUz8fkm9X7+A5yeSUku7OE9pNPlyeP9KgtANP36SPK+JnvCUpRQyOFkC2/HXadop8NHwB4k4Jr/hJJlEajSqhkmk9fRmaU8NNdga2mfrHPySGFxuRSRHSl7Bl/eYQOCElLpO/XDXAQsflTrBswzaypqKTVg8xQrFLYzco3zJkxCTdLvhGUVWUqhOeCCX/y8wAVq4oX7wNXYCGd6AOgFhgPAHmQjn8Q=
+ =?Windows-1252?Q?3uxDYUvZafVNOe6GuCai7PBDLdp8EePKicxUptm8ZVAuOnP109OZEk9l?=
+ =?Windows-1252?Q?h7cf7TdGyACdZ6Bfrm6YbUU9p7N8+lKkasCTxlTI6bDqjO6v5NvIlq5o?=
+ =?Windows-1252?Q?jY8WIM4Qt1q7PazMhTvjpZz4FjWzrDJaqX5+PYxb3eMhBv3KV4pozV8k?=
+ =?Windows-1252?Q?GPLBf63BeWrqs5Gtp7LS9LSsFg9M1AhCLeuFasxyF4+WF8nY0xgAaI+w?=
+ =?Windows-1252?Q?ONsw9gTkgz6OdSi0Ofh51+uG2GLMT/qCeLAvs+BSU8syLoeas1XB+Kjg?=
+ =?Windows-1252?Q?FM2zWIU/HlNW4vcQhyF9LMOHI9/eOBjJH7umZLVC5qL43XA2cnOgtY0u?=
+ =?Windows-1252?Q?rhW48z/GloS1ABWKVaZu02tVEnzuukol4rTAxqtcgqBgDSU3KRdvKzQ3?=
+ =?Windows-1252?Q?YZ7NEWoX0JJRU7eRlZheehb5HONdPof57WGmL9k4xQqRhc7XdB+uanjH?=
+ =?Windows-1252?Q?goz+pxUWIXl9efHW0kxS3jWBaQ/pQLJeVXGZH80SK2pMVE03F2kSLDtg?=
+ =?Windows-1252?Q?rJptsOBjrlHVeaJh2KQWOvwipQOi9JD8kuCv0WTuMi+pN+5snXt56d8u?=
+ =?Windows-1252?Q?5JMWzX48ln2ySinq/0W6SBXNnRdLIz487emqkAPN/OGh7KE4+dSc3RWT?=
+ =?Windows-1252?Q?Igr2hmc0zq/AnCBxJ3sfKgq6ikfiCbV78BFPckI/aLSP3oE8AbTo0wet?=
+ =?Windows-1252?Q?5aAQovbmbtvnU0VApgtC/9TRVQoyD8WDdQNFm9JohSfbwBQl1LQSmTLX?=
+ =?Windows-1252?Q?l+FdHzQZIN/cR/ZuaJ0spQ/Sd0UU2R8P6I/hXS1a4VHAfizzd2E1xAK8?=
+ =?Windows-1252?Q?jjzZ8X/OstvrhlODC9VrSkj8D9xOf7DmjTH62vWHb+/BM8FGOYEUXPpD?=
+ =?Windows-1252?Q?9gPLSloJRNlZjakSVnux672dZAL6arAD+HWT7HL7QBBK3cmfHWv49jZI?=
+ =?Windows-1252?Q?jq073IelTMZSY4PTOk6vNNOiLQODO0jRgb+eefNtDHPRhXZQTwjgAR47?=
+ =?Windows-1252?Q?yzlRpq+X8Msklfu04696CZ3USbsyW7sgovY6+bFHPMj+FPH4r0Qr5VYv?=
+ =?Windows-1252?Q?Nr1aDB5lNWf5dp4N9FicWGioAyspro2dsUH9R4Sn13hvcSLLpLC1B1eA?=
+ =?Windows-1252?Q?Y8BVOaKHPjSUPZTFR9+ASDrYv/oym4q/rKwH+Zi3AyUOdAR2CqEvdDfl?=
+ =?Windows-1252?Q?dK5Yh4usG5lX7Hol/IAxvRRUpWP1Qo2qRI7mk+nWzbRJHvx352PzMZTe?=
+ =?Windows-1252?Q?yACJng2IX8aRoGSpJWOxAXkL9WFqC8v86mdhOLTVX3cs6qv66bgf8LK/?=
+ =?Windows-1252?Q?GD4L9txNFmfN2jkkB3gOTJfeOdUPpzwueV+YXMWlPZKbZFaMtWf6WRvo?=
+ =?Windows-1252?Q?Jq/eukR49RhpledPhIYknoYoqGkO6KMw16DA35E3mX6lLkkliXuyfqVp?=
+ =?Windows-1252?Q?LnOrq5SxM5P4qb4fXLD8R8lbxexnn/0XgsJRadI2kjU/xudSvvGrSgcD?=
+ =?Windows-1252?Q?7WKSVJhC0iEho2aQAP2++TilSn7SLyBy0xN3Pimou94IipIFzjitcjAy?=
+ =?Windows-1252?Q?mYJ8v+Rfqc/Yz0RDVK455fbz+TJzqDycsoQ6/taULUS8OV2e7T9CxAWA?=
+ =?Windows-1252?Q?YrbfYl+t9YGmudE4Fb/Xr6250816HlEhkXMFS5jzI4HS+o9Q5lYgND6+?=
+ =?Windows-1252?Q?uv0YgwlWTxGceYZwM7Tzhb1tdOAok224BylTcrdHziLRt/r8+fSaVw?=
+ =?Windows-1252?Q?=3D=3D?=
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
+X-OriginatorOrg: gardettoengineering.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6613f9f3-38e5-4b17-018b-08dabcd0b540
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Nov 2022 12:49:40.6280
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB3301.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: beadb4e6-f02b-4627-7964-08dabcd12328
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Nov 2022 12:52:44.9763
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN2P110MB1221
-Message-ID-Hash: U56XKXDJ2WQBLLQBXEZDMFRDWNYO6Z2A
-X-Message-ID-Hash: U56XKXDJ2WQBLLQBXEZDMFRDWNYO6Z2A
-X-MailFrom: david@SynopticEngineering.com
+X-MS-Exchange-CrossTenant-id: 1d762e6c-e2fd-44b0-85df-2e85e0aaa001
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8ec/QKocYdbbAxKWswpLF1wKlhjlnRLGmC2cRaE5GSjI84KM01x65ukHvQedfClNHnXpdrUt6QGin6StKonDoxtcCqvI/oonociTQ44du4U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4454
+X-MDID: 1667393568-vQTdnjXvqaa1
+Message-ID-Hash: 5OMEG3QGFVO37O6CQL4AHZM6IDLI47ET
+X-Message-ID-Hash: 5OMEG3QGFVO37O6CQL4AHZM6IDLI47ET
+X-MailFrom: jim@gardettoengineering.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N320 LO stability problem
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GVIMM2W4TGAWE6IPNM6LEZQWSZTPMNCJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7QEAJHSNUBBMHI2SIJWJDXEZKRZGKBRS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0744137569135900300=="
+Content-Type: multipart/mixed; boundary="===============8678698295350402793=="
 
---===============0744137569135900300==
+--===============8678698295350402793==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_BN2P110MB1747DA483336FD90E553122AB7399BN2P110MB1747NAMP_"
+	boundary="_000_BYAPR12MB3301632013DEC60995030EB0B8399BYAPR12MB3301namp_"
 
---_000_BN2P110MB1747DA483336FD90E553122AB7399BN2P110MB1747NAMP_
-Content-Type: text/plain; charset="us-ascii"
+--_000_BYAPR12MB3301632013DEC60995030EB0B8399BYAPR12MB3301namp_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
+David, that is great, I'll look into that. I'm working on updating to 4.3.0=
+.0 right now, but I'll try your double tune solution first. If this has bee=
+n solved, that will save me a lot of time poking around in the LMX code.
+
+Thanks,
+Jim
+
+________________________________
+From: David Raeman <david@SynopticEngineering.com>
+Sent: Wednesday, November 2, 2022 8:49 AM
+To: Jim Palladino <jim@gardettoengineering.com>; Marcus D. Leech <patchvonb=
+raun@gmail.com>; usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+Subject: RE: [USRP-users] Re: N320 LO stability problem
+
+
 Hi Jim,
+
+
 
 I ran into what sounds like the same issue using N320s operating at nearly =
 the same center frequency. I was able to isolate a fix (some tweaks in the =
 LMX2592 configuration), and my PR was folded into UHD 4.2. I believe anothe=
-r, unrelated fix for N320 tuning was also committed in UHD 4.2.0.1. I'd str=
-ongly recommend trying that release.
+r, unrelated fix for N320 tuning was also committed in UHD 4.2.0.1. I=92d s=
+trongly recommend trying that release.
 
-For more context, my PR here<https://github.com/EttusResearch/uhd/pull/572>=
- has details. When I was using UHD 4.1, I discovered that I could bypass th=
-is problem by tuning to the same frequency twice in a row. That might be wo=
-rth a try on your end if upgrading UHD is onerous..
+
+
+For more context, my PR here<https://urldefense.proofpoint.com/v2/url?u=3Dh=
+ttps-3A__github.com_EttusResearch_uhd_pull_572&d=3DDwMFAg&c=3DeuGZstcaTDllv=
+imEN8b7jXrwqOf-v5A_CdpgnVfiiMM&r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwp=
+Yx0&m=3DCglWmCZNAv75-zoj2CB9dpWj4DRHkMpB8nWcwWdM2mk&s=3Dm4xlgwVRVSi2686M6zZ=
+kXh8oqKef561kyaZzbOzO0kI&e=3D> has details. When I was using UHD 4.1, I dis=
+covered that I could bypass this problem by tuning to the same frequency tw=
+ice in a row. That might be worth a try on your end if upgrading UHD is one=
+rous..
+
+
 
 Cheers,
+
 David
+
+
 
 From: Jim Palladino <jim@gardettoengineering.com>
 Sent: Wednesday, November 2, 2022 8:38 AM
 To: Marcus D. Leech <patchvonbraun@gmail.com>; usrp-users@lists.ettus.com
 Subject: [USRP-users] Re: N320 LO stability problem
 
+
+
 Hello,
+
+
 
 Thanks for the responses. Yes, I have the same issue with tones off center =
 -- we initially noticed the issue with some wide-band modulated waveforms. =
 I did just try another flowgraph with a tone at 100KHz off of DC and confir=
 med that the issue does still persist.
 
+
+
 I'll try to experiment with other UHD versions today to see if that makes a=
  difference.
 
+
+
 Thanks,
+
 Jim
 
+
+
 ________________________________
+
 From: Marcus D. Leech <patchvonbraun@gmail.com<mailto:patchvonbraun@gmail.c=
 om>>
 Sent: Wednesday, November 2, 2022 8:31 AM
@@ -161,8 +245,13 @@ To: usrp-users@lists.ettus.com<mailto:usrp-users@lists.ettus.com> <usrp-use=
 rs@lists.ettus.com<mailto:usrp-users@lists.ettus.com>>
 Subject: [USRP-users] Re: N320 LO stability problem
 
+
+
 On 02/11/2022 08:11, Jim Palladino wrote:
+
 Hello,
+
+
 
 We have about ten N320s and almost all are exhibiting issues regarding the =
 LO stability. It appears the LO is not locking at certain frequencies, or i=
@@ -204,8 +293,12 @@ We're using UHD 4.1.0.5 and associated filesystem, FPGA image.
 
 Any thoughts on this?
 
+
+
 Thanks,
+
 Jim
+
 
 
 
@@ -217,196 +310,209 @@ ts.ettus.com>
 
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com<mailto:usr=
 p-users-leave@lists.ettus.com>
+
 Also, if you try sending a tone at other than DC (perhaps 10kHz), do you ge=
 t different results?  This might just be the
   DC-offset removal algorithm producing results that look like lack of synt=
 hesizer lock.
 
 
---_000_BN2P110MB1747DA483336FD90E553122AB7399BN2P110MB1747NAMP_
-Content-Type: text/html; charset="us-ascii"
+--_000_BYAPR12MB3301632013DEC60995030EB0B8399BYAPR12MB3301namp_
+Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+David, that is great, I'll look into that. I'm working on updating to 4.3.0=
+.0 right now, but I'll try your double tune solution first. If this has bee=
+n solved, that will save me a lot of time poking around in the LMX code.</d=
+iv>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Thanks,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+Jim</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
+<br>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> David Raeman &lt;davi=
+d@SynopticEngineering.com&gt;<br>
+<b>Sent:</b> Wednesday, November 2, 2022 8:49 AM<br>
+<b>To:</b> Jim Palladino &lt;jim@gardettoengineering.com&gt;; Marcus D. Lee=
+ch &lt;patchvonbraun@gmail.com&gt;; usrp-users@lists.ettus.com &lt;usrp-use=
+rs@lists.ettus.com&gt;<br>
+<b>Subject:</b> RE: [USRP-users] Re: N320 LO stability problem</font>
+<div>&nbsp;</div>
+</div>
+<style>
+<!--
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
+	{font-family:"Cambria Math"}
 @font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
+	{font-family:Calibri}
 @font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{font-family:Consolas}
+p.x_MsoNormal, li.x_MsoNormal, div.x_MsoNormal
 	{margin:0in;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
+	font-family:"Calibri",sans-serif}
+a:link, span.x_MsoHyperlink
+	{color:blue;
+	text-decoration:underline}
 pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
+	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:10.0pt;
-	font-family:"Courier New";}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;}
-span.EmailStyle22
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Courier New"}
+span.x_HTMLPreformattedChar
+	{font-family:Consolas}
+span.x_EmailStyle22
+	{font-family:"Calibri",sans-serif;
+	color:windowtext}
+.x_MsoChpDefault
+	{font-size:10.0pt}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:brea=
-k-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi Jim,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I ran into what sounds like the same issue using N32=
-0s operating at nearly the same center frequency. I was able to isolate a f=
-ix (some tweaks in the LMX2592 configuration), and my PR was folded into UH=
-D 4.2. I believe another, unrelated
- fix for N320 tuning was also committed in UHD 4.2.0.1. I&#8217;d strongly =
-recommend trying that release.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">For more context, my PR <a href=3D"https://github.co=
-m/EttusResearch/uhd/pull/572">
+	{margin:1.0in 1.0in 1.0in 1.0in}
+div.x_WordSection1
+	{}
+-->
+</style>
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple" style=3D"word-wrap:break=
+-word">
+<div class=3D"x_WordSection1">
+<p class=3D"x_MsoNormal">Hi Jim,</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">I ran into what sounds like the same issue using N=
+320s operating at nearly the same center frequency. I was able to isolate a=
+ fix (some tweaks in the LMX2592 configuration), and my PR was folded into =
+UHD 4.2. I believe another, unrelated
+ fix for N320 tuning was also committed in UHD 4.2.0.1. I=92d strongly reco=
+mmend trying that release.</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">For more context, my PR <a href=3D"https://urldefe=
+nse.proofpoint.com/v2/url?u=3Dhttps-3A__github.com_EttusResearch_uhd_pull_5=
+72&amp;d=3DDwMFAg&amp;c=3DeuGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfiiMM&amp;r=
+=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&amp;m=3DCglWmCZNAv75-zoj2CB9=
+dpWj4DRHkMpB8nWcwWdM2mk&amp;s=3Dm4xlgwVRVSi2686M6zZkXh8oqKef561kyaZzbOzO0kI=
+&amp;e=3D">
 here</a> has details. When I was using UHD 4.1, I discovered that I could b=
 ypass this problem by tuning to the same frequency twice in a row. That mig=
-ht be worth a try on your end if upgrading UHD is onerous..<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Cheers,<o:p></o:p></p>
-<p class=3D"MsoNormal">David<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
+ht be worth a try on your end if upgrading UHD is onerous..</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<p class=3D"x_MsoNormal">Cheers,</p>
+<p class=3D"x_MsoNormal">David</p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
+<div style=3D"border:none; border-left:solid blue 1.5pt; padding:0in 0in 0i=
+n 4.0pt">
 <div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Jim Palladino &lt;jim@gardettoengineeri=
-ng.com&gt; <br>
+<div style=3D"border:none; border-top:solid #E1E1E1 1.0pt; padding:3.0pt 0i=
+n 0in 0in">
+<p class=3D"x_MsoNormal"><b>From:</b> Jim Palladino &lt;jim@gardettoenginee=
+ring.com&gt; <br>
 <b>Sent:</b> Wednesday, November 2, 2022 8:38 AM<br>
 <b>To:</b> Marcus D. Leech &lt;patchvonbraun@gmail.com&gt;; usrp-users@list=
 s.ettus.com<br>
-<b>Subject:</b> [USRP-users] Re: N320 LO stability problem<o:p></o:p></p>
+<b>Subject:</b> [USRP-users] Re: N320 LO stability problem</p>
 </div>
 </div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Hello,<=
-o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Hell=
+o,</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Thanks =
-for the responses. Yes, I have the same issue with tones off center -- we i=
-nitially noticed the issue with some wide-band modulated waveforms. I did j=
-ust try another flowgraph with a tone
- at 100KHz off of DC and confirmed that the issue does still persist.&nbsp;=
-<o:p></o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Than=
+ks for the responses. Yes, I have the same issue with tones off center -- w=
+e initially noticed the issue with some wide-band modulated waveforms. I di=
+d just try another flowgraph with a
+ tone at 100KHz off of DC and confirmed that the issue does still persist.&=
+nbsp;</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">I'll tr=
-y to experiment with other UHD versions today to see if that makes a differ=
-ence.&nbsp;<o:p></o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">I'll=
+ try to experiment with other UHD versions today to see if that makes a dif=
+ference.&nbsp;</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Thanks,=
-<o:p></o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Jim<o:p=
-></o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Than=
+ks,</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Jim<=
+/span></p>
 </div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
+</div>
+<div class=3D"x_MsoNormal" align=3D"center" style=3D"text-align:center">
 <hr size=3D"2" width=3D"98%" align=3D"center">
 </div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"color:black">From:</span></b><span=
- style=3D"color:black"> Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun=
-@gmail.com">patchvonbraun@gmail.com</a>&gt;<br>
+<div id=3D"x_divRplyFwdMsg">
+<p class=3D"x_MsoNormal"><b><span style=3D"color:black">From:</span></b><sp=
+an style=3D"color:black"> Marcus D. Leech &lt;<a href=3D"mailto:patchvonbra=
+un@gmail.com">patchvonbraun@gmail.com</a>&gt;<br>
 <b>Sent:</b> Wednesday, November 2, 2022 8:31 AM<br>
 <b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.e=
 ttus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@l=
 ists.ettus.com</a>&gt;<br>
-<b>Subject:</b> [USRP-users] Re: N320 LO stability problem</span> <o:p></o:=
-p></p>
+<b>Subject:</b> [USRP-users] Re: N320 LO stability problem</span> </p>
 <div>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"x_MsoNormal">&nbsp;</p>
 </div>
 </div>
 <div>
 <div>
-<p class=3D"MsoNormal">On 02/11/2022 08:11, Jim Palladino wrote:<o:p></o:p>=
-</p>
+<p class=3D"x_MsoNormal">On 02/11/2022 08:11, Jim Palladino wrote:</p>
 </div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+<blockquote style=3D"margin-top:5.0pt; margin-bottom:5.0pt">
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Hello,<=
-o:p></o:p></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Hell=
+o,</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">We have=
- about ten N320s and almost all are exhibiting issues regarding the LO stab=
-ility. It appears the LO is not locking at certain frequencies, or if it do=
-es, it barely maintains lock. We can
- see this with either a gnuradio flowgraph consisting of nothing more than =
-a usrp_sink and a constant driving it's input, or using the included UHD ex=
-ample &quot;tx_waveforms&quot;. The problem frequency I've been focusing on=
- is 1112MHz. So, the following command demonstrates
- the issue:<br>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
+</div>
+<div>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">We h=
+ave about ten N320s and almost all are exhibiting issues regarding the LO s=
+tability. It appears the LO is not locking at certain frequencies, or if it=
+ does, it barely maintains lock. We
+ can see this with either a gnuradio flowgraph consisting of nothing more t=
+han a usrp_sink and a constant driving it's input, or using the included UH=
+D example &quot;tx_waveforms&quot;. The problem frequency I've been focusin=
+g on is 1112MHz. So, the following command
+ demonstrates the issue:<br>
 <br>
 ./tx_waveforms --freq=3D1112000000 --wave-type=3DCONST --wave-freq=3D0 --ra=
 te=3D1000000 --gain=3D40<br>
@@ -441,49 +547,50 @@ p;<br>
 <br>
 We're using UHD 4.1.0.5 and associated filesystem, FPGA image.<br>
 <br>
-Any thoughts on this?<o:p></o:p></span></p>
+Any thoughts on this?</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Thanks,=
-<o:p></o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Than=
+ks,</span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Jim<o:p=
-></o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">Jim<=
+/span></p>
 </div>
 <div>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black"><o:p>&n=
-bsp;</o:p></span></p>
+<p class=3D"x_MsoNormal"><span style=3D"font-size:12.0pt; color:black">&nbs=
+p;</span></p>
 </div>
-<p class=3D"MsoNormal"><br>
+<p class=3D"x_MsoNormal"><br>
 <br>
-<o:p></o:p></p>
-<pre>_______________________________________________<o:p></o:p></pre>
+</p>
+<pre>_______________________________________________</pre>
 <pre>USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m">usrp-users@lists.ettus.com</a><o:p></o:p></pre>
+m">usrp-users@lists.ettus.com</a></pre>
 <pre>To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com">usrp-users-leave@lists.ettus.com</a><o:p></o:p></pre>
+ts.ettus.com">usrp-users-leave@lists.ettus.com</a></pre>
 </blockquote>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Also, if you try send=
-ing a tone at other than DC (perhaps 10kHz), do you get different results?&=
-nbsp; This might just be the<br>
+<p class=3D"x_MsoNormal" style=3D"margin-bottom:12.0pt">Also, if you try se=
+nding a tone at other than DC (perhaps 10kHz), do you get different results=
+?&nbsp; This might just be the<br>
 &nbsp; DC-offset removal algorithm producing results that look like lack of=
  synthesizer lock.<br>
 <br>
-<o:p></o:p></p>
+</p>
+</div>
 </div>
 </div>
 </div>
 </body>
 </html>
 
---_000_BN2P110MB1747DA483336FD90E553122AB7399BN2P110MB1747NAMP_--
+--_000_BYAPR12MB3301632013DEC60995030EB0B8399BYAPR12MB3301namp_--
 
---===============0744137569135900300==
+--===============8678698295350402793==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -493,4 +600,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0744137569135900300==--
+--===============8678698295350402793==--
