@@ -2,100 +2,177 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A41B61873B
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Nov 2022 19:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADBF9618AE2
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Nov 2022 22:55:26 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2CC90384250
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Nov 2022 14:15:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 552A9384250
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Nov 2022 17:55:25 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667499310; bh=YW9FnkuhxO8nQEEfocOtgWltVlXWAPgXnrtfTi967HI=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=dqAxo164ahctlTkqjFRQf+nMaoWlhIZHpudEES9ANjR222FfY9ADTwbHYP0aDvi/5
-	 C/h8kCkEk8C+F/pSUEKa6qP65efkakb51eTiHxHSoizN+34tgNyId4HDIesfstbnf1
-	 HcgJvWBaLGIu7J1L1I0vcEhD5FCS+mTUFe94MhLDw3p/DUZKtuof9RJrvVODYU5LAQ
-	 l1ieTH/xynSmYTkOZjktpNyA1QTxkVxJvAS/1t4/NG8Gk1nJn20og7bCLr3M5TiONi
-	 CQcgJ757npsNwifxzldvOI0idaBY2QYiwyZ0uSsjKl+SocCFvqzGKXPvmuH4D84+2/
-	 3twXPYZuLTDLA==
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-	by mm2.emwd.com (Postfix) with ESMTPS id 6901B38414D
-	for <usrp-users@lists.ettus.com>; Thu,  3 Nov 2022 14:13:14 -0400 (EDT)
+	t=1667512525; bh=WzxpoBeQVtB0JvudiGCVLpFpy3OaeGeiIfVDXpnQ0AI=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=RKhqdvXYclOzYW8s46z0dUlBDCxvnZ04dAAmRVam7loq9CWzCG9RWAO9maWv+JmRH
+	 ssa/7yjWxboJG2ySUtMD+MOcQEI4lw8HRYlbTxYAHNsLTJfAV/wpvrUzSnwyGXoeAu
+	 RtVK3lUJBamGumjDzI2fc81Pw2C9KnRbdE0suc3a8sk4pTgV8In6AGwKDYU1UBJW3c
+	 ZkcSCjit2vBt/tY58W/lqENUJ9qhogxH0cl5vu8mehXvRTIAE0wvBxdbp7LsW6MIb2
+	 9MQCweRyfW6tBgjOddnRMNYXwJWKo/8y94KxRHRaXah3KYRlN4ak9LrgTRbbxBONvJ
+	 sIkESHZ9jUM9g==
+Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 3BA6338120B
+	for <usrp-users@lists.ettus.com>; Thu,  3 Nov 2022 17:54:09 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="S0RrLF7P";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="Mv9orej7";
 	dkim-atps=neutral
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-36ad4cf9132so23208427b3.6
-        for <usrp-users@lists.ettus.com>; Thu, 03 Nov 2022 11:13:14 -0700 (PDT)
+Received: by mail-ua1-f48.google.com with SMTP id g22so1696163uap.3
+        for <usrp-users@lists.ettus.com>; Thu, 03 Nov 2022 14:54:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=DylnmrmbVdX9lXQ/0DytVh5uGL57wIqY3bFD3xCSNKU=;
-        b=S0RrLF7PzuY6Au9YQXVreiLgiHLIBZfdhNTgDZbRacHihG+45v7vzKBRCNO99mUO1s
-         YiNBje7HNLHedA5I1EYupehqLbYWOTFadvalKFpBw3vDOaXNrwetSMzbAQTHyMGZCNV0
-         z+svro7CWwPMAi6XRJ5xuaOyBE79RmHSPqlLehgjFP0hx2slTlrYwRBDRmRmJWwX//LX
-         i7PxHoWlVLS3Hzpnt/HL7QnUjueXRa2YqPDnpJzYBXvn1tvnYbkcFrXL1mPZuikRu09m
-         sn48PXaVfEHm/9uoGrQweQlsQYy3mlBfpYW0qZDDm0zYXV9vbq0Cf7fpz5aWRaTEVj7M
-         dbnw==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=PgI+r7GEJWcO1m4V7YLE4rVFVC4bVXzSi3sbAB8gmXM=;
+        b=Mv9orej7FYwEn1tU71yQ4p1dUmUEpJE/0Nk3wGGTaQ1dTodkyjGHFvMW7KySzT4GqT
+         SFhSO3aRgA3jNhbmXAiogCJGL4jZ7rH4khX4P/8VrgleTvSAPu+cMj8eKq8xhc0QV2Qo
+         vskLjeGahXwPI+5Q0Xg1Jc8P77TjFRoFqeGmSjq7yaCllnGeZVwvXrq9TDGg/dxz/ICS
+         rBX1YQF/NrP2Hvi3Xeu/ogX68bF3cat7WRe45kdycRrMIVUokSptQNPj+Te7BgiWWXVl
+         7EiRxeb54N+WOXao0pi0PqnyTl78cts3Jwb7vkHVHNVUV3TIsolKr/yHdAT4NWdMK3aY
+         yB1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DylnmrmbVdX9lXQ/0DytVh5uGL57wIqY3bFD3xCSNKU=;
-        b=YfOu54V9o2iUVGo+xOMnmtlO4IYA38jSdaMFJLKN2LGjKY9GAmE9v9eAw0c/DWvYyC
-         f1z/fTTz2uHdz50uOorl97EcxO9c3YjVOHy+rd8uyGX72AcZnXU5SSUNBkFrVKp3q5kO
-         5xHxB7iyT+/Y54J4O+260vH254nLWT7AKS3+PWmm2GTHpGaP2ealxS863yklHtmt2LME
-         mLQ7HIHyajAhXu9sJNSq9+AxE1nDso0Gwn1LMTUfRIb0k5rqKQU66O+mWzGS2qHp9Se4
-         KeQm2etGvQk2HpTcTyG6jCYLYpYaDK2KVm4YekLCVv2fvw/8jAKPKEyODD3UGlJhn3zH
-         li0w==
-X-Gm-Message-State: ACrzQf0sVUSEfjC/4a+lWNEJfyHUyjerHXUOlzwdn/kUxuiIa03UXYqm
-	ljCeWxH+cXUDLUrWJ8z4XkRuUgcVXl3TddTrFVjE4EAsO9deDn4glgdHsw==
-X-Google-Smtp-Source: AMsMyM5bdAX0yud4TZA75Fm6AEwvbJOWDGFCjsHJUvGSPkHc56XGoOhZpyGxcYeHOqHeem1yiftvWuJeuAMb4jAPlQc=
-X-Received: by 2002:a81:de43:0:b0:368:ee18:f9c3 with SMTP id
- o3-20020a81de43000000b00368ee18f9c3mr29416370ywl.322.1667499192908; Thu, 03
- Nov 2022 11:13:12 -0700 (PDT)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PgI+r7GEJWcO1m4V7YLE4rVFVC4bVXzSi3sbAB8gmXM=;
+        b=cAEez7asq3/3WGLOOhX525DC73/EF8DzX9HB96T2uXaJjFyWQIVurAJopNAQHUTDFS
+         4ARTNIS48eotijeid1/Ac6iP8uGNQk439eVGMq6Lo6AIYLVwyXLhdEkA+zPFl/sc5r6E
+         z60BqUB56EEGdt+C82UbIXubukh86hbIGhzkiNGHQGpaZkvAiSbmHf+XCIyx3LaKjbNr
+         t4Wvg+L824AK72jF0jHOYFfqqWH/4t0stNxPq4sXf73X7A2zGCqYqVs+h5PKj8Wzp3g/
+         Wbju0GTW5u7gkDuuljFE4DWQZytPKIpPRZIGiLfUwZKLEl9eOk7LBF3BvsDs947sLBVq
+         26+Q==
+X-Gm-Message-State: ACrzQf1nzZkvY95ZFueSzysqAvkfIOUWQ/hlQ7tVt6g5sVrzGRnuJlfR
+	RCQK7UOFnLE4kDVRRegib0c7v9jMXcuF1AiPlxHjVhC6
+X-Google-Smtp-Source: AMsMyM7uGAauX8EDJ6q/8/qdeEi/Qy4iIctwKZxU2Pb+9uqS5QteBTCVKOlVueOVefkHIzgPBtGmIKCf0+NyB64Yiaw=
+X-Received: by 2002:ab0:2149:0:b0:411:502d:964 with SMTP id
+ t9-20020ab02149000000b00411502d0964mr13465912ual.31.1667512448279; Thu, 03
+ Nov 2022 14:54:08 -0700 (PDT)
 MIME-Version: 1.0
-From: sp <stackprogramer@gmail.com>
-Date: Thu, 3 Nov 2022 18:13:01 +0000
-Message-ID: <CAA=S3PtVogjKEr3gfyFcBt49+oL_siufF+sDQ0McCxdf09_4xw@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: DSZKDYPLQ7HXO43PAEGIS4HPYFYBYDTU
-X-Message-ID-Hash: DSZKDYPLQ7HXO43PAEGIS4HPYFYBYDTU
-X-MailFrom: stackprogramer@gmail.com
+References: <CAA=S3PtVogjKEr3gfyFcBt49+oL_siufF+sDQ0McCxdf09_4xw@mail.gmail.com>
+In-Reply-To: <CAA=S3PtVogjKEr3gfyFcBt49+oL_siufF+sDQ0McCxdf09_4xw@mail.gmail.com>
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Date: Fri, 4 Nov 2022 06:53:57 +0900
+Message-ID: <CAL7q81uskBM7vDZFSq+BJ6-He16B=cp_BPOVY9SK7XzQFte5Ww@mail.gmail.com>
+To: sp <stackprogramer@gmail.com>
+Message-ID-Hash: 3ZK5ND7DPZQP3PGH4KEY2GNDFRUURKOT
+X-Message-ID-Hash: 3ZK5ND7DPZQP3PGH4KEY2GNDFRUURKOT
+X-MailFrom: jonathon.pendlum@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] what's means device select and instance select in RFNOC blocks?
+Subject: [USRP-users] Re: what's means device select and instance select in RFNOC blocks?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DSZKDYPLQ7HXO43PAEGIS4HPYFYBYDTU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3ZK5ND7DPZQP3PGH4KEY2GNDFRUURKOT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5894650235302642947=="
+Content-Type: multipart/mixed; boundary="===============2522513858176124506=="
 
---===============5894650235302642947==
-Content-Type: multipart/related; boundary="0000000000000eaee105ec94e9bd"
+--===============2522513858176124506==
+Content-Type: multipart/related; boundary="0000000000002393b305ec97ff4b"
 
---0000000000000eaee105ec94e9bd
-Content-Type: multipart/alternative; boundary="0000000000000eaee005ec94e9bc"
+--0000000000002393b305ec97ff4b
+Content-Type: multipart/alternative; boundary="0000000000002393b205ec97ff4a"
 
---0000000000000eaee005ec94e9bc
+--0000000000002393b205ec97ff4a
 Content-Type: text/plain; charset="UTF-8"
 
-what's the mean device select and instance select in RFNOC blocks?
-they are vague for me? can anyone guide me?
-[image: Screenshot from 2022-11-03 18-12-37.png]
+Device select is an index for referencing a specific USRP in a multiple
+USRP flow graph. Instance select is an index for when you have multiple
+instances of the same block on a USRP (i.e. DDC0, DDC1, etc).
 
---0000000000000eaee005ec94e9bc
+On Fri, Nov 4, 2022 at 3:14 AM sp <stackprogramer@gmail.com> wrote:
+
+> what's the mean device select and instance select in RFNOC blocks?
+> they are vague for me? can anyone guide me?
+> [image: Screenshot from 2022-11-03 18-12-37.png]
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+-- 
+
+Jonathon
+
+
+*DISCLAIMER: Any attached Code is provided As Is. It has not been tested or
+validated as a product, for use in a deployed application or system, or for
+use in hazardous environments. You assume all risks for use of the Code.
+Use of the Code is subject to terms of the licenses to the UHD or RFNoC
+code with which the Code is used. Standard licenses to UHD and RFNoC can be
+found at https://www.ettus.com/sdr-software/licenses/
+<https://www.ettus.com/sdr-software/licenses/>.*
+
+*NI will only perform services based on its understanding and condition
+that the goods or services (i) are not for the use in the production or
+development of any item produced, purchased, or ordered by any entity with
+a footnote 1 designation in the license requirement column of Supplement
+No. 4 to Part 744, U.S. Export Administration Regulations and (ii) such a
+company is not a party to the transaction.  If our understanding is
+incorrect, please notify us immediately because a specific authorization
+may be required from the U.S. Commerce Department before the transaction
+may proceed further.*
+
+--0000000000002393b205ec97ff4a
 Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-<div dir="ltr">what&#39;s the mean device select and instance select in RFNOC blocks?<br><div>they are vague for me? can anyone guide me?</div><img src="cid:ii_la1dyd350" alt="Screenshot from 2022-11-03 18-12-37.png" width="472" height="417"><br></div>
+<div dir=3D"auto">Device select is an index for referencing a specific USRP=
+ in a multiple USRP flow graph. Instance select is an index for when you ha=
+ve multiple instances of the same block on a USRP (i.e. DDC0, DDC1, etc).</=
+div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Fri, Nov 4, 2022 at 3:14 AM sp &lt;<a href=3D"mailto:stackprogramer@g=
+mail.com">stackprogramer@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;b=
+order-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"=
+><div dir=3D"ltr">what&#39;s the mean device select and instance select in =
+RFNOC blocks?<br><div>they are vague for me? can anyone guide me?</div><img=
+ src=3D"cid:ii_la1dyd350" alt=3D"Screenshot from 2022-11-03 18-12-37.png" s=
+tyle=3D"width:620px;max-width:100%"><br></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><p style=3D"margin:0in;=
+font-family:Calibri,sans-serif"><font style=3D"background-color:rgb(255,255=
+,255)" color=3D"#000000">Jonathon</font></p><p style=3D"margin:0in;font-fam=
+ily:Calibri,sans-serif"><br></p><p><font size=3D"1" color=3D"#999999"><i><s=
+pan style=3D"font-family:Arial,sans-serif">DISCLAIMER: Any attached Code is=
+ provided As Is. It has not been tested or validated as a product, for use =
+in a deployed application or system, or for use in hazardous environments. =
+You assume all risks for use of the Code. Use of the Code is subject to ter=
+ms of the licenses to the UHD or RFNoC code with which the Code is used. St=
+andard licenses to UHD and RFNoC can be found at=C2=A0<a href=3D"https://ww=
+w.ettus.com/sdr-software/licenses/" target=3D"_blank">https://www.ettus.com=
+/sdr-software/licenses/</a>.</span></i><u></u><u></u></font></p><p><i><span=
+ style=3D"font-family:Arial,sans-serif"><font size=3D"1" color=3D"#999999">=
+NI will only perform services based on its understanding and condition that=
+ the goods or services (i) are not for the use in the production or develop=
+ment of any item produced, purchased, or ordered by any entity with a footn=
+ote 1 designation in the license requirement column of Supplement No. 4 to =
+Part 744, U.S. Export Administration Regulations and (ii) such a company is=
+ not a party to the transaction.=C2=A0 If our understanding is incorrect, p=
+lease notify us immediately because a specific authorization may be require=
+d from the U.S. Commerce Department before the transaction may proceed furt=
+her.</font></span></i></p></div></div>
 
---0000000000000eaee005ec94e9bc--
+--0000000000002393b205ec97ff4a--
 
---0000000000000eaee105ec94e9bd
+--0000000000002393b305ec97ff4b
 Content-Type: image/png; name="Screenshot from 2022-11-03 18-12-37.png"
 Content-Disposition: inline;
 	filename="Screenshot from 2022-11-03 18-12-37.png"
@@ -627,9 +704,9 @@ eU5KSqJt27bMmzePRYsWOc8/USQSIT09ndatW5OYmLjd6xtskrSDxcXFkZWVRWJiIunp6cRie8gX
 de9ioVCIxMRE0tLSNvueH+d5x9jWPAPEx8fTrFmzXTwybchgk6SdIBKJkJmZWdvD2OM5z/qlqHGw
 rf+uK0mSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS9Ev2/66fKZhTpm5UAAAAAElF
 TkSuQmCC
---0000000000000eaee105ec94e9bd--
+--0000000000002393b305ec97ff4b--
 
---===============5894650235302642947==
+--===============2522513858176124506==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -639,4 +716,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5894650235302642947==--
+--===============2522513858176124506==--
