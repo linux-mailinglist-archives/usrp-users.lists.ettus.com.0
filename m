@@ -2,66 +2,66 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D60616F40
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Nov 2022 21:58:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6464461738D
+	for <lists+usrp-users@lfdr.de>; Thu,  3 Nov 2022 02:06:43 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0A36B3841E9
-	for <lists+usrp-users@lfdr.de>; Wed,  2 Nov 2022 16:58:54 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id BA44538428C
+	for <lists+usrp-users@lfdr.de>; Wed,  2 Nov 2022 21:06:41 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667422734; bh=D+pI5kHMKTKJJwColgUsu2UO4JpR79cmDaVHUaakJoU=;
+	t=1667437601; bh=97DzNncHYVS7bWQY8LsFawyq5YXVSGNqvCurgy0jkpI=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=TDAI72mvbU+UPOGUM+1eT3o1OKVhBnSnkJKhdmi3bdBSPDMCIzCTSr9c4TSm1YyCL
-	 RWKk6jCTNGKKco24RbZ3x8lA/d4Sa6YVVFE+3j0ckCiv59dGj7lF7uMy0ZSOG0Ucto
-	 bSV0/OqYCXfM4kdhNW0uA4J20AlbFcOt5k/SbLi3bBdk8WtfzAO9nKrs3bq4vq4mVJ
-	 8Sm4ElfVZYUBu57GL1+SZXfKkhWZzuzF3GbFOOvYI9JvY2fG316h8XO+LpSAY4SYQg
-	 ga19rbTPB7ndQanUFPNjik782NroGLB7BHa3Tn8tPtxUPLQ9lZIlVQeSZliuCTfWKY
-	 vPoqYu64vJyGg==
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1C07B383FBC
-	for <usrp-users@lists.ettus.com>; Wed,  2 Nov 2022 16:57:07 -0400 (EDT)
+	b=noK6sncmhguZm9Lq//JAWJbaRXrvS4Z+zcs9/Sed3manvAToj/9ox2rzjsH16m0ZL
+	 1FMH7+aVDFe9KvjSRB1+PTql8RXvEoEJnQPoP2bspkTPow9n2rv81Y0F+f8olxWXZ/
+	 MDpyDoDL+33fG9GUE2exx63dhYQgTUx18fGU/cHPjZg6YipRzhiMnJwDqXGxowJXpP
+	 41d7PD4MVujVX+Yo+IgJ4oZHtKQw2jNvkkl6zr33lQBy2qqsE6G9NkOjrh1R8e1C7e
+	 E9nv8QKdr2BIg5+bW07VAgrMMiGb8uBt9wn43kc+ew4wSwo8iWmky3nABlaw/GVWt9
+	 8PHkRVFTKWCPw==
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 11C58384256
+	for <usrp-users@lists.ettus.com>; Wed,  2 Nov 2022 21:05:53 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kuNElB7z";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kTrcib6L";
 	dkim-atps=neutral
-Received: by mail-qt1-f175.google.com with SMTP id h21so116201qtu.2
-        for <usrp-users@lists.ettus.com>; Wed, 02 Nov 2022 13:57:07 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id k2so263487qkk.7
+        for <usrp-users@lists.ettus.com>; Wed, 02 Nov 2022 18:05:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=teGtX1LDvMuKQnwcYKbqkcO6NO763zBfmq31YXp9szw=;
-        b=kuNElB7zwXPRt4AVsaZculp6lymTT2XdY1NJff0Ckl86yq4y/SMQnuwxTliDNVHmio
-         FfusCiaYYBzJU4cwn0QSIPRhBZ5JgJsos3j4y1ApzOTCIBSVucmAMdK/i920G9U2WviP
-         TtGOjvoPngApWKXmoA2l9a2VoEy6/KK6mSLk0HxcO88ZrkXkr439BsEewbxEqkIbZP+T
-         N2TIGAPtbbIyR76O21Qz7XD+aDyRIUExHAJodvMcymHrzaHsuB8tbgDIjRviODtHGVnW
-         /v7ApeF1N+7SbAiLt8OS2uNZhUTHtejChrdpaMy91jX1SnjsoEBz7mAuI2SMKVXeKSFW
-         zRtg==
+        bh=rKj70foSc3iWfG9RiDN+3KIrzRv87QfeXbGm73WLPeg=;
+        b=kTrcib6Lng20W2TB3mEhQndvOwKPSavmc22fyvH6uhbsCnIk0+syUgjCe35/N5EzGF
+         7jpeH0if9eCdlKFlk88G+5alKbPVdHyQnQn2YEORR4+PBpio7H1ugRp/cEmFfUyRtU90
+         voOinbs+ZcrGfj+W3Lq4FiC34cUYnzxTC10tX676zna4uChivTHzYmAMzn8TWTETWLs4
+         nDzMTW+blXSLDCG0IbmKQu+RVu7Bz1A94L07lyO1lSNsRxSSEqTb+hfuGvemN5gCCfCA
+         Oqo1sXuFV6BgsVCyQk6YyI4LCdOSe/9x41fv1x+1Qu74L+ZzZsJIVIcZwzvaPw+SZ3ZI
+         BR3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=teGtX1LDvMuKQnwcYKbqkcO6NO763zBfmq31YXp9szw=;
-        b=gFdru1hkdPxjWEdtWiNDqH7pyT/+8K2Ph4tEpr09YnUea4ddH3bnlfyy3nKVU5tI3Y
-         xXWF716IKwlWlYJOH5fsJTGAGBVkvIRhMcw16B66k/cQyBZ/vUUN7AdtPh5Hzm8i1Xd4
-         QBQmVeGpHdKyovbhpPOsIBqKHQfZt6wmMYyXF9Bz7SSJoFSb//du34r9KLzgHqEuJBoj
-         K+kaPdW8HYQFyswIP+WCKFwMRP3ozWD0K7nXxLajM8CBrHq5Z5bU3qAAeccnPJK0yc8q
-         ceEYDB5u/VbcnIs/2ubo1n0zd+IXa7C7Gekka2sJXL46SaScwjKOoFlYqZhF9VxtlNYV
-         URxg==
-X-Gm-Message-State: ACrzQf0Dhrz5jbPBedlVe3BGM+OI4vUJ9z09up2q6bAI7y+9ksOiXTn7
-	tQlo8iVu78MqQypK4TLZn/Hs7eY07Sw=
-X-Google-Smtp-Source: AMsMyM4QO9ls6zzClScAe9NEzs5iR0abIr7OVPRrB9K3Kn/wak9VjLgHpUewffbSEQ7evpV4FBeE2A==
-X-Received: by 2002:ac8:708d:0:b0:3a5:28e7:cb38 with SMTP id y13-20020ac8708d000000b003a528e7cb38mr13044591qto.120.1667422627320;
-        Wed, 02 Nov 2022 13:57:07 -0700 (PDT)
+        bh=rKj70foSc3iWfG9RiDN+3KIrzRv87QfeXbGm73WLPeg=;
+        b=Sdh3DSX5XAsgpt1N41SSjlX5hgtvUhz1zG5fMx2lzM3ok473HukgDi3LODFROTIGss
+         lASGUEEh9ZRTyVrJPdVEAL3vYdVsyl49TcnvXuJZ962EyBCcZwe9axfXo+q3qim+r5eR
+         woTkEnFaT2bgEykFkABQ/9fKGzGnFQzkr8zAiBmVxm/7JoIBSHWgTD2/24O3+QE0GfeS
+         WtZ+qAp5HE6XRgoP+dMO1aULAbaFvWvKmVZ0DbImRC3tXBXwQOi0ZIxePsJgb1Xb/+sy
+         hVfxWbNWHVgpRIqIZmYZsmRf7rnSZR9qKJMuKGv4TIhZWEtyp+eXUUcDC2Whue5yn34d
+         s+Qw==
+X-Gm-Message-State: ACrzQf0XyVhpJ51U1Iaw1odWHsk3gM8JD1uUazNg4FtBNKGMQQ5lwBO+
+	MgmJSFVBaIY5spmy//1zBKoP9hII6pc=
+X-Google-Smtp-Source: AMsMyM6zCC7431jY0HeYJTbBkAH2xM2Lxwk/2Dgd8VyMXlgFEohDFkZgxQQlyYU05t8kRFiMwmUnEA==
+X-Received: by 2002:ae9:ef93:0:b0:6fa:1745:1008 with SMTP id d141-20020ae9ef93000000b006fa17451008mr19514848qkg.706.1667437552817;
+        Wed, 02 Nov 2022 18:05:52 -0700 (PDT)
 Received: from [192.168.2.167] (bras-base-smflon1825w-grc-09-174-93-2-222.dsl.bell.ca. [174.93.2.222])
-        by smtp.googlemail.com with ESMTPSA id c5-20020ac81105000000b003a494b61e67sm7098578qtj.46.2022.11.02.13.57.06
+        by smtp.googlemail.com with ESMTPSA id m8-20020a05620a290800b006ce40fbb8f6sm9948297qkp.21.2022.11.02.18.05.51
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Nov 2022 13:57:07 -0700 (PDT)
-Message-ID: <4f147460-c14d-94ce-c0e9-62f3e2b6c465@gmail.com>
-Date: Wed, 2 Nov 2022 16:57:06 -0400
+        Wed, 02 Nov 2022 18:05:52 -0700 (PDT)
+Message-ID: <6110af43-326b-6dcd-e1bb-11ad590f1b8b@gmail.com>
+Date: Wed, 2 Nov 2022 21:05:51 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.2.2
@@ -71,31 +71,31 @@ References: <CANsNear2pq3y6SP31Z=Y0Qk=aLhS-4qRqBg1g8W6Lk+0nwM_sw@mail.gmail.com>
  <CANsNeapRKvT4Uu_cmJ9tF-qrg2D10FYUZmoTFgq4521ODFUt-g@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <CANsNeapRKvT4Uu_cmJ9tF-qrg2D10FYUZmoTFgq4521ODFUt-g@mail.gmail.com>
-Message-ID-Hash: QGHJJ6LYUILWGUIWTIQYJVISQ4JXP2DB
-X-Message-ID-Hash: QGHJJ6LYUILWGUIWTIQYJVISQ4JXP2DB
+Message-ID-Hash: 4JIN6OMREBUS6VP5P2NDVKUETDVXWYLI
+X-Message-ID-Hash: 4JIN6OMREBUS6VP5P2NDVKUETDVXWYLI
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: E310 GnuRadio upgrade?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QGHJJ6LYUILWGUIWTIQYJVISQ4JXP2DB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4JIN6OMREBUS6VP5P2NDVKUETDVXWYLI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2217894231389263062=="
+Content-Type: multipart/mixed; boundary="===============3918010163915318139=="
 
 This is a multi-part message in MIME format.
---===============2217894231389263062==
+--===============3918010163915318139==
 Content-Type: multipart/alternative;
- boundary="------------U9805yIjVhOgVhyCHc0RyTiG"
+ boundary="------------rQPrDITGgo46h3k900QP00rL"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------U9805yIjVhOgVhyCHc0RyTiG
+--------------rQPrDITGgo46h3k900QP00rL
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -113,17 +113,12 @@ ons.
 >
 > Thanks.
 > Rich
-Something you might try is, with a "modern" UHD on your *HOST*, use:
+Here's a direct link to the images:
 
-sudo uhd_images_downloader -t sdimg -t e310
+https://files.ettus.com/binaries/cache/e3xx/meta-ettus-v4.3.0.0/
 
-Which will download a matching SD card image to your host that you can=20
-then program onto your E310 SD card.
 
-This will definitely be more 'modern' than 2016, but it's unlikely to=20
-include a GR that is any newer than GR 3.8 from
- =C2=A0 what I recall...
-
+That image includes GR 3.8.3
 
 
 >
@@ -141,7 +136,7 @@ include a GR that is any newer than GR 3.8 from
 > USRP-users mailing list --usrp-users@lists.ettus.com
 > To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 
---------------U9805yIjVhOgVhyCHc0RyTiG
+--------------rQPrDITGgo46h3k900QP00rL
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -179,20 +174,16 @@ d
         <div>Rich</div>
       </div>
     </blockquote>
-    Something you might try is, with a "modern" UHD on your *HOST*, use:<=
-br>
+    Here's a direct link to the images:<br>
     <br>
-    sudo uhd_images_downloader -t sdimg -t e310<br>
-    <br>
-    Which will download a matching SD card image to your host that you
-    can then program onto your E310 SD card.<br>
-    <br>
-    This will definitely be more 'modern' than 2016, but it's unlikely
-    to include a GR that is any newer than GR 3.8 from<br>
-    =C2=A0 what I recall...<br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://files.ettus.com/bi=
+naries/cache/e3xx/meta-ettus-v4.3.0.0/">https://files.ettus.com/binaries/=
+cache/e3xx/meta-ettus-v4.3.0.0/</a><br>
     <br>
     <br>
-    =C2=A0 <br>
+    That image includes GR 3.8.3<br>
+    <br>
+    <br>
     <blockquote type=3D"cite"
 cite=3D"mid:CANsNeapRKvT4Uu_cmJ9tF-qrg2D10FYUZmoTFgq4521ODFUt-g@mail.gmai=
 l.com"><br>
@@ -234,9 +225,9 @@ s.com</a>
   </body>
 </html>
 
---------------U9805yIjVhOgVhyCHc0RyTiG--
+--------------rQPrDITGgo46h3k900QP00rL--
 
---===============2217894231389263062==
+--===============3918010163915318139==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -246,4 +237,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2217894231389263062==--
+--===============3918010163915318139==--
