@@ -2,751 +2,452 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7640A61A210
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Nov 2022 21:19:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD6561A219
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Nov 2022 21:23:23 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4546D38415B
-	for <lists+usrp-users@lfdr.de>; Fri,  4 Nov 2022 16:19:47 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9F6A938415B
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Nov 2022 16:23:22 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667593187; bh=w+7TxGZfd3XOx13eN04chds8bN4VdGlv4E+15foPpg8=;
+	t=1667593402; bh=6lFrr9IA9E5RpX7myWqrzlz9lzHhcrrRD64KWuYivdQ=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=WZ2HErhefWn59eEqIkucNntJr9m1btK7B/zsy+XZvIsdLzHxXfy1hpUSvxe9/MODh
-	 CO82bLDrJEZb14quVdglI4yiJtnOj78d5YdtJVwP+RuKNLiG1F0wkA/EGb8qQ8+v7s
-	 hClHSQSWQRXNgbHlDKeSmi0uqq7trBQkd7j04a2EPPPcDLW8EmDaTSwe5XX5rpxEqB
-	 2AZxI3EYY5dyWeFwL/N5H2WUlXcQshANxakfqRI12UG6hu09GDusODEO1l6zdEIQwO
-	 kZDdQNhflipKaxk2ltq4RNeews4NQJWQ1/b9lcK3ve5JMDdklfefSv8yLifwdc2hkK
-	 4USglst2JKqhg==
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2BEBC384111
-	for <usrp-users@lists.ettus.com>; Fri,  4 Nov 2022 16:18:39 -0400 (EDT)
+	b=OC0wBYY/S1uBbufIqkHOQiQusn45rKNqmL2NdEDZIeyq8FcyJXNSnRezM0rLyzkq1
+	 r5+Uj3sj7aUATbjDdk0H5DjMCRddgR5PTrnsZp4QOH+eUEg670Ldso/oDhp9hqgI1N
+	 kJK0uY/fEDokqiF3Wcg2ZqO6qHcEMceJ6pk61nlW00wR9FggotFrEG870pukR0YixI
+	 lHh9Xf9HCS1t7Ts+v376cLDGwlyh7D6EpRKcwhk04kqgRfw98QwAY5kNkq4QvqufOD
+	 TEHKB4yPRkkn7VgtfXBSchgDu/DB9C2/gW0rkz7el/mlY32jyzKxvHOzJQmp0GyPG2
+	 QdqaeZEMZ1DKQ==
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id E4A66380785
+	for <usrp-users@lists.ettus.com>; Fri,  4 Nov 2022 16:22:08 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="aSeRbxhk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DJavfnC4";
 	dkim-atps=neutral
-Received: by mail-ed1-f51.google.com with SMTP id i21so9199820edj.10
-        for <usrp-users@lists.ettus.com>; Fri, 04 Nov 2022 13:18:39 -0700 (PDT)
+Received: by mail-pj1-f48.google.com with SMTP id r61-20020a17090a43c300b00212f4e9cccdso9206873pjg.5
+        for <usrp-users@lists.ettus.com>; Fri, 04 Nov 2022 13:22:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=HG4co7BwIoQ6S/A2hbW86o00T/h0GVVozD7ONahSRK4=;
-        b=aSeRbxhkb1hsfH7jWPfd2P/g1lhfvJy7kodnVn5apgKwpK4NhDhjk+XCZdio/JYgOl
-         O51SSavbjf5jgqI5IJcYrzTBCKn3F0g0lwKDkWlVryUtfrAK6qLrTCsiB/k47lbR3eIj
-         Re89ruKsXiOBEkmqCHSA6aqu/49n6OgyoAardh0+G0LnFlly59VlCJydoqawEM/kJqG2
-         WFYA+GsemUmAF+C0daW/YO5edeFmLOFrslCirOT6v5kyn44AjpECNjjbxMECzjYrJzWG
-         D1i5HBj77d6j5AvitpEfLsCh96Ufnl2nOATcqMyEq6uYHiYKzsdmThZ5guvd7WvNTN5Q
-         8sog==
+        bh=gcPa/uWMlRUGgImchBRLo5IKp047Bhy2XkAUNnnkLvI=;
+        b=DJavfnC4H7TGCpru1rY6tkAV0YmzQJMNa0EpgvhtxGOgt5f+GovXLgeSAXV2PQGFZs
+         Jj3YWH3MoZWHSdhCH80aE/ZO5Myj2w1X/MfplbIii2Aa7VDBq7kkA20QARVjbrqumz48
+         QpcW9g5WAarEg7/osfuPwstfX7/gpHIO/uzmWKF0atkvzvn9HGT1FqdbdVGIp4djQK0u
+         Ae0QHOantUtaLBQD5jP4KqlnEKd8h07YE9XKu9B/g9DP28ir7AvZ4JqzCA+RKWK4TVJA
+         Zfai02NaJg9qJbTgFuepEVlUCG50E8FJ1d1zHc5TAHdpUttE7Vw5QaHHMo1YpIxQO9WB
+         XG5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=HG4co7BwIoQ6S/A2hbW86o00T/h0GVVozD7ONahSRK4=;
-        b=HUVNKyJVEbeHXM0sjToqCRJ1cr9sLQtQIrKKXFOqcWoBO5pidlg2ZSNuI03I3TydyK
-         8jYj5/xDS334DdsuY8jXzvkzY3XaHLOz9Hn8NLQWQK+ohUGbhc/ZEJkONtq05/8pCuNT
-         jD+9KfqHxuF52VHBvxM/ve13LkDCaJquEUHyZEcGJ+v/N6IVHnAqxMNlprMA9KhWHaM0
-         brRdtz+8Sli9f5B6wvYtJJmEcDe6B21jH+gV+elW0bODCfTmVV/HyyleYuE7Naynya7o
-         sJBmq0bFJZoev+oJ93MbwRXDkvLvKkdJzqImbExkVek7vGY3GLbSyI+BwaqP3PFU6Eri
-         1oig==
-X-Gm-Message-State: ACrzQf1svYw4hp/Z8lifLPPn0N04sQ5sAHUFOWk/jcdekYjnDAQBHGIy
-	JjlcjWMOCSOD/xDQGEl83err1M7TOs7AhFUEP6pL61NvqLhGbskc
-X-Google-Smtp-Source: AMsMyM53RJYcoIzXHA4GiPLiBjfYrM7Rj4PXzXg5xhUzxst302pQiaNgLDyexjXKuTpb2pQ62j/7OFschxgC/4dkN8Q=
-X-Received: by 2002:a05:6402:144a:b0:461:8e34:d07b with SMTP id
- d10-20020a056402144a00b004618e34d07bmr38225145edx.426.1667593118049; Fri, 04
- Nov 2022 13:18:38 -0700 (PDT)
+        bh=gcPa/uWMlRUGgImchBRLo5IKp047Bhy2XkAUNnnkLvI=;
+        b=J0m48CaCfFM2uhp8GUVQUqichp5m0S9gG8xUhsCO8xgbI9A2Er/7K67ZjQP0FSjzVB
+         DRl3rvS5rL9EkMwNWgxCLaCIP0mF2IXMAj+4uiP5tpHFuNYv0mm+KOdDO2VCXmeM9tGm
+         p0UIeROWmKHv6lBwV+y7RyoxcnrbKbRLA0K235ytER13Ogog2+NWxgXo10xqR2eBEENg
+         tekWvsVCyCTJOw5xaCN/AHXZjs0DsC4+YvJF0BgmLCAuNKmvBXgG3lPzYoDP7bMt3NO9
+         IYQKurL9UUD0bq77nae0Dxn/CPP7tnDKTs9f6xHoGQOe7AHNzTF3tYjKGTae25ltpOrX
+         oPQg==
+X-Gm-Message-State: ACrzQf03R26Vcb/st0CRk4qMbBWob99UOKiIduwaj4ME0fZpU1JraZxZ
+	t5VzEn0U3gIkoVQJm9w0ljDHZJcwBy+9TL1NRv5Oaak6
+X-Google-Smtp-Source: AMsMyM5wjzpFQxpO+1Wv+80UqfV5He9nvgt9igksTMO746iCklRHAJVwXYu/uW6/YyhXAPzIDEqJ8iH4XrsFmYZOdmo=
+X-Received: by 2002:a17:902:d485:b0:186:bb44:9459 with SMTP id
+ c5-20020a170902d48500b00186bb449459mr38017045plg.101.1667593327598; Fri, 04
+ Nov 2022 13:22:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <GV1P250MB078572B4F56DA70AF7DE1FC1903B9@GV1P250MB0785.EURP250.PROD.OUTLOOK.COM>
-In-Reply-To: <GV1P250MB078572B4F56DA70AF7DE1FC1903B9@GV1P250MB0785.EURP250.PROD.OUTLOOK.COM>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Fri, 4 Nov 2022 15:18:21 -0500
-Message-ID: <CAFche=h92Kh-46p+EXKKfge_EUrm2y0uvtHS47LLYhQpDefdrQ@mail.gmail.com>
-To: =?UTF-8?Q?Maximilian_Matth=C3=A9?= <maximilian.matthe@barkhauseninstitut.org>
-Message-ID-Hash: VMWR6D2MQ4CLUQT2TK4FYYISIGLNDY3Q
-X-Message-ID-Hash: VMWR6D2MQ4CLUQT2TK4FYYISIGLNDY3Q
-X-MailFrom: wade.fife@ettus.com
+References: <CAChZci8XKgcSE_BbWtH_-FvX_cFnYdoLJBSA1VLzatQexbEmrg@mail.gmail.com>
+ <a704b61f-cc51-6d27-6ef7-16ecb87d4174@gmail.com> <CAChZci-q_EqyPsFqb7ceNdnx2C-tUS1=edkQEu8bkPvWQ+PseQ@mail.gmail.com>
+ <9bd59f49-5536-d3e8-9a7a-1192f4ec8ecb@gmail.com> <CAB__hTQd9wuvEV8wfyzeCaMg4Zg+D-rgTAFWVjDWC+wO5QCSCg@mail.gmail.com>
+ <bbb1872e-f6d6-ad4c-6b29-f5d0c2a3526b@gmail.com>
+In-Reply-To: <bbb1872e-f6d6-ad4c-6b29-f5d0c2a3526b@gmail.com>
+From: Kenneth Burchfield <ksburchfield@gmail.com>
+Date: Fri, 4 Nov 2022 15:21:55 -0500
+Message-ID: <CAChZci9Yk3P4RfUa=THj613g82zAeZRS+ELqoya=27L7jXY=aw@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: KUGZ6DO5ZBL2M3TQHOV7ZL22XRG3NYQA
+X-Message-ID-Hash: KUGZ6DO5ZBL2M3TQHOV7ZL22XRG3NYQA
+X-MailFrom: ksburchfield@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+CC: Rob Kossler <rkossler@nd.edu>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X410 - FPGA unresponsive after several RFNoC Graph Creations
+Subject: [USRP-users] Re: examples using N310 with ext LO
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VMWR6D2MQ4CLUQT2TK4FYYISIGLNDY3Q/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KUGZ6DO5ZBL2M3TQHOV7ZL22XRG3NYQA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7969548650967281879=="
+Content-Type: multipart/mixed; boundary="===============2936266124401290245=="
 
---===============7969548650967281879==
-Content-Type: multipart/alternative; boundary="0000000000006e841e05ecaac729"
+--===============2936266124401290245==
+Content-Type: multipart/alternative; boundary="000000000000ebe16d05ecaad38f"
 
---0000000000006e841e05ecaac729
+--000000000000ebe16d05ecaad38f
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Maximilian,
+Rob / Marcus,
 
-This sounds similar to some issues that are already fixed. I tried what you
-did on my X410 running UHD 4.3 and didn't see this issue.
+The initial-5GHz LO was my problem.  I was not providing it at startup.
+Thank you guys for the info.  The mirroring is resolved!
 
-Can you try updating the X410 to UHD 4.3 to see if that resolves the issue?
+-Scott
 
-Thanks,
+On Thu, Nov 3, 2022 at 8:48 AM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
 
-Wade
-
-On Fri, Nov 4, 2022 at 3:20 AM Maximilian Matth=C3=A9 <
-maximilian.matthe@barkhauseninstitut.org> wrote:
-
-> Dear all,
+> On 03/11/2022 09:36, Rob Kossler wrote:
 >
-> I have a problem with our USRP X410 and RFNoC. During development of an
-> RfNoc application, one often restarts the test program, which creates an
-> RfNoc graph and performs some connections on the device. However, after
-> around 10-15 program starts, the firmware/FPGA/driver yields errors that
-> it's not reachable anymore. Below is a MWE yielding the error:
->
-> Test skript:
-> $ cat graph_error.py
-> import uhd
-> import time
->
-> if __name__ =3D=3D '__main__':
->     time.sleep(1)
->     uhd.rfnoc.RfnocGraph("addr=3Dlocalhost")
->     time.sleep(1)
->     print("Exiting...")
->
-> which I run in a loop directly on the USRP X410, wtih the output attached
-> below.
->
-> $ for i in `seq 20`; do echo $i && python3 graph_error.py ; done
->
-> After the error occurs, the only way to get it back to working is to
-> reboot the USRP or do `systemctl restart usrp-hwd`, which interrupts the
-> dev workflow.
->
-> My question is you can reproduce this? Is this a bug? Can I work around
-> the crash? If it's a bug, I should file it to the UHD github repository,
-> right?
->
-> Thank you,
-> Maximilian Matthe
->
-> $ for i in `seq 20`; do echo $i && python3 graph_error.py ; done
-> 1
->
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 2
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
->
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
->
-> Exiting...
-> 3
->
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 4
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 5
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 6
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 7
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 8
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 9
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 10
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> Exiting...
-> 11
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
-> RfnocError: Specified destination address is unreachable
-> Traceback (most recent call last):
->   File "graph_error.py", line 6, in <module>
->     uhd.rfnoc.RfnocGraph("addr=3Dlocalhost")
-> RuntimeError: RuntimeError: Failure to create rfnoc_graph.
-> 12
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> [ERROR] [RFNOC::GRAPH] IO Error during GSM initialization.
-> EnvironmentError: IOError: Timed out getting recv buff for management tra=
+> When running N310 with external LO, the device will automatically try to
+> run a calibration at device startup (actually in the software make N310
+> device) where it expects the external LO to be at 5 GHz.  If you supply a=
 n
-> saction
-> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
-> EnvironmentError: IOError: Timed out getting recv buff for manageme
-> nt transaction
-> Traceback (most recent call last):
->   File "graph_error.py", line 6, in <module>
->     uhd.rfnoc.RfnocGraph("addr=3Dlocalhost")
-> RuntimeError: RuntimeError: Failure to create rfnoc_graph.
-> 13
-> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
-> UHD_4.2.0.0-0-g46a70d85
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
-> mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3D=
-NE-LAB-X
-> 410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
-> [INFO] [MPM.PeriphManager] init() called with device args
-> `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410=
-,clock_sou
-> rce=3Dinternal,time_source=3Dinternal'.
-> [ERROR] [RFNOC::GRAPH] IO Error during GSM initialization.
-> EnvironmentError: IOError: Timed out getting recv buff for management tra=
-n
-> saction
-> [ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
-> EnvironmentError: IOError: Timed out getting recv buff for manageme
-> nt transaction
+> LO at a different frequency, this calibration will be ruined. Is it
+> possible that you are not supplying a 5 GHz LO at startup?  Note that you
+> can change it after startup to your desired freq of operation.
+>
+> And, responding to another discussion point about QEC correction, even if
+> you disable the "tracking cal" you  can keep the "init cal" in place. I
+> assume this means that an initial calibration is performed and then the
+> calibrated gain/phase settings are left untouched afterwards.  So,
+> disabling the tracking cal should not mean that you are not performing an=
+y
+> correction - just not updated dynamically.
+> Rob
+>
+> Thanks, Rob.  I had, once again, forgotten about the initial-5GHz
+> requirement.
+>
+> The complete list of possible "init" and "tracking" CAL options is here:
+>
+> https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_mg_calibrations
 >
 >
-> Maximilian Matthe
+> On Wed, Nov 2, 2022 at 4:28 PM Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
 >
-> Head of Engineering Lab
+>> On 02/11/2022 15:53, Kenneth Burchfield wrote:
+>>
+>> Marcus,
+>> I agree.  Is there a way to tune the sideband suppression so that I can
+>> attenuate more of the mirrored signal?
+>> With the internal lo, everything seems to just work.  Are there extra
+>> configuration steps that I need to take to adjust for the external lo?
+>>
+>> I'm trying to find that out now.
+>>
+>> I suspect that spending an afternoon with the AD9371 datasheet might
+>> provide some clues--but as to whether those are
+>>   actually exposed in UHD is another question.
+>>
+>> With the internal LO, the chip has internal algorithms for optimizing
+>> phase and amplitude balance.  Those algorithms aren't
+>>   "in play" when you use an external LO, apparently.
+>>
+>> One thing that *could* be done, but is tedious, is to adjust the phase
+>> and amplitude balance of the baseband signal to
+>>   compensate for the imbalance of the mixer.   This is basically what th=
+e
+>> internal algorithms in the chip are doing, as
+>>   far as I can tell.
+>>
+>>
+>>
+>> Thanks,
+>> Scott
+>>
+>> On Wed, Nov 2, 2022 at 2:41 PM Marcus D. Leech <patchvonbraun@gmail.com>
+>> wrote:
+>>
+>>> On 02/11/2022 15:27, Kenneth Burchfield wrote:
+>>>
+>>> Marcus,
+>>>
+>>> The sidebands do not change with the LO level.
+>>>
+>>> I am basically running the tx_waveforms example from UHD 4.2.0.0, and I=
+ am adding the argument tx_lo_source=3Dexternal.  Attached is a picture of =
+the spectrum. I am generating a SINE with wave-freq input 2e6. The center s=
+pike is some LO leakage. The spike at -2e6 is the mirroring I am seeing.
+>>>
+>>> Thanks,
+>>> Scott
+>>>
+>>> The LO suppression looks to be about 55dBc, which is not horrific.
+>>>
+>>> The sideband suppression appears to be only about 30dBc, which is not
+>>> very good.
+>>>
+>>>
+>>>
+>>> On 02/11/2022 12:09, Scott Burchfield wrote:
+>>>
+>>> Hi,
+>>>
+>>>
+>>> Are there any updates on this problem.  I normally try not to reply to =
+old
+>>> threads, but I am seeing the same the same spectral mirroring Rob descr=
+ibed
+>>> earlier.  My setup is also the same as Rob=E2=80=99s.I have tracked som=
+e newer
+>>> threads that mentioned disabling TX_QEC_INIT, but I am still seeing the
+>>> mirroring after disabling QEC.
+>>>
+>>> https://www.mail-archive.com/usrp-users@lists.ettus.com/msg07489.html
+>>>
+>>> Thanks,
+>>>
+>>> Scott
+>>>
+>>>
+>>> It seems to me that if you use an external LO, that LO has to go throug=
+h the
+>>> phase-splitter on the mixer, and that phase-split   is subject to
+>>> errors, so turning off QEC may not be that desirable--although I think
+>>> the mixer on the N310 (using an AD9371)
+>>>
+>>>   is a 2XLO, so the phase error should be very very small.
+>>>
+>>> Do the unwanted sidebands change with LO level?
+>>>
+>>>
+>>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 >
-> maximilian.matthe@barkhauseninstitut.org
->
-> Tel.: +49 173 4509667
->
->
->
-> *Barkhausen Institut*
-> www.barkhauseninstitut.org
->
-> Barkhausen Institut gGmbH | Sitz: W=C3=BCrzburger Stra=C3=9Fe 46, 01187 D=
-resden,
-> Germany | Registergericht: Amtsgericht Dresden, HRB 37267 |
-> Gesch=C3=A4ftsf=C3=BChrer: Prof. Dr. Gerhard Fettweis, Dr. Tim Hentschel =
-|
-> Vorsitzender der Gesellschafterdelegation: Dr. Andreas Handschuh
->
-> Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie
-> unter: https://barkhauseninstitut.org/data-privacy
->
-> This email and any attachments are intended only for the person to whom
-> this email is addressed and may contain confidential and/or privileged
-> information. If you received this email in error, please do not disclose
-> the contents to anyone, but notify the sender by return email and delete
-> this email (and any attachments) from your system. Information on data
-> protection and processing of your personal information:
-> https://barkhauseninstitut.org/data-privacy
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---0000000000006e841e05ecaac729
+--000000000000ebe16d05ecaad38f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi=20
-Maximilian,</div><div><br></div><div>This sounds similar to some issues tha=
-t are already fixed. I tried what you did on my X410 running UHD 4.3 and di=
-dn&#39;t see this issue.</div><div><br></div><div>Can you try updating the =
-X410 to UHD 4.3 to see if that resolves the issue?</div><div><br></div><div=
->Thanks,</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 4, 2022 at 3:20=
- AM Maximilian Matth=C3=A9 &lt;<a href=3D"mailto:maximilian.matthe@barkhaus=
-eninstitut.org">maximilian.matthe@barkhauseninstitut.org</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg-3=
-117051401584110972">
+<div dir=3D"ltr">Rob / Marcus,<div><br></div><div>The initial-5GHz LO was m=
+y problem.=C2=A0 I was not providing it at startup.=C2=A0 Thank you guys fo=
+r the info.=C2=A0 The mirroring is resolved!</div><div><br></div><div>-Scot=
+t</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Thu, Nov 3, 2022 at 8:48 AM Marcus D. Leech &lt;<a href=3D"mailto=
+:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 03/11/2022 09:36, Rob Kossler wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">When running N310 with external LO, the device will
+        automatically try to run a calibration at device startup
+        (actually in the software make N310 device) where it expects the
+        external LO to be at 5 GHz.=C2=A0 If you supply an LO at a differen=
+t
+        frequency, this calibration will be ruined. Is it possible that
+        you are not supplying a 5 GHz LO at startup?=C2=A0 Note that you ca=
+n
+        change it after startup to your desired freq of operation.
+        <div><br>
+        </div>
+        <div>And, responding to another discussion point about QEC
+          correction, even if you disable the &quot;tracking cal&quot; you=
+=C2=A0 can
+          keep the &quot;init cal&quot; in place. I assume this means that =
+an
+          initial calibration is performed and then the calibrated
+          gain/phase settings are left untouched afterwards.=C2=A0 So,
+          disabling the tracking cal should not mean that you are not
+          performing any correction - just not updated dynamically.</div>
+        <div>Rob=C2=A0</div>
+      </div>
+      <br>
+    </blockquote>
+    Thanks, Rob.=C2=A0 I had, once again, forgotten about the initial-5GHz
+    requirement.<br>
+    <br>
+    The complete list of possible &quot;init&quot; and &quot;tracking&quot;=
+ CAL options is
+    here:<br>
+    <br>
+<a href=3D"https://files.ettus.com/manual/page_usrp_n3xx.html#n3xx_mg_calib=
+rations" target=3D"_blank">https://files.ettus.com/manual/page_usrp_n3xx.ht=
+ml#n3xx_mg_calibrations</a><br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 2, 2022 at 4:28 P=
+M
+          Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" ta=
+rget=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <div>On 02/11/2022 15:53, Kenneth Burchfield wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">Marcus,
+                <div>I agree.=C2=A0 Is there a way to tune the sideband
+                  suppression so that I can attenuate more of the
+                  mirrored signal?</div>
+                <div>With the internal lo, everything seems to just
+                  work.=C2=A0 Are there extra configuration steps that I ne=
+ed
+                  to take to adjust for the external lo?</div>
+              </div>
+            </blockquote>
+            I&#39;m trying to find that out now.<br>
+            <br>
+            I suspect that spending an afternoon with the AD9371
+            datasheet might provide some clues--but as to whether those
+            are<br>
+            =C2=A0 actually exposed in UHD is another question.<br>
+            <br>
+            With the internal LO, the chip has internal algorithms for
+            optimizing phase and amplitude balance.=C2=A0 Those algorithms
+            aren&#39;t<br>
+            =C2=A0 &quot;in play&quot; when you use an external LO, apparen=
+tly.<br>
+            <br>
+            One thing that *could* be done, but is tedious, is to adjust
+            the phase and amplitude balance of the baseband signal to<br>
+            =C2=A0 compensate for the imbalance of the mixer.=C2=A0=C2=A0 T=
+his is
+            basically what the internal algorithms in the chip are
+            doing, as<br>
+            =C2=A0 far as I can tell.<br>
+            <br>
+            <br>
+            <blockquote type=3D"cite">
+              <div dir=3D"ltr">
+                <div><br>
+                </div>
+                <div>Thanks,</div>
+                <div>Scott</div>
+              </div>
+              <br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 2, 2022 a=
+t
+                  2:41 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbra=
+un@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                  <div>
+                    <div>On 02/11/2022 15:27, Kenneth Burchfield wrote:<br>
+                    </div>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">
+                        <pre style=3D"font-family:courier,&quot;courier new=
+&quot;,monospace;font-size:14px;white-space:pre-wrap;margin:0em;color:rgb(0=
+,0,0)">Marcus,
 
+The sidebands do not change with the LO level.
 
+I am basically running the tx_waveforms example from UHD 4.2.0.0, and I am =
+adding the argument tx_lo_source=3Dexternal.  Attached is a picture of the =
+spectrum. I am generating a SINE with wave-freq input 2e6. The center spike=
+ is some LO leakage. The spike at -2e6 is the mirroring I am seeing.
 
+Thanks,
+Scott</pre>
+                      </div>
+                    </blockquote>
+                    The LO suppression looks to be about 55dBc, which is
+                    not horrific.<br>
+                    <br>
+                    The sideband suppression appears to be only about
+                    30dBc, which is not very good.<br>
+                    <br>
+                    =C2=A0 <br>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">
+                        <pre style=3D"font-family:courier,&quot;courier new=
+&quot;,monospace;font-size:14px;white-space:pre-wrap;margin:0em;color:rgb(0=
+,0,0)">On 02/11/2022 12:09, Scott Burchfield wrote:
+</pre>
+                        <blockquote style=3D"margin:0em;padding:0px 0px 0px=
+ 0.85em;color:rgb(160,30,30);border-left:0.2em solid rgb(85,85,238);font-fa=
+mily:helvetica,arial,sans-serif;font-size:14px">
+                          <pre style=3D"font-family:courier,&quot;courier n=
+ew&quot;,monospace;font-size:1em;white-space:pre-wrap;margin-top:0px;margin=
+-bottom:0px">Hi,
 
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-Dear all,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-I have a problem with our USRP X410 and RFNoC. During development of an RfN=
-oc application, one often restarts the test program, which creates an RfNoc=
- graph and performs some connections on the device. However, after around 1=
-0-15 program starts, the firmware/FPGA/driver
- yields errors that it&#39;s not reachable anymore. Below is a MWE yielding=
- the error:<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-Test skript: <br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-$ cat graph_error.py
-<div>import uhd</div>
-<div>import time</div>
-<div><br>
-</div>
-<div>if __name__ =3D=3D &#39;__main__&#39;:</div>
-<div>=C2=A0 =C2=A0 time.sleep(1)</div>
-<div>=C2=A0 =C2=A0 uhd.rfnoc.RfnocGraph(&quot;addr=3Dlocalhost&quot;)</div>
-<div>=C2=A0 =C2=A0 time.sleep(1)</div>
-<div>=C2=A0 =C2=A0 print(&quot;Exiting...&quot;)</div>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-which I run in a loop directly on the USRP X410, wtih the output attached b=
-elow.<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-$ for i in `seq 20`; do echo $i &amp;&amp; python3 graph_error.py ; done</d=
-iv>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-After the error occurs, the only way to get it back to working is to reboot=
- the USRP or do `systemctl restart usrp-hwd`, which interrupts the dev work=
-flow.
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<div><span>My question is you can reproduce this? Is this a bug? Can I work=
- around the crash? If it&#39;s a bug, I should file it to the UHD github re=
-pository, right?<br>
-</span></div>
-<div><span><br>
-</span></div>
-<div><span>Thank you,</span></div>
-<div><span>Maximilian Matthe<br>
-</span></div>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-$ for i in `seq 20`; do echo $i &amp;&amp; python3 graph_error.py ; done<br=
->
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-1 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;. =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 </div>
-<div>Exiting... =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0
-</div>
-<div>2 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0
-</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;. =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-</div>
-<div>Exiting... =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
-</div>
-<div>3 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0
-</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>4</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>5</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>6</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>7</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>8</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>9</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>10</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>Exiting...</div>
-<div>11</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Rfno=
-cError: Specified destination address is unreachable</div>
-<div>Traceback (most recent call last):</div>
-<div>=C2=A0 File &quot;graph_error.py&quot;, line 6, in &lt;module&gt;</div=
->
-<div>=C2=A0 =C2=A0 uhd.rfnoc.RfnocGraph(&quot;addr=3Dlocalhost&quot;)</div>
-<div>RuntimeError: RuntimeError: Failure to create rfnoc_graph.</div>
-<div>12</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization. Environment=
-Error: IOError: Timed out getting recv buff for management tran</div>
-<div>saction</div>
-<div>[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Envi=
-ronmentError: IOError: Timed out getting recv buff for manageme</div>
-<div>nt transaction</div>
-<div>Traceback (most recent call last):</div>
-<div>=C2=A0 File &quot;graph_error.py&quot;, line 6, in &lt;module&gt;</div=
->
-<div>=C2=A0 =C2=A0 uhd.rfnoc.RfnocGraph(&quot;addr=3Dlocalhost&quot;)</div>
-<div>RuntimeError: RuntimeError: Failure to create rfnoc_graph.</div>
-<div>13</div>
-<div>[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0=
--g46a70d85</div>
-<div>[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_add=
-r=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X</=
-div>
-<div>410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost</div>
-<div>[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_4=
-00,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou</di=
-v>
-<div>rce=3Dinternal,time_source=3Dinternal&#39;.</div>
-<div>[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization. Environment=
-Error: IOError: Timed out getting recv buff for management tran</div>
-<div>saction</div>
-<div>[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Envi=
-ronmentError: IOError: Timed out getting recv buff for manageme</div>
-<div>nt transaction</div>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0);background-color:rgb(255,255,255)">
-<br>
-</div>
-<div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div id=3D"m_-2181791347994651193Signature">
-<div>
-<div id=3D"m_-2181791347994651193divtagdefaultwrapper" dir=3D"ltr" style=3D=
-"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Helvetica,sans-serif">
-<p style=3D"margin-top:0px;margin-bottom:0px">Maximilian Matthe</p>
-<p style=3D"margin-top:0px;margin-bottom:0px">Head of Engineering Lab</p>
-<p style=3D"margin-top:0px;margin-bottom:0px"><a href=3D"mailto:maximilian.=
-matthe@barkhauseninstitut.org" target=3D"_blank">maximilian.matthe@barkhaus=
-eninstitut.org</a></p>
-<p style=3D"margin-top:0px;margin-bottom:0px">Tel.: +49 173 4509667<br>
-</p>
-</div>
-</div>
-</div>
-</div>
-<div>
-<p style=3D"font-size:11pt;font-family:Calibri,sans-serif,serif,&quot;Emoji=
-Font&quot;;margin:0px">
-<br>
-<br>
-<b>Barkhausen Institut</b> <br>
-<a href=3D"http://www.barkhauseninstitut.org" target=3D"_blank">www.barkhau=
-seninstitut.org</a> <br>
-<br>
-</p>
-<p style=3D"font-size:11pt;font-family:Calibri,sans-serif,serif,&quot;Emoji=
-Font&quot;;margin:0px">
-<span style=3D"font-size:9pt" lang=3D"de-DE">Barkhausen Institut gGmbH | Si=
-tz: W=C3=BCrzburger Stra=C3=9Fe 46, 01187 Dresden, Germany | Registergerich=
-t: Amtsgericht Dresden, HRB 37267 | Gesch=C3=A4ftsf=C3=BChrer: Prof. Dr. Ge=
-rhard Fettweis, Dr. Tim Hentschel | Vorsitzender der Gesellschafterdelegati=
-on:
- Dr. Andreas Handschuh <br>
-<br>
-Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie unter:=
- <a href=3D"https://barkhauseninstitut.org/data-privacy" target=3D"_blank">=
-https://barkhauseninstitut.org/data-privacy</a>
-<br>
-<br>
-</span><span style=3D"font-size:9pt" lang=3D"en-US">This email and any atta=
-chments are intended only for the person to whom this email is addressed an=
-d may contain confidential and/or privileged information. If you received t=
-his email in error, please do not disclose
- the contents to anyone, but notify the sender by return email and delete t=
-his email (and any attachments) from your system. Information on data prote=
-ction and processing of your personal information: <a href=3D"https://barkh=
-auseninstitut.org/data-privacy" target=3D"_blank">https://barkhauseninstitu=
-t.org/data-privacy</a>
-<br>
-<br>
-</span></p>
-</div>
-</div>
+</pre>
+                          <tt>Are there any updates on this problem.=C2=A0 =
+I
+                            normally try not to reply to=C2=A0</tt><tt>old
+                            threads, but I am seeing the same the same
+                            spectral mirroring Rob=C2=A0</tt><tt>described
+                            earlier.=C2=A0 My setup is also the same as
+                            Rob=E2=80=99s.</tt><tt>I have tracked some newe=
+r
+                            threads that mentioned disabling=C2=A0</tt><tt>=
+TX_QEC_INIT,
+                            but I am still seeing the mirroring after
+                            disabling QEC.</tt>
+                          <pre style=3D"font-family:courier,&quot;courier n=
+ew&quot;,monospace;font-size:1em;white-space:pre-wrap;margin:0em"><a style=
+=3D"color:rgb(0,80,150)" href=3D"https://www.mail-archive.com/usrp-users@li=
+sts.ettus.com/msg07489.html" rel=3D"nofollow" target=3D"_blank">https://www=
+.mail-archive.com/usrp-users@lists.ettus.com/msg07489.html</a>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</div></blockquote></div>
+Thanks,
 
---0000000000006e841e05ecaac729--
+Scott
 
---===============7969548650967281879==
+</pre>
+                        </blockquote>
+                        <tt>It seems to me that if you use an external
+                          LO, that LO has to go through=C2=A0</tt><tt>the
+                          phase-splitter on the mixer, and that
+                          phase-split=C2=A0</tt><tt>=C2=A0 is subject to er=
+rors,
+                          so turning off QEC may not be that=C2=A0</tt><tt>=
+desirable--although
+                          I think the mixer on the N310 (using an
+                          AD9371)</tt>
+                        <pre style=3D"font-family:courier,&quot;courier new=
+&quot;,monospace;font-size:14px;white-space:pre-wrap;margin:0em;color:rgb(0=
+,0,0)">=C2=A0 is a 2XLO, so the phase error should be very very small.
+
+Do the unwanted sidebands change with LO level?</pre>
+                      </div>
+                    </blockquote>
+                    <br>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+            <br>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
+e@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><b=
+r>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+
+</blockquote></div>
+
+--000000000000ebe16d05ecaad38f--
+
+--===============2936266124401290245==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -756,4 +457,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7969548650967281879==--
+--===============2936266124401290245==--
