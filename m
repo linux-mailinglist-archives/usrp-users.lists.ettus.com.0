@@ -2,711 +2,777 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBF9618AE2
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Nov 2022 22:55:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D54156192A7
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Nov 2022 09:20:10 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 552A9384250
-	for <lists+usrp-users@lfdr.de>; Thu,  3 Nov 2022 17:55:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 86DAF384221
+	for <lists+usrp-users@lfdr.de>; Fri,  4 Nov 2022 04:20:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667512525; bh=WzxpoBeQVtB0JvudiGCVLpFpy3OaeGeiIfVDXpnQ0AI=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=RKhqdvXYclOzYW8s46z0dUlBDCxvnZ04dAAmRVam7loq9CWzCG9RWAO9maWv+JmRH
-	 ssa/7yjWxboJG2ySUtMD+MOcQEI4lw8HRYlbTxYAHNsLTJfAV/wpvrUzSnwyGXoeAu
-	 RtVK3lUJBamGumjDzI2fc81Pw2C9KnRbdE0suc3a8sk4pTgV8In6AGwKDYU1UBJW3c
-	 ZkcSCjit2vBt/tY58W/lqENUJ9qhogxH0cl5vu8mehXvRTIAE0wvBxdbp7LsW6MIb2
-	 9MQCweRyfW6tBgjOddnRMNYXwJWKo/8y94KxRHRaXah3KYRlN4ak9LrgTRbbxBONvJ
-	 sIkESHZ9jUM9g==
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com [209.85.222.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3BA6338120B
-	for <usrp-users@lists.ettus.com>; Thu,  3 Nov 2022 17:54:09 -0400 (EDT)
+	t=1667550009; bh=2pXU9da3rBnQawA3SUWGJNyIn3H9rbB7/9qutIh99YU=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=OvKTF45N2rKPnZelcvl+WTUg4Td6lv33NtztFqthHL2GVcAk6nR4dsMvcpsOI965Q
+	 VOOrQXoA1aR1jmAhQbvEmsO97OTHYoEzUy23tfgsInpAH5pFG2lK8fNt+sz6Gq6r4K
+	 JUAjU/dNhd5dXIZ+4nzGmvBtZ9+l2hl1LaQEnZ4Y0yFZSPsx2UI8+Y6/L1xh6sEHm4
+	 GC53Lty1QcSu5Sh8S6RxwdmUF/HracPyU5ip2N6GdEMY0xRpH1YGponVzloZcQpeq5
+	 ijoCm5aAySrezsefl5PP4oOkcIMqohUlhfC75d7edH5jUc2B2+fhZSWPNwGMsJMt8i
+	 0dlbtC1WlhvEw==
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130130.outbound.protection.outlook.com [40.107.13.130])
+	by mm2.emwd.com (Postfix) with ESMTPS id 237F7383E85
+	for <usrp-users@lists.ettus.com>; Fri,  4 Nov 2022 04:19:13 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="Mv9orej7";
+	dkim=pass (1024-bit key; unprotected) header.d=barkhauseninstitut.onmicrosoft.com header.i=@barkhauseninstitut.onmicrosoft.com header.b="XodFJU6w";
 	dkim-atps=neutral
-Received: by mail-ua1-f48.google.com with SMTP id g22so1696163uap.3
-        for <usrp-users@lists.ettus.com>; Thu, 03 Nov 2022 14:54:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eE0dByqz3rJQgatYH+dAe5j7cWBKViRoSt/3fxRK4hDrSHTTvvVWqntBelEtPoc8GFWiYlV6HfGWjAzNMXAT4pbZMrMDdFSY6urZVCm+RO7gvKbI1gI7yLtQfUB7QNcjdQtAtugplWbO9A/O4wS+Em7bbDan5mri0Wl2Kc7D5CRRhJ12E39yDNAdq2J1unC2Y80AkRyY/3PRM7/Uxe0ssw3Tq3Av+fyVeBoZW/Nf/XMxxyHqNXy1Wuugy7t/vjDzUbTZH9UYqfo2Cmdxw5D263OgnpEsiVCkhTBIUS/JnGP8ZY6gBtopSe0H90o79zj+vwKGQAdaX3VnObhJArfj1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ehqLS1Gid5p1Qz8YTFoyL3ts7PiUWNeXAgkVr66n6Dw=;
+ b=X9MxbSvZ3elns+H7CDn2CaWk4i0uboWU7rKa+HTu/FTsPm2ain4nkmWBvF5kVmagG3sRhsdyKIt9sl9CQj8hytr4KFt+SBb+GLBmh20wZNkmUq6KxxSQSgDBbNnAo2Brs5Aa+QOMBAVAILPJ9eYVd9yq6TZ4mrC1z+MKQ4clKwokHfCe6GY0cCLOBYe940HXBE3ecmcM/judwYVNJUq7D+vryegO1PZM5v0Ll/kKSugdztFsF7YLZLjtk4sBtD0gV4ZWM4BHeXX5Ppm/2I0C/sLGHVx+hDNxmH7UV1hGkA1jiLL+3wTkbr2D5bUn4I/yonfUxI9waZIItEvWcB5WGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=barkhauseninstitut.org; dmarc=pass action=none
+ header.from=barkhauseninstitut.org; dkim=pass
+ header.d=barkhauseninstitut.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=PgI+r7GEJWcO1m4V7YLE4rVFVC4bVXzSi3sbAB8gmXM=;
-        b=Mv9orej7FYwEn1tU71yQ4p1dUmUEpJE/0Nk3wGGTaQ1dTodkyjGHFvMW7KySzT4GqT
-         SFhSO3aRgA3jNhbmXAiogCJGL4jZ7rH4khX4P/8VrgleTvSAPu+cMj8eKq8xhc0QV2Qo
-         vskLjeGahXwPI+5Q0Xg1Jc8P77TjFRoFqeGmSjq7yaCllnGeZVwvXrq9TDGg/dxz/ICS
-         rBX1YQF/NrP2Hvi3Xeu/ogX68bF3cat7WRe45kdycRrMIVUokSptQNPj+Te7BgiWWXVl
-         7EiRxeb54N+WOXao0pi0PqnyTl78cts3Jwb7vkHVHNVUV3TIsolKr/yHdAT4NWdMK3aY
-         yB1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PgI+r7GEJWcO1m4V7YLE4rVFVC4bVXzSi3sbAB8gmXM=;
-        b=cAEez7asq3/3WGLOOhX525DC73/EF8DzX9HB96T2uXaJjFyWQIVurAJopNAQHUTDFS
-         4ARTNIS48eotijeid1/Ac6iP8uGNQk439eVGMq6Lo6AIYLVwyXLhdEkA+zPFl/sc5r6E
-         z60BqUB56EEGdt+C82UbIXubukh86hbIGhzkiNGHQGpaZkvAiSbmHf+XCIyx3LaKjbNr
-         t4Wvg+L824AK72jF0jHOYFfqqWH/4t0stNxPq4sXf73X7A2zGCqYqVs+h5PKj8Wzp3g/
-         Wbju0GTW5u7gkDuuljFE4DWQZytPKIpPRZIGiLfUwZKLEl9eOk7LBF3BvsDs947sLBVq
-         26+Q==
-X-Gm-Message-State: ACrzQf1nzZkvY95ZFueSzysqAvkfIOUWQ/hlQ7tVt6g5sVrzGRnuJlfR
-	RCQK7UOFnLE4kDVRRegib0c7v9jMXcuF1AiPlxHjVhC6
-X-Google-Smtp-Source: AMsMyM7uGAauX8EDJ6q/8/qdeEi/Qy4iIctwKZxU2Pb+9uqS5QteBTCVKOlVueOVefkHIzgPBtGmIKCf0+NyB64Yiaw=
-X-Received: by 2002:ab0:2149:0:b0:411:502d:964 with SMTP id
- t9-20020ab02149000000b00411502d0964mr13465912ual.31.1667512448279; Thu, 03
- Nov 2022 14:54:08 -0700 (PDT)
+ d=barkhauseninstitut.onmicrosoft.com;
+ s=selector2-barkhauseninstitut-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ehqLS1Gid5p1Qz8YTFoyL3ts7PiUWNeXAgkVr66n6Dw=;
+ b=XodFJU6wAAbfLwdqlBe6mw0ScRiX0FK8BMxhItkC/yaw3zZowmDUi7pKVF6C3PFSruo1pFLj81Q1KunqcsXqWKb/7uXDLviZrRmEo63XtIc/v8RBdoh9A7ZB8m43l099Dx2oP3qjIueFG7yN/kVvG9DOJLXcUMuTTgzEWZaI6nU=
+Received: from GV1P250MB0785.EURP250.PROD.OUTLOOK.COM (2603:10a6:150:9f::17)
+ by AS1P250MB0478.EURP250.PROD.OUTLOOK.COM (2603:10a6:20b:4a5::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5769.15; Fri, 4 Nov
+ 2022 08:19:10 +0000
+Received: from GV1P250MB0785.EURP250.PROD.OUTLOOK.COM
+ ([fe80::a63:b5df:55f0:f4b2]) by GV1P250MB0785.EURP250.PROD.OUTLOOK.COM
+ ([fe80::a63:b5df:55f0:f4b2%6]) with mapi id 15.20.5791.022; Fri, 4 Nov 2022
+ 08:19:10 +0000
+From: =?iso-8859-1?Q?Maximilian_Matth=E9?=
+	<maximilian.matthe@barkhauseninstitut.org>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: X410 - FPGA unresponsive after several RFNoC Graph Creations
+Thread-Index: AQHY8CRBCvtTIxt6l0Sq9I/XfgZg+g==
+Date: Fri, 4 Nov 2022 08:19:10 +0000
+Message-ID: 
+ <GV1P250MB078572B4F56DA70AF7DE1FC1903B9@GV1P250MB0785.EURP250.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=barkhauseninstitut.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GV1P250MB0785:EE_|AS1P250MB0478:EE_
+x-ms-office365-filtering-correlation-id: 6c41b211-833d-49b6-ef2f-08dabe3d4048
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ an375fB93P8Hi5iV2IV5KSsgINdF2dXUre69qdf5cgY8KiEEpYvjrigQBUCmhyCti2jCpW31BA7zEqnrvC3sLx4njhKiyJRV3uJD8Y39Tc2VRdfoQH3MJWhLZscyXSLDzlNbsAaxDnEakxcCEr0xzwVbi8PNRDZIhaivqt3/ck9ZUHLAfX96NmuKiuTtim+xvnAjhTgQYMdLmNCNoQnpM/P+Yy8tcKeCfI/j1k+JmNEx3xSTw/bw15947tMk4JzTcTTfjbx4pw9a6zmh+mDDsRwqmLxFWQUPkD7mtOjwXbrr1vioCKbawBX3N9g3Fsa38+RhC7Xj+1FYc7OzYW/ZL9dNV+ZRLLd6OjHGNSV8de4IK6AKaR++kMepKtTiNI62e8UNE9KPVvlhT+gASXGcwAG/HvS97lYq0jiFaJ3Ryo5iMOeaFS3hjAZiTe/vorchfcLiSfhnD7WtK8G2rS0CkBfZ1b9/m5KsB78f8S8QIUCnHzk6gidy5EHd4yl2DBqfioRBMM989THxO1q3nD7/AruMK2UF3MTtpxM3qSo/Abv2LrA03o1qKuqFYdAR8FljXa/L3OgKzoLRlJXkoUfzUBbXlfDDveiAohatxSChxrE/yn9nYxKdlPguNqG3fSTDWhfc/QaQQVUfmQfwzWqHJPTohWhSTr93o6gob1e1g7SdPGIYZVEy6Wnr7h1E0AkUj5QzO5xJek3PkLqZii2g5JNzZCzg7ky5S/ml03oNMwkKyOS/GrRYBUBDAeQe/8EowzR3jKKZlyq9Bc1xp5Ds5Q==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1P250MB0785.EURP250.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(39840400004)(346002)(396003)(136003)(376002)(366004)(451199015)(66446008)(66574015)(76116006)(91956017)(7696005)(2906002)(66556008)(6506007)(66476007)(83380400001)(8676002)(64756008)(8936002)(52536014)(9686003)(26005)(38100700002)(122000001)(5660300002)(33656002)(186003)(66946007)(41300700001)(71200400001)(966005)(478600001)(6916009)(316002)(66899015)(38070700005)(86362001)(19627405001)(55016003)(15974865002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?6VSuJrBQ7okKkFFZ2nkIKLrdT6xc+3GjHZNOcSuXt1PezTQ91VPMZMQSQA?=
+ =?iso-8859-1?Q?mfn0z4nAXAZfYg+PmutbyJIIn7CCy+qbagew8k7dqPt9qzpTiUunLuvZxF?=
+ =?iso-8859-1?Q?CBzBvaZIVZRRjUgOZOMhJIayANtZuenlJpJZmah/0YAKcd+aoi/VR4wPd5?=
+ =?iso-8859-1?Q?3hSwjOO3yPJ2bTaW9X0CuTKpyy6AMCq7bWB0I1ny8mqh7OYMoiy7RTexyU?=
+ =?iso-8859-1?Q?uuU5KtNBvGYXCBVm198qhysAaQmyAYOXc2V9PTxuMIUaC2wSQmjdXVMXPs?=
+ =?iso-8859-1?Q?O+BgA+OUgj39wn/rdN0LFsAWYn6kzrPqrAjTIfwHCKOIyBTgN9164N13yZ?=
+ =?iso-8859-1?Q?Vond+5HdVFnffVsRx2SqQ0i7G3Ay/aOSziuiu0GNu5LMIUHLWj/osLaoL7?=
+ =?iso-8859-1?Q?F1ZhvwW4gJ0xEolaNdpGKj0lL2g1GCvxF5kjCaORt+lmGuMY/w1bjJ9gCV?=
+ =?iso-8859-1?Q?ok2Mb/G2OuiVo9oNuVK6mSSJXooBpkNG031M+RdCqOK5hLdBeIabVKxZ5P?=
+ =?iso-8859-1?Q?40mK6D7FDxzxfnbi613oEPBcPAtIuZ7auZeIKZEeHmE7ySKRsts2LYoCb3?=
+ =?iso-8859-1?Q?JDnvPY00Go0xWTza9GRvyt1Nvrr1lFvbRKZZYBasDNdaHUQ0anYhnIC9pg?=
+ =?iso-8859-1?Q?dCkPbtoOPMrs/P2ey31cOgV1WdK0IFVdmABjrBkXqWSminTkECbJ1LMDad?=
+ =?iso-8859-1?Q?OxyYHFJVH3g5dOWyi1ZdwCXjzx2d1QwfkA+uGY6OEku3uV+sPWVy9xTP+0?=
+ =?iso-8859-1?Q?LDDCzaMHcrWKYnivjdUR6RTsdujACP4eIy0BcL943u0Rdmj2p5yq09b/Pb?=
+ =?iso-8859-1?Q?HlOD11xCFF5lGPTkKGuaFF8BYEKPPvFJ+qe2cGdhWP2W4u6XmW1Y6SCvM3?=
+ =?iso-8859-1?Q?cdsV+cj+wq4Z5D/xXAQ7Vnbtf8qo3cGOddVr+2CdmpUuuBmJ+7tWcxFwsJ?=
+ =?iso-8859-1?Q?9e7bW32N7HI3QDZ70ybB3pFmPizcUivP+N1dDhHqqFAwwvNcyeK7q5bClV?=
+ =?iso-8859-1?Q?UGBOYgu437Sl/Xu2nDdYnNikCUXyFkDg28A8fTiJZynystBK3jcOFq9g4C?=
+ =?iso-8859-1?Q?VDDtEmbF49Y946Qw5ykM6SkBx5ixZr8PrpRX+UfHzalFEkKlJKVWNWQcip?=
+ =?iso-8859-1?Q?9cqGKXlv4jaTKMgi1CCcPws9mUg8/H5Gtr/qebnT1wopHhnLCdoDdXV/On?=
+ =?iso-8859-1?Q?6qyicvk/IP5DNu0uPZXB+LyUDMmztZn8S3DhSIqsTewuCH4bsA6tSr9+Qx?=
+ =?iso-8859-1?Q?Eb+KFgQ1ed07bARAlGOIIxUiS6LIBHVVNDjJl8VY6y9yWNdkDGfVZ+ww6M?=
+ =?iso-8859-1?Q?M9uZjc9gCpNWsZum1tkPahBi8aEC/kpyhRiLxv/35Cj+IGewHqC597O6bV?=
+ =?iso-8859-1?Q?NAolBbmXPHcuBxSeuwXpfmSCfgnBUgqYaYU8K6lKAqD5z7UVyD4JZeu3tU?=
+ =?iso-8859-1?Q?O7SLUgVZ3pNXK1iwHqdPM0cXxG3opiAo5Ym/c3tITTHv8fUckwcyTt3Pb4?=
+ =?iso-8859-1?Q?Rm1Bz03ips+1ygrFS9tCQjUTjf1i7tEk0jEiQAIkreQhVvSlxw5IpReBX2?=
+ =?iso-8859-1?Q?rAWLzPiv/VEUJyd8+qCdjNcgYJcmcw1lLmhj38q0BAEjycW9AdtTRguzVB?=
+ =?iso-8859-1?Q?RZ4LYT9ogwhv3BEo5YiAJe/55LXCfHTK4LJk2ACo/KKRev4CSLkHIWwE7m?=
+ =?iso-8859-1?Q?jA4RS69k2JTb4t/OpN0=3D?=
 MIME-Version: 1.0
-References: <CAA=S3PtVogjKEr3gfyFcBt49+oL_siufF+sDQ0McCxdf09_4xw@mail.gmail.com>
-In-Reply-To: <CAA=S3PtVogjKEr3gfyFcBt49+oL_siufF+sDQ0McCxdf09_4xw@mail.gmail.com>
-From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
-Date: Fri, 4 Nov 2022 06:53:57 +0900
-Message-ID: <CAL7q81uskBM7vDZFSq+BJ6-He16B=cp_BPOVY9SK7XzQFte5Ww@mail.gmail.com>
-To: sp <stackprogramer@gmail.com>
-Message-ID-Hash: 3ZK5ND7DPZQP3PGH4KEY2GNDFRUURKOT
-X-Message-ID-Hash: 3ZK5ND7DPZQP3PGH4KEY2GNDFRUURKOT
-X-MailFrom: jonathon.pendlum@ettus.com
+X-OriginatorOrg: barkhauseninstitut.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GV1P250MB0785.EURP250.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c41b211-833d-49b6-ef2f-08dabe3d4048
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2022 08:19:10.6681
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 00487172-018a-4fb0-b279-f756ac552ea7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VdUDv9XvgQXgfN7M1vjVFVWz2FjSFB/qWiX/79na2os+CeOgzt3UCYWEdu58Pnni3jla86gMORGgDAR49E9RGyMoR5OzG0MD4KMNZiuG8z3cjSQ/wpUpzpVLbtOqqUic1511fv+p9vSyo2eKwOo8Nw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1P250MB0478
+Message-ID-Hash: LAJ5WGZATGZVASZ3UCSLJN3S4N3UGNRM
+X-Message-ID-Hash: LAJ5WGZATGZVASZ3UCSLJN3S4N3UGNRM
+X-MailFrom: maximilian.matthe@barkhauseninstitut.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: what's means device select and instance select in RFNOC blocks?
+Subject: [USRP-users] X410 - FPGA unresponsive after several RFNoC Graph Creations
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/3ZK5ND7DPZQP3PGH4KEY2GNDFRUURKOT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IOZ7LYNUUIPX3YS6VY7KPFTKOYYJRIAE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2522513858176124506=="
+Content-Type: multipart/mixed; boundary="===============4856825481549632005=="
 
---===============2522513858176124506==
-Content-Type: multipart/related; boundary="0000000000002393b305ec97ff4b"
+--===============4856825481549632005==
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_GV1P250MB078572B4F56DA70AF7DE1FC1903B9GV1P250MB0785EURP_"
 
---0000000000002393b305ec97ff4b
-Content-Type: multipart/alternative; boundary="0000000000002393b205ec97ff4a"
-
---0000000000002393b205ec97ff4a
-Content-Type: text/plain; charset="UTF-8"
-
-Device select is an index for referencing a specific USRP in a multiple
-USRP flow graph. Instance select is an index for when you have multiple
-instances of the same block on a USRP (i.e. DDC0, DDC1, etc).
-
-On Fri, Nov 4, 2022 at 3:14 AM sp <stackprogramer@gmail.com> wrote:
-
-> what's the mean device select and instance select in RFNOC blocks?
-> they are vague for me? can anyone guide me?
-> [image: Screenshot from 2022-11-03 18-12-37.png]
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
--- 
-
-Jonathon
-
-
-*DISCLAIMER: Any attached Code is provided As Is. It has not been tested or
-validated as a product, for use in a deployed application or system, or for
-use in hazardous environments. You assume all risks for use of the Code.
-Use of the Code is subject to terms of the licenses to the UHD or RFNoC
-code with which the Code is used. Standard licenses to UHD and RFNoC can be
-found at https://www.ettus.com/sdr-software/licenses/
-<https://www.ettus.com/sdr-software/licenses/>.*
-
-*NI will only perform services based on its understanding and condition
-that the goods or services (i) are not for the use in the production or
-development of any item produced, purchased, or ordered by any entity with
-a footnote 1 designation in the license requirement column of Supplement
-No. 4 to Part 744, U.S. Export Administration Regulations and (ii) such a
-company is not a party to the transaction.  If our understanding is
-incorrect, please notify us immediately because a specific authorization
-may be required from the U.S. Commerce Department before the transaction
-may proceed further.*
-
---0000000000002393b205ec97ff4a
-Content-Type: text/html; charset="UTF-8"
+--_000_GV1P250MB078572B4F56DA70AF7DE1FC1903B9GV1P250MB0785EURP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Device select is an index for referencing a specific USRP=
- in a multiple USRP flow graph. Instance select is an index for when you ha=
-ve multiple instances of the same block on a USRP (i.e. DDC0, DDC1, etc).</=
-div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
-r">On Fri, Nov 4, 2022 at 3:14 AM sp &lt;<a href=3D"mailto:stackprogramer@g=
-mail.com">stackprogramer@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;b=
-order-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"=
-><div dir=3D"ltr">what&#39;s the mean device select and instance select in =
-RFNOC blocks?<br><div>they are vague for me? can anyone guide me?</div><img=
- src=3D"cid:ii_la1dyd350" alt=3D"Screenshot from 2022-11-03 18-12-37.png" s=
-tyle=3D"width:620px;max-width:100%"><br></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" =
-data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><p style=3D"margin:0in;=
-font-family:Calibri,sans-serif"><font style=3D"background-color:rgb(255,255=
-,255)" color=3D"#000000">Jonathon</font></p><p style=3D"margin:0in;font-fam=
-ily:Calibri,sans-serif"><br></p><p><font size=3D"1" color=3D"#999999"><i><s=
-pan style=3D"font-family:Arial,sans-serif">DISCLAIMER: Any attached Code is=
- provided As Is. It has not been tested or validated as a product, for use =
-in a deployed application or system, or for use in hazardous environments. =
-You assume all risks for use of the Code. Use of the Code is subject to ter=
-ms of the licenses to the UHD or RFNoC code with which the Code is used. St=
-andard licenses to UHD and RFNoC can be found at=C2=A0<a href=3D"https://ww=
-w.ettus.com/sdr-software/licenses/" target=3D"_blank">https://www.ettus.com=
-/sdr-software/licenses/</a>.</span></i><u></u><u></u></font></p><p><i><span=
- style=3D"font-family:Arial,sans-serif"><font size=3D"1" color=3D"#999999">=
-NI will only perform services based on its understanding and condition that=
- the goods or services (i) are not for the use in the production or develop=
-ment of any item produced, purchased, or ordered by any entity with a footn=
-ote 1 designation in the license requirement column of Supplement No. 4 to =
-Part 744, U.S. Export Administration Regulations and (ii) such a company is=
- not a party to the transaction.=C2=A0 If our understanding is incorrect, p=
-lease notify us immediately because a specific authorization may be require=
-d from the U.S. Commerce Department before the transaction may proceed furt=
-her.</font></span></i></p></div></div>
+Dear all,
 
---0000000000002393b205ec97ff4a--
+I have a problem with our USRP X410 and RFNoC. During development of an RfN=
+oc application, one often restarts the test program, which creates an RfNoc=
+ graph and performs some connections on the device. However, after around 1=
+0-15 program starts, the firmware/FPGA/driver yields errors that it's not r=
+eachable anymore. Below is a MWE yielding the error:
 
---0000000000002393b305ec97ff4b
-Content-Type: image/png; name="Screenshot from 2022-11-03 18-12-37.png"
-Content-Disposition: inline;
-	filename="Screenshot from 2022-11-03 18-12-37.png"
-Content-Transfer-Encoding: base64
-Content-ID: <ii_la1dyd350>
-X-Attachment-Id: ii_la1dyd350
+Test skript:
+$ cat graph_error.py
+import uhd
+import time
 
-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
-FHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElS
-wBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkB
-Z7BJkiQFnMEmSZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWc
-wSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAG
-myRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBls
-kiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJ
-kiQFnMEmSZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJ
-khRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJ
-UsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBlskiRJ
-AWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQF
-nMEmSZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRw
-BpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZ
-bJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBlskiRJAWew
-SZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEm
-SZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpsk
-SVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIk
-SQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIUcAabJElSwBlskiRJAWewSZIk
-BZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwBpskSVLAGWySJEkBZ7BJkiQFnMEmSZIU
-cAabJElSwBlskiRJAWewSZIkBZzBJkmSFHAGmyRJUsAZbJIkSQFnsEmSJAWcwSZJkhRwcdu7QllZ
-2c4YhyTtUSoqKpg/fz6rV6+murq6toezW4pEIqSlpdGoUSMSExM3u4zz/PM5z7tGTeZ5a7Y72CRJ
-W1dRUcFXX31FXl4eTZs2JSEhobaHtFuqqKhg+fLlTJ8+nTZt2vxoHp3nHaOm85ybm0uTJk2c55+o
-oqKCwsLCLc7ztnhKVJJ2sPnz55OXl0fDhg19cfsZEhISaNiwIXl5ecyfP/9H9zvPO0ZN5jk3N5e8
-vDzn+WdISEggLy+P3Nzczc7zthhskrSDrVq1iuzs7Noexh4jKyuL1atX/+h253nH2to8Z2Vl1cKI
-9kz169ff7Dxvi8EmSTtYNBolPj6+toexx0hISNjs+6ac5x3Led41tjTP22KwSZIkBZzBJkmSFHAG
-myRJUsAZbJIk7S5iS/nfA9fx11fnE63tseyOYsXMnfgOH3yzmlhtj2U7GWySJO0uoiuZ/v57TF1U
-utsFRyDESlk+dy5L1lbudvPnhXMlaQ8WK/mWd599kn+9PZGvF66mOiWbZh0P4IiTfs1hbTIIAcRW
-8tIlJ3Bn0qX86/q+JANQxfxXr+OPo2ey72W3c+lBOb+o3/Bjpd/yv388zvNvf8qMRauojK9Lo9b7
-0ufE33Ly/lnr5k07VulMxr3wHovqd+XI/m2o4yRvxGCTpD1UbPWn3HfRVTy3uBF9jj6V/2uVRWTV
-bD565Xn+ev57TLliFJccuLn4qGLRWyO5ZPTXdPjjbVz8S4u1tZP520VX8NT8HHoeMZQL2uWSXLGC
-b7/4lNVlvmzuHDGKvvmSBZEk4pd8yVfLW7JfdqS2BxUoPvMkaY9UxqRHbuX5ha347R0jObHZd99d
-2IMD+x9E26vPYdTo++je+Up6p224XhWL3rqZi2+dQovzb+WKQ/N/YS8U5Uz9+608Pa8pp99+C6e0
-Sv7+nl59B63/W5T5L/6ZK8dMZNHqCuIyCug88Ez+eHpXssJAbBnv3jWSxz+czcJlqygjmawW3Tnu
-7PMY0q7OukCOruCzZ+7loX9PYEZhFcnZrRlyxS2c2j4eqpYw4fH7eOzNz5i1PErdVr044eyzGdw6
-dc89sle1iC+nrya3cz8az3mdSV/MY+8D9+L7b9yMlTD3k/FMmbeCVcXlVIcSSMsuoE3nfWmTk7T+
-SHENltl4p8x/7znGrWjLEUd0ou66jbBy8ou89HUD+h3TldwA/aYSoKFIknaY8k8Z+9ZS6h9yKkc3
-2+SLpuPyOey0ATRcPZ6xH2z45usK5r9+ExfdOoUW593G1QMa84u7XGr5p7zyxiIyDz6N4zeItY2F
-qNv+CM688mbuvPt2rjyuIbOevpH73lu7bi5ja5gzZQormh7PlTfewsg//Y5e4Q+598/38XEJQDlf
-/f0yrnhsFo2OvogbbrmBy4Yfxb55cUAZUx+6lD+/Usr+v72e0X+9jEFpE7n76nv5qGRXTcKuVzZ3
-OnPYi/ZNs2nWtgmh+dOZvXbDd5mVs3LRYooz29O7bz8O6b0vBeEFfPLGm0xZUb0dy2wojpyGDYis
-WsSSku/2VcaypauINMilfsAK6Zf1i5Mk/UJEl81lfkmYpq1bsLlvf4xr2oYWCZXM+HYRURoAUPX5
-Q1wyoZj8Yfdy5YBGv7xYA6LLvmVe8ZbnbZ0Qqc1+Rc/1/2rdMo3Zb5/J2C/mUt273foX1hApBZ3Y
-f982ROjMPlmL+eScN/jwmyr2b/4B/3hhDk1PfohLji9gwxN/sTXv8eyLy/nVBaM59cB17zFsef5i
-Pjr5Ud6Zej5d99tpD732xNYwa/pCkpofSm48hBu2olnya3w9YyWt9qm30ZGlhIxc8htmESaPhvn1
-CL30Cl9OW0C7Awq+f77WZJnvt9ewMbnhCcxbWEablslQtZylhSGy980J3PPfYJOkPdT2fgounL03
-++d8ylvPjOKx1n/mN/vW3XNPwW1FDAiFtvbIK1k0/jEeeOodps0rpCw+nYTSaiLtK7a4Rjg3n9zQ
-alatjlE1dzozynLo2akhm75Lq3reDGaVlbL4luM49JYfRlRdFSKxsHi3+2RjTUSLZjKjMIMWPeqv
-i7NINi1bZPLVNzNZtnc9GmzprWyRejTMTebzRYWsjhZQf3M/sk2X2fT+pEbslRdiwtwFlLVsQcLK
-JSytrE+bhkk78iHuEAabJO2BwlmNaZQcZfL0GVQM2JdNTopSNftrZlXEkd84l/D6DAg3OIDzrz6D
-/W67gtuuvIg119zMed3r/6KiLZyVT8OkKFNnzKaSzps9yhad/QzXXv9PwgPP4bJzW1M3NJ8Xb7qe
-8VvZbigSR4QY1TEgFt1yeMViEK5H30tuZmirDUslTHL9dEIs+akPLaCqWTZjJiur1rDihb8zccO7
-QiXMWLQPDRpt+VhXiBDb+tVk68sk0ahZPuHxs5lX2ozsRYsortuE/NTgPesDdoZWkrRDJHWmf59s
-Ct96nP/M2eTIT9UiXn/sZeandad/94yNgiyU0Ih+l43i2sNivHrtJdzzyao98qjOFiXuy8G9Mil8
-60lenle52UUqZk1ndnRvBp9+KPu2bkrTlq1plFbzF/hIo+bsFb+UKZMXsuk7qyKNmtMkvoiZ86M0
-LCig4Ps/jchO/eElOxbdQ34qVYuZObuE7E6HMnjw4A3+9KdjVgVzZyygfEvrxtawdFkJcZn1SNtS
-zWxpmQ2mL7FRK/ZKWMKMmYuYN28VmQUFpAev1zzCJkl7phS6DLuQoz6/hvsvOI8ZQwbTs3V9wkWz
-+eiV53j1y2T6XH4WB2aGfnzwIVSPrufcwMWrzuemESPIv+NGjir4hbxchFLpPvwcDp58A3efdwHf
-HDOIbi2zSa5ezaIZn7Oo4XEMb9KURrzAS4+9QVafpmRGlrG4uOYBFcroxXEDn+TiR6/hxtgp9GuX
-RdzaxZTlHUTP5r049vAnuPTpaxkROZkBHRoQX7aUOWsacli/9qSE08lIgyWT/svH8xvRtVHKbn0E
-tGLhTOaWZ9OpZS71NrrwWoz4veozbdIM5pbuRcukdbcVz/ucqenNyE6FVbMnMWVFGi33y9/gSOg2
-lgklkZgYY+2iOSxcnU6j9HiIy6V1izRenvY+ayoyadMrI5Bz+gv5L1CSfnlCGb/i7Dvvpt1TT/Cv
-Nx/ipsfXEk2qz157H8R5t5/MwPaZWz7NEsnl4Iuu5OtzLuL+m/7B3qOH0jxo78LeSUJZB3HZ3Vm0
-f/wpXnn5XsYtLyEan0ZWk7Z0O7oCWp7I5ecVcudTd3Hl88VE45NJq9eYtg3TavhCn0KnM2/mL+n3
-M+bFUVzzcDlxmY3pfda+9GieTeff38KIjAf4+6t38ae/l0BqDs0OPJMD+kFKKJd+px7HB7e/yH0v
-92S/37XfjV/Iy5g/Yz6V2Z1p/KNTkCHqFOxF1qcTmfltMS1ar7s1Ei5n4dTxTFlbTUJGLq0P7Ern
-3I2fmFtdJlSH5p3aM++Dr/n46wIa7pdNmDB1W7cj74v3WZTdgWZBPLwGNY7IHqWlpVs7PS9JWm/i
-xIl069attoexR5kwYQJdunTZ6Dbnecfb0jzvv//+tTSi9WIrmfziS8zKH8CRXbI2/4tGTZbZkuql
-fPzvcazZ50gObraly7nsOB999NH385ycnNwTeH9b6+y+YS5JkvSTVbF2RRGVVLHsyw+ZkdCW/nvt
-/Fj7qQw2SZL0yxNdzcz3X2PyyjB1GrSk50F7B+5iuRsy2CRJUrCF6tJp8Cl0+rnLbChcj06DhtZ8
-+VoW4JaUJEkSGGySJEmBZ7BJ0g4WiUSorNz8RVe1/SoqKohEfvz9RM7zjuU87xpbmudtMdgkaQdL
-TU1l2bJltT2MPcayZctITU390e3O8461pXlOS0tj+fLltTCiPdPy5ctJT0/f7vUMNknawerVq8ei
-RYtYsGABFRVb/kJwbV1FRQULFixg8eLF1K//o6/tdp53kG3Nc35+PosXL2bhwoXO889QUVHBwoUL
-WbJkCfn5+du9vp8SlaQdLCMjg6qqKlatWsXChQuprt70GyNVE5FIhNTUVHJycsjIyPjR/c7zjrGt
-eU5KSqJt27bMmzePRYsWOc8/USQSIT09ndatW5OYmLjd6xtskrSDxcXFkZWVRWJiIunp6cRie8gX
-de9ioVCIxMRE0tLSNvueH+d5x9jWPAPEx8fTrFmzXTwybchgk6SdIBKJkJmZWdvD2OM5z/qlqHGw
-rf+uK0mSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmSJEmS9Ev2/66fKZhTpm5UAAAAAElF
-TkSuQmCC
---0000000000002393b305ec97ff4b--
+if __name__ =3D=3D '__main__':
+    time.sleep(1)
+    uhd.rfnoc.RfnocGraph("addr=3Dlocalhost")
+    time.sleep(1)
+    print("Exiting...")
 
---===============2522513858176124506==
+which I run in a loop directly on the USRP X410, wtih the output attached b=
+elow.
+
+$ for i in `seq 20`; do echo $i && python3 graph_error.py ; done
+
+After the error occurs, the only way to get it back to working is to reboot=
+ the USRP or do `systemctl restart usrp-hwd`, which interrupts the dev work=
+flow.
+
+My question is you can reproduce this? Is this a bug? Can I work around the=
+ crash? If it's a bug, I should file it to the UHD github repository, right=
+?
+
+Thank you,
+Maximilian Matthe
+
+$ for i in `seq 20`; do echo $i && python3 graph_error.py ; done
+1
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+2
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+3
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+4
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+5
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+6
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+7
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+8
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+9
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+10
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+Exiting...
+11
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: RfnocErro=
+r: Specified destination address is unreachable
+Traceback (most recent call last):
+  File "graph_error.py", line 6, in <module>
+    uhd.rfnoc.RfnocGraph("addr=3Dlocalhost")
+RuntimeError: RuntimeError: Failure to create rfnoc_graph.
+12
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization. EnvironmentError=
+: IOError: Timed out getting recv buff for management tran
+saction
+[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Environme=
+ntError: IOError: Timed out getting recv buff for manageme
+nt transaction
+Traceback (most recent call last):
+  File "graph_error.py", line 6, in <module>
+    uhd.rfnoc.RfnocGraph("addr=3Dlocalhost")
+RuntimeError: RuntimeError: Failure to create rfnoc_graph.
+13
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100; UHD_4.2.0.0-0-g46a=
+70d85
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+27.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D323F754,name=3DNE-LAB-X
+410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dlocalhost
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_400,mg=
+mt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,product=3Dx410,clock_sou
+rce=3Dinternal,time_source=3Dinternal'.
+[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization. EnvironmentError=
+: IOError: Timed out getting recv buff for management tran
+saction
+[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph: Environme=
+ntError: IOError: Timed out getting recv buff for manageme
+nt transaction
+
+
+
+Maximilian Matthe
+
+Head of Engineering Lab
+
+maximilian.matthe@barkhauseninstitut.org
+
+Tel.: +49 173 4509667
+
+
+Barkhausen Institut
+www.barkhauseninstitut.org
+
+
+Barkhausen Institut gGmbH | Sitz: W=FCrzburger Stra=DFe 46, 01187 Dresden, =
+Germany | Registergericht: Amtsgericht Dresden, HRB 37267 | Gesch=E4ftsf=FC=
+hrer: Prof. Dr. Gerhard Fettweis, Dr. Tim Hentschel | Vorsitzender der Gese=
+llschafterdelegation: Dr. Andreas Handschuh
+
+Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie unter:=
+ https://barkhauseninstitut.org/data-privacy
+
+This email and any attachments are intended only for the person to whom thi=
+s email is addressed and may contain confidential and/or privileged informa=
+tion. If you received this email in error, please do not disclose the conte=
+nts to anyone, but notify the sender by return email and delete this email =
+(and any attachments) from your system. Information on data protection and =
+processing of your personal information: https://barkhauseninstitut.org/dat=
+a-privacy
+
+
+--_000_GV1P250MB078572B4F56DA70AF7DE1FC1903B9GV1P250MB0785EURP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+Dear all,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+I have a problem with our USRP X410 and RFNoC. During development of an RfN=
+oc application, one often restarts the test program, which creates an RfNoc=
+ graph and performs some connections on the device. However, after around 1=
+0-15 program starts, the firmware/FPGA/driver
+ yields errors that it's not reachable anymore. Below is a MWE yielding the=
+ error:<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+Test skript: <br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0">
+$ cat graph_error.py
+<div class=3D"ContentPasted0">import uhd</div>
+<div class=3D"ContentPasted0">import time</div>
+<div><br class=3D"ContentPasted0">
+</div>
+<div class=3D"ContentPasted0">if __name__ =3D=3D '__main__':</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; time.sleep(1)</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; uhd.rfnoc.RfnocGraph(&quot;addr=
+=3Dlocalhost&quot;)</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; time.sleep(1)</div>
+<div class=3D"ContentPasted0">&nbsp; &nbsp; print(&quot;Exiting...&quot;)</=
+div>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0">
+which I run in a loop directly on the USRP X410, wtih the output attached b=
+elow.<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+$ for i in `seq 20`; do echo $i &amp;&amp; python3 graph_error.py ; done</d=
+iv>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+After the error occurs, the only way to get it back to working is to reboot=
+ the USRP or do `systemctl restart usrp-hwd`, which interrupts the dev work=
+flow.
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+<div><span>My question is you can reproduce this? Is this a bug? Can I work=
+ around the crash? If it's a bug, I should file it to the UHD github reposi=
+tory, right?<br>
+</span></div>
+<div><span><br>
+</span></div>
+<div><span>Thank you,</span></div>
+<div><span>Maximilian Matthe<br>
+</span></div>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted3">
+$ for i in `seq 20`; do echo $i &amp;&amp; python3 graph_error.py ; done<br=
+>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted2">
+1 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'. &nbsp=
+; &nbsp; &nbsp; &nbsp; </div>
+<div class=3D"ContentPasted2">Exiting... &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<div class=3D"ContentPasted2">2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp;
+</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'. &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
+sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;
+</div>
+<div class=3D"ContentPasted2">Exiting... &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp;
+</div>
+<div class=3D"ContentPasted2">3 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">4</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">5</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">6</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">7</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">8</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">9</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">10</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">Exiting...</div>
+<div class=3D"ContentPasted2">11</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">[ERROR] [RFNOC::GRAPH] Caught exception while=
+ initializing graph: RfnocError: Specified destination address is unreachab=
+le</div>
+<div class=3D"ContentPasted2">Traceback (most recent call last):</div>
+<div class=3D"ContentPasted2">&nbsp; File &quot;graph_error.py&quot;, line =
+6, in &lt;module&gt;</div>
+<div class=3D"ContentPasted2">&nbsp; &nbsp; uhd.rfnoc.RfnocGraph(&quot;addr=
+=3Dlocalhost&quot;)</div>
+<div class=3D"ContentPasted2">RuntimeError: RuntimeError: Failure to create=
+ rfnoc_graph.</div>
+<div class=3D"ContentPasted2">12</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">[ERROR] [RFNOC::GRAPH] IO Error during GSM in=
+itialization. EnvironmentError: IOError: Timed out getting recv buff for ma=
+nagement tran</div>
+<div class=3D"ContentPasted2">saction</div>
+<div class=3D"ContentPasted2">[ERROR] [RFNOC::GRAPH] Caught exception while=
+ initializing graph: EnvironmentError: IOError: Timed out getting recv buff=
+ for manageme</div>
+<div class=3D"ContentPasted2">nt transaction</div>
+<div class=3D"ContentPasted2">Traceback (most recent call last):</div>
+<div class=3D"ContentPasted2">&nbsp; File &quot;graph_error.py&quot;, line =
+6, in &lt;module&gt;</div>
+<div class=3D"ContentPasted2">&nbsp; &nbsp; uhd.rfnoc.RfnocGraph(&quot;addr=
+=3Dlocalhost&quot;)</div>
+<div class=3D"ContentPasted2">RuntimeError: RuntimeError: Failure to create=
+ rfnoc_graph.</div>
+<div class=3D"ContentPasted2">13</div>
+<div class=3D"ContentPasted2">[INFO] [UHD] linux; GNU C++ version 9.2.0; Bo=
+ost_107100; UHD_4.2.0.0-0-g46a70d85</div>
+<div class=3D"ContentPasted2">[INFO] [MPMD] Initializing 1 device(s) in par=
+allel with args: mgmt_addr=3D127.0.0.1,type=3Dx4xx,product=3Dx410,serial=3D=
+323F754,name=3DNE-LAB-X</div>
+<div class=3D"ContentPasted2">410-01,fpga=3DX4_400,claimed=3DFalse,addr=3Dl=
+ocalhost</div>
+<div class=3D"ContentPasted2">[INFO] [MPM.PeriphManager] init() called with=
+ device args `fpga=3DX4_400,mgmt_addr=3D127.0.0.1,name=3DNE-LAB-X410-01,pro=
+duct=3Dx410,clock_sou</div>
+<div class=3D"ContentPasted2">rce=3Dinternal,time_source=3Dinternal'.</div>
+<div class=3D"ContentPasted2">[ERROR] [RFNOC::GRAPH] IO Error during GSM in=
+itialization. EnvironmentError: IOError: Timed out getting recv buff for ma=
+nagement tran</div>
+<div class=3D"ContentPasted2">saction</div>
+<div class=3D"ContentPasted2">[ERROR] [RFNOC::GRAPH] Caught exception while=
+ initializing graph: EnvironmentError: IOError: Timed out getting recv buff=
+ for manageme</div>
+<div class=3D"ContentPasted2">nt transaction</div>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1 ContentPasted2">
+<br>
+</div>
+<div class=3D"elementToProof">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div>
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
+:#000000; font-family:Calibri,Helvetica,sans-serif">
+<p style=3D"margin-top:0; margin-bottom:0">Maximilian Matthe</p>
+<p style=3D"margin-top:0; margin-bottom:0">Head of Engineering Lab</p>
+<p style=3D"margin-top:0; margin-bottom:0">maximilian.matthe@barkhauseninst=
+itut.org</p>
+<p style=3D"margin-top:0; margin-bottom:0">Tel.: +49 173 4509667<br>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<p style=3D"font-size: 11pt; font-family: Calibri, sans-serif, serif, &quot=
+;EmojiFont&quot;; margin: 0px;">
+<br>
+<br>
+<b>Barkhausen Institut</b> <br>
+www.barkhauseninstitut.org <br>
+<br>
+</p>
+<p style=3D"font-size: 11pt; font-family: Calibri, sans-serif, serif, &quot=
+;EmojiFont&quot;; margin: 0px;">
+<span style=3D"font-size:9pt;" lang=3D"de-DE">Barkhausen Institut gGmbH | S=
+itz: W=FCrzburger Stra=DFe 46, 01187 Dresden, Germany | Registergericht: Am=
+tsgericht Dresden, HRB 37267 | Gesch=E4ftsf=FChrer: Prof. Dr. Gerhard Fettw=
+eis, Dr. Tim Hentschel | Vorsitzender der Gesellschafterdelegation:
+ Dr. Andreas Handschuh <br>
+<br>
+Hinweise zum Datenschutz und zur Verarbeitung Ihrer Daten finden Sie unter:=
+ https://barkhauseninstitut.org/data-privacy
+<br>
+<br>
+</span><span style=3D"font-size:9pt;" lang=3D"en-US">This email and any att=
+achments are intended only for the person to whom this email is addressed a=
+nd may contain confidential and/or privileged information. If you received =
+this email in error, please do not disclose
+ the contents to anyone, but notify the sender by return email and delete t=
+his email (and any attachments) from your system. Information on data prote=
+ction and processing of your personal information: https://barkhauseninstit=
+ut.org/data-privacy
+<br>
+<br>
+</span></p>
+</div>
+</body>
+</html>
+
+--_000_GV1P250MB078572B4F56DA70AF7DE1FC1903B9GV1P250MB0785EURP_--
+
+--===============4856825481549632005==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -716,4 +782,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2522513858176124506==--
+--===============4856825481549632005==--
