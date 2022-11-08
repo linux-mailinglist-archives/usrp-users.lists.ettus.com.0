@@ -2,109 +2,109 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA6E66212AA
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 14:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B63621408
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 14:56:42 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C9CBB38369B
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 08:41:43 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 2BA7A3813E4
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 08:56:41 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667914903; bh=c14z17R8vtWr7qyip0jpMryYGs0YqEMxwvek+suTiBw=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=0G/lY8OW8N38/PorTJMEo0tVxa/0c+oRDIE1l58fieDOlr6yoahDNkL9rbTpebOeD
-	 Lbz9Yg/zbtF9+sPBZNwx7PU/pd8GFdOiRPvtE9TVZlJ0PGJo7kdlBseddPNzFveRNq
-	 K+n+OrWGh2bUFZRnAIN7CNREp8yF1XJd8R1OobS8uNKayhgGaOkpnZ7rPeKmCGIAR5
-	 JdyowcDhRsIXxiuKMabjvUtvOyMl7ils1dIYHzavzSl+A/bNxmADBXaB44UrxQwtdT
-	 JJqhznQZJYs7F5XGd+h+XAJTCYqscdroOMLvH1k7T5hwrgbi5nn7RJD7+hp3VpXpBu
-	 xJ1u+tg3fwKPA==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 56C23380DD2
-	for <usrp-users@lists.ettus.com>; Tue,  8 Nov 2022 08:39:47 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667914787; bh=EZsrU+ZIjeKMrZbFkBzw3nbty/4fW8Yxf/AZGYbBf90=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=d2/rjz/8xvxAU9MG2U8FLiZ6O4PH8/JJfcOhqfF04YaQxCCl5iJrBHLgWrvXnPV3r
-	 uzJSZsIaJB/aLYD5LWm8ji0aOI5iXggMActzcNf2pCYNmnUjVykMvIQ/kTKU5hyqpu
-	 1kHTwVSkfqQ5/wMDmen0OV4G9qXPzpHvVASS4krosIzLL7l4W4Rr6xZEpbyVevdvmF
-	 VktcBwlARRsEkhsMGoh966WCg79eXnWDxXMZgZpIgDbHZqAYuW89tNXYHCS8QZtb97
-	 dMXQOT+GHjmqclX1RWcr38J+N5nUb2/7uVDvqGlnuQYt/d69Z3TBpEfEJvanwHydTR
-	 t63NFUWLQUX3Q==
-Date: Tue, 8 Nov 2022 13:39:47 +0000
-To: usrp-users@lists.ettus.com
-From: ali.mahbas@brunel.ac.uk
-Message-ID: <gCLNgIlQBjAUGbws0FKp9VltkGQ8ONWE9hm1Zbajjc@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: gB1FPqDTwPKsxhSmkvTrAeJZy4ehSpXwCnOTjJBEAg@lists.ettus.com
+	t=1667915801; bh=VsGBd6WGA2jFHTwdT5MAs7N2JJDTsLYqouZrw3Cv5Pg=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=cn6rhD/y+1Z09ma9MT86CM47FVKnYjFaFZXRVPR276OsEpDZumohKzkeqAUKBvQDW
+	 sntLyuVlx+E4Dv4IeDPnCb+Dhv+NPIP80tyEZ8JqYFRGt+KcqQt4qZ21l6t7Nq7PEQ
+	 iP0Fur84lit9ypGF/Kk2R4PGBwxumfjEkjsVJKBFcCqXvXAOjg5ecsNwtBw3BB/3Z9
+	 FTo0jOgCwcKczXMGOjb+oAu7rTx2WpBpOky57iiD11Dv/oh1zfi5INdCP17UKO9M0+
+	 dcsBjI6fHy8+SldHGy403Tcgug7hHb959q04Fou9X01Pl7P6Xqnm26MRkcH/79Lj4G
+	 7QP/TH2n/YUGg==
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 14EDD380DD2
+	for <usrp-users@lists.ettus.com>; Tue,  8 Nov 2022 08:55:48 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fKFne7eD";
+	dkim-atps=neutral
+Received: by mail-qt1-f181.google.com with SMTP id s4so8658218qtx.6
+        for <usrp-users@lists.ettus.com>; Tue, 08 Nov 2022 05:55:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZC7pTPkO35PN3fcYKpi3sQDNqy9rCWF7YN0ykq9G/5c=;
+        b=fKFne7eDSHeg+q00n3e6zIXuK7KQiGNOGSX4Wfhvp50ozA58q33kg2ZYw6pMFw0v4u
+         gSVB/ZxLQ3XFcoXap3m2IpYZPb8QEf6m2A93/fyBb4RPWETiX2LTcg0wEU2npkhLVk0S
+         ER2vflhDkDFy03/mbKwLOoA9YgYIVqunEYZoCS7Up4i1HCO23pIA+6t1C3OqnInUdWD7
+         MNl8qnD9E/UlQsh8UeCt3iwei2SetOUatGcDNe/fd68+a/BcBdEl8CB8qIhpUtOdg/3D
+         cspF/Rj3e8vCfhJew37WKJbNeafNPknj3BAcw1usE7Dm8ZRMWO8eCnU0Cb4n6EMclt2T
+         C+vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZC7pTPkO35PN3fcYKpi3sQDNqy9rCWF7YN0ykq9G/5c=;
+        b=YT1DDVUUl1aLCYavrAVePMPwcgVdm60JUAMWW5U5BPeMuvGoTrBGMYBoLugcN35fi9
+         hal3i/Q+fTz1xC2ULUHoO4q9ElRCXUJypDlamBmWE/ZUGo7OMzHQXolKSuS1U4kY9MvI
+         EytNa8IckZ0CROJXVaD5fb/ovylzwX33OqlXxeelezcgaWv7+MXn3iJt3I/+xnBweeGY
+         C31DysE5bCtyDcKx9nRUsDG+KOyHZUgdmvPW5iRWxZN9aR5pghZjLN1+vYa1jBbvkpY2
+         rQQ45COiW7heFBlbvYdESQDaiIfIQZQ8xLfbhzPnpmoEO/SppR06LqNg5LeJm2CB4EDA
+         WzTQ==
+X-Gm-Message-State: ACrzQf3FPJUmvBEZzFJ6uQHoQO7fN+0MxsMxQTNSv4JTfdo9JmLk1Ro4
+	DdzbuCShFAj6tCewx2/SeWjnsxGq2AY=
+X-Google-Smtp-Source: AMsMyM6PZUBrl6SX8Zk7LPaLiTfuYOSLcr10Xh3bXBxIM2e2AzgsjAAt9BsXx8d/XOqtSqPzk64e2w==
+X-Received: by 2002:ac8:5948:0:b0:3a5:23b9:1e19 with SMTP id 8-20020ac85948000000b003a523b91e19mr36868516qtz.194.1667915748398;
+        Tue, 08 Nov 2022 05:55:48 -0800 (PST)
+Received: from [192.168.2.200] (bras-base-smflon1825w-grc-09-174-93-2-222.dsl.bell.ca. [174.93.2.222])
+        by smtp.googlemail.com with ESMTPSA id bm26-20020a05620a199a00b006ed138e89f2sm9173090qkb.123.2022.11.08.05.55.47
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 05:55:47 -0800 (PST)
+Message-ID: <8e7afdc0-ec28-79f5-dec7-05f029da605d@gmail.com>
+Date: Tue, 8 Nov 2022 08:55:47 -0500
 MIME-Version: 1.0
-Message-ID-Hash: D5AHAYRPH6IJJZUHNHIVH5HAXQTXP7AY
-X-Message-ID-Hash: D5AHAYRPH6IJJZUHNHIVH5HAXQTXP7AY
-X-MailFrom: ali.mahbas@brunel.ac.uk
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.2.2
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <gB1FPqDTwPKsxhSmkvTrAeJZy4ehSpXwCnOTjJBEAg@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <gB1FPqDTwPKsxhSmkvTrAeJZy4ehSpXwCnOTjJBEAg@lists.ettus.com>
+Message-ID-Hash: VK2IPDLI72IXERL45O5O3MK4ZAINEBGX
+X-Message-ID-Hash: VK2IPDLI72IXERL45O5O3MK4ZAINEBGX
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N210 undetectable
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/D5AHAYRPH6IJJZUHNHIVH5HAXQTXP7AY/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VK2IPDLI72IXERL45O5O3MK4ZAINEBGX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6105369402348082365=="
-
-This is a multi-part message in MIME format.
-
---===============6105369402348082365==
-Content-Type: multipart/alternative;
- boundary="b1_gCLNgIlQBjAUGbws0FKp9VltkGQ8ONWE9hm1Zbajjc"
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
 Content-Transfer-Encoding: 7bit
 
-This is a multi-part message in MIME format.
+On 08/11/2022 06:42, ali.mahbas@brunel.ac.uk wrote:
+>
+> Dear Marcus,
+>
+> Thank you for your reply.
+>
+> I thought the NI-USRP Configuration Utility would detect it even 
+> though it has a different IP address.
+>
+>
+Only if it happens to be on the same subnet as the host that is doing 
+the query.
 
---b1_gCLNgIlQBjAUGbws0FKp9VltkGQ8ONWE9hm1Zbajjc
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Dear Marcus,
-
-UPDATE
-
-I just did what you told me. it is detected when I use the safe mode. I c=
-hanged the IP address by using NI-USRP Configuration Utility. Although it=
- tells me that IP has been updated, I have the same issue when I dont use=
- the safe mode.
-
-It is only detectable on the safe mode.=20
-
-by the way, it shows me =E2=80=98update needed=E2=80=99 on the image stat=
-us - IN-USRP Configuration Utility.=20
-
-Thank you again
-
---b1_gCLNgIlQBjAUGbws0FKp9VltkGQ8ONWE9hm1Zbajjc
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Dear Marcus,</p><p><br></p><p>UPDATE</p><p><br></p><p>I just did what =
-you told me. it is detected when I use the safe mode. I changed the IP ad=
-dress by using NI-USRP Configuration Utility. Although it tells me that I=
-P has been updated, I have the same issue when I dont use the safe mode.<=
-/p><p>It is only detectable on the safe mode. </p><p><br></p><p>by the wa=
-y, it shows me =E2=80=98update needed=E2=80=99 on the image status - IN-U=
-SRP Configuration Utility. </p><p><br></p><p>Thank you again</p>
+I'd take Mr. Mueller's advice....
 
 
---b1_gCLNgIlQBjAUGbws0FKp9VltkGQ8ONWE9hm1Zbajjc--
-
---===============6105369402348082365==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6105369402348082365==--
