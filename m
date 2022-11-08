@@ -2,158 +2,105 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B43C6218C9
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 16:50:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB6B16218DB
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 16:55:16 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B148B3837BE
-	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 10:50:49 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 2DBB1383783
+	for <lists+usrp-users@lfdr.de>; Tue,  8 Nov 2022 10:55:16 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1667922649; bh=YvthmVOzWhnhTJr+41WQE6Tr2+557HwENJ08EwOjDXg=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=PpJutuf3DGd93dOo3eavPPvwIR+HHaCAVV0uqbvRxeY/8dE/OYJj/rxqtN7Vg9Eif
-	 j35O4NeBZjVIunKcbtZBnXsA/0UJR7STBwUf0s9XtGbnR3s/KElD4LtqavgiVa/8nH
-	 OdiFCnkN7KxbfLR7ZmOGhTywTSUM1mgR2yLiCJp8VQmTGoDjn+qi3W2A93QOipsdTl
-	 USezIFK9BObdhWfIu+MTwDv3HNrvEcwCldAK1qckc4+jaxUC3d4Ys7GJqIAuvqVDQW
-	 FZkPmQ9kRhBF8k+5fe4EKo+s8wVIMMmADwcP0RvXTNsvW+Z2XnZKRODLka5IGO4Ajj
-	 wZPdtr6tz4K+w==
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 89E6038140E
-	for <usrp-users@lists.ettus.com>; Tue,  8 Nov 2022 10:49:34 -0500 (EST)
+	t=1667922916; bh=aYgSWmtL0DmnXUeTXAqMhVFgH90PLKTsLFd43fWxL6g=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=AWsAXSjSiW2mFgwf2e8KCJl5SwP93R9EqxzZsK4D8sEAeNs77ng+CwR0RxiUXEkJ2
+	 T/kzekupUM29TkRUu8w7zCwMxnQJYW7lNU0Zqdmad5nrL93Lqyr1365BiLyWvHhEvI
+	 9YLqPYNwVZn8DshrBbL/L2csui8LUhcUO8OpHGRWrulhoMlYArjPJrS7uBaCDxErof
+	 DX12VMPqlQtGyWTAoiGyCNbqC30oIJCgtGEjAAjuVRY4Mw1Ssv0b+n6goMNUzLUG64
+	 cvwOKPCWvKY9e5aTCDhFpONq2ohT2xwLSBzqfbEaeG5M7a8I12pSg4vrh/eoSFBOby
+	 ytRMRKZbwJQGQ==
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 92C7B38140E
+	for <usrp-users@lists.ettus.com>; Tue,  8 Nov 2022 10:54:26 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="AIAQLtRC";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="uVWID5tf";
 	dkim-atps=neutral
-Received: by mail-ej1-f41.google.com with SMTP id b2so39716965eja.6
-        for <usrp-users@lists.ettus.com>; Tue, 08 Nov 2022 07:49:34 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id f7so23127887edc.6
+        for <usrp-users@lists.ettus.com>; Tue, 08 Nov 2022 07:54:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OU11zqCWO4SFxbIIDP9t7x7QbC04y0a5XJs/+N6vn6I=;
-        b=AIAQLtRCDc7JzujQ9crqlYldbnUM4kJ4Mf98PUJ1f8UgblxDq5Y9S+V/79USe7OwUN
-         5/lFKuZYsZvXpWNkvcD9yiJ+OroNaKsbmVeMVy7c4l3CRBJOLGrtDsgzN0+x/ZLj3J3R
-         1zyi1PbviyF9ddR0MVB46FVC41TBTWURjj2GHmZ0tGl8OVFOoDKgkVegAehoN1xaVkko
-         ckpycODcJUr8yc4h+ZTsRDa6X02G7aVGU1Z/GJV1L1os45CpCgXjhPMKGqpnnOEJWqTk
-         Lj/QGkt0cEfAvouIIQfCwDKSNhU971cWTn3Q0JmL+bQwszx4cjmIP+qtGozQgVO1v0b6
-         QQ1w==
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JWc1LOjleDdIY/i3yM4saehGVHQjbq/AvPk2vD89VmM=;
+        b=uVWID5tf7mXlTMww/SLd/jCCQvWRb3VCea+ie6WRBUnpQp8Fu539WUnKuNII+JtBFs
+         qGlkCZPWxrnQ2LYlNlMpeaoGuhQcxe5wEE/TIVAx/RD5WvirzTlHJiDgf5ZtsDnbVaMY
+         JM2eELtot8tYP8YU5i/bozcG+TEiT6lQvn5S1OIjnFH0F66dO0W3IswGSUSYEN2BtWm0
+         bPiQBn3tbraFkfhNoDzqIsrf2ynhi97sXtT881Ordlzx62YOTFqQ6HJT4MLXKlbV7PV2
+         rkqZkHsM0vyzIvhdOc79A9gvC1Ah6cODMwd/656fAaNghCwz519CoZS5m59UnScAZyhK
+         MTQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OU11zqCWO4SFxbIIDP9t7x7QbC04y0a5XJs/+N6vn6I=;
-        b=oJcNi0JmzrKabVyOqmX+B4njbwG5BgzMZJdeqOE/Q7NxdE95B1zflQqo1zOQqmAbPn
-         BpclRMqqpES5m9YP8RPmjttRjqBzCjx1HXtuNyUATePDf4krxWrweoRT8/3abWco4tj/
-         FMw7wlQ7ZNOriWan7D3JCnzTYPg0f1o2G4Rrkq9FLfyN5ZYVkLug4xjkD3VjYas2bxDU
-         7SdtkAIyrLawU+41211NgEQ03z4dzNrvemJdVX1iAGDouvRP8E4GywALi+l9Qo+Y0xJd
-         uM9h4k4vmqCvoepGFcVe/1Nar0XOWnam0zwhWzRgt/qWkLGQpmBcRiUw3BEz+g9eKZqZ
-         w0xA==
-X-Gm-Message-State: ACrzQf3wKkkwQSqHf2/fSJSbjjnuxlrqZ56BZps5T6/G4KjtcA5nLjuI
-	4s3sPiPAPgttNVFtcxBlKGk1NDGHMgVPR1cKbSNdQzlawshK8g==
-X-Google-Smtp-Source: AMsMyM7xMl8+cNPe0bSjcfTrjRghlthmBWChQQmF8+gx2pXvZdLyyIWhpeHTReAvYCAxOvc2i9p3li9bCgFBzKitHts=
-X-Received: by 2002:a17:907:1c10:b0:791:a716:5089 with SMTP id
- nc16-20020a1709071c1000b00791a7165089mr53729917ejc.672.1667922573440; Tue, 08
- Nov 2022 07:49:33 -0800 (PST)
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JWc1LOjleDdIY/i3yM4saehGVHQjbq/AvPk2vD89VmM=;
+        b=c/oUZ+93iTwVY7G7mmekpsz0akaaHQzqY2Ot1mjRevNFQvgBKw8RCxWzP31GU68M6I
+         pKCb4bmNYrg9z05GYQWL1Tq5nysB+ldwHdODfQ7X0r349pbJFbRShEzjz+mUuXpyP25B
+         HHz67Q9noFuYaircOcg0DYV9d1OeUBflPM63ArnbEDVj8CGYWSnDHHy44q0WGwhmFOrG
+         BCZ+OTuDvX1oVnd5XlOXQlUXMrLoiptY0IZvfUX3ahaxT9u3xz7BWsA7Srq3rCeg2Ar9
+         f6uux8TTBCWtD6GyL/rgp/M/HXv3jE2x2Kl0BZ/2RK4DF7hKcnkNMAted9DL5Sd19vZp
+         QM+g==
+X-Gm-Message-State: ACrzQf3ixR/7fC2zx1MuPmduk24ZBNurX3SDZnbbZcqeCf7M5upgg7f4
+	W9hYdjINXvRijzIKYbwyUdQiavp7tWNFos2M
+X-Google-Smtp-Source: AMsMyM4O90wrXTR9fmE3N/ky8K9mCc+FlLj2B8efyfCdPjOFinmP0XCkVzfImZATngMCp2b102DHcg==
+X-Received: by 2002:aa7:d91a:0:b0:462:d2f6:26c6 with SMTP id a26-20020aa7d91a000000b00462d2f626c6mr57925021edr.180.1667922865250;
+        Tue, 08 Nov 2022 07:54:25 -0800 (PST)
+Received: from ?IPV6:2001:9e8:3843:4500:5bc8:3cc3:e10b:748e? ([2001:9e8:3843:4500:5bc8:3cc3:e10b:748e])
+        by smtp.gmail.com with ESMTPSA id r24-20020aa7da18000000b004643f1524f3sm5678641eds.44.2022.11.08.07.54.24
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Nov 2022 07:54:24 -0800 (PST)
+Message-ID: <4f9703ad-cf27-a721-9615-411c4836e314@ettus.com>
+Date: Tue, 8 Nov 2022 16:54:24 +0100
 MIME-Version: 1.0
-References: <CAA=S3PsBqq0vQjU-joEsa4Bkx75xvZUxOhk_r93tkMaRffpwyA@mail.gmail.com>
-In-Reply-To: <CAA=S3PsBqq0vQjU-joEsa4Bkx75xvZUxOhk_r93tkMaRffpwyA@mail.gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Tue, 8 Nov 2022 09:49:14 -0600
-Message-ID: <CAFche=j4eXgU6k2BVMY5kfFSrgrftGYmV1_GE1OGWSZ6SVbwuA@mail.gmail.com>
-To: sp <stackprogramer@gmail.com>
-Message-ID-Hash: 7AUKB3H4M4SZ7BGSFGLTIJVAGSOS7CND
-X-Message-ID-Hash: 7AUKB3H4M4SZ7BGSFGLTIJVAGSOS7CND
-X-MailFrom: wade.fife@ettus.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.1
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <rJYSwIXU9bi4L65MECOXY5OX7g8uaSpzWBFywLmyXM@lists.ettus.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
+In-Reply-To: <rJYSwIXU9bi4L65MECOXY5OX7g8uaSpzWBFywLmyXM@lists.ettus.com>
+Message-ID-Hash: R4S6FRB6ZN7D42LHRB4OOOCE4E6IAIWI
+X-Message-ID-Hash: R4S6FRB6ZN7D42LHRB4OOOCE4E6IAIWI
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: How can we develop two RFNOC block that there is a reg relation between them?
+Subject: [USRP-users] Re: N210 undetectable
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7AUKB3H4M4SZ7BGSFGLTIJVAGSOS7CND/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R4S6FRB6ZN7D42LHRB4OOOCE4E6IAIWI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1924677693502927348=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============1924677693502927348==
-Content-Type: multipart/alternative; boundary="00000000000080d73f05ecf77cc6"
-
---00000000000080d73f05ecf77cc6
-Content-Type: text/plain; charset="UTF-8"
-
-Gain and multiply are pretty simple operations. Perhaps you could put them
-both in the same block? Then you would not need to share this register
-between different blocks.
-
-Wade
-
-On Sun, Nov 6, 2022 at 1:06 PM sp <stackprogramer@gmail.com> wrote:
-
-> I am developing two RFNOC blocks, a gain block, and a multiplier block...
-> But I need there to be a reg relation between RFNOC blocks...
-> for example, a multiply_const is calculated in multiply rfnoc block and it
-> is used to block gain...
-> when I add the reg in rfnoc block and I define it as input and output
-> .......
-> I redefine rfnoc block in this file........x300_rfnoc_image_core.v
-> when I build again, x300_rfnoc_image_core.v will be deleted to the
-> previous state. How can solve this problem?
->
-> I ask this problem in this link but my problem is not solved yet...
->
-> https://lists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000080d73f05ecf77cc6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Gain and multiply are pretty simple operations. Perha=
-ps you could put them both in the same block? Then you would not need to sh=
-are this register between different blocks.<br></div><div><br></div><div>Wa=
-de<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
-gmail_attr">On Sun, Nov 6, 2022 at 1:06 PM sp &lt;<a href=3D"mailto:stackpr=
-ogramer@gmail.com">stackprogramer@gmail.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I am developing=
- two RFNOC blocks, a gain block, and a multiplier block... But I need there=
- to be a reg relation between RFNOC blocks...<div>for example, a multiply_c=
-onst is calculated in multiply rfnoc block and it is used to block gain...<=
-/div><div>when I add the reg in rfnoc block and I define it as input and ou=
-tput .......</div><div>I redefine rfnoc block in this file........x300_rfno=
-c_image_core.v</div><div>when I build again,=C2=A0x300_rfnoc_image_core.v w=
-ill be deleted to the previous state. How can solve this=C2=A0problem?</div=
-><div><br></div><div>I ask this problem in this link but my problem is not =
-solved yet...</div><div><a href=3D"https://lists.ettus.com/empathy/thread/R=
-7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=3DR7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N=
-27SR37EPZKMJLG7K6FR3FKBXOMBNO" target=3D"_blank">https://lists.ettus.com/em=
-pathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=3DR7N27SR37EPZKMJLG7K6FR=
-3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO</a><br></div></div>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---00000000000080d73f05ecf77cc6--
-
---===============1924677693502927348==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============1924677693502927348==--
+QXMgeW91IG1pZ2h0IGhhdmUgZ3Vlc3NlZCwgSSdtIG5vdCBhd2FyZSBhdCBhbGwgb2YgdGhlIE5J
+LVVTUlAgdXRpbGl0aWVzLiBJZiB0aGV5IGp1c3QgDQphbGxvdyBzZXR0aW5nIGFuIElQIGFkZHJl
+c3MsIGJ1dCBub3QgYSBzdWJuZXQsIHRoYXQgd291bGQgYmUgcHJldHR5IOKApiBpbmNvbXBsZXRl
+Lg0KDQpJZiB0aGF0J3MgdGhlIGNhc2UsIHBsZWFzZSB0cnkgZm9sbG93aW5nIHRoZSBndWlkZSBJ
+IGxpbmtlZCB5b3UgdG8gYWJvdXQgc2V0dGluZyBgaXAtYWRkcmAgDQphbmQgYHN1Ym5ldGAgZmll
+bGRzIGluIHRoZSBOMnh4Lg0KDQpCZXN0IHJlZ2FyZHMsDQpNYXJjdXMNCg0KT24gMDguMTEuMjIg
+MTU6NDMsIGFsaS5tYWhiYXNAYnJ1bmVsLmFjLnVrIHdyb3RlOg0KPg0KPiBpdCB3YXMgY2hhbmdl
+ZCB0byAxOTIuMTY4LjEwLjMuIFRoZSB1dGlsaXR5IG9ubHkgYWxsb3dzIHRvIGNoYW5nZSB0aGUg
+SVAgbm90IHRoZSBzdWJuZXQuDQo+DQo+DQo+DQo+IGtpbmQgcmVnYXJkcywNCj4NCj4gQWxpDQo+
+DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+
+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+
+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5l
+dHR1cy5jb20KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18K
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8g
+dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVz
+LmNvbQo=
