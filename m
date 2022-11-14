@@ -2,101 +2,132 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F090628590
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 17:38:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C23E628748
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 18:40:08 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6B105380E49
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 11:38:30 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 75AFA38104E
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 12:40:07 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1668443910; bh=jYoopFfY6q85sqpcW2+anSXojNC9d9ZVtyC/DxW9lI4=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=pOBOTSCJuLwTbrRk9yU5P3rdLDbgH2W4bMEsKwOH2Z+oIyCEM3AuAOW/KefMRZ1zL
-	 RAksXAsCmsMVrB00iNEAhsqSsYyoej9aXJ6jj+AHeoSFjaF2QYMBQskMemwleQfU/t
-	 GAxKPdURLAg60dj3VA+tfnRM+y0RSV+5bLHoztShsxhH+xHkIENLnqZCqwkpNwKthk
-	 h8ccdcE7A8USdPXDEb0T7XbdfeKxjSgjqK+WVGLxbEiQAbnMyU+CjZ6BtCZyhRqIrV
-	 hfFNHWCs40fefFQRaZCGbs0740TEVTWLZTBGzLFj7ET+8yLbXOp/OO5Ii7o/8xBJf7
-	 X+Cu0LZ1KtZNw==
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id CC092380987
-	for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 11:37:05 -0500 (EST)
+	t=1668447607; bh=VlNB358FtY04zGcMdYWnTA0swKQHNUNGIwJiRMKlDjg=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=GmDL/1fZQOrozQ97Cq/VujlwtDfhS5pUBx347nUWMFIZvon1VqpTeJCR7xcH3LsbE
+	 siCBO1H8sTFVqSDPinVx5eBua8dgEyWEii0ftWbalkPAtckQKW5g2n7PWC2kerg/4c
+	 TXtHpGpEybxGaVpFd6yK3fafympC06EohNaUnID9y5Btg2fOsBSUxgKH25ovzruQGd
+	 XyQP9m8iiFfdAwsYtgUMC6wUI6jVM2aOYUtCAaJJ9R9aDGQ7P76QdmKBICA0Z/veZf
+	 Qq3lfr2w6Cs8sOc9owvaKmHgWU3TnJS+KrMdadKwgjGEq1bsGraMQTup8q2TrzqqWj
+	 87rfIVupvR/OA==
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id 406FD380964
+	for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 12:39:59 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="K6pSY1tc";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="eN+aTcTe";
 	dkim-atps=neutral
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-382f0906929so20214717b3.10
-        for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 08:37:05 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id kt23so30151125ejc.7
+        for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 09:39:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2dsVZDC07T2jxltLZ+MA4A7RJtX4EMRk8ZoekMBWv9o=;
-        b=K6pSY1tcK3cBFiqhv9h5f1p34xald227zFVvZ6PHOZSWzpvvc1DqvnS+tyMSTaFgSS
-         ug+73HPokhuhL2W5gEdww2Y7CZqWgCYwdzCNhXR+Uo42cZ6zSGZgCES5b2uj4/ALo8F/
-         RVuk2xp0TYdiChX2aZYoqmX2SddDF0I425D7pd8goTTk1ukgM5fg1r4akCSaJZmpdVkx
-         aqkw3pedu4I2+HigPrqo9ec6b9R7hPblqgxDIZ7OG7059BW07NxfVDyFoBHe/jaP6VWl
-         dxnCfgoHxVOuqAYAIm+l27f9RPwh/wQCSetWHLfbAZ/KCN2zK3i1eR/LTEwXvkPan1BJ
-         SyJw==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=fiXZ6UREpwxrMIjkg5lKxnyPbGezu+RR+Oizqrk1Brk=;
+        b=eN+aTcTeUUG4w5g724UldGo/HpBCVDMfySBW6q05MDI/JmaDW5v8noqf4UJMw8If9h
+         plPdk/WOkwg3TFZ7o3BJubLP0YaQJyU0CTrgFGdYM4GZz8fNIl95/lg7AJ3cPXLBsXRm
+         1se991DJR2th7t/yYqOnTfm9zdWOQrl45VWiShFSBwqw8SwDDN57wASIGMH3m1JvlWsj
+         6+1j/xOphnA0kfRFZVir+TV51PCV8DNco0B5XhQMdiH2twTbzEavTCvv6peYJWXB77D0
+         TfFno+SlF7+b2OPaoOIhkjK/UIzpslc+hIZ+BaQsRNuqvkspoumJeCO4ZMpPVO1mms0+
+         99kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2dsVZDC07T2jxltLZ+MA4A7RJtX4EMRk8ZoekMBWv9o=;
-        b=peD9jcL+cOD1hNlYFeH7CTHRlR7CMr2iJTRezlMc1SEccbCYisF+zmYGfLPj/rnX3O
-         6WWLffDB+BhJR2vAY/gjbe7WcRadNch8sxVUjcXr9modwe8M+bmkGPs6oZ9+z0i2i/IM
-         OWg39v92PhTeMe3s/BZ4zxuwIwGrIm62FU4qI/Xsz7pfXjUD1gf8eT2rteeUuIy0gQSx
-         fnX9/xZ3KO6v3YVaVrUEu+uKb0jAAEnt1xhftis6lwTE7aTPtkdOnwHkKg7a4VtaHamj
-         pzVicoZwS67KyRfUpHFHeHvuB2Yi9XAVu9YOSGuaPP4UDgejDVpo5HqAu/Pw4NCRepdx
-         g4nQ==
-X-Gm-Message-State: ANoB5pnY9sSEtchQK7WxjGo/44JgX04QEk9y8a6A36PKVlXEro1mpk1a
-	Z4hnL6SVxlUtPTlioDMP3pcTPA6+B6s2K1pnm8PmF7eHX5a9tQ==
-X-Google-Smtp-Source: AA0mqf4oUR4AoQXaOzDx238dIYsRBJQZ/yAgUiwQ3uyojQLsuVUytJxP6Z4iRYoxhCMJrFiGItdTk9SS+7MPrc86ohs=
-X-Received: by 2002:a05:690c:255:b0:365:2229:a799 with SMTP id
- ba21-20020a05690c025500b003652229a799mr13804951ywb.262.1668443824708; Mon, 14
- Nov 2022 08:37:04 -0800 (PST)
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fiXZ6UREpwxrMIjkg5lKxnyPbGezu+RR+Oizqrk1Brk=;
+        b=hAQ6u/M7CMKmjdA9d027OSa5z/BgidCFLh/BavqIdGalcj/fQVxDRamAKpHvBcMFV9
+         PjzZEeK2osR0Hd7h1HgEx4s1rRex8FVQDruHBGTbEIEtY08evl9jx0+4J8/LmJoFviL+
+         2laugHQII9TPQ7BVZfF34XE6+f6yh+kPQZmpJvoAc29NOnFzh/j4C45n7a/v1XCYQafo
+         DppsfFD7KZAK8i5vmlu4iJPfJs0/uQnlSMfmJhCijwpOpNDh7pP9jNuMLQkMt/3K1FR2
+         ZO54OF+MaH9+WAPHF+bW8BK5xDBWmvWwokLtm/ybUF5oJMrRtiBm05y/5KBYnyDkw6Ra
+         iayg==
+X-Gm-Message-State: ANoB5pl2ae2680VMTDMEKW1p/dbteUyhsyNM181kuuGv3qHiNtrOglc4
+	ZJ5FpJqdPat/PTLM4Z6CYpOrpvrYhnJRPs0Th2Q1zniN
+X-Google-Smtp-Source: AA0mqf4FdaBB4+oG42ofABXZlEyNan7fGgG2wNmSk6ePBlMgDcz0m8Igqn/wVin3EMHpagHsrG8jcGS5InxwVc8sb7c=
+X-Received: by 2002:a17:906:ae52:b0:7ad:4a55:5e19 with SMTP id
+ lf18-20020a170906ae5200b007ad4a555e19mr11219626ejb.65.1668447598093; Mon, 14
+ Nov 2022 09:39:58 -0800 (PST)
 MIME-Version: 1.0
-From: sp <stackprogramer@gmail.com>
-Date: Mon, 14 Nov 2022 16:36:53 +0000
-Message-ID: <CAA=S3PvXr0FH_K7UaVf0qRmTW+yfxf5XCbFRmsVt00vN1yr41Q@mail.gmail.com>
-To: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: AJPANRWB474CYY3DT57MWPKEHWBHSWUE
-X-Message-ID-Hash: AJPANRWB474CYY3DT57MWPKEHWBHSWUE
-X-MailFrom: stackprogramer@gmail.com
+References: <CAA=S3PvXr0FH_K7UaVf0qRmTW+yfxf5XCbFRmsVt00vN1yr41Q@mail.gmail.com>
+In-Reply-To: <CAA=S3PvXr0FH_K7UaVf0qRmTW+yfxf5XCbFRmsVt00vN1yr41Q@mail.gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Mon, 14 Nov 2022 11:39:41 -0600
+Message-ID: <CAFche=ji8_d9557KrAuPkeW2kFpHp6hbXi+cNDyV62M6c_Yuqg@mail.gmail.com>
+To: sp <stackprogramer@gmail.com>
+Message-ID-Hash: NPLD6AQXNWMBTP3LQQQYR4C5RHOWCE7Y
+X-Message-ID-Hash: NPLD6AQXNWMBTP3LQQQYR4C5RHOWCE7Y
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] How many user reg we can define in a RFNOC block?
+Subject: [USRP-users] Re: How many user reg we can define in a RFNOC block?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AJPANRWB474CYY3DT57MWPKEHWBHSWUE/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NPLD6AQXNWMBTP3LQQQYR4C5RHOWCE7Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5381995335764063751=="
+Content-Type: multipart/mixed; boundary="===============6044674592098743426=="
 
---===============5381995335764063751==
-Content-Type: multipart/alternative; boundary="0000000000007fe33905ed70d9ec"
+--===============6044674592098743426==
+Content-Type: multipart/alternative; boundary="00000000000069403605ed71ba1f"
 
---0000000000007fe33905ed70d9ec
+--00000000000069403605ed71ba1f
 Content-Type: text/plain; charset="UTF-8"
 
-I have developed some RFNOC blocks. I had a question.
-in an RFNOC block HOW many user registers can we use? can we use three user
-reg in a RFNOC blocks?
-Thanks in advance
+There's no limit. See previous answer here:
+https://lists.ettus.com/empathy/thread/XECWYF2DOQI2BKWFZ6SQM47I3BX2VCRS
 
---0000000000007fe33905ed70d9ec
+Wade
+
+On Mon, Nov 14, 2022 at 10:37 AM sp <stackprogramer@gmail.com> wrote:
+
+> I have developed some RFNOC blocks. I had a question.
+> in an RFNOC block HOW many user registers can we use? can we use three
+> user reg in a RFNOC blocks?
+> Thanks in advance
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--00000000000069403605ed71ba1f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I have developed=C2=A0some RFNOC blocks. I had a question.=
-<div>in an RFNOC block HOW many user registers can we use? can we use three=
- user reg in a RFNOC blocks?</div><div>Thanks in advance</div></div>
+<div dir=3D"ltr"><div>There&#39;s no limit. See previous answer here: <a hr=
+ef=3D"https://lists.ettus.com/empathy/thread/XECWYF2DOQI2BKWFZ6SQM47I3BX2VC=
+RS" target=3D"_blank">https://lists.ettus.com/empathy/thread/XECWYF2DOQI2BK=
+WFZ6SQM47I3BX2VCRS</a></div><div><br></div><div>Wade<br></div></div><br><di=
+v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Nov 1=
+4, 2022 at 10:37 AM sp &lt;<a href=3D"mailto:stackprogramer@gmail.com" targ=
+et=3D"_blank">stackprogramer@gmail.com</a>&gt; wrote:<br></div><blockquote =
+class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px sol=
+id rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I have developed=C2=
+=A0some RFNOC blocks. I had a question.<div>in an RFNOC block HOW many user=
+ registers can we use? can we use three user reg in a RFNOC blocks?</div><d=
+iv>Thanks in advance</div></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---0000000000007fe33905ed70d9ec--
+--00000000000069403605ed71ba1f--
 
---===============5381995335764063751==
+--===============6044674592098743426==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -106,4 +137,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5381995335764063751==--
+--===============6044674592098743426==--
