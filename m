@@ -2,186 +2,263 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27E56628237
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 15:19:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31CD2628258
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 15:22:21 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A3C5538392B
-	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 09:19:25 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 7274C383A26
+	for <lists+usrp-users@lfdr.de>; Mon, 14 Nov 2022 09:22:20 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1668435565; bh=xMahFk6cc+oFVDQ7l0CbyeiXdDuTpX+SVSQLM1AmTJY=;
-	h=References:In-Reply-To:From:Date:Cc:Subject:List-Id:List-Archive:
+	t=1668435740; bh=4F6CRU/ihG5jatY9xqPQnXFbcgC8Kxz4/YLV42agqoE=;
+	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=OljendbZJ6nN2KnZ3vqalwbHd+H06RPrRZtwhqC4e71x86Y6eBBHm3RLU8E6v/3Yo
-	 vChuU7HH3stnqz2XxD91q5BuNL+WZmulZAaiSjv3UoacB38A/FmLk6E4dwKcyS7mnM
-	 vSMabxOfjc7U1ffU37djeflHCkgE1tNtRTMR7jQKbIZ2DiM1YeHIQJxIALw6w5g9sJ
-	 oOZeEV9Exixeki+XTHJwf3IZbk2+ec4YvciGduxXiq7QVeoeLQNK8hdxZsuGCOdqZm
-	 3d2KXjsQeZ+8hx1scW4IDjRwv7ANByiWSPZJB6exHqEu8qPcUhcDR9MTspgi+/FT4x
-	 K1AYMy2X/ZlZA==
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id 337163809D2
-	for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 09:18:12 -0500 (EST)
+	b=Cat627Qq+kIqfQJRUGnLkzCy6T7xkthJoFb5gPpxUGda8SVCmonmeUWhCtlUWt6+h
+	 1Dr1loy3Mu3cHPqa/Olao+j1j4aSB37oK8MgaAbHwKin/Vwwqwu+CNy9aaf680QQMZ
+	 PpjiZZ/FF4hNovN5L2WnsX9WjsfpbNVp+XDZELagxM0VHs2Y97ZJL8cqatw5MfPSOS
+	 mblIhvi8qvB0XB7A6VPy0G1FGRVRdC1/tk14KJB0QFpIMofrLj8I6JFBx8WUBoQ1kk
+	 MUEJ0ghT6Ea91TcbHxGPOMzh3O2gGsi4dJD83LFSl6mhky/CNXCCFRW2O6xKm7DzbW
+	 UWOgbMsLQ3unQ==
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id 53DC83839AF
+	for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 09:19:07 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="X6082jbt";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q38gi6Pn";
 	dkim-atps=neutral
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-3701a0681daso107580677b3.4
-        for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 06:18:12 -0800 (PST)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-36cbcda2157so107226777b3.11
+        for <usrp-users@lists.ettus.com>; Mon, 14 Nov 2022 06:19:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=wAo2YEzMXTbNaiFu2PH8HQ4HdnBdCTP4U1nKiqaGJVk=;
-        b=X6082jbt5OL3k6ZuGbCPFcZtV2g2qYjk/Xl9V1u23YMGsjyd9OJ/AzHQYg/a8EU52b
-         JrS1rpskM7Wc7HXkOIN/bpGF9jcdKAbcPRZBR2n3G3ia7XjJW/k7FUQMuXC+41Bt0ZWs
-         xR0qnpbfydlFJMiw2ImhslsN2AT//IIC+jnHg+047cZdSNnwKT1zwF0CGaT/1qtmXsFk
-         Sjt5T1HXtPittu1vigGfEJ/pPxeHZPLRG9e9ZhyTdMGJzuzyTIwukB15WjgNHR4kv4R5
-         IaL/WSnaCgl4k4jO5EMFQJouj96qcuFJsmU/VfHKiDDKe7bTtGX6/IhPKKORrE6aZ8sA
-         nQcw==
+        bh=DrYxadA55Hhl10VPiCyn91fH1/EGDI3bJKQeWmNIN7g=;
+        b=Q38gi6PnolIuihFnXKzY+3ctmB+AXsUA7hU8fpP36MQWXwVjEHu62b+GB4Kq10XBH6
+         b3UP/wX9O43inNfboUdWLvu1CWpNyQ3y89dLIOAT1FFFucYPUVwlZq/sMQSr5tA4dftT
+         hq6Ve+lEzVSvikron5ebM/0LHKr8ig8aP7hdcNmJMaVTycZl9tru67mtKU6mfPB6UHsN
+         ChY/rKWIqfrRFoCjiU3XFNGe2z6za85LMabMPQcKuS64ch/7PKYOdXkmYje10Yji6Gw9
+         YBKTOLmTWQzqLzQrjc1A83A4GMtxiDtgL6VsXqL0e3/0fZ0tFlN4NWvmKGwnJFi73jR/
+         NosQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=wAo2YEzMXTbNaiFu2PH8HQ4HdnBdCTP4U1nKiqaGJVk=;
-        b=wWKwjwJmiIYP3kDzGjSgIBdBHkWValt0CK9E0XNK0dv4tyI+nICS+FMeCajtEJItTn
-         eaDY6mJZzgCCI5QJf98sP7e6QPy2ykkETw9LAELIkMP6VC+pxcoxQjQ/Eca8BjMJYzZ+
-         DnNyRD1SnfpIgkn+0Jy+XD9qTFB1AgyDxB1tRnkzNvSKJcsCEZcthVo0jzuGXFi6RD8R
-         VQN/hUe7Y/uWeRzQUE9ISYvFTVtMuyOTUKTPu2bpKcaQhC+T7nKnkUHWR3bFSXoMmDOP
-         vC1/MujA3f3mEj6iI3KviO0ZkSwgjHUCxLnidwIK7km+BtpxU85TCM0CZXWSopVdfEm9
-         OT1w==
-X-Gm-Message-State: ANoB5pk/ZxJBhSmg83QC9FoZCIVMJ6HeXO+/sH4UJvDTtPIlwRGOqf+o
-	wzIheet5PusjYhS4yG3OxkBlMcDgt1ie3sPTLBGdVZKYIKl1c9Or
-X-Google-Smtp-Source: AA0mqf6hquMaKffVV6cFO3Mj7prxZDWQT08118Tgd478/U6vjCqXJzRZUvIvB4Qr0MAeCcbgL/TLUIVpkRH3FdXcrNI=
-X-Received: by 2002:a81:4dc3:0:b0:370:61f5:b19e with SMTP id
- a186-20020a814dc3000000b0037061f5b19emr12746268ywb.316.1668435489927; Mon, 14
- Nov 2022 06:18:09 -0800 (PST)
+        bh=DrYxadA55Hhl10VPiCyn91fH1/EGDI3bJKQeWmNIN7g=;
+        b=SDJIqI+ZsZLui5CJD6w+JLuGxixQ0+5MOqY3CwHLB1lU7S5zoIYZF8pU1AqcsRaS2N
+         omtRQIZ8ti2dXYI6/PWY4c5ZzmtzE75WkWP2mEiP7EsfhZ7SyInmqKNwSD2Llzus49hg
+         uZqjS1a2yXuti9KTPKRyAz5ijPd3K1D3a294/C5sRkys9gBKiPqw3u//oYeSK/qixjX2
+         cRKZDaPPJ/eccOAyv8fB1te4S4ezfm4IAuIsiofXghracic0+IPGxkbBzBYLDSASXa+y
+         FBd+THbEc7iWJzpGyBke2SEF0iNMH1V2WWdr4KRw93u2n1KNJZsu8YkHJ/wFPyX+RCeh
+         NCtA==
+X-Gm-Message-State: ANoB5pn0m7gNPo21RViTRu3orZ147M6lLje7DYHTdisJULRkeP9dl7Ih
+	aDInsWo50MZPnXTf1aCCKPUvor1HS+dmZb4wd3rg58K1/7+u1WZc
+X-Google-Smtp-Source: AA0mqf4b3IPHIbVkeGVVDw86rDdmHSEnsslGUFPbfjoWxUqPEX8VEhD3RX9djAgCJhOOLP3Q2H3Ie+PnFMRemGfsX+c=
+X-Received: by 2002:a05:690c:255:b0:365:2229:a799 with SMTP id
+ ba21-20020a05690c025500b003652229a799mr13210501ywb.262.1668435546064; Mon, 14
+ Nov 2022 06:19:06 -0800 (PST)
 MIME-Version: 1.0
-References: <CAA=S3PsBqq0vQjU-joEsa4Bkx75xvZUxOhk_r93tkMaRffpwyA@mail.gmail.com>
- <CAFche=j4eXgU6k2BVMY5kfFSrgrftGYmV1_GE1OGWSZ6SVbwuA@mail.gmail.com> <CAA=S3PvE3YmiEHVgJbfJiJzUOSq3sH7Dn_tOmyAWj4Sm9+WmaQ@mail.gmail.com>
-In-Reply-To: <CAA=S3PvE3YmiEHVgJbfJiJzUOSq3sH7Dn_tOmyAWj4Sm9+WmaQ@mail.gmail.com>
+References: <CAA=S3Ps9k5kMVWoh4QTvkJ4+BhDnKoXMBxP0cuQFoj3XdLNZGQ@mail.gmail.com>
+ <c1675c20-fbad-cb18-f817-df7bf69f217f@ettus.com> <CAEXYVK7k+PMBczx6X6eWpD8biCJVucHURjq4DhKaNYWdJPqoow@mail.gmail.com>
+ <CAA=S3Pu4M2DYGbeca86mTC3DGUsm-ryG=c9=xkQoGw_JWjCrZg@mail.gmail.com>
+In-Reply-To: <CAA=S3Pu4M2DYGbeca86mTC3DGUsm-ryG=c9=xkQoGw_JWjCrZg@mail.gmail.com>
 From: sp <stackprogramer@gmail.com>
-Date: Mon, 14 Nov 2022 14:17:58 +0000
-Message-ID: <CAA=S3Pte=8-mR4DCAKp1MKvs8mRLRTiVq2LcTKYwT8POfF9UvQ@mail.gmail.com>
-Cc: usrp-users <usrp-users@lists.ettus.com>
-Message-ID-Hash: OTXTCJPQXF4SBL6H5KBA2FHFU2R53AN2
-X-Message-ID-Hash: OTXTCJPQXF4SBL6H5KBA2FHFU2R53AN2
+Date: Mon, 14 Nov 2022 14:18:54 +0000
+Message-ID: <CAA=S3PuixY7jzH4j5xbkXA9x6qwjob27ez46vSKhSZky+tD+BA@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: ER2LZ6X5NGI3KVUK7N3S4UZ7G7QCJ7XF
+X-Message-ID-Hash: ER2LZ6X5NGI3KVUK7N3S4UZ7G7QCJ7XF
 X-MailFrom: stackprogramer@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: How can we develop two RFNOC block that there is a reg relation between them?
+Subject: [USRP-users] Re: How can I define a global reg variable in Verilog between RFNOC blocks?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OTXTCJPQXF4SBL6H5KBA2FHFU2R53AN2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ER2LZ6X5NGI3KVUK7N3S4UZ7G7QCJ7XF/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1807200587878631477=="
+Content-Type: multipart/mixed; boundary="===============4822783011267587446=="
 
---===============1807200587878631477==
-Content-Type: multipart/related; boundary="000000000000b6182105ed6ee8c2"
+--===============4822783011267587446==
+Content-Type: multipart/related; boundary="0000000000000de61e05ed6eece9"
 
---000000000000b6182105ed6ee8c2
-Content-Type: multipart/alternative; boundary="000000000000b6181f05ed6ee8c1"
+--0000000000000de61e05ed6eece9
+Content-Type: multipart/alternative; boundary="0000000000000de61c05ed6eece8"
 
---000000000000b6181f05ed6ee8c1
+--0000000000000de61c05ed6eece8
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
 Finally, I developed a reg shared between blocks. it works. Everything is
 ok.
 I used a guide from Paolo Palana. You can see in the below link. Thanks
 very much
 
-https://lists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO
+https://lists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?has=
+h=3DR7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO
 
-On Tue, Nov 8, 2022 at 4:01 PM sp <stackprogramer@gmail.com> wrote:
+On Tue, Nov 8, 2022 at 7:20 PM sp <stackprogramer@gmail.com> wrote:
 
-> Thanks for the tip! But I have a TX and RX with USRP. I used a gain block
+> Thanks, Brain, I emphasize my problem is like your description.
+>
+>  I have a TX and RX with USRP. I used a gain block
 > for TX and a multiply block for RX.
-> When In Receiver or RX multiply result is more than a threshold...I want
-> to change the gain block in TX or Transmitter...
-> See the screenshot below, I need two blocks be separately ........
+> When In Receiver or RX multiply result is more than a threshold...I want =
+to
+> change the gain block in TX or Transmitter...
+> See the screenshot below, I need two blocks to be separately ........
+>
 >
 > [image: image.png]
 >
-> On Tue, Nov 8, 2022 at 3:49 PM Wade Fife <wade.fife@ettus.com> wrote:
+> On Tue, Nov 8, 2022 at 6:39 PM Brian Padalino <bpadalino@gmail.com> wrote=
+:
 >
->> Gain and multiply are pretty simple operations. Perhaps you could put
->> them both in the same block? Then you would not need to share this register
->> between different blocks.
+>> On Mon, Nov 7, 2022 at 6:29 PM Marcus M=C3=BCller <marcus.mueller@ettus.=
+com>
+>> wrote:
 >>
->> Wade
->>
->> On Sun, Nov 6, 2022 at 1:06 PM sp <stackprogramer@gmail.com> wrote:
->>
->>> I am developing two RFNOC blocks, a gain block, and a multiplier
->>> block... But I need there to be a reg relation between RFNOC blocks...
->>> for example, a multiply_const is calculated in multiply rfnoc block and
->>> it is used to block gain...
->>> when I add the reg in rfnoc block and I define it as input and output
->>> .......
->>> I redefine rfnoc block in this file........x300_rfnoc_image_core.v
->>> when I build again, x300_rfnoc_image_core.v will be deleted to the
->>> previous state. How can solve this problem?
+>>> Hi sp,
 >>>
->>> I ask this problem in this link but my problem is not solved yet...
+>>> That sounds like a bad idea. How are you planning to synchronize access
+>>> to that register?
 >>>
->>> https://lists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO
->>> _______________________________________________
->>> USRP-users mailing list -- usrp-users@lists.ettus.com
->>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>> Generally, in almost *any* context, avoid global state. That makes
+>>> things complicated and
+>>> error prone; this is true for python as much as it is for C++, as much
+>>> as it is for
+>>> digital hardware design (in verilog or any other way); it's even true
+>>> for design of
+>>> mechanical machine factory floors (if you make each processing step as
+>>> independent from
+>>> the other as possible, you increase reliability).
 >>>
 >>
+>> As a point of order, though, reducing redundancy is also an admirable
+>> goal.
+>>
+>> I think the idea of sharing registers between multiple RFNoC blocks is
+>> not a bad idea.  It's the idea of a single configuration space with fano=
+uts
+>> to multiple consumers.  In C++, imagine it as a singleton of configurati=
+on
+>> parameters to be referenced during execution.
+>>
+>> As a practical example, imagine you have a TDMA system which needs
+>> timings defined by which the TX and RX both adhere.  Or a modulation/cod=
+ing
+>> scheme which is shared between RX and TX.  These are independent blocks
+>> with common configuration items.  A suggestion to duplicate registers wo=
+uld
+>> not be seen as appropriate - there is a singular configuration space wit=
+h
+>> fanout to multiple blocks.
+>>
+>> From an FPGA perspective, it is not unheard of that a registerfile may b=
+e
+>> common amongst numerous individual blocks which make up a system.  The
+>> suggestion earlier, I believe, was to have a custom input to the block
+>> which is the shared configuration space.
+>>
+>> Now, speaking in terms of RFNoC, I imagine this as an RFNoC block which
+>> is the configuration space, and has no flows in or out but only exists i=
+n
+>> the register space.  It has outputs which fanout but no other inputs.
+>>
+>> Is there a document which describes how to build this type of system wit=
+h
+>> RFNoC?  Custom output/input port automatically instantiated with the
+>> system?  Or does it need to be a custom instantiation after the rest of =
+it
+>> has been templated?
+>>
+>> Thanks,
+>> Brian
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
 
---000000000000b6181f05ed6ee8c1
+--0000000000000de61c05ed6eece8
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Finally, I developed a reg shared between blocks. it works=
-. Everything is ok.<div>I used a guide from Paolo Palana. You can see in th=
-e below link. Thanks very much</div><div><br></div><div><a href=3D"https://=
-lists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=3DR7N2=
-7SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO">https://list=
-s.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=3DR7N27SR3=
-7EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO</a></div></div><b=
-r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, =
-Nov 8, 2022 at 4:01 PM sp &lt;<a href=3D"mailto:stackprogramer@gmail.com">s=
-tackprogramer@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex"><div dir=3D"ltr">Thanks for the tip! But I have a TX=
- and RX with USRP. I used a gain block for TX and a=C2=A0multiply block for=
- RX.<br><div>When In Receiver or RX multiply=C2=A0result=C2=A0is more than =
-a threshold...I want to change the gain block in TX or Transmitter...</div>=
-<div>See the screenshot below, I need two blocks be separately=C2=A0.......=
-.</div><div><br></div><div><img src=3D"cid:ii_la8edbnz0" alt=3D"image.png" =
-width=3D"472" height=3D"271"><br></div></div><br><div class=3D"gmail_quote"=
-><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Nov 8, 2022 at 3:49 PM Wade =
-Fife &lt;<a href=3D"mailto:wade.fife@ettus.com" target=3D"_blank">wade.fife=
-@ettus.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div dir=3D"ltr"><div>Gain and multiply are pretty simple operat=
-ions. Perhaps you could put them both in the same block? Then you would not=
- need to share this register between different blocks.<br></div><div><br></=
-div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Sun, Nov 6, 2022 at 1:06 PM sp &lt;<a href=3D"mai=
-lto:stackprogramer@gmail.com" target=3D"_blank">stackprogramer@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr">I am developing two RFNOC blocks, a gain block, and a multipl=
-ier block... But I need there to be a reg relation between RFNOC blocks...<=
-div>for example, a multiply_const is calculated in multiply rfnoc block and=
- it is used to block gain...</div><div>when I add the reg in rfnoc block an=
-d I define it as input and output .......</div><div>I redefine rfnoc block =
-in this file........x300_rfnoc_image_core.v</div><div>when I build again,=
-=C2=A0x300_rfnoc_image_core.v will be deleted to the previous state. How ca=
-n solve this=C2=A0problem?</div><div><br></div><div>I ask this problem in t=
-his link but my problem is not solved yet...</div><div><a href=3D"https://l=
-ists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO?hash=3DR7N27=
-SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO" target=3D"_bl=
-ank">https://lists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K6FR3FKBXOMBN=
-O?hash=3DR7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6FR3FKBXOMBNO<=
-/a><br></div></div>
+<div dir=3D"ltr"><div id=3D"gmail-:1dz" class=3D"gmail-Am gmail-aO9 gmail-A=
+l editable gmail-LW-avf gmail-tS-tW gmail-tS-tY" aria-label=3D"Message Body=
+" role=3D"textbox" aria-multiline=3D"true" tabindex=3D"1" style=3D"directio=
+n:ltr;min-height:85px" aria-controls=3D":1hf">Finally, I developed a reg sh=
+ared between blocks. it works. Everything is ok.<div>I used a guide from Pa=
+olo Palana. You can see in the below link. Thanks very much</div><div><br><=
+/div><div><a href=3D"https://lists.ettus.com/empathy/thread/R7N27SR37EPZKMJ=
+LG7K6FR3FKBXOMBNO?hash=3DR7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG=
+7K6FR3FKBXOMBNO">https://lists.ettus.com/empathy/thread/R7N27SR37EPZKMJLG7K=
+6FR3FKBXOMBNO?hash=3DR7N27SR37EPZKMJLG7K6FR3FKBXOMBNO#R7N27SR37EPZKMJLG7K6F=
+R3FKBXOMBNO</a></div></div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Tue, Nov 8, 2022 at 7:20 PM sp &lt;<a href=3D=
+"mailto:stackprogramer@gmail.com">stackprogramer@gmail.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">=
+Thanks, Brain, I emphasize my problem is like your description.<div><br></d=
+iv><div><p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem=
+;color:rgb(72,70,91);font-family:-apple-system,BlinkMacSystemFont,&quot;Seg=
+oe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,Arial,&quot;Noto Sans&quot;,s=
+ans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Se=
+goe UI Symbol&quot;,&quot;Noto Color Emoji&quot;;font-size:15px">=C2=A0I ha=
+ve a TX and RX with USRP. I used a gain block<br style=3D"box-sizing:border=
+-box">for TX and a multiply block for RX.<br style=3D"box-sizing:border-box=
+">When In Receiver or RX multiply result is more than a threshold...I want =
+to<br style=3D"box-sizing:border-box">change the gain block in TX or Transm=
+itter...<br style=3D"box-sizing:border-box">See the screenshot below, I nee=
+d two blocks to be separately ........</p><br><div><br></div><div><img src=
+=3D"cid:ii_la8lihh80" alt=3D"image.png" width=3D"472" height=3D"271"><br></=
+div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Tue, Nov 8, 2022 at 6:39 PM Brian Padalino &lt;<a href=3D"mail=
+to:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.com</a>&gt; wrote=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
+r"><div dir=3D"ltr">On Mon, Nov 7, 2022 at 6:29 PM Marcus M=C3=BCller &lt;<=
+a href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blank">marcus.mueller=
+@ettus.com</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex">Hi sp,<br>
+<br>
+That sounds like a bad idea. How are you planning to synchronize access to =
+that register?<br>
+<br>
+Generally, in almost *any* context, avoid global state. That makes things c=
+omplicated and <br>
+error prone; this is true for python as much as it is for C++, as much as i=
+t is for <br>
+digital hardware design (in verilog or any other way); it&#39;s even true f=
+or design of <br>
+mechanical machine factory floors (if you make each processing step as inde=
+pendent from <br>
+the other as possible, you increase reliability).<br></blockquote><div><br>=
+</div><div>As a point of order, though, reducing redundancy is also an admi=
+rable goal.</div><div><br></div><div>I think the idea of sharing registers =
+between multiple RFNoC blocks is not a bad idea.=C2=A0 It&#39;s the idea of=
+ a single configuration space with fanouts to multiple consumers.=C2=A0 In =
+C++, imagine it as a singleton of configuration parameters to be referenced=
+ during execution.</div><div><br></div><div>As a practical example, imagine=
+ you have a TDMA system which needs timings defined by which the TX and RX =
+both adhere.=C2=A0 Or a modulation/coding scheme which is shared between RX=
+ and TX.=C2=A0 These are independent blocks with common configuration items=
+.=C2=A0 A suggestion to duplicate registers would not be seen as appropriat=
+e - there is a singular configuration space with fanout to multiple blocks.=
+</div><div><br></div><div>From an FPGA perspective, it is not unheard of th=
+at a registerfile may be common amongst numerous individual blocks which ma=
+ke up a system.=C2=A0 The suggestion earlier, I believe, was to have a cust=
+om input to the block which is the shared configuration space.</div><div><b=
+r></div><div>Now, speaking in terms of RFNoC, I imagine this as an RFNoC bl=
+ock which is the configuration space, and has no flows in or out but only e=
+xists in the register space.=C2=A0 It has outputs which fanout but no other=
+ inputs.</div><div><br></div><div>Is there a document which describes how t=
+o build this type of system with RFNoC?=C2=A0 Custom output/input port auto=
+matically instantiated with the system?=C2=A0 Or does it need to be a custo=
+m instantiation after the rest of it has been templated?</div><div><br></di=
+v><div>Thanks,</div><div>Brian</div></div></div>
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
@@ -189,16 +266,15 @@ To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
 </blockquote></div>
-</blockquote></div>
 
---000000000000b6181f05ed6ee8c1--
+--0000000000000de61c05ed6eece8--
 
---000000000000b6182105ed6ee8c2
+--0000000000000de61e05ed6eece9
 Content-Type: image/png; name="image.png"
 Content-Disposition: inline; filename="image.png"
 Content-Transfer-Encoding: base64
-Content-ID: <ii_la8edbnz0>
-X-Attachment-Id: ii_la8edbnz0
+Content-ID: <ii_la8lihh80>
+X-Attachment-Id: ii_la8lihh80
 
 iVBORw0KGgoAAAANSUhEUgAABRAAAALnCAYAAADxrGurAAAgAElEQVR4AeydB3gUxRvG3ytpJBBa
 Qgdp0pv0KiogoBQRUPwroKKCgA17L1hQsaKAIioWBAHBgqLSCSAg0nvvNQnpubb/592w4e5yZe9y
@@ -3626,9 +3702,9 @@ vxr5jzz/6hupb7t+Nt3x+7nq0p9lW+Vh6dOTjwABAgQIECBAgAABAmucQONbmCuVircwr3Gjt2EC
 BAgQIECAQDkC3tZWzixWRRJvYV4Vqq5JYPUT8Hf96jcziddsgXe+hbnx56Os2Rx2T4AAAQIECBAg
 0BQEKgtey8vPTcwTE6c2he3Yw0cVqMzPtGefzKPjH8lzb1Q+6tmOJ0CAAAECBJYh0HgH4jKe9xQB
 AgQIECBAgAABAgQIECBAgAABAmuwwP8HcQiYllMrOe8AAAAASUVORK5CYII=
---000000000000b6182105ed6ee8c2--
+--0000000000000de61e05ed6eece9--
 
---===============1807200587878631477==
+--===============4822783011267587446==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -3638,4 +3714,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1807200587878631477==--
+--===============4822783011267587446==--
