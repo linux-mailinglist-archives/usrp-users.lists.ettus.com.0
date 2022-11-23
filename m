@@ -2,162 +2,126 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D58FE634367
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Nov 2022 19:14:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55BB66366C1
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Nov 2022 18:16:20 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EDDC5384281
-	for <lists+usrp-users@lfdr.de>; Tue, 22 Nov 2022 13:14:14 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 134BF384296
+	for <lists+usrp-users@lfdr.de>; Wed, 23 Nov 2022 12:16:19 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1669140854; bh=oKCwc1WDIcD68IyJe1IwowvITIXr1j5GirnhuajnVlE=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=wgjOk2gMIWx+XATISyFCguZf8YuzStSeJX+diZ3GhxVhwPuTbs1YHEpfOfz5ZFRs4
-	 HiZOTEBDDeCcdwiT57IToh6PVV2vBzXtqE4a+VeqZbYG9F6YEuAer0Z3CKmkY9qZC2
-	 B9e5sXa+sPi+H8uLvs/v2snkcL0Gvo0I/fHalXrjuDEOh0NvsR9AxxgHu9Z3IPDEQo
-	 8KGmhke25uvIH6hD8DDZ9irYkNMtPpN3GToo//Y/7dvAQATYrIG2uogHsBuuZjd1Bp
-	 5v7ezYq4ti9et0xak/LSAU8pgJ3wdcu1cEi0q5LxYNRjE+AfNs9DBCuv+iT7IxSgbv
-	 X6d+H6ac9jP9g==
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id A2C3B38426F
-	for <usrp-users@lists.ettus.com>; Tue, 22 Nov 2022 13:14:07 -0500 (EST)
+	t=1669223779; bh=9wFujL/l4Ywz+JvgEvG/mbQPNGNyC3Vx3hkFuJHWV4g=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=JqyPRNS/vV3zzyba4cyY7iPAfM3wUho2xJnL1MGECh8kVtwulFlQAz06p3aA/iJkg
+	 YT2P0Yqbp8/9Z+XIsWhU/mpQid5hUBSUITmDfcchcOjc1RhZIE8N6unK/k0FdVJhC+
+	 e4GaceC1ozoXPp6OGzoWpfiAh4qYhnhnKg+3hfIBM6fivl7rv53ECEstEcEzLcwKVQ
+	 q5G6HabTMbPCr1JHDduYuLEptQl7cJL0xwsQ40WAi19DaWb3+TGvQvwK+tsNY5QwVz
+	 nRSXS4nvpeuhoGIxPDzMJRb7x1XCdpGhcOBbMWKjGzjis42wk8A6d0ef0RjKmqtqgF
+	 Cp2rVbKmNT8Pw==
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id DB28038402D
+	for <usrp-users@lists.ettus.com>; Wed, 23 Nov 2022 12:14:53 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="LdXjWRus";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LXyb6jKz";
 	dkim-atps=neutral
-Received: by mail-ej1-f51.google.com with SMTP id n12so37595014eja.11
-        for <usrp-users@lists.ettus.com>; Tue, 22 Nov 2022 10:14:07 -0800 (PST)
+Received: by mail-lj1-f178.google.com with SMTP id d3so22158242ljl.1
+        for <usrp-users@lists.ettus.com>; Wed, 23 Nov 2022 09:14:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=XMXtqIVevC6umVaFN8K/ZfkctldjWTBpxLSm7YREuuA=;
-        b=LdXjWRusUF0cqRVhftGQZo9PkcE4eMndTX6t+hg+d7eg6WTp8lPLFEp5z0fojd2pwJ
-         uwmZqRRQ26dHt5Efvth6s1n3swHxq6PoGkkYHYAoLD4LoW5+PG5dti6Jxob2jYq7FLG5
-         rdZb2IQqVf3Wio+zRASQ7Kzyi2E3HYALR2/pjvR92E2Lq288fys1qE94rpGChrye3Cdg
-         ceow4pvpd3Y480qbLT86nkJvcDRK+EA8I2sMZJp461gr5kXEA5A583jcNozSm9G3AwYe
-         C4PQPcf+DmC5bpISsexPWBYfDgpXUSz2vvoSbSXce+FPhNsBMbB4sqlL3q3HWTCTkcUg
-         vquQ==
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ywE3RAKRGKBEBM/dhmbevHvah0eJ/I8ZwFtlNRJ0gus=;
+        b=LXyb6jKzRpyvEno1uDMPNvfaVMTpLLazlneR9heoNZUdL7JP6HenuM1Ezo5VALN7PR
+         nEadCm+JmjiVDsJkV4Sk7hhg1G0Gcvkkdfx/p/09oH6A5g+L5+MmFr1hoCI+qBSllQB/
+         d0X/3oO5y66VgM9Ys+0eqTRSG77hOJH2JTXEvrUPvw/bc4wV51fw5MF5aBD1b9kyvxRI
+         f82BqNOwvEzJ834CGMeWq35VHlIpK/myUHebmW9DmASo9zg1YgvW5nNFHzFnG6A14nNY
+         wm7gubcc770ftrac+lTwmg9H07DOeJHSbleYpm+zoApmF/6zAlMQV9Ys1nCurkacsT/0
+         DAXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XMXtqIVevC6umVaFN8K/ZfkctldjWTBpxLSm7YREuuA=;
-        b=TjyqFd5KhllJpHCZSlfwLEoEarsRf2QOC9xgHWjDGdMVkXc7my+xLT/ZxuongDXWxN
-         BzFtmzj6E01gd5f/nf/Sc2qPxpVVcNK/8HTD07Bc+O9nhDA0heR2bk35TEenVrX60tcY
-         Epu29Gk0IJPZVB7RjIPy4GspBQNzhAaWsL0JKXmKkedV7qCfxYcCKlCh/EuhNQSyuvwl
-         AsFI0qqOWN5Pe8tqgack7jV0Evr5a+67zdElDB9bqGEdjhf14kgS9qnIvdnrajmgs2qV
-         OVP7H1JlJ4ycKSpLVlbuarS01b6Bv7j7iKxwbmdCrFH2GnqpItVEOmaw1UfNPUhL+m3Z
-         n0Uw==
-X-Gm-Message-State: ANoB5plLgbgUOMWUU8FumDty10NVyh4sMi2eL2M6x/gcJUeRmtec/XYU
-	Sp5CCZ4iJrVjUl8XsFMjGfa7SWxLafFGUZOk51+Tm3efBDrF7Q==
-X-Google-Smtp-Source: AA0mqf7lNrYdtgsVXjPoW8Jvok33gCyj5S1NlgUOhfkaV+jJWVwBmULPnR5NijUdQXuW6Pjg4bqx2qPe3NXEah+6RMQ=
-X-Received: by 2002:a17:906:6945:b0:78d:48fa:8038 with SMTP id
- c5-20020a170906694500b0078d48fa8038mr21152623ejs.309.1669140846162; Tue, 22
- Nov 2022 10:14:06 -0800 (PST)
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ywE3RAKRGKBEBM/dhmbevHvah0eJ/I8ZwFtlNRJ0gus=;
+        b=I8EluqcGT5Gr9JSGaiqTUaUgfwDX/MduEcs8fma0mOx/2vV3cwBCu31y9GrwyvTiV/
+         d9K5AbaUA2aw/n+Zv9eu3O9yhn/+1EBZR6N+0BxM8Fmy3FdBkn0J7to/cUaOcs1I0dmk
+         1FZf69Yl7/ZosJVE/sdfo9xaCbeME7C6WAwAXU+UIqPrHJhmI9iYvZ6cH1XgKvJxOEKr
+         gz2bevvhVGUvbqQxAG4sB9yi3Z469b/HSopWKfjTDnlZkwtoTRsGa8Nffi5O3X6oQZm3
+         m4HfBezQWEb8RuAX30+9LqBueS6XS7e8fg0hLjn7JzARX+Uf14IWAKWTCz2LLOGeI6lC
+         fQ0g==
+X-Gm-Message-State: ANoB5pkJcUs8Nt7fgNUq0gdS7dDWM7vfZiovJRAOS/jDTzsn66G0aSP7
+	rs4ZanIk7NJyNLBA2h7raogdp0UqH6B7K1lqmJr1KFVB
+X-Google-Smtp-Source: AA0mqf7b4Oa/eB4xRt3SCxvSrr0QwdFnKRIDBYOKCSM1JswLcKR1MwPuggUM28p6n21ADGQ4RYyKfxA/RfOFUSmJQ6g=
+X-Received: by 2002:a2e:875a:0:b0:26e:1d9:c2a5 with SMTP id
+ q26-20020a2e875a000000b0026e01d9c2a5mr9524299ljj.353.1669223691758; Wed, 23
+ Nov 2022 09:14:51 -0800 (PST)
 MIME-Version: 1.0
-References: <yItRTPT8Vwa1G7JrBJNOxLeuXNtI6GG0INb5hLN6p0U@lists.ettus.com>
-In-Reply-To: <yItRTPT8Vwa1G7JrBJNOxLeuXNtI6GG0INb5hLN6p0U@lists.ettus.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Tue, 22 Nov 2022 13:13:54 -0500
-Message-ID: <CAB__hTS970_7j5KaH5rqfCdBeLs5HzJCpWj8R87+52SVC6a1aw@mail.gmail.com>
-To: ri28856@mit.edu
-Message-ID-Hash: FRQDFPXEHNQEYOGT2LG7UWR5YQJMYDSF
-X-Message-ID-Hash: FRQDFPXEHNQEYOGT2LG7UWR5YQJMYDSF
-X-MailFrom: rkossler@nd.edu
+From: Huacheng Zeng <zenghuacheng@gmail.com>
+Date: Wed, 23 Nov 2022 12:14:40 -0500
+Message-ID: <CAOR0_uhJWO_31xUzKyqdH5ZkN7kQHH2L9yD2YLgig8do+_9Mkw@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: NQDWUIXV4GC4WGAFLK46KYFM5M7EE7CH
+X-Message-ID-Hash: NQDWUIXV4GC4WGAFLK46KYFM5M7EE7CH
+X-MailFrom: zenghuacheng@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Accessing DDC block control in mutli_usrp application
+Subject: [USRP-users] UHD and GNU Radio in Windows
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FRQDFPXEHNQEYOGT2LG7UWR5YQJMYDSF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NQDWUIXV4GC4WGAFLK46KYFM5M7EE7CH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5657285953491644630=="
+Content-Type: multipart/mixed; boundary="===============0094399930079207391=="
 
---===============5657285953491644630==
-Content-Type: multipart/alternative; boundary="0000000000003823db05ee132365"
+--===============0094399930079207391==
+Content-Type: multipart/alternative; boundary="00000000000032b15305ee266d37"
 
---0000000000003823db05ee132365
+--00000000000032b15305ee266d37
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-If I understand correctly, the problem is that multi_usrp_rfnoc.cpp uses
-some non-API functionality (this is kind of a sore point with me because it
-seems to me that if a function is needed for the implementation of
-multi_usrp, then by definition it is also needed by any user of the rfnoc
-API).  My own version of "rfnoc_usrp" that I build as an OOT object uses
-the following "make" function. I'm not sure if this helpful for your issue
-or not.  I used the Ettus code as an example and then stripped out the
-dependence on non-API functions.
+Hello,
 
-nd::rfnoc_usrp::sptr nd::rfnoc_usrp::make(const uhd::device_addr_t&
-dev_addr)
-{
-UHD_LOGGER_TRACE("RFNOC_USRP")
-<< "nd::rfnoc_usrp::make with args " << dev_addr.to_pp_string();
-auto graph =3D uhd::rfnoc::rfnoc_graph::make(dev_addr);
-return std::make_shared<rfnoc_usrp_impl>(graph, dev_addr);
-}
+Do UHD and GNU Radio (OOT module creation, compilation, and running) work
+well in Windows? Are there instructions online on how to install UHD and
+GNU Radio (as well as their dependencies) in Windows 10?
 
-On Mon, Nov 21, 2022 at 10:21 PM <ri28856@mit.edu> wrote:
+We did many projects using USRP N210, X310, and N310 in Ubuntu systems. We
+have sufficient experience using them with GNU Radio OOT modules in Ubuntu.
+But, for some reason, our current project can only be done in Windows. Can
+someone share your experience with USRP in Windows? How hard is it to set
+up the working environment in Windows? We hope to stream signals from USRP
+X310 to Windows (via 10Gbps SPF+ cable) for real-time processing using GNU
+Radio companion and our own OOT modules. In theory, Ubuntu and Windows of
+the same computer should have simple I/O and computing performance, right?
 
-> Thank your for the reply, Rob, this appears to be exactly what I was
-> looking for. I have spent a little while attempting to replicate the
-> factory function at the bottom of multi_usrp.cpp that uses what looks lik=
-e
-> the make_rfnoc_device from multi_usrp_rfnoc.cpp. I can=E2=80=99t seem to =
-figure out
-> what I need to include to actually build this. Any pointers would be
-> appreciated!
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+Thank you in advance!
 
---0000000000003823db05ee132365
+Hua.
+
+--00000000000032b15305ee266d37
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">If I understand correctly, the problem is that multi_usrp_=
-rfnoc.cpp uses some non-API functionality (this is kind of a sore point wit=
-h me because it seems to me that if a function is needed for the implementa=
-tion of multi_usrp, then by definition=C2=A0it is also needed by any user o=
-f the rfnoc API).=C2=A0 My own version of &quot;rfnoc_usrp&quot; that I bui=
-ld as an OOT object uses the following &quot;make&quot; function. I&#39;m n=
-ot sure if this helpful for your issue or not.=C2=A0 I used the Ettus code =
-as an example and then stripped out the dependence on non-API functions.<di=
-v><br></div><div>nd::rfnoc_usrp::sptr nd::rfnoc_usrp::make(const uhd::devic=
-e_addr_t&amp; dev_addr)<br>{<br>	UHD_LOGGER_TRACE(&quot;RFNOC_USRP&quot;) <=
-br>	&lt;&lt; &quot;nd::rfnoc_usrp::make with args &quot; &lt;&lt; dev_addr.=
-to_pp_string();<br>	auto graph =3D uhd::rfnoc::rfnoc_graph::make(dev_addr);=
-<br>	return std::make_shared&lt;rfnoc_usrp_impl&gt;(graph, dev_addr);<br>}<=
-br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gma=
-il_attr">On Mon, Nov 21, 2022 at 10:21 PM &lt;<a href=3D"mailto:ri28856@mit=
-.edu">ri28856@mit.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
-4);padding-left:1ex"><p>Thank your for the reply, Rob, this appears to be e=
-xactly what I was looking for. I have spent a little while attempting to re=
-plicate the factory function at the bottom of multi_usrp.cpp that uses what=
- looks like the make_rfnoc_device from multi_usrp_rfnoc.cpp. I can=E2=80=99=
-t seem to figure out what I need to include to actually build this. Any poi=
-nters would be appreciated!</p>
+<div dir=3D"ltr">Hello,=C2=A0<div><br></div><div>Do UHD and GNU Radio (OOT =
+module creation, compilation, and running) work well in Windows? Are there =
+instructions online on how to install UHD and GNU Radio (as well as their d=
+ependencies) in Windows 10?</div><div><br></div><div>We did many projects u=
+sing USRP N210, X310, and N310 in Ubuntu systems. We have sufficient experi=
+ence using them with GNU Radio OOT modules in Ubuntu. But, for some=C2=A0re=
+ason, our current project can only be done in Windows. Can someone share yo=
+ur experience with USRP in Windows? How hard is it to set up the working en=
+vironment in Windows? We=C2=A0hope to stream signals from USRP X310 to Wind=
+ows (via 10Gbps SPF+=C2=A0cable) for real-time processing using GNU Radio c=
+ompanion and our own OOT modules. In theory, Ubuntu and Windows of the same=
+ computer should have simple I/O and computing performance, right?</div><di=
+v><br></div><div>Thank you in advance!</div><div><br></div><div>Hua.</div><=
+div><br></div><div><br></div></div>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+--00000000000032b15305ee266d37--
 
---0000000000003823db05ee132365--
-
---===============5657285953491644630==
+--===============0094399930079207391==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -167,4 +131,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5657285953491644630==--
+--===============0094399930079207391==--
