@@ -2,212 +2,242 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E573D638EED
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Nov 2022 18:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E446396ED
+	for <lists+usrp-users@lfdr.de>; Sat, 26 Nov 2022 16:51:43 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B0D2C384487
-	for <lists+usrp-users@lfdr.de>; Fri, 25 Nov 2022 12:20:11 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 6CB9D3843BD
+	for <lists+usrp-users@lfdr.de>; Sat, 26 Nov 2022 10:51:38 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1669396811; bh=e0NheFygN080WGfdKAumYw0ulIZx44gWd+X/plGo5R0=;
+	t=1669477898; bh=q4R22RPgNj2hxuT2ViJVvhFd6Nhk+0biC8MY6Sadr7Q=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=ElbLGMtQ/+RuGYVB1ESoSSU8l3oeITajWrPPUrSqWWyFVSmRcEFTmweJdM2heXaqa
-	 KMkGvq+TDVZGd849CgLr/yKHRyXTdEjwb960TjoNr1lD2fLVeOsmM1LQ3hPvFDw1O8
-	 TGAYsD3p2VujgFs4SYmX9WJmd/5pH3XXpRhzEXsWupVVeeMzAZu810531jTbujTFYF
-	 k1qvMRwqJmLUTdE4na5T0isyhnM6JBsMWZbPNDvMEFQh54f3Ebd9ZaQxew8GqMFtRU
-	 Q27CkbDXGBQb4DAkeOoEuaom7pQMa4xnjlYuArz3FvOSI5PnPr4KvdgdtOFUNpTuhB
-	 GMKGJ2QzU7+ug==
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 75CC83843E2
-	for <usrp-users@lists.ettus.com>; Fri, 25 Nov 2022 12:20:04 -0500 (EST)
+	b=D48FFXNyZzlkPOCSE6CENCAgBJdc5mukT1FmWew/ifqdL48dbz3t+yIbqU5jyWYUK
+	 NRs2DNg5NoiChryEj4HlBghVuktZBtoEKk1UFjvTvjklppum/uQANygheHFdVE+ifi
+	 pGGOsBBHz1J3EU6TpG2SZfkxOhlp9RYNvjpCfxJ2T4/ePfC24hyEW63hX+BtEPqIrk
+	 ezz7ICkvozRj/DyCcEndHUyMLAJsUWvCKvcbpqIYgZmx+LffANnuVwAyu80IxF1KDD
+	 O3i+J1mgFFFe3mVa7NR2Zd5ckEbsjwkfP/WnBceQyN3T5Lt3XWeRODzgAdOmR0bL+0
+	 BXOTNamTyMKwg==
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	by mm2.emwd.com (Postfix) with ESMTPS id C89D638436D
+	for <usrp-users@lists.ettus.com>; Sat, 26 Nov 2022 10:51:31 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="A+VCWdFP";
+	dkim=pass (2048-bit key; unprotected) header.d=iptronix.com header.i=@iptronix.com header.b="cIj4OdWd";
 	dkim-atps=neutral
-Received: by mail-ed1-f41.google.com with SMTP id z20so7199474edc.13
-        for <usrp-users@lists.ettus.com>; Fri, 25 Nov 2022 09:20:04 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id w4so4158953qts.0
+        for <usrp-users@lists.ettus.com>; Sat, 26 Nov 2022 07:51:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        d=iptronix.com; s=google;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eo78/QN3ce4Ztk2bE0ZyP92h62XbhRIGQy8pSaiTT2Y=;
-        b=A+VCWdFPrDG5R2nsDWpG8MAIe4Y4ZYulE+CONdmOZG6FpzjHXTj5TH/l6lSoeCSi27
-         iwrKvDJ0KOXYYxb6UGNzeToW8MogYUSimRr6PpyJ9cxI3mOQX0h5RNUYK113cSjaN0va
-         jwktTPoUyTwnIWGzTje4IFXW5b+j3XpID8W4UrQI03oNVCQKDedaKlu74IfB6BRst9e0
-         X1QI75/GaOAfFQAPnrJ/FZR9E291ivJdNN+bqzzUzgZrkw0vSq/IXPltH4faMYvaSVCg
-         69iSeDVvl2Zlu3KUbG6uKW20yjWFVqbQM2RYL0vT+3Q0rSfhsDzMsWkaCiV32lGLhZzm
-         2Flw==
+        bh=mN/nhVOfN+B6nJhYjQhyNSWU9YmzVynqFq8enl7V0DE=;
+        b=cIj4OdWdoviRNQrpYEwIRGL6khgLUi7TWKGguK8e55Nie3rSuK8wOvWGD8H9zwJfph
+         YCtSZ5Y6jiR5SGLWAPKSdzqcmDHeCO1518yXxR6PBt/1GM7r2CytH4qWNEra+UQqYWpJ
+         1G6iTVWTpZjAdDEfcT06fIHZEs/oBG54hUMdh1RgoMmWCvjFhCxz9JI7z8ayqeGp0alS
+         Rwks12zRX662rFH4u3lREvVXUnYv9VCeZ/7bS0/nLJBQRcnqVE8QebZrUIYuuizrHC7c
+         95H5cIzcdo+ZI1E7+fEU1dx2vALkLZLpGZ83Clj/A0lgC1jcVbb+dB++2HjuBGp37J49
+         zS1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eo78/QN3ce4Ztk2bE0ZyP92h62XbhRIGQy8pSaiTT2Y=;
-        b=vXNz+Y0XpTifIPnJwT8om62NLJLTfAIsQydSwKAYmMcxH5jMyCsndp05s1cUabKq9f
-         jH5bHNSuUpB3d0xZxi9w/EF3FLkHQD28v5ZzUPOHlq2M279Ej7Lys6wCqE0DP6noglKv
-         kSLwnxs/ocgvV0ctdo/qiXa8bWkQ4BYEMjILVoeYVraHFKw0yPF1UfGxrDBijmoqIteV
-         7uUZ1JTuRRbGyn57g8hjUB6GMrbUYiCwLAVJeG4pAWEAkiQwejQiV3yAjjR1Ei9N65gK
-         tvuBlPaw0BoDNwsH0CmpZMCK3K634r7qFWEVSaSZVNzH6kroKeCBgTfoF1eUIIKs38y2
-         5ayg==
-X-Gm-Message-State: ANoB5pnX9iWQqY7vdnV++4B63tGPbHH8NxEjZxewY/dgQWA5onCRH5cx
-	EOcMJlNtxJVdV+18WpqVPmBfZkjIzcjso/X/ZjyODflH5KItSrKK
-X-Google-Smtp-Source: AA0mqf6BC3vqZsYvRmkMflGDo3I4KRRjwD4yHtrrrw837zViA0MoZdlID2WPIp1nHWYUwbLhwABJvvReJIixBUIHQpw=
-X-Received: by 2002:a05:6402:1f03:b0:468:7be6:55e7 with SMTP id
- b3-20020a0564021f0300b004687be655e7mr36188681edb.345.1669396803195; Fri, 25
- Nov 2022 09:20:03 -0800 (PST)
+        bh=mN/nhVOfN+B6nJhYjQhyNSWU9YmzVynqFq8enl7V0DE=;
+        b=q1ljhLLfQbRKiwjFyaepOBnXdyFgdMuSqCe83/HLCLYO8zsaw2OHqOUSfPHf1R/+5q
+         VZszKmCNbw6kO9sestQvEzxjYPlQPto+KUJz+gD6nMhtS4yFCBtarSfKxRK+KHq+Eulf
+         Wmsi/UYQd4CuiWmSs8w1VuaS4TCAJhYsEx0sYmGYBMB3gT+zhwpE0lyHvBHS40QnHKst
+         U2uP5FSkds4h1mVCM85xZJRxFdX6E6yT4BBkToYtOkvt/rqV9cgx4AAkGSn3VRzJVJBf
+         xzk81PDCpa2BNrDNN9EVLaeIQT5n4U75TmWKsEWJB5Ylv37p8OgVB/ygWH/NPapeCko+
+         vT9A==
+X-Gm-Message-State: ANoB5pnDzSSKHtuk8Sv55XbFv17YGzhheSONuR5CRsTeteOHNpHvmFyR
+	bJ1CaVRsl2zy9U8cD7RBydELfBTmjZRpmHlaSKgovQ==
+X-Google-Smtp-Source: AA0mqf4UCsBu1D97nJ9YPTAOxjZpIZD+4Zo1t+5b07vxu+xMr5BznyO+xLcwNu1yep/YxPziGCoxiERMD2iNfIPAuCQ=
+X-Received: by 2002:ac8:4e16:0:b0:39c:c4eb:bb4d with SMTP id
+ c22-20020ac84e16000000b0039cc4ebbb4dmr21791630qtw.551.1669477890905; Sat, 26
+ Nov 2022 07:51:30 -0800 (PST)
 MIME-Version: 1.0
 References: <ESKONbmzHUfJHobjSlZu00HJfQA4ligS3KoKlAlb5YQ@lists.ettus.com>
- <CAKHaR3nVrv08sLaGjv_Vv3SngthyP6r4+FKLZG6UwRhTE6Tg=g@mail.gmail.com> <650d5f9f-17e1-729e-575f-1317dea283c6@gmail.com>
-In-Reply-To: <650d5f9f-17e1-729e-575f-1317dea283c6@gmail.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Fri, 25 Nov 2022 11:19:46 -0600
-Message-ID: <CAFche=jqJO3atniNhWgrBs0+c_5giTRxGGXsuKWeB7v4PEPWUQ@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: 6FSKTXYPU4D52S4XUKWYBRET3KIE6JXB
-X-Message-ID-Hash: 6FSKTXYPU4D52S4XUKWYBRET3KIE6JXB
-X-MailFrom: wade.fife@ettus.com
+ <CAKHaR3nVrv08sLaGjv_Vv3SngthyP6r4+FKLZG6UwRhTE6Tg=g@mail.gmail.com>
+ <650d5f9f-17e1-729e-575f-1317dea283c6@gmail.com> <CAFche=jqJO3atniNhWgrBs0+c_5giTRxGGXsuKWeB7v4PEPWUQ@mail.gmail.com>
+In-Reply-To: <CAFche=jqJO3atniNhWgrBs0+c_5giTRxGGXsuKWeB7v4PEPWUQ@mail.gmail.com>
+From: Dario Pennisi <dario@iptronix.com>
+Date: Sat, 26 Nov 2022 16:51:18 +0100
+Message-ID: <CAKHaR3k26mQ6CQ=gbkHVqNUB=pxipg2CF9VvTBJb+j0267rS4w@mail.gmail.com>
+To: Wade Fife <wade.fife@ettus.com>
+Message-ID-Hash: MDIMZV5UJ6FUWKSDZFHZFFTDHMMDDCZ5
+X-Message-ID-Hash: MDIMZV5UJ6FUWKSDZFHZFFTDHMMDDCZ5
+X-MailFrom: dario@iptronix.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
+CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: x410 master clock rate
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6FSKTXYPU4D52S4XUKWYBRET3KIE6JXB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MDIMZV5UJ6FUWKSDZFHZFFTDHMMDDCZ5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1988888204261571658=="
+Content-Type: multipart/mixed; boundary="===============1327235344817395768=="
 
---===============1988888204261571658==
-Content-Type: multipart/alternative; boundary="00000000000071ace005ee4ebb0f"
+--===============1327235344817395768==
+Content-Type: multipart/alternative; boundary="000000000000a5edaa05ee619ce7"
 
---00000000000071ace005ee4ebb0f
+--000000000000a5edaa05ee619ce7
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Dario,
+Hi Wade,
+thank you very much! That indeed did the trick.
 
-It looks like this mode was never officially supported. I'm going to follow
-up with R&D on Monday (it's a holiday in the US), since I don't know if
-there's a reason this mode wasn't kept in the code. The recommended way to
-get 125 Msps is to use X4_200 with the DDC and a master clock rate of
-250e6. But it sounds like you need 125 Msps coming out of the radio.
+Dario Pennisi
 
-To get it to work the way you want, I think you just need to update the
-master_to_sample_clk dict as Piotr mentioned.
+On Fri, Nov 25, 2022 at 6:21 PM Wade Fife <wade.fife@ettus.com> wrote:
 
-https://github.com/EttusResearch/uhd/blob/321295fba49fb66ede365afbd9ef62971=
-cdfbfca/mpm/python/usrp_mpm/periph_manager/x4xx_rfdc_ctrl.py#L54
-
-Add an entry to the table with:
-
-125e6*1:       (3.00000e9, 8, False, False), # RF (1M-8G)
-
-Note that this file is part of MPM, so you actually need to edit this file
-on the X410 then restart it for it to take effect. This is where the file
-is on my X410:
-
-/usr/lib/python3.7/site-packages/usrp_mpm/periph_manager/x4xx_rfdc_ctrl.py
-
-After restarting the X410, you should be able to set the master_clock_rate
-to 125e6 as Marcus mentioned. If possible, I'll see if I can get this added
-to UHD so it will be available in the future.
-
-Thanks,
-
-Wade
-
-On Fri, Nov 25, 2022 at 9:32 AM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
-
-> On 25/11/2022 06:20, Dario Pennisi wrote:
+> Hi Dario,
 >
-> Hi Piotr,
-> thank you very much. i'll look into it. unfortunately it worked at 125 MH=
-z
-> on UHD 4.0 when most of the stuff was hardcoded... anyway I'll figure out=
-.
+> It looks like this mode was never officially supported. I'm going to
+> follow up with R&D on Monday (it's a holiday in the US), since I don't kn=
+ow
+> if there's a reason this mode wasn't kept in the code. The recommended wa=
+y
+> to get 125 Msps is to use X4_200 with the DDC and a master clock rate of
+> 250e6. But it sounds like you need 125 Msps coming out of the radio.
 >
-> Dario Pennisi
->
-> I'll note that UHD support for X410 wasn't *official* until UHD 4.1, so
-> anything that's based on 4.0 is based on code
->   that was nearly-guaranteed to be "fluid".
+> To get it to work the way you want, I think you just need to update the
+> master_to_sample_clk dict as Piotr mentioned.
 >
 >
+> https://github.com/EttusResearch/uhd/blob/321295fba49fb66ede365afbd9ef629=
+71cdfbfca/mpm/python/usrp_mpm/periph_manager/x4xx_rfdc_ctrl.py#L54
 >
-> On Fri, Nov 25, 2022 at 10:51 AM <perper@o2.pl> wrote:
+> Add an entry to the table with:
 >
->> Hello,
+> 125e6*1:       (3.00000e9, 8, False, False), # RF (1M-8G)
+>
+> Note that this file is part of MPM, so you actually need to edit this fil=
+e
+> on the X410 then restart it for it to take effect. This is where the file
+> is on my X410:
+>
+> /usr/lib/python3.7/site-packages/usrp_mpm/periph_manager/x4xx_rfdc_ctrl.p=
+y
+>
+> After restarting the X410, you should be able to set the master_clock_rat=
+e
+> to 125e6 as Marcus mentioned. If possible, I'll see if I can get this add=
+ed
+> to UHD so it will be available in the future.
+>
+> Thanks,
+>
+> Wade
+>
+> On Fri, Nov 25, 2022 at 9:32 AM Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
+>
+>> On 25/11/2022 06:20, Dario Pennisi wrote:
 >>
->> I recently experimented with adding new master clock definitions for X41=
-1
->> (my port of X410 code to ZCU111).
+>> Hi Piotr,
+>> thank you very much. i'll look into it. unfortunately it worked at 125
+>> MHz on UHD 4.0 when most of the stuff was hardcoded... anyway I'll figur=
+e
+>> out.
 >>
->> Here is a commit that does that:
+>> Dario Pennisi
+>>
+>> I'll note that UHD support for X410 wasn't *official* until UHD 4.1, so
+>> anything that's based on 4.0 is based on code
+>>   that was nearly-guaranteed to be "fluid".
 >>
 >>
->> https://github.com/ptrkrysik/uhd/commit/719257702b788703e24fa8595d190c70=
-114f5011
 >>
->> But the clocking chips on ZCU111 are different so from you perspective
->> the commit might be cluttered with useless stuff.
+>> On Fri, Nov 25, 2022 at 10:51 AM <perper@o2.pl> wrote:
 >>
->> From my experience the key are =E2=80=98master_to_sample_clk=E2=80=98 di=
-ct from
->> x4xx_rfdc_ctrl.py
->> <https://github.com/ptrkrysik/uhd/commit/719257702b788703e24fa8595d190c7=
-0114f5011#diff-512da83981e88a61c70b093f36b15628ec086f429613f79abc25234548a6=
-cfdc>
->> (currently there is no master clock rate of 125MS/s or 100MS/s,
->> there is 2*125MS/s or 200MS/s) and =E2=80=98prc_clock_map from=E2=80=99 =
-zcu111_clk_mgr.py
->> <https://github.com/ptrkrysik/uhd/commit/719257702b788703e24fa8595d190c7=
-0114f5011#diff-d91773ec3db6663fcee00c00022faff9981ec5902f6ae807f09f9519903f=
-e276>.
->> Maybe legacy mode (is_legacy_mode) is also relevant in your case.
->> I don=E2=80=99t what it was for exactly - I just removed it from X411 sp=
-ecific
->> code as I don=E2=80=99t have any =E2=80=98legacy=E2=80=99 stuff that I n=
-eed to support.
+>>> Hello,
+>>>
+>>> I recently experimented with adding new master clock definitions for
+>>> X411 (my port of X410 code to ZCU111).
+>>>
+>>> Here is a commit that does that:
+>>>
+>>>
+>>> https://github.com/ptrkrysik/uhd/commit/719257702b788703e24fa8595d190c7=
+0114f5011
+>>>
+>>> But the clocking chips on ZCU111 are different so from you perspective
+>>> the commit might be cluttered with useless stuff.
+>>>
+>>> From my experience the key are =E2=80=98master_to_sample_clk=E2=80=98 d=
+ict from
+>>> x4xx_rfdc_ctrl.py
+>>> <https://github.com/ptrkrysik/uhd/commit/719257702b788703e24fa8595d190c=
+70114f5011#diff-512da83981e88a61c70b093f36b15628ec086f429613f79abc25234548a=
+6cfdc>
+>>> (currently there is no master clock rate of 125MS/s or 100MS/s,
+>>> there is 2*125MS/s or 200MS/s) and =E2=80=98prc_clock_map from=E2=80=99
+>>> zcu111_clk_mgr.py
+>>> <https://github.com/ptrkrysik/uhd/commit/719257702b788703e24fa8595d190c=
+70114f5011#diff-d91773ec3db6663fcee00c00022faff9981ec5902f6ae807f09f9519903=
+fe276>.
+>>> Maybe legacy mode (is_legacy_mode) is also relevant in your case.
+>>> I don=E2=80=99t what it was for exactly - I just removed it from X411 s=
+pecific
+>>> code as I don=E2=80=99t have any =E2=80=98legacy=E2=80=99 stuff that I =
+need to support.
+>>>
+>>> Then you need to verify if =E2=80=98config=E2=80=98 function in x4xx_sa=
+mple_pll.py (and
+>>> maybe x4xx_reference_pll.py) contains everything that it should for
+>>> your needs. After short look it seems that it has what is needed as it
+>>> has definition of 100MHz VCXO for 3e9 sample clock.
+>>>
+>>> If this used to work once, and you know when it worked, then you task i=
+s
+>>> simpler - you need to look for changes in the mentioned files and espec=
+ially
+>>> in the structures that I pointed to.
+>>>
+>>> Best Regards,
+>>> Piotr Krysik
+>>> _______________________________________________
+>>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>>
 >>
->> Then you need to verify if =E2=80=98config=E2=80=98 function in x4xx_sam=
-ple_pll.py (and
->> maybe x4xx_reference_pll.py) contains everything that it should for
->> your needs. After short look it seems that it has what is needed as it
->> has definition of 100MHz VCXO for 3e9 sample clock.
->>
->> If this used to work once, and you know when it worked, then you task is
->> simpler - you need to look for changes in the mentioned files and especi=
-ally
->> in the structures that I pointed to.
->>
->> Best Regards,
->> Piotr Krysik
 >> _______________________________________________
 >> USRP-users mailing list -- usrp-users@lists.ettus.com
 >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >>
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000071ace005ee4ebb0f
+--000000000000a5edaa05ee619ce7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Dario,</div><div><br></div><div> It looks like thi=
-s mode was never officially supported.=20
+<div dir=3D"ltr">Hi Wade,<div>thank you very much! That indeed did the tric=
+k.</div><div><div><div><div dir=3D"ltr" class=3D"gmail_signature" data-smar=
+tmail=3D"gmail_signature"><div dir=3D"ltr"><span style=3D"color:rgb(0,0,0);=
+font-family:Calibri,sans-serif;font-size:13.3333px"><br></span></div><div d=
+ir=3D"ltr"><span style=3D"color:rgb(0,0,0);font-family:Calibri,sans-serif;f=
+ont-size:13.3333px">Dario Pennisi</span><br style=3D"color:rgb(0,0,0);font-=
+family:Calibri,sans-serif;font-size:13.3333px"></div></div></div></div></di=
+v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Fri, Nov 25, 2022 at 6:21 PM Wade Fife &lt;<a href=3D"mailto:wade.fife=
+@ettus.com">wade.fife@ettus.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Hi Dario,</div><div>=
+<br></div><div> It looks like this mode was never officially supported.=20
 I&#39;m going to follow up with R&amp;D on Monday (it&#39;s a holiday in th=
 e US), since I don&#39;t know if there&#39;s a reason this mode wasn&#39;t =
 kept in the code.
@@ -218,23 +248,24 @@ ter clock rate of 250e6. But it sounds like you need 125 Msps coming out of=
 , I think you just need to update the master_to_sample_clk dict as Piotr me=
 ntioned.</div><div><br></div><div><a href=3D"https://github.com/EttusResear=
 ch/uhd/blob/321295fba49fb66ede365afbd9ef62971cdfbfca/mpm/python/usrp_mpm/pe=
-riph_manager/x4xx_rfdc_ctrl.py#L54">https://github.com/EttusResearch/uhd/bl=
-ob/321295fba49fb66ede365afbd9ef62971cdfbfca/mpm/python/usrp_mpm/periph_mana=
-ger/x4xx_rfdc_ctrl.py#L54</a></div><div><br></div><div>Add an entry to the =
-table with:</div><div><br></div><div>125e6*1: =C2=A0 =C2=A0 =C2=A0 (3.00000=
-e9, 8, False, False), # RF (1M-8G)</div><div><br></div><div>Note that this =
-file is part of MPM, so you actually need to edit this file on the X410 the=
-n restart it for it to take effect. This is where the file is on my X410:<b=
-r></div><div><br></div><div>/usr/lib/python3.7/site-packages/usrp_mpm/perip=
-h_manager/x4xx_rfdc_ctrl.py</div><div><br></div><div>After restarting the X=
-410, you should be able to set the master_clock_rate to 125e6 as Marcus men=
-tioned. If possible, I&#39;ll see if I can get this added to UHD so it will=
- be available in the future.<br></div><div><br></div><div>Thanks,</div><div=
-><br></div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Fri, Nov 25, 2022 at 9:32 AM Marcus D. Lee=
-ch &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+riph_manager/x4xx_rfdc_ctrl.py#L54" target=3D"_blank">https://github.com/Et=
+tusResearch/uhd/blob/321295fba49fb66ede365afbd9ef62971cdfbfca/mpm/python/us=
+rp_mpm/periph_manager/x4xx_rfdc_ctrl.py#L54</a></div><div><br></div><div>Ad=
+d an entry to the table with:</div><div><br></div><div>125e6*1: =C2=A0 =C2=
+=A0 =C2=A0 (3.00000e9, 8, False, False), # RF (1M-8G)</div><div><br></div><=
+div>Note that this file is part of MPM, so you actually need to edit this f=
+ile on the X410 then restart it for it to take effect. This is where the fi=
+le is on my X410:<br></div><div><br></div><div>/usr/lib/python3.7/site-pack=
+ages/usrp_mpm/periph_manager/x4xx_rfdc_ctrl.py</div><div><br></div><div>Aft=
+er restarting the X410, you should be able to set the master_clock_rate to =
+125e6 as Marcus mentioned. If possible, I&#39;ll see if I can get this adde=
+d to UHD so it will be available in the future.<br></div><div><br></div><di=
+v>Thanks,</div><div><br></div><div>Wade<br></div></div><br><div class=3D"gm=
+ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Nov 25, 2022 at 9:=
+32 AM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com" target=
+=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
@@ -345,10 +376,16 @@ rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---00000000000071ace005ee4ebb0f--
+--000000000000a5edaa05ee619ce7--
 
---===============1988888204261571658==
+--===============1327235344817395768==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -358,4 +395,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1988888204261571658==--
+--===============1327235344817395768==--
