@@ -2,295 +2,367 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A5E364751A
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Dec 2022 18:48:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB3F647534
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Dec 2022 18:55:29 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id E5150384291
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Dec 2022 12:48:56 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 5A5343842C1
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Dec 2022 12:55:28 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1670521736; bh=YowXBvif34gxIdBBurej3BPmj1HvrFtnERDNGhBnap8=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	t=1670522128; bh=dwSr5LVjviUr7P/rZvMk97kWlPy1cRGx31TWvaIImSE=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=krZ+DSxttY1YnzrwqL4uknH5IjW3RPs8YTjao5KgwlZ7Ah50ptKEs2Mix6x7pfbH8
-	 E2IlLwPj6CtVW4306iUO0H4xm4GlmQORn2rziQerau3J1JNF/Np7zlICpUT+Xh2I9T
-	 kfmNWN+4a7kSHnYooZH6WzTl5j1+XL3wp3l7IMeFseMD6zK5zfPZlKE9K49lCpB4o7
-	 FBSXddq79Xe0KWD+scP2uUK8CoWyRuNONjQggNMDyNbor4ZB/+LC4Ctm7epUVU5WfX
-	 LaE5CGA32IaitpQ6n1DDWidujitQ+ui/PhVRAaC1Try6e4jcicz64VwxdhKBJU3hsM
-	 yrnQpRN7mniAg==
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2034.outbound.protection.outlook.com [40.92.42.34])
-	by mm2.emwd.com (Postfix) with ESMTPS id 490C33841F9
-	for <usrp-users@lists.ettus.com>; Thu,  8 Dec 2022 12:48:48 -0500 (EST)
+	b=bclJPhM24HZTSm4OnW2IG9Y3Zb7YbmlqGSpHx7UcCs3s2MjT0jE818ZRg8qNbvrKE
+	 hj0pYvJJ+UfdEVLEQU2EdnEvgbW42Fb5Hb4bQYnylNQRddoO9BWHXwl0R+4H5sH6ig
+	 eK/HDCJ19GWXtjDH37pbYNpHFsHOLKHOGjKgUrx9LA5LUoICE6hIyEnNszBvrCQ2zB
+	 0Kh61kFsxbL5sEHZlaFqjDoHMX9KHFwqZHkPAPjp5sXvIbkdOhNFm9SdNqd0ndOQWF
+	 yFWH0SHgqLc5PICn25FpuRrf5Nl5dHctan8xYHY/P0Ta/4WXqHm0CdhtAUl1XBX9HV
+	 xwlYpuiX0dWJA==
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id 061873841C5
+	for <usrp-users@lists.ettus.com>; Thu,  8 Dec 2022 12:55:18 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=hotmail.com header.i=@hotmail.com header.b="jcu+OEYk";
+	dkim=pass (1024-bit key; unprotected) header.d=eng.ucsd.edu header.i=@eng.ucsd.edu header.b="fvAauAnY";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aM5pMYhyIzJnf2mnclmY6oJW0Uvfto61pHNqGSIkjJmXT5GtLYwzJNtoSkd2roVPx8R7KDLJ7JLH/GwYF4jEBKHcTJsVhbs4dwzmXA0xYCyG9IBuKJEkDopKQFHLyjNc6VL+sQDv0vnHgPp+4PPlnPT7DzFq+iEmFSuHifpY28EgX1aVMVkKgPFYUua/nSu0KxqsxElCLMY9NETk7GTo9QXuc4Lq1xfKHAGGW9gl7hmKKq6ppv/tppc6IouMnCO/44BmNGuNvmKAvgotV9QF/EXXD7yyHpxtLp/Bize3HBQJG2i653zIFg5vezd+YKJxOATctJTclIVpmDu3Ekrw0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KVvmOv6fQr5sGziod7ccTbT06som1fs8FTum+ig5A6s=;
- b=h8Fmv7OdZhYvPrIF1a0oeZg8WaM/hZIZUB22738alkmNZMRAsjAsq8fQfoj1Qy0xKYl6XXkSc4iRNg+iXZqR35vKSFbG2KbEfT+bHiyIjqMJkG0GYh/HTDhIrHliqqYA4mPf6VZDOfebstwBFiaElK9XoT1hB1T4mz0gYwoc0EC/+BYEoaebfaENJ+XE2/UHss5R4yfCV/EY7Etsd+d6v0HKOYnavVasS/Izrfm7zIN+y2K2By7j8uPWhO9fJdeJLgq3Wh9TCy6NHEGMfuDYeKQq6pZKSB8dArbRqSAzWnw54zmfe8oSEC8ffmZxEKZhSFWOZoLUQzKC03QG7/OjXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KVvmOv6fQr5sGziod7ccTbT06som1fs8FTum+ig5A6s=;
- b=jcu+OEYkJs8TzyWdMMxss9gSpUjEl7+YAndec3hygVJ2OMnqyPZmXOFsv/54Hs44FrH4Z4AO9+jhoBn8JY0vcfnIz0udJSIPtnpqd5WTPFJH+KseIZeYbnVxZUQDwbYQ07jlzwoz2KkWdb5E3lEWopiDf9MvTFbwVXKEYsFzNDoVbMcwXzOfvl48y1VfXZoB41mYDSheoQkjTXsbB138Y4bXUr5I9lldvGWm5tcPj6zfgetzho2LEy5qBmaEsEsMJtBmubgAH940wlq17h86LtW2bJ2n7rOtOkfOvot4sGBZOEdN1TbVu7Lp+T3WP6UM33vwny0QYrN8lxYyPkBOZQ==
-Received: from MW4PR13MB5505.namprd13.prod.outlook.com (2603:10b6:303:180::15)
- by BLAPR13MB4609.namprd13.prod.outlook.com (2603:10b6:208:30f::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5880.16; Thu, 8 Dec
- 2022 17:48:45 +0000
-Received: from MW4PR13MB5505.namprd13.prod.outlook.com
- ([fe80::7b4e:12dd:79c3:96cd]) by MW4PR13MB5505.namprd13.prod.outlook.com
- ([fe80::7b4e:12dd:79c3:96cd%9]) with mapi id 15.20.5880.014; Thu, 8 Dec 2022
- 17:48:45 +0000
-From: Jeff S <e070832@hotmail.com>
-To: Raghav Subbaraman <rsubbaraman@eng.ucsd.edu>
-Thread-Topic: [USRP-users] X310 GPIO Latency
-Thread-Index: AdkK+MZmtb1oP3w3SpWqHI1v+Rv6jQAM3IwAAAAqGfA=
-Date: Thu, 8 Dec 2022 17:48:45 +0000
-Message-ID: 
- <MW4PR13MB55050E1B20434F9788293560A41D9@MW4PR13MB5505.namprd13.prod.outlook.com>
-References: 
- <MW4PR13MB55054A97A1A8AB37A19DB265A41D9@MW4PR13MB5505.namprd13.prod.outlook.com>
- <CAA9CoE1307bfR3cfNKtVL+nMfsgOZRA_7pGj+P_JVfNqx0AN0w@mail.gmail.com>
-In-Reply-To: 
- <CAA9CoE1307bfR3cfNKtVL+nMfsgOZRA_7pGj+P_JVfNqx0AN0w@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-tmn: [OtTteivZNdluQ3G4PDriz0ffw0I2xp7w]
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: MW4PR13MB5505:EE_|BLAPR13MB4609:EE_
-x-ms-office365-filtering-correlation-id: 402d83c2-dd0d-463f-fdf3-08dad9447446
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 0Jqnv9Mbk062Xog7OMtqs48j46m2UFWj2ElS//YmeonNiQQFYqQuQLXov8Xf/Vo24nP7peQJSZZYLhMgpfZgXWCgJJ6iksOgEqv4ZVY8oyqdCFDYqKeBpV3QeEQJLcV4KgHbzfpHNHSZmChmbGGqfLooefw6zXxoHH6Xp8i4DHvZQMNCDjNyYeYX3XDHk8yGIBVeQjchVf+t6Pdtg/AQw16kLXtLH/eSF6PM4CzyfxVcmPTrPlbyIGmhztbTCYzhU+vaSh/7vd+OS8Y61hQSqoeN1HDWBoaKnmTFH5WPzaMZwBhleUQuOoTkcwB2YjmkXrX3qlSUT9UMzZ9apaaODu5JwxuoxIvR+NBtXEljWaj/WEiQ+vZvZ1/VaH+bibxlyXzrDqZLfjhJ7gwLd36eVcGfWgMO5gG+y6fb44Bf9MtqtBS9YVG0Xr57nGEUZ7eGZPQbrvT/s55KcsydRn4mQ3YgpFuPa2DcsIzzneJ+7O/V91N9gj62YFeJPjMQ1mhrb3LyBktmvTrjN0IxXGc9tN3b1cNr10wsM2c7E2FhMkAOPy8wHb9/kGv5JeVbJARxYzu9l9YjFK7UBirMRHvZBHaoVb5JiqIma7HZ/gT057c=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?VmxFcVF2WS9qK0F5L2xENG9ZTmdpcnhUaGRCeHVRZWZtR3RWQjlOcGhUUzl5?=
- =?utf-8?B?T3dEdUZsbHNOcVZoRVpVVnhVaWsrd0VtQVJYUVRnNTQrUVhhOURqb0dUZ3l4?=
- =?utf-8?B?VG8zY0p6ZXpBTmZvQnJiZ1VwamdUS0pNWHZRdjdTS0kxaFdjbHF4T1dBZTNW?=
- =?utf-8?B?RzJoNi9TV1FKalpFWUh6Y2tMQmlLLzh1OVZqNU5FeVM1OXh6NmpQNzlkN285?=
- =?utf-8?B?N1VwRzJxS0RqNHpXelk3bXNSOHNoUTJHUXRwR2tsa0Y1dFZNS2pLYk9aa1FL?=
- =?utf-8?B?WjNlTWpLVzNaZmFBZzVxZmhpWmRySHNsN0JRSUdITFRXV1dzU1lDd2RoOGgv?=
- =?utf-8?B?ejQycGNLTy9IR01XNURvWTRFWnFBT0dXQThGVXRKZndpTEFRS3E1M1d2WVpI?=
- =?utf-8?B?ZjVZK1F4VDU0QlY5UWhHWUtyYStvTng3c3BMZTRWUkdCUWtrUmNGMjFpM3Zy?=
- =?utf-8?B?Tll2TDVyTXJDWUhIR2Y5czh5VkhRa1hoUHZjZGhJT0o0NlhhOHEwYUpKTmpY?=
- =?utf-8?B?bVNhempVejBMVjVCZTB6QTRUVWJYOW9Qem80YlhTV2wxTllvcURlUzFTcTNE?=
- =?utf-8?B?WWpiV1FQSlZyUnZCV0U3NWN0UEd1dVFmbVdJQ2d5TEROa2ZnV3diU2FQS1d6?=
- =?utf-8?B?eHFEeG9WRW5kUUpOUlR2Wmd2R2Z5bG1lNERzTWxqUG5ka3dlaEY0RGQ2VUZ4?=
- =?utf-8?B?dngybVpxSGZOcVJxU3crdkdwdGU2R3FGU0plb3BmSXJpdUNwVVZNL0VlYkwr?=
- =?utf-8?B?OThRRU10dkxiWlJxVmNITWVuY0FwZVJlMk1WS0c1WHg4M01UaHR0bjgvQzFN?=
- =?utf-8?B?S0pkMGxaeGxOV1d5ckljUGQzUnRIUDJSMVVpdERkMHU4c1RmQmdLeVRLYjN5?=
- =?utf-8?B?eUNTeVBvY3VzVE1BMWlrcy9RVHBiUS9LTENjQmU0RTB5YzJOc3BJOFpJNC9J?=
- =?utf-8?B?aHNjL2pGWDVUV1VPMzZzcE90OTZ4NzBYVlcwQmV2ZG5UMG1ncmFDWE50WGpJ?=
- =?utf-8?B?aWlTR2RrdjN0R3oxNXZXQi9VY3pLVXp0cnVJOS9xQmMzdlRUd0g3Z05TZk1z?=
- =?utf-8?B?bHdiVFpweDlxb0xHYW1DakNWYUZUdnF2ejlzRC9YajBkMlZvWnFsM0gwM25Y?=
- =?utf-8?B?SHRKWEQwMGhtRkNjbzFvQUhaUkNhSDQ0eEc2Y1NDVFAxWDlQTW5nK0Yxc0N4?=
- =?utf-8?B?T0NPVXJQRDYva3VyeVgyVVpzL3lQWCtSQzJSUDlsYlcrZ0ZhV1JvYXFJQWw2?=
- =?utf-8?B?dU1BVEtEVHNiY2tVTkRhTEFRVmxHSkJOaXo1Z3dsMXdVKzc3REpCUldPNGdh?=
- =?utf-8?B?ajFYQWgxSm4zc3U1eUxNNjliWnNaUWN5cVk2c29IZzB2T2YxSi9lbytVb3FZ?=
- =?utf-8?B?RnlIeFpmeHNQOGVlYklTQkNzazI0dGJoeXdXZWdSMFFScUliNDlRZlF0b0xS?=
- =?utf-8?B?YkN3bTl2ZFVzamJtcWdOK0Q4dDVNa203d3ZzU0VJWjdIUkNPUm1HTHFXZHRj?=
- =?utf-8?B?Mi9kemZLYzhzRjBqeGR0S1MxUXp5akxaQ0FIM1czc2ZZbVZ0eGRsMDJCNVk1?=
- =?utf-8?B?ZEtpQXNmNysyaWNLVDg4ZHkxNjNJSVhoNjNUUm5qQzZ5RFpUNG9yUHJWZ0R1?=
- =?utf-8?B?TjcrYWlubGxCMzd1SS9RNzZabE1ZUEtWVWw3RER6T2s0c0c5NEcwTTVON3Zs?=
- =?utf-8?Q?88+ymWG6AeAI2zzyXoWL?=
+Received: by mail-qt1-f174.google.com with SMTP id x28so1640046qtv.13
+        for <usrp-users@lists.ettus.com>; Thu, 08 Dec 2022 09:55:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=eng.ucsd.edu; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=dtEqGVuwX2wXtqpFgcTvE13mF006FiXFrUhfaPD8aaQ=;
+        b=fvAauAnYTZfGnRimJk6aqAPqssf6JpcaRoMLjYcMUdFBQFrqHWbtFpvKkaD1akzxvE
+         0+ymuRnlN6huQbLIfJZAtOL+EUCTv38nNepVBS4ReAfgTDXNSfHUgsdcCUcvTz6t13UI
+         mCgAguCgxVf53nfg2Nr+ms7sDl6orLpowSIOA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dtEqGVuwX2wXtqpFgcTvE13mF006FiXFrUhfaPD8aaQ=;
+        b=nPk4ZtrcTh+qXWy0O7akR61Bnf40AxYwSkuLYMYyvyfVQvJAoS1GqYK38RDdLcPEm9
+         poC7e6v2sLVhVzgpioo1up7nAh75vJQYiK94FC1waxg+zhXL4B1c1OnK0gTwVsi7Q+BV
+         rPdPl0FYqzs3W7ImZ7g6cs364I+yzrudEVQhGwIzYRcllHlRam8cmx02RlYvvy6QTfXK
+         ki+3z/wWajv5Lsmah4hVgYDuZcMIxCSsDatvIGBIaCaQFcXY2h1ZwbQkgVioLV0UGSmx
+         VA1G+y74RpCO+CtX/apsN8pjLIA7xBvA7s7I4Bg8iQqMy3eprUNoTw9Ii5xtdCPHfmeg
+         ztKQ==
+X-Gm-Message-State: ANoB5pnyyw2zpT0GTRIUtItULltfLLLVRHY+tGbJHff679bltYroRpkj
+	c6fbI7US6AZecRP9q5rOQ7tpnhDumWypkZhfmYE8+Rc7QnN2lJIo
+X-Google-Smtp-Source: AA0mqf6fEccFnzrPmRKWW+20DGa6DbTKJhKxuwsMzq/G2IVfYjCnvf+YgRogVyyomip2Hp3Hh+SAbBez96hmthHwjOI=
+X-Received: by 2002:a05:622a:5c96:b0:3a5:2bae:77e9 with SMTP id
+ ge22-20020a05622a5c9600b003a52bae77e9mr73709717qtb.318.1670522116828; Thu, 08
+ Dec 2022 09:55:16 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: sct-15-20-4778-2-msonline-outlook-da780.templateTenant
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR13MB5505.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 402d83c2-dd0d-463f-fdf3-08dad9447446
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Dec 2022 17:48:45.8003
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR13MB4609
-Message-ID-Hash: GTUZXC5KNBIDJD44RHUOWR6V4M4EBHFM
-X-Message-ID-Hash: GTUZXC5KNBIDJD44RHUOWR6V4M4EBHFM
-X-MailFrom: e070832@hotmail.com
+References: <MW4PR13MB55054A97A1A8AB37A19DB265A41D9@MW4PR13MB5505.namprd13.prod.outlook.com>
+ <CAA9CoE1307bfR3cfNKtVL+nMfsgOZRA_7pGj+P_JVfNqx0AN0w@mail.gmail.com> <MW4PR13MB55050E1B20434F9788293560A41D9@MW4PR13MB5505.namprd13.prod.outlook.com>
+In-Reply-To: <MW4PR13MB55050E1B20434F9788293560A41D9@MW4PR13MB5505.namprd13.prod.outlook.com>
+From: Raghav Subbaraman <rsubbaraman@eng.ucsd.edu>
+Date: Thu, 8 Dec 2022 09:55:06 -0800
+Message-ID: <CAA9CoE1qmUb27U96wYKx7UJvOUzyrpMzAXD1PyjFh2Tj-qSgdQ@mail.gmail.com>
+To: Jeff S <e070832@hotmail.com>
+Message-ID-Hash: AM32CQ6KSMUBOXZYUZJYEKFTERHOGI6S
+X-Message-ID-Hash: AM32CQ6KSMUBOXZYUZJYEKFTERHOGI6S
+X-MailFrom: rsubbaraman@eng.ucsd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: X310 GPIO Latency
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AVCAWV6MFRASN5UVGTK2K6IF4FNCTTUJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AM32CQ6KSMUBOXZYUZJYEKFTERHOGI6S/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0015042644112447635=="
+Content-Type: multipart/mixed; boundary="===============4666944315408328410=="
 
---===============0015042644112447635==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_MW4PR13MB55050E1B20434F9788293560A41D9MW4PR13MB5505namp_"
+--===============4666944315408328410==
+Content-Type: multipart/alternative; boundary="0000000000005cfe3905ef54bd2b"
 
---_000_MW4PR13MB55050E1B20434F9788293560A41D9MW4PR13MB5505namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000005cfe3905ef54bd2b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-UmFnaGF2LA0KDQpJIHdhcyBsb29raW5nIGludG8gdGltZWQgY29tbWFuZHMgZm9yIHRoZSBvdXRw
-dXRzLCBidXQgaG93IGRvIHlvdSB0aW1lIHRoZSBpbnB1dCB0byBHUElPIGFuZCBjYXVzZSB0aGUg
-dGltZWQgb3V0cHV0cyB0byB3YWl0IGZvciB0aGUgaW5wdXQgdG8gYmUgYWN0aXZlPw0KDQpSZWdh
-cmRzLA0KSmVmZg0KDQpGcm9tOiBSYWdoYXYgU3ViYmFyYW1hbiA8cnN1YmJhcmFtYW5AZW5nLnVj
-c2QuZWR1Pg0KU2VudDogVGh1cnNkYXksIERlY2VtYmVyIDgsIDIwMjIgMTE6NDEgQU0NClRvOiBK
-ZWZmIFMgPGUwNzA4MzJAaG90bWFpbC5jb20+DQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vyc10gWDMxMCBHUElPIExhdGVuY3kNCg0KSGkgSmVm
-ZiwNCg0KV2UgaGF2ZSB1c2VkIFRpbWVkIGNvbW1hbmRzIHRvIGNvbnRyb2wgdGhlIEdQSU8gc2V0
-L3Vuc2V0IHRpbWluZyBhY2N1cmF0ZWx5IChVSEQgNC4xLjUgKyBHTlVSYWRpbyAzLjguMikuIFdl
-IGhhdmUgc2VlbiB0aGF0IHRoZSBHUElPcyBjYW4gYmUgY29udHJvbGxlZCB3aXRoIDEwcyBvZiBu
-cyBvZiBhY2N1cmFjeSBpbiB0aGUgWDMxMC4NCg0KQmVzdCwNClJhZ2hhdg0KDQpPbiBUaHUsIERl
-YyA4LCAyMDIyIGF0IDM6MzQgQU0gSmVmZiBTIDxlMDcwODMyQGhvdG1haWwuY29tPG1haWx0bzpl
-MDcwODMyQGhvdG1haWwuY29tPj4gd3JvdGU6DQpJ4oCZdmUgYmVlbiB3b3JraW5nIG9uIGEgc29m
-dHdhcmUga2V5aW5nIGxvb3Agd2l0aCB0aGUgR1BJTyBvbiBhbiBYMzEwLCBhbmQgSSBtZWFzdXJl
-ZCB0aGUgbGF0ZW5jeSBmb3Igc2V0dGluZyBhIEdQSU8gcGluIG91dHB1dCB3cmFwcGVkIGJhY2sg
-aW50byBhIEdQSU8gaW5wdXQgdG8gYmUgYXJvdW5kIDUgbXMgb24gYXZlcmFnZS4gIFRoaXMgd2Fz
-IGRvbmUgYnkgc2V0dGluZyBhIHBpbiBtYW51YWxseSwgYW5kIHRoZW4gaW1tZWRpYXRlbHkgcG9s
-bGluZyB0aGUgaW5wdXQgcGluIHRvIHNlZSBob3cgbG9uZyBiZWZvcmUgaXQgc3dpdGNoZWQgc3Rh
-dGVzLg0KDQpJIGhhdmVu4oCZdCBoYWQgYW55b25lIHdobyBjb3VsZCBsb29rIGF0IHRoZSBGUEdB
-IHNpZGUgb2YgdGhlIFgzMTAgeWV0LCBidXQgSSB3YXMgd29uZGVyaW5nIGlmIGl0IHdvdWxkIGJl
-IGV2ZW4gcG9zc2libGUgdG8gaW1wbGVtZW50IHNvbWV0aGluZyBpbiB0aGUgRlBHQSBsaWtlIHRo
-ZSBBVFIgZnVuY3Rpb25hbGl0eSwgZXhjZXB0IGl0IHdvdWxkIGFsbG93IGZvciBhIGtleWluZyBs
-b29wIChhIENsZWFyIHRvIFNlbmQgR1BJTyBvdXRwdXQgd3JhcHBpbmcgdG8gYSBSZXF1ZXN0IHRv
-IFNlbmQgR1BJTyBpbnB1dCkgYW5kIHByZXZlbnQgdHJhbnNtaXNzaW9uIHVudGlsIHRoZSBjb25k
-aXRpb24gd2FzIHRydWUuICBJ4oCZbSBob3BpbmcgdGhhdCB3b3VsZCBzaWduaWZpY2FudGx5IGRl
-Y3JlYXNlIHRoZSBsYXRlbmN5IChsZXNzIHRoYW4gMSBtcywgaG9wZWZ1bGx5KSBpZiBJIGRvbuKA
-mXQgaGF2ZSB0byBib3RoZXIgcG9sbGluZyB0aGUgcGluLg0KDQpSaWdodCBub3cgSeKAmW0gdXNp
-bmc6ICBVSEQgNC4wLCBhbmQgR05VIFJhZGlvIDMuOS41Lg0KDQpUaGFua3MgYW5kIHJlZ2FyZHMs
-DQpKZWZmDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxt
-YWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
-IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVz
-ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg0KDQotLQ0KUmFnaGF2IFN1YmJhcmFtYW4NClBo
-RCBTdHVkZW50LCBFQ0UNClVuaXZlcnNpdHkgb2YgQ2FsaWZvcm5pYSBTYW4gRGllZ28NCnJzdWJi
-YXJhbWFuLmdpdGh1Yi5pbzxodHRwczovL3JzdWJiYXJhbWFuLmdpdGh1Yi5pbz4NCg==
+If you want a GPIO to trigger a transmission, then to my knowledge, it is
+not possible with software in the loop (assuming the requirement is sub-ms
+latency).
 
---_000_MW4PR13MB55050E1B20434F9788293560A41D9MW4PR13MB5505namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+There is a hacky way to do it, which is to hook up your external GPIO
+trigger to the PPS input of the X300 (
+https://lists.gnu.org/archive/html/discuss-gnuradio/2015-09/msg00010.html)
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
-bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
-b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
-CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
-ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
-eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
-IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
-eSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3Jh
-cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5SYWdoYXYsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgd2FzIGxvb2tpbmcgaW50
-byB0aW1lZCBjb21tYW5kcyBmb3IgdGhlIG91dHB1dHMsIGJ1dCBob3cgZG8geW91IHRpbWUgdGhl
-IGlucHV0IHRvIEdQSU8gYW5kIGNhdXNlIHRoZSB0aW1lZCBvdXRwdXRzIHRvIHdhaXQgZm9yIHRo
-ZSBpbnB1dCB0byBiZSBhY3RpdmU/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlJlZ2FyZHMsPG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5KZWZmPG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXYgc3R5bGU9ImJv
-cmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBp
-biAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiBSYWdoYXYgU3Vi
-YmFyYW1hbiAmbHQ7cnN1YmJhcmFtYW5AZW5nLnVjc2QuZWR1Jmd0OyA8YnI+DQo8Yj5TZW50Ojwv
-Yj4gVGh1cnNkYXksIERlY2VtYmVyIDgsIDIwMjIgMTE6NDEgQU08YnI+DQo8Yj5Ubzo8L2I+IEpl
-ZmYgUyAmbHQ7ZTA3MDgzMkBob3RtYWlsLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHVzcnAtdXNl
-cnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11c2Vyc10g
-WDMxMCBHUElPIExhdGVuY3k8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-SGkgSmVmZiw8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldl
-IGhhdmUgdXNlZCBUaW1lZCBjb21tYW5kcyB0byBjb250cm9sIHRoZSBHUElPIHNldC91bnNldCB0
-aW1pbmcgYWNjdXJhdGVseSAoVUhEIDQuMS41ICsgR05VUmFkaW8gMy44LjIpLiBXZSBoYXZlIHNl
-ZW4gdGhhdCB0aGUgR1BJT3MgY2FuIGJlIGNvbnRyb2xsZWQgd2l0aCAxMHMgb2YgbnMgb2YgYWNj
-dXJhY3kgaW4gdGhlIFgzMTAuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPkJlc3QsPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj5SYWdoYXY8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gVGh1LCBEZWMgOCwgMjAyMiBhdCAzOjM0IEFNIEplZmYg
-UyAmbHQ7PGEgaHJlZj0ibWFpbHRvOmUwNzA4MzJAaG90bWFpbC5jb20iPmUwNzA4MzJAaG90bWFp
-bC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUg
-c3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGlu
-ZzowaW4gMGluIDBpbiA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGluIj4N
-CjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
-Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+SeKAmXZlIGJlZW4g
-d29ya2luZyBvbiBhIHNvZnR3YXJlIGtleWluZyBsb29wIHdpdGggdGhlIEdQSU8gb24gYW4gWDMx
-MCwgYW5kIEkgbWVhc3VyZWQgdGhlIGxhdGVuY3kgZm9yIHNldHRpbmcgYSBHUElPIHBpbiBvdXRw
-dXQgd3JhcHBlZCBiYWNrIGludG8gYSBHUElPIGlucHV0IHRvIGJlIGFyb3VuZCA1IG1zIG9uDQog
-YXZlcmFnZS4mbmJzcDsgVGhpcyB3YXMgZG9uZSBieSBzZXR0aW5nIGEgcGluIG1hbnVhbGx5LCBh
-bmQgdGhlbiBpbW1lZGlhdGVseSBwb2xsaW5nIHRoZSBpbnB1dCBwaW4gdG8gc2VlIGhvdyBsb25n
-IGJlZm9yZSBpdCBzd2l0Y2hlZCBzdGF0ZXMuPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
-YWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
-bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5J
-IGhhdmVu4oCZdCBoYWQgYW55b25lIHdobyBjb3VsZCBsb29rIGF0IHRoZSBGUEdBIHNpZGUgb2Yg
-dGhlIFgzMTAgeWV0LCBidXQgSSB3YXMgd29uZGVyaW5nIGlmIGl0IHdvdWxkIGJlIGV2ZW4gcG9z
-c2libGUgdG8gaW1wbGVtZW50IHNvbWV0aGluZyBpbiB0aGUgRlBHQSBsaWtlIHRoZSBBVFIgZnVu
-Y3Rpb25hbGl0eSwNCiBleGNlcHQgaXQgd291bGQgYWxsb3cgZm9yIGEga2V5aW5nIGxvb3AgKGEg
-Q2xlYXIgdG8gU2VuZCBHUElPIG91dHB1dCB3cmFwcGluZyB0byBhIFJlcXVlc3QgdG8gU2VuZCBH
-UElPIGlucHV0KSBhbmQgcHJldmVudCB0cmFuc21pc3Npb24gdW50aWwgdGhlIGNvbmRpdGlvbiB3
-YXMgdHJ1ZS4mbmJzcDsgSeKAmW0gaG9waW5nIHRoYXQgd291bGQgc2lnbmlmaWNhbnRseSBkZWNy
-ZWFzZSB0aGUgbGF0ZW5jeSAobGVzcyB0aGFuIDEgbXMsIGhvcGVmdWxseSkgaWYgSQ0KIGRvbuKA
-mXQgaGF2ZSB0byBib3RoZXIgcG9sbGluZyB0aGUgcGluLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
-YXV0byI+UmlnaHQgbm93IEnigJltIHVzaW5nOiZuYnNwOyBVSEQgNC4wLCBhbmQgR05VIFJhZGlv
-IDMuOS41LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
-YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpw
-PjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1h
-bHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+VGhhbmtzIGFuZCByZWdhcmRzLDxv
-OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
-LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5KZWZmPG86cD48L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNv
-LW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJl
-Zj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1
-c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
-IGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
-bSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+
-PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PGJyIGNsZWFyPSJhbGwiPg0KPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPi0tIDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRp
-dj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+UmFnaGF2IFN1YmJhcmFtYW48
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+UGhEIFN0dWRlbnQsIEVDRTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+VW5pdmVyc2l0eSBvZiBDYWxpZm9ybmlhIFNhbiBEaWVnbzxvOnA+PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGEgaHJlZj0iaHR0
-cHM6Ly9yc3ViYmFyYW1hbi5naXRodWIuaW8iIHRhcmdldD0iX2JsYW5rIj5yc3ViYmFyYW1hbi5n
-aXRodWIuaW88L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+If you want external events to trigger radio transmission/reception
+behavior, you'll have to mess with the FPGA code.
 
---_000_MW4PR13MB55050E1B20434F9788293560A41D9MW4PR13MB5505namp_--
+Best,
+Raghav
 
---===============0015042644112447635==
+
+On Thu, Dec 8, 2022 at 9:48 AM Jeff S <e070832@hotmail.com> wrote:
+
+> Raghav,
+>
+>
+>
+> I was looking into timed commands for the outputs, but how do you time th=
+e
+> input to GPIO and cause the timed outputs to wait for the input to be
+> active?
+>
+>
+>
+> Regards,
+>
+> Jeff
+>
+>
+>
+> *From:* Raghav Subbaraman <rsubbaraman@eng.ucsd.edu>
+> *Sent:* Thursday, December 8, 2022 11:41 AM
+> *To:* Jeff S <e070832@hotmail.com>
+> *Cc:* usrp-users@lists.ettus.com
+> *Subject:* Re: [USRP-users] X310 GPIO Latency
+>
+>
+>
+> Hi Jeff,
+>
+>
+>
+> We have used Timed commands to control the GPIO set/unset timing
+> accurately (UHD 4.1.5 + GNURadio 3.8.2). We have seen that the GPIOs can =
+be
+> controlled with 10s of ns of accuracy in the X310.
+>
+>
+>
+> Best,
+>
+> Raghav
+>
+>
+>
+> On Thu, Dec 8, 2022 at 3:34 AM Jeff S <e070832@hotmail.com> wrote:
+>
+> I=E2=80=99ve been working on a software keying loop with the GPIO on an X=
+310, and
+> I measured the latency for setting a GPIO pin output wrapped back into a
+> GPIO input to be around 5 ms on average.  This was done by setting a pin
+> manually, and then immediately polling the input pin to see how long befo=
+re
+> it switched states.
+>
+>
+>
+> I haven=E2=80=99t had anyone who could look at the FPGA side of the X310 =
+yet, but
+> I was wondering if it would be even possible to implement something in th=
+e
+> FPGA like the ATR functionality, except it would allow for a keying loop =
+(a
+> Clear to Send GPIO output wrapping to a Request to Send GPIO input) and
+> prevent transmission until the condition was true.  I=E2=80=99m hoping th=
+at would
+> significantly decrease the latency (less than 1 ms, hopefully) if I don=
+=E2=80=99t
+> have to bother polling the pin.
+>
+>
+>
+> Right now I=E2=80=99m using:  UHD 4.0, and GNU Radio 3.9.5.
+>
+>
+>
+> Thanks and regards,
+>
+> Jeff
+>
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+>
+>
+> --
+>
+> Raghav Subbaraman
+>
+> PhD Student, ECE
+>
+> University of California San Diego
+>
+> rsubbaraman.github.io
+>
+
+
+--=20
+Raghav Subbaraman
+PhD Student, ECE
+University of California San Diego
+rsubbaraman.github.io
+
+--0000000000005cfe3905ef54bd2b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">If you want a GPIO to trigger a transmission, then to my k=
+nowledge, it is not possible with software in the loop (assuming the requir=
+ement is sub-ms latency).<div><br></div><div>There is a hacky way to do it,=
+ which is to hook up your external GPIO trigger to the PPS input of the X30=
+0 (<a href=3D"https://lists.gnu.org/archive/html/discuss-gnuradio/2015-09/m=
+sg00010.html">https://lists.gnu.org/archive/html/discuss-gnuradio/2015-09/m=
+sg00010.html</a>)<br><br>If you want external events to trigger radio trans=
+mission/reception behavior, you&#39;ll have to mess with the FPGA code.<br>=
+<br>Best,<br>Raghav</div><div><br></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Dec 8, 2022 at 9:48 AM Jeff=
+ S &lt;<a href=3D"mailto:e070832@hotmail.com">e070832@hotmail.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=
+=3D"msg-7598738134960921203">
+
+
+
+
+
+<div lang=3D"EN-US" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_-7598738134960921203WordSection1">
+<p class=3D"MsoNormal">Raghav,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I was looking into timed commands for the outputs, b=
+ut how do you time the input to GPIO and cause the timed outputs to wait fo=
+r the input to be active?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Regards,<u></u><u></u></p>
+<p class=3D"MsoNormal">Jeff<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0in 0in">
+<p class=3D"MsoNormal"><b>From:</b> Raghav Subbaraman &lt;<a href=3D"mailto=
+:rsubbaraman@eng.ucsd.edu" target=3D"_blank">rsubbaraman@eng.ucsd.edu</a>&g=
+t; <br>
+<b>Sent:</b> Thursday, December 8, 2022 11:41 AM<br>
+<b>To:</b> Jeff S &lt;<a href=3D"mailto:e070832@hotmail.com" target=3D"_bla=
+nk">e070832@hotmail.com</a>&gt;<br>
+<b>Cc:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a><br>
+<b>Subject:</b> Re: [USRP-users] X310 GPIO Latency<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi Jeff,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">We have used Timed commands to control the GPIO set/=
+unset timing accurately (UHD 4.1.5 + GNURadio 3.8.2). We have seen that the=
+ GPIOs can be controlled with 10s of ns of accuracy in the X310.<u></u><u><=
+/u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Best,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Raghav<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Thu, Dec 8, 2022 at 3:34 AM Jeff S &lt;<a href=3D=
+"mailto:e070832@hotmail.com" target=3D"_blank">e070832@hotmail.com</a>&gt; =
+wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0in 0in 0in 6pt;margin-left:4=
+.8pt;margin-right:0in">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">I=E2=80=99ve been working on a software keying loop =
+with the GPIO on an X310, and I measured the latency for setting a GPIO pin=
+ output wrapped back into a GPIO input to be around 5 ms on
+ average.=C2=A0 This was done by setting a pin manually, and then immediate=
+ly polling the input pin to see how long before it switched states.<u></u><=
+u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">I haven=E2=80=99t had anyone who could look at the F=
+PGA side of the X310 yet, but I was wondering if it would be even possible =
+to implement something in the FPGA like the ATR functionality,
+ except it would allow for a keying loop (a Clear to Send GPIO output wrapp=
+ing to a Request to Send GPIO input) and prevent transmission until the con=
+dition was true.=C2=A0 I=E2=80=99m hoping that would significantly decrease=
+ the latency (less than 1 ms, hopefully) if I
+ don=E2=80=99t have to bother polling the pin.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Right now I=E2=80=99m using:=C2=A0 UHD 4.0, and GNU =
+Radio 3.9.5.<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<p class=3D"MsoNormal">Thanks and regards,<u></u><u></u></p>
+<p class=3D"MsoNormal">Jeff<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal">_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">
+usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">
+usrp-users-leave@lists.ettus.com</a><u></u><u></u></p>
+</div>
+</blockquote>
+</div>
+<p class=3D"MsoNormal"><br clear=3D"all">
+<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<p class=3D"MsoNormal">-- <u></u><u></u></p>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal">Raghav Subbaraman<u></u><u></u></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal">PhD Student, ECE<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">University of California San Diego<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><a href=3D"https://rsubbaraman.github.io" target=3D"=
+_blank">rsubbaraman.github.io</a><u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div></blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=
+=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><=
+div><div dir=3D"ltr">Raghav Subbaraman</div></div><div>PhD Student, ECE</di=
+v><div>University of California San Diego</div><div><a href=3D"https://rsub=
+baraman.github.io" target=3D"_blank">rsubbaraman.github.io</a></div></div><=
+/div></div></div>
+
+--0000000000005cfe3905ef54bd2b--
+
+--===============4666944315408328410==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -300,4 +372,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0015042644112447635==--
+--===============4666944315408328410==--
