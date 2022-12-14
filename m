@@ -2,68 +2,69 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B47F64C7C4
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Dec 2022 12:16:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64BAA64C888
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Dec 2022 12:59:15 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 213E2384179
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Dec 2022 06:16:47 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4BE113841DB
+	for <lists+usrp-users@lfdr.de>; Wed, 14 Dec 2022 06:59:14 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1671016607; bh=U9r2AzX9h444b9y8RIORHCLgEKA19uuGgLEgQigdO6E=;
+	t=1671019154; bh=fgsikFog4RN1EsukqzvKm6LgMqFeVPiLoeI8/7eM8d4=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=ehhoqaklmCAbc9/9A67w5/BxQ9BSwq4G00QxRvcudE0sa/EoaCaI/xMeyKWnmo0En
-	 Xp5Lplx9RGSo1moD5Lk8lE7DN9bYHtOQoH5yj8TsxLIHqwyCTYeJlZ/NPJtGaxT57k
-	 1BiDpX8Al0csXFhXu2Lxkalt4hHrduW6ZhdLs2CeRmR4tdLy/t5gOgcbKpJ9x93oYS
-	 E9NP4Uj/PgrauTw6ROn+W5fOX9AT7yejnTxvPaPt0fDxkAmErSjQXK4UwFQQFGZ/Uf
-	 lDtXVHxquHEpGkfSlcBnMiRzxESximT9LjI7H9EsK5q8b5Tdt0IarlcCjrath/D8e6
-	 ZdEC60aNyx7QA==
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 34988383E85
-	for <usrp-users@lists.ettus.com>; Wed, 14 Dec 2022 06:16:39 -0500 (EST)
+	b=eZNA5ghltxegH6F7rtISveWSuWquYp2mjWflOylbpHREGikYtOBLdFHeiTB1P2MTf
+	 iDLTTa1JhJYGmaG80FP1iD6aTuvCXK39lzQBGdLotfL20WcGXJFEo+t6l0vt2KreGH
+	 0e/MSCzLotGF8kq/AoxozryQjhUGk9dhxIYjyiIeYaEin/vl2IB3IO2FmpC954Su3o
+	 BU6idVn07sF3bVw3G1HAG0n1gRPs+Gu2UvgmxCUE/pDTSvYOEgKSAJJF7kRsfpMIbf
+	 GWrPOdq6UELduYWAmABmy/xD5KhesrIPb5CYlKwzw7ugBwH9150B8R08aES6bkyJpR
+	 jSLCY3aGL50Xg==
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 79C63380B20
+	for <usrp-users@lists.ettus.com>; Wed, 14 Dec 2022 06:59:05 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g3tw/QQE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mCesUN4H";
 	dkim-atps=neutral
-Received: by mail-ej1-f54.google.com with SMTP id tz12so21041644ejc.9
-        for <usrp-users@lists.ettus.com>; Wed, 14 Dec 2022 03:16:39 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id n20so43966507ejh.0
+        for <usrp-users@lists.ettus.com>; Wed, 14 Dec 2022 03:59:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=3IemkKT5gGxl2RrT3gVoN6H2q8PRpbu3OEpZieNjq7U=;
-        b=g3tw/QQE7bAH18ovMz5qw2xvdzDuj6QjUVBIw/SfKWM14m+Lb62kQIzoUmIKEyAoKG
-         u9Kh5dzLUQTt30kySXbjNgdX9LWidOMBaAlNCcpbXfc+qPw/rGSMIs6D3j0OskaVd+qf
-         fgY+Rjg+sUiejcbc0vxXJYLcpMcDJTvwuyBttqCOc6YzQ9cp538XoY47cl3lqTGG2hqB
-         d0dbPbD27s9MtKaBi03PzZqQIKjTQ781a5RgcCbW24R7wAou/GovYlIU3tin26R2ZfFX
-         KAfjLgnhdotWF9pskj//xfLebdsaJ6aj6POe7tw2H5wy5z+Fa08S690lR/doDC2Haklu
-         Z3ng==
+        bh=lX7J449e7uQbcmAHG6Vw27RyXLw3/V1er10973tFcxI=;
+        b=mCesUN4HINzJX7rOvQnmlCGMI+qRi1rHJThPqubcQF3N21PQ73DLv55e7RvwA2c5vc
+         kiF3N9pGvQ4JfKTRXs7u+v+42PU21kzC/DxQ/kF2BkoLoP0RfCDjurjrSiNIVVOE9OKI
+         YLh/ofUMbdWoTQjTFH6S686o3GyvEkzbnwCxuCrEh+lp4rtfeE9lS/UBVAS9E109GCYY
+         TEiDeVhQmrYH6zUCac2XkYEKUNR/GmcH28rKnHCWuPtkRrJUyREFW+OOgxYkvjpcsK0A
+         sOMa07f01ZQeIe1KlIQ5I+Q0ApyTW+G4jM+TJQC1qFtd0tGwusA5vUoLatZpGijDkkiC
+         MxHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3IemkKT5gGxl2RrT3gVoN6H2q8PRpbu3OEpZieNjq7U=;
-        b=Ywlv++jE17FchNnkd9lhryopLXfhN2uLbSdUh11tFr/BeckQv3XDNo8OrSvwHZtwsF
-         8deCj9uFrlbV9Xc5RgXtHbNduDD3/CfVRJVK4gZUSenWZ4cj/QK/mr12tzV3UeXbntDH
-         7GdkSIDLlkDMcGduD1cj2c9xOjBwxFl0bEEtvzu4+VG5hKLcj0uon3bX37Pmvih2SWC3
-         FItZGJdG97ZFEIkd09IR8hHqpk7pn/A/XMkmFyFVnADE+uqXzR7K0i2O7zRsdVdoI8E0
-         ppFnRD8zSfK+bY8wZOYrsrRlg7knpVnAV/GbD+CiyUmE9e2f3U6LRxcFIc1/nR/fcto4
-         Q8JA==
-X-Gm-Message-State: ANoB5pls7eeAqZh3mA+LdMj1YAfI2vHobb3cz6xjlqXYyjeUzU4lEtPM
-	UUT89RVO3kkRP3cyHdW3yhTzX/ooYuoM5AKhwtU=
-X-Google-Smtp-Source: AA0mqf5btUp3nGnz3VNvtvjDb8bhixjLSheAIOuwsVypKJIBknl2xIKYxQosw9o8Ip9FtMB08wDDTsH9b3zR4OMesHI=
-X-Received: by 2002:a17:907:c5c7:b0:7c1:75e9:1184 with SMTP id
- ts7-20020a170907c5c700b007c175e91184mr865820ejc.40.1671016597457; Wed, 14 Dec
- 2022 03:16:37 -0800 (PST)
+        bh=lX7J449e7uQbcmAHG6Vw27RyXLw3/V1er10973tFcxI=;
+        b=49SBppG6LXdrNVNYPm4YG2e5rn8pXYZmdlRJD9Cs3dArQs5Ml3RtunX7nx1cro42c5
+         W4DHdTg2ozCJ/vWJ0ZuGcB0GiciYDn02OTy0junNrJhbfdRqcKnzYQpektneCnAskTuR
+         BlcUWgTKM+1quD7msnfIfD0SMLYIHx/CuOVKm8CvBMYedDrKGJLrEHfhDlzwN3V7lVmU
+         lZuEJoGYRrkAVNOmsrG8jnIBZnfIQV2kfmuKn1k1zq3SswHE19+GB5+j2QnIWHwO0YaD
+         j6FmJEFW+Tx9zSnXyuvXzFZtIm/z4MakfLzwXiqvuNWP0gayBofq0b6x+mqOZTR+bUIA
+         +L5A==
+X-Gm-Message-State: ANoB5pkMs3/xAapgx/SwNyhQt33OehDljPz+UFaYAu6sweUJhJ/PRp/j
+	COkXdbXWDLqlflfU4f5tFdinfoHS6WCS2yQa71PQ8IMs
+X-Google-Smtp-Source: AA0mqf4PzvJziabYExq8fJMwyVr/i32u93VggE16wqdhjb0/92SPW1o/hgIufyvFIDVbt0exnOatt6e8TGRQoXO1Gh0=
+X-Received: by 2002:a17:907:77c1:b0:7b2:ace3:f3 with SMTP id
+ kz1-20020a17090777c100b007b2ace300f3mr79183424ejc.341.1671019143505; Wed, 14
+ Dec 2022 03:59:03 -0800 (PST)
 MIME-Version: 1.0
-References: <363a4fd6.4074.18505de417a.Coremail.ying2011@126.com> <1e0640a5-c421-76aa-7fb8-12cbf9d720c9@gmail.com>
-In-Reply-To: <1e0640a5-c421-76aa-7fb8-12cbf9d720c9@gmail.com>
+References: <363a4fd6.4074.18505de417a.Coremail.ying2011@126.com>
+ <1e0640a5-c421-76aa-7fb8-12cbf9d720c9@gmail.com> <CAAxXO2F7LGqsixs8xLfqijCYz0W4Yn-c6W8TB89BroVWtCSo6g@mail.gmail.com>
+In-Reply-To: <CAAxXO2F7LGqsixs8xLfqijCYz0W4Yn-c6W8TB89BroVWtCSo6g@mail.gmail.com>
 From: Nikos Balkanas <nbalkanas@gmail.com>
-Date: Wed, 14 Dec 2022 13:16:24 +0200
-Message-ID: <CAAxXO2F7LGqsixs8xLfqijCYz0W4Yn-c6W8TB89BroVWtCSo6g@mail.gmail.com>
+Date: Wed, 14 Dec 2022 13:58:50 +0200
+Message-ID: <CAAxXO2GJ9KizPEBJtS91m7kQirekmXuifwVxoCfPb7C8VKjpKQ@mail.gmail.com>
 To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: ZNR27Q7CQRMZJNZAJFJFIZ5DRAVT3BMT
-X-Message-ID-Hash: ZNR27Q7CQRMZJNZAJFJFIZ5DRAVT3BMT
+Message-ID-Hash: NZO6ZLK7SLHL2E24YKHK4YP4WF7L42WJ
+X-Message-ID-Hash: NZO6ZLK7SLHL2E24YKHK4YP4WF7L42WJ
 X-MailFrom: nbalkanas@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
@@ -71,107 +72,127 @@ X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: help: Can the USRP set a fractional frequency?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZNR27Q7CQRMZJNZAJFJFIZ5DRAVT3BMT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NZO6ZLK7SLHL2E24YKHK4YP4WF7L42WJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7455084808944425755=="
+Content-Type: multipart/mixed; boundary="===============4812452796438187340=="
 
---===============7455084808944425755==
-Content-Type: multipart/related; boundary="000000000000b4b4ef05efc7ded9"
+--===============4812452796438187340==
+Content-Type: multipart/related; boundary="0000000000007655fc05efc87600"
 
---000000000000b4b4ef05efc7ded9
-Content-Type: multipart/alternative; boundary="000000000000b4b4eb05efc7ded8"
+--0000000000007655fc05efc87600
+Content-Type: multipart/alternative; boundary="0000000000007655fa05efc876ff"
 
---000000000000b4b4eb05efc7ded8
+--0000000000007655fa05efc876ff
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-From my knowledge of the X300 the frequency is decimated from the master
-clock, i.e 240 Mhz.
-Unless in the FPGA there is code for fractional decimation, I don't see how
-sub-1hz steps can be achieved.
-UHD is fussy about choosing multiples of 8x decimations...
+Scratch that. I confused sampling frequency with actual frequency.
+Sorry about the confusion:(
 
-HTH
 Nikos
 
-On Mon, Dec 12, 2022 at 4:30 PM Marcus D. Leech <patchvonbraun@gmail.com>
-wrote:
+On Wed, Dec 14, 2022 at 1:16 PM Nikos Balkanas <nbalkanas@gmail.com> wrote:
 
-> On 12/12/2022 05:25, =E5=BA=94=E5=B1=B1=E5=B7=9D wrote:
+> From my knowledge of the X300 the frequency is decimated from the master
+> clock, i.e 240 Mhz.
+> Unless in the FPGA there is code for fractional decimation, I don't see
+> how sub-1hz steps can be achieved.
+> UHD is fussy about choosing multiples of 8x decimations...
 >
+> HTH
+> Nikos
 >
-> Hi~
-> I am a newbie in USRP and UHD, and I am having a problem with a project
-> that requires me to use USRP (B210/X310) to implement a set of transceive=
-r,
-> and the project requires the frequency step of the transceiver to be less
-> than 1Hz.
-> I checked a lot of information, including the manual for the X310, the
-> manual for this oscillator device, but couldn't find a description of the
-> frequency accuracy (not frequency stability). I went through the UHD help
-> documentation again and seem to have found some clues here.
-> In the definition of the function tune_request_t(), the entry reference
-> target_freq is a double type, does that mean that USRP can really be set =
-to
-> a fractional frequency (I know that the actual working frequency is
-> dithered in a small range).
-> I don't know if I understand the concept of frequency step value
-> correctly, can you please tell me how I should verify the frequency step
-> accuracy of USRP.
+> On Mon, Dec 12, 2022 at 4:30 PM Marcus D. Leech <patchvonbraun@gmail.com>
+> wrote:
 >
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> The settable step value is typically a fraction of 1Hz.     But you'll no=
+>> On 12/12/2022 05:25, =E5=BA=94=E5=B1=B1=E5=B7=9D wrote:
+>>
+>>
+>> Hi~
+>> I am a newbie in USRP and UHD, and I am having a problem with a project
+>> that requires me to use USRP (B210/X310) to implement a set of transceiv=
+er,
+>> and the project requires the frequency step of the transceiver to be les=
+s
+>> than 1Hz.
+>> I checked a lot of information, including the manual for the X310, the
+>> manual for this oscillator device, but couldn't find a description of th=
+e
+>> frequency accuracy (not frequency stability). I went through the UHD hel=
+p
+>> documentation again and seem to have found some clues here.
+>> In the definition of the function tune_request_t(), the entry reference
+>> target_freq is a double type, does that mean that USRP can really be set=
+ to
+>> a fractional frequency (I know that the actual working frequency is
+>> dithered in a small range).
+>> I don't know if I understand the concept of frequency step value
+>> correctly, can you please tell me how I should verify the frequency step
+>> accuracy of USRP.
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>> The settable step value is typically a fraction of 1Hz.     But you'll
+>> not usefully actually achieve that unless you use a
+>>   very very precise external reference.
+>>
+>> This is more of a very-general question about how PLL synthesizers work
+>> and isn't, strictly speaking, a question about UHD or
+>>   USRPs.
+>>
+>> The typical PLL synthesizer has a relatively-coarse frequency-step size,
+>> and the difference between its step-size and the
+>>   desired frequency is adjusted by the DDC or DUC in the FPGA.
+>>
+>> I'm curious as to why you need such high frequency-setting precision, bu=
 t
-> usefully actually achieve that unless you use a
->   very very precise external reference.
->
-> This is more of a very-general question about how PLL synthesizers work
-> and isn't, strictly speaking, a question about UHD or
->   USRPs.
->
-> The typical PLL synthesizer has a relatively-coarse frequency-step size,
-> and the difference between its step-size and the
->   desired frequency is adjusted by the DDC or DUC in the FPGA.
->
-> I'm curious as to why you need such high frequency-setting precision, but
-> don't much care about accuracy.
->
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>> don't much care about accuracy.
+>>
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
 >
 
---000000000000b4b4eb05efc7ded8
+--0000000000007655fa05efc876ff
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Fro=
-m my knowledge of the X300 the frequency is decimated from the master clock=
-, i.e 240 Mhz.</div><div class=3D"gmail_default" style=3D"font-size:small">=
-Unless in the FPGA there is code for fractional decimation, I don&#39;t see=
- how sub-1hz steps can be achieved.</div><div class=3D"gmail_default" style=
-=3D"font-size:small">UHD is fussy about choosing multiples of 8x decimation=
-s...</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div>=
-<div class=3D"gmail_default" style=3D"font-size:small">HTH</div><div class=
-=3D"gmail_default" style=3D"font-size:small">Nikos</div></div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Dec 12, 202=
-2 at 4:30 PM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com"=
->patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-size:small">Scr=
+atch that. I confused sampling frequency with actual frequency.</div><div c=
+lass=3D"gmail_default" style=3D"font-size:small">Sorry about the confusion:=
+(</div><div class=3D"gmail_default" style=3D"font-size:small"><br></div><di=
+v class=3D"gmail_default" style=3D"font-size:small">Nikos</div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec =
+14, 2022 at 1:16 PM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.co=
+m">nbalkanas@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_default" style=
+=3D"font-size:small">From my knowledge of the X300 the frequency is decimat=
+ed from the master clock, i.e 240 Mhz.</div><div class=3D"gmail_default" st=
+yle=3D"font-size:small">Unless in the FPGA there is code for fractional dec=
+imation, I don&#39;t see how sub-1hz steps can be achieved.</div><div class=
+=3D"gmail_default" style=3D"font-size:small">UHD is fussy about choosing mu=
+ltiples of 8x decimations...</div><div class=3D"gmail_default" style=3D"fon=
+t-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:sma=
+ll">HTH</div><div class=3D"gmail_default" style=3D"font-size:small">Nikos</=
+div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Mon, Dec 12, 2022 at 4:30 PM Marcus D. Leech &lt;<a href=3D"mailto:p=
+atchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
@@ -211,8 +232,8 @@ v>
           <div><img src=3D"cid:1851055a5e235ad256b1" style=3D"max-width: un=
 set; width: 614px;"><br>
           </div>
-          <div id=3D"m_260065029337728973ntes-pcmac-signature" style=3D"fon=
-t-family:=E5=BE=AE=E8=BD=AF=E9=9B=85=E9=BB=91">
+          <div id=3D"m_196844562851588711m_260065029337728973ntes-pcmac-sig=
+nature" style=3D"font-family:=E5=BE=AE=E8=BD=AF=E9=9B=85=E9=BB=91">
             <div style=3D"font-size:14px;padding:0px;margin:0px"> </div>
           </div>
         </div>
@@ -253,10 +274,11 @@ rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
 </blockquote></div>
+</blockquote></div>
 
---000000000000b4b4eb05efc7ded8--
+--0000000000007655fa05efc876ff--
 
---000000000000b4b4ef05efc7ded9
+--0000000000007655fc05efc87600
 Content-Type: image/png; name="F8BAADFF-0730-44E7-8A8B-F4CD729AD3CC.png"
 Content-Disposition: inline;
 	filename="F8BAADFF-0730-44E7-8A8B-F4CD729AD3CC.png"
@@ -4649,9 +4671,9 @@ AjZJKUoUW6mXNqmXNhEbuqcqunauDVM5BdE9+dAVI3ptB1ZM54oDhVDiRKl328THm3xJnZv6Cdob
 HxTtERHx+QV9QdGegWI+ERuKQE9EhhT9uWVXvGjtA7EwlXV3cduYuvZu3ooMWQ7AOF9xH0wq8/Cf
 xujGJvUiQvROUGR/+qNv+qBfihMPLdbeIGJB61Py9/esaE/EfCLWExGfFfgxHtPf+gr0ZSr5NyGC
 R+kv/kUoKGVBxpN6f7vYuCJDIvViw3bJuzx/sI//H8di3NY83nQQAAAAAElFTkSuQmCC
---000000000000b4b4ef05efc7ded9--
+--0000000000007655fc05efc87600--
 
---===============7455084808944425755==
+--===============4812452796438187340==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -4661,4 +4683,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7455084808944425755==--
+--===============4812452796438187340==--
