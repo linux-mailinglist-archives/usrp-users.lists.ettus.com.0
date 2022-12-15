@@ -2,190 +2,196 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AF4B64D5CE
-	for <lists+usrp-users@lfdr.de>; Thu, 15 Dec 2022 05:08:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF02864D64B
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Dec 2022 06:59:24 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 206D7384367
-	for <lists+usrp-users@lfdr.de>; Wed, 14 Dec 2022 23:08:17 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E9706384365
+	for <lists+usrp-users@lfdr.de>; Thu, 15 Dec 2022 00:59:23 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1671077297; bh=Xrzwy3QnbM+OaiCoV5R+rUEXTvswHEPaMLjBKQTOKH8=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=hn7MqHHW8ejhVWHeon2ah52+kZLgsTGFiSJc3zrw5f15DxjjH85CtUjwMnHUtAYKE
-	 Pk8pjPIQxcVZDrSWME+RPopy3TYY+4263YuSmwUxIfJmb8NIlJEwveJiKgyJcGGLCF
-	 MhiFoLo+h/PX0LT+E5vyoffbIAw4lrdK1aEsvBBPIrKu9DizZ8cDHfM/gvrWZj5xgc
-	 9hXSQ2CliyMYB1sSF0rn3sCROzA5vhe4GKKBw5mBLdER3YAVBwsKoRLp/0NkEvpM9Q
-	 1E7DEzoCYMdDkmGfEJskm4aoXZoHnQLt4K6pBCcRWyILCiXvJ+xMUUSQRWww9g4m0w
-	 RD+xrK8/tNb4A==
-Received: from mta68.mta.hdems.com (mta68.mta.hdems.com [3.112.23.35])
-	by mm2.emwd.com (Postfix) with ESMTPS id 37A2B384357
-	for <usrp-users@lists.ettus.com>; Wed, 14 Dec 2022 23:08:09 -0500 (EST)
-Received: from mo.hdems.com (unknown [10.5.84.168])
-	by mta68.mta.hdems.com ('HDEMS') with ESMTPSA id 4NXdxg45sqz1XNxC0
-	for <usrp-users@lists.ettus.com>; Thu, 15 Dec 2022 04:08:07 +0000 (UTC)
-X-HDEMS-MO-TENANT: kke.co.jp
-Received: from mail-yb1-f197.google.com (mail-yb1-f197.google.com. [209.85.219.197])
-	by gwsmtp.prod.mo.hdems.com with ESMTPS id gwsmtpd-trans-d4d33a54-613f-4167-aee5-19944632fd6f
-	for <usrp-users@lists.ettus.com>;
-	Thu, 15 Dec 2022 04:07:58 +0000
-Received: by mail-yb1-f197.google.com with SMTP id i10-20020a25f20a000000b006ea4f43c0ddso2261869ybe.21
-        for <usrp-users@lists.ettus.com>; Wed, 14 Dec 2022 20:07:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xPcuiZP4HRwl68lVXzhyW2rNGbL6hlVszWW/Owj2Pmw=;
-        b=FuXKuBK7Y4ykeYccVlxwgVP4HhvHAgPGGcqTL88Pq0fT5Mb3yhQ7HmG1GAI5D/iDe/
-         d+Ws1lAWGfqvqBhUUU83UDmKwJ8CKNCwacEFIoCFLta8oe4R8+CD9K5rHJEQNWu384m+
-         V6aTQKWRWd4H0moXMVboqwHLPKSqcUmi304qweIErd84FBCUOmkgewLjWl65cBldcFdE
-         zvfAY76oTW8SaJ5Mxq/wuHJC4ety0QCN7+Qj6hyGinew3eGXottHeD2L1GxGVKqoQu+K
-         i9xJcSY6Zr1Fg/HBiHISx3hks5AgosidKeUwljnd5g0zngUIVunNzOwNlaC6x+uTh9MH
-         ZZbA==
-X-Gm-Message-State: ANoB5plUjx37T69euzTsJxsgDQlzawM6pDBhjHwuILbDlsQFE+IJhhba
-	8BydslAydvZvEJ1pkyyLSvUxdmMv+VGMXYS+qdqCw35FTdzfbyPJk7rNoXqElV1RrRyP+hYQe6x
-	AvKVR47wkQss+kZy0+Gdw3o2FsFW/8ZMmmUnyLZfpo+9KjVT7
-X-Received: by 2002:a81:7981:0:b0:3ad:436f:4e6d with SMTP id u123-20020a817981000000b003ad436f4e6dmr7332848ywc.412.1671077276978;
-        Wed, 14 Dec 2022 20:07:56 -0800 (PST)
-X-Google-Smtp-Source: AA0mqf4atRrQx1zrqXBiNw98jFgW2xcaZm805P9NQ/hdfe2FySxYd4gKfCTkKsgm4qU7lA/C2d6YOPWEcCBzgxFaW7I=
-X-Received: by 2002:a81:7981:0:b0:3ad:436f:4e6d with SMTP id
- u123-20020a817981000000b003ad436f4e6dmr7332845ywc.412.1671077276534; Wed, 14
- Dec 2022 20:07:56 -0800 (PST)
+	t=1671083963; bh=2SydpEaQf9hvT5nyXYwZvqcSF+jtVStwpDJ19hMuz50=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=l1H4hLceMLYupNCXbPijOm78ubwE3ylZaIetGng8oFmsiASx+1Gq/5m1PfyIqPJnf
+	 X9/fxQxTQ3K1SjU1nnLsKD+4t9DLinSX6OnF3/OUJdpsfTsKHKGPOShidvjYq3fOck
+	 NPWP3EZp2Optp2o2YlfiIYMhXW+uqBDkK3DpQgF3AefNdvYH66enKVJlVnjkT9rI32
+	 O/hVapMRaqrmr0TKCCSPcJrEeserle+RYBJyYY3/b/GxGi/fdq7Mqz5KuIRI/rf/lY
+	 rzGdAyzq+xMPOEdDjczdDI6fsRqBZ1Axay2ZmXls0f0WZOJHEtvrq6y6zqDHooAs6d
+	 jSt4mYAyAVKXg==
+Received: from IND01-BMX-obe.outbound.protection.outlook.com (mail-bmxind01on2065.outbound.protection.outlook.com [40.107.239.65])
+	by mm2.emwd.com (Postfix) with ESMTPS id DDA0D383FBB
+	for <usrp-users@lists.ettus.com>; Thu, 15 Dec 2022 00:58:30 -0500 (EST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ScUL5BuADMmVRBiFUVBKCDx5Cndq+pYcDprZ5JAZyNIF5wax/mI7v85mDfxCFGup5AkfGNqLdWRLLf74k2JBm/1XebIzWHDFH18Zw4G3RFWQEfewNIJcsr3a3HLnRec4J2m/pL+0Aalzg60/mxL69KOURDLhs2YYlbEygJN4VrxnXAr4WSuSLd4DpnlVS7+CYuei/8NSNKySWetUE2ulx9HHGreuPZyFmDrYs7znT6vh+jsBFlOvLQ1nw0UNuiYI9jkoOmjAbvAHpZejd22GNXuCpvp/93rm1DykIptLvp9K/4sg5NrTEDik4+Vab/FdQAMYUciDxzqZHS2CzZYJ6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Onl7LtvX9KVlQGWOxFOJP3RANTGSVjwP7J60FfY4YYI=;
+ b=BSdqGyOEJFxQpswD0AFJRxhhFiNia6oQ6HB6nj6A0EWQsCOijRqLvbcY1dGiWOvhN72WGss5W/ccCHbk527+UPzMG/6USAO0AKuutZtNSYNCcR0+IqiS66wOnLoOemE1ZaH3qOOg/OkJXfMX6sLEiUbF08/utcxvspvvC/5rJsSKeNKu5IcLHbZV5xiXu8tE0L+IEu1tKPkEFPJPvl3H3UWQ6GFOA9iAunOniQsiaekGT9ZFqU/b7loTmJ0ru3162HhZMn/k2oVT86aCpbkOxrREH0bk2Rl6XAFyDKIvWe6cHkBQJ0ypt3TGO1Ux+OQnWtZ+EAcxYc0DMXN7yjWGGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mobiveil.co.in; dmarc=pass action=none
+ header.from=mobiveil.co.in; dkim=pass header.d=mobiveil.co.in; arc=none
+Received: from MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:60::23)
+ by MA0PR01MB8665.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:b7::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5924.11; Thu, 15 Dec
+ 2022 05:58:26 +0000
+Received: from MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::6b42:5372:f363:c653]) by MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::6b42:5372:f363:c653%4]) with mapi id 15.20.5924.012; Thu, 15 Dec 2022
+ 05:58:26 +0000
+From: Sivanesh Kumar K <k.sivaneshkumar@mobiveil.co.in>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Daughter board details required
+Thread-Index: AQHZEEojyP5f3BgFs0KRP0Z/0TzSKw==
+Date: Thu, 15 Dec 2022 05:58:26 +0000
+Message-ID: 
+ <MAXPR01MB3565817912C65BE1ECCCD83AD6E19@MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-IN, en-US
+Content-Language: en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mobiveil.co.in;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MAXPR01MB3565:EE_|MA0PR01MB8665:EE_
+x-ms-office365-filtering-correlation-id: f6db7b3f-e8f3-4af6-3001-08dade61620e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ aIhkUr5MBat/Tf/LoP8rDX1Mz94z3ukc6iJBkEuyBrH8nZW+4gXf0GbXV/2+9cVTj/xZ5VNa9IX785acN5jsDB2IAXU+Bz7TmON09mP1zYrQzOCGmweNSz+YUgQrA+E4E16Ww2Nfu1qCeB5ssEGEUTHQWl01Gndjk9EwIRw6JMsL0MUxxoWx6XRmjQUGBilfsHnuiMb//mBqlgmGu+n/B/SI0mJ4JK87EvSarQtDjwMKRMOPH2QG5RHMhULu61uQUjkGO7U+YbsbY0iuNf8oQIq+YTlnGiN3KSpq+Q+NlN6MEhHuPUPe5RYty6ZhodSvGf+nvVNqy04oUF13QCtAI600ccM1GM6nz57kfvY39lrII6/zxtimIsSgU2ceQT/3NMOG6qVNKUYbmdU5PTCSim9EZSvIFzbq7TLBdLUb2XCvksC1s1Y/2hbxHYNA8zson/rG7YNaa0pllOXB/Y4446cmHLbpRmqeqQTogQon4vpLFCqs58+TTK0ajFS+/h5KZptMPIc9q6K0kV22t+5B9QTDn6Qdt/q0j3eUXWlBCERo6ob+ubb/ilbTf/8fDLcGZZ11gkhT5dJ4plCtBqYL2lYg0LLcrRkM432urECsgQrUHbWGr8kP1N8GZpqwTl0UEa2ANUSH9QulwjtNdqjkxmZ2XhGGKe3s0r2o1vd3fqipwI3DR4p1Pw5bNfSesE1SfK83cOVvBJDs5RUTUhR8Mw==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(136003)(346002)(366004)(376002)(39850400004)(396003)(451199015)(38070700005)(19627405001)(478600001)(8936002)(52536014)(6506007)(7696005)(38100700002)(71200400001)(122000001)(4744005)(83380400001)(33656002)(26005)(41300700001)(5660300002)(186003)(9686003)(2906002)(55016003)(3480700007)(6916009)(316002)(64756008)(8676002)(86362001)(66476007)(66446008)(66556008)(91956017)(76116006)(66946007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?ILvA+XdBcDp5LegjzF+Ci+eduK452WnOy97KG9HTsN2NvZKAQysC9pyExS?=
+ =?iso-8859-1?Q?YZ3yGj22DIxj1PjLiEXE+XHNHbJLiAmA5T+Mi5qqFunt8FbrNaxQcr8rIl?=
+ =?iso-8859-1?Q?8Bey7ASYxNvpVO8CWtK3Rp42yyR8YnZfHNvsmjk5x797k2hwuXJF2tmwbs?=
+ =?iso-8859-1?Q?CIa4zN1BBFq2ykhR4hvoGKbsoh++PkEKBMf4dZ5vVGwmE1Q+5T2OWL/IVM?=
+ =?iso-8859-1?Q?4++YXgFdboLEsCpfMmRHYKXXfifgNHAUOKEd+kGeLqU/v640DKWKbs9JRA?=
+ =?iso-8859-1?Q?QOAjX+jA5V3+eXi/ek4lTyqjhOYrIPK4oTm4lpBl/M7ai/L64Qp6IHHlAY?=
+ =?iso-8859-1?Q?ShYrpeJ44RRWjqc31o0PQy8nqz2N0bKXgl3JsZG6zskO8bUG0Dd3nuk8m9?=
+ =?iso-8859-1?Q?ZByhl8rgrjqfniv6O6WFXp3otxBYTAR3hW+PMWYwVOUVMhhCNJGa0V4484?=
+ =?iso-8859-1?Q?BsYXftM92Ymw1mrFGXLMElWsT7coQnVAhX1cTYQeXgS3ldqfEFUeTHrwPl?=
+ =?iso-8859-1?Q?GrrR46YPtxKdxYZN/RylL+MDr641YlGjTdeTaQvSKs+cObtVS8TFXu/xv4?=
+ =?iso-8859-1?Q?uZI19c6iAsnbyMp2EPa6Km7d7Zx06jThzCKNvNp0kjtWVJkbjkARv1G/MG?=
+ =?iso-8859-1?Q?VDIe5lxKbcCxZNQr7yJLwEX2/fBH+E3HWfqezdFCl0cf5BpvKLiDu01874?=
+ =?iso-8859-1?Q?MUizWN5mVqq6p8EBPDEV6i2dj78pMpV9EKtqx/Vkc/Bn37T11sl7OzkUXI?=
+ =?iso-8859-1?Q?FuZ9Bm1Gil8P2DT8oyAgy10em95YPxidOtZQhjKMCpgq1zOW5QyjhAhrpM?=
+ =?iso-8859-1?Q?cKow7lbOAO56j2CEnndxkegklNxRykDz1O3vHqUQe4AHU4JbBrypaxZyeg?=
+ =?iso-8859-1?Q?R1romQBidyBej2MKcQiHt2bpEZRtzGiRtc965oY52QCDG/QJldi2u8WrQF?=
+ =?iso-8859-1?Q?4nbw6dOvbq3HOpowZemCTiTVnQA620d2L2zPC/Wdst80qh2re+W6tL72aS?=
+ =?iso-8859-1?Q?618Qi8UhlcaQ5YrN46sgwM4KYpMSMukivMNwh8xdCQD3LvekAwh1eG/fie?=
+ =?iso-8859-1?Q?IseUqqi9d360f6fmZ1MhBFojIypVgsalkXV+4OTNdsky7wQ2GYwPwD/cm2?=
+ =?iso-8859-1?Q?NhREmXVH+3qTokB+r1Gduztg13Pl9Mxt3C+BBT9165idG0Q3rP6G9VCKaV?=
+ =?iso-8859-1?Q?I7C69hUCYMnz0IYFPH0KF+YWnUn/iEWjLPYnKnAWfEnnrHtiIulnw++hA1?=
+ =?iso-8859-1?Q?9OyQPtltE9gnAXPTfTyTIH16hBWCs3dlpAhqVcEGhpuBMmhFday7TdWwM1?=
+ =?iso-8859-1?Q?XWXMtIFahxCCyXPfRS9v86L/lQHQ3Mel3zlvv2KfGKl6codA7zuvIUa/N8?=
+ =?iso-8859-1?Q?ghLYhnO07v/ec1wTyfZdm1zEYu90peQm4OqKuW/lojW/Z047tiTMJZtWfI?=
+ =?iso-8859-1?Q?NKHKU2dTBNYrvwb6k2gt8mB+zanH+ht+fZDuThW0S+u/B92Ea1nuKYnmPg?=
+ =?iso-8859-1?Q?b31/V4wYg7QHQhg4gJhS46PYouEX1UWkdTKKpbm6Bm4JySefCuS6n9fZM3?=
+ =?iso-8859-1?Q?4mPThlIkCpWEFUBCOzAo5IXkN1YDkHb9cDaEfC1W3HXmxPx6j8By27PXKo?=
+ =?iso-8859-1?Q?9xLwW2PtrKWweyG0oDP7CoCA/g22cSeFCO25yhqFADA8AHaDWBGZjwxQ?=
+ =?iso-8859-1?Q?=3D=3D?=
 MIME-Version: 1.0
-References: <CAGHsMd_-K-COEnELpOJpHoDU9m9itjkDAS1Jp3iuLgJN_DeWDA@mail.gmail.com>
- <b4fcb4c3-c6ac-1e8f-fe0b-4eed403c00c5@gmail.com>
-In-Reply-To: <b4fcb4c3-c6ac-1e8f-fe0b-4eed403c00c5@gmail.com>
-From: =?UTF-8?B?6JaE55Sw5oKg5qi5?= <yuki-susukida@kke.co.jp>
-Date: Thu, 15 Dec 2022 13:07:46 +0900
-Message-ID: <CAGHsMd9g2xUzfPk9GTZkABzViFknNgF=R6h7wCYKsQJK__TLYQ@mail.gmail.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Message-ID-Hash: SCTIHAVEJ3XNEDDCXMVSAHMR6IFVAQFI
-X-Message-ID-Hash: SCTIHAVEJ3XNEDDCXMVSAHMR6IFVAQFI
-X-MailFrom: yuki-susukida@kke.co.jp
+X-OriginatorOrg: mobiveil.co.in
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6db7b3f-e8f3-4af6-3001-08dade61620e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Dec 2022 05:58:26.4168
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fc646429-760a-4f9d-81fc-c568b17eb1c2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: d4AxsMfWrivH3xik3UlczHLQrga7GrXT4j9Cy9apme3rhM4OjGH+jGNc0c6PgFKYRzvbMlyVb5lRSZmVgbMZxxFdOo/5M0P5qraF2M3PNlU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MA0PR01MB8665
+Message-ID-Hash: 4D7LVT2EEWDIUCLR3SQ2QXL6BU476UY5
+X-Message-ID-Hash: 4D7LVT2EEWDIUCLR3SQ2QXL6BU476UY5
+X-MailFrom: k.sivaneshkumar@mobiveil.co.in
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Accidental Power-Down During Flashing of X310 FPGA Image
+Subject: [USRP-users] Daughter board details required
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/SCTIHAVEJ3XNEDDCXMVSAHMR6IFVAQFI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CCE2NT4HMVGH4FX7GZUDB4ZPUA3K2C7B/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0322702318065505683=="
+Content-Type: multipart/mixed; boundary="===============9207063448513160219=="
 
---===============0322702318065505683==
-Content-Type: multipart/alternative; boundary="00000000000075e62d05efd5ffe0"
+--===============9207063448513160219==
+Content-Language: en-IN
+Content-Type: multipart/alternative;
+	boundary="_000_MAXPR01MB3565817912C65BE1ECCCD83AD6E19MAXPR01MB3565INDP_"
 
---00000000000075e62d05efd5ffe0
-Content-Type: text/plain; charset="UTF-8"
+--_000_MAXPR01MB3565817912C65BE1ECCCD83AD6E19MAXPR01MB3565INDP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Marcus,
+Hi All,
 
-Thanks for your prompt response.
-Refer to the "X300/X310 Device Recovery" page to attempt recovery.
+I want to know what are the daughter board supporting usrp B210.
 
-Yuki Susukida
+Regards,
+Sivaneshkumar K
+Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any a=
+ttachments, is for the sole use of the intended recipient(s) and may contai=
+n proprietary confidential or privileged information or otherwise be protec=
+ted by law. Any unauthorized review, use, disclosure or distribution is pro=
+hibited. If you are not the intended recipient, please notify the sender an=
+d destroy all copies and the original message.
 
-2022=E5=B9=B412=E6=9C=8815=E6=97=A5(=E6=9C=A8) 11:55 Marcus D. Leech <patch=
-vonbraun@gmail.com>:
-
-> On 14/12/2022 21:37, =E8=96=84=E7=94=B0=E6=82=A0=E6=A8=B9 wrote:
-> > Hello everyone,
-> >
-> > I accidentally turned off USRP X310 while updating the FPGA image of
-> > the USRP X310 using the procedure in the link below.
-> > After that, when I turned on the X310, there was no response to the
-> > "usrp_find_devices" command, and the network interface on the PC side
-> > could not recognize the X310.
-> > How can I solve this problem?
-> >
-> https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_getting_started_f=
-pga_update
-> >
-> > Thank you in advance.
-> >
-> > Yuki Susukida
-> >
-> > _______________________________________________
-> > USRP-users mailing list -- usrp-users@lists.ettus.com
-> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-> The procedure is described here:
->
-> https://kb.ettus.com/X300/X310_Device_Recovery
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---00000000000075e62d05efd5ffe0
-Content-Type: text/html; charset="UTF-8"
+--_000_MAXPR01MB3565817912C65BE1ECCCD83AD6E19MAXPR01MB3565INDP_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><p style=3D"box-sizing:border-box;margin-top:0px;margin-bo=
-ttom:1rem;color:rgb(72,70,91);font-family:-apple-system,BlinkMacSystemFont,=
-&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,Arial,&quot;Noto San=
-s&quot;,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;=
-,&quot;Segoe UI Symbol&quot;,&quot;Noto Color Emoji&quot;;font-size:15px">H=
-ello Marcus,<br><br>Thanks for your prompt response.<br>Refer to the &quot;=
-X300/X310 Device Recovery&quot; page to attempt recovery.<br></p><p style=
-=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:rgb(72,70=
-,91);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Robo=
-to,&quot;Helvetica Neue&quot;,Arial,&quot;Noto Sans&quot;,sans-serif,&quot;=
-Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&qu=
-ot;,&quot;Noto Color Emoji&quot;;font-size:15px">Yuki Susukida</p></div><br=
-><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">2022=E5=
-=B9=B412=E6=9C=8815=E6=97=A5(=E6=9C=A8) 11:55 Marcus D. Leech &lt;<a href=
-=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt;:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex">On 14/12/2022 21:37, =
-=E8=96=84=E7=94=B0=E6=82=A0=E6=A8=B9 wrote:<br>
-&gt; Hello everyone,<br>
-&gt;<br>
-&gt; I accidentally turned off USRP X310 while updating the FPGA image of <=
-br>
-&gt; the USRP X310 using the procedure in the link below.<br>
-&gt; After that, when I turned on the X310, there was no response to the <b=
-r>
-&gt; &quot;usrp_find_devices&quot; command, and the network interface on th=
-e PC side <br>
-&gt; could not recognize the X310.<br>
-&gt; How can I solve this problem?<br>
-&gt; <a href=3D"https://files.ettus.com/manual/page_usrp_x3x0.html#x3x0_get=
-ting_started_fpga_update" rel=3D"noreferrer" target=3D"_blank">https://file=
-s.ettus.com/manual/page_usrp_x3x0.html#x3x0_getting_started_fpga_update</a>=
-<br>
-&gt;<br>
-&gt; Thank you in advance.<br>
-&gt;<br>
-&gt; Yuki Susukida<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
-m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
-&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
-ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-The procedure is described here:<br>
-<br>
-<a href=3D"https://kb.ettus.com/X300/X310_Device_Recovery" rel=3D"noreferre=
-r" target=3D"_blank">https://kb.ettus.com/X300/X310_Device_Recovery</a><br>
-<br>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);">Hi All,</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);"><br>
+</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);">I want to know what are the daughter board supporti=
+ng usrp B210.</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);"><br>
+</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);">Regards,</span></div>
+<div class=3D"elementToProof"><span style=3D"font-family: Calibri, Arial, H=
+elvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0); background-colo=
+r: rgb(255, 255, 255);">Sivaneshkumar K<br>
+</span></div>
+Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any a=
+ttachments, is for the sole use of the intended recipient(s) and may contai=
+n proprietary confidential or privileged information or otherwise be protec=
+ted by law. Any unauthorized review,
+ use, disclosure or distribution is prohibited. If you are not the intended=
+ recipient, please notify the sender and destroy all copies and the origina=
+l message.
+</body>
+</html>
 
---00000000000075e62d05efd5ffe0--
+--_000_MAXPR01MB3565817912C65BE1ECCCD83AD6E19MAXPR01MB3565INDP_--
 
---===============0322702318065505683==
+--===============9207063448513160219==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -195,4 +201,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0322702318065505683==--
+--===============9207063448513160219==--
