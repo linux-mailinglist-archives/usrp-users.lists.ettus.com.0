@@ -2,763 +2,557 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C9D64EDF7
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 16:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A716E64EE46
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 16:54:36 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8F97138447C
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 10:31:38 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id A59893844BC
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 10:54:35 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1671204698; bh=gn2Bo/sGb6NJszaToZEn6vV90T17IZhuQHthm62tHFw=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1671206075; bh=lVQMy6H2IHez/FJBhM/F69Xgp/CK50HWTkj3oWhcQYo=;
+	h=To:References:In-Reply-To:Date:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=t8tXE7ZQw7/53PzftGEI+29Ko768s9rXGsBtSISLZ3eG4Z7P8z7w4tOJnCsG2KbBR
-	 qKlrIuaVBr2qHLlIbRDf1hiIyN7Fa2ViWAYQhNIXdfNoZ/wGtj2FHlMCqzbppNb8AJ
-	 qKv+wGhIemNaJycAsck90aETtXT+LcGrc0cFv4GCGDhYpx5nTbePEDAP9wSTbj9AGY
-	 MkXFDKQ1EB1p0HG1NwK3DPj0jb/f5suSvcRLbP2snaY6eBnMFBQIoAMuO0bfkoLFiA
-	 EpkPMCdRe66YtEB+N9e4Ovu+r1m1l7wme9Abuyusb0OQpm+njB+gv3BOgz/+7S1daE
-	 IwWQQ72KVrAhg==
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id C0B3D3842F9
-	for <usrp-users@lists.ettus.com>; Fri, 16 Dec 2022 10:30:42 -0500 (EST)
+	 From:Reply-To:From;
+	b=loL8JJH3AN0S43lroPlCloE8EAvQHSuBIRpPFN2zm8T2V6LmGNpYOT6zBh7sPmleD
+	 pUP1d6JWlLJ7X2+HV9JqB6WnKudYySYTOqLYx6Yud/NdBIHta6x4TeVbhWSZ/0Ua+l
+	 Z6ZU94R6ee6LBD+4Vh3Ufhcm+DXRQZWwylR3/gqEOMEmuGwWl+9lFtJpREF9ft4pue
+	 aVSlfIh0wwctLQR/MUtMuUQuTOBC68AIVh6HMJGn/fM6hIjlPhXDFsgZOEz2XI0Byi
+	 25xKpTCyvBSNrM2H+H0xmqycf+R5cjT8wlEwyAP+ZcLsTWtySqGUEQLUKv01ud+rma
+	 dR6FMKTCxuMHA==
+Received: from sonic307-9.consmr.mail.ne1.yahoo.com (sonic307-9.consmr.mail.ne1.yahoo.com [66.163.190.32])
+	by mm2.emwd.com (Postfix) with ESMTPS id BB0683843E8
+	for <usrp-users@lists.ettus.com>; Fri, 16 Dec 2022 10:54:27 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hg12JRpf";
+	dkim=pass (2048-bit key; unprotected) header.d=verizon.net header.i=@verizon.net header.b="Y+C1XAq3";
 	dkim-atps=neutral
-Received: by mail-vk1-f180.google.com with SMTP id f24so1276937vkl.9
-        for <usrp-users@lists.ettus.com>; Fri, 16 Dec 2022 07:30:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qpFR5jtxAjS7HxgdQAM9YQpQDCMEOExUJdd1lU8cqr0=;
-        b=hg12JRpfEqjglgjpfAUp8U72b+Q/bNluhPhSfrs2A44NdWpti7rt4Qmv3WJTKKL8wB
-         AvWwZfXyE0jghZqaXb42L2pHHDo2CYwzCvx29I/nP9kdE7J6fqYp+uTkFaufaqbvGgTk
-         u3BqEOgwJGWcoVLR/pl1PfsmQch0tgSk3R5f6/nGzbdB74d13p5AAwzqcgfZWu2x8vBX
-         V6kOwLMr/d04boRk8bL0sq116vkCueYUKKd+fK/kzmWZOkBa0+9bOdDvh7C9FrJ1AISq
-         SloOU4xAp3HBkCo8H0yhEZJfn7YPH4nCvUDXM83zcuyDT5LsYWXjalG8n8EBI2ld/MsN
-         UfBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=qpFR5jtxAjS7HxgdQAM9YQpQDCMEOExUJdd1lU8cqr0=;
-        b=Ru3Chgn3YCZ18CRpqjEWq0NbhGCHdx/kGKYi6Tl6LNxbo7despcRbIgJU/l25WPPz1
-         VB5u+woFkv7p5u/yzTzLH8QYLshkz1bpLvVCASPEkYmqBAUkfh41OiAKrmMAhSQ41IYZ
-         D48ItlxBy8vXa5hYTe7nEkflPUAgbe3F8ZUAd3ikdV5wyUp6rezk12QvHIzd9AsLFTlZ
-         GDVhv6DTyYbirgyJu+41HQ2n866jKa7f242+hWyP1hL2ZLKogkvIK5/Ui5jgmCPnTu3p
-         5svfUyjUWus4+noSVkjITdJV1c7YB8APg3c9rBL6fdxQBVLXSTGWySy3K8C0s23IJoKE
-         Hkug==
-X-Gm-Message-State: AFqh2kqkCD+xT18RqPOEcVQalWaDN2TPiqZT/0lBRqsUTTIiRqxBjzBy
-	Ge+mJUvQ4ZFnQpglhP3at+o2YHBCj/2Tww==
-X-Google-Smtp-Source: AMrXdXsfIMtDyED9QhoKWZbfoSFQzwG6xROHNi92qJvN23aNcAoSqznVEYf2Zy8SVXU+GnFVn6fGLw==
-X-Received: by 2002:a1f:200f:0:b0:3c6:a5d5:d093 with SMTP id g15-20020a1f200f000000b003c6a5d5d093mr4041351vkg.6.1671204641807;
-        Fri, 16 Dec 2022 07:30:41 -0800 (PST)
-Received: from [192.168.2.210] (bras-base-smflon1825w-grc-06-174-88-54-67.dsl.bell.ca. [174.88.54.67])
-        by smtp.googlemail.com with ESMTPSA id s10-20020a05620a29ca00b006f9e103260dsm1668156qkp.91.2022.12.16.07.30.41
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Dec 2022 07:30:41 -0800 (PST)
-Message-ID: <b086611b-ff45-9387-e8ab-5d1b037d3808@gmail.com>
-Date: Fri, 16 Dec 2022 10:30:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=verizon.net; s=a2048; t=1671206066; bh=u4RPktGxR9AQ1FLhuzhfkBGmI6LirHn+4v7dkDyi7E4=; h=From:To:References:In-Reply-To:Subject:Date:From:Subject:Reply-To; b=Y+C1XAq3+tH32M7pQ+LDhOVUiHBHjy6BooR/IzR2iz7qnA7zZX49h7OuE3AuWiqznJqC88ZXtc7IV4JIr1+a7YdFoCerTMMew1kTWKYm6FNQnduXJFOr7/ORJzmSusOOWQ5/QCkC+MeqVkIPCBuUhzL2mlfrLhqoaR7LEuwPOjrhawZ4f+/0kBw1LXs9oho0lIIiGuDzw8wA2ZSCEZikRBaS9ksaNTExME8dcL8Tpj3iK1V6G5xn2KsPtBkQtWClhsuD651lvHeQAyPkFhnJl9MzQOD/obw6Hjy3HtfVylF6epdd1zny/3iOYLGUxM/+WCaxunblcYJFrDpXMC2aRg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1671206066; bh=C/p4wFaX2SwgO2hjf/7ClZc9U5TucwIjy7+4FJsL8mr=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=oRG4Ljb5BMhKOOL0WFy7djz9xBzUjI2+FJ7aPqkYaiB6bLKZ4lAX2X2ka34mhR0sFIXlQBKLaR0WuxSHnHDifgu9FwNUnPbH8v+G6FMYvskCMKdlmN1PU/8i0n91RQfn9fMUgrgII2xSE5wV7CUpj+YV4gMAKj5QvYN3ay71VqKS8VZ4GnuJnloTU4a13DW9kqU75EUS0yotdwSIRoWDXxEcCgKGa2df4wNL3oGcEOJKS0G1kNp3QSmkzgZhJYoNcFmXsfMW1mx+LwErGBYBecvV7bPS9o6VpnygZF2MmhhmIIn3zyLPlAvLGZ9GRsB3Llr2zhrxqXP4+sCDzAEbyA==
+X-YMail-OSG: 4Wx_wm8VM1nlS43i3pEy0yPQ2I7ANRzbeQH3kU3m4UENnTREJFB8.G8C54b7YVg
+ wxaHyvNXp.aWYhBc.QdGwM4uUH6F3Kw_WxXhGfW0JFzv2TCNd6nTdkAfMfW4jMAGXlPRBm4wWo6s
+ 69LmWFFRktAp8EpOqbp8iTDWK86Gqwfjbt8uSHuWx6Xzx39zTJdWrD.d_Sk3g6zP3KCs6.8vT4AY
+ EYSbx0.ID1QaPZ5NdI7rSCbm7SRMHKNlXrFNcvRqls2QNtsTKTI.at4QAfzGaYAIu5cKFTfqN1zf
+ By_2zC7Kg6PPBFJmehpNY_oB.R2y1CBIWJzJaFB3Gpk28ylYqy1ADjAAs4Ss0BKULNgsRmbS3iH.
+ yyoaSJ522hIbqjHwidMMkup7YucJeXWlSnWmzh1LrrkDYRuhea0apet14lRrBkYNmNNnWVFnzTiP
+ 6Hf4WlJ5UtWh2MXeDuy1.WSsZTnYfkFywha71ruyMIhVHD.KdkrTCPAYICEQ52fng4Us0ZqORjFM
+ plGUoS5zM30C20e.KCbw35ZWhfD09gVm1p1JgOIpyDkU1339.Z2cD1EEC27_2k7OgH77xEhJZPYn
+ Lgrej.sbJmDNULqHtcdCTrwPUzQWI.m9NuRNTiSBLkf9LnJa8FJNCwxPPdnlRIvoY_lK1De3cNl7
+ nfe2DGiSaY1QkRtIxwPchSkNvf7MDgXQEtnKwpfcPShnUZETqMnVvINakIrizigIGXKnDEY8xjpH
+ CdN2sa9b58vuU3stIxXaSf6HwN5aMNssLfvhDUixvsxKu2UjQvXmIJSn6ajscfBFXXOoarHIy9m7
+ PDvpTuqr2OrCnnz8PeR8HQtx8Eij1Yxu5WxbG54vffwlrOowqR7s_4xp8r63hVoD.Dec7RvXubpN
+ wDGMd0aRcjxdUkmIZG7_6c8xjum7xJuw7kUx00AzZvQghz1Wk1a.nGoj3rCPTnT15FrWGaK93R1k
+ 6fIHXxXtOgJwCvrQ8cXBnePmcekqneXlgaKw.zihylSzuZ8t0T268K1lfeihuTKOuPu8MrhYCwga
+ QufqrICVtv1U3ofjvyRMeTNIhZno9pVIiSMRm0U39FF2KAHmDNlI74wtFgVujIRzTktMwkiOtOaZ
+ VPnBXKx0lwBhxdzUU41N.NxSbDEal.W25wd2ZtPMnKEpOdCkAZOiDDjnNRVw5uurh31VD2MNUnNO
+ .9UFubpzwcAIefoABXyQCjmLTxX37mTVD.d0zHz1al7HGQyF9_SxEuUq1wFPb2ExburnanIEd9Fo
+ rUIeNO2TLUzYmwFV.TJRfUyPL9XMaSGuu.8PhF0Ld.XwBHaJUI8qv2jTDdC.xoZiw_UshcHfAqdS
+ dVV2zQvwDsZcfsvk6TxeB2g1GNWwSW_Ard3axPWSqGj47BpHQLH0AM05uQahj.9fSI2JGKc.Qdit
+ zUyV6zK4vEAhBKPYV8Y0JZN09qBIi411rDmGWDBSgyObH.geQIdI43HRYCcCVnVignx8sWq33LDX
+ 2jAGJpbzFLF0F0j5JQ26y_U9i9Lf.RjSYBsdhaM7AQOiwwwRnn.HHQO.464G7Rg2SMznfI93gFOf
+ nz6VsmcuiSlZYP74WXM4kKYrqFz7RmP9o7pmEKAGwuKDxhotbQydglQu_fHXjSbMMRLE.txjfOOx
+ SzM50yN_XDy7.Qcd0ui3LDuLPbByMdIgOpGXq2WDRgQWF2Fh6yWcyHNZ3EqfNy5FCD9rEmueyiIC
+ zLgsosDAf1n5_rKog3p0p2R.ABbbmDa7lZdTyC_bzP3S2ex1C5xeg8dG7li8r3sJw4T0dyuf2M48
+ yAclDRglPNY3OKtMXmkGIsvY_RYEHjIRYsH0auRByL_Be4OMkrSw5lRT0HZS9x2E0xaw8bpa8M0r
+ uDQq6jrYUl3qjVSvEymimza2aKY32A8cAogE_eUgkYUh1Nz3rggOtu_UIF.b2mpMD7vE6Sgu9WeS
+ CfdyFbHV.lptZckAq4.p.XE0Jdk1g4DosGR8HmU.YOPFuQ.hnw7EID5c5AQE_GygEhW_9q0qH5U7
+ GDp9tUWHP3k6pcCbw6OIraGkWM9XC76e0XLu5r4H8qqcN6tCkjpACH1XFm3Oxxjo1ESjlG.Ykaf_
+ BWVdqmkmlfo_b3aX47tU58VpyDDri7E0u7I8HG04buFfhmx45Ebgqcvz_73elLCp1Nq.uCAX5h.q
+ wYoDVYX22ma1Q7aWhOAWWCvvrQ6zKEX3BJ3AIrQw8hvLz6MzY2Ng8I8fTXoz1s5pWix9_pp60M2w
+ xLk2LJRcA_w3mitGiz42PRGLAGzDabA2VwAh6
+X-Sonic-MF: <mikerd1@verizon.net>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.ne1.yahoo.com with HTTP; Fri, 16 Dec 2022 15:54:26 +0000
+Received: by hermes--production-bf1-5458f64d4-2b7vw (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 24c8c7701be5ff5fab72e4400cd84618;
+          Fri, 16 Dec 2022 15:54:21 +0000 (UTC)
+To: "'Jim Palladino'" <jim@gardettoengineering.com>,
+	<usrp-users@lists.ettus.com>
+References: <00c001d9115b$55bcc130$01364390$.ref@verizon.net> <00c001d9115b$55bcc130$01364390$@verizon.net> <MN2PR12MB3312452F84CCF60E39794535B8E69@MN2PR12MB3312.namprd12.prod.outlook.com> <MN2PR12MB3312A4D66FE8688652AC9774B8E69@MN2PR12MB3312.namprd12.prod.outlook.com>
+In-Reply-To: <MN2PR12MB3312A4D66FE8688652AC9774B8E69@MN2PR12MB3312.namprd12.prod.outlook.com>
+Date: Fri, 16 Dec 2022 10:54:19 -0500
+Message-ID: <00dd01d91166$a8f0ccb0$fad26610$@verizon.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <70c3e9d18e044f48ac549fa1dac7f598@kth.se>
- <0f8474d42d3c471d9ddf7c95cd0cd312@kth.se>
- <CAFche=h6ugjr6i_6XPR74Hz5e+QzfrX7y0oGQ=9OnRBuV-x93g@mail.gmail.com>
- <13b24d7585c34f0b807495a0ce4555ab@kth.se>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <13b24d7585c34f0b807495a0ce4555ab@kth.se>
-Message-ID-Hash: Y3U5OAH2K6JGW7O63I22EJDIBI3XSIFX
-X-Message-ID-Hash: Y3U5OAH2K6JGW7O63I22EJDIBI3XSIFX
-X-MailFrom: patchvonbraun@gmail.com
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHrQSIkEz8FGhps96We5qE3ABy7qAGf7IL+AqmqsMIBvjFvh64cC9FA
+Content-Language: en-us
+Message-ID-Hash: 4GBWLRBIK5SDGQNZ6JDJQJ43P6HRVT2C
+X-Message-ID-Hash: 4GBWLRBIK5SDGQNZ6JDJQJ43P6HRVT2C
+X-MailFrom: mikerd1@verizon.net
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD SPP problem with E320 and XG link
+Subject: [USRP-users] Re: Did anyone else need to do this?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y3U5OAH2K6JGW7O63I22EJDIBI3XSIFX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4GBWLRBIK5SDGQNZ6JDJQJ43P6HRVT2C/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2878238454112043652=="
+From: Mike via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Mike <mikerd1@verizon.net>
+Content-Type: multipart/mixed; boundary="===============5579487626854063442=="
 
-This is a multi-part message in MIME format.
---===============2878238454112043652==
+This is a multipart message in MIME format.
+
+--===============5579487626854063442==
 Content-Type: multipart/alternative;
- boundary="------------mK4LQ1cFUgkQUCuCUxNgIBjW"
-Content-Language: en-US
+	boundary="----=_NextPart_000_00DE_01D9113C.C02042F0"
+Content-Language: en-us
 
-This is a multi-part message in MIME format.
---------------mK4LQ1cFUgkQUCuCUxNgIBjW
-Content-Type: text/plain; charset=UTF-8; format=flowed
+This is a multipart message in MIME format.
+
+------=_NextPart_000_00DE_01D9113C.C02042F0
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-On 16/12/2022 08:25, Samie Mostafavi wrote:
->
-> Hi Wade,
->
->
-> Thanks for your answer. I figured out the problem. It was the switch 
-> in between that I had to reboot. I had jumbo frame option enabled on 
-> the switch but a reboot was needed. Now that I try it works:
->
->
-> host$ ping -M do -s 5850 10.40.3.1
->
-> PING 10.40.3.1 (10.40.3.1) 5850(5878) bytes of data.
->
-> 5858 bytes from 10.40.3.1: icmp_seq=1 ttl=64 time=2.24 ms
->
-> 5858 bytes from 10.40.3.1: icmp_seq=2 ttl=64 time=1.25 ms
->
-> 5858 bytes from 10.40.3.1: icmp_seq=3 ttl=64 time=1.19 ms
->
-> 5858 bytes from 10.40.3.1: icmp_seq=4 ttl=64 time=1.19 ms
->
->
->
-> host$ ./benchmark_rate --args 
-> "mgmt_addr=10.10.3.1,addr=10.40.3.1,master_clock_rate=61.44e6" 
-> --duration 60 --channels "0" --rx_rate 61.44e6 --rx_subdev "A:0" 
-> --tx_rate 61.44e6 --tx_subdev "A:0" --rx_spp 1919 --tx_spp 
-> 1919--tx_stream_args "spp=1919" --rx_stream_args "spp=1919"
->
->
-> [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; 
-> UHD_4.3.0.HEAD-0-g1f8fd345
->
-> [00:00:00.000254] Creating the usrp device with: 
-> mgmt_addr=10.10.3.1,addr=10.40.3.1,master_clock_rate=61.44e6...
->
-> [INFO] [MPMD] Initializing 1 device(s) in parallel with args: 
-> mgmt_addr=10.10.3.1,type=e3xx,product=e320,serial=3238B97,name=ni-e320-3238B97,fpga=XG,claimed=False,addr=10.40.3.1,master_clock_rate=61.44e6
->
-> *[WARNING] [MPM.RPCServer] *A timeout event occured!
->
-> [INFO] [MPM.PeriphManager] init() called with device args 
-> `fpga=XG,master_clock_rate=61.44e6,mgmt_addr=10.10.3.1,name=ni-e320-3238B97,product=e320'.
->
-> *[WARNING] [RFNOC::GRAPH] *One or more blocks timed out during flush!
->
-> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
->
-> [INFO] [0/Radio#0] CODEC loopback test passed
->
-> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
->
-> [INFO] [0/Radio#0] CODEC loopback test passed
->
-> [INFO] [0/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB/s)
->
-> [INFO] [0/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB/s)
->
-> Using Device: Single USRP:
->
-> Device: E300-Series Device
->
-> Mboard 0: e320
->
-> RX Channel: 0
->
-> RX DSP: 0
->
-> RX Dboard: A
->
-> RX Subdev: E3xx
->
-> TX Channel: 0
->
-> TX DSP: 0
->
-> TX Dboard: A
->
-> TX Subdev: E3xx
->
->
-> [00:00:05.502443989] Setting device timestamp to 0...
->
-> *Setting RX spp to 1919*
->
-> *Setting TX spp to 1916*
->
-> [00:00:05.512753951] Testing receive rate 61.440000 Msps on 1 channels
->
-> [00:00:05.554696549] Testing transmit rate 61.440000 Msps on 1 channels
->
-> [00:00:05.555824707] Detected Rx sequence error.
->
-> DU[00:01:05.558922952] Benchmark complete.
->
->
->
-> Benchmark rate summary:
->
-> Num received samples: 3686368018
->
-> Num dropped samples:3196728
->
-> Num overruns detected:0
->
-> Num transmitted samples:3686403160
->
-> Num sequence errors (Tx): 0
->
-> Num sequence errors (Rx): 1
->
-> Num underruns detected: 1
->
-> Num late commands:0
->
-> Num timeouts (Tx):0
->
-> Num timeouts (Rx):0
->
->
->
-> Done!
->
->
->
-> Best,
->
-> Samie
->
-You might also try some of the things noted here:
+Jim,
 
-https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#Adjust_Network_Buffers
+ 
+
+Thanks for taking care of this.  I'll just fix it on my end and wait for the
+eventual updates in the repository.
+
+ 
+
+Thanks,
+
+Mike
+
+ 
+
+From: Jim Palladino <jim@gardettoengineering.com> 
+Sent: Friday, December 16, 2022 10:04 AM
+To: usrp-users@lists.ettus.com; Mike <mikerd1@verizon.net>
+Subject: Re: [USRP-users] Re: Did anyone else need to do this?
+
+ 
+
+Mike,
+
+My last comment was related to gr-ettus (ettus_rfnoc_graph.block.yml), which
+I installed with gnuradio 3.8 / uhd 4.1. But I do see that gnuradio 3.10 has
+the exact same issue (as you found) in uhd_rfnoc_graph.block.yml:
+
+https://github.com/gnuradio/gnuradio/blob/maint-3.10/gr-uhd/grc/uhd_rfnoc_gr
+aph.block.yml
 
 
---------------mK4LQ1cFUgkQUCuCUxNgIBjW
-Content-Type: text/html; charset=UTF-8
+ 
+<https://github.com/gnuradio/gnuradio/blob/maint-3.10/gr-uhd/grc/uhd_rfnoc_g
+raph.block.yml> 
+
+ 
+<https://github.com/gnuradio/gnuradio/blob/maint-3.10/gr-uhd/grc/uhd_rfnoc_g
+raph.block.yml> gnuradio/uhd_rfnoc_graph.block.yml at maint-3.10 .
+gnuradio/gnuradio
+
+GNU Radio - the Free and Open Software Radio Ecosystem -
+gnuradio/uhd_rfnoc_graph.block.yml at maint-3.10 . gnuradio/gnuradio
+
+github.com
+
+So, it looks like we've run into the same issue in different
+implementations. I can post and issue on the gnuradio github page as well.
+
+Jim
+
+ 
+
+  _____  
+
+From: Jim Palladino <jim@gardettoengineering.com
+<mailto:jim@gardettoengineering.com> >
+Sent: Friday, December 16, 2022 9:38 AM
+To: usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com> >; Mike
+<mikerd1@verizon.net <mailto:mikerd1@verizon.net> >
+Subject: [USRP-users] Re: Did anyone else need to do this? 
+
+ 
+
+Hi Mike,
+
+ 
+
+Yes, I've run into that. I posted an issue last week here:
+https://github.com/EttusResearch/gr-ettus/issues/69
+<https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_EttusResear
+ch_gr-2Dettus_issues_69&d=DwMF-g&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfii
+MM&r=XUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=8R8d8AptGNR6pvwu09qYQOqR4
+yaqR90_EK56v2z-xLM&s=xyYFrqtOxluB0Ad4jIxBJj7J_5ArRlIAu8Sx0l3QxaM&e=> 
+
+
+ 
+<https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_EttusResear
+ch_gr-2Dettus_issues_69&d=DwMF-g&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfii
+MM&r=XUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=8R8d8AptGNR6pvwu09qYQOqR4
+yaqR90_EK56v2z-xLM&s=xyYFrqtOxluB0Ad4jIxBJj7J_5ArRlIAu8Sx0l3QxaM&e=> 
+
+ 
+<https://urldefense.proofpoint.com/v2/url?u=https-3A__github.com_EttusResear
+ch_gr-2Dettus_issues_69&d=DwMF-g&c=euGZstcaTDllvimEN8b7jXrwqOf-v5A_CdpgnVfii
+MM&r=XUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkfwDnwpYx0&m=8R8d8AptGNR6pvwu09qYQOqR4
+yaqR90_EK56v2z-xLM&s=xyYFrqtOxluB0Ad4jIxBJj7J_5ArRlIAu8Sx0l3QxaM&e=> syntax
+error in ettus_rfnoc_graph.block.yml . Issue #69 . EttusResearch/gr-ettus
+
+Line 25 of ettus_rfnoc_graph.block.yml in the maint-3.8-uhd4.0 branch (and
+possibly others) looks like: self.rfnoc_graph = ${id} =
+ettus.rfnoc_graph(uhd.device_addr(&quot;${graph_args}&quot;))) You...
+
+github.com
+
+I ended up just modifying the yml file in source and then reinstalling
+gr-ettus.
+
+ 
+
+Jim
+
+ 
+
+  _____  
+
+From: Mike via USRP-users <usrp-users@lists.ettus.com
+<mailto:usrp-users@lists.ettus.com> >
+Sent: Friday, December 16, 2022 9:33 AM
+To: usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com>
+<usrp-users@lists.ettus.com <mailto:usrp-users@lists.ettus.com> >
+Subject: [USRP-users] Did anyone else need to do this? 
+
+ 
+
+Hi all,
+
+ 
+
+This goes in the category of "Did anyone else need to do this?".
+
+ 
+
+I'm running Ubuntu 20.04.5 LTS with GNURadio 3.8 (Maint) and UHD 4.0.  I
+recently upgraded UHD to 4.2.  I ran into a gnuradio issue starting a
+"RFNoC" flow graph with a syntax error for an unmatched ')':
+
+  Self.rfnoc_graph=ettus_rfnoc_graph_0 =
+ettus.rfnoc_graph(uhd.device_addr("addr=xxx,type-n3xx")))
+
+ 
+
+I was able to manually edit the generated python code to remove one of the
+parentheses and see the code work.
+
+I then upgraded gnuradio to 3.10 which had the same issue.
+
+ 
+
+I then compared the "uhd_rfnoc_graph.block.yml" block files between UHD4.0
+and 4.2.  It's significantly different as 4.0 uses python .join to build the
+argument list and UHD 4.2 uses the python module "ast" to generate the
+argument list.  But the final line on the 4.2 version had the syntax error
+of the extra ')':
+
+              self.rfnoc_graph = ${id} =
+uhd.rfnoc_graph(uhd.device_addr("${graph_args}")))
+
+ 
+
+I removed one ')' then reinstalled gnuradio (make install) from the build
+directory and everything seemed to work after that.
+
+ 
+
+So, it seems like it is a simple syntax error.  But normally something like
+this (in my experience) indicates that I might have missed some
+configuration step somewhere and have yet to see the other errors.
+
+ 
+
+So, has anyone seen something like this?
+
+ 
+
+Thanks,
+
+Mike
+
+
+------=_NextPart_000_00DE_01D9113C.C02042F0
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 16/12/2022 08:25, Samie Mostafavi
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:13b24d7585c34f0b807495a0ce4555ab@kth.se">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div id=3D"divtagdefaultwrapper"
-style=3D"font-size:12pt;color:#000000;font-family:Calibri,Helvetica,sans-=
-serif;"
-        dir=3D"ltr">
-        <p>Hi Wade,</p>
-        <p><br>
-        </p>
-        <p>Thanks for your answer. I figured out the problem. It was the
-          switch in between that I had to reboot. I had jumbo frame
-          option enabled on the switch but a reboot was needed. Now that
-          I try it works:</p>
-        <p><br>
-        </p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">host$ ping -M do -s 5850 10.40.3.1</spa=
-n></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">PING 10.40.3.1 (10.40.3.1) 5850(5878)
-            bytes of data.</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">5858 bytes from 10.40.3.1: icmp_seq=3D1
-            ttl=3D64 time=3D2.24 ms</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">5858 bytes from 10.40.3.1: icmp_seq=3D2
-            ttl=3D64 time=3D1.25 ms</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">5858 bytes from 10.40.3.1: icmp_seq=3D3
-            ttl=3D64 time=3D1.19 ms</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">5858 bytes from 10.40.3.1: icmp_seq=3D4
-            ttl=3D64 time=3D1.19 ms</span></p>
-        <br>
-        <p><br>
-        </p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">host$ ./benchmark_rate --args
-            "mgmt_addr=3D10.10.3.1,addr=3D10.40.3.1,master_clock_rate=3D6=
-1.44e6"
-            --duration 60 --channels "0" --rx_rate 61.44e6 --rx_subdev
-            "A:0" --tx_rate 61.44e6 --tx_subdev "A:0" --rx_spp 1919
-            --tx_spp 1919<span class=3D"Apple-converted-space">=C2=A0 </s=
-pan>--tx_stream_args
-            "spp=3D1919" --rx_stream_args "spp=3D1919"</span></p>
-        <p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo; min-height: 15px;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"></span><br>
-        </p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO] [UHD]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">linux; GNU C++ version 9.4.0;
-            Boost_107100; UHD_4.3.0.HEAD-0-g1f8fd345</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">[00:00:00.000254] Creating the usrp
-            device with:
-            mgmt_addr=3D10.10.3.1,addr=3D10.40.3.1,master_clock_rate=3D61=
-.44e6...</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO] [MPMD]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">Initializing 1 device(s) in parallel
-            with args:
-mgmt_addr=3D10.10.3.1,type=3De3xx,product=3De320,serial=3D3238B97,name=3D=
-ni-e320-3238B97,fpga=3DXG,claimed=3DFalse,addr=3D10.40.3.1,master_clock_r=
-ate=3D61.44e6</span></p>
-        <p class=3D"p3" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo; color: rgb(170, 171, 37);">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><b>[WARNING] [MPM.RPCServer]
-            </b></span><span class=3D"s3" style=3D"font-variant-ligatures=
-:
-            no-common-ligatures; color: rgb(0, 0, 0);">A timeout event
-            occured!</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO]
-            [MPM.PeriphManager]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">init() called with device args
-`fpga=3DXG,master_clock_rate=3D61.44e6,mgmt_addr=3D10.10.3.1,name=3Dni-e3=
-20-3238B97,product=3De320'.</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s4" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(170, 171, 37);"><b>[WARNING]
-              [RFNOC::GRAPH]
-            </b></span><span class=3D"s1" style=3D"font-variant-ligatures=
-:
-            no-common-ligatures;">One or more blocks timed out during
-            flush!</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO]
-            [0/Radio#0]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">Performing CODEC loopback test on
-            channel 0 ...<span class=3D"Apple-converted-space">=C2=A0</sp=
-an></span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO]
-            [0/Radio#0]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">CODEC loopback test passed</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO]
-            [0/Radio#0]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">Performing CODEC loopback test on
-            channel 1 ...<span class=3D"Apple-converted-space">=C2=A0</sp=
-an></span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO]
-            [0/Radio#0]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">CODEC loopback test passed</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO]
-            [0/DmaFIFO#0]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">BIST passed (Estimated Minimum
-            Throughput: 1361 MB/s)</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s2" style=3D"font-variant-ligatures:
-            no-common-ligatures; color: rgb(57, 192, 38);">[INFO]
-            [0/DmaFIFO#0]
-          </span><span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">BIST passed (Estimated Minimum
-            Throughput: 1361 MB/s)</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">Using Device: Single USRP:</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Device: E300-Series Device</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Mboard 0: e320</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>RX Channel: 0</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-              =C2=A0
-            </span>RX DSP: 0</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-              =C2=A0
-            </span>RX Dboard: A</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-              =C2=A0
-            </span>RX Subdev: E3xx</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>TX Channel: 0</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-              =C2=A0
-            </span>TX DSP: 0</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-              =C2=A0
-            </span>TX Dboard: A</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-              =C2=A0
-            </span>TX Subdev: E3xx</span></p>
-        <p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo; min-height: 15px;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"></span><br>
-        </p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">[00:00:05.502443989] Setting device
-            timestamp to 0...</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><b>Setting RX spp to 1919</b></span></p=
->
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><b>Setting TX spp to 1916</b></span></p=
->
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">[00:00:05.512753951] Testing receive
-            rate 61.440000 Msps on 1 channels</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">[00:00:05.554696549] Testing transmit
-            rate 61.440000 Msps on 1 channels</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">[00:00:05.555824707] Detected Rx
-            sequence error.</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">DU[00:01:05.558922952] Benchmark
-            complete.</span></p>
-        <p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo; min-height: 15px;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"></span><br>
-        </p>
-        <p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo; min-height: 15px;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"></span><br>
-        </p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">Benchmark rate summary:</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num received samples: <span
-              class=3D"Apple-converted-space">=C2=A0 =C2=A0 </span>368636=
-8018</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num dropped samples:<span
-              class=3D"Apple-converted-space">=C2=A0 =C2=A0 =C2=A0 </span=
->3196728</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num overruns detected:<span
-              class=3D"Apple-converted-space">=C2=A0 =C2=A0 </span>0</spa=
-n></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num transmitted samples:<span
-              class=3D"Apple-converted-space">=C2=A0 </span>3686403160</s=
-pan></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num sequence errors (Tx): 0</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num sequence errors (Rx): 1</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num underruns detected: <span
-              class=3D"Apple-converted-space">=C2=A0 </span>1</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num late commands:<span class=3D"Apple-converted-space=
-">=C2=A0
-              =C2=A0 =C2=A0 =C2=A0 </span>0</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num timeouts (Tx):<span class=3D"Apple-converted-space=
-">=C2=A0
-              =C2=A0 =C2=A0 =C2=A0 </span>0</span></p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"><span class=3D"Apple-converted-space">=C2=
-=A0
-            </span>Num timeouts (Rx):<span class=3D"Apple-converted-space=
-">=C2=A0
-              =C2=A0 =C2=A0 =C2=A0 </span>0</span></p>
-        <p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo; min-height: 15px;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"></span><br>
-        </p>
-        <p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo; min-height: 15px;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;"></span><br>
-        </p>
-        <p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px;
-          font-variant-numeric: normal; font-variant-east-asian: normal;
-          font-stretch: normal; font-size: 13px; line-height: normal;
-          font-family: Menlo;">
-          <span class=3D"s1" style=3D"font-variant-ligatures:
-            no-common-ligatures;">Done!</span></p>
-        <br>
-        <p><br>
-        </p>
-        <p>Best,</p>
-        <p>Samie</p>
-      </div>
-    </blockquote>
-    You might also try some of the things noted here:<br>
-    <br>
-<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/USRP_Host=
-_Performance_Tuning_Tips_and_Tricks#Adjust_Network_Buffers">https://kb.et=
-tus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#Adjust_Network_Buffe=
-rs</a><br>
-    <br>
-    <br>
-  </body>
-</html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><!--[if !mso]><style>v\:* =
+{behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+@font-face
+	{font-family:"Segoe UI Light";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+span.contentpasted0
+	{mso-style-name:contentpasted0;}
+span.xelementtoproof
+	{mso-style-name:x_elementtoproof;}
+p.xxmsonormal, li.xxmsonormal, div.xxmsonormal
+	{mso-style-name:x_x_msonormal;
+	margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle25
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue =
+vlink=3Dpurple style=3D'word-wrap:break-word'><div =
+class=3DWordSection1><p class=3DMsoNormal>Jim,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Thanks for =
+taking care of this.&nbsp; I&#8217;ll just fix it on my end and wait for =
+the eventual updates in the repository.<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal>Mike<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div =
+style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in'><p class=3DMsoNormal><b>From:</b> Jim Palladino =
+&lt;jim@gardettoengineering.com&gt; <br><b>Sent:</b> Friday, December =
+16, 2022 10:04 AM<br><b>To:</b> usrp-users@lists.ettus.com; Mike =
+&lt;mikerd1@verizon.net&gt;<br><b>Subject:</b> Re: [USRP-users] Re: Did =
+anyone else need to do this?<o:p></o:p></p></div></div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><p class=3DMsoNormal><span =
+style=3D'font-size:12.0pt;color:black;background:white'>Mike,</span><o:p>=
+</o:p></p></div><div><p class=3DMsoNormal><span =
+class=3Dcontentpasted0><span =
+style=3D'font-size:12.0pt;color:black;background:white'>My last comment =
+was related to gr-ettus (ettus_rfnoc_graph.block.yml), which I installed =
+with gnuradio 3.8 / uhd 4.1. But I do see that gnuradio 3.10 has the =
+exact same issue (as you found) in =
+uhd_rfnoc_graph.block.yml:</span></span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><span class=3Dcontentpasted0><span =
+style=3D'font-size:12.0pt;color:black;background:white'><a =
+href=3D"https://github.com/gnuradio/gnuradio/blob/maint-3.10/gr-uhd/grc/u=
+hd_rfnoc_graph.block.yml">https://github.com/gnuradio/gnuradio/blob/maint=
+-3.10/gr-uhd/grc/uhd_rfnoc_graph.block.yml</a></span></span><o:p></o:p></=
+p></div><div><div><div =
+style=3D'margin-top:12.0pt;margin-bottom:12.0pt;min-width: 424px' =
+id=3D"LPBorder_GTaHR0cHM6Ly9naXRodWIuY29tL2dudXJhZGlvL2dudXJhZGlvL2Jsb2Iv=
+bWFpbnQtMy4xMC9nci11aGQvZ3JjL3VoZF9yZm5vY19ncmFwaC5ibG9jay55bWw."><table =
+class=3DMsoNormalTable border=3D1 cellspacing=3D4 cellpadding=3D0 =
+width=3D"100%" style=3D'width:100.0%;border:solid #C8C8C8 1.0pt'><tr><td =
+valign=3Dtop style=3D'border:none;padding:9.0pt 27.0pt 9.0pt 9.0pt'><div =
+style=3D'margin-right:9.0pt;overflow:hidden' =
+id=3DLPImageContainer926969><p class=3DMsoNormal><a =
+href=3D"https://github.com/gnuradio/gnuradio/blob/maint-3.10/gr-uhd/grc/u=
+hd_rfnoc_graph.block.yml" target=3D"_blank"><span =
+style=3D'text-decoration:none'><img border=3D0 width=3D240 height=3D120 =
+style=3D'width:2.5in;height:1.25in' id=3D"_x0000_i1030" =
+src=3D"https://repository-images.githubusercontent.com/3030065/919b3680-5=
+0c1-11ea-8e39-e96d4449c2cd"></span></a><o:p></o:p></p></div></td><td =
+width=3D"100%" valign=3Dtop =
+style=3D'width:100.0%;border:none;padding:9.0pt 27.0pt 9.0pt 9.0pt'><div =
+style=3D'margin-right:6.0pt;margin-bottom:9.0pt' id=3DLPTitle926969><p =
+class=3DMsoNormal><span style=3D'font-size:16.0pt;font-family:"Segoe UI =
+Light",sans-serif'><a =
+href=3D"https://github.com/gnuradio/gnuradio/blob/maint-3.10/gr-uhd/grc/u=
+hd_rfnoc_graph.block.yml" target=3D"_blank"><span =
+style=3D'text-decoration:none'>gnuradio/uhd_rfnoc_graph.block.yml at =
+maint-3.10 &middot; =
+gnuradio/gnuradio</span></a><o:p></o:p></span></p></div><div =
+style=3D'margin-right:6.0pt;margin-bottom:9.0pt;max-height: =
+100px;overflow:hidden' id=3DLPDescription926969><p =
+class=3DMsoNormal><span style=3D'font-size:10.5pt;font-family:"Segoe =
+UI",sans-serif;color:#666666'>GNU Radio &#8211; the Free and Open =
+Software Radio Ecosystem - gnuradio/uhd_rfnoc_graph.block.yml at =
+maint-3.10 &middot; gnuradio/gnuradio<o:p></o:p></span></p></div><div =
+id=3DLPMetadata926969><p class=3DMsoNormal><span =
+style=3D'font-size:10.5pt;font-family:"Segoe =
+UI",sans-serif;color:#A6A6A6'>github.com<o:p></o:p></span></p></div></td>=
+</tr></table></div></div><p class=3DMsoNormal><span =
+class=3Dcontentpasted0><span =
+style=3D'font-size:12.0pt;color:black;background:white'>So, it looks =
+like we've run into the same issue in different implementations. I can =
+post and issue on the gnuradio github page as =
+well.</span></span><o:p></o:p></p></div><div><p class=3DMsoNormal><span =
+class=3Dcontentpasted0><span =
+style=3D'font-size:12.0pt;color:black;background:white'>Jim</span></span>=
+<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div class=3DMsoNormal =
+align=3Dcenter style=3D'text-align:center'><hr size=3D2 width=3D"98%" =
+align=3Dcenter></div><div id=3DdivRplyFwdMsg><p =
+class=3DMsoNormal><b><span style=3D'color:black'>From:</span></b><span =
+style=3D'color:black'> Jim Palladino &lt;<a =
+href=3D"mailto:jim@gardettoengineering.com">jim@gardettoengineering.com</=
+a>&gt;<br><b>Sent:</b> Friday, December 16, 2022 9:38 AM<br><b>To:</b> =
+<a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+ &lt;<a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+&gt;; Mike &lt;<a =
+href=3D"mailto:mikerd1@verizon.net">mikerd1@verizon.net</a>&gt;<br><b>Sub=
+ject:</b> [USRP-users] Re: Did anyone else need to do this?</span> =
+<o:p></o:p></p><div><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p></div></div><div><div><p =
+class=3DMsoNormal><span class=3Dxelementtoproof><span =
+style=3D'font-size:12.0pt;color:black;background:white'>Hi =
+Mike,</span></span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal =
+style=3D'margin-bottom:12.0pt'><span class=3Dxelementtoproof><span =
+style=3D'font-size:12.0pt;color:black;background:white'>Yes, I've run =
+into that. I posted an issue last week here:</span></span><span =
+style=3D'font-size:12.0pt;color:black;background:white'><br><span =
+class=3Dxelementtoproof><a =
+href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com=
+_EttusResearch_gr-2Dettus_issues_69&amp;d=3DDwMF-g&amp;c=3DeuGZstcaTDllvi=
+mEN8b7jXrwqOf-v5A_CdpgnVfiiMM&amp;r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkf=
+wDnwpYx0&amp;m=3D8R8d8AptGNR6pvwu09qYQOqR4yaqR90_EK56v2z-xLM&amp;s=3DxyYF=
+rqtOxluB0Ad4jIxBJj7J_5ArRlIAu8Sx0l3QxaM&amp;e=3D">https://github.com/Ettu=
+sResearch/gr-ettus/issues/69</a></span></span><span =
+class=3Dxelementtoproof><span =
+style=3D'font-size:12.0pt;color:black;background:white'><o:p></o:p></span=
+></span></p><div><div =
+style=3D'margin-top:12.0pt;margin-bottom:12.0pt;min-width:424px' =
+id=3D"LPBorder_GTaHR0cHM6Ly9naXRodWIuY29tL0V0dHVzUmVzZWFyY2gvZ3ItZXR0dXMv=
+aXNzdWVzLzY5"><table class=3DMsoNormalTable border=3D1 cellspacing=3D4 =
+cellpadding=3D0 width=3D"100%" style=3D'width:100.0%;border:solid =
+#C8C8C8 1.0pt'><tr><td valign=3Dtop style=3D'border:none;padding:9.0pt =
+27.0pt 9.0pt 9.0pt'><div style=3D'margin-right:9.0pt;overflow:hidden' =
+id=3DLPImageContainer455494><p class=3DMsoNormal><a =
+href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com=
+_EttusResearch_gr-2Dettus_issues_69&amp;d=3DDwMF-g&amp;c=3DeuGZstcaTDllvi=
+mEN8b7jXrwqOf-v5A_CdpgnVfiiMM&amp;r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkf=
+wDnwpYx0&amp;m=3D8R8d8AptGNR6pvwu09qYQOqR4yaqR90_EK56v2z-xLM&amp;s=3DxyYF=
+rqtOxluB0Ad4jIxBJj7J_5ArRlIAu8Sx0l3QxaM&amp;e=3D" =
+target=3D"_blank"><span style=3D'text-decoration:none'><img border=3D0 =
+width=3D240 height=3D120 style=3D'width:2.5in;height:1.25in' =
+id=3D"_x0000_i1029" =
+src=3D"https://opengraph.githubassets.com/5b58487cd101d233e77dea3debf24f9=
+7c1326803f405d696532fef76e41550f5/EttusResearch/gr-ettus/issues/69"></spa=
+n></a><o:p></o:p></p></div></td><td width=3D"100%" valign=3Dtop =
+style=3D'width:100.0%;border:none;padding:9.0pt 27.0pt 9.0pt 9.0pt'><div =
+style=3D'margin-right:6.0pt;margin-bottom:9.0pt' id=3DLPTitle455494><p =
+class=3DMsoNormal><span style=3D'font-size:16.0pt;font-family:"Segoe UI =
+Light",sans-serif'><a =
+href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__github.com=
+_EttusResearch_gr-2Dettus_issues_69&amp;d=3DDwMF-g&amp;c=3DeuGZstcaTDllvi=
+mEN8b7jXrwqOf-v5A_CdpgnVfiiMM&amp;r=3DXUEEtUEfpaAEGxRI-WGuqHauOvsPdD2NZkf=
+wDnwpYx0&amp;m=3D8R8d8AptGNR6pvwu09qYQOqR4yaqR90_EK56v2z-xLM&amp;s=3DxyYF=
+rqtOxluB0Ad4jIxBJj7J_5ArRlIAu8Sx0l3QxaM&amp;e=3D" =
+target=3D"_blank"><span style=3D'text-decoration:none'>syntax error in =
+ettus_rfnoc_graph.block.yml &middot; Issue #69 &middot; =
+EttusResearch/gr-ettus</span></a><o:p></o:p></span></p></div><div =
+style=3D'margin-right:6.0pt;margin-bottom:9.0pt;max-height:100px;overflow=
+:hidden' id=3DLPDescription455494><p class=3DMsoNormal><span =
+style=3D'font-size:10.5pt;font-family:"Segoe =
+UI",sans-serif;color:#666666'>Line 25 of ettus_rfnoc_graph.block.yml in =
+the maint-3.8-uhd4.0 branch (and possibly others) looks like: =
+self.rfnoc_graph =3D ${id} =3D =
+ettus.rfnoc_graph(uhd.device_addr(&amp;quot;${graph_args}&amp;quot;))) =
+You...<o:p></o:p></span></p></div><div id=3DLPMetadata455494><p =
+class=3DMsoNormal><span style=3D'font-size:10.5pt;font-family:"Segoe =
+UI",sans-serif;color:#A6A6A6'>github.com<o:p></o:p></span></p></div></td>=
+</tr></table></div></div><p class=3DMsoNormal><span =
+class=3Dxelementtoproof><span =
+style=3D'font-size:12.0pt;color:black;background:white'>I ended up just =
+modifying the yml file in source and then reinstalling =
+gr-ettus.</span></span><o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
+class=3DMsoNormal><span class=3Dxelementtoproof><span =
+style=3D'font-size:12.0pt;color:black;background:white'>Jim</span></span>=
+<o:p></o:p></p></div><div><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div class=3DMsoNormal =
+align=3Dcenter style=3D'text-align:center'><hr size=3D2 width=3D"98%" =
+align=3Dcenter></div><div id=3D"x_divRplyFwdMsg"><p =
+class=3DMsoNormal><b><span style=3D'color:black'>From:</span></b><span =
+style=3D'color:black'> Mike via USRP-users &lt;<a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+&gt;<br><b>Sent:</b> Friday, December 16, 2022 9:33 AM<br><b>To:</b> <a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+ &lt;<a =
+href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
+&gt;<br><b>Subject:</b> [USRP-users] Did anyone else need to do =
+this?</span> <o:p></o:p></p><div><p =
+class=3DMsoNormal>&nbsp;<o:p></o:p></p></div></div><div><div><p =
+class=3Dxxmsonormal>Hi all,<o:p></o:p></p><p =
+class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p class=3Dxxmsonormal>This =
+goes in the category of &#8220;Did anyone else need to do =
+this?&#8221;.<o:p></o:p></p><p =
+class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p =
+class=3Dxxmsonormal>I&#8217;m running Ubuntu 20.04.5 LTS with GNURadio =
+3.8 (Maint) and UHD 4.0.&nbsp; I recently upgraded UHD to 4.2.&nbsp; I =
+ran into a gnuradio issue starting a &#8220;RFNoC&#8221; flow graph with =
+a syntax error for an unmatched &#8216;)&#8217;:<o:p></o:p></p><p =
+class=3Dxxmsonormal>&nbsp; Self.rfnoc_graph=3Dettus_rfnoc_graph_0 =3D =
+ettus.rfnoc_graph(uhd.device_addr(&#8220;addr=3Dxxx,type-n3xx&#8221;)))<o=
+:p></o:p></p><p class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p =
+class=3Dxxmsonormal>I was able to manually edit the generated python =
+code to remove one of the parentheses and see the code =
+work.<o:p></o:p></p><p class=3Dxxmsonormal>I then upgraded gnuradio to =
+3.10 which had the same issue.<o:p></o:p></p><p =
+class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p class=3Dxxmsonormal>I then =
+compared the &#8220;uhd_rfnoc_graph.block.yml&#8221; block files between =
+UHD4.0 and 4.2.&nbsp; It&#8217;s significantly different as 4.0 uses =
+python .join to build the argument list and UHD 4.2 uses the python =
+module &#8220;ast&#8221; to generate the argument list.&nbsp; But the =
+final line on the 4.2 version had the syntax error of the extra =
+&#8216;)&#8217;:<o:p></o:p></p><p =
+class=3Dxxmsonormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; self.rfnoc_graph =3D ${id} =3D =
+uhd.rfnoc_graph(uhd.device_addr(&#8220;${graph_args}&#8221;)))<o:p></o:p>=
+</p><p class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p class=3Dxxmsonormal>I =
+removed one &#8216;)&#8217; then reinstalled gnuradio (make install) =
+from the build directory and everything seemed to work after =
+that.<o:p></o:p></p><p class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p =
+class=3Dxxmsonormal>So, it seems like it is a simple syntax error.&nbsp; =
+But normally something like this (in my experience) indicates that I =
+might have missed some configuration step somewhere and have yet to see =
+the other errors.<o:p></o:p></p><p =
+class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p class=3Dxxmsonormal>So, has =
+anyone seen something like this?<o:p></o:p></p><p =
+class=3Dxxmsonormal>&nbsp;<o:p></o:p></p><p =
+class=3Dxxmsonormal>Thanks,<o:p></o:p></p><p =
+class=3Dxxmsonormal>Mike<o:p></o:p></p></div></div></div></div></body></h=
+tml>
+------=_NextPart_000_00DE_01D9113C.C02042F0--
 
---------------mK4LQ1cFUgkQUCuCUxNgIBjW--
-
---===============2878238454112043652==
+--===============5579487626854063442==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -768,4 +562,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2878238454112043652==--
+--===============5579487626854063442==--
