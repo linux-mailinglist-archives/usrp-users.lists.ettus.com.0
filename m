@@ -2,52 +2,55 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C66B64E932
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 11:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D36F64E9BE
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 11:48:54 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C0CFB38454D
-	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 05:10:58 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id A367B38445D
+	for <lists+usrp-users@lfdr.de>; Fri, 16 Dec 2022 05:48:52 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1671185458; bh=Y/sHCMWwYKOroAi2+q08l1LaGpXExQvjS88VQUilaqc=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=XL35vPFTFRdhm42MnOr0Y7HNZJBbnleQ3IoLZwPakM+z3Kv5i9dwkcpObJt1peKIe
-	 42BnNtZitYnxIUhb6FH1mZOj9/yb3LlM+Z5wpdbw0yp2pz8PZF5jdlLcnewqbbRDnu
-	 Zg57oUqBNz8Xt88Sec8uzH0Z5uzMcMI6CDCUxh+luiqxOLbEJmtNHB3gqqjepKaB1E
-	 G3VF+VMgMvHboljHx1x1r4L3oVnSFJ9+NvoSgcRKSabdFoDb5ZbeGV716G2Ge9guqj
-	 9RLjRL/41eaymDbO7dMUXGs3WChtjsVJTN/exnu7dFiMU94uP8d4Byh3SnVOANXZlt
-	 b+Zsjk3nsJaeA==
-Received: from smtp-relay-2.sys.kth.se (smtp-relay-2.sys.kth.se [130.237.32.40])
-	by mm2.emwd.com (Postfix) with ESMTPS id 435BA38449D
-	for <usrp-users@lists.ettus.com>; Fri, 16 Dec 2022 05:09:59 -0500 (EST)
+	t=1671187732; bh=QIN+lzDpcfn2uVBSeIKWLaTsG+EQ40FA4OPrUbgdbvI=;
+	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=d4cdqlNp61lx0ltgMXOk77k4enVB1HdVpMJJSglO+pVevyShPOngFexQRERZzHoYV
+	 zP5wffekPnxQK2vIkXwkNnZiRPX5IdFBE0iv5uQk1K4FBYMoU2YRChtYQAXtcErXJQ
+	 Q+pvu57zPDVuKAxC81X85+doE/nctZ16z7CjYEcetzGH/H1aRu9cNzPycshTrcJ2rL
+	 eIeOxdFIuvDt2wFvjzUIPjB+yCxGMIiOupEoebifyzITVaoXZWM5+/VFd34yNdBsSD
+	 XxgmIZJ90X+1DOolY5nMVKT38hDV713gOKXfOgoSM6Oixg3//9cpqcC0Ue/sESX7hI
+	 hSAwAgruvd1Lw==
+Received: from smtp-relay-3.sys.kth.se (smtp-relay-3.sys.kth.se [130.237.32.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id B92E1383A26
+	for <usrp-users@lists.ettus.com>; Fri, 16 Dec 2022 05:47:24 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=kth.se header.i=@kth.se header.b="Nj1okU9/";
+	dkim=pass (1024-bit key; unprotected) header.d=kth.se header.i=@kth.se header.b="DXZ/ckcz";
 	dkim-atps=neutral
-Received: from exdb2.ug.kth.se (exdb2.ug.kth.se [192.168.32.57])
+Received: from exdb1.ug.kth.se (exdb1.ug.kth.se [192.168.32.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp-relay-2.sys.kth.se (Postfix) with ESMTPS id 4NYPwh5Pk9zPMdr
-	for <usrp-users@lists.ettus.com>; Fri, 16 Dec 2022 11:09:56 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp-relay-2.sys.kth.se 4NYPwh5Pk9zPMdr
+	by smtp-relay-3.sys.kth.se (Postfix) with ESMTPS id 4NYQlt3361zPQDT
+	for <usrp-users@lists.ettus.com>; Fri, 16 Dec 2022 11:47:22 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp-relay-3.sys.kth.se 4NYQlt3361zPQDT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kth.se; s=default;
-	t=1671185397; bh=Y105E5Jy54u4mI5zH/XqjFZPaf1A0a34m801cC7bcDs=;
-	h=From:To:Subject:Date:From;
-	b=Nj1okU9/Ii6U1ql5AumKRzdBjj6h3tyLdd3+NWbWgCwyQUvlxphVPXitN4zQFzEWa
-	 RGq1v8XJtbZBQdp4L6vc/LJx7kZvfjzyv7Mf1iRVYQrUzyv7LwgCqqD9zb8I3Cf2Ah
-	 hm/6d31I4IAG4UmxlS+kD3IgePnrcK9PRjypbyGI=
-Received: from exdb4.ug.kth.se (192.168.32.59) by exdb2.ug.kth.se
- (192.168.32.57) with Microsoft SMTP Server (version=TLS1_2,
+	t=1671187643; bh=TRRuuXXPc+zivtsjYcGDlOI/lsFBMp7XZHmjWrgZFnI=;
+	h=From:To:Subject:Date:References:In-Reply-To:From;
+	b=DXZ/ckczA1ourzX5Nhdfj9rpINHbNKNHH9GWgz/fgkebTYY/Naj4Axi2+OryKum7S
+	 YDmsexNMjwieaqifcE30c3Bhsxlo/VmLBgwljdjMe4vLYzQLpROhm3zMd6YOKYbqPE
+	 OY5qUaatIJwD8gOERxcBEroOO9z7/FpMRLEYPXTc=
+Received: from exdb4.ug.kth.se (192.168.32.59) by exdb1.ug.kth.se
+ (192.168.32.56) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.20; Fri, 16 Dec
- 2022 11:09:56 +0100
+ 2022 11:47:22 +0100
 Received: from exdb4.ug.kth.se ([192.168.32.59]) by exdb4.ug.kth.se
- ([192.168.32.59]) with mapi id 15.02.1118.020; Fri, 16 Dec 2022 11:09:56
+ ([192.168.32.59]) with mapi id 15.02.1118.020; Fri, 16 Dec 2022 11:47:22
  +0100
 From: Samie Mostafavi <ssmos@kth.se>
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 Thread-Topic: UHD SPP problem with E320 and XG link
-Thread-Index: AQHZETVIi1Y2A6SB3UKa8BiGXYcekQ==
-Date: Fri, 16 Dec 2022 10:09:56 +0000
-Message-ID: <70c3e9d18e044f48ac549fa1dac7f598@kth.se>
+Thread-Index: AQHZETVIi1Y2A6SB3UKa8BiGXYceka5wVKRC
+Date: Fri, 16 Dec 2022 10:47:21 +0000
+Message-ID: <0f8474d42d3c471d9ddf7c95cd0cd312@kth.se>
+References: <70c3e9d18e044f48ac549fa1dac7f598@kth.se>
+In-Reply-To: <70c3e9d18e044f48ac549fa1dac7f598@kth.se>
 Accept-Language: en-US, sv-SE
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -55,32 +58,118 @@ X-MS-TNEF-Correlator:
 x-originating-ip: [192.168.32.250]
 MIME-Version: 1.0
 X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,HTML_MESSAGE,SPF_HELO_NONE shortcircuit=no autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on smtp-relay-2.sys.kth.se
-Message-ID-Hash: GYVBPOXLZRCHPK2I7DB4AXWKN5IXHHDJ
-X-Message-ID-Hash: GYVBPOXLZRCHPK2I7DB4AXWKN5IXHHDJ
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on smtp-relay-3.sys.kth.se
+Message-ID-Hash: IS6DNAPSLMDHV7EZSXVO222MJTRYY2XH
+X-Message-ID-Hash: IS6DNAPSLMDHV7EZSXVO222MJTRYY2XH
 X-MailFrom: ssmos@kth.se
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] UHD SPP problem with E320 and XG link
+Subject: [USRP-users] Re: UHD SPP problem with E320 and XG link
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GYVBPOXLZRCHPK2I7DB4AXWKN5IXHHDJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IS6DNAPSLMDHV7EZSXVO222MJTRYY2XH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8035812927160428568=="
+Content-Type: multipart/mixed; boundary="===============7834114727395767927=="
 
---===============8035812927160428568==
+--===============7834114727395767927==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_70c3e9d18e044f48ac549fa1dac7f598kthse_"
+	boundary="_000_0f8474d42d3c471d9ddf7c95cd0cd312kthse_"
 
---_000_70c3e9d18e044f48ac549fa1dac7f598kthse_
+--_000_0f8474d42d3c471d9ddf7c95cd0cd312kthse_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+
+I could narrow down the problem to tx_spp. Tried the following command inst=
+ead for benchmark and it seems that RX spp could be set to 1919 but TX spp =
+max that is reported by the radio is 492. Does anyone know how I can increa=
+se TX spp?
+
+
+sudo ./benchmark_rate --args "mgmt_addr=3D10.10.3.1,addr=3D10.40.3.1,master=
+_clock_rate=3D61.44e6" --duration 60 --channels "0" --rx_rate 61.44e6 --rx_=
+subdev "A:0" --tx_rate 61.44e6 --tx_subdev "A:0" --rx_spp 1919 --tx_spp 191=
+9  --tx_stream_args "spp=3D1919" --rx_stream_args "spp=3D1919"
+
+
+[INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.3.0.HEAD-0-g=
+1f8fd345
+
+[00:00:00.000069] Creating the usrp device with: mgmt_addr=3D10.10.3.1,addr=
+=3D10.40.3.1,master_clock_rate=3D61.44e6...
+
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args: mgmt_addr=3D1=
+0.10.3.1,type=3De3xx,product=3De320,serial=3D3238B97,name=3Dni-e320-3238B97=
+,fpga=3DXG,claimed=3DFalse,addr=3D10.40.3.1,master_clock_rate=3D61.44e6
+
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DXG,master=
+_clock_rate=3D61.44e6,mgmt_addr=3D10.10.3.1,name=3Dni-e320-3238B97,product=
+=3De320'.
+
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
+
+[INFO] [0/Radio#0] CODEC loopback test passed
+
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
+
+[INFO] [0/Radio#0] CODEC loopback test passed
+
+[INFO] [0/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB/s)
+
+[INFO] [0/DmaFIFO#0] BIST passed (Estimated Minimum Throughput: 1361 MB/s)
+
+Using Device: Single USRP:
+
+  Device: E300-Series Device
+
+  Mboard 0: e320
+
+  RX Channel: 0
+
+    RX DSP: 0
+
+    RX Dboard: A
+
+    RX Subdev: E3xx
+
+  TX Channel: 0
+
+    TX DSP: 0
+
+    TX Dboard: A
+
+    TX Subdev: E3xx
+
+
+[00:00:04.448876213] Setting device timestamp to 0...
+
+Setting RX spp to 1919
+
+Setting TX spp to 492
+
+[00:00:04.457322205] Testing receive rate 61.440000 Msps on 1 channels
+
+[00:00:04.502995425] Testing transmit rate 61.440000 Msps on 1 channels
+
+
+Best,
+
+Samie
+
+________________________________
+From: Samie Mostafavi <ssmos@kth.se>
+Sent: Friday, December 16, 2022 11:09:56 AM
+To: usrp-users@lists.ettus.com
+Subject: [USRP-users] UHD SPP problem with E320 and XG link
+
 
 Hi,
 
@@ -274,7 +363,7 @@ Best,
 
 Samie
 
---_000_70c3e9d18e044f48ac549fa1dac7f598kthse_
+--_000_0f8474d42d3c471d9ddf7c95cd0cd312kthse_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -286,6 +375,224 @@ Content-Transfer-Encoding: quoted-printable
 n-bottom:0;} --></style>
 </head>
 <body dir=3D"ltr">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
+<p>Hi,</p>
+<p><br>
+</p>
+<p>I could narrow down the problem to tx_spp. Tried the following command i=
+nstead for benchmark and it seems that RX spp could be set to 1919 but TX s=
+pp max that is reported by the radio is 492. Does anyone know&nbsp;how I&nb=
+sp;can increase TX spp?<br>
+<br>
+</p>
+<p></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">s=
+udo ./benchmark_rate --args &quot;mgmt_addr=3D10.10.3.1,addr=3D10.40.3.1,ma=
+ster_clock_rate=3D61.44e6&quot; --duration 60 --channels &quot;0&quot; --rx=
+_rate 61.44e6 --rx_subdev &quot;A:0&quot; --tx_rate 61.44e6 --tx_subdev
+ &quot;A:0&quot; --rx_spp 1919 --tx_spp 1919<span class=3D"Apple-converted-=
+space">&nbsp; </span>--tx_stream_args &quot;spp=3D1919&quot; --rx_stream_ar=
+gs &quot;spp=3D1919&quot;</span></p>
+<p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo; min-height: 15px;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+/span><br>
+</p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [UHD]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">linux; GNU C&#43;&#43; version 9.4.0; Boost_107100; UHD_4.3.0.HEAD-0-=
+g1f8fd345</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">[=
+00:00:00.000069] Creating the usrp device with: mgmt_addr=3D10.10.3.1,addr=
+=3D10.40.3.1,master_clock_rate=3D61.44e6...</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [MPMD]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">Initializing 1 device(s) in parallel with args: mgmt_addr=3D10.10.3.1=
+,type=3De3xx,product=3De320,serial=3D3238B97,name=3Dni-e320-3238B97,fpga=3D=
+XG,claimed=3DFalse,addr=3D10.40.3.1,master_clock_rate=3D61.44e6</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [MPM.PeriphManager]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">init() called with device args `fpga=3DXG,master_clock_rate=3D61.44e6=
+,mgmt_addr=3D10.10.3.1,name=3Dni-e320-3238B97,product=3De320'.</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [0/Radio#0]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">Performing CODEC loopback test on channel 0 ...<span class=3D"Apple-c=
+onverted-space">&nbsp;</span></span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [0/Radio#0]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">CODEC loopback test passed</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [0/Radio#0]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">Performing CODEC loopback test on channel 1 ...<span class=3D"Apple-c=
+onverted-space">&nbsp;</span></span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [0/Radio#0]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">CODEC loopback test passed</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [0/DmaFIFO#0]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">BIST passed (Estimated Minimum Throughput: 1361 MB/s)</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s2" style=3D"font-variant-ligatures: no-common-ligatures; co=
+lor: rgb(57, 192, 38);">[INFO] [0/DmaFIFO#0]
+</span><span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatu=
+res;">BIST passed (Estimated Minimum Throughput: 1361 MB/s)</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">U=
+sing Device: Single USRP:</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp;
+</span>Device: E300-Series Device</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp;
+</span>Mboard 0: e320</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp;
+</span>RX Channel: 0</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp; &nbsp;
+</span>RX DSP: 0</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp; &nbsp;
+</span>RX Dboard: A</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp; &nbsp;
+</span>RX Subdev: E3xx</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp;
+</span>TX Channel: 0</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp; &nbsp;
+</span>TX DSP: 0</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp; &nbsp;
+</span>TX Dboard: A</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+span class=3D"Apple-converted-space">&nbsp; &nbsp;
+</span>TX Subdev: E3xx</span></p>
+<p class=3D"p2" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo; min-height: 15px;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;"><=
+/span><br>
+</p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">[=
+00:00:04.448876213] Setting device timestamp to 0...</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">S=
+etting RX spp to 1919</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">S=
+etting TX spp to 492</span></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">[=
+00:00:04.457322205] Testing receive rate 61.440000 Msps on 1 channels</span=
+></p>
+<p class=3D"p1" style=3D"margin-right: 0px; margin-left: 0px; font-variant-=
+numeric: normal; font-variant-east-asian: normal; font-stretch: normal; fon=
+t-size: 13px; line-height: normal; font-family: Menlo;">
+<span class=3D"s1" style=3D"font-variant-ligatures: no-common-ligatures;">[=
+00:00:04.502995425] Testing transmit rate 61.440000 Msps on 1 channels</spa=
+n></p>
+<br>
+<p></p>
+<p>Best,</p>
+<p>Samie</p>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Samie Mostafavi &lt;s=
+smos@kth.se&gt;<br>
+<b>Sent:</b> Friday, December 16, 2022 11:09:56 AM<br>
+<b>To:</b> usrp-users@lists.ettus.com<br>
+<b>Subject:</b> [USRP-users] UHD SPP problem with E320 and XG link</font>
+<div>&nbsp;</div>
+</div>
+<div>
 <div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
 -family:Calibri,Helvetica,sans-serif;" dir=3D"ltr">
 <p>Hi,</p>
@@ -853,12 +1160,13 @@ one</span></p>
 <p>Best,</p>
 <p>Samie</p>
 </div>
+</div>
 </body>
 </html>
 
---_000_70c3e9d18e044f48ac549fa1dac7f598kthse_--
+--_000_0f8474d42d3c471d9ddf7c95cd0cd312kthse_--
 
---===============8035812927160428568==
+--===============7834114727395767927==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -868,4 +1176,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8035812927160428568==--
+--===============7834114727395767927==--
