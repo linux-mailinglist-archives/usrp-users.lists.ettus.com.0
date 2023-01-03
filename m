@@ -2,148 +2,139 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F4D565C0C9
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 14:27:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49A9F65C1F5
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 15:30:22 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D9300383B89
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 08:27:15 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 23F6A383F60
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 09:30:21 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1672752435; bh=F9BbbPoSNG5+dbaGmt1RY4s9JP+9DEqFe0df5oXiBvk=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	t=1672756221; bh=joODBOZU/ggCBO5NJYgv3cMCJrvW5GpfZ8t7UQ3878Q=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=uYO2cyGKg1NZMlyx5xDacp6Q+FPG7xxTu3x1ZcaIdRyEFIhjnEx9AzCVAvK74yOP6
-	 uYUT3p0bJ1OlSr9zMfmw4Vy/7xbn01b/d1nZi5kTkvpPnhQB1WBq0GfRZWwu4ePzpT
-	 w1tP7JbIX0AXtCnKKKBevfN0NvrJtZq5qH6c7NaXac0SFLpnKiirvIHB3KbgTsaW/U
-	 lD18zN3Msiv3mYJp7gnxGXHfqyIgzeqAT8Ivq3imwdFwlZYVgHiJnkVRh54ZGNGZ9o
-	 jBWHYpYV7iqMAjj4Fd+KfXI1t0F+f55Vr87DMlJAg1mgkyc0pCrAeMPwRJSGMwCRh3
-	 7a5esw3IZVyHA==
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id CB645380E39
-	for <usrp-users@lists.ettus.com>; Tue,  3 Jan 2023 08:25:54 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fMxhcRwh";
-	dkim-atps=neutral
-Received: by mail-wm1-f42.google.com with SMTP id i17-20020a05600c355100b003d99434b1cfso12885252wmq.1
-        for <usrp-users@lists.ettus.com>; Tue, 03 Jan 2023 05:25:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Xn2jCNSfkVIKLgP5VZWMWKD+Pm63Ab32mPmZ9kQsnDQ=;
-        b=fMxhcRwhdxvF1WwfDynpXZ9orqXMN76Y8ehboThikrPeElRhNwERElsuCRWxfrMmwx
-         NdX4PQwxGmZ2l2MC+foGORDtTdowx0ehaUg4cUJRpuL+wQIsYFLgrvtGaglvP/qePnef
-         J0jCMLjX3r8Kxvc2zifTQ9RmXuoRCWsY8aIHFWLv1hOdTH8oq9/YtQFozb5+rlv9Fj0b
-         83HHGGXUmPXkfCJgCwOJpG1d9LChH5blBdE6J4P/vn10M/SPDlrlEWWaCPxEIXi57H9/
-         NuuX/SiWqmwwpwsB6yZrlDK0vx32kA3JMDr0qazdD19PFHDFdtv6Vn/yXOty7vAXKISp
-         1lqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Xn2jCNSfkVIKLgP5VZWMWKD+Pm63Ab32mPmZ9kQsnDQ=;
-        b=EzxOZ1AxyN2ChCFAYJJjR1qfRRHwSdsSl8k+agP6rCe4Ifl00cgLSRc33DPoWdcjzx
-         fJJdbw/f2+RL/ejjC6v9UVl4hjYiBkkJWfu+0TNJ6l/DPsqBBOxzsFPxs4F9RXeSjjR7
-         A12eWIf/QGAA4YRBXbFERiwXxzvKneX6mIjs2orfdLTqnc5cncEVdw1Sma4RRUB825MZ
-         GN/yPYD3iCFMsHYSo5KdUgcwzz5+wPLOJ+rlvLl/Rx60lFhlTy88tkxzN1j4xb3Bq4xi
-         rCx7Nulv8KAmrkb7RCd40ZjjKIDPYSgp8pEU2HeGY7YrD8ujbF/CQjSzCWEsiiTibrAN
-         jGLQ==
-X-Gm-Message-State: AFqh2koXULWwh6bE06/HHnaiyHNDeUzX8R0elfRvhQ6O8CUpAGGYObaD
-	r1LA3VU4q6dL57MdHbUiCGejuYrtQ4a5anpTqQtY0cqP7ao=
-X-Google-Smtp-Source: AMrXdXuVOxFyYWVaL6IDf8TDVLKNKiDU28BIKHS9OeyN7dGiR4aMqZ7qiXNvY4NpvPr9DFsdyXvcdaG4bvBpfvQyMMs=
-X-Received: by 2002:a05:600c:3496:b0:3cf:7959:d8be with SMTP id
- a22-20020a05600c349600b003cf7959d8bemr3628592wmq.85.1672752353666; Tue, 03
- Jan 2023 05:25:53 -0800 (PST)
-MIME-Version: 1.0
-From: Pedro Pereira <pedro60132@gmail.com>
-Date: Tue, 3 Jan 2023 13:25:42 +0000
-Message-ID: <CAD_5BALc9Z85RuZ8hiH4Hao2e2UQWQZ=RN2T-zYCxY2nZxbTyw@mail.gmail.com>
+	b=0EPDduPZXJpB6mlpGDgzIydeDS89hROJTMkqHCW/2l9MMpNwmizeysbhPq3fCGPrO
+	 My+a7Wx24eknCVK3Ea8tX3J4jGXP+lcPCCazBHhnh6Lg7Nk2nfxTOqmNqS4otmj+kQ
+	 cNfONVPer4ZMnMi/enJ3EloFglboWK+YMK1qE02tcSfm+Vxytx+yQQ0xDC/b3UEPn1
+	 gjDfo/EpVnMhV+tpn/+lt6tRe9HOFP1lHssMH52MDQ8A7MY4s1fT1oBk17sUgSGETi
+	 rNVwhPJ3Zt0l/AE2IcyD7ag/XFgii17wbI8PK9j8s1bv//pHGM0SuAQetBlmJMmseE
+	 aBLmMxD/WFPWQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 9C47F38407D
+	for <usrp-users@lists.ettus.com>; Tue,  3 Jan 2023 09:29:23 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1672756163; bh=g6m6JgQfvJ8j4l0UuzwmjqKKGj4GLuzoSYk0g26N+ms=;
+	h=Date:To:From:Subject:From;
+	b=yKIM5evyCt8VtkMbpVd3U+tcbl4qfl14oItNdPIFSoz4WqoNs0jDA0AqY+fOeAYD9
+	 bt6UYrGPoS8iZQDBFuKphUD5dx//4S529Pxo1faWjbhmZYwOln3NYpvHUsGiVV8WhU
+	 pS+P5pBFyCgctaZtqn7+hF8VNHWctAkHCANVWX8G1MMbdECVb3fcz0jh4iM7kC1Na1
+	 M48Q/ydBf3cdwcOeHJo1MEnsGhk0AaJW493h9OxNL91pDV5hJj0Hyy7Svlf3O2nOvb
+	 R6X76chpXODVObd2/pqEceG0U63rUOjNkY4/caGCruEBgBDpLMedpoB4P/e/DEBys/
+	 IwOA0+uP7y3fg==
+Date: Tue, 3 Jan 2023 14:29:23 +0000
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: FAF7H7YLWOLYML5CZFAM7JYYS2LTRB23
-X-Message-ID-Hash: FAF7H7YLWOLYML5CZFAM7JYYS2LTRB23
-X-MailFrom: pedro60132@gmail.com
+From: henry.powell.xx@gmail.com
+Message-ID: <Tw8IjE6vV1f8jS724ptiIK8G4uU8WZ9RNGKr4RLzWDQ@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Message-ID-Hash: E5ZRJTYCKJDNOPZQTXWBDYHU4GX7II4F
+X-Message-ID-Hash: E5ZRJTYCKJDNOPZQTXWBDYHU4GX7II4F
+X-MailFrom: henry.powell.xx@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] SDR environment with USRP & external FPGA
+Subject: [USRP-users] RX Channel out of range
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FAF7H7YLWOLYML5CZFAM7JYYS2LTRB23/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E5ZRJTYCKJDNOPZQTXWBDYHU4GX7II4F/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5488787587003958412=="
+Content-Type: multipart/mixed; boundary="===============6337198059465189399=="
 
---===============5488787587003958412==
-Content-Type: multipart/alternative; boundary="000000000000d66baa05f15c010e"
+This is a multi-part message in MIME format.
 
---000000000000d66baa05f15c010e
-Content-Type: text/plain; charset="UTF-8"
+--===============6337198059465189399==
+Content-Type: multipart/alternative;
+ boundary="b1_Tw8IjE6vV1f8jS724ptiIK8G4uU8WZ9RNGKr4RLzWDQ"
+Content-Transfer-Encoding: 7bit
 
-Greetings,
+This is a multi-part message in MIME format.
 
-I have 2 USRP front-ends - N210 and N310. I want to develop a GNSS Receiver
-inside my FGPA - xilinx ZCU102 - and use one of the USRP devices only as
-the front-end. The receiver is quite large so I need an external board for
-all the signal processing chain. The receiver has two implementations -
-software-only & hybrid. In hybrid mode some tasks of the processing chain
-are accelerated in hardware.
+--b1_Tw8IjE6vV1f8jS724ptiIK8G4uU8WZ9RNGKr4RLzWDQ
+Content-Type: text/plain; charset=us-ascii
 
-The software-only version of the receiver running on my ZCU102 is able to
-configure the N210 and read packets over ethernet correctly. However, with
-the hybrid version of the receiver, I want to read the digital IQ samples
-from the front end directly in hardware.
+Hello,
 
-For example, I am able to do this with the ZCU102 connected to FMComm2/3
-using the FMC connection on the FPGA. AD provides HDL reference designs to
-support communication between multiple front-ends and multiple FPGAs.
+I am writing this code from terminal:
 
-Is there a similar way to read the digital samples directly in hardware
-using the N210? The N210 only has the ethernet and a MIMO port.
+*benchmark_rate --rx_rate 10e6 --tx_rate 10e6*
 
-Thanks in advance.
+and the output is:
 
---000000000000d66baa05f15c010e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+*\[INFO\] \[UHD\] Win32; Microsoft Visual C++ version 14.1; Boost_107000; UHD_4.2.0.0-release
+\[00:00:00.000100\] Creating the usrp device with: ...
+\[INFO\] \[B200\] Detected Device: B200
+\[INFO\] \[B200\] Operating over USB 3.
+\[INFO\] \[B200\] Initialize CODEC control...
+\[INFO\] \[B200\] Initialize Radio control...
+\[INFO\] \[B200\] Performing register loopback test...
+\[INFO\] \[B200\] Register loopback test passed
+\[INFO\] \[B200\] Setting master clock rate selection to 'automatic'.
+\[INFO\] \[B200\] Asking for clock rate 16.000000 MHz...
+\[INFO\] \[B200\] Actually got clock rate 16.000000 MHz.
+Using Device: Single USRP:
+  Device: B-Series Device
+  Mboard 0: B200
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX1
 
-<div dir=3D"ltr">Greetings,<div><br></div><div>I have 2 USRP front-ends - N=
-210 and N310. I want to develop a GNSS Receiver inside my FGPA - xilinx ZCU=
-102 - and use one of the USRP devices only as the front-end. The receiver i=
-s quite large so I need an external board for all the signal processing cha=
-in. The receiver has two implementations - software-only &amp; hybrid. In h=
-ybrid mode some tasks of the processing chain are accelerated in hardware.<=
-/div><div><br></div><div>The software-only version of the receiver running =
-on my ZCU102 is able to configure the N210 and read packets over ethernet c=
-orrectly. However, with the hybrid version of the receiver, I want to read =
-the digital IQ samples from the front end directly in hardware.=C2=A0</div>=
-<div><br></div><div>For example, I am able to do this with the ZCU102 conne=
-cted to=C2=A0<span style=3D"color:rgb(17,23,26);font-family:Barlow,&quot;He=
-lvetica Neue&quot;,Helvetica,Arial,&quot;Lucida Grande&quot;,sans-serif;fon=
-t-size:14px">FMComm2/3 using the FMC connection on the FPGA. AD provides HD=
-L reference designs to support communication between multiple front-ends an=
-d multiple FPGAs.=C2=A0</span></div><div><span style=3D"color:rgb(17,23,26)=
-;font-family:Barlow,&quot;Helvetica Neue&quot;,Helvetica,Arial,&quot;Lucida=
- Grande&quot;,sans-serif;font-size:14px"><br></span></div><div><span style=
-=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helvetica Neue&quot;,Helve=
-tica,Arial,&quot;Lucida Grande&quot;,sans-serif;font-size:14px">Is there a =
-similar way to read the digital samples directly in hardware using the N210=
-? The N210 only has the ethernet and a MIMO port.</span></div><div><span st=
-yle=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helvetica Neue&quot;,He=
-lvetica,Arial,&quot;Lucida Grande&quot;,sans-serif;font-size:14px"><br></sp=
-an></div><div><font color=3D"#11171a" face=3D"Barlow, Helvetica Neue, Helve=
-tica, Arial, Lucida Grande, sans-serif"><span style=3D"font-size:14px">Than=
-ks in advance.</span></font></div><div><span style=3D"color:rgb(17,23,26);f=
-ont-family:Barlow,&quot;Helvetica Neue&quot;,Helvetica,Arial,&quot;Lucida G=
-rande&quot;,sans-serif;font-size:14px"><br></span></div><div><span style=3D=
-"color:rgb(17,23,26);font-family:Barlow,&quot;Helvetica Neue&quot;,Helvetic=
-a,Arial,&quot;Lucida Grande&quot;,sans-serif;font-size:14px"><br></span></d=
-iv></div>
+Error: LookupError: IndexError: multi_usrp: RX channel 2106923663889 out of range for configured RX frontends*
 
---000000000000d66baa05f15c010e--
+I tried to enter channels manual but outcomes is same
 
---===============5488787587003958412==
+--b1_Tw8IjE6vV1f8jS724ptiIK8G4uU8WZ9RNGKr4RLzWDQ
+Content-Type: text/html; charset=us-ascii
+
+<p>Hello,</p><p>I am writing this code from terminal:</p><p><em>benchmark_rate --rx_rate 10e6 --tx_rate 10e6</em>
+
+and the output is:
+
+<em>[INFO] [UHD] Win32; Microsoft Visual C++ version 14.1; Boost_107000; UHD_4.2.0.0-release
+[00:00:00.000100] Creating the usrp device with: ...
+[INFO] [B200] Detected Device: B200
+[INFO] [B200] Operating over USB 3.
+[INFO] [B200] Initialize CODEC control...
+[INFO] [B200] Initialize Radio control...
+[INFO] [B200] Performing register loopback test...
+[INFO] [B200] Register loopback test passed
+[INFO] [B200] Setting master clock rate selection to 'automatic'.
+[INFO] [B200] Asking for clock rate 16.000000 MHz...
+[INFO] [B200] Actually got clock rate 16.000000 MHz.
+Using Device: Single USRP:
+  Device: B-Series Device
+  Mboard 0: B200
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX1
+
+Error: LookupError: IndexError: multi_usrp: RX channel 2106923663889 out of range for configured RX frontends</em></p><p>I tried to enter channels manual but outcomes is same</p>
+
+
+--b1_Tw8IjE6vV1f8jS724ptiIK8G4uU8WZ9RNGKr4RLzWDQ--
+
+--===============6337198059465189399==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -153,4 +144,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5488787587003958412==--
+--===============6337198059465189399==--
