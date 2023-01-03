@@ -2,310 +2,139 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFDE65C2D6
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 16:16:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88CED65C2F4
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 16:25:53 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A55B5384120
-	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 10:16:35 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id B49EC38408E
+	for <lists+usrp-users@lfdr.de>; Tue,  3 Jan 2023 10:25:52 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1672758995; bh=vuHEs3K5b3AvUQSeUiNtQzeFJhgKtAO+WEo4KXSr/oc=;
-	h=Date:From:To:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1672759552; bh=AWRrc+6DsG7+bzt0CjQK3E3U5uTt3vz27yE8U6hkcL4=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=j3b4uC1vCUOkr7MFTj1ggNSOIIOpxUVwCfIYB5Nvi3Az26RJqeihgpyEqXj9ogOvS
-	 Or4cNvkXot3XvwV0bTRaDPile27egmQ2jRy1xWtevdNjPys2oq+mXDsJ7PfirueQjA
-	 PC0uUb2u6JU5UJyaPjWgc/NSsucDnDrR/Ele9kz07v+yumIQhWnE7F9TFhQ6bLDTST
-	 2Vq+GK8cstfaAyPG7a0S+GfBTJ7Kst9YEJzI0ygLVdP15ho6gZqHdSwjezBWQXd0qJ
-	 4KVsnihrVGMDRjTSWa+Djz6c66i3oVr4wjI/qzgqRLyE072+IaP0DY/IHDderpycmL
-	 dYwxKUZpJMGGA==
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	by mm2.emwd.com (Postfix) with ESMTPS id 918EE38408D
-	for <usrp-users@lists.ettus.com>; Tue,  3 Jan 2023 10:15:01 -0500 (EST)
+	 From:Reply-To:From;
+	b=rVGx+mbEmoqmOFEU0w+Gv4rRIw1ozYoWBLMNqoR18CCd+rPlaA/5dsd0fOdrctM1+
+	 46ORNxoxoEg9hqdt2jtMCtFZX7MAg5ZvOoRypLI8lJ/PYx9uzzQLJkzXse4dqLhZfA
+	 4+7eacDk6imWeMoLhGWKbnvl95SOvvZQw2MKog3t2M4w0pWbTBn3T/ktvjQ/Usc65l
+	 8rCYNPvheMPWk4MyYRNIsvGE67om0+ZSDVfEiNvQKNdjpZAra8g8LgnJQ5pYPOhw2G
+	 XOipZqUjMNT4jm1FarQsqNUEcCMWGxtmJiyGqLRdU1VnHDdiP5lK2xpwokkc6oTdk2
+	 Jok9sAXQfUKig==
+Received: from sonic319-26.consmr.mail.bf2.yahoo.com (sonic319-26.consmr.mail.bf2.yahoo.com [74.6.131.81])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7F04C384074
+	for <usrp-users@lists.ettus.com>; Tue,  3 Jan 2023 10:24:58 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="dc1tLEQw";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="qPcLZakr";
 	dkim-atps=neutral
-Received: by mail-wm1-f50.google.com with SMTP id m3so14044653wmq.0
-        for <usrp-users@lists.ettus.com>; Tue, 03 Jan 2023 07:15:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:references:to:from:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ae/pgUvp6e6wm/jsyzWeOKYXeJ6Uv7Ex6C0EZ3Wtqi8=;
-        b=dc1tLEQwZk79aYJifjlNtW1pYlCpYJTzzDSQ3pOS+vLbSzbZta7ZGV1ud2z6eleydW
-         LjopecUSlkWkxu26tyzEv3h1TGhEeOBDUuouUf7E703zR3yjn7zpgS09/BaSKbcWdzMI
-         RiG5+DI0lSq3z5zCa3aG2Mqcs2HxLjNxn7xq10nfYRm1c9J8ydHCunDiSSZ+QZ/keG6w
-         1uD+GYpSVGQvaKSRaPOKdMm+xtyW+LDL1Hq57bIn2qxvVNoZLIagHLgnCeWQYCfXplBE
-         pvRbB8MQJ0CVi1GKXf18AEC7yv6eBMgJeioTJCgjaDZ0j0+tlDEqLnytXE6wDTPEVMSQ
-         NkWw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:references:to:from:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Ae/pgUvp6e6wm/jsyzWeOKYXeJ6Uv7Ex6C0EZ3Wtqi8=;
-        b=1b0Psd4MPsEkIp9gdoB9j/X5hMeIsl021zdet8axeA+eE9uw3eDadqsLcOrFBQmxky
-         FlQw0goModLXO0krFIv7+VYppbqD8SVYgEwGIvS81wQvoezlBxM/y/t7vMqO0cWeGd3V
-         HvKKIEGq9QqznwryVY+Pj5uo3WWFJXCcbQ08IZIilc9abuii/WX5JmfZcsXkGU9kpV5E
-         PAxYei6m8sxqRO0s3ehpBhHkVb6iXPFdprYMbWjowQ4E6yy1/2ng8nsVD70gnKqDCbmY
-         oVcfoNbGJDR03NtGGxxpZxfZkh4NAcnz2SssD7PlKXz4e/I+6WLqaykz8yb8GnTDd/vb
-         6dEg==
-X-Gm-Message-State: AFqh2krVI/DOZ+4wBUpwQgGWxs/3y2vxg3RN+R7nHeo/ot1+jtbFC/xj
-	ercqQaTKpV5Bv52po3jxB4t+tV2TfrBP88lDnIU=
-X-Google-Smtp-Source: AMrXdXt4cT/wFqimY6s0EtxZhjYQlEKIPfLNxr0LAQDz2UXc7s+O+02W+6FRJ6CHTw+MSQealR1SvA==
-X-Received: by 2002:a05:600c:1c11:b0:3d1:e583:51a0 with SMTP id j17-20020a05600c1c1100b003d1e58351a0mr32999741wms.25.1672758900339;
-        Tue, 03 Jan 2023 07:15:00 -0800 (PST)
-Received: from ?IPV6:2001:9e8:3867:8800:998f:ca6a:6065:3212? ([2001:9e8:3867:8800:998f:ca6a:6065:3212])
-        by smtp.gmail.com with ESMTPSA id p12-20020a05600c468c00b003cf5ec79bf9sm42017720wmo.40.2023.01.03.07.14.59
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Jan 2023 07:15:00 -0800 (PST)
-Message-ID: <5c1a56c3-cf76-4ee9-c3ed-40411a5e0f3b@ettus.com>
-Date: Tue, 3 Jan 2023 16:14:59 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1672759497; bh=J9/0yCwUiQCvtZj/k93Vv81pVAoUzZVHAPIw0Xat3NA=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=qPcLZakrscVtssKeGCjqXv5WA86SKeqCWXxFwpI5ijUBq+Ybiq3X2bAQ9fui6I+Bo8MLxlszPaOCQYiojFed9s+wMATYN4irSr2w0ACOFGBfb6x2EWctxXfZ/z9JkRln5hkgOY4ZrEWxRnV4grLzK+IC1sdy6pqoKYmvHdg0oA/3BM8jw+6b7q24icGJwO/s81m1S09R7R6o4xEsFJZTqpI+z0Dm5P6inm6cNV8QvDFfQ147bES280qOTDhdm5M3wT2sd2wcAp+cTHCLMA+oKAWp+Q01NuHSa4bJ+suM34MfvswvMWJ8+3XzdJA/AbQ8ah8wSgwNcYGEvx0sa1a7ug==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1672759497; bh=lSaga9inkbKCiosownGhG+Nbj6A7uC/VYUQPorIhESS=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=MvXvGggcXYFCRHQoOrxtdl6Gco4drt5TYMJ7j68ddm3oaauga4Hj2Xb1hZuc87ckxgnqEW88eTOQkJRqK46bJqodl8PBFcMbbaRcGb3ZVCyUKY2fmwRwZUmM+BrD20pS7x9xPjgFksK19VV4Z2teOA82iY/oXwGVrCO2aI6EZXmk83MBnROW66xwvPNFFlf6N0rJUl3/iA7gTpiBx4GvA+vircYNRDAsGcVo/LD79VSNS0Lr6kNeMY3lA2mE06pJ1OR83e1pedBC5TZXNzjOn8qKRdv/PP9N5MWfcYM5Bn8+iVtjk81h3Z3rHb2A0UMutO7evkGBs7GRO4yXXVHqxg==
+X-YMail-OSG: riu4osQVM1mBvdx2j_I7e_XfwbWB4kJU4cX7pqBedDJ3ZRYdmhP90BMsRWU4qIv
+ iwI1TNm6e4XHOTiAO7bBEETIAvyGIaLgv6roynQ0kWEWUGyuTgTCicOpgzDcPttfxTrTpGBzXCbe
+ cU0vWwQN41gThM90qhhzzsa31iphs597bz3ugLCWghyr1FxYGQHh7JFl6ST9edicdocZW69X3kx4
+ SHly_8YzM1IKE4O0HnVxgJGZmTjH5sw3YJzlj2.XjaFOW7HBOT1DbIt.ZUIZV2dYF1lJbYpcFEVf
+ rw_H0PN.TdREgMVGUzQ8ciehGXFdE7U2b2mX5G8nyEkr.H4NKSh8DNU16c3Q7mUdBL3iJ.9LHvxF
+ E3U_hiVRB5s_waZsnCDsPXD4w8Csb_IA6gTkXkDCSj.8silLoyTyKoZ1S6cSE1SkoGuHtTCqYyyn
+ uN1NNwDmAlqa5mbr.5cKw3kA8KVjc7cPRNdqSnv8YmwPfY2iL.jaNfM6wdmVhgiLk5p2zoPgskSU
+ tvyLdYesec3Ew4EQJzs3j9Skr8cxJgiPUrVACq6sAamiDuvLftPFdunBzaYVrSTIG2tSObI7jZci
+ L7_GnfMpE9IZ0_MU5fVT7y61SLSERKqyA370fBBan8UMHQOUllRIZ3iPW2BXihs72220pccbCmmr
+ onFMfXK3c4biHSBgZLiNQL9uz63nKdCv4YhAJNXPOaV5tI.G0j3Nq.iEla4AtkPAAjulwOmLKXqX
+ 0zlxJa_33kPIkc5Px3oMiX__EV2oe3No1Lls2dr6LYhpn8PvJTDy5nNqealUr8LwCRyMkrybl04b
+ HoFbnoexy4FvtXqPgOhBD.t4_mkLTHcVzcl4b4f7iv_nnBVXtHJj60Pf0gm01f1sEWZH_3FEUDHB
+ 9b_vgvUV_xyvk6H66obwNfOHhHIPqaPQK2E9qdf255cKShFxaYUKeRnsoHUHQuiftQpSS43hF5.K
+ wxnPjxc22ErlQSvKkUASQhVrppaWfIDvCpOm2x8jWo_grAaZxRRxSnTchPpEVV6j1JkpDBVTjP00
+ Ick_mMosMbqxQ8gQgiaGoa7gJtw_FzW2x4F02SbVubf0MUYFVa4N1bDQ9pdQzt8.MldUJr2ilFUI
+ dPivAgV04DWvVC918BHB0eY0aKknmZCqS1e6xO7NikvuXkO2UMotoJolp5MElooqG5PRtiVbF.u3
+ rAHO_aFc2_sUyoXsYDBqZC7htfJT0NZO5o06waOkRBqBinhACXsUqT817YZgg8r5HbEqbYi2jSHS
+ gVT8EpecLrA.iiZjTngwYzeNOZMcoSzJLJb7al39utG4s1KgeEwrH.uiG73G6gP2_y1olMQvQ_tZ
+ rGjOzTYTaol_G8RNvgUl4E6FfTbiOyDDdQThFn4Q4Q45Iw1VX4_fc2Qf2XDAGy1AD9RGPxV3rFGJ
+ VRqKzxNALUfWL17HTeMYzej521tmlG.i1PeKUF5z6P6qMkDKc6tJj2KZwlhsnPW0UPNGEIuTZUj9
+ KWhFE30LFlFx9cxJEucEftb.QsOTlZHrzgCSpWewkS.NwrMr4aL.M7V.aMbsWcKgyKd.BwWN0Ngk
+ C7isOmsU7srEpjFttWo_UQckmJasvjsFExkb9EyiTVP5NISPdqVa_CdOpfFVS3oTsRUoymhylj.9
+ oFivfpyWv8uot0ohGgP8jYx_cBdTh72q_84ORUXjf9yFdr6PZxfB.4Q3vyie0KxHqjWXWafvGfF9
+ e_vLL3jPphEcD6BRNCmRy5ep4pgQBtCpN_FwS2j_DU1f0jGYlont_Px9HAlxRqNaN51rYGdFl.q6
+ 3a7r_r1crYGt1KeAhYx7IwOED2MPCJr.48Ap5ODv3bw2QY2ojIX3KKJjfylH1eOfk28.9hTWeSLn
+ S1F9S_U1qiD3G2mgCoQQL3FoOUMEo5TRG2xZOARJlUkgI3l9KKFUob8cC0w4R1dR71hWUvI09EGu
+ lIF0j28v6oFLUFLn6Mdn6hu9fENc9nTZO9VcjuRxU3ZQKcBWF.jYUU4YFlFohmJTIUKEySfN1tOP
+ H0Ng4K9OzMY2lLbaxbTBRU1Xi6UM4XBdDzVL.OXoGZTQVNjJhVKrRFOi1K7UWj9JdkcNd7WHkDDd
+ _PWG3t1GEIYT0ToWc9_xV8vhdd.rI2Hm3B.xCD5sQGoQgev1FDvUYwwp8_ANHX.J5JLi8ZFn0hua
+ y7kJWDpN3K_CXJ4HslVDZLy2u.4moQcZaw2GLChLN2BkCIlRpw9BK5JOeWXGSpbaEwcvVt0UFkuQ
+ fgGeGhL_t4qOb4koD
+X-Sonic-MF: <hwzhou@yahoo.com>
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic319.consmr.mail.bf2.yahoo.com with HTTP; Tue, 3 Jan 2023 15:24:57 +0000
+Date: Tue, 3 Jan 2023 15:24:52 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1969689752.2620757.1672759492639@mail.yahoo.com>
+In-Reply-To: <Tw8IjE6vV1f8jS724ptiIK8G4uU8WZ9RNGKr4RLzWDQ@lists.ettus.com>
+References: <Tw8IjE6vV1f8jS724ptiIK8G4uU8WZ9RNGKr4RLzWDQ@lists.ettus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-To: usrp-users@lists.ettus.com
-References: <CAD_5BALc9Z85RuZ8hiH4Hao2e2UQWQZ=RN2T-zYCxY2nZxbTyw@mail.gmail.com>
- <e55e5607-13e2-d6a9-6819-9a60c17540b5@ettus.com>
-In-Reply-To: <e55e5607-13e2-d6a9-6819-9a60c17540b5@ettus.com>
-Message-ID-Hash: YQWB3REIDIFFEVNP3HAINUQY63ZXCDZB
-X-Message-ID-Hash: YQWB3REIDIFFEVNP3HAINUQY63ZXCDZB
-X-MailFrom: marcus.mueller@ettus.com
+X-Mailer: WebService/1.1.20982 YMailNorrin
+Message-ID-Hash: A7IZY37MMJVRBZX36WB4ALNVAOEJ2LTD
+X-Message-ID-Hash: A7IZY37MMJVRBZX36WB4ALNVAOEJ2LTD
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: SDR environment with USRP & external FPGA
+Subject: [USRP-users] How to save USRP log into buffer
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YQWB3REIDIFFEVNP3HAINUQY63ZXCDZB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/A7IZY37MMJVRBZX36WB4ALNVAOEJ2LTD/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1994800788213536901=="
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============4768394794158956037=="
 
-This is a multi-part message in MIME format.
---===============1994800788213536901==
+--===============4768394794158956037==
 Content-Type: multipart/alternative;
- boundary="------------RGp5fhNdsPQguYljefER1ppi"
-Content-Language: en-US
+	boundary="----=_Part_2620756_1388794508.1672759492637"
 
-This is a multi-part message in MIME format.
---------------RGp5fhNdsPQguYljefER1ppi
-Content-Type: text/plain; charset=UTF-8; format=flowed
+------=_Part_2620756_1388794508.1672759492637
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Note that the N310's FPGA might actually be large enough to fit in (parts=
- of) a GNSS=20
-receiver, especially if you remove the DUC chain of the TX path, in case =
-you don't need=20
-that. RFNoC is Ettus' framework for extending the FPGA functionality, esp=
-ecially made for=20
-such use cases.
-
-Note that even in RFNoC you get a stream of samples from the radio fronte=
-nd, which you=20
-basically paid NI/Ettus for to design it for you, so that you don't have =
-to worry about=20
-how to talk to the physical hardware and can care about signal processing=
- :)
-
-Cheers,
-Marcus
+ Hi,
+Happy New Year!
+I am using X310. Our application prints some log information. Meanwhile, UH=
+D also prints log information. Currently, all the logs are streamed to a fi=
+le. Saving log to file involves access to HD which is a low-speed device. I=
+ want to save all logs into RAM first; then only at spare time or after tes=
+ting, the logs will be saved to file. I think this will improve the speed a=
+nd reliability of our application.=C2=A0
+My questions are:- how to save UHD logs into a buffer which is allocated in=
+ my code?=C2=A0- how to maintain the time order between UHD logs and the lo=
+gs generated by my code?
+Thanks,Hongwei
 
 
-On 03.01.23 16:11, Marcus M=C3=BCller wrote:
->
-> Hi Mr Pereira,
->
-> the directest access you get to samples in the N210 is the ethernet con=
-nection =E2=80=93 and=20
-> that has no downside for GNSS applications, as the VITA49 samples fully=
- represent the RF=20
-> signal, thanks to Shannon-Nyquist.
->
-> That is, of course, unless you start modifying the FPGA image of the N2=
-10, and make it a=20
-> completely different product. It's kind of unlikely you want to do that=
-.
->
-> Greetings,
-> Marcus
->
-> On 03.01.23 14:25, Pedro Pereira wrote:
->
->> Greetings,
->>
->> I have 2 USRP front-ends - N210 and N310. I want to develop a GNSS Rec=
-eiver inside my=20
->> FGPA - xilinx ZCU102 - and use one of the USRP devices only as the fro=
-nt-end. The=20
->> receiver is quite large so I need an external board for all the signal=
- processing=20
->> chain. The receiver has two implementations - software-only & hybrid. =
-In hybrid mode=20
->> some tasks of the processing chain are accelerated in hardware.
->>
->> The software-only version of the receiver running on my ZCU102 is able=
- to configure the=20
->> N210 and read packets over ethernet correctly. However, with the hybri=
-d version of the=20
->> receiver, I want to read the digital IQ samples from the front end dir=
-ectly in hardware.
->>
->> For example, I am able to do this with the ZCU102 connected to FMComm2=
-/3 using the FMC=20
->> connection on the FPGA. AD provides HDL reference designs to support c=
-ommunication=20
->> between multiple front-ends and multiple FPGAs.
->>
->> Is there a similar way to read the digital samples directly in hardwar=
-e using the N210?=20
->> The N210 only has the ethernet and a MIMO port.
->>
->> Thanks in advance.
->>
->>
->>
->> _______________________________________________
->> USRP-users mailing list --usrp-users@lists.ettus.com
->> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------RGp5fhNdsPQguYljefER1ppi
+------=_Part_2620756_1388794508.1672759492637
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Note that the N310's FPGA might actually be large enough to fit
-      in (parts of) a GNSS receiver, especially if you remove the DUC
-      chain of the TX path, in case you don't need that. RFNoC is Ettus'
-      framework for extending the FPGA functionality, especially made
-      for such use cases.</p>
-    <p>Note that even in RFNoC you get a stream of samples from the
-      radio frontend, which you basically paid NI/Ettus for to design it
-      for you, so that you don't have to worry about how to talk to the
-      physical hardware and can care about signal processing :)</p>
-    <p>Cheers,<br>
-      Marcus<br>
-    </p>
-    <br>
-    <div class=3D"moz-cite-prefix">On 03.01.23 16:11, Marcus M=C3=BCller =
-wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:e55e5607-13e2-d6a9-6819-9a60c17540b5@ettus.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Hi Mr Pereira,</p>
-      <p>the directest access you get to samples in the N210 is the
-        ethernet connection =E2=80=93 and that has no downside for GNSS
-        applications, as the VITA49 samples fully represent the RF
-        signal, thanks to Shannon-Nyquist.</p>
-      <p>That is, of course, unless you start modifying the FPGA image
-        of the N210, and make it a completely different product. It's
-        kind of unlikely you want to do that.</p>
-      <p>Greetings,<br>
-        Marcus<br>
-      </p>
-      <p>On 03.01.23 14:25, Pedro Pereira wrote:</p>
-      <blockquote type=3D"cite"
-cite=3D"mid:CAD_5BALc9Z85RuZ8hiH4Hao2e2UQWQZ=3DRN2T-zYCxY2nZxbTyw@mail.gm=
-ail.com">
-        <meta http-equiv=3D"content-type" content=3D"text/html;
-          charset=3DUTF-8">
-        <div dir=3D"ltr">Greetings,
-          <div><br>
-          </div>
-          <div>I have 2 USRP front-ends - N210 and N310. I want to
-            develop a GNSS Receiver inside my FGPA - xilinx ZCU102 - and
-            use one of the USRP devices only as the front-end. The
-            receiver is quite large so I need an external board for all
-            the signal processing chain. The receiver has two
-            implementations - software-only &amp; hybrid. In hybrid mode
-            some tasks of the processing chain are accelerated in
-            hardware.</div>
-          <div><br>
-          </div>
-          <div>The software-only version of the receiver running on my
-            ZCU102 is able to configure the N210 and read packets over
-            ethernet correctly. However, with the hybrid version of the
-            receiver, I want to read the digital IQ samples from the
-            front end directly in hardware.=C2=A0</div>
-          <div><br>
-          </div>
-          <div>For example, I am able to do this with the ZCU102
-            connected to=C2=A0<span
-              style=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helve=
-tica
-              Neue&quot;,Helvetica,Arial,&quot;Lucida
-              Grande&quot;,sans-serif;font-size:14px">FMComm2/3 using
-              the FMC connection on the FPGA. AD provides HDL reference
-              designs to support communication between multiple
-              front-ends and multiple FPGAs.=C2=A0</span></div>
-          <div><span
-              style=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helve=
-tica
-              Neue&quot;,Helvetica,Arial,&quot;Lucida
-              Grande&quot;,sans-serif;font-size:14px"><br>
-            </span></div>
-          <div><span
-              style=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helve=
-tica
-              Neue&quot;,Helvetica,Arial,&quot;Lucida
-              Grande&quot;,sans-serif;font-size:14px">Is there a similar
-              way to read the digital samples directly in hardware using
-              the N210? The N210 only has the ethernet and a MIMO port.</=
-span></div>
-          <div><span
-              style=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helve=
-tica
-              Neue&quot;,Helvetica,Arial,&quot;Lucida
-              Grande&quot;,sans-serif;font-size:14px"><br>
-            </span></div>
-          <div><font face=3D"Barlow, Helvetica Neue, Helvetica, Arial,
-              Lucida Grande, sans-serif" color=3D"#11171a"><span
-                style=3D"font-size:14px">Thanks in advance.</span></font>=
-</div>
-          <div><span
-              style=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helve=
-tica
-              Neue&quot;,Helvetica,Arial,&quot;Lucida
-              Grande&quot;,sans-serif;font-size:14px"><br>
-            </span></div>
-          <div><span
-              style=3D"color:rgb(17,23,26);font-family:Barlow,&quot;Helve=
-tica
-              Neue&quot;,Helvetica,Arial,&quot;Lucida
-              Grande&quot;,sans-serif;font-size:14px"><br>
-            </span></div>
-        </div>
-        <br>
-        <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-        <pre class=3D"moz-quote-pre" wrap=3D"">__________________________=
-_____________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated moz-txt-l=
-ink-freetext" href=3D"mailto:usrp-users@lists.ettus.com" moz-do-not-send=3D=
-"true">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated moz-=
-txt-link-freetext" href=3D"mailto:usrp-users-leave@lists.ettus.com" moz-d=
-o-not-send=3D"true">usrp-users-leave@lists.ettus.com</a>
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
+<html><head></head><body><div class=3D"ydp34e534c4yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi,</div><div dir=3D"ltr" da=
+ta-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Happy =
+New Year!</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D=
+"ltr" data-setdir=3D"false">I am using X310. Our application prints some lo=
+g information. Meanwhile, UHD also prints log information. Currently, all t=
+he logs are streamed to a file. Saving log to file involves access to HD wh=
+ich is a low-speed device. I want to save all logs into RAM first; then onl=
+y at spare time or after testing, the logs will be saved to file. I think t=
+his will improve the speed and reliability of our application.&nbsp;</div><=
+div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdi=
+r=3D"false">My questions are:</div><div dir=3D"ltr" data-setdir=3D"false">-=
+ how to save UHD logs into a buffer which is allocated in my code?&nbsp;</d=
+iv><div dir=3D"ltr" data-setdir=3D"false">- how to maintain the time order =
+between UHD logs and the logs generated by my code?</div><div dir=3D"ltr" d=
+ata-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Thank=
+s,</div><div dir=3D"ltr" data-setdir=3D"false">Hongwei</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><b=
+r></div></div></body></html>
+------=_Part_2620756_1388794508.1672759492637--
 
---------------RGp5fhNdsPQguYljefER1ppi--
-
---===============1994800788213536901==
+--===============4768394794158956037==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -315,4 +144,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1994800788213536901==--
+--===============4768394794158956037==--
