@@ -2,319 +2,445 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4766865D793
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Jan 2023 16:52:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E790F65DC85
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Jan 2023 20:06:28 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5CA373843C4
-	for <lists+usrp-users@lfdr.de>; Wed,  4 Jan 2023 10:52:45 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 545C23842C0
+	for <lists+usrp-users@lfdr.de>; Wed,  4 Jan 2023 14:06:27 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1672847565; bh=Q6CV6h4mjB8gRNVkSZ3dVkcfrE875gPLo3HPtaljUAc=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=AO7COQ+W4C9iWr/Cc/zvXc8zXCgFi/lWWpuvv1hyHLDJn1RzZDbyhr6031LAGAlds
-	 pBSNjKVQ+B594jy12fu3JGFsPQ0nSVmgq0spVZ7DPQyNLZlgsERfGWJaARD2Q26PyQ
-	 KjV7OA37+eqpFs68OoGrqWkI0uiRFKwq6J+v3LYxlK7/t5B9PFMaEoaBUNYcoNbKs/
-	 eokmy2qzNo/wg4LntBzkejxfPAYJDTDcMkBU+Efmw+meX9qDnvokhjAbTYtR1x1+y6
-	 JHS/XpgZCrWF+ZovkbZru/EofX+inY+biH7rC7C44Mx3b9en07YwIptceS/63PCUOz
-	 Y+1hEHioVi6gA==
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-	by mm2.emwd.com (Postfix) with ESMTPS id 29B19384175
-	for <usrp-users@lists.ettus.com>; Wed,  4 Jan 2023 10:51:24 -0500 (EST)
+	t=1672859187; bh=n+TuTTPrBIDwCqsq11VLNfxUjidlbCygYx1FsilpVgA=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=q86byA6kcZLqnBx6xKMPTd/Pz6d6T9yLKTOg2OdOVEUFIt5tU8Feob5iccrRxEYd5
+	 GjDuU3QnTBAyMYfiVPbyXdFw3ptWApVfnQYA/jEUkBTEnngYyXSWgO2Rho792DKNEe
+	 5Pd/cuTC9qgM8edhK9xsi/docPH2LLUBzZsutn3pYgZRYSyCusnXBunMSeJ3HT2MiI
+	 j6bauwvNuVwbyarbQTKJ2srpa4XJp3i7u9k7CnJAeM+WZY880dNpjjT5tSfoX9k/0d
+	 MClOhXL9b8CQALjP+Ft6xF4PuakvB+EUPfqKOyFG2iTLbnBLBcxk4GLNdvqXmHtNCq
+	 TsPMTAW1BNv8w==
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id E076F38422A
+	for <usrp-users@lists.ettus.com>; Wed,  4 Jan 2023 14:06:20 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="D+1QdCJ4";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CWovZeWY";
 	dkim-atps=neutral
-Received: by mail-qt1-f170.google.com with SMTP id z12so27497395qtv.5
-        for <usrp-users@lists.ettus.com>; Wed, 04 Jan 2023 07:51:23 -0800 (PST)
+Received: by mail-wr1-f47.google.com with SMTP id h16so33984838wrz.12
+        for <usrp-users@lists.ettus.com>; Wed, 04 Jan 2023 11:06:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=czoLQWW6PAsbFbVpuIjpEQHdGIcixaep6EbE8F9q7Qk=;
-        b=D+1QdCJ4olrd76HhRYLRuQaZHiDN383oD5Qj9Ts+X8z5NjeIFpkBp2rUBEhOWpXuav
-         i5jMv4si3dyNvG95Oj9bGlpbzSrt+jBF4+vBVRYnxQz9YGcygbCNJbX7OpGm8db6YZLa
-         EtB4qGZ3rBzrDlZEQJ5CLgqIqNB6oe6diesKY5Sho/MlF+LZI/MUADLdGX+mXXh9Fn+3
-         WEHUvtobtipSZe4Zv/ji/ryKmisqGwM6hp+haASnZ90lMNBcAqu3gShYrpxRx3/7mxAQ
-         uJq+EeCPuvBI0CFn5BlJcNXJtTNyHjznDorIPzwh16OekQfWAFyJ/5UJjZ6E3pGMuNCz
-         x9qQ==
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=xRa0EGt1cfCHk+S4ADiiwCkjd0ACiblL3pwBiXGc0Ms=;
+        b=CWovZeWYL8LMDdeiyHfls2W8/PH9PegVGubSpdDtlgLsCa6EZ8k6UfLOmxPIuoMs2g
+         AplLdF3FfJq9L/1OWfum67IicJmHDK+1+ywMbUJVcwJWXRY3+X7CDf0e7MjiHwuUlpBP
+         lOZ5FAq/cCOXTfYY+kEOYeZeVAHhFk8QrbTp94mnb/2HhJXt4WztOIi8rEsM8ZUR7h4e
+         Hr16z17NccCHBFzdXFNP6+AVviRrZ9ez1ZKRDgSOb5bmFKtIjjSN17wTrvncIZD+dEG+
+         RtpBoZ/RvLe6NG+Jaw9xziB65oG5NyJwPf/azbK3YlS9ZOoKLPO+AklynzGCKwTfuQZ6
+         qZ7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=czoLQWW6PAsbFbVpuIjpEQHdGIcixaep6EbE8F9q7Qk=;
-        b=6DeD9yVpYovQZhGYcVjgv+iwWT0RxjJ1G9FOJrKxQjh+6vzMBNxeocWS3E2uHBXlxt
-         xhHrWqqd/DXEml8Ij5apFmseIkkdAWpOrs2svkmzedgOVJaCvLhyffIUUQWqh/r7W/L8
-         8VM35XdGpHV604w/6/Z2DvwCRwWJv/e9pkOr7oHt/Ua+uwHTA4xqhvwbUX9wSbCIVQ7U
-         ngetMScsdfpqaJK90Q71h3OydRcfJuM35YzfjR0u8AB8wTQHfZ6TV+ne2D5IeOrajPCi
-         JHROwCRjdGjOxyOH2hbhT1A1mlYrrDH1ZcYFs+aJGfj4xkQ+5wT8DNXHa+cwqSgPdXcl
-         VKlw==
-X-Gm-Message-State: AFqh2kqgbziUL+M9pJjwlgNyvydyTMC5nRDoXwVB+yCNmnFdf6zhQOTk
-	xykDcghaE0y8jz2od7C3UWnATMSH5qc=
-X-Google-Smtp-Source: AMrXdXu47jfofw1iV1/WOgvDbwt9WiENkuCqmqhfL47iZMBwGBnUB0SOQJK1Nt1L4dYGSL9JNIZVKA==
-X-Received: by 2002:a05:622a:5a92:b0:3a9:6cf8:9b4e with SMTP id fz18-20020a05622a5a9200b003a96cf89b4emr69202054qtb.35.1672847483191;
-        Wed, 04 Jan 2023 07:51:23 -0800 (PST)
-Received: from [192.168.2.194] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id l16-20020a37f910000000b006ef1a8f1b81sm24195115qkj.5.2023.01.04.07.51.22
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Jan 2023 07:51:22 -0800 (PST)
-Message-ID: <efb6cb92-a002-21aa-c808-45addca9dd2b@gmail.com>
-Date: Wed, 4 Jan 2023 10:51:21 -0500
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xRa0EGt1cfCHk+S4ADiiwCkjd0ACiblL3pwBiXGc0Ms=;
+        b=dus/F4kMeFl+6tHBklH9HKG9SCcaPNpxhcRNNskPTYin5PD0xiVlR/wxbNhQeMGqMy
+         WfvC06lQMZdMhWwweeoW5GVpvxd8GvqvYyUEdlS0uavVL6ZTxutseVFZEjrjg1UoYoIq
+         5HNEG7gKCC6ANFSAXlnTV67Sq0eJaO4jLVznPl6+O6BwVvzMSV5ThbiCZnMdSubdiZZX
+         83/clinehP6o39TBM/hDUbAvfJNeEsRbwpH+dmJD4n37mAcThY5SDegCIgDw1b9h73uc
+         KqObQ6wkKPutwZvf/pnSqUF0WJ6+Qs3SxkE3qGmuAjUnE0gmHgR+XeqSQjVJyX5TbuVh
+         bMMg==
+X-Gm-Message-State: AFqh2kqFWZy4zUosQWKwhS2Fe49cGryubWRvsnV7itPcHNNLOdnpIuxE
+	Gps2sDmVTX0cr2yfC7jE1861CpPxFohdPtnXiJs=
+X-Google-Smtp-Source: AMrXdXv+qsmepIZkDfSiORh/KSwCsBpktBF9naP2Cq4OcCaQ0WkXmj7WmfVmy0LlnH/h5PNENgpZrSBQYbgSBaq00LY=
+X-Received: by 2002:a5d:59c7:0:b0:28d:35a4:efe9 with SMTP id
+ v7-20020a5d59c7000000b0028d35a4efe9mr527191wry.166.1672859179863; Wed, 04 Jan
+ 2023 11:06:19 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-To: usrp-users@lists.ettus.com
-References: <3331a538-bf38-6eb3-ed04-dd1850797499@nioz.nl>
- <3ebee574d2fbd0c24c22a78c13fed6e9e6a87270.camel@kth.se>
- <11e19943-e772-48ef-ee52-dd3d23fe2691@nioz.nl>
- <b8b502727b1ef55fd366f7c9314b784d05ab2c86.camel@kth.se>
- <3313efed-28fa-d2dc-7a84-f1946c0ab670@nioz.nl>
-Content-Language: en-US
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <3313efed-28fa-d2dc-7a84-f1946c0ab670@nioz.nl>
-Message-ID-Hash: RA2IWWYTZN5QRH6MQHHPTZJ2ELY7F2BW
-X-Message-ID-Hash: RA2IWWYTZN5QRH6MQHHPTZJ2ELY7F2BW
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAD_5BALc9Z85RuZ8hiH4Hao2e2UQWQZ=RN2T-zYCxY2nZxbTyw@mail.gmail.com>
+ <e55e5607-13e2-d6a9-6819-9a60c17540b5@ettus.com> <5c1a56c3-cf76-4ee9-c3ed-40411a5e0f3b@ettus.com>
+ <CAD_5BAKmuyaAk2e8kExT1razs3gj31SVmhAm1ijm6dDroTmfGw@mail.gmail.com> <e0200c7a-b5a2-3466-a995-1c82394de282@gmail.com>
+In-Reply-To: <e0200c7a-b5a2-3466-a995-1c82394de282@gmail.com>
+From: Pedro Pereira <pedro60132@gmail.com>
+Date: Wed, 4 Jan 2023 19:06:08 +0000
+Message-ID: <CAD_5BALryiGS7JBX04WADkLt_55J+eqjvodiBmsq97puX-ZTxQ@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: 465YVOSMDIUTSUGEM2H2XIKQMTMIZSPB
+X-Message-ID-Hash: 465YVOSMDIUTSUGEM2H2XIKQMTMIZSPB
+X-MailFrom: pedro60132@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: b200 + gpsdo but no correct/reliable lock
+Subject: [USRP-users] Re: SDR environment with USRP & external FPGA
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RA2IWWYTZN5QRH6MQHHPTZJ2ELY7F2BW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/465YVOSMDIUTSUGEM2H2XIKQMTMIZSPB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============5319369951955734875=="
 
-T24gMDQvMDEvMjAyMyAxMDozMCwgQmFzIERlbmlzc2VuIHdyb3RlOg0KPiBZZXMsIG91ciBwb3dl
-ciBpbmplY3RvciBib3RoIGJsb2NrcyBkYyBvbiB0aGUgYjIwMCBzaWRlIGFuZCBpbnNlcnRzIA0K
-PiBwb3dlciBvbiB0aGUgZ3BzIGFudGVubmEgc2lkZS4NCj4NCj4gVW5mb3J0dW5hdGVseSB3ZSBk
-b24ndCBoYXZlIGFub3RoZXIgNXYgZ3BzIGFudGVubmEsIHdlIG9yZGVyZWQganVzdCBhIA0KPiBz
-aW5nbGUgYjIwMCAna2l0JyBmb3IgdGVzdGluZyBwdXJwb3Nlcy4NCj4NCj4gQmVzdCByZWdhcmRz
-LA0KPg0KPiDCoCBCYXMNCjVWIEdQUyBhbnRlbm5hcyBhcmUgYXZhaWxhYmxlIGNoZWFwbHkgb24g
-QW1hem9uLS1taWdodCBiZSBhIHF1aWNrIGFuZCANCmNoZWFwIGV4cGVyaW1lbnQgYmVmb3JlIGdv
-aW5nIHRocm91Z2ggdGhlIFJNQQ0KIMKgIHByb2Nlc3MuLi4NCg0KSWYgdGhhdCByb3V0ZSBkb2Vz
-bid0IHdvcmsgZm9yIHlvdSwgdGhlbiBwbGVhc2Ugc2VuZCBhIG5vdGUgdG8gDQpzdXBwb3J0QGV0
-dHVzLmNvbSBhc2tpbmcgZm9yIGFuIFJNQS4NCg0KDQo+DQo+DQo+DQo+IE9uIDA0LTAxLTIwMjMg
-MTY6MjEsIG1hcmNvIHNwYW5naGVybyB3cm90ZToNCj4+IFtZb3UgZG9uJ3Qgb2Z0ZW4gZ2V0IGVt
-YWlsIGZyb20gbWFyY29zcEBrdGguc2UuIExlYXJuIHdoeSB0aGlzIGlzIA0KPj4gaW1wb3J0YW50
-IGF0IGh0dHBzOi8vYWthLm1zL0xlYXJuQWJvdXRTZW5kZXJJZGVudGlmaWNhdGlvbiBdDQo+Pg0K
-Pj4gRG8geW91IGhhdmUgYSBEQyBibG9jayBpbiBzZXJpZXMgd2l0aCB0aGUgcG93ZXIgaW5qZWN0
-b3I/DQo+PiBIb3cgYWJvdXQgYSBkaWZmZXJlbnQgYW50ZW5uYT8gU2FtZSBiZWhhdmlvcj8NCj4+
-DQo+PiBNYXJjbw0KPj4NCj4+DQo+PiBPbiBXZWQsIDIwMjMtMDEtMDQgYXQgMTY6MTcgKzAxMDAs
-IEJhcyBEZW5pc3NlbiB3cm90ZToNCj4+PiBIaSBNYXJjbywNCj4+Pg0KPj4+IFRoYW5rcyBmb3Ig
-eW91ciBlbWFpbC4gSSBmb3Jnb3QgdG8gbWVudGlvbiB3ZSB0cmllZCBleGFjdGx5IHRoYXQgYW5k
-DQo+Pj4gaXQNCj4+PiBkaWRuJ3QgaGVscC4gQXJvdW5kIDIwIG1BIHdhcyB1c2VkIGJ5IHRoZSBn
-cHMgYW50ZW5uYSB3aGVuIHBvd2VyZWQNCj4+PiB1c2luZw0KPj4+IG91ciBvd24gcG93ZXIgaW5q
-ZWN0b3IuDQo+Pj4NCj4+PiBUeWluZyB0aGUgZ3BzZG8gYW50ZW5uYSBjb25uZWN0aW9uIHRvIGdy
-b3VuZCB1c2luZyBhIDFrIHJlc2lzdG9yIGFzIGENCj4+PiBkdW1teSBsb2FkIGFsc28gc2hvd3Mg
-YSB2b2x0YWdlIGRyb3AgZnJvbSA1diB0byA0Ljd2LiBUaGUgNXYgJ291dHB1dCcNCj4+PiAocGlu
-IDYpIG9mIHRoZSBncHNkbyBkb2Vzbid0IGRyb3AsIHNvIHRoZSBpc3N1ZSBtYXkgYmUgc29tZXdo
-ZXJlIGluDQo+Pj4gdGhlDQo+Pj4gYW50ZW5uYS9wb3dlci1pbmplY3Rpb24gcGF0aC4NCj4+Pg0K
-Pj4+IEJlc3QgcmVnYXJkcywNCj4+Pg0KPj4+IMKgwqDCoCBCYXMNCj4+Pg0KPj4+DQo+Pj4NCj4+
-Pg0KPj4+IE9uIDA0LTAxLTIwMjMgMTU6NDksIG1hcmNvIHNwYW5naGVybyB3cm90ZToNCj4+Pj4g
-W1lvdSBkb24ndCBvZnRlbiBnZXQgZW1haWwgZnJvbSBtYXJjb3NwQGt0aC5zZS4gTGVhcm4gd2h5
-IHRoaXMgaXMNCj4+Pj4gaW1wb3J0YW50IGF0IGh0dHBzOi8vYWthLm1zL0xlYXJuQWJvdXRTZW5k
-ZXJJZGVudGlmaWNhdGlvbiBdDQo+Pj4+DQo+Pj4+IFRoZSB2b2x0YWdlIGRyb3Agb24gdGhlIGdw
-c2RvIHN1cHBseSBpcyBpZmZ5LiBEbyB5b3UgaGF2ZSBhbg0KPj4+PiBleHRlcm5hbA0KPj4+PiBi
-aWFzdGVlIHRvIHRlc3Qgd2l0aD8gWW91IGNvdWxkIGNvbm5lY3QgdGhhdCBpbiBzZXJpZXMgdG8g
-dGhlDQo+Pj4+IGFudGVubmENCj4+Pj4gd2l0aCBhIERDIGJsb2NrIGFuZCBzZWUgaG93IGl0IGdv
-ZXMuDQo+Pj4+DQo+Pj4+IEdQU0RPIC0gPiBEQy1ibG9jayAtPiBCaWFzdGVlIC0+IEFudGVubmEN
-Cj4+Pj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-Xg0KPj4+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oCB8DQo+Pj4+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIEV4
-dGVybmFsIDVWIHN1cHBseQ0KPj4+Pg0KPj4+PiBUaGlzIHNob3VsZCBzb2x2ZSBhbnkgaXNzdWUg
-d2l0aCB0aGUgYW50ZW5uYSBub3QgcG93ZXJlZCBjb3JyZWN0bHksDQo+Pj4+IGJ1dA0KPj4+PiBz
-ZWVtcyB3aWVyZCB0aGlzIGlzIHRoZSBjYXNlLg0KPj4+Pg0KPj4+PiBJIGhhdmUgYW4gTjIwMCB3
-aXRoIEdQU0RPIHRoYXQgd29ya3MgZmluZSBhcyB3ZWxsLiBOZXZlciB1c2VkIGENCj4+Pj4gQjIw
-MCwNCj4+Pj4gYnV0IG1pZ2h0IGJlIHdvcnRoIGEgdHJ5LiBXaGF0IGlzIHRoZSBzdXBwbHkgY3Vy
-cmVudCB0byB0aGUNCj4+Pj4gYW50ZW5uYT8NCj4+Pj4NCj4+Pj4gTWFyY28NCj4+Pj4NCj4+Pj4g
-T24gV2VkLCAyMDIzLTAxLTA0IGF0IDE0OjU0ICswMTAwLCBCYXMgRGVuaXNzZW4gd3JvdGU6DQo+
-Pj4+PiBIaSwNCj4+Pj4+DQo+Pj4+PiBMYXN0IHllYXIgd2UgYm91Z2h0IGFuIGIyMDAgKyBncHNk
-byArIGFudGVubmEgZm9yIHVzZSBpbiBvdXINCj4+Pj4+IGF0bGFzDQo+Pj4+PiBiaXJkDQo+Pj4+
-PiB0cmFja2luZyBzeXN0ZW0gd2hlcmUgd2UgY3VycmVudGx5IHVzZSBuMjAwJ3MuDQo+Pj4+Pg0K
-Pj4+Pj4gQXJvdW5kIENocmlzdG1hcyBJIHNwZW50IHNvbWUgdGltZSB0cnlpbmcgdG8gZ2V0IGl0
-IHVwIGFuZA0KPj4+Pj4gcnVubmluZywNCj4+Pj4+IGJ1dA0KPj4+Pj4gc29vbiBmb3VuZCBvdXQg
-dGhlIGdwc2RvIGRvZXNuJ3QgKHJlbGlhYmx5KSBsb2NrIGFuZCBldmVuIHdoZW4gaXQNCj4+Pj4+
-IHJlcG9ydHMgdG8gYmUgbG9ja2VkLCB0aW1lIGlzIG9mdGVuIGluY29ycmVjdCBhbmQgZnJvemVu
-LiBFdmVyeQ0KPj4+Pj4gbm93DQo+Pj4+PiBhbmQNCj4+Pj4+IHRoZW4sIHRoZSBwcHMgbGVkIGFu
-ZCAnc3RhYmxlJyBsZWRzIG9uIHRoZSBncHNkbyB0dXJuIG9uL2JsaW5rLg0KPj4+Pj4gT25seQ0K
-Pj4+Pj4gdHdpY2UgaW4gdGhlIEkgc2F3IHRoZSBiMjAwJ3MgZ3JlZW4gJ2xvY2tlZCcgbGVkIHR1
-cm4gb24gbWludXRlcw0KPj4+Pj4gYW5kDQo+Pj4+PiB0aGUNCj4+Pj4+IGRldmljZSBzZWVtZWQg
-b3BlcmF0aW5nIGNvcnJlY3RseSBmb3IgYSBmZXcgbWludXRlcy4NCj4+Pj4+DQo+Pj4+PiBUaGlu
-Z3MgdmVyaWZpZWQvZG9uZToNCj4+Pj4+DQo+Pj4+PiAqIGNvbm5lY3RlZCBhbiBleHRyYSBwb3dl
-ciBzdXBwbHkgKHRoZSBiMjAwIHVzZXMgYXJvdW5kIDQwMG1BIGENCj4+Pj4+IDYuMXYNCj4+Pj4+
-IHJpZ2h0IG5vdykNCj4+Pj4+ICogbWFrZSBzdXJlIGdwc2RvIGlzIGNvcnJlY3RseSBpbnN0YWxs
-ZWQNCj4+Pj4+ICogbWFrZSBzdXJlIGxhdGVzdCBmaXJtd2FyZSBpcyB1c2VkDQo+Pj4+PiAqIG5v
-IGRpZmZlcmVudCBiZWhhdmlvciB3aXRoIGxhdGVzdCB1aGQgbGlicmFyaWVzIChjdXJyZW50bHkN
-Cj4+Pj4+IHVzaW5nDQo+Pj4+PiB0aGUNCj4+Pj4+IHN0b2NrIFVidW50dSBvbmVzKQ0KPj4+Pj4g
-KiByZS1wb3dlciB0aGUgYjIwMA0KPj4+Pj4gKiB0aGUgY29ycmVjdCAoNXYpIGdwcyBhbnRlbm5h
-IGlzIGF0dGFjaGVkLiBUaGUgdm9sdGFnZSBzdXBwbGllZA0KPj4+Pj4gYnkNCj4+Pj4+IHRoZQ0K
-Pj4+Pj4gZ3BzZG8gZG9lcyBkcm9wIGZyb20gYXJvdW5kIDV2IHRvIDMuNyB2b2x0IHdoZW4gdGhl
-IGFudGVubmEgZ2V0cw0KPj4+Pj4gY29ubmVjdGVkLCBub3Qgc3VyZSBpZiB0aGF0IGlzIGV4cGVj
-dGVkLg0KPj4+Pj4gKiB3YWl0ZWQgaG91cnMgKGRheXMgYWN0dWFsbHkpIGZvciB0aGUgZ3BzZG8g
-dG8gc3RhYmlsaXplDQo+Pj4+PiAqIG4yMDAgZ3BzIHB1Y2sgYXQgdGhlIHNhbWUgbG9jYXRpb24g
-d29ya3MgZmluZSBhbmQgcmVsaWFibGUNCj4+Pj4+DQo+Pj4+PiBCZWxvdyBpcyBzb21lICdkZWJ1
-ZycgaW5mbyBmcm9tIHRoZSB1aGRfdXNycF9wcm9iZSBhbmQNCj4+Pj4+IHF1ZXJ5X2dwc2RvX3Nl
-bnNvcnMgdG9vbHMuIEF0dGFjaGVkIGlzIGFsc28gbXkgdGVzdCBwcm9ncmFtIHdoaWNoDQo+Pj4+
-PiBwZXJpb2RpY2FsbHkgc2hvd3MgdGhlIGdwc2RvIHN0YXR1cyBhbmQgaXRzIG91dHB1dCBzaG93
-aW5nIHRoZQ0KPj4+Pj4gZXJyYXRpYw0KPj4+Pj4gYmVoYXZpb3VyLg0KPj4+Pj4NCj4+Pj4+IEFu
-eSBpZGVhJ3Mgb24gaG93IHRvIHRyb3VibGVzaG9vdCB0aGUgZ3BzZG8/IE9yIGlzIHRoZQ0KPj4+
-Pj4gYjIwMC9ncHNkby9hbnRlbm5hIHByb2JhYmx5IGJyb2tlbiBhbmQgc2hvdWxkIHdlIGNvbnRh
-Y3QgRXR0dXMvTkkNCj4+Pj4+IGZvcg0KPj4+Pj4gd2FycmFudHk/DQo+Pj4+Pg0KPj4+Pj4gVGhh
-bmtzIGZvciB5b3VyIGhlbHAsDQo+Pj4+Pg0KPj4+Pj4gwqDCoMKgwqAgQmFzIERlbmlzc2VuDQo+
-Pj4+Pg0KPj4+Pj4NCj4+Pj4+DQo+Pj4+Pg0KPj4+Pj4NCj4+Pj4+DQo+Pj4+PiBiZGVuaXNzZW5A
-bXRlYmFzOn4vcHJvamVjdHMvdWgkIHVoZF91c3JwX3Byb2JlDQo+Pj4+PiBbSU5GT10gW1VIRF0g
-bGludXg7IEdOVSBDKysgdmVyc2lvbiA5LjIuMSAyMDIwMDMwNDsgQm9vc3RfMTA3MTAwOw0KPj4+
-Pj4gVUhEXzMuMTUuMC4wLTJidWlsZDUNCj4+Pj4+IFtJTkZPXSBbQjIwMF0gRGV0ZWN0ZWQgRGV2
-aWNlOiBCMjAwDQo+Pj4+PiBbSU5GT10gW0IyMDBdIE9wZXJhdGluZyBvdmVyIFVTQiAzLg0KPj4+
-Pj4gW0lORk9dIFtCMjAwXSBEZXRlY3RpbmcgaW50ZXJuYWwgR1BTRE8uLi4uDQo+Pj4+PiBbSU5G
-T10gW0dQU10gRm91bmQgYW4gaW50ZXJuYWwgR1BTRE86IEdQU1RDWE8sIEZpcm13YXJlIFJldg0K
-Pj4+Pj4gMC45MjliDQo+Pj4+PiBbSU5GT10gW0IyMDBdIEluaXRpYWxpemUgQ09ERUMgY29udHJv
-bC4uLg0KPj4+Pj4gW0lORk9dIFtCMjAwXSBJbml0aWFsaXplIFJhZGlvIGNvbnRyb2wuLi4NCj4+
-Pj4+IFtJTkZPXSBbQjIwMF0gUGVyZm9ybWluZyByZWdpc3RlciBsb29wYmFjayB0ZXN0Li4uDQo+
-Pj4+PiBbSU5GT10gW0IyMDBdIFJlZ2lzdGVyIGxvb3BiYWNrIHRlc3QgcGFzc2VkDQo+Pj4+PiBb
-SU5GT10gW0IyMDBdIFNldHRpbmcgbWFzdGVyIGNsb2NrIHJhdGUgc2VsZWN0aW9uIHRvICdhdXRv
-bWF0aWMnLg0KPj4+Pj4gW0lORk9dIFtCMjAwXSBBc2tpbmcgZm9yIGNsb2NrIHJhdGUgMTYuMDAw
-MDAwIE1Iei4uLg0KPj4+Pj4gW0lORk9dIFtCMjAwXSBBY3R1YWxseSBnb3QgY2xvY2sgcmF0ZSAx
-Ni4wMDAwMDAgTUh6Lg0KPj4+Pj4gwqDCoMKgwqAgX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+Pj4+IMKgwqDCoCAvDQo+Pj4+Pj4gwqDCoMKg
-wqDCoMKgwqAgRGV2aWNlOiBCLVNlcmllcyBEZXZpY2UNCj4+Pj4+PiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPj4+Pj4+IMKgwqDCoMKgIC8N
-Cj4+Pj4+PiDCoMKgwqAgfMKgwqDCoMKgwqDCoCBNYm9hcmQ6IEIyMDANCj4+Pj4+PiDCoMKgwqAg
-fMKgwqAgc2VyaWFsOiAzMjZCRDk1DQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIG5hbWU6IE15QjIwMA0K
-Pj4+Pj4+IMKgwqDCoCB8wqDCoCBwcm9kdWN0OiAxDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHJldmlz
-aW9uOiA1DQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIEZXIFZlcnNpb246IDguMA0KPj4+Pj4+IMKgwqDC
-oCB8wqDCoCBGUEdBIFZlcnNpb246IDE2LjANCj4+Pj4+PiDCoMKgwqAgfA0KPj4+Pj4+IMKgwqDC
-oCB8wqDCoCBUaW1lIHNvdXJjZXM6wqAgbm9uZSwgaW50ZXJuYWwsIGV4dGVybmFsLCBncHNkbw0K
-Pj4+Pj4+IMKgwqDCoCB8wqDCoCBDbG9jayBzb3VyY2VzOiBpbnRlcm5hbCwgZXh0ZXJuYWwsIGdw
-c2RvDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIFNlbnNvcnM6IGdwc19ncGdnYSwgZ3BzX2dwcm1jLCBn
-cHNfdGltZSwgZ3BzX2xvY2tlZCwNCj4+Pj4+PiBncHNfc2Vydm8sDQo+Pj4+PiByZWZfbG9ja2Vk
-DQo+Pj4+Pj4gwqDCoMKgIHwgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NCj4+Pj4+PiDCoMKgwqAgfMKgwqDCoCAvDQo+Pj4+Pj4gwqDCoMKgIHzC
-oMKgIHzCoMKgwqDCoMKgwqAgUlggRFNQOiAwDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHwNCj4+Pj4+
-PiDCoMKgwqAgfMKgwqAgfMKgwqAgRnJlcSByYW5nZTogLTguMDAwIHRvIDguMDAwIE1Ieg0KPj4+
-Pj4+IMKgwqDCoCB8IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgwqAgLw0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8
-wqDCoMKgwqDCoMKgIFJYIERib2FyZDogQQ0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8DQo+Pj4+Pj4g
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+
-Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqDCoCAvDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKgIHzC
-oMKgwqDCoMKgwqAgUlggRnJvbnRlbmQ6IEENCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqAgfMKg
-wqAgTmFtZTogRkUtUlgxDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIEFudGVubmFz
-OiBUWC9SWCwgUlgyDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIFNlbnNvcnM6IHRl
-bXAsIHJzc2ksIGxvX2xvY2tlZA0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBGcmVx
-IHJhbmdlOiA1MC4wMDAgdG8gNjAwMC4wMDAgTUh6DQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKg
-IHzCoMKgIEdhaW4gcmFuZ2UgUEdBOiAwLjAgdG8gNzYuMCBzdGVwIDEuMCBkQg0KPj4+Pj4+IMKg
-wqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBCYW5kd2lkdGggcmFuZ2U6IDIwMDAwMC4wIHRvIDU2MDAw
-MDAwLjAgc3RlcCAwLjANCj4+Pj4+PiBIeg0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8wqDCoCB8wqDC
-oCBDb25uZWN0aW9uIFR5cGU6IElRDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIFVz
-ZXMgTE8gb2Zmc2V0OiBObw0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8DQo+Pj4+Pj4gX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+Pj4+PiDCoMKg
-wqAgfMKgwqAgfMKgwqDCoCAvDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKgIHzCoMKgwqDCoMKg
-wqAgUlggQ29kZWM6IEENCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAgTmFtZTogQjIw
-MCBSWCBkdWFsIEFEQw0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBHYWluIEVsZW1l
-bnRzOiBOb25lDQo+Pj4+Pj4gwqDCoMKgIHwgX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18NCj4+Pj4+PiDCoMKgwqAgfMKgwqDCoCAvDQo+Pj4+Pj4g
-wqDCoMKgIHzCoMKgIHzCoMKgwqDCoMKgwqAgVFggRFNQOiAwDQo+Pj4+Pj4gwqDCoMKgIHzCoMKg
-IHwNCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqAgRnJlcSByYW5nZTogLTguMDAwIHRvIDguMDAw
-IE1Ieg0KPj4+Pj4+IMKgwqDCoCB8IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgwqAgLw0KPj4+Pj4+IMKgwqDC
-oCB8wqDCoCB8wqDCoMKgwqDCoMKgIFRYIERib2FyZDogQQ0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8
-DQo+Pj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqDCoCAvDQo+Pj4+Pj4gwqDCoMKgIHzCoMKg
-IHzCoMKgIHzCoMKgwqDCoMKgwqAgVFggRnJvbnRlbmQ6IEENCj4+Pj4+PiDCoMKgwqAgfMKgwqAg
-fMKgwqAgfMKgwqAgTmFtZTogRkUtVFgxDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKgIHzCoMKg
-IEFudGVubmFzOiBUWC9SWA0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBTZW5zb3Jz
-OiB0ZW1wLCBsb19sb2NrZWQNCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAgRnJlcSBy
-YW5nZTogNTAuMDAwIHRvIDYwMDAuMDAwIE1Ieg0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8wqDCoCB8
-wqDCoCBHYWluIHJhbmdlIFBHQTogMC4wIHRvIDg5Ljggc3RlcCAwLjIgZEINCj4+Pj4+PiDCoMKg
-wqAgfMKgwqAgfMKgwqAgfMKgwqAgQmFuZHdpZHRoIHJhbmdlOiAyMDAwMDAuMCB0byA1NjAwMDAw
-MC4wIHN0ZXAgMC4wDQo+Pj4+Pj4gSHoNCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAg
-Q29ubmVjdGlvbiBUeXBlOiBJUQ0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8wqDCoCB8wqDCoCBVc2Vz
-IExPIG9mZnNldDogTm8NCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfA0KPj4+Pj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4+Pj4gwqDCoMKg
-IHzCoMKgIHzCoMKgwqAgLw0KPj4+Pj4+IMKgwqDCoCB8wqDCoCB8wqDCoCB8wqDCoMKgwqDCoMKg
-IFRYIENvZGVjOiBBDQo+Pj4+Pj4gwqDCoMKgIHzCoMKgIHzCoMKgIHzCoMKgIE5hbWU6IEIyMDAg
-VFggZHVhbCBEQUMNCj4+Pj4+PiDCoMKgwqAgfMKgwqAgfMKgwqAgfMKgwqAgR2FpbiBFbGVtZW50
-czogTm9uZQ0KPj4+Pj4NCj4+Pj4+DQo+Pj4+Pg0KPj4+Pj4NCj4+Pj4+DQo+Pj4+Pg0KPj4+Pj4N
-Cj4+Pj4+IGJkZW5pc3NlbkBtdGViYXM6fi9wcm9qZWN0cy91aCQNCj4+Pj4+IC91c3IvbGliL3Vo
-ZC91dGlscy9xdWVyeV9ncHNkb19zZW5zb3JzDQo+Pj4+Pg0KPj4+Pj4gQ3JlYXRpbmcgdGhlIFVT
-UlAgZGV2aWNlIHdpdGg6IC4uLg0KPj4+Pj4gW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZl
-cnNpb24gOS4yLjEgMjAyMDAzMDQ7IEJvb3N0XzEwNzEwMDsNCj4+Pj4+IFVIRF8zLjE1LjAuMC0y
-YnVpbGQ1DQo+Pj4+PiBbV0FSTklOR10gW1VIRF0gVW5hYmxlIHRvIHNldCB0aGUgdGhyZWFkIHBy
-aW9yaXR5LiBQZXJmb3JtYW5jZQ0KPj4+Pj4gbWF5IGJlDQo+Pj4+PiBuZWdhdGl2ZWx5IGFmZmVj
-dGVkLg0KPj4+Pj4gUGxlYXNlIHNlZSB0aGUgZ2VuZXJhbCBhcHBsaWNhdGlvbiBub3RlcyBpbiB0
-aGUgbWFudWFsIGZvcg0KPj4+Pj4gaW5zdHJ1Y3Rpb25zLg0KPj4+Pj4gRW52aXJvbm1lbnRFcnJv
-cjogT1NFcnJvcjogZXJyb3IgaW4gcHRocmVhZF9zZXRzY2hlZHBhcmFtDQo+Pj4+PiBbSU5GT10g
-W0IyMDBdIERldGVjdGVkIERldmljZTogQjIwMA0KPj4+Pj4gW0lORk9dIFtCMjAwXSBPcGVyYXRp
-bmcgb3ZlciBVU0IgMy4NCj4+Pj4+IFtJTkZPXSBbQjIwMF0gRGV0ZWN0aW5nIGludGVybmFsIEdQ
-U0RPLi4uLg0KPj4+Pj4gW0lORk9dIFtHUFNdIEZvdW5kIGFuIGludGVybmFsIEdQU0RPOiBHUFNU
-Q1hPLCBGaXJtd2FyZSBSZXYNCj4+Pj4+IDAuOTI5Yg0KPj4+Pj4gW0lORk9dIFtCMjAwXSBJbml0
-aWFsaXplIENPREVDIGNvbnRyb2wuLi4NCj4+Pj4+IFtJTkZPXSBbQjIwMF0gSW5pdGlhbGl6ZSBS
-YWRpbyBjb250cm9sLi4uDQo+Pj4+PiBbSU5GT10gW0IyMDBdIFBlcmZvcm1pbmcgcmVnaXN0ZXIg
-bG9vcGJhY2sgdGVzdC4uLg0KPj4+Pj4gW0lORk9dIFtCMjAwXSBSZWdpc3RlciBsb29wYmFjayB0
-ZXN0IHBhc3NlZA0KPj4+Pj4gW0lORk9dIFtCMjAwXSBTZXR0aW5nIG1hc3RlciBjbG9jayByYXRl
-IHNlbGVjdGlvbiB0byAnYXV0b21hdGljJy4NCj4+Pj4+IFtJTkZPXSBbQjIwMF0gQXNraW5nIGZv
-ciBjbG9jayByYXRlIDE2LjAwMDAwMCBNSHouLi4NCj4+Pj4+IFtJTkZPXSBbQjIwMF0gQWN0dWFs
-bHkgZ290IGNsb2NrIHJhdGUgMTYuMDAwMDAwIE1Iei4NCj4+Pj4+IFVzaW5nIERldmljZTogU2lu
-Z2xlIFVTUlA6DQo+Pj4+PiDCoMKgwqDCoCBEZXZpY2U6IEItU2VyaWVzIERldmljZQ0KPj4+Pj4g
-wqDCoMKgwqAgTWJvYXJkIDA6IEIyMDANCj4+Pj4+IMKgwqDCoMKgIFJYIENoYW5uZWw6IDANCj4+
-Pj4+IMKgwqDCoMKgwqDCoCBSWCBEU1A6IDANCj4+Pj4+IMKgwqDCoMKgwqDCoCBSWCBEYm9hcmQ6
-IEENCj4+Pj4+IMKgwqDCoMKgwqDCoCBSWCBTdWJkZXY6IEZFLVJYMQ0KPj4+Pj4gwqDCoMKgwqAg
-VFggQ2hhbm5lbDogMA0KPj4+Pj4gwqDCoMKgwqDCoMKgIFRYIERTUDogMA0KPj4+Pj4gwqDCoMKg
-wqDCoMKgIFRYIERib2FyZDogQQ0KPj4+Pj4gwqDCoMKgwqDCoMKgIFRYIFN1YmRldjogRkUtVFgx
-DQo+Pj4+Pg0KPj4+Pj4gU2V0dGluZyB0aGUgcmVmZXJlbmNlIGNsb2NrIHNvdXJjZSB0byAiZ3Bz
-ZG8iLi4uDQo+Pj4+PiBDbG9jayBzb3VyY2UgaXMgbm93IGdwc2RvDQo+Pj4+PiBTZXR0aW5nIHRo
-ZSByZWZlcmVuY2UgY2xvY2sgc291cmNlIHRvICJncHNkbyIuLi4NCj4+Pj4+IFRpbWUgc291cmNl
-IGlzIG5vdyBncHNkbw0KPj4+Pj4gV2FpdGluZyBmb3IgcmVmX2xvY2tlZC4uLi5VU1JQIExvY2tl
-ZCB0byBSZWZlcmVuY2UuDQo+Pj4+PiAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKkhlbHBmdWwgTm90ZXMgb24gQ2xvY2svUFBTDQo+Pj4+PiBTZWxlY3Rpb24qKioqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKg0KPj4+Pj4gQXMgeW91IGNhbiBzZWUsIHRoZSBk
-ZWZhdWx0IDEwIE1IeiBSZWZlcmVuY2UgYW5kIDEgUFBTIHNpZ25hbHMNCj4+Pj4+IGFyZQ0KPj4+
-Pj4gbm93DQo+Pj4+PiBmcm9tIHRoZSBHUFNETy4NCj4+Pj4+IElmIHlvdSB3b3VsZCBsaWtlIHRv
-IHVzZSB0aGUgaW50ZXJuYWwgcmVmZXJlbmNlKFRDWE8pIGluIG90aGVyDQo+Pj4+PiBhcHBsaWNh
-dGlvbnMsIHlvdSBtdXN0IGNvbmZpZ3VyZSB0aGF0IGV4cGxpY2l0bHkuDQo+Pj4+PiAqKioqKioq
-KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-Kg0KPj4+Pj4gKioqKg0KPj4+Pj4gKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKg0KPj4+Pj4gV2FpdGluZyBmb3IgdGhlIEdQU0RPIHRvIHdhcm0gdXAuLi4NCj4+Pj4+
-IFRoZSBHUFNETyBpcyB3YXJtZWQgdXAgYW5kIHRhbGtpbmcuDQo+Pj4+Pg0KPj4+Pj4gR1BTIGRv
-ZXMgbm90IGhhdmUgbG9jay4gV2FpdCBhIGZldyBtaW51dGVzIGFuZCB0cnkgYWdhaW4uDQo+Pj4+
-PiBOTUVBIHN0cmluZ3MgYW5kIGRldmljZSB0aW1lIG1heSBub3QgYmUgYWNjdXJhdGUgdW50aWwg
-bG9jayBpcw0KPj4+Pj4gYWNoaWV2ZWQuDQo+Pj4+Pg0KPj4+Pj4NCj4+Pj4+IFRyeWluZyB0byBh
-bGlnbiB0aGUgZGV2aWNlIHRpbWUgdG8gR1BTIHRpbWUuLi4NCj4+Pj4+IENvdWxkIG5vdCBhbGln
-biBVSEQgRGV2aWNlIHRpbWUgdG8gR1BTIHRpbWUuIEdpdmluZyB1cC4NCj4+Pj4+IGxhc3RfcHBz
-OiAxMTM2MDczNjAyIHZzIGdwczogMTEzNjA3MzYwMC4NCj4+Pj4+IFByaW50aW5nIGF2YWlsYWJs
-ZSBOTUVBIHN0cmluZ3M6DQo+Pj4+PiBHUFNfR1BHR0E6DQo+Pj4+PiAkR1BHR0EsMDAwMDAwLjAw
-LDAwMDAuMDAwMCxOLDAwMDAwLjAwMDAsRSwwLDAwLDEwMC4wLDAuMCxNLDAuMCxNLA0KPj4+Pj4g
-LCo1Qw0KPj4+Pj4gR1BTX0dQUk1DOg0KPj4+Pj4gJEdQUk1DLDAwMDAwMC4wMCxWLDAwMDAuMDAw
-MCxOLDAwMDAwLjAwMDAsRSwwLjAsMC4wLDAxMDEwNiwsKjIyDQo+Pj4+PiBHUFMgRXBvY2ggdGlt
-ZSBhdCBsYXN0IFBQUzogMTEzNjA3MzYwMC4wMDAwMCBzZWNvbmRzDQo+Pj4+PiBVSEQgRGV2aWNl
-IHRpbWUgbGFzdCBQUFM6wqDCoCAxMTM2MDczNjAzLjAwMDAwIHNlY29uZHMNCj4+Pj4+IFVIRCBE
-ZXZpY2UgdGltZSByaWdodCBub3c6wqAgMTEzNjA3MzYwMy4wMTMyNiBzZWNvbmRzDQo+Pj4+PiBQ
-QyBDbG9jayB0aW1lOsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDE2NzE2MjYzMjYgc2Vjb25k
-cw0KPj4+Pj4NCj4+Pj4+IERvbmUhDQo+Pj4+Pg0KPj4+Pj4NCj4+Pj4+IF9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+Pj4+PiBVU1JQLXVzZXJzIG1haWxp
-bmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPj4+Pj4gVG8gdW5zdWJzY3Jp
-YmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KPj4+
-Pg0KPj4+PiAtLSANCj4+Pj4NCj4+Pj4NCj4+Pj4gLS0tLS0tLS0NCj4+Pj4gTWFyY28gU3Bhbmdo
-ZXJvDQo+Pj4+IE5ldHdvcmtlZCBTeXN0ZW1zIFNlY3VyaXR5IEdyb3VwIChLVEgpDQo+Pj4+IGh0
-dHBzOi8vd3d3LmVlY3Mua3RoLnNlL25zcyBodHRwczovL3d3dy5rdGguc2UvcHJvZmlsZS9tYXJj
-b3NwLz4+PiANCj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX18NCj4+PiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
-dHVzLmNvbQ0KPj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1s
-ZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4+DQo+PiAtLSANCj4+DQo+Pg0KPj4gLS0tLS0tLS0NCj4+
-IE1hcmNvIFNwYW5naGVybw0KPj4gTmV0d29ya2VkIFN5c3RlbXMgU2VjdXJpdHkgR3JvdXAgKEtU
-SCkNCj4+IGh0dHBzOi8vd3d3LmVlY3Mua3RoLnNlL25zcz4+IGh0dHBzOi8vd3d3Lmt0aC5zZS9w
-cm9maWxlL21hcmNvc3AvPg0KPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMt
-bGVhdmVAbGlzdHMuZXR0dXMuY29tDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVh
-dmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============5319369951955734875==
+Content-Type: multipart/alternative; boundary="0000000000002cd13905f174e192"
+
+--0000000000002cd13905f174e192
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+>
+> If you're asking "can you make your ZCU102 code run on the N310?"
+> possibly.  There's a dual-core ARM CPU running Linux, and
+>   a large FPGA fabric.
+>
+
+Is there any documentation for doing this? My receiver is implemented in
+c++, I think I would have to implement device drivers to read data from the
+hardware to the software application.
+I only found documentation for importing standard/custom hardware IP blocks
+to gnuradio.
+
+On Tue, 3 Jan 2023 at 16:36, Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 03/01/2023 10:54, Pedro Pereira wrote:
+>
+> Thanks for the response.
+>
+> I don=C2=B4t want to run the software component of the GNSS receiver on m=
+y
+> computer, while connected to the N310 for heterogeneous processing - if
+> that's what you're saying.
+> I want an edge device running embedded linux, like I already have on my
+> zcu102, to run both sw and hw components.
+>
+> The first stages of the processing chain are in hardware so I don=C2=B4t =
+want
+> to read samples from the front-end at the application level. I want to re=
+ad
+> samples directly from my hardware block design, do some heavy processing
+> and deliver the results to the software application.
+> I can do all of this using AD front-ends and their HDL reference designs.
+> Is there any support to do this using N210 or N310?
+>
+> Thanks again.
+>
+> It's still not entirely clear what it is you're asking.
+>
+> The N310 has a Zynq FPGA + 2 AD9371 radios + 2 SFP+ network ports.
+>
+> This makes it somewhat similar to your ZCU102, but with radios already
+> built-in.
+>
+> If you're asking "can you make your ZCU102 code run on the N310?"
+> possibly.  There's a dual-core ARM CPU running Linux, and
+>   a large FPGA fabric.
+>
+> If you're asking "can I make my ZCU102 acquire samples from either N310 o=
+r
+> N210?" -- given that your ZCU102 has some SFP+
+>   ports that could be configured for 1GiGe (or even 10GiGe in the case of
+> N310) -- it seems likely that you could port UHD to
+>   the Linux ARM CPU on the ZCU102, and then you could talk to either the
+> N210 or N310 via the network ports from your ZCU102.
+>
+>
+> On Tue, 3 Jan 2023 at 15:15, Marcus M=C3=BCller <marcus.mueller@ettus.com=
+>
+> wrote:
+>
+>> Note that the N310's FPGA might actually be large enough to fit in (part=
+s
+>> of) a GNSS receiver, especially if you remove the DUC chain of the TX pa=
+th,
+>> in case you don't need that. RFNoC is Ettus' framework for extending the
+>> FPGA functionality, especially made for such use cases.
+>>
+>> Note that even in RFNoC you get a stream of samples from the radio
+>> frontend, which you basically paid NI/Ettus for to design it for you, so
+>> that you don't have to worry about how to talk to the physical hardware =
+and
+>> can care about signal processing :)
+>>
+>> Cheers,
+>> Marcus
+>>
+>> On 03.01.23 16:11, Marcus M=C3=BCller wrote:
+>>
+>> Hi Mr Pereira,
+>>
+>> the directest access you get to samples in the N210 is the ethernet
+>> connection =E2=80=93 and that has no downside for GNSS applications, as =
+the VITA49
+>> samples fully represent the RF signal, thanks to Shannon-Nyquist.
+>>
+>> That is, of course, unless you start modifying the FPGA image of the
+>> N210, and make it a completely different product. It's kind of unlikely =
+you
+>> want to do that.
+>>
+>> Greetings,
+>> Marcus
+>>
+>> On 03.01.23 14:25, Pedro Pereira wrote:
+>>
+>> Greetings,
+>>
+>> I have 2 USRP front-ends - N210 and N310. I want to develop a GNSS
+>> Receiver inside my FGPA - xilinx ZCU102 - and use one of the USRP device=
+s
+>> only as the front-end. The receiver is quite large so I need an external
+>> board for all the signal processing chain. The receiver has two
+>> implementations - software-only & hybrid. In hybrid mode some tasks of t=
+he
+>> processing chain are accelerated in hardware.
+>>
+>> The software-only version of the receiver running on my ZCU102 is able t=
+o
+>> configure the N210 and read packets over ethernet correctly. However, wi=
+th
+>> the hybrid version of the receiver, I want to read the digital IQ sample=
+s
+>> from the front end directly in hardware.
+>>
+>> For example, I am able to do this with the ZCU102 connected to FMComm2/3
+>> using the FMC connection on the FPGA. AD provides HDL reference designs =
+to
+>> support communication between multiple front-ends and multiple FPGAs.
+>>
+>> Is there a similar way to read the digital samples directly in hardware
+>> using the N210? The N210 only has the ethernet and a MIMO port.
+>>
+>> Thanks in advance.
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000002cd13905f174e192
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">If you&#=
+39;re asking &quot;can you make your ZCU102 code run on the N310?&quot; pos=
+sibly.=C2=A0 There&#39;s a dual-core ARM CPU running Linux, and<br>=C2=A0 a=
+ large FPGA fabric.<br></blockquote><div><br></div><div>Is there any docume=
+ntation for doing this? My receiver is implemented in c++, I think I would =
+have to implement device drivers to read data from the hardware to the soft=
+ware application.</div><div>I only found documentation for importing standa=
+rd/custom hardware IP blocks to gnuradio.=C2=A0</div></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 3 Jan 2023 a=
+t 16:36, Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">pat=
+chvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 03/01/2023 10:54, Pedro Pereira
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">Thanks for the response.
+        <div><br>
+        </div>
+        <div>I don=C2=B4t want to run the software component of the GNSS
+          receiver on my computer, while connected to the N310 for
+          heterogeneous processing - if that&#39;s what you&#39;re saying.=
+=C2=A0</div>
+        <div>I want an edge device running embedded linux, like I
+          already have on my zcu102, to run both sw and hw components.</div=
+>
+        <div><br>
+        </div>
+        <div>The first stages of the processing chain are in hardware so
+          I don=C2=B4t want to read samples from the front-end at the
+          application level. I want to read samples directly from my
+          hardware block design, do some heavy processing and deliver
+          the results to the software application.=C2=A0</div>
+        <div>I can do all of this using AD front-ends and their HDL
+          reference designs. Is there any support to do this using N210
+          or N310?</div>
+        <div><br>
+        </div>
+        <div>Thanks again.</div>
+      </div>
+      <br>
+    </blockquote>
+    It&#39;s still not entirely clear what it is you&#39;re asking.<br>
+    <br>
+    The N310 has a Zynq FPGA + 2 AD9371 radios + 2 SFP+ network ports.<br>
+    <br>
+    This makes it somewhat similar to your ZCU102, but with radios
+    already built-in.<br>
+    <br>
+    If you&#39;re asking &quot;can you make your ZCU102 code run on the N31=
+0?&quot;
+    possibly.=C2=A0 There&#39;s a dual-core ARM CPU running Linux, and<br>
+    =C2=A0 a large FPGA fabric.<br>
+    <br>
+    If you&#39;re asking &quot;can I make my ZCU102 acquire samples from ei=
+ther
+    N310 or N210?&quot; -- given that your ZCU102 has some SFP+<br>
+    =C2=A0 ports that could be configured for 1GiGe (or even 10GiGe in the
+    case of N310) -- it seems likely that you could port UHD to<br>
+    =C2=A0 the Linux ARM CPU on the ZCU102, and then you could talk to eith=
+er
+    the N210 or N310 via the network ports from your ZCU102.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, 3 Jan 2023 at 15:15,
+          Marcus M=C3=BCller &lt;<a href=3D"mailto:marcus.mueller@ettus.com=
+" target=3D"_blank">marcus.mueller@ettus.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <p>Note that the N310&#39;s FPGA might actually be large enough
+              to fit in (parts of) a GNSS receiver, especially if you
+              remove the DUC chain of the TX path, in case you don&#39;t
+              need that. RFNoC is Ettus&#39; framework for extending the
+              FPGA functionality, especially made for such use cases.</p>
+            <p>Note that even in RFNoC you get a stream of samples from
+              the radio frontend, which you basically paid NI/Ettus for
+              to design it for you, so that you don&#39;t have to worry
+              about how to talk to the physical hardware and can care
+              about signal processing :)</p>
+            <p>Cheers,<br>
+              Marcus<br>
+            </p>
+            <br>
+            <div>On 03.01.23 16:11, Marcus M=C3=BCller wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <p>Hi Mr Pereira,</p>
+              <p>the directest access you get to samples in the N210 is
+                the ethernet connection =E2=80=93 and that has no downside =
+for
+                GNSS applications, as the VITA49 samples fully represent
+                the RF signal, thanks to Shannon-Nyquist.</p>
+              <p>That is, of course, unless you start modifying the FPGA
+                image of the N210, and make it a completely different
+                product. It&#39;s kind of unlikely you want to do that.</p>
+              <p>Greetings,<br>
+                Marcus<br>
+              </p>
+              <p>On 03.01.23 14:25, Pedro Pereira wrote:</p>
+              <blockquote type=3D"cite">
+                <div dir=3D"ltr">Greetings,
+                  <div><br>
+                  </div>
+                  <div>I have 2 USRP front-ends - N210 and N310. I want
+                    to develop a GNSS Receiver inside my FGPA - xilinx
+                    ZCU102 - and use one of the USRP devices only as the
+                    front-end. The receiver is quite large so I need an
+                    external board for all the signal processing chain.
+                    The receiver has two implementations - software-only
+                    &amp; hybrid. In hybrid mode some tasks of the
+                    processing chain are accelerated in hardware.</div>
+                  <div><br>
+                  </div>
+                  <div>The software-only version of the receiver running
+                    on my ZCU102 is able to configure the N210 and read
+                    packets over ethernet correctly. However, with the
+                    hybrid version of the receiver, I want to read the
+                    digital IQ samples from the front end directly in
+                    hardware.=C2=A0</div>
+                  <div><br>
+                  </div>
+                  <div>For example, I am able to do this with the ZCU102
+                    connected to=C2=A0<span>FMComm2/3 using the FMC
+                      connection on the FPGA. AD provides HDL reference
+                      designs to support communication between multiple
+                      front-ends and multiple FPGAs.=C2=A0</span></div>
+                  <div><span><br>
+                    </span></div>
+                  <div><span>Is there a similar way to read the digital
+                      samples directly in hardware using the N210? The
+                      N210 only has the ethernet and a MIMO port.</span></d=
+iv>
+                  <div><span><br>
+                    </span></div>
+                  <div><font face=3D"Barlow, Helvetica Neue, Helvetica,
+                      Arial, Lucida Grande, sans-serif" color=3D"#11171a"><=
+span style=3D"font-size:14px">Thanks in advance.</span></font></div>
+                  <div><span><br>
+                    </span></div>
+                  <div><span><br>
+                    </span></div>
+                </div>
+                <br>
+                <fieldset></fieldset>
+                <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+              </blockquote>
+            </blockquote>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
+e@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><b=
+r>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--0000000000002cd13905f174e192--
+
+--===============5319369951955734875==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5319369951955734875==--
