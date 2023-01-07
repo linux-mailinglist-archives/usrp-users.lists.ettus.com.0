@@ -2,272 +2,279 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3FC6608AC
-	for <lists+usrp-users@lfdr.de>; Fri,  6 Jan 2023 22:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D346610B9
+	for <lists+usrp-users@lfdr.de>; Sat,  7 Jan 2023 19:11:58 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 17939380A6F
-	for <lists+usrp-users@lfdr.de>; Fri,  6 Jan 2023 16:15:46 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 52DC5384597
+	for <lists+usrp-users@lfdr.de>; Sat,  7 Jan 2023 13:11:57 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1673039746; bh=qOatg/Kz5WoyipSCd0eED/HLk/BSXxkCuDB3kUClhkQ=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=irsjj8pJvuO6llujKtXA6x4eP9IkTyo0q7Ot1BLHWnFHT4MdR4ElJAyt1E6/+GDKv
-	 pg4SXJYaWctHWB0b1xLK7pP+NhakNefvLMcK3wuikIHvmRefroDvKuVI8tjLYASh+p
-	 XtD0C6Y6vnKhEhCs8wWquDDUTBi3kc9kwhxV1JCrTcBSiZOsutpAIo/HUJdQlh9xn2
-	 k084ZHw3oSbGuZabbI7LwmSSD77NQoxdp2jGgos2WeSBMcpiq2mhVBOpVz31MKtOeG
-	 aBSOgfceA4ZX4ZVPr9i2r14VzGIdeiEQD4UOSUxsnga4TzYH5MawLcL0u4yIoO5r+0
-	 Ow18Z8KaaX1hg==
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7B78A3844DD
-	for <usrp-users@lists.ettus.com>; Fri,  6 Jan 2023 16:15:38 -0500 (EST)
+	t=1673115117; bh=DG6V+12lnK9RJYKRbC0XXgV4JqFG572HUAwndBp5AJI=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=IvfcEWWA8KQY/dR9L0Ak8AZamKN3BdQgDf/MXNh6x4JUWKQ4Li8UagAjRp9lrM5aW
+	 AihqPcoeRrdGLBlrdjO0mdtLp/OXuNobotPogxYe0K9sY0bVEOeDWiqoMFpQDETUNk
+	 kG2wt8Qg4pimbp+BubsWarX+iERQjpTN/WwWuSfMTIgWpZbXIl4nKMhkPLcODPXtOn
+	 g2xHvIpv12vjjf0URZoZov3YyZIqCSwtf70yRvUFg8H2lrHGr1cztOWDHVnDR5blGY
+	 pIv/KCvXz3okBCE9j/+zNyn9sZ4X/HB3Y/l89Pyr9GKy9akijT/pKfzCzAW6AeI+r3
+	 zQNTMoAqLjGng==
+Received: from mx-out.tlen.pl (mx-out.tlen.pl [193.222.135.145])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9CBA3384587
+	for <usrp-users@lists.ettus.com>; Sat,  7 Jan 2023 13:11:05 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iwIkLYTr";
+	dkim=pass (1024-bit key; unprotected) header.d=o2.pl header.i=@o2.pl header.b="uIQpHzzK";
 	dkim-atps=neutral
-Received: by mail-ej1-f48.google.com with SMTP id u19so6211529ejm.8
-        for <usrp-users@lists.ettus.com>; Fri, 06 Jan 2023 13:15:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=j6SRFD8xcgFeu8RqPQL8MeIvQ2vP4y3ykK15z4XyoIo=;
-        b=iwIkLYTracGW7K1Mu5lwNRnP0eFcvbMwSUThmNR+qZzwHh5FA22+GLNuABB/0B+Q12
-         KlBFl+LMFCdhnLGoIib/CvhAEOTf18cTRSoIRLeunpcv9F1tTPwoERKsCILmR1CGv4NZ
-         Kfl094gjVEXS0IvmdKTiaa4tIlXfvi7Qy/1EaP/8hmz3mc2JV3yp1ac9cU+brTmqBsQe
-         1KTvBXoDAWu/dTp0m0zJt87IOKoQJxxDrpnljveEMCpmrd3jSVkxaNZ0RWQaFLuMBM+p
-         0i3akxgsx7LiM0of/ramecH9Zy6Hgx9D0hc+dghucPMGK8gJqQdZC9VtAE8Tc+uddfDC
-         IhqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j6SRFD8xcgFeu8RqPQL8MeIvQ2vP4y3ykK15z4XyoIo=;
-        b=iXx89wDtQpljkDYEmCgN/AJrqgqQZA3K+WuKA38AL0M8mxIC6jrpwyN/F4fCVt9EZn
-         zu1n8OCqEVEae4PCxn5VHQxa+x31COPSjPcBFbTiSydRPPsX/kwVUZG6JfUykvPWpeGa
-         5ZGxDLlCvZgKPSKZTflouNYg2GuldMwyuHtDOSoMDSgtMAuRhjax1DovitkuchLJEGu4
-         MNR4eo9f7cY6brtKmQYNss9gH3xZyEZFfkP6qM8Y7IPD2sOHvyVJjn3hP1gUo6THg4d5
-         eBXSRNroeuKguW9CUnMn6CUEAzyFU/Taam+Tv9Pki4pHmIIMUh7vlRg9BbcRGHZ2mXgN
-         34Fw==
-X-Gm-Message-State: AFqh2kqJg85vLuox5EjNefB4yuIwk3dfwmBHeanShwVozTDeowZ6WD3v
-	oYfSTeq71dwqXgrXpcUnwTqLM9OC28WIpVE8QHw=
-X-Google-Smtp-Source: AMrXdXu7GGZvnktqteuLVaE67dUJPEyFCyLwLPH7MEdjm1JVYYtwHjJJqRa0mbFXAyhO1uxSPl01RV1EFyH86beOQUs=
-X-Received: by 2002:a17:907:76c2:b0:7c0:e5c8:dbf1 with SMTP id
- kf2-20020a17090776c200b007c0e5c8dbf1mr4123548ejc.328.1673039737289; Fri, 06
- Jan 2023 13:15:37 -0800 (PST)
+Received: (wp-smtpd smtp.tlen.pl 18580 invoked from network); 7 Jan 2023 19:11:03 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=o2.pl; s=1024a;
+          t=1673115063; bh=vOn8pIHGXhyPhEGN+oxThA53vPr+ATija3RjaahP9kM=;
+          h=To:From:Subject;
+          b=uIQpHzzKHGcB4wzQIUMIMEn8ZuJ8ExO6teZ9rZInsPngSAuKWZNog6kUt6xn+4U4c
+           J2AzdTykPxmNRku8Rd0PTsjKYF62mZtsFLSsXTgaFBhsvtXwbH1n1Tr5ybvWFhcXpM
+           nOS7rZHGf4+mMWtPUmBwO3H0EmDm7rBSsFfQioXc=
+Received: from 109.95.142.130.r.toneticgroup.pl (HELO [192.168.1.231]) (perper@o2.pl@[109.95.142.130])
+          (envelope-sender <perper@o2.pl>)
+          by smtp.tlen.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <usrp-users@lists.ettus.com>; 7 Jan 2023 19:11:03 +0100
+Content-Type: multipart/mixed; boundary="------------0wgKKTv2g60nJWFPpcyuWm0S"
+Message-ID: <e1aa67dd-64d6-32eb-e5c1-a07d495df30f@o2.pl>
+Date: Sat, 7 Jan 2023 19:11:02 +0100
 MIME-Version: 1.0
-References: <CAEXYVK6SzuxTxGM6kZkxE7+z8F7ooGDzsHAhxcedheDdz=yOFg@mail.gmail.com>
- <CAB__hTS=ShmgOyTbxdMU5RK4OtGP0ru5itBYSBx-bQKdAgAt2A@mail.gmail.com>
- <CAEXYVK5iKjhYeJdzX5eXvsNY7sro_bhUuQHYUv_noZFw=bvqVQ@mail.gmail.com> <CAB__hTQnWSkopQu8TeepTrXdQ9dVCOLbCZoxJ9n-2Fq-1ekWtg@mail.gmail.com>
-In-Reply-To: <CAB__hTQnWSkopQu8TeepTrXdQ9dVCOLbCZoxJ9n-2Fq-1ekWtg@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Fri, 6 Jan 2023 16:15:25 -0500
-Message-ID: <CAEXYVK6-RSdo=JROYwW3bbrquEMi9cpqdzYRYp2vEjMETjYg0w@mail.gmail.com>
-To: Rob Kossler <rkossler@nd.edu>
-Message-ID-Hash: MJPUPGLRUEEKPN6S4ACORKOKRZJKVMNP
-X-Message-ID-Hash: MJPUPGLRUEEKPN6S4ACORKOKRZJKVMNP
-X-MailFrom: bpadalino@gmail.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.4.2
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+From: Piotr Krysik <perper@o2.pl>
+X-WP-MailID: 7dab6e4e97b39f9fbdd5502ad328e18d
+X-WP-AV: skaner antywirusowy Poczty o2
+X-WP-SPAM: NO 0000001 [8dKF]                               
+Message-ID-Hash: OBHXT7EWGN33CAP5TVM5ZZTQYDHKCUEL
+X-Message-ID-Hash: OBHXT7EWGN33CAP5TVM5ZZTQYDHKCUEL
+X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: RFNoC 4.0 Generated NoC Shell
+Subject: [USRP-users] RFNoC FFT block on X410
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/MJPUPGLRUEEKPN6S4ACORKOKRZJKVMNP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OBHXT7EWGN33CAP5TVM5ZZTQYDHKCUEL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6730223091541790208=="
 
---===============6730223091541790208==
-Content-Type: multipart/alternative; boundary="0000000000003c802b05f19eebb6"
-
---0000000000003c802b05f19eebb6
-Content-Type: text/plain; charset="UTF-8"
-
-On Fri, Jan 6, 2023 at 2:56 PM Rob Kossler <rkossler@nd.edu> wrote:
-
-> On Fri, Jan 6, 2023 at 2:09 PM Brian Padalino <bpadalino@gmail.com> wrote:
-> >
-> > On Fri, Jan 6, 2023 at 1:11 PM Rob Kossler <rkossler@nd.edu> wrote:
-> >>
-> >> On Thu, Jan 5, 2023 at 7:46 PM Brian Padalino <bpadalino@gmail.com>
-> wrote:
-> >> > Before RFNoC 4.0, there was a generic NoC shell that was used instead
-> of one being generated for each of the blocks.
-> >> >
-> >> > I see there is a noc_shell_generic_ctrlport_pyld_chdr, but it isn't
-> used anywhere.
-> >> >
-> >> > Is there a reason that a generic one isn't utilized and that ones are
-> being generated individually for each block?
-> >>
-> >> With RFNoC 4.0, you have various options for which interface you would
-> >> like for payload data and packet context data. These options, which
-> >> are in the block XML file, determine which signals get passed in and
-> >> out of your block.  So, the reason it is custom is to handle the
-> >> variety of interface options.
-> >
-> >
-> > There are no more XML files, right?  It's all YAML?  Right?
->
-> My mistake. You are right.
->
-> >
-> > In the specification:
-> >
-> >   https://files.ettus.com/app_notes/RFNoC_Specification.pdf
-> >
-> > ... section 2.5.5.3 shows axis_chdr, axis_pyld_ctxt, and axis_data.  But
-> beyond that, I don't see any descriptions of the differences.  Moreover, I
-> am unsure if I change the YAML and use rfnoc_image_builder to build things,
-> does that regenerate the underlying noc_shell_<block>.v file in the OOT
-> description?  Or is it just an input to some other tool?  I am also
-> confused by Figure 18 at the end of the document.  I'm not sure I see any
-> XML files or the rfnocmodtool GUI?
-> >
-> > Lastly, I see rfnoc_blocktool in uhd under host/utils/rfnoc_blocktool
-> which has rfnoc_create_verilog.py which looks are fpga_iface but I didn't
-> see anything get installed from UHD.  Is rfrnocmodtool from gr-ettus not
-> the right thing to use anymore?
-> >
-> > I might just be getting confused by out of date tutorials and
-> specifications, but figured I'd try to get my bearings straight.
->
-> If we set aside "rfnocmodtool" for a sec (since this only seems to
-> come with gnuradio uhd which I don't have), I can say that the
-> procedure is the following:
-> - choose your desired options in the block yaml
-> - run rfnoc_create_verilog.py (it is in the UHD repo) to process the
-> yaml and produce several files including the custom noc_shell. Note
-> that this will overwrite existing files so you have to take
-> appropriate steps if you have some existing code and you later want to
-> change the yaml and re-run rfnoc_create_verilog. Note that the other
-> files produced are templates for your custom block and for a test
-> bench.
-> - modify the created templates to implement your desired logic
-> - run rfnoc_image_builder (or you can do the same thing with running
-> 'make' from an OOT build folder) to build the custom image.  Although
-> this tool does access your block yaml, it does not produce a noc_shell
-> or other custom files. This is done as mentioned above with
-> rfnoc_create_verilog.
->
-> If you use "rfnocmodtool", steps might be slightly different - I
-> haven't tried it since moving to UHD 4.x.
->
-> Let me know if this is unclear or if you still have questions.
->
-
-I appreciate the clarifications.  So it just seems the YAML is used for
-initial generation to help generate a noc shell that is customized but
-never recustomized by rfnoc_image_builder.
-
-Thanks,
-Brian
-
---0000000000003c802b05f19eebb6
-Content-Type: text/html; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------0wgKKTv2g60nJWFPpcyuWm0S
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Fri, Jan 6, 2023 at 2:56 PM Rob Kossle=
-r &lt;<a href=3D"mailto:rkossler@nd.edu">rkossler@nd.edu</a>&gt; wrote:<br>=
-</div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex">On Fri, Jan 6, 2023 at 2:09 PM Brian Padalino &lt;<a href=3D"mailto=
-:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.com</a>&gt; wrote:<=
-br>
-&gt;<br>
-&gt; On Fri, Jan 6, 2023 at 1:11 PM Rob Kossler &lt;<a href=3D"mailto:rkoss=
-ler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Thu, Jan 5, 2023 at 7:46 PM Brian Padalino &lt;<a href=3D"mailt=
-o:bpadalino@gmail.com" target=3D"_blank">bpadalino@gmail.com</a>&gt; wrote:=
-<br>
-&gt;&gt; &gt; Before RFNoC 4.0, there was a generic NoC shell that was used=
- instead of one being generated for each of the blocks.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; I see there is a noc_shell_generic_ctrlport_pyld_chdr, but it=
- isn&#39;t used anywhere.<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Is there a reason that a generic one isn&#39;t utilized and t=
-hat ones are being generated individually for each block?<br>
-&gt;&gt;<br>
-&gt;&gt; With RFNoC 4.0, you have various options for which interface you w=
-ould<br>
-&gt;&gt; like for payload data and packet context data. These options, whic=
-h<br>
-&gt;&gt; are in the block XML file, determine which signals get passed in a=
-nd<br>
-&gt;&gt; out of your block.=C2=A0 So, the reason it is custom is to handle =
-the<br>
-&gt;&gt; variety of interface options.<br>
-&gt;<br>
-&gt;<br>
-&gt; There are no more XML files, right?=C2=A0 It&#39;s all YAML?=C2=A0 Rig=
-ht?<br>
-<br>
-My mistake. You are right.<br>
-<br>
-&gt;<br>
-&gt; In the specification:<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0<a href=3D"https://files.ettus.com/app_notes/RFNoC_Specifi=
-cation.pdf" rel=3D"noreferrer" target=3D"_blank">https://files.ettus.com/ap=
-p_notes/RFNoC_Specification.pdf</a><br>
-&gt;<br>
-&gt; ... section 2.5.5.3 shows axis_chdr, axis_pyld_ctxt, and axis_data.=C2=
-=A0 But beyond that, I don&#39;t see any descriptions of the differences.=
-=C2=A0 Moreover, I am unsure if I change the YAML and use rfnoc_image_build=
-er to build things, does that regenerate the underlying noc_shell_&lt;block=
-&gt;.v file in the OOT description?=C2=A0 Or is it just an input to some ot=
-her tool?=C2=A0 I am also confused by Figure 18 at the end of the document.=
-=C2=A0 I&#39;m not sure I see any XML files or the rfnocmodtool GUI?<br>
-&gt;<br>
-&gt; Lastly, I see rfnoc_blocktool in uhd under host/utils/rfnoc_blocktool =
-which has rfnoc_create_verilog.py which looks are fpga_iface but I didn&#39=
-;t see anything get installed from UHD.=C2=A0 Is rfrnocmodtool from gr-ettu=
-s not the right thing to use anymore?<br>
-&gt;<br>
-&gt; I might just be getting confused by out of date tutorials and specific=
-ations, but figured I&#39;d try to get my bearings straight.<br>
-<br>
-If we set aside &quot;rfnocmodtool&quot; for a sec (since this only seems t=
-o<br>
-come with gnuradio uhd which I don&#39;t have), I can say that the<br>
-procedure is the following:<br>
-- choose your desired options in the block yaml<br>
-- run rfnoc_create_verilog.py (it is in the UHD repo) to process the<br>
-yaml and produce several files including the custom noc_shell. Note<br>
-that this will overwrite existing files so you have to take<br>
-appropriate steps if you have some existing code and you later want to<br>
-change the yaml and re-run rfnoc_create_verilog. Note that the other<br>
-files produced are templates for your custom block and for a test<br>
-bench.<br>
-- modify the created templates to implement your desired logic<br>
-- run rfnoc_image_builder (or you can do the same thing with running<br>
-&#39;make&#39; from an OOT build folder) to build the custom image.=C2=A0 A=
-lthough<br>
-this tool does access your block yaml, it does not produce a noc_shell<br>
-or other custom files. This is done as mentioned above with<br>
-rfnoc_create_verilog.<br>
-<br>
-If you use &quot;rfnocmodtool&quot;, steps might be slightly different - I<=
-br>
-haven&#39;t tried it since moving to UHD 4.x.<br>
-<br>
-Let me know if this is unclear or if you still have questions.<br></blockqu=
-ote><div><br></div><div>I appreciate the clarifications.=C2=A0 So it just s=
-eems the YAML is used for initial generation to help generate a noc shell t=
-hat is customized but never recustomized=C2=A0by rfnoc_image_builder.</div>=
-<div><br></div><div>Thanks,</div><div>Brian</div><div>=C2=A0</div></div></d=
-iv>
+Hello,
 
---0000000000003c802b05f19eebb6--
+Does anybody have a working example of usage of FFT RFNoC block on X410?
 
---===============6730223091541790208==
+Recent example for other USRP i.e. X310 would also be quite good.
+
+I followed the description here:=20
+https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
+to add the fft block (I've attached my changed RFNoC's YML).
+Here are my additions to stock rfnoc image core yml=20
+(x410_200_rfnoc_image_core.yml):
+
+stream_endpoints:
+ =C2=A0=C2=A0 ep_fft:
+ =C2=A0=C2=A0=C2=A0=C2=A0 ctrl: False
+ =C2=A0=C2=A0=C2=A0=C2=A0 data: True
+ =C2=A0=C2=A0=C2=A0=C2=A0 buff_size_bytes: 32768
+
+noc_blocks:
+ =C2=A0=C2=A0 fft0:
+ =C2=A0=C2=A0=C2=A0=C2=A0 block_desc: 'fft_1x64.yml'
+
+connections:
+ =C2=A0=C2=A0 # FFT Blocks Connections
+ =C2=A0=C2=A0 - { srcblk: ep_fft,=C2=A0 srcport: out0,=C2=A0 dstblk: fft0=
+,=C2=A0=C2=A0=C2=A0 dstport: in_0 }
+ =C2=A0=C2=A0 - { srcblk: fft0,=C2=A0=C2=A0=C2=A0 srcport: out_0, dstblk:=
+ ep_fft,=C2=A0 dstport: in0=C2=A0 }
+
+clk_domains:
+ =C2=A0=C2=A0=C2=A0=C2=A0 - { srcblk: _device_, srcport: radio_2x, dstblk=
+: fft0, dstport:=20
+ce=C2=A0=C2=A0=C2=A0 }
+
+When I use FFT block I don't get any samples (checked with Wireshark)
+- I get only timeout errors and information about overflows.
+
+I've attached an example Python code. The same result is obtained in GNU=20
+Radio.
+
+Probably there is something wrong with the FFT block, but I don't know
+what it might be exactly. I've tried to use different clock rate=20
+('radio' clock)
+but without success.
+
+--=20
+Best Regards,
+Piotr Krysik
+
+--------------0wgKKTv2g60nJWFPpcyuWm0S
+Content-Type: text/x-python; charset=UTF-8; name="rfnoc_fft_block_test.py"
+Content-Disposition: attachment; filename="rfnoc_fft_block_test.py"
+Content-Transfer-Encoding: base64
+
+IyEvdXNyL2Jpbi9weXRob24zCmltcG9ydCB1aGQKaW1wb3J0IG51bXB5IGFzIG5wCgptYXN0
+ZXJfY2xvY2tfcmF0ZSA9IDI1NmU2CmZmdF9zaXplID0gMjU2CmdyYXBoID0gdWhkLnJmbm9j
+LlJmbm9jR3JhcGgoImFkZHI9MTkyLjE2OC4xMC4yLG1hc3Rlcl9jbG9ja19yYXRlPTI1NmU2
+IikKCnNhID0gdWhkLnVzcnAuU3RyZWFtQXJncygiZmMzMiIsICJzYzE2IikKCnJ4X3N0cmVh
+bWVyMCA9IGdyYXBoLmNyZWF0ZV9yeF9zdHJlYW1lcigxLCBzYSkKCmRlY2ltID0gMTI4CmRk
+Y19ibG9jayA9IGdyYXBoLmdldF9ibG9jaygiMC9EREMjMCIpCmRkY19jb250cm9sID0gdWhk
+LnJmbm9jLkRkY0Jsb2NrQ29udHJvbChkZGNfYmxvY2spCmRkY19jb250cm9sLnNldF9pbnB1
+dF9yYXRlKG1hc3Rlcl9jbG9ja19yYXRlLCAwKQpkZGNfY29udHJvbC5zZXRfb3V0cHV0X3Jh
+dGUobWFzdGVyX2Nsb2NrX3JhdGUvZGVjaW0sIDApCgpncmFwaC5jb25uZWN0KCIwL1JhZGlv
+IzAiLCAwLCAiMC9EREMjMCIsIDAsIEZhbHNlKQpncmFwaC5jb25uZWN0KCIwL0REQyMwIiwg
+MCwgIjAvRkZUIzAiLCAwKQpncmFwaC5jb25uZWN0KCIwL0ZGVCMwIiwgMCwgcnhfc3RyZWFt
+ZXIwLCAwKQpncmFwaC5jb21taXQoKQoKbnVtX3NhbXBzID0gaW50KGZmdF9zaXplICogMTAw
+MCkKcmFkaW9femVyb3MwID0gbnAuemVyb3MoKDEsaW50KG51bV9zYW1wcy81MCkpLGR0eXBl
+PW5wLmNvbXBsZXg2NCkKCnN0cmVhbV9jbWQgPSB1aGQudHlwZXMuU3RyZWFtQ01EKHVoZC50
+eXBlcy5TdHJlYW1Nb2RlLm51bV9kb25lKQpzdHJlYW1fY21kLm51bV9zYW1wcyA9IG51bV9z
+YW1wcwpzdHJlYW1fY21kLnN0cmVhbV9ub3cgPSBGYWxzZQpzdHJlYW1fY21kLnRpbWVfc3Bl
+YyA9IGdyYXBoLmdldF9tYl9jb250cm9sbGVyKDApLmdldF90aW1la2VlcGVyKDApLmdldF90
+aW1lX25vdygpICsgMS4wCgpyeF9zdHJlYW1lcjAuaXNzdWVfc3RyZWFtX2NtZChzdHJlYW1f
+Y21kKQpyeF9tZXRhZGF0YTAgPSB1aGQudHlwZXMuUlhNZXRhZGF0YSgpCgpmb3IgaSBpbiBy
+YW5nZSgwLCAzMCk6CiAgICBudW1fc2FtcHMwID0gcnhfc3RyZWFtZXIwLnJlY3YocmFkaW9f
+emVyb3MwLCByeF9tZXRhZGF0YTAsIDAuMSkKICAgIHByaW50KGksIG51bV9zYW1wczAsIHJ4
+X21ldGFkYXRhMCkKCg==
+--------------0wgKKTv2g60nJWFPpcyuWm0S
+Content-Type: application/x-yaml;
+ name="x410_200_rfnoc_image_core_with_fft.yml"
+Content-Disposition: attachment;
+ filename="x410_200_rfnoc_image_core_with_fft.yml"
+Content-Transfer-Encoding: base64
+
+IyBHZW5lcmFsIHBhcmFtZXRlcnMKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLQpzY2hlbWE6IHJmbm9jX2ltYWdlYnVpbGRlcl9hcmdzICAgICAgICAgIyBJ
+ZGVudGlmaWVyIGZvciB0aGUgc2NoZW1hIHVzZWQgdG8gdmFsaWRhdGUgdGhpcyBmaWxlCmNv
+cHlyaWdodDogPi0gICAgICAgICAgICAgICAgICAgICAgICAgICAjIENvcHlyaWdodCBpbmZv
+cm1hdGlvbiB1c2VkIGluIGZpbGUgaGVhZGVycwogIEV0dHVzIFJlc2VhcmNoLCBBIE5hdGlv
+bmFsIEluc3RydW1lbnRzIEJyYW5kCmxpY2Vuc2U6ID4tICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAjIExpY2Vuc2UgaW5mb3JtYXRpb24gdXNlZCBpbiBmaWxlIGhlYWRlcnMKICBT
+UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogTEdQTC0zLjAtb3ItbGF0ZXIKdmVyc2lvbjogJzEu
+MCcgICAgICAgICAgICAgICAgICAgICAgICAgICMgRmlsZSB2ZXJzaW9uCmNoZHJfd2lkdGg6
+IDY0ICAgICAgICAgICAgICAgICAgICAgICAgICAjIEJpdCB3aWR0aCBvZiB0aGUgQ0hEUiBi
+dXMgZm9yIHRoaXMgaW1hZ2UKZGV2aWNlOiAneDQxMCcgICAgICAgICAgICAgICAgICAgICAg
+ICAgICMgVVNSUCB0eXBlCmltYWdlX2NvcmVfbmFtZTogJ3g0MTBfMjAwJyAgICAgICAgICAg
+ICAjIE5hbWUgdG8gdXNlIGZvciB0aGUgUkZOb0MgSW1hZ2UgQ29yZSBmaWxlcwpkZWZhdWx0
+X3RhcmdldDogJ1g0MTBfWDRfMjAwJyAgICAgICAgICAgIyBEZWZhdWx0IG1ha2UgdGFyZ2V0
+CgojIEEgbGlzdCBvZiBhbGwgc3RyZWFtIGVuZHBvaW50cyBpbiBkZXNpZ24KIyAtLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCnN0cmVhbV9lbmRwb2ludHM6CiAg
+ZXAwOiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjIFN0cmVhbSBlbmRwb2lu
+dCBuYW1lCiAgICBjdHJsOiBUcnVlICAgICAgICAgICAgICAgICAgICAgICAgICAjIEVuZHBv
+aW50IHBhc3NlcyBjb250cm9sIHRyYWZmaWMKICAgIGRhdGE6IFRydWUgICAgICAgICAgICAg
+ICAgICAgICAgICAgICMgRW5kcG9pbnQgcGFzc2VzIGRhdGEgdHJhZmZpYwogICAgYnVmZl9z
+aXplX2J5dGVzOiAyNjIxNDQgICAgICAgICAgICAgIyBJbmdyZXNzIGJ1ZmZlciBzaXplIGZv
+ciBkYXRhCiAgZXAxOgogICAgY3RybDogRmFsc2UKICAgIGRhdGE6IFRydWUKICAgIGJ1ZmZf
+c2l6ZV9ieXRlczogMjYyMTQ0CiAgZXAyOgogICAgY3RybDogRmFsc2UKICAgIGRhdGE6IFRy
+dWUKICAgIGJ1ZmZfc2l6ZV9ieXRlczogMjYyMTQ0CiAgZXAzOgogICAgY3RybDogRmFsc2UK
+ICAgIGRhdGE6IFRydWUKICAgIGJ1ZmZfc2l6ZV9ieXRlczogMjYyMTQ0CiAgZXA0OgogICAg
+Y3RybDogRmFsc2UKICAgIGRhdGE6IFRydWUKICAgIGJ1ZmZfc2l6ZV9ieXRlczogMzI3NjgK
+ICBlcDU6CiAgICBjdHJsOiBGYWxzZQogICAgZGF0YTogVHJ1ZQogICAgYnVmZl9zaXplX2J5
+dGVzOiAzMjc2OAogIGVwNjoKICAgIGN0cmw6IEZhbHNlCiAgICBkYXRhOiBUcnVlCiAgICBi
+dWZmX3NpemVfYnl0ZXM6IDMyNzY4CiAgZXA3OgogICAgY3RybDogRmFsc2UKICAgIGRhdGE6
+IFRydWUKICAgIGJ1ZmZfc2l6ZV9ieXRlczogMzI3NjgKICBlcF9mZnQ6CiAgICBjdHJsOiBG
+YWxzZQogICAgZGF0YTogVHJ1ZQogICAgYnVmZl9zaXplX2J5dGVzOiAzMjc2OAoKIyBBIGxp
+c3Qgb2YgYWxsIE5vQyBibG9ja3MgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLQpub2NfYmxvY2tzOgogIGR1YzA6ICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIyBOb0MgYmxvY2sgbmFtZQogICAgYmxvY2tfZGVzYzogJ2R1Yy55bWwn
+ICAgICAgICAgICAgICAgIyBCbG9jayBkZXZpY2UgZGVzY3JpcHRvciBmaWxlCiAgICBwYXJh
+bWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDIKICBkZGMwOgogICAgYmxvY2tfZGVzYzogJ2Rk
+Yy55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDIKICByYWRpbzA6CiAg
+ICBibG9ja19kZXNjOiAncmFkaW8ueW1sJwogICAgcGFyYW1ldGVyczoKICAgICAgTlVNX1BP
+UlRTOiAyCiAgICAgIE5JUEM6IFJBRElPX05JUEMKICBkdWMxOgogICAgYmxvY2tfZGVzYzog
+J2R1Yy55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9SVFM6IDIKICBkZGMxOgog
+ICAgYmxvY2tfZGVzYzogJ2RkYy55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAgICBOVU1fUE9S
+VFM6IDIKICByYWRpbzE6CiAgICBibG9ja19kZXNjOiAncmFkaW8ueW1sJwogICAgcGFyYW1l
+dGVyczoKICAgICAgTlVNX1BPUlRTOiAyCiAgICAgIE5JUEM6IFJBRElPX05JUEMKICByZXBs
+YXkwOgogICAgYmxvY2tfZGVzYzogJ3JlcGxheS55bWwnCiAgICBwYXJhbWV0ZXJzOgogICAg
+ICBOVU1fUE9SVFM6IDQKICAgICAgTUVNX0RBVEFfVzogNjQKICAgICAgTUVNX0FERFJfVzog
+MzIKICBmZnQwOgogICAgYmxvY2tfZGVzYzogJ2ZmdF8xeDY0LnltbCcKCiMgQSBsaXN0IG9m
+IGFsbCBzdGF0aWMgY29ubmVjdGlvbnMgaW4gZGVzaWduCiMgLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgRm9ybWF0OiBBIGxpc3Qgb2YgY29ubmVjdGlv
+biBtYXBzIChsaXN0IG9mIGtleS12YWx1ZSBwYWlycykgd2l0aCB0aGUgZm9sbG93aW5nIGtl
+eXMKIyAgIC0gc3JjYmxrICA9IFNvdXJjZSBibG9jayB0byBjb25uZWN0CiMgICAtIHNyY3Bv
+cnQgPSBQb3J0IG9uIHRoZSBzb3VyY2UgYmxvY2sgdG8gY29ubmVjdAojICAgLSBkc3RibGsg
+ID0gRGVzdGluYXRpb24gYmxvY2sgdG8gY29ubmVjdAojICAgLSBkc3Rwb3J0ID0gUG9ydCBv
+biB0aGUgZGVzdGluYXRpb24gYmxvY2sgdG8gY29ubmVjdApjb25uZWN0aW9uczoKICAjIFJG
+IEE6MCBUWAogIC0geyBzcmNibGs6IGVwMCwgICAgc3JjcG9ydDogb3V0MCwgIGRzdGJsazog
+ZHVjMCwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiBkdWMwLCAgIHNyY3BvcnQ6
+IG91dF8wLCBkc3RibGs6IHJhZGlvMCwgZHN0cG9ydDogaW5fMCB9CiAgIyBSRiBBOjAgUlgK
+ICAtIHsgc3JjYmxrOiByYWRpbzAsIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGRkYzAsICAg
+ZHN0cG9ydDogaW5fMCB9CiAgLSB7IHNyY2JsazogZGRjMCwgICBzcmNwb3J0OiBvdXRfMCwg
+ZHN0YmxrOiBlcDAsICAgIGRzdHBvcnQ6IGluMCAgfQogICMgUkYgQToxIFRYCiAgLSB7IHNy
+Y2JsazogZXAxLCAgICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiBkdWMwLCAgIGRzdHBvcnQ6
+IGluXzEgfQogIC0geyBzcmNibGs6IGR1YzAsICAgc3JjcG9ydDogb3V0XzEsIGRzdGJsazog
+cmFkaW8wLCBkc3Rwb3J0OiBpbl8xIH0KICAjIFJGIEE6MSBSWAogIC0geyBzcmNibGs6IHJh
+ZGlvMCwgc3JjcG9ydDogb3V0XzEsIGRzdGJsazogZGRjMCwgICBkc3Rwb3J0OiBpbl8xIH0K
+ICAtIHsgc3JjYmxrOiBkZGMwLCAgIHNyY3BvcnQ6IG91dF8xLCBkc3RibGs6IGVwMSwgICAg
+ZHN0cG9ydDogaW4wICB9CiAgIwogICMgUkYgQjowIFRYCiAgLSB7IHNyY2JsazogZXAyLCAg
+ICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiBkdWMxLCAgIGRzdHBvcnQ6IGluXzAgfQogIC0g
+eyBzcmNibGs6IGR1YzEsICAgc3JjcG9ydDogb3V0XzAsIGRzdGJsazogcmFkaW8xLCBkc3Rw
+b3J0OiBpbl8wIH0KICAjIFJGIEI6MCBSWAogIC0geyBzcmNibGs6IHJhZGlvMSwgc3JjcG9y
+dDogb3V0XzAsIGRzdGJsazogZGRjMSwgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxr
+OiBkZGMxLCAgIHNyY3BvcnQ6IG91dF8wLCBkc3RibGs6IGVwMiwgICAgZHN0cG9ydDogaW4w
+ICB9CiAgIyBSRiBCOjEgVFgKICAtIHsgc3JjYmxrOiBlcDMsICAgIHNyY3BvcnQ6IG91dDAs
+ICBkc3RibGs6IGR1YzEsICAgZHN0cG9ydDogaW5fMSB9CiAgLSB7IHNyY2JsazogZHVjMSwg
+ICBzcmNwb3J0OiBvdXRfMSwgZHN0YmxrOiByYWRpbzEsIGRzdHBvcnQ6IGluXzEgfQogICMg
+UkYgQjoxIFJYCiAgLSB7IHNyY2JsazogcmFkaW8xLCBzcmNwb3J0OiBvdXRfMSwgZHN0Ymxr
+OiBkZGMxLCAgIGRzdHBvcnQ6IGluXzEgfQogIC0geyBzcmNibGs6IGRkYzEsICAgc3JjcG9y
+dDogb3V0XzEsIGRzdGJsazogZXAzLCAgICBkc3Rwb3J0OiBpbjAgIH0KICAjCiAgIyBSZXBs
+YXkgQ29ubmVjdGlvbnMKICAtIHsgc3JjYmxrOiBlcDQsICAgICBzcmNwb3J0OiBvdXQwLCAg
+ZHN0YmxrOiByZXBsYXkwLCBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxrOiByZXBsYXkw
+LCBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBlcDQsICAgICBkc3Rwb3J0OiBpbjAgIH0KICAt
+IHsgc3JjYmxrOiBlcDUsICAgICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiByZXBsYXkwLCBk
+c3Rwb3J0OiBpbl8xIH0KICAtIHsgc3JjYmxrOiByZXBsYXkwLCBzcmNwb3J0OiBvdXRfMSwg
+ZHN0YmxrOiBlcDUsICAgICBkc3Rwb3J0OiBpbjAgIH0KICAtIHsgc3JjYmxrOiBlcDYsICAg
+ICBzcmNwb3J0OiBvdXQwLCAgZHN0YmxrOiByZXBsYXkwLCBkc3Rwb3J0OiBpbl8yIH0KICAt
+IHsgc3JjYmxrOiByZXBsYXkwLCBzcmNwb3J0OiBvdXRfMiwgZHN0YmxrOiBlcDYsICAgICBk
+c3Rwb3J0OiBpbjAgIH0KICAtIHsgc3JjYmxrOiBlcDcsICAgICBzcmNwb3J0OiBvdXQwLCAg
+ZHN0YmxrOiByZXBsYXkwLCBkc3Rwb3J0OiBpbl8zIH0KICAtIHsgc3JjYmxrOiByZXBsYXkw
+LCBzcmNwb3J0OiBvdXRfMywgZHN0YmxrOiBlcDcsICAgICBkc3Rwb3J0OiBpbjAgIH0KICAj
+IEZGVCBCbG9ja3MgQ29ubmVjdGlvbnMKICAtIHsgc3JjYmxrOiBlcF9mZnQsICBzcmNwb3J0
+OiBvdXQwLCAgZHN0YmxrOiBmZnQwLCAgICBkc3Rwb3J0OiBpbl8wIH0KICAtIHsgc3JjYmxr
+OiBmZnQwLCAgICBzcmNwb3J0OiBvdXRfMCwgZHN0YmxrOiBlcF9mZnQsICBkc3Rwb3J0OiBp
+bjAgIH0KCiAgIwogICMgQlNQIENvbm5lY3Rpb25zCiAgLSB7IHNyY2JsazogcmFkaW8wLCAg
+IHNyY3BvcnQ6IGN0cmxwb3J0LCAgICBkc3RibGs6IF9kZXZpY2VfLCBkc3Rwb3J0OiBjdHJs
+cG9ydF9yYWRpbzAgfQogIC0geyBzcmNibGs6IHJhZGlvMSwgICBzcmNwb3J0OiBjdHJscG9y
+dCwgICAgZHN0YmxrOiBfZGV2aWNlXywgZHN0cG9ydDogY3RybHBvcnRfcmFkaW8xIH0KICAt
+IHsgc3JjYmxrOiByZXBsYXkwLCAgc3JjcG9ydDogYXhpX3JhbSwgICAgIGRzdGJsazogX2Rl
+dmljZV8sIGRzdHBvcnQ6IGRyYW0gICAgICAgICAgICB9CiAgLSB7IHNyY2JsazogX2Rldmlj
+ZV8sIHNyY3BvcnQ6IHJhZGlvMCwgICAgICBkc3RibGs6IHJhZGlvMCwgICBkc3Rwb3J0OiBy
+YWRpbyAgICAgICAgICAgfQogIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiByYWRp
+bzEsICAgICAgZHN0YmxrOiByYWRpbzEsICAgZHN0cG9ydDogcmFkaW8gICAgICAgICAgIH0K
+ICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogdGltZSwgICAgICAgIGRzdGJsazog
+cmFkaW8wLCAgIGRzdHBvcnQ6IHRpbWUgICAgICAgICAgICB9CiAgLSB7IHNyY2JsazogX2Rl
+dmljZV8sIHNyY3BvcnQ6IHRpbWUsICAgICAgICBkc3RibGs6IHJhZGlvMSwgICBkc3Rwb3J0
+OiB0aW1lICAgICAgICAgICAgfQoKIyBBIGxpc3Qgb2YgYWxsIGNsb2NrIGRvbWFpbiBjb25u
+ZWN0aW9ucyBpbiBkZXNpZ24KIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0KIyBGb3JtYXQ6IEEgbGlzdCBvZiBjb25uZWN0aW9uIG1hcHMgKGxp
+c3Qgb2Yga2V5LXZhbHVlIHBhaXJzKSB3aXRoIHRoZSBmb2xsb3dpbmcga2V5cwojICAgLSBz
+cmNibGsgID0gU291cmNlIGJsb2NrIHRvIGNvbm5lY3QgKEFsd2F5cyAiX2RldmljZSJfKQoj
+ICAgLSBzcmNwb3J0ID0gQ2xvY2sgZG9tYWluIG9uIHRoZSBzb3VyY2UgYmxvY2sgdG8gY29u
+bmVjdAojICAgLSBkc3RibGsgID0gRGVzdGluYXRpb24gYmxvY2sgdG8gY29ubmVjdAojICAg
+LSBkc3Rwb3J0ID0gQ2xvY2sgZG9tYWluIG9uIHRoZSBkZXN0aW5hdGlvbiBibG9jayB0byBj
+b25uZWN0CmNsa19kb21haW5zOgogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6
+IHJhZGlvLCAgICBkc3RibGs6IHJhZGlvMCwgIGRzdHBvcnQ6IHJhZGlvIH0KICAgIC0geyBz
+cmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiByYWRpb18yeCwgZHN0YmxrOiBkdWMwLCAgICBk
+c3Rwb3J0OiBjZSAgICB9CiAgICAtIHsgc3JjYmxrOiBfZGV2aWNlXywgc3JjcG9ydDogcmFk
+aW9fMngsIGRzdGJsazogZGRjMCwgICAgZHN0cG9ydDogY2UgICAgfQogICAgLSB7IHNyY2Js
+azogX2RldmljZV8sIHNyY3BvcnQ6IHJhZGlvLCAgICBkc3RibGs6IHJhZGlvMSwgIGRzdHBv
+cnQ6IHJhZGlvIH0KICAgIC0geyBzcmNibGs6IF9kZXZpY2VfLCBzcmNwb3J0OiByYWRpb18y
+eCwgZHN0YmxrOiBkdWMxLCAgICBkc3Rwb3J0OiBjZSAgICB9CiAgICAtIHsgc3JjYmxrOiBf
+ZGV2aWNlXywgc3JjcG9ydDogcmFkaW9fMngsIGRzdGJsazogZGRjMSwgICAgZHN0cG9ydDog
+Y2UgICAgfQogICAgLSB7IHNyY2JsazogX2RldmljZV8sIHNyY3BvcnQ6IGRyYW0sICAgICBk
+c3RibGs6IHJlcGxheTAsIGRzdHBvcnQ6IG1lbSAgIH0KICAgIC0geyBzcmNibGs6IF9kZXZp
+Y2VfLCBzcmNwb3J0OiByYWRpb18yeCwgZHN0YmxrOiBmZnQwLCAgICBkc3Rwb3J0OiBjZSAg
+ICB9Cg==
+
+--------------0wgKKTv2g60nJWFPpcyuWm0S
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -277,4 +284,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6730223091541790208==--
+--------------0wgKKTv2g60nJWFPpcyuWm0S--
