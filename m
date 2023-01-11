@@ -2,467 +2,150 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02D5F6664E5
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Jan 2023 21:36:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B478F666607
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Jan 2023 23:10:35 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ABB803841AD
-	for <lists+usrp-users@lfdr.de>; Wed, 11 Jan 2023 15:36:46 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 79494384120
+	for <lists+usrp-users@lfdr.de>; Wed, 11 Jan 2023 17:10:34 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1673469406; bh=5O3iWcRjxKODNJKHJBZNzBBIvZLjw2MpkhIwVSEDb0U=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1673475034; bh=4fmyQ7P75pOjQ+YQQDnKb6KFV05EAdzW88K2NZSjDag=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=NEcj0mr5nTVOzy43N3JYaa/ogX4VIBzqzfwQs4tEOm6Y49Yv7MDVnT4r2eJpCT8tr
-	 gZFv7OK9qBeCu+oKZgIYpes/QvBZmA5vk4FznOxfIZW3NkRQGnJM7VXNAAfMzvdK29
-	 degsXSBI7us8b19pZLy3rhmEjfgioQnUwv/hRvnrFUnYMGL/pZBYn/hnwwYhDBmZFb
-	 WtAN3Td5nsGzXxgCqdjBCCEHwps4IdC6WZ6v5WGliLZVCafcOFwwXVOhMw6uMKfekR
-	 8vP+Rk/OLZfySiUDuw+uyB7TloFg5uGE4+IH9SRamShMVmQO7SQt9oVpPNTGsq0Gns
-	 fKPjdXGOh06tA==
-Received: from USG02-BN3-obe.outbound.protection.office365.us (mail-bn3usg02on0074.outbound.protection.office365.us [23.103.208.74])
-	by mm2.emwd.com (Postfix) with ESMTPS id 82CA5383E56
-	for <usrp-users@lists.ettus.com>; Wed, 11 Jan 2023 15:35:55 -0500 (EST)
+	b=ludx+G8G/Ueu4FpJvujOviMMBCRBC5ZfmuWfbKm6ncRAMO1dIQlqFeBUH+g2KgDSm
+	 vfycqlQFOBsWM4AVP1DrziFXAhNfIb/bMLKk4rqY0ZX7hvhpq3uKyMXxgRzzLEt3oN
+	 xWDBeqPLl3BBT+7RMKDbmuFM5wR87pHKvnISYyeld36U6DDLa5xdl1vyGTtBwRwFE9
+	 5SicjlnqQT/ZRkdm1PGWmWr1wt3L+xyHFoDmPf+c9rHbq6NRSfmDP+SOKepuBwHKDD
+	 0aZJqpwYohDTohlErzygRg4MOmZuND+Wqd6L9FwaliUqSHA7h0zgs+FJ5IQ2kMJyd9
+	 GHcOi9iwkZoRw==
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	by mm2.emwd.com (Postfix) with ESMTPS id 739EC384033
+	for <usrp-users@lists.ettus.com>; Wed, 11 Jan 2023 17:09:19 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="VSrl0I/r";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ODzvFK87";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=mQMCk3vG0JIXW6nZHOofF9TPjQ2LQqRt+XmhB/GS7bU40VJyHa4LaQHDG4XEZflZun9w9XZ1jsaQcQL6Vnh/5VY21c4pakHAWPK4XLHE4fUNsBHA9H74dNpLNV5THemQhKcCIk6kutV/yjpr+xKdzX5WKeMe5FsEu13AoOJguJHoQRpzeFQOagbxmyY4MYu3pi2ZxtPpeoHlC67T/2GjC/uo/MMv9/rCp8REdmO7clf/P995N+sxV275I62hh6RbnBguZKRNhHNSDmVrY1zPbjL6yqXOmJX0B+72eSViORyfE8Ct0+ZGoCVbyMkpwv4MfjBfqqJ5XtM+aLoaVCh9SQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tEOy8NG1NduN1nYFT4R1MI8YD6LXcU01+E+3ziv8qAk=;
- b=jIV/ESDVuvpxYR44WxxPxqngLHdu43J9VoZZK16+8Yql9rUBF0wKjkmz/kzIG/TfElEe2cY6xh1LAC1OnGbOk7SgK/vmDNBiwGdEzKHDYeOlDqI+i+OkU0BW2kcCl0mfofg0Q7DQmfEoiPAbttqUDxCukexf55qpBM3EhnYKEzIVZzIxFLxemUP9rKDUrKybe8lLNHSEpWjkQQmNH8qW7mOdY+Xzkvch3107cqwKQVYyn3xcBC4hAVhyuLF2oW0t+7joKrGFhj2Z+90knx16pXhrl+Tb5d+AiEh9o4KCsLQC3KO6BtApgfDxXwqM488o/pSHDvp0rVnzr+pre9Bg2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: by mail-qt1-f177.google.com with SMTP id g9so379151qtu.2
+        for <usrp-users@lists.ettus.com>; Wed, 11 Jan 2023 14:09:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tEOy8NG1NduN1nYFT4R1MI8YD6LXcU01+E+3ziv8qAk=;
- b=VSrl0I/rYYAHTTQlzNAf3qRX3NjnBpLa+0N8llVcCm8P59k8j5s+5oYSOR3A3kHbctQWh1E0xipftrZke/XalrUvcgNtsztN3sGFSb2I8wkT0dFHHxBBf0otlc+d3rze/oPXw/BpukXfGGO/aM9s68Cbnh0IZNM1myD/ce73lLi+wIFlOIjD0xOvpI6CmRIoaWYUFLMqehoXWaSzUf+21lJPkFgcWtLlfsSnLxtwlWi4N7xm8U5hK4m/Gdqq8jt0Aoe4aBPuMqwsO3aTfebIhj3lDsj3bet0pesq/MJR77MFZK/mQ8WFsaCZdByRYCQ/QEWdHJh9Pega302e8xXGeA==
-Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:168::14)
- by BN2P110MB1383.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:17c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5944.19; Wed, 11 Jan
- 2023 20:35:51 +0000
-Received: from BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
- ([fe80::5a3e:e6ed:558b:376b]) by BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
- ([fe80::5a3e:e6ed:558b:376b%4]) with mapi id 15.20.5944.019; Wed, 11 Jan 2023
- 20:35:51 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Changing frequency drift across E320 radios with common clock
-Thread-Index: Adkl5tAOvm3rCKmVT06ljLiNpxEKHAAFWMVg
-Date: Wed, 11 Jan 2023 20:35:51 +0000
-Message-ID: 
- <BN2P110MB1747F6100EF1ED201ABDE325B7FC9@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <BN2P110MB17473E2A918DB071F44DAFB3B7FC9@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
-In-Reply-To: 
- <BN2P110MB17473E2A918DB071F44DAFB3B7FC9@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BN2P110MB1747:EE_|BN2P110MB1383:EE_
-x-ms-office365-filtering-correlation-id: 65b94b48-b81a-48f0-123d-08daf4136e48
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- JPL/ZYckeGbviU7iMMVpuF9/tBbp39BHCDrAdL1A3+VHPZVbjOyn0aYLdmjx2NZxzC0oVYSl0ZkDKSJYVbTyKIdE5c0RmEqc/Ip0xMOBv0PYp7VmyG3CW88tyv+gmRYkpHdeLA4f4CfLu3918RZoN4ENbOyA6g9H/KO1wVrQsRESt6eaAfS6QPjaMSZL7hqOWk7VCDb/Wn7WF08W02ni0a/XfUvTNoJht3Lo3T+WEJHmeog6pE5vQ5TUS+J2ktviD2fi5gJuQMPUvblKJ4bvg0LlhEe5Ed3/ok3bDwO8QeAziu2bcI02XrQbLEG1DH2s8JJEbqqygUUtCcpCj3sFfqAOTgtsIokQzEAdkF5EgmeNgFp/RZ/A9J0tlo8FZnRqBzuW3A6cxSZW2IpvDT16eCwoOU2vC7Txn3nx9HpXT4V/TQhIxE2DhEi43Bw20aPUIr2biG42S8bAmKxFCa8bGx8dlmMno2WISBOv/QwXINq+nD6MXu5/bO1OksyWDEwphmYNm6kvT7ntCb5T/MgNDn9ngX/BKDXUSVDS2kftmWij2AyvKBUJgHtCtQiOSQkGRjenpFLy323daDUuO6NAg2NYQEk2s0iy9NIf+O70RczN2rEghnU6eOO7SI18YQqY/qPZkPdNk7ix1/eNtrfhmJx/Cl8ffz1YD5zdV9kcdks=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(366004)(39830400003)(396003)(136003)(451199015)(83380400001)(33656002)(55016003)(5660300002)(86362001)(6916009)(38070700005)(41320700001)(508600001)(966005)(52536014)(2906002)(66556008)(7696005)(8676002)(66946007)(76116006)(66446008)(64756008)(66476007)(6506007)(8936002)(26005)(38100700002)(2940100002)(122000001)(71200400001)(166002)(9686003)(53546011)(41300700001)(186003)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- AZAVlYVFzEEIfLfglxEmj0FvtB+l7ZG7NNgyfhEcD51eDr0Tx3fs7KSCnPks9ITUSlFOOERuGErekun0jqZmtjjG/FJtcSaYZABXW51z68bb+j8fb2kOn3evVDW9YmJTWt3FEfhOtsp0GtGg0abFuV5AO7430HxHHnomGl8Ihisqk6IpReYMoxPBT+gGNANq/TmF52M38CwsMbBhIGdqBbk1r3YhVD3Acw3U3iwwYb/2/G8/fL1BVJOsUrR+dvtNwAedz/H38Ib79TBT623+j6tbUmYx/Q30uAsT5cfzMvrmD1hjmD9WwzGoDouorAS3gviSA4VAGFF/uqclWbFAGuxjoa1iHBYeVe/zniIJVpKetcC5wVCU262Um97UuU+tJd+qFZjUPb4nRz7SyV+J/JcYcke1/pI/8QL35PjJuC0=
+        d=gmail.com; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A0/8hCUXfYlf62qHbRJHmu/WbGU53c/0Si0UZAvYzCI=;
+        b=ODzvFK87pvs86bt2mDoY9WiE8KsQnkBcx2gFyxC0X3TWXkKf4CbCDDtK1uzcmGPBsM
+         h4cQG7NtdLVPm97HjYlnDNnpwYNBK77fuZUh6L2d44r+q9WfkIzq9PtPqiZ95LkxgH73
+         pDQeiTAWEeRmKyDJwGyoOAISpdILvUi3GVpuco/llGkUfnGvpHdZOhOBEyjk0M436PIC
+         84sIRvBcx7MWo/fPfhL7LVXYJIK303xbTZ0i6pqeD2HkSG+QPjkhZGrDD/yKCZjMFPtt
+         t1EMgJqg4E4Lay3GeFbnaPjl8lfUltiG4c8xaCQbrcXwS+Btun2UzszGIcGYCdWxwrOu
+         sZiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A0/8hCUXfYlf62qHbRJHmu/WbGU53c/0Si0UZAvYzCI=;
+        b=F8m+9SoKz/pNmRz+LY2GwA2GFFufqEnQ+AlxZA2+RnzYgikFV2Ml9ilOK903BqK1nY
+         VFtkbBdMzCIrGxnIEQWachPSPaJ68KVnI2gJvTdVvUIfcEd0gM5ITFS3l2z7XXdN61I7
+         wI9gaaWUPcZljGCRHe+CkAK3tfKL6PDgM11Ij4XWuGAQpwcP7D4X2EAf63G3amn4Q/UZ
+         Uxg/hwlp0XNhIkGxN5gL55fYZ/K5VoYcEsqBDk9IxedsH/aFHMVnTFJSmAOXcW/UGuou
+         3aGf6S1/lcU0DB+lgmqMWQJT5R0PdqolXqdSF3G4tCtxywmKZxbJCmp+Efh5uVu2IpQh
+         yQlQ==
+X-Gm-Message-State: AFqh2kri07B4iqfUHC48TbxFZygP1lLG0ipXAhV0hqUd4krX3rV0lCgO
+	047w0KgF1fKV+Z/ZGqMbTI7lnavjeaI=
+X-Google-Smtp-Source: AMrXdXs8SmaKUC3emPyuYL+0l3Cez3iXHhq4Lp60Bws2vbZjyJsLeDhfETaCASfmxCej6h+LW/M5mA==
+X-Received: by 2002:ac8:68b:0:b0:3a7:f091:bfe with SMTP id f11-20020ac8068b000000b003a7f0910bfemr11189843qth.7.1673474958457;
+        Wed, 11 Jan 2023 14:09:18 -0800 (PST)
+Received: from ?IPV6:2607:fb91:2d15:493e:3507:2885:93ac:a009? ([2607:fb91:2d15:493e:3507:2885:93ac:a009])
+        by smtp.googlemail.com with ESMTPSA id d16-20020ac85350000000b003a689a5b177sm8169353qto.8.2023.01.11.14.09.17
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Jan 2023 14:09:18 -0800 (PST)
+Message-ID: <a17d382e-83e2-cf53-21fe-d5f8a03192d6@gmail.com>
+Date: Wed, 11 Jan 2023 17:09:16 -0500
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65b94b48-b81a-48f0-123d-08daf4136e48
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2023 20:35:51.7805
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN2P110MB1383
-Message-ID-Hash: 24ITYCGOB6CS5QLLJZRHV3PKT42XWK46
-X-Message-ID-Hash: 24ITYCGOB6CS5QLLJZRHV3PKT42XWK46
-X-MailFrom: david@SynopticEngineering.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Content-Language: en-CA
+To: usrp-users@lists.ettus.com
+References: <LTCaJgnaSprcXYj9GHoBEVHVIk8ttCpJsNE3YNX8@lists.ettus.com>
+ <89b2c244-5a8f-3ba6-7760-7880b6acf0e5@ettus.com>
+From: Ryan Volz <ryan.volz@gmail.com>
+In-Reply-To: <89b2c244-5a8f-3ba6-7760-7880b6acf0e5@ettus.com>
+Message-ID-Hash: ORNTJTMCXLVFPXVL3KYG3RP24OU3CVZW
+X-Message-ID-Hash: ORNTJTMCXLVFPXVL3KYG3RP24OU3CVZW
+X-MailFrom: ryan.volz@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Changing frequency drift across E320 radios with common clock
+Subject: [USRP-users] Re: RX Channel out of range
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CK2FCP6SLSQAS3AS7QHTXCFUX6W3BK4N/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ORNTJTMCXLVFPXVL3KYG3RP24OU3CVZW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3323581564142470804=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
---===============3323581564142470804==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN2P110MB1747F6100EF1ED201ABDE325B7FC9BN2P110MB1747NAMP_"
-
---_000_BN2P110MB1747F6100EF1ED201ABDE325B7FC9BN2P110MB1747NAMP_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-.. Nevermind on the final point, and kudos to Ettus for providing a very ea=
-sy approach for rebuilding the on-radio MPM libraries here: https://files.e=
-ttus.com/manual/page_usrp_e3xx.html#e3xx_software_dev_mpm_native
-
-
-From: David Raeman <david@SynopticEngineering.com>
-Sent: Wednesday, January 11, 2023 1:45 PM
-To: usrp-users@lists.ettus.com
-Subject: [USRP-users] Changing frequency drift across E320 radios with comm=
-on clock
-
-Hello,
-
-I'm working on a project that involves phase-coherent reception across mult=
-iple E320 radios. I'm currently operating with a common clock (provided by =
-an Octoclock) and cabled RF connections. I understand there will be some un=
-known phase offset between radios which changes across power cycles and re-=
-tunes, but I'm expecting that relationship to be otherwise stable (neglecti=
-ng temperature and other environmental effects). I'm trying to track down w=
-hat I think is a frequency difference between receive radios which changes =
-between across RX captures, even though I do not disconnect or re-tune betw=
-een (although I do use the same port for TX between these receptions).
-
-I disable the I/Q balance tracking for the receive channels. Beyond that, I=
-'m wondering whether the AD9361 has other active tracking loops or anything=
- that happens between RX/TX turnaround which would lead to this behavior. T=
-his same experiment/codebase did not have this discrepancy when run on N200=
-/SBX radios some time ago, which is why I suspect some mechanism in the RFI=
-C.
-
-On a related note, I'm also looking at how to peek/poke the AD9361 register=
- interface on an MPM radio. As far as I can trace, the data flow is somethi=
-ng like:
-
-  *   Application calls into the UHD API
-  *   UHD sends an RPC requests to the radio
-  *   A Python service on Zynq PS handles the RPC request and calls into na=
-tive libusrp-periphs.so library
-  *   libusrp-periphs.so library includes exported symbols from the 9361 C+=
-+ driver
-
-So in order to make any changes to the AD9361 driver on the E320, I'd need =
-to cross-compile the UHD C++ libraries on the radio. Is there an easier pat=
-h I'm overlooking, or barring that, any documentation on the appropriate en=
-vironment/toolchain/procedure to rebuild the libraries on the radio?
-
-Thanks,
-
---
-David Raeman
-Synoptic Engineering
-
-
---_000_BN2P110MB1747F6100EF1ED201ABDE325B7FC9BN2P110MB1747NAMP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:215170596;
-	mso-list-template-ids:1627438132;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1
-	{mso-list-id:1873954071;
-	mso-list-type:hybrid;
-	mso-list-template-ids:2100698054 67698689 67698691 67698693 67698689 67698=
-691 67698693 67698689 67698691 67698693;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72" style=3D"word-wrap:=
-break-word">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">.. Nevermind on the final point, and kudos to Ettus =
-for providing a very easy approach for rebuilding the on-radio MPM librarie=
-s here:
-<a href=3D"https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software=
-_dev_mpm_native">
-https://files.ettus.com/manual/page_usrp_e3xx.html#e3xx_software_dev_mpm_na=
-tive</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> David Raeman &lt;david@SynopticEngineer=
-ing.com&gt; <br>
-<b>Sent:</b> Wednesday, January 11, 2023 1:45 PM<br>
-<b>To:</b> usrp-users@lists.ettus.com<br>
-<b>Subject:</b> [USRP-users] Changing frequency drift across E320 radios wi=
-th common clock<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;m working on a project that involves phase-c=
-oherent reception across multiple E320 radios. I&#8217;m currently operatin=
-g with a common clock (provided by an Octoclock) and cabled RF connections.=
- I understand there will be some unknown phase
- offset between radios which changes across power cycles and re-tunes, but =
-I&#8217;m expecting that relationship to be otherwise stable (neglecting te=
-mperature and other environmental effects). I&#8217;m trying to track down =
-what I
-<i>think</i> is a frequency difference between receive radios which changes=
- between across RX captures, even though I do not disconnect or re-tune bet=
-ween (although I do use the same port for TX between these receptions).<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I disable the I/Q balance tracking for the receive c=
-hannels. Beyond that, I&#8217;m wondering whether the AD9361 has other acti=
-ve tracking loops or anything that happens between RX/TX turnaround which w=
-ould lead to this behavior. This same experiment/codebase
- did not have this discrepancy when run on N200/SBX radios some time ago, w=
-hich is why I suspect some mechanism in the RFIC.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">On a related note, I&#8217;m also looking at how to =
-peek/poke the AD9361 register interface on an MPM radio. As far as I can tr=
-ace, the data flow is something like:<o:p></o:p></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-list:l1 level1 =
-lfo3">Application calls into the UHD API<o:p></o:p></li><li class=3D"MsoLis=
-tParagraph" style=3D"margin-left:0in;mso-list:l1 level1 lfo3">UHD sends an =
-RPC requests to the radio<o:p></o:p></li><li class=3D"MsoListParagraph" sty=
-le=3D"margin-left:0in;mso-list:l1 level1 lfo3">A Python service on Zynq PS =
-handles the RPC request and calls into native libusrp-periphs.so library<o:=
-p></o:p></li><li class=3D"MsoListParagraph" style=3D"margin-left:0in;mso-li=
-st:l1 level1 lfo3">libusrp-periphs.so library includes exported symbols fro=
-m the 9361 C++ driver<o:p></o:p></li></ul>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So in order to make any changes to the AD9361 driver=
- on the E320, I&#8217;d need to cross-compile the UHD C++ libraries on the =
-radio. Is there an easier path I&#8217;m overlooking, or barring that, any =
-documentation on the appropriate environment/toolchain/procedure
- to rebuild the libraries on the radio?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">-- <o:p></o:p></p>
-<p class=3D"MsoNormal">David Raeman<o:p></o:p></p>
-<p class=3D"MsoNormal">Synoptic Engineering<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</body>
-</html>
-
---_000_BN2P110MB1747F6100EF1ED201ABDE325B7FC9BN2P110MB1747NAMP_--
-
---===============3323581564142470804==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============3323581564142470804==--
+SGksDQoNCk9uIDEvOS8yMyA3OjMxIEFNLCBNYXJjdXMgTcO8bGxlciB3cm90ZToNCj4gSGksDQo+
+IA0KPiBjYW4geW91IHNoYXJlIHRoZSBvdXRwdXRzIG9mDQo+IA0KPiB3aGljaCBzaA0KPiB3aGlj
+aCBiZW5jaG1hcmtfcmF0ZQ0KPiB3aGljaCB1aGRfZmluZF9kZXZpY2VzDQo+IA0KPiB3aXRoIHVz
+PyBDb3VsZCB5b3UgYWxzbyB0cnkgdG8gc2VhcmNoIGZvciBhbnkgImxpYnVoZC5kbGwiIG9uIHlv
+dXIgDQo+IHN5c3RlbSwgYW5kIHZlcmlmeSB0aGF0IG9ubHkgdGhlcmUncyBvbmx5IHRoZSBvbmUg
+dGhhdCB5b3UgZXhwZWN0IHRvIGJlIA0KPiB0aGVyZT8NCj4gDQo+IFRoZSBwZXJzb24gYWN0dWFs
+bHkgaW4gY2hhcmdlIG9mIG1haW50YWluaW5nIHRoZSBVSEQgcGFja2FnZSBmb3IgDQo+IGFuYWNv
+bmRhIHdhcyBwcmV0dHkgY2VydGFpbiB0aGF0IHRoZSBidWlsZCBvZiB0aGUgVUhEIGxpYnJhcnkg
+dXNlZCB3aGVuIA0KPiB5b3UgcnVuIGBiZW5jaG1hcmtfcmF0ZWAgaXMgbm90IHRoZSBvbmUgZnJv
+bSB0aGUgYW5hY29uZGEgcmVwbzsgc28sIHRoZSANCj4gcHJvYmxlbSBwZXJzaXN0cyB0aGF0IGZv
+ciBzb21lIHJlYXNvbiwgYSB3cm9uZyBVSEQgbGlicmFyeSBiZWluZyBsb2FkZWQgDQo+IGluc3Rl
+YWQgb2YgdGhlIG9uZSB0aGF0IHlvdXIgYnVpbGQgb3IgYW5hY29uZGEncyBidWlsZC4NCg0KSSBq
+dXN0IGZpcmVkIHVwIG15IFZNIGFuZCBjaGVja2VkIG15IHJhZGlvY29uZGEgZW52aXJvbm1lbnQg
+d2l0aCBVSEQgDQo0LjMsIGFuZCBpdCBkb2VzIGFjdHVhbGx5IGlkZW50aWZ5IGl0c2VsZiB3aXRo
+IHRoZSBsaW5lDQoNCiAgIFtJTkZPXSBbVUhEXSBXaW4zMjsgTWljcm9zb2Z0IFZpc3VhbCBDKysg
+dmVyc2lvbiAxNC4yOyBCb29zdF8xMDc4MDA7IA0KVUhEXzQuMy4wLjAtcmVsZWFzZQ0KDQppbmNs
+dWRpbmcgdGhlICJXaW4zMiIuIFNvIEkgdGFrZSBpdCBiYWNrOiBpdCBpcyByZWFzb25hYmxlIHRv
+IGNvbmNsdWRlIA0KdGhhdCB0aGlzIGlzIG5vdCBhIGNhc2Ugb2YgbWl4ZWQgaW5zdGFsbGF0aW9u
+cy4NCg0KVGhhdCdzIGFzIGZhciBhcyBJIGNhbiB0YWtlIGl0LCB1bmZvcnR1bmF0ZWx5LCBzaW5j
+ZSBydW5uaW5nIA0KYGJlbmNobWFya19yYXRlYCB3aXRoIG15IEIyMDBtaW5pIHdvcmtzIGFzIGV4
+cGVjdGVkLg0KDQpDaGVlcnMsDQpSeWFuDQoNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gTWFyY3Vz
+DQo+IA0KPiBESVNDTEFJTUVSOiBBbnkgYXR0YWNoZWQgQ29kZSBpcyBwcm92aWRlZCBBcyBJcy4g
+SXQgaGFzIG5vdCBiZWVuIHRlc3RlZCANCj4gb3IgdmFsaWRhdGVkIGFzIGEgcHJvZHVjdCwgZm9y
+IHVzZSBpbiBhIGRlcGxveWVkIGFwcGxpY2F0aW9uIG9yIHN5c3RlbSwgDQo+IG9yIGZvciB1c2Ug
+aW4gaGF6YXJkb3VzIGVudmlyb25tZW50cy4gWW91IGFzc3VtZSBhbGwgcmlza3MgZm9yIHVzZSBv
+ZiANCj4gdGhlIENvZGUuIFVzZSBvZiB0aGUgQ29kZSBpcyBzdWJqZWN0IHRvIHRlcm1zIG9mIHRo
+ZSBsaWNlbnNlcyB0byB0aGUgVUhEIA0KPiBvciBSRk5vQyBjb2RlIHdpdGggd2hpY2ggdGhlIENv
+ZGUgaXMgdXNlZC4gU3RhbmRhcmQgbGljZW5zZXMgdG8gVUhEIGFuZCANCj4gUkZOb0MgY2FuIGJl
+IGZvdW5kIGF0IGh0dHBzOi8vd3d3LmV0dHVzLmNvbS9zZHItc29mdHdhcmUvbGljZW5zZXMvLg0K
+PiANCj4gTkkgd2lsbCBvbmx5IHBlcmZvcm0gc2VydmljZXMgYmFzZWQgb24gaXRzIHVuZGVyc3Rh
+bmRpbmcgYW5kIGNvbmRpdGlvbiANCj4gdGhhdCB0aGUgZ29vZHMgb3Igc2VydmljZXMgKGkpIGFy
+ZSBub3QgZm9yIHRoZSB1c2UgaW4gdGhlIHByb2R1Y3Rpb24gb3IgDQo+IGRldmVsb3BtZW50IG9m
+IGFueSBpdGVtIHByb2R1Y2VkLCBwdXJjaGFzZWQsIG9yIG9yZGVyZWQgYnkgYW55IGVudGl0eSAN
+Cj4gd2l0aCBhIGZvb3Rub3RlIDEgZGVzaWduYXRpb24gaW4gdGhlIGxpY2Vuc2UgcmVxdWlyZW1l
+bnQgY29sdW1uIG9mIA0KPiBTdXBwbGVtZW50IE5vLiA0IHRvIFBhcnQgNzQ0LCBVLlMuIEV4cG9y
+dCBBZG1pbmlzdHJhdGlvbiBSZWd1bGF0aW9ucyBhbmQgDQo+IChpaSkgc3VjaCBhIGNvbXBhbnkg
+aXMgbm90IGEgcGFydHkgdG8gdGhlIHRyYW5zYWN0aW9uLsKgIElmIG91ciANCj4gdW5kZXJzdGFu
+ZGluZyBpcyBpbmNvcnJlY3QsIHBsZWFzZSBub3RpZnkgdXMgaW1tZWRpYXRlbHkgYmVjYXVzZSBh
+IA0KPiBzcGVjaWZpYyBhdXRob3JpemF0aW9uIG1heSBiZSByZXF1aXJlZCBmcm9tIHRoZSBVLlMu
+IENvbW1lcmNlIERlcGFydG1lbnQgDQo+IGJlZm9yZSB0aGUgdHJhbnNhY3Rpb24gbWF5IHByb2Nl
+ZWQgZnVydGhlci4NCj4gDQo+IE9uIDA5LjAxLjIzIDA4OjE5LCBoZW5yeS5wb3dlbGwueHhAZ21h
+aWwuY29tIHdyb3RlOg0KPj4NCj4+IEhlbGxvLCBhZ2Fpbi4NCj4+DQo+PiBNeSBzeXN0ZW0gaXMg
+NjRiaXQgYW5kIEkgbWFkZSB1aGQgaW5zdGFsbGF0aW9uIGFnYWluIHdpdGhvdXQgYW5hY29uZGEg
+DQo+PiBjb21wbHlpbmcgd2l0aCDigJxCdWlsZGluZyBhbmQgSW5zdGFsbGluZyBVSEQgZnJvbSBz
+b3VyY2XigJ0gZnJvbSBoZXJlOiANCj4+IGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL21hbnVhbC9w
+YWdlX2J1aWxkX2d1aWRlLmh0bWwNCj4+DQo+PiBTbywgd2hlbiBpIHRyeSB1aGRfZmluZF9kZXZp
+Y2VzLCBpdCB3b3JrcyBubyBwcm9ibGVtLg0KPj4NCj4+IEJ1dCB3aGVuIHRyeSDigJxiZW5jaG1h
+cmtfcmF0ZSAtLXR4X3JhdGU9NmU2IC0tcnhfcmF0ZT02ZTbigJ0sIGdhdmUgbWUgDQo+PiB0aGlz
+IGVycm9yOiBFcnJvcjogTG9va3VwRXJyb3I6IEluZGV4RXJyb3I6IG11bHRpX3VzcnA6IFJYIGNo
+YW5uZWwgDQo+PiAxNzY4MjAzMTUxMzc3IG91dCBvZiByYW5nZSBmb3IgY29uZmlndXJlZCBSWCBm
+cm9udGVuZHMuDQo+Pg0KPj4gVGhlIHByb2JsZW0gaXMgc2FtZS4NCj4+DQo+Pg0KPj4gX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IFVTUlAtdXNlcnMg
+bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+PiBUbyB1bnN1YnNj
+cmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQo+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAt
+dXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVu
+c3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5j
+b20KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11
+c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJz
+Y3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
