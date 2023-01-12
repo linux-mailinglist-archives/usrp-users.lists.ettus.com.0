@@ -2,114 +2,235 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0243C667ECD
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Jan 2023 20:13:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5516687E2
+	for <lists+usrp-users@lfdr.de>; Fri, 13 Jan 2023 00:35:49 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 11800384335
-	for <lists+usrp-users@lfdr.de>; Thu, 12 Jan 2023 14:13:54 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id D8E66384381
+	for <lists+usrp-users@lfdr.de>; Thu, 12 Jan 2023 18:35:47 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1673550834; bh=FbTUrenUDVM49MEPZtvyL0QvGy93cI1myGBNLRCm5dE=;
-	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	t=1673566547; bh=iLO1xDu03PqP+YfT3V6+UFRosf2cJrbVI7eUPs9uNIM=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=sr6G5j/jlBGCw1n0qnQF/hgITaFoARaccaDoukgaHu+Ik0/7+LgvI+2TggpmkWh+f
-	 WLxdiVnbvHW6IrgFH4N3v6Vb4ydVSkJX883Ry+b9j5iN+CIZqICGzHYoyMFsg+FEnm
-	 o4JUR0m6QbQoNc9kyyy4ln+vo90azkfaqCfzTDl1NbMeT0TLdI8QyTykJ5mPSCUGS4
-	 ZWddwucC8LU1YK0Lt9Cm1ClQUtjorh3b55Q0U9jFYZrI2m7FMO9noOTz/mwkhNxX7u
-	 Ne/8T/V/1YVO8dNezMgI4Re135T9Tlh1wqMPg18zKRdfIVCeGQQ+Mrbmrh57pENnnc
-	 Kd/SVSwCmZ/8Q==
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 735273842FC
-	for <usrp-users@lists.ettus.com>; Thu, 12 Jan 2023 14:13:04 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aL4C31M+";
-	dkim-atps=neutral
-Received: by mail-ej1-f47.google.com with SMTP id az20so28055685ejc.1
-        for <usrp-users@lists.ettus.com>; Thu, 12 Jan 2023 11:13:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/MAKprtriaaiRCY4sHyA+uNHoyRSBzaZECnUCeXfU6o=;
-        b=aL4C31M+VtWZjiBuvbjZKPjvOZDFI+LjmaDWntpPEYsbGK9yxA6tOeqWpkLkhly7Cd
-         iDl7lCG6N69vv/y23G2j5PEta20+H3fHIHT8XqP+zFYtZM4wTn0Y/2ri5SHjeCJeSEd4
-         +VPnja9p/BAXiBXTsq55PF+DOEjNo2hiUeH6f7ZTs+/di6/sVXCGzvUtfFWo8TxyH7aT
-         HO8neDCu5NLmmXC90w16elabpBFxbxPqI7F+LI/cY/zUd1z7X0VjhEIB+rrsoK8OG97Y
-         /AgyJHJdRP/kd2jlzwRCk6QH0Uajl4psKfhmAYHLPgZoIFhPSAciLh+v+D+GdKvImD9X
-         u3NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/MAKprtriaaiRCY4sHyA+uNHoyRSBzaZECnUCeXfU6o=;
-        b=2SDIrBcjJAuIKK1sKHx+BUsG3s9h2SimGM8MZkZTEybn3p4R7nvqDTFgKQN6DwNA2/
-         QR/BEcGV1DMeo53HIrG0y/HU7pCXH7DFjJRpKopxodqsFYYa6lDARwJg/2YGvP1nP9g6
-         gosBO3dBG3t5/6y16C0lykJBtT+EV3t0j1m/FfzCPQKWY6RU8CSXwvRfRLbS+vwEjX02
-         tDap0x3D1Zo0vJBm0ret1pDo9UunOdKoSqiLafg7r/AkPkF7AAHvNthYhXVvjv4LVYfY
-         W1xzJHaKDCmI33VJTKWqu6CF2MSMC7Qd5gZ6MnTiK2km93d8XEiVo8CZqykVPiFmRhU/
-         Wigw==
-X-Gm-Message-State: AFqh2kqR0AaeQZWSG2DUEsDRk8QmsJH0r8GHFCAYadFyUAqBKEIahfjC
-	pd+BcLOUZMQiNsU/V/U6kJDrX+vi1U2HprwNtZxnqOPV
-X-Google-Smtp-Source: AMrXdXthKYxp6IWuIP5ZpUln033zxpC5WAV7ECJ/e7bv5JgRWX3wQSEozPlhau4n20sLuNaCZvYUmQBjtqxk0xBOcZU=
-X-Received: by 2002:a17:907:8745:b0:83f:5f77:8fff with SMTP id
- qo5-20020a170907874500b0083f5f778fffmr4802035ejc.293.1673550782999; Thu, 12
- Jan 2023 11:13:02 -0800 (PST)
+	b=RYKx91VOPCUrwQazvdXa+WJYY5cffkmJNYeym1oyG8QZ+dmHRVgiaFAfzSUr5KH3U
+	 lJOxYGcnjagkpMBPCLHHjVCBL3QfbEMji8i9wfHpMbGyfyndpegOFNenJrS6ZmJWYe
+	 CqVPvaMv3++JCjqsOXGdYQGrXKdLbBh2U9zcfzCUJb46wlMEI8hpy1yG1+kV1+OFqN
+	 BFiM6JUKxHXa9bantaTJPrxx2Gs5vZZO8HD9vhNNCCeZA4W9VF5LfBu4J09+hqXf8/
+	 NmR5+glPcY5+AkdAs1BubLeFsXfw7s3Tr7Xj0eAomEE5V7xSM1APSP83SXCm9ro+zN
+	 dyLoHzhN8Pc5A==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id E3D8738430E
+	for <usrp-users@lists.ettus.com>; Thu, 12 Jan 2023 18:34:55 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1673566495; bh=QDPc2Jp3OdT7upc9UU7EYJP/VUWryR9YFveiGvLGylQ=;
+	h=Date:To:From:Subject:From;
+	b=RiGR+xyy1XNhUYh9o+xWEdWIw9rvRfOVC0oYffYJgewZ3ZuQPedVCBZAwHbbzRE5Y
+	 yH4LwCbwSAOMuiIf5yQ17IfX4dMdvdQjKKf9R3nNl0eslzhTX48xgJVY/HY0EtAlId
+	 dq12vWFG0q4Zl09w5aDgy1My9K24113TzreofmwoKpL87FLrRZ5oHr0lvg48aVfIvF
+	 nzo2o5UrCXHA9QDTCX9bH9NynBUtUmWOh7VrKtgQRT9JiOVGOLswoEbadfclN/u4zl
+	 A/IecRLYeAFJ4xecs+7GDTKdvAUJQ5GrNB0uwwgjA2+1K5KozgruhhFtrKlLQUJ8H1
+	 WHKDK/15AFSug==
+Date: Thu, 12 Jan 2023 23:34:55 +0000
+To: usrp-users@lists.ettus.com
+From: jmaloyan@umass.edu
+Message-ID: <vLpO2LEYROh6p036tvvwp84QfDVQ37rLpafUZzjg@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Thu, 12 Jan 2023 14:12:51 -0500
-Message-ID: <CAEXYVK7yOxAd2_AVR_WwEEJqxH2w8S7QQc79_ytNnuAGLbG+bg@mail.gmail.com>
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Message-ID-Hash: NDITTHLXEFIEJ7MW4BWAXDKGM3DHZJJV
-X-Message-ID-Hash: NDITTHLXEFIEJ7MW4BWAXDKGM3DHZJJV
-X-MailFrom: bpadalino@gmail.com
+Message-ID-Hash: CKW2L2PN65Q7XCF4GNAMMV6QR5U7JVYR
+X-Message-ID-Hash: CKW2L2PN65Q7XCF4GNAMMV6QR5U7JVYR
+X-MailFrom: jmaloyan@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] X410 Temporary FPGA Loading
+Subject: [USRP-users] Starting FPGA development on Ettus N321
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NDITTHLXEFIEJ7MW4BWAXDKGM3DHZJJV/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CKW2L2PN65Q7XCF4GNAMMV6QR5U7JVYR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6867976215001932328=="
+Content-Type: multipart/mixed; boundary="===============2293780989484242641=="
 
---===============6867976215001932328==
-Content-Type: multipart/alternative; boundary="000000000000ef2ed805f215e780"
+This is a multi-part message in MIME format.
 
---000000000000ef2ed805f215e780
-Content-Type: text/plain; charset="UTF-8"
+--===============2293780989484242641==
+Content-Type: multipart/alternative;
+ boundary="b1_vLpO2LEYROh6p036tvvwp84QfDVQ37rLpafUZzjg"
+Content-Transfer-Encoding: 7bit
 
-I am building some experimental/development FPGAs for an X410 and I am
-looking at loading them temporarily for a quick runtime test without
-committing to overwriting default images.
+This is a multi-part message in MIME format.
 
-With the X310 I am able to achieve this with a JTAG connection.  With the
-X410, being an SoC, I think this would be pretty terrible to do.
+--b1_vLpO2LEYROh6p036tvvwp84QfDVQ37rLpafUZzjg
+Content-Type: text/plain; charset=us-ascii
 
-Are there any recommended ways to load temporary/development FPGA images on
-the X410 without overwriting default images?
+Hello,
 
-Thanks,
-Brian
+I am trying to create a Vivado environment for the ettus 321, however, I am running into issues.
 
---000000000000ef2ed805f215e780
-Content-Type: text/html; charset="UTF-8"
+I navigated to uhd/fpga/usrp3/top/n3xx where there is a makefile which I assume creates the environment in Vivado. I run the makefile, but I end up with the error. It was successfully synthesized some of the netlists, but it fails on hb47_1to2, and I am not left with a vivado project I can open. I have pasted the error below. I am using Ubuntu 20.04, UHD 4.3.0, Vivado 2021.1
+
+Thanks
+
+Joe
+
+=======================================================
+
+BUILDER: Building IP hb47_1to2
+
+========================================================
+
+BUILDER: Staging IP in build directory...
+
+BUILDER: Reserving IP location: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2
+
+BUILDER: Retargeting IP to part zynq/xc7z100/ffg900/-2...
+
+BUILDER: Building IP...
+
+\[00:00:00\] Executing command: vivado -mode batch -source workarea/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log hb47_1to2.log -nojournal
+
+\[00:00:05\] Current task: Initialization +++ Current Phase: Starting
+
+WARNING: \[IP_Flow 19-2162\] IP 'hb47_1to2' is locked:
+
+CRITICAL WARNING: \[filemgmt 20-1366\] Unable to reset target(s) for the following file is locked: workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xci
+
+CRITICAL WARNING: \[filemgmt 20-1365\] Unable to generate target(s) for the following file is locked: workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xci
+
+\[00:00:05\] Current task: Initialization +++ Current Phase: Finished
+
+\[00:00:05\] Executing Tcl: synth_design -top hb47_1to2 -part xc7z100ffg900-2 -mode out_of_context
+
+\[00:00:05\] Starting Synthesis Command
+
+WARNING: \[Vivado_Tcl 4-391\] The following IPs are missing output products for Synthesis target. These output products could be required for synthesis, please generate the output products using the generate_target or synth_ip command before running synth_design.
+
+WARNING: \[IP_Flow 19-2162\] IP 'hb47_1to2' is locked:
+
+\[00:00:06\] Current task: Synthesis +++ Current Phase: Starting
+
+ERROR: \[Designutils 20-414\] HRTInvokeSpec : No Verilog or VHDL sources specified
+
+ERROR: \[Common 17-53\] User Exception: No open design. Please open an elaborated, synthesized or implemented design before executing this command.
+
+ERROR: \[Common 17-53\] User Exception: No open design. Please open an elaborated, synthesized or implemented design before executing this command.
+
+ERROR: \[Common 17-53\] User Exception: No open design. Please open an elaborated, synthesized or implemented design before executing this command.
+
+ERROR: \[Common 17-53\] User Exception: No open design. Please open an elaborated, synthesized or implemented design before executing this command.
+
+ERROR: \[Common 17-53\] User Exception: No open design. Please open an elaborated, synthesized or implemented design before executing this command.
+
+ERROR: \[Common 17-53\] User Exception: No open design. Please open an elaborated, synthesized or implemented design before executing this command.
+
+CRITICAL WARNING: \[IP_Flow 19-4739\] Writing uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xml'
+
+CRITICAL WARNING: \[IP_Flow 19-4739\] Writing uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xml'
+
+CRITICAL WARNING: \[IP_Flow 19-4739\] Writing uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xml'
+
+CRITICAL WARNING: \[IP_Flow 19-4739\] Writing uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xml'
+
+CRITICAL WARNING: \[IP_Flow 19-4739\] Writing uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xml'
+
+ERROR: \[Vivado 12-398\] No designs are open
+
+\[00:00:06\] Current task: Synthesis +++ Current Phase: Finished
+
+\[00:00:06\] Process terminated. Status: Failure
+
+========================================================
+
+Warnings:           3
+
+Critical Warnings:  7
+
+Errors:             8
+
+BUILDER: Releasing IP location: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2
+
+make\[1\]: \*\*\* \[workarea/uhd/fpga/usrp3/top/n3xx/ip/hb47_1to2/Makefile.inc:19: IP_HB47_1TO2_TRGT\] Error 1
+
+make\[1\]: Leaving directory '/workarea/uhd/fpga/usrp3/top/n3xx'
+
+make: \*\*\* \[Makefile:90: N3X0_IP\] Error 2
+
+--b1_vLpO2LEYROh6p036tvvwp84QfDVQ37rLpafUZzjg
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I am building some experimental/development FPGAs for an X=
-410 and I am looking at loading them temporarily for a quick runtime test w=
-ithout committing to overwriting default images.<div><br></div><div>With th=
-e X310 I am able to achieve this with a JTAG connection.=C2=A0 With the X41=
-0, being an SoC, I think this would be pretty terrible to do.</div><div><br=
-></div><div>Are there any recommended ways to load temporary/development FP=
-GA images on the X410 without overwriting default images?</div><div><br></d=
-iv><div>Thanks,<br>Brian</div></div>
+<p>Hello,</p><p><br></p><p>I am trying to create a Vivado environment for t=
+he ettus 321, however, I am running into issues.</p><p>I navigated to uhd/f=
+pga/usrp3/top/n3xx where there is a makefile which I assume creates the env=
+ironment in Vivado. I run the makefile, but I end up with the error. It was=
+ successfully synthesized some of the netlists, but it fails on hb47_1to2, =
+and I am not left with a vivado project I can open. I have pasted the error=
+ below. I am using Ubuntu 20.04, UHD 4.3.0, Vivado 2021.1</p><p>Thanks</p><=
+p>Joe</p><p>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</p><p>BUILDER: Building IP hb47_1to2</p><p>=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D</p><p>BUILDER: Staging IP in build directory...</p><p>BUILD=
+ER: Reserving IP location: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z1=
+00ffg900-2/hb47_1to2</p><p>BUILDER: Retargeting IP to part zynq/xc7z100/ffg=
+900/-2...</p><p>BUILDER: Building IP...</p><p>[00:00:00] Executing command:=
+ vivado -mode batch -source workarea/uhd/fpga/usrp3/tools/scripts/viv_gener=
+ate_ip.tcl -log hb47_1to2.log -nojournal</p><p>[00:00:05] Current task: Ini=
+tialization +++ Current Phase: Starting</p><p>WARNING: [IP_Flow 19-2162] IP=
+ 'hb47_1to2' is locked:</p><p>CRITICAL WARNING: [filemgmt 20-1366] Unable t=
+o reset target(s) for the following file is locked: workarea/uhd/fpga/usrp3=
+/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xci</p><p>CRITICAL W=
+ARNING: [filemgmt 20-1365] Unable to generate target(s) for the following f=
+ile is locked: workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb=
+47_1to2/hb47_1to2.xci</p><p>[00:00:05] Current task: Initialization +++ Cur=
+rent Phase: Finished</p><p>[00:00:05] Executing Tcl: synth_design -top hb47=
+_1to2 -part xc7z100ffg900-2 -mode out_of_context</p><p>[00:00:05] Starting =
+Synthesis Command</p><p>WARNING: [Vivado_Tcl 4-391] The following IPs are m=
+issing output products for Synthesis target. These output products could be=
+ required for synthesis, please generate the output products using the gene=
+rate_target or synth_ip command before running synth_design.</p><p>WARNING:=
+ [IP_Flow 19-2162] IP 'hb47_1to2' is locked:</p><p>[00:00:06] Current task:=
+ Synthesis +++ Current Phase: Starting</p><p>ERROR: [Designutils 20-414] HR=
+TInvokeSpec : No Verilog or VHDL sources specified</p><p>ERROR: [Common 17-=
+53] User Exception: No open design. Please open an elaborated, synthesized =
+or implemented design before executing this command.</p><p>ERROR: [Common 1=
+7-53] User Exception: No open design. Please open an elaborated, synthesize=
+d or implemented design before executing this command.</p><p>ERROR: [Common=
+ 17-53] User Exception: No open design. Please open an elaborated, synthesi=
+zed or implemented design before executing this command.</p><p>ERROR: [Comm=
+on 17-53] User Exception: No open design. Please open an elaborated, synthe=
+sized or implemented design before executing this command.</p><p>ERROR: [Co=
+mmon 17-53] User Exception: No open design. Please open an elaborated, synt=
+hesized or implemented design before executing this command.</p><p>ERROR: [=
+Common 17-53] User Exception: No open design. Please open an elaborated, sy=
+nthesized or implemented design before executing this command.</p><p>CRITIC=
+AL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/workarea/uhd/=
+fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xml'</p><p=
+>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/workar=
+ea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1to2.xml=
+'</p><p>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '=
+/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2/hb47_1=
+to2.xml'</p><p>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM=
+ file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb47_1to2=
+/hb47_1to2.xml'</p><p>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomi=
+zed BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/hb=
+47_1to2/hb47_1to2.xml'</p><p>ERROR: [Vivado 12-398] No designs are open</p>=
+<p>[00:00:06] Current task: Synthesis +++ Current Phase: Finished</p><p>[00=
+:00:06] Process terminated. Status: Failure</p><p>=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</p><p=
+>Warnings:           3</p><p>Critical Warnings:  7</p><p>Errors:           =
+  8</p><p>BUILDER: Releasing IP location: /workarea/uhd/fpga/usrp3/top/n3xx=
+/build-ip/xc7z100ffg900-2/hb47_1to2</p><p>make[1]: *** [workarea/uhd/fpga/u=
+srp3/top/n3xx/ip/hb47_1to2/Makefile.inc:19: IP_HB47_1TO2_TRGT] Error 1</p><=
+p>make[1]: Leaving directory '/workarea/uhd/fpga/usrp3/top/n3xx'</p><p>make=
+: *** [Makefile:90: N3X0_IP] Error 2</p>
 
---000000000000ef2ed805f215e780--
+--b1_vLpO2LEYROh6p036tvvwp84QfDVQ37rLpafUZzjg--
 
---===============6867976215001932328==
+--===============2293780989484242641==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -119,4 +240,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6867976215001932328==--
+--===============2293780989484242641==--
