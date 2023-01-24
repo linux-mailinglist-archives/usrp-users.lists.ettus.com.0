@@ -2,259 +2,207 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD0A678207
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Jan 2023 17:44:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA5967923F
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Jan 2023 08:46:26 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 71DEE381208
-	for <lists+usrp-users@lfdr.de>; Mon, 23 Jan 2023 11:44:00 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 975F3383BC4
+	for <lists+usrp-users@lfdr.de>; Tue, 24 Jan 2023 02:46:24 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1674492240; bh=vnKtNVx2g9ZnCe3TeuYe14WKQqeqi6G7oTn2mr+aejA=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1674546384; bh=L0xEaa5X3UKUUU+TafUYQuFdrFP3SyW1Ol8ZQBq1uDw=;
+	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=y9sil0CZtfcjnIV4r9sELw9ezYY7RI6TnL8Ka16/XFM/82DqgEVEVg3vUIVCh0Fvh
-	 DEwnqKl88je+AQKULH4uTB69pFGDB40bWX5jba9U2VY9axpofc8kbKLIxc+cdLRs18
-	 VOd2GAxhdqf5//lYlgptFXqm/vdCLGZ2Gvik4uR3u7MhDmw353CjXqu3ic2kot1tdu
-	 YwXr8iLMcrNj0xgGKAegLFXVoDH30HmOgONys9u4q9hWAj88OSHTDHq9763w9EVD0u
-	 0NEO/Bgr4tG/hQ6etaE0/i6Ns3zJ18XurqVw9qgtnOeyMKJ6yGNSXzotaTnrxQozl9
-	 MZxVNxYuDNiZg==
-Received: from USG02-CY1-obe.outbound.protection.office365.us (mail-cy1usg02on0041.outbound.protection.office365.us [23.103.209.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 397A5380FA0
-	for <usrp-users@lists.ettus.com>; Mon, 23 Jan 2023 11:43:53 -0500 (EST)
+	b=0LpItueI1f0PIf4Q/r70Ew+JSS1VUVpIZVuymtXvq7qIcurj6qfbCIyRbgKxFyjI4
+	 wP5DqIprLHplYeZLuAvllvDW1wT2UcMvfIZ/6MhuLGBh2znzJ3UQcgR9Kf1nJN9u6J
+	 MbpOqLcZJbKgqWblvmfjrNzI6zFhce7es6VLASwRcXLcoF1lMlPL6e5CxRWgAOtIPr
+	 WDASItN1RKmT3wBnEiwpjeIZUj7QEH7woHgasCv0Yc7aaNe3XWafwU3RV5QKOB96MA
+	 8WMqyzylmdQsSoIoi6UjHtZ/4w6wtbdUOAdKJTYHY09Faxzx1ThWsWojHq0zo36t9J
+	 vZ6s0m4V5Bcew==
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	by mm2.emwd.com (Postfix) with ESMTPS id 9C42C383AE4
+	for <usrp-users@lists.ettus.com>; Tue, 24 Jan 2023 02:46:17 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=synopticengineering.com header.i=@synopticengineering.com header.b="dSOutVmJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="n6xbF2hb";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector5401; d=microsoft.com; cv=none;
- b=vmfyCyDnkY/WuVznFDW1KldkqYFFAS8mkgL++AVkpWUWOVR8OFpniwWMm8oT+uDZfTEFs7At+BOZ5wxPe3fi96KLOmfAT4XDOKdFXZjIa4vUjYrb3Ik6XDhHQttwc0ZPtBpUM3GWCoD1Igi5fSvHCl04SNm0pn414Kel0ifF/sTwPS4VjtdJ2mY54ffii0QnwLoWMRlL9Sl4c93mLAu+U5uD6Y9LWQhTqWeYmQPN1yy3Omeu0xjvkVvhYwgGZvQs3flGNO7axQqInadjyr/Y81vBB9PDZq5quiFLAKGjyMmoNpYj2R5xNnxR48p2lU3/OvrZDBW9EVXn8oY4HjBvpw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector5401;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bFivrERkFHxXC1LTA5vEhbx5Pwb/Enw+8wX4dVzCpnE=;
- b=tiQDZIMmryYtARCnLQogW5khmfjv9WCiqjl5QPljL/ogZslfUD9mpPQx06q5qA/NGK3L600JY8r/aSlw1PZFwodLYRC9Lz5middWsdWaZV3J4rNAJSilkdHvtas2oFqLuWWvSaq7MgHOs7SiUFpEgvS4TgNOh7VyQUyDSyRUYx1Zcd5iDq3hRTQ7MzgPKf+NqAYGIhKgNM7sDVevjinw+egXXav/0aWT3IUjAjpxVNHvRWSar8D6LDWltoRguTJnAwNzDJqBuqGsHRHL7H9y6K0Y6oY7/BjTYcoWsdo7uXEiG8pR5pFTjslxK02EZMdu1lD9D2tT6Q6bk+yMAAUb1g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopticengineering.com; dmarc=pass action=none
- header.from=synopticengineering.com; dkim=pass
- header.d=synopticengineering.com; arc=none
+Received: by mail-ed1-f52.google.com with SMTP id v30so17318938edb.9
+        for <usrp-users@lists.ettus.com>; Mon, 23 Jan 2023 23:46:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=synopticengineering.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bFivrERkFHxXC1LTA5vEhbx5Pwb/Enw+8wX4dVzCpnE=;
- b=dSOutVmJAjcWZDI87bXA4B4uPT5GsbG+uSWbhEd1wqkK0hlklUe1OAD58T3dcJJ5x82Gksa9hsdDCHKIvVEwS2hE4WzDIgep5ULFfs1OXWuqYuha9mFlexUIYpWSenhis2Zvtd5UPEpta+3PF3UO7gV0+g0K4509nhjkYHCmTAQFaStciGUbrT021AeXSMT9MM6nkEv3mWtrxTlaZxELFnm8SYWiyVtNAso/TbDVo3fx8j41TDv5MJccp4+18xGpxiqotGTUhWnjrS4wp+uZTM9GJfYn0ezFLO7N0sFE14LkRPCqbIUNIlMZTpY7YFUVdNkWcdosdpT7aUJohVuEzw==
-Received: from SA1P110MB1754.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:173::9)
- by SA1P110MB1071.NAMP110.PROD.OUTLOOK.COM (2001:489a:200:172::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5986.23; Mon, 23 Jan
- 2023 16:43:50 +0000
-Received: from SA1P110MB1754.NAMP110.PROD.OUTLOOK.COM
- ([fe80::65d:4bd8:1755:16b6]) by SA1P110MB1754.NAMP110.PROD.OUTLOOK.COM
- ([fe80::65d:4bd8:1755:16b6%4]) with mapi id 15.20.5986.023; Mon, 23 Jan 2023
- 16:43:50 +0000
-From: David Raeman <david@SynopticEngineering.com>
-To: =?utf-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>,
-	usrp-users <usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] E320 Autoboot
-Thread-Index: AQHZLwL6r9DglM71/EmUyT8oPJZ3dK6sNKLw
-Date: Mon, 23 Jan 2023 16:43:49 +0000
-Message-ID: 
- <SA1P110MB1754915A5909BBFADC1C7510B7C89@SA1P110MB1754.NAMP110.PROD.OUTLOOK.COM>
-References: 
- <CALooG3-i1-T_FRDmuhBFXDeVVrTwO6oKf_x_Z1s=3fJWnCtTQQ@mail.gmail.com>
-In-Reply-To: 
- <CALooG3-i1-T_FRDmuhBFXDeVVrTwO6oKf_x_Z1s=3fJWnCtTQQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=SynopticEngineering.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SA1P110MB1754:EE_|SA1P110MB1071:EE_
-x-ms-office365-filtering-correlation-id: 95032afa-730a-497d-acb2-08dafd610132
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- JPqRYSfatYceqv5Yx2eFI0InaPr/7R2EVlgiSQajiuYTqj+qU/4tOVXIH1UNXnGuhpVdOyALyzbo/MPsDBTMSyL/uPdv4xwrfpQwds5r5R90ZHQG3q42jSluafPB51Um+efZk0bHQdEdn9fFQuI92EE2IQOQ6HIUnCk7BMiZXmHeghk3I4D46WA9qSJ8Ox9ssaHXA62r1Obj7aUk+WUzBPQkYIGbMLUjRaOqaQWzQGtj8vBoThnCIIUYFPLh4t+4q6AhWAlvFMKLglZAKAy/lwe0Rajz0IRyOSj4IlATeOuWxdLcI2kxSVCVQiCq+OnhQptNkkdrzjV4m3suuY0WwKAAOWWwrRZz5G7axUgaqWfubJKNS21J8aWr0mPmbJpQEOiXF2ozHG+xccW2E+NaomDCFJOQqoOHNz7POy4tiMSU4PxJw04KsmByh2q7zUyAIgg0jTTJI4WklbjUkcnybFbi0GbQH61HXv0mObYSejmfj1vfH0OUm8e2Su5JP6/RrN+u6RPfNlUCZUfpO2bQL0AyQRg2TMG8E2CDT8D5PqagITctlLEKSIkXGrV5G8ZwvE9he76bEcGcJewpE4NQbFoNLaD55p8NKsxWQcC7SdvxKAAx0u4IorRRrCRz1nWiEGvRANGFVzRzbRFH16dW2V1LAkNUQmnFwJvsk/SMs48=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1P110MB1754.NAMP110.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230022)(4636009)(136003)(366004)(396003)(39830400003)(451199015)(33656002)(41300700001)(71200400001)(110136005)(5660300002)(8676002)(66556008)(52536014)(2906002)(4001150100001)(86362001)(8936002)(9326002)(66446008)(38070700005)(66476007)(66946007)(76116006)(166002)(38100700002)(41320700001)(64756008)(55016003)(122000001)(83380400001)(186003)(53546011)(9686003)(66574015)(508600001)(6506007)(7696005)(85282002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- 6tyxKC6MJodicu0UdNpoMO+4w0S4K6RF6E0myfxb3MH2BjZt1u/WFUthYi5wTi367NV75Vi3PtN6G3WTXQtCEEAQEgQE7dhUV+jRZ0h3wKIokBUYqPgpbk/NKD0mgy2WXQir1eDVsS6mwV61291jVOWKW55XOBfleIVEKp8LvptUYSDcloCOtAjRlR1kCEa8xYk6YVtigWZxk5FsTxXBKqwe1k9Wu2bt6qYoxlU4dNwRwqabriuc+Wpx5eV7spQCVtVIPx47FKqkEuTpKO8Sh6Sd/nkfk9SimrwgaRtAlhgsYjdP1oderzDIrQzUdhjIi8ANVlk+7W6BEWmQarwFKOjUkEGnXCqiFGr8w/o4SImp2hZLPiT3TzsUbyUh/dMB2CJDZygk47icXAiiYmPQ1kYQWIb/VW0ypEsnLeI/gAUSYRA/sElUjyFecpsQpXLyJEZLZkjizZPIlHeZ8o9ztD8h/Su9AFH+hR19opp5tgY=
+        d=gmail.com; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=73TieLH1mS/duYCyI/VTqA8TQS4Uy8+i34wIy292L4M=;
+        b=n6xbF2hbgEPl2p3h61zFmw22dsBwknWJ1qd6A12eNvru4etLZt9AkpoSGobMIrm+VL
+         U7kY60RgNXn2us6Mk2/mabbeZbtLTD/pBJPxyRq06WLMUtp07lQ053MyKXyNeLrSWkLP
+         EMcHjM6o/OcJHeS1+MGjY2TwKUVz/YVmSRr0eFt8wYgV86kPadNKsNRuq3fN2zxVazzS
+         9wQfQfhV1HpQeFEkn2USsNR2I22ReMf4A3b02/TH/QXXeBZuhqktxiEUgpGB5LhwWtyu
+         yjrN5FNp+Xg4iVmkOioqUUY4oSYW0B2i30kNZmwarDPsARueJAMxRbR9TIUHtM7TfDrL
+         udoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=73TieLH1mS/duYCyI/VTqA8TQS4Uy8+i34wIy292L4M=;
+        b=ktOlULHfHJBNu3eDQtB/OGSJymY+t9QyYS5mQ33fy4bt3fg7O4gU2C6hVMK9/rRMID
+         +rkyE2b4BihTCS9aHOpO622beQkdcqkxXta6N9g7JvW6JL1k5R5v/pwE/O2wGCmxqXaS
+         4H3C6NRESiZh66jy5+r1pbQEOPSztbI+G/yAg73DJ63xSsCBqM4uDRe/CnQ/QDZHwqXU
+         2O0hsEFqEzMk2U2Yiva+MH8Q8KuPuqpgPpWPpWwatZVe4q8QOwZzX4oe0M2rzC+z/f3K
+         rxmVG20Ee8+CxTH8JgyR6FvpdQhziHKOkTHCHTvlirYuG4JXf3OIzFm0Z9a3om9fBzyg
+         neXA==
+X-Gm-Message-State: AFqh2kpSHBXqCGDGymllXawYm3e2WXUItXa0b+wFVqNZXKwZLj2l8waK
+	A10/GHKPIrEwd/LJmgGSgZq2+FUEjZSvxZKGpw==
+X-Google-Smtp-Source: AMrXdXsj287viOK0xWDSVzAWo7cJE9LNJphIIzKOgQuYxhkS2ZCjrf06ZbtH/G2YZoKRDU371O7p0eyBoibMyuPw0Ek=
+X-Received: by 2002:a05:6402:4485:b0:468:15f1:54b5 with SMTP id
+ er5-20020a056402448500b0046815f154b5mr3597117edb.8.1674546376375; Mon, 23 Jan
+ 2023 23:46:16 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: SynopticEngineering.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA1P110MB1754.NAMP110.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95032afa-730a-497d-acb2-08dafd610132
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2023 16:43:49.9631
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: e861c95e-27d6-448d-b078-edc45c1d9315
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1P110MB1071
-Message-ID-Hash: HNCXQYMFSJFJXUJFMHHNIOR326TFMJDQ
-X-Message-ID-Hash: HNCXQYMFSJFJXUJFMHHNIOR326TFMJDQ
-X-MailFrom: david@SynopticEngineering.com
+References: <CALooG3-i1-T_FRDmuhBFXDeVVrTwO6oKf_x_Z1s=3fJWnCtTQQ@mail.gmail.com>
+ <1dad107d-4211-ca7d-8e0f-1bd9f212e47b@gmail.com> <CALooG38N4H9i4tHhBDVWq_U=d5+nOm1A0S+Pr9512rZGC4hdHg@mail.gmail.com>
+ <94984b6d-b5ab-6a6d-63e9-aa7cb5823387@gmail.com>
+In-Reply-To: <94984b6d-b5ab-6a6d-63e9-aa7cb5823387@gmail.com>
+From: =?UTF-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>
+Date: Tue, 24 Jan 2023 10:46:05 +0300
+Message-ID: <CALooG382ZXiWkNw6kiBsHcOrU42Y210Ltks7EHXz=cSmzy9Ocg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users <usrp-users@lists.ettus.com>,
+	david@synopticengineering.com
+Message-ID-Hash: UHD6VG233WLNKXAJWV2UCPP3VURKWA6P
+X-Message-ID-Hash: UHD6VG233WLNKXAJWV2UCPP3VURKWA6P
+X-MailFrom: simultaneous11@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: E320 Autoboot
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KMV4FHKQQUDE5ML5IHRHY7K2GPK73HCX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UHD6VG233WLNKXAJWV2UCPP3VURKWA6P/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1210224284444984613=="
+Content-Type: multipart/mixed; boundary="===============3288977854364649943=="
 
---===============1210224284444984613==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_SA1P110MB1754915A5909BBFADC1C7510B7C89SA1P110MB1754NAMP_"
+--===============3288977854364649943==
+Content-Type: multipart/alternative; boundary="000000000000ec807c05f2fdb5a1"
 
---_000_SA1P110MB1754915A5909BBFADC1C7510B7C89SA1P110MB1754NAMP_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000ec807c05f2fdb5a1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgWWFzaXIsDQoNCkkgYWxzbyBoYXZlIHNvbWUgRTMyMCB1bml0cyB3aGljaCBhcmUgcmV2IDcg
-YW5kIHdlcmUgZGVsaXZlcmVkIGFib3V0IGEgbW9udGggYWdvIOKAkyB0aGV5IGRvIG5vdCBoYXZl
-IG5ld2VzdCBmaXJtd2FyZSBmbGFzaGVkIGludG8gdGhlIE1DVeKAmXMgUk8gaW1hZ2UsIHdoaWNo
-IEkgYmVsaWV2ZSBpcyB3aGF0IG1hdHRlcnMgZm9yIGF1dG8tYm9vdC4gWW91IGNhbiBjb25maXJt
-IHRoZSB2ZXJzaW9uIGJ5IHVzaW5nIHRoZSBVU0IgY29ubmVjdGlvbiB0byB0aGUgbWljcm9jb250
-cm9sbGVy4oCZcyBjb21tYW5kLWxpbmUgaW50ZXJmYWNlLCBhbmQgZW50ZXIgdGhlIOKAnHZlcnNp
-b27igJ0gY29tbWFuZC4gSGVyZeKAmXMgd2hhdCBJIGdldDoNCg0KQ2hpcDogICAgc3RtIHN0bTMy
-ZjA3eA0KQm9hcmQ6ICAgNw0KUk86ICAgICAgbmVvbl92MS4xLjczNTMtZThhMDU0MTlmDQpSVzog
-ICAgICBuZW9uX3YxLjEuNzM1OC1hMTkwNjQxYjMNCkJ1aWxkOiAgIG5lb25fdjEuMS43MzU4LWEx
-OTA2NDFiMw0KICAgICAgICAgMjAxOS0xMC0xMSAxNTo0MTo0MCBhQHhhcGhhbg0KDQpTbywgSSBi
-ZWxpZXZlIHlvdSBuZWVkIHRvIGdvIHRocm91Z2ggdGhlIHByb2Nlc3Mgb2YgdXBkYXRpbmcgdGhl
-IE1DVeKAmXMgUk8gZmlybXdhcmUuIEFzIGZhciBhcyBJIHJlbWVtYmVyLCB0aGlzIHJlcXVpcmVz
-IHJlbW92aW5nIHRoZSBib2FyZCBmcm9tIHRoZSBjYXNlIGFuZCB0ZW1wb3JhcmlseSBmbGlwcGlu
-ZyBhbiBpbnRlcm5hbCBkaXBzd2l0Y2guIElmIHlvdeKAmXJlIG5vdCBmYW1pbGlhciB3aXRoIHRo
-aXMgcHJvY2VzcywgSeKAmWQgZW5jb3VyYWdlIHlvdSB0byBkaXJlY3RseSByZWFjaCBvdXQgdG8g
-RXR0dXMgc3VwcG9ydCBhbmQgdGhleSBjYW4gY29uZmlybSB0aGUgcHJvY2VzcyBmb3IgeW91Lg0K
-DQpIb3BlIHRoaXMgaGVscHMsDQpEYXZpZA0KDQpGcm9tOiBZYXNpciDDlnrDp2FsxLFrIDxzaW11
-bHRhbmVvdXMxMUBnbWFpbC5jb20+DQpTZW50OiBNb25kYXksIEphbnVhcnkgMjMsIDIwMjMgMzox
-MyBBTQ0KVG86IHVzcnAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVj
-dDogW1VTUlAtdXNlcnNdIEUzMjAgQXV0b2Jvb3QNCg0KSGkgZXZlcnlvbmUsDQpJIGhhdmUgYW4g
-RTMyMCB3aGljaCBkb2VzIG5vdCBhdXRvYm9vdC4gSSBhbSB0cnlpbmcgdG8gYWN0aXZhdGUgaXQu
-IFdoZW4gSSBzZWFyY2hlZCBkb2N1bWVudHMgZm9yIHRoaXMsIEkgZm91bmQgdGhhdCB0aGVyZSBh
-cmUgZmxhZ3Mgb24gdGhlIG1pY3JvY29udHJvbGxlciB0aGF0IGNvbnRyb2xzIGF1dG9ib290LiBU
-aGUgZG9jdW1lbnQgc2F5cyAiZWVwcm9tLXNldC1mbGFncyAweDEiIGFjdGl2YXRlcyB0aGUgYXV0
-b2Jvb3QgZnVuY3Rpb24sIGhvd2V2ZXIgaXQgZG9lcyBub3Qgd29yay4gSSBoYXZlIHNlZW4gdGhh
-dCBJIG1pZ2h0IG5lZWQgdG8gdXBkYXRlIGZpcm13YXJlIGZvciB0aGlzIHByb2JsZW0sIGJ1dCBt
-eSBib2FyZHZlcnNpb24gaXMgYWxyZWFkeSA3LiBUaGVyZWZvcmUsIHdoZW4gSSB0cmllZCB0byB1
-cGRhdGUgbWN1IGZpcm13YXJlLCBpdCBzYWlkIGl0IGNhbm5vdCBmaW5kIG5lY2Vzc2FyeSBmaWxl
-cyBmb3IgdmVyc2lvbiA3LiBBcyBJIHVuZGVyc3RhbmQgaXQsIG15IG1jdSBpcyBhbHJlYWR5IHVw
-ZGF0ZWQgdG8gdGhlIGxhdGVzdC4gIENhbiBhbnlvbmUgaGVscCBtZSBhY3RpdmF0ZSB0aGUgYXV0
-b2Jvb3QgZnVuY3Rpb24/DQoNCk15IEJvYXJkIDogVVNSUCBFMzIwDQpVSEQgVmVyc2lvbjogNC4w
-LjANCk1DVSBVcGRhdGUgRmlsZXM6IG1jdV9uZW9uPGh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL2Jp
-bmFyaWVzL21pc2MvdXBncmFkZV9tY3VfbmVvbl92MS4xLjczNTgtYTE5MDY0MS1tdXNsLWdsaWJj
-LXJldjMtNi50YXIuZ3o+DQoNCktpbmQgUmVnYXJkcywNCllhc2lyDQo=
+Hi,
+thank you for the replies. I have tried the first guide, the problem is
+they only have firmware updates for versions between 3 and 6. But my
+version is 7. That's why I could not update the firmware. The second
+document also has the same firmwares. I have emailed ettus support for
+firmware update for version 7. I hope they return back for an answer soon.
 
---_000_SA1P110MB1754915A5909BBFADC1C7510B7C89SA1P110MB1754NAMP_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Kind Regards,
+Yasir.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
-Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
-OnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25h
-bC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5k
-b3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
-CWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
-CXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0K
-ZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
-eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
-IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
-eSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSIgc3R5bGU9IndvcmQtd3Jh
-cDpicmVhay13b3JkIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5IaSBZYXNpciw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSBhbHNvIGhhdmUgc29t
-ZSBFMzIwIHVuaXRzIHdoaWNoIGFyZSByZXYgNyBhbmQgd2VyZSBkZWxpdmVyZWQgYWJvdXQgYSBt
-b250aCBhZ28g4oCTIHRoZXkgZG8NCjxiPm5vdDwvYj4gaGF2ZSBuZXdlc3QgZmlybXdhcmUgZmxh
-c2hlZCBpbnRvIHRoZSBNQ1XigJlzIFJPIGltYWdlLCB3aGljaCBJIGJlbGlldmUgaXMgd2hhdCBt
-YXR0ZXJzIGZvciBhdXRvLWJvb3QuIFlvdSBjYW4gY29uZmlybSB0aGUgdmVyc2lvbiBieSB1c2lu
-ZyB0aGUgVVNCIGNvbm5lY3Rpb24gdG8gdGhlIG1pY3JvY29udHJvbGxlcuKAmXMgY29tbWFuZC1s
-aW5lIGludGVyZmFjZSwgYW5kIGVudGVyIHRoZSDigJx2ZXJzaW9u4oCdIGNvbW1hbmQuIEhlcmXi
-gJlzDQogd2hhdCBJIGdldDo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1s
-ZWZ0Oi41aW4iPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90
-OyI+Q2hpcDombmJzcDsmbmJzcDsmbmJzcDsgc3RtIHN0bTMyZjA3eDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj48c3Bh
-biBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDsiPkJvYXJkOiZuYnNw
-OyZuYnNwOyA3PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
-bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb3Vy
-aWVyIE5ldyZxdW90OyI+Uk86Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IG5lb25fdjEu
-MS43MzUzLWU4YTA1NDE5ZjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7Q291cmllciBOZXcmcXVvdDsiPlJXOiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBu
-ZW9uX3YxLjEuNzM1OC1hMTkwNjQxYjM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6LjVpbiI+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij5CdWlsZDombmJzcDsmbmJzcDsgbmVvbl92MS4x
-LjczNTgtYTE5MDY0MWIzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVv
-dDtDb3VyaWVyIE5ldyZxdW90OyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7Jm5ic3A7IDIwMTktMTAtMTEgMTU6NDE6NDAgYUB4YXBoYW48bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPlNvLCBJIGJlbGlldmUgeW91IG5lZWQgdG8gZ28gdGhyb3VnaCB0aGUg
-cHJvY2VzcyBvZiB1cGRhdGluZyB0aGUgTUNV4oCZcyBSTyBmaXJtd2FyZS4gQXMgZmFyIGFzIEkg
-cmVtZW1iZXIsIHRoaXMgcmVxdWlyZXMgcmVtb3ZpbmcgdGhlIGJvYXJkIGZyb20gdGhlIGNhc2Ug
-YW5kIHRlbXBvcmFyaWx5IGZsaXBwaW5nIGFuIGludGVybmFsIGRpcHN3aXRjaC4gSWYgeW914oCZ
-cmUgbm90IGZhbWlsaWFyIHdpdGggdGhpcyBwcm9jZXNzLA0KIEnigJlkIGVuY291cmFnZSB5b3Ug
-dG8gZGlyZWN0bHkgcmVhY2ggb3V0IHRvIEV0dHVzIHN1cHBvcnQgYW5kIHRoZXkgY2FuIGNvbmZp
-cm0gdGhlIHByb2Nlc3MgZm9yIHlvdS48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG9wZSB0aGlz
-IGhlbHBzLDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+RGF2aWQ8bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRp
-diBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5n
-OjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
-ZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9tOjwvYj4gWWFzaXIgw5Z6w6dhbMSxayAmbHQ7c2lt
-dWx0YW5lb3VzMTFAZ21haWwuY29tJmd0OyA8YnI+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBKYW51
-YXJ5IDIzLCAyMDIzIDM6MTMgQU08YnI+DQo8Yj5Ubzo8L2I+IHVzcnAtdXNlcnMgJmx0O3VzcnAt
-dXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBbVVNSUC11c2Vy
-c10gRTMyMCBBdXRvYm9vdDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPkhpIGV2ZXJ5b25lLDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPkkgaGF2ZSBhbiBFMzIwIHdoaWNoIGRvZXMgbm90IGF1dG9ib290LiBJIGFtIHRyeWlu
-ZyB0byBhY3RpdmF0ZSBpdC4gV2hlbiBJIHNlYXJjaGVkIGRvY3VtZW50cyBmb3IgdGhpcywgSSBm
-b3VuZCB0aGF0IHRoZXJlIGFyZSBmbGFncyBvbiB0aGUgbWljcm9jb250cm9sbGVyIHRoYXQgY29u
-dHJvbHMgYXV0b2Jvb3QuIFRoZSBkb2N1bWVudCBzYXlzICZxdW90O2VlcHJvbS1zZXQtZmxhZ3Mg
-MHgxJnF1b3Q7IGFjdGl2YXRlcyB0aGUgYXV0b2Jvb3QNCiBmdW5jdGlvbiwgaG93ZXZlciZuYnNw
-O2l0IGRvZXMgbm90IHdvcmsuIEkgaGF2ZSBzZWVuIHRoYXQgSSBtaWdodCBuZWVkIHRvIHVwZGF0
-ZSBmaXJtd2FyZSBmb3IgdGhpcyBwcm9ibGVtLCBidXQgbXkgYm9hcmR2ZXJzaW9uIGlzIGFscmVh
-ZHkgNy4gVGhlcmVmb3JlLCB3aGVuIEkgdHJpZWQgdG8gdXBkYXRlIG1jdSBmaXJtd2FyZSwgaXQg
-c2FpZCBpdCBjYW5ub3QgZmluZCBuZWNlc3NhcnkgZmlsZXMgZm9yIHZlcnNpb24gNy4gQXMgSSB1
-bmRlcnN0YW5kIGl0LA0KIG15IG1jdSBpcyBhbHJlYWR5IHVwZGF0ZWQgdG8gdGhlIGxhdGVzdC4m
-bmJzcDsgQ2FuIGFueW9uZSBoZWxwIG1lIGFjdGl2YXRlIHRoZSBhdXRvYm9vdCBmdW5jdGlvbj88
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TXkg
-Qm9hcmQgOiBVU1JQIEUzMjA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPlVIRCBWZXJzaW9uOiA0LjAuMDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TUNVIFVwZGF0ZSBGaWxlczombmJzcDs8YSBocmVm
-PSJodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9iaW5hcmllcy9taXNjL3VwZ3JhZGVfbWN1X25lb25f
-djEuMS43MzU4LWExOTA2NDEtbXVzbC1nbGliYy1yZXYzLTYudGFyLmd6Ij5tY3VfbmVvbjwvYT48
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+S2lu
-ZCBSZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+WWFzaXI8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+Marcus D. Leech <patchvonbraun@gmail.com>, 23 Oca 2023 Pzt, 21:11 tarihinde
+=C5=9Funu yazd=C4=B1:
 
---_000_SA1P110MB1754915A5909BBFADC1C7510B7C89SA1P110MB1754NAMP_--
+> On 23/01/2023 11:35, Yasir =C3=96z=C3=A7al=C4=B1k wrote:
+> > Hi Marcus,
+> > it works when I manually boot it. Although I followed the
+> > documentation for activating autoboot, autoboot does not work.
+> >
+> > Kind regards,
+> > Yasir
+> >
+> This from one of the folks inside Ettus:
+>
+>   actually don't have an E320 in my lab right now. Adding on Pendlum sinc=
+e
+> he does =F0=9F=98=84 Hopefully if what I've written here doesn't help, Pe=
+ndlum can
+> help!
+>
+> My gut says that the firmware isn't the right version, not new enough. We
+> have 2 FW update guides:
+>
+> (1)< https://kb.ettus.com/E320_Getting_Started_Guide#Autoboot >  and then
+> scroll down to "If setting this flag does not allow autoboot control on t=
+he
+> USRP E320, then the device boot firmware needs to be updated. This update
+> is accomplished via the following instructions."
+>
+> at the very end of that section, the KB notes an alternative E320 FW
+> update guide. This would be:
+>
+> (2)<
+> https://drive.google.com/drive/folders/1VQAO5ai04FwkenEwRA7KpSntXE2qZ6bT =
+>
+>
+> This is a folder with 2 files: a ZIP of the FW, and a PDF manual. This
+> version is quite a bit more involved physically in opening the E320 & doi=
+ng
+> stuff physically with it. This version always works for me; the other
+> version worked 95% of the time for me. This version is worth a try.
+>
+> I hope this is useful! - MLD
+>
+>
+>
 
---===============1210224284444984613==
+--000000000000ec807c05f2fdb5a1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div>thank you for the replies. I have tried the first =
+guide, the problem is they only=C2=A0have firmware updates for versions bet=
+ween 3 and 6. But my version is 7. That&#39;s why I could not update the fi=
+rmware. The second document also has the same firmwares. I have emailed ett=
+us support for firmware update for version 7. I hope they return back for a=
+n answer soon.</div><div><br></div><div>Kind Regards,</div><div>Yasir.</div=
+></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
+>Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbra=
+un@gmail.com</a>&gt;, 23 Oca 2023 Pzt, 21:11 tarihinde =C5=9Funu yazd=C4=B1=
+:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 23/01/2023 =
+11:35, Yasir =C3=96z=C3=A7al=C4=B1k wrote:<br>
+&gt; Hi Marcus,<br>
+&gt; it works when I manually boot it. Although I followed the <br>
+&gt; documentation for activating autoboot, autoboot does not work.<br>
+&gt;<br>
+&gt; Kind regards,<br>
+&gt; Yasir<br>
+&gt;<br>
+This from one of the folks inside Ettus:<br>
+<br>
+=C2=A0 actually don&#39;t have an E320 in my lab right now. Adding on Pendl=
+um since he does =F0=9F=98=84 Hopefully if what I&#39;ve written here doesn=
+&#39;t help, Pendlum can help!<br>
+<br>
+My gut says that the firmware isn&#39;t the right version, not new enough. =
+We have 2 FW update guides:<br>
+<br>
+(1)&lt; <a href=3D"https://kb.ettus.com/E320_Getting_Started_Guide#Autoboot=
+" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.com/E320_Getting_St=
+arted_Guide#Autoboot</a> &gt;=C2=A0 and then scroll down to &quot;If settin=
+g this flag does not allow autoboot control on the USRP E320, then the devi=
+ce boot firmware needs to be updated. This update is accomplished via the f=
+ollowing instructions.&quot;<br>
+<br>
+at the very end of that section, the KB notes an alternative E320 FW update=
+ guide. This would be:<br>
+<br>
+(2)&lt; <a href=3D"https://drive.google.com/drive/folders/1VQAO5ai04FwkenEw=
+RA7KpSntXE2qZ6bT" rel=3D"noreferrer" target=3D"_blank">https://drive.google=
+.com/drive/folders/1VQAO5ai04FwkenEwRA7KpSntXE2qZ6bT</a> &gt;<br>
+<br>
+This is a folder with 2 files: a ZIP of the FW, and a PDF manual. This vers=
+ion is quite a bit more involved physically in opening the E320 &amp; doing=
+ stuff physically with it. This version always works for me; the other vers=
+ion worked 95% of the time for me. This version is worth a try.<br>
+<br>
+I hope this is useful! - MLD<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000ec807c05f2fdb5a1--
+
+--===============3288977854364649943==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -264,4 +212,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1210224284444984613==--
+--===============3288977854364649943==--
