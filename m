@@ -2,112 +2,282 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16FA867EE4A
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Jan 2023 20:38:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D9D467EECD
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Jan 2023 20:52:54 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 18EE33844B8
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Jan 2023 14:38:04 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 686F738442F
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Jan 2023 14:52:53 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1674848284; bh=pNexI3+IF7OxYLmleaW6RSirPs+1Yz9jpS0Iw2MgIB0=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	t=1674849173; bh=ycDfpvGwU7FgWYnuUHpctpwyRBj8IoTPf6Tq+yPQ55U=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=k0ykrqTEAv2lbxWEIFGAdF+nun7yLTN9/sfnoYcpNvBm/jT7+c8e3BW9RYHoMppXK
-	 P5W2rRQHQkaytDP2T8TbvvHvZlS2Psc2AyrgdgS4zA9wIoKbJRkPF38XnyVRjH1Gw/
-	 gONoMk00NPUEnjmTbjJlMVHiH83AJYRTVVaFR6rG0NRukBuwTYlTptZDmYMXBHBzc0
-	 rojOeNNAnsXADvxUI06S0G2FrgE2wHKlweDGbt14JUDgAUyP6zCmAddxXLDsdkmUlZ
-	 zFMS/SgKr0lBTMCsJbNvGHNTdQfHFyJ2nxOleTFmxZpgMeKMcZFc7Vk26J1MxWI6Of
-	 wCN/zXDlex1Fg==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id E9A4F3844A2
-	for <usrp-users@lists.ettus.com>; Fri, 27 Jan 2023 14:37:09 -0500 (EST)
+	b=aGfnETbcl7JhD41rfVbMqjUdl8Zevl909NkvooAtLnEU6hp4gFBHaCfQA8JFehtKx
+	 t2w/OfpXDUVeWXdNr0+KXAhKKm2KJi6O51/NcWxNM76b0oE2yxrO1YqNnw+rXOcLHP
+	 PsdUURFJUOQlz/lgTdbf9svSi3aMqbzxs/Zj/f2GvHLuy+lx2WWVxeXh2RHOfE1NNb
+	 1hKqGOYX3y61H4eR++aam1iI8D4nnBGxpVY1Oa8jjp0WglRzBqt1Gq+L2fYpHveY4S
+	 lk2sduq+StZ6LFOWJ1b0a4w9h43Ml5x41NrifMcG5Shi8IYDCBYCJXwwrdrGkYamnF
+	 g0MgNDC+rBHHg==
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id E98FC38442F
+	for <usrp-users@lists.ettus.com>; Fri, 27 Jan 2023 14:52:46 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NLzPuvS5";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="N7ZXvarS";
 	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id s4so4951526qtx.6
-        for <usrp-users@lists.ettus.com>; Fri, 27 Jan 2023 11:37:09 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id hw16so16483249ejc.10
+        for <usrp-users@lists.ettus.com>; Fri, 27 Jan 2023 11:52:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B/WQjRGgoaF1pCGY8HktLHcXey8XevgRtME6ghHl9VM=;
-        b=NLzPuvS51ofpO8vWWRXjKg9td8EJ2qtZLDQKE0yipy0pK6SD7eEc16tEYlblrqLts3
-         k3BsHX4meb46QGs1QwxYepmSx5crju68ajagoVDqBNZRt9666UgZTJ90eMGYMHgILESA
-         09ker1RMBc7C1e0MbVVFzhNDBVK4ZFdACaLHBIJCvu4fS5DS3KtqK/1ThytncKw6BwYm
-         d11cUTikqqk/Lag23RFYGjDGTlhvOUDAubrQJxy2V+pOwohWH8Jh5M/re4XYUsGDMZp2
-         3RTvr5ZV7xK3Cjy4Dc2NSNgSRgV3ZN3zd5eLwDm5t2TxZ2HMtFUcCljR53lwbL9OOTru
-         qXMw==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=f24/AsW/0bGyOYvB54JOqQ76Dp085wkyQmHh2oEnEVQ=;
+        b=N7ZXvarSJ6rYNilKUpg2h6t37qRPW5HA+/swkjY3NHnFZrqt/LmYdtVcfyit2d6Hca
+         FNvKb0n8q2H/tq0/MJl4aKItJyjfPYeoUM2f0+NFhVZFTFjzkkHBmvGRq3EAF3HplsP/
+         7Mu0MPvKPVGq8XkrNnJQ9XRyCZ5rbehNvgwYuUyVvjOaH1bd7STce8Jz/kQ9t14Px0df
+         x/tH7PZeHNl7num7c2WzvBHIbOfxBj9ZLWn16NdwRAyKmHG6lcKbBCc/0zoA9iXRsbcR
+         fG3RfR0mgkEpfjNO0YlmIbXiyMC1lAqYGs4Y5H6W8hBp+TP9p6WxxKYuYRl7+ns+LPl8
+         eDmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B/WQjRGgoaF1pCGY8HktLHcXey8XevgRtME6ghHl9VM=;
-        b=oK2wsINrcdUml6kW4Mj2KiQVIZ02nyzVAk5HEPVEQBPPZwC6GBHB+EOMaRDlgu15p2
-         mYDc54f6zBm/HSqjSvVblUKTF9pCgn/3GnZnQ+Aw8bFauw9SiIHOBbzLF3RdDa6h79k7
-         iabkMm7IxWAtlP7K9MxZpKny8blpxPFOeLKd0GyGPPfSQifovRAQ9MKq4C++3sV+dnWb
-         JCq5C+MUt4qi/0+FOTS6TSkRrMtBCGCTpkmo3wrKbQpQxNbemxzmrueWH5gy1WU1wlr6
-         K/VHaYKq83Tn3Zc88b5i1B/8FKstWp3To3Lts6yBijdxlkDzhZeziYLxACUi1az6AfTi
-         LJjA==
-X-Gm-Message-State: AFqh2kotmn1nkbhubzp2c9qn+lt//x09IxmXGHQCU0QOkT2D5sEE3hSN
-	mcHkDD6WVL03KEu9gXwGFub63e5hUK0=
-X-Google-Smtp-Source: AMrXdXsMRveVZvfey9P47gPQzvTkwXaVlPR46ixr9NpalgSlS3RfUjEjIPv7pGXkTAuYr7/4YP65/w==
-X-Received: by 2002:ac8:4914:0:b0:3b6:3acb:7f70 with SMTP id e20-20020ac84914000000b003b63acb7f70mr60378641qtq.61.1674848229420;
-        Fri, 27 Jan 2023 11:37:09 -0800 (PST)
-Received: from [192.168.2.196] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id s20-20020a05620a29d400b00715c2c5b492sm3439616qkp.128.2023.01.27.11.37.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Jan 2023 11:37:09 -0800 (PST)
-Message-ID: <d6538422-d08d-7f9d-ae19-d2ec18c7d199@gmail.com>
-Date: Fri, 27 Jan 2023 14:37:08 -0500
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f24/AsW/0bGyOYvB54JOqQ76Dp085wkyQmHh2oEnEVQ=;
+        b=AZ2Shv7hkIE/yGfSTQ6895xxnvhPGmK4PWA6XwaeUlLkdmqhdg6L95zJ1NDod8v2RU
+         9qvX4Y1uqG20MW1msPFGcqhKzbjgz2t6xT6VvP2hADzIGheihYgHvdxjQvjU11vHxLoJ
+         Q1UlceSwR2rUR5lK4wk3WNNs/iJVbIKJh7VrEGUk8nmhnxmD6H3a+nYqZBzzpFo1SNsF
+         haJnIVI6f/m+FAnEB5lYgGOhvh3zdAOKCcVPRs7on7CG31kb7JSJAKZdLMs5UE6F7vWF
+         WJXIm8fmVgogsAJohpR6vST3ExDOCBPDL7tsZP/TdXliwARxoscAnpFM3HyMU1mO9ogf
+         zI+w==
+X-Gm-Message-State: AFqh2kp22oM3h9iP+lyQN//NZLLoSUa7JqYCdko1oqx96HD2M4K5alRb
+	L8IaZADlU3pbFwggJnQiwYi7X7YMSK9hHwy5Vb8qEFeJfyGTp353jCo=
+X-Google-Smtp-Source: AMrXdXvOkM+GlgK4tA7CtM5zSTV2qvL6CKUNNys2+pxDarr7MRg6TVWkjt2u7ghO8J0lpEQdg7+vUF93M7BieO/3tqA=
+X-Received: by 2002:a17:906:1447:b0:86e:8b7b:adb0 with SMTP id
+ q7-20020a170906144700b0086e8b7badb0mr5574186ejc.130.1674849165891; Fri, 27
+ Jan 2023 11:52:45 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
-To: Mark-Jan Bastian <markjan@xs4all.nl>
-References: <Y9Lxt1qeGzi9rym+@vm01308.protagio.nl>
- <b276bfdb-c59e-bb9f-92b1-c7ab94ad67da@gmail.com>
- <Y9NmFYlarlrd8xE/@vm01308.protagio.nl>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <Y9NmFYlarlrd8xE/@vm01308.protagio.nl>
-Message-ID-Hash: 6Q3ZCGKZOF7MRR27GWELHSU5MHCRWIG3
-X-Message-ID-Hash: 6Q3ZCGKZOF7MRR27GWELHSU5MHCRWIG3
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAGA=HFc6SGvNWmQtqMsh3uY6Ez+U_F3y0CGSmvAs=8zc7+O37A@mail.gmail.com>
+ <03a41b4a-4c97-84e6-ed4e-b614638282f9@gmail.com>
+In-Reply-To: <03a41b4a-4c97-84e6-ed4e-b614638282f9@gmail.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Fri, 27 Jan 2023 13:52:29 -0600
+Message-ID: <CAFche=gA8LYBkj0DgTDvK=5Jg+JwY--9=xGHk-t1dfVdr5mDUg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: 5DRKF46VMAZV77ZVMGRXO2XJ6U5XEHIG
+X-Message-ID-Hash: 5DRKF46VMAZV77ZVMGRXO2XJ6U5XEHIG
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UBX-160 LO filtering
+Subject: [USRP-users] Re: Help with replay_capture.py
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6Q3ZCGKZOF7MRR27GWELHSU5MHCRWIG3/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5DRKF46VMAZV77ZVMGRXO2XJ6U5XEHIG/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Type: multipart/mixed; boundary="===============6793274569702892851=="
+
+--===============6793274569702892851==
+Content-Type: multipart/alternative; boundary="00000000000095f22b05f34435e9"
+
+--00000000000095f22b05f34435e9
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Uri,
+
+Thanks for reporting this! You are correct. Here's a patch for UHD-3.0 (see
+below) to fix it until we get a permanent solution in UHD. The record was
+working correctly, but it was replaying the same buffer in memory for all
+channels.
+
+Thanks,
+
+Wade
+
+
+diff --git a/host/examples/python/replay_capture.py
+b/host/examples/python/replay_capture.py
+index c540c3034..02f582d2b 100755
+--- a/host/examples/python/replay_capture.py
++++ b/host/examples/python/replay_capture.py
+@@ -175,9 +175,10 @@ def run_capture(graph, replay, radio_chan_pairs,
+num_samps, rate,
+     )
+     num_samps = num_bytes // 4
+     num_ports = len(radio_chan_pairs)
+-    ## Arm replay block for recording
++    ## Arm replay block for recording and set playback region
+     for idx in range(len(radio_chan_pairs)):
+         replay.record(idx * mem_stride, num_bytes, idx)
++        replay.config_play(idx * mem_stride, num_bytes, idx)
+     ## Send stream command to all radios
+     # This 'rate ratio' would be better handled by RFNoC. If the replay
+block
+     # were to submit the stream command to the radio, this would not be
+necessary.
+
+
+On Wed, Jan 25, 2023 at 6:37 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 25/01/2023 16:16, Uri M wrote:
+>
+> Hi all,
+>
+> I'm running into some trouble with the replay_capture.py example. When I
+> try to use multiple channels, I keep getting the same samples in all of
+> them.
+>
+> I've tried all the file file format options.
+>
+> Note that the samples of channel 1 are good.
+>
+> If anyone has any ideas, I'd really appreciate the help.
+>
+> Thanks!
+>
+> -Uri
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+> What radio did you use it with, and what arguments did you supply?
+>
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--00000000000095f22b05f34435e9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Uri,</div><div><br></div><div>Thanks for reporting=
+ this! You are correct. Here&#39;s a patch for UHD-3.0 (see below) to fix i=
+t until we get a permanent solution in UHD. The record was working correctl=
+y, but it was replaying the same buffer in memory for all channels.<br></di=
+v><div><br></div><div>
+<div>Thanks,</div><div><br></div><div>Wade</div>
+
+</div><div><br></div><div><br></div><div>diff --git a/host/examples/python/=
+replay_capture.py b/host/examples/python/replay_capture.py<br>index c540c30=
+34..02f582d2b 100755<br>--- a/host/examples/python/replay_capture.py<br>+++=
+ b/host/examples/python/replay_capture.py<br>@@ -175,9 +175,10 @@ def run_c=
+apture(graph, replay, radio_chan_pairs, num_samps, rate,<br>=C2=A0 =C2=A0 =
+=C2=A0)<br>=C2=A0 =C2=A0 =C2=A0num_samps =3D num_bytes // 4<br>=C2=A0 =C2=
+=A0 =C2=A0num_ports =3D len(radio_chan_pairs)<br>- =C2=A0 =C2=A0## Arm repl=
+ay block for recording<br>+ =C2=A0 =C2=A0## Arm replay block for recording =
+and set playback region<br>=C2=A0 =C2=A0 =C2=A0for idx in range(len(radio_c=
+han_pairs)):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0replay.record(idx * mem_s=
+tride, num_bytes, idx)<br>+ =C2=A0 =C2=A0 =C2=A0 =C2=A0replay.config_play(i=
+dx * mem_stride, num_bytes, idx)<br>=C2=A0 =C2=A0 =C2=A0## Send stream comm=
+and to all radios<br>=C2=A0 =C2=A0 =C2=A0# This &#39;rate ratio&#39; would =
+be better handled by RFNoC. If the replay block<br>=C2=A0 =C2=A0 =C2=A0# we=
+re to submit the stream command to the radio, this would not be necessary.<=
+/div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">On Wed, Jan 25, 2023 at 6:37 PM Marcus D. Leech &lt;<a =
+href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wro=
+te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 25/01/2023 16:16, Uri M wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <p style=3D"border:0px solid rgb(217,217,227);box-sizing:border-box=
+;margin:1.25em 0px;color:rgb(55,65,81);font-family:S=C3=B6hne,ui-sans-serif=
+,system-ui,-apple-system,&quot;Segoe UI&quot;,Roboto,Ubuntu,Cantarell,&quot=
+;Noto Sans&quot;,sans-serif,&quot;Helvetica Neue&quot;,Arial,&quot;Apple Co=
+lor Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,&quo=
+t;Noto Color Emoji&quot;;font-size:16px;white-space:pre-wrap;background-col=
+or:rgb(247,247,248)">Hi all,</p>
+        <p style=3D"border:0px solid rgb(217,217,227);box-sizing:border-box=
+;margin:1.25em 0px;color:rgb(55,65,81);font-family:S=C3=B6hne,ui-sans-serif=
+,system-ui,-apple-system,&quot;Segoe UI&quot;,Roboto,Ubuntu,Cantarell,&quot=
+;Noto Sans&quot;,sans-serif,&quot;Helvetica Neue&quot;,Arial,&quot;Apple Co=
+lor Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,&quo=
+t;Noto Color Emoji&quot;;font-size:16px;white-space:pre-wrap;background-col=
+or:rgb(247,247,248)">I&#39;m running into some trouble with the replay_capt=
+ure.py example. When I try to use multiple channels, I keep getting the sam=
+e samples in all of them. </p>
+        <p style=3D"border:0px solid rgb(217,217,227);box-sizing:border-box=
+;margin:1.25em 0px;color:rgb(55,65,81);font-family:S=C3=B6hne,ui-sans-serif=
+,system-ui,-apple-system,&quot;Segoe UI&quot;,Roboto,Ubuntu,Cantarell,&quot=
+;Noto Sans&quot;,sans-serif,&quot;Helvetica Neue&quot;,Arial,&quot;Apple Co=
+lor Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,&quo=
+t;Noto Color Emoji&quot;;font-size:16px;white-space:pre-wrap;background-col=
+or:rgb(247,247,248)">I&#39;ve tried all the file file format options. </p>
+        <p style=3D"border:0px solid rgb(217,217,227);box-sizing:border-box=
+;margin:1.25em 0px;color:rgb(55,65,81);font-family:S=C3=B6hne,ui-sans-serif=
+,system-ui,-apple-system,&quot;Segoe UI&quot;,Roboto,Ubuntu,Cantarell,&quot=
+;Noto Sans&quot;,sans-serif,&quot;Helvetica Neue&quot;,Arial,&quot;Apple Co=
+lor Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,&quo=
+t;Noto Color Emoji&quot;;font-size:16px;white-space:pre-wrap;background-col=
+or:rgb(247,247,248)">Note that the samples of channel 1 are good.</p>
+        <p style=3D"border:0px solid rgb(217,217,227);box-sizing:border-box=
+;margin:1.25em 0px 0px;color:rgb(55,65,81);font-family:S=C3=B6hne,ui-sans-s=
+erif,system-ui,-apple-system,&quot;Segoe UI&quot;,Roboto,Ubuntu,Cantarell,&=
+quot;Noto Sans&quot;,sans-serif,&quot;Helvetica Neue&quot;,Arial,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,=
+&quot;Noto Color Emoji&quot;;font-size:16px;white-space:pre-wrap;background=
+-color:rgb(247,247,248)">If anyone has any ideas, I&#39;d really appreciate=
+ the help. </p>
+        <p style=3D"border:0px solid rgb(217,217,227);box-sizing:border-box=
+;margin:1.25em 0px 0px;color:rgb(55,65,81);font-family:S=C3=B6hne,ui-sans-s=
+erif,system-ui,-apple-system,&quot;Segoe UI&quot;,Roboto,Ubuntu,Cantarell,&=
+quot;Noto Sans&quot;,sans-serif,&quot;Helvetica Neue&quot;,Arial,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,=
+&quot;Noto Color Emoji&quot;;font-size:16px;white-space:pre-wrap;background=
+-color:rgb(247,247,248)">Thanks!</p>
+        <p style=3D"border:0px solid rgb(217,217,227);box-sizing:border-box=
+;margin:1.25em 0px 0px;color:rgb(55,65,81);font-family:S=C3=B6hne,ui-sans-s=
+erif,system-ui,-apple-system,&quot;Segoe UI&quot;,Roboto,Ubuntu,Cantarell,&=
+quot;Noto Sans&quot;,sans-serif,&quot;Helvetica Neue&quot;,Arial,&quot;Appl=
+e Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,=
+&quot;Noto Color Emoji&quot;;font-size:16px;white-space:pre-wrap;background=
+-color:rgb(247,247,248)">-Uri</p>
+      </div>
+      <br>
+      <fieldset></fieldset>
+      <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+    </blockquote>
+    What radio did you use it with, and what arguments did you supply?<br>
+    <br>
+    <br>
+  </div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000095f22b05f34435e9--
+
+--===============6793274569702892851==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
 
-On 27/01/2023 00:50, Mark-Jan Bastian wrote:
->
-> When generating a complex +74 MHz and -73 MHz sinewave signal and adding them,
-> I see 1 MHz spur about -30 dB @ -74 MHz, irrespective of LO frequency. Thus the
-> spur might caused by (remaining) nonlinearity in the mixer or the subsequent stages.
->
-> I would like to control the -30 dB spur to a lower value, or at least find out
-> what the source of this spur is.
-> Next thing could be the DAC, which supports rates up to 1600 MSPS, but is only used at
-> 200 MSPS. Perhaps there is a way to modify the waveform in this step, similar in
-> the way digital predistortion can help improve spectral output purity?
->
-> Mark-Jan
->
->
-Also, have you run these utilities:
-
-https://files.ettus.com/manual_archive/release_003_010_001_000/html/page_calibration.html
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============6793274569702892851==--
