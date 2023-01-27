@@ -2,308 +2,110 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B27867F10D
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Jan 2023 23:18:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE5667F263
+	for <lists+usrp-users@lfdr.de>; Sat, 28 Jan 2023 00:50:12 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A2B7A38445C
-	for <lists+usrp-users@lfdr.de>; Fri, 27 Jan 2023 17:18:32 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 04B27384486
+	for <lists+usrp-users@lfdr.de>; Fri, 27 Jan 2023 18:50:11 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1674857912; bh=+KuWYdz0H2zWIYplRTuYazG/HzzA2AO1AJeSJSf7A2U=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=oTOJAK8602Ph+pQ2XzZ6YnJU+kKwuYmxLRGR0w3U1Px/TymPKz6he0Lu42EldcGfp
-	 gEis5nZLX8PCiS7EbiUhPabP0X3+KiXeG40b9f+s9iZ7LAiAwm53lSucY6cEVRJiN1
-	 pRjJvyR7IEbGYfBCx6bxzz1vM++oK6xk4jx+Db9TRELw3LV0vgKwrDCBiKO/csDQPP
-	 fM/7AKufk+0rCi3qFFPll0ENxrewc5P/1tdDhXg28hm2PJGy5WG12J6ecR6XcNnee8
-	 JF0A19zxNX2aps9QtwUftoTwN7vXIzi33qf0NQ4BfARQRJZbH9N8JvuW+uHjmF+4vO
-	 u6JAEP+RGbTGQ==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5207B384452
-	for <usrp-users@lists.ettus.com>; Fri, 27 Jan 2023 17:17:42 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1674857862; bh=wqOvAIe54pDEjFXDMiZv4GhuY0uao7Y593dcUf9LiY4=;
-	h=Date:To:From:Subject:From;
-	b=Mb55zDN3zB7GuoGlMJqt+Un3J8izFwKOcPMIr4H8lo0GKqibU1uRR65cBStLqM452
-	 eRNSa+a4G8mDBJH92FYcuNiRfzzLr/8EkINpr+aNZuqhwOW51HCQvjDgOy3MT33wsB
-	 Q4g3B8ppcomUc6Sb7xkAd+U8t6s1lVM6VWazKS8ScDvY4mRaLCU6K1nqTHk0ZOi+JV
-	 DuX2tcMdF7ahWdFJWMFNsybgpkIYHWzUafYFIhXiJnDruN8QLtUXFZgmn3gq7QJngj
-	 Pwl286yeJgH06zapYYoNlYnqn2vB2R4gnAu6GNhwa3lQDXFJotFRvTd9/DZI/8TNvp
-	 dzEhRFHGdQVRw==
-Date: Fri, 27 Jan 2023 22:17:42 +0000
-To: usrp-users@lists.ettus.com
-From: jmaloyan@umass.edu
-Message-ID: <UX8mi9utjbHMzjxx15xWBxXZPMWYdEURx50EsrFtWQ@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1674863411; bh=TlwFfELl7FH3ZdVx47eQKQAL3YbwxiQ46F7K+pzaKcc=;
+	h=Date:From:To:References:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=SlcIjAV2v27WN1J1N+P7pym2MpNqeHdFFA8csHwruIDHvTpBtzi4BHC0trKuDnomc
+	 XzMmx9SBa/1r0vLpjwuiXKlyRjVWh9COI3ExGc2VpPjoXwUjMNL+Xg7tARZOcbjKSH
+	 6zjXriZv6+AqMZtMIiWbzqK2fYIOyBalLIgn8YKGbcRoARkgKUXtobyw0VQHwkzf/O
+	 TpQ+3wzVJq25Y4qscRfhiz8W9TNWWbMWuss6ycjEHMyVkr1Omxz79231wICoH2OgH0
+	 Kt1xyzaj4pSDaFvMPJ+yxc7u23uzzOpxYo3/au3Qid+iMY0MhcUCBouD3xLonchd3X
+	 jFanl3sQJWDEA==
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.184])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2FFA538446A
+	for <usrp-users@lists.ettus.com>; Fri, 27 Jan 2023 18:50:00 -0500 (EST)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=xs4all.nl header.i=@xs4all.nl header.b="ktR1I5jO";
+	dkim-atps=neutral
+X-KPN-MessageId: 55860f16-9e9d-11ed-91cc-005056994fde
+Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
+	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+	id 55860f16-9e9d-11ed-91cc-005056994fde;
+	Sat, 28 Jan 2023 00:50:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=xs4all.nl; s=xs4all01;
+	h=content-type:mime-version:message-id:subject:to:from:date;
+	bh=zn5pvMr3recaNugBMSJ+UakYc1pmJE5K4fUrZDiXsW0=;
+	b=ktR1I5jOiQeU+DLlYUBI8YXncf26u4PC1XAc6EuDcIghIosLL4Qzxm/eyI5Fx1zyzx5NWHy2ktJ9J
+	 R85gGfghSAOGlig2dFg9HPurWALnvyNkppUcZZnrZYTZhaC/q2l9zx0KMwwbOTrZv5jxa2WTK7UBTr
+	 G91BJGD7XqhFpNiKljk4yYRcj1K3mArWpKpGZvCU3L+WX3FGyLd14CxxQm3J1DEUYDDnoUQfiGk4Xa
+	 7ScUWAfTWKI6EjS/L2TdRSvH+0YU+G5TYuuQVhAadKAfk036Pc0LwxPmnH4kWjZOZrqxPp2ggXo2Fs
+	 oOE3QML/oX0wn8yhiDSq/UfDxE2ewzg==
+X-KPN-MID: 33|G/x7zjKAFXcApSL37dWEkDMlMahr/L47MsvnWUgxw4o2uwFrXFmrBkbLlNtvQmo
+ eiDqtwZ+oEdwqytYBcQBRLBDzFTo0gKhQbjlKIPyxtu0=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|QF231D6AWWPxol0tIeJvo8+JSlxeiYN2R/vC5I9Kpy4Q0LSyMH+ep5TC5WN66n3
+ grdWG6iq5NVkwGoyhDUZTkQ==
+X-Originating-IP: 185.206.232.5
+Received: from vm01308.protagio.nl (shell.protagio.nl [185.206.232.5])
+	by smtp.xs4all.nl (Halon) with ESMTPSA
+	id 4e6bf95e-9e9d-11ed-9d31-00505699d6e5;
+	Sat, 28 Jan 2023 00:49:59 +0100 (CET)
+Date: Sat, 28 Jan 2023 00:49:58 +0100
+From: Mark-Jan Bastian <markjan@xs4all.nl>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID: <Y9RjJpngR0Jhhbex@vm01308.protagio.nl>
+References: <Y9Lxt1qeGzi9rym+@vm01308.protagio.nl>
+ <b276bfdb-c59e-bb9f-92b1-c7ab94ad67da@gmail.com>
+ <Y9NmFYlarlrd8xE/@vm01308.protagio.nl>
+ <d6538422-d08d-7f9d-ae19-d2ec18c7d199@gmail.com>
 MIME-Version: 1.0
-Message-ID-Hash: CEQACLD32WGQ6T3X3GBJMKVLCRZ3JFP5
-X-Message-ID-Hash: CEQACLD32WGQ6T3X3GBJMKVLCRZ3JFP5
-X-MailFrom: jmaloyan@umass.edu
+Content-Disposition: inline
+In-Reply-To: <d6538422-d08d-7f9d-ae19-d2ec18c7d199@gmail.com>
+Message-ID-Hash: 4N2UMEERCTLELPO3YKREUKIOUGHAAIHJ
+X-Message-ID-Hash: 4N2UMEERCTLELPO3YKREUKIOUGHAAIHJ
+X-MailFrom: markjan@xs4all.nl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Error when synthesizing example OOT block : IP "cmplx_mul" is locked
+Subject: [USRP-users] Re: UBX-160 LO filtering
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CEQACLD32WGQ6T3X3GBJMKVLCRZ3JFP5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4N2UMEERCTLELPO3YKREUKIOUGHAAIHJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8574059456592684256=="
-
-This is a multi-part message in MIME format.
-
---===============8574059456592684256==
-Content-Type: multipart/alternative;
- boundary="b1_UX8mi9utjbHMzjxx15xWBxXZPMWYdEURx50EsrFtWQ"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_UX8mi9utjbHMzjxx15xWBxXZPMWYdEURx50EsrFtWQ
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-I have run into an issue when trying to synthesize the =E2=80=9Cgain=E2=80=
-=9D RFNoC as described in the tutorial here https://kb.ettus.com/Getting_=
-Started_with_RFNoC_in_UHD_4.0=20
-
-I get an error that the module cmplx mul is locked. I found that in the v=
-erilog file =E2=80=9Crfnoc_block_gain.v=E2=80=9D, the module is instantia=
-ted there, but I am unsure how I should proceed working around this.
-
-Here is the output of the vivado -version
-
-`Vivado v2021.1_AR76780 (64-bit)`
-
-`SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021`
-
-`IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021`
-
-`Copyright 1986-2021 Xilinx, Inc. All Rights Reserved`
-
-And here is the output of the error
-
-`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D`
-
-`BUILDER: Building IP cmplx_mul`
-
-`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D`
-
-`BUILDER: Staging IP in build directory...`
-
-`BUILDER: Reserving IP location: /workarea/uhd/fpga/usrp3/top/n3xx/build-=
-ip/xc7z100ffg900-2/cmplx_mul`
-
-`BUILDER: Retargeting IP to part zynq/xc7z100/ffg900/-2...`
-
-`BUILDER: Building IP...`
-
-`[00:00:00] Executing command: vivado -mode batch -source /workarea/uhd/f=
-pga/usrp3/tools/scripts/viv_generate_ip.tcl -log cmplx_mul.log -nojournal=
-`
-
-`[00:00:05] Current task: Initialization +++ Current Phase: Starting`
-
-`WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is locked:`
-
-`CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the f=
-ollowing file is locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z1=
-00ffg900-2/cmplx_mul/cmplx_mul.xci`
-
-`CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for th=
-e following file is locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc=
-7z100ffg900-2/cmplx_mul/cmplx_mul.xci`
-
-`[00:00:05] Current task: Initialization +++ Current Phase: Finished`
-
-`[00:00:05] Executing Tcl: synth_design -top cmplx_mul -part xc7z100ffg90=
-0-2 -mode out_of_context`
-
-`[00:00:05] Starting Synthesis Command`
-
-`WARNING: [Vivado_Tcl 4-391] The following IPs are missing output product=
-s for Synthesis target. These output products could be required for synth=
-esis, please generate the output products using the generate_target or sy=
-nth_ip command before running synth_design.`
-
-`WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is locked:`
-
-`ERROR: [Designutils 20-414] HRTInvokeSpec : No Verilog or VHDL sources s=
-pecified`
-
-`ERROR: [Common 17-53] User Exception: No open design. Please open an ela=
-borated, synthesized or implemented design before executing this command.=
-`
-
-`ERROR: [Common 17-53] User Exception: No open design. Please open an ela=
-borated, synthesized or implemented design before executing this command.=
-`
-
-`ERROR: [Common 17-53] User Exception: No open design. Please open an ela=
-borated, synthesized or implemented design before executing this command.=
-`
-
-`ERROR: [Common 17-53] User Exception: No open design. Please open an ela=
-borated, synthesized or implemented design before executing this command.=
-`
-
-`ERROR: [Common 17-53] User Exception: No open design. Please open an ela=
-borated, synthesized or implemented design before executing this command.=
-`
-
-`ERROR: [Common 17-53] User Exception: No open design. Please open an ela=
-borated, synthesized or implemented design before executing this command.=
-`
-
-`CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/work=
-area/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul=
-.xml'`
-
-`CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/work=
-area/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul=
-.xml'`
-
-`CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/work=
-area/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul=
-.xml'`
-
-`CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/work=
-area/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul=
-.xml'`
-
-`[00:00:06] Current task: Synthesis +++ Current Phase: Starting`
-
-`CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/work=
-area/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul=
-.xml'`
-
-`ERROR: [Vivado 12-398] No designs are open`
-
-`[00:00:06] Current task: Synthesis +++ Current Phase: Finished`
-
-`[00:00:06] Process terminated. Status: Failure`
-
-`=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D`
-
-`Warnings:           3`
-
-`Critical Warnings:  7`
-
-`Errors:             8`
-
-`BUILDER: Releasing IP location: /workarea/uhd/fpga/usrp3/top/n3xx/build-=
-ip/xc7z100ffg900-2/cmplx_mul`
-
-`make[1]: *** [/rfnoc-foo/fpga//ip/cmplx_mul/Makefile.inc:21: LIB_IP_CMPL=
-X_MUL_TRGT] Error 1`
-
-`make[1]: Leaving directory '/workarea/uhd/fpga/usrp3/top/n3xx'`
-
-`make: *** [Makefile:90: N3X0_IP] Error 2`
-
---b1_UX8mi9utjbHMzjxx15xWBxXZPMWYdEURx50EsrFtWQ
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello,</p><p><br></p><p>I have run into an issue when trying to synthesi=
-ze the =E2=80=9Cgain=E2=80=9D RFNoC as described in the tutorial here https=
-://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0 </p><p><br></p><p>I g=
-et an error that the module cmplx mul is locked. I found that in the verilo=
-g file =E2=80=9Crfnoc_block_gain.v=E2=80=9D, the module is instantiated the=
-re, but I am unsure how I should proceed working around this.</p><p><br></p=
-><p>Here is the output of the vivado -version</p><p><code>Vivado v2021.1_AR=
-76780 (64-bit)</code></p><p><code>SW Build 3247384 on Thu Jun 10 19:36:07 M=
-DT 2021</code></p><p><code>IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021=
-</code></p><p><code>Copyright 1986-2021 Xilinx, Inc. All Rights Reserved</c=
-ode></p><p>And here is the output of the error</p><p><code>=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D</code></p><p><code>BUILDER: Building IP cmplx_mul</code></p><p><code>=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D</code></p><p><code>BUILDER: Staging IP in build director=
-y...</code></p><p><code>BUILDER: Reserving IP location: /workarea/uhd/fpga/=
-usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul</code></p><p><code>BUILDE=
-R: Retargeting IP to part zynq/xc7z100/ffg900/-2...</code></p><p><code>BUIL=
-DER: Building IP...</code></p><p><code>[00:00:00] Executing command: vivado=
- -mode batch -source /workarea/uhd/fpga/usrp3/tools/scripts/viv_generate_ip=
-.tcl -log cmplx_mul.log -nojournal</code></p><p><code>[00:00:05] Current ta=
-sk: Initialization +++ Current Phase: Starting</code></p><p><code>WARNING: =
-[IP_Flow 19-2162] IP 'cmplx_mul' is locked:</code></p><p><code>CRITICAL WAR=
-NING: [filemgmt 20-1366] Unable to reset target(s) for the following file i=
-s locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_=
-mul/cmplx_mul.xci</code></p><p><code>CRITICAL WARNING: [filemgmt 20-1365] U=
-nable to generate target(s) for the following file is locked: /workarea/uhd=
-/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul.xci</code=
-></p><p><code>[00:00:05] Current task: Initialization +++ Current Phase: Fi=
-nished</code></p><p><code>[00:00:05] Executing Tcl: synth_design -top cmplx=
-_mul -part xc7z100ffg900-2 -mode out_of_context</code></p><p><code>[00:00:0=
-5] Starting Synthesis Command</code></p><p><code>WARNING: [Vivado_Tcl 4-391=
-] The following IPs are missing output products for Synthesis target. These=
- output products could be required for synthesis, please generate the outpu=
-t products using the generate_target or synth_ip command before running syn=
-th_design.</code></p><p><code>WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is =
-locked:</code></p><p><code>ERROR: [Designutils 20-414] HRTInvokeSpec : No V=
-erilog or VHDL sources specified</code></p><p><code>ERROR: [Common 17-53] U=
-ser Exception: No open design. Please open an elaborated, synthesized or im=
-plemented design before executing this command.</code></p><p><code>ERROR: [=
-Common 17-53] User Exception: No open design. Please open an elaborated, sy=
-nthesized or implemented design before executing this command.</code></p><p=
-><code>ERROR: [Common 17-53] User Exception: No open design. Please open an=
- elaborated, synthesized or implemented design before executing this comman=
-d.</code></p><p><code>ERROR: [Common 17-53] User Exception: No open design.=
- Please open an elaborated, synthesized or implemented design before execut=
-ing this command.</code></p><p><code>ERROR: [Common 17-53] User Exception: =
-No open design. Please open an elaborated, synthesized or implemented desig=
-n before executing this command.</code></p><p><code>ERROR: [Common 17-53] U=
-ser Exception: No open design. Please open an elaborated, synthesized or im=
-plemented design before executing this command.</code></p><p><code>CRITICAL=
- WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/workarea/uhd/fp=
-ga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul.xml'</code><=
-/p><p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM fi=
-le '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cm=
-plx_mul.xml'</code></p><p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing=
- uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100f=
-fg900-2/cmplx_mul/cmplx_mul.xml'</code></p><p><code>CRITICAL WARNING: [IP_F=
-low 19-4739] Writing uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3=
-xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul.xml'</code></p><p><code>[00=
-:00:06] Current task: Synthesis +++ Current Phase: Starting</code></p><p><c=
-ode>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/wor=
-karea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul.=
-xml'</code></p><p><code>ERROR: [Vivado 12-398] No designs are open</code></=
-p><p><code>[00:00:06] Current task: Synthesis +++ Current Phase: Finished</=
-code></p><p><code>[00:00:06] Process terminated. Status: Failure</code></p>=
-<p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p><p><code>Warnings:           3</code>=
-</p><p><code>Critical Warnings:  7</code></p><p><code>Errors:             8=
-</code></p><p><code>BUILDER: Releasing IP location: /workarea/uhd/fpga/usrp=
-3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul</code></p><p><code>make[1]: *=
-** [/rfnoc-foo/fpga//ip/cmplx_mul/Makefile.inc:21: LIB_IP_CMPLX_MUL_TRGT] E=
-rror 1</code></p><p><code>make[1]: Leaving directory '/workarea/uhd/fpga/us=
-rp3/top/n3xx'</code></p><p><code>make: *** [Makefile:90: N3X0_IP] Error 2</=
-code></p>
-
---b1_UX8mi9utjbHMzjxx15xWBxXZPMWYdEURx50EsrFtWQ--
-
---===============8574059456592684256==
 Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
 
+On Fri, Jan 27, 2023 at 02:37:08PM -0500, Marcus D. Leech wrote:
+> On 27/01/2023 00:50, Mark-Jan Bastian wrote:
+> > 
+> > When generating a complex +74 MHz and -73 MHz sinewave signal and adding them,
+> > I see 1 MHz spur about -30 dB @ -74 MHz, irrespective of LO frequency. Thus the
+> > spur might caused by (remaining) nonlinearity in the mixer or the subsequent stages.
+> > 
+> > I would like to control the -30 dB spur to a lower value, or at least find out
+> > what the source of this spur is.
+> > Next thing could be the DAC, which supports rates up to 1600 MSPS, but is only used at
+> > 200 MSPS. Perhaps there is a way to modify the waveform in this step, similar in
+> > the way digital predistortion can help improve spectral output purity?
+> > 
+> > Mark-Jan
+> > 
+> > 
+> Also, have you run these utilities:
+> 
+> https://files.ettus.com/manual_archive/release_003_010_001_000/html/page_calibration.html
+
+I'm quite sure the problem I see is caused by IQ imbalance. I can simulate it with the respective
+gnuradio block, with near identical results- asymetric spur, not symetric around a
+generated signal, for a whopping 0.5 factor.
+I did run the calibration tools on my new system, for rx and tx chains, but will run them 
+again (iterate). If that doesnt help I might modify the sourcesignal, and
+follow the signal path again.
+
+Mark-Jan
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============8574059456592684256==--
