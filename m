@@ -2,381 +2,322 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7826800FE
-	for <lists+usrp-users@lfdr.de>; Sun, 29 Jan 2023 19:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17D0E68014D
+	for <lists+usrp-users@lfdr.de>; Sun, 29 Jan 2023 21:14:25 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 09B10383AD9
-	for <lists+usrp-users@lfdr.de>; Sun, 29 Jan 2023 13:53:36 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E22D3384175
+	for <lists+usrp-users@lfdr.de>; Sun, 29 Jan 2023 15:14:23 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1675018416; bh=LJ8PWqfG4jmYsKetbieOBhQIUSpjoj6UFLOrg6HA1vs=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=BPbfWqRpB4D1muIypiza9yNg8xxC99TCKeqFYexgl90i5FEd1hoIqQswdM4W1Ac3/
-	 pMhA7r41sCh//kCuIA9BMb2iJ9be581l1Cvvv5WMswoIBuSegLFHB5A+PVyi4JbuMl
-	 MEZGSPIOxvRoNXnX9vwjxRuz+jdHmfIzuH1BjkkBHyaL4PqNLriYUUK2x6ImAJAO5m
-	 0rwT5QwdgJ534WBgaLsIIO4sJr/QTq8pFY6undyG06+PoC/walf2cdFPV0Npl1SBI6
-	 kq6jLroCgHttI0ZX71/dEJrHD+zH4eQTRwR2yAFt0XtGPPbibL/Ok69U7ybXyKQZMh
-	 KGU1CL/8XTugQ==
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id 612CA3814FA
-	for <usrp-users@lists.ettus.com>; Sun, 29 Jan 2023 13:52:15 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JVzgSvGi";
-	dkim-atps=neutral
-Received: by mail-qt1-f177.google.com with SMTP id s4so8321684qtx.6
-        for <usrp-users@lists.ettus.com>; Sun, 29 Jan 2023 10:52:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bNvYQzW0hN5vn7G6Pa9RD5ObdCCZLWNIOozs44fimhU=;
-        b=JVzgSvGiGe1HX4SUVOMu1AcAeHlmPpgF59JRv34cKRZf/FUz5C8f/yDC1AvXHnr1qK
-         bXD9SM7EcF9V+huDoeOjUFSJdK71j3U7nsBgtYi6EXFQfeOlXuVuTeUyVeBlmyhd3bsN
-         yikVpe3YBhufCbqSK6gUJinmy4DDHRXbyd261KfWyhqVTEjH4BCPOknHMpeZrAuWDOwq
-         NuCYA1dYGcFdEm48ZRs1mVpnp0cCAzuZTpcoWSZK2poFwUgMrvYtjZ67o8TRPQS2y5JK
-         p22NX+Qz+nh0WNyMP1rMBev6Iumb5QrXfiGho9QDYXYX/EggjwpcB5j/+OQs9DDFi/+a
-         dHng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bNvYQzW0hN5vn7G6Pa9RD5ObdCCZLWNIOozs44fimhU=;
-        b=NJ0oq27RoLlz01/y5Z0xrd8m0K/rCAQq+1ZzSIt/GKCq+nlu/jznkv9zjQcy2Haksv
-         n+2t3LvS5I5oDWb+C6mnK55S9cal/ae+D01SdLXf08mKNOPXpcexbfHw03D3pP0OEvi/
-         MpONLIUY8SZQj9jvsyFEMFzMEmAWAxGZfZxS0jSI4gFwawmye9cET2mVxzGyQqpC/1EJ
-         YpUKu9clgMAvi2cQ0tIMzLazCl30YJW6kzULUBrItfkd9bpH2z5Pj0GbXZ/4EKDJwpHf
-         qT9mNjG5NY6qIFGGr74BINMogE3ZgH+GudEHn4SUtzQu/sEOJSOMB6NuCRiOHZn9Sge8
-         HIYg==
-X-Gm-Message-State: AO0yUKVcnJwkbl3zbz+KzQTQQWhSgnaPYlz2VABM/Jj+lr4YI7fcy0U7
-	ZnVZAELLt23zyiEzP2QjjCS5XBxsi2M=
-X-Google-Smtp-Source: AK7set/FoZ5AN/vv2AHk4PdlgTE/Y13hqD/Ueenu75Oal3Zn0PmURd4vsbo4saHobwCfWP5Zq2rTVA==
-X-Received: by 2002:a05:622a:5cd:b0:3b6:32ed:54e6 with SMTP id d13-20020a05622a05cd00b003b632ed54e6mr10434139qtb.6.1675018334533;
-        Sun, 29 Jan 2023 10:52:14 -0800 (PST)
-Received: from [192.168.2.182] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id f23-20020ac80157000000b003b868cdc689sm1095824qtg.5.2023.01.29.10.52.14
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 29 Jan 2023 10:52:14 -0800 (PST)
-Message-ID: <69b0f442-57a5-0f31-072a-c2464cc845b8@gmail.com>
-Date: Sun, 29 Jan 2023 13:52:13 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.4.2
-Content-Language: en-US
+	t=1675023263; bh=S967d/+HhyEy0RpZVVlvePv2WNBZoayqVtqYHlCm6WM=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=aBXjXW9UpHJh70ybolirxnW8QNkHHGZKOP79SXBHbfbOMHzpmC4+WJfPI3juOaayx
+	 lLkGUyudL0KMF+N1cjyBlF/V3nN4w8vVk2oTjjvz+XiEfgodKo0m0BxB15Mi/piUX2
+	 0SDyueomQ4TT0sAzOiTVQ3JPHP7xPLouLxwVRXsudYgkoqne0LHfy3sXEKVeeFMNgS
+	 fQgo16BoOjaITFwr7BvNuoLrzbp/o2pZEWdEK+4Ouvqs39Ui0r4AzZeCKubdCSWPmm
+	 foBTWfwPfiQGKW7+xSelOooIJdssTOdfFLnnrnDPYkhzEd+ke6UfHb8uKyW8VAByWM
+	 Z/shj2xn5xRvg==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 34330383D44
+	for <usrp-users@lists.ettus.com>; Sun, 29 Jan 2023 15:13:03 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1675023183; bh=w3shRAug7WIILwKuHdilveQC96++Q8+yBMpmU6DdUc4=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=Wr87wzl6MvmJAQzGAKeIb0mGRUOmXW7ZUmgKgB4bxI7+wtFrCTs94HSx+K071HiQ2
+	 +0If7ZknOvq1isdizZKzvhQhJjK9cm+fFVTXER43ovHP4ir3xPA+56kzxDxvmIOzWt
+	 I5WvMjzz7rDRsPZpvpj3UWeVyn7d5k4hDci0DzQLpi1+Lt4McgD7uhw2MgYNQvOjeG
+	 fethkIfCyvw2cqUZnLav8s4MX/SVMSeXjI3a7Hv2YTa856vfATHVtX+IYeR0J55FPc
+	 0ZyilC02Apcr+2AOHREj9cUa4Qk1wVukPXdJxvvN3OUcFb4oSvtlnA44xGqcRBWkFS
+	 j2DNQaa92NGxw==
+Date: Sun, 29 Jan 2023 20:13:03 +0000
 To: usrp-users@lists.ettus.com
-References: <2wBXj4nv5K7A7e8Q4J9iuugzkREIr3WvSZ0xDUbnm0@lists.ettus.com>
- <CAAxXO2EHwekMGS47nXfAcH+C=TtMYh2qhhJKZn4XULHKSBOK=w@mail.gmail.com>
- <CAAxXO2GA5fM1XnkftXLNgyxvY2mcueOT=3Tsu5G45oohFqK4ug@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAAxXO2GA5fM1XnkftXLNgyxvY2mcueOT=3Tsu5G45oohFqK4ug@mail.gmail.com>
-Message-ID-Hash: T3AI4QGMAXGD4SFRZGDASWZQNC4CARZ4
-X-Message-ID-Hash: T3AI4QGMAXGD4SFRZGDASWZQNC4CARZ4
-X-MailFrom: patchvonbraun@gmail.com
+From: perper@o2.pl
+Message-ID: <SfaKs3CAXqAEDcdoS5AkglQpAhLYuAxZoNK4AVqoD0@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: UX8mi9utjbHMzjxx15xWBxXZPMWYdEURx50EsrFtWQ@lists.ettus.com
+MIME-Version: 1.0
+Message-ID-Hash: GCF7CV7DATGJM5HRZYZSM5Y3UREEW7X6
+X-Message-ID-Hash: GCF7CV7DATGJM5HRZYZSM5Y3UREEW7X6
+X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: UHD C++ API
+Subject: [USRP-users] Re: Error when synthesizing example OOT block : IP "cmplx_mul" is locked
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T3AI4QGMAXGD4SFRZGDASWZQNC4CARZ4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/GCF7CV7DATGJM5HRZYZSM5Y3UREEW7X6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0627550700980128320=="
+Content-Type: multipart/mixed; boundary="===============9009363416985098443=="
 
 This is a multi-part message in MIME format.
---===============0627550700980128320==
+
+--===============9009363416985098443==
 Content-Type: multipart/alternative;
- boundary="------------pePyoPRnTrvvIDViWScEmPZm"
-Content-Language: en-US
+ boundary="b1_SfaKs3CAXqAEDcdoS5AkglQpAhLYuAxZoNK4AVqoD0"
+Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
---------------pePyoPRnTrvvIDViWScEmPZm
-Content-Type: text/plain; charset=UTF-8; format=flowed
+
+--b1_SfaKs3CAXqAEDcdoS5AkglQpAhLYuAxZoNK4AVqoD0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 29/01/2023 13:36, Nikos Balkanas wrote:
-> Sorry, pressed the send accidentally...
->
-> 2) The input to the fft is your time domain signal, or your usrp=20
-> output. The fft output is the frequency domain of the same signal.
-> There is no frequency shift. Depending on the fft software you use,=20
-> all fft output is given in a vector. You just copy it to a new vector,
-> or use it as it is.
-> 3) fft is always a batch operation. Its size depends on your needs, ie=20
-> in how many parts do you need to spilt your input signal. Size should=20
-> be odd,
-> to account for the 0 bin which contains the DC component, so fft size=20
-> =3D (parts=C2=A0+ 1). To make a batch operation run in near real time. =
-you need
-> to place it in a separate thread from your reader, and use mutex to=20
-> synchronize it.
->
-> HTH
-> Nikos
->
-> On Sun, Jan 29, 2023 at 8:23 PM Nikos Balkanas <nbalkanas@gmail.com>=20
-> wrote:
->
->     Hi,
->
->     These are programming questions for your application, unrelated to
->     uhd. Your language is also a bit strange. Let me explain:
->
->     1) You take the output signal from your usrp and if it is larger
->     than a threshold value you store their index to a vector.
->     I imagine that the threshold is some kind of amplitute. To compare
->     it to your samples, you need to find the corresponding amplitude:
->     log10(hypot(Q, I))
->     Where Q is the real component of your sample, and I the imaginary.
->     You can store that value to a new vector. Or simpler you can
->     compare Q^2 + I^2,since log10 and sqrt do not add anything
->     useful.To read from usrp use:
->     uhd_rx_streamer_recv
->
->     On Wed, Jan 25, 2023 at 9:49 AM <seckinoncu80@gmail.com> wrote:
->
->         Hello USRP Users,
->
->         I am new to UHD C++ API. I have some questions about the
->         application that I planned to develop. I have N320 and I got
->         the signal from one channel and keep it in a vector as =E2=80=9C=
-buff=E2=80=9D.
->         As you may know form examples.
->
->         1) How to take the envelope of the signal, then assign a
->         threshold value and keep the index of the sample which is
->         greater than threshold value in a vector?
->
->         2) After getting pulse=E2=80=99s TOA(time of arrival) and TOD(T=
-ime of
->         Departure), how to take the fft and keep the frequency shift
->         in a vector?
->
->         3) Buff get 2000 samples in one cycle in my configuration. How
->         to arrange the fft size and buff size to have a real time
->         operations? Can processing delay be fixed for each cycle?
->
->         _______________________________________________
->         USRP-users mailing list -- usrp-users@lists.ettus.com
->         To unsubscribe send an email to usrp-users-leave@lists.ettus.co=
-m
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-I'll interject here that this isn't the right place for someone to get=20
-lots of advice and pointers on general computer programming
- =C2=A0 or even DSP programming topics.=C2=A0 There are plenty of other p=
-laces for=20
-that:
+jmaloyan@umass.edu wrote:
 
-www.dsprelated.com
-www.complextoreal.com
-https://pysdr.org/
-www.gnuradio.org
+> Hello,
+>
+> I have run into an issue when trying to synthesize the =E2=80=9Cgain=E2=
+=80=9D RFNoC as described in the tutorial here https://kb.ettus.com/Getti=
+ng_Started_with_RFNoC_in_UHD_4.0
+>
+> I get an error that the module cmplx mul is locked. I found that in the=
+ verilog file =E2=80=9Crfnoc_block_gain.v=E2=80=9D, the module is instant=
+iated there, but I am unsure how I should proceed working around this.
+>
+> Here is the output of the vivado -version
+>
+> `Vivado v2021.1_AR76780 (64-bit)`
+>
+> `SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021`
+>
+> `IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021`
+>
+> `Copyright 1986-2021 Xilinx, Inc. All Rights Reserved`
+>
+> And here is the output of the error
+>
+> `=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D`
+>
+> `BUILDER: Building IP cmplx_mul`
+>
+> `=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D`
+>
+> `BUILDER: Staging IP in build directory...`
+>
+> `BUILDER: Reserving IP location: /workarea/uhd/fpga/usrp3/top/n3xx/buil=
+d-ip/xc7z100ffg900-2/cmplx_mul`
+>
+> `BUILDER: Retargeting IP to part zynq/xc7z100/ffg900/-2...`
+>
+> `BUILDER: Building IP...`
+>
+> `[00:00:00] Executing command: vivado -mode batch -source /workarea/uhd=
+/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log cmplx_mul.log -nojourn=
+al`
+>
+> `[00:00:05] Current task: Initialization +++ Current Phase: Starting`
+>
+> `WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is locked:`
+>
+> `CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the=
+ following file is locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7=
+z100ffg900-2/cmplx_mul/cmplx_mul.xci`
+>
+> `CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for =
+the following file is locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/=
+xc7z100ffg900-2/cmplx_mul/cmplx_mul.xci`
+>
+> `[00:00:05] Current task: Initialization +++ Current Phase: Finished`
+>
+> `[00:00:05] Executing Tcl: synth_design -top cmplx_mul -part xc7z100ffg=
+900-2 -mode out_of_context`
+>
+> `[00:00:05] Starting Synthesis Command`
+>
+> `WARNING: [Vivado_Tcl 4-391] The following IPs are missing output produ=
+cts for Synthesis target. These output products could be required for syn=
+thesis, please generate the output products using the generate_target or =
+synth_ip command before running synth_design.`
+>
+> `WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is locked:`
+>
+> `ERROR: [Designutils 20-414] HRTInvokeSpec : No Verilog or VHDL sources=
+ specified`
+>
+> `ERROR: [Common 17-53] User Exception: No open design. Please open an e=
+laborated, synthesized or implemented design before executing this comman=
+d.`
+>
+> `ERROR: [Common 17-53] User Exception: No open design. Please open an e=
+laborated, synthesized or implemented design before executing this comman=
+d.`
+>
+> `ERROR: [Common 17-53] User Exception: No open design. Please open an e=
+laborated, synthesized or implemented design before executing this comman=
+d.`
+>
+> `ERROR: [Common 17-53] User Exception: No open design. Please open an e=
+laborated, synthesized or implemented design before executing this comman=
+d.`
+>
+> `ERROR: [Common 17-53] User Exception: No open design. Please open an e=
+laborated, synthesized or implemented design before executing this comman=
+d.`
+>
+> `ERROR: [Common 17-53] User Exception: No open design. Please open an e=
+laborated, synthesized or implemented design before executing this comman=
+d.`
+>
+> `CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/wo=
+rkarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_m=
+ul.xml'`
+>
+> `CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/wo=
+rkarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_m=
+ul.xml'`
+>
+> `CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/wo=
+rkarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_m=
+ul.xml'`
+>
+> `CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/wo=
+rkarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_m=
+ul.xml'`
+>
+> `[00:00:06] Current task: Synthesis +++ Current Phase: Starting`
+>
+> `CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/wo=
+rkarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_m=
+ul.xml'`
+>
+> `ERROR: [Vivado 12-398] No designs are open`
+>
+> `[00:00:06] Current task: Synthesis +++ Current Phase: Finished`
+>
+> `[00:00:06] Process terminated. Status: Failure`
+>
+> `=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D`
+>
+> `Warnings:           3`
+>
+> `Critical Warnings:  7`
+>
+> `Errors:             8`
+>
+> `BUILDER: Releasing IP location: /workarea/uhd/fpga/usrp3/top/n3xx/buil=
+d-ip/xc7z100ffg900-2/cmplx_mul`
+>
+> `make[1]: *** [/rfnoc-foo/fpga//ip/cmplx_mul/Makefile.inc:21: LIB_IP_CM=
+PLX_MUL_TRGT] Error 1`
+>
+> `make[1]: Leaving directory '/workarea/uhd/fpga/usrp3/top/n3xx'`
+>
+> `make: *** [Makefile:90: N3X0_IP] Error 2`
 
-It is inefficient for everyone involved to basically get an=20
-undergraduate course in DSP and general-purpose programming
- =C2=A0 via e-mail to a mailing list where that isn't the main topic.
+Hello,
 
-I'm not going to stop anyone, to be clear, but I just want to point out=20
-that there are more efficient ways to get this type of education...
+There was issue with =E2=80=98`cmplx_mul`=E2=80=98 configuration not bein=
+g updated after migration of UHD to Vivado 2021.1 from Vivado 2019.1.\
+This is the case for UHD-4.3 release and the issue was fixed in master br=
+anch.
 
+For more details look here: https://github.com/EttusResearch/uhd/issues/6=
+35
 
+Best Regards,\
+Piotr Krysik
 
-
---------------pePyoPRnTrvvIDViWScEmPZm
+--b1_SfaKs3CAXqAEDcdoS5AkglQpAhLYuAxZoNK4AVqoD0
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 29/01/2023 13:36, Nikos Balkanas
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAAxXO2GA5fM1XnkftXLNgyxvY2mcueOT=3D3Tsu5G45oohFqK4ug@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_default" style=3D"font-size:small">Sorry,
-          pressed the send accidentally...</div>
-        <div class=3D"gmail_default" style=3D"font-size:small"><br>
-        </div>
-        <div class=3D"gmail_default" style=3D"font-size:small">2) The inp=
-ut
-          to the fft is your time domain signal, or your usrp output.
-          The fft output is the frequency domain of the same signal.</div=
->
-        <div class=3D"gmail_default" style=3D"font-size:small">There is n=
-o
-          frequency shift. Depending on the fft software you use, all
-          fft output is given in a vector. You just copy it to a new
-          vector,</div>
-        <div class=3D"gmail_default" style=3D"font-size:small">or use it =
-as
-          it is.</div>
-        <div class=3D"gmail_default" style=3D"font-size:small">3) fft is
-          always a batch operation. Its size depends on your needs, ie
-          in how many parts do you need to spilt your input signal. Size
-          should be odd,</div>
-        <div class=3D"gmail_default" style=3D"font-size:small">to account
-          for the 0 bin which contains the DC component, so fft size =3D
-          (parts=C2=A0+ 1). To make a batch operation run in near real ti=
-me.
-          you need</div>
-        <div class=3D"gmail_default" style=3D"font-size:small">to place i=
-t
-          in a separate thread from your reader, and use mutex to
-          synchronize it.=C2=A0</div>
-        <div class=3D"gmail_default" style=3D"font-size:small"><br>
-        </div>
-        <div class=3D"gmail_default" style=3D"font-size:small">HTH</div>
-        <div class=3D"gmail_default" style=3D"font-size:small">Nikos=C2=A0=
-</div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Sun, Jan 29, 2023 at 8:2=
-3
-          PM Nikos Balkanas &lt;<a href=3D"mailto:nbalkanas@gmail.com"
-            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">nbal=
-kanas@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-          <div dir=3D"ltr">
-            <div class=3D"gmail_default" style=3D"font-size:small">Hi,</d=
-iv>
-            <div class=3D"gmail_default" style=3D"font-size:small"><br>
-            </div>
-            <div class=3D"gmail_default" style=3D"font-size:small">These =
-are
-              programming questions for your application, unrelated to
-              uhd. Your language is also a bit strange. Let me explain:</=
-div>
-            <div class=3D"gmail_default" style=3D"font-size:small"><br>
-            </div>
-            <div class=3D"gmail_default" style=3D"font-size:small">1) You
-              take the output signal from your usrp and if it is larger
-              than a threshold value you store their index to a vector.</=
-div>
-            <div class=3D"gmail_default" style=3D"font-size:small">I imag=
-ine
-              that the threshold is some kind of amplitute. To compare
-              it to your samples, you need to find the corresponding
-              amplitude: log10(hypot(Q, I))</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">Where =
-Q
-              is the real component of your sample, and I the imaginary.
-              You can store that value to a new vector. Or simpler you
-              can compare Q^2 + I^2,since log10 and sqrt do not add
-              anything useful.To read from usrp use:</div>
-            <div class=3D"gmail_default" style=3D"font-size:small">uhd_rx=
-_streamer_recv<br>
-            </div>
-          </div>
-          <br>
-          <div class=3D"gmail_quote">
-            <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jan 25, 2023 at
-              9:49 AM &lt;<a href=3D"mailto:seckinoncu80@gmail.com"
-                target=3D"_blank" moz-do-not-send=3D"true"
-                class=3D"moz-txt-link-freetext">seckinoncu80@gmail.com</a=
->&gt;
-              wrote:<br>
-            </div>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-              0.8ex;border-left:1px solid
-              rgb(204,204,204);padding-left:1ex">
-              <p>Hello USRP Users,</p>
-              <p>I am new to UHD C++ API. I have some questions about
-                the application that I planned to develop. I have N320
-                and I got the signal from one channel and keep it in a
-                vector as =E2=80=9Cbuff=E2=80=9D. As you may know form ex=
-amples.</p>
-              <p>1) How to take the envelope of the signal, then assign
-                a threshold value and keep the index of the sample which
-                is greater than threshold value in a vector?</p>
-              <p>2) After getting pulse=E2=80=99s TOA(time of arrival) an=
-d
-                TOD(Time of Departure), how to take the fft and keep the
-                frequency shift in a vector?</p>
-              <p>3) Buff get 2000 samples in one cycle in my
-                configuration. How to arrange the fft size and buff size
-                to have a real time operations? Can processing delay be
-                fixed for each cycle?</p>
-              _______________________________________________<br>
-              USRP-users mailing list -- <a
-                href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk"
-                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
-usrp-users@lists.ettus.com</a><br>
-              To unsubscribe send an email to <a
-                href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                target=3D"_blank" moz-do-not-send=3D"true"
-                class=3D"moz-txt-link-freetext">usrp-users-leave@lists.et=
-tus.com</a><br>
-            </blockquote>
-          </div>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    I'll interject here that this isn't the right place for someone to
-    get lots of advice and pointers on general computer programming<br>
-    =C2=A0 or even DSP programming topics.=C2=A0 There are plenty of othe=
-r places
-    for that:<br>
-    <br>
-    <a class=3D"moz-txt-link-abbreviated" href=3D"http://www.dsprelated.c=
-om">www.dsprelated.com</a><br>
-    <a class=3D"moz-txt-link-abbreviated" href=3D"http://www.complextorea=
-l.com">www.complextoreal.com</a><br>
-    <a class=3D"moz-txt-link-freetext" href=3D"https://pysdr.org/">https:=
-//pysdr.org/</a><br>
-    <a class=3D"moz-txt-link-abbreviated" href=3D"http://www.gnuradio.org=
-">www.gnuradio.org</a><br>
-    <br>
-    It is inefficient for everyone involved to basically get an
-    undergraduate course in DSP and general-purpose programming<br>
-    =C2=A0 via e-mail to a mailing list where that isn't the main topic.<=
-br>
-    <br>
-    I'm not going to stop anyone, to be clear, but I just want to point
-    out that there are more efficient ways to get this type of
-    education...<br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
+<p>jmaloyan@umass.edu wrote:</p><blockquote><p>Hello,</p><p>I have run into=
+ an issue when trying to synthesize the =E2=80=9Cgain=E2=80=9D RFNoC as des=
+cribed in the tutorial here https://kb.ettus.com/Getting_Started_with_RFNoC=
+_in_UHD_4.0</p><p>I get an error that the module cmplx mul is locked. I fou=
+nd that in the verilog file =E2=80=9Crfnoc_block_gain.v=E2=80=9D, the modul=
+e is instantiated there, but I am unsure how I should proceed working aroun=
+d this.</p><p>Here is the output of the vivado -version</p><p><code>Vivado =
+v2021.1_AR76780 (64-bit)</code></p><p><code>SW Build 3247384 on Thu Jun 10 =
+19:36:07 MDT 2021</code></p><p><code>IP Build 3246043 on Fri Jun 11 00:30:3=
+5 MDT 2021</code></p><p><code>Copyright 1986-2021 Xilinx, Inc. All Rights R=
+eserved</code></p><p>And here is the output of the error</p><p><code>=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D</code></p><p><code>BUILDER: Building IP cmplx_mul</code></p><p=
+><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p><p><code>BUILDER: Staging IP in build=
+ directory...</code></p><p><code>BUILDER: Reserving IP location: /workarea/=
+uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul</code></p><p><co=
+de>BUILDER: Retargeting IP to part zynq/xc7z100/ffg900/-2...</code></p><p><=
+code>BUILDER: Building IP...</code></p><p><code>[00:00:00] Executing comman=
+d: vivado -mode batch -source /workarea/uhd/fpga/usrp3/tools/scripts/viv_ge=
+nerate_ip.tcl -log cmplx_mul.log -nojournal</code></p><p><code>[00:00:05] C=
+urrent task: Initialization +++ Current Phase: Starting</code></p><p><code>=
+WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is locked:</code></p><p><code>CRI=
+TICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the followi=
+ng file is locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900=
+-2/cmplx_mul/cmplx_mul.xci</code></p><p><code>CRITICAL WARNING: [filemgmt 2=
+0-1365] Unable to generate target(s) for the following file is locked: /wor=
+karea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul.=
+xci</code></p><p><code>[00:00:05] Current task: Initialization +++ Current =
+Phase: Finished</code></p><p><code>[00:00:05] Executing Tcl: synth_design -=
+top cmplx_mul -part xc7z100ffg900-2 -mode out_of_context</code></p><p><code=
+>[00:00:05] Starting Synthesis Command</code></p><p><code>WARNING: [Vivado_=
+Tcl 4-391] The following IPs are missing output products for Synthesis targ=
+et. These output products could be required for synthesis, please generate =
+the output products using the generate_target or synth_ip command before ru=
+nning synth_design.</code></p><p><code>WARNING: [IP_Flow 19-2162] IP 'cmplx=
+_mul' is locked:</code></p><p><code>ERROR: [Designutils 20-414] HRTInvokeSp=
+ec : No Verilog or VHDL sources specified</code></p><p><code>ERROR: [Common=
+ 17-53] User Exception: No open design. Please open an elaborated, synthesi=
+zed or implemented design before executing this command.</code></p><p><code=
+>ERROR: [Common 17-53] User Exception: No open design. Please open an elabo=
+rated, synthesized or implemented design before executing this command.</co=
+de></p><p><code>ERROR: [Common 17-53] User Exception: No open design. Pleas=
+e open an elaborated, synthesized or implemented design before executing th=
+is command.</code></p><p><code>ERROR: [Common 17-53] User Exception: No ope=
+n design. Please open an elaborated, synthesized or implemented design befo=
+re executing this command.</code></p><p><code>ERROR: [Common 17-53] User Ex=
+ception: No open design. Please open an elaborated, synthesized or implemen=
+ted design before executing this command.</code></p><p><code>ERROR: [Common=
+ 17-53] User Exception: No open design. Please open an elaborated, synthesi=
+zed or implemented design before executing this command.</code></p><p><code=
+>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file '/workar=
+ea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul.xml=
+'</code></p><p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomiz=
+ed BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmp=
+lx_mul/cmplx_mul.xml'</code></p><p><code>CRITICAL WARNING: [IP_Flow 19-4739=
+] Writing uncustomized BOM file '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip=
+/xc7z100ffg900-2/cmplx_mul/cmplx_mul.xml'</code></p><p><code>CRITICAL WARNI=
+NG: [IP_Flow 19-4739] Writing uncustomized BOM file '/workarea/uhd/fpga/usr=
+p3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmplx_mul.xml'</code></p><p>=
+<code>[00:00:06] Current task: Synthesis +++ Current Phase: Starting</code>=
+</p><p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM f=
+ile '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/c=
+mplx_mul.xml'</code></p><p><code>ERROR: [Vivado 12-398] No designs are open=
+</code></p><p><code>[00:00:06] Current task: Synthesis +++ Current Phase: F=
+inished</code></p><p><code>[00:00:06] Process terminated. Status: Failure</=
+code></p><p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p><p><code>Warnings:          =
+ 3</code></p><p><code>Critical Warnings:  7</code></p><p><code>Errors:     =
+        8</code></p><p><code>BUILDER: Releasing IP location: /workarea/uhd/=
+fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul</code></p><p><code>m=
+ake[1]: *** [/rfnoc-foo/fpga//ip/cmplx_mul/Makefile.inc:21: LIB_IP_CMPLX_MU=
+L_TRGT] Error 1</code></p><p><code>make[1]: Leaving directory '/workarea/uh=
+d/fpga/usrp3/top/n3xx'</code></p><p><code>make: *** [Makefile:90: N3X0_IP] =
+Error 2</code></p></blockquote><p>Hello,</p><p>There was issue with =
+=E2=80=98<code>cmplx_mul</code>=E2=80=98 configuration not being updated af=
+ter migration of UHD to Vivado 2021.1 from Vivado 2019.1.<br>This is the ca=
+se for UHD-4.3 release and the issue was fixed in master branch.</p><p>For =
+more details look here: https://github.com/EttusResearch/uhd/issues/635</p>=
+<p>Best Regards,<br>Piotr Krysik</p>
 
---------------pePyoPRnTrvvIDViWScEmPZm--
+--b1_SfaKs3CAXqAEDcdoS5AkglQpAhLYuAxZoNK4AVqoD0--
 
---===============0627550700980128320==
+--===============9009363416985098443==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -386,4 +327,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0627550700980128320==--
+--===============9009363416985098443==--
