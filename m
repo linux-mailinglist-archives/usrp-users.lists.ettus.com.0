@@ -2,424 +2,825 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBAAC688921
-	for <lists+usrp-users@lfdr.de>; Thu,  2 Feb 2023 22:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0012688E10
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Feb 2023 04:38:21 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3BA91383F2E
-	for <lists+usrp-users@lfdr.de>; Thu,  2 Feb 2023 16:45:22 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4AF2B383C51
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Feb 2023 22:38:20 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1675374322; bh=6BxzT8doayYcma6xQun5tmxJq51KoxkoUbg8Hn872fo=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	t=1675395500; bh=l16NEFu76m6v/sUYsKlx4crDC/fkAZb4ImMFRaCz3yY=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=Yv1LX2cxtojkfzV4oTvxovooB5UzFKcL9x4C+to8/cBBJcn1oVxGIZeGzMFpT3zAC
-	 PmRRRts5bXJJsySuDsthvpG9VNH5t0PR9E8XHWj0EmoiVyTFO4Znw1TutpfUdSCrw0
-	 /UbsdTwmBCr1uhmRBP5787qidEjT3KmvaNjOB1dceAOHqaQb9TjMqT4nWetKdFMGfc
-	 aaiv/9WC5ZMymAr73gjT0DO5Pl42hPYnX1w1fzhqqL0FpPuGI5TWk3mL2cn2zD7W8X
-	 90uolEzpWxWBCExf/0XEpE9VaaOy3ammpQ7yacajUyC5QHtgy1uAIgbzLrtS8af2oe
-	 hVmSOONzdHjyg==
-Received: from mx07-002baa02.pphosted.com (mx07-002baa02.pphosted.com [185.132.183.154])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7B76E383D94
-	for <usrp-users@lists.ettus.com>; Thu,  2 Feb 2023 16:45:14 -0500 (EST)
+	b=XDERRXHb9NyfryodPrKlVVu9ETtIwzqWT/ysbwmpsVo11EBgf42pKq61DCkqJ3oDV
+	 ox01rgg0GMCVLJqfMUs6H2OJ6U3adTR/pTcSOHbio9P1AdZWXHxfHPq0xm+ZcCi+eD
+	 9TkkNeeuYT7YqhwxAsFN1Q/6/wCxspY3DEkuORNW859+tg26vGbXgqlgXuzXNRFw6y
+	 zBo1bmDkHK5Q/uCVIYcZxWdHZM7l1jovEG7v6OkS3X45DiTy2MpTK+NG30OBz3Ik6p
+	 ApinkEnGQv9vYf+r3/3PHA4hE4I8Z5wkCMgDEM0zENhbZJ7hmBfsHyTgrz4EuO0vwo
+	 eu9cRxtl/0z4w==
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id D9C85383BE8
+	for <usrp-users@lists.ettus.com>; Thu,  2 Feb 2023 22:38:12 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmv.com header.i=@gmv.com header.b="tvjIvV8/";
-	dkim=pass (1024-bit key; unprotected) header.d=gmv0.onmicrosoft.com header.i=@gmv0.onmicrosoft.com header.b="PPMAgcvt";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="2RX2RfsJ";
 	dkim-atps=neutral
-Received: from pps.filterd (m0205085.ppops.net [127.0.0.1])
-	by mx08-002baa02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3127dhXH030205;
-	Thu, 2 Feb 2023 22:45:11 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmv.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- mime-version; s=gmvcom; bh=dqA7Z4fAOeuln68/E233+xscjY5SzXa1BvJVGa92GVI=;
- b=tvjIvV8/nPq32RyaKbjnli+ME2CveqrmgnlZ7kDUuW+rPAuCaBipvoW64VSH0LsKBgma
- dbuXnKANw8BaxthWeieWh8muSmTiJs0UNOQ8zo3OagwFydF2KgpuVF7M6J/yCf8Lzn79
- CscRUbQpEnYEL27rOsq/3OaG6jVT0lnZ+54+55a/0uMKYNfGdUHESbgq1VtOXJ/1ILgD
- efvxVc6za47sa6e6P7hgRSl1cC7JzcyRPkQ+BI9PYSYeNJ20iwQ6QRZ6wY/rpEkmWVnR
- IH5CZegplDth9Wtkb9iYSbhBAeLKb+2i7DnOF9LSqUZDWFUCAtIRt6XnGeMLv7DFNZwi fw==
-Received: from eur02-vi1-obe.outbound.protection.outlook.com (mail-vi1eur02lp2047.outbound.protection.outlook.com [104.47.11.47])
-	by mx08-002baa02.pphosted.com (PPS) with ESMTPS id 3nfneqj13s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 02 Feb 2023 22:45:10 +0100
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SXx3SwGZbI83ailkwLS7oiot+E3lgAF6xUrKddBbZB5SLMhlMqNNkZnYnZpjRObrJcG8+AIwwy4snE4nwR3K29fYWmiIpckYPcGI9Q/1F+sqHqRx+4+JVwK0o0itw4DH/Eal2HWwXZxuMcUfiifAl8mIO35zkVlS2ppKNTtPlEMx4p5l7cCndrHRgblqhsZve2pIjA++PKaIzhFcOpF1f47666xYJHLhDXJpXOoXgeXRDfYW9gvILjRM6FU0IZdXUoKDn2vb9o9LQwK3v3NllaOhVo3b+VUUS1QeD6qlI0a50tocQDQdPeyDkP7YOyjxUofRJwdDxzwf4Nq7ilhl8Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dqA7Z4fAOeuln68/E233+xscjY5SzXa1BvJVGa92GVI=;
- b=C77uQpWttaG0h9/GN6EY1Knligs8uFRLb6/+O2FyaZ7Ss0OEaZKpYSH5O14vEiINe4Y282/fWu5zGEq8kdzG8MOy60x/X7HNB0OFAhVrzQ7LDWsb1NumRYsR3MvhKbYq98TkwQAF4JTgpUY0VelOpjFyYWps4KvDFMbk1WgmL/27Xx8ncFDuuuGX6XOfXZ7ANzj83n4JZB8ZUf6DUMizzh8URY51dblIIJBtm6T+252DETbByl4q0/R0EGFfu1kyWmcOvYvTfkSRPKoVev/MyTwLKkTZrp/vvFXd4Vo7pNFHHW4vje/2wHjaFvsa3+BIucH0Jjs9Q9cLgr6vAqKujQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gmv.com; dmarc=pass action=none header.from=gmv.com; dkim=pass
- header.d=gmv.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmv0.onmicrosoft.com;
- s=selector1-gmv0-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dqA7Z4fAOeuln68/E233+xscjY5SzXa1BvJVGa92GVI=;
- b=PPMAgcvt6Ek4EW2lZepw4BXi43MZs7N4+Ke36xjiUcAXtPnz2YI2jGj6H+mjxZ82nrQoDaN7KiPMw7EzVo995RAUzrLLSd0K+yrw6NGaDQ6ycB3y0ItxHTnkpk66rJKfuA5CieF/r3r4IH7xoditA2oqbimxUGTM0YeI1OziI/4=
-Received: from DB9PR07MB8475.eurprd07.prod.outlook.com (2603:10a6:10:36d::6)
- by AS8PR07MB7079.eurprd07.prod.outlook.com (2603:10a6:20b:25c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6043.33; Thu, 2 Feb
- 2023 21:45:08 +0000
-Received: from DB9PR07MB8475.eurprd07.prod.outlook.com
- ([fe80::f567:2d76:78dc:8000]) by DB9PR07MB8475.eurprd07.prod.outlook.com
- ([fe80::f567:2d76:78dc:8000%4]) with mapi id 15.20.6064.022; Thu, 2 Feb 2023
- 21:45:08 +0000
-From: =?utf-8?B?UmHDumwgTmlldG8gRnJlaXJl?= <rnieto@gmv.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>
-Thread-Topic: [USRP-users] Re: USRP x300 timing calibration
-Thread-Index: Adk27BfbmKB9AINhQBS0hu33ODtlewAMIOOAAAt3hIA=
-Date: Thu, 2 Feb 2023 21:45:08 +0000
-Message-ID: 
- <DB9PR07MB84756392CE2341192ACCFB7CC2D69@DB9PR07MB8475.eurprd07.prod.outlook.com>
-References: 
- <PAXPR07MB8470D032151F9E673A95DCB4C2D69@PAXPR07MB8470.eurprd07.prod.outlook.com>
- <ae7469e0-c02e-885f-5182-a96de0de19d8@gmail.com>
-In-Reply-To: <ae7469e0-c02e-885f-5182-a96de0de19d8@gmail.com>
-Accept-Language: es-ES, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DB9PR07MB8475:EE_|AS8PR07MB7079:EE_
-x-ms-office365-filtering-correlation-id: 5da4ca00-3b57-45e8-fc31-08db0566c107
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- kk8i5BbOGBRdUd4WoTIoaBlMDOwutedgU54qz23UhFpXEi2uXmzBf/fvaOqGZcho5rJeAWzpQy142d5dVTjvOKux6zpyCTvbNv4HW8/JUB5bj2qAWcnT9gN0zH/GfvuIodwrm302Vsi+n8dmDdi5NEzhmpAc/JLvAOnzVQGlglLUquXtyH5UqlAAng8FWieNEN0t2oqIuRyRpylx1V7OwdPt0hElX6UdjyvWFRdPeRmsEbPj62k49zhnU8yIKB09fnlHzH24mtp7ntnrJIpG9sjJ0WfpymmWAMwWDNkd3aDG/CHLHBsU1bRAYyRu6RnA6/T5u/AHcGJNMn3yvWsYX9Q/HZYA0KFOOa7r1nl6Y3lg9jKcKZnrUef2J9W1WVL86S4PG1V4K7NHFqr7ZMyzfqdWclGLsGNSFGS0OXC2GlQ5roY/0drWtTJuUWRhItszvZch2oqT4nO/MM4YSf0FMNWO8p6NuUa9zUfUI9Rm4pEMbnCD5+N9fyzcjtXK4MPrkROrz/DQyX/qRGdErTqp6SptqxxFlviDYowtuu4Z6k9HXTLDxEF9ZgvzTTlow8DCFKUmM1TInv7KMSfkHqwiS771Ncj41ednlx7gN59PbdbBEzs9G/6tBV1oy7Q+gOjSDoS1FpbdjlbzNqCAy88hEhdT4Ku6TzQ+Lwi5oflYJvFe5kAj9ogH/XCORD5MT1ruCe1aY259feksoZXL/fmqsoMp7+JeaTlq8VJLD8c34shEISlwnRNCfi+CrpCjiBK1
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR07MB8475.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(136003)(376002)(346002)(39860400002)(396003)(366004)(451199018)(4326008)(41300700001)(6916009)(66446008)(55016003)(64756008)(66556008)(8676002)(8936002)(5660300002)(33656002)(316002)(52536014)(66946007)(76116006)(66476007)(53546011)(478600001)(85182001)(83380400001)(26005)(2906002)(9686003)(6506007)(186003)(85202003)(7696005)(66574015)(38100700002)(38070700005)(71200400001)(122000001)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?Y3VrTjIrb3pYekQ1dTVvZEJwaUJadjMvaDJZbVZNQnU5K3BqS2JJRUp2OURi?=
- =?utf-8?B?K2d2UlozS1gvRnd0My9SZGRvSE92bng4QzduSVFhQU1vakUxeDRkY25IRUl2?=
- =?utf-8?B?TjE0RUN1a29iL1J6akdiR0Vyd1FCdWo3UnF4UytQQkJ3WDlNd0JudnIyL0FK?=
- =?utf-8?B?Y29MaFhmYm40cWZXQjF3eHp1dThta0xhSlFiWi85NCtRYlRSQlprcnhYVXUr?=
- =?utf-8?B?dmJvSWhZSHZQRkR3VVJmenVCVzlReEpweDE0Ty9IODRLUi9YRy9Kd2d6WWNa?=
- =?utf-8?B?c2hmaG13SXd3Q0xhREpzVU51bHE5bDg1blRvR1Q5aU5VOHdubkxWL3cwY25s?=
- =?utf-8?B?SncwL0Zjb1NNbE8yYTh3TzN3MUhFK1o0WWplQzgrbFkxeStoRWhzbXVGd2RO?=
- =?utf-8?B?Mi9DN2oxeDRxZ3VtR1FXMmJ0UHpFbStIdzJsWituWTYvYTRUL2pNbWdYbXV2?=
- =?utf-8?B?bi9EbFJYc3B1dVAyTjRwaEljVGFVNnZVQjVNV2tSSHVpMWhoaHYrd2VySkJa?=
- =?utf-8?B?V0Q5YmlZK3J5QTFIZHVhaUxlUmxTdnZleUNYQ3NCRWx2ZVRMcXFVcmJrNFhu?=
- =?utf-8?B?cXVGSFlQSkZNNUZOYzNxYmRJVjMwQ3V0bGQ5ZmsyaVdJNzhNQllKUllDUDVE?=
- =?utf-8?B?Z2szTG5NdjkyQVFNK3liNkpoN2d6MDF4eDd3eXc4UjBJbzJ6L0taVEtEbW9k?=
- =?utf-8?B?V1ZkdkpWenp3L1FxbUd3bDdHTldCaEc2MUFvOVQwRlZvcTRNQzVFakZVQ284?=
- =?utf-8?B?dldyUmYrenJXZ2NWenBOV2lSVjJ5Yk41MWp5NVg2dU9tWERKWUNRejV5MFhu?=
- =?utf-8?B?NGgzRnVIM3h2OXkwYUNON1dEU0NVTFd0U3pnUGR5OHQrV3ZzbUlSbW80R2ps?=
- =?utf-8?B?MnRWNmdQNHdsZVFxR1pGMDcxSWhJV2pqR3lqOTJ3c3J6ZE9IQS9CeDNRRFhx?=
- =?utf-8?B?T3FrZHdjaDFWNnVLdEdIeU1jRTRraDNrOGNuSGZKZDl0TXNTS0llM3ZRWEt2?=
- =?utf-8?B?S0lhZDE0Y0Z6ZDgzS2twTmdHWVlFa1Y3a3JsVVE0eGlWWCt5Rk9RRE14NTE3?=
- =?utf-8?B?TTJIblBlc3RKVUEwbDBkTVJCaWlGaklVbkhxRXZjS0YvR2RLTnJsVFlwOFNn?=
- =?utf-8?B?dHBEL29nY3BlZDlwV29xR1ZMQ1d4OUdlWDh1YkppVFBmQU9ZUCtMU2pqVXIx?=
- =?utf-8?B?NSs1Ui9ZbUNMdTZuaUtDdDF0dFd4Z2dnZm5GcjkxRUl4ZkVsWHNyMng4R2FG?=
- =?utf-8?B?Q0lBblFFWFpFNlZNcTVNdkhQZ0UzYUdoWFptb0N1ZlhxSFVwU1pJejVYVTYz?=
- =?utf-8?B?cVhhK0llUmFvcms2YXRxRE8ySEVxa0VsWmVrM05Tazg2c3Iva0FvaEFEMzVJ?=
- =?utf-8?B?dEllcGdkSWR0dEVJUXhOeU42a2d0U0hIRXVuTU9uaFdrZ1BJeTdtbGE2QVNI?=
- =?utf-8?B?enBSY0dLZFhuWWN5cUM0akx0LzZ5MkNVT0x1Q0lpRnRTOFdKR3VyeWRtL1A1?=
- =?utf-8?B?R2ptMkxvdDJwN1BQODJwc3phQ0RKSlZqS3d4T0k3RVRlQmpVYVFqK010dmpy?=
- =?utf-8?B?TDAwVGdtZFhuSVhzZUpENmpPd0tiTXBpck4wSk5KTXo3WWxsQU1zWE5BRmE2?=
- =?utf-8?B?c2xuWXJLRFdvb2Evc1FGQ01pYW1HSzlIZzVHR3YrVUZ2dk13ekp0ZWxhUmVw?=
- =?utf-8?B?RHZMWDFwRmRwemxaWGtPZWxWY1BGeWJKYVh2Sld3cE9PUitkMEZkVjhaTWwz?=
- =?utf-8?B?eTZmb3QwbWJ2citkSTNXRi9yaUpxc2lKeDl1SUI2aFdIZTUxS1NuT0hWQThi?=
- =?utf-8?B?RVJCRWNvRXVDeU0wSzVCWGpXYjl3eHh0KzJiQlNrcm9MNDV6b2RJR1cxREIx?=
- =?utf-8?B?UXAxdDFUU0p0ZzZMNzlmRFhRNi92RCtOcFNjWk41K2dpS1hVTkxJbGZ1RHc0?=
- =?utf-8?B?TVBPMmtTR0syQ25ySHp3c3hEZk8zdFRhc3BvSFcvUXNERFlLRHdud1RqQ1Zn?=
- =?utf-8?B?YTQrandFQVFSNHpjL3g5bW03V3VnMmJMN0dKY0w5enp5L05ZQXlqcERzTUZK?=
- =?utf-8?B?d1plek5aaTRzN09rVk12dXdYdTNDc0JwUTVMaFo2Ukc4bWQ5OVdCMkJPRkww?=
- =?utf-8?Q?/qmc=3D?=
+Received: by mail-ej1-f43.google.com with SMTP id hx15so11837001ejc.11
+        for <usrp-users@lists.ettus.com>; Thu, 02 Feb 2023 19:38:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=GAbblg41xrhHtyb80llwys6FKGmk8R7rbeYDR2py/Y8=;
+        b=2RX2RfsJhXclzKGp77Rr3LDqtD4ZRlQurxg4XNtzfW3p2+qnxMZpMhqfbNHwLw4D1l
+         M/ehgKwVGDtikdHejRZnHU4RdK/vbtDSklRLtJXwylVEB80M3ZoZJlGWElO0M8Mw23Om
+         9Eqghj3JEtnk/sG46qnd0dACkQZquCKw7YpndKAyQRhFsbQAB1lad0+E4prcmbRD74gl
+         xIyH2niPtb70E27P3o0jya4bYECkRLJ1l1QDemwEHFMAwhk9puOkfZxqxpuzUlfcSALP
+         ogOCEMvC9PziFiXTiftN8U0P5LuUg1a/nztsqhY6UZhCFTyxg/vLJePm50EE+4+56i/5
+         XwzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GAbblg41xrhHtyb80llwys6FKGmk8R7rbeYDR2py/Y8=;
+        b=fEYwNPU1XxwJz4Jobzw9n9SW10uvx9W+NfmYXpG0JqehVr9qfhoAY5RjZwqRfrDgGN
+         iW9xSl1yfrOMFAPi6T8iat7EQUa5TAzUtSmBe1Q36nqgALEex5tQo3ym4KeIkeQ+uapS
+         qkC4TVIlHZyRFy3euf8QplVV5++J7Wa/WqTixKJjmWOQvUBKxQ62dlvGiq0ToQFR0hQB
+         uZq7DV+RD4VmbV8xwG6qUQtqpWC/M7XFZrf4wDtBQYErN572/dWiwQwfDJuUWuQIZt7R
+         nQdm0zCxjL1D0gZZAzvfTBQSNLym2T/+RoS45a7Wx5Yiho0SYUB6isMv4YwD2x0tYAIj
+         Lnsw==
+X-Gm-Message-State: AO0yUKUcUIMRlH4CTkUbp5xIXmTawaBNrulEOWf7aouTHaTOXm2KzLhs
+	q9wRO4tVFc+2o/WZ3iBlBVdvKWdBf/zK5VrFpcR7MI20fcz1CpUkr0k=
+X-Google-Smtp-Source: AK7set+J9UImG5csG+xJnhkL3EIwy8RK5KVvx+F6Qm4nS3CTEEFYNWncXcuAqDKsJsSd1ktwbaUhnqaN/8GbASIeIVA=
+X-Received: by 2002:a17:907:20a5:b0:86e:8b7b:adb0 with SMTP id
+ pw5-20020a17090720a500b0086e8b7badb0mr2614252ejb.130.1675395491652; Thu, 02
+ Feb 2023 19:38:11 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: gmv.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR07MB8475.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5da4ca00-3b57-45e8-fc31-08db0566c107
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Feb 2023 21:45:08.6073
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a91f586d-1511-4f1f-988d-fd1461dd5916
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VGPAjy0rnSRbpgioHcmoyybaOjnoQgWEMoeR6QnApbtK8GTcT3b7mOYSNKyPyKtB
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR07MB7079
-X-Proofpoint-GUID: TJs8g_bHbCAqfunzEj2DIEqiib8G17wA
-X-Proofpoint-ORIG-GUID: TJs8g_bHbCAqfunzEj2DIEqiib8G17wA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.219,Aquarius:18.0.930,Hydra:6.0.562,FMLib:17.11.122.1
- definitions=2023-02-02_14,2023-02-02_01,2022-06-22_01
-X-Proofpoint-Spam-Reason: safe
-Message-ID-Hash: DSPAO5ZI4K2QDY37PTEGCGSGZBI4K5YP
-X-Message-ID-Hash: DSPAO5ZI4K2QDY37PTEGCGSGZBI4K5YP
-X-MailFrom: rnieto@gmv.com
+References: <UX8mi9utjbHMzjxx15xWBxXZPMWYdEURx50EsrFtWQ@lists.ettus.com>
+ <BYAPR03MB467853DF27EFC17161E17D86D3D09@BYAPR03MB4678.namprd03.prod.outlook.com>
+ <BYAPR03MB467806254313359B175385A6D3D09@BYAPR03MB4678.namprd03.prod.outlook.com>
+ <BYAPR03MB4678F59BE3B3272608F8DB42D3D09@BYAPR03MB4678.namprd03.prod.outlook.com>
+In-Reply-To: <BYAPR03MB4678F59BE3B3272608F8DB42D3D09@BYAPR03MB4678.namprd03.prod.outlook.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Thu, 2 Feb 2023 21:37:55 -0600
+Message-ID: <CAFche=gpxOnGaTJh=YaO25kCNP7=zhF8t4V+VU_PErhkwGp+fQ@mail.gmail.com>
+To: "Minutolo, Lorenzo" <minutolo@caltech.edu>
+Message-ID-Hash: 233U3T6IQVA6JEEYG2WP5A3AT6UCCYH5
+X-Message-ID-Hash: 233U3T6IQVA6JEEYG2WP5A3AT6UCCYH5
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP x300 timing calibration
+Subject: [USRP-users] Re: Error when synthesizing example OOT block : IP "cmplx_mul" is locked
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WFCKOPJFEY5RZCCBRAYWVPLMOBTULDNJ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/233U3T6IQVA6JEEYG2WP5A3AT6UCCYH5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7844541868012198944=="
+Content-Type: multipart/mixed; boundary="===============2409818839030335728=="
 
---===============7844541868012198944==
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DB9PR07MB84756392CE2341192ACCFB7CC2D69DB9PR07MB8475eurp_"
+--===============2409818839030335728==
+Content-Type: multipart/alternative; boundary="00000000000023817005f3c3697a"
 
---_000_DB9PR07MB84756392CE2341192ACCFB7CC2D69DB9PR07MB8475eurp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--00000000000023817005f3c3697a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-RGVhciBNYXJjdXMsDQoNClRoYW5rIHlvdSBmb3IgeW91ciBjb21tZW50LiBGb3IgdGhlIG1vbWVu
-dCB3ZSBoYXZlIG5vdCB1c2VkIFJGTm9DLCBidXQgaWYgaXQgaGVscHMgbWVhc3VyaW5nIHRoZSBy
-ZXBsYXkgbGF0ZW5jeSwgb2YgY291cnNlIHdlIGNvdWxkIGxvb2sgYXQgaXQuIFdvdWxkIHRoYXQg
-d29yayBmb3IgbWVhc3VyaW5nIHRoZSByZWNvcmRpbmcgbGF0ZW5jeSBhcyB3ZWxsPyBEbyB5b3Ug
-cmVjb21tZW5kIHNvbWUgY29uZmlndXJhdGlvbiBvciBzdHJhdGVneSB0byBmaW5kIGFjdHVhbCBs
-YXRlbmN5IGZvciBhIHJlY29yZCBhbmQgcmVwbGF5IG9mIElRIHNhbXBsZXM/IEluIGFueSBjYXNl
-IEkgc2hvdWxkIGNoZWNrIHRoZSBSRk5vQyBkb2N1bWVudGF0aW9uLg0KDQpSZWdhcmRzDQpSYXVs
-IE5pZXRvDQoNCkZyb206IE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+
-DQpTZW50OiBqdWV2ZXMsIDIgZGUgZmVicmVybyBkZSAyMDIzIDE2OjQwDQpUbzogdXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20NClN1YmplY3Q6IFtVU1JQLXVzZXJzXSBSZTogVVNSUCB4MzAwIHRp
-bWluZyBjYWxpYnJhdGlvbg0KDQpPbiAwMi8wMi8yMDIzIDA0OjU2LCBSYcO6bCBOaWV0byBGcmVp
-cmUgd3JvdGU6DQpEZWFyIFVSU1AgY29tbXVuaXR5LA0KDQpJJ2QgbGlrZSB0byBsYXVuY2ggc29t
-ZSBxdWVzdGlvbnMgYWJvdXQgdGhlIFVTUlAgeDMwMCBoYXJkd2FyZSAodGltaW5nKSBjYWxpYnJh
-dGlvbiBmb3IgYSBSRiBSZWNvcmQgYW5kIFJlcGxheSBleHBlcmltZW50IHVzaW5nIG11bHRpZnJl
-cXVlbmN5IEdOU1MsIHRoZXJlZm9yZSB1c2luZyB0aGUgdHdvIGF2YWlsYWJsZSBSRiBmcm9udGVu
-ZHMuIEkgYXBwcmVjaWF0ZSBhbnkgaGVscCBvciBoaW50IHlvdSBtYXkgcHJvdmlkZS4NCg0KVGhl
-IHNhbXBsZXMgcmVjb3JkaW5nIGFuZCByZXBsYXlpbmcgc3RhcnRzIHdoZW4gYSAxIFBQUyBlZGdl
-IGlzIGRldGVjdGVkLkFsc28gYSB2ZXJ5IHN0YWJsZSAxMCBNSHogc291cmNlIGlzIHVzZWQuIFdv
-dWxkIGl0IGJlIHBvc3NpYmxlIHRvIG1lYXN1cmUgdGhlIGFjdHVhbCBsYXRlbmN5IGJldHdlZW4g
-dGhlIHRpbWUgYSAxIFBQUyBjb21lcyB0byB0aGUgc21hIGlucHV0IHBvcnQgYW5kIHRoZSBhY3R1
-YWwgbW9tZW50IG9mIHRoZSBzYW1wbGVzIHJlY29yZGluZy9yZXBsYXlpbmc/IElmIEknbSBub3Qg
-d3JvbmcgdGhpcyB3b3VsZCBnaXZlIHVzLCBhZnRlciBhIEdOU1Mgc29mdHdhcmUgZGVtb2R1bGF0
-aW9uIGFuZCB0aGUgbGF0ZW5jeSByZW1vdmluZywgdGhlIHRvdGFsIHByb3BhZ2F0aW9uIGRlbGF5
-IGZyb20gdGhlIEdOU1MgYW50ZW5uYSBwaGFzZSBjZW50ZXIgdG8gdGhlIGludGVybmFsIFVTUlAg
-REFDLg0KDQoNCiAgMS4gIFJlY29yZCBzZXR1cDoNClVTUlAgeDMwMCBpcyBjb25uZWN0ZWQgdG8g
-YSBSRiBzcGxpdHRlciArIERDIGJsb2NrICsgYW5kIHRvIGEgR05TUyBhbnRlbm5hIGZvciB0aGUg
-cmVjb3JkaW5nIHNldHVwLg0KDQogIDEuICBSZXBsYXkgc2V0dXA6DQpVU1JQIHgzMDAgaXMgY29u
-bmVjdGVkIHRvIHRoZSBzcGxpdHRlciBhcyBhIGNvbWJpbmVyIHRvIGpvaW4gdGhlIHR3byBSRiBj
-aGFubmVscyArIERDIGJsb2NrICsgMjBkQiBhdGVudWF0dG9yIGFuZCBpdHMgb3V0cHV0IHRvIGEg
-R05TUyByZWNlaXZlci4NCg0KVG8gcGVyZm9ybSBvdXIgdGVzdHMgd2UgaGF2ZSBiZWVuIHVzaW5n
-IHRoZSBVSEQgc29mdHdhcmUgYW5kIHdlIGFyZSBhYmxlIHRvIGFsaWduZWQgb3VyIDEgUFBTIHRv
-IGEgR05TU3QgdGltZXNjYWxlLg0KDQpUaGFuayB5b3UgdmVyeSBtdWNoLg0KQmVzdCByZWdhcmRz
-LA0KUmF1bCBOaWV0bw0KDQpZb3UncmUgcHJlc3VtYWJseSB1c2luZyBSRk5vQyB0byBkbyB0aGUg
-cmVwbGF5PyAgQmVjYXVzZSBvdGhlcndpc2UsIGxhdGVuY3kgaXMgd2lsZGx5IHVucHJlZGljdGFi
-bGUuDQoNCg0KDQoNClAgUGxlYXNlIGNvbnNpZGVyIHRoZSBlbnZpcm9ubWVudCBiZWZvcmUgcHJp
-bnRpbmcgdGhpcyBlLW1haWwuDQo=
+Hi Lorenzo,
 
---_000_DB9PR07MB84756392CE2341192ACCFB7CC2D69DB9PR07MB8475eurp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I tried your steps but couldn't reproduce the issue you're seeing. I wonder
+if somehow the patch is not being picked up, or perhaps you somehow have
+stale build files. Can you run the following?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpXZWJkaW5nczsNCglwYW5vc2UtMTo1IDMg
-MSAyIDEgNSA5IDYgNyAzO30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwg
-bGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowY207DQoJZm9udC1zaXplOjEx
-LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgltc28tZmFyZWFzdC1s
-YW5ndWFnZTpFTi1VUzt9DQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxpLk1zb0xpc3RQYXJhZ3JhcGgs
-IGRpdi5Nc29MaXN0UGFyYWdyYXBoDQoJe21zby1zdHlsZS1wcmlvcml0eTozNDsNCgltYXJnaW4t
-dG9wOjBjbTsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1hcmdpbi1ib3R0b206MGNtOw0KCW1hcmdp
-bi1sZWZ0OjM2LjBwdDsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-IixzYW5zLXNlcmlmOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCnNwYW4uRW1haWxT
-dHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJD
-YWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQN
-Cgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFn
-ZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcwLjg1cHQg
-My4wY20gNzAuODVwdCAzLjBjbTt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rp
-b24xO30NCi8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjc3
-MTc4MTIwMDsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6LTE4Njc1ODQwMTg7fQ0KQGxpc3QgbDA6
-bGV2ZWwxDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4
-dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjM2LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
-c2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNpemU6
-MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDINCgl7bXNvLWxl
-dmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2
-ZWwtdGFiLXN0b3A6NzIuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0
-ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1m
-YW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsMw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1h
-dDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoxMDgu
-MHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTgu
-MHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30N
-CkBsaXN0IGwwOmxldmVsNA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNv
-LWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoxNDQuMHB0Ow0KCW1zby1sZXZl
-bC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNp
-LWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVs
-NQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3
-Ow0KCW1zby1sZXZlbC10YWItc3RvcDoxODAuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRp
-b246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4w
-cHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwt
-bnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10
-YWItc3RvcDoyMTYuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0
-LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1p
-bHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpi
-dWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoyNTIuMHB0
-Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0
-Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBs
-aXN0IGwwOmxldmVsOA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxl
-dmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoyODguMHB0Ow0KCW1zby1sZXZlbC1u
-dW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZv
-bnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOQ0K
-CXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0K
-CW1zby1sZXZlbC10YWItc3RvcDozMjQuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246
-bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7
-DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwxDQoJe21zby1saXN0LWlkOjg0OTQ0MjI4
-MTsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6MjAyMzUxMjQwMDt9DQpAbGlzdCBsMTpsZXZlbDEN
-Cgl7bXNvLWxldmVsLXRhYi1zdG9wOjM2LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9u
-OmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpAbGlzdCBsMTpsZXZlbDINCgl7bXNvLWxl
-dmVsLXRhYi1zdG9wOjcyLjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJ
-dGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpAbGlzdCBsMTpsZXZlbDMNCgl7bXNvLWxldmVsLXRhYi1z
-dG9wOjEwOC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5k
-ZW50Oi0xOC4wcHQ7fQ0KQGxpc3QgbDE6bGV2ZWw0DQoJe21zby1sZXZlbC10YWItc3RvcDoxNDQu
-MHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTgu
-MHB0O30NCkBsaXN0IGwxOmxldmVsNQ0KCXttc28tbGV2ZWwtdGFiLXN0b3A6MTgwLjBwdDsNCglt
-c28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpA
-bGlzdCBsMTpsZXZlbDYNCgl7bXNvLWxldmVsLXRhYi1zdG9wOjIxNi4wcHQ7DQoJbXNvLWxldmVs
-LW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxpc3QgbDE6
-bGV2ZWw3DQoJe21zby1sZXZlbC10YWItc3RvcDoyNTIuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXIt
-cG9zaXRpb246bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0O30NCkBsaXN0IGwxOmxldmVsOA0K
-CXttc28tbGV2ZWwtdGFiLXN0b3A6Mjg4LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9u
-OmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDt9DQpAbGlzdCBsMTpsZXZlbDkNCgl7bXNvLWxl
-dmVsLXRhYi1zdG9wOjMyNC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0K
-CXRleHQtaW5kZW50Oi0xOC4wcHQ7fQ0KQGxpc3QgbDINCgl7bXNvLWxpc3QtaWQ6OTMyNTE0NTcx
-Ow0KCW1zby1saXN0LXRlbXBsYXRlLWlkczotMjAwODg4NTA0Mjt9DQpAbGlzdCBsMjpsZXZlbDEN
-Cgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsN
-Cgltc28tbGV2ZWwtdGFiLXN0b3A6MzYuMHB0Ow0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246
-bGVmdDsNCgl0ZXh0LWluZGVudDotMTguMHB0Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7
-DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwyOmxldmVsMg0KCXttc28tbGV2ZWwtbnVt
-YmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWIt
-c3RvcDo3Mi4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5k
-ZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpT
-eW1ib2w7fQ0KQGxpc3QgbDI6bGV2ZWwzDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxl
-dDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjEwOC4wcHQ7DQoJ
-bXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJ
-bXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3Qg
-bDI6bGV2ZWw0DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
-dGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjE0NC4wcHQ7DQoJbXNvLWxldmVsLW51bWJl
-ci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1z
-aXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDI6bGV2ZWw1DQoJe21z
-by1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNv
-LWxldmVsLXRhYi1zdG9wOjE4MC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0
-Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglm
-b250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDI6bGV2ZWw2DQoJe21zby1sZXZlbC1udW1iZXIt
-Zm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9w
-OjIxNi4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50
-Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1i
-b2w7fQ0KQGxpc3QgbDI6bGV2ZWw3DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsN
-Cgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjI1Mi4wcHQ7DQoJbXNv
-LWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNv
-LWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDI6
-bGV2ZWw4DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4
-dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjI4OC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1w
-b3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXpl
-OjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3QgbDI6bGV2ZWw5DQoJe21zby1s
-ZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxl
-dmVsLXRhYi1zdG9wOjMyNC4wcHQ7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0K
-CXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250
-LWZhbWlseTpTeW1ib2w7fQ0Kb2wNCgl7bWFyZ2luLWJvdHRvbTowY207fQ0KdWwNCgl7bWFyZ2lu
-LWJvdHRvbTowY207fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
-YXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRp
-Zl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0
-Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0Pjwv
-eG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRVMiIGxpbms9IiMwNTYzQzEi
-IHZsaW5rPSIjOTU0RjcyIiBzdHlsZT0id29yZC13cmFwOmJyZWFrLXdvcmQiPg0KPGRpdiBjbGFz
-cz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij5EZWFyIE1hcmN1cyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRoYW5rIHlvdSBmb3IgeW91ciBjb21t
-ZW50LiBGb3IgdGhlIG1vbWVudCB3ZSBoYXZlIG5vdCB1c2VkIFJGTm9DLCBidXQgaWYgaXQgaGVs
-cHMgbWVhc3VyaW5nIHRoZSByZXBsYXkgbGF0ZW5jeSwgb2YgY291cnNlIHdlIGNvdWxkIGxvb2sg
-YXQgaXQuIFdvdWxkIHRoYXQgd29yayBmb3IgbWVhc3VyaW5nIHRoZSByZWNvcmRpbmcgbGF0ZW5j
-eSBhcyB3ZWxsPyBEbyB5b3UgcmVjb21tZW5kDQogc29tZSBjb25maWd1cmF0aW9uIG9yIHN0cmF0
-ZWd5IHRvIGZpbmQgYWN0dWFsIGxhdGVuY3kgZm9yIGEgcmVjb3JkIGFuZCByZXBsYXkgb2YgSVEg
-c2FtcGxlcz8gSW4gYW55IGNhc2UgSSBzaG91bGQgY2hlY2sgdGhlIFJGTm9DIGRvY3VtZW50YXRp
-b24uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5SZWdhcmRzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlJhdWwgTmlldG88bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
-VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3Jk
-ZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20g
-MGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVTIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gbGFuZz0i
-RU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFUyI+IE1hcmN1cyBELiBMZWVjaCAm
-bHQ7cGF0Y2h2b25icmF1bkBnbWFpbC5jb20mZ3Q7DQo8YnI+DQo8Yj5TZW50OjwvYj4ganVldmVz
-LCAyIGRlIGZlYnJlcm8gZGUgMjAyMyAxNjo0MDxicj4NCjxiPlRvOjwvYj4gdXNycC11c2Vyc0Bs
-aXN0cy5ldHR1cy5jb208YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW1VTUlAtdXNlcnNdIFJlOiBVU1JQ
-IHgzMDAgdGltaW5nIGNhbGlicmF0aW9uPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
-L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDAyLzAyLzIwMjMgMDQ6NTYsIFJhw7psIE5pZXRvIEZy
-ZWlyZSB3cm90ZTo8c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RVMiPjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4w
-cHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5EZWFyIFVSU1Ag
-Y29tbXVuaXR5LDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86
-cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SSdk
-IGxpa2UgdG8gbGF1bmNoIHNvbWUgcXVlc3Rpb25zIGFib3V0IHRoZSBVU1JQIHgzMDAgaGFyZHdh
-cmUgKHRpbWluZykgY2FsaWJyYXRpb24gZm9yIGEgUkYgUmVjb3JkIGFuZCBSZXBsYXkgZXhwZXJp
-bWVudCB1c2luZyBtdWx0aWZyZXF1ZW5jeSBHTlNTLCB0aGVyZWZvcmUgdXNpbmcgdGhlIHR3byBh
-dmFpbGFibGUgUkYgZnJvbnRlbmRzLiBJIGFwcHJlY2lhdGUgYW55IGhlbHANCiBvciBoaW50IHlv
-dSBtYXkgcHJvdmlkZS48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRoZSBzYW1wbGVzIHJlY29yZGluZyBh
-bmQgcmVwbGF5aW5nIHN0YXJ0cyB3aGVuIGEgMSBQUFMgZWRnZSBpcyBkZXRlY3RlZC5BbHNvIGEg
-dmVyeSBzdGFibGUgMTAgTUh6IHNvdXJjZSBpcyB1c2VkLiBXb3VsZCBpdCBiZSBwb3NzaWJsZSB0
-byBtZWFzdXJlIHRoZSBhY3R1YWwgbGF0ZW5jeSBiZXR3ZWVuIHRoZSB0aW1lIGEgMSBQUFMgY29t
-ZXMgdG8gdGhlIHNtYSBpbnB1dCBwb3J0DQogYW5kIHRoZSBhY3R1YWwgbW9tZW50IG9mIHRoZSBz
-YW1wbGVzIHJlY29yZGluZy9yZXBsYXlpbmc/IElmIEknbSBub3Qgd3JvbmcgdGhpcyB3b3VsZCBn
-aXZlIHVzLCBhZnRlciBhIEdOU1Mgc29mdHdhcmUgZGVtb2R1bGF0aW9uIGFuZCB0aGUgbGF0ZW5j
-eSByZW1vdmluZywgdGhlIHRvdGFsIHByb3BhZ2F0aW9uIGRlbGF5IGZyb20gdGhlIEdOU1MgYW50
-ZW5uYSBwaGFzZSBjZW50ZXIgdG8gdGhlIGludGVybmFsIFVTUlAgREFDLg0KPC9zcGFuPjxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZuYnNw
-Ozwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxvbCBzdHlsZT0ibWFyZ2luLXRvcDowY20iIHN0YXJ0
-PSIxIiB0eXBlPSIxIj4NCjxsaSBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdp
-bi1sZWZ0OjBjbTttc28tbGlzdDpsMSBsZXZlbDEgbGZvMyI+PHNwYW4gbGFuZz0iRU4tVVMiPlJl
-Y29yZCBzZXR1cDo8L3NwYW4+PG86cD48L286cD48L2xpPjwvb2w+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIiBzdHlsZT0idGV4dC1pbmRlbnQ6MTguMHB0Ij48c3BhbiBsYW5nPSJFTi1VUyI+VVNSUCB4
-MzAwIGlzIGNvbm5lY3RlZCB0byBhIFJGIHNwbGl0dGVyICsgREMgYmxvY2sgKyBhbmQgdG8gYSBH
-TlNTIGFudGVubmEgZm9yIHRoZSByZWNvcmRpbmcgc2V0dXAuDQo8L3NwYW4+PG86cD48L286cD48
-L3A+DQo8b2wgc3R5bGU9Im1hcmdpbi10b3A6MGNtIiBzdGFydD0iMiIgdHlwZT0iMSI+DQo8bGkg
-Y2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJtYXJnaW4tbGVmdDowY207bXNvLWxpc3Q6
-bDEgbGV2ZWwxIGxmbzMiPjxzcGFuIGxhbmc9IkVOLVVTIj5SZXBsYXkgc2V0dXA6PC9zcGFuPjxv
-OnA+PC9vOnA+PC9saT48L29sPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9InRleHQtaW5k
-ZW50OjE4LjBwdCI+PHNwYW4gbGFuZz0iRU4tVVMiPlVTUlAgeDMwMCBpcyBjb25uZWN0ZWQgdG8g
-dGhlIHNwbGl0dGVyIGFzIGEgY29tYmluZXIgdG8gam9pbiB0aGUgdHdvIFJGIGNoYW5uZWxzICsg
-REMgYmxvY2sgKyAyMGRCIGF0ZW51YXR0b3IgYW5kIGl0cyBvdXRwdXQgdG8gYSBHTlNTIHJlY2Vp
-dmVyLiAmbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRvIHBlcmZvcm0gb3VyIHRlc3RzIHdlIGhh
-dmUgYmVlbiB1c2luZyB0aGUgVUhEIHNvZnR3YXJlIGFuZCB3ZSBhcmUgYWJsZSB0byBhbGlnbmVk
-IG91ciAxIFBQUyB0byBhIEdOU1N0IHRpbWVzY2FsZS48L3NwYW4+PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7PC9zcGFuPjxvOnA+
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRoYW5r
-IHlvdSB2ZXJ5IG11Y2guPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gbGFuZz0iRU4tVVMiPkJlc3QgcmVnYXJkcyw8YnI+DQpSYXVsIE5pZXRvPC9zcGFu
-PjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9Im1zby1m
-YXJlYXN0LWxhbmd1YWdlOkVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Jsb2Nr
-cXVvdGU+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6RVMiPllvdSdyZSBwcmVzdW1hYmx5IHVzaW5nIFJGTm9DIHRvIGRvIHRoZSByZXBsYXk/
-Jm5ic3A7IEJlY2F1c2Ugb3RoZXJ3aXNlLCBsYXRlbmN5IGlzIHdpbGRseSB1bnByZWRpY3RhYmxl
-Ljxicj4NCjxicj4NCjxicj4NCjxicj4NCjxicj4NCjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjE4LjBwdDtmb250LWZhbWlseTpXZWJkaW5ncztjb2xvcjpncmVlbjttc28tZmFyZWFzdC1s
-YW5ndWFnZTpFUyI+UA0KPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6Ny4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpncmVlbjttc28tZmFyZWFz
-dC1sYW5ndWFnZTpFUyI+UGxlYXNlIGNvbnNpZGVyIHRoZSBlbnZpcm9ubWVudCBiZWZvcmUgcHJp
-bnRpbmcgdGhpcyBlLW1haWwuPC9zcGFuPjxzcGFuIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFn
-ZTpFUyI+DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4N
-Cg==
+cd fpga/usrp3/top/x300/
+source setupenv.sh
 
---_000_DB9PR07MB84756392CE2341192ACCFB7CC2D69DB9PR07MB8475eurp_--
+What's the output of setupenv.sh?
+At this point you can try:
 
---===============7844541868012198944==
+make cleanall
+make X300_HG
+
+Typically the IP locked issue happens when there is a mismatch between the
+version of Vivado that was used to generate the IP and the version of
+Vivado that is being used to build the FPGA. You can see the Vivado version
+that was used to generate the IP here:
+
+https://github.com/EttusResearch/uhd/blob/UHD-4.4/fpga/usrp3/lib/ip/axi_hb3=
+1/axi_hb31.xci#L247
+
+You can see the version of the version of Vivado you're using to build the
+FPGA when you run "source setupenv.sh". It is also possible to open the IP
+in Vivado and unlock it by fixing whatever version mismatch it sees, but
+you should be building with 2021.1_AR76780 or else other IP will give you
+similar problems.
+
+Please double check that you don't have changes or untracked files in your
+repo (running `git status` should tell you) or old builds laying around
+(`make cleanall` should remove those). And make sure that setupenv.sh
+reports v2021.1_AR76780. If you have multiple patches or the same patch
+installed in multiple places, that might also cause a version mismatch.
+
+Wade
+
+On Tue, Jan 31, 2023 at 5:06 PM Minutolo, Lorenzo <minutolo@caltech.edu>
+wrote:
+
+> After reading about this conversation on the mailing list
+> https://lists.ettus.com/empathy/thread/DGJBPK6YADKXM2ETKPEVQQ7F5ALJCIDD
+> I went ahead and erased my UHD distribution folder and started from
+> scratch. Here is how to reproduce what I did:
+>
+> Given a patched version of Vivado installed on the system:
+>
+> /tools/Xilinx/Vivado/2021.1/bin/vivado -version
+> Vivado v2021.1_AR76780 (64-bit)
+> SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+> IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+> Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+>
+> Commands:
+>
+> git clone git clone https://github.com/EttusResearch/uhd.git
+> cd uhd
+> git checkout UHD-4.4
+> <optional>
+> cd host
+> mkdir build && cd build
+> cmake ..
+> make -j10
+> sudo make install
+> cd ../..
+> <end optional>
+> cd fpga/usrp3/top/x300/
+> rfnoc_image_builder -c -d x300 -y ./x300_rfnoc_image_core.yml -t X300_HG
+> -p /tools/Xilinx/Vivado/
+>
+> This results in the error reported below.
+>
+>
+> ------------------------------
+> *From:* Minutolo, Lorenzo <minutolo@caltech.edu>
+> *Sent:* Tuesday, January 31, 2023 2:20 PM
+> *To:* jmaloyan@umass.edu <jmaloyan@umass.edu>; usrp-users@lists.ettus.com
+> <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Re: Error when synthesizing example OOT block :
+> IP "cmplx_mul" is locked
+>
+> I tried installing Vivado 2021.1 and applying the right patch, using
+> UHD-4.4 I still get the following error message:
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+> BUILDER: Building IP axi_hb31
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+> BUILDER: Staging IP in build directory...
+> BUILDER: Reserving IP location:
+> /home/lorenzo/uhd/fpga/usrp3/top/x300/build-ip/xc7k325tffg900-2/axi_hb31
+> BUILDER: Retargeting IP to part kintex7/xc7k325t/ffg900/-2...
+> BUILDER: Building IP...
+> [00:00:00] Executing command: vivado -mode batch -source
+> /home/lorenzo/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log
+> axi_hb31.log -nojournal
+> WARNING: [IP_Flow 19-2162] IP 'axi_hb31' is locked:
+> [00:00:04] Current task: Initialization +++ Current Phase: Starting
+> CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the
+> following file is locked:
+> /home/lorenzo/uhd/fpga/usrp3/top/x300/build-ip/xc7k325tffg900-2/axi_hb31/=
+axi_hb31.xci
+> CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for the
+> following file is locked:
+> /home/lorenzo/uhd/fpga/usrp3/top/x300/build-ip/xc7k325tffg900-2/axi_hb31/=
+axi_hb31.xci
+> [00:00:04] Current task: Initialization +++ Current Phase: Finished
+> [00:00:04] Executing Tcl: synth_design -top axi_hb31 -part
+> xc7k325tffg900-2 -mode out_of_context
+> [00:00:04] Starting Synthesis Command
+> [00:00:04] Current task: Synthesis +++ Current Phase: Starting
+> WARNING: [Vivado_Tcl 4-391] The following IPs are missing output products
+> for Synthesis target. These output products could be required for
+> synthesis, please generate the output products using the generate_target =
+or
+> synth_ip command before running synth_design.
+> WARNING: [IP_Flow 19-2162] IP 'axi_hb31' is locked:
+> ERROR: [Designutils 20-414] HRTInvokeSpec : No Verilog or VHDL sources
+> specified
+>
+>
+> Currently looking for a workaround before reverting to 2019.1 and UHD 4.2
+>
+> Lorenzo
+>
+> ------------------------------
+> *From:* Minutolo, Lorenzo <minutolo@caltech.edu>
+> *Sent:* Tuesday, January 31, 2023 11:48 AM
+> *To:* jmaloyan@umass.edu <jmaloyan@umass.edu>; usrp-users@lists.ettus.com
+> <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Re: Error when synthesizing example OOT block :
+> IP "cmplx_mul" is locked
+>
+> Same here.
+> Since switching to Vivado 2021.1 and UHD-4.3 even compiling the stock
+> firmware results in [IP_Flow 19-2162] IP 'axi_hb31' is locked.
+> Apparently, this error is well known
+> https://support.xilinx.com/s/article/58832?language=3Den_US
+>
+> I'm trying to switch to UHD 4.4 to see if this error goes away. Everythin=
+g
+> was working really well in UHD-4.2 and Vivado 2019.1.
+>
+> Best,
+> Lorenzo
+> ------------------------------
+> *From:* jmaloyan@umass.edu <jmaloyan@umass.edu>
+> *Sent:* Friday, January 27, 2023 2:17 PM
+> *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+> *Subject:* [USRP-users] Error when synthesizing example OOT block : IP
+> "cmplx_mul" is locked
+>
+>
+> Hello,
+>
+>
+> I have run into an issue when trying to synthesize the =E2=80=9Cgain=E2=
+=80=9D RFNoC as
+> described in the tutorial here
+> https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0
+>
+>
+> I get an error that the module cmplx mul is locked. I found that in the
+> verilog file =E2=80=9Crfnoc_block_gain.v=E2=80=9D, the module is instanti=
+ated there, but I
+> am unsure how I should proceed working around this.
+>
+>
+> Here is the output of the vivado -version
+>
+> Vivado v2021.1_AR76780 (64-bit)
+>
+> SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021
+>
+> IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+>
+> Copyright 1986-2021 Xilinx, Inc. All Rights Reserved
+>
+> And here is the output of the error
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+>
+> BUILDER: Building IP cmplx_mul
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+>
+> BUILDER: Staging IP in build directory...
+>
+> BUILDER: Reserving IP location:
+> /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul
+>
+> BUILDER: Retargeting IP to part zynq/xc7z100/ffg900/-2...
+>
+> BUILDER: Building IP...
+>
+> [00:00:00] Executing command: vivado -mode batch -source
+> /workarea/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log
+> cmplx_mul.log -nojournal
+>
+> [00:00:05] Current task: Initialization +++ Current Phase: Starting
+>
+> WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is locked:
+>
+> CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the
+> following file is locked:
+> /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmpl=
+x_mul.xci
+>
+> CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for the
+> following file is locked:
+> /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmpl=
+x_mul.xci
+>
+> [00:00:05] Current task: Initialization +++ Current Phase: Finished
+>
+> [00:00:05] Executing Tcl: synth_design -top cmplx_mul -part
+> xc7z100ffg900-2 -mode out_of_context
+>
+> [00:00:05] Starting Synthesis Command
+>
+> WARNING: [Vivado_Tcl 4-391] The following IPs are missing output products
+> for Synthesis target. These output products could be required for
+> synthesis, please generate the output products using the generate_target =
+or
+> synth_ip command before running synth_design.
+>
+> WARNING: [IP_Flow 19-2162] IP 'cmplx_mul' is locked:
+>
+> ERROR: [Designutils 20-414] HRTInvokeSpec : No Verilog or VHDL sources
+> specified
+>
+> ERROR: [Common 17-53] User Exception: No open design. Please open an
+> elaborated, synthesized or implemented design before executing this comma=
+nd.
+>
+> ERROR: [Common 17-53] User Exception: No open design. Please open an
+> elaborated, synthesized or implemented design before executing this comma=
+nd.
+>
+> ERROR: [Common 17-53] User Exception: No open design. Please open an
+> elaborated, synthesized or implemented design before executing this comma=
+nd.
+>
+> ERROR: [Common 17-53] User Exception: No open design. Please open an
+> elaborated, synthesized or implemented design before executing this comma=
+nd.
+>
+> ERROR: [Common 17-53] User Exception: No open design. Please open an
+> elaborated, synthesized or implemented design before executing this comma=
+nd.
+>
+> ERROR: [Common 17-53] User Exception: No open design. Please open an
+> elaborated, synthesized or implemented design before executing this comma=
+nd.
+>
+> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
+> '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmp=
+lx_mul.xml'
+>
+> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
+> '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmp=
+lx_mul.xml'
+>
+> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
+> '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmp=
+lx_mul.xml'
+>
+> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
+> '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmp=
+lx_mul.xml'
+>
+> [00:00:06] Current task: Synthesis +++ Current Phase: Starting
+>
+> CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file
+> '/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/cmp=
+lx_mul.xml'
+>
+> ERROR: [Vivado 12-398] No designs are open
+>
+> [00:00:06] Current task: Synthesis +++ Current Phase: Finished
+>
+> [00:00:06] Process terminated. Status: Failure
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+>
+> Warnings: 3
+>
+> Critical Warnings: 7
+>
+> Errors: 8
+>
+> BUILDER: Releasing IP location:
+> /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul
+>
+> make[1]: *** [/rfnoc-foo/fpga//ip/cmplx_mul/Makefile.inc:21:
+> LIB_IP_CMPLX_MUL_TRGT] Error 1
+>
+> make[1]: Leaving directory '/workarea/uhd/fpga/usrp3/top/n3xx'
+>
+> make: *** [Makefile:90: N3X0_IP] Error 2
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--00000000000023817005f3c3697a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Lorenzo,</div><div><br></div><div>I tried your ste=
+ps but couldn&#39;t reproduce the issue you&#39;re seeing. I wonder if some=
+how the patch is not being picked up, or perhaps you somehow have stale bui=
+ld files. Can you run the following?</div><div><br></div><div>
+cd fpga/usrp3/top/x300/ <br></div><div>source setupenv.sh</div><div><br></d=
+iv><div>What&#39;s the output of setupenv.sh?</div><div>At this point you c=
+an try:</div><div><br></div><div>make cleanall<br></div><div>make X300_HG</=
+div><div><br></div><div>Typically the IP locked issue happens when there is=
+ a mismatch between the version of Vivado that was used to generate the IP =
+and the version of Vivado that is being used to build the FPGA. You can see=
+ the Vivado version that was used to generate the IP here:</div><div><br></=
+div><div><a href=3D"https://github.com/EttusResearch/uhd/blob/UHD-4.4/fpga/=
+usrp3/lib/ip/axi_hb31/axi_hb31.xci#L247">https://github.com/EttusResearch/u=
+hd/blob/UHD-4.4/fpga/usrp3/lib/ip/axi_hb31/axi_hb31.xci#L247</a></div><div>=
+<br></div><div>You can see the version of the version of Vivado you&#39;re =
+using to build the FPGA when you run &quot;source setupenv.sh&quot;. It is =
+also possible to open the IP in Vivado and unlock it by fixing whatever ver=
+sion mismatch it sees, but you should be building with 2021.1_AR76780 or el=
+se other IP will give you similar problems.</div><div><br></div><div>Please=
+ double check that you don&#39;t have changes or untracked files in your re=
+po (running `git status` should tell you) or old builds laying around (`mak=
+e cleanall` should remove those). And make sure that setupenv.sh reports v2=
+021.1_AR76780. If you have multiple patches or the same patch installed in =
+multiple places, that might also cause a version mismatch.</div><div><br></=
+div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Tue, Jan 31, 2023 at 5:06 PM Minutolo, Lorenzo &l=
+t;<a href=3D"mailto:minutolo@caltech.edu">minutolo@caltech.edu</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D=
+"msg2151749560673001324">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+After reading about this conversation on the mailing list=C2=A0<a href=3D"h=
+ttps://lists.ettus.com/empathy/thread/DGJBPK6YADKXM2ETKPEVQQ7F5ALJCIDD" id=
+=3D"m_2829748491903905892LPNoLPOWALinkPreview" target=3D"_blank">https://li=
+sts.ettus.com/empathy/thread/DGJBPK6YADKXM2ETKPEVQQ7F5ALJCIDD</a></div>
+<div></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+I went ahead and erased my UHD distribution folder and started from scratch=
+. Here is how to reproduce what I did:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+Given a patched version of Vivado installed on the system:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+/tools/Xilinx/Vivado/2021.1/bin/vivado -version
+<div>Vivado v2021.1_AR76780 (64-bit)</div>
+<div>SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021</div>
+<div>IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021</div>
+<div>Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.</div>
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+Commands:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+git clone git clone <a href=3D"https://github.com/EttusResearch/uhd.git" id=
+=3D"m_2829748491903905892LPlnk350834" target=3D"_blank">
+https://github.com/EttusResearch/uhd.git</a><br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+cd uhd</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+git checkout UHD-4.4</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+&lt;optional&gt;</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+cd host</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+mkdir build &amp;&amp; cd build</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+cmake ..</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+make -j10</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+sudo make install</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+cd ../..</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+&lt;end optional&gt;</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+cd fpga/usrp3/top/x300/</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+rfnoc_image_builder -c -d x300 -y ./x300_rfnoc_image_core.yml -t X300_HG -p=
+ /tools/Xilinx/Vivado/<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+This results in the error reported below.</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div></div>
+<br>
+<div id=3D"m_2829748491903905892appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_2829748491903905892divRplyFwdMsg" dir=3D"ltr"><font style=3D"f=
+ont-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> =
+Minutolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu" target=3D"_bl=
+ank">minutolo@caltech.edu</a>&gt;<br>
+<b>Sent:</b> Tuesday, January 31, 2023 2:20 PM<br>
+<b>To:</b> <a href=3D"mailto:jmaloyan@umass.edu" target=3D"_blank">jmaloyan=
+@umass.edu</a> &lt;<a href=3D"mailto:jmaloyan@umass.edu" target=3D"_blank">=
+jmaloyan@umass.edu</a>&gt;; <a href=3D"mailto:usrp-users@lists.ettus.com" t=
+arget=3D"_blank">usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-=
+users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;=
+<br>
+<b>Subject:</b> [USRP-users] Re: Error when synthesizing example OOT block =
+: IP &quot;cmplx_mul&quot; is locked</font>
+<div>=C2=A0</div>
+</div>
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+I tried installing Vivado 2021.1 and applying the right patch, using UHD-4.=
+4 I still get the following error=C2=A0message:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+<div>BUILDER: Building IP axi_hb31</div>
+<div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D</div>
+<div>BUILDER: Staging IP in build directory...</div>
+<div>BUILDER: Reserving IP location: /home/lorenzo/uhd/fpga/usrp3/top/x300/=
+build-ip/xc7k325tffg900-2/axi_hb31</div>
+<div>BUILDER: Retargeting IP to part kintex7/xc7k325t/ffg900/-2...</div>
+<div>BUILDER: Building IP...</div>
+<div>[00:00:00] Executing command: vivado -mode batch -source /home/lorenzo=
+/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log axi_hb31.log -nojour=
+nal</div>
+<div>WARNING: [IP_Flow 19-2162] IP &#39;axi_hb31&#39; is locked:</div>
+<div>[00:00:04] Current task: Initialization +++ Current Phase: Starting</d=
+iv>
+<div>CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for the=
+ following file is locked: /home/lorenzo/uhd/fpga/usrp3/top/x300/build-ip/x=
+c7k325tffg900-2/axi_hb31/axi_hb31.xci</div>
+<div>CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) for =
+the following file is locked: /home/lorenzo/uhd/fpga/usrp3/top/x300/build-i=
+p/xc7k325tffg900-2/axi_hb31/axi_hb31.xci</div>
+<div>[00:00:04] Current task: Initialization +++ Current Phase: Finished</d=
+iv>
+<div>[00:00:04] Executing Tcl: synth_design -top axi_hb31 -part xc7k325tffg=
+900-2 -mode out_of_context</div>
+<div>[00:00:04] Starting Synthesis Command</div>
+<div>[00:00:04] Current task: Synthesis +++ Current Phase: Starting</div>
+<div>WARNING: [Vivado_Tcl 4-391] The following IPs are missing output produ=
+cts for Synthesis target. These output products could be required for synth=
+esis, please generate the output products using the generate_target or synt=
+h_ip command
+ before running synth_design.</div>
+<div>WARNING: [IP_Flow 19-2162] IP &#39;axi_hb31&#39; is locked:</div>
+<div>ERROR: [Designutils 20-414] HRTInvokeSpec : No Verilog or VHDL sources=
+ specified</div>
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+Currently looking for a workaround before reverting to 2019.1 and UHD 4.2</=
+div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+Lorenzo</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<br>
+</div>
+<div id=3D"m_2829748491903905892x_appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_2829748491903905892x_divRplyFwdMsg" dir=3D"ltr"><font style=3D=
+"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b=
+> Minutolo, Lorenzo &lt;<a href=3D"mailto:minutolo@caltech.edu" target=3D"_=
+blank">minutolo@caltech.edu</a>&gt;<br>
+<b>Sent:</b> Tuesday, January 31, 2023 11:48 AM<br>
+<b>To:</b> <a href=3D"mailto:jmaloyan@umass.edu" target=3D"_blank">jmaloyan=
+@umass.edu</a> &lt;<a href=3D"mailto:jmaloyan@umass.edu" target=3D"_blank">=
+jmaloyan@umass.edu</a>&gt;; <a href=3D"mailto:usrp-users@lists.ettus.com" t=
+arget=3D"_blank">usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-=
+users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;=
+<br>
+<b>Subject:</b> [USRP-users] Re: Error when synthesizing example OOT block =
+: IP &quot;cmplx_mul&quot; is locked</font>
+<div>=C2=A0</div>
+</div>
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<span style=3D"font-size:12pt;margin:0px;background-color:rgb(255,255,255)"=
+>Same here.</span>
+<div style=3D"font-size:12pt;margin:0px;background-color:rgb(255,255,255)">
+Since switching to Vivado 2021.1 and UHD-4.3 even compiling the stock firmw=
+are results in=C2=A0[IP_Flow 19-2162] IP &#39;axi_hb31&#39; is locked.</div=
+>
+<div style=3D"font-size:12pt;margin:0px;background-color:rgb(255,255,255)">
+Apparently, this error is well known=C2=A0<a href=3D"https://support.xilinx=
+.com/s/article/58832?language=3Den_US" style=3D"margin:0px" target=3D"_blan=
+k">https://support.xilinx.com/s/article/58832?language=3Den_US</a><br>
+<br>
+</div>
+<div style=3D"font-size:12px;margin:0px">
+</div>
+<span style=3D"font-size:12pt;margin:0px;background-color:rgb(255,255,255)"=
+>I&#39;m trying to switch to UHD 4.4 to see if this error goes away. Everyt=
+hing was working really well in UHD-4.2 and Vivado 2019.1.</span><br>
+</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<span style=3D"font-size:12pt;margin:0px;background-color:rgb(255,255,255)"=
+><br>
+</span></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<span style=3D"font-size:12pt;margin:0px;background-color:rgb(255,255,255)"=
+>Best,</span></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0);background-color:rgb(255,255,255)">
+<span style=3D"font-size:12pt">Lorenzo</span></div>
+<div id=3D"m_2829748491903905892x_x_appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_2829748491903905892x_x_divRplyFwdMsg" dir=3D"ltr"><font style=
+=3D"font-size:11pt" face=3D"Calibri, sans-serif" color=3D"#000000"><b>From:=
+</b> <a href=3D"mailto:jmaloyan@umass.edu" target=3D"_blank">jmaloyan@umass=
+.edu</a> &lt;<a href=3D"mailto:jmaloyan@umass.edu" target=3D"_blank">jmaloy=
+an@umass.edu</a>&gt;<br>
+<b>Sent:</b> Friday, January 27, 2023 2:17 PM<br>
+<b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">=
+usrp-users@lists.ettus.com</a> &lt;<a href=3D"mailto:usrp-users@lists.ettus=
+.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;<br>
+<b>Subject:</b> [USRP-users] Error when synthesizing example OOT block : IP=
+ &quot;cmplx_mul&quot; is locked</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<p>Hello,</p>
+<p><br>
+</p>
+<p>I have run into an issue when trying to synthesize the =E2=80=9Cgain=E2=
+=80=9D RFNoC as described in the tutorial here <a href=3D"https://kb.ettus.=
+com/Getting_Started_with_RFNoC_in_UHD_4.0" target=3D"_blank">https://kb.ett=
+us.com/Getting_Started_with_RFNoC_in_UHD_4.0</a>
+</p>
+<p><br>
+</p>
+<p>I get an error that the module cmplx mul is locked. I found that in the =
+verilog file =E2=80=9Crfnoc_block_gain.v=E2=80=9D, the module is instantiat=
+ed there, but I am unsure how I should proceed working around this.</p>
+<p><br>
+</p>
+<p>Here is the output of the vivado -version</p>
+<p><code>Vivado v2021.1_AR76780 (64-bit)</code></p>
+<p><code>SW Build 3247384 on Thu Jun 10 19:36:07 MDT 2021</code></p>
+<p><code>IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021</code></p>
+<p><code>Copyright 1986-2021 Xilinx, Inc. All Rights Reserved</code></p>
+<p>And here is the output of the error</p>
+<p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+<p><code>BUILDER: Building IP cmplx_mul</code></p>
+<p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+<p><code>BUILDER: Staging IP in build directory...</code></p>
+<p><code>BUILDER: Reserving IP location: /workarea/uhd/fpga/usrp3/top/n3xx/=
+build-ip/xc7z100ffg900-2/cmplx_mul</code></p>
+<p><code>BUILDER: Retargeting IP to part zynq/xc7z100/ffg900/-2...</code></=
+p>
+<p><code>BUILDER: Building IP...</code></p>
+<p><code>[00:00:00] Executing command: vivado -mode batch -source /workarea=
+/uhd/fpga/usrp3/tools/scripts/viv_generate_ip.tcl -log cmplx_mul.log -nojou=
+rnal</code></p>
+<p><code>[00:00:05] Current task: Initialization +++ Current Phase: Startin=
+g</code></p>
+<p><code>WARNING: [IP_Flow 19-2162] IP &#39;cmplx_mul&#39; is locked:</code=
+></p>
+<p><code>CRITICAL WARNING: [filemgmt 20-1366] Unable to reset target(s) for=
+ the following file is locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-ip/x=
+c7z100ffg900-2/cmplx_mul/cmplx_mul.xci</code></p>
+<p><code>CRITICAL WARNING: [filemgmt 20-1365] Unable to generate target(s) =
+for the following file is locked: /workarea/uhd/fpga/usrp3/top/n3xx/build-i=
+p/xc7z100ffg900-2/cmplx_mul/cmplx_mul.xci</code></p>
+<p><code>[00:00:05] Current task: Initialization +++ Current Phase: Finishe=
+d</code></p>
+<p><code>[00:00:05] Executing Tcl: synth_design -top cmplx_mul -part xc7z10=
+0ffg900-2 -mode out_of_context</code></p>
+<p><code>[00:00:05] Starting Synthesis Command</code></p>
+<p><code>WARNING: [Vivado_Tcl 4-391] The following IPs are missing output p=
+roducts for Synthesis target. These output products could be required for s=
+ynthesis, please generate the output products using the generate_target or =
+synth_ip command before running
+ synth_design.</code></p>
+<p><code>WARNING: [IP_Flow 19-2162] IP &#39;cmplx_mul&#39; is locked:</code=
+></p>
+<p><code>ERROR: [Designutils 20-414] HRTInvokeSpec : No Verilog or VHDL sou=
+rces specified</code></p>
+<p><code>ERROR: [Common 17-53] User Exception: No open design. Please open =
+an elaborated, synthesized or implemented design before executing this comm=
+and.</code></p>
+<p><code>ERROR: [Common 17-53] User Exception: No open design. Please open =
+an elaborated, synthesized or implemented design before executing this comm=
+and.</code></p>
+<p><code>ERROR: [Common 17-53] User Exception: No open design. Please open =
+an elaborated, synthesized or implemented design before executing this comm=
+and.</code></p>
+<p><code>ERROR: [Common 17-53] User Exception: No open design. Please open =
+an elaborated, synthesized or implemented design before executing this comm=
+and.</code></p>
+<p><code>ERROR: [Common 17-53] User Exception: No open design. Please open =
+an elaborated, synthesized or implemented design before executing this comm=
+and.</code></p>
+<p><code>ERROR: [Common 17-53] User Exception: No open design. Please open =
+an elaborated, synthesized or implemented design before executing this comm=
+and.</code></p>
+<p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file =
+&#39;/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/c=
+mplx_mul.xml&#39;</code></p>
+<p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file =
+&#39;/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/c=
+mplx_mul.xml&#39;</code></p>
+<p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file =
+&#39;/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/c=
+mplx_mul.xml&#39;</code></p>
+<p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file =
+&#39;/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/c=
+mplx_mul.xml&#39;</code></p>
+<p><code>[00:00:06] Current task: Synthesis +++ Current Phase: Starting</co=
+de></p>
+<p><code>CRITICAL WARNING: [IP_Flow 19-4739] Writing uncustomized BOM file =
+&#39;/workarea/uhd/fpga/usrp3/top/n3xx/build-ip/xc7z100ffg900-2/cmplx_mul/c=
+mplx_mul.xml&#39;</code></p>
+<p><code>ERROR: [Vivado 12-398] No designs are open</code></p>
+<p><code>[00:00:06] Current task: Synthesis +++ Current Phase: Finished</co=
+de></p>
+<p><code>[00:00:06] Process terminated. Status: Failure</code></p>
+<p><code>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D</code></p>
+<p><code>Warnings: 3</code></p>
+<p><code>Critical Warnings: 7</code></p>
+<p><code>Errors: 8</code></p>
+<p><code>BUILDER: Releasing IP location: /workarea/uhd/fpga/usrp3/top/n3xx/=
+build-ip/xc7z100ffg900-2/cmplx_mul</code></p>
+<p><code>make[1]: *** [/rfnoc-foo/fpga//ip/cmplx_mul/Makefile.inc:21: LIB_I=
+P_CMPLX_MUL_TRGT] Error 1</code></p>
+<p><code>make[1]: Leaving directory &#39;/workarea/uhd/fpga/usrp3/top/n3xx&=
+#39;</code></p>
+<p><code>make: *** [Makefile:90: N3X0_IP] Error 2</code></p>
+</div>
+</div>
+</div>
+</div>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</div></blockquote></div>
+
+--00000000000023817005f3c3697a--
+
+--===============2409818839030335728==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -429,4 +830,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7844541868012198944==--
+--===============2409818839030335728==--
