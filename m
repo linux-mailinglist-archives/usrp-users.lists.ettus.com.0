@@ -2,219 +2,160 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E49B68F322
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Feb 2023 17:25:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 163E368F776
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Feb 2023 19:54:06 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 14FD8383DD5
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Feb 2023 11:25:21 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id F3F0C383683
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Feb 2023 13:54:04 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1675873521; bh=Rzh5h6hptf9yOZs3d3uFVOqHj0Mb5xYELXZ+L15IaQk=;
-	h=Date:From:To:In-Reply-To:References:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=grtW3hiagHXOERNkBQFNLrckGB/nc8K7ZTeEQof01iiPN+m0Go9HV0vonqshPDCJ4
-	 hoh31dWLiSBKNH4UmhQ8X8P3scxDVmBowN6XGSiRfAso+SvMrOLthCdriCFRKBY2o9
-	 SZLhAIcpiAGLOXIYUsP2cqgCbSq9eTDqsMzNohV2rU6KfgOuRgrBQcFY6tmgfdFnwU
-	 uMFOjvFoHNjH2Ggmir6orW26YCara9Pz/I0SJzCCUKJfx1vKSvJzKAeFJbnJgg6Rcc
-	 1jzTVPAb7f9VTgbpR+CLH+7N/Ugd6tDg+bNhIM4XRbOwZR8+1mLN5XZWyOc2EaB2+Z
-	 4OPwYgrpQdJFg==
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id CBAF6383CAA
-	for <usrp-users@lists.ettus.com>; Wed,  8 Feb 2023 11:23:48 -0500 (EST)
+	t=1675882445; bh=5Raf8zQDwKH2DdCCxmW+ma6nIRs+SHW1PpQFYJU7F1M=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=Gqa1knWI73Jia627EXLrFsrXQgKeeuj2Jt7ZxohpjliSACFYQvPFNgLSRmZ1c01rQ
+	 Qhami9JUaJFymyShy3C/UTVn+6vuoCzGmHJPwc+cwdqpqqkHoORukECfiiuHX2GfI2
+	 kjBYh2pwvAFiznj0OhYXnFVot3xzIiKMDcLsXSrPH+fqvIbgCGetZaTXO40V8cFGTV
+	 nujasDf4mw9NTXk9HfgFXhCArROiBq73ro+CJKZodqn8PKmcfG5t2D/A+Xxvx0gF2S
+	 80nf0G/YbarzRsqIHasWx7bA7niuy2+9TG95DfZezBYK6adjL7rl2CEWbpaXpsxWXu
+	 IzP77EDBhE4XA==
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 6EB87380A4A
+	for <usrp-users@lists.ettus.com>; Wed,  8 Feb 2023 13:52:41 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VBhyCAs/";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OnYlFWeZ";
 	dkim-atps=neutral
-Received: by mail-ed1-f54.google.com with SMTP id l12so12302039edb.0
-        for <usrp-users@lists.ettus.com>; Wed, 08 Feb 2023 08:23:48 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id gr7so53473200ejb.5
+        for <usrp-users@lists.ettus.com>; Wed, 08 Feb 2023 10:52:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:subject:references:in-reply-to:message-id:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AxQvub9d28wBANFHar6LjP+8GfIVZIGh7Mvga25Agfw=;
-        b=VBhyCAs/Tw1fYZyxI6WuggA4gRCoU4xrQqtY2O63QXvQmgP8v7EonGPwFRLuGukWhx
-         y22w9kCdVDKiyzANcH9AGUKjvHENQmyT6UC5vhQM3zAOTs+uumJ+y84NxZQvKXXkICxO
-         7rlMYEpypbpEKm/d49uRavnRKHY+mILLla0jcONkBA0NhwhAJ/52SxX/wNu68eN0Lnbw
-         9J/76Sj+OIh6Sulns1RZgYAaSzmffw1gl7ZhqxZEDkUB6kLqkHIadFtgH/NE3CHHG/Uu
-         Zgt5DGdotXJFgdQuruUvZJMJ1P+34McMomDSq+1/gSMS16ht9XANqmXmVSPYkmoPNibc
-         sk+g==
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=nzJxTDLEwWMO9fhmcijk7qV4Z+rSWiu7uyWqlFrQ2Gk=;
+        b=OnYlFWeZkyzckT/+aGNDczrNCoKUnfdIfKUigkCmxq77HoqTR6F+UgBgqov7FmsK6+
+         zG0QjpEC6er1qqS5633/sbVBltV12gY8ARu/RaRHqg5T5iVo1CwhDg2fX6QBYXhcioHS
+         NJkqMtU1DCyIY5K2TlqO29CQ2uEvly9VX9O8CqjGXp7YpjdptUWPmJGKOQPOWa6pZ4U/
+         wLkVYkmkwVK7GQHBfBhyUKLDcJ2AhQFhPLea3rbE+FWCLDWFWlCbpCv+mC3zSb5/jS3G
+         0imencOzA9+Y1bXZda/X10/dqmnImXCBmSdk+0LIA0l0cdbUXRrLQ3IAmaK+4U6Ep8aJ
+         5j0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=mime-version:subject:references:in-reply-to:message-id:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AxQvub9d28wBANFHar6LjP+8GfIVZIGh7Mvga25Agfw=;
-        b=r9TxdhdlRAuGQdX2bKnd4pu3A3Evga/hf+FTw+mbst9+2M15Kv4cBG8vwEkzpGJis8
-         1dqkS2jPeGRSpbTQHSoX4h9Kwt2FO5++fdrmPZxcQjmYMwcQvB2i72J7PoFdQkP04S7S
-         Ww8vONKlQBjvzNAXV0xDUwZyzDM3ZXksi00pLpw/OUWpDLwJaeS0oyIUeINsP/NbA6uU
-         BXW1xxiUIM+loFToSxbTgwyOWx1NaLuZ/G977yZ0IJRdEpFJcYMwL0PGYqViMNvQRg7u
-         9fDpnUjaf4Vh2TsZrRQXTjukseLwHx5AuGCWbisPDC0MI1CCDnjnUEPXg0BlGnw7trHV
-         exjA==
-X-Gm-Message-State: AO0yUKUQKpnBGFEkiKyELzTyzhKmrzZwgIgZ7SODsQ0Sne3lV1/WHZ9q
-	1m2VexD5Wk5QibArFHVTYZxrQNaTNm4mtw==
-X-Google-Smtp-Source: AK7set8JSLRHqeG63BLdPV1sTi4R/OFVmOFqMkKhYLBgXtpXpzc/YA+l1tALTXp0r0xHHR/c8/LUxw==
-X-Received: by 2002:a05:6402:510f:b0:4aa:c483:6b31 with SMTP id m15-20020a056402510f00b004aac4836b31mr9909523edd.0.1675873427270;
-        Wed, 08 Feb 2023 08:23:47 -0800 (PST)
-Received: from [192.168.101.162] ([102.39.234.92])
-        by smtp.gmail.com with ESMTPSA id s22-20020aa7cb16000000b004a236384909sm8016750edt.10.2023.02.08.08.23.45
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 08 Feb 2023 08:23:46 -0800 (PST)
-Date: Wed, 8 Feb 2023 18:23:13 +0200
-From: Kevin Williams <zs1kwa@gmail.com>
-To: usrp-users@lists.ettus.com, "Marcus D. Leech"
- <patchvonbraun@gmail.com>
-Message-ID: <93d0ae0e-56a8-477a-b656-7f76c0caccaf@Spark>
-In-Reply-To: <f47522d2-6021-71a8-1f2f-be791a30d09d@gmail.com>
-References: <CADhJKjdHYYzX_XoGRdnhW1pnff-E9QoQ+O_QuKePdyURh39EyA@mail.gmail.com>
- <f47522d2-6021-71a8-1f2f-be791a30d09d@gmail.com>
-X-Readdle-Message-ID: 93d0ae0e-56a8-477a-b656-7f76c0caccaf@Spark
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nzJxTDLEwWMO9fhmcijk7qV4Z+rSWiu7uyWqlFrQ2Gk=;
+        b=b1rbzXVFBbjWQJvBWQ4ko2jYAAR+FOargwYrdbRR+bdaAHXU8574AURxz06VB15IS7
+         pIOiteG4NZYSLj7Hml5Txbf7QCyo3LIW2fV8+8KfSvSJTD8ihIKvWbM0XMUrhnWp6+Zu
+         usN2tA8h7JcRbzjjo99wKMKWiNySzW6kB8n2QIhkvOtkMpk7SRPsHW6GXDozdvZT4w/k
+         0OzOaYR1NUaq4byJMnAT8k0IpimUY+/xRZMlT8euQ0mpSK3esVQds5Z6YPbAn2ekX3s3
+         QtwUBYI6fQM+ea/1ia2wikvK5+8xV1v9YqeXRjahKr+J7zGw9au4ZuHL2kd3FEcgGUO1
+         lr1g==
+X-Gm-Message-State: AO0yUKWjr3HoD2KOsuM4RYgLpzH/p1jWH68yd82GlU80u0/KmPJHONC9
+	WTALIKUpgA9oooYGk0gFa6zL3ZotzCHzPeMNexWx9xTiXSCiuA==
+X-Google-Smtp-Source: AK7set9FIh2T26FhoMjIJER8E+FYO8N7Q0ySUO0DxRentgu/LQUVV+y3w89DXnMdx+SsoDGHC8PCrHBc3iPd9W97g7I=
+X-Received: by 2002:a17:906:af87:b0:881:dfda:173f with SMTP id
+ mj7-20020a170906af8700b00881dfda173fmr1993460ejb.197.1675882359924; Wed, 08
+ Feb 2023 10:52:39 -0800 (PST)
 MIME-Version: 1.0
-Message-ID-Hash: YN2JJRJNCRZ7RINHLFAC2H4GQKBIGRZ2
-X-Message-ID-Hash: YN2JJRJNCRZ7RINHLFAC2H4GQKBIGRZ2
-X-MailFrom: zs1kwa@gmail.com
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Wed, 8 Feb 2023 13:52:28 -0500
+Message-ID: <CAEXYVK5OZwSGaiNu8s0=F_e9-Tqyu4wW7PO+qdpxo7E9+6tAmA@mail.gmail.com>
+To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID-Hash: LDLGW4OER66OXQ2JVGSLQQNZSKUJSZIE
+X-Message-ID-Hash: LDLGW4OER66OXQ2JVGSLQQNZSKUJSZIE
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: MATLAB support for N320?
+Subject: [USRP-users] X410 and RFNoC Clock Domains
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YN2JJRJNCRZ7RINHLFAC2H4GQKBIGRZ2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LDLGW4OER66OXQ2JVGSLQQNZSKUJSZIE/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6268656704979453736=="
+Content-Type: multipart/mixed; boundary="===============0163028410210452871=="
 
---===============6268656704979453736==
-Content-Type: multipart/alternative; boundary="63e3cc8d_79e2a9e3_803b"
+--===============0163028410210452871==
+Content-Type: multipart/alternative; boundary="000000000000bfaa6205f434c47a"
 
---63e3cc8d_79e2a9e3_803b
-Content-Type: text/plain; charset="utf-8"
+--000000000000bfaa6205f434c47a
+Content-Type: text/plain; charset="UTF-8"
+
+I am trying to figure out the right way to use the clocks in RFNoC and the
+clock domains.  Referencing here:
+
+
+https://kb.ettus.com/Getting_Started_with_RFNoC_in_UHD_4.0#Example:_Adding_an_FFT_Block
+
+The tutorial says the X3XX has a `ce` clock of 214. 286 MHz, a `rfnoc_chdr`
+clock of 200 MHz, and the `radio` clock of the N32x is 250 MHz.  The X410
+appears to have a `radio` clock of 122.88 MHz, a `radio_2x` clock of 245.76
+MHz, and the `rfnoc_chdr` clock of 200 MHz.
+
+I think the only clocks exposed to RFNoC are the `radio`, `radio_2x`, and
+`rfnoc_chdr` clocks, but it seems those are mostly useless if I am trying
+to send at 491.52 MHz since there isn't enoch extra overhead to handle the
+insertion of the CHDR header.  The X3XX has a 214.286 MHz clock which is a
+little higher than the `radio` clock of 200 MHz.
+
+Is there a way to get a slightly faster clock that could handle worst case
+CHDR header insertion?  I don't know if the ~7% overhead on the X3XX is
+necessary - it could be that 125 MHz for a 122.88 MHz radio data stream is
+plenty so long as the SPP is high enough?
+
+Maybe something even dynamic such that if the master_clock is picked as
+either 245.76 MHz or 250 MHz that there could be the `ce` clock that is
+always guaranteed to be 1-7% faster?
+
+My solution was to use the 200 MHz `rfnoc_chdr` clock on the X410 with
+NIPC=4 to keep up with 491.52 MHz, but I could have easily just used a
+125-150 MHz clock, and eased up on the timing closure for my block.
+
+Either way - it would be great to get some best practices on the clock
+domains, and how to document their relative rates to each other?  Maybe
+even something that could tell me the clock domains available from
+rfnoc_image_builder along with their rates given a master_clock rate?
+
+Thanks,
+Brian
+
+--000000000000bfaa6205f434c47a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
 
-I am very active in developing firmware using Simulink and HDL Coder for =
-this.
+<div dir=3D"ltr">I am trying to figure out the right way to use the clocks =
+in RFNoC and the clock domains.=C2=A0 Referencing here:<div><br></div><div>=
+=C2=A0=C2=A0<a href=3D"https://kb.ettus.com/Getting_Started_with_RFNoC_in_U=
+HD_4.0#Example:_Adding_an_FFT_Block">https://kb.ettus.com/Getting_Started_w=
+ith_RFNoC_in_UHD_4.0#Example:_Adding_an_FFT_Block</a></div><div><br></div><=
+div>The tutorial says the X3XX has a `ce` clock of 214. 286 MHz, a `rfnoc_c=
+hdr` clock of 200 MHz, and the `radio` clock of the N32x is 250 MHz.=C2=A0 =
+The X410 appears to have a `radio` clock of 122.88 MHz, a `radio_2x` clock =
+of 245.76 MHz, and the `rfnoc_chdr` clock of 200 MHz.</div><div><br></div><=
+div>I think the only clocks exposed to RFNoC are the `radio`, `radio_2x`, a=
+nd `rfnoc_chdr` clocks, but it seems those are mostly useless if I am tryin=
+g to send at 491.52 MHz since there isn&#39;t enoch=C2=A0extra overhead to =
+handle the insertion of the CHDR header.=C2=A0 The X3XX has a 214.286 MHz c=
+lock which is a little higher than the `radio` clock of 200 MHz.</div><div>=
+<br></div><div>Is there a way to get a slightly faster clock that could han=
+dle worst case CHDR header insertion?=C2=A0 I don&#39;t know if the ~7% ove=
+rhead on the X3XX is necessary - it could be that 125 MHz for a 122.88 MHz =
+radio data stream is plenty so long as the SPP is high enough?</div><div><b=
+r></div><div>Maybe something even dynamic such that if the master_clock is =
+picked as either 245.76 MHz or 250 MHz that there could be the `ce` clock t=
+hat is always guaranteed to be 1-7% faster?</div><div><br></div><div>My sol=
+ution was to use the 200 MHz `rfnoc_chdr` clock on the X410 with NIPC=3D4 t=
+o keep up with 491.52 MHz, but I could have easily just used a 125-150 MHz =
+clock, and eased up on the timing closure for my block.</div><div><br></div=
+><div>Either way - it would be great to get some best practices on the cloc=
+k domains, and how to document their relative rates to each other?=C2=A0 Ma=
+ybe even something that could tell me the clock domains available from rfno=
+c_image_builder along with their rates given a master_clock rate?</div><div=
+><br></div><div>Thanks,</div><div>Brian</div></div>
 
-So far I wrap the Ettus noc shell as a black box and design my dsp firmwa=
-re around that.
+--000000000000bfaa6205f434c47a--
 
-It is fairly straightforward. The Ettus testbenches are happy, but now ju=
-st struggling with makefile issues for the main usrp image.
-
-Id be happy to talk about the ideas.
-
-Kind regards, Kevin
-On 08 =46eb 2023 at 18:17 +0200, Marcus D. Leech <patchvonbraun=40gmail.c=
-om>, wrote:
-> On 08/02/2023 11:12, Melissa Lind wrote:
-> > I needed to do some 5G work with MATLAB's 5G Toolbox, and was wonderi=
-ng if someone could clarify:
-> >
-> > https://www.mathworks.com/hardware-support/usrp.html claims:
-> > N300 series from Ettus Research LLC
-> >
-> > https://www.mathworks.com/hardware-support/ni-usrp-radios.html claims=
-:
-> > seems to have a picture of an N320
-> >
-> > There isn't any description of what is different between N320 support=
- for:
-> >
-> > =E2=80=A2 NI USRP Radio Support from Wireless Testbench
-> > =E2=80=A2 USRP Support from Communications Toolbox
-> >
-> > Thanks
-> > M
-> >
-> You might get more-detailed answers from Mathworks.=C2=A0=C2=A0 Ettus/N=
-I aren't directly involved in that support.
->
->
->
-> =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
-> USRP-users mailing list -- usrp-users=40lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave=40lists.ettus.com
-
---63e3cc8d_79e2a9e3_803b
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: inline
-
-<html xmlns=3D=22http://www.w3.org/1999/xhtml=22>
-<head>
-<title></title>
-</head>
-<body>
-<div name=3D=22messageBodySection=22>
-<div dir=3D=22auto=22>I am very active in developing firmware using Simul=
-ink and HDL Coder for this.<br />
-<br />
-So far I wrap the Ettus noc shell as a black box and design my dsp firmwa=
-re around that.<br />
-<br />
-It is fairly straightforward. The Ettus testbenches are happy, but now ju=
-st struggling with makefile issues for the main usrp image.<br />
-<br />
-Id be happy to talk about the ideas.<br />
-<br />
-Kind regards, Kevin</div>
-</div>
-<div name=3D=22messageReplySection=22>On 08 =46eb 2023 at 18:17 +0200, Ma=
-rcus D. Leech &lt;patchvonbraun=40gmail.com&gt;, wrote:<br />
-<blockquote type=3D=22cite=22 style=3D=22border-left-color: grey; border-=
-left-width: thin; border-left-style: solid; margin: 5px 5px;padding-left:=
- 10px;=22>
-<div class=3D=22moz-cite-prefix=22>On 08/02/2023 11:12, Melissa Lind wrot=
-e:<br /></div>
-<blockquote type=3D=22cite=22 cite=3D=22mid:CADhJKjdHYYzX=5FXoGRdnhW1pnff=
--E9QoQ+O=5FQuKePdyURh39EyA=40mail.gmail.com=22>
-<meta http-equiv=3D=22content-type=22 content=3D=22text/html; charset=3DU=
-T=46-8=22 />
-<div dir=3D=22ltr=22>I needed to do some 5G work with MATLAB's 5G Toolbox=
-, and was wondering if someone could clarify:
-<div><br /></div>
-<div><a href=3D=22https://www.mathworks.com/hardware-support/usrp.html=22=
- moz-do-not-send=3D=22true=22 class=3D=22moz-txt-link-freetext=22>https:/=
-/www.mathworks.com/hardware-support/usrp.html</a> claims:</div>
-<div>N300 series from Ettus Research LLC<br /></div>
-<div><br /></div>
-<div><a href=3D=22https://www.mathworks.com/hardware-support/ni-usrp-radi=
-os.html=22 moz-do-not-send=3D=22true=22 class=3D=22moz-txt-link-freetext=22=
->https://www.mathworks.com/hardware-support/ni-usrp-radios.html</a> claim=
-s:<br /></div>
-<div>seems to have a picture of an N320</div>
-<div><br /></div>
-<div>There isn't any description of what is different between N320 suppor=
-t for:</div>
-<div>
-<ul>
-<li>NI USRP Radio Support from Wireless Testbench<br /></li>
-<li>USRP Support from Communications Toolbox<br /></li>
-</ul>
-<div>Thanks</div>
-</div>
-<div>M</div>
-<div><br /></div>
-</div>
-</blockquote>
-You might get more-detailed answers from Mathworks.&=23160;&=23160; Ettus=
-/NI aren't directly involved in that support.<br />
-<br />
-<br />
-<br />
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
-=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F<br />
-USRP-users mailing list -- usrp-users=40lists.ettus.com<br />
-To unsubscribe send an email to usrp-users-leave=40lists.ettus.com<br /><=
-/blockquote>
-</div>
-</body>
-</html>
-
---63e3cc8d_79e2a9e3_803b--
-
---===============6268656704979453736==
+--===============0163028410210452871==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -224,4 +165,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6268656704979453736==--
+--===============0163028410210452871==--
