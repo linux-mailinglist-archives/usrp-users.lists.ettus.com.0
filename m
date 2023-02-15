@@ -2,324 +2,280 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45228694BF5
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Feb 2023 17:03:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C12C6981BF
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Feb 2023 18:17:51 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 37740384538
-	for <lists+usrp-users@lfdr.de>; Mon, 13 Feb 2023 11:03:05 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E916E3845F5
+	for <lists+usrp-users@lfdr.de>; Wed, 15 Feb 2023 12:17:49 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1676304185; bh=1A8kWHdsi1w9k40tn4khPn6kGRDf9w5zMzZEe5QVY7g=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=g+A4I4o3rcZtuQL0ZXASu5QfLkqOQnk2W4xwatlcR9lY5b9RMTFoqH5Z7C0qGz9AY
-	 0lmDk6fsUMr5NhnjGfl3J98VwioGMnp+NcQ1rsrrvZw80IYFhZnxb0hke9bitql6hw
-	 cGAfH7m/1J+TeZo2TYtJ4FrvNyqvWiqjyfJ4wCEoPntjNRpiBhRycjt/JvqWwi1r7H
-	 i0T8/p9EZcxgYypPbrY4v4Ng5+h0GCNQE1iHmScPdfQgv8/J+9ujczRqwVjb4f680e
-	 RizlLXJGqIopmn06p688cqvwvSdPKIwzJn+hxPM1VatIBV+sSi35fkqryMd2r4FBv/
-	 9HbqiB6ZadZXw==
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8C480380AC4
-	for <usrp-users@lists.ettus.com>; Mon, 13 Feb 2023 11:02:14 -0500 (EST)
+	t=1676481469; bh=gxumhXRmlJQ//ZRINGTMaWf4rIUsy5I1Glvw5p3aI08=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=CnmJT1j08qSnjcYT1T+Gv7Ngat+xY5x4wxkla/AkX+9tfi+Cd9O+vRNxAbpzrmZg1
+	 XFjsBv1d8vEPptaiNTn/TDRon2B42eeFkSRfUUI2Jf+hT7iJK1i3WeLhjpHNOt6MX0
+	 JL7guaJffVvWGXVWdpXmJH5zu7zTpIZrMfSZy6CRFm2c4HnBO6DR6i10DqoC1aKoO3
+	 hFuOIPG4t/IMUd3wBCHIhQhaNfZ4zIVxmV9jAoNRAxqpNVX0kgToSlOqcKTN9q08mL
+	 xqg/tuKL4LFfLFA0NSAg+Bwd9yVOgzPZsvzP7G+aSsTHv61e2scODt9E7mCek/u+1I
+	 1r0bF4j+vkRTg==
+Received: from mail-oa1-f97.google.com (mail-oa1-f97.google.com [209.85.160.97])
+	by mm2.emwd.com (Postfix) with ESMTPS id C2802383E4B
+	for <usrp-users@lists.ettus.com>; Wed, 15 Feb 2023 12:17:02 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="CAzndIsn";
+	dkim=pass (2048-bit key; unprotected) header.d=gotenna.com header.i=@gotenna.com header.b="DsHMG6VA";
 	dkim-atps=neutral
-Received: by mail-wr1-f43.google.com with SMTP id k3so5134343wrv.5
-        for <usrp-users@lists.ettus.com>; Mon, 13 Feb 2023 08:02:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JK5OoupAsicBRe50GZtPqoVM8zO1i++OgEhEr3r4Y30=;
-        b=CAzndIsnPZ7uafKSmcwEXCfH2qMyBDYvIN5Bgo+rbIuPxbXE2DVz7asD6fPzfzXAcH
-         tWJp21elCRp4vA8ClI4lJdiqxXZhTRa+Bx9iWTiLAQHmVpOSTXVu2a16kG/0OI7Y6JIZ
-         YdCPVIvUKq6W6piOLO3/CYf6yPmKzbZHK0zic6jvdejlyK58aUCgh3Nfe7U3XP9ONHWG
-         OS7CN3hqp2ZUnr7RG4gFDAOhGTxw6M5ZAiJFKhoQECU/knL4dGdn58Fx/Qx/GEra5GyZ
-         PHOTfUY6AzsnlVB/P1XUYoRXtQXZ29KLrT7D3YR6AXtCT1EkdA3F7pDf7b0XK8N2N2ug
-         +dgA==
+Received: by mail-oa1-f97.google.com with SMTP id 586e51a60fabf-16a7f5b6882so23703427fac.10
+        for <usrp-users@lists.ettus.com>; Wed, 15 Feb 2023 09:17:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=JK5OoupAsicBRe50GZtPqoVM8zO1i++OgEhEr3r4Y30=;
-        b=a96NZq1SCxi/4ISQLqB32P0odvKjvij7LWoSJ4+X0nfyeaZfF/AaJnaxq2TaDkqumz
-         3CRyHJ1T23lN5AzMEGcv8Sh3A7tX7BbOtiUaQCXOXjCWvvLPb7PRu20RTvZ6/kjjC5LO
-         9LjRvgoSI6G/Upsy4IVRkuFGyDSLbhFVKOr0E98XXKbBOzlwtTFfnj1noDkZaZ8xgleL
-         g7qPGK4sZwCCq69PzpSwI9wjBbqVLNFSJMrxhdw1IHJ6JMCuGMBdu6FKZy7sPih2ZYV7
-         RK5rSmarLoAWC+UT6LGf4fVfb4e7xYSOtTHYhw1jg/QzNnO/+8vFNXCelYwqCGqyK6HD
-         TKzA==
-X-Gm-Message-State: AO0yUKWKrH67S5/nmNfP8I/p25ts1t95s4KGvEbp8YGWnabuARbZ7/E3
-	cSr56P7auxaH8oZZDusFN9/wz8oCYp/N76oRXxE=
-X-Google-Smtp-Source: AK7set9SH5+x2QNJ2NCBHRx7gbl6ROQNPLgjZa7dG8KMrORkfa1R8y6HHeBqgajg2uWVwXOXOfScQQ==
-X-Received: by 2002:a5d:4589:0:b0:2c5:5945:ae84 with SMTP id p9-20020a5d4589000000b002c55945ae84mr2488215wrq.62.1676304133126;
-        Mon, 13 Feb 2023 08:02:13 -0800 (PST)
-Received: from ?IPV6:2001:9e8:3877:6b00:998f:ca6a:6065:3212? ([2001:9e8:3877:6b00:998f:ca6a:6065:3212])
-        by smtp.gmail.com with ESMTPSA id l17-20020a5d6691000000b002c549dd0a4bsm8685418wru.37.2023.02.13.08.02.12
+        h=to:subject:message-id:date:from:mime-version:dkim-signature
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3oVxtddd5TngoVIUbftfr4RJ6MVhUkpUISaqI3DxdYQ=;
+        b=WMpSkL3IrZsOQ56dw+EKXlm9Z9SKSvjWC+XHieyI518P8kxwZpMNCEjs6S3GhKmI62
+         4/EIXgFHe0N6aNCef+LQ5GworaIU0XG2biNlt6oPdunA2HipNV5kNafc38argKCcNqkn
+         kcMpxlRAgAKcy8PEJtaE0MbtGdij/0GFQ5nnccx4MvgCPys+tpPwGCuS32p41NCsAw+c
+         kh2sqGc1+QzD2DlIqNp6ST+S7AUVaXDlzx5z6r2chdEDlWoyILAD86grmagkOOg6DWKd
+         SkzhC2Mdj1Ur+XBcq7zIT86hUDa/YdVJs90APmDXWsPyDN6yY2GRQiroKV2zso6cOOBP
+         X1aA==
+X-Gm-Message-State: AO0yUKX3KeeRjfmmOkNdTe4vqfTMMPnURJ/EjqO27q2TrZSv/9G2tlcG
+	U6A6qnhvYCeXZt0dx0d7q0va1ZmSQF6HXOaxa8cM/YqkByAGkenPM2Y=
+X-Google-Smtp-Source: AK7set+xf/wEMRewv1cOPrEHUWqNwDHMxUNoRbvdzDUUK08PrO4HnJt8TaFHy6Q+QHbX1xuaZsBvOg6UWmNa
+X-Received: by 2002:a05:6871:1c5:b0:16a:c358:939b with SMTP id q5-20020a05687101c500b0016ac358939bmr1551365oad.43.1676481421983;
+        Wed, 15 Feb 2023 09:17:01 -0800 (PST)
+Received: from us1.smtp.exclaimer.net (us1.smtp.exclaimer.net. [191.237.4.149])
+        by smtp-relay.gmail.com with ESMTPS id b42-20020a056870472a00b0016326411c09sm467109oaq.24.2023.02.15.09.17.01
         for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Feb 2023 08:02:12 -0800 (PST)
-Message-ID: <a38636a6-2429-0a03-1369-c8fc0f71fa93@ettus.com>
-Date: Mon, 13 Feb 2023 17:02:12 +0100
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 Feb 2023 09:17:01 -0800 (PST)
+X-Relaying-Domain: gotenna.com
+Received: from mail-pg1-f197.google.com (209.85.215.197) by
+	 us1.smtp.exclaimer.net (191.237.4.149) with Exclaimer Signature Manager
+	 ESMTP Proxy us1.smtp.exclaimer.net (tlsversion=TLS12,
+	 tlscipher=TLS_ECDHE_WITH_AES256_SHA1); Wed, 15 Feb 2023 17:17:01 +0000
+X-ExclaimerHostedSignatures-MessageProcessed: true
+X-ExclaimerProxyLatency: 5436538
+X-ExclaimerImprintLatency: 1186429
+X-ExclaimerImprintAction: b5dd8a60e19b42139ec8d2eab075acb0
+Received: by mail-pg1-f197.google.com with SMTP id c9-20020a63da09000000b004fb1a5a46e9so7514572pgh.20
+        for <usrp-users@lists.ettus.com>; Wed, 15 Feb 2023 09:17:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gotenna.com; s=google;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=3oVxtddd5TngoVIUbftfr4RJ6MVhUkpUISaqI3DxdYQ=;
+        b=DsHMG6VAN2cXu2w3Ky3CaDGtDtp4RYZlrloQKKxnr+e7FfH0aEEPnlYk8Fqn8AfT3h
+         z8ko4s8Z5UuTZtfCPQtMSoiLUCuCu99pmqGIJCMOEsbdZ4cbveFsznwzAUKGUgCX42WI
+         7J3EF32JK/Vn5fMuds8j0hnOCdpRMfZJ4Ss9w4Jo25QwteBhzSlUbRIRf7B39Bn6zJ+X
+         g4MSJh0goY21cW9ksIr19AYUUuPwlSzkwy4fO0rSoMfhQo0NmbP0+7xF4RSYhqeM8t7y
+         260oKMFs6hrHEML5yRnlJmxuZWceWtLW7eAkIqbC23+DLO8AqTgsX0nW+gSq0xqD5Wfi
+         wL5w==
+X-Received: by 2002:a17:90b:38cf:b0:22b:fa02:2a12 with SMTP id nn15-20020a17090b38cf00b0022bfa022a12mr14381pjb.25.1676481420279;
+        Wed, 15 Feb 2023 09:17:00 -0800 (PST)
+X-Received: by 2002:a17:90b:38cf:b0:22b:fa02:2a12 with SMTP id
+ nn15-20020a17090b38cf00b0022bfa022a12mr14377pjb.25.1676481419943; Wed, 15 Feb
+ 2023 09:16:59 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Content-Language: en-US
+From: Maxim Belotserkovsky <maxim@gotenna.com>
+Date: Wed, 15 Feb 2023 11:16:49 -0600
+Message-ID: <CA+7S2faqLLV2ePy4Up3u8pnZ2gJJJp3Fu6mmUCoDGkK3EqgxJg@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <CA+7S2fZ8Zn-eAWGeM-V_8Ns=LbXV-X0UpurpbjXut9NDE0KFzw@mail.gmail.com>
-From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
-In-Reply-To: <CA+7S2fZ8Zn-eAWGeM-V_8Ns=LbXV-X0UpurpbjXut9NDE0KFzw@mail.gmail.com>
-Message-ID-Hash: 6QVEKDEYVGYEF3EIW6X72J6E2G4LMBC4
-X-Message-ID-Hash: 6QVEKDEYVGYEF3EIW6X72J6E2G4LMBC4
-X-MailFrom: marcus.mueller@ettus.com
+Message-ID-Hash: OF3XPPV77YSQM7L7LYQNSFGKKR4T6QBI
+X-Message-ID-Hash: OF3XPPV77YSQM7L7LYQNSFGKKR4T6QBI
+X-MailFrom: maxim@gotenna.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Question about using E-series radio in Windows under WSL
+Subject: [USRP-users] Questions about USRP SDR devices
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6QVEKDEYVGYEF3EIW6X72J6E2G4LMBC4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/OF3XPPV77YSQM7L7LYQNSFGKKR4T6QBI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0900265848930037269=="
+Content-Type: multipart/mixed; boundary="===============0967635813593400923=="
 
-This is a multi-part message in MIME format.
---===============0900265848930037269==
-Content-Type: multipart/alternative;
- boundary="------------MEpdmD6EXtq3PO923wgHQqc3"
-Content-Language: en-US
+--===============0967635813593400923==
+Content-Type: multipart/alternative; boundary="000000000000823dc905f4c03f79"
 
-This is a multi-part message in MIME format.
---------------MEpdmD6EXtq3PO923wgHQqc3
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000823dc905f4c03f79
+Content-Type: text/plain; charset="UTF-8"
+
+Can anyone please comment on the following:
+
+
+   -
+
+   1) Can 2 ( or more ) instances of B-series (or other Ettus) SDRs be
+   supported by a SINGLE GR flowgraph (e.g. one for TX chain, another for
+   RX)? Can 2 independent devices hooked up to 2 USB ports talk to 2
+   instances of the UHD driver on the same machine (under Windows/Linux)?
+   -
+
+
+   -
+
+   2)Is UHD able to be run on an Android device and control a USRP SDR
+   (using USB OTG, for example)? If not, are there other ways to have an
+   Android app control the USRP SDR in real time?
+   -
+
+
+   -
+
+   3) Custom B200 firmware: if I program the FPGA over USB (using Xilinx HW
+   manager), will the image persist if I turn off power to device (I.e.
+   disconnect USB)? In other words, is there a FLASH or some other
+   persistent storage on-board to hold on to user-defined FPGA firmware after
+   power-down?
+
+
+Thanks!
+
+--
+
+--000000000000823dc905f4c03f79
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Maxim,
+<div dir=3D"ltr">Can anyone please comment on the following:<div><br></div>=
+<div><ul class=3D"gmail-BulletListStyle1 gmail-SCXW76715474 gmail-BCX0" rol=
+e=3D"list" style=3D"margin:0px;padding:0px;overflow:visible;font-family:ver=
+dana;color:rgb(0,0,0);font-size:14.6667px"><li role=3D"listitem" class=3D"g=
+mail-OutlineElement gmail-Ltr gmail-SCXW76715474 gmail-BCX0" style=3D"margi=
+n:0px 0px 0px 24px;padding:0px;overflow:visible;clear:both;direction:ltr;di=
+splay:block;font-size:11pt;font-family:Calibri,Calibri_MSFontService,sans-s=
+erif;vertical-align:baseline"><p class=3D"gmail-Paragraph gmail-SCXW7671547=
+4 gmail-BCX0" lang=3D"EN-US" style=3D"margin:0px;padding:0px;white-space:pr=
+e-wrap;vertical-align:baseline;font-kerning:none;background-color:transpare=
+nt;color:windowtext"><span lang=3D"EN-US" class=3D"gmail-TextRun gmail-SCXW=
+76715474 gmail-BCX0" style=3D"margin:0px;padding:0px;font-size:11pt;line-he=
+ight:19.425px;font-family:Calibri,Calibri_EmbeddedFont,Calibri_MSFontServic=
+e,sans-serif;font-variant-ligatures:none"><span class=3D"gmail-NormalTextRu=
+n gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px">1) Can 2 =
+</span><span class=3D"gmail-NormalTextRun gmail-ContextualSpellingAndGramma=
+rErrorV2Themed gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0=
+px;background-repeat:repeat-x;background-position:0% 100%;border-bottom:1px=
+ solid transparent">( or</span><span class=3D"gmail-NormalTextRun gmail-SCX=
+W76715474 gmail-BCX0" style=3D"margin:0px;padding:0px"> </span><span class=
+=3D"gmail-NormalTextRun gmail-ContextualSpellingAndGrammarErrorV2Themed gma=
+il-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px;background-repe=
+at:repeat-x;background-position:0% 100%;border-bottom:1px solid transparent=
+">more )</span><span class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-=
+BCX0" style=3D"margin:0px;padding:0px"> instances of B-series (or other Ett=
+us) SDRs be supported by a SINGLE GR flowgraph (</span><span class=3D"gmail=
+-NormalTextRun gmail-ContextualSpellingAndGrammarErrorV2Themed gmail-SCXW76=
+715474 gmail-BCX0" style=3D"margin:0px;padding:0px;background-repeat:repeat=
+-x;background-position:0% 100%;border-bottom:1px solid transparent">e.g.</s=
+pan><span class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=
+=3D"margin:0px;padding:0px"> one for TX chain, another for RX)? C</span><sp=
+an class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"mar=
+gin:0px;padding:0px">an 2 independent devices hooked up to 2 USB ports talk=
+ to 2 instances of the UHD driver on the same machine (under Windows/Linux)=
+?</span></span><span class=3D"gmail-EOP gmail-SCXW76715474 gmail-BCX0" styl=
+e=3D"margin:0px;padding:0px;font-size:11pt;line-height:19.425px;font-family=
+:Calibri,Calibri_EmbeddedFont,Calibri_MSFontService,sans-serif">=C2=A0</spa=
+n></p></li><li role=3D"listitem" class=3D"gmail-OutlineElement gmail-Ltr gm=
+ail-SCXW76715474 gmail-BCX0" style=3D"margin:0px 0px 0px 24px;padding:0px;o=
+verflow:visible;clear:both;direction:ltr;display:block;font-size:11pt;font-=
+family:Calibri,Calibri_MSFontService,sans-serif;vertical-align:baseline"><p=
+ class=3D"gmail-Paragraph gmail-SCXW76715474 gmail-BCX0" lang=3D"EN-US" sty=
+le=3D"margin:0px;padding:0px;white-space:pre-wrap;vertical-align:baseline;f=
+ont-kerning:none;background-color:transparent;color:windowtext"><span lang=
+=3D"EN-US" class=3D"gmail-TextRun gmail-SCXW76715474 gmail-BCX0" style=3D"m=
+argin:0px;padding:0px;font-size:11pt;line-height:19.425px;font-family:Calib=
+ri,Calibri_EmbeddedFont,Calibri_MSFontService,sans-serif;font-variant-ligat=
+ures:none"><span class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0=
+" style=3D"margin:0px;padding:0px"><br></span></span></p></li><li role=3D"l=
+istitem" class=3D"gmail-OutlineElement gmail-Ltr gmail-SCXW76715474 gmail-B=
+CX0" style=3D"margin:0px 0px 0px 24px;padding:0px;overflow:visible;clear:bo=
+th;direction:ltr;display:block;font-size:11pt;font-family:Calibri,Calibri_M=
+SFontService,sans-serif;vertical-align:baseline"><p class=3D"gmail-Paragrap=
+h gmail-SCXW76715474 gmail-BCX0" lang=3D"EN-US" style=3D"margin:0px;padding=
+:0px;white-space:pre-wrap;vertical-align:baseline;font-kerning:none;backgro=
+und-color:transparent;color:windowtext"><span lang=3D"EN-US" class=3D"gmail=
+-TextRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px;fon=
+t-size:11pt;line-height:19.425px;font-family:Calibri,Calibri_EmbeddedFont,C=
+alibri_MSFontService,sans-serif;font-variant-ligatures:none"><span class=3D=
+"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;pad=
+ding:0px">2)Is UHD able to be run on an Android device and control a USRP S=
+DR  (using USB OTG, for example)? If not, are there other ways to </span><s=
+pan class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"ma=
+rgin:0px;padding:0px">have an </span></span><span lang=3D"EN-US" class=3D"g=
+mail-TextRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px=
+;font-size:11pt;line-height:19.425px;font-family:Calibri,Calibri_EmbeddedFo=
+nt,Calibri_MSFontService,sans-serif;font-variant-ligatures:none"><span clas=
+s=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px=
+;padding:0px">Android</span><span class=3D"gmail-NormalTextRun gmail-SCXW76=
+715474 gmail-BCX0" style=3D"margin:0px;padding:0px"> app control the USRP S=
+DR in real time?</span></span><span class=3D"gmail-EOP gmail-SCXW76715474 g=
+mail-BCX0" style=3D"margin:0px;padding:0px;font-size:11pt;line-height:19.42=
+5px;font-family:Calibri,Calibri_EmbeddedFont,Calibri_MSFontService,sans-ser=
+if">=C2=A0</span></p></li><li role=3D"listitem" class=3D"gmail-OutlineEleme=
+nt gmail-Ltr gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px 0px 0px 24p=
+x;padding:0px;overflow:visible;clear:both;direction:ltr;display:block;font-=
+size:11pt;font-family:Calibri,Calibri_MSFontService,sans-serif;vertical-ali=
+gn:baseline"><p class=3D"gmail-Paragraph gmail-SCXW76715474 gmail-BCX0" lan=
+g=3D"EN-US" style=3D"margin:0px;padding:0px;white-space:pre-wrap;vertical-a=
+lign:baseline;font-kerning:none;background-color:transparent;color:windowte=
+xt"><span lang=3D"EN-US" class=3D"gmail-TextRun gmail-SCXW76715474 gmail-BC=
+X0" style=3D"background-color:transparent;color:windowtext;font-size:11pt;m=
+argin:0px;padding:0px;line-height:19.425px;font-family:Calibri,Calibri_Embe=
+ddedFont,Calibri_MSFontService,sans-serif;font-variant-ligatures:none"><spa=
+n class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"marg=
+in:0px;padding:0px"><br></span></span></p></li><li role=3D"listitem" class=
+=3D"gmail-OutlineElement gmail-Ltr gmail-SCXW76715474 gmail-BCX0" style=3D"=
+margin:0px 0px 0px 24px;padding:0px;overflow:visible;clear:both;direction:l=
+tr;display:block;font-size:11pt;font-family:Calibri,Calibri_MSFontService,s=
+ans-serif;vertical-align:baseline"><p class=3D"gmail-Paragraph gmail-SCXW76=
+715474 gmail-BCX0" lang=3D"EN-US" style=3D"margin:0px;padding:0px;white-spa=
+ce:pre-wrap;vertical-align:baseline;font-kerning:none;background-color:tran=
+sparent;color:windowtext"><span lang=3D"EN-US" class=3D"gmail-TextRun gmail=
+-SCXW76715474 gmail-BCX0" style=3D"background-color:transparent;color:windo=
+wtext;font-size:11pt;margin:0px;padding:0px;line-height:19.425px;font-famil=
+y:Calibri,Calibri_EmbeddedFont,Calibri_MSFontService,sans-serif;font-varian=
+t-ligatures:none"><span class=3D"gmail-NormalTextRun gmail-SCXW76715474 gma=
+il-BCX0" style=3D"margin:0px;padding:0px">3) Custom B200 firmware: if I pro=
+gram the FPGA over USB (using Xilinx HW manager), will the image persist if=
+ I </span><span class=3D"gmail-NormalTextRun gmail-SpellingErrorV2Themed gm=
+ail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px;background-rep=
+eat:repeat-x;background-position:0% 100%;border-bottom:1px solid transparen=
+t">turn</span><span class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-B=
+CX0" style=3D"margin:0px;padding:0px"> off power to </span><span class=3D"g=
+mail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;paddi=
+ng:0px">device (</span><span class=3D"gmail-NormalTextRun gmail-ContextualS=
+pellingAndGrammarErrorV2Themed gmail-SCXW76715474 gmail-BCX0" style=3D"marg=
+in:0px;padding:0px;background-repeat:repeat-x;background-position:0% 100%;b=
+order-bottom:1px solid transparent">I.e.</span><span class=3D"gmail-NormalT=
+extRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px"> dis=
+connect USB)? In other words, is there </span><span class=3D"gmail-NormalTe=
+xtRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px">a FLA=
+SH or some other persistent storage on-board to hold on to user-defined FPG=
+A firmware after power-down?</span></span><span class=3D"gmail-EOP gmail-SC=
+XW76715474 gmail-BCX0" style=3D"background-color:transparent;color:windowte=
+xt;font-size:11pt;margin:0px;padding:0px;line-height:19.425px;font-family:C=
+alibri,Calibri_EmbeddedFont,Calibri_MSFontService,sans-serif">=C2=A0</span>=
+<br></p></li></ul><div><font color=3D"#000000" face=3D"Calibri, Calibri_Emb=
+eddedFont, Calibri_MSFontService, sans-serif"><span style=3D"font-size:14.6=
+667px;white-space:pre-wrap"><br></span></font></div><div><font color=3D"#00=
+0000" face=3D"Calibri, Calibri_EmbeddedFont, Calibri_MSFontService, sans-se=
+rif"><span style=3D"font-size:14.6667px;white-space:pre-wrap">Thanks!</span=
+></font></div><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signatu=
+re" data-smartmail=3D"gmail_signature"><div dir=3D"ltr" style=3D"font-size:=
+1px;direction:ltr"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" =
+style=3D"width:100%;font-size:1px"><tbody><tr style=3D"font-size:0"><td ali=
+gn=3D"left" style=3D"vertical-align:top"><table cellpadding=3D"0" cellspaci=
+ng=3D"0" border=3D"0" style=3D"width:0;font-size:0"><tbody><tr style=3D"fon=
+t-size:0"><td align=3D"left"><br></td></tr></tbody></table></td></tr><tr st=
+yle=3D"font-size:0"><td align=3D"left" style=3D"vertical-align:top"><table =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"font-size:0;line-=
+height:normal"><tbody><tr style=3D"font-size:0"><td align=3D"left" style=3D=
+"padding:1px 0 0;vertical-align:top"><br></td></tr></tbody></table></td></t=
+r></tbody></table></div></div></div></div>
 
-UHD/RFNoC doesn't need any "special" capabilities of your network stack; =
-only the ability=20
-to pass through relatively high-rate data without reordering packets. I h=
-ad students=20
-myself that worked with N-series USRPs under WSL, that works just fine.
+--000000000000823dc905f4c03f79--
 
-The Radioconda installation method of GNU Radio [1] works pretty nicely u=
-nder windows, as=20
-well, and gives you a native UHD (currently: UHD 4.3.0), without you havi=
-ng to compile=20
-anything from source (aside from your own module). You can find the radio=
-conda windows=20
-installer right here [2].
-
-Best regards,
-Marcus
-
-[1] https://wiki.gnuradio.org/index.php?title=3DCondaInstall
-[2] https://github.com/ryanvolz/radioconda/releases=C2=A0 (might have to =
-click on "show all N=20
-assets") on the most current release.
-
-On 13.02.23 16:48, Maxim Belotserkovsky wrote:
-> Have plans to take a GR flowgraff and port the design to the on-board F=
-PGA in one of the=20
-> Ettus product (most likely E320). Currently, the GR flowgraff has been =
-developed inside=20
-> a Docker desktop that uses WSL under windows. The concern is that it ma=
-y be=20
-> non-trivial/impossible to use RFNoC to incorporate HW acceleration beca=
-use communication=20
-> from GNU flowgraph to FPGA and back via UHD is not supported. So far ha=
-ve been unable to=20
-> find clear answers on Ettus site etc. Any comments? Thanks
->
-> --=20
-> Maxim=C2=A0Belotserkovsky
->
-> maxim@gotenna.com
->
-> <https://gotenna.com/>
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------MEpdmD6EXtq3PO923wgHQqc3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Hi Maxim,</p>
-    <p>UHD/RFNoC doesn't need any "special" capabilities of your network
-      stack; only the ability to pass through relatively high-rate data
-      without reordering packets. I had students myself that worked with
-      N-series USRPs under WSL, that works just fine.</p>
-    <p>The Radioconda installation method of GNU Radio [1] works pretty
-      nicely under windows, as well, and gives you a native UHD
-      (currently: UHD 4.3.0), without you having to compile anything
-      from source (aside from your own module). You can find the
-      radioconda windows installer right here [2].</p>
-    <p>Best regards,<br>
-      Marcus<br>
-    </p>
-    <p>[1] <a class=3D"moz-txt-link-freetext" href=3D"https://wiki.gnurad=
-io.org/index.php?title=3DCondaInstall">https://wiki.gnuradio.org/index.ph=
-p?title=3DCondaInstall</a><br>
-      [2] <a class=3D"moz-txt-link-freetext" href=3D"https://github.com/r=
-yanvolz/radioconda/releases">https://github.com/ryanvolz/radioconda/relea=
-ses</a>=C2=A0 (might have
-      to click on "show all N assets") on the most current release.<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 13.02.23 16:48, Maxim Belotserkovsk=
-y
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CA+7S2fZ8Zn-eAWGeM-V_8Ns=3DLbXV-X0UpurpbjXut9NDE0KFzw@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Have plans to take a GR flowgraff and port the
-        design to the on-board FPGA in one of the Ettus product (most
-        likely E320). Currently, the GR flowgraff has been developed
-        inside a Docker desktop that uses WSL under windows. The concern
-        is that it may be non-trivial/impossible to use RFNoC to
-        incorporate HW acceleration because communication from GNU
-        flowgraph to FPGA and back via UHD is not supported. So far have
-        been unable to find clear answers on Ettus site etc. Any
-        comments? Thanks<br clear=3D"all">
-        <div><br>
-        </div>
-        -- <br>
-        <div dir=3D"ltr" class=3D"gmail_signature"
-          data-smartmail=3D"gmail_signature">
-          <div dir=3D"ltr" style=3D"font-size:1px;direction:ltr">
-            <table style=3D"width:100%;font-size:1px" cellspacing=3D"0"
-              cellpadding=3D"0" border=3D"0">
-              <tbody>
-                <tr style=3D"font-size:0">
-                  <td style=3D"vertical-align:top" align=3D"left">
-                    <table style=3D"width:0;font-size:0" cellspacing=3D"0=
-"
-                      cellpadding=3D"0" border=3D"0">
-                      <tbody>
-                        <tr style=3D"font-size:0">
-                          <td align=3D"left">
-                            <table
-style=3D"font-size:0;color:#000001;font-style:normal;font-weight:700;whit=
-e-space:nowrap"
-                              cellspacing=3D"0" cellpadding=3D"0" border=3D=
-"0">
-                              <tbody>
-                                <tr style=3D"font-size:13.33px">
-                                  <td
-                                    style=3D"vertical-align:top;font-fami=
-ly:Arial"
-                                    align=3D"left">Maxim=C2=A0Belotserkov=
-sky<span
-style=3D"font-family:remialcxesans;font-size:1px;color:#ffffff;line-heigh=
-t:1px"><span
-style=3D"font-family:'template-aLaXcd5FEeqLAwANOhMLNA'"></span><span
-                                        style=3D"font-family:'zone-1'"></=
-span><span
-                                        style=3D"font-family:'zones-AQ'">=
-</span></span></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-                <tr style=3D"font-size:0">
-                  <td style=3D"vertical-align:top" align=3D"left">
-                    <table style=3D"font-size:0" cellspacing=3D"0"
-                      cellpadding=3D"0" border=3D"0">
-                      <tbody>
-                        <tr style=3D"font-size:0">
-                          <td style=3D"padding:0 0
-                            0.7px;vertical-align:top" align=3D"left">
-                            <table
-style=3D"font-size:0;color:#939598;font-style:normal;font-weight:400;whit=
-e-space:nowrap"
-                              cellspacing=3D"0" cellpadding=3D"0" border=3D=
-"0">
-                              <tbody>
-                                <tr style=3D"font-size:13.33px">
-                                  <td
-                                    style=3D"vertical-align:top;font-fami=
-ly:Arial"
-                                    align=3D"left"><a
-                                      href=3D"mailto:maxim@gotenna.com"
-                                      target=3D"_blank"
-                                      moz-do-not-send=3D"true"
-                                      class=3D"moz-txt-link-freetext">max=
-im@gotenna.com</a></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-                <tr style=3D"font-size:0">
-                  <td style=3D"vertical-align:top" align=3D"left">
-                    <table style=3D"font-size:0;line-height:normal"
-                      cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
-                      <tbody>
-                        <tr style=3D"font-size:0">
-                          <td style=3D"padding:1px 0 0;vertical-align:top=
-"
-                            align=3D"left"><a href=3D"https://gotenna.com=
-/"
-                              style=3D"text-decoration:none"
-                              target=3D"_blank" moz-do-not-send=3D"true">=
-<img
-src=3D"https://gotenna-marketing-files.s3.amazonaws.com/gotenna-email-sig=
-nature.png"
-                                alt=3D""
-                                style=3D"height:34px;min-height:34px;max-=
-height:34px;font-size:0"
-                                moz-do-not-send=3D"true" height=3D"34"
-                                border=3D"0"></a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------MEpdmD6EXtq3PO923wgHQqc3--
-
---===============0900265848930037269==
+--===============0967635813593400923==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -329,4 +285,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0900265848930037269==--
+--===============0967635813593400923==--
