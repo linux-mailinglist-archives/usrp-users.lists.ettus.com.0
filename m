@@ -2,335 +2,148 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50F686988B9
-	for <lists+usrp-users@lfdr.de>; Thu, 16 Feb 2023 00:21:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ACA969A779
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Feb 2023 09:51:54 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 346D4384809
-	for <lists+usrp-users@lfdr.de>; Wed, 15 Feb 2023 18:21:19 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8EB513844C6
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Feb 2023 03:51:52 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1676503279; bh=OJib9RxJohPWvN8n/KLMpmsa/vVIxSjLiL/B25fDxIc=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=OuAiv67XUzqQ9rioN3OttJ7Cr/Ilj7DuY1gk5VvbthaKFAUn3IReXCNajVEz143Hg
-	 Lu20rsD9iHrMWm8QdyO+Ze0OoAhV95p8k7I07cpFj9IofyZvA4TrHUwCFlZJsreV+l
-	 iZGkapNqDzNZNphjTXVGN6JRnwba5PM6tnUVomBkZPU/1sulmtyOM298Q8SQBYH+oK
-	 gWEoXqkJ1jcFy9ommQVQK4nXDjyHblOSzuQvI2sompOKoU1g0ewwI0Qfv5TIzUc8Zo
-	 S5AYMP98/qDzmwJ3jcS+nTPgvNTkWvAi4OfipV5+nbhkhEfEq62Zzf4zU/oPPpPNiB
-	 AzFezK02i0o9Q==
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8ED26383E73
-	for <usrp-users@lists.ettus.com>; Wed, 15 Feb 2023 18:20:34 -0500 (EST)
+	t=1676623912; bh=HU/lKe6CwdWxc8hqeJ4gDivTVLRMk2YxvGZX0uhNic8=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=F3C9USYg+LMTWPjJIQF7RzoYc/kyArKs0U4foZzAg+RtnA5rHvmIIBBlznM854YE+
+	 GQGR4p0jWc7HUHQnIDe/fLbl1G1PYkOkdKhHV4tsCY4z4tNzDjbf1CV4YMzxSCl+cU
+	 6PmwKkmQJkzYvUEJh4wLMPJCumaDu1K41dRS7tJsI64YY5SkYPs23JZ5HsI0gF17Lb
+	 zoz9zO7+ZnIT/v5ME7QNHYMFjZReG3HzUc+kknmlT+4ShFgJr2XsbUfjYQ2usPF+Yw
+	 xZxni7qbVGsssKz+iOIzPiDRnwxunCDBsrwBUBUbCfLXnbnTBNdhKvXvtU7So4UpyM
+	 7l0tf1Gx7TNhA==
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 249BD3844C6
+	for <usrp-users@lists.ettus.com>; Fri, 17 Feb 2023 03:51:45 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="S/guNNA3";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YXQ4Iksi";
 	dkim-atps=neutral
-Received: by mail-qv1-f47.google.com with SMTP id j5so212794qvi.3
-        for <usrp-users@lists.ettus.com>; Wed, 15 Feb 2023 15:20:34 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id cn2so1620042edb.4
+        for <usrp-users@lists.ettus.com>; Fri, 17 Feb 2023 00:51:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W/3Un6ru2cFypc80ZjCdfc4ViSlS+j42adyhfNA1rpw=;
-        b=S/guNNA3f45SJsc2bF7NvXglkVpGbc0q+Rc2VegAncJONLvtlAozdCEOemVlmSX87g
-         o5evv9RWyC3ifQ5cSry7uGZJ3vcrgInKBmGeT4+/KNguB280NeiaAyr8Vfzk3nksZo/W
-         yeuI2CpB3TxbOA3yWC2EQaNEiQ1yeGWK+8k39HnNm2/ybfBcOfpDpgjH7X8b2erVRTbF
-         Vi18Oa7AX/DI0Xm0Z42yo4S+K3GiLCIOxv0aoMcme9hlPpsDtDCLIDoy5bjkH+G4N4QS
-         cfdb//GB+NW9Zme6Vq3K4mtlAg2yV5G4ICiviyDBVKT4Nb2L0/zpgpZtmXygaYGCYnCE
-         2CAg==
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=8+PQdybVeXQHP0p+WOi3qcfjbJofSDv+T6WFFu2OtMU=;
+        b=YXQ4IksiDIGnw/NsX043yZTOWncYQ+HkbNNMoHmH5ZOhhbEI00he4genHoxgq3jvFN
+         N52KqkwvM1CQ0CYDe/otkxrae+YlSJ5Wj476Jbz5AKHmVDcgJQCa4D1ReYo8KTlJhHEQ
+         94F0kbVw3ZPeFBfhlipFoT3ySHonQyU6JCm/3Cr/yXui9Dia5zDyIJQGItLsFqOnrALu
+         KPZxg43K0d791/Jdokr78Ck9VZmy9cyqKbe+IkmrVU6Lnw2Zr/oEoq+BTjAYKUJYUuWw
+         8CsAM5bRk0svvFq1Y7iGP3pbSfuPOUzjsII08D5S9eIvPh5WxJjJ0GnbD37hSUszo1HU
+         t8Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=in-reply-to:from:content-language:references:to:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=W/3Un6ru2cFypc80ZjCdfc4ViSlS+j42adyhfNA1rpw=;
-        b=hULEtWNok8ejIw3D3BxYlaiVIefcE5bBAXUBFiln7Tw4jQjhBWvtotPeY2Wc1Cv3eT
-         9bbE+sLeD43BIJUal9Wj9mygyE3zgfe4Y4H3O3F8djBSsT47X9yjlv5+cb8d1MdaijTA
-         uoCRmjzbqpyKKJ/MV1Bbdx+f4DrtdUMIpZwt4nv4A2qkSmj7WmZAC5z9h8RHOiMZi46w
-         QdUzoiekSbPciCTeLWHJBtfgPowyGCMLQDxP+HgKL7CWNUGh023hLrYhrsukdO6+LcnC
-         ngDIsARSrycE3hocfm7UN2vK459NqLMEgMSwRKQcNwloa2+By2nJ/XsNWQI3b6n8K4bc
-         zrLQ==
-X-Gm-Message-State: AO0yUKVJCsYVhOuE4GC8C6vwlzp1KDJ6glMq+hBKlqMLzGd4sL6ij/p4
-	I+peiabdQWrYw/t9WMAl6fIM9LmKuuM=
-X-Google-Smtp-Source: AK7set9YxE/tdIbBn0piCOEIaU+XP6ofKVoHrOvj/uSaSvtASdwZHOkvsiyDlk5zdveFPXEYwDkqMA==
-X-Received: by 2002:ad4:574b:0:b0:56c:37d:51e with SMTP id q11-20020ad4574b000000b0056c037d051emr8011689qvx.22.1676503233789;
-        Wed, 15 Feb 2023 15:20:33 -0800 (PST)
-Received: from [192.168.2.163] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id b68-20020a37b247000000b0073980414888sm13905qkf.42.2023.02.15.15.20.33
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Feb 2023 15:20:33 -0800 (PST)
-Message-ID: <88e82e52-939d-f1c9-021b-5e8f40615e1e@gmail.com>
-Date: Wed, 15 Feb 2023 18:20:32 -0500
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8+PQdybVeXQHP0p+WOi3qcfjbJofSDv+T6WFFu2OtMU=;
+        b=0Hhit+LsKztCVh5pdKodBx0z8kEsYxOI+Gm3kv/mZZfq1wxKCiVGi748UMuEkVrkC/
+         0KX2oTPvtW3nn7qDeQ8pB0udnIrd0zwo4jYahjHaeefMxLiq2in8I0Qb5igDgKPbyPE2
+         LK2PyPH3OI9754jPUEmEJ958A/jSb7McfKj+HVvpa5qQny+wl3fQPIz+ZP/c8xL9hyI+
+         4IIJde1JRBtAtW1OO0I6OLXUG/3t8m7GBiKV51J5FDwcZE5NVsMxCwP+iqkwulOs/xeb
+         xXGg4x9UTFpZD2JAMNIWmJInF7z5gu0FK8sBoaR3+K35mXvTCVd+z0W4uzvypMd3I882
+         Nuvg==
+X-Gm-Message-State: AO0yUKXICSeT3QgAcePZ3jtbX8c5hCrjK55gI7zgbJsf32JsdylDDXAx
+	LarqoLjjIHUEsYrYJxRpm4ShwyuqJsSagXTmvZuCJBEntA==
+X-Google-Smtp-Source: AK7set9lxlaGgvO2z2BbPk/epxlmTdwef5LKuE2dOZy3jyTJa9mf5zIuSB/CP0zn9p4cgAYlyLh4ljeevdXDFnGOtW8=
+X-Received: by 2002:a17:906:9410:b0:8b1:b795:110a with SMTP id
+ q16-20020a170906941000b008b1b795110amr868460ejx.13.1676623904455; Fri, 17 Feb
+ 2023 00:51:44 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-To: usrp-users@lists.ettus.com
-References: <CA+7S2faqLLV2ePy4Up3u8pnZ2gJJJp3Fu6mmUCoDGkK3EqgxJg@mail.gmail.com>
- <f711c1ef-6b87-3f56-d9ce-9855009f7836@gmail.com>
- <5584c7d7-e966-75c9-7e06-162e35f5bee5@ettus.com>
-Content-Language: en-US
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <5584c7d7-e966-75c9-7e06-162e35f5bee5@ettus.com>
-Message-ID-Hash: 43ZINUXYJJXI5MT3RETTTBTAUADHGRL2
-X-Message-ID-Hash: 43ZINUXYJJXI5MT3RETTTBTAUADHGRL2
-X-MailFrom: patchvonbraun@gmail.com
+From: =?UTF-8?B?WWFzaXIgw5Z6w6dhbMSxaw==?= <simultaneous11@gmail.com>
+Date: Fri, 17 Feb 2023 11:51:33 +0300
+Message-ID: <CALooG39Scf0NB4sAvB5b8cvdMjAMPh=fY3Zc2N_GMZXbsQgsbg@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: CKNJ6FBVPE44WT4C4R73YDK4MESFAMKI
+X-Message-ID-Hash: CKNJ6FBVPE44WT4C4R73YDK4MESFAMKI
+X-MailFrom: simultaneous11@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Questions about USRP SDR devices
+Subject: [USRP-users] USRP E320 DMA
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/43ZINUXYJJXI5MT3RETTTBTAUADHGRL2/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CKNJ6FBVPE44WT4C4R73YDK4MESFAMKI/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3427283604627843804=="
+Content-Type: multipart/mixed; boundary="===============5297470470534840971=="
 
-This is a multi-part message in MIME format.
---===============3427283604627843804==
-Content-Type: multipart/alternative;
- boundary="------------jfjpAawFlN1SKyXu6giihSVy"
-Content-Language: en-US
+--===============5297470470534840971==
+Content-Type: multipart/alternative; boundary="0000000000003f3ea105f4e16ce5"
 
-This is a multi-part message in MIME format.
---------------jfjpAawFlN1SKyXu6giihSVy
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000003f3ea105f4e16ce5
+Content-Type: text/plain; charset="UTF-8"
+
+Hi everyone,
+I have a problem with DMA. I am trying to build a custom RFNoC block which
+finds pulse parameters (pulse width, pulse repetition interval and
+frequency) and stores them in a block ram. I have built it and it worked in
+simulation. The problem is I wanna read those parameters from the host. If
+I try to read them via registers, it is too slow. Therefore; I thought that
+I must use DMA to do that.
+
+In order to reach that goal, I did the things below;
+I statically connected my 2 ports to endpoints. and in the UHD application,
+I connected the radios (RX) to my block and connected my block to the
+radios (TX) again. In this way, I successfully took all the ADC datas to my
+block in the FPGA and processed them.
+
+The problem is when I processed the data in the FPGA and tried to read
+parameters back in the host, I needed to use the rfnoc_chdr port and it is
+used by radio for ADC datas. Therefore; I thought I needed to disconnect
+the connection from my port to the radio and connect my port to
+rx_streamer. But, it did not work. It gave an error saying that "attempting
+to reconnect the block". Can anyone give me advice to read parameters fast
+that my block produced by processing the ADC datas.
+
+Note: I don't wanna take all the ADC datas to the host, but only the
+parameters which my RFNoC block produced while not blocking the ADC signals
+arriving at my block.
+
+Device : USRP E320
+Host : Ubuntu 20.04 - 1GbE
+
+Kind Regards,
+Yasir.
+
+--0000000000003f3ea105f4e16ce5
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 15/02/2023 18:12, Marcus M=C3=BCller wrote:
->
-> Hi,
->
-> On 15.02.23 18:22, Marcus D. Leech wrote:
->
->>>  *
->>>
->>>
->>>  *
->>>
->>>     2)Is UHD able to be run on an Android device and control a USRP
->>>     SDR (using USB OTG, for example)? If not, are there other ways
->>>     to have an Androidapp control the USRP SDR in real time?
->>>
->> There is no port of UHD to Android that I know of.
->>
-> There is one =E2=80=93 at the very least the one done by Basti Bloessl =
-for his=20
-> GNU Radio on Android work. I also think Tom Rondeau had something=20
-> similar demoed before, but that is so long ago that I'd neither trust=20
-> my memory nor assume it's still useful.
->
-I should qualify my statement with "and is supported by Ettus/NI". The=20
-one Tom did was I think nearly a decade ago.=C2=A0 I don't know
- =C2=A0 about the Basti Bloessl one, but I'll observe that the last commi=
-t on=20
-his "gnuradio-android" was 2 years ago...
+<div dir=3D"ltr">Hi everyone,<div>I have a problem with DMA. I am trying to=
+ build a custom RFNoC block which finds pulse parameters (pulse width, puls=
+e repetition interval and frequency) and stores them in a block ram. I have=
+ built it and it worked in simulation. The problem is I wanna read those pa=
+rameters from the host. If I=C2=A0try to read them via registers, it is too=
+ slow. Therefore; I thought that I must use DMA to do that.=C2=A0<br></div>=
+<div><br></div><div>In order to reach that goal, I did the things below;</d=
+iv><div>I statically connected my 2 ports to endpoints. and in the UHD appl=
+ication, I connected the radios (RX) to my block and connected my block to =
+the radios (TX) again. In this way, I successfully took all the ADC datas t=
+o my block in the FPGA and processed them.</div><div><br></div><div>The pro=
+blem is when I processed the data in the FPGA and tried to read parameters =
+back in the host, I needed to use the rfnoc_chdr port and it is used by rad=
+io for ADC datas. Therefore; I thought I needed to disconnect the connectio=
+n from my port to the radio and connect my port to rx_streamer. But, it did=
+ not work. It gave an error saying that &quot;attempting to reconnect the b=
+lock&quot;. Can anyone give me advice to read parameters fast that my block=
+ produced by processing the ADC datas.</div><div><br></div><div>Note: I don=
+&#39;t wanna take all the ADC datas to the host, but only the parameters wh=
+ich=C2=A0my RFNoC block produced while=C2=A0not blocking the ADC signals ar=
+riving at my=C2=A0block.</div><div><br></div><div>Device : USRP E320</div><=
+div>Host : Ubuntu 20.04 - 1GbE</div><div><br></div><div>Kind Regards,</div>=
+<div>Yasir.</div><div><br></div><div><br></div></div>
 
+--0000000000003f3ea105f4e16ce5--
 
->>>  *
->>>
->>>     3) Custom B200 firmware: if I program the FPGA over USB (using
->>>     Xilinx HW manager), will the image persist if I turnoff power to
->>>     device (I.e.disconnect USB)? In other words, is there a FLASH or
->>>     some other persistent storage on-board to hold on to
->>>     user-defined FPGA firmware after power-down?
->>>
->> There's insufficient FLASH onboard the B2xx devices to support a=20
->> persistent FPGA image.
->
-> Corollary: short of leading to electrical damage somehow, it's hard to=20
-> permanently brick that device.
->
-> Best regards,
-> Marcus
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-
---------------jfjpAawFlN1SKyXu6giihSVy
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 15/02/2023 18:12, Marcus M=C3=BClle=
-r
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:5584c7d7-e966-75c9-7e06-162e35f5bee5@ettus.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Hi,</p>
-      <p class=3D"gmail-Paragraph gmail-SCXW76715474 gmail-BCX0" style=3D=
-"margin:0px;padding:0px;white-space:pre-wrap;vertical-align:baseline;font=
--kerning:none;background-color:transparent;color:windowtext" lang=3D"EN-U=
-S">On 15.02.23 18:22, Marcus D. Leech wrote:<span class=3D"gmail-TextRun =
-gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px;font-size:=
-11pt;line-height:19.425px;font-family:Calibri,Calibri_EmbeddedFont,Calibr=
-i_MSFontService,sans-serif;font-variant-ligatures:none" lang=3D"EN-US"><s=
-pan class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"=
-margin:0px;padding:0px">
-</span></span></p>
-      <blockquote type=3D"cite"
-        cite=3D"mid:f711c1ef-6b87-3f56-d9ce-9855009f7836@gmail.com">
-        <blockquote type=3D"cite"
-cite=3D"mid:CA+7S2faqLLV2ePy4Up3u8pnZ2gJJJp3Fu6mmUCoDGkK3EqgxJg@mail.gmai=
-l.com">
-          <div dir=3D"ltr">
-            <div>
-              <ul class=3D"gmail-BulletListStyle1 gmail-SCXW76715474
-                gmail-BCX0" role=3D"list"
-style=3D"margin:0px;padding:0px;overflow:visible;font-family:verdana;colo=
-r:rgb(0,0,0);font-size:14.6667px">
-                <li role=3D"listitem" class=3D"gmail-OutlineElement
-                  gmail-Ltr gmail-SCXW76715474 gmail-BCX0"
-                  style=3D"margin:0px 0px 0px
-24px;padding:0px;overflow:visible;clear:both;direction:ltr;display:block;=
-font-size:11pt;font-family:Calibri,Calibri_MSFontService,sans-serif;verti=
-cal-align:baseline">
-                  <br>
-                </li>
-                <li role=3D"listitem" class=3D"gmail-OutlineElement
-                  gmail-Ltr gmail-SCXW76715474 gmail-BCX0"
-                  style=3D"margin:0px 0px 0px
-24px;padding:0px;overflow:visible;clear:both;direction:ltr;display:block;=
-font-size:11pt;font-family:Calibri,Calibri_MSFontService,sans-serif;verti=
-cal-align:baseline">
-                  <p class=3D"gmail-Paragraph gmail-SCXW76715474 gmail-BC=
-X0" style=3D"margin:0px;padding:0px;white-space:pre-wrap;vertical-align:b=
-aseline;font-kerning:none;background-color:transparent;color:windowtext" =
-lang=3D"EN-US"><span class=3D"gmail-TextRun gmail-SCXW76715474 gmail-BCX0=
-" style=3D"margin:0px;padding:0px;font-size:11pt;line-height:19.425px;fon=
-t-family:Calibri,Calibri_EmbeddedFont,Calibri_MSFontService,sans-serif;fo=
-nt-variant-ligatures:none" lang=3D"EN-US"><span class=3D"gmail-NormalText=
-Run gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px">2)Is =
-UHD able to be run on an Android device and control a USRP SDR  (using US=
-B OTG, for example)? If not, are there other ways to </span><span class=3D=
-"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;p=
-adding:0px">have an </span></span><span class=3D"gmail-TextRun gmail-SCXW=
-76715474 gmail-BCX0" style=3D"margin:0px;padding:0px;font-size:11pt;line-=
-height:19.425px;font-family:Calibri,Calibri_EmbeddedFont,Calibri_MSFontSe=
-rvice,sans-serif;font-variant-ligatures:none" lang=3D"EN-US"><span class=3D=
-"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;p=
-adding:0px">Android</span><span class=3D"gmail-NormalTextRun gmail-SCXW76=
-715474 gmail-BCX0" style=3D"margin:0px;padding:0px"> app control the USRP=
- SDR in real time?</span></span><span class=3D"gmail-EOP gmail-SCXW767154=
-74 gmail-BCX0" style=3D"margin:0px;padding:0px;font-size:11pt;line-height=
-:19.425px;font-family:Calibri,Calibri_EmbeddedFont,Calibri_MSFontService,=
-sans-serif">=C2=A0</span></p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </blockquote>
-        There is no port of UHD to Android that I know of.<br>
-        <br>
-      </blockquote>
-      <p>There is one =E2=80=93 at the very least the one done by Basti B=
-loessl
-        for his GNU Radio on Android work. I also think Tom Rondeau had
-        something similar demoed before, but that is so long ago that
-        I'd neither trust my memory nor assume it's still useful.<br>
-      </p>
-    </blockquote>
-    I should qualify my statement with "and is supported by Ettus/NI".=C2=
-=A0
-    The one Tom did was I think nearly a decade ago.=C2=A0 I don't know<b=
-r>
-    =C2=A0 about the Basti Bloessl one, but I'll observe that the last co=
-mmit
-    on his "gnuradio-android" was 2 years ago...<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:5584c7d7-e966-75c9-7e06-162e35f5bee5@ettus.com">
-      <p> </p>
-      <blockquote type=3D"cite"
-        cite=3D"mid:f711c1ef-6b87-3f56-d9ce-9855009f7836@gmail.com">
-        <blockquote type=3D"cite"
-cite=3D"mid:CA+7S2faqLLV2ePy4Up3u8pnZ2gJJJp3Fu6mmUCoDGkK3EqgxJg@mail.gmai=
-l.com">
-          <div dir=3D"ltr">
-            <div>
-              <ul class=3D"gmail-BulletListStyle1 gmail-SCXW76715474
-                gmail-BCX0" role=3D"list"
-style=3D"margin:0px;padding:0px;overflow:visible;font-family:verdana;colo=
-r:rgb(0,0,0);font-size:14.6667px">
-                <li role=3D"listitem" class=3D"gmail-OutlineElement
-                  gmail-Ltr gmail-SCXW76715474 gmail-BCX0"
-                  style=3D"margin:0px 0px 0px
-24px;padding:0px;overflow:visible;clear:both;direction:ltr;display:block;=
-font-size:11pt;font-family:Calibri,Calibri_MSFontService,sans-serif;verti=
-cal-align:baseline">
-                  <p class=3D"gmail-Paragraph gmail-SCXW76715474 gmail-BC=
-X0" style=3D"margin:0px;padding:0px;white-space:pre-wrap;vertical-align:b=
-aseline;font-kerning:none;background-color:transparent;color:windowtext" =
-lang=3D"EN-US"><span class=3D"gmail-TextRun gmail-SCXW76715474 gmail-BCX0=
-" style=3D"background-color:transparent;color:windowtext;font-size:11pt;m=
-argin:0px;padding:0px;line-height:19.425px;font-family:Calibri,Calibri_Em=
-beddedFont,Calibri_MSFontService,sans-serif;font-variant-ligatures:none" =
-lang=3D"EN-US"><span class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmai=
-l-BCX0" style=3D"margin:0px;padding:0px">3) Custom B200 firmware: if I pr=
-ogram the FPGA over USB (using Xilinx HW manager), will the image persist=
- if I </span><span class=3D"gmail-NormalTextRun gmail-SpellingErrorV2Them=
-ed gmail-SCXW76715474 gmail-BCX0" style=3D"margin:0px;padding:0px;backgro=
-und-repeat:repeat-x;background-position:0% 100%;border-bottom:1px solid t=
-ransparent">turn</span><span class=3D"gmail-NormalTextRun gmail-SCXW76715=
-474 gmail-BCX0" style=3D"margin:0px;padding:0px"> off power to </span><sp=
-an class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"m=
-argin:0px;padding:0px">device (</span><span class=3D"gmail-NormalTextRun =
-gmail-ContextualSpellingAndGrammarErrorV2Themed gmail-SCXW76715474 gmail-=
-BCX0" style=3D"margin:0px;padding:0px;background-repeat:repeat-x;backgrou=
-nd-position:0% 100%;border-bottom:1px solid transparent">I.e.</span><span=
- class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"mar=
-gin:0px;padding:0px"> disconnect USB)? In other words, is there </span><s=
-pan class=3D"gmail-NormalTextRun gmail-SCXW76715474 gmail-BCX0" style=3D"=
-margin:0px;padding:0px">a FLASH or some other persistent storage on-board=
- to hold on to user-defined FPGA firmware after power-down?</span></span>=
-<span class=3D"gmail-EOP gmail-SCXW76715474 gmail-BCX0" style=3D"backgrou=
-nd-color:transparent;color:windowtext;font-size:11pt;margin:0px;padding:0=
-px;line-height:19.425px;font-family:Calibri,Calibri_EmbeddedFont,Calibri_=
-MSFontService,sans-serif">=C2=A0</span>
-</p>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </blockquote>
-        There's insufficient FLASH onboard the B2xx devices to support a
-        persistent FPGA image.<br>
-      </blockquote>
-      <p>Corollary: short of leading to electrical damage somehow, it's
-        hard to permanently brick that device.</p>
-      Best regards,<br>
-      Marcus<br>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------jfjpAawFlN1SKyXu6giihSVy--
-
---===============3427283604627843804==
+--===============5297470470534840971==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -340,4 +153,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3427283604627843804==--
+--===============5297470470534840971==--
