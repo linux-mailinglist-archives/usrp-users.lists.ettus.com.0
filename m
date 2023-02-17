@@ -2,119 +2,249 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB70569B275
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Feb 2023 19:42:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A240F69B2CC
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Feb 2023 20:00:59 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 8ACBC3844D7
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Feb 2023 13:42:01 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id E121838480B
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Feb 2023 14:00:58 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1676659321; bh=Dd3cs+48WvRGwHUMExIUXoiaB/TEi3xk3THVmoEAxc0=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1676660458; bh=d7m0+1YnKOs9SbHAN85MNl2MZbuWqfE8yt8OyZ0a15w=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=RpPDH9+wucaLvCRip+heZ1UGYugm48MfahBlRXeAUEJ/FlCk9fOETswt85jMaUSrW
-	 jFNtJO/vHJG47cSr0EBJ3AMQ2/GTdWQEK6BnzzZIeVN5HjzU1gRcVJ/rmzLT5E5quf
-	 KWdAmlTuFm7R3a8gqwlNB30PDkc4t91p97iUmbtXdv2ywVF5G96nTI0bCNmiczda5O
-	 qB5uhVeJsEcuonWmsY8X7s5QXHn4Kxyf1YRrE6ViGVzHjwPVU1C0cl77Ru1KVYTuAE
-	 ScL3Qc4M9wBLMuGNjqh1CMQBsodBz3q9k9P6Mlx2m3086GMercdC5PAx4oVCuTCMhd
-	 RfG7oIN9jXOrw==
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id 527383844D7
-	for <usrp-users@lists.ettus.com>; Fri, 17 Feb 2023 13:41:56 -0500 (EST)
+	 From:Reply-To:From;
+	b=h1/6sMmVaLLly1OVNdFLBdJCRkRMMQBylhtiswCQJEYH09XuRhBAqLiJ4QEzpoOIH
+	 +v8OzFN2HNEpw/awSIrxap8nEmzQDTdTGUWvLYm6CBAHZnv3tU4o40IkfND/0ZCqYU
+	 Sl/F0+NuJ94SxT5Gyo4XnJlQknoR6AdBwwYx7HhjKC96323dXSzJ2v9ofsNUkb7Kdx
+	 m/KS9qsnLRzlxxpUExBkPHBDxMNsv9NGjZuTLi6vdw5DakX7nakJYQAiTQGRq7itOD
+	 1VpD6IHwzgUvNdp81Bhkosaxw+r1iAqPjqrN0CIxJ1WMth9O/nWBZlwjx7wX5e8Rc+
+	 ViZ3lPoiHCODQ==
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7EDF338468B
+	for <usrp-users@lists.ettus.com>; Fri, 17 Feb 2023 14:00:23 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aSO+i4Lv";
+	dkim=pass (2048-bit key; unprotected) header.d=ncsu.edu header.i=@ncsu.edu header.b="N2Whkm1e";
 	dkim-atps=neutral
-Received: by mail-il1-f174.google.com with SMTP id t2so678416ilm.6
-        for <usrp-users@lists.ettus.com>; Fri, 17 Feb 2023 10:41:56 -0800 (PST)
+Received: by mail-oi1-f181.google.com with SMTP id j3so1202445oig.10
+        for <usrp-users@lists.ettus.com>; Fri, 17 Feb 2023 11:00:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xa8XPHhCpv7niGe8+HDMai+Qm24gU8kLqqMDL1gp460=;
-        b=aSO+i4LvOdUjB8yrERMypODS2QEouuU3tN2nVFAcIPvm2oa3WYi719OGBs6GzFCXr4
-         x/dNpdppEMD9+msZuiGjQJ6tRb+qStFmDUzShEY+95dwjCQP1GfcaQanPkWhEY0RUAWf
-         XrRELJRF5PDFS7wNa16j0vG6DXmXH7bSTQBkftgresNYOjg0eKAnlHoDlzjtWFbBlSGH
-         WJ/MffVTe99kr4wWvGbZhbxDJ+BvY0oOS1q+9c+IexjXjknlh2sYmAfNa5MgRRDuDHpO
-         tDXqtm/6I6gsLcQKdkTGo0ytiuXV17i09R6Nr3gl5V7KdFGPDUZlz7RLMxVOPCYhHVb/
-         ziGw==
+        d=ncsu.edu; s=google;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NSr2tNEPb+CGg81mbAVqiE+dgnuWqMeiQFNggqBKPv4=;
+        b=N2Whkm1e8KvVZG0bVbYd6RJF7v2GN1nXF41tZ0YBDp+hGFOtHYVdmtuYFjj1nm5o7I
+         9GLGW8kEhWvl9POqm6QVN1/MKnCY0qQppb+WUHUkEeMZ/E8Ey0/uufX1Yb45l6Fn8/rb
+         9kzQDa+m7Gv5s2KT894WYtcl7jkxdT0WIHlFlzZQIsALTpKF4KWZcSJ71DWD/HY1JMfi
+         wHLdToMU9Y+6aeXXS1PDx62Gn3hFGduzCXLrZwMzvlisMLfve/85HItGPcV8e7A2dx6z
+         uZiCR3Hd7ETmjVRZk3uIYP4otp0DoQB7Xykm+Z8D41NAXfVTh4NLT061yRHTEicUk5Jg
+         rxGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xa8XPHhCpv7niGe8+HDMai+Qm24gU8kLqqMDL1gp460=;
-        b=t7t5J3g2oYhD7pI+iaDts3uCXuVPstaZahcs2o75MqXsdUxPuBfFbo3jtjKiUEdTNv
-         5AEFfcB1R5a2sXg5Uy21aXiAZJ02IviypeW/OQVvkqnUfTqLiR6PtKkcHYp8cXDeJVAb
-         B273GTtH8DJXQQKbfxpeLl3B93mD1zLIs9CriPCOdBvlRY1+slDjL7dX7vgbGZzPla2r
-         64fKRmXUoeWRx9hcmMc8NCshHG1Np1Dkmpi+A812D4Oce5m9x4ZfbO0KGJK5CKJDkp9X
-         gQCdrMENnj9V5HVjptn6j8DC+wB/KTlCSuQMNy/6jqmDtRKbvsgwqDe/dJ6C4cYeGYGN
-         5r6w==
-X-Gm-Message-State: AO0yUKXvt2ia2jpTMHB7r6ZGorHdWkjdpRiweryirCf/C7VHymuozrow
-	rJqKnGedr8orXT1DpPtSpURswEqGB40=
-X-Google-Smtp-Source: AK7set/V/Yd1OBqgdi1wgOwqWHNemUtBTmfuPoHJiJsHq918kd/s8HS+wvVs0UOSZraKICAwPH4Fxw==
-X-Received: by 2002:a05:6e02:1a69:b0:315:d9ba:a392 with SMTP id w9-20020a056e021a6900b00315d9baa392mr2453923ilv.17.1676659315484;
-        Fri, 17 Feb 2023 10:41:55 -0800 (PST)
-Received: from [192.168.2.164] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id n19-20020a056638121300b003b49e7d990asm1637709jas.30.2023.02.17.10.41.55
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Feb 2023 10:41:55 -0800 (PST)
-Message-ID: <d9568b3e-38a3-c32a-7808-e2529efa4f34@gmail.com>
-Date: Fri, 17 Feb 2023 13:41:54 -0500
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NSr2tNEPb+CGg81mbAVqiE+dgnuWqMeiQFNggqBKPv4=;
+        b=S1Oj2WdUEikOfL6NvV/v6d2wGv2f4asdoZ33m330pX8tKK7gNFbRcoHhwDei84UA/a
+         Yco9SMcCPnViJ1XbRMh7J6HQTEdAVXFkotS3XOITswxhZ3VwVPtdrgucMUdJAXK9Nccn
+         yst4MRDKEh/YOtD0N4a24Pn9mEO4DQuo/Ukxb1X4FDdLaqHMI7+170XC2NtrwZCzIwwp
+         UooqA07bT6ufnjYHy72c/6kgfXl+awNMbCP3AWWleiSpC3qg0QpSxtY6tb0NgAVE32FZ
+         O9bVpvypvcmb/TBKiL78prfiHKc39lQrAgJ/HC5ZwrLMt9qcmPbhnhWwihFY+5p+kT6O
+         ND9w==
+X-Gm-Message-State: AO0yUKU5zQEUytk9gj0Eblptfv46CIkLjIjTjj6kHk8J+yRjCvU8+6bQ
+	Hqmrcl7w7Ssr3gNMsqh4eQa+Mo3wkHnReRfiZZ+B22hVOJeiC4KE
+X-Google-Smtp-Source: AK7set9TKxB1PEXjF8yPjzMYTZHVoURMQ4RdjfNdWW9VHuAjQ6/5l9IgbeBuCkvIh/kVCYKnULo6vRlf8fPdgSP3qAw=
+X-Received: by 2002:a05:6808:1156:b0:378:80a9:7b91 with SMTP id
+ u22-20020a056808115600b0037880a97b91mr513876oiu.20.1676660422640; Fri, 17 Feb
+ 2023 11:00:22 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <CANvw1+RzoBzytLFxQUvH1uYu03VpUNp97PXaqaKF6JvVAS5u6Q@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CANvw1+RzoBzytLFxQUvH1uYu03VpUNp97PXaqaKF6JvVAS5u6Q@mail.gmail.com>
-Message-ID-Hash: JOS2EI2I4YX3PWGV4EJ3HFN3ZLH2AQ6R
-X-Message-ID-Hash: JOS2EI2I4YX3PWGV4EJ3HFN3ZLH2AQ6R
-X-MailFrom: patchvonbraun@gmail.com
+ <d9568b3e-38a3-c32a-7808-e2529efa4f34@gmail.com>
+In-Reply-To: <d9568b3e-38a3-c32a-7808-e2529efa4f34@gmail.com>
+Date: Fri, 17 Feb 2023 14:00:11 -0500
+Message-ID: <CANvw1+RgMMvjG6EFkyVLxqCfO_iC866HyJPSTxdv-XM_6zzW4w@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: ALU4VBIUSTU6Q5YXAH7SZSE3RQXQPEWJ
+X-Message-ID-Hash: ALU4VBIUSTU6Q5YXAH7SZSE3RQXQPEWJ
+X-MailFrom: agurses@ncsu.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Continuous stream receive process
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/JOS2EI2I4YX3PWGV4EJ3HFN3ZLH2AQ6R/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ALU4VBIUSTU6Q5YXAH7SZSE3RQXQPEWJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+From: Anil Gurses via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Anil Gurses <agurses@ncsu.edu>
+Content-Type: multipart/mixed; boundary="===============7114454789793084087=="
 
-T24gMTcvMDIvMjAyMyAxMzozNCwgQW5pbCBHdXJzZXMgdmlhIFVTUlAtdXNlcnMgd3JvdGU6DQo+
-IEhpIGFsbCwNCj4NCj4gSSBoYXZlIGEgc2ltcGxlIHF1ZXN0aW9uIGFib3V0IHRoZSBjb250aW51
-b3VzIHN0cmVhbS4gQXMgeW91IGFsbCBrbm93LCANCj4gVVNSUCBSWCBsaWdodHMgaW5kaWNhdGUg
-d2hldGhlciBpdCdzIHJlY2VpdmluZyBzYW1wbGVzIG9yIG5vdC4gT24gDQo+IGNvbnRpbnVvdXMg
-c3RyZWFtaW5nLCB0aGVzZSBsaWdodHMgYXJlIHR1cm5lZCBvbiBpZiB0aGUgcmVjdiBmdW5jdGlv
-biANCj4gaXMgY2FsbGVkIGZyb20gdGhlIGhvc3QgY29tcHV0ZXIoc3RheSBvbiB1bnRpbCB0aGUg
-ZW5kIG9mIHJlY3YgDQo+IGZ1bmN0aW9uIGNhbGwpLiBJbiB0aGVvcnksIHRoZSBjb250aW51b3Vz
-IHN0cmVhbWluZyBtb2RlIHNob3VsZCANCj4gcmVjZWl2ZSBhbmQgYnVmZmVyIHRoZXNlIHNhbXBs
-ZXMuIFNvLCBzaG91bGRuJ3QgdGhlIGxpZ2h0cyBiZSBvbiB1bnRpbCANCj4gdGhlIGNvbnRpbnVv
-dXMgc3RyZWFtaW5nIHN0b3Aobm90IHVudGlsIHRoZSBlbmQgb2YgcmVjdiBmdW5jdGlvbiBjYWxs
-KT8NCj4NCj4gSWYgdGhpcyBpcyBob3cgaXQgc2hvdWxkIGJlLCB0aGVuIG15IHVuZGVyc3RhbmRp
-bmcgb2YgY29udGludW91cyANCj4gc3RyZWFtIGlzIHdyb25nLiBJZiBJIGRvbid0IGNhbGwgcmVj
-diBmdW5jdGlvbiwgZG9lc24ndCBVU1JQIHJlY2VpdmUgDQo+IHNhbXBsZXMgYW5kIGJ1ZmZlciB0
-aGVtKG9uIGNvbnRpbnVvdXMgc3RyZWFtaW5nIG1vZGUpPw0KVGhlIGxpZ2h0IGlzIHR1cm5lZCBv
-biB3aGVuIGEgcmVjZWl2ZSBzdHJlYW1lciBpcyBjcmVhdGVkLCBhcyBmYXIgYXMgSSBrbm93Lg0K
-DQpJZiB5b3VyIGFwcGxpY2F0aW9uIGRvZXNuJ3QgY2FsbCByZWN2KCksIHNvbWUgbnVtYmVyIG9m
-IHNhbXBsZXMgd2lsbCBiZSANCmJ1ZmZlcmVkIGluIHZhcmlvdXMgcGFydHMgb2YgdGhlIGxpYnJh
-cnkgYW5kIE9TIGRyaXZlcnMsIGFuZA0KIMKgIHRoZW4gdGhleSdsbCBqdXN0IHN0YXJ0IGdldHRp
-bmcgZHJvcHBlZC4NCg0KSW4gZ2VuZXJhbCwgeW91ciBhcHBsaWNhdGlvbiBhYnNvbHV0ZWx5LCBw
-b3NpdGl2ZWx5LCBuZWVkcyB0byBjYWxsIA0KcmVjdigpIHRvIGNvbnN1bWUgc2FtcGxlcyBhcyBm
-YXN0IGFzIHRoZXkncmUgcHJvZHVjZWQsIG9uIGF2ZXJhZ2UuDQogwqAgU2hvcnQtdGVybSBzaG9y
-dGZhbGxzIGFyZSAic29ha2VkIHVwIiBieSBidWZmZXJzLCBidXQgaWYgeW91ciANCmFwcGxpY2F0
-aW9uIGNhbm5vdCAia2VlcCB1cCIsIG5vIGFtb3VudCBvZiBidWZmZXJpbmcgd2lsbCBzYXZlIGl0
-Lg0KDQoNCg0KDQo+DQo+DQo+IFRoYW5rcywNCj4gQS4NCj4NCj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBl
-bWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
-LS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFp
-bCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============7114454789793084087==
+Content-Type: multipart/alternative; boundary="000000000000e6a15105f4e9ec60"
+
+--000000000000e6a15105f4e9ec60
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks for your quick response!
+
+In general, your application absolutely, positively, needs to call
+> recv() to consume samples as fast as they're produced, on average.
+>    Short-term shortfalls are "soaked up" by buffers, but if your
+> application cannot "keep up", no amount of buffering will save it.
+>
+
+This is why we have overflows. Then, my interpretation of continuous
+streaming is correct.
+
+To test this, I created a simple python script by putting delays(sleep)
+between consecutive recv calls for b205 mini. The lights turned on only at
+recv calls and not during delays. I checked the metadata time and USRP time
+to see if the packets are buffered. There was a difference between them and
+it proves that packets are buffered.  However, I still don't understand how
+RX light is triggered on continuous streaming.
+
+A.
+
+
+On Fri, Feb 17, 2023 at 1:43 PM Marcus D. Leech <patchvonbraun@gmail.com>
+wrote:
+
+> On 17/02/2023 13:34, Anil Gurses via USRP-users wrote:
+> > Hi all,
+> >
+> > I have a simple question about the continuous stream. As you all know,
+> > USRP RX lights indicate whether it's receiving samples or not. On
+> > continuous streaming, these lights are turned on if the recv function
+> > is called from the host computer(stay on until the end of recv
+> > function call). In theory, the continuous streaming mode should
+> > receive and buffer these samples. So, shouldn't the lights be on until
+> > the continuous streaming stop(not until the end of recv function call)?
+> >
+> > If this is how it should be, then my understanding of continuous
+> > stream is wrong. If I don't call recv function, doesn't USRP receive
+> > samples and buffer them(on continuous streaming mode)?
+> The light is turned on when a receive streamer is created, as far as I
+> know.
+>
+> If your application doesn't call recv(), some number of samples will be
+> buffered in various parts of the library and OS drivers, and
+>    then they'll just start getting dropped.
+>
+> In general, your application absolutely, positively, needs to call
+> recv() to consume samples as fast as they're produced, on average.
+>    Short-term shortfalls are "soaked up" by buffers, but if your
+> application cannot "keep up", no amount of buffering will save it.
+>
+>
+>
+>
+> >
+> >
+> > Thanks,
+> > A.
+> >
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000e6a15105f4e9ec60
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div><div>Thanks for your quick response! <br></=
+div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+In general, your application absolutely, positively, needs to call <br>
+recv() to consume samples as fast as they&#39;re produced, on average.<br>
+=C2=A0=C2=A0 Short-term shortfalls are &quot;soaked up&quot; by buffers, bu=
+t if your <br><div>
+application cannot &quot;keep up&quot;, no amount of buffering will save it=
+.</div></blockquote><div><br></div><div>This is why we have overflows. Then=
+, my interpretation of continuous streaming is correct. <br></div><div><br>=
+</div><div>To test this, I created a simple python script by putting delays=
+(sleep) between consecutive recv calls for b205 mini. The lights turned on =
+only at recv calls and not during delays. I checked the metadata time and U=
+SRP time to see if the packets are buffered. There was a difference between=
+ them and it proves that packets are buffered.=C2=A0 However, I still don&#=
+39;t understand how RX light is triggered on continuous streaming. <br></di=
+v><div><br></div><div>A. <br></div><div><br></div>
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Fri, Feb 17, 2023 at 1:43 PM Marcus D. Leech &lt;<a href=3D"mailto:patch=
+vonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex">On 17/02/2023 13:34, Anil Gurses=
+ via USRP-users wrote:<br>
+&gt; Hi all,<br>
+&gt;<br>
+&gt; I have a simple question about the continuous stream. As you all know,=
+ <br>
+&gt; USRP RX lights indicate whether it&#39;s receiving samples or not. On =
+<br>
+&gt; continuous streaming, these lights are turned on if the recv function =
+<br>
+&gt; is called from the host computer(stay on until the end of recv <br>
+&gt; function call). In theory, the continuous streaming mode should <br>
+&gt; receive and buffer these samples. So, shouldn&#39;t the lights be on u=
+ntil <br>
+&gt; the continuous streaming stop(not until the end of recv function call)=
+?<br>
+&gt;<br>
+&gt; If this is how it should be, then my understanding of continuous <br>
+&gt; stream is wrong. If I don&#39;t call recv function, doesn&#39;t USRP r=
+eceive <br>
+&gt; samples and buffer them(on continuous streaming mode)?<br>
+The light is turned on when a receive streamer is created, as far as I know=
+.<br>
+<br>
+If your application doesn&#39;t call recv(), some number of samples will be=
+ <br>
+buffered in various parts of the library and OS drivers, and<br>
+=C2=A0=C2=A0 then they&#39;ll just start getting dropped.<br>
+<br>
+In general, your application absolutely, positively, needs to call <br>
+recv() to consume samples as fast as they&#39;re produced, on average.<br>
+=C2=A0=C2=A0 Short-term shortfalls are &quot;soaked up&quot; by buffers, bu=
+t if your <br>
+application cannot &quot;keep up&quot;, no amount of buffering will save it=
+.<br>
+<br>
+<br>
+<br>
+<br>
+&gt;<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; A.<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000e6a15105f4e9ec60--
+
+--===============7114454789793084087==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7114454789793084087==--
