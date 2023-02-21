@@ -2,135 +2,165 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C386469D2B1
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Feb 2023 19:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F376E69D945
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Feb 2023 04:28:32 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 15EB7383C1D
-	for <lists+usrp-users@lfdr.de>; Mon, 20 Feb 2023 13:22:19 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 79A1D383B89
+	for <lists+usrp-users@lfdr.de>; Mon, 20 Feb 2023 22:28:31 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1676917339; bh=kwMxIAbVA4KoNgkLTKB7rqQ9uK08vzLFIvSByg4GXlc=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=iUXIG+A/XrpMELjWXnW2agstEqrcDVaMKzbzZ4HejWrISxJtEKg2Dai5XgIRSelt4
-	 a1q4ADqRU+M9kRpIHIruLX+NVjDkpOXxLgLucIeVqaW5CYfqonuUnilibKQg8/YKHT
-	 TpLVRtry8SqwuVdIf6mkFJ+4bjkKiu6KuLPklRW4OvfxgEDvY/68LMRh1j7GSplL+A
-	 /Nu1LuQ7zDUvzA999A2VuWFeAi5ZAp/dSQzouN3uHj6JPurdeF6sviG5mm3PeC0fds
-	 YQ/tzctFmVi/ik85uI8AtDKyrp4Y8no/a604OqZFn3J3lu+Z6aInJP6bAGMmEzr/xS
-	 D+K45tX6fIrAg==
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	by mm2.emwd.com (Postfix) with ESMTPS id CFF863830F3
-	for <usrp-users@lists.ettus.com>; Mon, 20 Feb 2023 13:21:26 -0500 (EST)
+	t=1676950111; bh=+vRf4RVDfgvaR8gDleHwCT/vfKJnTmpycDuk6bNUqWg=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=BN/SiYr7G2CUIi8VX1lEZr4DvFdbjNU4kpDR3fAr7Vh5gLFW83pKtvmLlZ9wP2T5U
+	 mnRJ4EmtOu7wq4mHUF1ol1jkqPjdv+d8kaWcTmvG+9eFnm720EekOzXiFY0NGo4+GC
+	 ct/EDoM417rWpqDs/3PX3jDNFaf4xwlt49HAh/7zpQdhqop00Mzzt/nweeZe6ILUl2
+	 4IdX3GshNk6x1+LaSgE7AJBq2Yhidj1uTq6kyLavW+WcLg/mrSI9XjCU26IwC1G0lD
+	 f4zV7bmyLEHvnAtiZswiOAjrHwvztk7RXMH0DShGZUqte+8QEptncChk0wwsi+rF3f
+	 uc2nAdiRQGVgw==
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 0BDEC380B09
+	for <usrp-users@lists.ettus.com>; Mon, 20 Feb 2023 22:27:53 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AF5Xhd7I";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="U0sWAQFZ";
 	dkim-atps=neutral
-Received: by mail-qt1-f177.google.com with SMTP id fp16so1955475qtb.10
-        for <usrp-users@lists.ettus.com>; Mon, 20 Feb 2023 10:21:26 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id s26so11789611edw.11
+        for <usrp-users@lists.ettus.com>; Mon, 20 Feb 2023 19:27:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hIwBG0WxfREng4VHdTchh22p7Rk2MZG9rSg05doeg8U=;
-        b=AF5Xhd7IshSFev0TVzAJW2ZssuKZ+wrJR02URSfAwMgO2QuAS8Bl7o40BYnvh+X1Qn
-         EL9m8UeYqH0dlbDkC/a7nogPEGiYj9vTrvI2ftQ/7lXGYcd24QyIcA2I6QJJlXtiWh9b
-         lKqHnscuivmWv7GC1r0TGYVF6+PVFFKNjfW9XbfxHQb/IjpMq6W0uasTOqzWyPBekxsT
-         r+Je0W8qnYwsyHP2ZYX511MP4yLjuuII9YaLk1ci/mVofn0K0BVxxS+glZ/8uLnLsPSp
-         jyYZXKWcooULMQ/sId9KBJjbqCwmEYBw9bSvY4D+JYa3kmw30S7irw8OnJkKRDvNoEED
-         zyNg==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=G4RejEU4Ecb94Kcw9hVV8Nc7JEts2zcR8C4I3NbP6R4=;
+        b=U0sWAQFZwLkaiZDu7Le03ikWy1QCgmpgajNASjXIm7VzZ1u7RFvjgA+SwA4RkVbkTq
+         ZuiurOq3q6tvZrDgy+WEs0rLCdxE+A1HOf56gVfXjLF+UPjIiyWz4xbzei5wtVNQcctM
+         0bP4j7BEJojMwByWMft+grCwVG5kTVSlnSba/2B+BE/mUn9iInxm966ni+lwm7xtpJ2X
+         AeEiF4/VgxgS4dF4Kw9qFeuKh4JeN6zEjAAlmfn2QbkhMKzOUZO+I5gdAKXiegeDzwHx
+         eXIxIrLGqiGg8VO+p+OXh4KJ4ibhIWMfpcYkS0qNod7A2qKVOquVdLqApuYlg9QXZjXd
+         ZkOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hIwBG0WxfREng4VHdTchh22p7Rk2MZG9rSg05doeg8U=;
-        b=34Tft1jD1s67OSGFR8G3loQyZ+GSGK5Dmo8dVn+FnrpqiOxbz06DgsPgFEBxWQSj3A
-         nXijzLopaXC8JBLXP5MsxsWRhmfu/aS9TObGPP5MfDJZjke0FXSKif8MmvB32rM5rgj2
-         2mXHDp2KqPhlIzWpjy+w9wNEbCe7i+E3R+kXzedd/TOScskO5RMjA2tvyERlJXt6OcXI
-         zboTgNAU1be6wM93Tc5Ug997TytntrdkO9ogGljWPgQRRRcoRPsnN4hJ9TDJ3JJGNvyn
-         AhELU+lAKM1llRW7VTQQZEm3Y9LHxbEExOWqaDnkQJVvSYjcCg0eE2EJSWwP9NZ9iYRX
-         Hbhg==
-X-Gm-Message-State: AO0yUKXnnCZIHYA4Muub2z/QN7mGI9WFIuEJlYoVhbq9cebsRYOQYkeM
-	qVks2N4Qmc6tQiqn6HjPhgpaLVjarVM=
-X-Google-Smtp-Source: AK7set8KZiI/oKox/g+hpYWPjBORTQR9G52bYG9y8Vv7KmM2WSv5rm6kEXXWvOXksXRjA7C069nodA==
-X-Received: by 2002:a05:622a:170b:b0:3b8:1723:6d15 with SMTP id h11-20020a05622a170b00b003b817236d15mr1742665qtk.58.1676917286084;
-        Mon, 20 Feb 2023 10:21:26 -0800 (PST)
-Received: from [192.168.2.167] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id y190-20020a3764c7000000b0071ddbe8fe23sm9353011qkb.24.2023.02.20.10.21.25
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Feb 2023 10:21:25 -0800 (PST)
-Message-ID: <e3e60f62-e613-833a-d5f7-e500ec3ceb88@gmail.com>
-Date: Mon, 20 Feb 2023 13:21:25 -0500
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G4RejEU4Ecb94Kcw9hVV8Nc7JEts2zcR8C4I3NbP6R4=;
+        b=VUtaMjqiuGY0CgWsFCaSU20kEfKxg5dNJ2NfX4hwxPGdRlsVTHFFPleKhmhbZ7Aybw
+         RxMVgoZkZgTxnrA1RpgCflTszrWNBIiYPwq9g1KRLScVdkXDymqakoJ7RZYj0bAisdj1
+         El7ko0weoUyLMDUiqTDSLM2/6DMkTW7mAYFkCbbHaiCU++XGlY5RXmV02rmYCfJSb3W6
+         06awqloEuWVUk8E9OiPa/MpmAoY1W2Ir+O5xJdT3rXzpb9/MWHYNgOm/NBVoUsw1xhfp
+         oYYWgGFf6luv2vSrZd6ALkDKQ5tE/iv8COrd1eJuCrz/y+Eqmg9gj8iPMZvqp7w7Nw0T
+         xXXQ==
+X-Gm-Message-State: AO0yUKX+FaeAOHX++0Ef7dkzqm6VnRtcycNU2aGvMY51abF14NjwW7Cd
+	mQpoKuPFfgmXEQPtaOvLL3/aPJz/Hyc4PwcU25Rng/HqHp9SGyCG
+X-Google-Smtp-Source: AK7set+4oTBDBK2DDv/IOVcaroq2ZWcAkd+jIyY9rxmEUaW+uX41nTqZ+2n5p7fF3UoPTpOGywkYJOkCMqdEe+gpef4=
+X-Received: by 2002:a17:907:d94:b0:8b1:28c1:6b9c with SMTP id
+ go20-20020a1709070d9400b008b128c16b9cmr11569860ejc.4.1676950072778; Mon, 20
+ Feb 2023 19:27:52 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <e446dd9a-d5b5-34fe-049e-612e233fb9eb@iki.fi>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <e446dd9a-d5b5-34fe-049e-612e233fb9eb@iki.fi>
-Message-ID-Hash: G56VDDUJLDVU3P2NMBLWFAGEWYRL3I6T
-X-Message-ID-Hash: G56VDDUJLDVU3P2NMBLWFAGEWYRL3I6T
-X-MailFrom: patchvonbraun@gmail.com
+References: <6grmw7ZRu7PqJguSjEXbMV75d836HD9x2CcemjDe4@lists.ettus.com>
+In-Reply-To: <6grmw7ZRu7PqJguSjEXbMV75d836HD9x2CcemjDe4@lists.ettus.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Mon, 20 Feb 2023 21:27:34 -0600
+Message-ID: <CAFche=jHc9KOM6sXv6by1bSmA3vKF7-qzQ07RTg0SQEVM8S1rw@mail.gmail.com>
+To: jmaloyan@umass.edu
+Message-ID-Hash: UEGTB5X7XYNRKRVHPOERWIQSEOHNXQCH
+X-Message-ID-Hash: UEGTB5X7XYNRKRVHPOERWIQSEOHNXQCH
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: GNU Radio, UHD, and AGC with USRP B205mini-i
+Subject: [USRP-users] Re: benchmark_rate throws error
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G56VDDUJLDVU3P2NMBLWFAGEWYRL3I6T/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UEGTB5X7XYNRKRVHPOERWIQSEOHNXQCH/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============1364689136643227279=="
 
-T24gMjAvMDIvMjAyMyAxMzowNSwgVmlsbGUgRWVyb2xhIHdyb3RlOg0KPg0KPg0KPiBTZWNvbmRs
-eSwgdGhlIHNlZW1zIHRvIElDIHN1cHBvcnQgYWR2YW5jZWQgY29uZmlndXJhYmlsaXR5IG9mIHRo
-ZSBBR0MgDQo+IGZyb20gY2hvb3NpbmcgYmV0d2VlbiBmYXN0IGFuZCBzbG93IEFHQyBhbmQgbWFu
-dWFsIGdhaW4gc2V0dGluZ3MgdG8gDQo+IHR1bmluZyB0aGUgcGFyYW1ldGVycyBvZiB0aGUgQUdD
-IGZ1bmN0aW9uIGluc2lkZSB0aGUgSUMuIEJ1dCANCj4gdW5mb3J0dW5hdGVseSBub25lIG9mIHRo
-aXMgc2VlbSB0byBiZSBleHBvc2VkIGluIHRoZSBVSEQgbGlicmFyeS4gVGhpcyANCj4gY291bGQg
-YWxsb3cgdHVuaW5nIHRoZSBBR0MgdG8gYmVoYXZlIGJldHRlciBmb3IgbXkgc2lnbmFscy4NCj4N
-Cj4gSSBjb3VsZCB0cnkgdG8gd29yayBvdXQgc29tZXRoaW5nIG15c2VsZiwgYnV0IEkgd2FzIHVu
-YWJsZSB0byBmaW5kIGFueSANCj4gZG9jdW1lbnRhdGlvbiBhYm91dCBob3cgdGhlIFVIRCBsaWJy
-YXJ5IGlzIGxheWVyZWQsIGFuZCBob3cgdGhlIA0KPiBoaWdoLWxldmVsIGZ1bmN0aW9ucyBldmVu
-dHVhbGx5IGludGVyZmFjZSB3aXRoIHRoZSBkaWZmZXJlbnQgcmFkaW8gDQo+IElDOnMuIEl0IGlz
-IGNlcnRhaW5seSBwb3NzaWJsZSB0byBmaW5kIG91dCBhbGwgb2YgaXQgZnJvbSB0aGUgc291cmNl
-LCANCj4gYnV0IGhhdmluZyBzb21lIGRvY3VtZW50YXRpb24gb3IgcG9pbnRlcnMgdG8gdGhlIHJp
-Z2h0IGRpcmVjdGlvbiB3b3VsZCANCj4gbWFrZSBpdCBhbGwgbXVjaCBlYXNpZXIuDQpZdXAuwqAg
-VGhlcmUncyBubyAic3RydWN0dXJlZCB3YWxrLXRocm91Z2giIGRvY3VtZW50YXRpb24gb2YgY29k
-ZSANCmJhc2UuwqDCoMKgIFBhcnQgb2YgdGhlIHJlYXNvbiBmb3IgdGhpcyBpcyB0aGF0IHRoZSBj
-b2RlLWJhc2UNCiDCoCBjaGFuZ2VzLCBidXQgdGhlICJzdGFiaWxpdHkgcG9pbnQiIGlzIHRoZSBB
-UEkuwqDCoCBJbiBteSBleHBlcmllbmNlIA0KKG9ubHkgYWJvdXQgNDQgeWVhcnMgc28gZmFyKSwg
-c3VjaCAic3RydWN0dXJlZCB3YWxrLXRocm91Z2giDQogwqAgZG9jdW1lbnRhdGlvbiBpcyAic3Rh
-bGUiIG1vcmUtb3ItbGVzcyBhcyBzb29uIGFzIGl0cyBib3JuIGZvciBhbnkgDQpsYXJnZSBjb2Rl
-YmFzZSBzdWNoIGFzIFVIRC7CoMKgIFVzZSB0aGUgc291cmNlLCBMdWtlLg0KDQpUaGUgQVBJIGlz
-IHJlYXNvbmFibHkgd2VsbCBkb2N1bWVudGVkOg0KDQpodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9t
-YW51YWwvcGFnZV9jb2RpbmcuaHRtbCNjb2RpbmdfYXBpX2hpbGV2ZWwNCg0KQnV0LCBhcyB5b3Ug
-bm90ZSwgVUhEIHdhcyAqZGVsaWJlcmF0ZWx5KiBkZXNpZ25lZCB0byAiaGlkZSIgdGhlIGRldGFp
-bHMgDQpvZiB0aGUgdW5kZXJseWluZyBoYXJkd2FyZSwgdG8gZmFjaWxpdGF0ZSB0aGUNCiDCoCB2
-ZXJ5IGxhcmdlIG51bWJlciBvZiBVU1JQIGRldmljZSB0eXBlcyB0aGF0IGV4aXN0LCBhbmQgdG8g
-YWxsb3cgDQphcHBsaWNhdGlvbnMgdGhhdCBhcmUgdXR0ZXJseSBoYXJkd2FyZSBhZ25vc3RpYy4N
-CiDCoCBOZWFybHkgQUxMIG9mIG15IGFwcHMgZG9uJ3QgYWN0dWFsbHkgY2FyZSBtdWNoIHdoaWNo
-IGhhcmR3YXJlIGlzIA0KdW5kZXJuZWF0aCB0aGVtLS1VU1JQcywgUlRMLVNEUnMsIExpbWVTRFJz
-LCBldGMuDQoNCkknbGwgYWxzbyBub3RlIHRoYXQgR251IFJhZGlvIGRvZXMgaGF2ZSBBR0MgZnVu
-Y3Rpb25zIGluIGl0cyBmYW1pbHkgb2YgDQoiYmxvY2tzIiBzbyB5b3UgbWlnaHQgd2FudCB0byBl
-eHBlcmltZW50IHdpdGggdGhvc2UsDQogwqAgYW5kIHVzZSBhIGZpeGVkLWdhaW4uDQoNCkluIHRo
-ZSBuZWFybHkgMjAgeWVhcnMgSSd2ZSBiZWVuIHBsYXlpbmcgd2l0aCBTRFJzLCBJJ3ZlIG5ldmVy
-IGFjdHVhbGx5IA0KbmVlZGVkIHRvIHVzZSBoYXJkd2FyZSBBR0MuwqAgQnV0IEknbGwgYWRtaXQg
-dGhhdA0KIMKgIEkgb25seSBleHBlcmltZW50IGluIG9uZSBzbWFsbCBjb3JuZXIgb2YgdGhlIHJh
-ZGlvIHVuaXZlcnNlLg0KDQoNCj4NCj4gSXQgaXMgYWx3YXlzIHBvc3NpYmxlIHRvIGltcGxlbWVu
-dCB0aGUgQUdDIGZ1bmN0aW9uIGluIEdSIGJ5IHNldHRpbmcgDQo+IHRoZSBnci11aGQgdG8gdXNl
-IG1hbnVhbCBnYWluLCBidXQgSSdtIGEgYml0IGFmcmFpZCB0aGF0IHRoZSBsb29wIA0KPiBjb3Vs
-ZCBiZSB0b28gc2xvdy4NCj4NCj4NCj4gUmVnYXJkcywgVmlsbGUNCj4NCj4gLS0gDQo+IFZpbGxl
-IEVlcm9sYQ0KPiB2aWxsZS5lZXJvbGFAaWtpLmZpDQo+IDA1MC00ODA0NDM1DQo+DQo+IF9fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJl
-IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============1364689136643227279==
+Content-Type: multipart/alternative; boundary="00000000000064f06f05f52d5d6d"
+
+--00000000000064f06f05f52d5d6d
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Joe,
+
+The error you're getting basically means it can't communicate with the FPGA
+on the N320. It's sending a packet to the device, but it's not getting the
+response packet it expects. So it could be a network configuration issue, a
+cabling issue, maybe a firewall issue, or something else that's messing up
+the packets.
+
+Double check the cabling and make sure you have the ports connected
+correctly. For example, connect the host computer port with IP 192.168.10.1
+to the port on the device configured to 192.168.10.2 (the first port), or
+port 192.168.20.1 connected to 192.168.20.2 (the second port). Sometimes
+cables get swapped or port IP addresses get misconfigured and that can
+cause issues like this.
+
+When you specify the "addr" argument, you're telling the software which
+port to use to do the initialization that's failing, so make sure that's
+correct and matches the configuration and cabling.
+
+Wade
+
+On Mon, Feb 20, 2023 at 11:57 AM <jmaloyan@umass.edu> wrote:
+
+> With the HG image, things seem to be working fine. I can benchmark, and i
+> can collect samples at not only the full rate(25e6 MS/S), but at a higher
+> rate than the XG image, which is strange.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--00000000000064f06f05f52d5d6d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Joe,<div><br></div><div>The error you&#39;re getting ba=
+sically means it can&#39;t communicate with the FPGA on the N320. It&#39;s =
+sending a packet to the device, but it&#39;s not getting the response packe=
+t it expects. So it could be a network configuration issue, a cabling issue=
+, maybe a firewall issue, or something else that&#39;s messing up the packe=
+ts.<div><br></div><div>Double check the cabling and make sure you have the =
+ports connected correctly. For example, connect the host computer port with=
+ IP 192.168.10.1 to the port on the device configured to 192.168.10.2 (the =
+first port), or port 192.168.20.1 connected to 192.168.20.2 (the second por=
+t). Sometimes cables get swapped or port IP addresses get misconfigured and=
+ that can cause issues like this.</div><div><br></div><div>When you specify=
+ the &quot;addr&quot; argument, you&#39;re telling the software which port =
+to use to do the initialization that&#39;s failing, so make sure that&#39;s=
+ correct and matches the configuration and cabling.</div><div><br></div><di=
+v>Wade</div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">On Mon, Feb 20, 2023 at 11:57 AM &lt;<a href=3D"mailto:jm=
+aloyan@umass.edu">jmaloyan@umass.edu</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><p>With the HG image, things seem to be=
+ working fine. I can benchmark, and i can collect samples at not only the f=
+ull rate(25e6 MS/S), but at a higher rate than the XG image, which is stran=
+ge. </p>
+
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--00000000000064f06f05f52d5d6d--
+
+--===============1364689136643227279==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============1364689136643227279==--
