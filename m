@@ -2,65 +2,65 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1415069E76D
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Feb 2023 19:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9103769E7B9
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Feb 2023 19:42:53 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0EFC0383CAA
-	for <lists+usrp-users@lfdr.de>; Tue, 21 Feb 2023 13:25:12 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id AE404380DA0
+	for <lists+usrp-users@lfdr.de>; Tue, 21 Feb 2023 13:42:52 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1677003912; bh=8KFCgAJaSoSPv6IscaXDWxW/1DROEpL19kLZpmdOtLw=;
+	t=1677004972; bh=vKHKBulUStZo1wSqlTqhsEdmHNVcyT7YjRhlAALh0GU=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=XHdkPgZJw+g17qaPHfl45MDQb0QomYPSJwi7ADQGVN0gNQwWuVPc12qYMbX/XIpUc
-	 7kA9csr0VOnpeaYHkWa43w1K3BOvpMq5SUhVNe4Tuz++jMxPAg4GRk5ovFjm8wVXxe
-	 pj2cTWd/Tbh/khQuwKzSXfkDLLmZzw6yQ6WlaG/uoioumLP82Q6dBYsKKARsXSlP+H
-	 7i7WPMPU/0jTWwwEUORDDF6vEd2HUCfY89QiukBSDQKHA6Po9xGCBsYXnpmf3QshcE
-	 KI5lqrDUq3Wq1M4SKDJomfMzCO1uSrDCsBk1VuH4C/mQTm95pNQ74/72wR0C2D/8WI
-	 0+Ne6AV4Rge5w==
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id 74B2C381368
-	for <usrp-users@lists.ettus.com>; Tue, 21 Feb 2023 13:24:32 -0500 (EST)
+	b=SXpST/is5Pl5o0hUv8NUwgtIY1/HhUgTbJoT+tzQehguXkJkjdJ/wvfSEYoZJB8iM
+	 VTcLdTXHhYjizbUlWakIVDrqKVNdhokDlir+HXboSqrk/uNeemmmEOCwoLvLz0SGPk
+	 YfYhwIH+VNVp5M8Rg5WI9Yo6CNinT0BGFLnEG3Af872+ZWW6tNI16Z3kND6gJNUpkm
+	 niqG0uUkg9WqC5q/+X2k11v1wWAJ6zr3l2f2MNpSk4OZF8VnKxEI7gzzYhClu8GPEL
+	 we6s8nFBAI3Q55/lBk6Mmu4VvG0BYHzPOJ1u6hvJX7vCzbE2a6hcF5QXcC0BvfHX0C
+	 mQpgPtM5K7dOQ==
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id EC0B5380946
+	for <usrp-users@lists.ettus.com>; Tue, 21 Feb 2023 13:42:11 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="lrBPlJaB";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ia/cf4qw";
 	dkim-atps=neutral
-Received: by mail-qt1-f173.google.com with SMTP id ay9so5117778qtb.9
-        for <usrp-users@lists.ettus.com>; Tue, 21 Feb 2023 10:24:32 -0800 (PST)
+Received: by mail-qt1-f179.google.com with SMTP id k20so1979853qtj.5
+        for <usrp-users@lists.ettus.com>; Tue, 21 Feb 2023 10:42:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zoaLKdnOI30OlcZG0MKqOGUySrJXjQDcV/nue5bUEuc=;
-        b=lrBPlJaBP+9Wod/Li/XUt0nJvlgiX8y4tjrWgXMB1DBk4FErRPl73ORdUj5w1ku++s
-         xHVR9R2rLc77wx5MSnPlt+1Ya4bR5Q6oQU6fSStEB3yqgq/DEb3KubEpUQVrO3d0bUDs
-         eOfVmkXhD7AwkCsdlIKtDwZJuJXfNyCidxF2xazqSu/4Z7bCH0vNqsC/4EX7+r0SLkRm
-         XIV8ETTDQjHBO4fzLJIPYj+wdq6bUa9/IOa98MRwtS6Yv9kucZ/Gj+Fd9LBMErffeJpj
-         IgmWCCjLFkUdawTd4f3NKYUYqRpwpcHi8q5Hl5PbqmCAJUDhYVUY9zFoOlxWjyuyCfUe
-         f/Lw==
+        bh=n9IRN9E1Ui1L3rZwDtRI8ZRGjZU592LlM6D+XKCtPH4=;
+        b=Ia/cf4qwgQKWhoBf1dO+v0E2REpRtEsPdnBOYZtwN2qMpKam90Kvi+e3K40qQELMTa
+         N1FxrruQvZyr5Xw1EPasUZMjTG/QOQXPrn8GqBVy5eMm3KRylOCghWb9t8iaaIsFcQWr
+         kg6fCVAuJu0gFYy8ldaiOWCQEoeWGS/ccY4leNiftSqgAm8gqTtjyuRZc3N6koX6WHfB
+         /QE7FTigfSoqZ03pjX4iaMZuzpyK7KtEhnsIVXZqLHYbRFWpx0N9jFbA+vGwcHGwkpeR
+         IJZjLrzs0WUqi4GXwOmCHjEKqiq0pdwdwua7vVbySUNiCSVi2XgqRT7c15dMDF/SIgMd
+         85yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=zoaLKdnOI30OlcZG0MKqOGUySrJXjQDcV/nue5bUEuc=;
-        b=sXBcB2olNPpBYVsxYOA1jVB2jT/5Kn3npD687VNR2nuXSVuIvHCcz1SrZZR5Ra94WX
-         d0TySYtIRrZ6/XEwwD7VRTnOqhwNpF2tmuqHHSUUV2XFHnweKYBJjlQtZSU/2peK9hR3
-         tuMnaGix73UPYqyZAPfS7mZBaAenmoQKPtwKxXAkgLqhoxhz3+6MdgyxZaA5Om1iHWta
-         sGuOI/plkjxgeiGRMSZ6L+I1jWfiJvpQslXcpWbfML27pIStFSS6WvGHB31Lhis9SY6O
-         QYxfNAHyc3hmByWfRO+H/YmX9IJ2e5ORElH5xJV2uEoTzfTk3Bu979tKIaymQk6bUScE
-         KIpQ==
-X-Gm-Message-State: AO0yUKVEjtoewuQk1iEVMDdV10dFw5Mn3M4PvpB6v2gqNPNXmvE4ni2a
-	5/14ZzOHaajO5YpTc8aCxiqCLIkFRl4=
-X-Google-Smtp-Source: AK7set/S3YQXkegBS8dniPV/yeEhDYwH2gY5dhgXyWbmUnIK0WENRxZYbbZI6otb1wW8CwZ9hsvC0g==
-X-Received: by 2002:ac8:5c89:0:b0:3b6:3995:2ec2 with SMTP id r9-20020ac85c89000000b003b639952ec2mr22989009qta.19.1677003871754;
-        Tue, 21 Feb 2023 10:24:31 -0800 (PST)
+        bh=n9IRN9E1Ui1L3rZwDtRI8ZRGjZU592LlM6D+XKCtPH4=;
+        b=pf4sWCFz8XyiNhDV372/PFLPDfG1AyIuQBOmDpLJBXu8XbZkHdYHoShFDHirgrChb3
+         +WBa8dBQ9zOOGVxrRj2ffeFvMb3vjnhO5Cbv/0gNPFEUx0Cc4hm5UsWrQHikgWyp/bpH
+         ZXuaTKGJT/2NQtE3XH2j4LgW6fIUT7LmjcSgScSnSHsRO1MDFprZH93VDg1ZN4WzZfTK
+         3uP7b+2YsJ3WqZLOF/2KVDcOY/ctH23yvSZpojPTPBfheCl9Fzcplbc+RtbU6u+FKizR
+         +7EiOIV7ynP160/eECFEzc8hQaThf54fPzDtXSGA2+eXQq/JCZFsh4HniRsbYQY3Xhtu
+         XI7w==
+X-Gm-Message-State: AO0yUKWPwhpkmxWROnRCYgwIi+4nvfScKZn8F9/LjCmgTOnPyB7xu+Uz
+	eAJ46IOSrBQOwdhMs4ov0yTKaAYc1Z0=
+X-Google-Smtp-Source: AK7set+ITtpK7I14n2C73pfehz0tyyFtWh3UYNHF53fyq062ETy8GRoxur4gNJsemWzJnrnkXcajcQ==
+X-Received: by 2002:ac8:5c15:0:b0:3bc:f93a:77cf with SMTP id i21-20020ac85c15000000b003bcf93a77cfmr10244705qti.6.1677004931175;
+        Tue, 21 Feb 2023 10:42:11 -0800 (PST)
 Received: from [192.168.2.167] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id h184-20020a376cc1000000b00719165e9e72sm148122qkc.91.2023.02.21.10.24.31
+        by smtp.googlemail.com with ESMTPSA id l24-20020ac84598000000b003b9bf862c04sm1124773qtn.55.2023.02.21.10.42.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Feb 2023 10:24:31 -0800 (PST)
-Message-ID: <58e81a08-570f-f59f-22ae-3b0931d15d51@gmail.com>
-Date: Tue, 21 Feb 2023 13:24:30 -0500
+        Tue, 21 Feb 2023 10:42:10 -0800 (PST)
+Message-ID: <8a772128-6ae9-f4a8-0f4f-c1dcd0604c63@gmail.com>
+Date: Tue, 21 Feb 2023 13:42:10 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
@@ -74,31 +74,31 @@ References: <CA+7S2faCOt9o1wmpZsVkBMu-mrjuNH4R84GVtGWO1A61Q-uyUA@mail.gmail.com>
  <CA+7S2fbxFMpNYDuws0VjCgoTpjefiD3MRPdFc1ANtBLZaoEPBg@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
 In-Reply-To: <CA+7S2fbxFMpNYDuws0VjCgoTpjefiD3MRPdFc1ANtBLZaoEPBg@mail.gmail.com>
-Message-ID-Hash: 4KVWDKBGK6IDFJ7QM5FLIYO5F5SWO2WZ
-X-Message-ID-Hash: 4KVWDKBGK6IDFJ7QM5FLIYO5F5SWO2WZ
+Message-ID-Hash: YF7MBEK24YWMBMYX5POG7CQOKYJ3HCGW
+X-Message-ID-Hash: YF7MBEK24YWMBMYX5POG7CQOKYJ3HCGW
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Problem verifying B200 device
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4KVWDKBGK6IDFJ7QM5FLIYO5F5SWO2WZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YF7MBEK24YWMBMYX5POG7CQOKYJ3HCGW/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2854903899483222455=="
+Content-Type: multipart/mixed; boundary="===============2643618661121054599=="
 
 This is a multi-part message in MIME format.
---===============2854903899483222455==
+--===============2643618661121054599==
 Content-Type: multipart/alternative;
- boundary="------------O32xJ5McqDbQjzNpbb7LM0qr"
+ boundary="------------ru0Qj2HcFnpvN6vmwvR6mb2W"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------O32xJ5McqDbQjzNpbb7LM0qr
+--------------ru0Qj2HcFnpvN6vmwvR6mb2W
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
@@ -148,47 +148,14 @@ idge" in=20
 > (FX3?) to get bricked. I'm more inclined to think something is wrong=20
 > with the device or the firmware coming from Ettus than anything going=20
 > on with my host.
-If you run:
+Something to check.=C2=A0=C2=A0 Make certain that you have a:
 
-sudo uhd_images_downloader
+60-uhd-host.rules
 
-In your WSL instance, it will, if need be, download the appropriate=20
-images into your filesystem environment, which will
- =C2=A0 make them available for loading dynamically at UHD start-up.
+In /usr/lib/udev/rules.d
 
-I literally have nearly a dozen USRP B2xx type devices, and the only=20
-time I've seen this type of issue is when
- =C2=A0 the underlying host hardware isn't supporting it properly.=C2=A0 =
-The=20
-device WILL work with both USB2.0 and USB3.0
- =C2=A0 host controllers, albeit with lower performance for USB2.0.=C2=A0=
- The=20
-entire B2xx family is a fairly mature product,
- =C2=A0 with very few changes to the host side or firmware/FPGA in quite =
-some=20
-time.=C2=A0=C2=A0 So I'm guessing that you're
- =C2=A0 not running into "yeah, that version doesn't work" type issues.
-
-I'm not a Windows/WSL user, so I'm not that familiar with how WSL/VM=20
-handles USB.=C2=A0 My experience in the past
- =C2=A0=C2=A0 with Windows VMs and USB is that they are not terribly reli=
-able or=20
-performant.=C2=A0 I have no idea whether this applies to
- =C2=A0=C2=A0 WSL environments or not, and there may be others on the lis=
-t who are.
-
-How did you install UHD on your Ubuntu image?=C2=A0=C2=A0 The=20
-packaged-by-canonical packages are entirely adequate--there's
- =C2=A0 no need to build from source, if that's the route you took.
-
-
-sudo apt install uhd uhd-host
-
-Was just fine for me on my Ubuntu 22.04 system (on a probably 5 year old=20
-laptop).
-
-
-
+Without that (installed by the uhd-host package I think), udev will be=20
+unable to grant access to the USRP.
 
 
 >
@@ -383,7 +350,7 @@ om
 > <https://gotenna.com/>
 >
 
---------------O32xJ5McqDbQjzNpbb7LM0qr
+--------------ru0Qj2HcFnpvN6vmwvR6mb2W
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -461,51 +428,14 @@ mmand
         </div>
       </div>
     </blockquote>
-    If you run:<br>
+    Something to check.=C2=A0=C2=A0 Make certain that you have a:<br>
     <br>
-    sudo uhd_images_downloader<br>
+    60-uhd-host.rules<br>
     <br>
-    In your WSL instance, it will, if need be, download the appropriate
-    images into your filesystem environment, which will<br>
-    =C2=A0 make them available for loading dynamically at UHD start-up.<b=
-r>
+    In /usr/lib/udev/rules.d<br>
     <br>
-    I literally have nearly a dozen USRP B2xx type devices, and the only
-    time I've seen this type of issue is when<br>
-    =C2=A0 the underlying host hardware isn't supporting it properly.=C2=A0=
- The
-    device WILL work with both USB2.0 and USB3.0<br>
-    =C2=A0 host controllers, albeit with lower performance for USB2.0.=C2=
-=A0 The
-    entire B2xx family is a fairly mature product,<br>
-    =C2=A0 with very few changes to the host side or firmware/FPGA in qui=
-te
-    some time.=C2=A0=C2=A0 So I'm guessing that you're<br>
-    =C2=A0 not running into "yeah, that version doesn't work" type issues=
-.<br>
-    <br>
-    I'm not a Windows/WSL user, so I'm not that familiar with how WSL/VM
-    handles USB.=C2=A0 My experience in the past<br>
-    =C2=A0=C2=A0 with Windows VMs and USB is that they are not terribly r=
-eliable
-    or performant.=C2=A0 I have no idea whether this applies to<br>
-    =C2=A0=C2=A0 WSL environments or not, and there may be others on the =
-list who
-    are.<br>
-    <br>
-    How did you install UHD on your Ubuntu image?=C2=A0=C2=A0 The
-    packaged-by-canonical packages are entirely adequate--there's<br>
-    =C2=A0 no need to build from source, if that's the route you took.<br=
->
-    <br>
-    <br>
-    sudo apt install uhd uhd-host<br>
-    <br>
-    Was just fine for me on my Ubuntu 22.04 system (on a probably 5 year
-    old laptop).<br>
-    <br>
-    <br>
-    <br>
+    Without that (installed by the uhd-host package I think), udev will
+    be unable to grant access to the USRP.<br>
     <br>
     <br>
     <blockquote type=3D"cite"
@@ -976,9 +906,9 @@ nature.png"
   </body>
 </html>
 
---------------O32xJ5McqDbQjzNpbb7LM0qr--
+--------------ru0Qj2HcFnpvN6vmwvR6mb2W--
 
---===============2854903899483222455==
+--===============2643618661121054599==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -988,4 +918,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2854903899483222455==--
+--===============2643618661121054599==--
