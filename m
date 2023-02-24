@@ -2,117 +2,247 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9F816A2096
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Feb 2023 18:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AEB7E6A217C
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Feb 2023 19:29:37 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id B3EC1384577
-	for <lists+usrp-users@lfdr.de>; Fri, 24 Feb 2023 12:44:06 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8F8BE384396
+	for <lists+usrp-users@lfdr.de>; Fri, 24 Feb 2023 13:29:36 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1677260646; bh=mLZT6tMz7IUbqZUa+dSiEKg5wP4crlCMTpbhF4GwSeE=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=QwbbABtfwtpf4PnGo9HjGP4psDLV38EQ55HtYNCbD+nUUsRIPTnyFmvGcinA+vrwF
-	 Zg7Z6TLDniVCyoW0gQECOpPB7qtm49f5d8Mqv5btLCq/6o4russFk4p1H0Pp02SWdo
-	 HR85l6Szh2cMmstHFwtvny9l/dhejx2fDjS+p3p9z5Gj6bIbMdKowsysITON249Pap
-	 xRRLhDn1QHNt2uuPX+zc+uNCKD0Hvz9CoyoOhe4G2PsufqN4fc1fJoCfrj8uRS3Vsc
-	 gVZ2FcQ+5F8im5nhdMs7GRRWwFRUvbSe2PE1onLiGlxgEtiCZcqgDaPZb9SUJ01qfC
-	 eIRh6TDxlcAjg==
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-	by mm2.emwd.com (Postfix) with ESMTPS id 5B9F2384506
-	for <usrp-users@lists.ettus.com>; Fri, 24 Feb 2023 12:43:28 -0500 (EST)
+	t=1677263376; bh=NUVeLs9ah6mLU5nJa588I+vlhdDOmaFa6J02t/tjLe8=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=L3JBCNxXL4NeA2dhOR+AB9rUcK3ih92Y2LJAS226ijYln44X4Uj4Xm+RxTZj8NZnp
+	 fnPKxxJXZzJG1+4LGFJCmQo7joUnQdI2nr/v4KYbKN5mRkh4f0RUQ4Xk0cjHXugjd6
+	 r7R4UuJAtxxuq0w5vvCCGEcTSsu2CVaTPYVUgFWEAhBskiJupbHf3UDunXDsLcHln5
+	 BFRo0NrI/ttm5/5wEuD13ZdfhMZDHfWAcElCuf1e9gS849g9HVbew2c/URyOpgRWlk
+	 fhGxd0P6IbojAk1J6N6VB8QYJkVg7CTs1McEYpWaG6VIKO2NnrsK8X07+jeRhFaSuN
+	 hsiBFFYhhWBcA==
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+	by mm2.emwd.com (Postfix) with ESMTPS id EE6B8384396
+	for <usrp-users@lists.ettus.com>; Fri, 24 Feb 2023 13:29:30 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="G/lQQiSP";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GHvCkAeN";
 	dkim-atps=neutral
-Received: by mail-qt1-f174.google.com with SMTP id b6so216677qtb.1
-        for <usrp-users@lists.ettus.com>; Fri, 24 Feb 2023 09:43:28 -0800 (PST)
+Received: by mail-qt1-f173.google.com with SMTP id w42so382107qtc.2
+        for <usrp-users@lists.ettus.com>; Fri, 24 Feb 2023 10:29:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8ycEjUaF8WgrlMyzt6ok+G/1QksEWl+ktXketLyYNuA=;
-        b=G/lQQiSP5LipdWbrd8Xyp3tBPlLENiwGva0iyO981RF3pqRYmMccgtIzWcITS/6hWp
-         5kI4uex9hAlB04oAnm5vifEtwgGqUx9URKRj9ChMeJHllPXCErDg8EkfDGlNZOHVV+2A
-         6A8n1dKWIJIcZuENN5UGuOnIkJZJ85OO6PhPZyzWQ+bAs6vBT2QCap3wcH/bt1sGchSw
-         yEr8Ry4rk8+9jdZYxMMts4SYz9B+WMdp2NnbYUXw8zh2bkUrH3JDcQKWR+mWA73jc1G1
-         jMlhXdrQXJgOdAeNYU9lz5UMYND0BucfuWILcJTnTs7wGJLLWdm686wCeikWbRTDas8g
-         BFMQ==
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sQJlTUxjP43j7tLpYmIXIt5f9T3+dxEGJBnFpPy1Dpc=;
+        b=GHvCkAeNtk22liVGwvL+8IanfTKI7/tHXN0hf6KjuIbqZR0k5BDejk5/thwu2eFxdA
+         IygWGZGYfDyGQcbsS1cWkt76i/7QOhG9A/2mQKS5eXtRTRhvUkfYccLY2v0T83JuetuX
+         xbgUSnqN8Ryw1WxR7ae/I4eN6e9Broo7XiDKGbDvGR7SxbeS0xrILp4x/jp8sS3fb2HU
+         vlEHiKr+rvCpkxMDMcgoxP6vDWvACDk6/6KxAyEbV+SA4ldpaVwmVdoNxk/DBAZR0+fi
+         KFU7qC65mY1E/bX25x1m4HOLY2zzZUzRuoEB3GjVoUqZALa9J+8079EdheLwZ1UEqCT3
+         74uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8ycEjUaF8WgrlMyzt6ok+G/1QksEWl+ktXketLyYNuA=;
-        b=tJ0Sk5OFaA3FyNPE+M8NKCjstjBpMxXATdDQnD8xrtPPo8891DXU36UrDQzMzUVT7a
-         bu/BfuFVQmsCLCglHWj/pt9hCON+0VuHKSJdZ8Ygd4gJaunvXt04fTnbp8CEdLvIRyJu
-         eOD3ixzPK5OJW4BMrbC/T4smM+pAyabGdM7DxdAyJebx8ORVoDVj/sqh5vrqbBkppKvN
-         syqcvaud/JAEa7KnZz9/0uvVoZC6jHaiq/pgKM6kCiI1tDx9VezCcKD5v0w2/7WljAMI
-         qUVOgPxwfMbKilJFgolfak4OHET+aGOlMKv2R08unKWSQP9RK4OQlTNvqATF7ce6Azn0
-         Kotg==
-X-Gm-Message-State: AO0yUKXM4BEd+YjRJv0zKTFYCfsT77e800sfK81gPfSsIqNv30gynIE1
-	Ckrp886kILCwkC54OfZNG11Br7qUL/E=
-X-Google-Smtp-Source: AK7set/JoHFQ7E3fHriSORvN/xRy9VYoD3kzivPGId+3eeSHP1sUS76o8gKcI9E1ltuOxKnMZQA2hw==
-X-Received: by 2002:a05:622a:1e0b:b0:3b8:2ea9:a09c with SMTP id br11-20020a05622a1e0b00b003b82ea9a09cmr10952029qtb.1.1677260607619;
-        Fri, 24 Feb 2023 09:43:27 -0800 (PST)
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sQJlTUxjP43j7tLpYmIXIt5f9T3+dxEGJBnFpPy1Dpc=;
+        b=Gaelj/meEexdQ+pr4sE5HJ0dGqXZhOFRJ7x24hfT8tMITKHo1OBZYm9y3iDXmb3APh
+         2hRqr6ckexFs3m9uvolWp8NCCDrjoIy+gCLSmbPbwJkZszN3Ioiv2HQmtm3Xx5R+lNvD
+         r/G/cJOk/P5+aDMwsmV2W5K+P0/tXdBmGO8+b1ovBVVTavpGnrVAolxkJp/dI4zQ9pb8
+         j2c07qZQWRc3G6ko2TwlHvP6AWgbJ/bXkHAs3VGMxzZgjrSe2QotXF/Dm4d56eYh/5xo
+         VsM39cYtiEqYcYb/2tMNbSxzPIkq+DTfQ66PfsdD05AMeDZjb9biHk+mh0UfBqB2izGa
+         KQTw==
+X-Gm-Message-State: AO0yUKV3T//aJBP6EjLqOugLMQka5WJbLb4YRWA1bYlzRpynDUDsEt+q
+	qT4ve9FXxA08i4leO44tL6Jh8DgxG6M=
+X-Google-Smtp-Source: AK7set85micyAZuuxPdOLi5hmyoZMT97sSGpfkoMKfG5Ev2mBH8rXvdchgDxQTFQAfHnF9XQxBGiPA==
+X-Received: by 2002:ac8:5c55:0:b0:3b6:694f:d710 with SMTP id j21-20020ac85c55000000b003b6694fd710mr16704674qtj.50.1677263370033;
+        Fri, 24 Feb 2023 10:29:30 -0800 (PST)
 Received: from [192.168.2.156] (bras-base-smflon1825w-grc-21-184-144-50-56.dsl.bell.ca. [184.144.50.56])
-        by smtp.googlemail.com with ESMTPSA id x6-20020a05622a000600b003b82a07c4d6sm8245565qtw.84.2023.02.24.09.43.26
+        by smtp.googlemail.com with ESMTPSA id x30-20020ac84d5e000000b003bfb62a377fsm12331qtv.3.2023.02.24.10.29.29
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Feb 2023 09:43:27 -0800 (PST)
-Message-ID: <d03e3519-acff-2e4e-b9b1-a6953a67d041@gmail.com>
-Date: Fri, 24 Feb 2023 12:43:26 -0500
+        Fri, 24 Feb 2023 10:29:29 -0800 (PST)
+Message-ID: <0ec41ef1-e63b-d013-4493-33ea92f9b6a0@gmail.com>
+Date: Fri, 24 Feb 2023 13:29:29 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.7.1
 Content-Language: en-US
-To: Rob Kossler <rkossler@nd.edu>
-References: <DB6PR02MB2981E698C5CE0E3D6829D9DEE7AB9@DB6PR02MB2981.eurprd02.prod.outlook.com>
- <b3cda3ac-b1c2-5788-1fe7-14e06d710c3b@gmail.com>
- <DB6PR02MB2981F4FF97EE0FBC112DF396E7AB9@DB6PR02MB2981.eurprd02.prod.outlook.com>
- <b0bcd12f-a3e4-8c99-2d23-005ff6824217@gmail.com>
- <DB6PR02MB298163AD80446D2D087D4E52E7A89@DB6PR02MB2981.eurprd02.prod.outlook.com>
- <e03719d3-1105-8610-0949-a57c67ef0607@gmail.com>
- <CAB__hTS4D2PLxvnUFJ_TKX3F_GvDq_UcA=09cviDrJDs=DKh3w@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+References: <CjcUDMlFhJtAsV42npogDjBbyYWiqrUy7kZzMXYhkG0@lists.ettus.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTS4D2PLxvnUFJ_TKX3F_GvDq_UcA=09cviDrJDs=DKh3w@mail.gmail.com>
-Message-ID-Hash: YZXBNZTL3EMLKJG4FM54SQFOVNJXDHMF
-X-Message-ID-Hash: YZXBNZTL3EMLKJG4FM54SQFOVNJXDHMF
+In-Reply-To: <CjcUDMlFhJtAsV42npogDjBbyYWiqrUy7kZzMXYhkG0@lists.ettus.com>
+Message-ID-Hash: 6TSTE3BGIIRJM547FW4ZBC7DCJMNZLOU
+X-Message-ID-Hash: 6TSTE3BGIIRJM547FW4ZBC7DCJMNZLOU
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "Peter Featherstone (XENINT)" <peter.featherstone@xenint.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: libuhd - read IQ samples without discontinuities
+Subject: [USRP-users] Re: using rfnoc_graph and usrp
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YZXBNZTL3EMLKJG4FM54SQFOVNJXDHMF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6TSTE3BGIIRJM547FW4ZBC7DCJMNZLOU/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============7104838252102116524=="
 
-T24gMjQvMDIvMjAyMyAxMTowNiwgUm9iIEtvc3NsZXIgd3JvdGU6DQo+IEhpIFBldGVyLA0KPiBF
-YWNoIHJlY3YoKSBjYWxsIHJldHVybnMgbWV0YWRhdGEgd2l0aCBhIHRpbWVzdGFtcC4gWW91IGNh
-biB2ZXJpZnkNCj4gZWFjaCByZWNlaXZlIGhhcyBhZHZhbmNlZCBleGFjdGx5IHRoZSByaWdodCBh
-bW91bnQgb2YgdGltZQ0KPiBjb3JyZXNwb25kaW5nIHRvIDE2ayBzYW1wbGVzLiAgSWYgdGhpcyB2
-ZXJpZmllcywgeW91IGhhdmVuJ3QgZHJvcHBlZA0KPiBhbnl0aGluZy4gIFRoZSBtZXRhZGF0YSBh
-bHNvIGluY2x1ZGVzIHRoZSBPdmVyZmxvdyBpbmRpY2F0aW9uLiBUbyBiZQ0KPiBob25lc3QsIEkg
-aGF2ZSBubyBpZGVhIHdoeSB5b3UgYXJlbid0IHNlZWluZyB0aGUgIk8iIHJpZ2h0IGF3YXkuDQo+
-IFJvYg0KVGhlcmUgYXJlIHNvbWUgbm90ZXMgb24gdGhlIHRyYW5zcG9ydCBoZXJlOg0KDQpodHRw
-czovL2ZpbGVzLmV0dHVzLmNvbS9tYW51YWwvcGFnZV90cmFuc3BvcnQuaHRtbCN0cmFuc3BvcnRf
-dXNiDQoNCkkndmUgdXNlZCAibnVtX3JlY3ZfZnJhbWVzIiBpbiB0aGUgcGFzdCB0byBoZWxwIHdp
-dGggb2NjYXNpb25hbCBvdmVycnVucyANCmF0IGhpZ2hlciByYXRlcy7CoCBUaGVzZSBwYXJhbWV0
-ZXJzLCBmcm9tDQogwqAgd2hhdCBJIHVuZGVyc3RhbmQsIGFyZSB1c2VkIHRvIGNvbmZpZ3VyZSB0
-aGUgc2Vzc2lvbiB3YXkgZG93biBhdCB0aGUgDQpib3R0b20gb2YgbGlidXNiLCBhbmQsIG5lYXIg
-YXMgSSBjYW4gdGVsbCwNCiDCoCBvbiBMaW51eCwgdGhlIHJlc291cmNlcyBpbXBsaWVkIGJ5IHRo
-ZW0gYXJlIHNoYXJlZCBhbW9uZyBhbGwgDQpwcm9jZXNzZXMgdXNpbmcgdGhlIGxpYnVzYiBzdWJz
-eXN0ZW0uDQoNClVIRCBieSBkZWZhdWx0IHNldHMgIm51bV9yZWN2X2ZyYW1lcyIgdG8gMzIsIGFu
-ZCB0aGUgbWF4IHZhbHVlIGZvciB0aGlzIA0KYXBwZWFycyB0byBiZSB2ZXJ5IHN5c3RlbSBkZXBl
-bmRlbnQsDQogwqAgYW5kIGFsc28gZGVwZW5kZW50IG9uIHdobyBlbHNlIGlzIHVzaW5nIHRoZSBr
-ZXJuZWwgInJhdyIgVVNCIHN1YnN5c3RlbS4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVz
-ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+This is a multi-part message in MIME format.
+--===============7104838252102116524==
+Content-Type: multipart/alternative;
+ boundary="------------EurpaT9MKQ2pdEug4dEaVQrM"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------EurpaT9MKQ2pdEug4dEaVQrM
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+On 24/02/2023 11:05, jmaloyan@umass.edu wrote:
+>
+> Hello,
+>
+> I am currently getting the following error, but I am lost as to how to=20
+> work around it=E2=80=A6
+>
+> |[ERROR] [RPC] Someone tried to claim this device again (From:=20
+> 192.168.10.1)|
+>
+> |[WARNING] [MPM.RPCServer] Someone tried to claim this device again=20
+> (From: 192.168.10.1)|
+>
+> It appears the problem comes from instantiating an object=20
+> uhd::rfnoc_graph, then, when this object already exists, I try to=20
+> create a uhd::usrp::multi_usrp object. For example=E2=80=A6
+>
+> |auto graph =3D uhd::rfnoc::rfnoc_graph::make(args);|
+>
+> |uhd::usrp::multi_usrp::sptr usrp =3D=20
+> uhd::usrp::multi_usrp::make("addr0=3D192.168.10.2");|
+>
+> It appears that trying to create both causes the error above to=20
+> happen. However, I want to be able to create an rfnoc_graph and use=20
+> multi_usrp to get and set the TOD on the ettus N321. How exactly can I=20
+> work around this? I saw the rfnoc_graph has a function called=20
+> =E2=80=9Csynchronize_devices()=E2=80=9D, however, it does not seem this=
+ function can=20
+> get and set the TOD as I need.
+>
+> Thanks,
+>
+> Joe
+>
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+You can't have two objects that "own" sessions to the device.=20
+Mixing-and-matching multi_usrp and rfnoc objects isn't,
+ =C2=A0 near as I can tell, supported.
+
+However, your use case of wanting to do "housekeeping" functions like=20
+"set_time_next_pps()" is legitimate, and I'm not
+ =C2=A0 sure how that is supported via RFNoC.=C2=A0=C2=A0=C2=A0 Perhaps o=
+ne of the RFNoC=20
+gurus on here can shed some light?
+
+Although, looking at the rfnoc_rx_to_file.cpp example, you can:
+
+graph->get_mb_controller(0)->set_clock_source(ref);
+
+
+So there's a "mb_controller" class that looks like it takes the same=20
+"stuff" you'd expect from a multi_usrp.
+
+
+--------------EurpaT9MKQ2pdEug4dEaVQrM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 24/02/2023 11:05, <a class=3D"moz-t=
+xt-link-abbreviated" href=3D"mailto:jmaloyan@umass.edu">jmaloyan@umass.ed=
+u</a>
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:CjcUDMlFhJtAsV42npogDjBbyYWiqrUy7kZzMXYhkG0@lists.ettus=
+.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <p>Hello,</p>
+      <p>I am currently getting the following error, but I am lost as to
+        how to work around it=E2=80=A6</p>
+      <p><code>[ERROR] [RPC] Someone tried to claim this device again
+          (From: 192.168.10.1)</code></p>
+      <p><code>[WARNING] [MPM.RPCServer] Someone tried to claim this
+          device again (From: 192.168.10.1)</code></p>
+      <p>It appears the problem comes from instantiating an object
+        uhd::rfnoc_graph, then, when this object already exists, I try
+        to create a uhd::usrp::multi_usrp object. For example=E2=80=A6</p=
+>
+      <p><code>auto graph =3D uhd::rfnoc::rfnoc_graph::make(args);</code>=
+</p>
+      <p><code>uhd::usrp::multi_usrp::sptr usrp =3D
+          uhd::usrp::multi_usrp::make("addr0=3D192.168.10.2");</code></p>
+      <p>It appears that trying to create both causes the error above to
+        happen. However, I want to be able to create an rfnoc_graph and
+        use multi_usrp to get and set the TOD on the ettus N321. How
+        exactly can I work around this? I saw the rfnoc_graph has a
+        function called =E2=80=9Csynchronize_devices()=E2=80=9D, however,=
+ it does not
+        seem this function can get and set the TOD as I need.</p>
+      <p>Thanks,</p>
+      <p>Joe</p>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    You can't have two objects that "own" sessions to the device.=C2=A0=C2=
+=A0=C2=A0
+    Mixing-and-matching multi_usrp and rfnoc objects isn't,<br>
+    =C2=A0 near as I can tell, supported.<br>
+    <br>
+    However, your use case of wanting to do "housekeeping" functions
+    like "set_time_next_pps()" is legitimate, and I'm not<br>
+    =C2=A0 sure how that is supported via RFNoC.=C2=A0=C2=A0=C2=A0 Perhap=
+s one of the RFNoC
+    gurus on here can shed some light?<br>
+    <br>
+    Although, looking at the rfnoc_rx_to_file.cpp example, you can:<br>
+    <br>
+    graph-&gt;get_mb_controller(0)-&gt;set_clock_source(ref);<br>
+    <br>
+    <br>
+    So there's a "mb_controller" class that looks like it takes the same
+    "stuff" you'd expect from a multi_usrp.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------EurpaT9MKQ2pdEug4dEaVQrM--
+
+--===============7104838252102116524==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============7104838252102116524==--
