@@ -2,193 +2,177 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA3D26A6E45
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Mar 2023 15:20:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C60C6A6E79
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Mar 2023 15:31:26 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6DC2E38404A
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Mar 2023 09:20:27 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4D48F384702
+	for <lists+usrp-users@lfdr.de>; Wed,  1 Mar 2023 09:31:25 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1677680427; bh=00ZIt/vJIaV7Yh+VwCrQR8rT/NEjkNdnONgQIIDgdMQ=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=NntzDLxK/7+c+tq9uvu53aDEzxZ2nABpDaMovJRKo310PPbmSFQwGVL2aLhPhBlfd
-	 Pu3a36Ut/OVeuIx7Ut+uUjj4qSMao0TY/8X/hBa0GRSpjIVlAMjUboZIOnz1W/E8Oh
-	 jfnYQf7fdnnb8h/TqURNy02QqsYKWD18GZe3s6UKMRSBi1/ZER0ukuCOD+arfgrXFo
-	 tsk3DH0uYvIpBhPe2XqayyRqDncfjYDmNJ70t/1gsv2zqckG8wrPZGwwx9lsGtG9xs
-	 xYfxYu33qo9EedwU/H1vLm8w2u3Cc8ieWBtpWUXzl3w6zvh+lGb/kAjLlsBFR4GqUj
-	 UwYo4OCp/7thg==
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2C3D438401D
-	for <usrp-users@lists.ettus.com>; Wed,  1 Mar 2023 09:19:50 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="l/Ofq5Oy";
-	dkim-atps=neutral
-Received: by mail-ed1-f46.google.com with SMTP id h16so54382374edz.10
-        for <usrp-users@lists.ettus.com>; Wed, 01 Mar 2023 06:19:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1677680389;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=TJA//GsHlylKoiZ1HEHlgabPuzuAqq68JT8fMIKyTPs=;
-        b=l/Ofq5OyD9AL4GpWRIpg3d/rL4ZIpk4nzfd6/Rkms1nFlQNy419uyP3hHvEaL0LD3S
-         zCP6G3VC2tcZ4YYD/iLUMyV9JVhcQLN20GIIbIEB0LBBtrYRfFPAXRdTw1euDAJf/mii
-         8a72/6Qp40WcylSFuZ03OC3MSNwssrj/nI3WdtZ7pdTt4rNaUrQgZXDb3YdDptg8lsGU
-         JzNszFt5eV6r92Xwp9GcoSx1CZ1fsJlnjRTbdW8eDPAa3rWTpH2izMU2NrlR3kjKQOcP
-         r0kNeeH+kGv9v5wj+uNFzko9n1w5h9mAdynneAG1uaugMuI2w+2BL7mw98ulwyUWqZ7q
-         Y8EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1677680389;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TJA//GsHlylKoiZ1HEHlgabPuzuAqq68JT8fMIKyTPs=;
-        b=jnZ48g3bJYlx9b6Wxlf3/dzNI+Xc3h8W6r4ZAOeOTpNa9Iy4n3+9moYtKxrRnSMhtT
-         +7X7s2ZjS2iKrhc9jagFGU+k1+GYmhbkeZGhuJwMzVr8X1a14WAgkP2Q6UcF7ZnCL0/y
-         mS8DiSVHxQ3j0KC4sHlRCy8PtPRYrUC6BpfSJVQyiduDkzIAYk+CRfyHuQQ26JNcpeP7
-         1r0Ng+3we0o2wyW07je7LBLJKjT8DRSKze5biiDD5O9BZmOygCCRBj/2Valer15/g8Kg
-         UxDyAjtnEok+4wu3GyYwTPyZ9owmimZAD1O4xk2KUTrwAwNbjzBlWBHcBOWI6D4Glc2y
-         Mszw==
-X-Gm-Message-State: AO0yUKUViCv4WBU3Qy40MYu12YDhIZOpdy/cZnZLGpbgSAO/nYqm3OL+
-	8qEVJHBbBRTv4p9SfvSs6/3nDQeXMahucOUUJX2xYRvJaU8=
-X-Google-Smtp-Source: AK7set/aQsUjHSq00wx5FPSRZ/XOGkqtFX8OJwxlDwQ+sfSJFouoyiZMqBJkOB7NMvFScByhd+9Xsc8FBs5dRdQREro=
-X-Received: by 2002:a17:907:60cd:b0:8b1:3540:7632 with SMTP id
- hv13-20020a17090760cd00b008b135407632mr11533680ejc.2.1677680388845; Wed, 01
- Mar 2023 06:19:48 -0800 (PST)
+	t=1677681085; bh=nK26zyXiO5FNPvJJZnjnNwMeF4WmTuCluIWwXU919HU=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=H9tw4CoIeETMW1Vn77wBC8FzgPzNsvlV1AlSsvdh+XitIIHTEoEIp5LkLPHVVw0Eu
+	 MP5hWd2ZFcIAvFUTY59MjYt/fMh5Hf74luibyGYz38CN0wdM3+kOcYOGH3llMY+4LG
+	 PNm0dIzZDx2evbawW5+v6+WkPUrbC8KtjJ0ThehQIaBabZ8N99OKbsQ0+17XOimPaO
+	 0k/izKZ8BhVJRbvT3zSDAq84wJxope+W37uaKCIkYUHo1F7GnjANewXMcZOkhit6Pz
+	 g16OHNh52VNGunn1peuoajNI6M19lHdfGoydOznvxDeQkw8YpVFZUaMkrApsEikpXW
+	 DAbDIVrdG3i0w==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id D35AC3844F6
+	for <usrp-users@lists.ettus.com>; Wed,  1 Mar 2023 09:30:37 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1677681037; bh=BDNpcAjwJ0sRNYQNu2g+49SQm8fNwDooi/cvR10fxL8=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=YxP7UYcnOpzc8paIoOTiF73VEiRvnH2zZP2kMaXBI6wU55LpWUgI9vLLIg6pnJwA1
+	 Bpmq+Fkxdep1NAvIKEDLVTpY8yQbNG4qVh3AravFqXrX1gYhwz4OKJRSaxwkowBTYm
+	 WF62h8yrvSVJQ8VLaDi/vKyyT9eJ8R7VTKbxxbzCmHqN+mM+orl7ot2UYAm+8oSfD4
+	 UWMV0r5wj20jpvYCb5Yi3JrPZF1hiL1V8XllszQ1tzvIiQrcQ7qClmrYo+13LbCvfn
+	 +cJ2z5aDPJ9NvpSuTAIGNLRqj6tnKBs89L87UjUnnn9pMQE8JtahmZ5FpVmzBeKyQe
+	 bCEkXHfJj3glg==
+Date: Wed, 1 Mar 2023 14:30:37 +0000
+To: usrp-users@lists.ettus.com
+From: henry.powell.xx@gmail.com
+Message-ID: <jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: 0e4c1eed-8838-8e2d-e8f4-db08ebb73aa1@gmail.com
 MIME-Version: 1.0
-References: <PH0PR15MB4704FC8A1F2B068355FDEDC8E3AD9@PH0PR15MB4704.namprd15.prod.outlook.com>
- <PH0PR15MB470475B739510FC1329965F2E3AD9@PH0PR15MB4704.namprd15.prod.outlook.com>
- <CAEXYVK76azqDJCxcBx6pN53abV9ACic0EcC1MfHLWoTpaK84Xg@mail.gmail.com> <20230301145718.0d3da2c7@x230>
-In-Reply-To: <20230301145718.0d3da2c7@x230>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Wed, 1 Mar 2023 09:19:37 -0500
-Message-ID: <CAEXYVK7YHU+XYUtTcn0k6WijONQn9eQSA22mHR0VAS5uRxrHHw@mail.gmail.com>
-To: Gwenhael Goavec-Merou <gwenj@trabucayre.com>
-Message-ID-Hash: AKALRAR3VQBHWAEY3UJMH7SN3UWW5V2J
-X-Message-ID-Hash: AKALRAR3VQBHWAEY3UJMH7SN3UWW5V2J
-X-MailFrom: bpadalino@gmail.com
+Content-Type: multipart/mixed;
+ boundary="b1_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA"
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: VF7LQBSOEQBGIKHSUB2MMUMDUTRXCGN3
+X-Message-ID-Hash: VF7LQBSOEQBGIKHSUB2MMUMDUTRXCGN3
+X-MailFrom: henry.powell.xx@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "Vermeulen, Bas (Consultant)" <Bas.Vermeulen@molex.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: What do I need to do to make uhd_usrp_probe see my custom RFNOC module?
+Subject: [USRP-users] Re: Wrong Measurement Results
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AKALRAR3VQBHWAEY3UJMH7SN3UWW5V2J/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VF7LQBSOEQBGIKHSUB2MMUMDUTRXCGN3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8725945710177111645=="
 
---===============8725945710177111645==
-Content-Type: multipart/alternative; boundary="0000000000009fb45905f5d767f0"
+This is a multi-part message in MIME format.
 
---0000000000009fb45905f5d767f0
-Content-Type: text/plain; charset="UTF-8"
+--b1_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA
+Content-Type: multipart/alternative;
+ boundary="b2_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA"
 
-On Wed, Mar 1, 2023 at 8:59 AM Gwenhael Goavec-Merou <gwenj@trabucayre.com>
-wrote:
-
-> On Wed, 1 Mar 2023 07:20:22 -0500
-> Brian Padalino <bpadalino@gmail.com> wrote:
->
-> > On Wed, Mar 1, 2023 at 5:40 AM Vermeulen, Bas (Consultant) via
-> USRP-users <
-> > usrp-users@lists.ettus.com> wrote:
-> >
-> > > Just to answer my own question:
-> > >
-> > > Run uhd_usrp_probe with LD_PRELOAD=/usr/lib/librfnoc-module.so
-> > > uhd_usrp_probe and it will be able to find the RFNOC modules.
-> > > The same for any test programs you use, those need the LD_PRELOAD as
-> well.
-> > >
-> >
-> > While this is a way to do it, I believe the preferred method is using the
-> > UHD_MODULE_PATH environment variable.
-> >
-> > Set that to a location which contains all the .so files for any RFNoC
-> > modules, and UHD will load them automatically.  Note that if any non-.so
-> > files are in that path, you will get a warning about not being able to
-> load
-> > the library.
-> >
-> > Brian
->
-> /usr/lib is a default path for libraries.
-> Maybe using (as root) ldconfig to rebuild/refresh the cache used by the
-> runtime
-> linker?
->
-
-No - this doesn't make sense.  Use UHD_MODULE_PATH.
-
-You can put your modules in ~/mymodules and point your UHD_MODULE_PATH to
-~/mymodules and things will work fine.
-
-There is no need to play with LD_PRELOAD or worry about being root or
-install to default library paths.
-
-Use UHD_MODULE_PATH.
-
-Brian
-
---0000000000009fb45905f5d767f0
-Content-Type: text/html; charset="UTF-8"
+--b2_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Wed, Mar 1, 2023 at 8:59 AM Gwenhael G=
-oavec-Merou &lt;<a href=3D"mailto:gwenj@trabucayre.com">gwenj@trabucayre.co=
-m</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">On Wed, 1 Mar 2023 07:20:22 -0500<br>
-Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com" target=3D"_blank"=
->bpadalino@gmail.com</a>&gt; wrote:<br>
-<br>
-&gt; On Wed, Mar 1, 2023 at 5:40 AM Vermeulen, Bas (Consultant) via USRP-us=
-ers &lt;<br>
-&gt; <a href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank">usrp-u=
-sers@lists.ettus.com</a>&gt; wrote:<br>
-&gt; <br>
-&gt; &gt; Just to answer my own question:<br>
-&gt; &gt;<br>
-&gt; &gt; Run uhd_usrp_probe with LD_PRELOAD=3D/usr/lib/librfnoc-module.so<=
-br>
-&gt; &gt; uhd_usrp_probe and it will be able to find the RFNOC modules.<br>
-&gt; &gt; The same for any test programs you use, those need the LD_PRELOAD=
- as well.<br>
-&gt; &gt;=C2=A0 <br>
-&gt; <br>
-&gt; While this is a way to do it, I believe the preferred method is using =
-the<br>
-&gt; UHD_MODULE_PATH environment variable.<br>
-&gt; <br>
-&gt; Set that to a location which contains all the .so files for any RFNoC<=
-br>
-&gt; modules, and UHD will load them automatically.=C2=A0 Note that if any =
-non-.so<br>
-&gt; files are in that path, you will get a warning about not being able to=
- load<br>
-&gt; the library.<br>
-&gt; <br>
-&gt; Brian<br>
-<br>
-/usr/lib is a default path for libraries.<br>
-Maybe using (as root) ldconfig to rebuild/refresh the cache used by the run=
-time<br>
-linker?<br></blockquote><div><br></div><div>No - this doesn&#39;t make sens=
-e.=C2=A0 Use UHD_MODULE_PATH.</div><div><br></div><div>You can put your mod=
-ules in ~/mymodules and point your UHD_MODULE_PATH to ~/mymodules and thing=
-s will work fine.</div><div><br></div><div>There is no need to play with LD=
-_PRELOAD or worry about being root or install to default library paths.</di=
-v><div><br></div><div>Use UHD_MODULE_PATH.</div><div><br></div><div>Brian</=
-div></div></div>
+I don=E2=80=99t understand how this happen. Everythings are same, I just =
+change USRP.
 
---0000000000009fb45905f5d767f0--
+First, I tried with USRP B200 and the difference between 0 and 180 degree=
+ is 3dB.
 
---===============8725945710177111645==
+Then I plug Pico VNA, the difference is zero. Then I plug Nano VNA (It=E2=
+=80=99s 50 dollar VNA cheap.) the difference is zero.
+
+I plug my other USRP, It=E2=80=99s B210. The difference is 0,7dB.
+
+Anything changed except USRP.
+
+After of all this I plug USRP B200 again and the difference is 3dB.
+
+When I change the frequency, at some frequencies there is no difference b=
+etween 0 and 180 degree. I share with you the data. When horn antenna at =
+0 degree ant rotate 180 degree.
+
+--b2_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>I don=E2=80=99t understand how this happen. Everythings are same, I ju=
+st change USRP.</p><p>First, I tried with USRP B200 and the difference be=
+tween 0 and 180 degree is 3dB.</p><p>Then I plug Pico VNA, the difference=
+ is zero. Then I plug Nano VNA (It=E2=80=99s 50 dollar VNA cheap.) the di=
+fference is zero.</p><p>I plug my other USRP, It=E2=80=99s B210. The diff=
+erence is 0,7dB.</p><p>Anything changed except USRP.</p><p>After of all t=
+his I plug USRP B200 again and the difference is 3dB.</p><p>When I change=
+ the frequency, at some frequencies there is no difference between 0 and =
+180 degree. I share with you the data. When horn antenna at 0 degree ant =
+rotate 180 degree.</p>
+
+
+--b2_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA--
+
+--b1_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA
+Content-Type: text/plain; name=data.txt
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=data.txt
+
+IyAwIGRlZ3JlZToNCk1heC4gVmFsdWUgYXQgNDAwMS4wIE1IeiA6IC0zMi4zOTQNCk1heC4gVmFs
+dWUgYXQgNDAwMi4wIE1IeiA6IC0zMi4zNDMNCk1heC4gVmFsdWUgYXQgNDAwMy4wIE1IeiA6IC0z
+Mi4zODANCk1heC4gVmFsdWUgYXQgNDAwNC4wIE1IeiA6IC0zMi40MzENCk1heC4gVmFsdWUgYXQg
+NDAwNS4wIE1IeiA6IC0zMi41NTYNCk1heC4gVmFsdWUgYXQgNDAwNi4wIE1IeiA6IC0zMi43NDgN
+Ck1heC4gVmFsdWUgYXQgNDAwNy4wIE1IeiA6IC0zMi45MTkNCk1heC4gVmFsdWUgYXQgNDAwOC4w
+IE1IeiA6IC0zMy4xNDENCk1heC4gVmFsdWUgYXQgNDAwOS4wIE1IeiA6IC0zMy4zNjYNCk1heC4g
+VmFsdWUgYXQgNDAxMC4wIE1IeiA6IC0zMy42MTYNCk1heC4gVmFsdWUgYXQgNDAxMS4wIE1IeiA6
+IC0zMy44MzMNCk1heC4gVmFsdWUgYXQgNDAxMi4wIE1IeiA6IC0zNC4wNzMNCk1heC4gVmFsdWUg
+YXQgNDAxMy4wIE1IeiA6IC0zNC4zOTENCk1heC4gVmFsdWUgYXQgNDAxNC4wIE1IeiA6IC0zNC43
+MTANCk1heC4gVmFsdWUgYXQgNDAxNS4wIE1IeiA6IC0zNS4xMzINCk1heC4gVmFsdWUgYXQgNDAx
+Ni4wIE1IeiA6IC0zNS41NTMNCk1heC4gVmFsdWUgYXQgNDAxNy4wIE1IeiA6IC0zNS45NzMNCk1h
+eC4gVmFsdWUgYXQgNDAxOC4wIE1IeiA6IC0zNi40MTQNCk1heC4gVmFsdWUgYXQgNDAxOS4wIE1I
+eiA6IC0zNi43MjUNCk1heC4gVmFsdWUgYXQgNDAyMC4wIE1IeiA6IC0zNi45NjUNCk1heC4gVmFs
+dWUgYXQgNDAyMS4wIE1IeiA6IC0zNy4wNjENCk1heC4gVmFsdWUgYXQgNDAyMi4wIE1IeiA6IC0z
+Ny4xNjYNCk1heC4gVmFsdWUgYXQgNDAyMy4wIE1IeiA6IC0zNy4xNTUNCk1heC4gVmFsdWUgYXQg
+NDAyNC4wIE1IeiA6IC0zNy4wNzkNCk1heC4gVmFsdWUgYXQgNDAyNS4wIE1IeiA6IC0zNi45ODcN
+Ck1heC4gVmFsdWUgYXQgNDAyNi4wIE1IeiA6IC0zNi44MjMNCk1heC4gVmFsdWUgYXQgNDAyNy4w
+IE1IeiA6IC0zNi41ODgNCk1heC4gVmFsdWUgYXQgNDAyOC4wIE1IeiA6IC0zNi4zMzkNCk1heC4g
+VmFsdWUgYXQgNDAyOS4wIE1IeiA6IC0zNi4wMDUNCk1heC4gVmFsdWUgYXQgNDAzMC4wIE1IeiA6
+IC0zNS42NDUNCk1heC4gVmFsdWUgYXQgNDAzMS4wIE1IeiA6IC0zNS4xOTYNCk1heC4gVmFsdWUg
+YXQgNDAzMi4wIE1IeiA6IC0zNC43NTQNCk1heC4gVmFsdWUgYXQgNDAzMy4wIE1IeiA6IC0zNC4z
+MTYNCk1heC4gVmFsdWUgYXQgNDAzNC4wIE1IeiA6IC0zMy45MTUNCk1heC4gVmFsdWUgYXQgNDAz
+NS4wIE1IeiA6IC0zMy40NzkNCk1heC4gVmFsdWUgYXQgNDAzNi4wIE1IeiA6IC0zMy4wOTMNCk1h
+eC4gVmFsdWUgYXQgNDAzNy4wIE1IeiA6IC0zMi42OTYNCk1heC4gVmFsdWUgYXQgNDAzOC4wIE1I
+eiA6IC0zMi40MDkNCk1heC4gVmFsdWUgYXQgNDAzOS4wIE1IeiA6IC0zMi4xNjcNCk1heC4gVmFs
+dWUgYXQgNDA0MC4wIE1IeiA6IC0zMS45NzcNCk1heC4gVmFsdWUgYXQgNDA0MS4wIE1IeiA6IC0z
+MS44NTQNCk1heC4gVmFsdWUgYXQgNDA0Mi4wIE1IeiA6IC0zMS44MjINCk1heC4gVmFsdWUgYXQg
+NDA0My4wIE1IeiA6IC0zMS44MzUNCk1heC4gVmFsdWUgYXQgNDA0NC4wIE1IeiA6IC0zMS45MDQN
+Ck1heC4gVmFsdWUgYXQgNDA0NS4wIE1IeiA6IC0zMi4wMTINCk1heC4gVmFsdWUgYXQgNDA0Ni4w
+IE1IeiA6IC0zMi4xNTINCk1heC4gVmFsdWUgYXQgNDA0Ny4wIE1IeiA6IC0zMi4yOTENCk1heC4g
+VmFsdWUgYXQgNDA0OC4wIE1IeiA6IC0zMi40MzENCk1heC4gVmFsdWUgYXQgNDA0OS4wIE1IeiA6
+IC0zMi41ODQNCk1heC4gVmFsdWUgYXQgNDA1MC4wIE1IeiA6IC0zMi44MDINCg0KIyAxODAgZGVn
+cmVlOg0KTWF4LiBWYWx1ZSBhdCA0MDAxLjAgTUh6IDogLTM1LjM3MA0KTWF4LiBWYWx1ZSBhdCA0
+MDAyLjAgTUh6IDogLTM1LjM3MQ0KTWF4LiBWYWx1ZSBhdCA0MDAzLjAgTUh6IDogLTM1LjMxMw0K
+TWF4LiBWYWx1ZSBhdCA0MDA0LjAgTUh6IDogLTM1LjI0MQ0KTWF4LiBWYWx1ZSBhdCA0MDA1LjAg
+TUh6IDogLTM1LjE4OA0KTWF4LiBWYWx1ZSBhdCA0MDA2LjAgTUh6IDogLTM1LjA3Nw0KTWF4LiBW
+YWx1ZSBhdCA0MDA3LjAgTUh6IDogLTM0Ljk2NA0KTWF4LiBWYWx1ZSBhdCA0MDA4LjAgTUh6IDog
+LTM0LjgwMg0KTWF4LiBWYWx1ZSBhdCA0MDA5LjAgTUh6IDogLTM0LjU3Nw0KTWF4LiBWYWx1ZSBh
+dCA0MDEwLjAgTUh6IDogLTM0LjM0Nw0KTWF4LiBWYWx1ZSBhdCA0MDExLjAgTUh6IDogLTM0LjEw
+Ng0KTWF4LiBWYWx1ZSBhdCA0MDEyLjAgTUh6IDogLTMzLjc3Mw0KTWF4LiBWYWx1ZSBhdCA0MDEz
+LjAgTUh6IDogLTMzLjQ5OQ0KTWF4LiBWYWx1ZSBhdCA0MDE0LjAgTUh6IDogLTMzLjI4OQ0KTWF4
+LiBWYWx1ZSBhdCA0MDE1LjAgTUh6IDogLTMzLjE2Mw0KTWF4LiBWYWx1ZSBhdCA0MDE2LjAgTUh6
+IDogLTMzLjAzOA0KTWF4LiBWYWx1ZSBhdCA0MDE3LjAgTUh6IDogLTMyLjk3NA0KTWF4LiBWYWx1
+ZSBhdCA0MDE4LjAgTUh6IDogLTMyLjk0MQ0KTWF4LiBWYWx1ZSBhdCA0MDE5LjAgTUh6IDogLTMy
+Ljk3MA0KTWF4LiBWYWx1ZSBhdCA0MDIwLjAgTUh6IDogLTMyLjkxMw0KTWF4LiBWYWx1ZSBhdCA0
+MDIxLjAgTUh6IDogLTMyLjgyOQ0KTWF4LiBWYWx1ZSBhdCA0MDIyLjAgTUh6IDogLTMyLjc5NQ0K
+TWF4LiBWYWx1ZSBhdCA0MDIzLjAgTUh6IDogLTMyLjgwNQ0KTWF4LiBWYWx1ZSBhdCA0MDI0LjAg
+TUh6IDogLTMyLjg4NQ0KTWF4LiBWYWx1ZSBhdCA0MDI1LjAgTUh6IDogLTMyLjkzOQ0KTWF4LiBW
+YWx1ZSBhdCA0MDI2LjAgTUh6IDogLTMzLjA2NA0KTWF4LiBWYWx1ZSBhdCA0MDI3LjAgTUh6IDog
+LTMzLjE5OQ0KTWF4LiBWYWx1ZSBhdCA0MDI4LjAgTUh6IDogLTMzLjMzNw0KTWF4LiBWYWx1ZSBh
+dCA0MDI5LjAgTUh6IDogLTMzLjQ4Mw0KTWF4LiBWYWx1ZSBhdCA0MDMwLjAgTUh6IDogLTMzLjY1
+Ng0KTWF4LiBWYWx1ZSBhdCA0MDMxLjAgTUh6IDogLTMzLjgzMA0KTWF4LiBWYWx1ZSBhdCA0MDMy
+LjAgTUh6IDogLTMzLjk5Mg0KTWF4LiBWYWx1ZSBhdCA0MDMzLjAgTUh6IDogLTM0LjE3NQ0KTWF4
+LiBWYWx1ZSBhdCA0MDM0LjAgTUh6IDogLTM0LjM2Mg0KTWF4LiBWYWx1ZSBhdCA0MDM1LjAgTUh6
+IDogLTM0LjU1NQ0KTWF4LiBWYWx1ZSBhdCA0MDM2LjAgTUh6IDogLTM0LjcyNg0KTWF4LiBWYWx1
+ZSBhdCA0MDM3LjAgTUh6IDogLTM0Ljg5Mw0KTWF4LiBWYWx1ZSBhdCA0MDM4LjAgTUh6IDogLTM1
+LjA4MA0KTWF4LiBWYWx1ZSBhdCA0MDM5LjAgTUh6IDogLTM1LjIxOA0KTWF4LiBWYWx1ZSBhdCA0
+MDQwLjAgTUh6IDogLTM1LjQyNA0KTWF4LiBWYWx1ZSBhdCA0MDQxLjAgTUh6IDogLTM1LjU2NA0K
+TWF4LiBWYWx1ZSBhdCA0MDQyLjAgTUh6IDogLTM1LjcwMA0KTWF4LiBWYWx1ZSBhdCA0MDQzLjAg
+TUh6IDogLTM1Ljc0OQ0KTWF4LiBWYWx1ZSBhdCA0MDQ0LjAgTUh6IDogLTM1LjczNQ0KTWF4LiBW
+YWx1ZSBhdCA0MDQ1LjAgTUh6IDogLTM1LjY2NQ0KTWF4LiBWYWx1ZSBhdCA0MDQ2LjAgTUh6IDog
+LTM1LjUwNQ0KTWF4LiBWYWx1ZSBhdCA0MDQ3LjAgTUh6IDogLTM1LjI2MQ0KTWF4LiBWYWx1ZSBh
+dCA0MDQ4LjAgTUh6IDogLTM0Ljk3NA0KTWF4LiBWYWx1ZSBhdCA0MDQ5LjAgTUh6IDogLTM0LjY1
+OA0KTWF4LiBWYWx1ZSBhdCA0MDUwLjAgTUh6IDogLTM0LjMwMg==
+
+--b1_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -198,4 +182,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8725945710177111645==--
+--b1_jTLN1r7p7ylgXzKE4thguJC5xOm7cVr5fus8Sf5NwA--
