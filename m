@@ -2,157 +2,164 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 332A96A73BB
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Mar 2023 19:47:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14EA56A7CEA
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Mar 2023 09:38:02 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 1011F38472B
-	for <lists+usrp-users@lfdr.de>; Wed,  1 Mar 2023 13:47:53 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 8BD4A38461D
+	for <lists+usrp-users@lfdr.de>; Thu,  2 Mar 2023 03:38:00 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1677696473; bh=oHX9HgXxIJcnZcun8fkspjPCgqHt2QtaszjU5UcG0zQ=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=s5nlv5AoK8QcDmZvbNp093tjf9PqTqBMKENpUzOwW3eqEpRaEqS94oc/nVbSLWn7d
-	 qbmw2F579nz9fbSIy7ItisBuNmJMGG92QzM+oD/S+oOd3pXysRdlDW+4uPhaxT3gB+
-	 ld/BL6ug5IvsXr9IS7vWLaZjlePHjHuPvo51lIBZ8FuANgXppDgAPi0WcrjtI7qUr2
-	 6PTwgSqrQSTju9LZVJqfRtiaJqcGELcD/VLMah3fgvVRystglu1KFoyszK8T+O/BeD
-	 mS5ee+zF/AZW9X7xemZ8UmBNj8RTK89g1v5HAHFsDBSdrvB4TrWNr8FOcsjJHjue5/
-	 pwUAlWWftClag==
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id DF0C73844C5
-	for <usrp-users@lists.ettus.com>; Wed,  1 Mar 2023 13:47:19 -0500 (EST)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="gAdR2aP8";
-	dkim-atps=neutral
-Received: by mail-ed1-f51.google.com with SMTP id i34so57825940eda.7
-        for <usrp-users@lists.ettus.com>; Wed, 01 Mar 2023 10:47:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tl+OmScP1KRLudiC/0Do4SnEvZ90UGDvQnP9u1hX+ws=;
-        b=gAdR2aP8ND50QPG56W3MsGdP9wbW4sMzZ9FqSYkeWca+PFZKVYHM9vxTqgRLMIwJy6
-         +pi9vcLMmWDWGxNBuN9Ne4qroZ7o8dym26Vkk7+3Flm5wDL6JPiS16jBJNN2Mv/Od40L
-         Dy/8jWUZjou6ncGeUFomtfLRz1+7I6l7TtlP09HsNNMXTFoy7QhVjdHPzyEiGS/2vd/6
-         vF5PLBgoggfXpYoBd0eGogSkcQb8oImB5V1v0XszPb/Sa9c7Q1rllOSbfEAvvrXGAFR6
-         Z4N/MSiyhOMdEEYot3gsoZtCw6Pvdseaxyd96s79QgIpMf5UcwZpgH1ZDrblfLl/xdoa
-         bE2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tl+OmScP1KRLudiC/0Do4SnEvZ90UGDvQnP9u1hX+ws=;
-        b=yXizXBX/YjF7KAGg/HsCJP/4LwBc9F5mOvCBWKpSIzeGtTE/N+wNSXjRymhxgsw83e
-         lKmzmvgrw9p2pEud/7RJx98Dyn4msWHQIvoJ37UaHUGQdTS28ZNikW4Rf0b3DGA2/6uj
-         +8WJx1u4L6KW5lbwnKok1z64//NDlgSrpxL4xaEMKw9Lx3zaWtap8i2Sf/EyKeSq9AHH
-         XzPzgM4CTKoTMWosFQ2rvDKbMuG04q5ONHO3437wMlyimjJh2m2RkI5AwV0iWyQkVB+z
-         uS29KJObQSiVVGWSSoy/nyuXd1OcIPwLn/RkAFbQiL46uFj8pGmRRd/ZKh7lKKEWGgj4
-         8PLw==
-X-Gm-Message-State: AO0yUKVyl/x1Fgao4Sb9bi5s4zXqeykT4mHCTeUV5gyJHK59adwYh32z
-	/nUQl+sTC5eGipwxd2l+hVFAtxowv+sFl1ngpstEMA==
-X-Google-Smtp-Source: AK7set8UBUOoeIuXAp7PfiE8sSg525B3zOIY7mGclZ/ksHndfw9e2bCeBOl84GYvUuHAxi+dhE3ghBuBLMRDhONkw0s=
-X-Received: by 2002:a17:907:c004:b0:8af:2ad8:3453 with SMTP id
- ss4-20020a170907c00400b008af2ad83453mr11577455ejc.6.1677696438570; Wed, 01
- Mar 2023 10:47:18 -0800 (PST)
+	t=1677746280; bh=+VIn3k2erUZbqXrOtRw6H2+M39gaTbVO3A0zwdAJbM4=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=WNSWddE+oQk1GqAfobw3CSYD5wd2S+VfQiPXLFTEf12M0/+l9Rm1dmJ4slb3XUt/0
+	 JqUoPZRACSbGfJpO8WqEJBkDBJ8/Q1Z62LgowbHNOFGdjxjz7b9IoFsXmcaPmDuOu5
+	 9r4A00d8WspfHbLTmRMOB1lhfAMhjB/jdhwNbRLqwXRdWY+GRD9Y4G9a709N5b1JwX
+	 LJtjcmqIWg1/CZN2Kd9FkZLykypZ3bMnMxSVFnRP/8AjaYzw5id/2k6h5X7IqfhvhJ
+	 k3stqtH6rpjin/7ai92pSbxpJhRRjPmKxK+7X4JKySoGGZPBBWEqNqo/rVlfZhcNKn
+	 HRlLfdzzLXzpQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 25DB238461D
+	for <usrp-users@lists.ettus.com>; Thu,  2 Mar 2023 03:37:54 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1677746274; bh=5M0th7i3zzx5QQ/55w4bDTTU4hDkVxtatwviRsiluRU=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=RcBtHx/OboEMMasp/3uuMLBUUxFH9pP4ywOAVjCOUY5D3Ad8tUlEgtXGjq+zk7ncu
+	 HUXnsfJiFzAkezwnM/KBx7X3nawW/+mVIwgimrJTd2Y95V9bbkXhaZ6E1c8LY7YRnS
+	 oYa6SF2Z9eCUx7ibFaRxkvTnLFrkEj5c5yqseWXZ0uws+qXuSfNxQBzmu/ePOHA/S0
+	 eaMkMsK7HcnlePH9LZnU2G9hcLj9I//GZYA8JtDORMroaBej3A9e8pWeckF0Ut6Oo2
+	 ujEhhho2pCAZteSJk68MmBcz2iW3v6w3FkbHDku0OQXd9dd9S81cUGu22zu+w2wN7w
+	 /3j1Ghg0R1bBA==
+Date: Thu, 2 Mar 2023 08:37:54 +0000
+To: usrp-users@lists.ettus.com
+From: henry.powell.xx@gmail.com
+Message-ID: <dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: be6db947-0870-955e-14da-c0f1e4768efb@gmail.com
 MIME-Version: 1.0
-References: <g5fsIidNO02V9n8rYPvvPSoHz82jEKTXJOEh1iYA@lists.ettus.com>
-In-Reply-To: <g5fsIidNO02V9n8rYPvvPSoHz82jEKTXJOEh1iYA@lists.ettus.com>
-From: Rob Kossler <rkossler@nd.edu>
-Date: Wed, 1 Mar 2023 13:46:57 -0500
-Message-ID: <CAB__hTSQm5joSP0GBB-AX568Y3KjWRcGPR5ing+ZjZkAfO72MQ@mail.gmail.com>
-To: jmaloyan@umass.edu
-Message-ID-Hash: FVN7IBRPGHUG3WO6ZOZUSIBNVVZFROHI
-X-Message-ID-Hash: FVN7IBRPGHUG3WO6ZOZUSIBNVVZFROHI
-X-MailFrom: rkossler@nd.edu
+Content-Type: multipart/mixed;
+ boundary="b1_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM"
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: YYRCWA2K74DPBWZ62P7HQ36RDXMNKEWO
+X-Message-ID-Hash: YYRCWA2K74DPBWZ62P7HQ36RDXMNKEWO
+X-MailFrom: henry.powell.xx@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Instantaneous bandwidth on Ettus N321
+Subject: [USRP-users] Re: Wrong Measurement Results
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FVN7IBRPGHUG3WO6ZOZUSIBNVVZFROHI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YYRCWA2K74DPBWZ62P7HQ36RDXMNKEWO/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3956346670308375504=="
 
---===============3956346670308375504==
-Content-Type: multipart/alternative; boundary="00000000000043a31805f5db248f"
+This is a multi-part message in MIME format.
 
---00000000000043a31805f5db248f
-Content-Type: text/plain; charset="UTF-8"
+--b1_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM
+Content-Type: multipart/alternative;
+ boundary="b2_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM"
+
+--b2_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Joe,
-Complex sampling does not require the sample rate to be 2x the highest
-frequency as is the case for real sampling. It only needs to be 1x.  So,
-the 250MS/s sampling rate produces 250MHz of spectrum. But, there are
-anti-aliasing filters that reduce this to a usable bandwidth of 200Mhz.
-Rob
+I am changing the distance between 1 and 1,5 meter. I usually change gain=
+ settings. But I always make 100dB totals. Right now, RX=3D35, TX=3D65.
 
-On Wed, Mar 1, 2023 at 12:52=E2=80=AFPM <jmaloyan@umass.edu> wrote:
+I used VNA as a signal generator. I set -20dBm signal in VNA and I ran my=
+ SDR as receiver. Actually, the results are satisfactory. SDRs receiver s=
+eems okay. Almost no difference between 0 and 180 degree. So, can we say =
+the problem is in transmitter?
 
-> Hello,
->
->
-> I am currently looking to see what the highest possible sampling rate is
-> for the ettus N321/N320. I see that the highest master clock rate is 250e=
-6
-> Mhz, However, on the product website(
-> https://www.ettus.com/all-products/usrp-n321/), it says that it can
-> collect up to an instantaneous bandwidth of 200 Mhz, so I am led to assum=
-e
-> that the maximum possible sampling rate is 400 Mhz. Is this true? If so,
-> how do I configure my the ettus to collect at a rate of 400 Mhz without t=
-he
-> rate being coerced back down to 250 Mhz.
->
->
-> Thanks,
->
-> Joe
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+I can=E2=80=99t share all of the code. But I share the connections and se=
+ttings in attachment.
 
---00000000000043a31805f5db248f
-Content-Type: text/html; charset="UTF-8"
+--b2_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Joe,<div>Complex sampling does not require the sample rate=
- to be 2x the highest frequency as is the case for real sampling. It only n=
-eeds to be 1x.=C2=A0 So, the 250MS/s sampling rate produces 250MHz of spect=
-rum. But, there are anti-aliasing filters that reduce this to a usable band=
-width of 200Mhz.</div><div>Rob</div></div><br><div class=3D"gmail_quote"><d=
-iv dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 1, 2023 at 12:52=E2=80=AFPM=
- &lt;<a href=3D"mailto:jmaloyan@umass.edu">jmaloyan@umass.edu</a>&gt; wrote=
-:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hello,</p><=
-p><br></p><p>I am currently looking to see what the highest possible sampli=
-ng rate is for the ettus N321/N320. I see that the highest master clock rat=
-e is 250e6 Mhz, However, on the product website(<a href=3D"https://www.ettu=
-s.com/all-products/usrp-n321/" target=3D"_blank">https://www.ettus.com/all-=
-products/usrp-n321/</a>), it says that it can collect up to an instantaneou=
-s bandwidth of 200 Mhz, so I am led to assume that the maximum possible sam=
-pling rate is 400 Mhz. Is this true? If so, how do I configure my the ettus=
- to collect at a rate of 400 Mhz without the rate being coerced back down t=
-o 250 Mhz.</p><p><br></p><p>Thanks,</p><p>Joe </p>
+<p>I am changing the distance between 1 and 1,5 meter. I usually change g=
+ain settings. But I always make 100dB totals. Right now, RX=3D35, TX=3D65=
+.</p><p>I used VNA as a signal generator. I set -20dBm signal in VNA and =
+I ran my SDR as receiver. Actually, the results are satisfactory. SDRs re=
+ceiver seems okay. Almost no difference between 0 and 180 degree. So, can=
+ we say the problem is in transmitter?</p><p>I can=E2=80=99t share all of=
+ the code. But I share the connections and settings in attachment.</p>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
 
---00000000000043a31805f5db248f--
+--b2_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM--
 
---===============3956346670308375504==
+--b1_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM
+Content-Type: text/plain; name=codes.txt
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=codes.txt
+
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMNCiMgVmFy
+aWFibGVzDQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+Iw0KDQpzZWxmLnNhbXBsZV9yYXRlID0gc2FtcGxlX3JhdGUgPSAxMGU2DQpzZWxmLmZmdF9zaXpl
+ID0gZmZ0X3NpemUgPSAxMDI0DQpzZWxmLmNlbnRlcl9mcmVxID0gY2VudGVyX2ZyZXEgPSBmcmVx
+TGlzdFswXQ0Kc2VsZi5idyA9IGJ3ID0gMjAwZTMNCnNlbGYubG9fb2Zmc2V0ID0gbG9fb2Zmc2V0
+ID0gNTBlMw0KDQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIw0KIyBCbG9ja3MNCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjDQpzZWxmLnVoZF91c3JwX3NvdXJjZV8wID0gdWhkLnVzcnBfc291cmNlKA0KICAg
+ICIsIi5qb2luKCgic2VyaWFsPXh4eHh4eHgiLCAibnVtX3NlbmRfZnJhbWVzPTI1NiIsICJudW1f
+cmVjdl9mcmFtZXM9MjU2IikpLA0KICAgIHVoZC5zdHJlYW1fYXJncygNCiAgICAgICAgY3B1X2Zv
+cm1hdD0iZmMzMiIsDQogICAgICAgIG90d19mb3JtYXQ9InNjMTIiLA0KICAgICAgICBhcmdzPScn
+LA0KICAgICAgICBjaGFubmVscz1saXN0KHJhbmdlKDAsIDEpKSwNCiAgICApLA0KKQ0KDQpzZWxm
+LnVoZF91c3JwX3NvdXJjZV8wLnNldF9zYW1wX3JhdGUoc2FtcGxlX3JhdGUpDQpzZWxmLnVoZF91
+c3JwX3NvdXJjZV8wLnNldF90aW1lX3Vua25vd25fcHBzKHVoZC50aW1lX3NwZWMoMCkpDQoNCnNl
+bGYudWhkX3VzcnBfc291cmNlXzAuc2V0X2NlbnRlcl9mcmVxKHVoZC50dW5lX3JlcXVlc3QoY2Vu
+dGVyX2ZyZXEsIHJmX2ZyZXE9Y2VudGVyX2ZyZXEtbG9fb2Zmc2V0LA0KICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZl9mcmVxX3BvbGljeT11
+aGQudHVuZV9yZXF1ZXN0LlBPTElDWV9NQU5VQUwpLCAwKQ0Kc2VsZi51aGRfdXNycF9zb3VyY2Vf
+MC5zZXRfYW50ZW5uYSgnUlgyJywgMCkNCnNlbGYudWhkX3VzcnBfc291cmNlXzAuc2V0X2JhbmR3
+aWR0aChidywgMCkNCnNlbGYudWhkX3VzcnBfc291cmNlXzAuc2V0X2dhaW4oMzUsIDApDQpzZWxm
+LnVoZF91c3JwX3NpbmtfMCA9IHVoZC51c3JwX3NpbmsoDQogICAgIiwiLmpvaW4oKCJzZXJpYWw9
+eHh4eHh4eCIsICJudW1fc2VuZF9mcmFtZXM9MjU2IiwgIm51bV9yZWN2X2ZyYW1lcz0yNTYiKSks
+DQogICAgdWhkLnN0cmVhbV9hcmdzKA0KICAgICAgICBjcHVfZm9ybWF0PSJmYzMyIiwNCiAgICAg
+ICAgb3R3X2Zvcm1hdD0ic2MxMiIsDQogICAgICAgIGFyZ3M9JycsDQogICAgICAgIGNoYW5uZWxz
+PWxpc3QocmFuZ2UoMCwgMSkpLA0KICAgICksDQogICAgJycsDQopDQoNCnNlbGYudWhkX3VzcnBf
+c2lua18wLnNldF9zYW1wX3JhdGUoc2FtcGxlX3JhdGUpDQpzZWxmLnVoZF91c3JwX3NpbmtfMC5z
+ZXRfdGltZV91bmtub3duX3Bwcyh1aGQudGltZV9zcGVjKDApKQ0KDQpzZWxmLnVoZF91c3JwX3Np
+bmtfMC5zZXRfY2VudGVyX2ZyZXEodWhkLnR1bmVfcmVxdWVzdChjZW50ZXJfZnJlcSwgcmZfZnJl
+cT1jZW50ZXJfZnJlcS1sb19vZmZzZXQsDQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICByZl9mcmVxX3BvbGljeT11aGQudHVuZV9yZXF1ZXN0LlBP
+TElDWV9NQU5VQUwpLCAwKQ0Kc2VsZi51aGRfdXNycF9zaW5rXzAuc2V0X2FudGVubmEoJ1RYL1JY
+JywgMCkNCnNlbGYudWhkX3VzcnBfc2lua18wLnNldF9iYW5kd2lkdGgoYncsIDApDQpzZWxmLnVo
+ZF91c3JwX3NpbmtfMC5zZXRfZ2Fpbig2NSwgMCkNCnNlbGYuZmZ0X3Z4eF8wID0gZmZ0LmZmdF92
+Y2MoZmZ0X3NpemUsIFRydWUsIHdpbmRvdy5ibGFja21hbmhhcnJpcyhmZnRfc2l6ZSksIFRydWUs
+IDEpDQpzZWxmLmJsb2Nrc192ZWN0b3JfdG9fc3RyZWFtXzAgPSBibG9ja3MudmVjdG9yX3RvX3N0
+cmVhbShnci5zaXplb2ZfZmxvYXQgKiBmZnRfc2l6ZSwgMSkNCnNlbGYuYmxvY2tzX3N0cmVhbV90
+b192ZWN0b3JfMF8wXzAgPSBibG9ja3Muc3RyZWFtX3RvX3ZlY3Rvcihnci5zaXplb2ZfZ3JfY29t
+cGxleCAqIDEsIGZmdF9zaXplKQ0Kc2VsZi5ibG9ja3NfbnVsbF9zaW5rXzAgPSBibG9ja3MubnVs
+bF9zaW5rKGdyLnNpemVvZl9mbG9hdCAqIGZmdF9zaXplKQ0Kc2VsZi5ibG9ja3NfbmxvZzEwX2Zm
+XzAgPSBibG9ja3MubmxvZzEwX2ZmKDEwLCBmZnRfc2l6ZSwgMCkNCnNlbGYuYmxvY2tzX211bHRp
+cGx5X2NvbnN0X3h4XzAgPSBibG9ja3MubXVsdGlwbHlfY29uc3RfY2MoMSAvIGZmdF9zaXplLCBm
+ZnRfc2l6ZSkNCnNlbGYuYmxvY2tzX2ZpbGVfc2lua18wID0gYmxvY2tzLmZpbGVfc2luayhnci5z
+aXplb2ZfZmxvYXQgKiBmZnRfc2l6ZSwgcGF0aCwgRmFsc2UpDQpzZWxmLmJsb2Nrc19maWxlX3Np
+bmtfMC5zZXRfdW5idWZmZXJlZChUcnVlKQ0Kc2VsZi5ibG9ja3NfY29tcGxleF90b19tYWdfc3F1
+YXJlZF8wID0gYmxvY2tzLmNvbXBsZXhfdG9fbWFnX3NxdWFyZWQoZmZ0X3NpemUpDQpzZWxmLmFu
+YWxvZ19zaWdfc291cmNlX3hfMCA9IGFuYWxvZy5zaWdfc291cmNlX2Moc2FtcGxlX3JhdGUsIGFu
+YWxvZy5HUl9TSU5fV0FWRSwgMjAwMDAsIDEsIDAsIDApDQoNCiMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjDQojIENvbm5lY3Rpb25zDQojIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIw0KDQpzZWxmLmNvbm5lY3Qo
+KHNlbGYuYW5hbG9nX3NpZ19zb3VyY2VfeF8wLCAwKSwgKHNlbGYudWhkX3VzcnBfc2lua18wLCAw
+KSkNCnNlbGYuY29ubmVjdCgoc2VsZi51aGRfdXNycF9zb3VyY2VfMCwgMCksIChzZWxmLmJsb2Nr
+c19zdHJlYW1fdG9fdmVjdG9yXzBfMF8wLCAwKSkNCnNlbGYuY29ubmVjdCgoc2VsZi5ibG9ja3Nf
+c3RyZWFtX3RvX3ZlY3Rvcl8wXzBfMCwgMCksIChzZWxmLmZmdF92eHhfMCwgMCkpDQpzZWxmLmNv
+bm5lY3QoKHNlbGYuZmZ0X3Z4eF8wLCAwKSwgKHNlbGYuYmxvY2tzX211bHRpcGx5X2NvbnN0X3h4
+XzAsIDApKQ0Kc2VsZi5jb25uZWN0KChzZWxmLmJsb2Nrc19tdWx0aXBseV9jb25zdF94eF8wLCAw
+KSwgKHNlbGYuYmxvY2tzX2NvbXBsZXhfdG9fbWFnX3NxdWFyZWRfMCwgMCkpDQpzZWxmLmNvbm5l
+Y3QoKHNlbGYuYmxvY2tzX2NvbXBsZXhfdG9fbWFnX3NxdWFyZWRfMCwgMCksIChzZWxmLmJsb2Nr
+c19ubG9nMTBfZmZfMCwgMCkpDQpzZWxmLmNvbm5lY3QoKHNlbGYuYmxvY2tzX25sb2cxMF9mZl8w
+LCAwKSwgKHNlbGYuYmxvY2tzX3ZlY3Rvcl90b19zdHJlYW1fMCwgMCkpDQpzZWxmLmNvbm5lY3Qo
+KHNlbGYuYmxvY2tzX3ZlY3Rvcl90b19zdHJlYW1fMCwgMCksIChzZWxmLmJsb2Nrc19maWxlX3Np
+bmtfMCwgMCkpDQpzZWxmLmNvbm5lY3QoKHNlbGYuYmxvY2tzX3ZlY3Rvcl90b19zdHJlYW1fMCwg
+MCksIChzZWxmLmJsb2Nrc19udWxsX3NpbmtfMCwgMCkpDQo=
+
+--b1_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -162,4 +169,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3956346670308375504==--
+--b1_dItBPR2xFEFc4WMaAMehf9nqUbKcbb5ji7MSYJPtfM--
