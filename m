@@ -2,348 +2,449 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CBEF6A9B39
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Mar 2023 16:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 703316AA809
+	for <lists+usrp-users@lfdr.de>; Sat,  4 Mar 2023 05:47:27 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 94695384861
-	for <lists+usrp-users@lfdr.de>; Fri,  3 Mar 2023 10:53:09 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 3AC2D3848A7
+	for <lists+usrp-users@lfdr.de>; Fri,  3 Mar 2023 23:47:26 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1677858789; bh=t81VnTSU7RmjT1oe2VS6HJaUZp82Rl2Ngj1BHrRGsqM=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=ksI7TqAS9zGgDGOiYxvQ7efmmDmXImeij7J+mKHQ7rp3Z4Ch9Lh8y6WPpRAoTeDDx
-	 3MT5lNM2CDl+22sT+1hJ7VRk+M99QPKkM3JYTC48f1s3sHuCtr2fuMdcHB+N9iRXG8
-	 E61YG+/iZdFdqhBT11W0RkFYFBxvW2i+zGmg9AbOWi6Vss1aGy6dIFF465wP79zO7E
-	 FqKQhPZGZAHQ8IT40oiMahdHZ+Ab/bYp/aZXeGpGmr/aLqH7oichzVvNqAPAvcKMAL
-	 qvWoj9rJquSl9Er139ckLuSSYXx3ksWQ22/uoNq+Ivtau6CUvAS8jDDvP/2iQQQz+a
-	 VA7ycdqMHh1Pw==
-Received: from za-smtp-delivery-132.mimecast.co.za (za-smtp-delivery-132.mimecast.co.za [41.74.201.132])
-	by mm2.emwd.com (Postfix) with ESMTPS id BBC53384832
-	for <usrp-users@lists.ettus.com>; Fri,  3 Mar 2023 10:52:26 -0500 (EST)
+	t=1677905246; bh=oAfne1XlmBzfYDqvTNQw8YSgS71m1r1LWeLPa2JGZfA=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=PSb6r21woko9q+rgb6QekQ2n6F+mUCjIjxzBaNVn6guBqozGsNvoLuhBoAXlpYKtW
+	 5BJXcj+Tl+m3A6rPOUEepQsuuNoc9mUFA1qU68DVs+72v4l6jVTUc+FZdWemhOYrhR
+	 UvjtMiBtT4+B0jExOFHlhMY/4QcDaWcrWyo3ApW1UOBgcPb0IxUtQi8AKbEcW6lrP1
+	 yLlnWbQ/V2riBEetht8jeIHFHbbM3Rp+ILCXuEBsE35Beob0JMgHMjaN3cUSFXrUPD
+	 fn4UgTsoS9AyvUHuyKpxa8w3BfKU1lvjZk1PecclHexxJ84OGRv55s+COm+8AlGyAa
+	 iYhUS3W5M8P2g==
+Received: from email6-west.aero.org (email6-west.aero.org [130.221.16.31])
+	by mm2.emwd.com (Postfix) with ESMTPS id C1014384681
+	for <usrp-users@lists.ettus.com>; Fri,  3 Mar 2023 23:46:36 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=vastech.co.za header.i=@vastech.co.za header.b="MXhPmbeI";
+	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="nPK7+C3g";
+	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="CDjgw3fL";
 	dkim-atps=neutral
-Received: from mail.vastech.co.za (mail.vastech.co.za [41.193.221.138]) by
- relay.mimecast.com with ESMTP id za-mta-57-4a-id8-CNYqH_RQkuVrBEw-1; Fri,
- 03 Mar 2023 17:52:22 +0200
-X-MC-Unique: 4a-id8-CNYqH_RQkuVrBEw-1
-dkim-signature: v=1; a=rsa-sha256; d=vastech.co.za; s=dkim;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:In-Reply-To:References;
-	bh=t75JwTc8CXoyqoS4zBWmr6fmP5qRbWUTDKVb6C8qAdw=;
-	b=MXhPmbeI5quR8KM6BDJ1f0OsGJ++SaDj1UIjFZiw8SfnZPN7KgD7trFUlwC+1noUw0H/b0sinrk+vQn57u7P3iwJQm8fwEO2+QTubT6SRugMC4R0DLcaOMp0SK/pQ30d9ygdnwqsqbYNLZ+JIY5TRuhmzRi9QgXP1MQzXV3JZrU=
-Received: from EXCHANGE1.vastech.co.za (Unknown [172.30.81.15])
-	by mail.vastech.co.za with ESMTPA
-	; Fri, 3 Mar 2023 17:52:18 +0200
-Received: from EXCHANGE1.vastech.co.za (172.30.81.15) by
- EXCHANGE1.vastech.co.za (172.30.81.15) with Microsoft SMTP Server (TLS) id
- 15.0.1497.38; Fri, 3 Mar 2023 17:52:18 +0200
-Received: from EXCHANGE1.vastech.co.za ([::1]) by EXCHANGE1.vastech.co.za
- ([::1]) with mapi id 15.00.1497.040; Fri, 3 Mar 2023 17:52:18 +0200
-From: Kevin Williams <kevin.williams@vastech.co.za>
-To: "bpadalino@gmail.com" <bpadalino@gmail.com>
-Thread-Topic: [EXTERNAL][USRP-users] Re: What do I need to do to make
- uhd_usrp_probe see my custom RFNOC module?
-Thread-Index: AQHZTCBYMK/vG6/85UG66FXxbOMJlK7lu20d///7LgCAABt+AIAABdSAgANU63D//+fngIAAIzPQ
-Date: Fri, 3 Mar 2023 15:52:18 +0000
-Message-ID: <2bd52525a492421b9cab4033fd06c9ff@EXCHANGE1.vastech.co.za>
-References: <PH0PR15MB4704FC8A1F2B068355FDEDC8E3AD9@PH0PR15MB4704.namprd15.prod.outlook.com>
- <PH0PR15MB470475B739510FC1329965F2E3AD9@PH0PR15MB4704.namprd15.prod.outlook.com>
- <CAEXYVK76azqDJCxcBx6pN53abV9ACic0EcC1MfHLWoTpaK84Xg@mail.gmail.com>
- <20230301145718.0d3da2c7@x230>
- <CAEXYVK7YHU+XYUtTcn0k6WijONQn9eQSA22mHR0VAS5uRxrHHw@mail.gmail.com>
- <7ff087e59b0c4be49e9f490ec83b7277@EXCHANGE1.vastech.co.za>
- <CAEXYVK79TnH39_y7kSNeCqM52btPrYCYjCjEzEyFk5obO8ZaiQ@mail.gmail.com>
-In-Reply-To: <CAEXYVK79TnH39_y7kSNeCqM52btPrYCYjCjEzEyFk5obO8ZaiQ@mail.gmail.com>
-Accept-Language: en-US, en-ZA
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
+  t=1677905196; x=1709441196;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=o2t9MBWSlnPMmc8upzWqceS3GjcbeqgENVavOYQBCfE=;
+  b=nPK7+C3ghAKe7kJu0BiU/ciUsTzzZTZCp2CnCgTZD+r7KJ5J1P91a0w9
+   lsPJRepuRYanyxDLXsDaK2GFVBbDLA0tTuh3XY5xXDUC2HzdlqfXIiqwI
+   ep93hXvm568b+wroG5KgdvivVVN79Oib81Nxo6wnWznzzflXTJxNjkT0G
+   Q=;
+x-SBRS: 3.5
+x-SenderGroup: Inbound_Office365
+X-IronPort-AV: E=McAfee;i="6500,9779,10638"; a="152970"
+X-IronPort-AV: E=Sophos;i="5.98,232,1673942400";
+   d="scan'208,217";a="152970"
+X-IPAS-Result: =?us-ascii?q?A2HFCADbywJkh2xBL2hXAxwBAQE8AQEEBAEBAgEBBwEBF?=
+ =?us-ascii?q?YFPAoEogQNzgVyVc5cDhk0UgREDGD4PAQEBAQEBAQEBBwIUEx0EAQEDBIR+A?=
+ =?us-ascii?q?oUxJjQJDgECBAEBAQEDAgMBAQEBAQEDAQEBBQEBAQEBBwMBAgIQAQEBARkJF?=
+ =?us-ascii?q?wcOEAUihWgNg1ZNOwEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBA?=
+ =?us-ascii?q?QEBAQUCgQiBFQEBOBEBPUMnBBuCdoIXDQYDMbBrgTSBAYIIAQEGBAScTBhdg?=
+ =?us-ascii?q?V4JgUABg0qFS4hOgVVEgRVDgjeEfTdFg0qCLpY5aoE0dIEhDoE9gQkCCQIRa?=
+ =?us-ascii?q?4ESCGiCAEECD3ILDoEHBzYDRB1AAwt1PzUUIQUEVYEbJAUDCxUqRwQINgUGT?=
+ =?us-ascii?q?xECCA8SDyxEDkI3NBMGgQYLDhEDTYFIBHGBFgoCUZwURx8GgTB2kjkyjWeBe?=
+ =?us-ascii?q?owsk2k0B4N9BYFJBgyfNRaDfZNPkXCXX6duAgQCBAUCDgiBYoEmcDMaMIMqU?=
+ =?us-ascii?q?hkPjiwNCYNQj3l1OwIHCwEBAwmLJgEB?=
+IronPort-PHdr: A9a23:gOsIMR8DFZRTh/9uWCboyV9kXcBvk7n3PwtA7J0hhvoOd6m45J3tM
+ QTZ4ukll17GW4jXqpcmw+rbuqztQyoMtJCGtn1RfJlFTRRQj8IQkkQpC9KEDkuuKvnsYmQ6E
+ c1OWUUj8Wu8NB1cFdz5IVrIrS7a0A==
+IronPort-Data: A9a23:99j1+KOvWUqyXo7vrR0+l8FynXyQoLVcMsEvi/4bfWQNrUp232BSm
+ GJNCGzSOK7bMGD9c9p+YY+39x5X7MLQyd5iGgZtpSBmQlt08seUXt7xwmUcns+xwmwvaGo9s
+ q3yv/GZdJhcoln0+Er1atANilEljf/TFtIQMMadZmYrA1YMpB4J0XpLg/Q+jpNjne+3CgaMv
+ cKai8DEMTdJ4RYsWo4vw//F+UMHUMja4mtC5QRlPasT5zcyqlFMZH4hDfDpR5fHatQMdgKKb
+ 76r5K20+Grf4yAsBruN+losWhBirhb6ZGBiu1IOM0SQqkEqSh8ai87XAMEhhXJ/0F1lqfgsk
+ Y8V7cTYpTABZcUgkMxFO/VR/roX0aduoNcrKlDn2SCfItGvn9IBDJyCAWlvVbD09NqbDklu0
+ /M8FSsjbiyepKGE/+y5Te48vOU8eZyD0IM34hmMzBn2Jt1+G9XvZv6P4tVVmjAtmspJAPDSI
+ dIDbiZiZwjBZBsJPUoLDJU5n6GjgXyXnz9w8QrJ4/ZopTaOilUpgNABM/KMEjCObchIkUueq
+ yTJ5W3oHBwAHNWS0z3D9Wij7gPKtXqmAtNNTNVU8NZXhRrPnn4MLSZRCwagrt2b01yCWpV2f
+ hl8Fi0G9vFprxTyFLERRSaQvWWeplsBQNdKCMU+6RqR0ezZ/xqEHS4PSTspVTA9nMo/RDhv2
+ lrSkNjiXWZrqOfMESLb8aqIpzSvPyRTNXUFeSIPUQoC5Z/kvZ03iRXMCN1kFcZZk+EZBxnQ5
+ T+ukTMQh4kOro056Pu5+leXuROz882hohEO2i3bWWes7wVcbYGjZpC15VWz0RqmBNbIJrVml
+ ChU8/Vy/NziHrnWy3PQGLRl8KWBoqfaYGeF0DaDCrF4r2z1k0NPa7y8992XGauEGsMNeDusb
+ EqItghavMVXJCHzNf8xZJ+tAcM3y6SmDc7iSv3fcttJZN52aROD+yZtI0WX2ggBcXTAc4lgY
+ v93ku71Uh727JiLKhLqF4/xNpd3nUgDKZv7H8yT8vhe+eP2iISpYbkEKkCSSesy8bmJpg7Ym
+ /4GaZTVm0sPCregO3GOmWL2EbzsBShqbXwRg5wGHtNv3iI8QwnN9teNn+J+Ktw9wMy5aM+Tp
+ CHmCx4wJKXDaY3vclzRMSg6MtsDrL56rHkhOjcrM0rg0mo+e4vH0UvsX8pfQFXTz8Q6laQcZ
+ 6BdJa2oW60TIhyapWh1RcSj/eRKKk737SrQZHDNSGZkIPZdq/nhoYKMkv3Hr3VVUUJadKIW/
+ 9Wd6+8sacZdGV85Vp2MM5pCDTqZ5BAgpQ67ZGOQSvE7Rakm2NECx/DZ5hPvH/wxFA==
+IronPort-HdrOrdr: A9a23:YS42Ua/r/s4ecjQ/AIxuk+E6db1zdoMgy1knxilNoENuH/Bwxv
+ rFoB1E73TJYW4qKRcdcKO7SdC9qBLnhOhICOwqUYtKMzOW3FdAQLsC0WKA+UyoJ8SdzJ876U
+ 4IScEXZ7PN5DNB/KXHCXyDYrMdKa68gcKVbInlr0tFfEVPUeVN/g15AgGUHgldXw9dH6c0E5
+ Ka+45uuyegUW5/VLXxOlA1G8z44/HbnpPvZhALQzQ97hOVsD+u4LnmVzCFwxYlVS9Vy7tKyx
+ mOr+W53NTvjxiI8G6S64bh1eUZpDLV8KoOOCXDsLlVFtymsHfRWG0oYcz4gNlympDm1L9iqq
+ iwn/8tUv4DkU/5byW7pwDg1BLn1ytr43j+yUWAiX+musDhQikmYvAx8L6xXyGpmHbIhusMop
+ 5jziacrd5aHBnAlCPy65zBUAxrjFO9pT4nnfQIh3JSXIMCYPsJxLZvi399AdMFBmb3+YonGO
+ 5hAIXV4+tXa0qTazTcsnN0yNKhU3wvFlONQ1QEuMaSzz9K9UoJu3cw1YgahDMN5Zg9Q55L66
+ DNNblpjqhHSosMYad0FI46MLuK46z2MGPx2U6pUCra/fs8Sg7wQrbMkcoI2N0=
+Received: from mail-dm3gcc02lp2108.outbound.protection.outlook.com (HELO GCC02-DM3-obe.outbound.protection.outlook.com) ([104.47.65.108])
+  by email6-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2023 20:46:34 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G43rhKpyfw2qQITdQiAGMHQn9SWjT1SRwSh9h2BSrGa0c2172oLheN2xRBDD/kxFvd4TfPxUXkowCCzyRDmZtr19Sj1vt7QXg8KaOOINx5lo33U0kxF/17EQokOUgA6BHh8c7wq79rnX846hgQ+h5z8iJoqVBmswm6hVCLL5mmA7LgKl1bVA7IgoFxLf3/CJC8i78rcoUv4ARjxWZDmaSAnxIF2JP1XgSyoNsTKuVix+hbGBuYZ3iVGb+88Rap0qfMMf9KWTs3lP8BO8vvZnmghr+KxYQs4DpLsD6VnA6B70IrJJyJyfxFgaZ4MR9eQmi4Wwc9dqtXLyP9uv+ZUjow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x1juHhNvM2uRzbV/4aqwKLXOo4ZSKX0/uJwIZuQCbUI=;
+ b=GQzeMm2NAMckikLXEfJRrNgPtar7p3Jr8LHkOa77zHPrgxtszfFQGeRMd46QAnaFmtusgbykXcWIMwyOPvzdURq5lmJjQwUYmqFABGjnW38bDSEVvfW/zEy9I3xsmwdKrl4vo6ZyLFG4eFyxU1rS0821eIoQf8tHaGNS7R7r3XHSUEZgnmaeIC8q2oeGKr48N7O0UQ+42DTcOYVJpmNe3PHL101plchVV/daiY3Hp4KRuW6UwfmpCr26tAg1SYj7MKfJuqOMnv6YX+eirRMINv+GZK3CTU7ps3aDbEPGujxYbZRaXZHCwM2XgwY9reNKslkxNwPqfKHUaocxDCaosQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
+ dkim=pass header.d=aero.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x1juHhNvM2uRzbV/4aqwKLXOo4ZSKX0/uJwIZuQCbUI=;
+ b=CDjgw3fLaLmmYZcRROpKw8Ow50QL7GJG4Y29SPYW1QhUa+g1qSLJr21FVlU8vMgn/yCNhIaRCf6FWBR4fwexnOe6616X36ShbK+l480s7gN3czaAK1KQASeSzJ2mZl8Pqv1gZQ+pXdYEv+mhrJfQJhuwB8nD4Yw/zeiKvPxwUEU=
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
+ by SA1PR09MB8874.namprd09.prod.outlook.com (2603:10b6:806:28b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6156.20; Sat, 4 Mar
+ 2023 04:46:33 +0000
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::d44e:83bd:1602:373]) by SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::d44e:83bd:1602:373%9]) with mapi id 15.20.6156.023; Sat, 4 Mar 2023
+ 04:46:33 +0000
+From: Eugene Grayver <eugene.grayver@aero.org>
+To: usrp-users <usrp-users@lists.ettus.com>
+Thread-Topic: Underflows every 33s at 200 Msps
+Thread-Index: AQHZTlPJdRRHs0tn6U+SApUhXbZFew==
+Date: Sat, 4 Mar 2023 04:46:33 +0000
+Message-ID: 
+ <SJ0PR09MB91269742642DD28DA4D48DC5ECB09@SJ0PR09MB9126.namprd09.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-MS-Has-Attach: yes
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.168.3]
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aero.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|SA1PR09MB8874:EE_
+x-ms-office365-filtering-correlation-id: 1c7c6046-5304-44cb-2a3f-08db1c6b6dcc
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ sfLdcHbo477MPksAwujYYldiDLVUU2PFiNBR14p8vOJQ8x4KKZrhhWBdb3A8zy8lXQFhF/zgWrHRue9g60iy5U5cJlBib9t0QwtYp6QYOVHsCwha1w/ZyTqEQyZolU/nafCCY1KrYsRAPKlCbg6QiRxS2K8DMi8ENb8PrFfrm2Sa85gjNpC/TpEn0KLv5cadH8NBN+Fqe9tKb8A0deK8jq1Ekcq28yKXzGppNQDRDwxTIGrB4IaSV4ul3vOyNg9D3BFI3N7FAIw7gTWuY4vV1IJN1iiAh8fJXjZWO4SWP3zY72KH2+QcKxa/u+KS0K+244fzVYYIuGwTwALNnpYekg6bgnxFf2KBQV4LC4XPHy0iphOKYjgrA0V9yEYl61mnrDw8zX+S5lnC7+A8eP2fabj7pnvuKIG4oCoULRKpVGxDIxbrUacYSVYruGxwe2StRkgrL9AvqAZy7p/X7TrVM8/eQMmjv5OVbqEWAQ/i78URdMlRYsUR8dJh4ScHfTwLCHikrPccQ4GCbjWh+jNInluh75vk2EzW39s/orMPXed4gjVnKL7heKSvuKQoojGt5BN7SxJGlDt7nemKZX2LcYwi8iutidaBcqJbYhXNTVLN7nliq87cggR5d59HaU/6kTxZRKATJcK3gMakIZl3hqxAXdCKFRDt4Dkz7mPrBzzB4tT8WiYgDss2vVfWSFvwaQXADGFkmPijLpAak9h2BQ==
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(4636009)(366004)(451199018)(33656002)(40140700001)(83380400001)(7696005)(508600001)(71200400001)(26005)(6506007)(9686003)(186003)(52536014)(8936002)(8676002)(64756008)(66446008)(66476007)(66556008)(6916009)(66946007)(76116006)(2906002)(5660300002)(86362001)(44832011)(122000001)(38100700002)(38070700005)(55016003)(19627405001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?vnJbdkdTothYW9aPO0QpVuugYxQ6+aqxhoycbxpRUUwSNreMgW9wjU11mb?=
+ =?iso-8859-1?Q?Y9K7zAGrYrdl85xa/vcax9gYkPVV2U7CzmxEisOpyO+4D0SOeJMvUzEwmC?=
+ =?iso-8859-1?Q?ZxxbYrrpPsk3rxImUq8kmjifXOXYGbhPUsrAOuabPiH4nzz7l9yroii/bz?=
+ =?iso-8859-1?Q?A9Px5LchlXgO9wpGBGkNANjqg20hHX/Xrn2EyzYW0P0f0HB4PIg8QVPtKq?=
+ =?iso-8859-1?Q?q4O0psHO7v3zIkPefIlOxcl+9M3dI0yn4GBOzG4CMKryH0b/WK6bUoy88a?=
+ =?iso-8859-1?Q?ehp1i+soTMj/rBee1IQcowLQVD5xmzSAKqkAoGYd27XL4O5OJadu1u0FpI?=
+ =?iso-8859-1?Q?vstbUtsFzWlsWtFVfE61i7wo3x5Z1iyug8WPA94xLVQ2Ey7Jt907i1HYKZ?=
+ =?iso-8859-1?Q?I6o/bdYnNVO2gn8884jILVMo07CDBcUnMAJMJ5Y4Fx/XDpSOCfcVXRgYUE?=
+ =?iso-8859-1?Q?9Sv6+xI8roRh4IwEjRrru+kQOSEtVMUnSousj141cmiKV7DNVDhXLAXB3t?=
+ =?iso-8859-1?Q?wZawHUWIjFlA2V1fOhksqdASE2ZN+FuZdwXt9//QHN83VS6Uu/YRsFyZlL?=
+ =?iso-8859-1?Q?6PBxDvacyuDYx7R/CRpc7Onmcn36I4nn1scPOZ1F+5YIo9Ko0jO6XQ5aOz?=
+ =?iso-8859-1?Q?J2zXM+LgokKjyeNDdkQLa9pCD36ZNstvyjzhjc3YWhbyF9wJBdaX3wvJ+b?=
+ =?iso-8859-1?Q?5CqubvDHwKuKJasG5Mi0xx/MB3OnvXWQ0k1MnCoLZmyiLyp7okrH1Oj8YW?=
+ =?iso-8859-1?Q?6SAgGratgI8fFEzs5eJep9mpkLJAu1YwMsjDOwEreefhA/coN5dp591mYT?=
+ =?iso-8859-1?Q?uPavHx9NK9r+12zKAuknCqfbYy0Tabw2I4eVxHNr2OYCqlasFQGlEJmKby?=
+ =?iso-8859-1?Q?fFLm63DQoWZ4PgUkc4nybOJwD7r+PseARgT20Jb2HALb2JOgVGmTaCz0Vo?=
+ =?iso-8859-1?Q?K7J8YQgyKdQlKBDRUhjr1f8fwK8928V7zCzJ0sGGoGz8I5qBNPOKdpckBz?=
+ =?iso-8859-1?Q?FGKhvA05RVNYJwkgysbfQN4RfoiXiXPaCnN7P+pPnvvDT8CIE5u+jk+glv?=
+ =?iso-8859-1?Q?OlrAQZQkDG+xFQTZObNfq+3CPK2EJmaPKfUbzTLGdlNU7TjTDu0HcqiqKE?=
+ =?iso-8859-1?Q?vLllJUnC2JPRSDYE2NPOcWLpINPoU43Lzx8IbxuU6T3gboXWziW7/Mh8fN?=
+ =?iso-8859-1?Q?gUFs3iaCsBoS5wj61NukpLfGk8SwQP9ltfvBLftFSCF7OtwQfDencrnqxr?=
+ =?iso-8859-1?Q?rWaV/BXCGBsZ/sHVZXzIKy1cZlftdCaAA7NaHoi1dwk6Jny/lj0MPYy7AI?=
+ =?iso-8859-1?Q?1lHlOjIlQnZ5STs+lpmfctrUcQaDHa11Ndcxy3pHmvovBxQQTNKwt80tz0?=
+ =?iso-8859-1?Q?Gt7UaPV6vPdqR0+PUdU7c8qZLdIVHKnDQop0TUCPGrG4D0iOWeEWxLAN3j?=
+ =?iso-8859-1?Q?pBMxjfcD+cWuQG3grz2ktX6A44BW7vP9hyeVyJU4rsLM9gJ5k/aCSfnDAn?=
+ =?iso-8859-1?Q?ZGVjRGE0Od1L/ptadU5qbbgTFvkNzb4tuMiODkmh2q3KfkTXjcNOsUWgBR?=
+ =?iso-8859-1?Q?127HvFf53MKgE3K5kSGVFpVgaNqTJmerJAhVkkaG9p7fwDzLfu3l6Ql12G?=
+ =?iso-8859-1?Q?Kg7HAD1WiefIU=3D?=
 MIME-Version: 1.0
-Message-ID-Hash: ZV6UNQ4WBDV5QSU7N5E3TJZNSCOLJT73
-X-Message-ID-Hash: ZV6UNQ4WBDV5QSU7N5E3TJZNSCOLJT73
-X-MailFrom: kevin.williams@vastech.co.za
+X-OriginatorOrg: aero.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c7c6046-5304-44cb-2a3f-08db1c6b6dcc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2023 04:46:33.1607
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR09MB8874
+Message-ID-Hash: 6JG4CI55I7XFTL2773AS3XS54PXYTQ45
+X-Message-ID-Hash: 6JG4CI55I7XFTL2773AS3XS54PXYTQ45
+X-MailFrom: prvs=42076e671=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "Bas.Vermeulen@molex.com" <Bas.Vermeulen@molex.com>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: [EXTERNAL]Re: What do I need to do to make uhd_usrp_probe see my custom RFNOC module?
+Subject: [USRP-users] Underflows every 33s at 200 Msps
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZV6UNQ4WBDV5QSU7N5E3TJZNSCOLJT73/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4VAFD562AIVXPU6DNLSN4W5HTTUSDBQX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5965798318312630421=="
+Content-Type: multipart/mixed; boundary="===============4265620799014537695=="
 
---===============5965798318312630421==
+--===============4265620799014537695==
 Content-Language: en-US
-Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
-	micalg=SHA1; boundary="----=_NextPart_000_00D9_01D94DF8.E47DFB30"
-
-------=_NextPart_000_00D9_01D94DF8.E47DFB30
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_00DA_01D94DF8.E47DFB30"
+	boundary="_000_SJ0PR09MB91269742642DD28DA4D48DC5ECB09SJ0PR09MB9126namp_"
 
-
-------=_NextPart_001_00DA_01D94DF8.E47DFB30
-Content-Type: text/plain;
-	charset="utf-8"
+--_000_SJ0PR09MB91269742642DD28DA4D48DC5ECB09SJ0PR09MB9126namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Brian, yes, this is true. I just checked it.
-
-=20
-
-From: Brian Padalino <bpadalino@gmail.com>=20
-Sent: Friday, 03 March 2023 17:46
-To: Kevin Williams <kevin.williams@vastech.co.za>
-Cc: gwenj@trabucayre.com; Bas.Vermeulen@molex.com; =
-usrp-users@lists.ettus.com
-Subject: Re: [EXTERNAL][USRP-users] Re: What do I need to do to make =
-uhd_usrp_probe see my custom RFNOC module?
-
-=20
-
-On Fri, Mar 3, 2023 at 10:14=E2=80=AFAM Kevin Williams =
-<kevin.williams@vastech.co.za <mailto:kevin.williams@vastech.co.za> > =
-wrote:
-
-Hi Guys,
-
-=20
-
-Answering my own question also.
-
-=20
-
-I had a mismatch in the NOC_ID between the driver code and my firmware =
-block.
-
-=20
-
-After fixing that I could get uhd_usrp_probe and others, like gnuradio, =
-to recognize my block.
-
-=20
-
-It did still require an LD_PRELOAD after the =E2=80=9Csudo make =
-install=E2=80=9D but that is ok for now.
-
-=20
-
-I just want to reiterate that there is no need for LD_PRELOAD and you =
-should be using UHD_MODULE_PATH.
-
-=20
-
-Brian
+Hi Marcus,
 
 
-------=_NextPart_001_00DA_01D94DF8.E47DFB30
-Content-Type: text/html;
-	charset="utf-8"
+Yes, it is a loopback through computer.  I have 3 threads (in addition to t=
+he DPDK threads):
+
+Thread1 : Read from UHD into a circular buffer A
+
+Thread2: Read from circular buffer A, minimal processing, write to circular=
+ buffer B
+
+Thread3: Read from circular buffer B, write to UHD
+
+
+The circular buffer uses standard synchronization (mutex/condvar).  My next=
+ plan is to try a lock-free buffer.  The fact that the system works at 100 =
+Msps but fails extremely infrequently (in terms of samples processed) makes=
+ me think that something in the kernel is taking control of the CPU(s) even=
+ though they are isolated.
+
+
+Eugene.
+
+
+
+Responding to Marcus... for some reason his response did not show up in my =
+email.
+
+-----------------
+
+This is a "loopback through the computer stack" type application?
+Basically a receiver and a transmitter, in separate threads, but
+  sharing a buffer between them?
+
+These can be tricky, and plenty of others have "stumbled" with this type
+of app, particularly at high sample rates.   I've never done one of
+  these myself, but I suspect that some kind of elastic FIFO mechanism
+will be required.
+
+I"m happy to have others chime in, but this class of application,
+despite its appearance of simplicity can reveal the limitations of
+  ordinary general-purpose operating systems, and their schedulers, and
+buffer-management systems.
+
+
+
+________________________
+
+Eugene Grayver, Ph.D.
+Aerospace Corp., Principal Engineer
+Tel: 310.336.1274
+________________________
+
+--_000_SJ0PR09MB91269742642DD28DA4D48DC5ECB09SJ0PR09MB9126namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered =
-medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-ZA link=3Dblue =
-vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal =
-style=3D'text-align:justify'><span =
-style=3D'mso-fareast-language:EN-US'>Thanks Brian, yes, this is true. I =
-just checked it.</span><span =
-style=3D'font-size:10.0pt;color:#1F497D'><o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-style=3D'mso-fareast-language:EN-US'><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><b><span lang=3DEN-US>From:</span></b><span =
-lang=3DEN-US> Brian Padalino &lt;bpadalino@gmail.com&gt; =
-<br><b>Sent:</b> Friday, 03 March 2023 17:46<br><b>To:</b> Kevin =
-Williams &lt;kevin.williams@vastech.co.za&gt;<br><b>Cc:</b> =
-gwenj@trabucayre.com; Bas.Vermeulen@molex.com; =
-usrp-users@lists.ettus.com<br><b>Subject:</b> Re: [EXTERNAL][USRP-users] =
-Re: What do I need to do to make uhd_usrp_probe see my custom RFNOC =
-module?<o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><div><p =
-class=3DMsoNormal>On Fri, Mar 3, 2023 at 10:14=E2=80=AFAM Kevin Williams =
-&lt;<a =
-href=3D"mailto:kevin.williams@vastech.co.za">kevin.williams@vastech.co.za=
-</a>&gt; wrote:<o:p></o:p></p></div><blockquote =
-style=3D'border:none;border-left:solid #CCCCCC 1.0pt;padding:0cm 0cm 0cm =
-6.0pt;margin-left:4.8pt;margin-right:0cm'><div><div><div><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>Hi Guys,<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>&nbsp;<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>Answering my own question also.<o:p></o:p></p><p =
-class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>&nbsp;<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>I had a mismatch in the NOC_ID between the driver code and my =
-firmware block.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>&nbsp;<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>After fixing that I could get uhd_usrp_probe and others, like =
-gnuradio, to recognize my block.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>&nbsp;<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:ju=
-stify'>It did still require an LD_PRELOAD after the =E2=80=9Csudo make =
-install=E2=80=9D but that is ok for =
-now.<o:p></o:p></p></div></div></div></blockquote><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p class=3DMsoNormal>I =
-just want to reiterate that there is no need for LD_PRELOAD and you =
-should be using UHD_MODULE_PATH.<o:p></o:p></p></div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div><div><p =
-class=3DMsoNormal>Brian<o:p></o:p></p></div></div></div></div></body></ht=
-ml>
-------=_NextPart_001_00DA_01D94DF8.E47DFB30--
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+Hi Marcus,</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+Yes, it is a loopback through computer.&nbsp; I have 3 threads (in addition=
+ to the DPDK threads):</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+Thread1 : Read from UHD into a circular buffer A</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+Thread2: Read from circular buffer A, minimal processing, write to circular=
+ buffer B</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+Thread3: Read from circular buffer B, write to UHD</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+The circular buffer uses standard synchronization (mutex/condvar).&nbsp; My=
+ next plan is to try a lock-free buffer.&nbsp; The fact that the system wor=
+ks at 100 Msps but fails extremely infrequently (in terms of samples proces=
+sed) makes me think that something in the
+ kernel is taking control of the CPU(s) even though they are isolated.</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+Eugene.</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+<br>
+</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+Responding to Marcus... for some reason his response did not show up in my =
+email.</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+-----------------</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+This is a &quot;loopback through the computer stack&quot; type application?=
+&nbsp;&nbsp;<br class=3D"ContentPasted0">
+Basically a receiver and a transmitter, in separate threads, but<br style=
+=3D"box-sizing:border-box" class=3D"ContentPasted0">
+&nbsp; sharing a buffer between them?</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+These can be tricky, and plenty of others have &quot;stumbled&quot; with th=
+is type<br style=3D"box-sizing:border-box" class=3D"ContentPasted0">
+of app, particularly at high sample rates.&nbsp;&nbsp; I've never done one =
+of<br style=3D"box-sizing:border-box" class=3D"ContentPasted0">
+&nbsp; these myself, but I suspect that some kind of elastic FIFO mechanism=
+<br style=3D"box-sizing:border-box" class=3D"ContentPasted0">
+will be required.</p>
+<p style=3D"box-sizing:border-box;margin-top:0px;margin-bottom:1rem;color:r=
+gb(72, 70, 91);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe U=
+I&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, &quot;Noto Sans&quot;, =
+sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quo=
+t;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;;font-size:15px;text-a=
+lign:left;background-color:rgb(255, 255, 255)" class=3D"ContentPasted0">
+I&quot;m happy to have others chime in, but this class of application,<br s=
+tyle=3D"box-sizing:border-box" class=3D"ContentPasted0">
+despite its<span class=3D"ContentPasted0">&nbsp;</span><em style=3D"box-siz=
+ing:border-box" class=3D"ContentPasted0">appearance</em><span class=3D"Cont=
+entPasted0">&nbsp;</span>of simplicity can reveal the limitations of<br sty=
+le=3D"box-sizing:border-box" class=3D"ContentPasted0">
+&nbsp; ordinary general-purpose operating systems, and their schedulers, an=
+d<br style=3D"box-sizing:border-box" class=3D"ContentPasted0">
+buffer-management systems.</p>
+<br>
+</div>
+<div class=3D"elementToProof">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div>
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"color:rgb(0,0,0); fon=
+t-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt; background-col=
+or:rgb(255,255,255)">
+<p><span style=3D"color:black; font-family:&quot;Arial&quot;,sans-serif; fo=
+nt-size:10pt"><span id=3D"ms-rterangepaste-start"></span><span style=3D"col=
+or:rgb(0,0,0); font-family:Arial,sans-serif; font-size:13.33px">___________=
+_____________</span><span id=3D"ms-rterangepaste-end"></span><br>
+</span></p>
+<p><span style=3D"color:black; font-family:&quot;Arial&quot;,sans-serif; fo=
+nt-size:10pt">Eugene Grayver, Ph.D.<br>
+Aerospace Corp., Principal Engineer<br>
+Tel: 310.336.1274<br>
+________________________</span><br>
+</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
 
-------=_NextPart_000_00D9_01D94DF8.E47DFB30
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
+--_000_SJ0PR09MB91269742642DD28DA4D48DC5ECB09SJ0PR09MB9126namp_--
 
-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
-Sy3YKbr7gEk2kXP6MUk9R37OAAAAAAAA
-
-------=_NextPart_000_00D9_01D94DF8.E47DFB30--
-
---===============5965798318312630421==
+--===============4265620799014537695==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -353,4 +454,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5965798318312630421==--
+--===============4265620799014537695==--
