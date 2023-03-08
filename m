@@ -2,105 +2,105 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1C26B01A4
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Mar 2023 09:37:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A6436B04A3
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Mar 2023 11:36:51 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4598E385160
-	for <lists+usrp-users@lfdr.de>; Wed,  8 Mar 2023 03:37:18 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 53320384FB6
+	for <lists+usrp-users@lfdr.de>; Wed,  8 Mar 2023 05:36:50 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1678264638; bh=y0f5nLEAu6LoPvvTIZ4upy9z20yyzUAwtqTYyzdIRGA=;
+	t=1678271810; bh=t1cKbNLTMe2/Br1AXAdG+Kh5XemAX52541To74FaC0o=;
 	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
 	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
-	b=Zp4fGMbQDp74zqYWvi4wWBnyN5e26z0lxyHlP8P3uYdg5Tgy5MMIAxQ+q77CeUsL9
-	 VYvkEXtkpxbN/75+vE7mKAy70k5lfG6rJWehqTdEnz/gYoQ1B0sJn04ZxRScRuobdN
-	 EtPDYEYEUq9A5o4KV3UcpfcRhD0qwlqZKfNoHuqOTX+EdK0fq8Sz8AnLRo9z4vYKS+
-	 iYmtKCkN1FlHeJ59zwfQRbIOY4XlvBIAnOdhXdVCWzwBBW28mxZs9A5qi2Lrzv0ZXZ
-	 t0MHjhqwwsnybIJLuOB6J1C0qp+UuOIltk5jidH1xLyrm88HSUramCIBbkA9RSnQK9
-	 DK7cX7jAGifEA==
-Received: from mo3.myeers.net (mo3.myeers.net [87.190.7.238])
-	by mm2.emwd.com (Postfix) with ESMTPS id 96CFC385160
-	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 03:37:12 -0500 (EST)
+	b=yVf3MctCXwRN5GWkin3dgd9IpziFhDWEUMgbdN8OtPxZDsVXwh5d6uRiVYF0LJ5CA
+	 xr+fiHcaKGAMZ3NuElwMsEvKaoQ/YsWoPm+z9vn9DeuNrt9Dm+fYHzvPRgVdHCRusS
+	 bwVHl1WxLIttRjtuq5/M2BmvU9mXLsDCkC8bfhnyFDOGNvjcwQO9BzcoI7eZ1FViZh
+	 uymLC8JC2Josglv7jW8BYAjZbiIkgNJSleTyxGtv1+CVWW/paOcaFjUf2DTM1bKrDH
+	 8/EU7bGifNznf66K988QkMFAxRgASLkE7tEvo2ZsERzGsR3mpb1PbOHo+mCD7WAZMZ
+	 AQ0ids6KLBv5w==
+Received: from mx1.myeers.net (mx1.myeers.net [87.190.7.230])
+	by mm2.emwd.com (Postfix) with ESMTPS id 2B2FE384D12
+	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 05:36:01 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=airbus.com header.i=@airbus.com header.b="pzD31Wwi";
+	dkim=pass (2048-bit key; unprotected) header.d=airbus.com header.i=@airbus.com header.b="JymG8rrj";
 	dkim-atps=neutral
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=airbus.com; i=@airbus.com; l=8519; q=dns/txt;
-  s=eers-ng2048; t=1678264633; x=1709800633;
+  d=airbus.com; i=@airbus.com; l=9546; q=dns/txt;
+  s=eers-ng2048; t=1678271763; x=1709807763;
   h=from:to:subject:date:message-id:mime-version;
-  bh=JW1mAmWrE4cWOogq5WBStQVpabEhvwz/13ufieoWjMw=;
-  b=pzD31WwiaXclpcfIw2D818el0x+P0MOcxXh4YVZQ6smF44MPkAmHzEm6
-   oLgCED9FPs2/RUvxaCo21FS7qYOjR4Fi0kDUMsCZVxZlpkLR5sULAYu0m
-   /vtGYvvhtHcAKVehY+n8mVE42YGptFsdD9Twk/VvwGcfpn02rFElq53G+
-   hzX7NOpX3B8w1OzQoi/E4Qhyluv+4OyLprx6yuzdQh2NrSfYcBMkVHIeN
-   vtknncxW/vS0iGZEKz1EX6luTyUoggbrPnAKOJKP2mE8zXF+W+U1/zweF
-   uX/UtLOImGdxsA8/sJuJlmuQnh4J9KU7VXDgl41bd3ap67bohLtQ3NL1C
+  bh=lPvNvcCWio13iW657bnXI8lIQlSJ/9l+Agh1PzGEf0k=;
+  b=JymG8rrjUoC85J85jtpUXsoDRE1ICI/eSrKo+3MIAwGdyDpRfFNqpDjM
+   K3FabUFqHlAlWEvoWReO+UK3luygulzZ+cuB/8c3DyRM6d1SBffERPmeJ
+   I1y9J946gzGnSTGxWWsSZ7nrz9zOH/OZ60PGdgMac3C7wabYMvSG8K99y
+   ZXcDuTo6vDx5/8QI0S64u31W+nV5SbOa+tFEhrDCpbgDJJ60ihydAl7y1
+   lmWZ8pirKNRKwIQROHlXFuqo2PJQ1VVVCbccY9yrTKR0H8RJscCtp3SJH
+   P1Bj4JB850mUwp7l81vMDwVttdV7IIp/bJ001ixQWaTJNHr52ockO5DxA
    g==;
-IronPort-SDR: uUZR5rXkgTzFdD3eYlNwOaImo00FW7+lWvUNX7b38I2NdANM512Wr+BRT37ZmYH/QyK2NdGIo4
- 1gHa9XTbwQQg==
+IronPort-SDR: sieveaKu4Pn9Rn4S8zeSp68IRlOwrGOz/GCqzSiQHB2t+ArZJcql9udaYhrCQ0CqQCs2iPRaAQ
+ TE9HFWO9ejmQ==
 X-IronPort-AV: E=Sophos;i="5.98,243,1673910000";
-   d="scan'208,217";a="52440891"
-Received: from ec2-44-225-67-31.us-west-2.compute.amazonaws.com (HELO DE0-44HUB-P02.central.mail.corp) ([44.225.67.31])
-  by de0-03iro-p14-out.myeers.net with ESMTP/TLS/ECDHE-RSA-AES256-SHA384; 08 Mar 2023 09:37:11 +0100
+   d="scan'208,217";a="52576924"
+Received: from ec2-44-225-67-30.us-west-2.compute.amazonaws.com (HELO DE0-44HUB-P01.central.mail.corp) ([44.225.67.30])
+  by de0-03iro-p11-out.myeers.net with ESMTP/TLS/ECDHE-RSA-AES256-SHA384; 08 Mar 2023 11:36:00 +0100
 Received: from esa2e.demail.de.airbusds.corp (10.67.144.34) by
- DE0-44HUB-P02.central.mail.corp (44.225.67.35) with Microsoft SMTP Server id
- 15.0.1497.45; Wed, 8 Mar 2023 09:37:08 +0100
+ DE0-44HUB-P01.central.mail.corp (44.225.67.34) with Microsoft SMTP Server id
+ 15.0.1497.45; Wed, 8 Mar 2023 11:35:57 +0100
 X-ADDIV-1: 1
-IronPort-Data: A9a23:lY3BlKrgf0U6FQ6/yClNAxyFVxFeBmJeZBIvgKrLsJaIsI4StFCzt
- garIBmAa//Ya2D3ftpzPY3joRhTu8fXx9JhT1du/CkzH3tH85acVYWSI3mrMnLJJKUvbq7HA
- +byyzXkBJppJpMJjk71atANlVEliefSAOOU5NfsYkhZXRVjRDoqlSVtkus4hp8AqdWiCmthg
- /uqyyHkEALjim4c3l48sfrZ80s05KSq4Vv0g3RlDRx1lA6H/5UqJMJHTU2BByOQapVZGOe8W
- 9HCwNmRlo8O105wYj8Nuu+TnnwiGtY+DyDX4pZlc/HKbix5m8AH+v1T2Mzwyatgo27hc9hZk
- L2hvLTuEVt5ZvWkdO41C3G0GAkmVUFKFSOuzXWX6aSuI0P6n3TE7vswUUgsEtwipbwrMGoTy
- dVDGW1UV0XW7w626OrTpuhEndw5K8zqOZgBsyk5iyrBAPApXZ3YBb7S7NRVtNsyrpkWW6+GP
- YxDMHw0MnwsYDUXUrsTIJc3gf2plHj4NSZEpVyco6tx7njPwRZ32bzFOdvPcMGRA85Smy50o
- 0qfpzWiWkpCZYP3JTyt6lOymuDxtBvHWL0MO7a16d43hUfK2TlGYPERfR7hyRWjsWajQMhHb
- lEP9zA1hawz71CwCNThQwCj5nWDu3Yht8F4SrV8sVnXjPCNpV3HboQZcgN8hBUdnJdebVQXO
- pWhxbsF2RQHXGWpdE+g
-IronPort-HdrOrdr: A9a23:/w/VTK7+bhIx6wsyzQPXwPvXdLJyesId70hD6qkmc20tTiX4rb
- HKoBx4vSWftN91YhwdcL+7VJVoLUmyyXcX2/hyAV7BZmnbUTCTXedfBOLZqlWKJ8SZzIBgPM
- xbAstD4bPLbGSTIqzBkXGF+3pL+qjizEgI792uqEtQcQ==
+IronPort-Data: A9a23:jf2Us6JSri0FkdyFFE+RkJQlxSXFcZb7ZxGr2PjKsXjdYENSgzJVy
+ zBMWDyAOKzYMDCme412btm+o0tXvcKBm9AwQFNorCE8RH908seUXt7xwmUcn8+xwmwvaGo9s
+ q3yv/GZdJhcokf0/0vraP64xZVF/fngbqLmD+LZMTxGSwZhSSMw4TpugOdRbrRA2bBVOCvQ/
+ 4KiyyHjEAX9gWUsaTpEs/vrRC5H55wehhtJ5zTSWtgb5Dcyp1FNZLoDKKe4KWfPQ4U8NoZWk
+ M6akdlVVkuAl/scIovNfoTTKyXmcZaLVeS6sUe6boD56vR0Soze5Y5gXBYUQR8/ZzyhwYgtm
+ I0V3XC6YV9B0qbkwIzxX/TEes1zFfUuxVPJHZSwmderyRfCLiK2+dc0PHMxEt1E3+NYOG4bo
+ JT0KBhVBvyCr/mu2rW+S+x3mM17do/wJI4ZtW1t1nfCFf8tTPgvQY2TvZkBhG123JkIRqm2i
+ 8kxMVKDaDzFagBVO0UWD9QlgOqmj3/+NTBItF+Po6Mzy2HS1gZsy/7mN9+9ltmiHJ0ExRjJ+
+ D6Xl4j/Ki1dL5+Fkya5yXODuLLgzS7cAsUuMZTto5aGh3XWnAT/EiY+SEChubykkUOkQPpbK
+ lcI4WwjsbQv7wqgSdyVYvGjiCfc+EdEAZwKSqtht2lh15bp3upQPUBcJhYpVTDsnJFpLdD2/
+ jdlR+/UOAE=
+IronPort-HdrOrdr: A9a23:Tv9h7ayah4kb4443ohDMKrPwH71zdoMgy1knxilNoEpuA7Wlfq
+ GV7ZEmPX2dslwssRQb9OxoV5PtfZqxz/FICOoqTNWftWvd2FdAd7sSi7cKqgeIc0bDH4hmu5
+ uIGJIOa+EYY2IasS5UijPIa+rJbLO8gcSVbUa19QYLcT1X
 X-IronPort-AV: E=Sophos;i="5.98,243,1673910000";
-   d="scan'208,217";a="109303097"
-Received: from unknown (HELO spromimsva01.spengtes.space) ([10.102.21.36])
-  by esa2e.demail.de.airbusds.corp with ESMTP; 08 Mar 2023 09:37:08 +0100
+   d="scan'208,217";a="109369649"
+Received: from unknown (HELO spromimsva02.spengtes.space) ([10.102.21.37])
+  by esa2e.demail.de.airbusds.corp with ESMTP; 08 Mar 2023 11:35:47 +0100
 Received: from localhost (unknown [127.0.0.1])
-	by IMSVA (Postfix) with SMTP id B0B358006A
-	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 09:36:52 +0100 (CET)
+	by IMSVA (Postfix) with SMTP id 3FA28E006A
+	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 05:23:05 +0100 (CET)
 X-IMSS-HAND-OFF-DIRECTIVE: 10.67.144.34:25
-Received: from spromimsva01.spengtes.space (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 981BE80071
-	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 09:36:42 +0100 (CET)
-Received: from SPROMMAIL01.spengtes.space (unknown [10.102.17.15])
-	by spromimsva01.spengtes.space (Postfix) with ESMTPS
-	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 09:36:42 +0100 (CET)
+Received: from spromimsva02.spengtes.space (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 0F95EE006A
+	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 05:23:02 +0100 (CET)
+Received: from SPROMMAIL02.spengtes.space (unknown [10.102.17.16])
+	by spromimsva02.spengtes.space (Postfix) with ESMTPS
+	for <usrp-users@lists.ettus.com>; Wed,  8 Mar 2023 05:23:02 +0100 (CET)
 Received: from SPROMMAIL04.spengtes.space ([::1]) by
- SPROMMAIL01.spengtes.space ([10.102.17.15]) with mapi id 14.03.0513.000; Wed,
- 8 Mar 2023 09:37:21 +0100
+ SPROMMAIL02.spengtes.space ([10.102.17.16]) with mapi id 14.03.0513.000; Wed,
+ 8 Mar 2023 11:36:07 +0100
 To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: request for "PROBE" n x310
-Thread-Index: AdlRmNcSWldVWhciQDyT9vnYlELyJA==
-Date: Wed, 8 Mar 2023 08:37:20 +0000
-Message-ID: <E1188D158AA7A048AF99B6A05DA3D62901E208A0F4@SPROMMAIL04.spengtes.space>
+Thread-Topic: error to use ettus repository
+Thread-Index: AdlRqP5AOEScDQR8SLG3LwB7M6jzwA==
+Date: Wed, 8 Mar 2023 10:36:07 +0000
+Message-ID: <E1188D158AA7A048AF99B6A05DA3D62901E208A123@SPROMMAIL04.spengtes.space>
 Accept-Language: fr-FR, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-tm-as-product-ver: SMEX-11.0.0.4179-8.100.1062-24906.005
-x-tm-as-result: No--19.337500-8.000000-31
+x-tm-as-product-ver: SMEX-11.0.0.4179-8.100.1062-24900.000
+x-tm-as-result: No--24.639900-8.000000-31
 x-tm-as-user-approved-sender: No
 x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
 X-TM-AS-GCONF: 00
 X-GM-Security: forwarded
-Message-ID-Hash: ZTGRF3JEL7K3YFOQ5ZXRFOXFDLV3SURB
-X-Message-ID-Hash: ZTGRF3JEL7K3YFOQ5ZXRFOXFDLV3SURB
+Message-ID-Hash: BJICDRC3N2YAILHSJ3FKGMENKH5JSO5M
+X-Message-ID-Hash: BJICDRC3N2YAILHSJ3FKGMENKH5JSO5M
 X-MailFrom: maurizio.stefani.external@airbus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] request for "PROBE" n x310
+Subject: [USRP-users] error to use ettus repository
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZTGRF3JEL7K3YFOQ5ZXRFOXFDLV3SURB/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BJICDRC3N2YAILHSJ3FKGMENKH5JSO5M/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
@@ -109,39 +109,63 @@ List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
 From: "STEFANI, Maurizio (External) via USRP-users" <usrp-users@lists.ettus.com>
 Reply-To: "STEFANI, Maurizio (External)" <maurizio.stefani.external@airbus.com>
-Content-Type: multipart/mixed; boundary="===============1172984250103176544=="
+Content-Type: multipart/mixed; boundary="===============8458635215872294640=="
 
---===============1172984250103176544==
+--===============8458635215872294640==
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_E1188D158AA7A048AF99B6A05DA3D62901E208A0F4SPROMMAIL04sp_"
+	boundary="_000_E1188D158AA7A048AF99B6A05DA3D62901E208A123SPROMMAIL04sp_"
 
---_000_E1188D158AA7A048AF99B6A05DA3D62901E208A0F4SPROMMAIL04sp_
-Content-Type: text/plain; charset="us-ascii"
+--_000_E1188D158AA7A048AF99B6A05DA3D62901E208A123SPROMMAIL04sp_
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
 HI,
-after loaded a fresh copy of FPGA on our x310, I issued the command:
+I am trying to download some ettus uhd test program (firsto of all benchmar=
+k)
+I issued the following command
+mau@mau-Vostro-3500:/usr/local/bin$ sudo add-apt-repository ppa:ettusresear=
+ch/uhd
 
--          uhd_usrp_probe
-the results of this are:
+the answer to it is
+Repository: 'deb http://ppa.launchpad.net/ettusresearch/uhd/ubuntu/ impish =
+main'
+More info: https://launchpad.net/~ettusresearch/+archive/ubuntu/uhd
+Adding repository.
+Press [ENTER] to continue or Ctrl-c to cancel.
+Found existing deb entry in /etc/apt/sources.list.d/ettusresearch-ubuntu-uh=
+d-impish.list
+Adding deb entry to /etc/apt/sources.list.d/ettusresearch-ubuntu-uhd-impish=
+.list
+Found existing deb-src entry in /etc/apt/sources.list.d/ettusresearch-ubunt=
+u-uhd-impish.list
+Adding disabled deb-src entry to /etc/apt/sources.list.d/ettusresearch-ubun=
+tu-uhd-impish.list
+Adding key to /etc/apt/trusted.gpg.d/ettusresearch-ubuntu-uhd.gpg with fing=
+erprint 463896EF9B898A846C7EC0E109FE61056169358E
+Trovato:1 http://old-releases.ubuntu.com/ubuntu impish InRelease
+Ignorato:2 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu impish InRelea=
+se
+Trovato:3 http://old-releases.ubuntu.com/ubuntu impish-security InRelease
+Trovato:4 http://old-releases.ubuntu.com/ubuntu impish-updates InRelease
+Errore:5 http://ppa.launchpad.net/ettusresearch/uhd/ubuntu impish Release
+  404  Not Found [IP: 185.125.190.52 80]
+Lettura elenco dei pacchetti... Fatto
+E: Il repository "http://ppa.launchpad.net/ettusresearch/uhd/ubuntu impish =
+Release" non ha un file Release.
+N: L'aggiornamento da tale repository non pu=F2 essere eseguito in modo sic=
+uro ed =E8 quindi disabilitato come impostazione predefinita.
+N: Consultare la pagina man apt-secure(8) per la creazione di un repository=
+ e la configurazione utente.
+mau@mau-Vostro-3500:/usr/local/bin$
 
-mau@mau-Vostro-3500:~$ uhd_usrp_probe
-[INFO] [UHD] linux; GNU C++ version 10.2.1 20201207; Boost_107400; UHD_3.15=
-.0.0-4build1
-[INFO] [X300] X300 initialization sequence...
-[INFO] [X300] Maximum frame size: 1472 bytes.
-[INFO] [X300] Radio 1x clock: 200 MHz
-Error: AssertionError: Failed to find a valid XML path for RFNoC blocks.
-Try setting the environment variable UHD_RFNOC_DIR to the correct location
-mau@mau-Vostro-3500:~$
+I am using ubuntu release 21.10, codename impish
 
-I do not know how to proceed, set the environment variable or other.
+Any suggestions?
 
-Thank you
-maurizio
-
+Thank you in advance
+Maurizio Stefani (External)
 The information in this e-mail is confidential. The contents may not be dis=
 closed or used by anyone other than the addressee. Access to this e-mail by=
  anyone else is unauthorised.
@@ -155,8 +179,8 @@ All outgoing e-mails from Airbus are checked using regularly updated virus =
 scanning software but you should take whatever measures you deem to be appr=
 opriate to ensure that this message and any attachments are virus free.
 
---_000_E1188D158AA7A048AF99B6A05DA3D62901E208A0F4SPROMMAIL04sp_
-Content-Type: text/html; charset="us-ascii"
+--_000_E1188D158AA7A048AF99B6A05DA3D62901E208A123SPROMMAIL04sp_
+Content-Type: text/html; charset="iso-8859-1"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
@@ -165,13 +189,11 @@ osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 //www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
 @font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
@@ -193,16 +215,6 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:#954F72;
 	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
 span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
@@ -216,81 +228,6 @@ span.EmailStyle17
 	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
 div.WordSection1
 	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1594390003;
-	mso-list-type:hybrid;
-	mso-list-template-ids:685799488 1941493166 68157443 68157445 68157441 6815=
-7443 68157445 68157441 68157443 68157445;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -301,36 +238,71 @@ ul
 <body lang=3D"IT" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal"><span lang=3D"EN-US">HI,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">after loaded a fresh copy of FP=
-GA on our x310, I issued the command:<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-18.0pt;mso-list:l0 leve=
-l1 lfo1"><![if !supportLists]><span lang=3D"EN-US"><span style=3D"mso-list:=
-Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span lang=3D"EN-US">uhd_usrp_probe<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">the results of this are:<o:p></=
-o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am trying to download some et=
+tus uhd test program (firsto of all benchmark)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I issued the following command<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">mau@mau-Vostro-3500:/usr/local/=
+bin$ sudo add-apt-repository ppa:ettusresearch/uhd<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">mau@mau-Vostro-3500:~$ uhd_usrp=
-_probe<br>
-[INFO] [UHD] linux; GNU C&#43;&#43; version 10.2.1 20201207; Boost_107400; =
-UHD_3.15.0.0-4build1<br>
-[INFO] [X300] X300 initialization sequence...<br>
-[INFO] [X300] Maximum frame size: 1472 bytes.<br>
-[INFO] [X300] Radio 1x clock: 200 MHz<br>
-Error: AssertionError: Failed to find a valid XML path for RFNoC blocks.<br>
-Try setting the environment variable UHD_RFNOC_DIR to the correct location<=
-br>
-mau@mau-Vostro-3500:~$ <br>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">the answer to it is<br>
+Repository: 'deb </span><a href=3D"http://ppa.launchpad.net/ettusresearch/u=
+hd/ubuntu/"><span lang=3D"EN-US">http://ppa.launchpad.net/ettusresearch/uhd=
+/ubuntu/</span></a><span lang=3D"EN-US"> impish main'<br>
+More info: </span><a href=3D"https://launchpad.net/~ettusresearch/&#43;arch=
+ive/ubuntu/uhd"><span lang=3D"EN-US">https://launchpad.net/~ettusresearch/&=
+#43;archive/ubuntu/uhd</span></a><span lang=3D"EN-US"><br>
+Adding repository.<br>
+Press [ENTER] to continue or Ctrl-c to cancel.<br>
+Found existing deb entry in /etc/apt/sources.list.d/ettusresearch-ubuntu-uh=
+d-impish.list<br>
+Adding deb entry to /etc/apt/sources.list.d/ettusresearch-ubuntu-uhd-impish=
+.list<br>
+Found existing deb-src entry in /etc/apt/sources.list.d/ettusresearch-ubunt=
+u-uhd-impish.list<br>
+Adding disabled deb-src entry to /etc/apt/sources.list.d/ettusresearch-ubun=
+tu-uhd-impish.list<br>
+Adding key to /etc/apt/trusted.gpg.d/ettusresearch-ubuntu-uhd.gpg with fing=
+erprint 463896EF9B898A846C7EC0E109FE61056169358E<br>
+Trovato:1 </span><a href=3D"http://old-releases.ubuntu.com/ubuntu"><span la=
+ng=3D"EN-US">http://old-releases.ubuntu.com/ubuntu</span></a><span lang=3D"=
+EN-US"> impish InRelease &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<b=
+r>
+Ignorato:2 </span><a href=3D"http://ppa.launchpad.net/ettusresearch/uhd/ubu=
+ntu"><span lang=3D"EN-US">http://ppa.launchpad.net/ettusresearch/uhd/ubuntu=
+</span></a><span lang=3D"EN-US"> impish InRelease
 <br>
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I do not know how to proceed, s=
-et the environment variable or other.<o:p></o:p></span></p>
+Trovato:3 </span><a href=3D"http://old-releases.ubuntu.com/ubuntu"><span la=
+ng=3D"EN-US">http://old-releases.ubuntu.com/ubuntu</span></a><span lang=3D"=
+EN-US"> impish-security InRelease<br>
+Trovato:4 </span><a href=3D"http://old-releases.ubuntu.com/ubuntu"><span la=
+ng=3D"EN-US">http://old-releases.ubuntu.com/ubuntu</span></a><span lang=3D"=
+EN-US"> impish-updates InRelease<br>
+Errore:5 </span><a href=3D"http://ppa.launchpad.net/ettusresearch/uhd/ubunt=
+u"><span lang=3D"EN-US">http://ppa.launchpad.net/ettusresearch/uhd/ubuntu</=
+span></a><span lang=3D"EN-US"> impish Release<br>
+&nbsp; 404 &nbsp;Not Found [IP: 185.125.190.52 80]<br>
+Lettura elenco dei pacchetti... </span>Fatto<br>
+E: Il repository &quot;<a href=3D"http://ppa.launchpad.net/ettusresearch/uh=
+d/ubuntu">http://ppa.launchpad.net/ettusresearch/uhd/ubuntu</a> impish Rele=
+ase&quot; non ha un file Release.<br>
+N: L'aggiornamento da tale repository non pu=F2 essere eseguito in modo sic=
+uro ed =E8 quindi disabilitato come impostazione predefinita.<br>
+N: Consultare la pagina man apt-secure(8) per la creazione di un repository=
+ e la configurazione utente.<br>
+mau@mau-Vostro-3500:/usr/local/bin$ <br>
+<br>
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am using ubuntu release 21.10=
+, codename impish<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">maurizio<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Any suggestions?<o:p></o:p></sp=
+an></p>
 <p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you in advance<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Maurizio Stefani (External)<o:p=
+></o:p></span></p>
 </div>
 <font style=3D"font-size: 9px;">The information in this e-mail is confident=
 ial. The contents may not be disclosed or used by anyone other than the add=
@@ -345,9 +317,9 @@ ld take whatever measures you deem to be appropriate to ensure that this me=
 ssage and any attachments are virus free.</font></body>
 </html>
 
---_000_E1188D158AA7A048AF99B6A05DA3D62901E208A0F4SPROMMAIL04sp_--
+--_000_E1188D158AA7A048AF99B6A05DA3D62901E208A123SPROMMAIL04sp_--
 
---===============1172984250103176544==
+--===============8458635215872294640==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -357,4 +329,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1172984250103176544==--
+--===============8458635215872294640==--
