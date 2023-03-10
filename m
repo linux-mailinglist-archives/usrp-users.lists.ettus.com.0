@@ -2,519 +2,769 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DC696B3407
-	for <lists+usrp-users@lfdr.de>; Fri, 10 Mar 2023 03:09:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11F586B3416
+	for <lists+usrp-users@lfdr.de>; Fri, 10 Mar 2023 03:14:31 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id DB8B6384746
-	for <lists+usrp-users@lfdr.de>; Thu,  9 Mar 2023 21:09:51 -0500 (EST)
+	by mm2.emwd.com (Postfix) with ESMTP id 4FCE53848C4
+	for <lists+usrp-users@lfdr.de>; Thu,  9 Mar 2023 21:14:30 -0500 (EST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1678414191; bh=NoQCUoKRTEkZeNLquRpdXSrep4xxSuF7Gb46ScR+D0Y=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1678414470; bh=qjbMPIklvPdBqOh1/VwjJLgpO6K4zwSzpTHYC3aIIHM=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=cE46EvOvUlaPQ+r1+Fzu2Ermv84y81JsdgmUTy9jVaAutZnMNW5OBUKrOkRA8Lx8/
-	 4+rBXXQqdGNYbmfM0b5cfCbP4x+GMj8fKHA8iiUl2ddjir9QfhljVF4SwaRPJlXTCz
-	 oOJNC15w3uU8hjDL6A6Jj8mHTaF5maobLFIRnECxZwHuEAFNquGlA/ygJ+a1e/ffsQ
-	 S7jBpYgj90KdVw/IcWC2xheb5NG87Jcq8d3avP3qT1s9VCSgiOj02CYNtsfIiXiXbV
-	 F1Ldj/S1NNzHBmG0rlLicwUGKF6ih5xy+lo48z0Bw1tpEaYcFImQJg8Fz7ACj5R99A
-	 PUXlTNrBGHWZA==
-Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com [148.163.156.75])
-	by mm2.emwd.com (Postfix) with ESMTPS id 909133846DA
-	for <usrp-users@lists.ettus.com>; Thu,  9 Mar 2023 21:09:14 -0500 (EST)
+	b=LWnorUXIxo8k+YDYXqqVpSsrO3Zs4F989gTel1s4pzVDRyDAsPLt8KwI2atjId4L5
+	 JgwF43KuCCvxUnKwL1f494vpMUIPIRa03RZsDwG/Z3qt4leRxGBJ43ViyQzmeBhY4r
+	 o080NxoQxj9jfofM8+aWOKznENnrpf/roeDo99MqwOEzfMEumslYXO83Lh3+EAQme/
+	 aPbqyQsFYk5rxJ+miV1uawyZb1jivL6lG8DbAe8S6zXM4oVmrnH3tPJBKIuPWowKLZ
+	 fmHzODDaumz+UbW14ZW/iCxBPDeU9jp9OpjtHR6Dyntww+TzywbdKe6OkYEnNCcIhR
+	 I/B+kROrKl4HA==
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1D3AF3848AF
+	for <usrp-users@lists.ettus.com>; Thu,  9 Mar 2023 21:13:54 -0500 (EST)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ni.com header.i=@ni.com header.b="EEPRL58q";
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=nio365.onmicrosoft.com header.i=@nio365.onmicrosoft.com header.b="ZhYQaMo+";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ROgf/3zh";
 	dkim-atps=neutral
-Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
-	by mx0a-00010702.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 329JFYhd017615;
-	Thu, 9 Mar 2023 20:09:12 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ni.com; h=from : to : date :
- message-id : references : in-reply-to : content-type : mime-version :
- subject; s=PPS11062020; bh=6Qk8+cQNbQYGXg14R+sQE/3by63E1BfQia7XfVj8omY=;
- b=EEPRL58qkEI2P53yl0LBvQQvapWfOCN77K32RitM+qh5PejTqd+ogDAccU/lBXgclEsK
- 0X3RGKelHzv1L7nvwGaFq2yPeq76O992b3TdEGFMEp4+pKgZmfCQYZyUTUBKIfXeqQ2y
- /LQbZcUjxTvR1g0IZkmGrS4ODt5W/Afcn43uldeFGkQRbIxGZtWLsYL8zbVNF6fkyxDn
- qoc7pxWGN0NeP/TUdLXDD6WgqLKGJWvn/q1B8oXruKfpSk/TtcX/9YXBMUWyYto5Ufqs
- 9uCLo0lm4fzt8i1Q4TndKveHX1lqxnTKpBVIX9DSr+7XJvRuyE6IIlydaV/+c2ZdeZmk Pg==
-Received: from nam02-dm3-obe.outbound.protection.outlook.com (mail-dm3nam02lp2040.outbound.protection.outlook.com [104.47.56.40])
-	by mx0a-00010702.pphosted.com (PPS) with ESMTPS id 3p6fkja935-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Mar 2023 20:09:12 -0600
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dEctHCBaUGbyNOHeVxNva3sDo+H+3+DnhUYFoVM5qHEojOSNsSrwQv5+5Qi2hAY25LXeaeDNcSMHlwKFyRPG82QAVwAiYX2DNfdsBm8TFO1n06BrmV6ST2Ph+B+s2wfrtppiB2v4dDJh7PzMYzy96zKy+TEZsvlEK2i78KllxNzyOEWcnW1RT03jLmVdKfUrQ6AuKMlUSqdLOVz/uRjHYv5ntvDdD1mKpw7o5UEtf4qvY+MjMdcY6/sXczdjBlT4tTbH0SnyykQ3a9V0Tk9hfSpNOvyoPtwhYiw9RgWKkqFVSSVY4B73i7cwFQ2tBrniNeBP65LjIaFSR3/0bnCK6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6Qk8+cQNbQYGXg14R+sQE/3by63E1BfQia7XfVj8omY=;
- b=K6lJEAjwqzRdtNK8I5HmpxqPPodwCur0J0Sr3q2Jl6x1Cu4HNYUMwSANLuoKPlMlLmlCAK0abnqmoZipFDL5BpGxipwxErDlUaD9rotUjhJWKTwrHOrJH+UbeI+PgQqo8L9DLsOX51VEWZcBHXA/NkSfTocT3QCTufbhv0f7g77S5+vy7pVHdJUoKASmROw4euHfITdmXxEcgq6n8Ul0i+CqUiYktm/BoUwoRqDoe5lYFp/4x4uFI7takkkQG4WXnk9k2f2AjKl5xIt4zGuwT2IO/13GSIQRybnX42wnfH5ZX/PIbBs4FKVMrH1HcpwftVvjTUGisW/OrV/1FIp1Qg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
+Received: by mail-qt1-f181.google.com with SMTP id l13so4353133qtv.3
+        for <usrp-users@lists.ettus.com>; Thu, 09 Mar 2023 18:13:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6Qk8+cQNbQYGXg14R+sQE/3by63E1BfQia7XfVj8omY=;
- b=ZhYQaMo+9Vs4zGVEJ4cJwCMwC/vnZJJdYlzxB3Y03vRaQfVVWOkBWkHhka9yEz2EhFtsxmJGgs+tS+x1YmG/rFzMjvjWa9uynlKlXnvEJS9TmNm4Ssi6R9o4GqnLaPTSIZThZLeQP9xXRLXGXhEGNxyoFy3ZzCpq6OcXNFkosMs=
-Received: from SJ0PR04MB8328.namprd04.prod.outlook.com (2603:10b6:a03:3e0::13)
- by BN8PR04MB6386.namprd04.prod.outlook.com (2603:10b6:408:d9::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.19; Fri, 10 Mar
- 2023 02:09:10 +0000
-Received: from SJ0PR04MB8328.namprd04.prod.outlook.com
- ([fe80::3611:ae0b:8239:9a02]) by SJ0PR04MB8328.namprd04.prod.outlook.com
- ([fe80::3611:ae0b:8239:9a02%3]) with mapi id 15.20.6178.017; Fri, 10 Mar 2023
- 02:09:10 +0000
-From: Abhay Samant <abhay.samant@ni.com>
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
-        "usrp-users@lists.ettus.com"
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [EXTERNAL] Re: [USRP-users] Re: Error updating fpga image on
- n320
-Thread-Index: AQHZTsVx6qjKCcV/vUGctwqyTavCP67zTOjw
-Date: Fri, 10 Mar 2023 02:09:09 +0000
-Message-ID: 
- <SJ0PR04MB8328D5EE03025F619D245788EBBA9@SJ0PR04MB8328.namprd04.prod.outlook.com>
-References: 
- <SJ0PR04MB832815197030088DB1468B6CEBB09@SJ0PR04MB8328.namprd04.prod.outlook.com>
+        d=gmail.com; s=20210112; t=1678414434;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vqKvuknDgNxWTv8UUAHfqQrS31zBg+LBC0hnwzelL1g=;
+        b=ROgf/3zhjUPqppHMv0dnKaw9oXhgSIhtmDybIXxtSBzAbw5Pi/QMipAwI6fZXFkcVN
+         pUZx+yv5MF/SCPjK0gNk9nZLGqfxNJtvwtn9DsWTAh6NnQyuuTRCGTh/L2rtevp9mC5R
+         S1YM1Z7+JePGMcat14S2ujw2PsXi0zCrav65LDnPsB6kuSgZqoLK1MxteoQTMOBUv0qQ
+         PzKxmZLpa5kH2PXYFxQA/lDaNtDXvFLjtZrB3W2HYlPEEQTmg4tK4mqiJFxXJBhPEi1q
+         /gUkZNKhAaCy2rMPcod3cXE1yDPexNPu1WB8bCN8h4bGWh5ocZyPv+YiKHrjyEmSCaAL
+         VpJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1678414434;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vqKvuknDgNxWTv8UUAHfqQrS31zBg+LBC0hnwzelL1g=;
+        b=FXAzk33Q1XgMAy0FpJklNkoLPoTA0HV7nO21ZTIQ7oLEVBNG0+fUA0liIB1cHkMN2y
+         yHqBzQtH5z1KoTvpQP3zpgDKGpCO47XTRQqUKNBpa36eun/cuRj4QNzSXQS62cEV6cqZ
+         dmHzI60nm++t5RyCF8VEuYMbtIli/6p1DkIk6b1cMvfqCQ/dTm/cJkJy1KspL67zgY/E
+         jluJ9xBRdfSrzf3k5h8y/W1y/EJaZvy/AtPoAb765jgAycaAZtUAK9g+Nq4tsMPDXh0T
+         E4dthsRRIY1KUo2t0+x3Z8w+PQv/DVnD07CWxJP91/Fa/6iaejtJbA8QdTl1nk1+knq6
+         zkYg==
+X-Gm-Message-State: AO0yUKUMPh7kI0XaWv3YV2j2rxB2Ud5K8c/AvV8W1khmW6ATPhdJAsCx
+	5bU3IkVuy90YthDk63kr1GM=
+X-Google-Smtp-Source: AK7set+wJCNARKmgqB/ezIhlpgJ43yPO20abBh+81P7MuTO4Ll7kxYkyVlcmOiAyGSXlVd4OE+uK6w==
+X-Received: by 2002:ac8:5790:0:b0:3b4:7efb:36a7 with SMTP id v16-20020ac85790000000b003b47efb36a7mr1205060qta.27.1678414434317;
+        Thu, 09 Mar 2023 18:13:54 -0800 (PST)
+Received: from [192.168.2.190] (bras-base-smflon1825w-grc-06-174-88-54-55.dsl.bell.ca. [174.88.54.55])
+        by smtp.googlemail.com with ESMTPSA id p10-20020ac8408a000000b003b869f71eedsm499028qtl.66.2023.03.09.18.13.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Mar 2023 18:13:54 -0800 (PST)
+Message-ID: <203821c8-d451-d6d7-50ac-5760f6a300f9@gmail.com>
+Date: Thu, 9 Mar 2023 21:13:53 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Content-Language: en-US
+To: Abhay Samant <abhay.samant@ni.com>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <SJ0PR04MB832815197030088DB1468B6CEBB09@SJ0PR04MB8328.namprd04.prod.outlook.com>
  <9d0647bc-b671-3350-a9f0-e5b11106b44a@gmail.com>
  <SJ0PR04MB832895E5D4CE860EB46A057BEBB09@SJ0PR04MB8328.namprd04.prod.outlook.com>
  <2df6d1c3-f428-cf2e-2b76-03b48ceb9fc9@gmail.com>
-In-Reply-To: <2df6d1c3-f428-cf2e-2b76-03b48ceb9fc9@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_ActionId=0c84d444-61b6-49ef-8037-881d38600859;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_ContentBits=0;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Enabled=true;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Method=Standard;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_Name=Internal;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_SetDate=2023-03-10T02:08:37Z;MSIP_Label_76122db4-a595-414e-9ece-6adfb473e1a0_SiteId=87ba1f9a-44cd-43a6-b008-6fdb45a5204e;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR04MB8328:EE_|BN8PR04MB6386:EE_
-x-ms-office365-filtering-correlation-id: edcf6d8b-4006-4078-00ce-08db210c6f9f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- mLE/mLpaX2eEjR8uaR8U0AyNkl3RtwaTOaVFgSP2JFnDQQ7q9Y1WXHc+J6vecS3JrmntghU6dpxOY4p4r9GJwoxXJKGrMqM9TuyUp7mYMPR+RHQZhyu6DU+PsuEoAXS/i9CZkUZVzU6LP1mzJNDJD3rFVcRvDvFFR1XHMK1HHyu1vQgYQ4DctTNKgkxCsFtnLtHt4Qg/4xmq88pGLQjqItwwGN9vq8Ww6OHMndUWFZjwB3Iw3BOtCwSm+empxAl/UYh1vYwChoFXGEC7kRx0zPN59R0UPmoryd2e2YfeEESGseEdPQGgmecpgyiXLHYBlsIU4weIkBtkuZU79SFSgFJyPGuNdrdkwusHpVxSoGy0vRUGoqmuG8EY8URZEoEsm2da6sp7t64kfTtMFSdSjop5+witVyKlexXJRnjARLWLst0mD+rYa4rvZSzAHEi7ALOo8BTK+GxbVH8fbA2ut29Mzs7aTXKx2wtDaIxXutRwMkXMm6OFC1jlKrEdKOz3D/5VBuApdjksZIcb2VhkayTmlQzUa+YvbvyReCyOZgr3DhDs1ljST1FIq3SsDvdgEyJUtH7PHGSP7h8O1+AyoDi2Na4Xrc5i+8D6Gi2I6xls7OcxYZQT3+vVLXsuqTCbNXaeECqiLAEVBZWhHyrlruMPqbAHAZuvJBb6RaZHG+eY77XTwff25S30B6oiKjDYNJVFAtMGBahEfI0IBgmAFoi0nzhluTrLwzYL64gWdfo=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR04MB8328.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230025)(376002)(396003)(366004)(39860400002)(346002)(136003)(451199018)(1690799011)(8936002)(52536014)(5660300002)(8676002)(26005)(53546011)(9686003)(6506007)(38100700002)(122000001)(83380400001)(186003)(41300700001)(55016003)(86362001)(66946007)(66556008)(66476007)(110136005)(64756008)(66446008)(33656002)(76116006)(316002)(71200400001)(966005)(166002)(7696005)(478600001)(38070700005)(66899018)(2906002)(44832011);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?dzNjeXUyRTVxZGpFMzU1bldadkdSK2dISjByUERGZWNjVTFxeEQxMnZQd1Rk?=
- =?utf-8?B?bVdFd1JvNHErTGJpZGdZNllqWVF1ZVI0K3VqMjVoNlBGaVBIOWtYSXVRdzhE?=
- =?utf-8?B?Y0xyemwyNHVXZUpHWEpacm1XTnZ3Q0xoa1ovc0VpUE12QkpBMVlHckM0bG1a?=
- =?utf-8?B?M1VTQ0hEdEp6MG1EaUlOWGZhNW8rVnliazdQam9zRm41a3ZlWDVYNnBmSUo2?=
- =?utf-8?B?bkFnUTc4Qjg0N1IrTEo3cWNDaldYT1NIbDBINlZwbzVoeTRlVFU4c3FOcVFl?=
- =?utf-8?B?akN1emJPUEE1TGdINE01cTlUTkY3U0RESVJtMVBmYnBkekFQbkd2TjVpaTFh?=
- =?utf-8?B?cytKaW1OaitnOVpFL0diUTZpNHR6M2hNSkRGMi9mY05PRnBBbTJrTVY2SDdy?=
- =?utf-8?B?QTNxMUp0V0ZJUjNiNWY5OXovdWgya2xNSTY4eWpIRkVXSkFielozc3BWQUFR?=
- =?utf-8?B?QTRFMUxaL1BKcGMzZ01rSjFKV1hjNTNrUnRQQ1REa2FmSU1wRTYzUE9GZy9O?=
- =?utf-8?B?TkdOa2x5dHVVbHlLejhhdFhnWFJvdWpWVk1IRXZkOEZlaklyUVB0ckV2eklH?=
- =?utf-8?B?YUhSYi9hOU5CcUl5ZkhxSVFmWEZiTXdabGZQZFJTMzRxUFFrQmdJVDRPNkFp?=
- =?utf-8?B?eWlhQWRGNU9RQllYbzNLWnJGdmdmazZ5d2dwUmhsN1BzSTh2ZkdqTG5qMmR6?=
- =?utf-8?B?ZTIwRE5MUmNxQmxWR25zZS9IWityNTQ0cG05cHhqTWxLZjJEam5hbHl2cW8r?=
- =?utf-8?B?UUdOdGpEamJTZkRIWEdjRnlYUzBybWJ1c1VJdWpBeGpxOVJwb2o1NEM5RllD?=
- =?utf-8?B?MnprUjdiR0d2K3QwMlNGR0cxQkx5ZktpeGhwV0NkM0hhYzhTUnBRNlZSVTRm?=
- =?utf-8?B?blRqRnZ5QkFSTncxbWhGYi9TMzA4cWFsSEF6enNlY29oS2dyN3F1MEgrSHZq?=
- =?utf-8?B?eDlxU0t6RUxJR1dseWkraGRQZ3FEV1NyOGdLVVdENy95b0duVkR3ZDhZeFZ5?=
- =?utf-8?B?cEUzaGhlTmFiY044WDZpcEU4a1BSTlpqS0tYWFYrY1ZQMWVJeGFIUE9ZNERN?=
- =?utf-8?B?b1lHU29CRzZsRUVoQm5MUFVpWGFRZUovL2dvcEdGY2pMRlgwT1BlL0JIUlVD?=
- =?utf-8?B?ZEFqQ1Z4NTBQRWhyY0pJQXZoWW5YQWo4WHRGbjRKdGE5QmVjN2VvazlnR0VN?=
- =?utf-8?B?dXBLRFVLeG9GTk9CSjZucHNZQWdTeFF6TGppb2JoY2M5aHA4RUE2TjJpNkJX?=
- =?utf-8?B?TUp3WlE5L0hTb0xhdVlSYWRjS1lFdzhjbmlhb3lGc21HYnJNbzgwbGJ0N1Vu?=
- =?utf-8?B?UENQcTJXeXF1aUJhL1Z2Zk5JaVZiM1ZBenNTbk5xRitld1hlc3Q3bm5JS2ZE?=
- =?utf-8?B?S1lKY3JZZktUNlYvemQwa2FVSHcyalZHT25teU8vbTh6NzNHWHNOL1Foand6?=
- =?utf-8?B?dUNWMXhyV2xSU1JjVk9WZFAxcHJOc1RaMitmeURIcDJCbUdFdlpIZ1NuQnAr?=
- =?utf-8?B?TlpLWS84bXl6TjY4UHNrV2t4ZmN1Rmx4Mlo5ZnVwa0E4L2Fmd1doU0UvUzdT?=
- =?utf-8?B?L3JqdVhFY25zM1JhdjJoL2w4cG45TEV3Yy9tUU1qVmpQdVA5M0RncVNMN3JV?=
- =?utf-8?B?TVlsZXNveG8wRHJZbmpoZThFRk1MV2dCbldKa2ErNnVvV2Y0ejVzTy9Rdlpz?=
- =?utf-8?B?T0tqaVREMkNZNCsxd0pqRWx6c0dHejJ1bHM2d0dhZG9wZ3NOZHVrUlF6d3Yx?=
- =?utf-8?B?TTR4eUY0UTVGblZ3by8venRsejZsOGZ5SVQwclp1bTlJRWs2UndmTUZCWTNP?=
- =?utf-8?B?MkNoQ3B5STdxZkhyU2I3ZFNDeFNpYVRqUWFrenRtc1dQREdvTitBU1A1WnM4?=
- =?utf-8?B?M0xTbzVidXF2Ui9JdWNGMkswSXBHUHZGL2hUSitvUzBmVFRFaG9aYVdHaWdW?=
- =?utf-8?B?ZXF2UENXbXBCSTcwYkNEbGY5U2MvVXE4Zk5iZVRtZEo2K1BvSGdHVDJNQWtP?=
- =?utf-8?B?d0dMZDYvQkFiVlZkV2V3WExNU25Kb2lSNHNLWnQ4QUs5d0Q5anNpd3ZJT2Vr?=
- =?utf-8?B?VjVwUEg1T3ltRjdNWmgyM2g4eUVUcTJmcTNRMVZqejd3RnNwNGVtSXYxelo3?=
- =?utf-8?Q?loiTqfK+VnaDzL1KG6yWDmjNX?=
-MIME-Version: 1.0
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR04MB8328.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: edcf6d8b-4006-4078-00ce-08db210c6f9f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2023 02:09:09.8447
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aZz+masvpNAFh0bJ+xHJ9CEol9QKUbXLWQljHV5Lvjz6PdponTwSbp/O393v/REo5LUIBT2ek5bLMQEddTl05A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR04MB6386
-X-Proofpoint-GUID: wDOQFcAZq3daqTDmwB1pQZ5YCKoPdJSc
-X-Proofpoint-ORIG-GUID: wDOQFcAZq3daqTDmwB1pQZ5YCKoPdJSc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.942,Hydra:6.0.573,FMLib:17.11.170.22
- definitions=2023-03-09_14,2023-03-09_01,2023-02-09_01
-X-Proofpoint-Spam-Details: rule=outbound_policy_notspam policy=outbound_policy score=30 clxscore=1015
- lowpriorityscore=0 adultscore=0 mlxscore=0 phishscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 impostorscore=0 mlxlogscore=999
- bulkscore=0 suspectscore=0 classifier=spam adjust=30 reason=mlx
- scancount=1 engine=8.12.0-2212070000 definitions=main-2303100012
-Message-ID-Hash: RE6V3OGPZLOTODXED5HUMABVD73TWBXY
-X-Message-ID-Hash: RE6V3OGPZLOTODXED5HUMABVD73TWBXY
-X-MailFrom: prvs=2433a6fbc2=abhay.samant@ni.com
+ <SJ0PR04MB8328D5EE03025F619D245788EBBA9@SJ0PR04MB8328.namprd04.prod.outlook.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <SJ0PR04MB8328D5EE03025F619D245788EBBA9@SJ0PR04MB8328.namprd04.prod.outlook.com>
+Message-ID-Hash: IX6DLZG2TJDTW2ZBDERXDGIROHWUTIWZ
+X-Message-ID-Hash: IX6DLZG2TJDTW2ZBDERXDGIROHWUTIWZ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Error updating fpga image on n320
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2BJQ6XM3GKJLIYX54GS3OFXXDUZEBGBN/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IX6DLZG2TJDTW2ZBDERXDGIROHWUTIWZ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3832845116885372242=="
+Content-Type: multipart/mixed; boundary="===============5606592932641613096=="
 
---===============3832845116885372242==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============5606592932641613096==
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR04MB8328D5EE03025F619D245788EBBA9SJ0PR04MB8328namp_"
+ boundary="------------n00AlCPHKpysiPKlP9So039U"
+Content-Language: en-US
 
---_000_SJ0PR04MB8328D5EE03025F619D245788EBBA9SJ0PR04MB8328namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------n00AlCPHKpysiPKlP9So039U
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-SGksIGFueSBzdWdnZXN0aW9ucyBvbiBob3cgdG8gZmkgdGhlIGVycm9yIHRoYXQgSSBhbSBzZWVp
-bmcgd2hpbGUgdXBkYXRpbmcgZnBnYSBpbWFnZSBvbiBuMzIwLg0KDQpUaGFuayB5b3UuDQoNCg0K
-W05JXQ0KQWJoYXkgU2FtYW50DQpDaGllZiBTb2Z0d2FyZSBFbmdpbmVlcg0KQWVyby9EZWYvR292
-dDogU3lzdGVtcyBSJkQNCuKAi25pLmNvbTxodHRwczovL3d3dy5uaS5jb20vPg0KDQoNCkZyb206
-IE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFpbC5jb20+DQpTZW50OiBTYXR1cmRh
-eSwgTWFyY2ggNCwgMjAyMyAxMjoxNiBQTQ0KVG86IEFiaGF5IFNhbWFudCA8YWJoYXkuc2FtYW50
-QG5pLmNvbT47IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQpTdWJqZWN0OiBbRVhURVJOQUxd
-IFJlOiBbVVNSUC11c2Vyc10gUmU6IEVycm9yIHVwZGF0aW5nIGZwZ2EgaW1hZ2Ugb24gbjMyMA0K
-DQpPbiAwNC8wMy8yMDIzIDEzOjA5LCBBYmhheSBTYW1hbnQgd3JvdGU6DQpIaSBNYXJjdXMsDQpU
-aGFuayB5b3UgZm9yIHlvdXIgcXVpY2sgcmVzcG9uc2Ugb24gYSBTYXR1cmRheS4NCg0KTXkgbmV0
-d29yayBwcm9maWxlIHRoYXQgSSB1c2UgdG8gY29ubmVjdCB0byBVU1JQIHdhcyBlYXJsaWVyIGNv
-bmZpZ3VyZWQgdG8gdXNlIHN0YXRpYyBhZGRyZXNzIDE5Mi4xNjguMTAuMSwgd2hpY2ggSSBoYWQg
-dXNlZCB0aGlzIElQIGFkZHJlc3Mgd2l0aCB0aGUgaW1hZ2UgbG9hZGVyIGNhbGwuDQpOb3JtYWxs
-eSwgMTkyLjE2OC4xMC4xIGlzIHRoZSBJUCBhZGRyZXNzIG9mIHlvdXIgKkhPU1QqIGNvbXB1dGVy
-Lg0KDQoNCg0KTmV2ZXJ0aGVsZXNzLCBiYXNlZCBvbiB5b3VyIGZlZWRiYWNrLCBJIGNoYW5nZWQg
-dGhlIElQIGFkZHJlc3MgdG8gMTkyLjE2OC4xMC4yIGFuZCBzdGlsbCBnZXQgdGhlIHNhbWUgZXJy
-b3INCg0KdWhkX2ltYWdlX2xvYWRlciAtLWFyZ3MgInR5cGU9bjN4eCxhZGRyPTE5Mi4xNjguMTAu
-MixmcGdhPUhHIg0KW0lORk9dIFtVSERdIGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOS40LjA7IEJv
-b3N0XzEwNzEwMDsgRFBES18xOS4xMTsgVUhEXzQuMi4wLjEtMC1nMzIxMjk1ZmINCk5vIGFwcGxp
-Y2FibGUgVUhEIGRldmljZXMgZm91bmQNCltFUlJPUl0gW01QTUQgSU1BR0UgTE9BREVSXSBtcG1k
-X2ltYWdlX2xvYWRlciBvbmx5IHN1cHBvcnRzIGEgc2luZ2xlIGRldmljZQ0KDQpJIGNhbiBwaW5n
-IHRvIHRoaXMgYWRkcmVzcyBzdWNjZXNzZnVsbHkuIEkgaGF2ZSBhbHNvIGRpc2FibGVkIGZpcmV3
-YWxsIG9uIFVidW50dSAoc3VkbyBkaXNhYmxlIHVmdykgYmFzZWQgb24gc29tZSBvdGhlciBhbnN3
-ZXJzIHRoYXQgSSBzYXcgcmVsYXRlZCB0byBzYW1lIHF1ZXN0aW9uLg0KDQoNCkFiaGF5IFNhbWFu
-dCwgUGhEDQoNCkNoaWVmIFNvZnR3YXJlIEVuZ2luZWVyIOKAkyBBZXJvc3BhY2UvRGVmZW5zZS9H
-b3Zlcm5tZW50IEJ1c2luZXNzDQoNCk5JDQphYmhheS5zYW1hbnRAbmkuY29tPG1haWx0bzphYmhh
-eS5zYW1hbnRAbmkuY29tPg0KDQpZb3UncmUgdXNpbmcgdGhlIFNGUDAgIHBvcnQgb24gdGhlIE4z
-MjA/DQoNCkFub3RoZXIgd2F5IHRvIHVwZGF0ZSBpdCBpcyB0byBzaW1wbHkgcHJvZ3JhbSBhbiBl
-bnRpcmVseS1mcmVzaCBzeXN0ZW0gaW1hZ2Ugb250byB0aGUgdVNEIGNhcmQ6DQoNCmh0dHBzOi8v
-a2IuZXR0dXMuY29tL1VTUlBfTjMwMC9OMzEwL04zMjAvTjMyMV9HZXR0aW5nX1N0YXJ0ZWRfR3Vp
-ZGUjVXBkYXRpbmdfdGhlX2ZpbGVzX3N5c3RlbV9ieV93cml0aW5nX3RoZV9kaXNrX2ltYWdlPGh0
-dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwczova2IuZXR0dXMuY29tL1VTUlBfTjMwMC9O
-MzEwL04zMjAvTjMyMV9HZXR0aW5nX1N0YXJ0ZWRfR3VpZGUqVXBkYXRpbmdfdGhlX2ZpbGVzX3N5
-c3RlbV9ieV93cml0aW5nX3RoZV9kaXNrX2ltYWdlX187SXchIUZiWjBad0kzUWchcm5CTEpZOFdw
-cEVGLVYyRmxfLXhJSVJTZGRRbDlJbzllLTd3eDRlQU5acEdQNlY1VUxDNm1kbERyemF1bkdaa1gw
-cVZwXy01THFuU2pxXzNFSktkVVEkPg0KDQpodHRwczovL2tiLmV0dHVzLmNvbS9Xcml0aW5nX3Ro
-ZV9VU1JQX0ZpbGVfU3lzdGVtX0Rpc2tfSW1hZ2VfdG9fYV9TRF9DYXJkI04zeHg8aHR0cHM6Ly91
-cmxkZWZlbnNlLmNvbS92My9fX2h0dHBzOi9rYi5ldHR1cy5jb20vV3JpdGluZ190aGVfVVNSUF9G
-aWxlX1N5c3RlbV9EaXNrX0ltYWdlX3RvX2FfU0RfQ2FyZCpOM3h4X187SXchIUZiWjBad0kzUWch
-cm5CTEpZOFdwcEVGLVYyRmxfLXhJSVJTZGRRbDlJbzllLTd3eDRlQU5acEdQNlY1VUxDNm1kbERy
-emF1bkdaa1gwcVZwXy01THFuU2pxLWVrQ2l6blEkPg0KDQoNCg0KX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NCkZyb206IE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1bkBnbWFp
-bC5jb20+PG1haWx0bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbT4NClNlbnQ6IFNhdHVyZGF5LCBN
-YXJjaCA0LCAyMDIzIDExOjU2IEFNDQpUbzogdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFp
-bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPiA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
-b20+PG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClN1YmplY3Q6IFtFWFRFUk5B
-TF0gW1VTUlAtdXNlcnNdIFJlOiBFcnJvciB1cGRhdGluZyBmcGdhIGltYWdlIG9uIG4zMjANCg0K
-T24gMDQvMDMvMjAyMyAxMjo1MiwgQWJoYXkgU2FtYW50IHdyb3RlOg0KSGksDQpJIGFtIHRyeWlu
-ZyB0byB1cGRhdGUgZnBnYSBpbWFnZSBvbiBteSBuMzIwIG9uIGFuIFVidW50dSAyMC4wNCBtYWNo
-aW5lIGFuZCBJIGdldCB0aGUgZm9sbG93aW5nIGVycm9yDQoNCiQgdWhkX2ltYWdlX2xvYWRlciAt
-LWFyZ3MgInR5cGU9bjN4eCxhZGRyPTE5Mi4xNjguMTAuMSxmcGdhPUhHIg0KW0lORk9dIFtVSERd
-IGxpbnV4OyBHTlUgQysrIHZlcnNpb24gOS40LjA7IEJvb3N0XzEwNzEwMDsgRFBES18xOS4xMTsg
-VUhEXzQuMi4wLjEtMC1nMzIxMjk1ZmINCk5vIGFwcGxpY2FibGUgVUhEIGRldmljZXMgZm91bmQN
-CltFUlJPUl0gW01QTUQgSU1BR0UgTE9BREVSXSBtcG1kX2ltYWdlX2xvYWRlciBvbmx5IHN1cHBv
-cnRzIGEgc2luZ2xlIGRldmljZS4NCg0KSSBoYXZlIGRvd25sb2FkZWQgYWxsIHRoZSBpbWFnZXMg
-dXNpbmcgdWhkX2ltYWdlX2Rvd25sb2FkZXIgY29tbWFuZC4NCg0KSGFzIGFueW9uZSBlbHNlIHJ1
-biBpbnRvIHRoZSBsb2FkZXIgb25seSBzdXBwb3J0cyBhIHNpbmdsZSBkZXZpY2UgZXJyb3IuDQoN
-Cg0KDQpBYmhheSBTYW1hbnQsIFBoRA0KDQpDaGllZiBTb2Z0d2FyZSBFbmdpbmVlciDigJMgQWVy
-b3NwYWNlL0RlZmVuc2UvR292ZXJubWVudCBCdXNpbmVzcw0KDQpOSQ0KYWJoYXkuc2FtYW50QG5p
-LmNvbTxtYWlsdG86YWJoYXkuc2FtYW50QG5pLmNvbT4NCg0KWW91ciBJUCBhZGRyZXNzIGlzIGFs
-bW9zdCBjZXJ0YWlubHkgaW5jb3JyZWN0IC0tIHRyeSAgIDE5Mi4xNjguMTAuMg0KDQoNCg0KDQpJ
-TlRFUk5BTCAtIE5JIENPTkZJREVOVElBTA0KDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18NCg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-Pg0KDQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlz
-dHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg0K
-DQoNCklOVEVSTkFMIC0gTkkgQ09ORklERU5USUFMDQoNCg0KDQpJTlRFUk5BTCAtIE5JIENPTkZJ
-REVOVElBTA0K
+On 09/03/2023 21:09, Abhay Samant wrote:
+>
+> Hi, any suggestions on how to fi the error that I am seeing while=20
+> updating fpga image on n320.
+>
+> Thank you.
+>
+I had earlier suggested that you simply do a whole-system image update.
 
---_000_SJ0PR04MB8328D5EE03025F619D245788EBBA9SJ0PR04MB8328namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Updat=
+ing_the_files_system_by_writing_the_disk_image
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
-ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
-YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
-I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
-W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
-DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
-MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIg
-MTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q29uc29sYXM7
-DQoJcGFub3NlLTE6MiAxMSA2IDkgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
-Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBp
-bjsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
-O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
-CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwcmUNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFy
-IjsNCgltYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTAu
-MHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0Kc3Bhbi5jb250ZW50cGFzdGVkMA0K
-CXttc28tc3R5bGUtbmFtZTpjb250ZW50cGFzdGVkMDt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRD
-aGFyDQoJe21zby1zdHlsZS1uYW1lOiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5
-bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglm
-b250LWZhbWlseTpDb25zb2xhczt9DQpzcGFuLkVtYWlsU3R5bGUyMg0KCXttc28tc3R5bGUtdHlw
-ZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCglj
-b2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9y
-dC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
-OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29y
-ZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUg
-bXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2
-IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFw
-ZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4N
-CjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9
-IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIiBzdHlsZT0id29yZC13cmFwOmJyZWFr
-LXdvcmQiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PkhpLCBhbnkgc3VnZ2VzdGlvbnMgb24gaG93IHRvIGZpIHRoZSBlcnJvciB0aGF0IEkgYW0gc2Vl
-aW5nIHdoaWxlIHVwZGF0aW5nIGZwZ2EgaW1hZ2Ugb24gbjMyMC48bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+VGhhbmsgeW91LjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1h
-cmdpbi1ib3R0b206MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjx0YWJsZSBjbGFzcz0i
-TXNvTm9ybWFsVGFibGUiIGJvcmRlcj0iMCIgY2VsbHNwYWNpbmc9IjAiIGNlbGxwYWRkaW5nPSIw
-IiB3aWR0aD0iNDUwIiBzdHlsZT0id2lkdGg6MzM3LjVwdDtib3JkZXItY29sbGFwc2U6Y29sbGFw
-c2UiPg0KPHRib2R5Pg0KPHRyIHN0eWxlPSJoZWlnaHQ6NzUuMHB0Ij4NCjx0ZCB3aWR0aD0iNDUw
-IiB2YWxpZ249InRvcCIgc3R5bGU9IndpZHRoOjMzNy41cHQ7cGFkZGluZzowaW4gMGluIDBpbiAw
-aW47aGVpZ2h0Ojc1LjBwdCI+DQo8dGFibGUgY2xhc3M9Ik1zb05vcm1hbFRhYmxlIiBib3JkZXI9
-IjAiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMCIgd2lkdGg9IjQ1MCIgc3R5bGU9Indp
-ZHRoOjMzNy41cHQ7Ym9yZGVyLWNvbGxhcHNlOmNvbGxhcHNlIj4NCjx0Ym9keT4NCjx0ciBzdHls
-ZT0iaGVpZ2h0Ojc1LjBwdDttc28taGVpZ2h0LXJ1bGU6ZXhhY3RseSI+DQo8dGQgd2lkdGg9IjEw
-MCIgdmFsaWduPSJ0b3AiIHN0eWxlPSJ3aWR0aDo3NS4wcHQ7cGFkZGluZzowaW4gMGluIDBpbiAw
-aW47aGVpZ2h0Ojc1LjBwdDttc28taGVpZ2h0LXJ1bGU6ZXhhY3RseSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibWFyZ2luLXRvcDoyLjI1cHQ7dmVydGljYWwtYWxpZ246dG9wIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90Oyxz
-YW5zLXNlcmlmO2NvbG9yOmJsYWNrIj48aW1nIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgc3R5bGU9
-IndpZHRoOi44MzMzaW47aGVpZ2h0Oi44MzMzaW4iIGlkPSJfeDAwMDBfaTEwMjYiIHNyYz0iaHR0
-cHM6Ly93d3cubmkuY29tL2NvbnRlbnQvZGFtL3dlYi9zY2VuZTcvZW1haWwvc2lnbmF0dXJlL2Vt
-YWlsLXNpZy1sb2dvLnBuZyIgYWx0PSJOSSI+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6Ymxh
-Y2siPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8dGQgd2lkdGg9IjM1MCIgdmFsaWdu
-PSJ0b3AiIHN0eWxlPSJ3aWR0aDoyNjIuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gMGluO2hlaWdo
-dDo3NS4wcHQ7bXNvLWhlaWdodC1ydWxlOmV4YWN0bHkiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
-c3R5bGU9Im1hcmdpbi1ib3R0b206NC41cHQ7dmVydGljYWwtYWxpZ246dG9wIj48Yj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEzLjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOmJsYWNrIj5BYmhheSBTYW1hbnQ8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7
-Y29sb3I6YmxhY2siPg0KPGJyPg0KQ2hpZWYgU29mdHdhcmUgRW5naW5lZXI8YnI+DQpBZXJvL0Rl
-Zi9Hb3Z0OiBTeXN0ZW1zIFImYW1wO0QgPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgc3R5bGU9InZlcnRpY2FsLWFsaWduOnRvcCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xv
-cjpibGFjayI+4oCLPC9zcGFuPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PGEgaHJlZj0iaHR0
-cHM6Ly93d3cubmkuY29tLyIgdGFyZ2V0PSJfYmxhbmsiIHRpdGxlPSJodHRwczovL3d3dy5uaS5j
-b20iPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+bmkuY29tPC9zcGFuPjwvYT4NCjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjwvdGQ+DQo8L3RyPg0KPC90Ym9keT4NCjwvdGFibGU+DQo8L3RkPg0K
-PC90cj4NCjwvdGJvZHk+DQo8L3RhYmxlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
-cDs8L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQg
-I0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxiPkZyb206PC9iPiBNYXJjdXMgRC4gTGVlY2ggJmx0O3BhdGNodm9uYnJhdW5AZ21h
-aWwuY29tJmd0OyA8YnI+DQo8Yj5TZW50OjwvYj4gU2F0dXJkYXksIE1hcmNoIDQsIDIwMjMgMTI6
-MTYgUE08YnI+DQo8Yj5Ubzo8L2I+IEFiaGF5IFNhbWFudCAmbHQ7YWJoYXkuc2FtYW50QG5pLmNv
-bSZndDs7IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPGJyPg0KPGI+U3ViamVjdDo8L2I+IFtF
-WFRFUk5BTF0gUmU6IFtVU1JQLXVzZXJzXSBSZTogRXJyb3IgdXBkYXRpbmcgZnBnYSBpbWFnZSBv
-biBuMzIwPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24g
-MDQvMDMvMjAyMyAxMzowOSwgQWJoYXkgU2FtYW50IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUu
-MHB0Ij4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBjbGFzcz0iY29udGVudHBh
-c3RlZDAiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrO2JhY2tncm91
-bmQ6d2hpdGUiPkhpIE1hcmN1cyw8L3NwYW4+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTIuMHB0O2NvbG9yOmJsYWNrIj4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPlRoYW5rIHlvdSBmb3IgeW91ciBxdWljayByZXNw
-b25zZSBvbiBhIFNhdHVyZGF5LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91
-bmQ6d2hpdGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5NeSBu
-ZXR3b3JrIHByb2ZpbGUgdGhhdCBJIHVzZSB0byBjb25uZWN0IHRvIFVTUlAgd2FzIGVhcmxpZXIg
-Y29uZmlndXJlZCB0byB1c2Ugc3RhdGljIGFkZHJlc3MgMTkyLjE2OC4xMC4xLCB3aGljaCBJIGhh
-ZCB1c2VkIHRoaXMgSVAgYWRkcmVzcyB3aXRoIHRoZSBpbWFnZSBsb2FkZXIgY2FsbC48bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+Tm9ybWFsbHksIDE5Mi4xNjguMTAuMSBpcyB0aGUgSVAgYWRkcmVzcyBvZiB5
-b3VyICpIT1NUKiBjb21wdXRlci48YnI+DQo8YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxi
-bG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0K
-PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0
-ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
-eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xv
-cjpibGFjayI+TmV2ZXJ0aGVsZXNzLCBiYXNlZCBvbiB5b3VyIGZlZWRiYWNrLCBJIGNoYW5nZWQg
-dGhlIElQIGFkZHJlc3MgdG8gMTkyLjE2OC4xMC4yIGFuZCBzdGlsbCBnZXQgdGhlIHNhbWUgZXJy
-b3I8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4w
-cHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRp
-dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFjayI+dWhkX2ltYWdlX2xvYWRlciAtLWFy
-Z3MgJnF1b3Q7dHlwZT1uM3h4LGFkZHI9MTkyLjE2OC4xMC4yLGZwZ2E9SEcmcXVvdDsNCjxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFj
-a2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2si
-PltJTkZPXSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDkuNC4wOyBCb29zdF8xMDcxMDA7
-IERQREtfMTkuMTE7IFVIRF80LjIuMC4xLTAtZzMyMTI5NWZiPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6
-d2hpdGUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5ObyBhcHBs
-aWNhYmxlIFVIRCBkZXZpY2VzIGZvdW5kPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPltFUlJPUl0gW01QTUQgSU1BR0UgTE9BREVS
-XSBtcG1kX2ltYWdlX2xvYWRlciBvbmx5IHN1cHBvcnRzIGEgc2luZ2xlIGRldmljZTxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpi
-bGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBjbGFzcz0iY29udGVudHBhc3RlZDAiPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTIuMHB0O2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6d2hpdGUiPkkgY2FuIHBpbmcgdG8gdGhp
-cyBhZGRyZXNzIHN1Y2Nlc3NmdWxseS4gSSBoYXZlIGFsc28gZGlzYWJsZWQgZmlyZXdhbGwgb24g
-VWJ1bnR1IChzdWRvIGRpc2FibGUgdWZ3KSBiYXNlZCBvbiBzb21lIG90aGVyIGFuc3dlcnMgdGhh
-dCBJIHNhdyByZWxhdGVkDQogdG8gc2FtZSBxdWVzdGlvbi48L3NwYW4+PC9zcGFuPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPGRpdiBpZD0iU2lnbmF0dXJlIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgc3R5bGU9
-ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFuIHN0eWxlPSJjb2xvcjojMjAxRjFFIj5BYmhheSBTYW1h
-bnQsIFBoRDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRl
-O3RleHQtYWxpZ246c3RhcnQiPjxzcGFuIHN0eWxlPSJjb2xvcjojMjAxRjFFIj5DaGllZiBTb2Z0
-d2FyZSBFbmdpbmVlciDigJMgQWVyb3NwYWNlL0RlZmVuc2UvR292ZXJubWVudCBCdXNpbmVzczxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlO3RleHQtYWxp
-Z246c3RhcnQiPjxzcGFuIHN0eWxlPSJjb2xvcjojMjAxRjFFIj5OSTxicj4NCjwvc3Bhbj48dT48
-c3BhbiBzdHlsZT0iY29sb3I6Ymx1ZSI+PGEgaHJlZj0ibWFpbHRvOmFiaGF5LnNhbWFudEBuaS5j
-b20iPmFiaGF5LnNhbWFudEBuaS5jb208L2E+PC9zcGFuPjwvdT48c3BhbiBzdHlsZT0iY29sb3I6
-IzIwMUYxRSI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3Rl
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+WW91J3JlIHVzaW5nIHRoZSBTRlAwJm5ic3A7IHBvcnQg
-b24gdGhlIE4zMjA/PGJyPg0KPGJyPg0KQW5vdGhlciB3YXkgdG8gdXBkYXRlIGl0IGlzIHRvIHNp
-bXBseSBwcm9ncmFtIGFuIGVudGlyZWx5LWZyZXNoIHN5c3RlbSBpbWFnZSBvbnRvIHRoZSB1U0Qg
-Y2FyZDo8YnI+DQo8YnI+DQo8YSBocmVmPSJodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0
-cHM6L2tiLmV0dHVzLmNvbS9VU1JQX04zMDAvTjMxMC9OMzIwL04zMjFfR2V0dGluZ19TdGFydGVk
-X0d1aWRlKlVwZGF0aW5nX3RoZV9maWxlc19zeXN0ZW1fYnlfd3JpdGluZ190aGVfZGlza19pbWFn
-ZV9fO0l3ISFGYlowWndJM1FnIXJuQkxKWThXcHBFRi1WMkZsXy14SUlSU2RkUWw5SW85ZS03d3g0
-ZUFOWnBHUDZWNVVMQzZtZGxEcnphdW5HWmtYMHFWcF8tNUxxblNqcV8zRUpLZFVRJCI+aHR0cHM6
-Ly9rYi5ldHR1cy5jb20vVVNSUF9OMzAwL04zMTAvTjMyMC9OMzIxX0dldHRpbmdfU3RhcnRlZF9H
-dWlkZSNVcGRhdGluZ190aGVfZmlsZXNfc3lzdGVtX2J5X3dyaXRpbmdfdGhlX2Rpc2tfaW1hZ2U8
-L2E+PGJyPg0KPGJyPg0KPGEgaHJlZj0iaHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHBz
-Oi9rYi5ldHR1cy5jb20vV3JpdGluZ190aGVfVVNSUF9GaWxlX1N5c3RlbV9EaXNrX0ltYWdlX3Rv
-X2FfU0RfQ2FyZCpOM3h4X187SXchIUZiWjBad0kzUWchcm5CTEpZOFdwcEVGLVYyRmxfLXhJSVJT
-ZGRRbDlJbzllLTd3eDRlQU5acEdQNlY1VUxDNm1kbERyemF1bkdaa1gwcVZwXy01THFuU2pxLWVr
-Q2l6blEkIj5odHRwczovL2tiLmV0dHVzLmNvbS9Xcml0aW5nX3RoZV9VU1JQX0ZpbGVfU3lzdGVt
-X0Rpc2tfSW1hZ2VfdG9fYV9TRF9DYXJkI04zeHg8L2E+PGJyPg0KPGJyPg0KPGJyPg0KPGJyPg0K
-PG86cD48L286cD48L3A+DQo8YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJn
-aW4tYm90dG9tOjUuMHB0Ij4NCjxkaXYgY2xhc3M9Ik1zb05vcm1hbCIgYWxpZ249ImNlbnRlciIg
-c3R5bGU9InRleHQtYWxpZ246Y2VudGVyIj4NCjxociBzaXplPSIyIiB3aWR0aD0iOTglIiBhbGln
-bj0iY2VudGVyIj4NCjwvZGl2Pg0KPGRpdiBpZD0iZGl2UnBseUZ3ZE1zZyI+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPkZyb206PC9zcGFuPjwvYj48
-c3BhbiBzdHlsZT0iY29sb3I6YmxhY2siPiBNYXJjdXMgRC4gTGVlY2gNCjxhIGhyZWY9Im1haWx0
-bzpwYXRjaHZvbmJyYXVuQGdtYWlsLmNvbSI+Jmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0
-OzwvYT48YnI+DQo8Yj5TZW50OjwvYj4gU2F0dXJkYXksIE1hcmNoIDQsIDIwMjMgMTE6NTYgQU08
-YnI+DQo8Yj5Ubzo8L2I+IDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
-bSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+DQo8YSBocmVmPSJtYWlsdG86dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20iPiZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8
-L2E+PGJyPg0KPGI+U3ViamVjdDo8L2I+IFtFWFRFUk5BTF0gW1VTUlAtdXNlcnNdIFJlOiBFcnJv
-ciB1cGRhdGluZyBmcGdhIGltYWdlIG9uIG4zMjA8L3NwYW4+DQo8bzpwPjwvbzpwPjwvcD4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDA0LzAzLzIwMjMg
-MTI6NTIsIEFiaGF5IFNhbWFudCB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJsb2Nr
-cXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5IaSw8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3Vu
-ZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPkkgYW0g
-dHJ5aW5nIHRvIHVwZGF0ZSBmcGdhIGltYWdlIG9uIG15IG4zMjAgb24gYW4gVWJ1bnR1IDIwLjA0
-IG1hY2hpbmUgYW5kIEkgZ2V0IHRoZSBmb2xsb3dpbmcgZXJyb3I8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3Vu
-ZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBw
-dDtjb2xvcjpibGFjayI+JCB1aGRfaW1hZ2VfbG9hZGVyIC0tYXJncyAmcXVvdDt0eXBlPW4zeHgs
-YWRkcj0xOTIuMTY4LjEwLjEsZnBnYT1IRyZxdW90OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
-ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3Vu
-ZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPltJTkZP
-XSBbVUhEXSBsaW51eDsgR05VIEMrKyB2ZXJzaW9uIDkuNC4wOyBCb29zdF8xMDcxMDA7IERQREtf
-MTkuMTE7IFVIRF80LjIuMC4xLTAtZzMyMTI5NWZiPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5ObyBhcHBsaWNhYmxl
-IFVIRCBkZXZpY2VzIGZvdW5kPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5bRVJST1JdIFtNUE1EIElNQUdFIExPQURF
-Ul0gbXBtZF9pbWFnZV9sb2FkZXIgb25seSBzdXBwb3J0cyBhIHNpbmdsZSBkZXZpY2UuPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFj
-a2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2si
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjEyLjBwdDtjb2xvcjpibGFjayI+SSBoYXZlIGRvd25sb2FkZWQgYWxsIHRoZSBpbWFnZXMgdXNp
-bmcgdWhkX2ltYWdlX2Rvd25sb2FkZXIgY29tbWFuZC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0
-ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
-eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xv
-cjpibGFjayI+SGFzIGFueW9uZSBlbHNlIHJ1biBpbnRvIHRoZSBsb2FkZXIgb25seSBzdXBwb3J0
-cyBhIHNpbmdsZSBkZXZpY2UgZXJyb3IuPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFj
-a2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2si
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxkaXYgaWQ9Inhf
-U2lnbmF0dXJlIj4NCjxkaXY+DQo8ZGl2Pg0KPHAgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxz
-cGFuIHN0eWxlPSJjb2xvcjojMjAxRjFFIj5BYmhheSBTYW1hbnQsIFBoRDxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlO3RleHQtYWxpZ246c3RhcnQiPjxz
-cGFuIHN0eWxlPSJjb2xvcjojMjAxRjFFIj5DaGllZiBTb2Z0d2FyZSBFbmdpbmVlciDigJMgQWVy
-b3NwYWNlL0RlZmVuc2UvR292ZXJubWVudCBCdXNpbmVzczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIHN0eWxlPSJiYWNrZ3JvdW5kOndoaXRlO3RleHQtYWxpZ246c3RhcnQiPjxzcGFuIHN0eWxl
-PSJjb2xvcjojMjAxRjFFIj5OSTxicj4NCjwvc3Bhbj48dT48c3BhbiBzdHlsZT0iY29sb3I6Ymx1
-ZSI+PGEgaHJlZj0ibWFpbHRvOmFiaGF5LnNhbWFudEBuaS5jb20iPmFiaGF5LnNhbWFudEBuaS5j
-b208L2E+PC9zcGFuPjwvdT48c3BhbiBzdHlsZT0iY29sb3I6IzIwMUYxRSI+PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-Mi4wcHQ7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+WW91ciBJUCBhZGRyZXNzIGlzIGFsbW9zdCBjZXJ0YWlubHkgaW5jb3JyZWN0IC0tIHRyeSZu
-YnNwOyZuYnNwOyAxOTIuMTY4LjEwLjI8YnI+DQo8YnI+DQo8YnI+DQo8YnI+DQo8bzpwPjwvbzpw
-PjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206
-NS4wcHQiPg0KPHAgYWxpZ249InJpZ2h0IiBzdHlsZT0ibWFyZ2luOjUuMHB0O3RleHQtYWxpZ246
-cmlnaHQiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2NvbG9yOmJsYWNrIj5JTlRFUk5B
-TCAtIE5JIENPTkZJREVOVElBTDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPHByZT5fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPlVT
-UlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3Rz
-LmV0dHVzLmNvbSI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PG86cD48L286cD48L3By
-ZT4NCjxwcmU+VG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86
-dXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20iPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
-ZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBhbGlnbj0icmlnaHQiIHN0eWxlPSJtYXJn
-aW46NS4wcHQ7dGV4dC1hbGlnbjpyaWdodCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
-Y29sb3I6YmxhY2siPklOVEVSTkFMIC0gTkkgQ09ORklERU5USUFMPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxicj4NCjxwIHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpO2ZvbnQt
-c2l6ZToxMHB0O2NvbG9yOiMwMDAwMDA7bWFyZ2luOjVwdDsiIGFsaWduPSJSaWdodCI+DQpJTlRF
-Uk5BTCAtIE5JIENPTkZJREVOVElBTDxicj4NCjwvcD4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
---_000_SJ0PR04MB8328D5EE03025F619D245788EBBA9SJ0PR04MB8328namp_--
+> NI
+>
+> =09
+>
+> *Abhay Samant*
+> Chief Software Engineer
+> Aero/Def/Govt: Systems R&D
+>
+> =E2=80=8Bni.com <https://www.ni.com/>
+>
+> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+> *Sent:* Saturday, March 4, 2023 12:16 PM
+> *To:* Abhay Samant <abhay.samant@ni.com>; usrp-users@lists.ettus.com
+> *Subject:* [EXTERNAL] Re: [USRP-users] Re: Error updating fpga image=20
+> on n320
+>
+> On 04/03/2023 13:09, Abhay Samant wrote:
+>
+>     Hi Marcus,
+>
+>     Thank you for your quick response on a Saturday.
+>
+>     My network profile that I use to connect to USRP was earlier
+>     configured to use static address 192.168.10.1, which I had used
+>     this IP address with the image loader call.
+>
+> Normally, 192.168.10.1 is the IP address of your *HOST* computer.
+>
+>
+>     Nevertheless, based on your feedback, I changed the IP address to
+>     192.168.10.2 and still get the same error
+>
+>     uhd_image_loader --args "type=3Dn3xx,addr=3D192.168.10.2,fpga=3DHG"
+>
+>     [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+>     DPDK_19.11; UHD_4.2.0.1-0-g321295fb
+>
+>     No applicable UHD devices found
+>
+>     [ERROR] [MPMD IMAGE LOADER] mpmd_image_loader only supports a
+>     single device
+>
+>     I can ping to this address successfully. I have also disabled
+>     firewall on Ubuntu (sudo disable ufw) based on some other answers
+>     that I saw related to same question.
+>
+>     Abhay Samant, PhD
+>
+>     Chief Software Engineer =E2=80=93 Aerospace/Defense/Government Busi=
+ness
+>
+>     NI
+>     _abhay.samant@ni.com_
+>
+> You're using the SFP0=C2=A0 port on the N320?
+>
+> Another way to update it is to simply program an entirely-fresh system=20
+> image onto the uSD card:
+>
+> https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_Started_Guide#Upd=
+ating_the_files_system_by_writing_the_disk_image=20
+> <https://urldefense.com/v3/__https:/kb.ettus.com/USRP_N300/N310/N320/N3=
+21_Getting_Started_Guide*Updating_the_files_system_by_writing_the_disk_im=
+age__;Iw!!FbZ0ZwI3Qg!rnBLJY8WppEF-V2Fl_-xIIRSddQl9Io9e-7wx4eANZpGP6V5ULC6=
+mdlDrzaunGZkX0qVp_-5LqnSjq_3EJKdUQ$>
+>
+> https://kb.ettus.com/Writing_the_USRP_File_System_Disk_Image_to_a_SD_Ca=
+rd#N3xx=20
+> <https://urldefense.com/v3/__https:/kb.ettus.com/Writing_the_USRP_File_=
+System_Disk_Image_to_a_SD_Card*N3xx__;Iw!!FbZ0ZwI3Qg!rnBLJY8WppEF-V2Fl_-x=
+IIRSddQl9Io9e-7wx4eANZpGP6V5ULC6mdlDrzaunGZkX0qVp_-5LqnSjq-ekCiznQ$>
+>
+>
+>
+>     -------------------------------------------------------------------=
+-----
+>
+>     *From:*Marcus D. Leech <patchvonbraun@gmail.com>
+>     <mailto:patchvonbraun@gmail.com>
+>     *Sent:* Saturday, March 4, 2023 11:56 AM
+>     *To:* usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
+>     <mailto:usrp-users@lists.ettus.com>
+>     *Subject:* [EXTERNAL] [USRP-users] Re: Error updating fpga image
+>     on n320
+>
+>     On 04/03/2023 12:52, Abhay Samant wrote:
+>
+>         Hi,
+>
+>         I am trying to update fpga image on my n320 on an Ubuntu 20.04
+>         machine and I get the following error
+>
+>         $ uhd_image_loader --args "type=3Dn3xx,addr=3D192.168.10.1,fpga=
+=3DHG"
+>
+>         [INFO] [UHD] linux; GNU C++ version 9.4.0; Boost_107100;
+>         DPDK_19.11; UHD_4.2.0.1-0-g321295fb
+>
+>         No applicable UHD devices found
+>
+>         [ERROR] [MPMD IMAGE LOADER] mpmd_image_loader only supports a
+>         single device.
+>
+>         I have downloaded all the images using uhd_image_downloader
+>         command.
+>
+>         Has anyone else run into the loader only supports a single
+>         device error.
+>
+>         Abhay Samant, PhD
+>
+>         Chief Software Engineer =E2=80=93 Aerospace/Defense/Government =
+Business
+>
+>         NI
+>         _abhay.samant@ni.com_
+>
+>     Your IP address is almost certainly incorrect -- try=C2=A0=C2=A0 19=
+2.168.10.2
+>
+>
+>
+>         INTERNAL - NI CONFIDENTIAL
+>
+>
+>
+>         _______________________________________________
+>
+>         USRP-users mailing list --usrp-users@lists.ettus.com
+>
+>         To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+>
+>     INTERNAL - NI CONFIDENTIAL
+>
+>
+> INTERNAL - NI CONFIDENTIAL
+>
 
---===============3832845116885372242==
+
+--------------n00AlCPHKpysiPKlP9So039U
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 09/03/2023 21:09, Abhay Samant
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:SJ0PR04MB8328D5EE03025F619D245788EBBA9@SJ0PR04MB8328.namprd04=
+.prod.outlook.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]-->
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}span.contentpasted0
+	{mso-style-name:contentpasted0;}span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:Consolas;}span.EmailStyle22
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}div.WordSection1
+	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal">Hi, any suggestions on how to fi the error
+          that I am seeing while updating fpga image on n320.<o:p></o:p><=
+/p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <p class=3D"MsoNormal">Thank you.<o:p></o:p></p>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>=C2=A0=
+</o:p></p>
+        </div>
+      </div>
+    </blockquote>
+    I had earlier suggested that you simply do a whole-system image
+    update.<br>
+    <br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/USRP_N300=
+/N310/N320/N321_Getting_Started_Guide#Updating_the_files_system_by_writin=
+g_the_disk_image">https://kb.ettus.com/USRP_N300/N310/N320/N321_Getting_S=
+tarted_Guide#Updating_the_files_system_by_writing_the_disk_image</a><br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:SJ0PR04MB8328D5EE03025F619D245788EBBA9@SJ0PR04MB8328.namprd04=
+.prod.outlook.com">
+      <div class=3D"WordSection1">
+        <div>
+          <table class=3D"MsoNormalTable"
+            style=3D"width:337.5pt;border-collapse:collapse" width=3D"450=
+"
+            cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+            <tbody>
+              <tr style=3D"height:75.0pt">
+                <td style=3D"width:337.5pt;padding:0in 0in 0in
+                  0in;height:75.0pt" width=3D"450" valign=3D"top">
+                  <table class=3D"MsoNormalTable"
+                    style=3D"width:337.5pt;border-collapse:collapse"
+                    width=3D"450" cellspacing=3D"0" cellpadding=3D"0"
+                    border=3D"0">
+                    <tbody>
+                      <tr style=3D"height:75.0pt;mso-height-rule:exactly"=
+>
+                        <td style=3D"width:75.0pt;padding:0in 0in 0in
+                          0in;height:75.0pt;mso-height-rule:exactly"
+                          width=3D"100" valign=3D"top">
+                          <p class=3D"MsoNormal"
+                            style=3D"margin-top:2.25pt;vertical-align:top=
+"><span
+style=3D"font-size:11.5pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black"><img
+                                style=3D"width:.8333in;height:.8333in"
+                                id=3D"_x0000_i1026"
+src=3D"https://www.ni.com/content/dam/web/scene7/email/signature/email-si=
+g-logo.png"
+                                alt=3D"NI" moz-do-not-send=3D"true"
+                                width=3D"80" height=3D"80"></span><span
+style=3D"font-size:11.5pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black"><o:p></o:p></span></p>
+                        </td>
+                        <td style=3D"width:262.5pt;padding:0in 0in 0in
+                          0in;height:75.0pt;mso-height-rule:exactly"
+                          width=3D"350" valign=3D"top">
+                          <p class=3D"MsoNormal"
+                            style=3D"margin-bottom:4.5pt;vertical-align:t=
+op"><b><span
+style=3D"font-size:13.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">Abhay
+                                Samant</span></b><span
+style=3D"font-size:11.5pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black"><br>
+                              Chief Software Engineer<br>
+                              Aero/Def/Govt: Systems R&amp;D <o:p></o:p><=
+/span></p>
+                          <p class=3D"MsoNormal"
+                            style=3D"vertical-align:top"><span
+style=3D"font-size:11.5pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+black">=E2=80=8B</span><span
+                              style=3D"color:black"><a
+                                href=3D"https://www.ni.com/"
+                                target=3D"_blank"
+                                title=3D"https://www.ni.com"
+                                moz-do-not-send=3D"true"><span
+                                  style=3D"color:black">ni.com</span></a>
+                              <o:p></o:p></span></p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <div style=3D"border:none;border-top:solid #E1E1E1
+            1.0pt;padding:3.0pt 0in 0in 0in">
+            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
+              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
+raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
+              <b>Sent:</b> Saturday, March 4, 2023 12:16 PM<br>
+              <b>To:</b> Abhay Samant <a class=3D"moz-txt-link-rfc2396E" =
+href=3D"mailto:abhay.samant@ni.com">&lt;abhay.samant@ni.com&gt;</a>;
+              <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:usrp-u=
+sers@lists.ettus.com">usrp-users@lists.ettus.com</a><br>
+              <b>Subject:</b> [EXTERNAL] Re: [USRP-users] Re: Error
+              updating fpga image on n320<o:p></o:p></p>
+          </div>
+        </div>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        <div>
+          <p class=3D"MsoNormal">On 04/03/2023 13:09, Abhay Samant wrote:=
+<o:p></o:p></p>
+        </div>
+        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+          <div>
+            <p class=3D"MsoNormal"><span class=3D"contentpasted0"><span
+                  style=3D"font-size:12.0pt;color:black;background:white"=
+>Hi
+                  Marcus,</span></span><span
+                style=3D"font-size:12.0pt;color:black">
+                <o:p></o:p></span></p>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black">Thank you for
+                  your quick response on a Saturday.<o:p></o:p></span></p=
+>
+            </div>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o:p=
+></span></p>
+            </div>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black">My network
+                  profile that I use to connect to USRP was earlier
+                  configured to use static address 192.168.10.1, which I
+                  had used this IP address with the image loader call.<o:=
+p></o:p></span></p>
+            </div>
+          </div>
+        </blockquote>
+        <p class=3D"MsoNormal">Normally, 192.168.10.1 is the IP address o=
+f
+          your *HOST* computer.<br>
+          <br>
+          <br>
+          <o:p></o:p></p>
+        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+          <div>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o:p=
+></span></p>
+            </div>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black">Nevertheless,
+                  based on your feedback, I changed the IP address to
+                  192.168.10.2 and still get the same error<o:p></o:p></s=
+pan></p>
+            </div>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o:p=
+></span></p>
+            </div>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black">uhd_image_loader
+                  --args "type=3Dn3xx,addr=3D192.168.10.2,fpga=3DHG"
+                  <o:p></o:p></span></p>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black">[INFO] [UHD]
+                    linux; GNU C++ version 9.4.0; Boost_107100;
+                    DPDK_19.11; UHD_4.2.0.1-0-g321295fb<o:p></o:p></span>=
+</p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black">No applicable
+                    UHD devices found<o:p></o:p></span></p>
+              </div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black">[ERROR] [MPMD
+                  IMAGE LOADER] mpmd_image_loader only supports a single
+                  device<o:p></o:p></span></p>
+            </div>
+            <div>
+              <p class=3D"MsoNormal" style=3D"background:white"><span
+                  style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o:p=
+></span></p>
+            </div>
+            <p class=3D"MsoNormal"><span class=3D"contentpasted0"><span
+                  style=3D"font-size:12.0pt;color:black;background:white"=
+>I
+                  can ping to this address successfully. I have also
+                  disabled firewall on Ubuntu (sudo disable ufw) based
+                  on some other answers that I saw related to same
+                  question.</span></span><span
+                style=3D"font-size:12.0pt;color:black"><o:p></o:p></span>=
+</p>
+          </div>
+          <div>
+            <div>
+              <p class=3D"MsoNormal"><span
+                  style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o:p=
+></span></p>
+            </div>
+            <div id=3D"Signature">
+              <div>
+                <div>
+                  <p style=3D"background:white"><span
+                      style=3D"color:#201F1E">Abhay Samant, PhD<o:p></o:p=
+></span></p>
+                  <p style=3D"background:white;text-align:start"><span
+                      style=3D"color:#201F1E">Chief Software Engineer =E2=
+=80=93
+                      Aerospace/Defense/Government Business<o:p></o:p></s=
+pan></p>
+                  <p style=3D"background:white;text-align:start"><span
+                      style=3D"color:#201F1E">NI<br>
+                    </span><u><span style=3D"color:blue"><a
+                          href=3D"mailto:abhay.samant@ni.com"
+                          moz-do-not-send=3D"true"
+                          class=3D"moz-txt-link-freetext">abhay.samant@ni=
+.com</a></span></u><span
+                      style=3D"color:#201F1E"><o:p></o:p></span></p>
+                  <p class=3D"MsoNormal"><span
+                      style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0<=
+/o:p></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </blockquote>
+        <p class=3D"MsoNormal">You're using the SFP0=C2=A0 port on the N3=
+20?<br>
+          <br>
+          Another way to update it is to simply program an
+          entirely-fresh system image onto the uSD card:<br>
+          <br>
+          <a
+href=3D"https://urldefense.com/v3/__https:/kb.ettus.com/USRP_N300/N310/N3=
+20/N321_Getting_Started_Guide*Updating_the_files_system_by_writing_the_di=
+sk_image__;Iw!!FbZ0ZwI3Qg!rnBLJY8WppEF-V2Fl_-xIIRSddQl9Io9e-7wx4eANZpGP6V=
+5ULC6mdlDrzaunGZkX0qVp_-5LqnSjq_3EJKdUQ$"
+            moz-do-not-send=3D"true">https://kb.ettus.com/USRP_N300/N310/=
+N320/N321_Getting_Started_Guide#Updating_the_files_system_by_writing_the_=
+disk_image</a><br>
+          <br>
+          <a
+href=3D"https://urldefense.com/v3/__https:/kb.ettus.com/Writing_the_USRP_=
+File_System_Disk_Image_to_a_SD_Card*N3xx__;Iw!!FbZ0ZwI3Qg!rnBLJY8WppEF-V2=
+Fl_-xIIRSddQl9Io9e-7wx4eANZpGP6V5ULC6mdlDrzaunGZkX0qVp_-5LqnSjq-ekCiznQ$"
+            moz-do-not-send=3D"true">https://kb.ettus.com/Writing_the_USR=
+P_File_System_Disk_Image_to_a_SD_Card#N3xx</a><br>
+          <br>
+          <br>
+          <br>
+          <o:p></o:p></p>
+        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+          <div class=3D"MsoNormal" style=3D"text-align:center"
+            align=3D"center">
+            <hr width=3D"98%" size=3D"2" align=3D"center">
+          </div>
+          <div id=3D"divRplyFwdMsg">
+            <p class=3D"MsoNormal"><b><span style=3D"color:black">From:</=
+span></b><span
+                style=3D"color:black"> Marcus D. Leech
+                <a href=3D"mailto:patchvonbraun@gmail.com"
+                  moz-do-not-send=3D"true">&lt;patchvonbraun@gmail.com&gt=
+;</a><br>
+                <b>Sent:</b> Saturday, March 4, 2023 11:56 AM<br>
+                <b>To:</b> <a href=3D"mailto:usrp-users@lists.ettus.com"
+                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
+">usrp-users@lists.ettus.com</a>
+                <a href=3D"mailto:usrp-users@lists.ettus.com"
+                  moz-do-not-send=3D"true">&lt;usrp-users@lists.ettus.com=
+&gt;</a><br>
+                <b>Subject:</b> [EXTERNAL] [USRP-users] Re: Error
+                updating fpga image on n320</span>
+              <o:p></o:p></p>
+            <div>
+              <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            </div>
+          </div>
+          <div>
+            <div>
+              <p class=3D"MsoNormal">On 04/03/2023 12:52, Abhay Samant
+                wrote:<o:p></o:p></p>
+            </div>
+            <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black">Hi,<o:p></o:p>=
+</span></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black">I am trying to
+                    update fpga image on my n320 on an Ubuntu 20.04
+                    machine and I get the following error<o:p></o:p></spa=
+n></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o=
+:p></span></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black">$
+                    uhd_image_loader --args
+                    "type=3Dn3xx,addr=3D192.168.10.1,fpga=3DHG"<o:p></o:p=
+></span></p>
+              </div>
+              <div>
+                <div>
+                  <p class=3D"MsoNormal" style=3D"background:white"><span
+                      style=3D"font-size:12.0pt;color:black">[INFO] [UHD]
+                      linux; GNU C++ version 9.4.0; Boost_107100;
+                      DPDK_19.11; UHD_4.2.0.1-0-g321295fb<o:p></o:p></spa=
+n></p>
+                </div>
+                <div>
+                  <p class=3D"MsoNormal" style=3D"background:white"><span
+                      style=3D"font-size:12.0pt;color:black">No applicabl=
+e
+                      UHD devices found<o:p></o:p></span></p>
+                </div>
+                <div>
+                  <p class=3D"MsoNormal" style=3D"background:white"><span
+                      style=3D"font-size:12.0pt;color:black">[ERROR] [MPM=
+D
+                      IMAGE LOADER] mpmd_image_loader only supports a
+                      single device.<o:p></o:p></span></p>
+                </div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o=
+:p></span></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black">I have
+                    downloaded all the images using uhd_image_downloader
+                    command.<o:p></o:p></span></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o=
+:p></span></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black">Has anyone els=
+e
+                    run into the loader only supports a single device
+                    error.<o:p></o:p></span></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o=
+:p></span></p>
+              </div>
+              <div>
+                <p class=3D"MsoNormal" style=3D"background:white"><span
+                    style=3D"font-size:12.0pt;color:black"><o:p>=C2=A0</o=
+:p></span></p>
+              </div>
+              <div>
+                <div id=3D"x_Signature">
+                  <div>
+                    <div>
+                      <p style=3D"background:white"><span
+                          style=3D"color:#201F1E">Abhay Samant, PhD<o:p><=
+/o:p></span></p>
+                      <p style=3D"background:white;text-align:start"><spa=
+n
+                          style=3D"color:#201F1E">Chief Software Engineer
+                          =E2=80=93 Aerospace/Defense/Government Business=
+<o:p></o:p></span></p>
+                      <p style=3D"background:white;text-align:start"><spa=
+n
+                          style=3D"color:#201F1E">NI<br>
+                        </span><u><span style=3D"color:blue"><a
+                              href=3D"mailto:abhay.samant@ni.com"
+                              moz-do-not-send=3D"true"
+                              class=3D"moz-txt-link-freetext">abhay.saman=
+t@ni.com</a></span></u><span
+                          style=3D"color:#201F1E"><o:p></o:p></span></p>
+                      <p class=3D"MsoNormal"><span
+                          style=3D"font-size:12.0pt;color:black"><o:p>=C2=
+=A0</o:p></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </blockquote>
+            <p class=3D"MsoNormal">Your IP address is almost certainly
+              incorrect -- try=C2=A0=C2=A0 192.168.10.2<br>
+              <br>
+              <br>
+              <br>
+              <o:p></o:p></p>
+            <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+              <p style=3D"margin:5.0pt;text-align:right" align=3D"right">=
+<span
+                  style=3D"font-size:10.0pt;color:black">INTERNAL - NI
+                  CONFIDENTIAL<o:p></o:p></span></p>
+              <p class=3D"MsoNormal"><br>
+                <br>
+                <o:p></o:p></p>
+              <pre>_______________________________________________<o:p></=
+o:p></pre>
+              <pre>USRP-users mailing list -- <a href=3D"mailto:usrp-user=
+s@lists.ettus.com" moz-do-not-send=3D"true" class=3D"moz-txt-link-freetex=
+t">usrp-users@lists.ettus.com</a><o:p></o:p></pre>
+              <pre>To unsubscribe send an email to <a href=3D"mailto:usrp=
+-users-leave@lists.ettus.com" moz-do-not-send=3D"true" class=3D"moz-txt-l=
+ink-freetext">usrp-users-leave@lists.ettus.com</a><o:p></o:p></pre>
+            </blockquote>
+            <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          </div>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <p style=3D"margin:5.0pt;text-align:right" align=3D"right"><spa=
+n
+              style=3D"font-size:10.0pt;color:black">INTERNAL - NI
+              CONFIDENTIAL<o:p></o:p></span></p>
+        </blockquote>
+        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+      </div>
+      <br>
+      <p
+        style=3D"font-family:Calibri;font-size:10pt;color:#000000;margin:=
+5pt;"
+        align=3D"Right">
+        INTERNAL - NI CONFIDENTIAL<br>
+      </p>
+    </blockquote>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------n00AlCPHKpysiPKlP9So039U--
+
+--===============5606592932641613096==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -524,4 +774,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3832845116885372242==--
+--===============5606592932641613096==--
