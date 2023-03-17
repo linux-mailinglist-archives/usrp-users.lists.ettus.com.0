@@ -2,105 +2,115 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C80C6BE736
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Mar 2023 11:47:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABFF6BEF1F
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Mar 2023 18:04:37 +0100 (CET)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C54A23810CF
-	for <lists+usrp-users@lfdr.de>; Fri, 17 Mar 2023 06:47:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D1AE9383F2F
+	for <lists+usrp-users@lfdr.de>; Fri, 17 Mar 2023 13:04:35 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1679050060; bh=isJWyii68o9YjAardgQn/k2xxeFEUf7E7667PnpoGIY=;
-	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=jZFH2/9YEEy5X/UuuNcWuR2kgxYpBke6l+HfTz0FoV2kBWSMDLCUeWtqIC+qpvc/I
-	 tFUsN0TvYcCq3QBPu7cRzRoEZcToCaX094VIJ6OSIxRV0P1Gs+cjD528ft4SX2Qag8
-	 qonSdrV1jJqUnpKfyjS3VdWblZOFCKglpGV5MnmwNpZhhU/2Jl0PcSSGQzLc5ilWs0
-	 F7bAR5UWWS2mXjnoQL2mM+TOjO1dCsW1vm0iVIKgynKXOHYJa32gQZ9e1opYDshtPV
-	 tdtzhRAYYIvTiDBbGZdPCaty2C8YSwLscG/v0/R28A0CIW4QhUbADCkCw7gQFNge0n
-	 /+Xkf4QQH8XPA==
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 0B1E33810CF
-	for <usrp-users@lists.ettus.com>; Fri, 17 Mar 2023 06:47:33 -0400 (EDT)
+	t=1679072675; bh=xnPKC12+a+pQJdh0t52KLcO5R0WGx4xJjcjeHV3L3Q0=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=mGigJfY46Hwq2OwXSRSlBH5yJfVy5Fds00KkWQkizL/T7MI8IyQSabnA7K0WGdZlZ
+	 tKtxqXZYU+HXk0RadmiPxCXLhvCgvTESbrynWn+rkC9RmnipLPp50SIap5+rwFkNpG
+	 ZWinN28BOrxmhI3tve/D14RzExojH7PSMn+lI7mqgD1fdb9uZ4MVbFmUoxCRrBp4V7
+	 DH5h8QQVDcFhcAkXYIyM6R/PntjGCEnsHL15iRf2wCKKyLOmOQn6C6UofetzSqyEOs
+	 +/ADqcQagDUXODoDXQDTO9G4tjyvHlIgsZ2kYLu0yWuN2tIEbhTLxhgihheK1a+6jZ
+	 awMlSwMv75cpg==
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id AF6ED383EC4
+	for <usrp-users@lists.ettus.com>; Fri, 17 Mar 2023 13:03:43 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=sma-rty-com.20210112.gappssmtp.com header.i=@sma-rty-com.20210112.gappssmtp.com header.b="7WYdFHB1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jbi4SKiy";
 	dkim-atps=neutral
-Received: by mail-wm1-f52.google.com with SMTP id ip21-20020a05600ca69500b003ed56690948so2756845wmb.1
-        for <usrp-users@lists.ettus.com>; Fri, 17 Mar 2023 03:47:33 -0700 (PDT)
+Received: by mail-qt1-f174.google.com with SMTP id r16so6291438qtx.9
+        for <usrp-users@lists.ettus.com>; Fri, 17 Mar 2023 10:03:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sma-rty-com.20210112.gappssmtp.com; s=20210112; t=1679050052;
-        h=content-transfer-encoding:subject:to:from:content-language
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uMVwhcZ6+aGMGUCJ03qsv3GHVnm19OFtK/+V6PaUm8s=;
-        b=7WYdFHB1k3CongvOaWcsIzl3mOwSMiZPNqFQrSRlaba9kAQVbnA7LOUXlw7EK1Gtl0
-         SdK5Ku79RkHZGnCumWEKKmhdorBUhRPfgnDVLfbpoSuH0IzSV/4DoZH9YN/Xn4ywcilK
-         1X6xl6frN/TWPezqw+0r4MiYVkpppI7n/1iVZUaweKPBSdJHVps5+EOn8AQzmAcFnw1B
-         EA9TU19GuAaDabpPZ1LXP+dlSHJKLaJZEj6T2gRJCOzjygWqL45WhZ/KAO8H5MLm+2Rt
-         mFwojfWxJiQpgI6vUnJgbp4bo32wdKy0K5vGQSNQMjTwfnC7G6TdCBSgqd/vglmmiwd4
-         nG2A==
+        d=gmail.com; s=20210112; t=1679072623;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xtyn+n9iopOEtdbfrCz7t+oXz7HdsBCSRmBkkY9idEM=;
+        b=jbi4SKiyrcTCOjAnuwG0x+jNPZsAQ7/9onlbR6Ohg5Y3NR9lBoC51hzivXr2QvN6fP
+         kiBkHF1mW9o9aHizTeCO6NPYLVxQAQS4PvGyEdxcj+FCK4jxOO1IormZMODVu+LHRgEI
+         VHnGJ6ElV6B8nK1fZ3zSEJLKbFpEQ7adpXZKax8oLWKNtCh3EAhZj2yneblnkn1Jvnbr
+         qVhfpfL4QB2r6akXahpRGw+IhEhSs4tEQzwLYguog4Lmp8VB7oUGdJNac3WNxkelR769
+         vGP45mmtVm4aZPXhXRUVmRxjpUCQG29Ye0VvT96TPIQUCpVaAsbVM+JeO98lLSw2dbKa
+         UbVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679050052;
-        h=content-transfer-encoding:subject:to:from:content-language
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uMVwhcZ6+aGMGUCJ03qsv3GHVnm19OFtK/+V6PaUm8s=;
-        b=HI6+ejNPvhy3/6lYGT5RoUQ/4Npp+NaTc4qEJ6WrMjc7f3pkxWof0pw7iMTet8xpsA
-         2oxB/FVfPW+BGod3RKtFCOdJNft1HC9IFSSKSbK9tPoPusqdkuNUquKcgcLn+v1r70Pq
-         01UcgUSsEskt9SW1MiPkfNm1bjPrTsmXfURyTPpiRzx2DDY/sgJOOHHtDGEVbtecF25h
-         lzyb9dAGRveYuoNLI+e0IKMtqfgMOyULEiVeJpzvl5fsCdHQKmze7xxyZ/suY/GuHe+h
-         +HEBK6uQvVZfiuNcGRyPpk5ME9YuaWRnCX0ooPmkIniW1oHcx6/qal8UjZBNN1w+RpU6
-         VQRw==
-X-Gm-Message-State: AO0yUKU7i3PkjWaBoFsqiLBLfmbznMQej0VPZzb8lso0f6n4ZXqtZmuM
-	sMx3/QCbA4VDmunE2sMXnyh3Z0EI0m8+8PXdBXPXwg==
-X-Google-Smtp-Source: AK7set8pHUa173r0IfAvBmDp/uzojVlS8Fq5B20T8mKKA2rEgG9zaKAROhtFJN3GrZlAcAFTyO/wiw==
-X-Received: by 2002:a05:600c:468e:b0:3e8:f27b:a92c with SMTP id p14-20020a05600c468e00b003e8f27ba92cmr25456583wmo.32.1679050052522;
-        Fri, 17 Mar 2023 03:47:32 -0700 (PDT)
-Received: from [192.168.1.72] (93-41-34-254.ip79.fastwebnet.it. [93.41.34.254])
-        by smtp.gmail.com with ESMTPSA id s11-20020a05600c45cb00b003e206cc7237sm8017934wmo.24.2023.03.17.03.47.31
+        d=1e100.net; s=20210112; t=1679072623;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xtyn+n9iopOEtdbfrCz7t+oXz7HdsBCSRmBkkY9idEM=;
+        b=hqgb2lwg7I/6IuRJ9gOErQR00O3/6ghaRHwS7ILqe/M+fbC2tgk779Tc9HNSwm/2Nj
+         EN/nP+KpHQe2Z120+DWerQAyCx8PwJrPiJd+deIg6elWG0eyiRo8H3yTELtwAqCBWUBP
+         25I6zOzmd3CSkn15/fxg47S7pavK6iw7Rgn05nMDc4bqg7UfC2vRc2HgCdaFoZhZapTA
+         b9umMoFA3rER+fAOXbWhe9sN3P6RH5vhs0AmGMNMKnI2vEe3RBYMGT6yxEeyPbbWcGx8
+         xEMw4wAw6XJYwIaphBcGhjn4vKzydT14AZktJKv9aBIiFZBvRHw4qsE+DbO8qEvw/edb
+         lVfw==
+X-Gm-Message-State: AO0yUKVrMyhaCPVTDzdJNNNm2tNzivzYgjrqHEWfGKQRnbTq+MVuwZZk
+	MKJqCynkee/PzAC5nsvNpXiXGEfsrLY=
+X-Google-Smtp-Source: AK7set8r8xTpZQHJpCsECniRh+O/iC1AJGtQ+uudI4NVd4k3HiQtoJ5x7IFGmxWeMms8FOMjk8HTlw==
+X-Received: by 2002:a05:622a:34b:b0:3d7:7d98:d21a with SMTP id r11-20020a05622a034b00b003d77d98d21amr13326864qtw.30.1679072622386;
+        Fri, 17 Mar 2023 10:03:42 -0700 (PDT)
+Received: from [192.168.2.170] (bras-base-smflon1825w-grc-06-174-88-54-55.dsl.bell.ca. [174.88.54.55])
+        by smtp.googlemail.com with ESMTPSA id g20-20020ac870d4000000b003d7ca267234sm1786547qtp.24.2023.03.17.10.03.41
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Mar 2023 03:47:32 -0700 (PDT)
-Message-ID: <95ea5508-ba7c-d6b0-2536-81d3c41a102e@sma-rty.com>
-Date: Fri, 17 Mar 2023 11:47:31 +0100
+        Fri, 17 Mar 2023 10:03:42 -0700 (PDT)
+Message-ID: <bf18e170-7ccb-3a59-58b8-df34ef15ccc3@gmail.com>
+Date: Fri, 17 Mar 2023 13:03:41 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
+ Thunderbird/102.7.1
 Content-Language: en-US
-From: Federico Civerchia <federico.civerchia@sma-rty.com>
 To: usrp-users@lists.ettus.com
-Message-ID-Hash: FTULXG5KOD3NC53U7RA6V4ZCBJFECQGF
-X-Message-ID-Hash: FTULXG5KOD3NC53U7RA6V4ZCBJFECQGF
-X-MailFrom: federico.civerchia@sma-rty.com
+References: <95ea5508-ba7c-d6b0-2536-81d3c41a102e@sma-rty.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <95ea5508-ba7c-d6b0-2536-81d3c41a102e@sma-rty.com>
+Message-ID-Hash: T45ALBXA2Z7AKIRQ47NV3G6J5XBBSA2Y
+X-Message-ID-Hash: T45ALBXA2Z7AKIRQ47NV3G6J5XBBSA2Y
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Info about processor frequency
+Subject: [USRP-users] Re: Info about processor frequency
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FTULXG5KOD3NC53U7RA6V4ZCBJFECQGF/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/T45ALBXA2Z7AKIRQ47NV3G6J5XBBSA2Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Dear community,
-
-I am working with a N310 in a 2x2 MIMO setup. What I noticed is that if 
-I consider a processor with a base frequency lower than 3.5GHz, I have 
-several real-time problems with many late packets (LLLLs). However, if I 
-consider processor with 3.5GHz or higher base frequency, this issue 
-disappears (or I may have few LLLs very rarely).
-
-Have you already observed a behavior like this? What is the reason that 
-links processor frequency with real-time issues?
-
-Thank you.
-
-Best Regards,
-
-Federico
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T24gMTcvMDMvMjAyMyAwNjo0NywgRmVkZXJpY28gQ2l2ZXJjaGlhIHdyb3RlOg0KPiBEZWFyIGNv
+bW11bml0eSwNCj4NCj4gSSBhbSB3b3JraW5nIHdpdGggYSBOMzEwIGluIGEgMngyIE1JTU8gc2V0
+dXAuIFdoYXQgSSBub3RpY2VkIGlzIHRoYXQgDQo+IGlmIEkgY29uc2lkZXIgYSBwcm9jZXNzb3Ig
+d2l0aCBhIGJhc2UgZnJlcXVlbmN5IGxvd2VyIHRoYW4gMy41R0h6LCBJIA0KPiBoYXZlIHNldmVy
+YWwgcmVhbC10aW1lIHByb2JsZW1zIHdpdGggbWFueSBsYXRlIHBhY2tldHMgKExMTExzKS4gDQo+
+IEhvd2V2ZXIsIGlmIEkgY29uc2lkZXIgcHJvY2Vzc29yIHdpdGggMy41R0h6IG9yIGhpZ2hlciBi
+YXNlIGZyZXF1ZW5jeSwgDQo+IHRoaXMgaXNzdWUgZGlzYXBwZWFycyAob3IgSSBtYXkgaGF2ZSBm
+ZXcgTExMcyB2ZXJ5IHJhcmVseSkuDQo+DQo+IEhhdmUgeW91IGFscmVhZHkgb2JzZXJ2ZWQgYSBi
+ZWhhdmlvciBsaWtlIHRoaXM/IFdoYXQgaXMgdGhlIHJlYXNvbiANCj4gdGhhdCBsaW5rcyBwcm9j
+ZXNzb3IgZnJlcXVlbmN5IHdpdGggcmVhbC10aW1lIGlzc3Vlcz8NCj4NCj4gVGhhbmsgeW91Lg0K
+Pg0KPiBCZXN0IFJlZ2FyZHMsDQo+DQo+IEZlZGVyaWNvDQo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0t
+IHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1h
+aWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCllvdSBtZWFuIHlvdXIgaG9z
+dCBDUFUgZnJlcXVlbmN5Pw0KDQpBY3R1YWwgc2FtcGxlLXByb2Nlc3NpbmcgcGVyZm9ybWFuY2Ug
+aXMgZGVwZW5kZW50IG9uIGEgQlVOQ0ggb2YgZmFjdG9ycywgDQppbmNsdWRpbmcgQ1BVIGNsb2Nr
+IHJhdGVzLCBtZW1vcnkgYmFuZHdpZHRoLA0KIMKgIEkvTyBiYW5kd2lkdGgsIGV0Yy4NCg0KSW4g
+Z2VuZXJhbCwgYXQgYSBoaWdoIGxldmVsLCB0aGUgcHJvY2Vzc2luZyBwb3dlciByZXF1aXJlZCBz
+Y2FsZXMgd2l0aDoNCg0KPGluaGVyZW50LWNvbXBsZXhpdHktcGVyLXNhbXBsZT7CoCBYwqAgPHNh
+bXBsZS1yYXRlPg0KDQpTbywgdGhlIG1vcmUgY29tcGxleCAidGhpbmdzIiB5b3UgZG8gdG8gYSBz
+YW1wbGUgc3RyZWFtIGF0IHRoZSBpbnB1dCANCnNhbXBsZSByYXRlLCB0aGUgbW9yZSBDUFUvbWVt
+b3J5LWJhbmR3aWR0aC9JTy1iYW5kd2lkdGgNCiDCoCB5b3UgbmVlZCB0byBnZXQgdGhlIHRhc2sg
+ZG9uZSB3aXRob3V0IGRyb3BwaW5nIGFueXRoaW5nLg0KDQpfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVz
+cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
