@@ -2,792 +2,571 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85F4A6CB173
-	for <lists+usrp-users@lfdr.de>; Tue, 28 Mar 2023 00:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D9E6CB26F
+	for <lists+usrp-users@lfdr.de>; Tue, 28 Mar 2023 01:34:32 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5447B3845B9
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 18:11:37 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9FFB4384856
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 19:34:31 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1679955097; bh=3zd/EVKxNeinrcgqR94t7ubjbaSIjxnVa3Bui+1cBfQ=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=N+joLOWisvZdZYjqhV2nw3CyxuRb1ISB6ugKskQksIebw1+xU4lOocwyqs3Y4Ct13
-	 SdU58C3nnqsKCmw2qW80tIblUa/6SezLOd9OuqGqhopJtcSHgyTNeO+3PPGK0RS13P
-	 FzZ+2fPx6rM9pl7r7tOyyabFFml7JZy11ozmeKk+BZo6jNLuIYCz7lWj/2BX8O7NsB
-	 AUahVB/r5tPSk4cm9nnJhSQb7hYc7KjsoW2RNR1iNkdg23mCHfQgAiZYNu/a53ShjL
-	 Jufg9FlYoWRgSmLxp/dJCDOZ6osscTek9z+TqndduR6zBFq2A++jvj0Dv8MMKpdI4R
-	 I6mGBMzQaWfqg==
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	by mm2.emwd.com (Postfix) with ESMTPS id E1DD83848E9
-	for <usrp-users@lists.ettus.com>; Mon, 27 Mar 2023 18:10:39 -0400 (EDT)
+	t=1679960071; bh=qXnPI6uTzPL7CWQWRnP7kyLWPfLRAJDloTli2igLIkQ=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=k5RVY60WwmyAuFVYwV+nBazVh+QgTg7LLR1MNclwIfcObZievTr+etFLoI5WHj+CX
+	 Km+5MmHHX1cWq87Qm+diNUv6H8XXH0qBnQW8SgmTX/tucT9x5MDbZ6Z8bGRWzSHz2h
+	 uuLREOc/VsIxOjC0/gt5GF0K5Ht2gZuIsWceRGUeF+r/skyL18FUA+9fTPI0np4tdt
+	 kSbKZAYWPnSvQLdlXTwZQ7XscXDMfcJMORFjBrg3wLlvkNY8XniV66b/xKKF3jv6S/
+	 BL7yx8qF68VPqaItAQToIX46LGoXbYdWRIfcmTpqWyFoYfDA6JEkH/5xlyT+COEXCm
+	 tIAD3e/TbX8Qw==
+Received: from email6-west.aero.org (email6-west.aero.org [130.221.16.31])
+	by mm2.emwd.com (Postfix) with ESMTPS id E626B384840
+	for <usrp-users@lists.ettus.com>; Mon, 27 Mar 2023 19:33:43 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DIpWmhQk";
+	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="DXw0RtAk";
+	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="E3jz0ieb";
 	dkim-atps=neutral
-Received: by mail-qt1-f173.google.com with SMTP id cj15so2609014qtb.5
-        for <usrp-users@lists.ettus.com>; Mon, 27 Mar 2023 15:10:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
+  t=1679960024; x=1711496024;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:mime-version;
+  bh=XQJKkCXRJi0je256147iGTxCY+YBlvnHfIc9NlNQlkI=;
+  b=DXw0RtAkQm32RLi4v3HoEMqYA7bDrugJht6BYY2fRB+5BSEc86SriANf
+   VOca2/UpyEIt+ec+bK+gAwPXsp6JmtMBKLp3ds0LvW0lZwji8hLqK/UZq
+   B3WPsaxd7HSx1ZBdcZ49agIQ2JBH09dwklm6/R+sNR/bq0eCyg8Ies+4d
+   E=;
+x-SBRS: 3.5
+x-SenderGroup: Inbound_Office365
+X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="260348"
+X-IronPort-AV: E=Sophos;i="5.98,295,1673942400";
+   d="scan'208,217";a="260348"
+X-IPAS-Result: =?us-ascii?q?A2G/BAAMJyJkh2pBL2hXAw4QAQELEgyCBAuBKwGBAnMCg?=
+ =?us-ascii?q?VqEU4NPjWADgyiIIJA2gVYUgREDGDgGDwEBAQEBAQEBAQcCLgEMCQQBAQMBA?=
+ =?us-ascii?q?4R+AhaFJCY0CQ4BAgQBAQEBAwIDAQEBAQEBAwEBAQUBAQEBAQcDAQICEAEBA?=
+ =?us-ascii?q?QEZCRcHDhAFIoVoDYNWSgM6AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBA?=
+ =?us-ascii?q?QEBAQEBAQEBAQUCQUcMIwEeAQEBAQECASIdAQEMHgIIAwEPAgEIDgMEAQEoA?=
+ =?us-ascii?q?wICAh8HCQEUCQgCBAgGBQgVBIJdAYIVDQYDMRMGrgN6gTKBAYIIAQEGBAR+O?=
+ =?us-ascii?q?gEWQJo+DQtdgV4JgUGDTIN4BB5YXQEBgVKGRjaBVUSBFUOCZz6CIEIBAgKBK?=
+ =?us-ascii?q?AESASMGDwoMCQgJgxE5gi5XNQGBHyhqAz0ZcD9UK0MCAhYEPAUnDDMEAQFoO?=
+ =?us-ascii?q?gYCgho7AoF5gjoBgWYCAgIChkUKgTR2gSAOgT2BBAIJAhFrgRIIZ4F8QAINY?=
+ =?us-ascii?q?wsOb4FKAoI7BzYDRB1AAws7Oj81FCAFBFWBGSQFAwsVKkcECDkGGjQRAggPE?=
+ =?us-ascii?q?g8GJkQOQjc0EwZcASkLDhEDT4FHBC9BgRsCBAEmJJ05XzcbDwFzJQgUJlgLD?=
+ =?us-ascii?q?S2SSgUXgmhHikWOJ5M9OzQHg32BUwYMiGqBIo0WgXiGIxaFUqNtl2qNUoNsk?=
+ =?us-ascii?q?G8rhRkCBAIEBQIOCIFjfCpwMxowQ4IBZglJGQ+OIAoPg1mFFIogRXUCOQIHA?=
+ =?us-ascii?q?QoBAQMJi0MBAQ?=
+IronPort-PHdr: A9a23:l0N1NR8a1Kwaof9uWCboyV9kXcBvk7n3PwtA7J0hhvoOd6m45J3tM
+ QTZ4ukll17GW4jXqpcmw+rbuqztQyoMtJCGtn1RfJlFTRRQj8IQkkQpC9KEDkuuKvnsYmQ6E
+ c1OWUUj8Wu8NB1cFdz5IVrIrS7a0A==
+IronPort-Data: A9a23:ggr4uqMWX6MbcNLvrR3UkMFynXyQoLVcMsEvi/4bfWQNrUpw0TECn
+ DZMWj/UafaKazCmedglbYi/9k4F6JTdzYJkTwZtpSBmQlt08seUXt7xwmUcns+xwmwvaGo9s
+ q3yv/GZdJhcoln0+En1atANilEljf/WHNIQMMadZmYrA1YMpB4J0XpLg/Q+jpNjne+3CgaMv
+ cKai8DEMTdJ4RYsWo4vw//F+UMHUMja4mtC5QRlP68T4DcyqlFMZH4hDfDpR5fHatQMdgKKb
+ 76r5K20+Grf4yAsBruN+losWhBirhb6ZGBiu1IOM0SQqkEqSh8ai87XAMEhhXJ/0F1lqfgsk
+ Y8V7cTYpTABZcUgkMxFO/VR/roX0aduoNcrKlDn2SCfItGvn9IBDJyCAWlvVbD09NqbDkkeq
+ u4GGiIjUCuZhtu/7q2WELNLnO4KeZyD0IM34hmMzBn2Jt1+G9XvZv6P4tVVmjAtmspJAPDSI
+ dIDbiZiZwjBZBsJPUoLDJU5n6GjgXyXnz9w8QrJ4/ZopTaOilUpjtABM/KMEjCObchIkUueq
+ yTJ5W3oHBwAHNWS0z3D9Wij7gPKtXmlANlORNVU8NZbgx636EpQJSRRXGu++trglG2RXPVAf
+ hl8Fi0G9vFprxTyFLERRSaQumGBtREDWtdKO+I/4QCJjKHT5m6xDHANQjdFadohnMAzTD0uk
+ FSOmrvBGCd1qPiIUn+H7Z+QrCiuIm4YMXMffmkPSg5ty8Pgp5ooih/VZtBvVqO5k7XI9SrYx
+ jmLqG0ygu4chsVTjaGjpwmf3XSru4TDSRMz6kPPRGW54whlZYmjIYu19Vzc6vUGJ4GcJrWcg
+ JQas5jB/v48H7+zrzaMeewjA5zzvdGfGhSJ1DaDAKId3ziq/neie6VZ7zd/OFplP644ldnBM
+ B67VeR5tM87AZe6UUNkS97oVZxwlMAMAfygB6uKN4AVCnRkXFXflByCc3J8yIwEfKIEvawkc
+ bKccMChFh724ow6lGHuGI/xPVI7rx3SKEvWTJH/ihiiirWVbybPTa9faQPQKOck8KmDvQPZt
+ c5FMNeHwAleV+u4ZTTL9YkULhYBKn1T6XHKRy5/KbXrzulOQT5J5xrtLVUJJ9INc0N9yrigw
+ 51FchUEoGcTfFWeQelwVlhtaan0QbF0pm8hMConMD6AgiZ8MNfztfdFKsRoJdHLEdCPK9YkH
+ pHpnO3QU5xypsjvoWp1gWTV8NIzK0X73V3m09SNOmJhLs86L+A2xjMUVlC2r3JWV3DfWToWp
+ ryrzATARpQfDw1wEdzbAM9DPHvg1UXxbNlaBhOSSvEKIBuE2NEzd0TZ06FrS+lRd0Sr7mXAi
+ 26+X0xCzcGT+NBdzTU8rfvZx2tfO7AiRRUy8qiyxereCBQ2CUL6mNYbCrrRLWGEPI42kY37D
+ dhoIzjHGKVvtD53X0BUSt6HEYpWCwPTmoJn
+IronPort-HdrOrdr: A9a23:sTROrqo3LqfXnSXr4zUbKA8aV5u+L9V00zEX/kB9WHVpm5Oj+v
+ xGzc5w6farsl0ssSkb6Ku90KnpewK+yXcH2/hqAV7CZnishILMFu1fBOTZslrd8kHFl9K1kJ
+ 0QC5SWa+eAR2SS7/yKhjVQeuxIqLbozEnrv5am854Hd3AJV0gU1XYcNu/tKDwSeOApP/oEPa
+ vZwvACiyureHwRYMj+LGICRfL/q9rCk4+jSQIaBjY8gTP+wQ+A2frfKVy1zx0eWzRAzfMJ6m
+ 7eiTH04a2lrrWS1gLc7WnO9J5b8eGRheerRfb8xPT9GA+cyjpAV74RGIFqiQpF4d1Hpmxa0u
+ Uk6C1QQvibo0mhAl1d5yGdljUImQxelUMLxTKj8ATeiN28SzQgB8Vbg4VFNhPf9ko7pdl5lL
+ lGxmSDqvNsfGX9dQnGlqz1vitR5z2JiGtnlfRWg21UUIMYZrMUpYsD/FlNGJNFGC7h8ogoHO
+ RnEcmZvZ9tABunRmGcunMqzM2nX3w1EBvDSk8eutaN2zwTmHxi1UMXyMEWg39F/pMgTJtP4f
+ jCL81T5fhzZ95Tabg4CPYKQMOxBGCISRXQMHiKKVCiD60DM2Klke+D3Fz03pDZRHUl9upApH
+ 2aaiIoiYcbQTOfNfGz
+Received: from mail-dm3gcc02lp2106.outbound.protection.outlook.com (HELO GCC02-DM3-obe.outbound.protection.outlook.com) ([104.47.65.106])
+  by email6-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2023 16:33:40 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K+O/Y74ESJaVYGsnXLxSZV9pvouLOYkAenskttMJaL+pq4BpA4LvJUehB2TXit4ZXXGlCHLb0RmjhUzY7v9bsWWy7DsrYDwVTtxIPSphGOTU7hzUqtH/kDdC8lx3U1Liz0Q/tnvKxuSlOMi/01vP2xNRXSGe5mEHH/O64drDkSHJaGGSKfG8hDP6Xsn3HY35mAWyEOUmZmm4D5rcns2i2+wyE1WvIttH/oHPIkiDDdmwMK6xqk+HhX5+PC4g1/PdR2Gjl1/Nft9aI7nwK/49emCw4aLNIfs1UYrrRE+VoqWs/Nqio7Voo4v+wLieSHTt/ZfOHp8rhhZOOMUB9BmVqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=XQJKkCXRJi0je256147iGTxCY+YBlvnHfIc9NlNQlkI=;
+ b=Gow9kEC4WpfGr69zGPUcouIf3JY0ai2di3+5BhbfuyOCaQSGdnvD4RZIyx8g46ggp2M7Y41NfVbDTUx8LTdwuAW78R2YqJywsksdYNdLYI8t2lutXReadTyH6Npe/vsik97SKtTdmjsbRJZ1zBfclnu1T9A4oEGZudlM+doDDiTM9nOETvbFAZaOUKvJK7DcLG4IFQ2pjeGFAP7/NugZZgxr7FCiVkBJUu2MdovzJG3Hd2peZGapkBxBUVh+P4uDm+B1NEQDvfU/eL1GeJ/9cBl2R4cWz+37L/6QKGhl/0ESb9E91D7okCWhS/ZVpa4N+yECxzWFhKBnIDUlD86PzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
+ dkim=pass header.d=aero.org; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679955039;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GIETwWWgF2Rfb8y3cBHzeDHR+yJ6fQOjnaMSkCLhNWQ=;
-        b=DIpWmhQkMQlrUefNslmPhqip70N1YaxSIuRyGeN3EkciWQwkXFsTD9hFWWgxLk0+Xh
-         S+td1C/JiucIrlAGy96Nvhgk8rrBPHEOZnDTCj8tMDCPj8c5GlqDgidobQpuNYBW2j3F
-         /ojuz15W4oJ3Gi271UhnMscVENIJaAzXdXV/d/+C3+hgxFiTd3JJBFaEAi7VlLubUd8B
-         dRvx5EAKgs+I3QDMARm0/S/JILmmJi4fJHIRYBQDUksDzE6LJATPkVZ0vY6VtxUrjQ4O
-         bcY48JDpRhUUfEoNwBn2BpqteIEEm0cD5PG0vb3+3A/xsE9w9TG9T5exJhUh5d/8mQnQ
-         RhPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679955039;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GIETwWWgF2Rfb8y3cBHzeDHR+yJ6fQOjnaMSkCLhNWQ=;
-        b=GvL6KPtpNt0/Qok1fHsv0aROb9lIx+du2tZ16GX+zkgAHGqKpBaCwwjSrvHDShFE5O
-         imUXJqnHSrXh/At9FifZ7h9FoC/Hbbe2DWTIAglKO9TlFDD+Er4kzlbN5do1/swpZXK1
-         ids2wW2w0bLpceikSQVZqqtKvdeOMtdWp/EloGuutXbD2+PvOFFlcvezC4mIySN3hkkX
-         zIcTzzKi7oGwFdM5IYEngBtQeNTYXYHD/fl9cElwKbOZ4tsVA4poD6+EesAqrJ/sPseh
-         +XBtQxDkDBshUhHkmQiMLGkXVKVIQfroQlZlCZ+6Sx2lO5NMP8ScsIQjU9J/IYAXw3GH
-         QtVQ==
-X-Gm-Message-State: AO0yUKV8pEXJ5cWbusGnNTxl/Yig+HW9YezEBbOMjvrpifBk1meJ9uZh
-	c7r/wdnmHybnTJF6n9n4qkBToDjfrBM=
-X-Google-Smtp-Source: AK7set/zJwCcyN8AzA+WQE9SdkqifWVD1zhDDH8B74VGJ6aZvlCQsEODQ/3mThFHXLC7VHLy/He3tw==
-X-Received: by 2002:ac8:7d92:0:b0:3bf:c407:10ca with SMTP id c18-20020ac87d92000000b003bfc40710camr23477519qtd.10.1679955038985;
-        Mon, 27 Mar 2023 15:10:38 -0700 (PDT)
-Received: from [192.168.2.156] (bras-base-smflon1825w-grc-06-174-88-54-55.dsl.bell.ca. [174.88.54.55])
-        by smtp.googlemail.com with ESMTPSA id 78-20020a370551000000b0074236d3a149sm7977884qkf.92.2023.03.27.15.10.38
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Mar 2023 15:10:38 -0700 (PDT)
-Message-ID: <1080646d-4534-e454-f6f3-e2eed246ed05@gmail.com>
-Date: Mon, 27 Mar 2023 18:10:37 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <SJ0PR09MB91263A201E869804E985BCD9EC819@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XQJKkCXRJi0je256147iGTxCY+YBlvnHfIc9NlNQlkI=;
+ b=E3jz0ieb52gp30V8OrLJk8JI8rxDl8KyZH+9cXPtVFnMSMT1axRDSSCbbqdf4aMQISr4O0gWuvo0fQcmq7lVou44w3L4ChMurl+povjowvmDdbNY3njNikvWTLNgXvnaTdC4afg8TM8jvAu2vdL+3upMgvEBzoGVolf8f9Go3k0=
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
+ by PH0PR09MB11663.namprd09.prod.outlook.com (2603:10b6:510:2c7::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6178.35; Mon, 27 Mar
+ 2023 23:33:38 +0000
+Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::d44e:83bd:1602:373]) by SJ0PR09MB9126.namprd09.prod.outlook.com
+ ([fe80::d44e:83bd:1602:373%9]) with mapi id 15.20.6222.032; Mon, 27 Mar 2023
+ 23:33:38 +0000
+From: Eugene Grayver <eugene.grayver@aero.org>
+To: Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] Re: Wideband IQ Daughterboard
+Thread-Index: AQHZYFcKiJESfJs8UUm7JpsI0f1TyK8Oy2SKgABMW4CAADCO6g==
+Date: Mon, 27 Mar 2023 23:33:38 +0000
+Message-ID: 
+ <SJ0PR09MB9126C4756E5988643F2DAC84EC8B9@SJ0PR09MB9126.namprd09.prod.outlook.com>
+References: 
+ <SJ0PR09MB91263A201E869804E985BCD9EC819@SJ0PR09MB9126.namprd09.prod.outlook.com>
  <CAEXYVK5UG5wy7MQxJj5bVpHWt4K3gFU=ks=DCdFr1uQQdDJZGA@mail.gmail.com>
  <SJ0PR09MB9126C531C901C0141417CDECEC819@SJ0PR09MB9126.namprd09.prod.outlook.com>
  <CAEXYVK6EiG-7Tif=0QKGec9Mm=G06v+wwGT1hGyWi-3b=s8ZAw@mail.gmail.com>
  <CA+K5gze-WqPNY6a8hRudbRqLhPfN8POGSUHnaRVrkW+VpOxxqQ@mail.gmail.com>
  <SJ0PR09MB9126F7B69493DCF3A0A4B508EC8B9@SJ0PR09MB9126.namprd09.prod.outlook.com>
  <CAB__hTQwaaQSNg198NT7KQ_qMVrPNqicaqyxcepQWAwgnkknxw@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTQwaaQSNg198NT7KQ_qMVrPNqicaqyxcepQWAwgnkknxw@mail.gmail.com>
-Message-ID-Hash: UTWIUZYD2R6SDP5MUJ6SSOXZYPFMJWKQ
-X-Message-ID-Hash: UTWIUZYD2R6SDP5MUJ6SSOXZYPFMJWKQ
-X-MailFrom: patchvonbraun@gmail.com
+In-Reply-To: 
+ <CAB__hTQwaaQSNg198NT7KQ_qMVrPNqicaqyxcepQWAwgnkknxw@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aero.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|PH0PR09MB11663:EE_
+x-ms-office365-filtering-correlation-id: 709c8618-9fe5-4774-003e-08db2f1bb103
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ bPkd98UBvpFPT1nZbEFOCJXixF9+TcvphODzmIbp6i0j7YkEjuyqo4v3rAZxCdfUNtewoS3I/+S8HUekAIrplnYTRMXI7G/kulkdFbWGqTPuyxXw/4jGIpjBup2z0lFTSpOdg6AOGa455AS0GVD7klKcC80mR5nWtJHPc/idnOVgeROieL0vm32Oc8aF5rR64Imq9cJu9ODpaQ1VlaK63VXwaMszr1DtEG+wgTotRL0xsBnGipLuLLzrY4OeG1/nzQYrHKZEHOWCgOaBnm5YetjEkTv/aSRfR1luIl1epSeUd3iz0lYg3G1FL/zCDlM67whfm8pJdOtAI9+DSCRjicjNVr6Ov1buHR0O5CCGJqgMCJHUI2cMM9ToQ7GD512knYaF2ZOT0l+SutsV4xFee5NZT8rJlCqMYZdP23yq6fMrTQNtiau9rDAdQMdJrrG+lQhi9BtARUBIxbZSNv2udKYXsRUDXNs2/hk2k3E8alpyOh6yRpkJvCskVkNU6YSfXF3ii2uSXOhOwAa0KvBxYp2irkz7d53yCVYV4C/dB8rVslZbXedFOj23Gpckq1y633Tfi8EnbawtJkG9guoGF6cYfm+YmyercHjPo8DhYmg=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(451199021)(8936002)(44832011)(5660300002)(52536014)(64756008)(4326008)(66446008)(66476007)(66556008)(6916009)(66946007)(76116006)(66899021)(8676002)(40140700001)(86362001)(38100700002)(19627405001)(166002)(33656002)(122000001)(38070700005)(498600001)(55016003)(71200400001)(83380400001)(54906003)(7696005)(966005)(2906002)(9686003)(186003)(26005)(6506007)(53546011);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?Nk1JWG4rRWtRYVdVQUxYRHBuRGdkZmRyRFlrY2g5SjQ4Z2F6Nmt0TmVwQUNt?=
+ =?utf-8?B?Z1EwcjlQbUF0SGQxTDZPeU5wTzlKMlhieDZzYkxBMXk1WXdGWElhek5DWEN4?=
+ =?utf-8?B?V21rK2dKdVJod0dnOTg2aGk1b3RDWGlBeHMwdVMxUVhobWZsdDhlcjlpVlBJ?=
+ =?utf-8?B?QS8zcTNKaFkraVpuRU1hNmxFYVBFTGJFZ1lvTWNxUk5CZlJBRW1kRXBJdDBo?=
+ =?utf-8?B?bDEycXVaSG5VZEdBNURUdzEyQ3FLTmc5Z2hFZTRDaFliVjhzcktKY3NrTFho?=
+ =?utf-8?B?eFcvUzhPTzNmK1ZxeDRoNnhwWm5SdGFNRkg2YlBUb3BBbHNESDBEajM2ckVZ?=
+ =?utf-8?B?Wng5b0dQZzlWYVViaDhuQW5jTXRjUkdzQ3ZXNndOQ0FGcStMTjZHb2pNSjRE?=
+ =?utf-8?B?Z0kvQVVxemFjQ2dFeVdGWFkvdGhXUXloZiswcFVwbVhTWEFKNVpaczF1bS8z?=
+ =?utf-8?B?UW5kVmFFaXJWaXRsSWw3U3J5dC9lZmhHSzFuTXR2OTF3WkpNdDk4ZGNtekxR?=
+ =?utf-8?B?RUhuaFJBdndKRHowelVGYlhLT0pZc2p4eXdHWHRzV0ptWXBIakpBQjhVMmgz?=
+ =?utf-8?B?dEUvSG55UUJIVWp0OVFLUmZGdzZZZFBPdnh4UC80aWZLVFpSYkk2aDc5Z1Fq?=
+ =?utf-8?B?TndNeTBVaDM3elFwNWZWejhFZStqM2taTVpXL3dYS3ZjcEFVS3BaMmZyVTBs?=
+ =?utf-8?B?elI4RlVIclhXbU1SWnI2QXZxTVU2ck5Rc3VzVjlKZ0wxSjdxTGZuNERNL2Rw?=
+ =?utf-8?B?SWEwYTJ5NnNicWxncUgzSGxlYzQwYkczQm5GcWJZcmZFK29NM29FcUhBQ1dz?=
+ =?utf-8?B?eS8xOExoZjByMHpjRGVEV1gwOVJvVUNtYk1vLy9GdVcxaWQwOW5IeGlwQkdJ?=
+ =?utf-8?B?Z1IwNWNmZ1Q0MCtWaklsWW5TUm5DV3pZVWt1T0NzcDVnK3FCWEVSeXl5emg4?=
+ =?utf-8?B?WEFzRFdJNC9tUnZIVUFVQ0R5dW5TWGtXZHVEVldnTTZ0bVJpTTFiRGhhQjha?=
+ =?utf-8?B?MWtpOHgxazlZL2EyVENBVnJWRzVOV2NQMmtpUkFoV2lwc2E1VXlGeCtiaEU3?=
+ =?utf-8?B?eHhoZDNueE44ZDRWOURYT0ZzMWVSdVAzeEVDbDEwSzhFKy9lS1dRWlNtR21r?=
+ =?utf-8?B?eDZNOHNWOEZ5dlBENHJLcndJRS80TWlNZjJyQXBxZ05mdGk1a29UakhkNkdN?=
+ =?utf-8?B?MG1pM3FPR1JIWnpRa2VrNitZb1VpcEJXcXpBM3FvMGtpQlBLV3N1R2pOMXFt?=
+ =?utf-8?B?R3ZFRDBzZkZ2M1BlTmtTQXJmWnhBMk5qTmppT0VIbkhqRVNqa2Q4c2FrdFR3?=
+ =?utf-8?B?dEVjRW1sQnh5NnRzc3NEb3dkSEVRaktQaHJsVmZycjJzRHd1bGM0OGUwUkk5?=
+ =?utf-8?B?dU82TW1jeUpGVndYMWwxNkNOVWRCQnNKOHJReXJkazJiU2c1R2lWSFhEREVD?=
+ =?utf-8?B?RkN0aFNRVDhDUHp6VnRuSTlsTWVMeGp3MlNhazN1aUJXd0ZkRUNsZGdXZFhO?=
+ =?utf-8?B?NHh0UmtldllSVUNwTTNEL3N0eXR2RUJyb1BkUk1adXNicVBtWFl2bll2YUFx?=
+ =?utf-8?B?bFVDaXFlNnVQZW4xdTNBSXpvUy9RUURwamdUUmNTbGpUTUQ5SGpHdG14eVhB?=
+ =?utf-8?B?TDYrVjdCSTk3cHpKdURvelFIVDR3d0dtSEZyT2JhaFJvcTJ3RjMyNmNSejd3?=
+ =?utf-8?B?V3VSMWNZaUhHc2RQbVgxaE9SL3R5Ym5vanhFZTVOK1hLTHlxUHMzcjFuMC9Q?=
+ =?utf-8?B?YUV4L3ZOWjdxN1NpZ0hFZE5kZm9PQkdORkw2YnFqTU5KaUxaSVJyR0tkVkVj?=
+ =?utf-8?B?RjRwOWR3UFgyWUxiWVBnQThJbktwZGswb1kyRm9KeWRrejNDYm1KSFZ6YTZH?=
+ =?utf-8?B?cGpxcDQwbmNlUGxLSFo4Y3UybFNiUDdjRk55d3dLczJWamJLMkIyT3A2Ui9X?=
+ =?utf-8?B?NURncFRyVjN2ZlErOExCUDdxd3ZUQjNvQ1dPMWxNVkpNNExvYzZLcG9OU01w?=
+ =?utf-8?B?QUVZbzlwTlV4TUQyVDAzd3BJcUQ5SktaeWRreElwcFd1UjI5Y01MdXZDdU1X?=
+ =?utf-8?B?NWZXczFHNWZOTEFEYkc4K0xoREMxdjlvdnpFTEpYaVFoRHBYOGxJN1A2Ym1w?=
+ =?utf-8?Q?RGds=3D?=
+MIME-Version: 1.0
+X-OriginatorOrg: aero.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 709c8618-9fe5-4774-003e-08db2f1bb103
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Mar 2023 23:33:38.3003
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR09MB11663
+Message-ID-Hash: N47Z4JQVJX5ZJ3DUORMLGHX735Q6XS2F
+X-Message-ID-Hash: N47Z4JQVJX5ZJ3DUORMLGHX735Q6XS2F
+X-MailFrom: prvs=4436079e2=eugene.grayver@aero.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Wideband IQ Daughterboard
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UTWIUZYD2R6SDP5MUJ6SSOXZYPFMJWKQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/DACDNFR4UJEKWEH4OEOROJPOKKB4ZWE6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5537602786485470632=="
+Content-Type: multipart/mixed; boundary="===============4793719884068562529=="
 
-This is a multi-part message in MIME format.
---===============5537602786485470632==
-Content-Type: multipart/alternative;
- boundary="------------BDRMX0wGR96EskPd2fqbzvKw"
+--===============4793719884068562529==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_SJ0PR09MB9126C4756E5988643F2DAC84EC8B9SJ0PR09MB9126namp_"
 
-This is a multi-part message in MIME format.
---------------BDRMX0wGR96EskPd2fqbzvKw
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_SJ0PR09MB9126C4756E5988643F2DAC84EC8B9SJ0PR09MB9126namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 27/03/2023 16:39, Rob Kossler via USRP-users wrote:
-> Hi Eugene,
-> I don't know why the basic Rx has a lower frequency listed.=C2=A0 It se=
-ems=20
-> inconsistent with other notes such as the following found here=20
-> <https://kb.ettus.com/Selecting_a_RF_Daughterboard>
->
->     Some USRP radio users elect to use an external front end providing
->     upconversion, downconversion, amplification and filtering
->     functionality. In these cases, the frontend often outputs an
->     intermediate frequency (IF). It is also possible for the frontend
->     to provide an analog, quadrature interface. In either case the
->     BasicRX/BasicTX and LFRX/LFTX daughterboards are good candidates,
->     as they provide a unity gain interface to the ADC(s) and DAC(s) of
->     the USRP hardware.
->
-> I have not tried so I can't confirm if it will work. I can only say=20
-> that it was my understanding that the Basic Rx could be used for your=20
-> specific application.
-> Rob
->
-The datasheet for the input balun transformer:
+VGhlIEJhc2ljUlggdXNlcyBhIGJhbHVuIChpLmUuIHRyYW5zZm9ybWVyKSB0aGF0IGNhbm5vdCBw
+YXNzIGxvdyBmcmVxdWVuY2llcy4NCg0KDQpfX19fX19fX19fX19fX19fX19fX19fX18NCg0KRXVn
+ZW5lIEdyYXl2ZXIsIFBoLkQuDQpBZXJvc3BhY2UgQ29ycC4sIFByaW5jaXBhbCBFbmdpbmVlcg0K
+VGVsOiAzMTAuMzM2LjEyNzQNCl9fX19fX19fX19fX19fX19fX19fX19fXw0KDQpfX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fXw0KRnJvbTogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5kLmVk
+dT4NClNlbnQ6IE1vbmRheSwgTWFyY2ggMjcsIDIwMjMgMTozOSBQTQ0KVG86IEV1Z2VuZSBHcmF5
+dmVyIDxldWdlbmUuZ3JheXZlckBhZXJvLm9yZz4NCkNjOiBSb2JlcnQgTWNHd2llciA8cndtY2d3
+aWVyQGdtYWlsLmNvbT47IEJyaWFuIFBhZGFsaW5vIDxicGFkYWxpbm9AZ21haWwuY29tPjsgdXNy
+cC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpTdWJqZWN0OiBSZTogW1VTUlAt
+dXNlcnNdIFJlOiBXaWRlYmFuZCBJUSBEYXVnaHRlcmJvYXJkDQoNCkhpIEV1Z2VuZSwNCkkgZG9u
+J3Qga25vdyB3aHkgdGhlIGJhc2ljIFJ4IGhhcyBhIGxvd2VyIGZyZXF1ZW5jeSBsaXN0ZWQuICBJ
+dCBzZWVtcyBpbmNvbnNpc3RlbnQgd2l0aCBvdGhlciBub3RlcyBzdWNoIGFzIHRoZSBmb2xsb3dp
+bmcgZm91bmQgaGVyZTxodHRwczovL2tiLmV0dHVzLmNvbS9TZWxlY3RpbmdfYV9SRl9EYXVnaHRl
+cmJvYXJkPg0KU29tZSBVU1JQIHJhZGlvIHVzZXJzIGVsZWN0IHRvIHVzZSBhbiBleHRlcm5hbCBm
+cm9udCBlbmQgcHJvdmlkaW5nIHVwY29udmVyc2lvbiwgZG93bmNvbnZlcnNpb24sIGFtcGxpZmlj
+YXRpb24gYW5kIGZpbHRlcmluZyBmdW5jdGlvbmFsaXR5LiBJbiB0aGVzZSBjYXNlcywgdGhlIGZy
+b250ZW5kIG9mdGVuIG91dHB1dHMgYW4gaW50ZXJtZWRpYXRlIGZyZXF1ZW5jeSAoSUYpLiBJdCBp
+cyBhbHNvIHBvc3NpYmxlIGZvciB0aGUgZnJvbnRlbmQgdG8gcHJvdmlkZSBhbiBhbmFsb2csIHF1
+YWRyYXR1cmUgaW50ZXJmYWNlLiBJbiBlaXRoZXIgY2FzZSB0aGUgQmFzaWNSWC9CYXNpY1RYIGFu
+ZCBMRlJYL0xGVFggZGF1Z2h0ZXJib2FyZHMgYXJlIGdvb2QgY2FuZGlkYXRlcywgYXMgdGhleSBw
+cm92aWRlIGEgdW5pdHkgZ2FpbiBpbnRlcmZhY2UgdG8gdGhlIEFEQyhzKSBhbmQgREFDKHMpIG9m
+IHRoZSBVU1JQIGhhcmR3YXJlLg0KSSBoYXZlIG5vdCB0cmllZCBzbyBJIGNhbid0IGNvbmZpcm0g
+aWYgaXQgd2lsbCB3b3JrLiBJIGNhbiBvbmx5IHNheSB0aGF0IGl0IHdhcyBteSB1bmRlcnN0YW5k
+aW5nIHRoYXQgdGhlIEJhc2ljIFJ4IGNvdWxkIGJlIHVzZWQgZm9yIHlvdXIgc3BlY2lmaWMgYXBw
+bGljYXRpb24uDQpSb2INCg0KT24gTW9uLCBNYXIgMjcsIDIwMjMgYXQgMTI6MDjigK9QTSBFdWdl
+bmUgR3JheXZlciA8ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc8bWFpbHRvOmV1Z2VuZS5ncmF5dmVy
+QGFlcm8ub3JnPj4gd3JvdGU6DQpZZXMsIGFzIGV2aWRlbmNlZCBieSBVQlgtMTYwLiAgWDMxMCBj
+YW4gc3RyZWFtIDIwMCBNc3BzIGNvbXBsZXgsIHdoaWNoIGlzIHN1ZmZpY2llbnQgZm9yIDE2MCBN
+SHogb2YgQlcuDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fDQoNCkV1Z2VuZSBHcmF5dmVy
+LCBQaC5ELg0KQWVyb3NwYWNlIENvcnAuLCBQcmluY2lwYWwgRW5naW5lZXINClRlbDogMzEwLjMz
+Ni4xMjc0DQpfX19fX19fX19fX19fX19fX19fX19fX18NCg0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18NCkZyb206IFJvYmVydCBNY0d3aWVyIDxyd21jZ3dpZXJAZ21haWwuY29tPG1h
+aWx0bzpyd21jZ3dpZXJAZ21haWwuY29tPj4NClNlbnQ6IFN1bmRheSwgTWFyY2ggMjYsIDIwMjMg
+Nzo1MCBQTQ0KVG86IEJyaWFuIFBhZGFsaW5vIDxicGFkYWxpbm9AZ21haWwuY29tPG1haWx0bzpi
+cGFkYWxpbm9AZ21haWwuY29tPj4NCkNjOiBFdWdlbmUgR3JheXZlciA8ZXVnZW5lLmdyYXl2ZXJA
+YWVyby5vcmc8bWFpbHRvOmV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPj47IHVzcnAtdXNlcnMgPHVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bT4+DQpTdWJqZWN0OiBSZTogW1VTUlAtdXNlcnNdIFJlOiBXaWRlYmFuZCBJUSBEYXVnaHRlcmJv
+YXJkDQoNCkNhbiB0aGUgIGV4aXN0aW5nIGZpcm13YXJlIHN1cHBvcnQgdGhhdCBiYW5kd2lkdGg/
+IFRoZSAxMEdicHMgRXRoZXJuZXQgY2FuIGJ1dCBJIGFtIG5vdCBzdXJlIGFib3V0IHRoZSByZXN0
+IG9mIHRoZSBVU1JQLiBJIG93biB0d28gb2YgdGhlbSBhbmQgaGF2ZSBuZXZlciB0cmllZCB0byBk
+byB0aGF0Lg0KDQpCb2INCg0KDQpPbiBXZWQsIE1hciAyMiwgMjAyMyBhdCA5OjU4IEFNIEJyaWFu
+IFBhZGFsaW5vIDxicGFkYWxpbm9AZ21haWwuY29tPG1haWx0bzpicGFkYWxpbm9AZ21haWwuY29t
+Pj4gd3JvdGU6DQpZb3UncmUgcmlnaHQgLSBJIGNvbXBsZXRlbHkgbWlzc2VkIHRoYXQgcGFydCBv
+ZiB0aGUgZW1haWwuDQoNCk15IGFwb2xvZ2llcy4NCg0KQnJpYW4NCg0KT24gVHVlLCBNYXIgMjEs
+IDIwMjMgYXQgNzoxMuKAr1BNIEV1Z2VuZSBHcmF5dmVyIDxldWdlbmUuZ3JheXZlckBhZXJvLm9y
+ZzxtYWlsdG86ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc+PiB3cm90ZToNClllcywgYXMgc3RhdGVk
+IGluIHRoZSBvcmlnaW5hbCBwb3N0ICdCYXNpYy1SWCB3aXRoIGEgbWluaW11bSBvZiAxIE1Ieicu
+ICBUaGUgREMgaXMgY3V0b2ZmIGJ5IHRoZSBiYWx1biBvbiB0aGUgYmFzaWNSWCBtYWtpbmcgaXQg
+dW5zdWl0YWJsZSBmb3IgSVEuDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fDQoNCkV1Z2Vu
+ZSBHcmF5dmVyLCBQaC5ELg0KQWVyb3NwYWNlIENvcnAuLCBQcmluY2lwYWwgRW5naW5lZXINClRl
+bDogMzEwLjMzNi4xMjc0DQpfX19fX19fX19fX19fX19fX19fX19fX18NCg0KX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18NCkZyb206IEJyaWFuIFBhZGFsaW5vIDxicGFkYWxpbm9AZ21h
+aWwuY29tPG1haWx0bzpicGFkYWxpbm9AZ21haWwuY29tPj4NClNlbnQ6IFR1ZXNkYXksIE1hcmNo
+IDIxLCAyMDIzIDM6MTggUE0NClRvOiBFdWdlbmUgR3JheXZlciA8ZXVnZW5lLmdyYXl2ZXJAYWVy
+by5vcmc8bWFpbHRvOmV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPj4NCkNjOiB1c3JwLXVzZXJzIDx1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b20+Pg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJzXSBXaWRlYmFuZCBJUSBEYXVnaHRlcmJvYXJk
+DQoNCk9uIFR1ZSwgTWFyIDIxLCAyMDIzIGF0IDY6MTLigK9QTSBFdWdlbmUgR3JheXZlciA8ZXVn
+ZW5lLmdyYXl2ZXJAYWVyby5vcmc8bWFpbHRvOmV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPj4gd3Jv
+dGU6DQpIZWxsbywNCg0KSSB3YW50IHRvIHVzZSBhbiBleHRlcm5hbCBJUSBtaXhlciB3aXRoIGFu
+IGV4dGVybmFsIExPLiAgTXkgc2lnbmFsIGlzIDE2MCBNSHogd2lkZSwgd2hpY2ggZml0cyBuaWNl
+bHkgaW50byB0aGUgbm9taW5hbCBjb21wbGV4IDIwMCBNSHogTnlxdWlzdCBvZiB0aGUgWDMxMC4g
+IFVuZm9ydHVuYXRlbHkgdGhlIG9ubHkgZGF1Z2h0ZXJib2FyZHMgZm9yIGRpcmVjdCBhY2Nlc3Mg
+dG8gdGhlIEFEQ3MgYXJlIExGUlggd2hpY2ggbWF4ZXMgb3V0IGF0IDMwIE1IeiwgYW5kIHRoZSBC
+YXNpYy1SWCB3aXRoIGEgbWluaW11bSBvZiAxIE1IWi4NCg0KSSBhbSB0aGlua2luZyBvZiBzcGlu
+bmluZyBhIGN1c3RvbSBkYXVnaHRlciBib2FyZCBkZXJpdmVkIGZyb20gTEZSWCB3aXRoIGEgd2lk
+ZWJhbmQgZGlmZmVyZW50aWFsIGRyaXZlciBzdWNoIGFzIGh0dHBzOi8vd3d3LmFuYWxvZy5jb20v
+bWVkaWEvZW4vdGVjaG5pY2FsLWRvY3VtZW50YXRpb24vZGF0YS1zaGVldHMvNjQwNmZjLnBkZiBv
+ciBhbHRlcm5hdGl2ZWx5IGp1c3QgcmVwbGFjaW5nIHRoZSBjaGlwIG9uIGFuIExGUlggc2luY2Ug
+dGhlc2UgYXBwZWFyIHRvIGJlIGZvb3RwcmludCBjb21wYXRpYmxlLg0KDQpTZXBhcmF0ZWx5LCBJ
+IHdhcyBsb29raW5nIGF0IExGVFggc2NoZW1hdGljcyBhbmQgdGhlIHBhcnQgIyBmb3IgdGhlIGFt
+cGxpZmllciBpcyBub3Qgc3BlY2lmaWVkLiAgQ2FuIHNvbWVib2R5IGF0IEV0dHVzL05JIHNhdmUg
+bWUgc29tZSB0aW1lIGFuZCBsb29rdXAgdGhhdCBwYXJ0ICMuDQoNCkNvbW1lbnRzPw0KDQpIYXZl
+IHlvdSBjb25zaWRlcmVkIHRoZSBCYXNpY1JYPw0KDQogIGh0dHBzOi8vd3d3LmV0dHVzLmNvbS9h
+bGwtcHJvZHVjdHMvYmFzaWNyeC8NCiAgaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vc2NoZW1hdGlj
+cy9iYXNpY19kYnMvQmFzaWNSWC5wZGYNCg0KQnJpYW4NCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3Jw
+LXVzZXJzQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+
+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMu
+ZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCi0tDQpE
+ci4gUm9iZXJ0IFcgTWNHd2llciwgUGguRC4NCkFmZmlsaWF0ZWQgRmFjdWx0eSwgVmlyZ2luaWEg
+VGVjaA0KQWZmaWxpYXRlZCBGYWN1bHR5LCBVbml2ZXJzaXR5IG9mIFNjcmFudG9uDQpGb3JtZXIg
+QVJEQyBNZW1iZXIgb2YgQm9hcmQNCk40SFk6IEFSUkwsIFRBUFIsIEFNU0FULCBFQVJDLCBDU1ZI
+RlMNClNreTogQUFWU08sIFNreTM2MCwgZXhwbG9yZXNjdS5vcmc8aHR0cDovL2V4cGxvcmVzY3Uu
+b3JnPiwgU2t5c2NyYXBlcnMNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fDQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+DQpUbyB1bnN1YnNjcmli
+ZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0
+bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg==
 
-https://www.minicircuits.com/pdfs/ADT1-1WT.pdf
+--_000_SJ0PR09MB9126C4756E5988643F2DAC84EC8B9SJ0PR09MB9126namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Would seem to indicate that the quoted "1MHz" bottom-end was a *bit*=20
-conservative but not horrifically so.=C2=A0 I'd guess that at
- =C2=A0 100kHz the insertion loss might be as much as 2dB.
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
+ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
+ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
+YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
+bG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsi
+IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiI+DQpUaGUgQmFzaWNSWCB1c2VzIGEgYmFsdW4gKGkuZS4g
+dHJhbnNmb3JtZXIpIHRoYXQgY2Fubm90IHBhc3MgbG93IGZyZXF1ZW5jaWVzLjwvZGl2Pg0KPGRp
+diBjbGFzcz0iZWxlbWVudFRvUHJvb2YiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IENhbGli
+cmksIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6
+IHJnYigwLCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGlkPSJTaWduYXR1cmUiPg0KPGRp
+dj4NCjxkaXYgaWQ9ImRpdnRhZ2RlZmF1bHR3cmFwcGVyIiBkaXI9Imx0ciIgc3R5bGU9ImNvbG9y
+OnJnYigwLDAsMCk7IGZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZToxMnB0OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0K
+PHA+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrOyBmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90
+OyxzYW5zLXNlcmlmOyBmb250LXNpemU6MTBwdCI+PHNwYW4gaWQ9Im1zLXJ0ZXJhbmdlcGFzdGUt
+c3RhcnQiPjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDAsMCwwKTsgZm9udC1mYW1pbHk6
+QXJpYWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjEzLjMzcHgiPl9fX19fX19fX19fX19fX19fX19f
+X19fXzwvc3Bhbj48c3BhbiBpZD0ibXMtcnRlcmFuZ2VwYXN0ZS1lbmQiPjwvc3Bhbj48YnI+DQo8
+L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrOyBmb250LWZhbWlseTomcXVv
+dDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmOyBmb250LXNpemU6MTBwdCI+RXVnZW5lIEdyYXl2ZXIs
+IFBoLkQuPGJyPg0KQWVyb3NwYWNlIENvcnAuLCBQcmluY2lwYWwgRW5naW5lZXI8YnI+DQpUZWw6
+IDMxMC4zMzYuMTI3NDxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8
+L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXYgaWQ9ImFwcGVuZG9uc2Vu
+ZCI+PC9kaXY+DQo8aHIgc3R5bGU9ImRpc3BsYXk6aW5saW5lLWJsb2NrO3dpZHRoOjk4JSIgdGFi
+aW5kZXg9Ii0xIj4NCjxkaXYgaWQ9ImRpdlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNl
+PSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBzdHlsZT0iZm9udC1zaXplOjExcHQiIGNvbG9yPSIjMDAw
+MDAwIj48Yj5Gcm9tOjwvYj4gUm9iIEtvc3NsZXIgJmx0O3Jrb3NzbGVyQG5kLmVkdSZndDs8YnI+
+DQo8Yj5TZW50OjwvYj4gTW9uZGF5LCBNYXJjaCAyNywgMjAyMyAxOjM5IFBNPGJyPg0KPGI+VG86
+PC9iPiBFdWdlbmUgR3JheXZlciAmbHQ7ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmcmZ3Q7PGJyPg0K
+PGI+Q2M6PC9iPiBSb2JlcnQgTWNHd2llciAmbHQ7cndtY2d3aWVyQGdtYWlsLmNvbSZndDs7IEJy
+aWFuIFBhZGFsaW5vICZsdDticGFkYWxpbm9AZ21haWwuY29tJmd0OzsgdXNycC11c2VycyAmbHQ7
+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBb
+VVNSUC11c2Vyc10gUmU6IFdpZGViYW5kIElRIERhdWdodGVyYm9hcmQ8L2ZvbnQ+DQo8ZGl2PiZu
+YnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRy
+Ij5IaSBFdWdlbmUsDQo8ZGl2PkkgZG9uJ3Qga25vdyB3aHkgdGhlIGJhc2ljIFJ4IGhhcyBhIGxv
+d2VyIGZyZXF1ZW5jeSBsaXN0ZWQuJm5ic3A7IEl0IHNlZW1zIGluY29uc2lzdGVudCB3aXRoIG90
+aGVyIG5vdGVzIHN1Y2ggYXMgdGhlIGZvbGxvd2luZyBmb3VuZA0KPGEgaHJlZj0iaHR0cHM6Ly9r
+Yi5ldHR1cy5jb20vU2VsZWN0aW5nX2FfUkZfRGF1Z2h0ZXJib2FyZCI+aGVyZTwvYT48L2Rpdj4N
+CjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW46MHB4IDBweCAwcHggNDBweDsgYm9yZGVyOm5vbmU7
+IHBhZGRpbmc6MHB4Ij4NCjxkaXY+PGZvbnQgY29sb3I9IiMwMDAwZmYiPlNvbWUgVVNSUCByYWRp
+byB1c2VycyBlbGVjdCB0byB1c2UgYW4gZXh0ZXJuYWwgZnJvbnQgZW5kIHByb3ZpZGluZyB1cGNv
+bnZlcnNpb24sIGRvd25jb252ZXJzaW9uLCBhbXBsaWZpY2F0aW9uIGFuZCBmaWx0ZXJpbmcgZnVu
+Y3Rpb25hbGl0eS4gSW4gdGhlc2UgY2FzZXMsIHRoZSBmcm9udGVuZCBvZnRlbiBvdXRwdXRzIGFu
+IGludGVybWVkaWF0ZSBmcmVxdWVuY3kgKElGKS4gSXQgaXMgYWxzbyBwb3NzaWJsZQ0KIGZvciB0
+aGUgZnJvbnRlbmQgdG8gcHJvdmlkZSBhbiBhbmFsb2csIHF1YWRyYXR1cmUgaW50ZXJmYWNlLiBJ
+biBlaXRoZXIgY2FzZSB0aGUgQmFzaWNSWC9CYXNpY1RYIGFuZCBMRlJYL0xGVFggZGF1Z2h0ZXJi
+b2FyZHMgYXJlIGdvb2QgY2FuZGlkYXRlcywgYXMgdGhleSBwcm92aWRlIGEgdW5pdHkgZ2FpbiBp
+bnRlcmZhY2UgdG8gdGhlIEFEQyhzKSBhbmQgREFDKHMpIG9mIHRoZSBVU1JQIGhhcmR3YXJlLjwv
+Zm9udD48L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjxkaXY+SSBoYXZlIG5vdCB0cmllZCBzbyBJIGNh
+bid0IGNvbmZpcm0gaWYgaXQgd2lsbCB3b3JrLiBJIGNhbiBvbmx5IHNheSB0aGF0IGl0IHdhcyBt
+eSB1bmRlcnN0YW5kaW5nIHRoYXQgdGhlIEJhc2ljIFJ4IGNvdWxkIGJlIHVzZWQgZm9yIHlvdXIg
+c3BlY2lmaWMgYXBwbGljYXRpb24uPC9kaXY+DQo8ZGl2PlJvYjwvZGl2Pg0KPC9kaXY+DQo8YnI+
+DQo8ZGl2IGNsYXNzPSJ4X2dtYWlsX3F1b3RlIj4NCjxkaXYgZGlyPSJsdHIiIGNsYXNzPSJ4X2dt
+YWlsX2F0dHIiPk9uIE1vbiwgTWFyIDI3LCAyMDIzIGF0IDEyOjA44oCvUE0gRXVnZW5lIEdyYXl2
+ZXIgJmx0OzxhIGhyZWY9Im1haWx0bzpldWdlbmUuZ3JheXZlckBhZXJvLm9yZyI+ZXVnZW5lLmdy
+YXl2ZXJAYWVyby5vcmc8L2E+Jmd0OyB3cm90ZTo8YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIGNs
+YXNzPSJ4X2dtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3Jk
+ZXItbGVmdDoxcHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8
+ZGl2IGNsYXNzPSJ4X21zZy04NDc4MTAxNzUzNjkxNTM0NTYiPg0KPGRpdiBkaXI9Imx0ciI+DQo8
+ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlm
+OyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2Io
+MjU1LDI1NSwyNTUpIj4NClllcywgYXMgZXZpZGVuY2VkIGJ5IFVCWC0xNjAuJm5ic3A7IFgzMTAg
+Y2FuIHN0cmVhbSAyMDAgTXNwcyBjb21wbGV4LCB3aGljaCBpcyBzdWZmaWNpZW50IGZvciAxNjAg
+TUh6IG9mIEJXLjwvZGl2Pg0KPGRpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmks
+QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCww
+LDApIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBpZD0ieF9tXy04NDc4MTAxNzUzNjkxNTM0NTZTaWdu
+YXR1cmUiPg0KPGRpdj4NCjxkaXYgaWQ9InhfbV8tODQ3ODEwMTc1MzY5MTUzNDU2ZGl2dGFnZGVm
+YXVsdHdyYXBwZXIiIGRpcj0ibHRyIiBzdHlsZT0iY29sb3I6cmdiKDAsMCwwKTsgZm9udC1mYW1p
+bHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGJh
+Y2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQo8cD48c3BhbiBzdHlsZT0iY29sb3I6
+YmxhY2s7IGZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMHB0Ij48c3Bh
+biBpZD0ieF9tXy04NDc4MTAxNzUzNjkxNTM0NTZtcy1ydGVyYW5nZXBhc3RlLXN0YXJ0Ij48L3Nw
+YW4+PHNwYW4gc3R5bGU9ImNvbG9yOnJnYigwLDAsMCk7IGZvbnQtZmFtaWx5OkFyaWFsLHNhbnMt
+c2VyaWY7IGZvbnQtc2l6ZToxMy4zM3B4Ij5fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+
+PHNwYW4gaWQ9InhfbV8tODQ3ODEwMTc1MzY5MTUzNDU2bXMtcnRlcmFuZ2VwYXN0ZS1lbmQiPjwv
+c3Bhbj48YnI+DQo8L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrOyBmb250
+LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTBwdCI+RXVnZW5lIEdyYXl2ZXIs
+IFBoLkQuPGJyPg0KQWVyb3NwYWNlIENvcnAuLCBQcmluY2lwYWwgRW5naW5lZXI8YnI+DQpUZWw6
+IDMxMC4zMzYuMTI3NDxicj4NCl9fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8
+L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXYgaWQ9InhfbV8tODQ3ODEw
+MTc1MzY5MTUzNDU2YXBwZW5kb25zZW5kIj48L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxp
+bmUtYmxvY2s7IHdpZHRoOjk4JSI+DQo8ZGl2IGlkPSJ4X21fLTg0NzgxMDE3NTM2OTE1MzQ1NmRp
+dlJwbHlGd2RNc2ciIGRpcj0ibHRyIj48Zm9udCBmYWNlPSJDYWxpYnJpLCBzYW5zLXNlcmlmIiBj
+b2xvcj0iIzAwMDAwMCIgc3R5bGU9ImZvbnQtc2l6ZToxMXB0Ij48Yj5Gcm9tOjwvYj4gUm9iZXJ0
+IE1jR3dpZXIgJmx0OzxhIGhyZWY9Im1haWx0bzpyd21jZ3dpZXJAZ21haWwuY29tIiB0YXJnZXQ9
+Il9ibGFuayI+cndtY2d3aWVyQGdtYWlsLmNvbTwvYT4mZ3Q7PGJyPg0KPGI+U2VudDo8L2I+IFN1
+bmRheSwgTWFyY2ggMjYsIDIwMjMgNzo1MCBQTTxicj4NCjxiPlRvOjwvYj4gQnJpYW4gUGFkYWxp
+bm8gJmx0OzxhIGhyZWY9Im1haWx0bzpicGFkYWxpbm9AZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFu
+ayI+YnBhZGFsaW5vQGdtYWlsLmNvbTwvYT4mZ3Q7PGJyPg0KPGI+Q2M6PC9iPiBFdWdlbmUgR3Jh
+eXZlciAmbHQ7PGEgaHJlZj0ibWFpbHRvOmV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnIiB0YXJnZXQ9
+Il9ibGFuayI+ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc8L2E+Jmd0OzsgdXNycC11c2VycyAmbHQ7
+PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFu
+ayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9i
+PiBSZTogW1VTUlAtdXNlcnNdIFJlOiBXaWRlYmFuZCBJUSBEYXVnaHRlcmJvYXJkPC9mb250Pg0K
+PGRpdj4mbmJzcDs8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXYgZGlyPSJhdXRvIj5DYW4gdGhl
+ICZuYnNwO2V4aXN0aW5nIGZpcm13YXJlIHN1cHBvcnQgdGhhdCBiYW5kd2lkdGg/IFRoZSAxMEdi
+cHMgRXRoZXJuZXQgY2FuIGJ1dCBJIGFtIG5vdCBzdXJlIGFib3V0IHRoZSByZXN0IG9mIHRoZSBV
+U1JQLiBJIG93biB0d28gb2YgdGhlbSBhbmQgaGF2ZSBuZXZlciB0cmllZCB0byBkbyB0aGF0LiZu
+YnNwOzwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8i
+PkJvYjwvZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPjxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8ZGl2
+Pg0KPGRpdiBkaXI9Imx0ciI+T24gV2VkLCBNYXIgMjIsIDIwMjMgYXQgOTo1OCBBTSBCcmlhbiBQ
+YWRhbGlubyAmbHQ7PGEgaHJlZj0ibWFpbHRvOmJwYWRhbGlub0BnbWFpbC5jb20iIHRhcmdldD0i
+X2JsYW5rIj5icGFkYWxpbm9AZ21haWwuY29tPC9hPiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8
+YmxvY2txdW90ZSBzdHlsZT0ibWFyZ2luOjBweCAwcHggMHB4IDAuOGV4OyBib3JkZXItbGVmdDox
+cHggc29saWQgcmdiKDIwNCwyMDQsMjA0KTsgcGFkZGluZy1sZWZ0OjFleCI+DQo8ZGl2IGRpcj0i
+bHRyIj5Zb3UncmUgcmlnaHQgLSBJIGNvbXBsZXRlbHkgbWlzc2VkIHRoYXQgcGFydCBvZiB0aGUg
+ZW1haWwuDQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj5NeSBhcG9sb2dpZXMuPC9kaXY+DQo8L2Rp
+dj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdj48YnI+DQpCcmlhbjwvZGl2Pg0KPC9kaXY+DQo8YnI+
+DQo8ZGl2Pg0KPGRpdiBkaXI9Imx0ciI+T24gVHVlLCBNYXIgMjEsIDIwMjMgYXQgNzoxMuKAr1BN
+IEV1Z2VuZSBHcmF5dmVyICZsdDs8YSBocmVmPSJtYWlsdG86ZXVnZW5lLmdyYXl2ZXJAYWVyby5v
+cmciIHRhcmdldD0iX2JsYW5rIj5ldWdlbmUuZ3JheXZlckBhZXJvLm9yZzwvYT4mZ3Q7IHdyb3Rl
+Ojxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbjowcHggMHB4IDBweCAwLjhl
+eDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7IHBhZGRpbmctbGVmdDox
+ZXgiPg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2Fs
+aWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJn
+YigwLDAsMCk7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQpZZXMsIGFzIHN0
+YXRlZCBpbiB0aGUgb3JpZ2luYWwgcG9zdCAnPHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6
+cmdiKDI1NSwyNTUsMjU1KTsgZGlzcGxheTppbmxpbmUiPkJhc2ljLVJYIHdpdGggYSBtaW5pbXVt
+IG9mIDEgTUh6Jy4mbmJzcDsgVGhlIERDIGlzIGN1dG9mZiBieSB0aGUgYmFsdW4gb24gdGhlIGJh
+c2ljUlggbWFraW5nIGl0IHVuc3VpdGFibGUgZm9yIElRLjwvc3Bhbj48L2Rpdj4NCjxkaXY+DQo8
+ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlm
+OyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYg
+aWQ9InhfbV8tODQ3ODEwMTc1MzY5MTUzNDU2eF9tXy0zNzUyNzI5NTcwODQ1Mzg1ODI3bV82NjI3
+NDEzOTA2MzM4NDI0ODI5U2lnbmF0dXJlIj4NCjxkaXY+DQo8ZGl2IGlkPSJ4X21fLTg0NzgxMDE3
+NTM2OTE1MzQ1NnhfbV8tMzc1MjcyOTU3MDg0NTM4NTgyN21fNjYyNzQxMzkwNjMzODQyNDgyOWRp
+dnRhZ2RlZmF1bHR3cmFwcGVyIiBkaXI9Imx0ciIgc3R5bGU9ImNvbG9yOnJnYigwLDAsMCk7IGZv
+bnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTox
+MnB0OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KPHA+PHNwYW4gc3R5bGU9
+ImNvbG9yOmJsYWNrOyBmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTBw
+dCI+PHNwYW4gaWQ9InhfbV8tODQ3ODEwMTc1MzY5MTUzNDU2eF9tXy0zNzUyNzI5NTcwODQ1Mzg1
+ODI3bV82NjI3NDEzOTA2MzM4NDI0ODI5bXMtcnRlcmFuZ2VwYXN0ZS1zdGFydCI+PC9zcGFuPjxz
+cGFuIHN0eWxlPSJjb2xvcjpyZ2IoMCwwLDApOyBmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlm
+OyBmb250LXNpemU6MTMuMzNweCI+X19fX19fX19fX19fX19fX19fX19fX19fPC9zcGFuPjxzcGFu
+IGlkPSJ4X21fLTg0NzgxMDE3NTM2OTE1MzQ1NnhfbV8tMzc1MjcyOTU3MDg0NTM4NTgyN21fNjYy
+NzQxMzkwNjMzODQyNDgyOW1zLXJ0ZXJhbmdlcGFzdGUtZW5kIj48L3NwYW4+PGJyPg0KPC9zcGFu
+PjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjazsgZm9udC1mYW1pbHk6QXJpYWwsc2Fu
+cy1zZXJpZjsgZm9udC1zaXplOjEwcHQiPkV1Z2VuZSBHcmF5dmVyLCBQaC5ELjxicj4NCkFlcm9z
+cGFjZSBDb3JwLiwgUHJpbmNpcGFsIEVuZ2luZWVyPGJyPg0KVGVsOiAzMTAuMzM2LjEyNzQ8YnI+
+DQpfX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PGJyPg0KPC9wPg0KPC9kaXY+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2IGlkPSJ4X21fLTg0NzgxMDE3NTM2OTE1MzQ1NnhfbV8t
+Mzc1MjcyOTU3MDg0NTM4NTgyN21fNjYyNzQxMzkwNjMzODQyNDgyOWFwcGVuZG9uc2VuZCI+DQo8
+L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNh
+bnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApIj4NCjxicj4NCjwvZGl2
+Pg0KPGhyIHN0eWxlPSJkaXNwbGF5OmlubGluZS1ibG9jazsgd2lkdGg6OTglIj4NCjxkaXYgaWQ9
+InhfbV8tODQ3ODEwMTc1MzY5MTUzNDU2eF9tXy0zNzUyNzI5NTcwODQ1Mzg1ODI3bV82NjI3NDEz
+OTA2MzM4NDI0ODI5ZGl2UnBseUZ3ZE1zZyIgZGlyPSJsdHIiPg0KPGZvbnQgZmFjZT0iQ2FsaWJy
+aSwgc2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAiIHN0eWxlPSJmb250LXNpemU6MTFwdCI+PGI+
+RnJvbTo8L2I+IEJyaWFuIFBhZGFsaW5vICZsdDs8YSBocmVmPSJtYWlsdG86YnBhZGFsaW5vQGdt
+YWlsLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmJwYWRhbGlub0BnbWFpbC5jb208L2E+Jmd0Ozxicj4N
+CjxiPlNlbnQ6PC9iPiBUdWVzZGF5LCBNYXJjaCAyMSwgMjAyMyAzOjE4IFBNPGJyPg0KPGI+VG86
+PC9iPiBFdWdlbmUgR3JheXZlciAmbHQ7PGEgaHJlZj0ibWFpbHRvOmV1Z2VuZS5ncmF5dmVyQGFl
+cm8ub3JnIiB0YXJnZXQ9Il9ibGFuayI+ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc8L2E+Jmd0Ozxi
+cj4NCjxiPkNjOjwvYj4gdXNycC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5j
+b208L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFdpZGViYW5k
+IElRIERhdWdodGVyYm9hcmQ8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2
+Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj5PbiBUdWUsIE1hciAyMSwgMjAyMyBh
+dCA2OjEy4oCvUE0gRXVnZW5lIEdyYXl2ZXIgJmx0OzxhIGhyZWY9Im1haWx0bzpldWdlbmUuZ3Jh
+eXZlckBhZXJvLm9yZyIgdGFyZ2V0PSJfYmxhbmsiPmV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPC9h
+PiZndDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdp
+bjowcHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIw
+NCk7IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHls
+ZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1z
+aXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUs
+MjU1KSI+DQpIZWxsbyw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJp
+YWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDAp
+OyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2
+IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBm
+b250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1
+LDI1NSwyNTUpIj4NCkkgd2FudCB0byB1c2UgYW4gZXh0ZXJuYWwgSVEgbWl4ZXIgd2l0aCBhbiBl
+eHRlcm5hbCBMTy4mbmJzcDsgTXkgc2lnbmFsIGlzIDE2MCBNSHogd2lkZSwgd2hpY2ggZml0cyBu
+aWNlbHkgaW50byB0aGUgbm9taW5hbCBjb21wbGV4IDIwMCBNSHogTnlxdWlzdCBvZiB0aGUgWDMx
+MC4mbmJzcDsgVW5mb3J0dW5hdGVseSB0aGUgb25seSBkYXVnaHRlcmJvYXJkcyBmb3IgZGlyZWN0
+IGFjY2VzcyB0byB0aGUgQURDcyBhcmUgTEZSWCB3aGljaCBtYXhlcyBvdXQgYXQgMzAgTUh6LA0K
+IGFuZCB0aGUgQmFzaWMtUlggd2l0aCBhIG1pbmltdW0gb2YgMSBNSFouPC9kaXY+DQo8ZGl2IHN0
+eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250
+LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1
+NSwyNTUpIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxB
+cmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAs
+MCk7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQpJIGFtIHRoaW5raW5nIG9m
+IHNwaW5uaW5nIGEgY3VzdG9tIGRhdWdodGVyIGJvYXJkIGRlcml2ZWQgZnJvbSBMRlJYIHdpdGgg
+YSB3aWRlYmFuZCBkaWZmZXJlbnRpYWwgZHJpdmVyIHN1Y2ggYXMmbmJzcDs8YSBocmVmPSJodHRw
+czovL3d3dy5hbmFsb2cuY29tL21lZGlhL2VuL3RlY2huaWNhbC1kb2N1bWVudGF0aW9uL2RhdGEt
+c2hlZXRzLzY0MDZmYy5wZGYiIGlkPSJ4X21fLTg0NzgxMDE3NTM2OTE1MzQ1NnhfbV8tMzc1Mjcy
+OTU3MDg0NTM4NTgyN21fNjYyNzQxMzkwNjMzODQyNDgyOXhfbV8yOTM2NDg2NTM3ODMzMzUwMkxQ
+bG5rODg1ODgzIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly93d3cuYW5hbG9nLmNvbS9tZWRpYS9l
+bi90ZWNobmljYWwtZG9jdW1lbnRhdGlvbi9kYXRhLXNoZWV0cy82NDA2ZmMucGRmPC9hPiZuYnNw
+O29yDQogYWx0ZXJuYXRpdmVseSBqdXN0IHJlcGxhY2luZyB0aGUgY2hpcCBvbiBhbiBMRlJYIHNp
+bmNlIHRoZXNlIGFwcGVhciB0byBiZSBmb290cHJpbnQgY29tcGF0aWJsZS4mbmJzcDs8L2Rpdj4N
+CjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2Vy
+aWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBiYWNrZ3JvdW5kLWNvbG9yOnJn
+YigyNTUsMjU1LDI1NSkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpD
+YWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6
+cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NClNlcGFyYXRl
+bHksIEkgd2FzIGxvb2tpbmcgYXQgTEZUWCBzY2hlbWF0aWNzIGFuZCB0aGUgcGFydCAjIGZvciB0
+aGUgYW1wbGlmaWVyIGlzIG5vdCBzcGVjaWZpZWQuJm5ic3A7IENhbiBzb21lYm9keSBhdCBFdHR1
+cy9OSSBzYXZlIG1lIHNvbWUgdGltZSBhbmQgbG9va3VwIHRoYXQgcGFydCAjLjwvZGl2Pg0KPGRp
+diBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsg
+Zm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1
+NSwyNTUsMjU1KSI+DQo8YnI+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGli
+cmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2Io
+MCwwLDApOyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KQ29tbWVudHM/PC9k
+aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxk
+aXY+SGF2ZSB5b3UgY29uc2lkZXJlZCB0aGUgQmFzaWNSWD88L2Rpdj4NCjxkaXY+PGJyPg0KPC9k
+aXY+DQo8ZGl2PiZuYnNwOyZuYnNwOzxhIGhyZWY9Imh0dHBzOi8vd3d3LmV0dHVzLmNvbS9hbGwt
+cHJvZHVjdHMvYmFzaWNyeC8iIHRhcmdldD0iX2JsYW5rIj5odHRwczovL3d3dy5ldHR1cy5jb20v
+YWxsLXByb2R1Y3RzL2Jhc2ljcngvPC9hPjwvZGl2Pg0KPGRpdj4mbmJzcDsmbmJzcDs8YSBocmVm
+PSJodHRwczovL2ZpbGVzLmV0dHVzLmNvbS9zY2hlbWF0aWNzL2Jhc2ljX2Ricy9CYXNpY1JYLnBk
+ZiIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL3NjaGVtYXRpY3MvYmFz
+aWNfZGJzL0Jhc2ljUlgucGRmPC9hPjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4NCjxkaXY+QnJp
+YW48L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2Nr
+cXVvdGU+DQo8L2Rpdj4NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgaHJlZj0ibWFpbHRvOnVz
+cnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzQGxp
+c3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxh
+IGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJf
+YmxhbmsiPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KPC9ibG9j
+a3F1b3RlPg0KPC9kaXY+DQo8L2Rpdj4NCi0tIDxicj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBk
+aXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0
+ciI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+DQo8
+ZGl2IGRpcj0ibHRyIj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRp
+cj0ibHRyIj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRy
+IiBzdHlsZT0iZm9udC1zaXplOnNtYWxsIj48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDgwLDAsODAp
+Ij5Eci4gUm9iZXJ0IFcgTWNHd2llciwgUGguRC48L3NwYW4+PGJyIHN0eWxlPSJjb2xvcjpyZ2Io
+ODAsMCw4MCkiPg0KQWZmaWxpYXRlZCZuYnNwOzxzcGFuIHN0eWxlPSJjb2xvcjpyZ2IoODAsMCw4
+MCkiPkZhY3VsdHksIFZpcmdpbmlhIFRlY2g8L3NwYW4+PC9kaXY+DQo8ZGl2IGRpcj0ibHRyIiBz
+dHlsZT0iZm9udC1zaXplOnNtYWxsIj5BZmZpbGlhdGVkIEZhY3VsdHksIFVuaXZlcnNpdHkgb2Yg
+U2NyYW50b248YnIgc3R5bGU9ImNvbG9yOnJnYig4MCwwLDgwKSI+DQo8c3BhbiBzdHlsZT0iY29s
+b3I6cmdiKDgwLDAsODApIj5Gb3JtZXIgQVJEQyBNZW1iZXIgb2YgQm9hcmQ8L3NwYW4+PGJyIHN0
+eWxlPSJjb2xvcjpyZ2IoODAsMCw4MCkiPg0KPHNwYW4gc3R5bGU9ImNvbG9yOnJnYig4MCwwLDgw
+KSI+TjRIWTogQVJSTCwgVEFQUiwgQU1TQVQsIEVBUkMsIENTVkhGUzwvc3Bhbj48YnIgc3R5bGU9
+ImNvbG9yOnJnYig4MCwwLDgwKSI+DQo8c3BhbiBzdHlsZT0iY29sb3I6cmdiKDgwLDAsODApIj5T
+a3k6IEFBVlNPLCBTa3kzNjAsIDxhIGhyZWY9Imh0dHA6Ly9leHBsb3Jlc2N1Lm9yZyIgdGFyZ2V0
+PSJfYmxhbmsiPg0KZXhwbG9yZXNjdS5vcmc8L2E+LCBTa3lzY3JhcGVyczwvc3Bhbj48YnI+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX188YnI+DQpVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSA8YSBocmVmPSJtYWls
+dG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPC9hPjxicj4NClRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwg
+dG8gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiB0YXJn
+ZXQ9Il9ibGFuayI+DQp1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQo8
+L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
+aHRtbD4NCg==
 
-The series coupling on the balanced side of the transformer probably has=20
-some loss below the stated 1MHz as well.
+--_000_SJ0PR09MB9126C4756E5988643F2DAC84EC8B9SJ0PR09MB9126namp_--
 
-
-> On Mon, Mar 27, 2023 at 12:08=E2=80=AFPM Eugene Grayver=20
-> <eugene.grayver@aero.org> wrote:
->
->     Yes, as evidenced by UBX-160.=C2=A0 X310 can stream 200 Msps comple=
-x,
->     which is sufficient for 160 MHz of BW.
->
->     ________________________
->
->     Eugene Grayver, Ph.D.
->     Aerospace Corp., Principal Engineer
->     Tel: 310.336.1274
->     ________________________
->
->     -------------------------------------------------------------------=
------
->     *From:* Robert McGwier <rwmcgwier@gmail.com>
->     *Sent:* Sunday, March 26, 2023 7:50 PM
->     *To:* Brian Padalino <bpadalino@gmail.com>
->     *Cc:* Eugene Grayver <eugene.grayver@aero.org>; usrp-users
->     <usrp-users@lists.ettus.com>
->     *Subject:* Re: [USRP-users] Re: Wideband IQ Daughterboard
->     Can the =C2=A0existing firmware support that bandwidth? The 10Gbps
->     Ethernet can but I am not sure about the rest of the USRP. I own
->     two of them and have never tried to do that.
->
->     Bob
->
->
->     On Wed, Mar 22, 2023 at 9:58 AM Brian Padalino
->     <bpadalino@gmail.com> wrote:
->
->         You're right - I completely missed that part of the email.
->
->         My apologies.
->
->         Brian
->
->         On Tue, Mar 21, 2023 at 7:12=E2=80=AFPM Eugene Grayver
->         <eugene.grayver@aero.org> wrote:
->
->             Yes, as stated in the original post 'Basic-RX with a
->             minimum of 1 MHz'.=C2=A0 The DC is cutoff by the balun on t=
-he
->             basicRX making it unsuitable for IQ.
->
->             ________________________
->
->             Eugene Grayver, Ph.D.
->             Aerospace Corp., Principal Engineer
->             Tel: 310.336.1274
->             ________________________
->
->
->             -----------------------------------------------------------=
--------------
->             *From:* Brian Padalino <bpadalino@gmail.com>
->             *Sent:* Tuesday, March 21, 2023 3:18 PM
->             *To:* Eugene Grayver <eugene.grayver@aero.org>
->             *Cc:* usrp-users <usrp-users@lists.ettus.com>
->             *Subject:* Re: [USRP-users] Wideband IQ Daughterboard
->             On Tue, Mar 21, 2023 at 6:12=E2=80=AFPM Eugene Grayver
->             <eugene.grayver@aero.org> wrote:
->
->                 Hello,
->
->                 I want to use an external IQ mixer with an external
->                 LO.=C2=A0 My signal is 160 MHz wide, which fits nicely =
-into
->                 the nominal complex 200 MHz Nyquist of the X310.=C2=A0
->                 Unfortunately the only daughterboards for direct
->                 access to the ADCs are LFRX which maxes out at 30 MHz,
->                 and the Basic-RX with a minimum of 1 MHZ.
->
->                 I am thinking of spinning a custom daughter board
->                 derived from LFRX with a wideband differential driver
->                 such as
->                 https://www.analog.com/media/en/technical-documentation=
-/data-sheets/6406fc.pdf=C2=A0or
->                 alternatively just replacing the chip on an LFRX since
->                 these appear to be footprint compatible.
->
->                 Separately, I was looking at LFTX schematics and the
->                 part # for the amplifier is not specified.=C2=A0 Can
->                 somebody at Ettus/NI save me some time and lookup that
->                 part #.
->
->                 Comments?
->
->
->             Have you considered the BasicRX?
->
->             https://www.ettus.com/all-products/basicrx/
->             https://files.ettus.com/schematics/basic_dbs/BasicRX.pdf
->
->             Brian
->
->         _______________________________________________
->         USRP-users mailing list -- usrp-users@lists.ettus.com
->         To unsubscribe send an email to usrp-users-leave@lists.ettus.co=
-m
->
->     --=20
->     Dr. Robert W McGwier, Ph.D.
->     Affiliated Faculty, Virginia Tech
->     Affiliated Faculty, University of Scranton
->     Former ARDC Member of Board
->     N4HY: ARRL, TAPR, AMSAT, EARC, CSVHFS
->     Sky: AAVSO, Sky360, explorescu.org <http://explorescu.org>,
->     Skyscrapers
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
-
---------------BDRMX0wGR96EskPd2fqbzvKw
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 27/03/2023 16:39, Rob Kossler via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTQwaaQSNg198NT7KQ_qMVrPNqicaqyxcepQWAwgnkknxw@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">Hi Eugene,
-          <div>I don't know why the basic Rx has a lower frequency
-            listed.=C2=A0 It seems inconsistent with other notes such as =
-the
-            following found <a
-              href=3D"https://kb.ettus.com/Selecting_a_RF_Daughterboard"
-              moz-do-not-send=3D"true">here</a></div>
-          <blockquote style=3D"margin:0px 0px 0px
-            40px;border:none;padding:0px">
-            <div><font color=3D"#0000ff">Some USRP radio users elect to
-                use an external front end providing upconversion,
-                downconversion, amplification and filtering
-                functionality. In these cases, the frontend often
-                outputs an intermediate frequency (IF). It is also
-                possible for the frontend to provide an analog,
-                quadrature interface. In either case the BasicRX/BasicTX
-                and LFRX/LFTX daughterboards are good candidates, as
-                they provide a unity gain interface to the ADC(s) and
-                DAC(s) of the USRP hardware.</font></div>
-          </blockquote>
-          <div>I have not tried so I can't confirm if it will work. I
-            can only say that it was my understanding that the Basic Rx
-            could be used for your specific application.</div>
-          <div>Rob</div>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    The datasheet for the input balun transformer:<br>
-    <br>
-    <a class=3D"moz-txt-link-freetext" href=3D"https://www.minicircuits.c=
-om/pdfs/ADT1-1WT.pdf">https://www.minicircuits.com/pdfs/ADT1-1WT.pdf</a><=
-br>
-    <br>
-    Would seem to indicate that the quoted "1MHz" bottom-end was a *bit*
-    conservative but not horrifically so.=C2=A0 I'd guess that at<br>
-    =C2=A0 100kHz the insertion loss might be as much as 2dB.<br>
-    <br>
-    The series coupling on the balanced side of the transformer probably
-    has some loss below the stated 1MHz as well.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTQwaaQSNg198NT7KQ_qMVrPNqicaqyxcepQWAwgnkknxw@mail.gmai=
-l.com">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Mar 27, 2023 at
-            12:08=E2=80=AFPM Eugene Grayver &lt;<a
-              href=3D"mailto:eugene.grayver@aero.org"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">eu=
-gene.grayver@aero.org</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div class=3D"msg-847810175369153456">
-              <div dir=3D"ltr">
-                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Yes,
-                  as evidenced by UBX-160.=C2=A0 X310 can stream 200 Msps
-                  complex, which is sufficient for 160 MHz of BW.</div>
-                <div>
-                  <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)"><br>
-                  </div>
-                  <div id=3D"m_-847810175369153456Signature">
-                    <div>
-                      <div
-                        id=3D"m_-847810175369153456divtagdefaultwrapper"
-                        dir=3D"ltr"
-style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-serif;=
-font-size:12pt;background-color:rgb(255,255,255)">
-                        <p><span
-                            style=3D"color:black;font-family:Arial,sans-s=
-erif;font-size:10pt"><span
-id=3D"m_-847810175369153456ms-rterangepaste-start"></span><span
-                              style=3D"color:rgb(0,0,0);font-family:Arial=
-,sans-serif;font-size:13.33px">________________________</span><span
-id=3D"m_-847810175369153456ms-rterangepaste-end"></span><br>
-                          </span></p>
-                        <p><span
-                            style=3D"color:black;font-family:Arial,sans-s=
-erif;font-size:10pt">Eugene
-                            Grayver, Ph.D.<br>
-                            Aerospace Corp., Principal Engineer<br>
-                            Tel: 310.336.1274<br>
-                            ________________________</span><br>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr style=3D"display:inline-block;width:98%">
-                <div id=3D"m_-847810175369153456divRplyFwdMsg" dir=3D"ltr=
-"><font
-                    style=3D"font-size:11pt" face=3D"Calibri, sans-serif"
-                    color=3D"#000000"><b>From:</b> Robert McGwier &lt;<a
-                      href=3D"mailto:rwmcgwier@gmail.com" target=3D"_blan=
-k"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">rwmcgwier@gmail.com=
-</a>&gt;<br>
-                    <b>Sent:</b> Sunday, March 26, 2023 7:50 PM<br>
-                    <b>To:</b> Brian Padalino &lt;<a
-                      href=3D"mailto:bpadalino@gmail.com" target=3D"_blan=
-k"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">bpadalino@gmail.com=
-</a>&gt;<br>
-                    <b>Cc:</b> Eugene Grayver &lt;<a
-                      href=3D"mailto:eugene.grayver@aero.org"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">eugene.grayver@aero=
-.org</a>&gt;;
-                    usrp-users &lt;<a
-                      href=3D"mailto:usrp-users@lists.ettus.com"
-                      target=3D"_blank" moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
-tus.com</a>&gt;<br>
-                    <b>Subject:</b> Re: [USRP-users] Re: Wideband IQ
-                    Daughterboard</font>
-                  <div>=C2=A0</div>
-                </div>
-                <div>
-                  <div dir=3D"auto">Can the =C2=A0existing firmware suppo=
-rt
-                    that bandwidth? The 10Gbps Ethernet can but I am not
-                    sure about the rest of the USRP. I own two of them
-                    and have never tried to do that.=C2=A0</div>
-                  <div dir=3D"auto"><br>
-                  </div>
-                  <div dir=3D"auto">Bob</div>
-                  <div dir=3D"auto"><br>
-                  </div>
-                  <div><br>
-                    <div>
-                      <div dir=3D"ltr">On Wed, Mar 22, 2023 at 9:58 AM
-                        Brian Padalino &lt;<a
-                          href=3D"mailto:bpadalino@gmail.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">bpadalino@gmail=
-.com</a>&gt;
-                        wrote:<br>
-                      </div>
-                      <blockquote style=3D"margin:0px 0px 0px
-                        0.8ex;border-left:1px solid
-                        rgb(204,204,204);padding-left:1ex">
-                        <div dir=3D"ltr">You're right - I completely
-                          missed that part of the email.
-                          <div><br>
-                          </div>
-                          <div>My apologies.</div>
-                        </div>
-                        <div dir=3D"ltr">
-                          <div><br>
-                            Brian</div>
-                        </div>
-                        <br>
-                        <div>
-                          <div dir=3D"ltr">On Tue, Mar 21, 2023 at 7:12=E2=
-=80=AFPM
-                            Eugene Grayver &lt;<a
-                              href=3D"mailto:eugene.grayver@aero.org"
-                              target=3D"_blank" moz-do-not-send=3D"true"
-                              class=3D"moz-txt-link-freetext">eugene.gray=
-ver@aero.org</a>&gt;
-                            wrote:<br>
-                          </div>
-                          <blockquote style=3D"margin:0px 0px 0px
-                            0.8ex;border-left:1px solid
-                            rgb(204,204,204);padding-left:1ex">
-                            <div>
-                              <div dir=3D"ltr">
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Yes,
-                                  as stated in the original post '<span
-style=3D"background-color:rgb(255,255,255);display:inline">Basic-RX with =
-a
-                                    minimum of 1 MHz'.=C2=A0 The DC is cu=
-toff
-                                    by the balun on the basicRX making
-                                    it unsuitable for IQ.</span></div>
-                                <div>
-                                  <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)"><br>
-                                  </div>
-                                  <div
-id=3D"m_-847810175369153456x_m_-3752729570845385827m_6627413906338424829S=
-ignature">
-                                    <div>
-                                      <div
-id=3D"m_-847810175369153456x_m_-3752729570845385827m_6627413906338424829d=
-ivtagdefaultwrapper"
-                                        dir=3D"ltr"
-style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-serif;=
-font-size:12pt;background-color:rgb(255,255,255)">
-                                        <p><span
-                                            style=3D"color:black;font-fam=
-ily:Arial,sans-serif;font-size:10pt"><span
-id=3D"m_-847810175369153456x_m_-3752729570845385827m_6627413906338424829m=
-s-rterangepaste-start"></span><span
-style=3D"color:rgb(0,0,0);font-family:Arial,sans-serif;font-size:13.33px"=
->________________________</span><span
-id=3D"m_-847810175369153456x_m_-3752729570845385827m_6627413906338424829m=
-s-rterangepaste-end"></span><br>
-                                          </span></p>
-                                        <p><span
-                                            style=3D"color:black;font-fam=
-ily:Arial,sans-serif;font-size:10pt">Eugene
-                                            Grayver, Ph.D.<br>
-                                            Aerospace Corp., Principal
-                                            Engineer<br>
-                                            Tel: 310.336.1274<br>
-                                            ________________________</spa=
-n><br>
-                                        </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)"><br>
-                                </div>
-                                <hr
-                                  style=3D"display:inline-block;width:98%=
-">
-                                <div
-id=3D"m_-847810175369153456x_m_-3752729570845385827m_6627413906338424829d=
-ivRplyFwdMsg"
-                                  dir=3D"ltr"><font style=3D"font-size:11=
-pt"
-                                    face=3D"Calibri, sans-serif"
-                                    color=3D"#000000"><b>From:</b> Brian
-                                    Padalino &lt;<a
-                                      href=3D"mailto:bpadalino@gmail.com"
-                                      target=3D"_blank"
-                                      moz-do-not-send=3D"true"
-                                      class=3D"moz-txt-link-freetext">bpa=
-dalino@gmail.com</a>&gt;<br>
-                                    <b>Sent:</b> Tuesday, March 21, 2023
-                                    3:18 PM<br>
-                                    <b>To:</b> Eugene Grayver &lt;<a
-                                      href=3D"mailto:eugene.grayver@aero.=
-org"
-                                      target=3D"_blank"
-                                      moz-do-not-send=3D"true"
-                                      class=3D"moz-txt-link-freetext">eug=
-ene.grayver@aero.org</a>&gt;<br>
-                                    <b>Cc:</b> usrp-users &lt;<a
-                                      href=3D"mailto:usrp-users@lists.ett=
-us.com"
-                                      target=3D"_blank"
-                                      moz-do-not-send=3D"true"
-                                      class=3D"moz-txt-link-freetext">usr=
-p-users@lists.ettus.com</a>&gt;<br>
-                                    <b>Subject:</b> Re: [USRP-users]
-                                    Wideband IQ Daughterboard</font>
-                                  <div>=C2=A0</div>
-                                </div>
-                                <div>
-                                  <div dir=3D"ltr">
-                                    <div dir=3D"ltr">On Tue, Mar 21, 2023
-                                      at 6:12=E2=80=AFPM Eugene Grayver &=
-lt;<a
-                                        href=3D"mailto:eugene.grayver@aer=
-o.org"
-                                        target=3D"_blank"
-                                        moz-do-not-send=3D"true"
-                                        class=3D"moz-txt-link-freetext">e=
-ugene.grayver@aero.org</a>&gt;
-                                      wrote:<br>
-                                    </div>
-                                    <div>
-                                      <blockquote style=3D"margin:0px 0px
-                                        0px 0.8ex;border-left:1px solid
-rgb(204,204,204);padding-left:1ex">
-                                        <div>
-                                          <div dir=3D"ltr">
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Hello,</div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                            </div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">I
-                                              want to use an external IQ
-                                              mixer with an external
-                                              LO.=C2=A0 My signal is 160 =
-MHz
-                                              wide, which fits nicely
-                                              into the nominal complex
-                                              200 MHz Nyquist of the
-                                              X310.=C2=A0 Unfortunately t=
-he
-                                              only daughterboards for
-                                              direct access to the ADCs
-                                              are LFRX which maxes out
-                                              at 30 MHz, and the
-                                              Basic-RX with a minimum of
-                                              1 MHZ.</div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                            </div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">I
-                                              am thinking of spinning a
-                                              custom daughter board
-                                              derived from LFRX with a
-                                              wideband differential
-                                              driver such as=C2=A0<a
-href=3D"https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/6406fc.pdf"
-id=3D"m_-847810175369153456x_m_-3752729570845385827m_6627413906338424829x=
-_m_29364865378333502LPlnk885883"
-                                                target=3D"_blank"
-                                                moz-do-not-send=3D"true"
-                                                class=3D"moz-txt-link-fre=
-etext">https://www.analog.com/media/en/technical-documentation/data-sheet=
-s/6406fc.pdf</a>=C2=A0or
-                                              alternatively just
-                                              replacing the chip on an
-                                              LFRX since these appear to
-                                              be footprint compatible.=C2=
-=A0</div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                            </div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Separately,
-                                              I was looking at LFTX
-                                              schematics and the part #
-                                              for the amplifier is not
-                                              specified.=C2=A0 Can somebo=
-dy
-                                              at Ettus/NI save me some
-                                              time and lookup that part
-                                              #.</div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                            </div>
-                                            <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Comments?</div>
-                                          </div>
-                                        </div>
-                                      </blockquote>
-                                      <div><br>
-                                      </div>
-                                      <div>Have you considered the
-                                        BasicRX?</div>
-                                      <div><br>
-                                      </div>
-                                      <div>=C2=A0=C2=A0<a
-                                          href=3D"https://www.ettus.com/a=
-ll-products/basicrx/"
-                                          target=3D"_blank"
-                                          moz-do-not-send=3D"true"
-                                          class=3D"moz-txt-link-freetext"=
->https://www.ettus.com/all-products/basicrx/</a></div>
-                                      <div>=C2=A0=C2=A0<a
-                                          href=3D"https://files.ettus.com=
-/schematics/basic_dbs/BasicRX.pdf"
-                                          target=3D"_blank"
-                                          moz-do-not-send=3D"true"
-                                          class=3D"moz-txt-link-freetext"=
->https://files.ettus.com/schematics/basic_dbs/BasicRX.pdf</a></div>
-                                      <div><br>
-                                      </div>
-                                      <div>Brian</div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </blockquote>
-                        </div>
-                        _______________________________________________<b=
-r>
-                        USRP-users mailing list -- <a
-                          href=3D"mailto:usrp-users@lists.ettus.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">
-                          usrp-users@lists.ettus.com</a><br>
-                        To unsubscribe send an email to <a
-                          href=3D"mailto:usrp-users-leave@lists.ettus.com=
-"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">
-                          usrp-users-leave@lists.ettus.com</a><br>
-                      </blockquote>
-                    </div>
-                  </div>
-                  -- <br>
-                  <div dir=3D"ltr">
-                    <div dir=3D"ltr">
-                      <div dir=3D"ltr">
-                        <div dir=3D"ltr">
-                          <div dir=3D"ltr">
-                            <div dir=3D"ltr">
-                              <div dir=3D"ltr">
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr">
-                                    <div dir=3D"ltr">
-                                      <div dir=3D"ltr">
-                                        <div dir=3D"ltr">
-                                          <div dir=3D"ltr">
-                                            <div dir=3D"ltr">
-                                              <div dir=3D"ltr"
-                                                style=3D"font-size:small"=
-><span
-style=3D"color:rgb(80,0,80)">Dr. Robert W McGwier, Ph.D.</span><br
-                                                  style=3D"color:rgb(80,0=
-,80)">
-                                                Affiliated=C2=A0<span
-                                                  style=3D"color:rgb(80,0=
-,80)">Faculty,
-                                                  Virginia Tech</span></d=
-iv>
-                                              <div dir=3D"ltr"
-                                                style=3D"font-size:small"=
->Affiliated
-                                                Faculty, University of
-                                                Scranton<br
-                                                  style=3D"color:rgb(80,0=
-,80)">
-                                                <span
-                                                  style=3D"color:rgb(80,0=
-,80)">Former
-                                                  ARDC Member of Board</s=
-pan><br
-style=3D"color:rgb(80,0,80)">
-                                                <span
-                                                  style=3D"color:rgb(80,0=
-,80)">N4HY:
-                                                  ARRL, TAPR, AMSAT,
-                                                  EARC, CSVHFS</span><br
-style=3D"color:rgb(80,0,80)">
-                                                <span
-                                                  style=3D"color:rgb(80,0=
-,80)">Sky:
-                                                  AAVSO, Sky360, <a
-                                                    href=3D"http://explor=
-escu.org"
-                                                    target=3D"_blank"
-                                                    moz-do-not-send=3D"tr=
-ue">
-                                                    explorescu.org</a>,
-                                                  Skyscrapers</span><br>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              _______________________________________________<br>
-              USRP-users mailing list -- <a
-                href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk"
-                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
-usrp-users@lists.ettus.com</a><br>
-              To unsubscribe send an email to <a
-                href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                target=3D"_blank" moz-do-not-send=3D"true"
-                class=3D"moz-txt-link-freetext">usrp-users-leave@lists.et=
-tus.com</a><br>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------BDRMX0wGR96EskPd2fqbzvKw--
-
---===============5537602786485470632==
+--===============4793719884068562529==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -797,4 +576,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5537602786485470632==--
+--===============4793719884068562529==--
