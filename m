@@ -2,556 +2,585 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 538A76C99C6
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 04:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 285D96CA205
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 13:04:34 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3443C3844AD
-	for <lists+usrp-users@lfdr.de>; Sun, 26 Mar 2023 22:55:29 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9216C38457E
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 07:04:32 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1679885729; bh=Ldp3lojgUsrBEMHo4jUUyzXD38wM2Gz7qzW9qrYILxs=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=JJ5r33X30OmVui13GdY38d+OhCmnN7YjQGz0yye75I9BeTDR5PvF5lVEmWkSpiKH4
-	 6GdLQQvynG9ZpY7WoVhBBSnVuz2F/UszRYhLQIsFcWr3pwti8MklIy1aFZidjyWCfO
-	 nEh9v4CQHD0oMly/R5DOpGhl2mAZT4RPZmAHMMwKAsuHoTBKaIQ4vTl/N8N1bhpmu/
-	 XCO/oGndby8qLlvuvyK8MgAHXkH2b4OQhWVgmcinv2yhmIHCOGxOkFVTtgFgV4DeW0
-	 FpeZ0B7GX7uQVA+orLRCOPVS3nb9B7pqmxgR/e6iKs8A4Y28LLNrTi6LtdFRQ1lAO+
-	 /e9YNfRrchkBw==
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id EE6013844AD
-	for <usrp-users@lists.ettus.com>; Sun, 26 Mar 2023 22:55:21 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UcbEZwfk";
-	dkim-atps=neutral
-Received: by mail-qt1-f181.google.com with SMTP id cn12so3909800qtb.8
-        for <usrp-users@lists.ettus.com>; Sun, 26 Mar 2023 19:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1679885721;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2fMal8jpb3S78ogZRar/Z8enY6DObdA5Lnk/b2mzS8g=;
-        b=UcbEZwfk6mbitufb+Vh3PPH7XQnY/fxTJDMgHP54yBqep/tt+C4W2xO8Ey69UgsPMm
-         bSgil8w+w3AS7rLkgZlodwUP+cEOm0peVqa5DpgmIUfcg+Y/QTJQici9bIPOBjZ90UhK
-         bUTZwaz5KXBsvCvgM0g01OHZH9WBID9BMinUomJBfqJg+nQahGUfksHGxGwJdMlkBgpm
-         zPNjD6EtpCpsAeoESw4+DHbYibAiaLFpb2sksrm16+khbkIW72EnuaxENk2xdsf5YBUC
-         Phmr0bjzVwpDnu+GR5cr6qCm8/vr4kkTTJWsTni8IPzdd3sMQ/vrzSkA5k3R6Iun7O7R
-         st+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1679885721;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2fMal8jpb3S78ogZRar/Z8enY6DObdA5Lnk/b2mzS8g=;
-        b=AH6XUpajbaj8iP7D8x5RBDnH5kdtqif46GkwqxhL2ZPEFnebr5gcf2iStQKiwRMFZ4
-         kVDFU9cNZ96RQYpr3zosLbojIyZbfbDWzsVib994geqtTbRlYxxwxW4G+Fubzzu/Bdb6
-         D2t7wrCTU+UwhL8/EnBGWtDTEG4AP+q+b7qfiw4mZnTL+u/Bk0wl8Oeob2G/Tp+hA+TL
-         Huq2JYY6TA4NV8MzMUyQsv9XfLh2VyHr1yjWJ6akfleC+ovPust6O8miCkhX3VVCPFy1
-         Y2KsaJgVUtxGLYDBSCjJde8nCzO2wM2vVWNCOI2CUxQwJdFjIhtDnXXs25MFvdwL8+Dn
-         mNaQ==
-X-Gm-Message-State: AAQBX9f0BeC6thVmg7tvmcgHtUyjLhft52oJcOSieUinX7B7izlLzT+9
-	KlBefKx0W65Kyr1z4pAFXJBWFUiqu0I=
-X-Google-Smtp-Source: AK7set/zZFYBesoE10DLLRDfSJD1pUSkNIKo2jH2mTFtp+MGv5An669fGWMaSK49WFHgHNMxvO8k1g==
-X-Received: by 2002:a05:622a:511:b0:3e1:1fe2:c6b1 with SMTP id l17-20020a05622a051100b003e11fe2c6b1mr18547185qtx.50.1679885721136;
-        Sun, 26 Mar 2023 19:55:21 -0700 (PDT)
-Received: from [192.168.2.155] (bras-base-smflon1825w-grc-06-174-88-54-55.dsl.bell.ca. [174.88.54.55])
-        by smtp.googlemail.com with ESMTPSA id h4-20020ac87144000000b003e3837d559asm7161789qtp.88.2023.03.26.19.55.20
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 26 Mar 2023 19:55:20 -0700 (PDT)
-Message-ID: <fb8633c5-ab58-e452-c262-fac380c1656f@gmail.com>
-Date: Sun, 26 Mar 2023 22:55:20 -0400
+	t=1679915072; bh=WdPeabEJTA1lZnfouyvL6bCzva2+vX5aCdlQcx0pKFc=;
+	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=GRrjSlVTNQe2uIDp0OOznzONjL4jTOOzjfWN2U8Si7A0ApsAdl42Co6QCjNfMQct1
+	 Y4VV/EaeqVQUOR6ePJxIjx7Gc/IXX4ymuLLCsiPsWJK0kGoEDyplXoWKpgCzHJyj9R
+	 75Zvqlrk8zTCoD2terizxgti4ljCj8fhjQhvisxjERV5Z3MMtSh4VC5rwlZ7ZqBP4k
+	 BqTu/D0AVhqsKqCltnubopz3Tla+4095S65+bxTiQ+Iik6wDQ93p0pP2a8oVoZh3uQ
+	 XZOfpkU3Hsxam7nK5u7mW7iu8HriV6v0eu0/eVZ2vaKMZVWSWZtNT9omljM7KHEgUU
+	 ixdPeHaulvC9w==
+Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01on2063.outbound.protection.outlook.com [40.107.222.63])
+	by mm2.emwd.com (Postfix) with ESMTPS id 4391F384193
+	for <usrp-users@lists.ettus.com>; Mon, 27 Mar 2023 07:03:38 -0400 (EDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Nr7ygceBwulL4msL14q8XX/mk1dYVkdr2wGNd+yGG2dh+8RrJTMc/bhW8YNwheqKdeD5coICl8d7/bYZV/IB3/7YsH/8xje0bKrTuPGpqrMVEiyDZy4werl19qnJJUechvPO1rkb4f7KqHXixeWAPEVmmujBBaVxBWKBRo/YV4O3bwiZpy4FK3PynlYT5t+CuO9nDmQK1cXC1u8/g44nTR4i1oa73OqQLCXAm3+9zfLJ4fPCp1f9g4/BaXYE0NasRhRwW+VvgJxosr5q5vqX3K+NgrueVkjtUDKZ32SulpYUk8mbUJCi/3V9+uK+bvWaRpM7X5lpTyl7/vsc0u7FQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pFQ6xaqha3EVYKFW4mJwhZZjwQnPxxIgFzABN/WksKQ=;
+ b=OUt7no9u2FMA1c79qo1j7YcDIsrb3wF4V7PDtCK9ssN9AgyhUoTHqiObAkz0PXspWBu0CxI0jCdKPTbrprkoU8rDaEP0D8MmZuV8qi7prtOOtHxeDcZkkPpP85SpnWq1tEJU7aSOqA8bqgG/fZTyEDpacblT5SyZXLLc09NZKNf77Ozx3H5TjgsX0pdE88hJHSacZU/MOGQjULl0XMhhwLe8Pq/BRaqL8puSGgeL1FYMnYQWGdirXCCCRRX5kr8XTtI4uChVMV9C8ylwBcfDuRw1GRAJltAy0heZq+cdITOzImEGhBVHW3iBLgxQ4224m3VDyBjXREi7A4Liuj1lsw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mobiveil.co.in; dmarc=pass action=none
+ header.from=mobiveil.co.in; dkim=pass header.d=mobiveil.co.in; arc=none
+Received: from MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a00:60::23)
+ by PN3PR01MB6318.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:82::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.30; Mon, 27 Mar
+ 2023 11:03:34 +0000
+Received: from MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::311b:546a:66ed:9f8a]) by MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM
+ ([fe80::311b:546a:66ed:9f8a%4]) with mapi id 15.20.6222.028; Mon, 27 Mar 2023
+ 11:03:34 +0000
+From: Sivanesh Kumar K <k.sivaneshkumar@mobiveil.co.in>
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: Timer loopback test failed!  in usrp B210
+Thread-Index: AQHZYJs7lVhpWzyoqEuWQtkAuOISug==
+Date: Mon, 27 Mar 2023 11:03:34 +0000
+Message-ID: 
+ <MAXPR01MB35656AAAFC3637BA53236B80D68B9@MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM>
+Accept-Language: en-IN, en-US
+Content-Language: en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mobiveil.co.in;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MAXPR01MB3565:EE_|PN3PR01MB6318:EE_
+x-ms-office365-filtering-correlation-id: a40ff40d-a7f9-4722-2023-08db2eb2e88a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ VNBn1ybpXG0j+XXL/tgzengQaTX1G+xQqRf7kOLyYe5CFlrfJ32HhVOOi34QZABgBOb92Z9LFkFf7XnAZzON/o4AL2GM0aikK6w2i+LnZ/a/VreD1+95smsP9u6syRbD3opZkkVD0daWqsSGyhtVg7zgRrLkd0cPfeRmgluNzk3zsbxzrgdm1kScgF0uxPXYCUSyY6w5zwAl9D9f8TJVWZzinFA79tZX39JdwL8ps11gqJV4dErcj7S/5A9vldz4BLATlD3BCl6T2Sdk1IX6z2HaXLGykqnnDfgAZrvqErt86EsmkqK8Jr5PE/GGppn97fDjbar2CDITD2NYC+FCD1ThclMttH2w1sPhop2EBINBDkYNAkjysIQQnzJCBJHEIxeKiWXokajuATPg+/3oAzPGEF9kGVa0Q5LDZLaUlhYyNADN6ntYtzv91uOY9jTKHKL5RJD7twjfbB78ihAF4hqcUYseN3cdcEk/7hOLISGbo7nQptwkff5Pdm0d4ppn0P61K2RU0gjp7ArUiQd1U2gcs9CNPe7OQ92zX9tC8bY+8wsYB7sZJekHqr+qdHxYkptNoE/7+5l6Lycxr8/0eKhV0qJG4FVCEUC4nL9burVk08q2aHyoOOVD8zf8iGpp
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(39850400004)(136003)(396003)(366004)(376002)(346002)(451199021)(33656002)(55236004)(186003)(26005)(6506007)(9686003)(83380400001)(55016003)(6916009)(41300700001)(19627405001)(66446008)(76116006)(91956017)(66946007)(64756008)(8676002)(2906002)(52536014)(122000001)(8936002)(38100700002)(5660300002)(7696005)(71200400001)(66556008)(66476007)(316002)(478600001)(86362001)(38070700005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?jHxhkdPrG3YWtoWNveGkL9VuXyuCy4e7aOwUdKIXuLIieO7YvDB7Ft0R07?=
+ =?iso-8859-1?Q?AiA3EZN3fF0EA8J2wE20L3Xq5HKSv3JIwk5xH073WOuTf+WK9jpW6fYiSw?=
+ =?iso-8859-1?Q?9nhqwCoqA54gH+Ces9HXjGtvHAA/8t8z6iheF5CdbgoQ3yU0bnvfN2c2SQ?=
+ =?iso-8859-1?Q?fXQJ9dmEO8x0iNcd0ieH2dK0gfYlFtRZ3UKuj0aoE2+EzSU72aPm0pWLO6?=
+ =?iso-8859-1?Q?5M/fsuBLj2aIvnR2TWU5J5fcjy6aOZmJ0uGjfgyMxOvPcKuqJ6FhMhze1k?=
+ =?iso-8859-1?Q?GUeIE3XURe/eU0asKBrn8gFg6h7Zdp7PmN8IGiqYPxVXXlkrrK6dNCQ5Jd?=
+ =?iso-8859-1?Q?Z0s8TLFmCwjt8T53Oc3wJOwEX4mW/v8ohMxy6gBSzMmDRmR7e6QANMHAOA?=
+ =?iso-8859-1?Q?xmU99b7u61hnAEO2Zu1eYFZGNYfBPMJ5JmeUTeN5LEa+zekheyvI5jwic8?=
+ =?iso-8859-1?Q?sVSIjemKk4kvg2bxQhHWQeG5Cj+RG9AntifS9HK23B4l86a/1xEcnm3Noc?=
+ =?iso-8859-1?Q?416s1A1/t2O9Jm6sP0Wx26zLnW9JuxVjj0hhwF7DC9wEyfo+5xSsBpdbeK?=
+ =?iso-8859-1?Q?Nd8VuGg/D0gzWi8cls3NngCVklp5JuPNd3ICHA7p7WQKRt0iM912RprPe3?=
+ =?iso-8859-1?Q?m8Js/JI3ppID0VHeuECDPqEy0SzGuDzTCt3Gf74MmDbKXnf3KTu4Dkxlds?=
+ =?iso-8859-1?Q?sXRj7+jW3AI4Zy6Q+4PeTwxZuEglcS2/msN2hNfHevmsrqf5gDexVKOlhb?=
+ =?iso-8859-1?Q?Y8gxrAAaD0zMipk0MDquldbLq6s++v6YFV4gKjHOdPRnaf5ynSG0Ht0qUx?=
+ =?iso-8859-1?Q?Xr6u4NWopqXX24239qjKDbi4YCviiltnR9BLN8sKKb2wby+jQdJ9XJHbWK?=
+ =?iso-8859-1?Q?jYbaKcxtBUg0zgMn8JP/53zvYrywdExbKP+Enr9dCBp4u/lLwv+7IgExKH?=
+ =?iso-8859-1?Q?vuJJaQfVZBQHwnhItFmORvdopfmRHNzD1ojd/GJzBMzYaKjBvKQ81aXLjn?=
+ =?iso-8859-1?Q?blF8A+rlWr9TZ/cNeAZ3aqBfB0J2EM1es7gOX0ez3iev0JMPRVfLthP7Ep?=
+ =?iso-8859-1?Q?C2TTJQddwK4VW0+L46CiZo+jZcKlNfvQWAi+yAtvUK2QOucZM5dBvt2+ls?=
+ =?iso-8859-1?Q?X6FKTIaxMIfisscKakJ3j/L3qwNRY61GLOPD7siz3NHvRTbJf1q/OdwqiD?=
+ =?iso-8859-1?Q?bgUv+SYQDXxJ31Lj/TynDfvSQVqi9y07e6sAWJd5SQ/0WUeRXHWkbISevn?=
+ =?iso-8859-1?Q?VdlSIInqkehkf2jCzrm3vTAI+8GucrXlIov/69rqRRlQXc56KzY6sU/lMp?=
+ =?iso-8859-1?Q?GT41h7F8vVtUDS/0EGSjz/1/O+VGvtLEB4NHfFRMyiHT2ap7OcC+qhei67?=
+ =?iso-8859-1?Q?KfVljx74rNv5WxFjWjNOxvPTKHbAdq/MHeqJLGba38U4c3HKMnVCsD/0aC?=
+ =?iso-8859-1?Q?KvYWUetoFpBupe7P1apbzduuLshpYjHJ78g6jxXSCvTPKAYoG/cBtW9xEf?=
+ =?iso-8859-1?Q?3X0zviJBzrrF0/gd/KmiZpTL6p5Xqgg7d0yCAQnZVJ8ddq8nODqBybi4Na?=
+ =?iso-8859-1?Q?MzkVDqJXduqE53iNr3WKEJ8xvzNczsfdZ9B1dRsAe53gLft1tUS5TXLAST?=
+ =?iso-8859-1?Q?mKbn7sxqjXTyjYnMsYq8K0s0nKC9f+Uj+y3UhJGSW1aJTkgaqFU79nVQ?=
+ =?iso-8859-1?Q?=3D=3D?=
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <SJ0PR09MB91263A201E869804E985BCD9EC819@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <CAEXYVK5UG5wy7MQxJj5bVpHWt4K3gFU=ks=DCdFr1uQQdDJZGA@mail.gmail.com>
- <SJ0PR09MB9126C531C901C0141417CDECEC819@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <CAEXYVK6EiG-7Tif=0QKGec9Mm=G06v+wwGT1hGyWi-3b=s8ZAw@mail.gmail.com>
- <CA+K5gze-WqPNY6a8hRudbRqLhPfN8POGSUHnaRVrkW+VpOxxqQ@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CA+K5gze-WqPNY6a8hRudbRqLhPfN8POGSUHnaRVrkW+VpOxxqQ@mail.gmail.com>
-Message-ID-Hash: XK6VQXPQETX3R6ZTISFUJ6EIO625VMSQ
-X-Message-ID-Hash: XK6VQXPQETX3R6ZTISFUJ6EIO625VMSQ
-X-MailFrom: patchvonbraun@gmail.com
+X-OriginatorOrg: mobiveil.co.in
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: a40ff40d-a7f9-4722-2023-08db2eb2e88a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Mar 2023 11:03:34.3390
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: fc646429-760a-4f9d-81fc-c568b17eb1c2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lMddiK4uZT+B9wMWPfHmrrcglsXZG7AQx7jdIlX4CnqB8TiEeOllxqxLGTPZYU6NAbLNJRGEOU7t3VUlM84+gETwpDVVfRzUdgNAINs4Kyg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN3PR01MB6318
+Message-ID-Hash: CDLOZ4JLTNM454RSLZOXY5ZTMKYNJOND
+X-Message-ID-Hash: CDLOZ4JLTNM454RSLZOXY5ZTMKYNJOND
+X-MailFrom: k.sivaneshkumar@mobiveil.co.in
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Wideband IQ Daughterboard
+Subject: [USRP-users] Timer loopback test failed!  in usrp B210
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XK6VQXPQETX3R6ZTISFUJ6EIO625VMSQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/H55ALZBMHUI2RGKG732BHIIFCAR7UFMN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3638959905469232324=="
+Content-Type: multipart/mixed; boundary="===============4081287675426196409=="
 
-This is a multi-part message in MIME format.
---===============3638959905469232324==
+--===============4081287675426196409==
+Content-Language: en-IN
 Content-Type: multipart/alternative;
- boundary="------------G0oVMTItqXFaNPUYbvXNiHuS"
-Content-Language: en-US
+	boundary="_000_MAXPR01MB35656AAAFC3637BA53236B80D68B9MAXPR01MB3565INDP_"
 
-This is a multi-part message in MIME format.
---------------G0oVMTItqXFaNPUYbvXNiHuS
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_MAXPR01MB35656AAAFC3637BA53236B80D68B9MAXPR01MB3565INDP_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On 26/03/2023 22:50, Robert McGwier wrote:
-> Can the =C2=A0existing firmware support that bandwidth? The 10Gbps Ethe=
-rnet=20
-> can but I am not sure about the rest of the USRP. I own two of them=20
-> and have never tried to do that.
->
-> Bob
-You can (theoretically) stream 200Msps from an X310 over 10GiGe. Getting=20
-a 'pooter that can sustain that rate for
- =C2=A0 any length of time is.....challenging.
+Dear team,
 
 
->
->
-> On Wed, Mar 22, 2023 at 9:58 AM Brian Padalino <bpadalino@gmail.com>=20
-> wrote:
->
->     You're right - I completely missed that part of the email.
->
->     My apologies.
->
->     Brian
->
->     On Tue, Mar 21, 2023 at 7:12=E2=80=AFPM Eugene Grayver
->     <eugene.grayver@aero.org> wrote:
->
->         Yes, as stated in the original post 'Basic-RX with a minimum
->         of 1 MHz'.=C2=A0 The DC is cutoff by the balun on the basicRX
->         making it unsuitable for IQ.
->
->         ________________________
->
->         Eugene Grayver, Ph.D.
->         Aerospace Corp., Principal Engineer
->         Tel: 310.336.1274
->         ________________________
->
->
->         ---------------------------------------------------------------=
----------
->         *From:* Brian Padalino <bpadalino@gmail.com>
->         *Sent:* Tuesday, March 21, 2023 3:18 PM
->         *To:* Eugene Grayver <eugene.grayver@aero.org>
->         *Cc:* usrp-users <usrp-users@lists.ettus.com>
->         *Subject:* Re: [USRP-users] Wideband IQ Daughterboard
->         On Tue, Mar 21, 2023 at 6:12=E2=80=AFPM Eugene Grayver
->         <eugene.grayver@aero.org> wrote:
->
->             Hello,
->
->             I want to use an external IQ mixer with an external LO.=C2=A0
->             My signal is 160 MHz wide, which fits nicely into the
->             nominal complex 200 MHz Nyquist of the X310.=C2=A0
->             Unfortunately the only daughterboards for direct access to
->             the ADCs are LFRX which maxes out at 30 MHz, and the
->             Basic-RX with a minimum of 1 MHZ.
->
->             I am thinking of spinning a custom daughter board derived
->             from LFRX with a wideband differential driver such as
->             https://www.analog.com/media/en/technical-documentation/dat=
-a-sheets/6406fc.pdf=C2=A0or
->             alternatively just replacing the chip on an LFRX since
->             these appear to be footprint compatible.
->
->             Separately, I was looking at LFTX schematics and the part
->             # for the amplifier is not specified.=C2=A0 Can somebody at
->             Ettus/NI save me some time and lookup that part #.
->
->             Comments?
->
->
->         Have you considered the BasicRX?
->
->         https://www.ettus.com/all-products/basicrx/
->         https://files.ettus.com/schematics/basic_dbs/BasicRX.pdf
->
->         Brian
->
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-> --=20
-> Dr. Robert W McGwier, Ph.D.
-> Affiliated Faculty, Virginia Tech
-> Affiliated Faculty, University of Scranton
-> Former ARDC Member of Board
-> N4HY: ARRL, TAPR, AMSAT, EARC, CSVHFS
-> Sky: AAVSO, Sky360, explorescu.org <http://explorescu.org>, Skyscrapers
->
-> _______________________________________________
-> USRP-users mailing list --usrp-users@lists.ettus.com
-> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+I am using usrpB210 vdoing some test ,uhd version is (tag: v4.4.0.0).  when=
+ I was connected the board ,I am getting below error please help me to reso=
+lve the issue.
 
---------------G0oVMTItqXFaNPUYbvXNiHuS
-Content-Type: text/html; charset=UTF-8
+PHY]   Waiting for RUs to be configured ... RC.ru_mask:01
+[PHY]   [INIT] nr_phy_init_RU() ru->num_gNB:1
+[LIBCONFIG] device.recplay: 8/8 parameters successfully set, (8 to default =
+value)
+[LIBCONFIG] device: 1/1 parameters successfully set, (1 to default value)
+[LIBCONFIG] loader: 2/2 parameters successfully set, (2 to default value)
+[LIBCONFIG] loader.oai_device: 2/2 parameters successfully set, (1 to defau=
+lt value)
+shlib_path liboai_device.so
+[LOADER] library liboai_device.so successfully loaded
+[HW]   openair0_cfg[0].sdr_addrs =3D=3D '(null)'
+[HW]   openair0_cfg[0].clock_source =3D=3D '0' (internal =3D 0, external =
+=3D 1)
+[HW]   UHD version 4.4.0.HEAD-0-g5fac246b (4.4.0)
+[INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.4.0.HEAD-0-=
+g5fac246b
+[INFO] [B200] Loading firmware image: /usr/local/share/uhd/images/usrp_b200=
+_fw.hex...
+[HW]   Found USRP b200
+[INFO] [B200] Detected Device: B210
+[INFO] [B200] Loading FPGA image: /usr/local/share/uhd/images/usrp_b210_fpg=
+a.bin...
+[INFO] [B200] Operating over USB 3.
+[INFO] [B200] Detecting internal GPSDO....
+[INFO] [GPS] No GPSDO found
+[INFO] [B200] Initialize CODEC control...
+[INFO] [B200] Initialize Radio control...
+[INFO] [B200] Performing register loopback test...
+[INFO] [B200] Register loopback test passed
+[INFO] [B200] Performing register loopback test...
+[INFO] [B200] Register loopback test passed
+[INFO] [B200] Asking for clock rate 30.720000 MHz...
+[INFO] [B200] Actually got clock rate 30.720000 MHz.
+[HW]   Setting clock source to internal
+[HW]   Setting time source to internal
+-- Using calibration table: calib_table_b210_38
+[INFO] [B200] Asking for clock rate 46.080000 MHz...
+[INFO] [B200] Actually got clock rate 46.080000 MHz.
+[WARNING] [CORES] Timer loopback test failed!
+[WARNING] [CORES] Expecting clock rate: 46.08 MHz
+Approximate clock rate: 0 MHz
+
+[HW]   cal 0: freq 3500000000.000000, offset 44.000000, diff 119200000.0000=
+00
+[HW]   cal 1: freq 2660000000.000000, offset 49.800000, diff 959200000.0000=
+00
+[HW]   cal 2: freq 2300000000.000000, offset 51.000000, diff 1319200000.000=
+000
+[HW]   cal 3: freq 1880000000.000000, offset 53.000000, diff 1739200000.000=
+000
+[HW]   cal 4: freq 816000000.000000, offset 57.000000, diff 2803200000.0000=
+00
+[HW]   RX Gain 0 115.000000 (44.000000) =3D> 71.000000 (max 76.000000)
+[HW]   USRP TX_GAIN:77.75 gain_range:89.75 tx_gain:12.00
+[HW]   Actual master clock: 46.080000MHz...
+[HW]   Actual clock source internal...
+[HW]   Actual time source internal...
+[HW]   setting rx channel 0
+[HW]   RF board max packet size 1916, size for 100=B5s jitter 4608
+[HW]   rx_max_num_samps 1916
+[HW]   RX Channel 0
+[HW]     Actual RX sample rate: 46.080000MSps...
+[HW]     Actual RX frequency: 3.619200GHz...
+[HW]     Actual RX gain: 71.000000...
+[HW]     Actual RX bandwidth: 40.000000M...
+[HW]     Actual RX antenna: RX2...
+[HW]   TX Channel 0
+[HW]     Actual TX sample rate: 46.080000MSps...
+[HW]     Actual TX frequency: 3.619200GHz...
+[HW]     Actual TX gain: 77.750000...
+[HW]     Actual TX bandwidth: 40.000000M...
+[HW]     Actual TX antenna: TX/RX...
+[HW]     Actual TX packet size: 1916
+Using Device: Single USRP:
+  Device: B-Series Device
+  Mboard 0: B210
+  RX Channel: 0
+    RX DSP: 0
+    RX Dboard: A
+    RX Subdev: FE-RX2
+  RX Channel: 1
+    RX DSP: 1
+    RX Dboard: A
+    RX Subdev: FE-RX1
+  TX Channel: 0
+    TX DSP: 0
+    TX Dboard: A
+    TX Subdev: FE-TX2
+  TX Channel: 1
+    TX DSP: 1
+    TX Dboard: A
+    TX Subdev: FE-TX1
+
+[HW]   Device timestamp: 1.168859...
+[HW]   [RAU] has loaded USRP B200 device.
+setup_RU_buffers: frame_parms =3D 0x7f771c2af010
+[PHY]   RU 0 Setting N_TA_offset to 600 samples (factor 1.500000, UL Freq 3=
+600120, N_RB 106, mu 1)
+[PHY]   Signaling main thread that RU 0 is ready, sl_ahead 6
+waiting for sync (ru_thread,-1/0x555dd422f2d4,0x555dd4b7e4c0,0x555dd4b7e480=
+)
+RC.ru_mask:00
+[PHY]   RUs configured
+ALL RUs READY!
+RC.nb_RU:1
+ALL RUs ready - init gNBs
+Not NFAPI mode - call init_eNB_afterRU()
+[PHY]   init_eNB_afterRU() RC.nb_nr_inst:1
+[PHY]   RC.nb_nr_CC[inst:0]:0x7f771bd75010
+[PHY]   [gNB 0] phy_init_nr_gNB() About to wait for gNB to be configured
+[LIBCONFIG] loader.dfts: 2/2 parameters successfully set, (1 to default val=
+ue)
+shlib_path libdfts.so
+[LOADER] library libdfts.so successfully loaded
+[LIBCONFIG] loader.ldpc: 2/2 parameters successfully set, (1 to default val=
+ue)
+shlib_path libldpc.so
+[LOADER] library libldpc.so successfully loaded
+[PHY]   Initialise nr transport
+[PHY]   Mapping RX ports from 1 RUs to gNB 0
+[PHY]   gNB->num_RU:1
+[PHY]   Attaching RU 0 antenna 0 to gNB antenna 0
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+create a thread for core -1
+waiting for sync (L1_stats_thread,-1/0x555dd422f2d4,0x555dd4b7e4c0,0x555dd4=
+b7e480)
+[PHY]   Creating thread for TX reordering and dispatching to RU
+ALL RUs ready - ALL gNBs ready
+Sending sync to all threads
+Entering ITTI signals handler
+TYPE <CTRL-C> TO TERMINATE
+got sync (L1_stats_thread)
+got sync (ru_thread)
+[HW]   current pps at 2.000000, starting streaming at 3.000000
+[PHY]   RU 0 rf device ready
+[PHY]   RU 0 RF started opp_enabled 0
+sleep...
+
+
+Please let me know any other details required
+
+Regards,
+Sivaneshkumar K
+
+Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any a=
+ttachments, is for the sole use of the intended recipient(s) and may contai=
+n proprietary confidential or privileged information or otherwise be protec=
+ted by law. Any unauthorized review, use, disclosure or distribution is pro=
+hibited. If you are not the intended recipient, please notify the sender an=
+d destroy all copies and the original message.
+
+--_000_MAXPR01MB35656AAAFC3637BA53236B80D68B9MAXPR01MB3565INDP_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 26/03/2023 22:50, Robert McGwier
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CA+K5gze-WqPNY6a8hRudbRqLhPfN8POGSUHnaRVrkW+VpOxxqQ@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"auto">Can the =C2=A0existing firmware support that band=
-width?
-        The 10Gbps Ethernet can but I am not sure about the rest of the
-        USRP. I own two of them and have never tried to do that.=C2=A0</d=
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+Dear team,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0">
+I am using usrpB210 vdoing some test ,uhd version is (tag: v4.4.0.0).&nbsp;=
+ when I was connected the board ,I am getting below error please help me to=
+ resolve the issue.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+PHY] &nbsp; Waiting for RUs to be configured ... RC.ru_mask:01
+<div class=3D"ContentPasted1">[PHY] &nbsp; [INIT] nr_phy_init_RU() ru-&gt;n=
+um_gNB:1 </div>
+<div class=3D"ContentPasted1">[LIBCONFIG] device.recplay: 8/8 parameters su=
+ccessfully set, (8 to default value)</div>
+<div class=3D"ContentPasted1">[LIBCONFIG] device: 1/1 parameters successful=
+ly set, (1 to default value)</div>
+<div class=3D"ContentPasted1">[LIBCONFIG] loader: 2/2 parameters successful=
+ly set, (2 to default value)</div>
+<div class=3D"ContentPasted1">[LIBCONFIG] loader.oai_device: 2/2 parameters=
+ successfully set, (1 to default value)</div>
+<div class=3D"ContentPasted1">shlib_path liboai_device.so</div>
+<div class=3D"ContentPasted1">[LOADER] library liboai_device.so successfull=
+y loaded</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; openair0_cfg[0].sdr_addrs =3D=3D =
+'(null)'</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; openair0_cfg[0].clock_source =3D=
+=3D '0' (internal =3D 0, external =3D 1)</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; UHD version 4.4.0.HEAD-0-g5fac246=
+b (4.4.0)</div>
+<div class=3D"ContentPasted1">[INFO] [UHD] linux; GNU C++ version 11.3.0; B=
+oost_107400; UHD_4.4.0.HEAD-0-g5fac246b</div>
+<div class=3D"ContentPasted1">[INFO] [B200] Loading firmware image: /usr/lo=
+cal/share/uhd/images/usrp_b200_fw.hex...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; Found USRP b200</div>
+<div class=3D"ContentPasted1">[INFO] [B200] Detected Device: B210</div>
+<div class=3D"ContentPasted1">[INFO] [B200] Loading FPGA image: /usr/local/=
+share/uhd/images/usrp_b210_fpga.bin...</div>
+<div class=3D"ContentPasted1">[INFO] [B200] Operating over USB 3.</div>
+<div class=3D"ContentPasted1">[INFO] [B200] Detecting internal GPSDO.... </=
+div>
+<div class=3D"ContentPasted1">[INFO] [GPS] No GPSDO found</div>
+<div class=3D"ContentPasted1">[INFO] [B200] Initialize CODEC control...</di=
+v>
+<div class=3D"ContentPasted1">[INFO] [B200] Initialize Radio control...</di=
+v>
+<div class=3D"ContentPasted1">[INFO] [B200] Performing register loopback te=
+st... </div>
+<div class=3D"ContentPasted1">[INFO] [B200] Register loopback test passed</=
+div>
+<div class=3D"ContentPasted1">[INFO] [B200] Performing register loopback te=
+st... </div>
+<div class=3D"ContentPasted1">[INFO] [B200] Register loopback test passed</=
+div>
+<div class=3D"ContentPasted1">[INFO] [B200] Asking for clock rate 30.720000=
+ MHz... </div>
+<div class=3D"ContentPasted1">[INFO] [B200] Actually got clock rate 30.7200=
+00 MHz.</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; Setting clock source to internal<=
+/div>
+<div class=3D"ContentPasted1">[HW] &nbsp; Setting time source to internal</=
+div>
+<div class=3D"ContentPasted1">-- Using calibration table: calib_table_b210_=
+38</div>
+<div class=3D"ContentPasted1">[INFO] [B200] Asking for clock rate 46.080000=
+ MHz... </div>
+<div class=3D"ContentPasted1">[INFO] [B200] Actually got clock rate 46.0800=
+00 MHz.</div>
+<div class=3D"ContentPasted1"><span style=3D"background-color: rgb(255, 255=
+, 0);">[WARNING] [CORES] Timer loopback test failed!</span></div>
+<div class=3D"ContentPasted1"><span style=3D"background-color: rgb(255, 255=
+, 0);">[</span><span style=3D"background-color: rgb(255, 255, 0);">WARNING]=
+ [CORES] Expecting clock rate: 46.08 MHz</span></div>
+<div class=3D"ContentPasted1"><span style=3D"background-color: rgb(255, 255=
+, 0);">Approximate clock rate: 0 MHz</span></div>
+<div><br class=3D"ContentPasted1">
+</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; cal 0: freq 3500000000.000000, of=
+fset 44.000000, diff 119200000.000000</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; cal 1: freq 2660000000.000000, of=
+fset 49.800000, diff 959200000.000000</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; cal 2: freq 2300000000.000000, of=
+fset 51.000000, diff 1319200000.000000</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; cal 3: freq 1880000000.000000, of=
+fset 53.000000, diff 1739200000.000000</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; cal 4: freq 816000000.000000, off=
+set 57.000000, diff 2803200000.000000</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; RX Gain 0 115.000000 (44.000000) =
+=3D&gt; 71.000000 (max 76.000000)</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; USRP TX_GAIN:77.75 gain_range:89.=
+75 tx_gain:12.00</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; Actual master clock: 46.080000MHz=
+...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; Actual clock source internal...</=
+div>
+<div class=3D"ContentPasted1">[HW] &nbsp; Actual time source internal...</d=
 iv>
-      <div dir=3D"auto"><br>
-      </div>
-      <div dir=3D"auto">Bob</div>
-    </blockquote>
-    You can (theoretically) stream 200Msps from an X310 over 10GiGe.=C2=A0
-    Getting a 'pooter that can sustain that rate for<br>
-    =C2=A0 any length of time is.....challenging.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CA+K5gze-WqPNY6a8hRudbRqLhPfN8POGSUHnaRVrkW+VpOxxqQ@mail.gmai=
-l.com">
-      <div dir=3D"auto"><br>
-      </div>
-      <div><br>
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Mar 22, 2023 at 9=
-:58
-            AM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">bp=
-adalino@gmail.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">
-            <div dir=3D"ltr">You're right - I completely missed that part
-              of the email.
-              <div><br>
-              </div>
-              <div>My apologies.</div>
-            </div>
-            <div dir=3D"ltr">
-              <div><br>
-                Brian</div>
-            </div>
-            <br>
-            <div class=3D"gmail_quote">
-              <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 21, 2023 =
-at
-                7:12=E2=80=AFPM Eugene Grayver &lt;<a
-                  href=3D"mailto:eugene.grayver@aero.org" target=3D"_blan=
-k"
-                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">eugene.grayver@aero.org</a>&gt;
-                wrote:<br>
-              </div>
-              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px
-                0.8ex;border-left:1px solid
-                rgb(204,204,204);padding-left:1ex">
-                <div>
-                  <div dir=3D"ltr">
-                    <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Yes,
-                      as stated in the original post '<span
-                        style=3D"background-color:rgb(255,255,255);displa=
-y:inline">Basic-RX
-                        with a minimum of 1 MHz'.=C2=A0 The DC is cutoff =
-by
-                        the balun on the basicRX making it unsuitable
-                        for IQ.</span></div>
-                    <div>
-                      <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)"><br>
-                      </div>
-                      <div
-                        id=3D"m_-3752729570845385827m_6627413906338424829=
-Signature">
-                        <div>
-                          <div
-                            id=3D"m_-3752729570845385827m_662741390633842=
-4829divtagdefaultwrapper"
-                            dir=3D"ltr"
-style=3D"color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,sans-serif;=
-font-size:12pt;background-color:rgb(255,255,255)">
-                            <p><span
-                                style=3D"color:black;font-family:Arial,sa=
-ns-serif;font-size:10pt"><span
-id=3D"m_-3752729570845385827m_6627413906338424829ms-rterangepaste-start">=
-</span><span
-style=3D"color:rgb(0,0,0);font-family:Arial,sans-serif;font-size:13.33px"=
->________________________</span><span
-id=3D"m_-3752729570845385827m_6627413906338424829ms-rterangepaste-end"></=
-span><br>
-                              </span></p>
-                            <p><span
-                                style=3D"color:black;font-family:Arial,sa=
-ns-serif;font-size:10pt">Eugene
-                                Grayver, Ph.D.<br>
-                                Aerospace Corp., Principal Engineer<br>
-                                Tel: 310.336.1274<br>
-                                ________________________</span><br>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0)"><br>
-                    </div>
-                    <hr style=3D"display:inline-block;width:98%">
-                    <div
-                      id=3D"m_-3752729570845385827m_6627413906338424829di=
-vRplyFwdMsg"
-                      dir=3D"ltr"><font style=3D"font-size:11pt"
-                        face=3D"Calibri, sans-serif" color=3D"#000000"><b=
->From:</b>
-                        Brian Padalino &lt;<a
-                          href=3D"mailto:bpadalino@gmail.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">bpadalino@gmail=
-.com</a>&gt;<br>
-                        <b>Sent:</b> Tuesday, March 21, 2023 3:18 PM<br>
-                        <b>To:</b> Eugene Grayver &lt;<a
-                          href=3D"mailto:eugene.grayver@aero.org"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">eugene.grayver@=
-aero.org</a>&gt;<br>
-                        <b>Cc:</b> usrp-users &lt;<a
-                          href=3D"mailto:usrp-users@lists.ettus.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">usrp-users@list=
-s.ettus.com</a>&gt;<br>
-                        <b>Subject:</b> Re: [USRP-users] Wideband IQ
-                        Daughterboard</font>
-                      <div>=C2=A0</div>
-                    </div>
-                    <div>
-                      <div dir=3D"ltr">
-                        <div dir=3D"ltr">On Tue, Mar 21, 2023 at 6:12=E2=80=
-=AFPM
-                          Eugene Grayver &lt;<a
-                            href=3D"mailto:eugene.grayver@aero.org"
-                            target=3D"_blank" moz-do-not-send=3D"true"
-                            class=3D"moz-txt-link-freetext">eugene.grayve=
-r@aero.org</a>&gt;
-                          wrote:<br>
-                        </div>
-                        <div>
-                          <blockquote style=3D"margin:0px 0px 0px
-                            0.8ex;border-left:1px solid
-                            rgb(204,204,204);padding-left:1ex">
-                            <div>
-                              <div dir=3D"ltr">
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Hello,</div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                </div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">I
-                                  want to use an external IQ mixer with
-                                  an external LO.=C2=A0 My signal is 160 =
-MHz
-                                  wide, which fits nicely into the
-                                  nominal complex 200 MHz Nyquist of the
-                                  X310.=C2=A0 Unfortunately the only
-                                  daughterboards for direct access to
-                                  the ADCs are LFRX which maxes out at
-                                  30 MHz, and the Basic-RX with a
-                                  minimum of 1 MHZ.</div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                </div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">I
-                                  am thinking of spinning a custom
-                                  daughter board derived from LFRX with
-                                  a wideband differential driver such
-                                  as=C2=A0<a
-href=3D"https://www.analog.com/media/en/technical-documentation/data-shee=
-ts/6406fc.pdf"
-id=3D"m_-3752729570845385827m_6627413906338424829x_m_29364865378333502LPl=
-nk885883"
-                                    target=3D"_blank"
-                                    moz-do-not-send=3D"true"
-                                    class=3D"moz-txt-link-freetext">https=
-://www.analog.com/media/en/technical-documentation/data-sheets/6406fc.pdf=
-</a>=C2=A0or
-                                  alternatively just replacing the chip
-                                  on an LFRX since these appear to be
-                                  footprint compatible.=C2=A0</div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                </div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Separately,
-                                  I was looking at LFTX schematics and
-                                  the part # for the amplifier is not
-                                  specified.=C2=A0 Can somebody at Ettus/=
-NI
-                                  save me some time and lookup that part
-                                  #.</div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)"><br>
-                                </div>
-                                <div
-style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
-lor:rgb(0,0,0);background-color:rgb(255,255,255)">Comments?</div>
-                              </div>
-                            </div>
-                          </blockquote>
-                          <div><br>
-                          </div>
-                          <div>Have you considered the BasicRX?</div>
-                          <div><br>
-                          </div>
-                          <div>=C2=A0=C2=A0<a
-                              href=3D"https://www.ettus.com/all-products/=
-basicrx/"
-                              target=3D"_blank" moz-do-not-send=3D"true"
-                              class=3D"moz-txt-link-freetext">https://www=
-.ettus.com/all-products/basicrx/</a></div>
-                          <div>=C2=A0=C2=A0<a
-                              href=3D"https://files.ettus.com/schematics/=
-basic_dbs/BasicRX.pdf"
-                              target=3D"_blank" moz-do-not-send=3D"true"
-                              class=3D"moz-txt-link-freetext">https://fil=
-es.ettus.com/schematics/basic_dbs/BasicRX.pdf</a></div>
-                          <div><br>
-                          </div>
-                          <div>Brian</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </blockquote>
-            </div>
-            _______________________________________________<br>
-            USRP-users mailing list -- <a
-              href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_blank=
-"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">us=
-rp-users@lists.ettus.com</a><br>
-            To unsubscribe send an email to <a
-              href=3D"mailto:usrp-users-leave@lists.ettus.com"
-              target=3D"_blank" moz-do-not-send=3D"true"
-              class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettu=
-s.com</a><br>
-          </blockquote>
-        </div>
-      </div>
-      -- <br>
-      <div dir=3D"ltr" class=3D"gmail_signature"
-        data-smartmail=3D"gmail_signature">
-        <div dir=3D"ltr">
-          <div dir=3D"ltr">
-            <div dir=3D"ltr">
-              <div dir=3D"ltr">
-                <div dir=3D"ltr">
-                  <div dir=3D"ltr">
-                    <div dir=3D"ltr">
-                      <div dir=3D"ltr">
-                        <div dir=3D"ltr">
-                          <div dir=3D"ltr">
-                            <div dir=3D"ltr">
-                              <div dir=3D"ltr">
-                                <div dir=3D"ltr">
-                                  <div dir=3D"ltr" style=3D"font-size:sma=
-ll"><span
-                                      style=3D"color:rgb(80,0,80)">Dr.
-                                      Robert W McGwier, Ph.D.</span><br
-                                      style=3D"color:rgb(80,0,80)">
-                                    Affiliated=C2=A0<span
-                                      style=3D"color:rgb(80,0,80)">Facult=
-y,
-                                      Virginia Tech</span></div>
-                                  <div dir=3D"ltr" style=3D"font-size:sma=
-ll">Affiliated
-                                    Faculty, University of Scranton<br
-                                      style=3D"color:rgb(80,0,80)">
-                                    <span style=3D"color:rgb(80,0,80)">Fo=
-rmer
-                                      ARDC Member of Board</span><br
-                                      style=3D"color:rgb(80,0,80)">
-                                    <span style=3D"color:rgb(80,0,80)">N4=
-HY:
-                                      ARRL, TAPR, AMSAT, EARC, CSVHFS</sp=
-an><br
-                                      style=3D"color:rgb(80,0,80)">
-                                    <span style=3D"color:rgb(80,0,80)">Sk=
-y:
-                                      AAVSO, Sky360, <a
-                                        href=3D"http://explorescu.org"
-                                        target=3D"_blank"
-                                        moz-do-not-send=3D"true">explores=
-cu.org</a>,
-                                      Skyscrapers</span><br>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
-___________________
-USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
-mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
-To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
-f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
-s.com</a>
-</pre>
-    </blockquote>
-    <br>
-  </body>
+<div class=3D"ContentPasted1">[HW] &nbsp; setting rx channel 0</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; RF board max packet size 1916, si=
+ze for 100=B5s jitter 4608
+</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; rx_max_num_samps 1916</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; RX Channel 0</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual RX sample rate: 46.=
+080000MSps...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual RX frequency: 3.619=
+200GHz...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual RX gain: 71.000000.=
+..</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual RX bandwidth: 40.00=
+0000M...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual RX antenna: RX2...<=
+/div>
+<div class=3D"ContentPasted1">[HW] &nbsp; TX Channel 0</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual TX sample rate: 46.=
+080000MSps...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual TX frequency: 3.619=
+200GHz...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual TX gain: 77.750000.=
+..</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual TX bandwidth: 40.00=
+0000M...</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual TX antenna: TX/RX..=
+.</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; &nbsp; Actual TX packet size: 191=
+6</div>
+<div class=3D"ContentPasted1">Using Device: Single USRP:</div>
+<div class=3D"ContentPasted1">&nbsp; Device: B-Series Device</div>
+<div class=3D"ContentPasted1">&nbsp; Mboard 0: B210</div>
+<div class=3D"ContentPasted1">&nbsp; RX Channel: 0</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; RX DSP: 0</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; RX Dboard: A</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; RX Subdev: FE-RX2</div>
+<div class=3D"ContentPasted1">&nbsp; RX Channel: 1</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; RX DSP: 1</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; RX Dboard: A</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; RX Subdev: FE-RX1</div>
+<div class=3D"ContentPasted1">&nbsp; TX Channel: 0</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; TX DSP: 0</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; TX Dboard: A</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; TX Subdev: FE-TX2</div>
+<div class=3D"ContentPasted1">&nbsp; TX Channel: 1</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; TX DSP: 1</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; TX Dboard: A</div>
+<div class=3D"ContentPasted1">&nbsp; &nbsp; TX Subdev: FE-TX1</div>
+<div><br class=3D"ContentPasted1">
+</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; Device timestamp: 1.168859...</di=
+v>
+<div class=3D"ContentPasted1">[HW] &nbsp; [RAU] has loaded USRP B200 device=
+.</div>
+<div class=3D"ContentPasted1">setup_RU_buffers: frame_parms =3D 0x7f771c2af=
+010</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; RU 0 Setting N_TA_offset to 600 =
+samples (factor 1.500000, UL Freq 3600120, N_RB 106, mu 1)</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; Signaling main thread that RU 0 =
+is ready, sl_ahead 6</div>
+<div class=3D"ContentPasted1">waiting for sync (ru_thread,-1/0x555dd422f2d4=
+,0x555dd4b7e4c0,0x555dd4b7e480)</div>
+<div class=3D"ContentPasted1">RC.ru_mask:00</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; RUs configured</div>
+<div class=3D"ContentPasted1">ALL RUs READY!</div>
+<div class=3D"ContentPasted1">RC.nb_RU:1</div>
+<div class=3D"ContentPasted1">ALL RUs ready - init gNBs</div>
+<div class=3D"ContentPasted1">Not NFAPI mode - call init_eNB_afterRU()</div=
+>
+<div class=3D"ContentPasted1">[PHY] &nbsp; init_eNB_afterRU() RC.nb_nr_inst=
+:1</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; RC.nb_nr_CC[inst:0]:0x7f771bd750=
+10</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; [gNB 0] phy_init_nr_gNB() About =
+to wait for gNB to be configured</div>
+<div class=3D"ContentPasted1">[LIBCONFIG] loader.dfts: 2/2 parameters succe=
+ssfully set, (1 to default value)</div>
+<div class=3D"ContentPasted1">shlib_path libdfts.so</div>
+<div class=3D"ContentPasted1">[LOADER] library libdfts.so successfully load=
+ed</div>
+<div class=3D"ContentPasted1">[LIBCONFIG] loader.ldpc: 2/2 parameters succe=
+ssfully set, (1 to default value)</div>
+<div class=3D"ContentPasted1">shlib_path libldpc.so</div>
+<div class=3D"ContentPasted1">[LOADER] library libldpc.so successfully load=
+ed</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; Initialise nr transport</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; Mapping RX ports from 1 RUs to g=
+NB 0</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; gNB-&gt;num_RU:1</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; Attaching RU 0 antenna 0 to gNB =
+antenna 0</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">create a thread for core -1</div>
+<div class=3D"ContentPasted1">waiting for sync (L1_stats_thread,-1/0x555dd4=
+22f2d4,0x555dd4b7e4c0,0x555dd4b7e480)</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; Creating thread for TX reorderin=
+g and dispatching to RU</div>
+<div class=3D"ContentPasted1">ALL RUs ready - ALL gNBs ready</div>
+<div class=3D"ContentPasted1">Sending sync to all threads</div>
+<div class=3D"ContentPasted1">Entering ITTI signals handler</div>
+<div class=3D"ContentPasted1">TYPE &lt;CTRL-C&gt; TO TERMINATE</div>
+<div class=3D"ContentPasted1">got sync (L1_stats_thread)</div>
+<div class=3D"ContentPasted1">got sync (ru_thread)</div>
+<div class=3D"ContentPasted1">[HW] &nbsp; current pps at 2.000000, starting=
+ streaming at 3.000000</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; RU 0 rf device ready</div>
+<div class=3D"ContentPasted1">[PHY] &nbsp; RU 0 RF started opp_enabled 0</d=
+iv>
+<div class=3D"ContentPasted1">sleep...</div>
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+Please let me know any other details required</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+Regards,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof ContentPasted0 ContentPasted1">
+Sivaneshkumar K<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" class=
+=3D"elementToProof">
+<br>
+</div>
+Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including any a=
+ttachments, is for the sole use of the intended recipient(s) and may contai=
+n proprietary confidential or privileged information or otherwise be protec=
+ted by law. Any unauthorized review,
+ use, disclosure or distribution is prohibited. If you are not the intended=
+ recipient, please notify the sender and destroy all copies and the origina=
+l message.
+</body>
 </html>
 
---------------G0oVMTItqXFaNPUYbvXNiHuS--
+--_000_MAXPR01MB35656AAAFC3637BA53236B80D68B9MAXPR01MB3565INDP_--
 
---===============3638959905469232324==
+--===============4081287675426196409==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -561,4 +590,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3638959905469232324==--
+--===============4081287675426196409==--
