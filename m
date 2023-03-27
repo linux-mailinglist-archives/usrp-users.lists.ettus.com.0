@@ -2,468 +2,668 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B336CA9FD
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 18:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 606AC6CA9FF
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 18:08:13 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 806EB384840
-	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 12:07:48 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 420EC384218
+	for <lists+usrp-users@lfdr.de>; Mon, 27 Mar 2023 12:08:12 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1679933268; bh=cIqtksZ+JrqhGT6QZmx6E1oS37HYjqthtrUJax2CO7w=;
-	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=tCitoBNkWM8w5xhZbaphioVJsCJ6Kd3Q2Bv0JQJFIVcfpaoUPVUgQ4zmtAiV9VvdZ
-	 ncEi8KkqibZZVrXkozhAKvkBpC9x20vTpMmco4WSzkSiMFvAnAfxHSMNQy8t1u/kQ2
-	 j/rjy3/vwwzNic1xpDT1YozS9hj9SCvtUsvKM8hg/wA/K5+yQpo6mwNNNPcBVcxbuK
-	 JRLDC69KOWUNs85Dn89SfIE69uOQSNJzbNf0RYEyod4lXGVzXgSzRMLRF7bceBCk5I
-	 /7ZxI//e4Bj3RIbRE6APPmGhVxQMoWbWf2NBPnH8jl+pnQPrORfYkuoBio3ydRAxTE
-	 CTHvs9rm0AqWQ==
-Received: from email5-west.aero.org (email5-west.aero.org [130.221.16.30])
-	by mm2.emwd.com (Postfix) with ESMTPS id B27733842E9
-	for <usrp-users@lists.ettus.com>; Mon, 27 Mar 2023 12:06:48 -0400 (EDT)
+	t=1679933292; bh=R/MPNPqlGx0n0G0rUJCQGoiHYePBIRB716tAt/HODBA=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=Hjqsy0J5TEBRM5GBBH/lvIbVGB168vMR4G6CBUdrWlrI8UgxbiupGzlR8ObiMbxfI
+	 WUOYkxSvKRjQyxoTp/iRQjSrZ0iSCumfx2jlnDfLiW0OyGgat5Dh+xQyvctRnV3zwb
+	 fyubzOaR09Qg0VHVExthc1ensmzqLhqAV4HVVjmXKkLww/BapwbRR/XKOGIaBPWOGz
+	 lyXXqTf4Og2HMtsybxHu+zcqjCevDcNxE904TUYBmfa7JselQHQAQUREOmVkXvVf/J
+	 VVFCQLQRgbO8QllwvhVw6AXyYmssznHqc7iOIYOD1oIBwSwM5s41H67Mb1A2GjBbrO
+	 O4motrm2Xb1ng==
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id CB6D738476C
+	for <usrp-users@lists.ettus.com>; Mon, 27 Mar 2023 12:06:59 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=aero.org header.i=@aero.org header.b="Y98JPiKM";
-	dkim=pass (1024-bit key; unprotected) header.d=aerospacecloud.onmicrosoft.com header.i=@aerospacecloud.onmicrosoft.com header.b="N34QgtI9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="PQB9IgDu";
 	dkim-atps=neutral
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=aero.org; i=@aero.org; q=dns/txt; s=mailhub;
-  t=1679933208; x=1711469208;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:mime-version;
-  bh=Hy4kNEnP2gFyq4sn4VAz9NZhNBmasOm7ahT47Rul97o=;
-  b=Y98JPiKM4jevMpOWq8va98SvGqiA7lAkh7v2NV2Lf9eCnhzw+SV0mDR1
-   HojAl34Z4yCRVIqp0DKRp2Nypq3AYkqKMF1nGOrpiJlqQW0xg1RX4I1db
-   LlK/Gi3x7Ik9Sm3JrEMu+VUo3C7deDPUFFwkXTKcu3xZipLa6Pb3fq7uo
-   M=;
-x-SBRS: 3.5
-x-SenderGroup: Inbound_Office365
-X-IronPort-AV: E=McAfee;i="6600,9927,10662"; a="2214352"
-X-IronPort-AV: E=Sophos;i="5.98,295,1673942400";
-   d="scan'208,217";a="2214352"
-X-IPAS-Result: =?us-ascii?q?A2E4AAA4viFkh2VBL2hXAxwBAQEBAQEHAQESAQEEBAEBg?=
- =?us-ascii?q?XsHAQELAYEqAYECcwKBWoRTg0+EUIkQA4MoiCCLP4R3gVYUgREDGDUJDwEBA?=
- =?us-ascii?q?QEBAQEBAQcCLgEMCQQBAQMBA4R+AhaFJCY0CQ4BAgQBAQEBAwIDAQEBAQEBA?=
- =?us-ascii?q?wEBAQUBAQEBAQcDAQICEAEBAQEZCRcHDhAFIoVoDYNWSgM6AQEBAQEBAQEBA?=
- =?us-ascii?q?QEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQUCQUcMIwEBHQEBAQEBAgEiH?=
- =?us-ascii?q?QEBDCALAQ8CAQgRBAEBKAMCAgIfBwkBFAkIAgQBBwYFCBUEgl0BghUNBgMxE?=
- =?us-ascii?q?watNHqBMoEBgggBAQYEBH46ARZAmj4NC12BXgmBQQGDS4N4BB5YXQEBgVKCF?=
- =?us-ascii?q?oQwNoFVRIEVQ4JnPoIgQgECAoEoARIBIwYPCgwJCAmDETmCLlc1AYEfKGoDP?=
- =?us-ascii?q?RlwP1QrQwICFgQ8BScMMwQBAWg6BgKCGjsCgXmCOgGBZgICAgKGRQqBNHaBI?=
- =?us-ascii?q?A6BPYEEAgkCEWuBEghngXxAAg1jCw5vgUoCgjsHNgNEHUADCzs6PzUUIAUEV?=
- =?us-ascii?q?YEZJAUDCxUqRwQIOQYaNBECCA8SDwYmRA5CNzQTBlwBKQsOEQNPgUcEL0GBG?=
- =?us-ascii?q?wIEASYknhg3KgFzJRx+Cw2SdwUXgy+KRY4nkz07NAeDfYFTBgyIaoEijRaBe?=
- =?us-ascii?q?IYjFoVSo22XaiCNMoNskG8rhRkCBAIEBQIOCIFjfCpwMxowQ4IBZglJGQ+OI?=
- =?us-ascii?q?AoPg1mFFIpldQI5AgcBCgEBAwmLQwEB?=
-IronPort-PHdr: A9a23:7hrkyx2BKNokvt2UsmDPrFBlVkEcU/3cMg0U788hjLRDOuSm8o/5N
- UPSrfNqkBfSXIrd5v4F7oies63pVWEap5rUtncEfc9AUhYfgpAQmAotSMeOFUz8KqvsaCo3V
- MRPXVNo5Te1K09QTc/zfVqUpWe9vlYv
-IronPort-Data: A9a23:ebLdxKkQ2LprEwFJtz11ncvo5gznIURdPkR7XQ2eYbSJt1+Wr1Gzt
- xIWCmGPOP+Kamfxft4kOoi2pxwBsJTRn99iG1RorC5gFy4T+ZvOCP2ndUqhZCn6wu8v7a5EA
- 2TyTvGacajYm1eF/k/F3p7J8yckjclkYZKlULCaYEidfSc9FGF7z0sLd9cR2uZAmcK+Dx6Gp
- eT8qsjePE7N8zNvOwr40YrbwP9UlKm06WNwUmAWP6gR5weFzSZNVvrzGInoR5fGatgMdgKFb
- 7ubpF2J1jux1wsgDNqjjoH6fiUiKlIFFVXmZtJ+AsBOszAazsAA+v9T2Mk0MC+7vw60c+VZk
- 72hg7TtEF1xZvWkdNM1CHG0GwkmVUFPFSSuzXKX6aR/xGWeG5fgLmkH4Ojb8uT0984uaVyi+
- 8D0JxhTczqPl/uTxo6nFLJD2sUqBc/XMJEQ7yQIITHxVZ7KQLjsaI6Sv5p0+Wx1gcpDW/HDe
- 8AedDxjKgzaZAFCMUsWD5R4m/q0gn74cHtTr1f9SagfujCPilAuluawdoONI7RmRu0M9qqcj
- m/b8Gn/D1cVLtWO1zef2nuhnOiJmjn0MG4XPOfir6Ix3Qf7Kmo7OQ8MV2WwnsmDgG2adfhyI
- F0+xxg3hP1nnKCsZoKkBEbg+STsUgQnc8dLCfV/9RqA0LH85weCGnNCQyJddcdgv8gzLRQwy
- VqCkMzoCCZHv7icSHbb/bCRxRu4ISEZJGsDYygsQg4M4t2lq4Y25i8jVf5mGa+xy9HwQj77y
- GjQqDBk3u1Ky8kWy6+84FbLxSq2oYTERRI04QORWX+56gR+Z8iuYInABUXnAehocpuzQkmYm
- X44h5bFw7wPBLiLqCCfT7BYdF223MqtPDrZiF9pOpAu8TWx5nKuFby8BhkueS+F1e5UKVfUj
- F/vVRB5uMYNZCHzBUNjS8fgUJpzl/OI+cHNDKi8UzZYXnRmmOZrFglCaFXY+mfslkU3+U3UE
- crDKp7zZZr25LQO8dZbb+IU0LtuyiVlymjYHcr/107+iePYY2OJQ7AYNlfIdvo+8K6PvATS9
- ZBYKteOzBJcFub5Z0E7ELL/z3hVcxDX5riv9KS7k9JvxCI6RQnN7NeNntscl3RNxfg9qwsx1
- ijVtrVk4FT+n2bbDg6Bd2pubrjiNb4m8y1qbXFxYQrwgyZ+CWpK0Ev5X8tpFVXA3LwypcOYs
- 9FfJa1s/9wTFGWYqmRFMvERUqQ4L0v02lPm09WZjMgXJMc7HFSQoLcIjyPq9SIUCTGwu9d2q
- q+9zA6zfHbwb1UKMSoiU9r2lwnZlSFFxopaBhKUSvEOJhmE2NU0ekTZ0KVrS+lSck+r7mXBi
- G6r7eIw/rSlT3kdq4WS2shpbu6BT4NDI6atNzWEve3maXWLoQJOA+ZoCY61QNwUb0uskI3KW
- Amf56iU3CEv9LqSj7dBLg==
-IronPort-HdrOrdr: A9a23:lGTI46uGVknaRGV9l57kHgYY7skC44Mji2hC6mlwRA09TyXGra
- 2TdaUgvyMc1gx7ZJh5o6H6BEGBKUmslqKdkrNhR4tKPTOW81dASbsP0WKM+UyGJ8STzI9gPO
- JbAtBD4b7LfBJHZKTBkW+F+r8bqbHpnpxAx92utkuFJjsaCZ2Imj0JbjpzZXcGITWua6BYKL
- Osou584xawc3Ueacq2QlMfWfLYmtHNnJX6JTYbGh8O8mC1/H+VwY+/NyLd8gYVUjtJz7tn23
- PCiRbF6qKqtOz+4gPA1lXU849dlLLau5R+7Y23+4YowwfX+0aVjbdaKv6/VQUO0aCSARgR4Z
- vxSlwbTrlOAjvqDx2ISF3WqkTdOX8VmgHfIVP0uwqdneXpAD09EMZPnoRfb1/Q7Fchpsh11O
- ZR03uerIc/N2K3oM3R3am9a/hRrDvCnVMy1eoIy3BPW4oXb7Fc6YQZ4UNOCZ8FWCb38pouHu
- ViBNzVoK8+SyLTU1nJ+m10hNC8VHU6GRmLBkAEp8yOyjBT2HR01VERysATlmoJsJg9V55H7e
- LZNbkArsAGcuYGKaZmQOsRS8q+DWLABRrKLWKJOFziULoKPnrcwqSHlYndJNvaCqDg4KFC66
- gpCmkoxFLaU3ieefGz4A==
-Received: from mail-dm3gcc02lp2101.outbound.protection.outlook.com (HELO GCC02-DM3-obe.outbound.protection.outlook.com) ([104.47.65.101])
-  by email5-west.aero.org with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Mar 2023 09:06:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h3QpdFVi/By9GcCrpa7dcLfLz2eosxjflXlBBC5NIb3iw2XgfIka5FHmZ+JeW0KAX9Jh56g4+yBDTiGdWRRtsafPKXp10GhihzqYswyeH/iEDYTnjAtMOiq6k7+Mj4FQh1/mVcR52NLNA6g+EgSAl0KBSeTiTv7cyzboRCqmwC8hHQvAkmrROp0GSRK0GZO495Nvx1AcPENQtR2Qbtlp6/LBClE4YEBpLs8rU7MYTi4+UUUwQlRPMEM4NIqAt3FrDHdO/8jY9gkPPNgMDPmQ0xytmHbz3+QYL3nuOUjRVtQdj0rjbI76g7ZDIRp1eznX0vRqwBef8RbV33RYbt7PMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hy4kNEnP2gFyq4sn4VAz9NZhNBmasOm7ahT47Rul97o=;
- b=O7GDBPYWMI4oQiEKjNHfx8fVPEPSpR1G5MNWTPjQh0MuGWIG8kIQEqB8r+H9xSOMw/S+T3fQEzELlpwvE1lOQY3GiHGd+oy0uhyIJQn39jjtPhHH27CgON5rS7yxRqybwcvpSaTYYoPwEIXx4m9/ESBAWTmav6AqZs39lW1IiThSavewidVKjEEzbGq83BZCc4dJvwXxFQq7MhkkHe0EukgEBLhL2wIW8AYHgD3IZlYlMkZvp4hAtK3FeQ/X8WoxU/SIyTMhMfJ2sdTweW9fDwJfNEoU09XBgFU9dyL8qu3H879B/jWSkYXefEE/UBCk/W4HSZZCmQxxhIDAepcThQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aero.org; dmarc=pass action=none header.from=aero.org;
- dkim=pass header.d=aero.org; arc=none
+Received: by mail-qv1-f47.google.com with SMTP id q88so6985284qvq.13
+        for <usrp-users@lists.ettus.com>; Mon, 27 Mar 2023 09:06:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aerospacecloud.onmicrosoft.com; s=selector2-aerospacecloud-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Hy4kNEnP2gFyq4sn4VAz9NZhNBmasOm7ahT47Rul97o=;
- b=N34QgtI9NCMfdDS6Ywb2SNRdLY6D5jMWsoZzJav4OoNNPtA12AA9N9CXrKU5NtAKZfii2zzl11Gbldmu5RPG0kf4eitUCYdCD73aI2a+i+5JB2UqLkMJE88Bii7PLf+HfPwqWN+iOYX0Yc8U/4R2iSmwqfexd/v7azVQbZOcC4s=
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com (2603:10b6:a03:444::22)
- by BLAPR09MB6321.namprd09.prod.outlook.com (2603:10b6:208:2ad::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6222.30; Mon, 27 Mar
- 2023 16:06:44 +0000
-Received: from SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::d44e:83bd:1602:373]) by SJ0PR09MB9126.namprd09.prod.outlook.com
- ([fe80::d44e:83bd:1602:373%9]) with mapi id 15.20.6222.032; Mon, 27 Mar 2023
- 16:06:44 +0000
-From: Eugene Grayver <eugene.grayver@aero.org>
-To: Robert McGwier <rwmcgwier@gmail.com>, Brian Padalino <bpadalino@gmail.com>
-Thread-Topic: [USRP-users] Re: Wideband IQ Daughterboard
-Thread-Index: AQHZYFcKiJESfJs8UUm7JpsI0f1TyK8Oy2SK
-Date: Mon, 27 Mar 2023 16:06:44 +0000
-Message-ID: 
- <SJ0PR09MB9126F7B69493DCF3A0A4B508EC8B9@SJ0PR09MB9126.namprd09.prod.outlook.com>
-References: 
- <SJ0PR09MB91263A201E869804E985BCD9EC819@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <CAEXYVK5UG5wy7MQxJj5bVpHWt4K3gFU=ks=DCdFr1uQQdDJZGA@mail.gmail.com>
- <SJ0PR09MB9126C531C901C0141417CDECEC819@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <CAEXYVK6EiG-7Tif=0QKGec9Mm=G06v+wwGT1hGyWi-3b=s8ZAw@mail.gmail.com>
- <CA+K5gze-WqPNY6a8hRudbRqLhPfN8POGSUHnaRVrkW+VpOxxqQ@mail.gmail.com>
-In-Reply-To: 
- <CA+K5gze-WqPNY6a8hRudbRqLhPfN8POGSUHnaRVrkW+VpOxxqQ@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aero.org;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ0PR09MB9126:EE_|BLAPR09MB6321:EE_
-x-ms-office365-filtering-correlation-id: e6e8bac9-9fb7-4eeb-acc8-08db2edd4296
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- Fq/7CG0MCoS4W2LZeJ/PbV14M9YebRCIRblR6SbOfVwPJTT0nPJ3TulThOR8L0fQWblHBUIWDAUTlf33WNECR2salR75sWc3UlUklapEOQE/HM+6/h3qMuP7GFjSeoh7LpYygckxg30gB6tBmYDQ6ORbJaNF9D6Yd5edfyJXOWZXku3BLE+jZXdzMX1r7pt8ESOwpX7rUXwloHR7HzHMxJLtiMeAhIlEdaVRmV0RYKRMI5FmlGaSmkIJ5wHWKB64wzBjs9wwSwxktpIdikpYJ83nukmJdn0dDp2hK90MlvCDJWXIH6IDXH+jgQUPQWHwH+otEUxE3CiXtS/H6vIMJQ/oacNH38VOQTkSCNGUSsMKYKU0zNWj8+FOGnqqfjeGCkklNDp8a2BuoCQyRFuBbN//PRPwFSnA4sMxX0G61CmRXQACel8/9KZ6Vejzgi34D2qxe+jkAAB+xfWKDuTOozsGr8Ku6kHQi+3YLvC8QDIaPo0cHIs1XWnyWrbMfX6qAVeHt47MnqMXqaJ785gI+NkR5WdcnmKbsDM90By9T+ejZZ+GwBpS2BEK1FixGqHYT0BiHvfGF3kBO5XMCceBbHsl0zPdALCzlQdjjuAC874=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR09MB9126.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(366004)(451199021)(110136005)(498600001)(52536014)(8936002)(5660300002)(122000001)(38070700005)(40140700001)(86362001)(44832011)(66446008)(2906002)(38100700002)(166002)(4326008)(64756008)(8676002)(91956017)(33656002)(66556008)(76116006)(66476007)(66946007)(186003)(55016003)(26005)(9686003)(6506007)(53546011)(83380400001)(19627405001)(66899021)(71200400001)(966005)(7696005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?YmIzWFNDYmloZ1gvSXN6eDNsMmM3WnV4S3ZIV3IzTjVCbXdodXdERmo0ejAr?=
- =?utf-8?B?TUlvOVhkdHdRL2E1bWIyVktsOXd2SWNZL3JGTXE3T2hYdkM4TTlMbS9ibGMw?=
- =?utf-8?B?MDA5dEo3RGdKc3MzRkxKazdBTzZJekVhM09lbktPZE9FbmVLazFEanZsbDdr?=
- =?utf-8?B?a3pOeStZbmZsMGhmYktNTUpjRDZYbEE2Vmw0UmVxY0VoSXk4OXh6K1FJN1JS?=
- =?utf-8?B?SkNrenNjT3lVR3M1N3BMM21zWGRTTEU2VGVCaWg0VFcxdnY4akZRSFhtckQx?=
- =?utf-8?B?Q3dVQktLUk03MDM4WDhmNGsrTGtYZ3N4ZU1mY1lhZ2hLV1pIdytZRE5VQVBw?=
- =?utf-8?B?RlZUR1dJbEFscWJVVVVlT1NPZmFwMkVXYlBMWDJTdWdDQlpaTE5vSjlJLzVY?=
- =?utf-8?B?YjZiTm0wS0x0c1ZlVk5FSTFOVm43T0lGVVBXdnk4WnBaZ1h0WDl0MXNtVVR2?=
- =?utf-8?B?dDdKNUR6clBycVJ3d0VISllqR2pmTHJlYjl1NkhXMlQzcjZhRlRkbWdGSW9X?=
- =?utf-8?B?ZlFRT2RIcFFvaW5VUit2b3FSZUwrZUFuaVNXVDdrVVlpSXRkZ1Btc2Z4YXBo?=
- =?utf-8?B?VXlZWXFMT1gzamwranpVOUJQN0RWekE3QTN1TGtoUHRjVFdDK0dsaVcyZXlU?=
- =?utf-8?B?OWlCTmtWSFhKZU5URzFSMmM1VjB4NW9HQm0zbGc2VlozakpGWG9Wd1l1ZFJx?=
- =?utf-8?B?SXRoTWhrOWhJT21hKzVrMXVEQTdYNEJoVkhTd092WkpINXJFWm1jY1JhY1JQ?=
- =?utf-8?B?aU5VZFNDR2FXWHNzRS9ELy84NGxQSFB3UXc2WjlUUzAxaUZrVVBCNUxlM2N1?=
- =?utf-8?B?WjJZcjVqeGxMeDhrY1d3b0JoT2YzSStpZmc3QVRsZXdzZjNRZ09aRysvN3cz?=
- =?utf-8?B?V1J6K09KN1JMOVRTZ3c3UUo3TlpyUmMvWUZiU3dFTDBleFdURUNoYTYyRVNp?=
- =?utf-8?B?TTd5Unc0LzltUGkxblMyeWlMcGRza2xlVHAzMGs2djgzTWdjMTNmZTVFeGRI?=
- =?utf-8?B?bldKWFdxWjlKUlNPQ2tCM3NkVDNGckNaQTh6a2x5YkhrRTJYS0lvZzJFQlJT?=
- =?utf-8?B?VjlTYW9mNVpWY2lXaDVtZ21wUWI1OGlINXNDcllMbW9MYVE0TG4zRlhnZi9V?=
- =?utf-8?B?eGhNeWVQOHZxRW44NXlISEUzRHBxWnE3QWd3Q2tZcjZsZW9qcDUyOSs3UkUy?=
- =?utf-8?B?NDNhaEpYWXV0YmxPMXFVTFJaY3NkZXNoa2cxRUdaOWxuNE96bXQrQTFzeWNK?=
- =?utf-8?B?OW1SaU96QTFmZGg3ZTQ1OEZLRXhydGQ5YU1aNlh3Y2tSK3pCQ294VlpNU2xw?=
- =?utf-8?B?cnhqdEFCOXFGSzdUcFFrUEJhd3YrcHhNUDU1WUlsWktLN1Yra0k1Q2NPN1BH?=
- =?utf-8?B?MXpxdGFJdWJna08yV3BKVUVXaE10TEtUWFhsdTdvSGlhcWd6dDJjNjBxTXB4?=
- =?utf-8?B?KzNRcE50Rk1FRW5Vb3d6MlVFOXJtTnJPRVhneVBBbFVQSnFOSnJOcTJTRzh6?=
- =?utf-8?B?eWg3SllqTUJPODczN3lrU2gzRzNrV1FSV2pLVmNBZU5lTFlYRHFacEpnT3lv?=
- =?utf-8?B?UWZGMGVMTE1EWHZUYUdydU5VeW9WcnNmOFJ2S0c3NFJVTnF4WVVsb3llS01Q?=
- =?utf-8?B?VlBkaTg1N3REbWJZdGxpQ0ZZbElISWcrTGFNclhjeUdLMDNycHZCOGVTaUdS?=
- =?utf-8?B?eFRIbVFLT25qekxselBoYVNiQ3YraUlmSEoyem5FZm1Id2I1bXIxTkV0MUJw?=
- =?utf-8?B?ZUFhSDFlZFArNkh3TWwyc245aTJMQ040RG15UmNMOFFObndUUElobEN2SzQv?=
- =?utf-8?B?TnFoNFh1U2lQNzh1Rnp1eDFMTVdaUmhYMVd4b0xINFNlWWU1WjM5WkxBRlZl?=
- =?utf-8?B?ZzVWT3hJM1FyNVZ6aFZMZzVTUnlIaTNSYmNhTTl5U21EcnpaUWtXZXZWTE1Y?=
- =?utf-8?B?T2NPMnNUeUxSQUFzeURMdlp0dWhXMS8wZEJPR0N4Q1QwVFFXRFpwZXQrMSs5?=
- =?utf-8?B?VWxyNUppc2hKT1ViQmFNZmpERUYrV3JndUdGUW51YzhLZEkva09WS0FNUTBu?=
- =?utf-8?B?bmwrdzRHV3F0TksvWjdGNFhSNjVqdFcrNE1DY2xtVHg5ck40MVVkeDVwQUZG?=
- =?utf-8?Q?9iwY=3D?=
+        d=gmail.com; s=20210112; t=1679933219;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=asL0aSm3OB3vXSJAS1ia5o6rWKZSICaJJMA7P/LM5m4=;
+        b=PQB9IgDualTF3DD8vSah6OBxjRD0/+fobZlGD/DqLrST7zV5+RIhPh7sA9Aqg8aIwq
+         Kx3+lPnvtGU4sEJyX57ug5olAUmRIQ+qFkh05GWek+l/MMKjVEBP+BotIx/l6a55/Tro
+         mt6k3pZIjdAlL6pJoGywO++jf7x69s23JEQELv7PZiF84aQY+ZCpzHif6IIL1M1qE7dz
+         hLTya0zm8lGJ1vuHy5a665X+Nns2w+/YT50FNT071dsd2zWwPEjNR98EivrHyC6MdcqR
+         +lwFjGVj5iRsa1R7QwJp0fZphRO3G2BwV/OyhYKHPduzl3ko27NXaGBtV4GxtO7pL5Ni
+         YvVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1679933219;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=asL0aSm3OB3vXSJAS1ia5o6rWKZSICaJJMA7P/LM5m4=;
+        b=i8Z/DAzj3ZjIDXxNE9Z6iW1Y19oxcWeM/Kven7Z/0br7sJViYX8K3TmnhN0rsfwcxM
+         f2+VB0R4+uwsuEMLUZuqgmHve2id34TdSgpk5OfRPHTaiEshkWvarmd4Y7ckTgV0bfXQ
+         G3zlNTFbnyiaVdox1HEuyax5mf8jG7T3tCOsE6fu46xRJIpDVxNtruz0AT+r2eUY9cDr
+         DsQh2G8kbPXqb59XHoWtpKL07f8zdWLjkOFBHudRvfYL/S7hwXFhRB/KD03XMBy0+EnX
+         aAv54SWeiUh4U+8O/PifSwL15ZTvAAO7Hg/UtD3Q5ZOSqRUiyUCvHgA5BdB1soFpkLme
+         SbVA==
+X-Gm-Message-State: AAQBX9evAoUU4VDwQc65n6WHwmzn2b9Y4oyYXP7cn7BInV1D7IdqgOPn
+	qTf1B3AAzroAF7Wh74A7wR+oPxGgXq8=
+X-Google-Smtp-Source: AKy350bsdV9Ur2boVCXvT9oNi8nmHF5MxM418Jx8CRLxm4R12mVjddgyoAgO7Bh7uO05JDtrSd9B3A==
+X-Received: by 2002:a05:6214:230d:b0:56e:afe2:ebca with SMTP id gc13-20020a056214230d00b0056eafe2ebcamr21662462qvb.30.1679933219010;
+        Mon, 27 Mar 2023 09:06:59 -0700 (PDT)
+Received: from [192.168.2.155] (bras-base-smflon1825w-grc-06-174-88-54-55.dsl.bell.ca. [174.88.54.55])
+        by smtp.googlemail.com with ESMTPSA id u12-20020a0cec8c000000b005dd8b93458bsm3042371qvo.35.2023.03.27.09.06.58
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Mar 2023 09:06:58 -0700 (PDT)
+Message-ID: <12824671-88d6-a23e-466b-9564b96617d4@gmail.com>
+Date: Mon, 27 Mar 2023 12:06:57 -0400
 MIME-Version: 1.0
-X-OriginatorOrg: aero.org
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR09MB9126.namprd09.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6e8bac9-9fb7-4eeb-acc8-08db2edd4296
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Mar 2023 16:06:44.2426
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c8294700-c5a4-4ca1-a876-1457d39899fd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR09MB6321
-Message-ID-Hash: J3YBL7LIN4GDGUHFBTTDDEGMJCSNCACM
-X-Message-ID-Hash: J3YBL7LIN4GDGUHFBTTDDEGMJCSNCACM
-X-MailFrom: prvs=4436079e2=eugene.grayver@aero.org
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <MAXPR01MB35656AAAFC3637BA53236B80D68B9@MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <MAXPR01MB35656AAAFC3637BA53236B80D68B9@MAXPR01MB3565.INDPRD01.PROD.OUTLOOK.COM>
+Message-ID-Hash: USNO24F2TZIC554DM6H7755ZE5HPCEOJ
+X-Message-ID-Hash: USNO24F2TZIC554DM6H7755ZE5HPCEOJ
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Wideband IQ Daughterboard
+Subject: [USRP-users] Re: Timer loopback test failed! in usrp B210
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HE4TLICRSM64GPIRVYWQGFRFMXKJKP2P/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/USNO24F2TZIC554DM6H7755ZE5HPCEOJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8681447451999591282=="
+Content-Type: multipart/mixed; boundary="===============7990982437275251418=="
 
---===============8681447451999591282==
-Content-Language: en-US
+This is a multi-part message in MIME format.
+--===============7990982437275251418==
 Content-Type: multipart/alternative;
-	boundary="_000_SJ0PR09MB9126F7B69493DCF3A0A4B508EC8B9SJ0PR09MB9126namp_"
+ boundary="------------GEkMtxs7wxvH0lpFW3VQ0rfe"
+Content-Language: en-US
 
---_000_SJ0PR09MB9126F7B69493DCF3A0A4B508EC8B9SJ0PR09MB9126namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+This is a multi-part message in MIME format.
+--------------GEkMtxs7wxvH0lpFW3VQ0rfe
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-WWVzLCBhcyBldmlkZW5jZWQgYnkgVUJYLTE2MC4gIFgzMTAgY2FuIHN0cmVhbSAyMDAgTXNwcyBj
-b21wbGV4LCB3aGljaCBpcyBzdWZmaWNpZW50IGZvciAxNjAgTUh6IG9mIEJXLg0KDQoNCl9fX19f
-X19fX19fX19fX19fX19fX19fXw0KDQpFdWdlbmUgR3JheXZlciwgUGguRC4NCkFlcm9zcGFjZSBD
-b3JwLiwgUHJpbmNpcGFsIEVuZ2luZWVyDQpUZWw6IDMxMC4zMzYuMTI3NA0KX19fX19fX19fX19f
-X19fX19fX19fX19fDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBS
-b2JlcnQgTWNHd2llciA8cndtY2d3aWVyQGdtYWlsLmNvbT4NClNlbnQ6IFN1bmRheSwgTWFyY2gg
-MjYsIDIwMjMgNzo1MCBQTQ0KVG86IEJyaWFuIFBhZGFsaW5vIDxicGFkYWxpbm9AZ21haWwuY29t
-Pg0KQ2M6IEV1Z2VuZSBHcmF5dmVyIDxldWdlbmUuZ3JheXZlckBhZXJvLm9yZz47IHVzcnAtdXNl
-cnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVzZXJz
-XSBSZTogV2lkZWJhbmQgSVEgRGF1Z2h0ZXJib2FyZA0KDQpDYW4gdGhlICBleGlzdGluZyBmaXJt
-d2FyZSBzdXBwb3J0IHRoYXQgYmFuZHdpZHRoPyBUaGUgMTBHYnBzIEV0aGVybmV0IGNhbiBidXQg
-SSBhbSBub3Qgc3VyZSBhYm91dCB0aGUgcmVzdCBvZiB0aGUgVVNSUC4gSSBvd24gdHdvIG9mIHRo
-ZW0gYW5kIGhhdmUgbmV2ZXIgdHJpZWQgdG8gZG8gdGhhdC4NCg0KQm9iDQoNCg0KT24gV2VkLCBN
-YXIgMjIsIDIwMjMgYXQgOTo1OCBBTSBCcmlhbiBQYWRhbGlubyA8YnBhZGFsaW5vQGdtYWlsLmNv
-bTxtYWlsdG86YnBhZGFsaW5vQGdtYWlsLmNvbT4+IHdyb3RlOg0KWW91J3JlIHJpZ2h0IC0gSSBj
-b21wbGV0ZWx5IG1pc3NlZCB0aGF0IHBhcnQgb2YgdGhlIGVtYWlsLg0KDQpNeSBhcG9sb2dpZXMu
-DQoNCkJyaWFuDQoNCk9uIFR1ZSwgTWFyIDIxLCAyMDIzIGF0IDc6MTLigK9QTSBFdWdlbmUgR3Jh
-eXZlciA8ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc8bWFpbHRvOmV1Z2VuZS5ncmF5dmVyQGFlcm8u
-b3JnPj4gd3JvdGU6DQpZZXMsIGFzIHN0YXRlZCBpbiB0aGUgb3JpZ2luYWwgcG9zdCAnQmFzaWMt
-Ulggd2l0aCBhIG1pbmltdW0gb2YgMSBNSHonLiAgVGhlIERDIGlzIGN1dG9mZiBieSB0aGUgYmFs
-dW4gb24gdGhlIGJhc2ljUlggbWFraW5nIGl0IHVuc3VpdGFibGUgZm9yIElRLg0KDQoNCl9fX19f
-X19fX19fX19fX19fX19fX19fXw0KDQpFdWdlbmUgR3JheXZlciwgUGguRC4NCkFlcm9zcGFjZSBD
-b3JwLiwgUHJpbmNpcGFsIEVuZ2luZWVyDQpUZWw6IDMxMC4zMzYuMTI3NA0KX19fX19fX19fX19f
-X19fX19fX19fX19fDQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpGcm9tOiBC
-cmlhbiBQYWRhbGlubyA8YnBhZGFsaW5vQGdtYWlsLmNvbTxtYWlsdG86YnBhZGFsaW5vQGdtYWls
-LmNvbT4+DQpTZW50OiBUdWVzZGF5LCBNYXJjaCAyMSwgMjAyMyAzOjE4IFBNDQpUbzogRXVnZW5l
-IEdyYXl2ZXIgPGV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPG1haWx0bzpldWdlbmUuZ3JheXZlckBh
-ZXJvLm9yZz4+DQpDYzogdXNycC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFp
-bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPj4NClN1YmplY3Q6IFJlOiBbVVNSUC11c2Vy
-c10gV2lkZWJhbmQgSVEgRGF1Z2h0ZXJib2FyZA0KDQpPbiBUdWUsIE1hciAyMSwgMjAyMyBhdCA2
-OjEy4oCvUE0gRXVnZW5lIEdyYXl2ZXIgPGV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPG1haWx0bzpl
-dWdlbmUuZ3JheXZlckBhZXJvLm9yZz4+IHdyb3RlOg0KSGVsbG8sDQoNCkkgd2FudCB0byB1c2Ug
-YW4gZXh0ZXJuYWwgSVEgbWl4ZXIgd2l0aCBhbiBleHRlcm5hbCBMTy4gIE15IHNpZ25hbCBpcyAx
-NjAgTUh6IHdpZGUsIHdoaWNoIGZpdHMgbmljZWx5IGludG8gdGhlIG5vbWluYWwgY29tcGxleCAy
-MDAgTUh6IE55cXVpc3Qgb2YgdGhlIFgzMTAuICBVbmZvcnR1bmF0ZWx5IHRoZSBvbmx5IGRhdWdo
-dGVyYm9hcmRzIGZvciBkaXJlY3QgYWNjZXNzIHRvIHRoZSBBRENzIGFyZSBMRlJYIHdoaWNoIG1h
-eGVzIG91dCBhdCAzMCBNSHosIGFuZCB0aGUgQmFzaWMtUlggd2l0aCBhIG1pbmltdW0gb2YgMSBN
-SFouDQoNCkkgYW0gdGhpbmtpbmcgb2Ygc3Bpbm5pbmcgYSBjdXN0b20gZGF1Z2h0ZXIgYm9hcmQg
-ZGVyaXZlZCBmcm9tIExGUlggd2l0aCBhIHdpZGViYW5kIGRpZmZlcmVudGlhbCBkcml2ZXIgc3Vj
-aCBhcyBodHRwczovL3d3dy5hbmFsb2cuY29tL21lZGlhL2VuL3RlY2huaWNhbC1kb2N1bWVudGF0
-aW9uL2RhdGEtc2hlZXRzLzY0MDZmYy5wZGYgb3IgYWx0ZXJuYXRpdmVseSBqdXN0IHJlcGxhY2lu
-ZyB0aGUgY2hpcCBvbiBhbiBMRlJYIHNpbmNlIHRoZXNlIGFwcGVhciB0byBiZSBmb290cHJpbnQg
-Y29tcGF0aWJsZS4NCg0KU2VwYXJhdGVseSwgSSB3YXMgbG9va2luZyBhdCBMRlRYIHNjaGVtYXRp
-Y3MgYW5kIHRoZSBwYXJ0ICMgZm9yIHRoZSBhbXBsaWZpZXIgaXMgbm90IHNwZWNpZmllZC4gIENh
-biBzb21lYm9keSBhdCBFdHR1cy9OSSBzYXZlIG1lIHNvbWUgdGltZSBhbmQgbG9va3VwIHRoYXQg
-cGFydCAjLg0KDQpDb21tZW50cz8NCg0KSGF2ZSB5b3UgY29uc2lkZXJlZCB0aGUgQmFzaWNSWD8N
-Cg0KICBodHRwczovL3d3dy5ldHR1cy5jb20vYWxsLXByb2R1Y3RzL2Jhc2ljcngvDQogIGh0dHBz
-Oi8vZmlsZXMuZXR0dXMuY29tL3NjaGVtYXRpY3MvYmFzaWNfZGJzL0Jhc2ljUlgucGRmDQoNCkJy
-aWFuDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVVNS
-UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFpbHRv
-OnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFp
-bCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbTxtYWlsdG86dXNycC11c2Vycy1s
-ZWF2ZUBsaXN0cy5ldHR1cy5jb20+DQotLQ0KRHIuIFJvYmVydCBXIE1jR3dpZXIsIFBoLkQuDQpB
-ZmZpbGlhdGVkIEZhY3VsdHksIFZpcmdpbmlhIFRlY2gNCkFmZmlsaWF0ZWQgRmFjdWx0eSwgVW5p
-dmVyc2l0eSBvZiBTY3JhbnRvbg0KRm9ybWVyIEFSREMgTWVtYmVyIG9mIEJvYXJkDQpONEhZOiBB
-UlJMLCBUQVBSLCBBTVNBVCwgRUFSQywgQ1NWSEZTDQpTa3k6IEFBVlNPLCBTa3kzNjAsIGV4cGxv
-cmVzY3Uub3JnPGh0dHA6Ly9leHBsb3Jlc2N1Lm9yZz4sIFNreXNjcmFwZXJzDQo=
+On 27/03/2023 07:03, Sivanesh Kumar K wrote:
+> Dear team,
+>
+>
+> I am using usrpB210 vdoing some test ,uhd version is (tag: v4.4.0.0).=C2=
+=A0=20
+> when I was connected the board ,I am getting below error please help=20
+> me to resolve the issue.
+>
+> PHY] =C2=A0 Waiting for RUs to be configured ... RC.ru_mask:01
+> [PHY] =C2=A0 [INIT] nr_phy_init_RU() ru->num_gNB:1
+> [LIBCONFIG] device.recplay: 8/8 parameters successfully set, (8 to=20
+> default value)
+> [LIBCONFIG] device: 1/1 parameters successfully set, (1 to default valu=
+e)
+> [LIBCONFIG] loader: 2/2 parameters successfully set, (2 to default valu=
+e)
+> [LIBCONFIG] loader.oai_device: 2/2 parameters successfully set, (1 to=20
+> default value)
+> shlib_path liboai_device.so
+> [LOADER] library liboai_device.so successfully loaded
+> [HW] =C2=A0 openair0_cfg[0].sdr_addrs =3D=3D '(null)'
+> [HW] =C2=A0 openair0_cfg[0].clock_source =3D=3D '0' (internal =3D 0, ex=
+ternal =3D 1)
+> [HW] =C2=A0 UHD version 4.4.0.HEAD-0-g5fac246b (4.4.0)
+> [INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400;=20
+> UHD_4.4.0.HEAD-0-g5fac246b
+> [INFO] [B200] Loading firmware image:=20
+> /usr/local/share/uhd/images/usrp_b200_fw.hex...
+> [HW] =C2=A0 Found USRP b200
+> [INFO] [B200] Detected Device: B210
+> [INFO] [B200] Loading FPGA image:=20
+> /usr/local/share/uhd/images/usrp_b210_fpga.bin...
+> [INFO] [B200] Operating over USB 3.
+> [INFO] [B200] Detecting internal GPSDO....
+> [INFO] [GPS] No GPSDO found
+> [INFO] [B200] Initialize CODEC control...
+> [INFO] [B200] Initialize Radio control...
+> [INFO] [B200] Performing register loopback test...
+> [INFO] [B200] Register loopback test passed
+> [INFO] [B200] Performing register loopback test...
+> [INFO] [B200] Register loopback test passed
+> [INFO] [B200] Asking for clock rate 30.720000 MHz...
+> [INFO] [B200] Actually got clock rate 30.720000 MHz.
+> [HW] =C2=A0 Setting clock source to internal
+> [HW] =C2=A0 Setting time source to internal
+> -- Using calibration table: calib_table_b210_38
+> [INFO] [B200] Asking for clock rate 46.080000 MHz...
+> [INFO] [B200] Actually got clock rate 46.080000 MHz.
+> [WARNING] [CORES] Timer loopback test failed!
+> [WARNING] [CORES] Expecting clock rate: 46.08 MHz
+> Approximate clock rate: 0 MHz
+>
+> [HW] =C2=A0 cal 0: freq 3500000000.000000, offset 44.000000, diff=20
+> 119200000.000000
+> [HW] =C2=A0 cal 1: freq 2660000000.000000, offset 49.800000, diff=20
+> 959200000.000000
+> [HW] =C2=A0 cal 2: freq 2300000000.000000, offset 51.000000, diff=20
+> 1319200000.000000
+> [HW] =C2=A0 cal 3: freq 1880000000.000000, offset 53.000000, diff=20
+> 1739200000.000000
+> [HW] =C2=A0 cal 4: freq 816000000.000000, offset 57.000000, diff=20
+> 2803200000.000000
+> [HW] =C2=A0 RX Gain 0 115.000000 (44.000000) =3D> 71.000000 (max 76.000=
+000)
+> [HW] =C2=A0 USRP TX_GAIN:77.75 gain_range:89.75 tx_gain:12.00
+> [HW] =C2=A0 Actual master clock: 46.080000MHz...
+> [HW] =C2=A0 Actual clock source internal...
+> [HW] =C2=A0 Actual time source internal...
+> [HW] =C2=A0 setting rx channel 0
+> [HW] =C2=A0 RF board max packet size 1916, size for 100=C2=B5s jitter 4=
+608
+> [HW] =C2=A0 rx_max_num_samps 1916
+> [HW] =C2=A0 RX Channel 0
+> [HW] =C2=A0 =C2=A0 Actual RX sample rate: 46.080000MSps...
+> [HW] =C2=A0 =C2=A0 Actual RX frequency: 3.619200GHz...
+> [HW] =C2=A0 =C2=A0 Actual RX gain: 71.000000...
+> [HW] =C2=A0 =C2=A0 Actual RX bandwidth: 40.000000M...
+> [HW] =C2=A0 =C2=A0 Actual RX antenna: RX2...
+> [HW] =C2=A0 TX Channel 0
+> [HW] =C2=A0 =C2=A0 Actual TX sample rate: 46.080000MSps...
+> [HW] =C2=A0 =C2=A0 Actual TX frequency: 3.619200GHz...
+> [HW] =C2=A0 =C2=A0 Actual TX gain: 77.750000...
+> [HW] =C2=A0 =C2=A0 Actual TX bandwidth: 40.000000M...
+> [HW] =C2=A0 =C2=A0 Actual TX antenna: TX/RX...
+> [HW] =C2=A0 =C2=A0 Actual TX packet size: 1916
+> Using Device: Single USRP:
+> =C2=A0 Device: B-Series Device
+> =C2=A0 Mboard 0: B210
+> =C2=A0 RX Channel: 0
+> =C2=A0 =C2=A0 RX DSP: 0
+> =C2=A0 =C2=A0 RX Dboard: A
+> =C2=A0 =C2=A0 RX Subdev: FE-RX2
+> =C2=A0 RX Channel: 1
+> =C2=A0 =C2=A0 RX DSP: 1
+> =C2=A0 =C2=A0 RX Dboard: A
+> =C2=A0 =C2=A0 RX Subdev: FE-RX1
+> =C2=A0 TX Channel: 0
+> =C2=A0 =C2=A0 TX DSP: 0
+> =C2=A0 =C2=A0 TX Dboard: A
+> =C2=A0 =C2=A0 TX Subdev: FE-TX2
+> =C2=A0 TX Channel: 1
+> =C2=A0 =C2=A0 TX DSP: 1
+> =C2=A0 =C2=A0 TX Dboard: A
+> =C2=A0 =C2=A0 TX Subdev: FE-TX1
+>
+> [HW] =C2=A0 Device timestamp: 1.168859...
+> [HW] =C2=A0 [RAU] has loaded USRP B200 device.
+> setup_RU_buffers: frame_parms =3D 0x7f771c2af010
+> [PHY] =C2=A0 RU 0 Setting N_TA_offset to 600 samples (factor 1.500000, =
+UL=20
+> Freq 3600120, N_RB 106, mu 1)
+> [PHY] =C2=A0 Signaling main thread that RU 0 is ready, sl_ahead 6
+> waiting for sync=20
+> (ru_thread,-1/0x555dd422f2d4,0x555dd4b7e4c0,0x555dd4b7e480)
+> RC.ru_mask:00
+> [PHY] =C2=A0 RUs configured
+> ALL RUs READY!
+> RC.nb_RU:1
+> ALL RUs ready - init gNBs
+> Not NFAPI mode - call init_eNB_afterRU()
+> [PHY] =C2=A0 init_eNB_afterRU() RC.nb_nr_inst:1
+> [PHY] RC.nb_nr_CC[inst:0]:0x7f771bd75010
+> [PHY] =C2=A0 [gNB 0] phy_init_nr_gNB() About to wait for gNB to be conf=
+igured
+> [LIBCONFIG] loader.dfts: 2/2 parameters successfully set, (1 to=20
+> default value)
+> shlib_path libdfts.so
+> [LOADER] library libdfts.so successfully loaded
+> [LIBCONFIG] loader.ldpc: 2/2 parameters successfully set, (1 to=20
+> default value)
+> shlib_path libldpc.so
+> [LOADER] library libldpc.so successfully loaded
+> [PHY] =C2=A0 Initialise nr transport
+> [PHY] =C2=A0 Mapping RX ports from 1 RUs to gNB 0
+> [PHY] =C2=A0 gNB->num_RU:1
+> [PHY] =C2=A0 Attaching RU 0 antenna 0 to gNB antenna 0
+> create a thread for core -1
+> create a thread for core -1
+> create a thread for core -1
+> create a thread for core -1
+> create a thread for core -1
+> create a thread for core -1
+> create a thread for core -1
+> create a thread for core -1
+> waiting for sync=20
+> (L1_stats_thread,-1/0x555dd422f2d4,0x555dd4b7e4c0,0x555dd4b7e480)
+> [PHY] =C2=A0 Creating thread for TX reordering and dispatching to RU
+> ALL RUs ready - ALL gNBs ready
+> Sending sync to all threads
+> Entering ITTI signals handler
+> TYPE <CTRL-C> TO TERMINATE
+> got sync (L1_stats_thread)
+> got sync (ru_thread)
+> [HW] =C2=A0 current pps at 2.000000, starting streaming at 3.000000
+> [PHY] =C2=A0 RU 0 rf device ready
+> [PHY] =C2=A0 RU 0 RF started opp_enabled 0
+> sleep...
+>
+>
+> Please let me know any other details required
+>
+> Regards,
+> Sivaneshkumar K
+This looks like it's just a warning, and has no downstream=20
+consequences--but I don't know anything about OAI.
 
---_000_SJ0PR09MB9126F7B69493DCF3A0A4B508EC8B9SJ0PR09MB9126namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyIgc3R5bGU9
-ImRpc3BsYXk6bm9uZTsiPiBQIHttYXJnaW4tdG9wOjA7bWFyZ2luLWJvdHRvbTowO30gPC9zdHls
-ZT4NCjwvaGVhZD4NCjxib2R5IGRpcj0ibHRyIj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBD
-YWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNv
-bG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsi
-IGNsYXNzPSJlbGVtZW50VG9Qcm9vZiI+DQpZZXMsIGFzIGV2aWRlbmNlZCBieSBVQlgtMTYwLiZu
-YnNwOyBYMzEwIGNhbiBzdHJlYW0gMjAwIE1zcHMgY29tcGxleCwgd2hpY2ggaXMgc3VmZmljaWVu
-dCBmb3IgMTYwIE1IeiBvZiBCVy48L2Rpdj4NCjxkaXYgY2xhc3M9ImVsZW1lbnRUb1Byb29mIj4N
-CjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBDYWxpYnJpLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5z
-LXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwv
-ZGl2Pg0KPGRpdiBpZD0iU2lnbmF0dXJlIj4NCjxkaXY+DQo8ZGl2IGlkPSJkaXZ0YWdkZWZhdWx0
-d3JhcHBlciIgZGlyPSJsdHIiIHN0eWxlPSJjb2xvcjpyZ2IoMCwwLDApOyBmb250LWZhbWlseTpD
-YWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgYmFja2dy
-b3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NCjxwPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFj
-azsgZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjsgZm9udC1zaXplOjEw
-cHQiPjxzcGFuIGlkPSJtcy1ydGVyYW5nZXBhc3RlLXN0YXJ0Ij48L3NwYW4+PHNwYW4gc3R5bGU9
-ImNvbG9yOnJnYigwLDAsMCk7IGZvbnQtZmFtaWx5OkFyaWFsLHNhbnMtc2VyaWY7IGZvbnQtc2l6
-ZToxMy4zM3B4Ij5fX19fX19fX19fX19fX19fX19fX19fX188L3NwYW4+PHNwYW4gaWQ9Im1zLXJ0
-ZXJhbmdlcGFzdGUtZW5kIj48L3NwYW4+PGJyPg0KPC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxl
-PSJjb2xvcjpibGFjazsgZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjsg
-Zm9udC1zaXplOjEwcHQiPkV1Z2VuZSBHcmF5dmVyLCBQaC5ELjxicj4NCkFlcm9zcGFjZSBDb3Jw
-LiwgUHJpbmNpcGFsIEVuZ2luZWVyPGJyPg0KVGVsOiAzMTAuMzM2LjEyNzQ8YnI+DQpfX19fX19f
-X19fX19fX19fX19fX19fX188L3NwYW4+PGJyPg0KPC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPC9kaXY+DQo8ZGl2IGlkPSJhcHBlbmRvbnNlbmQiPjwvZGl2Pg0KPGhyIHN0eWxlPSJkaXNw
-bGF5OmlubGluZS1ibG9jazt3aWR0aDo5OCUiIHRhYmluZGV4PSItMSI+DQo8ZGl2IGlkPSJkaXZS
-cGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwgc2Fucy1zZXJpZiIgc3R5
-bGU9ImZvbnQtc2l6ZToxMXB0IiBjb2xvcj0iIzAwMDAwMCI+PGI+RnJvbTo8L2I+IFJvYmVydCBN
-Y0d3aWVyICZsdDtyd21jZ3dpZXJAZ21haWwuY29tJmd0Ozxicj4NCjxiPlNlbnQ6PC9iPiBTdW5k
-YXksIE1hcmNoIDI2LCAyMDIzIDc6NTAgUE08YnI+DQo8Yj5Ubzo8L2I+IEJyaWFuIFBhZGFsaW5v
-ICZsdDticGFkYWxpbm9AZ21haWwuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4gRXVnZW5lIEdyYXl2
-ZXIgJmx0O2V1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnJmd0OzsgdXNycC11c2VycyAmbHQ7dXNycC11
-c2Vyc0BsaXN0cy5ldHR1cy5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbVVNSUC11
-c2Vyc10gUmU6IFdpZGViYW5kIElRIERhdWdodGVyYm9hcmQ8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwv
-ZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdiBkaXI9ImF1dG8iPkNhbiB0aGUgJm5ic3A7ZXhpc3Rp
-bmcgZmlybXdhcmUgc3VwcG9ydCB0aGF0IGJhbmR3aWR0aD8gVGhlIDEwR2JwcyBFdGhlcm5ldCBj
-YW4gYnV0IEkgYW0gbm90IHN1cmUgYWJvdXQgdGhlIHJlc3Qgb2YgdGhlIFVTUlAuIEkgb3duIHR3
-byBvZiB0aGVtIGFuZCBoYXZlIG5ldmVyIHRyaWVkIHRvIGRvIHRoYXQuJm5ic3A7PC9kaXY+DQo8
-ZGl2IGRpcj0iYXV0byI+PGJyPg0KPC9kaXY+DQo8ZGl2IGRpcj0iYXV0byI+Qm9iPC9kaXY+DQo8
-ZGl2IGRpcj0iYXV0byI+PGJyPg0KPC9kaXY+DQo8ZGl2Pjxicj4NCjxkaXYgY2xhc3M9InhfZ21h
-aWxfcXVvdGUiPg0KPGRpdiBkaXI9Imx0ciIgY2xhc3M9InhfZ21haWxfYXR0ciI+T24gV2VkLCBN
-YXIgMjIsIDIwMjMgYXQgOTo1OCBBTSBCcmlhbiBQYWRhbGlubyAmbHQ7PGEgaHJlZj0ibWFpbHRv
-OmJwYWRhbGlub0BnbWFpbC5jb20iPmJwYWRhbGlub0BnbWFpbC5jb208L2E+Jmd0OyB3cm90ZTo8
-YnI+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIGNsYXNzPSJ4X2dtYWlsX3F1b3RlIiBzdHlsZT0ibWFy
-Z2luOjAgMCAwIC44ZXg7IGJvcmRlci1sZWZ0OjFweCAjY2NjIHNvbGlkOyBwYWRkaW5nLWxlZnQ6
-MWV4Ij4NCjxkaXYgZGlyPSJsdHIiPllvdSdyZSByaWdodCAtIEkgY29tcGxldGVseSBtaXNzZWQg
-dGhhdCBwYXJ0IG9mIHRoZSBlbWFpbC4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2Pk15IGFwb2xv
-Z2llcy48L2Rpdj4NCjwvZGl2Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2Pjxicj4NCkJyaWFuPC9k
-aXY+DQo8L2Rpdj4NCjxicj4NCjxkaXYgY2xhc3M9InhfZ21haWxfcXVvdGUiPg0KPGRpdiBkaXI9
-Imx0ciIgY2xhc3M9InhfZ21haWxfYXR0ciI+T24gVHVlLCBNYXIgMjEsIDIwMjMgYXQgNzoxMuKA
-r1BNIEV1Z2VuZSBHcmF5dmVyICZsdDs8YSBocmVmPSJtYWlsdG86ZXVnZW5lLmdyYXl2ZXJAYWVy
-by5vcmciIHRhcmdldD0iX2JsYW5rIj5ldWdlbmUuZ3JheXZlckBhZXJvLm9yZzwvYT4mZ3Q7IHdy
-b3RlOjxicj4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgY2xhc3M9InhfZ21haWxfcXVvdGUiIHN0eWxl
-PSJtYXJnaW46MHB4IDBweCAwcHggMC44ZXg7IGJvcmRlci1sZWZ0OjFweCBzb2xpZCByZ2IoMjA0
-LDIwNCwyMDQpOyBwYWRkaW5nLWxlZnQ6MWV4Ij4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj4NCjxk
-aXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7
-IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigy
-NTUsMjU1LDI1NSkiPg0KWWVzLCBhcyBzdGF0ZWQgaW4gdGhlIG9yaWdpbmFsIHBvc3QgJzxzcGFu
-IHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSk7IGRpc3BsYXk6aW5saW5l
-Ij5CYXNpYy1SWCB3aXRoIGEgbWluaW11bSBvZiAxIE1IeicuJm5ic3A7IFRoZSBEQyBpcyBjdXRv
-ZmYgYnkgdGhlIGJhbHVuIG9uIHRoZSBiYXNpY1JYIG1ha2luZyBpdCB1bnN1aXRhYmxlIGZvciBJ
-US48L3NwYW4+PC9kaXY+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxB
-cmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAs
-MCkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IGlkPSJ4X21fLTM3NTI3Mjk1NzA4NDUzODU4MjdtXzY2
-Mjc0MTM5MDYzMzg0MjQ4MjlTaWduYXR1cmUiPg0KPGRpdj4NCjxkaXYgaWQ9InhfbV8tMzc1Mjcy
-OTU3MDg0NTM4NTgyN21fNjYyNzQxMzkwNjMzODQyNDgyOWRpdnRhZ2RlZmF1bHR3cmFwcGVyIiBk
-aXI9Imx0ciIgc3R5bGU9ImNvbG9yOnJnYigwLDAsMCk7IGZvbnQtZmFtaWx5OkNhbGlicmksQXJp
-YWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBiYWNrZ3JvdW5kLWNvbG9y
-OnJnYigyNTUsMjU1LDI1NSkiPg0KPHA+PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrOyBmb250LWZh
-bWlseTpBcmlhbCxzYW5zLXNlcmlmOyBmb250LXNpemU6MTBwdCI+PHNwYW4gaWQ9InhfbV8tMzc1
-MjcyOTU3MDg0NTM4NTgyN21fNjYyNzQxMzkwNjMzODQyNDgyOW1zLXJ0ZXJhbmdlcGFzdGUtc3Rh
-cnQiPjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDAsMCwwKTsgZm9udC1mYW1pbHk6QXJp
-YWwsc2Fucy1zZXJpZjsgZm9udC1zaXplOjEzLjMzcHgiPl9fX19fX19fX19fX19fX19fX19fX19f
-Xzwvc3Bhbj48c3BhbiBpZD0ieF9tXy0zNzUyNzI5NTcwODQ1Mzg1ODI3bV82NjI3NDEzOTA2MzM4
-NDI0ODI5bXMtcnRlcmFuZ2VwYXN0ZS1lbmQiPjwvc3Bhbj48YnI+DQo8L3NwYW4+PC9wPg0KPHA+
-PHNwYW4gc3R5bGU9ImNvbG9yOmJsYWNrOyBmb250LWZhbWlseTpBcmlhbCxzYW5zLXNlcmlmOyBm
-b250LXNpemU6MTBwdCI+RXVnZW5lIEdyYXl2ZXIsIFBoLkQuPGJyPg0KQWVyb3NwYWNlIENvcnAu
-LCBQcmluY2lwYWwgRW5naW5lZXI8YnI+DQpUZWw6IDMxMC4zMzYuMTI3NDxicj4NCl9fX19fX19f
-X19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
-DQo8L2Rpdj4NCjxkaXYgaWQ9InhfbV8tMzc1MjcyOTU3MDg0NTM4NTgyN21fNjYyNzQxMzkwNjMz
-ODQyNDgyOWFwcGVuZG9uc2VuZCI+PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxp
-YnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdi
-KDAsMCwwKSI+DQo8YnI+DQo8L2Rpdj4NCjxociBzdHlsZT0iZGlzcGxheTppbmxpbmUtYmxvY2s7
-IHdpZHRoOjk4JSI+DQo8ZGl2IGlkPSJ4X21fLTM3NTI3Mjk1NzA4NDUzODU4MjdtXzY2Mjc0MTM5
-MDYzMzg0MjQ4MjlkaXZScGx5RndkTXNnIiBkaXI9Imx0ciI+PGZvbnQgZmFjZT0iQ2FsaWJyaSwg
-c2Fucy1zZXJpZiIgY29sb3I9IiMwMDAwMDAiIHN0eWxlPSJmb250LXNpemU6MTFwdCI+PGI+RnJv
-bTo8L2I+IEJyaWFuIFBhZGFsaW5vICZsdDs8YSBocmVmPSJtYWlsdG86YnBhZGFsaW5vQGdtYWls
-LmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmJwYWRhbGlub0BnbWFpbC5jb208L2E+Jmd0Ozxicj4NCjxi
-PlNlbnQ6PC9iPiBUdWVzZGF5LCBNYXJjaCAyMSwgMjAyMyAzOjE4IFBNPGJyPg0KPGI+VG86PC9i
-PiBFdWdlbmUgR3JheXZlciAmbHQ7PGEgaHJlZj0ibWFpbHRvOmV1Z2VuZS5ncmF5dmVyQGFlcm8u
-b3JnIiB0YXJnZXQ9Il9ibGFuayI+ZXVnZW5lLmdyYXl2ZXJAYWVyby5vcmc8L2E+Jmd0Ozxicj4N
-CjxiPkNjOjwvYj4gdXNycC11c2VycyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlz
-dHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208
-L2E+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW1VTUlAtdXNlcnNdIFdpZGViYW5kIElR
-IERhdWdodGVyYm9hcmQ8L2ZvbnQ+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0K
-PGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj5PbiBUdWUsIE1hciAyMSwgMjAyMyBhdCA2
-OjEy4oCvUE0gRXVnZW5lIEdyYXl2ZXIgJmx0OzxhIGhyZWY9Im1haWx0bzpldWdlbmUuZ3JheXZl
-ckBhZXJvLm9yZyIgdGFyZ2V0PSJfYmxhbmsiPmV1Z2VuZS5ncmF5dmVyQGFlcm8ub3JnPC9hPiZn
-dDsgd3JvdGU6PGJyPg0KPC9kaXY+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbjow
-cHggMHB4IDBweCAwLjhleDsgYm9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7
-IHBhZGRpbmctbGVmdDoxZXgiPg0KPGRpdj4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBzdHlsZT0i
-Zm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXpl
-OjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1
-KSI+DQpIZWxsbyw8L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGlicmksQXJpYWws
-SGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2IoMCwwLDApOyBi
-YWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0
-eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250
-LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1
-NSwyNTUpIj4NCkkgd2FudCB0byB1c2UgYW4gZXh0ZXJuYWwgSVEgbWl4ZXIgd2l0aCBhbiBleHRl
-cm5hbCBMTy4mbmJzcDsgTXkgc2lnbmFsIGlzIDE2MCBNSHogd2lkZSwgd2hpY2ggZml0cyBuaWNl
-bHkgaW50byB0aGUgbm9taW5hbCBjb21wbGV4IDIwMCBNSHogTnlxdWlzdCBvZiB0aGUgWDMxMC4m
-bmJzcDsgVW5mb3J0dW5hdGVseSB0aGUgb25seSBkYXVnaHRlcmJvYXJkcyBmb3IgZGlyZWN0IGFj
-Y2VzcyB0byB0aGUgQURDcyBhcmUgTEZSWCB3aGljaCBtYXhlcyBvdXQgYXQgMzAgTUh6LA0KIGFu
-ZCB0aGUgQmFzaWMtUlggd2l0aCBhIG1pbmltdW0gb2YgMSBNSFouPC9kaXY+DQo8ZGl2IHN0eWxl
-PSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNp
-emU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwy
-NTUpIj4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlh
-bCxIZWx2ZXRpY2Esc2Fucy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7
-IGJhY2tncm91bmQtY29sb3I6cmdiKDI1NSwyNTUsMjU1KSI+DQpJIGFtIHRoaW5raW5nIG9mIHNw
-aW5uaW5nIGEgY3VzdG9tIGRhdWdodGVyIGJvYXJkIGRlcml2ZWQgZnJvbSBMRlJYIHdpdGggYSB3
-aWRlYmFuZCBkaWZmZXJlbnRpYWwgZHJpdmVyIHN1Y2ggYXMmbmJzcDs8YSBocmVmPSJodHRwczov
-L3d3dy5hbmFsb2cuY29tL21lZGlhL2VuL3RlY2huaWNhbC1kb2N1bWVudGF0aW9uL2RhdGEtc2hl
-ZXRzLzY0MDZmYy5wZGYiIGlkPSJ4X21fLTM3NTI3Mjk1NzA4NDUzODU4MjdtXzY2Mjc0MTM5MDYz
-Mzg0MjQ4Mjl4X21fMjkzNjQ4NjUzNzgzMzM1MDJMUGxuazg4NTg4MyIgdGFyZ2V0PSJfYmxhbmsi
-Pmh0dHBzOi8vd3d3LmFuYWxvZy5jb20vbWVkaWEvZW4vdGVjaG5pY2FsLWRvY3VtZW50YXRpb24v
-ZGF0YS1zaGVldHMvNjQwNmZjLnBkZjwvYT4mbmJzcDtvcg0KIGFsdGVybmF0aXZlbHkganVzdCBy
-ZXBsYWNpbmcgdGhlIGNoaXAgb24gYW4gTEZSWCBzaW5jZSB0aGVzZSBhcHBlYXIgdG8gYmUgZm9v
-dHByaW50IGNvbXBhdGlibGUuJm5ic3A7PC9kaXY+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpD
-YWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6
-cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpyZ2IoMjU1LDI1NSwyNTUpIj4NCjxicj4NCjwv
-ZGl2Pg0KPGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6Q2FsaWJyaSxBcmlhbCxIZWx2ZXRpY2Esc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOjEycHQ7IGNvbG9yOnJnYigwLDAsMCk7IGJhY2tncm91bmQtY29s
-b3I6cmdiKDI1NSwyNTUsMjU1KSI+DQpTZXBhcmF0ZWx5LCBJIHdhcyBsb29raW5nIGF0IExGVFgg
-c2NoZW1hdGljcyBhbmQgdGhlIHBhcnQgIyBmb3IgdGhlIGFtcGxpZmllciBpcyBub3Qgc3BlY2lm
-aWVkLiZuYnNwOyBDYW4gc29tZWJvZHkgYXQgRXR0dXMvTkkgc2F2ZSBtZSBzb21lIHRpbWUgYW5k
-IGxvb2t1cCB0aGF0IHBhcnQgIy48L2Rpdj4NCjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OkNhbGli
-cmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7IGZvbnQtc2l6ZToxMnB0OyBjb2xvcjpyZ2Io
-MCwwLDApOyBiYWNrZ3JvdW5kLWNvbG9yOnJnYigyNTUsMjU1LDI1NSkiPg0KPGJyPg0KPC9kaXY+
-DQo8ZGl2IHN0eWxlPSJmb250LWZhbWlseTpDYWxpYnJpLEFyaWFsLEhlbHZldGljYSxzYW5zLXNl
-cmlmOyBmb250LXNpemU6MTJwdDsgY29sb3I6cmdiKDAsMCwwKTsgYmFja2dyb3VuZC1jb2xvcjpy
-Z2IoMjU1LDI1NSwyNTUpIj4NCkNvbW1lbnRzPzwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYmxv
-Y2txdW90ZT4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkhhdmUgeW91IGNvbnNpZGVyZWQgdGhl
-IEJhc2ljUlg/PC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj4mbmJzcDsmbmJzcDs8YSBo
-cmVmPSJodHRwczovL3d3dy5ldHR1cy5jb20vYWxsLXByb2R1Y3RzL2Jhc2ljcngvIiB0YXJnZXQ9
-Il9ibGFuayI+aHR0cHM6Ly93d3cuZXR0dXMuY29tL2FsbC1wcm9kdWN0cy9iYXNpY3J4LzwvYT48
-L2Rpdj4NCjxkaXY+Jm5ic3A7Jm5ic3A7PGEgaHJlZj0iaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20v
-c2NoZW1hdGljcy9iYXNpY19kYnMvQmFzaWNSWC5wZGYiIHRhcmdldD0iX2JsYW5rIj5odHRwczov
-L2ZpbGVzLmV0dHVzLmNvbS9zY2hlbWF0aWNzL2Jhc2ljX2Ricy9CYXNpY1JYLnBkZjwvYT48L2Rp
-dj4NCjxkaXY+PGJyPg0KPC9kaXY+DQo8ZGl2PkJyaWFuPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPC9kaXY+DQpfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxicj4NClVTUlAtdXNlcnMgbWFp
-bGluZyBsaXN0IC0tIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIg
-dGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+PGJyPg0KVG8g
-dW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vycy1s
-ZWF2ZUBsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2JsYW5rIj4NCnVzcnAtdXNlcnMtbGVhdmVA
-bGlzdHMuZXR0dXMuY29tPC9hPjxicj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPC9kaXY+DQot
-LSA8YnI+DQo8ZGl2IGRpcj0ibHRyIiBjbGFzcz0ieF9nbWFpbF9zaWduYXR1cmUiIGRhdGEtc21h
-cnRtYWlsPSJnbWFpbF9zaWduYXR1cmUiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRy
-Ij4NCjxkaXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxk
-aXYgZGlyPSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgZGly
-PSJsdHIiPg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXYgZGlyPSJsdHIi
-Pg0KPGRpdiBkaXI9Imx0ciI+DQo8ZGl2IGRpcj0ibHRyIiBzdHlsZT0iZm9udC1zaXplOnNtYWxs
-Ij48c3BhbiBzdHlsZT0iY29sb3I6cmdiKDgwLDAsODApIj5Eci4gUm9iZXJ0IFcgTWNHd2llciwg
-UGguRC48L3NwYW4+PGJyIHN0eWxlPSJjb2xvcjpyZ2IoODAsMCw4MCkiPg0KQWZmaWxpYXRlZCZu
-YnNwOzxzcGFuIHN0eWxlPSJjb2xvcjpyZ2IoODAsMCw4MCkiPkZhY3VsdHksIFZpcmdpbmlhIFRl
-Y2g8L3NwYW4+PC9kaXY+DQo8ZGl2IGRpcj0ibHRyIiBzdHlsZT0iZm9udC1zaXplOnNtYWxsIj5B
-ZmZpbGlhdGVkIEZhY3VsdHksIFVuaXZlcnNpdHkgb2YgU2NyYW50b248YnIgc3R5bGU9ImNvbG9y
-OnJnYig4MCwwLDgwKSI+DQo8c3BhbiBzdHlsZT0iY29sb3I6cmdiKDgwLDAsODApIj5Gb3JtZXIg
-QVJEQyBNZW1iZXIgb2YgQm9hcmQ8L3NwYW4+PGJyIHN0eWxlPSJjb2xvcjpyZ2IoODAsMCw4MCki
-Pg0KPHNwYW4gc3R5bGU9ImNvbG9yOnJnYig4MCwwLDgwKSI+TjRIWTogQVJSTCwgVEFQUiwgQU1T
-QVQsIEVBUkMsIENTVkhGUzwvc3Bhbj48YnIgc3R5bGU9ImNvbG9yOnJnYig4MCwwLDgwKSI+DQo8
-c3BhbiBzdHlsZT0iY29sb3I6cmdiKDgwLDAsODApIj5Ta3k6IEFBVlNPLCBTa3kzNjAsIDxhIGhy
-ZWY9Imh0dHA6Ly9leHBsb3Jlc2N1Lm9yZyIgdGFyZ2V0PSJfYmxhbmsiPg0KZXhwbG9yZXNjdS5v
-cmc8L2E+LCBTa3lzY3JhcGVyczwvc3Bhbj48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
-ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwv
-aHRtbD4NCg==
+You could try falling back to an older version of UHD--perhaps 4.1 and=20
+see if this warning goes away.
 
---_000_SJ0PR09MB9126F7B69493DCF3A0A4B508EC8B9SJ0PR09MB9126namp_--
+I assume that the OAI configuration is only configuring one channel?=C2=A0=
+=C2=A0=20
+On the B2XX, for two channels, you can't
+ =C2=A0 have a clock higher than 32MHz.
 
---===============8681447451999591282==
+
+>
+> Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message, including=20
+> any attachments, is for the sole use of the intended recipient(s) and=20
+> may contain proprietary confidential or privileged information or=20
+> otherwise be protected by law. Any unauthorized review, use,=20
+> disclosure or distribution is prohibited. If you are not the intended=20
+> recipient, please notify the sender and destroy all copies and the=20
+> original message.
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+
+--------------GEkMtxs7wxvH0lpFW3VQ0rfe
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 27/03/2023 07:03, Sivanesh Kumar K
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:MAXPR01MB35656AAAFC3637BA53236B80D68B9@MAXPR01MB3565.INDPRD01=
+.PROD.OUTLOOK.COM">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
+rgin-bottom:0;}</style>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof">
+        Dear team,</div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0">
+        I am using usrpB210 vdoing some test ,uhd version is (tag:
+        v4.4.0.0).=C2=A0 when I was connected the board ,I am getting bel=
+ow
+        error please help me to resolve the issue.</div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0 ContentPasted1=
+">
+        PHY] =C2=A0 Waiting for RUs to be configured ... RC.ru_mask:01
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 [INIT] nr_phy_init_RU(=
+)
+          ru-&gt;num_gNB:1 </div>
+        <div class=3D"ContentPasted1">[LIBCONFIG] device.recplay: 8/8
+          parameters successfully set, (8 to default value)</div>
+        <div class=3D"ContentPasted1">[LIBCONFIG] device: 1/1 parameters
+          successfully set, (1 to default value)</div>
+        <div class=3D"ContentPasted1">[LIBCONFIG] loader: 2/2 parameters
+          successfully set, (2 to default value)</div>
+        <div class=3D"ContentPasted1">[LIBCONFIG] loader.oai_device: 2/2
+          parameters successfully set, (1 to default value)</div>
+        <div class=3D"ContentPasted1">shlib_path liboai_device.so</div>
+        <div class=3D"ContentPasted1">[LOADER] library liboai_device.so
+          successfully loaded</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 openair0_cfg[0].sdr_add=
+rs =3D=3D
+          '(null)'</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 openair0_cfg[0].clock_s=
+ource
+          =3D=3D '0' (internal =3D 0, external =3D 1)</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 UHD version
+          4.4.0.HEAD-0-g5fac246b (4.4.0)</div>
+        <div class=3D"ContentPasted1">[INFO] [UHD] linux; GNU C++ version
+          11.3.0; Boost_107400; UHD_4.4.0.HEAD-0-g5fac246b</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Loading firmware
+          image: /usr/local/share/uhd/images/usrp_b200_fw.hex...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 Found USRP b200</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Detected Device: B210=
+</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Loading FPGA image:
+          /usr/local/share/uhd/images/usrp_b210_fpga.bin...</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Operating over USB 3.=
+</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Detecting internal
+          GPSDO.... </div>
+        <div class=3D"ContentPasted1">[INFO] [GPS] No GPSDO found</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Initialize CODEC
+          control...</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Initialize Radio
+          control...</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Performing register
+          loopback test... </div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Register loopback tes=
+t
+          passed</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Performing register
+          loopback test... </div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Register loopback tes=
+t
+          passed</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Asking for clock rate
+          30.720000 MHz... </div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Actually got clock
+          rate 30.720000 MHz.</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 Setting clock source to
+          internal</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 Setting time source to
+          internal</div>
+        <div class=3D"ContentPasted1">-- Using calibration table:
+          calib_table_b210_38</div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Asking for clock rate
+          46.080000 MHz... </div>
+        <div class=3D"ContentPasted1">[INFO] [B200] Actually got clock
+          rate 46.080000 MHz.</div>
+        <div class=3D"ContentPasted1"><span style=3D"background-color:
+            rgb(255, 255, 0);">[WARNING] [CORES] Timer loopback test
+            failed!</span></div>
+        <div class=3D"ContentPasted1"><span style=3D"background-color:
+            rgb(255, 255, 0);">[</span><span style=3D"background-color:
+            rgb(255, 255, 0);">WARNING] [CORES] Expecting clock rate:
+            46.08 MHz</span></div>
+        <div class=3D"ContentPasted1"><span style=3D"background-color:
+            rgb(255, 255, 0);">Approximate clock rate: 0 MHz</span></div>
+        <div><br class=3D"ContentPasted1">
+        </div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 cal 0: freq
+          3500000000.000000, offset 44.000000, diff 119200000.000000</div=
+>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 cal 1: freq
+          2660000000.000000, offset 49.800000, diff 959200000.000000</div=
+>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 cal 2: freq
+          2300000000.000000, offset 51.000000, diff 1319200000.000000</di=
+v>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 cal 3: freq
+          1880000000.000000, offset 53.000000, diff 1739200000.000000</di=
+v>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 cal 4: freq 816000000.0=
+00000,
+          offset 57.000000, diff 2803200000.000000</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 RX Gain 0 115.000000
+          (44.000000) =3D&gt; 71.000000 (max 76.000000)</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 USRP TX_GAIN:77.75
+          gain_range:89.75 tx_gain:12.00</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 Actual master clock:
+          46.080000MHz...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 Actual clock source
+          internal...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 Actual time source
+          internal...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 setting rx channel 0</d=
+iv>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 RF board max packet siz=
+e
+          1916, size for 100=C2=B5s jitter 4608
+        </div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 rx_max_num_samps 1916</=
+div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 RX Channel 0</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual RX sample=
+ rate:
+          46.080000MSps...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual RX freque=
+ncy:
+          3.619200GHz...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual RX gain:
+          71.000000...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual RX bandwi=
+dth:
+          40.000000M...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual RX antenn=
+a: RX2...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 TX Channel 0</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual TX sample=
+ rate:
+          46.080000MSps...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual TX freque=
+ncy:
+          3.619200GHz...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual TX gain:
+          77.750000...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual TX bandwi=
+dth:
+          40.000000M...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual TX antenn=
+a: TX/RX...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 =C2=A0 Actual TX packet=
+ size: 1916</div>
+        <div class=3D"ContentPasted1">Using Device: Single USRP:</div>
+        <div class=3D"ContentPasted1">=C2=A0 Device: B-Series Device</div=
+>
+        <div class=3D"ContentPasted1">=C2=A0 Mboard 0: B210</div>
+        <div class=3D"ContentPasted1">=C2=A0 RX Channel: 0</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 RX DSP: 0</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 RX Dboard: A</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 RX Subdev: FE-RX2</di=
+v>
+        <div class=3D"ContentPasted1">=C2=A0 RX Channel: 1</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 RX DSP: 1</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 RX Dboard: A</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 RX Subdev: FE-RX1</di=
+v>
+        <div class=3D"ContentPasted1">=C2=A0 TX Channel: 0</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 TX DSP: 0</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 TX Dboard: A</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 TX Subdev: FE-TX2</di=
+v>
+        <div class=3D"ContentPasted1">=C2=A0 TX Channel: 1</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 TX DSP: 1</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 TX Dboard: A</div>
+        <div class=3D"ContentPasted1">=C2=A0 =C2=A0 TX Subdev: FE-TX1</di=
+v>
+        <div><br class=3D"ContentPasted1">
+        </div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 Device timestamp: 1.168=
+859...</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 [RAU] has loaded USRP B=
+200
+          device.</div>
+        <div class=3D"ContentPasted1">setup_RU_buffers: frame_parms =3D
+          0x7f771c2af010</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 RU 0 Setting N_TA_offs=
+et to
+          600 samples (factor 1.500000, UL Freq 3600120, N_RB 106, mu 1)<=
+/div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 Signaling main thread =
+that
+          RU 0 is ready, sl_ahead 6</div>
+        <div class=3D"ContentPasted1">waiting for sync
+          (ru_thread,-1/0x555dd422f2d4,0x555dd4b7e4c0,0x555dd4b7e480)</di=
+v>
+        <div class=3D"ContentPasted1">RC.ru_mask:00</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 RUs configured</div>
+        <div class=3D"ContentPasted1">ALL RUs READY!</div>
+        <div class=3D"ContentPasted1">RC.nb_RU:1</div>
+        <div class=3D"ContentPasted1">ALL RUs ready - init gNBs</div>
+        <div class=3D"ContentPasted1">Not NFAPI mode - call
+          init_eNB_afterRU()</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 init_eNB_afterRU()
+          RC.nb_nr_inst:1</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0
+          RC.nb_nr_CC[inst:0]:0x7f771bd75010</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 [gNB 0] phy_init_nr_gN=
+B()
+          About to wait for gNB to be configured</div>
+        <div class=3D"ContentPasted1">[LIBCONFIG] loader.dfts: 2/2
+          parameters successfully set, (1 to default value)</div>
+        <div class=3D"ContentPasted1">shlib_path libdfts.so</div>
+        <div class=3D"ContentPasted1">[LOADER] library libdfts.so
+          successfully loaded</div>
+        <div class=3D"ContentPasted1">[LIBCONFIG] loader.ldpc: 2/2
+          parameters successfully set, (1 to default value)</div>
+        <div class=3D"ContentPasted1">shlib_path libldpc.so</div>
+        <div class=3D"ContentPasted1">[LOADER] library libldpc.so
+          successfully loaded</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 Initialise nr transpor=
+t</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 Mapping RX ports from =
+1 RUs
+          to gNB 0</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 gNB-&gt;num_RU:1</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 Attaching RU 0 antenna=
+ 0 to
+          gNB antenna 0</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">create a thread for core -1</div>
+        <div class=3D"ContentPasted1">waiting for sync
+          (L1_stats_thread,-1/0x555dd422f2d4,0x555dd4b7e4c0,0x555dd4b7e48=
+0)</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 Creating thread for TX
+          reordering and dispatching to RU</div>
+        <div class=3D"ContentPasted1">ALL RUs ready - ALL gNBs ready</div=
+>
+        <div class=3D"ContentPasted1">Sending sync to all threads</div>
+        <div class=3D"ContentPasted1">Entering ITTI signals handler</div>
+        <div class=3D"ContentPasted1">TYPE &lt;CTRL-C&gt; TO TERMINATE</d=
+iv>
+        <div class=3D"ContentPasted1">got sync (L1_stats_thread)</div>
+        <div class=3D"ContentPasted1">got sync (ru_thread)</div>
+        <div class=3D"ContentPasted1">[HW] =C2=A0 current pps at 2.000000=
+,
+          starting streaming at 3.000000</div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 RU 0 rf device ready</=
+div>
+        <div class=3D"ContentPasted1">[PHY] =C2=A0 RU 0 RF started opp_en=
+abled
+          0</div>
+        <div class=3D"ContentPasted1">sleep...</div>
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0 ContentPasted1=
+">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0 ContentPasted1=
+">
+        Please let me know any other details required</div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0 ContentPasted1=
+">
+        <br>
+      </div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0 ContentPasted1=
+">
+        Regards,</div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0 ContentPasted1=
+">
+        Sivaneshkumar K<br>
+      </div>
+    </blockquote>
+    This looks like it's just a warning, and has no downstream
+    consequences--but I don't know anything about OAI.<br>
+    <br>
+    <br>
+    You could try falling back to an older version of UHD--perhaps 4.1
+    and see if this warning goes away.<br>
+    <br>
+    I assume that the OAI configuration is only configuring one
+    channel?=C2=A0=C2=A0 On the B2XX, for two channels, you can't<br>
+    =C2=A0 have a clock higher than 32MHz.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+cite=3D"mid:MAXPR01MB35656AAAFC3637BA53236B80D68B9@MAXPR01MB3565.INDPRD01=
+.PROD.OUTLOOK.COM">
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof ContentPasted0 ContentPasted1=
+">
+      </div>
+      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);" class=3D"elementToProof">
+        <br>
+      </div>
+      Mobiveil INC., CONFIDENTIALITY NOTICE: This e-mail message,
+      including any attachments, is for the sole use of the intended
+      recipient(s) and may contain proprietary confidential or
+      privileged information or otherwise be protected by law. Any
+      unauthorized review, use, disclosure or distribution is
+      prohibited. If you are not the intended recipient, please notify
+      the sender and destroy all copies and the original message.
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------GEkMtxs7wxvH0lpFW3VQ0rfe--
+
+--===============7990982437275251418==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -473,4 +673,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8681447451999591282==--
+--===============7990982437275251418==--
