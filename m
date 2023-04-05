@@ -2,139 +2,137 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5816D71BB
-	for <lists+usrp-users@lfdr.de>; Wed,  5 Apr 2023 02:55:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 623426D7253
+	for <lists+usrp-users@lfdr.de>; Wed,  5 Apr 2023 04:18:56 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4635D3849E6
-	for <lists+usrp-users@lfdr.de>; Tue,  4 Apr 2023 20:55:30 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 0FDFB384919
+	for <lists+usrp-users@lfdr.de>; Tue,  4 Apr 2023 22:18:55 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1680656130; bh=hjaNHhljiSJyjHnxKMYtrO0G6BU/oEVnS//SGOtIfSs=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=Bk7JjOEpLM+hBWq3zjhgiWZB1uS3aWv69MfFS4ldg6yKnZy4OCVM1Aybp6LdmB/Zb
-	 VN3PAtn1QGrHuzkkD6DEaWZ9WJrLHaNLN6TG2GlLWwVfy7+r+9kU6pZB+ChxQa1KEH
-	 DXI+ACP3APNGVIUT9ZXFrZ5bpkTtAQofABYtsczieKVpTOXH9uSjB6R4wEa7krspTc
-	 vO3Tl/HqTqjyex343vZwWSuvxag0nnIBnmSvFvvFJijx4dx7BqomgvkKwc7NxSaNtm
-	 Ep4jJEaxFi/btQyWkwCcXbv7UYkVuWXyI5fpQa0BYj7t5Lp0qOKGMCgkzCDtKqN8ro
-	 hY+LsYV/Ltosg==
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	by mm2.emwd.com (Postfix) with ESMTPS id F1D083849C6
-	for <usrp-users@lists.ettus.com>; Tue,  4 Apr 2023 20:54:58 -0400 (EDT)
+	t=1680661135; bh=8JdbR6/1hT1+K7xB/DoJM3BD0/H3apIzArtP8+V0nmk=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=jWFJcdbA0p6S2frK+L+jqSESIursRCFvRtdUP8AqPkr3DMdywjE2D01Ty/ySXxuRc
+	 GwQjirW9D0reOmWRtb8Wsbm+SccwGN5w2tNhrGHUHCpv7J2dyTMLZJMT/c75s/zXBC
+	 0i/3LQgPOxqbxp/CEURLzg6wa4L3DySmrS/wQQGWvYaJ2ZrQRQIxB8H+LcBE73uFg6
+	 belDneoZP/cc2qTx7n+BJjOmq6ZgwhAfUpGTxc+WNWnB0szA2+E0O4PqrCqFpWWyh+
+	 d/m+b6WUzObNd998NlUNJI7bnj4k0oQsmbfbh7XxVRzHfjsoxKcqyiy9Vut+O+ucxK
+	 4jv9WzHH5gXbQ==
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id 19298384919
+	for <usrp-users@lists.ettus.com>; Tue,  4 Apr 2023 22:18:48 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="cWakA8gU";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20210112.gappssmtp.com header.i=@ettus-com.20210112.gappssmtp.com header.b="QSRtaYKJ";
 	dkim-atps=neutral
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-9338d479a21so9560866b.1
-        for <usrp-users@lists.ettus.com>; Tue, 04 Apr 2023 17:54:58 -0700 (PDT)
+Received: by mail-pg1-f171.google.com with SMTP id 184so6211210pga.12
+        for <usrp-users@lists.ettus.com>; Tue, 04 Apr 2023 19:18:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20210112.gappssmtp.com; s=20210112; t=1680656098;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tq4xj/3+NtigW8xa/bHaEO3ouAYZt8biAcXkE21R7lI=;
-        b=cWakA8gUAadIOHEmme1o27WVauBVrXANOueF9cV1aahKXWiEDZ8w5a7O71NAFEOZrq
-         Vw86c/j+3m3jKmgQnsK2YCe0kGW5JcmRtBhC+J/1bGt8RGyB2RaQ5cQmy/yOOx/GgWkv
-         5CyA2xoxfQtMCNq0r8puzZ4tV/NKTd/f39RoZKSQrkE/gJx/PuKGh41mxYAaQwTxE7qv
-         0RGMOGyJvhUsAkm703CHzqjdLrBTK0Ss2F9CEfgXg7kUxWwnXhDWmSjVdmcIK+4Leock
-         wBzkXvBfzhzmmpoLFakSKij8b3LJZoLjXByMxRlDHw1Z396UeGxKZdJzlJ/EL4/Ml2ag
-         FQ1w==
+        d=ettus-com.20210112.gappssmtp.com; s=20210112; t=1680661127;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=V0Vxv2vhZSW8dkpq/xdQyOd0NPAuslLwXZXsNCt4LEw=;
+        b=QSRtaYKJr49L9rMT3dCrO5YiMncyBBgEMIyVzCuHfLYu6iVXFJQB+O3qNBqM8k+ILA
+         ANrYtKwoYj7i3Sfdaa8MfDZ9Kl/73LhBRkAnuE2SEuoyO70RAlCJo04aFkKw8R0s1JX0
+         UAUE88FzspSXwFh8gZih6DW0+t0RnoKWXUShHEyhm/oPmc0Z1d4wtaI6sC25APJ9ysv6
+         Wq4516lLb5wy16AiUSNxgIdJGVJKIAUYQYNxLeRc0soC114BhW/iiRqKrHlk4Ka+YqIR
+         EBxBR8zAnzpsb67vWJ1fj7FfcrRO1EqIdSYe0EAQPqwT89Am3RIC8a2o02HpQVgK/JAW
+         LQeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1680656098;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Tq4xj/3+NtigW8xa/bHaEO3ouAYZt8biAcXkE21R7lI=;
-        b=CAtNiMQjDx0TURaQltrdOyjcJPD1skIimVI7/LFGgPZo1p7PN0ypkgijVA5V83tvfp
-         6hE0V1iUlfFv6w9wnVqFoXB1p1UqKrswa1oTH3RqRn35cJgfipjqS9Ag1H4YEDvF3ohL
-         49WqDa6tlklaq3xHiQgIEoOWaKhnNTTTiJrdnGB7PUqaVs0XzMKjAX71TbJDE28UNL+A
-         6zCuSTt32YR4Gp4CbiyRNbAAyE/buiwGVynxugmyCUrK/kwgKTToRCzn5jYSZjJE0oJJ
-         2RFwoNU5tzXbyOUTUW6pwmUm3ANz5Ru7TvMJDXvhFtQ0EpD6LMoSm3FXLRX+FHXIfDEN
-         RnCg==
-X-Gm-Message-State: AAQBX9cOiZW+IolEJUw5wC9nCYh5nYqUfIdIKtVclGWF0pn/Z80o29Af
-	VibBl0yaDkUnFqBwSj/9Nt5V/fxGBUqizreepI6FBfsq
-X-Google-Smtp-Source: AKy350YHY8dFGyxS7aBpQtaxJaJXhgT/zSm8bL7tsHuUJxGTGJs/Diz62sgZcBbRqoqTV2P4KrEiF7FEZEScuiDVW00=
-X-Received: by 2002:a50:f691:0:b0:500:5463:35de with SMTP id
- d17-20020a50f691000000b00500546335demr219239edn.8.1680656097662; Tue, 04 Apr
- 2023 17:54:57 -0700 (PDT)
+        d=1e100.net; s=20210112; t=1680661127;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V0Vxv2vhZSW8dkpq/xdQyOd0NPAuslLwXZXsNCt4LEw=;
+        b=7LxNXJPtpeHbqgh3nPSJVhajWXKvw9e1E7nh8Z01V1AiJB++4WWddaskP0cpWrT6bh
+         lD5XuGX3B/jt+Pjy5TiyUCiioBGGvMzGIHyWY12Gly0gf9Zo6a6lU6A4HYEjaJpUJpit
+         qAOX+52dNySFlARf3VMZha666V1JYtEwZS9jQdeLtTUIXIdtudk37XirqMbk6Qi3ncpC
+         kqOLNOi/b6cIVcDmuDq1KRjVgp42Ek9BXY2OZdNeHcECYx2RCGqkn/zHG4zuacNqz5jZ
+         yQkQIYBwDOuANmuYHAhgyNd/QhXutjE8a8y7C2ppY7lC8lv5qO1YDdfeXMV3fvOahAec
+         r53A==
+X-Gm-Message-State: AAQBX9eDCM1CukW+tP4p7QqcHQVkxajrYMqoCZDnVoIrzPnnf/kPuOld
+	0DCKNbRHY5wdAU4CPk9YQtF2BrkUA391wsSTD6ppMQE/wdh95rrvlQIHrw==
+X-Google-Smtp-Source: AKy350be8saE+bT/UiO5dCqgOOpi4KLF1lzT39xKSA2Px6V2pGEov7ZsqF94v8OZcsSfe9aDoJG5m4S2lARNSS6KiTs=
+X-Received: by 2002:a05:6a00:2e9a:b0:625:dac0:5263 with SMTP id
+ fd26-20020a056a002e9a00b00625dac05263mr2475990pfb.0.1680661127346; Tue, 04
+ Apr 2023 19:18:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <gl5dllbrcn4HbE7Las4LHkLcjF3NbCdDkXjH6gI@lists.ettus.com>
-In-Reply-To: <gl5dllbrcn4HbE7Las4LHkLcjF3NbCdDkXjH6gI@lists.ettus.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Tue, 4 Apr 2023 19:54:41 -0500
-Message-ID: <CAFche=hkwv4LTOVBpHhSr=7+y=a++7gXwUkxgdhmtaa+CCYGXw@mail.gmail.com>
-To: h57jafari@gmail.com
-Message-ID-Hash: TDVBR52KRUAOWVIJTL6SZJWX3TCXTYF4
-X-Message-ID-Hash: TDVBR52KRUAOWVIJTL6SZJWX3TCXTYF4
-X-MailFrom: wade.fife@ettus.com
+From: Neel Pandeya <neel.pandeya@ettus.com>
+Date: Tue, 4 Apr 2023 21:18:11 -0500
+Message-ID: <CACaXmv8eXpzBBjWuTpVyN0GLNpaxoXnd_+Fg52V8AjQQ39Jw7w@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: LKICFGM43KHAOQLMAB2J2JXYAG6TPZTK
+X-Message-ID-Hash: LKICFGM43KHAOQLMAB2J2JXYAG6TPZTK
+X-MailFrom: neel.pandeya@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: PCIe NIC card connect to USRP-X410
+Subject: [USRP-users] NEWSDR 2023 on Friday June 2 at WPI
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TDVBR52KRUAOWVIJTL6SZJWX3TCXTYF4/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/LKICFGM43KHAOQLMAB2J2JXYAG6TPZTK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5479831878546592612=="
+Content-Type: multipart/mixed; boundary="===============6980626823241819145=="
 
---===============5479831878546592612==
-Content-Type: multipart/alternative; boundary="000000000000b0ed4705f88c3dff"
+--===============6980626823241819145==
+Content-Type: multipart/alternative; boundary="0000000000007bcd9605f88d6945"
 
---000000000000b0ed4705f88c3dff
+--0000000000007bcd9605f88d6945
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+The New England Workshop on Software Defined Radio (NEWSDR) is being hosted
+in-person at Worcester Polytechnic Institute (WPI) on Friday June 2, in
+Worcester, Massachusetts, with two exciting tutorials ("USRP FPGA
+Programming with RFNoC" and "AI for Wireless Communications") scheduled the
+evening before on Thursday June 1. Many thanks to the support of our
+generous event sponsors Mathworks and NI/Ettus Research.
 
-Please see the recommendations in the following KB article:
+We are excited and truly honored to have presenting at NEWSDR 2023 our
+keynote speaker Dr Thomas Rondeau (Principal Director for FutureG & 5G, Office
+of the Under Secretary of Defense for Research and Engineering) and our
+invited speakers Professor Muriel Medard (Massachusetts Institute of
+Technology (MIT)) and Professor Tommaso Melodia (Northeastern University
+(NEU), Institute for the Wireless Internet of Things (WIoT)).
 
-https://kb.ettus.com/X410#10_Gigabit_Ethernet
-https://kb.ettus.com/X410#100_Gigabit_Ethernet
+To learn more about this event, as well as to register for free to attend
+NEWSDR 2023, and to present a poster during the networking sessions, please
+visit our website at the link below.
 
-Wade
+http://newsdr.org/workshops/newsdr2023/
 
-On Tue, Apr 4, 2023 at 12:45=E2=80=AFPM <h57jafari@gmail.com> wrote:
-
-> Hello,
->
-> What PCIe NIC cards are suggested to connect USRP-X410 through 10GbE and
-> 100GbE that are already tested and compatible. Thank you.
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---000000000000b0ed4705f88c3dff
+--0000000000007bcd9605f88d6945
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi,</div><div dir=3D"ltr"><br></div><div =
-dir=3D"ltr">Please see the recommendations in the following KB article:</di=
-v><div dir=3D"ltr"><br></div><div dir=3D"ltr"><a href=3D"https://kb.ettus.c=
-om/X410#10_Gigabit_Ethernet">https://kb.ettus.com/X410#10_Gigabit_Ethernet<=
-/a></div><div dir=3D"ltr"><a href=3D"https://kb.ettus.com/X410#100_Gigabit_=
-Ethernet">https://kb.ettus.com/X410#100_Gigabit_Ethernet</a><div><br></div>=
-<div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
-ass=3D"gmail_attr">On Tue, Apr 4, 2023 at 12:45=E2=80=AFPM &lt;<a href=3D"m=
-ailto:h57jafari@gmail.com">h57jafari@gmail.com</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex"><p>Hello, </p><p>What PCIe NI=
-C cards are suggested to connect USRP-X410 through 10GbE and 100GbE that ar=
-e already tested and compatible. Thank you.</p>
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D""><font face=3D"verd=
+ana, sans-serif">The New England Workshop on Software Defined Radio (NEWSDR=
+) is being hosted in-person at Worcester Polytechnic Institute (WPI) on Fri=
+day June 2, in Worcester, Massachusetts, with two exciting tutorials (&quot=
+;USRP FPGA Programming with RFNoC&quot; and &quot;AI for Wireless Communica=
+tions&quot;) scheduled the evening before on Thursday June 1. Many thanks t=
+o the support of our generous event sponsors Mathworks and NI/Ettus Researc=
+h.</font></div><font face=3D"verdana, sans-serif"><br>We are excited and tr=
+uly honored to have presenting at NEWSDR 2023 our keynote speaker <span cla=
+ss=3D"gmail_default" style=3D""></span>Dr Thomas Rondeau (<span class=3D"gm=
+ail_default" style=3D""></span>Principal Director for FutureG &amp; 5G<span=
+ class=3D"gmail_default" style=3D"">, </span><span class=3D"gmail_default" =
+style=3D""></span>Office of the Under Secretary of Defense for Research and=
+ Engineering) and our invited speakers Professor Muriel Medard (Massachuset=
+ts Institute of Technology (MIT)) and Professor Tommaso Melodia (Northeaste=
+rn University (NEU), Institute for the Wireless Internet of Things (WIoT)).=
+<span class=3D"gmail_default" style=3D""></span><br><br>To learn more about=
+ this event, as well as to register for free to attend NEWSDR 2023, and to =
+present a poster during the networking sessions, please visit our website a=
+t the link below.<br><br><a href=3D"http://newsdr.org/workshops/newsdr2023/=
+">http://newsdr.org/workshops/newsdr2023/</a><br></font><div class=3D"gmail=
+_default" style=3D""><font face=3D"verdana, sans-serif"></font></div><div c=
+lass=3D"gmail_default" style=3D""><font face=3D"verdana, sans-serif"><br></=
+font></div></div>
 
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+--0000000000007bcd9605f88d6945--
 
---000000000000b0ed4705f88c3dff--
-
---===============5479831878546592612==
+--===============6980626823241819145==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -144,4 +142,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5479831878546592612==--
+--===============6980626823241819145==--
