@@ -2,78 +2,119 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE38B6DB818
-	for <lists+usrp-users@lfdr.de>; Sat,  8 Apr 2023 04:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D07136DB827
+	for <lists+usrp-users@lfdr.de>; Sat,  8 Apr 2023 04:39:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0C25A384ABA
-	for <lists+usrp-users@lfdr.de>; Fri,  7 Apr 2023 22:13:44 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id C80AE384AD2
+	for <lists+usrp-users@lfdr.de>; Fri,  7 Apr 2023 22:39:40 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1680920024; bh=YijMyDsbCRPbejd0a9NUfyCvTtxn2m6D6jqn7sNxcKY=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=qnHwYoq66C94sl8zyviHDCLKFMZE6b51duIceX9kI4Gu2V6iL9pNMXzJs7RPqGfwa
-	 U0BOiFe/pXAG2LMZ6yLXFwG9WfnOHU04pjZAWS86CFTaqlPFcUUeJkTTUeMPPS6/pS
-	 gR16zyXELAiw/VVA4nbW0OBSdqLPHFvlX9BS8Hbbx14Tj8ABcwfaCCLHaMzbhjxcXq
-	 NTtICt/Zoc2pyXeFAOGB534mHkgYAjeXR+Zs7hAnQfrcv63ZdMu8+oWdaD9ezx8L7A
-	 5GqvnwootSeEwadEq6V02S6mJ0xm4RunYhgX/vJ0kouoOAFkEq/m9jU4FhHWGmmjJ3
-	 gjne/MyfRHyyw==
-Received: from smtp1.dnsmadeeasy.com (smtp1.dnsmadeeasy.com [208.94.147.128])
-	by mm2.emwd.com (Postfix) with ESMTPS id A26F8384ABA
-	for <usrp-users@lists.ettus.com>; Fri,  7 Apr 2023 22:13:39 -0400 (EDT)
-Received: from smtp1.dnsmadeeasy.com (localhost [127.0.0.1])
-	by smtp1.dnsmadeeasy.com (Postfix) with ESMTP id 656772F80096
-	for <usrp-users@lists.ettus.com>; Sat,  8 Apr 2023 02:13:39 +0000 (UTC)
-X-Authenticated-Name: James.Schatzman
-Received: from mail.futurelabusa.com (c-67-174-176-3.hsd1.co.comcast.net [67.174.176.3])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp1.dnsmadeeasy.com (Postfix) with ESMTPSA
-	for <usrp-users@lists.ettus.com>; Sat,  8 Apr 2023 02:13:39 +0000 (UTC)
-Received: by mail.futurelabusa.com (Postfix, from userid 1001)
-	id 994254D94B; Fri,  7 Apr 2023 20:13:38 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on l1.fu-lab.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.4 required=5.0 tests=ALL_TRUSTED,BAYES_00,
-	MISSING_MID autolearn=no autolearn_force=no version=3.4.6
-Received: from I0.futurelabusa.com (unknown [192.168.1.101])
-	by mail.futurelabusa.com (Postfix) with ESMTPA id 6B9E84D905
-	for <usrp-users@lists.ettus.com>; Fri,  7 Apr 2023 20:13:38 -0600 (MDT)
-X-Mailer: QUALCOMM Windows Eudora Version 7.1.0.9
-Date: Fri, 07 Apr 2023 20:13:37 -0600
+	t=1680921580; bh=DPUniMQbjkejM4vBFIQ7kuB6cNdTj3MjylN0WxmPMvI=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=JVHf8AHEK8CKCuCtsr9kJXR20HDzXpX361nG1R/pGlsvGB1ppJAogubJnFvhy+9+R
+	 VK0oUp/vyisuGKjYj7p/oBd51KlTImo0GLF/Bnko/s0SqCPUY3iVAHoNrayM8IuKez
+	 X/vXUsHjBeT4b6umEI2XdKAv1+Fim0Y0GERxEIYNKaKKm7RvuOEJW2pMMBOPo3OmLx
+	 gujszdxkE5UDD2fYOmumWcKJ5bBecODo41dYt1snVbgm8g+Dfss4vpBecABttSuzhM
+	 bEYK+ElMUMpDP5nDq/Cx/BEGQuaPxQ0EYfUqTx2pKzvNTQg5EdolEGEAcvJT4YI2dP
+	 Jlon1JmMWFT6w==
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 1A314384AD2
+	for <usrp-users@lists.ettus.com>; Fri,  7 Apr 2023 22:39:35 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="a3rj5UaC";
+	dkim-atps=neutral
+Received: by mail-qv1-f44.google.com with SMTP id l1so3537483qvv.4
+        for <usrp-users@lists.ettus.com>; Fri, 07 Apr 2023 19:39:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112; t=1680921575; x=1683513575;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PdCR3TKa4hBdecXEb3Yuf29jYx0vaN0WwBNleiPedgk=;
+        b=a3rj5UaC+k9NCGYFr/XrKwHGMLDytZTksCM3sGD7ox9BpHqnD2XondgYWeKOoKFLsU
+         FCzCZBwMWMH6jPS7EiItJRMrm9roBA+fVShkrHaLunBLIJpxxjIyvFQhl7gwzqoB/7dy
+         dhL5FiUmf2TIGZPA+bShoi63EEtuIT9c1k5bztQOphJMShG6hkLjM58C8N892ZwuhFsb
+         JAY5oQv59SnaidVRljsxytstKCv/I94fS5YlvQ2Smu442Lo4aIFqWDV7m4r2ksrw9pDn
+         vHbJ2uhL8ayzzHOAMCNwAHe5E62Y64wDAJ3WzldtCxTlQ2N1pMcYxdX9/W/xNF4OCyr+
+         T+BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112; t=1680921575; x=1683513575;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PdCR3TKa4hBdecXEb3Yuf29jYx0vaN0WwBNleiPedgk=;
+        b=Gd22SE9ZHOvI5RAbLcjtGHD6q3aOHciGLMAwSJkCfZ7J14iSHUvknLM7bHioVMrwz7
+         GXRHBxTRYdcHNP1knFO3Ssyltct/UWk/ZR4U31X2yxm6ifS1yL/TngtnbQmz5Am0KZf0
+         kmzqrKa3AEF3ZUCcT1Lji9Dudhp5Adtrk10EamGz0Tw52V0ZAWgY1FP1ynpH0ngxIBeg
+         aqCcRikkJjN9EqIrDmY/OlJU1FLXuTXB1Z0TfA4d7d2FkMWbBJnInR9O8Ws/EmyobOCH
+         VCWoU5AklvEDEgzqULAfWeFGfp8ZWShmbTjZQpgzMMbqM2q4dNoZq6odZdwKWJI8eAAY
+         8GAw==
+X-Gm-Message-State: AAQBX9dkDFSf+Xcd+korOz81yekf5gFHMs9m8pJEDa3GGV23BYF7FP51
+	1PZNKzY0m3KdwPV8QmQweF+9KBDXj6Q=
+X-Google-Smtp-Source: AKy350Zy2Guj9L1YN3m0GtZhIE4EpLyYRXIlSBsgZR9X+er4aJ8daS3SNqf+o4nvh6Clnu9lhdE9VA==
+X-Received: by 2002:a05:6214:29c5:b0:5c9:a0ce:df0c with SMTP id gh5-20020a05621429c500b005c9a0cedf0cmr1964778qvb.22.1680921574965;
+        Fri, 07 Apr 2023 19:39:34 -0700 (PDT)
+Received: from [192.168.2.217] (bras-base-smflon1825w-grc-09-174-93-2-111.dsl.bell.ca. [174.93.2.111])
+        by smtp.googlemail.com with ESMTPSA id c14-20020a0cd60e000000b005dd8b9345eesm1766690qvj.134.2023.04.07.19.39.34
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Apr 2023 19:39:34 -0700 (PDT)
+Message-ID: <d5460510-c3e2-9f3f-31ea-2bf55fedcf7e@gmail.com>
+Date: Fri, 7 Apr 2023 22:39:33 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
 To: usrp-users@lists.ettus.com
-From: Jim Schatzman <james.schatzman@futurelabusa.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Message-Id: <20230408021338.994254D94B@mail.futurelabusa.com>
-Message-ID-Hash: 6UL2SDBSCVJ5B7RHNEGHODL6XV3BK6I6
-X-Message-ID-Hash: 6UL2SDBSCVJ5B7RHNEGHODL6XV3BK6I6
-X-MailFrom: james.schatzman@futurelabusa.com
+References: <20230408021338.994254D94B@mail.futurelabusa.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <20230408021338.994254D94B@mail.futurelabusa.com>
+Message-ID-Hash: TQCSDKCAK7MOSDBASMD6DAMNY6FAZCKN
+X-Message-ID-Hash: TQCSDKCAK7MOSDBASMD6DAMNY6FAZCKN
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Halting issue with USRP socket connection - how to set  SO_PRIORITY?
+Subject: [USRP-users] Re: Halting issue with USRP socket connection - how to set SO_PRIORITY?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6UL2SDBSCVJ5B7RHNEGHODL6XV3BK6I6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TQCSDKCAK7MOSDBASMD6DAMNY6FAZCKN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-We have been unable to estable 100% reliable connections to an N310 USRP radio through its 10 Gbit ethernet from Linux. What happens is that it works fine for a period of time - 30 to 60 minutes, typically. Then we see a couple of U's in the output. Unfortunately, that is fatal for our application.
-
-Using the unmodified tx_samples_from_file or one modified to use separate threads to read data from the file and to sent it over the socket to the radio, the symptoms are the same.
-
-All the evidence is that the application is sending data continuously without any delays. Also, the "network" has no devices on it except for the host computer, a high performance 10G switch, and the N310 radio.
-
-We are wondering if this could be a Linux "feature". We would like to try increasing the socket priority with SO_PRIORITY. However, we are not finding any hooks in the UHD software for this.
-
-Suggestions?
-
-Thanks!
-Jim
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T24gMDcvMDQvMjAyMyAyMjoxMywgSmltIFNjaGF0em1hbiB3cm90ZToNCj4gV2UgaGF2ZSBiZWVu
+IHVuYWJsZSB0byBlc3RhYmxlIDEwMCUgcmVsaWFibGUgY29ubmVjdGlvbnMgdG8gYW4gTjMxMCBV
+U1JQIHJhZGlvIHRocm91Z2ggaXRzIDEwIEdiaXQgZXRoZXJuZXQgZnJvbSBMaW51eC4gV2hhdCBo
+YXBwZW5zIGlzIHRoYXQgaXQgd29ya3MgZmluZSBmb3IgYSBwZXJpb2Qgb2YgdGltZSAtIDMwIHRv
+IDYwIG1pbnV0ZXMsIHR5cGljYWxseS4gVGhlbiB3ZSBzZWUgYSBjb3VwbGUgb2YgVSdzIGluIHRo
+ZSBvdXRwdXQuIFVuZm9ydHVuYXRlbHksIHRoYXQgaXMgZmF0YWwgZm9yIG91ciBhcHBsaWNhdGlv
+bi4NCj4NCj4gVXNpbmcgdGhlIHVubW9kaWZpZWQgdHhfc2FtcGxlc19mcm9tX2ZpbGUgb3Igb25l
+IG1vZGlmaWVkIHRvIHVzZSBzZXBhcmF0ZSB0aHJlYWRzIHRvIHJlYWQgZGF0YSBmcm9tIHRoZSBm
+aWxlIGFuZCB0byBzZW50IGl0IG92ZXIgdGhlIHNvY2tldCB0byB0aGUgcmFkaW8sIHRoZSBzeW1w
+dG9tcyBhcmUgdGhlIHNhbWUuDQo+DQo+IEFsbCB0aGUgZXZpZGVuY2UgaXMgdGhhdCB0aGUgYXBw
+bGljYXRpb24gaXMgc2VuZGluZyBkYXRhIGNvbnRpbnVvdXNseSB3aXRob3V0IGFueSBkZWxheXMu
+IEFsc28sIHRoZSAibmV0d29yayIgaGFzIG5vIGRldmljZXMgb24gaXQgZXhjZXB0IGZvciB0aGUg
+aG9zdCBjb21wdXRlciwgYSBoaWdoIHBlcmZvcm1hbmNlIDEwRyBzd2l0Y2gsIGFuZCB0aGUgTjMx
+MCByYWRpby4NCj4NCj4gV2UgYXJlIHdvbmRlcmluZyBpZiB0aGlzIGNvdWxkIGJlIGEgTGludXgg
+ImZlYXR1cmUiLiBXZSB3b3VsZCBsaWtlIHRvIHRyeSBpbmNyZWFzaW5nIHRoZSBzb2NrZXQgcHJp
+b3JpdHkgd2l0aCBTT19QUklPUklUWS4gSG93ZXZlciwgd2UgYXJlIG5vdCBmaW5kaW5nIGFueSBo
+b29rcyBpbiB0aGUgVUhEIHNvZnR3YXJlIGZvciB0aGlzLg0KPg0KPiBTdWdnZXN0aW9ucz8NCj4N
+Cj4gVGhhbmtzIQ0KPiBKaW0NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX18NCj4NCkhhdmUgeW91IGluY3JlYXNlZCB0aGUgcmluZyBidWZmZXJzIG9uIHlv
+dXIgY2FyZD8NCg0KaHR0cHM6Ly9rYi5ldHR1cy5jb20vVVNSUF9Ib3N0X1BlcmZvcm1hbmNlX1R1
+bmluZ19UaXBzX2FuZF9Ucmlja3MjSW5jcmVhc2luZ19SaW5nX0J1ZmZlcnMNCg0KQWxzbywgYWRq
+dXN0IHRoZSBuZXR3b3JrIGJ1ZmZlcnM6DQoNCmh0dHBzOi8va2IuZXR0dXMuY29tL1VTUlBfSG9z
+dF9QZXJmb3JtYW5jZV9UdW5pbmdfVGlwc19hbmRfVHJpY2tzI0FkanVzdF9OZXR3b3JrX0J1ZmZl
+cnMNCg0KSGF2ZSB5b3UgdHJpZWQgYSBkaXJlY3QgY29ubmVjdGlvbi0td2l0aG91dCB0aGUgc3dp
+dGNoP8KgwqDCoCBKdXN0IHRvIA0KZWxpbWluYXRlIGl0LsKgIEJlZm9yZSB5b3Ugc2F5ICJvaCwg
+aXQncyBub3QgdGhlIHN3aXRjaCIsDQogwqAgbWFueSAiaGlnaCBwZXJmb3JtYW5jZSIgMTBHIHN3
+aXRjaGVzIGhhdmUgYSBsZXNzLXRoYW4taWRlYWwgc3dpdGNoaW5nIA0KZmFicmljLg0KDQpfX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJzIG1h
+aWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmliZSBz
+ZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
