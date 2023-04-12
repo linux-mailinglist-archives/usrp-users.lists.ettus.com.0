@@ -2,273 +2,156 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B03336DFF2F
-	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 21:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61B8E6E00F1
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 23:33:57 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 4CBDB3813D3
-	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 15:51:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 1A4413838E9
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 17:33:56 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681329103; bh=JUBsnhY0v+8z5C8c5JBOHw7fhkNnCa/tBS2QFgehkyY=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=d5I70iRVi7bEvA2hGlr33Zo+78v+PD9x7/ciEV31tgLGWvoGfudcz2AQZ74lbu3yC
-	 OWdj2i2vjvVENmha4P5wGurJdYFXyegnGvzNSj1P7hs+q9NgmBCn9DpFKKH1AaNsS3
-	 YAbXEkhq9W4y3LB+7LFb7JEG2lckDCGipUBgck9HIZFNY1qGLHm77RSTjSYfpBaLCJ
-	 PzdM3XZnawuYqQbpGW2mty6jfU1Ww7tuVmd9T0+V4c5D/VymdlD1p4oIJ9vM2FL6Bz
-	 NTJUyYrzGP3U7AQEws3WADZw/8T/9Ve3ng2MxE2Rw62WGTEoh7MoVjl32tIdAvnG2Q
-	 iJJ0Il+GabD8Q==
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id D22013813D3
-	for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 15:51:37 -0400 (EDT)
+	t=1681335236; bh=1C9vVP+vnN/ihntMI+QtBIORLg/xyLNLH1LRwlyDrYk=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=OqGaFPOoHxjkHvdMQE1aybBmtRNdY4eBJzDsqOd6nYL4yYSHQCTEGlI46TeBEXMkS
+	 NqvC6kOhbGLhGCFH8oHfY08rUfdFO8uTCfPMJUQByRujkPwRrapSFeY676+3K6I68l
+	 UyqBGhh4McCASq+5gMFAq0qzOrLyJKYxrHKTSeOTxgkPzY/gvkUSQY98GRCsHzbTWU
+	 q4fWrF7hzO2oJR+bztNEof6WFVvu0dVxIxwVqTe721QwDODq7c0r20ZbaDiU9drPGN
+	 j1aoGHb7T1iMFDgL8N9Eapr31MtSFUpClFSp6FsTldFC29ccIf5bhCWHuEZmJTNcw3
+	 9t/flzgDy2Icg==
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7FAA23830EC
+	for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 17:33:24 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ODA4s3W3";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20221208.gappssmtp.com header.i=@ettus-com.20221208.gappssmtp.com header.b="XwsQiHPl";
 	dkim-atps=neutral
-Received: by mail-qt1-f179.google.com with SMTP id fv6so423967qtb.9
-        for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 12:51:37 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-94a342f202bso243897166b.0
+        for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 14:33:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681329097; x=1683921097;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F2sxqPBQ7xR8Obzhbk0OSiDSXvRfLfxFyWPhVutmBw8=;
-        b=ODA4s3W3wTeOPwW7jc8YalQH0T4BXaVkm8S8fdJ8mbJaATjfyEZnR13/armzNKPpwV
-         Z4HTRCoUamSI5akOUQD1vMxRNbNEJg1b9/XDNJd2Took2zpHZoJ2xAplO7HBGhOuonHP
-         lzl0BLEmuGCdB9+r9HmHQm9gkRCClUWTn4J9q8l6Wspu+2tKyA/J1Q3fkzCQFlPd4i2/
-         Sn4yKol/3iq7NPo6JAUUCH6/gwvGlsGU651fVziCgVdEtZKRb0R2RRzfibSYCbZ4ujFc
-         xtXRXlo1aDnApULdmWrQBwNw56cvy0/UL6qClSrtg/qkuOQxKR2m1Z2TuMGTpenAvyL3
-         +PRQ==
+        d=ettus-com.20221208.gappssmtp.com; s=20221208; t=1681335203; x=1683927203;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=e0nr2ERntV4qOufEBQX7+x7QrO7xdeNR5yaotuK3WVs=;
+        b=XwsQiHPl7KEA+oZ4gJ98VoYAwK4Rz/slkpB4E/zs6QUJBMaExhq3PT3fWn3W8CT1EA
+         zmmYhhrmwPKGuUTkHBV69fpl63TmOIZU2sSgH6jYm69LfpTxnupZOZLlkLR7Z/IcOVSv
+         /9E+dxNkvyomRqMVeXC99fA/x8tHFsoL739L34K7Fw0Pmp2M916FBoSaID4LY+cuTqCK
+         vxtHcst5jdNOM9/YqT8EnaYI9LVvKb/7ayYKI2q9k7zVnCBXSvmibn6DnwjTQTqdWs+M
+         ghfVKGaErg0cByWek2JSvAQ3HBzznVJISoaujmfDyyzAYccmyKIgHWFP7peIJBbUsFOt
+         8/JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681329097; x=1683921097;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=F2sxqPBQ7xR8Obzhbk0OSiDSXvRfLfxFyWPhVutmBw8=;
-        b=YmB3t2A3394Aq754sNQ/uGvYr+SnSBJ0l7/gJAUptLeHKhvZwNxOG4ds0nq9Cm7KM0
-         b+qN8nU7C243zEXy4lN+ZYT+aVWm61aqF2qnxURH3706MlO6U54Zw3l29r6ghkHyjuqD
-         EJfdBZ2wBPndlM4WqZJ4Lgo1jcyxglhxqmOTCtFzRAYEHo1H0zKUIhiZkNxfQEfNXgoC
-         gVXYHeEOoj31iGbGcAfh3DYAj9pLy1S3KPBis5N7b4PrxCWSKnGy88lOpwkFZfDzdgUq
-         f88tL0PrTLyisymC4FnEMU3ZwhsFsZf+Mm2K5GT6WjhZWH5FNoKZz8N5zX6R6+lkjPGk
-         Czkw==
-X-Gm-Message-State: AAQBX9dn3kjKqmmWBRdZiegL+1unvciSpaYTYgJlxgyp5tKHCbaR9Wb5
-	Vqh8y9+eYQxiQab8IH+vkH8iVJWFERk=
-X-Google-Smtp-Source: AKy350Zki2cIdVIeFCFCntJ7Mrb4KYzVgtGtEbhfcqoO4pkCVeO+fXRSx4n3T3tQyd7a01AvvMB0yw==
-X-Received: by 2002:a05:622a:34f:b0:3d6:ff99:7e9e with SMTP id r15-20020a05622a034f00b003d6ff997e9emr5509305qtw.33.1681329097123;
-        Wed, 12 Apr 2023 12:51:37 -0700 (PDT)
-Received: from [192.168.2.217] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id k23-20020ac84797000000b003b63b8df24asm4467567qtq.36.2023.04.12.12.51.36
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 12 Apr 2023 12:51:36 -0700 (PDT)
-Message-ID: <d0706ce9-c1e3-94da-7609-b1e47139157f@gmail.com>
-Date: Wed, 12 Apr 2023 15:51:36 -0400
+        d=1e100.net; s=20221208; t=1681335203; x=1683927203;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e0nr2ERntV4qOufEBQX7+x7QrO7xdeNR5yaotuK3WVs=;
+        b=mAcLE5f9UowFPWgyAVgiDZilzbf1zjOHzQqk12nhFfb+nUQ/NQTcQg5+4V14qz8Q0F
+         uGhChT5gYUF1rSoMt7MVJ94JVRTGjdZKXUY6eP9udIzv+2TY66L3qYNFB4xYaBLKHzti
+         UyMPxHeXRmKWoYtfoYCbJnOUq4Lmp6AR4ikT867HfbK6g5KY8fSuxlwN1z4YPE/icz22
+         SykUi37BNVO9ykUXa62z5rvetN3XuY/l/nvXo0WC/Ojo5io1+K+L7kQm+d4OsA5Wrfdz
+         P7XUD43/2kwD7yhnGtqWfjafZVd/8Nm6FeA/kSHKV3YmanPfELMZAZxl0TaBs5e8dcTk
+         QY6w==
+X-Gm-Message-State: AAQBX9dCel94Kay71m0DETmxoDOqSezjKp9eNnsSG6KGdHrL+osVN+Zb
+	vtY0o7+Ptq1PxbtBk4K0vvUS+ZTjsh3RscaYela03Y/dFRBf8XA9qjaHsg==
+X-Google-Smtp-Source: AKy350YPifcmSiZWSw3mvUsRUH1HFslJmdy4RW+XuKwXBdivh3pAhOR+8L2cAX0srBcN34uW6/g6CRVv2J0OSbExVOg=
+X-Received: by 2002:a50:bb05:0:b0:502:4459:f2b8 with SMTP id
+ y5-20020a50bb05000000b005024459f2b8mr53692ede.8.1681335203308; Wed, 12 Apr
+ 2023 14:33:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09.prod.outlook.com>
-Message-ID-Hash: I4ZA2FDHX7GTAU5H5EAXLVDV6VOLPART
-X-Message-ID-Hash: I4ZA2FDHX7GTAU5H5EAXLVDV6VOLPART
-X-MailFrom: patchvonbraun@gmail.com
+References: <gUDft9N9yvYDckG3aB4fwToRFd6kCIUc8jqcdfD4Wc@lists.ettus.com>
+In-Reply-To: <gUDft9N9yvYDckG3aB4fwToRFd6kCIUc8jqcdfD4Wc@lists.ettus.com>
+From: Wade Fife <wade.fife@ettus.com>
+Date: Wed, 12 Apr 2023 16:33:07 -0500
+Message-ID: <CAFche=g+T3qPDgYs60MLFzcVHrFe0XDPB7wD+Znx7mVP33qSLw@mail.gmail.com>
+To: h57jafari@gmail.com
+Message-ID-Hash: WWPFNJQUKMX2LQL3FSTPLDWJV7EZSEQM
+X-Message-ID-Hash: WWPFNJQUKMX2LQL3FSTPLDWJV7EZSEQM
+X-MailFrom: wade.fife@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Harmonic Distortion with B205mini
+Subject: [USRP-users] Re: intel X710DA4 NIC card and breakout cable
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/I4ZA2FDHX7GTAU5H5EAXLVDV6VOLPART/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WWPFNJQUKMX2LQL3FSTPLDWJV7EZSEQM/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4667639019127544844=="
+Content-Type: multipart/mixed; boundary="===============4219352805786108472=="
 
-This is a multi-part message in MIME format.
---===============4667639019127544844==
-Content-Type: multipart/alternative;
- boundary="------------pis4oxMbl4fOh0APlKsc4L4E"
-Content-Language: en-US
+--===============4219352805786108472==
+Content-Type: multipart/alternative; boundary="0000000000008ac0c705f92a5b12"
 
-This is a multi-part message in MIME format.
---------------pis4oxMbl4fOh0APlKsc4L4E
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000008ac0c705f92a5b12
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 10/04/2023 09:39, Shenk, Trey E via USRP-users wrote:
->
-> I'm using a B205mini to transmit signals. When transmitting, I can see=20
-> copies of the SOI at harmonics of the center frequency. I ran some=20
-> measurements of total harmonic distortion, and found it to range from=20
-> 39% with a 100MHz to 23% with a 1GHz carrier.=C2=A0The second harmonic =
-is=20
-> <-50dBc, but the third harmonic is usually around -10dBc.
->
-> My main concern is for the lower frequency carriers, like 100MHz,=20
-> because multiple harmonics will show up on a spectrum analyzer set to=20
-> a wideband. I've looked at putting an RF filter at the output, but I=20
-> need the system to be able to switch transmit center frequencies in a=20
-> range from 100MHz to 5GHz.
->
-> Is it possible to reduce the harmonics by some hardware setting=20
-> (driving with gnruadio)?
->
-> Thanks,
-> Trey
->
->
-I just did some tests myself, using a couple of tones with modest magnitu=
-de.
+This is the card Ettus sells for this product. It's the Intel X7A-DA2.
 
-Indeed, the odd harmonics of the carrier are not particularly well=20
-suppressed, which surprises me somewhat--the mixer in
- =C2=A0 the AD9361 is fairly good.
+https://www.ettus.com/all-products/10gige-kit/
 
-But what is true is that only SOME of the USRP line have a switchable=20
-filter bank that the UHD software automatically switches
- =C2=A0 into place, which would (in many cases) handily suppress harmonic=
-=20
-content.
+For X410 cables, if you want to use 4 x 10 GbE, go to this link and click
+to view the accessories for X410. Look for the "QSFP28 To 4xSFP28 Breakout
+Cable, 1M".
 
-I tend to think of SDRs as *components* in an overall, engineered, RF=20
-systems design.=C2=A0 In radios-for-a-particular-purpose, there
- =C2=A0 are almost ALWAYS application-specific filters to eliminate spurs=
- and=20
-harmonic mixer output content from reaching the antenna
- =C2=A0 at levels that are significant.=C2=A0=C2=A0 An SDR, being very ge=
-neral-purpose,=20
-has no opportunity to do that (although, as I've said,
- =C2=A0 SOME USRP models include a handful of different filters in the TX=
- and=20
-RX chains).
+https://www.ni.com/sic/configurator/configure.action?sfId=3DNI&wcs_l=3Den-u=
+s&wcs_k=3Dusrp-software-defined-radio-device&wcs_s=3D523502
+
+Thanks,
+
+Wade
 
 
---------------pis4oxMbl4fOh0APlKsc4L4E
-Content-Type: text/html; charset=UTF-8
+On Mon, Apr 10, 2023 at 3:06=E2=80=AFPM <h57jafari@gmail.com> wrote:
+
+> Hi, Does any one can share the link to purchase intel X710DA4 NIC card an=
+d
+> breakout cable that they purchased and actually it worked with USRPX410 o=
+r
+> other USRP. It is not clear very well through https://kb.ettus.com/X410
+> or other online resources. Thank you.
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000008ac0c705f92a5b12
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 10/04/2023 09:39, Shenk, Trey E via
-      USRP-users wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p style=3D"background:white"><span
-            style=3D"font-size:10.5pt;font-family:&quot;Segoe
-            UI&quot;,sans-serif;color:#353C41">I'm using a B205mini to
-            transmit signals. When transmitting, I can see copies of the
-            SOI at harmonics of the center frequency. I ran some
-            measurements of total harmonic distortion, and found it to
-            range from 39% with a 100MHz to 23% with a 1GHz carrier.=C2=A0=
-The
-            second harmonic is &lt;-50dBc, but the third harmonic is
-            usually around -10dBc.
-            <o:p></o:p></span></p>
-        <p style=3D"background:white;box-sizing:
-          border-box;font-variant-ligatures: normal;font-variant-caps:
-          normal;orphans: 2;text-align:start;widows:
-          2;-webkit-text-stroke-width: 0px;text-decoration-thickness:
-          initial;text-decoration-style: initial;text-decoration-color:
-          initial;word-spacing:0px">
-          <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
-            UI&quot;,sans-serif;color:#353C41">My main concern is for
-            the lower frequency carriers, like 100MHz, because multiple
-            harmonics will show up on a spectrum analyzer set to a
-            wideband. I've looked at putting an RF filter at the output,
-            but I need the system to be able to switch transmit center
-            frequencies in a range from 100MHz to 5GHz.<o:p></o:p></span>=
-</p>
-        <p style=3D"background:white;box-sizing:
-          border-box;font-variant-ligatures: normal;font-variant-caps:
-          normal;orphans: 2;text-align:start;widows:
-          2;-webkit-text-stroke-width: 0px;text-decoration-thickness:
-          initial;text-decoration-style: initial;text-decoration-color:
-          initial;word-spacing:0px">
-          <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
-            UI&quot;,sans-serif;color:#353C41">Is it possible to reduce
-            the harmonics by some hardware setting (driving with
-            gnruadio)?=C2=A0<o:p></o:p></span></p>
-        <p style=3D"background:white;box-sizing:
-          border-box;font-variant-ligatures: normal;font-variant-caps:
-          normal;orphans: 2;text-align:start;widows:
-          2;-webkit-text-stroke-width: 0px;text-decoration-thickness:
-          initial;text-decoration-style: initial;text-decoration-color:
-          initial;word-spacing:0px">
-          <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
-            UI&quot;,sans-serif;color:#353C41">Thanks,<br>
-            Trey<o:p></o:p></span></p>
-        <br>
-      </div>
-    </blockquote>
-    I just did some tests myself, using a couple of tones with modest
-    magnitude.<br>
-    <br>
-    Indeed, the odd harmonics of the carrier are not particularly well
-    suppressed, which surprises me somewhat--the mixer in<br>
-    =C2=A0 the AD9361 is fairly good.<br>
-    <br>
-    But what is true is that only SOME of the USRP line have a
-    switchable filter bank that the UHD software automatically switches<b=
-r>
-    =C2=A0 into place, which would (in many cases) handily suppress harmo=
-nic
-    content.<br>
-    <br>
-    I tend to think of SDRs as *components* in an overall, engineered,
-    RF systems design.=C2=A0 In radios-for-a-particular-purpose, there<br=
->
-    =C2=A0 are almost ALWAYS application-specific filters to eliminate sp=
-urs
-    and harmonic mixer output content from reaching the antenna<br>
-    =C2=A0 at levels that are significant.=C2=A0=C2=A0 An SDR, being very
-    general-purpose, has no opportunity to do that (although, as I've
-    said,<br>
-    =C2=A0 SOME USRP models include a handful of different filters in the=
- TX
-    and RX chains).<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div>This is the card Ettus sells for this product. It&#39=
+;s the Intel X7A-DA2.<br></div><div><br></div><div><a href=3D"https://www.e=
+ttus.com/all-products/10gige-kit/">https://www.ettus.com/all-products/10gig=
+e-kit/</a></div><div><br></div><div>For X410 cables, if you want to use 4 x=
+ 10 GbE, go to this link and click to view the accessories for X410. Look f=
+or the &quot;QSFP28 To 4xSFP28 Breakout Cable, 1M&quot;.<br></div><div><br>=
+</div><div><a href=3D"https://www.ni.com/sic/configurator/configure.action?=
+sfId=3DNI&amp;wcs_l=3Den-us&amp;wcs_k=3Dusrp-software-defined-radio-device&=
+amp;wcs_s=3D523502">https://www.ni.com/sic/configurator/configure.action?sf=
+Id=3DNI&amp;wcs_l=3Den-us&amp;wcs_k=3Dusrp-software-defined-radio-device&am=
+p;wcs_s=3D523502</a></div><div><br></div><div>Thanks,</div><div><br></div><=
+div>Wade<br></div><div><br></div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 10, 2023 at 3:06=E2=80=AFPM &l=
+t;<a href=3D"mailto:h57jafari@gmail.com">h57jafari@gmail.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><p>Hi, Does any=
+ one can share the link to purchase intel X710DA4 NIC card and breakout cab=
+le that they purchased and actually it worked with USRPX410 or other USRP. =
+It is not clear very well through <a href=3D"https://kb.ettus.com/X410" tar=
+get=3D"_blank">https://kb.ettus.com/X410</a> or other online resources. Tha=
+nk you.</p>
 
---------------pis4oxMbl4fOh0APlKsc4L4E--
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---===============4667639019127544844==
+--0000000000008ac0c705f92a5b12--
+
+--===============4219352805786108472==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -278,4 +161,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4667639019127544844==--
+--===============4219352805786108472==--
