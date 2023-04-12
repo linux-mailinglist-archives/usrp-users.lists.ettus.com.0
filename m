@@ -2,169 +2,151 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D6946DD191
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Apr 2023 07:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B03336DFF2F
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 21:51:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 727C63845D0
-	for <lists+usrp-users@lfdr.de>; Tue, 11 Apr 2023 01:23:02 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4CBDB3813D3
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 15:51:43 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681190582; bh=xu7nOOyWTmbzwjl6XnF6f3dK+cV4ORmCVz3YunmkAAM=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=suT6oPLH8rdzWDXqMWpcFPRtfiaeWQ60T8Ug/FzBoIWgRPeySNpIe3o5ZIi91WpPM
-	 /InlA7fyQQ0oiJu+EnjuCnP3LasOnPN8VsnVdyUaLMSlnkdN40oWDoe9CJUSLKZX/f
-	 NgR0x9UWHdAhBehXyr1K/u0blc70MkhBTxL39yuEW9I8VmVkcMxlNIx5q8/Vf7Wdzc
-	 +P4WphnTwm/u/DPsuT7w7zbfImELWOP6OfuyggqAWoGmJFAl74541eK11L+ycYMLg3
-	 /ey5f82Qf5NLVu2YF2MfoDxrC5NuKOdMPrkKYoFordbsxUz9Efk8URejJImisiRAPJ
-	 YTZmHCRKNUtGQ==
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	by mm2.emwd.com (Postfix) with ESMTPS id 3CE513844B1
-	for <USRP-users@lists.ettus.com>; Tue, 11 Apr 2023 01:22:29 -0400 (EDT)
+	t=1681329103; bh=JUBsnhY0v+8z5C8c5JBOHw7fhkNnCa/tBS2QFgehkyY=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=d5I70iRVi7bEvA2hGlr33Zo+78v+PD9x7/ciEV31tgLGWvoGfudcz2AQZ74lbu3yC
+	 OWdj2i2vjvVENmha4P5wGurJdYFXyegnGvzNSj1P7hs+q9NgmBCn9DpFKKH1AaNsS3
+	 YAbXEkhq9W4y3LB+7LFb7JEG2lckDCGipUBgck9HIZFNY1qGLHm77RSTjSYfpBaLCJ
+	 PzdM3XZnawuYqQbpGW2mty6jfU1Ww7tuVmd9T0+V4c5D/VymdlD1p4oIJ9vM2FL6Bz
+	 NTJUyYrzGP3U7AQEws3WADZw/8T/9Ve3ng2MxE2Rw62WGTEoh7MoVjl32tIdAvnG2Q
+	 iJJ0Il+GabD8Q==
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id D22013813D3
+	for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 15:51:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GSMkjENF";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ODA4s3W3";
 	dkim-atps=neutral
-Received: by mail-qv1-f53.google.com with SMTP id om8so5649063qvb.3
-        for <USRP-users@lists.ettus.com>; Mon, 10 Apr 2023 22:22:29 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id fv6so423967qtb.9
+        for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 12:51:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112; t=1681190548; x=1683782548;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GcnooeWplb8ku2MXvZrPUCinw1aR69/doDMLpmxYiwU=;
-        b=GSMkjENFJW891R3x0HwaUROMjgwL2nUVLYoUMxO0bcXh8jcuWzrfgHzjywuJqSZ7Lk
-         MlextdQYKRUpIw/tjEYnvT60SVOssNvIzLP3NVT3I1Fv5brGZbBL23WB1LSDO6CHo1L4
-         2biR4OiewXOPTT1GadDqO22TGRPfTBHeu3CyGEUh1cySTLsqFuHOR+tWGjbBAsHzGDum
-         4wl0ScwdoQb7+A9qyxLNgxs2SToM5h2AKA+j8QdwrLHndYvJFgD1i/VQJQeQGXY6c6J0
-         VW4M4qR+memQpPZbuMNtSsCYV5XO/Cwm4jnFJspMSvsYAnMZAYEEdv/GiM8RhpZUorAQ
-         IXlw==
+        d=gmail.com; s=20221208; t=1681329097; x=1683921097;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F2sxqPBQ7xR8Obzhbk0OSiDSXvRfLfxFyWPhVutmBw8=;
+        b=ODA4s3W3wTeOPwW7jc8YalQH0T4BXaVkm8S8fdJ8mbJaATjfyEZnR13/armzNKPpwV
+         Z4HTRCoUamSI5akOUQD1vMxRNbNEJg1b9/XDNJd2Took2zpHZoJ2xAplO7HBGhOuonHP
+         lzl0BLEmuGCdB9+r9HmHQm9gkRCClUWTn4J9q8l6Wspu+2tKyA/J1Q3fkzCQFlPd4i2/
+         Sn4yKol/3iq7NPo6JAUUCH6/gwvGlsGU651fVziCgVdEtZKRb0R2RRzfibSYCbZ4ujFc
+         xtXRXlo1aDnApULdmWrQBwNw56cvy0/UL6qClSrtg/qkuOQxKR2m1Z2TuMGTpenAvyL3
+         +PRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112; t=1681190548; x=1683782548;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GcnooeWplb8ku2MXvZrPUCinw1aR69/doDMLpmxYiwU=;
-        b=Qjns+OzDgOZG0VrWbMlRobWxZOyMs1njjMecSXGxtkG21mXb14sqgeE8YqHmnEsrwO
-         JPNUzwWn6WJCHW0aAdYeC5Div8QSNCZnyjeDNlrMPjFi7k2jfwbD+4OM932QRz5QDC+N
-         4KXWhB3bXFthhw8JRzwRmJRmevqEhGSGF0R3HF4OHOFtSBqjnSadp/CgarWe7ZlOCjky
-         Hz5/YEYgkCAIsYtDBTEBDqHxXeneLUyltOYw1+bo6MQaDXt+i8ozNhjWn9nbnjxn+wBX
-         Sa2R/+9ZecwPSfiyonCNPfOpOGp/96MpbymyKu/e93sxN8b3ajBKsNTRQtp1KTrG/lKV
-         P84w==
-X-Gm-Message-State: AAQBX9ezdCI66qAKzyBR+bk1a75qGtwEpVjjFcfvkXYTFUWVVv1tTI4t
-	vBaepffTC/zuQ6GM90XrY9+A4q7/VLk=
-X-Google-Smtp-Source: AKy350YEevoH2IYcJF0aKIX0tfeiY2RWiTdey/BYmce7+3U0J8ui3Z3IUUGJKNi3C9fgVK2AcM8BHA==
-X-Received: by 2002:a05:6214:2a81:b0:5ac:d562:4ea8 with SMTP id jr1-20020a0562142a8100b005acd5624ea8mr19905576qvb.9.1681190548427;
-        Mon, 10 Apr 2023 22:22:28 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1681329097; x=1683921097;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=F2sxqPBQ7xR8Obzhbk0OSiDSXvRfLfxFyWPhVutmBw8=;
+        b=YmB3t2A3394Aq754sNQ/uGvYr+SnSBJ0l7/gJAUptLeHKhvZwNxOG4ds0nq9Cm7KM0
+         b+qN8nU7C243zEXy4lN+ZYT+aVWm61aqF2qnxURH3706MlO6U54Zw3l29r6ghkHyjuqD
+         EJfdBZ2wBPndlM4WqZJ4Lgo1jcyxglhxqmOTCtFzRAYEHo1H0zKUIhiZkNxfQEfNXgoC
+         gVXYHeEOoj31iGbGcAfh3DYAj9pLy1S3KPBis5N7b4PrxCWSKnGy88lOpwkFZfDzdgUq
+         f88tL0PrTLyisymC4FnEMU3ZwhsFsZf+Mm2K5GT6WjhZWH5FNoKZz8N5zX6R6+lkjPGk
+         Czkw==
+X-Gm-Message-State: AAQBX9dn3kjKqmmWBRdZiegL+1unvciSpaYTYgJlxgyp5tKHCbaR9Wb5
+	Vqh8y9+eYQxiQab8IH+vkH8iVJWFERk=
+X-Google-Smtp-Source: AKy350Zki2cIdVIeFCFCntJ7Mrb4KYzVgtGtEbhfcqoO4pkCVeO+fXRSx4n3T3tQyd7a01AvvMB0yw==
+X-Received: by 2002:a05:622a:34f:b0:3d6:ff99:7e9e with SMTP id r15-20020a05622a034f00b003d6ff997e9emr5509305qtw.33.1681329097123;
+        Wed, 12 Apr 2023 12:51:37 -0700 (PDT)
 Received: from [192.168.2.217] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id k7-20020ad44207000000b005e99f302b31sm2220265qvp.1.2023.04.10.22.22.27
+        by smtp.googlemail.com with ESMTPSA id k23-20020ac84797000000b003b63b8df24asm4467567qtq.36.2023.04.12.12.51.36
+        for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Apr 2023 22:22:28 -0700 (PDT)
-Message-ID: <569d3487-6006-c2f1-96d8-bb36f2f9017d@gmail.com>
-Date: Tue, 11 Apr 2023 01:22:27 -0400
+        Wed, 12 Apr 2023 12:51:36 -0700 (PDT)
+Message-ID: <d0706ce9-c1e3-94da-7609-b1e47139157f@gmail.com>
+Date: Wed, 12 Apr 2023 15:51:36 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
 Content-Language: en-US
-To: "Shenk, Trey E" <trey.shenk@pnnl.gov>
+To: usrp-users@lists.ettus.com
 References: <CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09.prod.outlook.com>
- <15820636-B0CB-4B9D-98DA-76820042D215@gmail.com>
- <CO6PR09MB8118AE8209619F8C193A4AA3F9959@CO6PR09MB8118.namprd09.prod.outlook.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CO6PR09MB8118AE8209619F8C193A4AA3F9959@CO6PR09MB8118.namprd09.prod.outlook.com>
-Message-ID-Hash: FNIMK4OFTRZIHBSYNFNZI4D2HNYM22U7
-X-Message-ID-Hash: FNIMK4OFTRZIHBSYNFNZI4D2HNYM22U7
+In-Reply-To: <CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09.prod.outlook.com>
+Message-ID-Hash: I4ZA2FDHX7GTAU5H5EAXLVDV6VOLPART
+X-Message-ID-Hash: I4ZA2FDHX7GTAU5H5EAXLVDV6VOLPART
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Harmonic Distortion with B205mini
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FNIMK4OFTRZIHBSYNFNZI4D2HNYM22U7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/I4ZA2FDHX7GTAU5H5EAXLVDV6VOLPART/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7855357666578789354=="
+Content-Type: multipart/mixed; boundary="===============4667639019127544844=="
 
 This is a multi-part message in MIME format.
---===============7855357666578789354==
+--===============4667639019127544844==
 Content-Type: multipart/alternative;
- boundary="------------ewTZrS2XKjB056c0RwFl3AaD"
+ boundary="------------pis4oxMbl4fOh0APlKsc4L4E"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------ewTZrS2XKjB056c0RwFl3AaD
+--------------pis4oxMbl4fOh0APlKsc4L4E
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 10/04/2023 14:28, Shenk, Trey E wrote:
+On 10/04/2023 09:39, Shenk, Trey E via USRP-users wrote:
 >
-> I first tried turning the gain down. What I saw was that the even=20
-> harmonics (2*fundamental, =E2=80=A6) did not change power, and the odd=20
-> harmonics decreased by the same amount as the fundamental. This means=20
-> that the dBc for the odd harmonics stayed the same with decreasing gain=
-.
+> I'm using a B205mini to transmit signals. When transmitting, I can see=20
+> copies of the SOI at harmonics of the center frequency. I ran some=20
+> measurements of total harmonic distortion, and found it to range from=20
+> 39% with a 100MHz to 23% with a 1GHz carrier.=C2=A0The second harmonic =
+is=20
+> <-50dBc, but the third harmonic is usually around -10dBc.
 >
-> Decreasing the baseband amplitude had the exact same effect. Even=20
-> harmonics stayed at the same power level, odd harmonics decreased=20
-> while maintaining dBc.
+> My main concern is for the lower frequency carriers, like 100MHz,=20
+> because multiple harmonics will show up on a spectrum analyzer set to=20
+> a wideband. I've looked at putting an RF filter at the output, but I=20
+> need the system to be able to switch transmit center frequencies in a=20
+> range from 100MHz to 5GHz.
 >
-What is the nature of the modulating signal?
+> Is it possible to reduce the harmonics by some hardware setting=20
+> (driving with gnruadio)?
+>
+> Thanks,
+> Trey
+>
+>
+I just did some tests myself, using a couple of tones with modest magnitu=
+de.
 
-If you use an example app like "tx_waveforms" with, let's say, 10kHz SIN=20
-signal, what are the harmonic results?
+Indeed, the odd harmonics of the carrier are not particularly well=20
+suppressed, which surprises me somewhat--the mixer in
+ =C2=A0 the AD9361 is fairly good.
+
+But what is true is that only SOME of the USRP line have a switchable=20
+filter bank that the UHD software automatically switches
+ =C2=A0 into place, which would (in many cases) handily suppress harmonic=
+=20
+content.
+
+I tend to think of SDRs as *components* in an overall, engineered, RF=20
+systems design.=C2=A0 In radios-for-a-particular-purpose, there
+ =C2=A0 are almost ALWAYS application-specific filters to eliminate spurs=
+ and=20
+harmonic mixer output content from reaching the antenna
+ =C2=A0 at levels that are significant.=C2=A0=C2=A0 An SDR, being very ge=
+neral-purpose,=20
+has no opportunity to do that (although, as I've said,
+ =C2=A0 SOME USRP models include a handful of different filters in the TX=
+ and=20
+RX chains).
 
 
-> *From:* Marcus D Leech <patchvonbraun@gmail.com>
-> *Sent:* Monday, April 10, 2023 8:39 AM
-> *To:* Shenk, Trey E <trey.shenk@pnnl.gov>
-> *Cc:* USRP-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
->
-> Check twice before you click! This email originated from outside PNNL.
->
-> Turn down the RF gain a bit as well as the baseband amplitude. Does=20
-> this make any difference?
->
-> Sent from my iPhone
->
->
->
->     On Apr 10, 2023, at 9:41 AM, Shenk, Trey E via USRP-users
->     <usrp-users@lists.ettus.com> wrote:
->
->     =EF=BB=BF
->
->     I'm using a B205mini to transmit signals. When transmitting, I can
->     see copies of the SOI at harmonics of the center frequency. I ran
->     some measurements of total harmonic distortion, and found it to
->     range from 39% with a 100MHz to 23% with a 1GHz carrier.=C2=A0The
->     second harmonic is <-50dBc, but the third harmonic is usually
->     around -10dBc.
->
->     My main concern is for the lower frequency carriers, like 100MHz,
->     because multiple harmonics will show up on a spectrum analyzer set
->     to a wideband. I've looked at putting an RF filter at the output,
->     but I need the system to be able to switch transmit center
->     frequencies in a range from 100MHz to 5GHz.
->
->     Is it possible to reduce the harmonics by some hardware setting
->     (driving with gnruadio)?
->
->     Thanks,
->     Trey
->
->     <carrier_freqsweep_fc0200M_gain55.png>
->
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---------------ewTZrS2XKjB056c0RwFl3AaD
+--------------pis4oxMbl4fOh0APlKsc4L4E
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -174,11 +156,11 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 10/04/2023 14:28, Shenk, Trey E
-      wrote:<br>
+    <div class=3D"moz-cite-prefix">On 10/04/2023 09:39, Shenk, Trey E via
+      USRP-users wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:CO6PR09MB8118AE8209619F8C193A4AA3F9959@CO6PR09MB8118.namprd09=
+cite=3D"mid:CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09=
 .prod.outlook.com">
       <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
 TF-8">
@@ -193,15 +175,12 @@ TF-8">
 	panose-1:2 11 5 2 4 2 4 2 2 3;}p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}span.EmailStyle22
-	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;}span.EmailStyle17
+	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}.MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
+	font-family:"Calibri",sans-serif;}div.WordSection1
 	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -209,175 +188,87 @@ TF-8">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
       <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">I first tried turning the gain down. What =
-I
-          saw was that the even harmonics (2*fundamental, =E2=80=A6) did =
-not
-          change power, and the odd harmonics decreased by the same
-          amount as the fundamental. This means that the dBc for the odd
-          harmonics stayed the same with decreasing gain.<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Decreasing the baseband amplitude had the
-          exact same effect. Even harmonics stayed at the same power
-          level, odd harmonics decreased while maintaining dBc.</p>
+        <p style=3D"background:white"><span
+            style=3D"font-size:10.5pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:#353C41">I'm using a B205mini to
+            transmit signals. When transmitting, I can see copies of the
+            SOI at harmonics of the center frequency. I ran some
+            measurements of total harmonic distortion, and found it to
+            range from 39% with a 100MHz to 23% with a 1GHz carrier.=C2=A0=
+The
+            second harmonic is &lt;-50dBc, but the third harmonic is
+            usually around -10dBc.
+            <o:p></o:p></span></p>
+        <p style=3D"background:white;box-sizing:
+          border-box;font-variant-ligatures: normal;font-variant-caps:
+          normal;orphans: 2;text-align:start;widows:
+          2;-webkit-text-stroke-width: 0px;text-decoration-thickness:
+          initial;text-decoration-style: initial;text-decoration-color:
+          initial;word-spacing:0px">
+          <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:#353C41">My main concern is for
+            the lower frequency carriers, like 100MHz, because multiple
+            harmonics will show up on a spectrum analyzer set to a
+            wideband. I've looked at putting an RF filter at the output,
+            but I need the system to be able to switch transmit center
+            frequencies in a range from 100MHz to 5GHz.<o:p></o:p></span>=
+</p>
+        <p style=3D"background:white;box-sizing:
+          border-box;font-variant-ligatures: normal;font-variant-caps:
+          normal;orphans: 2;text-align:start;widows:
+          2;-webkit-text-stroke-width: 0px;text-decoration-thickness:
+          initial;text-decoration-style: initial;text-decoration-color:
+          initial;word-spacing:0px">
+          <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:#353C41">Is it possible to reduce
+            the harmonics by some hardware setting (driving with
+            gnruadio)?=C2=A0<o:p></o:p></span></p>
+        <p style=3D"background:white;box-sizing:
+          border-box;font-variant-ligatures: normal;font-variant-caps:
+          normal;orphans: 2;text-align:start;widows:
+          2;-webkit-text-stroke-width: 0px;text-decoration-thickness:
+          initial;text-decoration-style: initial;text-decoration-color:
+          initial;word-spacing:0px">
+          <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
+            UI&quot;,sans-serif;color:#353C41">Thanks,<br>
+            Trey<o:p></o:p></span></p>
+        <br>
       </div>
     </blockquote>
-    What is the nature of the modulating signal?<br>
+    I just did some tests myself, using a couple of tones with modest
+    magnitude.<br>
     <br>
-    If you use an example app like "tx_waveforms" with, let's say, 10kHz
-    SIN signal, what are the harmonic results?<br>
+    Indeed, the odd harmonics of the carrier are not particularly well
+    suppressed, which surprises me somewhat--the mixer in<br>
+    =C2=A0 the AD9361 is fairly good.<br>
     <br>
+    But what is true is that only SOME of the USRP line have a
+    switchable filter bank that the UHD software automatically switches<b=
+r>
+    =C2=A0 into place, which would (in many cases) handily suppress harmo=
+nic
+    content.<br>
     <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CO6PR09MB8118AE8209619F8C193A4AA3F9959@CO6PR09MB8118.namprd09=
-.prod.outlook.com">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div style=3D"border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0in 0in 0in">
-            <p class=3D"MsoNormal"><b>From:</b> Marcus D Leech
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
-raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
-              <b>Sent:</b> Monday, April 10, 2023 8:39 AM<br>
-              <b>To:</b> Shenk, Trey E <a class=3D"moz-txt-link-rfc2396E"=
- href=3D"mailto:trey.shenk@pnnl.gov">&lt;trey.shenk@pnnl.gov&gt;</a><br>
-              <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"ma=
-ilto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
-              <b>Subject:</b> Re: [USRP-users] Harmonic Distortion with
-              B205mini<o:p></o:p></p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div style=3D"border:none;border-left:solid #D77600
-          6.0pt;padding:0in 0in 0in 0in;font-size:1.15rem">
-          <p class=3D"MsoNormal"
-            style=3D"text-align:center;background:#F7E3CC" align=3D"cente=
-r">
-            <span
-              style=3D"font-family:&quot;Arial&quot;,sans-serif;color:bla=
-ck">Check
-              twice before you click! This email originated from outside
-              PNNL.</span><span
-              style=3D"font-family:&quot;Arial&quot;,sans-serif"><o:p></o=
-:p></span></p>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <p class=3D"MsoNormal">Turn down the RF gain a bit as well as
-            the baseband amplitude. Does this make any difference?
-            <o:p></o:p></p>
-          <div>
-            <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-          </div>
-          <div>
-            <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><o:p>=C2=
-=A0</o:p></p>
-            <div>
-              <p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></p>
-            </div>
-            <div>
-              <p class=3D"MsoNormal"><br>
-                <br>
-                <o:p></o:p></p>
-              <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-                <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">On =
-Apr
-                  10, 2023, at 9:41 AM, Shenk, Trey E via USRP-users
-                  &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"
-                    moz-do-not-send=3D"true" class=3D"moz-txt-link-freete=
-xt">usrp-users@lists.ettus.com</a>&gt;
-                  wrote:<o:p></o:p></p>
-              </blockquote>
-            </div>
-            <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-              <div>
-                <p class=3D"MsoNormal">=EF=BB=BF <o:p></o:p></p>
-                <p style=3D"background:white"><span
-                    style=3D"font-size:10.5pt;font-family:&quot;Segoe
-                    UI&quot;,sans-serif;color:#353C41">I'm using a
-                    B205mini to transmit signals. When transmitting, I
-                    can see copies of the SOI at harmonics of the center
-                    frequency. I ran some measurements of total harmonic
-                    distortion, and found it to range from 39% with a
-                    100MHz to 23% with a 1GHz carrier.=C2=A0The second
-                    harmonic is &lt;-50dBc, but the third harmonic is
-                    usually around -10dBc.
-                  </span><o:p></o:p></p>
-                <p style=3D"background:white;box-sizing:
-                  border-box;font-variant-ligatures:
-                  normal;font-variant-caps: normal;orphans:
-                  2;text-align:start;widows:
-                  2;-webkit-text-stroke-width:
-                  0px;text-decoration-thickness:
-                  initial;text-decoration-style:
-                  initial;text-decoration-color:
-                  initial;word-spacing:0px">
-                  <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
-                    UI&quot;,sans-serif;color:#353C41">My main concern
-                    is for the lower frequency carriers, like 100MHz,
-                    because multiple harmonics will show up on a
-                    spectrum analyzer set to a wideband. I've looked at
-                    putting an RF filter at the output, but I need the
-                    system to be able to switch transmit center
-                    frequencies in a range from 100MHz to 5GHz.</span><o:=
-p></o:p></p>
-                <p style=3D"background:white;box-sizing:
-                  border-box;font-variant-ligatures:
-                  normal;font-variant-caps: normal;orphans:
-                  2;text-align:start;widows:
-                  2;-webkit-text-stroke-width:
-                  0px;text-decoration-thickness:
-                  initial;text-decoration-style:
-                  initial;text-decoration-color:
-                  initial;word-spacing:0px">
-                  <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
-                    UI&quot;,sans-serif;color:#353C41">Is it possible to
-                    reduce the harmonics by some hardware setting
-                    (driving with gnruadio)?=C2=A0</span><o:p></o:p></p>
-                <p style=3D"background:white;box-sizing:
-                  border-box;font-variant-ligatures:
-                  normal;font-variant-caps: normal;orphans:
-                  2;text-align:start;widows:
-                  2;-webkit-text-stroke-width:
-                  0px;text-decoration-thickness:
-                  initial;text-decoration-style:
-                  initial;text-decoration-color:
-                  initial;word-spacing:0px">
-                  <span style=3D"font-size:10.5pt;font-family:&quot;Segoe
-                    UI&quot;,sans-serif;color:#353C41">Thanks,<br>
-                    Trey</span><o:p></o:p></p>
-                <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-                <div>
-                  <p class=3D"MsoNormal">&lt;carrier_freqsweep_fc0200M_ga=
-in55.png&gt;<o:p></o:p></p>
-                </div>
-                <p class=3D"MsoNormal">__________________________________=
-_____________<br>
-                  USRP-users mailing list -- <a
-                    href=3D"mailto:usrp-users@lists.ettus.com"
-                    moz-do-not-send=3D"true" class=3D"moz-txt-link-freete=
-xt">usrp-users@lists.ettus.com</a><br>
-                  To unsubscribe send an email to <a
-                    href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                    moz-do-not-send=3D"true" class=3D"moz-txt-link-freete=
-xt">
-                    usrp-users-leave@lists.ettus.com</a><o:p></o:p></p>
-              </div>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-    </blockquote>
+    I tend to think of SDRs as *components* in an overall, engineered,
+    RF systems design.=C2=A0 In radios-for-a-particular-purpose, there<br=
+>
+    =C2=A0 are almost ALWAYS application-specific filters to eliminate sp=
+urs
+    and harmonic mixer output content from reaching the antenna<br>
+    =C2=A0 at levels that are significant.=C2=A0=C2=A0 An SDR, being very
+    general-purpose, has no opportunity to do that (although, as I've
+    said,<br>
+    =C2=A0 SOME USRP models include a handful of different filters in the=
+ TX
+    and RX chains).<br>
+    <br>
     <br>
   </body>
 </html>
 
---------------ewTZrS2XKjB056c0RwFl3AaD--
+--------------pis4oxMbl4fOh0APlKsc4L4E--
 
---===============7855357666578789354==
+--===============4667639019127544844==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -387,4 +278,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7855357666578789354==--
+--===============4667639019127544844==--
