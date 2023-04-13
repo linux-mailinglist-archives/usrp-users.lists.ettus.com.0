@@ -2,51 +2,66 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EF06E0339
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Apr 2023 02:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E4046E0345
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Apr 2023 02:38:57 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F227E38417F
-	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 20:29:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5EF56384392
+	for <lists+usrp-users@lfdr.de>; Wed, 12 Apr 2023 20:38:56 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681345744; bh=mvwgZTpL/tCHlrg9LJ+lvUC133ctUUxs63kyqCHUH4E=;
+	t=1681346336; bh=TGB9enqaY9IT20QqnIO6Bt09LjREjSC0VNASk634hSo=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=jLg5hZIAmHrwQa2k2RE+a9Pf3wEEOvQNmkVjDgEltok71MX9nENobiWfk/uxsbH8o
-	 ySBwfxO5B3vYjOGOJwPw0zk8uGtQkMHl9W9fNCKOtcFTajE4qYb5uUeFzJWSGWvvn3
-	 KxYCGUfyJzioo0fYDdQgqwsstBKF+1BDfrlqM6h9DOpbDtOlVBkPosUwtF/mh5Jgze
-	 2OFccMCkXPZqJpTadmnweHTYhYjIKS6p9cW/E+2TQYu2hMniMZ6S3IAC8EoXdDaxW6
-	 hAloIiyD7alapZS9qbFSJ2nqM6IBvB2EqkrEovIAAxYFBPTZlFKN0BecQpgxKRfJo9
-	 9GLcT7IYe2TKQ==
-Received: from resdmta-c1p-023853.sys.comcast.net (resdmta-c1p-023853.sys.comcast.net [96.102.19.46])
-	by mm2.emwd.com (Postfix) with ESMTPS id 1571038417F
-	for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 20:28:59 -0400 (EDT)
+	b=pdmVVeJsD8g9DB1N/BCY5/YDX8grQjx+qJJfBuCyHPAwWtjeeEs1qdWc/ZSSEWvmO
+	 Umom6KiXuB00sQXn4++B1FzfmPgb/eFhn2IO/2aVB6g/wx7pCMjD2jP/v3mUIuy4fW
+	 yBjAseIq4EQ10iAsscHw3Agqo9O/hewImTwGjCvq5vVAGVD7dwixfH9HDQv7wECtx+
+	 gntvhGfkDdHBnqAXui4BDwo8I9fOt9jiO63CBlkcLwp7FpKnPbQ+QlJ/6EKhQ4V3N9
+	 sRvofpuyT7VOMKfN13r4ozE2qyggd2RvbEphaUKKatd6joBa/Xq0tiogAN8YYB9La7
+	 qjRqHpWxj9Qww==
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	by mm2.emwd.com (Postfix) with ESMTPS id B1FB638417F
+	for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 20:38:12 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=comcast.net header.i=@comcast.net header.b="MVfkofaI";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DxSEhENO";
 	dkim-atps=neutral
-Received: from resomta-c1p-023409.sys.comcast.net ([96.102.18.228])
-	by resdmta-c1p-023853.sys.comcast.net with ESMTP
-	id mcNUp2EMmpIiwmkpfpWyWg; Thu, 13 Apr 2023 00:28:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
-	s=20190202a; t=1681345739;
-	bh=qGtmwrL5E2nFNSZZcL2z7/gqI2DZ28LoyJsVndoqlVg=;
-	h=Received:Received:Content-Type:Message-ID:Date:MIME-Version:
-	 Subject:To:From:Xfinity-Spam-Result;
-	b=MVfkofaITZbZ9z0L0wNaPtMVF6XsCNaY+HP0PZrki1Yz6mBUrt0yqqk0fpfvts3by
-	 oddJXIS0m8bivss5/JHnuwaixsreldGXi7ogYJd3qiu0c9NGugFAUhHGr35oLVN7rT
-	 83/P+hJ649kdPbt4NLcIv0t4cpbGlhwl8LpI9rPvAxEfDXbCWf0N+JGeJe7RvfkH83
-	 gSJodCJr4GoPN5yf2VHuIkYeaubjxKuLVacODKTQYxCl4UYXI0/ZtnfxLcbxKyp4P0
-	 Ok4+uKACsmypr+IHW4wb5EtahQeoqTtrE7flCUnElxYoJeT6BI8id6VsyTjCw5TzkR
-	 MErUmU+XZMYUQ==
-Received: from [IPV6:2601:647:4700:284:349:8d38:6437:a12]
- ([IPv6:2601:647:4700:284:349:8d38:6437:a12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 256/256 bits)
-	(Client did not present a certificate)
-	by resomta-c1p-023409.sys.comcast.net with ESMTPSA
-	id mkpbpd4T3QANxmkpepcXOP; Thu, 13 Apr 2023 00:28:59 +0000
-X-Xfinity-VMeta: sc=-6.00;st=legit
-Message-ID: <5a1cfa23-f146-3511-b989-b84a9865712d@comcast.net>
-Date: Wed, 12 Apr 2023 17:28:55 -0700
+Received: by mail-qt1-f178.google.com with SMTP id l16so1854039qtv.1
+        for <usrp-users@lists.ettus.com>; Wed, 12 Apr 2023 17:38:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681346292; x=1683938292;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yATGDi/v0E/LZWV5JOisWTf7IcFcJdpploWXpnWHGHI=;
+        b=DxSEhENOn8CDDK0SAsBS42KH+3bo+7Fz5nm9Uyn+QBbk7xxf3M4UrqKwTgOM1i0J5Q
+         y/BhVwHAU7smVnmlxOJUnuDhJ0FJK24tPyMkwAuptW4zRFSO/V4LVUm+GDj1IOH7xspR
+         TDNgEGBeDCGvcAO/8eEIpI9c+8+Oki5NAFE25CkFAij3u9n7/FZz9QqfxFsizxRsba9S
+         Lm7J+mw40JIC9LU8j/EG+2RP6ARQkgRjFQdpTe94FK7QEN5OJELRFwFQT6iwkjSngzTr
+         fiZrf+8SeZX6pMN7B6NchuuB32G6CQd7aWv1y03sJSh18Bw71ChmVBKuWSzRkFFhk2Zs
+         wMJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681346292; x=1683938292;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yATGDi/v0E/LZWV5JOisWTf7IcFcJdpploWXpnWHGHI=;
+        b=gLESKikFTpb/YQKX4rXn+pOoWnAnfS00oLS0S544x+bbbLVSszaMxTHP2IadFuF2nh
+         /RuH5Rut2zmTN+oMwcTh7i1OjKZZjxrhtyLJX6hzuUU/PagGwWa8D9JsrbCJyIEsi7sh
+         GqjRZ9TaU7bjApzpJV4/p1l+Ec6Ca/pEjf5sq/pld6i8ZOFZ5DGGWBzNgzNt2y1Sa+U3
+         3JB7/vJKIAjAKvztAdm888fdkD2Vrjo4aTmEZLsv+i6woU1zN0zO0VtoKWm2K7jJ1/Dz
+         s6BTIDcFaM1hQCll17ZRuVcRQmw9ovPN4fOLMeTwKRDX4ApCWlZ9k1RXCoaqf5MdEu/E
+         21Ew==
+X-Gm-Message-State: AAQBX9cyuZm7q6shXHqWDB0dvSp9xtxW+V/4EyWM5vAiWxhq+Q8fabW7
+	J6ZPQ8zpdqYLnazSg8gu6yzlPoPf9b4=
+X-Google-Smtp-Source: AKy350YA8W3A93ZSJz63J2LgqiFT+daDGNxTuJxSeOKzyXnvB28uWRz56/XUWhDY3uIuHfYu8FPr3Q==
+X-Received: by 2002:ac8:5c01:0:b0:3e6:54d2:a2c1 with SMTP id i1-20020ac85c01000000b003e654d2a2c1mr664244qti.35.1681346291745;
+        Wed, 12 Apr 2023 17:38:11 -0700 (PDT)
+Received: from [192.168.2.217] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id w4-20020a05622a190400b003e9af49b304sm104587qtc.94.2023.04.12.17.38.11
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Apr 2023 17:38:11 -0700 (PDT)
+Message-ID: <f6e9abfc-e643-e1bc-6bfa-e7163e54668b@gmail.com>
+Date: Wed, 12 Apr 2023 20:38:10 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.9.0
@@ -57,142 +72,192 @@ References: <CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09.prod.
  <CO6PR09MB8118AE8209619F8C193A4AA3F9959@CO6PR09MB8118.namprd09.prod.outlook.com>
  <569d3487-6006-c2f1-96d8-bb36f2f9017d@gmail.com>
  <CO6PR09MB8118363A6FFF3D1048730E38F99B9@CO6PR09MB8118.namprd09.prod.outlook.com>
-From: Ron Economos <w6rz@comcast.net>
-In-Reply-To: <CO6PR09MB8118363A6FFF3D1048730E38F99B9@CO6PR09MB8118.namprd09.prod.outlook.com>
-Message-ID-Hash: BRFQHB6TUZNEIJB4U4EAQMKPZPQNJ3ZZ
-X-Message-ID-Hash: BRFQHB6TUZNEIJB4U4EAQMKPZPQNJ3ZZ
-X-MailFrom: w6rz@comcast.net
+ <5a1cfa23-f146-3511-b989-b84a9865712d@comcast.net>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <5a1cfa23-f146-3511-b989-b84a9865712d@comcast.net>
+Message-ID-Hash: BPN6VJ4GZSY2L4OM5FSLJLU2UT2MLEHS
+X-Message-ID-Hash: BPN6VJ4GZSY2L4OM5FSLJLU2UT2MLEHS
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Harmonic Distortion with B205mini
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BRFQHB6TUZNEIJB4U4EAQMKPZPQNJ3ZZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BPN6VJ4GZSY2L4OM5FSLJLU2UT2MLEHS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7216375360863054567=="
+Content-Type: multipart/mixed; boundary="===============4446844710269200437=="
 
 This is a multi-part message in MIME format.
---===============7216375360863054567==
+--===============4446844710269200437==
 Content-Type: multipart/alternative;
- boundary="------------nF8J6CIsori4Gw3p9T6useLc"
+ boundary="------------AxHE7638cMr7RTLdpLqcyFb6"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------nF8J6CIsori4Gw3p9T6useLc
+--------------AxHE7638cMr7RTLdpLqcyFb6
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-This is what I see with a B210 at 145 MHz fundamental. I had the=20
-analyzer on a large RBW, so the even order harmonic are buried in the=20
-analyzer noise.
+On 12/04/2023 20:28, Ron Economos wrote:
+>
+> This is what I see with a B210 at 145 MHz fundamental. I had the=20
+> analyzer on a large RBW, so the even order harmonic are buried in the=20
+> analyzer noise.
+>
+> I don't think there's any remedy except for external filters.
+>
+> Ron
+>
+> B210 harmonics
+>
+Thanks Ron.=C2=A0 That looks like what my TinySA produced for 250Mhz=20
+carrier.=C2=A0 I need to learn more about it so that I can
+ =C2=A0 record spectra with it.=C2=A0 There's a Linux app for it that I n=
+eed to=20
+explore....
 
-I don't think there's any remedy except for external filters.
 
-Ron
+Anyway, the basic issue, having consulted some older Analog Devices=20
+forum posts is that the LO produces a square-wave
+ =C2=A0 signal, which means that all the odd-order harmonics will be pres=
+ent=20
+in it, and naturally, mix with the baseband.
+ =C2=A0 There's nothing that can be done other than, as you point out,=20
+filter.=C2=A0 As you move up in frequency, this becomes
+ =C2=A0 very much easier of course, and at 2GHz, the 3rd harmonic is outs=
+ide=20
+the supported passband of the AD9361, and
+ =C2=A0 you won't see it.
 
-B210 harmonics
+I didn't realize this about the AD9361 chip, and other Ettus devices=20
+have automatically switchable filters that can
+ =C2=A0 (often, not always) remediate this issue.=C2=A0 The E3xx series, =
+the N3xx=20
+series, the TwinRX cards for the X310 and friends.
 
-On 4/12/23 16:20, Shenk, Trey E via USRP-users wrote:
->
-> The original signal that I showed was an unmodulated carrier.
->
-> I tried a 10kHz complex exponential (plots included for several=20
-> harmonics). The carrier is clearly visible at all frequencies. I can=20
-> see copies of the 10kHz tone on odd multiples of the carrier, but not=20
-> on the even multiples.
->
-> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Sent:* Monday, April 10, 2023 10:22 PM
-> *To:* Shenk, Trey E <trey.shenk@pnnl.gov>
-> *Cc:* USRP-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
->
-> On 10/04/2023 14:28, Shenk, Trey E wrote:
->
->     I first tried turning the gain down. What I saw was that the even
->     harmonics (2*fundamental, =E2=80=A6) did not change power, and the =
-odd
->     harmonics decreased by the same amount as the fundamental. This
->     means that the dBc for the odd harmonics stayed the same with
->     decreasing gain.
->
->     Decreasing the baseband amplitude had the exact same effect. Even
->     harmonics stayed at the same power level, odd harmonics decreased
->     while maintaining dBc.
->
-> What is the nature of the modulating signal?
->
-> If you use an example app like "tx_waveforms" with, let's say, 10kHz=20
-> SIN signal, what are the harmonic results?
->
->
->
->     *From:* Marcus D Leech <patchvonbraun@gmail.com>
->     <mailto:patchvonbraun@gmail.com>
->     *Sent:* Monday, April 10, 2023 8:39 AM
->     *To:* Shenk, Trey E <trey.shenk@pnnl.gov> <mailto:trey.shenk@pnnl.g=
-ov>
->     *Cc:* USRP-users@lists.ettus.com
->     *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
->
->     Check twice before you click! This email originated from outside PN=
-NL.
->
->     Turn down the RF gain a bit as well as the baseband amplitude.
->     Does this make any difference?
->
->     Sent from my iPhone
->
->
->
->
->         On Apr 10, 2023, at 9:41 AM, Shenk, Trey E via USRP-users
->         <usrp-users@lists.ettus.com> wrote:
->
->         =EF=BB=BF
->
->         I'm using a B205mini to transmit signals. When transmitting, I
->         can see copies of the SOI at harmonics of the center
->         frequency. I ran some measurements of total harmonic
->         distortion, and found it to range from 39% with a 100MHz to
->         23% with a 1GHz carrier.=C2=A0The second harmonic is <-50dBc, b=
-ut
->         the third harmonic is usually around -10dBc.
->
->         My main concern is for the lower frequency carriers, like
->         100MHz, because multiple harmonics will show up on a spectrum
->         analyzer set to a wideband. I've looked at putting an RF
->         filter at the output, but I need the system to be able to
->         switch transmit center frequencies in a range from 100MHz to 5G=
-Hz.
->
->         Is it possible to reduce the harmonics by some hardware
->         setting (driving with gnruadio)?
->
->         Thanks,
->         Trey
->
->         <carrier_freqsweep_fc0200M_gain55.png>
->
->         _______________________________________________
->         USRP-users mailing list -- usrp-users@lists.ettus.com
->         To unsubscribe send an email to usrp-users-leave@lists.ettus.co=
-m
->
+But I'll point out again that "built for purpose" radios nearly-always=20
+have output (input) filtering to reduce or eliminate
+ =C2=A0 unintended consequences of architecture choices deeper within the=
+=20
+radio.=C2=A0=C2=A0 Since SDRs in general don't get to be
+ =C2=A0 "built for purpose" either ever, or until some specific applicati=
+on=20
+is using them as their "radio bits", it's hard to come up
+ =C2=A0 with a universal RF filtering scheme that is suitable for all=20
+applications.
+
+I'd never noticed this issue because I don't really ever TX in my "day=20
+job" use of these devices (radio astronomy), and on
+ =C2=A0 the RX side, I always pre-filter anyway, usually rather aggressiv=
+ely.
+
+
+> On 4/12/23 16:20, Shenk, Trey E via USRP-users wrote:
+>>
+>> The original signal that I showed was an unmodulated carrier.
+>>
+>> I tried a 10kHz complex exponential (plots included for several=20
+>> harmonics). The carrier is clearly visible at all frequencies. I can=20
+>> see copies of the 10kHz tone on odd multiples of the carrier, but not=20
+>> on the even multiples.
+>>
+>> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+>> *Sent:* Monday, April 10, 2023 10:22 PM
+>> *To:* Shenk, Trey E <trey.shenk@pnnl.gov>
+>> *Cc:* USRP-users@lists.ettus.com
+>> *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
+>>
+>> On 10/04/2023 14:28, Shenk, Trey E wrote:
+>>
+>>     I first tried turning the gain down. What I saw was that the even
+>>     harmonics (2*fundamental, =E2=80=A6) did not change power, and the=
+ odd
+>>     harmonics decreased by the same amount as the fundamental. This
+>>     means that the dBc for the odd harmonics stayed the same with
+>>     decreasing gain.
+>>
+>>     Decreasing the baseband amplitude had the exact same effect. Even
+>>     harmonics stayed at the same power level, odd harmonics decreased
+>>     while maintaining dBc.
+>>
+>> What is the nature of the modulating signal?
+>>
+>> If you use an example app like "tx_waveforms" with, let's say, 10kHz=20
+>> SIN signal, what are the harmonic results?
+>>
+>>
+>>
+>>     *From:* Marcus D Leech <patchvonbraun@gmail.com>
+>>     <mailto:patchvonbraun@gmail.com>
+>>     *Sent:* Monday, April 10, 2023 8:39 AM
+>>     *To:* Shenk, Trey E <trey.shenk@pnnl.gov>
+>>     <mailto:trey.shenk@pnnl.gov>
+>>     *Cc:* USRP-users@lists.ettus.com
+>>     *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
+>>
+>>     Check twice before you click! This email originated from outside
+>>     PNNL.
+>>
+>>     Turn down the RF gain a bit as well as the baseband amplitude.
+>>     Does this make any difference?
+>>
+>>     Sent from my iPhone
+>>
+>>
+>>
+>>
+>>         On Apr 10, 2023, at 9:41 AM, Shenk, Trey E via USRP-users
+>>         <usrp-users@lists.ettus.com> wrote:
+>>
+>>         =EF=BB=BF
+>>
+>>         I'm using a B205mini to transmit signals. When transmitting,
+>>         I can see copies of the SOI at harmonics of the center
+>>         frequency. I ran some measurements of total harmonic
+>>         distortion, and found it to range from 39% with a 100MHz to
+>>         23% with a 1GHz carrier.=C2=A0The second harmonic is <-50dBc, =
+but
+>>         the third harmonic is usually around -10dBc.
+>>
+>>         My main concern is for the lower frequency carriers, like
+>>         100MHz, because multiple harmonics will show up on a spectrum
+>>         analyzer set to a wideband. I've looked at putting an RF
+>>         filter at the output, but I need the system to be able to
+>>         switch transmit center frequencies in a range from 100MHz to
+>>         5GHz.
+>>
+>>         Is it possible to reduce the harmonics by some hardware
+>>         setting (driving with gnruadio)?
+>>
+>>         Thanks,
+>>         Trey
+>>
+>>         <carrier_freqsweep_fc0200M_gain55.png>
+>>
+>>         _______________________________________________
+>>         USRP-users mailing list -- usrp-users@lists.ettus.com
+>>         To unsubscribe send an email to usrp-users-leave@lists.ettus.c=
+om
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list --usrp-users@lists.ettus.com
+>> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
 >
 > _______________________________________________
 > USRP-users mailing list --usrp-users@lists.ettus.com
 > To unsubscribe send an email tousrp-users-leave@lists.ettus.com
---------------nF8J6CIsori4Gw3p9T6useLc
-Content-Type: multipart/related;
- boundary="------------qqHQDyh2a1AeVPTPU380s72P"
 
---------------qqHQDyh2a1AeVPTPU380s72P
+--------------AxHE7638cMr7RTLdpLqcyFb6
+Content-Type: multipart/related;
+ boundary="------------cij4lN3UkzgF1oSBKLg4Z3xo"
+
+--------------cij4lN3UkzgF1oSBKLg4Z3xo
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -202,28 +267,81 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <p>This is what I see with a B210 at 145 MHz fundamental. I had the
-      analyzer on a large RBW, so the even order harmonic are buried in
-      the analyzer noise.</p>
-    <p>I don't think there's any remedy except for external filters.</p>
-    <p>Ron</p>
-    <img moz-do-not-send=3D"false"
-      src=3D"cid:part1.cDBGhznm.AvSqcfc8@comcast.net" alt=3D"B210 harmoni=
-cs"
-      width=3D"800" height=3D"480">
-    <div class=3D"moz-cite-prefix"><br>
-    </div>
-    <div class=3D"moz-cite-prefix">On 4/12/23 16:20, Shenk, Trey E via
-      USRP-users wrote:<br>
+    <div class=3D"moz-cite-prefix">On 12/04/2023 20:28, Ron Economos
+      wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:CO6PR09MB8118363A6FFF3D1048730E38F99B9@CO6PR09MB8118.namprd09=
-.prod.outlook.com">
+      cite=3D"mid:5a1cfa23-f146-3511-b989-b84a9865712d@comcast.net">
       <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
 TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
+      <p>This is what I see with a B210 at 145 MHz fundamental. I had
+        the analyzer on a large RBW, so the even order harmonic are
+        buried in the analyzer noise.</p>
+      <p>I don't think there's any remedy except for external filters.</p=
+>
+      <p>Ron</p>
+      <img moz-do-not-send=3D"false"
+        src=3D"cid:part1.QBkq0DNh.3nrjVeP6@gmail.com" alt=3D"B210 harmoni=
+cs"
+        class=3D"" width=3D"800" height=3D"480">
+      <div class=3D"moz-cite-prefix"><br>
+      </div>
+    </blockquote>
+    Thanks Ron.=C2=A0 That looks like what my TinySA produced for 250Mhz
+    carrier.=C2=A0 I need to learn more about it so that I can<br>
+    =C2=A0 record spectra with it.=C2=A0 There's a Linux app for it that =
+I need to
+    explore....<br>
+    <br>
+    <br>
+    Anyway, the basic issue, having consulted some older Analog Devices
+    forum posts is that the LO produces a square-wave<br>
+    =C2=A0 signal, which means that all the odd-order harmonics will be
+    present in it, and naturally, mix with the baseband.<br>
+    =C2=A0 There's nothing that can be done other than, as you point out,
+    filter.=C2=A0 As you move up in frequency, this becomes<br>
+    =C2=A0 very much easier of course, and at 2GHz, the 3rd harmonic is
+    outside the supported passband of the AD9361, and<br>
+    =C2=A0 you won't see it.<br>
+    <br>
+    I didn't realize this about the AD9361 chip, and other Ettus devices
+    have automatically switchable filters that can<br>
+    =C2=A0 (often, not always) remediate this issue.=C2=A0 The E3xx serie=
+s, the
+    N3xx series, the TwinRX cards for the X310 and friends.<br>
+    <br>
+    But I'll point out again that "built for purpose" radios
+    nearly-always have output (input) filtering to reduce or eliminate<br=
+>
+    =C2=A0 unintended consequences of architecture choices deeper within =
+the
+    radio.=C2=A0=C2=A0 Since SDRs in general don't get to be<br>
+    =C2=A0 "built for purpose" either ever, or until some specific
+    application is using them as their "radio bits", it's hard to come
+    up<br>
+    =C2=A0 with a universal RF filtering scheme that is suitable for all
+    applications.<br>
+    <br>
+    I'd never noticed this issue because I don't really ever TX in my
+    "day job" use of these devices (radio astronomy), and on<br>
+    =C2=A0 the RX side, I always pre-filter anyway, usually rather
+    aggressively.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5a1cfa23-f146-3511-b989-b84a9865712d@comcast.net">
+      <div class=3D"moz-cite-prefix"> </div>
+      <div class=3D"moz-cite-prefix">On 4/12/23 16:20, Shenk, Trey E via
+        USRP-users wrote:<br>
+      </div>
+      <blockquote type=3D"cite"
+cite=3D"mid:CO6PR09MB8118363A6FFF3D1048730E38F99B9@CO6PR09MB8118.namprd09=
+.prod.outlook.com">
+        <meta http-equiv=3D"Content-Type" content=3D"text/html;
+          charset=3DUTF-8">
+        <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+          medium)">
+        <style>@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
 	{font-family:Calibri;
@@ -245,209 +363,232 @@ TF-8">
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">The original signal that I showed was an
-          unmodulated carrier.<br>
-          <br>
-          I tried a 10kHz complex exponential (plots included for
-          several harmonics). The carrier is clearly visible at all
-          frequencies. I can see copies of the 10kHz tone on odd
-          multiples of the carrier, but not on the even multiples.<o:p></=
-o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div style=3D"border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0in 0in 0in">
-            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
-raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
-              <b>Sent:</b> Monday, April 10, 2023 10:22 PM<br>
-              <b>To:</b> Shenk, Trey E <a class=3D"moz-txt-link-rfc2396E"=
- href=3D"mailto:trey.shenk@pnnl.gov">&lt;trey.shenk@pnnl.gov&gt;</a><br>
-              <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"ma=
-ilto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
-              <b>Subject:</b> Re: [USRP-users] Harmonic Distortion with
-              B205mini<o:p></o:p></p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <p class=3D"MsoNormal">On 10/04/2023 14:28, Shenk, Trey E wrote=
-:<o:p></o:p></p>
-        </div>
-        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class=3D"MsoNormal">I first tried turning the gain down. Wha=
-t
-            I saw was that the even harmonics (2*fundamental, =E2=80=A6) =
-did not
-            change power, and the odd harmonics decreased by the same
-            amount as the fundamental. This means that the dBc for the
-            odd harmonics stayed the same with decreasing gain.<o:p></o:p=
-></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">Decreasing the baseband amplitude had th=
-e
-            exact same effect. Even harmonics stayed at the same power
-            level, odd harmonics decreased while maintaining dBc.<o:p></o=
-:p></p>
-        </blockquote>
-        <p class=3D"MsoNormal">What is the nature of the modulating
-          signal?<br>
-          <br>
-          If you use an example app like "tx_waveforms" with, let's say,
-          10kHz SIN signal, what are the harmonic results?<br>
-          <br>
-          <br>
-          <br>
-          <o:p></o:p></p>
-        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+        <div class=3D"WordSection1">
+          <p class=3D"MsoNormal">The original signal that I showed was an
+            unmodulated carrier.<br>
+            <br>
+            I tried a 10kHz complex exponential (plots included for
+            several harmonics). The carrier is clearly visible at all
+            frequencies. I can see copies of the 10kHz tone on odd
+            multiples of the carrier, but not on the even multiples.<o:p>=
+</o:p></p>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
           <div>
             <div style=3D"border:none;border-top:solid #E1E1E1
               1.0pt;padding:3.0pt 0in 0in 0in">
-              <p class=3D"MsoNormal"><b>From:</b> Marcus D Leech <a
+              <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech <a
+                  class=3D"moz-txt-link-rfc2396E"
                   href=3D"mailto:patchvonbraun@gmail.com"
-                  moz-do-not-send=3D"true">
-                  &lt;patchvonbraun@gmail.com&gt;</a> <br>
-                <b>Sent:</b> Monday, April 10, 2023 8:39 AM<br>
+                  moz-do-not-send=3D"true">&lt;patchvonbraun@gmail.com&gt=
+;</a>
+                <br>
+                <b>Sent:</b> Monday, April 10, 2023 10:22 PM<br>
                 <b>To:</b> Shenk, Trey E <a
+                  class=3D"moz-txt-link-rfc2396E"
                   href=3D"mailto:trey.shenk@pnnl.gov"
                   moz-do-not-send=3D"true">&lt;trey.shenk@pnnl.gov&gt;</a=
 ><br>
-                <b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com"
-                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">USRP-users@lists.ettus.com</a><br>
+                <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated
+                  moz-txt-link-freetext"
+                  href=3D"mailto:USRP-users@lists.ettus.com"
+                  moz-do-not-send=3D"true">USRP-users@lists.ettus.com</a>=
+<br>
                 <b>Subject:</b> Re: [USRP-users] Harmonic Distortion
                 with B205mini<o:p></o:p></p>
             </div>
           </div>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <div style=3D"border:none;border-left:solid #D77600
-            6.0pt;padding:0in 0in 0in 0in;font-size:1.15rem">
-            <p class=3D"MsoNormal"
-              style=3D"text-align:center;background:#F7E3CC"
-              align=3D"center">
-              <span
-                style=3D"font-family:&quot;Arial&quot;,sans-serif;color:b=
-lack">Check
-                twice before you click! This email originated from
-                outside PNNL.</span><o:p></o:p></p>
-          </div>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
           <div>
-            <p class=3D"MsoNormal">Turn down the RF gain a bit as well as
-              the baseband amplitude. Does this make any difference?
-              <o:p></o:p></p>
+            <p class=3D"MsoNormal">On 10/04/2023 14:28, Shenk, Trey E
+              wrote:<o:p></o:p></p>
+          </div>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class=3D"MsoNormal">I first tried turning the gain down.
+              What I saw was that the even harmonics (2*fundamental, =E2=80=
+=A6)
+              did not change power, and the odd harmonics decreased by
+              the same amount as the fundamental. This means that the
+              dBc for the odd harmonics stayed the same with decreasing
+              gain.<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">Decreasing the baseband amplitude had
+              the exact same effect. Even harmonics stayed at the same
+              power level, odd harmonics decreased while maintaining
+              dBc.<o:p></o:p></p>
+          </blockquote>
+          <p class=3D"MsoNormal">What is the nature of the modulating
+            signal?<br>
+            <br>
+            If you use an example app like "tx_waveforms" with, let's
+            say, 10kHz SIN signal, what are the harmonic results?<br>
+            <br>
+            <br>
+            <br>
+            <o:p></o:p></p>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
             <div>
-              <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+              <div style=3D"border:none;border-top:solid #E1E1E1
+                1.0pt;padding:3.0pt 0in 0in 0in">
+                <p class=3D"MsoNormal"><b>From:</b> Marcus D Leech <a
+                    href=3D"mailto:patchvonbraun@gmail.com"
+                    moz-do-not-send=3D"true">
+                    &lt;patchvonbraun@gmail.com&gt;</a> <br>
+                  <b>Sent:</b> Monday, April 10, 2023 8:39 AM<br>
+                  <b>To:</b> Shenk, Trey E <a
+                    href=3D"mailto:trey.shenk@pnnl.gov"
+                    moz-do-not-send=3D"true">&lt;trey.shenk@pnnl.gov&gt;<=
+/a><br>
+                  <b>Cc:</b> <a
+                    href=3D"mailto:USRP-users@lists.ettus.com"
+                    moz-do-not-send=3D"true" class=3D"moz-txt-link-freete=
+xt">USRP-users@lists.ettus.com</a><br>
+                  <b>Subject:</b> Re: [USRP-users] Harmonic Distortion
+                  with B205mini<o:p></o:p></p>
+              </div>
             </div>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+            <div style=3D"border:none;border-left:solid #D77600
+              6.0pt;padding:0in 0in 0in 0in;font-size:1.15rem">
+              <p class=3D"MsoNormal"
+                style=3D"text-align:center;background:#F7E3CC"
+                align=3D"center"> <span
+                  style=3D"font-family:&quot;Arial&quot;,sans-serif;color=
+:black">Check
+                  twice before you click! This email originated from
+                  outside PNNL.</span><o:p></o:p></p>
+            </div>
+            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
             <div>
-              <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">=C2=A0=
-<o:p></o:p></p>
+              <p class=3D"MsoNormal">Turn down the RF gain a bit as well
+                as the baseband amplitude. Does this make any
+                difference? <o:p></o:p></p>
               <div>
-                <p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></p>
+                <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
               </div>
               <div>
-                <p class=3D"MsoNormal"><br>
-                  <br>
-                  <br>
-                  <o:p></o:p></p>
+                <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">=C2=
+=A0<o:p></o:p></p>
+                <div>
+                  <p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></=
+p>
+                </div>
+                <div>
+                  <p class=3D"MsoNormal"><br>
+                    <br>
+                    <br>
+                    <o:p></o:p></p>
+                  <blockquote
+                    style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+                    <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"=
+>On
+                      Apr 10, 2023, at 9:41 AM, Shenk, Trey E via
+                      USRP-users &lt;<a
+                        href=3D"mailto:usrp-users@lists.ettus.com"
+                        moz-do-not-send=3D"true"
+                        class=3D"moz-txt-link-freetext">usrp-users@lists.=
+ettus.com</a>&gt;
+                      wrote:<o:p></o:p></p>
+                  </blockquote>
+                </div>
                 <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt=
 ">
-                  <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">O=
-n
-                    Apr 10, 2023, at 9:41 AM, Shenk, Trey E via
-                    USRP-users &lt;<a
-                      href=3D"mailto:usrp-users@lists.ettus.com"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
-tus.com</a>&gt;
-                    wrote:<o:p></o:p></p>
+                  <div>
+                    <p class=3D"MsoNormal">=EF=BB=BF <o:p></o:p></p>
+                    <p style=3D"background:white"><span
+                        style=3D"font-size:10.5pt;color:black">I'm using =
+a
+                        B205mini to transmit signals. When transmitting,
+                        I can see copies of the SOI at harmonics of the
+                        center frequency. I ran some measurements of
+                        total harmonic distortion, and found it to range
+                        from 39% with a 100MHz to 23% with a 1GHz
+                        carrier.=C2=A0The second harmonic is &lt;-50dBc, =
+but
+                        the third harmonic is usually around -10dBc. </sp=
+an><o:p></o:p></p>
+                    <p style=3D"background:white;box-sizing:
+                      border-box;font-variant-ligatures:
+                      normal;font-variant-caps: normal;orphans:
+                      2;text-align:start;widows:
+                      2;-webkit-text-stroke-width:
+                      0px;text-decoration-thickness:
+                      initial;text-decoration-style:
+                      initial;text-decoration-color:
+                      initial;word-spacing:0px"> <span
+                        style=3D"font-size:10.5pt;color:black">My main
+                        concern is for the lower frequency carriers,
+                        like 100MHz, because multiple harmonics will
+                        show up on a spectrum analyzer set to a
+                        wideband. I've looked at putting an RF filter at
+                        the output, but I need the system to be able to
+                        switch transmit center frequencies in a range
+                        from 100MHz to 5GHz.</span><o:p></o:p></p>
+                    <p style=3D"background:white;box-sizing:
+                      border-box;font-variant-ligatures:
+                      normal;font-variant-caps: normal;orphans:
+                      2;text-align:start;widows:
+                      2;-webkit-text-stroke-width:
+                      0px;text-decoration-thickness:
+                      initial;text-decoration-style:
+                      initial;text-decoration-color:
+                      initial;word-spacing:0px"> <span
+                        style=3D"font-size:10.5pt;color:black">Is it
+                        possible to reduce the harmonics by some
+                        hardware setting (driving with gnruadio)?=C2=A0</=
+span><o:p></o:p></p>
+                    <p style=3D"background:white;box-sizing:
+                      border-box;font-variant-ligatures:
+                      normal;font-variant-caps: normal;orphans:
+                      2;text-align:start;widows:
+                      2;-webkit-text-stroke-width:
+                      0px;text-decoration-thickness:
+                      initial;text-decoration-style:
+                      initial;text-decoration-color:
+                      initial;word-spacing:0px"> <span
+                        style=3D"font-size:10.5pt;color:black">Thanks,<br=
+>
+                        Trey</span><o:p></o:p></p>
+                    <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
+                    <div>
+                      <p class=3D"MsoNormal">&lt;carrier_freqsweep_fc0200=
+M_gain55.png&gt;<o:p></o:p></p>
+                    </div>
+                    <p class=3D"MsoNormal">______________________________=
+_________________<br>
+                      USRP-users mailing list -- <a
+                        href=3D"mailto:usrp-users@lists.ettus.com"
+                        moz-do-not-send=3D"true"
+                        class=3D"moz-txt-link-freetext">usrp-users@lists.=
+ettus.com</a><br>
+                      To unsubscribe send an email to <a
+                        href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                        moz-do-not-send=3D"true"
+                        class=3D"moz-txt-link-freetext">
+                        usrp-users-leave@lists.ettus.com</a><o:p></o:p></=
+p>
+                  </div>
                 </blockquote>
               </div>
-              <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-                <div>
-                  <p class=3D"MsoNormal">=EF=BB=BF <o:p></o:p></p>
-                  <p style=3D"background:white"><span
-                      style=3D"font-size:10.5pt;color:black">I'm using a
-                      B205mini to transmit signals. When transmitting, I
-                      can see copies of the SOI at harmonics of the
-                      center frequency. I ran some measurements of total
-                      harmonic distortion, and found it to range from
-                      39% with a 100MHz to 23% with a 1GHz carrier.=C2=A0=
-The
-                      second harmonic is &lt;-50dBc, but the third
-                      harmonic is usually around -10dBc.
-                    </span><o:p></o:p></p>
-                  <p style=3D"background:white;box-sizing:
-                    border-box;font-variant-ligatures:
-                    normal;font-variant-caps: normal;orphans:
-                    2;text-align:start;widows:
-                    2;-webkit-text-stroke-width:
-                    0px;text-decoration-thickness:
-                    initial;text-decoration-style:
-                    initial;text-decoration-color:
-                    initial;word-spacing:0px">
-                    <span style=3D"font-size:10.5pt;color:black">My main
-                      concern is for the lower frequency carriers, like
-                      100MHz, because multiple harmonics will show up on
-                      a spectrum analyzer set to a wideband. I've looked
-                      at putting an RF filter at the output, but I need
-                      the system to be able to switch transmit center
-                      frequencies in a range from 100MHz to 5GHz.</span><=
-o:p></o:p></p>
-                  <p style=3D"background:white;box-sizing:
-                    border-box;font-variant-ligatures:
-                    normal;font-variant-caps: normal;orphans:
-                    2;text-align:start;widows:
-                    2;-webkit-text-stroke-width:
-                    0px;text-decoration-thickness:
-                    initial;text-decoration-style:
-                    initial;text-decoration-color:
-                    initial;word-spacing:0px">
-                    <span style=3D"font-size:10.5pt;color:black">Is it
-                      possible to reduce the harmonics by some hardware
-                      setting (driving with gnruadio)?=C2=A0</span><o:p><=
-/o:p></p>
-                  <p style=3D"background:white;box-sizing:
-                    border-box;font-variant-ligatures:
-                    normal;font-variant-caps: normal;orphans:
-                    2;text-align:start;widows:
-                    2;-webkit-text-stroke-width:
-                    0px;text-decoration-thickness:
-                    initial;text-decoration-style:
-                    initial;text-decoration-color:
-                    initial;word-spacing:0px">
-                    <span style=3D"font-size:10.5pt;color:black">Thanks,<=
-br>
-                      Trey</span><o:p></o:p></p>
-                  <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-                  <div>
-                    <p class=3D"MsoNormal">&lt;carrier_freqsweep_fc0200M_=
-gain55.png&gt;<o:p></o:p></p>
-                  </div>
-                  <p class=3D"MsoNormal">________________________________=
-_______________<br>
-                    USRP-users mailing list -- <a
-                      href=3D"mailto:usrp-users@lists.ettus.com"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">usrp-users@lists.et=
-tus.com</a><br>
-                    To unsubscribe send an email to <a
-                      href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                      moz-do-not-send=3D"true"
-                      class=3D"moz-txt-link-freetext">
-                      usrp-users-leave@lists.ettus.com</a><o:p></o:p></p>
-                </div>
-              </blockquote>
             </div>
-          </div>
-        </blockquote>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      </div>
+          </blockquote>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+        </div>
+        <br>
+        <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+        <pre class=3D"moz-quote-pre" wrap=3D"">__________________________=
+_____________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated moz-txt-l=
+ink-freetext" href=3D"mailto:usrp-users@lists.ettus.com" moz-do-not-send=3D=
+"true">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated moz-=
+txt-link-freetext" href=3D"mailto:usrp-users-leave@lists.ettus.com" moz-d=
+o-not-send=3D"true">usrp-users-leave@lists.ettus.com</a>
+</pre>
+      </blockquote>
       <br>
       <fieldset class=3D"moz-mime-attachment-header"></fieldset>
       <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
@@ -459,12 +600,13 @@ f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
 s.com</a>
 </pre>
     </blockquote>
+    <br>
   </body>
 </html>
---------------qqHQDyh2a1AeVPTPU380s72P
+--------------cij4lN3UkzgF1oSBKLg4Z3xo
 Content-Type: image/png; name="harmonic.png"
 Content-Disposition: inline; filename="harmonic.png"
-Content-Id: <part1.cDBGhznm.AvSqcfc8@comcast.net>
+Content-Id: <part1.QBkq0DNh.3nrjVeP6@gmail.com>
 Content-Transfer-Encoding: base64
 
 iVBORw0KGgoAAAANSUhEUgAAAyAAAAHgCAIAAADSZZ6iAAAABGdBTUEAALGPC/xhBQAAACBj
@@ -873,11 +1015,11 @@ LAAAgJwRYAEAAOTs/wc9qZzG5OBjKgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wNi0yNVQx
 ODowMToyOS0wNzowMJzwhN8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDYtMjVUMTg6MDE6
 MjktMDc6MDDtrTxjAAAAAElFTkSuQmCC
 
---------------qqHQDyh2a1AeVPTPU380s72P--
+--------------cij4lN3UkzgF1oSBKLg4Z3xo--
 
---------------nF8J6CIsori4Gw3p9T6useLc--
+--------------AxHE7638cMr7RTLdpLqcyFb6--
 
---===============7216375360863054567==
+--===============4446844710269200437==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -887,4 +1029,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7216375360863054567==--
+--===============4446844710269200437==--
