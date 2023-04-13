@@ -2,176 +2,129 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719E36E163C
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Apr 2023 23:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 697666E1683
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Apr 2023 23:33:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 27D8B38424B
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Apr 2023 17:02:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 671E9384120
+	for <lists+usrp-users@lfdr.de>; Thu, 13 Apr 2023 17:33:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681419773; bh=xEa2gjfHU5PmiRpSggEiZXzY19uHqksP/Ufc12FW5dc=;
-	h=Date:To:From:In-Reply-To:References:Subject:List-Id:List-Archive:
+	t=1681421587; bh=0UXnIiVfNcEODoS4mzKebFl807y7o0cukYUG7TdFHuw=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=IBdE+lW86CRSmzREG1COkfA48XHEyQMXizhJ+yXoWp/ex5WmekLB+bVJHmBtKKDpX
-	 azeENV2E1JhulzlQ2wa1VEd/hwnO84PAKdIHnZ09cSCXeBEtIfDTCa2KqGgUXjnUpH
-	 hNtpJokw8bYF+mv5KNG9tRyiskabB3A7BNhOHdKRpKa8+4pVa5KpkKnjr3o3SNa8ew
-	 1bCUt1GGB2fyy7sPQRzKz1yZeEN4VT4AB5x+RUE4TsvAXjxd5zSPdTGEnxnz7iECNa
-	 +v/EW+mmkj2ow4p/KrwhOnpJbYjKOyKHhB7AH5XNGskoD2gS49HkYMDrzZvBJxvSzl
-	 NmQ22hCfOdUIg==
-Received: from smtp1.dnsmadeeasy.com (smtp1.dnsmadeeasy.com [208.94.147.128])
-	by mm2.emwd.com (Postfix) with ESMTPS id 9E3043818F4
-	for <usrp-users@lists.ettus.com>; Thu, 13 Apr 2023 17:02:22 -0400 (EDT)
-Received: from smtp1.dnsmadeeasy.com (localhost [127.0.0.1])
-	by smtp1.dnsmadeeasy.com (Postfix) with ESMTP id 30BAB2F80493
-	for <usrp-users@lists.ettus.com>; Thu, 13 Apr 2023 21:02:22 +0000 (UTC)
-X-Authenticated-Name: James.Schatzman
-Received: from mail.futurelabusa.com (c-67-174-176-3.hsd1.co.comcast.net [67.174.176.3])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp1.dnsmadeeasy.com (Postfix) with ESMTPSA
-	for <usrp-users@lists.ettus.com>; Thu, 13 Apr 2023 21:02:22 +0000 (UTC)
-Received: by mail.futurelabusa.com (Postfix, from userid 1001)
-	id 4BED44D905; Thu, 13 Apr 2023 15:02:21 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on l1.fu-lab.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.4 required=5.0 tests=ALL_TRUSTED,BAYES_00,
-	MISSING_MID autolearn=no autolearn_force=no version=3.4.6
-Received: from I0.futurelabusa.com (unknown [192.168.1.101])
-	by mail.futurelabusa.com (Postfix) with ESMTPA id D4A264D905;
-	Thu, 13 Apr 2023 15:02:19 -0600 (MDT)
-X-Mailer: QUALCOMM Windows Eudora Version 7.1.0.9
-Date: Thu, 13 Apr 2023 15:02:18 -0600
-To: "Marcus D. Leech" <patchvonbraun@gmail.com>,usrp-users@lists.ettus.com
-From: Jim Schatzman <james.schatzman@futurelabusa.com>
-In-Reply-To: <ec810fb7-3220-4fbb-3ce5-31385a878931@gmail.com>
+	b=iDQ5/bdf/9IZEFXGbTK3YoJnxak06FqoACf5fCSeZlNSP8HWuWxz2v/t2u6GJ6Gs3
+	 gEEuHrwz9Tnr9fAzuKg8ykGF7paPyWqPVopIKPWLkCuvLcgIx9RP5nl8x+12mt9WVA
+	 WH5vHc21IZZjvbA0y/2rXnTVqNCaJqcqVIunYKHi4HtT14NOmwG5ZHooYO9xpIipNF
+	 pqjjgMr+dMrf2CHo43ZiCwpcDMCHzvVvNzjp0NbYPdQwqy19bRC2Hu47fxJoahIKrB
+	 JPWT80iE4rGDqU+7/Hdh/3yxjTc3VJD4nvqeUrt2PLol+zMllmQtzoWxr5ploebzEl
+	 Y08veD0r8TuzA==
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	by mm2.emwd.com (Postfix) with ESMTPS id DC9E7383F00
+	for <usrp-users@lists.ettus.com>; Thu, 13 Apr 2023 17:32:23 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mRK0qHEp";
+	dkim-atps=neutral
+Received: by mail-qv1-f45.google.com with SMTP id qh25so5854837qvb.1
+        for <usrp-users@lists.ettus.com>; Thu, 13 Apr 2023 14:32:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1681421543; x=1684013543;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c3t0XDuziizBoXRt6l6n5tXKZIAXfj2IkIZWsHlzsqQ=;
+        b=mRK0qHEp6dXZI666zd0ZuBfuSG9E/Qywb91K8O0Lree7xOibwR7iYSh03sf8Fc6vjW
+         WJl1NUKSQa8iQLziF+hWaQHIb+v++3q1O7lAm+b0Kic4xzFnf6n1MY4788Gf1sMMY6GQ
+         3G2MZ9NQHps5GSFU8dRQItQM5l4T4RpybbpmeE5iR5m0cs484J0y0ziS03aY00jhO94z
+         u0E7VKC00OZFNjzSLuc4dBnTELOZDYvHdAbXPhPuJUcYTPTYaQlPAqSLWE+LozU+3vBI
+         N9BvYlc/RAk+FnEsAQjuneTrtl0Y9juiFoMSkvNAUOSYvmMqTBGxamWUbjDHx77rwpR9
+         TOpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681421543; x=1684013543;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c3t0XDuziizBoXRt6l6n5tXKZIAXfj2IkIZWsHlzsqQ=;
+        b=fglhcknYAhVyMqvd749B5+CIgVWrIrZqbFlrYaTDSFqC1vksP5OL97dga4Vk5c8IJ5
+         gu/dsaknAnPQ7cWA3uxt6Zqxob4qqvFxgQCSI9oRYuIWAdN5MC7qqKHHcOOcuV9h3PMk
+         HAFatie8JtiXlQjVkg/gMz5dCDJ8i9j+q7pyVMveH4IdNlVRqIE5/ZanEeulnKn/RbKB
+         PLjGU8rC+EkSwoSDv8JpPveC2ZdmgoF5vEqk2dlYTpCkqBxKAEuVFENvXJ7zW+YR13H/
+         U2ei77Eh9ceFyg67u7QyGrB/qDfzY1iRlVTne/m6JFBVxkkmU5KZdz6hHVbfuEaR8oDK
+         fYDg==
+X-Gm-Message-State: AAQBX9flb5KNWMmb/AjykbWFvXbiRJOTbQZkuChI2RHs5egG66NuMilw
+	hcoM0SX+ZEaU7gb9x3iA1V1JIoJNjeU=
+X-Google-Smtp-Source: AKy350bmvsVZxNZoc66i1ViwwUcn8qJXSOyhHT+Q7pBD8mRzGoo6KTyk00FDBYOWwACks00Pyq9NcA==
+X-Received: by 2002:a05:6214:5008:b0:5a6:24f6:724d with SMTP id jo8-20020a056214500800b005a624f6724dmr98451qvb.13.1681421543014;
+        Thu, 13 Apr 2023 14:32:23 -0700 (PDT)
+Received: from [192.168.2.217] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id lx13-20020a0562145f0d00b005dd8b9345b8sm690153qvb.80.2023.04.13.14.32.22
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Apr 2023 14:32:22 -0700 (PDT)
+Message-ID: <6633af1b-5726-e020-83f4-24454739e486@gmail.com>
+Date: Thu, 13 Apr 2023 17:32:21 -0400
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
 References: <20230408021338.994254D94B@mail.futurelabusa.com>
  <d5460510-c3e2-9f3f-31ea-2bf55fedcf7e@gmail.com>
  <20230411011218.5513E4D94B@mail.futurelabusa.com>
  <ec810fb7-3220-4fbb-3ce5-31385a878931@gmail.com>
-Mime-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Message-Id: <20230413210221.4BED44D905@mail.futurelabusa.com>
-Message-ID-Hash: ZKH7PW57BI4PMVZCXCNUA2SFW3VODB7I
-X-Message-ID-Hash: ZKH7PW57BI4PMVZCXCNUA2SFW3VODB7I
-X-MailFrom: james.schatzman@futurelabusa.com
+ <20230413210221.4BED44D905@mail.futurelabusa.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <20230413210221.4BED44D905@mail.futurelabusa.com>
+Message-ID-Hash: IBMORCSMO3U5PG6EXTRU72NDONYZP5GS
+X-Message-ID-Hash: IBMORCSMO3U5PG6EXTRU72NDONYZP5GS
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Halting issue with USRP socket connection  - how to set SO_PRIORITY?
+Subject: [USRP-users] Re: Halting issue with USRP socket connection - how to set SO_PRIORITY?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZKH7PW57BI4PMVZCXCNUA2SFW3VODB7I/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/IBMORCSMO3U5PG6EXTRU72NDONYZP5GS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-Even with all the recommended settings, and a very fast computer that is do=
-ing nothing except sending the data, it is maybe 50/50 that a 2 hour simula=
-tion can be conducted without an underrun. The longest run I have been able=
- to do without an underrun is about 2.5 hours.
-
-The sample rate is 12.5 Msamp/sec at 16 bit I + 16 bit Q or 400 Mbit/sec.
-
-For our application, that is unacceptable. I need to be able to run for day=
-s without data loss.
-
-It is a mystery to me why a 10 Gbit connection cannot support 400 Mbit/sec =
-UDP reliably.
-
-Any ideas about how we can completely eliminate underruns?
-
-At the moment, I am uncertain whether the problem is occurring on the host =
-or on the radio. I suspect the radio, but I will do some testing of the hos=
-t to see what UDP data rate it can support without loss.
-
-Thanks!
-
-
-
-
-
-At 10:53 PM 4/10/2023, Marcus D. Leech wrote:
->On 10/04/2023 21:12, Jim Schatzman wrote:
->>The following steps had no impact:
->>
->>a) Don't use a switch but do a point-to-point connection between the comp=
-tuer's NIC and the N310.
->>b) Adjust network buffers and ring buffer per recommendations (actually, =
-the network buffers setting was always being done).
->>
->>Increasing the MTU to 9000 had a significant impact. An occasionaly under=
-run is still experienced, but an hour or two of continuous transmission is =
-possible.
->>
->>I am wondering if this is not an issue on the computer side but on the ra=
-dio side. Is the N310 incapable of supporting 1x 10 Gbps streams with a MTU=
- of 1500?  Perhaps.
->>
->>I will do some computer-to-computer testing to see if the problem can be =
-reproduced there.
->>
->>Jim
->Even non-SDR applications tend to use jumbo-frames for continuous traffic =
-at 10Gbit.=C2  I'm sorry that I didn't clue in to that
->=C2  in the first round.
->
->
->>
->>
->>
->>
->>At 08:39 PM 4/7/2023, Marcus D. Leech wrote:
->>>On 07/04/2023 22:13, Jim Schatzman wrote:
->>>>We have been unable to estable 100% reliable connections to an N310 USR=
-P radio through its 10 Gbit ethernet from Linux. What happens is that it wo=
-rks fine for a period of time - 30 to 60 minutes, typically. Then we see a =
-couple of U's in the output. Unfortunately, that is fatal for our applicati=
-on.
->>>>
->>>>Using the unmodified tx_samples_from_file or one modified to use separa=
-te threads to read data from the file and to sent it over the socket to the=
- radio, the symptoms are the same.
->>>>
->>>>All the evidence is that the application is sending data continuously w=
-ithout any delays. Also, the "network" has no devices on it except for the =
-host computer, a high performance 10G switch, and the N310 radio.
->>>>
->>>>We are wondering if this could be a Linux "feature". We would like to t=
-ry increasing the socket priority with SO_PRIORITY. However, we are not fin=
-ding any hooks in the UHD software for this.
->>>>
->>>>Suggestions?
->>>>
->>>>Thanks!
->>>>Jim
->>>>_______________________________________________
->>>Have you increased the ring buffers on your card?
->>>
->>>https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#Increa=
-sing_Ring_Buffers
->>>
->>>Also, adjust the network buffers:
->>>
->>>https://kb.ettus.com/USRP_Host_Performance_Tuning_Tips_and_Tricks#Adjust=
-_Network_Buffers
->>>
->>>Have you tried a direct connection--without the switch?=C3=82 =C3=82 =C3=
-=82  Just to eliminate it.=C3=82  Before you say "oh, it's not the switch",
->>>=C3=82  many "high performance" 10G switches have a less-than-ideal swit=
-ching fabric.
->>>
->>>_______________________________________________ USRP-users mailing list =
--- usrp-users@lists.ettus.com To unsubscribe send an email to usrp-users-le=
-ave@lists.ettus.com </x-flowed>
->>_______________________________________________
->>USRP-users mailing list -- usrp-users@lists.ettus.com
->>To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->_______________________________________________ USRP-users mailing list --=
- usrp-users@lists.ettus.com To unsubscribe send an email to usrp-users-leav=
-e@lists.ettus.com </x-flowed>
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+T24gMTMvMDQvMjAyMyAxNzowMiwgSmltIFNjaGF0em1hbiB3cm90ZToNCj4gRXZlbiB3aXRoIGFs
+bCB0aGUgcmVjb21tZW5kZWQgc2V0dGluZ3MsIGFuZCBhIHZlcnkgZmFzdCBjb21wdXRlciB0aGF0
+IGlzIGRvaW5nIG5vdGhpbmcgZXhjZXB0IHNlbmRpbmcgdGhlIGRhdGEsIGl0IGlzIG1heWJlIDUw
+LzUwIHRoYXQgYSAyIGhvdXIgc2ltdWxhdGlvbiBjYW4gYmUgY29uZHVjdGVkIHdpdGhvdXQgYW4g
+dW5kZXJydW4uIFRoZSBsb25nZXN0IHJ1biBJIGhhdmUgYmVlbiBhYmxlIHRvIGRvIHdpdGhvdXQg
+YW4gdW5kZXJydW4gaXMgYWJvdXQgMi41IGhvdXJzLg0KPg0KPiBUaGUgc2FtcGxlIHJhdGUgaXMg
+MTIuNSBNc2FtcC9zZWMgYXQgMTYgYml0IEkgKyAxNiBiaXQgUSBvciA0MDAgTWJpdC9zZWMuDQo+
+DQo+IEZvciBvdXIgYXBwbGljYXRpb24sIHRoYXQgaXMgdW5hY2NlcHRhYmxlLiBJIG5lZWQgdG8g
+YmUgYWJsZSB0byBydW4gZm9yIGRheXMgd2l0aG91dCBkYXRhIGxvc3MuDQo+DQo+IEl0IGlzIGEg
+bXlzdGVyeSB0byBtZSB3aHkgYSAxMCBHYml0IGNvbm5lY3Rpb24gY2Fubm90IHN1cHBvcnQgNDAw
+IE1iaXQvc2VjIFVEUCByZWxpYWJseS4NCj4NCj4gQW55IGlkZWFzIGFib3V0IGhvdyB3ZSBjYW4g
+Y29tcGxldGVseSBlbGltaW5hdGUgdW5kZXJydW5zPw0KPg0KPiBBdCB0aGUgbW9tZW50LCBJIGFt
+IHVuY2VydGFpbiB3aGV0aGVyIHRoZSBwcm9ibGVtIGlzIG9jY3VycmluZyBvbiB0aGUgaG9zdCBv
+ciBvbiB0aGUgcmFkaW8uIEkgc3VzcGVjdCB0aGUgcmFkaW8sIGJ1dCBJIHdpbGwgZG8gc29tZSB0
+ZXN0aW5nIG9mIHRoZSBob3N0IHRvIHNlZSB3aGF0IFVEUCBkYXRhIHJhdGUgaXQgY2FuIHN1cHBv
+cnQgd2l0aG91dCBsb3NzLg0KPg0KPiBUaGFua3MhDQo+DQo+DQpXaXRoIHJlc3BlY3QsIGl0J3Mg
+dW5saWtlbHkgdG8gYmUgdGhlIHJhZGlvLCBwZXIgc2UgKHVubGVzcyBzb21ldGhpbmcgaXMgDQpC
+Uk9LRU4pLsKgIFN0cmVhbWluZyBpcyBoYW5kbGVkIGVudGlyZWx5IGJ5IHRoZQ0KIMKgIEZQR0Eg
+bWFjaGluZXJ5LCBhbmQgdW5saWtlIGEgZ2VuZXJhbC1wdXJwb3NlIGNvbXB1dGVyLCBydW5uaW5n
+IGEgDQpnZW5lcmFsLXB1cnBvc2UgT1MsIHBlcmZvcm1hbmNlIGlzIHV0dGVybHkNCiDCoCBkZXRl
+cm1pbmlzdGljLsKgIEl0IGRvZXNuJ3QgaGF2ZSAib3RoZXIgdGhpbmdzIiBnb2luZyBvbiB0aGF0
+IG1pZ2h0IA0KcHJlZW1wdCB3aGF0IGl0J3MgZG9pbmcsIGV0Yy4NCg0KSSB0aGluayB5b3UnZCBt
+ZW50aW9uZWQgdGhhdCB0aGUgaGFyZHdhcmUgaW52b2x2ZWQgaXMgYSBVU1JQIE4zMTA/wqDCoMKg
+IA0KV2hpbGUgaXQgZG9lcyBoYXZlIGEgYnVpbHQtaW4gTEludXggbWFjaGluZSwgc2luY2UgeW91
+J3JlDQogwqAgdXNpbmcgaXQgZnJvbSBhbm90aGVyIGhvc3QsIHRoZcKgIExpbnV4IG1hY2hpbmUg
+aXMgYmFzaWNhbGx5IA0KdW5pbnZvbHZlZCBpbiBzdHJlYW1pbmcsIG90aGVyIHRoYW4gc2Vzc2lv
+biBzZXQtdXAgYW5kIHRlYXItZG93bg0KIMKgIHZpYSBNUE0uDQoNCkNoZWNrIHRoZSBsb2dzIG9u
+IHlvdXIgaG9zdCBtYWNoaW5lLS1kb2VzIHRoZSBuZXR3b3JrIGludGVyZmFjZSBnbyANCnVwL2Rv
+d24gZHVyaW5nIHlvdXIgc3RyZWFtaW5nP8KgIElmIHNvLCB0aGF0IGNvdWxkDQogwqAgaW5kaWNh
+dGUgYSB3aXJpbmcgcHJvYmxlbS4NCg0KQXJlIHlvdSBydW5uaW5nIGluIGEgbmF0aXZlIGhhcmR3
+YXJlIG1hY2hpbmUsIG9yIGluIGEgVk0/wqDCoCBXaW5kb3dzIG9yIA0KTGludXg/DQoNCklmIHlv
+dSBzaW1wbHkgdXNlIHRoZSAidHhfd2F2ZWZvcm1zIiBleGFtcGxlIGF0IHlvdXIgZGVzaXJlZCBz
+YW1wbGUgDQpyYXRlLCBkbyB5b3UgZXZlbnR1YWxseSBnZXQgdW5kZXJydW5zIG9yIG5vdD8NCg0K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2Vy
+cyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3Jp
+YmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
