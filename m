@@ -2,317 +2,254 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EFAC6E18DC
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Apr 2023 02:13:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B468A6E2550
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Apr 2023 16:09:29 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5899F38408E
-	for <lists+usrp-users@lfdr.de>; Thu, 13 Apr 2023 20:13:46 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 47F6338367B
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Apr 2023 10:09:28 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681431226; bh=xtdmwYGpNx2zeoawIlAPs8znNBrBSVl0kJ7pLMFhVkY=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1681481368; bh=Ifz454BFCftG9UDbpUfPVGFE52GVxie4c6pun+0V06A=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=CWHH9Q5xkVwKC1iTmRRUKBjPsTEzHuaE5FsXp/DSK6dOgAHiO+CbowLiJtW4j0gb2
-	 P5HEQoZzFlCIMLDZduJSCFoBaeop09GXTRzvPWxG0SVEMJ1efHaRyA6VgKAiDnv1XR
-	 ucL3C+t0NW9kpf1iCxKzkPOHDbXt31VHRVMsVm31ZD1MIkRVqp2cf5yeP29rsmZnJW
-	 qY3q7bP82TWQ/ZztgMTPtYaWtpBhmpha/LrhOIfvHCrlK4gshaL3zH6eRit1xserIo
-	 vgJsBTdjpi23bhnK1L45nz5uc3YshViE/J8PFK0radbP7jdgddQIKvwob42aNJBjBw
-	 jpXi7Z/FnUELw==
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	by mm2.emwd.com (Postfix) with ESMTPS id D1855383F00
-	for <usrp-users@lists.ettus.com>; Thu, 13 Apr 2023 20:13:01 -0400 (EDT)
+	 From:Reply-To:From;
+	b=HlWizXnlr+/+C62H959qKLwsKHNbg87MnCimYU9qkRmpMKmiPkfs8tEbflIKq/2dr
+	 1GFrDSwJl7iEhZ+de1hLu4AqKjgdNNAKTalTyLCSsV39LvOw9AkmyXs23TllhRMWcF
+	 pb9AoMWF+1BnV1DkA38NC0CMCWMcJRI5CIChjAi1MCg5KepNcbwlVA1HFGCCELVK64
+	 ILB8jkecCLy8jI0GukjLyDZf72n7rTh5FQnIqR/n/Wk7IzA87c/h4VDq6SNzMnjO5N
+	 oiMP7qMK71lbAzeRUZ2WdF5MSwaw47RTOW8LSscmqMlz2h4UsC9Cdz/g8GZ6dah1cP
+	 iH72XhGG/eCIQ==
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8CE51380BDF
+	for <usrp-users@lists.ettus.com>; Fri, 14 Apr 2023 10:08:54 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LFGKQUsK";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="U8I85OlK";
 	dkim-atps=neutral
-Received: by mail-qt1-f175.google.com with SMTP id bn8so14981760qtb.2
-        for <usrp-users@lists.ettus.com>; Thu, 13 Apr 2023 17:13:01 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id kt6so7699876ejb.0
+        for <usrp-users@lists.ettus.com>; Fri, 14 Apr 2023 07:08:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681431181; x=1684023181;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zGDZ1rSEmcU8+eDkKg1kYdUMppJNmckq8T1K9pYj5C0=;
-        b=LFGKQUsKm4Ll0RnVoJBQXKUkNVum3ZJuoGDAQMih+PUn3aDq2RBcm6L8IPMDGsQgkK
-         JChkpjRldXIMTdE4qV3qxhCW6jdhZjQ5ta7/Zj7x6EQjojoMl+mCDCHc0EheMVmJmrPk
-         UQ5zG9fEupQEFKfiSkoPwlVg6Nql/MLunnnFxCB1TklqMi8T8ZFQysnuI2i0et5/Hi54
-         yc/kQHOVucvMIBsmVtLAjUXU7cV0+4rrVPPaawUiN3WgT/GqvF7uerNk6sfIzJgNb5uH
-         iuRyN9Oi/KIy0ZkzELFln3FzurI449ijq7Vf+ZQbri3+R0/kOjr6VGyzXzMt8ebonCN6
-         W+bA==
+        d=nd.edu; s=google; t=1681481333; x=1684073333;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6kqudyLs2MfA+dQC7M34GXM/2++h4WlEyVhRnGl6+t8=;
+        b=U8I85OlK/mOgetLUpHLLTKyOuKWhMOTOrgq6jhNdZZpavBSovb5N6udD29P3Y1YnTY
+         L5U6USwqPZGwB7vhviTDn+m/FWI7KSVJiwDHmQq2eFGCjT07veJJqJCDplcspTaMWI3w
+         P/1O0cIFQwZY40Xg3SclXqwvQ9blrFc7WaDNQHVNZbcfj8JMMX8rzVH+2mjsSiVAti/f
+         DdH50oamuj9da/lgngHb8odc6jKW3yfVLutoeo6oR8/pwmyP5NixgRhL+fIMDejC2X/U
+         upl/eI/u+zM2VP6wP7AZEPkOgBuCze4i1AuB6mNoZP1nvF+GmoGD3/GnJIVRwgjqSxMK
+         tVgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681431181; x=1684023181;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=zGDZ1rSEmcU8+eDkKg1kYdUMppJNmckq8T1K9pYj5C0=;
-        b=fimXLSgYaSUMguNsgH40/nEx9rUYRGWZDzJVrkQAAAvA6P6Nsg7l/F3K88puSNPwHS
-         V/J6pQTIGktVSV4xB+6Z2n0ouJhbMXm4ke/AavaqMqyp2IlhNjUuN8ZHVne//p1E1Q01
-         ryOm+a1BFoW9lKkiUtFUCKs0Nb8+fg2CR7t+ohFCWVeEcOa3L61mtbCsyX6uUsR19Jff
-         6bN/22CxwS8STGGUYoFnfNU72k+2JkogjJbN0Do4aDYAUYgAvCLqo6EtXTkRNfzE1gQX
-         Qp+N5FNTkJc1fP+b0Z1pLIyPe32Rj/GXB9TY8a73yTHfSnZtX3U0Ex67wW8HtdBB2eMm
-         Csqg==
-X-Gm-Message-State: AAQBX9eYeBIHoMLiYJRdjNzWW9s6DBLmUD6KsrHQpIX+qlSKThwI9O/C
-	oWViM0YfJZ3ZO5ByP7GlmToPTQjo6Bo=
-X-Google-Smtp-Source: AKy350a7SFUxc0/Jq824srUptxH5w7RfftZE3k/RyKyggWKpifsp9WS4dIGCw8U/X+D8KsH3f98mrg==
-X-Received: by 2002:ac8:5bd5:0:b0:3d3:95fd:9085 with SMTP id b21-20020ac85bd5000000b003d395fd9085mr6597027qtb.42.1681431181167;
-        Thu, 13 Apr 2023 17:13:01 -0700 (PDT)
-Received: from [192.168.2.217] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id e20-20020ac84b54000000b003e37e0a3d89sm858652qts.42.2023.04.13.17.13.00
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 13 Apr 2023 17:13:00 -0700 (PDT)
-Message-ID: <151bb74b-8db8-095d-c514-31adc8c710e1@gmail.com>
-Date: Thu, 13 Apr 2023 20:13:00 -0400
+        d=1e100.net; s=20221208; t=1681481333; x=1684073333;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6kqudyLs2MfA+dQC7M34GXM/2++h4WlEyVhRnGl6+t8=;
+        b=XGG4L57pZRMwzmutcXREpAT7D1DuKCfMWW9lLoAIvn4R/+uYMJmM6ss7YRzL80A/lb
+         JU3AIYkREdtKxNM2VSu+GulDLJnwYgfhz88txm9WCSD7dAEVoFUnzC8JcdH2YQ6b4Yx2
+         1g8mQ1pBODu0EwvXGVBrWFxpSTPZ6qX6YYDQZted2jHmp4CFfZlOYtDfe7ysq9lFHpHe
+         k2Mpt8tNriLksnVHpL8q7tFHNqS17yhmUiUx01kgjdps1O9w1skhb6pVw9pqTi+d1REV
+         j8xPxdcq74zEAC9jppbq51hbsn7FGPxV+uLkWuPv5QGiF0GQN7+jHNHKqPwUjvayLmtf
+         RSiA==
+X-Gm-Message-State: AAQBX9fkYxdSa7gF+13BuAnXsl9loCptzKgb+L7O0S29QdvOF5KMbSTg
+	x7Zc4k1wobhEOQscx0PxE+5DKMC/lP3HEOr4aLjPwQ8Ao2AbnIJh
+X-Google-Smtp-Source: AKy350aDYli271wk/LAf4ZOWsdhfEW1D1y4C4M24EGIXTEw9v7xiAjeSQgqBAgrlWg/dBCaw4I3f7/6+E+mFHCTeVmk=
+X-Received: by 2002:a17:906:b085:b0:94e:3ba:1649 with SMTP id
+ x5-20020a170906b08500b0094e03ba1649mr3114394ejy.6.1681481333049; Fri, 14 Apr
+ 2023 07:08:53 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <MW5PR22MB35334DE2B04FC917DEB90DF6CF989@MW5PR22MB3533.namprd22.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <MW5PR22MB35334DE2B04FC917DEB90DF6CF989@MW5PR22MB3533.namprd22.prod.outlook.com>
-Message-ID-Hash: CUUSKI6TPX4AA7DOKXA6CGEO5YU22TSX
-X-Message-ID-Hash: CUUSKI6TPX4AA7DOKXA6CGEO5YU22TSX
-X-MailFrom: patchvonbraun@gmail.com
+References: <20230408021338.994254D94B@mail.futurelabusa.com>
+ <d5460510-c3e2-9f3f-31ea-2bf55fedcf7e@gmail.com> <20230411011218.5513E4D94B@mail.futurelabusa.com>
+ <ec810fb7-3220-4fbb-3ce5-31385a878931@gmail.com> <20230413210221.4BED44D905@mail.futurelabusa.com>
+ <6633af1b-5726-e020-83f4-24454739e486@gmail.com> <20230413225129.0E1C84D94B@mail.futurelabusa.com>
+ <e1b58b68-2087-1793-5d6c-89ccdd949ded@gmail.com>
+In-Reply-To: <e1b58b68-2087-1793-5d6c-89ccdd949ded@gmail.com>
+Date: Fri, 14 Apr 2023 10:08:41 -0400
+Message-ID: <CAB__hTQpM0UjbqmTy1SewrsvE2CS3hjZ84OQXPdsz5eW++QAfA@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: G353Z6WUSJIZ7DSK24UV4Q7EFHJ5F3Q5
+X-Message-ID-Hash: G353Z6WUSJIZ7DSK24UV4Q7EFHJ5F3Q5
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Jim Schatzman <james.schatzman@futurelabusa.com>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: USRP Daughterboard Calibration - Need to remove/replace bulkhead cables?
+Subject: [USRP-users] Re: Halting issue with USRP socket connection - how to set SO_PRIORITY?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/CUUSKI6TPX4AA7DOKXA6CGEO5YU22TSX/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G353Z6WUSJIZ7DSK24UV4Q7EFHJ5F3Q5/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2260078505512018592=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============4384823537360285125=="
 
-This is a multi-part message in MIME format.
---===============2260078505512018592==
-Content-Type: multipart/alternative;
- boundary="------------594QLUsWlKlfwhrbdqosGxn3"
-Content-Language: en-US
+--===============4384823537360285125==
+Content-Type: multipart/alternative; boundary="0000000000008dbfdb05f94c6144"
 
-This is a multi-part message in MIME format.
---------------594QLUsWlKlfwhrbdqosGxn3
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--0000000000008dbfdb05f94c6144
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 13/04/2023 20:07, Greene,David J wrote:
-> Hi folks,
->
-> I've had a set of N200 and N210 radios with SBX daughterboards for a=20
-> number of years now. It has become quite common that I need to either=20
-> remove the bulkhead cable (at the daughterboard) when using the=20
-> daughterboard calibration scripts or replace the bulkhead cable all=20
-> together; otherwise, there is residual IQ imbalance (sometimes as much=20
-> as 30%) and DC offset. I perform calibrations about every week.
->
-> I understand the calibration scripts utilize the internal leakage in=20
-> the daughterboard, but what's going on here, are the cables aging?=20
-> I've noticed, over time, that metallic dust becomes embedded around=20
-> the insulator at the end of the cable. I've started to routinely clean=20
-> the female ends of the bulkhead connectors with compressed air to=20
-> remove the dust.
->
-> Is there any other maintenance I should be aware of - any ancient RF=20
-> wisdom someone would be willing to pass down? It's much appreciated.
->
->
-> All the best,
->
->
-> David Greene
->
-> University of Florida
->
->
-Conventional wisdom in calibration labs and places like radio=20
-observatories is that each part of an SMA connector gets cleaned with
- =C2=A0 an alcohol wipe and allowed to dry before connecting.=C2=A0 I've =
-never=20
-done that :)
+Jim, Marcus,
+I *believe* that "skip_dram=3D1" will have no effect on the N310 because it
+does not use DRAM in the stock image (or even populate the dram-fifo RFNoC
+block). The definition of the stock RFNoC graph for the N310 is here
+<https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/n310_=
+rfnoc_image_core.yml>
+.
 
-SMA connectors also aren't generally rated for a lot of=20
-connect/disconnect cycles, so when I expect to have to do this, I usually
- =C2=A0 have a "sacrificial" intermediate connector that can take all the=
-=20
-abuse and only require replacement once in a while, reducing
- =C2=A0 the number of cycles on the main connector.
+Most of the "buffering" for the N310 transmit path is in the buff_size of
+the streaming end points attached to the DUC (32768 samples) along with a
+small amount of buffering at the DUC (defined here
+<https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfnoc/bl=
+ocks/duc.yml>)
+and at the Radio (perhaps here
+<https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfnoc/bl=
+ocks/radio.yml>)
+. The easiest way to increase buffering is to increase the buff_size of the
+end points ep0 through ep3.  But, it is possible that doing so will cause
+the build to fail. I don't know if Ettus max-ed these out or not. But, if
+the build fails, another option is to get rid of the Replay block (and
+associated end points) and the DDC (if you don't need it) to free up
+resources.  Then you might be able to increase the end point buff_sizes.
 
-I'm surprised that you need to re-cal the I/Q balance that often, but if=20
-you are operating under different temperature conditions,
- =C2=A0 I can see that being a requirement.
+But, if you want to use the DRAM as a FIFO (which will provide much larger
+FIFOs), you should be able to just replace the 4 channel Replay block with
+a 4 channel DRAM fifo (defined here
+<https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfnoc/bl=
+ocks/axi_ram_fifo.yml>),
+making sure to get the RAM address width (and perhaps other parameters)
+correct for the N310 (will be same as Replay block uses).  The DRAM is 2GB
+so each FIFO "channel" could be configured for 125MSamples.
 
+And, back to one of my previous comments, if you have a lot of host RAM
+such that it would be a possibility to stream from a RAM-disk based file, I
+believe it would be worth a try.
+Rob
 
---------------594QLUsWlKlfwhrbdqosGxn3
-Content-Type: text/html; charset=UTF-8
+On Thu, Apr 13, 2023 at 7:59=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmai=
+l.com>
+wrote:
+
+> On 13/04/2023 18:51, Jim Schatzman wrote:
+> > N310 confirmed.
+> >
+> > Linux native.
+> >
+> > tx_samples_from_file produces underruns. So does a customized version o=
+f
+> tx_samples_from_file that uses multiple buffers and threads to guarantee
+> constant send pressure.
+> >
+> > I understand that the N310 should not do this. I agree that the most
+> likely culprit is the host computer, coupled with inadequate buffering in
+> the N310. Does anyone know how much buffering it provides and what the
+> associated timing is?  That is, what is maximum lag between UDP packets
+> before the N310 will experience an underrun condition?
+> >
+> > In the Ubuntu host system log, there are messages during period in
+> question from NetworkManager. Nothing indicating a connection problem, bu=
+t
+> consistent with my general believe that NetworkManager is an evil
+> abomination whose primary job is to create trouble and frustration, we wi=
+ll
+> remove it from the workstation and try again.
+> >
+> > Thanks!
+> > Jim
+> >
+> >
+> This might seem counter-intuitive, but what happens if you use the
+> "skip_dram=3D1" device argument?  Do things get better
+>    or worse?
+>
+> The N310 has 2GiB of DRAM
+>
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--0000000000008dbfdb05f94c6144
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 13/04/2023 20:07, Greene,David J
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:MW5PR22MB35334DE2B04FC917DEB90DF6CF989@MW5PR22MB3533.namprd22=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        Hi folks,</div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        I've had a set of N200 and N210 radios with SBX daughterboards
-        for a number of years now.=C2=A0<span style=3D"font-family: Calib=
-ri,
-          Arial, Helvetica, sans-serif; font-size: 12pt; color: rgb(0,
-          0, 0);">It has become quite common that I need to either r</spa=
-n><span
-          style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-          font-size: 12pt; color: rgb(0, 0, 0);">emove the bulkhead
-          cable (at the daughterboard) when using the daughterboard
-          calibration scripts or r</span><span style=3D"font-family:
-          Calibri, Arial, Helvetica, sans-serif; font-size: 12pt; color:
-          rgb(0, 0, 0);">eplace the bulkhead cable all together;
-          otherwise, there is residual IQ imbalance (sometimes as much
-          as 30%) and DC offset. I perform calibrations about every
-          week.</span></div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        <span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-;
-          font-size: 12pt; color: rgb(0, 0, 0);"><br>
-        </span></div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        <span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-;
-          font-size: 12pt; color: rgb(0, 0, 0);">I understand the
-          calibration scripts utilize the internal leakage in the
-          daughterboard, but what's going on here, are the cables aging?
-          I've noticed,=C2=A0<span style=3D"display: inline !important;
-            background-color: rgb(255, 255, 255);"
-            class=3D"ContentPasted0">over time, that metallic dust become=
-s
-            embedded around the insulator at the end of the cable.=C2=A0<=
-/span>I've
-          started to routinely clean the female ends of the bulkhead
-          connectors with compressed air to remove the dust.</span></div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        <span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-;
-          font-size: 12pt; color: rgb(0, 0, 0);"><br>
-        </span></div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        <span style=3D"font-family: Calibri, Arial, Helvetica, sans-serif=
-;
-          font-size: 12pt; color: rgb(0, 0, 0);">Is there any other
-          maintenance I should be aware of - any ancient RF wisdom
-          someone would be willing to pass down? It's much appreciated.</=
-span></div>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        <br>
-      </div>
-      <div class=3D"elementToProof">
-        <div id=3D"Signature">
-          <div>
-            <div id=3D"divtagdefaultwrapper" style=3D"font-size: 12pt;
-              font-family: Calibri, Arial, Helvetica, sans-serif; color:
-              rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-              <p><br>
-              </p>
-              <p
-                style=3D"font-family:Calibri,Arial,Helvetica,sans-serif,'=
-Apple
-                Color Emoji','Segoe UI Emoji',NotoColorEmoji,'Segoe UI
-                Symbol','Android Emoji',EmojiSymbols">
-                All the best,</p>
-              <p
-                style=3D"font-family:Calibri,Arial,Helvetica,sans-serif,'=
-Apple
-                Color Emoji','Segoe UI Emoji',NotoColorEmoji,'Segoe UI
-                Symbol','Android Emoji',EmojiSymbols">
-                <br>
-              </p>
-              <p
-                style=3D"font-family:Calibri,Arial,Helvetica,sans-serif,'=
-Apple
-                Color Emoji','Segoe UI Emoji',NotoColorEmoji,'Segoe UI
-                Symbol','Android Emoji',EmojiSymbols">
-                David Greene</p>
-              <p
-                style=3D"font-family:Calibri,Arial,Helvetica,sans-serif,'=
-Apple
-                Color Emoji','Segoe UI Emoji',NotoColorEmoji,'Segoe UI
-                Symbol','Android Emoji',EmojiSymbols">
-              </p>
-              <p
-                style=3D"font-family:Calibri,Arial,Helvetica,sans-serif,'=
-Apple
-                Color Emoji','Segoe UI Emoji',NotoColorEmoji,'Segoe UI
-                Symbol','Android Emoji',EmojiSymbols">
-                University of Florida</p>
-              <p
-                style=3D"font-family:Calibri,Arial,Helvetica,sans-serif,'=
-Apple
-                Color Emoji','Segoe UI Emoji',NotoColorEmoji,'Segoe UI
-                Symbol','Android Emoji',EmojiSymbols">
-                <span style=3D"font-size:12pt"></span></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br>
-    </blockquote>
-    Conventional wisdom in calibration labs and places like radio
-    observatories is that each part of an SMA connector gets cleaned
-    with<br>
-    =C2=A0 an alcohol wipe and allowed to dry before connecting.=C2=A0 I'=
-ve never
-    done that :)<br>
-    <br>
-    SMA connectors also aren't generally rated for a lot of
-    connect/disconnect cycles, so when I expect to have to do this, I
-    usually<br>
-    =C2=A0 have a "sacrificial" intermediate connector that can take all =
-the
-    abuse and only require replacement once in a while, reducing<br>
-    =C2=A0 the number of cycles on the main connector.<br>
-    <br>
-    I'm surprised that you need to re-cal the I/Q balance that often,
-    but if you are operating under different temperature conditions,<br>
-    =C2=A0 I can see that being a requirement.<br>
-    <br>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr">Jim, Marcus,<div>I *believe* that &quot;skip_dram=3D1&quot=
+; will have no effect on the N310 because it does not use DRAM in the stock=
+ image (or even populate the dram-fifo RFNoC block). The definition of the =
+stock RFNoC graph for the N310 is <a href=3D"https://github.com/EttusResear=
+ch/uhd/blob/master/fpga/usrp3/top/n3xx/n310_rfnoc_image_core.yml">here</a>.=
+=C2=A0=C2=A0</div><div><br></div><div>Most of the &quot;buffering&quot; for=
+ the N310 transmit path is in the buff_size of the streaming end points=C2=
+=A0attached to the DUC (32768 samples) along with a small amount of bufferi=
+ng at the DUC (defined <a href=3D"https://github.com/EttusResearch/uhd/blob=
+/master/host/include/uhd/rfnoc/blocks/duc.yml">here</a>) and at the Radio (=
+perhaps <a href=3D"https://github.com/EttusResearch/uhd/blob/master/host/in=
+clude/uhd/rfnoc/blocks/radio.yml">here</a>) . The easiest way to increase b=
+uffering is to increase the buff_size of the end points ep0 through ep3.=C2=
+=A0 But, it is possible that doing so will cause the build to fail. I don&#=
+39;t know if Ettus max-ed these out or not. But, if the build fails, anothe=
+r option is to get rid of the Replay block (and associated end points) and =
+the DDC (if you don&#39;t need it) to free up resources.=C2=A0 Then you mig=
+ht be able to increase the end point buff_sizes.</div><div><br></div><div>B=
+ut, if you want to use the DRAM as a FIFO (which will provide much larger F=
+IFOs), you should be able to just replace the 4 channel Replay block with a=
+ 4 channel DRAM fifo (defined <a href=3D"https://github.com/EttusResearch/u=
+hd/blob/master/host/include/uhd/rfnoc/blocks/axi_ram_fifo.yml">here</a>), m=
+aking sure to get the RAM address width (and perhaps other parameters) corr=
+ect for the N310 (will be same as Replay block uses).=C2=A0 The DRAM is 2GB=
+ so each FIFO &quot;channel&quot; could be configured for 125MSamples.</div=
+><div><br></div><div>And, back to one of my previous comments, if you have =
+a lot of host RAM such that it would be a possibility to stream from a RAM-=
+disk based file, I believe it would be worth a try.</div><div>Rob</div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On T=
+hu, Apr 13, 2023 at 7:59=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:p=
+atchvonbraun@gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">On 13/04/2023 18:51, Jim Sch=
+atzman wrote:<br>
+&gt; N310 confirmed.<br>
+&gt;<br>
+&gt; Linux native.<br>
+&gt;<br>
+&gt; tx_samples_from_file produces underruns. So does a customized version =
+of tx_samples_from_file that uses multiple buffers and threads to guarantee=
+ constant send pressure.<br>
+&gt;<br>
+&gt; I understand that the N310 should not do this. I agree that the most l=
+ikely culprit is the host computer, coupled with inadequate buffering in th=
+e N310. Does anyone know how much buffering it provides and what the associ=
+ated timing is?=C2=A0 That is, what is maximum lag between UDP packets befo=
+re the N310 will experience an underrun condition?<br>
+&gt;<br>
+&gt; In the Ubuntu host system log, there are messages during period in que=
+stion from NetworkManager. Nothing indicating a connection problem, but con=
+sistent with my general believe that NetworkManager is an evil abomination =
+whose primary job is to create trouble and frustration, we will remove it f=
+rom the workstation and try again.<br>
+&gt;<br>
+&gt; Thanks!<br>
+&gt; Jim<br>
+&gt;<br>
+&gt;<br>
+This might seem counter-intuitive, but what happens if you use the <br>
+&quot;skip_dram=3D1&quot; device argument?=C2=A0 Do things get better<br>
+=C2=A0=C2=A0 or worse?<br>
+<br>
+The N310 has 2GiB of DRAM<br>
+<br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---------------594QLUsWlKlfwhrbdqosGxn3--
+--0000000000008dbfdb05f94c6144--
 
---===============2260078505512018592==
+--===============4384823537360285125==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -322,4 +259,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2260078505512018592==--
+--===============4384823537360285125==--
