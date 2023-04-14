@@ -2,271 +2,152 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA6EC6E2571
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Apr 2023 16:18:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE3F6E25C1
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Apr 2023 16:30:48 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D3D09383E77
-	for <lists+usrp-users@lfdr.de>; Fri, 14 Apr 2023 10:18:33 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id CBC78381372
+	for <lists+usrp-users@lfdr.de>; Fri, 14 Apr 2023 10:30:47 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681481913; bh=bzbUwPFE4/nvSngbMKMVKAXd0evBWnf1WIcyKERDFZE=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=nkAJQzf90Ls/nq3oSFioD0p/vh+AFxUliRJhYrgNx7ZYfpbrZsk9s/EDZnhnt4f/Q
-	 iMw/fiS3j4hyro1oMqxo8YbMYV07b6JhHZl5Mb4uNuc5vSfKPuNAh8UiPvxC4c4wud
-	 dTATlaAKNBdabzzhHR8AcB6bsVOx45gAONLOvjDXQZXMpd670/pPdMH+xwsfwru4nk
-	 0ETsWnN5mizPgTreaXl+9PwMctcov7mHSKyvdOV3rLzfhwSTVdpVRQtAL3d2rmWiv2
-	 +yu5oYLBiY2TfdUOSJfPu3nCDpF+EQmosMAcxOsHWjzUlDRinNZkH0oFUftaQZ1VoO
-	 K3YKC93W38yig==
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
-	by mm2.emwd.com (Postfix) with ESMTPS id 88340380E3C
-	for <usrp-users@lists.ettus.com>; Fri, 14 Apr 2023 10:18:00 -0400 (EDT)
+	t=1681482647; bh=5/FCXg2NZ0lvQVbuDTlaDVTpZGOFEyJxfP/sdMuzR6w=;
+	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=Hvp93YVB3d7WNaIZTSEc+hxQOBDEU63VJBwmeumftUCeVLoW9OZUCYgmNTdTMNr5o
+	 +95OS+IwGwtllpynKvtFZkQ+SohgV6gWsD8Z26Yo+t5U17jdvHioQ8xBDbFLt1if9F
+	 pwAx8t+wj12jxyjNVgSt6O+toMeDHyWwlFH0fGmH/T9zCdh4SoWRuNUzvqMeCPpDpL
+	 n/RDTVdFYnQghdfZOkh0ppr1Eg6boPz6IxdHJyIxy9gUEmuXRu6PU9QayMtOHN+hK+
+	 Of1XdDfhzeMhsJ9hHrv8ahst7Ilh4yc8qvjVAdFtaFHpyNexZvXw9pG+UUDdo7WB6n
+	 bo7FeoEavxNbw==
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	by mm2.emwd.com (Postfix) with ESMTPS id 30C50381372
+	for <usrp-users@lists.ettus.com>; Fri, 14 Apr 2023 10:30:15 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="S4UayYId";
+	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="ZEiOiRUA";
 	dkim-atps=neutral
-Received: by mail-qv1-f52.google.com with SMTP id o7so14248572qvs.0
-        for <usrp-users@lists.ettus.com>; Fri, 14 Apr 2023 07:18:00 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id fy21so3079321ejb.9
+        for <usrp-users@lists.ettus.com>; Fri, 14 Apr 2023 07:30:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681481880; x=1684073880;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f2+fkv8h1aH6RIrat78eHVACNBw0U2DzKyOOwuSaWFY=;
-        b=S4UayYIdLEPGrRhxQie+ti/p4eeJUhU/N4qTe/e4xJJ2nL/gyU8YgkmO72JLBgWOqO
-         TFh7SSTOxc8KTDgmK4XhAwySrH22jDKZ/yDOoIB5ji5dH516f8HTa61zW83rfuDrKNAX
-         4QImeOO9S8Fa03X5bBgxytJ6xjjVxXpCrZXfIIihtiHsUbJ25Tq9zE/4IN9CpMLUGYgW
-         EBCTsRPo5YHxA7oaH4pXJ3yNQixR/oovZgbxC6M3hXy/7fIHjAGD6Oq6ViR+Og3iUQkG
-         xLZzMrr6Fg+WQsOh4OnO8GcbCDq1/N8vun5YlCtXfsnMUbUKwEz9p+TKNqMpA4oe+fAC
-         EpiA==
+        d=nd.edu; s=google; t=1681482614; x=1684074614;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=wHv1SU8lJMnEpSfeUDOq5o/ioOtQYhpPAXS2pgAIM40=;
+        b=ZEiOiRUADaaVaCvZvOYlqkMgC8I3T/24ehinIN6rI3VCX82MHE4/P3lc4jMXXzKkwr
+         fu14/nx9E/DByrgvf5fia6imWcE5653Ak1j8lU7ZxjNfA3SB+Dn/6wE/yoqkynIU7y0g
+         NxfHwIJP1MSpolWt4033Q8aD6rsBVqkY9Inb6775DsJ64iayc6Gv8TrCYCQfltRoeLrK
+         zmIvZVG76WG0wr9MBXepET0gNYkwZz2/FVEBAaTC4OG6qPtdascmgw3aW87lA0UtHBDW
+         66DvnlToc02n0AnW4n3hl3HQA00HULU1VatxE0K5nFHZym7bGJgealSF/TNaqN0t5r8x
+         0Rew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681481880; x=1684073880;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=f2+fkv8h1aH6RIrat78eHVACNBw0U2DzKyOOwuSaWFY=;
-        b=C8Lb/0sewVDjvY+fST7wq5DpxDCssCY2JRlXyriOWzNuHi22bXdwjVNLxDHnFpcxpK
-         TomnuK2sRfWZV+VdET9NP9K2VIySn28w/vQH+5BWuwRWXgLWiGtSWuE2xQSpZ33kR+Gw
-         Z2zF9+iVHVfZIDOJz77yg0RlSchDkl+TbM4D/qj5Ko5NssfbAqOdv4JtD6tkpE908CcI
-         //6rHkhpx3+0qErM6e7Q4ywuLx3yTK9eLmP2KUw76/HaEJfijs6iY3J+XrZgbpXjmPI9
-         FxvNORzMpMP0JgBkaniO5yZzHjVmhZMgp6Z+kAyU3mpwQ6V6lTYF4dc6/v11/6yWSfl1
-         PwYQ==
-X-Gm-Message-State: AAQBX9eMCvGnYeDCszL+LJNOxfuqy+dQ48RLwJgduS7R5UC8uUzqb+/c
-	2B034PloSUgbWyeOaqjXlWI=
-X-Google-Smtp-Source: AKy350a6rwG8UC39oy9WQwCeyYwRqNEW3PJF2dCzOAII/mLdlN6u0/UH6k/tLqs6vgAKTdZhRxjIUA==
-X-Received: by 2002:a05:6214:20c5:b0:5e6:eaae:e60e with SMTP id 5-20020a05621420c500b005e6eaaee60emr4711376qve.5.1681481879651;
-        Fri, 14 Apr 2023 07:17:59 -0700 (PDT)
-Received: from [192.168.2.208] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id ph30-20020a0562144a5e00b005ef5aea0536sm290378qvb.49.2023.04.14.07.17.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Apr 2023 07:17:59 -0700 (PDT)
-Message-ID: <0d43a8a6-f7a7-811b-14bd-42e2981a5957@gmail.com>
-Date: Fri, 14 Apr 2023 10:17:58 -0400
+        d=1e100.net; s=20221208; t=1681482614; x=1684074614;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wHv1SU8lJMnEpSfeUDOq5o/ioOtQYhpPAXS2pgAIM40=;
+        b=SNH2XVQ09rTEfxP07VyLaEPSd9jhJVhu2IBVtBaLyTzQhHUj9F+3/daWYhoiinSY82
+         o9QGVH2n/rGvhTKJlbxbO0Ji8WLQu+xV+LYWc4QjxdxN4pPNwtHDMqdDIzcP8C9Ir5qq
+         hGQYgWfC1+SPVzWZ1vYwrYE3l/3Jui3NdeJ2NcQGgJ+cZLqxWPPrg9Fp1tgOkLkJdUsc
+         EjWf+LcqaQ08/oKT5LS3lYrIIu2MEvlpMgn8YDsXrGRMOmCxf5PqazpJv5RD8Hi2d8lA
+         X8qEKDnlt6N7aHlZhBn6A1diK3lTaNzWR2IKmvBqEzjZXTqVwpzBiYJ9QSP39H7CzEpR
+         WTUg==
+X-Gm-Message-State: AAQBX9d10xf7bQQk1KXTVuv7ev/m5d+aazOkjbc+s1Y0EHZVTL67nLAL
+	DI8jCsZsVYIOwoRH+FSq+Mz4Cp/BXevfysDYhuAruw==
+X-Google-Smtp-Source: AKy350aVWTZgNNMTyvIdN73Uqij60sYgLftmAkRM0JJia+aV58F3LcTvXAKceOBfR//PHSA0szTpePTungeb5GNCwkk=
+X-Received: by 2002:a17:906:b2cb:b0:94e:eb42:2a76 with SMTP id
+ cf11-20020a170906b2cb00b0094eeb422a76mr867578ejb.6.1681482613623; Fri, 14 Apr
+ 2023 07:30:13 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: Rob Kossler <rkossler@nd.edu>
 References: <20230408021338.994254D94B@mail.futurelabusa.com>
- <d5460510-c3e2-9f3f-31ea-2bf55fedcf7e@gmail.com>
- <20230411011218.5513E4D94B@mail.futurelabusa.com>
- <ec810fb7-3220-4fbb-3ce5-31385a878931@gmail.com>
- <20230413210221.4BED44D905@mail.futurelabusa.com>
- <6633af1b-5726-e020-83f4-24454739e486@gmail.com>
- <20230413225129.0E1C84D94B@mail.futurelabusa.com>
- <e1b58b68-2087-1793-5d6c-89ccdd949ded@gmail.com>
- <CAB__hTQpM0UjbqmTy1SewrsvE2CS3hjZ84OQXPdsz5eW++QAfA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTQpM0UjbqmTy1SewrsvE2CS3hjZ84OQXPdsz5eW++QAfA@mail.gmail.com>
-Message-ID-Hash: WR5Z3IWZ6BYVOVEADTA56PEH6SF3ETAK
-X-Message-ID-Hash: WR5Z3IWZ6BYVOVEADTA56PEH6SF3ETAK
-X-MailFrom: patchvonbraun@gmail.com
+ <d5460510-c3e2-9f3f-31ea-2bf55fedcf7e@gmail.com> <20230411011218.5513E4D94B@mail.futurelabusa.com>
+ <ec810fb7-3220-4fbb-3ce5-31385a878931@gmail.com> <20230413210221.4BED44D905@mail.futurelabusa.com>
+ <6633af1b-5726-e020-83f4-24454739e486@gmail.com> <20230413225129.0E1C84D94B@mail.futurelabusa.com>
+ <e1b58b68-2087-1793-5d6c-89ccdd949ded@gmail.com> <CAB__hTQpM0UjbqmTy1SewrsvE2CS3hjZ84OQXPdsz5eW++QAfA@mail.gmail.com>
+ <0d43a8a6-f7a7-811b-14bd-42e2981a5957@gmail.com>
+In-Reply-To: <0d43a8a6-f7a7-811b-14bd-42e2981a5957@gmail.com>
+Date: Fri, 14 Apr 2023 10:30:02 -0400
+Message-ID: <CAB__hTS+SR2zo4ZMEO1OTzfnxpvhQiE75rQhuuMSonrNYocBJg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: H2KVQ2SEBRBCJ2HTYP3XOPYVGFLH6FQX
+X-Message-ID-Hash: H2KVQ2SEBRBCJ2HTYP3XOPYVGFLH6FQX
+X-MailFrom: rkossler@nd.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: Jim Schatzman <james.schatzman@futurelabusa.com>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Halting issue with USRP socket connection - how to set SO_PRIORITY?
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WR5Z3IWZ6BYVOVEADTA56PEH6SF3ETAK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/H2KVQ2SEBRBCJ2HTYP3XOPYVGFLH6FQX/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4285574885440263547=="
+From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Rob Kossler <rkossler@nd.edu>
+Content-Type: multipart/mixed; boundary="===============2558858527240981605=="
 
-This is a multi-part message in MIME format.
---===============4285574885440263547==
-Content-Type: multipart/alternative;
- boundary="------------6WR1LvPS1j6Vn3L0vbkHvLaA"
-Content-Language: en-US
+--===============2558858527240981605==
+Content-Type: multipart/alternative; boundary="000000000000e25bda05f94cadae"
 
-This is a multi-part message in MIME format.
---------------6WR1LvPS1j6Vn3L0vbkHvLaA
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--000000000000e25bda05f94cadae
+Content-Type: text/plain; charset="UTF-8"
+
+>
+>
+> One of the things that puzzles me is that 12.5Msps just isn't that high a
+> streaming rate, in fact it's totally supported over
+>   a *1* GBit interface.
+>
+> At 12.5Msps, that buffer fills(drains) in about 2.5ms.   There's plenty of
+> buffering on the host to buffer application scheduling
+>   issues, so I don't know where these underruns would be coming from.
+>
+> I don't really know what the OS does in terms of "transmit" buffering (I'm
+slightly more confident on the OS behavior for the receive packets). I can
+say that avoiding "U" has always been harder for me than avoiding "O".  My
+concern is that the OS is not doing much of any buffering on the Tx side
+(perhaps none) such that if things pause for the 2.5ms you mentioned, then
+"U" occurs.
+
+But, one more comment about incorporating the DRAM fifo: I noticed that
+Ettus has a BIST image that uses this FIFO for the N310 (see here
+<https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/n310_bist_image_core.yml>).
+So, this would be a great example to use for creating a custom image.
+Rob
+
+--000000000000e25bda05f94cadae
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 14/04/2023 10:08, Rob Kossler wrote:
-> Jim, Marcus,
-> I *believe* that "skip_dram=3D1" will have no effect on the N310 becaus=
-e=20
-> it does not use DRAM in the stock image (or even populate the=20
-> dram-fifo RFNoC block). The definition of the stock RFNoC graph for=20
-> the N310 is here=20
-> <https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/n=
-310_rfnoc_image_core.yml>.=20
->
-I was surfing a lot of the N3xx docs yesterday, and was left with the=20
-impression, reinforced by the "skip_dram" device
- =C2=A0 argument, that there was DRAM FIFO in the N3xx by default.=C2=A0 =
-But the=20
-.yml you pointed at seems pretty definitive.
->
-> Most of the "buffering" for the N310 transmit path is in the buff_size=20
-> of the streaming end points=C2=A0attached to the DUC (32768 samples) al=
-ong=20
-> with a small amount of buffering at the DUC (defined here=20
-> <https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfno=
-c/blocks/duc.yml>)=20
-> and at the Radio (perhaps here=20
-> <https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfno=
-c/blocks/radio.yml>)=20
-> . The easiest way to increase buffering is to increase the buff_size=20
-> of the end points ep0 through ep3.=C2=A0 But, it is possible that doing=
- so=20
-> will cause the build to fail. I don't know if Ettus max-ed these out=20
-> or not. But, if the build fails, another option is to get rid of the=20
-> Replay block (and associated end points) and the DDC (if you don't=20
-> need it) to free up resources.=C2=A0 Then you might be able to increase=
- the=20
-> end point buff_sizes.
->
-> But, if you want to use the DRAM as a FIFO (which will provide much=20
-> larger FIFOs), you should be able to just replace the 4 channel Replay=20
-> block with a 4 channel DRAM fifo (defined here=20
-> <https://github.com/EttusResearch/uhd/blob/master/host/include/uhd/rfno=
-c/blocks/axi_ram_fifo.yml>),=20
-> making sure to get the RAM address width (and perhaps other=20
-> parameters) correct for the N310 (will be same as Replay block uses).=C2=
-=A0=20
-> The DRAM is 2GB so each FIFO "channel" could be configured for=20
-> 125MSamples.
->
-> And, back to one of my previous comments, if you have a lot of host=20
-> RAM such that it would be a possibility to stream from a RAM-disk=20
-> based file, I believe it would be worth a try.
-> Rob
->
-One of the things that puzzles me is that 12.5Msps just isn't that high=20
-a streaming rate, in fact it's totally supported over
- =C2=A0 a *1* GBit interface.
-
-At 12.5Msps, that buffer fills(drains) in about 2.5ms. =C2=A0 There's ple=
-nty=20
-of buffering on the host to buffer application scheduling
- =C2=A0 issues, so I don't know where these underruns would be coming fro=
-m.
-
-
---------------6WR1LvPS1j6Vn3L0vbkHvLaA
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 14/04/2023 10:08, Rob Kossler wrote=
-:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTQpM0UjbqmTy1SewrsvE2CS3hjZ84OQXPdsz5eW++QAfA@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Jim, Marcus,
-        <div>I *believe* that "skip_dram=3D1" will have no effect on the
-          N310 because it does not use DRAM in the stock image (or even
-          populate the dram-fifo RFNoC block). The definition of the
-          stock RFNoC graph for the N310 is <a
-href=3D"https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/n=
-3xx/n310_rfnoc_image_core.yml"
-            moz-do-not-send=3D"true">here</a>.=C2=A0 <br>
-        </div>
-      </div>
+<div dir=3D"ltr"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex"><div><blockquote type=3D"cite"><br>
     </blockquote>
-    I was surfing a lot of the N3xx docs yesterday, and was left with
-    the impression, reinforced by the "skip_dram" device<br>
-    =C2=A0 argument, that there was DRAM FIFO in the N3xx by default.=C2=A0=
- But
-    the .yml you pointed at seems pretty definitive.<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTQpM0UjbqmTy1SewrsvE2CS3hjZ84OQXPdsz5eW++QAfA@mail.gmai=
-l.com">
-      <div dir=3D"ltr">
-        <div><br>
-        </div>
-        <div>Most of the "buffering" for the N310 transmit path is in
-          the buff_size of the streaming end points=C2=A0attached to the =
-DUC
-          (32768 samples) along with a small amount of buffering at the
-          DUC (defined <a
-href=3D"https://github.com/EttusResearch/uhd/blob/master/host/include/uhd=
-/rfnoc/blocks/duc.yml"
-            moz-do-not-send=3D"true">here</a>) and at the Radio (perhaps =
-<a
-href=3D"https://github.com/EttusResearch/uhd/blob/master/host/include/uhd=
-/rfnoc/blocks/radio.yml"
-            moz-do-not-send=3D"true">here</a>) . The easiest way to
-          increase buffering is to increase the buff_size of the end
-          points ep0 through ep3.=C2=A0 But, it is possible that doing so
-          will cause the build to fail. I don't know if Ettus max-ed
-          these out or not. But, if the build fails, another option is
-          to get rid of the Replay block (and associated end points) and
-          the DDC (if you don't need it) to free up resources.=C2=A0 Then=
- you
-          might be able to increase the end point buff_sizes.</div>
-        <div><br>
-        </div>
-        <div>But, if you want to use the DRAM as a FIFO (which will
-          provide much larger FIFOs), you should be able to just replace
-          the 4 channel Replay block with a 4 channel DRAM fifo (defined
-          <a
-href=3D"https://github.com/EttusResearch/uhd/blob/master/host/include/uhd=
-/rfnoc/blocks/axi_ram_fifo.yml"
-            moz-do-not-send=3D"true">here</a>), making sure to get the RA=
-M
-          address width (and perhaps other parameters) correct for the
-          N310 (will be same as Replay block uses).=C2=A0 The DRAM is 2GB=
- so
-          each FIFO "channel" could be configured for 125MSamples.</div>
-        <div><br>
-        </div>
-        <div>And, back to one of my previous comments, if you have a lot
-          of host RAM such that it would be a possibility to stream from
-          a RAM-disk based file, I believe it would be worth a try.</div>
-        <div>Rob</div>
-      </div>
-      <br>
-    </blockquote>
-    One of the things that puzzles me is that 12.5Msps just isn't that
-    high a streaming rate, in fact it's totally supported over<br>
+    One of the things that puzzles me is that 12.5Msps just isn&#39;t that
+    high a streaming rate, in fact it&#39;s totally supported over<br>
     =C2=A0 a *1* GBit interface.<br>
     <br>
-    At 12.5Msps, that buffer fills(drains) in about 2.5ms. =C2=A0 There's
+    At 12.5Msps, that buffer fills(drains) in about 2.5ms. =C2=A0 There&#39=
+;s
     plenty of buffering on the host to buffer application scheduling<br>
-    =C2=A0 issues, so I don't know where these underruns would be coming
-    from.<br>
-    <br>
-    =C2=A0 <br>
-  </body>
-</html>
+    =C2=A0 issues, so I don&#39;t know where these underruns would be comin=
+g
+    from.<br><br></div></blockquote><div>I don&#39;t really know what the O=
+S does in terms of &quot;transmit&quot; buffering (I&#39;m slightly more co=
+nfident on the OS behavior for the receive packets). I can say that avoidin=
+g &quot;U&quot; has always been harder for me than avoiding &quot;O&quot;.=
+=C2=A0 My concern is that the OS is not doing much of any buffering on the =
+Tx side (perhaps none) such that if things pause for the 2.5ms you mentione=
+d, then &quot;U&quot; occurs.</div><div><br></div><div>But, one more commen=
+t about incorporating the DRAM fifo: I noticed that Ettus has a BIST image =
+that uses=C2=A0this FIFO for the N310 (see <a href=3D"https://github.com/Et=
+tusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/n310_bist_image_core.yml">h=
+ere</a>). So, this would be a great example to use for creating a custom im=
+age.</div><div>Rob</div></div></div>
 
---------------6WR1LvPS1j6Vn3L0vbkHvLaA--
+--000000000000e25bda05f94cadae--
 
---===============4285574885440263547==
+--===============2558858527240981605==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -276,4 +157,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4285574885440263547==--
+--===============2558858527240981605==--
