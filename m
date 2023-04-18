@@ -2,720 +2,408 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B6F6E57E6
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Apr 2023 05:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A32496E5A39
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Apr 2023 09:16:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3DB81380A36
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Apr 2023 23:44:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 532DF384111
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Apr 2023 03:16:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681789478; bh=bHRAWh+/1xmE3gd5YHC74P0qJY2ylN4VOFuDiQtbnQE=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=XpAKDf4DQ4oT3W4gfN88NWPGa7lH2X6kC6SbrUzAXwysZ0uWQ7UOWAEeepjd4EmEI
-	 5NqtDKSgeqV9Ak4LiBYypsenRzvCB7D/3WbSHT13HkdLHPl6bsP1whPnlqjrfuDEfG
-	 LS+iKUfizC3CoHJS3siXRDBjs7JkRukdxbf/VkvaKQE6pR1SIxFFgsqyQFTEeHld9A
-	 KS7lpGcsPqiLKNUsdKOQLQXwdbY94SpeHFamEVaBARf97U5NLQ4RO87esr17Z/CpUQ
-	 jGQ6f44y5MUMUG4nq/qnB9XZIVtWlfUoHa7oYAaZg42F2aL0PQr6G/ANuHHH+oIHBv
-	 yGLXDtHMjIbPA==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id D3BFF38097A
-	for <USRP-users@lists.ettus.com>; Mon, 17 Apr 2023 23:44:04 -0400 (EDT)
+	t=1681802181; bh=aQwIhR3COjtEjs1PdjhVF3hbqZrqhp5IYVomR2lMLEg=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From:Reply-To:From;
+	b=BwLmmw8KcPA/rwkfs3EUK7JMoouDRHRMEScv7pLBIhiJBX+S/+QFOpMI778CwHSy8
+	 WOvOjK7vTOhGfP2G4LrFOw8XSzWSi2CsOkmZENrtfw4171bIoKZQv9Fr6m0wDW5o7l
+	 IOwgLd7t7ZRtgg7F2HE9iRDCDS1/8m+SCZXcikPMQc01ZP4gZEM3db4gkNyqhWc/6J
+	 te0IgxvJNzLJwglcf9zoS72I3jbkE/uxdrk9XwkvuDTGaUIzrLNtcuMsFMX956jyUg
+	 1QdjV9pksK5ALkrpWiok6Qze/vHYdYZR9qJI1KtyS0i7PntZUle4ZCuRgsZN/0din+
+	 hB0gEy0FkKamw==
+Received: from mail-40141.protonmail.ch (mail-40141.protonmail.ch [185.70.40.141])
+	by mm2.emwd.com (Postfix) with ESMTPS id BA7AD384018
+	for <usrp-users@lists.ettus.com>; Tue, 18 Apr 2023 03:15:37 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="REaWhxVG";
+	dkim=pass (2048-bit key; unprotected) header.d=protonmail.com header.i=@protonmail.com header.b="F+ozoiJL";
 	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id z1so17720391qti.5
-        for <USRP-users@lists.ettus.com>; Mon, 17 Apr 2023 20:44:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1681789444; x=1684381444;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J/wV7iFKG0B83L8Q5b9kFBKT+svh9OiMaewN1TxNsn8=;
-        b=REaWhxVGxxUjPD+nD+m7VSPv/SYXR+fGn9dI5q58kcNUgztvHM/aBH7Vi+jFdsdDq0
-         d5f3yubKi4FW+wq93bw3I90edihTyLivvflW3CldwJk2Iwuuz4arBOkG5C8PbUl3jVAN
-         /HmGty3oAnggNiozpJIDBWxFnUNU7lhLxYsznvY6SVgBhlivLCO5rTbnxao78D1wFSgX
-         kNv8UMZIaVpwrzC8Vb9whW/AKyjQG74u5Mc11E3E58cLTQNYZv867soJtQFmrz3u9Ppl
-         h4OEqx+JHFVts3emJXf0PcCaXsuuJz0+Y9BBkN3cyrNMlcQLGiFGf1JdHgMqr/2+eDQM
-         yFrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1681789444; x=1684381444;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=J/wV7iFKG0B83L8Q5b9kFBKT+svh9OiMaewN1TxNsn8=;
-        b=BkKHSnLLvE7t/zHp2Q/0BWgYbyW2H9gY7WMdR3j80HRcg4wJ5QjBsjrKXx4y6kb+63
-         NbzBV0cVCi03FKkJ2w+et9jPTfVoT5M2MnGcaMmd2gzZt1USOYWSyL0HIv8oiJ7GTPHK
-         y/0fdYT8ScG8ZSg+ORwB6XQgrOU06T43dEA5+gQ4uFGGQDKlAqHfM1cVzRzfe7Wn+gZh
-         ds6PQMWViGKRgmEbsVRFQBTr+luT7Py9EQ4j0mkqCb1RxyJfH9L+g4p0B3kLbM0RcTRy
-         SVWPlizSbl3GOUrwNuPOxXOf6nSUgLxSM23t/XgAJrxY74Xxw8/IBJOLABAFyu9b2ILu
-         tbwA==
-X-Gm-Message-State: AAQBX9eqgSV5+U1wfKP5T6YuIcdh/XmiEOoftx8pyvNGfjEfFIrhfzGO
-	jDvYEkGJbateCrCJrlMMYMleYavXXhs=
-X-Google-Smtp-Source: AKy350Zokj2I05FtjKMNNsm1gGpjppImJpSOVS45RRl1mz87aCwohGNrpHzcUSrWqiQAm0ysWfV0Kg==
-X-Received: by 2002:ac8:5f0a:0:b0:3e9:aa91:3627 with SMTP id x10-20020ac85f0a000000b003e9aa913627mr19497777qta.65.1681789444053;
-        Mon, 17 Apr 2023 20:44:04 -0700 (PDT)
-Received: from [192.168.2.199] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id k7-20020a05620a414700b0071d0f1d01easm716085qko.57.2023.04.17.20.44.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Apr 2023 20:44:03 -0700 (PDT)
-Message-ID: <35aea0c0-acd3-2493-464e-1b93dcce5441@gmail.com>
-Date: Mon, 17 Apr 2023 23:44:02 -0400
+Date: Tue, 18 Apr 2023 07:15:13 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1681802135; x=1682061335;
+	bh=Sx215EY4veB9wAG4bxlxmIKAqWUyaec2IAniLm2RBsE=;
+	h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=F+ozoiJLM/hYzJ40g2N7ymzXAilb7di37LUz1KqrS7H9B2MorFzIjDC66B/cugtKJ
+	 jTYTPCPHdK1GLucFa3HkhYWM7lCokB05zQNVnIsRyfaU1rdQx5TNi6T4JNE5NP9Pa0
+	 YOrLcIJ7rdNH0a8w08QUcuTEBBgPoNglHnYgZrleobSdDA7ao6i1K8piAXxcEc5SI/
+	 8WXpvmeH77Rb9BHDpwIdW5zapMhFAt7TwHPE3ke+dKJFjvygpUM8PNgG3l1NjwqjkD
+	 lrHQJaSdx0ceAherG/B3612OKuUrvM461q6ZSBNj5/SiLhnVr76/TWT/vW999otn2D
+	 2htAycWPDozQw==
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID: <mCXzNeeTFJKhu1wgRkVxlPIF-sk62ZLzjeasldFfbOH1Q-k_prMAtYRPlOYhK0Hj9Vzd97GHhFndLt2-09u9YoSnkUI_f1QIeWgwxDv3Ez0=@protonmail.com>
+In-Reply-To: <BL3PR12MB64022FDE3E0979235CB96273E29C9@BL3PR12MB6402.namprd12.prod.outlook.com>
+References: <Yu8hM_nJsK57X9mKULaNxA3ktU1VuFvAmcjSBfYHr51gCh0-g_iRiIDS2DEqd407uvQRTpvYDpGrdgSqPj7aAXldawHHt9Jy1pObZ0sSmL8=@protonmail.com> <8cae38a1-0ad3-9068-6b65-8b5f393a1d06@ettus.com> <JaDOCsRwwatoAKbv5J5w7Uun7c4c2pencic3hlDQYpJ6HciTMtVOHvrMfeVazlUJEWWcytc-I8F0xLxUUEXFRihZrRVgnMa-6w9RW0HCMi8=@protonmail.com> <BL3PR12MB64022FDE3E0979235CB96273E29C9@BL3PR12MB6402.namprd12.prod.outlook.com>
+Feedback-ID: 47010692:user:proton
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
-Content-Language: en-US
-To: "Shenk, Trey E" <trey.shenk@pnnl.gov>
-References: <CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09.prod.outlook.com>
- <15820636-B0CB-4B9D-98DA-76820042D215@gmail.com>
- <CO6PR09MB8118AE8209619F8C193A4AA3F9959@CO6PR09MB8118.namprd09.prod.outlook.com>
- <569d3487-6006-c2f1-96d8-bb36f2f9017d@gmail.com>
- <CO6PR09MB8118363A6FFF3D1048730E38F99B9@CO6PR09MB8118.namprd09.prod.outlook.com>
- <CO6PR09MB8118612E773BE7B93B821B7EF99D9@CO6PR09MB8118.namprd09.prod.outlook.com>
- <98493e72-2764-82da-8ab2-d678ba79e062@gmail.com>
- <PH0PR09MB8122AF34BB6BFE6359C9D73BF99D9@PH0PR09MB8122.namprd09.prod.outlook.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <PH0PR09MB8122AF34BB6BFE6359C9D73BF99D9@PH0PR09MB8122.namprd09.prod.outlook.com>
-Message-ID-Hash: G65OJKJOQQWFEHTLUZB6RXX53RUC4KWI
-X-Message-ID-Hash: G65OJKJOQQWFEHTLUZB6RXX53RUC4KWI
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: VMJS57YWEYONRIQBAK2CHSXTFTBOOBRL
+X-Message-ID-Hash: VMJS57YWEYONRIQBAK2CHSXTFTBOOBRL
+X-MailFrom: olo1618@protonmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "USRP-users@lists.ettus.com" <USRP-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Harmonic Distortion with B205mini
+Subject: [USRP-users] Re: UHD in Qt c++ windows
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/G65OJKJOQQWFEHTLUZB6RXX53RUC4KWI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VMJS57YWEYONRIQBAK2CHSXTFTBOOBRL/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7365985126930795611=="
+From: Olo via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: Olo <olo1618@protonmail.com>
+Content-Type: multipart/mixed; boundary="===============2892395458556123098=="
 
 This is a multi-part message in MIME format.
---===============7365985126930795611==
+
+--===============2892395458556123098==
 Content-Type: multipart/alternative;
- boundary="------------nSQjG0k0n6GOZSLGzZFIEUEv"
-Content-Language: en-US
+ boundary="b1_T2mqPcvKlLg6EEByXNq4mcche7511WHKKug1qgGq8"
 
 This is a multi-part message in MIME format.
---------------nSQjG0k0n6GOZSLGzZFIEUEv
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
 
-On 17/04/2023 23:34, Shenk, Trey E wrote:
->
-> Got it. Thanks very much, Marcus! I didn=E2=80=99t realize that the LO =
-was a=20
-> square wave going in.
->
-It's a fairly common practice these days.=C2=A0 The VFO operates at a ver=
-y=20
-high frequency, and then a
- =C2=A0 eye-wateringly-fast divider chain produces the final frequency. V=
-FOs=20
-up at 12GHz in chips like
- =C2=A0 this aren't uncommon--so the PLL controls the VFO over a=20
-relatively-small range, and the divider
- =C2=A0 does the rest.
+--b1_T2mqPcvKlLg6EEByXNq4mcche7511WHKKug1qgGq8
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-But even when you're driving a mixer with a nice pure sine-wave, the=20
-mixer tends to chop it, since mixers
- =C2=A0 are basically switching devices, so there'll always be some harmo=
-nic=20
-content coming out of a mixer even
- =C2=A0 with sine-wave inputs.=C2=A0=C2=A0 They'll just be at lower level=
-s in my=20
-understanding.
+SSBzd2l0Y2hlZCB0byBVYnVudHUgMjIuMDQuMiBhbmQgZG93bmxvYWQgUXQgYW5kIFZTIENvZGUg
+dGhlcmUuIE5vdyBJIGtub3cgaG93IHRvIGNvbmZpZ3VyZSBhbmQgYnVpbGQgdGhlIHByb2plY3Qg
+d2hpY2ggeW91IHNlbmQgbWUgTWFyY3VzIGFuZCBpdCB3b3JrcyAhIE5vdyBJIG11c3QgZmlndXJl
+IGl0IGhvdyB0byBzd2l0Y2ggdG8gREVCVUcgYW5kIHRoZW4gc29tZWhvdyB0cnkgdG8gZG8gaXQg
+aW4gUXQuIFRoYW5rcyBmb3IgYWxsIHN1cHBvcnQgYW5kIGFsbCBjb25jcmV0ZSAqc3VnZ2VzdGlv
+bnMqLiBGb29oIQoKLS0tLS0tLSBPcmlnaW5hbCBNZXNzYWdlIC0tLS0tLS0KT24gTW9uZGF5LCBB
+cHJpbCAxN3RoLCAyMDIzIGF0IDIzOjM5LCBNaWxvIEggRmllbGRzIElJSSA8bWZpZWxkc0BwYWxh
+ZGluLXN5cy5jb20+IHdyb3RlOgoKPiBJIGFtIGFsc28gaGF2aW5nIGlzc3VlcyB3aXRoIHRoZSB1
+aGQgbGlicmFyaWVzIG9uIFdpbmRvd3MgdXNpbmcgVmlzdWFsIFN0dWRpby4gTXkgb2JzZXJ2YXRp
+b25zIHNvIGZhcjoKPgo+IC0gRmlyc3Qg4oCTIGJlIHN1cmUgYW55IGxpbmtlZCBhcHDigJlzIGFy
+ZSB1c2luZyBNdWx0aS1CeXRlIGNoYXJhY3RlciBzZXQgYXMgaXQgVlMgZGVmYXVsdHMgdG8gdW5p
+Y29kZQo+IC0gVGhlIGRlZmF1bHQgYmluYXJ5IGxpYnJhcmllcyBkaWQgbm90IHdvcmsgZm9yIG1l
+IGF0IGFsbCB3aGVuIHRyeWluZyB0byBsaW5rIHRoZW0gdG8gbXkgYXBwbGljYXRpb25zIOKAkyBJ
+IGFzc3VtZWQgaXQgbWlnaHQgaGF2ZSBzb21ldGhpbmcgdG8gZG8gd2l0aCB1c2luZyBWaXN1YWwg
+U3R1ZGlvIDIwMjIuIFRvIHdvcmsgYXJvdW5kIHRoaXMgcHJvYmxlbSBJIGJ1aWx0ICYgaW5zdGFs
+bGVkIFVERSB1c2luZyBteSBzeXN0ZW0gJiBWaXN1YWwgU3R1ZGlvIDIwMjIgZW50ZXJwcmlzZSBl
+bnZpcm9ubWVudC4KPiAtIFRoZSBERUJVRyAmIFJlbGVhc2UgYnVpbGRzIChCVUlMRF9BTEwgcHJv
+amVjdCkgb2YgdGhlIFVERSBsaWJyYXJ5IGJ1aWx0IHdpdGhvdXQgZXJyb3IgYW5kIHRoZSBSVU5f
+VEVTVCBleGVjdXRlIHdpdGggMTAwJSBvZiB0aGUgdGVzdHMgcmVwb3J0aW5nIHN1Y2Nlc3Mg4oCT
+IGhvd2V2ZXIgdGhlIERFQlVHIHZlcnNpb25zIG9mIOKAmHVuZF9maW5kX2RldmljZXPigJkgYW5k
+IG90aGVyIFVIRCB1dGlsaXRpZXMgYWxsIGZhaWwgd2l0aCDigJhFcnJvcjogYmFkIGFsbG9jYXRp
+b27igJkgd2hpbGUgdGhlIOKAmFJlbGVhc2XigJkgdmVyc2lvbnMgZXhlY3V0ZWQgd2l0aG91dCBl
+cnJvci4gU2FtZSB3YXMgdHJ1ZSBvZiBteSBhcHBsaWNhdGlvbiB3aGljaCBJIG9yaWdpbmFsIGJ1
+aWx0IGJ5IGFkZGluZyBpdCB0byB0aGUgVUhEIGdlbmVyYXRlZCBzb2x1dGlvbiB1c2luZyBvbmUg
+b2YgdGhlIG90aGVyIGFwcGxpY2F0aW9uIHByb2plY3QgZnJhbWV3b3Jrcy4KPiAtIEkgZXZlbnR1
+YWxseSBzZXR0bGVkIG9uIGJ1aWxkaW5nICYgSW5zdGFsbGluZyB0aGUg4oCYUmVsV2l0aERlYklu
+Zm/igJkgdmVyc2lvbiBvZiB0aGUgVUhEIGxpYnJhcnkgYW5kIGNyZWF0ZWQgYW4gZXh0ZXJuYWwg
+c29sdXRpb24gZm9yIG15IGFwcCB0aGF0IHJlZmVyZW5jZXMgdGhlIGluc3RhbGxlZCB2ZXJzaW9u
+IG9mIFVERSB0aGF0IEkgYnVpbHQKPiAtIFRoZSBmYWlsdXJlcyBvZiB0aGUgREVCVUcgYnVpbGRz
+IOKAmGFwcGVhcuKAmSB0byBiZSByZWxhdGVkIHRvIGFyZ3VtZW50IHByb2Nlc3NpbmcgYXMgSSBo
+YXZlIGZvdW5kIHNlbmVjaW9zIHdoZXJlIG5vcm1hbCBhcmd1bWVudCBzdHJpbmdzIGFyZSBub3Qg
+cHJvY2Vzc2VkIGNvcnJlY3RseSBieSB0aGUgVURFIEMrKyBBUEnigJlzIChhcHBlYXIgYXMganVu
+ayB3aGVuIHN0ZXBwaW5nIGludG8gdGhlIGxpYnJhcnkgY29kZSkuIFdoZXJlIGJ1aWxkaW5nIGFw
+cHMgd2l0aCBSZWxlYXNlIG9yIFJlbFdpdGhEZWJJbmZvIHdpbGwgb3BlcmF0ZSBjb3JyZWN0bHku
+IEhhdmUgbm90IGlzb2xhdGVkIHdoaWNoIOKAmFJlbGVhc2XigJkgY29kZSBnZW5lcmF0aW9uIG9w
+dGlvbiBpcyBjcml0aWNhbCB0byBVSEQuCj4gLSBJIGhhdmUgYWxzbyBmb3VuZCBzaW1pbGFyIGFy
+Z3VtZW50IHBhcnNpbmcgaXNzdWVzIHdpdGggbXkgVWJ1bnR1IFVERSB0YXJnZXRzIGJ1dCBoYXZl
+buKAmXQgcnVuIHRoZW0gdG8gZ3JvdW5kIGFzIEkgY3VycmVudGx5IG5lZWQgdG8gYmUgYWJsZSB0
+byBmaWVsZCBhIGIyMDAgYXBwbGljYXRpb24gb24gYSBXaW5kb3dzIHRhcmdldAo+Cj4gSG9wZSB0
+aGlzIGhlbHBz4oCmIEnigJltIHN0aWxsIGxvb2tpbmcgaW50byB0aGUgZGVidWcgYnVpbGRzIGFz
+IHRpbWUgcGVybWl0cyBidXQgaGF2ZW7igJl0IGZvdW5kIGFueXRoaW5nIHNwZWNpZmljIC0gbm90
+IHN1cmUgd2hhdCBvcHRpbWl6YXRpb24gKG90aGVyIHRoYW4gbm90IHVzaW5nIFVuaWNvZGUpIGlz
+IGNyaXRpY2FsIHRvIHRoZSBXaW5kb3dzIGJ1aWxkIG9mIFVERSBsaWJyYXJ5IG1heWJlIHNvbWVv
+bmUgaW4gdGhlIGdyb3VwIGNhbiBwcm92aWRlIGluc2lnaHQuCj4KPiBGcm9tOiBPbG8gdmlhIFVT
+UlAtdXNlcnMgPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPgo+IFNlbnQ6IE1vbmRheSwgQXBy
+aWwgMTcsIDIwMjMgMDU6MTEKPiBUbzogdXNycC11c2VycyA8dXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20+Cj4gU3ViamVjdDogW1VTUlAtdXNlcnNdIFJlOiBVSEQgaW4gUXQgYysrIHdpbmRvd3MK
+Pgo+IEkgY29waWVkIGluaXRfdXNycC5jcHAgdG8gQ29uc29sZUFwcGxpY2F0aW9uIGluIHZpc3Vh
+bCBzdHVkaW8gYW5kIGluIHByb3BlcnRpZXMgSSBzZXQgQ29uZmlndXJhdGlvbiBwcm9wZXJ0aWVz
+ID4+IEMvQysrID4+IEFkZGl0aW9uYWwgSW5jbHVkZSBEaXJlY3RvcmllczoKPgo+IEM6XFByb2dy
+YW0gRmlsZXNcVUhEXGluY2x1ZGUKPgo+IEQ6XEJvb3N0XGJvb3N0XzFfODJfMAo+Cj4gQ29uZmln
+dXJhdGlvbiBwcm9wZXJ0aWVzID4+IExpbmtlciA+PiBHZW5lcmFsOgo+Cj4gQzpcVUhEXGxpYgo+
+Cj4gRDpcQm9vc3RcYm9vc3RfMV84Ml8wXGxpYjY0LW1zdmMtMTQuMwo+Cj4gQ29uZmlndXJhdGlv
+biBwcm9wZXJ0aWVzID4+IExpbmtlciA+PiBJbnB1dDoKPgo+IHVoZC5saWIKPgo+IEl0IGdvdCBt
+ZToKPgo+IEV4Y2VwdGlvbiB0aHJvd24gYXQgMHgwMDAwN0ZGQ0NBQzY0MDY1ICh1aGQuZGxsKSBp
+biBDb25zb2xlQXBwbGljYXRpb24xLmV4ZTogMHhDMDAwMDAwNTogQWNjZXNzIHZpb2xhdGlvbiBy
+ZWFkaW5nIGxvY2F0aW9uIDB4MDAwMDAwMzlBMUYyMDAwMC4KPgo+IEkgdGhpbmsgdGhlcmUgd2ls
+bCBiZSBwcm9ibGVtIHdpdGggbXkgbGlicmFyaWVzLiBUaGUgVUhEIEkgaW5zdGFsbGVkIHZpYSBi
+aWFuYXJpZXMgaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vYmluYXJpZXMvdWhkL2xhdGVzdF9yZWxl
+YXNlLzQuMy4wLjAvV2luZG93cy0xMC14NjQvCj4KPiBhbmQgdGhlIGJvb3N0IHNhbWUgaHR0cHM6
+Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvYm9vc3QvZmlsZXMvYm9vc3QtYmluYXJpZXMvMS44
+Mi4wLy4KPgo+IFNlbnQgd2l0aCBbUHJvdG9uIE1haWxdKGh0dHBzOi8vcHJvdG9uLm1lLykgc2Vj
+dXJlIGVtYWlsLgo+Cj4gLS0tLS0tLSBPcmlnaW5hbCBNZXNzYWdlIC0tLS0tLS0KPiBPbiBNb25k
+YXksIEFwcmlsIDE3dGgsIDIwMjMgYXQgMTA6MTQsIE1hcmN1cyBNw7xsbGVyIDxtYXJjdXMubXVl
+bGxlckBldHR1cy5jb20+IHdyb3RlOgo+Cj4+IEhpIE9sbywKPj4KPj4gbm9ib2R5J3MgZ29pbmcg
+dG8gYmUgbWFkIGF0IHlvdSBiZWNhdXNlIG9mIHlvdXIgRW5nbGlzaCwgd2hpY2gsIGJ5IHRoZSB3
+YXksIGlzIHZlcnkgZ29vZCEgRW5nbGlzaCBpc24ndCBteSBmaXJzdCBsYW5ndWFnZSwgZWl0aGVy
+IDopIFdlbGNvbWUgdG8gdGhlIFVTUlAgZGV2ZWxvcGVyIGNvbW11bml0eS4KPj4KPj4gU28sIGxl
+dCdzIHRhY2tsZSB0aGlzIG9uZSBieSBvbmU6Cj4+Cj4+IElmIHlvdSB0YWtlIHRoZSBjb2RlIGZy
+b20gaW5pdF91c3JwLmNwcCBbMV0gYW5kIHRyeSB0byBjb21waWxlIGl0IGluIHlvdXIgcHJvamVj
+dCBpbnN0ZWFkIG9mIHlvdXIgb3duIGNvZGUsIGRvZXMgaXQgYWxzbyBzZWdmYXVsdD8KPj4KPj4g
+SWYgbm90LCB0aGVuIHdlIG5lZWQgdG8gbG9vayBhdCB5b3VyIGNvZGUuCj4+Cj4+IElmIHllcywg
+dGhlbiB3ZSBuZWVkIHRvIGxvb2sgYXQgeW91ciBjb21waWxhdGlvbiBzZXR0aW5ncy4gSSdtIG5v
+dCBhIFdpbmRvd3MgdXNlciBteXNlbGYsIGJ1dCBJIHJlbWVtYmVyIChhdCBsZWFzdCBvbGRlcikg
+TVNWQyB3YXMgbm90IGhhcHB5IHdoZW4geW91IG1peCBkZWJ1ZyBidWlsZHMgb2YgbGlicmFyaWVz
+IGFuZCByZWxlYXNlIGJ1aWxkcyBvZiBzb2Z0d2FyZSwgb3IgdmljZSB2ZXJzYS4KPj4KPj4gQmVz
+dCByZWdhcmRzLAo+PiBNYXJjdXMKPj4KPj4gWzFdIGh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jl
+c2VhcmNoL3VoZC90cmVlL1VIRC00LjMvaG9zdC9leGFtcGxlcy9pbml0X3VzcnAKPj4KPj4gT24g
+MTcuMDQuMjMgMDk6MTgsIE9sbyB2aWEgVVNSUC11c2VycyB3cm90ZToKPj4KPj4+IEhlbGxvLAo+
+Pj4KPj4+IEltIHRyeWluZyB0byB3b3JrIHdpdGggbXkgQjIxMCBpbiBRdC4gVGhlIHRoaW5nIGlz
+IEkgaGF2ZSBhZGRlZCBpbiAucHJvIGZpbGUgKHVzaW5nIHFtYWtlKSBVSEQgKDQuMy4wLjApIGxp
+YiBhbmQgaW5jbHVkZSBoZWFkZXIgZmlsZXMgdG8gbXkgcHJvamVjdCB3aXRoIGJvb3N0ICgxLjgy
+LjApIGxpYnJhcnkgYW5kIEkgY2FudCBkbyBwcmV0dHkgbXV0Y2ggYW55dGhpbmcuIEkgdHJpZWQg
+dG8gbGlzdCBhbGwgZGV2aWNlcyBhbmQgSSBjYW50IGV2ZW50IHNldCB1aGQ6OmRldmljZV9hZGRy
+X3QgaGludDsgYmVjYXVzZSBJIGdvdCBleGVwdGlvbiB0aGVyZSAoU3RvcHBlZCBpbiB0aHJlYWQg
+MCBieTogRXhjZXB0aW9uIGF0IC4uLiByZWFkIGFjY2VzcyB2aW9sYXRpb24gLi4uKS4gVGhlIGV4
+YW1wbGVzIGluIFVIRCBmb2xkZXIgd29ya3MgZ3JlYXQuIFBsZWFzZSBkb250IGJlIG1hZCBhdCBt
+ZSBiZWNhdXNlIG9mIG15IGVuZ2xpc2ggb3IgbGFjayBvZiBpbmZvIGJ1dCBJIGZlbGwgbGlrZSBJ
+bSByZWFsbHkgbG9zdCBhdCB0aGlzIHBvaW50Lgo+Pj4KPj4+IG15IFNXOgo+Pj4KPj4+IC13aW5k
+b3dzIDEwCj4+Pgo+Pj4gLVF0IDUuMTIuMgo+Pj4KPj4+IC1tc3ZjMjAxOSB4NjQKPj4+Cj4+PiAt
+dWhkIDQuMy4wLjAKPj4+Cj4+PiAtYm9vc3QgMS44Mi4wCj4+Pgo+Pj4gVGhhbmtzIGZvciBhbnkg
+cmVzcG9uc2UuCj4+Pgo+Pj4gT2xvCj4+Pgo+Pj4gU2VudCB3aXRoIFtQcm90b24gTWFpbF0oaHR0
+cHM6Ly9wcm90b24ubWUvKSBzZWN1cmUgZW1haWwuCj4+Pgo+Pj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPj4+Cj4+PiBVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdCAtLQo+Pj4gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KPj4+Cj4+PiBUbyB1bnN1YnNj
+cmliZSBzZW5kIGFuIGVtYWlsIHRvCj4+PiB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNv
+bQ==
+
+--b1_T2mqPcvKlLg6EEByXNq4mcche7511WHKKug1qgGq8
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0
+cHg7Ij5JIHN3aXRjaGVkIHRvIFVidW50dSAyMi4wNC4yIGFuZCBkb3dubG9hZCBRdCBhbmQgVlMg
+Q29kZSB0aGVyZS4gTm93IEkga25vdyBob3cgdG8gY29uZmlndXJlIGFuZCBidWlsZCB0aGUgcHJv
+amVjdCB3aGljaCB5b3Ugc2VuZCBtZSBNYXJjdXMgYW5kIGl0IHdvcmtzICEgTm93IEkgbXVzdCBm
+aWd1cmUgaXQgaG93IHRvIHN3aXRjaCB0byBERUJVRyBhbmQgdGhlbiBzb21laG93IHRyeSB0byBk
+byBpdCBpbiBRdC4gVGhhbmtzIGZvciBhbGwgc3VwcG9ydCBhbmQgYWxsIGNvbmNyZXRlICpzdWdn
+ZXN0aW9ucyouIEZvb2ghPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5z
+LXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1p
+bHk6IEFyaWFsLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7Ij48YnI+PC9kaXY+PGRpdiBj
+bGFzcz0icHJvdG9ubWFpbF9zaWduYXR1cmVfYmxvY2siIHN0eWxlPSJmb250LWZhbWlseTogQXJp
+YWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJm
+b250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsiPjxicj48L2Rp
+dj48ZGl2IGNsYXNzPSJwcm90b25tYWlsX3F1b3RlIj4NCiAgICAgICAgLS0tLS0tLSBPcmlnaW5h
+bCBNZXNzYWdlIC0tLS0tLS08YnI+DQogICAgICAgIE9uIE1vbmRheSwgQXByaWwgMTd0aCwgMjAy
+MyBhdCAyMzozOSwgTWlsbyBIIEZpZWxkcyBJSUkgJmx0O21maWVsZHNAcGFsYWRpbi1zeXMuY29t
+Jmd0OyB3cm90ZTo8YnI+PGJyPg0KICAgICAgICA8YmxvY2txdW90ZSBjbGFzcz0icHJvdG9ubWFp
+bF9xdW90ZSIgdHlwZT0iY2l0ZSI+DQogICAgICAgICAgICANCjxkaXYgY2xhc3M9IldvcmRTZWN0
+aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFtIGFsc28gaGF2aW5nIGlzc3VlcyB3aXRo
+IHRoZSB1aGQgbGlicmFyaWVzIG9uIFdpbmRvd3MgdXNpbmcgVmlzdWFsIFN0dWRpby4mbmJzcDsg
+TXkgb2JzZXJ2YXRpb25zIHNvIGZhcjo8L3A+DQo8dWwgdHlwZT0iZGlzYyIgc3R5bGU9Im1hcmdp
+bi10b3A6MGluIj4NCjxsaSBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwwIGxldmVs
+MSBsZm8xIiBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCI+Rmlyc3Qg4oCTIGJlIHN1cmUgYW55IGxp
+bmtlZCBhcHDigJlzIGFyZSB1c2luZyBNdWx0aS1CeXRlIGNoYXJhY3RlciBzZXQgYXMgaXQgVlMg
+ZGVmYXVsdHMgdG8gdW5pY29kZTwvbGk+PGxpIHN0eWxlPSJtYXJnaW4tbGVmdDowaW47bXNvLWxp
+c3Q6bDAgbGV2ZWwxIGxmbzEiIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIj5UaGUgZGVmYXVsdCBi
+aW5hcnkgbGlicmFyaWVzIGRpZCBub3Qgd29yayBmb3IgbWUgYXQgYWxsIHdoZW4gdHJ5aW5nIHRv
+IGxpbmsgdGhlbSB0byBteSBhcHBsaWNhdGlvbnMg4oCTIEkgYXNzdW1lZCBpdCBtaWdodCBoYXZl
+IHNvbWV0aGluZyB0byBkbyB3aXRoIHVzaW5nIFZpc3VhbCBTdHVkaW8gMjAyMi4gVG8gd29yaw0K
+IGFyb3VuZCB0aGlzIHByb2JsZW0gSSBidWlsdCAmYW1wOyBpbnN0YWxsZWQgVURFIHVzaW5nIG15
+IHN5c3RlbSAmYW1wOyBWaXN1YWwgU3R1ZGlvIDIwMjIgZW50ZXJwcmlzZSBlbnZpcm9ubWVudC48
+L2xpPjxsaSBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0OmwwIGxldmVsMSBsZm8xIiBj
+bGFzcz0iTXNvTGlzdFBhcmFncmFwaCI+VGhlIERFQlVHICZhbXA7IFJlbGVhc2UgYnVpbGRzIChC
+VUlMRF9BTEwgcHJvamVjdCkgb2YgdGhlIFVERSBsaWJyYXJ5IGJ1aWx0IHdpdGhvdXQgZXJyb3Ig
+YW5kIHRoZSBSVU5fVEVTVCBleGVjdXRlIHdpdGggMTAwJSBvZiB0aGUgdGVzdHMgcmVwb3J0aW5n
+IHN1Y2Nlc3Mg4oCTIGhvd2V2ZXIgdGhlIERFQlVHIHZlcnNpb25zDQogb2YgJm5ic3A74oCYdW5k
+X2ZpbmRfZGV2aWNlc+KAmSBhbmQgb3RoZXIgVUhEIHV0aWxpdGllcyBhbGwgZmFpbCB3aXRoIOKA
+mEVycm9yOiBiYWQgYWxsb2NhdGlvbuKAmSB3aGlsZSB0aGUg4oCYUmVsZWFzZeKAmSB2ZXJzaW9u
+cyBleGVjdXRlZCB3aXRob3V0IGVycm9yLiZuYnNwOyBTYW1lIHdhcyB0cnVlIG9mIG15IGFwcGxp
+Y2F0aW9uIHdoaWNoIEkgb3JpZ2luYWwgYnVpbHQgYnkgYWRkaW5nIGl0IHRvIHRoZSBVSEQgZ2Vu
+ZXJhdGVkIHNvbHV0aW9uIHVzaW5nIG9uZSBvZiB0aGUgb3RoZXINCiBhcHBsaWNhdGlvbiBwcm9q
+ZWN0IGZyYW1ld29ya3MuPC9saT48bGkgc3R5bGU9Im1hcmdpbi1sZWZ0OjBpbjttc28tbGlzdDps
+MCBsZXZlbDEgbGZvMSIgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiPkkgZXZlbnR1YWxseSBzZXR0
+bGVkIG9uIGJ1aWxkaW5nICZhbXA7IEluc3RhbGxpbmcgdGhlIOKAmFJlbFdpdGhEZWJJbmZv4oCZ
+IHZlcnNpb24gb2YgdGhlIFVIRCBsaWJyYXJ5IGFuZCBjcmVhdGVkIGFuIGV4dGVybmFsIHNvbHV0
+aW9uIGZvciBteSBhcHAgdGhhdCByZWZlcmVuY2VzIHRoZSBpbnN0YWxsZWQgdmVyc2lvbiBvZiBV
+REUNCiB0aGF0IEkgYnVpbHQ8L2xpPjxsaSBzdHlsZT0ibWFyZ2luLWxlZnQ6MGluO21zby1saXN0
+OmwwIGxldmVsMSBsZm8xIiBjbGFzcz0iTXNvTGlzdFBhcmFncmFwaCI+VGhlIGZhaWx1cmVzIG9m
+IHRoZSBERUJVRyBidWlsZHMg4oCYYXBwZWFy4oCZIHRvIGJlIHJlbGF0ZWQgdG8gYXJndW1lbnQg
+cHJvY2Vzc2luZyBhcyBJIGhhdmUgZm91bmQgc2VuZWNpb3Mgd2hlcmUgbm9ybWFsIGFyZ3VtZW50
+IHN0cmluZ3MgYXJlIG5vdCBwcm9jZXNzZWQgY29ycmVjdGx5IGJ5IHRoZSBVREUgQysrIEFQSeKA
+mXMNCiAoYXBwZWFyIGFzIGp1bmsgd2hlbiBzdGVwcGluZyBpbnRvIHRoZSBsaWJyYXJ5IGNvZGUp
+LiBXaGVyZSBidWlsZGluZyBhcHBzIHdpdGggUmVsZWFzZSAmbmJzcDtvciBSZWxXaXRoRGViSW5m
+byB3aWxsIG9wZXJhdGUgY29ycmVjdGx5LiBIYXZlIG5vdCBpc29sYXRlZCB3aGljaCDigJhSZWxl
+YXNl4oCZIGNvZGUgZ2VuZXJhdGlvbiBvcHRpb24gaXMgY3JpdGljYWwgdG8gVUhELjwvbGk+PGxp
+IHN0eWxlPSJtYXJnaW4tbGVmdDowaW47bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiIGNsYXNzPSJN
+c29MaXN0UGFyYWdyYXBoIj5JIGhhdmUgYWxzbyBmb3VuZCBzaW1pbGFyIGFyZ3VtZW50IHBhcnNp
+bmcgaXNzdWVzIHdpdGggbXkgVWJ1bnR1IFVERSB0YXJnZXRzIGJ1dCBoYXZlbuKAmXQgcnVuIHRo
+ZW0gdG8gZ3JvdW5kIGFzIEkgY3VycmVudGx5IG5lZWQgdG8gYmUgYWJsZSB0byBmaWVsZCBhIGIy
+MDAgYXBwbGljYXRpb24gb24gYSBXaW5kb3dzDQogdGFyZ2V0PC9saT48L3VsPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+Jm5ic3A7PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SG9wZSB0aGlzIGhl
+bHBz4oCmIEnigJltIHN0aWxsIGxvb2tpbmcgaW50byB0aGUgZGVidWcgYnVpbGRzIGFzIHRpbWUg
+cGVybWl0cyBidXQgaGF2ZW7igJl0IGZvdW5kIGFueXRoaW5nIHNwZWNpZmljICZuYnNwOy0gbm90
+IHN1cmUgd2hhdCBvcHRpbWl6YXRpb24gKG90aGVyIHRoYW4gbm90IHVzaW5nIFVuaWNvZGUpIGlz
+IGNyaXRpY2FsIHRvIHRoZSBXaW5kb3dzIGJ1aWxkIG9mIFVERSBsaWJyYXJ5IG1heWJlIHNvbWVv
+bmUgaW4gdGhlDQogZ3JvdXAgY2FuIHByb3ZpZGUgaW5zaWdodC4gPC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+Jm5ic3A7PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6
+c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2
+IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGlu
+ZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj5Gcm9tOjwvYj4g
+T2xvIHZpYSBVU1JQLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDsNCjxi
+cj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIEFwcmlsIDE3LCAyMDIzIDA1OjExPGJyPg0KPGI+VG86
+PC9iPiB1c3JwLXVzZXJzICZsdDt1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSZndDs8YnI+DQo8
+Yj5TdWJqZWN0OjwvYj4gW1VTUlAtdXNlcnNdIFJlOiBVSEQgaW4gUXQgYysrIHdpbmRvd3M8L3A+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PC9wPg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPkkgY29waWVkIGluaXRfdXNycC5j
+cHAgdG8gQ29uc29sZUFwcGxpY2F0aW9uIGluIHZpc3VhbCBzdHVkaW8gYW5kIGluIHByb3BlcnRp
+ZXMgSSBzZXQgQ29uZmlndXJhdGlvbiBwcm9wZXJ0aWVzICZndDsmZ3Q7IEMvQysrICZndDsmZ3Q7
+IEFkZGl0aW9uYWwgSW5jbHVkZSBEaXJlY3Rvcmllczo8L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+QzpcUHJvZ3JhbSBGaWxlc1xV
+SERcaW5jbHVkZTwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZx
+dW90OyxzYW5zLXNlcmlmIj5EOlxCb29zdFxib29zdF8xXzgyXzA8L3NwYW4+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+Jm5ic3A7PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7
+Y29sb3I6YmxhY2s7YmFja2dyb3VuZDp3aGl0ZSI+Q29uZmlndXJhdGlvbiBwcm9wZXJ0aWVzICZn
+dDsmZ3Q7IExpbmtlciAmZ3Q7Jmd0OyBHZW5lcmFsOjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmIj48L3Nw
+YW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJp
+ZiI+QzpcVUhEXGxpYjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlh
+bCZxdW90OyxzYW5zLXNlcmlmIj5EOlxCb29zdFxib29zdF8xXzgyXzBcbGliNjQtbXN2Yy0xNC4z
+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMt
+c2VyaWYiPiZuYnNwOzwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlh
+bCZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrO2JhY2tncm91bmQ6d2hpdGUiPkNvbmZpZ3Vy
+YXRpb24gcHJvcGVydGllcyAmZ3Q7Jmd0OyBMaW5rZXIgJmd0OyZndDsgSW5wdXQ6PC9zcGFuPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7
+LHNhbnMtc2VyaWYiPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlh
+bCZxdW90OyxzYW5zLXNlcmlmIj51aGQubGliPC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPiZuYnNwOzwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEw
+LjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmIj5JdCBnb3QgbWU6
+Jm5ic3A7PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7
+LHNhbnMtc2VyaWYiPkV4Y2VwdGlvbiB0aHJvd24gYXQgMHgwMDAwN0ZGQ0NBQzY0MDY1ICh1aGQu
+ZGxsKSBpbiBDb25zb2xlQXBwbGljYXRpb24xLmV4ZTogMHhDMDAwMDAwNTogQWNjZXNzIHZpb2xh
+dGlvbiByZWFkaW5nIGxvY2F0aW9uIDB4MDAwMDAwMzlBMUYyMDAwMC48L3NwYW4+PC9wPg0KPC9k
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+Jm5ic3A7PC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2Vy
+aWYiPiZuYnNwOzwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZx
+dW90OyxzYW5zLXNlcmlmIj5JIHRoaW5rIHRoZXJlIHdpbGwgYmUgcHJvYmxlbSB3aXRoIG15IGxp
+YnJhcmllcy4gVGhlIFVIRCBJIGluc3RhbGxlZCB2aWEgYmlhbmFyaWVzJm5ic3A7PGEgdGFyZ2V0
+PSJfYmxhbmsiIGhyZWY9Imh0dHBzOi8vZmlsZXMuZXR0dXMuY29tL2JpbmFyaWVzL3VoZC9sYXRl
+c3RfcmVsZWFzZS80LjMuMC4wL1dpbmRvd3MtMTAteDY0LyIgcmVsPSJub3JlZmVycmVyIG5vZm9s
+bG93IG5vb3BlbmVyIj5odHRwczovL2ZpbGVzLmV0dHVzLmNvbS9iaW5hcmllcy91aGQvbGF0ZXN0
+X3JlbGVhc2UvNC4zLjAuMC9XaW5kb3dzLTEwLXg2NC88L2E+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPmFuZCB0aGUgYm9vc3Qg
+c2FtZQ0KPGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHBzOi8vc291cmNlZm9yZ2UubmV0L3By
+b2plY3RzL2Jvb3N0L2ZpbGVzL2Jvb3N0LWJpbmFyaWVzLzEuODIuMC8iIHJlbD0ibm9yZWZlcnJl
+ciBub2ZvbGxvdyBub29wZW5lciI+DQpodHRwczovL3NvdXJjZWZvcmdlLm5ldC9wcm9qZWN0cy9i
+b29zdC9maWxlcy9ib29zdC1iaW5hcmllcy8xLjgyLjAvPC9hPi4mbmJzcDsmbmJzcDs8L3NwYW4+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+
+Jm5ic3A7PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7
+LHNhbnMtc2VyaWYiPiZuYnNwOzwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+U2VudCB3aXRoDQo8YSB0YXJnZXQ9Il9i
+bGFuayIgaHJlZj0iaHR0cHM6Ly9wcm90b24ubWUvIiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cg
+bm9vcGVuZXIiPlByb3RvbiBNYWlsPC9hPiBzZWN1cmUgZW1haWwuIDwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPiZu
+YnNwOzwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4tLS0t
+LS0tIE9yaWdpbmFsIE1lc3NhZ2UgLS0tLS0tLTxicj4NCk9uIE1vbmRheSwgQXByaWwgMTd0aCwg
+MjAyMyBhdCAxMDoxNCwgTWFyY3VzIE3DvGxsZXIgJmx0OzxhIGhyZWY9Im1haWx0bzptYXJjdXMu
+bXVlbGxlckBldHR1cy5jb20iIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIgdGFy
+Z2V0PSJfYmxhbmsiPm1hcmN1cy5tdWVsbGVyQGV0dHVzLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj4N
+Cjxicj4NCjxicj4NCjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21h
+cmdpbi1ib3R0b206NS4wcHQiPg0KPHA+SGkgT2xvLDwvcD4NCjxwPm5vYm9keSdzIGdvaW5nIHRv
+IGJlIG1hZCBhdCB5b3UgYmVjYXVzZSBvZiB5b3VyIEVuZ2xpc2gsIHdoaWNoLCBieSB0aGUgd2F5
+LCBpcyB2ZXJ5IGdvb2QhIEVuZ2xpc2ggaXNuJ3QgbXkgZmlyc3QgbGFuZ3VhZ2UsIGVpdGhlciA6
+KSBXZWxjb21lIHRvIHRoZSBVU1JQIGRldmVsb3BlciBjb21tdW5pdHkuPC9wPg0KPHA+U28sIGxl
+dCdzIHRhY2tsZSB0aGlzIG9uZSBieSBvbmU6PC9wPg0KPHA+SWYgeW91IHRha2UgdGhlIGNvZGUg
+ZnJvbSBpbml0X3VzcnAuY3BwIFsxXSBhbmQgdHJ5IHRvIGNvbXBpbGUgaXQgaW4geW91ciBwcm9q
+ZWN0IGluc3RlYWQgb2YgeW91ciBvd24gY29kZSwgZG9lcyBpdCBhbHNvIHNlZ2ZhdWx0PzwvcD4N
+CjxwPklmIG5vdCwgdGhlbiB3ZSBuZWVkIHRvIGxvb2sgYXQgeW91ciBjb2RlLjwvcD4NCjxwPklm
+IHllcywgdGhlbiB3ZSBuZWVkIHRvIGxvb2sgYXQgeW91ciBjb21waWxhdGlvbiBzZXR0aW5ncy4g
+SSdtIG5vdCBhIFdpbmRvd3MgdXNlciBteXNlbGYsIGJ1dCBJIHJlbWVtYmVyIChhdCBsZWFzdCBv
+bGRlcikgTVNWQyB3YXMgbm90IGhhcHB5IHdoZW4geW91IG1peCBkZWJ1ZyBidWlsZHMgb2YgbGli
+cmFyaWVzIGFuZCByZWxlYXNlIGJ1aWxkcyBvZiBzb2Z0d2FyZSwgb3IgdmljZSB2ZXJzYS4NCjwv
+cD4NCjxwPkJlc3QgcmVnYXJkcyw8YnI+DQpNYXJjdXM8L3A+DQo8cD5bMV0gPGEgdGFyZ2V0PSJf
+YmxhbmsiIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9FdHR1c1Jlc2VhcmNoL3VoZC90cmVlL1VI
+RC00LjMvaG9zdC9leGFtcGxlcy9pbml0X3VzcnAiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBu
+b29wZW5lciI+DQpodHRwczovL2dpdGh1Yi5jb20vRXR0dXNSZXNlYXJjaC91aGQvdHJlZS9VSEQt
+NC4zL2hvc3QvZXhhbXBsZXMvaW5pdF91c3JwPC9hPjwvcD4NCjxwPk9uIDE3LjA0LjIzIDA5OjE4
+LCBPbG8gdmlhIFVTUlAtdXNlcnMgd3JvdGU6PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdp
+bi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJp
+YWwmcXVvdDssc2Fucy1zZXJpZiI+SGVsbG8sPC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPkltIHRyeWluZyB0byB3b3JrIHdpdGgg
+bXkgQjIxMCBpbiBRdC4gVGhlIHRoaW5nIGlzIEkgaGF2ZSBhZGRlZCBpbiAucHJvIGZpbGUgKHVz
+aW5nIHFtYWtlKSBVSEQgKDQuMy4wLjApIGxpYiBhbmQgaW5jbHVkZSBoZWFkZXIgZmlsZXMgdG8g
+bXkgcHJvamVjdCB3aXRoIGJvb3N0ICgxLjgyLjApIGxpYnJhcnkNCiBhbmQgSSBjYW50IGRvIHBy
+ZXR0eSBtdXRjaCBhbnl0aGluZy4gSSB0cmllZCB0byBsaXN0IGFsbCBkZXZpY2VzIGFuZCBJIGNh
+bnQgZXZlbnQgc2V0IHVoZDo6ZGV2aWNlX2FkZHJfdCBoaW50OyBiZWNhdXNlIEkgZ290IGV4ZXB0
+aW9uIHRoZXJlIChTdG9wcGVkIGluIHRocmVhZCAwIGJ5OiBFeGNlcHRpb24gYXQgLi4uIHJlYWQg
+YWNjZXNzIHZpb2xhdGlvbiAuLi4pLiBUaGUgZXhhbXBsZXMgaW4gVUhEIGZvbGRlciB3b3JrcyBn
+cmVhdC4gUGxlYXNlDQogZG9udCBiZSBtYWQgYXQgbWUgYmVjYXVzZSBvZiBteSBlbmdsaXNoIG9y
+IGxhY2sgb2YgaW5mbyBidXQgSSBmZWxsIGxpa2UgSW0gcmVhbGx5IGxvc3QgYXQgdGhpcyBwb2lu
+dC4NCjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90Oyxz
+YW5zLXNlcmlmIj4mbmJzcDs8L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+bXkgU1c6PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPi13aW5kb3dzIDEwPC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPi1R
+dCA1LjEyLjI8L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVv
+dDssc2Fucy1zZXJpZiI+LW1zdmMyMDE5IHg2NDwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZh
+bWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmIj4tdWhkIDQuMy4wLjA8L3NwYW4+PC9w
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+LWJv
+b3N0IDEuODIuMDwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZx
+dW90OyxzYW5zLXNlcmlmIj4mbmJzcDs8L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC41cHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+VGhhbmtzIGZvciBhbnkgcmVzcG9uc2UuPC9z
+cGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2Vy
+aWYiPk9sbzwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90
+OyxzYW5zLXNlcmlmIj4mbmJzcDs8L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuNXB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPlNlbnQgd2l0aA0KPGEgdGFyZ2V0PSJf
+YmxhbmsiIGhyZWY9Imh0dHBzOi8vcHJvdG9uLm1lLyIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93
+IG5vb3BlbmVyIj5Qcm90b24gTWFpbDwvYT4gc2VjdXJlIGVtYWlsLiA8L3NwYW4+PC9wPg0KPC9k
+aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzwvcD4NCjxwcmU+X19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188L3ByZT4NCjxwcmU+VVNS
+UC11c2VycyBtYWlsaW5nIGxpc3QgLS0gPGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Im1haWx0bzp1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgcmVsPSJub3JlZmVycmVyIG5vZm9sbG93IG5vb3Bl
+bmVyIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48L3ByZT4NCjxwcmU+VG8gdW5zdWJz
+Y3JpYmUgc2VuZCBhbiBlbWFpbCB0byA8YSB0YXJnZXQ9Il9ibGFuayIgaHJlZj0ibWFpbHRvOnVz
+cnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tIiByZWw9Im5vcmVmZXJyZXIgbm9mb2xsb3cg
+bm9vcGVuZXIiPnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPC9hPjwvcHJlPg0KPC9i
+bG9ja3F1b3RlPg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PC9w
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KDQoNCg0KICAgICAgICA8L2Jsb2NrcXVvdGU+PGJy
+Pg0KICAgIDwvZGl2Pg==
 
 
-> Thanks for the info and the tips about moving forward!
->
-> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
-> *Sent:* Monday, April 17, 2023 8:02 PM
-> *To:* Shenk, Trey E <trey.shenk@pnnl.gov>
-> *Cc:* USRP-users@lists.ettus.com
-> *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
->
-> On 17/04/2023 22:49, Shenk, Trey E wrote:
->
->     Hi all,
->
->     Thanks for the input on this issue. I=E2=80=99m still trying to pin=
- it
->     down. I=E2=80=99m using gnuradio to drive a B205mini. I=E2=80=99m s=
-eeing harmonics
->     of the carrier particularly at odd harmonics. The third harmonic,
->     3*carrier, is only 10dB down from the carrier itself, and I=E2=80=99=
-m
->     seeing significant carrier leakage.
->
->
->     I=E2=80=99ve tried changing the sampling rate, as well as modulatin=
-g a
->     QPSK signal (both direct conversion and using some off-tuning). I
->     still see spectral images at the odd harmonics.
->
->     Is this known behavior for the B205mini? I=E2=80=99m trying to deci=
-de if I
->     need to change how I=E2=80=99m driving it, use a RF filter at the o=
-utput,
->     or switch to a different SDR.
->
->     Thanks,
->     Trey
->
-> Two things.
->
-> The LO leakage can be dealt with using an LO offset.
->
-> However, the AD9361 uses a square-wave LO into the mixer, which means=20
-> that odd harmonics will make it out of the device.
-> =C2=A0 This has been discussed extensively in the ADI forums, and a cou=
-ple=20
-> of folks on this list have discussed it as well with
-> =C2=A0 spectrum analyzer screen dumps showing it.=C2=A0 I confirmed it =
-with my=20
-> own modest spectrum analyzer as well.=C2=A0 Because it's
-> =C2=A0 an odd-harmonic problem, any application operating above 2GHz wi=
-ll=20
-> naturally not have this problem, because the 3rd
-> =C2=A0 harmonic (and all other odd harmonics) will fall outside the=20
-> operating range of the AD9361 chip.
->
-> The only solution is filtering.
->
-> Some USRPs have a built-in switchable filter bank that can help with=20
-> this in some cases, but it really depends on the
-> =C2=A0 frequency scheme of your application.=C2=A0=C2=A0 A discrete fil=
-ter bank=20
-> cannot possibly deal with all applications.
->
-> I personally tend to think of SDRs as *components* in an overall=20
-> engineered RF *system*.=C2=A0=C2=A0 It is certainly the case that
-> =C2=A0 ready-for-type-acceptance radios, regardless of internal=20
-> architecture, will almost always have filters at the edges to
-> =C2=A0 deal with architectural unpleasantness deeper in the radio=20
-> architecture.=C2=A0=C2=A0=C2=A0=C2=A0 The B2xx series were designed to =
-be
-> =C2=A0 relatively inexpensive, and as such, they don't have a switchabl=
-e=20
-> filter-bank on them--and as previously pointed out,
-> =C2=A0 even THEN, that may not necessarily make the radio "application=20
-> ready" in terms of formal type-acceptance, etc.
->
->
->
->     *From:* Shenk, Trey E
->     *Sent:* Wednesday, April 12, 2023 4:21 PM
->     *To:* Marcus D. Leech <patchvonbraun@gmail.com>
->     <mailto:patchvonbraun@gmail.com>
->     *Cc:* USRP-users@lists.ettus.com
->     *Subject:* RE: [USRP-users] Harmonic Distortion with B205mini
->
->     The original signal that I showed was an unmodulated carrier.
->
->     I tried a 10kHz complex exponential (plots included for several
->     harmonics). The carrier is clearly visible at all frequencies. I
->     can see copies of the 10kHz tone on odd multiples of the carrier,
->     but not on the even multiples.
->
->     *From:* Marcus D. Leech <patchvonbraun@gmail.com>
->     *Sent:* Monday, April 10, 2023 10:22 PM
->     *To:* Shenk, Trey E <trey.shenk@pnnl.gov>
->     *Cc:* USRP-users@lists.ettus.com
->     *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
->
->     On 10/04/2023 14:28, Shenk, Trey E wrote:
->
->         I first tried turning the gain down. What I saw was that the
->         even harmonics (2*fundamental, =E2=80=A6) did not change power,=
- and
->         the odd harmonics decreased by the same amount as the
->         fundamental. This means that the dBc for the odd harmonics
->         stayed the same with decreasing gain.
->
->         Decreasing the baseband amplitude had the exact same effect.
->         Even harmonics stayed at the same power level, odd harmonics
->         decreased while maintaining dBc.
->
->     What is the nature of the modulating signal?
->
->     If you use an example app like "tx_waveforms" with, let's say,
->     10kHz SIN signal, what are the harmonic results?
->
->
->
->         *From:* Marcus D Leech <patchvonbraun@gmail.com>
->         <mailto:patchvonbraun@gmail.com>
->         *Sent:* Monday, April 10, 2023 8:39 AM
->         *To:* Shenk, Trey E <trey.shenk@pnnl.gov>
->         <mailto:trey.shenk@pnnl.gov>
->         *Cc:* USRP-users@lists.ettus.com
->         *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
->
->         Check twice before you click! This email originated from
->         outside PNNL.
->
->         Turn down the RF gain a bit as well as the baseband amplitude.
->         Does this make any difference?
->
->         Sent from my iPhone
->
->
->
->
->             On Apr 10, 2023, at 9:41 AM, Shenk, Trey E via USRP-users
->             <usrp-users@lists.ettus.com> wrote:
->
->             =EF=BB=BF
->
->             I'm using a B205mini to transmit signals. When
->             transmitting, I can see copies of the SOI at harmonics of
->             the center frequency. I ran some measurements of total
->             harmonic distortion, and found it to range from 39% with a
->             100MHz to 23% with a 1GHz carrier.=C2=A0The second harmonic=
- is
->             <-50dBc, but the third harmonic is usually around -10dBc.
->
->             My main concern is for the lower frequency carriers, like
->             100MHz, because multiple harmonics will show up on a
->             spectrum analyzer set to a wideband. I've looked at
->             putting an RF filter at the output, but I need the system
->             to be able to switch transmit center frequencies in a
->             range from 100MHz to 5GHz.
->
->             Is it possible to reduce the harmonics by some hardware
->             setting (driving with gnruadio)?
->
->             Thanks,
->             Trey
->
->             <carrier_freqsweep_fc0200M_gain55.png>
->
->             _______________________________________________
->             USRP-users mailing list -- usrp-users@lists.ettus.com
->             To unsubscribe send an email to
->             usrp-users-leave@lists.ettus.com
->
+--b1_T2mqPcvKlLg6EEByXNq4mcche7511WHKKug1qgGq8--
 
---------------nSQjG0k0n6GOZSLGzZFIEUEv
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 17/04/2023 23:34, Shenk, Trey E
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:PH0PR09MB8122AF34BB6BFE6359C9D73BF99D9@PH0PR09MB8122.namprd09=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
-TF-8">
-      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
-        medium)">
-      <style>@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}div.WordSection1
-	{page:WordSection1;}</style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal">Got it. Thanks very much, Marcus! I didn=E2=
-=80=99t
-          realize that the LO was a square wave going in.</p>
-      </div>
-    </blockquote>
-    It's a fairly common practice these days.=C2=A0 The VFO operates at a
-    very high frequency, and then a<br>
-    =C2=A0 eye-wateringly-fast divider chain produces the final frequency=
-.=C2=A0
-    VFOs up at 12GHz in chips like<br>
-    =C2=A0 this aren't uncommon--so the PLL controls the VFO over a
-    relatively-small range, and the divider<br>
-    =C2=A0 does the rest.<br>
-    <br>
-    But even when you're driving a mixer with a nice pure sine-wave, the
-    mixer tends to chop it, since mixers<br>
-    =C2=A0 are basically switching devices, so there'll always be some
-    harmonic content coming out of a mixer even<br>
-    =C2=A0 with sine-wave inputs.=C2=A0=C2=A0 They'll just be at lower le=
-vels in my
-    understanding.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:PH0PR09MB8122AF34BB6BFE6359C9D73BF99D9@PH0PR09MB8122.namprd09=
-.prod.outlook.com">
-      <div class=3D"WordSection1">
-        <p class=3D"MsoNormal"><o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <p class=3D"MsoNormal">Thanks for the info and the tips about
-          moving forward!<o:p></o:p></p>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <div style=3D"border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0in 0in 0in">
-            <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
-              <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:patchvonb=
-raun@gmail.com">&lt;patchvonbraun@gmail.com&gt;</a> <br>
-              <b>Sent:</b> Monday, April 17, 2023 8:02 PM<br>
-              <b>To:</b> Shenk, Trey E <a class=3D"moz-txt-link-rfc2396E"=
- href=3D"mailto:trey.shenk@pnnl.gov">&lt;trey.shenk@pnnl.gov&gt;</a><br>
-              <b>Cc:</b> <a class=3D"moz-txt-link-abbreviated" href=3D"ma=
-ilto:USRP-users@lists.ettus.com">USRP-users@lists.ettus.com</a><br>
-              <b>Subject:</b> Re: [USRP-users] Harmonic Distortion with
-              B205mini<o:p></o:p></p>
-          </div>
-        </div>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-        <div>
-          <p class=3D"MsoNormal">On 17/04/2023 22:49, Shenk, Trey E wrote=
-:<o:p></o:p></p>
-        </div>
-        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">Thanks for the input on this issue. I=E2=
-=80=99m
-            still trying to pin it down. I=E2=80=99m using gnuradio to dr=
-ive a
-            B205mini. I=E2=80=99m seeing harmonics of the carrier particu=
-larly
-            at odd harmonics. The third harmonic, 3*carrier, is only
-            10dB down from the carrier itself, and I=E2=80=99m seeing
-            significant carrier leakage. <o:p></o:p></p>
-          <p class=3D"MsoNormal"><br>
-            I=E2=80=99ve tried changing the sampling rate, as well as mod=
-ulating
-            a QPSK signal (both direct conversion and using some
-            off-tuning). I still see spectral images at the odd
-            harmonics.<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">Is this known behavior for the B205mini?
-            I=E2=80=99m trying to decide if I need to change how I=E2=80=99=
-m driving it,
-            use a RF filter at the output, or switch to a different SDR.<=
-o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">Thanks,<br>
-            Trey<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-        </blockquote>
-        <p class=3D"MsoNormal">Two things.<br>
-          <br>
-          The LO leakage can be dealt with using an LO offset.<br>
-          <br>
-          However, the AD9361 uses a square-wave LO into the mixer,
-          which means that odd harmonics will make it out of the device.<=
-br>
-          =C2=A0 This has been discussed extensively in the ADI forums, a=
-nd a
-          couple of folks on this list have discussed it as well with<br>
-          =C2=A0 spectrum analyzer screen dumps showing it.=C2=A0 I confi=
-rmed it
-          with my own modest spectrum analyzer as well.=C2=A0 Because it'=
-s<br>
-          =C2=A0 an odd-harmonic problem, any application operating above
-          2GHz will naturally not have this problem, because the 3rd<br>
-          =C2=A0 harmonic (and all other odd harmonics) will fall outside=
- the
-          operating range of the AD9361 chip.<br>
-          <br>
-          The only solution is filtering.<br>
-          <br>
-          Some USRPs have a built-in switchable filter bank that can
-          help with this in some cases, but it really depends on the<br>
-          =C2=A0 frequency scheme of your application.=C2=A0=C2=A0 A disc=
-rete filter
-          bank cannot possibly deal with all applications.<br>
-          <br>
-          I personally tend to think of SDRs as *components* in an
-          overall engineered RF *system*.=C2=A0=C2=A0 It is certainly the=
- case
-          that<br>
-          =C2=A0 ready-for-type-acceptance radios, regardless of internal
-          architecture, will almost always have filters at the edges to<b=
-r>
-          =C2=A0 deal with architectural unpleasantness deeper in the rad=
-io
-          architecture.=C2=A0=C2=A0=C2=A0=C2=A0 The B2xx series were desi=
-gned to be<br>
-          =C2=A0 relatively inexpensive, and as such, they don't have a
-          switchable filter-bank on them--and as previously pointed out,<=
-br>
-          =C2=A0 even THEN, that may not necessarily make the radio
-          "application ready" in terms of formal type-acceptance, etc.<br=
->
-          <br>
-          <br>
-          <br>
-          <o:p></o:p></p>
-        <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-          <div>
-            <div style=3D"border:none;border-top:solid #E1E1E1
-              1.0pt;padding:3.0pt 0in 0in 0in">
-              <p class=3D"MsoNormal"><b>From:</b> Shenk, Trey E <br>
-                <b>Sent:</b> Wednesday, April 12, 2023 4:21 PM<br>
-                <b>To:</b> Marcus D. Leech <a
-                  href=3D"mailto:patchvonbraun@gmail.com"
-                  moz-do-not-send=3D"true">&lt;patchvonbraun@gmail.com&gt=
-;</a><br>
-                <b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com"
-                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">USRP-users@lists.ettus.com</a><br>
-                <b>Subject:</b> RE: [USRP-users] Harmonic Distortion
-                with B205mini<o:p></o:p></p>
-            </div>
-          </div>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">The original signal that I showed was an
-            unmodulated carrier.<br>
-            <br>
-            I tried a 10kHz complex exponential (plots included for
-            several harmonics). The carrier is clearly visible at all
-            frequencies. I can see copies of the 10kHz tone on odd
-            multiples of the carrier, but not on the even multiples.<o:p>=
-</o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <div>
-            <div style=3D"border:none;border-top:solid #E1E1E1
-              1.0pt;padding:3.0pt 0in 0in 0in">
-              <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech &lt;<a
-                  href=3D"mailto:patchvonbraun@gmail.com"
-                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">patchvonbraun@gmail.com</a>&gt;
-                <br>
-                <b>Sent:</b> Monday, April 10, 2023 10:22 PM<br>
-                <b>To:</b> Shenk, Trey E &lt;<a
-                  href=3D"mailto:trey.shenk@pnnl.gov"
-                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">trey.shenk@pnnl.gov</a>&gt;<br>
-                <b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus.com"
-                  moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext=
-">USRP-users@lists.ettus.com</a><br>
-                <b>Subject:</b> Re: [USRP-users] Harmonic Distortion
-                with B205mini<o:p></o:p></p>
-            </div>
-          </div>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-          <div>
-            <p class=3D"MsoNormal">On 10/04/2023 14:28, Shenk, Trey E
-              wrote:<o:p></o:p></p>
-          </div>
-          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-            <p class=3D"MsoNormal">I first tried turning the gain down.
-              What I saw was that the even harmonics (2*fundamental, =E2=80=
-=A6)
-              did not change power, and the odd harmonics decreased by
-              the same amount as the fundamental. This means that the
-              dBc for the odd harmonics stayed the same with decreasing
-              gain.<o:p></o:p></p>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <p class=3D"MsoNormal">Decreasing the baseband amplitude had
-              the exact same effect. Even harmonics stayed at the same
-              power level, odd harmonics decreased while maintaining
-              dBc.<o:p></o:p></p>
-          </blockquote>
-          <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">What is t=
-he
-            nature of the modulating signal?<br>
-            <br>
-            If you use an example app like "tx_waveforms" with, let's
-            say, 10kHz SIN signal, what are the harmonic results?<br>
-            <br>
-            <br>
-            <br>
-            <o:p></o:p></p>
-          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <div>
-              <div style=3D"border:none;border-top:solid #E1E1E1
-                1.0pt;padding:3.0pt 0in 0in 0in">
-                <p class=3D"MsoNormal"><b>From:</b> Marcus D Leech <a
-                    href=3D"mailto:patchvonbraun@gmail.com"
-                    moz-do-not-send=3D"true">
-                    &lt;patchvonbraun@gmail.com&gt;</a> <br>
-                  <b>Sent:</b> Monday, April 10, 2023 8:39 AM<br>
-                  <b>To:</b> Shenk, Trey E <a
-                    href=3D"mailto:trey.shenk@pnnl.gov"
-                    moz-do-not-send=3D"true">&lt;trey.shenk@pnnl.gov&gt;<=
-/a><br>
-                  <b>Cc:</b> <a
-                    href=3D"mailto:USRP-users@lists.ettus.com"
-                    moz-do-not-send=3D"true" class=3D"moz-txt-link-freete=
-xt">USRP-users@lists.ettus.com</a><br>
-                  <b>Subject:</b> Re: [USRP-users] Harmonic Distortion
-                  with B205mini<o:p></o:p></p>
-              </div>
-            </div>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <div style=3D"border:none;border-left:solid #D77600
-              6.0pt;padding:0in 0in 0in 0in;font-size:1.15rem">
-              <p class=3D"MsoNormal"
-                style=3D"text-align:center;background:#F7E3CC"
-                align=3D"center">
-                <span
-                  style=3D"font-family:&quot;Arial&quot;,sans-serif;color=
-:black">Check
-                  twice before you click! This email originated from
-                  outside PNNL.</span><o:p></o:p></p>
-            </div>
-            <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-            <div>
-              <p class=3D"MsoNormal">Turn down the RF gain a bit as well
-                as the baseband amplitude. Does this make any
-                difference?
-                <o:p></o:p></p>
-              <div>
-                <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-              </div>
-              <div>
-                <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">=C2=
-=A0<o:p></o:p></p>
-                <div>
-                  <p class=3D"MsoNormal">Sent from my iPhone<o:p></o:p></=
-p>
-                </div>
-                <div>
-                  <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><=
-br>
-                    <br>
-                    <br>
-                    <o:p></o:p></p>
-                  <blockquote
-                    style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-                    <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"=
->On
-                      Apr 10, 2023, at 9:41 AM, Shenk, Trey E via
-                      USRP-users &lt;<a
-                        href=3D"mailto:usrp-users@lists.ettus.com"
-                        moz-do-not-send=3D"true"
-                        class=3D"moz-txt-link-freetext">usrp-users@lists.=
-ettus.com</a>&gt;
-                      wrote:<o:p></o:p></p>
-                  </blockquote>
-                </div>
-                <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt=
-">
-                  <div>
-                    <p class=3D"MsoNormal">=EF=BB=BF <o:p></o:p></p>
-                    <p style=3D"background:white"><span
-                        style=3D"font-size:10.5pt;color:black">I'm using =
-a
-                        B205mini to transmit signals. When transmitting,
-                        I can see copies of the SOI at harmonics of the
-                        center frequency. I ran some measurements of
-                        total harmonic distortion, and found it to range
-                        from 39% with a 100MHz to 23% with a 1GHz
-                        carrier.=C2=A0The second harmonic is &lt;-50dBc, =
-but
-                        the third harmonic is usually around -10dBc.
-                      </span><o:p></o:p></p>
-                    <p style=3D"background:white;box-sizing:
-                      border-box;font-variant-ligatures:
-                      normal;font-variant-caps: normal;orphans:
-                      2;text-align:start;widows:
-                      2;-webkit-text-stroke-width:
-                      0px;text-decoration-thickness:
-                      initial;text-decoration-style:
-                      initial;text-decoration-color:
-                      initial;word-spacing:0px">
-                      <span style=3D"font-size:10.5pt;color:black">My mai=
-n
-                        concern is for the lower frequency carriers,
-                        like 100MHz, because multiple harmonics will
-                        show up on a spectrum analyzer set to a
-                        wideband. I've looked at putting an RF filter at
-                        the output, but I need the system to be able to
-                        switch transmit center frequencies in a range
-                        from 100MHz to 5GHz.</span><o:p></o:p></p>
-                    <p style=3D"background:white;box-sizing:
-                      border-box;font-variant-ligatures:
-                      normal;font-variant-caps: normal;orphans:
-                      2;text-align:start;widows:
-                      2;-webkit-text-stroke-width:
-                      0px;text-decoration-thickness:
-                      initial;text-decoration-style:
-                      initial;text-decoration-color:
-                      initial;word-spacing:0px">
-                      <span style=3D"font-size:10.5pt;color:black">Is it
-                        possible to reduce the harmonics by some
-                        hardware setting (driving with gnruadio)?=C2=A0</=
-span><o:p></o:p></p>
-                    <p style=3D"background:white;box-sizing:
-                      border-box;font-variant-ligatures:
-                      normal;font-variant-caps: normal;orphans:
-                      2;text-align:start;widows:
-                      2;-webkit-text-stroke-width:
-                      0px;text-decoration-thickness:
-                      initial;text-decoration-style:
-                      initial;text-decoration-color:
-                      initial;word-spacing:0px">
-                      <span style=3D"font-size:10.5pt;color:black">Thanks=
-,<br>
-                        Trey</span><o:p></o:p></p>
-                    <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-                    <div>
-                      <p class=3D"MsoNormal">&lt;carrier_freqsweep_fc0200=
-M_gain55.png&gt;<o:p></o:p></p>
-                    </div>
-                    <p class=3D"MsoNormal">______________________________=
-_________________<br>
-                      USRP-users mailing list -- <a
-                        href=3D"mailto:usrp-users@lists.ettus.com"
-                        moz-do-not-send=3D"true"
-                        class=3D"moz-txt-link-freetext">usrp-users@lists.=
-ettus.com</a><br>
-                      To unsubscribe send an email to <a
-                        href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                        moz-do-not-send=3D"true"
-                        class=3D"moz-txt-link-freetext">
-                        usrp-users-leave@lists.ettus.com</a><o:p></o:p></=
-p>
-                  </div>
-                </blockquote>
-              </div>
-            </div>
-          </blockquote>
-          <p class=3D"MsoNormal">=C2=A0<o:p></o:p></p>
-        </blockquote>
-        <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------nSQjG0k0n6GOZSLGzZFIEUEv--
-
---===============7365985126930795611==
+--===============2892395458556123098==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -725,4 +413,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7365985126930795611==--
+--===============2892395458556123098==--
