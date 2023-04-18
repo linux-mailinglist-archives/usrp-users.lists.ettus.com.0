@@ -2,87 +2,89 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58DE56E6587
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Apr 2023 15:11:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DCA56E6F17
+	for <lists+usrp-users@lfdr.de>; Wed, 19 Apr 2023 00:06:27 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D1D99383DE6
-	for <lists+usrp-users@lfdr.de>; Tue, 18 Apr 2023 09:11:07 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id D8F88384120
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Apr 2023 18:06:25 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681823467; bh=V6Zg8y3GyiD2z4SCymchD3w/lCbT/SB77PMqDGVaGak=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=fIUCXBp3CkBQlCRBtHaUSsOK+mXGWXgBa0EymxTNsOSDaGuo8GswiZ38F6ypYuEwN
-	 JmFpJBcmA5r/H7VFxwGD844tZdEspjRQcJjdvMKGNDbLEhXsBx1892YYO/+4tz6Wu8
-	 YUJnozA+CQs2K6ah66X54BEJ/GzAW/y46PotXCXMAVpxHpaL84LlGesRPPqZl5ZM7m
-	 JWzej2KtwnvQe8E6aW/qhbWQLSDntcfZlhLL0Fp+KDu3+Va8sc/nMFJJEgrSwgjou7
-	 01EAl24axaGBTVQd5p5vT9VEQhF7gdSerLhEAka8IhSMqqyzIhnwi1k7yqMXuBV7Ws
-	 0bQmwiSLSbPRg==
+	t=1681855585; bh=iUAaNLiDBXlvA/L4EhvH0lI75l9XEPIch+Qy7nDAxPk=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=zxvBwJtM5ptFzkyqvMdvmcPMzRHvlCvpHcW9JPVlIK2cHItSp8b18RGsDu4fTcBmL
+	 OdeAHQB16FpGI4Lx7z57zxvoa4u3toHP8Ow0UCTbct7tEnFXES+91QYXFlFKY6bUhw
+	 2hz/hMbUSKrN95tcwjnJfWYGfzW+EyAJNIoq0Qnsq1cjAxgssrvSCk4iCcffL6+LKE
+	 ljlxxihrb8d7FtKR09Qi2HWvTVfmvqab/ed6n63ThXOacYpZnFEx5OSLDBIg4jQiVS
+	 wwuzFO07ITQRRbczK34eB8kFM0LP9dLxvPffnRyalOUX29UYHafUsksbcJ4qoyT8IO
+	 GbP6W5oFe8W0g==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2085B380CE5
-	for <usrp-users@lists.ettus.com>; Tue, 18 Apr 2023 09:10:25 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 63CDD383FC0
+	for <usrp-users@lists.ettus.com>; Tue, 18 Apr 2023 18:05:43 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681823425; bh=iY0bo9/gqZUfqVG2RHIjnRIYhTmjPFPt0PtbHe/wtFE=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=rMnTcfJJB2A/MIYjtXVtuaN4Dwv/umr6h+rp5coyLFfPqbXcyqk9GHNjHdHKSzcZW
-	 fwd4drvQiZwHiuyXomzCbwEZfmb8BielZZmIAH4OuRZy3fZ1kjVQtHyNbSlOxGb0dE
-	 wOg+ShDyNR+zsOF0zwsiHXJFUKkAF2AhpEC53wJzRhC+Ubpfc4UXwI0TrfqNpm3DKP
-	 X9gtj+M+Va58zCNF8hx8AWJ9pGMrHd2yZshZvmpgQgHBAh0Nn8pxgsfc0l2eoksOug
-	 OUJ2OCZVbLZlp2HoilwWzHdpHW3v9dhIlP9nJomUlI3Vwge68lV8b3b44/w7LbZLCx
-	 18SjjQhdRvivA==
-Date: Tue, 18 Apr 2023 13:10:25 +0000
+	t=1681855543; bh=sv3l4vOy96AWkQx7UUwGjB1eXzGjudk1UHdLjLJafg0=;
+	h=Date:To:From:Subject:From;
+	b=r04LxKScptc2kFPtM0sxhjAQ69NpKSVBGLjIPwvb6fr1SO6R/0Bv4CVhb22ekov3P
+	 8iauRoKH8B1WsBKNN5q3p41WZnOLDYdow7gmhZZnoLTS/opU7v2hC+h7TbIUNk6Hry
+	 tYmqwLE39lbd/vrj7u9XR+znKsqZgObI7zainZs6+QKd8cmxAphcQEBcuwkBXsVxNW
+	 uUmuzSrDj3Z30Z6H2ZcOWIQ6fnmhepzG2YDiva7lrzOnKPQBL7UrGe1KVcL0yytHgI
+	 pOm3euCeYp2Bfew5To2wEsh1O3Tdw3Nrr+o1L7HKngInFGRI/dFcoAu0NsHCgO594K
+	 8OvX+OWXSo66w==
+Date: Tue, 18 Apr 2023 22:05:43 +0000
 To: usrp-users@lists.ettus.com
-From: mamuki92@gmail.com
-Message-ID: <cTP1TtPMiJonsOBo3o49irLHhqoSmt2VLCkk4WmdRk@lists.ettus.com>
+From: jmaloyan@umass.edu
+Message-ID: <Dc8IBNpeZ0yTvGJZLMHZpXFs7rAz9153L2vHlXlN88@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 5b303415-ae20-774e-f874-20bc81279f5e@gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: 6UE6MROZHXLZ4WQM4IP2BCGZNEQMINJQ
-X-Message-ID-Hash: 6UE6MROZHXLZ4WQM4IP2BCGZNEQMINJQ
-X-MailFrom: mamuki92@gmail.com
+Message-ID-Hash: Y2MYS35UR4BYK2VHDVA4RBYWXXK3D5DB
+X-Message-ID-Hash: Y2MYS35UR4BYK2VHDVA4RBYWXXK3D5DB
+X-MailFrom: jmaloyan@umass.edu
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: E320 not powering on
+Subject: [USRP-users] Trouble recieving data from antenna
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6UE6MROZHXLZ4WQM4IP2BCGZNEQMINJQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Y2MYS35UR4BYK2VHDVA4RBYWXXK3D5DB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1681015690282473935=="
+Content-Type: multipart/mixed; boundary="===============5949643928402698316=="
 
 This is a multi-part message in MIME format.
 
---===============1681015690282473935==
+--===============5949643928402698316==
 Content-Type: multipart/alternative;
- boundary="b1_cTP1TtPMiJonsOBo3o49irLHhqoSmt2VLCkk4WmdRk"
+ boundary="b1_Dc8IBNpeZ0yTvGJZLMHZpXFs7rAz9153L2vHlXlN88"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_cTP1TtPMiJonsOBo3o49irLHhqoSmt2VLCkk4WmdRk
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--b1_Dc8IBNpeZ0yTvGJZLMHZpXFs7rAz9153L2vHlXlN88
+Content-Type: text/plain; charset=us-ascii
 
-Hi Marcus,
+Hello,
 
-Thanks for the answer, I=E2=80=99ll try it.
+I have currently using my own custom RFNOC image. It appears that samples are being collected from the ADC, however, when I connect an input through the antenna, my data samples to not change at all. It seems the data I receive corresponds to when I change the frequency on my local oscillators however. 
 
-Kind Regards
+Ive tested collecting data with the default images, and noticed that the light turns on next to the antenna on those images, versus on my own image, no light is turned on. 
 
---b1_cTP1TtPMiJonsOBo3o49irLHhqoSmt2VLCkk4WmdRk
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I am wondering if anyone else has experienced a similar issue and how they troubleshooted it.
 
-<p>Hi Marcus,</p><p><br></p><p>Thanks for the answer, I=E2=80=99ll try it=
-.</p><p><br></p><p>Kind Regards</p>
+Thanks,
+
+Joe
+
+--b1_Dc8IBNpeZ0yTvGJZLMHZpXFs7rAz9153L2vHlXlN88
+Content-Type: text/html; charset=us-ascii
+
+<p>Hello,</p><p>I have currently using my own custom RFNOC image. It appears that samples are being collected from the ADC, however, when I connect an input through the antenna, my data samples to not change at all. It seems the data I receive corresponds to when I change the frequency on my local oscillators however. </p><p>Ive tested collecting data with the default images, and noticed that the light turns on next to the antenna on those images, versus on my own image, no light is turned on. </p><p>I am wondering if anyone else has experienced a similar issue and how they troubleshooted it.</p><p>Thanks,</p><p>Joe</p>
 
 
---b1_cTP1TtPMiJonsOBo3o49irLHhqoSmt2VLCkk4WmdRk--
+--b1_Dc8IBNpeZ0yTvGJZLMHZpXFs7rAz9153L2vHlXlN88--
 
---===============1681015690282473935==
+--===============5949643928402698316==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -92,4 +94,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1681015690282473935==--
+--===============5949643928402698316==--
