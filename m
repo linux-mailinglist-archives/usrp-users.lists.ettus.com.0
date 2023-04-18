@@ -2,316 +2,1053 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id E79DD6E540F
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Apr 2023 23:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C862C6E55B9
+	for <lists+usrp-users@lfdr.de>; Tue, 18 Apr 2023 02:22:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id D93E9380A6F
-	for <lists+usrp-users@lfdr.de>; Mon, 17 Apr 2023 17:43:43 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5C77A3845C0
+	for <lists+usrp-users@lfdr.de>; Mon, 17 Apr 2023 20:22:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1681767823; bh=I0Tc61HeoXzoOnjZlFUew93yKuuTc2ObUWFZu2qq8hA=;
-	h=From:To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=xx/fRlRnTBN9RnyHVPjfZ+Wo0mRgsO9x/69LNXIQcYl9/K/mTHBQekuHHS0poWZFT
-	 dpMjaH9SxLKj2sSltNreXV9CVAgqU1ertDqn2xmzlSKiA6g1R7JlOKJCYKKa3R/Aj2
-	 iN0Hbb1u/wwo+jg24Ndb+xHTHlp8gpQzr6YFWXBPYoFI0gCVPudqRvPLWqXfcXKifH
-	 wZ4uO8rQ3owA+gIRab1X30SW1kM9FYuf4qiSJSVTSuRnF7wDLFnh7wtc/pM9w6PqkC
-	 iAf/c3WSiztLPXokJKuB9uPuNfHbgeM9mLUXgGJSmZ/Aq6gWPMtmQNtaBpB9SBA7Ux
-	 UBW+YVpqk1dpQ==
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2139.outbound.protection.outlook.com [40.107.243.139])
-	by mm2.emwd.com (Postfix) with ESMTPS id 24819380A6F
-	for <usrp-users@lists.ettus.com>; Mon, 17 Apr 2023 17:43:39 -0400 (EDT)
+	t=1681777369; bh=Lgk491R5qL8+kNyn0j3s7JK3Pot0Z/KFojr1cvcPFpQ=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=oXy58XnCl45GcKo8jjzHxMGZO/DJnnWNkquZ7xJ118KAi4ia5CGx61qnX6iIzB5Ui
+	 o7pT6AV58N4q+wK/nhlSCQk/94u7mE57C66Yqtf/b9kv8VzNhG/dIWoRZ4iPoJL0Y7
+	 +f+pwmhLQPSPyrAGBiNjqu8ftBByTEgnkfyIl/9MgTdau+esRNXGxP0SvSx3zSVH4Q
+	 bwJHaNLE+4viW91/XDVMcJ2ls0okEL3vXtolBrBuI4N5fERNmT4ZrWME9V9SKxgkOJ
+	 0k8L8g8HHYHCn04Jzhg7/hZOqBdP7iUC5ziDWxMxuC9pOI3LHoHOekXgAPbidwS8/A
+	 d2GQx26ABKJ4g==
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	by mm2.emwd.com (Postfix) with ESMTPS id 916D6384012
+	for <usrp-users@lists.ettus.com>; Mon, 17 Apr 2023 20:22:14 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=paladinsys.onmicrosoft.com header.i=@paladinsys.onmicrosoft.com header.b="SDjFvFu1";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JNp8LXbo";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OM9UcsYr4H424ZVlOzlw3uyuIXbBEP+nAKMdnuer2wd34MxB+koFelM4N+NE88kaLId2A0GPoQDkSpGZPf0Pf0PmWCSC9vI9mm72Pman2I3WQ2nYkFNcSb98210saG2FySSMQCqbD/F81C8u1XlgfBIg/uKOe+p7dWXnxkR0+pOFvCbuf67vttZb9O0G3Af0pD4U60FIrYCjA17LvBdh7/gboy4rYOzDRGkI/hJE367m/l5HNOBWMvc6XcNdDtYNVXHmibo8bFILEe05PTKaF4VJl6EvYGCichHOYYO4tqxvxgIwe5SwmPM1p1tuD3fyichcfEfKZTq9RqOVPB5M/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GTsdDNQRRoR6yyMTA+M9m0274iTCinxqaZEnC4zxyR4=;
- b=fO67EQkJur+LXJQLM71aVjVBCD0BnUUKUv6scBHQdsbjv9xJEUD1E7HBMQJYYOjBkp+JsoaQdrW0K95eMH0zOyuCGQ2gdfKVV8cQJ/0RUc3ZBuOQ0ehPWbU12YXUGGjhTijTB6/v0kHThj4JBX5U3OKcHmxh1PK5ey/JVOTdzXCfRffUneLncuhAZpV7qNNJ+czTY9pOZUCEFL1YS6+CLYsU+pw5vGkb4DJpnA4HL3wWPG+LF5tQ1KJ37fatm4TMTeoiOdBkXVOQCVPZgFs9+kYCjWtGgBRm5rNg0KDB/VsrXR6hnGBCFOGOb2Buefrv70apkVj4YG0p9X+9bH4oyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=paladin-sys.com; dmarc=pass action=none
- header.from=paladin-sys.com; dkim=pass header.d=paladin-sys.com; arc=none
+Received: by mail-yb1-f180.google.com with SMTP id l5so6960339ybe.7
+        for <usrp-users@lists.ettus.com>; Mon, 17 Apr 2023 17:22:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paladinsys.onmicrosoft.com; s=selector2-paladinsys-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GTsdDNQRRoR6yyMTA+M9m0274iTCinxqaZEnC4zxyR4=;
- b=SDjFvFu1Vs5AEsFl28TdUgzhehf1+pUNjtWq8jrlvhLbJwOdtVRGAhJiWYlFUsm/OcL3KJbnU9wDScfgw4N20cdMWD6Y5TZ3TWZJqQCtbA0rvtwdH7GiXLSqz8JOUNUleGpwQnLz2zkr8tP0C+DPShYGWtR1ph2jItnNydQ0ebg=
-Received: from BL3PR12MB6402.namprd12.prod.outlook.com (2603:10b6:208:3b2::17)
- by DS0PR12MB6582.namprd12.prod.outlook.com (2603:10b6:8:d2::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6298.45; Mon, 17 Apr
- 2023 21:43:36 +0000
-Received: from BL3PR12MB6402.namprd12.prod.outlook.com
- ([fe80::2bef:845f:407:3c0f]) by BL3PR12MB6402.namprd12.prod.outlook.com
- ([fe80::2bef:845f:407:3c0f%5]) with mapi id 15.20.6298.030; Mon, 17 Apr 2023
- 21:43:36 +0000
-From: Milo H Fields III <mfields@paladin-sys.com>
-To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
-Thread-Topic: Test
-Thread-Index: AdlxdYe4Y56VfPLCRgedVhCv1v8voA==
-Date: Mon, 17 Apr 2023 21:43:36 +0000
-Message-ID: 
- <BL3PR12MB64029D1AD52C2AD4596AFBE8E29C9@BL3PR12MB6402.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=paladin-sys.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL3PR12MB6402:EE_|DS0PR12MB6582:EE_
-x-ms-office365-filtering-correlation-id: 9c95e395-8fe9-4543-25bd-08db3f8cccd5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 94sCw2JhqHkJ6yBljAl30RocnsjeOl0KWGsIFmL3hbdHQw0Tbtg9NrfhqzoUVy1Hj/kgJRXCQizE3QIzXJj3QJUVRhU59VA8+1BrMS9HvBQs3Pi+K5J8qqPU7j/62WvEw71NS7JL9XJi03+GFLZVEcbcLCIJGoDl5ceYel/fkVbSwumrskrebo2G74JC5CGkpPU28/gZWEFjzJy6RYhSC2uUwoMHppwZ5nlhz0O99W+tQ1jKPFGvT2kL6d6M3O3/XuoUhMRn+C60/YcS2aCYbmUE4vAyXxfmI8Pf3Nk2enBP1eAorVWWTYaCc5Fr3fNwPhx68tPueCojKkLE1degedU8h3eU75XI0a6Ae7RNihCR2dihH9Hd4LSz10Zah2JryJlS4S2u56aoNbTSbzcOlRMaLkpeRDf3Gh28ceS+BpuFfvYxQMLpLrwjV3pPdzoZ/GuYMjxTVI9hZAEVI+N0sQfi8fqORlNcev0EgTXAFMcebG1ZkxEC6A5LyiMQn2WyG02yRlGiv9zEuzsp/xIPzfDggUlfhIDNGALqr4AUANY3cozzNRloy4TE0PpMWA0gCuD5cAX74XsTOWUMX6aukJJjsJbv2n1U0avyAx3nfY9CiabmIKppdSYitR+8clwk
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR12MB6402.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(136003)(346002)(39830400003)(396003)(366004)(376002)(451199021)(6506007)(558084003)(3480700007)(9686003)(26005)(8936002)(8676002)(41300700001)(86362001)(38070700005)(316002)(7116003)(5660300002)(52536014)(64756008)(66946007)(76116006)(66556008)(6916009)(66446008)(66476007)(55016003)(122000001)(38100700002)(2906002)(33656002)(7696005)(71200400001)(99936003)(186003)(4270600006)(478600001)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?us-ascii?Q?83Al5wsR3utguXk7QbeVNpEBNLut7tdl3bmYgb/hHvclT329qBs8Pe4Q1BI5?=
- =?us-ascii?Q?wkAtoWgaAeXbMcxIfY7caTXwkhuZpMJ0vCfG+tY/B7ECFnfLlIY3Wpgnse4h?=
- =?us-ascii?Q?7rvamPjDr9vhd7xJgEurnwwvW9VzMYsTsOOIKBvkgUPnVk/LIf6jhJ/u6gyF?=
- =?us-ascii?Q?sC0UFIuV+x/jyf9nVqm/+iCp46tUcXYritwSRCslp+qCybMpO9MHsI1hSxoP?=
- =?us-ascii?Q?7Nss1/jLIQVE3iTDVYjj7J+uTO76sIS1pkd/NVBxrWvLqzVksNR1qNUBSuYk?=
- =?us-ascii?Q?7OFgiC+dEOOke15UzsZPjlTcN52IzxbMfdZVkXwIEWGsOWS0FP4u2wEsJ7uT?=
- =?us-ascii?Q?pinvaQ2OWJEv75CRX0QTWOTyd7tei03EZWwOVNhDPnuGVvLecBcFOsjMFlz4?=
- =?us-ascii?Q?+cSRHt6DHfBKwrbMpuOZ2UMpUMCvhQNBC1KlY/6YaM1L+myVWaQq31UrrjJg?=
- =?us-ascii?Q?p5ZYd+qr1NZyMZqlaqopXfMnn/s6hN7la4GpGniPHDg0ql3PQkpoK7jnusE4?=
- =?us-ascii?Q?fSLV3FHryN/aJ0uEFj5INYZ2YP1KKs5C51UXm2EPCNDV5L2p6SPWjtVulc+N?=
- =?us-ascii?Q?xK9Z5vXOdR4KAan1qtsHrisaUTS+S5E37Djt70gh80UKQrhxKklvfuyZbw86?=
- =?us-ascii?Q?KStU5PJqhQUfXfh5XIGi8DV7mJBk9P2q5COpQRCQC2weo7MCVM9xN8PEgJhI?=
- =?us-ascii?Q?Wp0AzIscEYa1R+QjTMBw8lTW5ez9psNG5L98XD/WsudWJGipYTyeTrFWQhtr?=
- =?us-ascii?Q?Xn3GcYThTZfEEi+Ey/lGoyCkMfpoZKB0bXCxIJXDSFhrtGyxA4YWP5kF3M2n?=
- =?us-ascii?Q?MtOGilfvjVjhg5ZN8UnZONoMWlba2yC3IsV0EDWir2SQiddgYvPdFe4pRToW?=
- =?us-ascii?Q?WOqmVa4loQ0r/7ioxeYijTlb3C67Kd05QKuFaQu+W0K86MdEluK/RaJfVPXM?=
- =?us-ascii?Q?Scbr3m2mFZjBCCE7f/DTCm/sIeU6SyQsOfvsMgPzcZgCuRRl8rB9wOg4sKf7?=
- =?us-ascii?Q?8R0UN+Cdf/2TghYjPmUf09m4YYbV7pv4hxGYs2vHm/l8DW6WTp5+9XjYoa/m?=
- =?us-ascii?Q?Z5x4Ikmg2M4jWgK2LUJ/hPWfx3TOQVFYozICX5kjr5jD+VN1kXo4an6fV6ga?=
- =?us-ascii?Q?sXY4GucZkgtSKM5o4R7V2evM7DbW+gRL/JUMQU+szoMH74Em1qsosTpvu9kQ?=
- =?us-ascii?Q?UplhTgJrGTNAzjH/pJl230dk9tAoXA5uOzPtRoSzb4bNCrSaztULNhzRiUGU?=
- =?us-ascii?Q?4/loMtGYVbNamG1msKqnNKseDYnJuL+Yx1k5sa6Y6TKMR7B7cMwJMCru0CwW?=
- =?us-ascii?Q?XVb9/u7Q52FCkPvQHM4OeBA3FmRKiRJTF0ZG9+TmvYbz3zCTmCqgDCl3xZxl?=
- =?us-ascii?Q?ltIufpO0nfhiJ4OZyWdZgqsJPgTRD0Wz9iea7J9O/yPIZRCpftzoWWuE1Q9c?=
- =?us-ascii?Q?sd20gKjrazZ35WLtnfGijde/hbyoebzBTqgAyVPlVDWfvWQAlS6GBC64O2V6?=
- =?us-ascii?Q?Q0VQfkFRKrw8sgyqLQyMUxKQqq2YoGrzzdKVRSq0OgMAIPH5dZ29QcQhkeHU?=
- =?us-ascii?Q?MDyzDtzWCaY02IBZbcdbW8yPdyIB0TQ6OU/QHUtP?=
+        d=gmail.com; s=20221208; t=1681777334; x=1684369334;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ojD6HAN6e8DbeOVH8ikOCdYCp0K/UsG036VZLkwP62A=;
+        b=JNp8LXboWSUehl+yNqOHApoI9lrZ9BKM9Sy05TQUZ4h/a/KKcLBq/cRBbrA+FwJGGw
+         PE8tziReh7HZhmYov8g397cfY7oA40YjNW19fvI9RDUQLfqxih8UBI47Yput8TS1dnA1
+         Hf3wDqGY5EIB/QXkC4vdDZWCUkQwOrWYkt14w2M7G9dWJp/48Tt3wSMZaGbzYYZOgvKi
+         eLGKN2cfsZ1uo3jdZ2x53lz/EDRR+PSru3KhSqPBO/j02r5qK6tN+cHqRNAFqy8YvG8J
+         r8l5VI7EsSfedwwYEgom/6MwTb/6ra9EwdHOSPKJbq/CCM9yea60wVZZuRuTsgNAUHuM
+         yl1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1681777334; x=1684369334;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ojD6HAN6e8DbeOVH8ikOCdYCp0K/UsG036VZLkwP62A=;
+        b=NIXEntxfNyO8lGInd7prCCeTd/5bV35LsDWDhG1Wd3bLCmmpx98M1U/7xFoIlJRCxl
+         goKHRc11Lv3MuRfjgeIMjOyOww7cV1IoInn3bL8ZSn8qM1xnk4z/lRAzPxHGqkQk4abw
+         EAoq5yfKlzqGLpQZYDhHTsTq48GXVTdOkQ1cKdjyvs/nA9SU4rrFt1kbcFqqV5aVf9ZP
+         uslaKQ0ow++KNRUUbfseBB8r/mX2ndzaNQo5/BQp0MdvpvF/Gtv8zg/KQ+JRMCF2uLqx
+         5r8LAFCbyOGWinZ2ZwdtfW8d46zK4sZJe2RVooiv+AYOs8uPzDqEP6GX6fB4LIRlAzvg
+         +fAg==
+X-Gm-Message-State: AAQBX9e41Ppei3ROJgbgQNPbDceGYLNivGEMv3B4yS6kaccjQv2R3fTv
+	gHzY5LTlio2TahFYppEJgBw+GzdK41F+LcAzHQ7zIxU5
+X-Google-Smtp-Source: AKy350ZWVIb/9l4MFPOAzDFOLeWRpIqsClwu10taWbCcwQB+e6scWJtLCBdw7HI5bP9TJT0zt1/m0z7FXyD+yp04qeM=
+X-Received: by 2002:a25:cfce:0:b0:b8f:54f5:89ff with SMTP id
+ f197-20020a25cfce000000b00b8f54f589ffmr10846633ybg.11.1681777333361; Mon, 17
+ Apr 2023 17:22:13 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: paladin-sys.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR12MB6402.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c95e395-8fe9-4543-25bd-08db3f8cccd5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2023 21:43:36.7431
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: dca57ab3-fd50-4fd1-a77a-df89575aa606
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dTEEIcj2haWbrzhN+kJBrDHgicVLjGlpd3v5M/GGav06Nb8+eYpi42cMCMRhhQLYkNWXer3P9lqqe+4f7f5kUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6582
-Message-ID-Hash: BC4HGJO4AZSQYUBXHJRSIHQ746L52WE2
-X-Message-ID-Hash: BC4HGJO4AZSQYUBXHJRSIHQ746L52WE2
-X-MailFrom: mfields@paladin-sys.com
+References: <CO6PR09MB811819719BDAE76900DEF93AF9959@CO6PR09MB8118.namprd09.prod.outlook.com>
+ <15820636-B0CB-4B9D-98DA-76820042D215@gmail.com> <CO6PR09MB8118AE8209619F8C193A4AA3F9959@CO6PR09MB8118.namprd09.prod.outlook.com>
+ <569d3487-6006-c2f1-96d8-bb36f2f9017d@gmail.com> <CO6PR09MB8118363A6FFF3D1048730E38F99B9@CO6PR09MB8118.namprd09.prod.outlook.com>
+ <5a1cfa23-f146-3511-b989-b84a9865712d@comcast.net> <f6e9abfc-e643-e1bc-6bfa-e7163e54668b@gmail.com>
+ <CAN=AL9MBP=uONwAN0zaUAUpHqgdvpNcSQNzrdmrH68=4Dcxp3Q@mail.gmail.com> <67e3a035-c2c9-0112-910c-46faed961d89@gmail.com>
+In-Reply-To: <67e3a035-c2c9-0112-910c-46faed961d89@gmail.com>
+From: David Bengtson <david.bengtson@gmail.com>
+Date: Mon, 17 Apr 2023 20:22:02 -0400
+Message-ID: <CAN=AL9OF5mXA_StDjuhvSZjiA510NT=O21WkyWOLBUZkUKxLJg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: 4U5MDHGH2UMOWYNUYSUGVYSEJLHWFWFY
+X-Message-ID-Hash: 4U5MDHGH2UMOWYNUYSUGVYSEJLHWFWFY
+X-MailFrom: david.bengtson@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Test
+Subject: [USRP-users] Re: Harmonic Distortion with B205mini
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/E73WUEXXN3NWAF5HAKP4LTM7YF3ELJGP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4U5MDHGH2UMOWYNUYSUGVYSEJLHWFWFY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3962667871217728277=="
+Content-Type: multipart/mixed; boundary="===============5480798521763486004=="
 
---===============3962667871217728277==
-Content-Language: en-US
-Content-Type: multipart/signed;
-	protocol="application/x-pkcs7-signature";
-	micalg=SHA1;
-	boundary="----=_NextPart_000_006E_01D97154.164BFAD0"
+--===============5480798521763486004==
+Content-Type: multipart/related; boundary="0000000000008c050505f9914c16"
 
-------=_NextPart_000_006E_01D97154.164BFAD0
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_001_006F_01D97154.164BFAD0"
+--0000000000008c050505f9914c16
+Content-Type: multipart/alternative; boundary="0000000000008c050305f9914c15"
 
-
-------=_NextPart_001_006F_01D97154.164BFAD0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-Just checking if my signed emails are getting blocked.
-
- 
-
-
-------=_NextPart_001_006F_01D97154.164BFAD0
-Content-Type: text/html;
-	charset="us-ascii"
+--0000000000008c050305f9914c15
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-ligatures:standardcontextual;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal>Just checking if my signed =
-emails are getting blocked.<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
-------=_NextPart_001_006F_01D97154.164BFAD0--
+You've seen the filters from Pole-Zero, right? Tunable, but very narrow BW.
+I keep reading abstracts in IEEE journals but I haven't seen anything
+interesting.  Sub-octave band counts add up fast :-(
 
-------=_NextPart_000_006E_01D97154.164BFAD0
-Content-Type: application/pkcs7-signature;
-	name="smime.p7s"
+Dave
+
+On Sun, Apr 16, 2023 at 9:36=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmai=
+l.com>
+wrote:
+
+> On 16/04/2023 21:13, David Bengtson wrote:
+>
+> Yes, it's pretty typical that the output of an SDR needs additional
+> filtering and gain on the transmit side, and similarly filters and gain o=
+n
+> the receive side. I spent a substantial fraction of my time at a previous
+> job designing application specific front ends for Ettus SDR's.
+>
+> Dave
+>
+>
+> In my other job, I do radio astronomy.   "Filter early, filter often" is
+> what gets the job done in that domain.  A many-octave
+>   tunable filter with variable bandwidth would be a nice thing, except fo=
+r
+> the ongoing miners strike at the
+>   unobtanium mines...
+>
+>
+> On Wed, Apr 12, 2023 at 8:39=E2=80=AFPM Marcus D. Leech <patchvonbraun@gm=
+ail.com>
+> wrote:
+>
+>> On 12/04/2023 20:28, Ron Economos wrote:
+>>
+>> This is what I see with a B210 at 145 MHz fundamental. I had the analyze=
+r
+>> on a large RBW, so the even order harmonic are buried in the analyzer no=
+ise.
+>>
+>> I don't think there's any remedy except for external filters.
+>>
+>> Ron
+>> [image: B210 harmonics]
+>>
+>> Thanks Ron.  That looks like what my TinySA produced for 250Mhz carrier.
+>> I need to learn more about it so that I can
+>>   record spectra with it.  There's a Linux app for it that I need to
+>> explore....
+>>
+>>
+>> Anyway, the basic issue, having consulted some older Analog Devices foru=
+m
+>> posts is that the LO produces a square-wave
+>>   signal, which means that all the odd-order harmonics will be present i=
+n
+>> it, and naturally, mix with the baseband.
+>>   There's nothing that can be done other than, as you point out, filter.
+>> As you move up in frequency, this becomes
+>>   very much easier of course, and at 2GHz, the 3rd harmonic is outside
+>> the supported passband of the AD9361, and
+>>   you won't see it.
+>>
+>> I didn't realize this about the AD9361 chip, and other Ettus devices hav=
+e
+>> automatically switchable filters that can
+>>   (often, not always) remediate this issue.  The E3xx series, the N3xx
+>> series, the TwinRX cards for the X310 and friends.
+>>
+>> But I'll point out again that "built for purpose" radios nearly-always
+>> have output (input) filtering to reduce or eliminate
+>>   unintended consequences of architecture choices deeper within the
+>> radio.   Since SDRs in general don't get to be
+>>   "built for purpose" either ever, or until some specific application is
+>> using them as their "radio bits", it's hard to come up
+>>   with a universal RF filtering scheme that is suitable for all
+>> applications.
+>>
+>> I'd never noticed this issue because I don't really ever TX in my "day
+>> job" use of these devices (radio astronomy), and on
+>>   the RX side, I always pre-filter anyway, usually rather aggressively.
+>>
+>>
+>> On 4/12/23 16:20, Shenk, Trey E via USRP-users wrote:
+>>
+>> The original signal that I showed was an unmodulated carrier.
+>>
+>> I tried a 10kHz complex exponential (plots included for several
+>> harmonics). The carrier is clearly visible at all frequencies. I can see
+>> copies of the 10kHz tone on odd multiples of the carrier, but not on the
+>> even multiples.
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *From:* Marcus D. Leech <patchvonbraun@gmail.com>
+>> <patchvonbraun@gmail.com>
+>> *Sent:* Monday, April 10, 2023 10:22 PM
+>> *To:* Shenk, Trey E <trey.shenk@pnnl.gov> <trey.shenk@pnnl.gov>
+>> *Cc:* USRP-users@lists.ettus.com
+>> *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
+>>
+>>
+>>
+>> On 10/04/2023 14:28, Shenk, Trey E wrote:
+>>
+>> I first tried turning the gain down. What I saw was that the even
+>> harmonics (2*fundamental, =E2=80=A6) did not change power, and the odd h=
+armonics
+>> decreased by the same amount as the fundamental. This means that the dBc
+>> for the odd harmonics stayed the same with decreasing gain.
+>>
+>>
+>>
+>> Decreasing the baseband amplitude had the exact same effect. Even
+>> harmonics stayed at the same power level, odd harmonics decreased while
+>> maintaining dBc.
+>>
+>> What is the nature of the modulating signal?
+>>
+>> If you use an example app like "tx_waveforms" with, let's say, 10kHz SIN
+>> signal, what are the harmonic results?
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+>> *From:* Marcus D Leech <patchvonbraun@gmail.com>
+>> <patchvonbraun@gmail.com>
+>> *Sent:* Monday, April 10, 2023 8:39 AM
+>> *To:* Shenk, Trey E <trey.shenk@pnnl.gov> <trey.shenk@pnnl.gov>
+>> *Cc:* USRP-users@lists.ettus.com
+>> *Subject:* Re: [USRP-users] Harmonic Distortion with B205mini
+>>
+>>
+>>
+>> Check twice before you click! This email originated from outside PNNL.
+>>
+>>
+>>
+>> Turn down the RF gain a bit as well as the baseband amplitude. Does this
+>> make any difference?
+>>
+>>
+>>
+>>
+>>
+>> Sent from my iPhone
+>>
+>>
+>>
+>>
+>> On Apr 10, 2023, at 9:41 AM, Shenk, Trey E via USRP-users <
+>> usrp-users@lists.ettus.com> wrote:
+>>
+>> =EF=BB=BF
+>>
+>> I'm using a B205mini to transmit signals. When transmitting, I can see
+>> copies of the SOI at harmonics of the center frequency. I ran some
+>> measurements of total harmonic distortion, and found it to range from 39=
+%
+>> with a 100MHz to 23% with a 1GHz carrier. The second harmonic is <-50dBc=
+,
+>> but the third harmonic is usually around -10dBc.
+>>
+>> My main concern is for the lower frequency carriers, like 100MHz, becaus=
+e
+>> multiple harmonics will show up on a spectrum analyzer set to a wideband=
+.
+>> I've looked at putting an RF filter at the output, but I need the system=
+ to
+>> be able to switch transmit center frequencies in a range from 100MHz to
+>> 5GHz.
+>>
+>> Is it possible to reduce the harmonics by some hardware setting (driving
+>> with gnruadio)?
+>>
+>> Thanks,
+>> Trey
+>>
+>>
+>>
+>> <carrier_freqsweep_fc0200M_gain55.png>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>>
+>> _______________________________________________
+>> USRP-users mailing list -- usrp-users@lists.ettus.com
+>> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>>
+>
+>
+
+--0000000000008c050305f9914c15
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>You&#39;ve seen the filters from Pole-Zero, right? Tu=
+nable, but very narrow BW. I keep reading abstracts in IEEE journals but I =
+haven&#39;t seen anything interesting.=C2=A0 Sub-octave band counts add up =
+fast :-( <br><br></div>Dave<br></div><br><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Sun, Apr 16, 2023 at 9:36=E2=80=AFPM Marc=
+us D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbraun@gm=
+ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 16/04/2023 21:13, David Bengtson
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div>Yes, it&#39;s pretty typical that the output of an SDR needs
+          additional filtering and gain on the transmit side, and
+          similarly filters and gain on the receive side. I spent a
+          substantial fraction of my time at a previous job designing
+          application specific front ends for Ettus SDR&#39;s. <br>
+          <br>
+        </div>
+        <div>Dave</div>
+        <div><br>
+        </div>
+      </div>
+      <br>
+    </blockquote>
+    In my other job, I do radio astronomy.=C2=A0=C2=A0 &quot;Filter early, =
+filter
+    often&quot; is what gets the job done in that domain.=C2=A0 A many-octa=
+ve<br>
+    =C2=A0 tunable filter with variable bandwidth would be a nice thing,
+    except for the ongoing miners strike at the<br>
+    =C2=A0 unobtanium mines...<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 12, 2023 at
+          8:39=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbra=
+un@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <div>On 12/04/2023 20:28, Ron Economos wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <p>This is what I see with a B210 at 145 MHz fundamental.
+                I had the analyzer on a large RBW, so the even order
+                harmonic are buried in the analyzer noise.</p>
+              <p>I don&#39;t think there&#39;s any remedy except for extern=
+al
+                filters.</p>
+              <p>Ron</p>
+              <img src=3D"cid:18791ba3e06f2f102e81" alt=3D"B210
+                harmonics" width=3D"800" height=3D"480">
+              <div><br>
+              </div>
+            </blockquote>
+            Thanks Ron.=C2=A0 That looks like what my TinySA produced for
+            250Mhz carrier.=C2=A0 I need to learn more about it so that I c=
+an<br>
+            =C2=A0 record spectra with it.=C2=A0 There&#39;s a Linux app fo=
+r it that I
+            need to explore....<br>
+            <br>
+            <br>
+            Anyway, the basic issue, having consulted some older Analog
+            Devices forum posts is that the LO produces a square-wave<br>
+            =C2=A0 signal, which means that all the odd-order harmonics wil=
+l
+            be present in it, and naturally, mix with the baseband.<br>
+            =C2=A0 There&#39;s nothing that can be done other than, as you =
+point
+            out, filter.=C2=A0 As you move up in frequency, this becomes<br=
+>
+            =C2=A0 very much easier of course, and at 2GHz, the 3rd harmoni=
+c
+            is outside the supported passband of the AD9361, and<br>
+            =C2=A0 you won&#39;t see it.<br>
+            <br>
+            I didn&#39;t realize this about the AD9361 chip, and other Ettu=
+s
+            devices have automatically switchable filters that can<br>
+            =C2=A0 (often, not always) remediate this issue.=C2=A0 The E3xx
+            series, the N3xx series, the TwinRX cards for the X310 and
+            friends.<br>
+            <br>
+            But I&#39;ll point out again that &quot;built for purpose&quot;=
+ radios
+            nearly-always have output (input) filtering to reduce or
+            eliminate<br>
+            =C2=A0 unintended consequences of architecture choices deeper
+            within the radio.=C2=A0=C2=A0 Since SDRs in general don&#39;t g=
+et to be<br>
+            =C2=A0 &quot;built for purpose&quot; either ever, or until some=
+ specific
+            application is using them as their &quot;radio bits&quot;, it&#=
+39;s hard
+            to come up<br>
+            =C2=A0 with a universal RF filtering scheme that is suitable fo=
+r
+            all applications.<br>
+            <br>
+            I&#39;d never noticed this issue because I don&#39;t really eve=
+r TX
+            in my &quot;day job&quot; use of these devices (radio astronomy=
+), and
+            on<br>
+            =C2=A0 the RX side, I always pre-filter anyway, usually rather
+            aggressively.<br>
+            <br>
+            <br>
+            <blockquote type=3D"cite">
+              <div> </div>
+              <div>On 4/12/23 16:20, Shenk, Trey E via USRP-users wrote:<br=
+>
+              </div>
+              <blockquote type=3D"cite">
+                <div>
+                  <p class=3D"MsoNormal">The original signal that I showed
+                    was an unmodulated carrier.<br>
+                    <br>
+                    I tried a 10kHz complex exponential (plots included
+                    for several harmonics). The carrier is clearly
+                    visible at all frequencies. I can see copies of the
+                    10kHz tone on odd multiples of the carrier, but not
+                    on the even multiples.</p>
+                  <p class=3D"MsoNormal">=C2=A0</p>
+                  <p class=3D"MsoNormal">=C2=A0</p>
+                  <p class=3D"MsoNormal">=C2=A0</p>
+                  <div>
+                    <div style=3D"border-color:rgb(225,225,225) currentcolo=
+r currentcolor;border-style:solid none none;border-width:1pt medium medium;=
+padding:3pt 0in 0in">
+                      <p class=3D"MsoNormal"><b>From:</b> Marcus D. Leech
+                        <a href=3D"mailto:patchvonbraun@gmail.com" target=
+=3D"_blank">&lt;patchvonbraun@gmail.com&gt;</a>
+                        <br>
+                        <b>Sent:</b> Monday, April 10, 2023 10:22 PM<br>
+                        <b>To:</b> Shenk, Trey E <a href=3D"mailto:trey.she=
+nk@pnnl.gov" target=3D"_blank">&lt;trey.shenk@pnnl.gov&gt;</a><br>
+                        <b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ettus=
+.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+                        <b>Subject:</b> Re: [USRP-users] Harmonic
+                        Distortion with B205mini</p>
+                    </div>
+                  </div>
+                  <p class=3D"MsoNormal">=C2=A0</p>
+                  <div>
+                    <p class=3D"MsoNormal">On 10/04/2023 14:28, Shenk,
+                      Trey E wrote:</p>
+                  </div>
+                  <blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+                    <p class=3D"MsoNormal">I first tried turning the gain
+                      down. What I saw was that the even harmonics
+                      (2*fundamental, =E2=80=A6) did not change power, and =
+the
+                      odd harmonics decreased by the same amount as the
+                      fundamental. This means that the dBc for the odd
+                      harmonics stayed the same with decreasing gain.</p>
+                    <p class=3D"MsoNormal">=C2=A0</p>
+                    <p class=3D"MsoNormal">Decreasing the baseband
+                      amplitude had the exact same effect. Even
+                      harmonics stayed at the same power level, odd
+                      harmonics decreased while maintaining dBc.</p>
+                  </blockquote>
+                  <p class=3D"MsoNormal">What is the nature of the
+                    modulating signal?<br>
+                    <br>
+                    If you use an example app like &quot;tx_waveforms&quot;=
+ with,
+                    let&#39;s say, 10kHz SIN signal, what are the harmonic
+                    results?<br>
+                    <br>
+                    <br>
+                    <br>
+                  </p>
+                  <blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
+                    <p class=3D"MsoNormal">=C2=A0</p>
+                    <p class=3D"MsoNormal">=C2=A0</p>
+                    <div>
+                      <div style=3D"border-color:rgb(225,225,225) currentco=
+lor currentcolor;border-style:solid none none;border-width:1pt medium mediu=
+m;padding:3pt 0in 0in">
+                        <p class=3D"MsoNormal"><b>From:</b> Marcus D Leech
+                          <a href=3D"mailto:patchvonbraun@gmail.com" target=
+=3D"_blank">
+                            &lt;patchvonbraun@gmail.com&gt;</a> <br>
+                          <b>Sent:</b> Monday, April 10, 2023 8:39 AM<br>
+                          <b>To:</b> Shenk, Trey E <a href=3D"mailto:trey.s=
+henk@pnnl.gov" target=3D"_blank">&lt;trey.shenk@pnnl.gov&gt;</a><br>
+                          <b>Cc:</b> <a href=3D"mailto:USRP-users@lists.ett=
+us.com" target=3D"_blank">USRP-users@lists.ettus.com</a><br>
+                          <b>Subject:</b> Re: [USRP-users] Harmonic
+                          Distortion with B205mini</p>
+                      </div>
+                    </div>
+                    <p class=3D"MsoNormal">=C2=A0</p>
+                    <div style=3D"border-color:currentcolor currentcolor cu=
+rrentcolor rgb(215,118,0);border-style:none none none solid;border-width:me=
+dium medium medium 6pt;padding:0in;font-size:1.15rem">
+                      <p class=3D"MsoNormal" style=3D"text-align:center;bac=
+kground:rgb(247,227,204)" align=3D"center"> <span style=3D"font-family:&quo=
+t;Arial&quot;,sans-serif;color:black">Check
+                          twice before you click! This email originated
+                          from outside PNNL.</span></p>
+                    </div>
+                    <p class=3D"MsoNormal">=C2=A0</p>
+                    <div>
+                      <p class=3D"MsoNormal">Turn down the RF gain a bit
+                        as well as the baseband amplitude. Does this
+                        make any difference? </p>
+                      <div>
+                        <p class=3D"MsoNormal">=C2=A0</p>
+                      </div>
+                      <div>
+                        <p class=3D"MsoNormal" style=3D"margin-bottom:12pt"=
+>=C2=A0</p>
+                        <div>
+                          <p class=3D"MsoNormal">Sent from my iPhone</p>
+                        </div>
+                        <div>
+                          <p class=3D"MsoNormal"><br>
+                            <br>
+                            <br>
+                          </p>
+                          <blockquote style=3D"margin-top:5pt;margin-bottom=
+:5pt">
+                            <p class=3D"MsoNormal" style=3D"margin-bottom:1=
+2pt">On Apr 10,
+                              2023, at 9:41 AM, Shenk, Trey E via
+                              USRP-users &lt;<a href=3D"mailto:usrp-users@l=
+ists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a>&gt;
+                              wrote:</p>
+                          </blockquote>
+                        </div>
+                        <blockquote style=3D"margin-top:5pt;margin-bottom:5=
+pt">
+                          <div>
+                            <p class=3D"MsoNormal">=EF=BB=BF </p>
+                            <p style=3D"background:white"><span style=3D"fo=
+nt-size:10.5pt;color:black">I&#39;m
+                                using a B205mini to transmit signals.
+                                When transmitting, I can see copies of
+                                the SOI at harmonics of the center
+                                frequency. I ran some measurements of
+                                total harmonic distortion, and found it
+                                to range from 39% with a 100MHz to 23%
+                                with a 1GHz carrier.=C2=A0The second harmon=
+ic
+                                is &lt;-50dBc, but the third harmonic is
+                                usually around -10dBc. </span></p>
+                            <p style=3D"background:white;box-sizing:border-=
+box;font-variant-ligatures:normal;font-variant-caps:normal;text-align:start=
+;text-decoration-style:initial;text-decoration-color:initial;word-spacing:0=
+px">
+                              <span style=3D"font-size:10.5pt;color:black">=
+My
+                                main concern is for the lower frequency
+                                carriers, like 100MHz, because multiple
+                                harmonics will show up on a spectrum
+                                analyzer set to a wideband. I&#39;ve looked
+                                at putting an RF filter at the output,
+                                but I need the system to be able to
+                                switch transmit center frequencies in a
+                                range from 100MHz to 5GHz.</span></p>
+                            <p style=3D"background:white;box-sizing:border-=
+box;font-variant-ligatures:normal;font-variant-caps:normal;text-align:start=
+;text-decoration-style:initial;text-decoration-color:initial;word-spacing:0=
+px">
+                              <span style=3D"font-size:10.5pt;color:black">=
+Is
+                                it possible to reduce the harmonics by
+                                some hardware setting (driving with
+                                gnruadio)?=C2=A0</span></p>
+                            <p style=3D"background:white;box-sizing:border-=
+box;font-variant-ligatures:normal;font-variant-caps:normal;text-align:start=
+;text-decoration-style:initial;text-decoration-color:initial;word-spacing:0=
+px">
+                              <span style=3D"font-size:10.5pt;color:black">=
+Thanks,<br>
+                                Trey</span></p>
+                            <p class=3D"MsoNormal">=C2=A0</p>
+                            <div>
+                              <p class=3D"MsoNormal">&lt;carrier_freqsweep_=
+fc0200M_gain55.png&gt;</p>
+                            </div>
+                            <p class=3D"MsoNormal">________________________=
+_______________________<br>
+                              USRP-users mailing list -- <a href=3D"mailto:=
+usrp-users@lists.ettus.com" target=3D"_blank">usrp-users@lists.ettus.com</a=
+><br>
+                              To unsubscribe send an email to <a href=3D"ma=
+ilto:usrp-users-leave@lists.ettus.com" target=3D"_blank">
+                                usrp-users-leave@lists.ettus.com</a></p>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </blockquote>
+                  <p class=3D"MsoNormal">=C2=A0</p>
+                </div>
+                <br>
+                <fieldset></fieldset>
+                <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+              </blockquote>
+              <br>
+              <fieldset></fieldset>
+              <pre>_______________________________________________
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a>
+</pre>
+            </blockquote>
+            <br>
+          </div>
+          _______________________________________________<br>
+          USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ett=
+us.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+          To unsubscribe send an email to <a href=3D"mailto:usrp-users-leav=
+e@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><b=
+r>
+        </blockquote>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+</blockquote></div>
+
+--0000000000008c050305f9914c15--
+
+--0000000000008c050505f9914c16
+Content-Type: image/png; name="harmonic.png"
+Content-Disposition: inline; filename="harmonic.png"
 Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
-	filename="smime.p7s"
+Content-ID: <18791ba3e06f2f102e81>
+X-Attachment-Id: 18791ba3e06f2f102e81
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIISVzCCA1cw
-ggI/oAMCAQICAQEwDQYJKoZIhvcNAQELBQAwTTELMAkGA1UEBhMCVVMxGDAWBgNVBAoTD1UuUy4g
-R292ZXJubWVudDEMMAoGA1UECxMDRUNBMRYwFAYDVQQDEw1FQ0EgUm9vdCBDQSA0MB4XDTEyMDMy
-MDE2MTMwNFoXDTI5MTIzMDE2MTMwNFowTTELMAkGA1UEBhMCVVMxGDAWBgNVBAoTD1UuUy4gR292
-ZXJubWVudDEMMAoGA1UECxMDRUNBMRYwFAYDVQQDEw1FQ0EgUm9vdCBDQSA0MIIBIjANBgkqhkiG
-9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuHBpV72AWkHAGeaV59SCE9wsOEuKgsociF2OfjwMb2Xh2rgc
-cRi23hQIedvGipnt+iHdYhgALfAUzFpOd57y6HcUAxTGqf2yEqBn/x83etBwj5bXcCQOLZ1FXjwA
-E+6gOjEakCBXZeQwF8bJBHndHv+gyO9frAAlOgG/lpwElY6tUrORcPT07DPhDwgXgriGCj850dyQ
-Occ+uTMpg9kK6BPgXj0NJYDEbM8sLoAq0C1ASRvEnLbzNikm7DEAcxrNd5Wt5SxL8RQpNugxXN71
-XI92W6sB1s/nzSer9LRzUEI0JYdXWh5UmTubAerF3ZWjsHK27HChKqqF+vGpOJQVBwIDAQABo0Iw
-QDAdBgNVHQ4EFgQUM1ulb3pVYCuBSyYUzHm/SrqLMr0wDgYDVR0PAQH/BAQDAgGGMA8GA1UdEwEB
-/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBALYfYXiGvrV6cReK8ddFAhX3uiDF5ZNpJV4VcTlO
-wdHY6HtDu40Z0cAg3+dNq4pdf4AgjY3vAmiK1QCcIbcFrOe3j7GUUz25bvj36IJV0SgkZYDlFsew
-RAvThFJDI8ja+172AYbZN7/9brhQyA3mPHT6C26P8ozD31C3nyj4rlAcmsy+dm5K2vS1KDWhHXKR
-dhog7zrIRJDAHQZ7sM24weayW09IFVojo2rJBlp8jIhEcYma52rePQmv0cu8lacIV45RoTER03Hw
-g+9Qx+55bDsjY/iaZm4OKSAbrSXNubi/G9JzQADDTayJZPFzoIOJDhp0mKiUPLZ07JROAhXrMW4w
-ggTMMIIDtKADAgECAgICNDANBgkqhkiG9w0BAQsFADBNMQswCQYDVQQGEwJVUzEYMBYGA1UEChMP
-VS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNFQ0ExFjAUBgNVBAMTDUVDQSBSb290IENBIDQwHhcN
-MTgwNjA1MTM0OTI4WhcNMjQwNjA1MTM0OTI4WjB3MQswCQYDVQQGEwJVUzEYMBYGA1UEChMPVS5T
-LiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNFQ0ExIjAgBgNVBAsTGUNlcnRpZmljYXRpb24gQXV0aG9y
-aXRpZXMxHDAaBgNVBAMTE1dpZGVQb2ludCBPUkMgRUNBIDcwggEiMA0GCSqGSIb3DQEBAQUAA4IB
-DwAwggEKAoIBAQC+24Vpd3f7yzNWZqYmnOx7uonmrzkn/maFGG0CHkLzT3f3B+KZpp93BBLVS3cw
-EbfJbX5ww+98C0SiPLD4AySDVztJ2a4WFNYWBCEAGaSdc6PxWFZ+Sn/Tacy7xdODHqqJkCXggvXi
-HHytPfRqq2q7M8F5mf6pXOJgCwOWOIxFpg5dXFUsR4aC/bNwgz3PgQlG4K18MEEHsEJkTLG8zPMD
-IlZ/IZKz0mPR95G+g5dB74nD3jlNF9ME8NOFAczbpdA83XwaZmPJmDYMVhxQSx4ltoRSUsx5aUUw
-yHbEwXTjbez9kCGN89Kf/kXJLZ6yVS9m2Ez03OSZpcColt1I7RA1AgMBAAGjggGKMIIBhjAfBgNV
-HSMEGDAWgBQzW6VvelVgK4FLJhTMeb9KuosyvTAdBgNVHQ4EFgQUYjxQNHk54Crs40Mo+UWkY3pg
-qOMwDgYDVR0PAQH/BAQDAgGGMGsGA1UdIARkMGIwDAYKYIZIAWUDAgEMBDAMBgpghkgBZQMCAQwF
-MAwGCmCGSAFlAwIBDAYwDAYKYIZIAWUDAgEMBzAMBgpghkgBZQMCAQwIMAwGCmCGSAFlAwIBDAkw
-DAYKYIZIAWUDAgEMCjASBgNVHRMBAf8ECDAGAQH/AgEAMAwGA1UdJAQFMAOAAQAwNwYDVR0fBDAw
-LjAsoCqgKIYmaHR0cDovL2NybC5kaXNhLm1pbC9jcmwvRUNBUk9PVENBNC5jcmwwbAYIKwYBBQUH
-AQEEYDBeMDoGCCsGAQUFBzAChi5odHRwOi8vY3JsLmRpc2EubWlsL2lzc3VlZHRvL0VDQVJPT1RD
-QTRfSVQucDdjMCAGCCsGAQUFBzABhhRodHRwOi8vb2NzcC5kaXNhLm1pbDANBgkqhkiG9w0BAQsF
-AAOCAQEAAWARJGVpFau5mRxoA2ARXwEk8GfSqRe0O4xyJSyDuc0VuuSvZvjKpb3Dcnxbf4VeCLPV
-DTPK2qXig2y+vVYiDJeQiKQnshnFVU49EcTs0KduIeGWf79SIleAMihT84kRHBd8SZjy86nevxkD
-0H70bgY/staQu5UdqG4FEBH1uMk8rXLzMXR29naO3tZm4gdkVUY3xONOmaUA0ca15GFsbm4UYSoE
-iU0cvxKRImBPs3hgpKwvAzYZmdUGWrB+KVYEbM6Cbog0FFztHn3XZy1YHFAbXVC1XnTHGD462JPB
-lsb9mOTYPTGURChE37yuMVH5OBhopNreMR/iBQMzTUUMazCCBPcwggPfoAMCAQICEQCjuKFxjWbt
-DIV/TYyN6MfdMA0GCSqGSIb3DQEBCwUAMHcxCzAJBgNVBAYTAlVTMRgwFgYDVQQKEw9VLlMuIEdv
-dmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UECxMZQ2VydGlmaWNhdGlvbiBBdXRob3JpdGll
-czEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0EgNzAeFw0yMDA5MDYxMjAwMDBaFw0yMzA5MDYx
-MjAwMDBaMIGUMQswCQYDVQQGEwJVUzEYMBYGA1UEChMPVS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQL
-EwNFQ0ExDDAKBgNVBAsTA09SQzEdMBsGA1UECxMUUGFsYWRpbiBTeXN0ZW1zIEluYy4xMDAuBgNV
-BAMTJ0ZpZWxkcyBJSUkuTWlsby5ILk9SQzMwMTEwMjUwNDkuRW5jcnlwdDCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAIaAWT3hdmbmAgfqCm8JxBAVY7mHFSYRuhZBnV9Mdy+Sz7nIUqrC
-ky65njVDCW4id+6mGbODKQTafY72GhaUWVAi2gfDENnaseEvhfP1Pyn+gPzVJGULRAOumvxpAVRE
-FhjZEuWBoLjiJeKjGqJO18MRmut0W8AO12qVXOOKwbkVeLogPwrilULSzvsccMvMp/020YgffP6m
-9ukIoNwe8L14w/9aMbRlfHUVMMoizc/wHcA9sw/AAcq6JXzXtLfWMLqQtaOYPCfI+/KXGsJwPnts
-i1MQFauhnM7TbwWg5oSiedG3kzl2/avPrMijeldlRPaE4vunMhoiw5j6qVWSGTUCAwEAAaOCAV4w
-ggFaMBMGA1UdJQQMMAoGCCsGAQUFBwMEMCIGA1UdEQQbMBmBF21maWVsZHNAcGFsYWRpbi1zeXMu
-Y29tMBsGA1UdCQQUMBIwEAYIKwYBBQUHCQQxBBMCVVMwYwYIKwYBBQUHAQEEVzBVMB8GCCsGAQUF
-BzABhhNodHRwOi8vZXZhLm9yYy5jb20vMDIGCCsGAQUFBzAChiZodHRwOi8vZWNhLm9yYy5jb20v
-Y2FDZXJ0cy9PUkNFQ0E3LnA3YzAfBgNVHSMEGDAWgBRiPFA0eTngKuzjQyj5RaRjemCo4zAXBgNV
-HSAEEDAOMAwGCmCGSAFlAwIBDAUwNAYDVR0fBC0wKzApoCegJYYjaHR0cDovL2VjYS5vcmMuY29t
-L0NSTHMvT1JDRUNBNy5jcmwwDgYDVR0PAQH/BAQDAgUgMB0GA1UdDgQWBBQAGtvPRRgfrpgirSQV
-7xrUmvzSOTANBgkqhkiG9w0BAQsFAAOCAQEAL9mFKQGBelrbRS/PDQYtXoaE308V36yquRQJB9t0
-wQC6mlZSkTtOna72N25T5yqQmUe4V58zKZgxjk3K+nhs/n5GQDAzDQfmCcytJrNtZPn0BtYWkhtP
-QF1m1kvTJ47AKVlGYbUG3T42To2YP8BmoMEGx9GzmvKbOfVP5bgfaYpa9IcTEgWL4BAc73Xb3YC3
-PVHo0FAb93JB9QjmETCJ2T+uB151oJMTnjZWyp7Ty0gjL4AWQMhlo09fo2wV/oRz9xfLACBh6Lon
-A3wdDhlX+m5VpurZhTDjj4JcA4QKOjuonxzQuu3TIPx+uCJpxbuj5dPbbGIxvdWsz123U59P7TCC
-BS0wggQVoAMCAQICEGlMqaD21uVv3mxr7dpcGTcwDQYJKoZIhvcNAQELBQAwdzELMAkGA1UEBhMC
-VVMxGDAWBgNVBAoTD1UuUy4gR292ZXJubWVudDEMMAoGA1UECxMDRUNBMSIwIAYDVQQLExlDZXJ0
-aWZpY2F0aW9uIEF1dGhvcml0aWVzMRwwGgYDVQQDExNXaWRlUG9pbnQgT1JDIEVDQSA3MB4XDTIw
-MDkwNjEyMDAwMFoXDTIzMDkwNjEyMDAwMFowgY8xCzAJBgNVBAYTAlVTMRgwFgYDVQQKEw9VLlMu
-IEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEMMAoGA1UECxMDT1JDMR0wGwYDVQQLExRQYWxhZGlu
-IFN5c3RlbXMgSW5jLjErMCkGA1UEAxMiRmllbGRzIElJSS5NaWxvLkguT1JDMzAxMTAyNTA0OS5J
-RDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKqi5zys/DtinIKjxJlm/qmOAwtHib9L
-PuuBFQbi1DrMAOYX4PS7HVPpv1ZGnv5KgUAfqKiXKBozKnXT9OfHnbnXZDjCfc02WHb8OgXCUDnK
-0cAbhq9NFsKVJQ8SWkLA6NeiCbFXvWiYXzsRgUlzG0ePehNo+czETjbm+f/NGts2H0ktr5CibXa8
-vTJH/x826pXw7zvQZDuKBLD3/CWoo3Ax3MKBvHyknf64tX5wMRYUNVdDuWYY74v6dURuGoHeyU6S
-PsJSGI5E1q9d1mIzC6gTRxS7duP86x2lCjRvxa9F6Cwseh7Ki/1/76UhYUOfKrwx9c0JTAUigVAp
-FbFx+mECAwEAAaOCAZowggGWMEgGA1UdEQRBMD+BF21maWVsZHNAcGFsYWRpbi1zeXMuY29toCQG
-CisGAQQBgjcUAgOgFgwUT1JDMzAxMTAyNTA0OUBET0RFQ0EwGwYDVR0JBBQwEjAQBggrBgEFBQcJ
-BDEEEwJVUzBjBggrBgEFBQcBAQRXMFUwHwYIKwYBBQUHMAGGE2h0dHA6Ly9ldmEub3JjLmNvbS8w
-MgYIKwYBBQUHMAKGJmh0dHA6Ly9lY2Eub3JjLmNvbS9jYUNlcnRzL09SQ0VDQTcucDdjMB8GA1Ud
-IwQYMBaAFGI8UDR5OeAq7ONDKPlFpGN6YKjjMBcGA1UdIAQQMA4wDAYKYIZIAWUDAgEMBTA0BgNV
-HR8ELTArMCmgJ6AlhiNodHRwOi8vZWNhLm9yYy5jb20vQ1JMcy9PUkNFQ0E3LmNybDApBgNVHSUE
-IjAgBggrBgEFBQcDAgYIKwYBBQUHAwQGCisGAQQBgjcUAgIwDgYDVR0PAQH/BAQDAgbAMB0GA1Ud
-DgQWBBRt1kX4XYeQ+rBhMkhF/sB9TxjPDzANBgkqhkiG9w0BAQsFAAOCAQEAAE12lwr8GywKRHZ0
-g2GWRY3yaka5et4PMw08+zltszEVommC8pBUliBREngulCGW0KuZogNWH56Qli42hVGXvboxZuvH
-ubL6Z+dddCkkWUhuefvaiACLES+3O4k5/gw+69o9PmHOwKRY0p749zPd3R+7zYckscL7YepQKuhN
-G6KvnEXo9J2Xv2cI46eO7wQrMQBoDS+KiwgCBQqr3ytGObYktsn+89YQLEbYTipQ1UdvJBrZwCa7
-uPhJYejWFsKnM6+6m9GbLD/X2FtAz/e+XWoieb+LuuDA4Vr5jngk4yFS+o+1djeH7Nuom35sMs+E
-2uaPqNiaL/e9u9AWANeRCDGCA30wggN5AgEBMIGLMHcxCzAJBgNVBAYTAlVTMRgwFgYDVQQKEw9V
-LlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UECxMZQ2VydGlmaWNhdGlvbiBBdXRo
-b3JpdGllczEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0EgNwIQaUypoPbW5W/ebGvt2lwZNzAJ
-BgUrDgMCGgUAoIIBxjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0y
-MzA0MTcyMTQzMTRaMCMGCSqGSIb3DQEJBDEWBBQe9Ty4FgYFcO7HBOwjwmTLCGuFSTAlBgkqhkiG
-9w0BCQ8xGDCBFTAHBgUrDgMCGjAKBggqhkiG9w0DBzCBnQYJKwYBBAGCNxAEMYGPMIGMMHcxCzAJ
-BgNVBAYTAlVTMRgwFgYDVQQKEw9VLlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UE
-CxMZQ2VydGlmaWNhdGlvbiBBdXRob3JpdGllczEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0Eg
-NwIRAKO4oXGNZu0MhX9NjI3ox90wgZ8GCyqGSIb3DQEJEAILMYGPoIGMMHcxCzAJBgNVBAYTAlVT
-MRgwFgYDVQQKEw9VLlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UECxMZQ2VydGlm
-aWNhdGlvbiBBdXRob3JpdGllczEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0EgNwIRAKO4oXGN
-Zu0MhX9NjI3ox90wDQYJKoZIhvcNAQEBBQAEggEAfQtwA0NsvMMlGkoLkyr/EGXXrT/+EIZgz7Gb
-IyKI++yRDV8FOGyCoMxMIJZlSkIEtJKnkEuKOkQczIsdCKZo1DGr8N/qdNUaCqbJB4xBj8o0jEWW
-Xrg1+9w4AcHR8B+mVMyi/LxgSYHqJF+w9A3gViUAyJLe9NMXpx28402X+PJDcxx92dZcWh63fiRX
-m/iyfoNBZfYrjWLrae1XbX3vvUkXWRJHzPI5MJ0lq3ugYiYuyvdO2BfCb8YyaIFKE33A21I66gB0
-q1ZOTSJwoabp87gJORe5hSeO97XEb7rQuedM8KjQ1QKpYVUd5UEP8JpPt/QjJ30BJ4oPn+4Oy9B3
-KAAAAAAAAA==
+iVBORw0KGgoAAAANSUhEUgAAAyAAAAHgCAIAAADSZZ6iAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAA
+CXBIWXMAAAGKAAABigEzlzBYAABUUklEQVR42u3dfYwk533g9984c4caYGRUL2Zx3coSmFJWOJVC
+ApzZVcJhVgZ3ZBnSiLxoh8cAJq0AooQzuCLPsV5sxJRi2CJxUCj5oNxSAq3lEjhLSwSSlkFoDQ3L
+3OXFDIcIuTPEkVELJqFq3G44DXCxXZAa7gdRIZ0/qqe6pt66urq6q7rn+0Fjt/qpt6d6erp/83te
+ak5E5M8E+fvToisAAMCQtEXt/vvuv/DMBa/k7CNnv/PvvlN0vabP/OZ9m/JW0bUolL6o7+7u7r6x
+W3RFAADAjJiXXxddhaLZbdu8zRQRYiwAAJCL+aIrUAK/FvVrZd5myrzsvk6MBQAARjWvHBW54v61
+PaPaEiduPxFH9uyF3et6vVlRnV6xWetsnrTCG1vNysXtmldQfZ+sLu+tHW8ZNVubF+XIXkvbbdT2
+2tqdy3vWjcql7Vq4Wtq8GEc7a8ebq0ZLX1TavIiI3dbqe9or79Tq1yv2fjW0Bbn/pFVb6hyo/7wo
+tfDjN6qNvYWIK/qVmKapzWvbr24X/UMBAADTLTaDtbK89+Fb7IH73yvyk13j4stVu7MgIvqiutNs
+hjervU95AdbKLa37T1n+gy+IVBaVV7Ki7Euv1QKxnb7Q2TjZfOAjezJ/IPRa0FRtSdZva75Srz79
+stFsLYiIJnLnB1u1pVD9He2Vd/SGRARYylGqpYwPGjIv2y8TYwEAgOzm43JUu9crCwti+GKUjtLU
+/sbavCxovUDnUyuWUnLx7w3liG3LjqUbR1VlcT8McjTrhrZjVdwTrRitL91T99Z2lNa0tc6vpfY+
+VdF7hQvzyjjaql+reKfWtM7n7rLWb+uHbnu21vqVtvBPpLqkFuaViNxpNmsV9dhzZrO1oDqdHauy
+Kqq21I/GWm2tfk3fsyU2LSdiv2cbhiFCjAUAALL7zz54/IORK95saK/8w9E7//mN92mOiHSUtrVb
+u/jKLa+9877tf6i903zf0fc5XpxkHFWv/MOi/Y8LN9oLV97S1f8391/9F7a76mf/z+L/+L+ar71z
+VESqldb/8EmrdqTtrtqztaevGBf+wy0v/Mej9f9UmZ8X45+1RUR+Q967ufDmdS/A6vx3a83/9iPX
+e88c7fL/vfTU3xo/3K5drh9V/zhn/ufqn8w7IlJZVLfozpV/WHSchdd+UfmP/2nxzn9uL/zTXv2f
+etH49//hA3Z7QRKpf1S1f1ZbWlpqNBpF/3QAAJio+X86f9t/eZt/1NdH/uuPvPZ/vVZ0vabPfMfp
+xK78lSiliSgRUY7sNrQdSxPRREREs27Io2d6maoFTVUWVX2vd6iWrXnHUEpabRHpLIjc+SHbqNpu
+eUdpT//UuFzX3ac717Sda4aIuGmqleXWxb+vuoczb1GbH9nzDvjK2/qTLxgtJSLSacsPtqsyL587
+3ev4tfrB5ppRuVwXEbF/JV7KTSlp2pJ0sT6d9zq1Wu30XaevvHSl6B8QAGCKLS8vuwvp/2j//g++
+P5m6/d4Dv1fAK3JozCe0l8m88nd40uYPNK61bM1WUlncf+7012oHu0m55bqu1o63vLLtur79thY4
++5Mv1Mxb7JquKhUl80qUJvNy57LtNUd2lHbp9UqrfWCvS9vV9dv2jP3WwI3b9y6/qfdq4rtQTZIa
+BwP29vZqtdrp3z595e+IsQAAWSwvL3/hoS+IyJPffTLlLt//wfcnFvdM8lyHUOwoQhFZOBiOKEd5
+G1c0Wb91r6r3VnUcba8t3loV2lFE9IoyjvbPtdNYaLXFTY959mx58oXaynJnt7HQUaIcVdPEPNYP
+y+rXtPo1LVBn1ZafWbqx1OuhZdTUgqYCQZh7poSLDbOuWcRYAIBsvOgqvQlHPL/3wO8RY41P2nmw
+Kpps3N4yljru5Ai1JbVm9nqXi8jWa7q1pyUfoaapfiLK0ZoHAyBtvyKX39Td/JM2L9q8aJqqVfpR
+0Z6thSMnEWnaIk7vajRNlo+qVvtgHOaIiPKntNJw81gbn9jY+put8bz+AIAZ5EZXkYmr5eXlQ97H
+t9vtugtzc3NpylMecNi9xi2pibDjqP7aeXWnqe40Izb7yWv6hZ9WVEJuyBER0RY7B0pUv8Gusqge
+PN3qjSJ0evUSkT1be+XnC5ovCLTb0c18e/ZCR7QFUSKyILIwr8QJtj/6GzHT27u2V7ultvGJja2/
+28qwO1A23W7X/zHkfaK5wp9QCR+FcR9nkbskf3Sm3yVDfbJVaeBeUr4PdEyS17lKQv2rvOgqHEgl
+rIrWFcnlXZbXcZBaUhOhdjCe6ChtYV75c16X39Qvv1F5pa7ZSg409vn6kitnv2EudB7v1Nq83PvR
+iNmzxJHdd4zIBscQf+91JfsnVQePNlQToceyLOOY0ctjEWNhmgXCKfGFCJEBir8wsJxwivAucccZ
+dpcM9clWpeQNiKvg8loAA5kqL3flD8LCGxzyPJYM81s8jZIyWP7IpqO0J3+qq7Z86T7baxm0rmtb
+r2nJO4r08kZNu1+woClN64jT27el1I+3daOqVg1fa+AN7fKb2l5LlC920jQVWeHKoixIv/1x71cR
+4VRHghms+0+3Fubl8psLVnNA06HVsIxlY/PuzUt/fYkYC1PK/SxL8yk2MBsUPo63S+SOyRFJ+ngl
+LvuV8rqGOmzCuTKfCLMq3NdqYO+rkWIs780+N0zJFIpMGHsNgpEtg+HChFR03EFykZjB8i0rR6zr
+cuXNBeOYeuCjvV02P2pbTbn0WvLMUr2u8XuthVZb86bOMqtqS5Qbitm2PPlcZUGTJz6792Gj11D4
+9E/1rd0FbV4sWzNu6e1V05WmKTvUDWt5qZ9as5VY10U5oVDM6fgjv5Vl+dxpu7KotHn9W89XZJD6
+O3ViLEy1gTFTmi0lUwhV1HUNlOGzNXM3EcwwL4MV1+/KzxtXmD26mju4nKakfMJ/FwVK4v6Ki1zr
+L4zbLDJ9Pr4LTOzkfjCMWNBERJ5+oWJW1eoHlYhUFtWX7rOt92S3MWD2ThGxbsiuJeu39Z6ur6iL
+2x2ruSAiypFmW6QtXuTUccS60Xu6805/L/MWMW/pbNcPnK6qiz/1tfO222QpncQw6P79Xl/162l7
+vpPHAtKL+yxLH+cNdfBRapgmY+c9TW5YxKHixVJeqPTkd59MTk25jYZjbB+c2/93ShrcEjLQA8Op
+lLkr/+9s+Nd2fL/Fv9Hr+h31UKrT+XV/044ScaR5Q57+O73V7gUllUX16H12dbFzYMd2P9xR+4W2
+LZff6IcytSX14MeVJv0dda1j9O8HvT9tlSPbb2p7dv90D5yyde3A6b7wyZb/ljgXr2j7q/o3e1Yi
+9q+8XTpfuqe1vmKLyM7b2itvS8KLEHhY71hKqc27N1OPvwTQMzc3N2JbXkrdfQPrM+xeRFTwNHz8
+hW6MFdf7yt1g7L2v3KzVXElzV8NdSsxvZfpfxoRf7bH+Rv9Gx+lEPmS+U1uSyvt622ma+vAxJdLp
+OJ0ru3LxSj9U+rChvvq7tnmsJdIR6Whax6j2T1DVxVjquDtubWuXd/s73vsR+5uftdc+1KoudU7f
+1jr3kO2Pk5QotyY7DXn6hf5e67epxz5jr32oVdU75rHO1z+zd++a7a39wRXtlZ+7M7Z3aktK32+R
+1DW1sWKfvq314Cdb3/+K/bmP2wvzIiLbb2m2LXEvQuTjZ+/8rNVubZ7Z1LThJn0AymkcmZgMx8wx
+fTW3b6gKRO5FmgrDShNjjfH03cSnJeOlkCVxfHG2RvzCxXZyf/SMvfER8d2AWR78uL32Ie1bz2mv
+vKU9/YKsHNfuNHtr11fUygdla1tt7WqP3qeMWj9O+nBNff9P7K1t+epf6a22PPaspi+K28Io87L+
+EbVmKiWaNq8WAuHKr/ttlBevaDVd+9wn9/daUWsfVMrRZF4qWr/31U9e0771Q10cWdDk65+x11f6
+x1zQZPO02vyoknlZ8JJPjlx+UzrDjyy03rHkuGzcs7H1/JZSWUYmAjMseZxgyl1G37KQCwHEF2P5
++2Nlj6v8AcPcwea/cINgoGR62gojrnvI6CpNU+MkxXZyN471oyvXgibmLar2Pk05as+WJ5/TjKPi
+5Zwqi8o4ptXekQ/fcmAqB5mXyqIyl3vTftavy8Pf1b50Ru5d62224BsAeHlXqy71j9CfGr4tj/1Q
+s5ryhTNS01VgLxHpKLnwgvbkC1qr3ZsKy1z23cbHrf98sMvZK29rVjPj3A31n9fN4+bmmc1Lz10i
+xsKM8Q8JTNmn29+fSUI9wZOPk36XyC0HijzUwEvLcCGAx4ux3Kfpb5UTNJeuMKFkLv4402CojJT7
+Gxr4BBs429+YxGawLr0s9UawCUwp2bF6iaXLb8lj/15Wb9ufz3Ne6g3ZseTJFzQt1D+pfr2fjrKu
+y5e/q128oq2vqJVl0RfFVlJvyCtvyuW3tNXjsvGR3qBFf91UW57+qbb1mqyvyNpxMaqiaaIcsW5I
+/R3Z2tWsZn/7jpKLfydGNakJT5uXy7vSsrPMPtq7qJ/XRWTzzOal5y/5u50BZRb+cEkuifswiuso
+mnL7NKvSVDXNqri12SaPIK5CSoEYK40J37umDPfJcWOguN9Q/98zkV3UUx7f/3Ryl6Yv6RM72Uwy
+P2QahnHpOWIsAMABCbO9J/j+D74/mepFRlfaonb/ffdfeOaCV3L2kbPf+XffmUyVZglj4UZV/3ld
+HNk8s7n1/JZt20VXBwBQFtn6XRWeVUIu5pnPaXT1n9eVo9w+78RYAABgPlsXbwS4/bGIsQAAgJDB
+ylH9rbo4snHPxtYLW/YNu+jqAACAwvxG0RWYKfWf13d3dzfv2WToAAAAh9n82qm1ousQtDC/0HE6
+RdciO+uatXL7StG1AAAgC+uaVXQVMDZnHzlbdBUAAADfyBnRRAgAAJAzAiwAAICcMdEoAABIZe2O
+tVq1ph/Vi65IiSil7Ja988ZO83rTX06AFSF8a8mBt7lN2CzD2my3101ZW8S95v47Co/4GoaPwM8U
+wAwwDOPisxeLrkXpmLea5nEzbYC1cvvKxj0bIqLa6sfP/TjbfP9Tzf91m/CN634RJqxN+NqOXJvt
+mz4uVkAa/mhmqDu3DzyaV8LPFMAM0HW96CqUkdWwVm5LN3vAE996onvQg5990F314GcfvHnzZvLu
+uq6/ePnFR7/2aOa6Fjtmwb3kyKf+1yRQEneoyOWEtQO/7L3TRe4SLg/XtsDXdgK6It2DC4EXJ+5l
+8ZdnfpUCPxp/YXg5slaRm838Tw1Aafm/kc8+xIjCaGcfOqtpmr8kopP78vLyl7/4ZcuyVldW5+bm
+1k+vt1qtpy887catD3zmgUqlknyaldtX1k+vF32x+fOSVeFGnIllF9xMxtzcXMpvXP/2w+47pdyf
+RNe3nHZH3w8x8w80w46H5OcCALMtkN6LCLCMZUNEfvzcj3ff2BWRKy9defzrj1++ctlYNh787IPu
+2ke/9ujy8rKIfOkPv/Ti5Rfdh5vlWl5efuAzD4jI+un1Bz/74PLy8qNfe/T0Xafdgz/42Qe9zNbK
+7Ss/uvSjFy+/+KNLP9r89GbRr0yQP5NRwtaZcGtjZOoll6BhigSyVpFJrNJK+TMFAJSNclRFH5B+
+El3Xu93uzZs3n/jWE4EZyV+8/KL3iX/6rtNuS+LNmze98tN3nT5912lvmxcvv+g+9YIqd0v3LDdv
+3nS38fb1TlSeJsK49sHIlqbIQ0UuJ6wdcZc0h5r5L+xufGiV0EQYXs5egWGaCIf6mQLAhNFEmMbG
+JzbW7jhwa5yIDJZt2/eeuVdEvvzFL+/s7ty8efP80+fdfNXH1j92+cplEZmbm7vy0pV7z9zbarU+
+8IEPfGz9Y+4ud370zisvXXHbB7/6P331Y+sfi6vKyu0rlUrl8pXLH1v/2PrpdfewkzcwQxDZGugp
+pM5I5m8cDPxcw+ELgQsAYHRWwwpksKInGr30v106cuTI+un1b/7FN62G9bkHP7ezs+PGWH6rq6tf
+/tKXv/DIF168/OL5C+eHqsruG7utVmv99Hq32/3Cv/7CD/7qB1deujLhl8Pr+5Kh+wsNN6U1tx9d
+zcX0wSI+BgDky2pYgenBIqZpePCzD9aO1R7/+uNXXrriBj2Pfu3Rx/78sQc+88DjX3/cv+WLl19c
+XVkVkZ3dHathDez87mfb9urq6le/9tXNM5v3nrn33jP3PvCZBxIyXgXy9xD3x1VpvqH9oVt4oH7k
+2sjCyAP6FdLjfmaEBwF0c50WgZ8pgEPl6s5Vb/nE6on0u6TcOFtlAgcPlI9YAaWUvqhri5pqK7ck
+IoO1cc/GY3/+mL/Xef3Neniz03edXl1Z/fFzP56bmzuxeuLSc5cSTux2rdd13evUdfqu009fePoH
+f/WDI0eOrK6sWpZVnoGH4fSGVxJuHxyYCwnnSwLLcaeLO2xcHQaeKHL5UAm/PpE/x9HzW5FRVC4/
+UwAoOX905T4NlEzmvIXwDySMyGA9+b88ee+Ze89fOG/eZr7y96+srqy6XdR/8Fc/8LZ54ltPbP/9
+tois37X+xLeeMAzD7YPlP/Tmmc2963tu56ovf/HLInLvmXv9Wa710+srt688/czTFb1iGIZlWUW/
+MnL+qeEaOgEAmDGf//3PZ943nAcqT3R1deeqV7Fx1EopVdErgfncg9zZRL0O4Ddv3vRPNOoWPvq1
+Rx/92qPuZm5H+Js3b/7iF78QEV3Xr+5c9VrTvvSHX/IGDP7iF7/wGj4e/dqj7tNut/ujSz/yj1ic
+zCjC8OitaQywNu7eKLoK1LmkqDN1ps7UeVjh78GhRhGmyVe52wxMdEVuFrnKexq5feSqcOHA5YGX
+dvq3T6+d6g8kjO7kfuGZC0eOHPGaJ44cOXLhmQveKrfw8a8//vjXH3c3O3LkyOc/9/kjR4584AMf
+EBHbtk+snvCaNr71b7/lbvax9Y994AMf8No7Hv/64+7Tubm5f7n5L91ptwAAwFRLjo0il9NvlvII
+AeHOVXHdrSI7Y6U5UWAg4W8M3GGGed2Z8+3RDADA4RSOS8Lx0InVE+5DYgKXhM38q8InDZTHHXlg
+YBd5kIEHbzQa1aNVr+/VvBxuxFUAAOQo3M/J3/lJUqedBm42jiGHI53LEU3TNK03kPBQZ7AAAMCY
+DEz5TL4+km46hlG6wHuj/Q57BgsAAOQlTfiSMuoauNk4ps46sXpilOjKP5CQAAsAAOQpEKP4+0iF
+O79Hdj+P2yxyVeC8I4Zc3ikyHMeyLC+DRRMhAADIR7hZcKinaTaL696esnrpN87AP5CQDBYAAMhT
+hibC9NMopD9CZPnAWC1heaDG9cb66XWZF3HIYAEAAOTCEU3T9EVdaCIM+Ny/yn5/AAAAALcbFgEW
+AABAPuy27XbDSuqDpS1pk6mNuqGKfkEAAABG5Q0kJIMFAACQD6thLSwuCAEWAABAXprNpragScHT
+NDgiIrQOAgCA2VCtVlVHyeQCLIdACgAAzDjzuNlpd2S8TYSOKO9R9AUDAACMW+2Wmm3bkmOA9e7t
+Zm+JoAoAABxK+qLesluSVxOhG129e7t55PX6gE0d4i4AAKaeeaupaUNM52Sa5sW/uhguX7tjbajj
+KEdtv7xd3uPMi5vByiHAUo58/i+M81+0Pv8XhvxWVIBFUAUAwGzRNO0nf2Huj1XTBg5au7R7Z2SA
+pWna7utX0p/X+NBKXH3KcByllN22ZaQmwv2mwI3L68pRq22lHLVxeX1/reo/AAAAZp2+pNu27U6S
+kCmDdbB/VcfpXPmdbRFprFtrf7s2IKJyir56AACQC6X2U1fegrz/dy6JyLuXN3vbpPnen9/fcl7E
+kcceP+et+eqjD/c3GHi08RzHffrYn50beBxj2Wi1Wu7y0BmscO9127FFeikr5S4HOL4HAACYDfNK
+HCXzyltwoysREVG9x/z+I4EXIexHRV999GE3lOkFSSmjiDEcp3e0PzsXsUHoOMYxw+2AJUNlsJTv
+QOaWWd+ouwtK+r2slIj5tyv139n1zmpeXqmv72b+2QEAgJKa7/i7YL3/d64cWCUiKk3vrAN6KaKR
+5XWcoehH9dZbQ2WwnGB01fvXUSJS/51+/NRb9kVX3r/+EgAAMP2UaEo01VsQefeVtf4q8a3SBgVZ
+Tqi9y4lZO8xxHnv8XC+V9ccPZz7OY4+f64drjiQcR9M01e5d6eAAK3JGK39QFaxKYEvSVwAAzKTe
+aDbbXXj3sinK3l9l9x/KlsgeRGG+drXHvrHf58ntBTVUp/H9jb/66MNuaPXYN86NcpwDJfHHUUp5
+TYSJAdbBxJXLTV/1lv92xd0sEFfFJa5IXwEAMDvmWyItkU5/QTr76zr9h9bptRjGcYIL/bSTP2M0
+kBO/IBmP89g3zvWrIZJQH21RU22lVIoMVjBxtT/ngpu+6v0bSlD5S9zlcAkAAJh++93Y/f3ZvVXu
+U21/bYL5A49+7spLFPk3SH2cfmHkBimPI/LYN865VZL9vFrkcYxjht2yJeq0iQKTLzgiidFSOFlF
++goAgJnixQbhjNF8aFU8f3PZN79xTkS+/McHu6inm4Ug+jj7hSrTcbyaHKhY1HGqx6qtdst7miLA
+OhhapUlB1dd3A4MHwyUAAGDKKZGY9jjHFtH62wzpm9/oT4sQDLbS+fIfP/zNb5zzjpPtIEMxDGN7
+u3/PnEEBVlTiKo3kpkMAADD15lUvMJjvRwjvXvaeqsCqNHKMhPINqgYeTZvX3Ns8y/5LEs8fXfmn
+afA19qUPm8hgAQAwS1RCX3KJWTXTvCGEkrYPVvzkC4RNAADgsJsXpfpDCCVdH6xUR/bSWv7YK1Di
+lROTAQAw1cwPmltvfm7049i2bd6awzC4Yo9TrVab7zX9IdPAPlipjmteXqn/iwM5rXBJeLkQ3W53
+bm7O/9Rd8BcCAIBkF5+9ePHZi6MfZ/eNfKKCYo9jLBud9oG5vpL7YMWuichX/e8Hwj03xgrvVXh0
+FXjqxVWBwAsAACAlwzDqb9b9JUPNGN83cJBgIGvlbVNgjOWGUIEYCwAAYET6ou4fQihpb/Y8jEDi
+qjzzi5KgAgAAY+IfQiiZM1gB/gZB7/Y4bkmgrbD8M45u3L1RdBWoc0lRZ+pMnanzYagzMlCOstt2
+6s21ST1Czj5yNpcL7u7zlyQsT2P74TT+9lJn6kydqTN1LqfzT50PlPi/kc8+lM+384zRl/TN+zYD
+hflksEqLZkEAAPISaAWDy1g29vb2AoUzHmAl8/d5JxQDACCZZVmbn97Uj+pFV6RElFL2e/bOWzuB
+8kMXYAUCKeIqAABS2n51e/SDHBL5jyIEAAA45AiwAAAAckaABQAAkLPEPlgq7VEAAADgIYMFAACQ
+s0M3ihAAAGSzdsdarVpjmgY/pZTdsnfe2Gleb/rLCbAAAEAqhmFcfPZi0bUoHfNW0zxuBgIsmggB
+AEAquq4XXYUyshpWrVYLFBJgAQAAZKfaStd1TTtwc2UCLAAAgFEF0ntJfbC0JU0mQt1gQggAADCt
+lKMqeqXZ7HfDIoMFAAAwkua1ZiCDRYAFAAAwEqthVfSKv2TiAZYj4og6+AAAAJheVsMKTA82znmw
+HO61AwAAZp9SSl/UtUVNtXuxT94ZLH9qquirBQAAmBh/N6ycAqwUQdXKGbPoCwcAABgLpZS/G9Zw
+TYRr31lT16SysiAind1OZa1iPbNX+92aiHTebFU+Utl7Zm/7h7trD63V7qmopmq90Nr+4e7GX653
+rnVkaWHzEePSb10q+hUAAADImXXNyp7Bsl+wd//NdueGtLZbzeeb1vcs9bYtN1TnzVbzOVtdV9qy
+JiLb392WRWltt+y31cZfrrfe7Fz50ytXvrBlPbNX9OUDAADkLzCQcLgAq/5cXTkimqgbqqOkVVcd
+JR1N7KYSUXJMmj+3xVHiKOWIuqHkqMgx2f63V9zdd5/ZLvryAQAA8tdoNKpHq17TYOomQn//qmqn
+db3V+HlvulKjWpVlpX9c/9l3f9Z4riEi1d9ebjkt67W92j2V1tstcUREVr6yIiLqHVV/rl70iwAA
+AJArRzRN07TeQMJUGaxA73UlqvHTpoiIo/RbNdux69+17LatlpTomuiaep9Sbdu27Zbq2JXeri3V
+kmUhugIAALPK64Y1IMAKTwSq36XZjnLbAUVEdFEiqmlbf7lXua+mHRNRSjsmrbdb4ih7uylLUv3D
+qnZKl+MLrWar6AsHAAAYC/9AwqQmwog51h0lt+h7z+7pn63azzRFRAxt79k9/bRuP2fvHbW0j+ia
+oVRb1FvKLbT+pK7dpmu3SPMZS73B3FgAAGA2WVZ/IGH6Pli92KgXV/UKxf5e/6n9rB3eT72q1KtN
+AQAAmGlWw/rwrR92l9ONInRCmSdHhHsIAgAA7Gtc7w8kHBRgeX2t+iWEVgAAACGOaJqmL+oyIMAi
+tAIAABiG2w0rXR8sX1z17i8PrHn/bxZ9HQAAYKpc3bkqIidWTwwsLKQmo7DbdkWvNKSRog9WKGv1
+/t/sPwAAADJwg5sZ4w0kTG4iTNUm6Oa0vMzWu7/sPfwbBEoAAABmL8ayGtbC4oIMMU2DjxcqeRms
+d3/ZW373l/L+9x8oDJcUqNvtugtzc3NxJQAAoAy88MvfhOc16iUsSFTbnz+YG19DZLPZ1BY0GfZm
+z65w+6B/+d13e4+EkkJ0u925fW5cFS4BAACT4Y+Ewvzl4W0SSq7uXPUvR24/vsxZtVpVHSXZMljJ
+wjmqknTVIkcFAMBU8Oeu3OWrO1cDaafIp+EkVnjjsbZLmsfNTrsj2TJYKYU7XdENK18k3QAAUy05
+ieWujWzOy9bG509ujUntlppt25J7BsvtdOUtR5YUzm0ZjFu7cfdG0RVM5SfPb3m1nZY6+1Fn6kyd
+qTN1huznqCbQ2z3QVWtM9EW9ZbckQ4A1sAWwVE2Ekb3ak9sKt/56q7DqDm/rr7c27t6YrjqLCHWm
+ztSZOlPnctq8Z7PoKvS5zYK5xEOTm2RrXtwM1hibCMvA68PuPh0YXQEAgAkLxz1eSeRAwswmkCpT
+StltW2Y+wPLzRg66RMQdPOgi8AIAoCgJMZbkEV2FjzaOSEtf0m3bducQzX8UYWlFhlDEVQAATFjK
+fusZNksIyyJX5dtoaCwbrVbLXT5EGSwAAIDxMY4ZbgcsIcACAADIhX60N4RQCLAAAAByoWmaait3
+mQALAAAgB0opmggBAAByoy1qqq2U6mWwEkcRqqIrCwAAMA2MY4bdsr2nZLAAAABGVT1WbbVb3lMC
+LAAAgFEZRn+OBiHAAgAAGJ02r3lzNAgBFgAAQC7IYAEAAORnXpTqDyEUAiwAAIARVavV5ntN9zbP
+rqRpGrQlbTLVUjeYEAIAAEwrY9notDv+EjJYAAAAIwkMIRQCLAAAgBHpi7p/CKEMmMk9PUckceJ3
+LdezAQAAlEoggzV8yONkuYOO2t83QMtUBQAAgPJQjrLbtr8kXXSTKahKVSGJiLoAAACmhb6k27Yd
+iGcSA6youGrtayuVj9dERGy197292lcMbV5ExPo3e7VHatqiiMje9/ZESe2RmojsPdeqnamIiHJP
+bKutf3G56JcCAAAMLdAKBpexbOzt7QUKkwKscHS18tCKtlKxvlgXJdV/bYimWX9kGX9utJ7dU9eU
+9UeW8T8brWf37F0lItrft+znbHfOLe3YQvMZS0Sqf2SsfWVl+99sy/yE5oAAAAC5sCxr89Ob+lG9
+6IqUiFLKfs/eeWsnUD5kByhHZFH0j+t7z9nWX1huWevNllSlo9SCqXXaSum9Zfsd1bKViOi6qBst
+UaIZmmiimu6hmPsKAIBpsv3qdtFVmBopAixfJLT73W3TWdFOasZ3qvYVe/dPd0Vk4R3RPqLbdmvh
+1or1grWwrNn23sKtxu6f9n4MlVt07ZhWPV1VSpov7NWf2S36qgEAAMYouQ9WRJKp/r1d+Z7ot+rG
+d0z9ed1+1d5rtGqf1OS4ajVaqi0L99TkuOy9tef19lK6sr5Yt1+1058ZAABgeg0x0ah+Ul++YIoj
+4oiYWqtpuzGT/VxTNNH/+1rze01Vt0VT+r+q2c+6DYGi3aWLJsHoSqR3HIdRhAAAYNakaSLcXzgq
+0uqY/8eKiOq83Wn+ueVt0mkrVW+JiHpDiYj9Qq8vvfYJ3fiTmoiqfnu5+QeNoi8WAABgEgZM0+Bn
+P2/bz9sijfCGjY26t1z/rf6y+hu7/jd20dcIAAAwUfSEAgAAqazdsVar1pimwU8pZbfsnTd2mteb
+/nICLAAAkIphGBefvVh0LUrHvNU0j5uBAGuITu4AAOAw03W96CqUkdWwarVaoDBLgPXuL3uPoXYB
+AACYPaqtdF3XtAO3qBk6wHr3l/L+3+w9CJsAAAAklN4brg+WG115vGUv0nJL/IGXfxv/voXodrvu
+wtzcXFwJAADAUJSjKnql2ex3w8qhk7s/cvKWE0qK0u12/XHV3NxcuKTgKgIAgCnUvNYMZLAOUSd3
+4icAADAOVsOq6BV/ySEKsFzdbjchWfX0X57fbzMEAABIxWpYgenBhmsidDu2l6pb1bDc0Cq5QXDj
+7o2iq5nGllfVKanwAdSZOlNn6kydMTOUUvqiri1qqq1SbK5FP979f3uPuJLAKm+DuAOGnX3kbC4X
+3N0XLhdfD3dv+fxTU5PB6nbFreo0/vaWv87ht0H56xxGnakzdabOwzr/1PlAif8b+exD+Xw7z6Sz
+D52tHqt6T7N0cg9nrQIl4ZGGRSW6/GkqurEDAIAxUUpV9Io3n/shulWOO2zQW44sAQAAyMC6ZvkH
+Eh6uTu5z+xJKAAAAhhUYSHi4AiwAAIBxaDQa1aNVr2mQAAsAAGBkjmia5t2RkAALiDYt40kBAOXh
+dcMiwAIAAMiBO5DQXSbAAgAAyIFlWWSwAAAA8uQfSEiABQAAkIPG9f5AwsSJRtPcTgcAAADSG0io
+L+q2bZPBAgAAyI3bDesQ3SoHAACU1tWdq4GSE6snhto3/fbjY7ftil5pSIMMFgAAKKOrO1fDUVfK
+HYuqszeQkAwWAAAoC38WauqiKxGxGtbq7atCgAUAAMrpxOoJN4kVGXVFNgh6a/2Nhv6Qa9zNiM1m
+U1vQhGkaAADAtPCHSikzVYHNxp3fqlarqqMkOYOlLWljrYRH3WBCCAAAkCTQkz2c3JL9pJd/s9Hb
+HIdiHjc77Y7QRAgAAKZIyTtm1W6p1d+sC02EAABgtk1yEgd9UW/ZLSk4g+WIMF08cMh0uzI3V3Ql
+AEyDyMBo2Dhp0lNkzYtt2zK5AMshkAIAAAMktOV5gwoDhQnH8XfYmkz9lVJ225bxNhE6orzHZC4L
+AADMihOrJ5LTV5HRVcI24Vkb8qUv6bZtuw10Y8hgEU4BAIAhpWzFGzaokqgYa0yMZaPVarnLOWSw
+Nn93U8SXr0re2lERDwAAgClnHDPcDlgyeoC1cd+mUmr9k+tJURKxFAAAmHX60d4QQhkpwHJk/Z6N
+vWuWdc1qtVprd60cXHsgqFr77dNFXzUAAMAYaZqm2r1cUqYAyxHlyNon16xr1vbLu7uv1vdu7Nm2
+bZ40IzNVK3esqLa9cmrF3TfiAQAAMOWUUtmbCN1eVmt3rVnXmvXX625h4+fN+uv1jlLm7WZge/Ok
+qRylHKWUMk+aw54OwOzpdouuAQDkTVvUVFsp1csxDTGKUDkiImt3rYgje81m4+eWiIijzJOmG2k1
+3qgv32qad6xomuau2n1pt/5qXUTMO0x3QUTWPrEmjtht2ysBAACYasYxw27Z3tN0AZZvbOD2S7v7
+hRE91htv1b0mv+XbTS/28qx9Ym2vaTfeILQCAACzo3qs2mq3vKeDmwgjZl7Y72VlnjTdVr/ewsEO
+VY036h1H3A3cZBXRVb7m5mhqAQCgFAyjP0eDDAiwnF6z4MHCfrjlz05Ftvf5YyyiKwAAMKu0ec2b
+o0GSA6y4xJWvpBdXJfSm6sVYp1aIrnLE7XIBACgbfwYrdSf3UGjlGdhXvWxxVbfbndsPT7r7bWxz
+BCwAph9/fQHFmBel+kMIJVWAFR9aTaOur9dSINIixgIAABlUq9Xme01/jDSok/vMRVdEUQAAIF/G
+stFpd/wliRksf3QVFVot708c2ni9XI2AAAAAE2MYRv3NA7FQ2nmwwpZPml5c5V8urfTpq427N4qu
+7EBb+5XcmpIKB5W+zhEvbOnrHKGUdR7wpi1lnQcoU523UlamTHVOizqjtPRF3T+EcJBFkUURLeKx
+fMqMK3cf/s3C/wYfIWcfOZvLBXf3+Zf9Jf4tReT8U+enYmYpr5Ld7lT+9pa/zt1ucI6x8tc5rJx1
+Dr+25a9zslLVOeUnWKnqnFLhdc7w7VB4nTM4/9T5QIn/G/nsQ/l8O8+esw+d1XXdXzIogzVMp6vI
+nFaxiS5/yor+7AAAYByUo+y27S9J7oOVwyn9EVXZmhHn5uaYpgEAAIxCX9Jt2w5ETUPc7HlmRKa1
+AABAMv9EmvAYy8be3l6gMGOA1Xi9PnWd3AEAwCgsy9r89KZ+VC+6IiWilLLfs3fe2gmUZ89guTGW
+txxZAgAAZsb2q9tFV2FqjNREGI6iAiVl7oAFAAAwJoNmcgcAAMCQCLAAAAByRoAFAACQMwIsAACA
+nB3GebCAZN2uzM1luS0GAMy2tTvWatUa0zT4KaXslr3zxk7zetNfToAFAABSMQzj4rMXi65F6Zi3
+muZxc5gASxVdZQAAUBqB+xnDZTWsldtWAoX0wQIAAMhOtZWu65qm+QsJsAAAAEYVSO8RYAEAAIxE
+OaqiV/wlBFgAAAAjaV5rksECUmGmBgBASlbDIoMFAACQJ6thBaYHS5qmQVvSZCLUDSaEAIBRkXMd
+H17bDK7uXA2UnFg9MdS+6bcfeOo0RxvlpEopfVHXFjXV7oU0ZLAAABiMbgOju7pzNTL0SbNjLmcf
+9wX6u2ExkzuAyeE2RMBh408ITTi6GvbUmRNmLqVURa9487nnEWA5Iomzvmv5nQoAAEypE6sn3CRW
+ZOgTGd94a/3td/5oKVtUFHmE8CncCqc8i3XN8mewhmwidESFH4PuqeNuEN7RjcwAAHkhQYjp4g90
+UmaqAptlyG+lP8JQBw8MJEyRVnLGdU9CJcRYAABMmttYX7hAciic3JKoHFL6hr/A2gxHkGEyZI1G
+Y/2j6zLfi22SAixF9AMAAMZpMh2zwnFS/r2yHNE0TdN6AwmzdoxyYrNam7+7eenZSwN2n5/QBBAA
+AGDGBDpIxUkIj1IeIQNd15vtpgwXYMUEVRv3bW790BdRObJ53+alH15KeyiCLeCQcfsJlaGFAsAk
+RXYYH7aX+ohTZOVyhDj+gYSDAixnQP+rjTMb4qiNMxtbz21tnNkQEeWoXrnI1nNbg6sz6BQAAGBK
+JaSIvEGFgcKE4wRG/I2pYplZVn8gYeIowoTQx+k9Wr9qtX7VabVa4sjWD7e2frjVarVarZa77G0W
+fAAAgEPmxOqJ5PRVZHSVsE141oaU1RjxCHH8AwmHaiKMKFNttfvytnlqxSuxlaq/vCsi5qkVd2HA
+oZgfCwCASZnYRB4p2+CGDaokKkIa9tSRRxh42IEa1xvrp3sDCQfNg5WYdjJPmkopERGlzJOmW+gF
+VbHRVfgUAAAA084RTdP0RV0GNREOOE5HpP56XUTqr9c7obXmHWbRFwoAwCzz0lEJeSn/Knc5ckLa
+bswyhuV2wxrjzZ7rr9aLvkYAAAaY0rnv46odKE95dd2uzO3HVV0RxvhmZrdttxvW0AHW8n5ToLcQ
+XhV+Grc8YV2fQElRVQIAzLBiv15SzofiVXJO5HO//3miq1F4AwmzZLC8CKnxej9H5V/2ton7t0Bz
++0Sk2+16T4mxAODwyP0jf/QDZjjCsLsMjLe6XVoHR2U1rIXFBckQYAUCqZRbJoRiE+OGU4WcGgAw
+RdJ0bBq4NsdqJAj0pnJDqOQdvW9Cd7NA1PX0X54f71XNumazqS1okrkPVlwiKpymKknjoIsGQQAo
+g7F+DE/+Mz7ujD95fssf7mSrWOa9vMhpYMiVchukUa1WVSfrvQgbr9eXT5rhRJRb7i0Htozba2L8
+6avkbNbG3RtFVTK1rf1Kbk1JhYPKXef+y+uvZ7nrHK18dY5+bctd58FKU2f3Vd1KU5+i65yqksPW
++SfPb33qnpSvwFa3K5+6ZyO0HKheYCFw5IiP4v06SNReW1HbRFTJuxC3pNsNbu8dYeNu8W+2X42t
+T92z8ZPn/bXtbbNxd/903pH3C7c+dc/G5j2j/3APNfO42Wl3Bm2lDf1YPmW6j+F2DDn7yNlcrjMu
+ZeWW+Mvd5fNPnZ+KEN7/91DRn5JZlLzOkX9ulrzOkUpY54F/ypewzgOVp85ei0/565xyBNywdU5+
+BQJNaf6NI1dJ6B0b+Ne/4N8ycq/wSeOOHzhI5CsTdy0J1z7wjeFucP6pYBOh/xv57EP5fDvPsPs/
+c//K7SuS+zQNXrKq6AvsCXRpL7o6AIBxNUWljy8HGtiuF5hNam4uSxPbKG1/2S4KE6Av6i27JeO4
+T015oqsA/1BBN+QKlwAApoLXwcjfRzscGAU6dIf3HeW83kkD3GoEygPdz3OMMv2HjfsqS/MVN+zX
+oHmrWV2q5nYZQ7KuW413Gt7TtVNr3k0AJ696tHrhmQu9J/Ni27bkEmCFZ20IdGYvT8gVjqKIqwBM
+WMqpiSZ2nPJcbPJc5J+6J2KIXOQuccmkyLgnTVUje4sPvK79DlVbkUeLHO7nT4klvBol6ZBeXape
+eelKIafWF8X40EpDGl5JRa9smV8v6qU4d2z7gvQCLKWU3bZl9ADL32/d3589sAoAAE9yrBPpJ89v
+JRxKpB8DeeUi0ZmkyH3DcxakmfIgIPKiAmFZXAXCeyW8YpEvXfkD7pmnL+m2bbt3Gswng1W2rlcA
+UKzIL9rCc04jVsCfehlqL0n93Z/cuOZfGxmmxB1QJCIFFbdlcnk47hnqaJE7DpXkm7rQ6ty3zwVK
+Hv6Dh9Nsn7xZWk+cOPD0K1cHb+xu88SJARtHMZaNVqvlLo8aYHnJKv9TAEBA4W06CePLyvb1HFml
+yOY2T8IlDGxuG3iQXF6foULM2eNFS+e+fe7ct8/FBU9udJVPaOXnxUwpw6ZAWJaaccywrlvucj5N
+hIEwCwCQYNieSRm6DWU+3VD7pknURU41nllkf/aEzcJPU0YwGQKdcK7Lm3QqIYwrW3Q7Sf7klj+o
+SojARvKVqwdiLH8UFRl1pd9yn35Ub73Vy2CNOk2DO32o+4gLswi8AKQ3k3++jy7NJEaRX9UZZpwa
+fd+4vtsZ6p9sJqOTsSbSysNLVrmxVFywFc0Z+fRea2A4hPL42wqTt9ynaZpqK3c5hz5YgWZB72l4
+AQCSxXVknhnJ/abDUw+Ep5f0bxB5L7nwxh6vD1Py6xye+CD8r0R1yUroMB4W7lYVWCVjCymmN1KZ
+3poPFz+VSoq4yqOUcudokHHMgwXMvGL7rJSwxwwihcejSXzAlLz7BKoqEhEtZa5AwgQEkZeZ0It8
+ut7wU1TVCQunqVzhkjRUXtVK2dfKS3clp68WNdVWSuWXwQKA8hvr93T6HJIrzYRMgYH9cfme5Ka3
+yNk401xLyuSTJM5BEN4r8jgSP0lBse3FREu5e/gPHg50ci84m5W+w3uKLY1jht2yvac53yoHAHI3
+db2yxhrMhee6TJjaIK56n7pnw90rECclhIPhwoHLKS9nlJcCs8GNusZ+mrhQye35PrLqsWqr3fKe
+EmBhmkzXF+101fbwXPtQHbdHvLtcys7do9xEL5eAJhwhxaWU0ve/nuTUBpgiXluhtzCuqRn8vBDK
+i678EzdIKOry97sKbBnPMAyvA5bQRIhshvpzOceTZqvbOGo44f4xZfuamUCGJvkWckPVIc2Ww06h
+GdmwFW7aS3nSwLWHX4fwHOXhSC7uIJGvsDd9QNxB0q8aapsMyvbmx7DCkVNC++C4ZsBKucpfErcc
+T5vX3Ns8uxIDrNx6kQEH/OT5rTHFZylHnk/FR3bk4CxMQLiT04jNWJF3OEm+fcroyjDZEu9YHDZk
+sJBd2aKTuFRH5tqmnK1n2HmARpTX5M5l+/FN3sC7lySMdIvj/sGQ+Qc08BYuCXtlWwvkRSsqiBh9
+HqzczYtS/SGEQoCViyn90ppMtVO2zuRVvYFDwZOPmeE7Mls9M0/APUoNy9wvKlmG+9951x5YiHxl
+4k6X/NKFaxUXKqW/R8rAknzN6l1ZMBnWdcu8faWos7dutPxPq0er545tF/hqVKvV5ntNf+RHgJWz
+gU05A3sIZbudaiFXOlQzX2SzS8q5p9McOTwYquTfHJl/xHFTO064nsmD1MJbppnwyR3dFne/ufBE
+l0PVyj8jQPJmA1+KvH49p+6uvYBf451GQxpF16LnwjMXLsiFAiuwdmqt0+74SxhFOEDJv6Rzv4RA
+h2JvIf2txCLb6QJPP3XPRmAb/9TPCfv6v1n9I8zjTjpUmDXUt2b4yJHj2Ae+GpFrc7xxW17G94uQ
+chqnsPB7JvDeCPQQjzxymgnHJf79GfcGK8OPLKUpqipQZoEhhEKAlWDg12e43P2YHvilHtdVKOGM
+aUZxD/Vdnu37Mq7FKvL7KRAApYlIIo828CvQfc3DXXojh5sNTG4lN8nFtTRFBqYJlxl4n3gBQcJL
+PfAFTP5xp5+dMlyNuIRioM6RtU14ZaZOcsKJSAU4zPRF3T+EUAiwUkqeIMebr2/gXim71AyVtHDv
+KRb+Chz26y3hy1JSJ2Miu7wM1Q4SvgNaXG3TDynP1tsp8qLiWkVHny8gW0/nyFhtqN3jytP8BL1T
+jzKNU9yrMWw3Jv9L4Q+vk98MCSmo9OXhjCyAQyiQwUrqg6UtaZOpk7pR0gkhhpqQ0C/hj/7k44QT
+BkP1RgrUwX/AlDepCHTvTejfE26bS57RJ3KDwBUNbAwKvCbDzs0TlwRKjtUGftOHr26oEDkhShvY
+2WhggB7YLNAPKW77wOuc5hUeGJ3HxehxvZpSxlgJr8OIszpJ6M0z7O4ADg/lKLtt+0vIYA0Q+YXk
+X+UPDgIfwXGZrYRzJVcjOZ3jnS4yZMncNTjl6xO46myHinwdIsOO0b/hvBdq4Be5u0F47q70X9JD
+JWOyXZ0/eeNdYPIZB7YYDlWTvILdgRVI+IMhW/WGfbWJrgAE6Eu6bduBySMIsKJFjr6WIXMnEvPH
+fTijEPnNnXIsYaB5YpTmsOTUxVB9TRJSMiN+Z+f19RZoRRrHYSUUxKRsn0pZ56FejZRvjITdwx3F
+4raJzIelr8ZQL0i2Kx19F+BwCrSCwWUsG3t7e4HCiU/T4IiUe4r4cMNWQGR+KE3yKdzLOFs7RSAz
+Eb7lxVB/3Icr5g8KIxv18pXhRRj9dMOeNGUjVOYsYF4XnrIjV7ij27B/OeRV4cBeQzVKBi4597oR
+dQFhlmVtfnpTP6oXXZESUUrZ79k7b+0EyscZYDmlDqQyyNz4NdQp4p6maePIsbEj/TEz9EeeRgnz
+Mw2UkIwc2Nk/w1rfSdNWOGW6NE13q8Axh7rMuZh75AEoie1Xi5zMc7rkHWDNRFCVkLbJFmMl/5E9
+yXAkoUVyxMPCb9geQhOoQCEHzzE5BwDTJacAaybiqkkaJRnG1xLSKzzUA4DDabQAaz+u2jhzoJ/1
+1nMHGyac6Yu+chxzNO7jAHHSNGsO1RYMAEgp4yhC5YjyZa06Svkfpz+5Lo7qP1AmfE0CADBuQ2aw
+YpoC1a9aIrL9Uq/v28pda2t3rXlPAQAADpXUAVZCLytH2W3ln3th96Vt86RpnjTrr9fdfQEAwLRb
+u2OtVq0xTYOfUspu2Ttv7DSvN/3lqQIsFRchec1/oXbA+qv15ZOmeft+jAUAAKacYRgXn71YdC1K
+x7zVNI+bwwVYkaHV8q1GoKTj/ndw48br9eWT5vJJM7Bxg5ALAIAppOt60VUoI6thrdy2EihM6uQe
+EV1Neaf17r6EEgAAgPRUW+m6rmmavzB9H6x+XNV4Yz8FtR+BhdNUXmF58lXdbndufwSduxwuKbqO
+AABgKum63mz2WwnTTdMQzlo5A7quly26CiCWAgAAeVGOqugVf8mgDFZkaDVIaaMrrymQAAsAAOSl
+ea0Z6KCWGGAFoqtBoZW/obCE0ZX44qqEBsGNuzeGOGI5UGfqTJ2pM3Uup2msMzKwGpaxbKTefHH/
+oQ14LJ8y/Y+B2wcfIWcfOZvLBfv7sAf6tkeWnH/qfDE/mRFM428vdabO1Jk6U+dyCn8P+r+Rzz6U
+z7fz7NE07f7P3O8vSdHJPUWbYDnzVUJTIAAAhbq6c9VbPrF6YsJnTH9qd6/MNVRK6Yu6tqipdq/1
+L7GT+6Ce7C53sqvwlFeRQwsL5A4bdLmBV7gEAADkJRDrXN25Ghn9TL4mY+LvhjXkvQhjeBms5ZOm
+u+wueE9LIhxFEVcBADAO4ZzQJKOrYc87enZNKVXRK9587vkEWAAAAMnCQc+J1RORbXORDYuBXSRr
+VJR88IF1i2Nds/wZrHTzYAEAAAzPbRaMyyF55f4Nwg2LcU8zpMSSD55yVSSrYfmnwsong+V1t/K3
+D8r+7QhL1UoIAAAmwJ9qkvhe5N5mV3euumsHtu7580xxAmu9Yw7VdDhUhqzRaKx/dF3me/3Xc+6D
+5SlbD3cAADBhgQY48UVR/g0CoVhgl7hjZqjGwIOPdCJHNE3TtN5Awvz7YIVTViSxAAA4zNLknPzC
+3a2ynXFMB0+g63qz3RT6YAEAgHFIMymD1zgYLhzTpFljPbg7kNBdziGDFchOhZNVpK8AADic4vpC
+hTdIGEg47lrlxbL6AwnJYAEAgPydWD0RiJkie7iHV4WXc4yHxnpw/0BC5sECAADjMrAxLnKDyHhr
+YLiW4YwDI7yhNK431k/3BhKSwQIAAMiDI5qm6Yu60EQIAACQI7cbFk2EAABg0sY0jq9wdtuu6JWG
+NMhgAQAA5MMbSJiYwVJFVxMAAGB6WA1r9fZVoQ8WAABAXprNpragCQEWAABAXqrVquooIcACAADI
+i3nc7LQ7QoAFAACQl9otNdu2hQALAAAgL/qi3rJbwjxYAAAgA/NWs7pULers1nWr8U7De7p2as27
+CeDkVY9WLzxzofdkXtwMVlKApS1pk6mZusGEEAAATJPqUvXKS1cKObW+KMaHVhrS8EoqemXL/HpR
+L8W5Y9sXpBdgKaXsti00EQIAAORCX9Jt2xZHhCZCAACQr3PfPud/+vAfPDzpGjzhuw/PV65m2T3D
+XiLGstFqtdzlnDJYjogjKv7hbgAAAGabG109/AcPuw8JxVtj50ZXX7naC5KeGPKmh8Nu72McM9wO
+WJIlg+VkuYOO2t83QMtUBQAAMBW89JUXeHkL/nL/xnFbpuJFVy5/Iiqc1vI2DuwlviRW3F7h44vo
+R/XWW0NlsPzpqFxfdyWiyGwBADBbzn37XGTi6ty3z/mjKPdpZK4rsOUBGSKHhLTWwFgqci+v0EfT
+NNXuBUqJAdYwQdXNlpH5xwAAAGaDP+EUDrMC6SgvhApHUZPruZWpu1UkpZTXRJgUYA2IqxzlPW62
+TBHtZsv0Fw54AACAWeRlpFzJfbAytANmjyGeOJGli1W6vbRFTbWVUr3aDdkBKj4wOvK+3Zu/Wsnl
+UAAAYNql6eGepZfVKLIlq9LtZRwz7JbtPU3RB2tQ2skfVw0XYwEAgNkS1/vKWzve0wc6S0Umn8aT
+x6oeq7baLe9pch+sxLa8/uQL6sjCrjhyZGFXRPXLkx8AAGDm+LtVhRNUgbGBCX2wsvNiLP/YwMjC
+5N2H2kvEMPpzNMjwTYSRpS3f8t5ohxqjbrfrfzo3N+cvdJ8CAIARJTf5RfZzjyvJ2HoYGQmFC/0l
+aZYTDi6izWvubZ5daZoII9JONzuab8H2ba28VYEtCze3T3zRlVcYCL8AAACGkjqDFZNkutkREXWz
+I0cWREQdWeivOrKgbnbitnRLtCMLdG8HAGDqacM0g335Sw8Pu0usEnY0mhel+kMIJfM06kcWxB9I
+DbNlwdGVm7Uqtg4AAEw767pl3l7YyLbWDX/3JKkerZ47tl3gq1GtVpvvNf2R39ABVihBFb1NIK4K
+l5TWxt0bRVeBOpcUdabO1Jk6H4Y6p9R4p9GQRtG16LnwzIULcqHACqydWuu000c5WsTjZjd6ObxN
+eMu47cPOPnI2lwvu7vOeBtYGls8/dX7iP5RRTeNvL3WmztSZOlPncgp/D/q/kc8+lM+38+y5/zP3
+rxzM543UFurvfRUQTlYVkr6iNRAAAIybvqj7hxBK2ps9+yQEVYFtDnZ+T7vvJLmDB12EYgAAIDP/
+EEIZMYOVIBxLlSG6CkdRxFUAAGBEylF22/aXDJ3B8tzs9B7h8oHLAAAAs0Ff0m3bDkwekTHAckcF
+uo/0YwkBAMD0CrSCwWUsG3t7wTvZ5NBEGGj7c4OqQGG4BAAATBfLsjY/vakf1YuuSIkopez37J23
+dgLl4+qDBQAAZsz2q0VO5jldsvfBAgAAQKQcAix6WQEAAPhlDLDcjlbuw3cj5wNrvbmvvGVCMQAA
+cBhk74OVPNNV5DL93AEAwGFAHywAAICcMYoQAACksnbXRu2jm/qSVnRFSkQpZTesneefbl5v+ssJ
+sAAAQCrGytrFG6bcKLoeJWMumebxVwIBFk2EAAAgFV0ndxXBsqVWqwUKCbAAAACyU47oVUPTDkSf
+BFgAAACjWarpuu4vIMACAAAYiVqsVvSKvySxk7squr4AAACl11QVMlgAAAB5stpaIINFgAUAADAS
+yxb9qO4vIcACAAAYSW8g4WJ/ICEBFgAAwMgODiQkwAIAABiV0g4MJCTAAgAAGJV1cCBh0jQN2qTu
+5qhuMCEEAACYYpatfZgMFgAAQI4atlSPVr3MFQEWAABADrRqzbsj4cQDLEfEEXXwAQAAMPV0w+uG
+NT/SgZI53GsHAAAcFkrTK3qleb0p+QdYBFUAAOBQstr9gYQ5NRF67X1FXxsAAEAh/HckHC3AOhhX
+bZzZiNlMDXgAAABMuYYt1VpvIGHGACucr3Kjq00vxiJ+AgAAh4y2ZOiLugwdYMWP+9NE9ixLRMoc
+VHX3JZQAAABktH9HwtSd3BP6Vzlq475NJeI+Nu7b3PrhpcC+ZdDtdufm5vzL4ZKi6wgAACJ0v3On
+tzx39pW4te6qwNNJsuf1il5pSCNVgBU7VZWXqXLUz962RORn9fqHP2iIlCWoAgAAU80fWvlLvOAp
+sEF4+0my2ukyWNGhVagFsPWrVuOtuhtU1Zb0ckZXbsrKWy66OgAAIC1/LioyhAokqyafu3JZtqwu
+LkhygBURXflCq5VTK7sv74qIeceK3VZeUGUrZZ5aqb+8G96yWCkbBDfu3hjioOVAnakzdabO1Lmc
+prHOpRJIVrnmzr7S/c6d3e/c6S74t0zecQKabdEWNBmmD9aBrJV50lRKmSfN+qt1cVT91bq3qv7y
+rnnS7G95h6kcZd5hetsEwq+xypCy2vrrrcnULS8bd29QZ+pMnakzdS6haazz5j2bRVdhulUXRV1T
+knYUYXhUoCP1V3ttggMaBP1bxh1tbOb2TeyMAABgYrwc1dzZV9yH/+nk62PqqtPuyOAAKzzngiPm
+7b4ElS9ZdeAEJ83A2n5JQT203D5YLjfkCpcAAABkVlvs2LYtAwKsUGjlxUb11+uBf/38JeFtwttP
+TDihRYoLAADkRXeaLbslqZsIY9sBE6KlcHIrLt0FAAAQFpjXylVUB/ZU2i03g5Wik3sotEqTgqq/
+XjdPmoHEVaAEAAAgjWJnt0pPNS27bcuAAGu0zlLJTYcAAAADhZNYJc1dieia2NebbviUepoGAACA
+giQEVSWZYlREDF1ab7bc5SFv9rzPPLXiPrynaXYp6oIBAADGzVjsdcCSzAGWiNRf3q2/vEvYBAAA
+ICL6vO0OIZRRAqywyLRWIAIjIAMAADNJa9uq3ZviKnsfLDdU8t/0xlv2bobjLgSeFn35AAAA+VM3
+LK+JMHuAFY6ZwtkpwikAAHAYaPOimntK9TJYeTYRyn7HrIS1NBECAIDZY+hit2zvaZ5NhEIXKwAA
+cChVF1Wr3fKeZgywAnGV+zSyMLCWRkMAADB7jMXW9n4HLMm9iRAAAOAQ0tr9ORqEAAsAACAH9p5N
+BgsAACBHqml5QwiFAAsAAGBE1UVpvte7zbOLAAsAAGAkhi6ddsdfkjiKUAkAAACSGYutuq8DlpDB
+AgAAGJHuNP1DCIUACwAAYFTtlk0GCwAAIEeqadlt219CgAUAAJCdrol948AQQiHAAgAAKdk2w98i
+GLrs7e0FCrPf7BkAABwq1u725kdr+pJWdEVKRCllv1PfaViB8qQAS5vUK6huEBEDAFB22y9tyUtb
+RddiOtBECAAAkDMCLAAAgJxNvA+WI8IU8QAAYKaNM8ByCKQAAMBhlHeARVAFAAAOvZwCLOIqAABm
+3doda7VqTT+qF12RElFK2S17542d5vWmv3y0AOtgXLVxZmPruajRm05Zoq9ut+suzM3NxZUAAIBI
+hmFcfPZi0bUoHfNW0zxuBgKsjKMIlSMqFF2JyOaZjd5zR/Uf5dDtduf2uXFVuAQAAMTRdb3oKpSR
+1bBqtVqgcMgAy+mFVmGayJ5liUipgioAAICxUm2l67qmHZiePXWAFUpZ+VapjTMbSsR9bNy3Gd53
+wAMAAGCaBdJ7qfpgqbgYyMtUOepnb1si8rN6/cMfNETKGDalbAfcuHsjxcHKhTpTZ+pMnalzOU1j
+nZGBclRFrzSbzVRba0ua6FGPRQk81j69Josimogma3evuQtDPELOPnI2lwvu7guXi6+Hu7d8/qnz
+hfxgRjGNv73UmTpTZ+pMncsp/D3o/0Y++1A+386zZ+MTG2t3rPlLkpoIIxJXvv5VK6dW3AXzjhW7
+rbyUla2Uub8qsOXkeX3Y5WA4BQAAkBerYVX0ir8kfR+sA13XzZOmUso8aYoj4qj6y7veqvrLu6J8
+W95hKkeZd5j9koLiLbeJ0OWGXOESAACAYVkNKzA9WLp5sMKjAh2pv143T5rucuK+vi3jjjYp4SiK
+uAoAgHxd3bnqLpxYPZFQ7j4NbJP+4AHDHidfSil9UdcWNdXuBTmDMljhORccMW/3paP8kZOPW+5f
+2y8pX/93AACAEfkHEiYGWKHQyouN6q/XA//6+UvC24S3BwAAs8efbYrLPA3rxOoJ9xH5tEBKKX83
+rJRNhLFrEqKlcHIrLt0FAAAOM39zobecoQ0xcl9/bJfcajmwPIF1zUqdwXKFoqs0Kai4xBXpKwAA
+DoNwaBIXrEQGUqNkvBIyZ3Gr0iwnCwwkTMxgjdZZKrnpEAAAzLyrO1e9fFLcBhITe43S8OdvQwyc
+K3zeuHL3qXsJA8/YaDTWP7ou873wKV0TIQAAwATlEl15khNRw24fzRFN0zStN5BwyJs97zNPrbgP
+72maXTK/UgAAYOqkn44hry7wCQefTEd4rxtW9gyWO7moeWrFP8soAABAeskNiKNLH975t8kWjbkD
+CZvXm5I5gxUpMq0VSFyRxwIAAH7hjlC5c7tSRZ40odx7pDyLZfUHEmYPsNxYKnCTHPfhj7HCT8f3
+8gEAgFJx45UC56kK56Uip2BISF8NMVODbyBhnk2E4ewU4RQAAIdNQoAy7HL6s6QsTBk8ZYsIG9cb
+66d7AwnzbCKU/SRWwlqaCAEAwGxyRNM0fVGXUTJYbqgUCKeInwAAwGGm67pt2xkDrEBc5T6NLAys
+pdEQAADMKrttV/RKQxo5NxECAAAcWt5AQgIsAACAfFgNa2FxQQiwAAAA8tJsNrUFTQiwAAAA8lKt
+VlVnhHsRAgAAIMA8bnbaHRkwTYMqupoAAADTo3ZLrf5mXchgAQAA5EVf1Ft2SwiwAAAAcjMvtm0L
+ARYAAEBelFJ22xYCLAAAgFzoS7pt2+KIEGABAADkwlg2Wq2Wu0yABQAAkAPjmOF2wJLkaRq0JW0y
+FVI3mBACAABMN/2o3nqLDBYAACixqztX3UeaLYuurIiIpmmq3csZEWABAIApVpLoStwhhPtNhBMP
+sBwRR9TBBwAAgJ8bNp1YPSG+EMqf0AoktwLlKVNfqfzZ/5lmK21RU22l1AQyWKFASjmiuAEPAADI
+mz8UO7F6IhCZjSpFjGUcM+yW7T3NO8A6GEsVrtvtBp66EkoAAACCBsVY1WPVVrvlPc0pwCpTUOUJ
+R1dz+9xV4RIAAIBoiTGWYfTnaJBRA6yDcdXGmY2YzdSAxxi4wdM4jgwAAMbK36EqsFCw+BhLm9fc
+2zy7MgZY4XyVG11tejHWmOOngYiuAACYam5XKrc3VUCR8VZ8jOXPYM2nOVRffCOgJmJZlmEYRUVU
+eTn/1PmiqzC0zXs2i64CdS4p6kydqTN1niUnVk+4wwPdhXCht+ytyr8Sf/rfRBTOi1L9IYQyRICV
+0L/KURv3bSoRwzCUyMZ9m1s/vBTYdzK8flSZ01ef//3PT6iuAAAgRiAw8j/1liMLZUxBlScyuhKp
+VqvN95r+gCdVgBU7VZWXrHLUz9623MUPf9AQmVxQ5UezIAAAGJeY6EpEjGWj0+74Swb0wYqeCDTU
+uar1q1bjrXptSW+8UW+1WoVEVwO5QwVdbigWLgEAAIgQH11JaAihJAdYsaGViIisnFpxF8w7Vuy2
+Eke2/25bRGylzP1VgS0nLxA2eZMyJJSIb3KsbHM3ZN5rxPOOIu7syYXJhxpYGPdyeSUJqwBMqWI/
+6yZ8pWlehHBh5JYDC9Pslb6GCEqMrkREX9T9QwhliFGEB1NW5klTKWWeNMURcVT95V0RMe8wRaT+
+8q74OnmZd5jKUe6qXklx8VYa7hvOi7qGff+N+H6NDPgmwH/e5Kg0efKwyLUD5xsLfMRM+NoBTIz/
+AzbbZ+y0GHhdaT5aM3+iMsVjzgZFV64hMlh94YGBjtRfrfeaAvcTXfVX61H7+raMO1ppeL/87tPA
+uz/wN4G3nPCHQtxeaf50S7lvQjVGfzXK2XJ6eP4CBmabP8yK/Bwb6oO3PJI/PMf60Ro4eJoYi0/U
+XChH2W3bXzIowApPZOWIebsvHXXSt3xHsPzAWq+klD20kiWktbx3s7/QXxK5V/o0VWD3wFOvMJff
+ivCv/WR+5QJz66d8TSLzbQDKL6HDQODzLS7XFfnBWx4DP5cmGc0MrAyfqKPTl3TbtgPhTWKAFQqt
++smq1+v+f807TDe6chfc8vCW/pKZke/bMfNv3Zh+KwrPM/OnFTBL/J9U4V/qcP8EiYnGpj0OmMxH
+a0I3r8yfqIFWMLiMZWNvby9QmG4erPicUy9+erXupa+8hkJ/+iquZLpkezsOtVeav3smdr1l+AgL
+Z9T8y2WoIYChBDJPA1vTJL8kfUlM7IMrrnXFk+ET1bKszU9v6kf1yVzCVFBK2e/ZO2/tDLPTosii
+iJb2Yd5lHnh6ygxuECrpPULOPnK2kJcpIXEd2aE7uVvAwL2Sy+P6Wg2sQ+ZrT7M2UKWEgwy1S/jf
+5OPP0qctcGglf3Jm+4wtjzR1S/6czPyJOvAUA1f5FfWNPO2SmwiHmy800Mk93BRY/sbB8J9W6SOk
+ZPl+EERGY7m/GhPOlpGRAmZe8idhmaOlfF+E8R08kO3jc7VAWW72HJ5nIWHmBW9VyWdn8ARa/f39
+/gKFybsPtdfoFRvHr1DkRKyRhd7vc/pdRuH/Q/aQfCIDs8H/ORb+YPSCg8gP3mmX4XMy2yfqsB+5
+fKKOyZA3e95nnlpx576S6Ymc0ot7yyaUpFlOOHjKLVNWbKxXPdRLkaaS/k+NuIXAxvxBBkyv5N/f
+yH7ucSUl/yhIuJZRPm/TXPhQH90lfxmnV5YMVjLz1Ir7kP3Yy5/Emr1oDAAAICBjgFV/edcLnrxU
+lrfKK3EX/E+9HZG79HNrAUCp8PGF2ZOxiTAB8RMAADjkcm4iNE+t1N/Yrb+xO/qhAAAAplT2AMtt
+7Au0D4qIefuKefuBJBY5LQAAgH2ppxgd9RHCtGYAAJRBSb6Rr+5cTSi8unPVexRd0578+2BNtfAU
+IHH3Ew3PdyUHpznxl0xL582ESVPClzZ6YdxJu77buMatgivyDRY3k82Y3rS8bTCUwPtzqLdl2LT8
+ZP31T7jMyF1G+U2ZGclh09WdqydWT8Q9LUr+0zTMgLj7t8eVz4bk6ZXDtyYdsTDu1LP3whZr3G9a
+3jYYihdIZXtb+gcbTt3AQ/9Vy6B3eI6/KTMgLmAqSSAVhwBrJP4PiPDH/RSlr6brT/zuQUVXp0jh
+r6ihbjYw4puWtw1G5AUcM/NZGqnA3xT/LO1eSfhOayX/pRgYRZUzzCLAytmUfgQUW23vD6+UH0P+
+PwSn9AUvlcyvIW8bZJPm63zGfkYFBjFeisu7ec5hS4AVhT5YESIbyxPKMT78wg/k/9wM/6F/ON+0
+vG1KK/DVLofmbRloGSzk1DLo1Z6un0X52w0JsCIkd2yX/b9Fpuu9OKUSum/zI0jjcL5peduUWeAD
+9jD8RMp8gf6Qt8z1nEaJAZYqunaF8icG0mwmvhtnRt4oHjk6DB/K43No37S8bcojchTR4XxbFq7A
+7FruypO+EvpgoSTcT9Jp/90uSuRA98OAt83UKXln6vFdddFVmMq6DatU0ZXQRJjM//eTHL7uLN5X
+V2QOecTCESsmvh/HYfhZZDb5Ny1vGyQIfKjK4fhBpH+H5/XrM2Ldyi8cS5UtuhICrIDw2yvl6KQM
+e5VQoNoDu0aOWBhYlbAQ2HhKX96xGvZNmOOblrcNhpLmx5q88TT+KFNeSI6/PskHTN/zfSq405D6
+JyMtQ7BFgAUAAMrOHzMF4qcyhFNh9MECAADIGQEWAABAzgiwAAAAckaABQAAkDMCLAAAgJwRYAEA
+AOTs/wc9qZzG5OBjKgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMS0wNi0yNVQxODowMToyOS0wNzow
+MJzwhN8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjEtMDYtMjVUMTg6MDE6MjktMDc6MDDtrTxjAAAA
+AElFTkSuQmCC
+--0000000000008c050505f9914c16--
 
-------=_NextPart_000_006E_01D97154.164BFAD0--
-
---===============3962667871217728277==
+--===============5480798521763486004==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -321,4 +1058,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3962667871217728277==--
+--===============5480798521763486004==--
