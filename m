@@ -2,255 +2,218 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A107F6E985E
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Apr 2023 17:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 036016E99A0
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Apr 2023 18:35:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id ABED9383CAA
-	for <lists+usrp-users@lfdr.de>; Thu, 20 Apr 2023 11:35:49 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 212DE384012
+	for <lists+usrp-users@lfdr.de>; Thu, 20 Apr 2023 12:35:11 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682004949; bh=2CiXSJBN/4fg9H34rtH8esn70JDkx7sa7IY7UCdqC/o=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=kunzXCqj3WjFziHq7KkNi1NTW6RwqkF4Bs5rVT+vWeKgmKzFaPE93drOkstZkYTXA
-	 1dHWnOtUvvUglyOR8pmVJIx3xopZ2YVJMPBUSjay9sXg8qMW95UNOtiYAGTUrKUzK5
-	 OaHsNww+yvE9LaM+lLV7VrFlrpkeeb1xra73ScJ4QWuOS/2SMjveEGaEG2bsH/P0Kh
-	 dIrdOsgsesNWGRsGlSjcTaoh7AGLV1iejbu2OsCnr+39QoUnwITBq6TFS10MxWbS9+
-	 0ZcLZsMNn+Yh6n/1+lrzB7txnicT4mt096tj4wIItudyNsidyvk63Q/4fRYaJ1W53a
-	 qTjoIjY1Rk94g==
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-	by mm2.emwd.com (Postfix) with ESMTPS id AD4BB383CAA
-	for <usrp-users@lists.ettus.com>; Thu, 20 Apr 2023 11:35:44 -0400 (EDT)
+	t=1682008511; bh=gyKts5Bp7VeL8kbbWNwhcPpRVvpHNqFhXdqKbR8twJM=;
+	h=To:Date:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=e/SnuJ/5SgCF1qziUY052ROEb5EJlTwgY+xkTYzsT7DCX+QYPNIBGqQE2Ct5/MKa0
+	 B1mffFeGBvX1dipWhkzPjU437qVDIxC25UsHpdLtxBBlid7dKeC0YwiIBN9WAFUwQH
+	 ya8ipZnQbmiQ5Yki4g/v8eQUBeeasebouKgtgV7aXgDwi+e36TwKOmM9JSwmidQQAt
+	 ec7FvT0FYQkNcW/CbnlWXzHu6WfVHkSZYOWZNVQaeT+e4p1B4U2jYOf/EPxOKShxiw
+	 ioCHCPlImcYhwSsUuaPvWXCV87AS8lqtmHNjD0rgQK8DL6fhGmEl4fiT3HKL6mYLhe
+	 k3ZOB/zZ3t+og==
+Received: from dmzms99801.na.baesystems.com (dmzsmtprelay-tx.us.baesystems.com [149.32.232.65])
+	by mm2.emwd.com (Postfix) with ESMTPS id CB6863818C7
+	for <usrp-users@lists.ettus.com>; Thu, 20 Apr 2023 12:34:23 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="LQrtmnFh";
+	dkim=pass (1024-bit key; unprotected) header.d=baesystems.com header.i=@baesystems.com header.b="gT4ch6ar";
 	dkim-atps=neutral
-Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-74e2a00d146so56812585a.2
-        for <usrp-users@lists.ettus.com>; Thu, 20 Apr 2023 08:35:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682004944; x=1684596944;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=836K0YgdMAIUrWG6ZilxlNYMii7TQEuYxUcK/07+yIQ=;
-        b=LQrtmnFhLC6jYrGrdxe7j04LnGJW/9fcikxyJgi3Y0v3h8G7TXcU5pwgKP1Zxrs66o
-         XEMrsuI0w7SCgfOiMUH+ik2CWYWVCmBqolbo8qbV+1BYAlrIL0SzUdt0+/RM8SxY7wRW
-         0CLwferXp8VKYmg2LIAzrOHqR3l9oRLG1Bb32FMhbcmmv8bXKmM9nC8Z+RDOyTzGQuu1
-         TChw43X6/2vGLqF8xTrBqUJ+9ErOS6sB1C+JPUZHKIp4qKdQNcYO9toaxq69yWKny+56
-         YWqoKePZfzDM5z6e/Pc1wALFW/leEXJmhc1wXUWfKin4Q5vMPtHk49tk3eWG+8MXH5rV
-         ffsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682004944; x=1684596944;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=836K0YgdMAIUrWG6ZilxlNYMii7TQEuYxUcK/07+yIQ=;
-        b=BesJ4U9jJG9w9MvXniV9cqh8uz2VsNe6lrm3vvGuh/zMSc5Tgb/T3Fg+witJxsZnxY
-         Yy7JsjHDfaEsOzc0Rv3RO3OMWYn59YcNf6tCl8DZ6IQtJ2oRD4EQTsEHxhWv2D8bwT2e
-         AIlyYh0N3QHyxF/WNg659Egure9IXbwybxSPsf6RGP9DljrvHIWp3Q4jBkYogk1esA1U
-         FuBJpDVEihX5HR4mH0+kjFIasEq4HX+XnYozRl+W/2oGi5BkyaMC1fdVN54K3eRkFWrE
-         vFk2hR+SR3dbKlYOj3HZTVwwOH82Dsre3NkvxUqjNvF174/10ZvkeuJAvalT+cvaO5/o
-         LKiw==
-X-Gm-Message-State: AAQBX9eNLlT3i7SoZ/M3Tr9+SutxHzs6pBUo/CsyNTsNHS77UtWXgNA1
-	HONC3nOh+Mgs93ZljNYRzYShla8XmH4=
-X-Google-Smtp-Source: AKy350YBnn4iK7vy/7vN7E2s/q1rePuwxKW2JS3EtDUgNUe9a5vI3o9uvS+y0Y85HrYTnouG7kQA5g==
-X-Received: by 2002:ac8:5701:0:b0:3bf:cea5:7004 with SMTP id 1-20020ac85701000000b003bfcea57004mr2931423qtw.51.1682004943848;
-        Thu, 20 Apr 2023 08:35:43 -0700 (PDT)
-Received: from [192.168.2.196] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id p141-20020a374293000000b0074de75f783fsm519271qka.26.2023.04.20.08.35.43
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Apr 2023 08:35:43 -0700 (PDT)
-Message-ID: <31d16ea1-8f7a-252b-a6b2-99a5e3c44fec@gmail.com>
-Date: Thu, 20 Apr 2023 11:35:42 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.0
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=baesystems.com; i=@baesystems.com; q=dns/txt;
+  s=trusted01; t=1682008463; x=1839688463;
+  h=from:to:subject:date:mime-version;
+  bh=2SFafR80EJvBVSBewQOq+JXBBFUV8B6co/ZngaI6BNY=;
+  b=gT4ch6arbWGIacb/956Qog/PEUFuTsGx6itCAbZnxmqEQH23w71uRjQL
+   Hwjr4hCDFI+X479WQl2seqdA5xYDBt0eL9eFXrof65ST4j1QaXYpJaMTe
+   gKeoUgiD4Jzbt5PATPtEOdkaJYPCql9EUluBXFeosq55A+kyzlg139DR3
+   U=;
+X-IPAS-Result: =?us-ascii?q?A2CNBADYaEFk/0LBJQpaHgEBCxIMQAmBOwuBK4F2AoF1t?=
+ =?us-ascii?q?UgPAQEBAQEBAQEBCAFEBAEBikUmNwYOAQIEAQEBAQMCAwEBAQEBAQMBAQYBA?=
+ =?us-ascii?q?QEBAQEGBAGBHIUvOgyCNyKDXl4BDAlrJgEEG4J3ghVHqyiBNBoCZYRznFGBQ?=
+ =?us-ascii?q?QGBZ4VpemKDWRWHApAEBJUoaYEzdIEngTOBBAIJAhFrgRAIaIFzQAINZAsOb?=
+ =?us-ascii?q?oFFgTSBZAQCFEIMGDYHNgNEHUADCwduPTUUHwYCAYJpBHCBFFG9MqJlBwODf?=
+ =?us-ascii?q?qB1LheXMwOSDIYakV0goj2FGQIEAgQFAhaBeYF/cIM4URcCohqBMgIHCwEBA?=
+ =?us-ascii?q?wmKMYEUAQE?=
+IronPort-PHdr: A9a23:vh28khfWUn9QsrZI1ncu+D8clGM+Id7LVj580XLHo4xHfqnrxZn+J
+ kuXvawr0AWUG96DsbkV2qL/iOPJZy8p2d65qncMcZhBBVcuqP49uEgeOvODElDxN/XwbiY3T
+ 4xoXV5h+GynYwAOQJ6tL1LdrWev4jEMBx7xKRR6JvjvGo7Vks+7y/2+94fcbglWhDexe71/I
+ AmooQnessQbhZZpJ7osxBfOvnZHdONayH9yK1mOhRj8/MCw/JBi8yRUpf0s8tNLXLv5caolU
+ 7FWFSwqPG8p6sLlsxnDVhaP6WAHUmoKiBpIAhPK4w/8U5zsryb1rOt92C2dPc3rUbA5XCmp4
+ ql3RBP0jioMKjg0+3zVhMNtlqJWuBKvqQJizY7Ibo+bN/t+cb/Sct4BX2VNQsRRWjZdDo+gc
+ YcCCfcKM+ZCr4n6olsDtRWyCxetBOPrzj9InXj23asi3+88DAzG2xcvFM8KvHvasdv5MakeW
+ v2ywanSyjXMdO1Z2S3h6ITSbhAhoPWMXbZrccrWz0kiDBjKgU+Opoz+PzKVzfgNvHae7+p7T
+ +6gl2knqwRorzWp28wjhZXHiJgPxVDY6SV23pw1JdugRUB1fdOpDZhduz+eOoV2Qs4vX25lt
+ TonxrACpJK2cysHxZUnyhDfdvCKb4eG7xPsWeifPzp2inBoda+hihiy7UWtzPD3WMqs0FtSs
+ yZJjsPAu34P2hDJ98SKTvVw8l2g1DuOzwzf9/1ILVo7mKbFMZIt3KA8m5sJvUjeHSL6hUP7h
+ 7KMeEo+4Oin8eHnb63jpp+bKoB7lBnzMr8rmsyjGeQ4NRUOX3SD9eS8yrLj+Ur5Ta1Mjv02l
+ KnWqpXaJd8Yq6O5HwNZzpsv5wy5Dzi8ytgXhmMII0xeeBOHlIjpJ0/BIPXjDfuln1uslzJry
+ +jHPr3nHJrNMmDOnKr9cbpn5UNRyhA/wc1b6p9aEL0MIfP+Vlf0tNPCDx85NwK0w/zgCNV4z
+ o4eQ2WPDbSHP6PIrV+E/P4vI+iIZI8Rozb9LP4l6uX1gnAjh1AdZqmo3YALaH+mG/RmOF+Vb
+ mbrgtcECWsKuBExQ/TwiFKeST5Te2qyX6Uk6z0mEI6mF5vMRpixgLyd2ye2BoBWZntcClCUC
+ Hvoap6EVOkWaCKJOcJhlj0EVaO9S486zx2hqhP6y6Z6LurP4CEXqZXj1N0mr9HUwFsv7iZsS
+ tmG3nuWZ2V1hX8TATIqwL1k50d6zx3LhbVjmeQdCMde/ehhVgYhKYWawvBmFsu0UQXEKISnU
+ lGjF5+aADU1VdU3h5ckZEw1W+iZz1qLizCtCbIPi/qXBZgw6aXa93L4Kt1s0GrL0bJnhF4jF
+ JgcfVa6j7JyolCAT7XClF+Uwv7CSA==
+IronPort-Data: A9a23:njGKz6yNmEPQwLsLiFF6t+eDxCrEfRIJ4+MujC+fZmUNrF6WrkUCx
+ 2ZJWTiEMviLa2vyf4h0adjlox8A7JTcx9M2QVRq/lhgHilAwSbn6XR1DatS0we6dJCroJdPt
+ p1GAjX4BJloCCWa/H9BC5C5xVFkz6aEW7HgP+DNPyF1VGdMRTwo4f5Zs7dRbrVA3J7oUmthh
+ fuo+5eEYAP/g2YqWo4pw/vrRC1H7ayaVAww4wRWicBj5Df2i3QTBZQDEqC9R1OQrl58R7PSq
+ 07rldlVz0uBl/sfIorNfoXTLiXmdoXv0T2m0RK6bUQDbi9q/UTe2o5jXBYVhNw+Zz+hx7idw
+ /0V3XC8pJtA0qDkwIwgvxdk/y5WG5x79uPaBGCDvePO9VPleGv0yMdMJRRjVWEY0r4f7WBm8
+ /weITUWPk3b37vwxrv9QOBhndU4MMTuJ8UUvXQIITPxVK5gGs+FGvSRo4EGtNszrpkm8fL2f
+ c0TZCBzKgjBZxlUPVE/Apszh/azmnT6aHtTr1f9Sa8fszWKkVcgjOWF3Nz9WNeHddhtpE+jp
+ WPC/HSmLCMmE4SU8G/Qmp6rrqqV9c/hY6oPD6egs+NxjUeI7mgSEwENE1anveSizEW5Xrpix
+ 1c8o3Jo9vd0rR3wCIejN/GlnEO5Utcnc4I4O4UHBMulkMI4Py7x6rA4cwN8
+IronPort-HdrOrdr: A9a23:nX2zPqlfl7jGN2sS399U1RoGbgnpDfLw3DAbv31ZSRFFG/Fw9v
+ re58jzsCWetN9/Yh8dcLy7VZVoAkmskaKdmLNxAV76ZmnbUQiTXeNfBOnZskXd8kTFn4Y26U
+ 4HSdkaNDSaNzdHZKjBjDVQXOxQp+VvXZrY49v23jNGdykvQadl9gJ4AgGQHglNQhVcD5ZRLu
+ v+2iMCnUvYRUgq
+X-Talos-CUID: 9a23:E9pDhG3d4bWZmbLhag6rObxfPPEYfCHA6W/sL2DlM3hKQ62NQm2y0fYx
+X-Talos-MUID: 9a23:eB8+RgYSWUF1peBTlTThtCxaDs5T4KWqC1BSv6c6nJGPDHkl
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-AV: E=Sophos;i="5.99,213,1677542400";
+   d="scan'208,217";a="85153945"
+X-IronPort-AV: E=Sophos;i="5.99,213,1677542400";
+   d="scan'208,217";a="382187919"
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Thread-Topic: A2D bit depth vs IQ
+Thread-Index: Adlzpem4Y6Iq6SSGRgq4XgTwbXwwvg==
+Date: Thu, 20 Apr 2023 16:34:19 +0000
+Accept-Language: en-US
 Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <qHfhYWYF1uR4qSn7QPB8eeDQJncgEjTaXawCkVcsw@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <qHfhYWYF1uR4qSn7QPB8eeDQJncgEjTaXawCkVcsw@lists.ettus.com>
-Message-ID-Hash: R6NWZHXFVA4RBKPDYM4YLFEIZKZ2FJ7G
-X-Message-ID-Hash: R6NWZHXFVA4RBKPDYM4YLFEIZKZ2FJ7G
-X-MailFrom: patchvonbraun@gmail.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.42.226.181]
+MIME-Version: 1.0
+Message-ID: <168200846413.31234.6062160993291765058@mm2.emwd.com>
+Message-ID-Hash: S2OO5EHRJB2FXIGBVNOD4ROVQIDCQVNY
+X-Message-ID-Hash: S2OO5EHRJB2FXIGBVNOD4ROVQIDCQVNY
+X-MailFrom: robert.tillson@baesystems.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: time tags seem don't seem to match sample count
+Subject: [USRP-users] A2D bit depth vs IQ
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/R6NWZHXFVA4RBKPDYM4YLFEIZKZ2FJ7G/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/S2OO5EHRJB2FXIGBVNOD4ROVQIDCQVNY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0057170603994552648=="
+From: "Tillson, Bob (US) via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: "Tillson, Bob (US)" <robert.tillson@baesystems.com>
+Content-Type: multipart/mixed; boundary="===============5279819908011887828=="
 
-This is a multi-part message in MIME format.
---===============0057170603994552648==
-Content-Type: multipart/alternative;
- boundary="------------ni7VDZ02SFRiwRxM9EXX0wdN"
+--===============5279819908011887828==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_b7972273540b436d9402f6b224c69905baesystemscom_"
 
-This is a multi-part message in MIME format.
---------------ni7VDZ02SFRiwRxM9EXX0wdN
-Content-Type: text/plain; charset=UTF-8; format=flowed
+--_000_b7972273540b436d9402f6b224c69905baesystemscom_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On 20/04/2023 10:30, jason@gardettoengineering.com wrote:
->
-> Thank you Marcus, that is helpful.
->
-> I have restricted my testing to just an N320, and only freq changes=20
-> for now.=C2=A0 I have run across something else that is odd though (but=
- has=20
-> major ramifications for my blocks).=C2=A0 Most of the time there are no=
-=20
-> drops and everything is fine, but here is an example of what I=20
-> occasionally see:
->
->  *
->
->     I have an N320 running at 100Msps at freq X, all is running smoothl=
-y
->
->  *
->
->     I issue a freq change command, and based on time tags, see that it
->     occurred 10.2s after the last time tag (for example)
->
->  *
->
->     When I see the new time tag, I count the number of samples between
->     them as see that I have 1020.2e6 samples
->
->  *
->
->     But if I compute what I would have expected, it should be 1020e6
->     samples
->
->  *
->
->     That means that I have more samples than I would have expected
->     (200 in this example).=C2=A0 I didn't drop samples, I gained some?=C2=
-=A0
->     That doesn't seem right.
->
-> A third anomaly I see is that I go through the steps above, but=20
-> compute that I am missing 7 samples.=C2=A0 But if I am watching the scr=
-een,=20
-> I don't see any overflows printed.=C2=A0 Since it is such a small numbe=
-r,=20
-> it makes me feel like it is a rounding error somewhere.=C2=A0 But if I =
-make=20
-> that assumption and ignore it, what is the threshold for when it is no=20
-> longer rounding errors, but is an actual drop?=C2=A0 Is there any way t=
-o=20
-> get the O/D flags into the stream from the USRP source block within=20
-> gnuradio?
->
-> TIA
->
->
-This question straddles the boundary between UHD and Gnu Radio.
+Hello peeps,
 
-In Gnu Radio tags arrive with an offset value that tells you which=20
-sample within the buffer that was handed to you by the
- =C2=A0 scheduler the tag applies to.=C2=A0 If you aren't accounting for =
-that,=20
-this may be the cause of the occasional confusion?
+Just wondering if anyone could point me to where the mapping between bits a=
+nd IQ takes place.
 
-I'd suggest clarifying the tag behavior on the Gnu Radio mailing list.
+Curious if the strategy is the same across platforms even though bit depth =
+varies (b205: 12 bits, X310: 15 bits, N310: 16 bits, X410: 12 bits...).
 
+The above info in general would be useful, what I am really looking to do i=
+s spot saturation from the IQ only since I don't know of any other place wh=
+ere something
+like the saturation flag is passed through.
 
+Any thought would be greatly appreciated.
 
---------------ni7VDZ02SFRiwRxM9EXX0wdN
-Content-Type: text/html; charset=UTF-8
+Thanks,
+
+--_000_b7972273540b436d9402f6b224c69905baesystemscom_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 20/04/2023 10:30,
-      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:jason@gardetto=
-engineering.com">jason@gardettoengineering.com</a> wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:qHfhYWYF1uR4qSn7QPB8eeDQJncgEjTaXawCkVcsw@lists.ettus.c=
-om">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <p>Thank you Marcus, that is helpful.</p>
-      <p>I have restricted my testing to just an N320, and only freq
-        changes for now.=C2=A0 I have run across something else that is o=
-dd
-        though (but has major ramifications for my blocks).=C2=A0 Most of=
- the
-        time there are no drops and everything is fine, but here is an
-        example of what I occasionally see:</p>
-      <ul>
-        <li>
-          <p>I have an N320 running at 100Msps at freq X, all is running
-            smoothly</p>
-        </li>
-        <li>
-          <p>I issue a freq change command, and based on time tags, see
-            that it occurred 10.2s after the last time tag (for example)<=
-/p>
-        </li>
-        <li>
-          <p>When I see the new time tag, I count the number of samples
-            between them as see that I have 1020.2e6 samples</p>
-        </li>
-        <li>
-          <p>But if I compute what I would have expected, it should be
-            1020e6 samples</p>
-        </li>
-        <li>
-          <p>That means that I have more samples than I would have
-            expected (200 in this example).=C2=A0 I didn't drop samples, =
-I
-            gained some?=C2=A0 That doesn't seem right.</p>
-        </li>
-      </ul>
-      <p>A third anomaly I see is that I go through the steps above, but
-        compute that I am missing 7 samples.=C2=A0 But if I am watching t=
-he
-        screen, I don't see any overflows printed.=C2=A0 Since it is such=
- a
-        small number, it makes me feel like it is a rounding error
-        somewhere.=C2=A0 But if I make that assumption and ignore it, wha=
-t is
-        the threshold for when it is no longer rounding errors, but is
-        an actual drop?=C2=A0 Is there any way to get the O/D flags into =
-the
-        stream from the USRP source block within gnuradio?</p>
-      <p>TIA</p>
-      <br>
-    </blockquote>
-    This question straddles the boundary between UHD and Gnu Radio.<br>
-    <br>
-    In Gnu Radio tags arrive with an offset value that tells you which
-    sample within the buffer that was handed to you by the<br>
-    =C2=A0 scheduler the tag applies to.=C2=A0 If you aren't accounting f=
-or that,
-    this may be the cause of the occasional confusion?<br>
-    <br>
-    I'd suggest clarifying the tag behavior on the Gnu Radio mailing
-    list.<br>
-    <br>
-    <br>
-    <br>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello peeps,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Just wondering if anyone could point me to where the=
+ mapping between bits and IQ takes place.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Curious if the strategy is the same across platforms=
+ even though bit depth varies (b205: 12 bits, X310: 15 bits, N310: 16 bits,=
+ X410: 12 bits&#8230;).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The above info in general would be useful, what I am=
+ really looking to do is spot saturation from the IQ only since I don&#8217=
+;t know of any other place where something<o:p></o:p></p>
+<p class=3D"MsoNormal">like the saturation flag is passed through.<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any thought would be greatly appreciated.<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+</div>
+</body>
 </html>
 
---------------ni7VDZ02SFRiwRxM9EXX0wdN--
+--_000_b7972273540b436d9402f6b224c69905baesystemscom_--
 
---===============0057170603994552648==
+--===============5279819908011887828==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -260,4 +223,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0057170603994552648==--
+--===============5279819908011887828==--
