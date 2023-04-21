@@ -2,144 +2,189 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72FB36EAE91
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 17:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B70B96EB1BE
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 20:39:02 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3C77E383DD8
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 11:59:44 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 36719384669
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 14:39:01 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682092784; bh=VTTc1akNG5HtcQrFNLzKHssKc3UDd45bV3AIuZ252QU=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=pHMtMSHn5+6INxlDdHUHcDLoi14AZFeq5t5PzAgLWZ+NwW3mED9zmC9t34deCkQIf
-	 PTvlRKpB7goOi8HDrvVZWZL1cdva7Cd+sfwlphALdbJXu4xYSZGOfTIth3UMhdvG9k
-	 uJUNg/OPNR2R8F4O4bte+7SNppOofgzzt/lWOxbT5xTtfs5zZXlT2J6OQgcF/sadkc
-	 V1hNQpfIYkRPre9x+/+ss+6QrP2fsKy2HC6FmkO/d943QGsTZS5a1LAD8yOxKl9ygj
-	 NlmyePrjujRHIGzUhtgVuaBcy+IfF/Q2E91mIxosaj/XvB1pAEpzMK/k1CDuUJq4gg
-	 ra6fi3CvT4zzw==
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 68A8B3811B4
-	for <usrp-users@lists.ettus.com>; Fri, 21 Apr 2023 11:59:22 -0400 (EDT)
+	t=1682102341; bh=U1usu2jLZM28wPBoXSLLkOWmJleoh6hacdqPFQdrZNM=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=lxdkU6vTlo1fxlx2EfNWYOpCv441wqbd19N6W9sfGIsfZ6HunH27nUDL50m9R6kJc
+	 kIhkEauxvfVT1FBNTp3mBXz/Oh1gUs3I37UQ1lcxT8xfutlkTCrRi3vvQ5gHGYNdtV
+	 vAQsbeADvdiAM9dfIG87OCwPX1hanpBTrh8dYbKzjWqeFKwzJFNEHeN6ZpVQxDWmv+
+	 0YmoGdUUUARe5XiTygt+vKhF+zMfQZIkSUDuiU3Pz+cHl/non7/1MhfbeXBmr/kwqW
+	 TtU1pY3K1bP99j5enVTJo4bwUvBMFSu47aRGncJm0Kvs5ilNPubbSS93z7JeMWwZ8s
+	 jFEXVg7ZMJhBQ==
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id 75CEB384669
+	for <usrp-users@lists.ettus.com>; Fri, 21 Apr 2023 14:38:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="FUHV2YzU";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="RY2B4bQL";
 	dkim-atps=neutral
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5050491cb04so2722317a12.0
-        for <usrp-users@lists.ettus.com>; Fri, 21 Apr 2023 08:59:22 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-50506111a6eso3510402a12.1
+        for <usrp-users@lists.ettus.com>; Fri, 21 Apr 2023 11:38:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1682092762; x=1684684762;
+        d=gmail.com; s=20221208; t=1682102319; x=1684694319;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QmDYO5Y2UZme5PzjAs6tFVhwlTnXYdg7AN2jWyXIBYg=;
-        b=FUHV2YzUU/2imtBamsxrEwo1Q1CfSheZp1RDnsxMTL90YndTR88bLEDYWBWwbIMloi
-         ZXQ0gbpdGQUWex2FUOwiq4z8jpjoaX4j2lDm+hMQdaP0YENxe/bEp+G9aOca1JPFfGlk
-         HW+qfg+Yu5c7zTGSCgg4B5mP8gJCCLb7UF+UBVOLqYY9JmjNekqc/pVpQrU/uiHRHXgP
-         Nalw9Ab/5hhVD58itPUpmPpo4rVEhjktwEAlbSMS3WF7GMjFPat6s/twjf6V8n6FKkDh
-         +NOJAUVWZAwiE/4J9MDRUykwywXji+UyI3ZDYnFArRh7Z5UUazWTWCEHwG+jMYDjorlv
-         yADw==
+        bh=nvgXjpIYmIuoHB34zd1Xqiqpf/8FEXxUACG6aIrCIII=;
+        b=RY2B4bQLuvUhVstdQOiUKw4y8TBhadetYnV1iz8I4edVWm41O6l7l1b+xVd3gyFKdC
+         LYHbEoBOi4oJy5thxUj1rEVydspQsiAHUhcu+AyUV+BeEZUa4uI5LsPKmbc0O2yU4A1W
+         /e4mBGZG5RGJP65VQ3mWHnK1p5AcipzY/9KPCdrQxKy1k9VKjCapgAkh2016V1tUgXTP
+         6lDcynnLaWPBVkzeZmHExEfarB25L5T260fyUGTJmQFh9MR/9ReKYL/bCIOjwAt7jJzP
+         1aZhNFSBJC+H9WJG6nfP9dtWN9zaULsEuwDdJ9x4nP3POrlFxccuQNzCGVCgX1ouwzGQ
+         Ns8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682092762; x=1684684762;
+        d=1e100.net; s=20221208; t=1682102319; x=1684694319;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QmDYO5Y2UZme5PzjAs6tFVhwlTnXYdg7AN2jWyXIBYg=;
-        b=io3E9D6e5uI5V3Ibn5xXnCuP+eF2CCZAxCHAQVZBHm4lemLpSHOZcIwYjFfH6UqW8j
-         ITrcwUMx5IFk5m3RqK1w0oIIVKIdk1ZILvjBkP8ol1/jgAQiI3/bOga/INxtjbWimBv4
-         JpTeiQQ02RukN3PKVo2Pe9t99E1+IHvcIfBsU60fjqE5oPyfsSJDF9u9xt0/dO1dootU
-         I2Yo2WyS0i5kzLZbYigIqnUE9m8QXQ8wPH+sZQGcV7vd4PgwvqWW2AdNtnphFDOpby5c
-         A6gbEwAfXKz1XNPppZsGVLl8rUwTc54k/4efVS3TZSl3K6BKduW5CQROcC613m96rJql
-         +gxw==
-X-Gm-Message-State: AAQBX9fU16khGKvgtPNQn3hWtsrKgP+RX+d6Ar51wsOay6H8dnB1gSCU
-	EJwpJE7ld+LeI1tyuV+pCwo8SYK1CXhtmyqbgXL8uA==
-X-Google-Smtp-Source: AKy350bVQzHV0gSzkMJ0qO6B2RImFGtUvZ2OJJO+iN5lxkQOeAOZ6Dpq98uZi2kSss7oswFnaNbvGS32af+gT9/Jmq8=
-X-Received: by 2002:aa7:df0d:0:b0:506:9984:9239 with SMTP id
- c13-20020aa7df0d000000b0050699849239mr4691661edy.26.1682092761576; Fri, 21
- Apr 2023 08:59:21 -0700 (PDT)
+        bh=nvgXjpIYmIuoHB34zd1Xqiqpf/8FEXxUACG6aIrCIII=;
+        b=W8J5mwCOYvdCp8qXkOZvt/xZUxcWvEBckSTQMSkzuYvUoegKQ+IwI5/tfpR0wurYqh
+         beCwgtDGfBiQfHHMWyrmrHjdXRG9VzTszg2K9CdL0POYwFUjWEohJaNCVein1tfxB0S5
+         jByeu9dR/ZoPtDV9mOId8bcXZcakvyqNifY+pBmcqX1spujr+Ej7r++BOobv/2ng+wmP
+         RZmQMx0cPRVK0nrOGR0K1iqe92eOLHi1RyMt6zz1gelBIDN6jteXhQUeUPhlTkBNcWQn
+         5Uxaz776qMLYmzVW0jUJ2UaZSzb9emrLE9nEHqFEt8169D4lMa3o114ssIEjqdL7NCpj
+         YV9w==
+X-Gm-Message-State: AAQBX9ee5UjR7HuU0gf5KMQM60hRybc2D+zHbSwovmteooJGcFUI/sTE
+	kKo1pEKgPBbisQb7eQW4cSWTHBAlBBAYdzjv7TsLEyxv
+X-Google-Smtp-Source: AKy350YeWdLdUOT7TJMnGItgpffpphggTlwKNrLGbmFUqTuzH1Hhfn16q1ReZcILhQzaU2HGRd6CqNEMTOCoKeR6Rzg=
+X-Received: by 2002:a17:906:fa14:b0:94e:ffab:296a with SMTP id
+ lo20-20020a170906fa1400b0094effab296amr2899162ejb.73.1682102318952; Fri, 21
+ Apr 2023 11:38:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <RECd6VBYG6MmBBgvJOXhYlGEvb6P2zq5tSK8mqPeF0@lists.ettus.com>
-In-Reply-To: <RECd6VBYG6MmBBgvJOXhYlGEvb6P2zq5tSK8mqPeF0@lists.ettus.com>
-Date: Fri, 21 Apr 2023 10:59:10 -0500
-Message-ID: <CAB__hTS2MZCTJAHiXMcKRfcOue-yR-CX6CjPnni2a1vs3SLrYQ@mail.gmail.com>
+References: <cPLSfXQbPtmOYLD4qcX1ZXQmkxMOb08nPk3YtZmbmYk@lists.ettus.com>
+In-Reply-To: <cPLSfXQbPtmOYLD4qcX1ZXQmkxMOb08nPk3YtZmbmYk@lists.ettus.com>
+From: Brian Padalino <bpadalino@gmail.com>
+Date: Fri, 21 Apr 2023 14:38:28 -0400
+Message-ID: <CAEXYVK505qeVip+vbJ9NXXZMZE2WSZQDXFy7O6jutS2Rh+rocw@mail.gmail.com>
 To: jmaloyan@umass.edu
-Message-ID-Hash: AZE4RXBHWIAWWY7FZSKJDRGB2QSS26BM
-X-Message-ID-Hash: AZE4RXBHWIAWWY7FZSKJDRGB2QSS26BM
-X-MailFrom: rkossler@nd.edu
+Message-ID-Hash: 6XPCLYL7IQ5SEUCNQXUNJDME2JZAOZ7M
+X-Message-ID-Hash: 6XPCLYL7IQ5SEUCNQXUNJDME2JZAOZ7M
+X-MailFrom: bpadalino@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Trouble recieving data from antenna
+Subject: [USRP-users] Re: Overflow using Keep One In N block
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AZE4RXBHWIAWWY7FZSKJDRGB2QSS26BM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6XPCLYL7IQ5SEUCNQXUNJDME2JZAOZ7M/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============7305108289703153485=="
+Content-Type: multipart/mixed; boundary="===============5827812793141844611=="
 
---===============7305108289703153485==
-Content-Type: multipart/alternative; boundary="00000000000088b1f805f9dabd25"
+--===============5827812793141844611==
+Content-Type: multipart/alternative; boundary="00000000000032758a05f9dcf7ff"
 
---00000000000088b1f805f9dabd25
+--00000000000032758a05f9dcf7ff
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Could there be an issue with packet lengths?  Does the "spp" from the radio
-need to match the "N" from the keep_one_in_N? I'm not sure one way or the
-other or whether the answer depends on the setting of "packet_mode /
-sample_mode".
+The X4_400 image has no decimation inline.  That means that the block needs
+to be able to handle 491.52 or 500 Msps coming into it.  That means more
+than 1 sample per clock being fed into the block.  If you don't handle more
+than 1 sample per clock going into the block, then you will get overflows
+because the RFNoC framework is translating from N samples per clock down
+into 1 sample per clock at the clock rate - my guess is it's either 122.88
+MHz or 245.76 MHz? - which isn't fast enough to keep up.
 
-Which device are you using?
-Rob
+I was recently told that the DRAM clock is 250 MHz which makes for a
+perfect computation engine clock for 491.52 Msps data, but still slightly
+slow for a 500 Msps stream due to the RFNoC header overhead.
 
-On Wed, Apr 19, 2023 at 4:16=E2=80=AFPM <jmaloyan@umass.edu> wrote:
+tl;dr: Use multiple items per clock in that block to avoid overflow with
+the X4_400 image.
 
-> I have noticed after further troubleshooting that my antenna light
-> actually appears to blink periodically. And I also seem to be getting
-> overflow errors, even though my data rate is quite small(~5e6 samples per
-> second, 32bits/sample, over ethernet).
+Good luck.
+
+Brian
+
+On Thu, Apr 20, 2023 at 6:41=E2=80=AFPM <jmaloyan@umass.edu> wrote:
+
+> Hello,
 >
-> When I use the same data rate with the default image, I get a solid green
-> light on the antenna, and no overflow message in the metadata.
+> I am currently working with the X410(X4_400 image) using other the 1Gbe
+> ethernet only(for now) and an image that uses the following RFNOC graph
+>
+> Active connections:
+>
+> * 0/Radio#0:0-->0/KeepOneInN#0:0
+>
+> * 0/KeepOneInN#0:0-->RxStreamer#0:0.
+>
+> Regardless of any value of N I use(even when the maximum value is used), =
+I
+> get an overflow error. Though it does appear to effect the number of
+> samples I recieve: higher values of N gives lower data rates. The data
+> rates I do get however are far lower then expected despite the overflow
+> errors. For example, for N =3D 100, I get around 0.37 KSps, when I would
+> expect around 4-5 MSps.When I request data using the default images
+> however, I am able to achieve much higher data rates, at least 10 MSps. A=
+ny
+> tips is very appreciated.
+>
+>
+> Thanks,
+>
+> Joe
+>
+>
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000088b1f805f9dabd25
+--00000000000032758a05f9dcf7ff
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Could there be an issue with packet lengt=
-hs?=C2=A0 Does the &quot;spp&quot; from the radio need to match the &quot;N=
-&quot; from the keep_one_in_N? I&#39;m not sure one way or the other or whe=
-ther the answer depends on the setting of &quot;packet_mode / sample_mode&q=
-uot;.<div><br></div><div>Which device are you using?<br><div>Rob</div></div=
-></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr"=
->On Wed, Apr 19, 2023 at 4:16=E2=80=AFPM &lt;<a href=3D"mailto:jmaloyan@uma=
-ss.edu">jmaloyan@umass.edu</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><p>I have noticed after further troubleshooting t=
-hat my antenna light actually appears to blink periodically. And I also see=
-m to be getting overflow errors, even though my data rate is quite small(~5=
-e6 samples per second, 32bits/sample, over ethernet).</p><p>When I use the =
-same data rate with the default image, I get a solid green light on the ant=
-enna, and no overflow message in the metadata.</p>
+<div dir=3D"ltr">The X4_400 image has no decimation inline.=C2=A0 That mean=
+s that the block needs to be able to handle 491.52 or 500 Msps coming into =
+it.=C2=A0 That means more than 1 sample per clock being fed into the block.=
+=C2=A0 If you don&#39;t handle more than 1 sample per clock going into the =
+block, then you will get overflows because the RFNoC framework is translati=
+ng from N samples per clock down into 1 sample per clock at the clock rate =
+- my guess is it&#39;s either 122.88 MHz or 245.76 MHz? - which isn&#39;t f=
+ast enough to keep up.<div><br></div><div>I was recently told that the DRAM=
+ clock is 250 MHz which makes for a perfect computation engine clock for 49=
+1.52 Msps data, but still slightly slow for a 500 Msps stream due to the RF=
+NoC header overhead.</div><div><br></div><div>tl;dr: Use multiple items per=
+ clock in that block to avoid overflow with the X4_400 image.</div><div><br=
+></div><div>Good luck.</div><div><br></div><div>Brian</div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Apr 20, =
+2023 at 6:41=E2=80=AFPM &lt;<a href=3D"mailto:jmaloyan@umass.edu">jmaloyan@=
+umass.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><p>Hello,</p><p>I am currently working with the X410(X4_400 imag=
+e) using other the 1Gbe ethernet only(for now) and an image that uses the f=
+ollowing RFNOC graph</p><p>Active connections:</p><p>* 0/Radio#0:0--&gt;0/K=
+eepOneInN#0:0</p><p>* 0/KeepOneInN#0:0--&gt;RxStreamer#0:0.</p><p>Regardles=
+s of any value of N I use(even when the maximum value is used), I get an ov=
+erflow error. Though it does appear to effect the number of samples I recie=
+ve: higher values of N gives lower data rates. The data rates I do get howe=
+ver are far lower then expected despite the overflow errors. For example, f=
+or N =3D 100, I get around 0.37  KSps, when I would expect around 4-5 MSps.=
+When I request data using the default images however, I am able to achieve =
+much higher data rates, at least 10 MSps. Any tips is very appreciated.</p>=
+<p><br></p><p>Thanks,</p><p>Joe</p><p><br></p>
 
 _______________________________________________<br>
 USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+</blockquote></div>
 
---00000000000088b1f805f9dabd25--
+--00000000000032758a05f9dcf7ff--
 
---===============7305108289703153485==
+--===============5827812793141844611==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -149,4 +194,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7305108289703153485==--
+--===============5827812793141844611==--
