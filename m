@@ -2,158 +2,347 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6A616EAC19
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 15:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44F4E6EAC84
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 16:12:30 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 0AFB8383E26
-	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 09:55:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5ACD9380A83
+	for <lists+usrp-users@lfdr.de>; Fri, 21 Apr 2023 10:12:29 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682085304; bh=jp7y/AkjwwjLPasJmylRWdPNJVagMhN8goo3kX41pwk=;
-	h=Date:To:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:
+	t=1682086349; bh=+amnPW5C6YKVb3j4JkwgTZsi9b6UV8a7A7R9LwZPzaI=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=nb0z5v0zZUH3UR9uTGYp8zC+E5pnlHdbEGoRv70rNzvq/tSyn/DUby5I+dCsN/l6J
-	 T7wmpi+vo/mVR6XucLjI9oiNuesNmhU/M2ZSU5FtvBaDQbptZlOpihPFFDfHoi2agE
-	 KwTVeqnE5QBy5kGjnzx+Mz0hrB90jAioF1nhd+bQMdXnrDHqindiHC9VDpW9dIj6Gl
-	 y12ebOC9oCfit1MKNnyyvhrEmYaYZRb7q2u05zcAec9VYbAZlGbnATJuOsaabKaa9s
-	 G59KGV2RaGC4DUkzApbb7t8RK4PK+uxGgIgU10PD/efGccdHaP5ouW9Ib5qYHztXyI
-	 G9pc/j4RIpRmw==
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2121.outbound.protection.outlook.com [40.107.249.121])
-	by mm2.emwd.com (Postfix) with ESMTPS id C45AF380ABA
-	for <usrp-users@lists.ettus.com>; Fri, 21 Apr 2023 09:54:23 -0400 (EDT)
+	b=pa3CEXN8toB4i8QKK9zjnGQ1JNiGosCnTe9ghTyY5VXMujjukqjPRqs1d+hYX+J/h
+	 /ucRB5kN/g5B9JiCtUj8nw3qDN7IMh+t7RPwK6WM5Rv9ir5iBH5CXo9XRZMxHSkvUO
+	 C5YoMN0bm9+WgLkGw2CeJJjAOhE87dWYxXPJU+qbSQaZ5V4NncBRf5xR54yPsVv+K1
+	 VQtVaqaD9WFHf4uWYmlKiUzjS0wuZSvjxyDZfmnpV8JfH70GSpYOOsIvCKbbECj8Gt
+	 8P0lfWWgggNOJyYiYDN299JIN+tVJgvb2+eXuHOwC76zGTuyDO7gXw88pf7+Bkb6CA
+	 nU74aguLAIcxQ==
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	by mm2.emwd.com (Postfix) with ESMTPS id B9EBB380989
+	for <usrp-users@lists.ettus.com>; Fri, 21 Apr 2023 10:12:07 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=ulb.be header.i=@ulb.be header.b="U321gZjp";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N55sNrhU";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZLvBi99V1ZG+rXHb31eCkwFGu3pukhJikxrqnjJeQVA8onXu5/H1WsBm5J9U06nS2t6omumfJ+jIuuV1+iRGFRyX+hr4BojAbqhwoov5S3z5gsmVsE0dbevFOYsVsFieRbKm+0WCVgzkAivnq8Fx1oyNoSQhNstO1Y7YeS9oodi19R+HtbfY//foVbQzibjCQ9SDlJOo/rmUDaBuSnXFRtrExIBq4Foo6Yv2hgN60VLMetkPjLNKXye3iV9ucX35CyG+qZS/GyuFGt4HhI2hBuUEXHfCSaRtF5WKiXAENg6ZWjUcxHTAKloozzlhHt5AfpqVcQytHAPM2HbTUKsK4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FbXZX7T7S2xhUFQtgjPNcBG9dtsogjU6zvfyboGmWEI=;
- b=f7ByICuCRBkPTIQakh4f6xh1x/ZM9WuUWj+sDILqhSKAt4qu3oXznVoFHShyaEsnOFNImtXbwrSjxT+E3p1ZrwJaAh+63dL7qiZdCn6OBys/Uxlo66FUWTZ8N1ykusXQZB00wyTIvqDjr9NPXg2Usp2LZ9+NDvHP9joLRYneeHqwmfou3Kn1LYP2cPqu6fHBVJJom0yd+64Jbd+v7D55Aus/O5KuZKvAIvehHZq4HcLM31Vhe3ZgRYWxj12n1STI539dzkZAoHQeJxt3JK+a6kvtdTairv4+VcRGrj3y/1tcHEcs+cySvYKdom8Rvg5s2t8TTikclnRvQa0P4NHInw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ulb.be; dmarc=pass action=none header.from=ulb.be; dkim=pass
- header.d=ulb.be; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ulb.be; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FbXZX7T7S2xhUFQtgjPNcBG9dtsogjU6zvfyboGmWEI=;
- b=U321gZjpaqVghzZtqrWJC/PYrbQiBRwO9dY4G9nDn1nFHZbVi1cPgGP4lg80C7HOxdRxzBrYuBnX2omYHYLZkLC2AVvrfjUL+g5nOsoL/OQw3bk3fQBHoDCKo1ZwBNrQzC5ZQaoXcPujaXEiUJc6MJBLg1JQGEkfjyskYwMjW+s=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ulb.be;
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM (2603:10a6:150:6e::6) by
- AS8P190MB1030.EURP190.PROD.OUTLOOK.COM (2603:10a6:20b:2e0::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6319.22; Fri, 21 Apr 2023 13:54:21 +0000
-Received: from GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::b764:6e23:f8dd:8432]) by GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- ([fe80::b764:6e23:f8dd:8432%7]) with mapi id 15.20.6319.022; Fri, 21 Apr 2023
- 13:54:21 +0000
-Date: Fri, 21 Apr 2023 15:54:19 +0200
-To: usrp-users@lists.ettus.com
-Message-ID: <20230421135419.evigw742wpso7jvk@barbe>
-Mail-Followup-To: usrp-users@lists.ettus.com
-Content-Disposition: inline
-In-Reply-To: <F31D8B08-5590-4DDF-973A-104B8F61C219@md1tech.co.uk>
- <E86D0222-38DB-4F37-A112-F1A4747BDD8D@md1tech.co.uk>
-X-ClientProxiedBy: AS4P251CA0019.EURP251.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d3::7) To GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:150:6e::6)
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-5f6058c0761so8436256d6.1
+        for <usrp-users@lists.ettus.com>; Fri, 21 Apr 2023 07:12:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682086327; x=1684678327;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CY6cXfMZPb9pw68BkRN/jBDx8jeTr7doArRRi9u9Lwc=;
+        b=N55sNrhUNkbbR/oZFXKxWQHyKBpi2f99Z0ILoVMmfaCN4GRJygP0S2F0BiFlmaNhMo
+         W3nf4qe1+6DCuZvV3ftQxmzoeBcybvdoszlHNEOOuLzPxwuYExvQ+0m6nzLi/ZYdS3FX
+         v2Tsz2nYIn2f6Gb12zDoXslEu4ag7jCzDFnCAXDbjCBGorEJbGE3BvAiZgMn+n6BGk+s
+         n0LUgZ+f3QfRvvGlyz1NZ7+35imwuhLK8OOpoCPrn21/Tr/4jjYbH52yYFoe6U7fABiU
+         cuLZkVLVyGdlX0eZqaYhNjjbatlYoBtUywsRUy4VGrRov02oXihXx2wSi24krjIQ0vwE
+         TmFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682086327; x=1684678327;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=CY6cXfMZPb9pw68BkRN/jBDx8jeTr7doArRRi9u9Lwc=;
+        b=eb0PZoEu+F1mjMs9P94eTH3JrN7pyjX5w3FkMpdlm0Lwk8VkZ8CPC7h6rzvY+V++UK
+         u8WLy10o/eq858YwxG/AUXPNPsXxVLwrZJhOBHtc7WLZ+cZLQYGtin2z42kSpKDfPwKP
+         6FD31PISuWkkwbFolJp8SRjo0dw/FqHo84EkHYXgQOy4oCtoQtVcMUeusd5jqIDH0J8X
+         X2lXZw1zTVRyZZka77ff0v3xOuZToMY9S1RbzH3gUVd8oE1DGHp/FSEb62rT2rd9isU8
+         fHlbvBNzg6fQhW9Ml3no3fUykxAZrsuxk7bd3YamyBzTEcrgZQyzvRbuJAp+Oj75lv+K
+         Gy4w==
+X-Gm-Message-State: AAQBX9fjemflsIKjtorRKvtSyAcJJV9QU7BydPJDqMJ/NyojFbo2lDVv
+	jBtUi/311JvOUmaHO/b8E4YxcbvU9hs=
+X-Google-Smtp-Source: AKy350aMj7wTrV/LAKa/iL8YL//bTlkGj84KwrUQQ4/vrnWRgZJwJFb5Iiu19K+qEZaIRLKdXqqAAQ==
+X-Received: by 2002:a05:6214:1bc9:b0:5e3:d150:3163 with SMTP id m9-20020a0562141bc900b005e3d1503163mr9229565qvc.20.1682086326941;
+        Fri, 21 Apr 2023 07:12:06 -0700 (PDT)
+Received: from [192.168.2.193] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id p3-20020a0ccb83000000b0060270619bfesm700386qvk.24.2023.04.21.07.12.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Apr 2023 07:12:06 -0700 (PDT)
+Message-ID: <825cb945-6892-ce0b-071a-4ce694941bd4@gmail.com>
+Date: Fri, 21 Apr 2023 10:12:05 -0400
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GVXP190MB1848:EE_|AS8P190MB1030:EE_
-X-MS-Office365-Filtering-Correlation-Id: d39f6012-9367-4d1a-c370-08db426fe880
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	Nr3effRzmYxL6dhj8OeZ7GQENFucZhiMx7JzzPD2teeyXuexTle3LLA8XYhwGPRR82yN3/YKdoaQAUIIfteQu6CgeA+pEWtFwdZfd+5oGROt456pjRg3+vYxPyiQOVH1u9fQjRNRAJT6Bg1LHd0BA9LAIhijdJHuY4bA9Cl6yj4H67Kv2pTfrV0KsydtwxhLiOXfEaHAGcPPzKlU9RXrnhFgvJYEqYdI4dISHm++20rYJXk1TZXmQmFGI/zN8m3Njf188lFgpplsOnS4DFD2WiEKyXBUiZigzs0PEPOAZj/iPgmFiFCuy0ofyrJdlejmJNS5Tbrht20fXy0KoXhJ6Un4ttW+ntJDxx+/ASzyeXz8WlwSGGQSODUjq0AwKwCKtd2TXVy8I2Zt4xyc0lWjdHCBai2ug5AYSnx3zb/UT471LG/ZJhDmyR2zwyOylaWgKk5vzciOT2XXV2m3FMfDNHUJxRT1VVqK3nwY1kiF4obO7u22udy0+UdjPNZQgpcAH9yru3W2CuXYIPSe4jGA+zr76HXd7Rb7CCMtdx8XjbTNKGzjp2+sgf0EPrHSQNy6
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVXP190MB1848.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(7916004)(4636009)(396003)(39860400002)(366004)(136003)(376002)(346002)(451199021)(478600001)(8676002)(5660300002)(4744005)(86362001)(8936002)(2906002)(33716001)(6916009)(41320700001)(66476007)(66556008)(786003)(316002)(66946007)(38100700002)(6512007)(9686003)(186003)(53546011)(1076003)(6506007)(41300700001)(66574015)(52116002)(6486002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?iso-8859-1?Q?vesEKdhrR75iDtDC1bcCXxSqGSdf2QCjdkDXQUkIaB/4LRIya3wYjWvcvP?=
- =?iso-8859-1?Q?GVRyFA1yPQG3Z3HQM9Z+28NdE8UHFeJfYBKUXoE6LdiB88xoOnu+8Myvpw?=
- =?iso-8859-1?Q?yX5I7FA3sbMRJoeRSeBUcaHcpsKCWn23qMoVSLz+NsI98n+RglIUQah0so?=
- =?iso-8859-1?Q?l4C9GvZcYzUqZ3zOg8ik540N2TeBALyTe13pE2xUflaQZGSWf/8te0R+PP?=
- =?iso-8859-1?Q?/RRlwCkvuvRE9vme7Whbw1XFwdxl8fVqbiWI1EYfkPqOyePLiYHzN76eIF?=
- =?iso-8859-1?Q?L39cBP81IJMnca1AgXqTeZJGu/gkb4XWL9W99JB2saJbISn434d7bWvjnA?=
- =?iso-8859-1?Q?n1v3VmtiOUpgxAsBf4WXJ61LYxdIaigSCqBIp61sOFzorXz87a9/xeTthK?=
- =?iso-8859-1?Q?y9oyp/s4fNgpZsWDCttz04WRmEABOEdp+vp3WQBeGZJY9BAYUIX294IBlm?=
- =?iso-8859-1?Q?OpSuQjYemBVAu5uOKw9vPPVE+wvjlfd8tBi0cfgd8bbzq1jbMFeeofk/mu?=
- =?iso-8859-1?Q?w52vetTJlcghmh0dVN0SsLVdU7lEtbsCSZcnYOJnvNDxyI0CLKPLGkY+tt?=
- =?iso-8859-1?Q?GYyAHAnM90Ie+sJ8C/xOq586FjF3laLEDCNvKxtbZai2F0XhJ8EwF8Koe2?=
- =?iso-8859-1?Q?apXYjjRWWrfcOAYVGa4sHi43SP1aNZ4hoP9dG7DhJ2zGibLrdpTs3dY3I2?=
- =?iso-8859-1?Q?4OxWR+NnvO0MX5ADHfayU1n70VoWILGebhkcJndrzkMRPb6weGxU6Fy3ZX?=
- =?iso-8859-1?Q?Cj6s0y++oA1N8ChijO8p2t06CNUtDxLUn9WiTfVMAJqtMfc0ERuZdTjeJc?=
- =?iso-8859-1?Q?DSa4PVZjVbUs2loqKY8mK2EuqbpkhaCXzVvggDWD+drN/KobLMNu24wUGw?=
- =?iso-8859-1?Q?f6R4g4J3cbJR2aSu5uB2yvp5/F22ONuoJieWQsthWGSDwk2RtJeWRYU4f6?=
- =?iso-8859-1?Q?xjXEKmweeYjXB49uHWGhkOVjFaQ1jdL5++9VaeX9WMPTz20GzyvVu6te7q?=
- =?iso-8859-1?Q?qsPN3v/yzdqCNiRhE7wjVZq/X6OC97z9GrzwqEgCDNRiNJib8V+fQyJC08?=
- =?iso-8859-1?Q?mjctgNVlwkq26z0uj6VatwgDHV8f//4plQL558c2Efu6O+sHAFf4lD6C+7?=
- =?iso-8859-1?Q?NhyHo3qp1iPewkbbOgbo3OjsSrD9hd+xYrw7WTOQ2KAMZuk9wPh85NuYZn?=
- =?iso-8859-1?Q?ktXBpP3MUTnWm2rxhjGEN7VxtASyRSLTxhQMoBPs2zpDHhv40URPNQWVMf?=
- =?iso-8859-1?Q?KhTqzyijrfLklD4rq08tcrDi/d/MzYKynaVRiCXW4QHzmWsHIXaBYqXYgx?=
- =?iso-8859-1?Q?sTA2qvOCfPdr1IQ/d/o/PCUKx6MprfUzABBDCRSeQVP2Keooc94DYgEMUL?=
- =?iso-8859-1?Q?B469HBYYvIPnuqnU2Zd9/lCfUsSQDTGhbn6elj8dviIdY1TeBKuniuns4t?=
- =?iso-8859-1?Q?n7bADlvB7gC9khMpeN+jJtnaHveLG2F4xIbAuftuENoT40XhIcf2z0Wcsa?=
- =?iso-8859-1?Q?T6NTCvUeTd3BMiqaeHYl99n3kskaj1Y2anStKHVFxwievwVdyWXYmVQe3f?=
- =?iso-8859-1?Q?FzCFBgzM/lTNSqmn4Q7humosIq8g/6YvubHAEfzf2OBNILz36X7G9Cphf2?=
- =?iso-8859-1?Q?NOX4993Tz0K0APKjyI/JmSu7COL1zZjPwf97o1wTc/YwWxekVmYpJqPQm1?=
- =?iso-8859-1?Q?DmF/w8RHiH4OEdnKpqcO58bc5b3HE/puIPuWDTdABY2m9e2L2ngaelJNJt?=
- =?iso-8859-1?Q?/cMg=3D=3D?=
-X-OriginatorOrg: ulb.be
-X-MS-Exchange-CrossTenant-Network-Message-Id: d39f6012-9367-4d1a-c370-08db426fe880
-X-MS-Exchange-CrossTenant-AuthSource: GVXP190MB1848.EURP190.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2023 13:54:21.5842
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 30a5145e-75bd-4212-bb02-8ff9c0ea4ae9
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x3lwrHaw/Hn+N6maRY5FsAXUmxR7wEGnTqP9BEG7mmsFuFJngyDFn2h4eDUJzFVopR22901E3YDp7YBElRduHA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8P190MB1030
-Message-ID-Hash: TURHIPZXAPHHUBZC6ND6WXQ3ODT56TBP
-X-Message-ID-Hash: TURHIPZXAPHHUBZC6ND6WXQ3ODT56TBP
-X-MailFrom: cedric.hannotier@ulb.be
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.0
+Content-Language: en-US
+To: Leon Wabeke <LWabeke@csir.co.za>,
+ "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+References: <JN1P275MB053554638C3D2E4F1C0C67BD95639@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
+ <9cbde8ad-08e9-c0d2-a010-edd4fbf64c26@gmail.com>
+ <JN1P275MB053532A9CF83C0C50CA7585D95609@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <JN1P275MB053532A9CF83C0C50CA7585D95609@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
+Message-ID-Hash: F7VDAKJS5Q2DHBXPGKJLJDHLMEBMSHFV
+X-Message-ID-Hash: F7VDAKJS5Q2DHBXPGKJLJDHLMEBMSHFV
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: B200-mini  not detected
+Subject: [USRP-users] Re: TwinRX phase synchronisation using different versions of UHD
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TURHIPZXAPHHUBZC6ND6WXQ3ODT56TBP/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/F7VDAKJS5Q2DHBXPGKJLJDHLMEBMSHFV/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: =?utf-8?q?C=C3=A9dric_Hannotier_via_USRP-users?= <usrp-users@lists.ettus.com>
-Reply-To: =?utf-8?Q?C=C3=A9dric?= Hannotier <cedric.hannotier@ulb.be>
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/mixed; boundary="===============5574012329265687471=="
+
+This is a multi-part message in MIME format.
+--===============5574012329265687471==
+Content-Type: multipart/alternative;
+ boundary="------------1UeNKMokCbXxVnCrm0lFhqgP"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------1UeNKMokCbXxVnCrm0lFhqgP
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 2023-04-21 14:00 +0100, Ian Chodera wrote:
-> Thanks for the replies. Neither of them have helped though
->=20
-> >sudo uhd_find_devices --args 'type=3Db200'
-> No UHD Devices Found
->=20
-> I had in fact already tried both option, having trawled the internet for =
-suggestions before joining this list
+On 21/04/2023 04:17, Leon Wabeke wrote:
+>
+> Hi Marcus
+>
+> After stripping out the wrappers and replacing variables etc. it looks=20
+> like we are using the following lines to attempt to setup the code to=20
+> share the LO:
+>
+> USRP->set_rx_lo_export_enabled(true, USRP->ALL_LOS, 0);
+>
+> USRP->set_rx_lo_source(=E2=80=9Cinternal=E2=80=9D, USRP->ALL_LOS, 0);
+>
+> USRP->set_rx_lo_export_enabled(true, USRP->ALL_LOS, 0);
+>
+> USRP->set_rx_lo_source(=E2=80=9Ccompanion=E2=80=9D, USRP->ALL_LOS, 1);
+>
+> USRP->set_rx_lo_export_enabled(true, USRP->ALL_LOS, 0);
+>
+> USRP->set_rx_lo_source(=E2=80=9Cexternal=E2=80=9D, USRP->ALL_LOS, 2);
+>
+> USRP->set_rx_lo_export_enabled(true, USRP->ALL_LOS, 0);
+>
+> USRP->set_rx_lo_source(=E2=80=9Cexternal=E2=80=9D, USRP->ALL_LOS, 3);
+>
+> I did wonder about the fact that channel 2 and 3 use =E2=80=9Cexternal=E2=
+=80=9D and=20
+> whether that shouldn=E2=80=99t somehow be =E2=80=9Creimport=E2=80=9D or=
+ =E2=80=9Ccompanion=E2=80=9D to=20
+> indicate it should be sharing the LO, instead of getting an LO from=20
+> external to the X310. Or should =E2=80=9Cexternal=E2=80=9D only be inte=
+rpreted as=20
+> external to the TwinRX daughterboard?
+>
+> What I am seeing here that is also bothering me is that we are calling=20
+> set_rx_lo_export_enabled 4 times with the same settings, with the=20
+> intention that it should be setting up each of the channels, to use=20
+> channel 0. Should that actually be 0 to 3 or should we be explicitly=20
+> be disabling 1 to 3?
+>
+> Oh, something possibly unrelated is that for the mode where the code=20
+> changes frequency after running, I initially tried to do that using a=20
+> timed tune request, however I found that after 48 such requests the=20
+> firmware crashed as stopped working, then I reverted to the mode of=20
+> stopping the streaming and using tune request without a command time.=20
+> I know after initialisation we do start at a specific time, but am not=20
+> sure if the tune request during initialisation is timed or not.
+>
+> Leon
+>
+>
+The multiple calls to "set_rx_lo_exportr_enabled()" aren't necessary as=20
+far as I know--I've never had to do that.=C2=A0 Just the
+ =C2=A0 one call on the LO that you set as "master".
 
-From this:
-> [INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.4.0.0-68-=
-g02558b69
+There's no physical support for "LO outside the cabinet" on X310+TwinRx,=20
+so "external" just means external to the card.
 
-I am guessing it is locally compiled (version points to current master).
-Does the output of "uhd_config_info --enabled-components" contain
-"USB" and "B200" under "Enabled components"?
-If it contains both of them, then I am out of ideas...
+You should also make certain that your TwinRx cards are actually wired=20
+correctly for LO-sharing.
 
-Best regards
---=20
+https://kb.ettus.com/TwinRX_Getting_Started_Guides
 
-C=E9dric Hannotier
+Could you share a error log of when the multiple-timed-commands=20
+"crashes"?=C2=A0=C2=A0 That would be very helpful.
+
+
+--------------1UeNKMokCbXxVnCrm0lFhqgP
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 21/04/2023 04:17, Leon Wabeke wrote=
+:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:JN1P275MB053532A9CF83C0C50CA7585D95609@JN1P275MB0535.ZAFP275.=
+PROD.OUTLOOK.COM">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style>@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}@font-face
+	{font-family:Menlo;
+	panose-1:2 11 6 9 3 8 4 2 2 4;}p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-ligatures:standardcontextual;
+	mso-fareast-language:EN-US;}a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Courier New";
+	mso-ligatures:standardcontextual;
+	mso-fareast-language:EN-US;}span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Consolas",serif;}span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}p.p1, li.p1, div.p1
+	{mso-style-name:p1;
+	margin:0cm;
+	font-size:8.5pt;
+	font-family:Menlo;
+	color:black;}span.s1
+	{mso-style-name:s1;}span.s2
+	{mso-style-name:s2;
+	color:#B42419;}.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}div.WordSection1
+	{page:WordSection1;}</style>
+      <div class=3D"WordSection1">
+        <p class=3D"p1"><span class=3D"s1">Hi Marcus<o:p></o:p></span></p=
+>
+        <p class=3D"p1"><span class=3D"s1"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"p1"><span class=3D"s1">After stripping out the wrappe=
+rs
+            and replacing variables etc. it looks like we are using the
+            following lines to attempt to setup the code to share the
+            LO:<o:p></o:p></span></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_export_enab=
+led(</span><span
+            class=3D"s2">true</span><span class=3D"s1">, USRP-&gt;ALL_LOS=
+,
+            0);</span><o:p></o:p></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_source(=E2=80=
+=9Cinternal=E2=80=9D,
+            USRP-&gt;ALL_LOS, 0);</span><o:p></o:p></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_export_enab=
+led(</span><span
+            class=3D"s2">true</span><span class=3D"s1">, USRP-&gt;ALL_LOS=
+,
+            0);</span><o:p></o:p></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_source(=E2=80=
+=9Ccompanion=E2=80=9D,
+            USRP-&gt;ALL_LOS, 1);
+          </span><o:p></o:p></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_export_enab=
+led(</span><span
+            class=3D"s2">true</span><span class=3D"s1">, USRP-&gt;ALL_LOS=
+,
+            0);</span><o:p></o:p></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_source(=E2=80=
+=9Cexternal=E2=80=9D,
+            USRP-&gt;ALL_LOS, 2); =C2=A0</span><o:p></o:p></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_export_enab=
+led(</span><span
+            class=3D"s2">true</span><span class=3D"s1">, USRP-&gt;ALL_LOS=
+,
+            0);</span><o:p></o:p></p>
+        <p class=3D"p1"><span class=3D"s1">USRP-&gt;set_rx_lo_source(=E2=80=
+=9Cexternal=E2=80=9D,
+            USRP-&gt;ALL_LOS, 3);
+            <o:p></o:p></span></p>
+        <p class=3D"p1"><span class=3D"s1"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"p1"><span class=3D"s1">I did wonder about the fact th=
+at
+            channel 2 and 3 use =E2=80=9Cexternal=E2=80=9D and whether th=
+at shouldn=E2=80=99t
+            somehow be =E2=80=9Creimport=E2=80=9D or =E2=80=9Ccompanion=E2=
+=80=9D to indicate it should
+            be sharing the LO, instead of getting an LO from external to
+            the X310. Or should =E2=80=9Cexternal=E2=80=9D only be interp=
+reted as
+            external to the TwinRX daughterboard? <o:p></o:p></span></p>
+        <p class=3D"p1"><span class=3D"s1">What I am seeing here that is
+            also bothering me is that we are calling
+            set_rx_lo_export_enabled 4 times with the same settings,
+            with the intention that it should be setting up each of the
+            channels, to use channel 0. Should that actually be 0 to 3
+            or should we be explicitly be disabling 1 to 3?<o:p></o:p></s=
+pan></p>
+        <p class=3D"p1"><span class=3D"s1"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"p1"><span class=3D"s1">Oh, something possibly unrelat=
+ed
+            is that for the mode where the code changes frequency after
+            running, I initially tried to do that using a timed tune
+            request, however I found that after 48 such requests the
+            firmware crashed as stopped working, then I reverted to the
+            mode of stopping the streaming and using tune request
+            without a command time. I know after initialisation we do
+            start at a specific time, but am not sure if the tune
+            request during initialisation is timed or not.<o:p></o:p></sp=
+an></p>
+        <p class=3D"p1"><span class=3D"s1"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"p1"><span class=3D"s1">Leon =C2=A0<o:p></o:p></span><=
+/p>
+        <p class=3D"p1"><o:p>=C2=A0</o:p></p>
+        <br>
+      </div>
+    </blockquote>
+    The multiple calls to "set_rx_lo_exportr_enabled()" aren't necessary
+    as far as I know--I've never had to do that.=C2=A0 Just the<br>
+    =C2=A0 one call on the LO that you set as "master".<br>
+    <br>
+    There's no physical support for "LO outside the cabinet" on
+    X310+TwinRx, so "external" just means external to the card.<br>
+    <br>
+    You should also make certain that your TwinRx cards are actually
+    wired correctly for LO-sharing.<br>
+    <br>
+    <a class=3D"moz-txt-link-freetext" href=3D"https://kb.ettus.com/TwinR=
+X_Getting_Started_Guides">https://kb.ettus.com/TwinRX_Getting_Started_Gui=
+des</a><br>
+    <br>
+    Could you share a error log of when the multiple-timed-commands
+    "crashes"?=C2=A0=C2=A0 That would be very helpful.<br>
+    <br>
+    <br>
+  </body>
+</html>
+
+--------------1UeNKMokCbXxVnCrm0lFhqgP--
+
+--===============5574012329265687471==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
 _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============5574012329265687471==--
