@@ -2,80 +2,88 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A2BD6ED144
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 17:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E56F16ED30F
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 19:03:55 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6E968384285
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 11:27:05 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 797BA3844D7
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 13:03:54 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682350025; bh=k0JdkkZuCJRHVGBRGtRfEK6MAjRJDcksPOIWZ851Ehs=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=v3T0cn9TRxbMPbwI1MWnQxhHfaZ+qfUM53Ag1VF3RGmk7eN4cLuSbK+Nmt3f7yvsj
-	 Nu/mrOTzhGOrL66+1p8IhZNPbqQCx+MzExIp5WGVjdlmQmNE1oE+a2mz26w8fxbBdL
-	 haCAt9MTasdkTG/oeFvRsBmcoC2ekUkXqoj/itv4x/ktg0AlFflR+gUfsYYB86vQyx
-	 MZliVLwDzaR3PJh9xERgUj/90/dV6z5fn43hxhJC916J1UzQFOAwpIxaQkRi6+djO4
-	 x5gL49WQT6g145e9aXuqobyg5PWcn3H7x/axrEFUhVOrIYCpxGZ2FqE0+ufBzdplxT
-	 3UgzUdtuyrlgw==
+	t=1682355834; bh=XDgbBjjWtyIq45t+JQLI7PJtgg3o2sqcT+gzfI068gw=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=hZ++MpyWmUDVWFmOKNwLTbB4shWzUw+Of//3PtJzUv0dp1yGkVIHfn/HD/pLjNQK6
+	 BiE6VlhJnsydqEqi4rTzlAr3r3cnNFLe3rjGDdgvA8QwFqsasDpjpbGjYd97pxU7d7
+	 cdXSIglH0GUbjfcbfH/EPrUM1VQJxJ9B8TjTKCbf+XAw/1R8sNTR243mlJWEOVZYbP
+	 JmeEIUtnkWbgYNoPnXfxX39twcvggW683AEl0HtN6bwVK7B39yWKniiEQp/ozJM7m6
+	 T2UfWJdwou5k07wWygL708rYvBHp1F5PzZDAXwOtJRBnOgNZfqt5iQaZvNc81+Ela3
+	 wuPBQcX77D6Hw==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id F1359383F93
-	for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 11:26:24 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 726CB3844D7
+	for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 13:03:13 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682349985; bh=HcN9qlWPAQ4lwFHFKGI4ucAbxulr7gHdn/7NRhvmXQk=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=rGdBagSgYYhDPNm2/4gL6Pd8NSsuy2EpH63vOSjaSgN84sps8bzD4GldunZAQx552
-	 Ki6UdN8I6dGtXSSPBOTgPC0IJm2yP7zCU7VXUQffWiVvzimIMQBoFTNFMOvdZJcs14
-	 pAuHChIGkMNi1TL03xdrk83cK9UoZqgQHE5YfLl6wG/9gWbkhL2Ez/AcvRxuQHaGxj
-	 +/iAWvTphw2jYWe/jeWrb3ViP/pHqXvTjpqTtUJ4kWvrfzdzbZUNBH+x/eFm5vYPoG
-	 xd7b2DuE+k8htIn/cG7UiDD6xterEzANsX4QMT4B1Ayl11e/r/gn5F2zRWunEB4GmQ
-	 K1+OmdVgYFhJw==
-Date: Mon, 24 Apr 2023 15:26:24 +0000
+	t=1682355793; bh=DRYRhPwa5OmTxXUGeg1MkyPv23xcxHiiGwFw6UgeMvY=;
+	h=Date:To:From:Subject:From;
+	b=ENFZcVveCUBvucmZ+RFWUzK2BayeWPeiCIE6us6p/CniZmCGTPX4/XnHYXsfiiufy
+	 fhBDpZY3ZauRzjiOLqR6KbAZUlCuOpDBfFzjz+lZD+NjQXCwsO//7j2SX35OLLXlrm
+	 z/3X7tSnRXN9kRWAZHK/BN9yCCyDa1ZvuYPdW7j2quU4bduuWbh1Sl+9KJiOVjbMfk
+	 yk9K8OSLMol/QE8NoatgXafHs9QI7MbBSQCEOP1yhOUV5FKXdrGVKMqFENoQc9Bbyy
+	 5VD8dH3rqG7Qkt2g5tx4CjcHP/8UebwCNvc7wfcNWdzCg36L+CKKydbCV1Q8BCWE7F
+	 IlP9oH5OvOhXQ==
+Date: Mon, 24 Apr 2023 17:03:13 +0000
 To: usrp-users@lists.ettus.com
-From: h57jafari@gmail.com
-Message-ID: <vPAiISGeTmDhGndsudnwy1FuJmOB6b14r67COmh6kw@lists.ettus.com>
+Message-ID: <RhKQmzCaHhewoovO4K8osMtzmOTGiZRFaYUlF1K2Q@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 1e958c37-f136-f933-fe9b-ed015b7527f8@gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: BQY75C73GE7FTW342LYIXMTEUHTKZGJ7
-X-Message-ID-Hash: BQY75C73GE7FTW342LYIXMTEUHTKZGJ7
-X-MailFrom: h57jafari@gmail.com
+Message-ID-Hash: WDTCKEUBHYQY6VFPV4LGJKJ4ERADUWK3
+X-Message-ID-Hash: WDTCKEUBHYQY6VFPV4LGJKJ4ERADUWK3
+X-MailFrom: jorge.gonzalez.o@mail.pucv.cl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: configuring X410 USRP to work with higher sampling frequency/band width
+Subject: [USRP-users] E312 Tx warning
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BQY75C73GE7FTW342LYIXMTEUHTKZGJ7/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WDTCKEUBHYQY6VFPV4LGJKJ4ERADUWK3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2701551352255127879=="
+From: "jorge.gonzalez.o--- via USRP-users" <usrp-users@lists.ettus.com>
+Reply-To: jorge.gonzalez.o@mail.pucv.cl
+Content-Type: multipart/mixed; boundary="===============6176714440620238787=="
 
 This is a multi-part message in MIME format.
 
---===============2701551352255127879==
+--===============6176714440620238787==
 Content-Type: multipart/alternative;
- boundary="b1_vPAiISGeTmDhGndsudnwy1FuJmOB6b14r67COmh6kw"
+ boundary="b1_RhKQmzCaHhewoovO4K8osMtzmOTGiZRFaYUlF1K2Q"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_vPAiISGeTmDhGndsudnwy1FuJmOB6b14r67COmh6kw
+--b1_RhKQmzCaHhewoovO4K8osMtzmOTGiZRFaYUlF1K2Q
 Content-Type: text/plain; charset=us-ascii
 
-Thank you Marcus.
+hi all
 
---b1_vPAiISGeTmDhGndsudnwy1FuJmOB6b14r67COmh6kw
+when i try to use a Tx channel on the usrp E312 i get this warning:
+
+\[WARNING\] \[MULTI_USRP\] Calling multi_usrp::recv_async_msg() is deprecated and can lead to unexpected behaviour. Prefer calling tx_stream::recv_async_msg().
+
+does anyone know what it is the nature of this warning, also, when i use the Tx channel, the led indicator goes red and it freaks me out, is there something i can do to resolve this.
+
+i am using GRC 3.8 and UHD 4.3
+
+--b1_RhKQmzCaHhewoovO4K8osMtzmOTGiZRFaYUlF1K2Q
 Content-Type: text/html; charset=us-ascii
 
-<p>Thank you Marcus.</p>
+<p>hi all</p><p>when i try to use a Tx channel on the usrp E312 i get this warning:</p><p>[WARNING] [MULTI_USRP] Calling multi_usrp::recv_async_msg() is deprecated and can lead to unexpected behaviour. Prefer calling tx_stream::recv_async_msg().</p><p>does anyone know what it is the nature of this warning, also, when i use the Tx channel, the led indicator goes red and it freaks me out, is there something i can do to resolve this.</p><p>i am using GRC 3.8 and UHD 4.3</p>
 
 
---b1_vPAiISGeTmDhGndsudnwy1FuJmOB6b14r67COmh6kw--
+--b1_RhKQmzCaHhewoovO4K8osMtzmOTGiZRFaYUlF1K2Q--
 
---===============2701551352255127879==
+--===============6176714440620238787==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -85,4 +93,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2701551352255127879==--
+--===============6176714440620238787==--
