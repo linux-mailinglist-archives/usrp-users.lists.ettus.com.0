@@ -2,305 +2,187 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6F566ED677
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 23:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EAC6ED814
+	for <lists+usrp-users@lfdr.de>; Tue, 25 Apr 2023 00:39:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3867B3848AD
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 17:01:48 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 530853848C3
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 18:39:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682370108; bh=pUYyaOF/Qd5MRJySz8aldm9nbmmD2xgRfHJyxP9r0pY=;
-	h=From:To:Date:References:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1682375989; bh=v+rQf6LPRoaSsQLI2Bzsygqo2KrsDuEegvHcVvThmm0=;
+	h=Date:From:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=itPlHUdTJ0yUPf+dNy4pkKb5YVTeq1v0fbSyVlV1jWwp+O+Qd4ZiqHJP4o4ejrzuF
-	 uEXGyoz5+dAapJSTV9gnc71XlMsUUwd9oLupTeiDMa+1C3d2giDPriFTLCaivk5ieG
-	 qAe6a4jnH/IG9zllmGdhz0c70MIx22mkMUaOSmvpYAC2Uz40pO/hKkCyZcV3s8sQLx
-	 zVGyX5Y+yTn7iQrJSwp+weA5A8YeloWIbYUVP+tSf5Mv7iC5zlQY+9xstLhYjiGMuG
-	 1QrTmQm+T54aaUZsjxD2S7u9hd92cP3RVofGIFp0Bme8TMr0cLOcMp1Jo6061S2aTu
-	 +2X/Nq6fS5LhA==
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2107.outbound.protection.outlook.com [40.107.93.107])
-	by mm2.emwd.com (Postfix) with ESMTPS id 66918384709
-	for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 17:01:21 -0400 (EDT)
+	b=ggZiNjRGJzHFtWh07ZwFI4zDG7PHK2Q+Huys/N0cK1lQrxmzhhZO3Mnt8bo0nd8k5
+	 osim0JB+ucWcLS9Lb6110pcpNsqmwkQbLJuy331i6G1ywSR2hQQ0OuNP27aXvXmlYB
+	 5S9ght1aaZJscgTr3wwrH4dn71TeW1VRrb3u+Uc/k55rx5F5oB5VnmRUMF310jIfCT
+	 mFbWel98uvtOwYJzd71Rs/r4eYxuHrrs0cTQUMQ0HRMTnWqLYzkhV2/1jsF1a+aRFZ
+	 oLnpDgw16BiBcTzqTj80W5l4Dvn1D1BnFmJmEjPJNUNIx3oDQUXS+oiuU7FZfentXA
+	 +gHErbGp71G8A==
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 99CF93848B3
+	for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 18:39:28 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (1024-bit key; unprotected) header.d=paladinsys.onmicrosoft.com header.i=@paladinsys.onmicrosoft.com header.b="HEftHDWk";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CTMKJziZ";
 	dkim-atps=neutral
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BaQC6M0AL4hexlKn1PQShBRmDgJ4n8dlYV3Qc5d0nilud+K4JRzP43AxZWY2HbYa8dLw9mwUENjK3NFCpEBN72Jaz1OhiFg85Z8uowsh0j7GKZ9QjG8H54Jyh9RTeFrot005417IJYRoI8pfg3PzjJFLVGFZ8WLpq7qjpdX5B/P3w5ZdndGdB/WCEYMVBkUDZTwr9zRAf0USftz6YHHGZtmKLqfD/3+MGoa9+BYWZdGZa6FyLfBp742XZyVrR1qFLZHGRiZ66Z24nns7sVCJB4jWnAUoBJVjBy8YO8iPCkMr92P3xLC9/HG5c2IL/4/rG8+E9ffFRmOsuZ4hNV1SRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SVaAF5rz9FYapkzZVOR5yq4n6N1EfZevhBUBJ/zV4Ls=;
- b=K9QBeZVKPA2E8vJFD82JgnqU8H17s+3rnJsKGllyNFbu+HIj8LQwADf0mHQSPayZK3QwEa6gtI6VKhfvxme95OrBDpvxhbYTK5dShycjYWzGscGNmAjee0dSgFLd5hOdynpmVpC5qIfPwJKarQtGbFjjlLfsWXTBnuaSvy2V8b+wZtTAgmCDYaZHI2SR9NdOulpcsIFPAZmZJctKX1FHEgS07W8DrCsukd3oLFuHe38LP9cjW2IYXAKv8/+09jE2Zs6bGHnN/3lrHhi11zlJsX/mvlZJqLVq33hjIIUk3qS8yRzI4JYhvss9OVJvvjEB2qp6xBC8zc3jML6e7I6NjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=paladin-sys.com; dmarc=pass action=none
- header.from=paladin-sys.com; dkim=pass header.d=paladin-sys.com; arc=none
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6a5f765d595so3555645a34.0
+        for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 15:39:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=paladinsys.onmicrosoft.com; s=selector2-paladinsys-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SVaAF5rz9FYapkzZVOR5yq4n6N1EfZevhBUBJ/zV4Ls=;
- b=HEftHDWke/gIDC+qJqRHBw6CEHFv5DIjakHFk6KJBJMcPKtLejoi5w3PffDaad6ALZRe5BW8IHQTEIRkCl70NAmIPRTgLWy3grD4D3AmvXR5kT3pvjvb8Qv3jUx0nLoHCwFyE37hbpY0nF22M8WdXUbhgNJoCtUa82hbg5y7c3U=
-Received: from BL3PR12MB6402.namprd12.prod.outlook.com (2603:10b6:208:3b2::17)
- by DS7PR12MB6240.namprd12.prod.outlook.com (2603:10b6:8:94::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6319.32; Mon, 24 Apr
- 2023 21:01:15 +0000
-Received: from BL3PR12MB6402.namprd12.prod.outlook.com
- ([fe80::2bef:845f:407:3c0f]) by BL3PR12MB6402.namprd12.prod.outlook.com
- ([fe80::2bef:845f:407:3c0f%5]) with mapi id 15.20.6319.033; Mon, 24 Apr 2023
- 21:01:15 +0000
-From: Milo H Fields III <mfields@paladin-sys.com>
-To: David Raeman <david@SynopticEngineering.com>, page heller
-	<pageheller@gmail.com>, jorge.gonzalez.o--- via USRP-users
-	<usrp-users@lists.ettus.com>
-Thread-Topic: [USRP-users] Re: B-210 mounting holes
-Thread-Index: AQHZdtNPIsaZaG0J10a1UZQ7meMu6q868Z0w
-Date: Mon, 24 Apr 2023 21:01:15 +0000
-Message-ID: 
- <BL3PR12MB640239353121E3669DB9D510E2679@BL3PR12MB6402.namprd12.prod.outlook.com>
+        d=gmail.com; s=20221208; t=1682375968; x=1684967968;
+        h=user-agent:references:in-reply-to:to:from:subject:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=O9JFnFRWrxx8w5NhkG0aFI51JUvBcD/YR2TUCXluR5g=;
+        b=CTMKJziZUC0dttKdIYIAz+PF4/TRpMBovqBzq9JkcKRdIce9j8QMTdPnsr+azgx49p
+         Hc14wd8/R3MuaMxDr7/XPWc7mxHB5a5+2/2jgTuibpEkdXT/sJx9L4w5K5uW1QXbioof
+         32E9gDwDZwWG4UL8YMpImCu2orlHsS8nePnx9MLnnke4mJ2W2UwGKK44e1clKqXI249A
+         VoBnqRCnZJw+FIvo3oU4WFWbpFR54+HPtVcU3/fsP9PZkoUcrCn2CLHtweM7+JwGvBxP
+         dlCqJI30mI0KwmcPLRUcOzfak83gAeNDHR96NWK1s/UJPVX+dEmRniXSInnNvwx0cZDi
+         5OYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682375968; x=1684967968;
+        h=user-agent:references:in-reply-to:to:from:subject:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O9JFnFRWrxx8w5NhkG0aFI51JUvBcD/YR2TUCXluR5g=;
+        b=S09ua2+E2HYxWxqvWq8CgSSg88CXHlqhI1ULzRlSW6MLv6phtpHn9h53qZYHwgtblF
+         c25hdNP4Zzh13b16IqcBRkuRNu6TmsKWY6ryW0Q63hZo5aohS+1DWiZTogc6loBOrRET
+         1CPnOrn3n4XAZVM7oz1JQigciGALd5OOavp0EetaxTMjBrNN7DpNmcYAOnCxOJUR6m7c
+         kWNvDvlH8U0WkKO31H0LvKCNFqKd0D9KLH05bFQNhURYIDAyVtMekwFnVW/lgT651rkl
+         jDRQKTkype89ZpVZoso6zvBovMnCGjf36R7sJAyLGTZNtX0/ZFHJfEt4i5Lxc9tb1EQN
+         0zsw==
+X-Gm-Message-State: AAQBX9dw2fSaCqHjiik69hKFFrg9cigalcIQA53qogFDzniTH+r1XPK8
+	BEMLxjCz2S5zztJPydVkZoCMP7CegPc2qA==
+X-Google-Smtp-Source: AKy350YUvuvhvQBaOyoUN6I/yHSBy04wWfH/So4nsAhtvxVa7hwsrFdI+/iN5o68yFW7Cd651joMhw==
+X-Received: by 2002:a9d:7355:0:b0:69f:174a:3587 with SMTP id l21-20020a9d7355000000b0069f174a3587mr9382350otk.22.1682375967593;
+        Mon, 24 Apr 2023 15:39:27 -0700 (PDT)
+Received: from [192.168.4.55] ([47.186.160.129])
+        by smtp.gmail.com with ESMTPSA id w1-20020a056830110100b006a3842a32b6sm5211892otq.42.2023.04.24.15.39.26
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Apr 2023 15:39:26 -0700 (PDT)
+MIME-Version: 1.0
+Date: Mon, 24 Apr 2023 17:39:15 -0500
+Message-ID: <Mailbird-b9c48e9d-108d-4c6a-8e09-5d048097c30b@gmail.com>
+From: "page heller" <pageheller@gmail.com>
+To: "Milo H Fields III" <mfields@paladin-sys.com>,
+ "David Raeman" <david@synopticengineering.com>,
+ "jorge.gonzalez.o--- via USRP-users" <usrp-users@lists.ettus.com>
+In-Reply-To: <BL3PR12MB640239353121E3669DB9D510E2679@BL3PR12MB6402.namprd12.prod.outlook.com>
 References: <Mailbird-291a700c-0363-465a-9bb0-fe8256352b8e@gmail.com>
  <BN2P110MB174782806660DAEDBDC54B72B7679@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
-In-Reply-To: 
- <BN2P110MB174782806660DAEDBDC54B72B7679@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=paladin-sys.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL3PR12MB6402:EE_|DS7PR12MB6240:EE_
-x-ms-office365-filtering-correlation-id: 8a7d91e1-0727-427c-3357-08db45070b19
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- ZXc4gwmm3pqDeIQzUmAIrXAkQbDlGmU5emTf01vwo7q4lrCvfpooHROguSf8nUOD3MLLeqSA0McvtyTOyI35rZHk3BUnG8FpRPVf4sDb8OMka2ELImqMRQOG+J6Idjg2FsJRdI2bYeOVToCHxRFOeu2VReyYrmGa7Dxdv3hxqkiOs1LuNLnMfUUxL9P9FfhaiBZrVCM9IwUj45cE02kyiGuGeOT0zNRjkIHD7RIFc7YWp55gmhlJNRva7VeJV8cKP5+J8/KYTSXHytuT6thkL3hd9at2HzdZlDuS6hZiOG6EGkQ+BtIsslioKir2/cCkK+VAf9qBVj6qFdJE5te/k/5LYl3eTDdy/wUvdwGuakF9YxPPNsJMEY6K7Y/AH1ffDNrj7uStnaoN2BU4uVILYGAVNcI3KWjpQpS2qLunLsORVmc41nB1TAJWLoYXrk6eioJqOagwaWdZkDmPcJ7Z37P1IlVlO10MhtKFsWblXkJBWFn/3We/FUeRnpUQntQXEyndrsoIxZoz8chT1QXmYd1TAdCDIBLm0aO7KlJdMGjP1KYnnfw+kucjaI+uxN5f6y+QwOqPVPcblK20K5zfWSPuYeosARmIUAG88dD79MYV0y/pmRIumxO35xrcVz09
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR12MB6402.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(39830400003)(396003)(366004)(136003)(376002)(346002)(451199021)(9686003)(53546011)(6506007)(26005)(38070700005)(55016003)(83380400001)(99936003)(186003)(122000001)(38100700002)(66946007)(478600001)(76116006)(86362001)(66556008)(66476007)(66446008)(8676002)(8936002)(64756008)(110136005)(52536014)(5660300002)(71200400001)(7696005)(41300700001)(2906002)(4744005)(33656002)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?aHFFNTBtZlZrNzNVTk5meUExUUswN1Y5VFJqUUNpL3RpandHcWliK2xnR0dn?=
- =?utf-8?B?SE1oWWwzRmZsOVZiU085V3BEanBCdk1aKzFnTWNKK0xac3BXM1JzVGFCUW81?=
- =?utf-8?B?a3N2WWRra0JQdDdFdkkyaXJsSEVQT1RVZE8rVjRRc0JTek1pKzJGb3R4eE1P?=
- =?utf-8?B?eGgrb2hKcVNHL05zNEVIZi84UWNISDhGQ1phNU1HRGJUNktKSWtrblFNWThm?=
- =?utf-8?B?U0MxTnhtUllBN3BhN3lLSTFMQS95a2ZnTWgzd3BjcmtqTkY2dDVZWnRmem9j?=
- =?utf-8?B?cldGRVdTamcxQmtvM2RDb2ZRN0VtMGRLNkw0MFp5WjY3SjFhNzVwY2srNWds?=
- =?utf-8?B?L2pWOWkxdWMxWUUxNkhMeW5Hc0RwVlp3ZFIyWDJ4T09UQUR2blhVdzRGK2I1?=
- =?utf-8?B?OVlNeklxR3c2M2sra1FJRWRhaDIxTnhYMURpQ3c0MGlSWFRCeEZ6YzZBaEpj?=
- =?utf-8?B?eldEMTE0UHliajZYcHpJYnJaakZaV0dvcWUvYytCQndOZTNRa0w4b08wOGFD?=
- =?utf-8?B?b3RHNWd3T2NXaXRKRWJXRlo4eEZQcjIwMzArbm5IbVpDSzFicEJHdkZVNlVI?=
- =?utf-8?B?WVR6aThNWW85Y1ZsQ3N1UG10V0VUdnVHU2szbkZOaU9yQXh5WnY5ZW9BbkIv?=
- =?utf-8?B?eU9jQTRwOVcyd2h4ZHN1NFJmYmVaWXRGTlNadGJ2SEhPQVlWVmI2UEh3Umkw?=
- =?utf-8?B?eG1aRlpQY2NJaE1Vek40VTJmdzAxVjVDd0kycjRNT0NzSWIvYlhDVFNhNzhi?=
- =?utf-8?B?cGRabEJNbUZBNU4xYS9LZG1seHZlU25sVWcwK3FuNGYxS21JRWN2Vmw5R3hP?=
- =?utf-8?B?VlZuTjYxS3JRZ1J1QjVmWG9LbGhkWlRBc0JHdFdHK3gyNXRQc0pyUklHWnR0?=
- =?utf-8?B?U2FDOXdFSC85d2FWUlZmNFpqRnh2WTR6YkpWTG56NmwvVFRPNkk5U0JMU2hO?=
- =?utf-8?B?cGN4eGlzVHdUMmtwYUVobHc5bjlDeWl0WXJFVXVWNERmaXRuVUhjWGpiNzR4?=
- =?utf-8?B?MmRQSDNPZTR3dVZCdFZ0UEhyRDFqREw1cmF0OHB2RzNWVW9rTHJnSllEWkZa?=
- =?utf-8?B?V0Mxc1czRVREQXVyUm9xS01aQU9CTjlDV3pLV0Yzam15VFhEa0ZMSHowV0Fw?=
- =?utf-8?B?Q1RuZTNkZXVUOXEzRTBWaVR6L1BtZ3lveTdmemFHTkVZMkdUTTNZOGg1Q2Qv?=
- =?utf-8?B?eE1oYS96djRhbVdzQkF3WStza3h0VnkyRU40VVc3MW1QSlZsTUlRUG9iUFQv?=
- =?utf-8?B?ZGFSRHMwUHJybHpvSVg5YzBHUnBvald1R3FjVG5IMFhIWkUzWHVkbDgyT0tr?=
- =?utf-8?B?Y2FaWmhNcWhOcmR6dnBTd3U0T0RFdHBPVlNuRXBMZzNZN1BDZm9aVEtPR3VZ?=
- =?utf-8?B?djRXb3drdXRuRFJ1NkhRRzN4Vk1VZlF2dk56aFEvVDVBd3BkVjFaWitQTUh6?=
- =?utf-8?B?UGc0TEJVRitPaDE1YzdUTVR1cC9uaGNIZFlodXQ4bS9EZVRTd2RFN0JzT2FY?=
- =?utf-8?B?Yjc4U2R2Z0NLR2ZaVWNXakFrVzZMTEkvQmV6aW5IblZEY0dIUjk1cFYyVFQ2?=
- =?utf-8?B?b0I3eWxVQlE0alRYUEhpZlNTUzVxZXNXTHNtbFAzVmxsSUEzM1p3NkpVU25Y?=
- =?utf-8?B?Zm94S01OYVFOd3UyeURiaU9MSk41S3FNalpISWpwblpuVENNM2kvRHdsQjhv?=
- =?utf-8?B?Y09TWUtka1MwUGRJODJmeXIyaGFkQWltbTdwZVJXK0NDcUhBcGxPUmF5ZW81?=
- =?utf-8?B?UEg1eHZvOGUxdmtnUDFPOEFoZVV0REI5a1hNUUM0OVBHcmhIdjRHMVA4RTkx?=
- =?utf-8?B?UU4zYktaSDhRclp2TU9BL3JIcThySUxKenNCc2tuZDZqYWI2VFJhMVluMnB4?=
- =?utf-8?B?UHVIMVNJUVRrRlBKNWp4ZWw4MTM1T2h5cXZwbjFUM1AwN2NHY0twUVE0SGho?=
- =?utf-8?B?ZlpSSCtsNUZlT05mTklnMkdZWlA4ZzNvZVY3cmhHaVRsN3NLUEFqajRKWmo4?=
- =?utf-8?B?NENLWlMrZzg2bThIa1c3a2VRbG54Ny9ISmk2aDJWbENQWkN4dGR3QlEwNjBa?=
- =?utf-8?B?emhmOW1SY0RzL1Fxekl2VDU0RERIdUk1OUFkVW1aaVpHN0xveFpZaGw5UHhP?=
- =?utf-8?Q?YaQgUEfXgwh7CL8ImdRcVF+UI?=
-MIME-Version: 1.0
-X-OriginatorOrg: paladin-sys.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR12MB6402.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a7d91e1-0727-427c-3357-08db45070b19
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Apr 2023 21:01:15.6218
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: dca57ab3-fd50-4fd1-a77a-df89575aa606
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RaKtsNTlz+eIr+/tSUeMttya+KFZ1bbJx/wem1Emt4wNhDUeZLUFCcfWhBfsf5lERlhGY8V9kpkFYrH+lJmenw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6240
-Message-ID-Hash: L7KHT7IPF3CKGH2LW77QQ6W5POZ4LEYE
-X-Message-ID-Hash: L7KHT7IPF3CKGH2LW77QQ6W5POZ4LEYE
-X-MailFrom: mfields@paladin-sys.com
+ <BL3PR12MB640239353121E3669DB9D510E2679@BL3PR12MB6402.namprd12.prod.outlook.com>
+User-Agent: Mailbird/2.9.74.0
+X-Mailbird-ID: Mailbird-b9c48e9d-108d-4c6a-8e09-5d048097c30b@gmail.com
+Message-ID-Hash: I55ES775JX7N74O6UOHRK763IOF55WNS
+X-Message-ID-Hash: I55ES775JX7N74O6UOHRK763IOF55WNS
+X-MailFrom: pageheller@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: B-210 mounting holes
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/XIGBP2J7HKDR6TNOC3YM5JS45RZAGKMI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/I55ES775JX7N74O6UOHRK763IOF55WNS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5150366354450630579=="
+Content-Type: multipart/mixed; boundary="===============0765400648123380177=="
 
---===============5150366354450630579==
-Content-Language: en-US
-Content-Type: multipart/signed;
-	protocol="application/x-pkcs7-signature";
-	micalg=SHA1;
-	boundary="----=_NextPart_000_0039_01D976CE.51C277E0"
-
-------=_NextPart_000_0039_01D976CE.51C277E0
+--===============0765400648123380177==
 Content-Type: multipart/related;
-	boundary="----=_NextPart_001_003A_01D976CE.51C277E0"
+ boundary="----=_NextPart_41581270.802272378705"
 
-
-------=_NextPart_001_003A_01D976CE.51C277E0
+------=_NextPart_41581270.802272378705
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_002_003B_01D976CE.51C277E0"
+ boundary="----=_NextPart_29253134.802272378705"
 
-
-------=_NextPart_002_003B_01D976CE.51C277E0
+------=_NextPart_29253134.802272378705
 Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: 7bit
-
-David is correct, you should have gotten the light pipes with the enclosure 
-(assuming u purchased from NI).
-
-
-
-
-
-
-
-From: David Raeman <david@SynopticEngineering.com>
-Sent: Monday, April 24, 2023 13:35
-To: page heller <pageheller@gmail.com>; jorge.gonzalez.o--- via USRP-users 
-<usrp-users@lists.ettus.com>
-Subject: [USRP-users] Re: B-210 mounting holes
-
-
-
-Looks like they could support a light pipe to bring the LEDs out to an enclosure 
-panel.
-
-
-
-From: page heller <pageheller@gmail.com <mailto:pageheller@gmail.com> >
-Sent: Monday, April 24, 2023 1:30 PM
-To: jorge.gonzalez.o--- via USRP-users <usrp-users@lists.ettus.com 
-<mailto:usrp-users@lists.ettus.com> >
-Subject: [USRP-users] B-210 mounting holes
-
-
-
-What are these holes designed to hold on the B-210?
-
-
-
--page
-
-
-------=_NextPart_002_003B_01D976CE.51C277E0
-Content-Type: text/html;
-	charset="utf-8"
+ charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; charset=3Dutf-8"><meta =
-name=3DGenerator content=3D"Microsoft Word 15 (filtered medium)"><!--[if =
-!mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72" style=3D'word-wrap:break-word'><div =
-class=3DWordSection1><p class=3DMsoNormal>David is correct, you should =
-have gotten the light pipes with the enclosure (assuming u purchased =
-from NI).<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div><div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><div =
-style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt'><div><div style=3D'border:none;border-top:solid #E1E1E1 =
-1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b>From:</b> David =
-Raeman &lt;david@SynopticEngineering.com&gt; <br><b>Sent:</b> Monday, =
-April 24, 2023 13:35<br><b>To:</b> page heller =
-&lt;pageheller@gmail.com&gt;; jorge.gonzalez.o--- via USRP-users =
-&lt;usrp-users@lists.ettus.com&gt;<br><b>Subject:</b> [USRP-users] Re: =
-B-210 mounting holes<o:p></o:p></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Looks like =
-they could support a light pipe to bring the LEDs out to an enclosure =
-panel.<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><div =
-style=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt'><div><div style=3D'border:none;border-top:solid #E1E1E1 =
-1.0pt;padding:3.0pt 0in 0in 0in'><p class=3DMsoNormal><b>From:</b> page =
-heller &lt;<a =
-href=3D"mailto:pageheller@gmail.com">pageheller@gmail.com</a>&gt; =
-<br><b>Sent:</b> Monday, April 24, 2023 1:30 PM<br><b>To:</b> =
-jorge.gonzalez.o--- via USRP-users &lt;<a =
-href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>=
-&gt;<br><b>Subject:</b> [USRP-users] B-210 mounting =
-holes<o:p></o:p></p></div></div><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>Wha=
-t are these holes designed to hold on the =
-B-210?<o:p></o:p></span></p><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:black'><im=
-g border=3D0 width=3D150 height=3D133 =
-style=3D'width:1.5625in;height:1.3854in' =
-id=3Dc3da35c4-8ea2-4b04-9209-51fa8f2ca3cf =
-src=3D"cid:image001.jpg@01D976CE.51C16670"></span><span =
-style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:black'><o:=
-p></o:p></span></p></div><div><p class=3DMsoNormal><span =
-style=3D'font-size:10.0pt;font-family:"Arial",sans-serif;color:black'>-pa=
-ge<o:p></o:p></span></p></div></div></div></div></body></html>
-------=_NextPart_002_003B_01D976CE.51C277E0--
+Thanks, Milo. I did order from NI, but did not get them. I just ordered som=
+e from Mouser. -page
+On 4/24/2023 4:01:22 PM, Milo H Fields III <mfields@paladin-sys.com> wrote:
+David is correct, you should have gotten the light pipes with the enclosure=
+ (assuming u purchased from NI).
+=C2=A0
+=C2=A0
+=C2=A0
+From: David Raeman <david@SynopticEngineering.com>
+Sent: Monday, April 24, 2023 13:35
+To: page heller <pageheller@gmail.com>; jorge.gonzalez.o--- via USRP-users =
+<usrp-users@lists.ettus.com>
+Subject: [USRP-users] Re: B-210 mounting holes
+=C2=A0
+Looks like they could support a light pipe to bring the LEDs out to an encl=
+osure panel.
+=C2=A0
+From: page heller <pageheller@gmail.com [mailto:pageheller@gmail.com]>
+Sent: Monday, April 24, 2023 1:30 PM
+To: jorge.gonzalez.o--- via USRP-users <usrp-users@lists.ettus.com [mailto:=
+usrp-users@lists.ettus.com]>
+Subject: [USRP-users] B-210 mounting holes
+=C2=A0
+What are these holes designed to hold on the B-210?
+-page
+------=_NextPart_29253134.802272378705
+Content-Type: text/html;
+ charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-------=_NextPart_001_003A_01D976CE.51C277E0
-Content-Type: image/jpeg;
-	name="image001.jpg"
+<body><div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-fami=
+ly: Arial;color: #000000;text-align: left" dir=3D"ltr">
+                                        Thanks, Milo. I did order from NI, =
+but did not get them. I just ordered some from Mouser. -page<div class=3D"m=
+b_sig"></div><blockquote class=3D'history_container' type=3D'cite' style=3D=
+'border-left-style:solid;border-width:1px; margin-top:20px; margin-left:0px=
+;padding-left:10px;'>
+                        <p style=3D'color: #AAAAAA; margin-top: 10px;'>On 4=
+/24/2023 4:01:22 PM, Milo H Fields III &lt;mfields@paladin-sys.com&gt; wrot=
+e:</p><div style=3D'font-family:Arial,Helvetica,sans-serif'><div class=3D"W=
+ordSection1"><p class=3D"MsoNormal">David is correct, you should have gotte=
+n the light pipes with the enclosure (assuming u purchased from NI).<o:p></=
+o:p></p><p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p><div><div><p class=3D"M=
+soNormal"><o:p>&nbsp;</o:p></p></div></div><p class=3D"MsoNormal"><o:p>&nbs=
+p;</o:p></p><div style=3D'border:none;border-left:solid blue 1.5pt;padding:=
+0in 0in 0in 4.0pt'><div><div style=3D'border:none;border-top:solid #E1E1E1 =
+1.0pt;padding:3.0pt 0in 0in 0in'><p class=3D"MsoNormal"><b>From:</b> David =
+Raeman &lt;david@SynopticEngineering.com&gt; <br><b>Sent:</b> Monday, April=
+ 24, 2023 13:35<br><b>To:</b> page heller &lt;pageheller@gmail.com&gt;; jor=
+ge.gonzalez.o--- via USRP-users &lt;usrp-users@lists.ettus.com&gt;<br><b>Su=
+bject:</b> [USRP-users] Re: B-210 mounting holes<o:p></o:p></p></div></div>=
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p><p class=3D"MsoNormal">Looks li=
+ke they could support a light pipe to bring the LEDs out to an enclosure pa=
+nel.<o:p></o:p></p><p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p><div style=
+=3D'border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in 4.0pt'><di=
+v><div style=3D'border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0i=
+n 0in 0in'><p class=3D"MsoNormal"><b>From:</b> page heller &lt;<a href=3D"m=
+ailto:pageheller@gmail.com">pageheller@gmail.com</a>&gt; <br><b>Sent:</b> M=
+onday, April 24, 2023 1:30 PM<br><b>To:</b> jorge.gonzalez.o--- via USRP-us=
+ers &lt;<a href=3D"mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettu=
+s.com</a>&gt;<br><b>Subject:</b> [USRP-users] B-210 mounting holes<o:p></o:=
+p></p></div></div><p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p><p class=3D"M=
+soNormal"><span style=3D'font-size: 10.0pt;font-family: &quot;Arial&quot;,s=
+ans-serif;color: black'>What are these holes designed to hold on the B-210?=
+<o:p></o:p></span></p><div><p class=3D"MsoNormal"><span style=3D'font-size:=
+ 10.0pt;font-family: &quot;Arial&quot;,sans-serif;color: black'><img border=
+=3D"0" width=3D"150" height=3D"133" style=3D'width:1.5625in;height:1.3854in=
+' id=3D"c3da35c4-8ea2-4b04-9209-51fa8f2ca3cf" src=3D"cid:image001.jpg@01D97=
+6CE.51C16670"></img></span><span style=3D'font-size: 10.0pt;font-family: &q=
+uot;Arial&quot;,sans-serif;color: black'><o:p></o:p></span></p></div><div><=
+p class=3D"MsoNormal"><span style=3D'font-size: 10.0pt;font-family: &quot;A=
+rial&quot;,sans-serif;color: black'>-page<o:p></o:p></span></p></div></div>=
+</div></div></div></blockquote>
+                                        </div></body>
+------=_NextPart_29253134.802272378705--
+
+------=_NextPart_41581270.802272378705
+Content-Type: IMAGE/JPEG;
+ name="image001.jpg"
 Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+ filename="image001.jpg"
 Content-ID: <image001.jpg@01D976CE.51C16670>
 
 /9j/4AAQSkZJRgABAQEASABIAAD/4QRqRXhpZgAASUkqAAgAAAAMAA8BAgAGAAAAngAAABABAgAK
@@ -2771,120 +2653,9 @@ LJEO9Lt41hY6R7m5GJQFDTbXn+MQVRVmi1JactNw74PPNIZglPA2uO1StF3AIiUCy95Y8SXiofvN
 Aml5xkaL5zSbN7mWBd8uWTWVQrcTrde8dzvWsVF071MQxKuctf8AeApeDFei1e8DFBLdjAeC71gg
 Ozu5t3YGMPJycjSqkaHF0N9BnMAVoOAtD64zlxl+PWsUu5monLZ6v7ZculN9ZmhyffT/AHZzU2yf
 We5QAx2X7zc+cR44sa7wSsefvWNH+cfOO6nWKomsD0D4wRHd5xVBofGUWPeqPFz/2Q==
+------=_NextPart_41581270.802272378705--
 
-------=_NextPart_001_003A_01D976CE.51C277E0--
-
-------=_NextPart_000_0039_01D976CE.51C277E0
-Content-Type: application/pkcs7-signature;
-	name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
-	filename="smime.p7s"
-
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIISVzCCA1cw
-ggI/oAMCAQICAQEwDQYJKoZIhvcNAQELBQAwTTELMAkGA1UEBhMCVVMxGDAWBgNVBAoTD1UuUy4g
-R292ZXJubWVudDEMMAoGA1UECxMDRUNBMRYwFAYDVQQDEw1FQ0EgUm9vdCBDQSA0MB4XDTEyMDMy
-MDE2MTMwNFoXDTI5MTIzMDE2MTMwNFowTTELMAkGA1UEBhMCVVMxGDAWBgNVBAoTD1UuUy4gR292
-ZXJubWVudDEMMAoGA1UECxMDRUNBMRYwFAYDVQQDEw1FQ0EgUm9vdCBDQSA0MIIBIjANBgkqhkiG
-9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuHBpV72AWkHAGeaV59SCE9wsOEuKgsociF2OfjwMb2Xh2rgc
-cRi23hQIedvGipnt+iHdYhgALfAUzFpOd57y6HcUAxTGqf2yEqBn/x83etBwj5bXcCQOLZ1FXjwA
-E+6gOjEakCBXZeQwF8bJBHndHv+gyO9frAAlOgG/lpwElY6tUrORcPT07DPhDwgXgriGCj850dyQ
-Occ+uTMpg9kK6BPgXj0NJYDEbM8sLoAq0C1ASRvEnLbzNikm7DEAcxrNd5Wt5SxL8RQpNugxXN71
-XI92W6sB1s/nzSer9LRzUEI0JYdXWh5UmTubAerF3ZWjsHK27HChKqqF+vGpOJQVBwIDAQABo0Iw
-QDAdBgNVHQ4EFgQUM1ulb3pVYCuBSyYUzHm/SrqLMr0wDgYDVR0PAQH/BAQDAgGGMA8GA1UdEwEB
-/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBALYfYXiGvrV6cReK8ddFAhX3uiDF5ZNpJV4VcTlO
-wdHY6HtDu40Z0cAg3+dNq4pdf4AgjY3vAmiK1QCcIbcFrOe3j7GUUz25bvj36IJV0SgkZYDlFsew
-RAvThFJDI8ja+172AYbZN7/9brhQyA3mPHT6C26P8ozD31C3nyj4rlAcmsy+dm5K2vS1KDWhHXKR
-dhog7zrIRJDAHQZ7sM24weayW09IFVojo2rJBlp8jIhEcYma52rePQmv0cu8lacIV45RoTER03Hw
-g+9Qx+55bDsjY/iaZm4OKSAbrSXNubi/G9JzQADDTayJZPFzoIOJDhp0mKiUPLZ07JROAhXrMW4w
-ggTMMIIDtKADAgECAgICNDANBgkqhkiG9w0BAQsFADBNMQswCQYDVQQGEwJVUzEYMBYGA1UEChMP
-VS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNFQ0ExFjAUBgNVBAMTDUVDQSBSb290IENBIDQwHhcN
-MTgwNjA1MTM0OTI4WhcNMjQwNjA1MTM0OTI4WjB3MQswCQYDVQQGEwJVUzEYMBYGA1UEChMPVS5T
-LiBHb3Zlcm5tZW50MQwwCgYDVQQLEwNFQ0ExIjAgBgNVBAsTGUNlcnRpZmljYXRpb24gQXV0aG9y
-aXRpZXMxHDAaBgNVBAMTE1dpZGVQb2ludCBPUkMgRUNBIDcwggEiMA0GCSqGSIb3DQEBAQUAA4IB
-DwAwggEKAoIBAQC+24Vpd3f7yzNWZqYmnOx7uonmrzkn/maFGG0CHkLzT3f3B+KZpp93BBLVS3cw
-EbfJbX5ww+98C0SiPLD4AySDVztJ2a4WFNYWBCEAGaSdc6PxWFZ+Sn/Tacy7xdODHqqJkCXggvXi
-HHytPfRqq2q7M8F5mf6pXOJgCwOWOIxFpg5dXFUsR4aC/bNwgz3PgQlG4K18MEEHsEJkTLG8zPMD
-IlZ/IZKz0mPR95G+g5dB74nD3jlNF9ME8NOFAczbpdA83XwaZmPJmDYMVhxQSx4ltoRSUsx5aUUw
-yHbEwXTjbez9kCGN89Kf/kXJLZ6yVS9m2Ez03OSZpcColt1I7RA1AgMBAAGjggGKMIIBhjAfBgNV
-HSMEGDAWgBQzW6VvelVgK4FLJhTMeb9KuosyvTAdBgNVHQ4EFgQUYjxQNHk54Crs40Mo+UWkY3pg
-qOMwDgYDVR0PAQH/BAQDAgGGMGsGA1UdIARkMGIwDAYKYIZIAWUDAgEMBDAMBgpghkgBZQMCAQwF
-MAwGCmCGSAFlAwIBDAYwDAYKYIZIAWUDAgEMBzAMBgpghkgBZQMCAQwIMAwGCmCGSAFlAwIBDAkw
-DAYKYIZIAWUDAgEMCjASBgNVHRMBAf8ECDAGAQH/AgEAMAwGA1UdJAQFMAOAAQAwNwYDVR0fBDAw
-LjAsoCqgKIYmaHR0cDovL2NybC5kaXNhLm1pbC9jcmwvRUNBUk9PVENBNC5jcmwwbAYIKwYBBQUH
-AQEEYDBeMDoGCCsGAQUFBzAChi5odHRwOi8vY3JsLmRpc2EubWlsL2lzc3VlZHRvL0VDQVJPT1RD
-QTRfSVQucDdjMCAGCCsGAQUFBzABhhRodHRwOi8vb2NzcC5kaXNhLm1pbDANBgkqhkiG9w0BAQsF
-AAOCAQEAAWARJGVpFau5mRxoA2ARXwEk8GfSqRe0O4xyJSyDuc0VuuSvZvjKpb3Dcnxbf4VeCLPV
-DTPK2qXig2y+vVYiDJeQiKQnshnFVU49EcTs0KduIeGWf79SIleAMihT84kRHBd8SZjy86nevxkD
-0H70bgY/staQu5UdqG4FEBH1uMk8rXLzMXR29naO3tZm4gdkVUY3xONOmaUA0ca15GFsbm4UYSoE
-iU0cvxKRImBPs3hgpKwvAzYZmdUGWrB+KVYEbM6Cbog0FFztHn3XZy1YHFAbXVC1XnTHGD462JPB
-lsb9mOTYPTGURChE37yuMVH5OBhopNreMR/iBQMzTUUMazCCBPcwggPfoAMCAQICEQCjuKFxjWbt
-DIV/TYyN6MfdMA0GCSqGSIb3DQEBCwUAMHcxCzAJBgNVBAYTAlVTMRgwFgYDVQQKEw9VLlMuIEdv
-dmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UECxMZQ2VydGlmaWNhdGlvbiBBdXRob3JpdGll
-czEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0EgNzAeFw0yMDA5MDYxMjAwMDBaFw0yMzA5MDYx
-MjAwMDBaMIGUMQswCQYDVQQGEwJVUzEYMBYGA1UEChMPVS5TLiBHb3Zlcm5tZW50MQwwCgYDVQQL
-EwNFQ0ExDDAKBgNVBAsTA09SQzEdMBsGA1UECxMUUGFsYWRpbiBTeXN0ZW1zIEluYy4xMDAuBgNV
-BAMTJ0ZpZWxkcyBJSUkuTWlsby5ILk9SQzMwMTEwMjUwNDkuRW5jcnlwdDCCASIwDQYJKoZIhvcN
-AQEBBQADggEPADCCAQoCggEBAIaAWT3hdmbmAgfqCm8JxBAVY7mHFSYRuhZBnV9Mdy+Sz7nIUqrC
-ky65njVDCW4id+6mGbODKQTafY72GhaUWVAi2gfDENnaseEvhfP1Pyn+gPzVJGULRAOumvxpAVRE
-FhjZEuWBoLjiJeKjGqJO18MRmut0W8AO12qVXOOKwbkVeLogPwrilULSzvsccMvMp/020YgffP6m
-9ukIoNwe8L14w/9aMbRlfHUVMMoizc/wHcA9sw/AAcq6JXzXtLfWMLqQtaOYPCfI+/KXGsJwPnts
-i1MQFauhnM7TbwWg5oSiedG3kzl2/avPrMijeldlRPaE4vunMhoiw5j6qVWSGTUCAwEAAaOCAV4w
-ggFaMBMGA1UdJQQMMAoGCCsGAQUFBwMEMCIGA1UdEQQbMBmBF21maWVsZHNAcGFsYWRpbi1zeXMu
-Y29tMBsGA1UdCQQUMBIwEAYIKwYBBQUHCQQxBBMCVVMwYwYIKwYBBQUHAQEEVzBVMB8GCCsGAQUF
-BzABhhNodHRwOi8vZXZhLm9yYy5jb20vMDIGCCsGAQUFBzAChiZodHRwOi8vZWNhLm9yYy5jb20v
-Y2FDZXJ0cy9PUkNFQ0E3LnA3YzAfBgNVHSMEGDAWgBRiPFA0eTngKuzjQyj5RaRjemCo4zAXBgNV
-HSAEEDAOMAwGCmCGSAFlAwIBDAUwNAYDVR0fBC0wKzApoCegJYYjaHR0cDovL2VjYS5vcmMuY29t
-L0NSTHMvT1JDRUNBNy5jcmwwDgYDVR0PAQH/BAQDAgUgMB0GA1UdDgQWBBQAGtvPRRgfrpgirSQV
-7xrUmvzSOTANBgkqhkiG9w0BAQsFAAOCAQEAL9mFKQGBelrbRS/PDQYtXoaE308V36yquRQJB9t0
-wQC6mlZSkTtOna72N25T5yqQmUe4V58zKZgxjk3K+nhs/n5GQDAzDQfmCcytJrNtZPn0BtYWkhtP
-QF1m1kvTJ47AKVlGYbUG3T42To2YP8BmoMEGx9GzmvKbOfVP5bgfaYpa9IcTEgWL4BAc73Xb3YC3
-PVHo0FAb93JB9QjmETCJ2T+uB151oJMTnjZWyp7Ty0gjL4AWQMhlo09fo2wV/oRz9xfLACBh6Lon
-A3wdDhlX+m5VpurZhTDjj4JcA4QKOjuonxzQuu3TIPx+uCJpxbuj5dPbbGIxvdWsz123U59P7TCC
-BS0wggQVoAMCAQICEGlMqaD21uVv3mxr7dpcGTcwDQYJKoZIhvcNAQELBQAwdzELMAkGA1UEBhMC
-VVMxGDAWBgNVBAoTD1UuUy4gR292ZXJubWVudDEMMAoGA1UECxMDRUNBMSIwIAYDVQQLExlDZXJ0
-aWZpY2F0aW9uIEF1dGhvcml0aWVzMRwwGgYDVQQDExNXaWRlUG9pbnQgT1JDIEVDQSA3MB4XDTIw
-MDkwNjEyMDAwMFoXDTIzMDkwNjEyMDAwMFowgY8xCzAJBgNVBAYTAlVTMRgwFgYDVQQKEw9VLlMu
-IEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEMMAoGA1UECxMDT1JDMR0wGwYDVQQLExRQYWxhZGlu
-IFN5c3RlbXMgSW5jLjErMCkGA1UEAxMiRmllbGRzIElJSS5NaWxvLkguT1JDMzAxMTAyNTA0OS5J
-RDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKqi5zys/DtinIKjxJlm/qmOAwtHib9L
-PuuBFQbi1DrMAOYX4PS7HVPpv1ZGnv5KgUAfqKiXKBozKnXT9OfHnbnXZDjCfc02WHb8OgXCUDnK
-0cAbhq9NFsKVJQ8SWkLA6NeiCbFXvWiYXzsRgUlzG0ePehNo+czETjbm+f/NGts2H0ktr5CibXa8
-vTJH/x826pXw7zvQZDuKBLD3/CWoo3Ax3MKBvHyknf64tX5wMRYUNVdDuWYY74v6dURuGoHeyU6S
-PsJSGI5E1q9d1mIzC6gTRxS7duP86x2lCjRvxa9F6Cwseh7Ki/1/76UhYUOfKrwx9c0JTAUigVAp
-FbFx+mECAwEAAaOCAZowggGWMEgGA1UdEQRBMD+BF21maWVsZHNAcGFsYWRpbi1zeXMuY29toCQG
-CisGAQQBgjcUAgOgFgwUT1JDMzAxMTAyNTA0OUBET0RFQ0EwGwYDVR0JBBQwEjAQBggrBgEFBQcJ
-BDEEEwJVUzBjBggrBgEFBQcBAQRXMFUwHwYIKwYBBQUHMAGGE2h0dHA6Ly9ldmEub3JjLmNvbS8w
-MgYIKwYBBQUHMAKGJmh0dHA6Ly9lY2Eub3JjLmNvbS9jYUNlcnRzL09SQ0VDQTcucDdjMB8GA1Ud
-IwQYMBaAFGI8UDR5OeAq7ONDKPlFpGN6YKjjMBcGA1UdIAQQMA4wDAYKYIZIAWUDAgEMBTA0BgNV
-HR8ELTArMCmgJ6AlhiNodHRwOi8vZWNhLm9yYy5jb20vQ1JMcy9PUkNFQ0E3LmNybDApBgNVHSUE
-IjAgBggrBgEFBQcDAgYIKwYBBQUHAwQGCisGAQQBgjcUAgIwDgYDVR0PAQH/BAQDAgbAMB0GA1Ud
-DgQWBBRt1kX4XYeQ+rBhMkhF/sB9TxjPDzANBgkqhkiG9w0BAQsFAAOCAQEAAE12lwr8GywKRHZ0
-g2GWRY3yaka5et4PMw08+zltszEVommC8pBUliBREngulCGW0KuZogNWH56Qli42hVGXvboxZuvH
-ubL6Z+dddCkkWUhuefvaiACLES+3O4k5/gw+69o9PmHOwKRY0p749zPd3R+7zYckscL7YepQKuhN
-G6KvnEXo9J2Xv2cI46eO7wQrMQBoDS+KiwgCBQqr3ytGObYktsn+89YQLEbYTipQ1UdvJBrZwCa7
-uPhJYejWFsKnM6+6m9GbLD/X2FtAz/e+XWoieb+LuuDA4Vr5jngk4yFS+o+1djeH7Nuom35sMs+E
-2uaPqNiaL/e9u9AWANeRCDGCA30wggN5AgEBMIGLMHcxCzAJBgNVBAYTAlVTMRgwFgYDVQQKEw9V
-LlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UECxMZQ2VydGlmaWNhdGlvbiBBdXRo
-b3JpdGllczEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0EgNwIQaUypoPbW5W/ebGvt2lwZNzAJ
-BgUrDgMCGgUAoIIBxjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0y
-MzA0MjQyMTAwNDlaMCMGCSqGSIb3DQEJBDEWBBQXfSzEsOBFuW9/eVtqmnSnEf+/eDAlBgkqhkiG
-9w0BCQ8xGDCBFTAHBgUrDgMCGjAKBggqhkiG9w0DBzCBnQYJKwYBBAGCNxAEMYGPMIGMMHcxCzAJ
-BgNVBAYTAlVTMRgwFgYDVQQKEw9VLlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UE
-CxMZQ2VydGlmaWNhdGlvbiBBdXRob3JpdGllczEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0Eg
-NwIRAKO4oXGNZu0MhX9NjI3ox90wgZ8GCyqGSIb3DQEJEAILMYGPoIGMMHcxCzAJBgNVBAYTAlVT
-MRgwFgYDVQQKEw9VLlMuIEdvdmVybm1lbnQxDDAKBgNVBAsTA0VDQTEiMCAGA1UECxMZQ2VydGlm
-aWNhdGlvbiBBdXRob3JpdGllczEcMBoGA1UEAxMTV2lkZVBvaW50IE9SQyBFQ0EgNwIRAKO4oXGN
-Zu0MhX9NjI3ox90wDQYJKoZIhvcNAQEBBQAEggEASkfRrCjXiYCcPcMStws8NABOu078pjwGOS2P
-scUR9b2ioT6wNN9N4Y0zL3tzRR8BrLgi98Fjf+wYPW+ow1d6zAv7rEmONpdxb3GwrfER3Qo55f7a
-PG1kMjli15l2z/BgLhd+gLvq6/SDu7ALahpYZykv/fYEL+3MULpdv4p3sNANnCUtpDmWgi372tGU
-LHgGLbQ987Q0zg57/iXjdBdE5/UVg/jO2Why3o9ZPOmhuMYfouVYwOydw88SJln6lU9jY1WXlfuo
-UdbXp8uC/LLfd3q3pZ8pZXWPrRS/sjj8tVSAxAMLCFvQlFtPUfRkxLAsGMU/2PueCyAK+BcxtOHN
-BQAAAAAAAA==
-
-------=_NextPart_000_0039_01D976CE.51C277E0--
-
---===============5150366354450630579==
+--===============0765400648123380177==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -2894,4 +2665,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============5150366354450630579==--
+--===============0765400648123380177==--
