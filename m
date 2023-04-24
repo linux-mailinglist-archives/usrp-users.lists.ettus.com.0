@@ -2,142 +2,158 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B8E6ED55E
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 21:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5536ED579
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 21:46:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 736C1384760
-	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 15:30:10 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 7719B383E43
+	for <lists+usrp-users@lfdr.de>; Mon, 24 Apr 2023 15:46:49 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682364610; bh=fpexqRnUyuhRgT7nKjRqmq96cZjq8NEkwOQ/gvivuEM=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1682365609; bh=RDCCuX+j0Mkt9/bzxA0o3tXZo66kcWEBjDe3eCVmjBU=;
+	h=Date:From:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=WW635X3a8X+hgaqDbLXRh1HnVu2v+mGdhwlI8vRNyWLt+y0hpQS/hBeLvfAvSyKDo
-	 ILdGZa2C1HEcXAbVwXrRorPb1/7bAq3dyWbHceuIveazp7hdWS4ufjAu0/6HDMpjRP
-	 rNC7yJEvi2eXUdob03l22IFbMQpbjvr1GiJ1vXVTw2x8dak6liSbFBOGKxfUIua3eq
-	 y5u1mVe8z1pXr2VMJsj1KkVb0OsflfVLVu837/RHhUtdEbR0C34+7f7XmMm6+P1FDE
-	 OYwqpuE5ZynVS67BlhejCCMZMzGO41HYYASO2ReI/EN5i+bL13hGBGhJBxacO3hkE+
-	 9ScPyEkHkxfew==
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	by mm2.emwd.com (Postfix) with ESMTPS id A8FED3846ED
-	for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 15:29:47 -0400 (EDT)
+	b=DQdcBsawP6TMLGaBqvXQbmwYryXIzClkQYigTp7I8L5uJQx5VZCdkJSxD4sNgQOgB
+	 fUWxsEUWVWBdVpvucRpLvRDDOS7qCY2Tx7swSk58txzEtte1fEUnCU0X5WHIB/JCUZ
+	 hvzS6Zl9QGJjvaKPmvrpycE3Irv/cuG828/I+qsuw5YHyqbkVCPf2dQFO3eLJKfZXn
+	 cPqhCVHC/YJUCgObSHAZYL6/qcuGcmYl/+YRLqo68RNopRhfiNzw+X4MqsZGrt4xFq
+	 toxANsEmcIfA8d7Z/Vkxvgm1pFJFoamNYnPDf4/OJ1aNZTTxhQGn/ApaGGnfHMUxyM
+	 TRaBwfIGFck8A==
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5EB2B383BE5
+	for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 15:46:29 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ngrHJytC";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="cUB4V5lq";
 	dkim-atps=neutral
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-3ef3887e3c0so20794491cf.0
-        for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 12:29:47 -0700 (PDT)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-187ec6a5504so3777234fac.2
+        for <usrp-users@lists.ettus.com>; Mon, 24 Apr 2023 12:46:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682364587; x=1684956587;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Au1fmwiWwowTumVQVlQmyIV49Pp0YKvjfYx5XN4yK10=;
-        b=ngrHJytCRf/iBQvjEtz/WrbobB3BN59w0PCzR8++mK8oijJSQ+X6Lt0cP4mR0nc9id
-         RP75H0XRGFOsahOi+dCtaWc2Ryi5Bysvf7MND4Krqe+dALC7yMHmaTIIRsraomW+psFH
-         JiLbeMWPNpUNsb22zHNdjhJt9XgVllONfs42SVXG0I6bH96jWuz87uaiiZiJsoOSRJ58
-         RrRgw+j3dKcK1xx+Lsjr3ZEsAvKbuIR4eNMZQ6ZYwO8b6jjuQtWJpGpvCxq0a9+g44Hd
-         17zPpGtn+bgUZTgmO7sJEK713KqB+634rV56Zd26+5DAZw9kFA0HaSY5C9TXR+LChgjf
-         AdCg==
+        d=gmail.com; s=20221208; t=1682365588; x=1684957588;
+        h=user-agent:references:in-reply-to:to:from:subject:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4m6CxJlF+d4Yar7dsZdWM2qzQ+lHg/SPZZtmfItveU4=;
+        b=cUB4V5lqFsNFn3ifB1aHaJ2egyACK5I2Dm/pYjmv9vPvVhanikwqPelRSBBV5gQkfI
+         WWud8Zw2MpenJYlCVZDKgGkMeYneyY40o9XxyqIuGwe2OlVpi4X2DC+sA9thpe1/2948
+         p6o8UTWJx6fhHEbKOT72M76AXBRwL9P5gHe3ApzE7JE+5nKNHWoRpGTM2M+c/f2XEOT7
+         Y5oY1BnBdgAU1+L2xN8nOWwg1Ol+15CM7hE9alTiWrZYFQtup66t6ugcjddSZ88fvRYc
+         0Xhu6MhuxaoZbpc6wJrPP87r/EZBH38er9nU5NMBnu6Ndy/X7+jPJikxgmoqk+9XAQ5U
+         CP2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682364587; x=1684956587;
-        h=in-reply-to:from:references:to:content-language:subject:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Au1fmwiWwowTumVQVlQmyIV49Pp0YKvjfYx5XN4yK10=;
-        b=KQx9YJcbwQSf26jikSK5JWYJ0MN6yVnuUB/05k8qTQHO+biPFHF3RjYV2BFhCuxn4A
-         EpgUBda2f2P6swyPge2fJJPlAuJqiIOQSwDaOUXWEAes31nY5BoW8csQQzhF3HN6AYqF
-         kx2lPsnOXggPQYlFIEbiIl5bQ0BilN67Zu0e89k+Q3esI5YoFwzNbXp5rLYC21cPqCLs
-         OlgEVlrG8i+g/oDGjdsVtfzrFKtvxMKfqe1nNLvyvOEuBsrEWC5K1sEic/P6Rh0fgAHc
-         03xb7eHG2BCHG48cDZjLuceJup3ZSloBAi7ctFcNpqAyCYn1M1DqzqxQeXp2x8oHZfzD
-         rX6w==
-X-Gm-Message-State: AAQBX9cVb3ZZznXrvhHqo3Tu/jX5p8PCjCikqZuJpBFswWbRg+5HOXiW
-	c0hl92/0RpmR1QtiHEeeN0b/xSR3IIY=
-X-Google-Smtp-Source: AKy350aGKhZQeSrpRZnAD8Nr6D6K0d0VDQANcN8Xg0XZoQBcLbIiUkZ4zaqmlUjREYUlR3C6ggNtww==
-X-Received: by 2002:a05:622a:188d:b0:3ef:50c2:b96b with SMTP id v13-20020a05622a188d00b003ef50c2b96bmr26833794qtc.23.1682364586993;
-        Mon, 24 Apr 2023 12:29:46 -0700 (PDT)
-Received: from [192.168.2.177] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id m21-20020a05620a221500b0074df51a90b6sm3783351qkh.60.2023.04.24.12.29.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Apr 2023 12:29:46 -0700 (PDT)
-Message-ID: <e2f7ed59-b306-40c0-1046-8efeb3f7e026@gmail.com>
-Date: Mon, 24 Apr 2023 15:29:43 -0400
+        d=1e100.net; s=20221208; t=1682365588; x=1684957588;
+        h=user-agent:references:in-reply-to:to:from:subject:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4m6CxJlF+d4Yar7dsZdWM2qzQ+lHg/SPZZtmfItveU4=;
+        b=ID7d1fVbSZmysOcwyYyFb+exk1Q+KaCGp7redc+6UZK7hCHssfeGGmzhUe16hnaJJ5
+         wTOcy97Z/qeZq4g0SaX/GBd789absUBDk+WO1d/DDHN1G8qJ18KE8Gbx859lGsd+3ey1
+         8ATpMyGBupUGarqwoVQBJq6yONnN5H1QUs+7yeMXCwaep1H44jSGB3vw9auCEgFYdUS+
+         Mk2KGJsAqFWFAAwpMSVu1e8bhT1OUx9H7PK4abJnKvJE9fCkUpnDod71CNZ5OQcYqx+d
+         yk6DwdissGb5HnXjUNsfReXNfCaUxZxclEUVKKUNM18wg46fTHd97L5myqBbG7HOk7XN
+         HvSg==
+X-Gm-Message-State: AAQBX9fKXC+riM5EbE3GMjzKK4lS18p8ntedcXGLXBWs8jNkve7QHa6Y
+	TbNwfZiMz4YFsozO77dUK/0N/DppS4Qz0g==
+X-Google-Smtp-Source: AKy350Y2nDV3drzWnmFERcngoKLEexnUI99qW4PZBpM0qp27ybDYW0aRy9ZWwSDtTyNHSo/QTCF7Mg==
+X-Received: by 2002:a05:6870:73ce:b0:17a:d06e:6be6 with SMTP id a14-20020a05687073ce00b0017ad06e6be6mr10115013oan.55.1682365588382;
+        Mon, 24 Apr 2023 12:46:28 -0700 (PDT)
+Received: from [192.168.4.55] ([47.186.160.129])
+        by smtp.gmail.com with ESMTPSA id b35-20020a4a98e6000000b0051a6cb524b6sm5213891ooj.2.2023.04.24.12.46.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 24 Apr 2023 12:46:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: page heller <pageheller@gmail.com>,
- "jorge.gonzalez.o--- via USRP-users" <usrp-users@lists.ettus.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Date: Mon, 24 Apr 2023 14:46:12 -0500
+Message-ID: <Mailbird-ef2a1368-633c-4d4a-a1ef-d38df4cf51a8@gmail.com>
+From: "page heller" <pageheller@gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>,
+ "jorge.gonzalez.o--- via USRP-users" <usrp-users@lists.ettus.com>
+In-Reply-To: <e2f7ed59-b306-40c0-1046-8efeb3f7e026@gmail.com>
 References: <Mailbird-291a700c-0363-465a-9bb0-fe8256352b8e@gmail.com>
  <BN2P110MB174782806660DAEDBDC54B72B7679@BN2P110MB1747.NAMP110.PROD.OUTLOOK.COM>
  <4670b23b-3cef-24e2-bf7f-2d3b7fdabf6e@gmail.com>
  <Mailbird-f5dead59-e2e1-402b-ae12-931a28d42a16@gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <Mailbird-f5dead59-e2e1-402b-ae12-931a28d42a16@gmail.com>
-Message-ID-Hash: YDOWSJJDIWMF7LO45VXHR746TOUDRZXU
-X-Message-ID-Hash: YDOWSJJDIWMF7LO45VXHR746TOUDRZXU
-X-MailFrom: patchvonbraun@gmail.com
+ <e2f7ed59-b306-40c0-1046-8efeb3f7e026@gmail.com>
+User-Agent: Mailbird/2.9.74.0
+X-Mailbird-ID: Mailbird-ef2a1368-633c-4d4a-a1ef-d38df4cf51a8@gmail.com
+Message-ID-Hash: 2D2XIRSQQ5ATEEU46FW5UK25EPOTX5L4
+X-Message-ID-Hash: 2D2XIRSQQ5ATEEU46FW5UK25EPOTX5L4
+X-MailFrom: pageheller@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: B-210 mounting holes
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YDOWSJJDIWMF7LO45VXHR746TOUDRZXU/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2D2XIRSQQ5ATEEU46FW5UK25EPOTX5L4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6636471058911014631=="
+Content-Type: multipart/mixed; boundary="===============4243872189922519620=="
 
-This is a multi-part message in MIME format.
---===============6636471058911014631==
+--===============4243872189922519620==
 Content-Type: multipart/alternative;
- boundary="------------KOL93PDWYlbZTB0B45LPQvCl"
-Content-Language: en-US
+ boundary="----=_NextPart_26466561.751556428226"
 
-This is a multi-part message in MIME format.
---------------KOL93PDWYlbZTB0B45LPQvCl
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+------=_NextPart_26466561.751556428226
+Content-Type: text/plain;
+ charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+Thank you, Marcus. -p
+On 4/24/2023 2:29:47 PM, Marcus D. Leech <patchvonbraun@gmail.com> wrote:
 On 24/04/2023 15:03, page heller wrote:
-> Does anyone know the part number? -page
+
+Does anyone know the part number? -page
 I believe they are made by Lumex:
 
-https://www.mouser.ca/ProductDetail/Lumex/LPF-C011304S?qs=3ZOqpMxxriqLNJacoNbLgw%3D%3D&mgh=1&gclid=CjwKCAjw0ZiiBhBKEiwA4PT9z2rQFYxmNAYskRM_v-HUHZ_46Fde-elA1iAWD_FkVU662_hS-vgC3hoCyFUQAvD_BwE
+https://www.mouser.ca/ProductDetail/Lumex/LPF-C011304S?qs=3D3ZOqpMxxriqLNJa=
+coNbLgw%3D%3D&mgh=3D1&gclid=3DCjwKCAjw0ZiiBhBKEiwA4PT9z2rQFYxmNAYskRM_v-HUH=
+Z_46Fde-elA1iAWD_FkVU662_hS-vgC3hoCyFUQAvD_BwE [https://www.mouser.ca/Produ=
+ctDetail/Lumex/LPF-C011304S?qs=3D3ZOqpMxxriqLNJacoNbLgw%3D%3D&amp;mgh=3D1&a=
+mp;gclid=3DCjwKCAjw0ZiiBhBKEiwA4PT9z2rQFYxmNAYskRM_v-HUHZ_46Fde-elA1iAWD_Fk=
+VU662_hS-vgC3hoCyFUQAvD_BwE]
 
 
---------------KOL93PDWYlbZTB0B45LPQvCl
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 24/04/2023 15:03, page heller wrote:<br>
+------=_NextPart_26466561.751556428226
+Content-Type: text/html;
+ charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<body><div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-fami=
+ly: Arial;color: #000000;text-align: left" dir=3D"ltr">
+                                        Thank you, Marcus. -p<div class=3D"=
+mb_sig"></div><blockquote class=3D'history_container' type=3D'cite' style=
+=3D'border-left-style:solid;border-width:1px; margin-top:20px; margin-left:=
+0px;padding-left:10px;'>
+                        <p style=3D'color: #AAAAAA; margin-top: 10px;'>On 4=
+/24/2023 2:29:47 PM, Marcus D. Leech &lt;patchvonbraun@gmail.com&gt; wrote:=
+</p><div style=3D'font-family:Arial,Helvetica,sans-serif'>
+    <div class=3D"moz-cite-prefix">On 24/04/2023 15:03, page heller wrote:<=
+br>
     </div>
-    <blockquote type="cite"
-      cite="mid:Mailbird-f5dead59-e2e1-402b-ae12-931a28d42a16@gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div id="__MailbirdStyleContent" style="font-size:
-        10pt;font-family: Arial;color: #000000;text-align: left"
-        dir="ltr"> Does anyone know the part number? -page</div>
+    <blockquote type=3D"cite" cite=3D"mid:Mailbird-f5dead59-e2e1-402b-ae12-=
+931a28d42a16@gmail.com">
+      
+      <div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-fami=
+ly: Arial;color: #000000;text-align: left" dir=3D"ltr"> Does anyone know th=
+e part number? -page</div>
     </blockquote>
     I believe they are made by Lumex:<br>
     <br>
-<a class="moz-txt-link-freetext" href="https://www.mouser.ca/ProductDetail/Lumex/LPF-C011304S?qs=3ZOqpMxxriqLNJacoNbLgw%3D%3D&amp;mgh=1&amp;gclid=CjwKCAjw0ZiiBhBKEiwA4PT9z2rQFYxmNAYskRM_v-HUHZ_46Fde-elA1iAWD_FkVU662_hS-vgC3hoCyFUQAvD_BwE">https://www.mouser.ca/ProductDetail/Lumex/LPF-C011304S?qs=3ZOqpMxxriqLNJacoNbLgw%3D%3D&amp;mgh=1&amp;gclid=CjwKCAjw0ZiiBhBKEiwA4PT9z2rQFYxmNAYskRM_v-HUHZ_46Fde-elA1iAWD_FkVU662_hS-vgC3hoCyFUQAvD_BwE</a><br>
+<a class=3D"moz-txt-link-freetext" href=3D"https://www.mouser.ca/ProductDet=
+ail/Lumex/LPF-C011304S?qs=3D3ZOqpMxxriqLNJacoNbLgw%3D%3D&amp;mgh=3D1&amp;gc=
+lid=3DCjwKCAjw0ZiiBhBKEiwA4PT9z2rQFYxmNAYskRM_v-HUHZ_46Fde-elA1iAWD_FkVU662=
+_hS-vgC3hoCyFUQAvD_BwE">https://www.mouser.ca/ProductDetail/Lumex/LPF-C0113=
+04S?qs=3D3ZOqpMxxriqLNJacoNbLgw%3D%3D&amp;mgh=3D1&amp;gclid=3DCjwKCAjw0ZiiB=
+hBKEiwA4PT9z2rQFYxmNAYskRM_v-HUHZ_46Fde-elA1iAWD_FkVU662_hS-vgC3hoCyFUQAvD_=
+BwE</a><br>
     <br>
     <br>
-  </body>
-</html>
+  </div></blockquote>
+                                        </div></body>
+------=_NextPart_26466561.751556428226--
 
---------------KOL93PDWYlbZTB0B45LPQvCl--
-
---===============6636471058911014631==
+--===============4243872189922519620==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -147,4 +163,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============6636471058911014631==--
+--===============4243872189922519620==--
