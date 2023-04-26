@@ -2,129 +2,147 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 092546EFDAB
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 00:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 886556EFDF9
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 01:22:34 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2984F38403C
-	for <lists+usrp-users@lfdr.de>; Wed, 26 Apr 2023 18:54:57 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9AB83384060
+	for <lists+usrp-users@lfdr.de>; Wed, 26 Apr 2023 19:22:33 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682549697; bh=bKcKn5LaiHW8epy4lXGM+Rja9YU3Ec+Nn2sjGSmGbvc=;
+	t=1682551353; bh=KgkJ0I4b/cfWA2EOkmRAALtwDLnAElXi32IWBv9nMUk=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=dwn+Nke4pov8QledxfVzg1hTdiXx2BqAxls5s8+y0uDwnEk4nyLUV19Mk8vQ1TJwW
-	 tqw9DpER/PvgS2LpsMFlMJmVOY6afiT50Q3P3rKtE164xUWVo3UnEeJKGZxyr0aFiZ
-	 aRM+lWqxAU2nJ91RgKPsgzVF6AJoYAFFr2rGU5FxfXPK4WdZScY1OgiwF3ze4fmy2w
-	 IVyEHKtbVxz6QMhNYbHo/c/Hh+aQcdWX0KXK5/tJmIEbALeh5vU0yeHVKOlOK2MCqh
-	 9Vz9PltJmF6PVlaORJ/9pYg6GMzuCbkURmvKKOcBtfD86wCmfClefBx4ezzOr5CrA/
-	 Cxiw+7XonLuuA==
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	by mm2.emwd.com (Postfix) with ESMTPS id 7DB1A384157
-	for <usrp-users@lists.ettus.com>; Wed, 26 Apr 2023 18:53:02 -0400 (EDT)
+	b=P8CPD0xUwZ6nS8t836H8O+WhfB/H3wDVmq5B4TBPnXyY9zOgv5wnvIDZrsMg9QAOT
+	 RsLhfwhKXEgPW2G+4fnghK7EZAh0wY/QZ8ETl2WBZS8a5oq3lMsBMFpZBtgBUxv84M
+	 XSZMa6qDse21b7HFpG2ZDHOo5iAjip5TvcFbwC5ZWQ7Ff+K8BcTBysnonavdygxuez
+	 4NvOzejMbveh8rMmlvIYm+ar5bmZBQlGrT1EdmQcQrolExU1kq1AenVz3nyHH8liZF
+	 dqwG/Lewo0ccUgXNvy3PqOUT4JrEIc3UyLLSZVt/F4MFqpWAyJ4aF8i/ZXl/NQ0KZS
+	 iy3NAsJC84CUw==
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	by mm2.emwd.com (Postfix) with ESMTPS id B1753380D25
+	for <usrp-users@lists.ettus.com>; Wed, 26 Apr 2023 19:21:52 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="aHz1+aYn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="GyaK/guh";
 	dkim-atps=neutral
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-5f95cedb135so34616176d6.1
-        for <usrp-users@lists.ettus.com>; Wed, 26 Apr 2023 15:53:02 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-74e13e46cb9so391060185a.1
+        for <usrp-users@lists.ettus.com>; Wed, 26 Apr 2023 16:21:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682549582; x=1685141582;
+        d=gmail.com; s=20221208; t=1682551312; x=1685143312;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1yd7aPORcBtugLCiWk1qaYI+hhEH+/SvlPnfqaMo6Uo=;
-        b=aHz1+aYnO8eNvALf+8HBldaOoGtBgJIMAsbAZhbjLeIr9TZCI2SUCji2XPZgPMOVkJ
-         hEjYk2S4TlNHNlJd+FIwBf8EkC0t1M0A/V/mElJXlm3pKApNldTiNkwt8wJL3KL/Rjnk
-         ezEtGvTcOz5igXdffx2VdaHAzY61fbAZN/gns13xmo4+Pb6RRDjEt/JnRZq+I50mE6Hz
-         LtLOQ+f6RAFd8mX05SkTLAycDcVslyaUogRZ6cqySoiUtLG2NrSuUSpEtB2GRjLI+Ehy
-         xyf2aNs1RSASsoxaPTFLCABdF7EQY9z0RmBPkCh0bcYuxQnXblOSTl5xEcOiYAaBk3Lb
-         kM8g==
+        bh=Ew+r0wR2/49CwpGe5wo2/JGHnn0lxVgQ595bOly6moM=;
+        b=GyaK/guh2hOVu8Ht4Y5bkVi/tzlEujehpmh+CqpmzmWvHBJRwgynQY1MUuUaixAjck
+         ievyjYUYY3FoYgxl+cC8nD2+P0bR3RpaEVSV3fjajolE6uq+uqi4l9GLGrAdSz6wDmW5
+         yw5ztHg0eG6H2tY3ADdi1l+PonRs9UOq2PvzHbDrfns8BFTOTGRA5u0z4j+gsmpWkL3Y
+         ApVjUVGMIY7vGBBYj6kFae21N+X2cy2DXzSFxXPhpFzwEccxSkYDSRRVD+0fEkmLd1YJ
+         izRhfMnEJ/W/VFVZKB9fW24CTehELWNZApp4x+2qMuHQ9kNWYVMMLodNOXqNwCFcoDau
+         +FQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682549582; x=1685141582;
+        d=1e100.net; s=20221208; t=1682551312; x=1685143312;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=1yd7aPORcBtugLCiWk1qaYI+hhEH+/SvlPnfqaMo6Uo=;
-        b=HcapbdPQXAZ0zEfX/y+FrLmJkUO5xZWGGdtCYlx2q+36NYBcoq4nvGmrDj0cWy3IEV
-         g05QtBXjz1MfrEok9+kAyTEhRJoFfEr9UHaZZrqbTAyE2f33kfGHoZksusRQjmK6QdIh
-         2jHmStTQOiZ2hRDOYmL4JR2EyWn2CIXKzWORKLEwGI95EOIxbo1ZO7woHP7YRgcjjOi0
-         yHRaDhG5CM0mvD1IDkNX1N4pOGBM2G1TQYckQg8LQUtG2rH7z7OdegYFDty/FVEupfZ9
-         l5kr+x9JtauYKKQJ6RRbFlyFNkDMvPyE3ro6azbJjXMTRXQlyCyjGOnJRsKnKnc8UY5F
-         Nt6w==
-X-Gm-Message-State: AAQBX9dbZ9vDm2V6QNVv07AtKZikGkCS5MqPCm17ujwjNqfE+1YB8ucG
-	22X+jumgsrVZ1S5bAKoT8mV7H2630wI=
-X-Google-Smtp-Source: AKy350YqfuThMljUeHNDooFEoucEn0VW3g9LAwHF3OEjF+ggPeTY91vfG3P3M6Fw0BLyYdYWorXBfw==
-X-Received: by 2002:a05:6214:1c43:b0:5e0:ad80:6846 with SMTP id if3-20020a0562141c4300b005e0ad806846mr44417820qvb.0.1682549581657;
-        Wed, 26 Apr 2023 15:53:01 -0700 (PDT)
+        bh=Ew+r0wR2/49CwpGe5wo2/JGHnn0lxVgQ595bOly6moM=;
+        b=OwjiAFDnStFO8PGIDuE+O969bsaeB8I8aIIKvZ8EYAUn4sE/M4HlhhhDSF7oLR/W+a
+         bMOZUOti4sE3APC9X55pQ/P2qVc/LQtdJ3QL9qO3hPudrLZ/JIy6gfNI1eEAaZZBAx1L
+         iZqMoix9rOmgr8SC25okzjdFqsjzOQWVs+gq1Uv9lqy7ooPhwfdtj+QY/DBn4kRARDSH
+         VcR/KsUC4mBur+ICgtand/qBcKWjXtBtJ1wA2jZAXGfSmitif3HeHfLCqiLQnMQ+QmI9
+         eviXs1awtaQoJJmHxLUvXBbTnbgFyWL+j5qJT/OFBTJOTxXiBRItYa+yTbuggbFbrHpB
+         oMlA==
+X-Gm-Message-State: AAQBX9dk0rONLXgOVsOCnP8Z7ZMaQDYFb6y6JpXMo35rWq6jLf0Il32Q
+	i5vuF/qczxjauP2JYNH+YSIVbmzIkOA=
+X-Google-Smtp-Source: AKy350ap+ZXdHKC/lEfPlbWa5VkVX8ZzF/DUzLOFjYMGbkyW9saCAbZqOdyQ72eKuV4Ucz+lX1w1gg==
+X-Received: by 2002:a05:6214:1256:b0:615:a18b:d5af with SMTP id r22-20020a056214125600b00615a18bd5afmr23321357qvv.35.1682551311996;
+        Wed, 26 Apr 2023 16:21:51 -0700 (PDT)
 Received: from [192.168.2.159] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id 83-20020a370a56000000b00746b2ca65edsm5488992qkk.75.2023.04.26.15.53.01
+        by smtp.googlemail.com with ESMTPSA id f9-20020a37ad09000000b0074abf412080sm5486964qkm.128.2023.04.26.16.21.51
         for <usrp-users@lists.ettus.com>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 26 Apr 2023 15:53:01 -0700 (PDT)
-Message-ID: <60122539-5cca-1168-53a1-6b877f45421c@gmail.com>
-Date: Wed, 26 Apr 2023 18:53:00 -0400
+        Wed, 26 Apr 2023 16:21:51 -0700 (PDT)
+Message-ID: <be3d910b-1559-79b5-ac90-ae297ad93e51@gmail.com>
+Date: Wed, 26 Apr 2023 19:21:51 -0400
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
 Content-Language: en-US
 To: usrp-users@lists.ettus.com
 References: <SJ0PR09MB91268F4BF0C27FE2E41A1846EC659@SJ0PR09MB9126.namprd09.prod.outlook.com>
+ <CAEXYVK6OOGyUWqFE85ornE2dEQqpeo6C6XHsm8a0RSKE+6VdCg@mail.gmail.com>
 From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <SJ0PR09MB91268F4BF0C27FE2E41A1846EC659@SJ0PR09MB9126.namprd09.prod.outlook.com>
-Message-ID-Hash: VPWHC2CWZA72FSM5LTIZCAUI7OKOBK2I
-X-Message-ID-Hash: VPWHC2CWZA72FSM5LTIZCAUI7OKOBK2I
+In-Reply-To: <CAEXYVK6OOGyUWqFE85ornE2dEQqpeo6C6XHsm8a0RSKE+6VdCg@mail.gmail.com>
+Message-ID-Hash: Q7NVP75I3Y72BBNZZF5CNHHYEQ2GXY7R
+X-Message-ID-Hash: Q7NVP75I3Y72BBNZZF5CNHHYEQ2GXY7R
 X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Split USRP (X310, N231) between two PCs
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VPWHC2CWZA72FSM5LTIZCAUI7OKOBK2I/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q7NVP75I3Y72BBNZZF5CNHHYEQ2GXY7R/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============7077082386687137322=="
+Content-Type: multipart/mixed; boundary="===============7142064400927084897=="
 
 This is a multi-part message in MIME format.
---===============7077082386687137322==
+--===============7142064400927084897==
 Content-Type: multipart/alternative;
- boundary="------------TokyuSkrBOQ7yJnrfaVRVCFz"
+ boundary="------------u0Zsw0Olyq902RveoDGzlp0G"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------TokyuSkrBOQ7yJnrfaVRVCFz
+--------------u0Zsw0Olyq902RveoDGzlp0G
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 26/04/2023 18:31, Eugene Grayver wrote:
-> How much would work would it take to allow two different PCs to each=20
-> control one of the channels on the X310?=C2=A0 Would the work be mostly=
- on=20
-> the host (software) side, or will some FPGA work be required?=C2=A0 =C2=
-=A0There=20
-> is no issue on the RX side (with the recent UHD updates to support=20
-> streaming to arbitrary IP).=C2=A0 The issue is with control (e.g. set=20
-> sample rate) and with TX flow control. One use case would be two=20
-> independent modems each processing the full 200 Msps from the separate=20
-> 10 GbE ports.=C2=A0 I guess one could always just buy another USRP but =
-it=20
-> seems wasteful/inelegant.
+On 26/04/2023 18:52, Brian Padalino wrote:
+> On Wed, Apr 26, 2023 at 6:33=E2=80=AFPM Eugene Grayver=20
+> <eugene.grayver@aero.org> wrote:
+>
+>     How much would work would it take to allow two different PCs to
+>     each control one of the channels on the X310? Would the work be
+>     mostly on the host (software) side, or will some FPGA work be
+>     required?=C2=A0 =C2=A0There is no issue on the RX side (with the re=
+cent UHD
+>     updates to support streaming to arbitrary IP).=C2=A0 The issue is w=
+ith
+>     control (e.g. set sample rate) and with TX flow control.=C2=A0 One =
+use
+>     case would be two independent modems each processing the full 200
+>     Msps from the separate 10 GbE ports.=C2=A0 I guess one could always
+>     just buy another USRP but it seems wasteful/inelegant.
 >
 >
-There's a fair amount of shared "housekeeping" between the FPGA and the=20
-UHD multi_usrp instance in the host
- =C2=A0 computer.=C2=A0 Making that work in a "distributed" way while sti=
-ll=20
-providing "sanity" guarantees would be, I'm guessing,
- =C2=A0 quite a bit of work.=C2=A0 Not impossible, but "quite a bit", and=
- the=20
-standard FPGA image would swell considerably I
- =C2=A0 would imagine.
+> What if you split your application up into essentially=C2=A0a daemon th=
+at=20
+> controls the radio and handles the subscription to the sample stream.
+>
+> Your applications then communicate with that daemon - maybe via ZMQ=20
+> messages - which handle the forwarding of the sample stream(s) and=20
+> command/control of the radio. It's all software and there is still=20
+> really just one machine handling all the communication with the radio=20
+> device.=C2=A0 No change in paradigm for UHD.
+>
+> The downside is that you generate a lot more network traffic because=20
+> you want to split=C2=A0the workload over multiple computers.
+>
+> Do you think this might work for you?
+>
+> Brian
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+You can probably buy another reasonably-decent computer with 10Gbit NIC=20
+for considerably less than another X310 + 2WBX,
+ =C2=A0 also.
 
 
---------------TokyuSkrBOQ7yJnrfaVRVCFz
+--------------u0Zsw0Olyq902RveoDGzlp0G
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -134,74 +152,100 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 26/04/2023 18:31, Eugene Grayver
+    <div class=3D"moz-cite-prefix">On 26/04/2023 18:52, Brian Padalino
       wrote:<br>
     </div>
     <blockquote type=3D"cite"
-cite=3D"mid:SJ0PR09MB91268F4BF0C27FE2E41A1846EC659@SJ0PR09MB9126.namprd09=
-.prod.outlook.com">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+cite=3D"mid:CAEXYVK6OOGyUWqFE85ornE2dEQqpeo6C6XHsm8a0RSKE+6VdCg@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
 TF-8">
-      <style type=3D"text/css" style=3D"display:none;">P {margin-top:0;ma=
-rgin-bottom:0;}</style>
-      <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);" class=3D"elementToProof">
-        How much would work would it take to allow two different PCs to
-        each control one of the channels on the X310?=C2=A0 Would the wor=
-k be
-        mostly on the host (software) side, or will some FPGA work be
-        required?=C2=A0 =C2=A0There is no issue on the RX side (with the =
-recent
-        UHD updates to support streaming to arbitrary IP).=C2=A0 The issu=
-e is
-        with control (e.g. set sample rate) and with TX flow control.=C2=A0
-        One use case would be two independent modems each processing the
-        full 200 Msps from the separate 10 GbE ports.=C2=A0 I guess one c=
-ould
-        always just buy another USRP but it seems wasteful/inelegant.</di=
-v>
-      <div class=3D"elementToProof">
-        <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif;
-          font-size: 12pt; color: rgb(0, 0, 0);">
-          <br>
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">On Wed, Apr 26, 2023 at 6:33=E2=80=AFPM Eugene G=
+rayver
+          &lt;<a href=3D"mailto:eugene.grayver@aero.org"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">euge=
+ne.grayver@aero.org</a>&gt;
+          wrote:<br>
         </div>
-        <div id=3D"Signature">
-          <div>
-            <div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-fa=
-mily:
-              Calibri, Arial, Helvetica, sans-serif; font-size: 12pt;
-              color: rgb(0, 0, 0); background-color: rgb(255, 255,
-              255);">
-              <p><span style=3D"font-family: Arial, sans-serif; font-size=
-:
-                  10pt; color: black;"><span id=3D"ms-rterangepaste-start=
-"></span><span
-                    style=3D"font-family: Arial, sans-serif; font-size:
-                    13.33px; color: rgb(0, 0, 0);"></span></span><br>
-              </p>
+        <div class=3D"gmail_quote">
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">
+            <div class=3D"msg-1046312852242641516">
+              <div dir=3D"ltr">
+                <div
+style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;co=
+lor:rgb(0,0,0);background-color:rgb(255,255,255)">How
+                  much would work would it take to allow two different
+                  PCs to each control one of the channels on the X310?=C2=
+=A0
+                  Would the work be mostly on the host (software) side,
+                  or will some FPGA work be required?=C2=A0 =C2=A0There i=
+s no
+                  issue on the RX side (with the recent UHD updates to
+                  support streaming to arbitrary IP).=C2=A0 The issue is =
+with
+                  control (e.g. set sample rate) and with TX flow
+                  control.=C2=A0 One use case would be two independent mo=
+dems
+                  each processing the full 200 Msps from the separate 10
+                  GbE ports.=C2=A0 I guess one could always just buy anot=
+her
+                  USRP but it seems wasteful/inelegant.</div>
+              </div>
             </div>
+          </blockquote>
+          <div><br>
+          </div>
+          <div>What if you split your application up into essentially=C2=A0=
+a
+            daemon that controls the radio and handles the subscription
+            to the sample stream.
+            <div><br>
+            </div>
+            <div>Your applications then communicate with that daemon -
+              maybe via ZMQ messages - which handle the forwarding of
+              the sample stream(s) and command/control of the radio.=C2=A0
+              It's all software and there is still really just one
+              machine handling all the communication with the radio
+              device.=C2=A0 No change in paradigm for UHD.</div>
+            <div><br>
+            </div>
+            <div>The downside is that you generate a lot more network
+              traffic because you want to split=C2=A0the workload over
+              multiple computers.</div>
+            <div><br>
+            </div>
+            <div>Do you think this might work for you?</div>
+            <div><br>
+            </div>
+            <div>Brian</div>
           </div>
         </div>
       </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
     </blockquote>
-    There's a fair amount of shared "housekeeping" between the FPGA and
-    the UHD multi_usrp instance in the host<br>
-    =C2=A0 computer.=C2=A0 Making that work in a "distributed" way while =
-still
-    providing "sanity" guarantees would be, I'm guessing,<br>
-    =C2=A0 quite a bit of work.=C2=A0 Not impossible, but "quite a bit", =
-and the
-    standard FPGA image would swell considerably I<br>
-    =C2=A0 would imagine.<br>
+    You can probably buy another reasonably-decent computer with 10Gbit
+    NIC for considerably less than another X310 + 2WBX,<br>
+    =C2=A0 also.<br>
     <br>
     <br>
   </body>
 </html>
 
---------------TokyuSkrBOQ7yJnrfaVRVCFz--
+--------------u0Zsw0Olyq902RveoDGzlp0G--
 
---===============7077082386687137322==
+--===============7142064400927084897==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -211,4 +255,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============7077082386687137322==--
+--===============7142064400927084897==--
