@@ -2,105 +2,95 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37DE86F09EC
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 18:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA81D6F0A0E
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 18:41:08 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 688F83844EC
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 12:34:40 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DB8D3383EDA
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 12:41:07 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682613280; bh=zuYbhy9sG9SM/YObIwVbbgb5Wid/O1UdUs3cPx2D2pc=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=HVTiPeCWdncVl5SKUKppz9BqmqvjwWV6uou1cBCOt2zWtYOxU5lHpMhp9XNCt4KSp
-	 Qe84VxYNw4v/ZbEZJ0imhZcXBRJRM+qPfcrh1KU5EYspMZtfScjDEYUnqsgPDwmB4T
-	 GcDJs3A9XpVRlmT4FKzmkptnxoFpqlqfwfXvDMzxhus54dzZJJCExJkGDqKdd8HO19
-	 Nemw5K77kfsDMMLa3+Ed3jHZGOznybY8yCnQe4UZAHl6TuRhZpWB34uJ9lBZus+vCa
-	 F7nP7R8m4fY8YHYBYsbGtmrHEnXyrc6qVyKNVvOi2r7cIT5tJ5L3mVU+AOPO7sK5Aw
-	 JtwbZi5xZnCXg==
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-	by mm2.emwd.com (Postfix) with ESMTPS id CEF643842EC
-	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 12:33:58 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="J0OjTm8h";
-	dkim-atps=neutral
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-3ef49c15454so40691781cf.0
-        for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 09:33:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1682613238; x=1685205238;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ctozLliFZAKHxOKSV0YovGOR9z3yBgM7eZ+Hqef7+Ww=;
-        b=J0OjTm8hy8q09B0+8PT5Xamn00RiyQe55dpIHSR8QMA7DC3bO45XZka7BjHBxoq/P2
-         M9TqBWRZtKmyPflXi6JMJmNOT5D0uqigQta3EXhGgNEeWuRf1o/VY8+sYO4N8gr+54Ph
-         be8/3BinWtW3tP0GstwjpIIPGqe1c+omEjCb4s3aD3Xgsrmv4JmdEFxtGI50++bjVmTq
-         mbID8UiF79dFtRDNrxewlTaiE5VMGGQODCfA38csM38LuwX2MFuZXratq2jsMKY9itjh
-         l1v7OCpXAM/kF8Dhhk5nLq5S7pUKRkXKhOVvsZx/Rhm3nU+97Ejo6/cIe9G8M5NPMK+w
-         hr9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1682613238; x=1685205238;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ctozLliFZAKHxOKSV0YovGOR9z3yBgM7eZ+Hqef7+Ww=;
-        b=bdP9cB2BpL3m9Q/lcAGMFBfuQX+xLiHa0DitPRr0+18pDJmT2dQhsUuPGHVWp8u9Rk
-         VKaFlma5BFBgKtwzSMLc9TDb38LvvsACqmZ37BXz3lQauUrn52IbEM4VN5HrzPVX/GKt
-         aS4fKoC07PlrZEEBlVevnH/Rbsfqw+iYUoAfq4bEQx6jlAFvbFj870QmC6cve+KZpZA8
-         CopdHL1y7SQnowd3Wz8InYwCslZ8oH6cdNZ/U8aPzDIZpTsoNYnW3eSGpFMyolFxgEhC
-         LCS0nf/P0LFxWSEiSLWHFhj/ev3NDLJoaxBdAFgOCcQ9+ai1e1zEFmRa5uITbrtfJnx3
-         kimA==
-X-Gm-Message-State: AC+VfDyqkuni1O4LXzyHsydmXL7vrBgLFVB43F6178CwzOQS9fJ14KGM
-	azCXx2E+5KS2TW4QCK2t9SNtBbTk24I=
-X-Google-Smtp-Source: ACHHUZ5cFO0dz4DbaSMgCvrRnqd7hx241ZrxbL6KPzUVbfRAKQJAtiHrBqRIUN9sejUANYQpio1Jeg==
-X-Received: by 2002:a05:622a:612:b0:3ef:62f7:899b with SMTP id z18-20020a05622a061200b003ef62f7899bmr3149347qta.57.1682613238094;
-        Thu, 27 Apr 2023 09:33:58 -0700 (PDT)
-Received: from [192.168.2.159] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id or16-20020a05620a619000b0074abe1e1457sm6055755qkn.76.2023.04.27.09.33.57
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 27 Apr 2023 09:33:57 -0700 (PDT)
-Message-ID: <a0f6365f-2c89-f12e-bc3b-92dfbee348ee@gmail.com>
-Date: Thu, 27 Apr 2023 12:33:57 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
+	t=1682613667; bh=08YUC2YGESHDFUjYpEoiCrxR9ysMcjZD60yUO9TgIz4=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=gv7Sd0obzJLBtrj1d3J+zS5KOWkTnR8DgP9RvgjY6tYgN9kK/UG4skLbimU9BD4qY
+	 dAR7FeVvefyt4s0m1x9otGEQxT3/6yVgYS34oLUKvxN/kR6B0uGrdSbAb6uPTEjBHm
+	 8nDcodxb26IvBoMVMEtBaWB6Z3I2BJHV94gWCmvEk2llSR8z9v6OFE6i7ixlGJqY4/
+	 vt8jTiaP9YSGltRwbn7t5d8JJqCOIVhmZnqMjy6ALSBYjpx2VxhfULKNZF+KhJ7Jr4
+	 E2Bi2vmWTEJ1L6VRQF+/u0w/IMMPYTGKYXVyq8UXQLL56kbzc4bk0K02COzVbNkNY4
+	 yxKJFdbm0f0NQ==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id AB5C1384200
+	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 12:40:26 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1682613626; bh=osmewjgF7LVskibOA+KVFsmi2JG+EPe8Ae9stGkPQhQ=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=UOaMPYL/puQBm8FwQq5e/QKoCuQJNRe4kI+8PSiMMm7hnAs/bvNmztp2Y++hvR1Gc
+	 PEhE9sRfqAO1uSo8tu+NQlSbDspZu9K5RWdIqVXuE/Hj4DhWJsXGtUke+S3kC+F9Yu
+	 0Jas1w/7RUw7up5sBG+Ci/6/cob3nLkM206XCzi+zeAOOuQ/rrCNbamNwqXVyj24MM
+	 X8rFZYOliLg0M2l8Dcsk5b2pHBr+QzT/TYMaqYSlTULw8YiEYnrACn/rnj/BbBMcXL
+	 iRiVAsJirPnpxZDB1ph2V22CJlG9dWRnh6JzLQI5hWV60RHmxoXfP9DqSmwbQJNW3Y
+	 W6Yj8qEW2Al+g==
+Date: Thu, 27 Apr 2023 16:40:26 +0000
 To: usrp-users@lists.ettus.com
-References: <CAFFpLrECHikVQ-KE=y1Z4mVhs6y+prmqtBdR6WJcbuae5553Mg@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAFFpLrECHikVQ-KE=y1Z4mVhs6y+prmqtBdR6WJcbuae5553Mg@mail.gmail.com>
-Message-ID-Hash: ULBYKZTNETUVDDBSJBBZWYPM2M5F7PRR
-X-Message-ID-Hash: ULBYKZTNETUVDDBSJBBZWYPM2M5F7PRR
-X-MailFrom: patchvonbraun@gmail.com
+From: david.fernandes@viveris.fr
+Message-ID: <M5LIfRdisudzM8vjpb1TozrASTXh7qDVr7XC3xU59w@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: 70f6c471-e4aa-800b-35c4-482d80eb40cd@gmail.com
+MIME-Version: 1.0
+Message-ID-Hash: PMSIZWIDEO3RM5CVGPI24AQJ2NIDZM43
+X-Message-ID-Hash: PMSIZWIDEO3RM5CVGPI24AQJ2NIDZM43
+X-MailFrom: david.fernandes@viveris.fr
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: static ip on E312 not working
+Subject: [USRP-users] Re: Full duplex issues with X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ULBYKZTNETUVDDBSJBBZWYPM2M5F7PRR/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PMSIZWIDEO3RM5CVGPI24AQJ2NIDZM43/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0797741118089041431=="
 
-T24gMjcvMDQvMjAyMyAxMjowNSwgSk9SR0UgR09OWkFMRVogT1JFTExBTkEgdmlhIFVTUlAtdXNl
-cnMgd3JvdGU6DQo+IEhpIGFsbA0KPg0KPiBpIHdhbnQgdG8gYXNzaWduIGEgc3RhdGljIGlwIGFk
-ZHJlc3MgdG8gbXkgRTMxMiwgaSBoYXZlIG1vZGlmeSB0aGUgDQo+IGV0aDAubmV0d29yayBmaWxl
-IGluIC9kYXRhL25ldHdvcmssIHRoaXMgaXMgdGhlIGNvbnRlbnQ6DQo+DQo+IFtNYXRjaF0NCj4g
-TmFtZT1ldGgwDQo+IEtlcm5lbENvbW1hbmRMaW5lPSFuZnNyb290DQo+DQo+IFtOZXR3b3JrXQ0K
-PiBBZGRyZXNzPTE5Mi4xNjguMTAuNDINCj4gSVBGb3J3YXJkPWlwdjQNCj4NCj4gW0RIQ1BdDQo+
-IFVzZUhvc3RuYW1lPXRydWUNCj4gVXNlRG9tYWlucz10cnVlDQo+IENsaWVudElkZW50aWZpZXI9
-bWFjDQo+DQo+IEJ1dCBJIHJlYm9vdGVkIHRoZSBFMzEyIGFuZCBkaWQgbm90IGhhdmUgdGhlIGlw
-IGFzc2lnbmVkLCDCv2RvZXMgYW55b25lIA0KPiBrbm93IHdoeSB0aGlzIGlzIG5vdCBoYXBwZW5p
-bmc/DQo+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-DQo+IFVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29t
-DQo+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0
-cy5ldHR1cy5jb20NCldoYXQgb3RoZXIgZmlsZXMgYXJlIGluIC9kYXRhL25ldHdvcms/DQoNCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJl
-IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+This is a multi-part message in MIME format.
+
+--===============0797741118089041431==
+Content-Type: multipart/alternative;
+ boundary="b1_M5LIfRdisudzM8vjpb1TozrASTXh7qDVr7XC3xU59w"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_M5LIfRdisudzM8vjpb1TozrASTXh7qDVr7XC3xU59w
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+I tested with =E2=80=9CNo Sync=E2=80=9D in both Sink and source and there=
+ is no difference. I tested using the =E2=80=9CStart Time=E2=80=9D parame=
+ter in order to start first the Rx and then some seconds later the Tx, bu=
+t I have no luck..=E2=80=A6
+
+--b1_M5LIfRdisudzM8vjpb1TozrASTXh7qDVr7XC3xU59w
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>I tested with =E2=80=9CNo Sync=E2=80=9D in both Sink and source and th=
+ere is no difference. I tested using the =E2=80=9CStart Time=E2=80=9D par=
+ameter in order to start first the Rx and then some seconds later the Tx,=
+ but I have no luck..=E2=80=A6</p>
+
+
+--b1_M5LIfRdisudzM8vjpb1TozrASTXh7qDVr7XC3xU59w--
+
+--===============0797741118089041431==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0797741118089041431==--
