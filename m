@@ -2,174 +2,99 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5355E6F0A2E
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 18:47:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2CE86F0A31
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 18:47:41 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id A4C5F38403C
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 12:47:09 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5062838403C
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 12:47:41 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682614029; bh=JFTVlsWt7IohDde/N4Xxwkv6iaPuHIGYjvLUxbFchFk=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=Yx5CzUfN1eqlLhn6V5AWXd8gyjrgTanGT1ZxUrElGGIvxALKOQ39termaq7hODayT
-	 FWYVx/qwcXvwe576nuMb0dNNlNpCTKIYAtW2SHb80dxDq4BLke2ImTMa1ZrFxd5xwL
-	 k8kLMk3gaYSNWMjaRHbNVMzn1TQbrWCL0m3W/XwcCGC1bHZPWKCY6HOVPKP6V7ARyn
-	 5pkAM/Wo4nVz2t9OuLopz16kQHCs/qbjZCb1ykusDN/03PMv8OiHfs6boLlbKAn6Me
-	 gbF+lnnQ4dwy1tJtxHq2DduZC1jbANa7ZICxIAJz4RrO7q1dwI3ahhf/a/GatKSuHR
-	 radgPOdgVf6/w==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 50E10383F00
-	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 12:46:27 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682613987; bh=QY1WhQ/AiLfrVqQbW9GBv6HhmtKxnxHlV+SfEyb5F8E=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=L98ynkQgXRslDJ0Ar9chD8LB21txJ5aRal40L0MC4LTYS7KRzFt+Mgw+aKH3rJsIO
-	 Jqlaupms813JTKDnp9IZTvXQq6k6aTiYs7l9aidlB7vTr/SB4+lsbGDqblYeSxc+Hg
-	 kmwEA5fyojSblbapu9GBcmU1u+KcIrPcs6qAO5Iernszdg74Rnhq21tZMsmbjIZ10t
-	 QkMjeOD907BBwQ95DRe52iTl8AZdxFYCH85tjjwox+gp0WMvvJ2JqAO2uJvTWS04ET
-	 z42zcJU8syeYSXqDLZ4CuCfPt0o8Nb9b7vW6CT/BvqEwnyOQHKdtqOayYUiuIA03F5
-	 lIxC+aE+OKwJA==
-Date: Thu, 27 Apr 2023 16:46:27 +0000
-To: usrp-users@lists.ettus.com
-From: jmaloyan@umass.edu
-Message-ID: <vAyMTKyxqn7QxPMvWmk9Tn71qQ82D29kFKft3qfrvys@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 91ce2669-7e6a-0ad5-3480-1eb5123f33ee@gmail.com
+	t=1682614061; bh=8/9mdrvSijXeK6GZiTEpD3iXoafTPIpDD08sr24kxhc=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=mTBU/06N2+QWMkqcL80eIUzdP37VWq7VMvEwFQ6m0Yb7IDgr+2iHlFxGstYWjdOAN
+	 uxwYouhuxI4DWn8dY9uG4SXDdAUP5K5U9IKlTsGfdYxEpL2YOtpcD5ZZiu2cFlWHNJ
+	 hZF5TJJRAiIOEII4Li2pPJ3dMhFZ65NuYze8bvmGubdJ08RIcPE7KZjj2bGPFv193O
+	 bnc1uGQGrOPS1z8d21TQ/F8U9zLVGx6ZqxUdOSySah/csVAHmFrQyKVBG63HzD3ytY
+	 d16b9ZMH+aihwlx25TlYE1ff1tKO8B2h6hMYvt6CMkiUm3ynr+J+wBDDNZyaDWqL9V
+	 fdexmRm9p4yUQ==
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 997B3384507
+	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 12:46:58 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fj2P7iuy";
+	dkim-atps=neutral
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-5ef414ce24eso42400586d6.3
+        for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 09:46:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682614018; x=1685206018;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=276eGUj7ITjJzKde0Cu2mFVA62hi/2dz8ZXtzHD9CSs=;
+        b=Fj2P7iuyaEXEGxjOpzHnv6RUjemHfjZfjUWHmFXSbHF+NBRp1O2TZ0FNN7drmVHLua
+         2B1+6I8vIC11wMLXBm+CddmiInSqQwlhx6JSoLYuXdSGN0PukWPCJtKy0GST8Xf+Pw2x
+         p2VLlnAUpbgzTaY1UTKlMeEA9DtDVITRtlExrkaMATUBpWFnDaSDVoGBwWi9txgZKCP0
+         A7LFNoyDoECiVZdpjo5YnMRKAU89Ijk6ugSM5KDRjWnoLJeEcGbUl0f4EpJMok3s9GtC
+         tvfm5J2YFYAxvlHLx9OYhJ/9ZeNqsTstLjobQ+WRHQklYP37HW4Pfy8tC8nFgS/ueCD6
+         1GqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682614018; x=1685206018;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=276eGUj7ITjJzKde0Cu2mFVA62hi/2dz8ZXtzHD9CSs=;
+        b=droEPBuEAaMwBZZWdyQbWDGmEKbl4wfPaq/z9hofQ3sNgdMHkbSSl15ZkpafrJHvvx
+         w4cvosyrrzIAJfwfLBe8Lb0XFaQAQcY6/U0bDB1D0Rxj2SfANiivRVoUa4s/+pnOHtDw
+         +FkM/km9B8klZNMcJa+X0I3EIdLuK8bLM7xMbzEBdMktmLmBFMcWEhu/VRqTzxzfNnF3
+         Bjt9cVezN80tR8OIEoFSkTPUIqEkc0xu+CqWSM7Yq3EwEcCXwspZGFOd6OOmo+1z0iwP
+         hQyWDVZHBKPogN9DQjqWGOUW3JDZcumV+04b/ML9b6pbmljCKwEZDrFpGkOrMCMPgzwT
+         IwUQ==
+X-Gm-Message-State: AC+VfDwTfDdTSFPQrpnnk25BkJdPUbh6GP7TZJJZJva0Kk0Vfz5P81i/
+	a/Rr6w5l2zJo6q+kuBEl55IPzpd5Asg=
+X-Google-Smtp-Source: ACHHUZ6gXiJwb1/w2RdsLVL9YvFVhKCcD264v9gHT2Iyx0IK605KLoMb9/eTK79dby9Xb9KqTQPHWw==
+X-Received: by 2002:a05:6214:c21:b0:5f7:5ae9:813d with SMTP id a1-20020a0562140c2100b005f75ae9813dmr3053328qvd.39.1682614017676;
+        Thu, 27 Apr 2023 09:46:57 -0700 (PDT)
+Received: from [192.168.2.159] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id k5-20020a056214102500b006166d870243sm84299qvr.43.2023.04.27.09.46.57
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Apr 2023 09:46:57 -0700 (PDT)
+Message-ID: <53ccbae5-ec74-e262-3924-d7ceb035f220@gmail.com>
+Date: Thu, 27 Apr 2023 12:46:56 -0400
 MIME-Version: 1.0
-Message-ID-Hash: RFSHIRBYWDOFEK5YGRGCPXDEL5OSPKGQ
-X-Message-ID-Hash: RFSHIRBYWDOFEK5YGRGCPXDEL5OSPKGQ
-X-MailFrom: jmaloyan@umass.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <M5LIfRdisudzM8vjpb1TozrASTXh7qDVr7XC3xU59w@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <M5LIfRdisudzM8vjpb1TozrASTXh7qDVr7XC3xU59w@lists.ettus.com>
+Message-ID-Hash: 2VJG2Y3CDJNHJOIXFLSFURY32QMSX5OD
+X-Message-ID-Hash: 2VJG2Y3CDJNHJOIXFLSFURY32QMSX5OD
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Ettus N321 SFP streaming issues
+Subject: [USRP-users] Re: Full duplex issues with X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/RFSHIRBYWDOFEK5YGRGCPXDEL5OSPKGQ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2VJG2Y3CDJNHJOIXFLSFURY32QMSX5OD/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============5284967228977616578=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============5284967228977616578==
-Content-Type: multipart/alternative;
- boundary="b1_vAyMTKyxqn7QxPMvWmk9Tn71qQ82D29kFKft3qfrvys"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_vAyMTKyxqn7QxPMvWmk9Tn71qQ82D29kFKft3qfrvys
-Content-Type: text/plain; charset=us-ascii
-
-I am able to succesfully use the device, I just cant use the 10Gbe, which I need.
-
-When I run uhd_usrp_probe, I confirm that I am using version 4.4.0.0
-
-> 
->
-> \[INFO\] \[UHD\] linux; GNU C++ version 9.4.0; Boost_107100; UHD_4.4.0.HEAD-0-g5fac246b
->
-> \[INFO\] \[MPMD\] Initializing 1 device(s) in parallel with args: mgmt_addr=192.168.1.151,type=n3xx,product=n320,serial=3255102,name=ni-n3xx-3255102,fpga=XG,claimed=False,addr=192.168.1.151
->
-> \[INFO\] \[MPM.PeriphManager\] init() called with device args \`fpga=XG,mgmt_addr=192.168.1.151,name=ni-n3xx-3255102,product=n320,clock_source=internal,time_source=internal'.
->
-> \[INFO\] \[MPM.Rhodium-0\] init() called with args \`fpga=XG,mgmt_addr=192.168.1.151,name=ni-n3xx-3255102,product=n320,clock_source=internal,time_source=internal'
->
-> \[INFO\] \[MPM.Rhodium-1\] init() called with args \`fpga=XG,mgmt_addr=192.168.1.151,name=ni-n3xx-3255102,product=n320,clock_source=internal,time_source=internal'
->
->   _____________________________________________________
->
->  /
->
-> |       Device: N300-Series Device
->
-> |     _____________________________________________________
->
-> |    /
->
-> |   |       Mboard: ni-n3xx-3255102
->
-> |   |   dboard_0_pid: 338
->
-> |   |   dboard_0_serial: 3252A17
->
-> |   |   dboard_1_pid: 338
->
-> |   |   dboard_1_serial: 3252A18
->
-> |   |   eeprom_version: 3
->
-> |   |   fs_version: 20230131233809
->
-> |   |   mender_artifact: v4.4.0.0_n3xx
->
-> |   |   mpm_sw_version: 4.4.0.0-g5fac246b
->
-> |   |   pid: 16962
->
-> |   |   product: n320
->
-> |   |   rev: 10
->
-> |   |   rpc_connection: remote
->
-> |   |   serial: 3255102
->
-> |   |   type: n3xx
->
-> |   |   MPM Version: 4.4
->
-> |   |   FPGA Version: 8.1
->
-> |   |   FPGA git hash: 92c09f7.clean
->
-> |   |   RFNoC capable: Yes
-
---b1_vAyMTKyxqn7QxPMvWmk9Tn71qQ82D29kFKft3qfrvys
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>I am able to succesfully use the device, I just cant use the 10Gbe, whic=
-h I need.</p><p>When I run uhd_usrp_probe, I confirm that I am using versio=
-n 4.4.0.0</p><blockquote><p><br></p><p>[INFO] [UHD] linux; GNU C++ version =
-9.4.0; Boost_107100; UHD_4.4.0.HEAD-0-g5fac246b</p><p>[INFO] [MPMD] Initial=
-izing 1 device(s) in parallel with args: mgmt_addr=3D192.168.1.151,type=3Dn=
-3xx,product=3Dn320,serial=3D3255102,name=3Dni-n3xx-3255102,fpga=3DXG,claime=
-d=3DFalse,addr=3D192.168.1.151</p><p>[INFO] [MPM.PeriphManager] init() call=
-ed with device args `fpga=3DXG,mgmt_addr=3D192.168.1.151,name=3Dni-n3xx-325=
-5102,product=3Dn320,clock_source=3Dinternal,time_source=3Dinternal'.</p><p>=
-[INFO] [MPM.Rhodium-0] init() called with args `fpga=3DXG,mgmt_addr=3D192.1=
-68.1.151,name=3Dni-n3xx-3255102,product=3Dn320,clock_source=3Dinternal,time=
-_source=3Dinternal'</p><p>[INFO] [MPM.Rhodium-1] init() called with args `f=
-pga=3DXG,mgmt_addr=3D192.168.1.151,name=3Dni-n3xx-3255102,product=3Dn320,cl=
-ock_source=3Dinternal,time_source=3Dinternal'</p><p>  _____________________=
-________________________________</p><p> /</p><p>|       Device: N300-Series=
- Device</p><p>|     _____________________________________________________</=
-p><p>|    /</p><p>|   |       Mboard: ni-n3xx-3255102</p><p>|   |   dboard_=
-0_pid: 338</p><p>|   |   dboard_0_serial: 3252A17</p><p>|   |   dboard_1_pi=
-d: 338</p><p>|   |   dboard_1_serial: 3252A18</p><p>|   |   eeprom_version:=
- 3</p><p>|   |   fs_version: 20230131233809</p><p>|   |   mender_artifact: =
-v4.4.0.0_n3xx</p><p>|   |   mpm_sw_version: 4.4.0.0-g5fac246b</p><p>|   |  =
- pid: 16962</p><p>|   |   product: n320</p><p>|   |   rev: 10</p><p>|   |  =
- rpc_connection: remote</p><p>|   |   serial: 3255102</p><p>|   |   type: n=
-3xx</p><p>|   |   MPM Version: 4.4</p><p>|   |   FPGA Version: 8.1</p><p>| =
-  |   FPGA git hash: 92c09f7.clean</p><p>|   |   RFNoC capable: Yes</p></bl=
-ockquote>
-
---b1_vAyMTKyxqn7QxPMvWmk9Tn71qQ82D29kFKft3qfrvys--
-
---===============5284967228977616578==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============5284967228977616578==--
+T24gMjcvMDQvMjAyMyAxMjo0MCwgZGF2aWQuZmVybmFuZGVzQHZpdmVyaXMuZnIgd3JvdGU6DQo+
+DQo+IEkgdGVzdGVkIHdpdGgg4oCcTm8gU3luY+KAnSBpbiBib3RoIFNpbmsgYW5kIHNvdXJjZSBh
+bmQgdGhlcmUgaXMgbm8gDQo+IGRpZmZlcmVuY2UuIEkgdGVzdGVkIHVzaW5nIHRoZSDigJxTdGFy
+dCBUaW1l4oCdIHBhcmFtZXRlciBpbiBvcmRlciB0byANCj4gc3RhcnQgZmlyc3QgdGhlIFJ4IGFu
+ZCB0aGVuIHNvbWUgc2Vjb25kcyBsYXRlciB0aGUgVHgsIGJ1dCBJIGhhdmUgbm8gDQo+IGx1Y2su
+LuKApg0KPg0KPg0KQ291bGQgeW91IHNoYXJlIHdpdGggdXMgdGhlIG91dHB1dCBvZjoNCg0KdWhk
+X3VzcnBfcHJvYmUgLS1hcmdzICJhZGRyPTxhZGRyZXNzLW9mLVgzMTAsdHlwZT14MzAwIg0KDQpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJz
+IG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmli
+ZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
