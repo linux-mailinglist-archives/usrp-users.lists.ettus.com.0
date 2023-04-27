@@ -2,82 +2,104 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB83E6F06D1
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 15:43:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB7916F072C
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 16:21:59 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 55B003842A9
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 09:43:46 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B3801383DBC
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 10:21:58 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682603026; bh=R8IOGffFW1Us+cptEdVVBWakqbbzjdpJ6JCykcXyRSo=;
+	t=1682605318; bh=US1UGa4ha5vOKZt4spd1Vgez/f1enOk3f2b+e0JHXoE=;
 	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
 	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=JvXXSsZahRRaOxdGjPAmxOtz315+zzOh7vuTTCHf/K3kgy03bUoinuiaMTeYKmdZs
-	 VJAznvFa2movK2YFRL/gxHcAPbn156GARq0VKjVng/rp8xi2UjfOS4bR008JLjOJGs
-	 mE+AOtqBUBP0F/bwO5QOiikh5DwDcSXdtZCm7K+g3opedxEtxsRoB72skw3iWzoV4E
-	 kBR6vR4+w1uS3pw0BafFCW6B5AvShrqxcAaNyTSey2SKjs3pdLhb/7ZVVuZHPQWbpC
-	 tOK9Cx6J8VoZFIhGNFnfsR9al/EnyWumhVkjDxwa+J32288T0U1Rq8N8hNIBD6wM+O
-	 RAZA4aHXLbmOg==
+	b=xk0xHVFV3wKAd7e67BdnTBAtgI5aP/VvvyuxpabYkJ3GK7VfXvJsG2+Qz3peNvLK1
+	 om6O1Pc7gH44r5kjOQfyrKv6bmIPIVIj9Gt2zeFXUrDH3B50ywfiF/VOXdmrywmJp4
+	 5w2Adx8TT4c1RUZKTDugrJ3PjGw/IiqLWhNPyL8a+N4/3Ako6NXCPfikIrYw3kjAJo
+	 Bg5LrLH3SYWzYBl4pzEkQZpYd7+LEMY/8L9clASoCaUJPVE8RlnHaOf9gfBOdy11kA
+	 ZS9sZMtWbBbCv/70TcD16wInYAjlT58J9+zfngb3JbNBNHC6S/yFJAwuBqISV7rVUR
+	 6SgtID2bmG4mw==
 Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 53CCC383E9F
-	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 09:43:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B1893383D1E
+	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 10:21:19 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682602984; bh=eiE8opyBd/cDFUvbENay6Oqg08Lws/1/lrKk0+XgMWk=;
+	t=1682605279; bh=kxc6QymXo8H01L5uacMbs7Qo66LicnXxAWAk81FL08c=;
 	h=Date:To:From:Subject:In-Reply-To:From;
-	b=UOZBoF4OQhz9He+zeF74cTU1HgkuOyeEHk1w0tH8cgEDS5kOc+gC43hOoIwvNJYK2
-	 LrIinYWnvfP5rsHuU6iHm46dE5jWzqoqSc7DHQLFPWFpIgWUQ2re9qKMurYZlznW1u
-	 7wJpBHG/+T5YQNSXxyRugiGMuPamlbZUi2+chJY8zFnCmmML2B2pRgadCkOZd5PhHJ
-	 MjlO4LLgs0/HQ/hkRQwAiRe/DkTWKJCfs5988BjcVdTTj7ME6nqOpjB+Ha3yjx2h8M
-	 ODOuE+7a2BsWjQI/RNyPrEYpsPYiqgS1g0e9IE0K/dSlnVg9dN2b1n1dHKjeOQX7ke
-	 MvLsaM7pUWb0A==
-Date: Thu, 27 Apr 2023 13:43:04 +0000
+	b=pe1s8pDt2tzY7QeGymXnarmJyhkd2euWtYeGlBJOr2hJ59KW5bkgklSpmi2lmrVMe
+	 xTnFM+rS9EeS0Gnn3egxCj2ZEitgJP+SIll4qxPY/9bJHD5198yOBfZU7DaKGNNbVK
+	 xkTZaIixWbh9wZS4obgGZIpBtUOnQjbhLoD9Ij9VzmzEriVjkbmpMqxkpZaEsdZ4Zb
+	 +OWxNSBqSUHrS2+O1QFqFDKZRVQTEqSRvM1/SpmrKbJxt7Jt2OX+LmSENR54MOUkpk
+	 13m4zk5rpkXCrZs8m6Em4ipFrAn75FA5mNVJh+Wi0O+OVsnuUIThKZVhn6zAJDp595
+	 HK9fT70Mawxzw==
+Date: Thu, 27 Apr 2023 14:21:19 +0000
 To: usrp-users@lists.ettus.com
-From: jmaloyan@umass.edu
-Message-ID: <Sur3Om42XkRJ9jnH0oz5kDxfr5MyBBoQRzUyBXQiPs@lists.ettus.com>
+From: h57jafari@gmail.com
+Message-ID: <e1npWlLULkbLJZKattbBTmg4U1E1dUic2bisozLmxY@lists.ettus.com>
 X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 0b6be8ca-e9d1-8e9f-22d0-200e36b506f6@gmail.com
+In-Reply-To: 6676e9c4-ce09-4f04-d60f-2cc5ad449eb4@gmail.com
 MIME-Version: 1.0
-Message-ID-Hash: TWAXY7BIXV3BEG5P6YG5NHUJCNF5BL74
-X-Message-ID-Hash: TWAXY7BIXV3BEG5P6YG5NHUJCNF5BL74
-X-MailFrom: jmaloyan@umass.edu
+Message-ID-Hash: V64IYX7E5MXKF47EEQTWXNDCKMNSW3F2
+X-Message-ID-Hash: V64IYX7E5MXKF47EEQTWXNDCKMNSW3F2
+X-MailFrom: h57jafari@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Ettus N321 SFP streaming issues
+Subject: [USRP-users] Re: configuring X410 USRP to work with higher sampling frequency/band width
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/TWAXY7BIXV3BEG5P6YG5NHUJCNF5BL74/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/V64IYX7E5MXKF47EEQTWXNDCKMNSW3F2/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============2464199856141504183=="
+Content-Type: multipart/mixed; boundary="===============0120741952242561367=="
 
 This is a multi-part message in MIME format.
 
---===============2464199856141504183==
+--===============0120741952242561367==
 Content-Type: multipart/alternative;
- boundary="b1_Sur3Om42XkRJ9jnH0oz5kDxfr5MyBBoQRzUyBXQiPs"
+ boundary="b1_e1npWlLULkbLJZKattbBTmg4U1E1dUic2bisozLmxY"
 Content-Transfer-Encoding: 7bit
 
 This is a multi-part message in MIME format.
 
---b1_Sur3Om42XkRJ9jnH0oz5kDxfr5MyBBoQRzUyBXQiPs
-Content-Type: text/plain; charset=us-ascii
+--b1_e1npWlLULkbLJZKattbBTmg4U1E1dUic2bisozLmxY
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-uhd_usrp_probe --args addr=192.168.1.151 successfully probes the n321
+Hi Marcus,
 
-uhd_usrp_probe --args addr=192.168.20.2(or192.168.10.2) does not successfully probe the n321
+Thank you for support.
 
---b1_Sur3Om42XkRJ9jnH0oz5kDxfr5MyBBoQRzUyBXQiPs
-Content-Type: text/html; charset=us-ascii
+I tried to test TX and RX operation separately. I set USRP X410 as receiv=
+er, it can works with sample rate more than 100Msps. But for TX configura=
+tion, it can not handle more than 10Msps and I have several U, underflow =
+error.=20
 
-<p>uhd_usrp_probe --args addr=192.168.1.151 successfully probes the n321</p><p>uhd_usrp_probe --args addr=192.168.20.2(or192.168.10.2) does not successfully probe the n321</p>
+While I am using both TX and RX configuration simultaneously it can not g=
+o beyond 10Msps. BTW, here is my TX side code:
+
+Signal_sourcce (Triangle)=E2=80=94->VCO(Complex)=E2=80=94=E2=80=94>UHD/US=
+RP_Sink
+
+Any suggestion? Thank you.
+
+--b1_e1npWlLULkbLJZKattbBTmg4U1E1dUic2bisozLmxY
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi Marcus,</p><p>Thank you for support.</p><p>I tried to test TX and R=
+X operation separately. I set USRP X410 as receiver, it can works with sa=
+mple rate more than 100Msps. But for TX configuration, it can not handle =
+more than 10Msps and I have several U, underflow error. </p><p>While I am=
+ using both TX and RX configuration simultaneously it can not go beyond 1=
+0Msps. BTW, here is my TX side code:</p><p>Signal_sourcce (Triangle)=E2=80=
+=94-&gt;VCO(Complex)=E2=80=94=E2=80=94&gt;UHD/USRP_Sink</p><p>Any suggest=
+ion? Thank you.</p>
 
 
---b1_Sur3Om42XkRJ9jnH0oz5kDxfr5MyBBoQRzUyBXQiPs--
+--b1_e1npWlLULkbLJZKattbBTmg4U1E1dUic2bisozLmxY--
 
---===============2464199856141504183==
+--===============0120741952242561367==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -87,4 +109,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2464199856141504183==--
+--===============0120741952242561367==--
