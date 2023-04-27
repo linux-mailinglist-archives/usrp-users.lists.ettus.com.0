@@ -2,202 +2,100 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AAA86F0886
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 17:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19DFD6F088D
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 17:43:47 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id CBA1A384037
-	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 11:40:23 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3DCFA38460B
+	for <lists+usrp-users@lfdr.de>; Thu, 27 Apr 2023 11:43:46 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682610023; bh=TVFujSAkNi04l7S3RZqzg5PqBHUqQCc2f7u0B5a1Fjk=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=tOih6Wtx26BZicCRzzLokIv80Qtp2ONYNr+8IXy94nwiFyWZJEHDYROUaIo5KE+st
-	 xASuHA2eNVL0gwavi9t+D1z3CAPcplugjbFmYv0CuG71W99Me6BNeQllh99Exx/nN+
-	 il7fyuJS8wB5PJsWflNBKyhWxIk3pssnIwvBljy0rub5MxZJuU8CuJBARrMtPga7M8
-	 ddvZhrYU5/NvU2bhB63kGy+XQvcwxNTLOlCIFQKc6OblLEmF9XVr4slSJUAt4ryKZJ
-	 JgixQ0P3h24ftc0n5m/HpZsjmPbIX6mqKq2f9WL6YKavcMKtJQdUMs2/YTe2OdL6Uo
-	 1235JWVaKjMkQ==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C4FED384037
-	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 11:39:45 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1682609985; bh=4lWciHouUiMmeCm1OuxU1h/U85lPL7Cdav456jdpIC0=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=fcJLM9S3fIBrt3nP74Onx01CNF2Wlk0jBLtCGBFjrDpRg3tgbiQgWj4ylsgG5wAIR
-	 gTGxbY63HSKW1lgla8j02OfZ4/KZZ3XVQoQC+ohP9UqqoSKb43Vk/rM8luIY/PuG+a
-	 fwmm2R9EdfNp7lFt+JgvnO3OXm5hGF1B+qs9in4Y9+K2TFH6GrMuXXWE8CzwEPtLpA
-	 iFuOs709PcewCX8BbebuiaobL9QbOxPa+QfaoLBV1jcla6lfYSZ7qTt1HTCLeyq2n/
-	 1h+MggB/e6MzjTgfLZBE/zdk+NFupRBrJMs5okZPrewVWHnCim6QSktOx8fLVhKUhS
-	 l+YTd2pviId5A==
-Date: Thu, 27 Apr 2023 15:39:45 +0000
-To: usrp-users@lists.ettus.com
-From: david.fernandes@viveris.fr
-Message-ID: <fUUKTLboBVD6NSdVJqlpdPQrwCA6D8BQcwqkXAcwxmk@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: 78f73563-cbdf-a6a6-05b4-3e41c5b93254@gmail.com
+	t=1682610226; bh=Jjkh+bgkx+ueh47j1IXKnM9QNud6AwLtKN0nu4lcJ1Y=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=mzmu2qJqXCy72LxDVRkqhaYpFWCgW6GmnvzDkMOZgr4WQj8Oca6DaCcbQMPmkKE2I
+	 /k3cRd9hGFwXr6vVRMR52Ujo2sx+RvfcayOuCqSghfJGpf5Jibo78WVv3oEGUaocet
+	 92YKtYOU8XVp4X9YvJJ+FjUgoKjo3Zmly0hIwbEJ6hx1BBifgDuwjFtYkeaELGhx8z
+	 Jy/uwhaDKf2LSA7T14rhGPoQofGXgzD82swSlMYDo1B8cUE0BjZTPa5PgXtkVA12Er
+	 1Irx/gnSskWtN02CIQ3/T4DJMUQpjol37tgRkwSwa5oAUbVfdy49ZDDL7LgS0LmCys
+	 WDdc6cO2RHLxA==
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id C58DE383F2E
+	for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 11:43:08 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fwv3XtKh";
+	dkim-atps=neutral
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-74e3899037cso377924585a.2
+        for <usrp-users@lists.ettus.com>; Thu, 27 Apr 2023 08:43:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1682610188; x=1685202188;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pSJqA31HbaVxXj2VXXsK9pu4YRExT1RKUEdpcHaQWCE=;
+        b=Fwv3XtKhAdxWtC7cCfKC+O5iWdP5xvq6DK0gxkBaTzEfq601AmlGZ+F84IrOPYaYY8
+         7H73FA0D5aJBcSVJa0osc5yq8/zm23IxzCFUXx15k43Bn4BnxmyzAb1USp3pvTNLKR3S
+         XQp12DPwfGsHu0qz6OSpH6/L6Mdr+Dr8xIPg4c97HIzJHV/v/wG0lTcFSNTBoh9SzmR/
+         Wm07KKP86IOVASGzylV1BMkTVmE4YYKhInZQ/vYjxc89ntvA1F0zKJF+/6wF1Pxo/hMN
+         SaxyPF6yvjquspFXQHjwWMuG+QGZUi9kGiQtHLSTg8fNapPHiWYLOXWcdIV0KfQ2cCfE
+         3EJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1682610188; x=1685202188;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pSJqA31HbaVxXj2VXXsK9pu4YRExT1RKUEdpcHaQWCE=;
+        b=KGwi392e+37MHLoi7Pmo/zy5LFeVHk9uNHzq/z7pdEHtNGgL/d7Bm30zFnpTXMkdhP
+         KwZ2hlVpZe03tq+7t67lqL7HzhCeqUl2SfV9EEVbQdCSPzGW/C4yaGCJ0JG1MogFUV47
+         qSLAl2unV6PHYZjShned7AFJl2mgV86AeD2LwThXS8ADNKTccHb3q9GbKBUXJ2V4FWoL
+         HmfvKtJXP1+/qFkktCqoDkJr2fuzB1vuwqhMOoxEZRpfDu1ZpTASQC59naPSWqra6jAj
+         L27l8xBwQFKwm8Fy44hZhDhlO0cuwH6eIeqcPOvA+pp1sD5LZum+cH/STHjDnAOlA4r0
+         lLog==
+X-Gm-Message-State: AC+VfDxtn9092wZkqFp0jpYOXr6tGp0Kgked+l2UqHFMY9VAQZFXRdON
+	3Q3x0/azLltGxQYuPc8tns7KIGf2RzE=
+X-Google-Smtp-Source: ACHHUZ7funZsbPOLY0+93y2J4x08xS1XfJhCfOIPO0LzYEd+xVuCvQNWfEurcHHWnjCMor107Bw/0A==
+X-Received: by 2002:a05:6214:411:b0:5e8:5167:e254 with SMTP id z17-20020a056214041100b005e85167e254mr2652461qvx.42.1682610188053;
+        Thu, 27 Apr 2023 08:43:08 -0700 (PDT)
+Received: from [192.168.2.159] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id c5-20020ac84e05000000b003e64303bd2dsm6262630qtw.63.2023.04.27.08.43.07
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Apr 2023 08:43:07 -0700 (PDT)
+Message-ID: <91ce2669-7e6a-0ad5-3480-1eb5123f33ee@gmail.com>
+Date: Thu, 27 Apr 2023 11:43:07 -0400
 MIME-Version: 1.0
-Message-ID-Hash: Q4XW6YNHTZTNL5MERXVWFLVPFMN4PMFT
-X-Message-ID-Hash: Q4XW6YNHTZTNL5MERXVWFLVPFMN4PMFT
-X-MailFrom: david.fernandes@viveris.fr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <KuusbYeOPC0uF3pwfDrygj9wwhVFmS6jDsRuNn30lr0@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <KuusbYeOPC0uF3pwfDrygj9wwhVFmS6jDsRuNn30lr0@lists.ettus.com>
+Message-ID-Hash: 74AREXXLPDR4HLAOBZSLLPEQYZWUHUHK
+X-Message-ID-Hash: 74AREXXLPDR4HLAOBZSLLPEQYZWUHUHK
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Full duplex issues with X310
+Subject: [USRP-users] Re: Ettus N321 SFP streaming issues
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Q4XW6YNHTZTNL5MERXVWFLVPFMN4PMFT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/74AREXXLPDR4HLAOBZSLLPEQYZWUHUHK/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6703086932274408634=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
-
---===============6703086932274408634==
-Content-Type: multipart/alternative;
- boundary="b1_fUUKTLboBVD6NSdVJqlpdPQrwCA6D8BQcwqkXAcwxmk"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_fUUKTLboBVD6NSdVJqlpdPQrwCA6D8BQcwqkXAcwxmk
-Content-Type: text/plain; charset=us-ascii
-
-Hi Marcus,
-
-I tried to wait 1 minute before starting a new test and it has no impact. Here are the logs displayed by GNU Radio of 2 successive tests, the first was successfull and the second launched 1 minute later failed.
-
-1st TEST (successful) :
-
-> Generating: '/home/davidfernandes/tests_gnuradio/tutoriel_usrp_gnu.py'
->
-> Executing: /usr/bin/python3 -u /home/davidfernandes/tests_gnuradio/tutoriel_usrp_gnu.py
->
-> Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
->
-> \[INFO\] \[UHD\] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.1.0.6-0-g1a5b4fd2
->
-> \[INFO\] \[X300\] X300 initialization sequence...
->
-> \[INFO\] \[X300\] Maximum frame size: 1472 bytes.
->
-> \[INFO\] \[X300\] Radio 1x clock: 200 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
->
-> \[WARNING\] \[0/Radio#1\] Attempting to set tick rate to 0. Skipping.
->
-> \[WARNING\] \[0/Radio#1\] Attempting to set tick rate to 0. Skipping.
->
-> \[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
->
-> >>> Done
-
-2nd TEST started 1 minute later (Failed) :
-
-> Generating: '/home/davidfernandes/tests_gnuradio/tutoriel_usrp_gnu.py'
->
-> Executing: /usr/bin/python3 -u /home/davidfernandes/tests_gnuradio/tutoriel_usrp_gnu.py
->
-> Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
->
-> \[INFO\] \[UHD\] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.1.0.6-0-g1a5b4fd2
->
-> \[INFO\] \[X300\] X300 initialization sequence...
->
-> \[INFO\] \[X300\] Maximum frame size: 1472 bytes.
->
-> \[INFO\] \[X300\] Radio 1x clock: 200 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set RX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[MULTI_USRP\] Could not set TX rate to 0.280 MHz. Actual rate is 0.279 MHz
->
-> \[WARNING\] \[0/Radio#1\] Attempting to set tick rate to 0. Skipping.
->
-> \[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
->
-> \[WARNING\] \[0/Radio#0\] Attempting to set tick rate to 0. Skipping.
->
-> \[WARNING\] \[0/Radio#1\] Attempting to set tick rate to 0. Skipping.
->
-> >>> Done
-
-I see no difference betwen the logs of a successful test and the logs of a failed test.
-
-The version of UHD is UHD_4.1.0.6-0. 
-
-Thanks again for your support.
-
---b1_fUUKTLboBVD6NSdVJqlpdPQrwCA6D8BQcwqkXAcwxmk
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi Marcus,</p><p>I tried to wait 1 minute before starting a new test and=
- it has no impact. Here are the logs displayed by GNU Radio of 2 successive=
- tests, the first was successfull and the second launched 1 minute later fa=
-iled.</p><p>1st TEST (successful) :</p><blockquote><p>Generating: '/home/da=
-vidfernandes/tests_gnuradio/tutoriel_usrp_gnu.py'</p><p>Executing: /usr/bin=
-/python3 -u /home/davidfernandes/tests_gnuradio/tutoriel_usrp_gnu.py</p><p>=
-Warning: Ignoring XDG_SESSION_TYPE=3Dwayland on Gnome. Use QT_QPA_PLATFORM=
-=3Dwayland to run on Wayland anyway.</p><p>[INFO] [UHD] linux; GNU C++ vers=
-ion 11.3.0; Boost_107400; UHD_4.1.0.6-0-g1a5b4fd2</p><p>[INFO] [X300] X300 =
-initialization sequence...</p><p>[INFO] [X300] Maximum frame size: 1472 byt=
-es.</p><p>[INFO] [X300] Radio 1x clock: 200 MHz</p><p>[WARNING] [MULTI_USRP=
-] Could not set RX rate to 0.280 MHz. Actual rate is 0.279 MHz</p><p>[WARNI=
-NG] [MULTI_USRP] Could not set RX rate to 0.280 MHz. Actual rate is 0.279 M=
-Hz</p><p>[WARNING] [MULTI_USRP] Could not set TX rate to 0.280 MHz. Actual =
-rate is 0.279 MHz</p><p>[WARNING] [MULTI_USRP] Could not set TX rate to 0.2=
-80 MHz. Actual rate is 0.279 MHz</p><p>[WARNING] [0/Radio#0] Attempting to =
-set tick rate to 0. Skipping.</p><p>[WARNING] [0/Radio#1] Attempting to set=
- tick rate to 0. Skipping.</p><p>[WARNING] [0/Radio#1] Attempting to set ti=
-ck rate to 0. Skipping.</p><p>[WARNING] [0/Radio#0] Attempting to set tick =
-rate to 0. Skipping.</p><p>&gt;&gt;&gt; Done</p></blockquote><p>2nd TEST st=
-arted 1 minute later (Failed) :</p><blockquote><p>Generating: '/home/davidf=
-ernandes/tests_gnuradio/tutoriel_usrp_gnu.py'</p><p>Executing: /usr/bin/pyt=
-hon3 -u /home/davidfernandes/tests_gnuradio/tutoriel_usrp_gnu.py</p><p>Warn=
-ing: Ignoring XDG_SESSION_TYPE=3Dwayland on Gnome. Use QT_QPA_PLATFORM=3Dwa=
-yland to run on Wayland anyway.</p><p>[INFO] [UHD] linux; GNU C++ version 1=
-1.3.0; Boost_107400; UHD_4.1.0.6-0-g1a5b4fd2</p><p>[INFO] [X300] X300 initi=
-alization sequence...</p><p>[INFO] [X300] Maximum frame size: 1472 bytes.</=
-p><p>[INFO] [X300] Radio 1x clock: 200 MHz</p><p>[WARNING] [MULTI_USRP] Cou=
-ld not set RX rate to 0.280 MHz. Actual rate is 0.279 MHz</p><p>[WARNING] [=
-MULTI_USRP] Could not set RX rate to 0.280 MHz. Actual rate is 0.279 MHz</p=
-><p>[WARNING] [MULTI_USRP] Could not set TX rate to 0.280 MHz. Actual rate =
-is 0.279 MHz</p><p>[WARNING] [MULTI_USRP] Could not set TX rate to 0.280 MH=
-z. Actual rate is 0.279 MHz</p><p>[WARNING] [0/Radio#1] Attempting to set t=
-ick rate to 0. Skipping.</p><p>[WARNING] [0/Radio#0] Attempting to set tick=
- rate to 0. Skipping.</p><p>[WARNING] [0/Radio#0] Attempting to set tick ra=
-te to 0. Skipping.</p><p>[WARNING] [0/Radio#1] Attempting to set tick rate =
-to 0. Skipping.</p><p>&gt;&gt;&gt; Done</p></blockquote><p><br></p><p>I see=
- no difference betwen the logs of a successful test and the logs of a faile=
-d test.</p><p>The version of UHD is UHD_4.1.0.6-0. </p><p>Thanks again for =
-your support.</p><p><br></p>
-
---b1_fUUKTLboBVD6NSdVJqlpdPQrwCA6D8BQcwqkXAcwxmk--
-
---===============6703086932274408634==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6703086932274408634==--
+T24gMjcvMDQvMjAyMyAxMTozNiwgam1hbG95YW5AdW1hc3MuZWR1IHdyb3RlOg0KPg0KPiBJIHN0
+aWxsIGdldCB0aGUgc2FtZSBlcnJvciBhZnRlciB1c2luZyANCj4gImFkZHI9MTkyLjE2OC4xMC4y
+LG1nbXRfYWRkcj0xOTIuMTY4LjEuMTUxIg0KPg0KPg0KPiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWls
+IHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpBcmUgeW91IGNlcnRhaW4gdGhh
+dCB0aGUgVUhEIG9uIHlvdXIgaG9zdCBpcyBjb21wYXRpYmxlIHdpdGggdGhlIFVIRCBvbiANCnRo
+ZSBOMzIxP8KgwqAgVGhleSBuZWVkIHRvIGJlIHRoZSBzYW1lIHZlcnNpb24uDQoNCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQg
+YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
