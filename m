@@ -2,114 +2,149 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D8C6FCA8D
-	for <lists+usrp-users@lfdr.de>; Tue,  9 May 2023 17:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E016D6FCB3F
+	for <lists+usrp-users@lfdr.de>; Tue,  9 May 2023 18:22:31 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 6A0FC38459F
-	for <lists+usrp-users@lfdr.de>; Tue,  9 May 2023 11:51:31 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EE873384534
+	for <lists+usrp-users@lfdr.de>; Tue,  9 May 2023 12:22:30 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1683647491; bh=OOQyU9VyA3/QDoTHf/H6x4SY9TidysGIXSnlytkS1zA=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1683649350; bh=/ST6+kHFZpyt8dl53avthj+krynPfyVyBDUo6ndPPnU=;
+	h=Date:To:In-Reply-To:References:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=B78HfX9PE1IWTmKvG2WUoIvK7NMdB5sGdKQa8q0W3famAxYPZuOeiqht/qhP45Gne
-	 FaQZjS+Bkd9D2PZ7f2Zwz/jLImW+spdmuDuT5u520yR8k8j1PA7zebLB7swWL5aEy2
-	 H1l3CRL58r5Jl5ePddUZ0A+Y0lbXe+gMqwpZaKhM+8S1cA2CXpI0rSao8HI4+CA/Wx
-	 /WumKr+L0LTJVbuTkVLYoFXpjq5Brp7C/DEaDyEysNOSwdafzImjZxECtwlj8wj3o9
-	 jXUlL1z0TieO+ml/Rc094ujPUYO+hfXVHEFmg48v+WPYYPDUS03OWlDxNAGaacekaI
-	 mp2U0xGUdjGRQ==
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-	by mm2.emwd.com (Postfix) with ESMTPS id E4671384209
-	for <usrp-users@lists.ettus.com>; Tue,  9 May 2023 11:50:47 -0400 (EDT)
+	 From:Reply-To:From;
+	b=WB1y8lF9f2Bn1Ephzs2SoSpmv4SBFbZut3K78lm0NAXZjXDqDjpHzDFojpoBCi414
+	 LCPjl7vpCWzaQarfjEzWD2m6YocAt6k0VVwzrRCs3Jd3PevYLX7Ge5DDRlwMbOjZU/
+	 9uG/PpzkUTuqKQLWSa+DV+B8yUu6OD86l7jGcPthJQf5fOrzVc010V5jKVOvjl0lRC
+	 BeUqgJLsRIwDTZY059gJJVksDyQeOriv5Bat6TdwSHCDteuBaAHc5OaPyAliUH6sz5
+	 jwuamiPwro+4vjx7Pgv1XM/MlAxBUlNFR79X2Kgzjl58WHP2DIW23WxGl3hWLrNU3o
+	 w6lKSLROZ4VAA==
+Received: from sonic301-3.consmr.mail.bf2.yahoo.com (sonic301-3.consmr.mail.bf2.yahoo.com [74.6.129.42])
+	by mm2.emwd.com (Postfix) with ESMTPS id BB3F1384218
+	for <usrp-users@lists.ettus.com>; Tue,  9 May 2023 12:21:50 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gH0ZxXjP";
+	dkim=pass (2048-bit key; unprotected) header.d=yahoo.com header.i=@yahoo.com header.b="XdIR8jDz";
 	dkim-atps=neutral
-Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-3ef3ce7085bso28580971cf.2
-        for <usrp-users@lists.ettus.com>; Tue, 09 May 2023 08:50:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1683647447; x=1686239447;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=LKGqgdxwXioLqSI/eIXXeezqRhpefvKocxck6Bdgm+E=;
-        b=gH0ZxXjP7QpIpm0yzWxp2eV35fneDJDpIbn5raJkPL9YoVRa/RVlSO0J/QzceJg8f2
-         hCytkQwQ2c2lcWlNE7ieSEcJ+4BPIoItSR4ZgaaR5HLsCi+x6w+Jdy98ceaJ0dPMPyzq
-         EMbJnRAmH6pXWBAWIel+gCAXR2oHRLDodmEbK/SJQp169jGBBLXibEXQN1yONYj1FA1B
-         CxwnIWfNgnmySeLdNxFuAibIbpXdJHPH5T67iqKmI3UMycZHAF2NDXw6NIouI+aUKh0v
-         fwc6wJfNuKosnXaFgWootrgGbBJVHQ1Pk485hfldYudmj3XANE01DSOnMRsY4ut5gevU
-         fGJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1683647447; x=1686239447;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LKGqgdxwXioLqSI/eIXXeezqRhpefvKocxck6Bdgm+E=;
-        b=IbsxCXSScnTenc88SuDmI5e1u2IGE9rDwRpoqkTU5bQptaVF8TGRsav4q7K9jzTCQ0
-         rfpbGssA1L2w9NbbmlhLURbG3dnTy2fxfDj5UyBY3RthMia9Wv+RLvrM552UOVH06fqA
-         PaAZXg5R235cupOze0E5q+bobCHk5W+x27iVUYmjlr+uIT8BY75gkGtVv1q5jYnNVOnc
-         GAtpyxjNTB2eJ6UVFOwwzkxhxZM3HDpBrFzlQKbz9Erhm5CfSS1OA9JOkVbLXZSLm4Cv
-         /paRWsO13RwTC3nbuES6NaAOGmb9AGIqhzUIErbUOAju1CZhIlBbA0e0c2n0G8oxFHkM
-         +A+w==
-X-Gm-Message-State: AC+VfDxnOIQ/NFpB8ugmZtU4jKaFPhsLgyrdLvxK8lCGckmX1qsDhvzl
-	i0aWLPMBzmYZHW5Y88WSYzWnBSZrGok=
-X-Google-Smtp-Source: ACHHUZ4ENv7MplgG9adhqz/c592ygvXGb9XvXT2TkuakgVgXYVRsjMzZAPrNpUvv8SOwmkN5+1s2zQ==
-X-Received: by 2002:ac8:58d2:0:b0:3f1:f848:7e49 with SMTP id u18-20020ac858d2000000b003f1f8487e49mr20338816qta.60.1683647447096;
-        Tue, 09 May 2023 08:50:47 -0700 (PDT)
-Received: from [192.168.2.155] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id d1-20020a05620a166100b007577d3d1f65sm1561228qko.7.2023.05.09.08.50.46
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 May 2023 08:50:46 -0700 (PDT)
-Message-ID: <756d6dca-4cd6-cb5e-9d91-24ff02607ba7@gmail.com>
-Date: Tue, 9 May 2023 11:50:45 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683649309; bh=EvdK92yNVLhCdBNZ6qGx3zQ+dVoKl7gPNZtagFDnIbY=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=XdIR8jDzd36ZHbWif5Sb8tH3m++NisSRZzB0torz2FlCDbZHjkjWEFwUzJ5mULRjvB8MIN1ZcK3ZyXFjRDlNuQIYrcC0gaJPejU3/RkPCc2lyVwyS+XjAIq+Rlp4UlxJiuWc7u5uFOAdxKo5DWruoVeWjClox/KomDxCZ1u7SES+hY1Wtz7nvu4fgSHNYrKjTyNF1ExEL5klXzHq1kDc3xdkshZ8qvvmg1fpKF8u1D8hD63KX9LKm9oBjoYTef9q2ihzJPr7Fk6CsecYTl1jLF34uxDPi6fdfLSevK6ZFngbg1aFawOkG+u/hqZofsqbEBF6rSb+Yt+bfQ1yq1klRw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1683649309; bh=MH9/4QquioKJy/zYjrsogpXf95G6HOTcdmYG0iX1fGL=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=Qm9CC4X448nkTrExxw9LbopBa3AtDvcQ7282MArVUKU1C91KuGwp/pauytI/+vuFJiuadYs+pKmpjXAJ25aGsWNgjO89OjFcr09PyNLmboKvIPvmzgTlFjWVt5qSCUI6XmD6Y85znH2+38K3JZdmblMFxO4A1JXuEQ3B1MhFo/hKda+uCqBm75BGaAFJE3VFoI7T2MrQIak7jTrPV9cq6Dr1u99NEuzzfa1zY/X/ldH1qr/dyYPu7tqR02GCxInP5EFNCmYBwlL1f+nuahpJpRJAJYZv5e59TeDF0aZ4FN1u4wSgT1v9k6FKUFjnFf0ayH+qMyHzaReD+xA3YQpPYA==
+X-YMail-OSG: 4DTY0S8VM1mtTE1oPVXD.7pR.JvQaTkMstdsV5tktZNAHbZCOQse3EU4LJNijBX
+ xFfuDoOl6uZqVwPMQAggb7J.a0Yp6WZrRcKt_gqxkhpy5P5f.rQPBJbZ4wNNn3VFRRubV474SSiR
+ VBgCwXztjH3snzxNT7Zt4ptGz9BTW_9RHHesgaKWrjUN3zM._JVV1b5b2el8LW_3he2IQVeEyEtg
+ jP597nsd05RRAyF3nsZe2dOuIS3gkzjfbMh4eqPWzjg6P6M.jQpKwZRn3X74HYWa88.kZKSxSG7H
+ E3LvZJAjresmpMh3zo4NNYyOYLePD7oXbjkOx5v0EoOKWFvUatbNHot2dx_caOORLj8VTzjGXt25
+ p1UCxllK_8s8zSl1uf82NsFWZCL39Nl9RBvnTUUv1XXU9vWNzd8BZt4OAD7DL4f7aUlYxVEM96gE
+ _.aTSdpYx1A8cyubm1iVMmprt8DtRXbXgMavyLFH8NTJkBE6nAZqtOLcyV4ZH8Tqb.QjvVjIgAbP
+ urGsL6SzJdNPsvFX6eZLyIoriGmmoYM6mUVl5CY18BwZuhnoa.u7PbPKtv6wTFfjsNDSPeFuYONF
+ 5Z5013TTYQBheLP7puJLRwR8zzCj7Gy6__MaUB.x9r4nUAQU1haclrWVwtmzorBuiqtSCzl.dYwI
+ LRFtIqcmZVFT0jozooHA4F0QKNKlAb9CW1Hb1dM.fYyETA8CaZQYJ49BI8PNqONHSaAR1Cjfkbfs
+ UgDHCHTqJyJXheb0juG.nWA4drI3llWacx4fFrDsTpgTxUkUFrT3Q2k8BtGOUOC3HxBY4HDIL43T
+ 5Clz2DHlrXtXiiAio980zcZDjDvZUubNLMFbKzADR2PF6qmmLnke5c3Dfy9RU6xXAJoN2fguDKfn
+ xednRzV4R_MiqyQoMdTIBxVQdQS2CVaAmH6358YmATimJc9k3wXS4bOvZKXzJvOU73vKVnOkmipl
+ UHtpkMbJlD8L.nQZ5EcmWwRClJUbcetK5eAwq5kHgUN.lAc68Aa0lCqCUugVgk5xTDvTHCziRyRH
+ FIwFO3znpXDzP9KnPhb4F36BprUsOrQPP5NC__JONAITmis.CxqMC5KnPo2qMT1xK5p3VwwQhn6R
+ GYvroFc1SWqFizsU7mfB1brT07_tQntBhDD82A3WYBt2B9cj3Kq39DR6NVLhQTLaBgwo.Mso8oas
+ b5WPYVL_cwvn44qcevVWLlFEsqXPNyiE0iLpD49dIZWJnlh0DkcofqCpR4INeqsSSNrBcrLBFB.j
+ nLuuPGUPqb7zKQRYdWFm9uoQ5JSr0MvpgUQ4VK37p66kLm7NnSjGVmDz8iq6yfJ8QSxaoJKFyxxV
+ rXBa.Z9yWQLsWLz2oFCiwbdFJa1nTXN3PRBEaMjrzlo8i7.yqJidixbPTWsWNp._ZGNLiwXd47BQ
+ 7p0rioKzGw7vUwdkuw7guC_GdPOFB3DsWEOP.ICQap06ruIStZ9AfTvDss_siEtAFEXVlfCo9WWq
+ Wk8mwcT_6NwKke8s7KU007dkGYEbRiM_CwmBS67_pn5gTkQ38djrRFWUAS5jpQh0XZmXbMCBbMyd
+ PHnScWISjhkjKc7p50QB0IMsFAdJFC5Wpz9nm1fI_2USDu7ZszMABxbzrthpCdZoVTICX1XLVGB3
+ lm22Tak.wru2LaSVdAt.ZNDxL1sO7DB8Rdq8o2hVP6nAQAxt2QT33hbUNMUH1Lp0nIXuszHdmBJm
+ Fq5lvQ3r_Hi_uLeCnhdh31g.KY77WvF_0fjw0kwW22v_qY21S8PWqMEncgjlW4ITUxtzQv4b4Z2A
+ AsDN2BV_otvOWn4HR621mRIMcv2Uy9_tfF224ffPqDhZQWAzu0fEyYo16Bu3owKlvKzIgZP3yy_N
+ v5jK0ra750OcapXESU5s.7ZrdMj1ykb98XYon.5GlenUFjy2lT5IV8Uc7YfaBNy_FD7X2j9zJ6dw
+ xwc1GHOT8vxesNpDnNw66qapuPxmfqjbQS5xdOqeSBbKYr8pXTC0MI0uoMF6pocq5wnaTzE9bnsC
+ Jr_r6jJ5Q7.q_csC0nd2YruZzEjG_laDYYiSPvNWsjWNJD77N4KnEjkRD8JY6oDrV295kp4d4QWF
+ cYdCEwbASKve2bmTVeLkj9JdSrqX5lc5vBmII8Y3CMAX_.Lez9B2vFLdnQaDI0wOHc0uVwgDvczh
+ z442uLtpTXjftwANx6TGBcNI1l1DTGUFnyKM6hnd8MkeJlNSmOB_ndQMccZvsO3YPfGUJTN6oFkf
+ ijGhNYaUIeyAmv3Y0E09M
+X-Sonic-MF: <hwzhou@yahoo.com>
+X-Sonic-ID: 9573ccae-29a3-40ea-9df1-7d8a19f8ad50
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.bf2.yahoo.com with HTTP; Tue, 9 May 2023 16:21:49 +0000
+Date: Tue, 9 May 2023 16:21:45 +0000 (UTC)
+To: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+Message-ID: <1556054227.3356110.1683649305159@mail.yahoo.com>
+In-Reply-To: <b6UvUNXfjdwWK8OIBTsMRiSWh8Wx2yYyFeiFpzdd9LI@lists.ettus.com>
+References: <b6UvUNXfjdwWK8OIBTsMRiSWh8Wx2yYyFeiFpzdd9LI@lists.ettus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-To: usrp-users@lists.ettus.com
-References: <CAKacFEkkeKv68MSZqrVKPPzn5QLx4UL6zjDq0zBdn-1Wvz44hQ@mail.gmail.com>
-Content-Language: en-US
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAKacFEkkeKv68MSZqrVKPPzn5QLx4UL6zjDq0zBdn-1Wvz44hQ@mail.gmail.com>
-Message-ID-Hash: BY2T4VUAOKZAZW7AHBEJUVO2V2BH5I6R
-X-Message-ID-Hash: BY2T4VUAOKZAZW7AHBEJUVO2V2BH5I6R
-X-MailFrom: patchvonbraun@gmail.com
+X-Mailer: WebService/1.1.21417 YMailNorrin
+Message-ID-Hash: NNZKB5R63CW2OIXJO2UTL5RERANFWT2F
+X-Message-ID-Hash: NNZKB5R63CW2OIXJO2UTL5RERANFWT2F
+X-MailFrom: hwzhou@yahoo.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: time division duplexing
+Subject: [USRP-users] Can't find calibration file for X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/BY2T4VUAOKZAZW7AHBEJUVO2V2BH5I6R/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/NNZKB5R63CW2OIXJO2UTL5RERANFWT2F/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+From: zhou via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: zhou <hwzhou@yahoo.com>
+Content-Type: multipart/mixed; boundary="===============4686876297529611561=="
 
-T24gMDkvMDUvMjAyMyAwNToyMCwgYWxpIHNpZGRpZyB3cm90ZToNCj4gRGVhciBhbGwsDQo+IEkg
-YW0gdHJ5aW5nIHRvIGRlc2lnbiB0aW1lIGRpdmlzaW9uIGR1cGxleGluZyAoVEREKSB0cmFuc21p
-c3Npb24gb24gDQo+IFVTUlAgQjIwMCBtaW5pIGFuZCBnbnVyYWRpbyAzLjEwLjUuMSAuIFRvIGFj
-aGlldmUgdGhhdCwgSSB0cmllZCB0byB1c2UgDQo+IHRoZSBGdWxsLWR1cGxleCBtb2RlIGFuZCBz
-dG9wcGluZyB0aGUgaW5hY3RpdmUgbW9kZSAoVHgvUngpIGJ5IA0KPiBtdWx0aXBseWluZyB3aXRo
-IGNvbnN0YW50PTAuIEJ1dCwgc3RpbGwgdGhlIGNhcnJpZXIgYXBwZWFycyBvbiB0aGUgDQo+IHNw
-ZWN0cnVtIGFuYWx5emVyLiBJIGhhdmUgcmVhZCBzb21lIHN0dWZmIGFib3V0IGJ1cnN0IHRyYW5z
-bWlzc2lvbiBhbmQgDQo+IHRoZSBhYmlsaXR5IHRvIGVuYWJsZS9kaXNhYmxlIHRyYW5zbWlzc2lv
-biB1c2luZyAidHhfc29iIiBhbmQgInR4X2VvYiIgDQo+ICwgYnV0IGRpZG4ndCBzdWNjZWVkIGlu
-IHN0b3BwaW5nIFVTUlAgdHJhbnNtaXNzaW9uLg0KPiBBbnkgc3VnZ2VzdGlvbnMgZm9yIFRERCBk
-ZXNpZ24gb3RoZXIgdGhhbiBGdWxsLWR1cGxleCBtb2RlPw0KPiBvciBzb21lIG1vcmUgaW5mb3Jt
-YXRpb24gYWJvdXQgZW5hYmxlL2Rpc2FibGUgdHJhbnNtaXNzaW9uIG9yIGJ1cnN0IA0KPiB0cmFu
-c21pc3Npb24/DQo+DQo+IEJlc3QgcmVnYXJkcywNCj4gQWxpIFNpZGRpZw0KPg0KV2hhdCB5b3Ug
-YXJlIHNlZWluZyB3aXRoICJyZXNpZHVhbCBjYXJyaWVyIHdoZW4gSSdtIG5vdCBUWGluZyIgaXMg
-dGhlIExPIA0KbGVha2FnZSBvZiB0aGUgbWl4ZXIuwqDCoCBBTEwgbWl4ZXJzIHByb2R1Y2UgTE8g
-bGVha2FnZQ0KIMKgwqAgYXQgc29tZSBsZXZlbC0taW4gc3VwZXJoZXQgc3lzdGVtcywgdGhpcyBp
-cyBhcnJhbmdlIHRvIGZhbGwgb3V0c2lkZSANCnRoZSBwYXNzYmFuZCBvZiB0aGUgZmluYWwgZmls
-dGVycy7CoCBJbiBhIGRpcmVjdC1jb252ZXJzaW9uDQogwqDCoCBzY2hlbWUgKG5lYXJseSBBTEwg
-U0RScyksIHRoaXMgTE8gbGVha2FnZSBhcHBlYXJzIHJpZ2h0IGluIHRoZSANCm1pZGRsZSBvZiB5
-b3VyIHBhc3NiYW5kLg0KDQpZb3UgY2FuIHVzZSAib2Zmc2V0IHR1bmluZyIgdG8gbW92ZSB0aGUg
-TE8gdG8geW91ciBiYW5kIGVkZ2Ugd2hlcmUgaXQgDQptYXkgYmUgbGVzcyBwcm9ibGVtYXRpYzoN
-Cg0KaHR0cHM6Ly9maWxlcy5ldHR1cy5jb20vbWFudWFsL3BhZ2VfZ2VuZXJhbC5odG1sDQoNCl9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMg
-bWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJl
-IHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============4686876297529611561==
+Content-Type: multipart/alternative;
+	boundary="----=_Part_3356109_1650313208.1683649305158"
+
+------=_Part_3356109_1650313208.1683649305158
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi,
+I installed UHD 4.4 for X310 and calibrated USRPs, but I can't find the exp=
+ected .cal file under=C2=A0${HOME}/.local/share/uhd/cal/. Actually, there i=
+s no=C2=A0${HOME}/.local/share/uhd/ directory.
+What can be wrong?
+Thanks for any help,Hongwei
+
+------=_Part_3356109_1650313208.1683649305158
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpf691e441yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div></div>
+        <div>Hi,</div><div><br></div><div dir=3D"ltr" data-setdir=3D"false"=
+>I installed UHD 4.4 for X310 and calibrated USRPs, but I can't find the ex=
+pected .cal file under&nbsp;<span><span style=3D"color: rgb(0, 0, 0); font-=
+family: monospace; font-size: 14px;">${HOME}/.local/share/uhd/cal/. Actuall=
+y, there is no&nbsp;<span><span style=3D"color: rgb(0, 0, 0); font-family: =
+monospace; font-size: 14px;">${HOME}/.local/share/uhd/ directory.</span></s=
+pan></span></span></div><div dir=3D"ltr" data-setdir=3D"false"><span><span =
+style=3D"color: rgb(0, 0, 0); font-family: monospace; font-size: 14px;"><sp=
+an><span style=3D"color: rgb(0, 0, 0); font-family: monospace; font-size: 1=
+4px;"><br></span></span></span></span></div><div dir=3D"ltr" data-setdir=3D=
+"false"><span><span style=3D"color: rgb(0, 0, 0); font-family: monospace; f=
+ont-size: 14px;"><span><span style=3D"color: rgb(0, 0, 0); font-family: mon=
+ospace; font-size: 14px;">What can be wrong?</span></span></span></span></d=
+iv><div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color: rgb(0=
+, 0, 0); font-family: monospace; font-size: 14px;"><span><span style=3D"col=
+or: rgb(0, 0, 0); font-family: monospace; font-size: 14px;"><br></span></sp=
+an></span></span></div><div dir=3D"ltr" data-setdir=3D"false"><span><span s=
+tyle=3D"color: rgb(0, 0, 0); font-family: monospace; font-size: 14px;"><spa=
+n><span style=3D"color: rgb(0, 0, 0); font-family: monospace; font-size: 14=
+px;">Thanks for any help,</span></span></span></span></div><div dir=3D"ltr"=
+ data-setdir=3D"false"><span><span style=3D"color: rgb(0, 0, 0); font-famil=
+y: monospace; font-size: 14px;"><span><span style=3D"color: rgb(0, 0, 0); f=
+ont-family: monospace; font-size: 14px;">Hongwei</span></span></span></span=
+></div><div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"color: r=
+gb(0, 0, 0); font-family: monospace; font-size: 14px;"><span><span style=3D=
+"color: rgb(0, 0, 0); font-family: monospace; font-size: 14px;"><br></span>=
+</span></span></span></div></div></body></html>
+------=_Part_3356109_1650313208.1683649305158--
+
+--===============4686876297529611561==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============4686876297529611561==--
