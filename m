@@ -2,105 +2,137 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86417071FB
-	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 21:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9B0170738C
+	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 23:07:46 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7A338380989
-	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 15:23:53 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id B84B1384655
+	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 17:07:45 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1684351433; bh=iSF07HkBp4T13vJNuoArlbLVm61l30/By8ftxOnF07A=;
+	t=1684357665; bh=rBVaic8mCTB4D4OghwOyAloQfTHIey51mxZjTamXxGY=;
 	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=J2mLmI8U2mMeD9+UpE9VwZWRx6xhxUDxn3t2tJhOHz8/9wrFv0oAURgdPYOUDC0Ul
-	 n6Os+u4sLeZhAoKEWpKS8P18jSep/iu1kQznGVklSgXkSrvqL6dGd2RNLRWF7rPPYm
-	 HAKi6tEYXZxC/5q0cpDx2oGW1Y6J8QwliUeKroIArpPb7VIhc5TlEJMpVnD9uhfQge
-	 7p4Of/svr3IeAJQni0rLYBbip7C78ge34TBJOUmeEYHI09aQqaKITFnbzh1zT0C6ui
-	 lEZPICtEpqrWvIFIywuuIWXYghf/b88eE8ZjXjFa0Rc1FnEe6ZU9R5kYi3H7yzPBzE
-	 Naz0HNyspUR7A==
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	by mm2.emwd.com (Postfix) with ESMTPS id AB6723800AF
-	for <usrp-users@lists.ettus.com>; Wed, 17 May 2023 15:22:53 -0400 (EDT)
+	b=CPCBHWIxif4TDk2SA6aJJsfzM649DjcgO3i6H+VoBfk/+w5d7vnlvjfHU6Gr33oJY
+	 oHdeWc7YqnifUe3Jw4YP5cH2MqpcY6MamJAqnrdeCFpvNBrFovT8aowwJ5be6mZqiR
+	 tpG1HJwSAHcwSTMK35wSaYfXRXIcNM4kYQBvBv1WpyiLJGtJqTTp+fBy6zqjUyMx9T
+	 qHUSa3eLehLj0OQh7ub3S9NGwfP879kP2CLt//j+axLJjbLuxSX/QucgmsEy5KcUC0
+	 WHSykb1oAeuuatY5YAFU0jVrGXnp9xGV2gguqxH/muYt6tMbfaj5DoMT3GHFTJ0sHo
+	 oZVoa3w7b1iow==
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	by mm2.emwd.com (Postfix) with ESMTPS id 5D582384655
+	for <usrp-users@lists.ettus.com>; Wed, 17 May 2023 17:06:44 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qR7Axpt6";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20221208.gappssmtp.com header.i=@ettus-com.20221208.gappssmtp.com header.b="H3Azai9w";
 	dkim-atps=neutral
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6239144bd59so104576d6.3
-        for <usrp-users@lists.ettus.com>; Wed, 17 May 2023 12:22:53 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-3f41dceb9c9so9435995e9.3
+        for <usrp-users@lists.ettus.com>; Wed, 17 May 2023 14:06:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684351373; x=1686943373;
+        d=ettus-com.20221208.gappssmtp.com; s=20221208; t=1684357603; x=1686949603;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=TX3XWEwnI7MBrX1oXZTmzNyCt0Gx/UlO+5HdqM7DFO0=;
-        b=qR7Axpt6285wKGdSQQgDU/pX9xEoAbRhNDVbYZVXCxStmQvYYWDjxAnbizG50SqRlY
-         NYDZb8hSMD0yMAuVwnoNRmIFgRBRfP3XhnBzGQPoa14emMxULnczLxOTCiaJxil/GgBN
-         oleiGMakAUhsjmby6DShWJwj5sRs6ASiYCgP6OdXJxOA3rrN3yh6N6yBO2ZkdOuWSYnj
-         fFYa7CSo1ZhcHpoEQ1ue1+SOldiUx/7C8ZZrSJ96R9xMQaSqziT8tgVJwMOwxboD6+3z
-         1D67humMTcyCS0yccU8HpSUmdKrFV07JH6x5xEUW6L6ghGiVbl7OPrKtw2pNrCICuaJb
-         zgsA==
+        bh=ZeHENW0w8PKPcSu77O0bvgge3wcL3mfSs4AYTpxRXh8=;
+        b=H3Azai9w6IPzndTufgnNomtVPyd1pkMzik3Vo4szwNr5kqqd7x3GWWNLcij66HOcl/
+         1XZQfw0XrBsuAQctHkvJ41qZYuqomr8CgIjz8XBoOeKbZE2wh0cpSvEGHZp7E2tRFXVO
+         jXojsgsPy9mGZovh8HEDQ21hvcYAis6KT+JiKUuzXtsd2+rehAUy8NR+Hy11ZOpXvfQc
+         6+zTNFizlUp4U/tL0vfQEN+nW3YVNt+wLXeAQU1a0pSKsYRkHl/EiDGYIq01WsIYmd8a
+         yMPAWqBIMif9nkRZynHqTmpZM1L6dK2qgphF6D5NI1JKMnW1O5NiFqjqwvgsNIRZC5w7
+         nF8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684351373; x=1686943373;
+        d=1e100.net; s=20221208; t=1684357603; x=1686949603;
         h=in-reply-to:from:references:to:content-language:subject:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=TX3XWEwnI7MBrX1oXZTmzNyCt0Gx/UlO+5HdqM7DFO0=;
-        b=fuxerF0wU9zQwO8rE216G9o+GQxErv6bClUpw6wXmGwxdUoFvRK4LjZgtxylf1VciI
-         0YAdGddFxNyAsuJ3+I5Kaxa/W5NmO4lZkyVOyvlLYSde/STG8Zi9OZSwbmWuJRiZ8hQR
-         FJwppkse0oXKuqtTRk6wXmgCQHnOaqc3p4JYXL8ix2wfhp0HysXtPrxBcoOfpnnboJlC
-         qDwbaHlGORJftwS5MiuVvWchhgniY2b3LXfqP/GL+bbtsQRmCuJOr0YvLLdWWbwftHDo
-         blfIv30avjjrHinoFMM0qaWzj1C1Xd8g/2HMeuvEo9k8ouWZTD6HTYgtbK47v7CgObBz
-         MJtA==
-X-Gm-Message-State: AC+VfDxUZLSwddplYm6Qvv6DU9dAHXkaSQVxrCpnOO159Wg90N+f88dB
-	PWSITeMA3klAOK81u9f1f6RWIUVgGr8=
-X-Google-Smtp-Source: ACHHUZ51qxzx9qsE9ZzwDYo2y/Oe3NFO+FLFUBFSwSqpyD4hy19E0y+woj2MLqx0YyngAYEiL7xEeA==
-X-Received: by 2002:a05:6214:5286:b0:5ef:50a3:f9ca with SMTP id kj6-20020a056214528600b005ef50a3f9camr1244993qvb.47.1684351372981;
-        Wed, 17 May 2023 12:22:52 -0700 (PDT)
-Received: from [192.168.2.150] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id c16-20020a0ca9d0000000b005ef6b124d39sm6575345qvb.5.2023.05.17.12.22.51
+        bh=ZeHENW0w8PKPcSu77O0bvgge3wcL3mfSs4AYTpxRXh8=;
+        b=SMGkrAyZZIrfrNAhH2eeTe8ijzLPCfh5ISXzdwOEABxG+u2f10nEth/UH0pc0ZAJYt
+         esGtdsFsWjSpHW4U5h7DoFRmUtpisJr5UViyDzGIoGERqT7OW+HcYS945pJ11lXauvx6
+         9iF2jfpo2TuSkPVoSwgrfkHgKmHhR3zGu7zGt48sCmTckhC9UnU18e0LXcV1JNqhcSia
+         c3I9DT7sGSFAnEVkqZRTarkiud+EYWZPA0Wmnn3r8G1VNXNWL9uwS62qRAMr+YxhiPik
+         /k/kHISurDtk/i3nZu+ppXo9PX7ZC9AUw/qHxTGG9mDqtg9PnjLyj93ENYzpl9YKx/Xl
+         yriw==
+X-Gm-Message-State: AC+VfDwta5P/2Wnbp1ijQlVHDjVTNQZKQgGdhvZBWkcnSjJEOCTi3PY9
+	52xEBvg917fzQvv9UPrhPYuqD0Mjup6bSQlfaXhRNQ==
+X-Google-Smtp-Source: ACHHUZ6HZ2VJfA4OOqNi0rQ4vyOVgaH4wtre96IeEySn+vtjzv5sBwNf/yDYQ3uLAc67VE5jLaCCMA==
+X-Received: by 2002:a7b:c40f:0:b0:3f4:2300:e015 with SMTP id k15-20020a7bc40f000000b003f42300e015mr26089798wmi.5.1684357603526;
+        Wed, 17 May 2023 14:06:43 -0700 (PDT)
+Received: from ?IPV6:2001:9e8:386a:cd00:998f:ca6a:6065:3212? ([2001:9e8:386a:cd00:998f:ca6a:6065:3212])
+        by smtp.gmail.com with ESMTPSA id u24-20020a05600c211800b003f1958eeadcsm3304756wml.17.2023.05.17.14.06.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 May 2023 12:22:52 -0700 (PDT)
-Message-ID: <c97452de-34be-a9fe-f86c-15a8bdea58e4@gmail.com>
-Date: Wed, 17 May 2023 15:22:51 -0400
+        Wed, 17 May 2023 14:06:42 -0700 (PDT)
+Message-ID: <5a290988-e8ce-8c37-a5b5-e200960047a9@ettus.com>
+Date: Wed, 17 May 2023 23:06:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
 Content-Language: en-US
-To: "cjohnson ." <cjohnson@serranosystems.com>,
- "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
+To: usrp-users@lists.ettus.com, cjohnson@serranosystems.com
 References: <6yx612buSyar5SNsVgbvrACyBOu0J47fS0BT75pU@lists.ettus.com>
  <a017cc06-abad-0f0f-88dc-5f26cacda8c0@gmail.com>
  <1054159327.2913169.1684351212412@mail.yahoo.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+From: =?UTF-8?Q?Marcus_M=c3=bcller?= <marcus.mueller@ettus.com>
 In-Reply-To: <1054159327.2913169.1684351212412@mail.yahoo.com>
-Message-ID-Hash: KW7LGUVPPTOU6YCHNGTKELUPIPMJ4FGZ
-X-Message-ID-Hash: KW7LGUVPPTOU6YCHNGTKELUPIPMJ4FGZ
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: 7REVYQDPNNNNMNF7VAXY6X2D6GDVXDW4
+X-Message-ID-Hash: 7REVYQDPNNNNMNF7VAXY6X2D6GDVXDW4
+X-MailFrom: marcus.mueller@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: Remote Streaming UHD 4.4 on USRP-2974
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/KW7LGUVPPTOU6YCHNGTKELUPIPMJ4FGZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7REVYQDPNNNNMNF7VAXY6X2D6GDVXDW4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============3153170260354278221=="
+Content-Type: multipart/mixed; boundary="===============2804298080721674013=="
 
 This is a multi-part message in MIME format.
---===============3153170260354278221==
+--===============2804298080721674013==
 Content-Type: multipart/alternative;
- boundary="------------92nhQfRhrEPhcrfki9c5FqD0"
+ boundary="------------OLcOGIXG0qgQsKt7IIHWawx0"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------92nhQfRhrEPhcrfki9c5FqD0
+--------------OLcOGIXG0qgQsKt7IIHWawx0
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-On 17/05/2023 15:20, cjohnson . wrote:
+Hey Cy,
+
+it's getting a bit late here in Germany=C2=B9, I'll try to come up with a=
+ test setup tomorrow;=20
+haven't tried that feature (it being rather fresh).
+
+Excellent debugging by the way; my first reaction was that, hm, if MAC ad=
+dress resolution=20
+fails, the device might be trying to inadvisably stream out the wrong por=
+t, and then throw=20
+errors=E2=80=A6 But you precluded that by specifying the MAC address. Jus=
+t to verify, since that=20
+is a supermicro built-in interface, is this 10 Gb/s ethernet? If it is, f=
+ine, otherwise,=20
+my reproduction will aim for lower rates than 200 MS/s, and gigabit ether=
+net.
+
+Regarding what might be going wrong on the host side of things: the actua=
+l error you're=20
+seeing is thrown in lib/rfnoc/link_stream_manager.cpp; it checks capabili=
+ties that the=20
+streamer controlling sfp1 really needs to have for this to work. Now the =
+question becomes=20
+whether it doesn't have these, or whether the self-diagnosis is wrong.
+
+Best,
+Marcus (the one of lesser wisdom)
+
+
+=C2=B9 Just as Marcus Leech, I'm a contractor =E2=80=93 I moonlight, but =
+it's getting a bit too much=20
+moon and to little light mentally for me tonight.
+
+On 17.05.23 21:20, cjohnson . wrote:
 > Hi Marcus,
 >
 > Okay, thanks for that information.
@@ -109,73 +141,77 @@ On 17/05/2023 15:20, cjohnson . wrote:
 >
 > Thanks,
 > --Cy
-Could you share the "ifconfig" for your host (or whatever the modern=20
-equivalent is with the "ip" toolset).
-
-
 >
-> On Wednesday, May 17, 2023 at 12:05:39 PM PDT, Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
+> On Wednesday, May 17, 2023 at 12:05:39 PM PDT, Marcus D. Leech <patchvo=
+nbraun@gmail.com>=20
+> wrote:
 >
 >
-> On 17/05/2023 14:49, cjohnson@serranosystems.com=20
-> <mailto:cjohnson@serranosystems.com> wrote:
+> On 17/05/2023 14:49, cjohnson@serranosystems.com <mailto:cjohnson@serra=
+nosystems.com> wrote:
 >
 > Hi Marcus,
 >
-> I am still interested to know how your team tests to verify the FPGA=20
-> is sending the data=E2=80=A6.meanwhile I did two quick experiments base=
-d on=20
-> your suggestions.
+> I am still interested to know how your team tests to verify the FPGA is=
+ sending the=20
+> data=E2=80=A6.meanwhile I did two quick experiments based on your sugge=
+stions.
 >
-> I have no visibility into the details of the R&D teams testing=20
-> apparatus, but I have been told that this feature was tested
+> I have no visibility into the details of the R&D teams testing apparatu=
+s, but I have=20
+> been told that this feature was tested
 > =C2=A0 in the automated test jig they use.=C2=A0 That's all I know.
 >
 > I'm a (very) part-time contractor, and not an Ettus/NI R&D employee.=C2=
-=A0=20
-> So I'm singularly unqualified to talk about the
+=A0 So I'm singularly=20
+> unqualified to talk about the
 > =C2=A0 test setup.
 >
 >
 >
->> 1) Same setup using the second interface I setup on the network card=20
->> for the remote port @192.168.30.30, =E2=80=9C./remote_rx.py --rate=3D2=
-00e6=20
->> --freq=3D1223e6 --gain=3D20 --dest-addr=3D192.168.30.30 --dest-port=3D=
-54321=20
->> --adapter=3Dsfp1 --dest-mac-addr=3D3c:ec:ef:c2:43:47=E2=80=9D.
+>> 1) Same setup using the second interface I setup on the network card f=
+or the remote=20
+>> port @192.168.30.30, =E2=80=9C./remote_rx.py --rate=3D200e6 --freq=3D1=
+223e6 --gain=3D20=20
+>> --dest-addr=3D192.168.30.30 --dest-port=3D54321 --adapter=3Dsfp1=20
+>> --dest-mac-addr=3D3c:ec:ef:c2:43:47=E2=80=9D.
 >>
->> Setup netcat -ul 54321 to listen to this port, and can be verified as=20
->> listening (bottom line):
+>> Setup netcat -ul 54321 to listen to this port, and can be verified as =
+listening (bottom=20
+>> line):
 >>
->>     |Proto Recv-Q Send-Q Local Address Foreign Address State udp 0 0
->>     127.0.0.53:53 0.0.0.0:* udp 0 0 0.0.0.0:111 0.0.0.0:* udp 0 0
->>     0.0.0.0:631 0.0.0.0:* udp 0 0 0.0.0.0:5353 0.0.0.0:* udp 0 0
->>     0.0.0.0:50237 0.0.0.0:* udp 0 0 0.0.0.0:54321 0.0.0.0:* |
+>>     |Proto Recv-Q Send-Q Local Address Foreign Address State udp 0 0 1=
+27.0.0.53:53
+>>     0.0.0.0:* udp 0 0 0.0.0.0:111 0.0.0.0:* udp 0 0 0.0.0.0:631 0.0.0.=
+0:* udp 0 0
+>>     0.0.0.0:5353 0.0.0.0:* udp 0 0 0.0.0.0:50237 0.0.0.0:* udp 0 0 0.0=
+.0.0:54321 0.0.0.0:* |
 >>
->> Still no traffic to 192.168.30.30 (remote streaming dest), only=20
->> control data between USRP (192.168.30.2) and host (192.168.30.1) when=20
->> sniffing.
+>> Still no traffic to 192.168.30.30 (remote streaming dest), only contro=
+l data between=20
+>> USRP (192.168.30.2) and host (192.168.30.1) when sniffing.
 >>
->> 2) Set the dest-addr to be the host (192.168.30.2), which I would=20
->> think would be equivalent to =E2=80=9Cnormal streaming=E2=80=9D. =E2=80=
-=9C./remote_rx.py=20
->> --rate=3D200e6 --freq=3D1223e6 --gain=3D20 --dest-addr=3D192.168.30.2=20
->> --dest-port=3D54321 --adapter=3Dsfp1 --dest-mac-addr=3D3c:ec:ef:c2:43:=
-47=E2=80=9D
+>> 2) Set the dest-addr to be the host (192.168.30.2), which I would thin=
+k would be=20
+>> equivalent to =E2=80=9Cnormal streaming=E2=80=9D. =E2=80=9C./remote_rx=
+.py --rate=3D200e6 --freq=3D1223e6 --gain=3D20=20
+>> --dest-addr=3D192.168.30.2 --dest-port=3D54321 --adapter=3Dsfp1=20
+>> --dest-mac-addr=3D3c:ec:ef:c2:43:47=E2=80=9D
 >>
->> Setup netcat -ul 54321 to listen to this port, and can be verified as=20
->> listening (bottom line):
+>> Setup netcat -ul 54321 to listen to this port, and can be verified as =
+listening (bottom=20
+>> line):
 >>
->>     |Proto Recv-Q Send-Q Local Address Foreign Address State udp 0 0
->>     127.0.0.53:53 0.0.0.0:* udp 0 0 0.0.0.0:111 0.0.0.0:* udp 0 0
->>     0.0.0.0:631 0.0.0.0:* udp 0 0 0.0.0.0:5353 0.0.0.0:* udp 0 0
->>     0.0.0.0:50237 0.0.0.0:* udp 0 0 0.0.0.0:54321 0.0.0.0:* |
+>>     |Proto Recv-Q Send-Q Local Address Foreign Address State udp 0 0 1=
+27.0.0.53:53
+>>     0.0.0.0:* udp 0 0 0.0.0.0:111 0.0.0.0:* udp 0 0 0.0.0.0:631 0.0.0.=
+0:* udp 0 0
+>>     0.0.0.0:5353 0.0.0.0:* udp 0 0 0.0.0.0:50237 0.0.0.0:* udp 0 0 0.0=
+.0.0:54321 0.0.0.0:* |
 >>
 >> I don=E2=80=99t see any high speed IQ data going between 192.168.30.1 =
-(host)=20
->> and 192.168.30.2 (USRP), only the normal control trickle.
+(host) and 192.168.30.2=20
+>> (USRP), only the normal control trickle.
 >>
 >>
 >> Thanks,
@@ -192,8 +228,11 @@ to:usrp-users-leave@lists.ettus.com>
 > _______________________________________________
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---------------92nhQfRhrEPhcrfki9c5FqD0
+>
+> _______________________________________________
+> USRP-users mailing list --usrp-users@lists.ettus.com
+> To unsubscribe send an email tousrp-users-leave@lists.ettus.com
+--------------OLcOGIXG0qgQsKt7IIHWawx0
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
@@ -203,8 +242,36 @@ Content-Transfer-Encoding: quoted-printable
 -8">
   </head>
   <body>
-    <div class=3D"moz-cite-prefix">On 17/05/2023 15:20, cjohnson . wrote:=
-<br>
+    <p>Hey Cy,</p>
+    <p>it's getting a bit late here in Germany=C2=B9, I'll try to come up
+      with a test setup tomorrow; haven't tried that feature (it being
+      rather fresh).</p>
+    <p>Excellent debugging by the way; my first reaction was that, hm,
+      if MAC address resolution fails, the device might be trying to
+      inadvisably stream out the wrong port, and then throw errors=E2=80=A6=
+ But
+      you precluded that by specifying the MAC address. Just to verify,
+      since that is a supermicro built-in interface, is this 10 Gb/s
+      ethernet? If it is, fine, otherwise, my reproduction will aim for
+      lower rates than 200 MS/s, and gigabit ethernet.</p>
+    <p>Regarding what might be going wrong on the host side of things:
+      the actual error you're seeing is thrown in
+      lib/rfnoc/link_stream_manager.cpp; it checks capabilities that the
+      streamer controlling sfp1 really needs to have for this to work.
+      Now the question becomes whether it doesn't have these, or whether
+      the self-diagnosis is wrong.<br>
+    </p>
+    <p>Best,<br>
+      Marcus (the one of lesser wisdom)</p>
+    <p><br>
+    </p>
+    <p>=C2=B9 Just as Marcus Leech, I'm a contractor =E2=80=93 I moonligh=
+t, but it's
+      getting a bit too much moon and to little light mentally for me
+      tonight.<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 17.05.23 21:20, cjohnson . wrote:<b=
+r>
     </div>
     <blockquote type=3D"cite"
       cite=3D"mid:1054159327.2913169.1684351212412@mail.yahoo.com">
@@ -226,17 +293,6 @@ div>
         </div>
         <div dir=3D"ltr" data-setdir=3D"false">Thanks,</div>
         <div dir=3D"ltr" data-setdir=3D"false">--Cy</div>
-      </div>
-    </blockquote>
-    Could you share the "ifconfig" for your host (or whatever the modern
-    equivalent is with the "ip" toolset).<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1054159327.2913169.1684351212412@mail.yahoo.com">
-      <div class=3D"ydpb4355ee1yahoo-style-wrap"
-        style=3D"font-family:Helvetica Neue, Helvetica, Arial,
-        sans-serif;font-size:16px;">
         <div><br>
         </div>
       </div>
@@ -395,14 +451,23 @@ usrp-users-leave@lists.ettus.com</a><br
           </div>
         </div>
       </div>
+      <br>
+      <fieldset class=3D"moz-mime-attachment-header"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">____________________________=
+___________________
+USRP-users mailing list -- <a class=3D"moz-txt-link-abbreviated" href=3D"=
+mailto:usrp-users@lists.ettus.com">usrp-users@lists.ettus.com</a>
+To unsubscribe send an email to <a class=3D"moz-txt-link-abbreviated" hre=
+f=3D"mailto:usrp-users-leave@lists.ettus.com">usrp-users-leave@lists.ettu=
+s.com</a>
+</pre>
     </blockquote>
-    <br>
   </body>
 </html>
 
---------------92nhQfRhrEPhcrfki9c5FqD0--
+--------------OLcOGIXG0qgQsKt7IIHWawx0--
 
---===============3153170260354278221==
+--===============2804298080721674013==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -412,4 +477,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============3153170260354278221==--
+--===============2804298080721674013==--
