@@ -2,105 +2,192 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECCE705AD4
-	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 00:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67452705BF5
+	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 02:32:10 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7A8CF384B48
-	for <lists+usrp-users@lfdr.de>; Tue, 16 May 2023 18:54:57 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4F56D384B8A
+	for <lists+usrp-users@lfdr.de>; Tue, 16 May 2023 20:32:09 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1684277697; bh=hj1LmtZnoffTnbYg2EOyhSdlqpi/x0U4OJjZekLI/TI=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=V0N7rBPsw7RlRjUDS2tMeZmqmtSEsJr9ER8675srMiHEczH83Mbv95xbCPu3A8+LL
-	 xNHU6QhKsiwML5efpDJdT+qR9UJkmEAhnCPZrf9i2NycQ3jPixOQ/adwswpvayN5Iw
-	 R3vSB6lkFBQOvTGPqulpKqqpBTnooHzSkozBCvxEJc42d6RswZCjWp/0F87M7SWCY0
-	 vntY3Qm8N1xo5+eH8cqnMRMpvVa9m2L0OLVh36iXx54Gi/0n/QVtvAiGCnqZosZF+G
-	 nAzfoQQkTp3Z+UXizKVl2rg1zDJmPn42YI9g0TRR57MlHcLCgwFmkX6/S47Itwm8S3
-	 GrIkUSBaztzig==
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8DF3B384B3E
-	for <usrp-users@lists.ettus.com>; Tue, 16 May 2023 18:53:56 -0400 (EDT)
+	t=1684283529; bh=uRTFeHdoLrxAA/Vx/iEXRI3y5t4aW1R4THEJYXjWOhI=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=Z1PJ8Do5j0InLCzaK6ymGT61GDJUltSfxQHRLPsZAA+0Y5rF6URxhbOMIS/2O1P0N
+	 YZgunM5FSCCGILG90jhjXZRuCIeDhGFFuE5Qm2fYo5liYME6pPsVa8gQYLP8WMuwlQ
+	 /yMWpFhXBWapcVwBzFE76fZ3JMuLMBaf/yEawpEnVr9FCiJM7/e7FUGiU/46ghlNob
+	 3KOoRNTfnRKBqsC3pQ3DzuJC3j5LpKEWxLYiE+UsH2XWypHYC4XJIC2yeKrVh17eoA
+	 wjkazVVl5ouPb6mYGgJUtusjUf1fNCX/TEFu7q73TYaxckqThyhS4vX+k6i9nd0iMz
+	 eWZZR36OEwwXQ==
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	by mm2.emwd.com (Postfix) with ESMTPS id 08A7E384B70
+	for <usrp-users@lists.ettus.com>; Tue, 16 May 2023 20:31:42 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="qGD8/pQs";
+	dkim=pass (2048-bit key; unprotected) header.d=chaosinc.com header.i=@chaosinc.com header.b="aMkwDZoV";
 	dkim-atps=neutral
-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-75776686671so13006185a.1
-        for <usrp-users@lists.ettus.com>; Tue, 16 May 2023 15:53:56 -0700 (PDT)
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-24df4ecdb87so183726a91.0
+        for <usrp-users@lists.ettus.com>; Tue, 16 May 2023 17:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684277635; x=1686869635;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AM/PyUNj7SudJx8jDit22tJTE7E8z+rG0xdbzNwzPck=;
-        b=qGD8/pQsfQ0x1g11CLaHEKCCYekl6ox2ikF+Y14Lc+QuoC+i8LYKG6K8G8gtmN1M80
-         T22g7LG719wnxNDBXIzqySe4VpYhEBa2J0xYtvxTqFh4XTZAoujMQMr3Cwji3ilA2jWC
-         4YeB+eadtSUfRruhCeOfzW8Jugil7G4U5q2WvMWIfWLPYvk5Ps2pvHDIdX8pfYxyLa84
-         17HKd/AMq1TKqZ2RFIhU3gxi1hOLC+A/zGeMekatnOqr6DnPeN9uM7POz/CzuA3gZMrN
-         B4oVVeZMPjEO3HC4a/tlXU3Jy4Kdscthoq6q7TVq0YbnLmw9Py/JLv3aXZCRZ7WtNKcZ
-         4Srg==
+        d=chaosinc.com; s=google; t=1684283502; x=1686875502;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=j7U3E4aVRMIDBg4FyYNzYK8+zJ/1JgtIRe7QssqfpBQ=;
+        b=aMkwDZoVpJAMtzASOcPYZtNDKlnVfh0h6Gzw39tNUk/OpuCvpnWV0lKYT8F5nYTL2L
+         2H5N+s0VVZ7TcTK4NedEhB3FHULNasXn5fK32nVuNSiOtXteqYI+sMFaOQvdpoJ08A6E
+         Si8kp8bTEi8UgBt3wNMAZVsYgpx1ywMchs71jMWTRL0gLY/VIMVRDuzqPbpgS9gKAAb6
+         XjzX+ukuos1COFE9NuKm3vpqZbVnHLu+B5nF+PdqXmKoBDlzLTx5u2wbYtguJfULATqo
+         Jsegy8/U8gB67c9eEXosj5T05CzZAdzV8y+vb1QE3uMsIe72eKsevac/bITUjq3Smbtl
+         cDaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684277635; x=1686869635;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AM/PyUNj7SudJx8jDit22tJTE7E8z+rG0xdbzNwzPck=;
-        b=gambaM7bybXdY8+fpOnn34mxbafi6IaqaCzkdnP9rGZV86yeCB8QaMzHKHpwGfnBnH
-         1zBt0GILMoCjtdQ3+iLtzo59yOhqfbTxzFwlp8acgPGeYdWJJcW7QG7ePTPoP61A2vO2
-         vUOo2qmAz3tLGc2qQ2ZbAzo1UUpSLmPRk7KRNH29aNn1RXmxtWM863ECfxBleW6KrOdh
-         h6aWDN+mdn/Rjo+4RX4ls+PMEiu3WHekTZFFgZrQSBuPD2b9fEnJXmEOVy+L+mII26Wi
-         RxqFcrCxi2uT+7ZH+vMpqyUXxMkOoT6SOQAMgOp3ghUK4JsM/Tv/sISGX0G4SDG2xkoF
-         VRFg==
-X-Gm-Message-State: AC+VfDy73oHtPPho/Mp/XOwTjRIlCWUYWei6B7fF5jRC2HfHNBp0ZPRF
-	ExcdWVB9jYw6pta6x/d2VGTrt0gYlpc=
-X-Google-Smtp-Source: ACHHUZ7/hs1Ai6Yatnj7/YqDjUtgI8U3/ZJ/SJ4SVd9nDDH0+Mf61L+AG1TqLoMnRIkl7YjWQxD13g==
-X-Received: by 2002:a05:6214:c8c:b0:621:6886:d4db with SMTP id r12-20020a0562140c8c00b006216886d4dbmr33699309qvr.38.1684277635658;
-        Tue, 16 May 2023 15:53:55 -0700 (PDT)
-Received: from [192.168.2.148] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id m9-20020ae9e009000000b0075931950b5esm188108qkk.74.2023.05.16.15.53.55
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 May 2023 15:53:55 -0700 (PDT)
-Message-ID: <042981ee-d31d-bab0-99fe-65c0a43d8476@gmail.com>
-Date: Tue, 16 May 2023 18:53:54 -0400
+        d=1e100.net; s=20221208; t=1684283502; x=1686875502;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j7U3E4aVRMIDBg4FyYNzYK8+zJ/1JgtIRe7QssqfpBQ=;
+        b=hqR2cPfnT7q8E/i/jdIOUfMmVy6OucYuANuRboKBn8KWkn6kqHIUnDaqCys4TeSsFP
+         5BrX714wpVCND0SDVfGfU3+Pw0z/M7nP6XkkZQK/yFOrVwP+nLOehrTfCgbJ0xvj0Noz
+         ifsIKGgsU19IlJkTuKsAA7+XMTkEFC2SUU/57DtfaHGYbyPJFYDHXMBGjPvwWjPvYXDn
+         sVz/EwDW7aTZ1/v9THRByk0T4aEoilxsAHT2jFNdoqbc/6vi6vL1iQo0umINfNJtKO97
+         8MpbbSQssII6MkFV+9bxESIDppXlQ2Rc9S4LUol3kEoBOHJn/Gki+FlNb3FjxYHV7I1E
+         yptA==
+X-Gm-Message-State: AC+VfDxD6mP7GBA655bXOKzU4qXhrZzqG0FdO8/5MZNlVPPxLOqIqQLc
+	gEsgxnrxsD+e2L7J9nd5VtaA9+XWJq+Irct8+ESWTZOYL1IQNRt5+aEmcA==
+X-Google-Smtp-Source: ACHHUZ6cd9V5PtFmWqb2SYwqjpcwK3RnXyhEJHsS2zt3uBwkkWGD0P26/KbtaWMu8uhBqRyz0zTZv9wJJWFKzeKKShg=
+X-Received: by 2002:a17:90a:f48a:b0:253:4af:4458 with SMTP id
+ bx10-20020a17090af48a00b0025304af4458mr7931885pjb.9.1684283501576; Tue, 16
+ May 2023 17:31:41 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
+From: Michael Toussaint <mtoussaint@chaosinc.com>
+Date: Tue, 16 May 2023 17:31:31 -0700
+Message-ID: <CAMhTvws54hP-vxo9FwLt9FncOgGsR-Ps+FAe4x9-mnJVy59C0Q@mail.gmail.com>
 To: usrp-users@lists.ettus.com
-References: <bbdssfZP66eCOPtb3bkdZ88vJnw0TCxU43IG8cpVM@lists.ettus.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <bbdssfZP66eCOPtb3bkdZ88vJnw0TCxU43IG8cpVM@lists.ettus.com>
-Message-ID-Hash: J5T54YQCK35MEHYZZRPT7LXDPTL5YF2G
-X-Message-ID-Hash: J5T54YQCK35MEHYZZRPT7LXDPTL5YF2G
-X-MailFrom: patchvonbraun@gmail.com
+Message-ID-Hash: VOA7HP4MFA3B327GD4EDWIODPLDUQXVA
+X-Message-ID-Hash: VOA7HP4MFA3B327GD4EDWIODPLDUQXVA
+X-MailFrom: mtoussaint@chaosinc.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x410 rx_frontend properties
+Subject: [USRP-users] N321 LO Distribution
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/J5T54YQCK35MEHYZZRPT7LXDPTL5YF2G/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VOA7HP4MFA3B327GD4EDWIODPLDUQXVA/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============8448490686346566377=="
 
-T24gMTYvMDUvMjAyMyAxODo0Miwgam1hbG95YW5AdW1hc3MuZWR1IHdyb3RlOg0KPg0KPiBIZWxs
-bywNCj4NCj4gSSBhbSBjdXJyZW50bHkgd29ya2luZyB3aXRoIHRoZSB4NDEwLiBJIGFtIGN1cmlv
-dXMgYWJvdXQgcGFydCBvZiB0aGUgDQo+IG91dHB1dCBvZiB1aGRfdXNycC1wcm9iZSDigJR0cmVl
-LiBQYXJ0aWN1bGFybHksIHRoZXNlIHByb3BlcnRpZXPigKYNCj4NCj4gL2Jsb2Nrcy8wL1JhZGlv
-IzAvZGJvYXJkL3J4X2Zyb250ZW5kcy8wL0xPMS9lbmFibGVkDQo+DQo+IC9ibG9ja3MvMC9SYWRp
-byMwL2Rib2FyZC9yeF9mcm9udGVuZHMvMC9MTzEvdGVzdF9tb2RlDQo+DQo+DQo+IEkgZG9udCBy
-ZWNhbGwgc2VlaW5nIGRvY3VtZW50YXRpb24gb24gdGhpcywgYW5kIEkgc3RydWdnbGVkIHRvIGZp
-bmQgDQo+IGFueSByZWZlcmVuY2UgdG8gdGhlc2UgaW4gdGhlIFVIRCBzb2Z0d2FyZS4gRG9lcyBh
-bnlib2R5IGhhdmUgaW5zaWdodCANCj4gaW50byB3aGF0IHByb3BlcnRpZXMgdGhlc2UgcmVwcmVz
-ZW50LiBRdWVyeWluZyBpdCB3aXRoIGEgc3RyaW5nLCBpbnQsIA0KPiB2ZWN0b3IsIGFuZCBkb3Vi
-bGUgYWxsIHlpZWxkIGEgdHlwZSBlcnJvci4NCj4NCj4gVGhhbmtzDQo+DQo+IEpvZQ0KPg0KPg0K
-QWxtb3N0IGNlcnRhaW5seSB0aGVyZSB0byBmYWNpbGl0YXRlIGludGVybmFsIHNhbml0eSB0ZXN0
-aW5nIG9yIFFBIHRlc3RpbmcuDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0
-cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxl
-YXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============8448490686346566377==
+Content-Type: multipart/alternative; boundary="000000000000d01ca605fbd8cf70"
+
+--000000000000d01ca605fbd8cf70
+Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I am testing the LO synching on a single N321 using the 2 Tx channels on
+the N321.
+
+I have followed the LO setup steps from the knowledge base,
+https://kb.ettus.com/USRP_N320/N321_LO_Distribution, to distribute the LO.
+(Sample Python code used for setup below)
+
+I am using separate streamers for each Tx channel and noticing a delay
+between the 2 channels executing.
+
+The Tx channels do not appear to be synchronized, we're measuring anywhere
+from 0.5ns to 4ns of delay across the channels.
+
+1) Is there a recommended process for synchronizing 2 Tx output channels
+and the output LOs on the N321?
+    a) Would using a single streamer for both Tx channels reduce the
+execution delay?
+
+Thanks,
+
+Michael
+
+
+
+""" Sample Python Code Used for LO Setup """
+
+import argparse
+import logging
+import sys
+
+sys.path.append('/usr/lib/python3/dist-packages/')
+
+import uhd
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-a", "--args", default="name=SDR1", type=str)
+
+    args = parser.parse_args()
+
+    usrp = uhd.usrp.MultiUSRP(args.args)
+
+    usrp.set_tx_lo_source("external", "lo1", 0)
+    usrp.set_tx_lo_source("external", "lo1", 1)
+    usrp.set_tx_lo_export_enabled(True, "lo1", 0)
+
+    hw_lo_export_path =
+'blocks/0/Radio#0/dboard/tx_frontends/0/los/lo1/lo_distribution/LO_OUT_1/export'
+
+    if usrp.get_tree().exists(hw_lo_export_path):
+        usrp.get_tree().access_bool(hw_lo_export_path).set(True)
+
+
+if __name__ == "__main__":
+    logging.basicConfig(format='%(asctime)s [%(levelname)s]: %(message)s',
+level=logging.DEBUG)
+    main()
+
+""" End of Code """
+
+--000000000000d01ca605fbd8cf70
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><br>I am testing the LO synching on a single N321 u=
+sing the 2 Tx channels on the N321.<br><br>I have followed the LO setup ste=
+ps from the knowledge base, <a href=3D"https://kb.ettus.com/USRP_N320/N321_=
+LO_Distribution">https://kb.ettus.com/USRP_N320/N321_LO_Distribution</a>, t=
+o distribute the LO. (Sample Python code used for setup below)<br><br>I am =
+using separate streamers for each Tx channel and noticing a delay between t=
+he 2 channels executing.<br><br>The Tx channels do not appear to be synchro=
+nized, we&#39;re measuring anywhere from 0.5ns to 4ns of delay across the c=
+hannels.<br><br>1) Is there a recommended process for synchronizing 2 Tx ou=
+tput channels and the output LOs on the N321?<br>=C2=A0 =C2=A0 a) Would usi=
+ng a single streamer for both Tx channels reduce the execution delay?<br><b=
+r>Thanks,<br><br>Michael<br><br><br><br>&quot;&quot;&quot; Sample Python Co=
+de Used for LO Setup &quot;&quot;&quot;<br><br>import argparse<br>import lo=
+gging<br>import sys<br><br>sys.path.append(&#39;/usr/lib/python3/dist-packa=
+ges/&#39;)<br><br>import uhd<br><br>def main():<br>=C2=A0 =C2=A0 parser =3D=
+ argparse.ArgumentParser()<br>=C2=A0 =C2=A0 parser.add_argument(&quot;-a&qu=
+ot;, &quot;--args&quot;, default=3D&quot;name=3DSDR1&quot;, type=3Dstr)<br>=
+<br>=C2=A0 =C2=A0 args =3D parser.parse_args()<br><br>=C2=A0 =C2=A0 usrp =
+=3D uhd.usrp.MultiUSRP(args.args)<br><br>=C2=A0 =C2=A0 usrp.set_tx_lo_sourc=
+e(&quot;external&quot;, &quot;lo1&quot;, 0)<br>=C2=A0 =C2=A0 usrp.set_tx_lo=
+_source(&quot;external&quot;, &quot;lo1&quot;, 1)<br>=C2=A0 =C2=A0 usrp.set=
+_tx_lo_export_enabled(True, &quot;lo1&quot;, 0)<br><br>=C2=A0 =C2=A0 hw_lo_=
+export_path =3D &#39;blocks/0/Radio#0/dboard/tx_frontends/0/los/lo1/lo_dist=
+ribution/LO_OUT_1/export&#39;<br><br>=C2=A0 =C2=A0 if usrp.get_tree().exist=
+s(hw_lo_export_path):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp.get_tree().access=
+_bool(hw_lo_export_path).set(True)<br><br><br>if __name__ =3D=3D &quot;__ma=
+in__&quot;:<br>=C2=A0 =C2=A0 logging.basicConfig(format=3D&#39;%(asctime)s =
+[%(levelname)s]: %(message)s&#39;, level=3Dlogging.DEBUG)<br>=C2=A0 =C2=A0 =
+main()<br><br>&quot;&quot;&quot; End of Code &quot;&quot;&quot;<br clear=3D=
+"all"><div><br></div></div>
+
+--000000000000d01ca605fbd8cf70--
+
+--===============8448490686346566377==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============8448490686346566377==--
