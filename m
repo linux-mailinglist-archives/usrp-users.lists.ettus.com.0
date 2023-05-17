@@ -2,128 +2,254 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65FEA706F7C
-	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 19:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8E9707067
+	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 20:05:02 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 478EF38392B
-	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 13:31:14 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 8B75B3849E9
+	for <lists+usrp-users@lfdr.de>; Wed, 17 May 2023 14:05:01 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1684344674; bh=HaRQ4ZmY3Gba7cat8fy64x3pK+gn1b90eDamwhwJM1Q=;
-	h=Date:From:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=Lw/BNRngNQdK/W6mZ5h25QuKWpWFy2ove6NZgxnVYKv5PCjxnRhdEvbaCSFN6fjoM
-	 JozFNBHeMfdoHMBRcOoCu6UEZFb2WSn5o4RVQ06RP42PFwOMNav6/8YfVd2QpqGDGu
-	 0H78BnF3XPDl5Gz3dCFUJ1BG5FyOgzQCro7MALq86sTmTTsnKZ0zluMA42Yzk1McLV
-	 CCCW1e8zGyyaGnhKX6MxvzGAiEHX6yalWKDqnFqYas3dtEHULTxD0zEp4uTk7Gwkxh
-	 Fb7R8PxrOuQckFDvvwpE2hfPzuF6GWfNkb0R46+Wskb6vT8KCHBWxES/HlUa/O84BG
-	 q/Du58CscUZaw==
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id D50C1380953
-	for <usrp-users@lists.ettus.com>; Wed, 17 May 2023 13:30:47 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fNKpYibC";
-	dkim-atps=neutral
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-6ab611e57c2so848634a34.1
-        for <usrp-users@lists.ettus.com>; Wed, 17 May 2023 10:30:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1684344646; x=1686936646;
-        h=user-agent:to:from:subject:message-id:date:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SW6YCjqjvmbzSf0U9O/wrGte0dYIKaveNfT79sTtCIk=;
-        b=fNKpYibCxAbMs9/1x9gRDvc8ZaPrJmk8wxR8G2MpTY//3LB3HIeCD1faMiHP5H1Hs4
-         sbYVqKFutYzVr9O6V/en/HFd3mpvYko+BnnMJNd3Po04FFNO6nk4BAxXqObcw1AKcXv5
-         Z02BjVEoSVQuUVVHtbzXoAb6CwxsYK7ErWngVYOclhd7X3LMvej5nV+xyF7cuphB2lrn
-         uHsn4oywdDMgPjr9UNJJ1d+zfrT4+3XbM89Lf3sehIVJ/y/hy/BZlr8+KjXyowxU8+vx
-         SeTH8TY4vb7my2qXhEd2/YDUAlcY7rqM3hAUloIQ6bWNx7tCEh5zmqY6+7tJD9kbH9vz
-         v+Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1684344646; x=1686936646;
-        h=user-agent:to:from:subject:message-id:date:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SW6YCjqjvmbzSf0U9O/wrGte0dYIKaveNfT79sTtCIk=;
-        b=cLjX6O9xW0APv2yMJe/yGsmLjzbkH/99fIyZs37OUOOKWp0kCbWKxAEY+CuimqJzH5
-         QWVLt6XPdc/BWCeNE1S9N7BUxv+78SuTfB3icWeLFIK/v2QLhqFozpwoMHzkq3ga6nte
-         glutaPFKYQG3pCK+IECDd9s7+5WY8Lo+I0p3NGlGRAxmDpbNM3uZYT6AueFV9pf/3VHN
-         KfE149EFK4QNgsmCCKwVXt0PoyCWrdbt0yb44NIr0EZ7cMZRZJ2eGLH1p2dv+rsp4qcU
-         Boe2V2++8mJw5OuZ4L0BU2FEe7oq6wqe0nn3JU7DNnunBkIGAgAwdo3szpbZqYgBG1r5
-         cUiw==
-X-Gm-Message-State: AC+VfDwt+zIirtea6vnohiDGXZPK0zVsqZ2KVXtBMeNgf8Zw0WWDyyB/
-	SpPp5RKhyBECUCkk39rSamok3HzmjzI=
-X-Google-Smtp-Source: ACHHUZ5bQMd8oFAzU43Im98WkcC/50ElBHunjMby8GWjg3S2kfRnLQgxfn+CaZ9ttQSnTQ5bdkgPIA==
-X-Received: by 2002:a9d:7994:0:b0:6ab:24ce:eb55 with SMTP id h20-20020a9d7994000000b006ab24ceeb55mr14098239otm.27.1684344646206;
-        Wed, 17 May 2023 10:30:46 -0700 (PDT)
-Received: from [192.168.4.31] ([47.186.160.129])
-        by smtp.gmail.com with ESMTPSA id d1-20020a056830004100b006a42e87aee4sm7455606otp.32.2023.05.17.10.30.45
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 May 2023 10:30:45 -0700 (PDT)
+	t=1684346701; bh=2XX/Mgl0CgP5CKT7/+EX8PKex6WgWDpeP0dDsG+Ln+Y=;
+	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
+	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=j0mFi6L8x1CQpdGYyrsPYsKXFnJB2t91O0ZSbOEj5wVr3KqpuAThto3bcruJEvM1+
+	 kLazzPrESyJ7AEyE7PDOIjc4hDgbaLTQNqfxGcvB3EOWbaAT+qq+b54Ha/Png+AKAE
+	 dPmYVrRJ/LaIZxEUYIu1G0rFHzpA2JKuq6z+64f5BPDeLhCgSottKuB/kcUvbeUWeC
+	 PNdrtRq0X++TUHB1tEskZ8kYCLMzqWrSrxAGCHFXS3mCT+6ij674VWa4Lcg8NSNiCg
+	 zmIMHgRfUuPYFwETDGV9RYCRHeknWCUSu6MUM5cQUzIsGNVWNErD2XNR+N1XysPZli
+	 QoLHd+9fwYZ8A==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id DD11F3849C6
+	for <usrp-users@lists.ettus.com>; Wed, 17 May 2023 14:03:59 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1684346639; bh=g7UY9hf2DS/AYTV50FWXI/icypcoYSIkQC2Q4/TVx24=;
+	h=Date:To:From:Subject:In-Reply-To:From;
+	b=Bh2PUOIjD2nx5jkWjT7Ka8AzTgu1TcePc6TC95jjDB4dKbxb88BEGXLy2y86HLRws
+	 a906XD0Yr6XRp2Ofsru3pespecJIizd0rtCG5pqRQ4in34dU21O53bnjBZaPX5OzVV
+	 NyQGExgxX1hdilLf91v2Ii6BPbl+GMfA1Jd2FRUCVxU8NbcbiDYrLubproKeRCgzuh
+	 j4JmyL29V5gFMB282nHUbl20HnPU3Z8sWKc3AYp2WR/BjvzQe9/Lma/Id5kG6zEwq0
+	 HBvlhbtVsb/xECAcy4ZKTfJsJ3wiN6jJqr0N2uvPyr+1MQtMaWtSgaVzU7obaAbNhx
+	 8/GDCM4swBhKQ==
+Date: Wed, 17 May 2023 18:03:59 +0000
+To: usrp-users@lists.ettus.com
+From: cjohnson@serranosystems.com
+Message-ID: <6ypbwhbcWpBx8JnZN5qLxU0eRoda8j3f1SXnONIM@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+In-Reply-To: DA093A6D-99FA-46D1-A5E7-1A1B100766B6@gmail.com
 MIME-Version: 1.0
-Date: Wed, 17 May 2023 12:30:29 -0500
-Message-ID: <Mailbird-70cf993e-2702-42fa-a6a2-fed6e2bd4416@gmail.com>
-From: page <pageheller@gmail.com>
-To: "usrp-users lists.ettus.com" <usrp-users@lists.ettus.com>
-User-Agent: Mailbird/2.9.74.0
-X-Mailbird-ID: Mailbird-70cf993e-2702-42fa-a6a2-fed6e2bd4416@gmail.com
-Message-ID-Hash: EOF42PRQ4F2Z4O47BPTW5GBWBNWXLCH5
-X-Message-ID-Hash: EOF42PRQ4F2Z4O47BPTW5GBWBNWXLCH5
-X-MailFrom: pageheller@gmail.com
+Message-ID-Hash: QV2VHQFPAJ44UCK5MTANWHDAHNXRLBD4
+X-Message-ID-Hash: QV2VHQFPAJ44UCK5MTANWHDAHNXRLBD4
+X-MailFrom: cjohnson@serranosystems.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Ubuntu and USRP
+Subject: [USRP-users] Re: Remote Streaming UHD 4.4 on USRP-2974
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/EOF42PRQ4F2Z4O47BPTW5GBWBNWXLCH5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QV2VHQFPAJ44UCK5MTANWHDAHNXRLBD4/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1260714763947726726=="
+Content-Type: multipart/mixed; boundary="===============1730253037120356638=="
 
---===============1260714763947726726==
+This is a multi-part message in MIME format.
+
+--===============1730253037120356638==
 Content-Type: multipart/alternative;
- boundary="----=_NextPart_11086302.678186168649"
+ boundary="b1_6ypbwhbcWpBx8JnZN5qLxU0eRoda8j3f1SXnONIM"
+Content-Transfer-Encoding: 7bit
 
-------=_NextPart_11086302.678186168649
-Content-Type: text/plain;
- charset="utf-8"
+This is a multi-part message in MIME format.
+
+--b1_6ypbwhbcWpBx8JnZN5qLxU0eRoda8j3f1SXnONIM
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-For some time I have been using a B-210 in research and development. I have=
-n't been active on the list for a awhile. I recall someone citing problems =
-using Ubuntu 20.x with USRP. As a result, I'm still using Ubuntu 18.x, whic=
-h has been working fine. Have the problems with using Ubuntu 20.x been reso=
-lved? Is anyone having further trouble with the latest versions?
+Hi Marcus,
 
---
+Better news.  In an attempt to get my system to match what you might be u=
+sing, a =E2=80=9Cknown=E2=80=9D state, I updated the FPGA image.
 
-page heller
-[dab2ce89-121d-4ba4-b1f7-a53493beaca6]
-------=_NextPart_11086302.678186168649
-Content-Type: text/html;
- charset="utf-8"
+So the =E2=80=9CRequested remote UDP streaming, but transport adapter sfp=
+1 does not support it!" is gone, and I am at =E2=80=9CDevice was unable t=
+o look up Ethernet (MAC) address for IP address 192.168.30.30. Make sure =
+device is correctly connected, or provide MAC address manually.=E2=80=9D
+
+Again, I saw no arps.  Added the mac, it starts up, but I don=E2=80=99t s=
+ee any traffic to 192.168.30.30 using tcpdump, only a trickle of control =
+between 192.168.30.1 and 192.168.30.2.
+
+I went back and added all those parameters to my c++ code, with the same =
+result, no remote streaming.
+
+How can I demonstrate a KNOWN working version, including the stream recei=
+ver (in my case 192.168.30.30).  What do you use along with =E2=80=9Cremo=
+te_rx.py=E2=80=9D to validate proper behavior?
+
+Thanks again,
+
+=E2=80=94Cy
+
+> ```
+> cjohnson@demo:~/ettus_repo/uhd/host/examples/python$ ./remote_rx.py --r=
+ate=3D200e6 --freq=3D1223e6 --gain=3D20 --dest-addr=3D192.168.30.30 --des=
+t-port=3D54321 --adapter=3Dsfp1 --dest-mac-addr=3D3c:ec:ef:c2:43:47
+> [INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.4.0.cjo=
+hnson-fb-sdrx-68-g02558b69
+> [INFO] [X300] X300 initialization sequence...
+> [INFO] [X300] Maximum frame size: 8000 bytes.
+> [INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+> [INFO] [X300] Radio 1x clock: 200 MHz
+> Requesting sampling rate 200.0 Msps...
+> Using sampling rate: 200.0 Msps.
+> Requesting center frequency 1223.0 MHz...
+> Actual center frequency: 1223.0000032784735 MHz.
+> Requesting gain 20.0 dB...
+> Actual gain: 20.0 dB.
+> Selected 0 RX channels.
+> Generating RX streamer object...
+> Starting stream...
+> Stream started. Press Ctrl-C to stop.
+> ```
+
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94- Message about add MAC address manually =E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94-
+
+> ```
+> cjohnson@demo:~/ettus_repo/uhd/host/examples/python$ ./remote_rx.py --r=
+ate=3D200e6 --freq=3D1223e6 --gain=3D20 --dest-addr=3D192.168.30.30 --des=
+t-port=3D54321 --adapter=3Dsfp1
+> ```
+>
+> \[INFO\] \[UHD\] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.4.0=
+.cjohnson-fb-sdrx-68-g02558b69
+>
+> \[INFO\] \[X300\] X300 initialization sequence...
+>
+> \[INFO\] \[X300\] Maximum frame size: 8000 bytes.
+>
+> \[INFO\] \[GPS\] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+>
+> \[INFO\] \[X300\] Radio 1x clock: 200 MHz
+>
+> Requesting sampling rate 200.0 Msps...
+>
+> Using sampling rate: 200.0 Msps.
+>
+> Requesting center frequency 1223.0 MHz...
+>
+> Actual center frequency: 1223.0000032784735 MHz.
+>
+> Requesting gain 20.0 dB...
+>
+> Actual gain: 20.0 dB.
+>
+> Selected 0 RX channels.
+>
+> Generating RX streamer object...
+>
+> \[ERROR\] \[X300::SFP1::TA_CTL\] Device was unable to look up Ethernet =
+(MAC) address for IP address 192.168.30.30. Make sure device is correctly=
+ connected, or provide MAC address manually.
+>
+> Traceback (most recent call last):
+>
+>   File "/home/cjohnson/ettus_repo/uhd/host/examples/python/./remote_rx.=
+py", line 122, in <module>
+>
+>     sys.exit(main())
+>
+>   File "/home/cjohnson/ettus_repo/uhd/host/examples/python/./remote_rx.=
+py", line 102, in main
+>
+>     rx_streamer =3D usrp.get_rx_stream(stream_args)
+>
+> RuntimeError: LookupError: Device was unable to look up Ethernet (MAC) =
+address for IP address 192.168.30.30. Make sure device is correctly conne=
+cted, or provide MAC address manually.
+
+Here is the fpga image info using probe:
+
+> |   |   FW Version: 6.1
+>
+> |   |   FPGA Version: 39.1
+>
+> |   |   FPGA git hash: 92c09f7
+>
+> |   |   RFNoC capable: Yes
+
+--b1_6ypbwhbcWpBx8JnZN5qLxU0eRoda8j3f1SXnONIM
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div id=3D"__MailbirdStyleContent" style=3D"font-size: 10pt;font-family: Ar=
-ial;color: #000000;text-align: left" dir=3D"ltr">For some time I have been =
-using a B-210 in research and development. I haven't been active on the lis=
-t for a awhile. I recall someone citing problems using Ubuntu 20.x with USR=
-P. As a result, I'm still using Ubuntu 18.x, which has been working fine. H=
-ave the problems with using Ubuntu 20.x been resolved? Is anyone having fur=
-ther trouble with the latest versions?<br><div><span style=3D"font-size: 10=
-pt">--</span><br></div><div class=3D"mb_sig"><div>page heller</div></div></=
-div><img class=3D"mailbird" width=3D"1" height=3D"1" style=3D"border:0; wid=
-th:1; height:1; display: none;" src=3D"https://tracking.getmailbird.com/Ope=
-nTrackingPixel/?messageId=3DMailbird-70cf993e-2702-42fa-a6a2-fed6e2bd4416@g=
-mail.com&senderHash=3D3B5B4D97E15C53C84AB3BBA711CF8FA4E8DEA2B834615A93F02F8=
-50A4B090C4C&recipientHash=3D62BDC89AFB5F046DA8A22F47CAB9288DB44CE5326F66A9C=
-242E4B6B173C0F8E1&internalId=3Dac5c9af6-5efb-417c-badd-a95313d8d62a" alt=3D=
-"dab2ce89-121d-4ba4-b1f7-a53493beaca6">
+<p>Hi Marcus,</p><p>Better news.  In an attempt to get my system to match w=
+hat you might be using, a =E2=80=9Cknown=E2=80=9D state, I updated the FPGA=
+ image.</p><p>So the =E2=80=9CRequested remote UDP streaming, but transport=
+ adapter sfp1 does not support it!" is gone, and I am at =E2=80=9CDevice wa=
+s unable to look up Ethernet (MAC) address for IP address 192.168.30.30. Ma=
+ke sure device is correctly connected, or provide MAC address manually.=
+=E2=80=9D</p><p>Again, I saw no arps.  Added the mac, it starts up, but I d=
+on=E2=80=99t see any traffic to 192.168.30.30 using tcpdump, only a trickle=
+ of control between 192.168.30.1 and 192.168.30.2.</p><p>I went back and ad=
+ded all those parameters to my c++ code, with the same result, no remote st=
+reaming.</p><p>How can I demonstrate a KNOWN working version, including the=
+ stream receiver (in my case 192.168.30.30).  What do you use along with =
+=E2=80=9Cremote_rx.py=E2=80=9D to validate proper behavior?</p><p>Thanks ag=
+ain,</p><p>=E2=80=94Cy</p><p><br></p><blockquote><pre><code>cjohnson@demo:~=
+/ettus_repo/uhd/host/examples/python$ ./remote_rx.py --rate=3D200e6 --freq=
+=3D1223e6 --gain=3D20 --dest-addr=3D192.168.30.30 --dest-port=3D54321 --ada=
+pter=3Dsfp1 --dest-mac-addr=3D3c:ec:ef:c2:43:47
+[INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400; UHD_4.4.0.cjohnso=
+n-fb-sdrx-68-g02558b69
+[INFO] [X300] X300 initialization sequence...
+[INFO] [X300] Maximum frame size: 8000 bytes.
+[INFO] [GPS] Found an internal GPSDO: LC_XO, Firmware Rev 0.929a
+[INFO] [X300] Radio 1x clock: 200 MHz
+Requesting sampling rate 200.0 Msps...
+Using sampling rate: 200.0 Msps.
+Requesting center frequency 1223.0 MHz...
+Actual center frequency: 1223.0000032784735 MHz.
+Requesting gain 20.0 dB...
+Actual gain: 20.0 dB.
+Selected 0 RX channels.
+Generating RX streamer object...
+Starting stream...
+Stream started. Press Ctrl-C to stop.</code></pre></blockquote><p><br></p><=
+p>=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94- Message about add MAC address manually =
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94-</p><blockquote><pre=
+><code>cjohnson@demo:~/ettus_repo/uhd/host/examples/python$ ./remote_rx.py =
+--rate=3D200e6 --freq=3D1223e6 --gain=3D20 --dest-addr=3D192.168.30.30 --de=
+st-port=3D54321 --adapter=3Dsfp1</code></pre><p>[INFO] [UHD] linux; GNU C++=
+ version 11.3.0; Boost_107400; UHD_4.4.0.cjohnson-fb-sdrx-68-g02558b69</p><=
+p>[INFO] [X300] X300 initialization sequence...</p><p>[INFO] [X300] Maximum=
+ frame size: 8000 bytes.</p><p>[INFO] [GPS] Found an internal GPSDO: LC_XO,=
+ Firmware Rev 0.929a</p><p>[INFO] [X300] Radio 1x clock: 200 MHz</p><p>Requ=
+esting sampling rate 200.0 Msps...</p><p>Using sampling rate: 200.0 Msps.</=
+p><p>Requesting center frequency 1223.0 MHz...</p><p>Actual center frequenc=
+y: 1223.0000032784735 MHz.</p><p>Requesting gain 20.0 dB...</p><p>Actual ga=
+in: 20.0 dB.</p><p>Selected 0 RX channels.</p><p>Generating RX streamer obj=
+ect...</p><p>[ERROR] [X300::SFP1::TA_CTL] Device was unable to look up Ethe=
+rnet (MAC) address for IP address 192.168.30.30. Make sure device is correc=
+tly connected, or provide MAC address manually.</p><p>Traceback (most recen=
+t call last):</p><p>  File "/home/cjohnson/ettus_repo/uhd/host/examples/pyt=
+hon/./remote_rx.py", line 122, in &lt;module&gt;</p><p>    sys.exit(main())=
+</p><p>  File "/home/cjohnson/ettus_repo/uhd/host/examples/python/./remote_=
+rx.py", line 102, in main</p><p>    rx_streamer =3D usrp.get_rx_stream(stre=
+am_args)</p><p>RuntimeError: LookupError: Device was unable to look up Ethe=
+rnet (MAC) address for IP address 192.168.30.30. Make sure device is correc=
+tly connected, or provide MAC address manually.</p></blockquote><p><br></p>=
+<p>Here is the fpga image info using probe:</p><blockquote><p>|   |   FW Ve=
+rsion: 6.1</p><p>|   |   FPGA Version: 39.1</p><p>|   |   FPGA git hash: 92=
+c09f7</p><p>|   |   RFNoC capable: Yes</p></blockquote>
 
-------=_NextPart_11086302.678186168649--
+--b1_6ypbwhbcWpBx8JnZN5qLxU0eRoda8j3f1SXnONIM--
 
---===============1260714763947726726==
+--===============1730253037120356638==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -133,4 +259,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1260714763947726726==--
+--===============1730253037120356638==--
