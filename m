@@ -2,499 +2,493 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 957DB710DA1
-	for <lists+usrp-users@lfdr.de>; Thu, 25 May 2023 15:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C84BB710E0E
+	for <lists+usrp-users@lfdr.de>; Thu, 25 May 2023 16:15:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9FC1D380BEA
-	for <lists+usrp-users@lfdr.de>; Thu, 25 May 2023 09:51:50 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EF1F43848D7
+	for <lists+usrp-users@lfdr.de>; Thu, 25 May 2023 10:15:43 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685022710; bh=yiaVv2HJbYdhOdBot93NNY2Tgzdlnasr036xRk9TEhI=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
+	t=1685024143; bh=TeA5d3+SR+lSxaVVjQwVJCKCK0/5T8FW/v46hzB61PE=;
+	h=From:To:Date:References:In-Reply-To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=GnyM/mjlNhyVSuarzuFznIr134WBKnHkOue4uhiX4djA2ObI6OPBfpTiWgJSKD89I
-	 fWoFA+Gk6PPrM2P1Lc1I/IhLuaNYI0uNsMkFx+GFEeCO068+jNUNqHtad/jUNtYRcl
-	 SYUE7xiHwAuxiwqvUq9hM3MNOAxdCwU3O6NxgMDvopqzWkd9gz4B8IpOD7yGUN03hV
-	 qKFnlOT3q/vgxEoA+COwgg5o0CHIaECvFG6acNWQkJDE66uweST0u1bEJWVLsRnYtz
-	 1i5Y0r/kF5mEZB1nqNJGhvcs64NMmErtXcmXhu3alrRwbfoyxrEAIWJRBgOUvKGrSL
-	 ZIAovn1sjnhPQ==
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	by mm2.emwd.com (Postfix) with ESMTPS id C3E21380BEA
-	for <usrp-users@lists.ettus.com>; Thu, 25 May 2023 09:50:47 -0400 (EDT)
+	b=Kicjyc/IEdpcJ3e8rqe1srXfVc4ddQzaTYliA17gBKQJMi/enj6spYBraDbfh4zUe
+	 zOeHWcJDIPCVkLPsmFfHIVS4ylFjPXRZ1OJRhC8yC4CLmW/1i2okgWoc+8zTZZEvh3
+	 BN2xO8dWM7DTP/6igHfHKSzMNj3wehjxbhGDPIvkCyQ/bdQd6bS8FoHYQxe1vbQmij
+	 +Z1rGIWgoDzf4NsP9z3/Ikc/81OptMTARdSKnb9S+QANm35qnjzOY+JUtVBMGmLhFy
+	 Q/zcG3Z0r1+uVfAwxF4FjxR/wCeG5kuRd7e/CfdOqsDM+l2dE0fLLeQ4ewOpEUKE15
+	 rtUR+0oXnyPJQ==
+Received: from pta-smg2.csir.co.za (pta-smg2.csir.co.za [146.64.81.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 442243848AC
+	for <usrp-users@lists.ettus.com>; Thu, 25 May 2023 10:14:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VmZjGr4I";
+	dkim=pass (1024-bit key; unprotected) header.d=csircoza.onmicrosoft.com header.i=@csircoza.onmicrosoft.com header.b="GChsZMK5";
 	dkim-atps=neutral
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-623914a4bf0so4507756d6.3
-        for <usrp-users@lists.ettus.com>; Thu, 25 May 2023 06:50:47 -0700 (PDT)
+Received: from pta-smg2.csir.co.za (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id 9667428EE3D4;
+	Thu, 25 May 2023 14:14:38 +0000 (GMT)
+Received: from ZAF01-JN2-obe.outbound.protection.outlook.com (mail-jn2zaf01lp2044.outbound.protection.outlook.com [104.47.19.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
+	by pta-smg2.csir.co.za (Sophos Email Appliance) with ESMTPS id 2FD0E28FCAD5;
+	Thu, 25 May 2023 14:14:37 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kr/8yj8flmMusqFylN/98tOykEyGjHY2JbEBkwNm0Lmoz64toXVbIyHSNrO6jMJTpseLdMYHM6uZukqn0TtibdEAI2mLBBylOJR7lIpKryxczXzDraA/8HtpNo6bwxeKepv+0KFix8ZtETOcwp4rebzO/6N6ZZw/G+6xdKiwAVDHjyoXdnWIN0s9kgFUKhn30YCHPwszNI3WqXhs/zjFpjkLm2tiY2sahyqJELUrokYIaAcXym/Os622jKJUpGrM5pCId0Q0Grs75R0r/5Ilb5cvOzaSAa+8spNqxA/6rQcENXaBTEkEOj+Wk9Cd2j1CIn3P4QmXikHkXt/8WpBkVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SefGwRloeJvraNfVAXmwNB9XscSUn8hsG2KNWsiMC2k=;
+ b=WAiu4I+H7uihDn6um741Xq4KDgPnQDiE4tahB1fe0/N+41yiILjq5N6RaPhqIN5cRUZlufBq0Y+m5j71flvrgjrksdIf/BeHckedpaOHpGvRhM55nhHjXx55FcPld+xthCj3JSV9zGUGoENuCanuF4LDZs+eo6rKhXIuFIPArj7EmN+EvUpG7ip2oySh9gmQQgCTezd3hkJULybXrV+e7Xch4lja7oJ2bwPvfOjSSlpiPSGrNQKgOoSr//hAvluUf3KAIQzayGG5zEWw6uLErvegG8Dlr3MX5+CE5SMgzngqlc1nToX24l7Jk6oV7P3P1xav7+2NFL6LLq3F5h+xxg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=csir.co.za; dmarc=pass action=none header.from=csir.co.za;
+ dkim=pass header.d=csir.co.za; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685022647; x=1687614647;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tTYobpv4D5Hl3GRi/2jR8XxKXx9P1t/wBNW8nKPCmrQ=;
-        b=VmZjGr4IJqcdJodatuRroeDyTiAydu3p/uVrmeibdtBaFGjm5gxhcUmzlZab+n0Pu0
-         b62mnk977TXwcUjWSFZXWHklexFMMsCilP9RHqcXyrVvEI4K+RGxfD3f/4ovz5PfJ3S4
-         Aqb298CZJ0jpNu80NKwfJ8E7pf61XJ948T2iSYoDRqm7S2C/BIm5iA6F7xeP54XGzS4v
-         luJ7Z8rIjJpWBobG09lgSrp3jUAPFcVbI4aGRFEOKcQq4tlnAZqiw92Akbf8IBNfZykS
-         mXbIzbXkRZCYi8/i5SR+0EGCUF2pH2iXjckq+Wx5RmybitmREiRIq7Oy0AQK4CRkX7h4
-         AlQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685022647; x=1687614647;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tTYobpv4D5Hl3GRi/2jR8XxKXx9P1t/wBNW8nKPCmrQ=;
-        b=VWnDmZq+eHnkkjGxGJQSO6R+WV6q62FcsXrmPRUdbAlP+XpC4ooN1JM7dM3b4TaLSM
-         f9Ai84UwYVCH92SCgUvjckAsCLDgADAwJiardsDVX1G6PfWsgemghf+mDCq7oFwyS804
-         EI0g6rqYX0WLI7lr5BHz8VH4uLOErb/+pD1mPRbbwObfqcmHe8L6cRdVGojIpAVlVjB0
-         632Q0403XPP4ozWkFwsXgCyepeCWhZ2bh3KZO6s8XArfG0i3Bk313K85u770/avXZ5Ms
-         QsZEbpQK7RQvo/EIDOoTZQwkStk6V+29V9DqDDLO3PnmnOUMjHy3y2hXGLlJwop87wOL
-         RL9g==
-X-Gm-Message-State: AC+VfDx1sRkmc7GGaW8V7B04iU1JMx25ew/m91niRS47GdfgyYRT4lpt
-	7zJRkz8X90I/JR1r1xOS6FA=
-X-Google-Smtp-Source: ACHHUZ5mptqT/Ttwh23niMLeuDfKuEaWUBfqj3r0VUz9lgx7VETTjws4LY5XCSPkCam7crkHMRYeHQ==
-X-Received: by 2002:a05:6214:1bcd:b0:625:b752:6574 with SMTP id m13-20020a0562141bcd00b00625b7526574mr1530048qvc.55.1685022646927;
-        Thu, 25 May 2023 06:50:46 -0700 (PDT)
-Received: from [192.168.2.134] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id cz4-20020a056214088400b00621268e14efsm415864qvb.55.2023.05.25.06.50.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 May 2023 06:50:46 -0700 (PDT)
-Message-ID: <7ed5a34a-8862-09ae-edfa-d5ca15947915@gmail.com>
-Date: Thu, 25 May 2023 09:50:45 -0400
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Content-Language: en-US
-To: Rob Kossler <rkossler@nd.edu>, Leon Wabeke <LWabeke@csir.co.za>
+ d=csircoza.onmicrosoft.com; s=selector2-csircoza-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SefGwRloeJvraNfVAXmwNB9XscSUn8hsG2KNWsiMC2k=;
+ b=GChsZMK52vCZbMLtnR+BlNVSwOP2++h68NEwjYSy4d7cVOLQD9iQyr+23HI/2HETqxcly0gsZi0Y/bNkvi1RuN4bSWQ5KKaYg4CJ6MvZ/B3kBdKQEH2Rrg1Zr8KyEF1s7DfMK03cuowYaVYGmkNOD6equMGRX36ItVB6v4Tk+c4=
+Received: from JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:24::13) by
+ CTXP275MB0391.ZAFP275.PROD.OUTLOOK.COM (2603:1086:100:1f::13) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6433.16; Thu, 25 May 2023 14:14:35 +0000
+Received: from JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM
+ ([fe80::d459:f001:e2f5:46c5]) by JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM
+ ([fe80::d459:f001:e2f5:46c5%6]) with mapi id 15.20.6433.017; Thu, 25 May 2023
+ 14:14:35 +0000
+From: Leon Wabeke <LWabeke@csir.co.za>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>, Rob Kossler <rkossler@nd.edu>
+Thread-Topic: [USRP-users] Re: N320 - GPIO ATR output to TX output delay
+Thread-Index: AQHZjn2sGSohDK2oekW7q01SXl7KZq9p6+8AgADCOBaAAFIZgIAAApOAgAAEwhA=
+Date: Thu, 25 May 2023 14:14:35 +0000
+Message-ID: 
+ <JN1P275MB053547F1D25B83244EE59F8795469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
 References: <W203olqQs1iBI2xG9mGjiw1svSW52XqTjccB72ejEs@lists.ettus.com>
  <c157a530-5c52-0fd4-79a4-0c65810ee0f0@gmail.com>
  <JN1P275MB053556431057E296A551C8C695469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
  <CAB__hTSxoCSY8PahuLUSC-ig6FNr_r5PPsaobNh9KK8S6xNxCA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAB__hTSxoCSY8PahuLUSC-ig6FNr_r5PPsaobNh9KK8S6xNxCA@mail.gmail.com>
-Message-ID-Hash: ULGUQHOZTI6SZYXDVYQQV23OPPHYWIFK
-X-Message-ID-Hash: ULGUQHOZTI6SZYXDVYQQV23OPPHYWIFK
-X-MailFrom: patchvonbraun@gmail.com
+ <7ed5a34a-8862-09ae-edfa-d5ca15947915@gmail.com>
+In-Reply-To: <7ed5a34a-8862-09ae-edfa-d5ca15947915@gmail.com>
+Accept-Language: en-ZA, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=csir.co.za;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: JN1P275MB0535:EE_|CTXP275MB0391:EE_
+x-ms-office365-filtering-correlation-id: d7e89b66-d343-44db-229a-08db5d2a5e7d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ C5KCsNPdgiMiJrdriR7CBASp1h7BcKEhor0hbKvsMKxitT68xbkLRsbWIugLEVw7kz1cGnWIxPs1IdOpK0kXU17jcMCRsQ8Owdsnmli/800rduQcUdvqKLMdZL6mEYSp3XwBVr4tqWQU7bG+EkYPjPkuRUevsTrjagu7H80rEPrLNxQMKpJQBQi9D8/R63JFF1zxzgpa8TrKHARXacMkrLUSgETWmn8iVENDsQLa4RcvHZV4++2NxSftl8oiZSJCP1Vdu+9Ra0HSQLqVKVkgxHuqUswYK9cCGgB3uEPk7+Fcn7h371BDamyVVSuz9JjU6sl6qDSaxCgkHSz34dY3YrONyQKEfUrcpVsPIc1d9Eh0TZZY3ZyR00oEMKrX1mlU7RAhT9UbHIqSF+f568fERwpJoiJLvJcO7641O6R+UPnLiPOUQ2WhunmVTVDAnQiKsUzaWah8br32oXOc70ROuPV39M7xKFNEhSBfI27xbooSh15z8xlZ7YVqPeUy2Inq948+glZyV+MG9hS5irtiZtr3JPkyErL7aVX81VaXv5dglRC3o9DeX9l7YTLvKLGB6WwNeepVRjZl/Tch+qVwv+8rc6cTqNOUgOqpIZNk6NchrKU6d9toXp4PQpRKnEan
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(39860400002)(396003)(376002)(136003)(346002)(366004)(451199021)(33656002)(110136005)(6506007)(71200400001)(53546011)(86362001)(478600001)(186003)(38070700005)(64756008)(66946007)(66476007)(76116006)(66556008)(66446008)(4326008)(41300700001)(83380400001)(26005)(7696005)(55236004)(66899021)(9686003)(316002)(52536014)(5660300002)(8676002)(8936002)(2906002)(38100700002)(122000001)(55016003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?em5qVG92NFVSNGh0cm5LYXVtWUNzdjRsbXhjSldSSnJHcE44TUNDNm5EM00v?=
+ =?utf-8?B?VnJTUDR2NkJvYzI5RjcwMzhWNGU3aGI4UDF5ZG1oaHVFcVJFcnpCMUV2dzND?=
+ =?utf-8?B?ZTc0c1VWc3hzK3R5VTVKNUpnOUN5bGRwMXpDMCtCL3l3ZXNqRGVvcWRxZVN4?=
+ =?utf-8?B?OXM2WC9NLzF6YW8velRDTG9MdDJhbEVpcEtlZ0dGL2p1THA1SmIySjNuMjMv?=
+ =?utf-8?B?aDV0UXZsNTBxY3VTNkN2c3VmSGVpU0tiOW5xMkdlUHVTRkN1VXVIVmRnSDV4?=
+ =?utf-8?B?OVloa1E2SzgyZjhPTS9EK3FaSmErRHl2Z1YvOUNDaXVnZmVwVEFuZCtjTEY1?=
+ =?utf-8?B?YTltMmFNQzd3Y3BpbzkyU0wrTkV2QmlBcHFGTi8rYkJXWGg3SGUwL1FveC9j?=
+ =?utf-8?B?L2hWQ0dkOExXYjBIa0xRaEdjeVNJSEQrYVB4bFM0NFVsOGdTa0k5djNSZnFi?=
+ =?utf-8?B?UDhCRXRGcEhWS3dWZzdRVXAzakxyUFVUUXVwRjROeWo4V2xOQ05GS1dVUmV0?=
+ =?utf-8?B?T1lWSGlGZjBUVjNMVnpBaXh0cHRPMktwaEhnL2NxTTZXN29MZ0NIbWxsQk9K?=
+ =?utf-8?B?TlhQaXVwOXRJTTRvWDVzckRiaVByVUliNnBtQytYRm9ETkVaVk5ZZ3JVS0dL?=
+ =?utf-8?B?Ty9mMVUzdCtxVnVPWWhKcE9salZVOFVta0F1UitWNzlWZ3F2dDNJSThUWkFV?=
+ =?utf-8?B?dTdrRGFVcStOS21XaE94ZTUvQmhTelFNODFoNVZnV0RaMHNPekpFaHIxOTVC?=
+ =?utf-8?B?MmRyN3hOZkNRanc4LzNwRGVHbVBWajhJSTk4VitKb3lXMmJpY085dVhYYWh3?=
+ =?utf-8?B?STBxcUwyZnkwTnh1RThDc3J6bXBFYmNtQjV3Q1orV1ZtWDIwZG9qS055dTE3?=
+ =?utf-8?B?WGxydUlIVndQbnBtVU9oMXdkL3NNejRoWThEVlBiN25WRkFHdm53bXcycEcy?=
+ =?utf-8?B?aXZPOVJsWXNkQzBNeXArMHpTRXJ1RGpiV2F5b29sSlNncDNsdlRFQ3BBKzR2?=
+ =?utf-8?B?aHU2UDdyalY0VWNFMG5WZG9vclZjS3hJR1BtL3drL1JHb1hyUDRKTHJHTjVY?=
+ =?utf-8?B?aDA3NG9JcW5vS1JvcWFTVVlaT2tMc2IzbGlBSVZJVU9PV2pEckVhZG1ocDRq?=
+ =?utf-8?B?bmE5b1hTOXhDaE5TTW5VS2pOYTZEZ3VkbEp4KzJmdWZsS2IvRDhYOGc2bHJS?=
+ =?utf-8?B?QUxqSUNvNGx5dzlneUNmYnFQemJYT1lhRnFlYVVWNnRVeWxrUU11c3VvRjRX?=
+ =?utf-8?B?eWZsTzhSejB0SUZ1YVFsMkQrY2xPTEI4cm50TnJNMitzck1EeFh0amJjdjFi?=
+ =?utf-8?B?WFZUQXBJcTB3MU9YcWE3OEppWFd4L2FIbFhkaUtpcFNVWjdoZkU3VXVQRXVS?=
+ =?utf-8?B?b0pNOUJOY050a29CUlMyYk9OYmhuMDdzcHlPM2ZISTI1UXFEWmZyQnFsemtB?=
+ =?utf-8?B?NzdQanBlanhjK3BCY3JSWG5FSmdERXc3aytRU0dmYWxYcDh4Q290czJWN013?=
+ =?utf-8?B?M3Jic3dNOE0zT29HUldEOFJiNys3d0pTQ0tGTGNwcXI1ZVZnVGdLdTFOVUVG?=
+ =?utf-8?B?ZDFWcnkveW5zeWczdzJyR1cwR044bGdjUUJmbWkwZ1pLNnFrcUowUGpRR1Nw?=
+ =?utf-8?B?T2cwTFZ1VzJLaVJMNWJ2R2Vqb0VjN2FQOFgwM2pLOXBxeGo2cDg1bTl1QXlh?=
+ =?utf-8?B?Z0c5VXNjYS9PQTRwVXY0cFdiN1lGNHdzdHNka3hxc1cvOXdBTk5BUnd4WGM1?=
+ =?utf-8?B?dTI4dGd2TFVwRVFOYXdadElQUXBhNFJSQ0dibW13eW1Eb1JWQzE5WG9QenBS?=
+ =?utf-8?B?bllKRkMrMHF1OUlNNUlFaTBvbSsvODkzaTlYVDl1cC9RTDEwNCttUHV4SHps?=
+ =?utf-8?B?LytZczQwdVRmS3BBeFU1NHRpOXB5emliUGFPekNubmNESXpaVUpyUWF6S2ZE?=
+ =?utf-8?B?Y2h5RWhMK3Jrd0dkSmp2cXE3anppaXMzekNGNTZaRHFodHk0UktRMEJCU2wy?=
+ =?utf-8?B?c1p4UkhqL090ZVR4S1hoWnBOcmk0aHlKMUo5MHlLRE4zNHRCVS9iZ2lZNEt2?=
+ =?utf-8?B?eEJlZVhjYzhqbWY3MG5sZXJPU0o3TW1LQi9iOFBpOWJTaFUwdDJ6ZTIxR3F1?=
+ =?utf-8?B?UGY0SDJFM3Y4Mkc4Tm9vM1BPb2dKR3ovQ0NYME13NGNZdHFNWUpNZ1BQWFg4?=
+ =?utf-8?B?N0E9PQ==?=
+MIME-Version: 1.0
+X-OriginatorOrg: csir.co.za
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: d7e89b66-d343-44db-229a-08db5d2a5e7d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 May 2023 14:14:35.7902
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2fd3c5d5-ddb2-4ed3-9803-f89675928df4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: t54igAsRAthnjmGsywpza43ARYctQYkRA2GQVJ7MkYHZvoMja8KMh0/HWkdHCgAUq/CdA4fJR57lSpD7SqEfXA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CTXP275MB0391
+X-SASI-RCODE: 200
+Message-ID-Hash: OM3QHCEKKIXY4ARCGRVK24F6G2YXY2C6
+X-Message-ID-Hash: OM3QHCEKKIXY4ARCGRVK24F6G2YXY2C6
+X-MailFrom: LWabeke@csir.co.za
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N320 - GPIO ATR output to TX output delay
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ULGUQHOZTI6SZYXDVYQQV23OPPHYWIFK/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WVKDFCDPZTXVF7X3JNB63OQX4YGHIFDY/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8513237117635835380=="
+Content-Type: multipart/mixed; boundary="===============0427483271976188433=="
 
-This is a multi-part message in MIME format.
---===============8513237117635835380==
-Content-Type: multipart/alternative;
- boundary="------------rgI0FJ5mRCWzpBNbWVb77L0Y"
+--===============0427483271976188433==
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_JN1P275MB053547F1D25B83244EE59F8795469JN1P275MB0535ZAFP_"
 
-This is a multi-part message in MIME format.
---------------rgI0FJ5mRCWzpBNbWVb77L0Y
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+--_000_JN1P275MB053547F1D25B83244EE59F8795469JN1P275MB0535ZAFP_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 25/05/2023 09:41, Rob Kossler wrote:
-> I may be off-base here, but I thought that the GPIO control occurred=20
-> from the Radio block such that a DUC group delay would not be the=20
-> place to look. I am wondering if the GPIO control does not use timed=20
-> commands.=C2=A0 Instead of the automatic setting of the Tx GPIO, we hav=
-e=20
-> used custom GPIO with timed commands=C2=A0to pulse a GPIO bit as a trig=
-ger=20
-> at the same time as we begin the radios.=C2=A0 But, I have not checked =
-the=20
-> relative timing between my GPIO pulse and the RF because I was only=20
-> interested in repeatability rather than knowing the precise relative=20
-> timing.
-It was certainly the case in the past that the ATR logic was somewhat=20
-asynchronous to the state of the DUC.=C2=A0 This may well have
- =C2=A0 changed while I wasn't paying attention.=C2=A0=C2=A0 Since I'm no=
-t in R&D, and=20
-not an FPGA guy, this could be the case.
+V2UgYWxzbyB1c2VkIHRpbWVkIEdQSU8gdG8gZ2VuZXJhdGUgY2VydGFpbiBzdHJvYmVzLCBob3dl
+dmVyIEkgZm91bmQgYXQgc29tZSBwb2ludCB0aGF0IEkgY291bGQgbm90IGdlbmVyYXRlIG1vcmUg
+dGhhbiBhYm91dCA2ayBzdHJvYmVzIHBlciBzZWNvbmQgb24gYW4gWDMxMCAoaWYgSSByZWNhbGwg
+Y29ycmVjdGx5KSAodGhhdCB3YXMgd2l0aCBhYm91dCBVSEQzLjEzIGlmIEkgcmVjYWxsIGNvcnJl
+Y3RseSwgdGh1cyB0aGluZ3MgbWlnaHQgaGF2ZSBjaGFuZ2VkKSB1c2luZyB0aGUgdGltZWQgY29t
+bWFuZHMsIG9yIEkgZW5kZWQgdXAgb3ZlcmZsb3dpbmcgdGhlIGNvbW1hbmQgcXVldWVzLiBUaHVz
+IHdlIGRlY2lkZWQgaW4gYXBwbGljYXRpb25zIHdoZXJlIHdlIG5lZWQgbW9yZSBpbmRpdmlkdWFs
+IHRyYW5zbWl0cyBwZXIgc2Vjb25kIChtYW55IHNtYWxsIHBhY2tldHMpLCB3ZSBuZWVkZWQgdG8g
+c3dpdGNoIHRvIHVzaW5nIHRoZSBhdXRvbWF0aWNhbGx5IGdlbmVyYXRlZCBzdHJvYmUgYW5kIGhh
+bmRsZSB0aGUgbWlzYWxpZ25tZW50IHRoYXQgYXJvc2UgZnJvbSB0aGF0Lg0KDQpGcm9tOiBNYXJj
+dXMgRC4gTGVlY2ggPHBhdGNodm9uYnJhdW5AZ21haWwuY29tPg0KRGF0ZTogVGh1cnNkYXksIDI1
+IE1heSAyMDIzIGF0IDE1OjUwDQpUbzogUm9iIEtvc3NsZXIgPHJrb3NzbGVyQG5kLmVkdT4sIExl
+b24gV2FiZWtlIDxMV2FiZWtlQGNzaXIuY28uemE+DQpDYzogdXNycC11c2Vyc0BsaXN0cy5ldHR1
+cy5jb20gPHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KU3ViamVjdDogUmU6IFtVU1JQLXVz
+ZXJzXSBSZTogTjMyMCAtIEdQSU8gQVRSIG91dHB1dCB0byBUWCBvdXRwdXQgZGVsYXkNCk9uIDI1
+LzA1LzIwMjMgMDk6NDEsIFJvYiBLb3NzbGVyIHdyb3RlOg0KSSBtYXkgYmUgb2ZmLWJhc2UgaGVy
+ZSwgYnV0IEkgdGhvdWdodCB0aGF0IHRoZSBHUElPIGNvbnRyb2wgb2NjdXJyZWQgZnJvbSB0aGUg
+UmFkaW8gYmxvY2sgc3VjaCB0aGF0IGEgRFVDIGdyb3VwIGRlbGF5IHdvdWxkIG5vdCBiZSB0aGUg
+cGxhY2UgdG8gbG9vay4gSSBhbSB3b25kZXJpbmcgaWYgdGhlIEdQSU8gY29udHJvbCBkb2VzIG5v
+dCB1c2UgdGltZWQgY29tbWFuZHMuICBJbnN0ZWFkIG9mIHRoZSBhdXRvbWF0aWMgc2V0dGluZyBv
+ZiB0aGUgVHggR1BJTywgd2UgaGF2ZSB1c2VkIGN1c3RvbSBHUElPIHdpdGggdGltZWQgY29tbWFu
+ZHMgdG8gcHVsc2UgYSBHUElPIGJpdCBhcyBhIHRyaWdnZXIgYXQgdGhlIHNhbWUgdGltZSBhcyB3
+ZSBiZWdpbiB0aGUgcmFkaW9zLiAgQnV0LCBJIGhhdmUgbm90IGNoZWNrZWQgdGhlIHJlbGF0aXZl
+IHRpbWluZyBiZXR3ZWVuIG15IEdQSU8gcHVsc2UgYW5kIHRoZSBSRiBiZWNhdXNlIEkgd2FzIG9u
+bHkgaW50ZXJlc3RlZCBpbiByZXBlYXRhYmlsaXR5IHJhdGhlciB0aGFuIGtub3dpbmcgdGhlIHBy
+ZWNpc2UgcmVsYXRpdmUgdGltaW5nLg0KSXQgd2FzIGNlcnRhaW5seSB0aGUgY2FzZSBpbiB0aGUg
+cGFzdCB0aGF0IHRoZSBBVFIgbG9naWMgd2FzIHNvbWV3aGF0IGFzeW5jaHJvbm91cyB0byB0aGUg
+c3RhdGUgb2YgdGhlIERVQy4gIFRoaXMgbWF5IHdlbGwgaGF2ZQ0KICBjaGFuZ2VkIHdoaWxlIEkg
+d2Fzbid0IHBheWluZyBhdHRlbnRpb24uICAgU2luY2UgSSdtIG5vdCBpbiBSJkQsIGFuZCBub3Qg
+YW4gRlBHQSBndXksIHRoaXMgY291bGQgYmUgdGhlIGNhc2UuDQoNClJlZ2FyZGxlc3MsIG15IHBv
+aW50IGFib3V0IFQvUiBjb250cm9sIHNpZ25hbHMgb2NjdXJyaW5nIG5vdC1wcmVjaXNlbHktYWxp
+Z25lZCB3aXRoIHdoZW4gc2ludXNvaWRzIGFyZSBjb21pbmcgb3V0IHRoZSBhbnRlbm5hDQogIHBv
+cnQgcmVtYWlucy4gIEl0IHdpbGwgYWx3YXlzIGJlIHRyaWNreSB0byBnZXQgaXQgImV4YWN0Ii4N
+Cg0KDQoNCg0KDQpPbiBUaHUsIE1heSAyNSwgMjAyMyBhdCA0OjU14oCvQU0gTGVvbiBXYWJla2Ug
+PExXYWJla2VAY3Npci5jby56YTxtYWlsdG86TFdhYmVrZUBjc2lyLmNvLnphPj4gd3JvdGU6DQpI
+aQ0KDQpXZSBoYXZlIGFsc28gdXNlZCBhIOKAnG1lYXN1cmUgaW4gdGhlIGxhYiBhcHByb2FjaOKA
+nSwgdG9nZXRoZXIgd2l0aCB6ZXJvIHBhZGRpbmcgYmVmb3JlIGFuZCBhZnRlciBhbmQgaGF2ZSBh
+dCB0aW1lcyBzZWVuIHRoZXNlIG5lZWQgdG8gYmUgYWRqdXN0ZWQgYWZ0ZXIgYSBVSEQgdXBncmFk
+ZS4NCg0KV2UgaGF2ZSBhbHNvIGluIHNvbWUgY2FzZXMgdGFrZW4gdGhlIEdQSU8gc3Ryb2JlIHZp
+YSBhbm90aGVyIEZQR0EgdG8gYWRqdXN0IHRoZSBzdHJvYmUgYnkgYWRkaW5nIGFuIGV4dHJhIGNv
+bmZpZ3VyYWJsZSBkZWxheXMgb24gcmlzaW5nIGFuZCBmYWxsaW5nIGVkZ2VzLiBJdCBpcyBqdXN0
+IGFubm95aW5nIHRvIHVzZSBhbiBleHRlcm5hbCBmdW5jdGlvbiB0byBkbyB0aGlzIGFuZCBpdCB3
+b3VsZCBpbiBteSBvcGluaW9uIGJlIGEgdmVyeSB1c2VmdWwgZmVhdHVyZSBpZiBzdWNoIGNvbmZp
+Z3VyYWJsZSBkZWxheXMgd2VyZSBwYXJ0IG9mIHRoZSBiYXNpYyBidWlsdC1pbiBHUElPIGZ1bmN0
+aW9uYWxpdHkgYXQgbGVhc3QgaW4gdGVybXMgb2YgdGhlIOKAnGF1dG9tYXRpYyBzdHJvYmUgc3Rh
+dGUgbWFjaGluZeKAnSwgdGh1cyBub3QgcmVxdWlyaW5nIGFub3RoZXIgRlBHQSBvciBoYXZpbmcg
+dG8gdHJ5IHRvIGludGVncmF0ZSBjdXN0b20gbG9naWMgaW5zaWRlIHRoZSBVSEQgZmlybXdhcmUs
+IHdoaWNoIG1pZ2h0IG5lZWQgdG8gYmUgcmVpbnRlZ3JhdGVkIG9uIHN1YnNlcXVlbnQgdXBkYXRl
+cy4NCg0KVGhhbmtzDQpMZW9uDQoNCkZyb206IE1hcmN1cyBELiBMZWVjaCA8cGF0Y2h2b25icmF1
+bkBnbWFpbC5jb208bWFpbHRvOnBhdGNodm9uYnJhdW5AZ21haWwuY29tPj4NCkRhdGU6IFdlZG5l
+c2RheSwgMjQgTWF5IDIwMjMgYXQgMjM6MTQNClRvOiB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNv
+bTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+IDx1c3JwLXVzZXJzQGxpc3RzLmV0
+dHVzLmNvbTxtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20+Pg0KU3ViamVjdDogW1VT
+UlAtdXNlcnNdIFJlOiBOMzIwIC0gR1BJTyBBVFIgb3V0cHV0IHRvIFRYIG91dHB1dCBkZWxheQ0K
+DQpbVGhlIGUtbWFpbCBzZXJ2ZXIgb2YgdGhlIHNlbmRlciBjb3VsZCBub3QgYmUgdmVyaWZpZWQg
+KFNQRiBSZWNvcmQpXQ0KT24gMjQvMDUvMjAyMyAxNjoyMiwgbWVuYUBjaGFvc2luYy5jb208bWFp
+bHRvOm1lbmFAY2hhb3NpbmMuY29tPiB3cm90ZToNCg0KVGhhbmtzLiBUd28gZm9sbG93IHVwIHF1
+ZXN0aW9uczoNCg0KICAxLiAgRm9yIGEgZ2l2ZW4gc2FtcGxlIHJhdGUsIGlzIHRoZXJlIGEgd2F5
+IHRvIGRldGVybWluaXN0aWNhbGx5IGNhbGN1bGF0ZSB0aGUgZ3JvdXAgZGVsYXk/DQpMb29rIGF0
+IHRoZSBmaWx0ZXIgY29kZSBpbiB0aGUgdmVyc2lvbiBvZiB0aGUgRlBHQSBpbWFnZSB0aGF0IHlv
+dSdyZSB1c2luZywgZGV0ZXJtaW5lIHdoaWNoIGZpbHRlciBiaXRzIGFuZA0KICBwaWVjZXMgYXJl
+ICJpbiBjaXJjdWl0IiB3aGVuIHlvdSBzZWxlY3QgeW91ciBzYW1wbGUtcmF0ZSwgYW5kIGNhbGN1
+bGF0ZSB0aGUgZ3JvdXAgZGVsYXkgZnJvbSB0aGF0Lg0KDQogIE1hbnkgZm9sa3Mgd2hvIGhhdmUg
+cnVuIGludG8gdGhlIHNhbWUgcHJvYmxlbSBoYXZlIHVzZWQgYSAibWVhc3VyZSBpdCBpbiB0aGUg
+bGFiIiBhcHByb2FjaCwgYW5kIGRvbmUNCiAgdGhhdCBmb3IgbmV3IHJlbGVhc2VzIG9mIHRoZSBG
+UEdBIGNvZGUtLXRoZSBSJkQgdGVhbSBkb2VzIG9jY2FzaW9uYWxseSBtYWtlIGNoYW5nZXMgdG8g
+dGhlIGZpbHRlcg0KICBwYXJhbWV0ZXJzIGFuZCAiZG9jdHJpbmUiIGluIG9yZGVyIHRvIG9wdGlt
+aXplIGZvciBjZXJ0YWluIHR5cGVzIG9mIGFwcGxpY2F0aW9ucy4gIFRoaXMgbWF5IHdlbGwNCiAg
+ZGUtb3B0aW1pemUgZm9yIG90aGVycy4gIFNEUnMgYXJlIGdlbmVyYWwtcHVycG9zZSBkZXZpY2Vz
+LCB3aGljaCBtZWFucyB0aGF0IHRoZXJlIHdpbGwgYmUgY2FzZXMgd2hlcmUgdGhleQ0KICBhcmVu
+J3QgIm91dCBvZiB0aGUgZmFjdG9yeSIgb3B0aW1pemVkIGZvciBhbnkgKnBhcnRpY3VsYXIqIGFw
+cGxpY2F0aW9uLg0KDQpUaGUgYXBwcm9hY2ggc29tZSBoYXZlIHRha2UgaXMgdG8gcGFkIGF0IG9u
+ZSBlbmQgb3IgdGhlIG90aGVyIChvciBib3RoKSB0byBhY2NvdW50IGZvciB0aGVzZSBkZWxheXMs
+IHdoaWNoIGNvbXByaXNlDQogIGEgZGV0ZXJtaW5pc3RpYy1idXQtdmVyc2lvbi1kZXBlbmRlbnQg
+Y29tcG9uZW50LCBhbmQgYW4gYW5hbG9nIGNvbXBvbmVudCB0aGF0IGlzIGxlc3MgZGV0ZXJtaW5p
+c3RpYywgYnV0IGF0IG11Y2gNCiAgc21hbGxlciB0aW1lcyBzY2FsZXMuDQoNCg0KDQogIDEuICBX
+aHkgZG8gSSBub3Qgc2VlIHRoZSBzYW1lIGRlbGF5IGF0IHRoZSBiYWNrIGVuZCBvZiB0aGUgdHJh
+bnNtaXNzaW9uIChpLmUuIGFmdGVyIHRoZSBHUElPIGdvZXMgbG93KT8NCk15IHN1c3BpY2lvbiBp
+cyB0aGF0IHBhcnQgb2Ygd2hhdCB5b3UncmUgc2VlaW5nIGlzIGFuIGFuYWxvZyBzd2l0Y2hpbmcg
+ZWZmZWN0LCBhbmQgdGhpbmdzIGxpa2UgdHVybi1vbi90dXJuLW9mZg0KICB0aW1lcyBhcmUgbm90
+IHBlcmZlY3RseSBzeW1tZXRyaWMuDQoNClRoaXMgaXNzdWUgKGxhY2sgb2YgdGlnaHQgc3luY2hy
+b25pemF0aW9uIGJldHdlZW4gQVRSIHNpZ25hbHMgYW5kIGFjdHVhbCB3YXZlZm9ybXMgYXBwZWFy
+aW5nIGF0IHRoZSBhbnRlbm5hKSBoYXMgYmVlbg0KICBhbiBpc3N1ZSBpbiBkaWdpdGFsIGNvbW1z
+IHNpbmNlIEkgZ290IGludm9sdmVkIGluIHRoZSAxOTgwcywgYWxiZWl0LCBpbiB0aGUgMTk4MHMs
+IHRoZSB0aW1lLXNjYWxlcyB3ZXJlIG11Y2ggbGFyZ2VyLg0KICBZb3Ugc2ltcGx5IGhhZCB0byBh
+Y2NvdW50IGZvciB0aGVzZSBlZmZlY3RzIGZvciBldmVyeSBuZXcgcmFkaW8geW91ciBhcHBsaWNh
+dGlvbiBlbmNvdW50ZXJlZC4gICBJbiB0aGUgRFNQIGFnZSwgdGhlDQogIGVmZmVjdHMgYXJlIGF0
+IG11Y2ggc21hbGxlciB0aW1lLXNjYWxlcywgYnV0IHNvIGFyZSB0aGUgZGF0YSByYXRlcy4NCg0K
+DQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCg0K
+VVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208bWFp
+bHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tPg0KDQpUbyB1bnN1YnNjcmliZSBzZW5kIGFu
+IGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVz
+ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbT4NCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18NClVTUlAtdXNlcnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNl
+cnNAbGlzdHMuZXR0dXMuY29tPG1haWx0bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4NClRv
+IHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb208bWFpbHRvOnVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tPg0KDQo=
 
-Regardless, my point about T/R control signals occurring=20
-not-precisely-aligned with when sinusoids are coming out the antenna
- =C2=A0 port remains.=C2=A0 It will always be tricky to get it "exact".
+--_000_JN1P275MB053547F1D25B83244EE59F8795469JN1P275MB0535ZAFP_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFz
+Ow0KCXBhbm9zZS0xOjIgMTEgNiA5IDIgMiA0IDMgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25z
+ICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjow
+Y207DQoJZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
+Zjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsN
+Cgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcHJlDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQgQ2hh
+ciI7DQoJbWFyZ2luOjBjbTsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3Vy
+aWVyIE5ldyI7fQ0Kc3Bhbi5IVE1MUHJlZm9ybWF0dGVkQ2hhcg0KCXttc28tc3R5bGUtbmFtZToi
+SFRNTCBQcmVmb3JtYXR0ZWQgQ2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1z
+dHlsZS1saW5rOiJIVE1MIFByZWZvcm1hdHRlZCI7DQoJZm9udC1mYW1pbHk6IkNvbnNvbGFzIixz
+ZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUyMQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBs
+eTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0ZXh0
+O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQt
+c2l6ZToxMC4wcHQ7DQoJbXNvLWxpZ2F0dXJlczpub25lO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0K
+CXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDcyLjBwdCA3Mi4wcHQgNzIu
+MHB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLyogTGlzdCBE
+ZWZpbml0aW9ucyAqLw0KQGxpc3QgbDANCgl7bXNvLWxpc3QtaWQ6NDE2MDI3MzQ5Ow0KCW1zby1s
+aXN0LXRlbXBsYXRlLWlkczoxOTgwODEwNTk2O30NCkBsaXN0IGwxDQoJe21zby1saXN0LWlkOjY0
+NTE2MDAxNjsNCgltc28tbGlzdC10ZW1wbGF0ZS1pZHM6MTY4OTU3MzczNjt9DQpvbA0KCXttYXJn
+aW4tYm90dG9tOjBjbTt9DQp1bA0KCXttYXJnaW4tYm90dG9tOjBjbTt9DQotLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tWkEiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiIHN0
+eWxlPSJ3b3JkLXdyYXA6YnJlYWstd29yZCI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7bXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPldlIGFsc28gdXNlZCB0aW1lZCBHUElPIHRvIGdlbmVyYXRl
+IGNlcnRhaW4gc3Ryb2JlcywgaG93ZXZlciBJIGZvdW5kIGF0IHNvbWUgcG9pbnQgdGhhdCBJIGNv
+dWxkIG5vdCBnZW5lcmF0ZSBtb3JlIHRoYW4gYWJvdXQgNmsgc3Ryb2JlcyBwZXIgc2Vjb25kIG9u
+IGFuIFgzMTAgKGlmIEkgcmVjYWxsIGNvcnJlY3RseSkNCiAodGhhdCB3YXMgd2l0aCBhYm91dCBV
+SEQzLjEzIGlmIEkgcmVjYWxsIGNvcnJlY3RseSwgdGh1cyB0aGluZ3MgbWlnaHQgaGF2ZSBjaGFu
+Z2VkKSB1c2luZyB0aGUgdGltZWQgY29tbWFuZHMsIG9yIEkgZW5kZWQgdXAgb3ZlcmZsb3dpbmcg
+dGhlIGNvbW1hbmQgcXVldWVzLiBUaHVzIHdlIGRlY2lkZWQgaW4gYXBwbGljYXRpb25zIHdoZXJl
+IHdlIG5lZWQgbW9yZSBpbmRpdmlkdWFsIHRyYW5zbWl0cyBwZXIgc2Vjb25kIChtYW55IHNtYWxs
+IHBhY2tldHMpLA0KIHdlIG5lZWRlZCB0byBzd2l0Y2ggdG8gdXNpbmcgdGhlIGF1dG9tYXRpY2Fs
+bHkgZ2VuZXJhdGVkIHN0cm9iZSBhbmQgaGFuZGxlIHRoZSBtaXNhbGlnbm1lbnQgdGhhdCBhcm9z
+ZSBmcm9tIHRoYXQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2Jv
+cmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PGI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMi4wcHQ7Y29sb3I6YmxhY2siPkZyb206DQo8L3NwYW4+PC9i
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5NYXJjdXMgRC4gTGVl
+Y2ggJmx0O3BhdGNodm9uYnJhdW5AZ21haWwuY29tJmd0Ozxicj4NCjxiPkRhdGU6IDwvYj5UaHVy
+c2RheSwgMjUgTWF5IDIwMjMgYXQgMTU6NTA8YnI+DQo8Yj5UbzogPC9iPlJvYiBLb3NzbGVyICZs
+dDtya29zc2xlckBuZC5lZHUmZ3Q7LCBMZW9uIFdhYmVrZSAmbHQ7TFdhYmVrZUBjc2lyLmNvLnph
+Jmd0Ozxicj4NCjxiPkNjOiA8L2I+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20gJmx0O3VzcnAt
+dXNlcnNAbGlzdHMuZXR0dXMuY29tJmd0Ozxicj4NCjxiPlN1YmplY3Q6IDwvYj5SZTogW1VTUlAt
+dXNlcnNdIFJlOiBOMzIwIC0gR1BJTyBBVFIgb3V0cHV0IHRvIFRYIG91dHB1dCBkZWxheTxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5PbiAyNS8wNS8yMDIzIDA5OjQxLCBSb2IgS29z
+c2xlciB3cm90ZTo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0
+eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+SSBt
+YXkgYmUgb2ZmLWJhc2UgaGVyZSwgYnV0IEkgdGhvdWdodCB0aGF0IHRoZSBHUElPIGNvbnRyb2wg
+b2NjdXJyZWQgZnJvbSB0aGUgUmFkaW8gYmxvY2sgc3VjaCB0aGF0IGEgRFVDIGdyb3VwIGRlbGF5
+IHdvdWxkIG5vdCBiZSB0aGUgcGxhY2UgdG8gbG9vay4gSSBhbSB3b25kZXJpbmcgaWYgdGhlIEdQ
+SU8gY29udHJvbCBkb2VzIG5vdCB1c2UgdGltZWQgY29tbWFuZHMuJm5ic3A7DQogSW5zdGVhZCBv
+ZiB0aGUgYXV0b21hdGljIHNldHRpbmcgb2YgdGhlIFR4IEdQSU8sIHdlIGhhdmUgdXNlZCBjdXN0
+b20gR1BJTyB3aXRoIHRpbWVkIGNvbW1hbmRzJm5ic3A7dG8gcHVsc2UgYSBHUElPIGJpdCBhcyBh
+IHRyaWdnZXIgYXQgdGhlIHNhbWUgdGltZSBhcyB3ZSBiZWdpbiB0aGUgcmFkaW9zLiZuYnNwOyBC
+dXQsIEkgaGF2ZSBub3QgY2hlY2tlZCB0aGUgcmVsYXRpdmUgdGltaW5nIGJldHdlZW4gbXkgR1BJ
+TyBwdWxzZSBhbmQgdGhlIFJGIGJlY2F1c2UgSQ0KIHdhcyBvbmx5IGludGVyZXN0ZWQgaW4gcmVw
+ZWF0YWJpbGl0eSByYXRoZXIgdGhhbiBrbm93aW5nIHRoZSBwcmVjaXNlIHJlbGF0aXZlIHRpbWlu
+Zy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPkl0IHdh
+cyBjZXJ0YWlubHkgdGhlIGNhc2UgaW4gdGhlIHBhc3QgdGhhdCB0aGUgQVRSIGxvZ2ljIHdhcyBz
+b21ld2hhdCBhc3luY2hyb25vdXMgdG8gdGhlIHN0YXRlIG9mIHRoZSBEVUMuJm5ic3A7IFRoaXMg
+bWF5IHdlbGwgaGF2ZTxicj4NCiZuYnNwOyBjaGFuZ2VkIHdoaWxlIEkgd2Fzbid0IHBheWluZyBh
+dHRlbnRpb24uJm5ic3A7Jm5ic3A7IFNpbmNlIEknbSBub3QgaW4gUiZhbXA7RCwgYW5kIG5vdCBh
+biBGUEdBIGd1eSwgdGhpcyBjb3VsZCBiZSB0aGUgY2FzZS48YnI+DQo8YnI+DQpSZWdhcmRsZXNz
+LCBteSBwb2ludCBhYm91dCBUL1IgY29udHJvbCBzaWduYWxzIG9jY3VycmluZyBub3QtcHJlY2lz
+ZWx5LWFsaWduZWQgd2l0aCB3aGVuIHNpbnVzb2lkcyBhcmUgY29taW5nIG91dCB0aGUgYW50ZW5u
+YTxicj4NCiZuYnNwOyBwb3J0IHJlbWFpbnMuJm5ic3A7IEl0IHdpbGwgYWx3YXlzIGJlIHRyaWNr
+eSB0byBnZXQgaXQgJnF1b3Q7ZXhhY3QmcXVvdDsuPGJyPg0KPGJyPg0KPGJyPg0KPGJyPg0KPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7
+bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5PbiBUaHUsIE1h
+eSAyNSwgMjAyMyBhdCA0OjU14oCvQU0gTGVvbiBXYWJla2UgJmx0OzxhIGhyZWY9Im1haWx0bzpM
+V2FiZWtlQGNzaXIuY28uemEiPkxXYWJla2VAY3Npci5jby56YTwvYT4mZ3Q7IHdyb3RlOjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25l
+O2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBw
+dDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGNtIj4NCjxkaXY+DQo8ZGl2Pg0KPGRp
+dj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQi
+PkhpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
+by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdCI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+V2UgaGF2
+ZSBhbHNvIHVzZWQgYSDigJxtZWFzdXJlIGluIHRoZSBsYWIgYXBwcm9hY2jigJ0sIHRvZ2V0aGVy
+IHdpdGggemVybyBwYWRkaW5nIGJlZm9yZSBhbmQgYWZ0ZXIgYW5kIGhhdmUgYXQgdGltZXMgc2Vl
+biB0aGVzZSBuZWVkIHRvIGJlIGFkanVzdGVkIGFmdGVyDQogYSBVSEQgdXBncmFkZS48bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20t
+YWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5XZSBoYXZlIGFsc28gaW4g
+c29tZSBjYXNlcyB0YWtlbiB0aGUgR1BJTyBzdHJvYmUgdmlhIGFub3RoZXIgRlBHQSB0byBhZGp1
+c3QgdGhlIHN0cm9iZSBieSBhZGRpbmcgYW4gZXh0cmEgY29uZmlndXJhYmxlIGRlbGF5cyBvbiBy
+aXNpbmcgYW5kIGZhbGxpbmcNCiBlZGdlcy4gSXQgaXMganVzdCBhbm5veWluZyB0byB1c2UgYW4g
+ZXh0ZXJuYWwgZnVuY3Rpb24gdG8gZG8gdGhpcyBhbmQgaXQgd291bGQgaW4gbXkgb3BpbmlvbiBi
+ZSBhIHZlcnkgdXNlZnVsIGZlYXR1cmUgaWYgc3VjaCBjb25maWd1cmFibGUgZGVsYXlzIHdlcmUg
+cGFydCBvZiB0aGUgYmFzaWMgYnVpbHQtaW4gR1BJTyBmdW5jdGlvbmFsaXR5IGF0IGxlYXN0IGlu
+IHRlcm1zIG9mIHRoZSDigJxhdXRvbWF0aWMgc3Ryb2JlIHN0YXRlIG1hY2hpbmXigJ0sDQogdGh1
+cyBub3QgcmVxdWlyaW5nIGFub3RoZXIgRlBHQSBvciBoYXZpbmcgdG8gdHJ5IHRvIGludGVncmF0
+ZSBjdXN0b20gbG9naWMgaW5zaWRlIHRoZSBVSEQgZmlybXdhcmUsIHdoaWNoIG1pZ2h0IG5lZWQg
+dG8gYmUgcmVpbnRlZ3JhdGVkIG9uIHN1YnNlcXVlbnQgdXBkYXRlcy48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij5UaGFua3M8bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+Ij5MZW9uDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
+ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7
+cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bWFyZ2luLWJvdHRvbToxMi4wcHQiPjxiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5Gcm9tOg0KPC9zcGFuPjwvYj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjEyLjBwdDtjb2xvcjpibGFjayI+TWFyY3VzIEQuIExlZWNoICZs
+dDs8YSBocmVmPSJtYWlsdG86cGF0Y2h2b25icmF1bkBnbWFpbC5jb20iIHRhcmdldD0iX2JsYW5r
+Ij5wYXRjaHZvbmJyYXVuQGdtYWlsLmNvbTwvYT4mZ3Q7PGJyPg0KPGI+RGF0ZTogPC9iPldlZG5l
+c2RheSwgMjQgTWF5IDIwMjMgYXQgMjM6MTQ8YnI+DQo8Yj5UbzogPC9iPjxhIGhyZWY9Im1haWx0
+bzp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnNA
+bGlzdHMuZXR0dXMuY29tPC9hPiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMu
+ZXR0dXMuY29tIiB0YXJnZXQ9Il9ibGFuayI+dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb208L2E+
+Jmd0Ozxicj4NCjxiPlN1YmplY3Q6IDwvYj5bVVNSUC11c2Vyc10gUmU6IE4zMjAgLSBHUElPIEFU
+UiBvdXRwdXQgdG8gVFggb3V0cHV0IGRlbGF5PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwcmU+W1RoZSBlLW1haWwg
+c2VydmVyIG9mIHRoZSBzZW5kZXIgY291bGQgbm90IGJlIHZlcmlmaWVkIChTUEYgUmVjb3JkKV08
+bzpwPjwvbzpwPjwvcHJlPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQiPk9uIDI0LzA1LzIwMjMgMTY6MjIsDQo8YSBocmVmPSJtYWls
+dG86bWVuYUBjaGFvc2luYy5jb20iIHRhcmdldD0iX2JsYW5rIj5tZW5hQGNoYW9zaW5jLmNvbTwv
+YT4gd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHls
+ZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwPlRoYW5rcy4gVHdv
+IGZvbGxvdyB1cCBxdWVzdGlvbnM6PG86cD48L286cD48L3A+DQo8b2wgc3RhcnQ9IjEiIHR5cGU9
+IjEiPg0KPGxpIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzttc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+DQo8
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+Rm9yIGEgZ2l2ZW4gc2FtcGxlIHJhdGUsIGlz
+IHRoZXJlIGEgd2F5IHRvIGRldGVybWluaXN0aWNhbGx5IGNhbGN1bGF0ZSB0aGUgZ3JvdXAgZGVs
+YXk/PG86cD48L286cD48L3NwYW4+PC9saT48L29sPg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21hcmdpbi1ib3R0b206
+MTIuMHB0Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+TG9vayBhdCB0aGUgZmlsdGVy
+IGNvZGUgaW4gdGhlIHZlcnNpb24gb2YgdGhlIEZQR0EgaW1hZ2UgdGhhdCB5b3UncmUgdXNpbmcs
+IGRldGVybWluZSB3aGljaCBmaWx0ZXIgYml0cyBhbmQ8YnI+DQombmJzcDsgcGllY2VzIGFyZSAm
+cXVvdDtpbiBjaXJjdWl0JnF1b3Q7IHdoZW4geW91IHNlbGVjdCB5b3VyIHNhbXBsZS1yYXRlLCBh
+bmQgY2FsY3VsYXRlIHRoZSBncm91cCBkZWxheSBmcm9tIHRoYXQuPGJyPg0KPGJyPg0KJm5ic3A7
+IE1hbnkgZm9sa3Mgd2hvIGhhdmUgcnVuIGludG8gdGhlIHNhbWUgcHJvYmxlbSBoYXZlIHVzZWQg
+YSAmcXVvdDttZWFzdXJlIGl0IGluIHRoZSBsYWImcXVvdDsgYXBwcm9hY2gsIGFuZCBkb25lPGJy
+Pg0KJm5ic3A7IHRoYXQgZm9yIG5ldyByZWxlYXNlcyBvZiB0aGUgRlBHQSBjb2RlLS10aGUgUiZh
+bXA7RCB0ZWFtIGRvZXMgb2NjYXNpb25hbGx5IG1ha2UgY2hhbmdlcyB0byB0aGUgZmlsdGVyPGJy
+Pg0KJm5ic3A7IHBhcmFtZXRlcnMgYW5kICZxdW90O2RvY3RyaW5lJnF1b3Q7IGluIG9yZGVyIHRv
+IG9wdGltaXplIGZvciBjZXJ0YWluIHR5cGVzIG9mIGFwcGxpY2F0aW9ucy4mbmJzcDsgVGhpcyBt
+YXkgd2VsbDxicj4NCiZuYnNwOyBkZS1vcHRpbWl6ZSBmb3Igb3RoZXJzLiZuYnNwOyBTRFJzIGFy
+ZSBnZW5lcmFsLXB1cnBvc2UgZGV2aWNlcywgd2hpY2ggbWVhbnMgdGhhdCB0aGVyZSB3aWxsIGJl
+IGNhc2VzIHdoZXJlIHRoZXk8YnI+DQombmJzcDsgYXJlbid0ICZxdW90O291dCBvZiB0aGUgZmFj
+dG9yeSZxdW90OyBvcHRpbWl6ZWQgZm9yIGFueSAqcGFydGljdWxhciogYXBwbGljYXRpb24uPGJy
+Pg0KPGJyPg0KVGhlIGFwcHJvYWNoIHNvbWUgaGF2ZSB0YWtlIGlzIHRvIHBhZCBhdCBvbmUgZW5k
+IG9yIHRoZSBvdGhlciAob3IgYm90aCkgdG8gYWNjb3VudCBmb3IgdGhlc2UgZGVsYXlzLCB3aGlj
+aCBjb21wcmlzZTxicj4NCiZuYnNwOyBhIGRldGVybWluaXN0aWMtYnV0LXZlcnNpb24tZGVwZW5k
+ZW50IGNvbXBvbmVudCwgYW5kIGFuIGFuYWxvZyBjb21wb25lbnQgdGhhdCBpcyBsZXNzIGRldGVy
+bWluaXN0aWMsIGJ1dCBhdCBtdWNoPGJyPg0KJm5ic3A7IHNtYWxsZXIgdGltZXMgc2NhbGVzLjxi
+cj4NCjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxl
+PSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPG9sIHN0YXJ0PSIxIiB0
+eXBlPSIxIj4NCjxsaSBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87bXNvLWxpc3Q6bDEgbGV2ZWwxIGxmbzIi
+Pg0KPHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPldoeSBkbyBJIG5vdCBzZWUgdGhlIHNh
+bWUgZGVsYXkgYXQgdGhlIGJhY2sgZW5kIG9mIHRoZSB0cmFuc21pc3Npb24gKGkuZS4gYWZ0ZXIg
+dGhlIEdQSU8gZ29lcyBsb3cpPzxvOnA+PC9vOnA+PC9zcGFuPjwvbGk+PC9vbD4NCjwvYmxvY2tx
+dW90ZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0
+bzttYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPk15
+IHN1c3BpY2lvbiBpcyB0aGF0IHBhcnQgb2Ygd2hhdCB5b3UncmUgc2VlaW5nIGlzIGFuIGFuYWxv
+ZyBzd2l0Y2hpbmcgZWZmZWN0LCBhbmQgdGhpbmdzIGxpa2UgdHVybi1vbi90dXJuLW9mZjxicj4N
+CiZuYnNwOyB0aW1lcyBhcmUgbm90IHBlcmZlY3RseSBzeW1tZXRyaWMuPGJyPg0KPGJyPg0KVGhp
+cyBpc3N1ZSAobGFjayBvZiB0aWdodCBzeW5jaHJvbml6YXRpb24gYmV0d2VlbiBBVFIgc2lnbmFs
+cyBhbmQgYWN0dWFsIHdhdmVmb3JtcyBhcHBlYXJpbmcgYXQgdGhlIGFudGVubmEpIGhhcyBiZWVu
+PGJyPg0KJm5ic3A7IGFuIGlzc3VlIGluIGRpZ2l0YWwgY29tbXMgc2luY2UgSSBnb3QgaW52b2x2
+ZWQgaW4gdGhlIDE5ODBzLCBhbGJlaXQsIGluIHRoZSAxOTgwcywgdGhlIHRpbWUtc2NhbGVzIHdl
+cmUgbXVjaCBsYXJnZXIuPGJyPg0KJm5ic3A7IFlvdSBzaW1wbHkgaGFkIHRvIGFjY291bnQgZm9y
+IHRoZXNlIGVmZmVjdHMgZm9yIGV2ZXJ5IG5ldyByYWRpbyB5b3VyIGFwcGxpY2F0aW9uIGVuY291
+bnRlcmVkLiZuYnNwOyZuYnNwOyBJbiB0aGUgRFNQIGFnZSwgdGhlPGJyPg0KJm5ic3A7IGVmZmVj
+dHMgYXJlIGF0IG11Y2ggc21hbGxlciB0aW1lLXNjYWxlcywgYnV0IHNvIGFyZSB0aGUgZGF0YSBy
+YXRlcy48YnI+DQo8YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8YmxvY2txdW90
+ZSBzdHlsZT0ibWFyZ2luLXRvcDo1LjBwdDttYXJnaW4tYm90dG9tOjUuMHB0Ij4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttYXJnaW4tYm90dG9t
+OjEyLjBwdCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwcmU+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX188bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5VU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAt
+LSA8YSBocmVmPSJtYWlsdG86dXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20iIHRhcmdldD0iX2Js
+YW5rIj51c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48bzpwPjwvbzpwPjwvcHJlPg0KPHBy
+ZT5UbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVz
+ZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPnVzcnAtdXNlcnMtbGVh
+dmVAbGlzdHMuZXR0dXMuY29tPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij4mbmJz
+cDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KVVNSUC11c2VycyBtYWlsaW5nIGxpc3Qg
+LS0gPGEgaHJlZj0ibWFpbHRvOnVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tIiB0YXJnZXQ9Il9i
+bGFuayI+DQp1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbTwvYT48YnI+DQpUbyB1bnN1YnNjcmli
+ZSBzZW5kIGFuIGVtYWlsIHRvIDxhIGhyZWY9Im1haWx0bzp1c3JwLXVzZXJzLWxlYXZlQGxpc3Rz
+LmV0dHVzLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPg0KdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1
+cy5jb208L2E+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
->
->
-> On Thu, May 25, 2023 at 4:55=E2=80=AFAM Leon Wabeke <LWabeke@csir.co.za=
-> wrote:
->
->     Hi
->
->     We have also used a =E2=80=9Cmeasure in the lab approach=E2=80=9D, =
-together with
->     zero padding before and after and have at times seen these need to
->     be adjusted after a UHD upgrade.
->
->     We have also in some cases taken the GPIO strobe via another FPGA
->     to adjust the strobe by adding an extra configurable delays on
->     rising and falling edges. It is just annoying to use an external
->     function to do this and it would in my opinion be a very useful
->     feature if such configurable delays were part of the basic
->     built-in GPIO functionality at least in terms of the =E2=80=9Cautom=
-atic
->     strobe state machine=E2=80=9D, thus not requiring another FPGA or h=
-aving
->     to try to integrate custom logic inside the UHD firmware, which
->     might need to be reintegrated on subsequent updates.
->
->     Thanks
->
->     Leon
->
->     *From: *Marcus D. Leech <patchvonbraun@gmail.com>
->     *Date: *Wednesday, 24 May 2023 at 23:14
->     *To: *usrp-users@lists.ettus.com <usrp-users@lists.ettus.com>
->     *Subject: *[USRP-users] Re: N320 - GPIO ATR output to TX output del=
-ay
->
->     [The e-mail server of the sender could not be verified (SPF Record)=
-]
->
->     On 24/05/2023 16:22, mena@chaosinc.com wrote:
->
->         Thanks. Two follow up questions:
->
->          1. For a given sample rate, is there a way to
->             deterministically calculate the group delay?
->
->     Look at the filter code in the version of the FPGA image that
->     you're using, determine which filter bits and
->     =C2=A0 pieces are "in circuit" when you select your sample-rate, an=
-d
->     calculate the group delay from that.
->
->     =C2=A0 Many folks who have run into the same problem have used a
->     "measure it in the lab" approach, and done
->     =C2=A0 that for new releases of the FPGA code--the R&D team does
->     occasionally make changes to the filter
->     =C2=A0 parameters and "doctrine" in order to optimize for certain t=
-ypes
->     of applications.=C2=A0 This may well
->     =C2=A0 de-optimize for others.=C2=A0 SDRs are general-purpose devic=
-es, which
->     means that there will be cases where they
->     =C2=A0 aren't "out of the factory" optimized for any *particular*
->     application.
->
->     The approach some have take is to pad at one end or the other (or
->     both) to account for these delays, which comprise
->     =C2=A0 a deterministic-but-version-dependent component, and an anal=
-og
->     component that is less deterministic, but at much
->     =C2=A0 smaller times scales.
->
->
->
->          1. Why do I not see the same delay at the back end of the
->             transmission (i.e. after the GPIO goes low)?
->
->     My suspicion is that part of what you're seeing is an analog
->     switching effect, and things like turn-on/turn-off
->     =C2=A0 times are not perfectly symmetric.
->
->     This issue (lack of tight synchronization between ATR signals and
->     actual waveforms appearing at the antenna) has been
->     =C2=A0 an issue in digital comms since I got involved in the 1980s,
->     albeit, in the 1980s, the time-scales were much larger.
->     =C2=A0 You simply had to account for these effects for every new ra=
-dio
->     your application encountered.=C2=A0=C2=A0 In the DSP age, the
->     =C2=A0 effects are at much smaller time-scales, but so are the data=
- rates.
->
->
->
->
->
->         _______________________________________________
->
->         USRP-users mailing list --usrp-users@lists.ettus.com
->
->         To unsubscribe send an email tousrp-users-leave@lists.ettus.com
->
->     _______________________________________________
->     USRP-users mailing list -- usrp-users@lists.ettus.com
->     To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
+--_000_JN1P275MB053547F1D25B83244EE59F8795469JN1P275MB0535ZAFP_--
 
---------------rgI0FJ5mRCWzpBNbWVb77L0Y
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 25/05/2023 09:41, Rob Kossler wrote=
-:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTSxoCSY8PahuLUSC-ig6FNr_r5PPsaobNh9KK8S6xNxCA@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">I may be off-base here, but I thought that the
-          GPIO control occurred from the Radio block such that a DUC
-          group delay would not be the place to look. I am wondering if
-          the GPIO control does not use timed commands.=C2=A0 Instead of =
-the
-          automatic setting of the Tx GPIO, we have used custom GPIO
-          with timed commands=C2=A0to pulse a GPIO bit as a trigger at th=
-e
-          same time as we begin the radios.=C2=A0 But, I have not checked=
- the
-          relative timing between my GPIO pulse and the RF because I was
-          only interested in repeatability rather than knowing the
-          precise relative timing.</div>
-      </div>
-    </blockquote>
-    It was certainly the case in the past that the ATR logic was
-    somewhat asynchronous to the state of the DUC.=C2=A0 This may well ha=
-ve<br>
-    =C2=A0 changed while I wasn't paying attention.=C2=A0=C2=A0 Since I'm=
- not in
-    R&amp;D, and not an FPGA guy, this could be the case.<br>
-    <br>
-    Regardless, my point about T/R control signals occurring
-    not-precisely-aligned with when sinusoids are coming out the antenna<=
-br>
-    =C2=A0 port remains.=C2=A0 It will always be tricky to get it "exact"=
-.<br>
-    <br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB__hTSxoCSY8PahuLUSC-ig6FNr_r5PPsaobNh9KK8S6xNxCA@mail.gmai=
-l.com">
-      <div dir=3D"ltr">
-        <div dir=3D"ltr"><br>
-        </div>
-        <br>
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 25, 2023 at
-            4:55=E2=80=AFAM Leon Wabeke &lt;<a href=3D"mailto:LWabeke@csi=
-r.co.za"
-              moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">LW=
-abeke@csir.co.za</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-            0.8ex;border-left:1px solid
-            rgb(204,204,204);padding-left:1ex">
-            <div class=3D"msg3278616206152528484">
-              <div style=3D"overflow-wrap: break-word;" lang=3D"EN-ZA">
-                <div class=3D"m_-6926515693448721747WordSection1">
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">H=
-i</span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=
-=A0</span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">W=
-e
-                      have also used a =E2=80=9Cmeasure in the lab approa=
-ch=E2=80=9D,
-                      together with zero padding before and after and
-                      have at times seen these need to be adjusted after
-                      a UHD upgrade.</span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=
-=A0</span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">W=
-e
-                      have also in some cases taken the GPIO strobe via
-                      another FPGA to adjust the strobe by adding an
-                      extra configurable delays on rising and falling
-                      edges. It is just annoying to use an external
-                      function to do this and it would in my opinion be
-                      a very useful feature if such configurable delays
-                      were part of the basic built-in GPIO functionality
-                      at least in terms of the =E2=80=9Cautomatic strobe =
-state
-                      machine=E2=80=9D, thus not requiring another FPGA o=
-r
-                      having to try to integrate custom logic inside the
-                      UHD firmware, which might need to be reintegrated
-                      on subsequent updates.</span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=
-=A0</span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">T=
-hanks</span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">L=
-eon
-                    </span></p>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=
-=A0</span></p>
-                  <div
-style=3D"border-right:none;border-bottom:none;border-left:none;border-top=
-:1pt
-                    solid rgb(181,196,223);padding:3pt 0cm 0cm">
-                    <p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><=
-b><span
-                          style=3D"font-size:12pt;color:black">From:
-                        </span></b><span
-                        style=3D"font-size:12pt;color:black">Marcus D.
-                        Leech &lt;<a
-                          href=3D"mailto:patchvonbraun@gmail.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">patchvonbraun@g=
-mail.com</a>&gt;<br>
-                        <b>Date: </b>Wednesday, 24 May 2023 at 23:14<br>
-                        <b>To: </b><a
-                          href=3D"mailto:usrp-users@lists.ettus.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">usrp-users@list=
-s.ettus.com</a>
-                        &lt;<a href=3D"mailto:usrp-users@lists.ettus.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">usrp-users@list=
-s.ettus.com</a>&gt;<br>
-                        <b>Subject: </b>[USRP-users] Re: N320 - GPIO
-                        ATR output to TX output delay</span></p>
-                  </div>
-                  <pre>[The e-mail server of the sender could not be veri=
-fied (SPF Record)]</pre>
-                  <div>
-                    <p class=3D"MsoNormal"><span style=3D"font-size:11pt"=
->On
-                        24/05/2023 16:22, <a
-                          href=3D"mailto:mena@chaosinc.com"
-                          target=3D"_blank" moz-do-not-send=3D"true"
-                          class=3D"moz-txt-link-freetext">
-                          mena@chaosinc.com</a> wrote:</span></p>
-                  </div>
-                  <blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-                    <p>Thanks. Two follow up questions:</p>
-                    <ol type=3D"1" start=3D"1">
-                      <li>For a given sample rate, is there a way to
-                        deterministically calculate the group delay?</li>
-                    </ol>
-                  </blockquote>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">L=
-ook
-                      at the filter code in the version of the FPGA
-                      image that you're using, determine which filter
-                      bits and<br>
-                      =C2=A0 pieces are "in circuit" when you select your
-                      sample-rate, and calculate the group delay from
-                      that.<br>
-                      <br>
-                      =C2=A0 Many folks who have run into the same proble=
-m
-                      have used a "measure it in the lab" approach, and
-                      done<br>
-                      =C2=A0 that for new releases of the FPGA code--the
-                      R&amp;D team does occasionally make changes to the
-                      filter<br>
-                      =C2=A0 parameters and "doctrine" in order to optimi=
-ze
-                      for certain types of applications.=C2=A0 This may w=
-ell<br>
-                      =C2=A0 de-optimize for others.=C2=A0 SDRs are
-                      general-purpose devices, which means that there
-                      will be cases where they<br>
-                      =C2=A0 aren't "out of the factory" optimized for an=
-y
-                      *particular* application.<br>
-                      <br>
-                      The approach some have take is to pad at one end
-                      or the other (or both) to account for these
-                      delays, which comprise<br>
-                      =C2=A0 a deterministic-but-version-dependent compon=
-ent,
-                      and an analog component that is less
-                      deterministic, but at much<br>
-                      =C2=A0 smaller times scales.<br>
-                      <br>
-                      <br>
-                      <br>
-                    </span></p>
-                  <blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-                    <ol type=3D"1" start=3D"1">
-                      <li>Why do I not see the same delay at the back
-                        end of the transmission (i.e. after the GPIO
-                        goes low)?</li>
-                    </ol>
-                  </blockquote>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">M=
-y
-                      suspicion is that part of what you're seeing is an
-                      analog switching effect, and things like
-                      turn-on/turn-off<br>
-                      =C2=A0 times are not perfectly symmetric.<br>
-                      <br>
-                      This issue (lack of tight synchronization between
-                      ATR signals and actual waveforms appearing at the
-                      antenna) has been<br>
-                      =C2=A0 an issue in digital comms since I got involv=
-ed
-                      in the 1980s, albeit, in the 1980s, the
-                      time-scales were much larger.<br>
-                      =C2=A0 You simply had to account for these effects =
-for
-                      every new radio your application encountered.=C2=A0=
-=C2=A0 In
-                      the DSP age, the<br>
-                      =C2=A0 effects are at much smaller time-scales, but=
- so
-                      are the data rates.<br>
-                      <br>
-                      <br>
-                      <br>
-                    </span></p>
-                  <blockquote style=3D"margin-top:5pt;margin-bottom:5pt">
-                    <p class=3D"MsoNormal"><span style=3D"font-size:11pt"=
-><br>
-                        <br>
-                      </span></p>
-                    <pre>_______________________________________________<=
-/pre>
-                    <pre>USRP-users mailing list -- <a href=3D"mailto:usr=
-p-users@lists.ettus.com" target=3D"_blank" moz-do-not-send=3D"true" class=
-=3D"moz-txt-link-freetext">usrp-users@lists.ettus.com</a></pre>
-                    <pre>To unsubscribe send an email to <a href=3D"mailt=
-o:usrp-users-leave@lists.ettus.com" target=3D"_blank" moz-do-not-send=3D"=
-true" class=3D"moz-txt-link-freetext">usrp-users-leave@lists.ettus.com</a=
-></pre>
-                  </blockquote>
-                  <p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=
-=A0</span></p>
-                </div>
-              </div>
-              _______________________________________________<br>
-              USRP-users mailing list -- <a
-                href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
-nk"
-                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
-usrp-users@lists.ettus.com</a><br>
-              To unsubscribe send an email to <a
-                href=3D"mailto:usrp-users-leave@lists.ettus.com"
-                target=3D"_blank" moz-do-not-send=3D"true"
-                class=3D"moz-txt-link-freetext">usrp-users-leave@lists.et=
-tus.com</a><br>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------rgI0FJ5mRCWzpBNbWVb77L0Y--
-
---===============8513237117635835380==
+--===============0427483271976188433==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -504,4 +498,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8513237117635835380==--
+--===============0427483271976188433==--
