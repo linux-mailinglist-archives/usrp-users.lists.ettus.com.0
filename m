@@ -2,112 +2,102 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA7A8710FA7
-	for <lists+usrp-users@lfdr.de>; Thu, 25 May 2023 17:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFA8E712A77
+	for <lists+usrp-users@lfdr.de>; Fri, 26 May 2023 18:17:36 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EF6CA380D7F
-	for <lists+usrp-users@lfdr.de>; Thu, 25 May 2023 11:32:44 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9AF22383F72
+	for <lists+usrp-users@lfdr.de>; Fri, 26 May 2023 12:17:35 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685028764; bh=/Wrz4FUHuZULuAun8YofJcTnZ+1Z6XfIHOv1nCn/glA=;
+	t=1685117855; bh=6486HJ4JZD1hP/D/bdSKyds9jI7gVtQhSn+ODBXkHU8=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=mJuJouVhCyjSRdKJXK/LDRDCMLRWcEnNjf2rhxvUbY4OJaIn8Dg+0CmhmiAaSphgh
-	 W4rvSpguk237OFYY0B4RC6KHMDlS6fxVg1+/oFG45kVcaeo6gwcvGfrSCTPwsT5faa
-	 wfSL8eceofmTkeZgOZ2gTcfkI6BwYUL1r1PFLoUAPjWACztCzXXlRyWTakjSRX6A87
-	 T7Q7kC85jDRwobDP3k9e4PwVIL2LO0UH2OJPjgcoIvBRl+L6DxP+mfKjgUbevJf+Vn
-	 6/2rPLREyAN9bCSwF9GjrDS1gFrfO7XtHgejNyNHIFTYHxX/sNmZx/57jZmmQNlWDi
-	 bZrMPsqY2BEKA==
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
-	by mm2.emwd.com (Postfix) with ESMTPS id 8B106380CFF
-	for <usrp-users@lists.ettus.com>; Thu, 25 May 2023 11:31:44 -0400 (EDT)
+	b=hsJTGO83RzrbtD7/gd+s9sRlvYva0SWGezDZ6GtEXLfmR0/gyO/MrkV+vwNcvt24O
+	 Eq2IFPWVO+AV7GQjFUchosLzxZDZpQjPSAZOO8R8AjBrVcAbNoelK9+qoVVWeoueRS
+	 5/ccSPmg+VmWlWQAC7qSfjYdq0OfatNK3AAH5+lTGj080du68z516MAoGPphP8jctT
+	 j/fgmeswB7qoOl0MrcKhAbGM0FNHJapnOscSHlbj9V0y8sPHM7AOOTmTqG9JLNrOzd
+	 gnSkI2mXFEsM0WGrf+94hqBxvEx8Lq57DywpmqDQbclFVffZtu7cYV/5lXTB58+hxQ
+	 V5hK6i2urpYzw==
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	by mm2.emwd.com (Postfix) with ESMTPS id 72FED38109A
+	for <usrp-users@lists.ettus.com>; Fri, 26 May 2023 12:01:50 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=chaosinc.com header.i=@chaosinc.com header.b="Qoph4mRB";
+	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20221208.gappssmtp.com header.i=@ettus-com.20221208.gappssmtp.com header.b="Gk79y8Tc";
 	dkim-atps=neutral
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-623914a4bf0so5352686d6.3
-        for <usrp-users@lists.ettus.com>; Thu, 25 May 2023 08:31:44 -0700 (PDT)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2553b0938a9so759135a91.0
+        for <usrp-users@lists.ettus.com>; Fri, 26 May 2023 09:01:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chaosinc.com; s=google; t=1685028704; x=1687620704;
+        d=ettus-com.20221208.gappssmtp.com; s=20221208; t=1685116910; x=1687708910;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WWtJPKmF1TBogtEJMgFaeIx27n2IkiWyl8F6DRCjLrA=;
-        b=Qoph4mRBQc1+IA0rX8ryKPkWw1DS8KfMUjt9+s1wav6bCI1ottfr0WF867ubcKFy0h
-         BNeCoUd73DCGnfPvrr7ssJafjJUN6kiEwDhUx77B2kyvUKEJ9T6DOw0/5mKOMh99AE55
-         7eZJwixv8NyFmqmGNmcOIpppSATDMPk8eE7P+J/qTTuU0diTGRqBk3eIHn83Vk14klbh
-         yWFFKao7O0DHuR6AO6NQXnmk1/jx/WxHgR2dzlCLnA2hjN1Wbl60+LMRKvAI2FRP9T/h
-         Y6TMwfn5gOxH4IdmCW4pR98Y8d7Qmje5EtbNowX9PQ/2Kh6E2VySS5UJ0xG0JeriuiXc
-         KXLA==
+        bh=T7eAA2ljs6ruUzTu+sKh0//g3//s22kHsVlP3NI0Clk=;
+        b=Gk79y8Tc+xQyPOEvuGJMNtgEL8NsRXB22xkLgazNiNoq34yBuge4PFYuw0OSkzqQzc
+         bwXziuKynj+PKyhnCiZQLcdySnTsc0VOiRgvyvzMUeS1F3Ih+E3xyK0/XBcmNaWseRA3
+         0RuV8RXsS69Wd3YaQeWUNJI/UcSvjnQIu75rBtm6FNN44ElZmBym0GfvNdB2we3T6nbV
+         8PDrJ1zWfGWXMLgdPwwhHWxaq68CzzQDy56UuElarI8ppLSp0QGYQbBLvzlFS3Kb1t4w
+         wnbqXoI3hMSCaSLASKxMwod+lEtbi2rHKN7xINyjzluwciJWvZyi9y/HnreKG7JCgDMK
+         T04A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685028704; x=1687620704;
+        d=1e100.net; s=20221208; t=1685116910; x=1687708910;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WWtJPKmF1TBogtEJMgFaeIx27n2IkiWyl8F6DRCjLrA=;
-        b=GIvv8FJZWTmL0kpyRWEWrT0Y26fX0auofr9hUn0u3RGuvNmNy8/+aUwk/0UXOERzf/
-         qS1pH/c628K1d2PCdvMzNn4/FgDRxf0IdckMwjs8e2OXwNLrkLn5tV8XZ3XwCJ0MOgmX
-         7xSnqiTyJ2H55kODGRpRf/xI+BMzyMRkSMq0zNrX9M8xYPI/ptJB0mtWtDan3WX4qeTx
-         f18VAgNtsVrQjY38emeY4YQoBi8/4/HaqJSCQ9RdMnwqedO/YtQX2w3usCnR/oA5e09E
-         YSPDotsv/+9fqJoXjsmPJkXUv1xOOlgeBRd3tW3dUtsGIcBNBrfTogJZmUTKswDVjavb
-         expQ==
-X-Gm-Message-State: AC+VfDwULZNpcPkhd4F7nfmnCMl47doMxyKELTVO4/xClphCK9XTEVpG
-	XW7c0DM798UJGrXZ98jYJEYiEH5BFk3r52r1UovBWg==
-X-Google-Smtp-Source: ACHHUZ5hg/0wSl+RTfh8KwvHSFqyKxvZf1o96hpmXNm1urTMteaqVx7tQxyBAvEE5QP7Nfd35kViq40Aixp/1iuAhgI=
-X-Received: by 2002:a05:6214:766:b0:621:700b:f9ef with SMTP id
- f6-20020a056214076600b00621700bf9efmr1428155qvz.15.1685028704073; Thu, 25 May
- 2023 08:31:44 -0700 (PDT)
+        bh=T7eAA2ljs6ruUzTu+sKh0//g3//s22kHsVlP3NI0Clk=;
+        b=E/7mCpI13BfUQdWwpbiRY4mX9jtlFBxp0BNSriDnpKUdaO/kt7KhqQfFN71Rh8LgJe
+         TscxNG02E69lqlmPREl2TaH/v0PRDldsI1cRiEH8T4DMLXPiqMS/bPF8dMJGdlLrgysH
+         NZN+xtk9Fuy6F5sCFzLODenFMuB8QRv7kwy9M3RkkRZHPjYNkqM6DoQbk2+r3ftfNjBg
+         aaqKXhQFK9JdZQKbD8gPFaOYL/xpsfShwMo1W5SVfGsq2J/GF/0IM0T8SIPA+tcE8KjQ
+         /JHRpl5ab4D8/0lOXazZ4ySkcELzAhDB8jw/YHcu3duW41cJtyRA3nShvBFHS2saP5pY
+         q6kQ==
+X-Gm-Message-State: AC+VfDzS8v8sgFtVDqSCMywT+P+1hl0ChOSStkeNhPwCG7MPBSrNd89v
+	SWYrCpnG1lfHMns+zqmeUhS7PpAdgw+24KsxFO0m5505
+X-Google-Smtp-Source: ACHHUZ5hG7ozKQMAC7QLCzqCN4auh6gKCBpZ9YuTElqG4ILvk6vTAVh4Ka3p1v+xtjNhD1CNY8fHgg1LTKdzVLoSPBU=
+X-Received: by 2002:a17:90a:a4c:b0:256:3093:1e69 with SMTP id
+ o70-20020a17090a0a4c00b0025630931e69mr2205884pjo.33.1685116909726; Fri, 26
+ May 2023 09:01:49 -0700 (PDT)
 MIME-Version: 1.0
 References: <W203olqQs1iBI2xG9mGjiw1svSW52XqTjccB72ejEs@lists.ettus.com>
  <c157a530-5c52-0fd4-79a4-0c65810ee0f0@gmail.com> <JN1P275MB053556431057E296A551C8C695469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
  <CAB__hTSxoCSY8PahuLUSC-ig6FNr_r5PPsaobNh9KK8S6xNxCA@mail.gmail.com>
  <7ed5a34a-8862-09ae-edfa-d5ca15947915@gmail.com> <JN1P275MB053547F1D25B83244EE59F8795469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
 In-Reply-To: <JN1P275MB053547F1D25B83244EE59F8795469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
-From: Mena Ghebranious <mena@chaosinc.com>
-Date: Thu, 25 May 2023 08:31:32 -0700
-Message-ID: <CANq7nXd1DKGXWT7+WDDPj25cMy67siLGopCHq7fx-QD3F+8BPQ@mail.gmail.com>
+From: Jonathon Pendlum <jonathon.pendlum@ettus.com>
+Date: Fri, 26 May 2023 12:01:38 -0400
+Message-ID: <CAL7q81shBqtUzSaHseMO59rq1u3QSxSrA7bCaX-BVZo7FNRLZQ@mail.gmail.com>
 To: Leon Wabeke <LWabeke@csir.co.za>
-Message-ID-Hash: Z4ZIMBB5FKIPD63QAAL5RJXRDU25XFGI
-X-Message-ID-Hash: Z4ZIMBB5FKIPD63QAAL5RJXRDU25XFGI
-X-MailFrom: mena@chaosinc.com
+Message-ID-Hash: L2ZRA6ZZQ4DQNPBXLPYBE7WEBMKAEJGC
+X-Message-ID-Hash: L2ZRA6ZZQ4DQNPBXLPYBE7WEBMKAEJGC
+X-MailFrom: jonathon.pendlum@ettus.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, Rob Kossler <rkossler@nd.edu>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N320 - GPIO ATR output to TX output delay
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/Z4ZIMBB5FKIPD63QAAL5RJXRDU25XFGI/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/L2ZRA6ZZQ4DQNPBXLPYBE7WEBMKAEJGC/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0968697990512725694=="
+Content-Type: multipart/mixed; boundary="===============6655420303586346728=="
 
---===============0968697990512725694==
-Content-Type: multipart/alternative; boundary="00000000000057cfff05fc86512d"
+--===============6655420303586346728==
+Content-Type: multipart/alternative; boundary="000000000000cf453905fc9adae6"
 
---00000000000057cfff05fc86512d
+--000000000000cf453905fc9adae6
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-We originally tried using the timed commands to control the GPIO, and also
-had the same issue regarding command queue overflow when transmitting many
-small packets.
+Hi Leon,
 
-Even if we could manage the queue depth to avoid overflows, the concern
-would be that if one the timed commands to set the GPIO was not processed
-(due to a late time error, for example), we would damage our front end. So
-we decided that, save for our own custom FPGA implementation, the ATR
-approach was the best option.
+You can increase the command FIFO depth to allow for queuing up many more
+timed commands. This does require building a new FPGA image though.
 
-I agree that having a configurable delay on the ATR mode would be very
-helpful. That being said, I am still perplexed by the lack of symmetry of
-the delay on the back end of the transmission. I=E2=80=99m not sure what is=
- meant
-by =E2=80=98analog switching effect=E2=80=99 (I=E2=80=99m an FPGA/software =
-guy, not an RF guy).
+Jonathon
 
-On Thu, May 25, 2023 at 7:15 AM Leon Wabeke <LWabeke@csir.co.za> wrote:
+On Thu, May 25, 2023 at 10:15 AM Leon Wabeke <LWabeke@csir.co.za> wrote:
 
 > We also used timed GPIO to generate certain strobes, however I found at
 > some point that I could not generate more than about 6k strobes per secon=
@@ -269,29 +259,42 @@ t
 > USRP-users mailing list -- usrp-users@lists.ettus.com
 > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
+--=20
 
---00000000000057cfff05fc86512d
+Jonathon
+
+
+*DISCLAIMER: Any attached Code is provided As Is. It has not been tested or
+validated as a product, for use in a deployed application or system, or for
+use in hazardous environments. You assume all risks for use of the Code.
+Use of the Code is subject to terms of the licenses to the UHD or RFNoC
+code with which the Code is used. Standard licenses to UHD and RFNoC can be
+found at https://www.ettus.com/sdr-software/licenses/
+<https://www.ettus.com/sdr-software/licenses/>.*
+
+*NI will only perform services based on its understanding and condition
+that the goods or services (i) are not for the use in the production or
+development of any item produced, purchased, or ordered by any entity with
+a footnote 1 designation in the license requirement column of Supplement
+No. 4 to Part 744, U.S. Export Administration Regulations and (ii) such a
+company is not a party to the transaction.  If our understanding is
+incorrect, please notify us immediately because a specific authorization
+may be required from the U.S. Commerce Department before the transaction
+may proceed further.*
+
+--000000000000cf453905fc9adae6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">We originally tried using the timed commands to control t=
-he GPIO, and also had the same issue regarding command queue overflow when =
-transmitting many small packets.=C2=A0</div><div dir=3D"auto"><br></div><di=
-v dir=3D"auto">Even if we could manage the queue depth to avoid overflows, =
-the concern would be that if one the timed commands to set the GPIO was not=
- processed (due to a late time error, for example), we would damage our fro=
-nt end. So we decided that, save for our own custom FPGA implementation, th=
-e ATR approach was the best option.=C2=A0</div><div dir=3D"auto"><br></div>=
-<div dir=3D"auto">I agree that having a configurable delay on the ATR mode =
-would be very helpful. That being said, I am still perplexed by the lack of=
- symmetry of the delay on the back end of the transmission. I=E2=80=99m not=
- sure what is meant by =E2=80=98analog switching effect=E2=80=99 (I=E2=80=
-=99m an FPGA/software guy, not an RF guy).=C2=A0</div><div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 25, 2023=
- at 7:15 AM Leon Wabeke &lt;<a href=3D"mailto:LWabeke@csir.co.za">LWabeke@c=
-sir.co.za</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
-padding-left:1ex;border-left-color:rgb(204,204,204)">
+<div dir=3D"auto">Hi Leon,</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">You can increase the command FIFO depth to allow for queuing up many mor=
+e timed commands. This does require building a new FPGA image though.</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto">Jonathon</div><div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 25, =
+2023 at 10:15 AM Leon Wabeke &lt;<a href=3D"mailto:LWabeke@csir.co.za">LWab=
+eke@csir.co.za</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:sol=
+id;padding-left:1ex;border-left-color:rgb(204,204,204)">
 
 
 
@@ -299,7 +302,7 @@ padding-left:1ex;border-left-color:rgb(204,204,204)">
 
 <div lang=3D"EN-ZA" link=3D"blue" vlink=3D"purple" style=3D"overflow-wrap: =
 break-word;">
-<div class=3D"m_-7809416780497544340WordSection1">
+<div class=3D"m_5521141773528722366WordSection1">
 <p class=3D"MsoNormal"><span style=3D"font-size:11pt">We also used timed GP=
 IO to generate certain strobes, however I found at some point that I could =
 not generate more than about 6k strobes per second on an X310 (if I recall =
@@ -311,11 +314,12 @@ its per second (many small packets),
  we needed to switch to using the automatically generated strobe and handle=
  the misalignment that arose from that.<u></u><u></u></span></p></div></div=
 ><div lang=3D"EN-ZA" link=3D"blue" vlink=3D"purple" style=3D"overflow-wrap:=
- break-word;"><div class=3D"m_-7809416780497544340WordSection1">
+ break-word;"><div class=3D"m_5521141773528722366WordSection1">
 <p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
 /span></p>
-<div style=3D"border-style:solid none none;border-top-width:1pt;padding:3pt=
- 0cm 0cm;border-top-color:rgb(181,196,223)">
+<div style=3D"border-width:1pt medium medium;border-style:solid none none;p=
+adding:3pt 0cm 0cm;border-color:rgb(181,196,223) currentcolor currentcolor"=
+>
 <p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><b><span style=3D"font-=
 size:12pt;color:black">From:
 </span></b><span style=3D"font-size:12pt;color:black">Marcus D. Leech &lt;<=
@@ -379,9 +383,9 @@ uot;.<br>
 at 4:55=E2=80=AFAM Leon Wabeke &lt;<a href=3D"mailto:LWabeke@csir.co.za" ta=
 rget=3D"_blank">LWabeke@csir.co.za</a>&gt; wrote:<u></u><u></u></span></p>
 </div>
-<blockquote style=3D"border-style:none none none solid;border-left-width:1p=
-t;padding:0cm 0cm 0cm 6pt;margin-left:4.8pt;margin-right:0cm;border-left-co=
-lor:rgb(204,204,204)">
+<blockquote style=3D"border-width:medium medium medium 1pt;border-style:non=
+e none none solid;padding:0cm 0cm 0cm 6pt;margin-left:4.8pt;margin-right:0c=
+m;border-color:currentcolor currentcolor currentcolor rgb(204,204,204)">
 <div>
 <div>
 <div>
@@ -413,8 +417,9 @@ e part of the basic built-in GPIO functionality at least in terms of the =
 <u></u><u></u></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0<u></u><u></u><=
 /span></p>
-<div style=3D"border-style:solid none none;border-top-width:1pt;padding:3pt=
- 0cm 0cm;border-top-color:rgb(181,196,223)">
+<div style=3D"border-width:1pt medium medium;border-style:solid none none;p=
+adding:3pt 0cm 0cm;border-color:rgb(181,196,223) currentcolor currentcolor"=
+>
 <p class=3D"MsoNormal" style=3D"margin-bottom:12pt"><b><span style=3D"font-=
 size:12pt;color:black">From:
 </span></b><span style=3D"font-size:12pt;color:black">Marcus D. Leech &lt;<=
@@ -532,11 +537,34 @@ USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
 rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
 To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
 tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div></div>
+</blockquote></div></div><span class=3D"gmail_signature_prefix">-- </span><=
+br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signa=
+ture"><div dir=3D"ltr"><p style=3D"margin:0in;font-family:Calibri,sans-seri=
+f"><font style=3D"background-color:rgb(255,255,255)" color=3D"#000000">Jona=
+thon</font></p><p style=3D"margin:0in;font-family:Calibri,sans-serif"><br><=
+/p><p><font size=3D"1" color=3D"#999999"><i><span style=3D"font-family:Aria=
+l,sans-serif">DISCLAIMER: Any attached Code is provided As Is. It has not b=
+een tested or validated as a product, for use in a deployed application or =
+system, or for use in hazardous environments. You assume all risks for use =
+of the Code. Use of the Code is subject to terms of the licenses to the UHD=
+ or RFNoC code with which the Code is used. Standard licenses to UHD and RF=
+NoC can be found at=C2=A0<a href=3D"https://www.ettus.com/sdr-software/lice=
+nses/" target=3D"_blank">https://www.ettus.com/sdr-software/licenses/</a>.<=
+/span></i><u></u><u></u></font></p><p><i><span style=3D"font-family:Arial,s=
+ans-serif"><font size=3D"1" color=3D"#999999">NI will only perform services=
+ based on its understanding and condition that the goods or services (i) ar=
+e not for the use in the production or development of any item produced, pu=
+rchased, or ordered by any entity with a footnote 1 designation in the lice=
+nse requirement column of Supplement No. 4 to Part 744, U.S. Export Adminis=
+tration Regulations and (ii) such a company is not a party to the transacti=
+on.=C2=A0 If our understanding is incorrect, please notify us immediately b=
+ecause a specific authorization may be required from the U.S. Commerce Depa=
+rtment before the transaction may proceed further.</font></span></i></p></d=
+iv></div>
 
---00000000000057cfff05fc86512d--
+--000000000000cf453905fc9adae6--
 
---===============0968697990512725694==
+--===============6655420303586346728==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -546,4 +574,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============0968697990512725694==--
+--===============6655420303586346728==--
