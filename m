@@ -2,189 +2,171 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id B80CB716FEE
-	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 23:45:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E9AD717094
+	for <lists+usrp-users@lfdr.de>; Wed, 31 May 2023 00:18:07 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EB1BE3848B3
-	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 17:45:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 2C96E384831
+	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 18:18:06 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685483138; bh=TGLb07s0JgpACzXDC710aX1/sSrrIYgzJAmHE5qwrS8=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=dY7TZnVzpq83D5gn0qXDD/REFTRR4Gz9f3Nf4ZJo4Fj9/8+hOatSD6+QkG6yBx5nm
-	 6Gte3dRFl00gLE8MHgYl7VTiCfiSIHq7AOvISSux2gYcIqNqwg5LRJVUqNuPAFJR8k
-	 uFNVqunx3qbGSxYhgUI2PRlTBB0WQdzTzUVo04jwg26VUzq9ci4ahUVAqbdWk78m/m
-	 CCdTs6gJ96Q+LZmygiU7iIwImjk8XaByuNi8Ox4Zppasts2e4lwlkbZ+EweVKI5aQN
-	 aL2A7o9VuzbtzTtPFe+ogXczUbEV9HwdZ79ENr5MadT4c0ZOY2GwuThEXvUnSUlL46
-	 WTQoI4CuLj0SA==
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 025B838489B
-	for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 17:44:37 -0400 (EDT)
+	t=1685485086; bh=M2QEeljyjZdNzGrb8tPuvxfRxcC3ZvuAxlLD+z+mF2c=;
+	h=From:Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=U0Lx8n8VvgPUsXG/TSFQ9oNxWYpy/3D1mu3l1BziqPIvYmV1s4EKa3586VcB7O9/K
+	 9nmV4JOW4xGPN4MTFfP1cKl2rm3/wXs2XguG/zdQDeKLsLzjaE7mLvem83xrIOJns4
+	 wnb4zLo/6m9/DCr2RObTcWuZyt3tkZyusaK5U7BMiOW4Ww6GknDb75G2YV4OofL+MK
+	 eAms2DRcjgmOmxHHNZ88/5VOIp7FGw25bEN6CJB6pGYM19fGq9CQiA0iNaZEu2epao
+	 6pCXxhdyoOSGFEXyudZUytWHbnDB0cewIdSzwagUpFID11ZJBlEYTvrf3Q+grq2i1p
+	 yDBVNyfe5IglA==
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	by mm2.emwd.com (Postfix) with ESMTPS id D6B8C3837B2
+	for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 18:17:41 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bVJS1ecO";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ILao8omU";
 	dkim-atps=neutral
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-97000a039b2so891082066b.2
-        for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 14:44:37 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-56896778212so2390657b3.1
+        for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 15:17:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685483077; x=1688075077;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=rgP9xsfAkTzuSpST5o+L8Zp1bqnS6MLuAJTze+9HZTs=;
-        b=bVJS1ecO8q08fDYNE2JjgrRUX62K1yxSPtvC0avOjrYQ4AiHLM+Bk8HxEBwGexpa1k
-         GAykv3/VDC+cFoZqvI8h+TMtfePFMv74Ecaxgl0R6lctP+iUq1Nw9y0W+Q9mI4SJgGfs
-         74+Un1ys4mpaWijTHG7c7LApOhpREmmmu3n3fKNbpN7r2ozg48+VlYTS5ow8NIocrnxE
-         PqjnxwfdqtC6DROVak0a1KyIUrH4K0smPGPzaeGxfB6VcSTfvZH4b5ZccRQPpez8RcOk
-         15RR62I9PbiDTetu57E7STj93WbegBmROqbeZO4yySr+iJFyJ0Ts7oFGARCTTiB5G69a
-         h10w==
+        d=gmail.com; s=20221208; t=1685485061; x=1688077061;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=PE7eP5AdYWLZzrxC68KtaTUjKf6xRehVm4x/PVyV7P8=;
+        b=ILao8omUwXz8g6pNJBRLOd5Vv6Xc+7fdrk4hnRIsKu8LLpg4zuhWb+agMPSBn/wm/u
+         fGsJDaLcIj9skyvclQoldI3G4fZlfilu+d6paqe+NHEzDIZTJJCMh4mkosNSki6LrhFk
+         UW/Mji4S9fhDai5stj8UPPqoXg3iWYHTvYdE5TjfkxtRGNT2JprtjHGls0wV7WjFJEIi
+         lZPYrp7JqWCQE36Bi8BiMLmMJt7qcDf3s50FiOyWRfdf8Cqp9l/x73SbmujQWutpwS0a
+         nZdXTXwa4nMbVk3ioltDn0Oz2zUf0TVwXGayhOI05Vb1JNT1irlnkQUd0jufeDoDqtQa
+         C7Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685483077; x=1688075077;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rgP9xsfAkTzuSpST5o+L8Zp1bqnS6MLuAJTze+9HZTs=;
-        b=XujMk9oknzgldPOtm0cXfwSty1o2J2/k/O4JuG/03/J3BwJkxkgF7xTf1XWfnGEs4q
-         E/+F66XfIQFogllLmisRlGYp48OqN4GlvQA6AUmDljMa6KK3O+5+33U/TpPLpAmHV2JQ
-         xKJBlrAiVDdhWY11oy7S7ef1xtopZ15JhYE/E5LogIJBUhdKpjaSvywVJBczMtpgy8Um
-         2rLP1hAjupdTrSyk+0WJo5q+D+tJyDpeTGO4Va5hdQebrAFchSd0yiY8EWr+ePmcUs4Y
-         mV2rILbpx63+Z7cST45Y7sMq/Px1tH+Xm+wDyZiwV6NXOhlXsqA6ZZ4D1TkhK7u4yVJI
-         LxyA==
-X-Gm-Message-State: AC+VfDzHkCcmB/MPLwmZwnk8JGITamxxvj59a3cQda1j/vhCpEW94t43
-	rJe21VUEdgAxvJjCNIcbpaAR6KN9FklJF77qM9E=
-X-Google-Smtp-Source: ACHHUZ5I6U7b+odc+gWN9vscSHZ10UTim//NJcKv5dTvumV8lpTWrv2gbQRq2RPCbZJ64a5TR/gcyS/TMsnUab86LVo=
-X-Received: by 2002:a17:907:934a:b0:94a:6de2:ba9 with SMTP id
- bv10-20020a170907934a00b0094a6de20ba9mr3409164ejc.68.1685483076419; Tue, 30
- May 2023 14:44:36 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1685485061; x=1688077061;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PE7eP5AdYWLZzrxC68KtaTUjKf6xRehVm4x/PVyV7P8=;
+        b=JU2V+2M4gaZpjasg5DpR1gmIjr5WpZrdhdrP5m3guvPpj2QRzYtk0ynhF+TxdPlehG
+         BMmoeY+AG+Y3I4c0L0tJwI0m2sedInkO18HRqX96mBp0ro6E0Hem/GZoFoq/pqE3apzh
+         HEd0Jh3AHGB2bpB+qn/GG7enqu2SuGP/RW0jlMgSxK83WGCVB740kc7XiNBVAp1vR2La
+         /S1RkFQK7kpk5Qo8RUsGys0JfoOjBGZ3bc3vmGEvjXVUP6kHS/qUJRMpf6yXOMQNFShD
+         eEei+ECMHsUFLTFOmMh7jpzFYjjC047c9GgMRI/3EqiokUWnP9UWtKPUFSURUnuAj1t7
+         ho6Q==
+X-Gm-Message-State: AC+VfDwZ5OVO9DBbMAhVzRb0u34v7bQyE84ebRXM1sL7OFQnTRVs3dFy
+	HhOkNNrh2NgxxeztV8ne3l148mlAP+18oc11uipgDWuYhos=
+X-Google-Smtp-Source: ACHHUZ5REyfrv+vuOrwL3fVsM9BGTrJBBOP4pNnSWk1Ii9vN4go9dzfNo0vlJhmyF2n4gqT0a5Wb2gM+9mpvYdXWK7Y=
+X-Received: by 2002:a81:7055:0:b0:565:be47:55d9 with SMTP id
+ l82-20020a817055000000b00565be4755d9mr336751ywc.1.1685485061025; Tue, 30 May
+ 2023 15:17:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <W203olqQs1iBI2xG9mGjiw1svSW52XqTjccB72ejEs@lists.ettus.com>
- <c157a530-5c52-0fd4-79a4-0c65810ee0f0@gmail.com> <JN1P275MB053556431057E296A551C8C695469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
- <CAB__hTSxoCSY8PahuLUSC-ig6FNr_r5PPsaobNh9KK8S6xNxCA@mail.gmail.com>
- <7ed5a34a-8862-09ae-edfa-d5ca15947915@gmail.com> <JN1P275MB053547F1D25B83244EE59F8795469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
- <CAL7q81shBqtUzSaHseMO59rq1u3QSxSrA7bCaX-BVZo7FNRLZQ@mail.gmail.com>
- <CANq7nXcTe6FrDNXHiYUKY7VU-47UqdW3PtZj5eafBP84-2HhbA@mail.gmail.com>
- <4da2d23c-0854-582c-a191-deb5476488fe@gmail.com> <CANq7nXeVL8ActLms9N5kCAb78ALSrKPBb-agALYJjzNk9Yi9mg@mail.gmail.com>
- <CAEXYVK6JLh_C4cb6GbPYCFxNBv=U3AgUdqP=yBkmSH7Vey4wOQ@mail.gmail.com>
- <CANq7nXf266iBvAARXfrmebaTeZFskaCPwvXHvvWT+Hzg-sVghg@mail.gmail.com>
- <CAEXYVK5NEVExmcf0uhbXjOABwRbbxC+yvY0pZ7dBX22rYom27Q@mail.gmail.com>
- <CANq7nXfUvuDaLbOx_admWoNNsVt1eJN15L65uS-VmniAhh=u1w@mail.gmail.com>
- <CAEXYVK6ONWM8ayhz+V9beCNu56ewAP5_GJtDcY0du2JXJpGa4g@mail.gmail.com> <CANq7nXdn4mjih-_YLMm349oJPJZz1tFGeozy9NYc_Xic5wUpdA@mail.gmail.com>
-In-Reply-To: <CANq7nXdn4mjih-_YLMm349oJPJZz1tFGeozy9NYc_Xic5wUpdA@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Tue, 30 May 2023 17:44:25 -0400
-Message-ID: <CAEXYVK60EFc5V0bWy9=0d5JbAue+cCUzm5wH-gQCASGTAeZX1A@mail.gmail.com>
-To: Mena Ghebranious <mena@chaosinc.com>
-Message-ID-Hash: 4LVCOYOBVZDY4ZC2PGFJN7YTGFPCR2EM
-X-Message-ID-Hash: 4LVCOYOBVZDY4ZC2PGFJN7YTGFPCR2EM
-X-MailFrom: bpadalino@gmail.com
+From: Ashton Palacios <pistachio6981@gmail.com>
+Date: Tue, 30 May 2023 16:17:30 -0600
+Message-ID: <CA+ZR=nVNAVMnFD6G2LNZKpcB=H6dtQd+tMqs119KENuT0Uv4gQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: WP7RWN3CWCJGIDNIZT4ISGSNALVVQQ3Y
+X-Message-ID-Hash: WP7RWN3CWCJGIDNIZT4ISGSNALVVQQ3Y
+X-MailFrom: pistachio6981@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, Jonathon Pendlum <jonathon.pendlum@ettus.com>, Leon Wabeke <LWabeke@csir.co.za>, Rob Kossler <rkossler@nd.edu>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 - GPIO ATR output to TX output delay
+Subject: [USRP-users] x410 help
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4LVCOYOBVZDY4ZC2PGFJN7YTGFPCR2EM/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/WP7RWN3CWCJGIDNIZT4ISGSNALVVQQ3Y/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============1227375778755617329=="
+Content-Type: multipart/mixed; boundary="===============7286484637875432182=="
 
---===============1227375778755617329==
-Content-Type: multipart/alternative; boundary="0000000000000b851205fcf01c57"
+--===============7286484637875432182==
+Content-Type: multipart/alternative; boundary="00000000000056351005fcf092e6"
 
---0000000000000b851205fcf01c57
+--00000000000056351005fcf092e6
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 30, 2023 at 5:32=E2=80=AFPM Mena Ghebranious <mena@chaosinc.com=
-> wrote:
-
-> I apologize, I think I must be missing something.  This is the filter
-> (Xilinx IP) I see implemented in the N320 master code:
->
->
-> https://github.com/EttusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/dboa=
-rds/rh/n3xx.v#L3431
->
-
-This HBF seems to be external to the DUC, but I doubt it's killing a bunch
-of samples from coming out.
+My research group recently got an Ettus X410. We are wanting to connect to
+it through two MT27800 NICs on our server. We are able to set up the IP
+addresses on the server and running uhd_find_devices shows the USRP having
+the correct IP address that we are expecting. When we go to run the
+benchmark_rate test we get the following error:
 
 
->
->
-> We are planning on running various sample rates running from 1 to possibl=
-y
-> 61.44Msps  - for our current experiment we are using 20.480Msps
->
+/usr/local/lib/uhd/examples$ ./benchmark_rate --rx_rate 10e6 --tx_rate 10e6
 
-This is the most likely culprit.  Currently you interpolate by 12 if you
-use a 245.76 Msps master clock rate using the DUC (HBF (x2) -> HBF (x2) ->
-CIC (x3) =3D 12).
+[INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400;
+UHD_4.4.0.HEAD-0-g5fac246b
+[00:00:00.000581] Creating the usrp device with: ...
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=192.168.13.2,type=x4xx,product=x410,serial=326B6ED,name=ni-x4xx-326B6ED,fpga=X4_200,claimed=False,addr=192.168.11.2
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=X4_200,mgmt_addr=192.168.13.2,name=ni-x4xx-326B6ED,product=x410,clock_source=internal,time_source=internal'.
+[ERROR] [RFNOC::MGMT] EnvironmentError: IOError: recv error on socket:
+Connection refused
+[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization.
+EnvironmentError: IOError: recv error on socket: Connection refused
+[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
+EnvironmentError: IOError: recv error on socket: Connection refused
+Error: RuntimeError: Failure to create rfnoc_graph.
+alfor@sdr:/usr/local/lib/uhd/examples$ sudo !!
+sudo ./benchmark_rate --rx_rate 10e6 --tx_rate 10e6
 
-What you can do is interpolate to 245.76 Msps on the host for TX and you've
-got full control down to the sample.
+[INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_107400;
+UHD_4.4.0.HEAD-0-g5fac246b
+[00:00:00.000251] Creating the usrp device with: ...
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=192.168.13.2,type=x4xx,product=x410,serial=326B6ED,name=ni-x4xx-326B6ED,fpga=X4_200,claimed=False,addr=192.168.11.2
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=X4_200,mgmt_addr=192.168.13.2,name=ni-x4xx-326B6ED,product=x410,clock_source=internal,time_source=internal'.
+[ERROR] [RFNOC::MGMT] EnvironmentError: IOError: recv error on socket:
+Connection refused
+[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization.
+EnvironmentError: IOError: recv error on socket: Connection refused
+[ERROR] [RFNOC::GRAPH] Caught exception while initializing graph:
+EnvironmentError: IOError: recv error on socket: Connection refused
+Error: RuntimeError: Failure to create rfnoc_graph.
 
-See what happens when you interpolate on the host instead of using the FPGA
-to do it for you.  My guess is that it will be closer to what you want.
+Any suggestions on how to fix this?
 
-Brian
-
->
-
---0000000000000b851205fcf01c57
+--00000000000056351005fcf092e6
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Tue, May 30, 2023 at 5:32=E2=80=AFPM M=
-ena Ghebranious &lt;<a href=3D"mailto:mena@chaosinc.com">mena@chaosinc.com<=
-/a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div dir=3D"ltr">I apologize, I think I must be m=
-issing something.=C2=A0 This=C2=A0is the filter (Xilinx IP) I see implement=
-ed in the N320 master code:<div><br></div><div><a href=3D"https://github.co=
-m/EttusResearch/uhd/blob/master/fpga/usrp3/top/n3xx/dboards/rh/n3xx.v#L3431=
-" target=3D"_blank">https://github.com/EttusResearch/uhd/blob/master/fpga/u=
-srp3/top/n3xx/dboards/rh/n3xx.v#L3431</a></div></div></blockquote><div><br>=
-</div><div>This HBF seems to be external to the DUC, but I doubt it&#39;s k=
-illing a bunch of samples from coming out.</div><div>=C2=A0</div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><br></div><di=
-v><br></div><div>We are planning on running various sample rates running fr=
-om 1 to possibly 61.44Msps=C2=A0 - for our current experiment we are using =
-20.480Msps</div></div></blockquote><div><br></div><div>This is the most lik=
-ely culprit.=C2=A0 Currently you interpolate by 12 if you use a 245.76 Msps=
- master clock rate using the DUC (HBF (x2) -&gt; HBF (x2) -&gt; CIC (x3) =
-=3D 12).</div><div><br></div><div>What you can do is interpolate to 245.76 =
-Msps on the host for TX and you&#39;ve got full control down to the sample.=
-</div><div><br></div><div>See what happens when you interpolate on the host=
- instead of using the FPGA to do it for you.=C2=A0 My guess is that it will=
- be closer to what you want.</div><div><br></div><div>Brian</div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div class=3D"gmail_quote"><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
- solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"gm=
-ail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"=
-gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"=
-ltr"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div></div>
-</blockquote></div>
-</blockquote></div></div>
+<div dir=3D"ltr">My research group recently got an Ettus X410. We are wanti=
+ng to connect to it through two MT27800 NICs on our server. We are able to =
+set up the IP addresses on the server and running uhd_find_devices shows th=
+e USRP having the correct IP address that we are expecting. When we go to r=
+un the benchmark_rate test we get the following error:<br><br clear=3D"all"=
+><div><br></div>/usr/local/lib/uhd/examples$ ./benchmark_rate --rx_rate 10e=
+6 --tx_rate 10e6<br><br>[INFO] [UHD] linux; GNU C++ version 11.3.0; Boost_1=
+07400; UHD_4.4.0.HEAD-0-g5fac246b<br>[00:00:00.000581] Creating the usrp de=
+vice with: ...<br>[INFO] [MPMD] Initializing 1 device(s) in parallel with a=
+rgs: mgmt_addr=3D192.168.13.2,type=3Dx4xx,product=3Dx410,serial=3D326B6ED,n=
+ame=3Dni-x4xx-326B6ED,fpga=3DX4_200,claimed=3DFalse,addr=3D192.168.11.2<br>=
+[INFO] [MPM.PeriphManager] init() called with device args `fpga=3DX4_200,mg=
+mt_addr=3D192.168.13.2,name=3Dni-x4xx-326B6ED,product=3Dx410,clock_source=
+=3Dinternal,time_source=3Dinternal&#39;.<br>[ERROR] [RFNOC::MGMT] Environme=
+ntError: IOError: recv error on socket: Connection refused<br>[ERROR] [RFNO=
+C::GRAPH] IO Error during GSM initialization. EnvironmentError: IOError: re=
+cv error on socket: Connection refused<br>[ERROR] [RFNOC::GRAPH] Caught exc=
+eption while initializing graph: EnvironmentError: IOError: recv error on s=
+ocket: Connection refused<br>Error: RuntimeError: Failure to create rfnoc_g=
+raph.<br>alfor@sdr:/usr/local/lib/uhd/examples$ sudo !!<br>sudo ./benchmark=
+_rate --rx_rate 10e6 --tx_rate 10e6<br><br>[INFO] [UHD] linux; GNU C++ vers=
+ion 11.3.0; Boost_107400; UHD_4.4.0.HEAD-0-g5fac246b<br>[00:00:00.000251] C=
+reating the usrp device with: ...<br>[INFO] [MPMD] Initializing 1 device(s)=
+ in parallel with args: mgmt_addr=3D192.168.13.2,type=3Dx4xx,product=3Dx410=
+,serial=3D326B6ED,name=3Dni-x4xx-326B6ED,fpga=3DX4_200,claimed=3DFalse,addr=
+=3D192.168.11.2<br>[INFO] [MPM.PeriphManager] init() called with device arg=
+s `fpga=3DX4_200,mgmt_addr=3D192.168.13.2,name=3Dni-x4xx-326B6ED,product=3D=
+x410,clock_source=3Dinternal,time_source=3Dinternal&#39;.<br>[ERROR] [RFNOC=
+::MGMT] EnvironmentError: IOError: recv error on socket: Connection refused=
+<br>[ERROR] [RFNOC::GRAPH] IO Error during GSM initialization. EnvironmentE=
+rror: IOError: recv error on socket: Connection refused<br>[ERROR] [RFNOC::=
+GRAPH] Caught exception while initializing graph: EnvironmentError: IOError=
+: recv error on socket: Connection refused<br>Error: RuntimeError: Failure =
+to create rfnoc_graph.<br><br>Any suggestions on how to fix this?=C2=A0</di=
+v>
 
---0000000000000b851205fcf01c57--
+--00000000000056351005fcf092e6--
 
---===============1227375778755617329==
+--===============7286484637875432182==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -194,4 +176,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1227375778755617329==--
+--===============7286484637875432182==--
