@@ -2,59 +2,59 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 572F4716B46
-	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 19:39:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 38A1F716C7A
+	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 20:28:39 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7B3D03846E4
-	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 13:39:49 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 4772F3846C5
+	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 14:28:38 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685468389; bh=EcXNngEe6ShN2r54dmmOLf6NhUrp2p7ZAPC5xwGa8gY=;
+	t=1685471318; bh=rz/OI8us8f0Rgrx6K120i3Y3VfQ6umpQTelhjdxaSo0=;
 	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
 	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
 	 List-Unsubscribe:From;
-	b=g+vlv6LK0MqtvwqZV+tYJMDaM1HcDjV2esEym0WyHv5sFDrlbWNbIbEexp4Oq2dC0
-	 PMMyIaSkwVM5qPsTXl0kFCCfXjNKmAhuqTU2wE4+H/iAE0H7hUFRaNclDm5tV2FcvP
-	 l89eJUGYnkizg6faUem0uEDUs19OPzD+4schsCKx3/YGleIrpvPBvX8jcnwB55etbE
-	 kP72Xvw2+9//oGsaK9gsOVpEBteBOQmPt9VnyV1bSjdR+28+ircwge6cn59d/pCOf7
-	 le+asWj4zMGuJVHgITulkbzHSjA2aa+cOR+lXCTtja8WnCgmDMdCXhs7GhoiQb9aaX
-	 V9r6g3I84fOUg==
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	by mm2.emwd.com (Postfix) with ESMTPS id B5AD23846A6
-	for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 13:38:51 -0400 (EDT)
+	b=ZYernX3Zbip4ZFaUMZD5NvXF71rUlkKq1PM5N9SrPEW8LpuuhXg0QD+L4qbJZAJ8y
+	 kp8Z6pcrVD5c+wwtbkLvOUboz3Egtsdb4HumZleiQ812aMtoEWiFlC55l1GGTBe7iB
+	 IqctYkRGPY7aBawet/l27r53N/2ra5IlZBmYCe2uLdwm+aCOVQnOCt6Q0mnir1aH2u
+	 /3cS/bo79PGcfskvBN+3WpKiVP9hQAthCaJVVQyieb8SRkwgfis40J9l8VJr0GmB3o
+	 0YcVB86fhi949kPBUCWRBEbw8v7hNQlmCbA0cnGWNc70tOod1WaznzDrDeOSxqs2J+
+	 +KqAGKrTzXpqg==
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
+	by mm2.emwd.com (Postfix) with ESMTPS id 8ABEA384575
+	for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 14:27:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VHx8GANB";
+	dkim=pass (2048-bit key; unprotected) header.d=chaosinc.com header.i=@chaosinc.com header.b="F0pMrvV2";
 	dkim-atps=neutral
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-970056276acso740137066b.2
-        for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 10:38:51 -0700 (PDT)
+Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-62614a1dd47so16650796d6.2
+        for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 11:27:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685468330; x=1688060330;
+        d=chaosinc.com; s=google; t=1685471260; x=1688063260;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2cRjwFn/tDvdIN9ZDjnVYiTp4EYRLBIY8BqppqCaqGY=;
-        b=VHx8GANBW5gZYPP6riNhnZt1HcI2QNHP8vcMCk7YcTweQVlBKIT+XgiI6bXS2ZO4ro
-         +kAE8a0GMQGZyRqEVZnpm4SuXofI+Nb8zMxMeuAG3xMj+SKRUM2rqNY5jVctw8TNmnmQ
-         RMK/x4j36zBXtPaKV4oGtzGRNEWjbyce3dCbD9o9ZuQAPqwh896Eq93uakAvC3ifC28I
-         paycbhpIGwtq4jDHpicT+acJuaNIRIR+4pO7vkKkAIyqLpb3xDmFtBmJOeK8RyMdQZED
-         prvikwAhymOIdPWyfRn/6YOxwYPZhVo7/1J10zW7mqFoFjbIkXv/7JA1t1kjCKNrNGrc
-         l1pw==
+        bh=LIE0bgXw6goWjkdXP91f9VxG6rAG0MDbdxfZnnHJI9o=;
+        b=F0pMrvV2gbErBI1xRy7LHAQmoGLS9iHUy8sHvmaSZbAqH1VnnjZiKyREsPTiA25wcn
+         xgf86z/I0E2OgtWVCy+OKUcACwcIIi2nLwkN4RTxdr+iSKs8gKFqSfcdMz8Ku0LTQzB9
+         nAtyo7cMtDruY98h2DASWIteoYF86ntGQIUGxPGawaE1LrNzm3WU/BxqqsIpjyUh4Uj2
+         SyXNk73zYLYiYulsJX3bqjMo4qodD5ZZTOS6OkxmJF7ZUXlr+EGkfex+BQEe4W0fZWly
+         fuUT2fWeIEjSguKfTR5nHlgKNXHUfs58yRSwzPEdCuFKkqN+D3AH2xhBxo8g6WSPET0h
+         ceNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685468330; x=1688060330;
+        d=1e100.net; s=20221208; t=1685471260; x=1688063260;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2cRjwFn/tDvdIN9ZDjnVYiTp4EYRLBIY8BqppqCaqGY=;
-        b=fTk2jX+WfWkKnRVpK3GanFK4wZre2bBdGPFStpEerozpaXMF529kskg9r78copCSeZ
-         BNim/0pbrnFn9aFk0yQrxOY73pvHi1uhIUfs/rArwDQZuVYGcWRnDM+I5FQ2dtyW4gip
-         Gv56yCm06wDYea+YZ2DuvLAeJ/x/b14vuWf8MutJJ/vZC4qO5OYojYE4HVX0FPqVd8p0
-         vNzqaoMwh1Cc9OPz+Vg22AAGfTrhuv/9XODFjl1z7dGAeOTf8GGT1Jy3Dxvoj55Fy/bF
-         mefiW+ILiAZxYXaE7VPs4L+0M/QN9g7S4TeU4emWkeFpnLM0znHEdjrTvNxRzfo/WnPt
-         EtGg==
-X-Gm-Message-State: AC+VfDwfc0BCcgLMlSkJlko61AcJ2jkQa5heBckU6FXGpn5BVLuG9xXB
-	ljGHVB9LHkQS60kdUfmyQdEgJyybrOflDr/YMn8=
-X-Google-Smtp-Source: ACHHUZ5xv07cvPlt9FSayNCkHRtSHnLFNpWzd8ShyBOgHLXUYz9wBJWK26QS/mRxCyPHgThgq1q+yllAIIK18C/6Lqs=
-X-Received: by 2002:a17:907:8a27:b0:96a:8412:a44d with SMTP id
- sc39-20020a1709078a2700b0096a8412a44dmr2752666ejc.36.1685468330131; Tue, 30
- May 2023 10:38:50 -0700 (PDT)
+        bh=LIE0bgXw6goWjkdXP91f9VxG6rAG0MDbdxfZnnHJI9o=;
+        b=EvoBZ9tUtP19GGN7l9Jwiuf39DXGYEBobkN0SXVzprFPmj6vXrF/l+uk1tsZ/ksek1
+         7ALpFpbrU8Fu7UYIOS7vHlQJHhvfM48uJuqIVwDhx+CcgGxH6fXapaKsWCGJ2ak/ctIL
+         MvV294knAaTAR61V9uMDULBCFBuIRqBMlH8+HoMWK3Qs/QWGn3ckpFFGZ3MVgNH6HBvs
+         oiIARt7x2VQMGtYaSZTO1Jc3GtQJt2SLVVL7dgGRTl1ur7dSe3io56rFzzGa4+njpXRt
+         oyroD9Nq0ny1yh5ql/5nrW+43oXrTT5TgaaHKmuYpK7Unr7VNusNAGoE0JFKoKs/z4xy
+         Qhhw==
+X-Gm-Message-State: AC+VfDwiTQq79BW5y+9dBS5kIgf4sFlNDbaw4MvPTAnuJGigwblHCMGZ
+	NLOkTQEgR6ycavHaED+dVqZTt4OOx0/GdqzBjVfFJg==
+X-Google-Smtp-Source: ACHHUZ4THQTDqDHPeGiT2S/o1R6QMErKhLlMJoFaRkMfUPgJhOzU93xf8jQzJWhh6VSdS05UbVmOwJnCwab+k49WzvE=
+X-Received: by 2002:ad4:5d46:0:b0:623:a303:706f with SMTP id
+ jk6-20020ad45d46000000b00623a303706fmr4308539qvb.42.1685471260007; Tue, 30
+ May 2023 11:27:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <W203olqQs1iBI2xG9mGjiw1svSW52XqTjccB72ejEs@lists.ettus.com>
  <c157a530-5c52-0fd4-79a4-0c65810ee0f0@gmail.com> <JN1P275MB053556431057E296A551C8C695469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
@@ -63,118 +63,142 @@ References: <W203olqQs1iBI2xG9mGjiw1svSW52XqTjccB72ejEs@lists.ettus.com>
  <CAL7q81shBqtUzSaHseMO59rq1u3QSxSrA7bCaX-BVZo7FNRLZQ@mail.gmail.com>
  <CANq7nXcTe6FrDNXHiYUKY7VU-47UqdW3PtZj5eafBP84-2HhbA@mail.gmail.com>
  <4da2d23c-0854-582c-a191-deb5476488fe@gmail.com> <CANq7nXeVL8ActLms9N5kCAb78ALSrKPBb-agALYJjzNk9Yi9mg@mail.gmail.com>
-In-Reply-To: <CANq7nXeVL8ActLms9N5kCAb78ALSrKPBb-agALYJjzNk9Yi9mg@mail.gmail.com>
-From: Brian Padalino <bpadalino@gmail.com>
-Date: Tue, 30 May 2023 13:38:38 -0400
-Message-ID: <CAEXYVK6JLh_C4cb6GbPYCFxNBv=U3AgUdqP=yBkmSH7Vey4wOQ@mail.gmail.com>
-To: Mena Ghebranious <mena@chaosinc.com>
-Message-ID-Hash: ZXBQBLDG2YXT5MMQYRFCEXRJSYMG2GO6
-X-Message-ID-Hash: ZXBQBLDG2YXT5MMQYRFCEXRJSYMG2GO6
-X-MailFrom: bpadalino@gmail.com
+ <CAEXYVK6JLh_C4cb6GbPYCFxNBv=U3AgUdqP=yBkmSH7Vey4wOQ@mail.gmail.com>
+In-Reply-To: <CAEXYVK6JLh_C4cb6GbPYCFxNBv=U3AgUdqP=yBkmSH7Vey4wOQ@mail.gmail.com>
+From: Mena Ghebranious <mena@chaosinc.com>
+Date: Tue, 30 May 2023 11:27:29 -0700
+Message-ID: <CANq7nXf266iBvAARXfrmebaTeZFskaCPwvXHvvWT+Hzg-sVghg@mail.gmail.com>
+To: Brian Padalino <bpadalino@gmail.com>
+Message-ID-Hash: AAX2TUPIRYMV4O26KSL4CYYTV726C3Y6
+X-Message-ID-Hash: AAX2TUPIRYMV4O26KSL4CYYTV726C3Y6
+X-MailFrom: mena@chaosinc.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, Jonathon Pendlum <jonathon.pendlum@ettus.com>, Leon Wabeke <LWabeke@csir.co.za>, Rob Kossler <rkossler@nd.edu>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: N320 - GPIO ATR output to TX output delay
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZXBQBLDG2YXT5MMQYRFCEXRJSYMG2GO6/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AAX2TUPIRYMV4O26KSL4CYYTV726C3Y6/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============8726571268960304103=="
+Content-Type: multipart/mixed; boundary="===============1061027664671338721=="
 
---===============8726571268960304103==
-Content-Type: multipart/alternative; boundary="00000000000019057105fcecad88"
+--===============1061027664671338721==
+Content-Type: multipart/alternative; boundary="000000000000bb704805fced5b21"
 
---00000000000019057105fcecad88
+--000000000000bb704805fced5b21
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 30, 2023 at 11:15=E2=80=AFAM Mena Ghebranious <mena@chaosinc.co=
+Yes, bypassing the DUC was discussed among our team, but as far as I can
+tell, there is no way to configure the bypass via the UHD/USRP API - it
+would require an FPGA mod.
+
+On Tue, May 30, 2023 at 10:38=E2=80=AFAM Brian Padalino <bpadalino@gmail.co=
 m> wrote:
 
-> If possible, I'd like to hear what the R&D team thinks - I have worked
-> with designs in the past where the TX timing lines up and there are no
-> samples cut off.
->
-
-> On Tue, May 30, 2023 at 8:08=E2=80=AFAM Marcus D. Leech <patchvonbraun@gm=
-ail.com>
+> On Tue, May 30, 2023 at 11:15=E2=80=AFAM Mena Ghebranious <mena@chaosinc.=
+com>
 > wrote:
 >
->> On 30/05/2023 11:02, Mena Ghebranious wrote:
->> > Hi Marcus,
->> >
->> > I took a closer look at the end of my transmission; what originally
->> > appeared to be a lack of symmetry between the start and end delays is
->> > actually a cutoff of 31 samples at the end of the transmission - in
->> > other words, I'm missing the 31 samples at the end of the TX that I
->> > put into the TX streamer.
->> >
->> > Looking into the FPGA logic, I believe there is actually a bug in the
->> > most recent implementation - the transmission strobe that controls the
->> > TX output is based on the TX state machine in the radio TX core block,
->> > who's timing does not take into account the group delay of the DUC
->> > filter.  Regardless of whether or not we are using ATR to control
->> > GPIOs, the transmission gets cut off and the last set of samples  do
->> > not appear at the TX output (the number of samples missing is equal to
->> > the group delay / latency of the filter for a given sample rate.)
->> >
->> > As a temporary workaround, we could zero pad the end of our TX
->> > waveforms, but some of the waveforms we want to run have tight PRFs
->> > and this will heavily limit the rate at which we could run them.
->> >
->> I don't recall there *ever* being a time when the TX state machine
->> "knew" the state and depth of the DUC filters, which is why
->>    nearly-everyone zero-pads their bursts.   This has been a "thing"
->> with radio hardware at various times scales over the decades
->>    for systems transmitting digital data.
->>
->> I'm pretty sure that R&D would consider this behavior "design intent".
->> Partially because "it's always been done that way", and
->>    partially because "fixing" it would be challenging (it would require
->> re-architecting parts of the FPGA chain considerably, I think).
+>> If possible, I'd like to hear what the R&D team thinks - I have worked
+>> with designs in the past where the TX timing lines up and there are no
+>> samples cut off.
 >>
 >
-Not being part of Ettus/NI R&D, but just observing the conversation - the
-answer is to use the native sample rate and bypass the DUC.  If zero
-stuffing with the group delay of the DUC is unacceptable due to PRF, but
-band limiting the transmission is still required, then it needs to be up to
-the user to do it in a way that suits their application.  Right?
+>> On Tue, May 30, 2023 at 8:08=E2=80=AFAM Marcus D. Leech <patchvonbraun@g=
+mail.com>
+>> wrote:
+>>
+>>> On 30/05/2023 11:02, Mena Ghebranious wrote:
+>>> > Hi Marcus,
+>>> >
+>>> > I took a closer look at the end of my transmission; what originally
+>>> > appeared to be a lack of symmetry between the start and end delays is
+>>> > actually a cutoff of 31 samples at the end of the transmission - in
+>>> > other words, I'm missing the 31 samples at the end of the TX that I
+>>> > put into the TX streamer.
+>>> >
+>>> > Looking into the FPGA logic, I believe there is actually a bug in the
+>>> > most recent implementation - the transmission strobe that controls th=
+e
+>>> > TX output is based on the TX state machine in the radio TX core block=
+,
+>>> > who's timing does not take into account the group delay of the DUC
+>>> > filter.  Regardless of whether or not we are using ATR to control
+>>> > GPIOs, the transmission gets cut off and the last set of samples  do
+>>> > not appear at the TX output (the number of samples missing is equal t=
+o
+>>> > the group delay / latency of the filter for a given sample rate.)
+>>> >
+>>> > As a temporary workaround, we could zero pad the end of our TX
+>>> > waveforms, but some of the waveforms we want to run have tight PRFs
+>>> > and this will heavily limit the rate at which we could run them.
+>>> >
+>>> I don't recall there *ever* being a time when the TX state machine
+>>> "knew" the state and depth of the DUC filters, which is why
+>>>    nearly-everyone zero-pads their bursts.   This has been a "thing"
+>>> with radio hardware at various times scales over the decades
+>>>    for systems transmitting digital data.
+>>>
+>>> I'm pretty sure that R&D would consider this behavior "design intent".
+>>> Partially because "it's always been done that way", and
+>>>    partially because "fixing" it would be challenging (it would require
+>>> re-architecting parts of the FPGA chain considerably, I think).
+>>>
+>>
+> Not being part of Ettus/NI R&D, but just observing the conversation - the
+> answer is to use the native sample rate and bypass the DUC.  If zero
+> stuffing with the group delay of the DUC is unacceptable due to PRF, but
+> band limiting the transmission is still required, then it needs to be up =
+to
+> the user to do it in a way that suits their application.  Right?
+>
+> Alternatively, even if the ATR switch is ideally turned on at the
+> beginning of the burst - i.e. while the state of all DUC filtering is 0's
+> and the first non-zero sample enters the DUC chain - and the ATR switch i=
+s
+> ideally turned off at the end of the burst - i.e. when the state of the D=
+UC
+> filtering is all 0's - you'd still have the PRF issue, right?
+>
+> I think, in my mind, the only solution is to fix your system to run at th=
+e
+> highest possible sample rate and avoid the DUC.
+>
+> Brian
+>
 
-Alternatively, even if the ATR switch is ideally turned on at the beginning
-of the burst - i.e. while the state of all DUC filtering is 0's and the
-first non-zero sample enters the DUC chain - and the ATR switch is ideally
-turned off at the end of the burst - i.e. when the state of the DUC
-filtering is all 0's - you'd still have the PRF issue, right?
-
-I think, in my mind, the only solution is to fix your system to run at the
-highest possible sample rate and avoid the DUC.
-
-Brian
-
---00000000000019057105fcecad88
+--000000000000bb704805fced5b21
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Tue, May 30, 2023 at 11:15=E2=80=AFAM =
-Mena Ghebranious &lt;<a href=3D"mailto:mena@chaosinc.com">mena@chaosinc.com=
-</a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex"><div dir=3D"ltr">If possible, I&#39;d like to he=
-ar what the R&amp;D team thinks - I have worked with designs in the past wh=
-ere=C2=A0the TX timing lines up and there are no samples cut off.=C2=A0</di=
-v></blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 30, =
-2023 at 8:08=E2=80=AFAM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun=
-@gmail.com" target=3D"_blank">patchvonbraun@gmail.com</a>&gt; wrote:<br></d=
-iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
-er-left:1px solid rgb(204,204,204);padding-left:1ex">On 30/05/2023 11:02, M=
-ena Ghebranious wrote:<br>
+<div dir=3D"ltr">Yes, bypassing the DUC was discussed among our team, but a=
+s far as I can tell, there is no way to configure the bypass via the UHD/US=
+RP API - it would require an FPGA mod.</div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 30, 2023 at 10:38=E2=80=
+=AFAM Brian Padalino &lt;<a href=3D"mailto:bpadalino@gmail.com">bpadalino@g=
+mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Tue, May 30, 2023 at 11:15=E2=
+=80=AFAM Mena Ghebranious &lt;<a href=3D"mailto:mena@chaosinc.com" target=
+=3D"_blank">mena@chaosinc.com</a>&gt; wrote:<br></div><div class=3D"gmail_q=
+uote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">If=
+ possible, I&#39;d like to hear what the R&amp;D team thinks - I have worke=
+d with designs in the past where=C2=A0the TX timing lines up and there are =
+no samples cut off.=C2=A0</div></blockquote><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D=
+"gmail_attr">On Tue, May 30, 2023 at 8:08=E2=80=AFAM Marcus D. Leech &lt;<a=
+ href=3D"mailto:patchvonbraun@gmail.com" target=3D"_blank">patchvonbraun@gm=
+ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">On 30/05/2023 11:02, Mena Ghebranious wrote:<br>
 &gt; Hi Marcus,<br>
 &gt;<br>
 &gt; I took a closer look at the end of my transmission; what originally <b=
@@ -235,10 +259,11 @@ filtering is all 0&#39;s - you&#39;d still have the PRF issue, right?</div>=
 <div><br></div><div>I think, in my mind, the only solution is to fix your s=
 ystem to run at the highest possible sample rate and avoid the DUC.</div><d=
 iv><br></div><div>Brian</div></div></div></div>
+</blockquote></div>
 
---00000000000019057105fcecad88--
+--000000000000bb704805fced5b21--
 
---===============8726571268960304103==
+--===============1061027664671338721==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -248,4 +273,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============8726571268960304103==--
+--===============1061027664671338721==--
