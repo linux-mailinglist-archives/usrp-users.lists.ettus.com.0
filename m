@@ -2,292 +2,133 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB1D7166FA
-	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 17:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C959171689C
+	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 18:04:51 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 36F07380EC6
-	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 11:28:18 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id EA37338467B
+	for <lists+usrp-users@lfdr.de>; Tue, 30 May 2023 12:04:50 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685460498; bh=YInkYGEcXSlbUbQBiqS0wpJAIcH4gkje2Bwh0bVxxlo=;
-	h=Date:To:References:From:In-Reply-To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=vu/OPEpc7jZSRPxBHgjwZzHaN/gMk1UOa3bk8EWb81wxA8gRlv/ILgSrizNtZDDTR
-	 Bg8VQrDZi6QtpPzGyDGgGYSVi07+nMnqsIhZDzJW4PFPyQPechLNnX4P3Q+Y+xGYys
-	 k+vwB3TxrGIFvC4Yr1cNfN4FVWWDdW5YnOIhBD0o50I4c4bZYv41ZX2Nvd3+VnCeKD
-	 TNm1m/vvnBs3khpKR3/NPlVnnUblMtuZUG52+LFrNdzl8weNrDQNbE42/0WFJs0ODH
-	 aEtbEUxJUPTozmT2FunV+1cKskYUYdz9Vi3PIpdriSJGVpS8l/YWXpIR4beQyObw7O
-	 l6GqED72kDa1Q==
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-	by mm2.emwd.com (Postfix) with ESMTPS id 031AC380A4D
-	for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 11:27:18 -0400 (EDT)
+	t=1685462690; bh=yZI3uOcYo17Idz+rMNhqIjghT87n9p/Y86Mo4fDddYw=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=UBdbnW4g++uTaf6O9bA4Q/r3MikDRiHQppI5UjWgtnOomQ445eE+2ZbLxvmv1GEo8
+	 7nbhnrSuxtWU5cbNVrpnniSG5R9nW5wfIxXxgiIvL1ovLfjtnOA4JAqOahsbUb+xsT
+	 uTMsDshTZB3XaJwrVBw8ZZ+C9Cz45CFN2rPceCehoavq2Vu7xbQ25+UyKHytxKOEN/
+	 /dqEmgf1zhmfZGgio5c9UEr5BCpHZVGTOG88t56SsV6oCZ0qYjS4JcuoxVRFZilrTW
+	 +/rw0ahVCKUiO2MI1K9oheQbtJJZnPBmnmiUMhAA/SA3iZxZUIZ7hrHxtc4bO5cjgs
+	 lkaMTnI0kWWMg==
+Received: from mx-out.tlen.pl (mx-out.tlen.pl [193.222.135.158])
+	by mm2.emwd.com (Postfix) with ESMTPS id 7EE69380097
+	for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 12:03:39 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F3Vu9IRr";
+	dkim=pass (1024-bit key; unprotected) header.d=o2.pl header.i=@o2.pl header.b="tNSB3/N8";
 	dkim-atps=neutral
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-3f6b9ad956cso24544441cf.1
-        for <usrp-users@lists.ettus.com>; Tue, 30 May 2023 08:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685460438; x=1688052438;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yUujUfsrYLD+UlvsBRI3ECu03oCl1esQN0N9mdu/c+8=;
-        b=F3Vu9IRrC/K7ygvVGxoxAZoG3wX4tyPR/FCYkOcDU1ADH5TferowjouU/acHjCCiBQ
-         s8LkSeQl3wdQatSAGofwVHVAFK4R2o7vho3eB+j0SzgvPSR86MjUMKFXg5u0W/SN1wB6
-         LhvQQFPCDGooVrst0eDXoiOoBd1tR0r6XR1ccP2wyJECF97e48f0QY8yD+qbMID5rw8P
-         bYPOofblEn1E/g4hZ/j51hsXT48j1RZAohc5SVpXjKRe75h+jFDxHWilk8gh+08429jx
-         OkrDWrGO0PKb43eYOtdY02pJijRNHcfxZQcnKL4AvlUY6n+9x8BUmfDsu3relaiGNWp+
-         fNZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685460438; x=1688052438;
-        h=in-reply-to:from:references:cc:to:content-language:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yUujUfsrYLD+UlvsBRI3ECu03oCl1esQN0N9mdu/c+8=;
-        b=ZfIo66r6Na74Jcs0y2lifmGpnBM7ZAMsKoFfO2lSzK0qwJkDdr9mtzrTsZXPQaIAwK
-         f/nxiYcjVzaFNfcoeo1YLikItcY/9AlHx1VUqus9cL4SSf/cVZ9tkSMvsKahRvIB33Zq
-         jrSAci1l8jLYnU1P2zlDJfSavIL6KvGzdM84j3STCrrgxNHUkAhwf9kFDSI2I9HlXh/E
-         6npUX9zqRq9/mav4W7mHuvuYb4I+STnRKFnRB9ix2OdRPBO45jAxARRy1ixa/TOYhU41
-         8z0sKND1p5wshl+uWV16o7emF9aZB4XAg+H1U8TrjOQHryuV1n9xGatPPddT34aIL+TE
-         I5+A==
-X-Gm-Message-State: AC+VfDxgLAzM8W3e8pusmbOWCtj2a62VqZPGauaryn52JfikQYDX6Bqm
-	HZleqAQR91Z5tAV6+pTVMYg=
-X-Google-Smtp-Source: ACHHUZ5wmyOX4YFdFx6g4yh/t6J9h+E34KH1t/SoGAxDdn6iXxkmljLsF/zMwA5Sln5k0aaCAFtjeQ==
-X-Received: by 2002:a05:622a:1a92:b0:3f7:f8bb:71c with SMTP id s18-20020a05622a1a9200b003f7f8bb071cmr2591417qtc.45.1685460438324;
-        Tue, 30 May 2023 08:27:18 -0700 (PDT)
-Received: from [192.168.2.200] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id cf18-20020a05622a401200b003f6ac526568sm4775937qtb.39.2023.05.30.08.27.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 May 2023 08:27:17 -0700 (PDT)
-Message-ID: <d3113524-9d2b-5e84-267a-9fca45f6a612@gmail.com>
-Date: Tue, 30 May 2023 11:27:17 -0400
+Received: (wp-smtpd smtp.tlen.pl 21470 invoked from network); 30 May 2023 18:03:32 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=o2.pl; s=1024a;
+          t=1685462612; bh=M+jVJPGqiIwbIC+V8LIIqIetmE6u1wRLzOx18mcl2io=;
+          h=Subject:To:From;
+          b=tNSB3/N8Usn69gVLpx7ue8oJy7psYQ80ibJ1AgzRuL1bbpc4lmwO60JyCLAOYaymU
+           bFSlfpnE33LdZQDtr4yzlPBSs2nqIuVI1DvYKS4YjF/EJ+SPqd3s9NOZ+c/si9m0Dx
+           uxFUbfu0BSxFn50tE+mLVLerfVyMgYj7F7YwC0XQ=
+Received: from 109.95.143.25.r.toneticgroup.pl (HELO [192.168.1.231]) (perper@o2.pl@[109.95.143.25])
+          (envelope-sender <perper@o2.pl>)
+          by smtp.tlen.pl (WP-SMTPD) with ECDHE-RSA-AES256-GCM-SHA384 encrypted SMTP
+          for <usrp-users@lists.ettus.com>; 30 May 2023 18:03:32 +0200
+Message-ID: <f77e6d5b-6a4b-beb2-80cf-2f69992bf4c9@o2.pl>
+Date: Tue, 30 May 2023 18:03:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
 Content-Language: en-US
-To: Mena Ghebranious <mena@chaosinc.com>
-References: <W203olqQs1iBI2xG9mGjiw1svSW52XqTjccB72ejEs@lists.ettus.com>
- <c157a530-5c52-0fd4-79a4-0c65810ee0f0@gmail.com>
- <JN1P275MB053556431057E296A551C8C695469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
- <CAB__hTSxoCSY8PahuLUSC-ig6FNr_r5PPsaobNh9KK8S6xNxCA@mail.gmail.com>
- <7ed5a34a-8862-09ae-edfa-d5ca15947915@gmail.com>
- <JN1P275MB053547F1D25B83244EE59F8795469@JN1P275MB0535.ZAFP275.PROD.OUTLOOK.COM>
- <CAL7q81shBqtUzSaHseMO59rq1u3QSxSrA7bCaX-BVZo7FNRLZQ@mail.gmail.com>
- <CANq7nXcTe6FrDNXHiYUKY7VU-47UqdW3PtZj5eafBP84-2HhbA@mail.gmail.com>
- <4da2d23c-0854-582c-a191-deb5476488fe@gmail.com>
- <CANq7nXeVL8ActLms9N5kCAb78ALSrKPBb-agALYJjzNk9Yi9mg@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CANq7nXeVL8ActLms9N5kCAb78ALSrKPBb-agALYJjzNk9Yi9mg@mail.gmail.com>
-Message-ID-Hash: FLZCH5O2CZKMPYTJCAGZCCMHEFAQEP54
-X-Message-ID-Hash: FLZCH5O2CZKMPYTJCAGZCCMHEFAQEP54
-X-MailFrom: patchvonbraun@gmail.com
+To: usrp-users@lists.ettus.com
+References: <MJqNiMd8Ab8YjNoIMk4H4CTTeDd9HlhMRNljp0XBe8@lists.ettus.com>
+ <CAFche=gYq5ctyMW7_GVrCzhr8WxcjQz3ydNkV6geHAUS72K=bQ@mail.gmail.com>
+ <DB4P189MB2440C719A5A6A88A67B4F7608D7C9@DB4P189MB2440.EURP189.PROD.OUTLOOK.COM>
+From: Piotr Krysik <perper@o2.pl>
+In-Reply-To: <DB4P189MB2440C719A5A6A88A67B4F7608D7C9@DB4P189MB2440.EURP189.PROD.OUTLOOK.COM>
+X-WP-MailID: 65ba7298280f5d1c89293ff58527764b
+X-WP-AV: skaner antywirusowy Poczty o2
+X-WP-SPAM: NO 0000000 [MQOh]                               
+Message-ID-Hash: 5MUPVUR5PO5QIJBZ6HEKB33GAELFBFYN
+X-Message-ID-Hash: 5MUPVUR5PO5QIJBZ6HEKB33GAELFBFYN
+X-MailFrom: perper@o2.pl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: Jonathon Pendlum <jonathon.pendlum@ettus.com>, Leon Wabeke <LWabeke@csir.co.za>, Rob Kossler <rkossler@nd.edu>, "usrp-users@lists.ettus.com" <usrp-users@lists.ettus.com>
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N320 - GPIO ATR output to TX output delay
+Subject: [USRP-users] Re: X410 not powering on
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/FLZCH5O2CZKMPYTJCAGZCCMHEFAQEP54/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/5MUPVUR5PO5QIJBZ6HEKB33GAELFBFYN/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============0231645623200725220=="
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
 
-This is a multi-part message in MIME format.
---===============0231645623200725220==
-Content-Type: multipart/alternative;
- boundary="------------FdpOCBRaawKzJ8cXPrdzsoVT"
-Content-Language: en-US
-
-This is a multi-part message in MIME format.
---------------FdpOCBRaawKzJ8cXPrdzsoVT
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-On 30/05/2023 11:13, Mena Ghebranious wrote:
-> If possible, I'd like to hear what the R&D team thinks - I have worked=20
-> with designs in the past where=C2=A0the TX timing lines up and there ar=
-e no=20
-> samples cut off.
-I already have a feeler into R&D on this.=C2=A0 But historically it has=20
-"always been done this way".
-
->
-> On Tue, May 30, 2023 at 8:08=E2=80=AFAM Marcus D. Leech=20
-> <patchvonbraun@gmail.com> wrote:
->
->     On 30/05/2023 11:02, Mena Ghebranious wrote:
->     > Hi Marcus,
->     >
->     > I took a closer look at the end of my transmission; what original=
-ly
->     > appeared to be a lack of symmetry=C2=A0between the start and end
->     delays is
->     > actually a cutoff of 31 samples at the end of the transmission=C2=
-=A0- in
->     > other words, I'm missing the 31 samples at the end of the TX that=
- I
->     > put into the TX streamer.
->     >
->     > Looking into the FPGA logic, I believe there is actually a bug
->     in the
->     > most recent implementation - the transmission strobe that
->     controls the
->     > TX output is based on the TX state machine in the radio TX core
->     block,
->     > who's timing does not take into account the group delay of the DU=
-C
->     > filter.=C2=A0 Regardless of whether or not we are using=C2=A0ATR =
-to control
->     > GPIOs, the transmission gets cut off and the last set of
->     samples=C2=A0 do
->     > not appear at the TX output (the number of samples missing is
->     equal to
->     > the group delay / latency of the filter for a given sample rate.)
->     >
->     > As a temporary workaround, we could zero pad the end of our TX
->     > waveforms, but some of the waveforms we want to run have tight PR=
-Fs
->     > and this will heavily limit the rate at which we could run them.
->     >
->     I don't recall there *ever* being a time when the TX state machine
->     "knew" the state and depth of the DUC filters, which is why
->     =C2=A0=C2=A0 nearly-everyone zero-pads their bursts.=C2=A0=C2=A0 Th=
-is has been a "thing"
->     with radio hardware at various times scales over the decades
->     =C2=A0=C2=A0 for systems transmitting digital data.
->
->     I'm pretty sure that R&D would consider this behavior "design
->     intent".
->     Partially because "it's always been done that way", and
->     =C2=A0=C2=A0 partially because "fixing" it would be challenging (it=
- would
->     require
->     re-architecting parts of the FPGA chain considerably, I think).
->
->
-
---------------FdpOCBRaawKzJ8cXPrdzsoVT
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <div class=3D"moz-cite-prefix">On 30/05/2023 11:13, Mena Ghebranious
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CANq7nXeVL8ActLms9N5kCAb78ALSrKPBb-agALYJjzNk9Yi9mg@mail.gmai=
-l.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">If possible, I'd like to hear what the R&amp;D tea=
-m
-        thinks - I have worked with designs in the past where=C2=A0the TX
-        timing lines up and there are no samples cut off.</div>
-    </blockquote>
-    I already have a feeler into R&amp;D on this.=C2=A0 But historically =
-it
-    has "always been done this way".<br>
-    <br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CANq7nXeVL8ActLms9N5kCAb78ALSrKPBb-agALYJjzNk9Yi9mg@mail.gmai=
-l.com"><br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 30, 2023 at
-          8:08=E2=80=AFAM Marcus D. Leech &lt;<a
-            href=3D"mailto:patchvonbraun@gmail.com" moz-do-not-send=3D"tr=
-ue"
-            class=3D"moz-txt-link-freetext">patchvonbraun@gmail.com</a>&g=
-t;
-          wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-On
-          30/05/2023 11:02, Mena Ghebranious wrote:<br>
-          &gt; Hi Marcus,<br>
-          &gt;<br>
-          &gt; I took a closer look at the end of my transmission; what
-          originally <br>
-          &gt; appeared to be a lack of symmetry=C2=A0between the start a=
-nd
-          end delays is <br>
-          &gt; actually a cutoff of 31 samples at the end of the
-          transmission=C2=A0- in <br>
-          &gt; other words, I'm missing the 31 samples at the end of the
-          TX that I <br>
-          &gt; put into the TX streamer.<br>
-          &gt;<br>
-          &gt; Looking into the FPGA logic, I believe there is actually
-          a bug in the <br>
-          &gt; most recent implementation - the transmission strobe that
-          controls the <br>
-          &gt; TX output is based on the TX state machine in the radio
-          TX core block, <br>
-          &gt; who's timing does not take into account the group delay
-          of the DUC <br>
-          &gt; filter.=C2=A0 Regardless of whether or not we are using=C2=
-=A0ATR to
-          control <br>
-          &gt; GPIOs, the transmission gets cut off and the last set of
-          samples=C2=A0 do <br>
-          &gt; not appear at the TX output (the number of samples
-          missing is equal to <br>
-          &gt; the group delay / latency of the filter for a given
-          sample rate.)<br>
-          &gt;<br>
-          &gt; As a temporary workaround, we could zero pad the end of
-          our TX <br>
-          &gt; waveforms, but some of the waveforms we want to run have
-          tight PRFs <br>
-          &gt; and this will heavily limit the rate at which we could
-          run them.<br>
-          &gt;<br>
-          I don't recall there *ever* being a time when the TX state
-          machine <br>
-          "knew" the state and depth of the DUC filters, which is why<br>
-          =C2=A0=C2=A0 nearly-everyone zero-pads their bursts.=C2=A0=C2=A0=
- This has been a
-          "thing" <br>
-          with radio hardware at various times scales over the decades<br=
->
-          =C2=A0=C2=A0 for systems transmitting digital data.<br>
-          <br>
-          I'm pretty sure that R&amp;D would consider this behavior
-          "design intent".=C2=A0 <br>
-          Partially because "it's always been done that way", and<br>
-          =C2=A0=C2=A0 partially because "fixing" it would be challenging=
- (it
-          would require <br>
-          re-architecting parts of the FPGA chain considerably, I
-          think).<br>
-          <br>
-          <br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------FdpOCBRaawKzJ8cXPrdzsoVT--
-
---===============0231645623200725220==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============0231645623200725220==--
+SGVsbG8NCg0KSSd2ZSBnb3QgYSBzaW1pbGFyIGlzc3VlOiBjb21wbGV0ZWx5IG5ldyBVU1JQIFg0
+MTAgdGhhdCBkb2Vzbid0IHJlYWN0IHRvIA0KcG93ZXIgYnV0dG9uLg0KTW9yZSBzcGVjaWZpY2Fs
+bHksIHRoZXJlIGlzIGEgbGl0dGxlIHNpZ24gb2YgbGlmZSAtIGl0IGNvbnN0YW50bHkgcHJpbnRz
+IA0Kc29tZXRoaW5nIGxpa2UgdGhpcyBvbiBVQVJUIHRoYXQgSSBzdXBwb3NlIGlzIGEgcG9ydCBv
+ZiBTVE0zMiANCm1pY3JvY29udHJvbGxlcjoNCiDCoC0tLSBVQVJUIGluaXRpYWxpemVkIGFmdGVy
+IHJlYm9vdCAtLS0NCltSZXNldCBjYXVzZTogcmVzZXQtcGluIHBvd2VyLW9uXQ0KW0ltYWdlOiBS
+TywgdGl0YW5pdW1fdjAuMC4xMzgyMS0yYmE5NzRiMmQgMjAyMS0wNy0xNSAxMTowNToxMCANCkBk
+YzZhOWYwY2Y4ZDddDQpbMC4wMO+/vQ0KDQotLS0gVUFSVCBpbml0aWFsaXplZCBhZnRlciByZWJv
+b3QgLS0tDQpbUmVzZXQgY2F1c2U6IHJlc2V0LXBpbiBwb3dlci1vbl0NCltJbWFnZTogUk8sIHRp
+dGFuaXVtX3YwLjAuMTM4MjEtMmJhOTc0YjJkIDIwMjEtMDctMTUgMTE6MDU6MTAgDQpAZGM2YTlm
+MGNmOGQ3XQ0KWzAuMDDvv70NCg0KLi4uDQoNCkRvIHlvdSBoYXZlIGFueSBpZGVhcyBob3cgdG8g
+c29sdmUgdGhlIGlzc3VlIG90aGVyIHRoYW4gcmV0dXJuaW5nIHRoZSANCmRldmljZT8NCg0KLS0N
+CkJlc3QgUmVnYXJkcywNClBpb3RyIEtyeXNpaw0KDQoNClcgZG5pdSAxOS4wNS4yMDIzIG/CoDE1
+OjQxLCBBcmphbiBGZXRhIHZpYSBVU1JQLXVzZXJzIHBpc3plOg0KPg0KPiBIaSBXYWRlLA0KPg0K
+PiBDb2luY2lkZW50YWxseSBJIGp1c3QgbWVhc3VyZWQgdGhlIG91dHB1dCB2b2x0YWdlIG9mIHRo
+ZSBwb3dlciBzdXBwbHkgDQo+IGFuZCBmb3VuZCB0aGF0IHRoZSB0aHJlZSBvZiB0aGVtIHdvYmJs
+ZSBhcm91bmQgOCB0byA5IHZvbHRzLiBUaGV3IA0KPiBwb2ludCBpcyB0aGF0IEkgaGF2ZSB0d28g
+b2YgdGhlbSBhbmQgdGhleSBkbyB0aGUgc2FtZSB0aGluZywgd2hpY2ggDQo+IHJhaXNlcyB0aGUg
+c3VzcGljaW9uIGl0IGlzIG5vdCBhIGNvaW5jaWRlbmNlLg0KPg0KPiBJIGd1ZXNzIEkgc2hvdWxk
+IGNoZWNrIHRoYXQgdGhlIEFDIHBvd2VyIHNvdXJjZSBpcyBub3QgcGxheWluZyBhIGJhZCANCj4g
+am9rZSBvbiBtZS4NCj4NCj4gVGhhbmsgeW91LA0KPg0KPiBBcmphbg0KPg0KPiAqQXJqYW4gRkVU
+QSoNCj4gU0RSIEVuZ2luZWVyDQo+DQo+IDxodHRwOi8vd3d3LnJoZWFncm91cC5jb20vPg0KPg0K
+PiAqUkhFQSBHUk9VUCoNCj4NCj4gMiwgUnVlIGTigJlBcmxvbiwgTC04Mzk5IFdpbmRob2YNCj4N
+Cj4gT2ZmaWNlOsKgKzMyICgwKeKApnwgTW9iaWxlOiArMzkgMzI4NzA3MTA0Mg0KPg0KPiB3d3cu
+cmhlYWdyb3VwLmNvbSANCj4gPGh0dHA6Ly90LnNpZGVraWNrb3BlbjU0LmNvbS9lMXQvYy81L2Yx
+OGRRaGIwUzdsQzhkRE1QYlcybjB4NmwyQjluTUpXN3Q1WFlnMkJweVJGVzhxU3RweDNNeTd4UFcy
+Qlc0emI1NmRUVDZmNV9YLXJnMDI/dD1odHRwJTNBJTJGJTJGd3d3LnJoZWFncm91cC5jb20lMkYm
+c2k9NjI1MTY3MTg3NjUzNDI3MiZwaT04NGQ4ZDZmNS0zZmQxLTQ5NjItOWJmZC03YjJiMjI1YjYz
+MDY+DQo+DQo+ICpGcm9tOipXYWRlIEZpZmUgPHdhZGUuZmlmZUBldHR1cy5jb20+DQo+ICpTZW50
+OiogMTkgTWF5IDIwMjMgMTU6MzUNCj4gKlRvOiogQXJqYW4gRmV0YSA8YS5mZXRhQHJoZWFncm91
+cC5jb20+DQo+ICpDYzoqIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+ICpTdWJqZWN0Oiog
+UmU6IFtVU1JQLXVzZXJzXSBSZTogWDQxMCBub3QgcG93ZXJpbmcgb24NCj4NCj4NCj4gCQ0KPg0K
+PiBZb3UgZG9uJ3Qgb2Z0ZW4gZ2V0IGVtYWlsIGZyb20gd2FkZS5maWZlQGV0dHVzLmNvbS4gTGVh
+cm4gd2h5IHRoaXMgaXMgDQo+IGltcG9ydGFudCA8aHR0cHM6Ly9ha2EubXMvTGVhcm5BYm91dFNl
+bmRlcklkZW50aWZpY2F0aW9uPg0KPg0KPiAJDQo+DQo+ICpDYXV0aW9uOipUaGlzIGVtYWlsIHdh
+cyBzZW50IGZyb20gYW4gZXh0ZXJuYWwgc291cmNlLCBkbyBub3QgY2xpY2sgDQo+IGxpbmtzIG9y
+IG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSByZWNvZ25pemUgdGhlIHNlbmRlciBlbWFpbCAN
+Cj4gYWRkcmVzcyBhbmQga25vdyB0aGUgY29udGVudCBpcyBzYWZlLg0KPg0KPiBIaSBBcmphbiwN
+Cj4NCj4gSSBoYXZlIG5vdCBoZWFyZCBvZiB0aGlzIGJlZm9yZS4gSXQgc2hvdWxkIGJlIGFzIHNp
+bXBsZSBhcyBjb25uZWN0aW5nIA0KPiBhbiBhcHByb3ByaWF0ZSBBQyBjYWJsZSB0byB0aGUgWDQx
+MCBwb3dlciBzdXBwbHkgYnJpY2ssIHBsdWdnaW5nIHRoZSANCj4gQUMgY2FibGUgaW50byB0aGUg
+d2FsbCwgdGhlbiBwbHVnZ2luZyB0aGUgNi1waW4gcG93ZXIgY2FibGUgaW50byB0aGUgDQo+IFg0
+MTAgYW5kIHByZXNzaW5nIHRoZSBwb3dlciBidXR0b24uIElmIHlvdSBoYXZlbid0IGFscmVhZHks
+IHRyeSANCj4gZGlzY29ubmVjdGluZyBldmVyeXRoaW5nIGZyb20gdGhlIFg0MTAgaXRzZWxmIGV4
+Y2VwdCB0aGUgcG93ZXIgY2FibGUgDQo+IGFuZCBwb3dlcmluZyBpdCBvbi4gQWxzbyB0cnkgZGlm
+ZmVyZW50IEFDIGNhYmxlcyAodGhlIG9uZSB0aGF0IA0KPiBjb25uZWN0cyB0aGUgcG93ZXIgc3Vw
+cGx5IGJyaWNrIHRvIHRoZSB3YWxsIHNvY2tldCkuIElmIHlvdSBoYXZlIGEgDQo+IHZvbHRhZ2Ug
+bWV0ZXIgeW91IGNvdWxkIGFsc28gbWVhc3VyZSB0aGUgdm9sdGFnZSBvbiB0aGUgcG93ZXIgc3Vw
+cGxpZXMgDQo+IHRvIGNvbmZpcm0gdGhleSdyZSBPSy4gSSBzdWdnZXN0IHlvdSBjb250YWN0IHN1
+cHBvcnRAZXR0dXMuY29tIGlmIHlvdSANCj4gY2FuJ3QgZ2V0IGl0IHRvIHdvcmsuDQo+DQo+IFdh
+ZGUNCj4NCj4gT24gRnJpLCBNYXkgMTksIDIwMjMgYXQgMjo1NeKAr0FNIEFyamFuIEZldGEgdmlh
+IFVTUlAtdXNlcnMgDQo+IDx1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbT4gd3JvdGU6DQo+DQo+
+ICAgICBTb3JyeSwgbm8gcXVlc3Rpb24gaW4gdGhlIG1lc3NhZ2UgOikuDQo+DQo+ICAgICBIYWQg
+YW55b25lIGhhZCB0aGlzIGtpbmQgb2YgaXNzdWUgYmVmb3JlPw0KPg0KPiAgICAgVGhhbmtzLA0K
+Pg0KPiAgICAgQXJqYW4NCj4NCj4gICAgIF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fDQo+ICAgICBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1c3JwLXVz
+ZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiAgICAgVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
+byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KPg0KPg0KPiBfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcg
+bGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5k
+IGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQoNCl9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNlcnMgbWFpbGlu
+ZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2NyaWJlIHNlbmQg
+YW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
