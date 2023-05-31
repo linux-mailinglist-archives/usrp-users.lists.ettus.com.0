@@ -2,401 +2,207 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D23E7187A6
-	for <lists+usrp-users@lfdr.de>; Wed, 31 May 2023 18:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 553B27187D6
+	for <lists+usrp-users@lfdr.de>; Wed, 31 May 2023 18:55:22 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 7789E38481D
-	for <lists+usrp-users@lfdr.de>; Wed, 31 May 2023 12:42:04 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 6C6673837DE
+	for <lists+usrp-users@lfdr.de>; Wed, 31 May 2023 12:55:21 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685551324; bh=GxZga0JYnYg1kdv1u4pxSvhKpprVSCiG80S5NvVoyv8=;
-	h=Date:To:From:In-Reply-To:Subject:List-Id:List-Archive:List-Help:
-	 List-Owner:List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=JUB5qD7EICI109dZzZgYqNBzjcsAldILbd6AGI4+ojikliDSzYi+bG99+hZDMbJhF
-	 zZH8WGswC9UuOxK3J5IFoyKCaMhTeWeAzfle5PZbX97QVTXQbj/s1NCL+N0CNB5w4T
-	 LKrcXx7SLikDAJhUthecmWhWwsZqnCPfMRQCoD6j3jrBAUnyRWKOszxBCC8wLlpXDg
-	 cQyXioOb9SV5WeO3yZZrMer7VlQK8wDxPmxhVnMvkdqCqGkogllr1v8d7thqBpa+H9
-	 OhVxC5y/SjRq+UxsBxu1vHKwu9N+yH9jelW2q23TUyu05By5ydBDoYRnv+M0DfUGTa
-	 zWNLi2DDNeBzg==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 292E638182D
-	for <usrp-users@lists.ettus.com>; Wed, 31 May 2023 12:41:04 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685551264; bh=7DKPPwO0/8syp+5mnG8d1VFsRyWkVitVtKm6TXeL49I=;
-	h=Date:To:From:Subject:In-Reply-To:From;
-	b=iIHVBFijWRHihLk6MrdOJrUv/7qB/JsoNjE19/iWVrlAaTkAdmxGgIHZF5RTM7tvH
-	 24A8jCKQqBDXGUxGV9VzP0IsID4ItdkyRnUmIcI/APZi4fjEy79XtnPRMn1qWzNHtH
-	 UtwJgqdcryoQkRQP/v9ZpM/qO/kngqATRdVISi+xol02R3SbEWeRYFNaYOX4iWVVZx
-	 nkNM0QrTbGsH7F67tnto0AUuu+i1YJa8Yc3QpixxvehXe9h9tpZehBGcMgu4izqmkv
-	 3OWY/G6trFxrhHe5GoUWkb9EISz5GkHPNXMHjdI5ldbCxABGoMg9LxJAibNTaQlJHd
-	 gQmFmZVq/qofQ==
-Date: Wed, 31 May 2023 16:41:04 +0000
-To: usrp-users@lists.ettus.com
-From: pistachio6981@gmail.com
-Message-ID: <5H6uJpHd7KigIxgJCuF8lXTbAP3YAlXCNEzdoQ58AA@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
-In-Reply-To: d46f8616-d334-9eea-0223-d1c66fe3b638@gmail.com
+	t=1685552121; bh=xA9c99URCxe4wPdu7iYGfVwv+2VPAOuIAhfQzm90LGQ=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=gztuHUKCfASuGL5hYrCkno0iGwkEjy/KjncNDdTaEc91LNVTRXi8RkJlDnPx5Q4mN
+	 +TcutPN6F4qfbqRzb+oVgaU0QksVHR6/E1XpjkjQk4Ul/Yh3H+xAY0zNkC33aQc5Du
+	 Vi2q9HlCmURqqoHyb3wakqUN7t+JO+kWDPNY7F7nJNLEdbG25dnkUsie121rwOAfvj
+	 J23H45piZ4Z4NiCL/+4HjH3tqXx8ZtYYCZzam2nizPGCPOT7s580jm/bUQO/gjE2uw
+	 Ki+cLKtcZI7eB2f4zYIHshRZXZeLOgpLqp4maFFOGWRu1Cw7qH3RZ3JKW4y16FQ1rv
+	 LqCazYZ28xAog==
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	by mm2.emwd.com (Postfix) with ESMTPS id A4C68383685
+	for <usrp-users@lists.ettus.com>; Wed, 31 May 2023 12:54:21 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Idf5ql2O";
+	dkim-atps=neutral
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-75b2a2bf757so393643185a.2
+        for <usrp-users@lists.ettus.com>; Wed, 31 May 2023 09:54:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1685552061; x=1688144061;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Qd667x7L/gr1b5ak9cY/oSmfrO+4GV0qy1ZROs0jwLM=;
+        b=Idf5ql2Ogc9wFA+LDFh/XRmJ33/c3cakeS23U9SOIP2UkliS4AWNl0W048FB942Pct
+         LUcf859U+y4kpYMQ1yqP9ADeZOlltz4lBJX0iRrkfgu8KAiwgsaGab1mRDKFl/OmrF0H
+         wDq4IZsThMmt+Cvflg9PqbJVNZulKt8yZcnJAKR4sQEw6SLYLZGoiH20N8IYCStD6snE
+         UB96z7Ui/JpTQ66dZqJeM2fJzxYbXAQUMIPk7XrpgSznz/r0I4mwP6b0hTJRGLmpaGdY
+         JRcJMgxfFRjCpfeIzL0GeloMVLWgYHVO02QQCmenrdGFziALS/KIt4iPTJi7YUvkMgRc
+         4QCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685552061; x=1688144061;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qd667x7L/gr1b5ak9cY/oSmfrO+4GV0qy1ZROs0jwLM=;
+        b=GAsi2lhZg6Y1ynxi81og5NpVkGUXQPtL4MWC5KJn1f91giK8PxurcYFNhhoncSU1u/
+         2+fNHGi5PNV/+hnzQdCsJB5UwX5UfUjka3mrnTkkSWYPWAmKfCidkuRQMPImazDV684Q
+         D/O5Eia+V7a5TIPQU25+zp0kVOpCLWMaWhgAvLP+ljJdLH0n8BAMxdVN1Ub7d9lS1oMU
+         l4AEKg8MjNjceBsj+AH+wsFVCdvOJbhoalb7Keidx+KoKYVFzHRWoP+hjnaUHhKFgMIW
+         qKeDFB2cH5OIhkgNRmpVpih1KzJKo/c1EnpnBiG0RGQeSW6JAUGVwciw7J4SBBAl5Gxx
+         qBAw==
+X-Gm-Message-State: AC+VfDzCFa4g9MnGfjYIMAWDComEzzZAKC+8en3dD0Tn/e8lD496TxC+
+	QuwCeHnisMpKB/dYYItBYoXvZdquuNbyyw==
+X-Google-Smtp-Source: ACHHUZ47OXXVflhooFAfPDhMf91rno3pmqHh/1+9DZZgnRbNXnz4v75KLpIpNejEfJqXmPU5FRb/aw==
+X-Received: by 2002:a05:620a:4588:b0:75b:23a1:3674 with SMTP id bp8-20020a05620a458800b0075b23a13674mr7271655qkb.53.1685552060828;
+        Wed, 31 May 2023 09:54:20 -0700 (PDT)
+Received: from [192.168.2.201] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id g26-20020ae9e11a000000b0075cbd92c4b4sm4474864qkm.91.2023.05.31.09.54.20
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 31 May 2023 09:54:20 -0700 (PDT)
+Message-ID: <ff632677-36f6-8e48-c70d-c1ef5794cb76@gmail.com>
+Date: Wed, 31 May 2023 12:54:19 -0400
 MIME-Version: 1.0
-Message-ID-Hash: 6UPFETEKKT2IKEVR3FFLXNF4L6ZME2QH
-X-Message-ID-Hash: 6UPFETEKKT2IKEVR3FFLXNF4L6ZME2QH
-X-MailFrom: pistachio6981@gmail.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <5H6uJpHd7KigIxgJCuF8lXTbAP3YAlXCNEzdoQ58AA@lists.ettus.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <5H6uJpHd7KigIxgJCuF8lXTbAP3YAlXCNEzdoQ58AA@lists.ettus.com>
+Message-ID-Hash: QN5GSUBWIXCB6KGILEXFEOQEYYWPNSYB
+X-Message-ID-Hash: QN5GSUBWIXCB6KGILEXFEOQEYYWPNSYB
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: x410 help
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/6UPFETEKKT2IKEVR3FFLXNF4L6ZME2QH/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QN5GSUBWIXCB6KGILEXFEOQEYYWPNSYB/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============6131958623194514654=="
-
-This is a multi-part message in MIME format.
-
---===============6131958623194514654==
-Content-Type: multipart/alternative;
- boundary="b1_5H6uJpHd7KigIxgJCuF8lXTbAP3YAlXCNEzdoQ58AA"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_5H6uJpHd7KigIxgJCuF8lXTbAP3YAlXCNEzdoQ58AA
-Content-Type: text/plain; charset=us-ascii
-
-the image should be just fine, there are no other devices that are on the same subnet as the sdr interfaces are on. Here are interfaces on the server that is trying to connect to the x410:\
-\
-ens18: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-
-        inet 192.168.0.148  netmask 255.255.255.0  broadcast 192.168.0.255
-
-        inet6 fe80::d75b:dde7:bb0d:bf0e  prefixlen 64  scopeid 0x20<link>
-
-        ether 22:73:df:f4:97:21  txqueuelen 1000  (Ethernet)
-
-        RX packets 1766  bytes 402332 (402.3 KB)
-
-        RX errors 0  dropped 119  overruns 0  frame 0
-
-        TX packets 1444  bytes 2596987 (2.5 MB)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-ens17f0np0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-
-        inet 192.168.10.3  netmask 255.255.255.0  broadcast 192.168.10.255
-
-        inet6 fe80::eaeb:d3ff:fe43:3ec8  prefixlen 64  scopeid 0x20<link>
-
-        ether e8:eb:d3:43:3e:c8  txqueuelen 1000  (Ethernet)
-
-        RX packets 0  bytes 0 (0.0 B)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 51  bytes 6608 (6.6 KB)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-ens17f1np1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-
-        inet 192.168.11.3  netmask 255.255.255.0  broadcast 192.168.11.255
-
-        inet6 fe80::eaeb:d3ff:fe43:3ec9  prefixlen 64  scopeid 0x20<link>
-
-        ether e8:eb:d3:43:3e:c9  txqueuelen 1000  (Ethernet)
-
-        RX packets 0  bytes 0 (0.0 B)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 51  bytes 6617 (6.6 KB)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-ens27f0np0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-
-        inet 192.168.12.3  netmask 255.255.255.0  broadcast 192.168.12.255
-
-        inet6 fe80::eaeb:d3ff:fe55:dc00  prefixlen 64  scopeid 0x20<link>
-
-        ether e8:eb:d3:55:dc:00  txqueuelen 1000  (Ethernet)
-
-        RX packets 0  bytes 0 (0.0 B)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 51  bytes 6633 (6.6 KB)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-ens27f1np1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-
-        inet 192.168.13.3  netmask 255.255.255.0  broadcast 192.168.13.255
-
-        inet6 fe80::eaeb:d3ff:fe55:dc01  prefixlen 64  scopeid 0x20<link>
-
-        ether e8:eb:d3:55:dc:01  txqueuelen 1000  (Ethernet)
-
-        RX packets 0  bytes 0 (0.0 B)
-
-        RX errors 0  dropped 0  overruns 0  frame 0
-
-        TX packets 51  bytes 6612 (6.6 KB)
-
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0\
-\
-Here are the interfaces on the x410:\
-\
-eth0      Link encap:Ethernet  HWaddr 00:80:2F:36:2B:C6  
-
-          inet addr:192.168.0.165  Bcast:192.168.0.255  Mask:255.255.255.0
-
-          inet6 addr: fe80::280:2fff:fe36:2bc6/64 Scope:Link
-
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-
-          RX packets:4232 errors:0 dropped:988 overruns:0 frame:0
-
-          TX packets:335 errors:0 dropped:0 overruns:0 carrier:0
-
-          collisions:0 txqueuelen:1000 
-
-          RX bytes:440934 (430.5 KiB)  TX bytes:37656 (36.7 KiB)
-
-          Interrupt:19 
-
-int0      Link encap:Ethernet  HWaddr AE:4A:B9:D0:0B:25  
-
-          inet addr:169.254.0.1  Bcast:169.254.0.255  Mask:255.255.255.0
-
-          inet6 addr: fe80::ac4a:b9ff:fed0:b25/64 Scope:Link
-
-          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
-
-          RX packets:17079 errors:0 dropped:0 overruns:0 frame:0
-
-          TX packets:17134 errors:0 dropped:0 overruns:0 carrier:0
-
-          collisions:0 txqueuelen:1000 
-
-          RX bytes:1127294 (1.0 MiB)  TX bytes:1136890 (1.0 MiB)
-
-lo        Link encap:Local Loopback  
-
-          inet addr:127.0.0.1  Mask:255.0.0.0
-
-          inet6 addr: ::1/128 Scope:Host
-
-          UP LOOPBACK RUNNING  MTU:65536  Metric:1
-
-          RX packets:973 errors:0 dropped:0 overruns:0 frame:0
-
-          TX packets:973 errors:0 dropped:0 overruns:0 carrier:0
-
-          collisions:0 txqueuelen:1000 
-
-          RX bytes:73015 (71.3 KiB)  TX bytes:73015 (71.3 KiB)
-
-sfp0      Link encap:Ethernet  HWaddr 00:80:2F:36:2B:C7  
-
-          inet addr:192.168.10.2  Bcast:192.168.10.255  Mask:255.255.255.0
-
-          inet6 addr: fe80::280:2fff:fe36:2bc7/64 Scope:Link
-
-          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
-
-          RX packets:288 errors:0 dropped:0 overruns:0 frame:0
-
-          TX packets:560 errors:0 dropped:0 overruns:0 carrier:0
-
-          collisions:0 txqueuelen:1000 
-
-          RX bytes:38774 (37.8 KiB)  TX bytes:137733 (134.5 KiB)
-
-sfp0_1    Link encap:Ethernet  HWaddr 00:80:2F:36:2B:C8  
-
-          inet addr:192.168.11.2  Bcast:192.168.11.255  Mask:255.255.255.0
-
-          inet6 addr: fe80::280:2fff:fe36:2bc8/64 Scope:Link
-
-          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
-
-          RX packets:335 errors:0 dropped:0 overruns:0 frame:0
-
-          TX packets:94 errors:0 dropped:0 overruns:0 carrier:0
-
-          collisions:0 txqueuelen:1000 
-
-          RX bytes:45298 (44.2 KiB)  TX bytes:14410 (14.0 KiB)
-
-sfp0_2    Link encap:Ethernet  HWaddr 00:80:2F:36:2B:C9  
-
-          inet addr:192.168.12.2  Bcast:192.168.12.255  Mask:255.255.255.0
-
-          inet6 addr: fe80::280:2fff:fe36:2bc9/64 Scope:Link
-
-          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
-
-          RX packets:657 errors:0 dropped:0 overruns:0 frame:0
-
-          TX packets:66 errors:0 dropped:0 overruns:0 carrier:0
-
-          collisions:0 txqueuelen:1000 
-
-          RX bytes:162231 (158.4 KiB)  TX bytes:10541 (10.2 KiB)
-
-sfp0_3    Link encap:Ethernet  HWaddr 00:80:2F:36:2B:CA  
-
-          inet addr:192.168.13.2  Bcast:192.168.13.255  Mask:255.255.255.0
-
-          inet6 addr: fe80::280:2fff:fe36:2bca/64 Scope:Link
-
-          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1
-
-          RX packets:325 errors:0 dropped:0 overruns:0 frame:0
-
-          TX packets:168 errors:0 dropped:0 overruns:0 carrier:0
-
-          collisions:0 txqueuelen:1000 
-
-          RX bytes:41365 (40.3 KiB)  TX bytes:22845 (22.3 KiB)\
-\
-Maybe we set up our netplan rules wrong, here is an example of what we currently have for one of the interfaces:\
-\
-network:
-
-  version: 2
-
-  renderer: NetworkManager
-
-  ethernets:
-
-    ens17f0np0:
-
-      dhcp4: no
-
-      dhcp6: no
-
-      addresses: \[192.168.10.3/24\]
-
-      nameservers:
-
-        addresses: \[8.8.8.8,8.8.4.4\]\
-\
-Thank you so much for your time and help.
-
---b1_5H6uJpHd7KigIxgJCuF8lXTbAP3YAlXCNEzdoQ58AA
-Content-Type: text/html; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
-
-<p>the image should be just fine, there are no other devices that are on th=
-e same subnet as the sdr interfaces are on. Here are interfaces on the serv=
-er that is trying to connect to the x410:<br><br>ens18: flags=3D4163&lt;UP,=
-BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</p><p>        inet 192.168.0.148 =
- netmask 255.255.255.0  broadcast 192.168.0.255</p><p>        inet6 fe80::d=
-75b:dde7:bb0d:bf0e  prefixlen 64  scopeid 0x20&lt;link&gt;</p><p>        et=
-her 22:73:df:f4:97:21  txqueuelen 1000  (Ethernet)</p><p>        RX packets=
- 1766  bytes 402332 (402.3 KB)</p><p>        RX errors 0  dropped 119  over=
-runs 0  frame 0</p><p>        TX packets 1444  bytes 2596987 (2.5 MB)</p><p=
->        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</p><p>e=
-ns17f0np0: flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</p>=
-<p>        inet 192.168.10.3  netmask 255.255.255.0  broadcast 192.168.10.2=
-55</p><p>        inet6 fe80::eaeb:d3ff:fe43:3ec8  prefixlen 64  scopeid 0x2=
-0&lt;link&gt;</p><p>        ether e8:eb:d3:43:3e:c8  txqueuelen 1000  (Ethe=
-rnet)</p><p>        RX packets 0  bytes 0 (0.0 B)</p><p>        RX errors 0=
-  dropped 0  overruns 0  frame 0</p><p>        TX packets 51  bytes 6608 (6=
-.6 KB)</p><p>        TX errors 0  dropped 0 overruns 0  carrier 0  collisio=
-ns 0</p><p>ens17f1np1: flags=3D4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  =
-mtu 1500</p><p>        inet 192.168.11.3  netmask 255.255.255.0  broadcast =
-192.168.11.255</p><p>        inet6 fe80::eaeb:d3ff:fe43:3ec9  prefixlen 64 =
- scopeid 0x20&lt;link&gt;</p><p>        ether e8:eb:d3:43:3e:c9  txqueuelen=
- 1000  (Ethernet)</p><p>        RX packets 0  bytes 0 (0.0 B)</p><p>       =
- RX errors 0  dropped 0  overruns 0  frame 0</p><p>        TX packets 51  b=
-ytes 6617 (6.6 KB)</p><p>        TX errors 0  dropped 0 overruns 0  carrier=
- 0  collisions 0</p><p>ens27f0np0: flags=3D4163&lt;UP,BROADCAST,RUNNING,MUL=
-TICAST&gt;  mtu 1500</p><p>        inet 192.168.12.3  netmask 255.255.255.0=
-  broadcast 192.168.12.255</p><p>        inet6 fe80::eaeb:d3ff:fe55:dc00  p=
-refixlen 64  scopeid 0x20&lt;link&gt;</p><p>        ether e8:eb:d3:55:dc:00=
-  txqueuelen 1000  (Ethernet)</p><p>        RX packets 0  bytes 0 (0.0 B)</=
-p><p>        RX errors 0  dropped 0  overruns 0  frame 0</p><p>        TX p=
-ackets 51  bytes 6633 (6.6 KB)</p><p>        TX errors 0  dropped 0 overrun=
-s 0  carrier 0  collisions 0</p><p>ens27f1np1: flags=3D4163&lt;UP,BROADCAST=
-,RUNNING,MULTICAST&gt;  mtu 1500</p><p>        inet 192.168.13.3  netmask 2=
-55.255.255.0  broadcast 192.168.13.255</p><p>        inet6 fe80::eaeb:d3ff:=
-fe55:dc01  prefixlen 64  scopeid 0x20&lt;link&gt;</p><p>        ether e8:eb=
-:d3:55:dc:01  txqueuelen 1000  (Ethernet)</p><p>        RX packets 0  bytes=
- 0 (0.0 B)</p><p>        RX errors 0  dropped 0  overruns 0  frame 0</p><p>=
-        TX packets 51  bytes 6612 (6.6 KB)</p><p>        TX errors 0  dropp=
-ed 0 overruns 0  carrier 0  collisions 0<br><br>Here are the interfaces on =
-the x410:<br><br>eth0      Link encap:Ethernet  HWaddr 00:80:2F:36:2B:C6  <=
-/p><p>          inet addr:192.168.0.165  Bcast:192.168.0.255  Mask:255.255.=
-255.0</p><p>          inet6 addr: fe80::280:2fff:fe36:2bc6/64 Scope:Link</p=
-><p>          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1</p><p>    =
-      RX packets:4232 errors:0 dropped:988 overruns:0 frame:0</p><p>       =
-   TX packets:335 errors:0 dropped:0 overruns:0 carrier:0</p><p>          c=
-ollisions:0 txqueuelen:1000 </p><p>          RX bytes:440934 (430.5 KiB)  T=
-X bytes:37656 (36.7 KiB)</p><p>          Interrupt:19 </p><p>int0      Link=
- encap:Ethernet  HWaddr AE:4A:B9:D0:0B:25  </p><p>          inet addr:169.2=
-54.0.1  Bcast:169.254.0.255  Mask:255.255.255.0</p><p>          inet6 addr:=
- fe80::ac4a:b9ff:fed0:b25/64 Scope:Link</p><p>          UP BROADCAST RUNNIN=
-G MULTICAST  MTU:9000  Metric:1</p><p>          RX packets:17079 errors:0 d=
-ropped:0 overruns:0 frame:0</p><p>          TX packets:17134 errors:0 dropp=
-ed:0 overruns:0 carrier:0</p><p>          collisions:0 txqueuelen:1000 </p>=
-<p>          RX bytes:1127294 (1.0 MiB)  TX bytes:1136890 (1.0 MiB)</p><p>l=
-o        Link encap:Local Loopback  </p><p>          inet addr:127.0.0.1  M=
-ask:255.0.0.0</p><p>          inet6 addr: ::1/128 Scope:Host</p><p>        =
-  UP LOOPBACK RUNNING  MTU:65536  Metric:1</p><p>          RX packets:973 e=
-rrors:0 dropped:0 overruns:0 frame:0</p><p>          TX packets:973 errors:=
-0 dropped:0 overruns:0 carrier:0</p><p>          collisions:0 txqueuelen:10=
-00 </p><p>          RX bytes:73015 (71.3 KiB)  TX bytes:73015 (71.3 KiB)</p=
-><p>sfp0      Link encap:Ethernet  HWaddr 00:80:2F:36:2B:C7  </p><p>       =
-   inet addr:192.168.10.2  Bcast:192.168.10.255  Mask:255.255.255.0</p><p> =
-         inet6 addr: fe80::280:2fff:fe36:2bc7/64 Scope:Link</p><p>         =
- UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1</p><p>          RX pack=
-ets:288 errors:0 dropped:0 overruns:0 frame:0</p><p>          TX packets:56=
-0 errors:0 dropped:0 overruns:0 carrier:0</p><p>          collisions:0 txqu=
-euelen:1000 </p><p>          RX bytes:38774 (37.8 KiB)  TX bytes:137733 (13=
-4.5 KiB)</p><p>sfp0_1    Link encap:Ethernet  HWaddr 00:80:2F:36:2B:C8  </p=
-><p>          inet addr:192.168.11.2  Bcast:192.168.11.255  Mask:255.255.25=
-5.0</p><p>          inet6 addr: fe80::280:2fff:fe36:2bc8/64 Scope:Link</p><=
-p>          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1</p><p>      =
-    RX packets:335 errors:0 dropped:0 overruns:0 frame:0</p><p>          TX=
- packets:94 errors:0 dropped:0 overruns:0 carrier:0</p><p>          collisi=
-ons:0 txqueuelen:1000 </p><p>          RX bytes:45298 (44.2 KiB)  TX bytes:=
-14410 (14.0 KiB)</p><p>sfp0_2    Link encap:Ethernet  HWaddr 00:80:2F:36:2B=
-:C9  </p><p>          inet addr:192.168.12.2  Bcast:192.168.12.255  Mask:25=
-5.255.255.0</p><p>          inet6 addr: fe80::280:2fff:fe36:2bc9/64 Scope:L=
-ink</p><p>          UP BROADCAST RUNNING MULTICAST  MTU:9000  Metric:1</p><=
-p>          RX packets:657 errors:0 dropped:0 overruns:0 frame:0</p><p>    =
-      TX packets:66 errors:0 dropped:0 overruns:0 carrier:0</p><p>         =
- collisions:0 txqueuelen:1000 </p><p>          RX bytes:162231 (158.4 KiB) =
- TX bytes:10541 (10.2 KiB)</p><p>sfp0_3    Link encap:Ethernet  HWaddr 00:8=
-0:2F:36:2B:CA  </p><p>          inet addr:192.168.13.2  Bcast:192.168.13.25=
-5  Mask:255.255.255.0</p><p>          inet6 addr: fe80::280:2fff:fe36:2bca/=
-64 Scope:Link</p><p>          UP BROADCAST RUNNING MULTICAST  MTU:9000  Met=
-ric:1</p><p>          RX packets:325 errors:0 dropped:0 overruns:0 frame:0<=
-/p><p>          TX packets:168 errors:0 dropped:0 overruns:0 carrier:0</p><=
-p>          collisions:0 txqueuelen:1000 </p><p>          RX bytes:41365 (4=
-0.3 KiB)  TX bytes:22845 (22.3 KiB)<br><br>Maybe we set up our netplan rule=
-s wrong, here is an example of what we currently have for one of the interf=
-aces:<br><br>network:</p><p>  version: 2</p><p>  renderer: NetworkManager</=
-p><p>  ethernets:</p><p>    ens17f0np0:</p><p>      dhcp4: no</p><p>      d=
-hcp6: no</p><p>      addresses: [192.168.10.3/24]</p><p>      nameservers:<=
-/p><p>        addresses: [8.8.8.8,8.8.4.4]<br><br>Thank you so much for you=
-r time and help.</p>
-
---b1_5H6uJpHd7KigIxgJCuF8lXTbAP3YAlXCNEzdoQ58AA--
-
---===============6131958623194514654==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============6131958623194514654==--
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
+
+T24gMzEvMDUvMjAyMyAxMjo0MSwgcGlzdGFjaGlvNjk4MUBnbWFpbC5jb20gd3JvdGU6DQo+DQo+
+IHRoZSBpbWFnZSBzaG91bGQgYmUganVzdCBmaW5lLCB0aGVyZSBhcmUgbm8gb3RoZXIgZGV2aWNl
+cyB0aGF0IGFyZSBvbiANCj4gdGhlIHNhbWUgc3VibmV0IGFzIHRoZSBzZHIgaW50ZXJmYWNlcyBh
+cmUgb24uIEhlcmUgYXJlIGludGVyZmFjZXMgb24gDQo+IHRoZSBzZXJ2ZXIgdGhhdCBpcyB0cnlp
+bmcgdG8gY29ubmVjdCB0byB0aGUgeDQxMDoNCj4NCj4gZW5zMTg6IGZsYWdzPTQxNjM8VVAsQlJP
+QURDQVNULFJVTk5JTkcsTVVMVElDQVNUPiBtdHUgMTUwMA0KPg0KPiBpbmV0IDE5Mi4xNjguMC4x
+NDggbmV0bWFzayAyNTUuMjU1LjI1NS4wIGJyb2FkY2FzdCAxOTIuMTY4LjAuMjU1DQo+DQo+IGlu
+ZXQ2IGZlODA6OmQ3NWI6ZGRlNzpiYjBkOmJmMGUgcHJlZml4bGVuIDY0IHNjb3BlaWQgMHgyMDxs
+aW5rPg0KPg0KPiBldGhlciAyMjo3MzpkZjpmNDo5NzoyMSB0eHF1ZXVlbGVuIDEwMDAgKEV0aGVy
+bmV0KQ0KPg0KPiBSWCBwYWNrZXRzIDE3NjYgYnl0ZXMgNDAyMzMyICg0MDIuMyBLQikNCj4NCj4g
+UlggZXJyb3JzIDAgZHJvcHBlZCAxMTkgb3ZlcnJ1bnMgMCBmcmFtZSAwDQo+DQo+IFRYIHBhY2tl
+dHMgMTQ0NCBieXRlcyAyNTk2OTg3ICgyLjUgTUIpDQo+DQo+IFRYIGVycm9ycyAwIGRyb3BwZWQg
+MCBvdmVycnVucyAwIGNhcnJpZXIgMCBjb2xsaXNpb25zIDANCj4NCj4gZW5zMTdmMG5wMDogZmxh
+Z3M9NDE2MzxVUCxCUk9BRENBU1QsUlVOTklORyxNVUxUSUNBU1Q+IG10dSAxNTAwDQo+DQo+IGlu
+ZXQgMTkyLjE2OC4xMC4zIG5ldG1hc2sgMjU1LjI1NS4yNTUuMCBicm9hZGNhc3QgMTkyLjE2OC4x
+MC4yNTUNCj4NCj4gaW5ldDYgZmU4MDo6ZWFlYjpkM2ZmOmZlNDM6M2VjOCBwcmVmaXhsZW4gNjQg
+c2NvcGVpZCAweDIwPGxpbms+DQo+DQo+IGV0aGVyIGU4OmViOmQzOjQzOjNlOmM4IHR4cXVldWVs
+ZW4gMTAwMCAoRXRoZXJuZXQpDQo+DQo+IFJYIHBhY2tldHMgMCBieXRlcyAwICgwLjAgQikNCj4N
+Cj4gUlggZXJyb3JzIDAgZHJvcHBlZCAwIG92ZXJydW5zIDAgZnJhbWUgMA0KPg0KPiBUWCBwYWNr
+ZXRzIDUxIGJ5dGVzIDY2MDggKDYuNiBLQikNCj4NCj4gVFggZXJyb3JzIDAgZHJvcHBlZCAwIG92
+ZXJydW5zIDAgY2FycmllciAwIGNvbGxpc2lvbnMgMA0KPg0KPiBlbnMxN2YxbnAxOiBmbGFncz00
+MTYzPFVQLEJST0FEQ0FTVCxSVU5OSU5HLE1VTFRJQ0FTVD4gbXR1IDE1MDANCj4NCj4gaW5ldCAx
+OTIuMTY4LjExLjMgbmV0bWFzayAyNTUuMjU1LjI1NS4wIGJyb2FkY2FzdCAxOTIuMTY4LjExLjI1
+NQ0KPg0KPiBpbmV0NiBmZTgwOjplYWViOmQzZmY6ZmU0MzozZWM5IHByZWZpeGxlbiA2NCBzY29w
+ZWlkIDB4MjA8bGluaz4NCj4NCj4gZXRoZXIgZTg6ZWI6ZDM6NDM6M2U6YzkgdHhxdWV1ZWxlbiAx
+MDAwIChFdGhlcm5ldCkNCj4NCj4gUlggcGFja2V0cyAwIGJ5dGVzIDAgKDAuMCBCKQ0KPg0KPiBS
+WCBlcnJvcnMgMCBkcm9wcGVkIDAgb3ZlcnJ1bnMgMCBmcmFtZSAwDQo+DQo+IFRYIHBhY2tldHMg
+NTEgYnl0ZXMgNjYxNyAoNi42IEtCKQ0KPg0KPiBUWCBlcnJvcnMgMCBkcm9wcGVkIDAgb3ZlcnJ1
+bnMgMCBjYXJyaWVyIDAgY29sbGlzaW9ucyAwDQo+DQo+IGVuczI3ZjBucDA6IGZsYWdzPTQxNjM8
+VVAsQlJPQURDQVNULFJVTk5JTkcsTVVMVElDQVNUPiBtdHUgMTUwMA0KPg0KPiBpbmV0IDE5Mi4x
+NjguMTIuMyBuZXRtYXNrIDI1NS4yNTUuMjU1LjAgYnJvYWRjYXN0IDE5Mi4xNjguMTIuMjU1DQo+
+DQo+IGluZXQ2IGZlODA6OmVhZWI6ZDNmZjpmZTU1OmRjMDAgcHJlZml4bGVuIDY0IHNjb3BlaWQg
+MHgyMDxsaW5rPg0KPg0KPiBldGhlciBlODplYjpkMzo1NTpkYzowMCB0eHF1ZXVlbGVuIDEwMDAg
+KEV0aGVybmV0KQ0KPg0KPiBSWCBwYWNrZXRzIDAgYnl0ZXMgMCAoMC4wIEIpDQo+DQo+IFJYIGVy
+cm9ycyAwIGRyb3BwZWQgMCBvdmVycnVucyAwIGZyYW1lIDANCj4NCj4gVFggcGFja2V0cyA1MSBi
+eXRlcyA2NjMzICg2LjYgS0IpDQo+DQo+IFRYIGVycm9ycyAwIGRyb3BwZWQgMCBvdmVycnVucyAw
+IGNhcnJpZXIgMCBjb2xsaXNpb25zIDANCj4NCj4gZW5zMjdmMW5wMTogZmxhZ3M9NDE2MzxVUCxC
+Uk9BRENBU1QsUlVOTklORyxNVUxUSUNBU1Q+IG10dSAxNTAwDQo+DQo+IGluZXQgMTkyLjE2OC4x
+My4zIG5ldG1hc2sgMjU1LjI1NS4yNTUuMCBicm9hZGNhc3QgMTkyLjE2OC4xMy4yNTUNCj4NCj4g
+aW5ldDYgZmU4MDo6ZWFlYjpkM2ZmOmZlNTU6ZGMwMSBwcmVmaXhsZW4gNjQgc2NvcGVpZCAweDIw
+PGxpbms+DQo+DQo+IGV0aGVyIGU4OmViOmQzOjU1OmRjOjAxIHR4cXVldWVsZW4gMTAwMCAoRXRo
+ZXJuZXQpDQo+DQo+IFJYIHBhY2tldHMgMCBieXRlcyAwICgwLjAgQikNCj4NCj4gUlggZXJyb3Jz
+IDAgZHJvcHBlZCAwIG92ZXJydW5zIDAgZnJhbWUgMA0KPg0KPiBUWCBwYWNrZXRzIDUxIGJ5dGVz
+IDY2MTIgKDYuNiBLQikNCj4NCj4gVFggZXJyb3JzIDAgZHJvcHBlZCAwIG92ZXJydW5zIDAgY2Fy
+cmllciAwIGNvbGxpc2lvbnMgMA0KPg0KPiBIZXJlIGFyZSB0aGUgaW50ZXJmYWNlcyBvbiB0aGUg
+eDQxMDoNCj4NCj4gZXRoMCBMaW5rIGVuY2FwOkV0aGVybmV0IEhXYWRkciAwMDo4MDoyRjozNjoy
+QjpDNg0KPg0KPiBpbmV0IGFkZHI6MTkyLjE2OC4wLjE2NSBCY2FzdDoxOTIuMTY4LjAuMjU1IE1h
+c2s6MjU1LjI1NS4yNTUuMA0KPg0KPiBpbmV0NiBhZGRyOiBmZTgwOjoyODA6MmZmZjpmZTM2OjJi
+YzYvNjQgU2NvcGU6TGluaw0KPg0KPiBVUCBCUk9BRENBU1QgUlVOTklORyBNVUxUSUNBU1QgTVRV
+OjE1MDAgTWV0cmljOjENCj4NCj4gUlggcGFja2V0czo0MjMyIGVycm9yczowIGRyb3BwZWQ6OTg4
+IG92ZXJydW5zOjAgZnJhbWU6MA0KPg0KPiBUWCBwYWNrZXRzOjMzNSBlcnJvcnM6MCBkcm9wcGVk
+OjAgb3ZlcnJ1bnM6MCBjYXJyaWVyOjANCj4NCj4gY29sbGlzaW9uczowIHR4cXVldWVsZW46MTAw
+MA0KPg0KPiBSWCBieXRlczo0NDA5MzQgKDQzMC41IEtpQikgVFggYnl0ZXM6Mzc2NTYgKDM2Ljcg
+S2lCKQ0KPg0KPiBJbnRlcnJ1cHQ6MTkNCj4NCj4gaW50MCBMaW5rIGVuY2FwOkV0aGVybmV0IEhX
+YWRkciBBRTo0QTpCOTpEMDowQjoyNQ0KPg0KPiBpbmV0IGFkZHI6MTY5LjI1NC4wLjEgQmNhc3Q6
+MTY5LjI1NC4wLjI1NSBNYXNrOjI1NS4yNTUuMjU1LjANCj4NCj4gaW5ldDYgYWRkcjogZmU4MDo6
+YWM0YTpiOWZmOmZlZDA6YjI1LzY0IFNjb3BlOkxpbmsNCj4NCj4gVVAgQlJPQURDQVNUIFJVTk5J
+TkcgTVVMVElDQVNUIE1UVTo5MDAwIE1ldHJpYzoxDQo+DQo+IFJYIHBhY2tldHM6MTcwNzkgZXJy
+b3JzOjAgZHJvcHBlZDowIG92ZXJydW5zOjAgZnJhbWU6MA0KPg0KPiBUWCBwYWNrZXRzOjE3MTM0
+IGVycm9yczowIGRyb3BwZWQ6MCBvdmVycnVuczowIGNhcnJpZXI6MA0KPg0KPiBjb2xsaXNpb25z
+OjAgdHhxdWV1ZWxlbjoxMDAwDQo+DQo+IFJYIGJ5dGVzOjExMjcyOTQgKDEuMCBNaUIpIFRYIGJ5
+dGVzOjExMzY4OTAgKDEuMCBNaUIpDQo+DQo+IGxvIExpbmsgZW5jYXA6TG9jYWwgTG9vcGJhY2sN
+Cj4NCj4gaW5ldCBhZGRyOjEyNy4wLjAuMSBNYXNrOjI1NS4wLjAuMA0KPg0KPiBpbmV0NiBhZGRy
+OiA6OjEvMTI4IFNjb3BlOkhvc3QNCj4NCj4gVVAgTE9PUEJBQ0sgUlVOTklORyBNVFU6NjU1MzYg
+TWV0cmljOjENCj4NCj4gUlggcGFja2V0czo5NzMgZXJyb3JzOjAgZHJvcHBlZDowIG92ZXJydW5z
+OjAgZnJhbWU6MA0KPg0KPiBUWCBwYWNrZXRzOjk3MyBlcnJvcnM6MCBkcm9wcGVkOjAgb3ZlcnJ1
+bnM6MCBjYXJyaWVyOjANCj4NCj4gY29sbGlzaW9uczowIHR4cXVldWVsZW46MTAwMA0KPg0KPiBS
+WCBieXRlczo3MzAxNSAoNzEuMyBLaUIpIFRYIGJ5dGVzOjczMDE1ICg3MS4zIEtpQikNCj4NCj4g
+c2ZwMCBMaW5rIGVuY2FwOkV0aGVybmV0IEhXYWRkciAwMDo4MDoyRjozNjoyQjpDNw0KPg0KPiBp
+bmV0IGFkZHI6MTkyLjE2OC4xMC4yIEJjYXN0OjE5Mi4xNjguMTAuMjU1IE1hc2s6MjU1LjI1NS4y
+NTUuMA0KPg0KPiBpbmV0NiBhZGRyOiBmZTgwOjoyODA6MmZmZjpmZTM2OjJiYzcvNjQgU2NvcGU6
+TGluaw0KPg0KPiBVUCBCUk9BRENBU1QgUlVOTklORyBNVUxUSUNBU1QgTVRVOjkwMDAgTWV0cmlj
+OjENCj4NCj4gUlggcGFja2V0czoyODggZXJyb3JzOjAgZHJvcHBlZDowIG92ZXJydW5zOjAgZnJh
+bWU6MA0KPg0KPiBUWCBwYWNrZXRzOjU2MCBlcnJvcnM6MCBkcm9wcGVkOjAgb3ZlcnJ1bnM6MCBj
+YXJyaWVyOjANCj4NCj4gY29sbGlzaW9uczowIHR4cXVldWVsZW46MTAwMA0KPg0KPiBSWCBieXRl
+czozODc3NCAoMzcuOCBLaUIpIFRYIGJ5dGVzOjEzNzczMyAoMTM0LjUgS2lCKQ0KPg0KPiBzZnAw
+XzEgTGluayBlbmNhcDpFdGhlcm5ldCBIV2FkZHIgMDA6ODA6MkY6MzY6MkI6QzgNCj4NCj4gaW5l
+dCBhZGRyOjE5Mi4xNjguMTEuMiBCY2FzdDoxOTIuMTY4LjExLjI1NSBNYXNrOjI1NS4yNTUuMjU1
+LjANCj4NCj4gaW5ldDYgYWRkcjogZmU4MDo6MjgwOjJmZmY6ZmUzNjoyYmM4LzY0IFNjb3BlOkxp
+bmsNCj4NCj4gVVAgQlJPQURDQVNUIFJVTk5JTkcgTVVMVElDQVNUIE1UVTo5MDAwIE1ldHJpYzox
+DQo+DQo+IFJYIHBhY2tldHM6MzM1IGVycm9yczowIGRyb3BwZWQ6MCBvdmVycnVuczowIGZyYW1l
+OjANCj4NCj4gVFggcGFja2V0czo5NCBlcnJvcnM6MCBkcm9wcGVkOjAgb3ZlcnJ1bnM6MCBjYXJy
+aWVyOjANCj4NCj4gY29sbGlzaW9uczowIHR4cXVldWVsZW46MTAwMA0KPg0KPiBSWCBieXRlczo0
+NTI5OCAoNDQuMiBLaUIpIFRYIGJ5dGVzOjE0NDEwICgxNC4wIEtpQikNCj4NCj4gc2ZwMF8yIExp
+bmsgZW5jYXA6RXRoZXJuZXQgSFdhZGRyIDAwOjgwOjJGOjM2OjJCOkM5DQo+DQo+IGluZXQgYWRk
+cjoxOTIuMTY4LjEyLjIgQmNhc3Q6MTkyLjE2OC4xMi4yNTUgTWFzazoyNTUuMjU1LjI1NS4wDQo+
+DQo+IGluZXQ2IGFkZHI6IGZlODA6OjI4MDoyZmZmOmZlMzY6MmJjOS82NCBTY29wZTpMaW5rDQo+
+DQo+IFVQIEJST0FEQ0FTVCBSVU5OSU5HIE1VTFRJQ0FTVCBNVFU6OTAwMCBNZXRyaWM6MQ0KPg0K
+PiBSWCBwYWNrZXRzOjY1NyBlcnJvcnM6MCBkcm9wcGVkOjAgb3ZlcnJ1bnM6MCBmcmFtZTowDQo+
+DQo+IFRYIHBhY2tldHM6NjYgZXJyb3JzOjAgZHJvcHBlZDowIG92ZXJydW5zOjAgY2Fycmllcjow
+DQo+DQo+IGNvbGxpc2lvbnM6MCB0eHF1ZXVlbGVuOjEwMDANCj4NCj4gUlggYnl0ZXM6MTYyMjMx
+ICgxNTguNCBLaUIpIFRYIGJ5dGVzOjEwNTQxICgxMC4yIEtpQikNCj4NCj4gc2ZwMF8zIExpbmsg
+ZW5jYXA6RXRoZXJuZXQgSFdhZGRyIDAwOjgwOjJGOjM2OjJCOkNBDQo+DQo+IGluZXQgYWRkcjox
+OTIuMTY4LjEzLjIgQmNhc3Q6MTkyLjE2OC4xMy4yNTUgTWFzazoyNTUuMjU1LjI1NS4wDQo+DQo+
+IGluZXQ2IGFkZHI6IGZlODA6OjI4MDoyZmZmOmZlMzY6MmJjYS82NCBTY29wZTpMaW5rDQo+DQo+
+IFVQIEJST0FEQ0FTVCBSVU5OSU5HIE1VTFRJQ0FTVCBNVFU6OTAwMCBNZXRyaWM6MQ0KPg0KPiBS
+WCBwYWNrZXRzOjMyNSBlcnJvcnM6MCBkcm9wcGVkOjAgb3ZlcnJ1bnM6MCBmcmFtZTowDQo+DQo+
+IFRYIHBhY2tldHM6MTY4IGVycm9yczowIGRyb3BwZWQ6MCBvdmVycnVuczowIGNhcnJpZXI6MA0K
+Pg0KPiBjb2xsaXNpb25zOjAgdHhxdWV1ZWxlbjoxMDAwDQo+DQo+IFJYIGJ5dGVzOjQxMzY1ICg0
+MC4zIEtpQikgVFggYnl0ZXM6MjI4NDUgKDIyLjMgS2lCKQ0KPg0KPiBNYXliZSB3ZSBzZXQgdXAg
+b3VyIG5ldHBsYW4gcnVsZXMgd3JvbmcsIGhlcmUgaXMgYW4gZXhhbXBsZSBvZiB3aGF0IHdlIA0K
+PiBjdXJyZW50bHkgaGF2ZSBmb3Igb25lIG9mIHRoZSBpbnRlcmZhY2VzOg0KPg0KPiBuZXR3b3Jr
+Og0KPg0KPiB2ZXJzaW9uOiAyDQo+DQo+IHJlbmRlcmVyOiBOZXR3b3JrTWFuYWdlcg0KPg0KPiBl
+dGhlcm5ldHM6DQo+DQo+IGVuczE3ZjBucDA6DQo+DQo+IGRoY3A0OiBubw0KPg0KPiBkaGNwNjog
+bm8NCj4NCj4gYWRkcmVzc2VzOiBbMTkyLjE2OC4xMC4zLzI0XQ0KPg0KPiBuYW1lc2VydmVyczoN
+Cj4NCj4gYWRkcmVzc2VzOiBbOC44LjguOCw4LjguNC40XQ0KPg0KPiBUaGFuayB5b3Ugc28gbXVj
+aCBmb3IgeW91ciB0aW1lIGFuZCBoZWxwLg0KPg0KPg0KPiBfX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBVU1JQLXVzZXJzIG1haWxpbmcgbGlzdCAtLSB1
+c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQ0KPiBUbyB1bnN1YnNjcmliZSBzZW5kIGFuIGVtYWls
+IHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tDQpJJ3ZlIHJlYWNoZWQgb3V0IHRv
+IHRoZSBvdGhlciBtZW1iZXJzIG9mIHRoZSBFdHR1cyBzdXBwb3J0IG9yZ2FuaXphdGlvbiANCi0t
+IEknbSBoYW1wZXJlZCBieSBub3QgaGF2aW5nIGFuIFg0MTAgaW4gbXkgY29sbGVjdGlvbiwNCiDC
+oCBzbyBJJ20gdW5mb3J0dW5hdGVseSBydW5uaW5nIGEgYml0ICJibGluZCIuwqDCoMKgIFNvbWUg
+cGF0aWVuY2UgbWF5IGJlIA0KcmVxdWlyZWQtLWEgZ29vZGx5IGZyYWN0aW9uIG9mIHRoZSBzdXBw
+b3J0IHRlYW0gYXJlIGF0DQogwqAgYSBjb25mZXJlbmNlIGZvciB0aGUgbmV4dCB0d28gZGF5cy4N
+Cg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11
+c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJz
+Y3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
