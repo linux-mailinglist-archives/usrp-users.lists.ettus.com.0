@@ -2,138 +2,339 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3940A71F613
-	for <lists+usrp-users@lfdr.de>; Fri,  2 Jun 2023 00:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C19BB71FA30
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Jun 2023 08:37:50 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id C3CDB384547
-	for <lists+usrp-users@lfdr.de>; Thu,  1 Jun 2023 18:37:22 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id F35A138491F
+	for <lists+usrp-users@lfdr.de>; Fri,  2 Jun 2023 02:37:48 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685659042; bh=Y3RoM+m3CEz9dztZBqW8RjSMUV6cxMf3YVan0YN5tXc=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	t=1685687868; bh=G5pCHdmwR7i5KfH/Fs5hm+QBWDtqZVBZaIutYhuWges=;
+	h=References:In-Reply-To:From:Date:To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From;
-	b=wlUGIF4cZi190njw5+x1bclmdz2VhrDsmhp2cxbPCRYgVxpvApdnqy5lUng53YcnJ
-	 YkvdBKIZXm0xFUilN0noNzAmwJtUOuLVbgtC4w4IWM1+ddkZuhnt6yjXOL2SavqvHh
-	 umCLYIme9VRuD2LX/mPROzl18zaYQLxstzQoKqhdQiKUlgO4HZWLvj8qL6hS4u3qHs
-	 0vZIZPi5+BCCZg4a7Qz/oQp196od7OpffcopOB+us3Wo+LEtnYNzkeCTAUqAgz1fb+
-	 L9HtIPY/lt8NzgEa7APCibaR0HYsWWbJ9EtBbQ3IGEl3xfQUO2mTuKAiBSLDy+ZMcp
-	 fZWBhuWMIOe/Q==
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 2F83A3811CC
-	for <usrp-users@lists.ettus.com>; Thu,  1 Jun 2023 18:36:22 -0400 (EDT)
+	b=ItFQ8umRr6sda+aq9bZ4H4SuEs6sEzhvkXpWnmkN4lvP84YmgMCGyDy3wkPcx2vqd
+	 wbUVJqR+/sHKXhW5U4nJaR4U+cQvCybOpcFZLXbv3FQTbE4rZ/J0bS7jimE1LyDDJU
+	 AbNO9VrQpU7rw7KG0oJ6BDMMWRMPwAc+IMcVQS8KTWigYJU16gwyX3yhq8MBgo+8rU
+	 br4FZqXfZq10S3ArL7uNdwSOpNyhRJo2NAcCfj741hlLTPSOtRe3u6GbOlfjGGPDFP
+	 MLtcHUa4239W+h9dGdr+5vOeqobxEvXNGWn0N1HWikpi4Ibvk+R2svZktjdhd+E2Ck
+	 DPZp+NYuMd3ZQ==
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	by mm2.emwd.com (Postfix) with ESMTPS id E930E3848EE
+	for <usrp-users@lists.ettus.com>; Fri,  2 Jun 2023 02:37:23 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZSUQ+uNx";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ETVEHXjL";
 	dkim-atps=neutral
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6261367d2f1so12280196d6.3
-        for <usrp-users@lists.ettus.com>; Thu, 01 Jun 2023 15:36:22 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2af177f12d1so24161041fa.0
+        for <usrp-users@lists.ettus.com>; Thu, 01 Jun 2023 23:37:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1685658982; x=1688250982;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1685687842; x=1688279842;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gSkqr17YI3mUf4RSh05B77PKxJVOg/vVk45od+ZGQrY=;
-        b=ZSUQ+uNxJ6iFosXc3RCoMsNmI0BKfLyNODQhVfyae//JivN8wOaA8Np/M8elwQZkil
-         YTXWEkNlBA4UQ2divnllX9+utjW9c3zeFk/iA0+deiXRHU0i7ipqKe79mBbPBTfVQrwT
-         Fjx00ms4TU8mFD3EEYTIqSBVj5dOSKiVdcBeax00V/cBVMOaRCSiLXqk9em14FC240yI
-         SDIIi6l+Ik8rB87SbSt8YY7EM566kmBMfVo5n0dtBBUNECSRfXIxVgmqJPfepayjwh1Q
-         ChrCCsf3pfRCFB6Q3gir23O4kMLJMGJgUKw8AvntRhGUmwHP3w4um+UPgciFvHB+bPIj
-         coIw==
+        bh=JLMWgNQOTz82htRsD1kWp1htz62A9sUzlo/NFjpjjWs=;
+        b=ETVEHXjLKV3/8o7MvC1gzRt5OlOu8+/7hCkqEwF/wHAmXsveUo4G5gtVcUmvcWtt3T
+         9uc2rLkfmPf1IbADzgxDkM4QSBqhmdQX3IUJlV/Nt4bF8WnTYbqtaSqtqr/maJ0r1+IZ
+         GF7XEIXmEatlF9hwC7fAn6PsbPPTAA6GGVcpWNUPb59RlnDclV/1a6hyc1+2gDHIC6w7
+         q/t77GH03zvZcFrTQ2YQxZbz0JcTOzBSEBt6ilLogad2enlt0WByJTs54JzLSoQ5Tl5i
+         AipgknF6PJR7rwBT7PnrhpGVoNkjQ/XzduP/8n7C8WL6FrwmDF7gWMIqQjSc/MP9+oe2
+         mbwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1685658982; x=1688250982;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1685687842; x=1688279842;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gSkqr17YI3mUf4RSh05B77PKxJVOg/vVk45od+ZGQrY=;
-        b=UsIELxTSRucyr6CyS3dkPuCeON2ys81HO70Ann2A5IyM+EDqT1o0omBtREo5WW92Fe
-         Mclt8Nn+eo/VvdGefwLnopwjhhnKaw5D0Ja+ruoGfqeRJoSv+1a3goE3HK5QJo+0XNIa
-         Q2GO9Yymg8sYCwMZ3DDbmxpU2bwI1U59eYgQnwEELZoPwsBmeFcZhqtUSGa4kK8qUb7K
-         nNRzIqYvn9n6c5u7Iy/a3Kvxb7gqEMwd0HqnTxf9jRvCI61gCjtPeJ+UgvO3E0fQqbTj
-         kzsXGs2hFQ3y1nb93h9kmdK8rv2mfYryYbWB8Z6Yk3NT4cpRgJ64a492TKepWtWHVAvt
-         wivg==
-X-Gm-Message-State: AC+VfDxW3gXfG4g/lfkNPfnbFR/J3AWej+2DA/RJi2w+5+S2ug6pNJcR
-	WRoc8hu7qNA7X2GUW9LdsM3yUyW4NJoA5w==
-X-Google-Smtp-Source: ACHHUZ6584+Y91prqBZHg9leHHUxKaBYta5oOp62AwCsJVk72voFYc3KJX48OHsSxRcP3Zi+2zFuUw==
-X-Received: by 2002:a05:6214:c4a:b0:625:83ab:8a42 with SMTP id r10-20020a0562140c4a00b0062583ab8a42mr14530960qvj.46.1685658982272;
-        Thu, 01 Jun 2023 15:36:22 -0700 (PDT)
-Received: from [192.168.2.196] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id w20-20020a0562140b3400b0062381fa97c5sm4095955qvj.92.2023.06.01.15.36.21
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Jun 2023 15:36:21 -0700 (PDT)
-Message-ID: <eb77fd10-41be-c80c-79cf-41ea8b4db269@gmail.com>
-Date: Thu, 1 Jun 2023 18:36:21 -0400
+        bh=JLMWgNQOTz82htRsD1kWp1htz62A9sUzlo/NFjpjjWs=;
+        b=IesNPgwE98szbY2WcLHOsaQZKVpMPxDuac+TAkQ/ETikmu+TEX7r92fTXOsJGJJz6K
+         7tnhE1mJLlpcDXxLA5h4AkDHATdYHmGbDR2qldwloMf5DfB7uiqTwRMPU6VK5gVA8iX+
+         crydwgEeQZDb6qBFcu5hxLO9GHFM8UDvN4TQJbcM3xZhyz4bX9oCX4SD76EbjOi8zzuG
+         5dfIhV1AOZxnKnIAr3Ap2QxBBmWfw993zXC+4Yy5buTe95sS4jLLHb4wdxgGE+RlhifO
+         clF6RkyEZWbWWRP2rZ0akq0oYBnU7o608fnz8bLVh9eM2Ckc3OCm/c+104OqLml+9qo8
+         aP4w==
+X-Gm-Message-State: AC+VfDyZM3fbYF8yuoR3plW2LQFsrlv9ydBmuopwrmClmyw1dM3rQLT0
+	0UfTlS/4213eigdXVXcRsq5gZE60f8vyo8DBKMWflYFMHH0=
+X-Google-Smtp-Source: ACHHUZ7oQhtrNr07VsNslrtAyUb898VmsWTAlmPCtRIULOQDxgaJD5f7vNTC1UlzYi2uwPSh1KqZ1Bm5A1Eod31OMrw=
+X-Received: by 2002:a2e:3a14:0:b0:2a8:c01a:71b6 with SMTP id
+ h20-20020a2e3a14000000b002a8c01a71b6mr1031771lja.3.1685687841437; Thu, 01 Jun
+ 2023 23:37:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
 References: <SJ0PR09MB9126585283051825C55DFA30EC499@SJ0PR09MB9126.namprd09.prod.outlook.com>
- <34f133e4-3eab-0cc4-a5ba-e579fbfaf3c9@febo.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <34f133e4-3eab-0cc4-a5ba-e579fbfaf3c9@febo.com>
-Message-ID-Hash: H5QGB2RN6E57V4URQRYFE5VJ7U6QL5UZ
-X-Message-ID-Hash: H5QGB2RN6E57V4URQRYFE5VJ7U6QL5UZ
-X-MailFrom: patchvonbraun@gmail.com
+ <34f133e4-3eab-0cc4-a5ba-e579fbfaf3c9@febo.com> <eb77fd10-41be-c80c-79cf-41ea8b4db269@gmail.com>
+In-Reply-To: <eb77fd10-41be-c80c-79cf-41ea8b4db269@gmail.com>
+From: Anders Wallin <anders.e.e.wallin@gmail.com>
+Date: Fri, 2 Jun 2023 09:37:10 +0300
+Message-ID: <CAPnVNRV_Sfd37XJVaHjX6pKpAZO3Skn0vH1faqC7d1AqJ=9uyQ@mail.gmail.com>
+To: usrp-users@lists.ettus.com
+Message-ID-Hash: HDD2BD34JE4E2STGCDRDDEHCTANYBTXJ
+X-Message-ID-Hash: HDD2BD34JE4E2STGCDRDDEHCTANYBTXJ
+X-MailFrom: anders.e.e.wallin@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
 Subject: [USRP-users] Re: octoclock specs
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/H5QGB2RN6E57V4URQRYFE5VJ7U6QL5UZ/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/HDD2BD34JE4E2STGCDRDDEHCTANYBTXJ/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0797385505286204655=="
 
-T24gMDEvMDYvMjAyMyAxNTo1NiwgSm9obiBBY2tlcm1hbm4gTjhVUiB3cm90ZToNCj4gSGkgLS0N
-Cj4NCj4gVGhlcmUncyBzb21lIGZhaXJseSBvbGQgZGF0YSBhYm91dCB0aGUgT2N0b2Nsb2NrIGhl
-cmU6DQo+IGh0dHA6Ly93d3cuYW5kZXJzd2FsbGluLm5ldC8yMDE2LzA5L2V0dHVzLW9jdG9jbG9j
-ay1kaXN0cmlidXRpb24tYW1wbGlmaWVyLyANCj4NCjIwMHBzIG9mIHRpbWluZyBkaXNwZXJzaW9u
-IGFtb25nIGRpZmZlcmVudCBnYXRlcyBpc24ndCB0aGF0IHdlaXJkLCB3aGVuIA0KdGhlIHN3aXRj
-aGluZyB0aW1lIGNhbiB0YWtlIHVwIHRvDQogwqAgMTVuc2VjIG9uIHRoZSBub24tJ0YnIHZhcmlh
-bnRzIG9mIHRoZSA3NDA0LsKgIEkgZG9uJ3Qga25vdyB3aGljaCBvZiANCm1hbnkgdmFyaWFudHMg
-b2YgdGhlIDc0MDQgd2VyZSB1c2VkIG9uDQogwqAgdGhlIE9jdG9jbG9jay7CoCBCdXQgaWYgdGhl
-eSdyZSBnYXJkZW4gdmFyaWV0ecKgIEhDIG9yIExTIG9yIHNvbWV0aGluZywgDQp0aGUgc3dpdGNo
-aW5nIHRpbWUgZGlzcGVyc2lvbiBvbiB0aGUNCiDCoCAxUFBTIG1heSBiZSBmYWlybHkgaGlnaC4N
-Cg0KDQoNCg0KPg0KPiBJbiB0aGUgc2hhbWVsZXNzIHBsdWcgZGVwYXJ0bWVudCwgdGhlIFRBREQt
-MSBkaXN0cmlidXRpb24gYW1wbGlmaWVyIA0KPiBmcm9tIFRBUFI6DQo+IGh0dHBzOi8vdGFwci5v
-cmcvcHJvZHVjdC90YWRkLTEtcmYtZGlzdHJpYnV0aW9uLWFtcGxpZmllci8NCj4NCj4gaGFzIHZl
-cnkgZ29vZCBhZGRpdGl2ZSBub2lzZSwgYW5kIGlzIGluZXhwZW5zaXZlLsKgIEl0IGhhcyBzaXgg
-Y2hhbm5lbHMgDQo+IGJ1dCB0d28gb3IgbW9yZSBib2FyZHMgY2FuIGJlIHN0YWNrZWQgYW5kIGRy
-aXZlbiBmcm9tIGEgY29tbW9uIGlucHV0LiANCj4gVGhlIGRvd25zaWRlIGlzIHRoYXQgaXQncyBh
-IGtpdCAodGhyb3VnaC1ob2xlIHBhcnRzKS4NCj4NCj4gSSBjb21wYXJlZCB0aGUgYWRkaXRpdmUg
-cGhhc2Ugbm9pc2Ugb2Ygc2V2ZXJhbCBkaXN0cmlidXRpb24gYW1wcyBoZXJlOg0KPiBodHRwczov
-L3d3dy5mZWJvLmNvbS9wYWdlcy9hbXBsaWZpZXJfcGhhc2Vfbm9pc2UvDQo+DQo+ICh0aGF0IGRh
-dGEgaXMgYWxzbyBmYWlybHkgb2xkOyBjdXJyZW50bHktc2hpcHBlZCBUQURELTFzIHVzZSBhIG5l
-d2VyIA0KPiBhbXBsaWZpZXIgY2hpcCB0aGF0IHNlZW1zIHRvIGhhdmUgYSBjb3VwbGUgb2YgZEIg
-YmV0dGVyIHBlcmZvcm1hbmNlKS4NCj4NCj4gQmVzdCwNCj4gSm9obg0KPiAtLS0tDQo+DQo+IE9u
-IDYvMS8yMyAxNToxNiwgRXVnZW5lIEdyYXl2ZXIgd3JvdGU6DQo+PiBIZWxsbywNCj4+DQo+PiBJ
-IGFtIGJ1aWxkaW5nIGEgaGlnaC1lbmQgdGVzdGJlZCBhbmQgdHJ5aW5nIHRvIGRlY2lkZSBvbiBh
-IDEwIE1IeiANCj4+IGRpc3RyaWJ1dGlvbiBvcHRpb24uwqAgSSd2ZSB1c2VkIG9jdG9jbG9jayBm
-b3Igb3RoZXIgc3lzdGVtcyBhbmQgaXQgDQo+PiAnd29ya3MuJ8KgIEhvd2V2ZXIgdGhlIGRhdGFz
-aGVldCBpcyBwcmV0dHkgc3BhcnNlLsKgIERvZXMgYW55b25lIGhhdmUgDQo+PiBkZXRhaWxlZCBz
-cGVjcyAodGhhdCB5b3UgbWVhc3VyZWQgb3IgZnJvbSBFdHR1cykuwqAgSSBhbSBpbnRlcmVzdGVk
-IGluIA0KPj4gdGhlIG5vbi1HUFNETyB2ZXJzaW9uIHNpbmNlIG15IDEwIE1IeiBjb21lcyBmcm9t
-IG91dHNpZGUgdGhlIHN5c3RlbQ0KPj4NCj4+IMKgICogcG9ydC10by1wb3J0IGRlbGF5IHZhcmlh
-dGlvbg0KPj4gwqAgKiBwaGFzZSBub2lzZSBpbmNyZWFzZSBpZiBhbnkgKGFzc3VtaW5nIGV4dGVy
-bmFsIHNvdXJjZSkNCj4+DQo+PiBNeSBvdGhlciBvcHRpb24gaXMgDQo+PiBodHRwczovL2VuZHJ1
-bnRlY2hub2xvZ2llcy5jb20vcHJvZHVjdHMvZGlzdHJpYnV0aW9uLzEwLU1Iei1sb3ctcGhhc2Ut
-bm9pc2UgDQo+PiA8aHR0cHM6Ly9lbmRydW50ZWNobm9sb2dpZXMuY29tL3Byb2R1Y3RzL2Rpc3Ry
-aWJ1dGlvbi8xMC1NSHotbG93LXBoYXNlLW5vaXNlPiwgDQo+PiB3aGljaCBpcyBhYm91dCA1eCBt
-b3JlIGV4cGVuc2l2ZS4NCj4+DQo+PiBUaGFua3MuDQo+Pg0KPj4gX19fX19fX19fX19fX19fX19f
-X19fX19fDQo+Pg0KPj4gRXVnZW5lIEdyYXl2ZXIsIFBoLkQuDQo+PiBBZXJvc3BhY2UgQ29ycC4s
-IFByaW5jaXBhbCBFbmdpbmVlcg0KPj4gVGVsOiAzMTAuMzM2LjEyNzQNCj4+IF9fX19fX19fX19f
-X19fX19fX19fX19fXw0KPj4NCj4+DQo+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXw0KPj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNycC11c2Vy
-c0BsaXN0cy5ldHR1cy5jb20NCj4+IFRvIHVuc3Vic2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNy
-cC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20NCj4gX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18NCj4gVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20NCj4gVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0
-byB1c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQ0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18KVVNSUC11c2VycyBtYWlsaW5nIGxpc3QgLS0gdXNy
-cC11c2Vyc0BsaXN0cy5ldHR1cy5jb20KVG8gdW5zdWJzY3JpYmUgc2VuZCBhbiBlbWFpbCB0byB1
-c3JwLXVzZXJzLWxlYXZlQGxpc3RzLmV0dHVzLmNvbQo=
+--===============0797385505286204655==
+Content-Type: multipart/alternative; boundary="000000000000fdbacb05fd1fc811"
+
+--000000000000fdbacb05fd1fc811
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+my open-hardware design for frequency and pulse distribution is on ohwr:
+https://ohwr.org/project/pda-8ch-fda-8ch/wikis/home
+The PPS distribution uses IDT (now named something else?) 5PB1108 logic
+buffers with 7-800 ps rise-time. AFAIK the only way to match outputs is to
+use trimmer-caps before the last output-stage and tune each output while
+measuring with a time interval counter. Depending on your counter and
+patience you get within 10-20 ps quite quickly.
+
++1 to endrun for publishing a phase-noise spec on their website - most
+others don't do that.
+A possible improvement for the ohwr frequency-distribution board would be
+to use many LMH6702 (or similar) in parallel for each channel - but I
+haven't had time (or a project that needs the performance) to test.
+
+the results posted for the ARTIQ clocker board look good
+https://github.com/sinara-hw/Clocker/wiki  and
+https://github.com/sinara-hw/Clocker/issues/4   (I haven't verified them)
+
+Anders
+
+
+On Fri, Jun 2, 2023 at 1:37=E2=80=AFAM Marcus D. Leech <patchvonbraun@gmail=
+.com>
+wrote:
+
+> On 01/06/2023 15:56, John Ackermann N8UR wrote:
+> > Hi --
+> >
+> > There's some fairly old data about the Octoclock here:
+> >
+> http://www.anderswallin.net/2016/09/ettus-octoclock-distribution-amplifie=
+r/
+> >
+> 200ps of timing dispersion among different gates isn't that weird, when
+> the switching time can take up to
+>    15nsec on the non-'F' variants of the 7404.  I don't know which of
+> many variants of the 7404 were used on
+>    the Octoclock.  But if they're garden variety  HC or LS or something,
+> the switching time dispersion on the
+>    1PPS may be fairly high.
+>
+>
+>
+>
+> >
+> > In the shameless plug department, the TADD-1 distribution amplifier
+> > from TAPR:
+> > https://tapr.org/product/tadd-1-rf-distribution-amplifier/
+> >
+> > has very good additive noise, and is inexpensive.  It has six channels
+> > but two or more boards can be stacked and driven from a common input.
+> > The downside is that it's a kit (through-hole parts).
+> >
+> > I compared the additive phase noise of several distribution amps here:
+> > https://www.febo.com/pages/amplifier_phase_noise/
+> >
+> > (that data is also fairly old; currently-shipped TADD-1s use a newer
+> > amplifier chip that seems to have a couple of dB better performance).
+> >
+> > Best,
+> > John
+> > ----
+> >
+> > On 6/1/23 15:16, Eugene Grayver wrote:
+> >> Hello,
+> >>
+> >> I am building a high-end testbed and trying to decide on a 10 MHz
+> >> distribution option.  I've used octoclock for other systems and it
+> >> 'works.'  However the datasheet is pretty sparse.  Does anyone have
+> >> detailed specs (that you measured or from Ettus).  I am interested in
+> >> the non-GPSDO version since my 10 MHz comes from outside the system
+> >>
+> >>   * port-to-port delay variation
+> >>   * phase noise increase if any (assuming external source)
+> >>
+> >> My other option is
+> >>
+> https://endruntechnologies.com/products/distribution/10-MHz-low-phase-noi=
+se
+> >> <
+> https://endruntechnologies.com/products/distribution/10-MHz-low-phase-noi=
+se>,
+>
+> >> which is about 5x more expensive.
+> >>
+> >> Thanks.
+> >>
+> >> ________________________
+> >>
+> >> Eugene Grayver, Ph.D.
+> >> Aerospace Corp., Principal Engineer
+> >> Tel: 310.336.1274
+> >> ________________________
+> >>
+> >>
+> >> _______________________________________________
+> >> USRP-users mailing list -- usrp-users@lists.ettus.com
+> >> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+>
+
+--000000000000fdbacb05fd1fc811
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">my open-hardware design for frequency and pulse distributi=
+on is on ohwr:=C2=A0<a href=3D"https://ohwr.org/project/pda-8ch-fda-8ch/wik=
+is/home">https://ohwr.org/project/pda-8ch-fda-8ch/wikis/home</a><div>The PP=
+S distribution uses IDT (now named something else?) 5PB1108 logic buffers w=
+ith 7-800 ps rise-time. AFAIK the only way to match outputs is to use trimm=
+er-caps before the last output-stage and tune each output while measuring w=
+ith a time interval counter. Depending on your counter and patience you get=
+ within 10-20 ps quite quickly.</div><div><br></div><div>+1 to endrun for p=
+ublishing a phase-noise spec on their website - most others don&#39;t do th=
+at.<br></div><div>A=C2=A0possible improvement for the ohwr frequency-distri=
+bution board would be to use many LMH6702 (or similar) in parallel for each=
+ channel - but I haven&#39;t had time (or a project that needs the performa=
+nce) to test.</div><div><br></div><div>the results posted for the ARTIQ clo=
+cker board look good=C2=A0<a href=3D"https://github.com/sinara-hw/Clocker/w=
+iki">https://github.com/sinara-hw/Clocker/wiki</a>=C2=A0 and <a href=3D"htt=
+ps://github.com/sinara-hw/Clocker/issues/4">https://github.com/sinara-hw/Cl=
+ocker/issues/4</a>=C2=A0 =C2=A0(I haven&#39;t verified them)</div><div><br>=
+</div><div>Anders</div><div><br></div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 2, 2023 at 1:37=E2=80=AFA=
+M Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@gmail.com">patchvonbr=
+aun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">On 01/06/2023 15:56, John Ackermann N8UR wrote:<br>
+&gt; Hi --<br>
+&gt;<br>
+&gt; There&#39;s some fairly old data about the Octoclock here:<br>
+&gt; <a href=3D"http://www.anderswallin.net/2016/09/ettus-octoclock-distrib=
+ution-amplifier/" rel=3D"noreferrer" target=3D"_blank">http://www.anderswal=
+lin.net/2016/09/ettus-octoclock-distribution-amplifier/</a> <br>
+&gt;<br>
+200ps of timing dispersion among different gates isn&#39;t that weird, when=
+ <br>
+the switching time can take up to<br>
+=C2=A0=C2=A0 15nsec on the non-&#39;F&#39; variants of the 7404.=C2=A0 I do=
+n&#39;t know which of <br>
+many variants of the 7404 were used on<br>
+=C2=A0=C2=A0 the Octoclock.=C2=A0 But if they&#39;re garden variety=C2=A0 H=
+C or LS or something, <br>
+the switching time dispersion on the<br>
+=C2=A0=C2=A0 1PPS may be fairly high.<br>
+<br>
+<br>
+<br>
+<br>
+&gt;<br>
+&gt; In the shameless plug department, the TADD-1 distribution amplifier <b=
+r>
+&gt; from TAPR:<br>
+&gt; <a href=3D"https://tapr.org/product/tadd-1-rf-distribution-amplifier/"=
+ rel=3D"noreferrer" target=3D"_blank">https://tapr.org/product/tadd-1-rf-di=
+stribution-amplifier/</a><br>
+&gt;<br>
+&gt; has very good additive noise, and is inexpensive.=C2=A0 It has six cha=
+nnels <br>
+&gt; but two or more boards can be stacked and driven from a common input. =
+<br>
+&gt; The downside is that it&#39;s a kit (through-hole parts).<br>
+&gt;<br>
+&gt; I compared the additive phase noise of several distribution amps here:=
+<br>
+&gt; <a href=3D"https://www.febo.com/pages/amplifier_phase_noise/" rel=3D"n=
+oreferrer" target=3D"_blank">https://www.febo.com/pages/amplifier_phase_noi=
+se/</a><br>
+&gt;<br>
+&gt; (that data is also fairly old; currently-shipped TADD-1s use a newer <=
+br>
+&gt; amplifier chip that seems to have a couple of dB better performance).<=
+br>
+&gt;<br>
+&gt; Best,<br>
+&gt; John<br>
+&gt; ----<br>
+&gt;<br>
+&gt; On 6/1/23 15:16, Eugene Grayver wrote:<br>
+&gt;&gt; Hello,<br>
+&gt;&gt;<br>
+&gt;&gt; I am building a high-end testbed and trying to decide on a 10 MHz =
+<br>
+&gt;&gt; distribution option.=C2=A0 I&#39;ve used octoclock for other syste=
+ms and it <br>
+&gt;&gt; &#39;works.&#39;=C2=A0 However the datasheet is pretty sparse.=C2=
+=A0 Does anyone have <br>
+&gt;&gt; detailed specs (that you measured or from Ettus).=C2=A0 I am inter=
+ested in <br>
+&gt;&gt; the non-GPSDO version since my 10 MHz comes from outside the syste=
+m<br>
+&gt;&gt;<br>
+&gt;&gt; =C2=A0 * port-to-port delay variation<br>
+&gt;&gt; =C2=A0 * phase noise increase if any (assuming external source)<br=
+>
+&gt;&gt;<br>
+&gt;&gt; My other option is <br>
+&gt;&gt; <a href=3D"https://endruntechnologies.com/products/distribution/10=
+-MHz-low-phase-noise" rel=3D"noreferrer" target=3D"_blank">https://endrunte=
+chnologies.com/products/distribution/10-MHz-low-phase-noise</a> <br>
+&gt;&gt; &lt;<a href=3D"https://endruntechnologies.com/products/distributio=
+n/10-MHz-low-phase-noise" rel=3D"noreferrer" target=3D"_blank">https://endr=
+untechnologies.com/products/distribution/10-MHz-low-phase-noise</a>&gt;, <b=
+r>
+&gt;&gt; which is about 5x more expensive.<br>
+&gt;&gt;<br>
+&gt;&gt; Thanks.<br>
+&gt;&gt;<br>
+&gt;&gt; ________________________<br>
+&gt;&gt;<br>
+&gt;&gt; Eugene Grayver, Ph.D.<br>
+&gt;&gt; Aerospace Corp., Principal Engineer<br>
+&gt;&gt; Tel: 310.336.1274<br>
+&gt;&gt; ________________________<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettu=
+s.com" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt;&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave=
+@lists.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br=
+>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
+
+--000000000000fdbacb05fd1fc811--
+
+--===============0797385505286204655==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0797385505286204655==--
