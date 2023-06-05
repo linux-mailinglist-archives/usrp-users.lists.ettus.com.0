@@ -2,136 +2,120 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAF57721AF2
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Jun 2023 00:58:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5883772310F
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Jun 2023 22:20:20 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id EB8923837DE
-	for <lists+usrp-users@lfdr.de>; Sun,  4 Jun 2023 18:58:27 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 18B2E384290
+	for <lists+usrp-users@lfdr.de>; Mon,  5 Jun 2023 16:20:19 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1685919507; bh=TBRq5VYiFM+ZmA68LJvqU0+FOcLhKqfouFhaHjMSrIw=;
-	h=To:Date:From:In-Reply-To:References:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=fJ4rZCcFtwQyRhEdmXm2rA5sNhor4cnONc+2zV4UvSDiMDwOhgZGa1rGNL/t7Ao/t
-	 xcXofM7bg/80YwtZj6LQUawN3EtrRcDYZU6yhdDNOAHoyqchmTCnje8KUsLt34Ooj3
-	 fzV/Te5qQUl6gHeflXnuNXUtGi19AoHE/sMjTwyd9QpjjRLE651M+LdZSQmCpYRzRE
-	 THqqXJ8VVgJ2xbuqp4boZqi7lV8AfN6u04xIPHbKd2RHnCpGjU0aywr9Ir9ot7/MRQ
-	 WSBn6dCyT48xN6g1n5OagNLU1ZSkN6AQ2EEL7jRwIiMJgniOSU6ioAKP9uXcr38KIa
-	 Q8WfKChxSxOwA==
-Received: from common3.relix.de (common3.relix.de [176.9.241.120])
-	by mm2.emwd.com (Postfix) with ESMTPS id 354D738109A
-	for <usrp-users@lists.ettus.com>; Sun,  4 Jun 2023 18:57:33 -0400 (EDT)
-Received: by common3.relix.de (Postfix, from userid 33)
-	id BA2D576012B; Sun,  4 Jun 2023 22:57:31 +0000 (UTC)
-To: "USRP-users@lists.ettus.com" <usrp-users@lists.ettus.com>, discuss-gnuradio@gnu.org, "debian-hams" <debian-hams@lists.debian.org>, "sdr" <sdr@lists.darc.de>, tangerinesdr@lists.tapr.org, dist_c@lists.darc.de
+	t=1685996419; bh=iMA00PmUei0lBBL5Q8LnD9pFCKf7NZBqfvVL3WOLWEc=;
+	h=Date:To:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From:Reply-To:From;
+	b=prUIRxdxM/sLX+qT/ixwKU9jOfEcxDLDNhuUec8dHuwSEB2Twrr5/UwZmCIShvWu/
+	 ovbX5brF90jEUF6133LQnJG7xtVMIjuwQer+NmccYkR8NmRJ8HeXnwM+HtRs5PBbIe
+	 WuHKGzZb2IBcGTV0GI0+alNCweHKP5ZtPgb/Wf9wC58HjXQ+n9GiXPd8C2TTGUs/8U
+	 cLOyBfeexUoksGU8i4GMjQPgH69ilhSGrlYS5wm6ScQ2rKuuGcqyPiD7E3KCyxikmd
+	 a0KMAk8MsYKdNRzXGvDqqk1tl4BDMcczB+2Xp5OeDuI9q/ecRrKdWQbvFjpX4j+4qe
+	 lWIXTxv4Sc1dQ==
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	by mm2.emwd.com (Postfix) with ESMTPS id BF4823810D5
+	for <usrp-users@lists.ettus.com>; Mon,  5 Jun 2023 16:19:51 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=mail-pucv-cl.20221208.gappssmtp.com header.i=@mail-pucv-cl.20221208.gappssmtp.com header.b="jq4vAJXU";
+	dkim-atps=neutral
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-4f60a27c4a2so6234798e87.2
+        for <usrp-users@lists.ettus.com>; Mon, 05 Jun 2023 13:19:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mail-pucv-cl.20221208.gappssmtp.com; s=20221208; t=1685996390; x=1688588390;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=c9XoTE3wIff4/Xroj8UawU1Et05b2SWd7fw4Zx0qnf8=;
+        b=jq4vAJXU8zXBRDZDXEdqQcEo58qUaQxakhojRmogh1NY4o2J/gY9lUXJNtYlGagMm9
+         tUwsaFLsSnf0ujH0EW5fWIDVCKq7Mtz6BfsGH/WxBnAqI0/+1m9itXaaIRgV9EVJZt4c
+         iyXz7VmYnlTK7lkYsa7PcyGMKZVW6yvA17alB5Sv8njOa35lA0wfmgpH5VH/ccmcn2RN
+         P247Geb7GKOU3Rwg1YQBEAJ5npdtoBDXRPjGuDXCMQOiTAK9CAOFltAeNiJpj7HbHCKE
+         Uc5rEy8fCi3jZMQXx8COZPd5P5ea3L2/m0Zo59suaPC8hWFpD43SnERfPfIVsZlFwSJQ
+         qglA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1685996390; x=1688588390;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c9XoTE3wIff4/Xroj8UawU1Et05b2SWd7fw4Zx0qnf8=;
+        b=N6rIpHZDGfq1+Kl/1hhgVzI5xSqSgo24Uj7olyKFPlg3Wb+93TBfW8dtndKih47jeW
+         MZ3qkkYb3ofotwOcQyMJ4DUqdSpMtCH4bjGovBcnro+nbr9vSMoQnJs7GCnU/W+pavgR
+         i5CinfBUcOdUud+3fQraGC4gCB7nchspls0/+iNyzKV8qiyDxfwquDo2bBuboYbWa5Db
+         I/FDPqFeOizjCXy7mjEdGX2M0f0UdBRbLNp2gSmHKjDBHfYssBsbPkD0CU+RYlpEd+GA
+         o2R9R8DATZLIcS4Cz3oMB7ptPIf5qyeubxddMTZcrgxLr3v/MWo5MMsqkmJrDg1NEo/1
+         Tu+A==
+X-Gm-Message-State: AC+VfDwI7rZYqVjvzkRNpZMebTFaGtH7cFD3Se+2dzfjRgknEQTx56y0
+	FvRaprm0GP9byHvHMqyQNDDyef8tye0zadh/BBfMHjhtiyyOqyYNdQ==
+X-Google-Smtp-Source: ACHHUZ5ikl4bpEMzT+DPRvnKiadRr4YI7d96I6uN6bEuF5W2YZFfF3xYVBvx2nRGYIaP1idEla0UUwOSJ9zPAJWDv7Q=
+X-Received: by 2002:ac2:44ae:0:b0:4f1:3d9f:1b4f with SMTP id
+ c14-20020ac244ae000000b004f13d9f1b4fmr10443lfm.49.1685996389970; Mon, 05 Jun
+ 2023 13:19:49 -0700 (PDT)
 MIME-Version: 1.0
-Date: Sun, 04 Jun 2023 22:57:31 +0000
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: RainLoop/1.13.0
-From: heller@relix.de
-Message-ID: <42468b37a1b2bd83a7e63c6267750b8c@relix.de>
-In-Reply-To: <64145fe141542be0003a4e2815798588@relix.de>
-References: <64145fe141542be0003a4e2815798588@relix.de>
-Message-ID-Hash: 2MMITUHYARMZZV5MJZ2CFTRFAVJWCDGT
-X-Message-ID-Hash: 2MMITUHYARMZZV5MJZ2CFTRFAVJWCDGT
-X-MailFrom: www-data@common3.relix.de
+Date: Mon, 5 Jun 2023 16:19:38 -0400
+Message-ID: <CAFFpLrGe-Dnc=bUJk6+ebzDf_SqziwoMXRQCSDeZGZ9kJ687ng@mail.gmail.com>
+To: usrp-users <usrp-users@lists.ettus.com>
+Message-ID-Hash: UEEVQYBTSIQVEKM25WNZT6UZLRGKGYRS
+X-Message-ID-Hash: UEEVQYBTSIQVEKM25WNZT6UZLRGKGYRS
+X-MailFrom: jorge.gonzalez.o@mail.pucv.cl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: Software Defined Radio Academy 2023
+Subject: [USRP-users] Segmentation fault in OFDM implementation on USRP E312
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/2MMITUHYARMZZV5MJZ2CFTRFAVJWCDGT/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/UEEVQYBTSIQVEKM25WNZT6UZLRGKGYRS/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Transfer-Encoding: base64
+From: JORGE GONZALEZ ORELLANA via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: JORGE GONZALEZ ORELLANA <jorge.gonzalez.o@mail.pucv.cl>
+Content-Type: multipart/mixed; boundary="===============3217456224692509236=="
 
-RGVhciByZWNpcGllbnRzLAoKcGxlYXNlIG5vdGUgdGhhdCB0aGUgcHJvZ3JhbW1lIGZvciB0aGlz
-IHllYXIncyBTb2Z0d2FyZSBEZWZpbmVkIFJhZGlvIEFjYWRlbXkgaXMgcmVhZHkuIAoKU2luY2Ug
-dGhlcmUgbWF5IHN0aWxsIGJlIHNtYWxsIHNoaWZ0cywgcGxlYXNlIGNvbnN1bHQgb3VyIHdlYnNp
-dGUgYXQKCmh0dHBzOi8vMjAyMy5zZHJhLmlvL3BhZ2VzL3Byb2dyYW1tZS5odG1sCgpUaGUgU0RS
-QS0yMDIzIHdpbGwgdGFrZSBwbGFjZSBvbiBTYXR1cmRheSBKdW5lIDI0LiBGb3IgdGhvc2Ugb2Yg
-eW91IHdobyB3YW50IHRvIHZpc2l0IHRoZSBldmVuIG9uLXNpdGUsIHdlIHdpbGwgYmUgaW4gdGhl
-IGhhbGwgQkVSTElOIGluIHRoZSBlYXN0ZXJuIHBhcnQgb2YgdGhlIE1lc3NlIEZyaWVkcmljaHNo
-YWZlbiBDb25mZXJlbmNlIENlbnRlci4gCgpQYXJ0aWNpcHRpb24gaXMgZnJlZSAoYWZ0ZXIgeW91
-IGhhdmUgcHVyY2hhc2VkIGEgdGlja2V0IGZvciB0aGUgSEFNUkFESU8gZmFpcikgYW5kIHlvdSBt
-YXkgYXR0ZW5kIGFsbCBvZiB0aGUgU0RSQSBidXQgYWxzbyBzZWxlY3RlZCB0YWxrcyBvbmx5IGlm
-IHlvdSBkZXNpcmUuIAoKRm9yIGV2ZXJ5Ym9keSBlbHNlLCB3ZSBhcmUgZ29pbmcgdG8gc3RyZWFt
-IHRoZSBlbnRpcmUgZXZlbnQgb24gb3VyIHdlYnNpdGU6CgpodHRwczovL3lvdXR1YmUuc2RyYS5p
-bwoKUGxlYXNlIG5vdGUgdGhhdCByZW1vdGUgYXVkaWVuY2UgbWF5IGFzayBxdWVzdGlvbnMgaW4g
-dGhlIFlvdVR1YmUgY2hhdCwgd2hpY2ggd2Ugd2lsbCBkaXJlY3QgdG8gdGhlIHNwZWFrZXJzIGFm
-dGVyIHRoZWlyIHRhbGtzLiAKCkxvb2tpbmcgZm9yd2FyZCB0byBzZWUgeW91IHRoZXJlIQoKQlIg
-LyB2eTczCk1hcmt1cyBIZWxsZXIKREw4UkRTCgo0LiBNw6RyeiAyMDIzIDIzOjIwLCBtaGVsbGVy
-QHJlbGl4LmRlIHNjaHJpZWI6Cgo+IENhbGwgRm9yIFBhcGVycwo+IC0tLS0tLS0tLS0tLS0tLQo+
-IAo+ICoqIGFwb2xvZ2llcyBmb3IgY3Jvc3MtcG9zdGluZyAqKgo+IAo+IENhbGwgZm9yIENvbnRy
-aWJ1dGlvbnM6IFNEUkEtMjAyMyBPbmxpbmUgYW5kIEZyaWVkcmljaHNoYWZlbgo+IEhBTVJBRElP
-IEZyaWVkcmljaHNoYWZlbiBTb2Z0d2FyZSBEZWZpbmVkIFJhZGlvIEFjYWRlbXkgMjAyMyAoU0RS
-QS0yMDIzKQo+IAo+IERhdGU6IEZyaWRheSAyMy4wNi4yMDIzLCBTYXR1cmRheSAyNC4wNi4yMDIz
-IChhbmQgU3VuZGF5IDI1LjA2LjIwMjMpCj4gCj4gQ29uZmVyZW5jZSBXZWJzaXRlczoKPiAKPiAq
-IGh0dHBzOi8vd3d3LmhhbXJhZGlvLWZyaWVkcmljaHNoYWZlbi5kZQo+ICogaHR0cHM6Ly8yMDIz
-LnNkcmEuaW8KPiAKPiBTRFJBLTIwMjMgaW52aXRlcyByYWRpbyBhbWF0ZXVycyBhbmQgcmVzZWFy
-Y2hlcnMgZnJvbSBhY2FkYWVtaWEgYW5kIGluZHVzdHJ5IHRvIHN1Ym1pdCBwYXBlcnMgZm9yCj4g
-b3JhbCBhbmQgcG9zdGVyIHByZXNlbnRhdGlvbnMgb24gcmVjZW50IHJlc2VhcmNoIHRoYXQgYWRk
-cmVzc2VzIHRoZW9yZXRpY2FsIGFzcGVjdHMsIGFsZ29yaXRobXMsCj4gYXBwbGljYXRpb25zLCBo
-YXJkd2FyZSBhbmQgc29mdHdhcmUgYXJjaGl0ZWN0dXJlcyBmb3IgYXBwbGllZCBTb2Z0d2FyZSBE
-ZWZpbmVkIFJhZGlvIHN5c3RlbXMgYW5kCj4gcmVzb3VyY2VzIGFuZCBvdGhlciBhc3BlY3RzIG9m
-IFNEUiwgYXMgd2VsbCBhcyBzdXJ2ZXkgYW5kIGRpc2N1c3Npb24gcGFwZXJzLiBUaGUgaW52aXRh
-dGlvbgo+IHBhcnRpY3VsYXJseSBhZGRyZXNzZXMgb3BlbiBzb3VyY2UgcmVzZWFyY2ggYW5kIHBy
-b2plY3RzLiBXZSBhbHNvIHBhcnRpY3VsYXJseSBpbnZpdGUgc3BlY2lhbGlzdHMKPiBnaXZpbmcg
-aW50cm9kdWN0b3J5IHRhbGtzIGFuZCB0dXRvcmlhbHMgb24gU0RSIHRlY2hub2xvZ2llcy4KPiAK
-PiBVbHJpY2ggTCBSb2hkZSBBd2FyZAo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tCj4gVGhlIFVscmlj
-aCBMIFJvaGRlIEF3YXJkIHdhcyBjcmVhdGVkIGluIDIwMjIgYW5kIHNoYWxsIGJlIGdyYW50ZWQg
-Zm9yIGlubm92YXRpdmUgcmVzZWFyY2ggaW4gdGhlCj4gZmllbGQgb2YgU29mdHdhcmUgRGVmaW5l
-ZCBSYWRpby4gSXQgaXMgYSBwYXBlciBhd2FyZCwgd2hpY2ggcmVxdWlyZXMgYSB3cml0dGVuIHN1
-Ym1pc3Npb24gYnkKPiBhcHBsaWNhbnRzLiBUaGVyZSBpcyBhIGZpcnN0LCBzZWNvbmQgYW5kIHRo
-aXJkIHBsYWNlIGJlaW5nIGF3YXJkZWQgd2l0aCB0aGUgYW1vdW50IG9mIDUwMCwgMzAwIGFuZAo+
-IDEwMCBFdXJvLgo+IAo+IEFsbCBzdWJtaXR0ZWQgcGFwZXJzIGFyZSBlbGlnaWJsZSBmb3IgdGhl
-IGF3YXJkLgo+IAo+IEF3YXJkIENvbW1pdHRlZToKPiAKPiAqIFByb2YuIERyLiBNaWNoYWVsIEhh
-cnRqZSwgSFMgQnJlbWVuLCBESzVISAo+ICogUHJvZi4gRHIuIE1pY2hhZWwgTmllbWV0eiwgT1RI
-IFJlZ2Vuc2J1cmcsIERHMlJBTQo+ICogUHJvZi4gRHIuIEhlcnbDqSBCb2VnbGVuLCBVbml2LiBQ
-b2l0aWVycywgRjRKRVQgKEV1cm9wZWFuIEdOVVJhZGlvIERheXMpCj4gKiBQcm9mLiBEci4gSmVh
-bi1NaWNoZWwgRnJpZWR0LCBGRU1UTy1TVCwgVW5pdi4gQmVzYW5jb24gKEV1cm9wZWFuIEdOVVJh
-ZGlvIERheXMpCj4gCj4gU0RSQSBUb3BpY3MKPiAtLS0tLS0tLS0tLQo+ICogQWR2YW5jZXMgaW4g
-R05VUmFkaW8gcmVsYXRlZCBwcm9qZWN0cyBhbmQgcmVzZWFyY2gKPiAqIEFsZ29yaXRobXMsIGFw
-cGxpY2F0aW9ucywgYXJjaGl0ZWN0dXJlcyBpbiBTRFIgc3lzdGVtcwo+ICogUmVhbCBUaW1lIHNp
-Z25hbCBwcm9jZXNzaW5nCj4gKiBJbm5vdmF0aXZlIGFwcGxpY2F0aW9ucyB1c2luZyBtb2Rlcm4g
-QURDL0RBQyBlbnZpcm9ubWVudHMKPiAKPiBTdWJtaXNzaW9uIEluZm9ybWF0aW9uCj4gLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLQo+IEhvdyB0byBzdWJtaXQ6IFBsZWFzZSBzZW5kIGFuIGFic3RyYWN0
-IG9mIGFwcHJveGltYXRlbHkgMjUwIHdvcmRzIHRvOgo+IAo+IHNkcmFAZGFyYy5kZQo+IAo+IFBs
-ZWFzZSBpbmNsdWRlIHRoZSBmb2xsb3dpbmcgaW5mb3JtYXRpb246Cj4gCj4gKiBQYXBlciB0aXRs
-ZQo+ICogQXV0aG9yJ3MgbmFtZSAoYW5kIGNhbGxzaWduKS4gTmFtZXMgYW5kIGNhbGxzaWducyBv
-ZiBhbGwgYXV0aG9ycyBpZiBtdWx0aXBsZSBhdXRob3JzLgo+ICogQXV0aG9yJ3MgYWZmaWxpYXRp
-b24KPiAqIENvdW50cnkKPiAqIEVtYWlsIGFkZHJlc3Mgb2YgdGhlIG1haW4gYXV0aG9yCj4gCj4g
-QWxsIGFjY2VwdGVkIHBhcGVycyB3aWxsIGJlIHB1Ymxpc2hlZC4gUHVibGljYXRpb24gZGV0YWls
-cyB3aWxsIGJlIGF2YWlsYWJsZSBhdCBhIGxhdGVyIHBvaW50IG9mCj4gdGltZS4KPiAKPiBXZSBh
-c2sgYXV0aG9ycyB0byBrZWVwIGEgbGltaXQgb2YgNiBwYWdlcy4gSWYgdGhlcmUgaXMgYSByZWFz
-b24gd2h5IHRoZSBwYXBlciBzaG91bGQgYmUgbG9uZ2VyLAo+IHBsZWFzZSBjb250YWN0IHVzLgo+
-IAo+IFdlIGFsc28gc29saWNpdCBQb3N0ZXJzIGFuZCBEZW1vIHBhcGVyczogUG9zdGVyL0RlbW8g
-cGFwZXJzIGRlc2NyaWJlIGEgc21hbGwgZm9jdXNlZCByZXN1bHQsIGEKPiBuZWdhdGl2ZSByZXN1
-bHQsIG9yIGEgbGF0ZS1icmVha2luZyByZXN1bHQsIG9yIGEgZGVzY3JpcHRpb24gb2YgYSBzeXN0
-ZW0gdGhhdCBjYW4gYmUgZGVtb25zdHJhdGVkCj4gb24tc2l0ZSBhdCB0aGUgY29uZmVyZW5jZS4K
-PiAKPiBQYXBlcnMgc2hvdWxkIGJlIGZvcm1hdHRlZCB1c2luZyB0aGUgSUVFRSBBNCB0ZW1wbGF0
-ZXM6Cj4gaHR0cHM6Ly93d3cuaWVlZS5vcmcvY29uZmVyZW5jZXNfZXZlbnRzL2NvbmZlcmVuY2Vz
-L3B1Ymxpc2hpbmcvdGVtcGxhdGVzLmh0bWwKPiAKPiBOb3RlIHRoYXQgYXBwbGljYXRpb25zIGZv
-ciB0aGUgVWxyaWNoIEwuIFJvaGRlIEF3YXJkIG11c3QgYmUgc3VibWl0dGVkIGluIGZvcm0gb2Yg
-YSB3cml0dGVuIHBhcGVyLgo+IAo+IE9yZ2FuaXphdGlvbgo+IC0tLS0tLS0tLS0tLQo+ICogUHJv
-Zi4gRHIuIE1pY2hhZWwgSGFydGplLCBESzVISAo+ICogTWFya3VzIEhlbGxlciwgTS5BLiwgREw4
-UkRTCj4gCj4gU2VuaW9yIFByb2dyYW1tZSBDb21taXR0ZWUKPiAtLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQo+ICogUHJvZi4gRHIuIE1pY2hhZWwgSGFydGplLCBIUyBCcmVtZW4sIERLNUhICj4g
-KiBQcm9mLiBEci4gTWljaGFlbCBOaWVtZXR6LCBPVEggUmVnZW5zYnVyZywgREcyUkFNCj4gKiBQ
-cm9mLiBEci4gTWljaGFlbCBNw6RjaHRlbCwgSFRXRyBLb25zdGFueiwgREwyU0JTCj4gCj4gSW1w
-b3J0YW50IERhdGVzOgo+IC0tLS0tLS0tLS0tLS0tLS0KPiBQbGVhc2Ugbm90ZSB0aGF0IHdlIHdl
-bGNvbWUgZWFybGllciByZWNvcmRpbmdzLiBUaGUgZWFybGllciB5b3UgY2FuIHN1Ym1pdCBhbmQg
-YXJyYW5nZSB0aGUKPiByZWNvcmRpbmcgd2l0aCBvdXIgdmlkZW8gdGVhbSwgdGhlIGJldHRlci4K
-PiAKPiAqIEFic3RyYWN0IFN1Ym1pc3Npb246IDMwLjA0LjIwMjMKPiAqIEFjY2VwdGFuY2UgTm90
-aWZpY2F0aW9uOiAxNS4wNS4yMDIzCj4gKiBQcmVzZW50YXRpb24gUmVjb3JkaW5nOiAxNS4wNS4y
-MDIzIC0gMTUuMDYuMjAyMwo+ICogUGxheU91dCBEYXRlIGFuZCBMaXZlIEV2ZW50OiAyMy8yNC8y
-NS4wNi4yMDIzCj4gCj4gQ29udGFjdAo+IC0tLS0tLS0KPiBGb3IgZW5xdWlyaWVzIGFuZCBwYXBl
-ciBzdWJtaXNzaW9uIGRldGFpbHMgcGxlYXNlIGRvIG5vdCBoZXNpdGF0ZSB0byBjb250YWN0IHVz
-Ogo+IAo+IEVtYWlsOiBzZHJhQGRhcmMuZGUgCj4gVGVsLjogKzQ5Ljg5LjQyMDk1NjMwNS0wDQpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwpVU1JQLXVzZXJz
-IG1haWxpbmcgbGlzdCAtLSB1c3JwLXVzZXJzQGxpc3RzLmV0dHVzLmNvbQpUbyB1bnN1YnNjcmli
-ZSBzZW5kIGFuIGVtYWlsIHRvIHVzcnAtdXNlcnMtbGVhdmVAbGlzdHMuZXR0dXMuY29tCg==
+--===============3217456224692509236==
+Content-Type: multipart/alternative; boundary="000000000000ead73b05fd679fd3"
+
+--000000000000ead73b05fd679fd3
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all, I have been trying to implement the OFDM blocks on a USRP E312, I
+am currently working on Ubuntu 20.04 with GRC 3.8 y UHD 4.3.
+
+When I try to run the python script generated from the GRC, a segmentation
+fault error appears on the E312, I tried to use the faulthandler module to
+see the root of this error, but i cannot get an idea of what could it be.
+
+I attached some screenshots, so you can see what I mean
+
+thanks for your time :)
+
+--000000000000ead73b05fd679fd3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi all, I have been trying to implement the OFDM bloc=
+ks on a USRP E312, I am currently working on Ubuntu 20.04 with GRC 3.8 y UH=
+D 4.3.</div><div><br></div><div>When I try to run the python script generat=
+ed from the GRC, a segmentation fault error appears on the E312, I tried to=
+ use the faulthandler module to see the root of this error, but i cannot ge=
+t an idea of what could it be.<br></div><div><br></div><div>I attached some=
+ screenshots, so you can see what I mean <br></div><div><br></div><div>than=
+ks for your time :)<br></div></div>
+
+--000000000000ead73b05fd679fd3--
+
+--===============3217456224692509236==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============3217456224692509236==--
