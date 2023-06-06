@@ -2,619 +2,510 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id C19AE7235E7
-	for <lists+usrp-users@lfdr.de>; Tue,  6 Jun 2023 05:52:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E3AC072457E
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jun 2023 16:15:44 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 61A6C381442
-	for <lists+usrp-users@lfdr.de>; Mon,  5 Jun 2023 23:52:17 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 9E03C381493
+	for <lists+usrp-users@lfdr.de>; Tue,  6 Jun 2023 10:15:43 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686023537; bh=WKLCrSKJHHLP3tklT7yxSJunjucO+/WbOkXseGppxzY=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	t=1686060943; bh=WT2CZfdTVIkIpGYloufGwAcVmYu4AKtsbMEjgu1CFeg=;
+	h=References:In-Reply-To:Date:Cc:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
 	 From:Reply-To:From;
-	b=NiW2f1OJpP61EECRmSf7yVIjf52fWCFNmZwi6+M/b9GjBI+SOxI1+6/n/PNleLAMI
-	 0cnM0JG5lm1GWHaPlpYtGp8s04i7vcjuFmiu+9Zr6aA2rFo3yqGrzsfKtIHgWO726l
-	 xMFbHwhhAW2OBWBNnNipYbZ/J+8h+7dBVC0UlWhUWK4nHEdhqtmmveT0wPACriCGuB
-	 Ceh8cr0jhNZLxbxAlJOPCjwhqSidMftBMk0jdw5i5eYO0tCqcSrSW36vCiy97Fz07N
-	 D96ftKG2BVDXO+YXkfptpvtI5FbfuYrOJ36nBny39FgUyRWbjVIG6VnK0qDElb8Nkb
-	 yrS8Qdmqqxnuw==
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	by mm2.emwd.com (Postfix) with ESMTPS id D5C573808E7
-	for <usrp-users@lists.ettus.com>; Mon,  5 Jun 2023 23:51:19 -0400 (EDT)
+	b=QPHqQ6S4xg5ldsgdxtIvcYOZSLtZjWFThHGlT1nenYrbZvOgpyZpL3gM2LL0lL6Yq
+	 nkfpZ0bAvFodabugghSqfSo/oMVgfgRlFyojGjFpKXoyZmoII8K3kg5lIS6wyxp+xP
+	 a6fwgU62RBtRCXUuOCOH9I7lWUlf/fbKVDoxmR9S+MmClNMgs+bQELuyRcZac40kcA
+	 /HhjUlDbSEUyRU4OM5WFQuYLjAHiJRG41NeM11YT08tnPU/CKtKMw+BI0KyQ6ZmXmM
+	 tFwhSJnSjPA2bB5modyK0nX+E04vauNkR/ovvKidy6n18Yj+5cw09IpD1nt0m1Y/FP
+	 zz2cikCYZglWw==
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	by mm2.emwd.com (Postfix) with ESMTPS id A6769380E3E
+	for <usrp-users@lists.ettus.com>; Tue,  6 Jun 2023 10:14:40 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="ZsuYF5DX";
+	dkim=pass (2048-bit key; unprotected) header.d=mail-pucv-cl.20221208.gappssmtp.com header.i=@mail-pucv-cl.20221208.gappssmtp.com header.b="k5ne1YUJ";
 	dkim-atps=neutral
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5147e40bbbbso7876002a12.3
-        for <usrp-users@lists.ettus.com>; Mon, 05 Jun 2023 20:51:19 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-30e412a852dso2124756f8f.0
+        for <usrp-users@lists.ettus.com>; Tue, 06 Jun 2023 07:14:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1686023478; x=1688615478;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ES4dAsQmtNFyq8LabUMRg6VGQ9ABu5LND6lgz7xK+eo=;
-        b=ZsuYF5DXqlJPukXbf65Pul8mel9FnVB89dQocjnw5Vj/nNcBnKnqNdBEw+7xcs4ZbK
-         S6optmYTU7nrfwMXtd7CrhaJppfkudft699X8k4fxZIjv/xJCU1daH52aoWsZP3wQ11Y
-         WCgcHaVO7+XsI8fvKlPu6g75xU6W5+YlebUyzh6NQ/MtnV0D4fr2/hfAbGHgRRRGZ+bS
-         yRl/DLTwAy3pfRC+E6Rmcr96kwoGd/jU2hJ+Dx6QPHpVqcrJ0vmnBo1V+Wq4olox0CSG
-         s9vTBJ/qj2/8WXWLBXhsbu/TENWCGJp+dgYbvwPImXPxUebJRgP7bjo5wz8b6OUDqMtD
-         QzOg==
+        d=mail-pucv-cl.20221208.gappssmtp.com; s=20221208; t=1686060879; x=1688652879;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u2z1GMdaKzq2A0vMnUXNWiK0P755sNCp6bwS8CWz6O0=;
+        b=k5ne1YUJsFRDq0P3t54KV27W4v5Zfo8D05YGJDjsoDqpwnQOZI8fmfRUZaX3VRBXl9
+         xnDCbJwbWDfPjXA8WyE4HGzVS7DXpmyTg7eLhLRzNZWSuZdrTYYQbfxGXVR0E+bPJGru
+         h0f5KSAv2p3nRj0vwkFnxdxPxOdLQeus5DLqmOaqFjeacj0lozV/yL649s0/0bOnAjpn
+         CZO4CaQyAiUwB0wT0EPLvrRavarGf+y3uFI0V9xjHY0SSXQ9nawr82sHfYnby8jDELxj
+         N8sLbM2kcKaeyk+g8uwGQZ/xybJLRwo9FOny2/a4YtTUI4bh88GLNnkunaVDenRbSvUJ
+         naYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686023478; x=1688615478;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ES4dAsQmtNFyq8LabUMRg6VGQ9ABu5LND6lgz7xK+eo=;
-        b=ZQWWvCV1qIM23qWZ88n6mZW+jioJvK2caMmnSHhwJC01hiqUduGZI0cELhrGrENq/Z
-         R6ucnzyiIqSmmRbNIxf/fpRB8j49Vc6q2nCQE5V77eMnnytz13t2Te1XQ6/Ug0t0MAAZ
-         sG8+TdNdPt7+0dS/DRSOaZN7H9WnzpNx7/1AvggPB+mnOcpntUvc9XnV4e9J9asLZwfF
-         t7vSazlIk3GXubJkpgGyd/UPa8BD3oMlnLCVtrIyfn1B7g3ebRoWRTkOgNgOzJtRB2pL
-         GuRL7UbyaNIxwIK2j1NOACDeXUt2sPOf/tmDVVfByqo6OvQVFhByn44ZsTtTuWB8R8Z8
-         /2Vg==
-X-Gm-Message-State: AC+VfDw0iD6V7iOy3q7uT1tk14mQ6L+SQWEJIbBDncK75rOQBIAov/dT
-	GIzGr0V+O7ROhOTRDt9Z1kYbs3oR0o0SJxupTg7uWW4MYxreCurI
-X-Google-Smtp-Source: ACHHUZ5XH4eqt6/u4Fdrrfy5MN2drkhydEmyctKCe4w522S6SDLjG1NBywAhypskcONKb6Lp8mnR/Ab/lfKbj7OrTyY=
-X-Received: by 2002:a17:907:1c20:b0:977:d020:53d6 with SMTP id
- nc32-20020a1709071c2000b00977d02053d6mr895144ejc.44.1686023478338; Mon, 05
- Jun 2023 20:51:18 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686060879; x=1688652879;
+        h=cc:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u2z1GMdaKzq2A0vMnUXNWiK0P755sNCp6bwS8CWz6O0=;
+        b=Ocb412qFVmVnGAqAbhcSqPXJydYj1UxIgCAgS8Yv+vUMq+9wZJ/V7EPEhVU8/0HcxS
+         whRVkjSsftRayBA1tZAJiZxQDP/j4rxVD2jbn13rniKAY25k3WdkzytQymg4xFtisB32
+         L1/kNS1HYMBkPF32hkKaxkuPzPs8DMLG951Alo9Tl90updXDWOWU/ACMgAbtqh9QQHHD
+         0yt4jT+YXB3B4y8SQSEiGt7w7/cgHUEz/dR/s44SZ7LfVOR94WoMA4STVjYVL0OTNrox
+         gysEVBtLqQ9ALBAJt20zQiHuVFJ3f4ntkG0maQcz9ViHCCHMo/BKchoaVawOuQXrLTgb
+         2LqA==
+X-Gm-Message-State: AC+VfDyyrnZk7b3SrEzVzS48ohz/Zgy0AoIZ4O1GQE+JCeat9CZHKPE6
+	bUzNlBlo+EP82T2dgmtALf9dda1XyLYJSHY8BVRZ7exvp3c9/rp9Bw==
+X-Google-Smtp-Source: ACHHUZ478QiFa3HAr5+g8Cz6WMazezacKSNm5/CaHj0N4fK1VM4+u7kfFUdl+9VzCZUT5iyUWFx3XgwsudqkhwRefCg=
+X-Received: by 2002:adf:dd46:0:b0:30a:e9cb:1a2e with SMTP id
+ u6-20020adfdd46000000b0030ae9cb1a2emr1739123wrm.65.1686060878747; Tue, 06 Jun
+ 2023 07:14:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAMhTvws54hP-vxo9FwLt9FncOgGsR-Ps+FAe4x9-mnJVy59C0Q@mail.gmail.com>
- <f51e48a3-9d30-2e07-e7e2-a30cc4bab1f9@gmail.com> <CAB__hTQgDtPFOMXqK7-gyAhnc_1Q7=Or9rw2bgBaqwe+_xTSbw@mail.gmail.com>
- <CAMhTvwvb+g+CP_yTedvAfObnjbmUUw+ZOC2J1m3xYbWh_HaC_g@mail.gmail.com>
- <CAB__hTSa6Gx54yshpFFGEdzmLoO48YTsAR8M0fTdkjqRkM2D3Q@mail.gmail.com> <CAMhTvwvk-15EvqX3T8ze-+FuLOU4jYxNtkK_K7AYa7OJkAwOAg@mail.gmail.com>
-In-Reply-To: <CAMhTvwvk-15EvqX3T8ze-+FuLOU4jYxNtkK_K7AYa7OJkAwOAg@mail.gmail.com>
-Date: Mon, 5 Jun 2023 23:51:07 -0400
-Message-ID: <CAB__hTRW5aPaRYhuC6sZm3G1hJkpip-qPghwKc02XKwghxzb9g@mail.gmail.com>
-To: Michael Toussaint <mtoussaint@chaosinc.com>
-Message-ID-Hash: 32DK3S4VC6LGELJARFHFJC4VWNFHI72T
-X-Message-ID-Hash: 32DK3S4VC6LGELJARFHFJC4VWNFHI72T
-X-MailFrom: rkossler@nd.edu
+References: <CAFFpLrGe-Dnc=bUJk6+ebzDf_SqziwoMXRQCSDeZGZ9kJ687ng@mail.gmail.com>
+ <c3e840ff-501f-85ba-f8e0-170308846f6f@ettus.com>
+In-Reply-To: <c3e840ff-501f-85ba-f8e0-170308846f6f@ettus.com>
+Date: Tue, 6 Jun 2023 10:14:27 -0400
+Message-ID: <CAFFpLrG-EfEdn6g65fMrzYtBQ5U0nFzjh-ZT21Od9RiD+P3VEA@mail.gmail.com>
+Cc: usrp-users@lists.ettus.com
+Message-ID-Hash: QNIZVMYUY4L4FGB7L7PZZZLOBKH33GGR
+X-Message-ID-Hash: QNIZVMYUY4L4FGB7L7PZZZLOBKH33GGR
+X-MailFrom: jorge.gonzalez.o@mail.pucv.cl
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: "Marcus D. Leech" <patchvonbraun@gmail.com>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: N321 LO Distribution
+Subject: [USRP-users] Re: Segmentation fault in OFDM implementation on USRP E312
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/32DK3S4VC6LGELJARFHFJC4VWNFHI72T/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/QNIZVMYUY4L4FGB7L7PZZZLOBKH33GGR/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============2730436703077212274=="
+From: JORGE GONZALEZ ORELLANA via USRP-users <usrp-users@lists.ettus.com>
+Reply-To: JORGE GONZALEZ ORELLANA <jorge.gonzalez.o@mail.pucv.cl>
+Content-Type: multipart/mixed; boundary="===============0047820993309561667=="
 
---===============2730436703077212274==
-Content-Type: multipart/alternative; boundary="00000000000082eb6205fd6deebb"
+--===============0047820993309561667==
+Content-Type: multipart/alternative; boundary="000000000000bf6f3805fd76a3b7"
 
---00000000000082eb6205fd6deebb
+--000000000000bf6f3805fd76a3b7
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Michael,
-Either a delay offset OR a phase offset will show itself as a relative
-phase.  In order to distinguish between a delay offset and a phase offset,
-your signal must have appreciable bandwidth.  It appears that your signal
-is CW.  It is entirely possible that your delay offset is zero.  Does this
-make sense?
-Rob
+Hi Marcus.
+My mistake, sorry
 
-On Mon, Jun 5, 2023 at 5:32=E2=80=AFPM Michael Toussaint <mtoussaint@chaosi=
-nc.com>
-wrote:
+This is the terminal output from the E312.
+---------------------------------------------------------------------------
+root@ni-e31x-32132F0:~# python3 ofdm_loopback.py
+[INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
+UHD_4.3.0.0-0-g1f8fd345
+[INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D32132F0,name=
+=3Dni-e31x-32132F0,fpga=3Dn/a,claimed=3DFalse
+[INFO] [MPM.main] Launching USRP/MPM, version: 4.3.0.0-g1f8fd345
+[INFO] [MPM.main] Spawning RPC process...
+[WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility check!
+[INFO] [MPM.PeriphManager] Device serial number: 32132F0
+[WARNING] [MPM.PeriphManager] Found more EEPROM paths than daughterboards.
+Ignoring some of them.
+[INFO] [MPM.RPCServer] RPC server ready!
+[INFO] [MPM.RPCServer] Spawning watchdog task...
+[INFO] [MPM.PeriphManager] init() called with device args
+`fpga=3Dn/a,mgmt_addr=3D127.0.0.1,name=3Dni-e31x-32132F0,product=3De310_sg3=
+'.
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
+[INFO] [0/Radio#0] CODEC loopback test passed
+[INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
+[INFO] [0/Radio#0] CODEC loopback test passed
+[WARNING] [MULTI_USRP] Calling multi_usrp::recv_async_msg() is deprecated
+and can lead to unexpected behaviour. Prefer calling
+tx_stream::recv_async_msg().
+[INFO] [MULTI_USRP]     1) catch time transition at pps edge
+[INFO] [MULTI_USRP]     2) set times next pps (synchronously)
+Press Enter to quit: Fatal Python error: Segmentation fault
 
-> Could you share how you're setting up LO sharing in your code, as well as
-> how you're setting the system clock on the N321?
+Thread 0xb6c09010 (most recent call first):
+  File "ofdm_loopback.py", line 132 in main
+  File "ofdm_loopback.py", line 140 in <module>
+Segmentation fault
+root@ni-e31x-32132F0:~#
+------------------------------------------------------------------------
+
+This is the python script generated from GRC
+------------------------------------------------------------------------
+
+   1. #!/usr/bin/env python3
+   2. # -*- coding: utf-8 -*-
+   3.
+   4. #
+   5. # SPDX-License-Identifier: GPL-3.0
+   6. #
+   7. # GNU Radio Python Flow Graph
+   8. # Title: OFDM Loopback Example
+   9. # Description: Transmit a pre-defined signal (a complex sine) as OFDM
+   packets.
+   10. # GNU Radio version: 3.8.1.0
+   11.
+   12. from gnuradio import blocks
+   13. from gnuradio import digital
+   14. from gnuradio import gr
+   15. from gnuradio.filter import firdes
+   16. import sys
+   17. import signal
+   18. from argparse import ArgumentParser
+   19. from gnuradio.eng_arg import eng_float, intx
+   20. from gnuradio import eng_notation
+   21. from gnuradio import uhd
+   22. import time
+   23. import faulthandler; faulthandler.enable()
+   24.
+   25. class ofdm_loopback(gr.top_block):
+   26.
+   27.     def __init__(self):
+   28.         gr.top_block.__init__(self, "OFDM Loopback Example")
+   29.
+   30.         ##################################################
+   31.         # Variables
+   32.         ##################################################
+   33.         self.samp_rate =3D samp_rate =3D 100e3
+   34.         self.packet_len =3D packet_len =3D 50
+   35.         self.len_tag_key =3D len_tag_key =3D "packet_len"
+   36.         self.frecuencia_central =3D frecuencia_central =3D 0
+   37.         self.fft_len =3D fft_len =3D 64
+   38.
+   39.         ##################################################
+   40.         # Blocks
+   41.         ##################################################
+   42.         self.uhd_usrp_sink_0 =3D uhd.usrp_sink(
+   43.             ",".join(("", "")),
+   44.             uhd.stream_args(
+   45.                 cpu_format=3D"fc32",
+   46.                 args=3D'',
+   47.                 channels=3Dlist(range(0,1)),
+   48.             ),
+   49.             '',
+   50.         )
+   51.         self.uhd_usrp_sink_0.set_center_freq(frecuencia_central, 0)
+   52.         self.uhd_usrp_sink_0.set_gain(10, 0)
+   53.         self.uhd_usrp_sink_0.set_antenna('TX/RX', 0)
+   54.         self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
+   55.         self.uhd_usrp_sink_0.set_time_unknown_pps(uhd.time_spec())
+   56.         self.digital_ofdm_tx_0 =3D digital.ofdm_tx(
+   57.             fft_len=3Dfft_len,
+   58.             cp_len=3Dfft_len//4,
+   59.             packet_length_tag_key=3Dlen_tag_key,
+   60.             occupied_carriers=3D((-4,-3,-2,-1,1,2,3,4),),
+   61.             pilot_carriers=3D((-6,-5,5,6),),
+   62.             pilot_symbols=3D((-1,1,-1,1),),
+   63.             sync_word1=3DNone,
+   64.             sync_word2=3DNone,
+   65.             bps_header=3D1,
+   66.             bps_payload=3D2,
+   67.             rolloff=3D0,
+   68.             debug_log=3DFalse,
+   69.             scramble_bits=3DFalse)
+   70.         self.blocks_vector_source_x_0 =3D
+   blocks.vector_source_b(range(packet_len), True, 1, ())
+   71.         self.blocks_stream_to_tagged_stream_0 =3D
+   blocks.stream_to_tagged_stream(gr.sizeof_char, 1, packet_len, len_tag_ke=
+y)
+   72.
+   73.
+   74.
+   75.         ##################################################
+   76.         # Connections
+   77.         ##################################################
+   78.         self.connect((self.blocks_stream_to_tagged_stream_0, 0),
+   (self.digital_ofdm_tx_0, 0))
+   79.         self.connect((self.blocks_vector_source_x_0, 0),
+   (self.blocks_stream_to_tagged_stream_0, 0))
+   80.         self.connect((self.digital_ofdm_tx_0, 0),
+   (self.uhd_usrp_sink_0, 0))
+   81.
+   82.     def get_samp_rate(self):
+   83.         return self.samp_rate
+   84.
+   85.     def set_samp_rate(self, samp_rate):
+   86.         self.samp_rate =3D samp_rate
+   87.         self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
+   88.
+   89.     def get_packet_len(self):
+   90.         return self.packet_len
+   91.
+   92.     def set_packet_len(self, packet_len):
+   93.         self.packet_len =3D packet_len
+   94.
+   self.blocks_stream_to_tagged_stream_0.set_packet_len(self.packet_len)
+   95.
+   self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.packet_len=
+)
+   96.
+   self.blocks_vector_source_x_0.set_data(range(self.packet_len), ())
+   97.
+   98.     def get_len_tag_key(self):
+   99.         return self.len_tag_key
+   100.
+   101.     def set_len_tag_key(self, len_tag_key):
+   102.         self.len_tag_key =3D len_tag_key
+   103.
+   104.     def get_frecuencia_central(self):
+   105.         return self.frecuencia_central
+   106.
+   107.     def set_frecuencia_central(self, frecuencia_central):
+   108.         self.frecuencia_central =3D frecuencia_central
+   109.
+   self.uhd_usrp_sink_0.set_center_freq(self.frecuencia_central, 0)
+   110.
+   111.     def get_fft_len(self):
+   112.         return self.fft_len
+   113.
+   114.     def set_fft_len(self, fft_len):
+   115.         self.fft_len =3D fft_len
+   116.
+   117.
+   118.
+   119. def main(top_block_cls=3Dofdm_loopback, options=3DNone):
+   120.     tb =3D top_block_cls()
+   121.
+   122.    def sig_handler(sig=3DNone, frame=3DNone):
+   123.         tb.stop()
+   124.         tb.wait()
+   125.         sys.exit(0)
+   126.
+   127.     signal.signal(signal.SIGINT, sig_handler)
+   128.     signal.signal(signal.SIGTERM, sig_handler)
+   129.
+   130.     tb.start()
+   131.     try:
+   132.         input('Press Enter to quit: ')
+   133.     except EOFError:
+   134.         pass
+   135.     tb.stop()
+   136.     tb.wait()
+   137. i
+   138.
+   139. f __name__ =3D=3D '__main__':
+   140.     main()
+
+
+El lun, 5 jun 2023 a las 17:33, Marcus M=C3=BCller (<marcus.mueller@ettus.c=
+om>)
+escribi=C3=B3:
+
+> HI Jorge,
 >
-> The functions "configure_channels" and "set_lo_hw_exports" are used to
-> set up the LO sharing.
+> you didn't attach screenshots, but that's OK: We would much rather have
+> you include
+> copy&pasted text. Images are always inferior when it comes to
+> understanding text messages.
 >
-> The functions "sync_sources" and "sync_all_devices" are used to set up
-> the system clock on the N321.
+> Best regards,
+> Marcus
 >
-> How do you measure the relative delay?
->
-> We are measuring the offset of the LO's by just measuring the phase
-> difference of the RF coming out of the Ettus with an Oscilloscope (pictur=
-e
-> attached as
-> Scope_Trace_SingleStream_LO.png
->
-> <https://mail.google.com/mail/u/0?ui=3D2&ik=3D34abf4583b&attid=3D0.1&perm=
-msgid=3Dmsg-a:r-1207093291428225864&view=3Datt&disp=3Dsafe&realattid=3Df_li=
-jcykt50>).
-> Yellow is Channel 1, Green is Channel 2; using a single streamer we still
-> appear to have a 2.64ns delta or ~135 degree phase shift.
->
-> Thanks Marcus and Rob for your assistance.
->
-> Michael Toussaint
->
-> def sync_sources(usrp):
->     logging.info('Setting Sync Sources')
->
->     usrp.set_sync_source(clock_source =3D 'gpsdo',
->                          time_source =3D 'gpsdo')
->
-> def sync_all_devices(hw_info):
->     logging.info('Syncing All Devices')
->
->     mb_with_gps_locked =3D -1
->
->     while 1:
->         time.sleep(1.0)
->
->         all_ref_locked =3D True
->
->         for board in range(hw_info.usrp.get_num_mboards()):
->             all_ref_locked =3D all_ref_locked and \
->                 hw_info.usrp.get_mboard_sensor('ref_locked',
->                                                board).to_bool()
->
->             if (mb_with_gps_locked =3D=3D -1) and \
->                 hw_info.usrp.get_mboard_sensor('gps_locked',
->                                                board).to_bool():
->                 mb_with_gps_locked =3D board
->
->         if all_ref_locked:
->             logging.info('All Devices are REF locked')
->             break
->
->     logging.info('GPS Locked on MB #%d', mb_with_gps_locked)
->
->     time.sleep(1.0)
->     hw_info.usrp.set_time_next_pps(
->         uhd.types.TimeSpec(
->         hw_info.usrp.get_mboard_sensor('gps_time',
->                                        mb_with_gps_locked).to_int() +
->                                        1.0)
->     )
->     time.sleep(1.0)
->
->
-> def configure_channels(usrp, rf_type, hw_info):
->     rf_channel_index =3D None
->     set_rf_rate =3D None
->     set_rf_freq =3D None
->     set_rf_gain =3D None
->     set_rf_lo_source =3D None
->     get_rf_lo_source =3D None
->     get_rf_lo_freq =3D None
->     get_rf_lo_freq_range =3D None
->
->     if (rf_type =3D=3D 'rx'):
->         if (len(hw_info.rx_channel_index) > 0):
->             rf_channel_index =3D hw_info.rx_channel_index
->             set_rf_rate =3D usrp.set_rx_rate
->             set_rf_freq =3D usrp.set_rx_freq
->             set_rf_gain =3D usrp.set_rx_gain
->             set_rf_lo_source =3D usrp.set_rx_lo_source
->             get_rf_lo_source =3D usrp.get_rx_lo_source
->             get_rf_lo_freq =3D usrp.get_rx_lo_freq
->             get_rf_lo_freq_range =3D usrp.get_rx_lo_freq_range
->         else:
->             return
->     elif (rf_type =3D=3D 'tx'):
->         if (len(hw_info.tx_channel_index) > 0):
->             rf_channel_index =3D hw_info.tx_channel_index
->             set_rf_rate =3D usrp.set_tx_rate
->             set_rf_freq =3D usrp.set_tx_freq
->             set_rf_gain =3D usrp.set_tx_gain
->             set_rf_lo_source =3D usrp.set_tx_lo_source
->             get_rf_lo_source =3D usrp.get_tx_lo_source
->             get_rf_lo_freq =3D usrp.get_tx_lo_freq
->             get_rf_lo_freq_range =3D usrp.get_tx_lo_freq_range
->         else:
->             return
->
->     logging.info('Configuring %s Channels', rf_type.upper())
->
->     for rf_ch_name, rf_ch_index in rf_channel_index.items():
->         logging.info('Configuring %s channel %s (channel #%d)',
->                      rf_type.upper(), rf_ch_name, rf_ch_index)
->
->         ch_def =3D hw_info.channel_def[rf_ch_name]
->
->         # LO Channel Setup
->         current_lo_name =3D 'unknown'
->         current_lo_src =3D 'unknown'
->
->         if ch_def.lo_inputs is not None:
->             logging.info('  Setting %s LO for Channel %s (#%d)',
->                          rf_type.upper(), rf_ch_name, rf_ch_index)
->
->             set_rf_lo_source(ch_def.lo_inputs.source,
->                              ch_def.lo_inputs.name,
->                              rf_ch_index)
->             current_lo_name =3D ch_def.lo_inputs.name
->
->             logging.info('    (#%d) Requested %s LO name %s, src %s',
->                          rf_ch_index,
->                          rf_type.upper(),
->                          ch_def.lo_inputs.name,
->                          ch_def.lo_inputs.source)
->         else:
->             logging.info('  No %s LO inputs for Channel %s (#%d)',
->                          rf_type.upper(), rf_ch_name, rf_ch_index)
->
->             current_lo_name =3D 'lo1'
->
->         current_lo_src =3D get_rf_lo_source(current_lo_name,
->                                           rf_ch_index)
->
->         logging.info('    (#%d) Current %s LO name %s, src %s',
->                      rf_ch_index,
->                      rf_type.upper(),
->                      current_lo_name,
->                      current_lo_src)
->
->         rf_lo_freq =3D get_rf_lo_freq(current_lo_name,
->                                     rf_ch_index)
->
->         logging.info('    (#%d) [%s] Current %s LO freq %d',
->                          rf_ch_index,
->                          current_lo_name,
->                          rf_type.upper(),
->                          rf_lo_freq)
->
->         rf_lo_freq_range =3D get_rf_lo_freq_range(
->             current_lo_name, rf_ch_index)
->
->         temp =3D '    (#%d) [%s] Current %s LO freq range' + \
->             ' [%d, %d] step %d'
->
->         logging.info(temp,
->                      rf_ch_index,
->                      current_lo_name,
->                      rf_type.upper(),
->                      rf_lo_freq_range.start(),
->                      rf_lo_freq_range.stop(),
->                      rf_lo_freq_range.step())
->
->         logging.info('  Setting Sampling Rate %s', hw_info.fs)
->         set_rf_rate(hw_info.fs, rf_ch_index)
->
->         logging.info('  Setting Center Freq %s', hw_info.fc)
->         tr =3D set_rf_freq(uhd.libpyuhd.types.tune_request(hw_info.fc),
->                          rf_ch_index)
->
->         logging.info('    (#%d) %s Tune Result:',
->                      rf_ch_index, rf_type.upper())
->         log_tune_result(tr)
->
->         logging.info('  Setting %s Gain: %2.3f db',
->                      rf_type.upper(),
->                      ch_def.gain)
->         set_rf_gain(ch_def.gain, rf_ch_index)
->
-> def set_lo_hw_exports(usrp, node_name, dirx, lo_enabled, output_array):
->     """Set LO HW Exports"""
->     if (lo_enabled is None) or (output_array is None):
->         return
->
->     logging.info('Setting %s LO Export Enabled for %s',
->                  dirx.upper(), node_name)
->
->     if dirx.lower() =3D=3D 'rx':
->         usrp.set_rx_lo_export_enabled(lo_enabled, 'lo1', 0)
->         enable_val =3D usrp.get_rx_lo_export_enabled('lo1')
->     elif dirx.lower() =3D=3D 'tx':
->         usrp.set_tx_lo_export_enabled(lo_enabled, 'lo1', 0)
->         enable_val =3D usrp.get_tx_lo_export_enabled('lo1')
->     else:
->         logging.warning('Invalid direction %s', dirx)
->         return
->
->     logging.info('  %s LO Export Enabled =3D %s, requested %s',
->                  dirx.upper(), enable_val, lo_enabled)
->
->     temp_path =3D 'blocks/0/Radio#0/dboard/' + \
->         f'{dirx.lower()}_frontends/' + \
->         '0/los/lo1/lo_distribution/LO_OUT_{}/export'
->
->     logging.info('Setting %s LO HW Outputs for %s',
->                  dirx.upper(), node_name)
->
->     for out_num in range(len(output_array)):
->         hw_lo_export_path =3D temp_path.format(out_num)
->
->         if usrp.get_tree().exists(hw_lo_export_path):
->             usrp.get_tree().access_bool(hw_lo_export_path).set(
->                 output_array[out_num])
->
->             logging.info('  %s LO HW Export Out[%d] =3D %s, %s %s',
->                          dirx.upper(), out_num,
->                          usrp.get_tree().access_bool(
->                             hw_lo_export_path).get(),
->                         'requested',
->                         output_array[out_num])
->         else:
->             logging.warning('  %s LO HW Export Out[%d] does not exist',
->                             dirx.upper(), out_num)
->
->
-> On Thu, May 25, 2023 at 6:45=E2=80=AFAM Rob Kossler <rkossler@nd.edu> wro=
-te:
->
->> On Thu, May 25, 2023 at 3:54=E2=80=AFAM Michael Toussaint
->> <mtoussaint@chaosinc.com> wrote:
->> >
->> > Used a single streamer and saw the delay slightly improve to between
->> 2.5 - 3 ns.
->> >
->> > Any other suggestions to improve the delay to match the results from
->> the knowledge base, https://kb.ettus.com/USRP_N320/N321_LO_Distribution?
->>
->> How do you measure the relative delay?
->>
->
->
+> On 05.06.23 22:19, JORGE GONZALEZ ORELLANA via USRP-users wrote:
+> > Hi all, I have been trying to implement the OFDM blocks on a USRP E312,
+> I am currently
+> > working on Ubuntu 20.04 with GRC 3.8 y UHD 4.3.
+> >
+> > When I try to run the python script generated from the GRC, a
+> segmentation fault error
+> > appears on the E312, I tried to use the faulthandler module to see the
+> root of this
+> > error, but i cannot get an idea of what could it be.
+> >
+> > I attached some screenshots, so you can see what I mean
+> >
+> > thanks for your time :)
+> >
+> > _______________________________________________
+> > USRP-users mailing list -- usrp-users@lists.ettus.com
+> > To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+> _______________________________________________
+> USRP-users mailing list -- usrp-users@lists.ettus.com
+> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 >
 
---00000000000082eb6205fd6deebb
+--000000000000bf6f3805fd76a3b7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Michael,<div>Either a delay offset OR =
-a phase offset will show itself as a relative phase.=C2=A0 In order to dist=
-inguish between a delay offset and a phase offset, your signal must have ap=
-preciable bandwidth.=C2=A0 It appears that your signal is CW.=C2=A0 It is e=
-ntirely possible that your delay offset is zero.=C2=A0 Does this make sense=
-?</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" =
-class=3D"gmail_attr">On Mon, Jun 5, 2023 at 5:32=E2=80=AFPM Michael Toussai=
-nt &lt;<a href=3D"mailto:mtoussaint@chaosinc.com">mtoussaint@chaosinc.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#9900ff">Could you share how=
- you&#39;re setting up LO sharing in your code, as well as how you&#39;re s=
-etting the system clock on the N321?</font><div><font color=3D"#9900ff"><br=
-></font></div><div>The functions &quot;<span style=3D"background-color:rgb(=
-255,255,255)"><font color=3D"#ff9900">configure_channels</font></span>&quot=
-; and &quot;<font color=3D"#ff9900">set_lo_hw_exports</font>&quot; are used=
- to set up the LO sharing.<br><br>The functions &quot;<font color=3D"#ff990=
-0">sync_sources</font>&quot; and &quot;<font color=3D"#ff9900">sync_all_dev=
-ices</font>&quot; are used to set up the system clock on the N321.<font col=
-or=3D"#9900ff"><br></font></div><div><br></div><div><div><font color=3D"#99=
-00ff">How do you measure the relative delay?</font></div><div><br></div><di=
-v>We are measuring the offset of the LO&#39;s by just measuring the phase d=
-ifference of the RF coming out of the Ettus with an Oscilloscope (picture a=
-ttached as=C2=A0=C2=A0<a id=3D"m_8850574248469324996gmail-:tl" href=3D"http=
-s://mail.google.com/mail/u/0?ui=3D2&amp;ik=3D34abf4583b&amp;attid=3D0.1&amp=
-;permmsgid=3Dmsg-a:r-1207093291428225864&amp;view=3Datt&amp;disp=3Dsafe&amp=
-;realattid=3Df_lijcykt50" style=3D"padding:0px 8px 0px 0px;text-decoration-=
-line:none;font-family:&quot;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,=
-Arial,sans-serif;font-size:14px;font-weight:700" target=3D"_blank"><div sty=
-le=3D"display:inline-block;overflow:hidden;padding:3px 0px;text-overflow:el=
-lipsis;vertical-align:bottom;max-width:315px">Scope_Trace_SingleStream_LO.p=
-ng</div></a>). Yellow is Channel 1, Green is Channel 2; using a single stre=
-amer we still appear to have a 2.64ns delta or ~135 degree phase shift.</di=
-v><div><br></div><div>Thanks Marcus and Rob for your assistance.</div><div>=
-<br></div><div>Michael Toussaint</div><div><br><font color=3D"#ff9900">def =
-sync_sources(usrp):<br>=C2=A0 =C2=A0=C2=A0<a href=3D"http://logging.info/" =
-target=3D"_blank">logging.info</a>(&#39;Setting Sync Sources&#39;)<br><br>=
-=C2=A0 =C2=A0 usrp.set_sync_source(clock_source =3D &#39;gpsdo&#39;,<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0time_source =3D &#39;gpsdo&#39;)<br><br>def sync_all_devices(h=
-w_info):<br>=C2=A0 =C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_=
-blank">logging.info</a>(&#39;Syncing All Devices&#39;)<br><br>=C2=A0 =C2=A0=
- mb_with_gps_locked =3D -1<br><br>=C2=A0 =C2=A0 while 1:<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 time.sleep(1.0)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 all_ref_lo=
-cked =3D True<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 for board in range(hw_info=
-.usrp.get_num_mboards()):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 all_=
-ref_locked =3D all_ref_locked and \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 hw_info.usrp.get_mboard_sensor(&#39;ref_locked&#39;,<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0board).to_bool()<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 if (mb_with_gps_locked =3D=3D -1) and \<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 hw_info.usrp.get_mboard_sensor(&#39;gps_=
-locked&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0board).to_bool():<br>=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mb_with_gps_locked =3D board<br><br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 if all_ref_locked:<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">loggi=
-ng.info</a>(&#39;All Devices are REF locked&#39;)<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 break<br><br>=C2=A0 =C2=A0=C2=A0<a href=3D"http://logg=
-ing.info/" target=3D"_blank">logging.info</a>(&#39;GPS Locked on MB #%d&#39=
-;, mb_with_gps_locked)<br><br>=C2=A0 =C2=A0 time.sleep(1.0)<br>=C2=A0 =C2=
-=A0 hw_info.usrp.set_time_next_pps(<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.type=
-s.TimeSpec(<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 hw_info.usrp.get_mboard_sensor(&=
-#39;gps_time&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0mb_with_gps_locked).to_int() +<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A01.0)<br>=C2=A0 =C2=A0 )<br>=C2=A0 =C2=
-=A0 time.sleep(1.0)<br><br><br>def configure_channels(usrp, rf_type, hw_inf=
-o):<br>=C2=A0 =C2=A0 rf_channel_index =3D None<br>=C2=A0 =C2=A0 set_rf_rate=
- =3D None<br>=C2=A0 =C2=A0 set_rf_freq =3D None<br>=C2=A0 =C2=A0 set_rf_gai=
-n =3D None<br>=C2=A0 =C2=A0 set_rf_lo_source =3D None<br>=C2=A0 =C2=A0 get_=
-rf_lo_source =3D None<br>=C2=A0 =C2=A0 get_rf_lo_freq =3D None<br>=C2=A0 =
-=C2=A0 get_rf_lo_freq_range =3D None<br><br>=C2=A0 =C2=A0 if (rf_type =3D=
-=3D &#39;rx&#39;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (len(hw_info.rx_channe=
-l_index) &gt; 0):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_channel_i=
-ndex =3D hw_info.rx_channel_index<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 set_rf_rate =3D usrp.set_rx_rate<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 set_rf_freq =3D usrp.set_rx_freq<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 set_rf_gain =3D usrp.set_rx_gain<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 set_rf_lo_source =3D usrp.set_rx_lo_source<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 get_rf_lo_source =3D usrp.get_rx_lo_source<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 get_rf_lo_freq =3D usrp.get_rx_lo=
-_freq<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 get_rf_lo_freq_range =3D=
- usrp.get_rx_lo_freq_range<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return<br>=C2=A0 =C2=A0 elif (rf_type =
-=3D=3D &#39;tx&#39;):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (len(hw_info.tx_cha=
-nnel_index) &gt; 0):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_channe=
-l_index =3D hw_info.tx_channel_index<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 set_rf_rate =3D usrp.set_tx_rate<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 set_rf_freq =3D usrp.set_tx_freq<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 set_rf_gain =3D usrp.set_tx_gain<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 set_rf_lo_source =3D usrp.set_tx_lo_source<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 get_rf_lo_source =3D usrp.get_tx_lo_source<=
-br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 get_rf_lo_freq =3D usrp.get_tx=
-_lo_freq<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 get_rf_lo_freq_range =
-=3D usrp.get_tx_lo_freq_range<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 return<br><br>=C2=A0 =C2=A0=C2=A0<a =
-href=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;Confi=
-guring %s Channels&#39;, rf_type.upper())<br><br>=C2=A0 =C2=A0 for rf_ch_na=
-me, rf_ch_index in rf_channel_index.items():<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
-=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&=
-#39;Configuring %s channel %s (channel #%d)&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_type.upper(), rf_=
-ch_name, rf_ch_index)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ch_def =3D hw_info=
-.channel_def[rf_ch_name]<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # LO Channel Se=
-tup<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 current_lo_name =3D &#39;unknown&#39;<br=
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 current_lo_src =3D &#39;unknown&#39;<br><br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 if ch_def.lo_inputs is not None:<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a href=3D"http://logging.info/" targe=
-t=3D"_blank">logging.info</a>(&#39; =C2=A0Setting %s LO for Channel %s (#%d=
-)&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0rf_type.upper(), rf_ch_name, rf_ch_index)<br><br=
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 set_rf_lo_source(ch_def.lo_input=
-s.source,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"http://ch_def.lo_input=
-s.name/" target=3D"_blank">ch_def.lo_inputs.name</a>,<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0rf_ch_index)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 curr=
-ent_lo_name =3D=C2=A0<a href=3D"http://ch_def.lo_inputs.name/" target=3D"_b=
-lank">ch_def.lo_inputs.name</a><br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info=
-</a>(&#39; =C2=A0 =C2=A0(#%d) Requested %s LO name %s, src %s&#39;,<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0rf_ch_index,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_type.upper(),<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0<a href=3D"http://ch_def.lo_inputs.name/" target=3D"_blank">ch_def.lo=
-_inputs.name</a>,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ch_def.lo_inputs.source)<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 else:<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=
-=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39=
-; =C2=A0No %s LO inputs for Channel %s (#%d)&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_typ=
-e.upper(), rf_ch_name, rf_ch_index)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 current_lo_name =3D &#39;lo1&#39;<br><br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 current_lo_src =3D get_rf_lo_source(current_lo_name,<br>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_ch_index)=
-<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a href=3D"http://logging.info/" t=
-arget=3D"_blank">logging.info</a>(&#39; =C2=A0 =C2=A0(#%d) Current %s LO na=
-me %s, src %s&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0rf_ch_index,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_type.upper(),<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0current_lo_na=
-me,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0current_lo_src)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_lo_freq =3D=
- get_rf_lo_freq(current_lo_name,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 rf_ch_index)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a href=
-=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39; =C2=A0 =
-=C2=A0(#%d) [%s] Current %s LO freq %d&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_ch_index,=
-<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0current_lo_name,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_type.upper(),<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0rf_lo_freq)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_lo_freq_=
-range =3D get_rf_lo_freq_range(<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 current_lo_name, rf_ch_index)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 temp =
-=3D &#39; =C2=A0 =C2=A0(#%d) [%s] Current %s LO freq range&#39; + \<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39; [%d, %d] step %d&#39;<br><br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D=
-"_blank">logging.info</a>(temp,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_ch_index,<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0current_lo_name,<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0rf_type.upper(),<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0rf_lo_freq_range.start(),<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_lo_freq_range.sto=
-p(),<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0rf_lo_freq_range.step())<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0=
-<a href=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39; =
-=C2=A0Setting Sampling Rate %s&#39;, hw_info.fs)<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 set_rf_rate(hw_info.fs, rf_ch_index)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info</a=
->(&#39; =C2=A0Setting Center Freq %s&#39;, hw_info.fc)<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 tr =3D set_rf_freq(uhd.libpyuhd.types.tune_request(hw_info.fc),<=
-br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0rf_ch_index)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a=
- href=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39; =C2=
-=A0 =C2=A0(#%d) %s Tune Result:&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_ch_index, rf_type.upper())<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 log_tune_result(tr)<br><br>=C2=A0 =C2=A0 =C2=A0=
- =C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.inf=
-o</a>(&#39; =C2=A0Setting %s Gain: %2.3f db&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_type.upper(),<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0ch_def.gain)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 set_rf_gain(ch_def.gain, rf_=
-ch_index)<br><br>def set_lo_hw_exports(usrp, node_name, dirx, lo_enabled, o=
-utput_array):<br>=C2=A0 =C2=A0 &quot;&quot;&quot;Set LO HW Exports&quot;&qu=
-ot;&quot;<br>=C2=A0 =C2=A0 if (lo_enabled is None) or (output_array is None=
-):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return<br><br>=C2=A0 =C2=A0=C2=A0<a href=
-=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;Setting %=
-s LO Export Enabled for %s&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0dirx.upper(), node_name)<br><br>=C2=A0 =C2=A0 if di=
-rx.lower() =3D=3D &#39;rx&#39;:<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 usrp.set_rx_=
-lo_export_enabled(lo_enabled, &#39;lo1&#39;, 0)<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 enable_val =3D usrp.get_rx_lo_export_enabled(&#39;lo1&#39;)<br>=C2=A0 =
-=C2=A0 elif dirx.lower() =3D=3D &#39;tx&#39;:<br>=C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 usrp.set_tx_lo_export_enabled(lo_enabled, &#39;lo1&#39;, 0)<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 enable_val =3D usrp.get_tx_lo_export_enabled(&#39;lo1&=
-#39;)<br>=C2=A0 =C2=A0 else:<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 logging.warning=
-(&#39;Invalid direction %s&#39;, dirx)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 retur=
-n<br><br>=C2=A0 =C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_bla=
-nk">logging.info</a>(&#39; =C2=A0%s LO Export Enabled =3D %s, requested %s&=
-#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dirx=
-.upper(), enable_val, lo_enabled)<br><br>=C2=A0 =C2=A0 temp_path =3D &#39;b=
-locks/0/Radio#0/dboard/&#39; + \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 f&#39;{dirx=
-.lower()}_frontends/&#39; + \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;0/los/lo1=
-/lo_distribution/LO_OUT_{}/export&#39;<br><br>=C2=A0 =C2=A0=C2=A0<a href=3D=
-"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;Setting %s L=
-O HW Outputs for %s&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0dirx.upper(), node_name)<br><br>=C2=A0 =C2=A0 for out_num =
-in range(len(output_array)):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 hw_lo_export_pa=
-th =3D temp_path.format(out_num)<br><br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 if usrp=
-.get_tree().exists(hw_lo_export_path):<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 usrp.get_tree().access_bool(hw_lo_export_path).set(<br>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 output_array[out_num])<br>=
-<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a href=3D"http://loggin=
-g.info/" target=3D"_blank">logging.info</a>(&#39; =C2=A0%s LO HW Export Out=
-[%d] =3D %s, %s %s&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dirx.upper(), out_num,<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0usrp.get_tree().access_bool(<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 hw_lo=
-_export_path).get(),<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;requested&#39;,<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 outpu=
-t_array[out_num])<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 logging.warning(&#39; =C2=A0%s LO HW Export Out[%d=
-] does not exist&#39;,<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dirx.upper(), out_num)</fo=
-nt></div></div><div><br></div></div><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Thu, May 25, 2023 at 6:45=E2=80=AFAM Rob K=
-ossler &lt;<a href=3D"mailto:rkossler@nd.edu" target=3D"_blank">rkossler@nd=
-.edu</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
-ex">On Thu, May 25, 2023 at 3:54=E2=80=AFAM Michael Toussaint<br>
-&lt;<a href=3D"mailto:mtoussaint@chaosinc.com" target=3D"_blank">mtoussaint=
-@chaosinc.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Used a single streamer and saw the delay slightly improve to between 2=
-.5 - 3 ns.<br>
-&gt;<br>
-&gt; Any other suggestions to improve the delay to match the results from t=
-he knowledge base, <a href=3D"https://kb.ettus.com/USRP_N320/N321_LO_Distri=
-bution" rel=3D"noreferrer" target=3D"_blank">https://kb.ettus.com/USRP_N320=
-/N321_LO_Distribution</a>?<br>
+<div dir=3D"ltr"><div>Hi Marcus.<br></div><div>My mistake, sorry</div><div>=
+<br></div><div>This is the terminal output from the E312.</div><div>-------=
+--------------------------------------------------------------------</div><=
+div>root@ni-e31x-32132F0:~# python3 ofdm_loopback.py<br>[INFO] [UHD] linux;=
+ GNU C++ version 9.2.0; Boost_107100; UHD_4.3.0.0-0-g1f8fd345<br>[INFO]
+ [MPMD] Initializing 1 device(s) in parallel with args:=20
+mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D32132F0,name=
+=3Dni-e31x-32132F0,fpga=3Dn/a,claimed=3DFalse<br>[INFO] [MPM.main] Launchin=
+g USRP/MPM, version: 4.3.0.0-g1f8fd345<br>[INFO] [MPM.main] Spawning RPC pr=
+ocess...<br>[WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility chec=
+k!<br>[INFO] [MPM.PeriphManager] Device serial number: 32132F0<br>[WARNING]=
+ [MPM.PeriphManager] Found more EEPROM paths than daughterboards. Ignoring =
+some of them.<br>[INFO] [MPM.RPCServer] RPC server ready!<br>[INFO] [MPM.RP=
+CServer] Spawning watchdog task...<br>[INFO] [MPM.PeriphManager] init() cal=
+led with device args `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,name=3Dni-e31x-32132=
+F0,product=3De310_sg3&#39;.<br>[INFO] [0/Radio#0] Performing CODEC loopback=
+ test on channel 0 ... <br>[INFO] [0/Radio#0] CODEC loopback test passed<br=
+>[INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ... <br>[IN=
+FO] [0/Radio#0] CODEC loopback test passed<br>[WARNING]
+ [MULTI_USRP] Calling multi_usrp::recv_async_msg() is deprecated and can
+ lead to unexpected behaviour. Prefer calling=20
+tx_stream::recv_async_msg().<br>[INFO] [MULTI_USRP] =C2=A0 =C2=A0 1) catch =
+time transition at pps edge<br>[INFO] [MULTI_USRP] =C2=A0 =C2=A0 2) set tim=
+es next pps (synchronously)<br>Press Enter to quit: Fatal Python error: Seg=
+mentation fault<br><br>Thread 0xb6c09010 (most recent call first):<br>=C2=
+=A0 File &quot;ofdm_loopback.py&quot;, line 132 in main<br>=C2=A0 File &quo=
+t;ofdm_loopback.py&quot;, line 140 in &lt;module&gt;<br>Segmentation fault<=
+br>root@ni-e31x-32132F0:~# <br>--------------------------------------------=
+----------------------------</div><div><br></div><div>This is the python sc=
+ript generated from GRC<br></div><div>-------------------------------------=
+-----------------------------------</div><div><ol><li>#!/usr/bin/env python=
+3</li><li># -*- coding: utf-8 -*-</li><li><br></li><li>#</li><li># SPDX-Lic=
+ense-Identifier: GPL-3.0</li><li>#</li><li># GNU Radio Python Flow Graph</l=
+i><li># Title: OFDM Loopback Example</li><li># Description: Transmit a pre-=
+defined signal (a complex sine) as OFDM packets.</li><li># GNU Radio versio=
+n: 3.8.1.0</li><li><br></li><li>from gnuradio import blocks</li><li>from gn=
+uradio import digital</li><li>from gnuradio import gr</li><li>from gnuradio=
+.filter import firdes</li><li>import sys</li><li>import signal</li><li>from=
+ argparse import ArgumentParser</li><li>from gnuradio.eng_arg import eng_fl=
+oat, intx</li><li>from gnuradio import eng_notation</li><li>from gnuradio i=
+mport uhd</li><li>import time</li><li>import faulthandler; faulthandler.ena=
+ble()</li><li><br></li><li>class ofdm_loopback(gr.top_block):</li><li><br><=
+/li><li>=C2=A0 =C2=A0 def __init__(self):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 gr.top_block.__init__(self, &quot;OFDM Loopback Example&quot;)</li><li>=
+<br></li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ##################################=
+################</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Variables</li><li>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ###############################################=
+###</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rate =3D 10=
+0e3</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_len =3D =
+50</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_tag_key =3D=
+ &quot;packet_len&quot;</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia=
+_central =3D frecuencia_central =3D 0</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 s=
+elf.fft_len =3D fft_len =3D 64</li><li><br></li><li>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 ##################################################</li><li>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 # Blocks</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 #########=
+#########################################</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 self.uhd_usrp_sink_0 =3D uhd.usrp_sink(</li><li>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 &quot;,&quot;.join((&quot;&quot;, &quot;&quot;)),</li>=
+<li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_args(</li><li>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_format=3D&quot;fc3=
+2&quot;,</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ar=
+gs=3D&#39;&#39;,</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 channels=3Dlist(range(0,1)),</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 ),</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;&#39;,=
+</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 )</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+self.uhd_usrp_sink_0.set_center_freq(frecuencia_central, 0)</li><li>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_gain(10, 0)</li><li>=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_antenna(&#39;TX/RX&#39;, 0)</=
+li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_samp_rate(samp_=
+rate)</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_time_unk=
+nown_pps(uhd.time_spec())</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.digital_=
+ofdm_tx_0 =3D digital.ofdm_tx(</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 fft_len=3Dfft_len,</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ cp_len=3Dfft_len//4,</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pac=
+ket_length_tag_key=3Dlen_tag_key,</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 occupied_carriers=3D((-4,-3,-2,-1,1,2,3,4),),</li><li>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_carriers=3D((-6,-5,5,6),),</li><li>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_symbols=3D((-1,1,-1,1),),</=
+li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word1=3DNone,</li><li=
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word2=3DNone,</li><li>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_header=3D1,</li><li>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_payload=3D2,</li><li>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 rolloff=3D0,</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 debug_log=3DFalse,</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 scramble_bits=3DFalse)</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blo=
+cks_vector_source_x_0 =3D blocks.vector_source_b(range(packet_len), True, 1=
+, ())</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_stream_to_tagged_stre=
+am_0 =3D blocks.stream_to_tagged_stream(gr.sizeof_char, 1, packet_len, len_=
+tag_key)</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 <br></li><li><br></li><li><br>=
+</li><li>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #######################=
+###########################</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Connectio=
+ns</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ####################################=
+##############</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.block=
+s_stream_to_tagged_stream_0, 0), (self.digital_ofdm_tx_0, 0))</li><li>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.blocks_vector_source_x_0, 0), (=
+self.blocks_stream_to_tagged_stream_0, 0))</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 self.connect((self.digital_ofdm_tx_0, 0), (self.uhd_usrp_sink_0, 0))</l=
+i><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 def get_samp_rate(self)=
+:</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.samp_rate</li><li>=C2=A0 =
+=C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 def set_samp_rate(self, samp_rate):<=
+/li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rate</li><li>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_samp_rate(self.samp_ra=
+te)</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 def get_packet_le=
+n(self):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.packet_len</li><li=
+>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 def set_packet_len(self, pac=
+ket_len):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_le=
+n</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_stream_to_tagged_stream_0=
+.set_packet_len(self.packet_len)</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.b=
+locks_stream_to_tagged_stream_0.set_packet_len_pmt(self.packet_len)</li><li=
+>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_vector_source_x_0.set_data(range(s=
+elf.packet_len), ())</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 =
+def get_len_tag_key(self):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.=
+len_tag_key</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 def set_l=
+en_tag_key(self, len_tag_key):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len=
+_tag_key =3D len_tag_key</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=
+=A0 def get_frecuencia_central(self):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 r=
+eturn self.frecuencia_central</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=
+=A0=C2=A0 def set_frecuencia_central(self, frecuencia_central):</li><li>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D frecuencia_central</li=
+><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_center_freq(self.=
+frecuencia_central, 0)</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=
+=A0 def get_fft_len(self):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.=
+fft_len</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 def set_fft_l=
+en(self, fft_len):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft=
+_len</li><li><br></li><li><br></li><li><br></li><li>def main(top_block_cls=
+=3Dofdm_loopback, options=3DNone):</li><li>=C2=A0 =C2=A0 tb =3D top_block_c=
+ls()</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0 def sig_handler(sig=3D=
+None, frame=3DNone):</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.stop()</li><li>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.wait()</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 s=
+ys.exit(0)</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0 signal.sig=
+nal(signal.SIGINT, sig_handler)</li><li>=C2=A0 =C2=A0 signal.signal(signal.=
+SIGTERM, sig_handler)</li><li>=C2=A0 =C2=A0 <br></li><li>=C2=A0=C2=A0=C2=A0=
+ tb.start()</li><li>=C2=A0 =C2=A0 try:</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+input(&#39;Press Enter to quit: &#39;)</li><li>=C2=A0 =C2=A0 except EOFErro=
+r:</li><li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 pass</li><li>=C2=A0 =C2=A0 tb.stop()=
+</li><li>=C2=A0 =C2=A0 tb.wait()</li><li>i</li><li><br></li><li>f __name__ =
+=3D=3D &#39;__main__&#39;:</li><li>=C2=A0 =C2=A0 main()</li></ol></div></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El l=
+un, 5 jun 2023 a las 17:33, Marcus M=C3=BCller (&lt;<a href=3D"mailto:marcu=
+s.mueller@ettus.com">marcus.mueller@ettus.com</a>&gt;) escribi=C3=B3:<br></=
+div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
+der-left:1px solid rgb(204,204,204);padding-left:1ex">HI Jorge,<br>
 <br>
-How do you measure the relative delay?<br>
-</blockquote></div><br clear=3D"all"><div><br></div>
-</div>
-</blockquote></div></div>
+you didn&#39;t attach screenshots, but that&#39;s OK: We would much rather =
+have you include <br>
+copy&amp;pasted text. Images are always inferior when it comes to understan=
+ding text messages.<br>
+<br>
+Best regards,<br>
+Marcus<br>
+<br>
+On 05.06.23 22:19, JORGE GONZALEZ ORELLANA via USRP-users wrote:<br>
+&gt; Hi all, I have been trying to implement the OFDM blocks on a USRP E312=
+, I am currently <br>
+&gt; working on Ubuntu 20.04 with GRC 3.8 y UHD 4.3.<br>
+&gt;<br>
+&gt; When I try to run the python script generated from the GRC, a segmenta=
+tion fault error <br>
+&gt; appears on the E312, I tried to use the faulthandler module to see the=
+ root of this <br>
+&gt; error, but i cannot get an idea of what could it be.<br>
+&gt;<br>
+&gt; I attached some screenshots, so you can see what I mean<br>
+&gt;<br>
+&gt; thanks for your time :)<br>
+&gt;<br>
+&gt; _______________________________________________<br>
+&gt; USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.co=
+m" target=3D"_blank">usrp-users@lists.ettus.com</a><br>
+&gt; To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lis=
+ts.ettus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+_______________________________________________<br>
+USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
+rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
+To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
+tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
+</blockquote></div>
 
---00000000000082eb6205fd6deebb--
+--000000000000bf6f3805fd76a3b7--
 
---===============2730436703077212274==
+--===============0047820993309561667==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -624,4 +515,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============2730436703077212274==--
+--===============0047820993309561667==--
