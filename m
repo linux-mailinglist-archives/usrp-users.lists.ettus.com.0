@@ -2,505 +2,1438 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 882397269D3
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Jun 2023 21:31:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B7617269EF
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Jun 2023 21:39:04 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 700C1384A59
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Jun 2023 15:31:38 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id AB0C2384A97
+	for <lists+usrp-users@lfdr.de>; Wed,  7 Jun 2023 15:39:03 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686166298; bh=pMYFjRbZVK0bJgAzkK3rJzEQTWZR6gUuaFC4CgotjD0=;
-	h=References:In-Reply-To:Date:To:CC:Subject:List-Id:List-Archive:
+	t=1686166743; bh=ytPkMAk+tG5j9DRVNbh92xSS744TYVUYa1R2TGLtcmY=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
 	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From:Reply-To:From;
-	b=PgONNc+yrm+bl0MZQbk6RD6kubAyEfBPhNkht3u8v4CVR+HlNz5DAuz+SMw2qfFN4
-	 Abe5y35HRbTDGrV2Ew5niAoKvozdvFjNJV7848Iqu7/jzWzlDyhDsdd2fWhcKXyuX5
-	 dRF5Ka9LhitZ+TkMjqtVX0eC1r4NQDCVsXtpRBhwWuQ3/um/dP5sjzR2bzCfd4pUYW
-	 Lekis0wgSHUaDzpE+l6wev/xCS0u/vLYwPuTc0IglOncnwz4warhTxiiUmIuP/TtVX
-	 MuuIIAoN+3KTlJiDL3edGYTxZkQJpq+C6gl/lSIbqYhI7yVB0329RiraBwlOjBSv1J
-	 JWuhS8x+KMmQg==
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	by mm2.emwd.com (Postfix) with ESMTPS id 67D91384A4F
-	for <usrp-users@lists.ettus.com>; Wed,  7 Jun 2023 15:30:39 -0400 (EDT)
+	 From;
+	b=It0BSNAdO9gmchFUD38+1KD1VwUnCZXNAw1gen8ZmLT42E5nj1FV2poyzkMjC4IZH
+	 jJaNnU+/cOsV/EA1VL5T0cctcSF+McyYWU9IvcN4JLZIVEyyNlaGs0D345c0GdiAUf
+	 QHL7RUkgNALs7ivKBGzMXArV8YGpTh7oJ9fcOhQaf47nAAA6r723SMUgqqL7Lt/7+w
+	 0lEMFvpaXwHRXLnsyahaLKwdxKHMDMMAm3vlG4vnA5cCw1vpBH14WmOgP/KH/9yeKH
+	 XbnaNDoMmTgK7jI/6NLOcoPGd0FwzGoSu75AYS6rCiJZdsRySja8BaWusGoM6/RgpT
+	 CbxPmyaldTnIQ==
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+	by mm2.emwd.com (Postfix) with ESMTPS id 726AB384A4E
+	for <usrp-users@lists.ettus.com>; Wed,  7 Jun 2023 15:38:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=nd.edu header.i=@nd.edu header.b="Jyd/plgs";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bjCj+RVQ";
 	dkim-atps=neutral
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-51496f57e59so1885068a12.2
-        for <usrp-users@lists.ettus.com>; Wed, 07 Jun 2023 12:30:39 -0700 (PDT)
+Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-75ec7e8e826so277966685a.0
+        for <usrp-users@lists.ettus.com>; Wed, 07 Jun 2023 12:38:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nd.edu; s=google; t=1686166238; x=1688758238;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5xPsOwU6bQVFwkOsGo3I4sqytwuFPlhct3Gmckpt7N0=;
-        b=Jyd/plgsiLV0afwm+wWH6AiGlTFiJWGzcymHo6DvStSKp4BR7m4HMsVNzDoJvbiUB3
-         +7+0DbtuQgfke1WjhSXAuuYGPLk/W7TfFZcQR2GASmk07nbKs/s73VNuT5Ily5snNwrD
-         z5uRMB1ytnYV3J4TyBwGFtyQR7UaeAcTFlLk9cp+EejbgZY8yzCG7dPXdP5DDi7+L68E
-         SH5EfocR+a78o0yYcbg9KKcrQD6TBlCNaizoBptGBQaujqXJ0S0gL2Xr+jOwdxz5ro7P
-         856HsHWQD2/tknJywhROeN0H2Yd/bY3n0TEOObEBj2b39cKa4eLGcY+eCE/N8G5MxxJD
-         DQSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686166238; x=1688758238;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20221208; t=1686166681; x=1688758681;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5xPsOwU6bQVFwkOsGo3I4sqytwuFPlhct3Gmckpt7N0=;
-        b=TzwY2gagDV+vSzGOpaoXGVjBpdKFTM3P9f4AyVC/hcYmMbmXUS3mXokLiO7Mhy+NzR
-         M/glfWYQ5Jh3wTeuoExYJEfh65siQ01ACJM1M4IedMkJmV8dm6NPi00LAXyyTS6GCKHj
-         +3gqIOpjPX4yH103cA7Q7EON6tJhh6utXmOJ+bsbQbEnMe84mkro6HU+pE+0hd02+qPB
-         D2WOyI364zgID9/uqSEvou8G+TzaTfXaHlwzfwLfofP2EEzhgNZ4FHMovdIjs8V2GkIi
-         1TFMZgacwFgsZqn6Xwg7OppE/uwmRLbLnifhszXUfHSdyvRSTIDkKfEHHI0Qvng0W8Xa
-         AXMQ==
-X-Gm-Message-State: AC+VfDw/EaOMIXD4wnFpoCl6idufe1ygsNjt0UEyYLf/5zS+seRrunCd
-	nqhlyswwaziOLYuaTHMHxpfD5YbKX2/Ely7H+AiJfr1XQ/uL+wB9zsY=
-X-Google-Smtp-Source: ACHHUZ7uAQLOM/zfa1HqckksxRxI+CgUSdiZbxP5Xha7UMkUg2jzFv+/ucDLGswLVE8XcrVpOp9sQDC0h4MIC0J4+ZE=
-X-Received: by 2002:a17:907:6da0:b0:973:e5d9:d6ff with SMTP id
- sb32-20020a1709076da000b00973e5d9d6ffmr7342157ejc.66.1686166237939; Wed, 07
- Jun 2023 12:30:37 -0700 (PDT)
+        bh=H5g8ZLwRxJGzCFSw8i/144diqpGNEpVK9JeV83aH3pM=;
+        b=bjCj+RVQffbxUACAn1q/zkwM5CY2Yf7wSCDQ7aqtCZDSCcJW5+3Ra1jwPax6l0ZoF1
+         8w8J+aPuvbZlFHV9w17+H0zAvG8rBJy73OZbBbV+q7uXdSXYSjDJd+ab0jXSCf3MEKt1
+         U71EUuNgLfyCRJVk+CY7x/I04WIi6DbxzSFCK3t5Aa50mQ1DtQhGp25GJRMkw37L+6jJ
+         TE3E/HFKlYnCoulSQr/GBOvgGo1+iifCQ6HpjlIQqIVgCoE8ppEUx3TuqqepegN4m5hb
+         WKsz2stds6HYZ1+vHsel+wt88xpAagqmUJMSzupn7Z74etrFGnierEyyZWua3U3gVlHy
+         cd/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686166681; x=1688758681;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=H5g8ZLwRxJGzCFSw8i/144diqpGNEpVK9JeV83aH3pM=;
+        b=U3hncXBdn3DswUtoJOCCLvjCnTZTfgJik/wQ0tiCLsN0KcIoRXvRxncFIGrsN+tNPc
+         MdH2CKybhtKHaWUDZVv0W3uKmrdlmNCfcb3bmszvB++Etnh5t6bcUCndrJ+gTsFq31mQ
+         vFf3C99Wyya7O5ICyR47IaUn67jvqk6DPeNTSNgDqdZvchPWVHOHDFCKSQIs4dCbhPTs
+         0+P2/3K42MvFKMfBioTQ4k0T7Q1FJlnm5pW34ZEBgQ9UReMmOToyjAAgmIiKNzqFfjkL
+         ESjuHNTDVyBLlhsUriSCTXzfWsE7I2VYCp9MN0i//+rzB3GmvGQ3Akba+36VD8xES481
+         H5Zw==
+X-Gm-Message-State: AC+VfDyk4YioSRHLDKsKT1bQ7YDAIDXIQH3uTy9FhF/ge1MOsMCLUF7T
+	eeNFLV6NE2jK/BKG8MW+1+VDDyLnYhWH2g==
+X-Google-Smtp-Source: ACHHUZ56AbE4bui/IHREOJ3BYseMA2EEMoTvHMH6tPJx9GamWWIEYyps/EIU7EbW4qFNucp5vrJjmw==
+X-Received: by 2002:a05:620a:9d5:b0:75b:23a1:368d with SMTP id y21-20020a05620a09d500b0075b23a1368dmr2929152qky.78.1686166681534;
+        Wed, 07 Jun 2023 12:38:01 -0700 (PDT)
+Received: from [192.168.2.217] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id f7-20020a05620a068700b007593af0c85fsm120259qkh.88.2023.06.07.12.38.01
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 07 Jun 2023 12:38:01 -0700 (PDT)
+Message-ID: <187224b5-d6f3-0109-9dad-59b3ab63a263@gmail.com>
+Date: Wed, 7 Jun 2023 15:38:00 -0400
 MIME-Version: 1.0
-References: <ck6fhiv782kadGWy6NHRKFB2WFqN9aYIIWh4yxgrZ0@lists.ettus.com>
-In-Reply-To: <ck6fhiv782kadGWy6NHRKFB2WFqN9aYIIWh4yxgrZ0@lists.ettus.com>
-Date: Wed, 7 Jun 2023 15:30:26 -0400
-Message-ID: <CAB__hTQMmnKOgHUsPaD6Wk9dV6dFdCndyT3GoUMyDiT9p9tMJg@mail.gmail.com>
-To: jmaloyan@umass.edu
-Message-ID-Hash: ZLRMVHNKVEM7OIDANSPRUBKN3W5C2EJ5
-X-Message-ID-Hash: ZLRMVHNKVEM7OIDANSPRUBKN3W5C2EJ5
-X-MailFrom: rkossler@nd.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <CAFFpLrGe-Dnc=bUJk6+ebzDf_SqziwoMXRQCSDeZGZ9kJ687ng@mail.gmail.com>
+ <c3e840ff-501f-85ba-f8e0-170308846f6f@ettus.com>
+ <CAFFpLrG-EfEdn6g65fMrzYtBQ5U0nFzjh-ZT21Od9RiD+P3VEA@mail.gmail.com>
+ <CAFFpLrHakCGzGv-1NGfgtHpT8xpccijvTqojhsQXz-kXXe_o3w@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAFFpLrHakCGzGv-1NGfgtHpT8xpccijvTqojhsQXz-kXXe_o3w@mail.gmail.com>
+Message-ID-Hash: 4HFKSTGEMUBQOOBA44LW6H5XUHTNZYG3
+X-Message-ID-Hash: 4HFKSTGEMUBQOOBA44LW6H5XUHTNZYG3
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x410 TX issues
+Subject: [USRP-users] Re: Segmentation fault in OFDM implementation on USRP E312
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/ZLRMVHNKVEM7OIDANSPRUBKN3W5C2EJ5/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/4HFKSTGEMUBQOOBA44LW6H5XUHTNZYG3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-From: Rob Kossler via USRP-users <usrp-users@lists.ettus.com>
-Reply-To: Rob Kossler <rkossler@nd.edu>
-Content-Type: multipart/mixed; boundary="===============1995365330506056158=="
+Content-Type: multipart/mixed; boundary="===============1144179385930943392=="
 
---===============1995365330506056158==
-Content-Type: multipart/alternative; boundary="000000000000a5aa3705fd8f2b8f"
+This is a multi-part message in MIME format.
+--===============1144179385930943392==
+Content-Type: multipart/alternative;
+ boundary="------------QmCuq04xQl9gCy2K9HnmhsKP"
+Content-Language: en-US
 
---000000000000a5aa3705fd8f2b8f
-Content-Type: text/plain; charset="UTF-8"
+This is a multi-part message in MIME format.
+--------------QmCuq04xQl9gCy2K9HnmhsKP
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi Joe,
-It sounds like your custom image is compatible with the Ettus example
-"rfnoc_replay_samples_from_file".  Have you tried this with your custom
-image (as opposed to your custom software)?
-Rob
+On 07/06/2023 11:01, JORGE GONZALEZ ORELLANA via USRP-users wrote:
+> Hi all, i re-ask this question because I can't find answers on Google.
+> There is a segmentation fault error when I try to run an ofdm workflow=20
+> example on a USRP E312, I am currently working on Ubuntu 20.04 with=20
+> UHD 4.3 and GRC 3.8.
+>
+> This is the terminal output from the E312.
+> -----------------------------------------------------------------------=
+----
+> root@ni-e31x-32132F0:~# python3 ofdm_loopback.py
+> [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;=20
+> UHD_4.3.0.0-0-g1f8fd345
+> [INFO] [MPMD] Initializing 1 device(s) in parallel with args:=20
+> mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D32132F0,n=
+ame=3Dni-e31x-32132F0,fpga=3Dn/a,claimed=3DFalse
+> [INFO] [MPM.main] Launching USRP/MPM, version: 4.3.0.0-g1f8fd345
+> [INFO] [MPM.main] Spawning RPC process...
+> [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility check!
+> [INFO] [MPM.PeriphManager] Device serial number: 32132F0
+> [WARNING] [MPM.PeriphManager] Found more EEPROM paths than=20
+> daughterboards. Ignoring some of them.
+> [INFO] [MPM.RPCServer] RPC server ready!
+> [INFO] [MPM.RPCServer] Spawning watchdog task...
+> [INFO] [MPM.PeriphManager] init() called with device args=20
+> `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,name=3Dni-e31x-32132F0,product=3De310=
+_sg3'.
+> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
+> [INFO] [0/Radio#0] CODEC loopback test passed
+> [INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
+> [INFO] [0/Radio#0] CODEC loopback test passed
+> [WARNING] [MULTI_USRP] Calling multi_usrp::recv_async_msg() is=20
+> deprecated and can lead to unexpected behaviour. Prefer calling=20
+> tx_stream::recv_async_msg().
+> [INFO] [MULTI_USRP] =C2=A0 =C2=A0 1) catch time transition at pps edge
+> [INFO] [MULTI_USRP] =C2=A0 =C2=A0 2) set times next pps (synchronously)
+> Press Enter to quit: Fatal Python error: Segmentation fault
+>
+> Thread 0xb6c09010 (most recent call first):
+> =C2=A0 File "ofdm_loopback.py", line 132 in main
+> =C2=A0 File "ofdm_loopback.py", line 140 in <module>
+> Segmentation fault
+> root@ni-e31x-32132F0:~#
+> -----------------------------------------------------------------------=
+-
+>
+> This is the python script generated from GRC
+> -----------------------------------------------------------------------=
+-
+>
+>  1. #!/usr/bin/env python3
+>  2. # -*- coding: utf-8 -*-
+> 3.
+>
+>  4. #
+>  5. # SPDX-License-Identifier: GPL-3.0
+>  6. #
+>  7. # GNU Radio Python Flow Graph
+>  8. # Title: OFDM Loopback Example
+>  9. # Description: Transmit a pre-defined signal (a complex sine) as
+>     OFDM packets.
+> 10. # GNU Radio version: 3.8.1.0
+>11.
+>
+> 12. from gnuradio import blocks
+> 13. from gnuradio import digital
+> 14. from gnuradio import gr
+> 15. from gnuradio.filter import firdes
+> 16. import sys
+> 17. import signal
+> 18. from argparse import ArgumentParser
+> 19. from gnuradio.eng_arg import eng_float, intx
+> 20. from gnuradio import eng_notation
+> 21. from gnuradio import
+>     uhdhttps://github.com/bastibl/gr-foo/tree/maint-3.9/lib
+> 22. import time
+> 23. import faulthandler; faulthandler.enable()
+>24.
+>
+> 25. class ofdm_loopback(gr.top_block):
+>26.
+>
+> 27. =C2=A0 =C2=A0 def __init__(self):
+> 28. =C2=A0 =C2=A0 =C2=A0 =C2=A0 gr.top_block.__init__(self, "OFDM Loopb=
+ack Example")
+>29.
+>
+> 30. ##################################################
+> 31. =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Variables
+> 32. ##################################################
+> 33. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rate =3D 100e3
+> 34. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_len =3D 50
+> 35. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_tag_key =3D "p=
+acket_len"
+> 36. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D frecuencia_=
+central =3D 0
+> 37. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len =3D 64
+>38.
+>
+> 39. ##################################################
+> 40. =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Blocks
+> 41. ##################################################
+> 42. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0 =3D uhd.usrp_sink(
+> 43. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ",".join(("", "")),
+> 44. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_args(
+> 45. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_format=3D=
+"fc32",
+> 46. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 args=3D'',
+> 47. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 channels=3D=
+list(range(0,1)),
+> 48. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),
+> 49. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 '',
+> 50. =C2=A0 =C2=A0 =C2=A0 =C2=A0 )
+> 51. self.uhd_usrp_sink_0.set_center_freq(frecuencia_central, 0)
+> 52. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_gain(10, 0)
+> 53. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_antenna('TX/RX=
+', 0)
+> 54. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_samp_rate(samp=
+_rate)
+> 55. self.uhd_usrp_sink_0.set_time_unknown_pps(uhd.time_spec())
+> 56. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.digital_ofdm_tx_0 =3D digital.ofdm=
+_tx(
+> 57. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fft_len=3Dfft_len,
+> 58. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp_len=3Dfft_len//4,
+> 59. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 packet_length_tag_key=3Dl=
+en_tag_key,
+> 60. occupied_carriers=3D((-4,-3,-2,-1,1,2,3,4),),
+> 61. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_carriers=3D((-6,-5,=
+5,6),),
+> 62. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_symbols=3D((-1,1,-1=
+,1),),
+> 63. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word1=3DNone,
+> 64. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word2=3DNone,
+> 65. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_header=3D1,
+> 66. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_payload=3D2,
+> 67. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rolloff=3D0,
+> 68. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 debug_log=3DFalse,
+> 69. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 scramble_bits=3DFalse)
+> 70. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_vector_source_x_0 =3D
+>     blocks.vector_source_b(range(packet_len), True, 1, ())
+> 71. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_stream_to_tagged_stream_0 =3D
+>     blocks.stream_to_tagged_stream(gr.sizeof_char, 1, packet_len,
+>     len_tag_key)
+>72.
+>
+>73.
+>
+>
+>74.
+>
+>
+>
+> 75. ##################################################
+> 76. =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Connections
+> 77. ##################################################
+> 78. self.connect((self.blocks_stream_to_tagged_stream_0, 0),
+>     (self.digital_ofdm_tx_0, 0))
+> 79. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.blocks_vector_source=
+_x_0, 0),
+>     (self.blocks_stream_to_tagged_stream_0, 0))
+> 80. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.digital_ofdm_tx_0, 0=
+),
+>     (self.uhd_usrp_sink_0, 0))
+> 81. https://github.com/bastibl/gr-foo/tree/maint-3.9/lib
+> 82. =C2=A0=C2=A0=C2=A0 def get_samp_rate(self):
+> 83. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.samp_rate
+>84.
+>
+> 85. =C2=A0=C2=A0=C2=A0 def set_samp_rate(self, samp_rate):
+> 86. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rate
+> 87. self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
+>88.
+>
+> 89. =C2=A0=C2=A0=C2=A0 def get_packet_len(self):
+> 90. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.packet_len
+>91.
+>
+> 92. =C2=A0=C2=A0=C2=A0 def set_packet_len(self, packet_len):
+> 93. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_len
+> 94. self.blocks_stream_to_tagged_stream_0.set_packet_len(self.packet_le=
+n)
+> 95. self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.packe=
+t_len)
+> 96. self.blocks_vector_source_x_0.set_data(range(self.packet_len), ())
+>97.
+>
+> 98. =C2=A0=C2=A0=C2=A0 def get_len_tag_key(self):
+> 99. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.len_tag_key
+>100.
+>
+> 101. =C2=A0=C2=A0=C2=A0 def set_len_tag_key(self, len_tag_key):
+> 102. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_tag_key
+>103.
+>
+> 104. =C2=A0=C2=A0=C2=A0 def get_frecuencia_central(self):
+> 105. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.frecuencia_central
+>106.
+>
+> 107. =C2=A0=C2=A0=C2=A0 def set_frecuencia_central(self, frecuencia_cen=
+tral):
+> 108. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D frecuencia=
+_central
+> 109. self.uhd_usrp_sink_0.set_center_freq(self.frecuencia_central, 0)
+>110.
+>
+> 111. =C2=A0=C2=A0=C2=A0 def
+>     get_fft_len(self):https://github.com/bastibl/gr-foo/tree/maint-3.9/=
+lib
+> 112. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.fft_len
+>113.
+>
+> 114. =C2=A0=C2=A0=C2=A0 def set_fft_len(self, fft_len):
+> 115. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len
+>116.
+>
+>117.
+>
+>
+>118.
+>
+>
+>
+> 119. def main(top_block_cls=3Dofdm_loopback, options=3DNone):
+> 120. =C2=A0 =C2=A0 tb =3D top_block_cls()
+>121.
+>
+> 122. =C2=A0=C2=A0 def sig_handler(sig=3DNone, frame=3DNone):
+> 123. =C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.stop()
+> 124. =C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.wait()
+> 125. sys.exit(0)https://github.com/bastibl/gr-foo/tree/maint-3.9/lib
+>126.
+>
+> 127. =C2=A0=C2=A0=C2=A0 signal.signal(signal.SIGINT, sig_handler)
+> 128. =C2=A0 =C2=A0 signal.signal(signal.SIGTERM, sig_handler)
+>129.
+>
+> 130. =C2=A0=C2=A0=C2=A0 tb.start()
+> 131. =C2=A0 =C2=A0 try:
+> 132. =C2=A0 =C2=A0 =C2=A0 =C2=A0 input('Press Enter to quit: ')
+> 133. =C2=A0 =C2=A0 except EOFError:
+> 134. =C2=A0 =C2=A0 =C2=A0 =C2=A0 pass
+> 135. =C2=A0 =C2=A0 tb.stop()
+> 136. =C2=A0 =C2=A0 tb.wait()
+>137.
+>
+>138.
+>
+>
+> 139. if __name__ =3D=3D '__main__':
+> 140. =C2=A0 =C2=A0 main()
+>141.
+>
+>
+> El mar, 6 jun 2023 a las 10:14, JORGE GONZALEZ ORELLANA=20
+> (<jorge.gonzalez.o@mail.pucv.cl>) escribi=C3=B3:
+>
+>     Hi Marcus.
+>     My mistake, sorry
+>
+>     This is the terminal output from the E312.
+>     -------------------------------------------------------------------=
+--------
+>     root@ni-e31x-32132F0:~# python3 ofdm_loopback.py
+>     [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
+>     UHD_4.3.0.0-0-g1f8fd345
+>     [INFO] [MPMD] Initializing 1 device(s) in parallel with args:
+>     mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D32132=
+F0,name=3Dni-e31x-32132F0,fpga=3Dn/a,claimed=3DFalse
+>     [INFO] [MPM.main] Launching USRP/MPM, version: 4.3.0.0-g1f8fd345
+>     [INFO] [MPM.main] Spawning RPC
+>     process...https://github.com/bastibl/gr-foo/tree/maint-3.9/lib
+>     [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility check!
+>     [INFO] [MPM.PeriphManager] Device serial number: 32132F0
+>     [WARNING] [MPM.PeriphManager] Found more EEPROM paths than
+>     daughterboards. Ignoring some of them.
+>     [INFO] [MPM.RPCServer] RPC server ready!
+>     [INFO] [MPM.RPCServer] Spawning watchdog task...
+>     [INFO] [MPM.PeriphManager] init() called with device args
+>     `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,name=3Dni-e31x-32132F0,product=3D=
+e310_sg3'.
+>     [INFO] [0/Radio#0] Performing CODEC loopback test on channel 0 ...
+>     [INFO] [0/Radio#0] CODEC loopback test passed
+>     [INFO] [0/Radio#0] Performing CODEC loopback test on channel 1 ...
+>     [INFO] [0/Radio#0] CODEC loopback test passed
+>     [WARNING] [MULTI_USRP] Calling multi_usrp::recv_async_msg() is
+>     deprecated and can lead to unexpected behaviour. Prefer calling
+>     tx_stream::recv_async_msg().
+>     [INFO] [MULTI_USRP] =C2=A0 =C2=A0 1) catch time transition at pps
+>     edgehttps://github.com/bastibl/gr-foo/tree/maint-3.9/lib
+>     [INFO] [MULTI_USRP] =C2=A0 =C2=A0 2) set times next pps (synchronou=
+sly)
+>     Press Enter to quit: Fatal Python error: Segmentation fault
+>
+>     Thread 0xb6c09010 (most recent call first):
+>     =C2=A0 File "ofdm_loopback.py", line 132 in main
+>     =C2=A0 File "ofdm_loopback.py", line 140 in <module>
+>     Segmentation fault
+>     root@ni-e31x-32132F0:~#
+>     -------------------------------------------------------------------=
+-----
+>
+>     This is the python script generated from GRC
+>     -------------------------------------------------------------------=
+-----
+>
+>      1. #!/usr/bin/env python3
+>      2. # -*- coding: utf-8 -*-
+>     3.
+>
+>      4. #
+>      5. # SPDX-License-Identifier: GPL-3.0
+>      6. #
+>      7. # GNU Radio Python Flow Graph
+>      8. # Title: OFDM Loopback Example
+>      9. # Description: Transmit a pre-defined signal (a complex sine)
+>         as OFDM packets.
+>     10. # GNU Radio version: 3.8.1.0
+>    11.
+>
+>     12. from gnuradio import blocks
+>     13. from gnuradio import digital
+>     14. from gnuradio import gr
+>     15. from gnuradio.filter import firdes
+>     16. import sys
+>     17. import signal
+>     18. from argparse import ArgumentParser
+>     19. from gnuradio.eng_arg import eng_float, intx
+>     20. from gnuradio import eng_notation
+>     21. from gnuradio import uhd
+>     22. import time
+>     23. import faulthandler; faulthandler.enable()
+>    24.
+>
+>     25. class ofdm_loopback(gr.top_block):
+>    26.
+>
+>     27. =C2=A0 =C2=A0 def __init__(self):
+>     28. =C2=A0 =C2=A0 =C2=A0 =C2=A0 gr.top_block.__init__(self, "OFDM L=
+oopback Example")
+>    29.
+>
+>     30. ##################################################
+>     31. =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Variables
+>     32. ##################################################
+>     33. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rate =3D 10=
+0e3
+>     34. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_len =3D =
+50
+>     35. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_tag_key =3D=
+ "packet_len"
+>     36. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D frecuen=
+cia_central =3D 0
+>     37. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len =3D 64
+>    38.
+>
+>     39. ##################################################
+>     40. =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Blocks
+>     41. ##################################################
+>     42. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0 =3D uhd.usrp_s=
+ink(
+>     43. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ",".join(("", "")),
+>     44. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_args(
+>     45. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cpu_for=
+mat=3D"fc32",
+>     46. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 args=3D=
+'',
+>     47. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 channel=
+s=3Dlist(range(0,1)),
+>     48. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),
+>     49. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 '',
+>     50. =C2=A0 =C2=A0 =C2=A0 =C2=A0 )
+>     51. self.uhd_usrp_sink_0.set_center_freq(frecuencia_central, 0)
+>     52. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_gain(10, 0=
+)
+>     53. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_antenna('T=
+X/RX', 0)
+>     54. self.uhd_usrp_sink_0.set_samp_rate(samp_rate)
+>     55. self.uhd_usrp_sink_0.set_time_unknown_pps(uhd.time_spec())
+>     56. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.digital_ofdm_tx_0 =3D digital.=
+ofdm_tx(
+>     57. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fft_len=3Dfft_len,
+>     58. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp_len=3Dfft_len//4,
+>     59. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 packet_length_tag_key=
+=3Dlen_tag_key,
+>     60. occupied_carriers=3D((-4,-3,-2,-1,1,2,3,4),),
+>     61. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_carriers=3D((-6=
+,-5,5,6),),
+>     62. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_symbols=3D((-1,=
+1,-1,1),),
+>     63. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word1=3DNone,
+>     64. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word2=3DNone,
+>     65. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_header=3D1,
+>     66. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_payload=3D2,
+>     67. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rolloff=3D0,
+>     68. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 debug_log=3DFalse,
+>     69. =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 scramble_bits=3DFalse=
+)
+>     70. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_vector_source_x_0 =3D
+>         blocks.vector_source_b(range(packet_len), True, 1, ())
+>     71. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_stream_to_tagged_stream=
+_0 =3D
+>         blocks.stream_to_tagged_stream(gr.sizeof_char, 1, packet_len,
+>         len_tag_key)
+>    72.
+>
+>    73.
+>
+>
+>    74.
+>
+>
+>
+>     75. ##################################################
+>     76. =C2=A0 =C2=A0 =C2=A0 =C2=A0 # Connections
+>     77. ##################################################
+>     78. self.connect((self.blocks_stream_to_tagged_stream_0, 0),
+>         (self.digital_ofdm_tx_0, 0))
+>     79. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.blocks_vector_so=
+urce_x_0, 0),
+>         (self.blocks_stream_to_tagged_stream_0, 0))
+>     80. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.digital_ofdm_tx_=
+0, 0),
+>         (self.uhd_usrp_sink_0, 0))
+>    81.
+>
+>     82. =C2=A0=C2=A0=C2=A0 def get_samp_rate(self):
+>     83. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.samp_rate
+>    84.
+>
+>     85. =C2=A0=C2=A0=C2=A0 def set_samp_rate(self, samp_rate):
+>     86. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rate
+>     87. self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)
+>    88.
+>
+>     89. =C2=A0=C2=A0=C2=A0 def get_packet_len(self):
+>     90. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.packet_len
+>    91.
+>
+>     92. =C2=A0=C2=A0=C2=A0 def set_packet_len(self, packet_len):
+>     93. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_len
+>     94. self.blocks_stream_to_tagged_stream_0.set_packet_len(self.packe=
+t_len)
+>     95. self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.p=
+acket_len)
+>     96. self.blocks_vector_source_x_0.set_data(range(self.packet_len), =
+())
+>    97.
+>
+>     98. =C2=A0=C2=A0=C2=A0 def get_len_tag_key(self):
+>     99. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.len_tag_key
+>   100.
+>
+>    101. =C2=A0=C2=A0=C2=A0 def set_len_tag_key(self, len_tag_key):
+>    102. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_tag_key
+>   103.
+>
+>    104. =C2=A0=C2=A0=C2=A0 def get_frecuencia_central(self):
+>    105. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.frecuencia_central
+>   106.
+>
+>    107. =C2=A0=C2=A0=C2=A0 def set_frecuencia_central(self, frecuencia_=
+central):
+>    108. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D frecuen=
+cia_central
+>    109. self.uhd_usrp_sink_0.set_center_freq(self.frecuencia_central, 0=
+)
+>   110.
+>
+>    111. =C2=A0=C2=A0=C2=A0 def get_fft_len(self):
+>    112. =C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.fft_len
+>   113.
+>
+>    114. =C2=A0=C2=A0=C2=A0 def set_fft_len(self, fft_len):
+>    115. =C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len
+>   116.
+>
+>   117.
+>
+>
+>   118.
+>
+>
+>
+>    119. def main(top_block_cls=3Dofdm_loopback, options=3DNone):
+>    120. =C2=A0 =C2=A0 tb =3D top_block_cls()
+>   121.
+>
+>    122. =C2=A0=C2=A0 def sig_handler(sig=3DNone, frame=3DNone):
+>    123. =C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.stop()
+>    124. =C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.wait()
+>    125. =C2=A0 =C2=A0 =C2=A0 =C2=A0 sys.exit(0)
+>   126.
+>
+>    127. =C2=A0=C2=A0=C2=A0 signal.signal(signal.SIGINT, sig_handler)
+>    128. =C2=A0 =C2=A0 signal.signal(signal.SIGTERM, sig_handler)
+>   129.
+>
+>    130. =C2=A0=C2=A0=C2=A0 tb.start()
+>    131. =C2=A0 =C2=A0 try:
+>    132. =C2=A0 =C2=A0 =C2=A0 =C2=A0 input('Press Enter to quit: ')
+>    133. =C2=A0 =C2=A0 except EOFError:
+>    134. =C2=A0 =C2=A0 =C2=A0 =C2=A0 pass
+>    135. =C2=A0 =C2=A0 tb.stop()
+>    136. =C2=A0 =C2=A0 tb.wait()
+>    137. i
+>   138.
+>
+>    139. f __name__ =3D=3D '__main__':
+>    140. =C2=A0 =C2=A0 main()
+>
+>
+>     El lun, 5 jun 2023 a las 17:33, Marcus M=C3=BCller
+>     (<marcus.mueller@ettus.com>) escribi=C3=B3:
+>
+>         HI Jorge,
+>
+>         you didn't attach screenshots, but that's OK: We would much
+>         rather have you include
+>         copy&pasted text. Images are always inferior when it comes to
+>         understanding text messages.
+>
+>         Best regards,
+>         Marcus
+>
+>         On 05.06.23 22:19, JORGE GONZALEZ ORELLANA via USRP-users wrote=
+:
+>         > Hi all, I have been trying to implement the OFDM blocks on a
+>         USRP E312, I am currently
+>         > working on Ubuntu 20.04 with GRC 3.8 y UHD 4.3.
+>         >
+>         > When I try to run the python script generated from the GRC,
+>         a segmentation fault error
+>         > appears on the E312, I tried to use the faulthandler module
+>         to see the root of this
+>         > error, but i cannot get an idea of what could it be.
+>         >
+>         > I attached some screenshots, so you can see what I mean
+>         >
+>         > thanks for your time
+>         :)https://github.com/bastibl/gr-foo/tree/maint-3.9/lib
+>         >
+>         > _______________________________________________
+>         > USRP-users mailing list -- usrp-users@lists.ettus.com
+>         > To unsubscribe send an email to usrp-users-leave@lists.ettus.=
+com
+>         _______________________________________________
+>         USRP-users mailing list -- usrp-users@lists.ettus.com
+>         To unsubscribe send an email to usrp-users-leave@lists.ettus.co=
+m
+>
+>
+>
+My guess is that there's something going awry in the digital.ofdm=20
+blocks--probably a non-portability to ARM hardware or some
+ =C2=A0 such.=C2=A0 Not something that Ettus/NI can fix--GR is NOT Ettus/=
+NI software.
 
-On Wed, Jun 7, 2023 at 10:23=E2=80=AFAM <jmaloyan@umass.edu> wrote:
+If you can get a core dump, you could pull it into GDB to see where it's=20
+running off the rails.
 
-> Hello,
->
-> I did run the default image and everything worked fine. I pasted my YML
-> file below. Currently, the software I wrote builds a graph between the
-> replay block and the radio block, I don=E2=80=99t want anything else. I d=
-o have a
-> custom block, but I do not need it for transmit. I tested it on the defau=
-lt
-> image(even though what I wrote does not call for a DUC) and it still work=
-ed
-> fine.
->
->
-> # General parameters
->
-> # -----------------------------------------
->
-> schema: rfnoc_imagebuilder_args # Identifier for the schema used to
-> validate this file
->
-> copyright: >- # Copyright information used in file headers
->
-> Ettus Research, A National Instruments Brand
->
-> license: >- # License information used in file headers
->
-> SPDX-License-Identifier: LGPL-3.0-or-later
->
-> version: '1.0' # File version
->
-> chdr_width: 64 # Bit width of the CHDR bus for this image
->
-> device: 'x410' # USRP type
->
-> image_core_name: 'x410_200_Trigger' # Name to use for the RFNoC Image Cor=
-e
-> files
->
-> default_target: 'X410_X4_200' # Default make target
->
-> # A list of all stream endpoints in design
->
-> # ----------------------------------------
->
-> stream_endpoints:
->
-> ep0: # Stream endpoint name
->
-> ctrl: True # Endpoint passes control traffic
->
-> data: True # Endpoint passes data traffic
->
-> buff_size_bytes: 262144 # Ingress buffer size for data
->
-> ep1:
->
-> ctrl: False
->
-> data: True
->
-> buff_size_bytes: 262144
->
-> ep2:
->
-> ctrl: False
->
-> data: True
->
-> buff_size_bytes: 262144
->
-> ep3:
->
-> ctrl: False
->
-> data: True
->
-> buff_size_bytes: 262144
->
-> ep4:
->
-> ctrl: False
->
-> data: True
->
-> buff_size_bytes: 32768
->
-> ep5:
->
-> ctrl: False
->
-> data: True
->
-> buff_size_bytes: 32768
->
-> ep6:
->
-> ctrl: False
->
-> data: True
->
-> buff_size_bytes: 32768
->
-> ep7:
->
-> ctrl: False
->
-> data: True
->
-> buff_size_bytes: 32768
->
-> # A list of all NoC blocks in design
->
-> # ----------------------------------
->
-> noc_blocks:
->
-> radio0:
->
-> block_desc: 'radio.yml'
->
-> parameters:
->
-> NUM_PORTS: 2
->
-> NIPC: RADIO_NIPC
->
-> radio1:
->
-> block_desc: 'radio.yml'
->
-> parameters:
->
-> NUM_PORTS: 2
->
-> NIPC: RADIO_NIPC
->
-> replay0:
->
-> block_desc: 'replay.yml'
->
-> parameters:
->
-> NUM_PORTS: 2
->
-> MEM_DATA_W: 128
->
-> MEM_ADDR_W: 32
->
-> trigger0:
->
-> block_desc: 'trigger.yml'
->
-> parameters:
->
-> NUM_PORTS: 1
->
-> trigger1:
->
-> block_desc: 'trigger.yml'
->
-> parameters:
->
-> NUM_PORTS: 1
->
-> # A list of all static connections in design
->
-> # ------------------------------------------
->
-> # Format: A list of connection maps (list of key-value pairs) with the
-> following keys
->
-> # - srcblk =3D Source block to connect
->
-> # - srcport =3D Port on the source block to connect
->
-> # - dstblk =3D Destination block to connect
->
-> # - dstport =3D Port on the destination block to connect
->
-> connections:
->
-> #
->
-> # RF A:0 TX
->
-> - { srcblk: ep0, srcport: out0, dstblk: radio0, dstport: in_0 }
->
-> # RF A:0 RX
->
-> - { srcblk: radio0, srcport: out_0, dstblk: ep0, dstport: in0 }
->
-> # RF A:1 TX
->
-> - { srcblk: ep1, srcport: out0, dstblk: radio0, dstport: in_1 }
->
-> # RF A:1 RX
->
-> - { srcblk: radio0, srcport: out_1, dstblk: ep1, dstport: in0 }
->
-> #
->
-> # RF B:0 TX
->
-> - { srcblk: ep2, srcport: out0, dstblk: radio1, dstport: in_0 }
->
-> # RF B:0 RX
->
-> - { srcblk: radio1, srcport: out_0, dstblk: ep2, dstport: in0 }
->
-> # RF B:1 TX
->
-> - { srcblk: ep3, srcport: out0, dstblk: radio1, dstport: in_1 }
->
-> # RF B:1 RX
->
-> - { srcblk: radio1, srcport: out_1, dstblk: ep3, dstport: in0 }
->
-> #
->
-> # Replay Connections
->
-> - { srcblk: ep4, srcport: out0, dstblk: replay0, dstport: in_0 }
->
-> - { srcblk: replay0, srcport: out_0, dstblk: ep4, dstport: in0 }
->
-> - { srcblk: ep5, srcport: out0, dstblk: replay0, dstport: in_1 }
->
-> - { srcblk: replay0, srcport: out_1, dstblk: ep5, dstport: in0 }
->
-> #
->
-> #trigger Connections
->
-> - { srcblk: ep6, srcport: out0, dstblk: trigger0, dstport: in_0 }
->
-> - { srcblk: trigger0, srcport: out_0, dstblk: ep6, dstport: in0 }
->
-> - { srcblk: ep7, srcport: out0, dstblk: trigger1, dstport: in_0 }
->
-> - { srcblk: trigger1, srcport: out_0, dstblk: ep7, dstport: in0 }
->
-> # BSP Connections
->
-> - { srcblk: radio0, srcport: ctrlport, dstblk: _device_, dstport:
-> ctrlport_radio0 }
->
-> - { srcblk: radio1, srcport: ctrlport, dstblk: _device_, dstport:
-> ctrlport_radio1 }
->
-> - { srcblk: _device_, srcport: radio0, dstblk: radio0, dstport: radio }
->
-> - { srcblk: _device_, srcport: radio1, dstblk: radio1, dstport: radio }
->
-> - { srcblk: _device_, srcport: time, dstblk: radio0, dstport: time }
->
-> - { srcblk: _device_, srcport: time, dstblk: radio1, dstport: time }
->
-> - { srcblk: replay0, srcport: axi_ram, dstblk: _device_, dstport: dram }
->
-> # A list of all clock domain connections in design
->
-> # ------------------------------------------------
->
-> # Format: A list of connection maps (list of key-value pairs) with the
-> following keys
->
-> # - srcblk =3D Source block to connect (Always "_device_")
->
-> # - srcport =3D Clock domain on the source block to connect
->
-> # - dstblk =3D Destination block to connect
->
-> # - dstport =3D Clock domain on the destination block to connect
->
-> clk_domains:
->
-> - { srcblk: _device_, srcport: radio, dstblk: radio0, dstport: radio }
->
-> - { srcblk: _device_, srcport: radio, dstblk: radio1, dstport: radio }
->
-> - { srcblk: _device_, srcport: dram, dstblk: replay0, dstport: mem }
->
-> - { srcblk: _device_, srcport: radio_2x, dstblk: trigger1, dstport: ce }
->
-> - { srcblk: _device_, srcport: radio_2x, dstblk: trigger0, dstport: ce }
->
->
->
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
 
---000000000000a5aa3705fd8f2b8f
-Content-Type: text/html; charset="UTF-8"
+
+--------------QmCuq04xQl9gCy2K9HnmhsKP
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Joe,<div>It sounds like your custom image is compatible=
- with the Ettus example &quot;rfnoc_replay_samples_from_file&quot;.=C2=A0 H=
-ave you tried this with your custom image (as opposed to your custom softwa=
-re)?</div><div>Rob</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Wed, Jun 7, 2023 at 10:23=E2=80=AFAM &lt;<a href=
-=3D"mailto:jmaloyan@umass.edu">jmaloyan@umass.edu</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><p>Hello,</p><p>I did run =
-the default image and everything worked fine. I pasted my YML file below. C=
-urrently, the software I wrote builds a graph between the replay block and =
-the radio block, I don=E2=80=99t want anything else. I do have a custom blo=
-ck, but I do not need it for transmit. I tested it on the default image(eve=
-n though what I wrote does not call for a DUC) and it still worked fine.</p=
-><p><br></p><p># General parameters</p><p># -------------------------------=
-----------</p><p>schema: rfnoc_imagebuilder_args         # Identifier for t=
-he schema used to validate this file</p><p>copyright: &gt;-                =
-           # Copyright information used in file headers</p><p>  Ettus Resea=
-rch, A National Instruments Brand</p><p>license: &gt;-                     =
-        # License information used in file headers</p><p>  SPDX-License-Ide=
-ntifier: LGPL-3.0-or-later</p><p>version: &#39;1.0&#39;                    =
-      # File version</p><p>chdr_width: 64                      # Bit width =
-of the CHDR bus for this image</p><p>device: &#39;x410&#39;                =
-          # USRP type</p><p>image_core_name: &#39;x410_200_Trigger&#39;    =
-     # Name to use for the RFNoC Image Core files</p><p>default_target: &#3=
-9;X410_X4_200&#39;           # Default make target</p><p># A list of all st=
-ream endpoints in design</p><p># ----------------------------------------</=
-p><p>stream_endpoints:</p><p>  ep0:                                  # Stre=
-am endpoint name</p><p>    ctrl: True                          # Endpoint p=
-asses control traffic</p><p>    data: True                          # Endpo=
-int passes data traffic</p><p>    buff_size_bytes: 262144             # Ing=
-ress buffer size for data</p><p>  ep1:</p><p>    ctrl: False</p><p>    data=
-: True</p><p>    buff_size_bytes: 262144</p><p>  ep2:</p><p>    ctrl: False=
-</p><p>    data: True</p><p>    buff_size_bytes: 262144</p><p>  ep3:</p><p>=
-    ctrl: False</p><p>    data: True</p><p>    buff_size_bytes: 262144</p><=
-p>  ep4:</p><p>    ctrl: False</p><p>    data: True</p><p>    buff_size_byt=
-es: 32768</p><p>  ep5:</p><p>    ctrl: False</p><p>    data: True</p><p>   =
- buff_size_bytes: 32768</p><p>  ep6:</p><p>    ctrl: False</p><p>    data: =
-True</p><p>    buff_size_bytes: 32768</p><p>  ep7:</p><p>    ctrl: False</p=
-><p>    data: True</p><p>    buff_size_bytes: 32768</p><p># A list of all N=
-oC blocks in design</p><p># ----------------------------------</p><p>noc_bl=
-ocks:</p><p>  radio0:</p><p>    block_desc: &#39;radio.yml&#39;</p><p>    p=
-arameters:</p><p>      NUM_PORTS: 2</p><p>      NIPC: RADIO_NIPC</p><p>  ra=
-dio1:</p><p>    block_desc: &#39;radio.yml&#39;</p><p>    parameters:</p><p=
->      NUM_PORTS: 2</p><p>      NIPC: RADIO_NIPC</p><p>  replay0:</p><p>   =
- block_desc: &#39;replay.yml&#39;</p><p>    parameters:</p><p>      NUM_POR=
-TS: 2</p><p>      MEM_DATA_W: 128</p><p>      MEM_ADDR_W: 32</p><p>  trigge=
-r0:</p><p>    block_desc: &#39;trigger.yml&#39;</p><p>    parameters:</p><p=
->      NUM_PORTS: 1</p><p>  trigger1:</p><p>    block_desc: &#39;trigger.ym=
-l&#39;</p><p>    parameters:</p><p>      NUM_PORTS: 1</p><p># A list of all=
- static connections in design</p><p># -------------------------------------=
------</p><p># Format: A list of connection maps (list of key-value pairs) w=
-ith the following keys</p><p>#   - srcblk  =3D Source block to connect</p><=
-p>#   - srcport =3D Port on the source block to connect</p><p>#   - dstblk =
- =3D Destination block to connect</p><p>#   - dstport =3D Port on the desti=
-nation block to connect</p><p>connections:</p><p>  #</p><p>    # RF A:0 TX<=
-/p><p>  - { srcblk: ep0,    srcport: out0,  dstblk: radio0, dstport: in_0 }=
-</p><p>  # RF A:0 RX</p><p>  - { srcblk: radio0, srcport: out_0, dstblk: ep=
-0,    dstport: in0  }</p><p>  # RF A:1 TX</p><p>  - { srcblk: ep1,    srcpo=
-rt: out0,  dstblk: radio0, dstport: in_1 }</p><p>  # RF A:1 RX</p><p>  - { =
-srcblk: radio0, srcport: out_1, dstblk: ep1,    dstport: in0  }</p><p>  #</=
-p><p>  # RF B:0 TX</p><p>  - { srcblk: ep2,    srcport: out0,  dstblk: radi=
-o1, dstport: in_0 }</p><p>  # RF B:0 RX</p><p>  - { srcblk: radio1, srcport=
-: out_0, dstblk: ep2,    dstport: in0  }</p><p>  # RF B:1 TX</p><p>  - { sr=
-cblk: ep3,    srcport: out0,  dstblk: radio1, dstport: in_1 }</p><p>  # RF =
-B:1 RX</p><p>  - { srcblk: radio1, srcport: out_1, dstblk: ep3,    dstport:=
- in0  }</p><p>  #</p><p>  # Replay Connections</p><p>  - { srcblk: ep4,    =
-  srcport: out0,     dstblk: replay0,  dstport: in_0            }</p><p>  -=
- { srcblk: replay0,  srcport: out_0,    dstblk: ep4,      dstport: in0     =
-        }</p><p>  - { srcblk: ep5,      srcport: out0,     dstblk: replay0,=
-  dstport: in_1            }</p><p>  - { srcblk: replay0,  srcport: out_1, =
-   dstblk: ep5,      dstport: in0             }</p><p>  #</p><p>  #trigger =
-Connections</p><p>  - { srcblk: ep6,      srcport: out0,     dstblk: trigge=
-r0,  dstport: in_0            }</p><p>  - { srcblk: trigger0,  srcport: out=
-_0,    dstblk: ep6,      dstport: in0             }</p><p>  - { srcblk: ep7=
-,      srcport: out0,     dstblk: trigger1,  dstport: in_0            }</p>=
-<p>  - { srcblk: trigger1,  srcport: out_0,    dstblk: ep7,      dstport: i=
-n0             }</p><p>  # BSP Connections</p><p>  - { srcblk: radio0,   sr=
-cport: ctrlport, dstblk: _device_, dstport: ctrlport_radio0 }</p><p>  - { s=
-rcblk: radio1,   srcport: ctrlport, dstblk: _device_, dstport: ctrlport_rad=
-io1 }</p><p>  - { srcblk: _device_, srcport: radio0,   dstblk: radio0,   ds=
-tport: radio           }</p><p>  - { srcblk: _device_, srcport: radio1,   d=
-stblk: radio1,   dstport: radio           }</p><p>  - { srcblk: _device_, s=
-rcport: time,     dstblk: radio0,   dstport: time            }</p><p>  - { =
-srcblk: _device_, srcport: time,     dstblk: radio1,   dstport: time       =
-     }</p><p>  - { srcblk: replay0,  srcport: axi_ram,  dstblk: _device_, d=
-stport: dram            }</p><p># A list of all clock domain connections in=
- design</p><p># ------------------------------------------------</p><p># Fo=
-rmat: A list of connection maps (list of key-value pairs) with the followin=
-g keys</p><p>#   - srcblk  =3D Source block to connect (Always &quot;_devic=
-e_&quot;)</p><p>#   - srcport =3D Clock domain on the source block to conne=
-ct</p><p>#   - dstblk  =3D Destination block to connect</p><p>#   - dstport=
- =3D Clock domain on the destination block to connect</p><p>clk_domains:</p=
-><p>  - { srcblk: _device_, srcport: radio, dstblk: radio0,  dstport: radio=
- }</p><p>  - { srcblk: _device_, srcport: radio, dstblk: radio1,  dstport: =
-radio }</p><p>  - { srcblk: _device_, srcport: dram,  dstblk: replay0, dstp=
-ort: mem   }</p><p>  - { srcblk: _device_, srcport: radio_2x, dstblk: trigg=
-er1,    dstport: ce    }</p><p>  - { srcblk: _device_, srcport: radio_2x, d=
-stblk: trigger0,    dstport: ce    }</p><p><br></p><p><br></p>
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 07/06/2023 11:01, JORGE GONZALEZ
+      ORELLANA via USRP-users wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAFFpLrHakCGzGv-1NGfgtHpT8xpccijvTqojhsQXz-kXXe_o3w@mail.gmai=
+l.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">
+        <div>Hi all, i re-ask this question because I can't find answers
+          on Google.</div>
+        <div>There is a segmentation fault error when I try to run an
+          ofdm workflow example on a USRP E312, I am currently working
+          on Ubuntu 20.04 with UHD 4.3 and GRC 3.8.</div>
+        <div><br>
+        </div>
+        <div>
+          <div>This is the terminal output from the E312.</div>
+          <div>----------------------------------------------------------=
+-----------------</div>
+          <div>root@ni-e31x-32132F0:~# python3 ofdm_loopback.py<br>
+            [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
+            UHD_4.3.0.0-0-g1f8fd345<br>
+            [INFO] [MPMD] Initializing 1 device(s) in parallel with
+            args:
+mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D32132F0,nam=
+e=3Dni-e31x-32132F0,fpga=3Dn/a,claimed=3DFalse<br>
+            [INFO] [MPM.main] Launching USRP/MPM, version:
+            4.3.0.0-g1f8fd345<br>
+            [INFO] [MPM.main] Spawning RPC process...<br>
+            [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility
+            check!<br>
+            [INFO] [MPM.PeriphManager] Device serial number: 32132F0<br>
+            [WARNING] [MPM.PeriphManager] Found more EEPROM paths than
+            daughterboards. Ignoring some of them.<br>
+            [INFO] [MPM.RPCServer] RPC server ready!<br>
+            [INFO] [MPM.RPCServer] Spawning watchdog task...<br>
+            [INFO] [MPM.PeriphManager] init() called with device args
+            `fpga=3Dn/a,mgmt_addr=3D127.0.0.1,name=3Dni-e31x-32132F0,prod=
+uct=3De310_sg3'.<br>
+            [INFO] [0/Radio#0] Performing CODEC loopback test on channel
+            0 ... <br>
+            [INFO] [0/Radio#0] CODEC loopback test passed<br>
+            [INFO] [0/Radio#0] Performing CODEC loopback test on channel
+            1 ... <br>
+            [INFO] [0/Radio#0] CODEC loopback test passed<br>
+            [WARNING] [MULTI_USRP] Calling multi_usrp::recv_async_msg()
+            is deprecated and can lead to unexpected behaviour. Prefer
+            calling tx_stream::recv_async_msg().<br>
+            [INFO] [MULTI_USRP] =C2=A0 =C2=A0 1) catch time transition at=
+ pps edge<br>
+            [INFO] [MULTI_USRP] =C2=A0 =C2=A0 2) set times next pps
+            (synchronously)<br>
+            Press Enter to quit: Fatal Python error: Segmentation fault<b=
+r>
+            <br>
+            Thread 0xb6c09010 (most recent call first):<br>
+            =C2=A0 File "ofdm_loopback.py", line 132 in main<br>
+            =C2=A0 File "ofdm_loopback.py", line 140 in &lt;module&gt;<br=
+>
+            Segmentation fault<br>
+            root@ni-e31x-32132F0:~# <br>
+------------------------------------------------------------------------<=
+/div>
+          <div><br>
+          </div>
+          <div>This is the python script generated from GRC<br>
+          </div>
+          <div>----------------------------------------------------------=
+--------------</div>
+          <div>
+            <ol>
+              <li>#!/usr/bin/env python3</li>
+              <li># -*- coding: utf-8 -*-</li>
+              <li><br>
+              </li>
+              <li>#</li>
+              <li># SPDX-License-Identifier: GPL-3.0</li>
+              <li>#</li>
+              <li># GNU Radio Python Flow Graph</li>
+              <li># Title: OFDM Loopback Example</li>
+              <li># Description: Transmit a pre-defined signal (a
+                complex sine) as OFDM packets.</li>
+              <li># GNU Radio version: 3.8.1.0</li>
+              <li><br>
+              </li>
+              <li>from gnuradio import blocks</li>
+              <li>from gnuradio import digital</li>
+              <li>from gnuradio import gr</li>
+              <li>from gnuradio.filter import firdes</li>
+              <li>import sys</li>
+              <li>import signal</li>
+              <li>from argparse import ArgumentParser</li>
+              <li>from gnuradio.eng_arg import eng_float, intx</li>
+              <li>from gnuradio import eng_notation</li>
+              <li>from gnuradio import
+                uhdhttps://github.com/bastibl/gr-foo/tree/maint-3.9/lib</=
+li>
+              <li>import time</li>
+              <li>import faulthandler; faulthandler.enable()</li>
+              <li><br>
+              </li>
+              <li>class ofdm_loopback(gr.top_block):</li>
+              <li><br>
+              </li>
+              <li>=C2=A0 =C2=A0 def __init__(self):</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 gr.top_block.__init__(self,=
+ "OFDM Loopback
+                Example")</li>
+              <li><br>
+              </li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                ##################################################</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Variables</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                ##################################################</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rat=
+e =3D 100e3</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_=
+len =3D 50</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_ta=
+g_key =3D "packet_len"</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D=
+ frecuencia_central =3D
+                0</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len =3D=
+ 64</li>
+              <li><br>
+              </li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                ##################################################</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Blocks</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                ##################################################</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0 =3D uh=
+d.usrp_sink(</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ",".join(("",=
+ "")),</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_ar=
+gs(</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ cpu_format=3D"fc32",</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ args=3D'',</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ channels=3Dlist(range(0,1)),</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 '',</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 )</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                self.uhd_usrp_sink_0.set_center_freq(frecuencia_central,
+                0)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_ga=
+in(10, 0)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_an=
+tenna('TX/RX', 0)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_sa=
+mp_rate(samp_rate)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                self.uhd_usrp_sink_0.set_time_unknown_pps(uhd.time_spec()=
+)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.digital_ofdm_tx_0 =3D =
+digital.ofdm_tx(</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fft_len=3Dfft=
+_len,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp_len=3Dfft_=
+len//4,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 packet_length=
+_tag_key=3Dlen_tag_key,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                occupied_carriers=3D((-4,-3,-2,-1,1,2,3,4),),</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_carrier=
+s=3D((-6,-5,5,6),),</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_symbols=
+=3D((-1,1,-1,1),),</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word1=3D=
+None,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word2=3D=
+None,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_header=3D=
+1,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_payload=3D=
+2,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rolloff=3D0,<=
+/li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 debug_log=3DF=
+alse,</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 scramble_bits=
+=3DFalse)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_vector_source_x=
+_0 =3D
+                blocks.vector_source_b(range(packet_len), True, 1, ())</l=
+i>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_stream_to_tagge=
+d_stream_0 =3D
+                blocks.stream_to_tagged_stream(gr.sizeof_char, 1,
+                packet_len, len_tag_key)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>
+              </li>
+              <li><br>
+              </li>
+              <li><br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+                ##################################################</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Connections</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                ##################################################</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                self.connect((self.blocks_stream_to_tagged_stream_0, 0),
+                (self.digital_ofdm_tx_0, 0))</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.blocks_v=
+ector_source_x_0,
+                0), (self.blocks_stream_to_tagged_stream_0, 0))</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.digital_=
+ofdm_tx_0, 0),
+                (self.uhd_usrp_sink_0, 0))</li>
+              <li>=C2=A0 =C2=A0
+                <a class=3D"moz-txt-link-freetext" href=3D"https://github=
+.com/bastibl/gr-foo/tree/maint-3.9/lib">https://github.com/bastibl/gr-foo=
+/tree/maint-3.9/lib</a><br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def get_samp_rate(self):</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.samp_rate</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def set_samp_rate(self, samp_rate):<=
+/li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_rat=
+e</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def get_packet_len(self):</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.packet_len</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def set_packet_len(self, packet_len)=
+:</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packet_=
+len</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                self.blocks_stream_to_tagged_stream_0.set_packet_len(self=
+.packet_len)</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.packet_len)=
+</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                self.blocks_vector_source_x_0.set_data(range(self.packet_=
+len),
+                ())</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def get_len_tag_key(self):</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.len_tag_key</li=
+>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def set_len_tag_key(self, len_tag_ke=
+y):</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_ta=
+g_key</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def get_frecuencia_central(self):</l=
+i>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.frecuencia_cent=
+ral</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def set_frecuencia_central(self,
+                frecuencia_central):</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D=
+ frecuencia_central</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                self.uhd_usrp_sink_0.set_center_freq(self.frecuencia_cent=
+ral,
+                0)</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def
+                get_fft_len(self):<a class=3D"moz-txt-link-freetext" href=
+=3D"https://github.com/bastibl/gr-foo/tree/maint-3.9/lib">https://github.=
+com/bastibl/gr-foo/tree/maint-3.9/lib</a></li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.fft_len</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 def set_fft_len(self, fft_len):</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len</l=
+i>
+              <li><br>
+              </li>
+              <li><br>
+              </li>
+              <li><br>
+              </li>
+              <li>def main(top_block_cls=3Dofdm_loopback, options=3DNone)=
+:</li>
+              <li>=C2=A0 =C2=A0 tb =3D top_block_cls()</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0 def sig_handler(sig=3DNone, frame=3DNone):=
+</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.stop()</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.wait()</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                sys.exit(0)<a class=3D"moz-txt-link-freetext" href=3D"htt=
+ps://github.com/bastibl/gr-foo/tree/maint-3.9/lib">https://github.com/bas=
+tibl/gr-foo/tree/maint-3.9/lib</a></li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 signal.signal(signal.SIGINT, sig_han=
+dler)</li>
+              <li>=C2=A0 =C2=A0 signal.signal(signal.SIGTERM, sig_handler=
+)</li>
+              <li>=C2=A0 =C2=A0 <br>
+              </li>
+              <li>=C2=A0=C2=A0=C2=A0 tb.start()</li>
+              <li>=C2=A0 =C2=A0 try:</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 input('Press Enter to quit:=
+ ')</li>
+              <li>=C2=A0 =C2=A0 except EOFError:</li>
+              <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 pass</li>
+              <li>=C2=A0 =C2=A0 tb.stop()</li>
+              <li>=C2=A0 =C2=A0 tb.wait()</li>
+              <li><br>
+              </li>
+              <li><br>
+              </li>
+              <li>if __name__ =3D=3D '__main__':</li>
+              <li>=C2=A0 =C2=A0 main()</li>
+              <li><br>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class=3D"gmail_quote">
+        <div dir=3D"ltr" class=3D"gmail_attr">El mar, 6 jun 2023 a las
+          10:14, JORGE GONZALEZ ORELLANA (&lt;<a
+            href=3D"mailto:jorge.gonzalez.o@mail.pucv.cl"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">jorg=
+e.gonzalez.o@mail.pucv.cl</a>&gt;)
+          escribi=C3=B3:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div dir=3D"ltr">
+            <div>Hi Marcus.<br>
+            </div>
+            <div>My mistake, sorry</div>
+            <div><br>
+            </div>
+            <div>This is the terminal output from the E312.</div>
+            <div>--------------------------------------------------------=
+-------------------</div>
+            <div>root@ni-e31x-32132F0:~# python3 ofdm_loopback.py<br>
+              [INFO] [UHD] linux; GNU C++ version 9.2.0; Boost_107100;
+              UHD_4.3.0.0-0-g1f8fd345<br>
+              [INFO] [MPMD] Initializing 1 device(s) in parallel with
+              args:
+mgmt_addr=3D127.0.0.1,type=3De3xx,product=3De310_sg3,serial=3D32132F0,nam=
+e=3Dni-e31x-32132F0,fpga=3Dn/a,claimed=3DFalse<br>
+              [INFO] [MPM.main] Launching USRP/MPM, version:
+              4.3.0.0-g1f8fd345<br>
+              [INFO] [MPM.main] Spawning RPC
+              process...https://github.com/bastibl/gr-foo/tree/maint-3.9/=
+lib<br>
+              [WARNING] [MPM.PeriphManager] Skipping HW/SW compatibility
+              check!<br>
+              [INFO] [MPM.PeriphManager] Device serial number: 32132F0<br=
+>
+              [WARNING] [MPM.PeriphManager] Found more EEPROM paths than
+              daughterboards. Ignoring some of them.<br>
+              [INFO] [MPM.RPCServer] RPC server ready!<br>
+              [INFO] [MPM.RPCServer] Spawning watchdog task...<br>
+              [INFO] [MPM.PeriphManager] init() called with device args
+`fpga=3Dn/a,mgmt_addr=3D127.0.0.1,name=3Dni-e31x-32132F0,product=3De310_s=
+g3'.<br>
+              [INFO] [0/Radio#0] Performing CODEC loopback test on
+              channel 0 ... <br>
+              [INFO] [0/Radio#0] CODEC loopback test passed<br>
+              [INFO] [0/Radio#0] Performing CODEC loopback test on
+              channel 1 ... <br>
+              [INFO] [0/Radio#0] CODEC loopback test passed<br>
+              [WARNING] [MULTI_USRP] Calling
+              multi_usrp::recv_async_msg() is deprecated and can lead to
+              unexpected behaviour. Prefer calling
+              tx_stream::recv_async_msg().<br>
+              [INFO] [MULTI_USRP] =C2=A0 =C2=A0 1) catch time transition =
+at pps
+              edgehttps://github.com/bastibl/gr-foo/tree/maint-3.9/lib<br=
+>
+              [INFO] [MULTI_USRP] =C2=A0 =C2=A0 2) set times next pps
+              (synchronously)<br>
+              Press Enter to quit: Fatal Python error: Segmentation
+              fault<br>
+              <br>
+              Thread 0xb6c09010 (most recent call first):<br>
+              =C2=A0 File "ofdm_loopback.py", line 132 in main<br>
+              =C2=A0 File "ofdm_loopback.py", line 140 in &lt;module&gt;<=
+br>
+              Segmentation fault<br>
+              root@ni-e31x-32132F0:~# <br>
+------------------------------------------------------------------------<=
+/div>
+            <div><br>
+            </div>
+            <div>This is the python script generated from GRC<br>
+            </div>
+            <div>--------------------------------------------------------=
+----------------</div>
+            <div>
+              <ol>
+                <li>#!/usr/bin/env python3</li>
+                <li># -*- coding: utf-8 -*-</li>
+                <li><br>
+                </li>
+                <li>#</li>
+                <li># SPDX-License-Identifier: GPL-3.0</li>
+                <li>#</li>
+                <li># GNU Radio Python Flow Graph</li>
+                <li># Title: OFDM Loopback Example</li>
+                <li># Description: Transmit a pre-defined signal (a
+                  complex sine) as OFDM packets.</li>
+                <li># GNU Radio version: 3.8.1.0</li>
+                <li><br>
+                </li>
+                <li>from gnuradio import blocks</li>
+                <li>from gnuradio import digital</li>
+                <li>from gnuradio import gr</li>
+                <li>from gnuradio.filter import firdes</li>
+                <li>import sys</li>
+                <li>import signal</li>
+                <li>from argparse import ArgumentParser</li>
+                <li>from gnuradio.eng_arg import eng_float, intx</li>
+                <li>from gnuradio import eng_notation</li>
+                <li>from gnuradio import uhd</li>
+                <li>import time</li>
+                <li>import faulthandler; faulthandler.enable()</li>
+                <li><br>
+                </li>
+                <li>class ofdm_loopback(gr.top_block):</li>
+                <li><br>
+                </li>
+                <li>=C2=A0 =C2=A0 def __init__(self):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 gr.top_block.__init__(sel=
+f, "OFDM Loopback
+                  Example")</li>
+                <li><br>
+                </li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  ##################################################</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Variables</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  ##################################################</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_r=
+ate =3D 100e3</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packe=
+t_len =3D 50</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_=
+tag_key =3D
+                  "packet_len"</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D=
+ frecuencia_central
+                  =3D 0</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len =
+=3D 64</li>
+                <li><br>
+                </li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  ##################################################</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Blocks</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  ##################################################</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0 =3D =
+uhd.usrp_sink(</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ",".join(("=
+", "")),</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.stream_=
+args(</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ cpu_format=3D"fc32",</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ args=3D'',</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ channels=3Dlist(range(0,1)),</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ),</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 '',</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 )</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.uhd_usrp_sink_0.set_center_freq(frecuencia_central=
+,
+                  0)</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_=
+gain(10, 0)</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.uhd_usrp_sink_0.set_=
+antenna('TX/RX', 0)</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.uhd_usrp_sink_0.set_samp_rate(samp_rate)</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.uhd_usrp_sink_0.set_time_unknown_pps(uhd.time_spec=
+())</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.digital_ofdm_tx_0 =3D=
+ digital.ofdm_tx(</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 fft_len=3Df=
+ft_len,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 cp_len=3Dff=
+t_len//4,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 packet_leng=
+th_tag_key=3Dlen_tag_key,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  occupied_carriers=3D((-4,-3,-2,-1,1,2,3,4),),</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_carri=
+ers=3D((-6,-5,5,6),),</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 pilot_symbo=
+ls=3D((-1,1,-1,1),),</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word1=3D=
+None,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 sync_word2=3D=
+None,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_header=3D=
+1,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bps_payload=
+=3D2,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 rolloff=3D0=
+,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 debug_log=3D=
+False,</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 scramble_bi=
+ts=3DFalse)</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_vector_source=
+_x_0 =3D
+                  blocks.vector_source_b(range(packet_len), True, 1, ())<=
+/li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.blocks_stream_to_tag=
+ged_stream_0 =3D
+                  blocks.stream_to_tagged_stream(gr.sizeof_char, 1,
+                  packet_len, len_tag_key)</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 <br>
+                </li>
+                <li><br>
+                </li>
+                <li><br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+                  ##################################################</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Connections</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  ##################################################</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.connect((self.blocks_stream_to_tagged_stream_0,
+                  0), (self.digital_ofdm_tx_0, 0))</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.blocks=
+_vector_source_x_0,
+                  0), (self.blocks_stream_to_tagged_stream_0, 0))</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.connect((self.digita=
+l_ofdm_tx_0, 0),
+                  (self.uhd_usrp_sink_0, 0))</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def get_samp_rate(self):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.samp_rate</li=
+>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def set_samp_rate(self, samp_rate)=
+:</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.samp_rate =3D samp_r=
+ate</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.uhd_usrp_sink_0.set_samp_rate(self.samp_rate)</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def get_packet_len(self):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.packet_len</l=
+i>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def set_packet_len(self, packet_le=
+n):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.packet_len =3D packe=
+t_len</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.blocks_stream_to_tagged_stream_0.set_packet_len(se=
+lf.packet_len)</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+self.blocks_stream_to_tagged_stream_0.set_packet_len_pmt(self.packet_len)=
+</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.blocks_vector_source_x_0.set_data(range(self.packe=
+t_len),
+                  ())</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def get_len_tag_key(self):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.len_tag_key</=
+li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def set_len_tag_key(self, len_tag_=
+key):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.len_tag_key =3D len_=
+tag_key</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def get_frecuencia_central(self):<=
+/li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.frecuencia_ce=
+ntral</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def set_frecuencia_central(self,
+                  frecuencia_central):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.frecuencia_central =3D=
+ frecuencia_central</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0
+                  self.uhd_usrp_sink_0.set_center_freq(self.frecuencia_ce=
+ntral,
+                  0)</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def get_fft_len(self):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return self.fft_len</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 def set_fft_len(self, fft_len):</l=
+i>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 self.fft_len =3D fft_len<=
+/li>
+                <li><br>
+                </li>
+                <li><br>
+                </li>
+                <li><br>
+                </li>
+                <li>def main(top_block_cls=3Dofdm_loopback, options=3DNon=
+e):</li>
+                <li>=C2=A0 =C2=A0 tb =3D top_block_cls()</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0 def sig_handler(sig=3DNone, frame=3DNone=
+):</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.stop()</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 tb.wait()</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 sys.exit(0)</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 signal.signal(signal.SIGINT, sig_h=
+andler)</li>
+                <li>=C2=A0 =C2=A0 signal.signal(signal.SIGTERM, sig_handl=
+er)</li>
+                <li>=C2=A0 =C2=A0 <br>
+                </li>
+                <li>=C2=A0=C2=A0=C2=A0 tb.start()</li>
+                <li>=C2=A0 =C2=A0 try:</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 input('Press Enter to qui=
+t: ')</li>
+                <li>=C2=A0 =C2=A0 except EOFError:</li>
+                <li>=C2=A0 =C2=A0 =C2=A0 =C2=A0 pass</li>
+                <li>=C2=A0 =C2=A0 tb.stop()</li>
+                <li>=C2=A0 =C2=A0 tb.wait()</li>
+                <li>i</li>
+                <li><br>
+                </li>
+                <li>f __name__ =3D=3D '__main__':</li>
+                <li>=C2=A0 =C2=A0 main()</li>
+              </ol>
+            </div>
+          </div>
+          <br>
+          <div class=3D"gmail_quote">
+            <div dir=3D"ltr" class=3D"gmail_attr">El lun, 5 jun 2023 a la=
+s
+              17:33, Marcus M=C3=BCller (&lt;<a
+                href=3D"mailto:marcus.mueller@ettus.com" target=3D"_blank=
+"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+marcus.mueller@ettus.com</a>&gt;)
+              escribi=C3=B3:<br>
+            </div>
+            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+              0.8ex;border-left:1px solid
+              rgb(204,204,204);padding-left:1ex">HI Jorge,<br>
+              <br>
+              you didn't attach screenshots, but that's OK: We would
+              much rather have you include <br>
+              copy&amp;pasted text. Images are always inferior when it
+              comes to understanding text messages.<br>
+              <br>
+              Best regards,<br>
+              Marcus<br>
+              <br>
+              On 05.06.23 22:19, JORGE GONZALEZ ORELLANA via USRP-users
+              wrote:<br>
+              &gt; Hi all, I have been trying to implement the OFDM
+              blocks on a USRP E312, I am currently <br>
+              &gt; working on Ubuntu 20.04 with GRC 3.8 y UHD 4.3.<br>
+              &gt;<br>
+              &gt; When I try to run the python script generated from
+              the GRC, a segmentation fault error <br>
+              &gt; appears on the E312, I tried to use the faulthandler
+              module to see the root of this <br>
+              &gt; error, but i cannot get an idea of what could it be.<b=
+r>
+              &gt;<br>
+              &gt; I attached some screenshots, so you can see what I
+              mean<br>
+              &gt;<br>
+              &gt; thanks for your time
+              :)<a class=3D"moz-txt-link-freetext" href=3D"https://github=
+.com/bastibl/gr-foo/tree/maint-3.9/lib">https://github.com/bastibl/gr-foo=
+/tree/maint-3.9/lib</a><br>
+              &gt;<br>
+              &gt; _______________________________________________<br>
+              &gt; USRP-users mailing list -- <a
+                href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+usrp-users@lists.ettus.com</a><br>
+              &gt; To unsubscribe send an email to <a
+                href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                target=3D"_blank" moz-do-not-send=3D"true"
+                class=3D"moz-txt-link-freetext">usrp-users-leave@lists.et=
+tus.com</a><br>
+              _______________________________________________<br>
+              USRP-users mailing list -- <a
+                href=3D"mailto:usrp-users@lists.ettus.com" target=3D"_bla=
+nk"
+                moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">=
+usrp-users@lists.ettus.com</a><br>
+              To unsubscribe send an email to <a
+                href=3D"mailto:usrp-users-leave@lists.ettus.com"
+                target=3D"_blank" moz-do-not-send=3D"true"
+                class=3D"moz-txt-link-freetext">usrp-users-leave@lists.et=
+tus.com</a><br>
+            </blockquote>
+          </div>
+        </blockquote>
+      </div>
+      <br>
+      <br>
+    </blockquote>
+    My guess is that there's something going awry in the digital.ofdm
+    blocks--probably a non-portability to ARM hardware or some<br>
+    =C2=A0 such.=C2=A0 Not something that Ettus/NI can fix--GR is NOT Ett=
+us/NI
+    software.<br>
+    <br>
+    If you can get a core dump, you could pull it into GDB to see where
+    it's running off the rails.<br>
+    <br>
+    <br>
+    <br>
+  </body>
+</html>
 
---000000000000a5aa3705fd8f2b8f--
+--------------QmCuq04xQl9gCy2K9HnmhsKP--
 
---===============1995365330506056158==
+--===============1144179385930943392==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -510,4 +1443,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============1995365330506056158==--
+--===============1144179385930943392==--
