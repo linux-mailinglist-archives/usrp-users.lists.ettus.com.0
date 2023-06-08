@@ -2,153 +2,112 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D87B72756F
-	for <lists+usrp-users@lfdr.de>; Thu,  8 Jun 2023 05:06:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 709317276ED
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Jun 2023 07:56:01 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 9D92C384A3C
-	for <lists+usrp-users@lfdr.de>; Wed,  7 Jun 2023 23:05:59 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 3BC15384A23
+	for <lists+usrp-users@lfdr.de>; Thu,  8 Jun 2023 01:56:00 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686193559; bh=TaLGnQX84QPnoI3sGwfj5w6OepfSFiXTAzWNIr42/KM=;
-	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
-	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
-	 List-Unsubscribe:From;
-	b=SrLXDbDYU+p0NuDIVKZDgaQu4USWsU7bL1e5UxVdh71ZZ8obFW8eXIjMTJFkxt/fm
-	 9/r07GtV5Z46THud4nah6ZsNgFf27/Huo938li2kPTIa6sL5do0B21yf4uDXNgXv1c
-	 qNWRmzcn6WnyYcHptZvQXeY53q1EDODOhSuh7/b8vWVFCxOd74tXvLBGkTtnM3tIxr
-	 8ARHOkeFBX0AdlSP1hbawEexRJQQJD4NAGpYCDiZeiVlU4dsFrBdppb3Wk/qdhlpLW
-	 eI0/v7KBFozNvaP10lb4H6LjM8aDiYC+hyIrwCYVulLO21RhlfmwlFa/S2FyR7iP69
-	 Gwx2lG2+U6CCg==
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	by mm2.emwd.com (Postfix) with ESMTPS id 976943849EF
-	for <usrp-users@lists.ettus.com>; Wed,  7 Jun 2023 23:04:59 -0400 (EDT)
-Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=ettus-com.20221208.gappssmtp.com header.i=@ettus-com.20221208.gappssmtp.com header.b="ODi6kg0w";
-	dkim-atps=neutral
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-970028cfb6cso30758666b.1
-        for <usrp-users@lists.ettus.com>; Wed, 07 Jun 2023 20:04:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ettus-com.20221208.gappssmtp.com; s=20221208; t=1686193498; x=1688785498;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=1h6pKsrT23YuwKbPeOkHFZij4520ryd7w+4Ixw4B0eI=;
-        b=ODi6kg0wzyjK0csrQbhp9lDCRmXNxVJHS87Y/zaSSqcTG0teCI7vrl/Zom9l++QRfQ
-         FCU/kzAIrsW8M1jCdHtDGvTbFo4s2aPOVmDN1MnI+X6EHkpbsLw8fxhMZf+rctH98kd/
-         cOqzuAkWMe55n5KjJqhLAmDauULtI0q6+bCiNafyVoqQvC/FZEOy+NTNw/dqHS/9rXID
-         ov5xaKS/qK5gyW27R2XKToDesLX9Jhj3i9bex0FgvjuYV3jYthuGGIixbjHq+yorlvpH
-         zDxx2GiVrInG5Cv5OouPFgwjpsg5Qbgu12NTg/22zJZwn6Rbe+/N95s1R7TV7rBRxVGG
-         V7EQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686193498; x=1688785498;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1h6pKsrT23YuwKbPeOkHFZij4520ryd7w+4Ixw4B0eI=;
-        b=J3ok5T1jlrugTe2iplc6jHgWgOSZSMwkF3skSQDac3PM5JoGOlLfVT9HI6pvoz39bD
-         O+FXJ09ZvRUnIxRiKt7H8GJ4/EyjmGWmzkrrA5rH0cExcWFBZwhx4TbxXO9koC7+NAD+
-         etAtFuUv5ipqiOLyM8ZsyZPNlfWP2HdyMImfjymX0+JfM/RBbyvBWctF46ybYuPVgU5q
-         eL5ymYsnp2kYqdnSK94NBC33Bxn93oQtl5l3R4aGQ2Z3ZghS/vRFmE4GvxyvE5XqAxgW
-         O/sfSrt8JHUg6+D8cOEfk9khzDdOs2JEV4PaM0yh9s6Po0Tlc3C0/rWA/wTN/4CUGGVI
-         cBnA==
-X-Gm-Message-State: AC+VfDwMUrHF+NQ2C135XcEAK2qeezC+NSpEQjroMiiC17JTd/7xYc2c
-	vGVC1+xkS0B7mLwzUgjk6UyZaTZSgAOd6sOQ+H70kUaN
-X-Google-Smtp-Source: ACHHUZ6YB9CFbnwnRZcO4CW+g74SQV2rW9tEwCWBLss7I9SM+qS1Y2rkIMbA9yTNOsA5tPUikmsfToRBzFXgcLD/2fA=
-X-Received: by 2002:a17:907:3189:b0:974:c32c:b484 with SMTP id
- xe9-20020a170907318900b00974c32cb484mr7268393ejb.72.1686193498482; Wed, 07
- Jun 2023 20:04:58 -0700 (PDT)
+	t=1686203760; bh=7VmXTrIc38AuCjA+4oCHtWwkFbhZFzFdGEgyL6k1zZc=;
+	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
+	 List-Post:List-Subscribe:List-Unsubscribe:From;
+	b=ugfqu1zh7J6zySy3Ssr5O9SCfA8UvjG8M3DaHgw48XgCjUWlk1z2v4TL0XcmCb5bU
+	 IlHAvJgEdtxQTHEc+GT/2fg87do9nCbkufH4d340mV/H1JZoMaUfy07brnXo/FZ2FK
+	 OqlDKrXblaK2tRc97L+pMyGrJZSEceBW8Izn/Q/0IFQkB/ZB77byIC+FZTNRh+EmuF
+	 5ySwp+rVKzTuugYrRBDGDKjAAZ/yyenK/dMxpKYQl6oiZLWgGbcrbb4QdqOUaDRBIS
+	 YQ0ndUTp4WqQUycpc9xFq3x3oFdBOqKzpCdUkNIIPLtfpNAoT0vn0pMmOtLvSM7Zc2
+	 TgvuHpYHoqROA==
+Received: from lists.ettus.com (localhost [127.0.0.1])
+	by mm2.emwd.com (Postfix) with ESMTP id 77F683849FA
+	for <usrp-users@lists.ettus.com>; Thu,  8 Jun 2023 01:55:04 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
+	t=1686203704; bh=oR2EDj1JnIQ1m08xWn8J8SkYbwdx1xfF93r1VUEY9sc=;
+	h=Date:To:From:Subject:From;
+	b=U1KGWpEjqDVQHssv70tX+Elzybzrm8f4wXGyH1Qc9R2Hgq9mZNhHp2j0sIhEKEIBP
+	 eorr6Aa4vkf7a7gIHJskJND91lXsPT3w24GUYEHLYwzlTW/D5v6dk1dJDOIuqkDeaa
+	 KrQrn9GL5XZiJwngS4v4G3u9vcWK6X0QBi1dfKezer/4vw8Ycf9Ep1hemkWEkyG96H
+	 GB/4Qi6Ufc57UVTT0B1qyAf9AQzw3kxyDxkrNae+i6VnWZe5U4Cu49mCnLeHQibfn5
+	 HP36F/lXfpsAAhyv/ZPloJYQrbOgj/wEwm6h8BVFVqh6FGuj/ipkFVkkTAKGi/XMKM
+	 u+Qs1BNeey2Dg==
+Date: Thu, 8 Jun 2023 05:55:04 +0000
+To: usrp-users@lists.ettus.com
+From: eesa.nikahd@gmail.com
+Message-ID: <Gqp8cHlLxk8pfjh6GD1oXyH5KkhHxtvhfZ03xSjKiNI@lists.ettus.com>
+X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
-References: <N3fKSStSZAGPhU6N5NQRaojaGsm8MFCrw0jLixgRKi8@lists.ettus.com>
-In-Reply-To: <N3fKSStSZAGPhU6N5NQRaojaGsm8MFCrw0jLixgRKi8@lists.ettus.com>
-From: Wade Fife <wade.fife@ettus.com>
-Date: Wed, 7 Jun 2023 22:04:42 -0500
-Message-ID: <CAFche=jr0uQpg+0i6bwWXKw_WitVet50tgEPOtMLQJcH3byvYw@mail.gmail.com>
-To: jmaloyan@umass.edu
-Message-ID-Hash: AE4GQVGNKJDB3UCKBRTCND3NEUMEUSOW
-X-Message-ID-Hash: AE4GQVGNKJDB3UCKBRTCND3NEUMEUSOW
-X-MailFrom: wade.fife@ettus.com
+Message-ID-Hash: YXUMSIDTMBDMZLWAVLMWKCZZ6IBH56XT
+X-Message-ID-Hash: YXUMSIDTMBDMZLWAVLMWKCZZ6IBH56XT
+X-MailFrom: eesa.nikahd@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
-CC: usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: x410 TX issues
+Subject: [USRP-users] Creating TX usrp and RX usrp objects using Two different threads using X310
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/AE4GQVGNKJDB3UCKBRTCND3NEUMEUSOW/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/YXUMSIDTMBDMZLWAVLMWKCZZ6IBH56XT/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4599999792851265202=="
+Content-Type: multipart/mixed; boundary="===============0330324681343901436=="
 
---===============4599999792851265202==
-Content-Type: multipart/alternative; boundary="0000000000007ffbc305fd9584aa"
+This is a multi-part message in MIME format.
 
---0000000000007ffbc305fd9584aa
-Content-Type: text/plain; charset="UTF-8"
+--===============0330324681343901436==
+Content-Type: multipart/alternative;
+ boundary="b1_Gqp8cHlLxk8pfjh6GD1oXyH5KkhHxtvhfZ03xSjKiNI"
+Content-Transfer-Encoding: 7bit
+
+This is a multi-part message in MIME format.
+
+--b1_Gqp8cHlLxk8pfjh6GD1oXyH5KkhHxtvhfZ03xSjKiNI
+Content-Type: text/plain; charset=us-ascii
+
+Hi dears,
+
+I created a TX usrp an RX usrp object (using uhd::usrp::multiusrp::make()) using two different threads.
+
+When I try to set subdevice for them the first thread can set subdevice successfully but hte later fails to set it and throw an excption with this error message: "Error: map::at". 
+
+(Example setting=> TX subdev=A:0, antenna=TX/RX; RX subdev=A:0 (or B:0), antenna= RX2)
+
+If I comment the methods to set subdevice for the later thread (e.g. for RX: rx_usrp->set_rx_subdev_spec("B:0")) my code works correctly.
+
+I wonder why this problem is for! As UHD examples such as txrx_loopback_tofile, set subdevice for both TX and RX separately and it works fine. The only difference between this example and mine is that I am using two different threads.
+
+It is worth noting that my code works correctly for N200 usrp.
+
+My UHD version is "UHD 4.3.0.0.-0g1f8fd345"
+
+Can anyone help me to resolve this issue?
+
+Thank you.
+
+Eesa
+
+--b1_Gqp8cHlLxk8pfjh6GD1oXyH5KkhHxtvhfZ03xSjKiNI
+Content-Type: text/html; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Wow, I don't know why running it in the GUI would matter. You mentioned you
-did some customization in the Vivado GUI. Could that have something to do
-with it?
+<p>Hi dears,</p><p>I created a TX usrp an RX usrp object (using uhd::usrp::=
+multiusrp::make()) using two different threads.</p><p>When I try to set sub=
+device for them the first thread can set subdevice successfully but hte lat=
+er fails to set it and throw an excption with this error message: "Error: m=
+ap::at". <br><br></p><p>(Example setting=3D&gt; TX subdev=3DA:0, antenna=3D=
+TX/RX; RX subdev=3DA:0 (or B:0), antenna=3D RX2)<br><br></p><p>If I comment=
+ the methods to set subdevice for the later thread (e.g. for RX: rx_usrp-&g=
+t;set_rx_subdev_spec("B:0")) my code works correctly.</p><p>I wonder why th=
+is problem is for! As UHD examples such as txrx_loopback_tofile, set subdev=
+ice for both TX and RX separately and it works fine. The only difference be=
+tween this example and mine is that I am using two different threads.</p><p=
+>It is worth noting that my code works correctly for N200 usrp.</p><p>My UH=
+D version is "UHD 4.3.0.0.-0g1f8fd345"</p><p>Can anyone help me to resolve =
+this issue?</p><p>Thank you.</p><p>Eesa</p>
 
-I looked over your YAML and I noticed you have MEM_DATA_W on the Replay
-block set to 128 but you're building for the X410_X4_200 target which
-expects 64-bit interfaces. I think that would corrupt the data, but not
-prevent TX. So I don't know if that entirely explains the issue. But it
-does need to be 64 unless you've made changes elsewhere to compensate.
+--b1_Gqp8cHlLxk8pfjh6GD1oXyH5KkhHxtvhfZ03xSjKiNI--
 
-Wade
-
-On Wed, Jun 7, 2023 at 8:30=E2=80=AFPM <jmaloyan@umass.edu> wrote:
-
-> If I use the same yml file I pasted above, I am able to generate an image
-> that properly transmits. However, if I use the same yml file, but when I
-> use the rfnoc_image_builder but with a GUI option, the transmit fails to
-> work. I do not edit anything in the GUI, I just tested the bitstream
-> created as is after invoking rfnoc_image_builder with the GUI option. I
-> would imagine that GUI option or not, the constraints have to be identica=
-l.
-> Is there any chance they are not?
-> _______________________________________________
-> USRP-users mailing list -- usrp-users@lists.ettus.com
-> To unsubscribe send an email to usrp-users-leave@lists.ettus.com
->
-
---0000000000007ffbc305fd9584aa
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Wow, I don&#39;t know why running it in the GUI would=
- matter. You mentioned you did some customization in the Vivado GUI. Could =
-that have something to do with it?<br></div><div><br></div><div>I looked ov=
-er your YAML and I noticed you have MEM_DATA_W on the Replay block set to 1=
-28 but you&#39;re building for the X410_X4_200 target which expects 64-bit =
-interfaces. I think that would corrupt the data, but not prevent TX. So I d=
-on&#39;t know if that entirely explains the issue. But it does need to be 6=
-4  unless you&#39;ve made changes elsewhere to compensate.</div><div><br></=
-div><div>Wade<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
-" class=3D"gmail_attr">On Wed, Jun 7, 2023 at 8:30=E2=80=AFPM &lt;<a href=
-=3D"mailto:jmaloyan@umass.edu">jmaloyan@umass.edu</a>&gt; wrote:<br></div><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft:1px solid rgb(204,204,204);padding-left:1ex"><p>If I use the same yml f=
-ile I pasted above,  I am able to generate an image that properly transmits=
-. However, if I use the same yml file, but when I use the rfnoc_image_build=
-er but with a GUI option, the transmit fails to work. I do not edit anythin=
-g in the GUI, I just tested the bitstream created as is after invoking rfno=
-c_image_builder with the GUI option. I would imagine that GUI option or not=
-, the constraints have to be identical. Is there any chance they are not?</=
-p>
-
-_______________________________________________<br>
-USRP-users mailing list -- <a href=3D"mailto:usrp-users@lists.ettus.com" ta=
-rget=3D"_blank">usrp-users@lists.ettus.com</a><br>
-To unsubscribe send an email to <a href=3D"mailto:usrp-users-leave@lists.et=
-tus.com" target=3D"_blank">usrp-users-leave@lists.ettus.com</a><br>
-</blockquote></div>
-
---0000000000007ffbc305fd9584aa--
-
---===============4599999792851265202==
+--===============0330324681343901436==
 Content-Type: text/plain; charset="us-ascii"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,4 +117,4 @@ _______________________________________________
 USRP-users mailing list -- usrp-users@lists.ettus.com
 To unsubscribe send an email to usrp-users-leave@lists.ettus.com
 
---===============4599999792851265202==--
+--===============0330324681343901436==--
