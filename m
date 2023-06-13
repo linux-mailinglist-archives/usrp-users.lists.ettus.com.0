@@ -2,148 +2,1368 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6952372E8AD
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 18:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEE3F72EA3B
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 19:52:02 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 5DF6D3846B8
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 12:41:11 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id DEFB0384ACF
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 13:52:01 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686674471; bh=UfTxxBExkQn9V8AhNrjXGt2+m1hZg7ccnemON+xtTcU=;
-	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
-	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
-	 From;
-	b=xDRVRAh7Cs7Cn9TecaBFs0kDdJn/uiv1+wIo2bHnDLW4Qaj0kD3CI4TndBK4TaubL
-	 kU1e0GUnySV2lZllzBKnPpRvHFoLHNPTvjgFvgDngLgA5lhUXNvwP8qD8iTWPaxIAv
-	 0p5Qspm97d1vKA1z14d1KPlCfq+ykJrKWYly8OGRf6o7OL7wxgfXaGqf7t+bR2jQOa
-	 8rCfo2rpIM4/I/9OsON8W+taxIHQfCR2QxtIqjr0x90VNwSb+GGJpbjIjQwx71SJkm
-	 P/HtAeSqPiYH1VHXurkdfw1SPNV3YpUlPhgKVhcDEk/RD0nvnaz12JNf2y6QrtjyhJ
-	 qiyRf076ON/rg==
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	by mm2.emwd.com (Postfix) with ESMTPS id 21FCF384AB2
-	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 12:40:14 -0400 (EDT)
+	t=1686678721; bh=bz+52l4pu1Krsbh7k/uG84VDDYWmcoZ4Z358ar319Mo=;
+	h=References:In-Reply-To:From:Date:To:CC:Subject:List-Id:
+	 List-Archive:List-Help:List-Owner:List-Post:List-Subscribe:
+	 List-Unsubscribe:From;
+	b=v83QMZtCWno2bF++zl2USQyC0xa4/atejCtQa3q24UIYJVfI6/PhzyDkyjI3puN94
+	 P73R+EWN7QzIPiXouU78Y0EqJ4KN38aXABq+jj2iV+4rgh0llsr7xlW5D5fK313YqQ
+	 /H8X4ZaSvggk3X2JXhUI54Ksy9P7Udi4yA5t62WVBOLS/cqnfg2e36PbdXWs5YPGug
+	 7zMMVmqPlg5tsorJEgHFZvjBsUxhHYVkVbWnxLYBji2Ee5WmlPh0YbQZvgBNc0nePJ
+	 tFdKCoCCb83pRk7GW2oV+AXayoQffmiX5qcWe0buTJZ+Fei0ZJ6ux5JjPU7V5sA1Ml
+	 K+CJtPC+tdWvQ==
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	by mm2.emwd.com (Postfix) with ESMTPS id BEB0F3845E0
+	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 13:51:02 -0400 (EDT)
 Authentication-Results: mm2.emwd.com;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bMzPma0Z";
+	dkim=pass (2048-bit key; unprotected) header.d=chaosinc.com header.i=@chaosinc.com header.b="Eichzmri";
 	dkim-atps=neutral
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-45ee86a16caso1971332e0c.1
-        for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 09:40:14 -0700 (PDT)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-25bc1014777so1895342a91.2
+        for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 10:51:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686674414; x=1689266414;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jW7eniAMoHP4QrBsN6mxfeiiFKCwQ1VIF5nPlkrQU+I=;
-        b=bMzPma0ZduRPI2fLcAYdiizGezXwwoFc81VXyu2kb4NVNrKJKbC06qrcxCByf4KUTS
-         Bb9eFLkw/W6kK90ViZGS8YT7T5nrVwvZsT6KifySBZCkcgKle95q5u7nGagg/FyFlBB2
-         En7hmhDGUAzZrB3Q3DN8jvDV5ztcM7aUQDwYGjygatiU8kYkIuxvdVjsItcbFR6C1jVX
-         dH9JstDweE2RMO2ZxrH2mRADH7dvhWByPmdwozbvk7F2hNYzkEupALshnfSjp26P2LeM
-         uFbD2PkPfOQLBeo+WFBIW57GJTss0akNCkHnzeAO+7jYx4L8kS1SIsvHzf88xGFAxoo9
-         UX2Q==
+        d=chaosinc.com; s=google; t=1686678662; x=1689270662;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bvu62hnxWRMyPe2mESwUPEqM5W6EYg0OJ049WSJFGtE=;
+        b=Eichzmrig2p8KbOclt5m0ddxUQ7ERb/vCw92jkSnLlaTn7srfxBoLi3l8pE0Pnx6NG
+         ZNyPKgPnj2Xlzma+w0oiHwNfZSR0YbeDLUBgOiHJu5TA/0oTSahONtB35UVp4Rb+e6AI
+         LyVBHtu5jTTAmcKZi/C3IwGx4PGWmIVTPVeoErrg5ZIU1g0o3XoNCkwCM+tacDMd4mE7
+         5lZCqijWkyFH/wSwRYWc6zdAHxib1jHnRkeG8NjYM1qst58RTOM/FTces8r1TtxrzIhZ
+         D31iU0EjnHlJC6fOdAm5q0O/2SYqOaRupHyHyWOxa6jrTKvNKUAMzqWn/gOz4SQcU5ra
+         LlYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686674414; x=1689266414;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jW7eniAMoHP4QrBsN6mxfeiiFKCwQ1VIF5nPlkrQU+I=;
-        b=YDwwUtzWDRUNl2XyKfzGpwzLMb340GLVakf+xGMF5cRkpzRfn2ADOzoo/LeVAiDaqm
-         J/GFc2S92JLZM6W53l7xn9fODQeHjFNOAYp7PwW6u2bO6pOunuIlm2OuEEu1vzuaf7K2
-         RvneO0kA3R20QYV1tNtWufJgh3Io3IBSS7qpfJxFXDx1/JMC7gyRbmiipHecCyHf7et5
-         L5TnPUVg7CIcDuMVJf6i7X344npSsPSwzG60+OROw+beTJ4kecixMClSwkeQ2xb7mbWJ
-         2aQplHnD/EUGoCBSx32E+PaW3EUNk9muLfNtc613fjh/vspvUWpd+A92wCen5wckmt0f
-         vbJw==
-X-Gm-Message-State: AC+VfDx/drNysoElpu3v+CrmsWuNfR38oO7zF5tJkEneiRzHT0JTm0FE
-	OXpwNf7meEFkbEAGedHXBcvqyt2e6M2KpA==
-X-Google-Smtp-Source: ACHHUZ5II/3Arivw9kdv7nI/olja4w/XPAKrDYJt7xusFhZF+YL6XzyVevzpMmXeHiv2VG8Qf/n2Vg==
-X-Received: by 2002:a1f:c1c8:0:b0:46e:573b:3691 with SMTP id r191-20020a1fc1c8000000b0046e573b3691mr1497727vkf.0.1686674414273;
-        Tue, 13 Jun 2023 09:40:14 -0700 (PDT)
-Received: from [192.168.2.201] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
-        by smtp.googlemail.com with ESMTPSA id e21-20020a0caa55000000b00626330a39ecsm4093270qvb.9.2023.06.13.09.40.13
-        for <usrp-users@lists.ettus.com>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 13 Jun 2023 09:40:13 -0700 (PDT)
-Message-ID: <79a14485-d53c-382b-e75c-97ee5d10cf29@gmail.com>
-Date: Tue, 13 Jun 2023 12:40:13 -0400
+        d=1e100.net; s=20221208; t=1686678662; x=1689270662;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Bvu62hnxWRMyPe2mESwUPEqM5W6EYg0OJ049WSJFGtE=;
+        b=bGtj2bMdjd2K7KVAIOZlbEn2wN+KIIZfy/uF3cAzi11n+X+qD790OqwownPJMKzxxY
+         g9858jK03f1z0iWlehQ/czI/xEpXqYf29NT+xpnplxLIRWsUTR+Qrk5z3vZRmHF/WWEM
+         4nj9ViS2SVyBeKzHx7fonrA3ikr6DCM7kNu0+srwam6PeACgQPqqKiwDCaogJvNg/aQT
+         tSXArlF8OLS2NevnnaqDLGvFXzUHPRtqArWXnNVM6ikAN+cFhzK+SVwRVeG4vtOVzfx7
+         tNDvnPg/lZImREXaBBgDHNCPhze0xTQwOjsR0b39rKDRRooTj3CW0FtXuXZnqJMb0IRp
+         C88w==
+X-Gm-Message-State: AC+VfDzDJbbqqBxJrb2tJXfK9duGuwE+Jbp9pu4+tyTN3Ms+a2EKEXRz
+	/o2VUMatpkSg7yNVL7HoKqbvLNRbEqfLknazu0SM+g==
+X-Google-Smtp-Source: ACHHUZ6bIs1Yduc2BaOHb+7qvfHPdwCUVQg60it7uFMhnjfEs172gATN/+eOL1JVmN/zQ0TSpiaiWPyCk9gpKxCSp2M=
+X-Received: by 2002:a17:90b:d81:b0:25c:cbc:af5a with SMTP id
+ bg1-20020a17090b0d8100b0025c0cbcaf5amr2508268pjb.21.1686678661562; Tue, 13
+ Jun 2023 10:51:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Content-Language: en-US
-To: usrp-users@lists.ettus.com
-References: <CAH2Hh738iQj6a55CAsuN9Y9f4OKVHSuWuOrqeP_+06gMhrG=LA@mail.gmail.com>
-From: "Marcus D. Leech" <patchvonbraun@gmail.com>
-In-Reply-To: <CAH2Hh738iQj6a55CAsuN9Y9f4OKVHSuWuOrqeP_+06gMhrG=LA@mail.gmail.com>
-Message-ID-Hash: 7R6G2IHEWXOYO5IYBMUTG6MKR4WRFU3V
-X-Message-ID-Hash: 7R6G2IHEWXOYO5IYBMUTG6MKR4WRFU3V
-X-MailFrom: patchvonbraun@gmail.com
+References: <CAMhTvws54hP-vxo9FwLt9FncOgGsR-Ps+FAe4x9-mnJVy59C0Q@mail.gmail.com>
+ <f51e48a3-9d30-2e07-e7e2-a30cc4bab1f9@gmail.com> <CAB__hTQgDtPFOMXqK7-gyAhnc_1Q7=Or9rw2bgBaqwe+_xTSbw@mail.gmail.com>
+ <CAMhTvwvb+g+CP_yTedvAfObnjbmUUw+ZOC2J1m3xYbWh_HaC_g@mail.gmail.com>
+ <CAB__hTSa6Gx54yshpFFGEdzmLoO48YTsAR8M0fTdkjqRkM2D3Q@mail.gmail.com>
+ <CAMhTvwvk-15EvqX3T8ze-+FuLOU4jYxNtkK_K7AYa7OJkAwOAg@mail.gmail.com>
+ <CAB__hTRW5aPaRYhuC6sZm3G1hJkpip-qPghwKc02XKwghxzb9g@mail.gmail.com>
+ <CAMhTvwv0n=cYmx=CaW4qyVsnSkpaVmF39Ee2E4rL8Ay0Yb-h8g@mail.gmail.com>
+ <CAB__hTRC45inNTcHWFo6dvqOTDersMMyi1z=yz-zSY_=s-iCUg@mail.gmail.com>
+ <CAMhTvwtOr4=S68thYh_z9knGtRu1yn0gQdMkzfPs8XBCA03s+w@mail.gmail.com> <6149614c-e040-74d7-c794-d718094de6bc@gmail.com>
+In-Reply-To: <6149614c-e040-74d7-c794-d718094de6bc@gmail.com>
+From: Michael Toussaint <mtoussaint@chaosinc.com>
+Date: Tue, 13 Jun 2023 10:50:50 -0700
+Message-ID: <CAMhTvwu6hYdwEtsW3+z4zJgrDe2mex6YFZHBBjJFRUWOnJ8LZg@mail.gmail.com>
+To: "Marcus D. Leech" <patchvonbraun@gmail.com>
+Message-ID-Hash: VGHOIOL6YX6RAEWC4DAZX5DYPNGG7BM3
+X-Message-ID-Hash: VGHOIOL6YX6RAEWC4DAZX5DYPNGG7BM3
+X-MailFrom: mtoussaint@chaosinc.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
+CC: Rob Kossler <rkossler@nd.edu>, usrp-users@lists.ettus.com
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Re: X310 Dual 200 Msps Streaming
+Subject: [USRP-users] Re: N321 LO Distribution
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7R6G2IHEWXOYO5IYBMUTG6MKR4WRFU3V/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/VGHOIOL6YX6RAEWC4DAZX5DYPNGG7BM3/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: text/plain; charset="utf-8"; format="flowed"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/mixed; boundary="===============0620806349326090335=="
 
-T24gMTIvMDYvMjAyMyAyMjowMywgQWFyb24gU21pdGggd3JvdGU6DQo+IEhlbGxvIEFsbCwNCj4N
-Cj4gSSBhbSB0cnlpbmcgdG8gdHJhbnNtaXQgb24gdHdvIFVCWC0xNjAgZGF1Z2h0ZXJib2FyZHPC
-oCB3aXRoaW4gYSBzaW5nbGUgDQo+IFgzMTAgYXQgMjAwIE1zcHMgdXNpbmcgVUhEIDQuMS4wLjUt
-My4NCj4NCj4gSSBhbSBleHBlcmllbmNpbmcgcGVyaW9kaWMgdW5kZXJmbG93cywgYW5kIEkgaGF2
-ZSBhbHJlYWR5IGFwcGxpZWQgYWxsIA0KPiBvZiB0aGUgdGlwcyBpbiB0aGUgIlVTUlAgSG9zdCBQ
-ZXJmb3JtYW5jZSBUdW5pbmcgVGlwcyBhbmQgVHJpY2tzIiANCj4gYXBwbGljYXRpb24gbm90ZSwg
-d2l0aCB0aGUgZXhjZXB0aW9uIG9mIHVzaW5nIERQREsuDQo+DQo+IEkgaGF2ZSBhIGZldyBxdWVz
-dGlvbnMgYWJvdXQgVUhEIHN0cmVhbWluZyBhbmQgd2hhdCBjYW4gYmUgZG9uZSB0byANCj4gaW1w
-cm92ZSBwZXJmb3JtYW5jZS4NCj4NCj4gMS4gTXkgY3VycmVudCBpbXBsZW1lbnRhdGlvbiB1c2Vz
-IGEgc2luZ2xlIHR4X3N0cmVhbWVyIGZvciBib3RoIA0KPiBjaGFubmVscywgYW5kIHVzZXMgbXVs
-dGlwbGUgdGhyZWFkcyB0byBwb3B1bGF0ZSB0aGUgYnVmZmVycyBzZW50IHRvIA0KPiB0aGUgWDMx
-MC4gV291bGQgdGhlIHBlcmZvcm1hbmNlIGJlIGJldHRlciBpZiBJIHVzZWQgdHdvIHNlcGFyYXRl
-IA0KPiBzdHJlYW1lcnMsIG9uZSBmb3IgZWFjaCBjaGFubmVsLCBpbiBzZXBhcmF0ZSB0aHJlYWRz
-Pw0KSSBkb24ndCB0aGluayB0aGVyZSdzIGEgY2xvc2VkLWZvcm0gYW5zd2VyIHRvIHRoaXMuwqAg
-QmVjYXVzZSBpdCB3b3VsZCANCmRlcGVuZCBvbiB5b3VyIHBhcnRpY3VsYXIgc3lzdGVtLCBhcHBs
-aWNhdGlvbiwgZXRjLsKgwqAgSSdkDQogwqAganVzdCBkbyB0aGUgZXhwZXJpbWVudCBhbmQgc2Vl
-Li4uDQoNCj4NCj4gMi4gSSBoYXZlIHNlZW4gc29tZSBjbGFpbXMgdGhhdCBEUERLIGlzIG5vdCBh
-cyB1c2VmdWwgd2l0aCBVSEQgNCwgaXMgDQo+IHRoaXMgdHJ1ZT8NCkkgZG9uJ3QgdXNlIERQREsg
-bXlzZWxmLCBzbyBJIGRvbid0IGtub3cgaWYgdGhhdCdzIHRydWUgb3Igbm90Lg0KDQo+DQo+IDMu
-IFdpdGggVUhEIDQsIHdvdWxkIGl0IGhlbHAgdG8gc2V0IHRoZSBza2lwX2R1YyBhbmQgc2tpcF9k
-ZGMgZmxhZ3MgDQo+IHdpdGggZnVsbCByYXRlIHN0cmVhbWluZz8NCkFnYWluLCB0aGUgYW5zd2Vy
-IGhlcmUgaXMgc3VzY2VwdGlibGUgdG8gZXhwZXJpbWVudC4uLg0KDQo+DQo+IDQuIEFyZSB1bmRl
-cmZsb3dzIG9ubHkgY3JlYXRlZCB3aXRoaW4gdGhlIHNlbmQoKSBmdW5jdGlvbj8gT3IgY2FuIHRo
-ZSANCj4gdGltaW5nIG9mIGNhbGxzIHRvIHNlbmQoKSBjYXVzZSB1bmRlcmZsb3dzLCBlc3BlY2lh
-bGx5IHdoZW4gdGhlIGJ1cnN0IA0KPiBmbGFncyBhcmUgdXNlZD8gRm9yIGV4YW1wbGUsIHN1cHBv
-c2UgSSBzZXQgdGhlIHN0YXJ0IG9mIGJ1cnN0IGZsYWcgdG8gDQo+IHRydWUgZm9yIGEgc2luZ2xl
-IGJ1ZmZlciBjb250YWluaW5nIDEgc2Vjb25kIG9mIGRhdGEsIGFuZCB0aGVuIEkgDQo+IHRvZ2ds
-ZSB0aGUgc3RhcnQgb2YgYnVyc3QgZmxhZyB0byBmYWxzZSBmb3Igc3Vic2VxdWVudCBidWZmZXJz
-IGFuZCANCj4gY29udGludW91c2x5IGNhbGwgc2VuZCgpIG9uIDEgc2Vjb25kIGJ1ZmZlcnMgZm9y
-IDEwIG1pbnV0ZXMuIE9uIHRoZSANCj4gbGFzdCBzZWNvbmQgSSBzZXQgZW5kIG9mIGJ1cnN0IGZs
-YWcgdG8gdHJ1ZS4gVGhlIGlkZWEgaXMgdG8gY3JlYXRlIGEgDQo+IDEwIG1pbnV0ZSBsb25nICJi
-dXJzdC4iIElmIEkgY2FsbCBzZW5kIGxhdGUgb24gb25lIG9mIHRoZSBvbmUgc2Vjb25kIA0KPiBi
-dWZmZXJzIGluIHRoZSBtaWRkbGUgb2YgdGhlICJidXJzdCIgd2lsbCBVSEQgcmVwb3J0IHVuZGVy
-Zmxvd3M/IE15IA0KPiB0aGlua2luZyBpcyB0aGUgWDMxMCBzaG91bGQgdGhpbmsgaXQgaXMgaW4g
-dGhlIG1pZGRsZSBvZiBhIGJ1cnN0LCBhbmQgDQo+IHdpbGwgZXhwZWN0IGRhdGEsIGJ1dCBzZW5k
-KCkgaGFzIG5vdCBiZWVuIGNhbGxlZCwgc28gdGhlcmUgaXMgbm8gZGF0YSANCj4gZm9yIHRoZSBy
-YWRpbyB0byByZWFkIGZyb20gdGhlIGhvc3QsIGNyZWF0aW5nIHVuZGVyZmxvd3MuIFBlcmhhcHMg
-SSBhbSANCj4gYWxzbyBtaXN1bmRlcnN0YW5kaW5nIHRoZSBwdXJwb3NlIG9mIHRoZSBidXJzdCBm
-bGFncywgYXMgdGhleSBhcmUgbm90IA0KPiB3ZWxsIGRvY3VtZW50ZWQuDQo+DQo+IFRoYW5rcyBm
-b3IgdGhlIGhlbHAhDQo+IEFybW9uDQo+DQpVbmRlcmZsb3dzIG9jY3VyIHdoZW4gdGhlIHJhZGlv
-IGhhcmR3YXJlIHVuZGVyZmxvd3MgaXRzIEZJRk8sIHdoaWNoIGluIA0KdHVybiBtZWFucyB0aGUg
-aG9zdCBpc24ndCBwcm92aWRpbmcgc2FtcGxlcyBhdA0KIMKgIHRoZSBkZXNpcmVkIHJhdGUtLXRo
-ZSByYWRpbyBoYXMgbm8gaWRlYSB3aGF0IHlvdXIgInNlbmQoKSIgYm91bmRhcmllcyANCmFyZSwg
-anVzdCB0aGF0IGl0IGlzbid0IGdldHRpbmcgc2FtcGxlcyB3aGVuIGl0IG5lZWRzDQogwqAgdGhl
-bS7CoMKgwqAgVGhlIGRhdGEgaW4gdGhlICJzZW5kKCkiIGhhcyB0byBwZXJjb2xhdGUgdGhyb3Vn
-aCBVSEQsIA0KdGhyb3VnaCB0aGUga2VybmVsIElQIHN0YWNrIChvciBEUERLIHN0YWNrKSBhbmQg
-aXRzIGJ1ZmZlcnMsIGFuZA0KIMKgIHRoZW4gdGhlIGhhcmR3YXJlIGJ1ZmZlcnMuwqAgQW55IGlu
-Zm9ybWF0aW9uIGFib3V0IGV4YWN0bHkgd2hlbiB5b3UgDQpjYWxsZWQgInNlbmQoKSIgaXMgcHJl
-dHR5IGludmlzaWJsZSBieSB0aGUgdGltZSBpdCByZWFjaGVzDQogwqAgdGhlIHJhZGlvLg0KDQpU
-aGUgImJ1cnN0IiBhcmNoaXRlY3R1cmUgaXMgcmVhbGx5IGludGVuZGVkIGZvciBhcHBsaWNhdGlv
-bnMgbGlrZSBUREQgb3IgDQpoYWxmLWR1cGxleCwgd2hlcmUgeW91IG5lZWQgdG8gbGV0IHRoZSBy
-YWRpbyBrbm93IHRvDQogwqAgbm90IGV4cGVjdCBhbnkgbW9yZSBUWCBzYW1wbGVzLCBzbyBpdCBj
-YW4gZG8gdGhpbmdzIGxpa2Ugc3dpdGNoIA0KYW50ZW5uYXMsIGV0Yy4NCg0KDQo+DQo+DQo+IF9f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vi
-c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20N
-Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
-cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2Ny
-aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
+--===============0620806349326090335==
+Content-Type: multipart/alternative; boundary="0000000000007919a005fe067a61"
+
+--0000000000007919a005fe067a61
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Marcus,
+
+Yes, the cables are identical, we also experimented with Phase stable test
+cables but did not see any improvement. We understand there will be some
+residual phase errors, but the RF coming out with a 2.64ns delta or ~135
+degree phase shift @ 144MHz seems like more than that. Is that level of
+offset to be expected, if so is there a procedure to calibrate that out to
+align the RF?
+
+Understand that the phase drift measurements are the change over time. Do
+you know if Measured Performance results, from
+https://kb.ettus.com/USRP_N320/N321_LO_Distribution, where generated on Rx
+channels (e.g. by injecting a tone to a N321 and a N320 and measuring the
+phase difference of the IQ over time) or on Tx channels (e.g. N321 and N320
+transmitting a tone and using some type of test equipment to measure the
+phase offset of the RF over time) or is there some other way? I'd just like
+to repeat the process to see if I can repeat the results or see if there is
+something I am doing wrong.
+
+Thanks,
+
+Michael Toussaint
+
+
+On Thu, Jun 8, 2023 at 6:53=E2=80=AFPM Marcus D. Leech <patchvonbraun@gmail=
+.com>
+wrote:
+
+> On 08/06/2023 21:41, Michael Toussaint wrote:
+>
+> Hi Rob,
+>
+> Yes, 0.57 degrees is definitely within my measurement error. But,
+> shouldn't the N321 synchronize the phase of the LO's too?
+>
+> If you're sharing LOs, there's no "synchronizing the LOs".  A single LO i=
+s
+> shared through a switching matrix to each of the
+>   relevant mixers.  There'll be some residual phase-error, since effectiv=
+e
+> path-length will never be precisely matched--even
+>   with careful board layout, internal temperature differentials and batch
+> differences in electronic components in the switching
+>   matrix, and even the mixers involved, will yield (usually small) mutual
+> phase errors.
+>
+> Presumably the length of your LO-sharing cables are all the same, of the
+> same type, and from the same manufacturer
+>   (and, preferrably, from the same cable batch).
+>
+>
+>
+>
+> Is there documentation available of how to repeat the results in the
+> "Measured Performance" section of
+> https://kb.ettus.com/USRP_N320/N321_LO_Distribution (e.g. code examples
+> and or test setup to measure the phase drift)? It shows less than 0.1
+> degree of phase error, I'd like to just repeat that test to confirm
+> everything is working correctly, and see what might be causing the deltas=
+.
+>
+> Note that phase-drift measurements measure the *change* in relative phase
+> between channels over time.  Not, I think, the
+>   absolute phase-offset between channels.  In a shared-LO setup (ignoring
+> any bugs or mis-configurations of the DUCs, etc), the
+>   absolute phase-offset between channels is repeatable and (largely)
+> static.  Dominated by physical processes like temperature
+>   drift and (worse) differential temperature drift in analog components
+> like cables, circuit-board traces, component temperatures,
+>   etc.
+>
+>
+>
+> Thanks,
+>
+> Michael
+>
+>
+> On Wed, Jun 7, 2023 at 12:22=E2=80=AFPM Rob Kossler <rkossler@nd.edu> wro=
+te:
+>
+>> Hi Michael,
+>> I don't have any ideas for reducing a time delay offset. But, I still
+>> wonder if the problem could actually be just a phase offset.
+>>
+>> With a relative delay of 2.5ns and a bandwidth of 4 MHz, the amount of
+>> phase variation you would see is 0.57 degrees.  That is not easy to see.
+>> On the other hand, if your bandwidth increased to 200 MHz, you would see
+>> phase variation of 28.6 degrees (if the delay offset is 2.5 ns).
+>> Rob
+>>
+>>
+>> On Tue, Jun 6, 2023 at 9:38=E2=80=AFPM Michael Toussaint <mtoussaint@cha=
+osinc.com>
+>> wrote:
+>>
+>>> Hi Rob,
+>>>
+>>> The signal is actually sweeping over 4MHz, but is just super zoomed int=
+o
+>>> a small piece to show the time delta so it looks CW. The time differenc=
+e
+>>> appears to be the same (within my ability to measure) across the band s=
+o I
+>>> am assuming it is a time delay offset.
+>>>
+>>> Any suggestions on how to reduce this time delay offset?
+>>>
+>>> Thanks,
+>>>
+>>> Michael Toussaint
+>>>
+>>>
+>>> On Mon, Jun 5, 2023 at 8:51=E2=80=AFPM Rob Kossler <rkossler@nd.edu> wr=
+ote:
+>>>
+>>>> Hi Michael,
+>>>> Either a delay offset OR a phase offset will show itself as a relative
+>>>> phase.  In order to distinguish between a delay offset and a phase off=
+set,
+>>>> your signal must have appreciable bandwidth.  It appears that your sig=
+nal
+>>>> is CW.  It is entirely possible that your delay offset is zero.  Does =
+this
+>>>> make sense?
+>>>> Rob
+>>>>
+>>>> On Mon, Jun 5, 2023 at 5:32=E2=80=AFPM Michael Toussaint <
+>>>> mtoussaint@chaosinc.com> wrote:
+>>>>
+>>>>> Could you share how you're setting up LO sharing in your code, as wel=
+l
+>>>>> as how you're setting the system clock on the N321?
+>>>>>
+>>>>> The functions "configure_channels" and "set_lo_hw_exports" are used
+>>>>> to set up the LO sharing.
+>>>>>
+>>>>> The functions "sync_sources" and "sync_all_devices" are used to set
+>>>>> up the system clock on the N321.
+>>>>>
+>>>>> How do you measure the relative delay?
+>>>>>
+>>>>> We are measuring the offset of the LO's by just measuring the phase
+>>>>> difference of ithe RF coming out of the Ettus with an Oscilloscope
+>>>>> (picture attached as
+>>>>> Scope_Trace_SingleStream_LO.png
+>>>>>
+>>>>> <https://mail.google.com/mail/u/0?ui=3D2&ik=3D34abf4583b&attid=3D0.1&=
+permmsgid=3Dmsg-a:r-1207093291428225864&view=3Datt&disp=3Dsafe&realattid=3D=
+f_lijcykt50>).
+>>>>> Yellow is Channel 1, Green is Channel 2; using a single streamer we s=
+till
+>>>>> appear to have a 2.64ns delta or ~135 degree phase shift.
+>>>>>
+>>>>> Thanks Marcus and Rob for your assistance.
+>>>>>
+>>>>> Michael Toussaint
+>>>>>
+>>>>> def sync_sources(usrp):
+>>>>>     logging.info('Setting Sync Sources')
+>>>>>
+>>>>>     usrp.set_sync_source(clock_source =3D 'gpsdo',
+>>>>>                          time_source =3D 'gpsdo')
+>>>>>
+>>>>> def sync_all_devices(hw_info):
+>>>>>     logging.info('Syncing All Devices')
+>>>>>
+>>>>>     mb_with_gps_locked =3D -1
+>>>>>
+>>>>>     while 1:
+>>>>>         time.sleep(1.0)
+>>>>>
+>>>>>         all_ref_locked =3D True
+>>>>>
+>>>>>         for board in range(hw_info.usrp.get_num_mboards()):
+>>>>>             all_ref_locked =3D all_ref_locked and \
+>>>>>                 hw_info.usrp.get_mboard_sensor('ref_locked',
+>>>>>                                                board).to_bool()
+>>>>>
+>>>>>             if (mb_with_gps_locked =3D=3D -1) and \
+>>>>>                 hw_info.usrp.get_mboard_sensor('gps_locked',
+>>>>>                                                board).to_bool():
+>>>>>                 mb_with_gps_locked =3D board
+>>>>>
+>>>>>         if all_ref_locked:
+>>>>>             logging.info('All Devices are REF locked')
+>>>>>             break
+>>>>>
+>>>>>     logging.info('GPS Locked on MB #%d', mb_with_gps_locked)
+>>>>>
+>>>>>     time.sleep(1.0)
+>>>>>     hw_info.usrp.set_time_next_pps(
+>>>>>         uhd.types.TimeSpec(
+>>>>>         hw_info.usrp.get_mboard_sensor('gps_time',
+>>>>>                                        mb_with_gps_locked).to_int() +
+>>>>>                                        1.0)
+>>>>>     )
+>>>>>     time.sleep(1.0)
+>>>>>
+>>>>>
+>>>>> def configure_channels(usrp, rf_type, hw_info):
+>>>>>     rf_channel_index =3D None
+>>>>>     set_rf_rate =3D None
+>>>>>     set_rf_freq =3D None
+>>>>>     set_rf_gain =3D None
+>>>>>     set_rf_lo_source =3D None
+>>>>>     get_rf_lo_source =3D None
+>>>>>     get_rf_lo_freq =3D None
+>>>>>     get_rf_lo_freq_range =3D None
+>>>>>
+>>>>>     if (rf_type =3D=3D 'rx'):
+>>>>>         if (len(hw_info.rx_channel_index) > 0):
+>>>>>             rf_channel_index =3D hw_info.rx_channel_index
+>>>>>             set_rf_rate =3D usrp.set_rx_rate
+>>>>>             set_rf_freq =3D usrp.set_rx_freq
+>>>>>             set_rf_gain =3D usrp.set_rx_gain
+>>>>>             set_rf_lo_source =3D usrp.set_rx_lo_source
+>>>>>             get_rf_lo_source =3D usrp.get_rx_lo_source
+>>>>>             get_rf_lo_freq =3D usrp.get_rx_lo_freq
+>>>>>             get_rf_lo_freq_range =3D usrp.get_rx_lo_freq_range
+>>>>>         else:
+>>>>>             return
+>>>>>     elif (rf_type =3D=3D 'tx'):
+>>>>> i        if (len(hw_info.tx_channel_index) > 0):
+>>>>>             rf_channel_index =3D hw_info.tx_channel_index
+>>>>>             set_rf_rate =3D usrp.set_tx_rate
+>>>>>             set_rf_freq =3D usrp.set_tx_freq
+>>>>>             set_rf_gain =3D usrp.set_tx_gain
+>>>>>             set_rf_lo_source =3D usrp.set_tx_lo_source
+>>>>>             get_rf_lo_source =3D usrp.get_tx_lo_source
+>>>>>             get_rf_lo_freq =3D usrp.get_tx_lo_freq
+>>>>>             get_rf_lo_freq_range =3D usrp.get_tx_lo_freq_range
+>>>>> i        else:
+>>>>>             return
+>>>>>
+>>>>>     logging.info('Configuring %s Channels', rf_type.upper())
+>>>>>
+>>>>>     for rf_ch_name, rf_ch_index in rf_channel_index.items():
+>>>>>         logging.info('Configuring %s channel %s (channel #%d)',
+>>>>>                      rf_type.upper(), rf_ch_name, rf_ch_index)
+>>>>>
+>>>>>         ch_def =3D hw_info.channel_def[rf_ch_name]
+>>>>>
+>>>>>         # LO Channel Setup
+>>>>>         current_lo_name =3D 'unknown'
+>>>>>         current_lo_src =3D 'unknown'
+>>>>>
+>>>>>         if ch_def.lo_inputs is not None:
+>>>>>             logging.info('  Setting %s LO for Channel %s (#%d)',
+>>>>>                          rf_type.upper(), rf_ch_name, rf_ch_index)
+>>>>>
+>>>>>             set_rf_lo_source(ch_def.lo_inputs.source,
+>>>>>                              ch_def.lo_inputs.name,
+>>>>>                              rf_ch_index)
+>>>>>             current_lo_name =3D ch_def.lo_inputs.name
+>>>>>
+>>>>>             logging.info('    (#%d) Requested %s LO name %s, src %s',
+>>>>>                          rf_ch_index,
+>>>>>                          rf_type.upper(),
+>>>>>                          ch_def.lo_inputs.name,
+>>>>>                          ch_def.lo_inputs.source)
+>>>>>         else:
+>>>>>             logging.info('  No %s LO inputs for Channel %s (#%d)',
+>>>>>                          rf_type.upper(), rf_ch_name, rf_ch_index)
+>>>>>
+>>>>>             current_lo_name =3D 'lo1'
+>>>>>
+>>>>>         current_lo_src =3D get_rf_lo_source(current_lo_name,
+>>>>>                                           rf_ch_index)
+>>>>>
+>>>>>         logging.info('    (#%d) Current %s LO name %s, src %s',
+>>>>>                      rf_ch_index,
+>>>>>                      rf_type.upper(),
+>>>>>                      current_lo_name,
+>>>>>                      current_lo_src)
+>>>>>
+>>>>>         rf_lo_freq =3D get_rf_lo_freq(current_lo_name,
+>>>>>                                     rf_ch_index)
+>>>>>
+>>>>>         logging.info('    (#%d) [%s] Current %s LO freq %d',
+>>>>>                          rf_ch_index,
+>>>>>                          current_lo_name,
+>>>>>                          rf_type.upper(),
+>>>>>                          rf_lo_freq)
+>>>>>
+>>>>>         rf_lo_freq_range =3D get_rf_lo_freq_range(
+>>>>>             current_lo_name, rf_ch_index)
+>>>>>
+>>>>>         temp =3D '    (#%d) [%s] Current %s LO freq range' + \
+>>>>>             ' [%d, %d] step %d'
+>>>>>
+>>>>>         logging.info(temp,
+>>>>>                      rf_ch_index,
+>>>>>                      current_lo_name,
+>>>>>                      rf_type.upper(),
+>>>>>                      rf_lo_freq_range.start(),
+>>>>>                      rf_lo_freq_range.stop(),
+>>>>>                      rf_lo_freq_range.step())
+>>>>>
+>>>>>         logging.info('  Setting Sampling Rate %s', hw_info.fs)
+>>>>>         set_rf_rate(hw_info.fs, rf_ch_index)
+>>>>>
+>>>>>         logging.info('  Setting Center Freq %s', hw_info.fc)
+>>>>>         tr =3D set_rf_freq(uhd.libpyuhd.types.tune_request(hw_info.fc=
+),
+>>>>>                          rf_ch_index)
+>>>>>
+>>>>>         logging.info('    (#%d) %s Tune Result:',
+>>>>>                      rf_ch_index, rf_type.upper())
+>>>>>         log_tune_result(tr)
+>>>>>
+>>>>>         logging.info('  Setting %s Gain: %2.3f db',
+>>>>>                      rf_type.upper(),
+>>>>>                      ch_def.gain)
+>>>>>         set_rf_gain(ch_def.gain, rf_ch_index)
+>>>>>
+>>>>> def set_lo_hw_exports(usrp, node_name, dirx, lo_enabled, output_array=
+):
+>>>>>     """Set LO HW Exports"""
+>>>>>     if (lo_enabled is None) or (output_array is None):
+>>>>>         return
+>>>>>
+>>>>>     logging.info('Setting %s LO Export Enabled for %s',
+>>>>>                  dirx.upper(), node_name)
+>>>>>
+>>>>>     if dirx.lower() =3D=3D 'rx':
+>>>>>         usrp.set_rx_lo_export_enabled(lo_enabled, 'lo1', 0)
+>>>>>         enable_val =3D usrp.get_rx_lo_export_enabled('lo1')
+>>>>>     elif dirx.lower() =3D=3D 'tx':
+>>>>>         usrp.set_tx_lo_export_enabled(lo_enabled, 'lo1', 0)
+>>>>>         enable_val =3D usrp.get_tx_lo_export_enabled('lo1')
+>>>>>     else:
+>>>>>         logging.warning('Invalid direction %s', dirx)
+>>>>>         return
+>>>>>
+>>>>>     logging.info('  %s LO Export Enabled =3D %s, requested %s',
+>>>>>                  dirx.upper(), enable_val, lo_enabled)
+>>>>>
+>>>>>     temp_path =3D 'blocks/0/Radio#0/dboard/' + \
+>>>>>         f'{dirx.lower()}_frontends/' + \
+>>>>>         '0/los/lo1/lo_distribution/LO_OUT_{}/export'
+>>>>>
+>>>>>     logging.info('Setting %s LO HW Outputs for %s',
+>>>>>                  dirx.upper(), node_name)
+>>>>>
+>>>>>     for out_num in range(len(output_array)):
+>>>>>         hw_lo_export_path =3D temp_path.format(out_num)
+>>>>>
+>>>>>         if usrp.get_tree().exists(hw_lo_export_path):
+>>>>>             usrp.get_tree().access_bool(hw_lo_export_path).set(
+>>>>>                 output_array[out_num])
+>>>>>
+>>>>>             logging.info('  %s LO HW Export Out[%d] =3D %s, %s %s',
+>>>>>                          dirx.upper(), out_num,
+>>>>>                          usrp.get_tree().access_bool(
+>>>>>                             hw_lo_export_path).get(),
+>>>>>                         'requested',
+>>>>>                         output_array[out_num])
+>>>>>         else:
+>>>>>             logging.warning('  %s LO HW Export Out[%d] does not exist=
+',
+>>>>>                             dirx.upper(), out_num)
+>>>>>
+>>>>>
+>>>>> On Thu, May 25, 2023 at 6:45=E2=80=AFAM Rob Kossler <rkossler@nd.edu>=
+ wrote:
+>>>>>
+>>>>>> On Thu, May 25, 2023 at 3:54=E2=80=AFAM Michael Toussaint
+>>>>>> <mtoussaint@chaosinc.com> wrote:
+>>>>>> >
+>>>>>> > Used a single streamer and saw the delay slightly improve to
+>>>>>> between 2.5 - 3 ns.
+>>>>>> >
+>>>>>> > Any other suggestions to improve the delay to match the results
+>>>>>> from the knowledge base,
+>>>>>> https://kb.ettus.com/USRP_N320/N321_LO_Distribution?
+>>>>>>
+>>>>>> How do you measure the relative delay?
+>>>>>>
+>>>>>
+>>>>>
+>>>>>
+>>>
+>
+>
+>
+
+--0000000000007919a005fe067a61
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi Marcus,</div><div dir=
+=3D"ltr"><br></div><div dir=3D"ltr">Yes, the cables are identical, we also =
+experimented with Phase stable test cables but did not see any improvement.=
+ We understand there will be some residual phase errors, but the RF coming =
+out with a 2.64ns delta or ~135 degree phase shift=C2=A0@ 144MHz seems like=
+ more than that. Is that level of offset to be expected, if so is there a p=
+rocedure=C2=A0to calibrate that out to align the RF?=C2=A0</div><div dir=3D=
+"ltr"><br></div><div>Understand that the phase drift measurements=C2=A0are =
+the change over time. Do you know if Measured Performance results, from=C2=
+=A0<a href=3D"https://kb.ettus.com/USRP_N320/N321_LO_Distribution">https://=
+kb.ettus.com/USRP_N320/N321_LO_Distribution</a>, where generated on Rx chan=
+nels (e.g. by injecting a tone to a N321 and a N320 and measuring the phase=
+ difference of the IQ over time) or on Tx channels (e.g. N321 and N320 tran=
+smitting a tone and using some type of test equipment to measure=C2=A0the p=
+hase offset of the RF over time) or is there some other way? I&#39;d just l=
+ike to repeat the process to see if I can repeat=C2=A0the results or see if=
+ there is something I am doing wrong.</div><div><br></div><div>Thanks,</div=
+><div><br></div><div>Michael Toussaint</div><div><br></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jun 8, 2=
+023 at 6:53=E2=80=AFPM Marcus D. Leech &lt;<a href=3D"mailto:patchvonbraun@=
+gmail.com">patchvonbraun@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div>
+    <div>On 08/06/2023 21:41, Michael Toussaint
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">
+          <div dir=3D"ltr">Hi Rob,</div>
+          <div dir=3D"ltr"><br>
+          </div>
+          <div dir=3D"ltr">Yes, 0.57 degrees is definitely within my
+            measurement=C2=A0error. But, shouldn&#39;t the N321 synchronize=
+ the
+            phase of the LO&#39;s too?</div>
+        </div>
+      </div>
+    </blockquote>
+    If you&#39;re sharing LOs, there&#39;s no &quot;synchronizing the LOs&q=
+uot;.=C2=A0 A single
+    LO is shared through a switching matrix to each of the<br>
+    =C2=A0 relevant mixers.=C2=A0 There&#39;ll be some residual phase-error=
+, since
+    effective path-length will never be precisely matched--even<br>
+    =C2=A0 with careful board layout, internal temperature differentials an=
+d
+    batch differences in electronic components in the switching<br>
+    =C2=A0 matrix, and even the mixers involved, will yield (usually small)
+    mutual phase errors.<br>
+    <br>
+    Presumably the length of your LO-sharing cables are all the same, of
+    the same type, and from the same manufacturer<br>
+    =C2=A0 (and, preferrably, from the same cable batch).<br>
+    <br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">
+          <div dir=3D"ltr"><br>
+          </div>
+          <div>Is there documentation available of how to repeat the
+            results in the &quot;Measured Performance&quot; section of=C2=
+=A0<a href=3D"https://kb.ettus.com/USRP_N320/N321_LO_Distribution" target=
+=3D"_blank">https://kb.ettus.com/USRP_N320/N321_LO_Distribution</a>=C2=A0(e=
+.g.
+            code examples and or test setup to measure the phase drift)?
+            It shows less than 0.1 degree of phase error, I&#39;d like to
+            just repeat that test to confirm everything is working
+            correctly, and see what might be causing the deltas.</div>
+        </div>
+      </div>
+    </blockquote>
+    Note that phase-drift measurements measure the *change* in relative
+    phase between channels over time.=C2=A0 Not, I think, the<br>
+    =C2=A0 absolute phase-offset between channels.=C2=A0 In a shared-LO set=
+up
+    (ignoring any bugs or mis-configurations of the DUCs, etc), the<br>
+    =C2=A0 absolute phase-offset between channels is repeatable and (largel=
+y)
+    static.=C2=A0 Dominated by physical processes like temperature<br>
+    =C2=A0 drift and (worse) differential temperature drift in analog
+    components like cables, circuit-board traces, component
+    temperatures,<br>
+    =C2=A0 etc.<br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div dir=3D"ltr"><span style=3D"color:rgb(80,0,80)">
+            <div><br>
+            </div>
+            <div>Thanks,</div>
+            <div><br>
+            </div>
+            <div>Michael</div>
+            <div><br>
+            </div>
+          </span></div>
+        <br>
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jun 7, 2023 at
+            12:22=E2=80=AFPM Rob Kossler &lt;<a href=3D"mailto:rkossler@nd.=
+edu" target=3D"_blank">rkossler@nd.edu</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+            <div dir=3D"ltr">Hi Michael,
+              <div>I don&#39;t have any ideas for reducing a time delay
+                offset. But, I still wonder if the problem could
+                actually be just a phase offset.</div>
+              <div><br>
+                <div>With a relative delay of 2.5ns and a bandwidth of 4
+                  MHz, the amount of phase variation you would see is
+                  0.57 degrees.=C2=A0 That is not easy to see.=C2=A0 On the=
+ other
+                  hand, if your bandwidth=C2=A0increased to 200 MHz, you
+                  would see phase variation of 28.6 degrees (if the
+                  delay offset is 2.5 ns).</div>
+                <div>Rob<br>
+                  <div><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class=3D"gmail_quote">
+              <div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 6, 2023 at
+                9:38=E2=80=AFPM Michael Toussaint &lt;<a href=3D"mailto:mto=
+ussaint@chaosinc.com" target=3D"_blank">mtoussaint@chaosinc.com</a>&gt;
+                wrote:<br>
+              </div>
+              <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                <div dir=3D"ltr">
+                  <div dir=3D"ltr">Hi Rob,=C2=A0
+                    <div><br>
+                    </div>
+                    <div>The signal is actually sweeping over 4MHz, but
+                      is just super zoomed into a small piece to show
+                      the time delta so it looks CW. The time difference
+                      appears to be the same (within my ability to
+                      measure) across the band so I am assuming it is a
+                      time delay offset.</div>
+                    <div><br>
+                    </div>
+                    <div>Any suggestions on how to reduce this time
+                      delay offset?</div>
+                    <div><br>
+                    </div>
+                    <div>Thanks,</div>
+                    <div><br>
+                    </div>
+                    <div>Michael Toussaint</div>
+                    <div><br>
+                    </div>
+                  </div>
+                  <br>
+                  <div class=3D"gmail_quote">
+                    <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 5,
+                      2023 at 8:51=E2=80=AFPM Rob Kossler &lt;<a href=3D"ma=
+ilto:rkossler@nd.edu" target=3D"_blank">rkossler@nd.edu</a>&gt;
+                      wrote:<br>
+                    </div>
+                    <blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                      <div dir=3D"ltr">
+                        <div dir=3D"ltr">Hi Michael,
+                          <div>Either a delay offset OR a phase offset
+                            will show itself as a relative phase.=C2=A0 In
+                            order to distinguish between a delay offset
+                            and a phase offset, your signal must have
+                            appreciable bandwidth.=C2=A0 It appears that yo=
+ur
+                            signal is CW.=C2=A0 It is entirely possible tha=
+t
+                            your delay offset is zero.=C2=A0 Does this make
+                            sense?</div>
+                          <div>Rob</div>
+                        </div>
+                        <br>
+                        <div class=3D"gmail_quote">
+                          <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun
+                            5, 2023 at 5:32=E2=80=AFPM Michael Toussaint &l=
+t;<a href=3D"mailto:mtoussaint@chaosinc.com" target=3D"_blank">mtoussaint@c=
+haosinc.com</a>&gt;
+                            wrote:<br>
+                          </div>
+                          <blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>
+                            <div dir=3D"ltr">
+                              <div dir=3D"ltr"><font color=3D"#9900ff">Coul=
+d
+                                  you share how you&#39;re setting up LO
+                                  sharing in your code, as well as how
+                                  you&#39;re setting the system clock on th=
+e
+                                  N321?</font>
+                                <div><font color=3D"#9900ff"><br>
+                                  </font></div>
+                                <div>The functions &quot;<span style=3D"bac=
+kground-color:rgb(255,255,255)"><font color=3D"#ff9900">configure_channels<=
+/font></span>&quot;
+                                  and &quot;<font color=3D"#ff9900">set_lo_=
+hw_exports</font>&quot;
+                                  are used to set up the LO sharing.<br>
+                                  <br>
+                                  The functions &quot;<font color=3D"#ff990=
+0">sync_sources</font>&quot;
+                                  and &quot;<font color=3D"#ff9900">sync_al=
+l_devices</font>&quot;
+                                  are used to set up the system clock on
+                                  the N321.<font color=3D"#9900ff"><br>
+                                  </font></div>
+                                <div><br>
+                                </div>
+                                <div>
+                                  <div><font color=3D"#9900ff">How do you
+                                      measure the relative delay?</font></d=
+iv>
+                                  <div><br>
+                                  </div>
+                                  <div>We are measuring the offset of
+                                    the LO&#39;s by just measuring the phas=
+e
+                                    difference of <span>i</span>the
+                                    RF coming out of the Ettus with an
+                                    Oscilloscope (picture attached as=C2=A0=
+=C2=A0<a id=3D"m_-7352161079718530126m_-7617529863513143383m_18110525124629=
+31056m_-3658695941951127572m_8850574248469324996gmail-:tl" href=3D"https://=
+mail.google.com/mail/u/0?ui=3D2&amp;ik=3D34abf4583b&amp;attid=3D0.1&amp;per=
+mmsgid=3Dmsg-a:r-1207093291428225864&amp;view=3Datt&amp;disp=3Dsafe&amp;rea=
+lattid=3Df_lijcykt50" target=3D"_blank">
+                                      <div style=3D"display:inline-block;ov=
+erflow:hidden;padding:3px 0px;text-overflow:ellipsis;vertical-align:bottom;=
+max-width:315px">Scope_Trace_SingleStream_LO.png</div>
+                                    </a>). Yellow is Channel 1, Green is
+                                    Channel 2; using a single streamer
+                                    we still appear to have a 2.64ns
+                                    delta or ~135 degree phase shift.</div>
+                                  <div><br>
+                                  </div>
+                                  <div>Thanks Marcus and Rob for your
+                                    assistance.</div>
+                                  <div><br>
+                                  </div>
+                                  <div>Michael Toussaint</div>
+                                  <div><br>
+                                    <font color=3D"#ff9900">def
+                                      sync_sources(usrp):<br>
+                                      =C2=A0 =C2=A0=C2=A0<a href=3D"http://=
+logging.info/" target=3D"_blank">logging.info</a>(&#39;Setting
+                                      Sync Sources&#39;)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0
+                                      usrp.set_sync_source(clock_source
+                                      =3D &#39;gpsdo&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0time_source =3D &#39;gpsdo&#39;=
+)<br>
+                                      <br>
+                                      def sync_all_devices(hw_info):<br>
+                                      =C2=A0 =C2=A0=C2=A0<a href=3D"http://=
+logging.info/" target=3D"_blank">logging.info</a>(&#39;Syncing
+                                      All Devices&#39;)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 mb_with_gps_locked =3D =
+-1<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 while 1:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 time.slee=
+p(1.0)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 all_ref_l=
+ocked =3D True<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 for board=
+ in
+                                      range(hw_info.usrp.get_num_mboards())=
+:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 all_ref_locked =3D
+                                      all_ref_locked and \<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+                                      hw_info.usrp.get_mboard_sensor(&#39;r=
+ef_locked&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0board).to_bool()<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 if (mb_with_gps_locked
+                                      =3D=3D -1) and \<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+                                      hw_info.usrp.get_mboard_sensor(&#39;g=
+ps_locked&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0board).to_bool():<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 mb_with_gps_locked
+                                      =3D board<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 if all_re=
+f_locked:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info=
+</a>(&#39;All
+                                      Devices are REF locked&#39;)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 break<br>
+                                      <br>
+                                      =C2=A0 =C2=A0=C2=A0<a href=3D"http://=
+logging.info/" target=3D"_blank">logging.info</a>(&#39;GPS
+                                      Locked on MB #%d&#39;,
+                                      mb_with_gps_locked)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 time.sleep(1.0)<br>
+                                      =C2=A0 =C2=A0
+                                      hw_info.usrp.set_time_next_pps(<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 uhd.types=
+.TimeSpec(<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      hw_info.usrp.get_mboard_sensor(&#39;g=
+ps_time&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0
+                                      =C2=A0 =C2=A0 =C2=A0mb_with_gps_locke=
+d).to_int()
+                                      +<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0
+                                      =C2=A0 =C2=A0 =C2=A01.0)<br>
+                                      =C2=A0 =C2=A0 )<br>
+                                      =C2=A0 =C2=A0 time.sleep(1.0)<br>
+                                      <br>
+                                      <br>
+                                      def configure_channels(usrp,
+                                      rf_type, hw_info):<br>
+                                      =C2=A0 =C2=A0 rf_channel_index =3D No=
+ne<br>
+                                      =C2=A0 =C2=A0 set_rf_rate =3D None<br=
+>
+                                      =C2=A0 =C2=A0 set_rf_freq =3D None<br=
+>
+                                      =C2=A0 =C2=A0 set_rf_gain =3D None<br=
+>
+                                      =C2=A0 =C2=A0 set_rf_lo_source =3D No=
+ne<br>
+                                      =C2=A0 =C2=A0 get_rf_lo_source =3D No=
+ne<br>
+                                      =C2=A0 =C2=A0 get_rf_lo_freq =3D None=
+<br>
+                                      =C2=A0 =C2=A0 get_rf_lo_freq_range =
+=3D None<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 if (rf_type =3D=3D &#39=
+;rx&#39;):<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 if
+                                      (len(hw_info.rx_channel_index)
+                                      &gt; 0):<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 rf_channel_index =3D
+                                      hw_info.rx_channel_index<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_rate =3D
+                                      usrp.set_rx_rate<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_freq =3D
+                                      usrp.set_rx_freq<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_gain =3D
+                                      usrp.set_rx_gain<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_lo_source =3D
+                                      usrp.set_rx_lo_source<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 get_rf_lo_source =3D
+                                      usrp.get_rx_lo_source<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 get_rf_lo_freq =3D
+                                      usrp.get_rx_lo_freq<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 get_rf_lo_freq_range =3D
+                                      usrp.get_rx_lo_freq_range<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 return<br>
+                                      =C2=A0 =C2=A0 elif (rf_type =3D=3D &#=
+39;tx&#39;):</font><br>
+                                    <font color=3D"#ff9900"><span>i</span>=
+=C2=A0
+                                      =C2=A0 =C2=A0 =C2=A0 if
+                                      (len(hw_info.tx_channel_index)
+                                      &gt; 0):<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 rf_channel_index =3D
+                                      hw_info.tx_channel_index<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_rate =3D
+                                      usrp.set_tx_rate<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_freq =3D
+                                      usrp.set_tx_freq<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_gain =3D
+                                      usrp.set_tx_gain<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 set_rf_lo_source =3D
+                                      usrp.set_tx_lo_source<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 get_rf_lo_source =3D
+                                      usrp.get_tx_lo_source<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 get_rf_lo_freq =3D
+                                      usrp.get_tx_lo_freq<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 get_rf_lo_freq_range =3D
+                                      usrp.get_tx_lo_freq_range</font><br>
+                                    <font color=3D"#ff9900"><span>i</span>=
+=C2=A0
+                                      =C2=A0 =C2=A0 =C2=A0 else:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 return<br>
+                                      <br>
+                                      =C2=A0 =C2=A0=C2=A0<a href=3D"http://=
+logging.info/" target=3D"_blank">logging.info</a>(&#39;Configuring
+                                      %s Channels&#39;, rf_type.upper())<br=
+>
+                                      <br>
+                                      =C2=A0 =C2=A0 for rf_ch_name, rf_ch_i=
+ndex in
+                                      rf_channel_index.items():<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;Config=
+uring
+                                      %s channel %s (channel #%d)&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(), rf_ch_name,
+                                      rf_ch_index)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 ch_def =
+=3D
+                                      hw_info.channel_def[rf_ch_name]<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 # LO Chan=
+nel Setup<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 current_l=
+o_name =3D
+                                      &#39;unknown&#39;<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 current_l=
+o_src =3D &#39;unknown&#39;<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 if ch_def=
+.lo_inputs is not
+                                      None:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info=
+</a>(&#39;
+                                      =C2=A0Setting %s LO for Channel %s
+                                      (#%d)&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(), rf_ch_name,
+                                      rf_ch_index)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0
+                                      set_rf_lo_source(ch_def.lo_inputs.sou=
+rce,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a hre=
+f=3D"http://ch_def.lo_inputs.name/" target=3D"_blank">ch_def.lo_inputs.name=
+</a>,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_ch_index)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 current_lo_name =3D=C2=A0<a href=3D"http://ch_def.lo_inputs.name/" t=
+arget=3D"_blank">ch_def.lo_inputs.name</a><br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info=
+</a>(&#39;
+                                      =C2=A0 =C2=A0(#%d) Requested %s LO na=
+me %s,
+                                      src %s&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_ch_index,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"http://ch=
+_def.lo_inputs.name/" target=3D"_blank">ch_def.lo_inputs.name</a>,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0ch_def.lo_inputs.source)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info=
+</a>(&#39;
+                                      =C2=A0No %s LO inputs for Channel %s
+                                      (#%d)&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(), rf_ch_name,
+                                      rf_ch_index)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 current_lo_name =3D
+                                      &#39;lo1&#39;<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 current_l=
+o_src =3D
+                                      get_rf_lo_source(current_lo_name,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_ch_ind=
+ex)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;
+                                      =C2=A0 =C2=A0(#%d) Current %s LO name=
+ %s,
+                                      src %s&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_ch_index,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0current_lo_name,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0current_lo_src)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_lo_fre=
+q =3D
+                                      get_rf_lo_freq(current_lo_name,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0
+                                      =C2=A0 rf_ch_index)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;
+                                      =C2=A0 =C2=A0(#%d) [%s] Current %s LO=
+ freq
+                                      %d&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_ch_index,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0current_lo_name,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_lo_freq)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 rf_lo_fre=
+q_range =3D
+                                      get_rf_lo_freq_range(<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 current_lo_name,
+                                      rf_ch_index)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 temp =3D =
+&#39; =C2=A0 =C2=A0(#%d) [%s]
+                                      Current %s LO freq range&#39; + \<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 &#39; [%d, %d] step %d&#39;<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(temp,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_ch_index,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0current_lo_name,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_lo_freq_range.start(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_lo_freq_range.stop(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_lo_freq_range.step())<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;
+                                      =C2=A0Setting Sampling Rate %s&#39;,
+                                      hw_info.fs)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 set_rf_ra=
+te(hw_info.fs,
+                                      rf_ch_index)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;
+                                      =C2=A0Setting Center Freq %s&#39;,
+                                      hw_info.fc)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 tr =3D
+                                      set_rf_freq(uhd.libpyuhd.types.tune_r=
+equest(hw_info.fc),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_ch_index)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;
+                                      =C2=A0 =C2=A0(#%d) %s Tune Result:&#3=
+9;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rf_ch_index,
+                                      rf_type.upper())<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 log_tune_=
+result(tr)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0=C2=A0<a h=
+ref=3D"http://logging.info/" target=3D"_blank">logging.info</a>(&#39;
+                                      =C2=A0Setting %s Gain: %2.3f db&#39;,=
+<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0rf_type.upper(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ch_def.gain)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 set_rf_ga=
+in(ch_def.gain,
+                                      rf_ch_index)<br>
+                                      <br>
+                                      def set_lo_hw_exports(usrp,
+                                      node_name, dirx, lo_enabled,
+                                      output_array):<br>
+                                      =C2=A0 =C2=A0 &quot;&quot;&quot;Set L=
+O HW Exports&quot;&quot;&quot;<br>
+                                      =C2=A0 =C2=A0 if (lo_enabled is None)=
+ or
+                                      (output_array is None):<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 return<br=
+>
+                                      <br>
+                                      =C2=A0 =C2=A0=C2=A0<a href=3D"http://=
+logging.info/" target=3D"_blank">logging.info</a>(&#39;Setting
+                                      %s LO Export Enabled for %s&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0dirx.upper(),
+                                      node_name)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 if dirx.lower() =3D=3D =
+&#39;rx&#39;:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      usrp.set_rx_lo_export_enabled(lo_enab=
+led,
+                                      &#39;lo1&#39;, 0)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 enable_va=
+l =3D
+                                      usrp.get_rx_lo_export_enabled(&#39;lo=
+1&#39;)<br>
+                                      =C2=A0 =C2=A0 elif dirx.lower() =3D=
+=3D &#39;tx&#39;:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      usrp.set_tx_lo_export_enabled(lo_enab=
+led,
+                                      &#39;lo1&#39;, 0)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 enable_va=
+l =3D
+                                      usrp.get_tx_lo_export_enabled(&#39;lo=
+1&#39;)<br>
+                                      =C2=A0 =C2=A0 else:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 logging.w=
+arning(&#39;Invalid
+                                      direction %s&#39;, dirx)<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 return<br=
+>
+                                      <br>
+                                      =C2=A0 =C2=A0=C2=A0<a href=3D"http://=
+logging.info/" target=3D"_blank">logging.info</a>(&#39;
+                                      =C2=A0%s LO Export Enabled =3D %s,
+                                      requested %s&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0dirx.upper(),
+                                      enable_val, lo_enabled)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 temp_path =3D
+                                      &#39;blocks/0/Radio#0/dboard/&#39; + =
+\<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      f&#39;{dirx.lower()}_frontends/&#39; =
++ \<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      &#39;0/los/lo1/lo_distribution/LO_OUT=
+_{}/export&#39;<br>
+                                      <br>
+                                      =C2=A0 =C2=A0=C2=A0<a href=3D"http://=
+logging.info/" target=3D"_blank">logging.info</a>(&#39;Setting
+                                      %s LO HW Outputs for %s&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0dirx.upper(),
+                                      node_name)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 for out_num in
+                                      range(len(output_array)):<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 hw_lo_exp=
+ort_path =3D
+                                      temp_path.format(out_num)<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 if
+                                      usrp.get_tree().exists(hw_lo_export_p=
+ath):<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0
+                                      usrp.get_tree().access_bool(hw_lo_exp=
+ort_path).set(<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0
+                                      output_array[out_num])<br>
+                                      <br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0=C2=A0<a href=3D"http://logging.info/" target=3D"_blank">logging.info=
+</a>(&#39;
+                                      =C2=A0%s LO HW Export Out[%d] =3D %s,=
+ %s
+                                      %s&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0dirx.upper(), out_num,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      =C2=A0usrp.get_tree().access_bool(<br=
+>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      hw_lo_export_path).get(),<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      &#39;requested&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      output_array[out_num])<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 else:<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 logging.warning(&#39; =C2=A0%s
+                                      LO HW Export Out[%d] does not
+                                      exist&#39;,<br>
+                                      =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
+                                      dirx.upper(), out_num)</font></div>
+                                </div>
+                                <div><br>
+                                </div>
+                              </div>
+                              <br>
+                              <div class=3D"gmail_quote">
+                                <div dir=3D"ltr" class=3D"gmail_attr">On
+                                  Thu, May 25, 2023 at 6:45=E2=80=AFAM Rob
+                                  Kossler &lt;<a href=3D"mailto:rkossler@nd=
+.edu" target=3D"_blank">rkossler@nd.edu</a>&gt;
+                                  wrote:<br>
+                                </div>
+                                <blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">On
+                                  Thu, May 25, 2023 at 3:54=E2=80=AFAM Mich=
+ael
+                                  Toussaint<br>
+                                  &lt;<a href=3D"mailto:mtoussaint@chaosinc=
+.com" target=3D"_blank">mtoussaint@chaosinc.com</a>&gt;
+                                  wrote:<br>
+                                  &gt;<br>
+                                  &gt; Used a single streamer and saw
+                                  the delay slightly improve to between
+                                  2.5 - 3 ns.<br>
+                                  &gt;<br>
+                                  &gt; Any other suggestions to improve
+                                  the delay to match the results from
+                                  the knowledge base, <a href=3D"https://kb=
+.ettus.com/USRP_N320/N321_LO_Distribution" rel=3D"noreferrer" target=3D"_bl=
+ank">https://kb.ettus.com/USRP_N320/N321_LO_Distribution</a>?<br>
+                                  <br>
+                                  How do you measure the relative delay?<br=
+>
+                                </blockquote>
+                              </div>
+                              <br clear=3D"all">
+                              <div><br>
+                              </div>
+                            </div>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                  <div><br>
+                  </div>
+                </div>
+              </blockquote>
+            </div>
+          </blockquote>
+        </div>
+        <div><br>
+        </div>
+        <div dir=3D"ltr" class=3D"gmail_signature">
+          <div dir=3D"ltr">
+            <div>
+              <table style=3D"border-collapse:collapse;font-family:Helvetic=
+a,Arial,sans-serif;line-height:1.15;color:rgb(0,0,0)" cellspacing=3D"0" cel=
+lpadding=3D"0">
+                <tbody>
+                  <tr>
+                    <td><br>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table style=3D"border-collapse:collapse" cellspacing=
+=3D"0" cellpadding=3D"0">
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+
+</blockquote></div><div><br></div><div dir=3D"ltr" class=3D"gmail_signature=
+"><div dir=3D"ltr"><div><table cellpadding=3D"0" cellspacing=3D"0" style=3D=
+"border-collapse:collapse;font-family:Helvetica,Arial,sans-serif;line-heigh=
+t:1.15;color:rgb(0,0,0)"><tbody><tr><td><br></td></tr><tr><td nowrap style=
+=3D"line-height:1.2;white-space:nowrap"><br></td></tr><tr><td><table cellpa=
+dding=3D"0" cellspacing=3D"0" style=3D"border-collapse:collapse"><tbody></t=
+body></table></td></tr></tbody></table></div></div></div></div>
+
+--0000000000007919a005fe067a61--
+
+--===============0620806349326090335==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+_______________________________________________
+USRP-users mailing list -- usrp-users@lists.ettus.com
+To unsubscribe send an email to usrp-users-leave@lists.ettus.com
+
+--===============0620806349326090335==--
