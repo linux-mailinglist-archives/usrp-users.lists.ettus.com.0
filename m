@@ -2,523 +2,148 @@ Return-Path: <usrp-users-bounces+lists+usrp-users=lfdr.de@lists.ettus.com>
 X-Original-To: lists+usrp-users@lfdr.de
 Delivered-To: lists+usrp-users@lfdr.de
 Received: from mm2.emwd.com (mm2.emwd.com [172.104.30.75])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D32172E881
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 18:28:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6952372E8AD
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 18:41:12 +0200 (CEST)
 Received: from mm2.emwd.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 3F440383688
-	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 12:28:21 -0400 (EDT)
+	by mm2.emwd.com (Postfix) with ESMTP id 5DF6D3846B8
+	for <lists+usrp-users@lfdr.de>; Tue, 13 Jun 2023 12:41:11 -0400 (EDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686673701; bh=WN/NxnUjI6L2aGRkIV4+PzKvfHpYqWHAeM4oK9ALtDg=;
-	h=Date:To:From:Subject:List-Id:List-Archive:List-Help:List-Owner:
-	 List-Post:List-Subscribe:List-Unsubscribe:From;
-	b=RJCAiEACBF8vsXopm2dl3YR9A9wtKgVAts0TeLZ+CViilIerbYzbU3n1Gh6yf+a5l
-	 OudqAM5Tbyh5++ckwdPlB0DHS1D/r6+zF/FUHCPbgspjrNJZMmZzuTWQW2xndURq4q
-	 r4FLBaDb3pPvg356v6JUFZDeqWU0uI0CLqlB2SVFgntVtTWsYYEUztgfDeHJcb7kNB
-	 iygDzP9dDF0f9ay+6sNIqPhqTtHhUk6Q8/JSld2uXUZml5Um5g5bPsCOHhLTu5O7k1
-	 VduD9QN3AFjzTdkDq4XXRIrIFnHyyjepq9ucWEXmVTWCOk0fPnsEAdDbFtbWgGRJRj
-	 3ZTUCFp25TjGg==
-Received: from lists.ettus.com (localhost [127.0.0.1])
-	by mm2.emwd.com (Postfix) with ESMTP id 2C37E3830B5
-	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 12:27:56 -0400 (EDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=emwd.com; s=harmony;
-	t=1686673676; bh=xxdbsz1ruK0xjzd+w5dr7dvmVRFt6znL+hJxBuHlyUo=;
-	h=Date:To:From:Subject:From;
-	b=TDCkhqnK92XhwDRh/VQVcCG2fkuwZayHoAu1UvTpHWowPOIT9VVQ9FkLjPSfhzGsi
-	 SDVDjJ19Ej9jdej14QTwU/sMbHldZ2VZZnnQ3uGZasU+r4YqbC9OXEK57hX9aVErBg
-	 +maGOqWfi/U+J+BkAlFapocfiYRRMSIve2qkulr1uo7q+lkr8O+V9vMjZi3zA0Wj0B
-	 TPN1kPVyK27TfJcpvaupzTLuxj+c0/EqzME4S4s4sp3au7Zxo3neXvmIraQ5SlR0fx
-	 9rgsof9E1hn6Ojw4vDhARFFYla3J7X99gLuP2xh0k3GLoqhkbWByH9pyTY8eb7Sidm
-	 QcFjot2+KLMAA==
-Date: Tue, 13 Jun 2023 16:27:56 +0000
-To: usrp-users@lists.ettus.com
-From: jmaloyan@umass.edu
-Message-ID: <ARO3YO41degwgjI4kM60y5Q2EYQlxBP3spd0vX3bwg@lists.ettus.com>
-X-Mailer: PHPMailer 6.1.7 (https://github.com/PHPMailer/PHPMailer)
+	t=1686674471; bh=UfTxxBExkQn9V8AhNrjXGt2+m1hZg7ccnemON+xtTcU=;
+	h=Date:To:References:From:In-Reply-To:Subject:List-Id:List-Archive:
+	 List-Help:List-Owner:List-Post:List-Subscribe:List-Unsubscribe:
+	 From;
+	b=xDRVRAh7Cs7Cn9TecaBFs0kDdJn/uiv1+wIo2bHnDLW4Qaj0kD3CI4TndBK4TaubL
+	 kU1e0GUnySV2lZllzBKnPpRvHFoLHNPTvjgFvgDngLgA5lhUXNvwP8qD8iTWPaxIAv
+	 0p5Qspm97d1vKA1z14d1KPlCfq+ykJrKWYly8OGRf6o7OL7wxgfXaGqf7t+bR2jQOa
+	 8rCfo2rpIM4/I/9OsON8W+taxIHQfCR2QxtIqjr0x90VNwSb+GGJpbjIjQwx71SJkm
+	 P/HtAeSqPiYH1VHXurkdfw1SPNV3YpUlPhgKVhcDEk/RD0nvnaz12JNf2y6QrtjyhJ
+	 qiyRf076ON/rg==
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	by mm2.emwd.com (Postfix) with ESMTPS id 21FCF384AB2
+	for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 12:40:14 -0400 (EDT)
+Authentication-Results: mm2.emwd.com;
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bMzPma0Z";
+	dkim-atps=neutral
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-45ee86a16caso1971332e0c.1
+        for <usrp-users@lists.ettus.com>; Tue, 13 Jun 2023 09:40:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686674414; x=1689266414;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jW7eniAMoHP4QrBsN6mxfeiiFKCwQ1VIF5nPlkrQU+I=;
+        b=bMzPma0ZduRPI2fLcAYdiizGezXwwoFc81VXyu2kb4NVNrKJKbC06qrcxCByf4KUTS
+         Bb9eFLkw/W6kK90ViZGS8YT7T5nrVwvZsT6KifySBZCkcgKle95q5u7nGagg/FyFlBB2
+         En7hmhDGUAzZrB3Q3DN8jvDV5ztcM7aUQDwYGjygatiU8kYkIuxvdVjsItcbFR6C1jVX
+         dH9JstDweE2RMO2ZxrH2mRADH7dvhWByPmdwozbvk7F2hNYzkEupALshnfSjp26P2LeM
+         uFbD2PkPfOQLBeo+WFBIW57GJTss0akNCkHnzeAO+7jYx4L8kS1SIsvHzf88xGFAxoo9
+         UX2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686674414; x=1689266414;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jW7eniAMoHP4QrBsN6mxfeiiFKCwQ1VIF5nPlkrQU+I=;
+        b=YDwwUtzWDRUNl2XyKfzGpwzLMb340GLVakf+xGMF5cRkpzRfn2ADOzoo/LeVAiDaqm
+         J/GFc2S92JLZM6W53l7xn9fODQeHjFNOAYp7PwW6u2bO6pOunuIlm2OuEEu1vzuaf7K2
+         RvneO0kA3R20QYV1tNtWufJgh3Io3IBSS7qpfJxFXDx1/JMC7gyRbmiipHecCyHf7et5
+         L5TnPUVg7CIcDuMVJf6i7X344npSsPSwzG60+OROw+beTJ4kecixMClSwkeQ2xb7mbWJ
+         2aQplHnD/EUGoCBSx32E+PaW3EUNk9muLfNtc613fjh/vspvUWpd+A92wCen5wckmt0f
+         vbJw==
+X-Gm-Message-State: AC+VfDx/drNysoElpu3v+CrmsWuNfR38oO7zF5tJkEneiRzHT0JTm0FE
+	OXpwNf7meEFkbEAGedHXBcvqyt2e6M2KpA==
+X-Google-Smtp-Source: ACHHUZ5II/3Arivw9kdv7nI/olja4w/XPAKrDYJt7xusFhZF+YL6XzyVevzpMmXeHiv2VG8Qf/n2Vg==
+X-Received: by 2002:a1f:c1c8:0:b0:46e:573b:3691 with SMTP id r191-20020a1fc1c8000000b0046e573b3691mr1497727vkf.0.1686674414273;
+        Tue, 13 Jun 2023 09:40:14 -0700 (PDT)
+Received: from [192.168.2.201] (bras-base-smflon1825w-grc-09-174-93-2-82.dsl.bell.ca. [174.93.2.82])
+        by smtp.googlemail.com with ESMTPSA id e21-20020a0caa55000000b00626330a39ecsm4093270qvb.9.2023.06.13.09.40.13
+        for <usrp-users@lists.ettus.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 Jun 2023 09:40:13 -0700 (PDT)
+Message-ID: <79a14485-d53c-382b-e75c-97ee5d10cf29@gmail.com>
+Date: Tue, 13 Jun 2023 12:40:13 -0400
 MIME-Version: 1.0
-Message-ID-Hash: PFFMAKJ2YHQTHL4JSPZ4NGXTDGWG5XVO
-X-Message-ID-Hash: PFFMAKJ2YHQTHL4JSPZ4NGXTDGWG5XVO
-X-MailFrom: jmaloyan@umass.edu
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To: usrp-users@lists.ettus.com
+References: <CAH2Hh738iQj6a55CAsuN9Y9f4OKVHSuWuOrqeP_+06gMhrG=LA@mail.gmail.com>
+From: "Marcus D. Leech" <patchvonbraun@gmail.com>
+In-Reply-To: <CAH2Hh738iQj6a55CAsuN9Y9f4OKVHSuWuOrqeP_+06gMhrG=LA@mail.gmail.com>
+Message-ID-Hash: 7R6G2IHEWXOYO5IYBMUTG6MKR4WRFU3V
+X-Message-ID-Hash: 7R6G2IHEWXOYO5IYBMUTG6MKR4WRFU3V
+X-MailFrom: patchvonbraun@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency; loop; banned-address; member-moderation; header-match-usrp-users.lists.ettus.com-0; header-match-usrp-users.lists.ettus.com-1; header-match-usrp-users.lists.ettus.com-2; nonmember-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; digests; suspicious-header
 X-Mailman-Version: 3.3.3
 Precedence: list
-Subject: [USRP-users] Custom images with X410_400
+Subject: [USRP-users] Re: X310 Dual 200 Msps Streaming
 List-Id: "Discussion and technical support related to USRP, UHD, RFNoC" <usrp-users.lists.ettus.com>
-Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/PFFMAKJ2YHQTHL4JSPZ4NGXTDGWG5XVO/>
+Archived-At: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/message/7R6G2IHEWXOYO5IYBMUTG6MKR4WRFU3V/>
 List-Archive: <https://lists.ettus.com/archives/list/usrp-users@lists.ettus.com/>
 List-Help: <mailto:usrp-users-request@lists.ettus.com?subject=help>
 List-Owner: <mailto:usrp-users-owner@lists.ettus.com>
 List-Post: <mailto:usrp-users@lists.ettus.com>
 List-Subscribe: <mailto:usrp-users-join@lists.ettus.com>
 List-Unsubscribe: <mailto:usrp-users-leave@lists.ettus.com>
-Content-Type: multipart/mixed; boundary="===============4277533494659372574=="
-
-This is a multi-part message in MIME format.
-
---===============4277533494659372574==
-Content-Type: multipart/alternative;
- boundary="b1_ARO3YO41degwgjI4kM60y5Q2EYQlxBP3spd0vX3bwg"
-Content-Transfer-Encoding: 7bit
-
-This is a multi-part message in MIME format.
-
---b1_ARO3YO41degwgjI4kM60y5Q2EYQlxBP3spd0vX3bwg
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-I am looking to increase my custom image from a sampling rate of 250 to 5=
-00 MS/S. I am looking to get some clarification on a few things.
-
-Looking through the verilog, it appears both the 200 and 400 images have =
-the same master clock rate of 250 MHz, but with the 400 image there are t=
-wice as many samples per clock(SPC). Furthermore, it looks like the 200 i=
-mage is almost identical to the 400 image, but it uses two extra modules =
-(rf_down_rto2 and rf_up_2to4) to handle the wider buses.
-
-So, it seems like the upgrading my image is pretty trivial.. in the yml f=
-ile, I need to upgrade my chdr_width from 64 to 128, and make sure my tar=
-get image is =E2=80=9CX410_X4_400. Additionally, I have to change the clo=
-cks going into my custom blocks from =E2=80=9Cradio_2x=E2=80=9D to =E2=80=
-=9Cradio=E2=80=9D.=20
-
-Is this correct, or am I missing something. I have pasted my yml file bel=
-ow which is working for the =E2=80=9CX410_X4_200=E2=80=9D image.
-
-Thanks,
-
-Joe
-
-`# General parameters`
-
-`# -----------------------------------------`
-
-`schema: rfnoc_imagebuilder_args         # Identifier for the schema used=
- to validate this file`
-
-`copyright: >-                           # Copyright information used in =
-file headers`
-
-`  Ettus Research, A National Instruments Brand`
-
-`license: >-                             # License information used in fi=
-le headers`
-
-`  SPDX-License-Identifier: LGPL-3.0-or-later`
-
-`version: '1.0'                          # File version`
-
-`chdr_width: 64                      # Bit width of the CHDR bus for this=
- image`
-
-`device: 'x410'                          # USRP type`
-
-`image_core_name: 'x410_200_Trigger'         # Name to use for the RFNoC =
-Image Core files`
-
-`default_target: 'X410_X4_200'           # Default make target`
-
-`# A list of all stream endpoints in design`
-
-`# ----------------------------------------`
-
-`stream_endpoints:`
-
-`  ep0:                                  # Stream endpoint name`
-
-`    ctrl: True                          # Endpoint passes control traffi=
-c`
-
-`    data: True                          # Endpoint passes data traffic`
-
-`    buff_size_bytes: 262144             # Ingress buffer size for data`
-
-`  ep1:`
-
-`    ctrl: False`
-
-`    data: True`
-
-`    buff_size_bytes: 262144`
-
-`  ep2:`
-
-`    ctrl: False`
-
-`    data: True`
-
-`    buff_size_bytes: 262144`
-
-`  ep3:`
-
-`    ctrl: False`
-
-`    data: True`
-
-`    buff_size_bytes: 262144`
-
-`  ep4:`
-
-`    ctrl: False`
-
-`    data: True`
-
-`    buff_size_bytes: 32768`
-
-`  ep5:`
-
-`    ctrl: False`
-
-`    data: True`
-
-`    buff_size_bytes: 32768`
-
-`  ep6:`
-
-`    ctrl: False`
-
-`    data: True`
-
-`    buff_size_bytes: 32768`
-
-`  ep7:`
-
-`    ctrl: False`
-
-`    data: True`
-
-`    buff_size_bytes: 32768`
-
-`# A list of all NoC blocks in design`
-
-`# ----------------------------------`
-
-`noc_blocks:`
-
-`  radio0:`
-
-`    block_desc: 'radio.yml'`
-
-`    parameters:`
-
-`      NUM_PORTS: 2`
-
-`      NIPC: RADIO_NIPC`
-
-`  radio1:`
-
-`    block_desc: 'radio.yml'`
-
-`    parameters:`
-
-`      NUM_PORTS: 2`
-
-`      NIPC: RADIO_NIPC`
-
-`  replay0:`
-
-`    block_desc: 'replay.yml'`
-
-`    parameters:`
-
-`      NUM_PORTS: 2`
-
-`      MEM_DATA_W: 64`
-
-`      MEM_ADDR_W: 32`
-
-`  trigger0:`
-
-`    block_desc: 'trigger.yml'`
-
-`    parameters:`
-
-`      NUM_PORTS: 1`
-
-`  trigger1:`
-
-`    block_desc: 'trigger.yml'`
-
-`    parameters:`
-
-`      NUM_PORTS: 1`
-
-`# A list of all static connections in design`
-
-`# ------------------------------------------`
-
-`# Format: A list of connection maps (list of key-value pairs) with the f=
-ollowing keys`
-
-`#   - srcblk  =3D Source block to connect`
-
-`#   - srcport =3D Port on the source block to connect`
-
-`#   - dstblk  =3D Destination block to connect`
-
-`#   - dstport =3D Port on the destination block to connect`
-
-`connections:`
-
-`  #`
-
-`    # RF A:0 TX`
-
-`  - { srcblk: ep0,    srcport: out0,  dstblk: radio0, dstport: in_0 }`
-
-`  # RF A:0 RX`
-
-`  - { srcblk: radio0, srcport: out_0, dstblk: ep0,    dstport: in0  }`
-
-`  # RF A:1 TX`
-
-`  - { srcblk: ep1,    srcport: out0,  dstblk: radio0, dstport: in_1 }`
-
-`  # RF A:1 RX`
-
-`  - { srcblk: radio0, srcport: out_1, dstblk: ep1,    dstport: in0  }`
-
-`  #`
-
-`  # RF B:0 TX`
-
-`  - { srcblk: ep2,    srcport: out0,  dstblk: radio1, dstport: in_0 }`
-
-`  # RF B:0 RX`
-
-`  - { srcblk: radio1, srcport: out_0, dstblk: ep2,    dstport: in0  }`
-
-`  # RF B:1 TX`
-
-`  - { srcblk: ep3,    srcport: out0,  dstblk: radio1, dstport: in_1 }`
-
-`  # RF B:1 RX`
-
-`  - { srcblk: radio1, srcport: out_1, dstblk: ep3,    dstport: in0  }`
-
-`  #`
-
-`  # Replay Connections`
-
-`  - { srcblk: ep4,      srcport: out0,     dstblk: replay0,  dstport: in=
-_0            }`
-
-`  - { srcblk: replay0,  srcport: out_0,    dstblk: ep4,      dstport: in=
-0             }`
-
-`  - { srcblk: ep5,      srcport: out0,     dstblk: replay0,  dstport: in=
-_1            }`
-
-`  - { srcblk: replay0,  srcport: out_1,    dstblk: ep5,      dstport: in=
-0             }`
-
-`  #`
-
-`  #trigger Connections`
-
-`  - { srcblk: ep6,      srcport: out0,     dstblk: trigger0,  dstport: i=
-n_0            }`
-
-`  - { srcblk: trigger0,  srcport: out_0,    dstblk: ep6,      dstport: i=
-n0             }`
-
-`  - { srcblk: ep7,      srcport: out0,     dstblk: trigger1,  dstport: i=
-n_0            }`
-
-`  - { srcblk: trigger1,  srcport: out_0,    dstblk: ep7,      dstport: i=
-n0             }`
-
-`  # BSP Connections`
-
-`  - { srcblk: radio0,   srcport: ctrlport, dstblk: _device_, dstport: ct=
-rlport_radio0 }`
-
-`  - { srcblk: radio1,   srcport: ctrlport, dstblk: _device_, dstport: ct=
-rlport_radio1 }`
-
-`  - { srcblk: _device_, srcport: radio0,   dstblk: radio0,   dstport: ra=
-dio           }`
-
-`  - { srcblk: _device_, srcport: radio1,   dstblk: radio1,   dstport: ra=
-dio           }`
-
-`  - { srcblk: _device_, srcport: time,     dstblk: radio0,   dstport: ti=
-me            }`
-
-`  - { srcblk: _device_, srcport: time,     dstblk: radio1,   dstport: ti=
-me            }`
-
-`  - { srcblk: replay0,  srcport: axi_ram,  dstblk: _device_, dstport: dr=
-am            }`
-
-`# A list of all clock domain connections in design`
-
-`# ------------------------------------------------`
-
-`# Format: A list of connection maps (list of key-value pairs) with the f=
-ollowing keys`
-
-`#   - srcblk  =3D Source block to connect (Always "_device_")`
-
-`#   - srcport =3D Clock domain on the source block to connect`
-
-`#   - dstblk  =3D Destination block to connect`
-
-`#   - dstport =3D Clock domain on the destination block to connect`
-
-`clk_domains:`
-
-`  - { srcblk: _device_, srcport: radio, dstblk: radio0,  dstport: radio =
-}`
-
-`  - { srcblk: _device_, srcport: radio, dstblk: radio1,  dstport: radio =
-}`
-
-`  - { srcblk: _device_, srcport: dram,  dstblk: replay0, dstport: mem   =
-}`
-
-`  - { srcblk: _device_, srcport: radio_2x, dstblk: trigger1,    dstport:=
- ce    }`
-
-`  - { srcblk: _device_, srcport: radio_2x, dstblk: trigger0,    dstport:=
- ce    }`
-
---b1_ARO3YO41degwgjI4kM60y5Q2EYQlxBP3spd0vX3bwg
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hello,</p><p><br></p><p>I am looking to increase my custom image from a =
-sampling rate of 250 to 500 MS/S. I am looking to get some clarification on=
- a few things.</p><p>Looking through the verilog, it appears both the 200 a=
-nd 400 images have the same master clock rate of 250 MHz, but with the 400 =
-image there are twice as many samples per clock(SPC). Furthermore, it looks=
- like the 200 image is almost identical to the 400 image, but it uses two e=
-xtra modules (rf_down_rto2 and rf_up_2to4) to handle the wider buses.</p><p=
->So, it seems like the upgrading my image is pretty trivial.. in the yml fi=
-le, I need to upgrade my chdr_width from 64 to 128, and make sure my target=
- image is =E2=80=9CX410_X4_400. Additionally, I have to change the clocks g=
-oing into my custom blocks from =E2=80=9Cradio_2x=E2=80=9D to =E2=80=9Cradi=
-o=E2=80=9D. </p><p>Is this correct, or am I missing something. I have paste=
-d my yml file below which is working for the =E2=80=9CX410_X4_200=E2=80=
-=9D image.</p><p>Thanks,</p><p>Joe</p><p><code># General parameters</code><=
-/p><p><code># -----------------------------------------</code></p><p><code>=
-schema: rfnoc_imagebuilder_args         # Identifier for the schema used to=
- validate this file</code></p><p><code>copyright: &gt;-                    =
-       # Copyright information used in file headers</code></p><p><code>  Et=
-tus Research, A National Instruments Brand</code></p><p><code>license: &gt;=
--                             # License information used in file headers</c=
-ode></p><p><code>  SPDX-License-Identifier: LGPL-3.0-or-later</code></p><p>=
-<code>version: '1.0'                          # File version</code></p><p><=
-code>chdr_width: 64                      # Bit width of the CHDR bus for th=
-is image</code></p><p><code>device: 'x410'                          # USRP =
-type</code></p><p><code>image_core_name: 'x410_200_Trigger'         # Name =
-to use for the RFNoC Image Core files</code></p><p><code>default_target: 'X=
-410_X4_200'           # Default make target</code></p><p><code># A list of =
-all stream endpoints in design</code></p><p><code># -----------------------=
------------------</code></p><p><code>stream_endpoints:</code></p><p><code> =
- ep0:                                  # Stream endpoint name</code></p><p>=
-<code>    ctrl: True                          # Endpoint passes control tra=
-ffic</code></p><p><code>    data: True                          # Endpoint =
-passes data traffic</code></p><p><code>    buff_size_bytes: 262144         =
-    # Ingress buffer size for data</code></p><p><code>  ep1:</code></p><p><=
-code>    ctrl: False</code></p><p><code>    data: True</code></p><p><code> =
-   buff_size_bytes: 262144</code></p><p><code>  ep2:</code></p><p><code>   =
- ctrl: False</code></p><p><code>    data: True</code></p><p><code>    buff_=
-size_bytes: 262144</code></p><p><code>  ep3:</code></p><p><code>    ctrl: F=
-alse</code></p><p><code>    data: True</code></p><p><code>    buff_size_byt=
-es: 262144</code></p><p><code>  ep4:</code></p><p><code>    ctrl: False</co=
-de></p><p><code>    data: True</code></p><p><code>    buff_size_bytes: 3276=
-8</code></p><p><code>  ep5:</code></p><p><code>    ctrl: False</code></p><p=
-><code>    data: True</code></p><p><code>    buff_size_bytes: 32768</code><=
-/p><p><code>  ep6:</code></p><p><code>    ctrl: False</code></p><p><code>  =
-  data: True</code></p><p><code>    buff_size_bytes: 32768</code></p><p><co=
-de>  ep7:</code></p><p><code>    ctrl: False</code></p><p><code>    data: T=
-rue</code></p><p><code>    buff_size_bytes: 32768</code></p><p><code># A li=
-st of all NoC blocks in design</code></p><p><code># -----------------------=
------------</code></p><p><code>noc_blocks:</code></p><p><code>  radio0:</co=
-de></p><p><code>    block_desc: 'radio.yml'</code></p><p><code>    paramete=
-rs:</code></p><p><code>      NUM_PORTS: 2</code></p><p><code>      NIPC: RA=
-DIO_NIPC</code></p><p><code>  radio1:</code></p><p><code>    block_desc: 'r=
-adio.yml'</code></p><p><code>    parameters:</code></p><p><code>      NUM_P=
-ORTS: 2</code></p><p><code>      NIPC: RADIO_NIPC</code></p><p><code>  repl=
-ay0:</code></p><p><code>    block_desc: 'replay.yml'</code></p><p><code>   =
- parameters:</code></p><p><code>      NUM_PORTS: 2</code></p><p><code>     =
- MEM_DATA_W: 64</code></p><p><code>      MEM_ADDR_W: 32</code></p><p><code>=
-  trigger0:</code></p><p><code>    block_desc: 'trigger.yml'</code></p><p><=
-code>    parameters:</code></p><p><code>      NUM_PORTS: 1</code></p><p><co=
-de>  trigger1:</code></p><p><code>    block_desc: 'trigger.yml'</code></p><=
-p><code>    parameters:</code></p><p><code>      NUM_PORTS: 1</code></p><p>=
-<code># A list of all static connections in design</code></p><p><code># ---=
----------------------------------------</code></p><p><code># Format: A list=
- of connection maps (list of key-value pairs) with the following keys</code=
-></p><p><code>#   - srcblk  =3D Source block to connect</code></p><p><code>=
-#   - srcport =3D Port on the source block to connect</code></p><p><code># =
-  - dstblk  =3D Destination block to connect</code></p><p><code>#   - dstpo=
-rt =3D Port on the destination block to connect</code></p><p><code>connecti=
-ons:</code></p><p><code>  #</code></p><p><code>    # RF A:0 TX</code></p><p=
-><code>  - { srcblk: ep0,    srcport: out0,  dstblk: radio0, dstport: in_0 =
-}</code></p><p><code>  # RF A:0 RX</code></p><p><code>  - { srcblk: radio0,=
- srcport: out_0, dstblk: ep0,    dstport: in0  }</code></p><p><code>  # RF =
-A:1 TX</code></p><p><code>  - { srcblk: ep1,    srcport: out0,  dstblk: rad=
-io0, dstport: in_1 }</code></p><p><code>  # RF A:1 RX</code></p><p><code>  =
-- { srcblk: radio0, srcport: out_1, dstblk: ep1,    dstport: in0  }</code><=
-/p><p><code>  #</code></p><p><code>  # RF B:0 TX</code></p><p><code>  - { s=
-rcblk: ep2,    srcport: out0,  dstblk: radio1, dstport: in_0 }</code></p><p=
-><code>  # RF B:0 RX</code></p><p><code>  - { srcblk: radio1, srcport: out_=
-0, dstblk: ep2,    dstport: in0  }</code></p><p><code>  # RF B:1 TX</code><=
-/p><p><code>  - { srcblk: ep3,    srcport: out0,  dstblk: radio1, dstport: =
-in_1 }</code></p><p><code>  # RF B:1 RX</code></p><p><code>  - { srcblk: ra=
-dio1, srcport: out_1, dstblk: ep3,    dstport: in0  }</code></p><p><code>  =
-#</code></p><p><code>  # Replay Connections</code></p><p><code>  - { srcblk=
-: ep4,      srcport: out0,     dstblk: replay0,  dstport: in_0            }=
-</code></p><p><code>  - { srcblk: replay0,  srcport: out_0,    dstblk: ep4,=
-      dstport: in0             }</code></p><p><code>  - { srcblk: ep5,     =
- srcport: out0,     dstblk: replay0,  dstport: in_1            }</code></p>=
-<p><code>  - { srcblk: replay0,  srcport: out_1,    dstblk: ep5,      dstpo=
-rt: in0             }</code></p><p><code>  #</code></p><p><code>  #trigger =
-Connections</code></p><p><code>  - { srcblk: ep6,      srcport: out0,     d=
-stblk: trigger0,  dstport: in_0            }</code></p><p><code>  - { srcbl=
-k: trigger0,  srcport: out_0,    dstblk: ep6,      dstport: in0            =
- }</code></p><p><code>  - { srcblk: ep7,      srcport: out0,     dstblk: tr=
-igger1,  dstport: in_0            }</code></p><p><code>  - { srcblk: trigge=
-r1,  srcport: out_0,    dstblk: ep7,      dstport: in0             }</code>=
-</p><p><code>  # BSP Connections</code></p><p><code>  - { srcblk: radio0,  =
- srcport: ctrlport, dstblk: _device_, dstport: ctrlport_radio0 }</code></p>=
-<p><code>  - { srcblk: radio1,   srcport: ctrlport, dstblk: _device_, dstpo=
-rt: ctrlport_radio1 }</code></p><p><code>  - { srcblk: _device_, srcport: r=
-adio0,   dstblk: radio0,   dstport: radio           }</code></p><p><code>  =
-- { srcblk: _device_, srcport: radio1,   dstblk: radio1,   dstport: radio  =
-         }</code></p><p><code>  - { srcblk: _device_, srcport: time,     ds=
-tblk: radio0,   dstport: time            }</code></p><p><code>  - { srcblk:=
- _device_, srcport: time,     dstblk: radio1,   dstport: time            }<=
-/code></p><p><code>  - { srcblk: replay0,  srcport: axi_ram,  dstblk: _devi=
-ce_, dstport: dram            }</code></p><p><code># A list of all clock do=
-main connections in design</code></p><p><code># ---------------------------=
----------------------</code></p><p><code># Format: A list of connection map=
-s (list of key-value pairs) with the following keys</code></p><p><code>#   =
-- srcblk  =3D Source block to connect (Always "_device_")</code></p><p><cod=
-e>#   - srcport =3D Clock domain on the source block to connect</code></p><=
-p><code>#   - dstblk  =3D Destination block to connect</code></p><p><code>#=
-   - dstport =3D Clock domain on the destination block to connect</code></p=
-><p><code>clk_domains:</code></p><p><code>  - { srcblk: _device_, srcport: =
-radio, dstblk: radio0,  dstport: radio }</code></p><p><code>  - { srcblk: _=
-device_, srcport: radio, dstblk: radio1,  dstport: radio }</code></p><p><co=
-de>  - { srcblk: _device_, srcport: dram,  dstblk: replay0, dstport: mem   =
-}</code></p><p><code>  - { srcblk: _device_, srcport: radio_2x, dstblk: tri=
-gger1,    dstport: ce    }</code></p><p><code>  - { srcblk: _device_, srcpo=
-rt: radio_2x, dstblk: trigger0,    dstport: ce    }</code></p><p><br></p><p=
-><br></p>
-
---b1_ARO3YO41degwgjI4kM60y5Q2EYQlxBP3spd0vX3bwg--
-
---===============4277533494659372574==
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Disposition: inline
-
-_______________________________________________
-USRP-users mailing list -- usrp-users@lists.ettus.com
-To unsubscribe send an email to usrp-users-leave@lists.ettus.com
-
---===============4277533494659372574==--
+Content-Type: text/plain; charset="utf-8"; format="flowed"
+Content-Transfer-Encoding: base64
+
+T24gMTIvMDYvMjAyMyAyMjowMywgQWFyb24gU21pdGggd3JvdGU6DQo+IEhlbGxvIEFsbCwNCj4N
+Cj4gSSBhbSB0cnlpbmcgdG8gdHJhbnNtaXQgb24gdHdvIFVCWC0xNjAgZGF1Z2h0ZXJib2FyZHPC
+oCB3aXRoaW4gYSBzaW5nbGUgDQo+IFgzMTAgYXQgMjAwIE1zcHMgdXNpbmcgVUhEIDQuMS4wLjUt
+My4NCj4NCj4gSSBhbSBleHBlcmllbmNpbmcgcGVyaW9kaWMgdW5kZXJmbG93cywgYW5kIEkgaGF2
+ZSBhbHJlYWR5IGFwcGxpZWQgYWxsIA0KPiBvZiB0aGUgdGlwcyBpbiB0aGUgIlVTUlAgSG9zdCBQ
+ZXJmb3JtYW5jZSBUdW5pbmcgVGlwcyBhbmQgVHJpY2tzIiANCj4gYXBwbGljYXRpb24gbm90ZSwg
+d2l0aCB0aGUgZXhjZXB0aW9uIG9mIHVzaW5nIERQREsuDQo+DQo+IEkgaGF2ZSBhIGZldyBxdWVz
+dGlvbnMgYWJvdXQgVUhEIHN0cmVhbWluZyBhbmQgd2hhdCBjYW4gYmUgZG9uZSB0byANCj4gaW1w
+cm92ZSBwZXJmb3JtYW5jZS4NCj4NCj4gMS4gTXkgY3VycmVudCBpbXBsZW1lbnRhdGlvbiB1c2Vz
+IGEgc2luZ2xlIHR4X3N0cmVhbWVyIGZvciBib3RoIA0KPiBjaGFubmVscywgYW5kIHVzZXMgbXVs
+dGlwbGUgdGhyZWFkcyB0byBwb3B1bGF0ZSB0aGUgYnVmZmVycyBzZW50IHRvIA0KPiB0aGUgWDMx
+MC4gV291bGQgdGhlIHBlcmZvcm1hbmNlIGJlIGJldHRlciBpZiBJIHVzZWQgdHdvIHNlcGFyYXRl
+IA0KPiBzdHJlYW1lcnMsIG9uZSBmb3IgZWFjaCBjaGFubmVsLCBpbiBzZXBhcmF0ZSB0aHJlYWRz
+Pw0KSSBkb24ndCB0aGluayB0aGVyZSdzIGEgY2xvc2VkLWZvcm0gYW5zd2VyIHRvIHRoaXMuwqAg
+QmVjYXVzZSBpdCB3b3VsZCANCmRlcGVuZCBvbiB5b3VyIHBhcnRpY3VsYXIgc3lzdGVtLCBhcHBs
+aWNhdGlvbiwgZXRjLsKgwqAgSSdkDQogwqAganVzdCBkbyB0aGUgZXhwZXJpbWVudCBhbmQgc2Vl
+Li4uDQoNCj4NCj4gMi4gSSBoYXZlIHNlZW4gc29tZSBjbGFpbXMgdGhhdCBEUERLIGlzIG5vdCBh
+cyB1c2VmdWwgd2l0aCBVSEQgNCwgaXMgDQo+IHRoaXMgdHJ1ZT8NCkkgZG9uJ3QgdXNlIERQREsg
+bXlzZWxmLCBzbyBJIGRvbid0IGtub3cgaWYgdGhhdCdzIHRydWUgb3Igbm90Lg0KDQo+DQo+IDMu
+IFdpdGggVUhEIDQsIHdvdWxkIGl0IGhlbHAgdG8gc2V0IHRoZSBza2lwX2R1YyBhbmQgc2tpcF9k
+ZGMgZmxhZ3MgDQo+IHdpdGggZnVsbCByYXRlIHN0cmVhbWluZz8NCkFnYWluLCB0aGUgYW5zd2Vy
+IGhlcmUgaXMgc3VzY2VwdGlibGUgdG8gZXhwZXJpbWVudC4uLg0KDQo+DQo+IDQuIEFyZSB1bmRl
+cmZsb3dzIG9ubHkgY3JlYXRlZCB3aXRoaW4gdGhlIHNlbmQoKSBmdW5jdGlvbj8gT3IgY2FuIHRo
+ZSANCj4gdGltaW5nIG9mIGNhbGxzIHRvIHNlbmQoKSBjYXVzZSB1bmRlcmZsb3dzLCBlc3BlY2lh
+bGx5IHdoZW4gdGhlIGJ1cnN0IA0KPiBmbGFncyBhcmUgdXNlZD8gRm9yIGV4YW1wbGUsIHN1cHBv
+c2UgSSBzZXQgdGhlIHN0YXJ0IG9mIGJ1cnN0IGZsYWcgdG8gDQo+IHRydWUgZm9yIGEgc2luZ2xl
+IGJ1ZmZlciBjb250YWluaW5nIDEgc2Vjb25kIG9mIGRhdGEsIGFuZCB0aGVuIEkgDQo+IHRvZ2ds
+ZSB0aGUgc3RhcnQgb2YgYnVyc3QgZmxhZyB0byBmYWxzZSBmb3Igc3Vic2VxdWVudCBidWZmZXJz
+IGFuZCANCj4gY29udGludW91c2x5IGNhbGwgc2VuZCgpIG9uIDEgc2Vjb25kIGJ1ZmZlcnMgZm9y
+IDEwIG1pbnV0ZXMuIE9uIHRoZSANCj4gbGFzdCBzZWNvbmQgSSBzZXQgZW5kIG9mIGJ1cnN0IGZs
+YWcgdG8gdHJ1ZS4gVGhlIGlkZWEgaXMgdG8gY3JlYXRlIGEgDQo+IDEwIG1pbnV0ZSBsb25nICJi
+dXJzdC4iIElmIEkgY2FsbCBzZW5kIGxhdGUgb24gb25lIG9mIHRoZSBvbmUgc2Vjb25kIA0KPiBi
+dWZmZXJzIGluIHRoZSBtaWRkbGUgb2YgdGhlICJidXJzdCIgd2lsbCBVSEQgcmVwb3J0IHVuZGVy
+Zmxvd3M/IE15IA0KPiB0aGlua2luZyBpcyB0aGUgWDMxMCBzaG91bGQgdGhpbmsgaXQgaXMgaW4g
+dGhlIG1pZGRsZSBvZiBhIGJ1cnN0LCBhbmQgDQo+IHdpbGwgZXhwZWN0IGRhdGEsIGJ1dCBzZW5k
+KCkgaGFzIG5vdCBiZWVuIGNhbGxlZCwgc28gdGhlcmUgaXMgbm8gZGF0YSANCj4gZm9yIHRoZSBy
+YWRpbyB0byByZWFkIGZyb20gdGhlIGhvc3QsIGNyZWF0aW5nIHVuZGVyZmxvd3MuIFBlcmhhcHMg
+SSBhbSANCj4gYWxzbyBtaXN1bmRlcnN0YW5kaW5nIHRoZSBwdXJwb3NlIG9mIHRoZSBidXJzdCBm
+bGFncywgYXMgdGhleSBhcmUgbm90IA0KPiB3ZWxsIGRvY3VtZW50ZWQuDQo+DQo+IFRoYW5rcyBm
+b3IgdGhlIGhlbHAhDQo+IEFybW9uDQo+DQpVbmRlcmZsb3dzIG9jY3VyIHdoZW4gdGhlIHJhZGlv
+IGhhcmR3YXJlIHVuZGVyZmxvd3MgaXRzIEZJRk8sIHdoaWNoIGluIA0KdHVybiBtZWFucyB0aGUg
+aG9zdCBpc24ndCBwcm92aWRpbmcgc2FtcGxlcyBhdA0KIMKgIHRoZSBkZXNpcmVkIHJhdGUtLXRo
+ZSByYWRpbyBoYXMgbm8gaWRlYSB3aGF0IHlvdXIgInNlbmQoKSIgYm91bmRhcmllcyANCmFyZSwg
+anVzdCB0aGF0IGl0IGlzbid0IGdldHRpbmcgc2FtcGxlcyB3aGVuIGl0IG5lZWRzDQogwqAgdGhl
+bS7CoMKgwqAgVGhlIGRhdGEgaW4gdGhlICJzZW5kKCkiIGhhcyB0byBwZXJjb2xhdGUgdGhyb3Vn
+aCBVSEQsIA0KdGhyb3VnaCB0aGUga2VybmVsIElQIHN0YWNrIChvciBEUERLIHN0YWNrKSBhbmQg
+aXRzIGJ1ZmZlcnMsIGFuZA0KIMKgIHRoZW4gdGhlIGhhcmR3YXJlIGJ1ZmZlcnMuwqAgQW55IGlu
+Zm9ybWF0aW9uIGFib3V0IGV4YWN0bHkgd2hlbiB5b3UgDQpjYWxsZWQgInNlbmQoKSIgaXMgcHJl
+dHR5IGludmlzaWJsZSBieSB0aGUgdGltZSBpdCByZWFjaGVzDQogwqAgdGhlIHJhZGlvLg0KDQpU
+aGUgImJ1cnN0IiBhcmNoaXRlY3R1cmUgaXMgcmVhbGx5IGludGVuZGVkIGZvciBhcHBsaWNhdGlv
+bnMgbGlrZSBUREQgb3IgDQpoYWxmLWR1cGxleCwgd2hlcmUgeW91IG5lZWQgdG8gbGV0IHRoZSBy
+YWRpbyBrbm93IHRvDQogwqAgbm90IGV4cGVjdCBhbnkgbW9yZSBUWCBzYW1wbGVzLCBzbyBpdCBj
+YW4gZG8gdGhpbmdzIGxpa2Ugc3dpdGNoIA0KYW50ZW5uYXMsIGV0Yy4NCg0KDQo+DQo+DQo+IF9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IFVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tDQo+IFRvIHVuc3Vi
+c2NyaWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20N
+Cl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fClVTUlAtdXNl
+cnMgbWFpbGluZyBsaXN0IC0tIHVzcnAtdXNlcnNAbGlzdHMuZXR0dXMuY29tClRvIHVuc3Vic2Ny
+aWJlIHNlbmQgYW4gZW1haWwgdG8gdXNycC11c2Vycy1sZWF2ZUBsaXN0cy5ldHR1cy5jb20K
